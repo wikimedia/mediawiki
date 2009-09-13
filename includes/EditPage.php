@@ -730,7 +730,7 @@ class EditPage {
 		}
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
-			$this->showLogs( $wgOut );
+			$wgOut->showLogs( $this->mTitle->getPrefixedText(), '', array( 'delete', 'move' ), 'recreate-moveddeleted-warn' );
 		}
 	}
 
@@ -2479,42 +2479,6 @@ END
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'nocreatetitle' ) );
 		$wgOut->addWikiMsg( 'nocreatetext' );
-	}
-
-	/**
-	 * If there are rows in the deletion/move log for this page, show them,
-	 * along with a nice little note for the user
-	 *
-	 * @param OutputPage $out
-	 */
-	protected function showLogs( $out ) {
-		global $wgUser;
-		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
-		$pager = new LogPager( $loglist, array('move', 'delete'), false,
-			$this->mTitle->getPrefixedText(), '', array( "log_action != 'revision'" ) );
-
-		$count = $pager->getNumRows();
-		if ( $count > 0 ) {
-			$pager->mLimit = 10;
-			$out->addHTML( '<div class="mw-warning-with-logexcerpt">' );
-			$out->addWikiMsg( 'recreate-moveddeleted-warn' );
-			$out->addHTML(
-				$loglist->beginLogEventsList() .
-				$pager->getBody() .
-				$loglist->endLogEventsList()
-			);
-			if($count > 10){
-				$out->addHTML( $wgUser->getSkin()->link(
-					SpecialPage::getTitleFor( 'Log' ),
-					wfMsgHtml( 'log-fulllog' ),
-					array(),
-					array( 'page' => $this->mTitle->getPrefixedText() ) ) );
-			}
-			$out->addHTML( '</div>' );
-			return true;
-		}
-		
-		return false;
 	}
 
 	/**

@@ -147,7 +147,7 @@ class SpecialContributions extends SpecialPage {
 	* @return String: appropriately-escaped HTML to be output literally
 	*/
 	protected function contributionsSub( $nt, $id ) {
-		global $wgSysopUserBans, $wgLang, $wgUser;
+		global $wgSysopUserBans, $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 
@@ -223,7 +223,11 @@ class SpecialContributions extends SpecialPage {
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 	
 			$links = $wgLang->pipeList( $tools );
-			$this->showBlock( $nt, $id );
+
+			// Show a note if the user is blocked and display the last block log entry.
+			if ( User::newFromID( $id )->isBlocked() )
+				$wgOut->showLogs( $nt->getPrefixedText(), '', array( 'block' ), 
+						'sp-contributions-blocked-notice', 1 );
 		}
 	
 		// Old message 'contribsub' had one parameter, but that doesn't work for
@@ -237,40 +241,6 @@ class SpecialContributions extends SpecialPage {
 		}
 	}
 
-	/**
-	 * Show a note if the user is blocked and display the last block log entry.
-	 * @param Title $title Title object for the target
-	 * @param $userId ID of the user
-	 */
-	protected function showBlock( $title, $userId ) {
-		global  $wgUser, $wgOut;
-		if ( !User::newFromID( $userId )->isBlocked() )
-			return; # User is not blocked, nothing to do here
-		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
-		$pager = new LogPager( $loglist, 'block', false, $title->getPrefixedText() );
-		// Check if there is something in the block log.
-		// If this is not the case, either the user is not blocked,
-		// or the account has been hidden via hideuser.
-		if( $pager->getNumRows() > 0 ) {
-			$pager->mLimit = 1; # Show only latest log entry.
-			$wgOut->addHTML( '<div class="mw-warning-with-logexcerpt">' );
-			$wgOut->addWikiMsg( 'sp-contributions-blocked-notice' );
-			$wgOut->addHTML(
-				$loglist->beginLogEventsList() .
-				$pager->getBody() .
-				$loglist->endLogEventsList()
-			);
-			if( $pager->getNumRows() > $pager->mLimit ) {
-				$wgOut->addHTML( $wgUser->getSkin()->link(
-					SpecialPage::getTitleFor( 'Log', 'block' ),
-					wfMsgHtml( 'log-fulllog' ),
-					array(),
-					array( 'page' => $title->getPrefixedText() )
-				) );
-			}
-			$wgOut->addHTML( '</div>' );
-		}
-	}
 	/**
 	 * Generates the namespace selector form with hidden attributes.
 	 * @param $this->opts Array: the options to be included.
