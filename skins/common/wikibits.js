@@ -171,12 +171,12 @@ function toggleToc() {
 		changeText(toggleLink, tocHideText);
 		toc.style.display = 'block';
 		document.cookie = "hidetoc=0";
-		tocmain.className = '';
+		tocmain.className = 'toc';
 	} else {
 		changeText(toggleLink, tocShowText);
 		toc.style.display = 'none';
 		document.cookie = "hidetoc=1";
-		tocmain.className = 'tochidden';
+		tocmain.className = 'toc tochidden';
 	}
 }
 
