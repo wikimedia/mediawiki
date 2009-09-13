@@ -20,6 +20,7 @@
  * @author Leonardo.stabile
  * @author LeonardoG
  * @author Lijealso
+ * @author Luckas Blade
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
  * @author Waldir
@@ -858,6 +859,7 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar nos registros relacionados],
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta página]</span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
+'userpage-userdoesnotexist-view'   => 'Conta de usuário "$1" não está registrada.',
 'clearyourcache'                   => "'''Nota - Depois de salvar, você terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh);
 '''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
@@ -938,6 +940,8 @@ Você deve considerar se é realmente adequado continuar editando esta página.
 Os registros de eliminação e de movimentação desta página são exibidos a seguir, para sua comodidade:",
 'moveddeleted-notice'              => 'Esta página foi eliminada. 
 Os registros de eliminação e de movimentação para esta página estão disponibilizados abaixo, para referência.',
+'renamed-notice'                   => 'Este usuário foi renomeado.
+O registro de renomeação é fornecido abaixo para referência.',
 'log-fulllog'                      => 'Ver registro detalhado',
 'edit-hook-aborted'                => "Edição abortada por ''hook''.
 Ele não deu nenhuma explicação.",
@@ -1087,6 +1091,10 @@ Você não tem acesso a ele.',
 'revdelete-concurrent-change' => 'Erro ao modificar o item datado de $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registos.',
 'revdelete-only-restricted'   => 'Não pode suprimir itens de serem visualizados por administradores sem também selecionar uma das outras opções de supressão.',
+'revdelete-reason-dropdown'   => '*Motivos comuns para eliminação
+** Violação de direitos autorais
+** Informação pessoal inapropriada
+** Informação potencialmente difamatória',
 'revdelete-otherreason'       => 'Outro motivo/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar motivos de eliminação',
@@ -1678,6 +1686,11 @@ PICT # misc.
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
+'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na lista branca.',
+'img-auth-nofile'       => 'Arquivo "$1" não existe.',
+'img-auth-isdir'        => 'Você está tentando acessar o diretório "$1".
+Somente acesso ao arquivo é permitido.',
+'img-auth-noread'       => 'Usuário não tem acesso para ler "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
@@ -1770,6 +1783,7 @@ A descrição na sua [$2 página de descrição de arquivo] é exibida abaixo.',
 ** Violação de direitos de autor
 ** Arquivo duplicado',
 'filedelete-edit-reasonlist'  => 'Editar motivos de eliminação',
+'filedelete-maintenance'      => 'Eliminação e restauro de arquivos estão temporariamente desativados durante manutenção.',
 
 # MIME search
 'mimesearch'         => 'Pesquisa MIME',
@@ -2272,17 +2286,18 @@ $1',
 'month'               => 'Mês (inclusive anteriores):',
 'year'                => 'Ano (inclusive anteriores):',
 
-'sp-contributions-newbies'       => 'Pesquisar apenas nas contribuições de contas recentes',
-'sp-contributions-newbies-sub'   => 'Para contas novas',
-'sp-contributions-newbies-title' => 'Contribuições de usuários de contas novas',
-'sp-contributions-blocklog'      => 'Registro de bloqueios',
-'sp-contributions-deleted'       => 'contribuições de usuário eliminadas',
-'sp-contributions-logs'          => 'registros',
-'sp-contributions-talk'          => 'disc',
-'sp-contributions-userrights'    => 'gerenciamento de privilégios de utilizadores',
-'sp-contributions-search'        => 'Pesquisar contribuições',
-'sp-contributions-username'      => 'Endereço de IP ou usuário:',
-'sp-contributions-submit'        => 'Pesquisar',
+'sp-contributions-newbies'        => 'Pesquisar apenas nas contribuições de contas recentes',
+'sp-contributions-newbies-sub'    => 'Para contas novas',
+'sp-contributions-newbies-title'  => 'Contribuições de usuários de contas novas',
+'sp-contributions-blocklog'       => 'Registro de bloqueios',
+'sp-contributions-deleted'        => 'contribuições de usuário eliminadas',
+'sp-contributions-logs'           => 'registros',
+'sp-contributions-talk'           => 'disc',
+'sp-contributions-userrights'     => 'gerenciamento de privilégios de utilizadores',
+'sp-contributions-blocked-notice' => 'Este usuário atualmente está bloqueado. O registro de bloqueio mais recente é fornecido abaixo para referência:',
+'sp-contributions-search'         => 'Pesquisar contribuições',
+'sp-contributions-username'       => 'Endereço de IP ou usuário:',
+'sp-contributions-submit'         => 'Pesquisar',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
@@ -3324,6 +3339,10 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Adicionar categoria',
+'ajax-add-category-submit'     => 'Adicionar',
+'ajax-confirm-title'           => 'Confirmar ação',
+'ajax-confirm-prompt'          => 'Você pode fornecer um sumário de edição abaixo.
+Clique "Salvar" para salvar sua edição.',
 'ajax-confirm-save'            => 'Salvar',
 'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
 'ajax-remove-category-summary' => 'Remover categoria "$1"',

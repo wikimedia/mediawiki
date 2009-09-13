@@ -682,6 +682,7 @@ Gallout a rit [[Special:Search/{{PAGENAME}}|klask an titl anezhi]] e pajennoù a
 Gallout a rit [[Special:Search/{{PAGENAME}}|klask titl ar bajenn-mañ]] war pajennoù all,
 pe <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} klask er marilhoù kar]</span>.',
 'userpage-userdoesnotexist'        => 'N\'eo ket enrollet ar gont "$1". Merkit ma fell deoc\'h krouiñ/kemmañ ar bajenn-mañ.',
+'userpage-userdoesnotexist-view'   => 'N\'eo ket enrollet ar gont implijer "$1".',
 'clearyourcache'                   => "'''Notenn :''' Goude bezañ enrollet ho pajenn e rankot freskaat krubuilh ho merdeer a-bennn gwelet ar c'hemmoù : '''Mozilla / Firefox / Safari : ''' dalc'hit ''Pennlizherenn'' en ur glikañ war ''Adkargañ'', pe pouezañ war ''Ctrl-F5'' pe ''Ctrl-R'' (''Command-R'' war ur Macintosh); '''Konqueror: '''klikañ war ''Adkargañ'' pe pouezañ war ''F5;'' '''Opera:''' riñsañ ar grubuilh e ''Ostilhoù → Penndibaboù;'' '''Internet Explorer:''' derc'hel ''Ctrl'' en ur glikañ war ''Freskaat,'' pe pouezañ war ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tun :''' Grit gant ar bouton '''Rakwelet''' evit testiñ ho follenn CSS nevez a-raok enrollañ anezhi.",
 'userjsyoucanpreview'              => "'''Tun :''' Grit gant ar bouton '''Rakwelet''' evit testiñ ho follenn JS nevez a-raok enrollañ anezhi.",
@@ -749,6 +750,8 @@ En em soñjit ervat ha talvoudus eo kenderc'hel krouiñ ar bajenn.
 Deoc'h da c'houzout, aze emañ ar marilhoù diverkañ hag adenvel :",
 'moveddeleted-notice'              => 'Diverket eo bet ar bajenn-mañ.
 Dindan emañ ar marilh diverkañ hag adenvel.',
+'renamed-notice'                   => "Adanvet eo bet an implijer-mañ.
+A-is emañ marilh an adanvadurioù, ma'z oc'h dedennet.",
 'log-fulllog'                      => 'Gwelet ar marilh klok',
 'edit-hook-aborted'                => "C'hwitet ar c'hemmañ gant un astenn.
 Abeg dianav.",
@@ -870,9 +873,9 @@ Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg,
 'revdelete-unsuppress'        => 'Lemel ar strishadurioù war ar stummoù assavet',
 'revdelete-log'               => 'Abeg an diverkañ :',
 'revdelete-submit'            => 'Lakaat da dalvezout evit ar stumm diuzet',
-'revdelete-logentry'          => 'Cheñchet eo bet hewelusted ar stumm evit [[$1]]',
-'logdelete-logentry'          => 'kemmet eo bet gwelusted an darvoud evit [[$1]]',
-'revdelete-success'           => "'''Gwelusted ar stummoù kaset da benn vat.'''",
+'revdelete-logentry'          => 'Cheñchet eo bet gweluster ar stumm evit [[$1]]',
+'logdelete-logentry'          => 'kemmet eo bet gweluster an darvoud evit [[$1]]',
+'revdelete-success'           => "'''Gweluster ar stummoù kaset da benn vat.'''",
 'revdelete-failure'           => "'''Dibosupl termeniñ gweluster ar stumm-mañ :'''
 $1",
 'logdelete-success'           => "'''Gweluster ar marilh arventennet evel m'eo dleet.'''",

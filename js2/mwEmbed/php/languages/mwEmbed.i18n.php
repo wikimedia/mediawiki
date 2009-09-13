@@ -293,6 +293,9 @@ $messages['qqq'] = array(
 	'mwe-zoom_out' => '{{Identical|Zoom out}}',
 	'mwe-loading_txt' => '{{Identical|Loading}}',
 	'mwe-loading_title' => '{{Identical|Loading}}',
+	'mwe-error_load_lib' => 'Parameters:
+* $1 Corresponds to the JavaScript file that was not retrievable or does not define its class name. 
+* $2 Is the class name that was associated with the JavaScript file that was not found or could not be retrieved.',
 	'fogg-help-sticky' => 'This is the tooltip message for the help icon. Mousing over this icon displays the help message. This tooltip tells the user that when they click the icon the help message will remain displayed.',
 	'rsd_results_next' => '{{Identical|Next}}',
 	'rsd_results_prev' => '{{Identical|Previous}}',
@@ -666,13 +669,20 @@ $messages['bs'] = array(
 
 /** German (Deutsch)
  * @author Jan Luca
+ * @author Lukas9950
  * @author Pill
  * @author Tbleher
  * @author The Evil IP address
  */
 $messages['de'] = array(
+	'mwe-sc_duration' => 'Dauer',
 	'mwe-menu_options' => 'Optionen',
+	'fogg-select_file' => 'Wähle Datei',
+	'fogg-select_new_file' => 'Wähle eine neue Datei',
+	'fogg-select_url' => 'Wähle eine URL',
 	'fogg-installed' => 'Firefogg ist installiert',
+	'fogg-use_latest_fox' => 'Installiere bitte zuerst [http://de.www.mozilla.com/de/ Firefox 3.5] (oder eine spätere Version).
+<i>Besuche danach die Seite neu, um die <b>Firefogg</b>-Erweiterung zu installieren.</i>',
 	'rsd_results_desc' => 'Ergebnisse',
 	'rsd_results_next' => 'weiter',
 	'rsd_results_prev' => 'zurück',
@@ -836,7 +846,7 @@ $messages['el'] = array(
 	'mwe-set_in_out_points' => 'Ρύθμιση μέσα-έξω πόντων',
 	'mwe-start_time' => 'Χρόνος εκκίνησης',
 	'mwe-end_time' => 'Χρόνος λήξης',
-	'mwe-preview_inout' => 'Προεπισκόπηση/αναπαραγωγή μέσα-έξω πόντων',
+	'mwe-preview_inout' => 'Προεπισκόπηση των σημείων εισόδου-εξόδου',
 	'mwe-select_transcript_set' => 'Επιλογή στρωμάτων',
 	'mwe-auto_scroll' => 'αυτόματο κυλίνδρισμα',
 	'mwe-close' => 'κλείσιμο',
@@ -874,6 +884,7 @@ $messages['el'] = array(
 	'fogg-for_improved_uplods' => 'Για βελτιωμένες φορτώσεις:',
 	'fogg-transcoding' => 'Κωδικοποίηση βίντεο σε Ogg',
 	'fogg-encoding-done' => 'Κωδικοποίηση πλήρης',
+	'fogg-badtoken' => 'Το δείγμα δεν είναι έγκυρο',
 	'mwe-stream_title' => '$1 $2 σε $3',
 	'fogg-cg-range' => 'Εύρος κωδικοποίησης',
 	'fogg-preset-custom' => 'Συνήθεις ρυθμίσεις',
@@ -950,6 +961,8 @@ $messages['el'] = array(
 	'mwe-ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mwe-do_not_warn_again' => 'Διαγραφή για τώρα.',
 	'mwe-playerselect' => 'Παίκτες',
+	'mwe-embed_site_or_blog' => 'Ενσωμάτωση στο σάιτ ή μπλογκ σας',
+	'mwe_related_videos' => 'Σχετικά βίντεο',
 );
 
 /** Spanish (Español)
@@ -1534,6 +1547,7 @@ $messages['gl'] = array(
 $messages['grc'] = array(
 	'rsd_results_next' => 'ἑπομέναι',
 	'rsd_results_prev' => 'προηγούμεναι',
+	'mwe-upload' => 'Ἐπιφορτίζειν ἀρχεῖον',
 	'mwe-cancel-button' => 'Ἀκυροῦν',
 	'mwe-ok-button' => 'εἶεν',
 );
@@ -2661,6 +2675,7 @@ $messages['lb'] = array(
 	'fogg-select_url' => 'URL eraussichen',
 	'fogg-save_local_file' => 'Ogg späicheren',
 	'fogg-installed' => 'Firefogg ass installéiert',
+	'fogg-for_improved_uplods' => 'Fir verbessert Eroplueden:',
 	'rsd_results_desc' => 'Resultater',
 	'rsd_results_next' => 'nächsten',
 	'rsd_results_prev' => 'vireg',
@@ -3485,6 +3500,24 @@ $messages['sk'] = array(
 	'mwe-results_from' => 'Výsledky z <a href="$1" target="_new" >$2</a>',
 	'mwe-missing_desc_see_source' => 'Prvku chýba popis. Pozrite si prosím [$1 pôvodný zdroj] a pomôžte ho popísať.',
 	'rsd_config_error' => 'Chyba Sprievodcu pridaním multimédia: $1',
+	'mwe-your_recent_uploads' => 'Nedávno ste naharali',
+	'mwe-upload_a_file' => 'Nahrať nový súbor',
+	'mwe-resource_page_desc' => 'Popisná stránka zdroja:',
+	'mwe-edit_resource_desc' => 'Upraviť popis zdroja ako wiki text:',
+	'mwe-local_resource_title' => 'Lokálny názov zdroja:',
+	'mwe-watch_this_page' => 'Sledovať túto stránku',
+	'mwe-do_import_resource' => 'Importovať zdroj',
+	'mwe-update_preview' => 'Aktualizovať náhľad',
+	'mwe-cancel_import' => 'Zrušiť import',
+	'mwe-importing_asset' => 'Importuje sa položka',
+	'mwe-preview_insert_resource' => 'Náhľad vloženia zdroja: $1',
+	'mwe-select_file' => 'Vybrať súbor',
+	'mwe-more_licence_options' => 'Ďalšie možnosti licencovania nájdete na <a href="$1">bežnej nahrávacej stránke</a>',
+	'mwe-select_ownwork' => 'Nahrávam dielo, ktoré je kompletne moje vlastné a licencujem ho za podmienok:',
+	'mwe-licence_cc-by-sa' => 'Creative Commons Share Alike (3.0)',
+	'mwe-upload' => 'Nahrať súbor',
+	'mwe-destfilename' => 'Cieľový názov súboru:',
+	'mwe-summary' => 'Zhrnutie',
 	'mwe-do_not_warn_again' => 'Nateraz nezobrazovať',
 );
 
