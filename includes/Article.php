@@ -1211,12 +1211,13 @@ class Article {
 
 				# Show rename log because user does not exist. 
 				$parent = $this->mTitle->getNsText() . ":" . $this->mTitle->getBaseText();
-				$wgOut->showLogs( $parent, '', array( 'renameuser' ), 'renamed-notice' );
+				LogEventsList::showLogExtract( $wgOut, 'renameuser', $parent, '', 10, array(), false, 'renamed-notice' );
 			}
 
 		}
 		# Show delete and move logs
-		$wgOut->showLogs( $this->mTitle->getPrefixedText(), '', array( 'delete', 'move' ), 'moveddeleted-notice' );
+		LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), 
+			$this->mTitle->getPrefixedText(), '', 10, array( "log_action != 'revision'" ), false, 'moveddeleted-notice');
 
 		# Show error message
 		$oldid = $this->getOldID();
