@@ -556,15 +556,19 @@ class LogEventsList {
 	}
 
 	/**
-	 * Quick function to show a short log extract
+	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
 	 * @param $out OutputPage or String-by-reference
 	 * @param $types String or Array
 	 * @param $page String
 	 * @param $user String
-	 * @param $lim Integer
+	 * @param $lim Integer Limit of items to show, default is 50
 	 * @param $conds Array
+	 * @param $showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty
+	 * 		if set to true (default), "No matching items in log" is displayed if loglist is empty
+	 * @param $msgKey String if you want a nice box with a message, set this to the key of the message
+	 * @return Integer Number of total log items (not limited by $lim)
 	 */
-	public static function showLogExtract( &$out, $types=array(), $page='', $user='', $lim=0, $conds=array() ) {
+	public static function showLogExtract( &$out, $types=array(), $page='', $user='', $lim=0, $conds=array(), $showIfEmpty = true, $msgKey = '' ) {
 		global $wgUser, $wgOut;
 		# Insert list of top 50 or so items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
@@ -572,12 +576,37 @@ class LogEventsList {
 		if( $lim > 0 ) $pager->mLimit = $lim;
 		$logBody = $pager->getBody();
 		if( $logBody ) {
-			$s = $loglist->beginLogEventsList() .
+			if ( $msgKey )
+				$s = '<div class="mw-warning-with-logexcerpt">' . wfMsg( $msgKey ) ;
+			$s .= $loglist->beginLogEventsList() .
 				 $logBody .
 				 $loglist->endLogEventsList();
 		} else {
-			$s = wfMsgExt( 'logempty', array('parse') );
+			if ( $showIfEmpty )
+				$s = wfMsgExt( 'logempty', array('parse') );
 		}
+		if( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
+			$urlParam = array();
+			if ( $page != '')
+				$urlParam['page'] = $page;
+			if ( $user != '')
+				$urlParam['user'] = $user;
+			if ( !is_array( $types ) ) # Make it an array, if it isn't
+				$types = array( $types );
+			# If there is exactly one log type, we can link to Special:Log?type=foo
+			if ( count( $types ) == 1 )
+				$urlParam['type'] = $types[0];
+			$s .= $wgUser->getSkin()->link(
+				SpecialPage::getTitleFor( 'Log' ),
+				wfMsgHtml( 'log-fulllog' ),
+				array(),
+				$urlParam
+			);
+
+		}
+		if ( $logBody && $msgKey )
+			$s .= '</div>';
+
 		if( $out instanceof OutputPage ){
 			$out->addHTML( $s );
 		} else {

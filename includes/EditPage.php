@@ -730,7 +730,8 @@ class EditPage {
 		}
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
-			$wgOut->showLogs( $this->mTitle->getPrefixedText(), '', array( 'delete', 'move' ), 'recreate-moveddeleted-warn' );
+			LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), 
+				$this->mTitle->getPrefixedText(), '', 10, array( "log_action != 'revision'" ), false, 'recreate-moveddeleted-warn');
 		}
 	}
 
