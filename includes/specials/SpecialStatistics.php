@@ -60,7 +60,7 @@ class SpecialStatistics extends SpecialPage {
 		$text = Xml::openElement( 'table', array( 'class' => 'wikitable mw-statistics-table' ) );
 
 		# Statistic - pages
-		$text .= $this->getPageStats();		
+		$text .= $this->getPageStats();
 
 		# Statistic - edits
 		$text .= $this->getEditStats();
