@@ -311,7 +311,6 @@
 	'ti' => 'ትግርኛ',		# Tigrinya
 	'tk' => 'Türkmençe',	# Turkmen
 	'tl' => 'Tagalog',		# Tagalog
-	#'tlh' => 'tlhIngan-Hol',	# Klingon - no interlanguage links allowed
 	'tn' => 'Setswana',		# Setswana
 	'to' => 'lea faka-Tonga',		# Tonga (Tonga Islands)
 	'tokipona' => 'Toki Pona',      # Toki Pona
