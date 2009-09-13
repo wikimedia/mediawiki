@@ -23,7 +23,7 @@ class SpecialStatistics extends SpecialPage {
 	}
 	
 	public function execute( $par ) {
-		global $wgOut, $wgRequest, $wgMessageCache;
+		global $wgOut, $wgRequest, $wgMessageCache, $wgMemc;
 		global $wgDisableCounters, $wgMiserMode;
 		$wgMessageCache->loadAllMessages();
 		
@@ -48,8 +48,13 @@ class SpecialStatistics extends SpecialPage {
 		
 		# Set active user count
 		if( !$wgMiserMode ) {
-			$dbw = wfGetDB( DB_MASTER );
-			SiteStatsUpdate::cacheUpdate( $dbw );
+			$key = wfMemcKey( 'sitestats', 'activeusers-updated' );
+			// Re-calculate the count if the last tally is old...
+			if( !$wgMemc->get($key) ) {
+				$dbw = wfGetDB( DB_MASTER );
+				SiteStatsUpdate::cacheUpdate( $dbw );
+				$wgMemc->set( $key, '1', 24*3600 ); // don't update for 1 day
+			}
 		}
 	
 		# Do raw output
