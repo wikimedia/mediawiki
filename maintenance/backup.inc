@@ -232,27 +232,25 @@ class BackupDumper {
 		$this->startTime = wfTime();
 	}
 
+	/**
+	 * @fixme the --server parameter is currently not respected, as it doesn't seem
+	 * terribly easy to ask the load balancer for a particular connection by name.
+	 */
 	function backupDb() {
-		global $wgDBadminuser, $wgDBadminpassword;
-		global $wgDBuser, $wgDBpassword;
-		global $wgDBname, $wgDebugDumpSql, $wgDBtype;
-		$flags = ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT; // god-damn hack
-		
-		if ( !$wgDBadminuser ) {
-			$wgDBadminuser = $wgDBuser;
-		}
-		if ( !$wgDBadminpassword ) {
-			$wgDBadminpassword = $wgDBpassword;
-		}
-
-		$class = 'Database' . ucfirst($wgDBtype);
-		$db = new $class( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname, false, $flags );
+		$this->lb = wfGetLBFactory()->newMainLB();
+		$db = $this->lb->getConnection( DB_SLAVE, 'backup' );
 		
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
 		$db->setTimeout( 3600 * 24 );
 		
 		return $db;
+	}
+	
+	function __destruct() {
+		if( isset( $this->lb ) ) {
+			$this->lb->closeAll();
+		}
 	}
 
 	function backupServer() {
