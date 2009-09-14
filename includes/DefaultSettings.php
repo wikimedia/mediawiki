@@ -1864,6 +1864,19 @@ $wgUseTeX = false;
 /** Location of the texvc binary */
 $wgTexvc = './math/texvc';
 
+/**
+ * Normally when generating math images, we double-check that the
+ * directories we want to write to exist, and that files that have
+ * been generated still exist when we need to bring them up again.
+ *
+ * This lets us give useful error messages in case of permission
+ * problems, and automatically rebuild images that have been lost.
+ *
+ * On a big site with heavy NFS traffic this can be slow and flaky,
+ * so sometimes we want to short-circuit it by setting this to false.
+ */
+$wgMathCheckFiles = true;
+
 #
 # Profiling / debugging
 #
