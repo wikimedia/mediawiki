@@ -94,6 +94,7 @@ class LogEventsList {
 		$html .= $this->getTypeMenu( $types ) . "\n";
 		$html .= $this->getUserInput( $user ) . "\n";
 		$html .= $this->getTitleInput( $page ) . "\n";
+		$html .= $this->getExtraInputs( $types ) . "\n";
 
 		// Title pattern, if allowed
 		if (!$wgMiserMode) {
@@ -237,6 +238,15 @@ class LogEventsList {
 		return '<span style="white-space: nowrap">' .
 			Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern ) .
 			'</span>';
+	}
+	
+	private function getExtraInputs( $types ) {
+		global $wgRequest;
+		if( count($types) == 1 && $types[0] == 'suppress' ) {
+			return Xml::inputLabel( wfMsg('revdelete-offender'), 'offender',
+				'mw-log-offender', 20, $wgRequest->getVal('offender') );
+		}
+		return '';
 	}
 
 	public function beginLogEventsList() {

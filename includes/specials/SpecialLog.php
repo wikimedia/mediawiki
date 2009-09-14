@@ -52,9 +52,19 @@ function wfSpecialLog( $par = '' ) {
 		$y = '';
 		$m = '';
 	}
+	# Handle type-specific inputs
+	$qc = array();
+	if( $type == 'suppress' ) {
+		$offender = User::newFromName( $wgRequest->getVal('offender'), false );
+		if( $offender && $offender->getId() > 0 ) {
+			$qc = array( 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() );
+		} else if( $offender && IP::isIPAddress( $offender->getName() ) ) {
+			$qc = array( 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() );
+		}
+	}
 	# Create a LogPager item to get the results and a LogEventsList item to format them...
 	$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
-	$pager = new LogPager( $loglist, $type, $user, $title, $pattern, array(), $y, $m, $tagFilter );
+	$pager = new LogPager( $loglist, $type, $user, $title, $pattern, $qc, $y, $m, $tagFilter );
 	# Set title and add header
 	$loglist->showHeader( $pager->getType() );
 	# Show form options

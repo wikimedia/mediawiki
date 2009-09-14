@@ -717,6 +717,7 @@ $wgMessageStructure = array(
 		'revdelete-otherreason',
 		'revdelete-reasonotherlist',
 		'revdelete-edit-reasonlist',
+		'revdelete-offender',
 	),
 	'suppression' => array(
 		'suppressionlog',
