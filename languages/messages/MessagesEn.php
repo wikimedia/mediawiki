@@ -1509,7 +1509,7 @@ Please check the logs.',
 'revdelete-otherreason'       => 'Other/additional reason:',
 'revdelete-reasonotherlist'   => 'Other reason',
 'revdelete-edit-reasonlist'   => 'Edit delete reasons',
-'revdelete-offender'          => 'Offender:',
+'revdelete-offender'          => 'Revision author:',
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',
