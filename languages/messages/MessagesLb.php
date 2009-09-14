@@ -961,6 +961,7 @@ Kuckt w.e.g. an de Logbicher no.",
 'revdelete-otherreason'       => 'Aneren/zousätzleche Grond:',
 'revdelete-reasonotherlist'   => 'Anere Grond:',
 'revdelete-edit-reasonlist'   => 'Läschgrënn änneren',
+'revdelete-offender'          => 'Auteur vun der Versioun:',
 
 # Suppression log
 'suppressionlog'     => 'Lëscht vun de verstoppten a geläschte Säiten',

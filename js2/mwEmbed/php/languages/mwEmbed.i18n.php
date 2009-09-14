@@ -3158,16 +3158,42 @@ L'escript d'insercion via DOM a fracassat. Recargatz la pagina.",
 
 /** Portuguese (Português)
  * @author Lijealso
+ * @author Luckas Blade
  * @author Malafaya
  */
 $messages['pt'] = array(
 	'mwe-sc_duration' => 'Duração',
 	'mwe-menu_options' => 'Opções',
+	'mwe-other_options' => 'Outras opções',
 	'rsd_results_desc' => 'Resultados',
 	'rsd_results_next' => 'próximo',
 	'rsd_results_prev' => 'anterior',
 	'rsd_no_results' => 'A busca não produziu resultados para <b>$1</b>',
 	'rsd_resource_edit' => 'Editar recurso: $1',
+	'mwe-summary' => 'Sumário',
+);
+
+/** Brazilian Portuguese (Português do Brasil)
+ * @author Luckas Blade
+ */
+$messages['pt-br'] = array(
+	'mwe-sc_duration' => 'Duração',
+	'mwe-other_properties' => 'Outras propriedades',
+	'mwe-menu_options' => 'Opções',
+	'mwe-other_options' => 'Outras opções',
+	'mwe-loading_title' => 'Carregando...',
+	'rsd_results_desc' => 'Resultados',
+	'rsd_results_prev' => 'anterior',
+	'mwe-cc_pd_title' => 'Domínio público',
+	'mwe-unknown_license' => 'Licença desconhecida',
+	'mwe-select_file' => 'Selecionar arquivo',
+	'mwe-summary' => 'Sumário',
+	'mwe-upload-unknown-size' => 'Tamanho desconhecido',
+	'mwe-unknown-error' => 'Erro desconhecido:',
+	'mwe-player_fullscreen' => 'Tela inteira',
+	'mwe-download_clip' => 'Baixar vídeo',
+	'mwe-download' => 'Baixar',
+	'mwe_related_videos' => 'Vídeos relacionados',
 );
 
 /** Russian (Русский)
@@ -3533,7 +3559,9 @@ $messages['te'] = array(
 	'rsd_results_next' => 'తదుపరి',
 	'rsd_results_prev' => 'గత',
 	'rsd_layout' => 'అమరిక:',
+	'mwe-summary' => 'సారాశం',
 	'mwe-ok-button' => 'సరే',
+	'mwe-menu_btn' => 'మెనూ',
 );
 
 /** Veps (Vepsan kel')

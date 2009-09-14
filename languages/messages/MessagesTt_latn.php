@@ -8,6 +8,7 @@
  * @file
  *
  * @author Albert Fazlî
+ * @author KhayR
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -112,8 +113,8 @@ $messages = array(
 'jun'       => 'Yün',
 'jul'       => 'Yül',
 'sep'       => 'Sen',
-'oct'       => 'Ökt',
-'nov'       => 'Nöy',
+'oct'       => 'Okt',
+'nov'       => 'Noy',
 'dec'       => 'Dek',
 
 # Categories related messages

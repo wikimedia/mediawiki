@@ -11,6 +11,7 @@
  * @author Arastein
  * @author Asoxor
  * @author Cyrus abdi
+ * @author Haval
  * @author Marmzok
  * @author رزگار
  */
@@ -1527,6 +1528,11 @@ $1",
 'upload-unknown-size'       => 'قەبارەی نادیار',
 'upload-http-error'         => 'هەڵەیەکی HTTP ڕووئ داوە: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'تێپه‌ربوون ره‌تکرایه‌وه‌',
+'img-auth-nofile'       => 'فایلی "$1" بوونی نیه‌',
+'img-auth-isdir'        => 'هه‌وڵ ده‌ده‌ی بۆ کردنه‌وه‌ی بوخچه‌ی "$1" له‌ کاتێکدا ته‌نیا کردنه‌وه‌ی فایل رێپێدراوه‌',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'توانای دەست‌پێ‌گەیشتنی URL نیە',
 'upload-curl-error6-text'  => 'ئەو URL کە ڕاچاوت کردووە توانای دەست‌پێ‌گەیشتنی نییە.
@@ -2500,6 +2506,7 @@ $1',
 'tooltip-search-fulltext'         => 'لە پەڕەکاندا بگەڕێ بۆ ئەم دەقە',
 'tooltip-p-logo'                  => 'بینینی پەڕەی دەستپێک',
 'tooltip-n-mainpage'              => 'بینینی پەڕەی دەستپێک',
+'tooltip-n-mainpage-description'  => 'سه‌ردانی لاپه‌ڕه‌ی سه‌ره‌تا بکه‌',
 'tooltip-n-portal'                => 'دەربارەی پڕۆژەکە، چی ئەتوانی بکەیت، لە کوێ شتەکان بدۆزیتەوە',
 'tooltip-n-currentevents'         => 'زانیاری پێشینە بەدەست بھێنە دەربارەی بۆنە ھەنووکەییەکان',
 'tooltip-n-recentchanges'         => 'لیستی دوایین گۆڕانکارییەکان لەم ویکییەدا',
@@ -2610,6 +2617,7 @@ $1',
 'filedeleteerror-long'  => 'کاتی سڕینەوەی ئەم پەڕگەی ڕووبەڕووی کێشە بووینەوە:
 
 $1',
+'filedelete-missing'    => 'فایلی "$1"  ناتوانرێت بسردرێته‌وه‌ ،له‌به‌ر ئه‌وه‌ی بونی نیه‌',
 
 # Browsing diffs
 'previousdiff' => '→ گۆڕانکاریی کۆنتر',
@@ -2617,6 +2625,7 @@ $1',
 
 # Media information
 'thumbsize'            => 'قەبارەی Thumbnail:',
+'file-info'            => '(قه‌باره‌: $1, جۆر: $2)',
 'file-info-size'       => '($1 × $2 پیکسێل، قەبارەی پەڕگە: $3، جۆری MIME: $4)',
 'file-nohires'         => '<small>رەزۆلوشنی بانتر لە بەردەست دا نیە.</small>',
 'svg-long-desc'        => '(پەڕگەی SVG، بە ناو $1 × $2 خاڵ، قەبارەی پەڕگە: $3)',
@@ -2661,7 +2670,9 @@ $1',
 'exif-imagedescription' => 'ناونیشانی وێنە',
 'exif-model'            => 'جۆری کامێرا',
 'exif-artist'           => 'نووسەر',
+'exif-colorspace'       => 'بۆشایی ره‌نگ',
 'exif-usercomment'      => 'بۆچوونەکانی بەکارهێنەر',
+'exif-relatedsoundfile' => 'فایلی ده‌نگی لێکچوو',
 'exif-lightsource'      => 'سەرچاوەی ڕووناکی',
 'exif-flash'            => 'فلاش',
 'exif-filesource'       => 'سەرچاوەی پەڕگە',

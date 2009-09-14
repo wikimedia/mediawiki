@@ -925,6 +925,7 @@ Prošu přepruwuj protokole.',
 'revdelete-otherreason'       => 'Druha/přidatna přičina:',
 'revdelete-reasonotherlist'   => 'Druha přičina',
 'revdelete-edit-reasonlist'   => 'Přičiny za wušmórnjenje wobdźěłać',
+'revdelete-offender'          => 'Awtor wersije:',
 
 # Suppression log
 'suppressionlog'     => 'Protokol potłóčenjow',
