@@ -593,11 +593,11 @@ class LogEventsList {
 			if ( $msgKey ) {
 				$s = '<div class="mw-warning-with-logexcerpt">';
 
-				if ( sizeof( $msgKey ) == 1 ) {
+				if ( count( $msgKey ) == 1 ) {
 					$s .= wfMsgExt( $msgKey[0], array('parse') );
 				} else { // Process additional arguments
 					$args = $msgKey;
-					unset( $args[0] );
+					array_shift( $args );
 					$s .= wfMsgExt( $msgKey[0], array('parse'), $args );
 				}
 			}
