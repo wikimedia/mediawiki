@@ -951,6 +951,7 @@ Pšosym pśeglědaj protokole.',
 'revdelete-otherreason'       => 'Druga/pśidatna pśicyna:',
 'revdelete-reasonotherlist'   => 'Druga pśicyna',
 'revdelete-edit-reasonlist'   => 'Pśicyny za lašowanje wobźěłaś',
+'revdelete-offender'          => 'Awtor wersije:',
 
 # Suppression log
 'suppressionlog'     => 'Protokol pódłocowanjow',

@@ -1537,4 +1537,7 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'htmlform-reset'               => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
 
+# Add categories per AJAX
+'ajax-confirm-actionsummary' => 'Chagua kitendo:',
+
 );

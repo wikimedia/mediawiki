@@ -869,6 +869,7 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim s
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane zapisnike]</span>.',
 'userpage-userdoesnotexist'        => 'Korisnički račun "$1" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
+'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'clearyourcache'                   => "'''Pažnja: Nakon što sačuvate izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
 '''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macintoshu);
 '''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
@@ -1829,6 +1830,7 @@ Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
 ** Kršenje autorskih prava
 ** Datoteka dvojnik',
 'filedelete-edit-reasonlist'  => 'Uredi razloge brisanja',
+'filedelete-maintenance'      => 'Brisanje i povratak datoteka je privremeno onemogućen tokom održavanja.',
 
 # MIME search
 'mimesearch'         => 'MIME pretraga',

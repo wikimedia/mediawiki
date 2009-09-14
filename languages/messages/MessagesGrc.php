@@ -1295,6 +1295,7 @@ $1",
 # img_auth script messages
 'img-auth-accessdenied' => 'Οὐκ ἐπετράπη ἡ πρόσβασις',
 'img-auth-nofile'       => 'Τὸ ἀρχεῖον "$1" οὐχ ὑπάρχει.',
+'img-auth-streaming'    => 'Συνεχὴς ἀνάγνωσις "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'URL ἀπρόσβατος',

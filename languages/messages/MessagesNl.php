@@ -1172,6 +1172,7 @@ Controleer de logboeken.',
 'revdelete-otherreason'       => 'Andere reden:',
 'revdelete-reasonotherlist'   => 'Andere reden',
 'revdelete-edit-reasonlist'   => 'Redenen voor verwijderen bewerken',
+'revdelete-offender'          => 'Auteur versie:',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Himiq Dzyu
+ * @author KhayR
  * @author Rinatus
  * @author Yildiz
  * @author Ерней
@@ -119,8 +120,8 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Сылтамаларны астына сызу:',
-'tog-highlightbroken'         => 'Төзелмәгән сылтамаларны <a href="" class="new">шулай</a> (юкса алай <a href="" class="internal">?</a>) күрсәтү.',
+'tog-underline'               => 'Сылтамаларның астына сызу:',
+'tog-highlightbroken'         => 'Төзелмәгән сылтамаларны <a href="" class="new">шушылай</a> (юкса болай - <a href="" class="internal">?</a>) күрсәтү.',
 'tog-justify'                 => 'Текстны киңлек буенча тигезләү',
 'tog-hideminor'               => 'Соңгы үзгәртмәләрдә әһәмиятсезләрне яшерү',
 'tog-extendwatchlist'         => 'Соңгы үзгәртүләрне генә түгел, ә барлык үзгәртүләрне эченә алган, киңәйтелгән күзәтү исемлеге',
@@ -152,7 +153,7 @@ $messages = array(
 'tog-showjumplinks'           => '«күчәргә» ярдәмче сылтамаларын эшләтә башлау',
 'tog-uselivepreview'          => 'Тиз карап алу куллану (JavaScript, эксперименталь)',
 'tog-forceeditsummary'        => 'Үзгәртүләр тасвиры юк булсада кисәтү',
-'tog-watchlisthideown'        => 'Күзәтү исемлегедә үзгәртүләремне яшерү',
+'tog-watchlisthideown'        => 'Күзәтү исемлегендә  үзгәртүләремне яшерергә',
 'tog-watchlisthidebots'       => 'Күзәтү исемлегедә бот үзгәртүләрене яшерергә',
 'tog-watchlisthideminor'      => 'Күзәтү исемлегедә әһәмиятсез үзгәртүләрене яшерергә',
 'tog-watchlisthideanons'      => 'Күзәтү исемлегеннән аноним катнашучыларның үзгәртүләрен яшерергә',
@@ -166,6 +167,7 @@ $messages = array(
 'underline-default' => 'Күзәтүче көйләнмәләрне кулланырга',
 
 # Font style option in Special:Preferences
+'editfont-style'   => 'Үзгәртү өлкәсендәге шрифт тибы:',
 'editfont-default' => 'Шрифт браузер көйләнмәләреннән',
 
 # Dates
@@ -1067,6 +1069,7 @@ $2',
 'undeletecomment'           => 'Искәрмә:',
 'undeletedarticle'          => '«[[$1]]» торгызырган',
 'undelete-search-submit'    => 'Эзләргә',
+'undelete-error-long'       => 'Файлны торгызу вакытында хаталар чыкты:',
 'undelete-show-file-submit' => 'Әйе',
 
 # Namespace form on various pages
@@ -1084,6 +1087,7 @@ $2',
 'sp-contributions-newbies-sub' => 'Яңа хисап язмалары өчен',
 'sp-contributions-blocklog'    => 'Кысу журналы',
 'sp-contributions-talk'        => 'фикер алышу',
+'sp-contributions-search'      => 'Кертемне эзләү',
 'sp-contributions-username'    => 'Кулланучының IP адресы яки исеме:',
 'sp-contributions-submit'      => 'Эзләргә',
 
@@ -1102,17 +1106,24 @@ $2',
 'whatlinkshere-filters'   => 'Фильтрлар',
 
 # Block/unblock
-'blockip'            => 'Кулланучыны кысарга',
-'ipaddress'          => 'IP-адрес:',
-'ipadressorusername' => 'IP-адрес яки кулланучы исеме:',
-'ipboptions'         => '2 сәгать:2 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3ай:3 months,6 ай:6 months,1 ел:1 year,чикләнмәгән:infinite',
-'ipblocklist'        => 'Кысылган IP-адреслар һәм кулланучы исемләр',
-'blocklink'          => 'кысарга',
-'unblocklink'        => 'кысмаска',
-'change-blocklink'   => 'блоклауны үзгәртергә',
-'contribslink'       => 'кертем',
-'blocklogpage'       => 'Кысу журналы',
-'proxyblocksuccess'  => 'Эшләнде',
+'blockip'                 => 'Кулланучыны кысарга',
+'ipaddress'               => 'IP-адрес:',
+'ipadressorusername'      => 'IP-адрес яки кулланучы исеме:',
+'ipbother'                => 'Башка вакыт:',
+'ipboptions'              => '2 сәгать:2 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3ай:3 months,6 ай:6 months,1 ел:1 year,чикләнмәгән:infinite',
+'ipblocklist'             => 'Кысылган IP-адреслар һәм кулланучы исемләр',
+'ipblocklist-username'    => 'кулланучы исеме яки IP-адрес:',
+'blocklink'               => 'кысарга',
+'unblocklink'             => 'кысмаска',
+'change-blocklink'        => 'блоклауны үзгәртергә',
+'contribslink'            => 'кертем',
+'blocklogpage'            => 'Тыю көндәлеге',
+'block-log-flags-noemail' => 'хат җибәрү тыелган',
+'proxyblocksuccess'       => 'Эшләнде',
+'sorbsreason'             => 'Сезнең IP-адресыгыз DNSBLда ачык прокси дип санала.',
+
+# Developer tools
+'unlockbtn' => 'Мәгълүматлар базасына язу мөмкинлеген кайтарырга',
 
 # Move page
 'movearticle'    => 'Битне күчерергә:',
@@ -1236,20 +1247,38 @@ $2',
 'watchlisttools-edit' => 'Күзәтү исемлегене карау һәм үзгәртү',
 
 # Special:Version
-'version' => 'Юрама',
+'version'                  => 'Юрама',
+'version-other'            => 'Башкалар',
+'version-software-version' => 'Версия',
+
+# Special:FilePath
+'filepath-page' => 'Файл:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Эзләргә',
 
 # Special:SpecialPages
-'specialpages' => 'Махсус битләр',
+'specialpages'            => 'Махсус битләр',
+'specialpages-group-spam' => 'Спамга каршы кораллар',
 
 # Special:Tags
 'tags-edit' => 'үзгәртергә',
+
+# Database error messages
+'dberr-problems' => 'Гафу итегез! Сайтта техник кыенлыклар чыкты.',
 
 # HTML forms
 'htmlform-submit'              => 'Җибәрергә',
 'htmlform-reset'               => 'Үзгәртүләрне кире кайтарырга',
 'htmlform-selectorother-other' => 'Башка',
+
+# Add categories per AJAX
+'ajax-add-category'          => 'Бүлек өстәргә',
+'ajax-add-category-submit'   => 'Өстәргә',
+'ajax-confirm-save'          => 'Сакларга',
+'ajax-error-title'           => 'Хата',
+'ajax-error-dismiss'         => 'ОК',
+'ajax-remove-category-error' => 'Бу бүлекне алып ташлап булмады.
+Гадәттә шаблон аша өстәлгән бүлекләрдә шушындый хаталар чыга.',
 
 );

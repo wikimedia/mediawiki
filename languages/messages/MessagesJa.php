@@ -1045,6 +1045,7 @@ $1",
 'revdelete-otherreason'       => '他の、または追加の理由:',
 'revdelete-reasonotherlist'   => '他の理由',
 'revdelete-edit-reasonlist'   => '削除理由を編集',
+'revdelete-offender'          => '特定版投稿者:',
 
 # Suppression log
 'suppressionlog'     => '秘匿記録',

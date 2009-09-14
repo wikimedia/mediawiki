@@ -882,6 +882,7 @@ Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranic
 ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'noarticletext-nopermission'       => 'Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane evidencije]</span>.',
 'userpage-userdoesnotexist'        => 'Suradničko ime "$1" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
+'userpage-userdoesnotexist-view'   => 'Suradnički račun "$1" nije registriran.',
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
 '''Mozilla / Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''Cmd-R'' na Apple Macu); '''Konqueror:''' samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; '''Opera:''' očistiti cache u ''Tools → Preferences;'' '''Internet Explorer:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Savjet:''' Koristite dugme 'Pokaži kako će izgledati' za testiranje svog CSS prije snimanja.",

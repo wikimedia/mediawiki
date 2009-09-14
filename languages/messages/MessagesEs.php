@@ -811,6 +811,7 @@ La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Speci
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
+'userpage-userdoesnotexist-view'   => 'Cuenta de usuario "$1" no está registrada.',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
 
 *'''Mozilla / Firefox / Safari:''' pulsa ''Mayúsculas.'' mientras haces click en el botón ''Recargar,'' o pulsa si no ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' en un Macintosh)
@@ -1725,6 +1726,7 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 ** Violación de copyright
 ** Archivo duplicado',
 'filedelete-edit-reasonlist'  => 'Editar razones de borrado',
+'filedelete-maintenance'      => 'Borrado y restauración de archivos temporalmente deshabilitados durante el mantenimiento.',
 
 # MIME search
 'mimesearch'         => 'Búsqueda MIME',

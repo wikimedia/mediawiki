@@ -420,7 +420,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategori ini memiliki {{PLURAL:$1|berkas|$1 berkas}} berikut.',
 'listingcontinuesabbrev'         => 'samb.',
 
-'mainpagetext'      => "<big>'''MediaWiki telah terinstal dengan sukses'''</big>.",
+'mainpagetext'      => "<big>'''MediaWiki telah terpasang dengan sukses'''</big>.",
 'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki ini.
 
 == Memulai penggunaan ==

@@ -735,6 +735,7 @@ ya da bu sayfayı [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilirsini
 Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]]
 ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ilgili günlükleri tarayabilirsiniz].</span>',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
+'userpage-userdoesnotexist-view'   => '"$1" kullanıcı hesabı kayıtlı değil.',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
 'usercssyoucanpreview'             => "'''İpucu:''' Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
 'userjsyoucanpreview'              => "'''İpucu:''' Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
@@ -1670,6 +1671,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 ** Telif hakları ihlali
 ** Çift/kopya dosya',
 'filedelete-edit-reasonlist'  => 'Silme nedenlerini değiştir',
+'filedelete-maintenance'      => 'Dosyaların silinmesi ve geri getirilmesi bakım süresince geçici olarak devre dışı bırakıldı.',
 
 # MIME search
 'mimesearch'         => 'MIME araması',

@@ -762,6 +762,7 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 See also {{msg-mw|Noarticletext-nopermission}}.',
 'noarticletext-nopermission'       => 'See also {{msg-mw|Noarticletext}}.',
 'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
+'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo].',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
 'usercssyoucanpreview'             => "Text displayed on every css page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
 'userjsyoucanpreview'              => "Text displayed on every js page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",

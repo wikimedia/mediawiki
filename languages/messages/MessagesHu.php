@@ -1120,6 +1120,7 @@ Ellenőrizd a naplókat.',
 'revdelete-otherreason'       => 'Más/további ok:',
 'revdelete-reasonotherlist'   => 'Más ok',
 'revdelete-edit-reasonlist'   => 'Törlési okok szerkesztése',
+'revdelete-offender'          => 'Változat szerzője:',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',

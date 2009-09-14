@@ -811,6 +811,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'noarticletext-nopermission'       => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cercare nei registri correlati]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
+'userpage-userdoesnotexist-view'   => 'L\'account utente "$1" non è registrato.',
 'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Suggerimento:''' si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
 'userjsyoucanpreview'              => "'''Suggerimento:''' si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
@@ -1710,6 +1711,7 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 ** Violazione di copyright
 ** File duplicato',
 'filedelete-edit-reasonlist'  => 'Modifica le motivazioni per la cancellazione',
+'filedelete-maintenance'      => 'Cancellazione e recupero di file temporaneamente disattivati durante la manutenzione.',
 
 # MIME search
 'mimesearch'         => 'Ricerca in base al tipo MIME',
