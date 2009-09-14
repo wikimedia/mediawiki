@@ -36,6 +36,11 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
 		$wgUseNormalUser = true;
 	}
+	
+	public function memoryLimit() {
+		// Don't eat all memory on the machine if we get a bad job.
+		return "150M";
+	}
 
 	public function execute() {
 		global $wgTitle;

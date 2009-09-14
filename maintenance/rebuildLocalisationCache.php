@@ -37,11 +37,13 @@ class RebuildLocalisationCache extends Maintenance {
 		$this->addOption( 'force', 'Rebuild all files, even ones not out of date' );
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
 	}
+	
+	public function memoryLimit() {
+		return '200M';
+	}
 
 	public function execute() {
 		global $wgLocalisationCacheConf;
-
-		ini_set( 'memory_limit', '200M' );
 
 		$force = $this->hasOption('force');
 		$threads = $this->getOption( 'threads', 1 );
