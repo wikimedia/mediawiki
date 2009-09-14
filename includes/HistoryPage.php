@@ -216,8 +216,9 @@ class HistoryPage {
 			$wgOut->parse( wfMsgForContent( 'history-feed-empty' ) ),
 			$this->title->getFullUrl(),
 			wfTimestamp( TS_MW ),
-				'',
-			$this->title->getTalkPage()->getFullUrl() );
+			'',
+			$this->title->getTalkPage()->getFullUrl()
+		);
 	}
 
 	/**
@@ -231,12 +232,13 @@ class HistoryPage {
 	function feedItem( $row ) {
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->title );
-		$text = FeedUtils::formatDiffRow( $this->title,
-		$this->title->getPreviousRevisionID( $rev->getId() ),
-		$rev->getId(),
-		$rev->getTimestamp(),
-		$rev->getComment() );
-
+		$text = FeedUtils::formatDiffRow(
+			$this->title,
+			$this->title->getPreviousRevisionID( $rev->getId() ),
+			$rev->getId(),
+			$rev->getTimestamp(),
+			$rev->getComment()
+		);
 		if( $rev->getComment() == '' ) {
 			global $wgContLang;
 			$title = wfMsgForContent( 'history-feed-item-nocomment',
@@ -245,14 +247,14 @@ class HistoryPage {
 		} else {
 			$title = $rev->getUserText() . wfMsgForContent( 'colon-separator' ) . FeedItem::stripComment( $rev->getComment() );
 		}
-
 		return new FeedItem(
 			$title,
 			$text,
 			$this->title->getFullUrl( 'diff=' . $rev->getId() . '&oldid=prev' ),
 			$rev->getTimestamp(),
 			$rev->getUserText(),
-			$this->title->getTalkPage()->getFullUrl() );
+			$this->title->getTalkPage()->getFullUrl()
+		);
 	}
 }
 
@@ -301,7 +303,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	function formatRow( $row ) {
 		if( $this->lastRow ) {
-			$latest = $this->counter == 1 && $this->mIsFirst;
+			$latest = ($this->counter == 1 && $this->mIsFirst);
 			$firstInList = $this->counter == 1;
 			$s = $this->historyLine( $this->lastRow, $row, $this->counter++,
 				$this->title->getNotificationTimestamp(), $latest, $firstInList );
@@ -473,6 +475,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$tools = array();
 
+		# Rollback and undo links
 		if( !is_null( $next ) && is_object( $next ) ) {
 			if( $latest && $this->title->userCan( 'rollback' ) && $this->title->userCan( 'edit' ) ) {
 				$tools[] = '<span class="mw-rollback-link">'.
