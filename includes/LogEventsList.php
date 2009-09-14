@@ -575,10 +575,13 @@ class LogEventsList {
 	 * @param $conds Array Extra conditions for the query
 	 * @param $showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty
 	 * 		if set to true (default), "No matching items in log" is displayed if loglist is empty
-	 * @param $msgKey String if you want a nice box with a message, set this to the key of the message
+	 * @param $msgKey Array If you want a nice box with a message, set this
+	 *              to the key of the message. First element is the message
+	 *              key, additional optional elements are parameters for the
+	 *              key that are processed with wgMsgExt and option 'parse'
 	 * @return Integer Number of total log items (not limited by $lim)
 	 */
-	public static function showLogExtract( &$out, $types=array(), $page='', $user='', $lim=0, $conds=array(), $showIfEmpty = true, $msgKey = '' ) {
+	public static function showLogExtract( &$out, $types=array(), $page='', $user='', $lim=0, $conds=array(), $showIfEmpty = true, $msgKey = array() ) {
 		global $wgUser, $wgOut;
 		# Insert list of top 50 or so items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
@@ -587,8 +590,17 @@ class LogEventsList {
 		$logBody = $pager->getBody();
 		$s = '';
 		if( $logBody ) {
-			if ( $msgKey )
-				$s = '<div class="mw-warning-with-logexcerpt">' . wfMsgExt( $msgKey, array('parse') ) ;
+			if ( $msgKey ) {
+				$s = '<div class="mw-warning-with-logexcerpt">';
+
+				if ( sizeof( $msgKey ) == 1 ) {
+					$s .= wfMsgExt( $msgKey[0], array('parse') );
+				} else { // Process additional arguments
+					$args = $msgKey;
+					unset( $args[0] );
+					$s .= wfMsgExt( $msgKey[0], array('parse'), $args );
+				}
+			}
 			$s .= $loglist->beginLogEventsList() .
 				 $logBody .
 				 $loglist->endLogEventsList();
