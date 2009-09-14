@@ -207,11 +207,8 @@ class WikiExporter {
 			$opts = array( 'ORDER BY' => 'page_id ASC' );
 			$opts['USE INDEX'] = array();
 			$join = array();
-			# Full history dumps...
-			if( $this->history & WikiExporter::FULL ) {
-				$join['revision'] = array('INNER JOIN','page_id=rev_page');
 			# Latest revision dumps...
-			} elseif( $this->history & WikiExporter::CURRENT ) {
+			if( $this->history & WikiExporter::CURRENT ) {
 				if( $this->list_authors && $cond != '' )  { // List authors, if so desired
 					list($page,$revision) = $this->db->tableNamesN('page','revision');
 					$this->do_list_authors( $page, $revision, $cond );
@@ -247,6 +244,9 @@ class WikiExporter {
 				if( !empty( $this->history['limit'] ) ) {
 					$opts['LIMIT'] = intval( $this->history['limit'] );
 				}
+			# Full history dumps...
+			} elseif( $this->history & WikiExporter::FULL ) {
+				$join['revision'] = array('INNER JOIN','page_id=rev_page');
 			# Uknown history specification parameter?
 			} else {
 				wfProfileOut( __METHOD__ );
