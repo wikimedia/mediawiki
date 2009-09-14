@@ -4,9 +4,9 @@
 -- from local settings.
 --
 
-GRANT DELETE,INSERT,SELECT,UPDATE,CREATE TEMPORARY TABLES,CREATE TABLE,ALTER TABLE ON `{$wgDBname}`.*
+GRANT * ON `{$wgDBname}`.*
  TO '{$wgDBuser}'@'%' IDENTIFIED BY '{$wgDBpassword}';
-GRANT DELETE,INSERT,SELECT,UPDATE,CREATE TEMPORARY TABLES,CREATE TABLE,ALTER TABLE ON `{$wgDBname}`.*
+GRANT * ON `{$wgDBname}`.*
  TO '{$wgDBuser}'@localhost IDENTIFIED BY '{$wgDBpassword}';
-GRANT DELETE,INSERT,SELECT,UPDATE,CREATE TEMPORARY TABLES,CREATE TABLE,ALTER TABLE ON `{$wgDBname}`.*
+GRANT * ON `{$wgDBname}`.*
  TO '{$wgDBuser}'@localhost.localdomain IDENTIFIED BY '{$wgDBpassword}';
