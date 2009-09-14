@@ -1066,7 +1066,7 @@ class User {
 	 *                    done against master.
 	 */
 	function getBlockedStatus( $bFromSlave = true ) {
-		global $wgEnableSorbs, $wgProxyWhitelist;
+		global $wgEnableSorbs, $wgProxyWhitelist, $wgUser;
 
 		if ( -1 != $this->mBlockedby ) {
 			wfDebug( "User::getBlockedStatus: already loaded.\n" );
@@ -1086,9 +1086,25 @@ class User {
 		$this->mBlockedby = 0;
 		$this->mHideName = 0;
 		$this->mAllowUsertalk = 0;
-		$ip = wfGetIP();
 
-		if ($this->isAllowed( 'ipblock-exempt' ) ) {
+		# Check if we are looking at an IP or a logged-in user
+		if ( $this->isIP( $this->getName() ) ) {
+			$ip = $this->getName(); 
+		}
+		else {
+			# Check if we are looking at the current user
+			# If we don't, and the user is logged in, we don't know about
+			# his IP / autoblock status, so ignore autoblock of current user's IP
+			if ( $this->getID() != $wgUser->getID() ) {
+				$ip = '';
+			}
+			else {
+				# Get IP of current user
+				$ip = wfGetIP();
+			}
+		}
+
+		if ( $this->isAllowed( 'ipblock-exempt' ) ) {
 			# Exempt from all types of IP-block
 			$ip = '';
 		}
