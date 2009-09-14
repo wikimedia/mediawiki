@@ -1009,7 +1009,8 @@ class Title {
 
 	/**
 	 * Can $wgUser perform $action on this page?
-	 * This skips potentially expensive cascading permission checks.
+	 * This skips potentially expensive cascading permission checks
+	 * as well as avoids expensive error formatting
 	 *
 	 * Suitable for use for nonessential UI controls in common cases, but
 	 * _not_ for functional access control.
@@ -1208,8 +1209,14 @@ class Title {
 			}
 		} elseif( !$user->isAllowed( $action ) ) {
 			$return = null;
-			$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
-				User::getGroupsWithPermission( $action ) );
+			
+			// We avoid expensive display logic for quickUserCan's and such
+			$groups = false; 
+			if (!$short) {
+				$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
+					User::getGroupsWithPermission( $action ) );
+			} 
+			
 			if( $groups ) {
 				$return = array( 'badaccess-groups',
 					array( implode( ', ', $groups ), count( $groups ) ) );
