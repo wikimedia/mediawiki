@@ -902,7 +902,9 @@ $2',
 'noarticletext-nopermission'       => 'אין כרגע טקסט בדף זה.
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
 או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} לחפש ביומנים הרלוונטיים].',
-'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום. אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
+'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום.
+אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
+'userpage-userdoesnotexist-view'   => 'חשבון המשתמש "$1" אינו רשום.',
 'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זכרון המטמון (Cache) של הדפדפן על־מנת להבחין בשינויים.
 * ב'''מוזילה''', ב'''פיירפוקס''' או ב'''ספארי''', לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו Ctrl+Shift+R (או Cmd+Shift+R במקינטוש של אפל).
 * ב'''אינטרנט אקספלורר''', לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על Ctrl+F5.
@@ -1135,6 +1137,7 @@ $1",
 'revdelete-otherreason'       => 'סיבה אחרת/נוספת:',
 'revdelete-reasonotherlist'   => 'סיבה אחרת',
 'revdelete-edit-reasonlist'   => 'עריכת סיבות המחיקה',
+'revdelete-offender'          => 'מחבר הגרסה:',
 
 # Suppression log
 'suppressionlog'     => 'יומן הסתרות',
