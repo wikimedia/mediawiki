@@ -497,8 +497,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 482) Don't include TOC in the printable version if it has been hidden
 * Adjust the time according to the user configuration on Special:Revisiondelete
 * (bug 20624) Installation no longer allows "qqq" as the chosen language
-* (bug 20634) The installer-created database user will now have CREATE TABLE 
-  and ALTER TABLE rights so that upgrades will go more smoothly.
+* (bug 20634) The installer-created database user will now have all rights on
+  the database so that upgrades will go more smoothly.
 * (bug 18180) Special:Export ignores limit, dir, offset parameters
 
 == API changes in 1.16 ==
