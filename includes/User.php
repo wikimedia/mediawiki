@@ -1679,6 +1679,9 @@ class User {
 	 * for reload on the next hit.
 	 */
 	function invalidateCache() {
+		if( wfReadOnly() ) {
+			return;
+		}
 		$this->load();
 		if( $this->mId ) {
 			$this->mTouched = self::newTouchedTimestamp();
