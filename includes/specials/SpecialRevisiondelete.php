@@ -201,9 +201,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# Give a link to the logs/hist for this page
 		if( $this->targetObj ) {
 			$links = array();
-			$logtitle = SpecialPage::getTitleFor( 'Log' );
 			$links[] = $this->skin->linkKnown(
-				$logtitle,
+				SpecialPage::getTitleFor( 'Log' ),
 				wfMsgHtml( 'viewpagelogs' ),
 				array(),
 				array( 'page' => $this->targetObj->getPrefixedText() )
@@ -616,6 +615,7 @@ class RevisionDeleter {
 	// Get DB field name for URL param...
 	// Future code for other things may also track
 	// other types of revision-specific changes.
+	// @returns string One of log_id/rev_id/fa_id/ar_timestamp/oi_archive_name
 	public static function getRelationType( $typeName ) {
 		if ( isset( SpecialRevisionDelete::$deprecatedTypeMap[$typeName] ) ) {
 			$typeName = SpecialRevisionDelete::$deprecatedTypeMap[$typeName];
@@ -638,6 +638,8 @@ abstract class RevDel_List {
 	var $type = null; // override this
 	var $idField = null; // override this
 	var $dateField = false; // override this
+	var $authorIdField = false; // override this
+	var $authorNameField = false; // override this
 
 	/**
 	 * @param $special The parent SpecialPage
@@ -658,7 +660,7 @@ abstract class RevDel_List {
 	}
 
 	/**
-	 * Get the DB field name associated with the ID list/
+	 * Get the DB field name associated with the ID list
 	 */
 	public function getIdField() {
 		return $this->idField;
@@ -671,6 +673,19 @@ abstract class RevDel_List {
 		return $this->dateField;
 	}
 
+	/**
+	 * Get the DB field name storing user ids
+	 */
+	public function getAuthorIdField() {
+		return $this->authorIdField;
+	}
+
+	/**
+	 * Get the DB field name storing user names
+	 */
+	public function getAuthorNameField() {
+		return $this->authorNameField;
+	}
 	/**
 	 * Set the visibility for the revisions in this list. Logging and 
 	 * transactions are done here.
@@ -692,6 +707,7 @@ abstract class RevDel_List {
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();
 		$idsForLog = array();
+		$authorIds = $authorIPs = array();
 
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			$item = $this->current();
@@ -731,6 +747,11 @@ abstract class RevDel_List {
 			if ( $ok ) {
 				$idsForLog[] = $item->getId();
 				$status->successCount++;
+				if( $item->getAuthorId() > 0 ) {
+					$authorIds[] = $item->getAuthorId();
+				} else if( IP::isIPAddress( $item->getAuthorName() ) ) {
+					$authorIPs[] = $item->getAuthorName();
+				}
 			} else {
 				$status->error( 'revdelete-concurrent-change', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
@@ -768,6 +789,8 @@ abstract class RevDel_List {
 			'oldBits' => $oldBits,
 			'comment' => $comment,
 			'ids' => $idsForLog,
+			'authorIds' => $authorIds,
+			'authorIPs' => $authorIPs
 		) );
 		$dbw->commit();
 
@@ -793,6 +816,8 @@ abstract class RevDel_List {
 	 *     title:           The target title
 	 *     ids:             The ID list
 	 *     comment:         The log comment
+	 *     authorsIds:      The array of the user IDs of the offenders
+	 *     authorsIPs:      The array of the IP/anon user offenders
 	 */
 	protected function updateLog( $params ) {
 		// Get the URL param's corresponding DB field
@@ -814,6 +839,8 @@ abstract class RevDel_List {
 			$params['comment'], $logParams );
 		// Allow for easy searching of deletion log items for revision/log items
 		$log->addRelations( $field, $params['ids'], $logid );
+		$log->addRelations( 'target_author_id', $params['authorIds'], $logid );
+		$log->addRelations( 'target_author_ip', $params['authorIPs'], $logid );
 	}
 
 	/**
@@ -976,6 +1003,22 @@ abstract class RevDel_Item {
 		$field = $this->list->getTimestampField();
 		return wfTimestamp( TS_MW, $this->row->$field );
 	}
+	
+	/**
+	 * Get the author user ID
+	 */	
+	public function getAuthorId() {
+		$field = $this->list->getAuthorIdField();
+		return intval( $this->row->$field );
+	}
+
+	/**
+	 * Get the author user name
+	 */	
+	public function getAuthorName() {
+		$field = $this->list->getAuthorNameField();
+		return strval( $this->row->$field );
+	}
 
 	/** 
 	 * Returns true if the item is "current", and the operation to set the given
@@ -1023,6 +1066,8 @@ class RevDel_RevisionList extends RevDel_List {
 	var $type = 'revision';
 	var $idField = 'rev_id';
 	var $dateField = 'rev_timestamp';
+	var $authorIdField = 'rev_user';
+	var $authorNameField = 'rev_user_text';
 
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
@@ -1192,6 +1237,8 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 	var $type = 'archive';
 	var $idField = 'ar_timestamp';
 	var $dateField = 'ar_timestamp';
+	var $authorIdField = 'ar_user';
+	var $authorNameField = 'ar_user_text';
 
 	public function doQuery( $db ) {
 		$timestamps = array();
@@ -1286,6 +1333,8 @@ class RevDel_FileList extends RevDel_List {
 	var $type = 'oldimage';
 	var $idField = 'oi_archive_name';
 	var $dateField = 'oi_timestamp';
+	var $authorIdField = 'oi_user';
+	var $authorNameField = 'oi_user_text';
 	var $storeBatch, $deleteBatch, $cleanupBatch;
 
 	public function doQuery( $db ) {
@@ -1501,6 +1550,8 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 	var $type = 'filearchive';
 	var $idField = 'fa_id';
 	var $dateField = 'fa_timestamp';
+	var $authorIdField = 'fa_user';
+	var $authorNameField = 'fa_user_text';
 	
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
@@ -1566,6 +1617,8 @@ class RevDel_LogList extends RevDel_List {
 	var $type = 'logging';
 	var $idField = 'log_id';
 	var $dateField = 'log_timestamp';
+	var $authorIdField = 'log_user';
+	var $authorNameField = 'log_user_text';
 
 	public function doQuery( $db ) {
 		global $wgMessageCache;
@@ -1619,7 +1672,7 @@ class RevDel_LogItem extends RevDel_Item {
 			),
 			array(
 				'rc_logid' => $this->row->log_id,
-				'rc_timestamp' => $this->row->log_timestamp
+				'rc_timestamp' => $this->row->log_timestamp // index
 			),
 			__METHOD__
 		);
@@ -1641,9 +1694,9 @@ class RevDel_LogItem extends RevDel_Item {
 		$paramArray = LogPage::extractParams( $this->row->log_params );
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
 
-		$logtitle = SpecialPage::getTitleFor( 'Log' );
+		// Log link for this page
 		$loglink = $this->special->skin->link(
-			$logtitle,
+			SpecialPage::getTitleFor( 'Log' ),
 			wfMsgHtml( 'log' ),
 			array(),
 			array( 'page' => $title->getPrefixedText() )
