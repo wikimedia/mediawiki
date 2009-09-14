@@ -1945,7 +1945,9 @@ class Language {
 	function getMagic( $mw ) {
 		if ( !$this->mMagicHookDone ) {
 			$this->mMagicHookDone = true;
+			wfProfileIn( 'LanguageGetMagic' );
 			wfRunHooks( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
+			wfProfileOut( 'LanguageGetMagic' );
 		}
 		if ( isset( $this->mMagicExtensions[$mw->mId] ) ) {
 			$rawEntry = $this->mMagicExtensions[$mw->mId];
