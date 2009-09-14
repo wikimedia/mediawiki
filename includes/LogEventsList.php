@@ -575,9 +575,10 @@ class LogEventsList {
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
 		if( $lim > 0 ) $pager->mLimit = $lim;
 		$logBody = $pager->getBody();
+		$s = '';
 		if( $logBody ) {
 			if ( $msgKey )
-				$s = '<div class="mw-warning-with-logexcerpt">' . wfMsg( $msgKey ) ;
+				$s = '<div class="mw-warning-with-logexcerpt">' . wfMsgExt( $msgKey, array('parse') ) ;
 			$s .= $loglist->beginLogEventsList() .
 				 $logBody .
 				 $loglist->endLogEventsList();
