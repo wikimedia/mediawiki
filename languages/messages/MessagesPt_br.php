@@ -940,8 +940,6 @@ Você deve considerar se é realmente adequado continuar editando esta página.
 Os registros de eliminação e de movimentação desta página são exibidos a seguir, para sua comodidade:",
 'moveddeleted-notice'              => 'Esta página foi eliminada. 
 Os registros de eliminação e de movimentação para esta página estão disponibilizados abaixo, para referência.',
-'renamed-notice'                   => 'Este usuário foi renomeado.
-O registro de renomeação é fornecido abaixo para referência.',
 'log-fulllog'                      => 'Ver registro detalhado',
 'edit-hook-aborted'                => "Edição abortada por ''hook''.
 Ele não deu nenhuma explicação.",

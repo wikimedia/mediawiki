@@ -994,8 +994,6 @@ Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Specia
 
 Assurez-vous qu’il est pertinent de poursuivre les modifications sur cette page. Le journal des suppressions et des déplacements est affiché ci-dessous :",
 'moveddeleted-notice'              => 'Cette page a été supprimée. Le journal des suppressions et des déplacements est affiché ci-dessous pour référence.',
-'renamed-notice'                   => 'Cet utilisateur a été renommé.
-Le journal des renommages est disponible ci-dessous pour information.',
 'log-fulllog'                      => 'Voir le journal complet',
 'edit-hook-aborted'                => 'Échec de la modification par une extension.
 Cause inconnue',

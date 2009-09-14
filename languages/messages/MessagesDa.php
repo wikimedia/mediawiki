@@ -824,8 +824,6 @@ Systemadministratoren som låste databasen, gav denne forklaring: $1",
 Overvej om det er passende at genoprette siden. Sletnings- og flyttelogerne for siden er vist nedenfor.",
 'moveddeleted-notice'              => 'Denne side er blevet slettet.
 Sletnings- og flytteloggerne for siden er vist nedenfor.',
-'renamed-notice'                   => 'Denne bruger er blevet omdøbt.
-Til information er omdøbningsloggen vist nedenfor.',
 'log-fulllog'                      => 'Vis fuldstændig log',
 'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
 'edit-gone-missing'                => 'Kunne ikke opdatere siden. 

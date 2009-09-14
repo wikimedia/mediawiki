@@ -702,8 +702,6 @@ Ch'a varda d'esse sigur ch'a vala la pen-a ëd travajé ans na pàgina parèj.
 Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina-sì:",
 'moveddeleted-notice'              => "Sta pàgina-sì a l'é stàita scanselà.
 Ël registr ëd la scanselassion e dij spostament a l'é arportà sota për arferiment.",
-'renamed-notice'                   => "St'utent-sì a l'é stàit arnominà.
-Ël registr ëd l'arnòmina a l'é dàit sota për arferiment.",
 'log-fulllog'                      => 'Varda tut ël registr',
 'edit-hook-aborted'                => "Mod'fica anulà da l'hook.
 A-i é pa gnun-e spiegassion.",

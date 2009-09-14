@@ -808,8 +808,6 @@ Frot Iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir Iech z'informéieren fannt Dir hei d'Logbuch vum Läsche mam Grond:",
 'moveddeleted-notice'              => 'Dës Säit gouf geläscht.
 Hei ass den Extrait aus dem Logbuch vum Réckelen a Läsche fir déi Säit.',
-'renamed-notice'                   => "Dëse Benotzer gouf ëmbenannt.
-D'Logbuch mat den Ëmbenunngen ass hei ënnendrënner.",
 'log-fulllog'                      => 'Dat ganzt Logbuch weisen',
 'edit-hook-aborted'                => "D'Ännerung gouf ouni Erklärung vun enger Schnëttstell (hook) ofgebrach.",
 'edit-gone-missing'                => "D'Säit konnt net aktualiséiert ginn.

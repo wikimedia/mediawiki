@@ -795,8 +795,6 @@ Administrator, kenž jo ju zastajił, su toś tu pśicynu pódał: $1",
 Pšosym pśespytuj kradosćiwje, lěc jo gódnje z wobźěłowanim boka pokšacowaś.
 Protokol wulašowanjow a pśesunjenjow za toś ten bok so how za informaciju pódawa:",
 'moveddeleted-notice'              => 'Toś ten bok jo se wulašował. Protokol wulašowanjow a pśesunjenjow za toś ten bok pódawa se dołojce ako referenca.',
-'renamed-notice'                   => 'Toś ten wužywaŕ jo se pśemjenił.
-Protokol pśemjenjowanjow jo dołojce ako referenca pódany.',
 'log-fulllog'                      => 'Dopołny protokol se woglědaś',
 'edit-hook-aborted'                => 'Wobźěłanje pśez kokulu pśetergnjony.
 Njejo žedne wujasnjenje.',

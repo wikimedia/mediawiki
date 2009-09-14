@@ -942,8 +942,6 @@ Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
 Hieronder wonnen veur de dudelijkheid infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen eteund:",
 'moveddeleted-notice'              => "Disse pagina is vort-edaon.
 Hieronder steet de infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen.",
-'renamed-notice'                   => "Disse gebrukersnaam is herneumd.
-Hieronder vie-j 't herneumlogboek as rifferentie.",
 'log-fulllog'                      => "'t Hele logboek bekieken",
 'edit-hook-aborted'                => 'De bewarking is of-ebreuken deur een hook.
 Der is gien rejen op-egeven.',

@@ -878,8 +878,6 @@ Debería considerar se é apropiado continuar a editar esta páxina.
 Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por se quere consultalos:",
 'moveddeleted-notice'              => 'Esta páxina foi borrada.
 A continuación pódese ver o rexistro de borrados e traslados desta páxina, por se os quere consultar.',
-'renamed-notice'                   => 'Este usuario foi renomeado.
-Velaquí está o rexistro de cambios de nome de usuario por se quere consultalo.',
 'log-fulllog'                      => 'Ver o rexistro completo',
 'edit-hook-aborted'                => "A edición foi abortada polo ''hook''.
 Este non deu ningunha explicación.",

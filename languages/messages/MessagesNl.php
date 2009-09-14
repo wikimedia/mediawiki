@@ -1012,8 +1012,6 @@ Overweeg of het terecht is dat u verder werkt aan deze pagina.
 Voor uw gemak staan hieronder het verwijderingslogboek en het hernoemingslogboek voor deze pagina:",
 'moveddeleted-notice'              => 'Deze pagina is verwijderd.
 Ter informatie worden het verwijderingslogboek en het hernoemingslogboek van deze pagina hieronder weergegeven.',
-'renamed-notice'                   => 'Deze gebruiker is hernoemd.
-Relevante regels uit het logboek gebruikersnaamwijzigingen worden hieronder ter referentie weergegeven.',
 'log-fulllog'                      => 'Het volledige logboek bekijken',
 'edit-hook-aborted'                => 'De bewerking is afgebroken door een hook.
 Er is geen toelichting beschikbaar.',

@@ -983,8 +983,6 @@ Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1
 
 Bes förseschtesch un övverlääsch Der, of dat en joode Idee es, di Sigg widder opzemaache. Domet De Bescheid weiß, hee de Endrääsh em Logboch vum Sigge-Ömnänne, un em Logboch vum Sigge-Fottschmieße mem Jrond, woröm di Sigg dohmohls fottjeschmesse woode es:",
 'moveddeleted-notice'              => 'Hee di Sigg es fottjeschmeße. E Shtöck uß dä Logböösher fum Sigge-Fottschmieße un fum Sigge-Ömnänne för di Sigg kütt jetz, en dä Hoffnung, dat dat Der hellef.',
-'renamed-notice'                   => 'Dä Metmaacher es ömjenannt woode.
-Dat kanns De unge en däm Ußzoch uss_em Logbooch vum Metmacher Ömnänne fenge.',
 'log-fulllog'                      => 'Donn dat janze Logboch aanloore',
 'edit-hook-aborted'                => 'Et Ändere wood affjebroche övver ene sujenannte „Hoke“ en de ßoffwäer.
 Ene Jrond weße mer nit.',

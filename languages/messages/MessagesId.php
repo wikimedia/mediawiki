@@ -937,8 +937,6 @@ Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dan pemindahan dari halaman ini:",
 'moveddeleted-notice'              => 'Halaman ini telah dihapus.
 Sebagai referensi, berikut adalah log penghapusan dan pemindahan halaman ini.',
-'renamed-notice'                   => 'Penguna ini telah berganti nama.
-Log pergantian nama disediakan dibawah untuk referensi.',
 'log-fulllog'                      => 'Lihat seluruh log',
 'edit-hook-aborted'                => 'Suntingan dibatalkan oleh kait parser
 tanpa ada keterangan.',
