@@ -783,8 +783,6 @@ Du chasch nur Syten ändere, wo's scho git, oder muesch di [[Special:UserLogin|a
 Bitte iberprief, eb s sinnvoll isch, mit em Bearbeite wyter z mache.
 Zue Dyyre Information sihsch do s Lesch-Logbuech vo däre Syte:",
 'moveddeleted-notice'              => 'Die Syte isch glescht wore. Do chunnt e Uuszuug us em Lesch-Logbuech fir die Syte.',
-'renamed-notice'                   => 'Dää Benutzer isch umgnännt wore.
-S Umnännigs-Logbuech wird do unte ufgfiert as Quälle.',
 'log-fulllog'                      => 'Voll Logbuech aaluege',
 'edit-hook-aborted'                => 'D Bearbeitig isch ohni Erchlärung dur e Schnittstell abbroche wore.',
 'edit-gone-missing'                => 'D Syte het nid chenne aktalisiert wäre.

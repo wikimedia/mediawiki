@@ -964,8 +964,6 @@ Mielőtt létrehoznád, nézd meg, miért került törölték és ellenőrizd,
 hogy a törlés indoka nem érvényes-e még. A törlési és átnevezési naplókban a lapról az alábbi bejegyzések szerepelnek:",
 'moveddeleted-notice'              => 'Az oldal korábban törölve lett.
 A lap törlési és átnevezési naplója alább olvasható.',
-'renamed-notice'                   => 'Ezt a szerkesztőt átnevezték.
-Alább látható a szerkesztőátnevezési napló tájékoztatásként.',
 'log-fulllog'                      => 'Teljes napló megtekintése',
 'edit-hook-aborted'                => 'A szerkesztés meg lett szakítva egy hook által.
 Nem lett magyarázat csatolva.',

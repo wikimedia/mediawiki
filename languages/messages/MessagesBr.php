@@ -750,8 +750,6 @@ En em soñjit ervat ha talvoudus eo kenderc'hel krouiñ ar bajenn.
 Deoc'h da c'houzout, aze emañ ar marilhoù diverkañ hag adenvel :",
 'moveddeleted-notice'              => 'Diverket eo bet ar bajenn-mañ.
 Dindan emañ ar marilh diverkañ hag adenvel.',
-'renamed-notice'                   => "Adanvet eo bet an implijer-mañ.
-A-is emañ marilh an adanvadurioù, ma'z oc'h dedennet.",
 'log-fulllog'                      => 'Gwelet ar marilh klok',
 'edit-hook-aborted'                => "C'hwitet ar c'hemmañ gant un astenn.
 Abeg dianav.",

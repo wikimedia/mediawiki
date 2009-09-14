@@ -771,8 +771,6 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1",
 Prošu přepruwuj, hač je přihódne z wobdźěłowanjom tuteje strony pokročować.
 Protokol wušmórnjenjow a přesunjenjow za tutu stronu su tu za informaciju:",
 'moveddeleted-notice'              => 'Tuta strona bu wušmórnjena. Protokol wušmórnjenjow a přesunjenjow za  stronu so deleka jako referenca podawa.',
-'renamed-notice'                   => 'Tutón wužiwar je so přemjenował.
-Protokol přemjenowanjow je deleka jako referenca podaty.',
 'log-fulllog'                      => 'Dospołny protokol sej wobhladać',
 'edit-hook-aborted'                => 'Wobdźěłanje přez hoku přetorhnjene.
 Njeje žane wujasnjenje podała.',

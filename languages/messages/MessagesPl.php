@@ -912,8 +912,6 @@ Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć i zmian nazwy tej strony:",
 'moveddeleted-notice'              => 'Ta strona została usunięta.
 Rejestr usunięć i zmian nazwy tej strony jest pokazany poniżej.',
-'renamed-notice'                   => 'Nazwa tego użytkownika została zmieniona.
-Rejestr zmiany nazwy użytkownika znajduje się poniżej.',
 'log-fulllog'                      => 'Pokaż cały rejestr',
 'edit-hook-aborted'                => 'Edycja zatrzymana z powodu haka.
 Wystąpił z nieokreślonej przyczyny.',

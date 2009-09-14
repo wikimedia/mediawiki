@@ -799,8 +799,6 @@ Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pa
 L'elenco de i relativi spostamenti e scancelazion el vien riportà qua de seguito par comodità:",
 'moveddeleted-notice'              => "Sta pàxena la xe stà scancelà.
 L'elenco dei relativi spostamenti e scancelassion el vien riportà qua soto par informassion.",
-'renamed-notice'                   => 'Sto utente el gà canbià nome.
-Qua soto ghe xe el riferimento sul registro de rinomina.',
 'log-fulllog'                      => 'Varda registro conpleto',
 'edit-hook-aborted'                => "Modifica abortìa da parte de l'hook.
 No xe stà dà nissuna spiegazion in merito.",

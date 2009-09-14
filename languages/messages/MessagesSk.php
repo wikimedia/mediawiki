@@ -953,8 +953,6 @@ Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Ďalšie informácie si môžete pozrieť v zázname zmazaní a presunutí:",
 'moveddeleted-notice'              => 'Táto stránka bola zmazaná.
 Ďalšie informácie si môžete pozrieť v zázname zmazaní a presunutí.',
-'renamed-notice'                   => 'Tento používateľ bol premenovaný.
-Dolu nájdete záznam premenovaní.',
 'log-fulllog'                      => 'Zobraziť úplný záznam',
 'edit-hook-aborted'                => 'Úpravu zrušila prídavná funkcia (prípojný bod syntaktického analyzátora).
 Neudala vysvetlenie.',
