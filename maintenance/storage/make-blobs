@@ -1,11 +1,16 @@
 #!/bin/bash
 
-if [ X$2 == X ];then
-	echo 'Usage: make-blobs <server> <db>'
+if [ -z $2 ];then
+	echo 'Usage: make-blobs <server> <db> [<table name>]'
 	exit 1
+fi
+if [ -z $3 ]; then
+	table=blobs
+else 
+	table=$3
 fi
 
 echo "CREATE DATABASE $2" | mysql -u wikiadmin -p`wikiadmin_pass` -h $1 && \
-mysql -u wikiadmin -p`wikiadmin_pass` -h $1 $2 < blobs.sql
+sed "s/blobs\>/$table/" blobs.sql | mysql -u wikiadmin -p`wikiadmin_pass` -h $1 $2
 	
 	
