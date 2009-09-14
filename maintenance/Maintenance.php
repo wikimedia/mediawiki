@@ -333,7 +333,7 @@ abstract class Maintenance {
 		}
 
 		# Set the memory limit
-		ini_set( 'memory_limit', -1 );
+		ini_set( 'memory_limit', $this->memoryLimit() );
 
 		# Set max execution time to 0 (no limit). PHP.net says that
 		# "When running PHP from the command line the default setting is 0."
@@ -361,6 +361,15 @@ abstract class Maintenance {
 		$this->loadParamsAndArgs();
 		$this->maybeHelp();
 		$this->validateParamsAndArgs();
+	}
+	
+	/**
+	 * Normally we disable the memory_limit when running admin scripts.
+	 * Some scripts may wish to actually set a limit, however, to avoid
+	 * blowing up unexpectedly.
+	 */
+	public function memoryLimit() {
+		return -1;
 	}
 
 	/**
