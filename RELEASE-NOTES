@@ -222,8 +222,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   excerpt from the block log.
 * (bug 19646) New hook: ImgAuthBeforeStream for tests and functionality before
   file is streamed to user, but only when using img_auth
-* Note on non-existing user and user talk pages if user does not exist and show
-  renameuser log if the user has been renamed
+* Note on non-existing user and user talk pages if user does not exist
+* New hook ShowMissingArticle so extensions can modify the output for 
+  non-existent pages.
 
 === Bug fixes in 1.16 ===
 

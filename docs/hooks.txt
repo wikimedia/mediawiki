@@ -1231,6 +1231,9 @@ $term : Search term string
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
+'ShowMissingArticle': Called when generating the output for a non-existent page
+$article: The article object corresponding to the page
+
 'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views
 $text: Text being shown
 $title: Title of the custom script/stylesheet page

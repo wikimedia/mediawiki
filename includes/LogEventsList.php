@@ -569,10 +569,10 @@ class LogEventsList {
 	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
 	 * @param $out OutputPage or String-by-reference
 	 * @param $types String or Array
-	 * @param $page String
-	 * @param $user String
+	 * @param $page String The page title to show log entries for
+	 * @param $user String The user who made the log entries
 	 * @param $lim Integer Limit of items to show, default is 50
-	 * @param $conds Array
+	 * @param $conds Array Extra conditions for the query
 	 * @param $showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty
 	 * 		if set to true (default), "No matching items in log" is displayed if loglist is empty
 	 * @param $msgKey String if you want a nice box with a message, set this to the key of the message
@@ -663,13 +663,13 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * constructor
 	 * @param $list LogEventsList
-	 * @param $types String or Array
-	 * @param $user String
-	 * @param $title String
-	 * @param $pattern String
-	 * @param $conds Array
-	 * @param $year Integer
-	 * @param $month Integer
+	 * @param $types String or Array log types to show
+	 * @param $user String The user who made the log entries
+	 * @param $title String The page title the log entries are for
+	 * @param $pattern String Do a prefix search rather than an exact title match
+	 * @param $conds Array Extra conditions for the query
+	 * @param $year Integer The year to start from
+	 * @param $month Integer The month to start from
 	 */
 	public function __construct( $list, $types = array(), $user = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) 
