@@ -107,7 +107,7 @@ class UsersPager extends AlphabeticPager {
 				'COUNT(ug_group) AS numgroups',
 				'MAX(ug_group) AS singlegroup', // the usergroup if there is only one
 				'MIN(user_registration) AS creation',
-				'ipb_deleted' // block/hide status
+				'MAX(ipb_deleted) AS ipb_deleted' // block/hide status
 			),
 			'options' => array('GROUP BY' => $this->creationSort ? 'user_id' : 'user_name'),
 			'conds' => $conds
