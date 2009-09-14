@@ -500,6 +500,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20634) The installer-created database user will now have all rights on
   the database so that upgrades will go more smoothly.
 * (bug 18180) Special:Export ignores limit, dir, offset parameters
+* User::getBlockedStatus() works for all kinds of user objects and doesn't 
+  assume the user object is equal to the current-user object ($wgUser)
 
 == API changes in 1.16 ==
 
