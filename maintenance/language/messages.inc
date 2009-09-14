@@ -589,7 +589,6 @@ $wgMessageStructure = array(
 		'permissionserrorstext-withaction',
 		'recreate-moveddeleted-warn',
 		'moveddeleted-notice',
-		'renamed-notice',
 		'log-fulllog',
 		'edit-hook-aborted',
 		'edit-gone-missing',

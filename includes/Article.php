@@ -1201,20 +1201,17 @@ class Article {
 	public function showMissingArticle() {
 		global $wgOut, $wgRequest, $wgUser;
 
-		# Show info in user (talk) namespace. Does the user exist and if not, has he been renamed.
+		# Show info in user (talk) namespace. Does the user exist?
 		if ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
 			$id = User::idFromName( $this->mTitle->getBaseText() );
 			$ip = User::isIP( $this->mTitle->getBaseText() );
 			if ( $id == 0 && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( '<div class="mw-userpage-userdoesnotexist error">$1</div>',
 					array( 'userpage-userdoesnotexist-view', $this->mTitle->getBaseText() ) );
-
-				# Show rename log because user does not exist. 
-				$parent = $this->mTitle->getNsText() . ":" . $this->mTitle->getBaseText();
-				LogEventsList::showLogExtract( $wgOut, 'renameuser', $parent, '', 10, array(), false, 'renamed-notice' );
 			}
 
 		}
+		wfRunHooks( 'ShowMissingArticle', array( $this ) );
 		# Show delete and move logs
 		LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), 
 			$this->mTitle->getPrefixedText(), '', 10, array( "log_action != 'revision'" ), false, 'moveddeleted-notice');
