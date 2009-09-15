@@ -1213,8 +1213,16 @@ class Article {
 		}
 		wfRunHooks( 'ShowMissingArticle', array( $this ) );
 		# Show delete and move logs
-		LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), 
-			$this->mTitle->getPrefixedText(), '', 10, array( "log_action != 'revision'" ), false, 'moveddeleted-notice');
+		LogEventsList::showLogExtract(
+			$wgOut,
+			array( 'delete', 'move' ), 
+			$this->mTitle->getPrefixedText(),
+			'',
+			10,
+			array( "log_action != 'revision'" ),
+			false,
+			array( 'moveddeleted-notice' )
+		);
 
 		# Show error message
 		$oldid = $this->getOldID();
@@ -2548,7 +2556,11 @@ class Article {
 		if( $latest === false ) {
 			$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
 			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
-			LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
+			LogEventsList::showLogExtract(
+				$wgOut,
+				'delete',
+				$this->mTitle->getPrefixedText()
+			);
 			return;
 		}
 
@@ -2756,7 +2768,11 @@ class Article {
 
 		$wgOut->addHTML( $form );
 		$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
-		LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
+		LogEventsList::showLogExtract(
+			$wgOut,
+			'delete',
+			$this->mTitle->getPrefixedText()
+		);
 	}
 
 	/**
@@ -2784,7 +2800,11 @@ class Article {
 			if( $error == '' ) {
 				$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
 				$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
-				LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
+				LogEventsList::showLogExtract(
+					$wgOut,
+					'delete',
+					$this->mTitle->getPrefixedText()
+				);
 			} else {
 				$wgOut->showFatalError( $error );
 			}
