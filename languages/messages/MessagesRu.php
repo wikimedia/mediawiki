@@ -1081,6 +1081,7 @@ $1",
 'revdelete-otherreason'       => 'Другая/дополнительная причина:',
 'revdelete-reasonotherlist'   => 'Другая причина',
 'revdelete-edit-reasonlist'   => 'Править список причин',
+'revdelete-offender'          => 'Автор версии страницы:',
 
 # Suppression log
 'suppressionlog'     => 'Журнал сокрытий',

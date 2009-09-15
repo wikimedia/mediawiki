@@ -1068,6 +1068,7 @@ Proszę sprawdzić rejestr operacji.',
 'revdelete-otherreason'       => 'Inny lub dodatkowy powód:',
 'revdelete-reasonotherlist'   => 'Inny powód',
 'revdelete-edit-reasonlist'   => 'Edycja listy powodów usunięcia pliku',
+'revdelete-offender'          => 'Autor wersji',
 
 # Suppression log
 'suppressionlog'     => 'Rejestr utajniania',

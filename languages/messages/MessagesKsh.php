@@ -1136,6 +1136,7 @@ Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat
 'revdelete-otherreason'       => 'Ene andere ov zohsäzlejje Jrund:',
 'revdelete-reasonotherlist'   => 'Ene andere Jrund',
 'revdelete-edit-reasonlist'   => 'De Jrönde för et Fottschmieße beärbeide',
+'revdelete-offender'          => 'Dä Väsion iere Schriever:',
 
 # Suppression log
 'suppressionlog'     => 'Et Logboch fum Versteiche',

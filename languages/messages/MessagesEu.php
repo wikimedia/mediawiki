@@ -364,6 +364,11 @@ $messages = array(
 'jumpto'            => 'Hona jo:',
 'jumptonavigation'  => 'nabigazioa',
 'jumptosearch'      => 'bilatu',
+'view-pool-error'   => 'Barkatu, zerbitzariak gainezka daude uneotan.
+Erabiltzaile gehiegi ari da orrialde hau ikusi nahiean.
+Mesedez itxaron ezazu unetxo bat orrialde honetara berriz sartzen saiatu baino lehen.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}(e)ri buruz',
@@ -889,6 +894,7 @@ Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[
 'logdelete-log-message'       => '$1(e)tik {{PLURAL:$2|gertakari $2|$2 gertakari}}',
 'revdelete-reasonotherlist'   => 'Beste arrazoi bat',
 'revdelete-edit-reasonlist'   => 'Ezabaketa arrazoiak aldatu',
+'revdelete-offender'          => 'Bertsioaren egilea:',
 
 # Suppression log
 'suppressionlog'     => 'Ezabatze loga',

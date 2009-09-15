@@ -1135,6 +1135,7 @@ $1",
 'revdelete-otherreason'       => 'Άλλος/πρόσθετος λόγος:',
 'revdelete-reasonotherlist'   => 'Άλλος λόγος',
 'revdelete-edit-reasonlist'   => 'Επεξεργασία λόγων διαγραφής',
+'revdelete-offender'          => 'Δημιουργός αναθεώρησης:',
 
 # Suppression log
 'suppressionlog'     => 'Κατάλογος διαγραφών',

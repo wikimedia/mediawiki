@@ -857,6 +857,7 @@ It peule pa vëddlo.',
 'revdelete-otherreason'       => 'Àutra rason o adissional:',
 'revdelete-reasonotherlist'   => 'Àutra rason',
 'revdelete-edit-reasonlist'   => 'Modifiché la rason ëd lë scancelament',
+'revdelete-offender'          => 'Autor ëd la revision:',
 
 # Suppression log
 'suppressionlog'     => 'Registr ëd le sopression',

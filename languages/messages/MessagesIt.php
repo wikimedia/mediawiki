@@ -1027,6 +1027,7 @@ $1",
 'revdelete-otherreason'       => 'Altra motivazione o motivazione aggiuntiva:',
 'revdelete-reasonotherlist'   => 'Altra motivazione',
 'revdelete-edit-reasonlist'   => 'Modifica le motivazioni per la cancellazione',
+'revdelete-offender'          => 'Autore della versione:',
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',

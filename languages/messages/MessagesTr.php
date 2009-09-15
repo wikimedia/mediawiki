@@ -962,6 +962,7 @@ Lütfen günlükleri kontrol edin.',
 'revdelete-otherreason'       => 'Diğer/ek sebep:',
 'revdelete-reasonotherlist'   => 'Diğer sebep',
 'revdelete-edit-reasonlist'   => 'Silme nedenlerini değiştir',
+'revdelete-offender'          => 'Revizyon yazarı:',
 
 # Suppression log
 'suppressionlog'     => 'Gizleme kayıtları',
