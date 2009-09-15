@@ -168,7 +168,15 @@ if ( $wgCommandLineMode ) {
 	}
 	wfDebug( "\n" );
 } elseif( isset( $_SERVER['REQUEST_URI'] ) ) {
+	wfDebug( "\n\nStart request\n" );
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
+	foreach ( $_SERVER as $name => $value ) {
+		if ( substr( $name, 0, 5 ) == 'HTTP_' ) {
+			$name = substr( $name, 5 );
+			wfDebug( "$name: $value\n" );
+		}
+	}
+	wfDebug( "\n" );
 }
 
 if( $wgRCFilterByAge ) {
