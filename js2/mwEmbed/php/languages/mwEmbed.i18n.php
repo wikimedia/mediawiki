@@ -392,6 +392,24 @@ $messages['af'] = array(
 	'mwe-embed_site_or_blog' => 'Voeg by jou webblad of webjoernaal',
 );
 
+/** Arabic (العربية)
+ * @author Meno25
+ * @author OsamaK
+ */
+$messages['ar'] = array(
+	'mwe-crop' => 'اقتص الصورة',
+	'mwe-close' => 'أغلق',
+	'mwe-menu_clipedit' => 'حرّر الوسيط',
+	'mwe-menu_transition' => 'ترجمات ومؤثرات',
+	'mwe-menu_cliplib' => 'أضف وسيطًا',
+	'mwe-menu_options' => 'خيارات',
+	'mwe-zoom_in' => 'قرّب',
+	'mwe-zoom_out' => 'بعّد',
+	'mwe-rmclip' => 'أزل المقطع',
+	'rsd_results_next' => 'تالي',
+	'rsd_results_prev' => 'سابق',
+);
+
 /** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
  * @author EugeneZelenko
  * @author Jim-by
@@ -706,6 +724,7 @@ $messages['dsb'] = array(
 	'mwe-insert_image_page' => 'Do boka zasajźiś',
 	'mwe-insert_into_sequence' => 'Do sekwence zasajźiś',
 	'mwe-sc_inoutpoints' => 'Zachopne-kóńcne dypki stajiś',
+	'mwe-sc_duration' => 'Cas',
 	'mwe-template_properties' => 'Kakosći pśedłogi',
 	'mwe-custom_title' => 'Swójski titel',
 	'mwe-edit_properties' => 'Kakosći wobźěłaś',
@@ -717,25 +736,34 @@ $messages['dsb'] = array(
 	'mwe-preview_inout' => 'Zachopne-kóńcne dypki ako pśeglěd pokazaś',
 	'mwe-close' => 'zacyniś',
 	'mwe-improve_transcript' => 'Pólěpšyś',
+	'mwe-remove_transition' => 'Pśechad wótpóraś',
+	'mwe-menu_clipedit' => 'Medije wobźěłaś',
+	'mwe-menu_transition' => 'Pśechady a efekty',
 	'mwe-menu_cliplib' => 'Medije pśidaś',
+	'mwe-menu_resource_overview' => 'Pśeglěd resursow',
 	'mwe-menu_options' => 'Opcije',
 	'mwe-loading_user_rights' => 'Wužywarske pšawa se zacytuju <blink>...</blink>',
 	'mwe-no_edit_permissions' => 'Njamaš pšawa, aby změny na toś tej sekwency składował.',
 	'mwe-edit_clip' => 'Klip wobźěłaś',
 	'mwe-edit_save' => 'Sekwencowe změny składowaś',
+	'mwe-saving_wait' => 'Składujo se rowno (pšosym cakaj)',
 	'mwe-save_done' => 'Składowanje dokóńcone',
 	'mwe-edit_cancel' => 'Wobźěłanje sekwence pśetergnuś',
+	'mwe-edit_cancel_confirm' => 'Coš napšawdu swójo wobźěłanje pśetergnuś? Změny se zgubiju.',
 	'mwe-zoom_in' => 'Pówětšyś',
 	'mwe-zoom_out' => 'Pómjeńšyś',
 	'mwe-play_from_position' => 'Wót pozicije wótegraś',
 	'mwe-pixle2sec' => 'piksele do sekundow',
 	'mwe-rmclip' => 'Klip wótpóraś',
+	'mwe-no_selected_resource' => '<h3>Žedna resursa wubrana</h3> Wubjeŕ klip, aby zmóžnił wobźěłowanje.',
 	'mwe-error_edit_multiple' => '<h3>Někotare resurse wubrane</h3> Wubjeŕ jadnotliwy klip, aby jen wobźěłał.',
 	'mwe-editor_options' => 'Editorowe opcije',
 	'mwe-editor_mode' => 'Editorowy modus',
 	'mwe-simple_editor_desc' => 'jadnory editor (stil iMovie)',
 	'mwe-advanced_editor_desc' => 'rozšyrjony editor (stil Final Cut)',
 	'mwe-other_options' => 'Druge opcije',
+	'mwe-contextmenu_opt' => 'Kontekstowe menije zmóžniś',
+	'mwe-sequencer_credit_line' => 'Wuwity wót <a href="http://kaltura.com">Kaltura, Inc.</a> gromaźe ze załožbu <a href="http://wikimediafoundation.org/wiki/Home">Wikimedia Foundation</a> (<a href="#">dalšne informacije</a>).',
 	'mwe-loading_txt' => 'zacytujo se <blink>...</blink>',
 	'mwe-loading_title' => 'Zacytujo se...',
 	'fogg-select_file' => 'Dataju wubraś',
@@ -744,7 +772,9 @@ $messages['dsb'] = array(
 	'fogg-save_local_file' => 'Ogg składowaś',
 	'fogg-installed' => 'Firefogg jo instalěrowany.',
 	'fogg-for_improved_uplods' => 'Za pólěpšone nagraśa:',
+	'fogg-use_latest_fox' => 'Pšosym instalěruj njepjerwjej <a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg">Firefox 3.5</a> (abo wuši). <i>Woglědaj pótom k toś tomu bokoju zasego, aby rozšyrjenje <b>Firefogg</b> instalěrował.</i>',
 	'fogg-passthrough_mode' => 'Twója wubrana dataja jo južo dataja Ogg abo njejo wideojowa dataja',
+	'mwe-imported_from' => '$1 jo z [$2 $3] importěrował. Glědaj originalny [$4 resursowy bok] za dalšne informacije.',
 	'mwe-stream_title' => '$1 $2 do $3',
 	'fogg-cg-meta' => 'Metadaty za klip',
 	'fogg-preset-custom' => 'Swójske nastajenja',
@@ -770,6 +800,8 @@ $messages['dsb'] = array(
 	'mwe-do_import_resource' => 'Resursu importěrowaś',
 	'mwe-cancel_import' => 'Importěrowanje pśetergnuś',
 	'mwe-select_file' => 'Dataju wubraś',
+	'mwe-more_licence_options' => 'Za dalšne licencowe opcije glědaj <a href="$1">normalny bok nagraśow</a>',
+	'mwe-select_ownwork' => 'Nagrawam dopołnje swójo źěło a licencěrujom jo pód:',
 	'mwe-licence_cc-by-sa' => 'Creative Commons Share Alike (3.0)',
 	'mwe-upload' => 'Dataju nagraś',
 	'mwe-destfilename' => 'Mě celoweje dataje:',
@@ -794,6 +826,7 @@ $messages['dsb'] = array(
 	'mwe-file-thumbnail-no' => 'Datajowe mě zachopina se z <b><tt>$1</tt></b>',
 	'mwe-go-to-resource' => 'K resursowemu bokoju',
 	'mwe-upload-misc-error' => 'Njeznata nagrawańska zmólka',
+	'mwe-wgfogg_warning_bad_extension' => 'Sy wubrał dataju z njepódpěranym rozšyrjenim (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">dalšne informacije</a>).',
 	'mwe-cancel-button' => 'Pśetergnuś',
 	'mwe-ok-button' => 'W pórědku',
 	'mwe-loading_plugin' => 'Tykac se zacytujo <blink>...</blink>',
@@ -803,16 +836,21 @@ $messages['dsb'] = array(
 	'mwe-pause_clip' => 'Klip zastajiś',
 	'mwe-player_options' => 'Opcije wótegrawaka',
 	'mwe-next_clip_msg' => 'Pśiducy klip wótegraś',
+	'mwe-current_clip_msg' => 'Klip dalej wótegraś',
 	'mwe-download_full' => 'Dopołnu wideowu dataju ześěgnuś:',
 	'mwe-download_right_click' => 'Aby ześěgnuł, klikni z pšaweju tastu a wubjeŕ <i>Cel składowaś ako...</i>',
 	'mwe-download_clip' => 'Wideo ześěgnuś',
 	'mwe-download_text' => 'Tekst (<a style="color:white" title="cmml" href="http://wiki.xiph.org/index.php/CMML">CMML</a> xml) ześěgnuś:',
 	'mwe-download' => 'Ześěgnuś',
+	'mwe-clip_linkback' => 'Žrědłowy bok klipow',
 	'mwe-chose_player' => 'Wideowótegrawak wubraś',
 	'mwe-menu_btn' => 'Meni',
 	'mwe-close_btn' => 'Zacyniś',
 	'mwe-ogg-player-vlc-mozilla' => 'Tykac VLC',
 	'mwe-ogg-player-vlc-activex' => 'ActiveX VLC',
+	'mwe-ogg-player-oggPlugin' => 'Tykac Generic Ogg',
+	'mwe-ogg-player-quicktime-mozilla' => 'Tykac QuickTime',
+	'mwe-ogg-player-quicktime-activex' => 'ActiveX QuickTime',
 	'mwe-ogg-player-cortado' => 'Java Cortado',
 	'mwe-ogg-player-flowplayer' => 'Flowplayer',
 	'mwe-ogg-player-selected' => '(wubrany)',
@@ -2047,6 +2085,13 @@ $messages['hsb'] = array(
 	'mwe-read_before_embed' => 'Prošu <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">čitaj to</a> do zasadźenja!',
 	'mwe-embed_site_or_blog' => 'Na twojim sydle abo blogu zasadźić',
 	'mwe_related_videos' => 'Přiwuzne wideja',
+);
+
+/** Hungarian (Magyar)
+ * @author Glanthor Reviol
+ */
+$messages['hu'] = array(
+	'mwe-upload_tab' => 'Feltöltés',
 );
 
 /** Interlingua (Interlingua)
