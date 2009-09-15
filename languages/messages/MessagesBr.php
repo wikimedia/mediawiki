@@ -333,7 +333,7 @@ $messages = array(
 'otherlanguages'    => 'Yezhoù all',
 'redirectedfrom'    => '(Adkaset eus $1)',
 'redirectpagesub'   => 'Pajenn adkas',
-'lastmodifiedat'    => "Kemmoù diwezhañ degaset d'ar bajenn-mañ, da $1 d'an $2.",
+'lastmodifiedat'    => "Kemmoù diwezhañ degaset d'ar bajenn-mañ, d'an $1 da $2.",
 'viewcount'         => 'Sellet euz eus bet {{PLURAL:$1|$1 wech|$1 (g)wech}} ouzh ar bajenn-mañ.',
 'protectedpage'     => 'Pajenn warezet',
 'jumpto'            => 'Mont da :',
@@ -907,6 +907,7 @@ N\'oc\'h ket aotreet da vont outi.',
 'revdelete-otherreason'       => 'Abeg all/ouzhpenn :',
 'revdelete-reasonotherlist'   => 'Abeg all',
 'revdelete-edit-reasonlist'   => 'Kemmañ abegoù an diverkañ',
+'revdelete-offender'          => 'Aozer an adlenn :',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',

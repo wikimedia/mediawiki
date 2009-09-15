@@ -1146,6 +1146,7 @@ Vérifiez les journaux.",
 'revdelete-otherreason'       => 'Autre raison / raison supplémentaire :',
 'revdelete-reasonotherlist'   => 'Autre raison',
 'revdelete-edit-reasonlist'   => 'Modifier les motifs fréquents de suppression',
+'revdelete-offender'          => 'Auteur de la révision :',
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',

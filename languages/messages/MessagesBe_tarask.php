@@ -1070,6 +1070,7 @@ $1",
 'revdelete-otherreason'       => 'Іншая/дадатковая прычына:',
 'revdelete-reasonotherlist'   => 'Іншая прычына',
 'revdelete-edit-reasonlist'   => 'Рэдагаваць прычыны выдаленьня',
+'revdelete-offender'          => 'Аўтар вэрсіі:',
 
 # Suppression log
 'suppressionlog'     => 'Журнал схаваньняў',

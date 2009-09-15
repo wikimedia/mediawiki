@@ -1036,9 +1036,10 @@ Por favor, comprobe o rexistros.',
 'revdelete-otherreason'       => 'Outro/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar os motivos de borrado',
+'revdelete-offender'          => 'Autor da revisión:',
 
 # Suppression log
-'suppressionlog'     => 'Rexistro de supresión',
+'suppressionlog'     => 'Rexistro de supresións',
 'suppressionlogtext' => 'Embaixo amósase unha lista coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
 Vexa a [[Special:IPBlockList|lista de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 

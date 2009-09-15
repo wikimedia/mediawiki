@@ -405,7 +405,7 @@ $messages = array(
 'vector-namespace-project'   => 'Trang dự án',
 'vector-namespace-special'   => 'Trang đặc biệt',
 'vector-namespace-talk'      => 'Thảo luận',
-'vector-namespace-template'  => 'Tiêu bản',
+'vector-namespace-template'  => 'Bản mẫu',
 'vector-namespace-user'      => 'Trang cá nhân',
 'vector-view-create'         => 'Tạo',
 'vector-view-edit'           => 'Sửa',
@@ -541,7 +541,7 @@ $1',
 'nstab-project'   => 'Dự án',
 'nstab-image'     => 'Tập tin',
 'nstab-mediawiki' => 'Thông báo',
-'nstab-template'  => 'Tiêu bản',
+'nstab-template'  => 'Bản mẫu',
 'nstab-help'      => 'Trợ giúp',
 'nstab-category'  => 'Thể loại',
 
@@ -694,7 +694,8 @@ Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô 
 'createaccount-text'         => 'Ai đó đã tạo một tài khoản với tên $2 tại {{SITENAME}} ($4). Mật khẩu của "$2" là "$3". Bạn nên đăng nhập và đổi mật khẩu ngay bây giờ.
 
 Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạn tạo ra.',
-'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này. Xin hãy đợi chốc lát rồi thử lại.',
+'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này
+Xin hãy đợi chốc lát rồi thử lại.',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 
 # Password reset dialog
@@ -810,6 +811,7 @@ hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác,
 hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tìm kiếm các nhật trình liên quan]</span>.',
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
+'userpage-userdoesnotexist-view'   => 'Tài khoản “$1” chưa được đăng ký.',
 'clearyourcache'                   => "'''Ghi chú&nbsp;– Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (<span title=\"Command\">⌘</span>''R'' trên Macintosh); '''Konqueror:''' nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “Xem thử” để kiểm thử trang CSS của bạn trước khi lưu trang.",
 'userjsyoucanpreview'              => "'''Mẹo:''' Sử dụng nút “Xem thử” để kiểm thử trang JS của bạn trước khi lưu trang.",
@@ -904,7 +906,7 @@ Một số tiêu bản sẽ không được đưa vào.',
 Những giá trị này sẽ bị bỏ đi.',
 'post-expand-template-argument-category'  => 'Những trang có chứa những giá trị tiêu bản bị loại bỏ',
 'parser-template-loop-warning'            => 'Phát hiện tiêu bản lặp vòng: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Tiêu bản đã vượt quá giới hạn về độ sâu đệ quy ($1)',
+'parser-template-recursion-depth-warning' => 'Bản mẫu đã vượt quá giới hạn về độ sâu đệ quy ($1)',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
@@ -1039,6 +1041,7 @@ Xin hãy kiểm tra nhật trình.',
 'revdelete-otherreason'       => 'Lý do khác/bổ sung:',
 'revdelete-reasonotherlist'   => 'Lý do khác',
 'revdelete-edit-reasonlist'   => 'Sửa lý do xóa',
+'revdelete-offender'          => 'Tác giả phiên bản:',
 
 # Suppression log
 'suppressionlog'     => 'Nhật trình ẩn giấu',
@@ -1190,7 +1193,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'showingresults'                   => "Dưới đây là {{PLURAL:$1|'''1'''|'''$1'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'                => "Dưới đây là {{PLURAL:$3|'''1'''|'''$3'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Kết quả thứ '''$1''' trong tổng số '''$3''' kết quả|Kết quả từ '''$1 - $2''' trong tổng số '''$3''' kết quả}} cho '''$4'''",
-'nonefound'                        => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (ví dụ ''Thảo luận:'', ''Tiêu bản:'', ''Thể loại:''…).",
+'nonefound'                        => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (ví dụ ''Thảo luận:'', ''Bản mẫu:'', ''Thể loại:''…).",
 'search-nonefound'                 => 'Không có kết quả nào khớp với câu truy vấn.',
 'powersearch'                      => 'Tìm kiếm nâng cao',
 'powersearch-legend'               => 'Tìm kiếm nâng cao',
@@ -1741,6 +1744,7 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 ** Vi phạm bản quyền
 ** Tập tin trùng lắp',
 'filedelete-edit-reasonlist'  => 'Sửa lý do xóa',
+'filedelete-maintenance'      => 'Tác vụ xóa và phục hồi tập tin đã bị tắt tạm thời trong khi bảo trì.',
 
 # MIME search
 'mimesearch'         => 'Tìm kiếm theo định dạng',
@@ -1755,7 +1759,7 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 'listredirects' => 'Danh sách trang đổi hướng',
 
 # Unused templates
-'unusedtemplates'     => 'Tiêu bản chưa dùng',
+'unusedtemplates'     => 'Bản mẫu chưa dùng',
 'unusedtemplatestext' => 'Trang này liệt kê tất cả các trang trong không gian tên {{ns:template}} mà chưa được dùng trong trang nào khác.
 
 Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xóa chúng.',
@@ -1826,7 +1830,7 @@ Các mục <s>bị gạch bỏ</s> là các trang đã được sửa.',
 'uncategorizedpages'      => 'Trang chưa xếp thể loại',
 'uncategorizedcategories' => 'Thể loại chưa phân loại',
 'uncategorizedimages'     => 'Tập tin chưa được phân loại',
-'uncategorizedtemplates'  => 'Tiêu bản chưa được phân loại',
+'uncategorizedtemplates'  => 'Bản mẫu chưa được phân loại',
 'unusedcategories'        => 'Thể loại trống',
 'unusedimages'            => 'Tập tin chưa dùng',
 'popularpages'            => 'Trang nhiều người đọc',
@@ -1834,10 +1838,10 @@ Các mục <s>bị gạch bỏ</s> là các trang đã được sửa.',
 'wantedpages'             => 'Trang cần viết',
 'wantedpages-badtitle'    => 'Tiêu đề không hợp lệ trong tập kết quả: $1',
 'wantedfiles'             => 'Tập tin cần thiết',
-'wantedtemplates'         => 'Tiêu bản cần viết nhất',
+'wantedtemplates'         => 'Bản mẫu cần viết nhất',
 'mostlinked'              => 'Trang được liên kết đến nhiều nhất',
 'mostlinkedcategories'    => 'Thể loại có nhiều trang nhất',
-'mostlinkedtemplates'     => 'Tiêu bản được liên kết đến nhiều nhất',
+'mostlinkedtemplates'     => 'Bản mẫu được liên kết đến nhiều nhất',
 'mostcategories'          => 'Các trang có nhiều thể loại nhất',
 'mostimages'              => 'Tập tin được liên kết đến nhiều nhất',
 'mostrevisions'           => 'Các trang được sửa đổi nhiều lần nhất',

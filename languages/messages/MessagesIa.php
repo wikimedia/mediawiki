@@ -132,7 +132,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinear ligamines:',
-'tog-highlightbroken'         => 'Formatar ligamines rupte <a href="" class="new">assi</a> (alternativemente: assi<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formatar ligamines rupte <a href="" class="new">assi</a> (alternativa: assi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar paragraphos',
 'tog-hideminor'               => 'Celar modificationes recente minor',
 'tog-hidepatrolled'           => 'Celar le modificationes patruliate in le modificationes recente',
@@ -621,8 +621,8 @@ Entra un adresse ben formatate, o vacua ille campo.',
 Tu deberea aperir un session e cambiar tu contrasigno ora.
 
 Tu pote ignorar iste message si iste conto ha essite create in error.',
-'login-throttled'            => 'Pro le momento, tu ha tentate troppo de contrasignos pro iste conto.
-Per favor attende ante de probar lo de novo.',
+'login-throttled'            => 'Tu ha facite troppo de tentativas de identification.
+Per favor attende ante de probar lo novemente.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
@@ -746,6 +746,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cercar in le registros pertinente].',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
+'userpage-userdoesnotexist-view'   => 'Le conto de usator "$1" non es registrate.',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove CSS ante de publicar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove JS ante de publicar lo.",
@@ -991,6 +992,7 @@ Per favor verifica le registros.',
 'revdelete-otherreason'       => 'Altere/additional motivo:',
 'revdelete-reasonotherlist'   => 'Altere motivo',
 'revdelete-edit-reasonlist'   => 'Modificar motivos pro deletion',
+'revdelete-offender'          => 'Autor del version:',
 
 # Suppression log
 'suppressionlog'     => 'Registro de suppressiones',
@@ -1710,6 +1712,7 @@ Le description de su [$2 pagina de description] ibi es monstrate in basso.',
 ** Violation de copyright
 ** File duplicate',
 'filedelete-edit-reasonlist'  => 'Modificar motivos pro deletion',
+'filedelete-maintenance'      => 'Deletion e restauration de files temporarimente disactivate durante mantenentia.',
 
 # MIME search
 'mimesearch'         => 'Recerca de typo MIME',

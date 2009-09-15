@@ -1113,6 +1113,7 @@ Molimo provjerite zapise.',
 'revdelete-otherreason'       => 'Ostali/dodatni razlog:',
 'revdelete-reasonotherlist'   => 'Ostali razlozi',
 'revdelete-edit-reasonlist'   => 'Uredi razloge brisanja',
+'revdelete-offender'          => 'Autor revizije:',
 
 # Suppression log
 'suppressionlog'     => 'Zapisi sakrivanja',

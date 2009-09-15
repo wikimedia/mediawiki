@@ -938,6 +938,7 @@ Bitte prief d Logbiecher.',
 'revdelete-otherreason'       => 'Andere/Zuesätzlige Grund:',
 'revdelete-reasonotherlist'   => 'Andere Grund',
 'revdelete-edit-reasonlist'   => 'Leschgrind bearbeite',
+'revdelete-offender'          => 'Versionsautor:',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuech',

@@ -894,6 +894,7 @@ $1",
 'revdelete-otherreason'       => 'अन्य/अतिरिक्त कारण:',
 'revdelete-reasonotherlist'   => 'अन्य कारण',
 'revdelete-edit-reasonlist'   => 'हटाने के कारण बदलें',
+'revdelete-offender'          => 'संस्करण संपादक:',
 
 # Suppression log
 'suppressionlog'     => 'सप्रेशन सूची',
