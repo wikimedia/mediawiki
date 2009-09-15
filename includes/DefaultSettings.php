@@ -4240,3 +4240,8 @@ $wgUseAJAXCategories = false;
  * To disable file delete/restore temporarily
  */
 $wgUploadMaintenance = false;
+
+/**
+ * Use old names for change_tags indices.
+ */
+$wgOldChangeTagsIndex = false;

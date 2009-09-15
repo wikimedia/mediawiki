@@ -125,7 +125,9 @@ class ChangeTags {
 			// Add an INNER JOIN on change_tag
 
 			// FORCE INDEX -- change_tags will almost ALWAYS be the correct query plan.
-			$options['USE INDEX'] = array( 'change_tag' => 'change_tag_tag_id' );
+			global $wgOldChangeTagsIndex;
+			$index = $wgOldChangeTagsIndex ? 'ct_tag' : 'change_tag_tag_id';
+			$options['USE INDEX'] = array( 'change_tag' => $index );
 			unset( $options['FORCE INDEX'] );
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = array( 'INNER JOIN', "ct_$join_cond=$join_cond" );
