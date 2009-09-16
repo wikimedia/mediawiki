@@ -184,12 +184,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $wgOut, 'delete',
-			$this->targetObj->getPrefixedText(), '', 25, $qc );
+			$this->targetObj->getPrefixedText(), '', array( 'lim' => 25, 'conds' => $qc ) );
 		# Show relevant lines from the suppression log
 		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
 			LogEventsList::showLogExtract( $wgOut, 'suppress',
-				$this->targetObj->getPrefixedText(), '', 25, $qc );
+				$this->targetObj->getPrefixedText(), '', array( 'lim' => 25, 'conds' => $qc ) );
 		}
 	}
 

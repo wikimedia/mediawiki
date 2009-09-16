@@ -730,8 +730,12 @@ class EditPage {
 		}
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
-			LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), 
-				$this->mTitle->getPrefixedText(), '', 10, array( "log_action != 'revision'" ), false, 'recreate-moveddeleted-warn');
+			LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), $this->mTitle->getPrefixedText(), 
+				'', array( 'lim' => 10, 
+					   'conds' => array( "log_action != 'revision'" ), 
+					   'showIfEmpty' => false, 
+					   'msgKey' => array( 'recreate-moveddeleted-warn') ) 
+			);
 		}
 	}
 
@@ -1278,10 +1282,8 @@ class EditPage {
 				$noticeMsg = 'protectedpagewarning';
 				$classes[] = 'mw-textarea-protected';
 			}
-			$wgOut->addHTML( "<div class='mw-warning-with-logexcerpt'>\n" );
-			$wgOut->addWikiMsg( $noticeMsg );
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle->getPrefixedText(), '', 1 );
-			$wgOut->addHTML( "</div>\n" );
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle->getPrefixedText(), '', 
+				array( 'lim' => 1, 'msgKey' => array( $noticeMsg ) ) );
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
