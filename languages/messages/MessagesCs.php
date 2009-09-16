@@ -1136,6 +1136,7 @@ Prohlédněte si protokolovací záznamy.',
 'revdelete-otherreason'       => 'Jiný/další důvod:',
 'revdelete-reasonotherlist'   => 'Jiný důvod',
 'revdelete-edit-reasonlist'   => 'Editovat důvody smazání',
+'revdelete-offender'          => 'Autor revize:',
 
 # Suppression log
 'suppressionlog'     => 'Záznam utajení',
@@ -2421,7 +2422,6 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'contribslink'                    => 'příspěvky',
 'autoblocker'                     => 'Byli jste automaticky zablokováni, protože sdílíte IP adresu s uživatelem „[[User:$1|$1]]“. Důvod zablokování tohoto uživatele: „$2“',
 'blocklogpage'                    => 'Kniha zablokování',
-'blocklog-fulllog'                => 'Celá kniha zablokování',
 'blocklogentry'                   => 'blokuje „[[$1]]“ s časem vypršení $2 $3',
 'reblock-logentry'                => 'mění nastavení bloku „[[$1]]“ s časem vypršení $2 $3',
 'blocklogtext'                    => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:IPBlockList|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',

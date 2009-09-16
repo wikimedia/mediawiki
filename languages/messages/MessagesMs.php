@@ -2182,7 +2182,6 @@ dirosakkan).',
 'contribslink'                    => 'sumb.',
 'autoblocker'                     => 'Disekat secara automatik kerana baru-baru ini alamat IP anda digunakan oleh "[[User:$1|$1]]". Sebab sekatan $1 ialah: "$2"',
 'blocklogpage'                    => 'Log sekatan',
-'blocklog-fulllog'                => 'Log sekatan penuh',
 'blocklogentry'                   => 'menyekat [[$1]] sehingga $2 $3',
 'reblock-logentry'                => 'menukar tetapan sekatan [[$1]] yang tamat pada $2 $3',
 'blocklogtext'                    => 'Ini adalah log bagi sekatan dan penyahsekatan.

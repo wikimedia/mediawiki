@@ -2161,7 +2161,6 @@ Pi maggiuri nfurmazzioni, talìa la [[Special:IPBlockList|lista di l'IP bluccati
 'contribslink'                    => 'cuntribbuti',
 'autoblocker'                     => 'Bluccatu automaticamenti pirchì lu ndirizzu IP è cundivisu cu l\'utenti "[[User:$1|$1]]". Lu bloccu di l\'utenti $1 fu mpostu pi lu siquenti mutivu: "\'\'\'$2\'\'\'".',
 'blocklogpage'                    => 'Blocchi',
-'blocklog-fulllog'                => 'Riggistru cumpretu dî blocchi',
 'blocklogentry'                   => 'hà bluccatu [[$1]]; scadenza $2 $3',
 'reblock-logentry'                => 'Canciau li mpustazzioni dû bloccu pi [[$1]] cu na scadenza di $2 $3',
 'blocklogtext'                    => "Chistu è l'alencu di l'azzioni di bloccu e sbloccu utenti. Li ndirizzi IP bluccati automaticamenti nun sunu alincati. Cunzurtari l'[[Special:IPBlockList|alencu IP bluccati]] pi l'alencu dî ndirizzi e noma utenti lu cui bloccu è opirativu.",

@@ -452,7 +452,6 @@ Bitte nemm eenen aundren.',
 'autoblocker'      => 'Automatisch jeblockt, wiels diene IP-Adras soo es aus bie "[[User:$1|$1]]".
 Dee Grunt es: "$2"',
 'blocklogpage'     => 'Block-Logbok',
-'blocklog-fulllog' => 'Vollstendjet Block-Logbok',
 'blocklogentry'    => 'haft [[$1]] jeblockt fe dee Tiet $2 $3',
 'reblock-logentry' => "haft dee Block-Enstalinj fe [[$1]] je'endat fe dee Tiet $2 $3",
 

@@ -2345,7 +2345,6 @@ a un adresse IP blocate previemente.',
 'autoblocker'                     => 'Autoblocate proque tu adresse IP ha recentemente essite usate per "[[User:$1|$1]]".
 Le ration date pro le blocada de $1 es: "$2"',
 'blocklogpage'                    => 'Registro de blocadas',
-'blocklog-fulllog'                => 'Registro complete de blocadas',
 'blocklogentry'                   => 'blocava [[$1]] con un tempore de expiration de $2 $3',
 'reblock-logentry'                => 'cambiava configurationes de blocada pro [[$1]] con un tempore de expiration de $2 $3',
 'blocklogtext'                    => 'Isto es un registro de blocadas e disblocadas de usatores.

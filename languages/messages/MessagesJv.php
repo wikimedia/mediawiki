@@ -2097,7 +2097,6 @@ Pirsani [[Special:IPBlockList|Daftar blokir IP]] kanggo ninjo ulang pamblokiran.
 'contribslink'                    => 'sumbangan',
 'autoblocker'                     => 'Panjenengan otomatis dipun-blok amargi nganggé alamat protokol internet (IP) ingkang sami kaliyan "[[User:$1|$1]]". Alesanipun $1 dipun blok inggih punika "\'\'\'$2\'\'\'"',
 'blocklogpage'                    => 'Log pamblokiran',
-'blocklog-fulllog'                => 'Log pamblokiran total',
 'blocklogentry'                   => 'mblokir "[[$1]]" dipun watesi wedalipun $2 $3',
 'reblock-logentry'                => 'Ngowahi sèting pamblokiran [[$1]] kanthi wektu daluwarsa $2 $3',
 'blocklogtext'                    => 'Ing ngisor iki kapacak log pamblokiran lan panjabelan blokir panganggo. 

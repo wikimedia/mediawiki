@@ -2312,7 +2312,6 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'contribslink'                    => 'muokkaukset',
 'autoblocker'                     => 'Olet automaattisesti estetty, koska jaat IP-osoitteen käyttäjän $1 kanssa. Eston syy: $2.',
 'blocklogpage'                    => 'Estoloki',
-'blocklog-fulllog'                => 'Koko estoloki',
 'blocklogentry'                   => 'esti käyttäjän tai IP-osoitteen $1. Eston kesto $2 $3',
 'reblock-logentry'                => 'muutti käyttäjän tai IP-osoitteen [[$1]] eston asetuksia. Eston kesto $2 $3',
 'blocklogtext'                    => 'Tämä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:IPBlockList|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
@@ -3251,9 +3250,13 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'htmlform-selectorother-other' => 'Muu',
 
 # Add categories per AJAX
-'ajax-add-category'        => 'Lisää luokka',
-'ajax-add-category-submit' => 'Lisää',
-'ajax-confirm-save'        => 'Tallenna',
-'ajax-error-title'         => 'Virhe',
+'ajax-add-category'          => 'Lisää luokka',
+'ajax-add-category-submit'   => 'Lisää',
+'ajax-confirm-save'          => 'Tallenna',
+'ajax-confirm-actionsummary' => 'Suoritettava toiminto:',
+'ajax-error-title'           => 'Virhe',
+'ajax-error-dismiss'         => 'OK',
+'ajax-remove-category-error' => 'Luokan poistaminen ei onnistunut.
+Yleensä näin käy tapauksissa, joissa luokka on lisätty sivulle mallineessa.',
 
 );

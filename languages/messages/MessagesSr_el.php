@@ -2186,7 +2186,6 @@ ranije blokiranoj IP adresi ili korisničkom imenu.',
 'contribslink'                    => 'prilozi',
 'autoblocker'                     => 'Automatski ste blokirani jer je vašu IP adresu skoro koristio "[[User:$1|$1]]". Razlog za blokiranje korisnika $1 je: "\'\'\'$2\'\'\'".',
 'blocklogpage'                    => 'istorija blokiranja',
-'blocklog-fulllog'                => 'Puna istorija blokiranja',
 'blocklogentry'                   => 'je blokirao "[[$1]]" sa vremenom isticanja blokade od $2',
 'reblock-logentry'                => 'promenjena podešavanja bloka za [[$1]] sa vremenom isteka $2 ($3)',
 'blocklogtext'                    => 'Ovo je istorija blokiranja i odblokiranja korisnika. Automatski

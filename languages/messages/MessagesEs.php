@@ -2336,7 +2336,6 @@ Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
 'contribslink'                    => 'contribuciones',
 'autoblocker'                     => 'Ha sido bloqueado automáticamente porque su dirección IP ha sido usada recientemente por «[[User:$1|$1]]». La razón esgrimida para bloquear a «[[User:$1|$1]]» fue «$2».',
 'blocklogpage'                    => 'Bloqueos de usuarios',
-'blocklog-fulllog'                => 'Ver el registro de bloqueos completo',
 'blocklogentry'                   => 'bloqueó a [[$1]] $3 durante un plazo de $2',
 'reblock-logentry'                => 'cambió el bloqueo para  [[$1]] con una caducidad de $2 $3',
 'blocklogtext'                    => 'Esto es un registro de bloqueos y desbloqueos de usuarios.

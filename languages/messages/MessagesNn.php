@@ -2308,7 +2308,6 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'contribslink'                    => 'bidrag',
 'autoblocker'                     => 'Automatisk blokkert fordi du deler IP-adresse med [[User:$1|$1]]. Grunngjeving gjeve for blokkeringa av $1 var: «$2».',
 'blocklogpage'                    => 'Blokkeringslogg',
-'blocklog-fulllog'                => 'Fullstendig blokkeringslogg',
 'blocklogentry'                   => 'Blokkerte «[[$1]]» med opphøyrstid $2 $3',
 'reblock-logentry'                => 'endra blokkeringsinnstillingar for [[$1]] med tida $2 $3',
 'blocklogtext'                    => 'Dette er ein logg over blokkeringar og oppheving av blokkeringar gjorde.

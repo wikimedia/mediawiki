@@ -1112,6 +1112,7 @@ Pozrite sa prosím do záznamov.',
 'revdelete-otherreason'       => 'Ďalšie dôvody:',
 'revdelete-reasonotherlist'   => 'Iný dôvod',
 'revdelete-edit-reasonlist'   => 'Upraviť dôvody zmazania',
+'revdelete-offender'          => 'Autor revízie:',
 
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',
@@ -2413,7 +2414,6 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'contribslink'                    => 'príspevky',
 'autoblocker'                     => 'Ste zablokovaný, pretože zdieľate IP adresu s „$1“. Dôvod „$2“.',
 'blocklogpage'                    => 'Záznam_blokovaní',
-'blocklog-fulllog'                => 'Úplný záznam blokovaní',
 'blocklogentry'                   => 'zablokoval/a "[[$1]]" s časom ukončenia $2 $3',
 'reblock-logentry'                => 'zmenené voľby zablokovania používateľa [[$1]] s časom vypršania $2, $3',
 'blocklogtext'                    => 'Toto je zoznam blokovaní a odblokovaní používateľov. Automaticky
