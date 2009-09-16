@@ -105,7 +105,13 @@ class HistoryPage {
 		 */
 		if( !$this->title->exists() ) {
 			$wgOut->addWikiMsg( 'nohistory' );
-			$this->article->showLogs(); // show deletion/move log if there is an entry
+			# show deletion/move log if there is an entry
+			LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), $this->title->getPrefixedText(), '',
+				array(  'lim' => 10,
+					'conds' => array( "log_action != 'revision'" ),
+					'showIfEmpty' => false,
+					'msgKey' => array( 'moveddeleted-notice' ) ) 
+			);
 			wfProfileOut( __METHOD__ );
 			return;
 		}

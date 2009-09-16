@@ -571,26 +571,36 @@ class LogEventsList {
 	 * @param $types String or Array
 	 * @param $page String The page title to show log entries for
 	 * @param $user String The user who made the log entries
-	 * @param $lim Integer Limit of items to show, default is 50
-	 * @param $conds Array Extra conditions for the query
-	 * @param $showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty
+	 * @param $param Associative Array with the following additional options:
+	 * 	lim Integer Limit of items to show, default is 50
+	 * 	conds Array Extra conditions for the query (e.g. "log_action != 'revision'")
+	 *	showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty
 	 * 		if set to true (default), "No matching items in log" is displayed if loglist is empty
-	 * @param $msgKey Array If you want a nice box with a message, set this
+	 * 	msgKey Array If you want a nice box with a message, set this
 	 *              to the key of the message. First element is the message
 	 *              key, additional optional elements are parameters for the
 	 *              key that are processed with wgMsgExt and option 'parse'
 	 * @return Integer Number of total log items (not limited by $lim)
 	 */
-	public static function showLogExtract( &$out, $types=array(), $page='', $user='', $lim=0, $conds=array(), $showIfEmpty = true, $msgKey = array() ) {
+	public static function showLogExtract( &$out, $types=array(), $page='', $user='', 
+			$param = array( 'lim' => 0, 'conds' => array(), 'showIfEmpty' => true, 'msgKey' => array('') ) ) {
+
 		global $wgUser, $wgOut;
-		# Insert list of top 50 or so items
+		# Convert $param array to individual variables
+		$lim = $param['lim'];
+		$conds = $param['conds'];
+		$showIfEmpty = $param['showIfEmpty'];
+		$msgKey = $param['msgKey'];
+		if ( !(is_array($msgKey)) )
+			$msgKey = array( $msgKey );
+		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
 		if( $lim > 0 ) $pager->mLimit = $lim;
 		$logBody = $pager->getBody();
 		$s = '';
 		if( $logBody ) {
-			if ( $msgKey ) {
+			if ( $msgKey[0] ) {
 				$s = '<div class="mw-warning-with-logexcerpt">';
 
 				if ( count( $msgKey ) == 1 ) {
@@ -627,7 +637,7 @@ class LogEventsList {
 			);
 
 		}
-		if ( $logBody && $msgKey )
+		if ( $logBody && $msgKey[0] )
 			$s .= '</div>';
 
 		if( $out instanceof OutputPage ){

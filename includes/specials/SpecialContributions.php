@@ -226,8 +226,8 @@ class SpecialContributions extends SpecialPage {
 
 			// Show a note if the user is blocked and display the last block log entry.
 			if ( User::newFromID( $id )->isBlocked() )
-				LogEventsList::showLogExtract( $wgOut, 'block', $nt->getPrefixedText(), '', 1, 
-					array(), false, 'sp-contributions-blocked-notice' );
+				LogEventsList::showLogExtract( $wgOut, 'block', $nt->getPrefixedText(), '',
+					array( 'lim' => 1, 'showIfEmpty' => false, 'msgKey' => array( 'sp-contributions-blocked-notice' ) ) );
 		}
 	
 		// Old message 'contribsub' had one parameter, but that doesn't work for

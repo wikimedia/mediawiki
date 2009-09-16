@@ -1209,19 +1209,14 @@ class Article {
 				$wgOut->wrapWikiMsg( '<div class="mw-userpage-userdoesnotexist error">$1</div>',
 					array( 'userpage-userdoesnotexist-view', $this->mTitle->getBaseText() ) );
 			}
-
 		}
 		wfRunHooks( 'ShowMissingArticle', array( $this ) );
 		# Show delete and move logs
-		LogEventsList::showLogExtract(
-			$wgOut,
-			array( 'delete', 'move' ), 
-			$this->mTitle->getPrefixedText(),
-			'',
-			10,
-			array( "log_action != 'revision'" ),
-			false,
-			array( 'moveddeleted-notice' )
+		LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), $this->mTitle->getPrefixedText(), '',
+			array(  'lim' => 10,
+				'conds' => array( "log_action != 'revision'" ),
+				'showIfEmpty' => false,
+				'msgKey' => array( 'moveddeleted-notice' ) ) 
 		);
 
 		# Show error message
