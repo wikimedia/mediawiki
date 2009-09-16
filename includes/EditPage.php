@@ -1196,6 +1196,8 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
+		$cancelParams = array();
+
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1</div>", 'explainconflict' );
 
@@ -1246,6 +1248,7 @@ class EditPage {
 
 				if ( !$this->mArticle->mRevision->isCurrent() ) {
 					$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
+					$cancelParams['oldid'] = $this->mArticle->mRevision->getId();
 					$wgOut->addWikiMsg( 'editingold' );
 				}
 			}
@@ -1325,7 +1328,7 @@ class EditPage {
 			$wgTitle,
 			wfMsgExt( 'cancel', array( 'parseinline' ) ),
 			array( 'id' => 'mw-editform-cancel' ),
-			array(),
+			$cancelParams,
 			array( 'known', 'noclasses' )
 		);
 		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
