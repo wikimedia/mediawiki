@@ -286,7 +286,7 @@ class Html {
 	 * @return string HTML fragment that goes between element name and '>'
 	 *   (starting with a space if at least one attribute is output)
 	 */
-	public static function expandAttributes( $attribs ) {
+	public static function expandAttributes( $attribs = array() ) {
 		global $wgHtml5, $wgWellFormedXml;
 
 		$ret = '';
