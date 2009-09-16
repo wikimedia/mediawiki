@@ -30,6 +30,13 @@ class DifferenceEngine {
 	var $mCacheHit = false; // Was the diff fetched from cache?
 	var $htmldiff;
 
+	/**
+	 * Set this to true to add debug info to the HTML output.
+	 * Warning: this may cause RSS readers to spuriously mark articles as "new"
+	 * (bug 20601)
+	 */
+	var $enableDebugComment = false;
+
 	// If true, line X is not displayed when X is 1, for example to increase
 	// readability and conserve space with many small diffs.
 	protected $mReducedLineNumbers = false;
@@ -827,6 +834,9 @@ CONTROL;
 	 */
 	protected function debug( $generator="internal" ) {
 		global $wgShowHostnames;
+		if ( !$this->enableDebugComment ) {
+			return '';
+		}
 		$data = array( $generator );
 		if( $wgShowHostnames ) {
 			$data[] = wfHostname();
