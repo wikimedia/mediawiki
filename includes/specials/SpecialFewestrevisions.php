@@ -53,6 +53,10 @@ class FewestrevisionsPage extends QueryPage {
 		global $wgLang, $wgContLang;
 
 		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
+		if( !$nt ) {
+			return '<!-- bad title -->';
+		}
+		
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
 		$plink = $skin->linkKnown(
