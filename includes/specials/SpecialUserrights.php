@@ -144,7 +144,7 @@ class UserrightsPage extends SpecialPage {
 	function saveUserGroups( $username, $reason = '' ) {
 		global $wgRequest, $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
-		$user = $this->fetchUser( $username );
+		$user = self::fetchUser( $username );
 		if( $user instanceof WikiErrorMsg ) {
 			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
 			return;
@@ -250,7 +250,7 @@ class UserrightsPage extends SpecialPage {
 	function editUserGroupsForm( $username ) {
 		global $wgOut;
 
-		$user = $this->fetchUser( $username );
+		$user = self::fetchUser( $username );
 		if( $user instanceof WikiErrorMsg ) {
 			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
 			return;
