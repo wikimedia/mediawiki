@@ -2258,7 +2258,6 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'contribslink'                    => 'Kontributiounen',
 'autoblocker'                     => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "$1" deelt. Grond "$2".',
 'blocklogpage'                    => 'Spärlëscht',
-'blocklog-fulllog'                => 'Komplett Lëscht vun de Spären',
 'blocklogentry'                   => '"[[$1]]" gespaart fir $2 $3',
 'reblock-logentry'                => "huet d'Spär vum [[$1]] bis den $2 $3 geännert",
 'blocklogtext'                    => "Dëst ass eng Lëscht vu Spären a vu Spären déi opgehuewe goufen.

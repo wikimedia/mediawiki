@@ -2236,7 +2236,6 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokě
 'contribslink'                    => 'pśinoski',
 'autoblocker'                     => 'Twója IP-adresa jo awtomatiski se blokěrowała, dokulaž jo ju wužywał „$1“. Pśicyna blokěrowanja wužywarja „$1“ jo: „$2“.',
 'blocklogpage'                    => 'Protokol blokěrowanjow',
-'blocklog-fulllog'                => 'Dopołny protokol blokěrowanjow',
 'blocklogentry'                   => '[[$1]] blokěrujo se na $2 $3',
 'reblock-logentry'                => 'jo změnił blokěrowańske nastajenja za [[$1]] z casom spadnjenja $2 $3',
 'blocklogtext'                    => 'To jo protokol blokěrowanjow a dopušćenjow.

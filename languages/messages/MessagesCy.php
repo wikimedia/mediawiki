@@ -1762,6 +1762,7 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 'listusersfrom'      => 'Dangos y defnyddwyr gan ddechrau â:',
 'listusers-submit'   => 'Dangos',
 'listusers-noresult' => "Dim defnyddiwr i'w gael.",
+'listusers-blocked'  => '(wedi ei flocio)',
 
 # Special:ActiveUsers
 'activeusers'          => 'Rhestr defnyddwyr gweithgar',
@@ -1926,20 +1927,21 @@ Cyfyngwyd ar y gallu i ddileu tudalennau sydd wedi eu golygu cymaint â hyn, er 
 Gallai dileu tudalen, gyda hanes golygu cymaint â hyn iddi, beri dryswch i weithrediadau'r databas ar {{SITENAME}}; ewch ati'n ofalus.",
 
 # Rollback
-'rollback'         => 'Gwrthdroi golygiadau',
-'rollback_short'   => 'Gwrthdroi',
-'rollbacklink'     => 'gwrthdroi',
-'rollbackfailed'   => 'Methodd y gwrthdroi',
-'cantrollback'     => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
-'alreadyrolled'    => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User talk:$2|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'rollback'          => 'Gwrthdroi golygiadau',
+'rollback_short'    => 'Gwrthdroi',
+'rollbacklink'      => 'gwrthdroi',
+'rollbackfailed'    => 'Methodd y gwrthdroi',
+'cantrollback'      => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
+'alreadyrolled'     => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User talk:$2|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 
 [[User:$3|$3]] ([[User talk:$3|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) a wnaeth y golygiad diwethaf.",
-'editcomment'      => "Crynodeb y golygiad oedd: \"''\$1''\".",
-'revertpage'       => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]',
-'rollback-success' => "Gwrthdrowyd y golygiadau gan $1; 
+'editcomment'       => "Crynodeb y golygiad oedd: \"''\$1''\".",
+'revertpage'        => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]',
+'revertpage-nouser' => 'Wedi gwrthdroi golygiadau gan (enw wedi ei guddio); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]',
+'rollback-success'  => "Gwrthdrowyd y golygiadau gan $1; 
 wedi gwrthdroi i'r golygiad olaf gan $2.",
-'sessionfailure'   => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
+'sessionfailure'    => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
 
 # Protect
 'protectlogpage'              => 'Lòg diogelu',
@@ -2069,17 +2071,18 @@ $1',
 'month'               => 'Cyfraniadau hyd at fis:',
 'year'                => 'Cyfraniadau hyd at y flwyddyn:',
 
-'sp-contributions-newbies'       => 'Dangos cyfraniadau gan gyfrifon newydd yn unig',
-'sp-contributions-newbies-sub'   => 'Ar gyfer cyfrifon newydd',
-'sp-contributions-newbies-title' => 'Cyfraniadau defnyddwyr newydd',
-'sp-contributions-blocklog'      => 'Lòg blocio',
-'sp-contributions-deleted'       => 'cyfraniadau defnyddiwr i dudalennau dilëedig',
-'sp-contributions-logs'          => 'logiau',
-'sp-contributions-talk'          => 'sgwrs',
-'sp-contributions-userrights'    => 'rheoli galluoedd defnyddwyr',
-'sp-contributions-search'        => 'Chwilio am gyfraniadau',
-'sp-contributions-username'      => 'Cyfeiriad IP neu enw defnyddiwr:',
-'sp-contributions-submit'        => 'Chwilier',
+'sp-contributions-newbies'        => 'Dangos cyfraniadau gan gyfrifon newydd yn unig',
+'sp-contributions-newbies-sub'    => 'Ar gyfer cyfrifon newydd',
+'sp-contributions-newbies-title'  => 'Cyfraniadau defnyddwyr newydd',
+'sp-contributions-blocklog'       => 'Lòg blocio',
+'sp-contributions-deleted'        => 'cyfraniadau defnyddiwr i dudalennau dilëedig',
+'sp-contributions-logs'           => 'logiau',
+'sp-contributions-talk'           => 'sgwrs',
+'sp-contributions-userrights'     => 'rheoli galluoedd defnyddwyr',
+'sp-contributions-blocked-notice' => "Mae'r defnyddiwr hwn wedi ei atal rhag golygu ar hyn o bryd. Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
+'sp-contributions-search'         => 'Chwilio am gyfraniadau',
+'sp-contributions-username'       => 'Cyfeiriad IP neu enw defnyddiwr:',
+'sp-contributions-submit'         => 'Chwilier',
 
 # What links here
 'whatlinkshere'            => "Beth sy'n cysylltu yma",
@@ -2168,7 +2171,6 @@ $1',
 'contribslink'                    => 'cyfraniadau',
 'autoblocker'                     => 'Rydych chi wedi cael eich blocio yn awtomatig gan eich bod chi\'n rhannu cyfeiriad IP gyda "[[User:$1|$1]]". Dyma\'r rheswm a roddwyd dros flocio $1: "$2".',
 'blocklogpage'                    => 'Lòg blociau',
-'blocklog-fulllog'                => 'Lòg blocio llawn',
 'blocklogentry'                   => 'wedi blocio "[[$1]]" am gyfnod $2 $3',
 'reblock-logentry'                => 'wedi newid y gosodiadau blocio ar [[$1]], gan ddod i ben am $2 $3',
 'blocklogtext'                    => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:IPBlockList|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
@@ -2564,6 +2566,7 @@ $1",
 'svg-long-desc'        => '(Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3)',
 'show-big-image'       => 'Maint llawn',
 'show-big-image-thumb' => '<small>Maint y rhagolwg: $1 × $2 picsel</small>',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|ffrâm}}',
 
 # Special:NewFiles
 'newimages'             => 'Oriel y ffeiliau newydd',

@@ -995,7 +995,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 'change-blocklink'           => 'ܫܚܠܦ ܚܪܡܐ',
 'contribslink'               => 'ܫܘ̈ܬܦܘܝܬܐ',
 'blocklogpage'               => 'ܣܓܠܐ ܕܚܪܡܐ',
-'blocklog-fulllog'           => 'ܣܓܠܐ ܕܚܪܡܐ ܫܠܡܐ',
 'blocklogentry'              => 'ܚܪܡ [[$1]] ܠܡܬܚܐ ܕ $2 $3',
 'unblocklogentry'            => 'ܫܩܠ ܚܪܡܐ ܡܢ $1',
 'block-log-flags-anononly'   => 'ܡܦܠܚܢ̈ܐ ܠܐ ܝܕܝܥ̈ܐ ܒܠܚܘܕ',

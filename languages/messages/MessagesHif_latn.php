@@ -2152,7 +2152,6 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]]
 'autoblocker'                     => 'Apne se rokaa gais hai kaahe ki aap ke IP address ke abhi haali "[[User:$1|$1]]" use karis hai.
 $1 ke roke ke kaaran hai: "$2"',
 'blocklogpage'                    => 'Suchi ke roko',
-'blocklog-fulllog'                => 'Puura rukawat ke suchi',
 'blocklogentry'                   => '[[$1]] ke roka jon ki $2 $3 khala hoi',
 'reblock-logentry'                => '[[$1]] ke block settings with an expiry time of $2 $3 ke badal dewa gais hai.',
 'blocklogtext'                    => 'Ii suchi sadasya ke rukawat aur rukawat ke reverse kare ke baare me hai.

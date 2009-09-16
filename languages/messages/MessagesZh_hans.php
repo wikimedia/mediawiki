@@ -2275,7 +2275,6 @@ $1',
 'autoblocker'                     => '因为您与“[[User:$1|$1]]”共享一个IP地址而被自动查封。
 $1被封禁的理由是“$2”',
 'blocklogpage'                    => '封禁日志',
-'blocklog-fulllog'                => '完整查封日志',
 'blocklogentry'                   => '已封禁[[$1]]，到期时间为$2 $3',
 'reblock-logentry'                => '更改[[$1]]的封禁設定時間 $2 $3',
 'blocklogtext'                    => '这是关于用户查封和解封操作的日志。

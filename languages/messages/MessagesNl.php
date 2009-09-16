@@ -2527,7 +2527,10 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'contribslink'                    => 'bijdragen',
 'autoblocker'                     => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
 'blocklogpage'                    => 'Blokkeerlogboek',
-'blocklog-fulllog'                => 'Volledige blokkeerlogboek',
+'blocklog-showlog'                => 'Deze gebruiker is voorheen geblokkeerd geweest.
+Het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
+'blocklog-showsuppresslog'        => 'Deze gebruiker is voorheen geblokkeerd geweest en er zijn (delen van) bewerkingen van deze gebruiker verborgen.
+Het verbergingslogboek wordt hieronder ter referentie weergegeven:',
 'blocklogentry'                   => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
 'reblock-logentry'                => 'heeft de instellingen voor de blokkade voor [[$1]] gewijzigd. Deze vervalt nu op $2 om $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.

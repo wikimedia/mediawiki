@@ -2178,7 +2178,6 @@ Varda [[Special:IPBlockList|lista dj'IP blocà]] Për rivëdde ij blòch.",
 'contribslink'                    => 'contribussion',
 'autoblocker'                     => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent \"[[User:\$1|\$1]]\". Ël motiv për bloché \$1 a l'é stait: \"'''\$2'''\"",
 'blocklogpage'                    => 'Registr dij blocagi',
-'blocklog-fulllog'                => 'Registr antregh dij blòch',
 'blocklogentry'                   => '"[[$1]]" a l\'é stait blocà për $2 $3',
 'reblock-logentry'                => 'cambià le ampostassion dël blòch për [[$1]] con un temp ëd fin ëd $2 $3',
 'blocklogtext'                    => "Sossì a l'é ël registr dij blocagi e dësblocagi dj'Utent. J'adrësse che

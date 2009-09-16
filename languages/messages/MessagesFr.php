@@ -2466,7 +2466,8 @@ Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] p
 'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « [[User:$1|$1]] ».
 Le motif fourni pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Journal des blocages',
-'blocklog-fulllog'                => 'Journal complet des blocages',
+'blocklog-showlog'                => 'Cet utilisateur a été bloqué précédemment. Le journal des blocages est disponible ci-dessous :',
+'blocklog-showsuppresslog'        => 'Cet utilisateur a été bloqué et caché précédemment. Le journal des suppressions est disponible ci-dessous :',
 'blocklogentry'                   => 'a bloqué [[$1]] ; expiration : $2 $3',
 'reblock-logentry'                => 'a modifié les paramètres du blocage de [[$1]] avec une expiration au $2 $3',
 'blocklogtext'                    => 'Ceci est le journal des actions de blocages et déblocages d’utilisateurs.

@@ -2451,7 +2451,6 @@ ili korisničkom imenu.',
 'contribslink'                    => 'doprinosi',
 'autoblocker'                     => 'Automatski ste blokirani jer dijelite IP adresu sa "$1".  Razlog za blokiranje je: "\'\'\'$2\'\'\'"',
 'blocklogpage'                    => 'Evidencija blokiranja',
-'blocklog-fulllog'                => 'Potpuni spisak zapisa blokiranja',
 'blocklogentry'                   => 'je blokirao [[$1]] sa vremenom isticanja blokade od $2 $3',
 'reblock-logentry'                => 'promjena postavki blokiranja za [[$1]] sa vremenom isteka u $2 $3',
 'blocklogtext'                    => 'Ovo je historija akcija blokiranja i deblokiranja korisnika.

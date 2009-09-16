@@ -2362,7 +2362,6 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'autoblocker'                     => 'Foi autobloqueado porque "[[User:$1|$1]]" usou recentemente o seu  mesmo enderezo IP.
 O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage'                    => 'Rexistro de bloqueos',
-'blocklog-fulllog'                => 'Rexistro de bloqueos totais',
 'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
 'reblock-logentry'                => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.

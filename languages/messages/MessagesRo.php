@@ -2382,7 +2382,6 @@ Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a rev
 'contribslink'                    => 'contribuţii',
 'autoblocker'                     => 'Autoblocat fiindcă folosiţi aceeaşi [[adresă IP]] ca şi „$1”. Motivul este „$2”.',
 'blocklogpage'                    => 'Jurnal blocări',
-'blocklog-fulllog'                => 'Întregul jurnal al blocărilor',
 'blocklogentry'                   => 'a blocat "[[$1]]" pe o perioadă de $2 $3',
 'reblock-logentry'                => 'a fost schimbată blocarea pentru [[$1]] cu data expirării la $2 $3',
 'blocklogtext'                    => 'Acest jurnal cuprinde acţiunile de blocare şi deblocare. Adresele IP blocate automat nu sunt afişate. Vizitaţi [[Special:IPBlockList|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',

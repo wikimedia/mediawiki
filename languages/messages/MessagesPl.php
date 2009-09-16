@@ -2398,7 +2398,8 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'autoblocker'                     => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik „[[User:$1|$1]]”.
 Przyczyna blokady $1 to: „$2”',
 'blocklogpage'                    => 'Historia blokad',
-'blocklog-fulllog'                => 'Pełny rejestr blokad',
+'blocklog-showlog'                => 'Ten użytkownik był już wcześniej blokowany. Poniżej znajduje się rejestr blokad:',
+'blocklog-showsuppresslog'        => 'Ten użytkownik był już wcześniej blokowany, a blokady ukrywane. Poniżej znajduje się rejestr ukrywania:',
 'blocklogentry'                   => 'zablokował [[$1]], czas blokady: $2 $3',
 'reblock-logentry'                => 'zmienił ustawienia blokady dla [[$1]], czas blokady: $2 $3',
 'blocklogtext'                    => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.

@@ -2189,7 +2189,6 @@ Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.
 'contribslink'                    => 'Bidrääg',
 'autoblocker'                     => 'Automatisch Block, vun wegen dat du en IP-Adress bruukst mit „$1“. Grund: „$2“.',
 'blocklogpage'                    => 'Brukerblock-Logbook',
-'blocklog-fulllog'                => 'Kumplett Sperr-Logbook',
 'blocklogentry'                   => 'block [[$1]] för en Tiedruum vun: $2 $3',
 'reblock-logentry'                => 'hett de Sperr för „[[$1]]“ op de Tied $2 $3 ännert',
 'blocklogtext'                    => 'Dit is en Logbook över Blocks un Freegaven vun Brukern. Automatisch blockte IP-Adressen sünd nich opföhrt.

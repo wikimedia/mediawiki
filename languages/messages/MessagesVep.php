@@ -1957,7 +1957,6 @@ Kc. [[Special:IPBlockList|blokiruidud IP-adresoiden nimikirjuteshe]].',
 'autoblocker'                     => 'Blokiruidud avtomatižešti, sikš miše teiden IP-adres om tantoi kävutanu "[[User:$1|$1]]".
 Adresan blokiruindan sü - "$2".',
 'blocklogpage'                    => 'Blokiruindoiden aigkirj',
-'blocklog-fulllog'                => 'Kaik blokiruindoiden aigkirj',
 'blocklogentry'                   => 'blokiruidihe [[$1]] pordoks $2 $3',
 'reblock-logentry'                => 'om toižetanu [[$1]]-kävutajan blokiruindan järgendused. Blokiruind lopiše $2 $3',
 'unblocklogentry'                 => 'om heitnu $1-kävutajan blokiruindan',

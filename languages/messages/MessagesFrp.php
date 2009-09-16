@@ -2480,7 +2480,6 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'autoblocker'                     => 'Vos avéd étâ blocâ ôtomaticament perce que voutra adrèce IP at étâ utilisâ dèrriérement per « [[User:$1|$1]] ».
 La rêson balyê por lo blocâjo a $1 est : « $2 ».',
 'blocklogpage'                    => 'Jornal des blocâjos',
-'blocklog-fulllog'                => 'Jornal complèt des blocâjos',
 'blocklogentry'                   => 'at blocâ [[$1]] ; èxpiracion : $2 $3',
 'reblock-logentry'                => 'at changiê los paramètres du blocâjo a [[$1]] avouéc una èxpiracion u $2 $3',
 'blocklogtext'                    => 'Cen est lo jornal des blocâjos et des dèblocâjos ux utilisators.

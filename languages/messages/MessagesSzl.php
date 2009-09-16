@@ -1874,7 +1874,6 @@ Přyńdź do [[Special:IPBlockList|listy zawartych adresůw IP]] coby přejřeć
 'autoblocker'                     => 'Zawarto Ci sprowjyńo autůmatyčńy, bez tůž co užywaš tygo samygo adresu IP, co užytkowńik „[[User:$1|$1]]”.
 Powůd zawarća $1 to: „$2”',
 'blocklogpage'                    => 'Gyszichta zawjyrańo',
-'blocklog-fulllog'                => 'Połny rejer zawarć',
 'blocklogentry'                   => 'zawarto [[$1]], bydźe uodymkńynty: $2 $3',
 'reblock-logentry'                => 'půmjyńił sztalowańa zawarća uod sprowjyń lů [[$1]], czas zawarćo: $2 $3',
 'blocklogtext'                    => "Půńižej znojdowo śe lista zawarć zouožůnych i zdjyntych s poščygůlnych adresůw IP.

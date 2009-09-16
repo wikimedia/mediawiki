@@ -2384,7 +2384,6 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'contribslink'                    => 'Biedragen',
 'autoblocker'                     => 'Vanzelf eblokkeerd umdat \'t IP-adres overenekump mit \'t IP-adres van [[User:$1|$1]], dee eblokkeerd is mit as rejen: "$2"',
 'blocklogpage'                    => 'Blokkeerlogboek',
-'blocklog-fulllog'                => "'t Complete blokkeerlogboek",
 'blocklogentry'                   => 'blokkeren "[[$1]]" veur $2 $3',
 'reblock-logentry'                => "hef de instellingen veur de blokkering van [[$1]] ewiezig. 't Loop noen of over $2 $3",
 'blocklogtext'                    => "Hier zie-j een lieste van de leste blokkeringen en deblokkeringen. Autematische blokkeringen en deblokkeringen koemen neet in 't logboek te staon. Zie de [[Special:IPBlockList|IP-blokkeerlieste]] veur de lieste van adressen dee noen eblokkeerd bin.",

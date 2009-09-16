@@ -2259,7 +2259,6 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'contribslink'                    => 'įnašas',
 'autoblocker'                     => 'Jūs buvote automatiškai užblokuotas, nes jūsų IP adresą neseniai naudojo „[[User:$1|$1]]“. Nurodyta naudotojo $1 blokavimo priežastis: „$2“.',
 'blocklogpage'                    => 'Blokavimų istorija',
-'blocklog-fulllog'                => 'Visas blokavimų sąrašas',
 'blocklogentry'                   => 'blokavo [[$1]], blokavimo laikas - $2 $3',
 'reblock-logentry'                => 'pakeisti [[$1]] blokavimo nustatymai, naujas blokavimo laikas – $2 $3',
 'blocklogtext'                    => 'Čia yra naudotojų blokavimo ir atblokavimo sąrašas.

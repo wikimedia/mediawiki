@@ -762,6 +762,7 @@ U kan [[Special:Search/{{PAGENAME}}|na hierdie bladsytitel in ander bladsye soek
 'noarticletext-nopermission'       => 'Daar is tans geen teks in hierdie bladsy nie. U kan vir die bladsytitel [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} die verwante logboeke deursoek]</span>.',
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
+'userpage-userdoesnotexist-view'   => 'Die gebruiker "$1" is nie geregistreer nie.',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssyoucanpreview'             => "'''Wenk:''' Gebruik die \"Wys voorskou\"-knoppie om u nuwe CSS te toets voor u stoor.",
 'userjsyoucanpreview'              => "'''Wenk:''' Gebruik die \"Wys voorskou\"-knoppie om u nuwe JS te toets voor u stoor.",
@@ -2148,7 +2149,6 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'change-blocklink'             => 'versperring wysig',
 'contribslink'                 => 'bydraes',
 'blocklogpage'                 => 'Blokkeer-logboek',
-'blocklog-fulllog'             => 'Volledige blokkeerlogboek',
 'blocklogentry'                => '"[[$1]]" is vir \'n periode van $2 $3 geblok',
 'blocklogtext'                 => "Hier is 'n lys van onlangse blokkeer en deblokkeer aksies. Outomaties geblokkeerde IP-adresse word nie vertoon nie. 
 Sien die [[Special:IPBlockList|IP-bloklys]] vir geblokkeerde adresse.",
