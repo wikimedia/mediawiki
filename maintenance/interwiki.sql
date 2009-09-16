@@ -46,6 +46,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('metawikipedia','http://meta.wikimedia.org/wiki/$1',0),
 ('moinmoin','http://purl.net/wiki/moin/$1',0),
 ('mozillawiki','http://wiki.mozilla.org/index.php/$1',0),
+('mw','http://www.mediawiki.org/wiki/$1',0),
 ('oeis','http://www.research.att.com/cgi-bin/access.cgi/as/njas/sequences/eisA.cgi?Anum=$1',0),
 ('openfacts','http://openfacts.berlios.de/index.phtml?title=$1',0),
 ('openwiki','http://openwiki.com/?$1',0),
