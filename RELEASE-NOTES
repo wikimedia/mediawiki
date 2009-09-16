@@ -502,6 +502,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18180) Special:Export ignores limit, dir, offset parameters
 * User::getBlockedStatus() works for all kinds of user objects and doesn't 
   assume the user object is equal to the current-user object ($wgUser)
+* (bug 20517) Cancel link from edit page now returns to the old version when
+  editing an old version
 
 == API changes in 1.16 ==
 
