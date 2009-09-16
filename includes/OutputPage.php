@@ -171,7 +171,7 @@ class OutputPage {
 	 * Add the core scripts that are included on every page, for later output into the header
 	 */
 	function addCoreScripts2Top(){
-		global $wgEnableScriptLoader, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgEnableJS2system;
+		global $wgEnableScriptLoader, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgStylePath, $wgEnableJS2system;
 		// @todo We should deprecate wikibits in favor of mv_embed and jQuery
 
 		if( $wgEnableJS2system ){
@@ -186,7 +186,16 @@ class OutputPage {
 			$so = '';
 			foreach( $core_classes as $s ){
 				if( isset( $wgJSAutoloadLocalClasses[$s] ) ){
-					$so .= Html::linkedScript( "{$wgScriptPath}/{$wgJSAutoloadLocalClasses[$s]}?" . $this->getURIDparam() );
+					$path = $wgJSAutoloadLocalClasses[$s];
+					// @fixme this is an awful hack
+					if( substr( $path, 0, 4 ) == "http"  || substr( $path, 0, 1 ) == '/' ) {
+						// Assume a full or local path
+					} elseif( substr( $path, 0, 6 ) == "skins/" ) {
+						$path = $wgStylePath . substr( $path, 5 );
+					} else {
+						$path = $wgScriptPath . "/" . $path;
+					}
+					$so .= Html::linkedScript( $path . "?" . $this->getURIDparam() );
 				}
 			}
 			$this->mScripts =  $so . $this->mScripts;
