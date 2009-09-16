@@ -566,7 +566,7 @@ class LanguageConverter {
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		# If the article has already existed, there is no need to
 		# check it again, otherwise it may cause a fault.
-		if ( $nt->exists() )
+		if ( is_object( $nt ) && $nt->exists() )
 			return;
 
 		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest, $wgUser;
