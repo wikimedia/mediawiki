@@ -335,13 +335,17 @@ class Html {
 				# and we don't need <> escaped here, we may as well not call
 				# htmlspecialchars().  FIXME: verify that we actually need to
 				# escape \n\r\t here, and explain why, exactly.
-				$ret .= " $key=$quote" . strtr( $value, array(
-					'&' => '&amp;',
-					'"' => '&quot;',
-					"\n" => '&#10;',
-					"\r" => '&#13;',
-					"\t" => '&#9;'
-				) ) . $quote;
+				if ( $wgHtml5 ) {
+					$ret .= " $key=$quote" . strtr( $value, array(
+						'&' => '&amp;',
+						'"' => '&quot;',
+						"\n" => '&#10;',
+						"\r" => '&#13;',
+						"\t" => '&#9;'
+					) ) . $quote;
+				} else {
+					$ret .= " $key=$quote" . Sanitizer::encodeAttribute( $value ) . $quote;
+				}
 			}
 		}
 		return $ret;
