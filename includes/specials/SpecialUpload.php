@@ -320,16 +320,17 @@ class UploadForm extends SpecialPage {
 	}
 
 	/**
-	 * Do existence checks on a file and produce a warning
+	 * Formats a result of UploadBase::getExistsWarning as HTML
 	 * This check is static and can be done pre-upload via AJAX
-	 * Returns an HTML fragment consisting of one or more LI elements if there is a warning
-	 * Returns an empty string if there is no warning
+	 * 
+	 * @param array $exists The result of UploadBase::getExistsWarning
+	 * @return string Empty string if there is no warning or an HTML fragment 
+	 * consisting of one or more <li> elements if there is a warning.
 	 */
-	static function getExistsWarning( $exists ) {
+	public static function getExistsWarning( $exists ) {
 		global $wgUser, $wgContLang;
-		// Check for uppercase extension. We allow these filenames but check if an image
-		// with lowercase extension exists already
-		if( $exists === false )
+		
+		if ( !$exists )
 			return '';
 
 		$warning = '';
@@ -337,7 +338,8 @@ class UploadForm extends SpecialPage {
 
 		list( $existsType, $file ) = $exists;
 
-		if( strpos( $file->getName(), '.' ) == false ) {
+		if ( strpos( $file->getName(), '.' ) == false ) {
+			// File does not have an extension or starts with a dot
 			$partname = $file->getName();
 			$rawExtension = '';
 		} else {
@@ -365,18 +367,20 @@ class UploadForm extends SpecialPage {
 			$warning .= '<li>' . wfMsgExt( 'fileexists', array('parseinline','replaceafter'), $dlink ) . '</li>' . $dlink2;
 
 		} elseif( $existsType == 'page-exists' ) {
+			// Page exists but file does not
 			$lnk = $sk->linkKnown( $file->getTitle(), '', '',array('redirect'=>'no') );
 			$warning .= '<li>' . wfMsgExt( 'filepageexists', array( 'parseinline', 'replaceafter' ), $lnk ) . '</li>';
 		} elseif ( $existsType == 'exists-normalized' ) {
 			# Check if image with lowercase extension exists.
 			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
-			$dlink = $sk->linkKnown( $nt_lc );
-			if ( $file_lc->allowInlineDisplay() ) {
+			$normalizedTitle = $file->getTitle();
+			$dlink = $sk->linkKnown( $normalizedTitle );
+			if ( $file->allowInlineDisplay() ) {
 				// FIXME: replace deprecated makeImageLinkObj by link()
-				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-					$nt_lc->getText(), $align, array(), false, true );
-			} elseif ( !$file_lc->allowInlineDisplay() && $file_lc->isSafeFile() ) {
-				$icon = $file_lc->iconThumb();
+				$dlink2 = $sk->makeImageLinkObj( $normalizedTitle, wfMsgExt( 'fileexists-thumb', 'parseinline' ),
+					$normalizedTitle->getText(), $align, array(), false, true );
+			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
+				$icon = $file->iconThumb();
 				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
 					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . $dlink . '</div>';
 			} else {
@@ -388,41 +392,34 @@ class UploadForm extends SpecialPage {
 					$file->getTitle()->getPrefixedText(), $dlink ) .
 				'</li>' . $dlink2;
 
-		} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' )
-			&& preg_match( "/[0-9]{2}/" , substr( $partname , 0, 2 ) ) )
-		{
-			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
-			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $rawExtension );
-			$file_thb = wfLocalFile( $nt_thb );
-			if ($file_thb->exists() ) {
-				# Check if an image without leading '180px-' (or similiar) exists
-				$dlink = $sk->linkKnown( $nt_thb );
-				if ( $file_thb->allowInlineDisplay() ) {
-					// FIXME: replace deprecated makeImageLinkObj by link()
-					$dlink2 = $sk->makeImageLinkObj( $nt_thb,
-						wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-						$nt_thb->getText(), $align, array(), false, true );
-				} elseif ( !$file_thb->allowInlineDisplay() && $file_thb->isSafeFile() ) {
-					$icon = $file_thb->iconThumb();
-					$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
-						$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' .
-						$dlink . '</div>';
-				} else {
-					$dlink2 = '';
-				}
-
-				$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) .
-					'</li>' . $dlink2;
+		} elseif ( $existsType == 'thumb' ) {
+			$nt_thb = $file->getTitle();
+			$dlink = $sk->linkKnown( $nt_thb );
+			if ( $file->allowInlineDisplay() ) {
+				// FIXME: replace deprecated makeImageLinkObj by link()
+				$dlink2 = $sk->makeImageLinkObj( $nt_thb,
+					wfMsgExt( 'fileexists-thumb', 'parseinline' ),
+					$nt_thb->getText(), $align, array(), false, true );
+			} elseif ( !$file_thb->allowInlineDisplay() && $file_thb->isSafeFile() ) {
+				$icon = $file_thb->iconThumb();
+				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
+					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' .
+					$dlink . '</div>';
 			} else {
+				$dlink2 = '';
+			}
+
+			$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) .
+				'</li>' . $dlink2;
+		} elseif ( $existsType == 'thumb-name' ) {
 				# Image w/o '180px-' does not exists, but we do not like these filenames
 				$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' ,
 					substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
-			}
 		}
 
 		$filenamePrefixBlacklist = UploadBase::getFilenamePrefixBlacklist();
 		# Do the match
-		if(!isset($partname))
+		if( !isset( $partname ) )
 			$partname = '';
 		foreach( $filenamePrefixBlacklist as $prefix ) {
 			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
@@ -431,6 +428,7 @@ class UploadForm extends SpecialPage {
 			}
 		}
 
+		// TODO: This should be put deeper down (i.e. UploadBase::getExistsWarning)
 		if ( $file->wasDeleted() && !$file->exists() ) {
 			# If the file existed before and was deleted, warn the user of this
 			# Don't bother doing so if the file exists now, however

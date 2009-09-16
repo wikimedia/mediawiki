@@ -994,6 +994,9 @@ abstract class UploadBase {
 			$file_thb = wfLocalFile( $nt_thb );
 			if( $file_thb->exists() )
 				return array( 'thumb', $file_thb );
+			else
+				// File does not exist, but we just don't like the name
+				return array( 'thumb-name', $file_thb );
 		}
 
 		return false;
