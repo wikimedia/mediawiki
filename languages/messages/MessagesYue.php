@@ -716,6 +716,7 @@ $1',
 'noarticletext-nopermission'       => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，
 或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搵有關嘅日誌]</span>。',
 'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
+'userpage-userdoesnotexist-view'   => '用戶戶口"$1"重未開。',
 'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
 '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）；
 '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''；
@@ -908,7 +909,7 @@ $1',
 'revdelete-hide-text'         => '隱藏修訂嘅文字',
 'revdelete-hide-name'         => '隱藏動作同目標',
 'revdelete-hide-comment'      => '隱藏編輯註解',
-'revdelete-hide-user'         => '隱藏編輯者嘅用戶名／IP',
+'revdelete-hide-user'         => '隱藏編輯者嘅用戶名／IP地址',
 'revdelete-hide-restricted'   => '同時壓制由操作員以及其他用戶的資料',
 'revdelete-suppress'          => '同時壓制由操作員以及其他用戶的資料',
 'revdelete-hide-image'        => '隱藏資料內容',
@@ -948,6 +949,7 @@ $1",
 'revdelete-otherreason'       => '其它／附加的原因：',
 'revdelete-reasonotherlist'   => '其它原因',
 'revdelete-edit-reasonlist'   => '編輯刪除原因',
+'revdelete-offender'          => '修訂著者：',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',

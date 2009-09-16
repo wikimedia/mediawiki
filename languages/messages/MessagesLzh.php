@@ -598,7 +598,8 @@ $2',
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
 'noarticletext-nopermission'       => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]</span>。',
-'userpage-userdoesnotexist'        => '"$1"之簿未增也。請建纂本頁前查之。',
+'userpage-userdoesnotexist'        => '「$1」之簿未增也。請建纂本頁前查之。',
+'userpage-userdoesnotexist-view'   => '「$1」之簿未增也。',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Macintosh為''Command-R''）。
 '''Konqueror:'''點''Reload''，或押''F5''。
@@ -755,7 +756,7 @@ $2',
 'revdelete-legend'            => '見，規之以',
 'revdelete-hide-text'         => '藏審文',
 'revdelete-hide-comment'      => '藏贊',
-'revdelete-hide-user'         => '簿、IP以藏',
+'revdelete-hide-user'         => '簿、IP址以藏',
 'revdelete-hide-restricted'   => '廢有秩與簿之事',
 'revdelete-suppress'          => '廢有秩與簿之事',
 'revdelete-hide-image'        => '藏檔',
@@ -795,6 +796,7 @@ $1",
 'revdelete-otherreason'       => '它附因：',
 'revdelete-reasonotherlist'   => '它因',
 'revdelete-edit-reasonlist'   => '纂刪因',
+'revdelete-offender'          => '審著：',
 
 # Suppression log
 'suppressionlog'     => '誌廢',
