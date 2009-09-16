@@ -11,6 +11,7 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	}
 	public function execute( $par ) {
 		global $wgOut;
+		$this->setHeaders();
 		$wgOut->addWikiMsg('intentionallyblankpage');
 	}
 }
