@@ -623,11 +623,6 @@ $wgJSAutoloadLocalClasses = array(
 	'ajaxCategories' => 'js2/ajaxcategories.js',
 );
 
-//Include the js2 autoLoadClasses
-//@@todo move jsAutoloadLocalClasses.php to post Setup so we have default values and can check the $wgEnableJS2system var
-$wgMwEmbedDirectory = "js2/mwEmbed/";
-require_once("$IP/js2/mwEmbed/php/jsAutoloadLocalClasses.php");
-
 class AutoLoader {
 	/**
 	 * autoload - take a class name and attempt to load it

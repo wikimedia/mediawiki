@@ -319,12 +319,16 @@ $wgArticle = null;
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
 
-/*
- * load the $wgExtensionMessagesFiles for the script loader
- * this can't be done in a normal extension type way
- * since the script-loader is an entry point
- */
+# load the $wgExtensionMessagesFiles for the script loader
+# this can't be done in a normal extension type way
+# since the script-loader is an entry point
+#
 $wgExtensionMessagesFiles['mwEmbed'] = "{$IP}/js2/mwEmbed/php/languages/mwEmbed.i18n.php";
+
+# Include the js2/mwEmbed autoLoadClasses if js2 is enabled
+if( $wgEnableJS2system ){
+	require_once("$IP/js2/mwEmbed/php/jsAutoloadLocalClasses.php");
+}
 
 # Extension setup functions for extensions other than skins
 # Entries should be added to this variable during the inclusion

@@ -18,15 +18,15 @@ class FormatJson{
 			return json_encode($value);
 		}
 	}
-	public static function decode($value, $assoc=false){
+	public static function decode( $value, $assoc=false ){
 		if (!function_exists('json_decode') ) {
 			$json = new Services_JSON();
-			$jsonDec = $json->decode($value);
-			if($assoc)
+			$jsonDec = $json->decode( $value );
+			if( $assoc )
 				$jsonDec = wfObjectToArray( $jsonDec );
 			return $jsonDec;
 		} else {
-			return json_decode($value, $assoc);
+			return json_decode( $value, $assoc );
 		}
 	}
 }
