@@ -418,7 +418,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function __construct( $target, $namespace = false, $year = false, $month = false, $tagFilter = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist rev-delundel' ) as $msg ) {
+		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist rev-delundel pipe-separator' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 		$this->target = $target;
@@ -559,7 +559,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		# Is there a visible previous revision?
 		if( !$rev->isDeleted(Revision::DELETED_TEXT) ) {
-			$difftext = '(' . $sk->linkKnown(
+			$difftext = $this->messages['pipe-separator'] . $sk->linkKnown(
 				$page,
 				$this->messages['diff'],
 				array(),
@@ -569,14 +569,14 @@ class ContribsPager extends ReverseChronologicalPager {
 				)
 			) . ')';
 		} else {
-			$difftext = '(' . $this->messages['diff'] . ')';
+			$difftext = $this->messages['pipe-separator'] . $this->messages['diff'] . ')';
 		}
 		$histlink = '('.$sk->linkKnown(
 			$page,
 			$this->messages['hist'],
 			array(),
 			array( 'action' => 'history' )
-		) . ')';
+		);
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
