@@ -774,7 +774,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'notextmatches'             => 'Mayong ángay na teksto nin páhina',
 'prevn'                     => 'dating {{PLURAL:$1|$1}}',
 'nextn'                     => 'sunod na {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'Hilingón ($1) ($2) ($3)',
+'viewprevnext'              => 'Hilingón ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'            => 'Help:Mga laog',
 'search-suggest'            => 'An boot mo: $1',
 'search-interwiki-more'     => '(dakol pa)',

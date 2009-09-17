@@ -1091,7 +1091,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prevn-title'                      => '$1 {{PLURAL:$1|resultat|resultats}} anteriors',
 'nextn-title'                      => '$1 {{PLURAL:$1|resultat|resultats}} següents',
 'shown-title'                      => 'Mostra $1 {{PLURAL:$1|resultat|resultats}} per pàgina',
-'viewprevnext'                     => 'Vés a ($1) ($2) ($3).',
+'viewprevnext'                     => 'Vés a ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opcions de cerca',
 'searchmenu-exists'                => "'''Hi ha una pàgina anomenada «[[$1]]» en aquest wiki'''",
 'searchmenu-new'                   => "'''Creeu la pàgina «[[:$1]]» en aquest wiki!'''",

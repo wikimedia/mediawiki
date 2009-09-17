@@ -76,6 +76,9 @@ $messages = array(
 'underline-never'   => 'Никуы',
 'underline-default' => 'Браузеры куыд у',
 
+# Font style option in Special:Preferences
+'editfont-default' => 'Браузеры куыд у',
+
 # Dates
 'sunday'        => 'Хуыцаубон',
 'monday'        => 'Къуырисæр',
@@ -169,6 +172,7 @@ $messages = array(
 'vector-namespace-image'    => 'Файл',
 'vector-namespace-main'     => 'Фарс',
 'vector-namespace-project'  => 'Проекты фарс',
+'vector-namespace-template' => 'Шаблон',
 'vector-namespace-user'     => 'Архайæджы фарс',
 'vector-view-create'        => 'Скæн æй',
 'vector-view-edit'          => 'Фен æй',
@@ -383,8 +387,13 @@ $messages = array(
 
 # History pages
 'viewpagelogs'           => 'Ацы фарсæн йæ логтæ равдис',
+'nohistory'              => 'Ацы фарсæн иввдзинæдты истори нæй.',
 'currentrev'             => 'Нырыккон верси',
+'currentrev-asof'        => 'Нырыккон верси $1',
+'revisionasof'           => 'Верси $1',
+'revision-info'          => 'Верси $1; $2',
 'previousrevision'       => '← Раздæры',
+'nextrevision'           => 'Ногдæр верси →',
 'currentrevisionlink'    => 'Нырыккон верси',
 'cur'                    => 'ныр.',
 'last'                   => 'раздæры',
@@ -429,7 +438,7 @@ $messages = array(
 'textmatches'               => 'Статьяты æмцаутæ',
 'prevn'                     => '{{PLURAL:$1|$1}} фæстæмæ',
 'nextn'                     => '{{PLURAL:$1|$1}} размæ',
-'viewprevnext'              => 'Фен ($1) ($2) ($3)',
+'viewprevnext'              => 'Фен ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|$2 дзырд|$2 дзырды}})',
 'search-redirect'           => '(рарвыст ардыгæй: $1)',
 'search-section'            => '(хай $1)',
@@ -470,6 +479,7 @@ $messages = array(
 'timezoneregion-asia'       => 'Ази',
 'timezoneregion-australia'  => 'Австрали',
 'timezoneregion-europe'     => 'Европæ',
+'timezoneregion-indian'     => 'Индийы фурд',
 'youremail'                 => 'Дæ электронон посты адрис',
 'username'                  => 'Регистрацигонд ном:',
 'yourrealname'              => 'Дæ æцæг ном*',
@@ -612,6 +622,7 @@ $3',
 'uncategorizedpages'     => 'Æнæкатегори фæрстæ',
 'uncategorizedimages'    => 'Æнæкатегори файлтæ',
 'uncategorizedtemplates' => 'Æнæкатегори шаблонтæ',
+'popularpages'           => 'Популярон фæрстæ',
 'wantedcategories'       => 'Хъæугæ категоритæ',
 'wantedpages'            => 'Хъæугæ фæрстæ',
 'mostlinked'             => 'Фылдæр æрвитæнтæ кæмæ и, ахæм фæрстæ',
@@ -867,8 +878,10 @@ $3',
 'imgmultigo'       => 'Афтæ бакæн!',
 
 # Table pager
-'table_pager_next' => 'Фæдылдзог фарс',
-'table_pager_prev' => 'Раздæры фарс',
+'table_pager_next'  => 'Фæдылдзог фарс',
+'table_pager_prev'  => 'Раздæры фарс',
+'table_pager_first' => 'Фыццаг фарс',
+'table_pager_last'  => 'Фæстаг фарс',
 
 # Size units
 'size-bytes'     => '$1 байт(ы)',

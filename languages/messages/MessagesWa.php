@@ -612,7 +612,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'notextmatches'            => 'Nol årtike avou do tecse ki corespond',
 'prevn'                    => '$1 di dvant',
 'nextn'                    => '{{PLURAL:$1|$1}} shuvants',
-'viewprevnext'             => 'Vey ($1) ($2) ($3).',
+'viewprevnext'             => 'Vey ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'           => 'Help:Aidance',
 'search-redirect'          => '(ridjiblé di $1)',
 'search-interwiki-caption' => 'So les ôtes pordjets Wiki',

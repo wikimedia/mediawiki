@@ -605,6 +605,7 @@ Kò ṣe àlàyé kankan.',
 'revdelete-hid'             => 'ìbòmọ́lẹ̀ $1',
 'revdelete-unhid'           => 'ìfihàn $1',
 'revdelete-log-message'     => '$1 fún $2 {{PLURAL:$2|àtúnyẹ̀wò|àwọn àtúnyẹ̀wò}}',
+'logdelete-log-message'     => '$1 fún $2 {{PLURAL:$2|ìṣẹ̀lẹ̀|àwọn ìṣẹ̀lẹ̀}}',
 
 # History merging
 'mergehistory'                     => 'Ìdàpọ̀ àwọn ìtàn ojúewé',
@@ -666,7 +667,7 @@ Kò ṣe àlàyé kankan.',
 'notextmatches'                  => 'Kò sí ọ̀rọ̀ ojúewé tóbáramu',
 'prevn'                          => '{{PLURAL:$1|$1}} titẹ́lẹ̀',
 'nextn'                          => '{{PLURAL:$1|$1}} tókàn',
-'viewprevnext'                   => 'Ẹ wo ($1) ($2) ($3)',
+'viewprevnext'                   => 'Ẹ wo ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'              => 'Àwọn àṣàyàn àwáàrí',
 'searchmenu-exists'              => "'''Ojúewé tó ún jẹ́ \"[[:\$1]]\" wà lórí wiki yìí'''",
 'searchmenu-new'                 => "'''Dá ojúewé \"[[:\$1]]\" sí orí wiki yìí!'''",
@@ -892,12 +893,17 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'randompage' => 'Ojúewé àrìnàkò',
 
 # Statistics
-'statistics'       => 'Àwọn statistiki',
-'statistics-pages' => 'Àwọn ojúewé',
+'statistics'              => 'Àwọn statistiki',
+'statistics-header-pages' => 'Àwọn statistiki ojúewé',
+'statistics-header-edits' => 'Àwọn statistiki àtúnṣe',
+'statistics-header-users' => 'Àwọn statistiki oníṣe',
+'statistics-pages'        => 'Àwọn ojúewé',
 
 'disambiguations' => 'Àwọn ojúewé ìpínsọ́tọ̀',
 
-'doubleredirects' => 'Àwọn àtúnjúwe ẹ̀mẹjì',
+'doubleredirects'            => 'Àwọn àtúnjúwe ẹ̀mẹjì',
+'double-redirect-fixed-move' => '[[$1]] ti yípò padà.
+Ó ti ṣe àtúnjúwe sí [[$2]].',
 
 'brokenredirects' => 'Àwọn àtúnjúwe tótigé',
 
@@ -935,6 +941,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'deadendpages'            => 'Àwọn ojúewé aláìníjàápọ́',
 'protectedpages'          => 'Àwọn ojúewé aláàbò',
 'listusers'               => 'Àkójọ àwọn oníṣe',
+'usercreated'             => 'Ó jẹ́ ṣíṣẹ̀dá ní ọjọ́ $1 ní ago $2',
 'newpages'                => 'Àwọn ojúewé tuntun',
 'newpages-username'       => 'Orúkọ oníṣe:',
 'ancientpages'            => 'Àwọn ojúewé tópẹ́jùlọ',
@@ -1038,6 +1045,7 @@ A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti o
 Ẹ wo $2 fún àkọọ́lẹ̀ àwọn ìparẹ́ àìpẹ́.',
 'deletedarticle'        => 'A ti pa "[[$1]]" rẹ́',
 'dellogpage'            => 'Àkọsílẹ̀ ìparẹ́',
+'deletionlog'           => 'àkọsílẹ̀ ìparẹ́',
 'deletecomment'         => 'Ìdí fún ìparẹ́:',
 'deleteotherreason'     => 'Àwọn ìdí mìíràn:',
 'deletereasonotherlist' => 'Ìdí mìíràn',
@@ -1050,7 +1058,7 @@ A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti o
 'protectedarticle'            => 'ti dá àbò bo "[[$1]]"',
 'modifiedarticleprotection'   => 'ṣe àyípadà ipò àbò fún "[[$1]]"',
 'prot_1movedto2'              => '[[$1]] ti yípò sí [[$2]]',
-'protectcomment'              => 'Àríwí:',
+'protectcomment'              => 'Ìdíẹ̀:',
 'protectexpiry'               => 'Ìparí:',
 'protect_expiry_invalid'      => 'Àkókò ìparí kò ní ìbámu.',
 'protect_expiry_old'          => 'Ìgbà tó ti kọjá ni ìparí.',
@@ -1229,6 +1237,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'tooltip-search-fulltext'         => 'Ṣe àwáàrí nínú àwọn ojúewé fún ìkọ yìí',
 'tooltip-p-logo'                  => 'Ojúewé Àkọ́kọ́',
 'tooltip-n-mainpage'              => 'Ẹ ṣe àbẹ̀wò sí Ojúewé Àkọ́kọ́',
+'tooltip-n-mainpage-description'  => 'Àbẹ̀wò sí ojúewé àkọ́kọ́',
 'tooltip-n-portal'                => 'Ẹ̀kúnrẹ́rẹ́ nípa iṣẹ́ọwọ́ yìí',
 'tooltip-n-currentevents'         => 'Ìròhìn lọ́wọ́lọ́wọ́',
 'tooltip-n-recentchanges'         => 'Àkójọ àwọn àtúnṣe tuntun nínú wiki.',
@@ -1259,6 +1268,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'tooltip-compareselectedversions' => 'Ẹ wo ìyàtò láàrin àwọn àtúnṣe tí a ṣàyàn fún ojúewé yìí.',
 'tooltip-watch'                   => "Ẹ ṣ'àfikún ojúewé yìí mọ́ ìmójútó yín",
 'tooltip-upload'                  => 'Bẹ̀rẹ̀ ìrùsókè',
+'tooltip-rollback'                => '"Ìyíṣẹ́yìn" ún ṣe ìdápadà àwọn àtúnṣe sí ojúewé yìí',
 
 # Attribution
 'siteuser'         => '$1 oníṣe lórí {{SITENAME}}',
@@ -1326,6 +1336,9 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 Àmìọ̀rọ̀ yìí kò pọndandan láti mú yín wọlé, sùgbọ́n ẹ gbọ́dọ̀ mu padà kí gbogbo àwọn ohun inú wiki yìí tó dúró lórí e-mail ó tó lè ṣiṣẹ́.',
 'confirmemail_loggedin' => 'Ojúọ̀nà e-mail yín ti dájú.',
 'confirmemail_subject'  => 'Ìmúdájú ojúọ̀nà e-mail fún {{SITENAME}}',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[URL ti gùn jù]',
 
 # action=purge
 'confirm_purge_button' => 'OK',

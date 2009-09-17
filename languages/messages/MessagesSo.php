@@ -347,7 +347,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'searchsubtitleinvalid' => "Waxaad raadisay '''$1'''",
 'prevn'                 => 'Ka horeeya {{PLURAL:$1|$1}}',
 'nextn'                 => 'Ku xiga {{PLURAL:$1|$1}}',
-'viewprevnext'          => 'Fiiri ($1) ($2) ($3).',
+'viewprevnext'          => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:Caawinaad',
 'powersearch'           => 'Raadi',
 

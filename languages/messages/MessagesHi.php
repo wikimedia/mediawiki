@@ -9,6 +9,7 @@
  *
  * @author Aksi great
  * @author Dineshjk
+ * @author Hemant wikikosh1
  * @author Kaustubh
  * @author Kiranmayee
  * @author Shyam
@@ -1012,7 +1013,7 @@ $1",
 'prevn-title'                      => '{{PLURAL:$1|पिछला १ परिणाम| पिछले $1 परिणाम}}',
 'nextn-title'                      => '{{PLURAL:$1|अगला १ परिणाम| अगले $1 परिणाम}}',
 'shown-title'                      => 'हर पन्ने पर {{PLURAL:$1|परिणाम|परिणाम}} दिखाएँ',
-'viewprevnext'                     => 'देख़ें ($1) ($2) ($3)',
+'viewprevnext'                     => 'देख़ें ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'खोज विकल्प',
 'searchmenu-exists'                => "'''इस विकि पर \"[[:\$1]]\" नाम से एक पन्ना है'''",
 'searchmenu-new'                   => "'''इस विकि पर \"[[:\$1]]\" नाम से पन्ना बनाएँ!'''",

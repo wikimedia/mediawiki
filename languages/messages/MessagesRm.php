@@ -490,7 +490,7 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'noexactmatch-nocreate'     => "'''I n'exista nagina pagina cun il titel \"\$1\".'''",
 'prevn'                     => 'davos {{PLURAL:$1|$1}}',
 'nextn'                     => 'proxims {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'Mussar ($1) ($2) ($3).',
+'viewprevnext'              => 'Mussar ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'            => 'Help:Cuntegn',
 'search-result-size'        => '$1 ({{PLURAL:$2|in pled|$2 pleds}})',
 'search-suggest'            => 'Has ti manegià: $1',

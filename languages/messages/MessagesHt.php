@@ -802,7 +802,7 @@ Sistèm an ap montre, anba paj sa, jounal tout vèsyon paj an ki efase pou sèvi
 'notextmatches'             => 'Pa genyen pyès tèks nan paj yo ki ap koresponn ak rechèch ou fè a',
 'prevn'                     => '{{PLURAL:$1|$1}} anvan yo',
 'nextn'                     => '{{PLURAL:$1|$1}} swivan yo',
-'viewprevnext'              => 'Wè ($1) ($2) ($3).',
+'viewprevnext'              => 'Wè ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'            => 'Help:Èd',
 'search-result-size'        => '$1 ({{PLURAL:$2| mo|$2 mo yo}})',
 'search-redirect'           => '(redireksyon depi $1)',

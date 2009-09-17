@@ -10,6 +10,7 @@
  * @author Angela
  * @author Harshalhayat
  * @author Hemanshu
+ * @author Hemant wikikosh1
  * @author Kaustubh
  * @author Mahitgar
  * @author Sankalpdravid
@@ -1040,7 +1041,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'notextmatches'             => 'पानातील मजकुराशी जुळत नाही',
 'prevn'                     => 'मागील {{PLURAL:$1|$1}}',
 'nextn'                     => 'पुढील {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'पहा ($1) ($2) ($3).',
+'viewprevnext'              => 'पहा ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'            => 'Help:साहाय्य पृष्ठ',
 'search-result-size'        => '$1 ({{PLURAL:$2|१ शब्द|$2 शब्द}})',
 'search-result-score'       => 'जुळणी: $1%',

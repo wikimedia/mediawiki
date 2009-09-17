@@ -671,7 +671,7 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'nextn'                        => '{{PLURAL:$1|ujao|$1 zijazo}}',
 'prevn-title'                  => '{{PLURAL:$1|Tokeo $1 lililotangulia|Matokeo $1 yaliyotangulia}}',
 'nextn-title'                  => '{{PLURAL:$1|Tokeo $1 lijalo|Matokeo $1 yajayo}}',
-'viewprevnext'                 => 'Tazama ($1) ($2) ($3)',
+'viewprevnext'                 => 'Tazama ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'            => 'Hitiari za kutafuta',
 'searchhelp-url'               => 'Help:Yaliyomo',
 'searchmenu-prefix'            => '[[Special:PrefixIndex/$1|Tafuta kurasa kwenye eneo hili la wiki]]',

@@ -1164,7 +1164,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'prevn-title'                      => 'Førre $1 {{PLURAL:$1|resultat|resultat}}',
 'nextn-title'                      => 'Neste $1 {{PLURAL:$1|resultat|resultat}}',
 'shown-title'                      => 'Syn $1 {{PLURAL:$1|resultat|resultat}} for kvar side',
-'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
+'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Søkjeval',
 'searchmenu-exists'                => "* Sida '''[[$1]]'''",
 'searchmenu-new'                   => "'''Opprett sida «[[:$1|$1]]» på denne wikien.'''",
@@ -1635,6 +1635,12 @@ PICT # div.
 'upload-too-many-redirects' => 'URL-en inneheldt for mange omdirigeringar',
 'upload-unknown-size'       => 'Ukjend storleik',
 'upload-http-error'         => 'Ein HTTP-feil oppstod: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Tilgjenge avslått',
+'img-auth-notindir'     => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
+'img-auth-nofile'       => 'Fila "$1" finst ikkje',
+'img-auth-noread'       => 'Brukaren har ikkje rettar til å lesa "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikkje nå nettadressa',

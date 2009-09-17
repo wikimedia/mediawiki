@@ -213,7 +213,7 @@ $messages = array(
 # Search results
 'prevn'        => '{{PLURAL:$1|$1}} ya libosó',
 'nextn'        => 'bolɛngɛli {{PLURAL:$1|$1}}',
-'viewprevnext' => 'Komɔ́na ($1) ($2) ($3)',
+'viewprevnext' => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
 'powersearch'  => 'Boluki',
 
 # Preferences page

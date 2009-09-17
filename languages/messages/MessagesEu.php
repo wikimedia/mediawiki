@@ -596,8 +596,8 @@ Mesedez, formatu egokia duen helbide bat zehaztu, edo hutsik utzi.',
 Orain bertan sar zaitezke eta zure pasahitza aldatu.
 
 Kontu honen sorrera akats bat dela uste baduzu mezu honi ez diozu zertan jaramonik egin.',
-'login-throttled'            => 'Kontu honetako pasahitzaren gainean saiakera gehiegi egin dituzu azken aldian.
-Berriro saiatu aurretik itxoin ezazu, mesedez.',
+'login-throttled'            => 'Saioa hasteko saiakera gehiegi egin berri dituzu.
+Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
 
 # Password reset dialog
@@ -706,6 +706,7 @@ Beste orrialde batzuetan [[Special:Search/{{PAGENAME}}|bilatu dezakezu izenburu 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} bilatu lotutako logak],
 edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu]</span>.',
 'userpage-userdoesnotexist'        => '"$1" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
+'userpage-userdoesnotexist-view'   => '"$1" erabiltzaile-kontua ez dago erregistraturik.',
 'clearyourcache'                   => "'''Oharra - Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.''' '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
 'usercssyoucanpreview'             => "'''Laguntza:''' Zure CSS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
 'userjsyoucanpreview'              => "'''Laguntza:''' Zure JS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
@@ -1015,7 +1016,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'prevn-title'                      => 'Aurreko {{PLURAL:$1|emaitza|emaitzak}}',
 'nextn-title'                      => 'Hurrengo $1 {{PLURAL:$1|emaitza|emaitzak}}',
 'shown-title'                      => 'Erakutsi {{PLURAL:$1|emaitza $1|$1 emaitza}} orrialdeko',
-'viewprevnext'                     => 'Ikusi ($1) ($2) ($3).',
+'viewprevnext'                     => 'Ikusi ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Bilaketa aukerak',
 'searchmenu-exists'                => "'''\"[[:\$1]]\" izena duen orrialde bat badago wiki honetan'''",
 'searchmenu-new'                   => "'''\"[[:\$1]]\" orrialde sortu wiki honetan!'''",
@@ -2269,6 +2270,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'imageinvalidfilename'         => 'Xede-artxiboaren izenak ez du balio',
 'fix-double-redirects'         => 'Hasierako izenburura zuzentzen duten birzuzenketa guztiak aldatu',
 'move-leave-redirect'          => 'Atzean birzuzenketa bat utzi',
+'semiprotectedpagemovewarning' => "'''Oharra:''' Orrialde hau blokeatu dute, izena emanda duten erabiltzaileek soilik mugitu ahal dezaten.",
 
 # Export
 'export'            => 'Orrialdeak esportatu',

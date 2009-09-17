@@ -193,7 +193,7 @@ Te rog notari la din kontribuţi al {{SITENAME}} sunt konsideraere relesavat sup
 
 # Search results
 'noexactmatch'   => "'''N'pažu vec l'nom \"\$1\" n'ķsistst.''' Pute [[:\$1|kreare ce pažu]].",
-'viewprevnext'   => 'Vu ($1) ($2) ($3)',
+'viewprevnext'   => 'Vu ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:Ajutor',
 'powersearch'    => 'kaută avansata',
 

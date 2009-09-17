@@ -869,6 +869,7 @@ Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pesquisar os registos relacionados],
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
+'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'clearyourcache'                   => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ou ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' num Macintosh); '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5''; '''Opera:''' limpe a sua cache em ''Ferramentas → Preferências'' (''Tools → Preferences''); '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
 'usercssyoucanpreview'             => "'''Dica:''' Utilize o botão \"Mostrar previsão\" para testar seu novo CSS antes de salvar.",
@@ -1100,6 +1101,8 @@ Você não tem acesso a ele.',
 'revdelete-concurrent-change' => 'Erro ao modificar o item com data/hora $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registos.',
 'revdelete-only-restricted'   => 'Não pode suprimir itens de serem visualizados por administradores sem também escolher uma das outras opções de supressão.',
+'revdelete-otherreason'       => 'Outro/motivo adicional:',
+'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar motivos de eliminação',
 
 # Suppression log
@@ -1218,7 +1221,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'prevn-title'                      => '$1 {{PLURAL:$1|resultado anterior|resultados anteriores}}',
 'nextn-title'                      => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
-'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
+'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
 'searchmenu-exists'                => "*Página '''[[$1]]'''",
 'searchmenu-new'                   => "'''Crie a página \"[[:\$1]]\" neste wiki!'''",
@@ -2087,7 +2090,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
 
 $NEWPAGE
 
@@ -2131,7 +2134,7 @@ Consulte $2 para um registo de eliminações recentes.',
 'deletionlog'            => 'registo de eliminação',
 'reverted'               => 'Revertido para versão anterior',
 'deletecomment'          => 'Motivo de eliminação',
-'deleteotherreason'      => 'Justificativa adicional:',
+'deleteotherreason'      => 'Outro/motivo adicional:',
 'deletereasonotherlist'  => 'Outro motivo',
 'deletereason-dropdown'  => '* Motivos de eliminação comuns
 ** Pedido do autor
@@ -2484,7 +2487,7 @@ Por favor, escolha outro nome.',
 'movepage-page-unmoved'        => 'A página $1 não pôde ser movida para $2.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'                    => 'moveu [[$1]] para [[$2]]',
-'1movedto2_redir'              => '[[$1]] foi movido para [[$2]] sob redirecionamento',
+'1movedto2_redir'              => 'moveu [[$1]] para [[$2]] sobre redirecionamento',
 'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registo de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',

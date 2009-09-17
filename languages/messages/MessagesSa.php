@@ -621,7 +621,7 @@ $messages = array(
 'notextmatches'             => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
 'prevn'                     => 'पूर्वतनानि {{PLURAL:$1|$1}}',
 'nextn'                     => 'आगामि{{PLURAL:$1|$1}}',
-'viewprevnext'              => 'दर्शयतु ($1) ($2) ($3)',
+'viewprevnext'              => 'दर्शयतु ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
 'search-redirect'           => '($1 इतीदं अनुप्रेषितम्)',
 'search-section'            => '(विभागः $1)',
@@ -682,8 +682,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'         => 'पृष्ठ-सम्बन्धि-परिवर्तनानि',
-'recentchangeslinked-feed'    => 'सम्भन्दिन् परिवर्त',
-'recentchangeslinked-toolbox' => 'सम्भन्दिन् परिवर्त',
+'recentchangeslinked-feed'    => 'पृष्ठ-सम्बन्धितानि परिवर्तनानि',
+'recentchangeslinked-toolbox' => 'पृष्ठ-सम्बन्धितानि परिवर्तनानि',
 'recentchangeslinked-title'   => '"$1" इत्यस्मिन् भूतानि परिवर्तनानि',
 'recentchangeslinked-summary' => "इदं पृष्ठं दर्शयति पृष्ठविशेषेण सह संबद्धीकृतेषु पृष्ठेषु परिवर्तनानि (अथवा श्रेणीविशेषे अन्तर्भूतेषु पृष्ठेषु परिवर्तनानि)।
 

@@ -934,7 +934,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'prevn-title'                      => '{{PLURAL:$1|Foarich Resultoat|Foarige $1 Resultoate}}',
 'nextn-title'                      => '{{PLURAL:$1|Foulgjend Resultoat|Foulgjende $1 Resultoate}}',
 'shown-title'                      => 'Wies $1 {{PLURAL:$1|Resultoat|Resultoate}} pro Siede',
-'viewprevnext'                     => 'Wies ($1) ($2) ($3)',
+'viewprevnext'                     => 'Wies ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Säikoptione',
 'searchmenu-exists'                => "'''Dät rakt n Siede mäd Noome \"[[:\$1]]\" ap dissen Wiki'''",
 'searchmenu-new'                   => "'''Moak ju Siede „[[:$1]]“ in dissen Wiki.'''",
