@@ -559,7 +559,8 @@ class ApiMain extends ApiBase {
 		$this->mPrinter->setHelp();
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
-			SpecialVersion::getVersion( 'nodb' ) );
+			SpecialVersion::getVersion( 'nodb' ).
+			$this->getMain()->getShowVersions() );
 		if ( $wgAPICacheHelp ) {
 			$cached = $wgMemc->get( $key );
 			if ( $cached )
