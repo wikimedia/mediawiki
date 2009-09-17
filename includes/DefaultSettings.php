@@ -4237,6 +4237,14 @@ $wgMemoryLimit = "50M";
 $wgUseAJAXCategories = false;
 
 /**
+ * Only enable AJAXCategories on configured namespaces. Default is all.
+ *
+ * Example:
+ *   $wgAJAXCategoriesNamespaces = array( NS_MAIN, NS_PROJECT );
+ */
+$wgAJAXCategoriesNamespaces = array();
+
+/**
  * To disable file delete/restore temporarily
  */
 $wgUploadMaintenance = false;
