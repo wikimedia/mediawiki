@@ -143,7 +143,7 @@ class AllmessagesTablePager extends TablePager {
 
 		global $wgLang, $wgContLang, $wgRequest;
 
-		$this->talk = $wgLang->lc( htmlspecialchars( wfMsg( 'talkpagelinktext' ) ) );
+		$this->talk = htmlspecialchars( wfMsg( 'talkpagelinktext' ) );
 
 		$this->lang = ( $langObj ? $langObj : $wgContLang );
 		$this->langcode = $this->lang->getCode();
