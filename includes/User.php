@@ -1118,7 +1118,7 @@ class User {
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
 			$this->mAllowUsertalk = $this->mBlock->mAllowUsertalk;
-			if ( $this->isLoggedIn() ) {
+			if ( $this->isLoggedIn() && $wgUser->getID() == $this->getID() ) {
 				$this->spreadBlock();
 			}
 		} else {
