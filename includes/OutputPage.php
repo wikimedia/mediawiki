@@ -215,7 +215,7 @@ class OutputPage {
 				$this->addScript( Html::linkedScript( "$path?$urlAppend" ) );
 
 				//merge in language text (if js2 is on and we have loadGM function)
-				if( $wgEnableJS2system == true ){
+				if( $wgEnableJS2system ){
 					$inlineMsg = jsScriptLoader::getLocalizedMsgsFromClass( $js_class );
 					if( $inlineMsg != '' )
 						$this->addScript( Html::inlineScript( $inlineMsg ));
