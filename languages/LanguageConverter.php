@@ -532,6 +532,8 @@ class LanguageConverter {
 			if( $this->mDoContentConvert )
 				// Bug 19620: should convert a string immediately after a new rule added.
 				$text .= $this->autoConvert( $marked[0], $plang );
+			else
+				$text .= $marked[0];
 
 			if ( array_key_exists( 1, $marked ) ) {
 				$crule = new ConverterRule($marked[1], $this);
@@ -546,7 +548,6 @@ class LanguageConverter {
 
 		// Remove the last delimiter (wasn't real)
 		$text = substr( $text, 0, -strlen( $this->mMarkup['end'] ) );
-
 		return $text;
 	}
 
