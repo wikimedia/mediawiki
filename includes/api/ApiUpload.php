@@ -129,7 +129,7 @@ class ApiUpload extends ApiBase {
 			if ( isset( $this->mParams['file'] ) ) {
 				$this->mUpload = new UploadFromFile();
 				$this->mUpload->initialize(
-					$request->getFileName( 'file' ),
+					$this->mParams['filename'],
 					$request->getFileTempName( 'file' ),
 					$request->getFileSize( 'file' )
 				);
