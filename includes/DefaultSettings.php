@@ -3881,6 +3881,12 @@ $wgAPIRequestLog = false;
 $wgAPICacheHelp = true;
 
 /**
+ * Set the timeout for the API help text cache. Ignored if $wgAPICacheHelp
+ * is false.
+ */
+$wgAPICacheHelpTimeout = 60*60;
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *
