@@ -88,7 +88,7 @@ body {
 	#p-personal li {
 		margin-right: 0.75em;
 		margin-top: 0.5em;
-		font-size: 0.7em;
+		font-size: 0.75em;
 	}
 	/* Navigation Containers */
 	#left-navigation {
@@ -387,7 +387,7 @@ body {
 		padding-right: 1.75em;
 		cursor: default;
 		border: none;
-		font-size: 0.7em;
+		font-size: 0.75em;
 	}
 	#panel div.portal div.body {
 		margin: 0;
@@ -410,7 +410,7 @@ body {
 		padding-bottom: 0.5em;
 		margin: 0;
 		overflow: hidden;
-		font-size: 0.7em;
+		font-size: 0.75em;
 	}
 	#panel div.portal div.body ul li a {
 		color: #0645ad;
@@ -1042,3 +1042,5 @@ h3, h4, h5 {
 	position: relative;
 	width: 100%;
 }
+
+	
