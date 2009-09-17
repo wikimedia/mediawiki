@@ -1290,12 +1290,12 @@ class Title {
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssSubpage() 
 		#      and $this->userCanEditJsSubpage() from working
 		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
-		if( $this->isCssSubpage() && ( !$user->isAllowed('editusercssjs') || !$user->isAllowed('editusercss') )
+		if( $this->isCssSubpage() && !( $user->isAllowed('editusercssjs') || $user->isAllowed('editusercss') )
 			&& $action != 'patrol'
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
 		{
 			$errors[] = array('customcssjsprotected');
-		} else if( $this->isJsSubpage() && ( !$user->isAllowed('editusercssjs') || !$user->isAllowed('edituserjs') )
+		} else if( $this->isJsSubpage() && !( $user->isAllowed('editusercssjs') || $user->isAllowed('edituserjs') )
 			&& $action != 'patrol'
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
 		{
