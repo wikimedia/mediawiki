@@ -35,8 +35,8 @@ $namespaceNames = array(
 	NS_FILE_TALK        => 'Thảo_luận_Tập_tin',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Thảo_luận_MediaWiki',
-	NS_TEMPLATE         => 'Tiêu_bản',
-	NS_TEMPLATE_TALK    => 'Thảo_luận_Tiêu_bản',
+	NS_TEMPLATE         => 'Bản_mẫu',
+	NS_TEMPLATE_TALK    => 'Thảo_luận_Bản_mẫu',
 	NS_HELP             => 'Trợ_giúp',
 	NS_HELP_TALK        => 'Thảo_luận_Trợ_giúp',
 	NS_CATEGORY         => 'Thể_loại',
@@ -46,6 +46,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Hình' => NS_FILE,
 	'Thảo_luận_Hình' => NS_FILE_TALK,
+	'Tiêu_bản' => NS_TEMPLATE,
+	'Thảo_luận_Tiêu_bản' => NS_TEMPLATE_TALK,
 );
 
 $specialPageAliases = array(
