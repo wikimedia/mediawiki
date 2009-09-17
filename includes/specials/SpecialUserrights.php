@@ -144,7 +144,7 @@ class UserrightsPage extends SpecialPage {
 	function saveUserGroups( $username, $reason = '' ) {
 		global $wgRequest, $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
-		$user = self::fetchUser( $username );
+		$user = $this->fetchUser( $username );
 		if( $user instanceof WikiErrorMsg ) {
 			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
 			return;
@@ -250,7 +250,7 @@ class UserrightsPage extends SpecialPage {
 	function editUserGroupsForm( $username ) {
 		global $wgOut;
 
-		$user = self::fetchUser( $username );
+		$user = $this->fetchUser( $username );
 		if( $user instanceof WikiErrorMsg ) {
 			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
 			return;
@@ -272,7 +272,7 @@ class UserrightsPage extends SpecialPage {
 	 * Side effects: error output for invalid access
 	 * @return mixed User, UserRightsProxy, or WikiErrorMsg
 	 */
-	public static function fetchUser( $username ) {
+	public function fetchUser( $username ) {
 		global $wgUser, $wgUserrightsInterwikiDelimiter;
 
 		$parts = explode( $wgUserrightsInterwikiDelimiter, $username );

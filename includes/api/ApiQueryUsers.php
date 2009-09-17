@@ -172,7 +172,8 @@ if (!defined('MEDIAWIKI')) {
 		foreach($goodNames as $u) {
 			if(!isset($data[$u])) {
 				$data[$u] = array('name' => $u);
-				$iwUser = UserrightsPage::fetchUser($u);
+				$urPage = new UserrightsPage;
+				$iwUser = $urPage->fetchUser($u);
 				if($iwUser instanceof UserRightsProxy) {
 					$data[$u]['interwiki'] = '';
 					if(!is_null($params['token']))
