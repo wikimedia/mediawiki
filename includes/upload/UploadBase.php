@@ -470,13 +470,13 @@ abstract class UploadBase {
 	 * can accumulate in the temp directory.
 	 *
 	 * @param string $saveName - the destination filename
-	 * @param string $tempName - the source temporary file to save
+	 * @param string $tempSrc - the source temporary file to save
 	 * @return string - full path the stashed file, or false on failure
 	 * @access private
 	 */
-	protected function saveTempUploadedFile( $saveName, $tempName ) {
+	protected function saveTempUploadedFile( $saveName, $tempSrc ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		$status = $repo->storeTemp( $saveName, $tempName );
+		$status = $repo->storeTemp( $saveName, $tempSrc );
 		return $status;
 	}
 
