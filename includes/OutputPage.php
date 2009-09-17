@@ -1160,7 +1160,13 @@ class OutputPage {
 
 		global $wgUseAJAXCategories;
 		if ($wgUseAJAXCategories) {
-			$this->addScriptClass( 'ajaxCategories' );
+			global $wgAJAXCategoriesNamespaces;
+
+			$title = $this->getTitle();
+
+			if( empty( $wgAJAXCategoriesNamespaces ) || in_array( $title->getNamespace(), $wgAJAXCategoriesNamespaces ) ) {
+				$this->addScriptClass( 'ajaxCategories' );
+			}
 		}
 
 		if( $wgUniversalEditButton ) {
