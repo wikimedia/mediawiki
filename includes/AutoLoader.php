@@ -2,8 +2,6 @@
 
 /* This defines autoloading handler for whole MediaWiki framework */
 
-ini_set('unserialize_callback_func', '__autoload' );
-
 # Locations of core classes
 # Extension classes are specified with $wgAutoloadClasses
 # This array is a global instead of a static member of AutoLoader to work around a bug in APC
@@ -687,4 +685,6 @@ if ( function_exists( 'spl_autoload_register' ) ) {
 	function __autoload( $class ) {
 		AutoLoader::autoload( $class );
 	}
+
+	ini_set( 'unserialize_callback_func', '__autoload' );
 }
