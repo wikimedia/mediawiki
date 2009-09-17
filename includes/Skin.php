@@ -895,11 +895,17 @@ END;
 	}
 
 	function getCategories() {
-		$catlinks=$this->getCategoryLinks();
+		$catlinks = $this->getCategoryLinks();
 
 		$classes = 'catlinks';
+		
+		// Check what we're showing
+		global $wgOut, $wgUser;
+		$allCats = $wgOut->getCategoryLinks();
+		$showHidden = $wgUser->getBoolOption( 'showhiddencats' ) ||
+						$this->mTitle->getNamespace() == NS_CATEGORY;
 
-		if( strpos( $catlinks, '<div id="mw-normal-catlinks">' ) === false ) {
+		if( empty($allCats['normal']) && !( !empty($allCats['hidden']) && $showHidden ) ) {
 			$classes .= ' catlinks-allhidden';
 		}
 
