@@ -338,7 +338,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'noexactmatch'     => "'''Dïhte gååvnese ijje bielie meatan nommej \"\$1\".''' Dov dorje [[:\$1|skaepede dïhte bielie]].",
 'prevn'            => 'övtebe {{PLURAL:$1|$1}}',
 'nextn'            => 'minngeben {{PLURAL:$1|$1}}',
-'viewprevnext'     => 'Vuesehth ($1) ($2) ($3)',
+'viewprevnext'     => 'Vuesehth ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'   => 'Help:Sisvege',
 'powersearch'      => 'Ohtsedh',
 

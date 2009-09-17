@@ -736,7 +736,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'notextmatches'                    => 'ጽሕፈት የሚስማማባቸው ገጾች የሉም',
 'prevn'                            => 'ፊተኛ {{PLURAL:$1|$1}}',
 'nextn'                            => 'ቀጥሎ {{PLURAL:$1|$1}}',
-'viewprevnext'                     => 'በቁጥር ለማየት፡ ($1) ($2) ($3).',
+'viewprevnext'                     => 'በቁጥር ለማየት፡ ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'የፍለጋ ምርጫዎች',
 'searchmenu-exists'                => "'''\"[[:\$1]]\" የሚባል መጣጥፍ በዚሁ ዊኪ ላይ አለ።'''",
 'searchmenu-new'                   => "'''\"[[:\$1]]\" የሚባል መጣጥፍ ይፈጠር?'''",

@@ -278,7 +278,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # Search results
 'prevn'                    => '{{PLURAL:$1|letscht|letscht $1}}',
 'nextn'                    => 'neegschte {{PLURAL:$1|$1}}',
-'viewprevnext'             => 'Zeige ($1) ($2) ($3)',
+'viewprevnext'             => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'           => 'Help:Hilf',
 'search-result-size'       => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
 'search-redirect'          => '(Weiterleitung vun „$1“)',

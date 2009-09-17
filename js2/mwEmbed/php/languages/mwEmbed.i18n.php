@@ -685,6 +685,14 @@ $messages['bs'] = array(
 	'mwe-select_file' => 'Odaberite datoteku',
 );
 
+/** Welsh (Cymraeg)
+ * @author Lloffiwr
+ */
+$messages['cy'] = array(
+	'mwe-loading_txt' => "wrthi'n llwytho <blink>...</blink>",
+	'mwe-loading_title' => "Wrthi'n llwytho...",
+);
+
 /** German (Deutsch)
  * @author Jan Luca
  * @author Lukas9950
@@ -2119,9 +2127,33 @@ $messages['hsb'] = array(
  * @author Glanthor Reviol
  */
 $messages['hu'] = array(
+	'mwe-crop' => 'Kép vágása',
+	'mwe-apply_crop' => 'Vágás alkalmazása a képre',
+	'mwe-reset_crop' => 'Vágás alaphelyzetbe állítása',
+	'mwe-preview_insert' => 'Beillesztés előnézete',
+	'mwe-auto_scroll' => 'automatikus görgetés',
+	'mwe-close' => 'bezárás',
+	'mwe-menu_cliplib' => 'Média hozzáadása',
+	'mwe-edit_clip' => 'Klip szerkesztése',
+	'mwe-rmclip' => 'Klip eltávolítása',
+	'mwe-editor_mode' => 'Szerkesztői mód',
+	'mwe-simple_editor_desc' => 'egyszerű szerkesztő (iMovie stílusban)',
+	'mwe-advanced_editor_desc' => 'haladó szerkesztő (Final Cut stílusban)',
+	'fogg-select_file' => 'Fájl kiválasztása',
+	'fogg-select_new_file' => 'Új fájl kiválasztása',
+	'fogg-select_url' => 'URL kiválasztása',
+	'fogg-save_local_file' => 'Ogg mentése',
+	'fogg-installed' => 'Firefogg telepítve',
+	'fogg-cg-quality' => 'Alapszintű minőségi és felbontási beállítások',
+	'fogg-cg-meta' => 'Klip metaadatai',
+	'rsd_results_desc' => 'Eredmények',
+	'rsd_results_next' => 'következő',
+	'rsd_results_prev' => 'előző',
 	'mwe-upload_tab' => 'Feltöltés',
+	'rsd_layout' => 'Elrendezés:',
 	'mwe-upload' => 'Fájl feltöltése',
 	'mwe-summary' => 'Összefoglaló',
+	'mwe-close_btn' => 'Bezárás',
 );
 
 /** Interlingua (Interlingua)

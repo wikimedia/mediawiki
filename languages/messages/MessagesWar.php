@@ -329,7 +329,7 @@ MySQL nagbalik hin sayop nga "$3: $4".',
 # Search results
 'prevn'          => 'naha-una nga $1',
 'nextn'          => 'sunod nga {{PLURAL:$1|$1}}',
-'viewprevnext'   => 'Kitaa an ($1) ($2) ($3)',
+'viewprevnext'   => 'Kitaa an ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:Sulod',
 'powersearch'    => 'Bilnga',
 

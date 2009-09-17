@@ -226,7 +226,7 @@ $messages = array(
 'diff-del'     => "'''Ñamümün'''",
 
 # Search results
-'viewprevnext'                   => 'Pen ($1) ($2) ($3).',
+'viewprevnext'                   => 'Pen ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists'              => "'''Ngey kiñe pakina pingey «[[$1]]» tüfachi wiki mew'''",
 'searchmenu-new'                 => "'''¡Llitun pakina «[[:$1]]» tüfachi wiki mew!'''",
 'searchhelp-url'                 => 'Help:Kellu',

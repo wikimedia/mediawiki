@@ -1067,6 +1067,7 @@ Sinulla ei ole oikeutta siihen.',
 'revdelete-otherreason'       => 'Muu syy tai tarkennus',
 'revdelete-reasonotherlist'   => 'Muu syy',
 'revdelete-edit-reasonlist'   => 'Muokkaa poistosyitä',
+'revdelete-offender'          => 'Version tekijä',
 
 # Suppression log
 'suppressionlog'     => 'Häivytysloki',
@@ -1186,7 +1187,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'shown-title'                      => 'Näytä $1 {{PLURAL:$1|osuma|osumaa}} sivulla',
 'viewprevnext'                     => 'Näytä [$3] kerralla.
 
-$1 | $2',
+$1 {{int:pipe-separator}} $2',
 'searchmenu-legend'                => 'Hakuasetukset',
 'searchmenu-exists'                => "'''Sivu [[:$1]] löytyy tästä wikistä.'''",
 'searchmenu-new'                   => "'''Luo sivu ''[[:$1]]'' tähän wikiin.'''",
@@ -3250,13 +3251,18 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'htmlform-selectorother-other' => 'Muu',
 
 # Add categories per AJAX
-'ajax-add-category'          => 'Lisää luokka',
-'ajax-add-category-submit'   => 'Lisää',
-'ajax-confirm-save'          => 'Tallenna',
-'ajax-confirm-actionsummary' => 'Suoritettava toiminto:',
-'ajax-error-title'           => 'Virhe',
-'ajax-error-dismiss'         => 'OK',
-'ajax-remove-category-error' => 'Luokan poistaminen ei onnistunut.
-Yleensä näin käy tapauksissa, joissa luokka on lisätty sivulle mallineessa.',
+'ajax-add-category'            => 'Lisää luokka',
+'ajax-add-category-submit'     => 'Lisää',
+'ajax-confirm-title'           => 'Vahvista toiminto',
+'ajax-confirm-prompt'          => 'Voit kirjoittaa alle muokkausyhteenvedon.
+Napsauta ”Tallenna” tallentaaksesi muokkauksesi.',
+'ajax-confirm-save'            => 'Tallenna',
+'ajax-add-category-summary'    => 'Lisää luokka ”$1”',
+'ajax-remove-category-summary' => 'Poista luokka ”$1”',
+'ajax-confirm-actionsummary'   => 'Suoritettava toiminto:',
+'ajax-error-title'             => 'Virhe',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Luokan poistaminen ei onnistunut.
+Yleensä näin käy, kun luokka on lisätty sivulle mallineessa.',
 
 );

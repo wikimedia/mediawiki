@@ -593,7 +593,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'noexactmatch-nocreate'            => "'''Ahmo ia \"\$1\" zāzanilli.'''",
 'prevn'                            => '{{PLURAL:$1|$1}} achtopa',
 'nextn'                            => 'niman {{PLURAL:$1|$1}}',
-'viewprevnext'                     => 'Xiquintta ($1) ($2) ($3).',
+'viewprevnext'                     => 'Xiquintta ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists'                => "'''Ye ia zāzanilli ītōca \"[[\$1]]\" inīn huiquipan'''",
 'searchmenu-new'                   => "'''Tihuelīti ticchīhuāz zāzanilli ītōca \"[[:\$1]]\" inīn huiquipan'''",
 'searchhelp-url'                   => 'Help:Tlapiyaliztli',

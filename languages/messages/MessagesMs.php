@@ -622,7 +622,8 @@ alamat e-mel anda di {{SITENAME}} ($4) dengan nama "$2" dan kata laluan "$3".
 Anda boleh log masuk dan tukar kata laluan anda sekarang.
 
 Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
-'login-throttled'            => 'Anda memasukkan kata laluan yang salah berulang kali. Sila tunggu sebentar dan cuba lagi.',
+'login-throttled'            => 'Anda telah mencuba log masuk berulang kali.
+Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 
 # Password reset dialog
@@ -731,7 +732,11 @@ Untuk mencipta laman ini, sila taip dalam kotak di bawah
 Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pelayar anda.",
 'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk. Kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna. Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujui kepada anda, sila [[Special:UserLogin|buka akaun baru atau log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
 'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} menggelintar log-log yang berkaitan], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
+'noarticletext-nopermission'       => 'Tiada teks dalam laman ini ketika ini.
+Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
+atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} menggelintar log yang berkaitan]</span>.',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
+'userpage-userdoesnotexist-view'   => 'Akaun pengguna "$1" tidak berdaftar.',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
 '''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
 '''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''.
@@ -927,7 +932,7 @@ Sila sahkan bahawa anda hendak lakukan ini dan memahami akibatnya, dan anda mema
 'revdelete-suppress'          => 'Sekat data daripada semua pengguna, termasuk penyelia',
 'revdelete-hide-image'        => 'Sembunyikan kandungan fail',
 'revdelete-unsuppress'        => 'Buang batasan pada semakan yang dipulihkan',
-'revdelete-log'               => 'Komen log:',
+'revdelete-log'               => 'Sebab penghapusan:',
 'revdelete-submit'            => 'Kenakan ke atas versi yang dipilih',
 'revdelete-logentry'          => 'menukar kebolehnampakan semakan [[$1]]',
 'logdelete-logentry'          => 'menukar kebolehnampakan peristiwa bagi [[$1]]',
@@ -1067,7 +1072,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'prevn-title'                      => '$1 hasil sebelumnya',
 'nextn-title'                      => '$1 hasil berikutnya',
 'shown-title'                      => 'Papar $1 hasil setiap laman',
-'viewprevnext'                     => 'Lihat ($1) ($2) ($3)',
+'viewprevnext'                     => 'Lihat ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Pilihan gelintar',
 'searchmenu-exists'                => "* Laman '''[[$1]]'''",
 'searchmenu-new'                   => "'''Cipta laman \"[[:\$1]]\" di wiki ini!'''",
@@ -1374,6 +1379,13 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'recentchanges-legend'              => 'Pilihan perubahan terkini',
 'recentchangestext'                 => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
+'recentchanges-label-legend'        => 'Legenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - laman baru',
+'recentchanges-label-newpage'       => 'Suntingan ini mencipta laman baru',
+'recentchanges-legend-minor'        => '$1 - suntingan kecil',
+'recentchanges-label-minor'         => 'Ini ialah suntingan kecil',
+'recentchanges-legend-bot'          => '$1 - suntingan bot',
+'recentchanges-label-bot'           => 'Suntingan ini dilakukan oleh bot',
 'rcnote'                            => "Yang berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $5, $4.",
 'rcnotefrom'                        => 'Yang berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom'                        => 'Papar perubahan sejak $1',
@@ -2880,6 +2892,7 @@ Ruangan lain akan disembunyikan.
 'watchlistall2'    => 'semua',
 'namespacesall'    => 'semua',
 'monthsall'        => 'semua',
+'limitall'         => 'semua',
 
 # E-mail address confirmation
 'confirmemail'             => 'Sahkan alamat e-mel',
@@ -3099,7 +3112,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'tag-filter-submit'       => 'Tapis',
 'tags-title'              => 'Label',
 'tags-intro'              => 'Yang berikut ialah senarai label yang digunakan untuk menanda suntingan, berserta maknanya.',
-'tags-tag'                => 'Nama label dalaman',
+'tags-tag'                => 'Nama label',
 'tags-display-header'     => 'Rupa dalam senarai perubahan',
 'tags-description-header' => 'Keterangan makna',
 'tags-hitcount-header'    => 'Perubahan',

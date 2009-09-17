@@ -1087,7 +1087,7 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'prevn-title'                      => '{{PLURAL:$1|Prethodni $1 rezultat|Prethodnih $1 rezultata}}',
 'nextn-title'                      => '{{PLURAL:$1|Sledeći $1 rezultat|Sledećih $1 rezultata}}',
 'shown-title'                      => 'Prikaži $1 {{PLURAL:$1|rezultat|rezultata}} po strani',
-'viewprevnext'                     => 'Pogledaj ($1) ($2) ($3).',
+'viewprevnext'                     => 'Pogledaj ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opcije pretrage',
 'searchmenu-exists'                => "'''Već postoji članak pod imenom \"[[:\$1]]\" na ovom Vikiju'''",
 'searchmenu-new'                   => "'''Napravi članak \"[[:\$1]]\" na ovom Vikiju!'''",

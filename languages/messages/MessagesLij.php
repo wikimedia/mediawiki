@@ -537,7 +537,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'noexactmatch'          => "'''No gh'è nisciûnn-a paggina c'a se ciamme \"\$1\".''' O se pêu [[:\$1|creâla òua]].",
 'prevn'                 => 'Preçedenti {{PLURAL:$1|$1}}',
 'nextn'                 => 'Proscima {{PLURAL:$1|$1}}',
-'viewprevnext'          => 'Veddi ($1) ($2) ($3).',
+'viewprevnext'          => 'Veddi ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:Contegnûi',
 'powersearch'           => 'Çerca',
 

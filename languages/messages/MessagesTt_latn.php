@@ -342,7 +342,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'notextmatches'  => 'Kileşkän bit mätene yuq',
 'prevn'          => 'uzğan {{PLURAL:$1|$1}}',
 'nextn'          => 'kiläse {{PLURAL:$1|$1}}',
-'viewprevnext'   => 'Körsetesi: ($1) ($2) ($3)',
+'viewprevnext'   => 'Körsetesi: ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:Eçtälek',
 'powersearch'    => 'Ezläw',
 

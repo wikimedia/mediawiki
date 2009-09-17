@@ -465,7 +465,7 @@ $messages = array(
 তি [[:\$1|পাতা এহান হঙকরে পারর]]।",
 'prevn'          => 'পিসেদে {{PLURAL:$1|$1}}',
 'nextn'          => 'থাংনাত {{PLURAL:$1|$1}}',
-'viewprevnext'   => 'চা ($1) ($2) ($3)',
+'viewprevnext'   => 'চা ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:পাংলাক',
 'powersearch'    => 'এডভান্স বিসারানি',
 

@@ -919,7 +919,7 @@ Tö voit [[:\$1|säta mugoi lehtpol']].",
 'prevn-title'                      => "$1 {{PLURAL:$1|edeline rezul'tat|edelišt rezul'tatad}}",
 'nextn-title'                      => "$1 {{PLURAL:$1|jäl'ghine rezul'tat|jäl'ghišt rezul'tatad}}",
 'shown-title'                      => "Ozutada $1 {{PLURAL:$1|rezul'tat|rezul'tatad}} lehtpoleks",
-'viewprevnext'                     => 'Kacta ($1) ($2) ($3)',
+'viewprevnext'                     => 'Kacta ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Ecindan järgendused',
 'searchmenu-exists'                => "'''Neciš Wikiš om jo lehtpol' ningoižen nimenke: \"[[:\$1]]\"'''",
 'searchmenu-new'                   => "'''Säta lehtpol' \"[[:\$1]]\" neciš Wikiš!'''",
@@ -1690,7 +1690,7 @@ Tö voinuiži mugažo znamoita völ kerdan lehtpoled kaclemižeks teiden kaclend
 Miše toižetada teiden kaclendnimikirjutesen järgendused, mängat tänna:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Tugedand da abu:
+Pid\'oitelend da abu:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2349,7 +2349,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-artist'                    => 'Tegii',
 'exif-copyright'                 => 'Avtoranoiktusen pidai',
 'exif-exifversion'               => 'Exif-versii',
-'exif-flashpixversion'           => 'Tugetud Flashpix-versii',
+'exif-flashpixversion'           => "Pid'oiteldud Flashpix-versii",
 'exif-colorspace'                => 'Mujuavaruz',
 'exif-componentsconfiguration'   => 'Mujukomponentoiden konfiguracii',
 'exif-compressedbitsperpixel'    => "Mujun süvuz ahtištusen jäl'ghe",

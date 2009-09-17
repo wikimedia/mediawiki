@@ -313,7 +313,7 @@ $messages = array(
 ཁྱོད་ཀྱིས་ [[:\$1|ཤོག་ལེབ་འདི་ གསརཔ་བཟོ་ཚུགས།]]",
 'prevn'          => 'ཧེ་མའི་ {{PLURAL:$1|$1}}',
 'nextn'          => 'ཤུལ་མའི་ {{PLURAL:$1|$1}}',
-'viewprevnext'   => '($1) ($2) ($3) སྟོན།',
+'viewprevnext'   => '($1 {{int:pipe-separator}} $2) ($3) སྟོན།',
 'searchhelp-url' => 'Help:ནང་དོན།',
 'powersearch'    => 'མཐོ་རིམ་ཅན་གྱི་འཚོལ་ཞིབ།',
 

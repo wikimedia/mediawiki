@@ -591,7 +591,7 @@ MySQL tat problema ta\' "<tt>$3: $4</tt>".',
 L-aħħar attentat ta\' rikjesta tad-databażi kienet:
 "$1"
 mill-funzjoni "$2".
-MySQL tat problema ta\' "$3: $4"',
+Id-databażi tat il-problema segwenti "$3: $4"',
 'laggedslavemode'      => "Twissija: Il-Paġna jista' ma jkollhiex l-affarijiet aġġornati.",
 'readonly'             => 'Database magħluq',
 'enterlockreason'      => "Daħħal raġuni għala qiegħed tagħlqu, inkludi l-istima ta' meta l-għeluq se tieħu effett",
@@ -697,8 +697,7 @@ Agħmel żġur li ktibta sew.',
 Jekk jogħġbok, erġa' pprova.",
 'wrongpasswordempty'         => "Ma ddaħlet l-ebda password. 
 Jekk jogħġbok, erġa' pprova.",
-'passwordtooshort'           => 'Il-password tiegħek hija invalida jew qasira wisq.
-Trid tkun mill-inqas {{PLURAL:$1|karattru|$1 karattri}} twila u differenti mill-isem tal-utent.',
+'passwordtooshort'           => 'Il-password trid tkun mill-inqas {{PLURAL:$1|karattru|$1 karattri}} twila u differenti mill-isem tal-utent.',
 'password-name-match'        => 'Il-password trid tkun differenti mill-isem tal-utent tiegħek.',
 'mailmypassword'             => 'Ibgħatli password ġdida',
 'passwordremindertitle'      => 'Password temporanju ġdid għal {{SITENAME}}',
@@ -732,7 +731,7 @@ Huwa opportun li tidħol issa u tbiddel il-password tiegħek mill-ewwel.
 
 Jekk trid tista\' ma tagħtix każ dan il-messaġġ, jekk dan il-kont ġie maħluq bi żball.',
 'login-throttled'            => "Saru ħafna tentattivi riċenti fuq il-password ta' dan il-kont.
-Jekk jogħġbok stenna qabel ma terġa' tipporva.",
+Jekk jogħġbok stenna qabel ma terġa' tipprova.",
 'loginlanguagelabel'         => 'Lingwa: $1',
 
 # Password reset dialog
@@ -1119,7 +1118,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'notextmatches'                    => "L-ebda test ta' paġna ma jaqbel",
 'prevn'                            => "{{PLURAL:$1|$1}} ta' qabel",
 'nextn'                            => '{{PLURAL:$1|$1}} li jmiss',
-'viewprevnext'                     => 'Ara ($1) ($2) ($3)',
+'viewprevnext'                     => 'Ara ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Hemm paġna bl-isem ta' \"[[:\$1]]\" fuq din il-wiki'''",
 'searchmenu-new'                   => "'''Oħloq il-paġna \"[[:\$1]]\" fuq din il-wiki!'''",
 'searchhelp-url'                   => 'Help:Kontenut',
@@ -1396,8 +1395,15 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchanges-legend'              => 'Opzjonijiet tat-tibdil riċenti',
 'recentchangestext'                 => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
 'recentchanges-feed-description'    => "Dan il-feed jirraporta l-modifiki l-aktar riċenti fil-kontenut ta' dan is-sit.",
+'recentchanges-label-legend'        => 'Leġġenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - paġna ġdida',
 'recentchanges-label-newpage'       => 'Din il-modifika ħolqot paġna ġdida',
+'recentchanges-legend-minor'        => '$1 - modifika minuri',
 'recentchanges-label-minor'         => 'Din hi modifika minuri',
+'recentchanges-legend-bot'          => "$1 - modifika ta' bot",
+'recentchanges-label-bot'           => 'Din il-modifika ġiet effettwata minn bot',
+'recentchanges-legend-unpatrolled'  => '$1 - modifika mhux verifikata',
+'recentchanges-label-unpatrolled'   => 'Din il-modifika għadha ma ġietx verifikata',
 'rcnote'                            => "Hawn taħt {{PLURAL:$1|tinsab l-aktar modifika riċenti|jinsabu l-'''$1''' modifiki riċenti}} għas-sit fl-aħħar {{PLURAL:$2|24 siegħa|'''$2''' ġranet}}, id-dati ġew aġġornati fil-$5 ta' $4.",
 'rcnotefrom'                        => "Ħawn taħt jinsabu l-modifiki minn '''$2''' (sa '''$1''').",
 'rclistfrom'                        => 'Uri l-modifiki ġodda jibdew minn $1',
@@ -1751,7 +1757,7 @@ Kull filliera għandha ħolqa għall-ewwel u t-tieni riindirizz, kif ukoll fejn 
 # Special:Log
 'specialloguserlabel'  => 'Utent:',
 'speciallogtitlelabel' => 'Titlu:',
-'log'                  => 'Logs',
+'log'                  => 'Reġistri',
 'all-logs-page'        => 'Ir-reġistri pubbliċi kollha',
 'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri kollha ta' {{SITENAME}}.<br />
 Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' log, l-isem tal-utent, jew il-paġna affetwata (it-tnejn tal-aħħar huma sensittivi għal kif jinkitbu l-karattri).",

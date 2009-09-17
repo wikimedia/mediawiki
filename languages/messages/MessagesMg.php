@@ -911,7 +911,7 @@ Hijery ny [[Special:IPBlockList|lisitra ny adiresy IP sy mpikambana voasakana]] 
 'prevn-title'                      => 'Valim-pikarohana taloha $1',
 'nextn-title'                      => 'Valim-pikarohana manaraka $1',
 'shown-title'                      => 'Aseho valiny $1 isaky ny pejy iray',
-'viewprevnext'                     => 'Hijery ($1) ($2) ($3).',
+'viewprevnext'                     => 'Hijery ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Safidy mikasika ny fitadiavana',
 'searchhelp-url'                   => 'Help:Fanoroana',
 'searchprofile-articles'           => 'Pejy misy votoatiny',

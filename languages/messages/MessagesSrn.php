@@ -666,7 +666,7 @@ Yu kan [[:\$1|meki a papira disi]].",
 'noexactmatch-nocreate' => "'''Da ben no papira nanga a nen \"\$1\".'''",
 'prevn'                 => '{{PLURAL:$1|$1}} di psa',
 'nextn'                 => '{{PLURAL:$1|$1}} trawan',
-'viewprevnext'          => 'Luku ($1) ($2) ($3).',
+'viewprevnext'          => 'Luku ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:San de',
 'powersearch'           => 'Suku moro dipi',
 

@@ -602,7 +602,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'notextmatches'                  => 'Nissune corispondence tal test des pagjinis',
 'prevn'                          => 'precedents {{PLURAL:$1|$1}}',
 'nextn'                          => 'prossims {{PLURAL:$1|$1}}',
-'viewprevnext'                   => 'Cjale ($1) ($2) ($3).',
+'viewprevnext'                   => 'Cjale ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'              => 'Opzions de ricercje',
 'searchmenu-exists'              => "'''E je une pagjine di non \"[[:\$1]]\" su cheste wiki'''",
 'searchmenu-new'                 => "'''Cree la pagjine \"[[:\$1]]\" su cheste wiki!'''",

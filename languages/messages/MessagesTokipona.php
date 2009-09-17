@@ -112,7 +112,7 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 # Search results
 'prevn'        => 'nanpa {{PLURAL:$1|$1}} pini',
 'nextn'        => 'nanpa {{PLURAL:$1|$1}} kama',
-'viewprevnext' => 'o lukin e ($1) ($2) ($3).',
+'viewprevnext' => 'o lukin e ($1 {{int:pipe-separator}} $2) ($3).',
 
 # Preferences page
 'preferences' => 'seme li pona tawa mi',

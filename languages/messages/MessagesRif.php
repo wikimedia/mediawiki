@@ -302,7 +302,7 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 tzemred ad [[:\$1|tarnid cek]].",
 'prevn'        => 'zzat {{PLURAL:$1|$1}}',
 'nextn'        => 'deffar {{PLURAL:$1|$1}}',
-'viewprevnext' => 'Ẓar ($1) ($2) ($3)',
+'viewprevnext' => 'Ẓar ($1 {{int:pipe-separator}} $2) ($3)',
 'searchall'    => 'maṛṛa',
 'powersearch'  => 'Tarezzut cwa-cway',
 

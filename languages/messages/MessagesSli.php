@@ -627,7 +627,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'notextmatches'                  => 'Kenne Iebereinstimmunga miet Inhalta',
 'prevn'                          => 'vurherige {{PLURAL:$1|$1}}',
 'nextn'                          => 'nächste {{PLURAL:$1|$1}}',
-'viewprevnext'                   => 'Zeige ($1) ($2) ($3)',
+'viewprevnext'                   => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'              => 'Suchoptiona',
 'searchprofile-project'          => 'Helfe on Projektseyta',
 'searchprofile-images'           => 'Multimedia',

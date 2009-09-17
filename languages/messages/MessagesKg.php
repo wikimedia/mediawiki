@@ -103,7 +103,7 @@ $messages = array(
 # Search results
 'prevn'        => 'biyita {{PLURAL:$1|$1}}',
 'nextn'        => 'bilandi {{PLURAL:$1|$1}}',
-'viewprevnext' => 'Mona ($1) ($2) ($3).',
+'viewprevnext' => 'Mona ($1 {{int:pipe-separator}} $2) ($3).',
 'powersearch'  => 'Sosa',
 
 # Preferences page

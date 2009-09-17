@@ -616,7 +616,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'notextmatches'            => 'Məqalələrdə uyğun məzmun tapılmadı',
 'prevn'                    => 'əvvəlki {{PLURAL:$1|$1}}',
 'nextn'                    => 'sonrakı {{PLURAL:$1|$1}}',
-'viewprevnext'             => 'Göstər ($1) ($2) ($3).',
+'viewprevnext'             => 'Göstər ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists'        => "'''Bu vikidə \"[[:\$1]]\" adında səhifə mövcutdur'''",
 'searchhelp-url'           => 'Help:Mündəricət',
 'search-result-size'       => '$1 ({{PLURAL:$2|1 söz|$2 sözlər}})',

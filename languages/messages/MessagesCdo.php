@@ -359,7 +359,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'noexactmatch'          => "'''Tō̤ mâ̤ diŏh dū-dū siŏh-iông gì miàng \"\$1\".''' Nṳ̄ â̤-sāi [[:\$1|cê-gă siā]].",
 'prevn'                 => 'sèng {{PLURAL:$1|$1}} hâung',
 'nextn'                 => 'â {{PLURAL:$1|$1}} hâung',
-'viewprevnext'          => 'Káng ($1) ($2) ($3).',
+'viewprevnext'          => 'Káng ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:Mŭk-liŏh',
 'showingresults'        => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$1|'''1'''|'''$1'''}} bĭk giék-guō.",
 'showingresultsnum'     => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$3|'''1'''|'''$3'''}} bĭk giék-guō.",

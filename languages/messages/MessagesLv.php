@@ -714,7 +714,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'notextmatches'                    => 'Neviena rezultāta, meklējot lapas tekstā',
 'prevn'                            => 'iepriekšējās {{PLURAL:$1|$1}}',
 'nextn'                            => 'nākamās {{PLURAL:$1|$1}}',
-'viewprevnext'                     => 'Skatīt ($1) ($2) ($3 vienā lapā).',
+'viewprevnext'                     => 'Skatīt ($1 {{int:pipe-separator}} $2) ($3 vienā lapā).',
 'searchmenu-exists'                => "'''Šajā projektā ir raksts ar nosaukumu \"[[:\$1]]\"'''",
 'searchmenu-new'                   => "'''Izveido rakstu \"[[:\$1]]\" šajā projektā!'''",
 'searchhelp-url'                   => 'Help:Saturs',
@@ -935,6 +935,13 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'recentchanges'                     => 'Pēdējās izmaiņas',
 'recentchanges-legend'              => 'Pēdējo izmaiņu opcijas',
 'recentchangestext'                 => 'Šajā lapā ir šitajā viki izdarītās pēdējās izmaiņas.',
+'recentchanges-label-legend'        => 'Leģenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - jauna lapa',
+'recentchanges-label-newpage'       => 'Šī izmaiņa radīja jaunu lapu',
+'recentchanges-legend-minor'        => '$1 - maznozīmīga izmaiņa',
+'recentchanges-label-minor'         => 'Šī ir maznozīmīga izmaiņa',
+'recentchanges-legend-bot'          => '$1 - bota izmaiņa',
+'recentchanges-label-bot'           => 'Šo izmaiņu veica bots',
 'rcnote'                            => 'Šobrīd ir {{PLURAL:$1|redzama pēdējā <strong>$1</strong> izmaiņa, kas izdarīta|redzamas pēdējās <strong>$1</strong> izmaiņas, kas izdarītas}} {{PLURAL:$2|pēdējā|pēdējās}} <strong>$2</strong> {{PLURAL:$2|dienā|dienās}} (līdz $4, $5).',
 'rcnotefrom'                        => "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 'rclistfrom'                        => 'Parādīt jaunas izmaiņas kopš $1',
@@ -1053,7 +1060,7 @@ Te var apskatīties dzēšanas reģistru, lai noskaidrotu kāpēc šo failu tore
 Lūdzu izvēlies aprakstošāku vārdu šim failam.",
 
 'license'        => 'Licence:',
-'license-header' => 'Licence:',
+'license-header' => 'Licence',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Šajā lapā ir redzami visi augšuplādētie faili.
