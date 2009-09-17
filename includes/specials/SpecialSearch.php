@@ -261,6 +261,8 @@ class SpecialSearch {
 
 		// prev/next links
 		if( $num || $this->offset ) {
+			// Show the create link ahead
+			$this->showCreateLink( $t );
 			$prevnext = wfViewPrevNext( $this->offset, $this->limit,
 				SpecialPage::getTitleFor( 'Search' ),
 				wfArrayToCGI( $this->powerSearchOptions(), array( 'search' => $term ) ),
@@ -301,8 +303,22 @@ class SpecialSearch {
 		}
 		if( $num === 0 ) {
 			$wgOut->addWikiMsg( 'search-nonefound', wfEscapeWikiText( $term ) );
+			$this->showCreateLink( $t );
+		}
+		$wgOut->addHtml( "</div>" );
+		if( $num === 0 ) {
+			$wgOut->addHTML( $this->searchFocus() );
 		}
 
+		if( $num || $this->offset ) {
+			$wgOut->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
+		}
+		wfProfileOut( __METHOD__ );
+	}
+	
+	protected function showCreateLink( $t ) {
+		global $wgOut;
+		
 		// show direct page/create link
 		if( !is_null($t) ) {
 			if( !$t->exists() ) {
@@ -314,15 +330,6 @@ class SpecialSearch {
 			// preserve the paragraph for margins etc...
 			$wgOut->addHTML('<p></p>');
 		}
-		$wgOut->addHtml( "</div>" );
-		if( $num === 0 ) {
-			$wgOut->addHTML( $this->searchFocus() );
-		}
-
-		if( $num || $this->offset ) {
-			$wgOut->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
-		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
