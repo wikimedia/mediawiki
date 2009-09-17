@@ -388,6 +388,8 @@ abstract class FileRepo {
 	 */
 	abstract function storeTemp( $originalName, $srcPath );
 
+	abstract function append( $srcPath, $toAppendPath );
+	
 	/**
 	 * Remove a temporary file or mark it for garbage collection
 	 * @param string $virtualUrl The virtual URL returned by storeTemp
