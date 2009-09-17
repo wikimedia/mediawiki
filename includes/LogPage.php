@@ -219,12 +219,17 @@ class LogPage {
 							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
 					// Page protections
 					} else if ( $type == 'protect' && count($params) == 3 ) {
+						// Restrictions and expiries
+						if( $skin ) {
+							$details .= htmlspecialchars( " {$params[1]}" );
+						} else {
+							$details .= " {$params[1]}";
+						}
+						// Cascading flag...
 						if( $params[2] ) {
 							if ( $skin ) {
-								$details .= htmlspecialchars( " {$params[1]}" ); // restrictions and expiries
 								$details .= ' ['.wfMsg('protect-summary-cascade').']';
 							} else {
-								$details .= " {$params[1]}";
 								$details .= ' ['.wfMsgForContent('protect-summary-cascade').']';
 							}
 						}
