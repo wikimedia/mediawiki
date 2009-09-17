@@ -199,7 +199,7 @@ class OutputPage {
 	 */
 	function addScriptClass( $js_class ){
 		global $wgDebugJavaScript, $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses,
-				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath;
+				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath, $wgEnableJS2system;
 
 		$path = jsScriptLoader::getJsPathFromClass( $js_class );
 		if( $path !== false ){
@@ -214,10 +214,12 @@ class OutputPage {
 				$urlAppend = ( $wgDebugJavaScript ) ? time() : $this->getURIDparam( $js_class );
 				$this->addScript( Html::linkedScript( "$path?$urlAppend" ) );
 
-				//merge in language text:
-				$inlineMsg = jsScriptLoader::getLocalizedMsgsFromClass( $js_class );
-				if( $inlineMsg != '' )
-					$this->addScript( Html::inlineScript( $inlineMsg ));
+				//merge in language text (if js2 is on and we have loadGM function)
+				if( $wgEnableJS2system == true ){
+					$inlineMsg = jsScriptLoader::getLocalizedMsgsFromClass( $js_class );
+					if( $inlineMsg != '' )
+						$this->addScript( Html::inlineScript( $inlineMsg ));
+				}
 			}
 			return true;
 		}
@@ -1158,8 +1160,8 @@ class OutputPage {
 			$this->addScriptFile( 'rightclickedit.js' );
 		}
 
-		global $wgUseAJAXCategories;
-		if ($wgUseAJAXCategories) {
+		global $wgUseAJAXCategories, $wgEnableJS2system;
+		if ($wgUseAJAXCategories && $wgEnableJS2system) {
 			global $wgAJAXCategoriesNamespaces;
 
 			$title = $this->getTitle();
