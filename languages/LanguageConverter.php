@@ -46,7 +46,7 @@ class LanguageConverter {
 	 * @param array $manualLevel limit for supported variants
 	 * @public
 	 */
-	function __construct($langobj, $maincode,
+	function __construct( $langobj, $maincode,
 								$variants=array(),
 								$variantfallbacks=array(),
 								$markup=array(),
@@ -54,7 +54,13 @@ class LanguageConverter {
 								$manualLevel = array() ) {
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
-		$this->mVariants = $variants;
+
+		global $wgDisabledVariants;
+		$this->mVariants = array();
+		foreach( $variants as $variant ) {
+			if( !in_array( $variant, $wgDisabledVariants ) )
+				$this->mVariants[] = $variant;
+		}
 		$this->mVariantFallbacks = $variantfallbacks;
 		global $wgLanguageNames;
 		$this->mVariantNames = $wgLanguageNames;
