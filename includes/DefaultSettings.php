@@ -987,13 +987,13 @@ $wgDefaultLanguageVariant = false;
 
 /** Disabled variants array of language variant conversion.
  *  example:
- *  $wgDisabledVariant[] = 'zh-mo';
- *  $wgDisabledVariant[] = 'zh-my';
+ *  $wgDisabledVariants[] = 'zh-mo';
+ *  $wgDisabledVariants[] = 'zh-my';
  *
  *  or:
- *  $wgDisabledVariant = array('zh-mo', 'zh-my');
+ *  $wgDisabledVariants = array('zh-mo', 'zh-my');
  */
-$wgDisabledVariant = array();
+$wgDisabledVariants = array();
 
 /**
  * Show a bar of language selection links in the user login and user
