@@ -156,7 +156,7 @@ class UsercreateTemplate extends QuickTemplate {
 			<td class="mw-label"><label for='wpName2'><?php $this->msg('yourname') ?></label></td>
 			<td class="mw-input">
 				<?php
-			echo Html::input( 'wpName', null, 'text', array(
+			echo Html::input( 'wpName', $this->data['name'], 'text', array(
 				'class' => 'loginText',
 				'id' => 'wpName2',
 				'tabindex' => '1',
