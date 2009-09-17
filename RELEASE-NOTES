@@ -128,7 +128,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote
   items)
 * Special:Search now could search terms in all variant-forms. ONLY apply on
-  wikis with LanguageConverter
+  wikis enabled LanguageConverter.
 * Add autopromote condition APCOND_BLOCKED to autopromote blocked users to various
   user groups.
 * Add $wgRevokePermissions as a means of restricting a group's rights. The
@@ -228,6 +228,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgUseAJAXCategories allow enabling AJAX based categories system.
   This works on all namespaces. Enabled namespaces can be reduces using
   $wgAJAXCategoriesNamespaces.
+* Admins could disable some variants using $wgDisabledVariants now. ONLY apply on
+  wikis enabled LanguageConverter.
 
 === Bug fixes in 1.16 ===
 

@@ -985,6 +985,16 @@ $wgDisableTitleConversion = false;
 /** Default variant code, if false, the default will be the language code */
 $wgDefaultLanguageVariant = false;
 
+/** Disabled variants array of language variant conversion.
+ *  example:
+ *  $wgDisabledVariant[] = 'zh-mo';
+ *  $wgDisabledVariant[] = 'zh-my';
+ *
+ *  or:
+ *  $wgDisabledVariant = array('zh-mo', 'zh-my');
+ */
+$wgDisabledVariant = array();
+
 /**
  * Show a bar of language selection links in the user login and user
  * registration forms; edit the "loginlanguagelinks" message to
