@@ -805,7 +805,7 @@ wgUploadAutoFill = {$autofill};
 				  "onfocus='" .
 				    "toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");" .
 				    "toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")' " .
-				    "onchange='fillDestFilename(\"wpUploadFileURL\")' size='60' disabled='disabled' />" .
+				    "onchange='fillDestFilename(\"wpUploadFileURL\")' size='60' />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 
 			}
