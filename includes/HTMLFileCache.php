@@ -55,7 +55,7 @@ class HTMLFileCache {
 			if( $this->useGzip() )
 				$this->mFileCache .= '.gz';
 
-			wfDebug( " fileCacheName() - {$this->mFileCache}\n" );
+			wfDebug( __METHOD__ . ": {$this->mFileCache}\n" );
 		}
 		return $this->mFileCache;
 	}
@@ -111,7 +111,7 @@ class HTMLFileCache {
 		$cachetime = $this->fileCacheTime();
 		$good = $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime;
 
-		wfDebug(" isFileCacheGood() - cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n");
+		wfDebug( __METHOD__ . ": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n");
 		return $good;
 	}
 
@@ -137,7 +137,7 @@ class HTMLFileCache {
 	/* Working directory to/from output */
 	public function loadFromFileCache() {
 		global $wgOut, $wgMimeType, $wgOutputEncoding, $wgContLanguageCode;
-		wfDebug(" loadFromFileCache()\n");
+		wfDebug( __METHOD__ . "()\n");
 		$filename = $this->fileCacheName();
 		// Raw pages should handle cache control on their own,
 		// even when using file cache. This reduces hits from clients.
@@ -176,7 +176,7 @@ class HTMLFileCache {
 			return $text;
 		}
 
-		wfDebug(" saveToFileCache()\n", false);
+		wfDebug( __METHOD__ . "()\n", false);
 
 		$this->checkCacheDirs();
 

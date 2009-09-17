@@ -959,11 +959,46 @@ END;
 	protected function generateDebugHTML() {
 		global $wgShowDebug, $wgOut;
 		if ( $wgShowDebug ) {
-			$listInternals = str_replace( "\n", "</li>\n<li>", htmlspecialchars( $wgOut->mDebugtext ) );
-			return "\n<hr>\n<strong>Debug data:</strong><ul style=\"font-family:monospace;\"><li>" .
-				$listInternals . "</li></ul>\n";
+			$listInternals = $this->formatDebugHTML( $wgOut->mDebugtext );
+			return "\n<hr />\n<strong>Debug data:</strong><ul style=\"font-family:monospace;\" id=\"mw-debug-html\">" .
+				$listInternals . "</ul>\n";
 		}
 		return '';
+	}
+
+	private function formatDebugHTML( $debugText ) {
+		$lines = explode( "\n", $debugText );
+		$curIdent = 0;
+		$ret = '<li>';
+		foreach( $lines as $line ) {
+			$m = array();
+			$display = ltrim( $line );
+			$ident = strlen( $line ) - strlen( $display );
+			$diff = $ident - $curIdent;
+
+			if ( $display == '' )
+				$display = "\xc2\xa0";
+
+			if ( !$ident && $diff < 0 && substr( $display, 0, 9 ) != 'Entering ' && substr( $display, 0, 8 ) != 'Exiting ' ) {
+				$ident = $curIdent;
+				$diff = 0;
+				$display = '<span style="background:yellow;">' . htmlspecialchars( $display ) . '</span>';
+			} else {
+				$display = htmlspecialchars( $display );
+			}
+
+			if ( $diff < 0 )
+				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "<li>\n";
+			elseif ( $diff == 0 )
+				$ret .= "</li><li>\n";
+			else
+				$ret .= str_repeat( "<ul><li>\n", $diff );
+			$ret .= $display . "\n";
+			
+			$curIdent = $ident;
+		}
+		$ret .= str_repeat( '</li></ul>', $curIdent ) . '</li>';
+		return $ret;
 	}
 
 	/**

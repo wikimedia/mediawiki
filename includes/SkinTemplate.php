@@ -141,7 +141,7 @@ class SkinTemplate extends Skin {
 		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
-		global $wgUseTrackbacks, $wgUseSiteJs;
+		global $wgUseTrackbacks, $wgUseSiteJs, $wgDebugComments;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgCanonicalNamespaceNames;
 
 		wfProfileIn( __METHOD__ );
@@ -419,7 +419,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'privacy', $this->privacyLink() );
 		$tpl->set( 'about', $this->aboutLink() );
 
-		$tpl->setRef( 'debug', $out->mDebugtext );
+		if ( $wgDebugComments ) {
+			$tpl->setRef( 'debug', $out->mDebugtext );
+		} else {
+			$tpl->set( 'debug', '' );
+		}
+
 		$tpl->set( 'reporttime', wfReportTime() );
 		$tpl->set( 'sitenotice', wfGetSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );

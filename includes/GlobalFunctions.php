@@ -308,7 +308,7 @@ function wfUrlencode( $s ) {
  */
 function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
-	global $wgDebugLogPrefix;
+	global $wgDebugLogPrefix, $wgShowDebug;
 	static $recursion = 0;
 
 	static $cache = array(); // Cache of unoutputted messages
@@ -318,7 +318,7 @@ function wfDebug( $text, $logonly = false ) {
 		return;
 	}
 
-	if ( $wgDebugComments && !$logonly ) {
+	if ( ( $wgDebugComments || $wgShowDebug ) && !$logonly ) {
 		$cache[] = $text;
 
 		if ( !isset( $wgOut ) ) {
