@@ -1726,7 +1726,7 @@ class Parser
 
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( __METHOD__."-category" );
-					$s = preg_replace( "/(\s*\n)+\s*$/D", '', $s ); # bug 87
+					$s = rtrim($s . "\n"); # bug 87
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
@@ -1742,7 +1742,7 @@ class Parser
 					 * Strip the whitespace Category links produce, see bug 87
 					 * @todo We might want to use trim($tmp, "\n") here.
 					 */
-					$s .= trim( $prefix . $trail, "\n" ) == '' ? '' : $prefix . $trail;
+					$s .= trim($prefix . $trail, "\n") == '' ? '': $prefix . $trail;
 
 					wfProfileOut( __METHOD__."-category" );
 					continue;
