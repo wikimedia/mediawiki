@@ -795,7 +795,7 @@ class OutputPage {
 	 */
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
-		$text =	$parserOutput->getText();
+		$text = $parserOutput->getText();
 		wfRunHooks( 'OutputPageBeforeHTML',array( &$this, &$text ) );
 		$this->addHTML( $text );
 	}
@@ -1562,15 +1562,15 @@ class OutputPage {
 		// Show source, if supplied
 		if( is_string( $source ) ) {
 			$this->addWikiMsg( 'viewsourcetext' );
-			$text = Xml::openElement( 'textarea',
-						array( 'id'   => 'wpTextbox1',
-						       'name' => 'wpTextbox1',
-						       'cols' => $wgUser->getOption( 'cols' ),
-						       'rows' => $wgUser->getOption( 'rows' ),
-						       'readonly' => 'readonly' ) );
-			$text .= htmlspecialchars( $source );
-			$text .= Xml::closeElement( 'textarea' );
-			$this->addHTML( $text );
+
+			$params = array(
+				'id'   => 'wpTextbox1',
+				'name' => 'wpTextbox1',
+				'cols' => $wgUser->getOption( 'cols' ),
+				'rows' => $wgUser->getOption( 'rows' ),
+				'readonly' => 'readonly'
+			);
+			$this->addHTML( Html::element( 'textarea', $params, $source ) );
 
 			// Show templates used by this article
 			$skin = $wgUser->getSkin();
@@ -1813,13 +1813,13 @@ class OutputPage {
 			} else {
 				$a = 'name';
 			}
-			$tags[] = Xml::element( 'meta',
+			$tags[] = Html::element( 'meta',
 				array(
 					$a => $tag[0],
 					'content' => $tag[1] ) );
 		}
 		foreach ( $this->mLinktags as $tag ) {
-			$tags[] = Xml::element( 'link', $tag );
+			$tags[] = Html::element( 'link', $tag );
 		}
 
 		if( $wgFeed ) {
@@ -1893,7 +1893,7 @@ class OutputPage {
 	 * Generate a <link rel/> for an RSS feed.
 	 */
 	private function feedLink( $type, $url, $text ) {
-		return Xml::element( 'link', array(
+		return Html::element( 'link', array(
 			'rel' => 'alternate',
 			'type' => "application/$type+xml",
 			'title' => $text,
@@ -2060,13 +2060,13 @@ class OutputPage {
 	 * @param int $lag Slave lag
 	 */
 	public function showLagWarning( $lag ) {
-		global $wgSlaveLagWarning, $wgSlaveLagCritical;
+		global $wgSlaveLagWarning, $wgSlaveLagCritical, $wgLang;
 		if( $lag >= $wgSlaveLagWarning ) {
 			$message = $lag < $wgSlaveLagCritical
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
-			$warning = wfMsgExt( $message, 'parse', $lag );
-			$this->addHTML( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
+			$wrap = Html::rawElement( 'div', array( 'class' => "mw-{$message}" ), "\n$1\n" );
+			$this->wrapWikiMsg( "$wrap\n", array( $message, $wgLang->formatNum( $lag ) ) );
 		}
 	}
 
