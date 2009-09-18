@@ -1042,3 +1042,10 @@ h3, h4, h5 {
 	position: relative;
 	width: 100%;
 }
+#mw-js-message {
+	font-size: 0.8em;
+}
+div#bodyContent {
+	line-height: 1.5em;
+}
+
