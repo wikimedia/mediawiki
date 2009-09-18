@@ -334,8 +334,6 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			foreach ($items as & $item)
 				$feed->outItem($item);
 			$feed->outFooter();
-		} elseif ( isset($data['error']) ) {
-			die( var_dump( $data['error'] ) );
 		} else {
 			// Error has occured, print something useful
 			ApiBase::dieDebug( __METHOD__, 'Invalid feed class/item' );
