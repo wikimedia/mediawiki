@@ -195,6 +195,13 @@ class Html {
 	 * @return array An array of attributes functionally identical to $attribs
 	 */
 	private static function dropDefaults( $element, $attribs ) {
+		# Don't bother doing anything if we aren't outputting HTML5; it's too
+		# much of a pain to maintain two sets of defaults.
+		global $wgHtml5;
+		if ( !$wgHtml5 ) {
+			return $attribs;
+		}
+
 		static $attribDefaults = array(
 			'area' => array( 'shape' => 'rect' ),
 			'button' => array(
