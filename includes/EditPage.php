@@ -1595,12 +1595,6 @@ END
 END
 );
 
-		if (!$this->preview) {
-			$wgOut->addHTML( Xml::tags( 'div',
-										array( 'class' => 'catlinks catlinks-allhidden',
-												'id' => 'catlinks' ), ' ' ) );
-		}
-
 		if ( $this->isConflict && wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '==$1==', "yourdiff" );
 
