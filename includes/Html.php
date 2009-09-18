@@ -319,8 +319,14 @@ class Html {
 			# marks omitted, but not all.  (Although a literal " is not
 			# permitted, we don't check for that, since it will be escaped
 			# anyway.)
+			#
+			# See also research done on further characters that need to be
+			# escaped: http://code.google.com/p/html5lib/issues/detail?id=93
+			$badChars = "\\x00- '=<>`/\x{00a0}\x{1680}\x{180e}\x{180F}\x{2000}\x{2001}"
+				. "\x{2002}\x{2003}\x{2004}\x{2005}\x{2006}\x{2007}\x{2008}\x{2009}"
+				. "\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}";
 			if ( $wgWellFormedXml || $value === ''
-			|| preg_match( "/[ '=<>]/", $value ) ) {
+			|| preg_match( "![$badChars]!u", $value ) ) {
 				$quote = '"';
 			} else {
 				$quote = '';
