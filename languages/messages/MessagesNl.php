@@ -2112,7 +2112,7 @@ Ondersteunde protocollen: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aanwezige gebruikers',
-'activeusers-count'    => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}}',
+'activeusers-count'    => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
 'activeusers-from'     => 'Gebruikers worden weergegeven vanaf:',
 'activeusers-noresult' => 'Geen actieve gebruikers gevonden.',
 

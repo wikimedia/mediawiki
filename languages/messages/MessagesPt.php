@@ -10,6 +10,7 @@
  * @author Crazymadlover
  * @author Giro720
  * @author Heldergeovane
+ * @author Jens Liebenau
  * @author Jorge Morais
  * @author Leonardo.stabile
  * @author Lijealso
@@ -1101,6 +1102,10 @@ Você não tem acesso a ele.',
 'revdelete-concurrent-change' => 'Erro ao modificar o item com data/hora $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registos.',
 'revdelete-only-restricted'   => 'Não pode suprimir itens de serem visualizados por administradores sem também escolher uma das outras opções de supressão.',
+'revdelete-reason-dropdown'   => '*Razões comuns para eliminação
+** Violação dos direitos autorais
+** Informações pessoais inapropriadas
+** Informações potencialmente difamatórias',
 'revdelete-otherreason'       => 'Outro/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar motivos de eliminação',
@@ -1254,7 +1259,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'searchall'                        => 'todos',
 'showingresults'                   => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
 'showingresultsnum'                => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
-'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1 - $2''' de '''$3'''}} para '''$4'''",
+'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1–$2''' de '''$3'''}} para '''$4'''",
 'nonefound'                        => "'''Nota''': apenas alguns espaços nominais são pesquisados por defeito. Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos deste wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
 'search-nonefound'                 => 'Não houve resultados para a pesquisa.',
 'powersearch'                      => 'Pesquisa avançada',
@@ -1696,6 +1701,10 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload-too-many-redirects' => 'O URL continha muitos redirecionamentos',
 'upload-unknown-size'       => 'Tamanho desconhecido',
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Acesso negado',
+'img-auth-nofile'       => 'O ficheiro "$1" não existe.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
@@ -2289,17 +2298,18 @@ $1',
 'month'               => 'Mês (inclusive anteriores):',
 'year'                => 'Ano (inclusive anteriores):',
 
-'sp-contributions-newbies'       => 'Pesquisar apenas nas contribuições de contas recentes',
-'sp-contributions-newbies-sub'   => 'Para contas novas',
-'sp-contributions-newbies-title' => 'Contribuições de contas novas',
-'sp-contributions-blocklog'      => 'Registo de bloqueios',
-'sp-contributions-deleted'       => 'Contribuições de utilizador eliminadas',
-'sp-contributions-logs'          => 'registos',
-'sp-contributions-talk'          => 'disc',
-'sp-contributions-userrights'    => 'Gestão de privilégios de utilizadores',
-'sp-contributions-search'        => 'Pesquisar contribuições',
-'sp-contributions-username'      => 'Endereço de IP ou utilizador:',
-'sp-contributions-submit'        => 'Pesquisar',
+'sp-contributions-newbies'        => 'Pesquisar apenas nas contribuições de contas recentes',
+'sp-contributions-newbies-sub'    => 'Para contas novas',
+'sp-contributions-newbies-title'  => 'Contribuições de contas novas',
+'sp-contributions-blocklog'       => 'Registo de bloqueios',
+'sp-contributions-deleted'        => 'Contribuições de utilizador eliminadas',
+'sp-contributions-logs'           => 'registos',
+'sp-contributions-talk'           => 'disc',
+'sp-contributions-userrights'     => 'Gestão de privilégios de utilizadores',
+'sp-contributions-blocked-notice' => 'Este utilizador encontra-se atualmente bloqueado. O último registo de bloqueio é exibido abaixo:',
+'sp-contributions-search'         => 'Pesquisar contribuições',
+'sp-contributions-username'       => 'Endereço de IP ou utilizador:',
+'sp-contributions-submit'         => 'Pesquisar',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
@@ -3335,5 +3345,13 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Adicionar categoria',
+'ajax-add-category-submit'     => 'Adicionar',
+'ajax-confirm-save'            => 'Gravar',
+'ajax-remove-category-summary' => 'Remover categoria "$1"',
+'ajax-error-title'             => 'Erro',
+'ajax-error-dismiss'           => 'OK',
 
 );

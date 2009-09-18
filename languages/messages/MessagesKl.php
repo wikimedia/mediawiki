@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aputtu
  * @author Kaare
  * @author Piivaat
  * @author לערי ריינהארט
@@ -105,11 +106,16 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dec',
 
-'about'  => 'Pillugu',
-'cancel' => 'Sussa',
+'about'         => 'Pillugu',
+'cancel'        => 'Sussa',
+'moredotdotdot' => 'Suli...',
 
 # Cologne Blue skin
+'qbfind' => 'Naniuk',
 'qbedit' => 'Aaqqissuutiguk',
+
+# Vector skin
+'vector-view-edit' => 'Aaqqissuutiguk',
 
 'errorpagetitle'   => 'Kukkuneq',
 'tagline'          => 'Matumannga {{SITENAME}}',
@@ -120,12 +126,19 @@ $messages = array(
 'searcharticle'    => 'Tassunngarit',
 'history'          => 'Oqaluttuassartaa',
 'history_short'    => 'Oqaluttuassartaa',
+'info_short'       => 'Ilisimasat',
+'printableversion' => 'Naqikkuminartoq',
 'edit'             => 'Aaqqissuuguk',
+'create'           => 'pilersitsineq',
+'delete'           => 'Piiaruk',
+'deletethispage'   => 'Qupperneq piiaruk',
 'protect'          => 'Illersorpaa',
+'newpage'          => 'Qupperneq nutaaq',
 'talkpagelinktext' => 'Oqallinneq',
 'talk'             => 'Oqallinneq',
 'toolbox'          => 'Sannataasivik',
 'otherlanguages'   => 'Oqaatsit allat',
+'jumpto'           => 'Toqqaannarlugu:',
 'jumptonavigation' => 'navigationi',
 'jumptosearch'     => 'ujarlerit',
 
@@ -145,22 +158,34 @@ $messages = array(
 'newmessagesdifflink' => 'allannguutini kingullernili',
 'editsection'         => 'aaqqissuuguk',
 'editold'             => 'aaqqissuuguk',
+'editlink'            => 'aaqqissuuguk',
 'editsectionhint'     => 'Aaqqissuuguk immikkoortoq: $1',
+'toc'                 => 'Imarisai',
 'site-rss-feed'       => '$1 RSS Feed',
 'site-atom-feed'      => '$1 Atom Feed',
 'page-rss-feed'       => '"$1" RSS Feed',
 'red-link-title'      => '$1 (Qupperneq suli allaffigineqanngilaq)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'Qupperneq',
 'nstab-image'    => 'Assiliaq',
 'nstab-template' => 'Ilisserut',
 'nstab-help'     => 'Ikiuutit',
 'nstab-category' => 'Sumut atassuseq',
 
 # Login and logout pages
-'yourname'                   => 'Pineqartoqateq:',
+'yourname'                   => 'Atuisup aqqa:',
+'yourpassword'               => 'Isissutissaq:',
+'yourpasswordagain'          => 'Isissutissaq (aappassaat):',
+'login'                      => 'Iserfigiuk',
+'gotaccountlink'             => 'Iserfigiuk',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
+
+# Password reset dialog
+'oldpassword' => 'Isissutissatoqaq:',
+'newpassword' => 'Isissutissaq nutaaq:',
+'retypenew'   => 'Isissutissaq nutaaq (aappassaat):',
 
 # Edit pages
 'summary'      => 'Qanoq issusersiuineq:',
@@ -189,7 +214,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'recentchangeslinked-toolbox' => 'Allannguutit naleqqiussat',
 
 # Upload
-'upload' => 'Læg en fil op',
+'upload' => 'Fiili nassiuguk',
 
 # File description page
 'file-anchor-link' => 'Assiliaq',
@@ -247,5 +272,8 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 
 # Special:SpecialPages
 'specialpages' => 'Quppernerit immikkut ittut',
+
+# Add categories per AJAX
+'ajax-confirm-save' => 'Toqqoruk',
 
 );

@@ -27,6 +27,7 @@
  * @author Jagwar
  * @author Jean-Frédéric
  * @author JeanVoisin
+ * @author Jens Liebenau
  * @author Korg
  * @author Korrigan
  * @author Kropotkine 113
@@ -362,7 +363,7 @@ $messages = array(
 'tog-uselivepreview'          => 'Utiliser l’aperçu rapide (nécessite JavaScript) (expérimental)',
 'tog-forceeditsummary'        => 'M’avertir lorsque je n’ai pas spécifié de résumé de modification',
 'tog-watchlisthideown'        => 'Masquer mes propres modifications dans la liste de suivi',
-'tog-watchlisthidebots'       => 'Masquer les modifications faites par des bots dans la liste de suivi',
+'tog-watchlisthidebots'       => 'Masquer les modifications faites par des robots dans la liste de suivi',
 'tog-watchlisthideminor'      => 'Masquer les modifications mineures dans la liste de suivi',
 'tog-watchlisthideliu'        => 'Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi',
 'tog-watchlisthideanons'      => 'Masquer les modifications anonymes dans la liste de suivi',
@@ -379,7 +380,7 @@ $messages = array(
 'underline-default' => 'Selon le navigateur',
 
 # Font style option in Special:Preferences
-'editfont-style'     => "Style de police de la zone d'édition :",
+'editfont-style'     => 'Style de police de la zone d’édition :',
 'editfont-default'   => 'Celui par défaut du navigateur',
 'editfont-monospace' => 'Police de chasse fixe',
 'editfont-sansserif' => 'Police sans empattement',
@@ -465,7 +466,7 @@ $messages = array(
 'article'       => 'Page de contenu',
 'newwindow'     => '(ouvre une nouvelle fenêtre)',
 'cancel'        => 'Annuler',
-'moredotdotdot' => 'Et plus...',
+'moredotdotdot' => 'Et plus …',
 'mypage'        => 'Ma page',
 'mytalk'        => 'Page de discussion',
 'anontalk'      => 'Discussion avec cette adresse IP',
@@ -680,7 +681,7 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'readonly_lag'         => 'La base de données a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror'        => 'Erreur interne',
 'internalerror_info'   => 'Erreur interne : $1',
-'fileappenderror'      => "Impossible d'ajouter « $1 » à « $2 ».",
+'fileappenderror'      => 'Impossible d’ajouter « $1 » à « $2 ».',
 'filecopyerror'        => 'Impossible de copier le fichier « $1 » vers « $2 ».',
 'filerenameerror'      => 'Impossible de renommer le fichier « $1 » en « $2 ».',
 'filedeleteerror'      => 'Impossible de supprimer le fichier « $1 ».',
@@ -912,12 +913,12 @@ Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Specia
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé{{GENDER:||e|(e)}} ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les opérations liées] ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer cette page]</span>.',
-'noarticletext-nopermission'       => 'Il n\'y a actuellement aucun texte dans cette page.
+'noarticletext'                    => 'Il n’y a pas pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les opérations liées] ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer cette page]</span>.',
+'noarticletext-nopermission'       => 'Il n’y a pas actuellement aucun texte dans cette page.
 Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur le titre de la page]] dans les autres pages,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les journaux associés]</span>.',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
-'userpage-userdoesnotexist-view'   => "Le compte utilisateur « $1 » n'est pas enregistré.",
+'userpage-userdoesnotexist-view'   => 'Le compte utilisateur « $1 » n’est pas enregistré.',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant sur le bouton ''Actualiser'' (''Reload'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ;
 '''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
@@ -1129,20 +1130,20 @@ $1",
 'revdelete-unhid'             => 'a démasqué $1',
 'revdelete-log-message'       => '$1 pour $2 version{{PLURAL:$2||s}}',
 'logdelete-log-message'       => '$1 sur $2 évènement{{PLURAL:$2||s}}',
-'revdelete-hide-current'      => "Erreur lors de la suppression de l'élément daté du $1 à $2 : il est la révision courante.
-Il ne peut pas être supprimé.",
-'revdelete-show-no-access'    => "Erreur lors de l'affichage de l'élément daté du $1 à $2 : il est marqué comme « restreint ».
-Vous n'y avez pas accès.",
-'revdelete-modify-no-access'  => "Erreur lors de la modification de l'élément daté du $1 à $2 : il est marqué comme « restreint ».
-Vous n'y avez pas accès.",
-'revdelete-modify-missing'    => "Erreur lors de la modification de l'élément avec l'ID $1 : il est manquant dans la base de données !",
-'revdelete-no-change'         => "'''Attention :''' l'élément daté du $1 à $2 a déjà les paramètres de visibilité demandés.",
-'revdelete-concurrent-change' => "Erreur lors de la modification de l'élément daté du $1 à $2 : son statut a été changé par quelqu'un d'autre pendant que vous le modifiez.
-Vérifiez les journaux.",
+'revdelete-hide-current'      => 'Erreur lors de la suppression de l’élément daté du $1 à $2 : il est la révision courante.
+Il ne peut pas être supprimé.',
+'revdelete-show-no-access'    => "Erreur lors de l’affichage de l'élément daté du $1 à $2 : il est marqué comme « restreint ».
+Vous n’y avez pas accès.",
+'revdelete-modify-no-access'  => 'Erreur lors de la modification de l’élément daté du $1 à $2 : il est marqué comme « restreint ».
+Vous n’y avez pas accès.',
+'revdelete-modify-missing'    => 'Erreur lors de la modification de l’élément avec l’ID $1 : il est manquant dans la base de données !',
+'revdelete-no-change'         => "'''Attention :''' L’élément daté du $1 à $2 a déjà les paramètres de visibilité demandés.",
+'revdelete-concurrent-change' => 'Erreur lors de la modification de l’élément daté du $1 à $2 : son statut a été changé par quelqu’un d’autre pendant que vous le modifiez.
+Vérifiez les journaux.',
 'revdelete-only-restricted'   => 'Vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
-'revdelete-reason-dropdown'   => "* Raisons courantes de suppression 
-** Violation des droits d'auteurs
-** Renseignements personnels inappropriés",
+'revdelete-reason-dropdown'   => '* Raisons courantes de suppression 
+** Violation des droits d’auteurs
+** Renseignements personnels inappropriés',
 'revdelete-otherreason'       => 'Autre raison / raison supplémentaire :',
 'revdelete-reasonotherlist'   => 'Autre raison',
 'revdelete-edit-reasonlist'   => 'Modifier les motifs fréquents de suppression',
@@ -1297,7 +1298,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchall'                        => 'tout',
 'showingresults'                   => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du #<b>$2</b>.',
 'showingresultsnum'                => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du #<b>$2</b>.',
-'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1 - $2'''}} de '''$3''' pour '''$4'''",
+'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1–$2'''}} de '''$3''' pour '''$4'''",
 'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont recherchés par défaut.
 Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (y compris les pages de discussion, les modèles, etc.) ou bien utilisez l’espace de noms souhaité comme préfixe.",
 'search-nonefound'                 => 'Il n’y a aucun résultat correspondant à la requête.',
@@ -1517,7 +1518,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-editusercss'           => 'Modifier les fichiers CSS d’autres utilisateurs',
 'right-edituserjs'            => 'Modifier les fichiers JS d’autres utilisateurs',
 'right-rollback'              => 'Révoquer rapidement les modifications du dernier contributeur d’une page particulière',
-'right-markbotedits'          => 'Marquer des modifications révoquées comme ayant été faites par un bot',
+'right-markbotedits'          => 'Marquer des modifications révoquées comme ayant été faites par un robot.',
 'right-noratelimit'           => 'Ne pas être affecté par les limites de taux',
 'right-import'                => 'Importer des pages depuis d’autres wikis',
 'right-importupload'          => 'Importer des pages depuis un fichier',
@@ -1588,14 +1589,14 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'recentchanges-legend-minor'        => '$1 - modification mineure',
 'recentchanges-label-minor'         => 'Cette modification est mineure',
 'recentchanges-legend-bot'          => '$1 - modification faite par un robot',
-'recentchanges-label-bot'           => 'Cette modification a été effectuée par un bot.',
-'recentchanges-legend-unpatrolled'  => '$1 - modification non patrouillé',
+'recentchanges-label-bot'           => 'Cette modification a été effectuée par un robot.',
+'recentchanges-legend-unpatrolled'  => '$1 - modification non patrouillée',
 'recentchanges-label-unpatrolled'   => 'Cette modification n’a pas encore été vérifiée.',
 'rcnote'                            => 'Voici {{PLURAL:$1|la dernière modification effectuée|les $1 dernières modifications effectuées}} durant {{PLURAL:$2|la dernière journée|les <b>$2</b> derniers jours}} jusqu’à $5 le $4.',
 'rcnotefrom'                        => "Voici les modifications effectuées depuis le '''$2''' ('''$1''' au maximum).",
 'rclistfrom'                        => 'Afficher les nouvelles modifications depuis le $1.',
 'rcshowhideminor'                   => '$1 les modifications mineures',
-'rcshowhidebots'                    => '$1 les bots',
+'rcshowhidebots'                    => '$1 les robots',
 'rcshowhideliu'                     => '$1 les utilisateurs inscrits',
 'rcshowhideanons'                   => '$1 les utilisateurs anonymes',
 'rcshowhidepatr'                    => '$1 les modifications surveillées',
@@ -1738,27 +1739,27 @@ PICT # divers
 'upload-misc-error-text'    => 'Une erreur inconnue est survenue pendant le téléversement.
 Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau.
 Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].',
-'upload-too-many-redirects' => "L'URL contient trop de redirections",
+'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
 'upload-unknown-size'       => 'Taille inconnue',
 'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Accès refusé',
-'img-auth-nopathinfo'   => "PATH_INFO manquant.
-Votre serveur n'est pas paramétré pour passer cette information.
+'img-auth-nopathinfo'   => 'PATH_INFO manquant.
+Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_atuh.
-Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "Le chemin demandé n'est pas le répertoire de téléversement configuré.",
+Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Le chemin demandé n’est pas le répertoire de téléversement configuré.',
 'img-auth-badtitle'     => 'Impossible de construire un titre valide à partir de « $1 ».',
-'img-auth-nologinnWL'   => "Vous n'êtes pas connecté et « $1 » n'est pas dans la liste blanche.",
-'img-auth-nofile'       => "Le fichier « $1 » n'existe pas.",
-'img-auth-isdir'        => "Vous essayez d'accéder au répertoire « $1 ».
-Seul l'accès aux fichiers est permis.",
+'img-auth-nologinnWL'   => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
+'img-auth-nofile'       => 'Le fichier « $1 » n’existe pas.',
+'img-auth-isdir'        => 'Vous essayez d’accéder au répertoire « $1 ».
+Seul l’accès aux fichiers est permis.',
 'img-auth-streaming'    => 'Lecture en continu de « $1 ».',
-'img-auth-public'       => "La fonction de img_auth.php est d'afficher des fichiers d'un wiki privé.
+'img-auth-public'       => 'La fonction de img_auth.php est d’afficher des fichiers d’un wiki privé.
 Ce wiki est configuré comme un wiki public.
-Pour une sécurité optimale, img_auth.php est désactivé.",
-'img-auth-noread'       => "L'utilisateur n'a pas le droit en lecture sur « $1 ».",
+Pour une sécurité optimale, img_auth.php est désactivé.',
+'img-auth-noread'       => 'L’utilisateur n’a pas le droit en lecture sur « $1 ».',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL injoignable',
@@ -2052,7 +2053,7 @@ Protocoles reconnus : <tt>$1</tt>.',
 
 # Special:ActiveUsers
 'activeusers'          => 'Liste des utilisateurs actifs',
-'activeusers-count'    => '$1 {{PLURAL:$1|modification récente|modifications récentes}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|modification récente|modifications récentes}} dans {{PLURAL:$3|le dernier jour|les $3 derniers jours}}',
 'activeusers-from'     => 'Afficher les utilisateurs depuis :',
 'activeusers-noresult' => 'Aucun utilisateur trouvé.',
 
@@ -2078,9 +2079,9 @@ Des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuve
 'listgrouprights-removegroup'          => 'Retirer des membres {{PLURAL:$2|du groupe|des groupes}} : $1',
 'listgrouprights-addgroup-all'         => 'Ajouter des membres à tous les groupes',
 'listgrouprights-removegroup-all'      => 'Retirer des membres de tous les groupes',
-'listgrouprights-addgroup-self'        => "Peut s'ajouter {{PLURAL:$2|le groupe|les groupes}} à son propre compte : $1",
+'listgrouprights-addgroup-self'        => 'Peut s’ajouter {{PLURAL:$2|le groupe|les groupes}} à son propre compte : $1',
 'listgrouprights-removegroup-self'     => 'Peut se retirer {{PLURAL:$2|le groupe|les groupes}} de son propre compte : $1',
-'listgrouprights-addgroup-self-all'    => "Peut s'ajouter tous les groupes à son propre compte",
+'listgrouprights-addgroup-self-all'    => 'Peut s’ajouter tous les groupes à son propre compte',
 'listgrouprights-removegroup-self-all' => 'Peut se retirer tous les groupes de son propre compte',
 
 # E-mail user
@@ -2904,7 +2905,7 @@ $1',
 'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés.',
 'newimages-legend'      => 'Nom du fichier',
 'newimages-label'       => 'Nom du fichier (ou une partie de celui-ci) :',
-'showhidebots'          => '($1 bots)',
+'showhidebots'          => '($1 robots)',
 'noimages'              => 'Aucune image à afficher.',
 'ilsubmit'              => 'Rechercher',
 'bydate'                => 'par date',
@@ -3315,8 +3316,8 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'size-gigabytes' => '$1 Gio',
 
 # Live preview
-'livepreview-loading' => 'Chargement…',
-'livepreview-ready'   => 'Chargement… terminé !',
+'livepreview-loading' => 'Chargement …',
+'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',
 'livepreview-error'   => 'Impossible de se connecter : $1 « $2 ».
@@ -3462,7 +3463,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'htmlform-invalid-input'       => 'Des problèmes sont survenus avec certaines valeurs',
 'htmlform-select-badoption'    => 'La valeur que vous avez spécifiée n’est pas une option valide.',
 'htmlform-int-invalid'         => 'La valeur que vous avec spécifiée n’est pas un entier.',
-'htmlform-float-invalid'       => "La valeur que vous avez spécifiée n'est pas un nombre.",
+'htmlform-float-invalid'       => 'La valeur que vous avez spécifiée n’est pas un nombre.',
 'htmlform-int-toolow'          => 'La valeur que vous avez spécifiée est plus petite que le minimum de $1',
 'htmlform-int-toohigh'         => 'La valeur que vous avez spécifiée est plus grande que le maximum de $1',
 'htmlform-submit'              => 'Soumettre',
@@ -3472,7 +3473,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 # Add categories per AJAX
 'ajax-add-category'            => 'Ajouter une catégorie',
 'ajax-add-category-submit'     => 'Ajouter',
-'ajax-confirm-title'           => "Confirmer l'action",
+'ajax-confirm-title'           => 'Confirmer l’action',
 'ajax-confirm-prompt'          => 'Vous pouvez fournir un résumé de la modification ci-dessous.
 Cliquez sur « Publier » pour enregistrer votre modification.',
 'ajax-confirm-save'            => 'Publier',
@@ -3481,7 +3482,7 @@ Cliquez sur « Publier » pour enregistrer votre modification.',
 'ajax-confirm-actionsummary'   => 'Action à mener :',
 'ajax-error-title'             => 'Erreur',
 'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "Il n'a pas été possible de retirer cette catégorie.
-Ceci survient généralement lorsque la catégorie a été ajoutée à la page via un modèle.",
+'ajax-remove-category-error'   => 'Il n’a pas été possible de retirer cette catégorie.
+Ceci survient généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
 
 );
