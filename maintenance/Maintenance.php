@@ -225,9 +225,13 @@ abstract class Maintenance {
 	 * @param $die boolean If true, go ahead and die out.
 	 */
 	protected function error( $err, $die = false ) {
-		$f = fopen( 'php://stderr', 'w' ); 
-		fwrite( $f, $err . "\n" );
-		fclose( $f );
+		if ( php_sapi_name() == 'cli' ) {
+			fwrite( STDERR, $err . "\n" );
+		} else {
+			$f = fopen( 'php://stderr', 'w' ); 
+			fwrite( $f, $err . "\n" );
+			fclose( $f );
+		}
 		if( $die ) die();
 	}
 
