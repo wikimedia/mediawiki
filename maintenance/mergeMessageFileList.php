@@ -2,23 +2,18 @@
 
 require_once( dirname( __FILE__ ).'/Maintenance.php' );
 $maintClass = 'MergeMessageFileList';
-
+$mmfl = false;
 class MergeMessageFileList extends Maintenance {
 
 	function __construct() {
-		$this->addOption( 'list-file', 'A file containing a list of wikis, one per line.', false, true );
-		$this->addOption( 'get', 'Get the message files for a single wiki (for internal use).' );
+		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', false, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
-		$this->mDescription = 'Merge $wgExtensionMessagesFiles from various wikis to produce a ' . 
+		$this->mDescription = 'Merge $wgExtensionMessagesFiles from various extensions to produce a ' . 
 			'single array containing all message files.';
 	}
 
 	public function execute() {
-		if ( $this->hasOption( 'get' ) ) {
-			var_export( $GLOBALS['wgExtensionMessagesFiles'] );
-			return;
-		}
-
+		global $IP, $mmfl;
 		if ( !$this->hasOption( 'list-file' ) ) {
 			$this->error( 'The --list-file option must be specified.' );
 			return;
@@ -28,32 +23,31 @@ class MergeMessageFileList extends Maintenance {
 		if ( $lines === false ) {
 			$this->error( 'Unable to open list file.' );
 		}
-		$wikis = array_map( 'trim', $lines );
-
-		# Find PHP
-		$php = readlink( '/proc/' . posix_getpid() . '/exe' );
-		$allFiles = array();
-
-		foreach ( $wikis as $wiki ) {
-			$s = wfShellExec( wfEscapeShellArg( $php, __FILE__, '--get',
-				'--wiki', $wiki ) );
-			if ( !$s ) {
-				$this->error( 'Unable to get messages for wiki '. $wiki );
-				continue;
-			}
-			$files = eval( "return $s;" );
-			$allFiles += $files;
-		}
-		$s = '$wgExtensionMessagesFiles = ' . 
-			var_export( $allFiles, true ) .
-			";\n";
+		$mmfl = array( 'setupFiles' => array_map( 'trim', $lines ) );
 		if ( $this->hasOption( 'output' ) ) {
-			file_put_contents( $this->getOption( 'output' ), $s );
-		} else {
-			echo $s;
+			$mmfl['output'] = $this->getOption( 'output' );
 		}
 	}
 }
 
 require_once( DO_MAINTENANCE );
+
+foreach ( $mmfl['setupFiles'] as $fileName ) {
+	if ( strval( $fileName ) === '' ) {
+		continue;
+	}
+	$fileName = str_replace( '$IP', $IP, $fileName );
+	include_once( $fileName );
+}
+fwrite( STDERR, "\n" );
+$s = '$wgExtensionMessagesFiles = ' . var_export( $wgExtensionMessagesFiles, true ) . ";\n\n" .
+	'$wgExtensionAliasesFiles = ' . var_export( $wgExtensionAliasesFiles, true ) . ";\n";
+
+$s = preg_replace( "/'" . preg_quote( $IP, '/' ) . "([^']*)'/",
+	'"$IP/\1"', $s );
+if ( isset( $mmfl['output'] ) ) {
+	file_put_contents( $mmfl['output'], $s );
+} else {
+	echo $s;
+}
 
