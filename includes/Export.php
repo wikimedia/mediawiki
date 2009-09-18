@@ -348,7 +348,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function schemaVersion() {
-		return "0.3"; // FIXME: upgrade to 0.4 when updated XSD is ready, for the revision deletion bits
+		return "0.4";
 	}
 
 	/**
@@ -442,7 +442,7 @@ class XmlDumpWriter {
 		$out .= '    ' . Xml::elementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
 		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
 		if( $row->page_is_redirect ) {
-			$out .= '    ' . Xml::element( 'redirect', array() ). "\n";
+			$out .= '    ' . Xml::element( 'redirect', array() ) . "\n";
 		}
 		if( '' != $row->page_restrictions ) {
 			$out .= '    ' . Xml::element( 'restrictions', array(),
