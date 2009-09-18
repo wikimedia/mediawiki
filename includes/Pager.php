@@ -67,11 +67,12 @@ abstract class IndexPager implements Pager {
 	public $mPastTheEndRow;
 
 	/**
-	 * The index to actually be used for ordering.  This is a single string e-
-	 * ven if multiple orderings are supported.
+	 * The index to actually be used for ordering.  This is a single string
+	 * even if multiple orderings are supported.
 	 */
 	protected $mIndexField;
-	/** For pages that support multiple types of ordering, which one to use. */
+	/** For pages that support multiple types of ordering, which one to use.
+	 */
 	protected $mOrderType;
 	/**
 	 * $mDefaultDirection gives the direction to use when sorting results:
@@ -148,7 +149,11 @@ abstract class IndexPager implements Pager {
 		# Plus an extra row so that we can tell the "next" link should be shown
 		$queryLimit = $this->mLimit + 1;
 
-		$this->mResult = $this->reallyDoQuery( $this->mOffset, $queryLimit, $descending );
+		$this->mResult = $this->reallyDoQuery(
+			$this->mOffset,
+			$queryLimit,
+			$descending
+		);
 		$this->extractResultInfo( $this->mOffset, $queryLimit, $this->mResult );
 		$this->mQueryDone = true;
 
@@ -157,14 +162,14 @@ abstract class IndexPager implements Pager {
 
 		wfProfileOut( $fname );
 	}
-	
+
 	/**
 	 * Return the result wrapper.
 	 */
 	function getResult() {
 		return $this->mResult;
 	}
-	
+
 	/**
 	 * Set the offset from an other source than $wgRequest
 	 */
@@ -317,8 +322,13 @@ abstract class IndexPager implements Pager {
 		if( $type ) {
 			$attrs['class'] = "mw-{$type}link";
 		}
-		return $this->getSkin()->link( $this->getTitle(), $text,
-			$attrs, $query + $this->getDefaultQuery(), array('noclasses','known') );
+		return $this->getSkin()->link(
+			$this->getTitle(),
+			$text,
+			$attrs,
+			$query + $this->getDefaultQuery(),
+			array( 'noclasses', 'known' )
+		);
 	}
 
 	/**
@@ -407,7 +417,11 @@ abstract class IndexPager implements Pager {
 			$prev = false;
 			$first = false;
 		} else {
-			$prev = array( 'dir' => 'prev', 'offset' => $this->mFirstShown, 'limit' => $urlLimit );
+			$prev = array(
+				'dir' => 'prev',
+				'offset' => $this->mFirstShown,
+				'limit' => $urlLimit
+			);
 			$first = array( 'limit' => $urlLimit );
 		}
 		if ( $this->mIsLast ) {
@@ -417,7 +431,12 @@ abstract class IndexPager implements Pager {
 			$next = array( 'offset' => $this->mLastShown, 'limit' => $urlLimit );
 			$last = array( 'dir' => 'prev', 'limit' => $urlLimit );
 		}
-		return array( 'prev' => $prev, 'next' => $next, 'first' => $first, 'last' => $last );
+		return array(
+			'prev' => $prev,
+			'next' => $next,
+			'first' => $first,
+			'last' => $last
+		);
 	}
 
 	function isNavigationBarShown() {
@@ -439,7 +458,11 @@ abstract class IndexPager implements Pager {
 		$links = array();
 		foreach ( $queries as $type => $query ) {
 			if ( $query !== false ) {
-				$links[$type] = $this->makeLink( $linkTexts[$type], $queries[$type], $type );
+				$links[$type] = $this->makeLink(
+					$linkTexts[$type],
+					$queries[$type],
+					$type
+				);
 			} elseif ( isset( $disabledTexts[$type] ) ) {
 				$links[$type] = $disabledTexts[$type];
 			} else {
@@ -458,8 +481,11 @@ abstract class IndexPager implements Pager {
 			$offset = $this->mOffset;
 		}
 		foreach ( $this->mLimitsShown as $limit ) {
-			$links[] = $this->makeLink( $wgLang->formatNum( $limit ),
-				array( 'offset' => $offset, 'limit' => $limit ), 'num' );
+			$links[] = $this->makeLink(
+				$wgLang->formatNum( $limit ),
+				array( 'offset' => $offset, 'limit' => $limit ),
+				'num'
+			);
 		}
 		return $links;
 	}
@@ -536,8 +562,16 @@ abstract class AlphabeticPager extends IndexPager {
 
 		$opts = array( 'parsemag', 'escapenoentities' );
 		$linkTexts = array(
-			'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
-			'next' => wfMsgExt( 'nextn', $opts, $wgLang->formatNum($this->mLimit ) ),
+			'prev' => wfMsgExt(
+				'prevn',
+				$opts,
+				$wgLang->formatNum( $this->mLimit )
+			),
+			'next' => wfMsgExt(
+				'nextn',
+				$opts,
+				$wgLang->formatNum($this->mLimit )
+			),
 			'first' => wfMsgExt( 'page_first', $opts ),
 			'last' => wfMsgExt( 'page_last', $opts )
 		);
@@ -547,7 +581,10 @@ abstract class AlphabeticPager extends IndexPager {
 		$limits = $wgLang->pipeList( $limitLinks );
 
 		$this->mNavigationBar =
-			"(" . $wgLang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .
+			"(" . $wgLang->pipeList(
+				array( $pagingLinks['first'],
+				$pagingLinks['last'] )
+			) . ") " .
 			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
 			$pagingLinks['next'], $limits );
 
@@ -618,8 +655,16 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		}
 		$nicenumber = $wgLang->formatNum( $this->mLimit );
 		$linkTexts = array(
-			'prev' => wfMsgExt( 'pager-newer-n', array( 'parsemag', 'escape' ), $nicenumber ),
-			'next' => wfMsgExt( 'pager-older-n', array( 'parsemag', 'escape' ), $nicenumber ),
+			'prev' => wfMsgExt(
+				'pager-newer-n',
+				array( 'parsemag', 'escape' ),
+				$nicenumber
+			),
+			'next' => wfMsgExt(
+				'pager-older-n',
+				array( 'parsemag', 'escape' ),
+				$nicenumber
+			),
 			'first' => wfMsgHtml( 'histlast' ),
 			'last' => wfMsgHtml( 'histfirst' )
 		);
@@ -628,11 +673,18 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$limitLinks = $this->getLimitLinks();
 		$limits = $wgLang->pipeList( $limitLinks );
 
-		$this->mNavigationBar = "({$pagingLinks['first']}" . wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . "{$pagingLinks['last']}) " .
-			wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
+		$this->mNavigationBar = "({$pagingLinks['first']}" .
+			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
+			"{$pagingLinks['last']}) " .
+			wfMsgExt(
+				'viewprevnext',
+				array( 'escapenoentities' ),
+				$pagingLinks['prev'], $pagingLinks['next'],
+				$limits
+			);
 		return $this->mNavigationBar;
 	}
-	
+
 	function getDateCond( $year, $month ) {
 		$year = intval($year);
 		$month = intval($month);
@@ -794,8 +846,8 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * Get any extra attributes to be applied to the given cell. Don't 
-	 * take this as an excuse to hardcode styles; use classes and 
+	 * Get any extra attributes to be applied to the given cell. Don't
+	 * take this as an excuse to hardcode styles; use classes and
 	 * CSS instead.  Row context is available in $this->mCurrentRow
 	 * @param $field The column
 	 * @param $value The cell contents
@@ -926,7 +978,13 @@ abstract class TablePager extends IndexPager {
 		# Make the select with some explanatory text
 		$msgSubmit = wfMsgHtml( 'table_pager_limit_submit' );
 		return
-			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n" .		
+			Xml::openElement(
+				'form',
+				array(
+					'method' => 'get',
+					'action' => $wgScript
+				)
+			) . "\n" .
 			wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() ) .
 			"\n<input type=\"submit\" value=\"$msgSubmit\"/>\n" .
 			$this->getHiddenFields( array( 'limit' ) ) .
