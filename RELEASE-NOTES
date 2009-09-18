@@ -448,8 +448,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11143) Links containing invalid UTF-8 percent-code sequences are now
   cleanly disabled instead of breaking parsing entirely on PHP 5.2.
 * (bug 20296) Fixed an PHP warning in Language::getMagic() in PHP 5.3
-* When creating accounts, don't prefill name from current username (which
-  presumably is already taken)
 * (bug 20358) Unprotect tab was missing accesskey; now same as protect tab.
 * (bug 20317) Cleaned up default main page link accesskey settings
 * (bug 20362) Special:Statistics now produces valid HTML when view counters are
