@@ -539,7 +539,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'rclinks'                          => 'Fá vidé i ültim $1 cambiameent indi ültim $2 dí<br />$3',
 'diff'                             => 'dif',
 'hist'                             => 'stòria',
-'hide'                             => 'Scuunt',
+'hide'                             => 'Scund',
 'show'                             => 'Famm vedè',
 
 # Recent changes linked
@@ -723,13 +723,50 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'whatlinkshere' => 'Pagin che se culeghen chì',
 
 # Block/unblock
-'blockip'       => 'Bloca el dovrat',
-'ipblocklist'   => 'Listá di adrèss IP e di üteent blucaa',
-'blocklistline' => "$1, $2 l'ha blucaa $3 ($4)",
-'blocklink'     => 'bloca',
-'contribslink'  => 'cuntribüzziún',
-'blocklogpage'  => 'Log di blocch',
-'blocklogentry' => "l'ha blucaa [[$1]] per un temp de $2 $3",
+'blockip'                => 'Bloca el dovrat',
+'ipadressorusername'     => 'Adrèss IP o nom del druvàt:',
+'ipbexpiry'              => 'Fina al:',
+'ipbreason'              => 'Reson:',
+'ipbreasonotherlist'     => 'Alter mutiv',
+'ipbreason-dropdown'     => "*Mutiv püssee cumün per i blòch
+** Avè caregaa di infurmazión fals
+** Avè töt via del cuntegnüü dai paginn
+** Avè giuntaa di ereclam a di sit da föra
+** Avè giuntaa de la ratatuja int i paginn
+** Cumpurtament intimidatori
+** Avè druvaa püssee dun cünt in manera abüsiva
+** El nom del druvàt l'è inacetabil",
+'ipbanononly'            => 'Blòca dumà i druvàt anonim',
+'ipbcreateaccount'       => 'Lassegh mia creà di alter cünt',
+'ipbemailban'            => "Fà in manera che quel druvàt chì 'l poda mia spedì di messagg e-mail",
+'ipbsubmit'              => 'Blòca quel druvàt chì',
+'ipbother'               => 'Altra dürada:',
+'ipboptions'             => '2 ur:2 hours,1 dì:1 day,3 dì:3 days,1 semana:1 week,2 semann:2 weeks,1 mes:1 month,3 mes:3 months,6 mes:6 months,1 ann:1 year,infinii:infinite',
+'ipbotheroption'         => 'Alter',
+'ipbotherreason'         => 'Alter resón/spiegazión',
+'ipbhidename'            => "Scund 'l nom del druvat dai mudifegh e da i list.",
+'ipbwatchuser'           => "Tegn d'ögg i paginn duvrat e de discüssión de quel duvrat chì",
+'ipballowusertalk'       => "Permet a quel duvrat chì de mudifegà la sò pagina de discüssión intanta che l'è blucaa",
+'ipb-change-block'       => 'Blocà ancamò el duvrat cun quij impustazión chì',
+'badipaddress'           => 'Adrèss IP mia valid',
+'blockipsuccesssub'      => 'Blucagg bel-e faa',
+'blockipsuccesstext'     => "[[Special:Contributions/$1|$1]] a l'è staa blucaa.<br />
+Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
+'ipb-edit-dropdown'      => 'Resón del bloch',
+'ipb-unblock-addr'       => 'Desblòca $1',
+'ipb-unblock'            => 'Desbloca un duvrat o un adress IP',
+'ipb-blocklist-addr'     => 'Bloch esistent per $1',
+'ipb-blocklist'          => 'Vardee i blòch ativ',
+'ipb-blocklist-contribs' => 'Cuntribüzión de $1',
+'unblockip'              => 'Desblòca quel druvàt chì',
+'ipusubmit'              => "Tö via 'stu bloch chì",
+'unblocked'              => "[[User:$1|$1]] l'è staa desblucaa",
+'ipblocklist'            => 'Adrèss IP e druvàt blucaa',
+'blocklistline'          => "$1, $2 l'ha blucaa $3 ($4)",
+'blocklink'              => 'bloca',
+'contribslink'           => 'cuntribüzziún',
+'blocklogpage'           => 'Log di blocch',
+'blocklogentry'          => "l'ha blucaa [[$1]] per un temp de $2 $3",
 
 # Move page
 'movepagetext'    => "Duvraant la büeta chí-da-sota al re-numinerà una pàgina, muveent tüta la suva stòria al nomm nööf. Ul vecc títul al deventarà una pàgina da redirezziun al nööf títul. I liamm a la vegja pàgina i sarà mia cambiaa: assürévas da cuntrulá par redirezziun dopi u rumpüüt.
