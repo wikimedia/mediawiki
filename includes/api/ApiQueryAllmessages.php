@@ -47,16 +47,17 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			global $wgLang;
 			$wgLang = Language::factory($params['lang']);
 		}
-
+		
+		$prop = array_flip( (array)$params['prop'] );
 
 		//Determine which messages should we print
 		$messages_target = array();
-		if( $params['messages'] == '*' ) {
+		if( in_array( '*', $params['messages'] ) ) {
 			$message_names = array_keys( Language::getMessagesFor( 'en' ) );
 			sort( $message_names );
 			$messages_target = $message_names;
 		} else {
-			$messages_target = explode( '|', $params['messages'] );
+			$messages_target = $params['messages'];
 		}
 
 		//Filter messages
@@ -70,42 +71,52 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			$messages_target = $messages_filtered;
 		}
 
-		//Get all requested messages
+		//Get all requested messages and print the result
 		$messages = array();
 		$skip = !is_null($params['from']);
+		$result = $this->getResult();
 		foreach( $messages_target as $message ) {
 			// Skip all messages up to $params['from']
 			if($skip && $message === $params['from'])
 				$skip = false;
-			if(!$skip)
-				$messages[$message] = wfMsg( $message );
-		}
-
-		//Print the result
-		$result = $this->getResult();
-		$messages_out = array();
-		foreach( $messages as $name => $value ) {
-			$message = array();
-			$message['name'] = $name;
-			if( wfEmptyMsg( $name, $value ) ) {
-				$message['missing'] = '';
-			} else {
-				$result->setContent( $message, $value );
+			if(!$skip) {
+				$a = array( 'name' => $message );
+				$msg = wfMsgGetKey( $message, true, false, false );
+				if ( wfEmptyMsg( $message, $msg ) )
+					$a['missing'] = '';
+				else {
+					ApiResult::setContent( $a, $msg );
+					if ( isset( $prop['default'] ) ) {
+						$default = wfMsgGetKey( $message, false, false, false );
+						if ( $default !== $msg ) {
+							if ( wfEmptyMsg( $message, $default ) )
+								$a['defaultmissing'] = '';
+							else
+								$a['default'] = $default;
+						}
+					}
+				}
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $a );
+				if( !$fit ) {
+					$this->setContinueEnumParameter( 'from', $name );
+					break;
+				}
 			}
-			$fit = $result->addValue(array('query', $this->getModuleName()), null, $message);
-			if(!$fit)
-			{
-				$this->setContinueEnumParameter('from', $name);
-				break;
-			}
 		}
-		$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'message');
+		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'message' );
 	}
 
 	public function getAllowedParams() {
 		return array (
 			'messages' => array (
 				ApiBase :: PARAM_DFLT => '*',
+				ApiBase :: PARAM_ISMULTI => true,
+			),
+			'prop' => array(
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array(
+					'default'
+				)
 			),
 			'filter' => array(),
 			'lang' => null,
@@ -116,6 +127,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	public function getParamDescription() {
 		return array (
 			'messages' => 'Which messages to output. "*" means all messages',
+			'prop' => 'Which properties to get',
 			'filter' => 'Return only messages that contain this string',
 			'lang' => 'Return messages in this language',
 			'from' => 'Return messages starting at this message',

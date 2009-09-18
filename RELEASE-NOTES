@@ -560,6 +560,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Access-Control-Allow-Origin HTTP header
 * (bug 19999) Made metadata and properties of search results optional. Added
   srprop and srinfo.
+* (bug 20700) Add amprop=default to meta=allmessages to list default value for
+  customized messages
+* Don't parse magic words in meta=allmessages, output messages unparsed
 
 === Languages updated in 1.16 ===
 
