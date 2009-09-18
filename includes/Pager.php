@@ -676,9 +676,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$this->mNavigationBar = "({$pagingLinks['first']}" .
 			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
 			"{$pagingLinks['last']}) " .
-			wfMsgExt(
+			wfMsgHTML(
 				'viewprevnext',
-				array( 'escapenoentities' ),
 				$pagingLinks['prev'], $pagingLinks['next'],
 				$limits
 			);
