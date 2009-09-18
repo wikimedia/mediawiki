@@ -583,7 +583,18 @@ class LogEventsList {
 	 * @return Integer Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract( &$out, $types=array(), $page='', $user='', 
-			$param = array( 'lim' => 0, 'conds' => array(), 'showIfEmpty' => true, 'msgKey' => array('') ) ) {
+			$param = array() ) {
+
+		$defaultParameters = array(
+			'lim' => 0,
+			'conds' => array(),
+			'showIfEmpty' => true,
+			'msgKey' => array('')
+		);
+	
+		# The + operator appends elements of remaining keys from the right
+		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
+		$param += $defaultParameters;
 
 		global $wgUser, $wgOut;
 		# Convert $param array to individual variables
@@ -591,7 +602,7 @@ class LogEventsList {
 		$conds = $param['conds'];
 		$showIfEmpty = $param['showIfEmpty'];
 		$msgKey = $param['msgKey'];
-		if ( !(is_array($msgKey)) )
+		if ( !is_array($msgKey) )
 			$msgKey = array( $msgKey );
 		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
