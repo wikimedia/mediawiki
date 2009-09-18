@@ -1911,7 +1911,8 @@ $1 is a page title",
 'activeusers'          => 'Title of [[Special:ActiveUsers]]',
 'activeusers-count'    => "Used in [[Special:ActiveUsers]] to show the active user's recent edit count in brackets ([]).
 * $1 is the number of recent edits
-* $2 is the user's name for use with GENDER (optional)",
+* $2 is the user's name for use with GENDER (optional)
+* $3 is the maximum number of days of the RecentChangesList",
 'activeusers-from'     => 'identical with {{msg-mw|listusersfrom}}',
 'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 

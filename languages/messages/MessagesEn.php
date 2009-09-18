@@ -2516,7 +2516,7 @@ Supported protocols: <tt>$1</tt>',
 # Special:ActiveUsers
 'activeusers'          => 'Active users list',
 'activeusers-summary'  => '', # do not translate or duplicate this message to other languages
-'activeusers-count'    => '$1 recent {{PLURAL:$1|edit|edits}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|edit|edits}} in the last {{PLURAL:$3|day|$3 days}}',
 'activeusers-from'     => 'Display users starting at:',
 'activeusers-noresult' => 'No users found.',
 
