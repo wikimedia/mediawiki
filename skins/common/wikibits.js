@@ -695,6 +695,9 @@ function ts_resortTable(lnk) {
 		var row = table.rows[j];
 		if((" "+row.className+" ").indexOf(" unsortable ") < 0) {
 			var keyText = ts_getInnerText(row.cells[column]);
+			if(keyText == undefined) {
+				keyText = ""; 
+			}
 			var oldIndex = (reverse ? -j : j);
 			var preprocessed = preprocessor( keyText.replace(/^[\s\xa0]+/, "").replace(/[\s\xa0]+$/, "") );
 
