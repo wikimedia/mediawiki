@@ -344,6 +344,15 @@ class ArchivedFile
 	}
 
 	/**
+	 * Returns the deletion bitfield
+	 * @return int
+	 */
+	public function getVisibility() {
+		$this->load();
+		return $this->deleted;
+	}
+
+	/**
 	 * int $field one of DELETED_* bitfield constants
 	 * for file or revision rows
 	 * @return bool
