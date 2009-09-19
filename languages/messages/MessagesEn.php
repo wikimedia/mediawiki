@@ -2078,24 +2078,29 @@ this file is $2.',
 'emptyfile'                   => 'The file you uploaded seems to be empty.
 This might be due to a typo in the file name.
 Please check whether you really want to upload this file.',
-'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it. [[$1|thumb]]",
+'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it.
+[[$1|thumb]]",
 'filepageexists'              => "The description page for this file has already been created at '''<tt>[[:$1]]</tt>''', but no file with this name currently exists.
 The summary you enter will not appear on the description page.
-To make your summary appear there, you will need to manually edit it. [[$1|thumb]]",
+To make your summary appear there, you will need to manually edit it.
+[[$1|thumb]]",
 'fileexists-extension'        => "A file with a similar name exists: [[$2|thumb]]
 * Name of the uploading file: '''<tt>[[:$1]]</tt>'''
 * Name of the existing file: '''<tt>[[:$2]]</tt>''' 
 Please choose a different name.",
-'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''. [[$1|thumb]]
+'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
+[[$1|thumb]]
 Please check the file '''<tt>[[:$1]]</tt>'''.
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
 'file-thumbnail-no'           => "The filename begins with '''<tt>$1</tt>'''.
 It seems to be an image of reduced size ''(thumbnail)''.
 If you have this image in full resolution upload this one, otherwise change the file name please.",
 'fileexists-forbidden'        => 'A file with this name already exists, and cannot be overwritten.
-If you still want to upload your file, please go back and use a new name. [[File:$1|thumb|center|$1]]',
+If you still want to upload your file, please go back and use a new name.
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository.
-If you still want to upload your file, please go back and use a new name. [[File:$1|thumb|center|$1]]',
+If you still want to upload your file, please go back and use a new name.
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => "A file identical to this file ([[$1]]) has previously been deleted.
 You should check that file's deletion history before proceeding to re-upload it.",
@@ -2844,7 +2849,8 @@ $1',
 'sp-contributions-logs'           => 'logs',
 'sp-contributions-talk'           => 'talk',
 'sp-contributions-userrights'     => 'user rights management',
-'sp-contributions-blocked-notice' => 'This user is currently blocked. The latest block log entry is provided below for reference:',
+'sp-contributions-blocked-notice' => 'This user is currently blocked.
+The latest block log entry is provided below for reference:',
 'sp-contributions-search'         => 'Search for contributions',
 'sp-contributions-username'       => 'IP Address or username:',
 'sp-contributions-submit'         => 'Search',
@@ -2945,8 +2951,10 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'autoblocker'                     => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
 The reason given for $1\'s block is: "$2"',
 'blocklogpage'                    => 'Block log',
-'blocklog-showlog'                => 'This user has been blocked previously. The block log is provided below for reference:',
-'blocklog-showsuppresslog'        => 'This user has been blocked and hidden previously. The suppress log is provided below for reference:',
+'blocklog-showlog'                => 'This user has been blocked previously.
+The block log is provided below for reference:',
+'blocklog-showsuppresslog'        => 'This user has been blocked and hidden previously.
+The suppress log is provided below for reference:',
 'blocklogentry'                   => 'blocked [[$1]] with an expiry time of $2 $3',
 'reblock-logentry'                => 'changed block settings for [[$1]] with an expiry time of $2 $3',
 'blocklogtext'                    => 'This is a log of user blocking and unblocking actions.
