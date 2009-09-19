@@ -512,11 +512,6 @@ class UploadForm extends SpecialPage {
 				} elseif( $warning == 'duplicate-archive' ) {
 					$titleText = Title::makeTitle( NS_FILE, $args )->getPrefixedText();
 					$msg = Xml::tags( 'li', null, wfMsgExt( 'file-deleted-duplicate', array( 'parseinline' ), array( $titleText ) ) );
-				} elseif( $warning == 'filewasdeleted' ) {
-					$ltitle = SpecialPage::getTitleFor( 'Log' );
-					$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ),
-						'type=delete&page=' . $args->getPrefixedUrl() );
-					$msg = "\t<li>" . wfMsgWikiHtml( 'filewasdeleted', $llink ) . "</li>\n";
 				} else {
 					if( is_bool( $args ) )
 						$args = array();

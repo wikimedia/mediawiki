@@ -318,15 +318,6 @@ abstract class UploadBase {
 		if( $exists !== false )
 			$warnings['exists'] = $exists;
 
-		// Check whether this may be a thumbnail
-		if( $exists !== false && $exists[0] != 'thumb'
-				&& self::isThumbName( $filename ) ){
-			// Make the title
-			$nt = $this->getTitle();
-			$warnings['file-thumbnail-no'] = substr( $filename, 0,
-				strpos( $nt->getText() , '-' ) +1 );
-		}
-
 		// Check dupes against existing files
 		$hash = File::sha1Base36( $this->mTempPath );
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
@@ -343,19 +334,6 @@ abstract class UploadBase {
 		$archivedImage = new ArchivedFile( null, 0, "{$hash}.{$this->mFinalExtension}" );
 		if ( $archivedImage->getID() > 0 )
 			$warnings['duplicate-archive'] = $archivedImage->getName();
-
-		$filenamePrefixBlacklist = self::getFilenamePrefixBlacklist();
-		foreach( $filenamePrefixBlacklist as $prefix ) {
-			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
-				$warnings['filename-bad-prefix'] = $prefix;
-				break;
-			}
-		}
-
-		# If the file existed before and was deleted, warn the user of this
-		# Don't bother doing so if the file exists now, however
-		if( $localFile->wasDeleted() && !$localFile->exists() )
-			$warnings['filewasdeleted'] = $localFile->getTitle();
 
 		return $warnings;
 	}
