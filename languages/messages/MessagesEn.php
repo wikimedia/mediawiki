@@ -1042,7 +1042,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'login'                      => 'Log in',
 'nav-login-createaccount'    => 'Log in / create account',
 'loginprompt'                => 'You must have cookies enabled to log in to {{SITENAME}}.',
-'userlogin'                  => 'Log in / create account',
+'userlogin'                  => 'Log in',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
 'notloggedin'                => 'Not logged in',
@@ -1090,6 +1090,7 @@ If someone else made this request, or if you have remembered your password,
 and you no longer wish to change it, you may ignore this message and
 continue using your old password.',
 'noemail'                    => 'There is no e-mail address recorded for user "$1".',
+'noemailcreate'              => 'You need to provide a valid email address',
 'passwordsent'               => 'A new password has been sent to the e-mail address registered for "$1".
 Please log in again after you receive it.',
 'blocked-mailpassword'       => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
@@ -1926,6 +1927,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-reset-passwords'       => "Reset other users' passwords",
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-versiondetail'         => 'Show the extended software version information',
+'right-root'                  => 'Perform all actions on the wiki',
 
 # User rights log
 'rightslog'      => 'User rights log',

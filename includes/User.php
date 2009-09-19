@@ -2152,6 +2152,7 @@ class User {
 		# Use strict parameter to avoid matching numeric 0 accidentally inserted
 		# by misconfiguration: 0 == 'foo'
 		return in_array( $action, $this->getRights(), true )
+			|| in_array( 'root', $this->getRights(), true );
 	}
 
 	/**

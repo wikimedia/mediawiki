@@ -1348,6 +1348,9 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-versiondetail'         => '{{doc-right|versiondetail}}
 
 Users having this right receive more detailed information on [[Special:Version]].',
+'right-root'                  => '{{doc-right|root}}
+Analogous to the \'root\' permission on Unix systems, allows the user to perform \'\'any\'\' action on the wiki; effectively granting them all other permissions.
+',
 
 # User rights log
 'rightslog'      => 'In [[Special:Log]]',
