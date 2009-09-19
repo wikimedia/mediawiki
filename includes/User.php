@@ -467,7 +467,7 @@ class User {
 		$s = $dbr->selectRow( 'user', array( 'user_id' ), array( 'user_name' => $nt->getText() ), __METHOD__ );
 
 		if ( $s === false ) {
-			$result = 0;
+			$result = null;
 		} else {
 			$result = $s->user_id;
 		}
@@ -2151,7 +2151,7 @@ class User {
 		}
 		# Use strict parameter to avoid matching numeric 0 accidentally inserted
 		# by misconfiguration: 0 == 'foo'
-		return in_array( $action, $this->getRights(), true );
+		return in_array( $action, $this->getRights(), true )
 	}
 
 	/**
