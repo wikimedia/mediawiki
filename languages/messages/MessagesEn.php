@@ -2078,17 +2078,16 @@ this file is $2.',
 'emptyfile'                   => 'The file you uploaded seems to be empty.
 This might be due to a typo in the file name.
 Please check whether you really want to upload this file.',
-'fileexists'                  => "A file with this name exists already, please check '''<tt>$1</tt>''' if you are not sure if you want to change it.",
-'filepageexists'              => "The description page for this file has already been created at '''<tt>$1</tt>''', but no file with this name currently exists.
+'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it. [[$1|thumb]]",
+'filepageexists'              => "The description page for this file has already been created at '''<tt>[[:$1]]</tt>''', but no file with this name currently exists.
 The summary you enter will not appear on the description page.
-To make your summary appear there, you will need to manually edit it",
-'fileexists-extension'        => "A file with a similar name exists:<br />
-Name of the uploading file: '''<tt>$1</tt>'''<br />
-Name of the existing file: '''<tt>$2</tt>'''<br />
+To make your summary appear there, you will need to manually edit it. [[$1|thumb]]",
+'fileexists-extension'        => "A file with a similar name exists: [[$2|thumb]]
+* Name of the uploading file: '''<tt>[[:$1]]</tt>'''
+* Name of the existing file: '''<tt>[[:$2]]</tt>''' 
 Please choose a different name.",
-'fileexists-thumb'            => "<center>'''Existing file'''</center>",
-'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
-Please check the file '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''. [[$1|thumb]]
+Please check the file '''<tt>[[:$1]]</tt>'''.
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
 'file-thumbnail-no'           => "The filename begins with '''<tt>$1</tt>'''.
 It seems to be an image of reduced size ''(thumbnail)''.

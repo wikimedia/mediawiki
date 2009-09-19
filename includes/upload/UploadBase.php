@@ -965,43 +965,55 @@ abstract class UploadBase {
 	 */
 	public static function getExistsWarning( $file ) {
 		if( $file->exists() )
-			return array( 'exists', $file );
+			return array( 'warning' => 'exists', 'file' => $file );
 
 		if( $file->getTitle()->getArticleID() )
-			return array( 'page-exists', $file );
-
+			return array( 'warning' => 'page-exists', 'file' => $file );
+		
+		if ( $file->wasDeleted() && !$file->exists() )
+			return array( 'warning' => 'was-deleted', 'file' => $file );		
+			
 		if( strpos( $file->getName(), '.' ) == false ) {
 			$partname = $file->getName();
-			$rawExtension = '';
+			$extension = '';
 		} else {
 			$n = strrpos( $file->getName(), '.' );
-			$rawExtension = substr( $file->getName(), $n + 1 );
+			$extension = substr( $file->getName(), $n + 1 );
 			$partname = substr( $file->getName(), 0, $n );
 		}
+		$normalizedExtension = File::normalizeExtension( $extension );
 
-		if ( $rawExtension != $file->getExtension() ) {
+		if ( $normalizedExtension != $extension ) {
 			// We're not using the normalized form of the extension.
 			// Normal form is lowercase, using most common of alternate
 			// extensions (eg 'jpg' rather than 'JPEG').
 			//
 			// Check for another file using the normalized form...
-			$nt_lc = Title::makeTitle( NS_FILE, $partname . '.' . $file->getExtension() );
+			$nt_lc = Title::makeTitle( NS_FILE, "{$partname}.{$normalizedExtension}" );
 			$file_lc = wfLocalFile( $nt_lc );
 
 			if( $file_lc->exists() )
-				return array( 'exists-normalized', $file_lc );
+				return array( 'warning' => 'exists-normalized', 'file' => $file, 'normalizedFile' => $file_lc );
 		}
 
 		if ( self::isThumbName( $file->getName() ) ) {
 			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
-			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $rawExtension );
+			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $extension, NS_FILE );
 			$file_thb = wfLocalFile( $nt_thb );
 			if( $file_thb->exists() )
-				return array( 'thumb', $file_thb );
+				return array( 'warning' => 'thumb', 'file' => $file, 'thumbFile' => $file_thb );
 			else
 				// File does not exist, but we just don't like the name
-				return array( 'thumb-name', $file_thb );
+				return array( 'warning' => 'thumb-name', 'file' => $file, 'thumbFile' => $file_thb );
 		}
+		
+
+		foreach( self::getFilenamePrefixBlacklist() as $prefix ) {
+			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix )
+				return array( 'warning' => 'bad-prefix', 'file' => $file, 'prefix' => $prefix );
+		}
+		
+
 
 		return false;
 	}
