@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1832,7 +1832,7 @@ Template:搞清楚',
 
 # Special:ActiveUsers
 'activeusers'          => '活躍用戶名單',
-'activeusers-count'    => '$1次最近編輯',
+'activeusers-count'    => '響$3日之內嘅$1次編輯',
 'activeusers-from'     => '顯示用戶開始於:',
 'activeusers-noresult' => '搵唔到用戶。',
 

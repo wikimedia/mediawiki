@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1872,7 +1872,7 @@ Template:消除歧義',
 
 # Special:ActiveUsers
 'activeusers'          => '活跃用户列表',
-'activeusers-count'    => '$1次最近编辑',
+'activeusers-count'    => '于$3天内的$1次编辑',
 'activeusers-from'     => '显示用户开始于：',
 'activeusers-noresult' => '找不到用户。',
 
