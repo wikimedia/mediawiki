@@ -131,7 +131,7 @@ class UploadForm extends SpecialPage {
 		if( !$this->mTokenOk && !$this->mReUpload && ($this->mUpload && (
 						'submit' == $this->mAction || $this->mUploadClicked ) ) )
 		{
-			$this->mainUploadForm ( wfMsg( 'session_fail_preview' ) );
+			$this->mainUploadForm ( wfMsg( 'session_fail_preview', 'parseinline' ) );
 			return ;
 		}
 
@@ -333,105 +333,34 @@ class UploadForm extends SpecialPage {
 		if ( !$exists )
 			return '';
 
-		$warning = '';
-		$align = $wgContLang->alignEnd();
-
-		list( $existsType, $file ) = $exists;
-
-		if ( strpos( $file->getName(), '.' ) == false ) {
-			// File does not have an extension or starts with a dot
-			$partname = $file->getName();
-			$rawExtension = '';
-		} else {
-			$n = strrpos( $file->getName(), '.' );
-			$rawExtension = substr( $file->getName(), $n + 1 );
-			$partname = substr( $file->getName(), 0, $n );
-		}
+		$file = $exists['file'];
+		$filename = $file->getTitle()->getPrefixedText();
+		$warning = array();
 
 		$sk = $wgUser->getSkin();
 
-		if( $existsType == 'exists' ) {
+		if( $exists['warning'] == 'exists' ) {
 			// Exact match
-			$dlink = $sk->linkKnown( $file->getTitle() );
-			if ( $file->allowInlineDisplay() ) {
-				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-					$file->getName(), $align, array(), false, true );
-			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
-				$icon = $file->iconThumb();
-				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
-					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . $dlink . '</div>';
-			} else {
-				$dlink2 = '';
-			}
-
-			$warning .= '<li>' . wfMsgExt( 'fileexists', array('parseinline','replaceafter'), $dlink ) . '</li>' . $dlink2;
-
-		} elseif( $existsType == 'page-exists' ) {
+			$warning[] = '<li>' . wfMsgExt( 'fileexists', 'parseinline', $filename ) . '</li>';
+		} elseif( $exists['warning'] == 'page-exists' ) {
 			// Page exists but file does not
-			$lnk = $sk->linkKnown( $file->getTitle(), '', '',array('redirect'=>'no') );
-			$warning .= '<li>' . wfMsgExt( 'filepageexists', array( 'parseinline', 'replaceafter' ), $lnk ) . '</li>';
-		} elseif ( $existsType == 'exists-normalized' ) {
-			# Check if image with lowercase extension exists.
-			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
-			$normalizedTitle = $file->getTitle();
-			$dlink = $sk->linkKnown( $normalizedTitle );
-			if ( $file->allowInlineDisplay() ) {
-				// FIXME: replace deprecated makeImageLinkObj by link()
-				$dlink2 = $sk->makeImageLinkObj( $normalizedTitle, wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-					$normalizedTitle->getText(), $align, array(), false, true );
-			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
-				$icon = $file->iconThumb();
-				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
-					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . $dlink . '</div>';
-			} else {
-				$dlink2 = '';
-			}
-
-			$warning .= '<li>' .
-				wfMsgExt( 'fileexists-extension', 'parsemag',
-					$file->getTitle()->getPrefixedText(), $dlink ) .
-				'</li>' . $dlink2;
-
-		} elseif ( $existsType == 'thumb' ) {
-			$nt_thb = $file->getTitle();
-			$dlink = $sk->linkKnown( $nt_thb );
-			if ( $file->allowInlineDisplay() ) {
-				// FIXME: replace deprecated makeImageLinkObj by link()
-				$dlink2 = $sk->makeImageLinkObj( $nt_thb,
-					wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-					$nt_thb->getText(), $align, array(), false, true );
-			} elseif ( !$file_thb->allowInlineDisplay() && $file_thb->isSafeFile() ) {
-				$icon = $file_thb->iconThumb();
-				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
-					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' .
-					$dlink . '</div>';
-			} else {
-				$dlink2 = '';
-			}
-
-			$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) .
-				'</li>' . $dlink2;
-		} elseif ( $existsType == 'thumb-name' ) {
-				# Image w/o '180px-' does not exists, but we do not like these filenames
-				$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' ,
-					substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
-		}
-
-		$filenamePrefixBlacklist = UploadBase::getFilenamePrefixBlacklist();
-		# Do the match
-		if( !isset( $partname ) )
-			$partname = '';
-		foreach( $filenamePrefixBlacklist as $prefix ) {
-			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
-				$warning .= '<li>' . wfMsgExt( 'filename-bad-prefix', 'parseinline', $prefix ) . '</li>';
-				break;
-			}
-		}
-
-		// TODO: This should be put deeper down (i.e. UploadBase::getExistsWarning)
-		if ( $file->wasDeleted() && !$file->exists() ) {
+			$warning[] = '<li>' . wfMsgExt( 'filepageexists', 'parseinline', $filename ) . '</li>';
+		} elseif ( $exists['warning'] == 'exists-normalized' ) {
+			$warning[] = '<li>' . wfMsgExt( 'fileexists-extension', 'parseinline', $filename, 
+				$exists['normalizedFile']->getTitle()->getPrefixedText() ) . '</li>';
+		} elseif ( $exists['warning'] == 'thumb' ) {
+			// Swapped argument order compared with other messages for backwards compatibility
+			$warning[] = '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parseinline', 
+				$exists['thumbFile']->getTitle()->getPrefixedText(), $filename ) . '</li>';
+		} elseif ( $exists['warning'] == 'thumb-name' ) {
+			# Image w/o '180px-' does not exists, but we do not like these filenames
+			$name = $file->getName();
+			$badPart = substr( $name, 0, strpos( $name, '-' ) + 1 );
+			$warning[] = '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline', $badPart ) . '</li>';
+		} elseif ( $exists['warning'] == 'bad-prefix' ) {
+			$warning[] = '<li>' . wfMsgExt( 'filename-bad-prefix', 'parseinline', $exists['prefix'] ) . '</li>';
+		} elseif ( $exists['warning'] == 'was-deleted' ) {
 			# If the file existed before and was deleted, warn the user of this
-			# Don't bother doing so if the file exists now, however
 			$ltitle = SpecialPage::getTitleFor( 'Log' );
 			$llink = $sk->linkKnown(
 				$ltitle,
@@ -439,12 +368,13 @@ class UploadForm extends SpecialPage {
 				array(),
 				array(
 					'type' => 'delete',
-					'page' => $file->getTitle()->getPrefixedText()
+					'page' => $filename
 				)
 			);
-			$warning .= '<li>' . wfMsgWikiHtml( 'filewasdeleted', $llink ) . '</li>';
+			$warning[] = '<li>' . wfMsgWikiHtml( 'filewasdeleted', $llink ) . '</li>';
 		}
-		return $warning;
+		
+		return implode( "\n", $warning );
 	}
 
 	/**
