@@ -1618,16 +1618,17 @@ Toe-estaone {{PLURAL:\$3|bestaanstype is|bestaanstypes bin}} \$2.",
 'large-file'                  => "'t Wonnen an-eraojen dat bestanen neet groter bin as $1, dit bestaand is $2.",
 'largefileserver'             => "'t Bestaand is groter as dat de server toesteet.",
 'emptyfile'                   => "'t Bestaand da-j toe-evoeg hemmen is leeg. Dit kan koemen deur een tikfout in de bestaansnaam. Kiek effen nao o-j dit bestaand wè bedoelen.",
-'fileexists'                  => "Een ofbeelding mit disse naam besteet al; voeg 't bestaand onder een aandere naam toe. '''<tt>$1</tt>'''",
-'filepageexists'              => "De beschrievingspagina veur dit bestaand bestung al op '''<tt>$1</tt>''', mar der besteet nog gien bestaand mit disse naam.
+'fileexists'                  => "Een ofbeelding mit disse naam besteet al; voeg 't bestaand onder een aandere naam toe.
+'''<tt>[[:$1]]</tt>''' [[$1|thumb]]",
+'filepageexists'              => "De beschrievingspagina veur dit bestaand bestung al op '''<tt>[[:$1]]</tt>''', mar der besteet nog gien bestaand mit disse naam.
 De samenvatting dee-j op-egeven hemmen zal neet op de beschrievingspagina koemen.
 Bewark de pagina haandmaotig um joew beschrieving daor weer te geven.",
-'fileexists-extension'        => "Een bestaand mit een soortgelieke naam besteet al:<br />
-Naam van 't bestaand da-j toevoegen wollen: '''<tt>$1</tt>'''<br />
-Naam van 't bestaonde bestaand: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Een bestaand mit een soortgelieke naam besteet al: [[$2|thumb]]
+* Naam van 't bestaand da-j toevoegen wollen: '''<tt>[[:$1]]</tt>'''
+* Naam van 't bestaonde bestaand: '''<tt>[[:$2]]</tt>'''
 't Enigste verschil is de heufletters/kleine letters van de extensie. Kiek effen nao of de bestanen neet liekeleens bin.",
-'fileexists-thumb'            => "'''<center>Bestaonde ofbeelding</center>'''",
-'fileexists-thumbnail-yes'    => "Dit bestaand is een ofbeelding waovan de grootte verkleind is <i>(ofbeeldingsoverzichte)</i>. Kiek 't bestaand nao <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => "Dit bestaand is een ofbeelding waovan de grootte verkleind is ''(ofbeeldingsoverzichte)''. [[$1|thumb]]
+Kiek 't bestaand nao <strong><tt>[[:$1]]</tt></strong>.
 As de ofbeelding dee-j krek nao-ekeken hemmen dezelfde grootte hef, dan is 't neet neudig um 't opniej toe te voegen.",
 'file-thumbnail-no'           => "De bestaansnaam begint mit '''<tt>$1</tt>'''. 
 Dit is werschienlijk een verkleinde ofbeelding ''(overzichsofbeelding)''.

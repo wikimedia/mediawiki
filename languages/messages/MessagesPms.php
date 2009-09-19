@@ -1244,6 +1244,7 @@ Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o 
 'right-reset-passwords'       => "Reamposté le ciav d'àutri utent",
 'right-override-export-depth' => 'Esporté pàgine ancludend pàgine colegà fin a na profondità ëd 5',
 'right-versiondetail'         => "Mosta j'anformassion estèise dla vërsion dël software",
+'right-root'                  => 'Fà tute le assion an sla wiki',
 
 # User rights log
 'rightslog'      => "Drit dj'utent",
@@ -1386,14 +1387,15 @@ Varda l'[[Special:NewFiles|elench dij file neuv]] për na presentassion pì visu
 'emptyfile'                   => "L'archivi che a l'ha pen-a carià a smija veujd.
 Sòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'archivi midem.
 Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
-'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che as contròla '''<tt>$1</tt>''' se a l'é pa sigur dë volej cangelo.",
-'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>$1</tt>''', mach ch'a-i é pa gnun archivi ch'as ciama parej. Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission. Për podej buté sò somari a l'ha da modifichesse la pàgina a man",
-'fileexists-extension'        => "N'archivi con ës nòm-s a-i é già:<br />
-Nòm dl'archivi ch'as carìa: '''<tt>$1</tt>'''<br />
-Nòm dl'archivi ch'a-i é già: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che as contròla '''<tt>[[:$1]]</tt>''' se a l'é pa sigur dë volej cangelo.
+[[$1|thumb]]",
+'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>[[:$1]]</tt>''', mach ch'a-i é pa gnun archivi ch'as ciama parej. Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission. Për podej buté sò somari a l'ha da modifichesse la pàgina a man",
+'fileexists-extension'        => "N'archivi con ës nòm-s a-i é già: [[$2|thumb]]
+* Nòm dl'archivi ch'as carìa: '''<tt>[[:$1]]</tt>'''
+* Nòm dl'archivi ch'a-i é già: '''<tt>[[:$2]]</tt>'''
 Për piasì, ch'a serna un nòm diferent.",
-'fileexists-thumb'            => "<center>'''Figura ch'a-i é'''</center>",
-'fileexists-thumbnail-yes'    => "L'archivi a-j ëmsija a na ''figurin-a''. Për piasì, ch'a contròla l'archivi '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "L'archivi a-j ëmsija a na ''figurin-a''. [[$1|thumb]]
+Për piasì, ch'a contròla l'archivi '''<tt>[[:$1]]</tt>'''.
 S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",
 'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con '''<tt>$1</tt>'''. 
 A-j ësmija a na ''figurin-a''.
@@ -1764,7 +1766,7 @@ Varda ëdcò [[Special:WantedCategories|Categorìe ciamà]].",
 
 # Special:ActiveUsers
 'activeusers'          => "Lista dj'utent ativ",
-'activeusers-count'    => '$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}}',
+'activeusers-count'    => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
 'activeusers-from'     => "Mosta j'utent a parte da:",
 'activeusers-noresult' => 'Pa gnun utent trovà.',
 

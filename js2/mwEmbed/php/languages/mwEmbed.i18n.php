@@ -3701,6 +3701,10 @@ $messages['vep'] = array(
 	'mwe-sc_audio' => "Audiokontrol'",
 	'mwe-template_properties' => 'Šablonan ičendad',
 	'mwe-edit_properties' => 'Redaktiruida ičendad',
+	'mwe-other_properties' => 'Toižed ičendad',
+	'mwe-resource_page' => "Purtken lehtpol':",
+	'mwe-start_time' => 'Augotišen aig',
+	'mwe-end_time' => 'Lopun aig',
 	'mwe-close' => 'saupta',
 	'mwe-menu_cliplib' => 'Ližata medijad',
 	'mwe-rmclip' => 'Heitta klip poiš',
@@ -3718,7 +3722,15 @@ $messages['vep'] = array(
 	'mwe-ok-button' => 'OK',
 	'mwe-link_back' => 'Kosketuz tagaze',
 	'mwe-play_clip' => 'Väta klip',
+	'mwe-credits' => 'Tegijad',
 	'mwe-menu_btn' => 'Menü',
+	'mwe-close_btn' => 'Saubata',
+	'mwe-ogg-player-vlc-mozilla' => 'VLC-plagin',
+	'mwe-ogg-player-quicktime-mozilla' => 'QuickTime-plagin',
+	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
+	'mwe-ogg-player-cortado' => 'Java Cortado',
+	'mwe-ogg-player-selected' => '(valitud)',
+	'mwe-playerselect' => 'Plejerad',
 );
 
 /** Vietnamese (Tiếng Việt)

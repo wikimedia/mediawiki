@@ -723,7 +723,7 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'prefs-watchlist-days'        => 'Ionyeshwe siku ngapi kwenye orodha ya maangalizi?',
 'prefs-watchlist-edits'       => 'Upeo ya idadi ya mabadiliko yatakayoonyeshwa kwenye orodha ya maangalizi iliyotanuka:',
 'prefs-watchlist-edits-max'   => 'Idadi isiyopitishwa: 1000',
-'prefs-watchlist-token'       => 'Ufunguo wa orodha ya maangalizi',
+'prefs-watchlist-token'       => 'Ufunguo wa orodha ya maangalizi:',
 'prefs-misc'                  => 'Mengineyo',
 'prefs-resetpass'             => 'Kubadilisha nywila',
 'prefs-email'                 => 'Hitiari za barua pepe',
@@ -1066,6 +1066,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'listusers-noresult' => 'Mtumiaji hakupatikana.',
 
 # Special:ActiveUsers
+'activeusers-count'    => '{{PLURAL:$1|sahihisho|masahihisho}} $1 katika {{PLURAL:$3|siku}} $3 ya mwisho',
 'activeusers-from'     => 'Onyesha watumiaji kuanzia:',
 'activeusers-noresult' => 'Watumiaji hawakupatikana.',
 

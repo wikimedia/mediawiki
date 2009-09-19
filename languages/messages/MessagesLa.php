@@ -1214,7 +1214,6 @@ Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum imposito
 'badfilename'         => 'Nomen fasciculi ad "$1" mutatum est.',
 'filetype-missing'    => 'Fasciculus extensionem non habet (sicut e.&nbsp;g. ".jpg").',
 'large-file'          => 'Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.',
-'fileexists-thumb'    => "<center>'''Imago quae iam est'''</center>",
 'successfulupload'    => 'Impositum est perfectum',
 'uploadwarning'       => 'Monitus imponendi',
 'savefile'            => 'Servare fasciculum',
@@ -1482,7 +1481,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Index usorum activorum',
-'activeusers-count'    => '{{PLURAL:$1|una recensio recens|$1 recensiones recentes}}',
+'activeusers-count'    => '{{PLURAL:$1|una recensio recens|$1 recensiones recentes}} {{PLURAL:$3|die proximo|in diebus $3 proximis}}',
 'activeusers-noresult' => 'Nullus usor inventus.',
 
 # Special:Log/newusers

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1497,14 +1497,14 @@ $1",
 'large-file'                  => '建議檔案大小不能超過 $1；本檔案大小為 $2。',
 'largefileserver'             => '這個檔案的大小比伺服器配置允許的大小還要大。',
 'emptyfile'                   => '您所上傳的檔案不存在。這可能是由於檔案名鍵入錯誤。請檢查您是否真的要上傳此檔案。',
-'fileexists'                  => "已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查'''<tt>$1</tt>'''。",
-'filepageexists'              => "這個檔案的描述頁已經在'''<tt>$1</tt>'''創建，但是這個名稱的檔案尚未存在。您輸入了的摘要是不會顯示在該描述頁中。要令該摘要在該處中出現，您便要手動地去編輯它。",
-'fileexists-extension'        => "一個相似檔名的檔案已經存在:<br />
-上載檔案的檔名: '''<tt>$1</tt>'''<br />
-現有檔案的檔名: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
+'filepageexists'              => "這個檔案的描述頁已經在'''<tt>[[:$1]]</tt>'''創建，但是這個名稱的檔案尚未存在。您輸入了的摘要是不會顯示在該描述頁中。要令該摘要在該處中出現，您便要手動地去編輯它。",
+'fileexists-extension'        => "一個相似檔名的檔案已經存在: [[$2|thumb]]
+* 上載檔案的檔名: '''<tt>[[:$1]]</tt>'''
+* 現有檔案的檔名: '''<tt>[[:$2]]</tt>'''
 請選擇一個不同的名字。",
-'fileexists-thumb'            => "<center>'''已經存在的檔案'''</center>",
-'fileexists-thumbnail-yes'    => "這個檔案好像是一幅圖像的縮圖版本''（縮圖）''。請檢查清楚該檔案'''<tt>$1</tt>'''。<br />
+'fileexists-thumbnail-yes'    => "這個檔案好像是一幅圖像的縮圖版本''（縮圖）''。 [[$1|thumb]]
+請檢查清楚該檔案'''<tt>[[:$1]]</tt>'''。
 如果檢查後的檔案是同原本圖像的大小是一樣的話，就不用再上載多一幅縮圖。",
 'file-thumbnail-no'           => "該檔名是以'''<tt>$1</tt>'''開始。它好像一幅圖像的縮圖版本''（縮圖）''。
 如果{{GENDER:|你|妳|你}}有該圖像的完整大小，如不是請再修改檔名。",

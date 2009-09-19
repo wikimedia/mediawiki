@@ -754,7 +754,6 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'filedesc'          => 'Ogetu',
 'uploadedfiles'     => 'Files carrigadus',
 'badfilename'       => 'Il nome del file immagine è stato convertito in "$1".',
-'fileexists-thumb'  => "<center>'''File pre-esistente'''</center>",
 'successfulupload'  => 'Carrigamentu acabau',
 'uploadwarning'     => 'Avvisu de carrigamentu',
 'savefile'          => 'Sarva file',

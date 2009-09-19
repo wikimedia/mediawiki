@@ -1428,13 +1428,17 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 'large-file'                  => 'Priporočeno je, da datoteke niso večje od $1; ta datoteka je $2.',
 'largefileserver'             => 'Velikost datoteke presega strežnikove nastavitve.',
 'emptyfile'                   => 'Naložena datoteka je morda prazna. Do tega bi lahko prišlo zaradi slovnične napake v imenu. Ali datoteko resnično želite naložiti?',
-'fileexists'                  => "Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran '''<tt>$1</tt>'''. Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr. »Eifflov stolp, Pariz, ponoči.jpg«).",
-'fileexists-extension'        => "Datoteka s podobnim imenom že obstaja:<br />
-Ime naložene datoteke: '''<tt>$1</tt>'''<br />
-Ime obstoječe datoteke: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Datoteka s tem imenom že obstaja.
+Preden jo povozite, preverite stran '''<tt>[[:$1]]</tt>'''.
+Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr.
+»Eifflov stolp, Pariz, ponoči.jpg«).
+[[$1|thumb]]",
+'fileexists-extension'        => "Datoteka s podobnim imenom že obstaja: [[$2|thumb]]
+* Ime naložene datoteke: '''<tt>[[:$1]]</tt>'''
+* Ime obstoječe datoteke: '''<tt>[[:$2]]</tt>'''
 Prosimo, izberite drugo ime.",
-'fileexists-thumb'            => "'''<center>Obstoječa datoteka</center>'''",
-'fileexists-thumbnail-yes'    => "Kot izgleda, je ta slika pomanjšana ''(thumbnail)''. Prosimo, preverite datoteko '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Kot izgleda, je ta slika pomanjšana ''(thumbnail)''. [[$1|thumb]]
+Prosimo, preverite datoteko '''<tt>[[:$1]]</tt>'''.
 Če je preverjena datoteka enaka kot ta, ki jo nalage, ni potrebno nalagati še dodatne sličice.",
 'file-thumbnail-no'           => "Ime datoteke se začne z '''<tt>$1</tt>'''. Izgleda, da je to pomanjšana slika ''(thumbnail)''.
 Če imate sliko polne resolucije, jo naložite, drugače spremenite ime datoteke.",

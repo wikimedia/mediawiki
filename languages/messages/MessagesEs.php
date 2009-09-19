@@ -1573,15 +1573,17 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'large-file'                  => 'Se recomienda que los archivos no sean mayores de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
-'fileexists'                  => "Ya existe un archivo con este nombre. Por favor compruebe el existente '''<tt>$1</tt>''' si no está seguro de querer reemplazarlo.",
-'filepageexists'              => "La página de descripción de este archivo ya ha sido creada en '''<tt>$1</tt>''', pero no existe actualmente ningún fichero con este nombre.
+'fileexists'                  => "Ya existe un archivo con este nombre.
+Por favor compruebe el existente '''<tt>[[:$1]]</tt>''' si no está seguro de querer reemplazarlo.
+[[$1|thumb]]",
+'filepageexists'              => "La página de descripción de este archivo ya ha sido creada en '''<tt>[[:$1]]</tt>''', pero no existe actualmente ningún fichero con este nombre.
 El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.",
-'fileexists-extension'        => "Existe un archivo con un nombre similar:<br />
-Nombre del archivo que se está subiendo: '''<tt>$1</tt>'''<br />
-Nombre del archivo ya existente: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Existe un archivo con un nombre similar: [[$2|thumb]]
+* Nombre del archivo que se está subiendo: '''<tt>[[:$1]]</tt>'''
+* Nombre del archivo ya existente: '''<tt>[[:$2]]</tt>'''
 Por favor, elige un nombre diferente.",
-'fileexists-thumb'            => "<center>'''Imagen existente'''</center>",
-'fileexists-thumbnail-yes'    => "El archivo parece ser una imagen de tamaño reducido ''(thumbnail)''. Por favor comprueba el archivo '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "El archivo parece ser una imagen de tamaño reducido ''(thumbnail)''. [[$1|thumb]]
+Por favor comprueba el archivo '''<tt>[[:$1]]</tt>'''.
 Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.",
 'file-thumbnail-no'           => "El nombre del archivo comienza con '''<tt>$1</tt>'''.
 Parece ser una imagen de tamaño reducido ''(thumbnail)''.

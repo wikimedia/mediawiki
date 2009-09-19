@@ -1036,17 +1036,17 @@ Ba yang iyabe ing simpan king metung a bulung gamitan me ing suglung (link) king
 Ing simpan a ini $2 ya.',
 'largefileserver'             => 'Mas maragul ya ing simpan (file) a ini kesa ketang makapaintulut (configured) king server.',
 'emptyfile'                   => 'Balamu ala yang laman ing simpan (file) a linulan mu. Mapaliaring ing sangkan, pamagkamali (typo) ya king lagyung simpan (file name). Pakaisipan mu nung taganang buri meng ilulan ining simpan.',
-'fileexists'                  => "Atin nang simpan (file) a maki lagyung anti kaniti; pakilawe mu '''<tt>$1</tt>''' nung e ka siguradu nung buri meng alilan.",
-'filepageexists'              => "Melalang na ing bulung pamilarawan (description page) para king simpan (file) a ini king '''<tt>$1</tt>''', oneng king salukuyan, ala pang simpan a maki lagyung anti kaniti.
+'fileexists'                  => "Atin nang simpan (file) a maki lagyung anti kaniti; pakilawe mu '''<tt>[[:$1]]</tt>''' nung e ka siguradu nung buri meng alilan.
+[[$1|thumb]]",
+'filepageexists'              => "Melalang na ing bulung pamilarawan (description page) para king simpan (file) a ini king '''<tt>[[:$1]]</tt>''', oneng king salukuyan, ala pang simpan a maki lagyung anti kaniti.
 E ya tambing lunto king bulung pamilarawan ing sampulung (summary) a isulat mu.
 Ba yang lunto karin ing kekang sampulung, kailangan me pamung i-edit",
-'fileexists-extension'        => "Maki simpan (file) a makayawig lagyu kaniti:<br />
-Lagyu ning simpan a milululan: '''<tt>$1</tt>'''<br />
-Lagyu ning salukuyan a simpan: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Maki simpan (file) a makayawig lagyu kaniti: [[$2|thumb]]
+* Lagyu ning simpan a milululan: '''<tt>[[:$1]]</tt>'''
+* Lagyu ning salukuyan a simpan: '''<tt>[[:$2]]</tt>'''
 Mamili kang aliwang lagyu.",
-'fileexists-thumb'            => "<center>'''Salukuyan a simpan (file)'''</center>",
-'fileexists-thumbnail-yes'    => "Lupa yang larawan a pepalati ing simpan ''(thumbnail)''.
-Pakilawe me ing simpan '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Lupa yang larawan a pepalati ing simpan ''(thumbnail)''. [[$1|thumb]]
+Pakilawe me ing simpan '''<tt>[[:$1]]</tt>'''.
 Nung ya naman ketang minunang maki orihinal a dagul ing simpan a maka-check, e na kailangang maglulan karagdagan a thumbnail.",
 'file-thumbnail-no'           => "Magumpisa ya ing lagyungsimpan (filename) king '''<tt>$1</tt>'''.
 Lupa yang larawan a pepalati ''(thumbnail)''.

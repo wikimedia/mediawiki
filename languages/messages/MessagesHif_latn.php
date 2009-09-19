@@ -1381,17 +1381,17 @@ ii file hai $2',
 'emptyfile'                   => 'Jon file aap upload karaa rahaa uu khaali rahaa.
 Ii saait file ke naam likhe me typing mistake ke kaaran hoi.
 Meharbaani kar ke ii dekho ki aap such me ii file upload kare mangtaa hai ki nai.',
-'fileexists'                  => "Ii naam ke file abhi hai, meharbani kar ke check karo '''<tt>$1</tt>''' agar jo aap sure nai hai ki aap iske badle mangta hai.",
-'filepageexists'              => "Ii file ke description ke '''<tt>$1</tt>''' me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
+'fileexists'                  => "Ii naam ke file abhi hai, meharbani kar ke check karo '''<tt>[[:$1]]</tt>''' agar jo aap sure nai hai ki aap iske badle mangta hai.
+[[$1|thumb]]",
+'filepageexists'              => "Ii file ke description ke '''<tt>[[:$1]]</tt>''' me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
 Aap jon summary likhtaa hai uu panna ke description me nai dekhai.
 Description ke dekhae ke khatir, aap ke iske manually badle ke parri.",
-'fileexists-extension'        => "Ii rakam ke naam ke ek aur file hai:<br />
-Uploading file ke naam: '''<tt>$1</tt>'''<br />
-Abhi ke file ke naam: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Ii rakam ke naam ke ek aur file hai: [[$2|thumb]]
+* Uploading file ke naam: '''<tt>[[:$1]]</tt>'''
+* Abhi ke file ke naam: '''<tt>[[:$2]]</tt>'''
 Meharbani kar ke duusra naam chuno.",
-'fileexists-thumb'            => "<center>'''Abhi ke file'''</center>",
-'fileexists-thumbnail-yes'    => "Ii janawe hai ki ii file ek chhota chapa hai ''(thumbnail)''.
-Meharbani kar ke file ke check karo '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Ii janawe hai ki ii file ek chhota chapa hai ''(thumbnail)''. [[$1|thumb]]
+Meharbani kar ke file ke check karo '''<tt>[[:$1]]</tt>'''.
 Agar jo check karaa gais file wahi chhapa ke original size hai tab ek aur thumbnail ke upload kare ke jaruri nai hai.",
 'file-thumbnail-no'           => "File ke naam '''<tt>$1</tt>''' se suruu hoe hai.
 Ii janawe hai ki ii chhota size ke chapa hai ''(thumbnail)''.

@@ -1599,17 +1599,18 @@ Plik ma rozmiar {{PLURAL:$2|1 bajt|$2 bajty|$2 bajtów}}.',
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku.
 Sprawdź, czy nazwa jest prawidłowa.',
-'fileexists'                  => "Plik o takiej nazwie już istnieje. Sprawdź '''<tt>$1</tt>''', jeśli nie jesteś pewien czy chcesz go zastąpić.",
-'filepageexists'              => "Istnieje już strona opisu tego pliku utworzona '''<tt>$1</tt>''', ale brak obecnie pliku o tej nazwie.
+'fileexists'                  => "Plik o takiej nazwie już istnieje.
+Sprawdź '''<tt>[[:$1]]</tt>''', jeśli nie jesteś pewien czy chcesz go zastąpić.
+[[$1|thumb]]",
+'filepageexists'              => "Istnieje już strona opisu tego pliku utworzona '''<tt>[[:$1]]</tt>''', ale brak obecnie pliku o tej nazwie.
 Informacje o pliku, które wprowadziłeś, nie pojawią się na stronie opisu.
 Jeśli chcesz, by informacje te zostały pokazane, musisz je ręcznie przeredagować",
-'fileexists-extension'        => "Plik o podobnej nazwie już istnieje:<br />
-Nazwa przesyłanego pliku: '''<tt>$1</tt>'''<br />
-Nazwa istniejącego pliku: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Plik o podobnej nazwie już istnieje: [[$2|thumb]]
+* Nazwa przesyłanego pliku: '''<tt>[[:$1]]</tt>'''
+* Nazwa istniejącego pliku: '''<tt>[[:$2]]</tt>'''
 Wybierz inną nazwę.",
-'fileexists-thumb'            => "<center>'''Istniejący plik'''</center>",
-'fileexists-thumbnail-yes'    => "Plik wydaje się być pomniejszoną grafiką ''(miniaturką)''.
-Sprawdź plik '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Plik wydaje się być pomniejszoną grafiką ''(miniaturką)''. [[$1|thumb]]
+Sprawdź plik '''<tt>[[:$1]]</tt>'''.
 Jeśli wybrany plik jest tą samą grafiką co ta w oryginalnym rozmiarze, nie musisz przesyłać dodatkowej miniaturki.",
 'file-thumbnail-no'           => "Nazwa pliku zaczyna się od '''<tt>$1</tt>'''.
 Wydaje się, że jest to pomniejszona grafika ''(miniaturka)''.

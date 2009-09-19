@@ -758,7 +758,6 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'badfilename'       => 'Faylın adı dəyişildi. Yeni adı: "$1".',
 'emptyfile'         => 'Yüklədiyiniz fayl boşdur. Bu faylın adında olan hərf səhvi ilə bağlı ola bilər. Xahiş olunur ki, doğurdan da bu faylı yükləmək istədiyinizi yoxlayasınız.',
 'fileexists'        => "Sizin yükləmək istədiyiniz adda fayl artıq yüklənmişdir. Lütfən '''<tt>$1</tt>''' keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.",
-'fileexists-thumb'  => "<center>'''Mövcud şəkil'''</center>",
 'successfulupload'  => 'Yükləmə tamamlandı',
 'uploadwarning'     => 'Yükləyiş xəbərdarlıqı',
 'savefile'          => 'Faylı qeyd et',

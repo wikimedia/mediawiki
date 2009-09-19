@@ -1488,20 +1488,18 @@ Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini k
 bu dosyanın boyutu $2.',
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten tyüklemek isteyip istemediğinizden emin olun.',
-'fileexists'                  => "Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce '''<tt>$1</tt>''' dosyasına bir gözatın.",
-'filepageexists'              => "Bu dosya için açıklama sayfası '''<tt>$1</tt>''' adresinde zaten oluşturulmuş, fakat bu isimde bir dosya şu anda mevcut değil.
+'fileexists'                  => "Bu isimde bir dosya mevcut.
+Eğer değiştirmekten emin değilseniz ilk önce '''<tt>[[:$1]]</tt>''' dosyasına bir gözatın.
+[[$1|thumb]]",
+'filepageexists'              => "Bu dosya için açıklama sayfası '''<tt>[[:$1]]</tt>''' adresinde zaten oluşturulmuş, fakat bu isimde bir dosya şu anda mevcut değil.
 Gireceğiniz özet açıklama sayfasında görünmeyecektir.
 Özetinizin orada görünmesi için, bunu elle değiştirmelisiniz",
-'fileexists-extension'        => "Benzer isimle başka bir dosya mevcut:<br />
-Yüklenilen dosyanın adı: '''<tt>$1</tt>'''<br />
-Varolan dosyanın adı: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Benzer isimle başka bir dosya mevcut: [[$2|thumb]]
+* Yüklenilen dosyanın adı: '''<tt>[[:$1]]</tt>'''
+* Varolan dosyanın adı: '''<tt>[[:$2]]</tt>'''
 Lütfen başka bir isim seçin",
-'fileexists-thumb'            => "<center>'''Bu isimde zaten bir dosya var'''</center>",
-'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
-Please check the file '''<tt>$1</tt>'''.<br />
-If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.
-Bu dosya, bir resmi küçültülmüş vesiyonu gibi görünüyor ''(thumbnail)''
-Lütfen '''<tt>$1</tt>''' dosyasını kontrol edin .<br />
+'fileexists-thumbnail-yes'    => "Bu dosya, bir resmi küçültülmüş vesiyonu gibi görünüyor ''(thumbnail)''. [[$1|thumb]]
+Lütfen '''<tt>[[:$1]]</tt>''' dosyasını kontrol edin .
 Eğer kontrol edilen dosya ile orijinal boyutundaki aynı dosyaysa fazladan pul imge yüklemeye gerek yoktur.",
 'file-thumbnail-no'           => "Bu dosyanın adı '''<tt>$1</tt>''' ile başlıyor.
 Bu başka bir resim küçültülmüş versiyonuna benziyor ''(thumbnail)''

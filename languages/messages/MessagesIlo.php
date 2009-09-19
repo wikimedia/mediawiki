@@ -833,7 +833,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'filetype-badmime'       => 'Dagiti files a kas MIME type "$1" ket saan a mapalubosan a maipan.',
 'filetype-unwanted-type' => "Ti '''\".\$1\"''' ket di mabalin a file type. Dagiti mayat a file types ket \$2.",
 'filetype-banned-type'   => "Ti '''\".\$1\"''' ket saan a mapalubosan a file type. Dagiti mabalin a file types ket \$2.",
-'fileexists-thumb'       => "<center>'''Addan a file'''</center>",
 'successfulupload'       => 'Balligi ti panag-upload',
 'uploadwarning'          => 'Ballaag iti panagipan',
 'savefile'               => 'Idulin ti file',

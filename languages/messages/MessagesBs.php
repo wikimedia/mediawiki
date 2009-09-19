@@ -1647,17 +1647,18 @@ Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 Ova datoteka je velika $2.',
 'largefileserver'             => 'Ova datoteka je veća nego što server dopušta.',
 'emptyfile'                   => 'Datoteka koju ste poslali je prazna. Ovo je moguće zbog greške u imenu datoteke. Molimo Vas da provjerite da li stvarno želite da pošaljete ovu datoteku.',
-'fileexists'                  => "Datoteka sa ovim imenom već postoji. Molimo Vas da provjerite '''<tt>$1</tt>''' ako niste sigurni da li želite da je promjenite.",
-'filepageexists'              => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>$1</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
+'fileexists'                  => "Datoteka sa ovim imenom već postoji.
+Molimo Vas da provjerite '''<tt>[[:$1]]</tt>''' ako niste sigurni da li želite da je promjenite.
+[[$1|thumb]]",
+'filepageexists'              => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>[[:$1]]</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
 Sažetak koji ste naveli neće se pojaviti na stranici opisa.
 Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite",
-'fileexists-extension'        => "Datoteka sa sličnim nazivom postoji:<br />
-Naziv datoteke koja se postavlja: '''<tt>$1</tt>'''<br />
-Naziv postojeće datoteke: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Datoteka sa sličnim nazivom postoji: [[$2|thumb]]
+* Naziv datoteke koja se postavlja: '''<tt>[[:$1]]</tt>'''
+* Naziv postojeće datoteke: '''<tt>[[:$2]]</tt>'''
 Molimo Vas da izaberete drugačiji naziv.",
-'fileexists-thumb'            => "<center>'''Postojeća datoteka'''</center>",
-'fileexists-thumbnail-yes'    => "Izgleda da je datoteka slika smanjene veličine ''(\"thumbnail\")''.
-Molimo provjerite datoteku '''<tt>\$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Izgleda da je datoteka slika smanjene veličine ''(\"thumbnail\")''. [[\$1|thumb]]
+Molimo provjerite datoteku '''<tt>[[:\$1]]</tt>'''.
 Ako je provjerena datoteka ista slika originalne veličine, nije potrebno postavljati dodatnu sliku.",
 'file-thumbnail-no'           => "Naziv datoteke počinje sa '''<tt>\$1</tt>'''.
 Izgleda da se radi o smanjenoj slici ''(\"thumbnail\")''.
