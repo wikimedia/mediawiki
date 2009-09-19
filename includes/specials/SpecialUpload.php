@@ -131,7 +131,7 @@ class UploadForm extends SpecialPage {
 		if( !$this->mTokenOk && !$this->mReUpload && ($this->mUpload && (
 						'submit' == $this->mAction || $this->mUploadClicked ) ) )
 		{
-			$this->mainUploadForm ( wfMsg( 'session_fail_preview', 'parseinline' ) );
+			$this->mainUploadForm ( wfMsgExt( 'session_fail_preview', 'parseinline' ) );
 			return ;
 		}
 
