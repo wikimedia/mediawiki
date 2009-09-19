@@ -1248,7 +1248,6 @@ $wgMessageStructure = array(
 		'fileexists',
 		'filepageexists',
 		'fileexists-extension',
-		'fileexists-thumb',
 		'fileexists-thumbnail-yes',
 		'file-thumbnail-no',
 		'fileexists-forbidden',
