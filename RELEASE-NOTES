@@ -230,6 +230,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAJAXCategoriesNamespaces.
 * Admins could disable some variants using $wgDisabledVariants now. ONLY apply on
   wikis enabled LanguageConverter.
+* A new permission, 'root', is created.  Analogous to root users on Unix systems,
+  the root permission effectively grants all other permissions on a wiki.  Useful
+  for debugging and administration.
 
 === Bug fixes in 1.16 ===
 

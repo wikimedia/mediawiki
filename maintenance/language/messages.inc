@@ -1107,6 +1107,7 @@ $wgMessageStructure = array(
 		'right-reset-passwords',
 		'right-override-export-depth',
 		'right-versiondetail',
+		'right-root',
 	),
 	'rightslog' => array(
 		'rightslog',
