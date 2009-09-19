@@ -1534,6 +1534,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-versiondetail'         => 'Voir les informations étendues sur les versions des logiciels',
+'right-root'                  => 'Réaliser toutes les actions sur le wiki',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
@@ -1674,16 +1675,19 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'emptyfile'                   => 'Le fichier que vous voulez téléverser semble vide.
 Ceci peut être dû à une erreur dans le nom du fichier.
 Veuillez vérifier que vous désirez vraiment téléverser ce fichier.',
-'fileexists'                  => "Un fichier avec ce nom existe déjà. Merci de vérifier '''<tt>$1</tt>'''. Êtes-vous certain{{GENDER:||e|}} de vouloir modifier ce fichier ?",
-'filepageexists'              => "La page de description pour ce fichier a déjà été créée ici '''<tt>$1</tt>''', mais aucun fichier de ce nom n’existe actuellement. Le résumé que vous allez écrire ne remplacera pas le texte précédent.
-Pour ce faire vous devrez modifier manuellement la page.",
-'fileexists-extension'        => "Un fichier avec un nom similaire existe déjà :<br />
-Nom du fichier à importer : '''<tt>$1</tt>'''<br />
-Nom du fichier existant : '''<tt>$2</tt>'''<br />
-La seule différence est la casse (majuscules / minuscules) de l’extension. Veuillez vérifier que le fichier est différent et changer son nom.",
-'fileexists-thumb'            => "<center>'''Fichier existant'''</center>",
-'fileexists-thumbnail-yes'    => "Le fichier semble être une image en taille réduite ''(vignette)''. Veuillez vérifier le fichier '''<tt>$1</tt>'''.<br />
-Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.",
+'fileexists'                  => "Un fichier existe déjà sous ce nom.
+Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n'êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
+[[$1|thumb]]",
+'filepageexists'              => "La page de description pour ce fichier a déjà été créée ici '''<tt>[[:$1]]</tt>''', mais aucun fichier n’existe actuellement sous ce nom.
+Le résumé que vous allez spécifier n'apparaîtra pas sur la page de description.
+Pour le faire, vous devrez modifier manuellement la page. [[$1|vignette]]",
+'fileexists-extension'        => "Un fichier existe avec un nom proche : [[$2|thumb]]
+* Nom du fichier à téléverser : '''<tt>[[:$1]]</tt>'''
+* Nom du fichier existant : '''<tt>[[:$2]]</tt>'''
+Veuillez choisir un autre nom.",
+'fileexists-thumbnail-yes'    => "Le fichier semble être une image en taille réduite ''(vignette)''. [[$1|thumb]]
+Veuillez vérifier le fichier '''<tt>[[:$1]]</tt>'''.
+Si le fichier vérifié est la même image avec la taille initiale, il n’y a pas besoin d’importer une version réduite.",
 'file-thumbnail-no'           => "Le nom du fichier commence par '''<tt>$1</tt>'''.
 Il est possible qu’il s’agisse d’une version réduite ''(vignette)''.
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez modifier son nom.",

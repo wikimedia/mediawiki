@@ -1423,17 +1423,17 @@ Stu file jè $2.",
 'emptyfile'                   => "'U file ca tu è carecate pare ca è vacande.
 Pò essere ca è scritte male 'u nome d'u file e n'à carecate 'n'otre.
 Pe piacere condrolle ce tu avveramende vuè cu careche stu file.",
-'fileexists'                  => "'Nu file cu stu nome esiste già, pe piacere verifiche '''<tt>$1</tt>''' ce tu non ge sì secure no 'u sce cangianne.",
-'filepageexists'              => "'A pàgene de descrizione pe stu file ha state già ccreiate 'u '''<tt>$1</tt>''', ma nisciune file cu stu nome osce a die esiste.
+'fileexists'                  => "'Nu file cu stu nome esiste già, pe piacere verifiche '''<tt>[[:$1]]</tt>''' ce tu non ge sì secure no 'u sce cangianne.
+[[$1|thumb]]",
+'filepageexists'              => "'A pàgene de descrizione pe stu file ha state già ccreiate 'u '''<tt>[[:$1]]</tt>''', ma nisciune file cu stu nome osce a die esiste.
 'U riepileghe ca tu è mise non ge iesse sus 'a pàgene de descrizione.
 Pe fà assè 'u riepileghe tu tìne abbesogne de cangiarle a mane.",
-'fileexists-extension'        => "'Nu file cu 'nu nome simile esiste già:<br />
-Nome d'u file ca vuè cu careche: '''<tt>$1</tt>'''<br />
-Nome d'u file ca già esiste: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "'Nu file cu 'nu nome simile esiste già: [[$2|thumb]]
+* Nome d'u file ca vuè cu careche: '''<tt>[[:$1]]</tt>'''
+* Nome d'u file ca già esiste: '''<tt>[[:$2]]</tt>'''
 Pe piacere vide ce scacchie 'nu nome differende.",
-'fileexists-thumb'            => "<center>'''File già ca esiste'''</center>",
-'fileexists-thumbnail-yes'    => "'U file pare ca jè 'n'immaggine de dimenzione ridotte ''(miniature)''.
-Pe piacere condrolle 'u file '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "'U file pare ca jè 'n'immaggine de dimenzione ridotte ''(miniature)''. [[$1|thumb]]
+Pe piacere condrolle 'u file '''<tt>[[:$1]]</tt>'''.
 Ce 'u file condrollete jè d'a stesse dimenzione de quedda originale allore non ge stè abbesogne de carecà 'na miniatura de cchiù.",
 'file-thumbnail-no'           => "'U nome d'u file accumenze pe '''<tt>$1</tt>'''.
 Pare ca jè 'n'immaggine piccenne ''(miniature)''.

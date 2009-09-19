@@ -1047,13 +1047,15 @@ usà inveci
 'large-file'                  => 'Pa piazeri nò suparà li misuri di $1 pa ugni file; chisthu file è mannu $2.',
 'largefileserver'             => 'Lu file supara li misuri cunsintiddi da la cunfigurazioni di lu server.',
 'emptyfile'                   => "Lu file appena cariggaddu pari assé bioddu. Lu chi pudia assé dubuddu a un'errori i' l'innòmmu di lu file. Verifiggà chi s'aggia avveru gana di cariggà chisthu file.",
-'fileexists'                  => "Un file cu' chisth'innòmmu isisthi già. Verifiggà primma '''<tt>$1</tt>''' si nò s'è sigguri di vurellu sobbraschribì.",
-'fileexists-extension'        => "Un file cu'un'innòmmu sìmmiri isisthi già; la sora diffarènzia è l'usu di li maiuschini i' l'esthensioni:<br />
-Innòmmu di lu file cariggaddu: '''<tt>$1</tt>'''<br />
-Innòmmu di lu file esisthenti: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Un file cu' chisth'innòmmu isisthi già.
+Verifiggà primma '''<tt>[[:$1]]</tt>''' si nò s'è sigguri di vurellu sobbraschribì.
+[[$1|thumb]]",
+'fileexists-extension'        => "Un file cu'un'innòmmu sìmmiri isisthi già; la sora diffarènzia è l'usu di li maiuschini i' l'esthensioni: [[$2|thumb]]
+* Innòmmu di lu file cariggaddu: '''<tt>[[:$1]]</tt>'''
+* Innòmmu di lu file esisthenti: '''<tt>[[:$2]]</tt>'''
 Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènti pa lu file da carriggà.",
-'fileexists-thumb'            => "<center>'''File prisisthenti'''</center>",
-'fileexists-thumbnail-yes'    => "Lu file carriggaddu pari assé lu risulthaddu d'un'antiprimma ''(thumbnail)''. Verifiggà, pa cunfrontu, lu file '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Lu file carriggaddu pari assé lu risulthaddu d'un'antiprimma ''(thumbnail)''. [[$1|thumb]]
+Verifiggà, pa cunfrontu, lu file '''<tt>[[:$1]]</tt>'''.
 S'è la matessi immàgina, i' li misuri originari, nò è nezzessàriu carriggà althri antiprimmi.",
 'file-thumbnail-no'           => "L'innòmmu di lu file ischumenza cun '''<tt>$1</tt>'''. Pari assé lu risulthaddu d'un'antiprimma ''(thumbnail)''.
 Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla. A l'invessu, pa piazeri ciambà l'innòmmu di lu file.",

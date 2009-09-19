@@ -1061,14 +1061,16 @@ Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 'large-file'                  => 'Lokiewafa da lum ke man iyeltak tir lepinaf dam $1; bat iyeltak tir $2.',
 'largefileserver'             => 'Bat iyeltak tir pwertarsaf gu gotune ke zanisiko.',
 'emptyfile'                   => 'Kalvajan iyeltak nuvelar vlardaf. Lanon golde sutejen iyeltakyolt. Vay ageltal ede va bat iyeltak en djukalvajal !',
-'fileexists'                  => "Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va '''<tt>$1</tt>'''. Til lanaf da va bat iyeltak djubetal ?",
-'filepageexists'              => "Pimtarabu ke bat iyeltak ixam al zo redur ko '''<tt>$1</tt>''', vexe mek iyeltak dem man yolt ixam tir. Vildeks rinon suten moe pimtarabu me awitir. Ede djumel da in batlize co-awir, nubedon co-gobetal.",
-'fileexists-extension'        => "Iyeltak dem nuxaf yolt tir :<br />
-Yolt ke kalvajayan iyeltak : '''<tt>$1</tt>'''<br />
-Yolt ke tis iyeltak : '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Iyeltak dem man bat yolt ixam krulder.
+Vay, ageltal va '''<tt>[[:$1]]</tt>'''.
+Til lanaf da va bat iyeltak djubetal ? [[$1|thumb]]",
+'filepageexists'              => "Pimtarabu ke bat iyeltak ixam al zo redur ko '''<tt>[[:$1]]</tt>''', vexe mek iyeltak dem man yolt ixam tir. Vildeks rinon suten moe pimtarabu me awitir. Ede djumel da in batlize co-awir, nubedon co-gobetal.",
+'fileexists-extension'        => "Iyeltak dem nuxaf yolt tir : [[$2|thumb]]
+* Yolt ke kalvajayan iyeltak : '''<tt>[[:$1]]</tt>'''
+* Yolt ke tis iyeltak : '''<tt>[[:$2]]</tt>'''
 Va amidaf yolt vay kiblal !",
-'fileexists-thumb'            => "<center>'''Kruldes iyeltak'''</center>",
-'fileexists-thumbnail-yes'    => "Iyeltak nuvelar da tir lumamafa ewava ''(aluk)''. Vay va '''<tt>$1</tt>''' iyeltak stujel.<br />
+'fileexists-thumbnail-yes'    => "Iyeltak nuvelar da tir lumamafa ewava ''(aluk)''. [[$1|thumb]]
+Vay va '''<tt>[[:$1]]</tt>''' iyeltak stujel.
 Ede stujen iyeltak tir mila lumanhafa ewava, va aptaf aluk me kalvajal !",
 'fileexists-forbidden'        => 'Milyoltaf iyeltak ixam krulder nume me zo robetar.
 Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel.

@@ -1470,14 +1470,15 @@ Kiek bi de [[Special:NewFiles|Galerie vun ne’e Datein]] för en Översicht mit
 'large-file'                  => 'Datein schöölt opbest nich grötter wesen as $1. Disse Datei is $2 groot.',
 'largefileserver'             => 'De Datei is grötter as de vun’n Server verlöövte Bövergrenz för de Grött.',
 'emptyfile'                   => 'De hoochladene Datei is leddig. De Grund kann en Tippfehler in de Dateinaam ween. Kontrolleer, of du de Datei redig hoochladen wullst.',
-'fileexists'                  => "En Datei mit dissen Naam existeert al, prööv '''<tt>$1</tt>''', wenn du di nich seker büst of du dat ännern wullst.",
-'filepageexists'              => "En Sied, de dat Bild beschrifft, gifft dat al as '''<tt>$1</tt>''', dat gifft aver keen Datei mit dissen Naam. De Text, den du hier ingiffst, warrt nich op de Sied övernahmen. Du musst de Sied na dat Hoochladen noch wedder extra ännern.",
-'fileexists-extension'        => "Dat gifft al en Datei mit en ähnlichen Naam:<br />
-Naam vun diene Datei: '''<tt>$1</tt>'''<br />
-Naam vun de Datei, de al dor is: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "En Datei mit dissen Naam existeert al, prööv '''<tt>[[:$1]]</tt>''', wenn du di nich seker büst of du dat ännern wullst.
+[[$1|thumb]]",
+'filepageexists'              => "En Sied, de dat Bild beschrifft, gifft dat al as '''<tt>[[:$1]]</tt>''', dat gifft aver keen Datei mit dissen Naam. De Text, den du hier ingiffst, warrt nich op de Sied övernahmen. Du musst de Sied na dat Hoochladen noch wedder extra ännern.",
+'fileexists-extension'        => "Dat gifft al en Datei mit en ähnlichen Naam: [[$2|thumb]]
+* Naam vun diene Datei: '''<tt>[[:$1]]</tt>'''
+* Naam vun de Datei, de al dor is: '''<tt>[[:$2]]</tt>'''
 Blot dat Ennen vun de Datei is bi dat Groot-/Lütt-Schrieven anners. Kiek na, wat de Datein villicht desülven sünd.",
-'fileexists-thumb'            => "<center>'''Vörhannene Datei'''</center>",
-'fileexists-thumbnail-yes'    => "De Datei schient en Bild to wesen, dat lütter maakt is ''(thumbnail)''. Kiek di de Datei '''<tt>$1</tt>''' an.<br />
+'fileexists-thumbnail-yes'    => "De Datei schient en Bild to wesen, dat lütter maakt is ''(thumbnail)''. [[$1|thumb]]
+Kiek di de Datei '''<tt>[[:$1]]</tt>''' an.
 Wenn dat dat Bild in vulle Grött is, denn bruukst du keen extra Vörschaubild hoochladen.",
 'file-thumbnail-no'           => "De Dateinaam fangt an mit '''<tt>$1</tt>'''. Dat düüdt dor op hen, dat dat en lütter maakt Bild ''(thumbnail, Duumnagel-Bild)'' is.
 Kiek na, wat du dat Bild nich ok in vulle Grött hest un laad dat ünner’n Originalnaam hooch oder änner den Dateinaam.",

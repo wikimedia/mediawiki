@@ -959,14 +959,16 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 'large-file'                  => 'Es recomendabri que los archivus nu seyan mayoris de $1; esti archivu ocupa $2.',
 'largefileserver'             => 'Esti archivu es mas grandi que lo premitiu pol el sirviol.',
 'emptyfile'                   => "El archivu qu'as ententau empuntal paci estal vaciu; pol favol, compreba que realmenti se trata el archivu que querias empuntal.",
-'fileexists'                  => "Ya desisti un archivu con esi nombri. Pol favol, compreba que realmenti quieis chambal el archivu '''<tt>$1</tt>'''.",
-'filepageexists'              => "Ya desisti un artículu con esi nombri, pol favol, compreba '''<tt>$1</tt>''' si nu estás siguru e querel chambalu.",
-'fileexists-extension'        => "Ya desisti un archivu con un nombri paiciu:<br />
-Nombri el archivu empuntau: '''<tt>$1</tt>'''<br />
-Nombri el archivu ya desistenti: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Ya desisti un archivu con esi nombri.
+Pol favol, compreba que realmenti quieis chambal el archivu '''<tt>[[:$1]]</tt>'''.
+[[$1|thumb]]",
+'filepageexists'              => "Ya desisti un artículu con esi nombri, pol favol, compreba '''<tt>[[:$1]]</tt>''' si nu estás siguru e querel chambalu.",
+'fileexists-extension'        => "Ya desisti un archivu con un nombri paiciu: [[$2|thumb]]
+* Nombri el archivu empuntau: '''<tt>[[:$1]]</tt>'''
+* Nombri el archivu ya desistenti: '''<tt>[[:$2]]</tt>'''
 Pol favol, lihi un nombri deferenti.",
-'fileexists-thumb'            => "<center>'''Esta imáhin ya desisti'''</center>",
-'fileexists-thumbnail-yes'    => "El archivu paci sel una imahin chiquenina ''(cuairu)''. Pol favol, compreba qu'el archivu '''<tt>$1</tt>''' nu es la mesma imahin.<br />
+'fileexists-thumbnail-yes'    => "El archivu paci sel una imahin chiquenina ''(cuairu)''. [[$1|thumb]]
+Pol favol, compreba qu'el archivu '''<tt>[[:$1]]</tt>''' nu es la mesma imahin.
 Nel chascu en que huera la mesm imahin (inque seya en grandi) nu es mestel qu'empuntis el tu archivu.",
 'file-thumbnail-no'           => "El nombri el archivu esmiença pol '''<tt>$1</tt>'''. Paci sel una imahin pequeña ''(cuairu)''.
 Si tiinis la imahin cola resolución orihinal, empúntala, si nu, pol favol, chamba el nombri del archivu.",

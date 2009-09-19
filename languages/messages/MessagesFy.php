@@ -1407,17 +1407,17 @@ Jou de triem in oare namme en besykje him dan op\'e nij heech te laden.',
 Dat soe komme kinne fan in typflater yn 'e triemnamme.
 Gean nei oft jo dizze triem wier bedoelden heech te laden.",
 'fileexists'                  => "Der bestiet al in triem mei dizze namme.
-Kontrolearje '''<tt>$1</tt>''' as jo net wis binne oft jo de besteande triem oerskriuwe wolle.",
-'filepageexists'              => "De beskriuwingsside foar dizze triem bestiet al op '''<tt>$1</tt>''', mar der bestiet gjin triem mei dizze namme.
+Kontrolearje '''<tt>[[:$1]]</tt>''' as jo net wis binne oft jo de besteande triem oerskriuwe wolle.
+[[$1|thumb]]",
+'filepageexists'              => "De beskriuwingsside foar dizze triem bestiet al op '''<tt>[[:$1]]</tt>''', mar der bestiet gjin triem mei dizze namme.
 De gearfetting dy't jo opjûn hawwe sil net op 'e beskriuwingsside ferskine.
 Bewurkje de side mei de hân om de beskriuwing dêr wer te jaan.",
-'fileexists-extension'        => "In triem mei deselde namme bestiet al:<br />
-Namme fan 'e heechladene triem: '''<tt>$1</tt>'''<br />
-Namme fan 'e besteande triem: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "In triem mei deselde namme bestiet al: [[$2|thumb]]
+* Namme fan 'e heechladene triem: '''<tt>[[:$1]]</tt>'''
+* Namme fan 'e besteande triem: '''<tt>[[:$2]]</tt>'''
 Kies in oare namme.",
-'fileexists-thumb'            => "<center>'''Besteande ôfbylding'''</center>",
-'fileexists-thumbnail-yes'    => "De triem liket in ferlytse ferzje te wêzen ''(miniatuerôfbylding)''.
-Kontrolearje de triem '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "De triem liket in ferlytse ferzje te wêzen ''(miniatuerôfbylding)''. [[$1|thumb]]
+Kontrolearje de triem '''<tt>[[:$1]]</tt>'''.
 As de kontrolearre triem deselde ôfbylding fan deselde grutte is, dan hoecht net in ekstra miniatuerôfbylding oanbean te wurden.",
 'file-thumbnail-no'           => "De triemnamme begjint mei '''<tt>$1</tt>'''.
 It liket in ferlytse ôfbylding te wêzen ''(miniatuerôfbylding)''.

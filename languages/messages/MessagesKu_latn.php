@@ -859,12 +859,15 @@ Format {{PLURAL:$3|yê tê|yên tên}} xastin {{PLURAL:$3|ev e|ev in}}: $2.',
 'filetype-missing'       => 'Piştnavî datayê tune (wek ".jpg").',
 'large-file'             => "Mezinbûna data'yan bila ne ji $1 mezintir bin; ev data'ya $2 mezin e.",
 'emptyfile'              => "Data'ya barkirî vala ye. Sedemê valabûnê belkî şaşnivîsek di navê data'yê da ye. Xêra xwe seke, ku tu rast dixazê vê data'yê barbikê.",
-'fileexists'             => "Datayek bi vê navê berê heye. Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê. Di bin '''<tt>$1</tt>''' du dikarî sekê, ku di dixwazê wê wêneyê biguherînê. Eger tu naxazê, xêra xwe li „Betal“ xe.",
-'fileexists-extension'   => "Datayek wek vê navê berê heye:<br />
-Navî datayê yê tê barkirin: '''<tt>$1</tt>'''<br />
-Navî datayê yê berê heyê: '''<tt>$2</tt>'''<br />
+'fileexists'             => "Datayek bi vê navê berê heye.
+Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê.
+Di bin '''<tt>[[:$1]]</tt>''' du dikarî sekê, ku di dixwazê wê wêneyê biguherînê.
+Eger tu naxazê, xêra xwe li „Betal“ xe.
+[[$1|thumb]]",
+'fileexists-extension'   => "Datayek wek vê navê berê heye: [[$2|thumb]]
+* Navî datayê yê tê barkirin: '''<tt>[[:$1]]</tt>'''
+* Navî datayê yê berê heyê: '''<tt>[[:$2]]</tt>'''
 Xêra xwe navekî din bibîne.",
-'fileexists-thumb'       => "<center>'''Wêne yê berê heye'''</center>",
 'file-thumbnail-no'      => "Navî vê datayê bi '''<tt>$1</tt>''' destpêdike. Ev dibêje ku ev wêneyekî çûçik e ''(thumbnail)''. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.",
 'fileexists-forbidden'   => 'Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.
 [[File:$1|thumb|center|$1]]',

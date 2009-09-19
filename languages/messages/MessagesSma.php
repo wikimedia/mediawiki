@@ -407,16 +407,15 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'recentchangeslinked-summary'  => "Dïhte joekoelaakan bielie lästoe dah minngemes värrhtoedimmieh nille bielieh goh lea lïenghke. Bielieh nille dov sïektjedhlästoe lea '''buajtehks'''.",
 
 # Upload
-'upload'           => 'Sadde guvvie',
-'uploadbtn'        => 'Sadde baalka',
-'uploadlogpage'    => 'Sadde logge',
-'filename'         => 'Guvvienomme',
-'filesource'       => 'Gaaltjie',
-'fileexists-thumb' => "<center>'''Lea-guvvie'''</center>",
-'savefile'         => 'Spååredh guvvie',
-'uploadedimage'    => 'sadde "[[$1]]"',
-'uploadvirus'      => 'Guvvie tjeekehdidh viirus! Bïevnesh: $1',
-'sourcefilename'   => 'Gaaltjie guvvienomme',
+'upload'         => 'Sadde guvvie',
+'uploadbtn'      => 'Sadde baalka',
+'uploadlogpage'  => 'Sadde logge',
+'filename'       => 'Guvvienomme',
+'filesource'     => 'Gaaltjie',
+'savefile'       => 'Spååredh guvvie',
+'uploadedimage'  => 'sadde "[[$1]]"',
+'uploadvirus'    => 'Guvvie tjeekehdidh viirus! Bïevnesh: $1',
+'sourcefilename' => 'Gaaltjie guvvienomme',
 
 'upload-file-error' => 'Sjisjnjie båajhtode',
 

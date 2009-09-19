@@ -1505,6 +1505,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-reset-passwords'       => 'Más felhasználók jelszavának visszaállítása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-versiondetail'         => 'kibővített szoftververzió-információk tekintése',
+'right-root'                  => 'az összes művelet elvégzése',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',
@@ -1646,15 +1647,15 @@ ez a fájl $2.',
 'emptyfile'                   => 'Az általad feltöltött fájl üresnek tűnik.
 Ez valószínűleg azért van, mert hibásan adtad meg a feltöltendő fájl nevét.
 Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
-'fileexists'                  => "'''<tt>$1</tt>''' névvel már létezik egy állomány. Ellenőrizd, hogy biztosan felül akarod-e írni!",
-'filepageexists'              => "Ehhez a fájlnévhez már létezik leírás a '''<tt>$1</tt>''' lapon, de jelenleg nincs feltöltve ilyen nevű fájl. A leírás, amit ebbe az űrlapba írsz, nem fogja felülírni a már létezőt, és sehol nem fog megjelenni. Ha meg akarod változtatni a leírást, meg kell nyitnod szerkesztésre a lapját.",
-'fileexists-extension'        => "Már van egy hasonló nevű feltöltött fájl:<br />
-A feltöltendő fájl neve: '''<tt>$1</tt>'''<br />
-A már létező fájl neve: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "'''<tt>[[:$1]]</tt>''' névvel már létezik egy állomány.
+Ellenőrizd, hogy biztosan felül akarod-e írni! [[$1|thumb]]",
+'filepageexists'              => "Ehhez a fájlnévhez már létezik leírás a '''<tt>[[:$1]]</tt>''' lapon, de jelenleg nincs feltöltve ilyen nevű fájl. A leírás, amit ebbe az űrlapba írsz, nem fogja felülírni a már létezőt, és sehol nem fog megjelenni. Ha meg akarod változtatni a leírást, meg kell nyitnod szerkesztésre a lapját.",
+'fileexists-extension'        => "Már van egy hasonló nevű feltöltött fájl: [[$2|thumb]]
+* A feltöltendő fájl neve: '''<tt>[[:$1]]</tt>'''
+* A már létező fájl neve: '''<tt>[[:$2]]</tt>'''
 Kérjük, hogy válassz másik nevet.",
-'fileexists-thumb'            => "<center>'''Ilyen nevű fájl már van'''</center>",
-'fileexists-thumbnail-yes'    => "A fájl egy kisméretű képnek ''(bélyegképnek)'' tűnik.
-Kérjük, hogy ellenőrizd a(z) '''<tt>$1</tt>''' fájlt.<br />
+'fileexists-thumbnail-yes'    => "A fájl egy kisméretű képnek ''(bélyegképnek)'' tűnik. [[$1|thumb]]
+Kérjük, hogy ellenőrizd a(z) '''<tt>[[:$1]]</tt>''' fájlt.
 Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor nincs szükség bélyegkép feltöltésére.",
 'file-thumbnail-no'           => "A fájlnév a(z) '''<tt>$1</tt>''' karakterlánccal kezdődik.
 Úgy tűnik, hogy ez egy kisméretű kép ''(bélyegkép)''.
@@ -2020,7 +2021,7 @@ Támogatott protokollok: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktív szerkesztők listája',
-'activeusers-count'    => '{{PLURAL:$1|egy|$1}} friss szerkesztés',
+'activeusers-count'    => '{{PLURAL:$1|egy|$1}} szerkesztés az utolsó {{PLURAL:$3|egy|$3}} napban',
 'activeusers-from'     => 'Szerkesztők listázása a következő névtől kezdve:',
 'activeusers-noresult' => 'Nem található ilyen szerkesztő.',
 

@@ -1690,17 +1690,18 @@ cél fichiér fât $2.',
 'emptyfile'                   => 'Lo fichiér que vos voléd tèlèchargiér semble vouedo.
 Cen pôt étre diu a una èrror dedens lo nom du fichiér.
 Volyéd controlar que vos dèsirâd franc tèlèchargiér cél fichiér.',
-'fileexists'                  => "Un fichiér avouéc cél nom ègziste ja. Volyéd controlar '''<tt>$1</tt>'''. Éte-vos de sûr de lo volêr changiér ?",
-'filepageexists'              => "La pâge de dèscripcion por cél fichiér at ja étâ fêta ique '''<tt>$1</tt>''', mas nion fichiér de cél nom ègziste ora.
+'fileexists'                  => "Un fichiér avouéc cél nom ègziste ja.
+Volyéd controlar '''<tt>[[:$1]]</tt>'''.
+Éte-vos de sûr de lo volêr changiér ? [[$1|thumb]]",
+'filepageexists'              => "La pâge de dèscripcion por cél fichiér at ja étâ fêta ique '''<tt>[[:$1]]</tt>''', mas nion fichiér de cél nom ègziste ora.
 Lo rèsumâ que vos voléd ècrire remplacierat pas cél tèxto.
 Por cen fâre vos devréd changiér la pâge a la man.",
-'fileexists-extension'        => "Un fichiér avouéc un nom d’ense ègziste ja :<br />
-Nom du fichiér a tèlèchargiér : '''<tt>$1</tt>'''<br />
-Nom du fichiér ègzistent : '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Un fichiér avouéc un nom d’ense ègziste ja : [[$2|thumb]]
+* Nom du fichiér a tèlèchargiér : '''<tt>[[:$1]]</tt>'''
+* Nom du fichiér ègzistent : '''<tt>[[:$2]]</tt>'''
 La solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l’èxtension. Volyéd controlar que lo fichiér est difèrent et changiér son nom.",
-'fileexists-thumb'            => "<center>'''Fichiér ègzistent'''</center>",
-'fileexists-thumbnail-yes'    => "Lo fichiér semble étre una émâge en talye rèduita ''(figura)''.
-Volyéd controlar lo fichiér '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Lo fichiér semble étre una émâge en talye rèduita ''(figura)''. [[$1|thumb]]
+Volyéd controlar lo fichiér '''<tt>[[:$1]]</tt>'''.
 Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta de tèlèchargiér una vèrsion rèduita.",
 'file-thumbnail-no'           => "Lo nom du fichiér comence per '''<tt>$1</tt>'''.
 O est possiblo que seye una vèrsion rèduita ''(figura)''.

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -753,7 +753,10 @@ $2',
 要创建该页面，请在下面的编辑框中输入内容（详情参见[[{{MediaWiki:Helppage}}|帮助]]）。
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
 'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
-'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
+'noarticletext'                    => '此页目前没有内容。
+您可以在其他页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搜索相关日志]，
+或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
 'noarticletext-nopermission'       => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搜索有关日志]</span>。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
@@ -951,7 +954,7 @@ $2',
 'revdelete-suppress'          => '同时阻止管理员与其他用户查看数据',
 'revdelete-hide-image'        => '隐藏文件内容',
 'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
-'revdelete-log'               => '日志注释：',
+'revdelete-log'               => '删除原因：',
 'revdelete-submit'            => '应用于选中的修订',
 'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
@@ -1512,14 +1515,14 @@ $1",
 'large-file'                  => '建议文件大小不能超过 $1；本文件大小为 $2。',
 'largefileserver'             => '这个文件的大小比服务器配置允许的大小还要大。',
 'emptyfile'                   => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
-'fileexists'                  => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><tt>$1</tt></strong>。',
-'filepageexists'              => '这个文件的描述页已经在<strong><tt>$1</tt></strong>创建，但是这个名称的文件尚未存在。您输入了的摘要是不会显示在该描述页中。要令该摘要在该处中出现，您便要手动地去编辑它。',
-'fileexists-extension'        => '一个相似名称的文件已经存在:<br />
-上传文件的文件名：<strong><tt>$1</tt></strong><br />
-现有文件的文件名：<strong><tt>$2</tt></strong><br />
-请选择一个不同的名字。',
-'fileexists-thumb'            => "<center>'''已经存在的文件'''</center>",
-'fileexists-thumbnail-yes'    => "此文件可能是另一幅图像的缩小版本''（缩略图）''。请仔细检查该文件'''<tt>$1</tt>'''。<br />
+'fileexists'                  => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><tt>[[:$1]]</tt></strong>。 [[$1|thumb]]',
+'filepageexists'              => '这个文件的描述页已经在<strong><tt>[[:$1]]</tt></strong>创建，但是这个名称的文件尚未存在。您输入了的摘要是不会显示在该描述页中。要令该摘要在该处中出现，您便要手动地去编辑它。',
+'fileexists-extension'        => "一个相似名称的文件已经存在: [[$2|thumb]]
+* 上传文件的文件名：'''<tt>[[:$1]]</tt>'''
+* 现有文件的文件名：'''<tt>[[:$2]]</tt>'''
+请选择一个不同的名字。",
+'fileexists-thumbnail-yes'    => "此文件可能是另一幅图像的缩小版本''（缩略图）''。 [[$1|thumb]]
+请仔细检查该文件'''<tt>[[:$1]]</tt>'''。
 如果被检查文件与原始大小的图像是同一幅图像，您无需上传多余的缩略图。",
 'file-thumbnail-no'           => "文件名以'''<tt>$1</tt>'''开头。它可能是另一幅图像的缩小版本''（缩略图）''。
 如果你有该图像完整分辨率的版本，请上传该完整版本。否则请修改文件名。",
@@ -1872,7 +1875,7 @@ Template:消除歧義',
 
 # Special:ActiveUsers
 'activeusers'          => '活跃用户列表',
-'activeusers-count'    => '于$3天内的$1次编辑',
+'activeusers-count'    => '最近$3天内的$1次编辑',
 'activeusers-from'     => '显示用户开始于：',
 'activeusers-noresult' => '找不到用户。',
 

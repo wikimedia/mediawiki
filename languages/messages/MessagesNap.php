@@ -318,9 +318,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'recentchangeslinked-toolbox' => 'Cagnamiénte cullegate',
 
 # Upload
-'upload'           => 'Careca file',
-'fileexists-thumb' => "<center>'''Immagine esistente'''</center>",
-'uploadedimage'    => 'ha carecato "[[$1]]"',
+'upload'        => 'Careca file',
+'uploadedimage' => 'ha carecato "[[$1]]"',
 
 # Special:ListFiles
 'listfiles_name' => 'Nomme',

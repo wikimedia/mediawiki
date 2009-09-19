@@ -925,13 +925,15 @@ Helüteedüstü puhul: <b>[[media:teedüstü.ogg]]</b>.
 'large-file'                  => 'Teedüstüq tohe-i ollaq suurõmbaq, ku $1, a taa teedüstü om $2.',
 'largefileserver'             => 'Teedüstü om suurõmb ku server lupa.',
 'emptyfile'                   => "Teedüstü, midä sa proovõq üles laatiq paistus ollõv tühi. Kaeq üle, et kirotit nime õigõhe ja et taa olõ-i serverile pall'o suur.",
-'fileexists'                  => "Sama nimega teedüstü om jo olõman. Katso '''<tt>$1</tt>''', ku sa olõ-i kimmäs, et tahat taad muutaq.",
-'fileexists-extension'        => "Sääntse nimega teedüstü om jo olõman:<br />
-Üleslaaditava teedüstü nimi: '''<tt>$1</tt>'''<br />
-Olõmanolõva teedüstü nimi: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Sama nimega teedüstü om jo olõman.
+Katso '''<tt>[[:$1]]</tt>''', ku sa olõ-i kimmäs, et tahat taad muutaq.
+[[$1|thumb]]",
+'fileexists-extension'        => "Sääntse nimega teedüstü om jo olõman: [[$2|thumb]]
+* Üleslaaditava teedüstü nimi: '''<tt>[[:$1]]</tt>'''
+* Olõmanolõva teedüstü nimi: '''<tt>[[:$2]]</tt>'''
 Ainugõnõ vaih om laendusõ suurõ/väiku algustähe man. Kaeq perrä, kas naaq ommaq üts ja tuusama teedüstü.",
-'fileexists-thumb'            => "<center>'''Olõmanollõv pilt'''</center>",
-'fileexists-thumbnail-yes'    => "Taa paistus ollõv vähändet pilt ''(thumbnail)''. Kaeq teedüstü '''<tt>$1</tt>'''üle.<br />
+'fileexists-thumbnail-yes'    => "Taa paistus ollõv vähändet pilt ''(thumbnail)''. [[$1|thumb]]
+Kaeq teedüstü '''<tt>[[:$1]]</tt>'''üle.
 Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia eräle vähändedüt pilti üles laatiq.",
 'file-thumbnail-no'           => "Teedüstü nimi nakkas pääle '''<tt>$1</tt>'''. Taa paistus ollõv vähändet pilt ''(thumbnail)''. Ku sul om olõman taa pilt tävven suurusõn, sis laadiq üles tuu, ku olõ-i, sis muudaq teedüstü nimi ärq.",
 'fileexists-forbidden'        => 'Sääntse nimega teedüstü om jo olõman. Pästäq teedüstü tõõsõ nimega. Parhillanõ teedüstü: [[File:$1|thumb|center|$1]]',

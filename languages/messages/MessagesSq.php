@@ -1280,17 +1280,17 @@ Si {{PLURAL:\$3|i lejuar është lloji i skedës|të lejuara janë llojet e sked
 kjo skedë është $2.',
 'largefileserver'             => 'Skeda është më e madhe se sa serveri e lejon këtë.',
 'emptyfile'                   => 'Skeda që keni dhënë është bosh ose mbi madhësinë e lejushme. Kjo gjë mund të ndodhi nëse shtypni emrin gabim, prandaj kontrolloni nëse dëshironi të jepni skedën me këtë emër.',
-'fileexists'                  => "Ekziston një skedë me atë emër, ju lutem kontrolloni '''<tt>$1</tt>''' në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.",
-'filepageexists'              => "Faqja përshkruese për këtë skedë është krijuar që më parë tek '''<tt>$1</tt>''', por nuk ekziston një skedë me atë emër.
+'fileexists'                  => "Ekziston një skedë me atë emër, ju lutem kontrolloni '''<tt>[[:$1]]</tt>''' në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.
+[[$1|thumb]]",
+'filepageexists'              => "Faqja përshkruese për këtë skedë është krijuar që më parë tek '''<tt>[[:$1]]</tt>''', por nuk ekziston një skedë me atë emër.
 Përmbledhja që vendosët nuk do të shfaqet tek faqja përshkruese.
 Për ta treguar atje duhet ta redaktoni vetë.",
-'fileexists-extension'        => "Ekziston një skedë me emër të ngjashëm:<br />
-Emri i skedës në ngarkim: '''<tt>$1</tt>'''<br />
-Emri i skedës ekzistuese: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Ekziston një skedë me emër të ngjashëm: [[$2|thumb]]
+* Emri i skedës në ngarkim: '''<tt>[[:$1]]</tt>'''
+* Emri i skedës ekzistuese: '''<tt>[[:$2]]</tt>'''
 Ju lutem zgjidhni një emër tjetër.",
-'fileexists-thumb'            => "<center>'''Skedë ekzistuese'''</center>",
-'fileexists-thumbnail-yes'    => "Kjo skedë duket se është një figurë me madhësi të zvogëluar ''(figurë përmbledhëse)''.
-Ju lutem kontrolloni skedën '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Kjo skedë duket se është një figurë me madhësi të zvogëluar ''(figurë përmbledhëse)''. [[$1|thumb]]
+Ju lutem kontrolloni skedën '''<tt>[[:$1]]</tt>'''.
 Nëse skeda e kontrolluar është e së njëjtës madhësi me origjinalen atëherë nuk ka nevojë të ngarkoni një figurë përmbledhëse.",
 'file-thumbnail-no'           => "Emri i skedës fillon me '''<tt>$1</tt>'''.
 Duket se është një figurë me madhësi të zvogëluar ''(figurë përmbledhëse)''.

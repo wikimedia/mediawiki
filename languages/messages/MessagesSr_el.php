@@ -1458,14 +1458,16 @@ Poželjni {{PLURAL:\$3|tip fajla je|tipovi fajlova su}} \$2.",
 'large-file'                  => 'Preporučljivo je da fajlovi ne budu veći od $1; ovaj fajl je $2.',
 'largefileserver'             => 'Ovaj fajl je veći nego što je podešeno da server dozvoli.',
 'emptyfile'                   => 'Fajl koji ste poslali deluje da je prazan. Ovo je moguće zbog greške u imenu fajla. Molimo proverite da li stvarno želite da pošaljete ovaj fajl.',
-'fileexists'                  => "Fajl sa ovim imenom već postoji. Molimo proverite '''<tt>$1</tt>''' ako niste sigurni da li želite da ga promenite.",
-'filepageexists'              => "Strana za opis ovog fajla je već napravljena u vreme '''<tt>$1</tt>''', ali ne postoji fajl s tim imenom. Opis koji uneseš se neće pojaviti na strani za opis. Da bi se video, moraćeš da izmeniš stranu ručno.",
-'fileexists-extension'        => "Fajl sa sličnim imenom već postoji:<br />
-Ime fajla koji šaljete: '''<tt>$1</tt>'''<br />
-Ime postojećeg fajla: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Fajl sa ovim imenom već postoji.
+Molimo proverite '''<tt>[[:$1]]</tt>''' ako niste sigurni da li želite da ga promenite.
+[[$1|thumb]]",
+'filepageexists'              => "Strana za opis ovog fajla je već napravljena u vreme '''<tt>[[:$1]]</tt>''', ali ne postoji fajl s tim imenom. Opis koji uneseš se neće pojaviti na strani za opis. Da bi se video, moraćeš da izmeniš stranu ručno.",
+'fileexists-extension'        => "Fajl sa sličnim imenom već postoji: [[$2|thumb]]
+* Ime fajla koji šaljete: '''<tt>[[:$1]]</tt>'''
+* Ime postojećeg fajla: '''<tt>[[:$2]]</tt>'''
 Molimo izaberite drugo ime.",
-'fileexists-thumb'            => "<center>'''Postojeći fajl'''</center>",
-'fileexists-thumbnail-yes'    => "Ovaj fajl je najverovatnije umanjena verzija slike. Molimo vas proverite fajl '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Ovaj fajl je najverovatnije umanjena verzija slike. [[$1|thumb]]
+Molimo vas proverite fajl '''<tt>[[:$1]]</tt>'''.
 Ukoliko je dati fajl ista slika ili originalna slika, nije potrebno da šaljete dodatno umanjenu verziju iste.",
 'file-thumbnail-no'           => "Fajl počinje sa '''<tt>$1</tt>'''. 
 Pretpostavlja se da je ovo umanjena verzija slike.

@@ -1614,17 +1614,17 @@ Vezi [[Special:NewFiles|galeria fişierelor noi]] pentru o mai bună vizualizare
 'large-file'                  => 'Este recomandat ca fişierele să nu fie mai mari de $1; acest fişier are $2.',
 'largefileserver'             => 'Fişierul este mai mare decât este configurat serverul să permită.',
 'emptyfile'                   => 'Fişierul pe care l-aţi încărcat pare a fi gol. Aceasta poate fi datorită unei greşeli în numele fişierului. Verificaţi dacă într-adevăr doriţi să încărcaţi acest fişier.',
-'fileexists'                  => "Un fişier cu acelaşi nume există deja, vă rugăm verificaţi '''<tt>$1</tt>''' dacă nu sunteţi sigur dacă doriţi să îl modificaţi.",
-'filepageexists'              => "Pagina cu descrierea fişierului a fost deja creată la '''<tt>$1</tt>''', dar niciun fişier cu acest nume nu există în acest moment.
+'fileexists'                  => "Un fişier cu acelaşi nume există deja, vă rugăm verificaţi '''<tt>[[:$1]]</tt>''' dacă nu sunteţi sigur dacă doriţi să îl modificaţi.
+[[$1|thumb]]",
+'filepageexists'              => "Pagina cu descrierea fişierului a fost deja creată la '''<tt>[[:$1]]</tt>''', dar niciun fişier cu acest nume nu există în acest moment.
 Sumarul pe care l-ai introdus nu va apărea în pagina cu descriere.
 Pentru ca sumarul tău să apară, va trebui să îl adaugi manual",
-'fileexists-extension'        => "Un fişier cu un nume similar există:<br />
-Numele fişierului de încărcat: '''<tt>$1</tt>'''<br />
-Numele fişierului existent: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Un fişier cu un nume similar există: [[$2|thumb]]
+* Numele fişierului de încărcat: '''<tt>[[:$1]]</tt>'''
+* Numele fişierului existent: '''<tt>[[:$2]]</tt>'''
 Te rog alege alt nume.",
-'fileexists-thumb'            => "<center>'''Imagine existentă'''</center>",
-'fileexists-thumbnail-yes'    => "Fişierul pare a fi o imagine cu o rezoluţie scăzută ''(thumbnail)''.
-Verifică fişierul'''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Fişierul pare a fi o imagine cu o rezoluţie scăzută ''(thumbnail)''. [[$1|thumb]]
+Verifică fişierul'''<tt>[[:$1]]</tt>'''.
 Dacă fişierul verificat este identic cu imaginea originală nu este necesară încărcarea altui thumbnail.",
 'file-thumbnail-no'           => "Numele fişierului începe cu '''<tt>$1</tt>'''.
 Se pare că este o imagine cu dimensiune redusă''(thumbnail)''.

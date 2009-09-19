@@ -1012,14 +1012,16 @@ Daa körgezmeli körüniş içün [[Special:NewFiles|yañı fayllar galereyasın
 'largefileserver'             => 'Bu faylnıñ uzunlığı serverde izin berilgenden büyükçedir.',
 'emptyfile'                   => 'İhtimal ki, yüklengen fayl boş. İhtimallı sebep - fayl adlandıruv
 hatasıdır. Lütfen, tamam bu faylnı yüklemege isteycek ekeniñizni teşkeriñiz.',
-'fileexists'                  => "Bu isimde bir fayl endi bar. Lütfen, eger siz deñiştirmekten emin olmasañız başta '''<tt>$1</tt>''' faylına köz taşlañız.",
-'filepageexists'              => "Bu fayl içün tasvir saifesi endi yapılğan ('''<tt>$1</tt>'''), lâkin bu adda bir fayl yoqtır. Yazılğan tasvir resim tasvir saifesinde kösterilmeycek. Yañı bir tasvir qоşmaq içün onı qolnen deñiştirmege mecbursıñız.",
-'fileexists-extension'        => "Buña oşağan adda bir fayl bar:<br />
-Yüklengen faylnıñ adı: '''<tt>$1</tt>'''<br />
-Mevcut olğan faylnıñ adı: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Bu isimde bir fayl endi bar.
+Lütfen, eger siz deñiştirmekten emin olmasañız başta '''<tt>[[:$1]]</tt>''' faylına köz taşlañız.
+[[$1|thumb]]",
+'filepageexists'              => "Bu fayl içün tasvir saifesi endi yapılğan ('''<tt>[[:$1]]</tt>'''), lâkin bu adda bir fayl yoqtır. Yazılğan tasvir resim tasvir saifesinde kösterilmeycek. Yañı bir tasvir qоşmaq içün onı qolnen deñiştirmege mecbursıñız.",
+'fileexists-extension'        => "Buña oşağan adda bir fayl bar: [[$2|thumb]]
+* Yüklengen faylnıñ adı: '''<tt>[[:$1]]</tt>'''
+* Mevcut olğan faylnıñ adı: '''<tt>[[:$2]]</tt>'''
 Lütfen, başqa bir ad saylap yazıñız.",
-'fileexists-thumb'            => "<center>'''Mevcut fayl'''</center>",
-'fileexists-thumbnail-yes'    => "Belki de bu fayl bir küçülgen kopiyadır (thumbnail). Lütfen, '''<tt>$1</tt>''' faylını teşkeriñiz.<br />
+'fileexists-thumbnail-yes'    => "Belki de bu fayl bir küçülgen kopiyadır (thumbnail). [[$1|thumb]]
+Lütfen, '''<tt>[[:$1]]</tt>''' faylını teşkeriñiz.
 Eger belgilengen fayl aynı şu resim olsa, onıñ küçülgen kopiyasını ayrı olaraq yüklemek aceti yoqtır.",
 'file-thumbnail-no'           => "Faylnıñ adı '''<tt>$1</tt>'''nen başlana. Belki de bu resimniñ ufaqlaştırılğan bir kopiyasıdır ''(thumbnail)''.
 Eger sizde bu resim tam büyükliginde bar olsa, lütfen, onı yükleñiñiz ya da faylnıñ adını deñiştiriñiz.",

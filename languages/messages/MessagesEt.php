@@ -1568,17 +1568,18 @@ Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 'emptyfile'                   => 'Fail, mille Te üles laadisite, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
-'fileexists'                  => "Sellise nimega fail on juba olemas. Palun kontrollige '''<tt>$1</tt>''', kui te ei ole kindel, kas tahate seda muuta.",
-'filepageexists'              => "Selle faili kirjelduslehekülg '''<tt>$1</tt>''' on juba loodud, aga selle nimega faili hetkel pole.
+'fileexists'                  => "Sellise nimega fail on juba olemas.
+Palun kontrollige '''<tt>[[:$1]]</tt>''', kui te ei ole kindel, kas tahate seda muuta.
+[[$1|thumb]]",
+'filepageexists'              => "Selle faili kirjelduslehekülg '''<tt>[[:$1]]</tt>''' on juba loodud, aga selle nimega faili hetkel pole.
 Sinu sisestatud kokkuvõtet ei kuvata kirjeldusleheküljel.
 Sinu kokkuvõtte kuvamiseks tuleb kirjelduslehekülge eraldi redigeerida.",
-'fileexists-extension'        => "Sarnase nimega fail on olemas:<br />
-Üleslaetava faili nimi: '''<tt>$1</tt>'''<br />
-Olemasoleva faili nimi: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Sarnase nimega fail on olemas: [[$2|thumb]]
+* Üleslaetava faili nimi: '''<tt>[[:$1]]</tt>'''
+* Olemasoleva faili nimi: '''<tt>[[:$2]]</tt>'''
 Palun vali teistsugune nimi.",
-'fileexists-thumb'            => "<center>'''Fail on olemas'''</center>",
-'fileexists-thumbnail-yes'    => "See paistab olevat vähendatud suurusega pilt (''pisipilt'').
-Palun vaata faili '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "See paistab olevat vähendatud suurusega pilt (''pisipilt''). [[$1|thumb]]
+Palun vaata faili '''<tt>[[:$1]]</tt>'''.
 Kui vaadatud fail on sama pilt algupärases suuruses, pole vaja täiendavat pisipilti üles laadida.",
 'file-thumbnail-no'           => "Failinimi algab eesliitega '''<tt>$1</tt>'''.
 See paistab vähendatud suurusega pilt (''pisipilt'') olevat.
