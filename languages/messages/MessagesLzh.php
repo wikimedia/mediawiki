@@ -1619,7 +1619,7 @@ $1",
 
 # Special:ActiveUsers
 'activeusers'          => '躍簿',
-'activeusers-count'    => '$1次近易',
+'activeusers-count'    => '$3天內之$1易',
 'activeusers-from'     => '示簿始於：',
 'activeusers-noresult' => '無簿矣。',
 
