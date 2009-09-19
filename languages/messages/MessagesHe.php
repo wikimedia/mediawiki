@@ -2046,7 +2046,7 @@ PICT # שונות
 
 # Special:ActiveUsers
 'activeusers'          => 'רשימת משתמשים פעילים',
-'activeusers-count'    => '{{PLURAL:$1|עריכה אחת לאחרונה|$1 עריכות לאחרונה}}',
+'activeusers-count'    => '{{PLURAL:$1|עריכה אחת|$1 עריכות}} ב{{PLURAL:$3|יום האחרון|־$3 הימים האחרונים|יומיים האחרונים}}',
 'activeusers-from'     => 'הצגת משתמשים החל מ:',
 'activeusers-noresult' => 'לא נמצאו משתמשים.',
 
