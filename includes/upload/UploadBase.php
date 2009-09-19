@@ -915,14 +915,18 @@ abstract class UploadBase {
 		global $wgUser;
 		// First check whether the local file can be overwritten
 		$file = $this->getLocalFile();
-		if( $file->exists() )
+		if( $file->exists() ) {
 			if( !self::userCanReUpload( $wgUser, $file ) )
 				return 'fileexists-forbidden';
+			else
+				return true;
+		}
 
-		// Check shared conflicts
-		$file = wfFindFile( $file->getName() );
-		if ( $file && ( !$wgUser->isAllowed( 'reupload' ) ||
-				!$wgUser->isAllowed( 'reupload-shared' ) ) )
+		/* Check shared conflicts: if the local file does not exist, but 
+		 * wfFindFile finds a file, it exists in a shared repository. 
+		 */ 
+		$file = wfFindFile( $this->getTitle() );
+		if ( $file && !$wgUser->isAllowed( 'reupload-shared' ) )
 			return 'fileexists-shared-forbidden';
 
 		return true;
