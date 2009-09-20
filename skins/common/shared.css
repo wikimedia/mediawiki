@@ -802,3 +802,5 @@ td.mw-enhanced-rc {
 	position: relative;
 	top: -16px;
 }
+
+#wpLoginAttempt, #wpCreateaccount { margin-right:0; }

@@ -87,6 +87,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   correctly (img_auth only)
 * $wgUploadMaintenance added to disable file deletions and restorations during
   maintenance
+* UserLoginForm and UserCreateForm hooks, and AuthPlugin::modifyUITemplate, now receive a
+  SpecialPage subclass instead of a QuickTemplate subclass.  Hence there is no
+  $template->set(), etc.  The hook has access to most of the stuff that will go into the
+  Login/Create form; see the documentation on HTMLForm for syntax for extra fields.
+  LoginForm class is deprecated, its state constants are now in the Login class.
 
 === New features in 1.16 ===
 
