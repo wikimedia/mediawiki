@@ -68,8 +68,8 @@ class ApiLogin extends ApiBase {
 			wfSetupSession();
 		}
 
-		$loginForm = new Login( $req );
-		switch ( $authRes = $loginForm->attemptLogin() ) {
+		$login = new Login( $req );
+		switch ( $authRes = $login->attemptLogin() ) {
 			case Login::SUCCESS :
 				global $wgUser, $wgCookiePrefix;
 
