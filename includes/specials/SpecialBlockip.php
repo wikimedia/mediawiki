@@ -586,12 +586,12 @@ class IPBlockForm {
 	private function showLogFragment( $out, $title ) {
 		global $wgUser;
 		LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText(), '', 
-			array( 'lim' => 10, 'msgKey' => array( 'blocklog-showlog' ) ) );
+			array( 'lim' => 10, 'msgKey' => array( 'blocklog-showlog' ), 'showIfEmpty' => false ) );
 		// Add suppression block entries if allowed
 		if( $wgUser->isAllowed( 'hideuser' ) ) {
 			LogEventsList::showLogExtract( $out, 'suppress', $title->getPrefixedText(), '',
 				array('lim' => 10, 'conds' => array('log_action' => array('block','reblock','unblock')), 
-				'msgKey' => array( 'blocklog-showsuppresslog' ) ) );
+				'msgKey' => array( 'blocklog-showsuppresslog' ), 'showIfEmpty' => false ) );
 		}
 	}
 
