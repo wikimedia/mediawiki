@@ -580,6 +580,8 @@ class LogEventsList {
 	 *              to the key of the message. First element is the message
 	 *              key, additional optional elements are parameters for the
 	 *              key that are processed with wgMsgExt and option 'parse'
+	 * 	offset Set to overwrite offset parameter in $wgRequest
+	 * 		set to '' to unset offset
 	 * @return Integer Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract( &$out, $types=array(), $page='', $user='', 
@@ -607,6 +609,8 @@ class LogEventsList {
 		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
+		if ( isset( $param['offset'] ) ) # Tell pager to ignore $wgRequest offset
+			$pager->setOffset( $param['offset'] );
 		if( $lim > 0 ) $pager->mLimit = $lim;
 		$logBody = $pager->getBody();
 		$s = '';
