@@ -540,6 +540,16 @@ class SpecialUserLogin extends SpecialPage {
 				return;
 		}
 	}
+	
+	/**
+	 * Add text to the header.  Only write to $mFormHeader directly  
+	 * if you're determined to overwrite anything that other 
+	 * extensions might have added.
+	 * @param $text String HTML
+	 */
+	public function addFormHeader( $text ){
+		$this->mFormHeader .= $text;
+	}
 
 	/**
 	 * Since the UserLoginForm hook was changed to pass a SpecialPage
