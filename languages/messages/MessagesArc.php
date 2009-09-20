@@ -13,6 +13,10 @@
  * @author The Thadman
  */
 
+$magicWords = array(
+	'redirect'              => array( '0', '#ܨܘܝܒܐ', '#REDIRECT' ),
+);
+
 $rtl = true;
 
 $defaultUserOptionOverrides = array(
