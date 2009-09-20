@@ -296,7 +296,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'remembermypassword'      => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܚܫܘܒܬܐ ܗܕܐ',
 'login'                   => 'ܥܘܠ',
 'nav-login-createaccount' => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
-'userlogin'               => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
+'userlogin'               => 'ܥܘܠ',
 'logout'                  => 'ܦܠܘܛ',
 'userlogout'              => 'ܦܠܛܐ',
 'notloggedin'             => 'ܠܐ ܥܠܝܠܐ',

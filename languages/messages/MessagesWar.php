@@ -313,7 +313,7 @@ MySQL nagbalik hin sayop nga "$3: $4".',
 # Login and logout pages
 'login'                   => 'Sakob',
 'nav-login-createaccount' => 'Sakob / paghimo hin bag-o nga akawnt',
-'userlogin'               => 'Sakob/Pagrehistro',
+'userlogin'               => 'Sakob',
 'logout'                  => 'Gawas',
 'userlogout'              => 'Gawas',
 'loginerror'              => 'Sayop hin pagsakob',

@@ -176,7 +176,7 @@ Akana si tuke ekh akont. Te na bistares te paruves, kana trebul tuke, tire kamim
 'externaldberror'            => 'Sas ekh dosh kai datengi baza le avrutne prinjaripnyange vai nai tuke drom te akanutnisares o avrutno akonto.',
 'login'                      => 'Prinjaripen',
 'loginprompt'                => "Trebul te das drom le phandimatenge ''cookie'' te das andre kai {{SITENAME}}.",
-'userlogin'                  => 'Prinjaripen / Ker ek akount',
+'userlogin'                  => 'Prinjaripen',
 'logout'                     => 'De avri',
 'userlogout'                 => 'De avri',
 'nologinlink'                => 'Ker ek akount',

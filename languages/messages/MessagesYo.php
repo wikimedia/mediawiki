@@ -353,7 +353,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'login'                   => 'Ìwọlé',
 'nav-login-createaccount' => 'Ìwọlé / Ìforúkọ sílẹ̀',
 'loginprompt'             => 'Ẹ gbọ́dọ̀ jọ̀wọ́ cookies láti wọlé sí {{SITENAME}}.',
-'userlogin'               => 'Ìwọlé / ìforúkọ sílẹ̀',
+'userlogin'               => 'Ìwọlé',
 'logout'                  => 'Ìbọ́sóde',
 'userlogout'              => 'Ìbọ́sóde',
 'notloggedin'             => "Ẹ kò tí w'ọlé",

@@ -512,7 +512,7 @@ Huwag kalimutang baguhin ang [[Special:Preferences|mga kagustuhan mo sa {{SITENA
 'login'                      => 'Lumagda',
 'nav-login-createaccount'    => 'Lumagda / lumikha ng kuwenta',
 'loginprompt'                => "Dapat na pinapahintulutan mo ang mga \"otap\" (''cookie'') upang makalagda sa {{SITENAME}}.",
-'userlogin'                  => 'Lumagda / lumikha ng kuwenta',
+'userlogin'                  => 'Lumagda',
 'logout'                     => 'Umalis sa pagkakalagda',
 'userlogout'                 => 'Umalis sa pagkakalagda',
 'notloggedin'                => 'Hindi nakalagda',

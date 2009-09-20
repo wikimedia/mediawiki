@@ -480,7 +480,7 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'login'                      => 'xammeeku',
 'nav-login-createaccount'    => 'Dugg / Bindu',
 'loginprompt'                => 'Faaw nga doxal cookie yi ngir man a dugg ci {{SITENAME}}.',
-'userlogin'                  => 'Dugg / Bindu',
+'userlogin'                  => 'Dugg',
 'logout'                     => 'Génnu',
 'userlogout'                 => 'Génnu',
 'notloggedin'                => 'Duggoo de',

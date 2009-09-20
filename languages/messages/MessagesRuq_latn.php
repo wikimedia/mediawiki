@@ -140,7 +140,7 @@ $messages = array(
 'yourname'                => "Nom d'utilizatoru:",
 'login'                   => 'Prilasnaere',
 'nav-login-createaccount' => 'Prilasnaere / Nažbe',
-'userlogin'               => 'Prilasnaere / kreare nutilizatoru',
+'userlogin'               => 'Prilasnaere',
 'userlogout'              => 'otlastaere',
 
 # Edit page toolbar

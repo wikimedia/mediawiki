@@ -175,7 +175,7 @@ $messages = array(
 # Login and logout pages
 'login'                      => 'Ge ɖe eme',
 'nav-login-createaccount'    => 'Geɖe me / Ŋlɔ ŋkɔ',
-'userlogin'                  => 'Ge ɖe eme / ŋlɔ ŋkɔ daɖi',
+'userlogin'                  => 'Ge ɖe eme',
 'logout'                     => 'Do le eme',
 'userlogout'                 => 'Do le eme',
 'nologin'                    => 'Wòmeŋlɔ ŋkɔ oa? $1.',

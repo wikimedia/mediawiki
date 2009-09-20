@@ -670,7 +670,7 @@ Tài khoản của bạn đã mở.
 'login'                      => 'Đăng nhập',
 'nav-login-createaccount'    => 'Đăng nhập / Mở tài khoản',
 'loginprompt'                => 'Bạn cần bật cookie để đăng nhập vào {{SITENAME}}.',
-'userlogin'                  => 'Đăng nhập / Mở tài khoản',
+'userlogin'                  => 'Đăng nhập',
 'logout'                     => 'Đăng xuất',
 'userlogout'                 => 'Đăng xuất',
 'notloggedin'                => 'Chưa đăng nhập',

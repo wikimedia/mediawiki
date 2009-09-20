@@ -309,7 +309,7 @@ Ny jean jarrood dty [[Special:Preferences|{{SITENAME}} hosheeaghtyn]] y arraghey
 'login'                      => 'Log stiagh',
 'nav-login-createaccount'    => 'Log stiagh / croo coontys',
 'loginprompt'                => 'Shegin dhyt cur pooar da minniagyn dy loggal stiagh ayns {{SITENAME}}.',
-'userlogin'                  => 'Log stiagh / croo coontys',
+'userlogin'                  => 'Log stiagh',
 'logout'                     => 'Log magh',
 'userlogout'                 => 'Log magh',
 'notloggedin'                => 'Cha nel ou loggit stiagh',

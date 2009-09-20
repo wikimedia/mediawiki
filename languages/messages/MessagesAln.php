@@ -477,7 +477,7 @@ Mos harroni me i ndryshue [[Special:Preferences|parapëlqimet për {{SITENAME}}]
 'login'                      => 'Kyçu',
 'nav-login-createaccount'    => 'Kyçu / çel llogari',
 'loginprompt'                => 'Shfletuesi duhet me pranue keksa (cookies) për me mujtë me u kyçë në {{SITENAME}}.',
-'userlogin'                  => 'Kyçu / çel llogari',
+'userlogin'                  => 'Kyçu',
 'logout'                     => 'Çkyçu',
 'userlogout'                 => 'Çkyçu',
 'notloggedin'                => 'Nuk je i kyçun',
