@@ -702,7 +702,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'login'                      => 'Bejelentkezés',
 'nav-login-createaccount'    => 'Bejelentkezés / fiók létrehozása',
 'loginprompt'                => "Engedélyezned kell a sütiket (''cookie''), hogy bejelentkezhess a(z) {{SITENAME}} wikibe.",
-'userlogin'                  => 'Bejelentkezés / fiók létrehozása',
+'userlogin'                  => 'Bejelentkezés',
 'logout'                     => 'Kijelentkezés',
 'userlogout'                 => 'Kijelentkezés',
 'notloggedin'                => 'Nem vagy bejelentkezve',
@@ -1649,7 +1649,10 @@ Ez valószínűleg azért van, mert hibásan adtad meg a feltöltendő fájl nev
 Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
 'fileexists'                  => "'''<tt>[[:$1]]</tt>''' névvel már létezik egy állomány.
 Ellenőrizd, hogy biztosan felül akarod-e írni! [[$1|thumb]]",
-'filepageexists'              => "Ehhez a fájlnévhez már létezik leírás a '''<tt>[[:$1]]</tt>''' lapon, de jelenleg nincs feltöltve ilyen nevű fájl. A leírás, amit ebbe az űrlapba írsz, nem fogja felülírni a már létezőt, és sehol nem fog megjelenni. Ha meg akarod változtatni a leírást, meg kell nyitnod szerkesztésre a lapját.",
+'filepageexists'              => "Ehhez a fájlnévhez már létezik leírás a '''<tt>[[:$1]]</tt>''' lapon, de jelenleg nincs feltöltve ilyen nevű fájl.
+A leírás, amit ebbe az űrlapba írsz, nem fogja felülírni a már létezőt.
+Ha meg szeretnéd változtatni a leírást, meg kell nyitnod szerkesztésre a lapjot.
+[[$1|thumb]]",
 'fileexists-extension'        => "Már van egy hasonló nevű feltöltött fájl: [[$2|thumb]]
 * A feltöltendő fájl neve: '''<tt>[[:$1]]</tt>'''
 * A már létező fájl neve: '''<tt>[[:$2]]</tt>'''
@@ -2778,7 +2781,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'skinname-cologneblue' => 'Kölni kék',
 'skinname-monobook'    => 'MonoBook',
 'skinname-myskin'      => 'MySkin',
-'skinname-chick'       => 'Csirke',
+'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Egyszerű',
 'skinname-modern'      => 'Modern',
 

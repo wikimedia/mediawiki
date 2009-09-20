@@ -586,7 +586,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'login'                      => 'Ensaluti',
 'nav-login-createaccount'    => 'Ensaluti / Krei novan konton',
 'loginprompt'                => 'Via foliumilo nepre permesu kuketojn por ensaluti en la {{SITENAME}}.',
-'userlogin'                  => 'Ensaluti / Krei novan konton',
+'userlogin'                  => 'Ensaluti',
 'logout'                     => 'Elsaluti',
 'userlogout'                 => 'Elsaluti',
 'notloggedin'                => 'Ne ensalutinta',
@@ -1388,6 +1388,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-reset-passwords'       => 'Reŝanĝi pasvortojn de aliaj uzantoj',
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-versiondetail'         => 'Montri la informon pri la etendita programara versio',
+'right-root'                  => 'Fari ĉiujn agojn en la vikio',
 
 # User rights log
 'rightslog'      => 'Protokolo de uzanto-rajtoj',
@@ -1530,7 +1531,10 @@ tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'fileexists'                  => "Dosiero kun tia ĉi nomo jam ekzistas.
 Bonvolu kontroli '''<tt>[[:$1]]</tt>''' krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
 [[$1|thumb]]",
-'filepageexists'              => "La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe '''<tt>[[:$1]]</tt>''', sed neniu dosiero kun ĉi tiu nomo nune ekzistas. La resumo kiun vi entajpos ne aperos en la priskribo-paĝo. Por aperigi vian resumon, vi devos permane redakti ĝin.",
+'filepageexists'              => "La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe '''<tt>[[:$1]]</tt>''', sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
+ La resumo kiun vi entajpos ne aperos en la priskribo-paĝo.
+ Por aperigi vian resumon, vi devos permane redakti ĝin.
+[[$1|dosiereto]]",
 'fileexists-extension'        => "Dosiero kun simila nomo ekzistas: [[$2|thumb]]
 * Nomo de la alŝuta dosiero: '''<tt>[[:$1]]</tt>'''
 * Nomo de la ekzistanta dosiero: '''<tt>[[:$2]]</tt>'''
@@ -1895,7 +1899,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Listo de aktivaj uzantoj',
-'activeusers-count'    => '$1 {{PLURAL:$1|lasta redakto|lastaj redaktoj}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|lasta redakto|lastaj redaktoj}} dum la {{PLURAL:$3|lasta tago|lastaj $3 tagoj}}',
 'activeusers-from'     => 'Montri uzantojn ekde:',
 'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
 

@@ -2287,6 +2287,7 @@ $messages['ia'] = array(
 	'rsd_resource_edit' => 'Modificar le ressource: $1',
 	'mwe-resource_description_page' => 'Pagina de description del ressource',
 	'rsd_local_resource_title' => 'Titulo local del ressource',
+	'rsd_do_insert' => 'Facer insertion',
 	'mwe-cc_by_title' => 'Attribution',
 	'mwe-cc_nc_title' => 'Non commercial',
 	'mwe-cc_nd_title' => 'Nulle obras derivate',
@@ -2310,6 +2311,11 @@ $messages['ia'] = array(
 	'mwe-preview_insert_resource' => 'Previsualiar le insertion del ressource: $1',
 	'mwe-select_file' => 'Seliger file',
 	'mwe-more_licence_options' => 'Pro ulterior optiones de licentia, vide le <a href="$1">pagina de carga normal</a>',
+	'mwe-select_ownwork' => 'Io carga un obra integremente mie, publicante lo sub le licentia:',
+	'mwe-licence_cc-by-sa' => 'Share Alike de Creative Commons (3.0)',
+	'mwe-upload' => 'Cargar file',
+	'mwe-destfilename' => 'Nomine del file de destination:',
+	'mwe-summary' => 'Summario',
 );
 
 /** Indonesian (Bahasa Indonesia)

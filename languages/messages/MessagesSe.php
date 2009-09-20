@@ -470,7 +470,7 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'nextn'                 => '{{PLURAL:$1|$1}} čuovvovaš →',
 'viewprevnext'          => 'Čájet [$3] oktanaga.
 
-$1 | $2',
+$1 {{int:pipe-separator}} $2',
 'searchhelp-url'        => 'Help:Rávvagat',
 'showingresults'        => "{{PLURAL:$1|'''Okta''' boađus|'''$1''' bohtosa}} bohtosa'''$2''' rájes.",
 'showingresultsnum'     => "Vuolábealde {{PLURAL:$3|lea '''okta''' ohcanboađus|leat '''$3''' ohcanbohtosa}} '''$2.''' bohtosa rájes.",

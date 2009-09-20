@@ -11,6 +11,7 @@
  * @author Friðrik Bragi Dýrfjörð
  * @author Jóna Þórunn
  * @author Krun
+ * @author Maxí
  * @author S.Örvarr.S
  * @author Spacebirdy
  * @author Steinninn
@@ -593,7 +594,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum
 'login'                      => 'Innskrá',
 'nav-login-createaccount'    => 'Innskrá / Búa til aðgang',
 'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta skráð þig inn á {{SITENAME}}.',
-'userlogin'                  => 'Innskrá / Búa til aðgang',
+'userlogin'                  => 'Innskrá',
 'logout'                     => 'Útskráning',
 'userlogout'                 => 'Útskrá',
 'notloggedin'                => 'Ekki innskráð(ur)',
@@ -622,6 +623,7 @@ Athugaðu stafsetning, eða [[Special:UserLogin/signup|búðu til aðgang]].',
 'wrongpasswordempty'         => 'Lykilorðsreiturinn var auður. Vinsamlegast reyndu aftur.',
 'passwordtooshort'           => 'Lykilorðið þitt er ógilt eða of stutt.
 Það verður að hafa að minnsta kosti {{PLURAL:$1|1 rittákn|$1 rittákn}} og einnig frábrugðið notandanafninu þínu.',
+'password-name-match'        => 'Þarf að lykilorð þitt sé öðruvísi notandanafni þínu',
 'mailmypassword'             => 'Senda nýtt lykilorð með tölvupósti',
 'passwordremindertitle'      => 'Nýtt tímabundið aðgangsorð fyrir {{SITENAME}}',
 'passwordremindertext'       => 'Einhver (líklegast þú, á vistfanginu $1) hefur beðið um að fá nýtt
@@ -999,6 +1001,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'searchprofile-articles'           => 'Efnissíður',
 'searchprofile-project'            => 'Verkefnasíður',
 'searchprofile-images'             => 'Skrár',
+'searchprofile-everything'         => 'Allt',
 'searchprofile-articles-tooltip'   => 'Leita í $1',
 'searchprofile-project-tooltip'    => 'Leita í $1',
 'searchprofile-images-tooltip'     => 'Leita að skrám',
@@ -1080,12 +1083,14 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'timezoneoffset'            => 'Hliðrun',
 'servertime'                => 'Tími netþjóns',
 'guesstimezone'             => 'Fylla inn frá vafranum',
+'timezoneregion-africa'     => 'Afríka',
 'allowemail'                => 'Virkja tölvupóst frá öðrum notendum',
 'prefs-searchoptions'       => 'Leitarvalmöguleikar',
 'prefs-namespaces'          => 'Nafnrými',
 'defaultns'                 => 'Leita í þessum nafnrýmum sjálfgefið:',
 'default'                   => 'sjálfgefið',
 'prefs-files'               => 'Skrár',
+'prefs-emailconfirm-label'  => 'Staðfesting tölvupóstfangs:',
 'youremail'                 => 'Netfang:',
 'username'                  => 'Notandanafn:',
 'uid'                       => 'Raðnúmer:',
@@ -1163,6 +1168,7 @@ Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiðu
 'right-minoredit'            => 'Merkja sem minniháttarbreytingar',
 'right-move'                 => 'Færa síður',
 'right-move-subpages'        => 'Færa síður með undirsíðum þeirra',
+'right-movefile'             => 'Færa skrár',
 'right-suppressredirect'     => 'Ekki búa til tilvísun frá gamla nafninu þegar síða er færð',
 'right-upload'               => 'Hlaða inn skrám',
 'right-reupload'             => 'Yfirrita núverandi skrá',
@@ -1306,7 +1312,8 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 {{PLURAL:$3|Leyfileg skráargerð er|Leyfilegar skráargerðir eru}} $2.",
 'filetype-missing'       => 'Skráin hefur engan viðauka (dæmi ".jpg").',
 'large-file'             => 'Það er mælt með að skrár séu ekki stærri en $1; þessi skrá er $2.',
-'fileexists'             => "Skrá með þessu nafni er þegar til, skoðaðu '''<tt>$1</tt>''' ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.",
+'fileexists'             => "Skrá með þessu nafni er þegar til, skoðaðu '''<tt>[[:$1]]</tt>''' ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.
+[[$1|thumb]]",
 'successfulupload'       => 'Innhlaðning tókst',
 'uploadwarning'          => 'Aðvörun',
 'savefile'               => 'Vista',

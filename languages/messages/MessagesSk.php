@@ -690,7 +690,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'login'                      => 'Prihlásiť',
 'nav-login-createaccount'    => 'Vytvorenie konta / prihlásenie',
 'loginprompt'                => 'Na prihlásenie do {{GRAMMAR:genitív|{{SITENAME}}}} musíte mať zapnuté koláčiky (cookies).',
-'userlogin'                  => 'Vytvorenie konta / prihlásenie',
+'userlogin'                  => 'Prihlásenie',
 'logout'                     => 'Odhlásiť',
 'userlogout'                 => 'Odhlásiť',
 'notloggedin'                => 'Neprihlásený/á',

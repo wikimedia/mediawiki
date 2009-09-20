@@ -174,7 +174,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'login'                      => 'Aperter session',
 'nav-login-createaccount'    => 'Crear un conto o intrar',
 'loginprompt'                => 'Cookies deve esser permisset por intrar in {{SITENAME}}.',
-'userlogin'                  => 'Crear un conto o intrar',
+'userlogin'                  => 'Intrar',
 'logout'                     => 'Surtir',
 'userlogout'                 => 'Surtir',
 'notloggedin'                => 'Vu ne ha intrat',

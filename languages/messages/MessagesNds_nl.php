@@ -514,7 +514,7 @@ $messages = array(
 'templatepage'      => 'Mal bekieken',
 'viewhelppage'      => 'Hulppagina bekieken',
 'categorypage'      => 'Kattegeriepagina bekieken',
-'viewtalkpage'      => 'Teun overlegpagina',
+'viewtalkpage'      => 'Bekiek overlegpagina',
 'otherlanguages'    => "Interwiki's",
 'redirectedfrom'    => '(deur-estuurd vanof "$1")',
 'redirectpagesub'   => 'Deurstuurpagina',
@@ -570,7 +570,7 @@ $1',
 'viewsourcelink'          => 'brontekse bekieken',
 'editsectionhint'         => 'Bewarkingsveld: $1',
 'toc'                     => 'Onderwarpen',
-'showtoc'                 => 'Teun',
+'showtoc'                 => 'Bekieken',
 'hidetoc'                 => 'Verbarg',
 'thisisdeleted'           => 'Bekieken of herstellen van $1?',
 'viewdeleted'             => 'Bekiek $1?',
@@ -624,7 +624,7 @@ vanuut de functie "$2"
 De databanke gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode'      => "<strong>Waorschuwing:</strong> 't is meugelijk dat leste wiezigingen in de tekse van dit artikel nog neet verwark bin.",
 'readonly'             => 'De databanke is beveilig',
-'enterlockreason'      => "Geef een rejen veur de blokkering op en hoelange 't geet duren. De op-egeven rejen zal an de gebrukers eteund wonnen.",
+'enterlockreason'      => "Geef een rejen op veur de blokkering en hoelange as 't geet duren.",
 'readonlytext'         => "De databanke van {{SITENAME}} is noen esleuten veur nieje bewarkingen en wiezigingen, werschienlijk veur bestaansonderhoud. De verantwoordelijke systeembeheerder gaf hierveur de volgende rejen op: '''$1'''",
 'missing-article'      => 'In de databanke steet gien tekse veur de pagina "$1" dee der wel in zol mutten staon ($2).
 
@@ -808,7 +808,7 @@ Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreuge
 'preview'                          => 'Naokieken',
 'showpreview'                      => 'Pagina naokieken',
 'showlivepreview'                  => 'Drekte weergave',
-'showdiff'                         => 'Teun wiezigingen',
+'showdiff'                         => 'Bekiek wiezigingen',
 'anoneditwarning'                  => "'''Waorschuwing:''' Je bin neet an-emeld.
 As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbaor ween.",
 'missingsummary'                   => "'''Herinnering:''' je hemmen gien samenvatting op-egeven veur de bewarking. A-j noen weer op ''Pagina opslaon'' klikken wonnen de bewarking zonder samenvatting op-esleugen.",
@@ -939,7 +939,7 @@ As grund is angeven: $1",
 'recreate-moveddeleted-warn'       => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
-Hieronder wonnen veur de dudelijkheid infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen eteund:",
+Hieronder steet veur de dudelijkheid infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen:",
 'moveddeleted-notice'              => "Disse pagina is vort-edaon.
 Hieronder steet de infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen.",
 'log-fulllog'                      => "'t Hele logboek bekieken",
@@ -1020,13 +1020,13 @@ As beheerder ku-j [$1 disse versie bekieken] a-j willen.",
 'rev-deleted-text-view'       => "Disse bewarking is '''vort-edaon'''.
 As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone infermasie].",
 'rev-suppressed-text-view'    => "Disse bewarking is '''onderdrok'''.
-As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrokken versies].",
+As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokken versies].",
 'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies '''vort-edaon''' is.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].",
 'rev-deleted-unhide-diff'     => "Eén van de bewarkingen van disse vergeliekingen is '''vort-edaon'''.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
-'rev-delundel'                => 'teun/verbarg',
+'rev-delundel'                => 'bekiek/verbarg',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'     => 'Gien doelversie',
 'revdelete-nooldid-text'      => 'Je hemmen gien versie an-egeven waor disse actie op uut-evoerd mut wonnen.',
@@ -1095,6 +1095,7 @@ Kiek de logboeken nao.",
 'revdelete-otherreason'       => 'Aandere rejen:',
 'revdelete-reasonotherlist'   => 'Aanderen rejen',
 'revdelete-edit-reasonlist'   => "Rejens veur 't vortdoon bewarken",
+'revdelete-offender'          => 'Auteur versie:',
 
 # Suppression log
 'suppressionlog'     => 'Verbargingslogboek',
@@ -1284,7 +1285,7 @@ Kiek de logboeken nao.",
 'prefs-watchlist-days-max'      => '(maximaal 7 dagen)',
 'prefs-watchlist-edits'         => 'Antal wiezigingen in de uut-ebreien volglieste:',
 'prefs-watchlist-edits-max'     => '(maximale antal: 1.000)',
-'prefs-watchlist-token'         => 'Volglieste beveiligen',
+'prefs-watchlist-token'         => 'Volgliestesleutel',
 'prefs-misc'                    => 'Overig',
 'prefs-resetpass'               => 'Wachwoord wiezigen',
 'prefs-email'                   => 'Instellingen veur netpos',
@@ -1301,7 +1302,7 @@ Kiek de logboeken nao.",
 'contextlines'                  => 'Antal regels per evunnen pagina',
 'contextchars'                  => 'Antal tekens per pagina',
 'stub-threshold'                => 'Verwiezingsformettering van <a href="#" class="stub">beginnetjes</a>:',
-'recentchangesdays'             => 'Antal dagen dee eteund mutten wonnen in "leste wiezigingen":',
+'recentchangesdays'             => 'Antal dagen dee de lieste "leste wiezigingen" laot zien:',
 'recentchangesdays-max'         => '(maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount'            => 'Antal bewarkingen um standard weer te geven:',
 'prefs-help-recentchangescount' => "Dit geldt veur leste wiezigingen, paginageschiedenisse en logboekpagina's",
@@ -1479,6 +1480,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-reset-passwords'       => 'Wachwoorden van aandere gebrukers opniej instellen',
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wonnen, tot een diepte van 5",
 'right-versiondetail'         => 'Uut-ebreide versieinfermasie van de pregrammetuur laoten zien',
+'right-root'                  => 'Alle haandelingen op de wiki uutvoeren',
 
 # User rights log
 'rightslog'      => 'Gebrukersrechenlogboek',
@@ -1539,7 +1541,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'recentchanges-label-unpatrolled'   => 'Disse bewarking is nog neet nao-ekeken',
 'rcnote'                            => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de of-eleupen {{PLURAL:$2|dag|'''$2''' dagen}} (stand: $5, $4).",
 'rcnotefrom'                        => 'Dit bin de wiezigingen sins <b>$2</b> (maximum van <b>$1</b> wiezigingen).',
-'rclistfrom'                        => 'Teun wiezigingen vanof $1',
+'rclistfrom'                        => 'Bekiek wiezigingen vanof $1',
 'rcshowhideminor'                   => '$1 kleine wiezigingen',
 'rcshowhidebots'                    => '$1 botgebrukers',
 'rcshowhideliu'                     => '$1 an-emelde gebrukers',
@@ -1550,7 +1552,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'diff'                              => 'wiezig',
 'hist'                              => 'gesch',
 'hide'                              => 'verbarg',
-'show'                              => 'teun',
+'show'                              => 'bekiek',
 'minoreditletter'                   => 'K',
 'newpageletter'                     => 'N',
 'boteditletter'                     => ' (bot)',
@@ -1593,7 +1595,7 @@ Um 't bestaand in te voegen in een pagina ku-j een van de volgende codes gebruke
 'upload-permitted'            => 'Toe-estaone bestaanstypes: $1.',
 'upload-preferred'            => 'An-ewezen bestaanstypes: $1.',
 'upload-prohibited'           => 'Verbeujen bestaanstypes: $1.',
-'uploadlog'                   => 'Toe-evoegen bestanen',
+'uploadlog'                   => 'Logboek toe-evoegen bestanen',
 'uploadlogpage'               => 'Toe-evoegen bestanen',
 'uploadlogpagetext'           => 'Hieronder steet een lieste mit bestanen dee net niej bin.
 Zie de [[Special:NewFiles|uutstalling mit media]] veur een overzichte.',
@@ -1622,11 +1624,12 @@ Toe-estaone {{PLURAL:\$3|bestaanstype is|bestaanstypes bin}} \$2.",
 '''<tt>[[:$1]]</tt>''' [[$1|thumb]]",
 'filepageexists'              => "De beschrievingspagina veur dit bestaand bestung al op '''<tt>[[:$1]]</tt>''', mar der besteet nog gien bestaand mit disse naam.
 De samenvatting dee-j op-egeven hemmen zal neet op de beschrievingspagina koemen.
-Bewark de pagina haandmaotig um joew beschrieving daor weer te geven.",
-'fileexists-extension'        => "Een bestaand mit een soortgelieke naam besteet al: [[$2|thumb]]
+Bewark de pagina haandmaotig um joew beschrieving daor weer te geven.
+[[$1|thumb]]",
+'fileexists-extension'        => "Een bestaand mit een soortgelieke naam besteet à: [[$2|thumb]]
 * Naam van 't bestaand da-j toevoegen wollen: '''<tt>[[:$1]]</tt>'''
 * Naam van 't bestaonde bestaand: '''<tt>[[:$2]]</tt>'''
-'t Enigste verschil is de heufletters/kleine letters van de extensie. Kiek effen nao of de bestanen neet liekeleens bin.",
+Kies een aandere naam.",
 'fileexists-thumbnail-yes'    => "Dit bestaand is een ofbeelding waovan de grootte verkleind is ''(ofbeeldingsoverzichte)''. [[$1|thumb]]
 Kiek 't bestaand nao <strong><tt>[[:$1]]</tt></strong>.
 As de ofbeelding dee-j krek nao-ekeken hemmen dezelfde grootte hef, dan is 't neet neudig um 't opniej toe te voegen.",
@@ -1976,14 +1979,14 @@ Ondersteunde protecollen: <tt>$1</tt>',
 'linksearch-error' => "Wildcards bin allinnig toe-estaon an 't begin van een webadres.",
 
 # Special:ListUsers
-'listusersfrom'      => 'Teun vanof:',
-'listusers-submit'   => 'Teun',
+'listusersfrom'      => 'Gebrukers bekieken vanof:',
+'listusers-submit'   => 'Bekiek',
 'listusers-noresult' => 'Gien gebrukers evunnen. Zeuk oek naor varianten mit kleine letters of heufletters.',
 'listusers-blocked'  => '(eblokkeerd)',
 
 # Special:ActiveUsers
 'activeusers'          => 'Actieve gebrukers',
-'activeusers-count'    => '$1 recente {{PLURAL:$1|bewarking|bewarkingen}}',
+'activeusers-count'    => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de of-eleupen {{PLURAL:$3|dag|$3 dagen}}',
 'activeusers-from'     => 'Gebrukers weergeven vanof:',
 'activeusers-noresult' => 'Gien actieve gebrukers evunnen.',
 
@@ -2068,7 +2071,7 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'watchlistcontains'    => "Der {{PLURAL:$1|steet 1 pagina|staon $1 pagina's}} op joew volglieste.",
 'iteminvalidname'      => "Verkeerde naam '$1'",
 'wlnote'               => "Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|'t of-eleupen ure|de leste $2 uren}}.",
-'wlshowlast'           => 'Teun de leste $1 ure $2 dagen $3',
+'wlshowlast'           => 'Laot de of-eleupen $1 ure $2 dagen $3 zien',
 'watchlist-options'    => 'Opties veur de volglieste',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2124,7 +2127,7 @@ Opmarkingen en veerdere hulpe:
 'deletedtext'            => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
 'deletedarticle'         => '"$1" vort-edaon',
 'suppressedarticle'      => 'hef "[[$1]]" verbörgen',
-'dellogpage'             => "Vort-edaone pagina's",
+'dellogpage'             => "Logboek vort-edaone pagina's",
 'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
 'deletionlog'            => "Vort-edaone pagina's",
 'reverted'               => 'Eerdere versie hersteld',
@@ -2254,7 +2257,7 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
 'undelete-header'              => "Zie [[Special:Log/delete|'t logboek vort-edaone pagina's]] veur pagina's dee 't les vort-edaon bin.",
 'undelete-search-box'          => "Deurzeuk vort-edaone pagina's",
-'undelete-search-prefix'       => "Teun pagina's vanof:",
+'undelete-search-prefix'       => "Bekiek pagina's vanof:",
 'undelete-search-submit'       => 'Zeuk',
 'undelete-no-results'          => "Gien pagina's evunnen in 't archief mit vort-edaone pagina's.",
 'undelete-filename-mismatch'   => "Bestaansversie van 't tiedstip $1 kon neet hersteld wonnen: bestaansnaam kloppen neet",
@@ -2284,7 +2287,7 @@ $1",
 'month'               => 'Maond:',
 'year'                => 'Jaor:',
 
-'sp-contributions-newbies'        => 'Teun allinnig de biedragen van nieje gebrukers',
+'sp-contributions-newbies'        => 'Allinnig de biedragen van nieje gebrukers bekieken',
 'sp-contributions-newbies-sub'    => 'Veur niejelingen',
 'sp-contributions-newbies-title'  => 'Biedragen van nieje gebrukers',
 'sp-contributions-blocklog'       => 'Blokkeerlogboek',
@@ -2385,6 +2388,10 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'contribslink'                    => 'Biedragen',
 'autoblocker'                     => 'Vanzelf eblokkeerd umdat \'t IP-adres overenekump mit \'t IP-adres van [[User:$1|$1]], dee eblokkeerd is mit as rejen: "$2"',
 'blocklogpage'                    => 'Blokkeerlogboek',
+'blocklog-showlog'                => "Disse gebruker is à eerder eblokkeerd.
+'t Blokkeerlogboek steet hieronder as rifferentie:",
+'blocklog-showsuppresslog'        => "Disse gebruker is à eerder eblokkeerd en wele bewarkingen van disse gebruker bin verbörgen.
+'t Logboek mit onderdrokken versies steet hieronder as rifferentie:",
 'blocklogentry'                   => 'blokkeren "[[$1]]" veur $2 $3',
 'reblock-logentry'                => "hef de instellingen veur de blokkering van [[$1]] ewiezig. 't Loop noen of over $2 $3",
 'blocklogtext'                    => "Hier zie-j een lieste van de leste blokkeringen en deblokkeringen. Autematische blokkeringen en deblokkeringen koemen neet in 't logboek te staon. Zie de [[Special:IPBlockList|IP-blokkeerlieste]] veur de lieste van adressen dee noen eblokkeerd bin.",
@@ -2474,7 +2481,7 @@ De overige pagina's wonnen neet autematisch herneumd.",
 '1movedto2'                    => '[[$1]] is ewiezig naor [[$2]]',
 '1movedto2_redir'              => '[[$1]] is ewiezig over de deurverwiezing [[$2]] hinne',
 'move-redirect-suppressed'     => 'deurverwiezing onderdrokken',
-'movelogpage'                  => 'Titelwiezigingen',
+'movelogpage'                  => 'Herneumlogboek',
 'movelogpagetext'              => "Hieronder steet een lieste mit pagina's dee herneumd bin.",
 'movesubpage'                  => "{{PLURAL:$1|Subpagina|Subpagina's}}",
 'movesubpagetext'              => "De {{PLURAL:$1|subpagina|$1 subpagina's}} van disse pagina vie-j hieronder.",
@@ -2653,8 +2660,8 @@ De tiedelijke map is neet anwezig.",
 'tooltip-minoredit'               => 'Markeer as een kleine wieziging',
 'tooltip-save'                    => 'Wiezigingen opslaon',
 'tooltip-preview'                 => "Bekiek joew versie veurda-j 't opslaon (anbeveulen)!",
-'tooltip-diff'                    => 'Teun de deur joe an-ebröchen wiezigingen.',
-'tooltip-compareselectedversions' => 'Teun de verschillen tussen de ekeuzen versies.',
+'tooltip-diff'                    => 'Bekiek joew eigen wiezigingen',
+'tooltip-compareselectedversions' => 'Bekiek de verschillen tussen de ekeuzen versies.',
 'tooltip-watch'                   => 'Voeg disse pagina toe an joew volglieste',
 'tooltip-recreate'                => "Disse pagina opniej anmaken, ondanks 't feit dat 't vort-edaon is.",
 'tooltip-upload'                  => 'Bestaandn toovoogn',
@@ -2784,7 +2791,7 @@ $1",
 'noimages'              => 'Niks te zien.',
 'ilsubmit'              => 'Zeuk',
 'bydate'                => 'op daotum',
-'sp-newimages-showfrom' => 'Teun nieje ofbeeldingen vanof $1, $2',
+'sp-newimages-showfrom' => 'Bekiek nieje ofbeeldingen vanof $1, $2',
 
 # Bad image list
 'bad_image_list' => "De opmaak is as volg:
@@ -2796,9 +2803,9 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 # Metadata
 'metadata'          => 'Metadata',
 'metadata-help'     => 'Dit bestaand bevat metadata mit EXIF-infermasie, dee deur een fotocamera, scanner of fotobewarkingspregramma toe-evoeg kan ween.',
-'metadata-expand'   => 'Teun uut-ebreien gegevens',
+'metadata-expand'   => 'Bekiek uut-ebreien gegevens',
 'metadata-collapse' => 'Verbarg uut-ebreien gegevens',
-'metadata-fields'   => 'EXIF-gegevens dee zichbaor bin as de tebel in-eklap is. De overige gegevens bin zichbaor as de tebel uut-eklap is, nao \'t klikken op "Teun uut-ebreien gegevens".
+'metadata-fields'   => 'EXIF-gegevens dee zichbaor bin as de tebel in-eklap is. De overige gegevens bin zichbaor as de tebel uut-eklap is, nao \'t klikken op "Bekiek uut-ebreien gegevens".
 * make
 * model
 * datetimeoriginal
@@ -2808,7 +2815,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'                  => 'Wiedte',
+'exif-imagewidth'                  => 'Wiejte',
 'exif-imagelength'                 => 'Heugte',
 'exif-bitspersample'               => 'Bits per compenent',
 'exif-compression'                 => 'Compressiemethode',
@@ -3149,7 +3156,7 @@ $1',
 'table_pager_prev'         => 'Veurige',
 'table_pager_first'        => 'Eerste pagina',
 'table_pager_last'         => 'Leste pagina',
-'table_pager_limit'        => 'Teun $1 onderwarpen per pagina',
+'table_pager_limit'        => 'Laot $1 onderwarpen per pagina zien',
 'table_pager_limit_submit' => 'Zeuk',
 'table_pager_empty'        => 'Gien risseltaoten',
 
