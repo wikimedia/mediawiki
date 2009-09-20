@@ -4,9 +4,9 @@
 -- from local settings.
 --
 
-GRANT * ON `{$wgDBname}`.*
+GRANT ALL PRIVILEGES ON `{$wgDBname}`.*
  TO '{$wgDBuser}'@'%' IDENTIFIED BY '{$wgDBpassword}';
-GRANT * ON `{$wgDBname}`.*
+GRANT ALL PRIVILEGES ON `{$wgDBname}`.*
  TO '{$wgDBuser}'@localhost IDENTIFIED BY '{$wgDBpassword}';
-GRANT * ON `{$wgDBname}`.*
+GRANT ALL PRIVILEGES ON `{$wgDBname}`.*
  TO '{$wgDBuser}'@localhost.localdomain IDENTIFIED BY '{$wgDBpassword}';
