@@ -510,6 +510,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   assume the user object is equal to the current-user object ($wgUser)
 * (bug 20517) Cancel link from edit page now returns to the old version when
   editing an old version
+* (bug 16902) Installer no longer shows warnings when exec() has been disabled 
+  by disable_functions
 
 == API changes in 1.16 ==
 
