@@ -1459,11 +1459,14 @@ Jeli kliknješ na „Składować”, so wona přepisuje.
 Prošu pruwuj '''<tt>[[:$1]]</tt>''' jeli njejsy wěsty hač chceš ju změnić.
 [[$1|thumb]]",
 'filepageexists'              => "Wopisanska strona za tutu dataju bu hižo pola '''<tt>[[:$1]]</tt>''' wutworjena,
-ale tuchwilu dataja z tutym mjeno njeeksistuje. Zjeće, kotrež zapodaš, njezjewi so na wopisanskej stronje. Zo by so twoje zjeće tam jewiło, dyrbiš ju manuelnje wobdźěłać.",
+ale tuchwilu dataja z tutym mjenom njeeksistuje. 
+Zjeće, kotrež zapodaš, njebudźe so na wopisanskej stronje jewić. 
+Zo by so twoje zjeće tam jewiło, dyrbiš ju manuelnje wobdźěłać.
+[[$1|thumb]]",
 'fileexists-extension'        => "Dataja z podobnym mjenom hižo eksistuje: [[$2|thumb]]
 * Mjeno dataje, kotruž chceš nahrać: '''<tt>[[:$1]]</tt>'''
 * Mjeno eksistowaceje dataje: '''<tt>[[:$2]]</tt>'''
-Jenož kóncowce rozeznawatej so we wulko- a małopisanju. Prošu wuzwol hinaše mjeno.",
+Prošu wubjer druhe mjeno.",
 'fileexists-thumbnail-yes'    => "Dataja zda so minaturka ''(thumbnail)'' być. [[$1|thumb]]
 Prošu přepruwuj dataju '''<tt>[[:$1]]</tt>'''.
 Jeli je to wobraz w originalnej wulkosći, njetrjebaš minaturku nahrać.",

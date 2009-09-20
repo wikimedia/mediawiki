@@ -126,20 +126,21 @@ $messages = array(
 'toolbox'          => 'Loengx hong',
 'jumpto'           => 'Diuq bae',
 'jumptonavigation' => 'Dazzaeuh',
-'jumptosearch'     => 'Cwmh',
+'jumptosearch'     => 'Ra',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Gvanhyih {{SITENAME}}',
 'aboutpage'            => 'Project:gvanhyih',
+'currentevents'        => 'Saehgienh seizneix',
 'disclaimers'          => 'gangjmingz mienxcwz',
 'disclaimerpage'       => 'Project:Itbuen mienxcwz',
 'edithelp'             => 'Caeuq mungz san-zonz',
 'edithelppage'         => 'Help:gaij',
 'helppage'             => 'Help:moegloeg',
 'mainpage'             => 'Yiebdaeuz',
-'mainpage-description' => 'Mbaw meh',
+'mainpage-description' => 'Yiebdeauz',
 'policy-url'           => 'Project:fuengcim',
-'portal'               => 'Seqgih',
+'portal'               => 'Segih',
 'portal-url'           => 'Project:seqgih',
 'privacy'              => 'Seiyaem cwngcwz',
 'privacypage'          => 'Project:Seiyaem cwngcwz',
@@ -160,8 +161,8 @@ $messages = array(
 'hidetoc'            => 'cangz',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Faenzueng',
-'nstab-user'      => 'Mae bouxdeiz',
+'nstab-main'      => 'Feanzcieng',
+'nstab-user'      => 'Yieb bouxsawjyungq',
 'nstab-project'   => 'Yieb giva',
 'nstab-image'     => 'Vwnzgen',
 'nstab-mediawiki' => 'Siuhsik',
@@ -177,7 +178,7 @@ $messages = array(
 'yourpassword'            => 'Mizmak：',
 'login'                   => 'Dwnghluz',
 'nav-login-createaccount' => 'dwngh haeuj/laebbaen canghu',
-'userlogin'               => 'Daengh haeuj/Laeb bouxdeiz',
+'userlogin'               => 'Daengh haeuj',
 'logout'                  => 'Doiq ok',
 'userlogout'              => 'Doiq ok',
 'notloggedin'             => 'Maengx laezhaej',
@@ -211,6 +212,8 @@ $messages = array(
 'prefsnologin'      => 'Maengx laezhaej',
 'searchresultshead' => 'Cwmh',
 'username'          => 'Ciu bouxdeiz:',
+
+'group-user-member' => 'Bouxsawjyungq',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'gaij yieb neix',
@@ -246,6 +249,9 @@ $messages = array(
 
 # Random page
 'randompage' => 'Mae zaihzex',
+
+# Statistics
+'statistics-pages' => 'Yieb',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|cihciet|cihciet}}',
@@ -291,7 +297,7 @@ $messages = array(
 'mycontris'     => 'Gaeq gou haej',
 'uctop'         => '（dingz）',
 
-'sp-contributions-submit' => 'Cwmh',
+'sp-contributions-submit' => 'Ra',
 
 # What links here
 'whatlinkshere'      => 'Maelaez lamh haenznej',
@@ -316,6 +322,7 @@ $messages = array(
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',
 'tooltip-ca-talk'        => 'Gvanhyih cingqfaenz yieb gij daojun',
 'tooltip-ca-history'     => 'yieb neix gij banj lizsij',
+'tooltip-ca-move'        => 'dean yieb neix',
 'tooltip-search'         => 'Ra {{SITENAME}}',
 'tooltip-p-logo'         => 'Mae meh',
 'tooltip-n-mainpage'     => 'Raen Yiebdaeuz',

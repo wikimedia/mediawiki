@@ -228,7 +228,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'remembermypassword'         => 'Allicuordate d"a password',
 'yourdomainname'             => "Spiecà 'o dumminio",
 'login'                      => 'Tràse',
-'userlogin'                  => "Tràse o cria n'acciesso nuovo",
+'userlogin'                  => 'Tràse',
 'logout'                     => 'Jèsce',
 'userlogout'                 => 'Jèsce',
 'notloggedin'                => 'Acciesso nun affettuato',

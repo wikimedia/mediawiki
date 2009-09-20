@@ -640,7 +640,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'login'                      => 'Zaloguj się',
 'nav-login-createaccount'    => 'Logowanie i rejestracja',
 'loginprompt'                => 'Musisz mieć włączoną w przeglądarce obsługę ciasteczek, by móc się zalogować do {{GRAMMAR:D.lp|{{SITENAME}}}}.',
-'userlogin'                  => 'Logowanie i rejestracja',
+'userlogin'                  => 'Logowanie',
 'logout'                     => 'Wyloguj',
 'userlogout'                 => 'Wyloguj',
 'notloggedin'                => 'Nie jesteś zalogowany',
@@ -1459,6 +1459,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-versiondetail'         => 'Podgląd szczegółowych informacji o wersji oprogramowania',
+'right-root'                  => 'Możliwość wykonywania wszelkich czynności w wiki',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -1604,7 +1605,8 @@ Sprawdź '''<tt>[[:$1]]</tt>''', jeśli nie jesteś pewien czy chcesz go zastąp
 [[$1|thumb]]",
 'filepageexists'              => "Istnieje już strona opisu tego pliku utworzona '''<tt>[[:$1]]</tt>''', ale brak obecnie pliku o tej nazwie.
 Informacje o pliku, które wprowadziłeś, nie pojawią się na stronie opisu.
-Jeśli chcesz, by informacje te zostały pokazane, musisz je ręcznie przeredagować",
+Jeśli chcesz, by informacje te zostały pokazane, musisz je ręcznie przeredagować
+[[$1|thumb]]",
 'fileexists-extension'        => "Plik o podobnej nazwie już istnieje: [[$2|thumb]]
 * Nazwa przesyłanego pliku: '''<tt>[[:$1]]</tt>'''
 * Nazwa istniejącego pliku: '''<tt>[[:$2]]</tt>'''
@@ -1985,7 +1987,7 @@ Obsługiwane protokoły: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista aktywnych użytkowników',
-'activeusers-count'    => 'ostatnio {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
+'activeusers-count'    => 'w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
 'activeusers-from'     => 'Pokaż użytkowników zaczynając od',
 'activeusers-noresult' => 'Nie odnaleziono żadnego użytkownika.',
 

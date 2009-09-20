@@ -390,7 +390,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'login'                   => 'Jentre',
 'nav-login-createaccount' => 'Regjistriti o jentre',
 'loginprompt'             => 'Tu âs di vê abilitâts i cookies par jentrâ in {{SITENAME}}.',
-'userlogin'               => 'Regjistriti o jentre',
+'userlogin'               => 'Jentre',
 'logout'                  => 'Jes',
 'userlogout'              => 'Jes',
 'notloggedin'             => 'No tu sês jentrât',

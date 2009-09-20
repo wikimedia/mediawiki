@@ -533,7 +533,7 @@ $2',
 'login'                      => 'Керергә',
 'nav-login-createaccount'    => 'Керергә / хисап язмасы төзергә',
 'loginprompt'                => '{{SITENAME}} проектына керү өчен «cookies» рөхсәт ителгән булырга тиеш.',
-'userlogin'                  => 'Керергә / хисап язмасы төзергә',
+'userlogin'                  => 'Керергә',
 'logout'                     => 'Чыгарга',
 'userlogout'                 => 'Чыгарга',
 'notloggedin'                => 'Сез хисап язмагызга кермәгәнсез',
@@ -791,7 +791,7 @@ $2',
 
 Чикләү: $2 {{PLURAL:$2|куллану}}, бу очракта {{PLURAL:$1|$1 тапкыр}} башкарырга рөхсәт ителә.",
 'expensive-parserfunction-category'       => 'Хәтерне еш кулланучы функцияләр күп булган битләр',
-'post-expand-template-inclusion-warning'  => "'''Игътибар:''' кулланучы өлгеләр артык зур.
+'post-expand-template-inclusion-warning'  => "'''Игътибар:''' кулланучы өлгеләре артык зур.
 Кайберләре кабызылмаячак.",
 'post-expand-template-inclusion-category' => 'Рөхсәт ителгән күләмнән артык булган өлгеле битләр',
 

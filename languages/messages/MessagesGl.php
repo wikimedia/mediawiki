@@ -1426,6 +1426,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-reset-passwords'       => 'Restablecer os contrasinais doutros usuarios',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-versiondetail'         => 'Mostrar a información ampliada da versión do software',
+'right-root'                  => 'Realizar todas as accións no wiki',
 
 # User rights log
 'rightslog'      => 'Rexistro de dereitos de usuario',
@@ -1568,17 +1569,20 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
-'fileexists'                  => "Xa existe un ficheiro con ese nome.
-Por favor, verifique '''<tt>[[:$1]]</tt>''' se non está seguro de que quere cambialo.
+'fileexists'                  => "Xa existe un ficheiro con ese nome. Por favor, comprobe '''<tt>[[:$1]]</tt>''' se non está seguro de querer cambialo.
 [[$1|thumb]]",
-'filepageexists'              => "A páxina de descrición deste ficheiro xa foi creada en '''<tt>[[:$1]]</tt>''', pero polo de agora non existe ningún ficheiro con este nome. O resumo que escribiu non aparecerá na páxina de descrición. Para facer que o resumo apareza alí, necesitará editar a páxina manualmente",
+'filepageexists'              => "A páxina de descrición deste ficheiro xa foi creada en '''<tt>[[:$1]]</tt>''', pero polo de agora non existe ningún ficheiro con este nome.
+O resumo que escribiu non aparecerá na páxina de descrición.
+Para facer que o resumo apareza alí, necesitará editar a páxina manualmente.
+[[$1|miniatura]]",
 'fileexists-extension'        => "Xa existe un ficheiro cun nome semellante: [[$2|thumb]]
 * Nome do ficheiro que intenta cargar: '''<tt>[[:$1]]</tt>'''
 * Nome de ficheiro existente: '''<tt>[[:$2]]</tt>'''
 Por favor, escolla un nome diferente.",
-'fileexists-thumbnail-yes'    => "Parece que o ficheiro é unha imaxe de tamaño reducido ''(miniatura)''. [[$1|thumb]]
+'fileexists-thumbnail-yes'    => "Semella que o ficheiro é unha imaxe de tamaño reducido ''(miniatura)''.
+[[$1|thumb]]
 Por favor, comprobe o ficheiro '''<tt>[[:$1]]</tt>'''.
-Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso enviar unha miniatura adicional.",
+Se o ficheiro seleccionado é a mesma imaxe en tamaño orixinal non é preciso enviar unha miniatura adicional.",
 'file-thumbnail-no'           => "O nome do ficheiro comeza por '''<tt>$1</tt>'''.
 Parece tratarse dunha imaxe de tamaño reducido ''(miniatura)''.
 Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o nome ao ficheiro.",

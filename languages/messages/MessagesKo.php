@@ -673,7 +673,7 @@ $2',
 'login'                      => '로그인',
 'nav-login-createaccount'    => '로그인 / 계정 만들기',
 'loginprompt'                => '{{SITENAME}}에 로그인하려면 쿠키를 사용할 수 있어야 합니다.',
-'userlogin'                  => '로그인 / 계정 만들기',
+'userlogin'                  => '로그인',
 'logout'                     => '로그아웃',
 'userlogout'                 => '로그아웃',
 'notloggedin'                => '로그인하고 있지 않음',
@@ -1068,6 +1068,7 @@ $1",
 'revdelete-otherreason'       => '다른 이유/부가적인 이유',
 'revdelete-reasonotherlist'   => '다른 이유',
 'revdelete-edit-reasonlist'   => '삭제 이유 편집',
+'revdelete-offender'          => '판 작성자:',
 
 # Suppression log
 'suppressionlog'     => '숨기기 기록',
@@ -1453,6 +1454,7 @@ $1",
 'right-reset-passwords'       => '다른 사용자의 비밀번호를 변경',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-versiondetail'         => '소프트웨어 버전에 대한 자세한 정보를 보기',
+'right-root'                  => '이 위키에서 모든 권한을 행사',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',
@@ -1597,7 +1599,8 @@ $1",
 [[$1|thumb]]",
 'filepageexists'              => "이 파일의 설명 문서가 '''<tt>[[:$1]]</tt>'''에 존재하지만, 이 이름을 가진 파일이 존재하지 않습니다.
 당신이 입력한 설명은 설명 문서에 반영되지 않을 것입니다.
-당신의 설명을 반영시키려면, 직접 편집하셔야 합니다.",
+당신의 설명을 반영시키려면, 직접 편집하셔야 합니다.
+[[$1|thumb]]",
 'fileexists-extension'        => "비슷한 이름의 파일이 존재합니다: [[$2|thumb]]
 * 올리려는 파일 이름: '''<tt>[[:$1]]</tt>'''
 * 존재하는 파일 이름: '''<tt>[[:$2]]</tt>'''

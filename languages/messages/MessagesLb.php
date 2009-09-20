@@ -553,7 +553,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'login'                      => 'Umellen',
 'nav-login-createaccount'    => 'Aloggen',
 'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
-'userlogin'                  => 'Aloggen / Benotzerkont uleeën',
+'userlogin'                  => 'Aloggen',
 'logout'                     => 'Ofmellen',
 'userlogout'                 => 'Ausloggen',
 'notloggedin'                => 'Net ageloggt',
@@ -1353,6 +1353,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 'right-reset-passwords'       => 'Anere Benotzer hir Passwierder zrécksetzen',
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-versiondetail'         => 'Informatiounen iwwert déi erweidert Software-Versioun weisen',
+'right-root'                  => 'All Aktiounen op der Wiki ausféieren',
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',
@@ -1496,9 +1497,11 @@ Erlaabt {{PLURAL:$3|ass|sinn}}: $2.",
 'fileexists'                  => "Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g.
 '''<tt>[[:$1]]</tt>''' wann Dir net sécher sidd, op Dir den Numm ännere wëllt.
 [[$1|thumb]]",
-'filepageexists'              => "Eng Beschreiwungssäit gouf schonns als '''<tt>[[:$1]]</tt>''' geschriwwen, et gëtt awer kee Fichier mat deem Numm.
+'filepageexists'              => "D'Beschreiwungssäit fir dëse Fichier gouf schonns als '''<tt>[[:$1]]</tt>''' ugeluecht, et gëtt awer kee Fichier mat deem Numm.
 
-Dir kënnt also äre Fichier eroplueden, mee déi Beschreiwung déi dir aginn hutt gëtt net op d'Beschreiwungssäit iwwerholl. D'Beschreiwungssäit musst der nom Eropluede vum Fichier nach manuell änneren.",
+De Resumé deen Dir agitt gëtt net op d'Beschreiwungssäit iwwerholl.
+Fir datt äre Resumé do opdaucht musst Dir e manuell änneren.
+[[$1|thumb]]",
 'fileexists-extension'        => "E Fichier mat engem ähnlechen Numm gëtt et schonn: [[$2|thumb]]
 * Numm vum Fichier deen Dir versicht eropzelueden: '''<tt>[[:$1]]</tt>'''
 * Numm vum Fichier deen et scho gëtt: '''<tt>[[:$2]]</tt>'''

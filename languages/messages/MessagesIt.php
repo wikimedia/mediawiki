@@ -470,9 +470,9 @@ I seguenti collegamenti sono in lingua inglese:
 'jumpto'            => 'Vai a:',
 'jumptonavigation'  => 'navigazione',
 'jumptosearch'      => 'ricerca',
-'view-pool-error'   => 'I server sono al momento sovraccarichi.
-Troppi utenti stanno tentanto di visualizzare questa pagina.
-Riprovare più tardi a caricare la pagina.
+'view-pool-error'   => 'In questo momento i server sono sovraccarichi.
+Troppi utenti stanno tentando di visualizzare questa pagina.
+Attendere qualche minuto prima di riprovare a caricare la pagina.
 
 $1',
 
@@ -642,7 +642,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra / Registrati',
 'loginprompt'                => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
-'userlogin'                  => 'Entra / Registrati',
+'userlogin'                  => 'Entra',
 'logout'                     => 'Esci',
 'userlogout'                 => 'esci',
 'notloggedin'                => 'Accesso non effettuato',

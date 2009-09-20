@@ -692,7 +692,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'login'                      => 'Autenticar-se',
 'nav-login-createaccount'    => 'Entrar / criar conta',
 'loginprompt'                => 'Você necessita de ter os <i>cookies</i> ligados para poder autenticar-se na {{SITENAME}}.',
-'userlogin'                  => 'Criar uma conta ou entrar',
+'userlogin'                  => 'Entrar',
 'logout'                     => 'Sair',
 'userlogout'                 => 'Sair',
 'notloggedin'                => 'Não autenticado',

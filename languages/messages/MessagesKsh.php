@@ -632,7 +632,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge hee op de {{SIT
 'login'                      => 'Enlogge',
 'nav-login-createaccount'    => 'Enlogge, Aanmälde',
 'loginprompt'                => 'Öm op de {{SITENAME}} enlogge ze künne, muss De de Cookies en Dingem Brauser enjeschalt han.',
-'userlogin'                  => 'Enlogge odder Metmaacher wääde',
+'userlogin'                  => 'Enlogge',
 'logout'                     => 'Uslogge',
 'userlogout'                 => 'Uslogge',
 'notloggedin'                => 'Nit enjelogg',
@@ -1341,7 +1341,7 @@ dat dänne ihr Daate topaktuell sin,
 'prefs-watchlist-days-max'      => '(Nit mieh wie 7 Dääch)',
 'prefs-watchlist-edits'         => 'Aanzahl Änderunge för en ming verjrößerte Oppassliss aanzezeije:',
 'prefs-watchlist-edits-max'     => '(Nit mieh wie 1000)',
-'prefs-watchlist-token'         => 'Oppassleß-Kennzeishe',
+'prefs-watchlist-token'         => 'Oppassleß-Kennzeishe:',
 'prefs-misc'                    => 'Söns',
 'prefs-resetpass'               => 'Dat Passwood ändere',
 'prefs-email'                   => '<i lang="en">e-mail</i>',
@@ -1532,6 +1532,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-reset-passwords'       => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
 'right-versiondetail'         => 'Ußföhrlesh Enfomazjuhne övver de Projramme vum Wiki aanloore',
+'right-root'                  => 'Alles wat mer em Wiki maache kann',
 
 # User rights log
 'rightslog'      => 'Logboch för Änderunge aan Metmaacher-Räächde',
@@ -1695,11 +1696,12 @@ hallde deiht, wat nit erlaub, un müjjelelscherwies ene jefährlesche Dattei-Typ
 Wann De op „Datei avspeichere“ klicks, weed se ersetz.
 Bes esu jod  un luur Der '''<tt>[[:$1]]</tt>''' aan, wann De nit 100% secher bes.
 [[$1|thumb]]",
-'filepageexists'              => "En Sigg övver di Datei met däm Tittel '''<tt>[[:$1]]</tt>''' es ald doh, ävver en Datei met däm Name ham_mer nit. Dinge Tex kütt nit automattesch op di Sigg övver di Dattei. Di Sigg moß De wann nüüdesch noch ens extra ändere.",
+'filepageexists'              => "En Sigg övver di Datei met däm Tittel '''<tt>[[:$1]]</tt>''' es ald doh, ävver en Datei met däm Name ham_mer nit. Dinge Tex kütt nit automattesch op di Sigg övver di Dattei. Di Sigg moß De wann nüüdesch noch ens extra ändere.
+[[$1|thumb]]",
 'fileexists-extension'        => "Mer han ald en Dattei, di bahl jenou esu heijß: [[$2|thumb]]
 * Huh am laade sim_mer: '''<tt>[[:$1]]</tt>'''
-* Ald om ßörve eß: '''<tt>[[:$2]]</tt>'''
-Bes esu joot un söök Der ene ander Name fö di Datei us.",
+* Ald om ßörve eß:</td><td>'''<tt>[[:$2]]</tt>'''
+Bes esu joot, un söök Der ene ander Name fö di Datei us.",
 'fileexists-thumbnail-yes'    => "Dat süühd uß, wi wann dat hee en Minni-Beldsche em Breefmarrke-Fommaat (''<span lang=\"en\">thumbnail</span>'') wöhr. [[\$1|thumb]]
 Don ens di Dattei '''<tt>[[:\$1]]</tt>''' prööfe.
 Wann dat de Orjinaaljrüß es, do moß keij för dat Beld keij extra Vör-Aansich huhjelade wäde.",
@@ -2120,7 +2122,7 @@ De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Leß met de aktiive Metmaacher',
-'activeusers-count'    => '{{PLURAL:$1|ein Änderung|$1 Änderunge|kein Änderunge}} en de lezte Zick',
+'activeusers-count'    => '{{PLURAL:$1|ein Änderung|$1 Änderunge|kein Änderunge}} {{PLURAL:$3|aam lezde Daach|en de lezte $3 Dääsch|hück}}',
 'activeusers-from'     => 'Donn de Metmaacher zeije aff:',
 'activeusers-noresult' => 'Kein Metmaacher jefonge.',
 

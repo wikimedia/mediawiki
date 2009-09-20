@@ -444,7 +444,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'login'                      => 'Tràse',
 'nav-login-createaccount'    => 'Tràse / Reggistrete',
 'loginprompt'                => "Tu a tenè le cookies abilitate pe tràse jndr'à {{SITENAME}}.",
-'userlogin'                  => 'Tràse / Reggistrete',
+'userlogin'                  => 'Tràse',
 'logout'                     => 'Isse',
 'userlogout'                 => 'Isse',
 'notloggedin'                => 'Non ge sì colleghete',
@@ -640,6 +640,7 @@ Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titele]]  jndr'à otre pàgg
 o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cirche jndr'à l'archivije cullegate]</span>.",
 'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
+'userpage-userdoesnotexist-view'   => '\'U cunde utende "$1" non g\'è reggistrate.',
 'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
 *'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboranemende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Macintosh);
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
@@ -884,6 +885,7 @@ Pe piacere condrolle l'archivije.",
 'revdelete-otherreason'       => 'Otre/addizionale mutive:',
 'revdelete-reasonotherlist'   => 'Otre mutive',
 'revdelete-edit-reasonlist'   => "Mutive d'a scangellazione d'u cangiamende",
+'revdelete-offender'          => "Autore d'a revisione:",
 
 # Suppression log
 'suppressionlog'     => 'Archivie de le soppressiune',
@@ -1082,7 +1084,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-watchlist-days-max'      => '(massime 7 sciurne)',
 'prefs-watchlist-edits'         => "Numere massime de cangiaminde ca se ponne fa vedè jndr'à liste de le pàggene condrollete spannute:",
 'prefs-watchlist-edits-max'     => '(numere massime: 1000)',
-'prefs-watchlist-token'         => 'Token de le pàggene condrollate',
+'prefs-watchlist-token'         => 'Token de le pàggene condrollate:',
 'prefs-misc'                    => 'Misc',
 'prefs-resetpass'               => "Cange a 'password",
 'prefs-email'                   => "Opziune de l'e-mail",
@@ -1278,6 +1280,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-versiondetail'         => "Fà vedè le 'mbormaziune d'a versione estese d'u software",
+'right-root'                  => "Esegue tutte l'aziune sus a Uicchi",
 
 # User rights log
 'rightslog'      => "Archivie de le diritte de l'utende",
@@ -1427,7 +1430,8 @@ Pe piacere condrolle ce tu avveramende vuè cu careche stu file.",
 [[$1|thumb]]",
 'filepageexists'              => "'A pàgene de descrizione pe stu file ha state già ccreiate 'u '''<tt>[[:$1]]</tt>''', ma nisciune file cu stu nome osce a die esiste.
 'U riepileghe ca tu è mise non ge iesse sus 'a pàgene de descrizione.
-Pe fà assè 'u riepileghe tu tìne abbesogne de cangiarle a mane.",
+Pe fà assè 'u riepileghe tu tìne abbesogne de cangiarle a mane.
+[[$1|thumb]]",
 'fileexists-extension'        => "'Nu file cu 'nu nome simile esiste già: [[$2|thumb]]
 * Nome d'u file ca vuè cu careche: '''<tt>[[:$1]]</tt>'''
 * Nome d'u file ca già esiste: '''<tt>[[:$2]]</tt>'''
@@ -1787,7 +1791,7 @@ Protocolle supportate: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => "Liste de l'utinde attive",
-'activeusers-count'    => '$1 {{PLURAL:$1|cangiamende|cangiaminde}} recende',
+'activeusers-count'    => "$1 {{PLURAL:$1|cangiamende|cangiaminde}} jndr'à l'urteme {{PLURAL:$3|sciurne|$3 sciurne}}",
 'activeusers-from'     => "Fà vedè l'utinde partenne da:",
 'activeusers-noresult' => 'Nisciune utende acchiate.',
 

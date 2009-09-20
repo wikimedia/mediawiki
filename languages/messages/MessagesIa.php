@@ -550,7 +550,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'login'                      => 'Aperir session',
 'nav-login-createaccount'    => 'Aperir session / crear conto',
 'loginprompt'                => 'Tu debe haber activate le cookies pro poter identificar te a {{SITENAME}}.',
-'userlogin'                  => 'Aperir session / crear conto',
+'userlogin'                  => 'Aperir session',
 'logout'                     => 'Clauder session',
 'userlogout'                 => 'Clauder session',
 'notloggedin'                => 'Tu non ha aperite un session',
@@ -1190,7 +1190,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-watchlist-days-max'      => '(non plus de 7 dies)',
 'prefs-watchlist-edits'         => 'Numero maximal de modificationes a monstrar in le observatorio expandite:',
 'prefs-watchlist-edits-max'     => '(numero maxime: 1000)',
-'prefs-watchlist-token'         => 'Indicio de observatorio',
+'prefs-watchlist-token'         => 'Indicio pro le observatorio:',
 'prefs-misc'                    => 'Misc',
 'prefs-resetpass'               => 'Cambiar contrasigno',
 'prefs-email'                   => 'Optiones de e-mail',
@@ -1384,6 +1384,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-versiondetail'         => 'Monstrar le informationes complete super le versiones del software',
+'right-root'                  => 'Executar omne actiones in le wiki',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
@@ -1530,9 +1531,10 @@ Per favor verifica que tu realmente vole cargar iste file.',
 'fileexists'                  => "Un file con iste nomine existe ja.
 Per favor verifica '''<tt>[[:$1]]</tt>''' si tu non es secur de voler cambiar lo.
 [[$1|thumb]]",
-'filepageexists'              => "Le pagina de description correspondente a iste file ha jam essite create a '''<tt>[[:$1]]</tt>''', sed un file con iste nomine non existe al momento.
+'filepageexists'              => "Le pagina de description correspondente a iste file ha ja essite create a '''<tt>[[:$1]]</tt>''', ma nulle file con iste nomine existe al momento.
 Le summario que tu entra non apparera in le pagina de description.
-Si tu vole que illo appare, tu debe inserer lo manualmente.",
+Si tu vole que illo appare, tu debe inserer lo manualmente.
+[[$1|thumb]]",
 'fileexists-extension'        => "Un file con un nomine similar existe ja: [[$2|thumb]]
 * Nomine del file que tu carga: '''<tt>[[:$1]]</tt>'''
 * Nomine del file existente: '''<tt>[[:$2]]</tt>'''
@@ -1917,7 +1919,7 @@ Protocollos supportate: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista de usatores active',
-'activeusers-count'    => '$1 {{PLURAL:$1|modification|modificationes}} recente',
+'activeusers-count'    => '$1 {{PLURAL:$1|modification|modificationes}} in le ultime {{PLURAL:$3|die|$3 dies}}',
 'activeusers-from'     => 'Presentar usatores a partir de:',
 'activeusers-noresult' => 'Nulle usator trovate.',
 
