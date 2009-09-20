@@ -441,6 +441,7 @@ $wgMessageStructure = array(
 		'passwordremindertitle',
 		'passwordremindertext',
 		'noemail',
+		'noemailcreate',
 		'passwordsent',
 		'blocked-mailpassword',
 		'eauthentsent',
