@@ -86,7 +86,7 @@ class UsersPager extends AlphabeticPager {
 		if( $this->requestedUser != '' ) {
 			# Sorted either by account creation or name
 			if( $this->creationSort ) {
-				$conds[] = 'user_id >= ' . User::idFromName( $this->requestedUser );
+				$conds[] = 'user_id >= ' . intval( User::idFromName( $this->requestedUser ) );
 			} else {
 				$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
 			}
