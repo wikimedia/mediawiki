@@ -20,6 +20,26 @@ $defaultUserOptionOverrides = array(
 	'quickbar' => 2,
 );
 
+$namespaceNames = array(
+	NS_MEDIA            => 'ܡܝܕܝܐ',
+	NS_SPECIAL          => 'ܕܝܠܢܝܐ',
+	NS_MAIN             => '',
+	NS_TALK             => 'ܡܡܠܠܐ',
+	NS_USER             => 'ܡܬܚܫܚܢܐ',
+	NS_USER_TALK        => 'ܡܡܠܠܐ ܕܡܬܚܫܚܢܐ',
+	NS_PROJECT_TALK     => 'ܡܡܠܠܐ ܕ_$1',
+	NS_FILE             => 'ܠܦܦܐ',
+	NS_FILE_TALK        => 'ܡܡܠܠܐ ܕܠܦܦܐ',
+	NS_MEDIAWIKI        => 'ܡܝܕܝܐܘܝܩܝ',
+	NS_MEDIAWIKI_TALK   => 'ܡܡܠܠܐ ܕܡܝܕܝܐܘܝܩܝ',
+	NS_TEMPLATE         => 'ܩܠܒܐ',
+	NS_TEMPLATE_TALK    => 'ܡܡܠܠܐ ܕܩܠܒܐ',
+	NS_HELP             => 'ܥܘܕܪܢܐ',
+	NS_HELP_TALK        => 'ܡܡܠܠܐ ܕܥܘܕܪܢܐ',
+	NS_CATEGORY         => 'ܣܕܪܐ',
+	NS_CATEGORY_TALK    => 'ܡܡܠܠܐ ܕܣܕܪܐ',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'ܪܫܘܡ ܣܪܛܐ ܬܚܝܬ ܐܣܘܪܐ:',
