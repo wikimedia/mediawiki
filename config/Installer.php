@@ -2200,7 +2200,7 @@ function printListItem( $item ) {
 function getShellLocale( $wikiLang ) {
 	# Give up now if we're in safe mode or open_basedir
 	# It's theoretically possible but tricky to work with
-	if ( wfIniGetBool( "safe_mode" ) || ini_get( 'open_basedir' ) ) {
+	if ( wfIniGetBool( "safe_mode" ) || ini_get( 'open_basedir' ) || !function_exists('exec') ) {
 		return false;
 	}
 
