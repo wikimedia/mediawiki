@@ -41,7 +41,7 @@ $messages = array(
 
 # Login and logout pages
 'yourpassword' => 'Pafungûla',
-'userlogin'    => 'Linda / Yeke nyîmbâ',
+'userlogin'    => 'Linda',
 'logout'       => 'Woza',
 'userlogout'   => 'Woza',
 

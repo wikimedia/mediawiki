@@ -468,7 +468,7 @@ Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñi
 'login'                      => 'Oturım aç',
 'nav-login-createaccount'    => 'Oturım aç / Qayd ol',
 'loginprompt'                => 'Oturım açmaq içün "cookies"ge izin bermelisiñiz.',
-'userlogin'                  => 'Oturım aç / Qayd ol',
+'userlogin'                  => 'Oturım aç',
 'logout'                     => 'Oturımnı qapat',
 'userlogout'                 => 'Çıqış',
 'notloggedin'                => 'Oturım açmadıñız.',

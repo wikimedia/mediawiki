@@ -309,7 +309,8 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'filestatus'    => 'Cor dlighe-sgrìobhaidh:',
 'ignorewarning' => 'Leig an rabhadh seachad agus sàbhail am faidhle codhiù.',
 'badfilename'   => 'Ainm ìomhaigh air atharrachadh ri "$1".',
-'fileexists'    => 'Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air $1 gu bheil sibh ag iarraidh atharrachadh.',
+'fileexists'    => 'Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air $1 gu bheil sibh ag iarraidh atharrachadh.
+[[$1|thumb]]',
 'savefile'      => 'Sàbhail faidhle',
 
 # Special:ListFiles

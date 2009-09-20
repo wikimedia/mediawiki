@@ -302,7 +302,7 @@ Esapınız açıldı. Unutmayın {{SITENAME}} seçimnerin diiştirmää.',
 'nav-login-createaccount'    => 'Gir / esap yarat',
 'loginprompt'                => "Bak: {{SITENAME}} saytında sessiya açmaa için tarayıcınızda läazım cookies aktivat olsun. <br />
 Kullanıcı adınız '''var nicä içersin'''gagauzça nışan, boşluk . Savaşın kullanıcı adınıza e-mail adresi '''girmemää'''.",
-'userlogin'                  => 'Gir / esap yarat',
+'userlogin'                  => 'Gir',
 'logout'                     => 'Sessiyanı kapat',
 'userlogout'                 => 'Oturmaa kapat',
 'notloggedin'                => 'Sessiya diil açık',

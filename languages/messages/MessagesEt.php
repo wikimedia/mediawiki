@@ -673,7 +673,7 @@ Te võite jätkata {{SITENAME}} kasutamist anonüümselt, aga ka sama või mõne
 'login'                      => 'Logi sisse',
 'nav-login-createaccount'    => 'Logi sisse / registreeru kasutajaks',
 'loginprompt'                => 'Teie brauser peab nõustuma küpsistega, et saaksite {{SITENAME}} lehele sisse logida.',
-'userlogin'                  => 'Logi sisse / registreeru kasutajaks',
+'userlogin'                  => 'Logi sisse',
 'logout'                     => 'Logi välja',
 'userlogout'                 => 'Logi välja',
 'notloggedin'                => 'Te pole sisse loginud',

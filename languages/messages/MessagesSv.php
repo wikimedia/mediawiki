@@ -700,7 +700,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'login'                      => 'Logga in',
 'nav-login-createaccount'    => 'Logga in / skapa konto',
 'loginprompt'                => 'Du måste tillåta cookies för att logga in på {{SITENAME}}.',
-'userlogin'                  => 'Logga in / skapa konto',
+'userlogin'                  => 'Logga in',
 'logout'                     => 'Logga ut',
 'userlogout'                 => 'Logga ut',
 'notloggedin'                => 'Inte inloggad',

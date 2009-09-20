@@ -444,7 +444,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'login'                      => 'Maglaog',
 'nav-login-createaccount'    => 'Maglaog / maggibo nin account',
 'loginprompt'                => 'Kaipuhan may cookies ka para makalaog sa {{SITENAME}}.',
-'userlogin'                  => 'Maglaog / maggibo nin account',
+'userlogin'                  => 'Maglaog',
 'logout'                     => 'Magluwas',
 'userlogout'                 => 'Magluwás',
 'notloggedin'                => 'Mayò sa laog',

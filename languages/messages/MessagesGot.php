@@ -175,7 +175,7 @@ $messages = array(
 'yourpassword'            => 'Analaúgns wáurda:',
 'login'                   => 'Atgaggan',
 'nav-login-createaccount' => 'Atgaggan / Galangjan Niutandis',
-'userlogin'               => 'Atgaggan / gaskapjan niutandis',
+'userlogin'               => 'Atgaggan',
 'logout'                  => 'Leiþan',
 'userlogout'              => '𐌻𐌴𐌹𐌸𐌰𐌽',
 'nologinlink'             => 'Gaskapjan þein niutandis',
@@ -245,7 +245,7 @@ $messages = array(
 # Search results
 'prevn'          => 'aftuma {{PLURAL:$1|$1}}',
 'nextn'          => 'iftuma {{PLURAL:$1|$1}}',
-'viewprevnext'   => 'Siuneis ($1) ($2) ($3)',
+'viewprevnext'   => 'Siuneis ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Hilpa:Háubidaseido',
 'powersearch'    => 'Sokeiþ',
 

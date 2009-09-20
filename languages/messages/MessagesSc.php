@@ -365,7 +365,7 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'remembermypassword'      => 'Amenta sa password in custu computer',
 'login'                   => 'Intra',
 'nav-login-createaccount' => 'Intra / crea account',
-'userlogin'               => 'Intra / crea account',
+'userlogin'               => 'Intra',
 'logout'                  => 'Serra sessione',
 'userlogout'              => 'Essida',
 'nologin'                 => 'Non tenes unu account? $1.',

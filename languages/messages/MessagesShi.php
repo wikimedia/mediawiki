@@ -245,7 +245,7 @@ lcont nek  tuyskar .
 'yourdomainname'          => 'Taɣult nek',
 'externaldberror'         => 'Imma tlla ɣin kra lafut ɣu ukcumnk ulla urak ittuyskar at tsbddelt lkontnk nbrra.',
 'nav-login-createaccount' => 'kchem / qiyd amskhdam amaynu',
-'userlogin'               => 'kchem / qiyd amskhdam amaynu',
+'userlogin'               => 'kchem',
 'userlogout'              => 'foɣ',
 'loginlanguagelabel'      => 'tutlayt: $1',
 

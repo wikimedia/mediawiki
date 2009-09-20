@@ -223,7 +223,7 @@ Nṳ̄ gì dióng-hô̤ ī-gĭng kŭi hō̤ lāu. Dāng nṳ̄ â̤-sāi siŭ-g�
 'remembermypassword'         => 'Giéu cī gá diêng-nō̤ gé diâng nguāi gì dióng-hô̤ gâe̤ng mĭk-mā.',
 'login'                      => 'Láuk-diē',
 'loginprompt'                => 'Páh kŭi cookies ciáh â̤ diē {{SITENAME}}.',
-'userlogin'                  => 'Láuk-diē / kŭi dióng-hô̤',
+'userlogin'                  => 'Láuk-diē',
 'logout'                     => 'Láuk-chók',
 'userlogout'                 => 'Láuk-chók',
 'notloggedin'                => 'Mò̤ [[Special:UserLogin|láuk-diē]]',
@@ -453,7 +453,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'uploadedfiles'     => 'Siông-duòng ùng-giông',
 'ignorewarning'     => 'Mò̤ sê̤ṳ gīng-gó̤ bō̤-còng ùng-giông.',
 'ignorewarnings'    => 'Mò̤ sê̤ṳ gīng-gó̤',
-'fileexists'        => "Ī-gĭng ô siŏh bĭk dè̤ng miàng ùng-giông, nṳ̄ nâ mâ̤ káuk-dêng nṳ̄ sê-ng-sê dŏng-cĭng páh-sáung gāi-biéng ĭ, chiāng giēng-chă '''<tt>$1</tt>'''.",
+'fileexists'        => "Ī-gĭng ô siŏh bĭk dè̤ng miàng ùng-giông, nṳ̄ nâ mâ̤ káuk-dêng nṳ̄ sê-ng-sê dŏng-cĭng páh-sáung gāi-biéng ĭ, chiāng giēng-chă '''<tt>[[:$1]]</tt>'''.
+[[$1|thumb]]",
 'successfulupload'  => 'Siông-diòng sìng-gŭng',
 'uploadwarning'     => 'Siông-duòng gīng-gó̤',
 'savefile'          => 'Bō̤-còng ùng-giông',

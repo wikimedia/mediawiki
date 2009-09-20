@@ -585,7 +585,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'login'                      => 'Prisijungti',
 'nav-login-createaccount'    => 'Prisijungti / sukurti paskyrą',
 'loginprompt'                => 'Įjunkite slapukus, jei norite prisijungti prie {{SITENAME}}.',
-'userlogin'                  => 'Prisijungti / sukurti paskyrą',
+'userlogin'                  => 'Prisijungti',
 'logout'                     => 'Atsijungti',
 'userlogout'                 => 'Atsijungti',
 'notloggedin'                => 'Neprisijungęs',

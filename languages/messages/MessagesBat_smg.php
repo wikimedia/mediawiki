@@ -373,7 +373,7 @@ Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava {{SITENAME}} nusta
 'login'                      => 'Prisėjongtė',
 'nav-login-createaccount'    => 'Prėsėjongtė / sokortė paskīra',
 'loginprompt'                => 'Ijonkėt pakavukus, jēgo nuorėt prisėjongtė pri {{SITENAME}}.',
-'userlogin'                  => 'Prėsėjongtė / sokortė paskīra',
+'userlogin'                  => 'Prėsėjongtė',
 'logout'                     => 'Atsėjongtė',
 'userlogout'                 => 'Atsėjongtė',
 'notloggedin'                => 'Neprisėjongis',

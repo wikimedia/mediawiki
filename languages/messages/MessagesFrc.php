@@ -331,7 +331,7 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'login'                      => 'Connecter',
 'nav-login-createaccount'    => 'Connecter / créer un compte',
 'loginprompt'                => 'Il faut partir les cookies pour connecter à {{SITENAME}}.',
-'userlogin'                  => 'Connecter / créer un compte',
+'userlogin'                  => 'Connecter',
 'logout'                     => 'Déconnecter',
 'userlogout'                 => 'Déconnecter',
 'notloggedin'                => 'Pas connecté',

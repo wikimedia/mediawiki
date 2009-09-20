@@ -727,7 +727,7 @@ Jaña tirkelgiñiz jasaldı.
 'login'                      => 'Kirw',
 'nav-login-createaccount'    => 'Kirw / Tirkelgi jasaw',
 'loginprompt'                => '{{SITENAME}} torabına kirwiñiz üşin «cookies» qosılwı jön.',
-'userlogin'                  => 'Kirw / Tirkelgi jasaw',
+'userlogin'                  => 'Kirw',
 'logout'                     => 'Şığw',
 'userlogout'                 => 'Şığw',
 'notloggedin'                => 'Kirmegensiz',

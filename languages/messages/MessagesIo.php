@@ -850,7 +850,9 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'uploadedfiles'     => 'Adkargita arkivi',
 'ignorewarning'     => 'Ignorar la averto e gardar la arkivo irgakaze.',
 'badfilename'       => 'La imajo-nomo chanjesis a "$1".',
-'fileexists'        => "Arkivo kun ica nomo ja existas. Volutez kontrolar '''<tt>$1</tt>''' se vu ne esas certa pri chanjar olu.",
+'fileexists'        => "Arkivo kun ica nomo ja existas.
+Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
+[[$1|thumb]]",
 'successfulupload'  => 'Adcharjo sucesoza',
 'uploadwarning'     => 'Averto pri la adkargo di arkivo',
 'savefile'          => 'Registragar arkivo',

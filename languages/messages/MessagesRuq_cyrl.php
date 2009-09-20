@@ -140,7 +140,7 @@ $messages = array(
 'yourname'                => 'Ном дутилизатору:',
 'login'                   => 'Приласнаере',
 'nav-login-createaccount' => 'Приласнаере / Нажбе',
-'userlogin'               => 'Приласнаере / креаре нутилизатору',
+'userlogin'               => 'Приласнаере',
 'userlogout'              => 'отластаере',
 
 # Edit page toolbar

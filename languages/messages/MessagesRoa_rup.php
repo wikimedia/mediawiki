@@ -101,7 +101,7 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'yourpasswordagain'  => 'Bãgats-u cljao iara:',
 'remembermypassword' => 'Apurã-u ligãtura-a mea pi compiuterlu aistu',
 'login'              => 'Ligats-vã',
-'userlogin'          => 'Ligats-vã / Fãtsets Isape',
+'userlogin'          => 'Ligats-vã',
 'logout'             => 'Disligats-vã',
 'userlogout'         => 'Disligats-vã',
 'notloggedin'        => 'Nu hits ligats',
