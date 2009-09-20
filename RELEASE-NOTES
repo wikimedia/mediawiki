@@ -517,6 +517,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   editing an old version
 * (bug 16902) Installer no longer shows warnings when exec() has been disabled 
   by disable_functions
+* (bug 20726) Title::getLatestRevID's documentation now says that the function
+  returns false if the page doesn't exist
 
 == API changes in 1.16 ==
 

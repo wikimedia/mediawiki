@@ -2139,7 +2139,7 @@ class Title {
 	/**
 	 * What is the page_latest field for this page?
 	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select for update
-	 * @return \type{\int}
+	 * @return \type{\int} or false if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
 		if( $this->mLatestID !== false )
