@@ -316,7 +316,7 @@ class SpecialCreateAccount extends SpecialPage {
 		# Parse the error message if we got one
 		if( $msg ){
 			if( $msgtype == 'error' ){
-				$msg = wfMsgExt( 'loginerror', 'parseinline' ) . ' ' . $msg;
+				$msg = wfMsgExt( 'createaccounterror', array( 'parseinline', 'replaceafter' ), $msg );
 			}
 			$msg = Html::rawElement(
 				'div',
