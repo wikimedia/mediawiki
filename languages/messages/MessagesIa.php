@@ -258,6 +258,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Iste categoria contine solmente le sequente file.|Le sequente {{PLURAL:$1|file es|$1 files es}} in iste categoria, ex $2 in total.}}',
 'category-file-count-limited'    => 'Le sequente {{PLURAL:$1|file es|$1 files es}} in le categoria actual.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Paginas indexate',
+'noindex-category'               => 'Paginas non indexate',
 
 'mainpagetext'      => "<big>'''MediaWiki ha essite installate con successo.'''</big>",
 'mainpagedocfooter' => 'Consulta le [http://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
@@ -564,6 +566,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'userexists'                 => 'Le nomine de usator que tu entrava es ja in uso.
 Selige un altere nomine.',
 'loginerror'                 => 'Error in le apertura del session',
+'createaccounterror'         => 'Non poteva crear le conto: $1',
 'nocookiesnew'               => "Le conto de usator ha essite create, sed tu non ha aperite un session.
 {{SITENAME}} usa ''cookies'' pro mantener le sessiones del usatores.
 Tu ha disactivate le functionalitate del ''cookies''.
@@ -596,6 +599,7 @@ Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contra
 e tu non vole plus cambiar lo, tu pote ignorar iste message e
 continuar a usar tu contrasigno original.',
 'noemail'                    => 'Il non ha un adresse de e-mail registrate pro le usator "$1".',
+'noemailcreate'              => 'Es necessari fornir un adresse de e-mail valide',
 'passwordsent'               => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
 Per favor initia un session post reciper lo.',

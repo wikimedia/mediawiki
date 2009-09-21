@@ -350,6 +350,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Esta categoría contiene solamente el siguiente fichero.|{{PLURAL:$1|El siguiente fichero pertencer|Los siguientes $1 ficheros pertenecen}} a esta categoría, de un total de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|El siguiente fichero pertenece|Los siguientes $1 ficheros pertenecen}} a esta categoría.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Páginas indexadas',
+'noindex-category'               => 'Páginas no indexadas',
 
 'mainpagetext'      => "<big>'''MediaWiki ha sido instalado con éxito.'''</big>",
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
@@ -676,6 +678,7 @@ Ahora deberías iniciar sesión y cambiar tu contraseña. Tu contraseña tempora
 
 Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no deseas cambiarla, puedes ignorar este mensaje y seguir usando tu contraseña original.',
 'noemail'                    => 'No hay una dirección de correo electrónico registrada para "$1".',
+'noemailcreate'              => 'Necesitas proveer una dirección de correo electrónico válida',
 'passwordsent'               => 'Se ha enviado una nueva contraseña al correo electrónico de «$1».
 Por favor, identifícate de nuevo tras recibirla.',
 'blocked-mailpassword'       => 'Tu dirección IP está bloqueada, y no se te permite el uso de la función de recuperación de contraseñas para prevenir abusos.',
@@ -1433,6 +1436,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'right-reset-passwords'       => 'Reajustar la contraseña de otros usuarios',
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-versiondetail'         => 'Mostrar información ampliada de la versión del software',
+'right-root'                  => 'Ejecutar todas las acciones  en el wiki',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -1577,7 +1581,8 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 Por favor compruebe el existente '''<tt>[[:$1]]</tt>''' si no está seguro de querer reemplazarlo.
 [[$1|thumb]]",
 'filepageexists'              => "La página de descripción de este archivo ya ha sido creada en '''<tt>[[:$1]]</tt>''', pero no existe actualmente ningún fichero con este nombre.
-El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.",
+El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.
+[[$1|thumb]]",
 'fileexists-extension'        => "Existe un archivo con un nombre similar: [[$2|thumb]]
 * Nombre del archivo que se está subiendo: '''<tt>[[:$1]]</tt>'''
 * Nombre del archivo ya existente: '''<tt>[[:$2]]</tt>'''
@@ -1931,7 +1936,7 @@ Protocolos soportados: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista de usuarios activos',
-'activeusers-count'    => '$1 {{PLURAL:$1|edición|ediciones}} recientes',
+'activeusers-count'    => '$1 {{PLURAL:$1|edición|ediciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
 'activeusers-from'     => 'Mostrando a los usuarios empezando por:',
 'activeusers-noresult' => 'No se encontraron usuarios.',
 

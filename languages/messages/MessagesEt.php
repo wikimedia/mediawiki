@@ -397,6 +397,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Selles kategoorias on ainult järgmine fail.|{{PLURAL:$1|Järgmine fail |Järgmised $1 faili}} on selles kategoorias (kokku $2).}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Järgmine fail|Järgmised $1 faili}} on selles kategoorias.',
 'listingcontinuesabbrev'         => 'jätk',
+'index-category'                 => 'Indeksiga leheküljed',
+'noindex-category'               => 'Indeksita leheküljed',
 
 'mainpagetext'      => "<big>'''MediaWiki tarkvara on edukalt paigaldatud.'''</big>",
 'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
@@ -1573,7 +1575,8 @@ Palun kontrollige '''<tt>[[:$1]]</tt>''', kui te ei ole kindel, kas tahate seda 
 [[$1|thumb]]",
 'filepageexists'              => "Selle faili kirjelduslehekülg '''<tt>[[:$1]]</tt>''' on juba loodud, aga selle nimega faili hetkel pole.
 Sinu sisestatud kokkuvõtet ei kuvata kirjeldusleheküljel.
-Sinu kokkuvõtte kuvamiseks tuleb kirjelduslehekülge eraldi redigeerida.",
+Sinu kokkuvõtte kuvamiseks tuleb kirjelduslehekülge eraldi redigeerida.
+[[$1|thumb]]",
 'fileexists-extension'        => "Sarnase nimega fail on olemas: [[$2|thumb]]
 * Üleslaetava faili nimi: '''<tt>[[:$1]]</tt>'''
 * Olemasoleva faili nimi: '''<tt>[[:$2]]</tt>'''
@@ -1929,7 +1932,7 @@ Toetatud protokollid: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktiivsete kasutajate nimekiri',
-'activeusers-count'    => '$1 {{PLURAL:$1|hiljutine muudatus|hiljutist muudatust}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|muudatus|muudatust}} viimase {{PLURAL:$3|päeva|$3 päeva}} jooksul',
 'activeusers-from'     => 'Näita kasutajaid alates:',
 'activeusers-noresult' => 'Kasutajaid ei leidunud.',
 

@@ -706,6 +706,10 @@ $messages = array(
 'metadata-expand'   => 'დეტალეფიშ ძირაფა რსულო',
 'metadata-collapse' => 'დეტალეფიშ ტყობინაფა',
 
+# EXIF tags
+'exif-imagewidth'  => 'სიგანე',
+'exif-imagelength' => 'სიმაღალე',
+
 # External editor support
 'edit-externally'      => 'თე ფაილიშ რედაქტირაფა ბორჯის გიმირინეთ გალენ პროგრამა.',
 'edit-externally-help' => '(ეფშა ინფორმაციაშენ ქოძირით [http://www.mediawiki.org/wiki/Manual:External_editors დინოდგუმაშ ინსტრუქციეფი]).',

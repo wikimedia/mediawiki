@@ -278,6 +278,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Toś ta kategorija wopśimujo jano slědujucu dataju:|{{PLURAL:$1|Slědujuca dataja jo|Slědujucej $1 dataji stej|Slědujuce $1 dataje su|Slědujucych $1 datajow jo}} w toś tej kategoriji, z dogromady $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Slědujuca dataja jo|Slědujucej $1 dataji stej|Slědujuce $1 dataje su|Slědujucych $1 datajow jo}} w toś tej kategoriji {{PLURAL:$1|wopśimjona|wopśimjonej|wopśimjone|wopsímjone}}:',
 'listingcontinuesabbrev'         => 'dalej',
+'index-category'                 => 'Indicěrowane boki',
+'noindex-category'               => 'Njeindicěrowane boki',
 
 'mainpagetext'      => "<big>'''MediaWiki jo se wuspěšnje instalěrowało.'''</big>",
 'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
@@ -595,6 +597,7 @@ Nachylne gronidło za wužywarja "$2" jo se napórało a jo něnto "$3". Jolic j
 
 Jolic jo něchten drugi wó nowe šćitne gronidło pšosył abo ty sy se zasej dopomnjeł na swójo gronidło  a njocoš wěcej jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
 'noemail'                    => 'Wužywaŕ „$1“ njejo e-mailowu adresu zapódał.',
+'noemailcreate'              => 'Dejš płaśiwu e-mailowu adresu pódaś',
 'passwordsent'               => 'Nowe šćitne gronidło jo se wótpósłało na e-mailowu adresu wužywarja „$1“.
 Pšosym pśizjaw se zasej, gaž jo dostanjoš.',
 'blocked-mailpassword'       => 'Twója IP-adresa jo se za wobźěłowanje bokow blokěrowała a teke pśipósłanje nowego šćitnego gronidła jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
@@ -1335,6 +1338,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
 'right-versiondetail'         => 'Nadrobne informacije wó wersiji softwary pokazaś',
+'right-root'                  => 'Wšykne akcije we wikiju wuwjasć',
 
 # User rights log
 'rightslog'      => 'Protokol wužywarskich pšawow',
@@ -1479,11 +1483,12 @@ Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 Tłocyš-lic na \"Dataju składowaś\", ga se dataja pśepišo.
 Pšosym kontrolěruj '''<tt>[[:\$1]]</tt>''', gaž njejsy se kradu wěsty.
 [[\$1|thumb]]",
-'filepageexists'              => "Wopisański bok za toś tu dataju bu južo na '''<tt>[[:$1]]</tt>''' napórany, ale dataja z toś tym mjenim njeeksistěrujo. Zespominanje, kótarež sy zapódał, se na wopisańskem boku njezjawijo. Aby se twóje zespominanje tam zjawiło, dejš jen manuelnje wobźěłaś.",
+'filepageexists'              => "Wopisański bok za toś tu dataju bu južo na '''<tt>[[:$1]]</tt>''' napórany, ale dataja z toś tym mjenim tuchylu njeeksistěrujo. Zespominanje, kótarež zapódawaš, njezjawijo se na wopisańskem boku. Aby se twóje zespominanje tam zjawiło, dejš jen manuelnje wobźěłaś.
+[[$1|thumb]]",
 'fileexists-extension'        => "Eksistěrujo južo dataja z pódobnym mjenim: [[$2|thumb]]
-* Mě dataje, kótaraž dej se uploadowaś: '''<tt>[[:$1]]</tt>'''
+* Mě dataje, kótaraž dej se nagraś: '''<tt>[[:$1]]</tt>'''
 * Mě eksistěrujuceje dataje: '''<tt>[[:$2]]</tt>'''
-Wuzwól nowe mě, jolic až sy se wěsty, až dataji njejstej identiskej.",
+Pšosym wubjeŕ druge mě.",
 'fileexists-thumbnail-yes'    => "Zazdaśim ma wobraz reducěrowanu wjelikosć ''(thumbnail)''. [[$1|thumb]]
 Kontrolěruj pšosym dataju '''<tt>[[:$1]]</tt>'''.
 Jadna-lic se wó wobraz w originalnej wjelikosći, pón njejo notne, separatny pśeglědowy wobraz uploadowaś.",
@@ -1842,7 +1847,7 @@ Pódpěrane protokole: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lisćina aktiwnych wužywarjow',
-'activeusers-count'    => '$1 {{PLURAL:$1|nowa změna|nowej změnje|nowe změny|nowych změnow}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach|slědnych $3 dnjach}}',
 'activeusers-from'     => 'Wužywarjow zwobrazniś, zachopinajucy z:',
 'activeusers-noresult' => 'Žedne wužywarje namakane.',
 
