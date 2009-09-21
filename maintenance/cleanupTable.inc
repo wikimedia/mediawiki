@@ -88,13 +88,13 @@ abstract class TableCleanup extends Maintenance {
 	protected function runTable( $table, $where, $callback ) {
 		$dbw = wfGetDB( DB_MASTER );
 		
-		// Unbuffered queries, avoids OOM
-		$dbw->bufferResults( false );
-		
 		$count = $dbw->selectField( $table, 'count(*)', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table..." );
 
+		// Unbuffered queries, avoids OOM
+		$dbw->bufferResults( false );
+		
 		$tableName = $dbw->tableName( $table );
 		$sql = "SELECT * FROM $tableName $where";
 		$result = $dbw->query( $sql, __METHOD__ );
