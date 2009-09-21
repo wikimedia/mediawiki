@@ -988,7 +988,7 @@ END;
 			}
 
 			if ( $diff < 0 )
-				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "<li>\n";
+				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "</li><li>\n";
 			elseif ( $diff == 0 )
 				$ret .= "</li><li>\n";
 			else
