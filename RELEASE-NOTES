@@ -525,6 +525,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   returns false if the page doesn't exist
 * (bug 20751) ForeignApiRepo now urldecodes filenames when saving to local cache
 * (bug 20730) Fix to Special:Version ViewVC link for branch checkouts
+* (bug 20353) wfShellExec() was adding extra quotes on Windows Vista, causing 
+  command line scripts to fail
 
 == API changes in 1.16 ==
 
