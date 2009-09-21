@@ -86,18 +86,18 @@ abstract class TableCleanup extends Maintenance {
 	}
 
 	protected function runTable( $table, $where, $callback ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_SLAVE );
 		
-		$count = $dbw->selectField( $table, 'count(*)', '', __METHOD__ );
+		$count = $dbr->selectField( $table, 'count(*)', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table..." );
 
 		// Unbuffered queries, avoids OOM
-		$dbw->bufferResults( false );
+		$dbr->bufferResults( false );
 		
-		$tableName = $dbw->tableName( $table );
+		$tableName = $dbr->tableName( $table );
 		$sql = "SELECT * FROM $tableName $where";
-		$result = $dbw->query( $sql, __METHOD__ );
+		$result = $dbr->query( $sql, __METHOD__ );
 
 		foreach( $result as $row ) {
 			call_user_func( $callback, $row );
@@ -107,7 +107,7 @@ abstract class TableCleanup extends Maintenance {
 		
 		$result->free();
 		
-		$dbw->bufferResults( true );
+		$dbr->bufferResults( true );
 	}
 
 	protected function hexChar( $matches ) {
