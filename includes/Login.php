@@ -298,11 +298,11 @@ class Login {
 	 *   Db errors etc).
 	 */
 	protected function initUser( $autocreate=false, $byEmail=false ) {
-		global $wgAuth;
+		global $wgAuth, $wgUser;
 
 		$fields = array(
 			'name' => $this->mName,
-			'password' => $byEmail ? null : $this->mPassword,
+			'password' => $byEmail ? null : User::crypt( $this->mPassword ),
 			'email' => $this->mEmail,
 			'options' => array(
 				'rememberpassword' => $this->mRemember ? 1 : 0,
@@ -332,8 +332,11 @@ class Login {
 		$ssUpdate->doUpdate();
 		if( $autocreate )
 			$this->mUser->addNewUserLogEntryAutoCreate();
+		elseif( $wgUser->isAnon() )
+			# Avoid spamming IP addresses all over the newuser log
+			$this->mUser->addNewUserLogEntry( $this->mUser, $byEmail );
 		else
-			$this->mUser->addNewUserLogEntry( $byEmail );
+			$this->mUser->addNewUserLogEntry( $wgUser, $byEmail );
 		
 		# Run hooks
 		wfRunHooks( 'AddNewAccount', array( $this->mUser ) );
