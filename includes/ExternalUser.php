@@ -299,7 +299,7 @@ abstract class ExternalUser {
 			array( 'eu_external_id' => $this->getId() )
 		);
 		return $row
-			? User::newFromId( $row->fetchObject()->eu_wiki_id )
+			? User::newFromId( $row->eu_wiki_id )
 			: null;
 	}
 	
