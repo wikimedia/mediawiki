@@ -301,7 +301,7 @@ class Login {
 		global $wgAuth, $wgUser;
 
 		$fields = array(
-			'name' => $this->mName,
+			'name' => User::getCanonicalName( $this->mName ),
 			'password' => $byEmail ? null : User::crypt( $this->mPassword ),
 			'email' => $this->mEmail,
 			'options' => array(
