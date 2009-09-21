@@ -289,11 +289,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   revisions when --delete is not passed
 * (bug 13172) GPS coordinates in image Exif data are now actually displayed
 * Overhaul of preferences system, includes the following bug fixes:
-* (bug 5363) Changes to default preferences now impact registered users.
-* (bug 14806) Hook to enable putting preferences in existing tabs.
-* (bug 17191) Registration date now listed on preferences page.
-* Note that this change will break some extensions which have not been adapted
-  for it.
+** (bug 5363) Changes to default preferences now impact registered users.
+** (bug 14806) Hook to enable putting preferences in existing tabs.
+** (bug 17191) Registration date now listed on preferences page.
+** The user_properties table (now used for storing preferences) has been added to 
+   $wgSharedTables.
+** Note that this change will break some extensions which have not been adapted
+   for it.
 * (bug 17020) Adding fallback encodings for Traditional and Simplified Chinese
   languages while the the text is typed as URLs.
 * (bug 17614) Prev / Next links are not shown if all results are shown
