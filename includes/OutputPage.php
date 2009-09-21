@@ -1864,7 +1864,7 @@ class OutputPage {
 			}
 		}
 
-		return implode( "\n", $tags ) . "\n";
+		return implode( "\n", $tags );
 	}
 
 	/**
