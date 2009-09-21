@@ -477,12 +477,7 @@ class SpecialVersion extends SpecialPage {
 				$info['url']
 			);
 			$pathRelativeToRepo = substr( $info['url'], strlen( $info['repo-url'] ) );
-			if ( substr( $pathRelativeToRepo, 0, 6 ) == '/trunk' ) {
-				$viewvc .= '/?pathrev=';
-			} else {
-				// Avoids 404 error using pathrev when it does not found
-				$viewvc .= '/?revision=';
-			}
+			$viewvc .= '/?pathrev=';
 			$viewvc .= urlencode( $info['checkout-rev'] );
 			$info['viewvc-url'] = $viewvc;
 		}
