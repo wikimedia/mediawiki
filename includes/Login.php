@@ -176,6 +176,7 @@ class Login {
 		global $wgUser, $wgAuth;
 		
 		if ( '' == $this->mName ) {
+			$this->mLoginResult = 'noname';
 			return self::NO_NAME;
 		}
 		
@@ -193,6 +194,7 @@ class Login {
 			} else if ( $throttleCount < $count ) {
 				$wgMemc->incr($throttleKey);
 			} else if ( $throttleCount >= $count ) {
+				$this->mLoginResult = 'login-throttled';
 				return self::THROTTLED;
 			}
 		}
@@ -209,6 +211,16 @@ class Login {
 		}
 
 		$this->mExtUser = ExternalUser::newFromName( $this->mName );
+		
+		# If the given username produces a valid ExternalUser, which is 
+		# linked to an existing local user, use that, regardless of 
+		# whether the username matches up.
+		if( $this->mExtUser ){
+			$user = $this->mExtUser->getLocalUser();
+			if( $user instanceof User ){
+				$this->mUser = $user;
+			}
+		}
 
 		# TODO: Allow some magic here for invalid external names, e.g., let the
 		# user choose a different wiki name.
@@ -217,12 +229,15 @@ class Login {
 		}
 
 		# If the user doesn't exist in the local database, our only chance 
-		# is for an external auth plugin to autocreate the local user.
+		# is for an external auth plugin to autocreate the local user first.
 		if ( $this->mUser->getID() == 0 ) {
 			if ( $this->canAutoCreate() == self::SUCCESS ) {
 				$isAutoCreated = true;
 				wfDebug( __METHOD__.": creating account\n" );
-				$this->initUser( true );
+				$result = $this->initUser( true );
+				if( $result !== self::SUCCESS ){
+					return $result;
+				};
 			} else {
 				return $this->canAutoCreate();
 			}
@@ -232,9 +247,8 @@ class Login {
 		}
 
 		# Give general extensions, such as a captcha, a chance to abort logins
-		$abort = self::ABORTED;
-		if( !wfRunHooks( 'AbortLogin', array( $this->mUser, $this->mPassword, &$abort ) ) ) {
-			return $abort;
+		if( !wfRunHooks( 'AbortLogin', array( $this->mUser, $this->mPassword, &$this->mLoginResult ) ) ) {
+			return self::ABORTED;
 		}
 
 		if( !$this->mUser->checkPassword( $this->mPassword ) ) {
@@ -264,7 +278,13 @@ class Login {
 				# etc will probably just fail cleanly here.
 				$retval = self::RESET_PASS;
 			} else {
-				$retval = ( $this->mPassword === '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
+				if( $this->mPassword === '' ){
+					$retval = self::EMPTY_PASS;
+					$this->mLoginResult = 'wrongpasswordempty';
+				} else {
+					$retval = self::WRONG_PASS;
+					$this->mLoginResult = 'wrongpassword';
+				}
 			}
 		} else {
 			$wgAuth->updateUser( $this->mUser );
