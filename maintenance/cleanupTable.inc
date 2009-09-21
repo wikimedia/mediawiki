@@ -87,6 +87,10 @@ abstract class TableCleanup extends Maintenance {
 
 	protected function runTable( $table, $where, $callback ) {
 		$dbw = wfGetDB( DB_MASTER );
+		
+		// Unbuffered queries, avoids OOM
+		$dbw->bufferResults( false );
+		
 		$count = $dbw->selectField( $table, 'count(*)', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table..." );
@@ -98,8 +102,12 @@ abstract class TableCleanup extends Maintenance {
 		foreach( $result as $row ) {
 			call_user_func( $callback, $row );
 		}
+		
 		$this->output( "Finished $table... $this->updated of $this->processed rows updated\n" );
+		
 		$result->free();
+		
+		$dbw->bufferResults( true );
 	}
 
 	protected function hexChar( $matches ) {
