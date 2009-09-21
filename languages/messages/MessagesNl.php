@@ -742,6 +742,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'userexists'                 => 'De gekozen gebruikersnaam is al in gebruik.
 Kies een andere naam.',
 'loginerror'                 => 'Aanmeldfout',
+'createaccounterror'         => 'Het was niet mogelijk de gebruiker aan te maken: $1',
 'nocookiesnew'               => 'De gebruiker is geregistreerd, maar niet aangemeld.
 {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.
 Schakel die in en meld daarna aan met uw nieuwe gebruikersnaam en wachtwoord.',

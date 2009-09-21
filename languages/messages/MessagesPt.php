@@ -1754,7 +1754,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filehist-missing'          => 'Ficheiro em falta',
 'imagelinks'                => 'Ligações de ficheiros',
 'linkstoimage'              => '{{PLURAL:$1|A seguinte página aponta|As seguintes $1 páginas apontam}} para este ficheiro:',
-'linkstoimage-more'         => 'Mais de $1 {{PLURAL:$1|página liga|páginas ligam}} à este ficheiro.
+'linkstoimage-more'         => 'Mais de $1 {{PLURAL:$1|página aponta|páginas apontam}} para este ficheiro.
 A lista a seguir mostra apenas {{PLURAL:$1|o primeiro link de página|os primeiros $1 links de páginas}} para este ficheiro.
 Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 'nolinkstoimage'            => 'Nenhuma página aponta para este ficheiro.',

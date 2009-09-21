@@ -383,7 +383,7 @@ Hesabınız yaradıldı.
 'login'                      => 'Daxil ol',
 'nav-login-createaccount'    => 'Daxil ol / hesab yarat',
 'loginprompt'                => '{{SITENAME}}-ya daxil olmaq üçün "veb kökələrinin" (cookies) istifadəsinə icazə verilməlidir.',
-'userlogin'                  => 'Daxil ol və ya hesab yarat',
+'userlogin'                  => 'Daxil ol',
 'logout'                     => 'Çıxış',
 'userlogout'                 => 'Çıxış',
 'notloggedin'                => 'Daxil olmamısınız',
@@ -408,8 +408,7 @@ Düzgün yazdığına əmin ol.',
 'nouserspecified'            => 'İstifadəçi adı daxil etməlisiniz.',
 'wrongpassword'              => 'Səhv parol. Təkrar yaz.',
 'wrongpasswordempty'         => 'Parol boş. Təkrar yaz.',
-'passwordtooshort'           => 'Parol çox qısa.
-Parolda ən azı {{PLURAL:$1|1 hərf yaxud simvol|$1 hərf yaxud simvol}} olmalıdır.',
+'passwordtooshort'           => 'Parolda ən azı {{PLURAL:$1|1 hərf yaxud simvol|$1 hərf yaxud simvol}} olmalıdır.',
 'password-name-match'        => 'Parol adınızdan fərqli olmalıdır.',
 'mailmypassword'             => 'E-mail ilə yeni parol göndər',
 'passwordremindertitle'      => '{{SITENAME}} parol xatırladıcı',
@@ -584,7 +583,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-suppress'          => 'Məlumatları idarəçilərdən də gizlə',
 'revdelete-hide-image'        => 'Faylın məzmununu gizlə',
 'revdelete-unsuppress'        => 'Bərpa olunan versiyalar üzərindən məhdudiyyətləri qaldır',
-'revdelete-log'               => 'Qeyd:',
+'revdelete-log'               => 'Silinmə səbəbi:',
 'revdelete-submit'            => 'Seçilmiş versiyaya tətbiq et',
 'revdelete-logentry'          => '[[$1]] səhifəsinin versiyasının görünüşünü dəyişdirdi',
 'revdelete-success'           => 'Versiyanın görünüşü dəyişdirildi',
@@ -904,7 +903,9 @@ Qeyd növü, istifadəçi adı və ya təsir edilmiş səhifəni seçməklə dah
 
 # Special:Categories
 'categories'         => 'Kateqoriyalar',
-'categoriespagetext' => 'Wikide aşağıdaki kateqoriyalar var.',
+'categoriespagetext' => 'Aşağıdakı {{PLURAL:$1|kateqoriyada|kateqoriyalarda}} səhifələr yaxud mediya var.
+[[Xüsusi:İstifadədəOlmayanKateqoriyalar|İstifadədə olmayan kateqoriyalar]] burda göstərilməyib.
+Həmçinin [[Xüsusi:XahişEdilmişKateqoriyalar|xahiş edilmiş kateqoriyalara]] bax.',
 
 # Special:ListUsers
 'listusers-submit'   => 'Göstər',
@@ -1008,7 +1009,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'protect-title'               => '"$1" üçün mühafizə səviyyəsinin dəyişdirilməsi',
 'prot_1movedto2'              => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',
 'protect-legend'              => 'Qorumayı təsdiq et',
-'protectcomment'              => 'Şərh:',
+'protectcomment'              => 'Səbəb:',
 'protectexpiry'               => 'Vaxtı bitib',
 'protect_expiry_invalid'      => 'Bitmə vaxtı qüvvəsini itirmişdir',
 'protect_expiry_old'          => 'Bitmə vaxtı keçmişdir.',
@@ -1066,7 +1067,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'sp-contributions-newbies-sub' => 'Yeni istifadəçilər üçün',
 'sp-contributions-blocklog'    => 'Bloklama qeydləri',
 'sp-contributions-talk'        => 'Müzakirə',
-'sp-contributions-userrights'  => 'İstifadəçi hüququ idarəsi',
+'sp-contributions-userrights'  => 'istifadəçi hüquqları idarəsi',
 'sp-contributions-search'      => 'Fəaliyyətləri axtar',
 'sp-contributions-username'    => 'İP Ünvanı və ya istifadəçi adı:',
 'sp-contributions-submit'      => 'Axtar',

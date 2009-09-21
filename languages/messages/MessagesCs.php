@@ -455,6 +455,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|V této kategorii je pouze následující soubor.|{{PLURAL:$1|Zobrazuje se jeden soubor|Zobrazují se $1 soubory|Zobrazuje se  $1 souborů}} z celkového počtu $2 souborů v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna soubor|Zobrazují se $1 soubory|Zobrazuje se $1 souborů}} z celkového počtu $2 souborů v této kategorii.}}',
 'category-file-count-limited'    => 'Tato kategorie obsahuje {{PLURAL:$1|následující soubor|následující $1 soubory|následujících $1 souborů}}.',
 'listingcontinuesabbrev'         => 'pokrač.',
+'index-category'                 => 'Indexované stránky',
+'noindex-category'               => 'Neindexované stránky',
 
 'mainpagetext'      => "<big>'''MediaWiki byla úspěšně nainstalována.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
@@ -752,6 +754,7 @@ Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAM
 'badretype'                  => 'Vámi napsaná hesla nesouhlasí.',
 'userexists'                 => 'Uživatel se stejným jménem je už registrován. Zvolte jiné jméno.',
 'loginerror'                 => 'Chyba při přihlašování',
+'createaccounterror'         => 'Nepodařilo se vytvořit uživatelský účet: $1',
 'nocookiesnew'               => 'Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
 'nocookieslogin'             => '{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.',
 'noname'                     => 'Musíte uvést jméno svého účtu.',
@@ -776,6 +779,7 @@ Pokud jste o změnu hesla nežádal(a) nebo jste si na původní heslo již
 vzpomněl(a) a už ho změnit nechcete, můžete tuto zprávu ignorovat
 a používat staré heslo.',
 'noemail'                    => 'Uživatel „$1“ nemá zaregistrovanou e-mailovou adresu.',
+'noemailcreate'              => 'Musíte uvést platnou e-mailovou adresu',
 'passwordsent'               => 'Dočasné heslo bylo zasláno na e-mailovou adresu registrovanou pro „$1“. Přihlaste se, prosím, znovu, jakmile ho obdržíte.',
 'blocked-mailpassword'       => 'Vaší IP adrese byla zablokována možnost editace, a současně s tím je zablokována funkce pro zaslání nového hesla.',
 'eauthentsent'               => 'Potvrzovací e-mail byl zaslán na zadanou adresu.

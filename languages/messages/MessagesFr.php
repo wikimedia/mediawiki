@@ -453,6 +453,8 @@ $messages = array(
 'category-file-count'            => 'Cette catégorie contient {{PLURAL:$2|le fichier suivant|$2 fichiers, dont {{PLURAL:$1|celui|les $1}} ci-dessous}}.',
 'category-file-count-limited'    => '{{PLURAL:$1|Le fichier suivant figure|Les $1 fichiers suivants figurent}} dans la présente catégorie.',
 'listingcontinuesabbrev'         => '(suite)',
+'index-category'                 => 'Pages indexées',
+'noindex-category'               => 'Pages non indexées',
 
 'mainpagetext'      => "<big>'''MediaWiki a été installé avec succès.'''</big>",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
@@ -755,6 +757,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'userexists'                 => 'Le nom d’utilisateur que vous avez saisi est déjà utilisé.
 Veuillez en choisir un autre.',
 'loginerror'                 => 'Erreur de connexion',
+'createaccounterror'         => 'Impossible de créer le compte : $1',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
@@ -781,6 +784,7 @@ Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à p
 de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous
 pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
 'noemail'                    => 'Aucune adresse de courriel n’a été enregistrée pour l’utilisateur « $1 ».',
+'noemailcreate'              => 'Vous devez fournir une adresse de courriel valide',
 'passwordsent'               => 'Un nouveau mot de passe a été envoyé à l’adresse de courriel de l’utilisateur « $1 ». Veuillez vous reconnecter après l’avoir reçu.',
 'blocked-mailpassword'       => 'Votre adresse IP est bloquée en écriture, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
 'eauthentsent'               => 'Un courriel de confirmation a été envoyé à l’adresse indiquée.

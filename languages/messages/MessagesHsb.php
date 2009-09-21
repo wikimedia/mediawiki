@@ -258,6 +258,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Tuta kategorija wobsahuje jenož slědowacu stronu.|{{PLURAL:$1|Slědowaca dataja je|Slědowacej $1 dataji stej|Slědowace $1 dataje|Slědowacych $1 datajow je}} w tutej kategoriji z dohromady $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Slědowaca dataj je|Slědowacej $1 dataji stej|Slědowace $1 dataje su|Slědowacych $1 je}} w tutej kategoriji:',
 'listingcontinuesabbrev'         => ' (pokročowane)',
+'index-category'                 => 'Indicěrowane strony',
+'noindex-category'               => 'Njeindicěrowane strony',
 
 'mainpagetext'      => "<big>'''MediaWiki bu wuspěšnje instalowany.'''</big>",
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
@@ -544,7 +546,7 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'login'                      => 'Přizjewić',
 'nav-login-createaccount'    => 'Konto wutworić abo so přizjewić',
 'loginprompt'                => 'Zo by so pola {{GRAMMAR:genitiw|{{SITENAME}}}} přizjewić móhł, dyrbja so placki (cookies) zmóžnić.',
-'userlogin'                  => 'Konto wutworić abo so přizjewić',
+'userlogin'                  => 'Přizjewić',
 'logout'                     => 'wotzjewić',
 'userlogout'                 => 'wotzjewić',
 'notloggedin'                => 'Njepřizjewjeny',
@@ -577,6 +579,7 @@ Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
 
 Jeli něchtó druhi wo nowe hesło prosył abo ty sy so zaso na swoje hesło dopomnił a hižo nochceš je změnić, móžeš tutu powěsć ignorować a swoje stare hesło dale wužiwać.',
 'noemail'                    => 'Za wužiwarja $1 žana e-mejlowa adresa podata njeje.',
+'noemailcreate'              => 'Dyrbiš płaćiwu e-mejlowa adresu podać',
 'passwordsent'               => 'Nowe hesło bu na e-mejlowu adresu zregistrowanu za wužiwarja „$1” pósłane.
 Prošu přizjew so znowa, po tym zo sy je přijał.',
 'blocked-mailpassword'       => 'Twoja IP-adresa bu blokowana; tohodla njeje dowolene, nowe hesło požadać, zo by so znjewužiwanju zadźěwało.',

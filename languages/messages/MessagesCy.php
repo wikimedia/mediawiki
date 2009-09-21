@@ -539,6 +539,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'badretype'                  => "Nid yw'r cyfrineiriau'n union yr un fath.",
 'userexists'                 => 'Mae rhywun arall wedi dewis yr enw defnyddiwr hwn. Dewiswch un arall os gwelwch yn dda.',
 'loginerror'                 => 'Problem mewngofnodi',
+'createaccounterror'         => "Ni lwyddwyd i greu'r cyfrif: $1",
 'nocookiesnew'               => "Mae'r cyfrif defnyddiwr wedi cael ei greu, ond nid ydych wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Mewngofnodwch eto gyda'ch enw defnyddiwr a'ch cyfrinair newydd os gwelwch yn dda, ar ôl galluogi cwcis.",
 'nocookieslogin'             => 'Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Trïwch eto os gwelwch yn dda, ar ôl galluogi cwcis.',
 'noname'                     => 'Dydych chi ddim wedi cynnig enw defnyddiwr dilys.',
@@ -560,6 +561,7 @@ Mae cyfrinair dros dro, sef "$3", wedi ei greu ar gyfer y defnyddiwr "$2". Os ma
 
 Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio\'r hen gyfrinair, ac nac ydych am newid y cyfrinair, rhydd i chi anwybyddu\'r neges hon a pharhau i ddefnyddio\'r cyfrinair gwreiddiol.',
 'noemail'                    => "Does dim cyfeiriad e-bost yng nghofnodion y defnyddiwr '$1'.",
+'noemailcreate'              => "Mae'n rhaid i chi gynnig cyfeiriad e-bost dilys",
 'passwordsent'               => 'Mae cyfrinair newydd wedi\'i ddanfon at gyfeiriad e-bost cofrestredig "$1". Mewngofnodwch eto ar ôl i chi dderbyn y cyfrinair, os gwelwch yn dda.',
 'blocked-mailpassword'       => 'Gan fod eich cyfeiriad IP wedi ei atal rhag golygu, ni ellir adfer y cyfrinair.',
 'eauthentsent'               => 'Anfonwyd e-bost o gadarnhâd at y cyfeiriad a benwyd.
@@ -1479,6 +1481,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 
 # img_auth script messages
 'img-auth-nofile' => 'Nid oes ffeil a\'r enw "$1" ar gael.',
+'img-auth-noread' => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Wedi methu cyrraedd yr URL',
@@ -1788,6 +1791,8 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 # Special:ListGroupRights
 'listgrouprights'                      => 'Galluoedd grwpiau defnyddwyr',
 'listgrouprights-summary'              => "Dyma restr o'r grwpiau defnyddwyr sydd i'w cael ar y wici hon, ynghyd â galluoedd aelodau'r gwahanol grwpiau. Cewch wybodaeth pellach am y gwahanol alluoedd ar y [[{{MediaWiki:Listgrouprights-helppage}}|dudalen gymorth]].",
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Gallu sydd wedi ei roi</span>
+* <span class="listgrouprights-revoked">Gallu sydd wedi ei dynnu yn ei ôl</span>',
 'listgrouprights-group'                => 'Grŵp',
 'listgrouprights-rights'               => 'Galluoedd',
 'listgrouprights-helppage'             => 'Help:Galluoedd yn ôl grŵp',

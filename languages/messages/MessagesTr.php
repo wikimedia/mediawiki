@@ -277,6 +277,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Bu kategori sadece aşağıdaki dosyayı içerir.|Toplam $2 den, aşağıdaki {{PLURAL:$1|dosya|$1 dosya}} bu kategoridedir.}}',
 'category-file-count-limited'    => 'Aşağıdaki {{PLURAL:$1|dosya|$1 dosya}} mevcut kategoridedir.',
 'listingcontinuesabbrev'         => '(devam)',
+'index-category'                 => 'Endeksli sayfalar',
+'noindex-category'               => 'Endeksli olmayan sayfalar',
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
 'mainpagedocfooter' => 'Viki yazılımının kullanımı hakkında bilgi almak için [http://meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.
@@ -560,7 +562,7 @@ Hesabınız açıldı.
 'login'                      => 'Oturum aç',
 'nav-login-createaccount'    => 'Oturum aç ya da yeni hesap edin',
 'loginprompt'                => '{{SITENAME}} sitesinde oturum açabilmek için çerezleri etkinleştirmeniz gerekmektedir.',
-'userlogin'                  => 'Oturum aç ya da yeni hesap edin',
+'userlogin'                  => 'Oturum aç',
 'logout'                     => 'Oturumu kapat',
 'userlogout'                 => 'Oturumu kapat',
 'notloggedin'                => 'Oturum açık değil',
@@ -573,6 +575,7 @@ Hesabınız açıldı.
 'badretype'                  => 'Girdiğiniz parolalar birbirini tutmuyor.',
 'userexists'                 => 'Girdiğiniz kullanıcı adı kullanımda. Lütfen farklı bir kullanıcı adı seçin.',
 'loginerror'                 => 'Oturum açma hatası.',
+'createaccounterror'         => 'Hesap oluşturulamıyor: $1',
 'nocookiesnew'               => 'Kullanıcı hesabı yaratıldı ama oturum açamadınız.
 Oturum açmak için {{SITENAME}} çerezleri kullanır.
 Çerez kullanımı devredışı.
@@ -596,6 +599,7 @@ Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]
 
 Parola değişimini siz istemediyseniz veya parolanızı hatırladıysanız ve artık parolanızı değiştirmek istemiyorsanız; bu mesajı önemsemeyerek eski parolanızı kullanmaya devam edebilirsiniz.',
 'noemail'                    => '"$1" adlı kullanıcıya kayıtlı bir e-posta adresi yok.',
+'noemailcreate'              => 'Geçerli bir e-posta adresi sağlamalısınız',
 'passwordsent'               => '"$1" adına kayıtlı e-posta adresine yeni bir parola gönderildi. Oturumu, lütfen, iletiyi aldıktan sonra açın.',
 'blocked-mailpassword'       => 'Siteye erişiminiz engellenmiş olduğundan, yeni şifre gönderilme işlemi yapılamamaktadır.',
 'eauthentsent'               => 'Kaydedilen adrese onay kodu içeren bir e-posta gönderildi.
@@ -1351,6 +1355,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-reset-passwords'       => 'Diğer kullanıcıların parolalarını sıfırla',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-versiondetail'         => 'Genişletilmiş yazılım sürüm bilgilerini göster',
+'right-root'                  => 'Vikide tüm eylemleri yap',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -1493,7 +1498,8 @@ Eğer değiştirmekten emin değilseniz ilk önce '''<tt>[[:$1]]</tt>''' dosyas�
 [[$1|thumb]]",
 'filepageexists'              => "Bu dosya için açıklama sayfası '''<tt>[[:$1]]</tt>''' adresinde zaten oluşturulmuş, fakat bu isimde bir dosya şu anda mevcut değil.
 Gireceğiniz özet açıklama sayfasında görünmeyecektir.
-Özetinizin orada görünmesi için, bunu elle değiştirmelisiniz",
+Özetinizin orada görünmesi için, bunu elle değiştirmelisiniz.
+[[$1|küçük resim]]",
 'fileexists-extension'        => "Benzer isimle başka bir dosya mevcut: [[$2|thumb]]
 * Yüklenilen dosyanın adı: '''<tt>[[:$1]]</tt>'''
 * Varolan dosyanın adı: '''<tt>[[:$2]]</tt>'''
@@ -1868,7 +1874,7 @@ Desteklenen iletişim kuralları: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktif kullanıcı listesi',
-'activeusers-count'    => 'Son $1 {{PLURAL:$1|değişiklik|değişiklik}}',
+'activeusers-count'    => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|değişiklik|değişiklik}}',
 'activeusers-from'     => 'Şununla başlayan kullanıcıları görüntüle:',
 'activeusers-noresult' => 'Kullanıcı bulunamadı.',
 
@@ -2280,6 +2286,10 @@ $1',
 'contribslink'                    => 'Katkılar',
 'autoblocker'                     => 'Otomatik olarak engellendiniz çünkü yakın zamanda IP adresiniz "[[User:$1|$1]]" kullanıcısı tarafından  kullanılmıştır. $1 isimli kullanıcının engellenmesi için verilen sebep: "\'\'\'$2\'\'\'"',
 'blocklogpage'                    => 'Erişim engelleme kayıtları',
+'blocklog-showlog'                => 'Bu kullanıcı daha önceden engellenmiş.
+Engelleme günlüğü referans için aşağıda sağlanmıştır:',
+'blocklog-showsuppresslog'        => 'Bu kullanıcı daha önceden engellenmiş ve gizlenmiş.
+Gizleme günlüğü referans için aşağıda sağlanmıştır:',
 'blocklogentry'                   => ', [[$1]] kullanıcısını engelledi, engelleme süresi: $2 $3',
 'reblock-logentry'                => '[[$1]] için bitiş tarihi $2 $3 olmak üzere engelleme ayarlarını değiştirdi',
 'blocklogtext'                    => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:IPBlockList|IP engelleme listesi]] sayfasından görebilirsiniz.',

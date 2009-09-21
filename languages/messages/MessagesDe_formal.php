@@ -95,6 +95,7 @@ Falls Sie dies wirklich gewünscht haben, sollten Sie sich jetzt anmelden und da
 Das neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.
 
 Bitte ignorieren Sie diese E-Mail, falls Sie sie nicht selbst angefordert haben. Das alte Passwort bleibt weiterhin gültig.',
+'noemailcreate'              => 'Sie müssen eine gültige E-Mail-Adresse angeben',
 'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesandt.
 Bitte melden Sie sich damit an, sobald sie es erhalten haben. Das alte Passwort bleibt weiterhin gültig.',
 'blocked-mailpassword'       => 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
@@ -326,11 +327,14 @@ Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer
 Wenn Sie auf „Datei speichern“ klicken, wird die Datei überschrieben.
 Bitte prüfen Sie '''<tt>[[:$1]]</tt>''', wenn Sie sich nicht sicher sind.
 [[$1|thumb]]",
-'filepageexists'              => "Eine Beschreibungsseite wurde bereits als '''<tt>[[:$1]]</tt>''' erstellt, es ist aber keine Datei mit diesem Namen vorhanden. Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen. Die Beschreibungsseite müssen Sie nach dem Hochladen der Datei noch manuell bearbeiten.",
+'filepageexists'              => "Eine Beschreibungsseite wurde bereits als '''<tt>[[:$1]]</tt>''' erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
+Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.
+Die Beschreibungsseite müssen Sie nach dem Hochladen der Datei noch manuell bearbeiten.
+[[$1|thumb]]",
 'fileexists-extension'        => "Eine Datei mit ähnlichem Namen existiert bereits: [[$2|thumb]]
 * Name der hochzuladenden Datei: '''<tt>[[:$1]]</tt>'''
 * Name der vorhandenen Datei: '''<tt>[[:$2]]</tt>'''
-Nur die Dateiendung unterscheidet sich in Groß-/Kleinschreibung. Bitte prüfen Sie, ob die Dateien inhaltlich identisch sind.",
+Bitte wählen Sie einen anderen Namen.",
 'fileexists-thumbnail-yes'    => "Bei der Datei scheint es sich um ein Bild verringerter Größe ''(thumbnail)'' zu handeln. [[$1|thumb]]
 Bitte prüfen Sie die Datei '''<tt>[[:$1]]</tt>'''.
 Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.",

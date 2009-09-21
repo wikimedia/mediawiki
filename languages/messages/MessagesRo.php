@@ -407,6 +407,8 @@ pe titlul secţiunii (JavaScript)',
 'category-file-count'            => '{{PLURAL:$2|Această categorie conţine doar următorul fişier.|{{PLURAL:$1|Următorul fişier|Următoarele $1 fişiere}} se află în această categorie, dintr-un total de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Următorul fişier|Următoarele $1 fişiere}} se află în categoria curentă.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Pagini indexate',
+'noindex-category'               => 'Pagini neindexate',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
@@ -607,7 +609,7 @@ Aceasta s-ar putea să indice şi un bug în programul folosit de {{SITENAME}}.'
 'error'                => 'Eroare',
 'databaseerror'        => 'Eroare la baza de date',
 'dberrortext'          => 'A apărut o eroare în sintaxa interogării.
-Aceasta se poate datora probleme în program.
+Aceasta poate indica o problemă în program.
 Ultima interogare încercată a fost:
 <blockquote><tt>$1</tt></blockquote>
 din cadrul funcţiei "<tt>$2</tt>".
@@ -728,6 +730,7 @@ Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit
 parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi 
 să folosiţi vechea parolă.',
 'noemail'                    => 'Nu este nici o adresă de e-mail înregistrată pentru utilizatorul „$1”.',
+'noemailcreate'              => 'Trebuie oferită o adresă e e-mail validă.',
 'passwordsent'               => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primeşti.',
 'blocked-mailpassword'       => 'Această adresă IP este blocată la editare, şi deci nu este permisă utilizarea funcţiei de recuperare a parolei pentru a preveni abuzul.',
 'eauthentsent'               => 'Un email de confirmare a fost trimis adresei nominalizate. Înainte de a fi trimis orice alt email acestui cont, trebuie să urmaţi intrucţiunile din email, pentru a confirma că acest cont este într-adevăr al dvs.',
@@ -858,6 +861,7 @@ Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje
 Puteţi [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} căuta înregistrări în jurnale], sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
 'userpage-userdoesnotexist'        => 'Contul de utilizator "$1" nu este înregistrat. Verificaţi dacă doriţi să creaţi/modificaţi această pagină.',
+'userpage-userdoesnotexist-view'   => 'Contul de utilizator "$1" nu este înregistrat.',
 'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
 'usercssyoucanpreview'             => "'''Sfat:''' Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
 'userjsyoucanpreview'              => "'''Sfat:''' Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
@@ -3344,5 +3348,13 @@ Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 'htmlform-submit'              => 'Trimite',
 'htmlform-reset'               => 'Anulează modificările',
 'htmlform-selectorother-other' => 'Altul',
+
+# Add categories per AJAX
+'ajax-add-category-summary'    => 'Adaugă categoria "$1"',
+'ajax-remove-category-summary' => 'Elimină categoria "$1"',
+'ajax-error-title'             => 'Eroare',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Eliminarea categoriei nu a fost posibilă.
+Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
 
 );

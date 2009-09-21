@@ -611,6 +611,8 @@ HTML markup cannot be used.",
 'gotaccountlink'             => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
 {{Identical|Log in}}',
+'createaccounterror'         => 'Parameters:
+* $1 is an error message',
 'nocookiesnew'               => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin'             => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'loginsuccesstitle'          => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
