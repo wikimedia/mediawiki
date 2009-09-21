@@ -418,11 +418,11 @@ class EditPage {
 				}
 			}
 		}
-		
-		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
-			$wgOut->redirect( $this->mTitle->getFullURL() );
-		}
+
+		# Evaluate if the edit interface should be shown or
+		# if the page should be shown, in case redlink=true
+		if ( $wgRequest->getBool( 'redlink' ) )
+			$this->showPageOnRedlink();
 
 		wfProfileIn( __METHOD__."-business-end" );
 
@@ -487,7 +487,45 @@ class EditPage {
 		wfProfileOut( __METHOD__."-business-end" );
 		wfProfileOut( __METHOD__ );
 	}
-	
+
+	/*
+	 * Evaluate if the edit interface should be shown or the page, in case redlink=true. 
+	 * If the page exists, it is always shown. If it doesn't, it depends on the settings 
+	 * of $wgShowPageOnRedlink (see DefaultSettings for documentation).
+	 */
+	protected function showPageOnRedlink() {
+		global $wgShowPageOnRedlink, $wgUser, $wgRequest, $wgOut;
+		$redirectToPage = false;
+		# If the page exists (it has been created after the link has been emerged),
+		# redirect to the page instead of editing the current page
+		if ( $this->mTitle->exists() )
+			$wgOut->redirect( $this->mTitle->getFullURL() );
+		# Check site configuration ($wgShowPageOnRedlink)
+		if ( is_array( $wgShowPageOnRedlink ) ) {
+			$ns = $this->mTitle->getNamespace();
+			$groups = $wgUser->getEffectiveGroups();
+			# Gets overwritten if user is member of a group that has been specified:
+			$redirectToPage = true;
+			foreach ( $groups as $i => $group ) {
+				# Test if there is a rule for a specific usergroup and a specific namespace
+				if ( isset( $wgShowPageOnRedlink[$group][$ns] ) && $wgShowPageOnRedlink[$group][$ns] == false ) {
+					$redirectToPage = false;
+				}
+				# Test if there is a rule for a specific usergroup in all namespaces
+				elseif ( isset( $wgShowPageOnRedlink[$group] ) && !is_array( $wgShowPageOnRedlink[$group] ) 
+					   && $wgShowPageOnRedlink[$group] == false ) {
+					$redirectToPage = false;
+				}
+			}
+		}
+		else {
+			$redirectToPage = $wgShowPageOnRedlink;
+		}
+		if ( $redirectToPage ) {
+			$wgOut->redirect( $this->mTitle->getFullURL() );
+		}
+	}
+
 	protected function getEditPermissionErrors() {
 		global $wgUser;
 		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
