@@ -460,9 +460,9 @@ class SpecialUserLogin extends SpecialPage {
 				
 			case Login::NOT_EXISTS:
 				if( $wgUser->isAllowed( 'createaccount' ) ){
-					$this->mainLoginForm( wfMsgExt( 'nosuchuser', 'parseinline', htmlspecialchars( $this->mName ) ) );
+					$this->mainLoginForm( wfMsgExt( 'nosuchuser', 'parseinline', htmlspecialchars( $this->mUsername ) ) );
 				} else {
-					$this->mainLoginForm( wfMsgExt( 'nosuchusershort', 'parseinline', htmlspecialchars( $this->mName ) ) );
+					$this->mainLoginForm( wfMsgExt( 'nosuchusershort', 'parseinline', htmlspecialchars( $this->mUsername ) ) );
 				}
 				break;
 				
