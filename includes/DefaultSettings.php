@@ -648,6 +648,8 @@ $wgCheckDBSchema = true;
  * main database.
  * For backwards compatibility the shared prefix is set to the same as the local
  * prefix, and the user table is listed in the default list of shared tables.
+ * The user_properties table is also added so that users will continue to have their
+ * preferences shared (preferences were stored in the user table prior to 1.16)
  *
  * $wgSharedTables may be customized with a list of tables to share in the shared
  * datbase. However it is advised to limit what tables you do share as many of
@@ -656,7 +658,7 @@ $wgCheckDBSchema = true;
  */
 $wgSharedDB     = null;
 $wgSharedPrefix = false; # Defaults to $wgDBprefix
-$wgSharedTables = array( 'user' );
+$wgSharedTables = array( 'user', 'user_properties' );
 
 /**
  * Database load balancer
