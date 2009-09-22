@@ -1787,7 +1787,7 @@ class OutputPage {
 	 * also adds userjs to the end if enabled:
 	*/
 	function getHeadScripts() {
-		global $wgUser;
+		global $wgUser, $wgJsMimeType;
 		$sk = $wgUser->getSkin();
 
 		$vars = Skin::makeGlobalVariablesScript( $sk->getSkinName() );
