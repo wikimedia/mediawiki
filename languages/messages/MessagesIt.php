@@ -353,6 +353,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Questa categoria contiene un solo file, indicato di seguito.|Questa categoria contiene {{PLURAL:$1|un file, indicato|$1 file, indicati}} di seguito, su un totale di $2.}}',
 'category-file-count-limited'    => 'Questa categoria contiene {{PLURAL:$1|il file indicato|i $1 file indicati}} di seguito.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Pagine indicizzate',
+'noindex-category'               => 'Pagine non indicizzate',
 
 'mainpagetext'      => "<big>'''Installazione di MediaWiki completata correttamente.'''</big>",
 'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
@@ -648,7 +650,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'notloggedin'                => 'Accesso non effettuato',
 'nologin'                    => 'Non hai ancora un accesso? $1.',
 'nologinlink'                => 'Crealo ora',
-'createaccount'              => 'Crea un nuovo accesso',
+'createaccount'              => 'Crea un nuovo utente',
 'gotaccount'                 => 'Hai già un accesso? $1.',
 'gotaccountlink'             => 'Entra',
 'createaccountmail'          => 'via e-mail',
@@ -656,6 +658,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'userexists'                 => 'Il nome utente inserito è già utilizzato. 
 Scegliere un nome utente diverso.',
 'loginerror'                 => "Errore nell'accesso",
+'createaccounterror'         => "Impossibile creare l'account: $1",
 'nocookiesnew'               => "La registrazione è stata completata, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin'             => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
 'noname'                     => 'Il nome utente indicato non è valido.',
@@ -676,6 +679,7 @@ Una password temporanea per l\'utente "$2" è stata impostata a "$3".
 
 Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non desideri più cambiarla, puoi ignorare questo messaggio e continuare a usare la vecchia password.',
 'noemail'                    => 'Nessun indirizzo e-mail registrato per l\'utente "$1".',
+'noemailcreate'              => 'È necessario fornire un indirizzo e-mail valido',
 'passwordsent'               => 'Una nuova password è stata inviata all\'indirizzo e-mail registrato per l\'utente "$1".
 Per favore, effettua un accesso non appena la ricevi.',
 'blocked-mailpassword'       => 'Per prevenire abusi, non è consentito usare la funzione "Invia nuova password" da un indirizzo IP bloccato.',
@@ -1218,7 +1222,7 @@ $1",
 'prefs-watchlist-days-max'      => '(massimo 7 giorni)',
 'prefs-watchlist-edits'         => 'Numero di modifiche da mostrare con le funzioni avanzate:',
 'prefs-watchlist-edits-max'     => '(numero massimo: 1000)',
-'prefs-watchlist-token'         => 'Token Osservati speciali',
+'prefs-watchlist-token'         => 'Token Osservati speciali:',
 'prefs-misc'                    => 'Varie',
 'prefs-resetpass'               => 'Cambia password',
 'prefs-email'                   => 'Opzioni email',
@@ -1408,6 +1412,7 @@ L'operazione non può essere annullata.",
 'right-reset-passwords'       => 'Reimposta le password di altri utenti',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-versiondetail'         => 'Mostra le informazioni complete del software',
+'right-root'                  => 'Esegue tutte le azioni sul sito',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
@@ -1546,7 +1551,8 @@ Consultare la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'ins
 'fileexists'                  => "Un file con questo nome esiste già.
 Verificare prima '''<tt>[[:$1]]</tt>''' se non si è sicuri di volerlo sovrascrivere.
 [[$1|thumb]]",
-'filepageexists'              => "La pagina di descrizione di questo file è già stata creata all'indirizzo '''<tt>[[:$1]]</tt>''', anche se non esiste ancora un file con questo nome. La descrizione dell'oggetto inserita in fase di caricamento non apparirà sulla pagina di discussione. Per far sì che l'oggetto compaia sulla pagina di discussione, sarà necessario modificarla manualmente",
+'filepageexists'              => "La pagina di descrizione di questo file è già stata creata all'indirizzo '''<tt>[[:$1]]</tt>''', anche se non esiste ancora un file con questo nome. La descrizione dell'oggetto inserita in fase di caricamento non apparirà sulla pagina di descrizione. Per far sì che l'oggetto compaia sulla pagina di descrizione, sarà necessario modificarla manualmente.
+[[$1|thumb]]",
 'fileexists-extension'        => "Un file con nome simile a questo esiste già: [[$2|thumb]]
 * Nome del file caricato: '''<tt>[[:$1]]</tt>'''
 * Nome del file esistente: '''<tt>[[:$2]]</tt>'''
@@ -1913,7 +1919,7 @@ Protocolli supportati: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista degli utenti attivi',
-'activeusers-count'    => '$1 {{PLURAL:$1|modifica recente|modifiche recenti}}',
+'activeusers-count'    => "$1 {{PLURAL:$1|modifica|modifiche}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
 'activeusers-from'     => 'Mostra gli utenti a partire da:',
 'activeusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 
@@ -2521,7 +2527,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'importlogpagetext'                => 'Di seguito sono elencate le importazioni di pagine provenienti da altre wiki, complete di cronologia.',
 'import-logentry-upload'           => 'ha importato [[$1]] tramite upload',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',
-'import-logentry-interwiki'        => 'ha trasferito da altra wiki la pagina [[$1]]',
+'import-logentry-interwiki'        => 'ha trasferito da altra wiki la pagina $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}} da $2',
 
 # Tooltip help for the actions

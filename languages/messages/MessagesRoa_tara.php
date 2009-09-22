@@ -148,6 +148,8 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Sta categorije condene sulamende 'u seguende file.|{{PLURAL:$1|'U seguende file stè |le seguende $1 files stonne}} jndr'à sta categorije, sus a $2 totele.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
 'listingcontinuesabbrev'         => 'cond.',
+'index-category'                 => 'Pàggene indicizzate',
+'noindex-category'               => 'Pàggene none indicizzate',
 
 'mainpagetext'      => "<big>'''MediaUicchi ha state 'nstallete.'''</big>",
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
@@ -458,6 +460,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'userexists'                 => "'U nome de l'utende ca è scritte jè già ausete.
 Mittene n'otre.",
 'loginerror'                 => 'Errore de collegamende',
+'createaccounterror'         => "Non ge puè ccrejà 'u cunde utende: $1",
 'nocookiesnew'               => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
 
 {{SITENAME}} ause le cookie pe fà collegà l'utinde.
@@ -491,6 +494,7 @@ Ce quiste ere quidde ca vulive, mo vide ce te colleghe e te scacchie 'na passwor
 
 Ce quacche otre 'nvece ha fatte sta rechieste, o ce tu t'è recurdate 'a password, e non g'à vuè cu cangè cchiù, allore no sce penzanne a 'stu messagge e continue a ausà 'a vecchia password.",
 'noemail'                    => 'Non ge stonne email reggistrete pe l\'utende "$1".',
+'noemailcreate'              => "Tu ha mèttere 'n'indirizze e-mail valide",
 'passwordsent'               => "'Na nova passuord ha state mannete a l'indirizze e-mail reggistrete pe \"\$1\".
 Pe piacere, colleghete n'otra vota quanne l'è ricevute.",
 'blocked-mailpassword'       => "L'indirizze IP tue jè blocchete pe le cangiaminde e accussì tu non ge puè ausà 'a funzione de recupere d'a password pe prevenìe l'abbuse.",
@@ -1490,6 +1494,9 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Accesse negate',
+'img-auth-nologinnWL'   => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
+'img-auth-nofile'       => 'File "$1" non g\'esiste.',
+'img-auth-noread'       => 'L\'utende non ge tène l\'accesse pe leggere "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "Non ge riesche a raggiungere l'URL",

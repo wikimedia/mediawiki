@@ -409,6 +409,8 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Disse kattegerie bevat 't volgende bestaand.|Disse kattegerie bevat {{PLURAL:$1|'t volgende bestaand|de volgende $1 bestanen}}, van in totaal $2.}}",
 'category-file-count-limited'    => "Disse kattegerie bevat {{PLURAL:$1|'t volgende bestaand|de volgende $1 bestanen}}.",
 'listingcontinuesabbrev'         => '(vervolg)',
+'index-category'                 => "Pagina's dee eïndexeerd bin",
+'noindex-category'               => "Pagina's dee neet eïndexeerd bin",
 
 'mainpagetext'      => "<big>'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''</big>",
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
@@ -707,6 +709,7 @@ Je kunnen {{SITENAME}} noen anneniem gebruken of onder disse of een aandere gebr
 'userexists'                 => 'Disse gebrukersnaam is al gebruuk. 
 Kies een aandere naam.',
 'loginerror'                 => 'Anmeldingsfout',
+'createaccounterror'         => 'Kon de gebrukersnaam neet anmaken: $1',
 'nocookiesnew'               => 'De gebrukersnaam is an-emaak, mar je bin neet an-emeld.
 {{SITENAME}} gebruuk cookies um gebrukers an te melden.
 Je hemmen cookies uut-eschakeld.
@@ -736,6 +739,7 @@ A-j dit verzeuk neet zelf edaon hemmen of a-j \'t wachwoord weer weten
 en \'t neet meer wiezigen willen, negeer dit berich dan 
 en blief joew bestaonde wachwoord gebruken.',
 'noemail'                    => 'Gien netposadres eregistreerd veur "$1".',
+'noemailcreate'              => 'Je mutten een geldig netposadres opgeven',
 'passwordsent'               => 'Der is een niej wachwoord verstuurd naor \'t netposadres van gebruker "$1". Meld an, a-j \'t wachwoord ontvangen.',
 'blocked-mailpassword'       => 'Dit IP-adres is eblokkeerd. Dit betekent da-j neet bewarken kunnen en dat {{SITENAME}} joew wachwoord neet weerummehaolen kan, dit wonnen edaon um misbruuk tegen te gaon.',
 'eauthentsent'               => "Der is een bevestigingsberich naor 't op-egeven netposadres verstuurd. Veurdat der veerdere berichen naor dit netposadres verstuurd kunnen wonnen, mu-j de instructies volgen in 't toe-esturen berich, um te bevestigen da-j joe eigen daodwarkelijk an-emeld hemmen.",
@@ -2395,7 +2399,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'blocklogentry'                   => 'blokkeren "[[$1]]" veur $2 $3',
 'reblock-logentry'                => "hef de instellingen veur de blokkering van [[$1]] ewiezig. 't Loop noen of over $2 $3",
 'blocklogtext'                    => "Hier zie-j een lieste van de leste blokkeringen en deblokkeringen. Autematische blokkeringen en deblokkeringen koemen neet in 't logboek te staon. Zie de [[Special:IPBlockList|IP-blokkeerlieste]] veur de lieste van adressen dee noen eblokkeerd bin.",
-'unblocklogentry'                 => 'Blokkering van [[$1]] op-eheven',
+'unblocklogentry'                 => 'Blokkering van $1 op-eheven',
 'block-log-flags-anononly'        => 'allinnig anneniemen',
 'block-log-flags-nocreate'        => 'anmaken van gebrukersprefielen uut-eschakeld',
 'block-log-flags-noautoblock'     => 'autoblokkeren uut-eschakeld',
