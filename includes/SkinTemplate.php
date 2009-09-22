@@ -100,20 +100,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Add specific JavaScript the base Skin class.
-	 * FIXME: not called from anywhere
-	 */
-	function setupSkinUserJs( OutputPage $out ) {
-		global $wgUseSiteJs;
-		if( $wgUseSiteJs ) {
-			$jsCache = $this->loggedin ? '&smaxage=0' : '';
-			$siteGenScriptFile = self::makeUrl( '-',
-				"action=raw$jsCache&gen=js&useskin=" . urlencode( $this->getSkinName() ) );
-			$this->jsvarurl = $siteGenScriptFile;
-		}
-	}
-
-	/**
 	 * Create the template engine object; we feed it a bunch of data
 	 * and eventually it spits out some HTML. Should have interface
 	 * roughly equivalent to PHPTAL 0.7.

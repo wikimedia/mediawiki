@@ -453,40 +453,6 @@ class Skin extends Linker {
 
 		return self::makeVariablesScript( $vars );
 	}
-	/**
-	 * Return a random selection of the scripts we want in the header, 
-	 * according to no particular rhyme or reason.  Various other scripts are 
-	 * returned from a haphazard assortment of other functions scattered over 
-	 * various files.  This entire hackish system needs to be burned to the 
-	 * ground and rebuilt.
-	 *
-	 * @param $out OutputPage object, should be $wgOut
-	 *
-	 * @return string Raw HTML to output to <head>
-	 */
-	function getHeadScripts( OutputPage $out ) {
-		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion, $wgOut;
-		global $wgUseSiteJs;
-
-		$vars = self::makeGlobalVariablesScript( $this->getSkinName() );
-
-		if( $wgUseSiteJs ) {
-			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
-			$wgOut->addScriptFile(  self::makeUrl( '-',
-					"action=raw$jsCache&gen=js&useskin=" .
-					urlencode( $this->getSkinName() )
-					)
-				);
-		}
-		if( $out->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
-			$userpage = $wgUser->getUserPage();
-			$userjs = self::makeUrl(
-				$userpage->getPrefixedText() . '/' . $this->getSkinName() . '.js',
-				'action=raw&ctype=' . $wgJsMimeType );
-			$wgOut->addScriptFile( $userjs );
-		}
-		return $vars . "\n" . $out->mScripts;
-	}
 
 	/**
 	 * To make it harder for someone to slip a user a fake

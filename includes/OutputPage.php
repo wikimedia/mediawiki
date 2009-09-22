@@ -167,9 +167,12 @@ class OutputPage {
 
 	/**
 	 * Add the core scripts that are included on every page, for later output into the header
+	 *
+	 * this includes the conditional sitejs
 	 */
 	function addCoreScripts2Top(){
 		global $wgEnableScriptLoader, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgEnableJS2system;
+		global $wgUseSiteJs, $wgUser, $wgJsMimeType;
 		// @todo We should deprecate wikibits in favor of mv_embed and jQuery
 
 		if( $wgEnableJS2system ){
@@ -178,19 +181,33 @@ class OutputPage {
 			$core_classes = array( 'wikibits' );
 		}
 
+		//make sure scripts are on top:
+		$postScripts = $this->mScripts;
+		$this->mScripts = '';
+
 		if( $wgEnableScriptLoader ){
-			//add core to top of mScripts
-			$this->mScripts = $this->getScriptLoaderJs( $core_classes ) . $this->mScripts;
+			//directly add script_loader call
+			//(separate from other scriptloader calls that may include extensions with conditional js)
+			$this->mScripts = $this->getScriptLoaderJs( $core_classes );
 		} else {
 			$so = '';
-			//make sure scripts are on top:
-			$postMscripts = $this->mScripts;
-			$this->mScripts = '';
 			foreach( $core_classes as $js_class ){
 				$this->addScriptClass( $js_class );
 			}
-			$this->mScripts .= $postMscripts;
 		}
+
+		$sk = $wgUser->getSkin();
+		//add site js:
+		if( $wgUseSiteJs ) {
+			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
+			$this->addScriptFile(  Skin::makeUrl( '-',
+					"action=raw$jsCache&gen=js&useskin=" .
+					urlencode( $sk->getSkinName() )
+					)
+				);
+		}
+		//now re-append any scripts that got added prior to the addCoreScripts2Top call
+		$this->mScripts = $this->mScripts . $postScripts;
 	}
 
 	/**
@@ -1747,7 +1764,7 @@ class OutputPage {
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
 			$this->buildCssLinks(),
-			$sk->getHeadScripts( $this ),
+			$this->getHeadScripts(),
 			$this->getHeadItems(),
 		));
 		if( $sk->usercss ){
@@ -1762,6 +1779,29 @@ class OutputPage {
 
 		$ret .= "</head>\n";
 		return $ret;
+	}
+
+	/*
+	 * gets the global variables and mScripts
+	 *
+	 * also adds userjs to the end if enabled:
+	*/
+	function getHeadScripts() {
+		global $wgUser;
+		$sk = $wgUser->getSkin();
+
+		$vars = Skin::makeGlobalVariablesScript( $sk->getSkinName() );
+
+		//add user js if enabled:
+		if( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
+			$userpage = $wgUser->getUserPage();
+			$userjs = Skin::makeUrl(
+				$userpage->getPrefixedText() . '/' . $sk->getSkinName() . '.js',
+				'action=raw&ctype=' . $wgJsMimeType );
+			$this->addScriptFile( $userjs );
+		}
+
+		return $vars . "\n" . $this->mScripts;
 	}
 
 	protected function addDefaultMeta() {
