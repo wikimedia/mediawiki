@@ -1898,6 +1898,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-bigdelete'             => 'Delete pages with large histories',
 'right-deleterevision'        => 'Delete and undelete specific revisions of pages',
 'right-deletedhistory'        => 'View deleted history entries, without their associated text',
+'right-deletedcontent'        => 'View deleted text and changes between deleted revisions',
 'right-browsearchive'         => 'Search deleted pages',
 'right-undelete'              => 'Undelete a page',
 'right-suppressrevision'      => 'Review and restore revisions hidden from administrators',
