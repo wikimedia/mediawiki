@@ -16,5 +16,5 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinMySkin extends SkinTemplate {
 	var $skinname = 'myskin', $stylename = 'myskin',
-		$template = 'MonoBookTemplate';
+		$template = 'MonoBookTemplate', $useHeadElement = true;
 }

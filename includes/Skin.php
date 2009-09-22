@@ -463,9 +463,8 @@ class Skin extends Linker {
 	 *
 	 * @param string $action
 	 * @return bool
-	 * @private
 	 */
-	function userCanPreview( $action ) {
+	public function userCanPreview( $action ) {
 		global $wgRequest, $wgUser;
 
 		if( $action != 'submit' )
@@ -637,9 +636,8 @@ END;
 			$action = $wgRequest->getVal( 'action' );
 			# If we're previewing the CSS page, use it
 			if( $this->mTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
-				$previewCss = $wgRequest->getText( 'wpTextbox1' );
 				// @FIXME: properly escape the cdata!
-				$this->usercss = "/*<![CDATA[*/\n" . $previewCss . "/*]]>*/";
+				$out->addInlineStyle( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
 				$out->addStyle( self::makeUrl( $this->userpage . '/' . $this->getSkinName() .'.css',
 					'action=raw&ctype=text/css' ) );

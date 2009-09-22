@@ -18,12 +18,8 @@ require_once( dirname(__FILE__) . '/MonoBook.php' );
  * @ingroup Skins
  */
 class SkinChick extends SkinTemplate {
-	function initPage( OutputPage $out ) {
-		parent::initPage( $out );
-		$this->skinname  = 'chick';
-		$this->stylename = 'chick';
-		$this->template  = 'MonoBookTemplate';
-	}
+	var $skinname = 'chick', $stylename = 'chick',
+	$template = 'MonoBookTemplate', $useHeadElement = true;
 
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );

@@ -87,6 +87,12 @@ class SkinTemplate extends Skin {
 	 */
 	var $template = 'QuickTemplate';
 
+	/**
+	 * Whether this skin use OutputPage::headElement() to generate the <head>
+	 * tag
+	 */
+	var $useHeadElement = false;
+
 	/**#@-*/
 
 	/**
@@ -171,11 +177,47 @@ class SkinTemplate extends Skin {
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
 
-		$this->userjs = $this->userjsprev = false;
-		$this->setupUserCss( $out );
-		$this->setupUserJs( $out->isUserJsAllowed() );
 		$this->titletxt = $this->mTitle->getPrefixedText();
 		wfProfileOut( __METHOD__ . '-stuff' );
+
+		wfProfileIn( __METHOD__ . '-stuff-head' );
+		if ( $this->useHeadElement ) {
+			$pagecss = $this->setupPageCss();
+			if( $pagecss )
+				$out->addInlineStyle( $pagecss );
+		} else {
+			$this->setupUserCss( $out );
+
+			$tpl->set( 'pagecss', $this->setupPageCss() );
+			$tpl->setRef( 'usercss', $this->usercss );
+
+			$this->userjs = $this->userjsprev = false;
+			$this->setupUserJs( $out->isUserJsAllowed() );
+			$tpl->setRef( 'userjs', $this->userjs );
+			$tpl->setRef( 'userjsprev', $this->userjsprev );
+
+			if( $wgUseSiteJs ) {
+				$jsCache = $this->loggedin ? '&smaxage=0' : '';
+				$tpl->set( 'jsvarurl',
+						  self::makeUrl( '-',
+										"action=raw$jsCache&gen=js&useskin=" .
+										urlencode( $this->getSkinName() ) ) );
+			} else {
+				$tpl->set( 'jsvarurl', false );
+			}
+
+			$tpl->setRef( 'xhtmldefaultnamespace', $wgXhtmlDefaultNamespace );
+			$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
+			$tpl->set( 'headlinks', $out->getHeadLinks() );
+			$tpl->set( 'csslinks', $out->buildCssLinks() );
+
+			if( $wgUseTrackbacks && $out->isArticleRelated() ) {
+				$tpl->set( 'trackbackhtml', $out->getTitle()->trackbackRDF() );
+			} else {
+				$tpl->set( 'trackbackhtml', null );
+			}
+		}
+		wfProfileOut( __METHOD__ . '-stuff-head' );
 
 		wfProfileIn( __METHOD__ . '-stuff2' );
 		$tpl->set( 'title', $out->getPageTitle() );
@@ -224,19 +266,10 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'feeds', false );
 		}
-		if( $wgUseTrackbacks && $out->isArticleRelated() ) {
-			$tpl->set( 'trackbackhtml', $out->getTitle()->trackbackRDF() );
-		} else {
-			$tpl->set( 'trackbackhtml', null );
-		}
 
-		$tpl->setRef( 'xhtmldefaultnamespace', $wgXhtmlDefaultNamespace );
-		$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
 		$tpl->setRef( 'mimetype', $wgMimeType );
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
-		$tpl->set( 'headlinks', $out->getHeadLinks() );
-		$tpl->set( 'csslinks', $out->buildCssLinks() );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
 		$tpl->set( 'skinclass', get_class( $this ) );
@@ -271,19 +304,6 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $wgLang->getCode() );
 		$tpl->set( 'userlangattributes', 'lang="' . $wgLang->getCode() . '" xml:lang="' . $wgLang->getCode() . '"' );
-		$tpl->set( 'pagecss', $this->setupPageCss() );
-		$tpl->setRef( 'usercss', $this->usercss );
-		$tpl->setRef( 'userjs', $this->userjs );
-		$tpl->setRef( 'userjsprev', $this->userjsprev );
-		if( $wgUseSiteJs ) {
-			$jsCache = $this->loggedin ? '&smaxage=0' : '';
-			$tpl->set( 'jsvarurl',
-				self::makeUrl( '-',
-					"action=raw$jsCache&gen=js&useskin=" .
-						urlencode( $this->getSkinName() ) ) );
-		} else {
-			$tpl->set( 'jsvarurl', false );
-		}
 
 		$newtalks = $wgUser->getNewMessageLinks();
 
@@ -463,7 +483,11 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 		// Set the head scripts near the end, in case the above actions resulted in added scripts
-		$tpl->set( 'headscripts', $out->getScript() );
+		if ( $this->useHeadElement ) {
+			$tpl->set( 'headelement', $out->headElement( $this ) );
+		} else {
+			$tpl->set( 'headscripts', $out->getScript() );
+		}
 
 		// original version by hansm
 		if( !wfRunHooks( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
