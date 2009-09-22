@@ -107,6 +107,7 @@ class Html {
 	 */
 	public static function rawElement( $element, $attribs = array(), $contents = '' ) {
 		global $wgHtml5, $wgWellFormedXml;
+		$attribs = (array)$attribs;
 		# This is not required in HTML 5, but let's do it anyway, for
 		# consistency and better compression.
 		$element = strtolower( $element );
