@@ -59,9 +59,6 @@ class UploadForm extends SpecialPage {
 			# filename and description
 			return;
 		}
-		//if it was posted check for the token (no remote POST'ing with user credentials)
-		$token = $request->getVal( 'wpEditToken' );
-		$this->mTokenOk = $wgUser->matchEditToken( $token );
 
 		# Placeholders for text injection by hooks (empty per default)
 		$this->uploadFormTextTop = "";
@@ -73,13 +70,24 @@ class UploadForm extends SpecialPage {
 		$this->mCopyrightStatus   = $request->getText( 'wpUploadCopyStatus' );
 		$this->mCopyrightSource   = $request->getText( 'wpUploadSource' );
 		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
-		$this->mSourceType        = $request->getText( 'wpSourceType' );
+		$this->mSourceType        = $request->getVal( 'wpSourceType', 'file' );
 		$this->mDestWarningAck    = $request->getText( 'wpDestFileWarningAck' );
 
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' ); // retrying upload
 
 		$this->mAction            = $request->getVal( 'action' );
 		$this->mUpload            = UploadBase::createFromRequest( $request );
+		
+		// If it was posted check for the token (no remote POST'ing with user credentials)
+		$token = $request->getVal( 'wpEditToken' );
+		if( $this->mSourceType == 'file' && $token == null ) {
+			// Skip token check for file uploads as that can't be faked via JS...
+			// Some client-side tools don't expect to need to send wpEditToken
+			// with their submissions, as that's new in 1.16.
+			$this->mTokenOk = true;
+		} else {
+			$this->mTokenOk = $wgUser->matchEditToken( $token );
+		}
 	}
 
 	public function userCanExecute( $user ) {
