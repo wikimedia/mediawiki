@@ -69,6 +69,10 @@ class MwSql extends Maintenance {
 			$this->output( "Query OK, $affected row(s) affected\n" );
 		}
 	}
+	
+	protected function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
 }
 
 class SqlPromptPrinter {
