@@ -51,21 +51,6 @@ class SkinMonoBook extends SkinTemplate {
 			$out->addInlineStyle( $this->usercss );
 
 	}
-
-	function setupSkinUserJs( OutputPage $out ) {
-		parent::setupSkinUserJs( $out );
-		$out->addScriptFile( 'wikibits.js' );
-
-		// @todo We can move to parent once we update all the skins (to avoid including things twice)
-		if( isset( $this->jsvarurl ) && $this->jsvarurl )
-			$out->addScriptFile( $this->jsvarurl );
-
-		if( isset( $this->userjs ) && $this->userjs )
-			$out->addScriptFile( $this->userjs );
-
-		if( isset( $this->userjsprev ) && $this->userjsprev )
-			$out->addInlineScript( $this->userjsprev );
-	}
 }
 
 /**

@@ -14,22 +14,19 @@ if( !defined( 'MEDIAWIKI' ) )
  * @ingroup Skins
  */
 class SkinStandard extends Skin {
-
-	/**
-	 *
+	/*
+	 * OutputPage
 	 */
-	function getHeadScripts( OutputPage $out ) {
-		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
-
-		$s = parent::getHeadScripts( $out );
-		if ( 3 == $this->qbSetting() ) { # Floating left			
+	function outputPage( OutputPage $out ) {
+		global $wgStylePath;
+		if ( 3 == $this->qbSetting() ) { # Floating left
 			$out->addScriptFile ( "{$wgStylePath}/common/sticky.js" );
 		}
-		return $s;
+		parent::outputPage( $out );
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	function setupSkinUserCss( OutputPage $out ){
 		if ( 3 == $this->qbSetting() ) { # Floating left
