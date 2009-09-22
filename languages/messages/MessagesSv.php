@@ -2094,7 +2094,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'enotif_anon_editor'           => 'anonym användare $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR; den nuvarande versionen hittar du på $PAGETITLE_URL.
+{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR; se $PAGETITLE_URL för den nuvarande versionen.
 
 $NEWPAGE
 
@@ -2107,13 +2107,13 @@ wiki: $PAGEEDITOR_WIKI
 Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om ändringar av sidan.
 Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.
 
-Hälsningar från {{SITENAME}}s meddelandesystem
+             Hälsningar från {{SITENAME}}s meddelandesystem
 
 --
 För att ändra inställningarna i din bevakningslista, besök
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Feedback och hjälp:
+Feedback och ytterligare hjälp:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

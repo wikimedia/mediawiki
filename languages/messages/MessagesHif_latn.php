@@ -140,6 +140,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Ii vibhag me khali etna file hai.|Kul jorr $2 me se ii vibhag me etna {{PLURAL:$1|file hai|$1 files hai}}.}}',
 'category-file-count-limited'    => 'Ii vibhag me etna {{PLURAL:$1|file hai|$1 files hai}}.',
 'listingcontinuesabbrev'         => 'aur',
+'index-category'                 => 'Indexed panna',
+'noindex-category'               => 'Bina index karaa gais panna',
 
 'mainpagetext'      => "<big>'''MediaWiki ke safalta se install kar dewa gais hai.'''</big>",
 'mainpagedocfooter' => "Wiki software ke use kare ke aur jaankari ke khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.
@@ -446,6 +448,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'userexists'                 => 'Ii username aur koi ke hai.
 Duusra username choose karo.',
 'loginerror'                 => 'Login me galti hai',
+'createaccounterror'         => 'Account ke nai banae sakaa hae: $1',
 'nocookiesnew'               => 'Aap ke account banae dewa gais hai lekin aap loggen in nai hai.
 {{SITENAME}} me sadasya ke login khatir cookies hai.
 Aap cookies ke disabled karaa hai.
@@ -476,6 +479,7 @@ Aap ke temporary password {{PLURAL:$5|ek din|$5 din}} me expire hoi.
 
 Agar jo aur koi ii request karis hai, nai to aap aapan password yaad kar liya hai aur nai badle mangta hai, tab ii sandes ke ignore kar do aur aapan purana password use karte raho.',
 'noemail'                    => 'Sadasya "$1" ke koi e-mail address recorded nai hai.',
+'noemailcreate'              => 'Aap ke thiik e-mail address de ke parrii',
 'passwordsent'               => 'Ek nawaa password ke "$1" ke registered e-mail pe bheja gais hai. Meharbaani kar ke aap password mile ke baad login karna.',
 'blocked-mailpassword'       => 'Aap ke IP address ke block kar dewa gais hai, aur iske kaaran aap ke password recovery function kaam me lae ke ijajat nai hai,',
 'eauthentsent'               => 'Ek confirmation e-mail aap ke dewa gae e-mail address be bhej dewa gais hai. Aur mail ii account pe bheje se pahile e-mail me likha instructions ke follow karo, ii confirm kare ke khatir ki account aap ke hai.',
@@ -497,7 +501,8 @@ Meharbaani kar ke achchha address ke enter karo nai to uu field ke khali kar do.
 'createaccount-text'         => 'Koi aap ke e-mail katir {{SITENAME}} ($4) named "$2" me account banais hai jiske password hai "$3".
 Aap ke chaahi ki aap login kar ke password ke badal do.
 Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
-'login-throttled'            => 'Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hai. Thora deri baad fir se kosis karna.',
+'login-throttled'            => 'Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hai. 
+Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
 
 # Password reset dialog
@@ -612,11 +617,16 @@ Ii kaaran se ham log ke IP address kaam me lae ke ii sadasya ke jaana jae hai.
 Ii rakam ke IP address ke dher sadasya kaam me lae sake hai.
 Agar aap ek anonymous user hai aur ii sochta hai ki bekar baat aap ke baare me karaa gais hai, tab
 [[Special:UserLogin/signup|create an account]] or [[Special:UserLogin|log in]] aage ke garrbarri roke khatir aur duusra anonymous users se mistake nai kare ke khatir .''",
-'noarticletext'                    => 'Ii time pe ii panna me kuch likhaa nai hai.
+'noarticletext'                    => 'Abhi ii panna me kuchch likhaa nai hai.
 Aap saktaa hai [[Special:Search/{{PAGENAME}}|ii panna ke title khoje]] duusra panna me,
-<span> nai to [{{fullurl:{{FULLPAGENAME}}|action=edit}} ii panna ke badlo]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
+nai to [{{fullurl:{{FULLPAGENAME}}|action=edit}} ii panna ke badlo]</span>.',
+'noarticletext-nopermission'       => 'Abhi ii panna pe koi chij likha nai hae.
+Aap sakta hae [[Special:Search/{{PAGENAME}}|ii panna ke title ke khoje]] duusra panna me,
+nai to <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs]</span>.',
 'userpage-userdoesnotexist'        => 'User account "$1" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
+'userpage-userdoesnotexist-view'   => 'User account "$1" abhi register nai karaa gais hae',
 'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tip:''' Save kare se pahile 'Show preview' button ke use kar ke aapan nawaa  CSS ke test karo.",
 'userjsyoucanpreview'              => "'''Tip:''' Save kare se pahile 'Show preview' button ke use kar ke aapan nawaa  JS ke test karo.",
@@ -814,7 +824,7 @@ Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natij
 'revdelete-suppress'          => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
 'revdelete-hide-image'        => 'File content ke lukao',
 'revdelete-unsuppress'        => 'Pahile jaise karaa gais badlao me se rukawat hatao',
-'revdelete-log'               => 'Comment ke log karo:',
+'revdelete-log'               => 'Mitae ke kaaran:',
 'revdelete-submit'            => 'Chuna gae badlao ke apply karo',
 'revdelete-logentry'          => '[[$1]] ke badlao ke visibility ke badal dewa gais hai',
 'logdelete-logentry'          => '[[$1]] keevent visibility ke badal dewa gais hae',
@@ -846,7 +856,14 @@ Aap ke ispe adhikar nai hai.',
 'revdelete-concurrent-change' => 'Item jiske date $2, $1 hai ke badle me error hoe gais hai: iske status ke saait aur koi badal diis hia jab aap iske badel ke kosis karta rahaa.
 Meharbani ka ke logs ke check karo.',
 'revdelete-only-restricted'   => 'Aap koi chij ke bhi administrators se lukae nai sakta hai bina duusra suppression option ke select kare.',
+'revdelete-reason-dropdown'   => '*Mitae ke jaada kar ke kaaran
+** Copyright violation
+** Inappropriate personal information
+** Potentially libelous information',
+'revdelete-otherreason'       => 'Duusra/aur kaaran:',
+'revdelete-reasonotherlist'   => 'Duusra kaaran',
 'revdelete-edit-reasonlist'   => 'Delete kare ke kaaran ke badlo',
+'revdelete-offender'          => 'Badle waala sadasya:',
 
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',
@@ -1044,7 +1061,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'prefs-watchlist-days-max'      => '(jaada se jaada 7 din)',
 'prefs-watchlist-edits'         => 'Barraa dhyan suchi me jaada se jaada ketna badlao dekhawa jaae:',
 'prefs-watchlist-edits-max'     => '(jaada se jaada: 1000)',
-'prefs-watchlist-token'         => 'Dhyan suchi ke nisani',
+'prefs-watchlist-token'         => 'Dhyan suchi ke nisani:',
 'prefs-misc'                    => 'Futkar',
 'prefs-resetpass'               => 'Password badlo',
 'prefs-email'                   => 'E-mail ke option',
@@ -1238,6 +1255,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-versiondetail'         => 'Program ke baare me aur jaankari dekhao',
+'right-root'                  => 'Wiki pe sab chij karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -1383,9 +1401,10 @@ Ii saait file ke naam likhe me typing mistake ke kaaran hoi.
 Meharbaani kar ke ii dekho ki aap such me ii file upload kare mangtaa hai ki nai.',
 'fileexists'                  => "Ii naam ke file abhi hai, meharbani kar ke check karo '''<tt>[[:$1]]</tt>''' agar jo aap sure nai hai ki aap iske badle mangta hai.
 [[$1|thumb]]",
-'filepageexists'              => "Ii file ke description ke '''<tt>[[:$1]]</tt>''' me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
+'filepageexists'              => "Ii file ke description ke '''<tt>[[:$1]]</tt>''' me banae dewa gais rahaa, lekin ii naam ke koi file abhi nai hai.
 Aap jon summary likhtaa hai uu panna ke description me nai dekhai.
-Description ke dekhae ke khatir, aap ke iske manually badle ke parri.",
+Description ke dekhae ke khatir, aap ke iske manually badle ke parri.
+[[$1|thumb]]",
 'fileexists-extension'        => "Ii rakam ke naam ke ek aur file hai: [[$2|thumb]]
 * Uploading file ke naam: '''<tt>[[:$1]]</tt>'''
 * Abhi ke file ke naam: '''<tt>[[:$2]]</tt>'''
@@ -1438,6 +1457,9 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'upload-too-many-redirects' => 'Ii URL me bahut jaada redirects hae.',
 'upload-unknown-size'       => 'Nai pataa ki ketnaa barraa hae',
 'upload-http-error'         => 'Ek HTTP galti hoe gais hae: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'ijajat nai hae',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL pe pahunche nai paya hai',

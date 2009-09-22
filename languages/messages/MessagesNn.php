@@ -394,6 +394,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande fila.|Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
 'category-file-count-limited'    => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
 'listingcontinuesabbrev'         => 'vidare',
+'index-category'                 => 'Indekserte sider',
+'noindex-category'               => 'Ikkje-indekserte sider',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MediaWiki er no installert.'''</big>",
@@ -594,8 +596,9 @@ Dette kan òg skuldast ein feil i programvara nytta av {{SITENAME}}.',
 'error'                => 'Feil',
 'databaseerror'        => 'Databasefeil',
 'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
-'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Den sist prøvde førespurnaden var: «$1» frå funksjonen "$2".
-MySQL returnerte feilen «$3: $4».',
+'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. 
+Den sist prøvde førespurnaden var: «$1» frå funksjonen "$2".
+Databasen returnerte feilen «$3: $4».',
 'laggedslavemode'      => 'Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.',
 'readonly'             => 'Databasen er skriveverna',
 'enterlockreason'      => 'Skriv ein grunn for vernet, inkludert eit overslag for kva tid det vil bli oppheva',
@@ -682,6 +685,7 @@ Ikkje gløym å endre på [[Special:Preferences|innstillingane]] dine.',
 'badretype'                  => 'Passorda du skreiv inn er ikkje like.',
 'userexists'                 => 'Brukarnamnet er alt i bruk. Vel eit anna.',
 'loginerror'                 => 'Innloggingsfeil',
+'createaccounterror'         => 'Kunne ikkje oppretta kontoen:  $1',
 'nocookiesnew'               => 'Brukarkontoen vart oppretta, men du er ikkje innlogga. {{SITENAME}} bruker informasjonskapslar for å logge inn brukarar,
 nettlesaren din er innstilt for ikkje å godta desse. Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskapslar, kan du logge inn med det nye brukarnamnet og passordet ditt.',
 'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapslar for å logge inn brukarar, nettlesaren din er innstilt for ikkje å godta desse.
@@ -695,8 +699,7 @@ Brukarnamn skil mellom stor og liten bokstav. Sjekk at du har skrive brukarnamet
 'nouserspecified'            => 'Du må oppgje eit brukarnamn.',
 'wrongpassword'              => 'Du har oppgjeve eit ugyldig passord. Prøv om att.',
 'wrongpasswordempty'         => 'Du oppgav ikkje noko passord. Ver venleg og prøv igjen.',
-'passwordtooshort'           => 'Passordet ditt er for kort.
-Det må innehalda minst {{PLURAL:$1|eitt teikn|$1 teikn}}.',
+'passwordtooshort'           => 'Passord må innehalda minst {{PLURAL:$1|eitt teikn|$1 teikn}}.',
 'password-name-match'        => 'Passordet ditt lyt vera noko anna enn brukarnamnet ditt.',
 'mailmypassword'             => 'Send nytt passord',
 'passwordremindertitle'      => 'Nytt passord til {{SITENAME}}',
@@ -706,6 +709,7 @@ Mellombelspassordet ditt vil slutte å fungere om {{PLURAL:$5|éin dag|$5 dagar}
 
 Dersom denne førespurnaden blei utført av nokon andre, eller om du kom på passordet og ikkje lenger ønsker å endre det, kan du ignorere denne meldinga og halde fram med å bruke det gamle passordet.',
 'noemail'                    => 'Det er ikkje registrert noka e-postadresse åt brukaren «$1».',
+'noemailcreate'              => 'Du må oppgje ei gyldig e-postadresse',
 'passwordsent'               => 'Eit nytt passord er sendt åt e-postadressa registrert på brukaren «$1».',
 'blocked-mailpassword'       => 'IP-adressa di er blokkert frå å endre sider, og du kan difor heller ikkje få nytt passord. Dette er for å hindre misbruk.',
 'eauthentsent'               => 'Ein stadfestings-e-post er sendt til den oppgjevne e-postadressa. For at adressa skal kunna brukast, må du følgje instruksjonane i e-posten for å stadfeste at ho faktisk tilhøyrer deg.',
@@ -724,7 +728,7 @@ Grunna dette vil ikkje vitjande som nyttar denne IP-adressa kunna oppretta nye k
 'createaccount-text'         => 'Nokon oppretta ein brukarkonto for $2 på {{SITENAME}} ($4). Passordet til «$2» er «$3». Du bør logge inn og endre passordet ditt med ein gong.
 
 Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.',
-'login-throttled'            => 'Du har prøvd å logge inn med denne kontoen for mange gonger. Vent før du prøver igjen.',
+'login-throttled'            => 'Du har prøvd å logge inn for mange gonger. Ver venleg og vent før du prøver igjen.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -832,7 +836,11 @@ Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere br
 'noarticletext'                    => 'Det finst på noverande tidspunkt ikkje noko tekst på denne sida.
 Du kan [[Special:Search/{{PAGENAME}}|søkja etter denne sidetittelen]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} søkja i dei relaterte loggane]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
+'noarticletext-nopermission'       => 'Der er i augenblinken ikkje noko tekst på denne sida.
+Du kan [[Special:Search/{{PAGENAME}}|søkja etter tittelen på denne sida]] på andre sider,
+eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sjå loggføringar med tilknytting]</span>.',
 'userpage-userdoesnotexist'        => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
+'userpage-userdoesnotexist-view'   => 'Brukarkontoen "$1" er ikkje oppretta.',
 'clearyourcache'                   => "'''Merk: Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.''' '''Firefox og Safari:''' Hald ''Shift'' nede medan du trykkjer anten ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac). '''Konqueror:''' Trykk ''Oppdater'' eller på ''F5''. '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''. '''Internet Explorer:''' Hald nede ''Ctrl'' medan du trykkjer ''Oppdater'', eler trykk ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.",
 'userjsyoucanpreview'              => "'''Tips:''' Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.",
@@ -1434,6 +1442,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
 'right-override-export-depth' => 'Eksportér sider inkludert lenka sider til ei djupn på 5',
 'right-versiondetail'         => 'Syn utvida informasjon om versjonen av programvara',
+'right-root'                  => 'Utfør alle handlingar på denne wikien',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1639,8 +1648,17 @@ PICT # div.
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
+'img-auth-nopathinfo'   => 'PATH_INFO manglar.
+Filtenaren din er ikkje sett opp for å gje denne informasjonen.
+Han kan vera CGI-basert og stør ikkje img_auth.
+Sjå http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
+'img-auth-badtitle'     => 'Kan ikkje laga ein gyldig ttitel ut frå "$1".',
+'img-auth-nologinnWL'   => 'Du er ikkje logga inn, og "$1" er ikkje på kvitlista.',
 'img-auth-nofile'       => 'Fila "$1" finst ikkje',
+'img-auth-isdir'        => 'Du prøver å få tilgjenge til katalogen "$1".
+Berre tilgjenge til filer er tillete.',
+'img-auth-streaming'    => 'Sendar "$1".',
 'img-auth-noread'       => 'Brukaren har ikkje rettar til å lesa "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1650,7 +1668,7 @@ PICT # div.
 'upload-curl-error28-text' => 'Sida brukte for lang tid på å svare. Ver venleg og sjekk om sida fungerer, vent litt og prøv ein gong til. Det kan også vere lurt å prøve på ei tid med mindre nettrafikk.',
 
 'license'            => 'Lisensiering:',
-'license-header'     => 'Lisensiering:',
+'license-header'     => '!Lisensiering:',
 'nolicense'          => 'Ingen lisens er vald',
 'license-nopreview'  => '(Førehandsvising er ikkje tilgjengeleg)',
 'upload_source_url'  => ' (ei gyldig, offentleg tilgjengeleg nettadresse)',
@@ -1732,6 +1750,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 ** Brot på opphavsretten
 ** Ligg dobbelt',
 'filedelete-edit-reasonlist'  => 'Endre grunnar til sletting',
+'filedelete-maintenance'      => 'Sletting og attoppretting af filer er mellombels ikkje mogleg på grunn av vedlikehald.',
 
 # MIME search
 'mimesearch'         => 'MIME-søk',
@@ -2081,18 +2100,19 @@ For hjelp og meir informasjon:
 'delete-warning-toobig'  => 'Denne sida har ein lang endringshistorikk, med meir enn {{PLURAL:$1|$1&nbsp;endring|$1&nbsp;endringar}}. Dersom du slettar henne kan det forstyrre handlingar i databasen til {{SITENAME}}, ver varsam.',
 
 # Rollback
-'rollback'         => 'Rull attende endringar',
-'rollback_short'   => 'Rull attende',
-'rollbacklink'     => 'rull attende',
-'rollbackfailed'   => 'Kunne ikkje rulle attende',
-'cantrollback'     => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
-'alreadyrolled'    => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) fordi nokon andre alt har endra sida att eller fjerna endringa.
+'rollback'          => 'Rull attende endringar',
+'rollback_short'    => 'Rull attende',
+'rollbacklink'      => 'rull attende',
+'rollbackfailed'    => 'Kunne ikkje rulle attende',
+'cantrollback'      => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
+'alreadyrolled'     => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) fordi nokon andre alt har endra sida att eller fjerna endringa.
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Samandraget for endringa var: «''$1''».",
-'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]',
-'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
-'sessionfailure'   => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
+'editcomment'       => "Samandraget for endringa var: «''$1''».",
+'revertpage'        => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]',
+'revertpage-nouser' => 'Tilbakestilte endringar av (brukarnamn fjerna) til den siste versjonen av [[User:$1|$1]]',
+'rollback-success'  => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
+'sessionfailure'    => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 
 # Protect
 'protectlogpage'              => 'Vernelogg',
@@ -2217,17 +2237,18 @@ $1',
 'month'               => 'Månad:',
 'year'                => 'År:',
 
-'sp-contributions-newbies'       => 'Vis berre bidrag frå nye brukarar',
-'sp-contributions-newbies-sub'   => 'Frå nye brukarkontoar',
-'sp-contributions-newbies-title' => 'Brukarbidrag av nye brukarar',
-'sp-contributions-blocklog'      => 'Blokkeringslogg',
-'sp-contributions-deleted'       => 'sletta brukarbidrag',
-'sp-contributions-logs'          => 'loggar',
-'sp-contributions-talk'          => 'diskusjon',
-'sp-contributions-userrights'    => 'administrering av brukartilgang',
-'sp-contributions-search'        => 'Søk etter bidrag',
-'sp-contributions-username'      => 'IP-adresse eller brukarnamn:',
-'sp-contributions-submit'        => 'Søk',
+'sp-contributions-newbies'        => 'Vis berre bidrag frå nye brukarar',
+'sp-contributions-newbies-sub'    => 'Frå nye brukarkontoar',
+'sp-contributions-newbies-title'  => 'Brukarbidrag av nye brukarar',
+'sp-contributions-blocklog'       => 'Blokkeringslogg',
+'sp-contributions-deleted'        => 'sletta brukarbidrag',
+'sp-contributions-logs'           => 'loggar',
+'sp-contributions-talk'           => 'diskusjon',
+'sp-contributions-userrights'     => 'administrering av brukartilgang',
+'sp-contributions-blocked-notice' => 'Brukaren er i for tida blokkert. Loggen over den siste blokkeringa kan sjåast nedanfor:',
+'sp-contributions-search'         => 'Søk etter bidrag',
+'sp-contributions-username'       => 'IP-adresse eller brukarnamn:',
+'sp-contributions-submit'         => 'Søk',
 
 # What links here
 'whatlinkshere'            => 'Lenkjer hit',
@@ -2315,6 +2336,10 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'contribslink'                    => 'bidrag',
 'autoblocker'                     => 'Automatisk blokkert fordi du deler IP-adresse med [[User:$1|$1]]. Grunngjeving gjeve for blokkeringa av $1 var: «$2».',
 'blocklogpage'                    => 'Blokkeringslogg',
+'blocklog-showlog'                => 'Denne brukaren har tidlegare vorte blokkert.
+Blokkeringsloggen er sett opp nedanfor, som referanse.',
+'blocklog-showsuppresslog'        => 'Denne brukaren har tidlegare vorte blokkert og skjult. 
+Loggføringa er synt nedanfor som referanse:',
 'blocklogentry'                   => 'Blokkerte «[[$1]]» med opphøyrstid $2 $3',
 'reblock-logentry'                => 'endra blokkeringsinnstillingar for [[$1]] med tida $2 $3',
 'blocklogtext'                    => 'Dette er ein logg over blokkeringar og oppheving av blokkeringar gjorde.
@@ -2540,6 +2565,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-ca-viewsource'           => 'Denne sida er verna, men du kan sjå kjeldeteksten.',
 'tooltip-ca-history'              => 'Eldre versjonar av denne sida.',
 'tooltip-ca-protect'              => 'Vern denne sida',
+'tooltip-ca-unprotect'            => 'Ta vekk skrivevernet for denne sida',
 'tooltip-ca-delete'               => 'Slett denne sida',
 'tooltip-ca-undelete'             => 'Attopprett denne sida',
 'tooltip-ca-move'                 => 'Flytt denne sida',
@@ -3030,6 +3056,7 @@ Dei andre felta er gøymde som standard.
 'watchlistall2'    => 'alle',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',
+'limitall'         => 'alle',
 
 # E-mail address confirmation
 'confirmemail'             => 'Stadfest e-postadresse',
@@ -3259,5 +3286,20 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'htmlform-submit'              => 'Lagre',
 'htmlform-reset'               => 'Gjer om endringar',
 'htmlform-selectorother-other' => 'Andre',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Legg til kategori',
+'ajax-add-category-submit'     => 'Legg til',
+'ajax-confirm-title'           => 'Stadfest handling',
+'ajax-confirm-prompt'          => 'Du kan laga ei redigeringsskildring nedanfor.
+Klikk på "Lagre" for å lagra redigeringa.',
+'ajax-confirm-save'            => 'Lagre',
+'ajax-add-category-summary'    => 'Legg til kategorien "$1"',
+'ajax-remove-category-summary' => 'Fjern kategorien "$1"',
+'ajax-confirm-actionsummary'   => 'Handling:',
+'ajax-error-title'             => 'Feil',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Det var ikkje mogleg å fjerna kategorien.
+Det skuldast som oftast at kategorien er vorte lagd til i sida innan ein mal.',
 
 );

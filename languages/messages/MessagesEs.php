@@ -656,6 +656,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'userexists'                 => 'El nombre indicado ya está en uso.
 Por favor, indique un nombre diferente.',
 'loginerror'                 => 'Error de inicio de sesión',
+'createaccounterror'         => 'No se pudo crear cuenta: $1',
 'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero ahora mismo no está identificado. {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados, pero parecen deshabilitadas. Por favor, habilítelas e identifíquese con su nombre de usuario y contraseña.',
 'nocookieslogin'             => '{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Tiene las <em>cookies</em> deshabilitadas en el navegador. Por favor, actívelas e inténtelo de nuevo.',
 'noname'                     => 'No ha especificado un nombre de usuario válido.',

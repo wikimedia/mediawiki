@@ -392,6 +392,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Ova kategorija ima slijedeću $1 datoteku.|{{PLURAL:$1|Prikazana je $1 datoteka|Prikazane su $1 datoteke|Prikazano je $1 datoteka}} u ovoj kategoriji, od ukupno $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Slijedeća $1 datoteka je|Slijedeće $1 datoteke su|Slijedećih $1 datoteka je}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
+'index-category'                 => 'Indeksirane stranice',
+'noindex-category'               => 'Neindeksirane stranice',
 
 'mainpagetext'      => "<big>'''MediaViki softver is uspješno instaliran.'''</big>",
 'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
@@ -696,6 +698,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'userexists'                 => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
 'loginerror'                 => 'Greška pri prijavljivanju',
+'createaccounterror'         => 'Ne može se napraviti račun: $1',
 'nocookiesnew'               => "Korisnički nalog je napravljen, ali niste prijavljeni.  {{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem računaru.  Molimo Vas da ih omogućite, a onda se prijavite sa svojim novim korisničkim imenom i šifrom.",
 'nocookieslogin'             => "{{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem kompjuteru.  Molimo Vas da ih omogućite i da pokušate ponovo sa prijavom.",
 'noname'                     => 'Niste izabrali ispravno korisničko ime.',
@@ -720,6 +723,7 @@ Vaša privremena šifra će isteči za {{PLURAL:$5|$5 dan|$5 dana}}.
 
 Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše šifre i ne želite više da je promjenite, možete da ignorišete ovu poruku i da nastavite koristeći vašu staru šifru.',
 'noemail'                    => 'Ne postoji adresa e-pošte za korisnika "$1".',
+'noemailcreate'              => 'Morate da navedete validnu e-mail adresu',
 'passwordsent'               => 'Nova šifra je poslata na adresu e-pošte korisnika "$1".
 Molimo Vas da se prijavite pošto je primite.',
 'blocked-mailpassword'       => 'Da bi se spriječila nedozvoljena akcija, Vašoj IP adresi je onemogućeno uređivanje stranica kao i mogućnost zahtijevanje nove šifre.',
@@ -1507,6 +1511,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-reset-passwords'       => 'Resetuje šifre drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-versiondetail'         => 'Pregledavanje proširenih informacija o verzijama softvera',
+'right-root'                  => 'Izvršavanje svih akcija na wikiju',
 
 # User rights log
 'rightslog'      => 'Zapisnik korisničkih prava',
@@ -1652,7 +1657,8 @@ Molimo Vas da provjerite '''<tt>[[:$1]]</tt>''' ako niste sigurni da li želite 
 [[$1|thumb]]",
 'filepageexists'              => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>[[:$1]]</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
 Sažetak koji ste naveli neće se pojaviti na stranici opisa.
-Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite",
+Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite.
+[[$1|smanjeni pregled]]",
 'fileexists-extension'        => "Datoteka sa sličnim nazivom postoji: [[$2|thumb]]
 * Naziv datoteke koja se postavlja: '''<tt>[[:$1]]</tt>'''
 * Naziv postojeće datoteke: '''<tt>[[:$2]]</tt>'''
@@ -2039,7 +2045,7 @@ Podržani protokoli: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Spisak aktivnih korisnika',
-'activeusers-count'    => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}}',
+'activeusers-count'    => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
 'activeusers-from'     => 'Prikaži korisnike koji počinju sa:',
 'activeusers-noresult' => 'Nije pronađen korisnik.',
 

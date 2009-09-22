@@ -577,6 +577,7 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'badretype'                  => 'Šćitnej gronidle, kótarejž sy zapódał, se njemakajotej.',
 'userexists'                 => 'Toś to wužywarske mě słuša južo drugemu wužywarjeju, pšosym wuzwól se druge.',
 'loginerror'                 => 'Zmólka pśi pśizjawjenju',
+'createaccounterror'         => 'Wužywarske konto njejo se napóraś dało: $1',
 'nocookiesnew'               => 'Wužywarske konto jo se južo wutwóriło, ale wužywaŕ njejo pśizjawjony. {{SITENAME}} wužywa cookije za pśizjawjenja. Jo notne, cookije zmóžniś a se wótnowotki pśizjawiś.',
 'nocookieslogin'             => '{{SITENAME}} wužywa cookije za pśizjawjenja. Jo notne, cookije zmóžniś a se wótnowotki pśizjawiś.',
 'noname'                     => 'Njejsy žedno płaśece wužywarske mě zapódał.',
@@ -1343,7 +1344,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 # User rights log
 'rightslog'      => 'Protokol wužywarskich pšawow',
 'rightslogtext'  => 'To jo protokol wužywarskich pšawow.',
-'rightslogentry' => 'Pśisłušnosć ku kupce jo se za „[[$1]]“ změniła wót „$2“ na „$3“.',
+'rightslogentry' => 'Pśisłušnosć ku kupce jo se za „$1“ změniła wót „$2“ na „$3“.',
 'rightsnone'     => '(nic)',
 
 # Associated actions - in the sentence "You do not have permission to X"

@@ -1302,7 +1302,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-watchlist-days-max'      => '(máximo: 7 dias)',
 'prefs-watchlist-edits'         => 'Número de edições a mostrar na lista de vigiados expandida:',
 'prefs-watchlist-edits-max'     => '(máximo: 1000)',
-'prefs-watchlist-token'         => 'Sinal da lista de vigiados',
+'prefs-watchlist-token'         => 'Sinal da lista de vigiados:',
 'prefs-misc'                    => 'Diversos',
 'prefs-resetpass'               => 'Alterar palavra-chave',
 'prefs-email'                   => 'Opções de email',
