@@ -17,7 +17,7 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinModern extends SkinTemplate {
 	var $skinname = 'modern', $stylename = 'modern',
-		$template = 'ModernTemplate';
+		$template = 'ModernTemplate', $useHeadElement = true;
 
 	/*
 	 * We don't like the default getPoweredBy, the icon clashes with the 
@@ -29,11 +29,20 @@ class SkinModern extends SkinTemplate {
 	}
 
 	function setupSkinUserCss( OutputPage $out ){
+		global $wgStyleVersion, $wgJsMimeType, $wgStylePath;
+
 		// Do not call parent::setupSkinUserCss(), we have our own print style
 		$out->addStyle( 'common/shared.css', 'screen' );
 		$out->addStyle( 'modern/main.css', 'screen' );
 		$out->addStyle( 'modern/print.css', 'print' );
 		$out->addStyle( 'modern/rtl.css', 'screen', '', 'rtl' );
+
+		$path = htmlspecialchars( $wgStylePath );
+		$out->addScript( <<<HTML
+<!--[if lt IE 7]><script type="$wgJsMimeType" src="$path/common/IEFixes.js?$wgStyleVersion"></script>
+	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+HTML
+		);
 	}
 }
 
@@ -59,13 +68,7 @@ class ModernTemplate extends QuickTemplate {
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
 
-		$wgOut->addScript( <<<HTML
-<!--[if lt IE 7]><script type="$wgJsMimeType" src="$path/common/IEFixes.js?$wgStyleVersion"></script>
-	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-HTML
-		);
-
-		echo $wgOut->headElement( $this->skin );
+		$this->html( 'headelement' );
 ?><body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
 <?php if($this->data['body_onload'    ]) { ?> onload="<?php     $this->text('body_onload')     ?>"<?php } ?>
  class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">

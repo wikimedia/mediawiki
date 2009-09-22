@@ -1724,7 +1724,7 @@ class OutputPage {
 	 *
 	 * @param $sk Skin The given Skin
 	 */
-	public function headElement( Skin $sk , $includeStyle = true ) {
+	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
 		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgEnableScriptLoader, $wgHtml5;
@@ -1764,7 +1764,7 @@ class OutputPage {
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
 			$this->buildCssLinks(),
-			$this->getHeadScripts(),
+			$this->getHeadScripts( $sk ),
 			$this->getHeadItems(),
 		));
 		if( $sk->usercss ){
@@ -1786,19 +1786,24 @@ class OutputPage {
 	 *
 	 * also adds userjs to the end if enabled:
 	*/
-	function getHeadScripts() {
-		global $wgUser, $wgJsMimeType;
-		$sk = $wgUser->getSkin();
+	function getHeadScripts( Skin $sk ) {
+		global $wgUser, $wgRequest, $wgJsMimeType;
 
 		$vars = Skin::makeGlobalVariablesScript( $sk->getSkinName() );
 
 		//add user js if enabled:
 		if( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
-			$userpage = $wgUser->getUserPage();
-			$userjs = Skin::makeUrl(
-				$userpage->getPrefixedText() . '/' . $sk->getSkinName() . '.js',
-				'action=raw&ctype=' . $wgJsMimeType );
-			$this->addScriptFile( $userjs );
+			$action = $wgRequest->getVal( 'action', 'view' );
+			if( $this->mTitle->isJsSubpage() and $sk->userCanPreview( $action ) ) {
+				# XXX: additional security check/prompt?
+				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
+			} else {
+				$userpage = $wgUser->getUserPage();
+				$userjs = Skin::makeUrl(
+					$userpage->getPrefixedText() . '/' . $sk->getSkinName() . '.js',
+					'action=raw&ctype=' . $wgJsMimeType );
+				$this->addScriptFile( $userjs );
+			}
 		}
 
 		return $vars . "\n" . $this->mScripts;

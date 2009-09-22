@@ -19,7 +19,7 @@ require_once( dirname(__FILE__) . '/MonoBook.php' );
  */
 class SkinSimple extends SkinTemplate {
 	var $skinname = 'simple', $stylename = 'simple',
-		$template = 'MonoBookTemplate';
+		$template = 'MonoBookTemplate', $useHeadElement = true;
 
 	function setupSkinUserCss( OutputPage $out ){
 		$out->addStyle( 'simple/main.css', 'screen' );

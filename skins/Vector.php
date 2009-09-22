@@ -19,7 +19,7 @@ class SkinVector extends SkinTemplate {
 
 	/* Functions */
 	var $skinname = 'vector', $stylename = 'vector',
-		$template = 'VectorTemplate';
+		$template = 'VectorTemplate', $useHeadElement = true;
 
 	/**
 	 * Initializes output page and sets up skin-specific parameters
@@ -459,7 +459,7 @@ class VectorTemplate extends QuickTemplate {
 				array_reverse( $this->data['personal_urls'] );
 		}
 		// Output HTML Page
-		echo $wgOut->headElement( $this->skin );
+		$this->html( 'headelement' );
 ?>
 	<body<?php if ( $this->data['body_ondblclick'] ): ?> ondblclick="<?php $this->text( 'body_ondblclick' ) ?>"<?php endif; ?> <?php if ( $this->data['body_onload'] ): ?> onload="<?php $this->text( 'body_onload' ) ?>"<?php endif; ?> class="mediawiki <?php $this->text( 'dir' ) ?> <?php $this->text( 'pageclass' ) ?> <?php $this->text( 'skinnameclass' ) ?>" dir="<?php $this->text( 'dir' ) ?>">
 		<div id="page-base" class="noprint"></div>
