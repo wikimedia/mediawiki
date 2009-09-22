@@ -192,20 +192,6 @@ class SpecialUserLogin extends SpecialPage {
 				array( 'id' => 'languagelinks' ),
 				self::makeLanguageSelector( $this->getTitle(), $this->mReturnTo ) )
 			: '';
-		
-		# Add a  'mail reset' button if available
-		$buttons = '';
-		if( $wgEnableEmail && $wgAuth->allowPasswordChange() ){
-			$buttons = Html::element(
-				'input',
-				array( 
-					'type'  => 'submit',
-					'name'  => 'wpMailmypassword',
-					'value' => wfMsg( 'mailmypassword' ),
-					'id'    => 'wpMailmypassword',
-				) 
-			);
-		}
 
 		# Give authentication and captcha plugins a chance to 
 		# modify the form, by hook or by using $wgAuth
@@ -237,6 +223,18 @@ class SpecialUserLogin extends SpecialPage {
 		$form->setSubmitId( 'wpLoginAttempt' );
 		$form->suppressReset();
 		$form->loadData();
+		$form->addHiddenField( 'returnto', $this->mReturnTo );
+		$form->addHiddenField( 'returntoquery', $this->mReturnToQuery );
+		
+		# Add a  'mail reset' button if available
+		$buttons = '';
+		if( $wgEnableEmail && $wgAuth->allowPasswordChange() ){
+			$form->addButton(
+				'wpMailmypassword',
+				wfMsg( 'mailmypassword' ),
+				'wpMailmypassword'
+			);
+		}
 		
 		$formContents = '' 
 			. Html::rawElement( 'p', array( 'id' => 'userloginlink' ),
@@ -246,10 +244,8 @@ class SpecialUserLogin extends SpecialPage {
 			. $this->mFormHeader
 			. $langSelector
 			. $form->getBody() 
+			. $form->getHiddenFields()
 			. $form->getButtons()
-			. $buttons
-			. Xml::hidden( 'returnto', $this->mReturnTo )
-			. Xml::hidden( 'returntoquery', $this->mReturnToQuery )
 		;
 
 		$wgOut->setPageTitle( wfMsg( 'login' ) );
