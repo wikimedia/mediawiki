@@ -1353,6 +1353,7 @@ $wgGroupPermissions['sysop']['createaccount']    = true;
 $wgGroupPermissions['sysop']['delete']           = true;
 $wgGroupPermissions['sysop']['bigdelete']        = true; // can be separately configured for pages with > $wgDeleteRevisionsLimit revs
 $wgGroupPermissions['sysop']['deletedhistory']   = true; // can view deleted history entries, but not see or restore the text
+$wgGroupPermissions['sysop']['deletedcontent']   = true; // can view deleted content
 $wgGroupPermissions['sysop']['undelete']         = true;
 $wgGroupPermissions['sysop']['editinterface']    = true;
 $wgGroupPermissions['sysop']['editusercss']      = true;

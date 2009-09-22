@@ -145,7 +145,7 @@ class DeletedContribsPager extends IndexPager {
 			$this->messages['undeleteviewlink']
 		);
 
-		if( $wgUser->isAllowed('undelete') ) {
+		if( $wgUser->isAllowed('deletedcontent') ) {
 			$last = $sk->linkKnown(
 				$undelete,
 				$this->messages['diff'],
