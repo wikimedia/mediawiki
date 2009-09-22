@@ -357,21 +357,7 @@ class SpecialCreateAccount extends SpecialPage {
 				array( 'id' => 'languagelinks' ),
 				SpecialUserLogin::makeLanguageSelector( $this->getTitle(), $this->mReturnTo ) )
 			: '';
-		
-		# Add a  'send password by email' button if available
-		$buttons = '';
-		if( $wgEnableEmail && $wgUser->isLoggedIn() ){
-			$buttons = Html::element(
-				'input',
-				array( 
-					'type'  => 'submit',
-					'name'  => 'wpCreateaccountMail',
-					'value' => wfMsg( 'createaccountmail' ),
-					'id'    => 'wpCreateaccountMail',
-				) 
-			);
-		}
-		
+				
 		# Give authentication and captcha plugins a chance to 
 		# modify the form, by hook or by using $wgAuth
 		$wgAuth->modifyUITemplate( $this, 'new' );
@@ -419,6 +405,17 @@ class SpecialCreateAccount extends SpecialPage {
 		$form->setSubmitId( 'wpCreateaccount' );
 		$form->suppressReset();
 		$form->loadData();
+		$form->addHiddenField( 'returnto', $this->mReturnTo );
+		$form->addHiddenField( 'returntoquery', $this->mReturnToQuery );
+		
+		# Add a  'send password by email' button if available
+		if( $wgEnableEmail && $wgUser->isLoggedIn() ){
+			$form->addButton(
+				'wpCreateaccountMail',
+				wfMsg( 'createaccountmail' ),
+				'wpCreateaccountMail'
+			);
+		}
 		
 		$formContents = '' 
 			. Html::rawElement( 'p', array( 'id' => 'userloginlink' ),
@@ -426,10 +423,8 @@ class SpecialCreateAccount extends SpecialPage {
 			. $this->mFormHeader
 			. $langSelector
 			. $form->getBody() 
+			. $form->getHiddenFields()
 			. $form->getButtons()
-			. $buttons
-			. Xml::hidden( 'returnto', $this->mReturnTo )
-			. Xml::hidden( 'returntoquery', $this->mReturnToQuery )
 		;
 
 		$wgOut->setPageTitle( wfMsg( 'createaccount' ) );

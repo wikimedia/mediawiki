@@ -60,6 +60,9 @@ class HTMLForm {
 		'float' => 'HTMLFloatField',
 		'info' => 'HTMLInfoField',
 		'selectorother' => 'HTMLSelectOrOtherField',
+		'submit' => 'HTMLSubmitField',
+		'hidden' => 'HTMLHiddenField',
+	
 		# HTMLTextField will output the correct type="" attribute automagically.
 		# There are about four zillion other HTML 5 input types, like url, but
 		# we don't use those at the moment, so no point in adding all of them.
@@ -78,6 +81,9 @@ class HTMLForm {
 	protected $mSubmitID;
 	protected $mSubmitText;
 	protected $mTitle;
+	
+	protected $mHiddenFields = array();
+	protected $mButtons = array();
 
 	/**
 	 * Build a new HTMLForm from an array of field attributes
@@ -249,6 +255,19 @@ class HTMLForm {
 	function setIntro( $msg ) {
 		$this->mIntro = $msg;
 	}
+	
+	/**
+	 * Add a hidden field to the output
+	 * @param $name String field name
+	 * @param $value String field value
+	 */
+	public function addHiddenField( $name, $value ){
+		$this->mHiddenFields[ $name ] = $value;
+	}
+	
+	public function addButton( $name, $value, $id=null ){
+		$this->mButtons[] = compact( 'name', 'value', 'id' );
+	}
 
 	/**
 	 * Display the form (sending to wgOut), with an appropriate error 
@@ -305,6 +324,10 @@ class HTMLForm {
 
 		$html .= Html::hidden( 'wpEditToken', $wgUser->editToken() ) . "\n";
 		$html .= Html::hidden( 'title', $this->getTitle() ) . "\n";
+		
+		foreach( $this->mHiddenFields as $name => $value ){
+			$html .= Html::hidden( $name, $value ) . "\n";
+		}
 
 		return $html;
 	}
@@ -333,6 +356,17 @@ class HTMLForm {
 					'value' => wfMsg( 'htmlform-reset' )
 				)
 			) . "\n";
+		}
+		
+		foreach( $this->mButtons as $button ){
+			$attrs = array(
+				'type'  => 'submit',
+				'name'  => $button['name'],
+				'value' => $button['value']
+			);
+			if( isset( $button['id'] ) )
+				$attrs['id'] = $button['id'];
+			$html .= Html::element( 'input', $attrs );
 		}
 		
 		return $html;
@@ -554,7 +588,7 @@ abstract class HTMLFormField {
 	 * that the user-defined callback mValidationCallback is still run
 	 * @param $value String the value the field was submitted with
 	 * @param $alldata $all the data collected from the form
-	 * @return Bool is the input valid
+	 * @return Mixed Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {
 		if ( isset( $this->mValidationCallback ) ) {
@@ -1188,3 +1222,30 @@ class HTMLInfoField extends HTMLFormField {
 		return false;
 	}
 }
+
+class HTMLHiddenField extends HTMLFormField {
+	
+	public function getTableRow( $value ){
+		$this->mParent->addHiddenField( 
+			$this->mParams['name'],
+			$this->mParams['default']
+		);
+		return '';
+	}
+
+	public function getInputHTML( $value ){ return ''; }
+}
+
+class HTMLSubmitField extends HTMLFormField {
+	
+	public function getTableRow( $value ){
+		$this->mParent->addButton(
+			$this->mParams['name'],
+			$this->mParams['default'],
+			isset($this->mParams['id']) ? $this->mParams['id'] : null 
+		);
+	}
+	
+	public function getInputHTML( $value ){ return ''; }
+}
+
