@@ -443,7 +443,7 @@ class Article {
 		# fails we'll have something telling us what we intended.
 		$t = $this->mTitle->getPrefixedText();
 		$d = $oldid ? wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid ) : '';
-		$this->mContent = wfMsg( 'missing-article', $t, $d ) ;
+		$this->mContent = wfMsgNoTrans( 'missing-article', $t, $d ) ;
 
 		if( $oldid ) {
 			$revision = Revision::newFromId( $oldid );
