@@ -9,15 +9,6 @@
  */
 
 /**
- * Utility class for generating blank objects
- * Intended as an equivalent to {} in Javascript
- * @ingroup Database
- */
-class BlankObject {
-}
-
-
-/**
  * This represents a column in a DB2 database
  * @ingroup Database
  */
@@ -702,17 +693,6 @@ EOF;
 		if( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
-		// Make field names lowercase for compatibility with MySQL
-		if ($row)
-		{
-			$row2 = new BlankObject();
-			foreach ($row as $key => $value)
-			{
-				$keyu = strtolower($key);
-				$row2->$keyu = $value;
-			}
-			$row = $row2;
-		}
 		return $row;
 	}
 
@@ -892,7 +872,6 @@ EOF;
 	 *        LIST_NAMES         - comma separated field names
 	 */
 	public function makeList( $a, $mode = LIST_COMMA ) {
-		$this->installPrint("DB2::makeList()\n");
 		if ( !is_array( $a ) ) {
 			throw new DBUnexpectedError( $this, 'Database::makeList called with incorrect parameters' );
 		}
@@ -1030,6 +1009,20 @@ EOF;
 	}
 	
 	/**
+	 * Updates the mInsertId property with the value of the last insert into a generated column
+	 * @param string	$table		Sanitized table name
+	 * @param mixed		$primaryKey	String name of the primary key or a bool if this call is a do-nothing
+	 * @param resource	$stmt		Prepared statement resource
+	 *  of the SELECT primary_key FROM FINAL TABLE ( INSERT ... ) form
+	 */
+	private function calcInsertId($table, $primaryKey, $stmt) {
+		if ($primaryKey) {
+			$id_row = $this->fetchRow($stmt);
+			$this->mInsertId = $id_row[0];
+		}
+	}
+	
+	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
 	 * $args may be a single associative array, or an array of these with numeric keys,
@@ -1043,7 +1036,6 @@ EOF;
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
 	public function insert( $table, $args, $fname = 'DatabaseIbm_db2::insert', $options = array() ) {
-		$this->installPrint("DB2::insert($table)\n");
 		if ( !count( $args ) ) {
 			return true;
 		}
@@ -1056,7 +1048,13 @@ EOF;
 			$args = array($args);
 		}
 		// prevent insertion of NULL into primary key columns
-		$args = $this->removeNullPrimaryKeys($table, $args);
+		list($args, $primaryKeys) = $this->removeNullPrimaryKeys($table, $args);
+		// if there's only one primary key
+		// we'll be able to read its value after insertion
+		$primaryKey = false;
+		if (count($primaryKeys) == 1) {
+			$primaryKey = $primaryKeys[0];
+		}
 		
 		// get column names
 		$keys = array_keys( $args[0] );
@@ -1065,17 +1063,13 @@ EOF;
 		// If IGNORE is set, we use savepoints to emulate mysql's behavior
 		$ignore = in_array( 'IGNORE', $options ) ? 'mw' : '';
 
+		// assume success
+		$res = true;
 		// If we are not in a transaction, we need to be for savepoint trickery
 		$didbegin = 0;
 		if (! $this->mTrxLevel) {
 			$this->begin();
 			$didbegin = 1;
-		}
-		if ( $ignore ) {
-			$olde = error_reporting( 0 );
-			// For future use, we may want to track the number of actual inserts
-			// Right now, insert (all writes) simply return true/false
-			$numrowsinserted = 0;
 		}
 
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
@@ -1087,51 +1081,57 @@ EOF;
 			default:
 				$sql .= '(?' . str_repeat(',?', $key_count-1) . ')';
 		}
+		// add logic to read back the new primary key value
+		if ($primaryKey) {
+			$sql = "SELECT $primaryKey FROM FINAL TABLE($sql)";
+		}
 		$stmt = $this->prepare($sql);
+		
+		// start a transaction/enter transaction mode
+		$this->begin();
 
 		if ( !$ignore ) {
 			$first = true;
 			foreach ( $args as $row ) {
 				// insert each row into the database
-				$this->execute($stmt, $row);
+				$res = $res & $this->execute($stmt, $row);
+				// get the last inserted value into a generated column
+				$this->calcInsertId($table, $primaryKey, $stmt);
 			}
 		}
 		else {
-			// we must have autocommit turned off -- transaction mode on
-			$this->begin();
+			$olde = error_reporting( 0 );
+			// For future use, we may want to track the number of actual inserts
+			// Right now, insert (all writes) simply return true/false
+			$numrowsinserted = 0;
 			
+			// always return true
 			$res = true;
-			foreach ( $args as $row ) {
-				if ( $ignore ) {
-					$overhead = "SAVEPOINT $ignore ON ROLLBACK RETAIN CURSORS";
-					db2_exec($this->mConn, $overhead, $this->mStmtOptions);
-				}
 				
-				$this->execute($sql, $row);
-				if ( $ignore ) {
-					$bar = $this->lastError();
-					if (!$bar) {
-						db2_exec( $this->mConn, "ROLLBACK TO SAVEPOINT $ignore", $this->mStmtOptions );
-					}
-					else {
-						db2_exec( $this->mConn, "RELEASE SAVEPOINT $ignore", $this->mStmtOptions );
-						$numrowsinserted++;
-					}
+			foreach ( $args as $row ) {
+				$overhead = "SAVEPOINT $ignore ON ROLLBACK RETAIN CURSORS";
+				db2_exec($this->mConn, $overhead, $this->mStmtOptions);
+				
+				$res2 = $this->execute($stmt, $row);
+				// get the last inserted value into a generated column
+				$this->calcInsertId($table, $primaryKey, $stmt);
+				
+				$errNum = $this->lastErrno();
+				if ($errNum) {
+					db2_exec( $this->mConn, "ROLLBACK TO SAVEPOINT $ignore", $this->mStmtOptions );
+				}
+				else {
+					db2_exec( $this->mConn, "RELEASE SAVEPOINT $ignore", $this->mStmtOptions );
+					$numrowsinserted++;
 				}
 			}
-		}
-
-		// commit either way
-		$this->commit();
-		
-		if ( $ignore ) {
+			
 			$olde = error_reporting( $olde );
 			// Set the affected row count for the whole operation
 			$this->mAffectedRows = $numrowsinserted;
-
-			// IGNORE always returns true
-			return true;
 		}
+		// commit either way
+		$this->commit();
 		
 		return $res;
 	}
@@ -1142,7 +1142,7 @@ EOF;
 	 * 
 	 * @param string $table Name of the table
 	 * @param array $args Array of hashes of column names with values
-	 * @return array Filtered array of hashes
+	 * @return array Tuple containing filtered array of columns, array of primary keys
 	 */
 	private function removeNullPrimaryKeys($table, $args) {
 		$schema = $this->mSchema;
@@ -1162,7 +1162,7 @@ EOF;
 			$args[$ai] = $row;
 		}
 		// return modified hash
-		return $args;
+		return array($args, $keys);
 	}
 	
 	/**
@@ -1391,7 +1391,6 @@ EOF;
 		$obj = $this->fetchObject($res2);
 		$this->mNumRows = $obj->num_rows;
 		
-		$this->installPrint("DatabaseIbm_db2::select: There are $this->mNumRows rows.\n");
 		
 		return $res;
 	}
