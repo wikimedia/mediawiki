@@ -295,6 +295,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Ĉi tiu kategorio nur enhavas la jenan dosieron.|La {{PLURAL:$1|jena doesiero|jenaj $1 dosieroj}} estas en ĉi tiun kategorion, el $2 entute.}}',
 'category-file-count-limited'    => 'La {{PLURAL:$1|jena dosiero|jenaj $1 dosieroj}} estas en la nuna kategorio.',
 'listingcontinuesabbrev'         => 'daŭrigo',
+'index-category'                 => 'Indeksitaj paĝoj',
+'noindex-category'               => 'Neindeksitaj paĝoj',
 
 'mainpagetext'      => "<big>'''MediaViki softvaro sukcese instaliĝis.'''</big>",
 'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
@@ -600,6 +602,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'userexists'                 => 'Salutnomo enigita jam estas uzata.
 Bonvolu elekti alian nomon.',
 'loginerror'                 => 'Ensaluta eraro',
+'createaccounterror'         => 'Ne eblis krei konton: $1',
 'nocookiesnew'               => 'La uzantokonto estis kreita sed vi ne estas ensalutinta. *** E-igo lcfirst {{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj ensalutu per viaj novaj salutnomo kaj pasvorto.',
 'nocookieslogin'             => '{{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj provu denove.',
 'noname'                     => 'Vi ne tajpis validan salutnomon.',
@@ -625,6 +628,7 @@ Se iu alia faris ĉi tiun peton, aŭ se vi estas rememorita vian pasvorton,
 kaj ne plu volas ŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj 
 kontinui uzante vian malnovan pasvorton.',
 'noemail'                    => 'Retpoŝtadreso ne estas registrita por uzanto "$1".',
+'noemailcreate'              => 'Vi devas provizi validan retadreson',
 'passwordsent'               => 'Oni sendis novan pasvorton al la retpoŝtadreso
 registrita por "$1".
 Bonvolu saluti denove ricevinte ĝin.',

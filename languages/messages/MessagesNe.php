@@ -352,9 +352,9 @@ $1',
 तपाईले URL गलत टाइपगर्नु भएको , वा गलत लिंक पछ्याउनु भएको हुनसक्छ । 
 यस{{SITENAME}}ले सफ्टवेयरमा भएको गल्ति देखाएको पनि हुनसक्छ ।',
 'nosuchspecialpage' => 'त्यस्तो विषेश पृष्ठ छैन',
-'nospecialpagetext' => "<big>'''तपाईँले अनुरोध गर्नुभएको विशेष पृष्ठ अमान्य छ ।'''</big>
+'nospecialpagetext' => '<strong>तपाईँले अनुरोध गर्नुभएको विशेष पृष्ठ अमान्य छ ।</strong>
 
-मान्य पृष्ठहरुको सूची यहाँ [[Special:SpecialPages|{{int:specialpages}}]] उपलब्ध छ ।",
+मान्य पृष्ठहरुको सूची यहाँ [[Special:SpecialPages|{{int:specialpages}}]] उपलब्ध छ ।',
 
 # General errors
 'error'                => 'त्रुटी',

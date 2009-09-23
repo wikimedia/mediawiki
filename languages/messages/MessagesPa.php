@@ -261,9 +261,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'ਕੋਈ ਇੰਝ ਦਾ ਐਕਸ਼ਨ ਨਹੀਂ',
 'nosuchspecialpage' => 'ਕੋਈ ਇੰਝ ਦਾ ਖਾਸ ਪੇਜ ਨਹੀਂ',
-'nospecialpagetext' => "<big>'''ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।'''</big>
-
-A list of valid special pages can be found at [[Special:SpecialPages]].",
+'nospecialpagetext' => '<strong>ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।</strong>',
 
 # General errors
 'error'              => 'ਗਲਤੀ',

@@ -347,7 +347,7 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 Tu puè avè scritte male 'a URL, o quidde ca è scritte jè 'nu collegamende sbagliete.
 Pò essere pure ca quiste jè 'nu bochere jndr'à 'u software de {{SITENAME}}.",
 'nosuchspecialpage' => 'Non ge stonne pàggene speciele',
-'nospecialpagetext' => "<big>'''Tu è richieste 'na pàgena speciele ca non g'esiste.'''</big>
+'nospecialpagetext' => "<strong>Tu è richieste 'na pàgena speciele ca non g'esiste.</strong>
 
 Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:specialpages}}]].",
 

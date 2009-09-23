@@ -147,7 +147,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchactiontext'  => '這個wiki無法識別URL請求的命令',
-'nospecialpagetext' => "<big>'''您請求的特殊頁面無效。'''</big>
+'nospecialpagetext' => "<strong>您請求的特殊頁面無效。'''</strong>
 
 [[Special:SpecialPages]]載有所有有效特殊頁面的列表。",
 

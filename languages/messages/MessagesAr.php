@@ -736,9 +736,9 @@ $1',
 ربما تكون قد كتبت المسار بطريقة غير صحيحة، أو اتبعت وصلة غير صحيحة.
 هذا ربما يشير أيضا إلى علة في {{SITENAME}}.',
 'nosuchspecialpage' => 'لا توجد صفحة خاصة بهذا الاسم',
-'nospecialpagetext' => "<big>'''لقد طلبت صفحة خاصة غير صحيحة.'''</big>
+'nospecialpagetext' => '<strong>لقد طلبت صفحة خاصة غير صحيحة.</strong>
 
-قائمة بالصفحات الخاصة الصحيحة يمكن إيجادها في [[Special:SpecialPages|{{int:specialpages}}]].",
+قائمة بالصفحات الخاصة الصحيحة يمكن إيجادها في [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'خطأ',
@@ -2088,7 +2088,7 @@ PICT # متنوع
 'newpages'                => 'صفحات جديدة',
 'newpages-username'       => 'اسم المستخدم:',
 'ancientpages'            => 'أقدم الصفحات',
-'move'                    => 'نقل',
+'move'                    => 'انقل',
 'movethispage'            => 'انقل هذه الصفحة',
 'unusedimagestext'        => 'من فضلك لاحظ أن المواقع الأخرى ربما تصل إلى ملف بالمسار المباشر، ولذا ربما يكون معروضا هنا بالرغم من كونه مستخدما.',
 'unusedcategoriestext'    => 'التصنيفات التالية موجودة على الرغم من أنها لا تحتوي على أية صفحات أو تصنيفات أخرى.',
@@ -2239,7 +2239,7 @@ PICT # متنوع
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch'                => 'راقب',
 'watchthispage'        => 'راقب هذه الصفحة',
-'unwatch'              => 'إيقاف المراقبة',
+'unwatch'              => 'أوقف المراقبة',
 'unwatchthispage'      => 'توقف عن المراقبة',
 'notanarticle'         => 'ليست صفحة محتوى',
 'notvisiblerev'        => 'المراجعة تم حذفها',
@@ -2256,7 +2256,7 @@ PICT # متنوع
 'watchlist-options'    => 'خيارات قائمة المراقبة',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'مراقبة...',
+'watching'   => 'يراقب...',
 'unwatching' => 'إزالة المراقبة...',
 
 'enotif_mailer'                => 'نظام {{SITENAME}} البريدي للإخطارات',
@@ -2918,12 +2918,12 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'othercontribs'    => 'بناء على عمل $1.',
 'others'           => 'أخرى',
 'siteusers'        => '{{PLURAL:$2||مستخدم|مستخدمي}} {{SITENAME}} $1',
-'creditspage'      => 'حقوق الصفحة',
-'nocredits'        => 'لا توجد معلومات حقوق متوفرة لهذه الصفحة.',
+'creditspage'      => 'إشادات الصفحة',
+'nocredits'        => 'لا توجد معلومات إشادة متوفرة لهذه الصفحة.',
 
 # Spam protection
-'spamprotectiontitle' => 'مُرشّح الحماية من السبام',
-'spamprotectiontext'  => 'الصفحة التي أردت حفظها تم منعها بواسطة مُرشّح السبام.
+'spamprotectiontitle' => 'مُرشّح الحماية من السخام',
+'spamprotectiontext'  => 'منع مُرشّح السبام الصفحة التي أردت حفظها.
 هذا على الأرجح بسبب وصلة إلى موقع خارجي في القائمة السوداء.',
 'spamprotectionmatch' => 'النص التالي هو ما نشط مانع السبام الخاص بنا: $1',
 'spambot_username'    => 'تنظيف سبام ميدياويكي',

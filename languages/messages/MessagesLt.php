@@ -489,9 +489,9 @@ $1',
 Galbūt Jūs padarėte klaidą adrese ar paspaudėte ant neteisingos nuorodos.
 Šios problemos priežastis taip pat gali būti klaida programinėje įrangoje, kurią naudoja {{SITENAME}}.',
 'nosuchspecialpage' => 'Nėra tokio specialiojo puslapio',
-'nospecialpagetext' => "<big>'''Jūs prašėte neleistino specialiojo puslapio'''</big>
+'nospecialpagetext' => '<strong>Jūs prašėte neleistino specialiojo puslapio</strong>
 
-Leistinų specialiųjų puslapių sąrašą galite rasti [[Special:SpecialPages|specialiųjų puslapių sąraše]].",
+Leistinų specialiųjų puslapių sąrašą galite rasti [[Special:SpecialPages|specialiųjų puslapių sąraše]].',
 
 # General errors
 'error'                => 'Klaida',

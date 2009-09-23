@@ -284,9 +284,9 @@ $messages = array(
 'nosuchaction'      => 'Awan ti kasta a naaramid',
 'nosuchactiontext'  => 'Saan a bigbigen ti wiki ti aksion a naibaga iti URL',
 'nosuchspecialpage' => 'Awan ti kasta a naiduma a panid',
-'nospecialpagetext' => "<big>'''Saan a mabalin ti kiniddawmo a naiduma a panid.'''</big>
+'nospecialpagetext' => '<strong>Saan a mabalin ti kiniddawmo a naiduma a panid.</strong>
 
-Masarakan ti listaan dagiti mabalin a a naiduma a pampanid iti [[Special:SpecialPages|{{int:specialpages}}]].",
+Masarakan ti listaan dagiti mabalin a a naiduma a pampanid iti [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Biddut',

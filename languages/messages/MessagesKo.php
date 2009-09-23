@@ -582,9 +582,9 @@ $1',
 당신은 URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니다.
 이것은 {{SITENAME}}의 버그일 수도 있습니다.',
 'nosuchspecialpage' => '해당하는 특수기능이 없습니다.',
-'nospecialpagetext' => "<big>'''요청한 특수 문서가 존재하지 않습니다.'''</big>
+'nospecialpagetext' => '<strong>요청한 특수 문서가 존재하지 않습니다.</strong>
 
-특수 문서의 목록은 [[Special:SpecialPages|여기]]에서 볼 수 있습니다.",
+특수 문서의 목록은 [[Special:SpecialPages|여기]]에서 볼 수 있습니다.',
 
 # General errors
 'error'                => '오류',

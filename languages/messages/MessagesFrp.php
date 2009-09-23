@@ -622,9 +622,9 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 Vos éd pôt-étre mâl-buchiê l’URL ou ben siuvu un lim fôx.
 Pôt asse-ben étre quèstion d’una cofierie dens la programeria utilisâ per {{SITENAME}}.',
 'nosuchspecialpage' => 'Pâge spèciâla pas ègzistenta',
-'nospecialpagetext' => "<big>'''Vos éd demandâ una pâge spèciâla qu’ègziste pas.'''</big>
+'nospecialpagetext' => '<strong>Vos éd demandâ una pâge spèciâla qu’ègziste pas.</strong>
 
-Una lista de les pâges spèciâles valides sè trove dessus [[Special:SpecialPages|{{int:specialpages}}]].",
+Una lista de les pâges spèciâles valides sè trove dessus [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Èrror',
@@ -2720,7 +2720,7 @@ Volyéd tornar èprovar.',
 'importlogpagetext'                => 'Importacions administratives de pâges avouéc lor historico de changements dês d’ôtros vouiquis.',
 'import-logentry-upload'           => 'at importâ [[$1]] per tèlèchargement de fichiér',
 'import-logentry-upload-detail'    => '$1 vèrsion{{PLURAL:$1||s}}',
-'import-logentry-interwiki'        => 'at importâ [[$1]] per entèrvouiqui',
+'import-logentry-interwiki'        => 'at importâ $1 per entèrvouiqui',
 'import-logentry-interwiki-detail' => '$1 vèrsion{{PLURAL:$1||s}} dês $2',
 
 # Tooltip help for the actions

@@ -452,6 +452,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'userexists'              => 'Jina la mtumiaji uliloingiza tayari linatumika.
 Tafadhali chagua jina lingine.',
 'loginerror'              => 'Kosa la kuingia',
+'createaccounterror'      => 'Haikufaulu kuanzisha akaunti: $1',
 'nocookiesnew'            => "Umesajiliwa, lakini bado hujaingizwa. {{SITENAME}} inatumia ''kuki'' ili watumiaji waingizwe. Kompyuta yako inazuia ''kuki''. Tafadhali, ondoa kizuizi hicho uingie kwa kutumia jina mpya na neno la siri.",
 'nocookieslogin'          => '{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.
 Kompyuta yako inakataa kupokea kuki.
@@ -467,6 +468,7 @@ Labda umeandika vibaya, au [[Special:UserLogin/signup|sajili akaunti mpya]].',
 'wrongpassword'           => 'Umeingiza nywila ya makosa. Jaribu tena.',
 'wrongpasswordempty'      => 'Nywila ilikuwa tupu. Jaribu tena.',
 'passwordtooshort'        => 'Ni lazima nywila iwe na {{PLURAL:#1|herufi}} $1 au zaidi.',
+'password-name-match'     => 'Nywila yako lazima iwe tofauti na jina lako la mtumiaji.',
 'mailmypassword'          => 'Nitume nywila mpya kwa barua pepe',
 'passwordremindertitle'   => 'Nywila mpya ya muda kwa {{SITENAME}}',
 'passwordremindertext'    => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
@@ -487,6 +489,7 @@ kuthibitisha kwamba wewe ndiyo ni mwenye akaunti.',
 'throttled-mailpassword'  => 'Kikumbusho cha nywila tayari kimeshatumwa, ndani ya {{PLURAL:$1|hour|$1masaa}} kadhaa yaliyopita.
 Ili kuzuiya uhuni, kiumbusho cha nywila kimoja pekee utakachotumiwa kwa {{PLURAL:$1|hour|$1 masaa}} kadhaa.',
 'mailerror'               => 'Hitilafu ilitokea wakati ulivyoituma barua pepe: $1',
+'emailauthenticated'      => 'Anwani yako ya barua pepe ilihakikishwa saa $3, tarehe $2.',
 'noemailprefs'            => 'Weka anwani ya barua pepe kwenye mapendekezo ili uweze kutumia zana hizi.',
 'emailconfirmlink'        => 'Yakinisha anwani yako ya barua pepe',
 'accountcreated'          => 'Akounti imeundwa',

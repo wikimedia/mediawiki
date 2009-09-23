@@ -355,7 +355,7 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 URL-ni ýalňyş ýazan, ýa-da nädogry çykgydy yzarlan bolmagyňyz ahmal.
 Ol {{SITENAME}} saýtyndaky bir näsazlygy hem görkezýän bolup biler.',
 'nosuchspecialpage' => 'Şeýle atly ýörite sahypa ýok',
-'nospecialpagetext' => "<big>'''Bar bolmadyk bir ýörite sahypa girdiňiz.'''</big> 
+'nospecialpagetext' => "<strong>Bar bolmadyk bir ýörite sahypa girdiňiz.'''</strong> 
 
 Bar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] sahypasynda görüp bilersiňiz.",
 
@@ -512,7 +512,7 @@ Dogry formatda e-poçta adresi ýazmagyňyzy ýa-da bu bölümi boş goýmagyňy
 Saýtda sessiýaňyzy açyň we parolyňyzy üýtgediň.
 
 Eger-de ulanyjy hasabyny ýalňyşlyk bilen döreden bolsaňyz, onda bu habarlaşyga ünsem berip oturmaň.',
-'login-throttled'            => 'Bu hasabyň paroly boýunça ýaňy-ýakynda aşa köp synanyşyk etdiňiz.
+'login-throttled'            => 'Sessiýa açmak üçin ýaňy-ýakynda aşa köp synanyşyk etdiňiz.
 Gaýtadan synanyşmankaňyz garaşmagyňyzy haýyş edýäris.',
 'loginlanguagelabel'         => 'Dil: $1',
 
@@ -1176,7 +1176,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 
 # Special:ActiveUsers
 'activeusers'          => 'Işjeň ulanyjylaryň sanawy',
-'activeusers-count'    => '$1 sany soňky {{PLURAL:$1|özgerdiş|özgerdiş}}',
+'activeusers-count'    => 'Soňky {{PLURAL:$3|günde|$3 günde}} $1 sany {{PLURAL:$1|özgerdiş|özgerdiş}}',
 'activeusers-from'     => 'Şunuň bilen başlaýan ulanyjylary görkez:',
 'activeusers-noresult' => 'Ulanyjy tapylmady.',
 
@@ -1475,6 +1475,44 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 * focallength',
 
 # EXIF tags
+'exif-transferfunction'         => 'Transfer funksiýasy',
+'exif-whitepoint'               => 'Ak nokat reňkliligi',
+'exif-primarychromaticities'    => 'Esasy reňkleriň reňkliligi',
+'exif-ycbcrcoefficients'        => 'Reňk giňişliginiň özgeriş matrisa koeffisienti',
+'exif-referenceblackwhite'      => 'Ak we gara nokatlarynyň ýeri',
+'exif-datetime'                 => 'Faýl özgerdiş senesi we wagty',
+'exif-imagedescription'         => 'Suratyň ady',
+'exif-make'                     => 'Kamera öndürijisi',
+'exif-model'                    => 'Kamera modeli',
+'exif-software'                 => 'Ulanylan programma üpjünçiligi',
+'exif-artist'                   => 'Awtor',
+'exif-copyright'                => 'Awtorlyk hukugynyň eýesi',
+'exif-exifversion'              => 'Exif wersiýasy',
+'exif-flashpixversion'          => 'Goldanylýan FlashPix wersiýasy',
+'exif-colorspace'               => 'Reňk giňişligi',
+'exif-componentsconfiguration'  => 'Her komponentiň manysy',
+'exif-compressedbitsperpixel'   => 'Surat gysyş režimi',
+'exif-pixelydimension'          => 'Dogry surat ini',
+'exif-pixelxdimension'          => 'Dogry surat beýikligi',
+'exif-makernote'                => 'Öndürijiniň bellikleri',
+'exif-usercomment'              => 'Ulanyjy teswirleri',
+'exif-relatedsoundfile'         => 'Degişli audio faýl',
+'exif-datetimeoriginal'         => 'Asyl sene we wagt',
+'exif-datetimedigitized'        => 'Sanlaşdyryş senesi we wagty',
+'exif-subsectime'               => 'Faýl üýtgeşmesi wagtynyň sekunt bölekleri',
+'exif-subsectimeoriginal'       => 'Asyl wagtyň sekunt bölekleri',
+'exif-subsectimedigitized'      => 'Sanlaşdyryş wagtynyň sekunt bölekleri',
+'exif-exposuretime'             => 'Ekspozisiýa wagty',
+'exif-exposuretime-format'      => '$1 sekunt ($2)',
+'exif-fnumber'                  => 'Diafragma sany',
+'exif-exposureprogram'          => 'Ekspozisiýa programmasy',
+'exif-spectralsensitivity'      => 'Spektral duýgurlyk',
+'exif-isospeedratings'          => 'ISO ýagta duýgurlyk',
+'exif-oecf'                     => 'Optoelektrik özgerdiş koeffisienti',
+'exif-shutterspeedvalue'        => 'Wyderžka',
+'exif-aperturevalue'            => 'Diafragma',
+'exif-brightnessvalue'          => 'Ýagtylyk',
+'exif-exposurebiasvalue'        => 'Ekspozisiýa kompensasiýasy',
 'exif-maxaperturevalue'         => 'Maksimum diafragma sany',
 'exif-subjectdistance'          => 'Obýektiň aradaşlygy',
 'exif-meteringmode'             => 'Ekspozisiýa ölçeg režimi',
@@ -1924,5 +1962,20 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'htmlform-submit'              => 'Iber',
 'htmlform-reset'               => 'Üýtgeşmeleri yzyna al',
 'htmlform-selectorother-other' => 'Başga',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategoriýa goş',
+'ajax-add-category-submit'     => 'Goş',
+'ajax-confirm-title'           => 'Işi tassykla',
+'ajax-confirm-prompt'          => 'Aşakda özgerdiş mazmunyny ýazyp bilersiňiz.
+Özgerdişi ýazdyrmak üçin "Ýazdyr"-a basyň.',
+'ajax-confirm-save'            => 'Ýazdyr',
+'ajax-add-category-summary'    => '"$1" kategoriýasyny goş',
+'ajax-remove-category-summary' => '"$1" kategoriýasyny aýyr',
+'ajax-confirm-actionsummary'   => 'Edilmeli iş:',
+'ajax-error-title'             => 'Säwlik',
+'ajax-error-dismiss'           => 'Bolýar',
+'ajax-remove-category-error'   => 'Bu kategoriýany aýyryp bolmady.
+Bu adatça kategoriýa sahypanyň içindäki bir şablona goşulgy bolsa ýüze çykýar.',
 
 );

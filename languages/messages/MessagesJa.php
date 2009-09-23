@@ -604,9 +604,9 @@ $1',
 'nosuchaction'      => 'そのような操作はありません',
 'nosuchactiontext'  => 'このURLで指定された操作は無効です。あなたがURLを間違って打ったか、無効なリンクを辿った可能性があります。また、{{SITENAME}} が利用するソフトウェアのバグである可能性もあります。',
 'nosuchspecialpage' => 'そのような特別ページはありません',
-'nospecialpagetext' => "<big>'''要求された特別ページは存在しません。'''</big>
+'nospecialpagetext' => '<strong>要求された特別ページは存在しません。</strong>
 
-有効な特別ページの一覧は[[Special:SpecialPages|{{int:specialpages}}]]にあります。",
+有効な特別ページの一覧は[[Special:SpecialPages|{{int:specialpages}}]]にあります。',
 
 # General errors
 'error'                => 'エラー',
@@ -1399,6 +1399,7 @@ $1",
 'right-bigdelete'             => '履歴の大きなページの削除',
 'right-deleterevision'        => 'ページの特定版の削除・復帰',
 'right-deletedhistory'        => '削除された版の、本文を除く、履歴の閲覧',
+'right-deletedcontent'        => '削除された文章と削除された版同士の差分の閲覧',
 'right-browsearchive'         => '削除されたページの検索',
 'right-undelete'              => 'ページの復帰',
 'right-suppressrevision'      => '管理者から秘匿された版の閲覧・復帰',
@@ -1670,7 +1671,7 @@ PICT # その他
 'filehist'                  => 'ファイルの履歴',
 'filehist-help'             => '過去の版のファイルを表示するには、表示したい版の日付/時刻をクリックしてください。',
 'filehist-deleteall'        => 'すべて削除',
-'filehist-deleteone'        => '削除する',
+'filehist-deleteone'        => '削除',
 'filehist-revert'           => '差し戻す',
 'filehist-current'          => '現在の版',
 'filehist-datetime'         => '日付/時刻',
@@ -1714,7 +1715,7 @@ PICT # その他
 'filedelete-intro'            => "'''[[Media:$1|$1]]'''をすべての履歴とともに削除しようとしています。",
 'filedelete-intro-old'        => "'''[[Media:$1|$1]]'''の[$4 $2$3の版]を削除しようとしています。",
 'filedelete-comment'          => '削除理由:',
-'filedelete-submit'           => '削除する',
+'filedelete-submit'           => '削除',
 'filedelete-success'          => "'''$1''' は削除されました。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
 'filedelete-nofile'           => "'''$1''' は存在しません。",
@@ -2619,10 +2620,12 @@ $1 は、すでにブロックされています。設定を変更しますか�
 # Attribution
 'anonymous'        => '{{SITENAME}} の匿名{{PLURAL:$1|利用者}}',
 'siteuser'         => '{{SITENAME}} の利用者 $1',
+'anonuser'         => '{{SITENAME}} の匿名利用者 $1',
 'lastmodifiedatby' => 'このページの最終更新は $1 $2 に $3 によって行われました。',
 'othercontribs'    => 'また、最終更新以前に $1 が編集しました。',
 'others'           => 'その他の利用者',
 'siteusers'        => '{{SITENAME}} の{{PLURAL:$2|利用者}}$1',
+'anonusers'        => '{{SITENAME}} の匿名{{PLURAL:$2|利用者}} $1',
 'creditspage'      => 'ページの著作者',
 'nocredits'        => 'このページには有効なクレジット情報がありません。',
 

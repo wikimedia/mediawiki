@@ -545,9 +545,9 @@ $1',
 'nosuchactiontext'  => 'La acción especificada en la dirección es inválida. 	
 Es posible que hayas escrito mal la URL o que hayas seguido un enlace incorrecto. Esto también podría indicar un error en el software utilizado en {{SITENAME}}.',
 'nosuchspecialpage' => 'No existe esa página especial',
-'nospecialpagetext' => "<big>'''Ha solicitado una página especial inexistente.'''</big>
+'nospecialpagetext' => '<strong>Ha solicitado una página especial inexistente.</strong>
 
-Puedes ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:specialpages}}]].",
+Puedes ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Error',
@@ -1405,6 +1405,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'right-bigdelete'             => 'Borrar páginas con historiales grandes',
 'right-deleterevision'        => 'Borrar y restaurar revisiones específicas de páginas',
 'right-deletedhistory'        => 'Ver el historial de páginas borradas, sin el texto asociado',
+'right-deletedcontent'        => 'Ver texto borrado y cambios entre revisiones borradas',
 'right-browsearchive'         => 'Buscar páginas borradas',
 'right-undelete'              => 'Restaurar una página',
 'right-suppressrevision'      => 'Revisar y restaurar revisiones escondidas por administradores',
@@ -2654,10 +2655,12 @@ Permite añadir una razón al resumen de edición.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => '{{GENDER:$1|Usuario|Usuaria}} $1 de {{SITENAME}}',
+'anonuser'         => '{{SITENAME}} usuario anónimo $1',
 'lastmodifiedatby' => 'Esta página fue modificada por última vez en $2, $1 por $3.',
 'othercontribs'    => 'Basado en el trabajo de $1.',
 'others'           => 'otros',
 'siteusers'        => '{{PLURAL:$2|Usuario|Usuarios}} $1 de {{SITENAME}}',
+'anonusers'        => '{{SITENAME}} {{PLURAL:$2|usuario|usuarios}} anónimos $1',
 'creditspage'      => 'Créditos de la página',
 'nocredits'        => 'Hay información de créditos para esta página.',
 

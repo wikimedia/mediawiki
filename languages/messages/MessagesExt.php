@@ -285,9 +285,9 @@ $messages = array(
 'nosuchactiontext'  => "Nu se puei realizal l'ación
 especificá ena URL",
 'nosuchspecialpage' => 'Nu desisti tal páhina especial',
-'nospecialpagetext' => "<big>'''Nu desisti esa páhina especial.'''</big>
+'nospecialpagetext' => '<strong>Nu desisti esa páhina especial.</strong>
 
-Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:SpecialPages]].",
+Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:SpecialPages]].',
 
 # General errors
 'error'                => 'Marru',

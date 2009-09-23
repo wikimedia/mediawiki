@@ -339,9 +339,7 @@ $messages = array(
 'nosuchactiontext'  => 'Gerðin, ið tilskilað er í url, er ikki
 afturkend av wiki',
 'nosuchspecialpage' => 'Ongin slík serlig síða',
-'nospecialpagetext' => "<big>'''Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.'''</big>
-
-<!-- A list of valid special pages can be found at [[Special:SpecialPages]]. -->",
+'nospecialpagetext' => '<strong>Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.</strong>',
 
 # General errors
 'error'             => 'Villa',

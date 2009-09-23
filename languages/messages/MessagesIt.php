@@ -550,7 +550,7 @@ $1',
 È possibile che la URL sia stata digitata in modo errato o che sia stato seguito un collegamento non valido. 
 Ciò potrebbe anche indicare un bug in {{SITENAME}}.",
 'nosuchspecialpage' => 'Pagina speciale non disponibile',
-'nospecialpagetext' => "<big>'''La pagina speciale richiesta non è stata riconosciuta.'''</big>
+'nospecialpagetext' => "<strong>La pagina speciale richiesta non è stata riconosciuta.</strong>
 
 L'elenco delle pagine speciali valide si trova in [[Special:SpecialPages|Elenco delle pagine speciali]].",
 

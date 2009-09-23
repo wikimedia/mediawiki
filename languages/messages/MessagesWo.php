@@ -398,7 +398,7 @@ $1',
 Xéj-na dangaa juum ci bind URL bi, walla nga topp lëkkalekaay bu baaxul. 
 Lii man naa doon it ag njuumte ci tëriin bi ñuy jëfandikoo ci {{SITENAME}}.',
 'nosuchspecialpage' => 'Xëtu jagleel wu amul',
-'nospecialpagetext' => "<big>'''Da nga laaj aw xëtu jagleel wu wiki bi xamul.'''</big>
+'nospecialpagetext' => "<strong>Da nga laaj aw xëtu jagleel wu wiki bi xamul.'''</strong>
 
 Ab limu xëti jagleel yépp, ma nees na koo gis ci [[Special:SpecialPages|{{int:specialpages}}]].",
 

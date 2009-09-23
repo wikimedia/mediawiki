@@ -288,7 +288,7 @@ $messages = array(
 Bangin la, nagsayop ka pagmakinilya han URL, o sinmunod hin sayop nga sumpay.
 Bangin liwat ini usa nga bug dida han software nga ginagamit han {{SITENAME}}.',
 'nosuchspecialpage' => 'Waray sugad nga ispisyal nga pakli',
-'nospecialpagetext' => "<big>'''Naghangyo ka hin diri-puyde nga ispisyal nga pakli.'''</big>
+'nospecialpagetext' => "<strong>Naghangyo ka hin diri-puyde nga ispisyal nga pakli.'''</strong>
 
 In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].",
 

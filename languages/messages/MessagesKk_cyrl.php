@@ -632,9 +632,9 @@ $messages = array(
 'nosuchaction'      => 'Мынадай еш әрекет жоқ',
 'nosuchactiontext'  => 'Осы URL жайымен енгізілген әрекетті осы уики жорамалдап білмеді.',
 'nosuchspecialpage' => 'Мынадай еш арнайы бет жоқ',
-'nospecialpagetext' => "<big>'''Жарамсыз арнайы бетті сұрадыңыз.'''</big>
+'nospecialpagetext' => '<strong>Жарамсыз арнайы бетті сұрадыңыз.</strong>
 
-Жарамды арнайы бет тізімін [[{{#special:Specialpages}}|{{int:specialpages}}]] дегеннен таба аласыз.",
+Жарамды арнайы бет тізімін [[{{#special:Specialpages}}|{{int:specialpages}}]] дегеннен таба аласыз.',
 
 # General errors
 'error'                => 'Қате',

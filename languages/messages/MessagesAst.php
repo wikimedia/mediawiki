@@ -329,9 +329,9 @@ $messages = array(
 Seique escribieras mal la URL o siguieras un enllaz incorreutu.
 Tamién podría ser un bug nel software usáu por {{SITENAME}}.",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
-'nospecialpagetext' => "<big>'''Pidisti una páxina especial non válida.'''</big>
+'nospecialpagetext' => '<strong>Pidisti una páxina especial non válida.</strong>
 
-Pues consultar la llista de les páxines especiales válides en [[Special:SpecialPages|{{int:specialpages}}]].",
+Pues consultar la llista de les páxines especiales válides en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Error',

@@ -474,9 +474,9 @@ $1',
 Sy se snaź zapisał pśi zapódaśu URL abo sy slědował wopacnemu wótkazoju.
 To by mógło teke programěrowańska zmólka w {{GRAMMAR:lokatiw|{{SITENAME}}}} byś.',
 'nosuchspecialpage' => 'Toś ten specialny bok njeeksistěrujo',
-'nospecialpagetext' => "<big>'''Toś ten specialny bok w toś tom wikiju njeeksistěrujo'''</big>
+'nospecialpagetext' => '<strong>Toś ten specialny bok w toś tom wikiju njeeksistěrujo</strong>
 
-Lisćina płaśecych specialnych bokow namakajo se pód [[Special:SpecialPages|{{int:specialpages}}]].",
+Lisćina płaśecych specialnych bokow namakajo se pód [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Zmólka',
@@ -1307,6 +1307,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-bigdelete'             => 'lašowaś boki, kótarež maju wjelike stawizny',
 'right-deleterevision'        => 'Specifiske boki lašowaś a wótnowiś',
 'right-deletedhistory'        => 'Wulašowane wersiji w stawiznach se bśez pśisłušnego teksta wobglědaś',
+'right-deletedcontent'        => 'Wulašowany tekst a změny mjazy wulašowanymi wersijami se woglědaś',
 'right-browsearchive'         => 'Wulašowane boki pytaś',
 'right-undelete'              => 'Bok wótnowiś',
 'right-suppressrevision'      => 'Wersije, kótarež su pśed admibnistratorami schowane, pśeglědaś a wótnowiś',
@@ -2546,10 +2547,12 @@ W zespominanju dajo se pśicyna pódaś.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužywaŕ|Anonymnej wužywarja|Anonymne wužywarje}} na {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-wužywaŕ $1',
+'anonuser'         => '{{SITENAME}} anonymny wužywaŕ $1',
 'lastmodifiedatby' => 'Toś ten bok jo slědny raz se wobźěłał $2, $1 góź. wót wužywarja $3.',
 'othercontribs'    => 'Bazěrujo na źěle $1',
 'others'           => 'druge',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|wužywaŕ|wužiwarja|wužywarje}} $1',
+'anonusers'        => '{{SITENAME}} {{PLURAL:$2|anonymny wužywaŕ|anonymnej wužywarja|anonymne wužywarje|anonymnych wužywarjow}} $1',
 'creditspage'      => 'Informacija wó boku',
 'nocredits'        => 'Njeeksistěruju žedne informacije za toś ten bok.',
 

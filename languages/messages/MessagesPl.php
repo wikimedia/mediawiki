@@ -546,9 +546,9 @@ $1',
 'nosuchactiontext'  => 'Działanie określone w adresie URL jest nieprawidłowe.
 Możliwe przyczyny to literówka w adresie, nieprawidłowy link lub błąd w oprogramowaniu {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Brak takiej strony specjalnej',
-'nospecialpagetext' => "<big>'''Brak żądanej strony specjalnej.'''</big>
+'nospecialpagetext' => '<strong>Brak żądanej strony specjalnej.</strong>
 
-Listę dostępnych stron specjalnych znajdziesz [[Special:SpecialPages|tutaj]].",
+Listę dostępnych stron specjalnych znajdziesz [[Special:SpecialPages|tutaj]].',
 
 # General errors
 'error'                => 'Błąd',

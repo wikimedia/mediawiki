@@ -613,9 +613,9 @@ $1',
 Valószínűleg elgépelted, hibás hivatkozásra kattintottál, vagy a
 a(z) {{SITENAME}} által használt szoftver hibája is lehet.',
 'nosuchspecialpage' => 'Nem létezik ilyen speciális lap',
-'nospecialpagetext' => "<big>'''Érvénytelen speciális lapot akartál megtekinteni.'''</big>
+'nospecialpagetext' => '<strong>Érvénytelen speciális lapot akartál megtekinteni.</strong>
 
-Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális lapok]] oldalon találod.",
+Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális lapok]] oldalon találod.',
 
 # General errors
 'error'                => 'Hiba',
@@ -1477,6 +1477,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-bigdelete'             => 'nagy történettel rendelkező fájlok törlése',
 'right-deleterevision'        => 'lapok adott változatainak törlése és helyreállítása',
 'right-deletedhistory'        => 'törölt lapváltozatok megtekintése, a szövegük nélkül',
+'right-deletedcontent'        => 'törölt változatok szövegének és a változatok közötti eltérés megtekintése',
 'right-browsearchive'         => 'keresés a törölt lapok között',
 'right-undelete'              => 'lap helyreállítása',
 'right-suppressrevision'      => 'az adminisztrátorok elől elrejtett változatok megtekintése és helyreállítása',
@@ -1710,7 +1711,8 @@ PICT # ált.
 'upload-proto-error'        => 'Hibás protokoll',
 'upload-proto-error-text'   => 'A távoli feltöltéshez <code>http://</code> vagy <code>ftp://</code> kezdetű URL-ekre van szükség.',
 'upload-file-error'         => 'Belső hiba',
-'upload-file-error-text'    => 'Belső hiba történt az ideiglenes fájlnak a kiszolgálón történő létrehozásának megkísérlésekor.  Kérjük, hogy lépj kapcsolatba a rendszergazdával.',
+'upload-file-error-text'    => 'Belső hiba történt egy ideiglenes fájl szerveren történő létrehozásakor.
+Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorral]].',
 'upload-misc-error'         => 'Ismeretlen feltöltési hiba',
 'upload-misc-error-text'    => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a rendszergazdával.',
 'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
@@ -2371,7 +2373,9 @@ $1',
 # Block/unblock
 'blockip'                         => 'Blokkolás',
 'blockip-legend'                  => 'Felhasználó blokkolása',
-'blockiptext'                     => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait. Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó irányelvekre. Add meg a blokkolás okát is (például idézd a blokkolandó személy által vandalizált lapokat), és linkeld be a vonatkozó irányelveket, hogy a blokk elszenvedője tudjon tájékozódni.',
+'blockiptext'                     => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait.
+Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó [[{{MediaWiki:Policy-url}}|irányelvekre]].
+Add meg a blokkolás okát is (például idézd a blokkolandó személy által vandalizált lapokat).',
 'ipaddress'                       => 'IP-cím',
 'ipadressorusername'              => 'IP-cím vagy felhasználói név',
 'ipbexpiry'                       => 'Lejárat:',
@@ -2438,7 +2442,7 @@ $1',
 'blocklogpage'                    => 'Blokkolási napló',
 'blocklog-showlog'                => 'Ez a felhasználó már blokkolva volt korábban. A blokkolási napló ide vonatkozó része alább látható:',
 'blocklog-showsuppresslog'        => 'Ez a felhasználó korábban blokkot kapott, és a naplóbejegyzés el lett rejtve. Az elrejtési napló alább látható tájékoztatásként:',
-'blocklogentry'                   => '„$1” blokkolva $2 $3 időtartamra',
+'blocklogentry'                   => '„[[$1]]” blokkolva $2 $3 időtartamra',
 'reblock-logentry'                => 'megváltoztatta [[$1]] blokkjának beállításait, a blokk lejárta: $2 $3',
 'blocklogtext'                    => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:IPBlockList|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry'                 => '„$1” blokkolása feloldva',
@@ -2755,10 +2759,12 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 # Attribution
 'anonymous'        => 'Névtelen {{SITENAME}}-{{PLURAL:$1|szerkesztő|szerkesztők}}',
 'siteuser'         => '$1 {{SITENAME}}-felhasználó',
+'anonuser'         => '$1 névtelen {{SITENAME}}-felhasználó',
 'lastmodifiedatby' => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.',
 'othercontribs'    => '$1 munkája alapján.',
 'others'           => 'mások',
 'siteusers'        => '$1 {{SITENAME}}-{{PLURAL:$2|szerkesztő|szerkesztők}}',
+'anonusers'        => '$1 névtelen {{PLURAL:$2|felhasználó|felhasználók}}',
 'creditspage'      => 'A lap közreműködői',
 'nocredits'        => 'Ennek a lapnak nincs közreműködői információja.',
 

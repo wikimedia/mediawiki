@@ -453,9 +453,9 @@ $1',
 Es possibile que tu ha mal entrate le URL o sequite un ligamine incorrecte.
 Isto poterea equalmente indicar un defecto in le software usate per {{SITENAME}}.',
 'nosuchspecialpage' => 'Pagina special invalide',
-'nospecialpagetext' => "<big>'''Tu ha requestate un pagina special que es non es valide.'''</big>
+'nospecialpagetext' => '<strong>Tu ha requestate un pagina special que es non es valide.</strong>
 
-Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:specialpages}}]].",
+Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Error',
@@ -1356,6 +1356,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-bigdelete'             => 'Deler paginas con historias longe',
 'right-deleterevision'        => 'Deler e restaurar versiones specific de paginas',
 'right-deletedhistory'        => 'Vider entratas de historia delite, sin lor texto associate',
+'right-deletedcontent'        => 'Vider texto delite e differentias inter versiones delite',
 'right-browsearchive'         => 'Cercar in paginas delite',
 'right-undelete'              => 'Restaurar un pagina',
 'right-suppressrevision'      => 'Revider e restaurar versiones celate ab administratores',
@@ -2686,10 +2687,12 @@ Es possibile adder un motivo in le summario.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usator|Usatores}} anonyme de {{SITENAME}}',
 'siteuser'         => 'Usator $1 de {{SITENAME}}',
+'anonuser'         => 'le usator anonyme $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Le modification le plus recente de iste pagina esseva facite le $1 a $2 per $3.',
 'othercontribs'    => 'A base de contributiones per $1.',
 'others'           => 'alteres',
-'siteusers'        => '{{PLURAL:$2|Usator|Usatores}} $1 de {{SITENAME}}',
+'siteusers'        => 'le {{PLURAL:$2|usator|usatores}} $1 de {{SITENAME}}',
+'anonusers'        => 'le {{PLURAL:$2|usator|usatores}} anonyme $1 de {{SITENAME}}',
 'creditspage'      => 'Autores del pagina',
 'nocredits'        => 'Nulle information es disponibile super le autores de iste pagina.',
 

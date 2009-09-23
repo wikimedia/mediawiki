@@ -452,7 +452,7 @@ $1",
 Poi aviri sbagghiatu a digitari â URL, o cliccatu supra nu link sbagghiatu.
 Chistu putissi ndicari nu bug nô software usatu da {{SITENAME}}.",
 'nosuchspecialpage' => 'Sta pàggina spiciali nun è dispunìbbili',
-'nospecialpagetext' => "<big>'''Hai cercatu na pàggina spiciali nun vàlida.'''</big>
+'nospecialpagetext' => "<strong>Hai cercatu na pàggina spiciali nun vàlida.'''</strong>
 
 L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alencu dî pàggini spiciali]].",
 

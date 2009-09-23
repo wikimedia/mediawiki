@@ -573,9 +573,9 @@ $messages = array(
 तुम्ही कदाचित URL चुकीची दिली असेल, किंवा चुकीच्या दुव्यावर टिचकी दिली असेल.
 कदाचित ही कृती {{SITENAME}} मधील त्रुटी सुद्धा दर्शवित असेल.',
 'nosuchspecialpage' => 'असे कोणतेही विशेष पृष्ठ अस्तित्वात नाही',
-'nospecialpagetext' => "<big>'''आपण केलेली विनंती अयोग्य विशेषपानासंबंधी आहे.'''</big>
+'nospecialpagetext' => '<strong>आपण केलेली विनंती अयोग्य विशेषपानासंबंधी आहे.</strong>
 
-योग्य विशेषपानांची यादी  [[Special:SpecialPages|{{int:specialpages}}]] येथे उपलब्ध होऊ शकते.",
+योग्य विशेषपानांची यादी  [[Special:SpecialPages|{{int:specialpages}}]] येथे उपलब्ध होऊ शकते.',
 
 # General errors
 'error'                => 'त्रुटी',

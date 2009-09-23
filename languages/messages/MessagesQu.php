@@ -581,7 +581,7 @@ $1",
 Mana allintachá qillqanki, icha p'itisqa t'inkitachá qatinki.
 {{SITENAME}} sutiyuq wikipi llamp'u kaqpipas pantasqachá kanman.",
 'nosuchspecialpage' => "Kay hina sapaq p'anqaqa manam kanchu",
-'nospecialpagetext' => "<big>'''Mana kaq sapaq p'anqatam munanki.'''</big>
+'nospecialpagetext' => "<strong>Mana kaq sapaq p'anqatam munanki.</strong>
 
 Allin sapaq p'anqakunataqa tarinki [[Special:SpecialPages|Sapaq p'anqakuna]] nisqa p'anqapim.",
 

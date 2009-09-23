@@ -434,7 +434,7 @@ $messages = array(
 Mäögelik höbs te 'n typefout gemaak in de URL, of 'n verkierde verwiezing gevolg.
 't Kan ouch wieze op 'n fout in de software van {{SITENAME}}.",
 'nosuchspecialpage' => "D'r besjteit gein speciaal pazjena mit deze naam",
-'nospecialpagetext' => "<big>'''Doe höbs 'n neet bestaonde speciaal pazjena aongevraog.'''</big>
+'nospecialpagetext' => "<strong>Doe höbs 'n neet bestaonde speciaal pazjena aongevraog.</strong>
 
 'n Lies mit besjtaonde speciaal pazjena's sjteit op [[Special:SpecialPages|speciaal pazjena’s]].",
 

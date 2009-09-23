@@ -335,9 +335,9 @@ $1',
 Saait aap URL ke thiik se type nai karaa hai, nai to galat jorr ke follow karaa hai.
 Ii saait ii kaaran se bhi hoe ki  jon software {{SITENAME}} use kare hai, me bug hai',
 'nosuchspecialpage' => 'Aisan koi khaas panna nai hai',
-'nospecialpagetext' => "<big>'''Aap ek galat ghaas panna ke maanga hai.'''</big>
+'nospecialpagetext' => '<strong>Aap ek galat ghaas panna ke maanga hai.</strong>
 
-Sahi khaas panna ke suchi [[Special:SpecialPages|{{int:specialpages}}]]pe mili.",
+Sahi khaas panna ke suchi [[Special:SpecialPages|{{int:specialpages}}]]pe mili.',
 
 # General errors
 'error'                => 'Galti',

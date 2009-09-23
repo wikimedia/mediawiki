@@ -264,7 +264,7 @@ $messages = array(
 'nosuchaction'      => "Ne'dáár accion",
 'nosuchactiontext'  => 'Accion apualte URLsan z coccebj nepualat wiki zo san',
 'nosuchspecialpage' => "Ne'dáár páhina extrava",
-'nospecialpagetext' => "<big>'''Meccan páhina extrava invalida.'''</big>
+'nospecialpagetext' => "<strong>Meccan páhina extrava invalida.'''</strong>
 
 Meccan páhina extrava valide pac [[Special:SpecialPages]] iti.",
 

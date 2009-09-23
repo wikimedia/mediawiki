@@ -140,10 +140,12 @@ süi titul dai sezziún (JavaScript)',
 'editfont-default'   => 'Browser de default',
 'editfont-monospace' => 'Font mono-spaziaa',
 'editfont-sansserif' => 'Font sans-serif',
+'editfont-serif'     => 'Font serif',
 
 # Dates
 'sunday'        => 'dumeniga',
 'monday'        => 'lündesdí',
+'tuesday'       => 'Martedì',
 'wednesday'     => 'mercurdí',
 'thursday'      => 'giuedí',
 'friday'        => 'venerdí',
@@ -200,6 +202,8 @@ süi titul dai sezziún (JavaScript)',
 'category-empty'           => "''Per 'l mument quela categuria chì la gh'ha denter né de paginn ne d'archivi mültimedia''",
 'hidden-categories'        => '{{PLURAL:$1|Categuria scundüda|Categurij scundüü}}',
 'hidden-category-category' => 'Categurij scundüü',
+'listingcontinuesabbrev'   => 'cont.',
+'index-category'           => 'Paginn indicizaa',
 
 'about'         => 'A pruposit də',
 'newwindow'     => "(sa derviss in un'óltra finèstra)",
@@ -209,6 +213,7 @@ süi titul dai sezziún (JavaScript)',
 'mytalk'        => 'i mè discüssiun',
 'anontalk'      => 'Ciciarad per quel adress IP chì',
 'navigation'    => 'Navegazión',
+'and'           => '&#32;e',
 
 # Cologne Blue skin
 'qbfind'         => 'Tröa',
@@ -218,6 +223,7 @@ süi titul dai sezziún (JavaScript)',
 'qbpageinfo'     => 'Infurmazión revard a la pagina',
 'qbspecialpages' => 'Paginn special',
 'faq'            => 'FAQ - Fera Ai Question',
+'faqpage'        => 'Project:Dumand frequent',
 
 # Vector skin
 'vector-action-delete'      => 'Scancela',
@@ -225,6 +231,7 @@ süi titul dai sezziún (JavaScript)',
 'vector-action-protect'     => 'Prutegg',
 'vector-action-undelete'    => 'Recüpera',
 'vector-namespace-category' => 'Categuria',
+'vector-namespace-image'    => 'File',
 'vector-namespace-media'    => 'File mültimedial',
 'vector-namespace-project'  => 'Pagina de servizi',
 'vector-namespace-user'     => 'Pagina da dovrée',
@@ -372,7 +379,7 @@ $1",
 Pö vess che t'hee batüü mal l'URL, o che seet andaa adree a un ligam minga bun.<br />
 Quest chì al pudaria anca indicà un bug dent in del software dupraa de {{SITENAME}}.",
 'nosuchspecialpage' => "La gh'è minga una pagina pagina special tan 'me quela che t'hee ciamaa",
-'nospecialpagetext' => "<big>'''T'hee ciamaa una pagina speciala minga valida.'''</big>
+'nospecialpagetext' => "<strong>T'hee ciamaa una pagina speciala minga valida.</strong>
 
 Una lista di paginn special la se pö truà in de la [[Special:SpecialPages|{{int:specialpages}}]].",
 

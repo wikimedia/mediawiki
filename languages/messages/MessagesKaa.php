@@ -427,7 +427,7 @@ $messages = array(
 'nosuchaction'      => "Bunday ha'reket joq",
 'nosuchactiontext'  => "Bul URLda ko'rsetilgen ha'reketti wiki tanıy almadı",
 'nosuchspecialpage' => 'Bunday arnawlı bet joq',
-'nospecialpagetext' => "<big>'''Siz sorag'an bunday arnawlı bet joq.'''</big>
+'nospecialpagetext' => "<strong>Siz sorag'an bunday arnawlı bet joq.</strong>
 
 Arnawlı betlerdin' dizimin [[Special:SpecialPages|{{int:specialpages}}]] betinen tabıwın'ızg'a boladı.",
 

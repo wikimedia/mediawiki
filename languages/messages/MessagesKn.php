@@ -344,9 +344,9 @@ $messages = array(
 'nosuchaction'      => 'ಆ ರೀತಿಯ ಕೃತ್ಯ ಯಾವುದೂ ಇಲ್ಲ',
 'nosuchactiontext'  => 'ಈ URL ನೇಮಿಸಿದ ಕೃತ್ಯವು ಈ ವಿಕಿಯಿಂದ ಗುರುತಿಸಬಲ್ಲದಲ್ಲ',
 'nosuchspecialpage' => 'ಆ ಹೆಸರಿನ ವಿಶೇಷ ಪುಟ ಇಲ್ಲ',
-'nospecialpagetext' => "<big>'''ನೀವು ಅಸ್ಥಿತ್ವದಲ್ಲಿರದ ವಿಶೇಷ ಪುಟವನ್ನು ಕೋರಿರುವಿರಿ.'''</big>
+'nospecialpagetext' => '<strong>ನೀವು ಅಸ್ಥಿತ್ವದಲ್ಲಿರದ ವಿಶೇಷ ಪುಟವನ್ನು ಕೋರಿರುವಿರಿ.</strong>
 
-ಅಸ್ಥಿತ್ವದಲ್ಲಿರುವ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ [[Special:SpecialPages|{{int:specialpages}}]] ಅಲ್ಲಿದೆ.",
+ಅಸ್ಥಿತ್ವದಲ್ಲಿರುವ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ [[Special:SpecialPages|{{int:specialpages}}]] ಅಲ್ಲಿದೆ.',
 
 # General errors
 'error'                => 'ದೋಷ',

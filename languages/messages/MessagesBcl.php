@@ -364,9 +364,9 @@ $messages = array(
 'nosuchaction'      => 'Mayong siring na aksyon',
 'nosuchactiontext'  => 'An gibo na pinílì nin URL dai bisto kan wiki',
 'nosuchspecialpage' => 'Mayong siring na espesyal na páhina',
-'nospecialpagetext' => "<big>'''Dai pwede an pahinang espesyal na pinilî mo.'''</big>
+'nospecialpagetext' => '<strong>Dai pwede an pahinang espesyal na pinilî mo.</strong>
 
-Pwede mong mahiling an lista nin mga marhay na pahina sa [[Special:SpecialPages|{{int:specialpages}}]].",
+Pwede mong mahiling an lista nin mga marhay na pahina sa [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Salâ',

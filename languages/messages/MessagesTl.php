@@ -413,7 +413,7 @@ $messages = array(
 Maaaring nagkamali ka sa pagmamakinilya ng URL, o sumunod sa isang maling kawing.
 Maaari rin itong magpahiwatig ng isang depektong nasa loob ng {{SITENAME}}.',
 'nosuchspecialpage' => 'Walang ganyang natatanging pahina',
-'nospecialpagetext' => "<big>'''Humiling ka ng isang maling natatanging pahina.'''</big>
+'nospecialpagetext' => "<strong>Humiling ka ng isang maling natatanging pahina.'''</strong>
 
 Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:SpecialPages|{{int:specialpages}}]].",
 

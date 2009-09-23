@@ -379,9 +379,9 @@ Shih [[Special:Version|faqen e verzionit]].',
 Ndoshta keni shkrue gabim URL'ën, ose keni përcjellë vegëz të gabueme.
 Kjo gjithashtu mundet me tregue gabim në softwarein e {{SITENAME}}.",
 'nosuchspecialpage' => 'Nuk ekziston kjo faqe speciale',
-'nospecialpagetext' => "<big>'''Keni kërkue nji faqe speciale jovalide.'''</big>
+'nospecialpagetext' => '<strong>Keni kërkue nji faqe speciale jovalide.</strong>
 
-Lista e faqeve speciale valide gjindet te [[Special:SpecialPages|{{int:specialpages}}]].",
+Lista e faqeve speciale valide gjindet te [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Gabim',

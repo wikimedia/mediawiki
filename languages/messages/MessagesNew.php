@@ -254,9 +254,9 @@ $messages = array(
 'nosuchaction'      => 'थन्यागु ज्या मदु',
 'nosuchactiontext'  => 'URLनं या धाःगु ज्या विकिं मस्यु',
 'nosuchspecialpage' => 'थन्यागु विशेष पौ मदु',
-'nospecialpagetext' => "<big>'''छिं मदुगु विशेष पौया माग तयादिल।'''</big>
+'nospecialpagetext' => '<strong>छिं मदुगु विशेष पौया माग तयादिल।</strong>
 
-अस्थित्वय् दुगु विशेष पौया धलः [[विशेष:विशेषपौ|{{int:specialpages}}]]य् दु।",
+अस्थित्वय् दुगु विशेष पौया धलः [[विशेष:विशेषपौ|{{int:specialpages}}]]य् दु।',
 
 # General errors
 'databaseerror'   => 'डेटाबेस इरर',

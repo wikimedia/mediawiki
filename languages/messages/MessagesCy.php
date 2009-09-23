@@ -432,7 +432,7 @@ $1',
 Efallai eich bod wedi camdeipio'r URL, neu eich bod wedi dilyn cyswllt gwallus.
 Neu efallai fod byg ar {{SITENAME}}.",
 'nosuchspecialpage' => 'Y dudalen arbennig ddim yn bod',
-'nospecialpagetext' => "<big>'''Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.'''</big>
+'nospecialpagetext' => "<strong>Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.</strong>
 
 Mae rhestr o'r tudalennau arbennig dilys i'w gael [[Special:SpecialPages|yma]].",
 

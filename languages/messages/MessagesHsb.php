@@ -454,9 +454,9 @@ $1',
 Sy so snano při zapodaću URL zapisał abo sy wopačnemu wotkazej slědował.
 To móhło tež programowanski zmylk w {{GRAMMAR:lokatiw|{{SITENAME}}}} być.',
 'nosuchspecialpage' => 'Tuta specialna strona njeeksistuje.',
-'nospecialpagetext' => "<big>'''Tuta specialna strona wikiju njeeksistuje.'''</big>
+'nospecialpagetext' => '<strong>Tuta specialna strona wikiju njeeksistuje.</strong>
 
-Lisćina płaćiwych specialnych stronow hodźi so pod [[Special:SpecialPages|Lis´cina specialnych stronow]] namakać.",
+Lisćina płaćiwych specialnych stronow hodźi so pod [[Special:SpecialPages|Lis´cina specialnych stronow]] namakać.',
 
 # General errors
 'error'                => 'Zmylk',
@@ -1283,6 +1283,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-bigdelete'             => 'Strony z dołhimi stawiznami zničić',
 'right-deleterevision'        => 'Jednotliwe wersije wušmórnyć a wobnowić',
 'right-deletedhistory'        => 'Wušmórnjene zapiski stawiznow bjez přisłušneho teksta wobhladać',
+'right-deletedcontent'        => 'Wušmórnjeny tekst a změny mjez wušmórnjenymi wersijemi sej wobhladać',
 'right-browsearchive'         => 'Zničene strony pytać',
 'right-undelete'              => 'Strony wobnowić',
 'right-suppressrevision'      => 'Wersije, kotrež su před administratorami schowane, přepruwować a wobnowić',
@@ -2514,10 +2515,12 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužiwar|Anonymnaj wužiwarjej|Anonymni wužiwarjo|Anonymni wužiwarjo}} we {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
+'anonuser'         => '{{SITENAME}} anonymny wužiwar $1',
 'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot $3 změnjena.',
 'othercontribs'    => 'Bazěruje na dźěle $1.',
 'others'           => 'druhich',
 'siteusers'        => '{{SITENAME}}  {{PLURAL:$2|wužiwar|wužiwarjej|wužiwarjo|wužiwarjow}} $1',
+'anonusers'        => '{{SITENAME}} {{PLURAL:$2|anonymny wužiwar|anonymnaj wužiwarjej|anonymni wužiwarjo|anonymnych wužiwarjow}} $1',
 'creditspage'      => 'Dźak awtoram',
 'nocredits'        => 'Za tutu stronu žane informacije wo zasłužbach njejsu.',
 

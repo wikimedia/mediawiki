@@ -291,9 +291,9 @@ $messages = array(
 'nosuchaction'      => '冇有个只命令',
 'nosuchactiontext'  => 'Wiki识别伓到个只URL命令',
 'nosuchspecialpage' => '冇有个只特殊页',
-'nospecialpagetext' => "<big>'''倷要求𠮶特殊页冇有用。'''</big>
+'nospecialpagetext' => '<strong>倷要求𠮶特殊页冇有用。</strong>
 
-[[Special:SpecialPages]]上寻得到用得上𠮶特殊页。",
+[[Special:SpecialPages]]上寻得到用得上𠮶特殊页。',
 
 # General errors
 'error'                => '错误',
@@ -1393,7 +1393,7 @@ $NEWPAGE
 'blocklogpage'                => '封锁日志',
 'blocklogentry'               => '[[$1]]拖封到$3 ，结束时间到$2',
 'blocklogtext'                => '个系用户封锁同解封操作𠮶日志。拖自动封锁𠮶IP冇列出。请参看[[Special:IPBlockList|拖封IP地址列表]]。',
-'unblocklogentry'             => '[[$1]] 拖解封嘞',
+'unblocklogentry'             => '$1 拖解封嘞',
 'block-log-flags-anononly'    => '单限制匿名用户',
 'block-log-flags-nocreate'    => '禁止个只IP/用户新开帐户',
 'block-log-flags-noautoblock' => '禁用自动封禁',

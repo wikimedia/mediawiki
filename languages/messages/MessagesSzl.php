@@ -302,7 +302,7 @@ $messages = array(
 'nosuchaction'      => 'Ńy mo takij uoperacyji',
 'nosuchactiontext'  => 'Uoprogramowańy ńy rozpoznowo uoperacyji takij kej podano w URL',
 'nosuchspecialpage' => 'Ńy mo takij špecyjalnyj zajty',
-'nospecialpagetext' => "<big>'''Uoprogramowańy ńy rozpoznowo takij špecyjalnyj zajty.'''</big>
+'nospecialpagetext' => "<strong>Uoprogramowańy ńy rozpoznowo takij špecyjalnyj zajty.'''</strong>
 
 Lista špecyjalnych zajtůw znejdźeš na [[Special:SpecialPages|{{int:specialpages}}]].",
 

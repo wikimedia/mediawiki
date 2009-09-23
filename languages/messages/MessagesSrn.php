@@ -421,7 +421,7 @@ $messages = array(
 'nosuchaction'      => 'A sani disi no man',
 'nosuchactiontext'  => 'A wiki no sabi a komanderi ini a URL',
 'nosuchspecialpage' => 'A spesrutu papira disi no de',
-'nospecialpagetext' => "<big>'''Yu aksi fu si wan spesrutu papira san no de.'''</big>
+'nospecialpagetext' => "<strong>Yu aksi fu si wan spesrutu papira san no de.'''</strong>
 
 Wan réy fu spesrutu papira de fu feni na [[Special:SpecialPages|{{int:specialpages}}]].",
 

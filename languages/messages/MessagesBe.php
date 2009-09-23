@@ -341,9 +341,9 @@ $messages = array(
 'nosuchactiontext'  => 'Недапушчальнае дзеянне (action) ў URL.
 Магчымыя прычыны -- памылка ўпісвання URL або пераход па няправільнай спасылцы; таксама магчымая памылка ў праграмах, што працуюць на пляцоўцы {{SITENAME}}.',
 'nosuchspecialpage' => 'Няма такой адмысловай старонкі',
-'nospecialpagetext' => "<big>'''Вы звярнуліся па няправільную адмысловую старонку.'''</big>
+'nospecialpagetext' => '<strong>Вы звярнуліся па няправільную адмысловую старонку.</strong>
 
-Пералік правільных адмысловых старонак ёсць на [[Special:SpecialPages|{{int:specialpages}}]].",
+Пералік правільных адмысловых старонак ёсць на [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Памылка',
