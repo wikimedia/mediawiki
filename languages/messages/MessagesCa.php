@@ -307,7 +307,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El següent fitxer és|Els següents $1 fitxers són}} dins la categoria actual.',
 'listingcontinuesabbrev'         => ' cont.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''El programari del MediaWiki s'ha instaŀlat correctament.'''</span>",
+'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instaŀlat correctament.'''</big>",
 'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
 
 == Per a començar ==
@@ -707,7 +707,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'summary-preview'                  => 'Previsualització del resum:',
 'subject-preview'                  => 'Previsualització de tema/capçalera:',
 'blockedtitle'                     => "L'usuari està blocat",
-'blockedtext'                      => "<span style="font-size:larger">'''S'ha procedit al blocatge del vostre compte d'usuari o la vostra adreça IP.'''</span>
+'blockedtext'                      => "<big>'''S'ha procedit al blocatge del vostre compte d'usuari o la vostra adreça IP.'''</big>
 
 El blocatge l'ha dut a terme l'usuari $1.
 El motiu donat és ''$2''.
@@ -2122,7 +2122,7 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un fitxer|$2 fitxers}} restaurats',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fitxer restaurat|fitxers restaurats}}',
 'cannotundelete'               => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
-'undeletedpage'                => "<span style="font-size:larger">'''S'ha restaurat «$1»'''</span>
+'undeletedpage'                => "<big>'''S'ha restaurat «$1»'''</big>
 
 Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborraments i els restauraments més recents.",
 'undelete-header'              => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
@@ -2348,7 +2348,7 @@ per reanomenar una pàgina.",
 'move-watch'                   => 'Vigila aquesta pàgina',
 'movepagebtn'                  => 'Reanomena la pàgina',
 'pagemovedsub'                 => 'Reanomenament amb èxit',
-'movepage-moved'               => "<span style="font-size:larger">'''«$1» s'ha mogut a «$2»'''</span>",
+'movepage-moved'               => "<big>'''«$1» s'ha mogut a «$2»'''</big>",
 'movepage-moved-redirect'      => "S'ha creat una redirecció.",
 'movepage-moved-noredirect'    => "La creació d'una redirecció s'ha suprimit.",
 'articleexists'                => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.

@@ -177,7 +177,7 @@ $messages = array(
 'category-file-count-limited'    => 'У гэтай катэгорыі ёсць наступны{{PLURAL:$1| файл|я $1 файлаў}}.',
 'listingcontinuesabbrev'         => 'працяг',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki паспяхова ўсталяваная.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki паспяхова ўсталяваная.'''</big>",
 'mainpagedocfooter' => 'Гл. [http://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.
 
 == З чаго пачаць ==
@@ -341,7 +341,7 @@ $messages = array(
 'nosuchactiontext'  => 'Недапушчальнае дзеянне (action) ў URL.
 Магчымыя прычыны -- памылка ўпісвання URL або пераход па няправільнай спасылцы; таксама магчымая памылка ў праграмах, што працуюць на пляцоўцы {{SITENAME}}.',
 'nosuchspecialpage' => 'Няма такой адмысловай старонкі',
-'nospecialpagetext' => "<span style="font-size:larger">'''Вы звярнуліся па няправільную адмысловую старонку.'''</span>
+'nospecialpagetext' => "<big>'''Вы звярнуліся па няправільную адмысловую старонку.'''</big>
 
 Пералік правільных адмысловых старонак ёсць на [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -546,7 +546,7 @@ $2',
 'summary-preview'                  => 'Перадпаказ апісання:',
 'subject-preview'                  => 'Перадпаказ тэмы/загалоўка:',
 'blockedtitle'                     => 'Удзельнік заблакаваны',
-'blockedtext'                      => "<span style="font-size:larger">'''Ваша імя ўдзельніка або адрас IP былі пастаўлены пад блок.'''</span>
+'blockedtext'                      => "<big>'''Ваша імя ўдзельніка або адрас IP былі пастаўлены пад блок.'''</big>
 
 Блок быў пастаўлены ўдзельнікам: $1. Пададзеная прычына: ''$2''.
 
@@ -1839,7 +1839,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => 'Адноўлен{{PLURAL:$1|а 1 версія|ыя $1 версій}} і {{PLURAL:$2|1 файл|$2 файлаў}}',
 'undeletedfiles'               => 'Адноўлен{{PLURAL:$1|ы 1 файл|ыя $1 файлаў}}',
 'cannotundelete'               => 'Не ўдалося аднавіць; магчыма, нехта іншы ўжо аднавіў старонку.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 была адноўлена'''</span>
+'undeletedpage'                => "<big>'''$1 была адноўлена'''</big>
 
 Праверце пералік нядаўніх сціранняў і аднаўленняў у [[Special:Log/delete|журнале сціранняў]].",
 'undelete-header'              => 'Бач нядаўна сцёртыя старонкі ў [[Special:Log/delete|журнале сціранняў]].',
@@ -2056,7 +2056,7 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 'move-watch'                   => 'Назіраць за старонкай',
 'movepagebtn'                  => 'Перанесці старонку',
 'pagemovedsub'                 => 'Паспяховы перанос',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" перанесена ў "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" перанесена ў "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Была створаная перасылка.',
 'movepage-moved-noredirect'    => 'Не была створаная перасылка.',
 'articleexists'                => 'Старонка з такой назвай ужо існуе, або

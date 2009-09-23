@@ -119,7 +119,7 @@ $messages = array(
 'category-empty'         => "''Cayliib danjobam nihíl''",
 'listingcontinuesabbrev' => 'korb.',
 
-'mainpagetext' => "<span style="font-size:larger">'''MediaWiki coccebj installöx successua zo mii.'''</span>",
+'mainpagetext' => "<big>'''MediaWiki coccebj installöx successua zo mii.'''</big>",
 
 'about'         => 'Miixaz',
 'article'       => 'Artículo',
@@ -264,7 +264,7 @@ $messages = array(
 'nosuchaction'      => "Ne'dáár accion",
 'nosuchactiontext'  => 'Accion apualte URLsan z coccebj nepualat wiki zo san',
 'nosuchspecialpage' => "Ne'dáár páhina extrava",
-'nospecialpagetext' => "<span style="font-size:larger">'''Meccan páhina extrava invalida.'''</span>
+'nospecialpagetext' => "<big>'''Meccan páhina extrava invalida.'''</big>
 
 Meccan páhina extrava valide pac [[Special:SpecialPages]] iti.",
 
@@ -438,7 +438,7 @@ confirmom account zo coccebj de'me.",
 'summary-preview'           => 'Cuáxiitde abvuatl:',
 'subject-preview'           => 'Cuáxiitde subjectua/corridor:',
 'blockedtitle'              => 'Caitom blockámit',
-'blockedtext'               => "<span style="font-size:larger">'''Hexuatl jöx adressade IP cáablockom.'''</span>
+'blockedtext'               => "<big>'''Hexuatl jöx adressade IP cáablockom.'''</big>
 
 Block zo expondal $1. Rasonna zo coccebj: ''$2''.
 

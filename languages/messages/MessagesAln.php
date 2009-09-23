@@ -182,7 +182,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Kjo skedë âsht|$1 skeda janë}} në këtë kategori.',
 'listingcontinuesabbrev'         => 'vazh.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki software u instalue me sukses.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki software u instalue me sukses.'''</big>",
 'mainpagedocfooter' => 'Për mâ shumë informata rreth përdorimit të softwareit wiki, ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin].
 
 
@@ -379,7 +379,7 @@ Shih [[Special:Version|faqen e verzionit]].',
 Ndoshta keni shkrue gabim URL'ën, ose keni përcjellë vegëz të gabueme.
 Kjo gjithashtu mundet me tregue gabim në softwarein e {{SITENAME}}.",
 'nosuchspecialpage' => 'Nuk ekziston kjo faqe speciale',
-'nospecialpagetext' => "<span style="font-size:larger">'''Keni kërkue nji faqe speciale jovalide.'''</span>
+'nospecialpagetext' => "<big>'''Keni kërkue nji faqe speciale jovalide.'''</big>
 
 Lista e faqeve speciale valide gjindet te [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -613,7 +613,7 @@ Nëse klikoni në regjistro prap, redaktimi juej do të ruhet pa tê.",
 'summary-preview'                  => 'Parapâmja e përmbledhjes:',
 'subject-preview'                  => 'Parapâmja e temës/kryetitullit:',
 'blockedtitle'                     => 'Përdoruesi âsht i bllokuem',
-'blockedtext'                      => "<span style="font-size:larger">'''Llogaria juej apo adresa IP âsht bllokue.'''</span>
+'blockedtext'                      => "<big>'''Llogaria juej apo adresa IP âsht bllokue.'''</big>
 
 Bllokim âsht bâ prej $1.
 Arsyeja e dhânë âsht ''$2''.
@@ -1221,7 +1221,7 @@ Në këto raste, duheni me i bashkue manualisht këto faqe nëse dëshironi.",
 'move-watch'       => 'Mbikqyre kët faqe',
 'movepagebtn'      => 'Zhvendose faqen',
 'pagemovedsub'     => 'Zhvendosja u kry',
-'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" âsht zhvendosë te "$2"\'\'\'</span>',
+'movepage-moved'   => '<big>\'\'\'"$1" âsht zhvendosë te "$2"\'\'\'</big>',
 'articleexists'    => 'Nji faqe me këtë titull tashmâ ekziston, apo keni zgjedhë nji titull të pavlefshëm.
 Ju lutemi zgjedhni nji titull tjetër.',
 'talkexists'       => "'''Vetë faqja u zhvendos me sukses, por faqja e diskutimit nuk mujti me u zhvendosë sepse tashmâ ekziston te titulli i ri.

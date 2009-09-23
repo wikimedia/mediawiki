@@ -475,7 +475,7 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'summary-preview'                  => 'Kuomentara parvaiza:',
 'subject-preview'                  => 'Skėrsnelė/ontraštės parvaiza:',
 'blockedtitle'                     => 'Nauduotuos īr ožblokouts',
-'blockedtext'                      => "<span style="font-size:larger">'''Tamstas nauduotuojė vards a IP adresos īr ožblokouts.'''</span>
+'blockedtext'                      => "<big>'''Tamstas nauduotuojė vards a IP adresos īr ožblokouts.'''</big>
 
 Ožbluokava $1. 
 Nuruodīta prižastis īr ''$2''.
@@ -1383,7 +1383,7 @@ lėgė trīnima. Ėštrintū poslapiu tekstos īr galėmas tėk admėnėstratuor
 'undeletedrevisions'         => 'atkorta $1 {{PLURAL:$1|versėjė|versėjės|versėju}}',
 'undeletedrevisions-files'   => 'atkorta $1 {{PLURAL:$1|versėjė|versėjės|versėju}} ėr $2 {{PLURAL:$2|fails|failā|failu}}',
 'undeletedfiles'             => 'atkorta $1 {{PLURAL:$1|fails|failā|failu}}',
-'undeletedpage'              => "<span style="font-size:larger">'''$1 bova atkurts'''</span>
+'undeletedpage'              => "<big>'''$1 bova atkurts'''</big>
 Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė paskotėniu trīnimu ėr atkorėmu sāraša.",
 'undelete-header'            => 'Veizėkit [[Special:Log/delete|trīnima istuorėjuo]] paskoteniausē ėštrintū poslapiu.',
 'undelete-search-box'        => 'Ėiškuotė ėštrintū poslapiu',
@@ -1544,7 +1544,7 @@ kū soprantat vėsas pasiekmes.",
 'move-watch'              => 'Keravuotė šėta poslapi',
 'movepagebtn'             => 'Parvadintė poslapė',
 'pagemovedsub'            => 'Parvadinta siekmingā',
-'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" bova parvadints i "$2"\'\'\'</span>',
+'movepage-moved'          => '<big>\'\'\'"$1" bova parvadints i "$2"\'\'\'</big>',
 'articleexists'           => 'Straipsnis so tuokiu vardo jau īr
 a parinktāsis vards īr bluogs.
 Parinkat kėta varda.',

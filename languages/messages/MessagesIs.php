@@ -332,7 +332,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'frh.',
 
 'linkprefix'        => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
-'mainpagetext'      => "<span style="font-size:larger">'''Uppsetning á MediaWiki heppnaðist.'''</span>",
+'mainpagetext'      => "<big>'''Uppsetning á MediaWiki heppnaðist.'''</big>",
 'mainpagedocfooter' => 'Ráðfærðu þig við [http://meta.wikimedia.org/wiki/Help:Contents Notandahandbókina] fyrir frekari upplýsingar um notkun wiki-hugbúnaðarins.
 
 == Fyrir byrjendur ==
@@ -724,7 +724,7 @@ Ef þú smellir á Vista aftur, verður breyting þín vistuð án þess.",
 'summary-preview'                  => 'Forskoða breytingarágrip:',
 'subject-preview'                  => 'Forskoðun umræðuefnis/fyrirsagnar:',
 'blockedtitle'                     => 'Notandi er bannaður',
-'blockedtext'                      => "<span style="font-size:larger">'''Notandanafn þitt eða vistfang hefur verið bannað.'''</span>
+'blockedtext'                      => "<big>'''Notandanafn þitt eða vistfang hefur verið bannað.'''</big>
 
 Bannið var sett af $1.
 Ástæðan er eftirfarandi: ''$2''.
@@ -1778,7 +1778,7 @@ Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
 'undeletedrevisions-files'  => '$1 {{PLURAL:$1|breyting|breytingar}} og $2 {{PLURAL:$2|skrá|skrár}} endurvaktar',
 'undeletedfiles'            => '{{PLURAL:$1|Ein skrá endurvakin|$1 skrár endurvaktar}}',
 'cannotundelete'            => 'Ekki var hægt að afturkalla síðuna. (Líklega hefur einhver gert það á undan þér.)',
-'undeletedpage'             => "<span style="font-size:larger">'''$1 var endurvakin'''</span>
+'undeletedpage'             => "<big>'''$1 var endurvakin'''</big>
 
 Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og endurvakningar.",
 'undelete-search-box'       => 'Leita að eyddum síðum',
@@ -1956,7 +1956,7 @@ Athugaðu að þessi aðgerð getur kallað fram viðbrögð annarra notenda og 
 'move-watch'                => 'Vakta þessa síðu',
 'movepagebtn'               => 'Færa síðu',
 'pagemovedsub'              => 'Færsla tókst',
-'movepage-moved'            => "<span style="font-size:larger">'''„$1“ hefur verið færð á „$2“'''</span>",
+'movepage-moved'            => "<big>'''„$1“ hefur verið færð á „$2“'''</big>",
 'articleexists'             => 'Annaðhvort er þegar til síða undir þessum titli, eða sá titill sem þú hefur valið er ekki gildur.
 Vinsamlegast veldu annan titil.',
 'cantmove-titleprotected'   => 'Þú getur ekki fært síðu á þessa staðsetningu, því nýi titillinn hefur verið verndaður gegn sköpun',

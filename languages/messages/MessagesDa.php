@@ -292,7 +292,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategorien indeholder {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}.',
 'listingcontinuesabbrev'         => ' forts.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki er nu installeret.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki er nu installeret.'''</big>",
 'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
 
 'about'         => 'Om',
@@ -689,7 +689,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'summary-preview'                  => 'Forhåndsvisning af beskrivelsen:',
 'subject-preview'                  => 'Forhåndsvisning af emnet:',
 'blockedtitle'                     => 'Brugeren er blokeret',
-'blockedtext'                      => "<span style="font-size:larger">'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''</span>
+'blockedtext'                      => "<big>'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''</big>
 
 Blokeringen er foretaget af $1.
 Den anførte grund er ''$2''.
@@ -2327,7 +2327,7 @@ I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'move-watch'                   => 'Overvåg siden',
 'movepagebtn'                  => 'Flyt side',
 'pagemovedsub'                 => 'Flytning gennemført',
-'movepage-moved'               => '<span style="font-size:larger">Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'En omdirigering er oprettet.',
 'movepage-moved-noredirect'    => 'Der oprettedes ikke en omdirigering.',
 'articleexists'                => 'En side med det navn eksisterer allerede, eller det

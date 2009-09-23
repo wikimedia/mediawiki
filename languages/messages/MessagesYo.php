@@ -282,7 +282,7 @@ $messages = array(
 Ó ṣe é ṣe kó jẹ́ pé ẹ ṣe àṣìṣe URL ọ̀hún, tàbí kó jẹ́ pé ẹ tẹ̀lé ìjápọ̀ tí kò tọ́.
 Ó sì le jẹ́ pé kòkòrò wà nínú software tí {{SITENAME}} nlò.',
 'nosuchspecialpage' => 'Kò sí irú ojúewé pàtàkì báun',
-'nospecialpagetext' => "<span style="font-size:larger">'''Ẹ tọrọ ojúewé pàtàkì tí kò ní ìbáramu.'''</span>
+'nospecialpagetext' => "<big>'''Ẹ tọrọ ojúewé pàtàkì tí kò ní ìbáramu.'''</big>
 
 Àkójọ àwọn ojúewé pàtàkì tó ní ìbáramu wà ní [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -460,7 +460,7 @@ Tí ẹ bá tẹ Ìmúpamọ́ lẹ́ẹ̀kansi, àtúnṣe yín yíò jẹ́ m�
 'summary-preview'                  => 'Àkọ́kọ́yẹ̀wò àkótán:',
 'subject-preview'                  => 'Àyẹ̀wò àkọlé',
 'blockedtitle'                     => 'Ìdínà oníṣe',
-'blockedtext'                      => "<span style="font-size:larger">'''A ti dínà orúkọ oníṣe tàbí ojúọ̀nà IP yín.'''</span>
+'blockedtext'                      => "<big>'''A ti dínà orúkọ oníṣe tàbí ojúọ̀nà IP yín.'''</big>
 
 $1 ni ó ṣe ìdínà.
 Ìdí tó fun ni ''$2''.
@@ -1174,7 +1174,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'move-watch'       => 'Mójútó ojúewé yìí',
 'movepagebtn'      => 'Yípò ojúewé',
 'pagemovedsub'     => 'Ìyípò ti já sí rere',
-'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" ti yípò sí "$2"\'\'\'</span>.',
+'movepage-moved'   => '<big>\'\'\'"$1" ti yípò sí "$2"\'\'\'</big>.',
 'articleexists'    => 'Ojúewé pẹ̀lú orúkọ un wà tẹ́lẹ̀, tàbí kójẹ́pé orúkọ tí ẹ yàn kò ní ìbámu.
 Ẹ jọ̀wọ́ ẹ yan orúkọ mìíràn.',
 'talkexists'       => "'''Bótilẹ̀jẹ́pé ìyípò ojúewé ọ̀hún jásí rere, ojúewé ọ̀rọ̀ kò se é yípọ̀ nítorípé ìkan tiwà ní àkọlé tuntun.

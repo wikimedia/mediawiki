@@ -434,7 +434,7 @@ $messages = array(
 'index-category'                 => "Te indexeren pagina's",
 'noindex-category'               => "Niet te indexeren pagina's",
 
-'mainpagetext'      => "<span style="font-size:larger">'''De installatie van MediaWiki is geslaagd.'''</span>",
+'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",
 'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 
 == Meer hulp over MediaWiki ==
@@ -628,7 +628,7 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 Mogelijk heeft u een typefout gemaakt in de URL, of een onjuiste verwijzing gevolgd.
 Het kan ook wijzen op een fout in de software van {{SITENAME}}.',
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
-'nospecialpagetext' => "<span style="font-size:larger">'''U hebt een onbestaande speciale pagina opgevraagd.'''</span>
+'nospecialpagetext' => "<big>'''U hebt een onbestaande speciale pagina opgevraagd.'''</big>
 
 Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|speciale pagina’s]].",
 
@@ -871,7 +871,7 @@ Als u opnieuw op \"opslaan\" klikt, wordt uw wijziging zonder een onderwerp/kop 
 'summary-preview'                  => 'Samenvatting nakijken:',
 'subject-preview'                  => 'Nakijken onderwerp/kop:',
 'blockedtitle'                     => 'Gebruiker is geblokkeerd',
-'blockedtext'                      => '<span style="font-size:larger">\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'</span>
+'blockedtext'                      => '<big>\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'</big>
 
 De blokkade is uitgevoerd door $1.
 De opgegeven reden is \'\'$2\'\'.
@@ -2395,7 +2395,7 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeletedfiles'               => '{{PLURAL:$1|1 bestand|$1 bestanden}} teruggeplaatst',
 'cannotundelete'               => 'Het terugplaatsen is mislukt.
 Misschien heeft een andere gebruiker de pagina al teruggeplaatst.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 is teruggeplaatst'''</span>
+'undeletedpage'                => "<big>'''$1 is teruggeplaatst'''</big>
 
 In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen en herstelhandelingen.",
 'undelete-header'              => "Zie het [[Special:Log/delete|verwijderingslogboek]] voor recent verwijderde pagina's.",
@@ -2626,7 +2626,7 @@ Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'move-watch'                   => 'Deze pagina volgen',
 'movepagebtn'                  => 'Pagina hernoemen',
 'pagemovedsub'                 => 'De pagina is hernoemd',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" is hernoemd naar "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Er is een doorverwijzing aangemaakt.',
 'movepage-moved-noredirect'    => 'Er is geen doorverwijzing aangemaakt.',
 'articleexists'                => 'De pagina bestaat al of de paginanaam is ongeldig.

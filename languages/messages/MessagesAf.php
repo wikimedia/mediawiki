@@ -301,7 +301,7 @@ $messages = array(
 'category-file-count-limited'    => 'Die volgende {{PLURAL:$1|lêer|$1 lêers}} is in die huidige kategorie.',
 'listingcontinuesabbrev'         => 'vervolg',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki is suksesvol geïnstalleer.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
 'mainpagedocfooter' => "Konsulteer '''[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.
 
 == Hoe om te Begin ==
@@ -707,7 +707,7 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'summary-preview'                  => 'Opsomming nakijken:',
 'subject-preview'                  => 'Onderwerp/ opskrif voorskou:',
 'blockedtitle'                     => 'Gebruiker is geblokkeer',
-'blockedtext'                      => "<span style="font-size:larger">'''U gebruikersnaam of IP-adres is geblokkeer.'''</span>
+'blockedtext'                      => "<big>'''U gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
 Die blokkering is deur $1 gedoen.
 Die rede gegee is ''$2''.
@@ -2017,7 +2017,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 'undeletedrevisions-files'   => '{{PLURAL:$1|1 weergawe|$1 weergawes}} en {{PLURAL:$2|1 lêer|$2 lêers}} herstel',
 'undeletedfiles'             => '{{PLURAL:$1|1 lêer|$1 lêers}} herstel',
 'cannotundelete'             => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
-'undeletedpage'              => "<span style="font-size:larger">'''$1 is teruggeplaas'''</span>
+'undeletedpage'              => "<big>'''$1 is teruggeplaas'''</big>
 
 Konsulteer die [[Special:Log/delete|verwyderingslogboek]] vir 'n rekord van onlangse verwyderings en terugplasings.",
 'undelete-header'            => 'Sien die [[Special:Log/delete|skraplogboek]] vir onlangs verwyderde bladsye.',
@@ -2219,7 +2219,7 @@ wees om 'n bladsy te skuif.",
 'move-watch'                   => 'Hou hierdie bladsy dop',
 'movepagebtn'                  => 'Skuif bladsy',
 'pagemovedsub'                 => 'Verskuiwing het geslaag',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" is geskuif na "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" is geskuif na "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => "'n Aanstuur is geskep.",
 'movepage-moved-noredirect'    => 'Geen aanstuurblad is geskep nie.',
 'articleexists'                => "'n Bladsy met daardie naam bestaan reeds, of die naam wat u gekies het, is nie geldig nie.

@@ -138,7 +138,7 @@ $messages = array(
 'newtitle'       => 'Zina ya nkaka:',
 'movepagebtn'    => 'Nata lukaya',
 'pagemovedsub'   => 'Kunata me nunga',
-'movepage-moved' => '<span style="font-size:larger">\'\'\'"$1" me natama na "$2"\'\'\'</span>',
+'movepage-moved' => '<big>\'\'\'"$1" me natama na "$2"\'\'\'</big>',
 'articleexists'  => 'Lukaya ya nkaka kele na zina yango, to zina yango kele ya mbote ve.
 Sola zina ya nkaka.',
 'movereason'     => 'Samu:',

@@ -389,7 +389,7 @@ $messages = array(
 'category-file-count-limited'    => '이 분류에 파일이 $1개 있습니다.',
 'listingcontinuesabbrev'         => ' (계속)',
 
-'mainpagetext'      => "<span style="font-size:larger">'''미디어위키가 성공적으로 설치되었습니다.'''</span>",
+'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
 
 == 시작하기 ==
@@ -582,7 +582,7 @@ $1',
 당신은 URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니다.
 이것은 {{SITENAME}}의 버그일 수도 있습니다.',
 'nosuchspecialpage' => '해당하는 특수기능이 없습니다.',
-'nospecialpagetext' => "<span style="font-size:larger">'''요청한 특수 문서가 존재하지 않습니다.'''</span>
+'nospecialpagetext' => "<big>'''요청한 특수 문서가 존재하지 않습니다.'''</big>
 
 특수 문서의 목록은 [[Special:SpecialPages|여기]]에서 볼 수 있습니다.",
 
@@ -787,7 +787,7 @@ $2',
 'summary-preview'                  => '편집 요약 미리 보기:',
 'subject-preview'                  => '주제/제목 미리 보기:',
 'blockedtitle'                     => '차단됨',
-'blockedtext'                      => "<span style="font-size:larger">'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''</span>
+'blockedtext'                      => "<big>'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''</big>
 
 차단한 사람은 $1이고, 차단한 이유는 다음과 같습니다: $2
 
@@ -2234,7 +2234,7 @@ $NEWPAGE
 'undeletedfiles'               => '파일 $1개를 복구했습니다',
 'cannotundelete'               => '복구에 실패했습니다.
 다른 사용자가 이미 복구했을 수도 있습니다.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 문서가 복구되었습니다.'''</span>
+'undeletedpage'                => "<big>'''$1 문서가 복구되었습니다.'''</big>
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
 'undelete-header'              => '최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
@@ -2456,7 +2456,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>',
 'movepage-moved-redirect'      => '넘겨주기 문서를 만들었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서를 만들지 못했습니다.',
 'articleexists'                => '문서가 이미 존재하거나 이름이 올바르지 않습니다.

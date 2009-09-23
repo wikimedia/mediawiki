@@ -174,7 +174,7 @@ $messages = array(
 'category-file-count-limited'    => 'Bu kateqoriyada {{PLURAL:$1|$1 fayl}} var.',
 'listingcontinuesabbrev'         => '(davam)',
 
-'mainpagetext' => "<span style="font-size:larger">'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''</span>",
+'mainpagetext' => "<big>'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''</big>",
 
 'about'         => 'İzah',
 'article'       => 'Mündəricat Səhifəsi',
@@ -485,7 +485,7 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 Hesabınıza daxil olduqdan sonra, parolunuzu ''[[Special:ChangePassword|parolu dəyiş]]'' səhifəsində dəyişdirə bilərsiniz.",
 'newarticle'                 => '(Yeni)',
 'newarticletext'             => "Mövcud olmayan səhifəyə olan keçidi izlədiniz. Aşağıdakı sahəyə məzmununu yazaraq bu səhifəni '''siz''' yarada bilərsiniz. (əlavə məlumat üçün [[{{MediaWiki:Helppage}}|kömək səhifəsinə]] baxın). Əgər bu səhifəyə səhvən gəlmisinizsə sadəcə olaraq brauzerin '''geri''' düyməsinə vurun.",
-'anontalkpagetext'           => "----<span style="font-size:larger">'''''Bu səhifə anonim istifadəçiyə aid müzakirə səhifəsidir. Bu mesaj IP ünvana göndərilmişdir və əgər bu mesajın sizə aid olmadığını düşünürsünüzsə [[Special:UserLogin|qeydiyyatdan keçin]]. Bu zaman sizə yalnız öz fəaliyyətlərinizə görə mesaj gələcəkdir.'''''</span>",
+'anontalkpagetext'           => "----<big>'''''Bu səhifə anonim istifadəçiyə aid müzakirə səhifəsidir. Bu mesaj IP ünvana göndərilmişdir və əgər bu mesajın sizə aid olmadığını düşünürsünüzsə [[Special:UserLogin|qeydiyyatdan keçin]]. Bu zaman sizə yalnız öz fəaliyyətlərinizə görə mesaj gələcəkdir.'''''</big>",
 'noarticletext'              => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
@@ -1043,7 +1043,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'undeletecomment'        => 'Səbəb:',
 'undeletedarticle'       => '"[[$1]]" məqaləsi bərpa edilmişdir',
 'cannotundelete'         => 'Silməni ləğv etmə yetinə yetirilə bilmir; başqa birisi daha əvvəl səhifənin silinməsini ləğv etmiş ola bilər.',
-'undeletedpage'          => "<span style="font-size:larger">'''$1 bərpa edildi'''</span>
+'undeletedpage'          => "<big>'''$1 bərpa edildi'''</big>
 
 Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri nəzərdən keçirmək üçün [[Special:Log/delete|silmə qeydlərinə]] baxın.",
 'undelete-header'        => 'Son silinmiş səhifələrə baxmaq üçün [[Special:Log/delete|silmə qeydlərinə]] bax.',
@@ -1127,7 +1127,7 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 'move-watch'              => 'Bu səhifəni izlə',
 'movepagebtn'             => 'Səhifənin adını dəyiş',
 'pagemovedsub'            => 'Yerdəyişmə edilmişdir',
-'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" səhifəsi "$2" səhifəsinə yerləşdirilmişdir\'\'\'</span>',
+'movepage-moved'          => '<big>\'\'\'"$1" səhifəsi "$2" səhifəsinə yerləşdirilmişdir\'\'\'</big>',
 'movedto'                 => 'dəyişdi',
 'movetalk'                => 'Bu səhifənin müzakirə səhifəsinin de adını dəyişdir.',
 '1movedto2'               => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',

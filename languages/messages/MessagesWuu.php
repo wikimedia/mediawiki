@@ -105,7 +105,7 @@ $messages = array(
 'hidden-category-category'      => '囥脱分类',
 'category-subcat-count-limited' => '该个分类中有个亚类。',
 
-'mainpagetext'      => "<span style="font-size:larger">'''已成功安装MediaWiki！'''</span>",
+'mainpagetext'      => "<big>'''已成功安装MediaWiki！'''</big>",
 'mainpagedocfooter' => '请访问[http://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件的信息！
 
 == 入门 ==

@@ -151,7 +151,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchspecialpage' => 'E página spesial no ta eksistí',
-'nospecialpagetext' => "<span style="font-size:larger">'''Bo a pidi un página spesial inválido.'''</span>
+'nospecialpagetext' => "<big>'''Bo a pidi un página spesial inválido.'''</big>
 
 Bo por haña un lista di tur [[Special:SpecialPages|{{int:specialpages}}]].",
 

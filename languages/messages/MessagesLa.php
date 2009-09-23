@@ -446,7 +446,7 @@ Vide [[Special:Version|paginam versionis]].',
 'nosuchaction'      => 'Actio non est',
 'nosuchactiontext'  => 'Actio in URL designata non agnoscitur a hoc vici.',
 'nosuchspecialpage' => 'Pagina specialis non est',
-'nospecialpagetext' => "<span style="font-size:larger">'''Paginam specialem invalidam petivisti.'''</span>
+'nospecialpagetext' => "<big>'''Paginam specialem invalidam petivisti.'''</big>
 
 Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -608,7 +608,7 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'summary-preview'                  => 'Praevisum summarii:',
 'subject-preview'                  => 'Praevisum rei/tituli:',
 'blockedtitle'                     => 'Usor obstructus est',
-'blockedtext'                      => '<span style="font-size:larger">\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</span> a magistratu $1.
+'blockedtext'                      => '<big>\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</big> a magistratu $1.
 
 Ratio data est: \'\'$2\'\'.
 
@@ -1886,7 +1886,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'move-watch'                => 'Hanc paginam custodire',
 'movepagebtn'               => 'Paginam movere',
 'pagemovedsub'              => 'Pagina mota est',
-'movepage-moved'            => '<span style="font-size:larger">\'\'\'"$1" mota est ad "$2"\'\'\'</span>',
+'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>',
 'movepage-moved-redirect'   => 'Redirectio creata est.',
 'movepage-moved-noredirect' => 'Redirectio non creata est.',
 'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.

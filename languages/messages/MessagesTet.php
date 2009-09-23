@@ -273,7 +273,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchspecialpage' => "Pájina espesiál ne'e la iha",
-'nospecialpagetext' => "<span style="font-size:larger">'''Pájina espesiál ne'e la iha.'''</span>
+'nospecialpagetext' => "<big>'''Pájina espesiál ne'e la iha.'''</big>
 
 Lista ida pájina espesiál nian [[Special:SpecialPages|iha ne'e]].",
 

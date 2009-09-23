@@ -398,7 +398,7 @@ $messages = array(
 'noindex-category'               => 'Ikkje-indekserte sider',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki er no installert.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki er no installert.'''</big>",
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvara.
 
 ==Kome i gang==
@@ -787,7 +787,7 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'summary-preview'                  => 'Førehandsvising av endringssamandraget:',
 'subject-preview'                  => 'Førehandsvising av emne/overskrift:',
 'blockedtitle'                     => 'Brukaren er blokkert',
-'blockedtext'                      => "<span style="font-size:larger">'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''</span>
+'blockedtext'                      => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''</big>
 
 Blokkeringa vart gjort av $1. 
 Denne grunnen vart gjeven: ''$2''.
@@ -1159,7 +1159,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'searchsubtitle'                   => 'Du søkte etter «[[:$1]]» ([[Special:Prefixindex/$1|alle sider som byrjar med «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle sider som lenkjer til «$1»]])',
 'searchsubtitleinvalid'            => 'Du søkte etter «$1»',
 'noexactmatch'                     => "* '''{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].'''
-* <span style="font-size:larger">'''Du kan [[:$1|opprette ho no]]'''</span>.<br />
+* <big>'''Du kan [[:$1|opprette ho no]]'''</big>.<br />
 (Men du bør søkje etter andre namnevariasjonar først, slik at du ikkje lagar ei side som allereie finst under eit anna namn!)",
 'noexactmatch-nocreate'            => "'''Inga side har tittelen «$1».'''",
 'toomanymatches'                   => 'Søket gav for mange treff, prøv ei anna spørjing',
@@ -2203,7 +2203,7 @@ Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Éin versjon|$1 versjonar}} og {{PLURAL:$2|éi fil|$2 filer}} er attoppretta',
 'undeletedfiles'               => '{{PLURAL:$1|Éi fil|$1 filer}} er attoppretta',
 'cannotundelete'               => 'Feil ved attoppretting, andre kan allereie ha attoppretta sida.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 er attoppretta'''</span>
+'undeletedpage'                => "<big>'''$1 er attoppretta'''</big>
 
 Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er sletta eller attoppretta.",
 'undelete-header'              => 'Sjå [[Special:Log/delete|sletteloggen]] for dei sist sletta sidene.',
@@ -2412,7 +2412,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'move-watch'                   => 'Overvak denne sida',
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flyttinga er gjennomført',
-'movepage-moved'               => "<span style="font-size:larger">'''«$1» er flytt til «$2»'''</span>",
+'movepage-moved'               => "<big>'''«$1» er flytt til «$2»'''</big>",
 'movepage-moved-redirect'      => 'Ei omdirigering er vorten oppretta.',
 'movepage-moved-noredirect'    => 'Det vart ikkje oppretta ei omdirigering.',
 'articleexists'                => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',

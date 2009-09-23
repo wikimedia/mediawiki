@@ -410,7 +410,7 @@ $messages = array(
 'category-file-count-limited'    => 'تحت {{PLURAL:$1|ملف|$1 ملف}} فى التصنيف الحالى.',
 'listingcontinuesabbrev'         => 'متابعه',
 
-'mainpagetext'      => "<span style="font-size:larger">''' ميدياويكى اتنزلت بنجاح.'''</span>",
+'mainpagetext'      => "<big>''' ميدياويكى اتنزلت بنجاح.'''</big>",
 'mainpagedocfooter' => 'اسال [http://meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكى.
 
 == البداية ==
@@ -604,7 +604,7 @@ $1',
 ممكن تكون غلطت و انتا بتكتب الـ URL, او دوست على لينك مش مضبوطه.
 دا ممكن كمان يكون بيعنى انه فيه باج فى الـ {{SITENAME}}.',
 'nosuchspecialpage' => 'مافيش صفحة خاصة بالاسم ده',
-'nospecialpagetext' => "<span style="font-size:larger">'''انت طلبت صفحة مخصوصة مش صحيحة.'''</span>
+'nospecialpagetext' => "<big>'''انت طلبت صفحة مخصوصة مش صحيحة.'''</big>
 
 لستة الصفحات المخصوصة الصحيحة ممكن تلاقيها فى [[Special:SpecialPages]].",
 
@@ -825,7 +825,7 @@ $2',
 'summary-preview'                  => 'بروفه للملخص:',
 'subject-preview'                  => 'بروفة للعنوان/للموضوع',
 'blockedtitle'                     => 'اليوزر ممنوع',
-'blockedtext'                      => "<span style="font-size:larger">'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</span>
+'blockedtext'                      => "<big>'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</big>
 
 سبب المنع هو: ''$2''. وقام بالمنع $1.
 
@@ -2267,7 +2267,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 نسخة|$1 نسخة}} و {{PLURAL:$2|1 ملف|$2 ملف}} رجعو تاني',
 'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 رجعو تاني',
 'cannotundelete'               => 'الترجيع ما نفعش :ممكن يكون فى حد تانى رجع الصفحة قبل كدا.',
-'undeletedpage'                => "<span style="font-size:larger">'''اترجع $1'''</span>
+'undeletedpage'                => "<big>'''اترجع $1'''</big>
 
 بص على [[Special:Log/delete|سجل المسح]] علشان تشوف عمليات المسح و الترجيع الاخيرة.",
 'undelete-header'              => 'شوف الصفحات الممسوحة قريب فى [[Special:Log/delete|سجل المسح]].',
@@ -2491,7 +2491,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'move-watch'                   => 'راقب الصفحه دى',
 'movepagebtn'                  => 'نقل الصفحه',
 'pagemovedsub'                 => 'تم  النقل بنجاح',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'فى تحويله اتعملت.',
 'movepage-moved-noredirect'    => 'التحويله ما اتعملتش.',
 'articleexists'                => 'يا اما فيه صفحه  بالاسم ده، او ان الاسم اللى  تم اختياره مش صالح.

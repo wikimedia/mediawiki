@@ -329,7 +329,7 @@ $messages = array(
 'index-category'                 => 'Sigge, di de Söhkmaschine opnämme sulle',
 'noindex-category'               => 'Sigge, di de Söhkmaschine nit opnämme sulle',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki es jetz enstalleet.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki es jetz enstalleet.'''</big>",
 'mainpagedocfooter' => 'Luur en et (änglesche) [http://meta.wikimedia.org/wiki/Help:Contents Handboch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
 
 == För dä Aanfang ==
@@ -792,7 +792,7 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'summary-preview'                  => 'Vör-Aansich vun „Koot Zosammejefass, Quell“:',
 'subject-preview'                  => 'Vör-Aansich vun de Üvverschreff:',
 'blockedtitle'                     => 'Dä Metmaacher es jesperrt',
-'blockedtext'                      => "<span style="font-size:larger">'''Dinge Metmaacher-Name oder IP Adress es vun „\$1“ jesperrt woode.'''</span>
+'blockedtext'                      => "<big>'''Dinge Metmaacher-Name oder IP Adress es vun „\$1“ jesperrt woode.'''</big>
 
 Als Jrund es enjedrage: „''\$2''“
 
@@ -811,7 +811,7 @@ Dun en Ding Aanfroge nenne:
 * Di Sperr es wäje odde jäje: \$7
 
 Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre]</span> loore.",
-'autoblockedtext'                  => "<span style="font-size:larger">'''Ding IP Adress es automattesch jesperrt woode.'''</span>
+'autoblockedtext'                  => "<big>'''Ding IP Adress es automattesch jesperrt woode.'''</big>
 <br />
 '''Se wor vun enem Metmaacher jebruch woode, dä vun „\$1“ jesperrt woode es.'''
 <br />
@@ -955,7 +955,7 @@ Bes De secher, watte mähs?
 oder fottjeschmesse wääde. Wann Der dat nit rääch es, schriev nix. Et es och nüdich, dat et vun Dir selvs es, oder dat Do dat Rääch häs, et hee öffentlich wigger ze jevve. Süch $1. Wann et nit stemmp, oder Do kanns et nit nohwiese, künnt Dich dat en dr Bau bränge!',
 'longpagewarning'                  => "'''Oppjepass:''' Dä Tex, dä De hee jescheck häs, dä es '''$1''' 
 Kilobyte jroß. Manch Brauser kütt nit domet klor, wann et mieh wie '''32''' Kilobyte sin. Do künnts De drüvver nohdenke, dat Dinge en kleiner Stöckche ze zerkloppe.",
-'longpageerror'                    => "<span style="font-size:larger">'''Janz schlemme Fähler:'''</span>
+'longpageerror'                    => "<big>'''Janz schlemme Fähler:'''</big>
 Dä Tex, dä De hee jescheck häs, dä es '''$1''' Kilobyte jroß. 
 Dat sin mieh wie '''$2''' Kilobyte. Dat künne mer nit speichere!
 '''Maach kleiner Stöcke drus.'''<br />",
@@ -2402,7 +2402,7 @@ Versione för die neu Sigg enjerich. Die neu Sigg weed nit ersetz.',
 'undeletedrevisions-files'     => 'Zesammejenomme {{PLURAL:$1|Ein Version|<strong>$1</strong> Versione|<strong>Kein</strong> Version}} vun {{PLURAL:$2|eine Datei|<strong>$2</strong> Dateie|<strong>nix</strong>}} zeröckjehollt',
 'undeletedfiles'               => '{{PLURAL:$1|Ein Datei|<strong>$1</strong> Dateie|<strong>Kein</strong> Dateie}} zeröckjehollt',
 'cannotundelete'               => '<strong>Dä.</strong> Dat Zeröckholle jing donevve. Mach sinn, dat ene andere Metmaacher flöcker wor, un et ald et eets jedon hät, un jetz es die Sigg ald widder do jewäse.',
-'undeletedpage'                => '<span style="font-size:larger"><strong>De Sigg „$1“ es jetz widder do</strong></span>
+'undeletedpage'                => '<big><strong>De Sigg „$1“ es jetz widder do</strong></big>
 Luur Der et [[Special:Log/delete|Logboch met de fottjeschmesse Sigge]] aan, do häs De de Neuste fottjeschmesse 
 un widder herjehollte Sigge.',
 'undelete-header'              => 'Loor Der [[Special:Log/delete|{{LCFIRST:{{int:deletionlog}}}}]] aan, doh fengks De de och neulesch fottjeschmesse Sigge.',
@@ -2631,7 +2631,7 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'move-watch'                   => 'Op die Sigg hee oppasse',
 'movepagebtn'                  => 'Ömnenne',
 'pagemovedsub'                 => 'Dat Ömnenne hät jeflupp',
-'movepage-moved'               => "<span style="font-size:larger">'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</span>",
+'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>",
 'movepage-moved-redirect'      => 'En Ömleidung es aanjelaat woode.',
 'movepage-moved-noredirect'    => 'Kein Ömleidung woodt aanjelaat.',
 'articleexists'                => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",

@@ -119,7 +119,7 @@ $messages = array(
 'category-media-header' => 'Média dans classe "$1"',
 'category-empty'        => "''À présent, cette classe a ni articles ni média.''",
 
-'mainpagetext'      => "<span style="font-size:larger">'''Vous avez bien installé MediaWiki.'''</span>",
+'mainpagetext'      => "<big>'''Vous avez bien installé MediaWiki.'''</big>",
 'mainpagedocfooter' => 'Lisez la [http://meta.wikimedia.org/wiki/Help:Contents Guide des Useurs] pour apprendre à user le wiki software.
 
 == Pour Commencer ==
@@ -424,7 +424,7 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'summary-preview'            => "Vue d'avance de la description:",
 'subject-preview'            => "Vue d'avance du sujet:",
 'blockedtitle'               => "L'useur est bloqué",
-'blockedtext'                => "<span style="font-size:larger">'''Votre compte d'useur (ou votre adresse IP) est bloqué.'''</span>
+'blockedtext'                => "<big>'''Votre compte d'useur (ou votre adresse IP) est bloqué.'''</big>
 
 Le blocage a été fait par $1.  La raison donnée est ''$2''.  
 

@@ -117,7 +117,7 @@ $messages = array(
 'category-empty'         => "''Bu kategoriyada henez bulunmêêr bir yazı yaki media.''",
 'listingcontinuesabbrev' => '(devam)',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki başarılan kuruldu.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki başarılan kuruldu.'''</big>",
 'mainpagedocfooter' => "Vikilän iş uurunda bilgi almaa için [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
 
 == Eni başlayanlar için ==
@@ -383,7 +383,7 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'summary-preview'            => 'Ön siir özeti:',
 'subject-preview'            => 'Konu/başlık ön siiri:',
 'blockedtitle'               => 'Kullanıcı kösteklendi.',
-'blockedtext'                => '<span style="font-size:larger">Kullanıcı adınız yaki parolunuz $1 tarafından kösteklendi.</span>
+'blockedtext'                => '<big>Kullanıcı adınız yaki parolunuz $1 tarafından kösteklendi.</big>
 
 Sizi köstek edän önderci: $1. Köstek sebebi: \'\'$2\'\'.
 

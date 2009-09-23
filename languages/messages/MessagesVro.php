@@ -155,7 +155,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Järgmäne teedüstü om|Järgmädseq $1 teedüstüt}} ommaq seon katõgoorian.',
 'listingcontinuesabbrev'         => 'lätt edesi',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki tarkvara paika säet.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki tarkvara paika säet.'''</big>",
 'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano:
 * [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
@@ -515,7 +515,7 @@ Või-ollaq olõt jo uma salasõna ärq muutnuq vai küsünüq vahtsõ aotlidsõ 
 'summary-preview'            => 'Kokkovõttõ kaeminõ:',
 'subject-preview'            => 'Päälkirä kaeminõ:',
 'blockedtitle'               => 'Pruukja om kinniq peet',
-'blockedtext'                => "<span style="font-size:larger">'''Su pruukjanimi vai puutri võrgoaadrõs om kinniq pant.'''</span>
+'blockedtext'                => "<big>'''Su pruukjanimi vai puutri võrgoaadrõs om kinniq pant.'''</big>
 
 Kinniqpandja om $1. 
 Timä põhjõndus om sääne: ''$2''.
@@ -1361,7 +1361,7 @@ viil olõman, naid saa tagasi tetäq niikavva ku naid olõ-i viil arhiivist ärq
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|kujo|kujjo}} ja $2 {{PLURAL:$2|teedüstü|teedüstüt}} tagasi tett',
 'undeletedfiles'           => '$1 {{PLURAL:$1|teedüstü|teedüstüt}} tagasi tett',
 'cannotundelete'           => 'Tagasitegemine lää-s kõrda; kiäki tõõnõ või-ollaq lehe jo tagasi tennüq.',
-'undeletedpage'            => "<span style="font-size:larger">'''$1 om tagasi tett'''</span>
+'undeletedpage'            => "<big>'''$1 om tagasi tett'''</big>
 
 Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistutamiisi nimekiräst]].",
 'undelete-header'          => 'Perämäidsi kistutuisi saat kaiaq [[Special:Log/delete|kistutamiisi nimekiräst]].',
@@ -1531,7 +1531,7 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 'move-watch'              => 'Kaeq taa lehe perrä',
 'movepagebtn'             => 'Panõq artikli tõistõ paika',
 'pagemovedsub'            => 'Artikli om tõistõ paika pant',
-'movepage-moved'          => "<span style="font-size:larger">'''$1 om pant nime ala $2'''</span>",
+'movepage-moved'          => "<big>'''$1 om pant nime ala $2'''</big>",
 'articleexists'           => 'Sääntse nimega artikli om jo olõman vai olõ-i lubat säänest nimme valliq. Valiq vahtsõnõ nimi.',
 'talkexists'              => 'Artikli om tõistõ paika pant, a arotuslehekülge saa-s pandaq, selle et vahtsõ nime all om jo arotuskülg. Panõq arotusküleq esiq kokko.',
 'movedto'                 => 'Pant päälkirä ala:',

@@ -204,7 +204,7 @@ $messages = array(
 'category-empty'         => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
 'listingcontinuesabbrev' => 'frh.',
 
-'mainpagetext' => "<span style="font-size:larger">'''Innlegging av Wiki-ritbúnaði væleydnað.'''</span>",
+'mainpagetext' => "<big>'''Innlegging av Wiki-ritbúnaði væleydnað.'''</big>",
 
 'about'         => 'Um',
 'article'       => 'Innihaldssíða',
@@ -339,7 +339,7 @@ $messages = array(
 'nosuchactiontext'  => 'Gerðin, ið tilskilað er í url, er ikki
 afturkend av wiki',
 'nosuchspecialpage' => 'Ongin slík serlig síða',
-'nospecialpagetext' => "<span style="font-size:larger">'''Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.'''</span>
+'nospecialpagetext' => "<big>'''Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.'''</big>
 
 <!-- A list of valid special pages can be found at [[Special:SpecialPages]]. -->",
 

@@ -223,7 +223,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' (devam)',
 
 'linkprefix'        => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki muvafaqiyetnen quruldı.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki muvafaqiyetnen quruldı.'''</big>",
 'mainpagedocfooter' => "Bu vikiniñ yol-yoruğını [http://meta.wikimedia.org/wiki/Help:Contents User's Guide qullanıcı qılavuzından] ögrenip olasıñız.
 
 == Bazı faydalı saytlar ==
@@ -383,7 +383,7 @@ $messages = array(
 Belki de URL-ni yañlış yazğandırsız, ya da doğru olmağan bir bağlantını qullanğandırsız.
 Bu, {{SITENAME}} saytındaki bir hatanı da kösterip оla.',
 'nosuchspecialpage' => 'Bu isimde bir mahsus saife yoq',
-'nospecialpagetext' => "<span style="font-size:larger">'''Tapılmağan bir mahsus saifege kirdiñiz.'''</span>
+'nospecialpagetext' => "<big>'''Tapılmağan bir mahsus saifege kirdiñiz.'''</big>
 
 Bar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}]] saifesinde körip olursıñız.",
 
@@ -581,7 +581,7 @@ Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat par
 'summary-preview'                  => 'Baqıp çıquv tasviri:',
 'subject-preview'                  => 'Baqıp çıquv serlevası:',
 'blockedtitle'                     => 'Qullanıcı blok etildi.',
-'blockedtext'                      => '<span style="font-size:larger">\'\'\'Esabıñız ya da IP adresiñiz blok etildi.\'\'\'</span>
+'blockedtext'                      => '<big>\'\'\'Esabıñız ya da IP adresiñiz blok etildi.\'\'\'</big>
 
 Blok yapqan administrator: $1.
 Blok sebebi: \'\'"$2"\'\'.
@@ -1522,7 +1522,7 @@ Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege m
 'move-watch'              => 'Bu saifeni közet',
 'movepagebtn'             => 'Adını deñiştir',
 'pagemovedsub'            => 'Ad deñişikligi tamamlandı',
-'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" saifesiniñ adı "$2" olaraq deñiştirildi\'\'\'</span>',
+'movepage-moved'          => '<big>\'\'\'"$1" saifesiniñ adı "$2" olaraq deñiştirildi\'\'\'</big>',
 'articleexists'           => 'Bu adda bir saife endi bar ya da siz yazğan ad yasaqlı.
 Lütfen, başqa bir ad saylap yazıñız.',
 'cantmove-titleprotected' => 'Siz yazğan yañı ad yasaqlıdır, bunıñ içün saife adını deñiştirmekniñ çaresi yoq.',
