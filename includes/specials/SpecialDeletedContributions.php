@@ -11,8 +11,9 @@ class DeletedContribsPager extends IndexPager {
 
 	function __construct( $target, $namespace = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'deletionlog undeleteviewlink diff' ) as $msg ) {
-			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
+		$msgs = array( 'deletionlog', 'undeleteviewlink', 'diff' );
+		foreach( $msgs as $msg ) {
+			$this->messages[$msg] = wfMsgExt( $msg, array( 'escapenoentities') );
 		}
 		$this->target = $target;
 		$this->namespace = $namespace;
@@ -207,9 +208,17 @@ class DeletedContribsPager extends IndexPager {
 			$del = '';
 		}
 
-		$ret = "{$del}{$link} ({$last}) ({$dellog}) ({$reviewlink}) . . {$mflag} {$pagelink} {$comment}";
+		$tools = Html::rawElement(
+			'span',
+			array( 'class' => 'mw-deletedcontribs-tools' ),
+			wfMsg( 'parentheses', $wgLang->pipeList( array( $last, $dellog, $reviewlink ) ) )
+		);
 
-		$ret = "<li>$ret</li>\n";
+		$ret = Html::rawElement(
+			'li',
+			array(),
+			"{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}"
+		) . "\n";
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
