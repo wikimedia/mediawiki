@@ -417,7 +417,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins la presenta categoria.',
 'listingcontinuesabbrev'         => '(seguida)',
 
-'mainpagetext'      => "<big>'''MediaWiki es estat installat amb succès.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki es estat installat amb succès.'''</span>",
 'mainpagedocfooter' => "Consultatz lo [http://meta.wikimedia.org/wiki/Ajuda:Contengut Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial.
 
 == Començar amb MediaWiki ==
@@ -610,7 +610,7 @@ $1",
 Benlèu avètz mal picat l’URL o seguit un ligam incorrècte.
 Aquò tanben pòt indicar un problèma dins lo logicial utilizat per {{SITENAME}}.",
 'nosuchspecialpage' => 'Pagina especiala inexistanta',
-'nospecialpagetext' => "<big>'''Avètz demandat una pagina especiala qu'es pas reconeguda pel logicial {{SITENAME}}.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Avètz demandat una pagina especiala qu'es pas reconeguda pel logicial {{SITENAME}}.'''</span>
 
 Una lista de las paginas especialas pòt èsser trobada sus [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -824,7 +824,7 @@ Vòstra adreça IP serà enregistrada dins l’istoric d'aquesta pagina.",
 'summary-preview'                  => 'Previsualizacion del resumit :',
 'subject-preview'                  => 'Previsualizacion del subjècte/títol :',
 'blockedtitle'                     => "L'utilizaire es blocat",
-'blockedtext'                      => "<big>'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''</span>
 
 Lo blocatge es estat efectuat per $1.
 La rason invocada es la seguenta : ''$2''.
@@ -2277,7 +2277,7 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} e {{PLURAL:$2|1 fichièr restablit|$2 fichièrs restablits}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichièr restablit|fichièrs restablits}}',
 'cannotundelete'               => 'Lo restabliment a pas capitat. Un autre utilizaire a probablament restablit la pagina abans.',
-'undeletedpage'                => "<big>'''La pagina $1 es estada restablida'''.</big>
+'undeletedpage'                => "<span style="font-size:larger">'''La pagina $1 es estada restablida'''.</span>
 
 Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas e restablidas.",
 'undelete-header'              => 'Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas.',

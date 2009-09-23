@@ -142,7 +142,7 @@ href="" class="internal"}?{/a}) basne.',
 'listingcontinuesabbrev'         => 'işt.',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''MediaWiki ebe mıwefeq instale bi.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki ebe mıwefeq instale bi.'''</span>",
 'mainpagedocfooter' => "Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
 
 == Gamê verêni ==
@@ -333,7 +333,7 @@ href="" class="internal"}?{/a}) basne.',
 To, beno ke URL ğelet nusno ya ki tı girêo de ğelet dıma şiya. 
 No mısneno ke, ''software''o ke terefê {{SITENAME}} ra gurenino, jü ğeleliye tede esta.",
 'nosuchspecialpage' => 'Pela de xususiya nianêne çina',
-'nospecialpagetext' => "<big>'''Sıma pela xususiya de nêvêrdiye kerde ra.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Sıma pela xususiya de nêvêrdiye kerde ra.'''</span>
 
 Jü lista pelunê vêrdoğu bınê [[Special:SpecialPages|{{int:specialpages}}]] de vênina.",
 

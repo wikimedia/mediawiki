@@ -354,7 +354,7 @@ $messages = array(
 'category-file-count-limited'    => 'Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
 'listingcontinuesabbrev'         => ' forts.',
 
-'mainpagetext'      => "<big>'''MediaWiki-programvaren er nå installert.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki-programvaren er nå installert.'''</span>",
 'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
 
 ==Å starte==
@@ -747,7 +747,7 @@ Velger du ''Lagre siden'' en gang til blir endringene lagret uten forklaring.",
 'summary-preview'                  => 'Forhåndsvisning av sammendrag:',
 'subject-preview'                  => 'Forhåndsvisning av emne/overskrift:',
 'blockedtitle'                     => 'Brukeren er blokkert',
-'blockedtext'                      => "<big>'''Ditt brukernavn eller din IP-adresse har blitt blokkert.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Ditt brukernavn eller din IP-adresse har blitt blokkert.'''</span>
 
 Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 
@@ -2147,7 +2147,7 @@ Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gje
 'undeletedrevisions-files'     => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} og {{PLURAL:$2|én fil|$2 filer}} gjenopprettet',
 'undeletedfiles'               => '{{PLURAL:$1|Én fil|$1 filer}} gjenopprettet',
 'cannotundelete'               => 'Kunne ikke gjenopprette siden (den kan være gjenopprettet av noen andre).',
-'undeletedpage'                => "<big>'''$1 ble gjenopprettet'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 ble gjenopprettet'''</span>
 
 Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger og gjenopprettelser.",
 'undelete-header'              => 'Se [[Special:Log/delete|slettingsloggen]] for nylig slettede sider.',
@@ -2365,7 +2365,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'move-watch'                   => 'Overvåk denne siden',
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flytting gjennomført',
-'movepage-moved'               => "<big>'''«$1» ble flyttet til «$2»'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''«$1» ble flyttet til «$2»'''</span>",
 'movepage-moved-redirect'      => 'En omdirigering har blitt opprettet.',
 'movepage-moved-noredirect'    => 'Det ble ikke opprettet en omdirigering.',
 'articleexists'                => 'En side med det navnet finnes fra før, eller valgte navn er ugyldig. Velg et annet navn.',

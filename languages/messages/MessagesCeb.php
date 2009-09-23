@@ -190,7 +190,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ang mosunod nga {{PLURAL:$1|payl|$1 ka mga payl}} anaa niining kategoryaha.',
 'listingcontinuesabbrev'         => 'pad.',
 
-'mainpagetext'      => "<big>'''Malamposon ang pag-instalar sa MediaWiki.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Malamposon ang pag-instalar sa MediaWiki.'''</span>",
 'mainpagedocfooter' => 'Konsultaha ang [http://meta.wikimedia.org/wiki/Help:Contents Giya sa mga gumagamit] alang sa impormasyon unsaon paggamit niining wiki nga software.
 
 == Pagsugod ==
@@ -380,7 +380,7 @@ $1',
 'nosuchaction'      => 'Walay maong aksyon',
 'nosuchactiontext'  => 'Ang aksyon nga anaa sa URL wala gi-ila sa wiki',
 'nosuchspecialpage' => 'Walay maong espesyal nga panid',
-'nospecialpagetext' => "<big>'''Mihangyo ikaw sa inbalidong espesyal nga panid.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Mihangyo ikaw sa inbalidong espesyal nga panid.'''</span>
 
 Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -1163,7 +1163,7 @@ Sa maong mga kaso, manwal nga imo ibalhin o i-merge ang panid kon gustohon.",
 'move-watch'       => 'Bantayi kining panid',
 'movepagebtn'      => 'Ibalhin ang panid',
 'pagemovedsub'     => 'Malamposon ang pagbalhin',
-'movepage-moved'   => '<big>Ang \'\'\'"$1" nabalhin na ngadto sa "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">Ang \'\'\'"$1" nabalhin na ngadto sa "$2"\'\'\'</span>',
 'articleexists'    => 'May panid na sa maong ngalan, o ang ngalan nga imong napili ginadili.
 Palihog pagpili og laing ngalan.',
 'talkexists'       => "'''Ang panid mismo malamposon nga nabalhin, pero ang panid sa hisgot dili mabalhin tungod kay duna nay sulod ang panid sa hisgot sa bag-ong titulo.

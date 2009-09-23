@@ -342,7 +342,7 @@ $messages = array(
 'nosuchaction'      => 'এনে কাৰ্য্য নাই',
 'nosuchactiontext'  => 'এই URL-ৰ নির্দেশিত কাৰ্য্য {{SITENAME}} -অত উপলব্ধ নহয়',
 'nosuchspecialpage' => 'এনেকুৱা কোনো বিশেষ পৃষ্ঠা নাই',
-'nospecialpagetext' => "<big>'''আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে '''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে '''</span>
 
    বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -518,7 +518,7 @@ $messages = array(
 'summary-preview'            => 'সাৰাংশৰ খচৰা:',
 'subject-preview'            => 'বিষয়/শিৰোণামাৰ খচৰা:',
 'blockedtitle'               => 'সদস্যজনক অবৰোধ কৰা হৈছে',
-'blockedtext'                => "<big>'''আপোনাৰ সদস্যনাম অথবা আই-পি ঠিকণা অবৰোধ কৰা হৈছে ।'''</big>
+'blockedtext'                => "<span style="font-size:larger">'''আপোনাৰ সদস্যনাম অথবা আই-পি ঠিকণা অবৰোধ কৰা হৈছে ।'''</span>
 
  $1 ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে । ইয়াৰ বাবে দিয়া কাৰণ হৈছে ''$2'' ।
 
@@ -968,7 +968,7 @@ $messages = array(
 'move-watch'     => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
 'movepagebtn'    => 'পৃষ্ঠাটো স্থানান্তৰ কৰক',
 'pagemovedsub'   => 'স্থানান্তৰ সফল হল',
-'movepage-moved' => "<big>'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''</big>",
+'movepage-moved' => "<span style="font-size:larger">'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''</span>",
 'articleexists'  => 'সেই নামৰ পৃষ্ঠা এটা আগৰ পৰাই আছে, বা সেই নামতো অযোগ্য।
 বেলেগ নাম এটা বাছি লওক।',
 'talkexists'     => "'''পৃষ্ঠাটো স্থানান্তৰ কৰা হৈছে, কিন্তু ইয়াৰ লগত জৰিত বার্তা পৃষ্ঠাটো স্থানান্তৰ কৰা নহল, কাৰণ নতুন ঠাইত বার্তা পৃষ্ঠা এটা আগৰ পৰাই আছে।

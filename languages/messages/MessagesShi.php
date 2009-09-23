@@ -218,7 +218,7 @@ Irwas is turit tansa  skra mani yaḍnin, ulla azday ur igi amya.
 
 Tzdar attili tamukrist ɣ {{SITENAME}}.',
 'nosuchspecialpage' => 'Urtlla tasna su w-ussaɣad',
-'nospecialpagetext' => "<big>'''Trit yat tasna tamzlit ur illan.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Trit yat tasna tamzlit ur illan.'''</span>
 
 Tifilit n tasnayin gaddanin ratn taft ɣid [[Special:SpecialPages|{{int:specialpages}}]].",
 

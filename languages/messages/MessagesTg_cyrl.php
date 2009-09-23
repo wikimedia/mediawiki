@@ -184,7 +184,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|парвандаи|$1 парвандаҳои}} зерин дар гурӯҳи феълӣ қарор {{PLURAL:дорад|доранд}}.',
 'listingcontinuesabbrev'         => 'идома',
 
-'mainpagetext'      => "<big>'''Нармафзори МедиаВики бо муваффақият насб шуд.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Нармафзори МедиаВики бо муваффақият насб шуд.'''</span>",
 'mainpagedocfooter' => 'Аз [http://meta.wikimedia.org/wiki/Help:Contents Роҳнамои Корбарон] барои истифодаи нармафзори вики кӯмак бигиред.
 
 == Оғоз ба кор ==
@@ -344,7 +344,7 @@ $messages = array(
 'nosuchaction'      => 'Чунин амале вуҷуд надорад',
 'nosuchactiontext'  => 'Вики амали дар URL мушаххас шударо намешиносад',
 'nosuchspecialpage' => 'Чунин саҳифаи вижа вуҷуд надорад',
-'nospecialpagetext' => "<big>'''Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.'''</span>
 
 Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:SpecialPages|{{int:specialpages}}]] нигаред.",
 
@@ -540,7 +540,7 @@ $messages = array(
 'summary-preview'                  => 'Пешнамоиши хулоса:',
 'subject-preview'                  => 'Пешнамоиши мавзӯъ/унвон:',
 'blockedtitle'                     => 'Корбар баста шудааст',
-'blockedtext'                      => "<big>'''Номи корбарии Шумо ё нишонаи IP баста шудааст.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Номи корбарии Шумо ё нишонаи IP баста шудааст.'''</span>
 
 Бастан аз тарафи $1 иҷро шуд. 
 Сабаби он ''$2'' аст.
@@ -1597,7 +1597,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 нусха ва $2 парванда барқарор {{PLURAL:$1|шуд|шуданд}}',
 'undeletedfiles'               => '$1 парванда барқарор {{PLURAL:$1|шуд|шуданд}}',
 'cannotundelete'               => 'Барқароркунӣ нашуд; мумкин аст касе дигаре пештар ин саҳифаро барқарор карда бошад.',
-'undeletedpage'                => "<big>'''$1 барқарор шуд'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 барқарор шуд'''</span>
 
 Барои дидани гузориши ҳазфҳо ва барқароркуниҳои охирин ба [[Special:Log/delete|гузориши ҳазф]] нигаред.",
 'undelete-header'              => 'Барои дидани саҳифаҳои ҳазфшудаи охир [[Special:Log/delete|гузоришҳои ҳазфро]] нигаред.',
@@ -1790,7 +1790,7 @@ $1',
 'move-watch'              => 'Назар кардани ин саҳифа',
 'movepagebtn'             => 'Кӯчонидани саҳифа',
 'pagemovedsub'            => 'Кӯчониш бомуваффақият анҷом ёфт',
-'movepage-moved'          => '<big>\'\'\'"$1" ба "$2" кӯчонида шуд\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" ба "$2" кӯчонида шуд\'\'\'</span>',
 'articleexists'           => 'Саҳифае бо ин ном вуҷуд надорад, ё номе, ки интихоб кардаед мӯътабар нест.
 Лутфан номи дигареро интихоб намоед.',
 'cantmove-titleprotected' => 'Шумо наметавонед ин саҳифаро ба ин нишона кӯчонед, барои он, ки унвони ҷадид аз эҷод кардан муҳофизат шудааст',

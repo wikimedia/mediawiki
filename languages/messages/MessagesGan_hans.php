@@ -135,7 +135,7 @@ $messages = array(
 'hidden-category-category' => '弆到𠮶分类',
 'listingcontinuesabbrev'   => '续',
 
-'mainpagetext'      => "<big>'''安装正MediaWiki喽。'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''安装正MediaWiki喽。'''</span>",
 'mainpagedocfooter' => '参看[http://meta.wikimedia.org/wiki/Help:Contents 用户指南]里头会话到啷用wiki软件
 
 == 开始使用 ==
@@ -291,7 +291,7 @@ $messages = array(
 'nosuchaction'      => '冇有个只命令',
 'nosuchactiontext'  => 'Wiki识别伓到个只URL命令',
 'nosuchspecialpage' => '冇有个只特殊页',
-'nospecialpagetext' => "<big>'''倷要求𠮶特殊页冇有用。'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''倷要求𠮶特殊页冇有用。'''</span>
 
 [[Special:SpecialPages]]上寻得到用得上𠮶特殊页。",
 
@@ -461,7 +461,7 @@ $2',
 'summary-preview'            => '摘要预览:',
 'subject-preview'            => '主题/头条预览:',
 'blockedtitle'               => '用户封到嘞',
-'blockedtext'                => "<big>倷𠮶用户名或IP地址拖$1封到嘞。</big>
+'blockedtext'                => "<span style="font-size:larger">倷𠮶用户名或IP地址拖$1封到嘞。</span>
 
 个道封锁系$1封𠮶。个中原因系''$2''。
 
@@ -1283,7 +1283,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1只修改版本同$2只档案恢复正嘞',
 'undeletedfiles'               => '$1只档案恢复正嘞',
 'cannotundelete'               => '反删除伓正；话伓定别𠮶人先倷恢复嘞个只页面。',
-'undeletedpage'                => "<big>'''$1恢复正嘞'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1恢复正嘞'''</span>
 
 望吖[[Special:Log/delete|删除日志]]𠮶删除同恢复记录。",
 'undelete-header'              => '要查最晏𠮶记录𠮶话请望[[Special:Log/delete|删除日志]]。',
@@ -1454,7 +1454,7 @@ $NEWPAGE
 'move-watch'              => '眏到个页',
 'movepagebtn'             => '换卟个页',
 'pagemovedsub'            => '移正嘞',
-'movepage-moved'          => "<big>'''“$1”拖移到“$2”'''</big>",
+'movepage-moved'          => "<span style="font-size:larger">'''“$1”拖移到“$2”'''</span>",
 'articleexists'           => '已经有页面叫个只名字，要伓倷拣𠮶名字冇用。请拣过只名字。',
 'cantmove-titleprotected' => '倷移伓正一只页面到个只位置，个只新题目已经拖保护起来嘞，新建伓正。',
 'talkexists'              => '页面本身移动正嘞，但系新标题下底有嘞对话页，所以对话页移伓正。请手工合并两页。',

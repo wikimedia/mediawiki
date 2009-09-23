@@ -116,7 +116,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Slijedeća $1 datoteka je|Slijedeće $1 datoteke su|Slijedećih $1 datoteka je}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
 
-'mainpagetext'      => "<big>'''MediaWiki softver is uspješno instaliran.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki softver is uspješno instaliran.'''</span>",
 'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
 
 == Početak ==
@@ -264,7 +264,7 @@ $messages = array(
 Možda ste pogriješili pri unosu URL-a ili ste slijedili pokvaren link.
 Moguće je i da je ovo greška u softveru koji koristi {{SITENAME}}.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
-'nospecialpagetext' => "<big>'''Zatražili ste nevaljanu posebnu stranicu.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Zatražili ste nevaljanu posebnu stranicu.'''</span>
 
 Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -487,7 +487,7 @@ Ako ponovo kliknete na '''Snimi stranicu''', Vaše izmjene će biti snimljene be
 'summary-preview'                  => 'Pretpregled sažetka:',
 'subject-preview'                  => 'Pretpregled teme/naslova:',
 'blockedtitle'                     => 'Korisnik je blokiran',
-'blockedtext'                      => "<big>'''Vaše korisničko ime ili IP adresa je blokirana.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Vaše korisničko ime ili IP adresa je blokirana.'''</span>
 
 Blokada izvršena od strane $1.
 Dati razlog je slijedeći: ''$2''.
@@ -1018,7 +1018,7 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'move-watch'       => 'Prati ovu stranicu',
 'movepagebtn'      => 'premjestite stranicu',
 'pagemovedsub'     => 'Premještanje uspjelo',
-'movepage-moved'   => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" je premještena na "$2"\'\'\'</span>',
 'articleexists'    => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  
 Molimo Vas da izaberete drugo ime.',
 'talkexists'       => "'''Sama stranica je uspješno premještena, ali stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.'''",

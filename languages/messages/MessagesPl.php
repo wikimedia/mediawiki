@@ -354,7 +354,7 @@ $messages = array(
 'index-category'                 => 'Strony z włączonym indeksowaniem',
 'noindex-category'               => 'Strony z wyłączonym indeksowaniem',
 
-'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Instalacja MediaWiki powiodła się.'''</span>",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
 
 == Na początek ==
@@ -546,7 +546,7 @@ $1',
 'nosuchactiontext'  => 'Działanie określone w adresie URL jest nieprawidłowe.
 Możliwe przyczyny to literówka w adresie, nieprawidłowy link lub błąd w oprogramowaniu {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Brak takiej strony specjalnej',
-'nospecialpagetext' => "<big>'''Brak żądanej strony specjalnej.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Brak żądanej strony specjalnej.'''</span>
 
 Listę dostępnych stron specjalnych znajdziesz [[Special:SpecialPages|tutaj]].",
 
@@ -776,7 +776,7 @@ Jeśli tego nie zrobisz, Twój komentarz zostanie zapisany bez nagłówka.",
 'summary-preview'                  => 'Podgląd opisu:',
 'subject-preview'                  => 'Podgląd nagłówka:',
 'blockedtitle'                     => 'Użytkownik jest zablokowany',
-'blockedtext'                      => "<big>'''Twoje konto lub adres IP zostały zablokowane.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Twoje konto lub adres IP zostały zablokowane.'''</span>
 
 Blokada została nałożona przez $1.
 Podany powód to: ''$2''.
@@ -2265,7 +2265,7 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeletedfiles'               => 'odtworzył $1 {{PLURAL:$1|plik|pliki|plików}}',
 'cannotundelete'               => 'Odtworzenie nie powiodło się.
 Ktoś inny prawdopodobnie odtworzył już tę stronę.',
-'undeletedpage'                => "<big>'''Odtworzono stronę $1.'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''Odtworzono stronę $1.'''</span>
 
 Zobacz [[Special:Log/delete|rejestr usunięć]], jeśli chcesz przejrzeć ostatnie operacje usuwania i odtwarzania stron.",
 'undelete-header'              => 'Zobacz [[Special:Log/delete|rejestr usunięć]], aby sprawdzić ostatnio usunięte strony.',
@@ -2493,7 +2493,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'move-watch'                   => 'Obserwuj',
 'movepagebtn'                  => 'Przenieś stronę',
 'pagemovedsub'                 => 'Przeniesienie powiodło się',
-'movepage-moved'               => "<big>'''„$1” została przeniesiona do „$2”'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''„$1” została przeniesiona do „$2”'''</span>",
 'movepage-moved-redirect'      => 'Zostało utworzone przekierowanie.',
 'movepage-moved-noredirect'    => 'Nie zostało utworzone przekierowanie.',
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.

@@ -136,7 +136,7 @@ $messages = array(
 'hidden-category-category' => 'Categorias ascondeda',
 'listingcontinuesabbrev'   => 'cont.',
 
-'mainpagetext'      => "<big>'''MediaWiki es aora instalada.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki es aora instalada.'''</span>",
 'mainpagedocfooter' => 'Atenda la [http://meta.wikimedia.org/wiki/Help:Contents Gida per Usores] per informa supra la usa de la programa de vici.
 
 == Comensa ==
@@ -371,7 +371,7 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 Tu adirije de IP va es memorada en la istoria de revisas de esta paje.",
 'summary-preview'            => 'Previde soma:',
 'blockedtitle'               => 'Usor es impedida',
-'blockedtext'                => "<big>'''Tu nom de usor o adirije de IP ia es impedida.'''</big>
+'blockedtext'                => "<span style="font-size:larger">'''Tu nom de usor o adirije de IP ia es impedida.'''</span>
 
 La impedi ia es fada par $1.
 La razon donada es ''$2''.
@@ -843,7 +843,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'move-watch'       => 'Oserva esta paje',
 'movepagebtn'      => 'Move paje',
 'pagemovedsub'     => 'La move ia susede',
-'movepage-moved'   => '<big>\'\'\'"$1" ia es moveda a "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" ia es moveda a "$2"\'\'\'</span>',
 'articleexists'    => 'Un paje con acel nom esiste ja, o la nom ce tu ia eleje no es un nom legal. Per favore, eleje un otra nom.',
 'talkexists'       => "'''La paje se mesma ia es moveda, ma la paje de discutes no pote es moveda, per ce un esiste ja a la titulo nova. Per favore, fusa los per mano'''",
 'movedto'          => 'moveda a',

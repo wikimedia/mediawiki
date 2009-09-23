@@ -146,7 +146,7 @@ $messages = array(
 'category-file-count-limited'    => 'Folgende {{PLURAL:$1|Datei ies|$1 Dateien sein}} ei dieser Kategorie enthalta:',
 'listingcontinuesabbrev'         => '(Furtsetzung)',
 
-'mainpagetext'      => "<big>'''MediaWiki wourde erfolgreich installiert.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki wourde erfolgreich installiert.'''</span>",
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software fendest du eim [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbichl].
 
 == Stoarthilfa ==
@@ -330,7 +330,7 @@ $messages = array(
 'nosuchaction'      => 'Diese Aktion gibt es nicht',
 'nosuchactiontext'  => 'De ei der URL angegebene Aktion wird vo MediaWiki nicht unterstützt.',
 'nosuchspecialpage' => 'Spezialseyte nee vorhoanda',
-'nospecialpagetext' => "<big>'''De uffgerufene Spezialseyte ies nee vorhanden.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''De uffgerufene Spezialseyte ies nee vorhanden.'''</span>
 
 Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spezialseyta]] zu finda.",
 
@@ -489,7 +489,7 @@ Du koast diesen Tittel uffa andern Seyta [[Special:Search/{{PAGENAME}}|sucha]],
 'editingsection'                   => 'Beoarbeeta vo $1 (Oabsatz)',
 'editingcomment'                   => 'Beoarbeeta vo $1 (Kommentar)',
 'yourtext'                         => 'Deen Text',
-'copyrightwarning'                 => "'''Bite <big>kopiere kenne Webseita</big>, de nee denne eegena sein, benutze <big>kenne urheberrechtlich geschietzta Werke</big> ohne Erlaubnis des Urhebers!'''<br />
+'copyrightwarning'                 => "'''Bite <span style="font-size:larger">kopiere kenne Webseita</span>, de nee denne eegena sein, benutze <span style="font-size:larger">kenne urheberrechtlich geschietzta Werke</span> ohne Erlaubnis des Urhebers!'''<br />
 Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, dass dar Text Allgemeengutt '''(public domain)''' ies, oder dass dar '''Urheber''' senne '''Zustimmung''' gegeben hoot. Foalls dieser Text bereits woanders vereeffentlicht wurde, weise bite uff dar Diskussionsseite darauf hin.
 <i>Bite beachte, dass olle {{SITENAME}}-Beiträge automatisch under dar „$2“ stieha (siehe $1 für Details). Foalls du nee meechtest, dass deine Arbeit hier voo andern verändert on verbreitet wird, doann dricke nee uff „Seite speichern“.</i>",
 'templatesused'                    => 'Folgende Vorlaga waan voo dieser Seyte verwendet:',
@@ -1136,7 +1136,7 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'move-watch'       => 'Diese Seyte beobachta',
 'movepagebtn'      => 'Seite verschieba',
 'pagemovedsub'     => 'Verschiebung erfolgreich',
-'movepage-moved'   => "<big>'''De Seyte „$1“ wurde noach „$2“ verschoba.'''</big>",
+'movepage-moved'   => "<span style="font-size:larger">'''De Seyte „$1“ wurde noach „$2“ verschoba.'''</span>",
 'articleexists'    => 'Under diesem Noama existiert bereits eene Seyte. Bite wähle eena andern Noama.',
 'talkexists'       => 'De Seyte selbst wurde erfolgreich verschoba, oaber de zugeheerige Dischkursseite nee, doo bereits eene miet dam neua Tittel existiert. Bite gleiche de Inhalte voo Hond ob.',
 'movedto'          => 'verschoba noach',

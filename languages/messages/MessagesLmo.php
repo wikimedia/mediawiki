@@ -372,7 +372,7 @@ $1",
 Pö vess che t'hee batüü mal l'URL, o che seet andaa adree a un ligam minga bun.<br />
 Quest chì al pudaria anca indicà un bug dent in del software dupraa de {{SITENAME}}.",
 'nosuchspecialpage' => "La gh'è minga una pagina pagina special tan 'me quela che t'hee ciamaa",
-'nospecialpagetext' => "<big>'''T'hee ciamaa una pagina speciala minga valida.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''T'hee ciamaa una pagina speciala minga valida.'''</span>
 
 Una lista di paginn special la se pö truà in de la [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -833,7 +833,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'newtitle'        => 'Titul növ:',
 'move-watch'      => "Gionta chela pagina chí ai pàgin à tegní d'œucc.",
 'pagemovedsub'    => "San Martin l'è bele fat!",
-'movepage-moved'  => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>",
+'movepage-moved'  => "<span style="font-size:larger">'''\"\$1\" l'è staa muvüü a \"\$2\"'''</span>",
 'movedto'         => 'spustaa vers:',
 '1movedto2'       => '[[$1]] spustaa in [[$2]]',
 '1movedto2_redir' => '[[$1]] movuu in [[$2]] par redirezion',

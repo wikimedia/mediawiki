@@ -368,7 +368,7 @@ Sa ku bye fatukile zwa sebu dafi e a ni petuho, ni petuho e mulumiwasibukirisize
 Zwa adresi di IP sa bulukezi kwa kenki bundau di petulo.",
 'summary-preview'            => 'Lyangutukezi pendiBe:',
 'blockedtitle'               => 'Sebelu sa bolok',
-'blockedtext'                => "<big>'''Zwa sebelu/IP sa bolok.'''</big>
+'blockedtext'                => "<span style="font-size:larger">'''Zwa sebelu/IP sa bolok.'''</span>
 
 $1 bolok a. Lyangutukezireason sa ''$2''.
 

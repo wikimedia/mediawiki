@@ -126,7 +126,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El siguienti archivu está|Los siguientis $1 archivus están}} nesta categoria.',
 'listingcontinuesabbrev'         => 'acont.',
 
-'mainpagetext'      => "<big>'''MeyaGüiqui s'á istalau satihatoriamenti.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MeyaGüiqui s'á istalau satihatoriamenti.'''</span>",
 'mainpagedocfooter' => "Consurta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pa sabel mas al tentu el huncionamientu el software güiqui.
 
 == Esminciandu ==
@@ -285,7 +285,7 @@ $messages = array(
 'nosuchactiontext'  => "Nu se puei realizal l'ación
 especificá ena URL",
 'nosuchspecialpage' => 'Nu desisti tal páhina especial',
-'nospecialpagetext' => "<big>'''Nu desisti esa páhina especial.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Nu desisti esa páhina especial.'''</span>
 
 Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:SpecialPages]].",
 
@@ -472,7 +472,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'summary-preview'                  => 'Previsoreal síntesis:',
 'subject-preview'                  => 'Previsoreal tema/entítulu:',
 'blockedtitle'                     => 'Esti usuáriu está atarugau',
-'blockedtext'                      => "<big>'''El tu nombri d'usuáriu/direción IP está atarugau/á.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''El tu nombri d'usuáriu/direción IP está atarugau/á.'''</span>
 
 \$1 hue quien pusu el tarugu, pola siguienti razón: ''\$2''.
 
@@ -1444,7 +1444,7 @@ se perderán aluspués l'arrecuperación",
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisión|$1 revisionis}} i {{PLURAL:$2|1 archivu|$2 archivus}} restauraus',
 'undeletedfiles'               => '{{PLURAL:$1|1 archivu|$1 archivus}} restauraus',
 'cannotundelete'               => 'Marru arrecuperandu; es posibri qu´alguien ya aiga arrecuperau la páhina.',
-'undeletedpage'                => "<big>'''S'á restaurau $1'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''S'á restaurau $1'''</span>
 
 Consurta el [[Special:Log/delete|rustrihu d'esborrau]] pa visoreal los úrtimus esborraus i arrecuperacionis.",
 'undelete-header'              => 'Vaiti pal [[Special:Log/delete|rustrihu d´esborrau]] pa vel las úrtimas páhinas esborrás.',
@@ -1636,7 +1636,7 @@ En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhin
 'move-watch'              => 'Vehilal esta páhina',
 'movepagebtn'             => 'Movel páhina',
 'pagemovedsub'            => 'S´á moviu la páhina',
-'movepage-moved'          => "<big>S'á muau '''\"\$1\" a \"\$2\"'''</big>",
+'movepage-moved'          => "<span style="font-size:larger">S'á muau '''\"\$1\" a \"\$2\"'''</span>",
 'articleexists'           => 'Ya desisti una páhina con esi nombri u nu se premiti el nombri qu´as lihiu.
 Pol favol, escrebi otru entítulu.',
 'cantmove-titleprotected' => "Nu t'es posibri movel la páhina ebiu a qu'el nuevu entítulu s'alcuentra atarugau",

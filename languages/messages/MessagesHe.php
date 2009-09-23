@@ -452,7 +452,7 @@ $messages = array(
 'index-category'                 => 'דפים המופיעים במנועי חיפוש',
 'noindex-category'               => 'דפים המוסתרים ממנועי חיפוש',
 
-'mainpagetext'      => "<big>'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''</span>",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
 
 == קישורים שימושיים ==
@@ -645,7 +645,7 @@ $1',
 ייתכן שטעיתם בהקלדת ה־URL, או שהשתמשתם בקישור לא נכון.
 ייתכן גם שהבעיה נוצרה כתוצאה מבאג בתוכנה המשמשת את {{SITENAME}}.',
 'nosuchspecialpage' => 'אין דף מיוחד בשם זה',
-'nospecialpagetext' => '<big>ביקשתם דף מיוחד שאינו קיים.</big>
+'nospecialpagetext' => '<span style="font-size:larger">ביקשתם דף מיוחד שאינו קיים.</span>
 
 ראו גם את [[Special:SpecialPages|רשימת הדפים המיוחדים התקינים]].',
 
@@ -852,7 +852,7 @@ $2',
 'summary-preview'                  => 'תצוגה מקדימה של התקציר:',
 'subject-preview'                  => 'תצוגה מקדימה של הנושא/הכותרת:',
 'blockedtitle'                     => 'המשתמש חסום',
-'blockedtext'                      => '<big>\'\'\'שם המשתמש או כתובת ה־IP שלכם נחסמו.\'\'\'</big>
+'blockedtext'                      => '<span style="font-size:larger">\'\'\'שם המשתמש או כתובת ה־IP שלכם נחסמו.\'\'\'</span>
 
 החסימה בוצעה על ידי $1. הסיבה שניתנה לכך היא \'\'\'$2\'\'\'.
 
@@ -2545,7 +2545,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'move-watch'                   => 'מעקב אחרי דף זה',
 'movepagebtn'                  => 'העברה',
 'pagemovedsub'                 => 'ההעברה הושלמה בהצלחה',
-'movepage-moved'               => '<big>הדף "$1" הועבר לשם "$2".</big>',
+'movepage-moved'               => '<span style="font-size:larger">הדף "$1" הועבר לשם "$2".</span>',
 'movepage-moved-redirect'      => 'נוצרה הפניה.',
 'movepage-moved-noredirect'    => 'יצירת ההפניה בוטלה.',
 'articleexists'                => 'קיים כבר דף עם אותו שם, או שהשם שבחרתם אינו חוקי.

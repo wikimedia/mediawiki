@@ -456,7 +456,7 @@ $messages = array(
 'index-category'                 => 'Pages indexées',
 'noindex-category'               => 'Pages non indexées',
 
-'mainpagetext'      => "<big>'''MediaWiki a été installé avec succès.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki a été installé avec succès.'''</span>",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
 
 == Démarrer avec MediaWiki ==
@@ -648,7 +648,7 @@ $1',
 Vous avez peut-être mal entré l’URL ou suivi un lien erroné.
 Il peut également s’agir d’un bogue dans le logiciel utilisé par {{SITENAME}}.',
 'nosuchspecialpage' => 'Page spéciale inexistante',
-'nospecialpagetext' => "<big>'''Vous avez demandé une page spéciale qui n’existe pas.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Vous avez demandé une page spéciale qui n’existe pas.'''</span>
 
 Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -868,7 +868,7 @@ Si vous cliquez de nouveau sur « {{MediaWiki:Savearticle}} », votre modificati
 'summary-preview'                  => 'Aperçu du résumé :',
 'subject-preview'                  => 'Prévisualisation du sujet/titre :',
 'blockedtitle'                     => 'L’utilisateur est bloqué.',
-'blockedtext'                      => "<big>'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''</span>
 
 Le blocage a été effectué par $1.
 La raison invoquée est la suivante : ''$2''.
@@ -2337,7 +2337,7 @@ Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou sup
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichier restauré|fichiers restaurés}}',
 'cannotundelete'               => 'La restauration a échoué ;
 un autre utilisateur a probablement déjà restauré la page.',
-'undeletedpage'                => "<big>'''La page $1 a été restaurée.'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''La page $1 a été restaurée.'''</span>
 
 Consultez le [[Special:Log/delete|journal des suppressions]] pour obtenir la liste des récentes suppressions et restaurations.",
 'undelete-header'              => 'Consultez le [[Special:Log/delete|journal des suppressions]] pour lister les pages récemment supprimées.',
@@ -2560,7 +2560,7 @@ Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion man
 'move-watch'                   => 'Suivre ces pages',
 'movepagebtn'                  => 'Renommer la page',
 'pagemovedsub'                 => 'Déplacement réussi',
-'movepage-moved'               => "<big>'''« $1 »''' a été renommé '''« $2 »'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''« $1 »''' a été renommé '''« $2 »'''</span>",
 'movepage-moved-redirect'      => 'Une redirection depuis l’ancien nom a été créée.',
 'movepage-moved-noredirect'    => 'La création d’une redirection depuis l’ancien nom a été annulée.',
 'articleexists'                => 'Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n’est pas correct.

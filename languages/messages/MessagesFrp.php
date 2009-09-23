@@ -429,7 +429,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Ceti fichiér figure|Cetos $1 fichiérs figuront}} dens la presenta catègorie.',
 'listingcontinuesabbrev'         => '(suita)',
 
-'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki at étâ enstalâ avouéc reusséta.'''</span>",
 'mainpagedocfooter' => 'Vêde lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
 
 == Dèmarrar avouéc MediaWiki ==
@@ -622,7 +622,7 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 Vos éd pôt-étre mâl-buchiê l’URL ou ben siuvu un lim fôx.
 Pôt asse-ben étre quèstion d’una cofierie dens la programeria utilisâ per {{SITENAME}}.',
 'nosuchspecialpage' => 'Pâge spèciâla pas ègzistenta',
-'nospecialpagetext' => "<big>'''Vos éd demandâ una pâge spèciâla qu’ègziste pas.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Vos éd demandâ una pâge spèciâla qu’ègziste pas.'''</span>
 
 Una lista de les pâges spèciâles valides sè trove dessus [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -855,7 +855,7 @@ Se vos tornâd clicar dessus « Sôvar ceta pâge », voutron changement serat s
 'summary-preview'                  => 'Prèvisualisacion du rèsumâ :',
 'subject-preview'                  => 'Prèvisualisacion du sujèt / titro :',
 'blockedtitle'                     => 'L’utilisator est blocâ.',
-'blockedtext'                      => "<big>'''Voutron compto utilisator ou ben voutra adrèce IP at étâ blocâ.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Voutron compto utilisator ou ben voutra adrèce IP at étâ blocâ.'''</span>
 
 Lo blocâjo at étâ fêt per $1.
 La rêson balyê est ceta : ''$2''.
@@ -2351,7 +2351,7 @@ Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichiér refêt|fichiérs refêts}}',
 'cannotundelete'               => 'La rèstoracion at pas reussia ;
 un ôtro utilisator at probâblament ja refêt la pâge.',
-'undeletedpage'                => "<big>'''La pâge $1 at étâ refêta.'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''La pâge $1 at étâ refêta.'''</span>
 
 Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les novèles suprèssions et de les novèles rèstoracions.",
 'undelete-header'              => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les pâges suprimâs dèrriérement.',
@@ -2577,7 +2577,7 @@ Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo
 'move-watch'                   => 'Siuvre ceta pâge',
 'movepagebtn'                  => 'Renomar la pâge',
 'pagemovedsub'                 => 'Changement de nom reussi',
-'movepage-moved'               => "<big>'''« $1 » at étâ renomâ en « $2 »'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''« $1 » at étâ renomâ en « $2 »'''</span>",
 'movepage-moved-redirect'      => 'Una redirèccion dês lo viely nom at étâ fêta.',
 'movepage-moved-noredirect'    => 'La crèacion d’una redirèccion dês lo viely nom at étâ anulâ.',
 'articleexists'                => 'Ègziste ja una pâge que pôrte cél titro, ou ben lo titro que vos éd chouèsi est fôx.

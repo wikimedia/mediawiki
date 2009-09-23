@@ -353,7 +353,7 @@ $messages = array(
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas no indexadas',
 
-'mainpagetext'      => "<big>'''MediaWiki ha sido instalado con éxito.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki ha sido instalado con éxito.'''</span>",
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
@@ -545,7 +545,7 @@ $1',
 'nosuchactiontext'  => 'La acción especificada en la dirección es inválida. 	
 Es posible que hayas escrito mal la URL o que hayas seguido un enlace incorrecto. Esto también podría indicar un error en el software utilizado en {{SITENAME}}.',
 'nosuchspecialpage' => 'No existe esa página especial',
-'nospecialpagetext' => "<big>'''Ha solicitado una página especial inexistente.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Ha solicitado una página especial inexistente.'''</span>
 
 Puedes ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -764,7 +764,7 @@ Tu dirección IP será guardada en el historial de ediciones de la página.",
 'summary-preview'                  => 'Previsualización del resumen:',
 'subject-preview'                  => 'Previsualización del tema/título:',
 'blockedtitle'                     => 'El usuario está bloqueado',
-'blockedtext'                      => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</span>
 
 El bloqueo fue hecho por $1.
 La razón dada es ''$2''.
@@ -2209,7 +2209,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
 'cannotundelete'               => 'Ha fallado el deshacer el borrado;
 alguien más puede haber deshecho el borrado antes.',
-'undeletedpage'                => "<big>'''Se ha restaurado $1'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''Se ha restaurado $1'''</span>
 
 Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de los últimos borrados y restauraciones.",
 'undelete-header'              => 'En el [[Special:Log/delete|registro de borrados]] se listan las páginas eliminadas.',
@@ -2431,7 +2431,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'                   => 'Vigilar este artículo',
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
-'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</span>',
 'movepage-moved-redirect'      => 'Se ha creado una redirección.',
 'movepage-moved-noredirect'    => 'Se ha suprimido la creación de la redirección.',
 'articleexists'                => 'Ya existe una página con ese nombre, o el nombre que has escogido no es válido.

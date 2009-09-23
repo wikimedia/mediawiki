@@ -411,7 +411,7 @@ pe titlul secţiunii (JavaScript)',
 'noindex-category'               => 'Pagini neindexate',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Programul Wiki a fost instalat cu succes.'''</span>",
 'mainpagedocfooter' => 'Consultă [http://meta.wikimedia.org/wiki/Help:Contents Ghidul utilizatorului (en)] pentru informaţii despre utilizarea programului wiki.
 
 == Primii paşi ==
@@ -809,7 +809,7 @@ Este posibil să fi reuşit deja schimbarea parolei sau să fi cerut o parolă t
 'summary-preview'                  => 'Previzualizare descriere:',
 'subject-preview'                  => 'Previzualizare subiect/titlu:',
 'blockedtitle'                     => 'Utilizatorul este blocat',
-'blockedtext'                      => "<big>'''Adresa IP sau contul dumneavoastră de utilizator a fost blocat.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Adresa IP sau contul dumneavoastră de utilizator a fost blocat.'''</span>
 
 Blocarea a fost făcută de $1.
 Motivul blocării este ''$2''.
@@ -2250,7 +2250,7 @@ S-ar putea ca această legătură să fie greşită, sau revizia a fost restaura
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revizie|revizii}} şi $2 {{PLURAL:$2|fişier|fişiere}} recuperate',
 'undeletedfiles'               => '$1 {{PLURAL:$1|revizie recuperată|revizii recuperate}}',
 'cannotundelete'               => 'Recuperarea a eşuat; este posibil ca altcineva să fi recuperat pagina deja.',
-'undeletedpage'                => "<big>'''$1 a fost recuperat'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 a fost recuperat'''</span>
 
 Consultaţi [[Special:Log/delete|jurnalul ştergerilor]] pentru a vedea toate ştergerile şi recuperările recente.",
 'undelete-header'              => 'Vezi [[Special:Log/delete|logul de ştergere]] pentru paginile şterse recent.',
@@ -2477,7 +2477,7 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 'move-watch'                   => 'Urmăreşte această pagină',
 'movepagebtn'                  => 'Mută pagina',
 'pagemovedsub'                 => 'Pagina a fost mutată',
-'movepage-moved'               => '<big>\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'</span>',
 'movepage-moved-redirect'      => 'O redirecţionare a fost creată.',
 'movepage-moved-noredirect'    => 'Crearea redirecţionărilor a fost suprimată.',
 'articleexists'                => 'O pagină cu acelaşi nume există deja, sau numele pe care l-aţi ales este invalid. Sunteţi rugat să alegeţi un alt nume.',

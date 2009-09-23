@@ -155,7 +155,7 @@ $messages = array(
 'category-file-count-limited'    => "Deêze categorie bevat {{PLURAL:$1|'t volhende bestand|de volhende $1 bestan'n}}.",
 'listingcontinuesabbrev'         => 'vedder',
 
-'mainpagetext'      => "<big>'''De installaotie van MediaWiki is geslaegd.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''De installaotie van MediaWiki is geslaegd.'''</span>",
 'mainpagedocfooter' => "Raedpleeg de [http://meta.wikimedia.org/wiki/ZEA_Ulpe:Inhoudsopgaeve andleidieng] voe informatie over 't gebruuk van de wikisoftware.
 
 == Meer ulpe over MediaWiki ==
@@ -312,7 +312,7 @@ $messages = array(
 'nosuchaction'      => 'Opeheven handelieng besti nie',
 'nosuchactiontext'  => 'Den opdracht in de URL wier nie herkend deur de wiki',
 'nosuchspecialpage' => 'Deêze speciaole pagina besti nie',
-'nospecialpagetext' => "<big>'''Je ei een onbestaende speciaole pagina opevrogen.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Je ei een onbestaende speciaole pagina opevrogen.'''</span>
 
 Een lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagina’s]].",
 
@@ -500,7 +500,7 @@ Neheer dit bericht as deêze gebruker zonder joe medeweten is anemikt.',
 'summary-preview'            => 'Saemenvattieng naekieken:',
 'subject-preview'            => 'Naekieken onderwerp/kop:',
 'blockedtitle'               => 'Gebruker is geblokkeerd',
-'blockedtext'                => "<big>'''Je gebruker of IP-adres is eblokkeerd.'''</big>
+'blockedtext'                => "<span style="font-size:larger">'''Je gebruker of IP-adres is eblokkeerd.'''</span>
 
 De blokkaode is uutevoerd deur $1.
 De opeheven reeën is ''$2''.

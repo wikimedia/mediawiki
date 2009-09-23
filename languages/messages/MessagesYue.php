@@ -268,7 +268,7 @@ $messages = array(
 'category-file-count-limited'    => '呢個類別入邊有$1個檔案。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki已經裝好。'''</span>",
 'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
 
 ==開始使用==
@@ -460,7 +460,7 @@ $1',
 你可能打錯咗個 URL ，或者撳錯咗唔啱嘅連結。
 呢個可能係{{SITENAME}}所用嘅軟件入面嘅臭蟲所引致嘅。',
 'nosuchspecialpage' => '冇呢頁特別頁',
-'nospecialpagetext' => "<big>'''無你所要求嘅特別頁。'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''無你所要求嘅特別頁。'''</span>
 
 喺[[Special:SpecialPages|{{int:specialpages}}]]有全部用得嘅特別頁。",
 
@@ -664,7 +664,7 @@ $1',
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '標題／頭條預覽:',
 'blockedtitle'                     => '用戶已經封鎖',
-'blockedtext'                      => "<big>你嘅用戶名或者 IP 位址已經被 $1 封咗。</big>
+'blockedtext'                      => "<span style="font-size:larger">你嘅用戶名或者 IP 位址已經被 $1 封咗。</span>
 
 呢次封鎖係由$1所封嘅。當中嘅原因係''$2''。
 
@@ -2087,7 +2087,7 @@ wiki: $PAGEEDITOR_WIKI
 'undeletedrevisions-files'     => '$1個修訂同$2個檔案已經救返',
 'undeletedfiles'               => '$1個檔案已經救返',
 'cannotundelete'               => '救唔到；可能有其他人已經救返嗰頁。',
-'undeletedpage'                => "<big>'''$1已經成功救返'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1已經成功救返'''</span>
 
 最近嘅刪除同恢復記錄請睇[[Special:Log/delete]]。",
 'undelete-header'              => '睇吓[[Special:Log/delete|刪除日誌]]去睇之前刪除嘅頁頁。',
@@ -2304,7 +2304,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'move-watch'                   => '睇實呢一版',
 'movepagebtn'                  => '搬頁',
 'pagemovedsub'                 => '搬頁成功',
-'movepage-moved'               => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1"已經搬到去"$2"\'\'\'</span>',
 'movepage-moved-redirect'      => '一個跳轉已經開咗。',
 'movepage-moved-noredirect'    => '已經壓制開個跳轉。',
 'articleexists'                => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。請揀過第二個名。',

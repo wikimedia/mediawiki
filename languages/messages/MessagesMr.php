@@ -410,7 +410,7 @@ $messages = array(
 'category-file-count-limited'    => 'खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात आहेत.',
 'listingcontinuesabbrev'         => 'पुढे.',
 
-'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''</span>",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
 
 == सुरुवात ==
@@ -573,7 +573,7 @@ $messages = array(
 तुम्ही कदाचित URL चुकीची दिली असेल, किंवा चुकीच्या दुव्यावर टिचकी दिली असेल.
 कदाचित ही कृती {{SITENAME}} मधील त्रुटी सुद्धा दर्शवित असेल.',
 'nosuchspecialpage' => 'असे कोणतेही विशेष पृष्ठ अस्तित्वात नाही',
-'nospecialpagetext' => "<big>'''आपण केलेली विनंती अयोग्य विशेषपानासंबंधी आहे.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''आपण केलेली विनंती अयोग्य विशेषपानासंबंधी आहे.'''</span>
 
 योग्य विशेषपानांची यादी  [[Special:SpecialPages|{{int:specialpages}}]] येथे उपलब्ध होऊ शकते.",
 
@@ -768,7 +768,7 @@ $2',
 'summary-preview'                  => 'आढाव्याची झलक:',
 'subject-preview'                  => 'विषय/मथळा झलक:',
 'blockedtitle'                     => 'या सदस्यासाठी प्रवेश नाकारण्यात आलेला आहे.',
-'blockedtext'                      => "<big>'''तुमचे सदस्यनाव अथवा IP पत्ता ब्लॉक केलेला आहे.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''तुमचे सदस्यनाव अथवा IP पत्ता ब्लॉक केलेला आहे.'''</span>
 
 हा ब्लॉक $1 यांनी केलेला आहे.
 यासाठी ''$2'' हे कारण दिलेले आहे.
@@ -1830,7 +1830,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}}आणि {{PLURAL:$2|1 संचिका|$2 संचिका}} पुनर्स्थापित',
 'undeletedfiles'               => '{{PLURAL:$1|1 संचिका|$1 संचिका}} पुनर्स्थापित',
 'cannotundelete'               => 'वगळणे उलटवणे फसले; इतर कुणी तुमच्या आधी वगळणे उलटवले असु शकते.',
-'undeletedpage'                => "<big>'''$1ला पुनर्स्थापित केले'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1ला पुनर्स्थापित केले'''</span>
 
 अलिकडिल वगळलेल्या आणि पुनर्स्थापितांच्या नोंदीकरिता [[Special:Log/delete|वगळल्याच्या नोंदी]] पहा .",
 'undelete-header'              => 'अलिकडील वगळलेल्या पानांकरिता [[Special:Log/delete|वगळलेल्या नोंदी]] पहा.',
@@ -2027,7 +2027,7 @@ $1',
 'move-watch'              => 'या पानावर लक्ष ठेवा',
 'movepagebtn'             => 'स्थानांतरण करा',
 'pagemovedsub'            => 'स्थानांतरण यशस्वी',
-'movepage-moved'          => '<big>\'\'\'"$1" ला "$2" मथळ्याखाली स्थानांतरीत केले\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" ला "$2" मथळ्याखाली स्थानांतरीत केले\'\'\'</span>',
 'articleexists'           => 'त्या नावाचे पृष्ठ अगोदरच अस्तित्वात आहे, किंवा तुम्ही निवडलेले
 नाव योग्य नाही आहे.
 कृपया दुसरे नाव शोधा.',

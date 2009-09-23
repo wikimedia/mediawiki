@@ -267,7 +267,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'dawamı',
 
 'linkprefix'        => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
-'mainpagetext'      => "<big>'''MediaWiki tabıslı ornatıldı.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki tabıslı ornatıldı.'''</span>",
 'mainpagedocfooter' => "Wiki bag'darlamasın qollanıw haqqındag'i mag'lıwmat usın [http://meta.wikimedia.org/wiki/Help:Contents Paydalanıwshılar qollanbasınan] ken'es alın'.
 
 == Baslaw ushın ==
@@ -427,7 +427,7 @@ $messages = array(
 'nosuchaction'      => "Bunday ha'reket joq",
 'nosuchactiontext'  => "Bul URLda ko'rsetilgen ha'reketti wiki tanıy almadı",
 'nosuchspecialpage' => 'Bunday arnawlı bet joq',
-'nospecialpagetext' => "<big>'''Siz sorag'an bunday arnawlı bet joq.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Siz sorag'an bunday arnawlı bet joq.'''</span>
 
 Arnawlı betlerdin' dizimin [[Special:SpecialPages|{{int:specialpages}}]] betinen tabıwın'ızg'a boladı.",
 
@@ -638,7 +638,7 @@ Eger ja'ne \"Saqlaw\"dı bassan'ız, o'zgerislerin'iz olsız saqlanadı.",
 'summary-preview'                  => "Juwmag'ın ko'rip shıg'ıw:",
 'subject-preview'                  => 'Atamanı aldınnan qaraw:',
 'blockedtitle'                     => "Paydalanıwshı bloklang'an",
-'blockedtext'                      => "<big>'''Paydalaniwshı atın'ız yamasa IP adresin'iz bloklang'an.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Paydalaniwshı atın'ız yamasa IP adresin'iz bloklang'an.'''</span>
 
 Bloklawdı \$1 a'melge asırg'an. 
 Keltirilgen sebebi: ''\$2''.
@@ -1737,7 +1737,7 @@ Bul jag'daylarda eger qa'lesen'iz betti qoldan ko'shiriwin'iz yamasa qosıwın'i
 'move-watch'              => 'Bul betti baqlaw',
 'movepagebtn'             => "Betti ko'shir",
 'pagemovedsub'            => "Tabıslı ko'shirildi",
-'movepage-moved'          => "<big>'''\"\$1\" beti \"\$2\" betine ko'shirildi'''</big>",
+'movepage-moved'          => "<span style="font-size:larger">'''\"\$1\" beti \"\$2\" betine ko'shirildi'''</span>",
 'articleexists'           => "Bunday atamalı bet bar yamasa natuwrı atama sayladın'ız.
 Basqa atama saylan'",
 'talkexists'              => "'''Bettin' o'zi a'wmetli ko'shirildi, biraq sa'wbet beti ko'shirilmedi sebebi jan'a atamanın' sa'wbet beti bar eken. Olardı o'zin'iz qoldan qosın'.'''",

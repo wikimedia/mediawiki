@@ -257,7 +257,7 @@ $messages = array(
 'category-file-count-limited'    => 'جهلیگین {{PLURAL:$1|فایل|$1 فایلان}} ته هنوکین دسته اینت',
 'listingcontinuesabbrev'         => 'ادامه.',
 
-'mainpagetext'      => "<big>'''مدیا وی کی گون موفقیت نصب بوت.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''مدیا وی کی گون موفقیت نصب بوت.'''</span>",
 'mainpagedocfooter' => "مشورت کنیت گون  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] په گشیترین اطلاعات په استفاده چه برنامه ویکی.
 
 == شروع بیت ==
@@ -451,7 +451,7 @@ $1',
 شما بلکین یو‌ارال شر ننوشتت یا رند چه هرابیت لینکی اتکگیت
 شی بلکین یک خطایی ته برنامه سایت {{SITENAME}} پیش داریت.',
 'nosuchspecialpage' => 'نی چشین حاصین صفحه',
-'nospecialpagetext' => "<big>'''شما یک نامعتبرین صفحه حاصین درخواست کت.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''شما یک نامعتبرین صفحه حاصین درخواست کت.'''</span>
 
 یک لیستی چه معتبرین صفحات حاص در کپیت ته [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -676,7 +676,7 @@ $2',
 'summary-preview'                  => 'خلاصه بازبینی:',
 'subject-preview'                  => 'بازبین موضوع/سرخط:',
 'blockedtitle'                     => 'کاربر محدود بوتت',
-'blockedtext'                      => "<big>'''شمی نام کاربری یا آی پی محدود بیتت.''''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''شمی نام کاربری یا آی پی محدود بیتت.''''</span>
 
 محدودیت توسط $1 شر بوتت. دلیل داتت ''$2''.
 
@@ -2100,7 +2100,7 @@ $NEWPAGE
 'undeletedfiles'               => '{{PLURAL:$1|1 فایل|$1 فایلآن}} واترینگ بین',
 'cannotundelete'               => 'حذف نه کتن پروشت؛
 یک نفری دگه شاید ای صفحهء  پیشتر حذفی ترینتت.',
-'undeletedpage'                => "<big>'''$1 تررینگ بوتت'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 تررینگ بوتت'''</span>
 
 شوهاز کن [[Special:Log/delete|آمار حذف]] په یک ثبتی چه نوکین حذفیات و بازتررینگان.",
 'undelete-header'              => 'See [[Special:Log/delete|آمار حذف]] په نوکین حذفی صفحات..',
@@ -2323,7 +2323,7 @@ $1',
 'move-watch'                   => 'این صفحه یا بچار',
 'movepagebtn'                  => 'جاه په جاه کن صفحه',
 'pagemovedsub'                 => 'جاه په جاهی موفقیت بود',
-'movepage-moved'               => '<big>\'\'\'"$1" جاه په اجه بوت په"$2"\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" جاه په اجه بوت په"$2"\'\'\'</span>',
 'movepage-moved-redirect'      => 'یک غیر مستقیمی شر بوت',
 'movepage-moved-noredirect'    => 'شرکتن غیر مستقیم بند بوتگ.',
 'articleexists'                => 'صفحه گون آن نام پیش تر هستت، یا نامی که شما زورتت نامعتبرنت.

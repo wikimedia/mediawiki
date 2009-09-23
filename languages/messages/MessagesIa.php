@@ -261,7 +261,7 @@ $messages = array(
 'index-category'                 => 'Paginas indexate',
 'noindex-category'               => 'Paginas non indexate',
 
-'mainpagetext'      => "<big>'''MediaWiki ha essite installate con successo.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki ha essite installate con successo.'''</span>",
 'mainpagedocfooter' => 'Consulta le [http://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
 
 == Pro initiar ==
@@ -453,7 +453,7 @@ $1',
 Es possibile que tu ha mal entrate le URL o sequite un ligamine incorrecte.
 Isto poterea equalmente indicar un defecto in le software usate per {{SITENAME}}.',
 'nosuchspecialpage' => 'Pagina special invalide',
-'nospecialpagetext' => "<big>'''Tu ha requestate un pagina special que es non es valide.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Tu ha requestate un pagina special que es non es valide.'''</span>
 
 Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -689,7 +689,7 @@ Si tu clicca super Publicar de novo, tu commento essera publicate sin subjecto/t
 'summary-preview'                  => 'Previsualisation del summario:',
 'subject-preview'                  => 'Previsualisation del subjecto/titulo:',
 'blockedtitle'                     => 'Le usator es blocate',
-'blockedtext'                      => "<big>'''Tu nomine de usator o adresse IP ha essite blocate.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Tu nomine de usator o adresse IP ha essite blocate.'''</span>
 
 Le blocada esseva facite per $1.
 Le motivo presentate es ''$2''.
@@ -2210,7 +2210,7 @@ Es possibile que le adresse URL es invalide, o que le version ha essite restaura
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo|archivos}} restaurate',
 'cannotundelete'               => 'Le restauration ha fallite;
 es possibile que un altere persona ha ja restaurate le pagina.',
-'undeletedpage'                => "<big>'''$1 ha essite restaurate'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 ha essite restaurate'''</span>
 
 Consulta le [[Special:Log/delete|registro de deletiones]] pro un lista de deletiones e restaurationes recente.",
 'undelete-header'              => 'Vide [[Special:Log/delete|le registro de deletiones]] pro un lista de paginas recentemente delite.',
@@ -2446,7 +2446,7 @@ Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate."
 'move-watch'                   => 'Observar iste pagina',
 'movepagebtn'                  => 'Renominar pagina',
 'pagemovedsub'                 => 'Renomination succedite',
-'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" ha essite renominate a "$2"\'\'\'</span>',
 'movepage-moved-redirect'      => 'Un redirection ha essite create.',
 'movepage-moved-noredirect'    => 'Le creation de un redirection ha essite supprimite.',
 'articleexists'                => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
