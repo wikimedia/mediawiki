@@ -81,6 +81,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$result = $this->getResult();
 			$images = RepoGroup::singleton()->findFiles( $titles );
 			foreach ( $images as $img ) {
+				// Skip redirects
+				if($img->getOriginalTitle()->isRedirect())
+					continue;
+				
 				$start = $skip ? $fromTimestamp : $params['start'];
 				$pageId = $pageIds[NS_IMAGE][ $img->getOriginalTitle()->getDBkey() ];
 
@@ -158,13 +162,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$skip = false;
 			}
 			
-			$missing = array_diff( array_keys( $pageIds[NS_FILE] ), array_keys( $images ) );
-			foreach ($missing as $title) {
-				$result->addValue(
-					array('query', 'pages', intval($pageIds[NS_FILE][$title])),
-					'imagerepository', ''
-				);
-				// The above can't fail because it doesn't increase the result size
+			$data = $this->getResultData();
+			foreach($data['query']['pages'] as $pageid => $arr) {
+				if(!isset($arr['imagerepository']))
+					$result->addValue(
+						array('query', 'pages', $pageid),
+						'imagerepository', ''
+					);
+					// The above can't fail because it doesn't increase the result size
 			}
 		}
 	}
