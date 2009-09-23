@@ -720,7 +720,6 @@ class Article {
 			$sql = $dbr->limitResult( $sql, $limit, $offset );
 
 		$sql .= ' ' . $this->getSelectOptions();
-		wfVarDump( $sql );
 		$res = $dbr->query( $sql, __METHOD__ );
 
 		return new UserArrayFromResult( $res );
