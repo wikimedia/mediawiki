@@ -296,7 +296,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Rodomas|Rodomi|Rodoma}} $1 šios kategorijos {{PLURAL:$1|failas|failai|failų}}.',
 'listingcontinuesabbrev'         => 'tęs.',
 
-'mainpagetext'      => "<big>'''MediaWiki sėkmingai įdiegta.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki sėkmingai įdiegta.'''</span>",
 'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
 
 == Pradžiai ==
@@ -489,7 +489,7 @@ $1',
 Galbūt Jūs padarėte klaidą adrese ar paspaudėte ant neteisingos nuorodos.
 Šios problemos priežastis taip pat gali būti klaida programinėje įrangoje, kurią naudoja {{SITENAME}}.',
 'nosuchspecialpage' => 'Nėra tokio specialiojo puslapio',
-'nospecialpagetext' => "<big>'''Jūs prašėte neleistino specialiojo puslapio'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Jūs prašėte neleistino specialiojo puslapio'''</span>
 
 Leistinų specialiųjų puslapių sąrašą galite rasti [[Special:SpecialPages|specialiųjų puslapių sąraše]].",
 
@@ -709,7 +709,7 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'summary-preview'                  => 'Komentaro peržiūra:',
 'subject-preview'                  => 'Skyrelio/antraštės peržiūra:',
 'blockedtitle'                     => 'Naudotojas yra užblokuotas',
-'blockedtext'                      => "<big>'''Jūsų naudotojo vardas arba IP adresas yra užblokuotas.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Jūsų naudotojo vardas arba IP adresas yra užblokuotas.'''</span>
 
 Užblokavo $1. Nurodyta priežastis yra ''$2''.
 
@@ -2125,7 +2125,7 @@ Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą ve
 'undeletedrevisions-files'     => '{{PLURAL:$1|atkurta $1 versija|atkurtos $1 versijos|atkurta $1 versijų}} ir $2 {{PLURAL:$2|failas|failai|failų}}',
 'undeletedfiles'               => '{{PLURAL:$1|atkurtas $1 failas|atkurti $1 failai|atkurta $1 failų}}',
 'cannotundelete'               => 'Atkūrimas nepavyko; kažkas kitas pirmas galėjo atkurti puslapį.',
-'undeletedpage'                => "<big>'''$1 buvo atkurtas'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 buvo atkurtas'''</span>
 
 Peržiūrėkite [[Special:Log/delete|trynimų sąrašą]], norėdami rasti paskutinių trynimų ir atkūrimų sąrašą.",
 'undelete-header'              => 'Žiūrėkite [[Special:Log/delete|trynimo istorijoje]] paskiausiai ištrintų puslapių.',
@@ -2354,7 +2354,7 @@ kad suprantate visas pasekmes.",
 'move-watch'                   => 'Stebėti šį puslapį',
 'movepagebtn'                  => 'Pervadinti puslapį',
 'pagemovedsub'                 => 'Pervadinta sėkmingai',
-'movepage-moved'               => '<big>\'\'\'"$1" buvo pervadintas į "$2"\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" buvo pervadintas į "$2"\'\'\'</span>',
 'movepage-moved-redirect'      => 'Nukreipimas sukurtas.',
 'movepage-moved-noredirect'    => 'Nukreipimo sukūrimas buvo atšauktas.',
 'articleexists'                => 'Puslapis tokiu pavadinimu jau egzistuoja

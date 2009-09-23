@@ -281,7 +281,7 @@ $messages = array(
 'index-category'                 => 'Indicěrowane boki',
 'noindex-category'               => 'Njeindicěrowane boki',
 
-'mainpagetext'      => "<big>'''MediaWiki jo se wuspěšnje instalěrowało.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki jo se wuspěšnje instalěrowało.'''</span>",
 'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
 
 == Na zachopjenje ==
@@ -474,7 +474,7 @@ $1',
 Sy se snaź zapisał pśi zapódaśu URL abo sy slědował wopacnemu wótkazoju.
 To by mógło teke programěrowańska zmólka w {{GRAMMAR:lokatiw|{{SITENAME}}}} byś.',
 'nosuchspecialpage' => 'Toś ten specialny bok njeeksistěrujo',
-'nospecialpagetext' => "<big>'''Toś ten specialny bok w toś tom wikiju njeeksistěrujo'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Toś ten specialny bok w toś tom wikiju njeeksistěrujo'''</span>
 
 Lisćina płaśecych specialnych bokow namakajo se pód [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -679,7 +679,7 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'summary-preview'                  => 'Pśeglěd zespominanja:',
 'subject-preview'                  => 'Pśeglěd nadpisma:',
 'blockedtitle'                     => 'Wužywaŕ jo se blokěrował',
-'blockedtext'                      => "<big>'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''</span>
 
 Blokěrowanje pśez $1. 
 Pódana pśicyna: ''$2''.
@@ -2327,7 +2327,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'move-watch'                   => 'Toś ten bok wobglědowaś',
 'movepagebtn'                  => 'Bok pśesunuś',
 'pagemovedsub'                 => 'Bok jo se pśesunuł.',
-'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</span>',
 'movepage-moved-redirect'      => 'Dalejpósrědnjenje jo se napórało.',
 'movepage-moved-noredirect'    => 'Napóranje dalejpósrědnjenja jo se pódtłocyło.',
 'articleexists'                => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',

@@ -209,7 +209,7 @@ $messages = array(
 'category-file-count-limited'    => 'Bat iyeltak {{PLURAL:$1|tir|$1 tid}} koe noeltafa loma.',
 'listingcontinuesabbrev'         => 'loon',
 
-'mainpagetext' => "<big>'''MediaWiki inkeyen talpeyot.'''</big>",
+'mainpagetext' => "<span style="font-size:larger">'''MediaWiki inkeyen talpeyot.'''</span>",
 
 'about'         => 'Icdeuca',
 'article'       => 'Teliz',
@@ -541,7 +541,7 @@ Ta da wan zo pilkomodal, va warzaf remravlem batlize gobazel :",
 'summary-preview'                  => 'Abdinedira va vildeks:',
 'subject-preview'                  => 'Abdinedira va detce ik kroj:',
 'blockedtitle'                     => 'Elekan favesik',
-'blockedtext'                      => '<big>\'\'\'Rinafa favesikpata oku IP mane tid elekayane.\'\'\'</big>
+'blockedtext'                      => '<span style="font-size:larger">\'\'\'Rinafa favesikpata oku IP mane tid elekayane.\'\'\'</span>
 
 Elekara skuyuna gan $1. 
 Lazava tir \'\'$2\'\'.
@@ -1731,7 +1731,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'              => 'Busuzdara',
 'movepagebtn'             => 'Tolyoltara va teliz',
 'pagemovedsub'            => 'Tolyoltanhara',
-'movepage-moved'          => '<big>\'\'\'"$1" zo arrundayar kal "$2"\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" zo arrundayar kal "$2"\'\'\'</span>',
 'articleexists'           => 'Milvergumveltaf teliz ixam krulder, oke kiblayan vergumvelt tir meenaf. Va ar kiblal !',
 'cantmove-titleprotected' => 'Va bu me milinde rotarrundal kire warzaf vergumvelt icde redura zo nendar',
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",

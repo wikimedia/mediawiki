@@ -414,7 +414,7 @@ Yanggen un yemme' \"Såtba\" ta'lo, masåtba tinilaika-mu sin titulo.",
 'summary-preview'                  => 'Ripasun sumaria:',
 'subject-preview'                  => 'Ripasun suhetu/titulo:',
 'blockedtitle'                     => "Machoma' i muna'sesetbi",
-'blockedtext'                      => "<big>'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''</span>
 
 Manchomma' as $1. 
 Pot i rason: ''$2''.
@@ -1022,7 +1022,7 @@ Pot sienkasu i hilo', nesesario ha' na un kånya pat un na'daña i påhina yangg
 'move-watch'       => 'Pulan este na påhina',
 'movepagebtn'      => 'Kånya i påhina',
 'pagemovedsub'     => 'Munhåyan i siniha',
-'movepage-moved'   => '<big>\'\'\'Makånya "$1" para "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'Makånya "$1" para "$2"\'\'\'</span>',
 'articleexists'    => "Esta guåha un påhina mafa'na'an enao, pat ti masedi ni inayek-mu.
 Ayek fan otru nå'an-ña.",
 'talkexists'       => "'''Munhåyan i siniha i påhina mismo, lao ti siña ha kånya i påhinan kombetsasion sa' guåha esta otru ni titulon nuebu.'''",

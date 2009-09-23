@@ -276,7 +276,7 @@ $messages = array(
 'category-file-count-limited'    => 'די פֿאלגנדע {{PLURAL:$1|טעקע|$1 טעקעס}} זענען אין דער דאזיגע קאטעגאריע.',
 'listingcontinuesabbrev'         => '(המשך)',
 
-'mainpagetext'      => "<big>'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''</span>",
 'mainpagedocfooter' => "גיט זיך אן עצה מיט [http://meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.
 
 == נוצליכע וועבלינקען פֿאַר אנהייבערס ==
@@ -679,7 +679,7 @@ $2',
 'summary-preview'                  => 'סך-הכל פאראויסדיגע ווייזונג:',
 'subject-preview'                  => 'טעמע/קעפל פאראויסדיגע ווייזונג:',
 'blockedtitle'                     => 'באנוצער איז בלאקירט',
-'blockedtext'                      => '<big>\'\'\'אייער באניצער נאמען אדער IP אדרעס איז געווארן בלאקירט.\'\'\'</big>
+'blockedtext'                      => '<span style="font-size:larger">\'\'\'אייער באניצער נאמען אדער IP אדרעס איז געווארן בלאקירט.\'\'\'</span>
 
 דעם בלאק האט $1 געמאכט פון וועגן \'\'$2\'\'.
 
@@ -2039,7 +2039,7 @@ $NEWPAGE
 'move-watch'                   => 'אויפֿפאַסן אויף דעם בלאַט',
 'movepagebtn'                  => 'באוועגן',
 'pagemovedsub'                 => 'באַוועגט מיט הצלחה',
-'movepage-moved'               => '<big>דער בלאט "$1" איז אריבערגעפֿירט געווארן צו "$2".</big>',
+'movepage-moved'               => '<span style="font-size:larger">דער בלאט "$1" איז אריבערגעפֿירט געווארן צו "$2".</span>',
 'movepage-moved-redirect'      => 'ווײַטערפֿירונג  געשאַפֿן.',
 'movepage-moved-noredirect'    => 'שאַפֿן  א ווײַטערפֿירונג פֿאַרשטיקט.',
 'articleexists'                => 'א בלאט מיט דעם נאמען עקזיסטירט שוין, אדער די נאמען וואס איר האט אויסגעוועילט איז נישט געזעצליך.

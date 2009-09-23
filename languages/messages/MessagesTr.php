@@ -280,7 +280,7 @@ $messages = array(
 'index-category'                 => 'Endeksli sayfalar',
 'noindex-category'               => 'Endeksli olmayan sayfalar',
 
-'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki başarı ile kuruldu.'''</span>",
 'mainpagedocfooter' => 'Viki yazılımının kullanımı hakkında bilgi almak için [http://meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.
 
 == Yeni Başlayanlar ==
@@ -686,7 +686,7 @@ Kaydet tuşuna tekrar basarsan sayfa özetsiz kaydedilecek.",
 'summary-preview'                  => 'Ön izleme özeti:',
 'subject-preview'                  => 'Konu/Başlık ön izlemesi:',
 'blockedtitle'                     => 'Kullanıcı erişimi engellendi.',
-'blockedtext'                      => '<big>\'\'\'Kullanıcı adı veya IP adresiniz engellenmiştir.\'\'\'</big>
+'blockedtext'                      => '<span style="font-size:larger">\'\'\'Kullanıcı adı veya IP adresiniz engellenmiştir.\'\'\'</span>
 
 Sizi engelleyen hizmetli: $1.<br />
 Engelleme sebebi: \'\'$2\'\'.
@@ -2151,7 +2151,7 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizyon|$1 revizyon}} ve {{PLURAL:$2|1 dosya|$2 dosya}} eski konumuna getirildi',
 'undeletedfiles'               => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
 'cannotundelete'               => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
-'undeletedpage'                => "<big>'''$1 sayfası geri getirildi'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 sayfası geri getirildi'''</span>
 
 Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
 'undelete-header'              => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
@@ -2372,7 +2372,7 @@ Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'move-watch'                   => 'Bu sayfayı izle',
 'movepagebtn'                  => 'İsmi değiştir',
 'pagemovedsub'                 => 'İsim değişikliği tamamlandı.',
-'movepage-moved'               => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</span>',
 'movepage-moved-redirect'      => 'Bir yönlendirme oluşturuldu.',
 'movepage-moved-noredirect'    => 'Bir yönlendirme oluşturulması bastırıldı.',
 'articleexists'                => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.

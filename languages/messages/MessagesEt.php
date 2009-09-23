@@ -400,7 +400,7 @@ $messages = array(
 'index-category'                 => 'Indeksiga leheküljed',
 'noindex-category'               => 'Indeksita leheküljed',
 
-'mainpagetext'      => "<big>'''MediaWiki tarkvara on edukalt paigaldatud.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki tarkvara on edukalt paigaldatud.'''</span>",
 'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
 ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].',
 
@@ -797,7 +797,7 @@ Kui vajutad uuesti <em>Salvesta</em>, siis salvestatakse kommentaar ilma teema/p
 'summary-preview'                  => 'Resümee eelvaade:',
 'subject-preview'                  => 'Alaosa pealkirja eelvaade:',
 'blockedtitle'                     => 'Kasutaja on blokeeritud',
-'blockedtext'                      => "<big>'''Teie kasutajanimi või IP-aadress on blokeeritud.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Teie kasutajanimi või IP-aadress on blokeeritud.'''</span>
 
 Blokeeris $1.
 Tema põhjendus on järgmine: ''$2''.
@@ -2175,7 +2175,7 @@ Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist e
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 redaktsioon|$1 redaktsiooni}} ja {{PLURAL:$2|1 fail|$2 faili}} taastatud',
 'undeletedfiles'               => '{{PLURAL:$1|1 fail|$1 faili}} taastatud',
 'cannotundelete'               => 'Taastamine ebaõnnestus; keegi teine võis lehe juba taastada.',
-'undeletedpage'                => "<big>'''$1 on taastatud'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 on taastatud'''</span>
 
 [[Special:Log/delete|Kustutamise logist]] võib leida loendi viimastest kustutamistest ja taastamistest.",
 'undelete-header'              => 'Hiljuti kustutatud leheküljed leiad [[Special:Log/delete|kustutamislogist]].',
@@ -2393,7 +2393,7 @@ kasutajaks ja [[Special:UserLogin|sisse logima]]',
 'move-watch'                   => 'Jälgi seda lehekülge',
 'movepagebtn'                  => 'Teisalda artikkel',
 'pagemovedsub'                 => 'Artikkel on teisaldatud',
-'movepage-moved'               => '<big>\'\'\'"$1" teisaldatud pealkirja "$2" alla\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" teisaldatud pealkirja "$2" alla\'\'\'</span>',
 'movepage-moved-redirect'      => 'Ümbersuunamisleht loodud.',
 'movepage-moved-noredirect'    => 'Ümbersuunamist ei loodud.',
 'articleexists'                => 'Selle nimega artikkel on juba olemas või pole valitud nimi lubatav. Palun valige uus nimi.',

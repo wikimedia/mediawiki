@@ -323,7 +323,7 @@ $messages = array(
 'category-file-count-limited'    => '此分类包含下列$1个文件。',
 'listingcontinuesabbrev'         => '续',
 
-'mainpagetext'      => "<big>'''已成功安装 MediaWiki。'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''已成功安装 MediaWiki。'''</span>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
 
 == 入门 ==
@@ -512,7 +512,7 @@ $1',
 'nosuchaction'      => '这个命令不存在',
 'nosuchactiontext'  => 'URL指定的命令无效。你可能错误输入了URL地址，或者点击了错误的链接。这一错误亦有可能是由{{SITENAME}}所使用软件自身的错误导致的。',
 'nosuchspecialpage' => '此特殊页面不存在',
-'nospecialpagetext' => "<big>'''您请求的特殊页面无效。'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''您请求的特殊页面无效。'''</span>
 
 [[Special:SpecialPages|{{int:specialpages}}]]中列出了所有有效的特殊页面。",
 
@@ -709,7 +709,7 @@ $2',
 'summary-preview'                  => '摘要预览：',
 'subject-preview'                  => '标题预览：',
 'blockedtitle'                     => '用户被查封',
-'blockedtext'                      => "<big>你的用户名或IP地址已经被$1查封。</big>
+'blockedtext'                      => "<span style="font-size:larger">你的用户名或IP地址已经被$1查封。</span>
 
 这次查封是由$1所封的。当中的原因是''$2''。
 
@@ -2141,7 +2141,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1个修订版本和$2个文件已经被恢复',
 'undeletedfiles'               => '$1个文件已经被恢复',
 'cannotundelete'               => '恢复删除失败；可能已有其他人先行恢复了此页面。',
-'undeletedpage'                => "<big>'''$1已经被恢复'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1已经被恢复'''</span>
 
 参考[[Special:Log/delete|删除日志]]查看删除及恢复记录。",
 'undelete-header'              => '如要查询最近的记录请参阅[[Special:Log/delete|删除日志]]。',
@@ -2365,7 +2365,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'move-watch'                   => '监视此页',
 'movepagebtn'                  => '移动页面',
 'pagemovedsub'                 => '移动成功',
-'movepage-moved'               => "<big>'''“$1”已经移动到“$2”'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''“$1”已经移动到“$2”'''</span>",
 'movepage-moved-redirect'      => '一个重新定向已经被创建。',
 'movepage-moved-noredirect'    => '已阻止建立重定向。',
 'articleexists'                => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',

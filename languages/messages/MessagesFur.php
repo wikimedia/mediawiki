@@ -219,7 +219,7 @@ $messages = array(
 'category-file-count-limited'    => 'Cheste categorie e conten {{PLURAL:$1|il file mostrât|i $1 files mostrâts}} ca sot.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext' => "<big>'''MediaWiki e je stade instalade cun sucès.'''</big>",
+'mainpagetext' => "<span style="font-size:larger">'''MediaWiki e je stade instalade cun sucès.'''</span>",
 
 'about'         => 'Informazions',
 'article'       => 'Vôs',
@@ -357,7 +357,7 @@ $messages = array(
 'nstab-category'  => 'Categorie',
 
 # Main script and global functions
-'nospecialpagetext' => "<big>'''Tu âs cirût une pagjine speciâl no valide.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Tu âs cirût une pagjine speciâl no valide.'''</span>
 
 Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -478,7 +478,7 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'summary-preview'                  => 'Anteprime dal somari:',
 'subject-preview'                  => 'Anteprime ogjet/intestazion:',
 'blockedtitle'                     => 'Utent blocât',
-'blockedtext'                      => "<big>'''Chest non utent o direzion IP a son stâts blocâts.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Chest non utent o direzion IP a son stâts blocâts.'''</span>
 
 Il bloc al è stât metût di $1. La reson furnide e je: ''$2''
 
@@ -1206,7 +1206,7 @@ In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te p
 'move-watch'       => 'Ten di voli cheste pagjine',
 'movepagebtn'      => 'Môf pagjine',
 'pagemovedsub'     => 'Movude cun sucès',
-'movepage-moved'   => '<big>\'\'\'"$1" e je stade movude al titul "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" e je stade movude al titul "$2"\'\'\'</span>',
 'articleexists'    => 'Une pagjine cun chest non e esist za, o il non sielt nol è valit.
 Sielç par plasê un altri non.',
 'talkexists'       => "'''La pagjine e je stade movude cun sucès, ma no si à podût movi la pagjine di discussion parcè che e esist za tal gnûf titul. Trasferìs il contignût a man par plasê.'''",

@@ -257,7 +257,7 @@ $messages = array(
 'category-file-count-limited'    => 'Вага {{PLURAL:$1|файл|$1 файлхт}} тя категориеса.',
 'listingcontinuesabbrev'         => 'полатксоц',
 
-'mainpagetext'      => "<big>'''МедиаВикить арафтозь лац.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''МедиаВикить арафтозь лац.'''</span>",
 'mainpagedocfooter' => 'Ванк [http://meta.wikimedia.org/wiki/Help:Contents Ветямовал Тиинди] тяса ули кода содамс Вики програпнень эрявикснень колга.
 
 == Эрявикс сюлмафксне ==
@@ -444,7 +444,7 @@ $messages = array(
 Улема, тон эльбядеть URL адресть сёрмадомста, эли кочкать аф кондясти сюлмафкс.
 Шятьта ули эльбяткс {{SITENAME}}ть програмса.',
 'nosuchspecialpage' => 'Стама башка лопа аш',
-'nospecialpagetext' => "<big>'''Аш стама башка лопа.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Аш стама башка лопа.'''</span>
 
 Ванк [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -644,7 +644,7 @@ $2',
 'summary-preview'                  => 'Нюрьхкяня лихтемать сядынголень  няфтема:',
 'subject-preview'                  => 'Тема/конякс сядынгольдень няфтема:',
 'blockedtitle'                     => 'Тиить сёлгозь',
-'blockedtext'                      => '\'\'\'Тонь тиить лемцень эли IP адресцень сёлгозь.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Тонь тиить лемцень эли IP адресцень сёлгозь.\'\'\'</span>
 
 Тонь сёлгозе $1. 
 Туфталсь \'\'$2\'\'.
@@ -1922,7 +1922,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 верзие|$1 верзиет}} эди {{PLURAL:$2|1 файл|$2 файлхт}} мърдафтфт',
 'undeletedfiles'               => '{{PLURAL:$1|1 файл|$1 файлхт}} мърдафтфт',
 'cannotundelete'               => 'Мърдафтома изь лисев; иля тиись, улема, ульсь васенцекс кие сонь мърдафтозе.',
-'undeletedpage'                => "<big>'''$1 мърдафтфоль'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 мърдафтфоль'''</span>
 
 Ванк [[Special:Log/delete|нардамань лувомась]] мекольце нардаматнень эди мърдафтоматнень няфтеманкса.",
 'undelete-header'              => 'Ванк [[Special:Log/delete|нардамань лувомась]] улхкомба нардаф лопатнень няфтеманкса.',
@@ -2139,7 +2139,7 @@ $1 сёлкф ни. Мяльце полафтомс латцематнень?',
 'move-watch'                   => 'Ваномс тя лопать мельге',
 'movepagebtn'                  => 'Шашфтомс лопать иля вастс',
 'pagemovedsub'                 => 'Шашфтомась ётась лац',
-'movepage-moved'               => '<big>\'\'\'"$1"сь шашфтфоль "$2"с\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1"сь шашфтфоль "$2"с\'\'\'</span>',
 'movepage-moved-redirect'      => 'Умборондафтфкс тифоль.',
 'movepage-moved-noredirect'    => 'Умборондафтфксонь тиемась лоткафоль.',
 'articleexists'                => 'Тя лем мархта лопась ульсь ни эли лемсь, кона тон кочкать аф кондясти.

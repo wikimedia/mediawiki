@@ -161,7 +161,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'category-file-count-limited'    => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.',
 'listingcontinuesabbrev'         => '(dowamy)',
 
-'mainpagetext'      => "<big>'''MediaWiki şowlulyk bilen guruldy.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki şowlulyk bilen guruldy.'''</span>",
 'mainpagedocfooter' => 'Wiki programmasynyň ulanylyşy hakynda maglumat almak üçin [http://meta.wikimedia.org/wiki/Help:Contents ulanyjy gollanmasyna] serediň.
 
 == Öwrenjeler ==
@@ -355,7 +355,7 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 URL-ni ýalňyş ýazan, ýa-da nädogry çykgydy yzarlan bolmagyňyz ahmal.
 Ol {{SITENAME}} saýtyndaky bir näsazlygy hem görkezýän bolup biler.',
 'nosuchspecialpage' => 'Şeýle atly ýörite sahypa ýok',
-'nospecialpagetext' => "<big>'''Bar bolmadyk bir ýörite sahypa girdiňiz.'''</big> 
+'nospecialpagetext' => "<span style="font-size:larger">'''Bar bolmadyk bir ýörite sahypa girdiňiz.'''</span> 
 
 Bar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] sahypasynda görüp bilersiňiz.",
 
@@ -571,7 +571,7 @@ Sahypany ýazdyr düwmesine ýene bir gezek bassaňyz, özgerdişiňiz mazmunsyz
 'summary-preview'                  => 'Deslapky synyň mazmuny:',
 'subject-preview'                  => 'Temanyň/adyň deslapky syny:',
 'blockedtitle'                     => 'Ulanyjy blokirlenen',
-'blockedtext'                      => '<big>\'\'\'Ulanyjy adyňyz ýa-da IP adresiňiz blokirlenipdir.\'\'\'</big>
+'blockedtext'                      => '<span style="font-size:larger">\'\'\'Ulanyjy adyňyz ýa-da IP adresiňiz blokirlenipdir.\'\'\'</span>
 
 Sizi blokirlän administrator: $1.<br />
 Blokirlemäniň sebäbi: \'\'$2\'\'.
@@ -1348,7 +1348,7 @@ Bu üýtgeşiklik giňden tanalýan bir sahypa üçin garaşylmaýan netijelere 
 'move-watch'       => 'Bu sahypany gözegçilikde sakla',
 'movepagebtn'      => 'Adyny üýtget',
 'pagemovedsub'     => 'At üýtgedildi',
-'movepage-moved'   => '<big>\'\'\'"$1" sahypasy "$2" sahypasyna geçirildi\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" sahypasy "$2" sahypasyna geçirildi\'\'\'</span>',
 'articleexists'    => 'Şu atda eýýämden bir sahypa bar ýa-da saýlap alan adyňyz nädogry.
 Başga bir ady synap görmegiňizi haýyş edýäris.',
 'talkexists'       => "'''Sahypanyň özi şowlulyk bilen geçirildi, ýöne çekişme sahypasyny geçirip bolmady sebäbi geçirilmeli adynda öňdenem bir sahypa bar. Çekişme sahypasynyň içindäkileri özüňiziň geçirmegiňizi haýyş edýäris.'''",

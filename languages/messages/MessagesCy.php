@@ -239,7 +239,7 @@ $messages = array(
 'category-file-count-limited'    => "Mae'r {{PLURAL:$1|dim ffeil|un ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn y categori hwn.",
 'listingcontinuesabbrev'         => ' parh.',
 
-'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''</span>",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
 
 ==Cychwyn arni==
@@ -432,7 +432,7 @@ $1',
 Efallai eich bod wedi camdeipio'r URL, neu eich bod wedi dilyn cyswllt gwallus.
 Neu efallai fod byg ar {{SITENAME}}.",
 'nosuchspecialpage' => 'Y dudalen arbennig ddim yn bod',
-'nospecialpagetext' => "<big>'''Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.'''</span>
 
 Mae rhestr o'r tudalennau arbennig dilys i'w gael [[Special:SpecialPages|yma]].",
 
@@ -643,7 +643,7 @@ Os y pwyswch eto ar 'Cadw'r dudalen' caiff y golygiad ei gadw heb nodyn.",
 'summary-preview'                  => "Rhagolwg o'r crynodeb:",
 'subject-preview'                  => 'Rhagolwg pwnc/pennawd:',
 'blockedtitle'                     => "Mae'r defnyddiwr hwn wedi cael ei flocio",
-'blockedtext'                      => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio.'''</span>
 
 $1 a osododd y bloc.
 Y rheswm a roddwyd dros y blocio yw: ''$2''.
@@ -2048,7 +2048,7 @@ Mae'n bosib bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi ei adfer neu we
 'undeletedfiles'               => 'Adferwyd $1 {{PLURAL:$1|ffeil|ffeil|ffeil|ffeil|ffeil|ffeil}}',
 'cannotundelete'               => "Wedi methu dad-ddileu;
 gall rhywyn arall fod wedi dad-ddileu'r dudalen yn barod.",
-'undeletedpage'                => "<big>'''Adferwyd $1'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''Adferwyd $1'''</span>
 
 Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Special:Log/delete|lòg dileuon]].",
 'undelete-header'              => "Ewch i'r [[Special:Log/delete|lòg dileuon]] i weld tudalennau a ddilëwyd yn ddiweddar.",
@@ -2266,7 +2266,7 @@ Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei 
 'move-watch'                   => 'Gwylier y dudalen hon',
 'movepagebtn'                  => 'Symud y dudalen',
 'pagemovedsub'                 => 'Y symud wedi llwyddo',
-'movepage-moved'               => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</span>',
 'movepage-moved-redirect'      => 'Gosodwyd ail-gyfeiriad.',
 'movepage-moved-noredirect'    => 'Ni osodwyd tudalen ailgyfeirio.',
 'articleexists'                => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.

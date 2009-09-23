@@ -213,7 +213,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} neciš kategorijas.',
 'listingcontinuesabbrev'         => 'jatktand',
 
-'mainpagetext'      => "<big>'''MediaWiki-likutim om seižutadud jügedusita.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki-likutim om seižutadud jügedusita.'''</span>",
 'mainpagedocfooter' => 'Kc. [http://meta.wikimedia.org/wiki/Help:Kävutajan abukirj], miše sada informacijad wikin kävutamižes.
 
 == Erased tarbhaižed resursad ==
@@ -401,7 +401,7 @@ Kacu [[Special:Version|informacii kävutadud versijoiš]].',
 Tö olet tehnu petusen URLan kirjutades vai männu värad kosketustme.
 Nece voib mugažo ozutada viga {{SITENAME}}-projektan programmištos.',
 'nosuchspecialpage' => "Mugošt speciališt lehtpol't ei ole",
-'nospecialpagetext' => "<big>'''Ectud speciališt lehtpol't ei ole.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Ectud speciališt lehtpol't ei ole.'''</span>
 
 Kc. [[Special:SpecialPages|specialižiden lehtpoliden nimikirj]].",
 
@@ -600,7 +600,7 @@ Ku tö valičet völ kerdan \"Kirjutada lehtpol'\", ka teiden toižetusiden ümb
 'summary-preview'                  => 'Ümbrikacund linneb mugoi:',
 'subject-preview'                  => 'Ümbrikacundan pälkirjutez linneb mugoi:',
 'blockedtitle'                     => 'Kävutai om blokiruidud',
-'blockedtext'                      => "<big>'''Teiden kävutajan nimi vai IP-adres om blokiruidud.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Teiden kävutajan nimi vai IP-adres om blokiruidud.'''</span>
 
 Teid om blokiruinu $1.
 Sü: ''$2''.
@@ -1872,7 +1872,7 @@ Sab toižetada necen lehtpolen kaičendpind, no se ei voi toižetada kaskadkaič
 'undeletedfiles'             => '{{PLURAL:$1|1 fail om|$1 failad oma}} endištadud',
 'cannotundelete'             => 'Endištandan petuz;
 Voib olda, ken-se om jo endištanu necen lehtpolen ende.',
-'undeletedpage'              => "<big>'''$1-lehtpol' om endištadud'''</big>
+'undeletedpage'              => "<span style="font-size:larger">'''$1-lehtpol' om endištadud'''</span>
 
 Kc. [[Special:Log/delete|čudandoiden aigkirj]], miše tedištada tantoižiš čudandoiš da endištandoiš.",
 'undelete-header'            => 'Kc. [[Special:Log/delete|čudendoiden aigkirj]], miše tedištada tantoi čudud lehtpoliš.',
@@ -2074,7 +2074,7 @@ Nenil statjoil tegese sirta vai ühtenzoitta lehtpoled ičeksaz.",
 'move-watch'                => "Kacelta necidä lehtpol't",
 'movepagebtn'               => "Udesnimitada lehtpol'",
 'pagemovedsub'              => "Lehtpol' om nimitadud udes",
-'movepage-moved'            => "<big>'''\"\$1\" om nimitadud udes; uz' nimi om \"\$2\"'''</big>",
+'movepage-moved'            => "<span style="font-size:larger">'''\"\$1\" om nimitadud udes; uz' nimi om \"\$2\"'''</span>",
 'movepage-moved-redirect'   => 'Läbikosketuz om tehtud.',
 'movepage-moved-noredirect' => "Läbikosketusen sämine om kel'tud.",
 'articleexists'             => "Lehtpol' mugoižen nimenke om jo wikiš, vai valitud nimi ei sättu. Olgat hüväd, valikat toine nimi.",

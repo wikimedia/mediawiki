@@ -458,7 +458,7 @@ $messages = array(
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'Neindexované stránky',
 
-'mainpagetext'      => "<big>'''MediaWiki byla úspěšně nainstalována.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki byla úspěšně nainstalována.'''</span>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
 == Začínáme ==
@@ -652,7 +652,7 @@ $1',
 Zřejmě jste se překlepli při zadávání adresy nebo jste klikli na chybný odkaz.
 Může se ale jednat také o chybu {{GRAMMAR:2sg|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Neexistující speciální stránka',
-'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Zadali jste neplatnou speciální stránku.'''</span>
 
 Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speciálních stránek]].",
 
@@ -862,7 +862,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'summary-preview'                  => 'Náhled shrnutí:',
 'subject-preview'                  => 'Náhled předmětu/nadpisu:',
 'blockedtitle'                     => 'Uživatel zablokován',
-'blockedtext'                      => "<big>'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''</span>
 
 Zablokování provedl $1.
 Udaným důvodem bylo „$2“.
@@ -2294,7 +2294,7 @@ Archiv může být pravidelně vyprazdňován.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{PLURAL:$2|soubor|soubory|souborů}}.',
 'undeletedfiles'               => '{{PLURAL:$1|obnoven $1 soubor|obnoveny $1 soubory|obnoveno $1 souborů}}',
 'cannotundelete'               => 'Obnovení se nepovedlo; někdo jiný pravděpodobně obnovil stránku dřív než Vy.',
-'undeletedpage'                => "<big>'''$1 byla obnovena'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 byla obnovena'''</span>
 
 Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].",
 'undelete-header'              => 'Vizte nedávno smazané stránky v [[Special:Log/delete|knize smazaných stránek]].',
@@ -2510,7 +2510,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-watch'                   => 'Sledovat tuto stránku',
 'movepagebtn'                  => 'Přesunout stránku',
 'pagemovedsub'                 => 'Úspěšně přesunuto',
-'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''Stránka „$1“ byla přesunuta na „$2“'''</span>",
 'movepage-moved-redirect'      => 'Bylo vytvořeno přesměrování.',
 'movepage-moved-noredirect'    => 'Přesměrování nebylo vytvořeno.',
 'articleexists'                => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',

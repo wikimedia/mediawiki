@@ -543,7 +543,7 @@ Ukibonyeza 'Hifadhi ukurasa' tena, badilisho lako litahifadhiwa bila muhtasari."
 'missingcommenttext'               => 'Tafadhali andika muhtasari chini.',
 'summary-preview'                  => 'Hakikisho la muhtasari:',
 'blockedtitle'                     => 'Mtumiaji amezuiwa',
-'blockedtext'                      => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</span>
 
 Umezuiwa na $1. 
 Sababu aliyetambua ni ''$2''
@@ -1294,7 +1294,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'move-watch'       => 'Fuatilia ukurasa huu',
 'movepagebtn'      => 'Sogeza ukurasa',
 'pagemovedsub'     => 'Umefaulu kusogeza ukurasa',
-'movepage-moved'   => '<big>\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'</span>',
 'articleexists'    => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',

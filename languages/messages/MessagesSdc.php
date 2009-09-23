@@ -216,7 +216,7 @@ $messages = array(
 'category-article-count'   => "{{PLURAL:$2|Chistha categuria cunteni un'unica pagina, indicadda inogghi.|Chistha categuria cunteni {{PLURAL:$1|la pagina indicadda|li $1 pagini indicaddi}} inogghi, i' un tutari di $2.}}",
 'listingcontinuesabbrev'   => '(séguiddu)',
 
-'mainpagetext'      => "<big>'''Isthallazioni di MediaWiki accabadda currentementi.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Isthallazioni di MediaWiki accabadda currentementi.'''</span>",
 'mainpagedocfooter' => "Cunsultha la [http://meta.wikimedia.org/wiki/Aggiuddu:Summàriu Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu software wiki.
 
 == Pa ischuminzà ==
@@ -580,7 +580,7 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'summary-preview'                  => 'Antiprimma oggettu:',
 'subject-preview'                  => 'Antiprimma oggettu/intisthazioni:',
 'blockedtitle'                     => 'Utenti broccaddu.',
-'blockedtext'                      => "<big>'''Chisth'innòmmu utenti o indirizzu IP so isthaddi broccaddi.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Chisth'innòmmu utenti o indirizzu IP so isthaddi broccaddi.'''</span>
 
 Lu broccu è isthaddu dizzisu da $1. La rasgioni frunidda è: ''$2''.
 
@@ -1661,7 +1661,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'move-watch'              => "Aggiungi a l'abbaidaddi ippiziari",
 'movepagebtn'             => 'Ippustha la pàgina',
 'pagemovedsub'            => 'Ippusthamentu effettuaddu',
-'movepage-moved'          => '<big>\'\'\'"$1" è isthadda ippusthadda a "$2"\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" è isthadda ippusthadda a "$2"\'\'\'</span>',
 'articleexists'           => "Una pàgina cun chisth'innòmmu isisthi già, oppuru l'innòmmu sciubaraddu no à vàriddu. Sciubarà un'althru tìturu.",
 'cantmove-titleprotected' => "L'ippusthamentu di la pàgina nò è pussìbiri parchí lu nobu tìturu è isthaddu prutiggiddu pa impidinni la criazioni",
 'talkexists'              => "'''La pàgina è isthadda ippusthadda currettamenti, ma nò è isthaddu pussìbiri ippusthà la pàgina di dischussioni parchí ni isisthi già un'althra cu' lu nobu tìturu. Aggiugnì a manu li cuntiniddi di li dui pàgini.'''",

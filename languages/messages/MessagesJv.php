@@ -173,7 +173,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategori iki ndarbèni {{PLURAL:$1|berkas|$1 berkas-berkas}} sing kapacak ing ngisor iki.',
 'listingcontinuesabbrev'         => 'samb.',
 
-'mainpagetext'      => "<big>'''Prangkat empuk wiki wis suksès dipasang.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Prangkat empuk wiki wis suksès dipasang.'''</span>",
 'mainpagedocfooter' => "Mangga maca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki
 == Miwiti panggunan  ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
@@ -558,7 +558,7 @@ Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi saunta
 'summary-preview'                  => 'Pratayang ringkesan:',
 'subject-preview'                  => 'Pratayang subyèk/judhul:',
 'blockedtitle'                     => 'Panganggo diblokir',
-'blockedtext'                      => "<big>'''Asma panganggo utawa alamat IP panjenengan diblokir.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Asma panganggo utawa alamat IP panjenengan diblokir.'''</span>
 
 Blokir iki sing nglakoni $1. 
 Alesané ''$2''.
@@ -1961,7 +1961,7 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 'undeletedfiles'               => '$1 {{PLURAL:$1|berkas|berkas}} dibalèkaké',
 'cannotundelete'               => 'Olèhé mbatalaké pambusakan gagal; 
 mbokmenawa wis ana wong liya sing luwih dhisik nglakoni pambatalan.',
-'undeletedpage'                => "<big>'''$1 bisa dibalèkaké'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 bisa dibalèkaké'''</span>
 
 Delengen [[Special:Log/delete|log pambusakan]] kanggo data pambusakan lan pambalèkan.",
 'undelete-header'              => 'Mangga mirsani [[Special:Log/delete|log pambusakan]] kanggo daftar kaca sing lagi waé dibusak.',
@@ -2176,7 +2176,7 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'move-watch'                   => 'Awasna kaca iki',
 'movepagebtn'                  => 'Pindhahna kaca',
 'pagemovedsub'                 => 'Bisa kasil dipindhahaké',
-'movepage-moved'               => '<big>\'\'\'"$1" dipindhahaké menyang "$2".\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" dipindhahaké menyang "$2".\'\'\'</span>',
 'movepage-moved-redirect'      => 'Kaca pengalihan wis kacipta.',
 'movepage-moved-noredirect'    => 'Kanggo gawé pengalihan wis ditahan.',
 'articleexists'                => 'Satunggalipun kaca kanthi asma punika sampun wonten, utawi asma ingkang panjenengan pendhet mboten leres. Sumangga nyobi asma sanèsipun.',

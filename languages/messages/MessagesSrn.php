@@ -264,7 +264,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|A file disi|Den $1 file disi}} de ini a grupu disi.',
 'listingcontinuesabbrev'         => 'moro',
 
-'mainpagetext'      => "<big>'''MediaWiki seti kon bun.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki seti kon bun.'''</span>",
 'mainpagedocfooter' => 'Luku na ini a [http://meta.wikimedia.org/wiki/Help:Yepi yepibuku] fu si fa fu kebrouki a wikisoftware.
 
 == Moro yepi ==
@@ -421,7 +421,7 @@ $messages = array(
 'nosuchaction'      => 'A sani disi no man',
 'nosuchactiontext'  => 'A wiki no sabi a komanderi ini a URL',
 'nosuchspecialpage' => 'A spesrutu papira disi no de',
-'nospecialpagetext' => "<big>'''Yu aksi fu si wan spesrutu papira san no de.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Yu aksi fu si wan spesrutu papira san no de.'''</span>
 
 Wan réy fu spesrutu papira de fu feni na [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -561,7 +561,7 @@ Bifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu 
 'summary-preview'            => "Luku In'syatu na fesi:",
 'subject-preview'            => 'Ondroinfru/edelen fusi:',
 'blockedtitle'               => 'Masyin ben spikri',
-'blockedtext'                => "<big>'''Pasi tapu gi yu kebroikiman-nen noso IP.'''</big>
+'blockedtext'                => "<span style="font-size:larger">'''Pasi tapu gi yu kebroikiman-nen noso IP.'''</span>
 
 $1 tapu pasi gi yu. Disi na fu sanede ''$2''.
 

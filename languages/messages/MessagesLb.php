@@ -270,7 +270,7 @@ $messages = array(
 'index-category'                 => 'Indexéiert Säiten',
 'noindex-category'               => 'Net-indexéiert Säiten',
 
-'mainpagetext'      => "<big>'''MediaWiki gouf installéiert.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki gouf installéiert.'''</span>",
 'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren.
 
 == Starthëllefen ==
@@ -462,7 +462,7 @@ $1",
 Méiglecherweis hutt dir Iech bei der URL vertippt oder Dir hutt op en net korrekte Link geklickt.
 Et kann awer och sinn datt et e Bug a(n) {{SITENAME}} gëtt.',
 'nosuchspecialpage' => 'Spezialsäit gëtt et net',
-'nospecialpagetext' => "<big>'''Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.'''</span>
 
 All Spezialsäiten déi et gëtt sinn op der [[Special:SpecialPages|Lescht vun de Spezialsäiten]] ze fannen.",
 
@@ -678,7 +678,7 @@ Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuer
 'summary-preview'                  => 'Resumé kucken ouni ofzespäicheren:',
 'subject-preview'                  => 'Sujet/Iwwerschrëft kucken:',
 'blockedtitle'                     => 'Benotzer ass gespaart',
-'blockedtext'                      => "<big>Äre Benotzernumm oder är IP Adress gouf gespaart.</big>
+'blockedtext'                      => "<span style="font-size:larger">Äre Benotzernumm oder är IP Adress gouf gespaart.</span>
 
 D'Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
 
@@ -2354,7 +2354,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-watch'                   => 'Dës Säit iwwerwaachen',
 'movepagebtn'                  => 'Säit réckelen',
 'pagemovedsub'                 => 'Gouf geréckelt',
-'movepage-moved'               => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</span>",
 'movepage-moved-redirect'      => 'Et gouf eng Viruleedung ugeluecht.',
 'movepage-moved-noredirect'    => "D'Uleeë vun enger Viruleedung gouf ënnerdréckt.",
 'articleexists'                => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',

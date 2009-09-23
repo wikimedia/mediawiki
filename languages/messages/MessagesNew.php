@@ -254,7 +254,7 @@ $messages = array(
 'nosuchaction'      => 'थन्यागु ज्या मदु',
 'nosuchactiontext'  => 'URLनं या धाःगु ज्या विकिं मस्यु',
 'nosuchspecialpage' => 'थन्यागु विशेष पौ मदु',
-'nospecialpagetext' => "<big>'''छिं मदुगु विशेष पौया माग तयादिल।'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''छिं मदुगु विशेष पौया माग तयादिल।'''</span>
 
 अस्थित्वय् दुगु विशेष पौया धलः [[विशेष:विशेषपौ|{{int:specialpages}}]]य् दु।",
 

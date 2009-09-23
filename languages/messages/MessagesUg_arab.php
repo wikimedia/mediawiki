@@ -151,7 +151,7 @@ $messages = array(
 'category-file-count-limited'    => 'نۆۋەتتىكى تۈردە تۆۋەندىكى {{PLURAL:$1|ھۆججەت|$1 ھۆججەت}}  بار.',
 'listingcontinuesabbrev'         => 'داۋاملاشتۇر',
 
-'mainpagetext'      => "<big>'''MediaWiki مۇۋەپپەقىيەتلىك قاچىلاندى.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki مۇۋەپپەقىيەتلىك قاچىلاندى.'''</span>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents ئىشلەتكۈچى قوللانمىسى] نى زىيارەت قىلىپ wiki يۇمشاق دېتالىنى ئىشلىتىش ئۇچۇرىغا ئېرىشىڭ.
 
 == دەسلەپكى ساۋات ==
@@ -315,7 +315,7 @@ URL نى خاتا كىرگۈزۈپ قالدىڭىز ياكى خاتا ئۇلان
 
  {{SITENAME}} بېكەت يۇمشاق دېتالىنىڭ خاتالىقى بولۇشى مۇمكىن.',
 'nosuchspecialpage' => 'بۇنىڭغا ئوخشاش ئالاھىدە بەت يوق',
-'nospecialpagetext' => "<big>'''سىز ئىلتىماس قىلغان ئالاھىدە بەت ئىناۋەتسىز.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''سىز ئىلتىماس قىلغان ئالاھىدە بەت ئىناۋەتسىز.'''</span>
 
 
 [[Special:SpecialPages|{{int:specialpages}}]] دە بارلىق ئىناۋەتلىك بەتلەر تىزىملىكى بار.",
@@ -932,7 +932,7 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'move-watch'       => 'بۇ بەتنى كۆزەت',
 'movepagebtn'      => 'بەت يۆتكە',
 'pagemovedsub'     => 'مۇۋەپپەقىيەتلىك يۆتكەلدى',
-'movepage-moved'   => '<big>\'\'\'"$1" دىن\\"$2" گە يۆتكەلدى\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" دىن\\"$2" گە يۆتكەلدى\'\'\'</span>',
 'articleexists'    => 'مۇشۇ ئاتلىق بەت مەۋجۇد ياكى سىز تاللىغان بەت ئاتى ئىناۋەتسىز.
 باشقا ئات تاللاڭ.',
 'talkexists'       => "'''بەتنىڭ ئۆزىنى يۆتكەش مۇۋەپپەقىيەتلىك، ئەمما مۇنازىرە بېتىنى يۆتكىيەلمىدى،چۈنكى يېڭى ماۋزۇلۇق مۇنازىرە بېتى مەۋجۇد.

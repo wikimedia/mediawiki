@@ -332,7 +332,7 @@ $messages = array(
 'category-file-count-limited'    => 'Sledeći {{PLURAL:$1|fajl je|$1 fajlovi su}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
 
-'mainpagetext'      => "<big>'''MedijaViki je uspešno instaliran.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MedijaViki je uspešno instaliran.'''</span>",
 'mainpagedocfooter' => 'Molimo vidite [http://meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.
 
 == Za početak ==
@@ -518,7 +518,7 @@ $messages = array(
 'nosuchactiontext'  => 'Akciju navedenu u URL-u viki softver
 nije prepoznao.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
-'nospecialpagetext' => "<big>'''Tražili ste nepostojeću posebnu stranicu.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Tražili ste nepostojeću posebnu stranicu.'''</span>
 
 Spisak svih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -730,7 +730,7 @@ Možda ste već uspešno promenili lozinku ili zatražili novu privremenu.',
 'summary-preview'                  => 'Pretpregled opisa izmene:',
 'subject-preview'                  => 'Pretpregled predmeta/odeljka:',
 'blockedtitle'                     => 'Korisnik je blokiran',
-'blockedtext'                      => '<big>\'\'\'Vaše korisničko ime ili IP adresa je blokirano.\'\'\'</big>
+'blockedtext'                      => '<span style="font-size:larger">\'\'\'Vaše korisničko ime ili IP adresa je blokirano.\'\'\'</span>
 
 Blokirao vas je korisnik $1. 
 Razlog za blokiranje je \'\'$2\'\'.
@@ -2048,7 +2048,7 @@ U ovakvim slučajevima morate skinuti oznaku sa ili ponovo prikazati najnoviju o
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revizija|revizije|revizija}} i $2 {{PLURAL:$2|fajl|fajla|fajlova}} vraćeno',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fajl vraćen|fajla vraćena|fajlova vraćeno}}',
 'cannotundelete'               => 'Vraćanje obrisane verzije nije uspelo; neko drugi je vratio stranicu pre vas.',
-'undeletedpage'                => "<big>'''Strana $1 je vraćena'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''Strana $1 je vraćena'''</span>
 
 Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih brisanja i vraćanja.",
 'undelete-header'              => 'Vidi [[Special:Log/delete|log brisanja]] za skoro obrisane strane.',
@@ -2281,7 +2281,7 @@ da biste premestili stranicu.',
 'move-watch'                   => 'Nadgledaj ovu stranicu',
 'movepagebtn'                  => 'premesti stranicu',
 'pagemovedsub'                 => 'Premeštanje uspelo',
-'movepage-moved'               => '<big>\'\'\'Strana "$1" je preimenovana u "$2"!\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'Strana "$1" je preimenovana u "$2"!\'\'\'</span>',
 'movepage-moved-redirect'      => 'Preusmerenje je naprevljeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji, ili je
 ime koje ste izabrali neispravno.

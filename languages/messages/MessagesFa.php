@@ -524,7 +524,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|پروندهٔ|$1 پروندهٔ}} زیر در ردهٔ فعلی قرار دارند.',
 'listingcontinuesabbrev'         => '(ادامه)',
 
-'mainpagetext'      => "<big>'''نرم‌افزار ویکی با موفقیت نصب شد.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''نرم‌افزار ویکی با موفقیت نصب شد.'''</span>",
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
 برای استفاده از نرم‌افزار ویکی کمک بگیرید.
 
@@ -932,7 +932,7 @@ $2',
 'summary-preview'                  => 'پیش‌نمایش خلاصه:',
 'subject-preview'                  => 'پیش‌نمایش موضوع/عنوان:',
 'blockedtitle'                     => 'کاربر بسته شد.',
-'blockedtext'                      => "<big>'''دسترسی نام کاربری یا نشانی آی‌پی شما بسته شده است.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''دسترسی نام کاربری یا نشانی آی‌پی شما بسته شده است.'''</span>
 
 این کار توسط $1 انجام شده‌است.
 دلیل داده‌شده این است: $2''
@@ -2407,7 +2407,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles'               => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'cannotundelete'               => 'نشد احیا کرد. ممکن است کس دیگری پیشتر این صفحه را احیا کرده باشد.',
-'undeletedpage'                => "<big> '''$1 احیا شد.'''</big>
+'undeletedpage'                => "<span style="font-size:larger"> '''$1 احیا شد.'''</span>
 برای دیدن سیاههٔ حذفها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",
 'undelete-header'              => 'برای دیدن صفحه‌های حذف‌شدهٔ اخیر [[Special:Log/delete|سیاههٔ حذف]] را ببینید.',
 'undelete-search-box'          => 'جستجوی صفحه‌های حذف‌شده.',
@@ -2628,7 +2628,7 @@ $1',
 'move-watch'                   => 'پی‌گیری این صفحه',
 'movepagebtn'                  => 'صفحه منتقل شود',
 'pagemovedsub'                 => 'انتقال با موفقیت انجام شد',
-'movepage-moved'               => "<big>'''«$1» به «$2» منتقل شد'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''«$1» به «$2» منتقل شد'''</span>",
 'movepage-moved-redirect'      => 'یک تغییر مسیر ایجاد شد.',
 'movepage-moved-noredirect'    => 'از ایجاد تغییر مسیر ممانعت شد.',
 'articleexists'                => 'صفحه‌ای با این نام از قبل وجود دارد، یا نامی که انتخاب کرده‌اید معتبر نیست.

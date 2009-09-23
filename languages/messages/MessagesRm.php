@@ -260,7 +260,7 @@ $messages = array(
 Vus avais endatà fauss la URL, u avais suandà in link incorrect.
 I po dentant er esser in errur en la software da {{SITENAME}}.",
 'nosuchspecialpage' => "I n'exista betg ina tala pagina speziala",
-'nospecialpagetext' => "<big>'''Vus avais tschertgà ina pagina speziala che n'exista betg.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Vus avais tschertgà ina pagina speziala che n'exista betg.'''</span>
 
 Ina glista da las paginas spezialas existentas chattais vus sut [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -384,7 +384,7 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'anoneditwarning'                  => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
 'summary-preview'                  => 'prevista da la resumaziun:',
 'blockedtitle'                     => 'Utilisader è bloccà',
-'blockedtext'                      => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</span>
 
 ''$1'' ha bloccà tai.
 Il motiv inditgà è: ''$2''.
@@ -918,7 +918,7 @@ En quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà
 'move-watch'              => 'Observar questa pagina',
 'movepagebtn'             => 'Spustar la pagina',
 'pagemovedsub'            => 'Spustà cun success',
-'movepage-moved'          => '<big>\'\'\'"$1" è vegnì spustà a "$2"\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" è vegnì spustà a "$2"\'\'\'</span>',
 'articleexists'           => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',
 'talkexists'              => "'''L'artitgel è vegnì spustà cun success. Dentant exista sut il nov num gia ina pagina da discussiun, perquai è la pagina da discussiun betg vegnida spustada. Fa quai p. pl. a maun.'''",
 'movedto'                 => 'spustà a',

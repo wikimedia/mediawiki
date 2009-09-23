@@ -443,7 +443,7 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'summary-preview'           => 'Pre-timeẓriwt n ugzul:',
 'subject-preview'           => 'Pre-timeẓriwt asentel/azwel azellum:',
 'blockedtitle'              => 'Amseqdac iɛekkel',
-'blockedtext'               => "<big>'''Isem n wemseqdac neɣ tansa n IP inek ɛekkelen.'''</big>
+'blockedtext'               => "<span style="font-size:larger">'''Isem n wemseqdac neɣ tansa n IP inek ɛekkelen.'''</span>
 
 $1 iɛekkel-it u yenna-d ''$2''.
 

@@ -127,7 +127,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'category-file-count-limited'    => '{{PLURAL:$1|Ing makatuking simpan kayabe ya|Deng makatuking $1 simpan kayabe la}} king salukuyang kategoriya.',
 'listingcontinuesabbrev'         => 'katuglung.',
 
-'mainpagetext'      => "<big>'''Melaus ing pamipalyari ning MediaWiki.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''Melaus ing pamipalyari ning MediaWiki.'''</span>",
 'mainpagedocfooter' => "Basan me ing [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para king impormasiun keng pamangamit ning wiki software.
 
 == Pamagumpisa ==
@@ -291,7 +291,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'nosuchaction'      => 'Alang makanyan a gawa',
 'nosuchactiontext'  => 'E ne kikilalanan ning wiki ing dapat/utus a babanggitan ning URL',
 'nosuchspecialpage' => 'Alang bulung a makabukud/espesial a anti kanian',
-'nospecialpagetext' => "<big>'''E ustu ing aduan mung bulung a makabukud.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''E ustu ing aduan mung bulung a makabukud.'''</span>
 
 Ating tala da reng bulung a makabukud king [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -493,7 +493,7 @@ Nung i-click meng pasibayu ing Save, ma-save ya ing kekang i-edit a yalang anti 
 'summary-preview'            => 'Preview ning sampulung (summary preview):',
 'subject-preview'            => 'Preview ning paksa/pamagat:',
 'blockedtitle'               => 'Ing talagamit mesabat ya',
-'blockedtext'                => "<big>'''Mesabat ya ing kekang lagiung talagamit (user name) o IP address.'''</big>
+'blockedtext'                => "<span style="font-size:larger">'''Mesabat ya ing kekang lagiung talagamit (user name) o IP address.'''</span>
 
 I $1 ing menyabat. Ini ing binie nang sangkan ''$2''.
 
@@ -1546,7 +1546,7 @@ Mapaliaring putut ya ing kekang suglung, o misubli (restored) ya o milako king s
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 pamagbayung|$1 pamagbayung}} ampong {{PLURAL:$2|1 simpan|$2 simpan}} a misubli',
 'undeletedfiles'               => '{{PLURAL:$1|1 simpan|$1 simpan}} a misubli',
 'cannotundelete'               => "E melaus ing pamamawi king pamamura.  Mapalyaring ati'nang minunang ginawa kaniti.",
-'undeletedpage'                => "ing <big>'''$1 misubli ya'''</big>
+'undeletedpage'                => "ing <span style="font-size:larger">'''$1 misubli ya'''</span>
 
 Lon me ing [[Special:Log/delete|tala da reng mebura (deletion log)]] para king tala/listaan da reng bayu-bayung mebura ampong misubli.",
 'undelete-header'              => 'Lon me [[Special:Log/delete|tala da reng mebura]] para kareng bulung a bayu-bayung mebura.',
@@ -1744,7 +1744,7 @@ Nung makanyan pin ing milyari, kailangan meng iyalis o isanib (merge) ing bulung
 'move-watch'              => 'Banten ya ing bulung a ini',
 'movepagebtn'             => 'Iyalis ya ing bulung',
 'pagemovedsub'            => 'Merapat ing pamanalis',
-'movepage-moved'          => '<big>\'\'\'Ing "$1" miyalis ya king "$2"\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'Ing "$1" miyalis ya king "$2"\'\'\'</span>',
 'articleexists'           => 'Ing bulung a yan atinang miki lagyu, okaya
 ing lagyu ginamit mu e malyari.
 Gumamit na kang aliwang lagyu.',

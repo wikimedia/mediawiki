@@ -127,7 +127,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ti sumaganad a {{PLURAL:$1|file|$1 files}} ket adda iti agdama a categoria.',
 'listingcontinuesabbrev'         => 'tuloy.',
 
-'mainpagetext' => "<big>'''Sibaballigi a nainstolar ti MediaWiki.'''</big>",
+'mainpagetext' => "<span style="font-size:larger">'''Sibaballigi a nainstolar ti MediaWiki.'''</span>",
 
 'about'         => 'Maipapan iti',
 'article'       => 'Panid ti linaon',
@@ -284,7 +284,7 @@ $messages = array(
 'nosuchaction'      => 'Awan ti kasta a naaramid',
 'nosuchactiontext'  => 'Saan a bigbigen ti wiki ti aksion a naibaga iti URL',
 'nosuchspecialpage' => 'Awan ti kasta a naiduma a panid',
-'nospecialpagetext' => "<big>'''Saan a mabalin ti kiniddawmo a naiduma a panid.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Saan a mabalin ti kiniddawmo a naiduma a panid.'''</span>
 
 Masarakan ti listaan dagiti mabalin a a naiduma a pampanid iti [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -454,7 +454,7 @@ No iklikmo manen ti Save, maidulin ti panageditmo nga awanan subject wenno paulo
 'summary-preview'                  => 'Preview ti pakabuklan:',
 'subject-preview'                  => 'Preview ti subject/headline:',
 'blockedtitle'                     => 'Nabangenan ti agar-aramat',
-'blockedtext'                      => "<big>'''Naserraan ti nagan wenno ti IP addressmo.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Naserraan ti nagan wenno ti IP addressmo.'''</span>
 
 Ni $1 ti nangserra kenka. Ti rason ket ''$2''.
 
@@ -1200,7 +1200,7 @@ Mabalinmo a sukatan ti level ti saluad daytoy a panid, ngem saanna nga apektaran
 'undeletedrevisions'       => '{{PLURAL:$1|1 a revision|$1 a revision}} ti naisubli',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 a revision|$1 a revisions}} ken {{PLURAL:$2|1 a file|$2 a files}} ti naisubli',
 'undeletedfiles'           => '{{PLURAL:$1|1 a file|$1 a files}} ti naisubli',
-'undeletedpage'            => "<big>'''Naisublin ti $1'''</big>
+'undeletedpage'            => "<span style="font-size:larger">'''Naisublin ti $1'''</span>
 
 Binsiren ti [[Special:Log/delete|log ti naik-ikkat]] para iti rekord dagiti naudi a naik-ikkat ken naisubsubli.",
 'undelete-search-box'      => 'Biroken dagiti naikkat a pampanid',
@@ -1340,7 +1340,7 @@ Kadagitoy a kaso, masapul nga iyakar wenno itiponmo a manual ti panid no kayatmo
 'move-watch'              => 'Bantayan daytoy a panid',
 'movepagebtn'             => 'Iyakar ti panid',
 'pagemovedsub'            => 'Balligi ti panangiyakar',
-'movepage-moved'          => '<big>Naiyakar ti \'\'\'"$1" iti "$2"\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">Naiyakar ti \'\'\'"$1" iti "$2"\'\'\'</span>',
 'articleexists'           => 'Addan panid nga addaan iti kasta a nagan, wenno ti nagan a pinilim ket saan a mabalin.
 Pangngaasim ta mangpilika iti sabali a nagan.',
 'talkexists'              => "'''Sibaballigi a naiyakar ti panid, nupay kasta saan a maiyakar ti panid ti tungtongan gapu ta addan panid-tungtongan iti baro a titulo.

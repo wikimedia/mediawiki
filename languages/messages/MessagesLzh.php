@@ -194,7 +194,7 @@ $messages = array(
 'category-file-count-limited'    => '門有檔$1。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<big>'''共筆臺已立'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''共筆臺已立'''</span>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
 
 == 始 ==
@@ -384,7 +384,7 @@ $1',
 'nosuchaction'      => '無可為',
 'nosuchactiontext'  => '無此址',
 'nosuchspecialpage' => '無此特查',
-'nospecialpagetext' => "'''<big>無此特查。</big>'''
+'nospecialpagetext' => "'''<span style="font-size:larger">無此特查。</span>'''
 
 見[[Special:SpecialPages|{{int:specialpages}}]]。",
 
@@ -566,7 +566,7 @@ $2',
 'summary-preview'                  => '覽概：',
 'subject-preview'                  => '覽題：',
 'blockedtitle'                     => '子見禁',
-'blockedtext'                      => "<big>'''子名、IP見禁。'''</big>禁者$1也，因''$2''故。
+'blockedtext'                      => "<span style="font-size:larger">'''子名、IP見禁。'''</span>禁者$1也，因''$2''故。
 
 * 始之時為：$8
 * 終之時為：$6
@@ -1862,7 +1862,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1審、$2檔已還',
 'undeletedfiles'               => '$1檔已還',
 'cannotundelete'               => '無以還檔；或復矣。',
-'undeletedpage'                => "<big>'''$1還矣'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1還矣'''</span>
 近刪新還，見[[Special:Log/delete|刪還誌]]。",
 'undelete-header'              => '欲覽近刪，見[[Special:Log/delete|誌刪]]。',
 'undelete-search-box'          => '尋刪',
@@ -2058,7 +2058,7 @@ $1已被禁矣。爾是否改此置？',
 'move-watch'                   => '派哨',
 'movepagebtn'                  => '遷文',
 'pagemovedsub'                 => '遷成矣',
-'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''「$1」已遷至「$2」'''</span>",
 'movepage-moved-redirect'      => '一渡已建。',
 'movepage-moved-noredirect'    => '建渡已押。',
 'articleexists'                => '此題早存，或名謬焉；請更之。',

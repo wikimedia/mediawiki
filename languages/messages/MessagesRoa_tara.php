@@ -151,7 +151,7 @@ $messages = array(
 'index-category'                 => 'Pàggene indicizzate',
 'noindex-category'               => 'Pàggene none indicizzate',
 
-'mainpagetext'      => "<big>'''MediaUicchi ha state 'nstallete.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaUicchi ha state 'nstallete.'''</span>",
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
 
 == Pe accumenzà ==
@@ -347,7 +347,7 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 Tu puè avè scritte male 'a URL, o quidde ca è scritte jè 'nu collegamende sbagliete.
 Pò essere pure ca quiste jè 'nu bochere jndr'à 'u software de {{SITENAME}}.",
 'nosuchspecialpage' => 'Non ge stonne pàggene speciele',
-'nospecialpagetext' => "<big>'''Tu è richieste 'na pàgena speciele ca non g'esiste.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Tu è richieste 'na pàgena speciele ca non g'esiste.'''</span>
 
 Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -583,7 +583,7 @@ Ce tu cazze Reggistre 'n'otra vote, 'u cangiamende tue avène memorizzete senze 
 'summary-preview'                  => "Andeprime d'u riepileghe:",
 'subject-preview'                  => "Andeprime de l'Oggette/Testete:",
 'blockedtitle'                     => "L'utende è blocchete",
-'blockedtext'                      => "<big>''''U nome de l'utende o l'indirizze IP ha state blocchete.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">''''U nome de l'utende o l'indirizze IP ha state blocchete.'''</span>
 
 'U blocche ha state fatte da $1.
 'U mutive date jè ''$2''.
@@ -2080,7 +2080,7 @@ Tu puè avè 'nu collegamende sbagliate o 'a revisione pò essere ca ha state re
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 file}} ripristinete',
 'cannotundelete'               => "Repristine fallite;
 quaccheotre pò essere ca ha repristinate 'a pàgene apprime.",
-'undeletedpage'                => "<big>'''$1 ha state repristinate'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 ha state repristinate'''</span>
 
 Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de le urteme scangellaminde e repristinaminde.",
 'undelete-header'              => "Vide [[Special:Log/delete|l'archivije de le scangellaminde]] pe l'urteme pàggene scangellete.",
@@ -2311,7 +2311,7 @@ Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u c
 'move-watch'                   => 'condrolle sta pàgene',
 'movepagebtn'                  => "Spueste 'a pàgene",
 'pagemovedsub'                 => 'Spustaminde eseguite',
-'movepage-moved'               => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</span>",
 'movepage-moved-redirect'      => "'Nu redirezionamende ha state ccrejate.",
 'movepage-moved-noredirect'    => "'A ccrejazzione de 'nu redirezionamende ha state soppresse.",
 'articleexists'                => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.

@@ -143,8 +143,8 @@ $messages = array(
 'index-category'                 => 'pelê endeksın',
 'noindex-category'               => 'Pelê ke endeksın niyê',
 
-'linkprefix'        => "<big>'''MediaWiki niya ro.'''</big>",
-'mainpagetext'      => "<big>'''MediaWiki vıst ra ser, vıraziya.'''</big>",
+'linkprefix'        => "<span style="font-size:larger">'''MediaWiki niya ro.'''</span>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki vıst ra ser, vıraziya.'''</span>",
 'mainpagedocfooter' => "Gurenayış u ayarkerdena Wiki-Software rê yardım etıya de vênenay: [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
 
 == Yardımê Sıftekerdene ==
@@ -338,7 +338,7 @@ $1',
 Şıma belka URL şaş nuşt, ya zi gıreyi şaş ra ameyi.
 Keyepelê {{SITENAME}} eşkeno xeta eşkera bıkero.',
 'nosuchspecialpage' => 'Pela xasa henêne/otir çina',
-'nospecialpagetext' => "<big>'''To yew pela xasa nêvêrdiye waşte.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''To yew pela xasa nêvêrdiye waşte.'''</span>
 
 Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -912,7 +912,7 @@ Oturse, tı gani peleyê mınaqeşeyê manually beri.",
 'move-watch'       => 'Ena pele seyr ke',
 'movepagebtn'      => 'Pele bere',
 'pagemovedsub'     => 'Berdışi kerd temam',
-'movepage-moved'   => '<big>\'\'\'"$1" berd "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" berd "$2"\'\'\'</span>',
 'articleexists'    => 'Ena nameyê pela database ma dı esta ya zi tı raşt nınuşt. .
 Yewna name bınus.',
 'talkexists'       => "'''Ma ena pele berd. Feqet pele mıneqeşe dı yew problem esto. Çınki ser name newe dı yew pele rona esto. Eq tı eşkeno, pele mıneqeşe manually beri.'''",

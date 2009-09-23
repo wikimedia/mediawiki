@@ -166,7 +166,7 @@ dj'artìcol ancó pa scrit",
 'category-file-count-limited'    => "Ant sta categorìa-sì a-i {{PLURAL:$1|intra mach st'|intro $1}} archivi.",
 'listingcontinuesabbrev'         => ' anans',
 
-'mainpagetext'      => "<big>'''MediaWiki a l'é staita anstalà a la perfession.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki a l'é staita anstalà a la perfession.'''</span>",
 'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] për avej dj'anformassion ant sël coma dovré ël programa dla wiki.
 
 == Për anandiesse a travajé ==
@@ -567,7 +567,7 @@ Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
 'summary-preview'                  => "Preuva dl'oget:",
 'subject-preview'                  => "Preuva d'oget/intestassion:",
 'blockedtitle'                     => "Belavans cost ëstranòm-sì a resta col ëd n'utent che a l'é stait disabilità a fé 'd modìfiche a j'articoj.",
-'blockedtext'                      => "<big>'''Sò stranòm ò pura adrëssa IP a l'é stait blocà.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Sò stranòm ò pura adrëssa IP a l'é stait blocà.'''</span>
 
 Ël blòcagi a l'é stait fait da \$1. 
 Coma rason a l'ha butà ''\$2''.
@@ -2045,7 +2045,7 @@ l'avìa travaje ansima anans che a la scancelèisso.
 'undeletedrevisions-files'     => "{{PLURAL:$1|Na|$1}} revision e {{PLURAL:$2|n'|$2&nbsp;}}archivi pijait andré",
 'undeletedfiles'               => "{{PLURAL:$1|N'|$1&nbsp;}}archivi pijait andaré",
 'cannotundelete'               => "Disdëscancelament falì; a peul esse che i fusse antra doi a felo ant l'istess temp e l'àutr a sia riva prima.",
-'undeletedpage'                => "<big>'''$1 a l'é stait pijait andaré'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 a l'é stait pijait andaré'''</span>
 
 Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciairé j'ùltim scancelament e disdëscancelament.",
 'undelete-header'              => "Ch'a varda [[Special:Log/delete|ël registr djë scancelament]] për ës-ciairé j'ùltim dëscancelament.",
@@ -2271,7 +2271,7 @@ për podej tramudé na pàgina.",
 'move-watch'                   => 'Ten sot euj sta pàgina-sì',
 'movepagebtn'                  => 'Tramuda sta pàgina-sì',
 'pagemovedsub'                 => 'San Martin bele finì!',
-'movepage-moved'               => "<big>'''\"\$1\" a l'é stàit spostà a \"\$2\"'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">'''\"\$1\" a l'é stàit spostà a \"\$2\"'''</span>",
 'movepage-moved-redirect'      => "A l'é stàita creà na rediression.",
 'movepage-moved-noredirect'    => "La creassion ëd na rediression a l'é stàita scanselà.",
 'articleexists'                => "Na pàgina che as ciama parej a-i é già, ò pura ël nòm che a l'ha sërnù a va nen bin.<br />

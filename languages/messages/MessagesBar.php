@@ -113,7 +113,7 @@ $messages = array(
 'category-file-count-limited'    => "{{PLURAL:$1|D'foignde Datei is|De foigndn $1 Datein san}} in de Kategorie eisoatiad:",
 'listingcontinuesabbrev'         => '(Foatsetzung)',
 
-'mainpagetext'      => "<big>'''MediaWiki is eafoigreich installiad woan.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki is eafoigreich installiad woan.'''</span>",
 'mainpagedocfooter' => 'A Huif zua Benutzung und Konfiguration vo da Wiki-Software findst im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
 

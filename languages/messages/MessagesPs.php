@@ -249,7 +249,7 @@ $messages = array(
 'category-file-count-limited' => 'په اوسنۍ وېشنيزه کې {{PLURAL:$1|يوه دوتنه ده|$1 دوتنې دي}}.',
 'listingcontinuesabbrev'      => 'پرله پسې',
 
-'mainpagetext'      => "<big>'''MediaWiki په برياليتوب سره نصب شو.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki په برياليتوب سره نصب شو.'''</span>",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == پيلول ==
@@ -421,7 +421,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'هېڅ داسې کومه کړنه نشته',
 'nosuchspecialpage' => 'داسې هېڅ کوم ځانګړی مخ نشته',
-'nospecialpagetext' => "<big>'''تاسو د يو ناسم ځانګړي مخ غوښتنه کړې.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''تاسو د يو ناسم ځانګړي مخ غوښتنه کړې.'''</span>
 
 تاسو کولای شی چې د سمو ځانګړو مخونو لړليک په [[Special:SpecialPages|{{int:specialpages}}]] کې ومومۍ.",
 
@@ -573,7 +573,7 @@ $messages = array(
 'summary-preview'                  => 'د لنډيز مخکتنه:',
 'subject-preview'                  => 'موضوع/سرليک مخکتنه:',
 'blockedtitle'                     => 'د کارونکي مخه نيول شوې',
-'blockedtext'                      => "<big>'''ستاسو د کارن-نوم يا آی پي پتې مخنيوی شوی.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''ستاسو د کارن-نوم يا آی پي پتې مخنيوی شوی.'''</span>
 
 همدا بنديز د $1 له خوا پر تاسو لږېدلی. او د همدې کړنې سبب دی ''$2''.
 
@@ -1316,7 +1316,7 @@ $messages = array(
 'move-watch'              => 'همدا مخ کتل',
 'movepagebtn'             => 'مخ لېږدول',
 'pagemovedsub'            => 'لېږدول په برياليتوب سره ترسره شوه',
-'movepage-moved'          => '<big>\'\'\'د "$1" په نامه دوتنه، "$2" ته ولېږدېده\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'د "$1" په نامه دوتنه، "$2" ته ولېږدېده\'\'\'</span>',
 'articleexists'           => 'په همدې نوم يوه بله پاڼه د پخوا نه شته او يا خو دا نوم چې تاسو ټاکلی سم نه دی. لطفاً يو بل نوم وټاکۍ.',
 'talkexists'              => "'''همدا مخ په برياليتوب سره نوي سرليک ته ولېږدېده، خو د خبرواترو مخ يې و نه لېږدول شو دا ځکه چې نوی سرليک له پخوا نه ځانته د خبرواترو يو مخ لري.
 مهرباني وکړۍ د خبرواترو دا دواړه مخونه په لاسي توګه سره يو ځای کړی.'''",

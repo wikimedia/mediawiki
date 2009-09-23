@@ -237,7 +237,7 @@ $messages = array(
 'category-file-count-limited'    => "{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría.",
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => "<big>'''O programa MediaWiki s'ha instalato correutament.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''O programa MediaWiki s'ha instalato correutament.'''</span>",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
 
 == Ta prenzipiar ==
@@ -398,7 +398,7 @@ $messages = array(
 Talment s'aya entibocau en escribir a URL, u aya seguiu un binclo incorreuto. 
 Tamién podría endicar un bug en o software emplegato por {{SITENAME}}.",
 'nosuchspecialpage' => 'No esiste ixa pachina espezial',
-'nospecialpagetext' => "<big>'''A pachina espezial que ha demandato no esiste.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''A pachina espezial que ha demandato no esiste.'''</span>
 
 Puede trobar una lista de pachinas espezials en [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -597,7 +597,7 @@ Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueb
 'summary-preview'                  => "Beyer ambiesta prebia d'o resumen:",
 'subject-preview'                  => "Ambiesta prebia d'o tema/títol:",
 'blockedtitle'                     => "L'usuario ye bloqueyato",
-'blockedtext'                      => "<big>'''O suyo nombre d'usuario u adreza IP ye bloqueyato.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''O suyo nombre d'usuario u adreza IP ye bloqueyato.'''</span>
 
 O bloqueyo lo fazió $1. 
 A razón data ye ''$2''.
@@ -1887,7 +1887,7 @@ Si s'ha creyato una nueba pachina con o mesmo nombre dende que se borró a orich
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|rebisión|rebisions}} y $2 {{PLURAL:$2|archibo|archibos}} restauratos',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archibo restaurato|archibos restauratos}}',
 'cannotundelete'               => "No s'ha puesto esfer o borrau; belatro usuario puede aber esfeito antis o borrau.",
-'undeletedpage'                => "<big>'''S'ha restaurato $1'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''S'ha restaurato $1'''</span>
 
 Consulte o [[Special:Log/delete|rechistro de borraus]] ta beyer una lista d'os zaguers borraus y restaurazions.",
 'undelete-header'              => 'En o [[Special:Log/delete|rechistro de borraus]] se listan as pachina borratas fa poco tiempo.',
@@ -2099,7 +2099,7 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'move-watch'                   => 'Cosirar iste articlo',
 'movepagebtn'                  => 'Tresladar pachina',
 'pagemovedsub'                 => 'Treslado feito correutament',
-'movepage-moved'               => "<big>S'ha tresladato '''\"\$1\"  ta \"\$2\"'''</big>",
+'movepage-moved'               => "<span style="font-size:larger">S'ha tresladato '''\"\$1\"  ta \"\$2\"'''</span>",
 'movepage-moved-redirect'      => "S'ha creyato una reendrezera.",
 'movepage-moved-noredirect'    => "S'ha canzelato a creyazión d'una reendrezera.",
 'articleexists'                => 'Ya bi ha una pachina con ixe nombre u o nombre que ha eslechito no ye conforme. Por fabor trigue un atro nombre.',

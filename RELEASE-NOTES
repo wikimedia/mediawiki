@@ -533,6 +533,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   command line scripts to fail
 * (bug 20702) Parser functions can now be used correctly in
   MediaWiki:Missing-article
+* (bug 19858) Depreciated <big> tag replaced by style in all messages
 
 == API changes in 1.16 ==
 

@@ -314,7 +314,7 @@ $messages = array(
 Est possibile chi sa URL siat istada cracada male, o si siat sighidu unu cullegamentu non vàlidu. 
 Custu iat a poder esser unu bug de {{SITENAME}}.",
 'nosuchspecialpage' => 'Custa pàgina ispetziale no esistit',
-'nospecialpagetext' => "<big>'''As pediu una pàgina ispetziale non balida.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''As pediu una pàgina ispetziale non balida.'''</span>
 
 Una lista de pàginas ispetziales bàlidas d'agatas in [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -445,7 +445,7 @@ S'indiritzu IP tuo at a èssere registradu in s'istòria de custa pàgina.",
 'summary-preview'                  => 'Antiprima ogetu:',
 'subject-preview'                  => 'Antiprima tema/tìtulu:',
 'blockedtitle'                     => "S'usuàriu est istadu bloccau",
-'blockedtext'                      => "<big>'''Custu nòmene usuàriu o indiritzu IP est istadu bloccau.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Custu nòmene usuàriu o indiritzu IP est istadu bloccau.'''</span>
 
 Su bloccu est istadu postu dae $1. Su motivu de su bloccu est: ''$2''
 
@@ -1135,7 +1135,7 @@ In custos casos, si cheres, depes mòvere a manu su cuntènnidu de sa pàgina.",
 'move-watch'         => 'Pone ogru a custa pàgina',
 'movepagebtn'        => 'Movi sa pàgina',
 'pagemovedsub'       => 'Movimentu andau beni',
-'movepage-moved'     => '<big>\'\'\'"$1" est istada mòvida a "$2"\'\'\'</big>',
+'movepage-moved'     => '<span style="font-size:larger">\'\'\'"$1" est istada mòvida a "$2"\'\'\'</span>',
 'articleexists'      => 'Una pàgina cun custu nòmene esistit giai, o su nòmene chi as sceberau no est bàlidu.
 Pro pregheri scebera un àteru nòmene.',
 'talkexists'         => "'''Su movimentu de sa pàgina est andau beni, ma no est istadu possibile moviri sa pàgina de cuntierras proite ndi esistit giai un àtera cun su stessu tìtulu. Pro preghere aciungi tue su cuntestu de sa pàgina becia.'''",

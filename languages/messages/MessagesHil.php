@@ -622,7 +622,7 @@ Sa sini nga mga kaso, kilanlan mo gid isaylo o isahon ang pahina sang pag-amat a
 'move-watch'       => 'Bantayan ining panid',
 'movepagebtn'      => 'Saylohon ining panid',
 'pagemovedsub'     => 'Giho nga nagdayon',
-'movepage-moved'   => '<big>\'\'\'"$1" nasaylo na didto sa "$2"\'\'\'</big>',
+'movepage-moved'   => '<span style="font-size:larger">\'\'\'"$1" nasaylo na didto sa "$2"\'\'\'</span>',
 'articleexists'    => 'May-ara na sang ngalan nga amu na, ukon ang ginpili mo na ngalan ay indi mabatunan.
 Palihog lang pili sang lain nga ngalan. Salamat.',
 'talkexists'       => "'''Nasaylo na mismo ang ina nga pahina, pero ang hisayranay nga pahina indi masaylo kay man may ara na sang nakakuha sang bag-o nga titulo.

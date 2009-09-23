@@ -257,7 +257,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'ચાલુ..',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''મિડીયાવિકિ સફળતાપૂર્વક ઇન્સટોલ થયું છે.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''મિડીયાવિકિ સફળતાપૂર્વક ઇન્સટોલ થયું છે.'''</span>",
 'mainpagedocfooter' => 'વિકિ સોફ્ટવેર વાપરવાની માહીતિ માટે [http://meta.wikimedia.org/wiki/Help:Contents સભ્ય માર્ગદર્શિકા] જુઓ.
 
 == શરૂઆતના તબક્કે ==
@@ -455,7 +455,7 @@ $1',
 તમે કદાચ ખોટો URL છાપ્યો હશે અથવા ખોટી કડીથી અહીં આવ્યા હશો.
 તમે સોફ્ટવેરની આ ખામી {{SITENAME}} પર દર્શાવી શકો છો.',
 'nosuchspecialpage' => 'એવું ખાસ પાનું નથી',
-'nospecialpagetext' => "<big>'''તમે અયોગ્ય ખાસ પાનું માંગ્યું છે. '''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''તમે અયોગ્ય ખાસ પાનું માંગ્યું છે. '''</span>
 
 યોગ્ય ખાસ પાનાંની યાદી માટે ક્લિક કરો : [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -662,7 +662,7 @@ Please log in again after you receive it.
 'summary-preview'                  => 'સારાંશ પૂર્વાવલોકન:',
 'subject-preview'                  => 'વિષય/શિર્ષક પૂર્વાવલોકન:',
 'blockedtitle'                     => 'સભ્ય પ્રતિબંધિત છે',
-'blockedtext'                      => "<big>'''આપનાં સભ્ય નામ અથવા આઇ.પી. એડ્રેસ પર પ્રતિબંધ મુકવામાં આવ્યો છે.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''આપનાં સભ્ય નામ અથવા આઇ.પી. એડ્રેસ પર પ્રતિબંધ મુકવામાં આવ્યો છે.'''</span>
 
 આ પ્રતિબંધ  $1એ મુક્યો છે.
 જેને માટે કારણ આપવામાં આવ્યું છે કે, ''$2''.
@@ -1283,7 +1283,7 @@ Please log in again after you receive it.
 'move-watch'              => 'આ પાનું ધ્યાનમાં રાખો',
 'movepagebtn'             => 'પાનું ખસેડો',
 'pagemovedsub'            => 'પાનું સફળતા પૂર્વક ખસેડવામાં આવ્યું છે',
-'movepage-moved'          => '<big>\'\'\'"$1" નું નામ બદલીને "$2" કરવામાં આવ્યું છે\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" નું નામ બદલીને "$2" કરવામાં આવ્યું છે\'\'\'</span>',
 'articleexists'           => 'આ નામનું પાનું અસ્તિત્વમાં છે, અથવાતો તમે પસંદ કરેલું નામ અસ્વિકાર્ય છો.
 કૃપા કરી અન્ય નામ પસંદ કરો.',
 'talkexists'              => "'''મુખ્ય પાનું સફળતાપૂર્વક ખસેડવામાં આવ્યું છે, પરંતુ તેનું ચર્ચાનું પાનું ખસેડી શકાયું નથી, કેમકે નવા શિર્ષક હેઠળ તે પાનું પહેલેથી અસ્તિત્વમાં છે.

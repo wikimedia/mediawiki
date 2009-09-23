@@ -339,7 +339,7 @@ $messages = array(
 'category-file-count-limited'    => 'Следећи {{PLURAL:$1|фајл је|$1 фајлови су}} у овој категорији.',
 'listingcontinuesabbrev'         => 'наст.',
 
-'mainpagetext'      => "<big>'''МедијаВики је успешно инсталиран.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''МедијаВики је успешно инсталиран.'''</span>",
 'mainpagedocfooter' => 'Молимо видите [http://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за информације о употреби вики софтвера.
 
 == За почетак ==
@@ -524,7 +524,7 @@ $messages = array(
 'nosuchaction'      => 'Нема такве акције',
 'nosuchactiontext'  => 'Акцију наведену у УРЛ-у вики софтвер није препознао.',
 'nosuchspecialpage' => 'Нема такве посебне странице',
-'nospecialpagetext' => "<big>'''Тражили сте непостојећу посебну страницу.'''</big>
+'nospecialpagetext' => "<span style="font-size:larger">'''Тражили сте непостојећу посебну страницу.'''</span>
 
 Списак свих посебних страница се може наћи на [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -742,7 +742,7 @@ $2',
 'summary-preview'                  => 'Претпреглед описа измене:',
 'subject-preview'                  => 'Претпреглед предмета/одељка:',
 'blockedtitle'                     => 'Корисник је блокиран',
-'blockedtext'                      => "<big>'''Ваше корисничко име или ИП адреса је блокирана.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Ваше корисничко име или ИП адреса је блокирана.'''</span>
 
 Блокирање је извршеио $1. 
 Дати разлог је следећи: ''$2''.
@@ -2077,7 +2077,7 @@ Protect pages included in this page (cascading protection)',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|ревизија|ревизије|ревизија}} и $2 {{PLURAL:$2|фајл|фајла|фајлова}} враћено',
 'undeletedfiles'               => '$1 {{PLURAL:$1|фајл|фајла|фајлова}} {{PLURAL:$1|враћен|враћена|враћено}}',
 'cannotundelete'               => 'Враћање обрисане верзије није успело; неко други је вратио страницу пре вас.',
-'undeletedpage'                => "<big>'''Страна $1 је враћена'''</big>",
+'undeletedpage'                => "<span style="font-size:larger">'''Страна $1 је враћена'''</span>",
 'undelete-header'              => 'Види [[Special:Log/delete|лог брисања]] за скоро обрисане стране.',
 'undelete-search-box'          => 'Претражи обрисане странице',
 'undelete-search-prefix'       => 'Прикажи стране које почињу са:',
@@ -2302,7 +2302,7 @@ $1 је већ блокиран. Да ли желите да промените 
 'move-watch'                   => 'Надгледај ову страницу',
 'movepagebtn'                  => 'премести страницу',
 'pagemovedsub'                 => 'Премештање успело',
-'movepage-moved'               => '<big>\'\'\'Страна "$1" је преименована у "$2"!\'\'\'</big>',
+'movepage-moved'               => '<span style="font-size:larger">\'\'\'Страна "$1" је преименована у "$2"!\'\'\'</span>',
 'movepage-moved-redirect'      => 'Преусмерење је напревљено.',
 'movepage-moved-noredirect'    => 'Прављење преусмерења је задржано.',
 'articleexists'                => 'Страница под тим именом већ постоји, или је

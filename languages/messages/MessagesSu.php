@@ -254,7 +254,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategori didieu ngabogaan {{PLURAL:$1|gambar|$1 gambar}} ieu.',
 'listingcontinuesabbrev'         => '(samb.)',
 
-'mainpagetext'      => "<big>'''''Software'' MediaWiki geus diinstal.'''</big>",
+'mainpagetext'      => "<span style="font-size:larger">'''''Software'' MediaWiki geus diinstal.'''</span>",
 'mainpagedocfooter' => "Mangga tingal ''[http://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
 
 'about'         => 'Ngeunaan',
@@ -637,7 +637,7 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 'summary-preview'                  => 'Ringkesan pramidang:',
 'subject-preview'                  => 'Sawangan subyek/tajuk:',
 'blockedtitle'                     => 'Pamaké dipeungpeuk',
-'blockedtext'                      => "<big>'''Ngaran pamaké atawa alamat IP anjeun dipeungpeuk.'''</big>
+'blockedtext'                      => "<span style="font-size:larger">'''Ngaran pamaké atawa alamat IP anjeun dipeungpeuk.'''</span>
 
 Dipeungpeuk ku \$1. 
 Alesanana ''\$2''.
@@ -1797,7 +1797,7 @@ Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku kuncén.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 révisi|$1 révisi}} jeung {{PLURAL:$2|1 koropak|$2 koropak}} geus dipulangkeun',
 'undeletedfiles'               => '$1 {{PLURAL:$1|koropak}} dibalikeun',
 'cannotundelete'               => 'Gagal ngabolaykeun hapusan; sigana kapiheulaan ngabolaykeun hapusan ku nu séjén.',
-'undeletedpage'                => "<big>'''$1 hasil dibalikeun'''</big>
+'undeletedpage'                => "<span style="font-size:larger">'''$1 hasil dibalikeun'''</span>
 
 Tempo [[Special:Log/delete|log hapusan]] keur data ngahapus jeung malikeun.",
 'undelete-header'              => 'Tempo [[Special:Log/delete|log hapusan]] pikeun béréndélan kaca nu anyar dihapus.',
@@ -1977,7 +1977,7 @@ Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagab
 'move-watch'              => 'Awaskeuneun kaca ieu',
 'movepagebtn'             => 'Pindahkeun kaca',
 'pagemovedsub'            => 'Mindahkeun geus hasil!',
-'movepage-moved'          => '<big>\'\'\'"$1" geus dipindahkeun ka "$2"\'\'\'</big>',
+'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" geus dipindahkeun ka "$2"\'\'\'</span>',
 'articleexists'           => 'Kaca nu ngaranna kitu geus aya, atawa ngaran nu dipilih ku anjeun teu sah. Mangga pilih ngaran séjén.',
 'cantmove-titleprotected' => 'Anjeun teu bisa mindahkeun kaca ka dieu, sabab éta judul dikonci',
 'talkexists'              => 'Kacana geus hasil dipindahkeun, ngan kaca obrolanana teu bisa dipindahkeun sabab geus aya nu anyar na judul anyar. Mangga gabungkeun sacara manual.',
