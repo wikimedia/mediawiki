@@ -197,6 +197,7 @@ class MediaWiki {
 				$output->redirect( $url );
 			} else {
 				$title = SpecialPage::getTitleFor( 'Badtitle' );
+				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		} else if( $action == 'view' && !$request->wasPosted() &&
@@ -226,6 +227,7 @@ class MediaWiki {
 						"to true.";
 				}
 				wfHttpError( 500, "Internal error", $message );
+				wfProfileOut( __METHOD__ );
 				return false;
 			} else {
 				$output->setSquidMaxage( 1200 );
@@ -318,6 +320,7 @@ class MediaWiki {
 				if( is_string( $target ) ) {
 					if( !$this->getVal( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
+						wfProfileOut( __METHOD__ );
 						return $target;
 					}
 				}
