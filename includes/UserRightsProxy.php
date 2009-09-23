@@ -12,6 +12,10 @@ class UserRightsProxy {
 		$this->name = $name;
 		$this->id = intval( $id );
 	}
+	
+	public function getDBName() {
+		return $this->database;
+	}
 
 	/**
 	 * Confirm the selected database name is a valid local interwiki database name.
