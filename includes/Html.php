@@ -99,8 +99,8 @@ class Html {
 	 *
 	 * @param $element  string The element's name, e.g., 'a'
 	 * @param $attribs  array  Associative array of attributes, e.g., array(
-	 *   'href' => 'http://www.mediawiki.org/' ).  Values will be HTML-escaped.
-	 *   A value of false means to omit the attribute.
+	 *   'href' => 'http://www.mediawiki.org/' ).  See expandAttributes() for
+	 *   further documentation.
 	 * @param $contents string The raw HTML contents of the element: *not*
 	 *   escaped!
 	 * @return string Raw HTML
@@ -192,7 +192,8 @@ class Html {
 	 *
 	 * @param $element string Name of the element, e.g., 'a'
 	 * @param $attribs array  Associative array of attributes, e.g., array(
-	 *   'href' => 'http://www.mediawiki.org/' ).
+	 *   'href' => 'http://www.mediawiki.org/' ).  See expandAttributes() for
+	 *   further documentation.
 	 * @return array An array of attributes functionally identical to $attribs
 	 */
 	private static function dropDefaults( $element, $attribs ) {
@@ -290,7 +291,9 @@ class Html {
 	 *
 	 * @param $attribs array Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  Values will be HTML-escaped.
-	 *   A value of false means to omit the attribute.
+	 *   A value of false means to omit the attribute.  For boolean attributes,
+	 *   you can omit the key, e.g., array( 'checked' ) instead of
+	 *   array( 'checked' => 'checked' ) or such.
 	 * @return string HTML fragment that goes between element name and '>'
 	 *   (starting with a space if at least one attribute is output)
 	 */
