@@ -678,7 +678,7 @@ abstract class UploadBase {
 		* when served with a generic content-type.
 		*/
 		$tags = array(
-			'<a',
+			'<a href',
 			'<body',
 			'<head',
 			'<html',   #also in safari
