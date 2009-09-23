@@ -180,6 +180,14 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Generic getter for text layer.
+	 * Currently overloaded by PDF and DjVu handlers
+	 */
+	function getPageText( $image, $page ) {
+		return false;
+	}
+
+	/**
 	 * Get an array structure that looks like this:
 	 *
 	 * array(
