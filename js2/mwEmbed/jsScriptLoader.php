@@ -204,8 +204,8 @@ class jsScriptLoader {
 								//make sure its a valid wikipage before doing processing
 								$t = Title::newFromDBkey( substr( $reqClass, 3) );
 								if( $t->exists()
-									&& $t->getNamespace == NS_MEDIAWIKI
-									&& $t->getNamespace == NS_USER){
+									&& $t->getNamespace() == NS_MEDIAWIKI
+									&& $t->getNamespace() == NS_USER){
 										$doAddWT = true;
 								}
 							}
@@ -231,7 +231,7 @@ class jsScriptLoader {
 			}
 		}
 
-		
+
 		// Add the language code to the rKey:
 		$this->rKey .= '_' . $wgContLanguageCode;
 
