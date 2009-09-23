@@ -308,9 +308,9 @@ $messages = array(
 'nosuchaction'      => 'Çalakiyek bi vê rengê tune',
 'nosuchactiontext'  => "Ew tişta yê di wê URL'ê da tê gotin ji MediaWiki netê çêkirin.",
 'nosuchspecialpage' => 'Rûpeleke taybet bi vê rengê tune',
-'nospecialpagetext' => "<big>'''Rûpelê taybetî yê te xwastîyê tune ye.'''</big>
+'nospecialpagetext' => '<strong>Rûpelê taybetî yê te xwastîyê tune ye.</strong>
 
-Hemû rûpelên taybetî di [[Special:SpecialPages|lîsteya rûpelên taybetî]] da werin dîtin.",
+Hemû rûpelên taybetî di [[Special:SpecialPages|lîsteya rûpelên taybetî]] da werin dîtin.',
 
 # General errors
 'error'                => 'Çewtî (Error)',

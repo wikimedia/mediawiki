@@ -1297,6 +1297,7 @@ See also
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}',
 'right-deletedhistory'        => '{{doc-right|deletedhistory}}',
+'right-deletedcontent'        => '{{doc-right|deletedcontent}}',
 'right-browsearchive'         => '{{doc-right|browsearchive}}',
 'right-undelete'              => '{{doc-right|undelete}}',
 'right-suppressrevision'      => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -1534,7 +1535,8 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 $1 is the value in KB/MB/GB',
 'watchthisupload'             => 'In [[Special:Upload]]',
 'filewasdeleted'              => 'This warning is shown when trying to upload a file that does not exist, but has previously been deleted.
-Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}.',
+Parameters:
+* $1 is a link to the deletion log, with the text from {{msg|deletionlog}}.',
 'filename-prefix-blacklist'   => "Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
 
 'upload-file-error' => '{{Identical|Internal error}}',
@@ -2035,12 +2037,15 @@ $1 = the name of the page',
 'historywarning'         => 'Warning when about to delete a page that has history.',
 'confirmdeletetext'      => 'Introduction shown when deleting a page.',
 'actioncomplete'         => 'Used in several situations, for example when a page has been deleted.',
+'deletedtext'            => 'Parameters:
+* $1 is a page that was deleted
+* $2 is {{msg-mw|deletionlog}}',
 'deletedarticle'         => "This is a ''logentry'' message. $1 is deleted page name.",
 'dellogpage'             => 'The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
 
 {{Identical|Deletion log}}',
 'dellogpagetext'         => 'Text in [[Special:Log/delete]].',
-'deletionlog'            => 'This message is used to link to the deletion log as parameter $1 of {{msg|Filewasdeleted}} and as parameter $2 of {{msg|deletedtext}}.
+'deletionlog'            => 'This message is used to link to the deletion log as parameter $1 of {{msg|Filewasdeleted}}, as parameter $2 of {{msg|deletedtext}}, and in log lines on [[Special:DeletedContributions]].
 
 {{Identical|Deletion log}}',
 'reverted'               => '{{Identical|Revert}}',
@@ -2571,6 +2576,11 @@ This message appears at the very end of the list of names in the message [[Media
 This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.
 
 See also {{msg-mw|Siteusers}}.",
+'anonuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net). 
+
+This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user is anonymous. The variable $1 in this message is a link to the user's contributions.
+
+See also {{msg-mw|Anonusers}} and {{msg-mw|Siteuser}}.",
 'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 * $1: date
 * $2: time
@@ -2592,6 +2602,15 @@ It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|
 If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
 
 See also {{msg-mw|Siteuser}}.',
+'anonusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
+It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
+
+* $1 is a list of IP addresses
+* $2 is the number of user names in $1
+
+If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
+
+See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Project:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on translatewiki.net).",
 'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on translatewiki.net).',
 

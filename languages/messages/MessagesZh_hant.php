@@ -488,7 +488,7 @@ $1',
 您可能打錯URL，或跟隨不正確的連結。
 這又可能是{{SITENAME}}所使用的軟件出現臭蟲。',
 'nosuchspecialpage' => '此特殊頁面不存在',
-'nospecialpagetext' => "<big>'''您請求的特殊頁面無效。'''</big>
+'nospecialpagetext' => "<strong>您請求的特殊頁面無效。'''</strong>
 
 [[Special:SpecialPages|{{int:specialpages}}]]中載有所有有效特殊頁面的列表。",
 
@@ -2267,7 +2267,7 @@ $1被封禁的理由是“$2”',
 'blocklogentry'                   => '已封鎖[[$1]]，到期時間為$2 $3',
 'reblock-logentry'                => '更改[[$1]]的封禁設定時間 $2 $3',
 'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:IPBlockList|被查封的IP地址和用戶列表]]。',
-'unblocklogentry'                 => '[[$1]]已被解封',
+'unblocklogentry'                 => '$1已被解封',
 'block-log-flags-anononly'        => '僅限匿名用戶',
 'block-log-flags-nocreate'        => '禁止此IP/用戶建立新帳戶',
 'block-log-flags-noautoblock'     => '停用自動封禁',

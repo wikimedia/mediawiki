@@ -427,9 +427,9 @@ $1',
 შესაძლოა შეცდომით აკრიფეთ URL, ან არასწორ ბმულზე გადახვედით.
 აგრეთვე შესაძლოა, {{SITENAME}}-ს მიერ გამოყენებულ პროგრამულ უზრუნველყოფაში იყოს შეცდომა.',
 'nosuchspecialpage' => 'სპეციალური გვერდი არ არსებობს',
-'nospecialpagetext' => "<big>'''თქვენ არასწორი სპეციალური გვერდი მოითხოვეთ.'''</big>
+'nospecialpagetext' => '<strong>თქვენ არასწორი სპეციალური გვერდი მოითხოვეთ.</strong>
 
-სწორი სპეციალური გვერდების სია შეგიძლიათ იხილოთ აქ: [[Special:SpecialPages|{{int:specialpages}}]].",
+სწორი სპეციალური გვერდების სია შეგიძლიათ იხილოთ აქ: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'შეცდომა',
@@ -1932,7 +1932,7 @@ $1",
 'enotif_anon_editor'           => 'ანონიმური მომხმარებელი $1',
 'enotif_body'                  => 'პატივცემულო $WATCHINGUSERNAME,
 
-პროექტის "{{SITENAME}}" გვერდი $PAGETITLE $CHANGEDORCREATED იქნა მომხმარებლის $PAGEEDITOR მიერ შემდეგი თარიღით: $PAGEEDITDATE. ამჟამინდელი ვერსია იხილეთ აქ: $PAGETITLE_URL.
+პროექტ "{{SITENAME}}"-ის გვერდი $PAGETITLE $CHANGEDORCREATED იქნა მომხმარებელ $PAGEEDITOR მიერ შემდეგი თარიღით: $PAGEEDITDATE. ამჟამინდელი ვერსია იხილეთ აქ: $PAGETITLE_URL.
 
 $NEWPAGE
 

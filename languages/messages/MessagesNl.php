@@ -628,9 +628,9 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 Mogelijk heeft u een typefout gemaakt in de URL, of een onjuiste verwijzing gevolgd.
 Het kan ook wijzen op een fout in de software van {{SITENAME}}.',
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
-'nospecialpagetext' => "<big>'''U hebt een onbestaande speciale pagina opgevraagd.'''</big>
+'nospecialpagetext' => '<strong>U hebt een onbestaande speciale pagina opgevraagd.</strong>
 
-Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|speciale pagina’s]].",
+Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|speciale pagina’s]].',
 
 # General errors
 'error'                => 'Fout',
@@ -1331,7 +1331,7 @@ Probeer een andere zoekopdracht.',
 'searchall'                        => 'alle',
 'showingresults'                   => "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 'showingresultsnum'                => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
-'showingresultsheader'             => "{{PLURAL:$5|Resultaat '''$1''' van '''$3'''|Resultaten '''$1–$2''' van '''$3'''}} voor '''$4'''",
+'showingresultsheader'             => "{{PLURAL:$5|Resultaat '''$1''' van '''$3'''|Resultaten '''$1 - $2''' van '''$3'''}} voor '''$4'''",
 'nonefound'                        => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht.
 Als u in uw zoekopdracht als voorvoegsel \"''all:''\" gebruikt worden alle pagina's doorzocht (inclusief overlegpagina's, sjablonen, enzovoort).
 U kunt ook een naamruimte als voorvoegsel gebruiken.",
@@ -1540,6 +1540,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-bigdelete'             => "Pagina's met een grote geschiedenis verwijderen",
 'right-deleterevision'        => "Versies van pagina's verbergen",
 'right-deletedhistory'        => 'Verwijderde versies bekijken, zonder te kunnen zien wat verwijderd is',
+'right-deletedcontent'        => 'Verwijderde tekst en wijzigingen tussen verwijderde versies bekijken',
 'right-browsearchive'         => "Verwijderde pagina's bekijken",
 'right-undelete'              => "Verwijderde pagina's terugplaatsen",
 'right-suppressrevision'      => 'Verborgen versies bekijken en terugplaatsen',
@@ -2263,7 +2264,7 @@ Zie het $2 voor een overzicht van recente verwijderingen.',
 'suppressedarticle'      => 'heeft "[[$1]]" verborgen',
 'dellogpage'             => 'Verwijderingslogboek',
 'dellogpagetext'         => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
-'deletionlog'            => 'Verwijderingslogboek',
+'deletionlog'            => 'verwijderingslogboek',
 'reverted'               => 'Eerdere versie hersteld',
 'deletecomment'          => 'Reden voor verwijderen:',
 'deleteotherreason'      => 'Andere/eventuele reden:',
@@ -2871,10 +2872,12 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruiker $1',
+'anonuser'         => 'Anonieme {{SITENAME}}-gebruiker $1',
 'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $1 om $2 door $3.',
 'othercontribs'    => 'Gebaseerd op werk van $1.',
 'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruiker|gebruikers}} $1',
+'anonusers'        => 'Anonieme {{SITENAME}}-{{PLURAL:$2|gebruiker|gebruikers}} $1',
 'creditspage'      => 'Auteurspagina',
 'nocredits'        => 'Er is geen auteursinformatie beschikbaar voor deze pagina.',
 

@@ -656,9 +656,9 @@ Siehe die [[Special:Version|Versionsseite]]',
 Es kann ein Schreibfehler in der URL vorliegen oder es wurde ein fehlerhafter Link angeklickt.
 Es kann sich auch um einen Programmierfehler in der Software, die auf {{SITENAME}} benutzt wird, handeln.',
 'nosuchspecialpage' => 'Spezialseite nicht vorhanden',
-'nospecialpagetext' => "<big>'''Die aufgerufene Spezialseite ist nicht vorhanden.'''</big>
+'nospecialpagetext' => '<strong>Die aufgerufene Spezialseite ist nicht vorhanden.</strong>
 
-Alle verfügbaren Spezialseiten sind in der [[Special:SpecialPages|Liste der Spezialseiten]] zu finden.",
+Alle verfügbaren Spezialseiten sind in der [[Special:SpecialPages|Liste der Spezialseiten]] zu finden.',
 
 # General errors
 'error'                => 'Fehler',
@@ -1507,6 +1507,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-bigdelete'             => 'Seiten löschen mit großer Versionsgeschichte',
 'right-deleterevision'        => 'Löschen und Wiederherstellen einzelner Versionen',
 'right-deletedhistory'        => 'Ansehen gelöschter Versionen in der Versionsgeschichte (ohne zugehörigen Text)',
+'right-deletedcontent'        => 'Gelöschte Texte und Versionsunterschiede zwischen gelöschten Versionen ansehen',
 'right-browsearchive'         => 'Suche nach gelöschten Seiten',
 'right-undelete'              => 'Seiten wiederherstellen',
 'right-suppressrevision'      => 'Ansehen und wiederherstellen von Versionen, die auch vor Administratoren verborgen sind',
@@ -2796,10 +2797,12 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymer Benutzer|Anonyme Benutzer}} auf {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
+'anonuser'         => 'Anonymer {{SITENAME}}-Benutzer $1',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.',
 'othercontribs'    => 'Basierend auf der Arbeit von $1.',
 'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
+'anonusers'        => 'Anonymer {{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
 'creditspage'      => 'Seiteninformationen',
 'nocredits'        => 'Für diese Seite sind keine Informationen vorhanden.',
 

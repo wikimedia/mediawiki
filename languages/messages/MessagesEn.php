@@ -945,9 +945,9 @@ See [[Special:Version|version page]].',
 You might have mistyped the URL, or followed an incorrect link.
 This might also indicate a bug in the software used by {{SITENAME}}.',
 'nosuchspecialpage' => 'No such special page',
-'nospecialpagetext' => "<strong>You have requested an invalid special page.</strong>
+'nospecialpagetext' => '<strong>You have requested an invalid special page.</strong>
 
-A list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].",
+A list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Error',

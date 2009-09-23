@@ -610,9 +610,9 @@ $1',
 'nosuchaction'      => 'Tidak ada tindakan tersebut',
 'nosuchactiontext'  => 'Tindakan yang diminta oleh URL tersebut tidak valid. Anda mungkin salah mengetikkan URL, atau mengikuti suatu pranala yang tak betul. Hal ini juga mungkin mengindikasikan suatu bug pada perangkat lunak yang digunakan oleh {{SITENAME}}.',
 'nosuchspecialpage' => 'Tidak ada halaman istimewa tersebut',
-'nospecialpagetext' => "<big>'''Anda meminta halaman istimewa yang tidak sah.'''</big>
+'nospecialpagetext' => '<strong>Anda meminta halaman istimewa yang tidak sah.</strong>
 
-Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:specialpages}}]].",
+Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Kesalahan',

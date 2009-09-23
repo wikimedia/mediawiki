@@ -524,7 +524,7 @@ $messages = array(
 'nosuchaction'      => 'Нема такве акције',
 'nosuchactiontext'  => 'Акцију наведену у УРЛ-у вики софтвер није препознао.',
 'nosuchspecialpage' => 'Нема такве посебне странице',
-'nospecialpagetext' => "<big>'''Тражили сте непостојећу посебну страницу.'''</big>
+'nospecialpagetext' => "<strong>Тражили сте непостојећу посебну страницу.'''</strong>
 
 Списак свих посебних страница се може наћи на [[Special:SpecialPages|{{int:specialpages}}]].",
 

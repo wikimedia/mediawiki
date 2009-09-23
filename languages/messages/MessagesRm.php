@@ -260,7 +260,7 @@ $messages = array(
 Vus avais endatà fauss la URL, u avais suandà in link incorrect.
 I po dentant er esser in errur en la software da {{SITENAME}}.",
 'nosuchspecialpage' => "I n'exista betg ina tala pagina speziala",
-'nospecialpagetext' => "<big>'''Vus avais tschertgà ina pagina speziala che n'exista betg.'''</big>
+'nospecialpagetext' => "<strong>Vus avais tschertgà ina pagina speziala che n'exista betg.</strong>
 
 Ina glista da las paginas spezialas existentas chattais vus sut [[Special:SpecialPages|{{int:specialpages}}]].",
 

@@ -419,7 +419,7 @@ $1',
 Marteze hoc'h eus graet ur fazi bizskrivañ en URL pe heuliet ul liamm kamm.
 Marteze zo un draen er meziant implijet gant {{SITENAME}} ivez.",
 'nosuchspecialpage' => "N'eus ket eus ar bajenn dibar-mañ",
-'nospecialpagetext' => "<big>'''Goulennet hoc'h eus ur bajenn dibar n'eus ket anezhi.'''</big>
+'nospecialpagetext' => "<strong>Goulennet hoc'h eus ur bajenn dibar n'eus ket anezhi.</strong>
 
 Ur roll eus ar pajennoù dibar reizh a c'hallit kavour war [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -1264,6 +1264,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-bigdelete'             => 'Diverkañ pajennoù dezho un hir a istor',
 'right-deleterevision'        => 'Diverkañ ha diziverkañ stummoù zo eus ur pajenn',
 'right-deletedhistory'        => 'Gwelet anvioù an istorioù diverket hep diskouez an destenn stag outo',
+'right-deletedcontent'        => "Gwelet ar skrid diverket hag an diforc'hioù etre ar stummoù diverket",
 'right-browsearchive'         => 'Klask pajennoù bet diverket',
 'right-undelete'              => 'Assevel ur bajenn',
 'right-suppressrevision'      => 'Teuler ur sell war ar stummoù kuzhet ouzh ar verourien hag assevel anezho',
@@ -2534,10 +2535,12 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|implijer|implijer}} dianv eus {{SITENAME}}',
 'siteuser'         => 'Implijer(ez) $1 eus {{SITENAME}}',
+'anonuser'         => 'implijer dizanv $1 eus {{SITENAME}}',
 'lastmodifiedatby' => "Kemmet eo bet ar bajenn-mañ da ziwezhañ da $2, d'an $1 gant $3",
 'othercontribs'    => 'Diazezet war labour $1.',
 'others'           => 're all',
 'siteusers'        => '$1 {{PLURAL:$2|implijer|implijer}} eus {{SITENAME}}',
+'anonusers'        => '{{PLURAL:$2|implijer dizanv|implijerien dizanv}} $1 eus {{SITENAME}}',
 'creditspage'      => 'Pajennoù kredoù',
 'nocredits'        => "N'eus tamm titour kred hegerz ebet evit ar bajenn-mañ.",
 

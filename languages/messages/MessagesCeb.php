@@ -380,9 +380,9 @@ $1',
 'nosuchaction'      => 'Walay maong aksyon',
 'nosuchactiontext'  => 'Ang aksyon nga anaa sa URL wala gi-ila sa wiki',
 'nosuchspecialpage' => 'Walay maong espesyal nga panid',
-'nospecialpagetext' => "<big>'''Mihangyo ikaw sa inbalidong espesyal nga panid.'''</big>
+'nospecialpagetext' => '<strong>Mihangyo ikaw sa inbalidong espesyal nga panid.</strong>
 
-Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:SpecialPages|{{int:specialpages}}]].",
+Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Sayop',

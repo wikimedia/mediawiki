@@ -577,9 +577,9 @@ $1',
 Возможно вы допустили опечатку при наборе URL или перешли по ошибочной ссылке.
 Это может также указывать на ошибку в проекте {{SITENAME}}.',
 'nosuchspecialpage' => 'Нет такой служебной страницы',
-'nospecialpagetext' => "<big>'''Запрошенной вами служебной страницы не существует.'''</big>
+'nospecialpagetext' => '<strong>Запрошенной вами служебной страницы не существует.</strong>
 
-Список существующих служебных страниц: [[Special:SpecialPages|{{int:specialpages}}]].",
+Список существующих служебных страниц: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Ошибка',
@@ -1441,6 +1441,7 @@ $1",
 'right-bigdelete'             => 'удаление страниц с длинными историями',
 'right-deleterevision'        => 'удаление и восстановление конкретных версий страниц',
 'right-deletedhistory'        => 'просмотр истории удалённых страниц без доступа к удалённому тексту',
+'right-deletedcontent'        => 'просмотр удалённого текста и изменений между удалёнными версиями страниц',
 'right-browsearchive'         => 'поиск удалённых страниц',
 'right-undelete'              => 'восстановление страниц',
 'right-suppressrevision'      => 'просмотр и восстановление скрытых от администраторов версий страниц',
@@ -2710,11 +2711,13 @@ The wiki server can't provide data in a format your client can read.",
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Анонимный участник|Анонимные участники}} {{grammar:genitive|{{SITENAME}}}}',
-'siteuser'         => 'Участник {{grammar:genitive|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Эта страница последний раз была изменена $2, $1 участником $3.',
-'othercontribs'    => 'В создании также приняли участие: $1.',
+'siteuser'         => 'участник {{grammar:genitive|{{SITENAME}}}} $1',
+'anonuser'         => 'анонимный участник {{grammar:genitive|{{SITENAME}}}} $1',
+'lastmodifiedatby' => 'Эта страница последний раз была изменена $1 в $2, автор изменения — $3.',
+'othercontribs'    => 'В создании приняли участие: $1.',
 'others'           => 'другие',
-'siteusers'        => '{{PLURAL:$2|Участник|Участники}} {{grammar:genitive|{{SITENAME}}}} $1',
+'siteusers'        => '{{PLURAL:$2|участник|участники}} {{grammar:genitive|{{SITENAME}}}} $1',
+'anonusers'        => '{{PLURAL:$2|анонимный участник|анонимные участники}} {{grammar:genitive|{{SITENAME}}}} $1',
 'creditspage'      => 'Благодарности',
 'nocredits'        => 'Нет списка участников для этой статьи',
 

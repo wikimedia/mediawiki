@@ -512,7 +512,7 @@ $1',
 'nosuchaction'      => '这个命令不存在',
 'nosuchactiontext'  => 'URL指定的命令无效。你可能错误输入了URL地址，或者点击了错误的链接。这一错误亦有可能是由{{SITENAME}}所使用软件自身的错误导致的。',
 'nosuchspecialpage' => '此特殊页面不存在',
-'nospecialpagetext' => "<big>'''您请求的特殊页面无效。'''</big>
+'nospecialpagetext' => "<strong>您请求的特殊页面无效。'''</strong>
 
 [[Special:SpecialPages|{{int:specialpages}}]]中列出了所有有效的特殊页面。",
 

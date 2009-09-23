@@ -320,9 +320,9 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Ahmo ia tlachīhualiztli',
 'nosuchspecialpage' => 'Ahmelāhuac nōncuahquīzqui zāzanilli',
-'nospecialpagetext' => "<big>'''Ahmo ia nōncuahquīzqui āmatl ticnequi.'''</big>
+'nospecialpagetext' => '<strong>Ahmo ia nōncuahquīzqui āmatl ticnequi.</strong>
 
-Tihuelīti tiquitta mochi nōncuahquīzqui āmatl īpan [[Special:SpecialPages|{{int:specialpages}}]].",
+Tihuelīti tiquitta mochi nōncuahquīzqui āmatl īpan [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'               => 'Ahcuallōtl',

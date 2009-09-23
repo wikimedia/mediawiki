@@ -455,9 +455,9 @@ $1',
 તમે કદાચ ખોટો URL છાપ્યો હશે અથવા ખોટી કડીથી અહીં આવ્યા હશો.
 તમે સોફ્ટવેરની આ ખામી {{SITENAME}} પર દર્શાવી શકો છો.',
 'nosuchspecialpage' => 'એવું ખાસ પાનું નથી',
-'nospecialpagetext' => "<big>'''તમે અયોગ્ય ખાસ પાનું માંગ્યું છે. '''</big>
+'nospecialpagetext' => '<strong>તમે અયોગ્ય ખાસ પાનું માંગ્યું છે. </strong>
 
-યોગ્ય ખાસ પાનાંની યાદી માટે ક્લિક કરો : [[Special:SpecialPages|{{int:specialpages}}]].",
+યોગ્ય ખાસ પાનાંની યાદી માટે ક્લિક કરો : [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'ત્રુટિ',

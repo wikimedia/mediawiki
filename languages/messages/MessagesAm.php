@@ -321,9 +321,9 @@ $messages = array(
 'nosuchaction'      => 'የማይሆን ተግባር',
 'nosuchactiontext'  => 'በURL የተወሰነው ተግባር በዚህ ዊኪ አይታወቀም።',
 'nosuchspecialpage' => 'እንዲህ የተባለ ልዩ ገጽ የለም',
-'nospecialpagetext' => "<big>'''ለማይኖር ልዩ ገጽ ጠይቀዋል።'''</big>
+'nospecialpagetext' => '<strong>ለማይኖር ልዩ ገጽ ጠይቀዋል።</strong>
 
-የሚኖሩ ልዩ ገጾች ዝርዝር በ[[Special:SpecialPages|{{int:specialpages}}]] ሊገኝ ይችላል።",
+የሚኖሩ ልዩ ገጾች ዝርዝር በ[[Special:SpecialPages|{{int:specialpages}}]] ሊገኝ ይችላል።',
 
 # General errors
 'error'                => 'ስኅተት',

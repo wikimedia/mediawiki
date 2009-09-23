@@ -460,7 +460,7 @@ $1',
 你可能打錯咗個 URL ，或者撳錯咗唔啱嘅連結。
 呢個可能係{{SITENAME}}所用嘅軟件入面嘅臭蟲所引致嘅。',
 'nosuchspecialpage' => '冇呢頁特別頁',
-'nospecialpagetext' => "<big>'''無你所要求嘅特別頁。'''</big>
+'nospecialpagetext' => "<strong>無你所要求嘅特別頁。'''</strong>
 
 喺[[Special:SpecialPages|{{int:specialpages}}]]有全部用得嘅特別頁。",
 

@@ -432,9 +432,9 @@ $1',
 Villicht hesch d URL falsch yygee oder bisch eme falsche Gleich noogange.
 Des chennt au ne Fähler aazeige in {{SITENAME}}.',
 'nosuchspecialpage' => 'Die Spezialsyte git s nit',
-'nospecialpagetext' => "<big>'''Die Spezialsyte git s nit.'''</big>
+'nospecialpagetext' => '<strong>Die Spezialsyte git s nit.</strong>
 
-Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezialsyte]] z finde.",
+Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezialsyte]] z finde.',
 
 # General errors
 'error'                => 'Fähler',
@@ -1294,6 +1294,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-bigdelete'             => 'Syte lesche mit grosse Versionsgschichte',
 'right-deleterevision'        => 'Lesche un Widerherstelle vu einzelne Versione',
 'right-deletedhistory'        => 'Gleschti Versione in der Versionsgschicht aaluege, ohni dr zuegherig Text',
+'right-deletedcontent'        => 'Gleschti Text un Versionsunterschid zwische gleschte Versionen aaluege',
 'right-browsearchive'         => 'Gleschti Syte sueche',
 'right-undelete'              => 'Syte widerherstelle',
 'right-suppressrevision'      => 'Versione, wu au vor Ammanne verborge sin, aaluege un widerherstelle',
@@ -1331,7 +1332,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',
 'rightslogtext'  => 'Des ischs Logbuech vun de Änderunge on Bnutzerrechte.',
-'rightslogentry' => 'het d Benutzerrächt fir „[[$1]]“ vu „$2“ uf „$3“ gänderet',
+'rightslogentry' => 'het d Benutzerrächt fir „$1“ vu „$2“ uf „$3“ gänderet',
 'rightsnone'     => '(keini)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2428,7 +2429,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'importlogpagetext'                => 'Adminischtrativer Import vo Sytene mit Versionsgschichte us anderi Wikis.',
 'import-logentry-upload'           => '„[[$1]]“ isch vunere Datei importiert worde',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Vérsion|Vérsiona}}',
-'import-logentry-interwiki'        => '„[[$1]]“ isch importiert worde (Transwiki)',
+'import-logentry-interwiki'        => '„$1“ isch importiert worde (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} vo $2',
 
 # Tooltip help for the actions
@@ -2504,10 +2505,12 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonyme Benutzer|Anonymi Benutzer}} uff {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
+'anonuser'         => 'anonyme {{SITENAME}}-Benutzer $1',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt geändert um $2, $1 von $3.',
 'othercontribs'    => 'Basiert auf der Arbeit von $1.',
 'others'           => 'anderi',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
+'anonusers'        => '{{PLURAL:$2|Anonyme|Anonymi}} {{SITENAME}}-Benutzer $1',
 'creditspage'      => 'Syteinformatione',
 'nocredits'        => 'Fir die Syte sin kein Informatione vorhande.',
 

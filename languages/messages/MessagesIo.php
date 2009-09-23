@@ -375,9 +375,9 @@ Videz [[Special:Version|versiono-pagino]].',
 # Main script and global functions
 'nosuchaction'      => 'Ne esas tala ago',
 'nosuchspecialpage' => 'Ne existas tala specala pagino',
-'nospecialpagetext' => "<big>'''Vu demandis specala pagino qua ne existas.'''</big>
+'nospecialpagetext' => '<strong>Vu demandis specala pagino qua ne existas.</strong>
 
-On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:specialpages}}]].",
+On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'               => 'Eroro',

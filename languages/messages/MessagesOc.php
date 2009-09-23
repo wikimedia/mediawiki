@@ -610,7 +610,7 @@ $1",
 Benlèu avètz mal picat l’URL o seguit un ligam incorrècte.
 Aquò tanben pòt indicar un problèma dins lo logicial utilizat per {{SITENAME}}.",
 'nosuchspecialpage' => 'Pagina especiala inexistanta',
-'nospecialpagetext' => "<big>'''Avètz demandat una pagina especiala qu'es pas reconeguda pel logicial {{SITENAME}}.'''</big>
+'nospecialpagetext' => "<strong>Avètz demandat una pagina especiala qu'es pas reconeguda pel logicial {{SITENAME}}.</strong>
 
 Una lista de las paginas especialas pòt èsser trobada sus [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -2633,7 +2633,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importlogpagetext'                => 'Impòrts administratius de paginas amb l’istoric a partir dels autres wikis.',
 'import-logentry-upload'           => 'a importat (telecargament) [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
-'import-logentry-interwiki'        => 'a importat (transwiki) [[$1]]',
+'import-logentry-interwiki'        => 'a importat (transwiki) $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} dempuèi $2',
 
 # Tooltip help for the actions

@@ -673,9 +673,9 @@ $messages = array(
 'nosuchaction'      => 'مىناداي ەش ارەكەت جوق',
 'nosuchactiontext'  => 'وسى URL جايىمەن ەنگىزىلگەن ارەكەتتى وسى ۋىيكىي جورامالداپ بىلمەدى.',
 'nosuchspecialpage' => 'مىناداي ەش ارنايى بەت جوق',
-'nospecialpagetext' => "<big>'''جارامسىز ارنايى بەتتى سۇرادىڭىز.'''</big>
+'nospecialpagetext' => '<strong>جارامسىز ارنايى بەتتى سۇرادىڭىز.</strong>
 
-جارامدى ارنايى بەت ٴتىزىمىن [[Special:SpecialPages|{{int:specialpages}}]] دەگەننەن تابا الاسىز.",
+جارامدى ارنايى بەت ٴتىزىمىن [[Special:SpecialPages|{{int:specialpages}}]] دەگەننەن تابا الاسىز.',
 
 # General errors
 'error'                => 'قاتە',

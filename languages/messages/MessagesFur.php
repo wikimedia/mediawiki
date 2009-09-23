@@ -357,9 +357,9 @@ $messages = array(
 'nstab-category'  => 'Categorie',
 
 # Main script and global functions
-'nospecialpagetext' => "<big>'''Tu âs cirût une pagjine speciâl no valide.'''</big>
+'nospecialpagetext' => '<strong>Tu âs cirût une pagjine speciâl no valide.</strong>
 
-Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPages|{{int:specialpages}}]].",
+Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'              => 'Erôr',

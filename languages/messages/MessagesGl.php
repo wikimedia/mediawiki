@@ -512,9 +512,9 @@ $1',
 Pode que non o escribise ben ou que seguise unha ligazón incorrecta.
 Isto tamén podería indicar un erro en {{SITENAME}}.',
 'nosuchspecialpage' => 'Non existe esa páxina especial',
-'nospecialpagetext' => "<big>'''Solicitou unha páxina especial que non está recoñecida polo wiki.'''</big>
+'nospecialpagetext' => '<strong>Solicitou unha páxina especial que non está recoñecida polo wiki.</strong>
 
-Pode atopar unha lista coas páxinas especiais válidas en [[Special:SpecialPages|{{int:specialpages}}]].",
+Pode atopar unha lista coas páxinas especiais válidas en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erro',
@@ -1398,6 +1398,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-bigdelete'             => 'Borrar páxinas con historiais grandes',
 'right-deleterevision'        => 'Borrar e restaurar versións específicas de páxinas',
 'right-deletedhistory'        => 'Ver as entradas borradas do historial, sen o seu texto asociado',
+'right-deletedcontent'        => 'Ver texto borrado e cambios entre revisións eliminadas',
 'right-browsearchive'         => 'Procurar páxinas borradas',
 'right-undelete'              => 'Restaurar unha páxina',
 'right-suppressrevision'      => 'Revisar e restaurar as revisións agochadas dos administradores',
@@ -2679,10 +2680,12 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => '$1 de {{SITENAME}}',
+'anonuser'         => 'o usuario anónimo $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 ás $2 por $3.',
 'othercontribs'    => 'Baseado no traballo feito por $1.',
 'others'           => 'outros',
 'siteusers'        => '{{PLURAL:$2|$1}} de {{SITENAME}}',
+'anonusers'        => '{{PLURAL:$2|o usuario anónimo|os usuarios anónimos}} $1 de {{SITENAME}}',
 'creditspage'      => 'Páxina de créditos',
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 

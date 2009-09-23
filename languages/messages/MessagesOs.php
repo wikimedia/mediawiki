@@ -284,9 +284,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchspecialpage' => 'Ахæм сæрмагонд фарс нæй',
-'nospecialpagetext' => "<big>'''Нæй ахæм сæрмагонд фарс.'''</big>
+'nospecialpagetext' => '<strong>Нæй ахæм сæрмагонд фарс.</strong>
 
-Кæс [[Special:SpecialPages|æппæт сæрмагонд фæрсты номхыгъд]].",
+Кæс [[Special:SpecialPages|æппæт сæрмагонд фæрсты номхыгъд]].',
 
 # General errors
 'error'                => 'Рæдыд',

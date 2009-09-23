@@ -342,9 +342,9 @@ $messages = array(
 'nosuchaction'      => 'এনে কাৰ্য্য নাই',
 'nosuchactiontext'  => 'এই URL-ৰ নির্দেশিত কাৰ্য্য {{SITENAME}} -অত উপলব্ধ নহয়',
 'nosuchspecialpage' => 'এনেকুৱা কোনো বিশেষ পৃষ্ঠা নাই',
-'nospecialpagetext' => "<big>'''আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে '''</big>
+'nospecialpagetext' => '<strong>আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে </strong>
 
-   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:SpecialPages|{{int:specialpages}}]].",
+   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'ভুল',

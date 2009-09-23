@@ -588,9 +588,9 @@ $1',
 Možda ste pogriješili pri unosu URL-a ili ste slijedili pokvaren link.
 Moguće je i da je ovo greška u {{SITENAME}} softveru.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
-'nospecialpagetext' => "<big>'''Tražili ste nevaljanu posebnu stranicu.'''</big>
+'nospecialpagetext' => '<strong>Tražili ste nevaljanu posebnu stranicu.</strong>
 
-Spisak valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
+Spisak valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Greška',

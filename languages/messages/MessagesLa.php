@@ -446,9 +446,9 @@ Vide [[Special:Version|paginam versionis]].',
 'nosuchaction'      => 'Actio non est',
 'nosuchactiontext'  => 'Actio in URL designata non agnoscitur a hoc vici.',
 'nosuchspecialpage' => 'Pagina specialis non est',
-'nospecialpagetext' => "<big>'''Paginam specialem invalidam petivisti.'''</big>
+'nospecialpagetext' => '<strong>Paginam specialem invalidam petivisti.</strong>
 
-Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:specialpages}}]].",
+Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erratum',

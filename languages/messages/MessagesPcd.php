@@ -755,6 +755,11 @@ Os pouvez vir l'source",
 'show-big-image'       => 'Plinne résoluchon',
 'show-big-image-thumb' => '<small>Diminchon del intérvue-lo : $1 × $2 picséls</small>',
 
+# Bad image list
+'bad_image_list' => "Ch'format ch'est:
+
+In érbéye seulemint chés lisses éd limérachon (aveuc * al copéte). <br /> Ech preumié loïen d'eune line i doét éte échti d'eune méchante image. <br /> Chés eutes loïens su el méme line s'ront érbéyés conme des éssékcions, pèr eximpe des paches où l'image put aparoète.",
+
 # Metadata
 'metadata'          => 'Metadata',
 'metadata-expand'   => 'Montrer chés métadatas del imache',

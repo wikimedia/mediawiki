@@ -291,9 +291,9 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'nosuchaction'      => 'Alang makanyan a gawa',
 'nosuchactiontext'  => 'E ne kikilalanan ning wiki ing dapat/utus a babanggitan ning URL',
 'nosuchspecialpage' => 'Alang bulung a makabukud/espesial a anti kanian',
-'nospecialpagetext' => "<big>'''E ustu ing aduan mung bulung a makabukud.'''</big>
+'nospecialpagetext' => '<strong>E ustu ing aduan mung bulung a makabukud.</strong>
 
-Ating tala da reng bulung a makabukud king [[Special:SpecialPages|{{int:specialpages}}]].",
+Ating tala da reng bulung a makabukud king [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Mali',

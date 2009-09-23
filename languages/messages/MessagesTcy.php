@@ -291,7 +291,7 @@ $messages = array(
 'nosuchaction'      => 'ಈ ರೀತಿದ ಓವು ಕ್ರಿಯೆಲಾ(ಆಕ್ಶನ್) ಇಜ್ಜಿ',
 'nosuchactiontext'  => 'ಈ URLದ ಒಟ್ಟಿಗೆ ಉಪ್ಪುನ ಕ್ರಿಯೆನ್ ವಿಕಿ ಗುರ್ತ ಪತ್ತುಜಿ',
 'nosuchspecialpage' => 'ಈ ಪುದರ್’ದ ಒವುಲಾ ವಿಷೇಶ ಪುಟ ಇಜ್ಜಿ',
-'nospecialpagetext' => "<big>'''ಈರ್ ಅಸ್ಥಿತ್ವಡ್ ಇಜ್ಜಂದಿನ ವಿಷೇಶ ಪುಟೊನು ಕೇನ್ದರ್.'''</big>
+'nospecialpagetext' => "<strong>ಈರ್ ಅಸ್ಥಿತ್ವಡ್ ಇಜ್ಜಂದಿನ ವಿಷೇಶ ಪುಟೊನು ಕೇನ್ದರ್.'''</strong>
 
 ಅಸ್ಥಿತ್ವಡ್ ಉಪ್ಪುನಂಚಿನ ವಿಷೇಶ ಪುಟೊಲ್ದ ಪಟ್ಟಿ [[Special:SpecialPages|{{int:specialpages}}]] ಡ್ ಉಂಡು.",
 

@@ -423,7 +423,7 @@ $messages = array(
 'about'         => 'Infermasie',
 'article'       => 'artikel',
 'newwindow'     => '(niej vienster)',
-'cancel'        => 'Annuleren',
+'cancel'        => 'Ofbreken',
 'moredotdotdot' => 'Meer...',
 'mypage'        => 'Mien gebrukerspagina',
 'mytalk'        => 'Mien overleg',
@@ -541,7 +541,7 @@ $1',
 'currentevents-url'    => "Project:In 't niejs",
 'disclaimers'          => 'Veurbehold',
 'disclaimerpage'       => 'Project:Veurbehold',
-'edithelp'             => "Hulpe bie 't bewarken",
+'edithelp'             => 'Hulpe mit bewarken',
 'edithelppage'         => 'Help:Uutleg',
 'helppage'             => 'Help:Inhold',
 'mainpage'             => 'Veurblad',
@@ -604,9 +604,9 @@ $1',
 Je hemmen 't webadres meschien verkeerd in-etik of de verkeerde verwiezing evolg.
 Dit kan oek dujen op een fout in de pregrammetuur van {{SITENAME}}.",
 'nosuchspecialpage' => 'Der besteet gien speciale pagina mit disse naam',
-'nospecialpagetext' => "<big>'''Disse speciale pagina wonnen neet herkend deur de pregrammetuur.'''</big>
+'nospecialpagetext' => '<strong>Disse speciale pagina wonnen neet herkend deur de pregrammetuur.</strong>
 
-Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:SpecialPages|{{int:specialpages}}]].",
+Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Foutmelding',
@@ -806,18 +806,18 @@ Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreuge
 # Edit pages
 'summary'                          => 'Samenvatting:',
 'subject'                          => 'Onderwarp:',
-'minoredit'                        => 'kleine wieziging / spelling',
-'watchthis'                        => 'Volg disse pagina',
-'savearticle'                      => 'Pagina opslaon',
+'minoredit'                        => 'kleine wieziging',
+'watchthis'                        => 'volg disse pagina',
+'savearticle'                      => 'Opslaon',
 'preview'                          => 'Naokieken',
-'showpreview'                      => 'Pagina naokieken',
+'showpreview'                      => 'Naokieken',
 'showlivepreview'                  => 'Drekte weergave',
-'showdiff'                         => 'Bekiek wiezigingen',
+'showdiff'                         => 'Verschil bekieken',
 'anoneditwarning'                  => "'''Waorschuwing:''' Je bin neet an-emeld.
 As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbaor ween.",
-'missingsummary'                   => "'''Herinnering:''' je hemmen gien samenvatting op-egeven veur de bewarking. A-j noen weer op ''Pagina opslaon'' klikken wonnen de bewarking zonder samenvatting op-esleugen.",
+'missingsummary'                   => "'''Herinnering:''' je hemmen gien samenvatting op-egeven veur de bewarking. A-j noen weer op ''Opslaon'' klikken wonnen de bewarking zonder samenvatting op-esleugen.",
 'missingcommenttext'               => 'Plaos joew opmarking hieronder.',
-'missingcommentheader'             => "'''Let wel:''' je hemmen gien onderwarptitel toe-evoeg. A-j opniej op Pagina opslaon klikken wonnen de bewarking op-esleugen zonder onderwarptitel.",
+'missingcommentheader'             => "'''Let wel:''' je hemmen gien onderwarptitel toe-evoeg. A-j opniej op \"Opslaon\" klikken wonnen de bewarking op-esleugen zonder onderwarptitel.",
 'summary-preview'                  => 'Samenvatting naokieken:',
 'subject-preview'                  => 'Onderwarp/kop naokieken:',
 'blockedtitle'                     => 'Gebruker is eblokkeerd',
@@ -904,19 +904,19 @@ As 't dan nog preblemen geef, prebeer dan um [[Special:UserLogout|opniej an te m
 
 't Bovenste bewarkingsveld laot de pagina zien zoas 't noen is. Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina. Helemaole onderan (bie \"Joew tekse\") steet nog een bewarkingsveld mit joew versie.
 
-Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"Pagina opslaon\".",
+Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"Opslaon\".",
 'yourtext'                         => 'Joew tekse',
 'storedversion'                    => 'Op-esleugen versie',
 'nonunicodebrowser'                => "'''Waorschuwing: de webkieker kan neet goed overweg mit unicode, schakel over op een aandere webkieker um de wiezigingen an te brengen!'''",
 'editingold'                       => "'''Waorschuwing: je bin een ouwere versie van disse pagina an 't bewarken. A-j de veraandering opslaon, wonnen alle niejere versies over-eschreven.'''",
 'yourdiff'                         => 'Wiezigingen',
-'copyrightwarning'                 => "NB: Alle biedragen an {{SITENAME}} mutten vrie-egeven wonnen onder de $2 (zie $1 veur infermasie).
-A-j neet willen dat joew tekse deur aandere gebrukers an-epas en verspreid kan wonnen, kies dan neet veur 'Pagina opslaon'.<br />
-Deur op 'Pagina opslaon' te klikken beleuf je da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron.<br />
-'''GEBRUUK GIEN MATERIAAL DAT BESCHARMP WONNEN DEUR AUTEURSRECHEN, BEHALVEN A-J DAOR TOESTEMMING VEUR HEMMEN!'''",
-'copyrightwarning2'                => "Let wel dat alle biedragen an {{SITENAME}} deur aandere gebrukers ewiezig of vort-edaon kunnen wonnen. A-j neet willen dat joew tekse veraanderd wonnen, plaos 't hier dan neet.<br />
-De tekse mut auteursrechvrie ween (zie $1 veur details).
-'''GIEN WARK VAN AANDERE LUUI TOEVOEGEN ZONDER TOESTEMMING VAN DE AUTEUR!'''",
+'copyrightwarning'                 => "Waort je dat alle biedragen an {{SITENAME}} vrie-egeven mutten wonnen onder de \$2 (zie \$1 veur meer infermasie).
+A-j neet willen dat joew tekse deur aander volk bewark en verspreid kan wonnen, slao de tekse dan neet op.<br />
+Deur op \"Opslaon\" te klikken beleuf je ons da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron.<br />
+'''Gebruuk gien spul mit auteursrechen, a-j daor gien toestemming veur hemmen!'''",
+'copyrightwarning2'                => "Waort je dat alle biedragen an {{SITENAME}} deur aander volk bewark of vort-edaon kan wonnen. A-j neet willen dat joew tekse deur aander volk bewark wonnen, slao de tekse dan neet op.<br />
+Deur op \"Opslaon\" te klikken beleuf je ons da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron (zie \$1 veur meer infermasie).
+'''Gebruuk gien spul mit auteursrechen, a-j daor gien toestemming veur hemmen!'''",
 'longpagewarning'                  => "Disse pagina is $1 kB groot. 't Bewarken van grote pagina's kan veur preblemen zörgen bie ouwere webkiekers.",
 'longpageerror'                    => "'''Foutmelding: de tekse dee-j opslaon willen is $1 kilobytes. Dit is groter as 't toe-estaone maximum van $2 kilobytes. Joew tekse kan neet op-esleugen wonnen.'''",
 'readonlywarning'                  => "'''Waorschuwing: De databanke is op dit mement in onderhoud; 't is daorumme neet meugelijk um pagina's te wiezigen.
@@ -1452,6 +1452,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-bigdelete'             => "Pagina's mit een grote geschiedenisse vortdoon",
 'right-deleterevision'        => "Versies van pagina's verbargen",
 'right-deletedhistory'        => 'Vort-edaone versies bekieken, zonder te kunnen zien wat der vort-edaon is',
+'right-deletedcontent'        => 'Bekiek vort-edaone tekse en wiezigingen tussen vort-edaone versies',
 'right-browsearchive'         => "Vort-edaone pagina's bekieken",
 'right-undelete'              => "Vort-edaone pagina's weerummeplaosen",
 'right-suppressrevision'      => 'Verbörgen versies bekieken en weerummeplaosen',
@@ -2125,7 +2126,8 @@ Opmarkingen en veerdere hulpe:
 'delete-confirm'         => '"$1" vortdoon',
 'delete-legend'          => 'Vortdoon',
 'historywarning'         => 'Waorschuwing: disse pagina hef een veurgeschiedenisse. Kiek effen nao of je neet een ouwere versie van disse pagina herstellen kunnen.',
-'confirmdeletetext'      => 'Disse actie wis alle inhoud en geschiedenisse uut de databanke. Bevestig hieronder dat dit de bedoeling is en da-j de gevolgen dervan begriepen.',
+'confirmdeletetext'      => "Je staon op 't punt een pagina en de geschiedenisse dervan vort te doon.
+Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen en dat 't akkerdeert mit 't [[{{MediaWiki:Policy-url}}|beleid]].",
 'actioncomplete'         => 'Uut-evoerd',
 'actionfailed'           => 'De haandeling is mislok.',
 'deletedtext'            => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
@@ -2327,7 +2329,7 @@ De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 # Block/unblock
 'blockip'                         => 'Gebruker blokkeren',
 'blockip-legend'                  => 'Een gebruker of IP-adres blokkeren',
-'blockiptext'                     => "Gebruuk dit formelier um een IP-adres te blokkeren. 't Is bedoeld um vandelisme te veurkoemen. Misbruuk van disse functie zal tot gevolg hemmen dat de staotus van beheerder of-eneumen zal wonnen.",
+'blockiptext'                     => "Gebruuk dit formelier um een IP-adres of gebrukersnaam te blokkeren. 't Is bedoeld um vandelisme te veurkoemen en mit in akkerderen mit 't [[{{MediaWiki:Policy-url}}|beleid]]. Geef hieronder een rejen op (bieveurbeeld op welke pagina's de vandelisme epleeg is)",
 'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres of gebrukersnaam',
 'ipbexpiry'                       => 'Verloop nao',
@@ -2681,10 +2683,12 @@ Je kunnen in de bewarkingssamenvatting een rejen opgeven.',
 # Attribution
 'anonymous'        => 'Annenieme {{PLURAL:$1|gebruker|gebrukers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruker $1',
+'anonuser'         => 'Annenieme {{SITENAME}}-gebruker $1',
 'lastmodifiedatby' => "Disse pagina is 't les ewiezig op $2, $1 deur $3.",
 'othercontribs'    => 'Ebaseerd op wark van $1.',
 'others'           => 'aandere',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruker|gebrukers}}  $1',
+'anonusers'        => 'Annenieme {{SITENAME}}-{{PLURAL:$2|gebruker|gebrukers}} $1',
 'creditspage'      => 'Pagina-auteurs',
 'nocredits'        => 'Der is gien auteursinfermasie beschikbaor veur disse pagina.',
 

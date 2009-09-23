@@ -36,6 +36,7 @@
  * @author Meithal
  * @author Moyg
  * @author Omnipaedista
+ * @author Peter17
  * @author PieRRoMaN
  * @author Remember the dot
  * @author Seb35
@@ -648,9 +649,9 @@ $1',
 Vous avez peut-être mal entré l’URL ou suivi un lien erroné.
 Il peut également s’agir d’un bogue dans le logiciel utilisé par {{SITENAME}}.',
 'nosuchspecialpage' => 'Page spéciale inexistante',
-'nospecialpagetext' => "<big>'''Vous avez demandé une page spéciale qui n’existe pas.'''</big>
+'nospecialpagetext' => '<strong>Vous avez demandé une page spéciale qui n’existe pas.</strong>
 
-Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{int:specialpages}}]].",
+Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erreur',
@@ -1506,6 +1507,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-bigdelete'             => 'Supprimer des pages ayant un gros historique',
 'right-deleterevision'        => 'Supprimer ou restaurer une version particulière d’une page',
 'right-deletedhistory'        => 'Voir les entrées des historiques supprimés mais sans leur texte',
+'right-deletedcontent'        => 'Voir le texte supprimé et les différences entre les versions supprimées',
 'right-browsearchive'         => 'Rechercher des pages supprimées',
 'right-undelete'              => 'Restaurer une page supprimée',
 'right-suppressrevision'      => 'Examiner et restaurer les versions masquées aux administrateurs',
@@ -2701,7 +2703,7 @@ Un dossier temporaire est manquant.',
 'importlogpagetext'                => 'Importations administratives de pages avec leur historique de modifications depuis d’autres wikis.',
 'import-logentry-upload'           => 'a importé [[$1]] par téléversement de fichier',
 'import-logentry-upload-detail'    => '$1 version{{PLURAL:$1||s}}',
-'import-logentry-interwiki'        => 'a importé [[$1]] par transwiki',
+'import-logentry-interwiki'        => 'a importé $1 par transwiki',
 'import-logentry-interwiki-detail' => '$1 version{{PLURAL:$1||s}} depuis $2',
 
 # Tooltip help for the actions
@@ -2803,11 +2805,13 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',
-'siteuser'         => 'Utilisateur $1 de {{SITENAME}}',
+'siteuser'         => "l'utilisateur $1 de {{SITENAME}}",
+'anonuser'         => "l'utilisateur anonyme $1 de {{SITENAME}}",
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.',
 'othercontribs'    => 'Basé sur le travail de $1.',
 'others'           => 'autres',
-'siteusers'        => '{{PLURAL:$2|l’utilisateur|les utilisateurs}} $1 sur {{SITENAME}}',
+'siteusers'        => '{{PLURAL:$2|l’utilisateur|les utilisateurs}} $1 de {{SITENAME}}',
+'anonusers'        => "{{PLURAL:$2|l'utilisateur anonyme|les utilisateurs anonymes}} $1 de {{SITENAME}}",
 'creditspage'      => 'Crédits de la page',
 'nocredits'        => 'Il n’y a pas d’informations d’attribution disponibles pour cette page.',
 

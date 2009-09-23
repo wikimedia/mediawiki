@@ -635,9 +635,9 @@ $messages = array(
 'nosuchaction'      => 'Mınadaý eş äreket joq',
 'nosuchactiontext'  => 'Osı URL jaýımen engizilgen äreketti osı wïkï joramaldap bilmedi.',
 'nosuchspecialpage' => 'Mınadaý eş arnaýı bet joq',
-'nospecialpagetext' => "<big>'''Jaramsız arnaýı betti suradıñız.'''</big>
+'nospecialpagetext' => '<strong>Jaramsız arnaýı betti suradıñız.</strong>
 
-Jaramdı arnaýı bet tizimin [[{{#special:Specialpages}}|{{int:specialpages}}]] degennen taba alasız.",
+Jaramdı arnaýı bet tizimin [[{{#special:Specialpages}}|{{int:specialpages}}]] degennen taba alasız.',
 
 # General errors
 'error'                => 'Qate',

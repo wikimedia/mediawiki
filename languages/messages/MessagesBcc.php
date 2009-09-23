@@ -451,9 +451,9 @@ $1',
 شما بلکین یو‌ارال شر ننوشتت یا رند چه هرابیت لینکی اتکگیت
 شی بلکین یک خطایی ته برنامه سایت {{SITENAME}} پیش داریت.',
 'nosuchspecialpage' => 'نی چشین حاصین صفحه',
-'nospecialpagetext' => "<big>'''شما یک نامعتبرین صفحه حاصین درخواست کت.'''</big>
+'nospecialpagetext' => '<strong>شما یک نامعتبرین صفحه حاصین درخواست کت.</strong>
 
-یک لیستی چه معتبرین صفحات حاص در کپیت ته [[Special:SpecialPages|{{int:specialpages}}]].",
+یک لیستی چه معتبرین صفحات حاص در کپیت ته [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'حطا',

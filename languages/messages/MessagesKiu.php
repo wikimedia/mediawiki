@@ -1,5 +1,5 @@
 <?php
-/** Kurmancî (Kirmanjki)
+/** Kurmancî (Kurmancî)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -333,9 +333,9 @@ href="" class="internal"}?{/a}) basne.',
 To, beno ke URL ğelet nusno ya ki tı girêo de ğelet dıma şiya. 
 No mısneno ke, ''software''o ke terefê {{SITENAME}} ra gurenino, jü ğeleliye tede esta.",
 'nosuchspecialpage' => 'Pela de xususiya nianêne çina',
-'nospecialpagetext' => "<big>'''Sıma pela xususiya de nêvêrdiye kerde ra.'''</big>
+'nospecialpagetext' => '<strong>Sıma pela xususiya de nêvêrdiye kerde ra.</strong>
 
-Jü lista pelunê vêrdoğu bınê [[Special:SpecialPages|{{int:specialpages}}]] de vênina.",
+Jü lista pelunê vêrdoğu bınê [[Special:SpecialPages|{{int:specialpages}}]] de vênina.',
 
 # General errors
 'error'                => 'Xeta',

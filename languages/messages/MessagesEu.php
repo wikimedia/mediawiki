@@ -442,9 +442,9 @@ $1',
 URLa gaizki idatzi duzu, edo hautsitako lotura jarraitu duzu.
 Honek akatsa indikatzen du {{SITENAME}}-(e)n.',
 'nosuchspecialpage' => 'Ez da aparteko orrialde hori existitzen',
-'nospecialpagetext' => "<big>'''Baliogabeko aparteko orrialde bat eskatu duzu.'''</big>
+'nospecialpagetext' => '<strong>Baliogabeko aparteko orrialde bat eskatu duzu.</strong>
 
-Existitzen direnen zerrenda ikus dezakezu  [[Special:SpecialPages|{{int:specialpages}}]] orrialdean.",
+Existitzen direnen zerrenda ikus dezakezu  [[Special:SpecialPages|{{int:specialpages}}]] orrialdean.',
 
 # General errors
 'error'                => 'Errorea',

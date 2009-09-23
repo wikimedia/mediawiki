@@ -344,7 +344,7 @@ $messages = array(
 'nosuchaction'      => 'Чунин амале вуҷуд надорад',
 'nosuchactiontext'  => 'Вики амали дар URL мушаххас шударо намешиносад',
 'nosuchspecialpage' => 'Чунин саҳифаи вижа вуҷуд надорад',
-'nospecialpagetext' => "<big>'''Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.'''</big>
+'nospecialpagetext' => "<strong>Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.'''</strong>
 
 Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:SpecialPages|{{int:specialpages}}]] нигаред.",
 

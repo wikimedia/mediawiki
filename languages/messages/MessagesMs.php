@@ -471,9 +471,9 @@ $1',
 'nosuchaction'      => 'Tindakan tidak dikenali',
 'nosuchactiontext'  => 'Tindakan yang dinyatakan dalam URL ini tidak sah. Anda mungkin telah menaip URL yang salah atau mengikuti pautan yang tidak sah. Ini juga mungkin bererti terdapat pepijat dalam perisian yang digunakan oleh {{SITENAME}}.',
 'nosuchspecialpage' => 'Laman khas tidak wujud',
-'nospecialpagetext' => "<big>'''Anda telah meminta laman khas yang tidak sah.'''</big>
+'nospecialpagetext' => '<strong>Anda telah meminta laman khas yang tidak sah.</strong>
 
-Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].",
+Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].',
 
 # General errors
 'error'                => 'Ralat',

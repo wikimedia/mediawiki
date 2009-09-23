@@ -363,9 +363,9 @@ $messages = array(
 আপনি হয়তো একটি ভুল লিঙ্ক দিয়েছেন অথবা ইউআরএল লিখতে ভুল করেছেন।
 এটি এমনও নির্দেশ করে যে {{SITENAME}} সাইটে ব্যবহৃত সফটওয়্যারটিতে একটি ত্রুটি রয়েছে।',
 'nosuchspecialpage' => 'এমন কোন বিশেষ পাতা নেই',
-'nospecialpagetext' => "<big>'''আপনি একটি অবৈধ বিশেষ পাতা অনুরোধ করেছেন।'''</big>
+'nospecialpagetext' => '<strong>আপনি একটি অবৈধ বিশেষ পাতা অনুরোধ করেছেন।</strong>
 
-[[Special:SpecialPages|{{int:specialpages}}]]-এ বৈধ বিশেষ পাতাগুলির একটি তালিকা পাবেন।",
+[[Special:SpecialPages|{{int:specialpages}}]]-এ বৈধ বিশেষ পাতাগুলির একটি তালিকা পাবেন।',
 
 # General errors
 'error'                => 'ত্রুটি',

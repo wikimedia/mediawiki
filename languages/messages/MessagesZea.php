@@ -312,7 +312,7 @@ $messages = array(
 'nosuchaction'      => 'Opeheven handelieng besti nie',
 'nosuchactiontext'  => 'Den opdracht in de URL wier nie herkend deur de wiki',
 'nosuchspecialpage' => 'Deêze speciaole pagina besti nie',
-'nospecialpagetext' => "<big>'''Je ei een onbestaende speciaole pagina opevrogen.'''</big>
+'nospecialpagetext' => "<strong>Je ei een onbestaende speciaole pagina opevrogen.'''</strong>
 
 Een lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagina’s]].",
 

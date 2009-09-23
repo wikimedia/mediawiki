@@ -219,9 +219,9 @@ $messages = array(
 'nosuchaction'      => 'Soone Aktioon jefft et nich',
 'nosuchactiontext'  => 'Dee Aktioon von dise URL woat von MediaWiki nich unjastett.',
 'nosuchspecialpage' => 'Soone Spezialsied jefft et nich',
-'nospecialpagetext' => "<big>'''Dee oppjeroopde Spezialsied jefft et nich.'''</big>
+'nospecialpagetext' => '<strong>Dee oppjeroopde Spezialsied jefft et nich.</strong>
 
-Aula bruckboare Spezialsiede send bie [[Special:SpecialPages|{{int:specialpages}}]] to finje.",
+Aula bruckboare Spezialsiede send bie [[Special:SpecialPages|{{int:specialpages}}]] to finje.',
 
 # General errors
 'error'           => 'Fehla',

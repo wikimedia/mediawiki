@@ -398,9 +398,9 @@ $messages = array(
 Talment s'aya entibocau en escribir a URL, u aya seguiu un binclo incorreuto. 
 Tamién podría endicar un bug en o software emplegato por {{SITENAME}}.",
 'nosuchspecialpage' => 'No esiste ixa pachina espezial',
-'nospecialpagetext' => "<big>'''A pachina espezial que ha demandato no esiste.'''</big>
+'nospecialpagetext' => '<strong>A pachina espezial que ha demandato no esiste.</strong>
 
-Puede trobar una lista de pachinas espezials en [[Special:SpecialPages|{{int:specialpages}}]].",
+Puede trobar una lista de pachinas espezials en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Error',

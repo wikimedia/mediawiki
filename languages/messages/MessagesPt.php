@@ -599,9 +599,9 @@ $1',
 Você poderá ter introduzido mal a URL, ou ter seguido uma ligação incorreta.
 Isto poderá também ser indicador de um defeito em {{SITENAME}}.',
 'nosuchspecialpage' => 'Não existe a página especial requisitada',
-'nospecialpagetext' => "<big>'''Você requisitou uma página especial inválida.'''</big>
+'nospecialpagetext' => '<strong>Você requisitou uma página especial inválida.</strong>
 
-Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:SpecialPages|{{int:specialpages}}]].",
+Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erro',

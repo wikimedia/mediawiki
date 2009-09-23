@@ -457,7 +457,7 @@ $1',
 'nosuchaction'      => 'Operazion mìa riconossùa',
 'nosuchactiontext'  => "L'azion indicà in tel'URL no la xe valida. Te podaressi ver sbalià a digitar l'URL o ver strucà un colegamento mia justo. Opure podarìa anca tratarse de un bug in {{SITENAME}}.",
 'nosuchspecialpage' => 'No xè disponibiłe nissuna pàxena speciałe co sto nome',
-'nospecialpagetext' => "<big>'''Te ghè richiesto na pagina speciale mìa esistente.'''</big>
+'nospecialpagetext' => "<strong>Te ghè richiesto na pagina speciale mìa esistente.'''</strong>
 
 Te podi catar na lista de le pagine speciali esistenti in [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -2525,10 +2525,12 @@ Salvalo sul to computer e càrghelo qua.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utente anonimo|Utenti anonimi}} de {{SITENAME}}',
 'siteuser'         => '$1, utente de {{SITENAME}}',
+'anonuser'         => 'Utente anonimo $1 de {{SITENAME}}',
 'lastmodifiedatby' => "Sta pàxena la xè stà modificà l'ultima olta el $2, $1 da $3.",
 'othercontribs'    => 'El testo atuale el xe basà su contributi de $1.',
 'others'           => 'altri',
 'siteusers'        => '$1, {{PLURAL:$2|utente|utenti}} de {{SITENAME}}',
+'anonusers'        => '{{PLURAL:$2|Utente anonimo|Utenti anonimi}} $1 de {{SITENAME}}',
 'creditspage'      => 'Autori de ła pàxena',
 'nocredits'        => 'Nissuna informazion sui autori disponibile par sta pagina.',
 

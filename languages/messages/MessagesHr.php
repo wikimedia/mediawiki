@@ -615,9 +615,9 @@ $1',
 Možda se pogrešno upisali URL ili slijedili pogrešnu poveznicu.
 Ovo također može ukazivati na grešku u softveru kojeg koristi {{SITENAME}}.',
 'nosuchspecialpage' => 'Posebna stranica ne postoji',
-'nospecialpagetext' => "<big>'''Takva posebna stranica ne postoji.'''</big>
+'nospecialpagetext' => '<strong>Takva posebna stranica ne postoji.</strong>
 
-Za popis svih posebnih stranica posjetite [[Special:SpecialPages|ovdje]].",
+Za popis svih posebnih stranica posjetite [[Special:SpecialPages|ovdje]].',
 
 # General errors
 'error'                => 'Pogreška',

@@ -330,7 +330,7 @@ $messages = array(
 'nosuchaction'      => 'Diese Aktion gibt es nicht',
 'nosuchactiontext'  => 'De ei der URL angegebene Aktion wird vo MediaWiki nicht unterstützt.',
 'nosuchspecialpage' => 'Spezialseyte nee vorhoanda',
-'nospecialpagetext' => "<big>'''De uffgerufene Spezialseyte ies nee vorhanden.'''</big>
+'nospecialpagetext' => "<strong>De uffgerufene Spezialseyte ies nee vorhanden.'''</strong>
 
 Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spezialseyta]] zu finda.",
 
@@ -1096,7 +1096,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'contribslink'              => 'Beiträge',
 'blocklogpage'              => 'Benutzersperr-Logbuch',
 'blocklogentry'             => 'sperrte „[[$1]]“ fier dan Zeitraum: $2 $3',
-'unblocklogentry'           => 'hoot de Sperre voo „[[$1]]“ uffgehoba',
+'unblocklogentry'           => 'hoot de Sperre voo „$1“ uffgehoba',
 'block-log-flags-nocreate'  => 'Erstellung voo Benutzerkonta gesperrt',
 'block-log-flags-noemail'   => 'E-Mail-Versand gesperrt',
 'proxyblocksuccess'         => 'Fattich',
@@ -1167,7 +1167,7 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'xml-error-string'        => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
 
 # Import log
-'import-logentry-interwiki'        => 'hoot „[[$1]]“ importiert (Transwiki)',
+'import-logentry-interwiki'        => 'hoot „$1“ importiert (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versiona}} vun $2',
 
 # Tooltip help for the actions

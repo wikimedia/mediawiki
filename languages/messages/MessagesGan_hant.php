@@ -320,9 +320,9 @@ $messages = array(
 'nosuchaction'      => '冇有箇隻命令',
 'nosuchactiontext'  => 'Wiki識別伓到箇隻URL命令',
 'nosuchspecialpage' => '冇有箇隻特殊頁',
-'nospecialpagetext' => "<big>'''倷要求嗰特殊頁冇有用。'''</big>
+'nospecialpagetext' => '<strong>倷要求嗰特殊頁冇有用。</strong>
 
-[[Special:SpecialPages]]上尋得到用得上嗰特殊頁。",
+[[Special:SpecialPages]]上尋得到用得上嗰特殊頁。',
 
 # General errors
 'error'                => '錯誤',
@@ -1482,7 +1482,7 @@ $NEWPAGE
 'blocklogpage'                => '封鎖日誌',
 'blocklogentry'               => '[[$1]]拕封到$3 ，結束時間到$2',
 'blocklogtext'                => '箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:IPBlockList|拕封IP地址列表]]。',
-'unblocklogentry'             => '[[$1]] 拕解封嘞',
+'unblocklogentry'             => '$1 拕解封嘞',
 'block-log-flags-anononly'    => '單限制匿名用戶',
 'block-log-flags-nocreate'    => '禁止箇隻IP/用戶新開帳戶',
 'block-log-flags-noautoblock' => '禁用自動封禁',

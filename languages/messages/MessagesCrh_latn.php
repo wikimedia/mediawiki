@@ -383,9 +383,9 @@ $messages = array(
 Belki de URL-ni yañlış yazğandırsız, ya da doğru olmağan bir bağlantını qullanğandırsız.
 Bu, {{SITENAME}} saytındaki bir hatanı da kösterip оla.',
 'nosuchspecialpage' => 'Bu isimde bir mahsus saife yoq',
-'nospecialpagetext' => "<big>'''Tapılmağan bir mahsus saifege kirdiñiz.'''</big>
+'nospecialpagetext' => '<strong>Tapılmağan bir mahsus saifege kirdiñiz.</strong>
 
-Bar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}]] saifesinde körip olursıñız.",
+Bar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}]] saifesinde körip olursıñız.',
 
 # General errors
 'error'                => 'Hata',

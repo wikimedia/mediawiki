@@ -419,9 +419,9 @@ $messages = array(
 'nosuchaction'      => 'Pa gen bagay konsa',
 'nosuchactiontext'  => 'Wiki-a pa rekonèt Aksyon ki espesifye pa URL la',
 'nosuchspecialpage' => 'Pa gen paj especial konsa',
-'nospecialpagetext' => "<big>'''Paj espesial ou demande-a envalid.'''</big>
+'nospecialpagetext' => '<strong>Paj espesial ou demande-a envalid.</strong>
 
-Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:SpecialPages|{{int:specialpages}}]].",
+Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erè',

@@ -444,9 +444,9 @@ $messages = array(
 Улема, тон эльбядеть URL адресть сёрмадомста, эли кочкать аф кондясти сюлмафкс.
 Шятьта ули эльбяткс {{SITENAME}}ть програмса.',
 'nosuchspecialpage' => 'Стама башка лопа аш',
-'nospecialpagetext' => "<big>'''Аш стама башка лопа.'''</big>
+'nospecialpagetext' => '<strong>Аш стама башка лопа.</strong>
 
-Ванк [[Special:SpecialPages|{{int:specialpages}}]].",
+Ванк [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Эльбятькс',

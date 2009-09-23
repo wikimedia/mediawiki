@@ -462,9 +462,9 @@ $1",
 Méiglecherweis hutt dir Iech bei der URL vertippt oder Dir hutt op en net korrekte Link geklickt.
 Et kann awer och sinn datt et e Bug a(n) {{SITENAME}} gëtt.',
 'nosuchspecialpage' => 'Spezialsäit gëtt et net',
-'nospecialpagetext' => "<big>'''Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.'''</big>
+'nospecialpagetext' => '<strong>Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.</strong>
 
-All Spezialsäiten déi et gëtt sinn op der [[Special:SpecialPages|Lescht vun de Spezialsäiten]] ze fannen.",
+All Spezialsäiten déi et gëtt sinn op der [[Special:SpecialPages|Lescht vun de Spezialsäiten]] ze fannen.',
 
 # General errors
 'error'                => 'Feeler',
@@ -569,6 +569,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt.
 Sicht iech een anere Benotzernumm.',
 'loginerror'                 => 'Feeler beim umellen',
+'createaccounterror'         => 'Benotzerkont konnt net opgemaach ginn: $1',
 'nocookiesnew'               => "De Benotzerkont gouf ugeluecht, awer Dir sidd net ageloggt. 
 {{SITENAME}} brauch fir dës Funktioun Cookien.
 Dir hutt d'Cookien desaktivéiert.
@@ -1324,6 +1325,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 'right-bigdelete'             => 'Säite mat engem groussen Historique läschen',
 'right-deleterevision'        => 'Spezifesch Versioune vu Säite läschen a restauréieren',
 'right-deletedhistory'        => 'Weis geläschte Versiounen am Historique, ouni den assoziéierten Text',
+'right-deletedcontent'        => "Geläschten Text an d'Ännerungen tëschent de geläschte Versioune weisen",
 'right-browsearchive'         => 'Geläschte Säite sichen',
 'right-undelete'              => 'Eng Säit restauréieren',
 'right-suppressrevision'      => 'Virun den Administrateure verstoppte Versiounen nokucken a restauréieren',
@@ -2272,7 +2274,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'blocklogtext'                    => "Dëst ass eng Lëscht vu Spären a vu Spären déi opgehuewe goufen.
 Automatesch gespaarten IP-Adresse sinn hei net opgelëscht.
 Kuckt d'[[Special:IPBlockList|IP Spärlëscht]] fir déi aktuell Spären.",
-'unblocklogentry'                 => "huet d'Spär vum [[$1]] opgehuewen",
+'unblocklogentry'                 => "huet d'Spär vum $1 opgehuewen",
 'block-log-flags-anononly'        => 'Nëmmen anonym Benotzer',
 'block-log-flags-nocreate'        => 'Schafe vu Benotzerkonte gespaart',
 'block-log-flags-noautoblock'     => 'Autoblock deaktivéiert',
@@ -2579,10 +2581,12 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonyme Benotzer|Anonym Benotzer}} op {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benotzer $1',
+'anonuser'         => 'Anonyme(n) {{SITENAME}}-Benotzer $1',
 'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer voum $3 fir d'lescht geännert.",
 'othercontribs'    => 'Op der Basis vun der Aarbecht vum $1',
 'others'           => 'anerer',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|Benotzer|Benotzer}} $1',
+'anonusers'        => '{{PLURAL:$2|Anonyme(n)|Anonym}} {{SITENAME}}-Benotzer $1',
 'creditspage'      => 'Quellen',
 'nocredits'        => "Fir dës Säit si keng Informatiounen iwwert d'Mataarbechter vun der Säit disponibel.",
 

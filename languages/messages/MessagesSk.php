@@ -594,7 +594,7 @@ $1',
 Je možné, že ste napísali URL chybne alebo ste klikli na chybný odkaz.
 Príčinou tiež môže byť chyba v softvéri, ktorý používa {{SITENAME}}.',
 'nosuchspecialpage' => 'Takáto špeciálna stránka neexistuje',
-'nospecialpagetext' => "<big>'''Vyžiadali ste si neplatnú špeciálnu stránku.'''</big>
+'nospecialpagetext' => "<strong>Vyžiadali ste si neplatnú špeciálnu stránku.'''</strong>
 
 Zoznam platných špeciálnych stránok nájdete na [[Special:SpecialPages|{{int:specialpages}}]].",
 

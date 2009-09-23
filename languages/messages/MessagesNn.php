@@ -1410,6 +1410,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-bigdelete'             => 'Slette sider med lange historikkar',
 'right-deleterevision'        => 'Slette og gjenopprette enkeltendringar av sider',
 'right-deletedhistory'        => 'Sjå sletta sidehistorikk utan tilhøyrande sidetekst',
+'right-deletedcontent'        => 'Sjå sletta tekst og endringar i høve til sletta versjonar',
 'right-browsearchive'         => 'Søk i sletta sider',
 'right-undelete'              => 'Attopprett sider',
 'right-suppressrevision'      => 'Sjå og gjenopprett skjulte siderevisjonar',
