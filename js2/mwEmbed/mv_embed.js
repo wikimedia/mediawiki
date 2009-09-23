@@ -554,29 +554,32 @@ var mvJsLoader = {
 		_this.doLoad([
 			'window.jQuery'
 		], function() {
-			_global['$j'] = jQuery.noConflict();
-			
-			//setup our global settings using the (jQuery helper) 
-			$j.extend( mwConfig, mwConfigOptions);
-			
-			// Set up the skin path
-			_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
-			_global['mv_skin_img_path'] = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
-			_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';
-			
-			// Make sure the skin/style sheets are always available:
-			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-			loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/styles.css' );
-			
-			// Set up AJAX to not send dynamic URLs for loading scripts (we control that with
-			// the scriptLoader)
-			$j.ajaxSetup({
-				cache: true
-			});
-			
-			js_log( 'jQuery loaded into $j' );
-			// Set up mvEmbed jQuery bindings:
-			mv_jqueryBindings();
+			//only do the $j setup once: 
+			if(!_global['$j']){
+				_global['$j'] = jQuery.noConflict();
+				
+				//setup our global settings using the (jQuery helper) 
+				$j.extend( mwConfig, mwConfigOptions);
+				
+				// Set up the skin path
+				_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
+				_global['mv_skin_img_path'] = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
+				_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';
+				
+				// Make sure the skin/style sheets are always available:
+				loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
+				loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/styles.css' );
+				
+				// Set up AJAX to not send dynamic URLs for loading scripts (we control that with
+				// the scriptLoader)
+				$j.ajaxSetup({
+					cache: true
+				});
+				
+				js_log( 'jQuery loaded into $j' );
+				// Set up mvEmbed jQuery bindings:
+				mv_jqueryBindings();
+			}
 			// Run the callback
 			if( callback ) {
 				callback();

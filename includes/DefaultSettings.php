@@ -2787,13 +2787,7 @@ $wgScriptModifiedCheck = true;
 $wgEnableJS2system = false;
 
 /*
- * boolean; if relative file paths can be used (in addition to the autoload 
- * js classes listed in: $wgJSAutoloadClasses)
- */
-$wgEnableScriptLoaderJsFile = false;
-
-/*
- * boolean; if we should minify the output. (note if you send ?debug=true in 
+ * boolean; if we should minify the output. (note if you send ?debug=true in
  * the page request it will automatically not group and not minify)
  */
 $wgEnableScriptMinify = true;
