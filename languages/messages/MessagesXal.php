@@ -12,6 +12,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'ru';
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Аһар',
 	NS_SPECIAL          => 'Көдлхнə',
