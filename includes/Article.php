@@ -692,29 +692,36 @@ class Article {
 	public function getContributors($limit = 0, $offset = 0) {
 		# XXX: this is expensive; cache this info somewhere.
 
-		$contribs = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$revTable = $dbr->tableName( 'revision' );
 		$userTable = $dbr->tableName( 'user' );
-		$user = $this->getUser();
+
 		$pageId = $this->getId();
 
-		$deletedBit = $dbr->bitAnd('rev_deleted', Revision::DELETED_USER); // username hidden?
+		$user = $this->getUser();
+		if ( $user ) {
+			$excludeCond = "AND rev_user != $user";
+		} else {
+			$userText = $dbr->addQuotes( $this->getUserText() );
+			$excludeCond = "AND rev_user_text != $userText";
+		}
 
-		$sql = "SELECT {$userTable}.*, MAX(rev_timestamp) as timestamp
+		$deletedBit = $dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ); // username hidden?
+
+		$sql = "SELECT {$userTable}.*, rev_user_text as user_name, MAX(rev_timestamp) as timestamp
 			FROM $revTable LEFT JOIN $userTable ON rev_user = user_id
 			WHERE rev_page = $pageId
-			AND rev_user != $user
+			$excludeCond
 			AND $deletedBit = 0
-			GROUP BY rev_user, rev_user_text, user_real_name
+			GROUP BY rev_user, rev_user_text
 			ORDER BY timestamp DESC";
 
-		if($limit > 0)
-			$sql = $dbr->limitResult($sql, $limit, $offset);
+		if ( $limit > 0 )
+			$sql = $dbr->limitResult( $sql, $limit, $offset );
 
-		$sql .= ' '. $this->getSelectOptions();
-
-		$res = $dbr->query($sql, __METHOD__ );
+		$sql .= ' ' . $this->getSelectOptions();
+		wfVarDump( $sql );
+		$res = $dbr->query( $sql, __METHOD__ );
 
 		return new UserArrayFromResult( $res );
 	}

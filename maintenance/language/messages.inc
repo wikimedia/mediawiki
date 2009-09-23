@@ -2350,10 +2350,12 @@ $wgMessageStructure = array(
 	'attribution' => array(
 		'anonymous',
 		'siteuser',
+		'anonuser',
 		'lastmodifiedatby',
 		'othercontribs',
 		'others',
 		'siteusers',
+		'anonusers',
 		'creditspage',
 		'nocredits',
 	),

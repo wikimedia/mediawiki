@@ -55,13 +55,13 @@ class Credits {
 	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
 	 * @return String: html
 	 */
-	public static function getCredits($article, $cnt, $showIfMax=true) {
+	public static function getCredits( Article $article, $cnt, $showIfMax = true ) {
 		wfProfileIn( __METHOD__ );
 		$s = '';
 
 		if( isset( $cnt ) && $cnt != 0 ){
 			$s = self::getAuthor( $article );
-			if ($cnt > 1 || $cnt < 0) {
+			if ( $cnt > 1 || $cnt < 0 ) {
 				$s .= ' ' . self::getContributors( $article, $cnt - 1, $showIfMax );
 			}
 		}
@@ -102,7 +102,7 @@ class Credits {
 	
 		$contributors = $article->getContributors();
 	
-		$others_link = '';
+		$others_link = false;
 	
 		# Hmm... too many to fit!
 		if( $cnt > 0 && $contributors->count() > $cnt ){
@@ -113,7 +113,7 @@ class Credits {
 	
 		$real_names = array();
 		$user_names = array();
-		$anon = 0;
+		$anon_ips = array();
 	
 		# Sift for real versus user names
 		foreach( $contributors as $user ) {
@@ -125,26 +125,36 @@ class Credits {
 				else
 					$user_names[] = $link;
 			} else {
-				$anon++;
+				$anon_ips[] = self::link( $user );
 			}
 			if( $cnt == 0 ) break;
 		}
 	
-		# Two strings: real names, and user names
-		$real = $wgLang->listToText( $real_names );
-		$user = $wgLang->listToText( $user_names );
-		if( $anon )
-			$anon = wfMsgExt( 'anonymous', array( 'parseinline' ), $anon );
+		if ( count( $real_names ) ) {
+			$real = $wgLang->listToText( $real_names );
+		} else {
+			$real = false;
+		}
 	
 		# "ThisSite user(s) A, B and C"
-		if( !empty( $user ) ){
-			$user = wfMsgExt( 'siteusers', array( 'parsemag' ), $user, count( $user_names ) );
+		if( count( $user_names ) ){
+			$user = wfMsgExt( 'siteusers', array( 'parsemag' ),
+				$wgLang->listToText( $user_names ), count( $user_names ) );
+		} else {
+			$user = false;
+		}
+
+		if( count( $anon_ips ) ){
+			$anon = wfMsgExt( 'anonusers', array( 'parsemag' ),
+				$wgLang->listToText( $anon_ips ), count( $anon_ips ) );
+		} else {
+			$anon = false;
 		}
 	
 		# This is the big list, all mooshed together. We sift for blank strings
 		$fulllist = array();
 		foreach( array( $real, $user, $anon, $others_link ) as $s ){
-			if( !empty( $s ) ){
+			if( $s ){
 				array_push( $fulllist, $s );
 			}
 		}
@@ -153,7 +163,7 @@ class Credits {
 		$creds = $wgLang->listToText( $fulllist );
 
 		# "Based on work by ..."
-		return empty( $creds ) ? '' : wfMsg( 'othercontribs', $creds );
+		return strlen( $creds ) ? wfMsg( 'othercontribs', $creds ) : '';
 	}
 
 	/**
@@ -163,13 +173,15 @@ class Credits {
 	 */
 	protected static function link( User $user ) {
 		global $wgUser, $wgHiddenPrefs;
-		if( !in_array( 'realname', $wgHiddenPrefs ) )
+		if( !in_array( 'realname', $wgHiddenPrefs ) && !$user->isAnon() )
 			$real = $user->getRealName();
 		else
 			$real = false;
 
 		$skin = $wgUser->getSkin();
-		$page = $user->getUserPage();
+		$page = $user->isAnon() ?
+			SpecialPage::getTitleFor( 'Contributions', $user->getName() ) :
+			$user->getUserPage();
 
 		return $skin->link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
 	}
@@ -181,11 +193,11 @@ class Credits {
 	 * @return String: html
 	 */
 	protected static function userLink( User $user ) {
+		$link = self::link( $user );
 		if( $user->isAnon() ){
-			return wfMsgExt( 'anonymous', array( 'parseinline' ), 1 );
+			return wfMsgExt( 'anonuser', array( 'parseinline', 'replaceafter' ), $link );
 		} else {
 			global $wgHiddenPrefs;
-			$link = self::link( $user );
 			if( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() )
 				return $link;
 			else 
