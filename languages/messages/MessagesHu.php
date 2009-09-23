@@ -421,7 +421,7 @@ $messages = array(
 'index-category'                 => 'Indexelt lapok',
 'noindex-category'               => 'Nem indexelt lapok',
 
-'mainpagetext'      => "<span style="font-size:larger">'''A MediaWiki telepítése sikeresen befejeződött.'''</span>",
+'mainpagetext'      => "<big>'''A MediaWiki telepítése sikeresen befejeződött.'''</big>",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
 
 == Alapok (angol nyelven) ==
@@ -613,7 +613,7 @@ $1',
 Valószínűleg elgépelted, hibás hivatkozásra kattintottál, vagy a
 a(z) {{SITENAME}} által használt szoftver hibája is lehet.',
 'nosuchspecialpage' => 'Nem létezik ilyen speciális lap',
-'nospecialpagetext' => "<span style="font-size:larger">'''Érvénytelen speciális lapot akartál megtekinteni.'''</span>
+'nospecialpagetext' => "<big>'''Érvénytelen speciális lapot akartál megtekinteni.'''</big>
 
 Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális lapok]] oldalon találod.",
 
@@ -830,7 +830,7 @@ Ha ismét a Mentés gombra kattintasz, akkor a szerkesztésed nélküle kerül m
 'summary-preview'                  => 'A szerkesztési összefoglaló előnézete:',
 'subject-preview'                  => 'A téma/főcím előnézete:',
 'blockedtitle'                     => 'A szerkesztő blokkolva van',
-'blockedtext'                      => "<span style="font-size:larger">'''A szerkesztőnevedet vagy az IP-címedet blokkoltuk.'''</span>
+'blockedtext'                      => "<big>'''A szerkesztőnevedet vagy az IP-címedet blokkoltuk.'''</big>
 
 A blokkolást $1 végezte el.
 Az általa felhozott indok: ''$2''.
@@ -2302,7 +2302,7 @@ változatot visszaállították vagy eltávolították az archívumból.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|egy|$1}} változat és {{PLURAL:$2|egy|$2}} fájl visszaállítva',
 'undeletedfiles'               => '{{PLURAL:$1|egy|$1}} fájl visszaállítva',
 'cannotundelete'               => 'Nem lehet a lapot visszaállítani; lehet, hogy azt már valaki visszaállította.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 helyreállítva'''</span>
+'undeletedpage'                => "<big>'''$1 helyreállítva'''</big>
 
 Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és helyreállítások listájához.",
 'undelete-header'              => 'A legutoljára törölt lapokat lásd a [[Special:Log/delete|törlési naplóban]].',
@@ -2524,7 +2524,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'move-watch'                   => 'Figyeld a lapot',
 'movepagebtn'                  => 'Lap átnevezése',
 'pagemovedsub'                 => 'Átnevezés sikeres',
-'movepage-moved'               => "<span style="font-size:larger">'''„$1” átnevezve „$2” névre'''</span>",
+'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>",
 'movepage-moved-redirect'      => 'Átirányítás létrehozva.',
 'movepage-moved-noredirect'    => 'A régi címről nem sikerült átirányítást készíteni.',
 'articleexists'                => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.

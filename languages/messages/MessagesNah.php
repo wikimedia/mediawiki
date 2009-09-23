@@ -175,7 +175,7 @@ $messages = array(
 'category-file-count-limited'    => 'Inīn {{PLURAL:$1|tlahcuilōlli cah|$1 tlahcuilōlli cateh}} inīn neneuhcāyōc.',
 'listingcontinuesabbrev'         => 'niman',
 
-'mainpagetext' => "<span style="font-size:larger">'''MediaHuiqui cualli ōmotlahtlāli.'''</span>",
+'mainpagetext' => "<big>'''MediaHuiqui cualli ōmotlahtlāli.'''</big>",
 
 'about'         => 'Ītechpa',
 'article'       => 'tlahcuilōlli',
@@ -320,7 +320,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Ahmo ia tlachīhualiztli',
 'nosuchspecialpage' => 'Ahmelāhuac nōncuahquīzqui zāzanilli',
-'nospecialpagetext' => "<span style="font-size:larger">'''Ahmo ia nōncuahquīzqui āmatl ticnequi.'''</span>
+'nospecialpagetext' => "<big>'''Ahmo ia nōncuahquīzqui āmatl ticnequi.'''</big>
 
 Tihuelīti tiquitta mochi nōncuahquīzqui āmatl īpan [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -1174,7 +1174,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'move-watch'                => 'Tictlachiyāz inīn zāzanilli',
 'movepagebtn'               => 'Ticzacāz zāzanilli',
 'pagemovedsub'              => 'Cualli ōmozacac',
-'movepage-moved'            => '<span style="font-size:larger">\'\'\'"$1" ōmotlacuep īhuīc "$2".\'\'\'</span>',
+'movepage-moved'            => '<big>\'\'\'"$1" ōmotlacuep īhuīc "$2".\'\'\'</big>',
 'movedto'                   => 'ōmozacac īhuīc',
 'movetalk'                  => 'Ticzacāz nō tēixnāmiquiliztli tlahcuilōltechcopa.',
 'movepage-page-moved'       => 'Zāzanilli $1 ōmozacac īhuīc $2.',

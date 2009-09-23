@@ -168,7 +168,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El siguiente archivu ta|Los siguientes $1 archivos tán}} na categoría actual.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki instalóse correchamente.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki instalóse correchamente.'''</big>",
 'mainpagedocfooter' => "Visita la [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
 
 == Empecipiando ==
@@ -329,7 +329,7 @@ $messages = array(
 Seique escribieras mal la URL o siguieras un enllaz incorreutu.
 Tamién podría ser un bug nel software usáu por {{SITENAME}}.",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
-'nospecialpagetext' => "<span style="font-size:larger">'''Pidisti una páxina especial non válida.'''</span>
+'nospecialpagetext' => "<big>'''Pidisti una páxina especial non válida.'''</big>
 
 Pues consultar la llista de les páxines especiales válides en [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -540,7 +540,7 @@ Puede ser que yá la cambiaras o que solicitaste otra.",
 'summary-preview'                  => 'Previsualización del resume:',
 'subject-preview'                  => 'Previsualización del tema/títulu:',
 'blockedtitle'                     => "L'usuariu ta bloquiáu",
-'blockedtext'                      => "<span style="font-size:larger">'''El to nome d'usuariu o la to direición IP foi bloquiáu.'''</span>
+'blockedtext'                      => "<big>'''El to nome d'usuariu o la to direición IP foi bloquiáu.'''</big>
 
 El bloquéu féxolu $1.
 El motivu conseñáu ye ''$2''.
@@ -1837,7 +1837,7 @@ revisión fuera restaurada o eliminada del archivu.",
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
 'undeletedfiles'               => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',
 'cannotundelete'               => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
-'undeletedpage'                => "<span style="font-size:larger">'''Restauróse $1'''</span>
+'undeletedpage'                => "<big>'''Restauróse $1'''</big>
 
 Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y restauraciones de recién.",
 'undelete-header'              => "Mira nel [[Special:Log/delete|rexistru d'esborraos]] les páxines esborraes recién.",
@@ -2054,7 +2054,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'move-watch'                   => 'Vixilar esta páxina',
 'movepagebtn'                  => 'Treslladar la páxina',
 'pagemovedsub'                 => 'Treslláu correctu',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" treslladóse a "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Creóse una redireición.',
 'movepage-moved-noredirect'    => "Desaniciose la creación d'una redireición.",
 'articleexists'                => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",

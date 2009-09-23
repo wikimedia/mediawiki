@@ -204,7 +204,7 @@ $messages = array(
 'category-file-count-limited'    => 'Wii wàll moo ëmb {{PLURAL:$1|dencukaay biy toftal|$1 dencukaay yiy toftal}}.',
 'listingcontinuesabbrev'         => '(desit)',
 
-'mainpagetext'      => "<span style="font-size:larger">'''Campug MediaWiki gi sotti na . '''</span>",
+'mainpagetext'      => "<big>'''Campug MediaWiki gi sotti na . '''</big>",
 'mainpagedocfooter' => 'Saytul [http://meta.wikimedia.org/wiki/Ndimbal:Ndefu Gindikaayu jëfandikukat bi] ngir yeneeni xibaar ci jëfandiku gu tëriin gi.
 
 == Tambali ak MediaWiki ==
@@ -398,7 +398,7 @@ $1',
 Xéj-na dangaa juum ci bind URL bi, walla nga topp lëkkalekaay bu baaxul. 
 Lii man naa doon it ag njuumte ci tëriin bi ñuy jëfandikoo ci {{SITENAME}}.',
 'nosuchspecialpage' => 'Xëtu jagleel wu amul',
-'nospecialpagetext' => "<span style="font-size:larger">'''Da nga laaj aw xëtu jagleel wu wiki bi xamul.'''</span>
+'nospecialpagetext' => "<big>'''Da nga laaj aw xëtu jagleel wu wiki bi xamul.'''</big>
 
 Ab limu xëti jagleel yépp, ma nees na koo gis ci [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -590,7 +590,7 @@ Xèj-na baatujàll bi soppi nga ko ba noppi, walla xéj-na it dangaa laaj beneen
 'summary-preview'                  => 'Wonendig tënk bu:',
 'subject-preview'                  => 'Wonendi gu tëriit/koj:',
 'blockedtitle'                     => 'Bii jëfandikukat dañ kaa téye',
-'blockedtext'                      => '<span style="font-size:larger">\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ koo téye .\'\'\'</span>
+'blockedtext'                      => '<big>\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ koo téye .\'\'\'</big>
 
 Ki def téye gi mooy $ te lii mooy ngirte li : \'\'$2\'\'.
 
@@ -1855,7 +1855,7 @@ Nii-nii kocc-koccalu xët wii ñooy '''$1''':",
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|sumb|sumb}} ak $2 {{PLURAL:$2|ŋara|ŋara}} loppanti nañu leen',
 'undeletedfiles'               => '{{PLURAL:$1|1 dencukaay|$1 dencukaay}} lañu delloowaat',
 'cannotundelete'               => 'Delloowaat gi antuwul. Xéj-na keneen delloowaat na ko ba noppi.',
-'undeletedpage'                => "<span style="font-size:larger">'''Xët wii di $1 delloowaat nañu ko.'''</span>
+'undeletedpage'                => "<big>'''Xët wii di $1 delloowaat nañu ko.'''</big>
 
 Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak delloowaat yu mujj yi.",
 'undelete-header'              => 'Saltul [[Special:Log/delete|jaar-jaaru far bi ]] ngir xool far yi mujj.',
@@ -2048,7 +2048,7 @@ Ngir caabi walla caabeedi dàttub njoxe bi, laaj na joxekaayub web bi man cee bi
 'move-watch'                   => 'Topp xët wii',
 'movepagebtn'                  => 'Tuddewaat xët wi',
 'pagemovedsub'                 => 'Tuddewaat gi antu na',
-'movepage-moved'               => "<span style="font-size:larger">'''« $1 »''' lañu tuddewaat '''« $2 »'''</span>",
+'movepage-moved'               => "<big>'''« $1 »''' lañu tuddewaat '''« $2 »'''</big>",
 'movepage-moved-redirect'      => 'Sosees na ab jubluwaat',
 'movepage-moved-noredirect'    => 'Sosug ab jubluwaat far nañu ko.',
 'articleexists'                => 'Am na ba noppi ab jukki bu am bii koj, walla koj bi nga tànn baaxul. tànnal bennen.',

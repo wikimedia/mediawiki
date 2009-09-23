@@ -235,7 +235,7 @@ kalambula-neti yo.",
 'showdiff'                   => 'Ndaga bwe bikyuse',
 'anoneditwarning'            => "'''Kulabula:''' Owandiiika toyingidde mu sisitemu. Tujjakuwandiika endagiriro eya kompyuta kwosinzidde
 mu lukalala lw'enkuykakyuka ez'omu lupapula luno.",
-'blockedtext'                => "<span style="font-size:larger">'''Ebikolebwa mu linnya lyo ery'obwa memba, oba okuva ku ndagiriro yo eya 'IP', tebikyakkirizibwa.'''</span>
+'blockedtext'                => "<big>'''Ebikolebwa mu linnya lyo ery'obwa memba, oba okuva ku ndagiriro yo eya 'IP', tebikyakkirizibwa.'''</big>
 
 $1 y'ataddewo natti eyo. Ensonga gy'awadde eri nti ''$2''.
 

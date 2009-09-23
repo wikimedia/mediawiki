@@ -154,7 +154,7 @@ $messages = array(
 'category-file-count-limited'    => 'निम्न  {{PLURAL:$1|फाइल|$1 फाइलहरु}} यस श्रेणीमा रहेको ।',
 'listingcontinuesabbrev'         => 'निरन्तरता...',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''</big>",
 'mainpagedocfooter' => " विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] हेर्नुहोस् 
 
 == सुरू गर्नको लागि  ==
@@ -352,7 +352,7 @@ $1',
 तपाईले URL गलत टाइपगर्नु भएको , वा गलत लिंक पछ्याउनु भएको हुनसक्छ । 
 यस{{SITENAME}}ले सफ्टवेयरमा भएको गल्ति देखाएको पनि हुनसक्छ ।',
 'nosuchspecialpage' => 'त्यस्तो विषेश पृष्ठ छैन',
-'nospecialpagetext' => "<span style="font-size:larger">'''तपाईँले अनुरोध गर्नुभएको विशेष पृष्ठ अमान्य छ ।'''</span>
+'nospecialpagetext' => "<big>'''तपाईँले अनुरोध गर्नुभएको विशेष पृष्ठ अमान्य छ ।'''</big>
 
 मान्य पृष्ठहरुको सूची यहाँ [[Special:SpecialPages|{{int:specialpages}}]] उपलब्ध छ ।",
 
@@ -537,7 +537,7 @@ $1',
 'summary-preview'                  => 'सारांश पूर्वालोकन:',
 'subject-preview'                  => 'विषय/शिर्षपंंक्ति पूर्वरुप:',
 'blockedtitle'                     => 'प्रयोककर्तालाई रोक लगाइएको छ',
-'blockedtext'                      => "<span style="font-size:larger">'''तपाईँको प्रयोगकर्ता नाम या IP ठेगानालाई रोक लगाइएको छ ।'''</span>
+'blockedtext'                      => "<big>'''तपाईँको प्रयोगकर्ता नाम या IP ठेगानालाई रोक लगाइएको छ ।'''</big>
 
 रोक लगाउने  $1.
 रोक लगाउनाको कारण ''$2''.
@@ -1721,7 +1721,7 @@ $1को बन्देजको कारण : "$2" हो',
 'move-watch'                => 'यो पृष्ठ निगरानीमा राख्नुहोस्',
 'movepagebtn'               => 'पृष्ठ सार्नुहोस्',
 'pagemovedsub'              => 'सार्ने काम सफल भयो',
-'movepage-moved'            => '<span style="font-size:larger">\'\'\'"$1" लाई "$2"मा सारिएको छ\'\'\'</span>',
+'movepage-moved'            => '<big>\'\'\'"$1" लाई "$2"मा सारिएको छ\'\'\'</big>',
 'movepage-moved-redirect'   => 'रिडाइरेक्ट पृष्ठ शृजना गरियो',
 'movepage-moved-noredirect' => 'रिडाइरेक्ट पृष',
 'articleexists'             => 'यस नामको पृष्ठ पहिले देखि नै रहेको ,या तपाईँले छान्नु भएको नाम अमान्य छ।

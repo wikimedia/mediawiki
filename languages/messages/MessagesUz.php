@@ -110,7 +110,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'davomi',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki muvaffaqiyatli o'rnatildi.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki muvaffaqiyatli o'rnatildi.'''</big>",
 'mainpagedocfooter' => "Wiki dasturini ishlatish haqida ma'lumot olish uchun  [http://meta.wikimedia.org/wiki/Help:Contents Foydalanuvchi qo'llanmasi] sahifasiga murojaat qiling.
 
 == Dastlabki qadamlar ==
@@ -265,7 +265,7 @@ $messages = array(
 'showpreview'                => "Ko'rib chiqish",
 'showdiff'                   => "O'zgarishlarni ko'rsatish",
 'anoneditwarning'            => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
-'blockedtext'                => "<span style="font-size:larger">'''Siz (foydalanuvchi ismingiz yoki IP manzilingiz) tahrir qilishdan chetlashtirildingiz.'''</span>
+'blockedtext'                => "<big>'''Siz (foydalanuvchi ismingiz yoki IP manzilingiz) tahrir qilishdan chetlashtirildingiz.'''</big>
 
 Sizni $1 chetlashtirdi. Bunga sabab: ''$2''.
 
@@ -562,7 +562,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'movearticle'    => "Sahifani ko'chirish",
 'movepagebtn'    => 'Sahifani koʻchir',
 'pagemovedsub'   => 'Koʻchirildi',
-'movepage-moved' => '<span style="font-size:larger">\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'</span>',
+'movepage-moved' => '<big>\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'</big>',
 '1movedto2'      => "[[$1]] [[$2]]ga ko'chirildi",
 'movelogpage'    => 'Koʻchirish qaydlari',
 'movereason'     => 'Sabab:',

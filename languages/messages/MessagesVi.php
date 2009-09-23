@@ -389,7 +389,7 @@ $messages = array(
 'index-category'                 => 'Trang được ghi chỉ mục',
 'noindex-category'               => 'Trang không ghi chỉ mục',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki đã được cài đặt thành công.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki đã được cài đặt thành công.'''</big>",
 'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.
 
 == Để bắt đầu ==
@@ -787,7 +787,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'summary-preview'                  => 'Xem trước dòng tóm lược:',
 'subject-preview'                  => 'Xem trước đề mục:',
 'blockedtitle'                     => 'Thành viên bị cấm',
-'blockedtext'                      => "<span style="font-size:larger">'''Tên người dùng hoặc địa chỉ IP của bạn đã bị cấm.'''</span>
+'blockedtext'                      => "<big>'''Tên người dùng hoặc địa chỉ IP của bạn đã bị cấm.'''</big>
 
 Người thực hiện cấm là $1.
 Lý do được cung cấp là ''$2''.
@@ -2254,7 +2254,7 @@ Chỉ có người quản lý mới xem được văn bản đầy đủ của n
 'undeletedfiles'               => '$1 {{PLURAL:$1|tập tin|tập tin}} đã được phục hồi',
 'cannotundelete'               => 'Phục hồi thất bại;
 một người nào khác đã phục hồi trang này rồi.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 đã được khôi phục'''</span>
+'undeletedpage'                => "<big>'''$1 đã được khôi phục'''</big>
 
 Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:Log/delete|nhật trình xóa]].",
 'undelete-header'              => 'Xem các trang bị xóa gần đây tại [[Special:Log/delete|nhật trình xóa]].',
@@ -2478,7 +2478,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'move-watch'                   => 'Theo dõi trang này',
 'movepagebtn'                  => 'Di chuyển trang',
 'pagemovedsub'                 => 'Di chuyển thành công',
-'movepage-moved'               => "<span style="font-size:larger">'''“$1” đã được di chuyển đến “$2”'''</span>",
+'movepage-moved'               => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>",
 'movepage-moved-redirect'      => 'Đã tạo trang chuyển hướng.',
 'movepage-moved-noredirect'    => 'Chức năng tạo trang chuyển hướng đã bị tắt.',
 'articleexists'                => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.

@@ -247,7 +247,7 @@ $messages = array(
 'category-file-count-limited'    => 'Бу төркемдә {{PLURAL:$1|$1 файл}} бар.',
 'listingcontinuesabbrev'         => 'дәвамы',
 
-'mainpagetext'      => '<span style="font-size:larger">«MediaWiki» уңышлы куелды.</span>',
+'mainpagetext'      => '<big>«MediaWiki» уңышлы куелды.</big>',
 'mainpagedocfooter' => "Бу вики турында мәгълүматны [http://meta.wikimedia.org/wiki/Ярдәм:Эчтәлек биредә] табып була.
 
 == Кайбер файдалы ресурслар ==
@@ -440,7 +440,7 @@ $1',
 Сез URLны хаталы җыйган яисә хаталы сылтамадан күчкән булырга мөмкинсез.
 Бу шулай ук {{SITENAME}} проектындагы хата сәбәпле дә булырга мөмкин.',
 'nosuchspecialpage' => 'Мондый махсус бит юк',
-'nospecialpagetext' => "<span style="font-size:larger">'''Сез сорый торган махсус бит юк.'''</span>
+'nospecialpagetext' => "<big>'''Сез сорый торган махсус бит юк.'''</big>
 
 Махсус битләр исемлеген карагыз: [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -645,7 +645,7 @@ $2',
 'summary-preview'                  => 'Тасвирламаны алдан карау:',
 'subject-preview'                  => 'Башисемне алдан карау:',
 'blockedtitle'                     => 'Кулланучы бикләнгән',
-'blockedtext'                      => "<span style="font-size:larger">'''Сезнең хисап язмагыз яки IP-адресыгыз бикләнгән.'''</span>
+'blockedtext'                      => "<big>'''Сезнең хисап язмагыз яки IP-адресыгыз бикләнгән.'''</big>
 
 Бикләүче администратор: $1.
 Күрсәтелгән сәбәп: ''$2''.
@@ -1262,7 +1262,7 @@ $2',
 'move-watch'     => 'Бу битне күзәтергә',
 'movepagebtn'    => 'Битне күчерергә',
 'pagemovedsub'   => 'Бит күчерергән',
-'movepage-moved' => "<span style="font-size:larger">'''«$1» бит «$2» биткә күчкән'''</span>",
+'movepage-moved' => "<big>'''«$1» бит «$2» биткә күчкән'''</big>",
 'movedto'        => 'күчерергән:',
 'movetalk'       => 'Бәйләнешле фикер алышу битне күчерергә',
 '1movedto2'      => '«[[$1]]» бите «[[$2]]» биткә күчерергән',

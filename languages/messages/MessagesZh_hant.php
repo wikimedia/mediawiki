@@ -295,7 +295,7 @@ $messages = array(
 'category-file-count-limited'    => '這個分類下有$1個檔案。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<span style="font-size:larger">'''已成功安裝 MediaWiki。'''</span>",
+'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟件的訊息！
 
 == 入門 ==
@@ -488,7 +488,7 @@ $1',
 您可能打錯URL，或跟隨不正確的連結。
 這又可能是{{SITENAME}}所使用的軟件出現臭蟲。',
 'nosuchspecialpage' => '此特殊頁面不存在',
-'nospecialpagetext' => "<span style="font-size:larger">'''您請求的特殊頁面無效。'''</span>
+'nospecialpagetext' => "<big>'''您請求的特殊頁面無效。'''</big>
 
 [[Special:SpecialPages|{{int:specialpages}}]]中載有所有有效特殊頁面的列表。",
 
@@ -690,7 +690,7 @@ $2',
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '主題/標題預覽:',
 'blockedtitle'                     => '用戶被查封',
-'blockedtext'                      => "<span style="font-size:larger">{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。</span>
+'blockedtext'                      => "<big>{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。</big>
 
 這次查封是由$1所封的。當中的原因是''$2''。
 
@@ -2127,7 +2127,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被恢復',
 'undeletedfiles'               => '$1 個檔案被恢復',
 'cannotundelete'               => '恢復失敗；可能之前已經被其他人恢復。',
-'undeletedpage'                => "<span style="font-size:larger">'''$1已經被恢復'''</span> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
+'undeletedpage'                => "<big>'''$1已經被恢復'''</big> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
 'undelete-header'              => '如要查詢最近的記錄請參閱[[Special:Log/delete|刪除日誌]]。',
 'undelete-search-box'          => '搜尋已刪除頁面',
 'undelete-search-prefix'       => '顯示頁面自:',
@@ -2349,7 +2349,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'move-watch'                   => '監視此頁',
 'movepagebtn'                  => '移動頁面',
 'pagemovedsub'                 => '移動成功',
-'movepage-moved'               => "<span style="font-size:larger">'''「$1」已經移動到「$2」'''</span>",
+'movepage-moved'               => "<big>'''「$1」已經移動到「$2」'''</big>",
 'movepage-moved-redirect'      => '一個重新定向已經被創建。',
 'movepage-moved-noredirect'    => '已經壓制創建重新定向。',
 'articleexists'                => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',

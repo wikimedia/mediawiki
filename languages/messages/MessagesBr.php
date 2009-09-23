@@ -226,7 +226,7 @@ $messages = array(
 'index-category'                 => 'Pajennoù menegeret',
 'noindex-category'               => "Pajennoù n'int ket menegeret",
 
-'mainpagetext'      => "<span style="font-size:larger">'''Meziant MediaWiki staliet.'''</span>",
+'mainpagetext'      => "<big>'''Meziant MediaWiki staliet.'''</big>",
 'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
 
 == Kregiñ ganti ==
@@ -419,7 +419,7 @@ $1',
 Marteze hoc'h eus graet ur fazi bizskrivañ en URL pe heuliet ul liamm kamm.
 Marteze zo un draen er meziant implijet gant {{SITENAME}} ivez.",
 'nosuchspecialpage' => "N'eus ket eus ar bajenn dibar-mañ",
-'nospecialpagetext' => "<span style="font-size:larger">'''Goulennet hoc'h eus ur bajenn dibar n'eus ket anezhi.'''</span>
+'nospecialpagetext' => "<big>'''Goulennet hoc'h eus ur bajenn dibar n'eus ket anezhi.'''</big>
 
 Ur roll eus ar pajennoù dibar reizh a c'hallit kavour war [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -631,7 +631,7 @@ Gortozit a-raok klask en-dro.",
 'summary-preview'                  => 'Rakwelet an diverrañ:',
 'subject-preview'                  => 'Rakwelet danvez/titl:',
 'blockedtitle'                     => 'Implijer stanket',
-'blockedtext'                      => "<span style="font-size:larger">'''Stanket eo bet ho kont implijer pe ho chomlec'h IP'''</span>
+'blockedtext'                      => "<big>'''Stanket eo bet ho kont implijer pe ho chomlec'h IP'''</big>
 
 Gant $1 eo bet graet. 
 Setu an abeg evit se : ''$2''.
@@ -2092,7 +2092,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeletedrevisions-files'     => 'Adsavet ez ez eus bet {{PLURAL:$1|1 stumm|$1 stumm}} ha {{PLURAL:$2|1 restr|$2 restr}}',
 'undeletedfiles'               => '{{PLURAL:$1|1 restr|$1 restr}} adsavet',
 'cannotundelete'               => "Dibosupl eo diziverkañ; moarvat eo bet diziverket gant unan bennak all araozoc'h.",
-'undeletedpage'                => "<span style="font-size:larger">'''Diziverket eo bet $1'''</span>
+'undeletedpage'                => "<big>'''Diziverket eo bet $1'''</big>
 
 Sellit ouzh [[Special:Log/delete|marilh an diverkadennoù]] evit teuler ur sell ouzh an diverkadennoù diwezhañ.",
 'undelete-header'              => 'Gwelet [[Special:Log/delete|al log diverkañ]] evit ar pajennoù diverket nevez zo.',
@@ -2311,7 +2311,7 @@ En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma kari
 'move-watch'                   => 'Evezhiañ ar bajenn-mañ',
 'movepagebtn'                  => 'Adenvel ar pennad',
 'pagemovedsub'                 => "Dilec'hiadenn kaset da benn vat",
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'Adkaset eo bet "$1" war-du "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'Adkaset eo bet "$1" war-du "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Krouet ez eus bet un adkas.',
 'movepage-moved-noredirect'    => 'Nullet eo bet krouidigezeh un adkas adal an anv kozh.',
 'articleexists'                => "Ur pennad gantañ an anv-se zo dija pe n'eo ket reizh an titl hoc'h eus dibabet.

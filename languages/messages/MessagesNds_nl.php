@@ -412,7 +412,7 @@ $messages = array(
 'index-category'                 => "Pagina's dee eïndexeerd bin",
 'noindex-category'               => "Pagina's dee neet eïndexeerd bin",
 
-'mainpagetext'      => "<span style="font-size:larger">'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''</span>",
+'mainpagetext'      => "<big>'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''</big>",
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
 
 == Meer hulpe ==
@@ -604,7 +604,7 @@ $1',
 Je hemmen 't webadres meschien verkeerd in-etik of de verkeerde verwiezing evolg.
 Dit kan oek dujen op een fout in de pregrammetuur van {{SITENAME}}.",
 'nosuchspecialpage' => 'Der besteet gien speciale pagina mit disse naam',
-'nospecialpagetext' => "<span style="font-size:larger">'''Disse speciale pagina wonnen neet herkend deur de pregrammetuur.'''</span>
+'nospecialpagetext' => "<big>'''Disse speciale pagina wonnen neet herkend deur de pregrammetuur.'''</big>
 
 Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -821,7 +821,7 @@ As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbao
 'summary-preview'                  => 'Samenvatting naokieken:',
 'subject-preview'                  => 'Onderwarp/kop naokieken:',
 'blockedtitle'                     => 'Gebruker is eblokkeerd',
-'blockedtext'                      => "<span style="font-size:larger">'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</span>
+'blockedtext'                      => "<big>'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</big>
 
 Je bin eblokkeerd deur: $1.
 De op-egeven rejen is: ''$2''.
@@ -2256,7 +2256,7 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestaand|$2 bestanen}} bin weerummeplaos',
 'undeletedfiles'               => '{{PLURAL:$1|1 bestaand|$1 bestanen}} weerummeplaos',
 'cannotundelete'               => "Weerummeplaosen van 't bestaand is mislok; een aander hef disse pagina meschien al weerummeplaos.",
-'undeletedpage'                => "<span style="font-size:larger">'''$1 is weerummeplaos'''</span>
+'undeletedpage'                => "<big>'''$1 is weerummeplaos'''</big>
 
 Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
 'undelete-header'              => "Zie [[Special:Log/delete|'t logboek vort-edaone pagina's]] veur pagina's dee 't les vort-edaon bin.",
@@ -2467,7 +2467,7 @@ Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit '
 'move-watch'                   => 'volg disse pagina',
 'movepagebtn'                  => 'Herneum',
 'pagemovedsub'                 => 'Naamwieziging succesvol',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" is ewiezig naor "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" is ewiezig naor "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Der is een deurverwiezing an-emaak.',
 'movepage-moved-noredirect'    => 'Der is gien deurverwiezing an-emaak.',
 'articleexists'                => 'Onder disse naam besteet al een pagina. Kies een aandere naam.',

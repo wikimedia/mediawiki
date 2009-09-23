@@ -417,7 +417,7 @@ $messages = array(
 'category-file-count-limited'    => 'Följande {{PLURAL:$1|fil |$1 filer}} finns i den här kategorin.',
 'listingcontinuesabbrev'         => 'forts.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki har installerats utan problem.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
 
 == Att komma igång ==
@@ -610,7 +610,7 @@ $1',
 Du kan ha stavat URL:en fel, eller följt en felaktig länk.
 Det kan också bero på en bug i {{SITENAME}}.',
 'nosuchspecialpage' => 'Någon sådan specialsida finns inte',
-'nospecialpagetext' => "<span style="font-size:larger">'''Du har begärt en specialsida som inte finns.'''</span>
+'nospecialpagetext' => "<big>'''Du har begärt en specialsida som inte finns.'''</big>
 
 I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsidor som finns.",
 
@@ -822,7 +822,7 @@ Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'summary-preview'                  => 'Förhandsgranskning av sammanfattning:',
 'subject-preview'                  => 'Rubrikförhandsgranskning:',
 'blockedtitle'                     => 'Användaren är blockerad',
-'blockedtext'                      => "<span style="font-size:larger">'''Din IP-adress eller ditt användarnamn är blockerat.'''</span>
+'blockedtext'                      => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
 
 Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
@@ -2257,7 +2257,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versioner}} och $2 {{PLURAL:$2|fil|filer}} återställda',
 'undeletedfiles'               => '{{PLURAL:$1|en fil återställd|$1 filer återställda}}',
 'cannotundelete'               => 'Återställning misslyckades; kanske någon redan har återställt sidan.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 har återställts'''</span>
+'undeletedpage'                => "<big>'''$1 har återställts'''</big>
 
 Se [[Special:Log/delete|raderingsloggen]] för en förteckning över de senaste raderingarna och återställningarna.",
 'undelete-header'              => 'Se [[Special:Log/delete|raderingsloggen]] för nyligen raderade sidor.',
@@ -2476,7 +2476,7 @@ I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'move-watch'                   => 'Bevaka denna sida',
 'movepagebtn'                  => 'Flytta sidan',
 'pagemovedsub'                 => 'Flyttningen lyckades',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" har flyttats till "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'En omdirigering har skapats.',
 'movepage-moved-noredirect'    => 'Skapandet av en omdirigering avbröts.',
 'articleexists'                => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.

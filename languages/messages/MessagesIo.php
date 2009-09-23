@@ -218,7 +218,7 @@ $messages = array(
 'category-file-count-limited'    => 'La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.',
 'listingcontinuesabbrev'         => 'seq.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki instalesis sucese.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki instalesis sucese.'''</big>",
 'mainpagedocfooter' => "Videz la [http://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzanti] por informo pri uzar la wiki programo.
 
 == Komencar ==
@@ -375,7 +375,7 @@ Videz [[Special:Version|versiono-pagino]].',
 # Main script and global functions
 'nosuchaction'      => 'Ne esas tala ago',
 'nosuchspecialpage' => 'Ne existas tala specala pagino',
-'nospecialpagetext' => "<span style="font-size:larger">'''Vu demandis specala pagino qua ne existas.'''</span>
+'nospecialpagetext' => "<big>'''Vu demandis specala pagino qua ne existas.'''</big>
 
 On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -1257,7 +1257,7 @@ voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'move-watch'              => 'Surveyar ca pagino',
 'movepagebtn'             => 'Movar pagino',
 'pagemovedsub'            => 'Rinomizita sucese',
-'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" esas movata ad "$2"\'\'\'</span>',
+'movepage-moved'          => '<big>\'\'\'"$1" esas movata ad "$2"\'\'\'</big>',
 'articleexists'           => 'Pagino kun sama nomo ja existas od la nomo
 qua vu selektis ne esas valida.
 Voluntez selektar altra nomo.',

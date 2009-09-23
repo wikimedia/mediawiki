@@ -161,7 +161,7 @@ $messages = array(
 'category-file-count-limited'    => 'Šajā kategorijā atrodas {{PLURAL:$1|tikai šis fails|šie $1 faili}}.',
 'listingcontinuesabbrev'         => ' (turpinājums)',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki veiksmīgi ieinstalēts'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki veiksmīgi ieinstalēts'''</big>",
 'mainpagedocfooter' => 'Izlasi [http://meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.
 
 == Pirmie soļi ==
@@ -512,7 +512,7 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 Ja tu vēlreiz uzspiedīsi uz Saglabāt, tavas izmaiņas tiks saglabātas bez tā virsraksta.",
 'summary-preview'            => 'Kopsavilkuma pirmskats:',
 'blockedtitle'               => 'Lietotājs ir bloķēts.',
-'blockedtext'                => "<span style="font-size:larger">'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''</span>
+'blockedtext'                => "<big>'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''</big>
 
 \$1 nobloķēja tavu lietotāja vārdu vai IP adresi.
 Bloķējot norādītais iemesls bija: ''\$2''.
@@ -1480,7 +1480,7 @@ Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija ja
 'undeletedfiles'           => '{{PLURAL:$1|1 fails atjaunots|$1 faili atjaunoti}}',
 'cannotundelete'           => 'Atjaunošana neizdevās;
 kāds cits iespējams to ir atjaunojis ātrāk.',
-'undeletedpage'            => "<span style="font-size:larger">'''$1 tika atjaunots'''</span>
+'undeletedpage'            => "<big>'''$1 tika atjaunots'''</big>
 
 [[Special:Log/delete|Dzēšanas reģistrā]] ir informācija par pēdējām dzēšanām un atjaunošanām.",
 
@@ -1628,7 +1628,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',
 'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
-'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</span>',
+'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>',
 'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'cantmove-titleprotected' => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',
 'talkexists'              => "'''Šī lapa pati tika pārvietota veiksmīgi, bet tās diskusiju lapu nevarēja pārvietot, tapēc, ka jaunā nosaukuma lapai jau ir diskusiju lapa. Lūdzu apvieno šīs diskusiju lapas manuāli.'''",

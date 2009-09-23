@@ -541,7 +541,7 @@ $messages = array(
 'category-file-count-limited'    => 'بالأسفل {{PLURAL:$1|ملف|$1 ملف}} في التصنيف الحالي.',
 'listingcontinuesabbrev'         => 'متابعة',
 
-'mainpagetext'      => "<span style="font-size:larger">'''تم تثبيت ميدياويكي بنجاح.'''</span>",
+'mainpagetext'      => "<big>'''تم تثبيت ميدياويكي بنجاح.'''</big>",
 'mainpagedocfooter' => 'استشر [http://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.
 
 == البداية ==
@@ -736,7 +736,7 @@ $1',
 ربما تكون قد كتبت المسار بطريقة غير صحيحة، أو اتبعت وصلة غير صحيحة.
 هذا ربما يشير أيضا إلى علة في {{SITENAME}}.',
 'nosuchspecialpage' => 'لا توجد صفحة خاصة بهذا الاسم',
-'nospecialpagetext' => "<span style="font-size:larger">'''لقد طلبت صفحة خاصة غير صحيحة.'''</span>
+'nospecialpagetext' => "<big>'''لقد طلبت صفحة خاصة غير صحيحة.'''</big>
 
 قائمة بالصفحات الخاصة الصحيحة يمكن إيجادها في [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -966,7 +966,7 @@ $2',
 'summary-preview'                  => 'عرض مسبق للملخص:',
 'subject-preview'                  => 'عرض مسبق للموضوع/العنوان:',
 'blockedtitle'                     => 'المستخدم ممنوع',
-'blockedtext'                      => "<span style="font-size:larger">'''اسم المستخدم أو عنوان الأيبي الخاص بك تم منعه.'''</span>
+'blockedtext'                      => "<big>'''اسم المستخدم أو عنوان الأيبي الخاص بك تم منعه.'''</big>
 
 قام بالمنع $1.
 سبب المنع هو: ''$2''.
@@ -2446,7 +2446,7 @@ $NEWPAGE
 'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 تم استرجاع',
 'cannotundelete'               => 'فشل الاسترجاع؛
 ربما قام شخص آخر باسترجاع الصفحة بالفعل.',
-'undeletedpage'                => "<span style="font-size:larger">'''تم استرجاع $1'''</span>
+'undeletedpage'                => "<big>'''تم استرجاع $1'''</big>
 
 راجع [[Special:Log/delete|سجل الحدف]] لمعاينة عمليات الحذف والاسترجاعات الحديثة.",
 'undelete-header'              => 'انظر الصفحات المحذوفة حديثا في [[Special:Log/delete|سجل الحذف]].',
@@ -2673,7 +2673,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'move-watch'                   => 'راقب هذه الصفحة',
 'movepagebtn'                  => 'نقل الصفحة',
 'pagemovedsub'                 => 'تم النقل بنجاح',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" تم نقلها إلى "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" تم نقلها إلى "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'تم إنشاء تحويلة.',
 'movepage-moved-noredirect'    => 'إنشاء التحويلة تم التغاضي عنه.',
 'articleexists'                => 'توجد صفحة بهذا الاسم، أو أن الاسم الذي تم اختياره غير صالح.

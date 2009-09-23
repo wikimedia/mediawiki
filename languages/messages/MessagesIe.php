@@ -75,7 +75,7 @@ $messages = array(
 'category_header'        => 'Articules in categorie "$1"',
 'listingcontinuesabbrev' => 'cont.',
 
-'mainpagetext' => "<span style="font-size:larger">'''Software del wiki installat con successe.'''</span>",
+'mainpagetext' => "<big>'''Software del wiki installat con successe.'''</big>",
 
 'about'         => 'Apropó',
 'article'       => 'Articul',

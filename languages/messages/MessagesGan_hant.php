@@ -162,7 +162,7 @@ $messages = array(
 'category-article-count'   => '{{PLURAL:$2|箇隻分類淨係有下頭嗰版本。|箇隻分類有下頭嗰$1版本，攏共有$2版。}}',
 'listingcontinuesabbrev'   => '續',
 
-'mainpagetext'      => "<span style="font-size:larger">'''安裝正MediaWiki嘍。'''</span>",
+'mainpagetext'      => "<big>'''安裝正MediaWiki嘍。'''</big>",
 'mainpagedocfooter' => '參看[http://meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
 
 == 開始使用 ==
@@ -320,7 +320,7 @@ $messages = array(
 'nosuchaction'      => '冇有箇隻命令',
 'nosuchactiontext'  => 'Wiki識別伓到箇隻URL命令',
 'nosuchspecialpage' => '冇有箇隻特殊頁',
-'nospecialpagetext' => "<span style="font-size:larger">'''倷要求嗰特殊頁冇有用。'''</span>
+'nospecialpagetext' => "<big>'''倷要求嗰特殊頁冇有用。'''</big>
 
 [[Special:SpecialPages]]上尋得到用得上嗰特殊頁。",
 
@@ -498,7 +498,7 @@ $2',
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '主題/頭條預覽:',
 'blockedtitle'                     => '用戶封到嘞',
-'blockedtext'                      => "<span style="font-size:larger">倷嗰用戶名或IP地址拕$1封到嘞。</span>
+'blockedtext'                      => "<big>倷嗰用戶名或IP地址拕$1封到嘞。</big>
 
 箇道封鎖係$1封嗰。個中原因係''$2''。
 
@@ -1365,7 +1365,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1隻修改版本同$2隻檔案恢復正嘞',
 'undeletedfiles'               => '$1隻檔案恢復正嘞',
 'cannotundelete'               => '反刪除伓正；話伓定別嗰人先倷恢復嘞箇隻頁面。',
-'undeletedpage'                => "<span style="font-size:larger">'''$1恢復正嘞'''</span>
+'undeletedpage'                => "<big>'''$1恢復正嘞'''</big>
 
 望吖[[Special:Log/delete|刪除日誌]]嗰刪除同恢復記錄。",
 'undelete-header'              => '要查最晏嗰記錄嗰話請望[[Special:Log/delete|刪除日誌]]。',
@@ -1543,7 +1543,7 @@ $NEWPAGE
 'move-watch'              => '眏到箇頁',
 'movepagebtn'             => '換卟箇頁',
 'pagemovedsub'            => '移正嘞',
-'movepage-moved'          => "<span style="font-size:larger">'''「$1」拕移到「$2」'''</span>",
+'movepage-moved'          => "<big>'''「$1」拕移到「$2」'''</big>",
 'articleexists'           => '已經有頁面叫箇隻名字，要伓倷揀嗰名字冇用。請揀過隻名字。',
 'cantmove-titleprotected' => '倷移伓正一隻頁面到箇隻位置，箇隻新題目已經拕保護起來嘞，新建伓正。',
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',

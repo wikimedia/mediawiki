@@ -280,7 +280,7 @@ $messages = array(
 'category-file-count-limited'    => '$1 fail berikut terdapat dalam kategori ini.',
 'listingcontinuesabbrev'         => 'samb.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki telah berjaya dipasang.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki telah berjaya dipasang.'''</big>",
 'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
 
 == Untuk bermula ==
@@ -471,7 +471,7 @@ $1',
 'nosuchaction'      => 'Tindakan tidak dikenali',
 'nosuchactiontext'  => 'Tindakan yang dinyatakan dalam URL ini tidak sah. Anda mungkin telah menaip URL yang salah atau mengikuti pautan yang tidak sah. Ini juga mungkin bererti terdapat pepijat dalam perisian yang digunakan oleh {{SITENAME}}.',
 'nosuchspecialpage' => 'Laman khas tidak wujud',
-'nospecialpagetext' => "<span style="font-size:larger">'''Anda telah meminta laman khas yang tidak sah.'''</span>
+'nospecialpagetext' => "<big>'''Anda telah meminta laman khas yang tidak sah.'''</big>
 
 Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].",
 
@@ -682,7 +682,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'summary-preview'                  => 'Pratonton ringkasan:',
 'subject-preview'                  => 'Pratonton tajuk:',
 'blockedtitle'                     => 'Pengguna disekat',
-'blockedtext'                      => '<span style="font-size:larger">\'\'\'Nama pengguna atau alamat IP anda telah disekat.\'\'\'</span>
+'blockedtext'                      => '<big>\'\'\'Nama pengguna atau alamat IP anda telah disekat.\'\'\'</big>
 
 Sekatan ini dilakukan oleh $1 dengan sebab \'\'$2\'\'.
 
@@ -2058,7 +2058,7 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletedrevisions-files'     => '$1 semakan dan $2 fail dipulihkan',
 'undeletedfiles'               => '$1 fail dipulihkan',
 'cannotundelete'               => 'Penyahhapusan gagal; mungkin orang lain telah pun mengnyahhapuskannya.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 telah dipulihkan'''</span>
+'undeletedpage'                => "<big>'''$1 telah dipulihkan'''</big>
 
 Sila rujuk [[Special:Log/delete|log penghapusan]] untuk rekod penghapusan terkini.",
 'undelete-header'              => 'Lihat [[Special:Log/delete|log penghapusan]] untuk laman-laman yang baru dihapuskan.',
@@ -2279,7 +2279,7 @@ Dalam kes tersebut, anda terpaksa melencongkan atau menggabungkan laman secara m
 'move-watch'                   => 'Pantau laman ini',
 'movepagebtn'                  => 'Pindah laman',
 'pagemovedsub'                 => 'Pemindahan berjaya',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Sebuah lencongan telah dicipta.',
 'movepage-moved-noredirect'    => 'Penciptaan lencongan telah dihalang.',
 'articleexists'                => 'Laman dengan nama tersebut telah pun wujud,

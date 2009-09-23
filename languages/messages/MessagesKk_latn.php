@@ -478,7 +478,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ağımdağı sanatta kelesi $1 faýl bar.',
 'listingcontinuesabbrev'         => '(jalğ.)',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MedïaWïkï bwması sätti ornatıldı.'''</span>",
+'mainpagetext'      => "<big>'''MedïaWïkï bwması sätti ornatıldı.'''</big>",
 'mainpagedocfooter' => 'Wïkï bağdarlamalıq jasaqtamasın qalaý qoldanatın aqparatı üşin [http://meta.wikimedia.org/wiki/Help:Contents Paýdalanwşılıq nusqawlarınan] keñes alıñız.
 
 == Bastaw üşin ==
@@ -635,7 +635,7 @@ $messages = array(
 'nosuchaction'      => 'Mınadaý eş äreket joq',
 'nosuchactiontext'  => 'Osı URL jaýımen engizilgen äreketti osı wïkï joramaldap bilmedi.',
 'nosuchspecialpage' => 'Mınadaý eş arnaýı bet joq',
-'nospecialpagetext' => "<span style="font-size:larger">'''Jaramsız arnaýı betti suradıñız.'''</span>
+'nospecialpagetext' => "<big>'''Jaramsız arnaýı betti suradıñız.'''</big>
 
 Jaramdı arnaýı bet tizimin [[{{#special:Specialpages}}|{{int:specialpages}}]] degennen taba alasız.",
 
@@ -847,7 +847,7 @@ Eger tağı da Saqtaw tüýmesin nuqısañız, öñdemeñiz solsız saqtaladı."
 'summary-preview'                  => 'Qısqaşa mazmundamasın qarap şığw:',
 'subject-preview'                  => 'Taqırıbın/bas jolın qarap şığw:',
 'blockedtitle'                     => 'Qatıswşı buğattalğan',
-'blockedtext'                      => "<span style="font-size:larger">'''Qatıswşı atıñız ne IP mekenjaýıñız buğattalğan.'''</span>
+'blockedtext'                      => "<big>'''Qatıswşı atıñız ne IP mekenjaýıñız buğattalğan.'''</big>
 
 Osı buğattawdı $1 istegen. Keltirilgen sebebi: ''$2''.
 
@@ -1952,7 +1952,7 @@ Siltemeñiz jaramsız, ne tüzetw qalpına keltirilgen, nemese murağattan alast
 'undeletedfiles'               => '$1 faýl qalpına keltirildi',
 'cannotundelete'               => 'Joyw boldırmawı sätsiz bitti;
 basqa birew alğaşında bettiñ joywdıñ boldırmawı mümkin.',
-'undeletedpage'                => "<span style="font-size:larger">'''$1 qalpına keltirildi'''</span>
+'undeletedpage'                => "<big>'''$1 qalpına keltirildi'''</big>
 
 Jwıqtağı joywlar men qalpına keltirwler jöninde [[{{#special:Log}}/delete|joyw jwrnalın]] qarañız.",
 'undelete-header'              => 'Jwıqtağı joýılğan better jöninde [[{{#special:Log}}/delete|joyw jwrnalın]] qarañız.',
@@ -2151,7 +2151,7 @@ Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'move-watch'              => 'Bul betti baqılaw',
 'movepagebtn'             => 'Betti jıljıt',
 'pagemovedsub'            => 'Jıljıtw sätti ayaqtaldı',
-'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" beti "$2" betine jıljıtıldı\'\'\'</span>',
+'movepage-moved'          => '<big>\'\'\'"$1" beti "$2" betine jıljıtıldı\'\'\'</big>',
 'articleexists'           => 'Osılaý atalğan bet aldaqaşan bar, ne tañdağan atawıñız jaramdı emes.
 Özge atawdı tañdañız',
 'cantmove-titleprotected' => 'Betti osı orınğa jıljıta almaýsız, sebebi jaña taqırıp atı bastawdan qorğalğan',

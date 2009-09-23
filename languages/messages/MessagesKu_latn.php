@@ -149,7 +149,7 @@ $messages = array(
 'category-file-count-limited'    => "Ev {{PLURAL:$1|data'yê|$1 datayên}} jêr di vê kategorîyê da ne.",
 'listingcontinuesabbrev'         => 'dewam',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki serketî hate çêkirin.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki serketî hate çêkirin.'''</big>",
 'mainpagedocfooter' => 'Alîkarî ji bo bikaranîn û guherandin yê datayê Wîkî tu di bin [http://meta.wikimedia.org/wiki/Help:Contents pirtûka alîkarîyê ji bikarhêneran] da dikarê bibînê.
 
 == Alîkarî ji bo destpêkê ==
@@ -308,7 +308,7 @@ $messages = array(
 'nosuchaction'      => 'Çalakiyek bi vê rengê tune',
 'nosuchactiontext'  => "Ew tişta yê di wê URL'ê da tê gotin ji MediaWiki netê çêkirin.",
 'nosuchspecialpage' => 'Rûpeleke taybet bi vê rengê tune',
-'nospecialpagetext' => "<span style="font-size:larger">'''Rûpelê taybetî yê te xwastîyê tune ye.'''</span>
+'nospecialpagetext' => "<big>'''Rûpelê taybetî yê te xwastîyê tune ye.'''</big>
 
 Hemû rûpelên taybetî di [[Special:SpecialPages|lîsteya rûpelên taybetî]] da werin dîtin.",
 
@@ -483,7 +483,7 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'summary-preview'                  => 'Pêşdîtinê kurtenivîsê:',
 'subject-preview'                  => 'Pêşdîtinê sernivîsê:',
 'blockedtitle'                     => 'Bikarhêner hat asteng kirin',
-'blockedtext'                      => "<span style="font-size:larger">'''Navî te ya IP'ya te hate astengkirin.'''</span>
+'blockedtext'                      => "<big>'''Navî te ya IP'ya te hate astengkirin.'''</big>
 
 Astengkirinê te ji $1 hate çêkirin. Sedemê astengkirinê te ev e: ''$2''.
 
@@ -1234,7 +1234,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'undeletedrevisions'       => '{{PLURAL:$1|Verzyonek dîsa hate|$1 verzyon dîsa hatin}} çêkirin',
 'undeletedrevisions-files' => '{{PLURAL:$1|Verzyonek|$1 verzyon}} û {{PLURAL:$2|medyayek hate|$2 medya hatin}} çêkirin',
 'undeletedfiles'           => '{{PLURAL:$1|Medyayek hate|$1 medya hatin}} çêkirin',
-'undeletedpage'            => "<span style="font-size:larger">'''$1 dîsa hate çêkirin'''</span>
+'undeletedpage'            => "<big>'''$1 dîsa hate çêkirin'''</big>
 
 Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşahîya jêbirinê]] da seke.",
 'undelete-header'          => '[[Special:Log/delete|Reşahîya jêbirinê]] bibîne ji bo rûpelên jêbirî.',
@@ -1386,7 +1386,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'move-watch'                => 'Vê rûpelê bişopîne',
 'movepagebtn'               => 'Vê rûpelê bigerîne',
 'pagemovedsub'              => 'Gerandin serkeftî',
-'movepage-moved'            => '<span style="font-size:larger">\'\'\'"$1" çû cihê "$2"\'\'\'</span>',
+'movepage-moved'            => '<big>\'\'\'"$1" çû cihê "$2"\'\'\'</big>',
 'movepage-moved-noredirect' => "Redirect'ek nehate çêkirin",
 'articleexists'             => 'Rûpela bi vî navî heye, an navê ku te hilbijart derbas nabe. Navekî din hilbijêre.',
 'cantmove-titleprotected'   => 'Tu nikanê vê rûpelê bervê vê cihê bigerînê ji ber ku sernava nuh tê parastin ji bo çêkirinê',

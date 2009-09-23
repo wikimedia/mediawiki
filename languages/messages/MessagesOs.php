@@ -145,7 +145,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'         => '(дарддæрдзу)',
 
-'mainpagetext' => "<span style="font-size:larger">'''Вики-скрипт «MediaWiki» æнтыстджынæй æвæрд æрцыд.'''</span>",
+'mainpagetext' => "<big>'''Вики-скрипт «MediaWiki» æнтыстджынæй æвæрд æрцыд.'''</big>",
 
 'about'         => 'Афыст',
 'article'       => 'Статья',
@@ -284,7 +284,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchspecialpage' => 'Ахæм сæрмагонд фарс нæй',
-'nospecialpagetext' => "<span style="font-size:larger">'''Нæй ахæм сæрмагонд фарс.'''</span>
+'nospecialpagetext' => "<big>'''Нæй ахæм сæрмагонд фарс.'''</big>
 
 Кæс [[Special:SpecialPages|æппæт сæрмагонд фæрсты номхыгъд]].",
 

@@ -262,7 +262,7 @@ $messages = array(
 'category-file-count-limited'    => 'Sta catigurìa cunteni {{PLURAL:$1|lu file ndicatu|li $1 file ndicati}} ccà sutta.',
 'listingcontinuesabbrev'         => ' cunt.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''Nstallazzioni di MediaWiki cumplitata currettamenti.'''</span>",
+'mainpagetext'      => "<big>'''Nstallazzioni di MediaWiki cumplitata currettamenti.'''</big>",
 'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni di stu software wiki. 
 
 == P'accuminzari == 
@@ -452,7 +452,7 @@ $1",
 Poi aviri sbagghiatu a digitari â URL, o cliccatu supra nu link sbagghiatu.
 Chistu putissi ndicari nu bug nô software usatu da {{SITENAME}}.",
 'nosuchspecialpage' => 'Sta pàggina spiciali nun è dispunìbbili',
-'nospecialpagetext' => "<span style="font-size:larger">'''Hai cercatu na pàggina spiciali nun vàlida.'''</span>
+'nospecialpagetext' => "<big>'''Hai cercatu na pàggina spiciali nun vàlida.'''</big>
 
 L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alencu dî pàggini spiciali]].",
 
@@ -652,7 +652,7 @@ Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na n
 'summary-preview'                  => 'Antiprima uggettu:',
 'subject-preview'                  => 'Antiprima suggettu/ntistazzioni:',
 'blockedtitle'                     => 'Utenti bluccatu.',
-'blockedtext'                      => "<span style="font-size:larger">'''Stu nomu d'utenti o nnirizzu IP havi statu bluccatu.'''</span>
+'blockedtext'                      => "<big>'''Stu nomu d'utenti o nnirizzu IP havi statu bluccatu.'''</big>
 
 Lu bloccu fu fattu di $1. Lu mutivu dû bloccu è: ''$2''.
 
@@ -2031,7 +2031,7 @@ Li mpostazzioni correnti pâ pàggina sugnu '''$1''':",
 'undeletedrevisions-files'     => '{{PLURAL:$1|na rivisioni|$1 rivisioni}} e {{PLURAL:$2|nu file ricupiratu|$2 file ricupirati}}',
 'undeletedfiles'               => '{{PLURAL:$1|un file ricupiratu|$1 file ricupirati}}',
 'cannotundelete'               => 'Lu ricùpiru nun è arrinisciutu: quarcunu àutru putissi aviri già ricupiratu la pàggina.',
-'undeletedpage'                => "<span style="font-size:larger">'''La pàggina $1 hà statu ricupirata'''</span> Cunzurta lu [[Special:Log/delete|log dî cancillazzioni]] pi vìdiri li cancillazzioni e li ricùpiri cchiù ricenti.",
+'undeletedpage'                => "<big>'''La pàggina $1 hà statu ricupirata'''</big> Cunzurta lu [[Special:Log/delete|log dî cancillazzioni]] pi vìdiri li cancillazzioni e li ricùpiri cchiù ricenti.",
 'undelete-header'              => 'Vidi lu [[Special:Log/delete|log dî cancillazzioni]] pi li pàggini cancillati di ricenti.',
 'undelete-search-box'          => 'Cerca li pàggini cancillati',
 'undelete-search-prefix'       => 'Ammustra li pàggini lu cui tìtulu accumincia cu:',
@@ -2238,7 +2238,7 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'move-watch'                   => 'Talìa sta pàggina',
 'movepagebtn'                  => 'Sposta la pàggina',
 'pagemovedsub'                 => 'Lu spustamentu riniscìu.',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" fu spustata a "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" fu spustata a "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Vinni criatu nu riinnirizzamentu.',
 'movepage-moved-noredirect'    => 'La criazzioni di nu riinnirizzamentu vinni scancillata.',
 'articleexists'                => "Na pàggina cu stu nomu esisti già, oppuru lu nomu scigghiutu nun è vàlidu. Scègghiri n'àutru tìtulu.",

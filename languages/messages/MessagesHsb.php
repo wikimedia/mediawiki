@@ -261,7 +261,7 @@ $messages = array(
 'index-category'                 => 'Indicěrowane strony',
 'noindex-category'               => 'Njeindicěrowane strony',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki bu wuspěšnje instalowany.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki bu wuspěšnje instalowany.'''</big>",
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
 
 == Za nowačkow ==
@@ -454,7 +454,7 @@ $1',
 Sy so snano při zapodaću URL zapisał abo sy wopačnemu wotkazej slědował.
 To móhło tež programowanski zmylk w {{GRAMMAR:lokatiw|{{SITENAME}}}} być.',
 'nosuchspecialpage' => 'Tuta specialna strona njeeksistuje.',
-'nospecialpagetext' => "<span style="font-size:larger">'''Tuta specialna strona wikiju njeeksistuje.'''</span>
+'nospecialpagetext' => "<big>'''Tuta specialna strona wikiju njeeksistuje.'''</big>
 
 Lisćina płaćiwych specialnych stronow hodźi so pod [[Special:SpecialPages|Lis´cina specialnych stronow]] namakać.",
 
@@ -659,7 +659,7 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'summary-preview'                  => 'Přehlad zjeća:',
 'subject-preview'                  => 'Přehlad temy:',
 'blockedtitle'                     => 'Wužiwar je zablokowany',
-'blockedtext'                      => "<span style="font-size:larger">'''Twoje wužiwarske mjeno abo twoja IP-adresa bu zablokowane.'''</span>
+'blockedtext'                      => "<big>'''Twoje wužiwarske mjeno abo twoja IP-adresa bu zablokowane.'''</big>
 
 Blokowar je $1.
 Podata přičina je ''$2''.
@@ -2089,7 +2089,7 @@ W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokaza�
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} a $2 {{PLURAL:$2|dataja|dataji|dataje|datajow}} {{PLURAL:$2|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|dataja|dataji|dataje|datajow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}.',
 'cannotundelete'               => 'Wobnowjenje zwrěšćiło; něchtó druhi je stronu prjedy wobnowił.',
-'undeletedpage'                => "<span style="font-size:larger">'''Strona $1 bu z wuspěchom wobnowjena.'''</span>
+'undeletedpage'                => "<big>'''Strona $1 bu z wuspěchom wobnowjena.'''</big>
 
 Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wobnowjenjow.",
 'undelete-header'              => 'Hlej [[Special:Log/delete|protokol wušmórnjenjow]] za njedawno wušmórnjene strony.',
@@ -2299,7 +2299,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-watch'                   => 'Stronu wobkedźbować',
 'movepagebtn'                  => 'Stronu přesunyć',
 'pagemovedsub'                 => 'Přesunjenje wuspěšne',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>',
 'movepage-moved-redirect'      => 'Daleposrědkowanje je so wutworiło.',
 'movepage-moved-noredirect'    => 'Wutworjenje daleposrědkowanja bu potłóčene.',
 'articleexists'                => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',

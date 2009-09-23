@@ -116,7 +116,7 @@ $messages = array(
 'category-media-header'  => '"$1" fûn-lui chûng ke kî-thí tóng-on',
 'listingcontinuesabbrev' => 'Chhṳ̀-siu̍k',
 
-'mainpagetext'      => "<span style="font-size:larger">'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki.'''</span>",
+'mainpagetext'      => "<big>'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki.'''</big>",
 'mainpagedocfooter' => 'chhiáng fóng-mun [http://meta.wikimedia.org/wiki/Help:Contents Yung-fu sú-chhak] yî-khi̍p sṳ́-yung chhṳ́ wiki ngiôn-khien ke sin-sit！
 
 == Ngi̍p-mùn  ==
@@ -422,7 +422,7 @@ Ngì khó-yî ki-siu̍k yî ngia̍k-miàng fông-sṳt sṳ́-yung {{SITENAME}},
 'summary-preview'           => 'Chak-yeu yi-ko:',
 'subject-preview'           => 'Chú-thì/phêu-thì yi-ko:',
 'blockedtitle'              => 'Yung-fu pûn chhà-fûng',
-'blockedtext'               => "<span style="font-size:larger">Ngì-ke yung-fu-miàng fe̍t-chá IP thi-tiám yí-kîn pûn $1 chhà-fûng.</span>
+'blockedtext'               => "<big>Ngì-ke yung-fu-miàng fe̍t-chá IP thi-tiám yí-kîn pûn $1 chhà-fûng.</big>
 
 Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he ''$2''. Ngì khó-yî lièn-lo̍k $1 fe̍t-chá khì-thâ ke [[{{MediaWiki:Grouppage-sysop}}|Kón-lî-yèn]], thó-lun liá-chhṳ ke chhà-fûng. Chhù-fî ngì yí-kîn chhai ngì-ke [[Special:Preferences|Chong-ho chhâm-su sat-chṳ]] chûng sat-thin liáu yit-ke yû-háu ke email, féu-chet ngì-he put-nèn sṳ́-yung “email liá-vi yung-fu” ke kûng-yung. Ngì-ke IP thi-tiám he $3, yì-yèn ke chhà-fûng ID he #$5. Chhiáng ngì chhai só-yû chhà-chhìm chûng chu-mìn liá-ke thi-tiám khi̍p／fe̍t-he chhà-fûng ID.",
 'autoblockedtext'           => 'Ngì-ke IP thi-tiám yí-kîn pûn chhṳ-thung chhà-fûng, lî-yù he siên-chhièn ke nang yit-vi yung-fu pûn $1 só chhà-fûng. Yì-yèn chhà-fûng ke ngièn-yîn he: \'\'$2\'\' liá-chhṳ chhà-fûng ke khì-kiên he: $6 ngì khó-yî lièn-lo̍k $1 fe̍t-chá khì-thâ ke [[{{MediaWiki:Grouppage-sysop}}|kón-lî-yèn]], thó-lun liá-chhṳ chhà-fûng. Chhù-fî ngì yí-kîn chhai ngì-ke [[Special:Preferences|chong-ho chhâm-su sat-chṳ]] chûng sat-thin yit-ke yû-háu ke email thi-tiám, féu-chet ngì-he put-nèn sṳ́-yung "email liá-vi yung-fu" ke kûng-nèn. Ngì-ke chhà-fûng ID he $5. Chhiáng ngì chhai só-yû thiàu-chhà chûng chu-mìn liá-ke chhà-fûng ID.',
@@ -1139,7 +1139,7 @@ Pûn chhù-thet chhièn ke só-yû siû-thin pán-pún, lièn-thùng chhù-thet 
 'undeletedrevisions-files' => '$1-ke pán-pún lâu $2-ke vùn-khien pûn fî-fu̍k',
 'undeletedfiles'           => '$1-ke vùn-khien pûn fî-fu̍k',
 'cannotundelete'           => 'Fî-fu̍k sṳt-phai; khó-nèn chṳ̂-chhièn yí-kîn pûn khì-thâ-ngìn fî-fu̍k.',
-'undeletedpage'            => "<span style="font-size:larger">'''$1 yí-kîn pûn fî-fu̍k '''</span>
+'undeletedpage'            => "<big>'''$1 yí-kîn pûn fî-fu̍k '''</big>
 
 Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut chhù-thet khi̍p fî-fu̍k ki-liu̍k.",
 'undelete-header'          => 'Kó-yèn yeu chhà-chhut chui-khiûn ke ki-liu̍k chhiáng chhâm-siòng [[Special:Log/delete|Chhù-thet ngit-ki]].',

@@ -453,7 +453,7 @@ $2، $1',
 
 # Move page
 'newtitle'                => 'ته‌رنـه نـوم:',
-'movepage-moved'          => "<span style="font-size:larger">'''ای «$1» ولـگ،  بورده «$2» ره.'''</span>",
+'movepage-moved'          => "<big>'''ای «$1» ولـگ،  بورده «$2» ره.'''</big>",
 'movetalk'                => '«گپ» ولـگ هم، اگه بونه، بوره.',
 '1movedto2'               => '[[$1]] بـورده [[$2]] ره',
 'revertmove'              => 'واچـیـه‌ن',

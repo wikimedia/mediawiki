@@ -122,7 +122,7 @@ $messages = array(
 'hidden-category-category' => 'Skjulte klynger',
 'listingcontinuesabbrev'   => 'førtgøte',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki er nu installeret.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki er nu installeret.'''</big>",
 'mainpagedocfooter' => "Se vores engelskspråĝede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.",
 
 'about'         => 'Åm',
@@ -388,7 +388,7 @@ Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, s
 'showdiff'                   => 'Ves ændrenger',
 'anoneditwarning'            => "Du arbejder uden at være loĝget på. Estedet før brugernav veses så'n IP-adresse i'n hersenengerskigt.",
 'summary-preview'            => 'Førhåndsvesnenge åf beskrevelselejne:',
-'blockedtext'                => "<span style="font-size:larger">'''Dit brugernav æller din IP-adresse er blevet blokeret.'''</span>
+'blockedtext'                => "<big>'''Dit brugernav æller din IP-adresse er blevet blokeret.'''</big>
 
 Æ blokerenge er lavet åf $1. Æ begrundelse er ''$2''.
 
@@ -409,7 +409,7 @@ Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet 
 'previewnote'                => "'''Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!'''",
 'editing'                    => 'Redigærer $1',
 'editingsection'             => 'Redigærer $1 (åfsnet)',
-'copyrightwarning'           => "'''Husk: <span style="font-size:larger">åpskrev engen websider</span>, søm ekke tilhører dig selv, brug <span style="font-size:larger">engen åphavsretsligt beskyttede værker</span> uden tilladelse frå'n ejer!'''<br />
+'copyrightwarning'           => "'''Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!'''<br />
 Du lover os hermed, at du selv '''har skrevet skrevselenger''', at skrevselenger tilhører ålmenheden, er ('''åpværer hus'''), æller at æ '''åphavsrets-endehaver''' har gevet sen '''tilladelse'''. Ves denne skrevselenger ålerede er åfentliggkort andre steder, skrev det venligst på æ diskusjesside.
 <i>Bemærk venligst, at ål {{SITENAME}}-ertikler åtomatisk står under „$2“ (se $1 før lileskrevselenger). Ves du ekke vel, at dit arbejde her ændres og udbredes åf andre, så tryk ekke på „Gem“.</i>",
 'longpagewarning'            => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 kb. 
@@ -755,7 +755,7 @@ I disse tilfælde er du nødt til at flytte æller sammenflette'n side manuelt."
 'move-watch'       => 'Denne side åvervåges',
 'movepagebtn'      => 'Flyt side',
 'pagemovedsub'     => 'Flytnenge gennemført',
-'movepage-moved'   => '<span style="font-size:larger">Æ side \'\'\'"$1" er flyttet til "$2"\'\'\'</span>',
+'movepage-moved'   => '<big>Æ side \'\'\'"$1" er flyttet til "$2"\'\'\'</big>',
 'articleexists'    => 'En side ve det navn eksisterer ålrede, æller det
 navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'talkexists'       => 'Æ side blev flyttet korrekt, men den tilhørende diskusjeside ken ekke flyttes, førdi der ålrede eksisterer en ve den nye titel. Du erst nødt til at flette dem sammen manuelt.',

@@ -140,7 +140,7 @@ $messages = array(
 'category-empty'         => "''Ta ktegòrëja nie zamëkô w se terô niżódnëch artiklów ni mediów.''",
 'listingcontinuesabbrev' => 'kònt.',
 
-'mainpagetext' => "<span style="font-size:larger">'''MediaWiki òsta zainstalowónô.'''</span>",
+'mainpagetext' => "<big>'''MediaWiki òsta zainstalowónô.'''</big>",
 
 'about'         => 'Ò serwise',
 'article'       => 'Artikel',
@@ -394,7 +394,7 @@ Ni mòżesz miec ju wicy.',
 'showdiff'               => 'Wëskrzëni zmianë',
 'anoneditwarning'        => "'''Bôczë:''' Të nie je wlogòwóny. Twòjô adresa IP mdze zapisónô w historëji edicëji ti starnë.",
 'blockedtitle'           => 'Brëkòwnik je zascëgóny',
-'blockedtext'            => "<span style="font-size:larger">'''Twòje kònto abò ë IP-adresa òstałë zablokòwóné.'''</span>
+'blockedtext'            => "<big>'''Twòje kònto abò ë IP-adresa òstałë zablokòwóné.'''</big>
 
 Zablokòwôł je $1. 
 Pòdónô przëczëna to:''$2''.
@@ -873,7 +873,7 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 'move-watch'              => 'Ùzérôj tã starnã',
 'movepagebtn'             => 'Przeniesë starnã',
 'pagemovedsub'            => 'Przeniesenié darzëło sã',
-'movepage-moved'          => '<span style="font-size:larger">\'\'\'"$1" òsta przeniosłô do "$2"\'\'\'</span>',
+'movepage-moved'          => '<big>\'\'\'"$1" òsta przeniosłô do "$2"\'\'\'</big>',
 'articleexists'           => 'Starna ò taczim mionie ju je abò nie je òno bezzmiłkòwé. Wëbierzë nowé miono.',
 'movedto'                 => 'przeniesłô do',
 'movetalk'                => 'Przeniesë téż starnã <i>Diskùsëje</i>, jeżle je to mòżlëwé.',

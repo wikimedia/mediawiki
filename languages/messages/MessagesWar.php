@@ -136,7 +136,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'pdyn.',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<span style="font-size:larger">'''Malinamposon an pag-instalar han MediaWiki.'''</span>",
+'mainpagetext'      => "<big>'''Malinamposon an pag-instalar han MediaWiki.'''</big>",
 'mainpagedocfooter' => "Kitaa an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para hin impormasyon ha paggamit han wiki nga softweyr.
 
 == Ha pagtikang==
@@ -288,7 +288,7 @@ $messages = array(
 Bangin la, nagsayop ka pagmakinilya han URL, o sinmunod hin sayop nga sumpay.
 Bangin liwat ini usa nga bug dida han software nga ginagamit han {{SITENAME}}.',
 'nosuchspecialpage' => 'Waray sugad nga ispisyal nga pakli',
-'nospecialpagetext' => "<span style="font-size:larger">'''Naghangyo ka hin diri-puyde nga ispisyal nga pakli.'''</span>
+'nospecialpagetext' => "<big>'''Naghangyo ka hin diri-puyde nga ispisyal nga pakli.'''</big>
 
 In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].",
 

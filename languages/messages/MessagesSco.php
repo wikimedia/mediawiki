@@ -141,7 +141,7 @@ $messages = array(
 'category-file-count-limited'    => 'The follaein {{PLURAL:$1|file is|$1 files is}} in this category.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => "<span style="font-size:larger">'''MediaWiki haes been installit wi speed.'''</span>",
+'mainpagetext'      => "<big>'''MediaWiki haes been installit wi speed.'''</big>",
 'mainpagedocfooter' => "Aks the [http://meta.wikimedia.org/wiki/Help:Contents Uiser's Manual] for speirins aboot using the wiki saftware.
 
 == Gettin startit ==
@@ -319,7 +319,7 @@ $messages = array(
 Ye micht hae mistyped the URL, or follaed a wrang link
 This micht forby be caused by a bug in the saftware uised by {{SITENAME}}.",
 'nosuchspecialpage' => 'Nae sic byordinar page',
-'nospecialpagetext' => "<span style="font-size:larger">'''Ye hae requestit an invalid byordinar page.'''</span>
+'nospecialpagetext' => "<big>'''Ye hae requestit an invalid byordinar page.'''</big>
 
 A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -512,7 +512,7 @@ Ye dinna hae tae heed this message, if this accoont wis creatit by mistak.',
 'summary-preview'                  => 'Ootline leuk ower:',
 'subject-preview'                  => 'Subject/headline leuk ower:',
 'blockedtitle'                     => 'Uiser is blockit',
-'blockedtext'                      => '<span style="font-size:larger">\'\'\'Yer uisername or IP address haes been blockit.\'\'\'</span>
+'blockedtext'                      => '<big>\'\'\'Yer uisername or IP address haes been blockit.\'\'\'</big>
 
 The block was made bi $1. The raeson gien is \'\'$2\'\'.
 

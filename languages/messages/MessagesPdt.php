@@ -219,7 +219,7 @@ $messages = array(
 'nosuchaction'      => 'Soone Aktioon jefft et nich',
 'nosuchactiontext'  => 'Dee Aktioon von dise URL woat von MediaWiki nich unjastett.',
 'nosuchspecialpage' => 'Soone Spezialsied jefft et nich',
-'nospecialpagetext' => "<span style="font-size:larger">'''Dee oppjeroopde Spezialsied jefft et nich.'''</span>
+'nospecialpagetext' => "<big>'''Dee oppjeroopde Spezialsied jefft et nich.'''</big>
 
 Aula bruckboare Spezialsiede send bie [[Special:SpecialPages|{{int:specialpages}}]] to finje.",
 

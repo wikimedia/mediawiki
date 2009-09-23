@@ -161,7 +161,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Τὸ|Τὰ}} ἑξῆς {{PLURAL:$1|ἀρχεῖον εἰσὶν|$1 ἀρχεῖα εἰσὶν}} ἐν τῇ τρεχούσῃ κατηγορίᾳ.',
 'listingcontinuesabbrev'         => 'συνεχίζεται',
 
-'mainpagetext'      => "<span style="font-size:larger">'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''</span>",
+'mainpagetext'      => "<big>'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''</big>",
 'mainpagedocfooter' => 'Βουλευθήσεσθε τὰς [http://meta.wikimedia.org/wiki/Help:Contents βουλὰς τοῖς Χρωμένοις] ἵνα πληροφορηθῇτε ἐπὶ τοῦ βίκι-λογισμικοῦ.
 
 == Ἄρξασθε ==
@@ -354,7 +354,7 @@ $1',
 Ἐνδεχομένως εἰσῆξας ἐσφαλμένως τὴν διεύθυνσιν URL ἢ ἠκολούθησας ἀκύρῳ συνδέσμῳ τινί. 
 Ἐνδεχομένως πταίει σφάλμα τι τοῦ λογισμικοῦ μέρους τοῦ ἱστοτόπου {{SITENAME}}.',
 'nosuchspecialpage' => 'Οὐδεμία τοιούτη δέλτος',
-'nospecialpagetext' => "<span style="font-size:larger">'''Ἡ αἰτηθεῖσα εἰδικὴ δέλτος ἄκυρός ἐστιν.'''</span>
+'nospecialpagetext' => "<big>'''Ἡ αἰτηθεῖσα εἰδικὴ δέλτος ἄκυρός ἐστιν.'''</big>
 
 Διαλογή τις ἐγκύρων εἰδικῶν δέλτων εὕρηται εἰς [[Special:SpecialPages|{{int:specialpages}}]].",
 
@@ -547,7 +547,7 @@ $2',
 'summary-preview'                  => 'Προθεώρησις συνόψεως:',
 'subject-preview'                  => 'Ἀντικειμένου/ἐπικεφαλίδος προθεώρησις:',
 'blockedtitle'                     => 'Ἀποκεκλεισμένος ὁ χρώμενος',
-'blockedtext'                      => "<span style="font-size:larger">'''Τὸ ὄνομα χρωμένου σου ἢ ἡ IP-διεύθυνσις σου πεφραγμένα εἰσίν.'''</span>
+'blockedtext'                      => "<big>'''Τὸ ὄνομα χρωμένου σου ἢ ἡ IP-διεύθυνσις σου πεφραγμένα εἰσίν.'''</big>
 
 Ἡ φραγὴ γέγονε ὑπὸ τὸν/τὴν $1.
 Ἡ δεδομένη αἰτιολογία ἐστίν: ''$2''.
@@ -1987,7 +1987,7 @@ $1',
 'move-watch'                   => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movepagebtn'                  => 'Κινεῖν τὴν δέλτον',
 'pagemovedsub'                 => 'Κεκίνηται ἡ δέλτος',
-'movepage-moved'               => '<span style="font-size:larger">\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</span>',
+'movepage-moved'               => '<big>\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Ἁναδιεύθυνσίς τις ἐποιήθη.',
 'movepage-moved-noredirect'    => 'Ποίησις ἀνακατευθύνσεως τινὸς ἐκεκώλυτο.',
 'articleexists'                => 'Εἶτε ἢ ἐστὶ δέλτος τις οὕτως ὀνομαστὴ ἢ ἄκυρον ἐστι τὸ ἐπειλεγμένον ὄνομα.

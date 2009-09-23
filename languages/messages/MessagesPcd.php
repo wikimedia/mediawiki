@@ -115,7 +115,7 @@ $messages = array(
 'category-article-count'   => "{{PLURAL:$2|Chol catégorie o seulemint chol pache-lo.|{{PLURAL:$1|El pache-lo est|$1 Chés paches-lo sont}} din l'catégorie-lo, pou un total éd $2 .}}",
 'listingcontinuesabbrev'   => 'cont.',
 
-'mainpagetext' => "<span style="font-size:larger">'''MediaWiki o té instalé aveuc victoère.'''</span>",
+'mainpagetext' => "<big>'''MediaWiki o té instalé aveuc victoère.'''</big>",
 
 'about'         => 'À pérpos',
 'article'       => 'Étnu del pache',
@@ -670,7 +670,7 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'move-watch'      => "Suire l'pache-lo",
 'movepagebtn'     => "Déplacer l'pache",
 'pagemovedsub'    => 'Déplachemint réussi',
-'movepage-moved'  => '<span style="font-size:larger">\'\'\'"$1" o té déplaché su "$2"\'\'\'</span>',
+'movepage-moved'  => '<big>\'\'\'"$1" o té déplaché su "$2"\'\'\'</big>',
 'articleexists'   => "Il y o eune pache aveuc ch'nom-lo dja, ou bin ch'tite couési n'est poin valabe. <br /> I feut in prinde un eute",
 'movedto'         => 'Déplaché dsus',
 'movetalk'        => "Canjer ch'nom del pache d'pérlache apparièe",

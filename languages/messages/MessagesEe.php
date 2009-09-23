@@ -429,7 +429,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'movearticle'      => 'Ɖɔli eƒe nɔƒe:',
 'move-watch'       => 'Le ŋku ɖe axa sia ŋu',
 'movepagebtn'      => 'Ɖɔli eƒe nɔƒe',
-'movepage-moved'   => '<span style="font-size:larger">\'\'\'Wohe "$1" vayi "$2"\'\'\'</span>',
+'movepage-moved'   => '<big>\'\'\'Wohe "$1" vayi "$2"\'\'\'</big>',
 'articleexists'    => 'Tanya alo ŋkɔ sia nye axa bubu aɖe tɔ xoxo, alo eda se dzi.
 Tia ŋkɔ alo tanya bubu.',
 'movedto'          => 'wohee yi',
