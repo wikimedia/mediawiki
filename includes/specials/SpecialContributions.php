@@ -157,13 +157,14 @@ class SpecialContributions extends SpecialPage {
 		} else {
 			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
 		}
+		$userObj = User::newFromName( $nt->getText(), /* check for username validity not needed */ false );
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link
 			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
 			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
 				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
-					if ( User::newFromId( $id )->isBlocked() ) {
+					if ( $userObj->isBlocked() ) {
 						$tools[] = $sk->linkKnown( # Change block link
 							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
 							wfMsgHtml( 'change-blocklink' )
@@ -226,7 +227,7 @@ class SpecialContributions extends SpecialPage {
 			$links = $wgLang->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
-			if ( User::newFromID( $id )->isBlocked() ) {
+			if ( $userObj->isBlocked() ) {
 				LogEventsList::showLogExtract(
 					$wgOut,
 					'block',
