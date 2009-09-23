@@ -18,15 +18,15 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
-=== Configuration changes in 1.16 ===  
+=== Configuration changes in 1.16 ===
 
 * $wgEnableFirefogg enable support for firefogg extension, firefogg supports
-  in-browser transcoding, chunk uploads and client side hash checking. 
+  in-browser transcoding, chunk uploads and client side hash checking.
 * $wgEnableTemporalOggUrls enable oggz_chop support a server side ogg seeking
-  helper 
+  helper
 * $wgEnableScriptLoader if the script-loader shoudl be enabled
 * $wgJSAutoloadClasses array of javascript classes to file paths used by
-  script-loader to load javascript by class name. 
+  script-loader to load javascript by class name.
 * $wgEnableJS2system  if we should include js2 stuff like jquery, mv_embed.js
   (script-loader helper) and use new interfaces for upload
 * $wgEnableScriptLoaderJsFile if we support grabbing js files with the script
@@ -34,8 +34,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgEnableScriptMinify if you want the script loader to minify js
 * $wgEnableScriptLocalization if you want the script loader to do msg lookups
 * $wgMwEmbedDirectory the path to MwEmbed Directory (maybe we can depreciate
-  this. Was used when mwEmbed was going to be an extension.   
-* $wgDebugJavaScript if we want to enable fresh debug javascript 
+  this. Was used when mwEmbed was going to be an extension.
+* $wgDebugJavaScript if we want to enable fresh debug javascript
 * $wgPhpCliPath Path to php-cli for spinning up background php processes
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
@@ -58,26 +58,26 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   appropriate privileges. Creating this user with web-install page requires
   oci8.privileged_connect set to On in php.ini.
 * Removed UserrightsChangeableGroups hook introduced in 1.14
-* Added $wgCacheDirectory, to replace $wgFileCacheDirectory, 
-  $wgLocalMessageCache, and any other local caches which need a place to put 
-  files. 
+* Added $wgCacheDirectory, to replace $wgFileCacheDirectory,
+  $wgLocalMessageCache, and any other local caches which need a place to put
+  files.
 * $wgFileCacheDirectory is no longer set to anything by default, and so either
-  needs to be set explicitly, or $wgCacheDirectory needs to be set instead. 
+  needs to be set explicitly, or $wgCacheDirectory needs to be set instead.
 * $wgLocalMessageCache has been removed. Instead, set $wgUseLocalMessageCache
   to true
-* Removed $wgEnableSerializedMessages and $wgCheckSerialized. Similar 
+* Removed $wgEnableSerializedMessages and $wgCheckSerialized. Similar
   functionality is now available via $wgLocalisationCacheConf.
-* $wgMessageCache->addMessages() is deprecated. Messages added via this 
+* $wgMessageCache->addMessages() is deprecated. Messages added via this
   interface will not appear in Special:AllMessages.
-* $wgRegisterInternalExternals can be used to record external links pointing 
+* $wgRegisterInternalExternals can be used to record external links pointing
   to same server
-* $wgSpecialVersionExtended shows the extended version information besides 
+* $wgSpecialVersionExtended shows the extended version information besides
   PHP and database version.
-* (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainExceptions added 
+* (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainExceptions added
   to control which external domains may access the API via cross-site AJAX.
 * $wgMaintenanceScripts for extensions to add their scripts to the default list
 * $wgMemoryLimit has been added, default value '50M'
-* $wgExtraRandompageSQL is deprecated, the SpecialRandomGetRandomTitle hook 
+* $wgExtraRandompageSQL is deprecated, the SpecialRandomGetRandomTitle hook
   should be used instead
 * (bug 20489) $wgIllegalFileChars added to override the default list of illegal
   characters in file names.
@@ -141,27 +141,27 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   have these rights stripped from them.
 * Added a PHP port of CDB (constant database), for improved local caching when
   the DBA extension is not available.
-* Introduced a new system for localisation caching. The system is based around 
-  fast fetches of individual messages, minimising memory overhead and startup 
-  time in the typical case. The database backend will be used by default, but 
+* Introduced a new system for localisation caching. The system is based around
+  fast fetches of individual messages, minimising memory overhead and startup
+  time in the typical case. The database backend will be used by default, but
   set $wgCacheDirectory to get a faster CDB-based implementation.
-* Expanded the number of variables which can be set in the extension messages 
+* Expanded the number of variables which can be set in the extension messages
   files.
-* Added a feature to allow per-article process pool size control for the parsing 
+* Added a feature to allow per-article process pool size control for the parsing
   task, to limit resource usage when the cache for a heavily-viewed article is
-  invalidated. Requires an external daemon. 
+  invalidated. Requires an external daemon.
 * (bug 19576) Moved the id attribues from the anchors accompanying section
   headers to the <span class="mw-headline"> elements within the section headers,
   removing the redundant anchor elements.
 * Parser::setFunctionTagHook now can be used to add a new tag which is parsed at
   preprocesor level.
-* Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail 
+* Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail
   display for old versions of images.
 * In watchlists and Special:RecentChanges, the difference in page size now
   appears in dark green if bytes were added and dark red if bytes were removed.
-* Added FSRepo configuration properties thumbUrl and thumbDir, to allow the 
+* Added FSRepo configuration properties thumbUrl and thumbDir, to allow the
   thumbnails to be stored in a separate location to the source images.
-* If config/ directory is not executable, the command to make it executable 
+* If config/ directory is not executable, the command to make it executable
   now asks the user to cd to the correct directory
 * Add experimental new external authentication framework, ExternalAuth
 * (bug 18768) Remove AdminSettings requirements. Maintenance environment
@@ -169,7 +169,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19900) The "listgrouprights-key" message is now wrapped in a div with
   class "mw-listgrouprights-key"
 * (bug 471) Allow RSS feeds for watchlist, using an opt-in security token
-* (bug 10812) Interwiki links can have names and descriptions, fetched from 
+* (bug 10812) Interwiki links can have names and descriptions, fetched from
   message 'interwiki-desc-PREFIX', not really used anywhere yet though
 * (bug 9691) Add type (signup or login) parameter to
   AuthPlugin::ModifyUITemplate()
@@ -178,7 +178,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16697) Unicode combining characters are difficult to edit in some
   browsers
 * Parser test supports uploading results to remote CodeReview instance
-* (bug 20013) Added CSS class "mw-version-ext-version" is wrapped on the 
+* (bug 20013) Added CSS class "mw-version-ext-version" is wrapped on the
   extension version in Special:Version
 * (bug 20014) Added CSS class "mw-listgrouprights-right-name" is wrapped on the
   right name in Special:ListGroupRights
@@ -223,12 +223,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgShowDBErrorBacktrace, to allow users to easily gather backtraces for
   database connection and query errors.
 * Show change block / unblock link on Special:Contributions if user is blocked
-* Display note on Special:Contributions if the user is blocked, and provide an 
+* Display note on Special:Contributions if the user is blocked, and provide an
   excerpt from the block log.
 * (bug 19646) New hook: ImgAuthBeforeStream for tests and functionality before
   file is streamed to user, but only when using img_auth
 * Note on non-existing user and user talk pages if user does not exist
-* New hook ShowMissingArticle so extensions can modify the output for 
+* New hook ShowMissingArticle so extensions can modify the output for
   non-existent pages.
 * Added $wgUseAJAXCategories allow enabling AJAX based categories system.
   This works on all namespaces. Enabled namespaces can be reduces using
@@ -292,7 +292,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** (bug 5363) Changes to default preferences now impact registered users.
 ** (bug 14806) Hook to enable putting preferences in existing tabs.
 ** (bug 17191) Registration date now listed on preferences page.
-** The user_properties table (now used for storing preferences) has been added to 
+** The user_properties table (now used for storing preferences) has been added to
    $wgSharedTables.
 ** Note that this change will break some extensions which have not been adapted
    for it.
@@ -378,7 +378,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19513) RTL fixes for new Search UI
 * (bug 16497) Special:Allmessages is paginated
 * (bug 18708) CSS plainlinks class now available to all skins
-* (bug 19590) Database error messages no longer have "MySQL" hardcoded as the 
+* (bug 19590) Database error messages no longer have "MySQL" hardcoded as the
   database type
 * (bug 19759) successbox on Special:Preferences now correctly aligned on
   standard, nostalgia and cologneblue skin
@@ -406,7 +406,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the recentchanges table
 * (bug 16009) Limit selection forms based on Pager now links to the correct page
   when using long urls
-* The display of the language list on the preferences is more comply with the 
+* The display of the language list on the preferences is more comply with the
   BCP 47 standards.
 * (bug 19849) Custom X-Vary-Options header now disabled unless $wgUseXVO is set
 * (bug 19301) Duplicates entries in $wgAddGroups, $wgRemoveGroups,
@@ -423,11 +423,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19957) All known-failing tests now marked disabled; added --run-disabled
   option to parser test suite to run disabled tests if desired.
 * (bug 16311) Make recent change flags (n/m/b) <abbr>s instead of <span>s
-* (bug 15680) Split the edit tip message of user CSS/JS subpage into 
+* (bug 15680) Split the edit tip message of user CSS/JS subpage into
   "usercssyoucanpreview" and "userjsyoucanpreview" respectively.
-* (bug 12110) Split the rights for editing users' CSS/JS subpage from 
+* (bug 12110) Split the rights for editing users' CSS/JS subpage from
   "editusercssjs" into "editusercss" and edituserjs" respectively.
-* (bug 19394) RecentChanges feed URLs for log items with no revisions 
+* (bug 19394) RecentChanges feed URLs for log items with no revisions
   (eg Newuser, Userrights) are no longer broken
 * (bug 17395) Remote file descriptions use user language ($wgLang), not wiki
   language ($wgContLang)
@@ -452,7 +452,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20273) Fix broken output when no pages are found in the content
   namespaces
 * (bug 20265) Make AncientPages and UnusedFiles work on SQLite
-* Fixed XSS vulnerability for Internet Explorer clients (only pre-release 
+* Fixed XSS vulnerability for Internet Explorer clients (only pre-release
   versions of MediaWiki were affected).
 * (bug 14817) Moving a page to a subpage of itself moves it twice
 * (bug 20289) $wgMaximumMovedPages should only count pages actually moved
@@ -485,7 +485,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Recentchanges's RSS and Atom feed cache
 * The installer will now try to bypass PHP's max_execution_time
 * (bug 20260) SQLite no longer tries to automatically create the database at
-  execution time, this now happens only at install time; if it is not available 
+  execution time, this now happens only at install time; if it is not available
   at script execution, it now throws an exception
 * Fixed EditFilterMerged hook so the hookError parameter serves a purpose
   (analogous to EditFilter hook)
@@ -517,17 +517,17 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20634) The installer-created database user will now have all rights on
   the database so that upgrades will go more smoothly.
 * (bug 18180) Special:Export ignores limit, dir, offset parameters
-* User::getBlockedStatus() works for all kinds of user objects and doesn't 
+* User::getBlockedStatus() works for all kinds of user objects and doesn't
   assume the user object is equal to the current-user object ($wgUser)
 * (bug 20517) Cancel link from edit page now returns to the old version when
   editing an old version
-* (bug 16902) Installer no longer shows warnings when exec() has been disabled 
+* (bug 16902) Installer no longer shows warnings when exec() has been disabled
   by disable_functions
 * (bug 20726) Title::getLatestRevID's documentation now says that the function
   returns false if the page doesn't exist
 * (bug 20751) ForeignApiRepo now urldecodes filenames when saving to local cache
 * (bug 20730) Fix to Special:Version ViewVC link for branch checkouts
-* (bug 20353) wfShellExec() was adding extra quotes on Windows Vista, causing 
+* (bug 20353) wfShellExec() was adding extra quotes on Windows Vista, causing
   command line scripts to fail
 * (bug 20702) Parser functions can now be used correctly in
   MediaWiki:Missing-article
@@ -572,15 +572,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17809) Add number of users in user groups to meta=siteinfo
 * (bug 18533) Add readonly reason to readonly exception
 * (bug 19528) Added XSLT parameter to API queries in format=xml
-* (bug 19040) Fix prependtext and appendtext in combination with section 
+* (bug 19040) Fix prependtext and appendtext in combination with section
   parameter in action=edit
-* (bug 19090) Added watchlist parameter, deprecated watch and unwatch 
+* (bug 19090) Added watchlist parameter, deprecated watch and unwatch
   parameter in action=edit
 * Added fields to list=search output: size, wordcount, timestamp, snippet
 * Where supported by backend, list=search adds a 'searchinfo' element with
   optional info: 'totalhits' count and 'suggestion' alternate query term
 * (bug 19907) $wgCrossSiteAJAXdomains added to allow specified (or all)
-  external domains to access api.php via AJAX, if the browser supports the 
+  external domains to access api.php via AJAX, if the browser supports the
   Access-Control-Allow-Origin HTTP header
 * (bug 19999) Made metadata and properties of search results optional. Added
   srprop and srinfo.
@@ -600,7 +600,10 @@ changes to languages because of MediaZilla reports.
 * Uyghur (Arabic script) (ug-arab) (new)
 * Eastern Yiddish (ydd) (removed)
 * Iriga Bicolano (bto) (removed)
+* Ladin (lld) (removed)
+* Laz (lzz) (removed)
 * Palembang (plm) (removed)
+* Megleno-Romanian (Greek script) (ruq-grek) (removed)
 * Tamazight (tzm) (removed)
 
 * (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
