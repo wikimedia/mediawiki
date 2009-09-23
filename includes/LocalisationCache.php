@@ -304,7 +304,11 @@ class LocalisationCache {
 			return true;
 		}
 		foreach ( $deps as $dep ) {
-			if ( $dep->isExpired() ) {
+			// Because we're unserializing stuff from cache, we
+			// could receive objects of classes that don't exist
+			// anymore (e.g. uninstalled extensions)
+			// When this happens, always expire the cache
+			if ( !$dep instanceof CacheDependency || $dep->isExpired() ) {
 				wfDebug( __METHOD__."($code): cache for $code expired due to " . 
 					get_class( $dep ) . "\n" );
 				return true;
