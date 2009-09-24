@@ -263,7 +263,7 @@ class OutputPage {
 			 		 ? '&debug=true' : '';
 
 		return Html::linkedScript( wfScript( 'mwScriptLoader' ) .
-			"?class={$class_list}{$debug_param}&" . $this->getURIDparam( $classAry) );
+			"?class={$class_list}{$debug_param}&" . $this->getURIDparam( $classAry) ) . "\n";
 	}
 
 	/**
