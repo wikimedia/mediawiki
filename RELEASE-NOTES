@@ -92,6 +92,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $template->set(), etc.  The hook has access to most of the stuff that will go into the
   Login/Create form; see the documentation on HTMLForm for syntax for extra fields.
   LoginForm class is deprecated, its state constants are now in the Login class.
+* New hook AbortNewAccountAuto, called before account creation from AuthPlugin-
+  or ExtUser-driven requests.
 
 === New features in 1.16 ===
 
