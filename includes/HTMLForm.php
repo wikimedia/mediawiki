@@ -73,17 +73,24 @@ class HTMLForm {
 	protected $mMessagePrefix;
 	protected $mFlatFields;
 	protected $mFieldTree;
-	protected $mShowReset;
+	protected $mShowReset = false;
 	public $mFieldData;
+	
 	protected $mSubmitCallback;
 	protected $mValidationErrorMessage;
-	protected $mIntro;
+	
+	protected $mPre = '';
+	protected $mHeader = '';
+	protected $mPost = '';
+	
 	protected $mSubmitID;
 	protected $mSubmitText;
 	protected $mTitle;
 	
 	protected $mHiddenFields = array();
 	protected $mButtons = array();
+	
+	protected $mWrapperLegend = false;
 
 	/**
 	 * Build a new HTMLForm from an array of field attributes
@@ -127,8 +134,6 @@ class HTMLForm {
 		}
 
 		$this->mFieldTree = $loadedDescriptor;
-
-		$this->mShowReset = true;
 	}
 
 	/**
@@ -247,14 +252,30 @@ class HTMLForm {
 	function setValidationErrorMessage( $msg ) {
 		$this->mValidationErrorMessage = $msg;
 	}
-
+	
 	/**
-	 * Set the introductory message
+	 * Set the introductory message, overwriting any existing message.
 	 * @param $msg String complete text of message to display
 	 */
-	function setIntro( $msg ) {
-		$this->mIntro = $msg;
-	}
+	function setIntro( $msg ) { $this->mPre = $msg; }
+
+	/**
+	 * Add introductory text.
+	 * @param $msg String complete text of message to display
+	 */
+	function addPreText( $msg ) { $this->mPre .= $msg; }
+	
+	/**
+	 * Add header text, inside the form.
+	 * @param $msg String complete text of message to display
+	 */
+	function addHeaderText( $msg ) { $this->mHeader .= $msg; }
+	
+	/**
+	 * Add text to the end of the display.
+	 * @param $msg String complete text of message to display
+	 */
+	function addPostText( $msg ) { $this->mPost .= $msg; }
 	
 	/**
 	 * Add a hidden field to the output
@@ -281,21 +302,20 @@ class HTMLForm {
 			$this->displayErrors( $submitResult );
 		}
 
-		if ( isset( $this->mIntro ) ) {
-			$wgOut->addHTML( $this->mIntro );
-		}
-
-		$html = $this->getBody();
-
-		// Hidden fields
-		$html .= $this->getHiddenFields();
-
-		// Buttons
-		$html .= $this->getButtons();
+		$html = ''
+			. $this->mHeader
+			. $this->getBody()
+			. $this->getHiddenFields()
+			. $this->getButtons()
+		;
 
 		$html = $this->wrapForm( $html );
 
-		$wgOut->addHTML( $html );
+		$wgOut->addHTML( ''
+			. $this->mPre
+			. $html
+			. $this->mPost
+		);
 	}
 
 	/**
@@ -304,11 +324,18 @@ class HTMLForm {
 	 * @return String wrapped HTML.
 	 */
 	function wrapForm( $html ) {
+		
+		# Include a <fieldset> wrapper for style, if requested.
+		if( $this->mWrapperLegend !== false ){
+			$html = Xml::fieldset( $this->mWrapperLegend, $html );
+		}
+		
 		return Html::rawElement(
 			'form',
 			array(
 				'action' => $this->getTitle()->getFullURL(),
 				'method' => 'post',
+				'class'  => 'visualClear',
 			),
 			$html
 		);
@@ -447,6 +474,14 @@ class HTMLForm {
 	function setSubmitID( $t ) {
 		$this->mSubmitID = $t;
 	}
+	
+	/**
+	 * Prompt the whole form to be wrapped in a <fieldset>, with
+	 * this text as its <legend> element.
+	 * @param $legend String HTML to go inside the <legend> element.
+	 *     Will be escaped
+	 */
+	public function setWrapperLegend( $legend ){ $this->mWrapperLegend = $legend; }
 
 	/**
 	 * Set the prefix for various default messages
