@@ -16,9 +16,15 @@ class CommandLineInc extends Maintenance {
 		foreach ( $optionsWithArgs as $name ) {
 			$this->addOption( $name, '', false, true );
 		}
+	}
 
-		# No help, it would just be misleading since it misses custom options
-		unset( $this->mParams['help'] );
+	/**
+	 * No help, it would just be misleading since it misses custom options
+	 */
+	protected function maybeHelp( $force = false ) {
+		if ( !$force )
+			return;
+		parent::maybeHelp( true );
 	}
 
 	public function execute() {
