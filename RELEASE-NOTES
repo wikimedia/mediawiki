@@ -535,6 +535,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   command line scripts to fail
 * (bug 20702) Parser functions can now be used correctly in
   MediaWiki:Missing-article
+* (bug 14117) "redirected from" is now also shown on foreign file redirects
 
 == API changes in 1.16 ==
 

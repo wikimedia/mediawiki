@@ -84,6 +84,8 @@ class ImagePage extends Article {
 
 		if( $this->mTitle->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) )
 			return Article::view();
+			
+		$this->showRedirectedFromHeader();
 
 		if( $wgShowEXIF && $this->displayImg->exists() ) {
 			// FIXME: bad interface, see note on MediaHandler::formatMetadata().
