@@ -45,12 +45,14 @@ class CapsCleanup extends TableCleanup {
 		if( $wgCapitalLinks )
 			$this->error( "\$wgCapitalLinks is on -- no need for caps links cleanup.", true );
 
-		$this->runTable( $this->targetTable,
-			'WHERE page_namespace=' . $this->namespace,
-			array( &$this, 'processPage' ) );
+		$this->runTable( array(
+			'table' => 'page',
+			'conds' => array( 'page_namespace' => $this->namespace ),
+			'index' => 'page_id',
+			'callback' => 'processRow' ) );
 	}
 
-	protected function processPage( $row ) {
+	protected function processRow( $row ) {
 		global $wgContLang;
 
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -58,23 +60,23 @@ class CapsCleanup extends TableCleanup {
 		$upper = $row->page_title;
 		$lower = $wgContLang->lcfirst( $row->page_title );
 		if( $upper == $lower ) {
-			$this->output( "\"$display\" already lowercase." );
+			$this->output( "\"$display\" already lowercase.\n" );
 			return $this->progress( 0 );
 		}
 
 		$target = Title::makeTitle( $row->page_namespace, $lower );
 		$targetDisplay = $target->getPrefixedText();
 		if( $target->exists() ) {
-			$this->output( "\"$display\" skipped; \"$targetDisplay\" already exists" );
+			$this->output( "\"$display\" skipped; \"$targetDisplay\" already exists\n" );
 			return $this->progress( 0 );
 		}
 
 		if( $this->dryrun ) {
-			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED" );
+			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED\n" );
 			$ok = true;
 		} else {
 			$ok = $current->moveTo( $target, false, 'Converting page titles to lowercase' );
-			$this->output( "\"$display\" -> \"$targetDisplay\": $ok" );
+			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
 		}
 		if( $ok === true ) {
 			$this->progress( 1 );
@@ -82,7 +84,7 @@ class CapsCleanup extends TableCleanup {
 				$talk = $target->getTalkPage();
 				$row->page_namespace = $talk->getNamespace();
 				if( $talk->exists() ) {
-					return $this->processPage( $row );
+					return $this->processRow( $row );
 				}
 			}
 		} else {
