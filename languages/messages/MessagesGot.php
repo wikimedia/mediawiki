@@ -180,7 +180,7 @@ $messages = array(
 'userlogout'              => '𐌻𐌴𐌹𐌸𐌰𐌽',
 'nologinlink'             => 'Gaskapjan þein niutandis',
 'createaccount'           => 'Galagjan niutandis',
-'gotaccount'              => 'Habiþ þu niutandis? $1',
+'gotaccount'              => "Habiþ þu niutandis? '''$1'''",
 'gotaccountlink'          => 'Atgaggan',
 'loginlanguagelabel'      => 'Razda: $1',
 

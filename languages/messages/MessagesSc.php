@@ -368,7 +368,7 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'userlogin'               => 'Intra',
 'logout'                  => 'Serra sessione',
 'userlogout'              => 'Essida',
-'nologin'                 => 'Non tenes unu account? $1.',
+'nologin'                 => "Non tenes unu account? '''$1'''.",
 'nologinlink'             => 'Crea unu account',
 'createaccount'           => 'Crea account',
 'gotaccountlink'          => 'Intra',

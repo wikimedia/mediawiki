@@ -377,10 +377,10 @@ Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava {{SITENAME}} nusta
 'logout'                     => 'Atsėjongtė',
 'userlogout'                 => 'Atsėjongtė',
 'notloggedin'                => 'Neprisėjongis',
-'nologin'                    => 'Netorėt prisėjongėma varda? $1.',
+'nologin'                    => "Netorėt prisėjongėma varda? '''$1'''.",
 'nologinlink'                => 'Sokorkėt paskīra',
 'createaccount'              => 'Sokortė paskīra',
-'gotaccount'                 => 'Jau torėt paskīra? $1.',
+'gotaccount'                 => "Jau torėt paskīra? '''$1'''.",
 'gotaccountlink'             => 'Prisėjonkėt',
 'badretype'                  => 'Ivestė slaptažuodē nesotamp.',
 'userexists'                 => 'Irašīts nauduotuojė vards jau īr nauduojams.

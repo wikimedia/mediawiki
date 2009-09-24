@@ -181,7 +181,7 @@ Akana si tuke ekh akont. Te na bistares te paruves, kana trebul tuke, tire kamim
 'userlogout'                 => 'De avri',
 'nologinlink'                => 'Ker ek akount',
 'createaccount'              => 'Ker ek nevo akount',
-'gotaccount'                 => 'Si tuke akana ekh akonto? $1.',
+'gotaccount'                 => "Si tuke akana ekh akonto? '''$1'''.",
 'gotaccountlink'             => 'De andre',
 'createaccountmail'          => 'palal o e-mail',
 'badretype'                  => 'Le nakhavipnaske lava so lekhavdyan nai myazutne.',

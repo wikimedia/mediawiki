@@ -351,10 +351,10 @@ O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe 
 'userlogin'                  => 'Intra',
 'logout'                     => 'Sciorti',
 'userlogout'                 => 'Sciorti',
-'nologin'                    => "No ti g'hæ ancon accesso? $1.",
+'nologin'                    => "No ti g'hæ ancon accesso? '''$1'''.",
 'nologinlink'                => "Creâ 'n conto",
 'createaccount'              => "Creâ 'n nêuvo conto",
-'gotaccount'                 => "Ti g'hæ zà 'n conto d'accesso? $1.",
+'gotaccount'                 => "Ti g'hæ zà 'n conto d'accesso? '''$1'''.",
 'gotaccountlink'             => 'Intra',
 'badretype'                  => "E paròlle d'ordine che t'hæ scrîo son despægie.",
 'userexists'                 => "O nomme d'ûtente inserîo o l'è zà in ûso.<br />

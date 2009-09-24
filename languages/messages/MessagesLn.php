@@ -162,9 +162,9 @@ $messages = array(
 'userlogin'               => 'Komíkomisa tǒ kokɔtɔ',
 'logout'                  => 'kolongwa',
 'userlogout'              => 'kolongwa (log out)',
-'nologin'                 => 'Omíkomísí naíno tɛ̂? $1.',
+'nologin'                 => "Omíkomísí naíno tɛ̂? '''$1'''.",
 'nologinlink'             => 'Míkomísá yɔ̌-mɛ́i',
-'gotaccount'              => 'Omíkomísí naíno ? $1.',
+'gotaccount'              => "Omíkomísí naíno ? '''$1'''.",
 'createaccountmail'       => 'na mokánda',
 
 # Edit page toolbar

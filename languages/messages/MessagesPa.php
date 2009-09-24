@@ -261,7 +261,9 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'ਕੋਈ ਇੰਝ ਦਾ ਐਕਸ਼ਨ ਨਹੀਂ',
 'nosuchspecialpage' => 'ਕੋਈ ਇੰਝ ਦਾ ਖਾਸ ਪੇਜ ਨਹੀਂ',
-'nospecialpagetext' => '<strong>ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।</strong>',
+'nospecialpagetext' => '<strong>ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।</strong>
+
+A list of valid special pages can be found at [[Special:SpecialPages]].',
 
 # General errors
 'error'              => 'ਗਲਤੀ',
@@ -294,10 +296,10 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'logout'                     => 'ਲਾਗ ਆਉਟ',
 'userlogout'                 => 'ਲਾਗ ਆਉਟ',
 'notloggedin'                => 'ਲਾਗਇਨ ਨਹੀਂ',
-'nologin'                    => 'ਲਾਗਇਨ ਨਹੀਂ ਹੈ? $1.',
+'nologin'                    => "ਲਾਗਇਨ ਨਹੀਂ ਹੈ? '''$1'''.",
 'nologinlink'                => 'ਇੱਕ ਅਕਾਊਂਟ ਬਣਾਓ',
 'createaccount'              => 'ਅਕਾਊਂਟ ਬਣਾਓ',
-'gotaccount'                 => 'ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਅਕਾਊਂਟ ਹੈ? $1.',
+'gotaccount'                 => "ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਅਕਾਊਂਟ ਹੈ? '''$1'''.",
 'gotaccountlink'             => 'ਲਾਗਇਨ',
 'createaccountmail'          => 'ਈਮੇਲ ਨਾਲ',
 'badretype'                  => 'ਤੁਹਾਡੇ ਵਲੋਂ ਦਿੱਤੇ ਪਾਸਵਰਡ ਮਿਲਦੇ ਨਹੀਂ ਹਨ।',

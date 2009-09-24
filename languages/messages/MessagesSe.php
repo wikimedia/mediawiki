@@ -282,10 +282,10 @@ Du geavaheaddjidovddaldat lea dál anus.
 'logout'                     => 'Čálligoađe olggos',
 'userlogout'                 => 'Čálligoađe olggos',
 'notloggedin'                => 'It leat čálligoahttan sisa',
-'nologin'                    => 'Jus dus ii vel leat geavaheaddjidovddaldat, sáhtat $1 dakkára.',
+'nologin'                    => "Jus dus ii vel leat geavaheaddjidovddaldat, sáhtat '''$1''' dakkára.",
 'nologinlink'                => 'ráhkadit',
 'createaccount'              => 'Ráhkat ođđa geavaheaddjidovddaldaga',
-'gotaccount'                 => 'Jus dus lea jo geavaheaddjidovddaldat, sáhtat $1.',
+'gotaccount'                 => "Jus dus lea jo geavaheaddjidovddaldat, sáhtat '''$1'''.",
 'gotaccountlink'             => 'čálligoahtit sisa',
 'createaccountmail'          => 'e-poasttain',
 'badretype'                  => 'Suollemassánit, maid čállet, eai leat seammalaganat.',
@@ -561,7 +561,7 @@ $1 {{int:pipe-separator}} $2',
 # User rights log
 'rightslog'      => 'Logga geavaheaddjirievttiin',
 'rightslogtext'  => 'Vuolábealde lea logga geavaheaddjirivttiid rievdadusain.',
-'rightslogentry' => 'Geavaheaddji [[$1]] rievttit rievdaduvvoi joavkkuin $2 joavkkuide $3',
+'rightslogentry' => 'Geavaheaddji $1 rievttit rievdaduvvoi joavkkuin $2 joavkkuide $3',
 'rightsnone'     => '(eai rievttit)',
 
 # Recent changes
