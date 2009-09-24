@@ -2465,7 +2465,7 @@ $1',
 'blocklogtext'                    => 'זהו יומן פעולות החסימה והשחרור של משתמשים. כתובות IP הנחסמות באופן אוטומטי אינן מופיעות.
 
 ראו גם את [[Special:IPBlockList|רשימת המשתמשים החסומים]] הנוכחית.',
-'unblocklogentry'                 => 'שחרר את [[$1]]',
+'unblocklogentry'                 => 'שחרר את $1',
 'block-log-flags-anononly'        => 'משתמשים אנונימיים בלבד',
 'block-log-flags-nocreate'        => 'יצירת חשבונות נחסמה',
 'block-log-flags-noautoblock'     => 'חסימה אוטומטית מבוטלת',
