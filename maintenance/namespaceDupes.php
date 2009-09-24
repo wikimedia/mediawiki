@@ -281,10 +281,7 @@ class NamespaceConflictChecker extends Maintenance {
 			}
 			$this->output( "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n" );
 		}
-		$tables = array( 'page' => 'page' );
-		foreach( $tables as $table ) {
-			$this->resolveConflictOn( $row, $table, $prefix );
-		}
+		$this->resolveConflictOn( $row, 'page', 'page' );
 		return true;
 	}
 
