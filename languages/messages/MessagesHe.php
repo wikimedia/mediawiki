@@ -10,6 +10,7 @@
  * @author Agbad
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
+ * @author Rotemliss
  * @author YaronSh
  */
 
@@ -738,10 +739,10 @@ $2',
 'logout'                     => 'יציאה מהחשבון',
 'userlogout'                 => 'יציאה מהחשבון',
 'notloggedin'                => 'לא בחשבון',
-'nologin'                    => 'אין לכם חשבון? $1.',
+'nologin'                    => "אין לכם חשבון? '''$1'''.",
 'nologinlink'                => 'אתם מוזמנים להירשם',
 'createaccount'              => 'יצירת משתמש חדש',
-'gotaccount'                 => 'כבר נרשמתם? $1.',
+'gotaccount'                 => "כבר נרשמתם? '''$1'''.",
 'gotaccountlink'             => 'היכנסו לחשבון',
 'createaccountmail'          => 'באמצעות דוא"ל',
 'badretype'                  => 'הסיסמאות שהזנתם אינן מתאימות.',

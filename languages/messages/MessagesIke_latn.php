@@ -134,7 +134,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'userlogin'          => 'akunnapuq',
 'logout'             => 'anivvik',
 'userlogout'         => 'anivvik',
-'nologin'            => 'ajuinnaaq inuquti? $1.',
+'nologin'            => "ajuinnaaq inuquti? '''$1'''.",
 'nologinlink'        => 'pirqaapaa kiinaujakkuvingmi tuqkuqsivik',
 'mailmypassword'     => 'qillutuq uikipitia palanngasauti kigutiup sitiniqpaanga',
 

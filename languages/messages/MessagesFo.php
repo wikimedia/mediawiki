@@ -339,7 +339,9 @@ $messages = array(
 'nosuchactiontext'  => 'Gerðin, ið tilskilað er í url, er ikki
 afturkend av wiki',
 'nosuchspecialpage' => 'Ongin slík serlig síða',
-'nospecialpagetext' => '<strong>Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.</strong>',
+'nospecialpagetext' => '<strong>Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.</strong>
+
+<!-- A list of valid special pages can be found at [[Special:SpecialPages]]. -->',
 
 # General errors
 'error'             => 'Villa',
@@ -379,10 +381,10 @@ Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstilling
 'logout'                     => 'Útrita',
 'userlogout'                 => 'Rita út',
 'notloggedin'                => 'Ikki ritað inn',
-'nologin'                    => 'Hevur tú ikki eina kontu? $1.',
+'nologin'                    => "Hevur tú ikki eina kontu? '''$1'''.",
 'nologinlink'                => 'Stovna eina kontu',
 'createaccount'              => 'Stovna nýggja kontu',
-'gotaccount'                 => 'Hevur tú longu eina kontu? $1.',
+'gotaccount'                 => "Hevur tú longu eina kontu? '''$1'''.",
 'gotaccountlink'             => 'Rita inn',
 'createaccountmail'          => 'eftur t-posti',
 'badretype'                  => 'Loyniorðið tú hevur skriva er ikki rætt.',

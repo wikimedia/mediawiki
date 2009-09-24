@@ -71,8 +71,8 @@ Ihr Benutzerkonto wurde eingerichtet.
 Vergessen Sie nicht, Ihre [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupassen.',
 'yourdomainname'             => 'Ihre Domain:',
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
-'nologin'                    => 'Sie haben kein Benutzerkonto? $1.',
-'gotaccount'                 => 'Haben Sie bereits ein Benutzerkonto? $1.',
+'nologin'                    => "Sie haben kein Benutzerkonto? '''$1'''.",
+'gotaccount'                 => "Haben Sie bereits ein Benutzerkonto? '''$1'''.",
 'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.',
 'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber Sie sind nicht angemeldet.
 {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und melden sich dann mit Ihrem neuen Benutzernamen und dem zugehörigen Passwort an.',

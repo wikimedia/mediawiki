@@ -193,10 +193,10 @@ $messages = array(
 'userlogin'               => 'Орх аль бичгдлһиг бүтәх',
 'logout'                  => 'Һарх',
 'userlogout'              => 'Һарх',
-'nologin'                 => 'Бичгдлһта уга? $1.',
+'nologin'                 => "Бичгдлһта уга? '''$1'''.",
 'nologinlink'             => 'Бичгдлһиг бүтәх',
 'createaccount'           => 'Бичгдлһиг бүтәх',
-'gotaccount'              => 'Бичгдлһтә? $1.',
+'gotaccount'              => "Бичгдлһтә? '''$1'''.",
 'loginsuccesstitle'       => 'Йовудта оруллһн',
 'wrongpassword'           => 'Буру нууц үг бичв.
 Дәкәд арһ хәәтн.',

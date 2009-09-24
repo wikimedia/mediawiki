@@ -436,10 +436,10 @@ Hesabê şıma biyo a.
 'logout'                     => 'Veciye',
 'userlogout'                 => 'Veciye',
 'notloggedin'                => 'Hesab akerde niyo',
-'nologin'                    => 'Hesabê şıma çıniyo? $1.',
+'nologin'                    => "Hesabê şıma çıniyo? '''$1'''.",
 'nologinlink'                => 'Yew hesab ake',
 'createaccount'              => 'hesab vıraze',
-'gotaccount'                 => 'Hesabê şıma esto? $1.',
+'gotaccount'                 => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink'             => 'Cıkewe',
 'createaccountmail'          => 'mı rê e-mail sera parola bırışe',
 'badretype'                  => 'Parolayê ke şıma nuşti yewbini nêtepışneni.',
@@ -546,8 +546,56 @@ Bıne vındere u newe ra dest pê bıkere.',
 'showlivepreview'                  => 'Live preview',
 'showdiff'                         => 'Vurnayışan bımocne',
 'anoneditwarning'                  => 'Teme!: Şıma bı hesabê xo nıkewtê cı. Hurêndiya namey şıma dı IP-adresa şıma qeyd bena u asena.',
+'missingsummary'                   => "'''DİQET:''' Şıma kılmnuşte nıkerd.  
+Eke şıma reyna butonê qaydker ser a ne pel bê kılmnuşte qayd beno.",
+'missingcommenttext'               => 'Cêr de yew hulasa binuse.',
+'missingcommentheader'             => "'''Vir ardoğ:''' Şıma qey na mesela sername nuşte nênuşt eke şıma reyna buton3e qayd ker bıtıkni pel bê sername qayd beno.",
 'summary-preview'                  => 'Verqeydê qıssa:',
+'subject-preview'                  => 'Mesela/Sername  verqayd seyr kerdış:',
+'blockedtitle'                     => 'Karber (eza) blok biyo',
+'blockedtext'                      => '<big>\'\'\'No name ya zi na IP adresê şıma ri musade çino.\'\'\'</big>
+
+Oyo ke musade nêkeno: $1.<br />
+Sebebê musade nêdayiş: \'\'$2\'\'.
+
+* Dest pê kerdışê musade nêdayiş: $8
+* Qedyayişê musade nêdayiş: $6
+* Muddetê musade nêdayiş: $7
+
+Eke şıma sebebê musade nêdayiş ri itiraz keni, $1 de ya zi yewna [[{{MediaWiki:Grouppage-sysop}}|xızmkar]] de şıma eşkeni na mesela de qıse bıkeri. [[Special:Preferences|Tercihlerim]] eke şıma na qısme de pey yew e-postayo raşt nêkewte cı, şıma xususiyetê "Karber ri e-posta bışaw" ra n3eeşkeni istifade bıkeri, eke şıma tercihanê xo bıerz zerreyê e-postayê xo şıma hıni eşkeni e-posta bışawi.
+<br />IP adresê şıma yo nıkayın $3, numrayo musade nêdayiş #$5.
+<br />Eke şıma qayile yew xızmkar çiko bıpers, no malumatan not bıkere ney şıma ri lazım beni.',
+'autoblockedtext'                  => 'IP adresê şıma otomotikmen verniya grewya, çunke yewna ten $1 no numra şuxulnayene u no numra zi verniye gırewte bi.  
+Sebeb noyo:
+
+:\'\'$2\'\'
+
+* Dest pê kerdışê musade nêdayiş: $8
+* Qedyayişê musade nêdayiş: $6
+* Qayili bloke bıbo: $7
+
+Şıma qayile qey weri kewtışê na mesela, pê $1 ya zi [[{{MediaWiki:Grouppage-sysop}}|serkaran ra]] yew de eşkeni irtibat bıkeri.
+
+Not, [[Special:Preferences|Tercihê karberi]] eke şıma yew e-postayo raşt nênuşt şıma nêeşkeni na xususiyet ra "karber ri e-posta bışıraw" istifade bıkeri.  
+
+IP numre şıma yo nıkayın $3 u ID şıma yo ke musade nêdaye #$5. Eke şıma yew tehqiqat vırazeni malumatê corınan xo vir ra mekere.',
+'blockednoreason'                  => 'sebeb nidaniyo',
+'blockedoriginalsource'            => "Çimeyê '''$1''' cêr de mocnayiyo:",
+'blockededitsource'                => "Nuştişê '''vurnayişe''' tu '''$1''' cêr de mocnayiyo:",
+'whitelistedittitle'               => 'Eka ti wazene binusi hesabê xo a bike',
+'whitelistedittext'                => 'Eka ti wazene binusi ti gani  $1.',
+'confirmedittext'                  => 'Eka ti wazene binusi, adresê xo e-maili confirme bike.
+Adresê xo e-maili [[Special:Preferences|user preferences]] de confirme bike.',
+'nosuchsectiontitle'               => 'Ena qisim çini yo',
+'nosuchsectiontext'                => 'Ti wazeno ena qisim bivurni, feqat ey çini yo.
+Ma ayra nieşkene nuşteyê tu $1 qeyd bike.',
+'loginreqtitle'                    => 'Cikewtiş lazim o',
 'loginreqlink'                     => 'Cıkewe',
+'loginreqpagetext'                 => 'Eka ti wazeno peleyanê bini bivini, ti gani $1.',
+'accmailtitle'                     => 'Paralo şirawiyayo.',
+'accmailtext'                      => "[[User talk:$1|$1]] parolayo ke raşt ameyo şırawiyo na adres $2.
+
+Qey na hesabê newe parola, cıkewtış dıma şıma eşkeni na qısım de ''[[Special:ChangePassword|parola bıvurn]]'' bıvurni.",
 'newarticle'                       => '(Newe)',
 'newarticletext'                   => "Ena pele, database ma de hona çiniyo.
 Eka tı wazene yew bıvırazi, bınê eno nuşte de yew quti esto u uca de bınuse (bıvinin [[{{MediaWiki:Helppage}}|help page]] qe informasyonê zafyeri).  
@@ -556,6 +604,11 @@ Eka tı ita semed yew heta ra amey, ser gocekê '''back'''i klik bıkin.",
 Tı eşkeno zerre pelanê binan dı [[Special:Search/{{PAGENAME}}|ser ena name cıgeyro]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ser logan cıgeyro],
 ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurno]</span>.',
+'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" lazim niyo.
+Eka ti wazeno binusi, kontrol bike.',
+'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nibiyo.',
+'updated'                          => '(Rocaniye biyo)',
+'note'                             => "'''Not:'''",
 'previewnote'                      => "'''Teme! ena teyna verqeyda.'''
 Vurnayışê tu hama qeyd nıbiyo!",
 'session_fail_preview'             => 'Ma ef kere. Vindibiyayişê tayê datay ra a kerdışê hesabê şıma de ma vurnayişê şıma qayd nêkerd. Newe ra tesel (cereb) bıkere. Eke no qayde zi nêbo, [[Special:UserLogout|hesabê xo bıqefelne]] u newera a kere.',
@@ -999,7 +1052,7 @@ Tı eşkeno pele redireksiyoni ki şıno nameyê originali bıvurni.
 Eg tı nıwazeno, ma tı ra rica keni tı [[Special:DoubleRedirects|double]] ya zi [[Special:BrokenRedirects|broken redirects]] qontrol bıki.
 Tı gani qontrol bıki eg gıreyan şıno peleyanê raşti.
 
-Teme: eka ser yew name de yew nuşte esti, sistemê ma nıeşkeno nuşte tı beri. eka ser ena name de yew pele vengi esti, sistemê ma eşkeno nuşte tı beri.
+Teme eka ser yew name de yew nuşte esti, sistemê ma '''nıeşkeno''' nuşte tı beri. Eka ser ena name de yew pele vengi esti, sistemê ma eşkeno nuşte tı beri.
 Tı nıeşkeni name yew pele reyna bıvurni.
    
 '''Teme!'''
@@ -1122,22 +1175,58 @@ Tı eşkeno yew sebeb bınus.',
 'others'           => 'bini',
 
 # Info page
-'numedits'     => 'Teneyê vurnayişi (pele): $1',
-'numtalkedits' => 'Teneyê vurnayişi (pela minaqaşe): $1',
+'numedits'       => 'Teneyê vurnayişi (pele): $1',
+'numtalkedits'   => 'Teneyê vurnayişi (pela minaqaşe): $1',
+'numtalkauthors' => 'Teneyê karberi ke ferkliyê (pela minaqeşe): $1',
+
+# Math options
+'mw_math_png'    => 'Herzeman PNG render bike',
+'mw_math_simple' => 'Eka HTML zaf basit o ya zi PNG',
+'mw_math_html'   => 'Eka HTM mumkin ya zi PNG',
+'mw_math_source' => 'Bi TeX biman (qe nuşte browseroği)',
+'mw_math_modern' => 'Semed browseroğê moderni tafsiye biyê',
+'mw_math_mathml' => 'Eka mumkin, MathML (deneme)',
 
 # Math errors
+'math_failure'          => 'Parse de ğeleti biyo',
 'math_unknown_error'    => 'ğeleti nizanyeno',
 'math_unknown_function' => 'fonksiyon nizanyeno',
 'math_lexing_error'     => 'ğeleto lexing',
 'math_syntax_error'     => 'ğeleto sintaks',
+'math_image_error'      => 'Conversiyonê PNG de ğeleti esta;
+qe ronayişê raşti ye latex, dvips, gs kontrol bike u convert bike',
+'math_bad_tmpdir'       => 'Nieşkeno binusi ya zi direktorê mathi virazi',
+'math_bad_output'       => 'Nieşkeno binusi ya zi direktorê mathi ye outputi virazi',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Nişan bike ke devriye biyo',
+'markaspatrolledtext'                 => 'Ena pele nişan bike ke devriye biyo',
+'markedaspatrolled'                   => 'Nişan biyo ke verni de devriye biyo',
+'markedaspatrolledtext'               => 'Versiyone weçinaye nişan biyo ke devriye biyo',
+'rcpatroldisabled'                    => 'Devriyeyê vurnayışê peyêni nihebitiyeno',
+'rcpatroldisabledtext'                => 'Devriyeyê vurnayışê peyêni inke kefilnaye biyo u nihebitiyeno',
+'markedaspatrollederror'              => 'Nişan nibeno ke devriye biyo',
+'markedaspatrollederrortext'          => 'Ti gani revizyon işaret bike ke Nişanê devriye biyo',
+'markedaspatrollederror-noautopatrol' => 'Ti nieşkeno ke vurnayişê xo nişan bike ke devriye biyê.',
 
 # Patrol log
-'patrol-log-auto' => '(otomatik)',
-'patrol-log-diff' => 'revizyon $1',
+'patrol-log-page'      => 'Logê devriye',
+'patrol-log-header'    => 'Ena listeyê logi revizyonê devriyeyi mocneno.',
+'patrol-log-line'      => 'nişan biyo $1 ê $2 patrol biyo $3',
+'patrol-log-auto'      => '(otomatik)',
+'patrol-log-diff'      => 'revizyon $1',
+'log-show-hide-patrol' => '$1 logê devriye',
 
 # Image deletion
-'deletedrevision'       => 'Veriyono kihan $1 wederna',
-'filedeleteerror-short' => 'Wedarnayişê dosya de ğelati esto: $1',
+'deletedrevision'                 => 'Veriyono kihan $1 wederna',
+'filedeleteerror-short'           => 'Wedarnayişê dosya de ğelati esto: $1',
+'filedeleteerror-long'            => 'Eka dosya wedarnayişi de ğeleti biyê:
+
+$1',
+'filedelete-missing'              => 'Ena dosya "$1" nieşkeno biyo wedariye, çunki ena dosya çini yo.',
+'filedelete-old-unregistered'     => 'Ena dosya revizyoni yê weçinayi "$1" database ma de çini yo.',
+'filedelete-current-unregistered' => 'Ena dosyayê weçinayi "$1" database ma de çini yo.',
+'filedelete-archive-read-only'    => 'Ena direktorê arşivi "$1" webserver de nieşkeno binusi.',
 
 # Browsing diffs
 'previousdiff' => '← Vurnayışê kıhanyer',
@@ -1147,21 +1236,29 @@ Tı eşkeno yew sebeb bınus.',
 'visual-comparison' => 'Kiyasê şekli',
 
 # Media information
+'imagemaxsize'         => "Limitê ebat ê resimi:<br />''(qe pela deskripsiyonê dosyayan)''",
 'thumbsize'            => 'Ebadê Thumbnaili',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pele|peleyi}}',
+'file-info'            => '(ebatê dosyayi: $1, MIME tip: $2)',
 'file-info-size'       => '($1 × $2 pixelan, ebatê dosya: $3, MIME type: $4)',
 'file-nohires'         => '<small>Resolosyonê detayeri çino .</small>',
 'svg-long-desc'        => '(SVG dosya, nominalin $1 × $2 piksels, ebatê dosya: $3)',
 'show-big-image'       => 'Resolosyonê temami',
 'show-big-image-thumb' => '<qıç>Ebatê ena verqeyd: $1 × $2 pixels</qıç>',
+'file-info-gif-looped' => 'viyariye biyo',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|çerçeve|çerçeveyi}}',
 
 # Special:NewFiles
-'newimages'        => 'Galeyê dosyayanê newe',
-'newimages-legend' => 'Filtre',
-'newimages-label'  => 'Nameyê dosya ( ya zi parçe ey)',
-'showhidebots'     => '($1 botan)',
-'noimages'         => 'Çik çini yo.',
-'ilsubmit'         => 'Cıgeyre',
-'bydate'           => 'goreyê zemani',
+'newimages'             => 'Galeyê dosyayanê newe',
+'imagelisttext'         => "Cêr de yew listeyê '''$1''' esto {{PLURAL:$1|dosya|dosyayi}} veçiniya $2.",
+'newimages-summary'     => 'Ena pela xasi dosyayi ke peni de bar biyayeyi mocnane.',
+'newimages-legend'      => 'Filtre',
+'newimages-label'       => 'Nameyê dosya ( ya zi parçe ey)',
+'showhidebots'          => '($1 botan)',
+'noimages'              => 'Çik çini yo.',
+'ilsubmit'              => 'Cıgeyre',
+'bydate'                => 'goreyê zemani',
+'sp-newimages-showfrom' => 'Dosyayê newi ke $2, $1 ra dest pe keni bimocne',
 
 # Bad image list
 'bad_image_list' => 'Şeklo umumi wınayo:
@@ -1187,23 +1284,80 @@ Ma aya bini numnen.
 * focallength',
 
 # EXIF tags
-'exif-stripoffsets'        => 'cayê data yê resim',
-'exif-model'               => 'Modelê kamerayi',
-'exif-artist'              => 'Nuştoğ',
-'exif-exposuretime-format' => '$1 san ($2)',
-'exif-fnumber'             => 'F Amar',
-'exif-brightnessvalue'     => 'Beraqiyi',
-'exif-flash'               => 'Flaş',
-'exif-filesource'          => 'çimeyê dosyayi',
-'exif-gpslongitude'        => 'Derganiye',
-'exif-gpstrackref'         => 'Referansê ke ser hetiyê hereketi',
-'exif-gpstrack'            => 'hetiyê hereketi',
-'exif-gpsimgdirectionref'  => 'Referansê ke ser hetiyê resimi',
-'exif-gpsimgdirection'     => 'Hetiyê resimi',
-'exif-gpsdestdistanceref'  => 'Referanse ke ser duriyeyê cayê şiyayişi',
-'exif-gpsdestdistance'     => 'Duriyeyê cayê şiyayişi',
-'exif-gpsareainformation'  => 'Nameyê wareyê GPSi',
-'exif-gpsdatestamp'        => 'Tarixê GPSi',
+'exif-imagewidth'                  => 'Verini',
+'exif-imagelength'                 => 'Dergi',
+'exif-bitspersample'               => 'yew parçe de biti',
+'exif-compression'                 => 'Planê kompresyoni',
+'exif-photometricinterpretation'   => 'Compozisyonê pixeli',
+'exif-orientation'                 => 'Oriyentasyon',
+'exif-samplesperpixel'             => 'teneyê parçeyi',
+'exif-planarconfiguration'         => 'Rezeyê datayi',
+'exif-ycbcrsubsampling'            => 'Subsampleyi ebatê Y heta C',
+'exif-ycbcrpositioning'            => 'pozisyonê Y u C',
+'exif-xresolution'                 => 'Rezulasyanê veriniye',
+'exif-yresolution'                 => 'Rezulasyanê derganiye',
+'exif-resolutionunit'              => 'Rezulasyonê Parçeyê X U Y',
+'exif-stripoffsets'                => 'cayê data yê resim',
+'exif-rowsperstrip'                => 'Yew reze de teneyê dizeyi',
+'exif-stripbytecounts'             => 'Yew compresyon de dizeyi',
+'exif-jpeginterchangeformat'       => 'JPEG SOI rê ayar bike',
+'exif-jpeginterchangeformatlength' => 'Bitê data yê JPEG',
+'exif-transferfunction'            => 'Fonksiyonê transferi',
+'exif-whitepoint'                  => 'noktayê sipe ye kromaticiti',
+'exif-primarychromaticities'       => 'Kromaticitiyê eveli',
+'exif-ycbcrcoefficients'           => 'Cayê rengi yê transformasyon metriksê koefişinti',
+'exif-referenceblackwhite'         => 'Çiftyê siya u sipe değerê referansi',
+'exif-datetime'                    => 'Zeman u tarixê vurnayişê dosyayi',
+'exif-imagedescription'            => 'Serê resimi',
+'exif-make'                        => 'Viraştoğê kamera',
+'exif-model'                       => 'Modelê kamerayi',
+'exif-software'                    => 'Software ke hebitiyeno',
+'exif-artist'                      => 'Nuştoğ',
+'exif-copyright'                   => 'Wahirê copyrighti',
+'exif-exifversion'                 => 'Versiyonê Exif',
+'exif-flashpixversion'             => 'Versiyonê Flashpix destek bike',
+'exif-colorspace'                  => 'Cayê rengi',
+'exif-componentsconfiguration'     => 'manayê qisimê hemi',
+'exif-compressedbitsperpixel'      => 'Modê komprasyonê resimi',
+'exif-pixelydimension'             => 'Verniyê resimo raştiye',
+'exif-pixelxdimension'             => 'Derganiyê resimo raştiye',
+'exif-makernote'                   => 'Notê Viraştoği',
+'exif-usercomment'                 => 'Hulasayê karberi',
+'exif-relatedsoundfile'            => 'Derhekê dosya yê vengi',
+'exif-datetimeoriginal'            => 'Zeman u tarixê data varaziyayişi',
+'exif-datetimedigitized'           => 'Zeman u tarixê dicital kerdişi',
+'exif-subsectime'                  => 'ZemanTarix saniyeyibini',
+'exif-subsectimeoriginal'          => 'ZemanTarixOricinal saniyeyibini',
+'exif-subsectimedigitized'         => 'ZemanTarixDicital saniyeyibini',
+'exif-exposuretime'                => 'Zemanê orta de vinderdişi',
+'exif-exposuretime-format'         => '$1 san ($2)',
+'exif-fnumber'                     => 'F Amar',
+'exif-exposureprogram'             => 'Programê Orta de Vinderdişi',
+'exif-spectralsensitivity'         => 'Hesasiyetê spektrali',
+'exif-isospeedratings'             => 'ISO değerê piti',
+'exif-oecf'                        => 'Faktorê conversiyonê optoelektroniki',
+'exif-shutterspeedvalue'           => 'Pitiyê şhutteri',
+'exif-aperturevalue'               => 'Apertur',
+'exif-brightnessvalue'             => 'Beraqiyi',
+'exif-exposurebiasvalue'           => 'Orta de viderdişi',
+'exif-maxaperturevalue'            => 'Tewr zafeyê wareyê apertur',
+'exif-subjectdistance'             => 'Duriyê ey',
+'exif-meteringmode'                => 'Modê pemawitişi',
+'exif-lightsource'                 => 'Çimeyê roşni',
+'exif-flash'                       => 'Flaş',
+'exif-focallength'                 => 'Deganiyê fokus ê lensi',
+'exif-subjectarea'                 => 'Wareyê ey',
+'exif-flashenergy'                 => 'Kuvetê flaşi',
+'exif-filesource'                  => 'çimeyê dosyayi',
+'exif-gpslongitude'                => 'Derganiye',
+'exif-gpstrackref'                 => 'Referansê ke ser hetiyê hereketi',
+'exif-gpstrack'                    => 'hetiyê hereketi',
+'exif-gpsimgdirectionref'          => 'Referansê ke ser hetiyê resimi',
+'exif-gpsimgdirection'             => 'Hetiyê resimi',
+'exif-gpsdestdistanceref'          => 'Referanse ke ser duriyeyê cayê şiyayişi',
+'exif-gpsdestdistance'             => 'Duriyeyê cayê şiyayişi',
+'exif-gpsareainformation'          => 'Nameyê wareyê GPSi',
+'exif-gpsdatestamp'                => 'Tarixê GPSi',
 
 'exif-unknowndate' => 'Tarix nizanyano',
 
@@ -1308,16 +1462,32 @@ Ma aya bini numnen.
 'imgmultigo'       => 'Şı!',
 
 # Table pager
+'ascending_abbrev'         => 'cor',
+'descending_abbrev'        => 'cêr',
 'table_pager_first'        => 'Peleyê  yewin',
 'table_pager_last'         => 'Peleyê peni',
+'table_pager_limit'        => 'Yew pele de $1 tene bimocne',
 'table_pager_limit_submit' => 'Şi',
+'table_pager_empty'        => 'Netice çini yo',
 
 # Auto-summaries
-'autosumm-blank' => 'Pele de her çi wederna',
+'autosumm-blank'   => 'Pele de her çi wederna',
+'autosumm-replace' => "Maqale pê '$1' vuriya",
+'autosumm-new'     => "Pê '$1' pele viraziyo.",
 
 # Live preview
 'livepreview-loading' => 'Ho bar keni...',
 'livepreview-ready'   => 'Ho bar keni... Hezir o!',
+'livepreview-failed'  => 'Verqeyd nibiyo! Verqeydo normal deneme bike.',
+'livepreview-error'   => 'Nieşken giredayi biy: $1 "$2".
+Verqeydo normal deneme bike.',
+
+# Watchlist editor
+'watchlistedit-numitems'     => 'Listeyê seyirkerdişi ti de {{PLURAL:$1|1 title|$1 titles}} esta, feqet pelayanê minaqeşeyan dahil niyê.',
+'watchlistedit-normal-title' => 'Listeyê seyirkerdişi bivurne',
+'watchlistedit-raw-title'    => 'Listeyê seyirkerdişi ye hami bivurne',
+'watchlistedit-raw-legend'   => 'Listeyê seyirkerdişi ye hami bivurne',
+'watchlistedit-raw-done'     => 'Listeyê tuyê seyrkerdişi rocaniye biyo',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'vurnayışanê eleqadari bıvin',
@@ -1325,13 +1495,15 @@ Ma aya bini numnen.
 'watchlisttools-raw'  => 'Listeyê seyr-kerdışi bıvin',
 
 # Special:Version
-'version'                  => 'Versiyon',
-'version-specialpages'     => 'Pelanê xasiyan',
-'version-other'            => 'Bin',
-'version-version'          => '(Versiyon $1)',
-'version-license'          => 'Lisans',
-'version-software'         => 'Softwareyê ronayi',
-'version-software-version' => 'Versiyon',
+'version'                   => 'Versiyon',
+'version-specialpages'      => 'Pelanê xasiyan',
+'version-other'             => 'Bin',
+'version-hook-subscribedby' => 'Eza biyayoğ',
+'version-version'           => '(Versiyon $1)',
+'version-license'           => 'Lisans',
+'version-software'          => 'Softwareyê ronayi',
+'version-software-product'  => 'Mal',
+'version-software-version'  => 'Versiyon',
 
 # Special:FilePath
 'filepath'        => 'Raherê dosyayi',
@@ -1339,6 +1511,8 @@ Ma aya bini numnen.
 'filepath-submit' => 'Raher',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'kopyayê dosyayi bigêre',
+'fileduplicatesearch-legend'   => 'kopyayê ena dosya bigêre',
 'fileduplicatesearch-filename' => 'Nameyê dosyayi',
 'fileduplicatesearch-submit'   => 'bigêre',
 

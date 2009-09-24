@@ -438,10 +438,10 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Sadasya logout',
 'notloggedin'                => 'Aap logged in nai hai',
-'nologin'                    => 'Account nai hai? $1.',
+'nologin'                    => "Account nai hai? '''$1'''.",
 'nologinlink'                => 'Nawaa account banao',
 'createaccount'              => 'Nawaa account banao',
-'gotaccount'                 => 'Aap ke pas pahile se account hai ki nai? $1.',
+'gotaccount'                 => "Aap ke pas pahile se account hai ki nai? '''$1'''.",
 'gotaccountlink'             => 'Log in',
 'createaccountmail'          => 'e-mail se',
 'badretype'                  => 'Jon duuno password aap likha hai uu ek rakam nai hai.',
@@ -902,7 +902,7 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'mergelogpagetext'   => 'Niche ke suchi me nawaa itihass ke jorr ke suchi hai',
 
 # Diffs
-'history-title'            => ' "$1" ke sansodhan ke itihaas',
+'history-title'            => '"$1" ke sansodhan ke itihaas',
 'difference'               => '(Badlao me farak)',
 'lineno'                   => 'Rekha $1:',
 'compareselectedversions'  => 'Chuna gae version ke compare karo',
@@ -2574,7 +2574,9 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 # Image deletion
 'deletedrevision'                 => 'Purana badlao ke mitae dia hai $1',
 'filedeleteerror-short'           => 'File ke mitae me galti hoe gais: $1',
-'filedeleteerror-long'            => 'File ke mitae ke time garrbarr hoe gais: $1',
+'filedeleteerror-long'            => 'File ke mitae ke time garrbarr hoe gais:
+
+$1',
 'filedelete-missing'              => 'File "$1" ke nai mitawa jaawe sake hai, kahe ki ii naam ke koi file nai hai.',
 'filedelete-old-unregistered'     => 'Specified file ke badlao "$1" database me nai hai.',
 'filedelete-current-unregistered' => 'Specify karaa gais file "$1" database me nai hai.',
@@ -2636,7 +2638,10 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 # EXIF tags
 'exif-imagewidth'                => 'Chaurrai',
 'exif-imagelength'               => 'Unchai',
+'exif-bitspersample'             => 'Bits per component',
+'exif-compression'               => 'Compression scheme',
 'exif-photometricinterpretation' => 'Pixel ke banawat',
+'exif-orientation'               => 'Orientation',
 'exif-samplesperpixel'           => 'Tukrraa ke ginti',
 'exif-planarconfiguration'       => 'aakrraa ke parbandh',
 'exif-ycbcrsubsampling'          => 'Subsampling ratio of Y to C',

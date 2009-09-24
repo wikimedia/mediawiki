@@ -443,10 +443,10 @@ Dien Benutserkonto wuude iengjucht. Ferjeet nit, dien Ienstaalengen antoupaasjen
 'logout'                     => 'Oumäldje',
 'userlogout'                 => 'Oumäldje',
 'notloggedin'                => 'Nit anmälded',
-'nologin'                    => 'Du hääst neen Benutserkonto? $1.',
+'nologin'                    => "Du hääst neen Benutserkonto? '''$1'''.",
 'nologinlink'                => 'Hier laist du n Konto an.',
 'createaccount'              => 'Benutserkonto anlääse',
-'gotaccount'                 => 'Du hääst al n Konto? $1.',
+'gotaccount'                 => "Du hääst al n Konto? '''$1'''.",
 'gotaccountlink'             => 'Hier gungt dät ätter dän Login',
 'createaccountmail'          => 'Uur Email',
 'badretype'                  => 'Do bee Paaswoude stimme nit uureen.',
@@ -1173,7 +1173,7 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 # User rights log
 'rightslog'      => 'Gjuchte-Logbouk',
 'rightslogtext'  => 'Dit is dät Logbouk fon do Annerengen fon do Benutsergjuchte.',
-'rightslogentry' => 'annerde ju Gruppentouheeregaid foar „[[$1]]“ fon „$2“ ap „$3“.',
+'rightslogentry' => 'annerde ju Gruppentouheeregaid foar „$1“ fon „$2“ ap „$3“.',
 'rightsnone'     => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2224,7 +2224,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'importlogpagetext'                => 'Administrativen Import fon Sieden mäd Versionsgeschichte fon uur Wikis.',
 'import-logentry-upload'           => 'häd „[[$1]]“ fon ne Doatäi importierd',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versione}}',
-'import-logentry-interwiki'        => 'häd „[[$1]]“ importierd (Transwiki)',
+'import-logentry-interwiki'        => 'häd „$1“ importierd (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} fon $2',
 
 # Tooltip help for the actions

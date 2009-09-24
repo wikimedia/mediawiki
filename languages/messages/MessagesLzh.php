@@ -384,7 +384,7 @@ $1',
 'nosuchaction'      => '無可為',
 'nosuchactiontext'  => '無此址',
 'nosuchspecialpage' => '無此特查',
-'nospecialpagetext' => "'''<big>無此特查。</big>'''
+'nospecialpagetext' => "'''<strong>無此特查。</strong>'''
 
 見[[Special:SpecialPages|{{int:specialpages}}]]。",
 
@@ -464,10 +464,10 @@ $2',
 'logout'                     => '去簿',
 'userlogout'                 => '去簿',
 'notloggedin'                => '尚未登簿',
-'nologin'                    => '無簿乎？往$1。',
+'nologin'                    => "無簿乎？往'''$1'''。",
 'nologinlink'                => '增簿',
 'createaccount'              => '增簿',
-'gotaccount'                 => '有簿矣哉？往$1。',
+'gotaccount'                 => "有簿矣哉？往'''$1'''。",
 'gotaccountlink'             => '登簿',
 'createaccountmail'          => '同郵',
 'badretype'                  => '符節不合也。',
