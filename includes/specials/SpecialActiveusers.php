@@ -60,7 +60,7 @@ class ActiveUsersPager extends UsersPager {
 			'tables' => array( 'recentchanges', 'user', 'ipblocks' ),
 			'fields' => array( 'rc_user_text AS user_name', // inheritance
 				'rc_user_text', // for Pager
-				'user_id',
+				'MAX(user_id) AS user_id',
 				'COUNT(*) AS recentedits',
 				'MAX(ipb_user) AS blocked'
 			),
@@ -80,15 +80,17 @@ class ActiveUsersPager extends UsersPager {
 	function formatRow( $row ) {
 		global $wgLang;
 		$userName = $row->user_name;
-		$userPage = Title::makeTitle( NS_USER, $userName );
-		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
+		
+		$ulinks = $this->getSkin()->userLink( $row->user_id, $userName );
+		$ulinks .= $this->getSkin()->userToolLinks( $row->user_id, $userName );
 
 		$list = array();
-		foreach( self::getGroups( $row->user_id ) as $group )
+		foreach( self::getGroups( $row->user_id ) as $group ) {
 			$list[] = self::buildGroupLink( $group );
+		}
 		$groups = $wgLang->commaList( $list );
 
-		$item = wfSpecialList( $name, $groups );
+		$item = wfSpecialList( $ulinks, $groups );
 		$count = wfMsgExt( 'activeusers-count',
 			array( 'parsemag' ),
 			$wgLang->formatNum( $row->recentedits ),
