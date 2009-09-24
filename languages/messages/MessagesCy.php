@@ -1252,6 +1252,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-bigdelete'             => 'Dileu tudalennau a hanes llwythog iddynt',
 'right-deleterevision'        => 'Dileu a dad-ddileu golygiadau arbennig o dudalennau',
 'right-deletedhistory'        => 'Gweld cofnodion fersiynau sydd wedi eu dileu, heb y testun ynddynt',
+'right-deletedcontent'        => 'Gweld ysgrifen sydd wedi ei ddileu a newidiadau rhwng fersiynau ar ôl eu dileu',
 'right-browsearchive'         => 'Chwilio drwy tudalennau dilëedig',
 'right-undelete'              => 'Adfer tudalen dilëedig',
 'right-suppressrevision'      => 'Adolygu ac adfer diwygiadau sydd wedi eu cuddio rhag gweinyddwyr',
@@ -1284,6 +1285,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-reset-passwords'       => 'Ailosod cyfrinair defnyddwyr eraill',
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
 'right-versiondetail'         => "Gweld y manylion estynedig am y fersiwn hwn o'r meddalwedd",
+'right-root'                  => 'Yn gallu gwneud popeth ar y wici',
 
 # User rights log
 'rightslog'      => 'Lòg galluoedd defnyddiwr',
@@ -2481,10 +2483,12 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 # Attribution
 'anonymous'        => 'chan {{PLURAL:$1|defnyddiwr|ddefnyddiwr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr}} anhysbys {{SITENAME}}',
 'siteuser'         => 'y defnyddiwr {{SITENAME}} $1',
+'anonuser'         => 'Defnyddiwr {{SITENAME}} anhysbys $1',
 'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf am $2, $1 gan $3.',
 'othercontribs'    => 'Yn seiliedig ar waith gan $1.',
 'others'           => 'eraill',
 'siteusers'        => 'y {{PLURAL:$2|defnyddiwr|defnyddiwr|defnyddwyr|defnyddwyr|defnyddwyr|defnyddwyr}} {{SITENAME}} $1',
+'anonusers'        => '{{PLURAL:$2|defnyddiwr|defnyddiwr|defnyddwyr|defnyddwyr|defnyddwyr|defnyddwyr}} {{SITENAME}} anhysbys $1',
 'creditspage'      => "Cydnabyddiaethau'r dudalen",
 'nocredits'        => "Does dim cydnabyddiaethau i'r dudalen hon.",
 

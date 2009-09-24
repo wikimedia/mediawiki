@@ -1722,7 +1722,8 @@ PICT # různé
 'upload-proto-error'        => 'Neplatný protokol',
 'upload-proto-error-text'   => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
 'upload-file-error'         => 'Vnitřní chyba',
-'upload-file-error-text'    => 'Vnitřní chyba se vyskytla při vytváření dočasného souboru na serveru. Kontaktuje prosím administrátora systému.',
+'upload-file-error-text'    => 'Při vytváření dočasného souboru na serveru nastala vnitřní chyba.
+Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'upload-misc-error'         => 'Neznámá chyba',
 'upload-misc-error-text'    => 'Neznámá chyba se vyskytla během nahrávání souboru.  Zkontrolujte zda je URL platná a přístupné a zkuste to znovu.  Pokud se chyba znovu objeví, kontaktuje administrátora systému.',
 'upload-too-many-redirects' => 'URL obsahovalo příliš mnoho přesměrování',
@@ -2745,10 +2746,12 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 # Attribution
 'anonymous'        => 'anonymní {{PLURAL:$1|uživatel|uživatelé|uživatelé}} {{GRAMMAR:2sg|{{SITENAME}}}}',
 'siteuser'         => 'uživatel {{grammar:2sg|{{SITENAME}}}} $1',
+'anonuser'         => 'anonymní uživatel {{grammar:2sg|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Tuto stránku naposledy {{GENDER:$4|změnil|změnila|změnil}} $3 v $2, $1.',
 'othercontribs'    => 'Do textu přispěli $1.',
 'others'           => 'další',
 'siteusers'        => '{{PLURAL:$2|uživatel|uživatelé|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',
+'anonusers'        => 'anonymní {{PLURAL:$2|uživatel|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',
 'creditspage'      => 'Zásluhy za stránku',
 'nocredits'        => 'K této stránce neexistuje informace o zásluhách.',
 

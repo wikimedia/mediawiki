@@ -491,7 +491,9 @@ $1',
 Eble vi mistajpis la URL-on, aŭ sekvis nevalidan ligilon.
 Eble ankaŭ ĉi tiel indikus problemon de la programaro de {{SITENAME}}.",
 'nosuchspecialpage' => 'Ne ekzistas tia speciala paĝo',
-'nospecialpagetext' => 'Vi petis [[Special:SpecialPages|specialan paĝon]] kiun ne agnoskas la programaro de {{SITENAME}}.',
+'nospecialpagetext' => '<strong>Vi petis malvalidan specialan paĝon.</strong>
+
+Listo de validaj specialaj paĝoj estas trovebla ĉe [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Eraro',
@@ -1360,6 +1362,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-bigdelete'             => 'Forigi paĝojn kun grandaj historioj',
 'right-deleterevision'        => 'Forigi kaj malforigi specifajn versiojn de paĝoj',
 'right-deletedhistory'        => 'Rigardi listanojn de forigitaj historioj, sen ties asociaj tekstoj',
+'right-deletedcontent'        => 'Rigardi forigitan tekston kaj ŝanĝojn inter forigitaj revizioj.',
 'right-browsearchive'         => 'Serĉi forigitajn paĝojn',
 'right-undelete'              => 'Restarigi paĝon',
 'right-suppressrevision'      => 'Kontroli kaj restarigi versiojn kaŝitajn de administrantoj',
@@ -2615,10 +2618,12 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonima uzanto|Anonimaj uzantoj}} de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} uzanto $1',
+'anonuser'         => '{{SITENAME}}-anonimulo $1',
 'lastmodifiedatby' => 'Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.',
 'othercontribs'    => 'Bazita sur la laboro de $1.',
 'others'           => 'aliaj',
 'siteusers'        => '{{PLURAL:$2|uzanto|uzantoj}} de {{SITENAME}} $1',
+'anonusers'        => '{{SITENAME}}-{{PLURAL:$2|anonimulo|anonimuloj}} $1',
 'creditspage'      => 'Atribuoj de paĝo',
 'nocredits'        => 'Ne estas informo pri atribuoj por ĉi paĝo.',
 

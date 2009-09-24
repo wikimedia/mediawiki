@@ -164,6 +164,7 @@ $messages = array(
 
 # History pages
 'viewpagelogs'        => 'logsígíí yishʼį́ nisin',
+'nohistory'           => '"łahgo ályaaígíí" doo hólǫ́ǫ da/ádin.',
 'currentrev-asof'     => 'kʼadígíí ($1)',
 'revisionasof'        => '$1 yę́ędą́ą́ʼ',
 'previousrevision'    => '←',
@@ -179,6 +180,7 @@ $messages = array(
 
 # Search results
 'searchresulttext'      => '{{SITENAME}} bikáaʼgi haʼnitáhígíí bíhoołʼaahgo biniiyé [[{{MediaWiki:Helppage}}|{{int:help}}]] yidíiłtah.',
+'searchsubtitle'        => '\'\'\'[[:$1]]\'\'\' hanínítą́ą́ʼ ([[Special:Prefixindex/$1|naaltsoos "$1" wolyéhígíí tʼáá ałtso]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" baa atiinígíí tʼáá ałtso]])',
 'searchsubtitleinvalid' => "'''$1''' hanínítą́ą́ʼ",
 'noexactmatch'          => '\'\'\'Naaltssos "$1" wolyéhígíí ádin.\'\'\' Naaltsoos "$1" yaa halneʼígíí [[:$1|ánílééh]] nínízinísh?',
 'noexactmatch-nocreate' => "'''Naaltssos \"\$1\" wolyéhígíí ádin.'''",
@@ -288,7 +290,19 @@ $messages = array(
 'sp-contributions-submit'   => 'hanishtá',
 
 # What links here
+'whatlinkshere'            => 'linksígíí díí naaltsoos baa atiin',
+'whatlinkshere-title'      => 'linksígíí "$1" baa atiin',
+'whatlinkshere-page'       => 'Naaltsoos:',
+'linkshere'                => "'''[[:$1]]''' baa atiinígíí:",
+'nolinkshere'              => "'''\"[[:\$1]]\"''' baa atiinígíí doo hólǫ́ǫ da.",
+'nolinkshere-ns'           => "'''\"[[:\$1]]\"''' baa atiinígíí doo hólǫ́ǫ da.",
+'whatlinkshere-prev'       => '{{PLURAL:$1|←|← $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|→|→ $1}}',
+'whatlinkshere-links'      => '← linkígíí',
 'whatlinkshere-hideredirs' => 'dah astsihígíí $1',
+'whatlinkshere-hidetrans'  => 'transclusions $1',
+'whatlinkshere-hidelinks'  => 'linksígíí $1',
+'whatlinkshere-filters'    => 'bee agháʼníldéhí',
 
 # Block/unblock
 'contribslink'  => 'akʼeʼeeshchínígíí',

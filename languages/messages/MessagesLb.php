@@ -1929,7 +1929,7 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 
 Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" uewen op der Säit.",
 'removedwatch'         => 'Vun der Iwwerwaachungslëscht erofgeholl',
-'removedwatchtext'     => 'D\'Säit "[[:$1]]" gouf vun ärer Iwwerwaachungslëscht erofgeholl.',
+'removedwatchtext'     => 'D\'Säit "[[:$1]]" gouf vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] erofgeholl.',
 'watch'                => 'Iwwerwaachen',
 'watchthispage'        => 'Dës Säit iwwerwaachen',
 'unwatch'              => 'Net méi iwwerwaachen',
@@ -2265,7 +2265,8 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'unblocklink'                     => 'Spär ophiewen',
 'change-blocklink'                => 'Spär änneren',
 'contribslink'                    => 'Kontributiounen',
-'autoblocker'                     => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "$1" deelt. Grond "$2".',
+'autoblocker'                     => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "[[User:$1|$1]]" deelt. 
+De Grond dee fir d\'Spär vum $1 ugi gouf ass: "$2".',
 'blocklogpage'                    => 'Spärlëscht',
 'blocklog-showlog'                => "Dëse Benotzer war virdru gespaart. D'Lëscht vun de Späre ass als Referenz hei ënnendrënner:",
 'blocklog-showsuppresslog'        => "Dëse Benotzer war virdru gespaart a verstoppt. D'Logbuch vun de Suppressiounen steet als Referenz hei ënnendrënner:",
