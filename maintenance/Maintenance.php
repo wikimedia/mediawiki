@@ -337,6 +337,7 @@ abstract class Maintenance {
 		}
 
 		# Set the memory limit
+		# Note we need to set it again later in cache LocalSettings changed it
 		ini_set( 'memory_limit', $this->memoryLimit() );
 
 		# Set max execution time to 0 (no limit). PHP.net says that
@@ -594,6 +595,7 @@ abstract class Maintenance {
 
 		$wgShowSQLErrors = true;
 		@set_time_limit( 0 );
+		ini_set( 'memory_limit', $this->memoryLimit() );
 
 		$wgProfiling = false; // only for Profiler.php mode; avoids OOM errors
 	}
