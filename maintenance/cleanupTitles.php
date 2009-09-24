@@ -36,15 +36,16 @@ class TitleCleanup extends TableCleanup {
 		$this->mDescription = "Script to clean up broken, unparseable titles";
 	}
 
-	protected function processPage( $row ) {
-		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$display = $current->getPrefixedText();
-
+	protected function processRow( $row ) {
+		$display = Title::makeName( $row->page_namespace, $row->page_title );
 		$verified = UtfNormal::cleanUp( $display );
-
 		$title = Title::newFromText( $verified );
 
-		if( !is_null( $title ) && $title->equals( $current ) && $title->canExist() ) {
+		if( !is_null( $title ) 
+			&& $title->canExist()
+			&& $title->getNamespace() == $row->page_namespace
+			&& $title->getDBkey() === $row->page_title )
+		{
 			return $this->progress( 0 );  // all is fine
 		}
 

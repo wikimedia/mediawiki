@@ -31,13 +31,19 @@
 require_once( dirname(__FILE__) . '/cleanupTable.inc' );
 
 class ImageCleanup extends TableCleanup {
-	protected $targetTable = 'image';
+	protected $defaultParams = array(
+		'table' => 'image',
+		'conds' => array(),
+		'index' => 'img_name',
+		'callback' => 'processRow',
+	);
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Script to clean up broken, unparseable upload filenames";
 	}
 
-	protected function processPage( $row ) {
+	protected function processRow( $row ) {
 		global $wgContLang;
 
 		$source = $row->img_name;

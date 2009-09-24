@@ -23,10 +23,18 @@
 
 require_once( dirname(__FILE__) . '/Maintenance.php' );
 
-abstract class TableCleanup extends Maintenance {
-	protected $targetTable = 'page';
+class TableCleanup extends Maintenance {
+	protected $defaultParams = array(
+		'table' => 'page',
+		'conds' => array(),
+		'index' => 'page_id',
+		'callback' => 'processRow',
+	);
+
 	protected $dryrun = false;
 	protected $maxLag = 10; # if slaves are lagged more than 10 secs, wait
+	public $batchSize = 100;
+	public $reportInterval = 100;
 
 	public function __construct() {
 		parent::__construct();
@@ -42,9 +50,7 @@ abstract class TableCleanup extends Maintenance {
 		} else {
 			$this->output( "Checking and fixing bad titles...\n" );
 		}
-		$this->runTable( $this->targetTable,
-			'', //'WHERE page_namespace=0',
-			array( $this, 'processPage' ) );
+		$this->runTable( $this->defaultParams );
 	}
 
 	protected function init( $count, $table ) {
@@ -58,7 +64,7 @@ abstract class TableCleanup extends Maintenance {
 	protected function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
-		if( $this->processed % 100 != 0 ) {
+		if( $this->processed % $this->reportInterval != 0 ) {
 			return;
 		}
 		$portion = $this->processed / $this->count;
@@ -85,34 +91,73 @@ abstract class TableCleanup extends Maintenance {
 		flush();
 	}
 
-	protected function runTable( $table, $where, $callback ) {
+	public function runTable( $params ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		
-		$count = $dbr->selectField( $table, 'count(*)', '', __METHOD__ );
-		$this->init( $count, $table );
-		$this->output( "Processing $table..." );
 
-		// Unbuffered queries, avoids OOM
-		$dbr->bufferResults( false );
-		
-		$tableName = $dbr->tableName( $table );
-		$sql = "SELECT * FROM $tableName $where";
-		$result = $dbr->query( $sql, __METHOD__ );
-
-		foreach( $result as $row ) {
-			call_user_func( $callback, $row );
+		if ( array_diff( array_keys( $params ),
+			array( 'table', 'conds', 'index', 'callback' ) ) ) 
+		{
+			throw new MWException( __METHOD__.': Missing parameter ' . implode( ', ', $params ) );
 		}
-		
+
+		$table = $params['table'];
+		$count = $dbr->selectField( $table, 'count(*)', $params['conds'], __METHOD__ );
+		$this->init( $count, $table );
+		$this->output( "Processing $table...\n" );
+
+
+		$index = (array)$params['index'];
+		$indexConds = array();
+		$options = array(
+			'ORDER BY' => implode( ',', $index ),
+			'LIMIT' => $this->batchSize
+		);
+		$callback = array( $this, $params['callback'] );
+
+		while ( true ) {
+			$conds = array_merge( $params['conds'], $indexConds );
+			$res = $dbr->select( $table, '*', $conds, __METHOD__, $options );
+			if ( !$res->numRows() ) {
+				// Done
+				break;
+			}
+
+			foreach ( $res as $row ) {
+				call_user_func( $callback, $row );
+			}
+
+			if ( $res->numRows() < $this->batchSize ) {
+				// Done
+				break;
+			}
+
+			// Update the conditions to select the next batch.
+			// Construct a condition string by starting with the least significant part
+			// of the index, and adding more significant parts progressively to the left
+			// of the string.
+			$nextCond = '';
+			foreach ( array_reverse( $index ) as $field ) {
+				$encValue = $dbr->addQuotes( $row->$field );
+				if ( $nextCond === '' ) {
+					$nextCond = "$field > $encValue";
+				} else {
+					$nextCond = "$field > $encValue OR ($field = $encValue AND ($nextCond))";
+				}
+			}
+			$indexConds = array( $nextCond );
+		}
+
 		$this->output( "Finished $table... $this->updated of $this->processed rows updated\n" );
-		
-		$result->free();
-		
-		$dbr->bufferResults( true );
 	}
 
 	protected function hexChar( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
 	}
-	
-	abstract protected function processPage( $row );
 }
+
+class TableCleanupTest extends TableCleanup {
+	function processRow( $row ) {
+		$this->progress( mt_rand( 0, 1 ) );
+	}
+}
+

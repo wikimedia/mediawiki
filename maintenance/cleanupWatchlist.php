@@ -31,13 +31,27 @@
 require_once( dirname(__FILE__) . '/cleanupTable.inc' );
 
 class WatchlistCleanup extends TableCleanup {
-	protected $targetTable = 'watchlist';
+	protected $defaultParams = array(
+		'table' => 'watchlist',
+		'index' => array( 'wl_user', 'wl_namespace', 'wl_title' ),
+		'conds' => array(),
+		'callback' => 'processRow'
+	);
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Script to remove broken, unparseable titles in the Watchlist";
+		$this->addOption( 'fix', 'Actually remove entries; without will only report.' );
 	}
 
-	protected function processPage( $row ) {
+	function execute() {
+		if ( !$this->hasOption( 'fix' ) ) {
+			$this->output( "Dry run only: use --fix to enable updates\n" );
+		}
+		parent::execute();
+	}
+
+	protected function processRow( $row ) {
 		$current = Title::makeTitle( $row->wl_namespace, $row->wl_title );
 		$display = $current->getPrefixedText();
 		$verified = UtfNormal::cleanUp( $display );
@@ -45,14 +59,15 @@ class WatchlistCleanup extends TableCleanup {
 
 		if( $row->wl_user == 0 || is_null( $title ) || !$title->equals( $current ) ) {
 			$this->output( "invalid watch by {$row->wl_user} for ({$row->wl_namespace}, \"{$row->wl_title}\")\n" );
-			$this->removeWatch( $row );
-			return $this->progress( 1 );
+			$updated = $this->removeWatch( $row );
+			$this->progress( $updated );
+			return;
 		}
 		$this->progress( 0 );
 	}
 
 	private function removeWatch( $row ) {
-		if( !$this->dryrun ) {
+		if( !$this->dryrun && $this->hasOption( 'fix' ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'watchlist', array(
 				'wl_user'      => $row->wl_user,
@@ -60,6 +75,9 @@ class WatchlistCleanup extends TableCleanup {
 				'wl_title'     => $row->wl_title ),
 			__METHOD__ );
 			$this->output( "- removed\n" );
+			return 1;
+		} else {
+			return 0;
 		}
 	}
 }
