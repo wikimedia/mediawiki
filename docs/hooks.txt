@@ -259,6 +259,12 @@ $reason: the reason for the move (added in 1.13)
 $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
 
+'AbortNewAccountAuto': Return false to cancel account creation when the
+    request is coming from an AuthPlugin or ExtUser, rather than a 
+    manually-submitted CreateAccount form.
+$user: the User object about to be created (read-only, incomplete)
+$message: out parameter: error message to display on abort
+
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)

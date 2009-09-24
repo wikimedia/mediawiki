@@ -232,12 +232,20 @@ class Login {
 		# is for an external auth plugin to autocreate the local user first.
 		if ( $this->mUser->getID() == 0 ) {
 			if ( $this->canAutoCreate() == self::SUCCESS ) {
+				
 				$isAutoCreated = true;
 				wfDebug( __METHOD__.": creating account\n" );
+				
+				if( !wfRunHooks( 'AbortNewAccountAuto', array( $this->mUser, &$this->mCreateResult ) ) ) {
+					wfDebug( __METHOD__ . ": a hook blocked creation\n" );
+					return self::ABORTED;
+				}
+				
 				$result = $this->initUser( true );
 				if( $result !== self::SUCCESS ){
 					return $result;
-				};
+				}
+				
 			} else {
 				return $this->canAutoCreate();
 			}
@@ -454,7 +462,7 @@ class Login {
 
 		if( !wfRunHooks( 'AbortNewAccount', array( $this->mUser, &$this->mCreateResult ) ) ) {
 			# Hook point to add extra creation throttles and blocks
-			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+			wfDebug( __METHOD__ . ": a hook blocked creation\n" );
 			return self::ABORTED;
 		}
 
