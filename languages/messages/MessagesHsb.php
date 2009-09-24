@@ -1897,7 +1897,7 @@ Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam
 
 Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na rajtark „njewobkedźbować” horjeka na tutej stronje.",
 'removedwatch'         => 'Strona bu z wobkedźbowankow wotstronjena',
-'removedwatchtext'     => 'Strona [[:$1]] bu z wobkedźbowankow wotstronjena.',
+'removedwatchtext'     => 'Strona "[[:$1]]" bu z [[Special:Watchlist|twojich wobkedźbowankow]] wotstronjena.',
 'watch'                => 'wobkedźbować',
 'watchthispage'        => 'stronu wobkedźbować',
 'unwatch'              => 'njewobkedźbować',

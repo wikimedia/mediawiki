@@ -1919,7 +1919,7 @@ Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicu
 
 Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowědujucem boce na "dalej njewobglědowaś".',
 'removedwatch'         => 'Jo se z wobglědowańkow wulašowało',
-'removedwatchtext'     => 'Bok „<nowiki>$1</nowiki>“ jo z twójich wobglědowańkow wulašowany.',
+'removedwatchtext'     => 'Bok "[[:$1]]" jo se z [[Special:Watchlist|twójich wobglědowańkow]] wulašowany.',
 'watch'                => 'Wobglědowaś',
 'watchthispage'        => 'Bok wobglědowaś',
 'unwatch'              => 'Dalej njewobglědowaś',
@@ -2244,7 +2244,7 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokě
 'unblocklink'                     => 'dopušćiś',
 'change-blocklink'                => 'Blokěrowanje změniś',
 'contribslink'                    => 'pśinoski',
-'autoblocker'                     => 'Twója IP-adresa jo awtomatiski se blokěrowała, dokulaž jo ju wužywał „$1“. Pśicyna blokěrowanja wužywarja „$1“ jo: „$2“.',
+'autoblocker'                     => 'Awtomatiski blokěrowany, dokulaž twója IP-adresa jo se rowno wót "[[User:$1|$1]]". Pśicyna za blokěrowanje wužywarja $1 jo: "$2".',
 'blocklogpage'                    => 'Protokol blokěrowanjow',
 'blocklog-showlog'                => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował. Protokol blokěrowanjow pódawa se dołojce ako referenca:',
 'blocklog-showsuppresslog'        => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował a schował. Protokol pódtłocowanjow pódawa se dołojce ako referenca:',

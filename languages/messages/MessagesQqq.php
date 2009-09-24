@@ -2606,7 +2606,7 @@ See also {{msg-mw|Siteuser}}.',
 It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
 * $1 is a list of IP addresses
-* $2 is the number of user names in $1
+* $2 is the number of IP addresses in $1
 
 If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
 

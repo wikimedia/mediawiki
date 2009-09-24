@@ -595,7 +595,7 @@ Dette kan òg skuldast ein feil i programvara nytta av {{SITENAME}}.',
 # General errors
 'error'                => 'Feil',
 'databaseerror'        => 'Databasefeil',
-'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
+'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå innan funksjonen «<tt>$2</tt>». Databasen returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. 
 Den sist prøvde førespurnaden var: «$1» frå funksjonen "$2".
 Databasen returnerte feilen «$3: $4».',
@@ -1050,9 +1050,14 @@ Du har ikkje tilgang til henne.',
 'revdelete-concurrent-change' => 'Feil ved endring av eininga datert $2, $1: statusen ser ut til å ha vorte endra av einkvan annan medan du prøvde å endre ho.
 Sjekk gjerne loggføringa.',
 'revdelete-only-restricted'   => 'Du kan ikkje hindra vising av objekt av administratorar utan å òg velja eit av dei andre alternativa for hindring av vising.',
+'revdelete-reason-dropdown'   => '*Vanlege grunnar til sletting
+** Brot på opphavsrettar 
+** Ikkje høveleg personleg informasjon
+** Mogleg falskt sladder',
 'revdelete-otherreason'       => 'Annan årsak, eller tilleggsårsak:',
 'revdelete-reasonotherlist'   => 'Annan grunn',
 'revdelete-edit-reasonlist'   => 'Endre grunnar til sletting',
+'revdelete-offender'          => 'Forfattar av denne versjonen:',
 
 # Suppression log
 'suppressionlog'     => 'Logg over historikkfjerningar',
@@ -1249,7 +1254,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-watchlist-days-max'      => '(høgst sju dagar)',
 'prefs-watchlist-edits'         => 'Talet på endringar som vert viste i den utvida overvakingslista:',
 'prefs-watchlist-edits-max'     => '(høgst 1000)',
-'prefs-watchlist-token'         => 'Emne på overvakingslista',
+'prefs-watchlist-token'         => 'Emne på overvakingslista:',
 'prefs-misc'                    => 'Andre',
 'prefs-resetpass'               => 'Endra passord',
 'prefs-email'                   => 'Val for e-post',
@@ -1584,7 +1589,8 @@ For å bruke ei fil på ei side, bruk ei slik lenkje:
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
 'fileexists'                  => "Ei fil med dette namnet finst allereie, sjekk '''<tt>[[:$1]]</tt>''' om du ikkje er sikker på om du vil endre namnet.
 [[$1|thumb]]",
-'filepageexists'              => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.",
+'filepageexists'              => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila. 
+[[$1|thumb]]",
 'fileexists-extension'        => "Ei fil med eit liknande namn finst allereie: [[$2|thumb]]
 * Namnet på fila du lastar opp: '''<tt>[[:$1]]</tt>'''
 * Namnet på den eksisterande fila: '''<tt>[[:$2]]</tt>'''
@@ -1660,6 +1666,9 @@ Sjå http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-isdir'        => 'Du prøver å få tilgjenge til katalogen "$1".
 Berre tilgjenge til filer er tillete.',
 'img-auth-streaming'    => 'Sendar "$1".',
+'img-auth-public'       => 'Funksjonen til img_auth.php er å laga filer frå ein privat wiki.
+Denne wikien er sett opp som ein ålmennt tilgjengeleg wiki.
+For best tryggleik, er img_auth.php sett ut av funksjon.',
 'img-auth-noread'       => 'Brukaren har ikkje rettar til å lesa "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1669,7 +1678,7 @@ Berre tilgjenge til filer er tillete.',
 'upload-curl-error28-text' => 'Sida brukte for lang tid på å svare. Ver venleg og sjekk om sida fungerer, vent litt og prøv ein gong til. Det kan også vere lurt å prøve på ei tid med mindre nettrafikk.',
 
 'license'            => 'Lisensiering:',
-'license-header'     => '!Lisensiering:',
+'license-header'     => 'Lisensiering:',
 'nolicense'          => 'Ingen lisens er vald',
 'license-nopreview'  => '(Førehandsvising er ikkje tilgjengeleg)',
 'upload_source_url'  => ' (ei gyldig, offentleg tilgjengeleg nettadresse)',
@@ -1945,7 +1954,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Liste over aktive brukarar',
-'activeusers-count'    => '$1 {{PLURAL:$1|nyleg redigering|nylege redigeringar}}',
+'activeusers-count'    => '{{PLURAL:$1|Éi endring|$1 endringer}} {{PLURAL:$3|det siste dygnet|dei siste $3 dygna}}',
 'activeusers-from'     => 'Vis brukarar frå og med:',
 'activeusers-noresult' => 'Ingen brukarar funne.',
 
@@ -2646,10 +2655,12 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 # Attribution
 'anonymous'        => '{{PLURAL:$1|anonym brukar|anonyme brukarar}} av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-brukaren $1',
+'anonuser'         => '{{SITENAME}} anonym brukar $1',
 'lastmodifiedatby' => 'Sida vart sist endra den $1 kl. $2 av $3.',
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukar|brukarar}} $1',
+'anonusers'        => '{{SITENAME}} {{PLURAL:$2|ananym brukar|anonyme brukarar}} $1',
 'creditspage'      => 'Sidegodskriving',
 'nocredits'        => 'Det finst ikkje ikkje nokon godskrivingsinformasjon for denne sida.',
 

@@ -2098,7 +2098,7 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'addedwatchtext'       => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
 Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:RecentChanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
 'removedwatch'         => 'Figyelőlistáról eltávolítva',
-'removedwatchtext'     => 'A „<nowiki>$1</nowiki>” lapot eltávolítottam a figyelőlistáról.',
+'removedwatchtext'     => 'A(z) „[[:$1]]” lapot eltávolítottam a [[Special:Watchlist|figyelőlistáról]].',
 'watch'                => 'Lap figyelése',
 'watchthispage'        => 'Lap figyelése',
 'unwatch'              => 'Lapfigyelés vége',
@@ -2221,7 +2221,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'protect_expiry_invalid'      => 'A lejárati idő érvénytelen.',
 'protect_expiry_old'          => 'A lejárati idő a múltban van.',
 'protect-unchain'             => 'Átnevezési jogok állítása külön',
-'protect-text'                => 'Itt megtekintheted és módosíthatod a(z) [[$1]] lap védelmi szintjét. Légy szives, tartsd be a védett lapokkal kapcsolatos előírásokat.',
+'protect-text'                => "Itt megtekintheted és módosíthatod a(z) '''<nowiki>$1</nowiki>''' lap védelmi szintjét.",
 'protect-locked-blocked'      => "Nem változtathatod meg a védelmi szinteket, amíg blokkolnak. Itt vannak a(z)
 '''$1''' lap jelenlegi beállításai:",
 'protect-locked-dblock'       => "A védelmi szinteket egy aktív adatbázis zárolás miatt nem változtathatod meg.
