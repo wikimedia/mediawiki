@@ -377,10 +377,10 @@ class SpecialCreateAccount extends SpecialPage {
 			unset( $this->mFormFields['Email'] );
 		} else {
 			if( $wgEmailConfirmToEdit ){
-				$this->mFormFields['Email']['label-help'] = 'prefs-help-email-required';
+				$this->mFormFields['Email']['help-message'] = 'prefs-help-email-required';
 				$this->mFormFields['Email']['required'] = '';
 			} else {
-				$this->mFormFields['Email']['label-help'] = 'prefs-help-email';
+				$this->mFormFields['Email']['help-message'] = 'prefs-help-email';
 			}
 		}
 		
@@ -399,14 +399,38 @@ class SpecialCreateAccount extends SpecialPage {
 			$this->mFormFields['Remember']['checked'] = '1';
 		}
 		
-		$form = new HTMLForm( $this->mFormFields, '' );
+		$form = new HTMLForm( $this->mFormFields );
+		
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitText( wfMsg( 'createaccount' ) );
 		$form->setSubmitId( 'wpCreateaccount' );
 		$form->suppressReset();
-		$form->loadData();
+		$form->setWrapperLegend( wfMsg( 'createaccount' ) );
+		
 		$form->addHiddenField( 'returnto', $this->mReturnTo );
 		$form->addHiddenField( 'returntoquery', $this->mReturnToQuery );
+		
+		$form->addHeaderText( ''
+			. Html::rawElement( 'p', array( 'id' => 'userloginlink' ),
+				$link )
+			. $this->mFormHeader
+			. $langSelector
+		);
+		$form->addPreText( ''
+			. $msg
+			. Html::rawElement( 
+				'div', 
+				array( 'id' => 'signupstart' ), 
+				wfMsgExt( 'loginstart', array( 'parseinline' ) )
+			)
+		);
+		$form->addPostText(
+			Html::rawElement( 
+				'div', 
+				array( 'id' => 'signupend' ), 
+				wfMsgExt( 'loginend', array( 'parseinline' ) )
+			)
+		);
 		
 		# Add a  'send password by email' button if available
 		if( $wgEnableEmail && $wgUser->isLoggedIn() ){
@@ -417,39 +441,15 @@ class SpecialCreateAccount extends SpecialPage {
 			);
 		}
 		
-		$formContents = '' 
-			. Html::rawElement( 'p', array( 'id' => 'userloginlink' ),
-				$link )
-			. $this->mFormHeader
-			. $langSelector
-			. $form->getBody() 
-			. $form->getHiddenFields()
-			. $form->getButtons()
-		;
+		$form->loadData();
 
 		$wgOut->setPageTitle( wfMsg( 'createaccount' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->disallowUserJs();  # Stop malicious userscripts sniffing passwords
 
-		$wgOut->addHTML( 
-			Html::rawElement( 
-				'div', 
-				array( 'id' => 'loginstart' ), 
-				wfMsgExt( 'loginstart', array( 'parseinline' ) )
-			) . 
-			$msg . 
-			Html::rawElement(
-				'div',
-				array( 'id' => 'userloginForm' ),
-				$form->wrapForm( $formContents )
-			) . 
-			Html::rawElement( 
-				'div', 
-				array( 'id' => 'loginend' ), 
-				wfMsgExt( 'loginend', array( 'parseinline' ) )
-			)
-		);
+		
+		$form->displayForm( false );
 		
 	}
 

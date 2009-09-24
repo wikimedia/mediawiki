@@ -222,9 +222,34 @@ class SpecialUserLogin extends SpecialPage {
 		$form->setSubmitText( wfMsg( 'login' ) );
 		$form->setSubmitId( 'wpLoginAttempt' );
 		$form->suppressReset();
-		$form->loadData();
+		$form->setWrapperLegend( wfMsg( 'userlogin' ) );
+		
 		$form->addHiddenField( 'returnto', $this->mReturnTo );
 		$form->addHiddenField( 'returntoquery', $this->mReturnToQuery );
+		
+		$form->addHeaderText( ''
+			. Html::rawElement( 'p', array( 'id' => 'userloginlink' ),
+				$link )
+			. Html::rawElement( 'div', array( 'id' => 'userloginprompt' ),
+				wfMsgExt( 'loginprompt', array( 'parseinline' ) ) )
+			. $this->mFormHeader
+			. $langSelector
+		);
+		$form->addPreText( ''
+			. $msg
+			. Html::rawElement( 
+				'div', 
+				array( 'id' => 'loginstart' ), 
+				wfMsgExt( 'loginstart', array( 'parseinline' ) )
+			)
+		);
+		$form->addPostText(
+			Html::rawElement( 
+				'div', 
+				array( 'id' => 'loginend' ), 
+				wfMsgExt( 'loginend', array( 'parseinline' ) )
+			)
+		);
 		
 		# Add a  'mail reset' button if available
 		$buttons = '';
@@ -236,41 +261,14 @@ class SpecialUserLogin extends SpecialPage {
 			);
 		}
 		
-		$formContents = '' 
-			. Html::rawElement( 'p', array( 'id' => 'userloginlink' ),
-				$link )
-			. Html::rawElement( 'div', array( 'id' => 'userloginprompt' ),
-				wfMsgExt( 'loginprompt', array( 'parseinline' ) ) )
-			. $this->mFormHeader
-			. $langSelector
-			. $form->getBody() 
-			. $form->getHiddenFields()
-			. $form->getButtons()
-		;
+		$form->loadData();
 
 		$wgOut->setPageTitle( wfMsg( 'login' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->disallowUserJs();  # Stop malicious userscripts sniffing passwords
 
-		$wgOut->addHTML( 
-			Html::rawElement( 
-				'div', 
-				array( 'id' => 'loginstart' ), 
-				wfMsgExt( 'loginstart', array( 'parseinline' ) )
-			) . 
-			$msg . 
-			Html::rawElement(
-				'div',
-				array( 'id' => 'userloginForm' ),
-				$form->wrapForm( $formContents )
-			) . 
-			Html::rawElement( 
-				'div', 
-				array( 'id' => 'loginend' ), 
-				wfMsgExt( 'loginend', array( 'parseinline' ) )
-			)
-		);
+		$form->displayForm( '' );
 	}	
 
 	/**
