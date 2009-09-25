@@ -518,9 +518,9 @@ $messages = array(
 'nosuchactiontext'  => 'Akciju navedenu u URL-u viki softver
 nije prepoznao.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
-'nospecialpagetext' => "<strong>Tražili ste nepostojeću posebnu stranicu.'''</strong>
+'nospecialpagetext' => '<strong>Tražili ste nepostojeću posebnu stranicu.</strong>
 
-Spisak svih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
+Spisak svih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Greška',

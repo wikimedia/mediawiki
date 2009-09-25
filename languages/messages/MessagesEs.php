@@ -639,7 +639,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'remembermypassword'         => 'Quiero que me recuerden entre sesiones.',
 'yourdomainname'             => 'Su dominio',
 'externaldberror'            => 'Hubo un error de autenticación externa de la base de datos o bien no está autorizado a actualizar su cuenta externa.',
-'login'                      => 'Registrarse/Entrar',
+'login'                      => 'Entrar',
 'nav-login-createaccount'    => 'Registrarse/Entrar',
 'loginprompt'                => "Necesita habilitar las ''cookies'' en su navegador para registrarse en {{SITENAME}}.",
 'userlogin'                  => 'Entrar',
@@ -2708,7 +2708,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'math_image_error'      => 'La conversión a PNG ha fallado; comprueba que latex, dvips, gs, y convert estén instalados correctamente',
 'math_bad_tmpdir'       => 'No se puede escribir o crear el directorio temporal de <em>math</em>',
 'math_bad_output'       => 'No se puede escribir o crear el directorio de salida de <em>math</em>',
-'math_notexvc'          => 'Falta el ejecutalbe de <strong>texvc</strong>. Por favor, lea <em>math/README</em> para configurarlo.',
+'math_notexvc'          => 'Falta el ejecutable de <strong>texvc</strong>. Por favor, lea <em>math/README</em> para configurarlo.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como revisado',

@@ -319,9 +319,9 @@ $messages = array(
 Ye micht hae mistyped the URL, or follaed a wrang link
 This micht forby be caused by a bug in the saftware uised by {{SITENAME}}.",
 'nosuchspecialpage' => 'Nae sic byordinar page',
-'nospecialpagetext' => "<strong>Ye hae requestit an invalid byordinar page.'''</strong>
+'nospecialpagetext' => '<strong>Ye hae requestit an invalid byordinar page.</strong>
 
-A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:specialpages}}]].",
+A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Error',

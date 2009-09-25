@@ -166,9 +166,9 @@ See [[Special:Version|version page]].',
 'nosuchaction'      => 'Kuhava xiendlo xo tano',
 'nosuchactiontext'  => 'Xikombelo xa URL a xitwisisiwi hi wiki',
 'nosuchspecialpage' => 'Ku hava Tluka rero rohlawuleka',
-'nospecialpagetext' => "<strong>U kombele tluka ro hlawuleka ro ka ri nga ri kona.'''</strong>
+'nospecialpagetext' => '<strong>U kombele tluka ro hlawuleka ro ka ri nga ri kona.</strong>
 
-Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpages}}]].",
+Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Xihoxo',

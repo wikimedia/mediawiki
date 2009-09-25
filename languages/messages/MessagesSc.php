@@ -314,7 +314,7 @@ $messages = array(
 Est possibile chi sa URL siat istada cracada male, o si siat sighidu unu cullegamentu non vàlidu. 
 Custu iat a poder esser unu bug de {{SITENAME}}.",
 'nosuchspecialpage' => 'Custa pàgina ispetziale no esistit',
-'nospecialpagetext' => "<strong>As pediu una pàgina ispetziale non balida.'''</strong>
+'nospecialpagetext' => "<strong>As pediu una pàgina ispetziale non balida.</strong>
 
 Una lista de pàginas ispetziales bàlidas d'agatas in [[Special:SpecialPages|{{int:specialpages}}]].",
 

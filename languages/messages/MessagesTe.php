@@ -451,9 +451,9 @@ $1',
 మీరు URLని తప్పుగా టైపు చేసివుండవచ్చు లేదా తప్పుడు లింకుని అనుసరించివుండొచ్చు.
 {{SITENAME}} ఉపయోగించే మృదుపరికరంలో దోషమైనా అయివుండవచ్చు.',
 'nosuchspecialpage' => 'అటువంటి ప్రత్యేక పేజీ లేదు',
-'nospecialpagetext' => "<strong>మీరు అడిగిన ప్రత్యేకపేజీ సరైనది కాదు.'''</strong>
+'nospecialpagetext' => '<strong>మీరు అడిగిన ప్రత్యేకపేజీ సరైనది కాదు.</strong>
 
-సరైన ప్రత్యేకపేజీల జాబితా [[Special:SpecialPages|{{int:specialpages}}]] వద్ద ఉంది.",
+సరైన ప్రత్యేకపేజీల జాబితా [[Special:SpecialPages|{{int:specialpages}}]] వద్ద ఉంది.',
 
 # General errors
 'error'                => 'లోపం',

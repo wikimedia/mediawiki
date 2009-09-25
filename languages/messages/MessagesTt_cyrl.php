@@ -440,9 +440,9 @@ $1',
 Сез URLны хаталы җыйган яисә хаталы сылтамадан күчкән булырга мөмкинсез.
 Бу шулай ук {{SITENAME}} проектындагы хата сәбәпле дә булырга мөмкин.',
 'nosuchspecialpage' => 'Мондый махсус бит юк',
-'nospecialpagetext' => "<strong>Сез сорый торган махсус бит юк.'''</strong>
+'nospecialpagetext' => '<strong>Сез сорый торган махсус бит юк.</strong>
 
-Махсус битләр исемлеген карагыз: [[Special:SpecialPages|{{int:specialpages}}]].",
+Махсус битләр исемлеген карагыз: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Хата',

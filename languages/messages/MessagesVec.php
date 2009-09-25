@@ -457,9 +457,9 @@ $1',
 'nosuchaction'      => 'Operazion mìa riconossùa',
 'nosuchactiontext'  => "L'azion indicà in tel'URL no la xe valida. Te podaressi ver sbalià a digitar l'URL o ver strucà un colegamento mia justo. Opure podarìa anca tratarse de un bug in {{SITENAME}}.",
 'nosuchspecialpage' => 'No xè disponibiłe nissuna pàxena speciałe co sto nome',
-'nospecialpagetext' => "<strong>Te ghè richiesto na pagina speciale mìa esistente.'''</strong>
+'nospecialpagetext' => '<strong>Te ghè richiesto na pagina speciale mìa esistente.</strong>
 
-Te podi catar na lista de le pagine speciali esistenti in [[Special:SpecialPages|{{int:specialpages}}]].",
+Te podi catar na lista de le pagine speciali esistenti in [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erór',

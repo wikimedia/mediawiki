@@ -385,9 +385,9 @@ $messages = array(
 Бельки де URL-ни янълыш язгъандырсыз, я да догъру олмагъан бир багълантыны къуллангъандырсыз.
 Бу, {{SITENAME}} сайтындаки бир хатаны да косьтерип ола.',
 'nosuchspecialpage' => 'Бу исимде бир махсус саифе ёкъ',
-'nospecialpagetext' => "'''<strong>Тапылмагъан бир махсус саифеге кирдинъиз.</strong>'''
+'nospecialpagetext' => '<strong>Тапылмагъан бир махсус саифеге кирдинъиз.</strong>
 
-Бар олгъан бутюн махсус саифелерни [[Special:SpecialPages|{{int:specialpages}}]] саифесинде корип олурсынъыз.",
+Бар олгъан бутюн махсус саифелерни [[Special:SpecialPages|{{int:specialpages}}]] саифесинде корип олурсынъыз.',
 
 # General errors
 'error'                => 'Хата',

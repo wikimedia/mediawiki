@@ -730,7 +730,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-rc'                  => 'Vurnayışê peyêni',
 'prefs-watchlist'           => 'Lista seyr-kerdışi',
 'saveprefs'                 => 'Qeyd ke',
-'timezonelegend'            => 'Warey saete',
+'timezonelegend'            => 'Wareyê saeti:',
 'prefs-files'               => 'Dosyey',
 'youremail'                 => 'E-Mail (mecbur niyo) *:',
 'username'                  => 'Namey karberi:',
@@ -738,8 +738,8 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'yourrealname'              => 'Namo raştıkên:',
 'yourlanguage'              => 'Zıwan:',
 'yournick'                  => 'imza:',
-'prefs-help-realname'       => 'Nameo raşt waştena şıma rê mendo.
-If you choose to provide it, this will be used for giving you attribution for your work.',
+'prefs-help-realname'       => 'Nameyo raşt waştena şıma rê mendo.
+Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de mocnenê.',
 'prefs-help-email-required' => 'E-mail adrese mecburiya.',
 
 # Groups
@@ -930,7 +930,7 @@ Qe qeydê wedarnayışi, $2 bevinin.',
 'protectlogpage'              => 'Logê kılit-kerdışi',
 'protectedarticle'            => '"[[$1]]" kılit biyo',
 'modifiedarticleprotection'   => 'Qe "[[$1]]", seviye kılit kerdişi vurnayi biyo',
-'protectcomment'              => 'Rexne:',
+'protectcomment'              => 'Sebeb:',
 'protectexpiry'               => 'Qediyeno:',
 'protect_expiry_invalid'      => 'Demo qediyayışi raşt niyo.',
 'protect_expiry_old'          => 'Demo qediyayışi tarix dı.',

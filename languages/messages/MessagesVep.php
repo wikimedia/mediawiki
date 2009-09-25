@@ -401,7 +401,7 @@ Kacu [[Special:Version|informacii kävutadud versijoiš]].',
 Tö olet tehnu petusen URLan kirjutades vai männu värad kosketustme.
 Nece voib mugažo ozutada viga {{SITENAME}}-projektan programmištos.',
 'nosuchspecialpage' => "Mugošt speciališt lehtpol't ei ole",
-'nospecialpagetext' => "<strong>Ectud speciališt lehtpol't ei ole.'''</strong>
+'nospecialpagetext' => "<strong>Ectud speciališt lehtpol't ei ole.</strong>
 
 Kc. [[Special:SpecialPages|specialižiden lehtpoliden nimikirj]].",
 

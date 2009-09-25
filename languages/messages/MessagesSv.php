@@ -610,9 +610,9 @@ $1',
 Du kan ha stavat URL:en fel, eller följt en felaktig länk.
 Det kan också bero på en bug i {{SITENAME}}.',
 'nosuchspecialpage' => 'Någon sådan specialsida finns inte',
-'nospecialpagetext' => "<strong>Du har begärt en specialsida som inte finns.'''</strong>
+'nospecialpagetext' => '<strong>Du har begärt en specialsida som inte finns.</strong>
 
-I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsidor som finns.",
+I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsidor som finns.',
 
 # General errors
 'error'                => 'Fel',

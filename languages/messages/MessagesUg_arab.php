@@ -315,10 +315,10 @@ URL نى خاتا كىرگۈزۈپ قالدىڭىز ياكى خاتا ئۇلان
 
  {{SITENAME}} بېكەت يۇمشاق دېتالىنىڭ خاتالىقى بولۇشى مۇمكىن.',
 'nosuchspecialpage' => 'بۇنىڭغا ئوخشاش ئالاھىدە بەت يوق',
-'nospecialpagetext' => "<strong>سىز ئىلتىماس قىلغان ئالاھىدە بەت ئىناۋەتسىز.'''</strong>
+'nospecialpagetext' => '<strong>سىز ئىلتىماس قىلغان ئالاھىدە بەت ئىناۋەتسىز.</strong>
 
 
-[[Special:SpecialPages|{{int:specialpages}}]] دە بارلىق ئىناۋەتلىك بەتلەر تىزىملىكى بار.",
+[[Special:SpecialPages|{{int:specialpages}}]] دە بارلىق ئىناۋەتلىك بەتلەر تىزىملىكى بار.',
 
 # General errors
 'error'                => 'خاتالىق',

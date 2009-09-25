@@ -160,6 +160,8 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'category-file-count'            => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky faýly öz içine alýar.|Jemi $2 sanydan, aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.}}',
 'category-file-count-limited'    => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.',
 'listingcontinuesabbrev'         => '(dowamy)',
+'index-category'                 => 'Indeksirlenen sahypalar',
+'noindex-category'               => 'Indeksirlenmedik sahypalar',
 
 'mainpagetext'      => "<big>'''MediaWiki şowlulyk bilen guruldy.'''</big>",
 'mainpagedocfooter' => 'Wiki programmasynyň ulanylyşy hakynda maglumat almak üçin [http://meta.wikimedia.org/wiki/Help:Contents ulanyjy gollanmasyna] serediň.
@@ -177,7 +179,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'mypage'        => 'Sahypam',
 'mytalk'        => 'Pikir alyşma sahypam',
 'anontalk'      => 'Bu IP-niň habarlaşyklary',
-'navigation'    => 'Saýtda ugur kesgitleme',
+'navigation'    => 'Nawigasiýa',
 'and'           => '&#32;we',
 
 # Cologne Blue skin
@@ -355,9 +357,9 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 URL-ni ýalňyş ýazan, ýa-da nädogry çykgydy yzarlan bolmagyňyz ahmal.
 Ol {{SITENAME}} saýtyndaky bir näsazlygy hem görkezýän bolup biler.',
 'nosuchspecialpage' => 'Şeýle atly ýörite sahypa ýok',
-'nospecialpagetext' => "<strong>Bar bolmadyk bir ýörite sahypa girdiňiz.'''</strong> 
+'nospecialpagetext' => '<strong>Bar bolmadyk bir ýörite sahypa girdiňiz.</strong> 
 
-Bar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] sahypasynda görüp bilersiňiz.",
+Bar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] sahypasynda görüp bilersiňiz.',
 
 # General errors
 'error'                => 'Säwlik',
@@ -699,25 +701,29 @@ Kesgitleme: ('''häzirki''') = häzirki wersiýa bilen aradaky tapawut,
 'history-feed-item-nocomment' => '$1, $2 senesinde',
 
 # Revision deletion
-'rev-deleted-comment'    => '(teswir aýyryldy)',
-'rev-deleted-user'       => '(ulanyjy ady aýyryldy)',
-'rev-deleted-event'      => '(gündelik işi aýyryldy)',
-'rev-delundel'           => 'görkez/gizle',
-'revdelete-hide-text'    => 'Sahypanyň bu wersiýasyny gizle',
-'revdelete-hide-comment' => 'Özgerdiş mazmunyny gizle',
-'revdelete-hide-user'    => 'Redaktirläniň ulanyjy adyny/IP-sini gizle',
-'revdelete-hide-image'   => 'Faýlyň mazmunyny gizle',
-'revdelete-log'          => 'Öçürmekligiň sebäbi:',
-'revdel-restore'         => 'Görnüşi üýtget',
-'pagehist'               => 'Sahypanyň geçmişi',
-'deletedhist'            => 'Öçürilen geçmiş',
-'revdelete-content'      => 'mazmun',
-'revdelete-summary'      => 'özgerdiş mazmuny',
-'revdelete-uname'        => 'ulanyjy ady',
-'revdelete-hid'          => 'gizle $1',
-'revdelete-unhid'        => 'görkez $1',
-'revdelete-log-message'  => '$2 {{PLURAL:$2|wersiýa|wersiýa}} üçin $1',
-'logdelete-log-message'  => '$2 {{PLURAL:$2|waka|waka}} üçin $1',
+'rev-deleted-comment'        => '(teswir aýyryldy)',
+'rev-deleted-user'           => '(ulanyjy ady aýyryldy)',
+'rev-deleted-event'          => '(gündelik işi aýyryldy)',
+'rev-delundel'               => 'görkez/gizle',
+'revdelete-show-file-submit' => 'Hawa',
+'revdelete-hide-text'        => 'Sahypanyň bu wersiýasyny gizle',
+'revdelete-hide-comment'     => 'Özgerdiş mazmunyny gizle',
+'revdelete-hide-user'        => 'Redaktirläniň ulanyjy adyny/IP-sini gizle',
+'revdelete-hide-image'       => 'Faýlyň mazmunyny gizle',
+'revdelete-log'              => 'Öçürmekligiň sebäbi:',
+'revdel-restore'             => 'Görnüşi üýtget',
+'pagehist'                   => 'Sahypanyň geçmişi',
+'deletedhist'                => 'Öçürilen geçmiş',
+'revdelete-content'          => 'mazmun',
+'revdelete-summary'          => 'özgerdiş mazmuny',
+'revdelete-uname'            => 'ulanyjy ady',
+'revdelete-hid'              => 'gizle $1',
+'revdelete-unhid'            => 'görkez $1',
+'revdelete-log-message'      => '$2 {{PLURAL:$2|wersiýa|wersiýa}} üçin $1',
+'logdelete-log-message'      => '$2 {{PLURAL:$2|waka|waka}} üçin $1',
+'revdelete-otherreason'      => 'Başga/goşmaça sebäp:',
+'revdelete-reasonotherlist'  => 'Başga sebäp',
+'revdelete-edit-reasonlist'  => 'Öçürme sebäplerini redaktirle',
 
 # History merging
 'mergehistory-from'   => 'Çeşme sahypa:',
@@ -978,6 +984,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'rcshowhidebots'                    => 'botlary $1',
 'rcshowhideliu'                     => 'sessiýasy açyk ulanyjylary $1',
 'rcshowhideanons'                   => 'anonim ulanyjylary $1',
+'rcshowhidepatr'                    => 'patrullyk edilen özgerdişleri $1',
 'rcshowhidemine'                    => 'özgerdişlerimi $1',
 'rclinks'                           => 'Soňky $2 günde edilen iň soňky $1 üýtgeşmäni görkez;<br /> $3',
 'diff'                              => 'tapawut',
@@ -1038,6 +1045,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'filehist-help'             => 'Faýlyň geçmişini görmek üçin Sene/Wagt bölümündäki senelere tyklaň.',
 'filehist-deleteall'        => 'ählisini öçür',
 'filehist-deleteone'        => 'öçür',
+'filehist-revert'           => 'yzyna getir',
 'filehist-current'          => 'häzirki',
 'filehist-datetime'         => 'Sene/Wagt',
 'filehist-thumb'            => 'Miniatýura',
@@ -1050,6 +1058,14 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'linkstoimage'              => 'Bu faýla çykgydy bar bolan {{PLURAL:$1|sahypa|$1 sahypa}}:',
 'sharedupload'              => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.',
 'uploadnewversion-linktext' => 'Bu faýlyň täze wersiýasyny ýükläň',
+
+# File reversion
+'filerevert'                => '$1 wersiýasyny yzyna getir',
+'filerevert-legend'         => 'Faýly yzyna getir',
+'filerevert-intro'          => "'''[[Media:$1|$1]]''' faýlyny [$3, $2 senesindäki $4 wersiýasy]na yzyna getirjek bolup dursuňyz.",
+'filerevert-defaultcomment' => '$2, $1 senesindäki wersiýasyna yzyna getirildi',
+'filerevert-submit'         => 'Yzyna getir',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' faýly [$3, $2 senesindäki $4 wersiýasyna] yzyna getirildi.",
 
 # File deletion
 'filedelete'                  => '$1 faýlyny öçür',
@@ -1202,7 +1218,7 @@ Geljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler �
 
 Aňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýtgeşmeleriň sanawynda]] '''goýy''' harp bilen görkeziljekdir.",
 'removedwatch'      => 'Gözegçilik sanawyndan aýyryldy',
-'removedwatchtext'  => '"<nowiki>$1</nowiki>" sahypasy gözegçilik sanawyňyzdan aýyryldy.',
+'removedwatchtext'  => '"[[:$1]]" sahypasy [[Special:Watchlist|gözegçilik sanawyňyzdan]] aýyryldy.',
 'watch'             => 'Gözegçilikde sakla',
 'watchthispage'     => 'Bu sahypany gözegçilikde sakla',
 'unwatch'           => 'Gözegçilikden aýyr',
@@ -1226,12 +1242,19 @@ Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{
 Ýaňy-ýakynda öçürilenleri görmek üçin: $2.',
 'deletedarticle'        => '"[[$1]]" öçürildi',
 'dellogpage'            => 'Öçürme gündeligi',
+'reverted'              => 'Irki wersiýasyna yzyna getirildi',
 'deletecomment'         => 'Öçürmäniň sebäbi:',
 'deleteotherreason'     => 'Başga/goşmaça sebäp:',
 'deletereasonotherlist' => 'Başga sebäpler',
 
 # Rollback
-'rollbacklink' => 'öňki katdyna getir',
+'rollbacklink'      => 'öňki katdyna getir',
+'cantrollback'      => 'Özgerdişi yzyna getirip bolmaýar;
+iň soňky goşant goşan ulanyjy bu sahypanyň ýeke-täk awtory bolup durýar.',
+'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Çekişme]]) tarapyndan edilen özgerdişler [[User:$1|$1]] tarapyndan redaktirlenen soňky wersiýasyna yzyna getirildi.',
+'revertpage-nouser' => '(ulanyjy ady aýyrylan) tarapyndan edilen özgerdişler [[User:$1|$1]] tarapyndan redaktirlenen soňky wersiýasyna yzyna getirildi.',
+'rollback-success'  => '$1 tarapyndan edilen özgerdişler yzyna getirildi;
+$2 tarapyndan edilen soňky wersiýa gaýdyp gelindi.',
 
 # Protect
 'protectlogpage'              => 'Gorag gündeligi',
@@ -1243,7 +1266,7 @@ Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{
 'protect_expiry_invalid'      => 'Gutaryş möhleti nädogry.',
 'protect_expiry_old'          => 'Geçmişdäki gutaryş möhleti.',
 'protect-unchain'             => 'Göçürmegiň gulpuny aç',
-'protect-text'                => '[[$1]] sahypasynyň gorag ýagdaýyny şu ýerden görüp hem-de redaktirläp bilersiňiz.',
+'protect-text'                => "'''<nowiki>$1</nowiki>''' sahypasynyň gorag derejesini şu ýerden görüp hem-de üýtgedip bilersiňiz.",
 'protect-locked-access'       => "Ulanyjy hasabyňyzyň sahypanyň gorag derejelerini üýtgetmäge ygtyýary ýok.
 '''$1''' sahypasynyň häzirki sazlamalary şulardyr:",
 'protect-cascadeon'           => 'Bu sahypa, kaskadly gorag işjeň ýagdaýa geçirilen aşakdaky {{PLURAL:$1|$1 sahypada|$1 sahypada}} ulanylandygy üçin şu mahal gorag astyndadyr.
@@ -1257,6 +1280,7 @@ Bu sahypanyň gorag derejesini üýtgedip bilersiňiz, ýöne ol kaskadly goraga
 'protect-cascade'             => 'Bu sahypada ulanylan ähli sahypalary goraga al (kaskadly gorag)',
 'protect-cantedit'            => 'Bu sahypanyň gorag derejesini üýtgedip bilmeýärsiňiz, çünki ony redaktirlemäge rugsadyňyz ýok.',
 'protect-otherreason'         => 'Başga/goşmaça sebäp:',
+'protect-otherreason-op'      => 'başga/goşmaça sebäp',
 'restriction-type'            => 'Rugsat:',
 'restriction-level'           => 'Çäklendiriş derejesi:',
 
@@ -1264,6 +1288,7 @@ Bu sahypanyň gorag derejesini üýtgedip bilersiňiz, ýöne ol kaskadly goraga
 'restriction-move' => 'Adyny üýtget',
 
 # Undelete
+'undelete'                  => 'Öçürilen sahypalary görkez',
 'undeletelink'              => 'görkez/dikelt',
 'undeletedarticle'          => '"$1" dikeldildi.',
 'undelete-show-file-submit' => 'Hawa',
@@ -1358,7 +1383,7 @@ Başga bir ady synap görmegiňizi haýyş edýäris.',
 '1movedto2_redir'  => '[[$1]] ady [[$2]] sahypasyna gönükdirildi',
 'movelogpage'      => 'At üýtgetme gündeligi',
 'movereason'       => 'Sebäp:',
-'revertmove'       => 'yzyna al',
+'revertmove'       => 'yzyna getir',
 
 # Export
 'export'        => 'Sahypa eksportirle',
@@ -1425,34 +1450,125 @@ Onuň çeşmesini görüp bilersiňiz',
 'tooltip-diff'                    => 'Tekstde eden üýtgeşmeleriňizi görkezýär',
 'tooltip-compareselectedversions' => 'Saýlanyp alynan iki wersiýanyň arasyndaky tapawutlary gör',
 'tooltip-watch'                   => 'Sahypany gözegçilik sanawyňa goş',
-'tooltip-rollback'                => '"Öňki katdyna getir" ýeke gezek tyklananda bu sahypa iň soňky goşant goşanyň özgerdişlerini yzyna alýar',
-'tooltip-undo'                    => '"Yzyna al" bu özgerdişi yzyna alýar we özgerdiş formuny deslapky syn modunda açýar.
+'tooltip-rollback'                => '"Öňki katdyna getir" ýeke gezek tyklananda bu sahypa iň soňky goşant goşanyň özgerdişlerini yzyna getirýär',
+'tooltip-undo'                    => '"Yzyna al" bu özgerdişi yzyna getirýär we özgerdiş formuny deslapky syn modunda açýar.
 Mazmun üçin bir sebäp goşmaga rugsat berýär',
 
+# Metadata
+'nocreativecommons' => 'Bu serwer üçin Creative Commons RDF metamaglumatlary ýapyldy.',
+'notacceptable'     => 'Bu wiki serweri brauzeriňiziň okap biljek formatynda maglumat üpjün edip bilmeýär.',
+
+# Attribution
+'anonymous'        => '{{SITENAME}} anonim {{PLURAL:$1|ulanyjysy|ulanyjylary}}',
+'siteuser'         => '{{SITENAME}} ulanyjysy $1',
+'anonuser'         => '{{SITENAME}} anonim ulanyjysy $1',
+'lastmodifiedatby' => 'Bu sahypa soňky gezek $3 tarapyndan $2, $1 senesinde üýtgedildi.',
+'othercontribs'    => 'Döredilmegine gatnaşanlar: $1.',
+'others'           => 'beýlekiler',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|ulanyjysy|ulanyjylary}} $1',
+'anonusers'        => '{{SITENAME}} {{PLURAL:$2|anonim ulanyjysy|anonim ulanyjylary}} $1',
+'creditspage'      => 'Minnetdarlyk bildirilýär',
+'nocredits'        => 'Bu sahypa üçin minnetdarlyk bildirilýän ýok.',
+
+# Spam protection
+'spamprotectiontitle' => 'Spam gorag filtri',
+'spamprotectiontext'  => 'Yazdyrmak isleýän sahypaňyz spam filtri tarapyndan blokirlendi. Ähtimal, gara sanawa girizilen daşarky bir saýta çykgyt berýänligi üçindir.',
+'spamprotectionmatch' => 'Spam filtrimize düşen tekst: $1',
+'spambot_username'    => 'MediaWiki spam arassalaýyş',
+'spam_reverting'      => '$1 sahypasyna çykgytlary bolmadyk iň soňky wersiýasyna yzyna getirilýär',
+'spam_blanking'       => 'Ähli wersiýalarda $1 sahypasyna çykgytlar bar, boşadylýar',
+
 # Info page
-'numedits'     => 'Özgerdiş sany (sahypa): $1',
-'numtalkedits' => 'Özgerdiş sany (pikir alyşma sahypasy): $1',
+'infosubtitle'   => 'Sahypa barada maglumat',
+'numedits'       => 'Özgerdiş sany (sahypa): $1',
+'numtalkedits'   => 'Özgerdiş sany (pikir alyşma sahypasy): $1',
+'numwatchers'    => 'Gözegçilikde saklaýanlaryň sany: $1',
+'numauthors'     => 'Dürli awtorlaryň sany (sahypa): $1',
+'numtalkauthors' => 'Dürli awtorlaryň sany (çekişme sahypasy): $1',
+
+# Math options
+'mw_math_png'    => 'Hemişe PNG öwür',
+'mw_math_simple' => 'Örän aňsat bolsa HTML, ýogsam PNG',
+'mw_math_html'   => 'Mümkin bolsa HTML, ýogsam PNG',
+'mw_math_source' => 'TeX-ligine galdyr (tekst brauzerleri üçin)',
+'mw_math_modern' => 'Häzirkizaman brauzerlere maslahat berilýär',
+'mw_math_mathml' => 'Mümkin bolsa MathML (eksperimental)',
 
 # Math errors
-'math_unknown_error' => 'näbelli säwlik',
+'math_failure'          => 'Derňäp bolmady',
+'math_unknown_error'    => 'näbelli säwlik',
+'math_unknown_function' => 'näbelli funksiýa',
+'math_lexing_error'     => 'leksiki säwlik',
+'math_syntax_error'     => 'sintaktik säwlik',
+'math_image_error'      => 'PNG öwürmeklik şowsuz boldy;
+latex, dvips, gs we convert gurluşlarynyň dogrulygyny barlaň',
+'math_bad_tmpdir'       => 'Matematikanyň wagtlaýyn katalogyny ýazyp ýa-da döredip bolanok',
+'math_bad_output'       => 'Matematika çykyş katalogyny ýazyp ýa-da döredip bolanok',
+'math_notexvc'          => 'texvc ýerine ýetirilýän faýl tapylmady; 
+sazlamak üçin math/README serediň.',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Patrullyk edilen diýip belle',
+'markaspatrolledtext'                 => 'Bu sahypany patrullyk edilen diýip belle',
+'markedaspatrolled'                   => 'Patrullyk edilen diýlip bellendi',
+'markedaspatrolledtext'               => 'Bu saýlanan wersiýa patrullyk edilen diýlip bellendi.',
+'rcpatroldisabled'                    => 'Soňky Üýtgeşmeler Patrullygy ýapyldy',
+'rcpatroldisabledtext'                => 'Soňky Üýtgeşmeler Patrullygy funksiýasy häzirki wagtda ýapyk dur.',
+'markedaspatrollederror'              => 'Patrullyk edilen diýip belläp bolmaýar',
+'markedaspatrollederrortext'          => 'Patrullyk edilen diýip bellemeklik üçin wersiýany görkezmegiňiz zerurdyr.',
+'markedaspatrollederror-noautopatrol' => 'Öz üýtgeşmeleriňizi patrullyk edilen diýip bellemekligiňize rugsat berilmeýär.',
+
+# Patrol log
+'patrol-log-page'      => 'Patrullyk gündeligi',
+'patrol-log-header'    => 'Bu patrullyk edilen wersiýalaryň gündeligidir.',
+'patrol-log-line'      => '$2 sahypasynyň $1 patrullyk edilen diýip belledi $3',
+'patrol-log-auto'      => '(awtomatik)',
+'patrol-log-diff'      => '$1 wersiýasyny',
+'log-show-hide-patrol' => 'Patrullyk gündeligini $1',
+
+# Image deletion
+'deletedrevision'                 => '$1 köne wersiýasy öçürildi.',
+'filedeleteerror-short'           => 'Faýl öçürmek säwligi: $1',
+'filedeleteerror-long'            => 'Faýl öçürilýän mahaly säwlikler ýüze çykdy:
+
+$1',
+'filedelete-missing'              => '"$1" faýlyny öçürip bolmaýar, sebäbi ol ýok.',
+'filedelete-old-unregistered'     => 'Görkezilen "$1" faýl wersiýasy maglumat bazasynda ýok.',
+'filedelete-current-unregistered' => 'Görkezilen "$1" faýly maglumat bazasynda ýok.',
+'filedelete-archive-read-only'    => '"$1" arhiw direktoriýasy web serwer tarapyndan ýazdyrylyp bolmaýar.',
 
 # Browsing diffs
 'previousdiff' => '← Ozalky wersiýa bilen aratapawut',
 'nextdiff'     => 'Indiki wersiýa bilen aratapawut →',
 
+# Visual comparison
+'visual-comparison' => 'Wizual deňeşdirme',
+
 # Media information
+'mediawarning'         => "'''Duýduryş''': Bu faýlda zyýanly kod bar bolmagy ahmal we ol iş ulgamyňyza zeper ýetirip biler.<hr />",
+'imagemaxsize'         => "Surat ölçeginiň çägi:<br />''(faýl düşündiriş sahypalary üçin)''",
+'thumbsize'            => 'Miniatýura ölçegi:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahypa|sahypa}}',
+'file-info'            => '(faýl ölçegi: $1, MIME tipi: $2)',
 'file-info-size'       => '($1 × $2 piksel, faýlyň ölçegi: $3, MIME tipli: $4)',
 'file-nohires'         => '<small>Wersiýanyň mundan uly ölçegi ýok.</small>',
 'svg-long-desc'        => '(SVG faýly, nominal $1 × $2 piksel, faýl ölçegi: $3)',
 'show-big-image'       => 'Suratyň doly ölçegi',
 'show-big-image-thumb' => '<small>Deslapky synyň ölçegi: $1 × $2 piksel</small>',
+'file-info-gif-looped' => 'halkaly',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|freým|freým}}',
 
 # Special:NewFiles
-'newimages-summary' => 'Bu ýörite sahypa iň soňky ýüklenen faýllary görkezýär.',
-'newimages-legend'  => 'Filtr',
-'newimages-label'   => 'Faýlyň ady (ýa-da bir bölegi):',
-'showhidebots'      => '(botlary $1)',
-'bydate'            => 'sene boýunça',
+'newimages'             => 'Täze faýllaryň galereýasy',
+'imagelisttext'         => "Aşakda $2 boýunça düzülen '''$1''' {{PLURAL:$1|sany faýlyň|sany faýlyň}} sanawy görkezilýär.",
+'newimages-summary'     => 'Bu ýörite sahypa iň soňky ýüklenen faýllary görkezýär.',
+'newimages-legend'      => 'Filtr',
+'newimages-label'       => 'Faýlyň ady (ýa-da bir bölegi):',
+'showhidebots'          => '(botlary $1)',
+'noimages'              => 'Görmäge zat ýok.',
+'ilsubmit'              => 'Gözle',
+'bydate'                => 'sene boýunça',
+'sp-newimages-showfrom' => '$2, $1 senesinden başlap, täze faýllary görkez',
 
 # Bad image list
 'bad_image_list' => 'Format aşakdaky ýaly bolmalydyr:

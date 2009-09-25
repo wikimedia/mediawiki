@@ -330,9 +330,9 @@ $messages = array(
 'nosuchaction'      => 'Diese Aktion gibt es nicht',
 'nosuchactiontext'  => 'De ei der URL angegebene Aktion wird vo MediaWiki nicht unterstützt.',
 'nosuchspecialpage' => 'Spezialseyte nee vorhoanda',
-'nospecialpagetext' => "<strong>De uffgerufene Spezialseyte ies nee vorhanden.'''</strong>
+'nospecialpagetext' => '<strong>De uffgerufene Spezialseyte ies nee vorhanden.</strong>
 
-Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spezialseyta]] zu finda.",
+Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spezialseyta]] zu finda.',
 
 # General errors
 'error'                => 'Fehler',

@@ -146,7 +146,7 @@ $messages = array(
 'nstab-help'      => '說明頁面',
 
 # Main script and global functions
-'nosuchactiontext'  => '這個wiki無法識別URL請求的命令',
+'nosuchactiontext' => '這個wiki無法識別URL請求的命令',
 
 # General errors
 'readonlytext'         => '資料庫目前禁止輸入新內容及更改，

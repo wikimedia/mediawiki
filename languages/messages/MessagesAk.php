@@ -7,13 +7,19 @@
  * @ingroup Language
  * @file
  *
+ * @author Kasahorow
  * @author Natsubee
  * @author Paa.kwesi
  */
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Twa lenk nyina ase:',
+'tog-underline'             => 'Twa lenk nyina ase:',
+'tog-highlightbroken'       => 'Fɔɔmat nlink a wɔnnyɛ edwuma <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>)',
+'tog-justify'               => 'Gyastefae mparagraf',
+'tog-hideminor'             => 'Suma nsesae a wɔakɔ so a wɔnnkyɛree koraa',
+'tog-hidepatrolled'         => 'Suma nsesae a wɔapatrole wɔn ndansa yi ara',
+'tog-newpageshidepatrolled' => 'Suma nkrataafa a wɔapatrole wɔn fi krataafa-foforo lest no so',
 
 # Dates
 'sunday'    => 'Kwasiada',
@@ -36,14 +42,27 @@ $messages = array(
 'november'  => 'Obubuo',
 'december'  => 'Ɔpenimma',
 
+# Categories related messages
+'listingcontinuesabbrev' => 'toa so',
+
 'search'           => 'Hwehwɛ',
 'searchbutton'     => 'Hwehwɛ',
 'go'               => 'Kɔ',
 'searcharticle'    => 'Kɔ',
+'history'          => 'Krataafa abakɔsɛm',
 'history_short'    => 'Beeme',
 'talkpagelinktext' => 'Kasa',
 'talk'             => 'Kasa',
 'jumptosearch'     => 'hwehwɛ',
+
+# Login and logout pages
+'login'                   => 'Bra mu',
+'nav-login-createaccount' => 'Bra mu / yɛ akawnt',
+'userlogin'               => 'Bra mu',
+'logout'                  => 'Pue',
+'userlogout'              => 'Pue',
+'notloggedin'             => 'Mmbaa mu',
+'nologin'                 => "Wo nni akawnt anaa? '''$1'''.",
 
 # Search results
 'powersearch' => 'Hwehwɛ',

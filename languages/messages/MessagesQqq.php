@@ -593,7 +593,7 @@ HTML markup cannot be used.",
 
 {{Identical|Remember my login on this computer}}',
 'externaldberror'            => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
-'login'                      => "Shown to anonymous users in the upper right corner of the page. It is shown when you can't create an account, otherwise the message {{msg|nav-login-createaccount}} is shown.
+'login'                      => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
 
 {{Identical|Log in}}",
 'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.",

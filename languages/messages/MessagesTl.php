@@ -413,9 +413,9 @@ $messages = array(
 Maaaring nagkamali ka sa pagmamakinilya ng URL, o sumunod sa isang maling kawing.
 Maaari rin itong magpahiwatig ng isang depektong nasa loob ng {{SITENAME}}.',
 'nosuchspecialpage' => 'Walang ganyang natatanging pahina',
-'nospecialpagetext' => "<strong>Humiling ka ng isang maling natatanging pahina.'''</strong>
+'nospecialpagetext' => '<strong>Humiling ka ng isang maling natatanging pahina.</strong>
 
-Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:SpecialPages|{{int:specialpages}}]].",
+Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Kamalian',
