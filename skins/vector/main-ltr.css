@@ -1042,6 +1042,7 @@ h3, h4, h5 {
 	position: relative;
 	width: 100%;
 }
+
 #mw-js-message {
 	font-size: 0.8em;
 }
@@ -1049,3 +1050,52 @@ div#bodyContent {
 	line-height: 1.5em;
 }
 
+
+
+/* Babaco color scheme */
+/* Still working on this. Needs incorporated above once it's closer to final */
+body{
+  background-color:#f9f9f9;
+  color:#000000;
+}
+a{
+  color:#003cb3;
+}
+a.new{
+  color:#990000;
+}
+
+a:visited,
+div.vectorTabs li.selected a:visited div.vectorTabs li.selected a:visited span {
+  color:#260e9c;
+}
+
+html .thumbimage,
+#toc, .toc, .mw-warning, div.thumbinner{
+  border-color:#c0c0c0;
+  background-color:#f0f0f0;
+}
+
+h1, h2, h3, h4, h5, h6{
+  border-color:#8d8d8d;
+}
+
+
+/* Watch/Unwatch Icon Styling */
+#ca-unwatch,
+#ca-watch{
+  background-image:none;
+  background-color:#ffffff;
+}
+#ca-unwatch a,
+#ca-watch a{
+  outline:none;
+}
+#ca-unwatch a img,
+#ca-watch a img{
+  padding-top:1.35em;
+  display:block;
+  font-size:0.8em;
+  max-height:14px;
+  max-width:14px;
+}
