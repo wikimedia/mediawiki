@@ -538,6 +538,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14117) "redirected from" is now also shown on foreign file redirects
 * (bug 18436) JavaScript-added AJAX messages (from the JS watch/unwatch, for 
   instance) no longer include a redundant "display:block" hardcoded style.
+* (bug 20802) Fixed thumb.php redirect handling
 
 == API changes in 1.16 ==
 
