@@ -147,9 +147,6 @@ $messages = array(
 
 # Main script and global functions
 'nosuchactiontext'  => '這個wiki無法識別URL請求的命令',
-'nospecialpagetext' => "<strong>您請求的特殊頁面無效。'''</strong>
-
-[[Special:SpecialPages]]載有所有有效特殊頁面的列表。",
 
 # General errors
 'readonlytext'         => '資料庫目前禁止輸入新內容及更改，
@@ -740,17 +737,12 @@ $NEWPAGE
 'tooltip-rollback'                => '『{{int:rollbacklink}}』可以一按恢復上一位貢獻者對這個頁面的編輯',
 'tooltip-undo'                    => '『{{int:editundo}}』可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
 
-# Stylesheets
-'monobook.css' => '/* 此處的 CSS 將影響使用 Monobook 面板的使用者 */',
-
-# Scripts
-'common.js'   => '/* 此處的JavaScript將載入於所有使用者每一個頁面。 */',
-'monobook.js' => '/* 已經不再使用；請用[[MediaWiki:common.js]] */',
-
 # Attribution
 'anonymous' => '{{SITENAME}}的匿名{{PLURAL:$1|使用者|使用者}}',
 'siteuser'  => '{{SITENAME}}使用者$1',
+'anonuser'  => '{{SITENAME}}匿名使用者$1',
 'siteusers' => '{{SITENAME}}{{PLURAL:$2|使用者|使用者}}$1',
+'anonusers' => '{{SITENAME}}匿名{{PLURAL:$2|使用者|使用者}}$1',
 
 # Spam protection
 'spamprotectiontext' => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -322,6 +322,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|此分类只有下列一个文件。|此分类包含下列$1个文件，共有$2个文件。}}',
 'category-file-count-limited'    => '此分类包含下列$1个文件。',
 'listingcontinuesabbrev'         => '续',
+'index-category'                 => '已做索引的页面',
+'noindex-category'               => '未做索引的页面',
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki。'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
@@ -512,9 +514,9 @@ $1',
 'nosuchaction'      => '这个命令不存在',
 'nosuchactiontext'  => 'URL指定的命令无效。你可能错误输入了URL地址，或者点击了错误的链接。这一错误亦有可能是由{{SITENAME}}所使用软件自身的错误导致的。',
 'nosuchspecialpage' => '此特殊页面不存在',
-'nospecialpagetext' => "<strong>您请求的特殊页面无效。'''</strong>
+'nospecialpagetext' => '<strong>您请求的特殊页面无效。</strong>
 
-[[Special:SpecialPages|{{int:specialpages}}]]中列出了所有有效的特殊页面。",
+[[Special:SpecialPages|{{int:specialpages}}]]中列出了所有有效的特殊页面。',
 
 # General errors
 'error'                => '错误',
@@ -611,6 +613,7 @@ $2',
 'badretype'                  => '您所输入的密码并不相同。',
 'userexists'                 => '您所输入的用户名已有人使用。请另选一个名。',
 'loginerror'                 => '登录错误',
+'createaccounterror'         => '无法建立账户：$1',
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭Cookies，请开启它并登录。',
 'nocookieslogin'             => '本站利用Cookies进行用户登录，侦测到您已关闭Cookies，请开启它并重新登录。',
 'noname'                     => '你没有输入有效的用户名。',
@@ -633,6 +636,7 @@ $2',
 如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，
 您可以忽略此消息并继续使用您的旧密码。',
 'noemail'                    => '用户"$1"没有登记电子邮件地址。',
+'noemailcreate'              => '您需要提供一个有效的电子邮件地址',
 'passwordsent'               => '用户"$1"的新密码已经寄往所登记的电子邮件地址。
 请在收到后再登录。',
 'blocked-mailpassword'       => '您的IP地址处于查封状态而不允许编辑，为了安全起见，密码恢复功能已被禁用。',
@@ -1341,6 +1345,7 @@ $1",
 'right-bigdelete'             => '删除大量历史之页面',
 'right-deleterevision'        => '删除及同反删除页面中的指定修订',
 'right-deletedhistory'        => '查看已删除之项目，不含有关的字',
+'right-deletedcontent'        => '查看已删除修订中之已删除的字以及更改',
 'right-browsearchive'         => '搜索已删除之页面',
 'right-undelete'              => '反删除页面',
 'right-suppressrevision'      => '查看和恢复由管理员隐藏的修订',
@@ -1373,6 +1378,7 @@ $1",
 'right-reset-passwords'       => '重设其他用户的密码',
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-versiondetail'         => '显示延伸软件版本的资料',
+'right-root'                  => '在wiki中进行所有的动作',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -2605,10 +2611,12 @@ $1已经被封锁。您是否想更改这个设置？',
 # Attribution
 'anonymous'        => '{{SITENAME}}的匿名{{PLURAL:$1|用户|用户}}',
 'siteuser'         => '{{SITENAME}}用户$1',
+'anonuser'         => '{{SITENAME}}匿名用户$1',
 'lastmodifiedatby' => '此页由$3于$1 $2的最后更改。',
 'othercontribs'    => '在$1的工作基础上。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}{{PLURAL:$2|用户|用户}}$1',
+'anonusers'        => '{{SITENAME}}匿名{{PLURAL:$2|用户|用户}}$1',
 'creditspage'      => '页面致谢',
 'nocredits'        => '该页没有致谢名单信息。',
 
