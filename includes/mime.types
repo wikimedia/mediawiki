@@ -2,7 +2,7 @@ application/andrew-inset ez
 application/mac-binhex40 hqx
 application/mac-compactpro cpt
 application/mathml+xml mathml
-application/msword doc
+application/msword doc docx docm dot dotx dotm
 application/octet-stream bin dms lha lzh exe class so dll
 application/oda oda
 application/ogg ogg ogm
@@ -13,8 +13,8 @@ application/smil smi smil
 application/srgs gram
 application/srgs+xml grxml
 application/vnd.mif mif
-application/vnd.ms-excel xls
-application/vnd.ms-powerpoint ppt
+application/vnd.ms-excel xls xlsx xlsb xlam xltx xltm
+application/vnd.ms-powerpoint ppt pptm pptx pot potx potm ppsm ppam
 application/vnd.wap.wbxml wbxml
 application/vnd.wap.wmlc wmlc
 application/vnd.wap.wmlscriptc wmlsc
