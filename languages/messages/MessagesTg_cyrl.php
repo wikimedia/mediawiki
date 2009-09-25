@@ -344,9 +344,9 @@ $messages = array(
 'nosuchaction'      => 'Чунин амале вуҷуд надорад',
 'nosuchactiontext'  => 'Вики амали дар URL мушаххас шударо намешиносад',
 'nosuchspecialpage' => 'Чунин саҳифаи вижа вуҷуд надорад',
-'nospecialpagetext' => "<strong>Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.'''</strong>
+'nospecialpagetext' => '<strong>Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.</strong>
 
-Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:SpecialPages|{{int:specialpages}}]] нигаред.",
+Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:SpecialPages|{{int:specialpages}}]] нигаред.',
 
 # General errors
 'error'                => 'Иштибоҳ',

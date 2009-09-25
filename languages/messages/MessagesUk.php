@@ -546,9 +546,9 @@ $1',
 Ви могли неправильно набрати URL або перейти по некоректному посиланню. 
 Це також може означати помилку в програмному забезпеченні {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Такої спеціальної сторінки нема',
-'nospecialpagetext' => "<strong>Така спеціальна сторінка не існує.'''</strong>
+'nospecialpagetext' => '<strong>Така спеціальна сторінка не існує.</strong>
 
-Див. [[Special:SpecialPages|список спеціальних сторінок]].",
+Див. [[Special:SpecialPages|список спеціальних сторінок]].',
 
 # General errors
 'error'                => 'Помилка',

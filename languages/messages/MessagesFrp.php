@@ -3031,7 +3031,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-flash'                       => 'Èludo',
 'exif-focallength'                 => 'Longior focâla',
 'exif-subjectarea'                 => 'Emplacement du sujèt',
-'exif-flashenergy'                 => 'Ènèrg·ie de l’èludo',
+'exif-flashenergy'                 => 'Nèrf de l’èludo',
 'exif-spatialfrequencyresponse'    => 'Rèponsa en frèquence espaciâla',
 'exif-focalplanexresolution'       => 'Rèsolucion plana de la vision focâla',
 'exif-focalplaneyresolution'       => 'Rèsolucion drêta de la vision focâla',

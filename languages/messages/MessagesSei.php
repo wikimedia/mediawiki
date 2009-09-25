@@ -264,9 +264,9 @@ $messages = array(
 'nosuchaction'      => "Ne'dáár accion",
 'nosuchactiontext'  => 'Accion apualte URLsan z coccebj nepualat wiki zo san',
 'nosuchspecialpage' => "Ne'dáár páhina extrava",
-'nospecialpagetext' => "<strong>Meccan páhina extrava invalida.'''</strong>
+'nospecialpagetext' => '<strong>Meccan páhina extrava invalida.</strong>
 
-Meccan páhina extrava valide pac [[Special:SpecialPages]] iti.",
+Meccan páhina extrava valide pac [[Special:SpecialPages]] iti.',
 
 # General errors
 'error'                => 'Römj',

@@ -485,8 +485,15 @@ Huenda likawa tayari lishafutwa na mtu mwingine.',
 'badtitletext'         => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja a zaidi ambazo hazitumiki katika majina.',
 'perfcached'           => 'Data zifuatazo ni kache na huenda ikawa haijabadilishwa.',
 'perfcachedts'         => 'Data zifuatazo zimekuwa na kache, na ilibadilishwa mara ya mwisho $1.',
+'querypage-no-updates' => 'Mabadiliko kwa ajili ya ukurasa huu yamesimamishwa.
+Data za hapa haziwezi kunawirishwa kwa sasa.',
+'wrong_wfQuery_params' => 'Paramita iliyoingizwa ya kuulizia wf siyo sahihi()<br />
+Kitenda: $1<br />
+Ulizio: $2',
 'viewsource'           => 'Onyesha kodi za ukurasa',
 'viewsourcefor'        => 'kwa $1',
+'actionthrottledtext'  => 'Ikiwa kama hatua ya kupambana na uharibifu, umefikifa kikomo katika kutenda jambo hili kwa mara nyingi mno tena kwa kipindi cha muda mfupi kama huu, na umevuka kiwango hiki.
+Tafadhali jaribu tena baada ya muda mfupi.',
 'protectedpagetext'    => 'Ukurasa huu umefungwa ili kuepuka uhariri.',
 'viewsourcetext'       => 'Unaweza kutazama na kuiga chanzo cha ukurasa huu:',
 'protectedinterface'   => 'Ukurasa huu unatoa maelezo ya msingi ya bidhaa pepe, na pia umefungwa ili kuzuiya uharibifu.',
@@ -494,6 +501,8 @@ Huenda likawa tayari lishafutwa na mtu mwingine.',
 Mabadiliko katika ukurasa huu yataathiri mwonekano mzima wa viungo vya watumiaji wengine.
 Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kwa kuweka miradi ya MediaWiki kwa kienyeji.",
 'sqlhidden'            => '(maulizo ya SQL yamefichwa)',
+'cascadeprotected'     => 'Ukurasa huu umekingwa usihaririwe, kwa sababu umejumlisha kurasa zifuatazo {{PLURAL:$1|page, which is|ambazo}} zimekingwa na chagua la "cascadi" iliyowashwa:
+$2',
 
 # Login and logout pages
 'logouttext'              => "'''Umetoka kwenye akaunti yako.'''

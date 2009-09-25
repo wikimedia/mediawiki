@@ -705,6 +705,7 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi [[Special:P
 'badretype'                  => 'Parolele pe care le-ai introdus diferă.',
 'userexists'                 => 'Numele de utilizator pe care l-aţi introdus există deja. Încercaţi cu un alt nume.',
 'loginerror'                 => 'Eroare de autentificare',
+'createaccounterror'         => 'Nu pot crea contul: $1',
 'nocookiesnew'               => 'Contul a fost creat, dar dvs. nu sunteţi autentificat(ă). {{SITENAME}} foloseşte cookie-uri pentru a reţine utilizatorii autentificaţi. Browser-ul dvs. are modulele cookie dezactivate (disabled). Vă rugăm să le activaţi şi să vă reautentificaţi folosind noul nume de utilizator şi noua parolă.',
 'nocookieslogin'             => '{{SITENAME}} foloseşte module cookie pentru a autentifica utilizatorii. Browser-ul dvs. are cookie-urile dezactivate. Vă rugăm să le activaţi şi să incercaţi din nou.',
 'noname'                     => 'Numele de utilizator pe care l-ai specificat este invalid.',
@@ -750,7 +751,8 @@ Prin urmare, vizitatorii care folosesc acelaşi IP nu mai pot crea alte conturi 
 Este de dorit să vă autentificaţi şi să schimbaţi parola cât mai repede.
 
 Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
-'login-throttled'            => 'Ai încercat de prea multe ori să introduci parola. Te rog aşteaptă înainte de a încerca din nou.',
+'login-throttled'            => 'Aţi avut prea multe încercări de a vă autentifica.
+Vă rugăm să aşteptaţi până să mai încercaţi.',
 'loginlanguagelabel'         => 'Limba: $1',
 
 # Password reset dialog
@@ -860,6 +862,9 @@ Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje
 'noarticletext'                    => 'În acest moment nu este niciun text în această pagină.
 Puteţi [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} căuta înregistrări în jurnale], sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
+'noarticletext-nopermission'       => 'Nu este niciun text în această pagină.
+Puteţi [[Special:Search/{{PAGENAME}}|căuta titlul paginii]] în alte pagini,
+sau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} să căutaţi în jurnale]</span>.',
 'userpage-userdoesnotexist'        => 'Contul de utilizator "$1" nu este înregistrat. Verificaţi dacă doriţi să creaţi/modificaţi această pagină.',
 'userpage-userdoesnotexist-view'   => 'Contul de utilizator "$1" nu este înregistrat.',
 'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
@@ -1090,6 +1095,7 @@ Nu ai acces asupra lui.',
 'revdelete-otherreason'       => 'Motiv diferit/adiţional',
 'revdelete-reasonotherlist'   => 'Alt motiv',
 'revdelete-edit-reasonlist'   => 'Modifică motivele ştergerii',
+'revdelete-offender'          => 'Autorul reviziei:',
 
 # Suppression log
 'suppressionlog'     => 'Înlătură jurnalul',
@@ -1285,7 +1291,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-watchlist-days-max'      => '(maxim 7 zile)',
 'prefs-watchlist-edits'         => 'Numărul de editări care apar în lista extinsă a paginilor urmărite:',
 'prefs-watchlist-edits-max'     => '(număr maxim: 1000)',
-'prefs-watchlist-token'         => 'Jeton pentru lista de urmărire',
+'prefs-watchlist-token'         => 'Jeton pentru lista de urmărire:',
 'prefs-misc'                    => 'Parametri diverşi',
 'prefs-resetpass'               => 'Modifică parola',
 'prefs-email'                   => 'Opţiuni e-mail',
@@ -1446,6 +1452,7 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-bigdelete'             => 'Şterge pagini cu istoric lung',
 'right-deleterevision'        => 'Şterge şi recuperează versiuni specifice ale paginilor',
 'right-deletedhistory'        => 'Vezi intrările şterse din istoric, fără textul asociat',
+'right-deletedcontent'        => 'Vizializaţi textul şters şi modificările dintre versiunile şterse',
 'right-browsearchive'         => 'Caută pagini şterse',
 'right-undelete'              => 'Recuperează pagini',
 'right-suppressrevision'      => 'Examinează şi restaurează reviziile ascunse faţă de administratori',
@@ -1478,6 +1485,7 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-reset-passwords'       => 'Resetarea parolelor altor utilizatori',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-versiondetail'         => 'Arată informaţii extise despre versiunea programului',
+'right-root'                  => 'Realizaţi toate acţiunile pe wiki',
 
 # User rights log
 'rightslog'      => 'Jurnal permisiuni de utilizator',
@@ -1622,7 +1630,8 @@ Vezi [[Special:NewFiles|galeria fişierelor noi]] pentru o mai bună vizualizare
 [[$1|thumb]]",
 'filepageexists'              => "Pagina cu descrierea fişierului a fost deja creată la '''<tt>[[:$1]]</tt>''', dar niciun fişier cu acest nume nu există în acest moment.
 Sumarul pe care l-ai introdus nu va apărea în pagina cu descriere.
-Pentru ca sumarul tău să apară, va trebui să îl adaugi manual",
+Pentru ca sumarul tău să apară, va trebui să îl adaugi manual.
+[[$1|miniatură]]",
 'fileexists-extension'        => "Un fişier cu un nume similar există: [[$2|thumb]]
 * Numele fişierului de încărcat: '''<tt>[[:$1]]</tt>'''
 * Numele fişierului existent: '''<tt>[[:$2]]</tt>'''
@@ -1677,6 +1686,10 @@ Dacă problema persistă, contactaţi un [[Special:ListUsers/sysop|administrator
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acces interzis',
+'img-auth-nopathinfo'   => 'PATH_INFO lipseşte.
+Serverul dumneavoastră nu a fost setat pentru a trece aceste informaţii.
+S-ar putea să fie bazat pe CGI şi să nu suporte img_auth.
+Vedeţi http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nofile'       => 'Fişierul "$1" nu există.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -264,9 +264,9 @@ $messages = array(
 Možda ste pogriješili pri unosu URL-a ili ste slijedili pokvaren link.
 Moguće je i da je ovo greška u softveru koji koristi {{SITENAME}}.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
-'nospecialpagetext' => "<strong>Zatražili ste nevaljanu posebnu stranicu.'''</strong>
+'nospecialpagetext' => '<strong>Zatražili ste nevaljanu posebnu stranicu.</strong>
 
-Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
+Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Greška',

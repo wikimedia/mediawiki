@@ -811,7 +811,7 @@ La password per questo nuovo account può essere modificata all'accesso nella pa
 Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto
 (fare riferimento alle [[{{MediaWiki:Helppage}}|pagine di aiuto]] per maggiori informazioni).
 Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
-'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
+'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea un nuovo accesso]] o [[Special:UserLogin|entra con quello che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
 'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'noarticletext-nopermission'       => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cercare nei registri correlati]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
@@ -1380,6 +1380,7 @@ L'operazione non può essere annullata.",
 'right-bigdelete'             => 'Cancella pagine con cronologie lunghe',
 'right-deleterevision'        => 'Nasconde revisioni specifiche delle pagine',
 'right-deletedhistory'        => 'Visualizza le revisioni della cronologia cancellate senza il testo associato',
+'right-deletedcontent'        => 'Visualizza testo cancellato e modifiche fra revisioni cancellate',
 'right-browsearchive'         => 'Visualizza pagine cancellate',
 'right-undelete'              => 'Recupera una pagina',
 'right-suppressrevision'      => 'Rivede e recupera revisioni nascoste agli amministratori',
@@ -2629,10 +2630,12 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utente anonimo|Utenti anonimi}} di {{SITENAME}}',
 'siteuser'         => '$1, utente di {{SITENAME}}',
+'anonuser'         => '$1, utente anonimo di {{SITENAME}}',
 'lastmodifiedatby' => "Questa pagina è stata modificata per l'ultima volta il $2, $1 da $3.",
 'othercontribs'    => 'Il testo attuale è basato su contributi di $1.',
 'others'           => 'altri',
 'siteusers'        => '$1, {{PLURAL:$2|utente|utenti}} di {{SITENAME}}',
+'anonusers'        => '$1, {{PLURAL:$2|utente anonimo|utenti anonimi}} di {{SITENAME}}',
 'creditspage'      => 'Autori della pagina',
 'nocredits'        => 'Nessuna informazione sugli autori disponibile per questa pagina.',
 

@@ -282,9 +282,9 @@ $messages = array(
 Ó ṣe é ṣe kó jẹ́ pé ẹ ṣe àṣìṣe URL ọ̀hún, tàbí kó jẹ́ pé ẹ tẹ̀lé ìjápọ̀ tí kò tọ́.
 Ó sì le jẹ́ pé kòkòrò wà nínú software tí {{SITENAME}} nlò.',
 'nosuchspecialpage' => 'Kò sí irú ojúewé pàtàkì báun',
-'nospecialpagetext' => "<strong>Ẹ tọrọ ojúewé pàtàkì tí kò ní ìbáramu.'''</strong>
+'nospecialpagetext' => '<strong>Ẹ tọrọ ojúewé pàtàkì tí kò ní ìbáramu.</strong>
 
-Àkójọ àwọn ojúewé pàtàkì tó ní ìbáramu wà ní [[Special:SpecialPages|{{int:specialpages}}]].",
+Àkójọ àwọn ojúewé pàtàkì tó ní ìbáramu wà ní [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Àsìṣe',

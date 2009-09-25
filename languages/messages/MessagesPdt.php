@@ -78,13 +78,13 @@ $messages = array(
 'mar'           => 'Moa',
 'apr'           => 'Apr',
 'may'           => 'Mei',
-'jun'           => 'Jün',
-'jul'           => 'Jül',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
 'aug'           => 'Aug',
 'sep'           => 'Sep',
 'oct'           => 'Okt',
 'nov'           => 'Now',
-'dec'           => 'Dee',
+'dec'           => 'Dez',
 
 # Categories related messages
 'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
@@ -119,11 +119,11 @@ $messages = array(
 'go'               => 'Go',
 'searcharticle'    => 'Sied',
 'history'          => "Siedeje'schijchte",
-'history_short'    => "Je'schijchte",
+'history_short'    => 'Jeschicht',
 'updatedmarker'    => 'fresch jemoakt',
 'info_short'       => 'Informatioon',
 'printableversion' => 'Drekdoastalinj',
-'permalink'        => "Be'stendijch Link",
+'permalink'        => 'Bestendja Link',
 'print'            => 'Drek',
 'edit'             => 'Endre',
 'create'           => 'Moak',
@@ -208,7 +208,8 @@ $messages = array(
 'nstab-main'      => 'Sied',
 'nstab-user'      => 'Bruckasied',
 'nstab-media'     => 'Media',
-'nstab-special'   => 'Spezial',
+'nstab-special'   => 'Besondre Sied
+Spezial',
 'nstab-project'   => 'Portalsied',
 'nstab-image'     => 'Datei',
 'nstab-mediawiki' => 'Norejcht',
@@ -235,6 +236,12 @@ MySQL mald dem Fehla "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Oppjepausst: Dee jewesne Sied es nich onbedinjt dee latzte Versioon.',
 'readonly'        => 'Dotebank es jeschlote',
 'enterlockreason' => 'Nan bitte een Grunt doafea, wurom dee Dotebank jeschlote saul en saj, woolang daut onjefea diere saul',
+'missing-article' => 'Dee Database haft nich dem Tatjst von eene Sied jefunge, woone hee haud finje sullt, mettem Nome "$1" $2.
+
+Dit tjemm jeweenlich soo, wan een oola nich jelaschda Link jebruckt worde es.
+
+Wan daut nich soo es, dan es doa vleicht een Fehla enne Software.
+Bitte schriew eene Notiz aun [[Special:ListUsers/sysop|administrator]], en lot dem dee URL weete.',
 'badtitle'        => 'Schlajchta Titel',
 'viewsourcefor'   => 'fer $1',
 
@@ -295,10 +302,17 @@ Bitte nemm eenen aundren.',
 'editundo' => 'trigjsate',
 
 # Search results
-'prevn'          => '{{PLURAL:$1|$1}} ferhäa',
-'nextn'          => 'näakjste {{PLURAL:$1|$1}}',
-'searchhelp-url' => 'Help:Enhault',
-'powersearch'    => 'Bätre Sääk',
+'searchresults'             => 'Setj Resultaute',
+'searchresults-title'       => 'Setj Resultaute fe "$1"',
+'searchsubtitle'            => 'Du sochst \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
+'prevn'                     => '{{PLURAL:$1|$1}} ferhäa',
+'nextn'                     => 'näakjste {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'Tjitj ($1 {{int:pipe-separator}} $2) ($3)',
+'searchhelp-url'            => 'Help:Enhault',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 Wot|$2 Wed}})',
+'search-mwsuggest-enabled'  => 'mett Veaschlag',
+'search-mwsuggest-disabled' => 'Tjeen Veaschlag',
+'powersearch'               => 'Bätre Sääk',
 
 # Preferences page
 'preferences'          => 'Ennstalinje',
@@ -318,7 +332,7 @@ Bitte nemm eenen aundren.',
 'rcshowhidemine'  => '$1 miene Endanisse',
 'rclinks'         => 'Wies de latste $1 Endanisse in de latste $2 Doag<br />$3',
 'diff'            => 'Unjascheet',
-'hist'            => "Je'schijchte",
+'hist'            => 'Jeschicht',
 'hide'            => "Fe'stäakje",
 'show'            => 'Wiese',
 'minoreditletter' => 'k',
@@ -419,7 +433,7 @@ Bitte nemm eenen aundren.',
 'restriction-type'       => "Er'laubniss:",
 
 # Namespace form on various pages
-'namespace'      => 'Nomerüm:',
+'namespace'      => 'Nomerum:',
 'blanknamespace' => '(Haupt)',
 
 # Contributions
@@ -465,7 +479,7 @@ Dee Grunt es: "$2"',
 'allmessages' => "Sis'teem-Norejchte",
 
 # Thumbnails
-'thumbnail-more' => "Fe'jreetre",
+'thumbnail-more' => 'Vejratre',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Diene Bruckersied',
@@ -491,6 +505,7 @@ Dee Grunt es: "$2"',
 'tooltip-search-go'               => 'Go opp dee Sied, woone jenau disem Nome haft',
 'tooltip-search-fulltext'         => 'Setj no Siede mett soonem Tatjst',
 'tooltip-n-mainpage'              => 'Besäkj de Hauptsied',
+'tooltip-n-mainpage-description'  => 'Besetj dee Hauptsied',
 'tooltip-n-portal'                => 'Ewa daut Portal, waut du doone kaunst, woo waut to finje es',
 'tooltip-n-currentevents'         => 'Hinjagruntinformatioone ewa aktuelle Sache finje',
 'tooltip-n-recentchanges'         => 'List mette latste Endanisse em Wiki.',
