@@ -21,11 +21,26 @@ wgAjaxWatch.watching = false; // currently watching page
 wgAjaxWatch.inprogress = false; // ajax request in progress
 wgAjaxWatch.timeoutID = null; // see wgAjaxWatch.ajaxCall
 wgAjaxWatch.watchLinks = []; // "watch"/"unwatch" links
+wgAjaxWatch.iconMode = false; // new icon driven functionality 
+wgAjaxWatch.imgBasePath = ""; // base img path derived from icons on load
 
 wgAjaxWatch.setLinkText = function(newText) {
-	for (i = 0; i < wgAjaxWatch.watchLinks.length; i++) {
-		changeText(wgAjaxWatch.watchLinks[i], newText);
-	}
+  if(wgAjaxWatch.iconMode){
+    for (i = 0; i < wgAjaxWatch.watchLinks.length; i++) {
+  		wgAjaxWatch.watchLinks[i].firstChild.alt = newText;
+  		if(newText==wgAjaxWatch.watchingMsg||newText==wgAjaxWatch.unwatchingMsg){
+  		  wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath+"/skins/common/images/spinner.gif";
+  		}else if(newText==wgAjaxWatch.watchMsg){
+  		  wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath+"/skins/vector/images/watch_off.gif";
+  		}else if(newText==wgAjaxWatch.unwatchMsg){
+  		  wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath+"/skins/vector/images/watch_on.gif";
+  		}
+  	}
+  }else{
+    for (i = 0; i < wgAjaxWatch.watchLinks.length; i++) {
+  		changeText(wgAjaxWatch.watchLinks[i], newText);
+  	}
+  }
 };
 
 wgAjaxWatch.setLinkID = function(newId) {
@@ -112,6 +127,7 @@ wgAjaxWatch.processResult = function(request) {
 wgAjaxWatch.onLoad = function() {
 	// This document structure hardcoding sucks.  We should make a class and
 	// toss all this out the window.
+	
 	var el1 = document.getElementById("ca-unwatch");
 	var el2 = null;
 	if (!el1) {
@@ -132,6 +148,23 @@ wgAjaxWatch.onLoad = function() {
 			return;
 		}
 	}
+	
+	// If we're using the icon, add rollover affects
+	try{
+	  if(el1.firstChild.firstChild.tagName.match(/img/i)){
+  	  wgAjaxWatch.iconMode = true;
+  	  wgAjaxWatch.imgBasePath = el1.firstChild.firstChild.src.replace(/\/skins\/vector\/images\/watch_(off|on).gif/, "");
+  	  el1.firstChild.onmouseover = function(e){
+  	    this.firstChild.src = (wgAjaxWatch.watching ? this.firstChild.src.replace(/_on/, "_off") : this.firstChild.src.replace(/_off/, "_on"));
+  	  }
+  	  el1.firstChild.onmouseout = function(e){
+  	    this.firstChild.src = (wgAjaxWatch.watching ? this.firstChild.src.replace(/_off/, "_on") : this.firstChild.src.replace(/_on/, "_off"));
+  	  }
+  	}
+	}catch(e){
+	  // not using the icon 
+	}
+
 
 	// The id can be either for the parent (Monobook-based) or the element
 	// itself (non-Monobook)
