@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -267,6 +267,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|呢類淨係有下面嘅檔案。|呢類有下面嘅$1個檔案，總共有$2個檔案。}}',
 'category-file-count-limited'    => '呢個類別入邊有$1個檔案。',
 'listingcontinuesabbrev'         => '續',
+'index-category'                 => '做咗索引嘅版',
+'noindex-category'               => '未做索引嘅版',
 
 'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
 'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
@@ -460,9 +462,9 @@ $1',
 你可能打錯咗個 URL ，或者撳錯咗唔啱嘅連結。
 呢個可能係{{SITENAME}}所用嘅軟件入面嘅臭蟲所引致嘅。',
 'nosuchspecialpage' => '冇呢頁特別頁',
-'nospecialpagetext' => "<strong>無你所要求嘅特別頁。'''</strong>
+'nospecialpagetext' => '<strong>無你所要求嘅特別頁。</strong>
 
-喺[[Special:SpecialPages|{{int:specialpages}}]]有全部用得嘅特別頁。",
+喺[[Special:SpecialPages|{{int:specialpages}}]]有全部用得嘅特別頁。',
 
 # General errors
 'error'                => '錯誤',
@@ -563,6 +565,7 @@ $1',
 'badretype'                  => '你入嘅密碼唔一致。',
 'userexists'                 => '你入嘅用戶名已經有人用咗，唔該揀過個名啦。',
 'loginerror'                 => '登入錯誤',
+'createaccounterror'         => '開唔到戶口：$1',
 'nocookiesnew'               => '已經開咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經熄咗佢。請你開咗再試。',
 'nocookieslogin'             => '{{SITENAME}} 登入要開 cookies。熄咗佢。請你開咗再試。',
 'noname'                     => '你未指定一個有效嘅用戶名。',
@@ -589,6 +592,7 @@ $1',
 又或者你記得返你嘅密碼而又唔想再轉，
 你可以唔使理呢個信息，繼續用舊密碼。',
 'noemail'                    => '呢度冇用戶 "$1" 嘅電郵地址。',
+'noemailcreate'              => '你需要提供一個有效嘅電郵地址',
 'passwordsent'               => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。收到之後請重新登入。',
 'blocked-mailpassword'       => '你嘅IP地址被鎖住，唔可以用密碼復原功能以防止濫用。',
 'eauthentsent'               => '確認電郵已經傳送到指定嘅電郵地址。喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
@@ -1302,6 +1306,7 @@ $1",
 'right-bigdelete'             => '刪大量歷史嘅版',
 'right-deleterevision'        => '刪同反刪版嘅指定修訂',
 'right-deletedhistory'        => '睇刪咗嘅項目，唔包同埋嘅字',
+'right-deletedcontent'        => '睇刪咗嘅修訂度嘅已刪嘅字同更改',
 'right-browsearchive'         => '搵刪咗嘅版',
 'right-undelete'              => '反刪版',
 'right-suppressrevision'      => '睇同恢復由操作員隱藏嘅修訂',
@@ -1334,6 +1339,7 @@ $1",
 'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-versiondetail'         => '顯示伸展軟件版本嘅資料',
+'right-root'                  => '響個wiki度進行全部嘅動作',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -2541,10 +2547,12 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 # Attribution
 'anonymous'        => '{{SITENAME}}嘅匿名{{PLURAL:$1|用戶|用戶}}',
 'siteuser'         => '{{SITENAME}}嘅用戶$1',
+'anonuser'         => '{{SITENAME}}嘅匿名用戶$1',
 'lastmodifiedatby' => '呢一頁最後響 $1 $2 畀 $3 修改。',
 'othercontribs'    => '以$1嘅作品為基礎。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}嘅{{PLURAL:$2|用戶|用戶}}$1',
+'anonusers'        => '{{SITENAME}}嘅匿名{{PLURAL:$2|用戶|用戶}} $1',
 'creditspage'      => '頁面信譽',
 'nocredits'        => '呢一頁並無任何嘅信譽資料可以提供。',
 

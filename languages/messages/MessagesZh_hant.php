@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -294,6 +294,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|這個分類中只有以下的檔案。|這個分類中有以下的$1個檔案，共有$2個檔案。}}',
 'category-file-count-limited'    => '這個分類下有$1個檔案。',
 'listingcontinuesabbrev'         => '續',
+'index-category'                 => '已做索引的頁面',
+'noindex-category'               => '未做索引的頁面',
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟件的訊息！
@@ -488,9 +490,9 @@ $1',
 您可能打錯URL，或跟隨不正確的連結。
 這又可能是{{SITENAME}}所使用的軟件出現臭蟲。',
 'nosuchspecialpage' => '此特殊頁面不存在',
-'nospecialpagetext' => "<strong>您請求的特殊頁面無效。'''</strong>
+'nospecialpagetext' => '<strong>您請求的特殊頁面無效。</strong>
 
-[[Special:SpecialPages|{{int:specialpages}}]]中載有所有有效特殊頁面的列表。",
+[[Special:SpecialPages|{{int:specialpages}}]]中載有所有有效特殊頁面的列表。',
 
 # General errors
 'error'                => '錯誤',
@@ -589,6 +591,7 @@ $2',
 'badretype'                  => '您所輸入的密碼並不相同。',
 'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'loginerror'                 => '登入錯誤',
+'createaccounterror'         => '無法建立賬戶：$1',
 'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'noname'                     => '{{GENDER:|你|妳|你}}沒有輸入一個有效的用戶名。',
@@ -613,6 +616,7 @@ $2',
 如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，
 您可以忽略此消息並繼續使用您的舊密碼。',
 'noemail'                    => '用戶"$1"沒有登記電子郵件地址。',
+'noemailcreate'              => '您需要提供一個有效的電子郵件地址',
 'passwordsent'               => '用戶"$1"的新密碼已經寄往所登記的電子郵件地址。
 請在收到後再登入。',
 'blocked-mailpassword'       => '由於這個用戶被封禁，我們暫時禁止您請求申請新密碼。造成不便敬請見諒',
@@ -1322,6 +1326,7 @@ $1",
 'right-bigdelete'             => '刪除大量歷史之頁面',
 'right-deleterevision'        => '刪除及同反刪除頁面中的指定修訂',
 'right-deletedhistory'        => '查看已刪除之項目，不含有關的字',
+'right-deletedcontent'        => '查看已刪除修訂中之已刪除的字以及更改',
 'right-browsearchive'         => '搜尋已刪除之頁面',
 'right-undelete'              => '反刪除頁面',
 'right-suppressrevision'      => '查看及恢復由操作員隱藏之修訂',
@@ -1354,6 +1359,7 @@ $1",
 'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-versiondetail'         => '顯示延伸軟件版本的資料',
+'right-root'                  => '在wiki中進行所有的動作',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -2589,10 +2595,12 @@ $1已經被封鎖。您是否想更改這個設定？',
 # Attribution
 'anonymous'        => '{{SITENAME}}的匿名{{PLURAL:$1|用戶|用戶}}',
 'siteuser'         => '{{SITENAME}}用戶$1',
+'anonuser'         => '{{SITENAME}}匿名用戶$1',
 'lastmodifiedatby' => '此頁由$3於$1 $2的最後更改。',
 'othercontribs'    => '在$1的工作基礎上。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}{{PLURAL:$2|用戶|用戶}}$1',
+'anonusers'        => '{{SITENAME}}匿名{{PLURAL:$2|用戶|用戶}}$1',
 'creditspage'      => '頁面致謝',
 'nocredits'        => '該頁沒有致謝名單訊息。',
 
