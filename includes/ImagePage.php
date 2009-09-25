@@ -798,7 +798,7 @@ class ImageHistoryList {
 		$this->img = $imagePage->getDisplayedFile();
 		$this->title = $imagePage->getTitle();
 		$this->imagePage = $imagePage;
-		$this->showThumb = $wgShowArchiveThumbnails;
+		$this->showThumb = $wgShowArchiveThumbnails && $this->img->canRender();
 	}
 
 	public function getImagePage() {
