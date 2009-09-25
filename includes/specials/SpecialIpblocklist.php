@@ -364,7 +364,7 @@ class IPUnblockForm {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
 		$params = $override + $options;
-		$ipblocklist = SpecialPage::getTitleFor( 'IPBlockList' );
+		$ipblocklist = SpecialPage::getTitleFor( 'Ipblocklist' );
 		return $sk->link( $ipblocklist, htmlspecialchars( $title ),
 			( $active ? array( 'style'=>'font-weight: bold;' ) : array() ), $params, array( 'known' ) );
 	}
