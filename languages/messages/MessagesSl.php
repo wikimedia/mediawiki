@@ -550,7 +550,7 @@ Ustvarili ste račun.
 'login'                      => 'Prijava',
 'nav-login-createaccount'    => 'Prijavite se / registrirajte se',
 'loginprompt'                => '<!--Za prijavo v {{GRAMMAR:tožilnik|{{SITENAME}}}} omogočite piškotke.-->',
-'userlogin'                  => 'Prijavite se',
+'userlogin'                  => 'Prijavite se / registrirajte se',
 'logout'                     => 'Odjava',
 'userlogout'                 => 'Odjava',
 'notloggedin'                => 'Niste prijavljeni',

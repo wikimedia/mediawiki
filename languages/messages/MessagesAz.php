@@ -383,7 +383,7 @@ Hesabınız yaradıldı.
 'login'                      => 'Daxil ol',
 'nav-login-createaccount'    => 'Daxil ol / hesab yarat',
 'loginprompt'                => '{{SITENAME}}-ya daxil olmaq üçün "veb kökələrinin" (cookies) istifadəsinə icazə verilməlidir.',
-'userlogin'                  => 'Daxil ol',
+'userlogin'                  => 'Daxil ol və ya istifadəçi yarat',
 'logout'                     => 'Çıxış',
 'userlogout'                 => 'Çıxış',
 'notloggedin'                => 'Daxil olmamısınız',

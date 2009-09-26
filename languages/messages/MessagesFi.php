@@ -697,7 +697,7 @@ Käyttäjätunnuksesi on luotu.
 'login'                      => 'Kirjaudu sisään',
 'nav-login-createaccount'    => 'Kirjaudu sisään tai luo tunnus',
 'loginprompt'                => 'Kirjautumiseen tarvitaan evästeitä.',
-'userlogin'                  => 'Kirjaudu sisään',
+'userlogin'                  => 'Kirjaudu sisään tai luo tunnus',
 'logout'                     => 'Kirjaudu ulos',
 'userlogout'                 => 'Kirjaudu ulos',
 'notloggedin'                => 'Et ole kirjautunut',
