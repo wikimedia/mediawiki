@@ -189,7 +189,7 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 'login'                   => 'Tamong',
 'nav-login-createaccount' => 'Tamong / dapeuta',
 'loginprompt'             => "Droëneuh payah neupeu’udép ''cookies'' beujeuët neutamong u {{SITENAME}}",
-'userlogin'               => 'Tamong',
+'userlogin'               => 'Tamong / dapeuta',
 'logout'                  => 'Teubiët',
 'userlogout'              => 'Teubiët',
 'nologin'                 => "Goh na nan nyang nguy? '''$1'''.",

@@ -298,7 +298,7 @@ Tšhupaleloko (''account'') ya gago e tlhodilwe. O seke wa lebala go fetola [[Sp
 'login'                      => 'Tsena',
 'nav-login-createaccount'    => "Tsena / Tlhola tšhupaleloko (''account'')",
 'loginprompt'                => "O swanela ke go dumella ''cookies'' go ''browser'' go tsena go {{SITENAME}}.",
-'userlogin'                  => 'Tsena',
+'userlogin'                  => "Tsena / tlhola tšhupaleloko (''account'')",
 'logout'                     => 'Etšwa/Tswalela',
 'userlogout'                 => 'Etšwa/Tswalela',
 'notloggedin'                => 'Ga wa tsena',

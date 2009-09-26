@@ -515,7 +515,7 @@ Akkauntın'ız jaratıldı.
 'login'                      => 'Kiriw',
 'nav-login-createaccount'    => 'Kiriw / akkaunt jaratıw',
 'loginprompt'                => "{{SITENAME}} saytına kiriw ushın kukiler qosılg'an bolıwı kerek.",
-'userlogin'                  => 'Kiriw',
+'userlogin'                  => 'Kiriw / akkaunt jaratıw',
 'logout'                     => "Shıg'ıw",
 'userlogout'                 => "Shıg'ıw",
 'notloggedin'                => 'Kirilmegen',

@@ -131,7 +131,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'remembermypassword' => 'iqtuu uikipitia atiq qakakuq atuinnasivuq uvalumajuq qaritaujaq',
 'login'              => 'akunnapuq',
 'loginprompt'        => 'pigialik imatuaq qaritaujaq quukiis (Cookies) pirqaati akunnapuq {{SITENAME}}.',
-'userlogin'          => 'akunnapuq',
+'userlogin'          => 'akunnapuq / pirqaapaa kiinaijakkuvingmi tuqkuqsivik',
 'logout'             => 'anivvik',
 'userlogout'         => 'anivvik',
 'nologin'            => "ajuinnaaq inuquti? '''$1'''.",

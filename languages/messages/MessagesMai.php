@@ -141,7 +141,7 @@ $messages = array(
 
 # Login and logout pages
 'nav-login-createaccount' => 'सदस्य लॉग इन',
-'userlogin'               => 'लॉग इन',
+'userlogin'               => 'लॉग इन / खेसरा बनाऊ',
 'userlogout'              => 'फेर आयब',
 
 # Edit page toolbar

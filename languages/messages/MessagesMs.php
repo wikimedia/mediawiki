@@ -563,7 +563,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'login'                      => 'Log masuk',
 'nav-login-createaccount'    => 'Log masuk / buka akaun',
 'loginprompt'                => 'Anda mesti membenarkan kuki untuk log masuk ke dalam {{SITENAME}}.',
-'userlogin'                  => 'Log masuk',
+'userlogin'                  => 'Log masuk / buka akaun',
 'logout'                     => 'Log keluar',
 'userlogout'                 => 'Log keluar',
 'notloggedin'                => 'Belum log masuk',

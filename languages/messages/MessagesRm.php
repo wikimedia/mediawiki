@@ -301,7 +301,7 @@ Tes conto è vegni creà. Betg emblida da midar tias preferenzas da {{SITENAME}}
 'login'                      => 'Log-in',
 'nav-login-createaccount'    => 'Log-in / crear in conto',
 'loginprompt'                => "Vus stuais avair '''activà cookies''' per pudair s'annunziar tar {{SITENAME}}.",
-'userlogin'                  => "s'annunziar",
+'userlogin'                  => "s'annunziar / crear in nov conto d'utilisader",
 'logout'                     => 'Log-out',
 'userlogout'                 => 'Log-out',
 'notloggedin'                => "Betg s'annunzià",

@@ -178,7 +178,7 @@ Luk [[Special:Version|version page]].',
 # Login and logout pages
 'nav-login-createaccount' => ' Kam insai di sait/ Mek yu-yon yuza',
 'loginprompt'             => 'Yu go geht foh lait yu cookies bifo yu go ebul foh kam insai {{SITENAME}}.',
-'userlogin'               => 'Kam insai di sait',
+'userlogin'               => 'Kam insai di sait / Mek yu-yon yuza',
 'logout'                  => 'Kohmoh na di sait',
 'userlogout'              => 'Kohmoh na di sait',
 'notloggedin'             => 'Yu noh kam insai di sait yet',

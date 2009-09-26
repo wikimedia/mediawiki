@@ -477,7 +477,7 @@ Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga prepere
 'login'                   => 'Sulod',
 'nav-login-createaccount' => 'Rehistro / Dayon',
 'loginprompt'             => 'Kinahanglang naka-enable ang mga koki aron ikaw maka-log-in sa {{SITENAME}}.',
-'userlogin'               => 'Rehistro',
+'userlogin'               => 'Rehistro / Dayon',
 'logout'                  => 'Biya',
 'userlogout'              => 'Biya',
 'notloggedin'             => 'Wala ka pa masulod',
