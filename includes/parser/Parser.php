@@ -2298,7 +2298,8 @@ class Parser
 	 * @private
 	 */
 	function getVariableValue( $index, $frame=false ) {
-		global $wgContLang, $wgSitename, $wgServer, $wgServerName, $wgScriptPath;
+		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
+		global $wgScriptPath, $wgStylePath;
 
 		/**
 		 * Some of these require message or data lookups and can be
@@ -2513,6 +2514,8 @@ class Parser
 				return $wgServerName;
 			case 'scriptpath':
 				return $wgScriptPath;
+			case 'stylepath':
+				return $wgStylePath;
 			case 'directionmark':
 				return $wgContLang->getDirMark();
 			case 'contentlanguage':
