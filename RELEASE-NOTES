@@ -538,6 +538,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3421) Live preview no longer breaks user CSS/JS previews
 * (bug 11264) The file logo on a file description page for documents (PDF, ...)
   now links to the file rather than the file description page
+* Password fields built with HTMLForm now still have the type="password" attribute
+  if $wgHtml5=false.
 
 == API changes in 1.16 ==
 
