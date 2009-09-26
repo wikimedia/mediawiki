@@ -690,7 +690,7 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi [[Special:P
 'login'                      => 'Autentificare',
 'nav-login-createaccount'    => 'Creare cont / Autentificare',
 'loginprompt'                => 'Trebuie să ai modulele cookie activate pentru a te autentifica la {{SITENAME}}.',
-'userlogin'                  => 'Autentificare',
+'userlogin'                  => 'Creare cont / Autentificare',
 'logout'                     => 'Închide sesiunea',
 'userlogout'                 => 'Închide sesiunea',
 'notloggedin'                => 'Nu sunteţi autentificat',

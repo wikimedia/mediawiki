@@ -471,7 +471,7 @@ La registhrazioni è isthadda criadda currettamenti. No dimintiggà di passunari
 'login'                      => 'Intra',
 'nav-login-createaccount'    => 'Intra / registhrazioni',
 'loginprompt'                => 'Pa intrà a {{SITENAME}} è nezzessàriu abirità li cookie.',
-'userlogin'                  => 'Intra',
+'userlogin'                  => 'Intra o cria una noba registhrazioni',
 'logout'                     => 'Esci',
 'userlogout'                 => 'Esci',
 'notloggedin'                => 'Intradda no effettuadda',

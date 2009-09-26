@@ -702,7 +702,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'login'                      => 'Bejelentkezés',
 'nav-login-createaccount'    => 'Bejelentkezés / fiók létrehozása',
 'loginprompt'                => "Engedélyezned kell a sütiket (''cookie''), hogy bejelentkezhess a(z) {{SITENAME}} wikibe.",
-'userlogin'                  => 'Bejelentkezés',
+'userlogin'                  => 'Bejelentkezés / fiók létrehozása',
 'logout'                     => 'Kijelentkezés',
 'userlogout'                 => 'Kijelentkezés',
 'notloggedin'                => 'Nem vagy bejelentkezve',
