@@ -180,7 +180,7 @@ class ApiEditPage extends ApiBase {
 				break;
 			case 'preferences':
 				if ($titleObj->exists())
-					$watch = $wgUser->getOption('watchdefault');
+					$watch = $wgUser->getOption('watchdefault') || $titleObj->userIsWatching();
 				else
 					$watch = $wgUser->getOption('watchcreations');
 				break;
