@@ -304,10 +304,12 @@ class QueryPage {
 				$tRow = $dbr->fetchObject( $tRes );
 
 				if( $tRow ) {
-					$updated = $wgLang->timeAndDate( $tRow->qci_timestamp, true, true );
+					$updated = $wgLang->timeanddate( $tRow->qci_timestamp, true, true );
+					$updateddate = $wgLang->date( $tRow->qci_timestamp, true, true );
+					$updatedtime = $wgLang->time( $tRow->qci_timestamp, true, true );
 					$wgOut->addMeta( 'Data-Cache-Time', $tRow->qci_timestamp );
 					$wgOut->addInlineScript( "var dataCacheTime = '{$tRow->qci_timestamp}';" );
-					$wgOut->addWikiMsg( 'perfcachedts', $updated );
+					$wgOut->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime );
 				} else {
 					$wgOut->addWikiMsg( 'perfcached' );
 				}
