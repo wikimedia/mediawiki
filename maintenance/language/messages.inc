@@ -141,8 +141,6 @@ $wgMessageStructure = array(
 		'category-file-count',
 		'category-file-count-limited',
 		'listingcontinuesabbrev',
-		'index-category',
-		'noindex-category',
 	),
 	'mainpage' => array(
 		'linkprefix',

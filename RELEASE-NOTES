@@ -87,11 +87,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   correctly (img_auth only)
 * $wgUploadMaintenance added to disable file deletions and restorations during
   maintenance
-* UserLoginForm and UserCreateForm hooks, and AuthPlugin::modifyUITemplate, now receive a
-  SpecialPage subclass instead of a QuickTemplate subclass.  Hence there is no
-  $template->set(), etc.  The hook has access to most of the stuff that will go into the
-  Login/Create form; see the documentation on HTMLForm for syntax for extra fields.
-  LoginForm class is deprecated, its state constants are now in the Login class.
 * New hook AbortNewAccountAuto, called before account creation from AuthPlugin-
   or ExtUser-driven requests.
 
@@ -240,7 +235,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * A new permission, 'root', is created.  Analogous to root users on Unix systems,
   the root permission effectively grants all other permissions on a wiki.  Useful
   for debugging and administration.
-* (bug 16979) Tracking categories for __INDEX__ and __NOINDEX__
 * New configuration variable $wgShowPageOnRedlink that can be set to show the page
   instead of an edit interface when visiting a red link. The value can be specified
   for specific usergroups and namespaces.
