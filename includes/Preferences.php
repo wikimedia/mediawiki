@@ -389,7 +389,7 @@ class Preferences {
 	
 			}
 	
-			if( $wgEnableUserEmail ) {
+			if( $wgEnableUserEmail && $user->isAllowed( 'sendemail' ) ) {
 				$defaultPreferences['disablemail'] =
 						array(
 							'type' => 'toggle',

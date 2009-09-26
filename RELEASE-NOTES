@@ -230,16 +230,18 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgUseAJAXCategories allow enabling AJAX based categories system.
   This works on all namespaces. Enabled namespaces can be reduces using
   $wgAJAXCategoriesNamespaces.
-* Admins could disable some variants using $wgDisabledVariants now. ONLY apply on
-  wikis enabled LanguageConverter.
-* A new permission, 'root', is created.  Analogous to root users on Unix systems,
-  the root permission effectively grants all other permissions on a wiki.  Useful
-  for debugging and administration.
-* New configuration variable $wgShowPageOnRedlink that can be set to show the page
-  instead of an edit interface when visiting a red link. The value can be specified
-  for specific usergroups and namespaces.
+* Admins could disable some variants using $wgDisabledVariants now. ONLY apply
+  on wikis enabled LanguageConverter.
+* A new permission, 'root', is created.  Analogous to root users on Unix
+  systems, the root permission effectively grants all other permissions on a
+  wiki. Useful for debugging and administration.
+* New configuration variable $wgShowPageOnRedlink that can be set to show the
+  page instead of an edit interface when visiting a red link. The value can be
+  specified for specific usergroups and namespaces.
 * (bug 16310) Credits page now lists IP addresses rather than saying the number
   of anonymous users that edited the page
+* New permission 'sendemail' added. Default right for all registered users. Can
+  for example be used to prevent new accounts from sending spam.
 
 === Bug fixes in 1.16 ===
 
@@ -530,10 +532,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20702) Parser functions can now be used correctly in
   MediaWiki:Missing-article
 * (bug 14117) "redirected from" is now also shown on foreign file redirects
-* (bug 18436) JavaScript-added AJAX messages (from the JS watch/unwatch, for 
+* (bug 18436) JavaScript-added AJAX messages (from the JS watch/unwatch, for
   instance) no longer include a redundant "display:block" hardcoded style.
 * (bug 20802) Fixed thumb.php redirect handling
-* (bug 17747) Only display thumbnail column in file history if the image can 
+* (bug 17747) Only display thumbnail column in file history if the image can
   be rendered.
 * (bug 3421) Live preview no longer breaks user CSS/JS previews
 * (bug 11264) The file logo on a file description page for documents (PDF, ...)

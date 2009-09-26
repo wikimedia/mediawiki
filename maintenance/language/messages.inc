@@ -1111,6 +1111,7 @@ $wgMessageStructure = array(
 		'right-override-export-depth',
 		'right-versiondetail',
 		'right-root',
+		'right-sendemail',
 	),
 	'rightslog' => array(
 		'rightslog',

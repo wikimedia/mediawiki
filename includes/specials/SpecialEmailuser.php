@@ -290,6 +290,10 @@ class EmailUserForm {
 	static function getPermissionsError ( $user, $editToken ) {
 		if( !$user->canSendEmail() ) {
 			wfDebug( "User can't send.\n" );
+			// FIXME: this is also the error if user is in a group
+			//        that is not allowed to send e-mail (no right
+			//        'sendemail'). Error messages should probably
+			//        be more fine grained.
 			return "mailnologin";
 		}
 		
