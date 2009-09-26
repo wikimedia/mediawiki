@@ -3510,12 +3510,11 @@ class User {
 				: '';
 		}
 		$log = new LogPage( 'newusers' );
-		$log->addEntry( 
-			$action, 
-			$this->getUserPage(), 
-			$message, 
-			array( $this->getId() ), 
-			$creator 
+		$log->addEntry(
+			$action,
+			$this->getUserPage(),
+			$message,
+			array( $this->getId() )
 		);
 		return true;
 	}
