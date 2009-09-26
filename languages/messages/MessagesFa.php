@@ -523,8 +523,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|این رده تنها حاوی پروندهٔ زیر است.|{{PLURAL:$1|این پرونده|این $1 پرونده}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 پرونده است.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|پروندهٔ|$1 پروندهٔ}} زیر در ردهٔ فعلی قرار دارند.',
 'listingcontinuesabbrev'         => '(ادامه)',
-'index-category'                 => 'صفحه‌های نمایه شده',
-'noindex-category'               => 'صفحه‌های نمایه نشده',
 
 'mainpagetext'      => "<big>'''نرم‌افزار ویکی با موفقیت نصب شد.'''</big>",
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]

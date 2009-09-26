@@ -450,8 +450,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|קטגוריה זו כוללת את הקובץ הבא בלבד|דף קטגוריה זה כולל את {{PLURAL:$1|הקובץ הבא|$1 הקבצים הבאים}}, מתוך $2 בקטגוריה כולה}}.',
 'category-file-count-limited'    => 'קטגוריה זו כוללת את {{PLURAL:$1|הקובץ הבא|$1 הקבצים הבאים}}.',
 'listingcontinuesabbrev'         => '(המשך)',
-'index-category'                 => 'דפים המופיעים במנועי חיפוש',
-'noindex-category'               => 'דפים המוסתרים ממנועי חיפוש',
 
 'mainpagetext'      => "<big>'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''</big>",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.

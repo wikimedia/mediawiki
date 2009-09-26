@@ -148,8 +148,6 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Sta categorije condene sulamende 'u seguende file.|{{PLURAL:$1|'U seguende file stè |le seguende $1 files stonne}} jndr'à sta categorije, sus a $2 totele.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
 'listingcontinuesabbrev'         => 'cond.',
-'index-category'                 => 'Pàggene indicizzate',
-'noindex-category'               => 'Pàggene none indicizzate',
 
 'mainpagetext'      => "<big>'''MediaUicchi ha state 'nstallete.'''</big>",
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.

@@ -412,8 +412,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|このカテゴリへは次の1ファイルしか属していません。|以下にこのカテゴリへ属しているファイル $2 個中 $1 個を表示しています。}}',
 'category-file-count-limited'    => 'このカテゴリへは以下の{{PLURAL:$1|ファイル $1 個}}が属しています。',
 'listingcontinuesabbrev'         => 'の続き',
-'index-category'                 => '検索エンジンにインデックス化されるページ',
-'noindex-category'               => '検索エンジンにインデックス化されないページ',
 
 'mainpagetext'      => "<big>'''MediaWikiが正常にインストールされました。'''</big>",
 'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%97:%E7%9B%AE%E6%AC%A1 ユーザーズガイド]を参照してください。

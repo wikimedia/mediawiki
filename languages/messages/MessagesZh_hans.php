@@ -322,8 +322,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|此分类只有下列一个文件。|此分类包含下列$1个文件，共有$2个文件。}}',
 'category-file-count-limited'    => '此分类包含下列$1个文件。',
 'listingcontinuesabbrev'         => '续',
-'index-category'                 => '已做索引的页面',
-'noindex-category'               => '未做索引的页面',
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki。'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！

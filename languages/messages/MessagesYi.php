@@ -275,8 +275,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|די קאטעגאריע האט נאר די פֿאלגנדע טעקע|די קאטעגאריע האט די פֿאלגנדע {{PLURAL:$1| טעקע|$1 טעקעס}}, פֿון $2 אינגאנצן}}.',
 'category-file-count-limited'    => 'די פֿאלגנדע {{PLURAL:$1|טעקע|$1 טעקעס}} זענען אין דער דאזיגע קאטעגאריע.',
 'listingcontinuesabbrev'         => '(המשך)',
-'index-category'                 => 'אינדעקסירטע בלעטער',
-'noindex-category'               => 'אומאינדעקסירטע בלעטער',
 
 'mainpagetext'      => "<big>'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''</big>",
 'mainpagedocfooter' => "גיט זיך אן עצה מיט [http://meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.

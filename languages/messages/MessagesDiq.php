@@ -140,8 +140,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|No kategori de tena dosyayo cêrın esto.|pêroyê ey $2 ra, {{PLURAL:$1|dosya|$1 dosya}}yo cêrın no kategori de yo.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|dosya|$1 dosya}}o cêrın no kategori de yo.',
 'listingcontinuesabbrev'         => 'dewam',
-'index-category'                 => 'pelê endeksın',
-'noindex-category'               => 'Pelê ke endeksın niyê',
 
 'linkprefix'        => "<big>'''MediaWiki niya ro.'''</big>",
 'mainpagetext'      => "<big>'''MediaWiki vıst ra ser, vıraziya.'''</big>",

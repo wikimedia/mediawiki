@@ -160,8 +160,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'category-file-count'            => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky faýly öz içine alýar.|Jemi $2 sanydan, aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.}}',
 'category-file-count-limited'    => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.',
 'listingcontinuesabbrev'         => '(dowamy)',
-'index-category'                 => 'Indeksirlenen sahypalar',
-'noindex-category'               => 'Indeksirlenmedik sahypalar',
 
 'mainpagetext'      => "<big>'''MediaWiki şowlulyk bilen guruldy.'''</big>",
 'mainpagedocfooter' => 'Wiki programmasynyň ulanylyşy hakynda maglumat almak üçin [http://meta.wikimedia.org/wiki/Help:Contents ulanyjy gollanmasyna] serediň.

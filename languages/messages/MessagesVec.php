@@ -262,8 +262,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Sta categoria la contien un solo file, indicà de seguito.|Sta categoria la contien {{PLURAL:$1|un file, indicà|$1 file, indicà}} de seguito, su un total de $2.}}',
 'category-file-count-limited'    => 'Sta categoria la contien {{PLURAL:$1|el file indicà|i $1 file indicà}} de seguito.',
 'listingcontinuesabbrev'         => 'cont.',
-'index-category'                 => 'Pagine indicizà',
-'noindex-category'               => 'Pagine mia indicizà',
 
 'mainpagetext'      => "<big>'''MediaWiki xè stà instałà con sucesso.'''</big>",
 'mainpagedocfooter' => "Varda ła [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] (in tałian) par verghe piassè informasion su l'uso del software wiki.
