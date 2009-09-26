@@ -535,6 +535,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20802) Fixed thumb.php redirect handling
 * (bug 17747) Only display thumbnail column in file history if the image can 
   be rendered.
+* (bug 3421) Live preview no longer breaks user CSS/JS previews
 
 == API changes in 1.16 ==
 
