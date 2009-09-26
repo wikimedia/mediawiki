@@ -2299,8 +2299,6 @@ END
 	 * @return array
 	 */
 	public function getEditButtons(&$tabindex) {
-		global $wgLivePreview, $wgUser;
-
 		$buttons = array();
 
 		$temp = array(
@@ -2315,7 +2313,7 @@ END
 		$buttons['save'] = Xml::element('input', $temp, '');
 
 		++$tabindex; // use the same for preview and live preview
-		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
+		if ( $this->useLivePreview() ) {
 			$this->doLivePreviewScript(); // Add to output
 			
 			$temp = array(
@@ -2326,7 +2324,6 @@ END
 				'value'     => wfMsg('showpreview'),
 				'accesskey' => '',
 				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
-				'style'     => 'display: none;',
 			);
 			$buttons['preview'] = Xml::element('input', $temp, '');
 
@@ -2338,6 +2335,7 @@ END
 				'value'     => wfMsg('showlivepreview'),
 				'accesskey' => wfMsg('accesskey-preview'),
 				'title'     => '',
+				'style'     => 'display: none;',
 			);
 			
 			$buttons['live'] = Xml::element('input', $temp, '');
@@ -2368,6 +2366,21 @@ END
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
+	}
+
+	/**
+	 * Whether to use live preview for this page
+	 * This disables live preview when editing css/js user subpages so that the
+	 * user can preview them (bug 3421)
+	 *
+	 * @return Boolean
+	 */
+	public function useLivePreview() {
+		global $wgLivePreview, $wgUser;
+
+		return $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) &&
+			!( ( $this->mTitle->isCssSubpage() && $this->mTitle->userCanEditCssSubpage() ) ||
+			( $this->mTitle->isJsSubpage() && $this->mTitle->userCanEditCssSubpage() ) );
 	}
 
 	/**

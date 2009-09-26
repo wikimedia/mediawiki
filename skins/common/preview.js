@@ -4,15 +4,23 @@
 
 function setupLivePreview() {
 	var livePreviewButton = $j('#wpLivePreview');
-	
+
+	$j('#wpPreview').hide();
+	livePreviewButton.show();
+
 	livePreviewButton.click( doLivePreview );
 }
 
 function doLivePreview( e ) {
 	e.preventDefault();
 	var previewText = $j('#wpTextbox1').val();
+
+	var editToken = $j( '[name="wpEditToken"]' ).attr( 'value' );
+	var editTime = $j( '[name="wpEdittime"]' ).attr( 'value' );
+	var startTime = $j( '[name="wpStarttime"]' ).attr( 'value' );
+
 	var postData = { 'action' : 'submit', 'wpTextbox1' : previewText, 'wpPreview' : true,
-						'title' : wgPageName };
+		'wpEditToken' : editToken, 'wpEdittime': editTime, 'wpStarttime': startTime, 'title' : wgPageName };
 	
 	// Hide active diff, used templates, old preview if shown
 	$j('#wikiDiff').slideUp();
