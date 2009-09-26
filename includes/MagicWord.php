@@ -64,6 +64,7 @@ class MagicWord {
 		'server',
 		'servername',
 		'scriptpath',
+		'stylepath',
 		'pagename',
 		'pagenamee',
 		'fullpagename',
