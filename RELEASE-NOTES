@@ -536,6 +536,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17747) Only display thumbnail column in file history if the image can 
   be rendered.
 * (bug 3421) Live preview no longer breaks user CSS/JS previews
+* (bug 11264) The file logo on a file description page for documents (PDF, ...)
+  now links to the file rather than the file description page
 
 == API changes in 1.16 ==
 

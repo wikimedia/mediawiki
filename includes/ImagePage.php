@@ -443,7 +443,7 @@ class ImagePage extends Article {
 					$icon= $this->displayImg->iconThumb();
 
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
-					$icon->toHtml( array( 'desc-link' => true ) ) .
+					$icon->toHtml( array( 'file-link' => true ) ) .
 					"</div>\n" );
 				}
 
