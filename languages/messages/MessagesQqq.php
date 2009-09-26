@@ -236,8 +236,6 @@ This is the toolbar: [[Image:Toolbar.png]]",
 * $1: number of files shown',
 'listingcontinuesabbrev'         => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
-'index-category'                 => 'Name of the category where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed',
-'noindex-category'               => 'Name of the category where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed',
 
 'linkprefix'        => '{{optional}}',
 'mainpagetext'      => 'Along with {{msg|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
@@ -598,7 +596,7 @@ HTML markup cannot be used.",
 {{Identical|Log in}}",
 'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.",
 'loginprompt'                => 'A small notice in the log in form.',
-'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in.',
+'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.',
 'logout'                     => '{{Identical|Log out}}',
 'userlogout'                 => '{{Identical|Log out}}',
 'notloggedin'                => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
