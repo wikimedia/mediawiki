@@ -3492,16 +3492,15 @@ class User {
 
 	/**
 	 * Add a newuser log entry for this user
-	 * @param $creator User who
 	 * @param $byEmail Boolean: account made by email?
 	 */
-	public function addNewUserLogEntry( $creator, $byEmail = false ) {
+	public function addNewUserLogEntry( $byEmail = false ) {
 		global $wgUser, $wgContLang, $wgNewUserLog;
 		if( empty($wgNewUserLog) ) {
 			return true; // disabled
 		}
 		$talk = $wgContLang->getFormattedNsText( NS_TALK );
-		if( $creator != $wgUser ) {
+		if( $this->getName() == $wgUser->getName() ) {
 			$action = 'create';
 			$message = '';
 		} else {
