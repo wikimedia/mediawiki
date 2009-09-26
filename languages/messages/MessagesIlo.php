@@ -353,7 +353,7 @@ Dimo liplipatan a sukatan dagiti preferenciam iti [[Special:Preferences|{{SITENA
 'login'                      => 'Sumrek',
 'nav-login-createaccount'    => 'Mangaramid iti account wenno ag-login',
 'loginprompt'                => 'Nasken a naka-enable dagiti cookies ti browser tapno maka-login iti {{SITENAME}}.',
-'userlogin'                  => 'Ag-login',
+'userlogin'                  => 'Mangaramid iti account wenno ag-login',
 'logout'                     => 'Rummuar',
 'userlogout'                 => 'Rummuar',
 'notloggedin'                => 'Saan a naka-logged in',

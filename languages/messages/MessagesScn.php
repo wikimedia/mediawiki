@@ -541,7 +541,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li [
 'login'                      => 'Trasi',
 'nav-login-createaccount'    => 'Riggìstrati o trasi',
 'loginprompt'                => "Tu hai a abbilitari li ''cookies'' pi tràsiri ntâ {{SITENAME}}.",
-'userlogin'                  => 'Trasi',
+'userlogin'                  => 'Riggìstrati o trasi',
 'logout'                     => 'Nesci',
 'userlogout'                 => 'Nesci',
 'notloggedin'                => "Nun v'aviti riggistratu",

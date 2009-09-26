@@ -642,7 +642,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra / Registrati',
 'loginprompt'                => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
-'userlogin'                  => 'Entra',
+'userlogin'                  => 'Entra / Registrati',
 'logout'                     => 'Esci',
 'userlogout'                 => 'esci',
 'notloggedin'                => 'Accesso non effettuato',
