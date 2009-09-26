@@ -2856,7 +2856,7 @@ class Title {
 	 */
 	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
 		global $wgUseSquid, $wgUser;
-		$fname = 'Title::moveOverExistingRedirect';
+
 		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		if ( $reason ) {
@@ -2878,7 +2878,7 @@ class Title {
 		# by definition if we've got here it's rather uninteresting.
 		# We have to remove it so that the next step doesn't trigger
 		# a conflict on the unique namespace+title index...
-		$dbw->delete( 'page', array( 'page_id' => $newid ), $fname );
+		$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
 		if ( !$dbw->cascadingDeletes() ) {
 			$dbw->delete( 'revision', array( 'rev_page' => $newid ), __METHOD__ );
 			global $wgUseTrackbacks;
@@ -2914,7 +2914,7 @@ class Title {
 				'page_latest'    => $nullRevId,
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
-			$fname
+			__METHOD__
 		);
 		$nt->resetArticleID( $oldid );
 
@@ -2935,13 +2935,13 @@ class Title {
 
 			# Now, we record the link from the redirect to the new title.
 			# It should have no other outgoing links...
-			$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), $fname );
+			$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
 			$dbw->insert( 'pagelinks',
 				array(
 					'pl_from'      => $newid,
 					'pl_namespace' => $nt->getNamespace(),
 					'pl_title'     => $nt->getDBkey() ),
-				$fname );
+				__METHOD__ );
 			$redirectSuppressed = false;
 		} else {
 			$this->resetArticleID( 0 );
@@ -2970,7 +2970,7 @@ class Title {
 	 */
 	private function moveToNewTitle( &$nt, $reason = '', $createRedirect = true ) {
 		global $wgUseSquid, $wgUser;
-		$fname = 'MovePageForm::moveToNewTitle';
+
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		if ( $reason ) {
 			$comment .= wfMsgExt( 'colon-separator',
@@ -3004,7 +3004,7 @@ class Title {
 				'page_latest'    => $nullRevId,
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
-			$fname
+			__METHOD__
 		);
 		$nt->resetArticleID( $oldid );
 
@@ -3029,7 +3029,7 @@ class Title {
 					'pl_from'      => $newid,
 					'pl_namespace' => $nt->getNamespace(),
 					'pl_title'     => $nt->getDBkey() ),
-				$fname );
+				__METHOD__ );
 			$redirectSuppressed = false;
 		} else {
 			$this->resetArticleID( 0 );
