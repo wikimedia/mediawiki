@@ -1931,6 +1931,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-versiondetail'         => 'Show the extended software version information',
 'right-root'                  => 'Perform all actions on the wiki',
+'right-sendemail'             => 'Send e-mail to other users',
 
 # User rights log
 'rightslog'      => 'User rights log',
