@@ -444,7 +444,7 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'login'                      => 'Mlebu log',
 'nav-login-createaccount'    => 'Log mlebu / nggawé rékening (akun)',
 'loginprompt'                => "Panjenengan kudu ngaktifaké ''cookies'' supaya bisa mlebu (log in) ing {{SITENAME}}.",
-'userlogin'                  => 'Mlebu log',
+'userlogin'                  => 'Mlebu log / gawé rékening (akun)',
 'logout'                     => 'Oncat',
 'userlogout'                 => 'Metu log',
 'notloggedin'                => 'Durung mlebu log',

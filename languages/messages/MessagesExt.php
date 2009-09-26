@@ -363,7 +363,7 @@ Ya está criá la tu cuenta. Alcuerdati de chambal las tus preferéncias al tent
 'login'                      => 'Entral',
 'nav-login-createaccount'    => 'Entral/Crial cuenta',
 'loginprompt'                => 'Ebis atival las cookies pa entral en {{SITENAME}}.',
-'userlogin'                  => 'Entral',
+'userlogin'                  => 'Entral/Crial cuenta',
 'logout'                     => 'Salil',
 'userlogout'                 => 'Salil',
 'notloggedin'                => "Nu t'alcuentras rustriu",

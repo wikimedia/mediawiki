@@ -509,7 +509,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'login'                      => 'Conventum aperire',
 'nav-login-createaccount'    => 'Conventum aperire / conventum creare',
 'loginprompt'                => 'Cookies potestatem facere debes ut conventum aperire.',
-'userlogin'                  => 'Conventum aperire',
+'userlogin'                  => 'Conventum aperire / conventum creare',
 'logout'                     => 'Conventum concludere',
 'userlogout'                 => 'Conventum concludere',
 'notloggedin'                => 'Conventum non est apertum',

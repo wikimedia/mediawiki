@@ -451,7 +451,7 @@ Hasabyňyz açyldy.
 'login'                      => 'Sessiýa aç',
 'nav-login-createaccount'    => 'Sessiýa aç / täze hasap edin',
 'loginprompt'                => '{{SITENAME}} saýtynda sessiýa açmak üçin kukileri işletmegiňiz zerurdyr.',
-'userlogin'                  => 'Sessiýa aç',
+'userlogin'                  => 'Sessiýa aç / täze hasap edin',
 'logout'                     => 'Sessiýany ýap',
 'userlogout'                 => 'Sessiýany ýap',
 'notloggedin'                => 'Sessiýa açyk däl',

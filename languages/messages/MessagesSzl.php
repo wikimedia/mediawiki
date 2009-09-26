@@ -388,7 +388,7 @@ Uotwarli my sam lo Ćebje kůnto.
 'login'                      => 'Zaloguj śe',
 'nav-login-createaccount'    => 'Logowańy / tworzyńy kůnta',
 'loginprompt'                => 'Muśiš mjeć zouůnčůne cookies coby můc śe sam zalůgować.',
-'userlogin'                  => 'Lůgowańy',
+'userlogin'                  => 'Lůgowańy / Twořyńy kůnta',
 'logout'                     => 'Wyloguj',
 'userlogout'                 => 'Wylogowańy',
 'notloggedin'                => 'Ńy ježeś zalůgowany',

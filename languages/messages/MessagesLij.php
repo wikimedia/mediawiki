@@ -348,7 +348,7 @@ O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe 
 'login'                      => 'Intra',
 'nav-login-createaccount'    => 'Intra / Registrate',
 'loginprompt'                => "Ti deivi avéi e lesche (''cookies'') abilitæ into têu navigatô pe intrâ in {{SITENAME}}.",
-'userlogin'                  => 'Intra',
+'userlogin'                  => 'Intra / Registrate',
 'logout'                     => 'Sciorti',
 'userlogout'                 => 'Sciorti',
 'nologin'                    => "No ti g'hæ ancon accesso? '''$1'''.",

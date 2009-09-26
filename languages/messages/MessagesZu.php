@@ -113,7 +113,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'yourpasswordagain'  => 'Bhala izwi elingenangozi lakho kabusha',
 'remembermypassword' => 'Ngikhumbule',
 'login'              => 'Ngena',
-'userlogin'          => 'Ngena',
+'userlogin'          => 'Ngena / Dala ikhawundi',
 'logout'             => 'Phuma',
 'userlogout'         => 'Phuma',
 'notloggedin'        => 'Awungenile',

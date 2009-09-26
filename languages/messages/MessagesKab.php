@@ -340,7 +340,7 @@ Isem n wemseqdac inek yettwaxleq. Ur tettuḍ ara ad tbeddleḍ Isemyifiyen n {{
 'login'                      => 'Kcem',
 'nav-login-createaccount'    => 'Kcem / Xleq isem n wemseqdac',
 'loginprompt'                => 'Yessefk ad teǧǧiḍ ikukiyen (cookies) iwakken ad tkecmeḍ ar {{SITENAME}}.',
-'userlogin'                  => 'Kcem',
+'userlogin'                  => 'Kcem / Xleq isem n wemseqdac',
 'logout'                     => 'Ffeɣ',
 'userlogout'                 => 'Ffeɣ',
 'notloggedin'                => 'Ur tekcimeḍ ara',

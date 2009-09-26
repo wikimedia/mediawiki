@@ -88,7 +88,7 @@ $messages = array(
 'nstab-image' => 'Фишиер',
 
 # Login and logout pages
-'userlogin'  => 'Креазэ конт',
+'userlogin'  => 'Креазэ конт / Аутентификаре',
 'userlogout' => 'Ынкиде сесиуня',
 
 # Edit pages

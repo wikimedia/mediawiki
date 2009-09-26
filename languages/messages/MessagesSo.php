@@ -240,7 +240,7 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]
 'remembermypassword'         => 'Kumbuyuutarkaan ku xasuusnaaw gudagalkeyga',
 'yourdomainname'             => 'Magacaga shabakada',
 'login'                      => 'Gudaha gal',
-'userlogin'                  => 'Gudaha gal',
+'userlogin'                  => 'Gudaha gal / akoon sameyso',
 'logout'                     => 'Ka bax',
 'userlogout'                 => 'Ka bax',
 'notloggedin'                => 'Gudaha kuma jirtid',

@@ -96,7 +96,7 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'yourpasswordagain'  => 'Kwala selotlolo sa gago sa sephiri gape:',
 'remembermypassword' => 'Gakologelwa ikwadiso yame mo khompiutareng e',
 'login'              => 'Ikwadise',
-'userlogin'          => 'Ikwadise',
+'userlogin'          => 'Ikwadise / ipulela tsebe',
 'logout'             => 'Tswala',
 'userlogout'         => 'Tswala',
 'notloggedin'        => 'Ga o a ikwadisa',

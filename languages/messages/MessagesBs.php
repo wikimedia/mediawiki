@@ -684,7 +684,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'login'                      => 'Prijavi se',
 'nav-login-createaccount'    => 'Prijavi se / Registruj se',
 'loginprompt'                => "Morate imati kolačiće ('''cookies''') omogućene da biste se prijavili na {{SITENAME}}.",
-'userlogin'                  => 'Prijavi se',
+'userlogin'                  => 'Prijavi se / Registruj se',
 'logout'                     => 'Odjavi me',
 'userlogout'                 => 'Odjavi me',
 'notloggedin'                => 'Niste prijavljeni',

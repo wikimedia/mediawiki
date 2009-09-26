@@ -42,7 +42,7 @@ $messages = array(
 
 # Login and logout pages
 'login'         => 'Melebu',
-'userlogin'     => 'Melebu',
+'userlogin'     => 'Melebu / gawe kaca anggota (account)',
 'logout'        => 'Metu',
 'userlogout'    => 'Metu',
 'createaccount' => 'Gawe Kaca Anggota',

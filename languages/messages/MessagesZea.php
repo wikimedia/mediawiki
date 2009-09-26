@@ -392,7 +392,7 @@ Vergeet nie je [[Special:Preferences|vòkeuren voe {{SITENAME}}]] an te passen.'
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden / Inschrieven',
 'loginprompt'                => "Je mò cookies ineschaokeld ène om je te kunn'n anmelden bie {{SITENAME}}.",
-'userlogin'                  => 'Anmelden',
+'userlogin'                  => 'Anmelden / Inschrieven',
 'logout'                     => 'Ofmelden',
 'userlogout'                 => 'Ofmelden',
 'notloggedin'                => 'Nie anemeld',
