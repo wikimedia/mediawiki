@@ -391,8 +391,6 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Оваа категорија ја содржи само следната податотека.|{{PLURAL:$1|Следната податотека е|Следните $1 податотеки се}} во оваа категорија, од вкупно $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Следнава податотека е|Следниве $1 податотеки се}} во оваа категорија.',
 'listingcontinuesabbrev'         => 'продолжува',
-'index-category'                 => 'Индексирани страници',
-'noindex-category'               => 'Неиндексирани страници',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "<big>'''Успешно инсталирање на MediaWiki.'''</big>",
