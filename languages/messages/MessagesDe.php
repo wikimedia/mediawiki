@@ -700,7 +700,7 @@ Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software ge
 'badtitle'             => 'Ungültiger Titel',
 'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
-'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
+'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $2, $3 Uhr',
 'querypage-no-updates' => "'''Die Aktualisierungsfunktion für diese Seite ist zurzeit deaktiviert. Die Daten werden bis auf Weiteres nicht erneuert.'''",
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
@@ -1539,6 +1539,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-versiondetail'         => 'Detailinformation über die Software und ihre Versionsdaten einsehen',
 'right-root'                  => 'Alle Aktionen auf dem Wiki ausführen',
+'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',

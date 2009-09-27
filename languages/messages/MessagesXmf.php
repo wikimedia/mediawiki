@@ -692,6 +692,7 @@ $messages = array(
 
 # Special:NewFiles
 'newimages' => 'ახალ სურათეფ',
+'ilsubmit'  => 'გორუა',
 
 # Bad image list
 'bad_image_list' => 'ფორმატ რე უკულიანიშნერო:

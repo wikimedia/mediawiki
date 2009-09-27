@@ -1250,6 +1250,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-bigdelete'             => "Scangille le pàggene cu 'na storia longa longa",
 'right-deleterevision'        => 'Scangille o repristine le revisiune specifiche de le pàggene',
 'right-deletedhistory'        => "Vide le versiune, d'u cunde, scangellate, senza 'u teste lore associate",
+'right-deletedcontent'        => "Vide 'u teste scangellate e le cangiaminde 'mbrà le versiune scangellate",
 'right-browsearchive'         => 'Cirche le pàggene scangellate',
 'right-undelete'              => "Repristine 'na pàgene",
 'right-suppressrevision'      => "Revide e repristine le revisiune scunnete da l'amministrature",
@@ -1283,6 +1284,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-versiondetail'         => "Fà vedè le 'mbormaziune d'a versione estese d'u software",
 'right-root'                  => "Esegue tutte l'aziune sus a Uicchi",
+'right-sendemail'             => "Manne 'a mail a otre utinde",
 
 # User rights log
 'rightslog'      => "Archivie de le diritte de l'utende",
@@ -1492,8 +1494,20 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Accesse negate',
+'img-auth-nopathinfo'   => "No se iacchie PATH_INFO.
+'U server tue non g'è 'mbostate o non ge passe st'mbormazione.
+Pò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.
+Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-notindir'     => "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
+'img-auth-badtitle'     => 'Non ge se pò costruì \'nu titele valide da "$1".',
 'img-auth-nologinnWL'   => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
 'img-auth-nofile'       => 'File "$1" non g\'esiste.',
+'img-auth-isdir'        => 'Tu ste ppruève a trasè jndr\'à cartelle "$1".
+Sulamende le file ponne trasè.',
+'img-auth-streaming'    => 'Streaming "$1".',
+'img-auth-public'       => "'A funziona de img_auth.php jè 'u resultate de le file da 'na Uicchi private.
+Sta Uicchi jè configurate cumme a 'na Uicchi pubbleche.
+Pe 'na securezze a uerre proprie, img_auth.php jè disabbilitate.",
 'img-auth-noread'       => 'L\'utende non ge tène l\'accesse pe leggere "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1592,6 +1606,7 @@ Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune
 ** Violazione d'u Copyright
 ** File duplichete",
 'filedelete-edit-reasonlist'  => "Cange le mutive d'a scangellazione",
+'filedelete-maintenance'      => "Scangellaminde e repristinaminde de le file jè temboraneamende disabbilitate duranne 'a manutenzione.",
 
 # MIME search
 'mimesearch'         => "Ricerca jndr'à 'u MIME",
@@ -2218,6 +2233,10 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'autoblocker'                     => 'Autobloccate purcè l\'indirizze IP tue ha state recendemente ausate da "[[User:$1|$1]]".
 \'U mutive date pu blocche de $1 ète: "$2"',
 'blocklogpage'                    => 'Archivije de le Bloccaminde',
+'blocklog-showlog'                => "Stu utende ha state bloccate precedendemende.
+L'archivije de le bloccaminde 'u puè acchià aqquà sotte pe riferimende:",
+'blocklog-showsuppresslog'        => "Stu utende ha state bloccate e scunnute precedendemende.
+L'archivije de le soppressiune 'u puè acchià aqquà sotte pe riferimende:",
 'blocklogentry'                   => "blocchete [[$1]] pe 'nu timbe de $2 $3",
 'reblock-logentry'                => "cangiate l'imbostazione de le blocche pe [[$1]] cu 'na data de scadenze de $2 $3",
 'blocklogtext'                    => "Quiste è l'archivije de l'aziune de blocche e sblocche pe l'utinde.
@@ -2530,10 +2549,12 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 # Attribution
 'anonymous'        => '{{PLURAL:$1|utende|utinde}} anonime de {{SITENAME}}',
 'siteuser'         => 'Utende de {{SITENAME}} $1',
+'anonuser'         => 'Utende anonime de {{SITENAME}} $1',
 'lastmodifiedatby' => "Sta pàgene ha state cangiate l'urtema vote a le $2, d'u $1 da $3.",
 'othercontribs'    => "Basete sus a 'na fatije de $1.",
 'others'           => 'otre',
 'siteusers'        => '{{PLURAL:$2|utende|utinde}} de {{SITENAME}} $1',
+'anonusers'        => '{{PLURAL:$2|utende|utinde}} anonime de {{SITENAME}} $1',
 'creditspage'      => 'Pàgene de le crediti',
 'nocredits'        => "Non ge stonne 'mbormaziune sus a le credite disponibbele pe sta pàgene.",
 

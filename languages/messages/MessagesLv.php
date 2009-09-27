@@ -341,7 +341,8 @@ $messages = array(
 Tas var būt no drukas kļūdas URL, vai arī no kļūdainas saites.
 Tas arī var būt saistīts ar {{GRAMMAR:ģenitīvs|{{SITENAME}}}} programmatūras kļūdu.',
 'nosuchspecialpage' => 'Nav tādas īpašās lapas',
-'nospecialpagetext' => 'Tu esi pieprasījis īpašo lapu, ko wiki neatpazīst.',
+'nospecialpagetext' => 'Tu esi pieprasījis īpašo lapu, ko wiki neatpazīst.
+Derīgo īpašo lapu saraksts atrodas te: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Kļūda',
@@ -447,6 +448,7 @@ Tavas pagaidu paroles deriiguma terminsh beigsies peec {{PLURAL:$5|vienas dienas
 
 Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies savu veco paroli, šo var ignorēt. Vecā parole joprojām darbojas.',
 'noemail'                    => 'Lietotājs "$1" nav reģistrējis e-pasta adresi.',
+'noemailcreate'              => 'Tev jānorāda derīgu e-pasta adresi',
 'passwordsent'               => 'Esam nosūtījuši jaunu paroli uz e-pasta adresi, kuru ir norādījis lietotājs $1. Lūdzu, nāc iekšā ar jauno paroli, kad būsi to saņēmis.',
 'blocked-mailpassword'       => "Tava IP adrese ir bloķēta un tāpēc nevar lietot paroles atjaunošanas (''recovery'') funkciju, lai nevarētu apiet bloku.",
 'eauthentsent'               => "Apstiprinājuma e-pasts tika nosūtīts uz norādīto e-pasta adresi. Lai varētu saņemt citus ''meilus'', izpildi vēstulē norādītās instrukcijas, lai apstiprinātu, ka šī tiešām ir tava e-pasta adrese.",
@@ -471,6 +473,8 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 'newpassword'               => 'Jaunā parole',
 'retypenew'                 => 'Atkārto jauno paroli',
 'resetpass-submit-loggedin' => 'Mainīt paroli',
+'resetpass-wrong-oldpass'   => 'Nepareiza pagaidu vai galvenā parole.
+Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis jaunu pagaidu paroli.',
 'resetpass-temp-password'   => 'Pagaidu parole:',
 
 # Edit page toolbar
@@ -511,6 +515,7 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 'missingcommentheader'       => "'''Atgādinājums:''' Tu šim komentāram neesi norādījis virsrakstu/tematu.
 Ja tu vēlreiz uzspiedīsi uz Saglabāt, tavas izmaiņas tiks saglabātas bez tā virsraksta.",
 'summary-preview'            => 'Kopsavilkuma pirmskats:',
+'subject-preview'            => 'Kopsavilkuma/virsraksta pirmskats:',
 'blockedtitle'               => 'Lietotājs ir bloķēts.',
 'blockedtext'                => "<big>'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''</big>
 
@@ -546,6 +551,9 @@ Lūdzu iekļauj šos visos ziņojumos, kurus sūti adminiem, apspriežot šo blo
 'whitelistedittext'          => 'Tev $1 lai varētu rediģēt lapas.',
 'confirmedittext'            => 'Lai varētu izmainīt lapas, vispirms jāapstiprina savu e-pasta adresi.
 Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzstādījumos]].',
+'nosuchsectiontitle'         => 'Nav šādas nodaļas',
+'nosuchsectiontext'          => 'Tu mēģināji izmainīt neeksistējošu nodaļu.
+Tā kā te nav nodaļas $1, te nav kur saglabāt tavu izmaiņu.',
 'loginreqtitle'              => 'Nepieciešama ieiešana',
 'loginreqlink'               => 'login',
 'accmailtitle'               => 'Parole izsūtīta.',
@@ -681,9 +689,10 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 # Revision deletion
 'rev-deleted-comment'       => '(komentārs nodzēsts)',
 'rev-deleted-user'          => '(lietotāja vārds nodzēsts)',
+'rev-deleted-event'         => '(reģistra ieraksts nodzēsts)',
 'rev-delundel'              => 'rādīt/slēpt',
-'revdelete-nologtype-title' => 'Nav dots žurnāla veids.',
-'revdelete-nologid-title'   => 'Nederīgs žurnāla ieraksts',
+'revdelete-nologtype-title' => 'Nav dots reģistra veids.',
+'revdelete-nologid-title'   => 'Nederīgs reģistra ieraksts',
 'revdelete-hide-image'      => 'Paslēpt faila saturu',
 'revdel-restore'            => 'mainīt redzamību',
 'revdelete-edit-reasonlist' => 'Izmainīt dzēšanas iemeslus',
@@ -935,13 +944,13 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'recentchanges'                     => 'Pēdējās izmaiņas',
 'recentchanges-legend'              => 'Pēdējo izmaiņu opcijas',
 'recentchangestext'                 => 'Šajā lapā ir šitajā viki izdarītās pēdējās izmaiņas.',
-'recentchanges-label-legend'        => 'Leģenda: $1.',
+'recentchanges-label-legend'        => 'Apzīmējumu skaidrojums: $1.',
 'recentchanges-legend-newpage'      => '$1 - jauna lapa',
-'recentchanges-label-newpage'       => 'Šī izmaiņa radīja jaunu lapu',
+'recentchanges-label-newpage'       => 'Šī ir jaunizveidota lapa',
 'recentchanges-legend-minor'        => '$1 - maznozīmīga izmaiņa',
 'recentchanges-label-minor'         => 'Šī ir maznozīmīga izmaiņa',
-'recentchanges-legend-bot'          => '$1 - bota izmaiņa',
-'recentchanges-label-bot'           => 'Šo izmaiņu veica bots',
+'recentchanges-legend-bot'          => '$1 - bota veikta izmaiņa',
+'recentchanges-label-bot'           => 'Šī ir bota veikta izmaiņa',
 'rcnote'                            => 'Šobrīd ir {{PLURAL:$1|redzama pēdējā <strong>$1</strong> izmaiņa, kas izdarīta|redzamas pēdējās <strong>$1</strong> izmaiņas, kas izdarītas}} {{PLURAL:$2|pēdējā|pēdējās}} <strong>$2</strong> {{PLURAL:$2|dienā|dienās}} (līdz $4, $5).',
 'rcnotefrom'                        => "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 'rclistfrom'                        => 'Parādīt jaunas izmaiņas kopš $1',
@@ -1367,7 +1376,7 @@ Papildus informācija:
 'delete-confirm'         => 'Dzēst "$1"',
 'delete-legend'          => 'Dzēšana',
 'historywarning'         => 'Brīdinājums: Tu dzēsīsi lapu, kurai ir saglabātas iepriekšējas versijas.',
-'confirmdeletetext'      => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[Project:Vadlīnijas|vadlīnijām]].',
+'confirmdeletetext'      => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[{{MediaWiki:Policy-url}}|vadlīnijām]].',
 'actioncomplete'         => 'Darbība pabeigta',
 'deletedtext'            => 'Lapa "<nowiki>$1</nowiki>" ir izdzēsta.
 Šeit var apskatīties pēdējos izdzēstos: "$2".',

@@ -469,7 +469,7 @@ $messages = array(
 'vector-namespace-user'      => 'Szerkesztői lap',
 'vector-view-create'         => 'Létrehozás',
 'vector-view-edit'           => 'Szerkesztés',
-'vector-view-history'        => 'Laptörténet megtekintése',
+'vector-view-history'        => 'Laptörténet',
 'vector-view-view'           => 'Olvasás',
 'vector-view-viewsource'     => 'Lapforrás megtekintése',
 'actions'                    => 'Műveletek',
@@ -1509,6 +1509,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-versiondetail'         => 'kibővített szoftververzió-információk tekintése',
 'right-root'                  => 'az összes művelet elvégzése',
+'right-sendemail'             => 'e-mail küldése más felhasználóknak',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',

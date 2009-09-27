@@ -139,16 +139,18 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-delete'      => 'Défacer',
-'vector-action-move'        => "Canger ch'nom",
-'vector-namespace-image'    => 'Fichié',
-'vector-namespace-main'     => 'Pache',
-'vector-namespace-template' => 'Modéle',
-'vector-namespace-user'     => 'Pache dechl uzeu',
-'vector-view-create'        => 'Créer',
-'vector-view-edit'          => 'Éditer',
-'vector-view-view'          => 'Lire',
-'vector-view-viewsource'    => "Vir l'source",
+'vector-action-delete'       => 'Défacer',
+'vector-action-move'         => "Canger ch'nom",
+'vector-namespace-image'     => 'Fichié',
+'vector-namespace-main'      => 'Pache',
+'vector-namespace-mediawiki' => 'Message',
+'vector-namespace-template'  => 'Modéle',
+'vector-namespace-user'      => 'Pache dechl uzeu',
+'vector-view-create'         => 'Créer',
+'vector-view-edit'           => 'Éditer',
+'vector-view-history'        => "Vir l'histoère",
+'vector-view-view'           => 'Lire',
+'vector-view-viewsource'     => "Vir l'source",
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -312,6 +314,7 @@ $messages = array(
 'userexists'              => "ch'nom d'uzeu intré, il est piécha donné.
 
 j'm'escuse mais i feut prinde un aute nom.",
+'loginerror'              => 'Bérlurache del intrée',
 'mailmypassword'          => "Imèle un nouvieu mot d'passe",
 'passwordremindertitle'   => "Nouvieu mot d'passe tanporoère pou {{SITENAME}}",
 
@@ -416,6 +419,7 @@ Os pouvez [[:\$1|créer chol pache]].",
 'search-interwiki-more'     => '(pus)',
 'search-mwsuggest-enabled'  => 'aveuc avanches',
 'search-mwsuggest-disabled' => "mie d'avanches",
+'nonefound'                 => "'''Note''': il y o tasseulemint quéques éspaces éd noms éq sont trachés pèr défeut. <br /> Pou tracher din tous chés contnus (paches éd pérlache, modéles, etc... comprins) insséyer in imploéyant ch'préfixe ''all:'' o bin imploéyer echl éspace éd noms édmindé conme préfixe.",
 'powersearch'               => 'Érvue avanchée',
 'powersearch-legend'        => 'Érvue avanchée',
 'powersearch-ns'            => 'Tracher din chés éspaches éd chés noms:',
@@ -423,19 +427,20 @@ Os pouvez [[:\$1|créer chol pache]].",
 'powersearch-field'         => 'Tracher pou',
 
 # Preferences page
-'preferences'          => 'Préférinches',
-'mypreferences'        => 'Mes préférinches',
-'youremail'            => 'Imèle:',
-'username'             => "Nom d'uzeu:",
-'uid'                  => 'ID dech uzeu:',
-'prefs-memberingroups' => 'Mimbe éd {{PLURAL:$1|groupe|groupes}}:',
-'yourrealname'         => 'Vrai nom:',
-'yourlanguage'         => 'Langache:',
-'badsiglength'         => 'Vote signature est gramint longue.
+'preferences'               => 'Préférinches',
+'mypreferences'             => 'Mes préférinches',
+'youremail'                 => 'Imèle:',
+'username'                  => "Nom d'uzeu:",
+'uid'                       => 'ID dech uzeu:',
+'prefs-memberingroups'      => 'Mimbe éd {{PLURAL:$1|groupe|groupes}}:',
+'yourrealname'              => 'Vrai nom:',
+'yourlanguage'              => 'Langache:',
+'badsiglength'              => 'Vote signature est gramint longue.
 Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
-'gender-male'          => 'Marle',
-'gender-female'        => 'Femelle',
-'email'                => 'Imèle',
+'gender-male'               => 'Marle',
+'gender-female'             => 'Femelle',
+'email'                     => 'Imèle',
+'prefs-help-email-required' => 'I feut eune iméle adérche',
 
 # Groups
 'group-sysop'      => 'Aménistrateus',
