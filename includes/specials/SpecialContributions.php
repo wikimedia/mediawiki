@@ -236,7 +236,10 @@ class SpecialContributions extends SpecialPage {
 					array(
 						'lim' => 1,
 						'showIfEmpty' => false,
-						'msgKey' => array( 'sp-contributions-blocked-notice' ),
+						'msgKey' => array(
+							'sp-contributions-blocked-notice',
+							$nt->getText() # Support GENDER in 'sp-contributions-blocked-notice'
+						),
 						'offset' => '' # don't use $wgRequest parameter offset
 					)
 				);
