@@ -1309,6 +1309,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'right-bigdelete'             => 'Scancela pagine con cronologie longhe',
 'right-deleterevision'        => 'Scondi version specifiche de le pagine',
 'right-deletedhistory'        => 'Varda i record scancelà de la cronologia, ma senza el testo associà a lori',
+'right-deletedcontent'        => 'Vardar el testo scancelà e i canbiamenti tra dele revision scancelà',
 'right-browsearchive'         => 'Visualizza pagine scancelae',
 'right-undelete'              => 'Recupera na pagina',
 'right-suppressrevision'      => 'Rivarda e recupera version sconte',
@@ -1342,6 +1343,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'right-override-export-depth' => 'Esporta le pàxene, includendo le pàxene ligàe fin a na profondità de 5',
 'right-versiondetail'         => 'Fà védar le informassion conplete su la version del software',
 'right-root'                  => 'Far qualunque azion su la wiki',
+'right-sendemail'             => 'Mandarghe e-mail a cheialtri utenti',
 
 # User rights log
 'rightslog'      => 'Diriti dei utenti',

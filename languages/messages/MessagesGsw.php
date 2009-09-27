@@ -513,7 +513,7 @@ Die Sperri isch dur [[User:$1|$1]] yygrichtet wore mit dr Begrindig ''„$2“''
 We du jitz öppis uf der {{SITENAME}} änderisch, de wird dyni IP-Adrässen als Urhäber regischtriert u nid dy Benutzername. Du chasch di mit em glychen oder emnen andere Benutzername nöi aamälde.',
 'welcomecreation'            => '==Willcho, $1!==
 Dyy Benutzerkonto isch aaglait wore.
-Vergiss nid, dyni Yystellige aazpasse.',
+Vergiss nid, dyni [[Special:Preferences|{{SITENAME}}-Yystellige]] aazpasse.',
 'yourname'                   => 'Dyy Benutzername',
 'yourpassword'               => 'Passwort:',
 'yourpasswordagain'          => 'Passwort no mol yygee:',
@@ -1326,6 +1326,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-versiondetail'         => 'Detailinformatione iber d Software un d Versione aazeige',
 'right-root'                  => 'Alli Aktione uf em Wiki uusfiere',
+'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',

@@ -1539,6 +1539,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-versiondetail'         => 'Voir les informations étendues sur les versions des logiciels',
 'right-root'                  => 'Réaliser toutes les actions sur le wiki',
+'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
@@ -1684,7 +1685,7 @@ Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n'êtes pas certain{{GENDER:||
 [[$1|thumb]]",
 'filepageexists'              => "La page de description pour ce fichier a déjà été créée ici '''<tt>[[:$1]]</tt>''', mais aucun fichier n’existe actuellement sous ce nom.
 Le résumé que vous allez spécifier n'apparaîtra pas sur la page de description.
-Pour le faire, vous devrez modifier manuellement la page. [[$1|vignette]]",
+Pour le faire, vous devrez modifier manuellement la page. [[$1|thumb]]",
 'fileexists-extension'        => "Un fichier existe avec un nom proche : [[$2|thumb]]
 * Nom du fichier à téléverser : '''<tt>[[:$1]]</tt>'''
 * Nom du fichier existant : '''<tt>[[:$2]]</tt>'''

@@ -369,7 +369,7 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 
 {{Identical|Talk}}',
 'personaltools'     => 'Heading for a group of links to your user page, talk page, preferences, watchlist, and contributions. This heading is visible in the sidebar in some skins. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].',
-'articlepage'       => "A 'content page' is a page that forms part of the purpose of the wiki, such as the main page, an article, a media file, a disambiguation page. For technical definition of 'content namespaces' see [http://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+'articlepage'       => "'Content page' is used for NS_MAIN and any other non-standard namespace and this message is only used in skins Nostalgia, Cologneblue and Standard in the bottomLinks part.
 
 {{Identical|Content page}}",
 'talk'              => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
@@ -692,7 +692,9 @@ $1 is the minimum number of characters in the password.',
 
 Tip for internal links',
 'extlink_sample'  => 'This message appears when clicking on the fourth button of the edit toolbar. You can translate "link title". Because many of the localisations had urls that went to domains reserved for advertising, it is recommended that the link is left as-is. All customised links were replaced with the standard one, that is reserved in the standard and will never have adds or something.',
-'extlink_tip'     => 'This is the tip that appears when you hover the mouse over the fourth button from the left on the edit toolbar.',
+'extlink_tip'     => 'This is the tip that appears when you hover the mouse over the fourth button from the left on the edit toolbar.
+
+{{Identical|External link (remember http:// prefix)}}',
 'headline_sample' => 'Sample of headline text.',
 'headline_tip'    => 'This is the text that appears when you hover the mouse over the fifth button from the left on the edit toolbar.',
 'math_sample'     => 'The sample formula text that you get when you press the fourth button from the right on the edit toolbar.',
@@ -1041,7 +1043,9 @@ Description: The URL of the search help page.
 'searchprofile-project'          => 'An option in the [[Special:Search]] page.',
 'searchprofile-images'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-everything'       => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.
+
+{{Identical|Advanced}}',
 'searchprofile-articles-tooltip' => '{{Identical|Search in $1}}',
 'searchprofile-project-tooltip'  => '{{Identical|Search in $1}}',
 'search-result-size'             => 'Shown per line of a [[Special:Search|search result]]
@@ -1363,6 +1367,7 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 Users having this right receive more detailed information on [[Special:Version]].',
 'right-root'                  => "{{doc-right|root}}
 Analogous to the 'root' permission on Unix systems, allows the user to perform ''any'' action on the wiki; effectively granting them all other permissions.",
+'right-sendemail'             => '{{doc-right}}',
 
 # User rights log
 'rightslog'      => 'In [[Special:Log]]',
@@ -1739,9 +1744,13 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 'statistics-header-views'      => 'Used in [[Special:Statistics]]',
 'statistics-header-users'      => 'Used in [[Special:Statistics]]',
 'statistics-header-hooks'      => 'Header of a section on [[Special:Statistics]] containing data provided by MediaWiki extensions',
-'statistics-articles'          => 'Used in [[Special:Statistics]]
+'statistics-articles'          => "Used in [[Special:Statistics]].
 
-{{Identical|Content page}}',
+A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [http://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki]. 
+
+Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
+
+{{Identical|Content page}}",
 'statistics-pages'             => 'Used in [[Special:Statistics]]',
 'statistics-pages-desc'        => "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 'statistics-files'             => 'Used in [[Special:Statistics]]',

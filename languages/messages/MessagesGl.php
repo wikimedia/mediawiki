@@ -1430,6 +1430,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-versiondetail'         => 'Mostrar a información ampliada da versión do software',
 'right-root'                  => 'Realizar todas as accións no wiki',
+'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 
 # User rights log
 'rightslog'      => 'Rexistro de dereitos de usuario',
@@ -2540,7 +2541,7 @@ Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización Me
 'allmessages-filter-submit'     => 'Mostrar',
 
 # Thumbnails
-'thumbnail-more'           => 'Agrandado',
+'thumbnail-more'           => 'Ampliar',
 'filemissing'              => 'O ficheiro non se dá atopado',
 'thumbnail_error'          => 'Erro ao crear a miniatura: $1',
 'djvu_page_error'          => 'Páxina DjVu fóra de rango',

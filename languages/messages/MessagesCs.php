@@ -1525,6 +1525,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-versiondetail'         => 'Prohlížení podrobných informací o verzích nainstalovaného software.',
 'right-root'                  => 'Provádění libovolné činnosti na wiki',
+'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',
@@ -2103,7 +2104,7 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'addedwatch'           => 'Přidáno k sledovaným',
 'addedwatchtext'       => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:RecentChanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
 'removedwatch'         => 'Vyřazeno ze seznamu sledovaných stránek',
-'removedwatchtext'     => 'Stránka „<nowiki>$1</nowiki>“ byla vyřazena z vašeho seznamu sledovaných stránek.',
+'removedwatchtext'     => 'Stránka „[[:$1]]“ byla vyřazena z vašeho [[Special:Watchlist|seznamu sledovaných stránek]].',
 'watch'                => 'Sledovat',
 'watchthispage'        => 'Sledovat tuto stránku',
 'unwatch'              => 'Nesledovat',

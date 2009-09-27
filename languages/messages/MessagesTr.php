@@ -1355,6 +1355,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-versiondetail'         => 'Genişletilmiş yazılım sürüm bilgilerini göster',
 'right-root'                  => 'Vikide tüm eylemleri yap',
+'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',

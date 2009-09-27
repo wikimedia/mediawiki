@@ -1431,6 +1431,7 @@ $1",
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
 'right-versiondetail'         => 'ソフトウェアの詳細なバージョン情報を表示する',
 'right-root'                  => 'このウィキ上のすべての操作の実行',
+'right-sendemail'             => '他の利用者へ電子メールを送る',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',

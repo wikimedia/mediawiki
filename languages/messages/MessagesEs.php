@@ -1437,6 +1437,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-versiondetail'         => 'Mostrar información ampliada de la versión del software',
 'right-root'                  => 'Ejecutar todas las acciones  en el wiki',
+'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',

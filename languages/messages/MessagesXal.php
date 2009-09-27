@@ -160,6 +160,8 @@ $messages = array(
 'hidetoc'             => 'бултулх',
 'site-rss-feed'       => '$1 — RSS-зәңг',
 'site-atom-feed'      => '$1 — Atom-зәңг',
+'page-rss-feed'       => '«$1» — RSS-зәнгллһн',
+'page-atom-feed'      => '«$1» — Atom зәнгллһн',
 'red-link-title'      => '$1 (халх бәәшго)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -176,7 +178,7 @@ $messages = array(
 'viewsource' => 'ишиг үзүлх',
 
 # Login and logout pages
-'logouttext'              => "'''Та һарв.'''
+'logouttext'              => "'''Та һарад бәәнәт.'''
 
 Та {{SITENAME}} гидг ормиг нертә уга олзлҗ чаднат, аль та [[Special:UserLogin|дәкәд орҗ]] цацу аль талдан нертә чаднат.
 Зәрм халхс цааранднь та ода чигн орсн мет үзүлҗ чаддг тускар темдглтн (та хәләчин санлиг цеврлтл).",
@@ -257,11 +259,13 @@ $messages = array(
 
 # History pages
 'currentrev-asof'     => 'Ода болсн янз ($1)',
+'revisionasof'        => 'Эн цагин янз: $1',
 'previousrevision'    => '← хуучн чикллһн',
 'nextrevision'        => 'шинәр чикллһн →',
 'currentrevisionlink' => 'Ода цагин чикллһн',
 'cur'                 => 'ода',
 'last'                => 'урдк',
+'histlegend'          => "Тәәлвр: (ода) — одачн янзас йилһән; (урдк) — урдк янзас йилһән; '''б''' — баһ хүврһн",
 'histfirst'           => 'Эрт',
 'histlast'            => 'Кенз',
 
@@ -285,9 +289,11 @@ $messages = array(
 'searchresults-title'       => 'Хәәлһнә ашуд "$1" төлә',
 'searchsubtitle'            => '«[[:$1]]» сурвра ([[Special:Prefixindex/$1|эн нертә эклсн халхс]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|эн нерт заадг]])',
 'searchsubtitleinvalid'     => "Тадн '''$1''' төлә хәәләт",
-'noexactmatch'              => "'''\"\$1\" гидг халх бәәшго.'''
-Та энгиг бүтәҗ чаднат.",
+'noexactmatch'              => "'''\"\$1\" гидг нертә халх бәәшго.'''
+Та энгиг [[:\$1|бүтәж чаднат]].",
 'noexactmatch-nocreate'     => "'''\"\$1\" гидг нертә халх бәәшго.'''",
+'prevn'                     => 'урдк {{PLURAL:$1|$1}}',
+'nextn'                     => 'дарук {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Гүүһәд хәләх ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|$2 үг|$2 үгмүд|$2 үгмүд}})',
 'search-suggest'            => 'Та эниг таанат: $1 ?',
@@ -303,15 +309,21 @@ $messages = array(
 'preferences'          => 'Дурллһн',
 'mypreferences'        => 'Көгүд',
 'prefs-edits'          => 'Чикллһдүднә то:',
+'prefsnologin'         => 'Та харһв биш',
+'prefsnologintext'     => 'Та <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} харһх]</span> кергтә,  тегәд көгүдиг сольҗ чаднат.',
 'changepassword'       => 'Нууц үгиг сольҗ',
+'prefs-skin'           => 'Хувцнь',
 'prefs-datetime'       => 'Лит, өдр, цаг',
 'prefs-personal'       => 'Орлцачна көгүд',
 'prefs-rc'             => 'Кенз хүврлһд',
 'prefs-watchlist'      => 'Шинҗллһнә сеткүл',
+'prefs-misc'           => 'Талдан',
 'prefs-resetpass'      => 'Нууц угиг сольҗ',
 'prefs-email'          => "E-mail'ын көгүд",
+'prefs-rendering'      => 'Һазад бәәдл',
 'saveprefs'            => 'Хадһлх',
 'restoreprefs'         => 'Цуг эклцин көгүдиг босхҗ тохрар',
+'prefs-editing'        => 'Чикллһн',
 'savedprefs'           => 'Тана көгүдиг хадһлв.',
 'timezonelegend'       => 'Часин бүс:',
 'youremail'            => 'E-mail хайг:',
@@ -322,7 +334,7 @@ $messages = array(
 'yourrealname'         => 'Үнн нерн:',
 'yourlanguage'         => 'Бәәдлин келн:',
 'yournick'             => 'Тәвсн һар:',
-'yourgender'           => 'Эр аль эм:',
+'yourgender'           => 'Киисн:',
 'gender-unknown'       => 'Бичсн уга',
 'gender-male'          => 'Эр',
 'gender-female'        => 'Эм',
@@ -348,7 +360,11 @@ $messages = array(
 'group-sysop-member'         => 'Дарһа',
 'group-bureaucrat-member'    => 'Сегләтр',
 
-'grouppage-sysop' => '{{ns:project}}:Дарһас',
+'grouppage-user'          => '{{ns:project}}:Орлцачнр',
+'grouppage-autoconfirmed' => '{{ns:project}}:Эврәр чик гисн орлцачнр',
+'grouppage-bot'           => '{{ns:project}}:Көдлврүд',
+'grouppage-sysop'         => '{{ns:project}}:Дарһас',
+'grouppage-bureaucrat'    => '{{ns:project}}:Сегләтрс',
 
 # User rights log
 'rightslog' => 'Орлцачна зөвәнә сеткүл',
@@ -357,21 +373,30 @@ $messages = array(
 'action-edit' => 'эн халхиг чиклх',
 
 # Recent changes
-'recentchanges'        => 'Кенз хүврлһд',
-'recentchanges-legend' => 'Кенз хүврлһдә көгүд',
-'rcshowhideminor'      => 'баһ чиклһдүдиг $1',
-'rcshowhidebots'       => 'көдлврүдиг $1',
-'rcshowhideliu'        => 'орлцачнриг $1',
-'rcshowhideanons'      => 'нер уга орлцачнриг $1',
-'rcshowhidemine'       => 'мини чиклһдүд $1',
-'diff'                 => 'йилһ',
-'hist'                 => 'тууҗ',
-'hide'                 => 'бултулх',
-'show'                 => 'үзүлх',
-'minoreditletter'      => 'б',
-'boteditletter'        => 'к',
-'rc-enhanced-expand'   => 'Тодрхасиг үзүлх (JavaScript кергтә)',
-'rc-enhanced-hide'     => 'Тодрхасиг бултулх',
+'recentchanges'               => 'Кенз хүврлһд',
+'recentchanges-legend'        => 'Кенз хүврлһдә көгүд',
+'recentchangestext'           => 'Эн цагин дараһар бичсн кенз хүврлһд',
+'recentchanges-label-legend'  => 'Тәәлвр: $1.',
+'recentchanges-label-newpage' => 'Эн үүлдәр шин халх бүтәл',
+'recentchanges-label-minor'   => 'Эн баһ чинртә хуврлһн',
+'recentchanges-label-bot'     => 'Эн хүврһн көдлвр (робот) кехв',
+'rclistfrom'                  => 'Эн цагас хүврлһүдиг үзүлг: $1.',
+'rcshowhideminor'             => 'баһ чиклһдүдиг $1',
+'rcshowhidebots'              => 'көдлврүдиг $1',
+'rcshowhideliu'               => 'орлцачнриг $1',
+'rcshowhideanons'             => 'нер уга орлцачнриг $1',
+'rcshowhidemine'              => 'мини чиклһдүд $1',
+'rclinks'                     => 'Кенз $1 хүврлһдиг, кенз $2 өдрмүдт үзүлх<br />$3',
+'diff'                        => 'йилһ',
+'hist'                        => 'тууҗ',
+'hide'                        => 'бултулх',
+'show'                        => 'үзүлх',
+'minoreditletter'             => 'б',
+'newpageletter'               => 'Ш',
+'boteditletter'               => 'к',
+'newsectionsummary'           => '/* $1 */ Шин хүв',
+'rc-enhanced-expand'          => 'Тодрхасиг үзүлх (JavaScript кергтә)',
+'rc-enhanced-hide'            => 'Тодрхасиг бултулх',
 
 # Recent changes linked
 'recentchangeslinked'      => 'Садн чикллһдүд',
@@ -379,9 +404,14 @@ $messages = array(
 
 # Upload
 'upload'            => 'Боомгиг тәвх',
+'uploadbtn'         => 'Боомгиг тәвх',
+'uploadnologintext' => 'Та [[Special:UserLogin|харһх]] кергтә.',
+'uploaderror'       => 'Тәвллһнә эндү',
 'uploadlogpage'     => 'Тәвллһнә сеткүл',
+'filename'          => 'Боомгна нернь',
 'filedesc'          => 'Учр-утх',
 'fileuploadsummary' => 'Учр-утх:',
+'successfulupload'  => 'Йовудта тәвллһн',
 'savefile'          => 'Хадһлх',
 
 'license'        => 'Закан:',
@@ -495,6 +525,7 @@ $messages = array(
 'move-watch'   => 'Эн халхиг хәләх',
 'movepagebtn'  => 'Халхиг йовулх',
 'pagemovedsub' => 'Йовудта йовуллһн',
+'movelogpage'  => 'Нернә хүврлһнә сеткүл',
 'movereason'   => 'Учр:',
 'revertmove'   => 'хәрүлһн',
 
@@ -520,6 +551,7 @@ $messages = array(
 'tooltip-search-fulltext'        => 'Эн бичәтә халхс хәәх',
 'tooltip-n-mainpage'             => 'Һол халхд орх',
 'tooltip-n-mainpage-description' => 'Нүр халхд орх',
+'tooltip-n-recentchanges'        => 'Кенз хүврлһнә сеткүл',
 'tooltip-n-randompage'           => 'Болв чигн халхиг үзүлх',
 'tooltip-n-help'                 => 'Дөң өггдг һазр',
 'tooltip-t-whatlinkshere'        => 'Цуг вики халхс эн халхд заадг',
@@ -534,6 +566,7 @@ $messages = array(
 'tooltip-ca-nstab-user'          => 'Орлцачна халхиг үзүлх',
 'tooltip-ca-nstab-special'       => 'Эн көдлхнә халх. Та эниг чиклҗ чадхшв.',
 'tooltip-ca-nstab-project'       => 'Проектин халх',
+'tooltip-minoredit'              => 'Эн хүврлһдиг баһ чинртә темдглх',
 'tooltip-save'                   => 'Тана сольлһдудиг хадһлтн',
 
 # Media information
@@ -550,6 +583,10 @@ $messages = array(
 
 # action=purge
 'confirm_purge_button' => 'Чик',
+
+# Auto-summaries
+'autosumm-blank' => 'Халх цеврүлв',
+'autosumm-new'   => 'Шин халх: «$1»',
 
 # Special:SpecialPages
 'specialpages' => 'Көдлхнә халхс',

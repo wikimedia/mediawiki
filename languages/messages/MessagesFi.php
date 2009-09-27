@@ -1466,6 +1466,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-versiondetail'         => 'Nähdä laajennetut tiedot ohjelmistoversiosta',
 'right-root'                  => 'Suorittaa kaikki toiminnot wikissä',
+'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',

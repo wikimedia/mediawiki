@@ -1254,6 +1254,7 @@ Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o 
 'right-override-export-depth' => 'Esporté pàgine ancludend pàgine colegà fin a na profondità ëd 5',
 'right-versiondetail'         => "Mosta j'anformassion estèise dla vërsion dël software",
 'right-root'                  => 'Fà tute le assion an sla wiki',
+'right-sendemail'             => "Manda e-mail a j'àutri utent",
 
 # User rights log
 'rightslog'      => "Drit dj'utent",

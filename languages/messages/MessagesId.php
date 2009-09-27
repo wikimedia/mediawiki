@@ -687,7 +687,7 @@ Alasan yang diberikan adalah ''$2''.",
 'logouttext'                 => 'Anda telah keluar log dari sistem. Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat masuk log lagi sebagai pengguna yang sama atau pengguna yang lain. Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan <em>cache</em> penjelajah web Anda',
 'welcomecreation'            => '== Selamat datang, $1! ==
 
-Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
+Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Anda.',
 'yourname'                   => 'Nama pengguna:',
 'yourpassword'               => 'Kata sandi:',
 'yourpasswordagain'          => 'Ulangi kata sandi:',
@@ -1483,6 +1483,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-versiondetail'         => 'Tunjukkan informasi versi piranti lunak yang lebih lengkap',
 'right-root'                  => 'Lakukan semua aksi pada wiki',
+'right-sendemail'             => 'Kirim surat-e ke pengguna lain',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',

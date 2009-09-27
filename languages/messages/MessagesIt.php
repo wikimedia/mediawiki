@@ -632,7 +632,7 @@ Si può continuare ad usare {{SITENAME}} come utente anonimo oppure eseguire un 
 Alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
 'welcomecreation'            => "== Benvenuto, $1! ==
 
-L'account è stato creato correttamente. Non dimenticare di personalizzare le preferenze di {{SITENAME}}.",
+L'account è stato creato correttamente. Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
 'yourname'                   => 'Nome utente',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => 'Ripeti la password',
@@ -1412,6 +1412,7 @@ L'operazione non può essere annullata.",
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-versiondetail'         => 'Mostra le informazioni complete del software',
 'right-root'                  => 'Esegue tutte le azioni sul sito',
+'right-sendemail'             => 'Invia e-mail ad altri utenti',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
