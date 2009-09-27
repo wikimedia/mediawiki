@@ -9,6 +9,7 @@
  *
  * @author Als-Holder
  * @author Fulup
+ * @author Malafaya
  * @author לערי ריינהארט
  */
 
@@ -675,8 +676,13 @@ Merkit mat an titouroù-se war kement goulenn savet ganeoc'h.
 
 Kemmet e c'hall ar ger-tremen evit ar gont nevez-mañ bezañ war ar bajenn ''[[Special:ChangePassword|cheñch ger-tremen]]'', ur wezh luget.",
 'newarticle'                       => '(Nevez)',
-'newarticletext'                   => 'Skrivit amañ testenn ho pennad.',
-'anontalkpagetext'                 => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dianv n'eus ket c'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar chomlec'h IP niverel evit disklêriañ anezhañ/i. Gallout a ra ur chomlec'h a seurt-se bezañ rannet etre meur a implijer(ez). Ma'z oc'h un implijer(ez) dianv ha ma stadit ez eus bet kaset deoc'h kemennadennoù na sellont ket ouzhoc'h, gallout a rit [[Special:UserLogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc'h a gemmesk.",
+'newarticletext'                   => "Heuliet hoc'h eus ul liamm a gas d'ur bajenn n'eo ket bet savet evit c'hoazh.
+A-benn krouiñ ar bajenn-se, krogit da skrivañ er prenestr skridaozañ dindan (gwelet ar [[{{MediaWiki:Helppage}}|bajenn skoazell]] evit gouzout hiroc'h).
+M'emaoc'h en em gavet amañ dre fazi, klikit war bouton '''kent''' ho merdeer evit mont war ho kiz.",
+'anontalkpagetext'                 => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dizanv n'eus ket krouet kont ebet evit c'hoazh pe na implij ket anezhi. 
+Setu perak e rankomp ober gant ar chomlec'h IP niverel evit anaout anezhañ/i. 
+Gallout a ra ur chomlec'h a seurt-se bezañ rannet etre meur a implijer(ez). 
+Ma'z oc'h un implijer(ez) dizanv ha ma stadit ez eus bet kaset deoc'h kemennadennoù na sellont ket ouzhoc'h, gallout a rit [[Special:UserLogin/signup|krouiñ ur gont]]pe [[Special:UserLogin|en em lugañ]] kuit a vagañ muioc'h a gemmesk gant implijerien dizanv all.",
 'noarticletext'                    => 'N\'eus tamm skrid ebet war ar bajenn-mañ evit poent.
 Gallout a rit [[Special:Search/{{PAGENAME}}|klask an titl anezhi]] e pajennoù all,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} klask en oberiadennoù liammet], pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} krouiñ ar bajenn]</span>.',
@@ -1440,7 +1446,8 @@ Trugarez da wiriañ '''<tt>[[:$1]]</tt>''' ma n'oc'h ket sur e fell deoc'h kemma
 [[$1|thumb]]",
 'filepageexists'              => "Amañ '''<tt>[[:$1]]</tt>''' eo bet krouet ar bajenn zeskrivañ evit ar restr-mañ, padal n'eus restr ebet dezhi an anv-se evit c'hoazh. 
 An diverradenn skrivet ganeoc'h ne vo ket gwelet war ar bajenn zeskrivañ.
-Mar fell deoc'h e teufe ho tiverradenn war wel eno eo ret deoc'h-c'hwi kemmañ anezhi hoc'h-unan. [[$1|munud]]",
+Mar fell deoc'h e teufe ho tiverradenn war wel eno eo ret deoc'h-c'hwi kemmañ anezhi hoc'h-unan.
+[[$1|thumb]]",
 'fileexists-extension'        => "Bez' ez eus dija ur restr gant an anv-se war-bouez nebeut : [[$2|thumb]]
 * Anv ar restr emeur oc'h enporzhiañ : '''<tt>[[:$1]]</tt>'''
 * Anv ar restr zo anezhi dija : '''<tt>[[:$2]]</tt>'''
@@ -2228,7 +2235,8 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'unblocklink'                     => 'distankañ',
 'change-blocklink'                => 'Kemmañ ar stankadenn',
 'contribslink'                    => 'degasadennoù',
-'autoblocker'                     => 'Emstanket rak rannañ a rit ur chomlec\'h IP gant "$1". Abeg : "$2".',
+'autoblocker'                     => 'Emstanket rak implijet eo bet ho chomlec\'h IP gant "[[User:$1|$1]]" nevez zo.
+Setu aze an abeg(où) m\'eo bet stanket $1 : "$2$',
 'blocklogpage'                    => 'Log stankañ',
 'blocklog-showlog'                => "Stanket eo bet an implijer-mañ c'hoazh. A-is emañ marilh ar stankadennoù, d'ho titouriñ :",
 'blocklog-showsuppresslog'        => "Stanket ha kuzhet eo bet an implijer-mañ c'hoazh. A-is emañ marilh ar diverkadennoù, d'ho titouriñ :",

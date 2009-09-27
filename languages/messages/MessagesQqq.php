@@ -369,7 +369,9 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 
 {{Identical|Talk}}',
 'personaltools'     => 'Heading for a group of links to your user page, talk page, preferences, watchlist, and contributions. This heading is visible in the sidebar in some skins. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].',
-'articlepage'       => '{{Identical|Content page}}',
+'articlepage'       => "A 'content page' is a page that forms part of the purpose of the wiki, such as the main page, an article, a media file, a disambiguation page. For technical definition of 'content namespaces' see [http://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+
+{{Identical|Content page}}",
 'talk'              => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
 
 {{Identical|Discussion}}',
@@ -560,6 +562,10 @@ HTML markup cannot be used.",
 'internalerror'        => '{{Identical|Internal error}}',
 'badtitle'             => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.',
+'perfcachedts'         => 'Used on pages that list page lists for which the displayed data is cached. Parameters:
+* $1 is a time stamp (date and time combined)
+* $2 is a date (optional)
+* $3 is a time (optional)',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
 'viewsource'           => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
 
@@ -1491,7 +1497,8 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 
 {{Identical|Upload file}}',
 'uploadnologin'               => '{{Identical|Not logged in}}',
-'uploadtext'                  => 'Text displayed when uploading a file using [[Special:Upload]].',
+'uploadtext'                  => "{{doc-important|''thumb'' and ''left'' are magic words. Leave it untranslated!}}
+Text displayed when uploading a file using [[Special:Upload]].",
 'upload-permitted'            => 'Used in [[Special:Upload]].',
 'upload-preferred'            => 'Used in [[Special:Upload]].',
 'upload-prohibited'           => 'Used in [[Special:Upload]].',
@@ -1514,11 +1521,15 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'large-file'                  => 'Variables $1 and $2 have appropriate unit symbols already. See for example [[Mediawiki:size-kilobytes]].',
 'largefileserver'             => 'Error message when uploading a file whose size is larger than the maximum allowed',
 'emptyfile'                   => 'Error message when trying to upload an empty file',
-'filepageexists'              => 'Shown on [[Special:Upload]], $1 is link to the page. This message is displayed if a description page exists, but a file with the same name does not yet exists, and a user tries to upload a file with that name. In that case the description page is not changed, even if the uploading user specifies a description with the upload.',
+'fileexists'                  => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
+'filepageexists'              => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}
+Shown on [[Special:Upload]], $1 is link to the page. This message is displayed if a description page exists, but a file with the same name does not yet exists, and a user tries to upload a file with that name. In that case the description page is not changed, even if the uploading user specifies a description with the upload.",
 'fileexists-extension'        => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
 'fileexists-thumbnail-yes'    => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
 'file-thumbnail-no'           => 'Error message at [[Special:Upload]]',
-'fileexists-shared-forbidden' => 'Error message at [[Special:Upload]]',
+'fileexists-forbidden'        => "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}",
+'fileexists-shared-forbidden' => "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}
+Error message at [[Special:Upload]]",
 'savefile'                    => 'When uploading a file',
 'uploadedimage'               => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
 'overwroteimage'              => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',

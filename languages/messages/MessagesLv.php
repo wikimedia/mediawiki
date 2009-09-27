@@ -1309,7 +1309,7 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 
 Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz saites '''neuzraudzīt''' rīku joslā.",
 'removedwatch'         => 'Lapa vairs netiek uzraudzīta',
-'removedwatchtext'     => 'Lapa "<nowiki>$1</nowiki>" ir izņemta no tava uzraugāmo lapu saraksta.',
+'removedwatchtext'     => 'Lapa "[[:$1]]" ir izņemta no tava [[Special:Watchlist|uzraugāmo lapu saraksta]].',
 'watch'                => 'Uzraudzīt',
 'watchthispage'        => 'Uzraudzīt šo lapu',
 'unwatch'              => 'Neuzraudzīt',
@@ -1640,7 +1640,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'movepage-page-moved'     => 'Lapa $1 tika pārvietota uz $2.',
 'movepage-page-unmoved'   => 'Lapu $1 nevarēja pārvietot uz $2.',
 '1movedto2'               => '"[[$1]]" pārdēvēju par "[[$2]]"',
-'1movedto2_redir'         => '$1 pārdēvēju par $2, izmantojot pāradresāciju',
+'1movedto2_redir'         => '[[$1]] tika pārdēvēts par [[$2]], izmantojot pāradresāciju',
 'movelogpage'             => 'Pārvietošanas reģistrs',
 'movelogpagetext'         => 'Lapu pārvietošanas (pārdēvēšanas) reģistrs.',
 'movesubpage'             => '{{PLURAL:$1|Apakšlapa|Apakšlapas}}',

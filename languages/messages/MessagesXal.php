@@ -106,8 +106,8 @@ $messages = array(
 'searchbutton'     => 'Хәәлһн',
 'go'               => 'Ор',
 'searcharticle'    => 'Ор',
-'history'          => 'Чикллһнə бүрткл',
-'history_short'    => 'Чикллһнə бүрткл',
+'history'          => 'тууҗ',
+'history_short'    => 'Тууҗ',
 'printableversion' => 'Барин бәәдл',
 'permalink'        => 'Даңгин заалһ',
 'edit'             => 'Чиклх',
@@ -154,12 +154,12 @@ $messages = array(
 'editsection'         => 'чиклх',
 'editold'             => 'чиклх',
 'editlink'            => 'чиклх',
-'viewsourcelink'      => 'медсн үзүлх',
+'viewsourcelink'      => 'ишиг үзүлх',
 'editsectionhint'     => '«$1» гидг хүвиг чиклх',
 'showtoc'             => 'үзүлх',
 'hidetoc'             => 'бултулх',
 'site-rss-feed'       => '$1 — RSS-зәңг',
-'site-atom-feed'      => '$1 — Atom-зәңһ',
+'site-atom-feed'      => '$1 — Atom-зәңг',
 'red-link-title'      => '$1 (халх бәәшго)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -173,7 +173,7 @@ $messages = array(
 'nstab-category' => 'Янз',
 
 # General errors
-'viewsource' => 'Медсн үзүлх',
+'viewsource' => 'ишиг үзүлх',
 
 # Login and logout pages
 'logouttext'              => "'''Та һарв.'''
@@ -198,7 +198,7 @@ $messages = array(
 'createaccount'           => 'Бичгдлһиг бүтәх',
 'gotaccount'              => "Бичгдлһтә? '''$1'''.",
 'loginsuccesstitle'       => 'Йовудта оруллһн',
-'wrongpassword'           => 'Буру нууц үг бичв.
+'wrongpassword'           => 'Та буру нууц үг бичв.
 Дәкәд арһ хәәтн.',
 'mailmypassword'          => 'Шин нууц үгиг E-mail бичгәр йовулҗ',
 'loginlanguagelabel'      => 'Келн: $1',
@@ -218,7 +218,7 @@ $messages = array(
 'italic_tip'      => 'Өкәсн бичг',
 'link_sample'     => 'Заалһна нерн',
 'link_tip'        => 'Өвр заалһ',
-'extlink_sample'  => 'http://www.example.com заалһна_нернь',
+'extlink_sample'  => 'http://www.example.com заалһна нернь',
 'extlink_tip'     => 'Һаза заалһ (http:// гидг эклц бичә мартн)',
 'headline_sample' => 'Толһа нерн',
 'headline_tip'    => 'Дү толһа нерн',
@@ -239,7 +239,7 @@ $messages = array(
 'showpreview'                      => 'Хәләвр',
 'showdiff'                         => 'Йилһән',
 'anoneditwarning'                  => "'''Урдаснь зәңг:''' та орв биш.
-Тадна IP хайг эн халха чикллһнә бүртклд бичҗ авх.",
+Тадна IP хайг эн халхна чикллһнә сеткүлд бичҗ авх.",
 'accmailtitle'                     => 'Нууц үгтә бичг йовулла.',
 'newarticle'                       => '(Шин)',
 'noarticletext'                    => "Эн халх хоосн. Та [[Special:Search/{{PAGENAME}}|эн нернә сананд орулһна хәәх]] , <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} бүртклин бичгт хәәх], аль '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бүтәх]'''</span>.",
@@ -304,19 +304,19 @@ $messages = array(
 'mypreferences'        => 'Көгүд',
 'prefs-edits'          => 'Чикллһдүднә то:',
 'changepassword'       => 'Нууц үгиг сольҗ',
-'prefs-datetime'       => 'Лит, өдр, цаг.',
+'prefs-datetime'       => 'Лит, өдр, цаг',
 'prefs-personal'       => 'Орлцачна көгүд',
-'prefs-rc'             => 'Кенз чикллһдүд',
-'prefs-watchlist'      => 'Шинҗллһнә бүрткл',
+'prefs-rc'             => 'Кенз хүврлһд',
+'prefs-watchlist'      => 'Шинҗллһнә сеткүл',
 'prefs-resetpass'      => 'Нууц угиг сольҗ',
 'prefs-email'          => "E-mail'ын көгүд",
 'saveprefs'            => 'Хадһлх',
 'restoreprefs'         => 'Цуг эклцин көгүдиг босхҗ тохрар',
-'savedprefs'           => 'Тана көгүд хадһлсмн.',
+'savedprefs'           => 'Тана көгүдиг хадһлв.',
 'timezonelegend'       => 'Часин бүс:',
 'youremail'            => 'E-mail хайг:',
 'username'             => 'Орлцачна нер:',
-'uid'                  => 'Орлцачна даран-кемҗән (ID):',
+'uid'                  => 'Орлцачна тойг (ID):',
 'prefs-memberingroups' => '{{PLURAL:$1|Багин|Багдудин}} хүв:',
 'prefs-registration'   => 'Даранднь бичлһнә цаг:',
 'yourrealname'         => 'Үнн нерн:',
@@ -330,7 +330,7 @@ $messages = array(
 'email'                => 'E-mail хайг',
 'prefs-help-realname'  => 'Үнн нернь та эврә дурар бичнәт. Бичлхлә, эн тәвсн һарт элзлдг бәәх.',
 'prefs-help-email'     => 'E-mail хайг та эврә дурар бичнәт. Бичхлә, тадн шин түлкүр үгиг бичгәр йовулсн өгҗ чаднат (мартхла). Тадн дәкәд талдан улсд тана күндллһнә халхар күндлҗ зөв өгҗ чаднат, тана E-mail үзүләд уга.',
-'prefs-i18n'           => 'Улс-келн хоорнд бәәдл',
+'prefs-i18n'           => 'Интернационализация',
 'prefs-signature'      => 'Тәвсн һаран',
 
 # Groups
@@ -351,14 +351,14 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:Дарһас',
 
 # User rights log
-'rightslog' => 'Орлцачна зөвәнә бүрткл',
+'rightslog' => 'Орлцачна зөвәнә сеткүл',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'эн халхиг чиклх',
 
 # Recent changes
-'recentchanges'        => 'Кенз чикллһдүд',
-'recentchanges-legend' => 'Кенз чикллһдүднә көгүд',
+'recentchanges'        => 'Кенз хүврлһд',
+'recentchanges-legend' => 'Кенз хүврлһдә көгүд',
 'rcshowhideminor'      => 'баһ чиклһдүдиг $1',
 'rcshowhidebots'       => 'көдлврүдиг $1',
 'rcshowhideliu'        => 'орлцачнриг $1',
@@ -379,7 +379,7 @@ $messages = array(
 
 # Upload
 'upload'            => 'Боомгиг тәвх',
-'uploadlogpage'     => 'Тәвллһнә бүрткл',
+'uploadlogpage'     => 'Тәвллһнә сеткүл',
 'filedesc'          => 'Учр-утх',
 'fileuploadsummary' => 'Учр-утх:',
 'savefile'          => 'Хадһлх',
@@ -395,7 +395,7 @@ $messages = array(
 'imagelinks'        => 'Боомгд заалһуд',
 
 # Random page
-'randompage' => 'Генткн халх',
+'randompage' => 'Уршг халх',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|байд|байдуд|байдуд}}',
@@ -419,11 +419,11 @@ $messages = array(
 'linksearch' => 'Һаза заалһуд',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Бичгдлһн бүтәлһнә бүрткл',
+'newuserlogpage'          => 'Бичгдлһнә сеткүл',
 'newuserlog-create-entry' => 'Шин орлцачна бичгдлһн',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(мөчүдин бүрткл)',
+'listgrouprights-members' => '(мөчүдин сеткүл)',
 
 # E-mail user
 'emailuser' => 'Энд E-mail йовулх',
@@ -435,7 +435,7 @@ $messages = array(
 'watch'             => 'Хәләх',
 'watchthispage'     => 'Эн халхиг хәләх',
 'unwatch'           => 'Хәләх биш',
-'watchlist-options' => 'Шинҗллһнә бүртклин көгүд',
+'watchlist-options' => 'Шинҗллһнә сеткүлин көгүд',
 
 # Delete
 'deletepage'            => 'Эн халхиг һарһҗ',
@@ -448,7 +448,7 @@ $messages = array(
 'rollbacklink' => 'хәрү кех',
 
 # Protect
-'protectlogpage'      => 'Харсллһна бүрткл',
+'protectlogpage'      => 'Харсллһна сеткүл',
 'protectcomment'      => 'Учр:',
 'protect-default'     => 'Цуг орлцачнрд зөв өгҗ',
 'protect-level-sysop' => 'Дарһас һанцхн',
@@ -470,7 +470,7 @@ $messages = array(
 'month'         => 'Эн сарас (болн эртәр):',
 'year'          => 'Эн җиләс (болн эртәр):',
 
-'sp-contributions-blocklog' => 'бүсллһнә бүрткл',
+'sp-contributions-blocklog' => 'бүсллһнә сеткүл',
 'sp-contributions-talk'     => 'ухалвр',
 'sp-contributions-username' => 'IP хайг аль нернь:',
 'sp-contributions-submit'   => 'Хәәлһн',
@@ -487,7 +487,7 @@ $messages = array(
 'unblocklink'      => 'бүслх биш',
 'change-blocklink' => 'бүслһиг сольх',
 'contribslink'     => 'өгллһн',
-'blocklogpage'     => 'Бүсллһнә бүрткл',
+'blocklogpage'     => 'Бүсллһнә сеткүл',
 
 # Move page
 'movearticle'  => 'Халхиг йовулх:',
@@ -514,7 +514,7 @@ $messages = array(
 'tooltip-ca-protect'             => 'Эн халхиг харсх',
 'tooltip-ca-delete'              => 'Эн халхиг һарһх',
 'tooltip-ca-move'                => 'Эн халхиг көндәх',
-'tooltip-ca-unwatch'             => 'Эн халхиг мини шинҗллһнә бүрткл бичгәс һарһх',
+'tooltip-ca-unwatch'             => 'Эн халхиг мини шинҗллһнә сеткүләс һарһх',
 'tooltip-search'                 => '{{SITENAME}} төлә хәәх',
 'tooltip-search-go'              => 'Эн чик нертә халхд, эн бәәхлә, орх',
 'tooltip-search-fulltext'        => 'Эн бичәтә халхс хәәх',

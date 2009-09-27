@@ -547,6 +547,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'userexists'                 => 'Aukeratutako erabiltzaile izena hartuta dago.
 Mesedez, beste bat aukeratu.',
 'loginerror'                 => 'Errorea saioa hastean',
+'createaccounterror'         => 'Ezin izan da kontua sortu: $1',
 'nocookiesnew'               => 'Erabiltzaile kontua sortu da, baina ez da saioa hasi. {{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta ondoren saiatu saioa hasten zure erabiltzaile izen eta pasahitz berriak erabiliz.',
 'nocookieslogin'             => '{{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta saiatu berriz.',
 'noname'                     => 'Ez duzu baliozko erabiltzaile izen bat zehaztu.',
@@ -572,6 +573,7 @@ Beste norbaitek eskari hau egin bazuen, edo zure pasahitza gogoratu baduzu,
 eta ez baduzu aldatu nahi, mezu honetan irakurritakoari jaramonik ez egin
 eta aurretik zenuen pasahitza erabiltzen jarrai ezazu.',
 'noemail'                    => 'Ez dago "$1" erabiltzailearen e-posta helbiderik gordeta.',
+'noemailcreate'              => 'Balioduna den e-posta helbidea eman behar duzu',
 'passwordsent'               => 'Pasahitz berria bidali da "$1" erabiltzailearen e-posta helbidera.
 Mesedez, saioa hasi jasotakoan.',
 'blocked-mailpassword'       => 'Zure IP helbidea aldaketak egiteko blokeatuta dago, eta beraz ezin da pasahitza berreskuratzeko aukera erabili.',
@@ -893,6 +895,11 @@ Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[
 'revdelete-unhid'             => '$1 azalarazi',
 'revdelete-log-message'       => '$1 {{PLURAL:$2|berrikusketara 1erako|$2 berrikuspenerako}}',
 'logdelete-log-message'       => '$1(e)tik {{PLURAL:$2|gertakari $2|$2 gertakari}}',
+'revdelete-reason-dropdown'   => '*Ezabatzeko ohiko arrazoiak
+**Copyright urraketa
+**Informazio pertsonal desegokia
+**Ahalezko informazio iraingarria',
+'revdelete-otherreason'       => 'Bestelako arrazoia:',
 'revdelete-reasonotherlist'   => 'Beste arrazoi bat',
 'revdelete-edit-reasonlist'   => 'Ezabaketa arrazoiak aldatu',
 'revdelete-offender'          => 'Bertsioaren egilea:',

@@ -716,6 +716,7 @@ Doblidetz pas de personalizar vòstras [[Special:Preferences|{{SITENAME}} prefer
 'userexists'                 => "Lo nom d'utilizaire qu'avètz picat ja es utilizat.
 Causissètz-ne un autre.",
 'loginerror'                 => "Error d'identificacion",
+'createaccounterror'         => 'Impossible de crear lo compte : $1',
 'nocookiesnew'               => "Lo compte d'utilizaire es estat creat, mas sètz pas connectat. {{SITENAME}} utiliza de cookies per la connexion mas los avètz desactivats. Activatz-los e reconnectatz-vos amb lo meteis nom e lo meteis senhal.",
 'nocookieslogin'             => '{{SITENAME}} utiliza de cookies per la connexion mas avètz los cookies desactivats. Activatz-los e reconnectatz-vos.',
 'noname'                     => "Avètz pas picat de nom d'utilizaire valid.",
@@ -742,6 +743,7 @@ Se sètz pas l’autor d'aquesta demanda, o se vos remembratz ara
 de vòstre senhal ancian e que desiratz pas mai ne cambiar, 
 podètz ignorar aqueste messatge e contunhar d'utilizar vòstre senhal ancian.",
 'noemail'                    => "Cap d'adreça electronica es pas estada enregistrada per l'utilizaire « $1 ».",
+'noemailcreate'              => 'Vos cal provesir una adreça de corrièl valida',
 'passwordsent'               => "Un senhal novèl es estat mandat a l'adreça electronica de l'utilizaire « $1 ».
 Identificatz-vos tre que l'aurètz recebut.",
 'blocked-mailpassword'       => 'Vòstra adreça IP es blocada en edicion, la foncion de rapèl del senhal es doncas desactivada per evitar los abuses.',
@@ -1460,6 +1462,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-bigdelete'             => "Suprimir de paginas amb d'istorics grands",
 'right-deleterevision'        => "Suprimir e restablir una revision especifica d'una pagina",
 'right-deletedhistory'        => 'Veire las entradas dels istorics suprimits mas sens lor tèxte',
+'right-deletedcontent'        => 'Veire lo tèxte suprimit e las diferéncias entre las versions suprimidas',
 'right-browsearchive'         => 'Recercar de paginas suprimidas',
 'right-undelete'              => 'Restablir una pagina',
 'right-suppressrevision'      => 'Examinar e restablir las revisions amagadas als administrators',
@@ -1492,6 +1495,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-reset-passwords'       => "Cambiar lo senhal d'autres utilizaires",
 'right-override-export-depth' => 'Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls',
 'right-versiondetail'         => 'Vejatz las entresenhas espandidas sus las versions dels logicials',
+'right-root'                  => 'Realizar totas las accions sul wiki',
 
 # User rights log
 'rightslog'      => "Istoric de las modificacions d'estatut",
@@ -1634,11 +1638,13 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 'fileexists'                  => "Un fichièr amb aqueste nom existís ja.
 Mercé de verificar '''<tt>[[:$1]]</tt>'''.
 Sètz segur de voler modificar aqueste fichièr ? [[$1|thumb]]",
-'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí '''<tt>[[:$1]]</tt>''', mas cap de fichièr d'aqueste nom existís pas actualament. Lo resumit qu'anatz escriure remplaçarà pas lo tèxte precedent ; per aquò far, vos caldrà editar la pagina manualament.",
-'fileexists-extension'        => "Un fichièr amb un nom similar existís ja : [[$2|thumb]]
+'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí '''<tt>[[:$1]]</tt>''', mas cap de fichièr existís pas actualament jos aqueste nom.
+Lo resumit qu'anatz especificar apareisserà pas sus la pagina de descripcion.
+Per o far, vos caldrà modificar la pagina manualament. [[$1|vinheta]]",
+'fileexists-extension'        => "Un fichièr amb un nom pròchi existís ja : [[$2|thumb]]
 * Nom del fichièr d'importar : '''<tt>[[:$1]]</tt>'''
 * Nom del fichièr existent : '''<tt>[[:$2]]</tt>'''
-la sola diferéncia es la cassa (majusculas / minusculas) de l’extension. Verificatz que lo fichièr es diferent e cambiatz son nom.",
+Causissètz-ne un autre.",
 'fileexists-thumbnail-yes'    => "Lo fichièr sembla èsser un imatge en talha reducha ''(thumbnail)''. [[$1|thumb]]
 Verificatz lo fichièr '''<tt>[[:$1]]</tt>'''.
 Se lo fichièr verificat es lo meteis imatge (dins una resolucion melhora), es pas de besonh d’importar una version reducha.",
@@ -2006,7 +2012,7 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista dels utilizaires actius',
-'activeusers-count'    => '$1 {{PLURAL:$1|modificacion recenta|modificacions recentas}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|modificacion recenta|modificacions recentas}} dins {{PLURAL:$3|lo darrièr jorn|los $3 darrièrs jorns}}',
 'activeusers-from'     => 'Afichar los utilizaires dempuèi :',
 'activeusers-noresult' => "Cap d'utilizaire pas trobat.",
 
@@ -2077,7 +2083,7 @@ per modificar vòstra lista de seguit.',
 'addedwatchtext'       => 'La pagina "[[:$1]]" es estada aponduda a vòstra [[Special:Watchlist|lista de seguit]].
 Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associada seràn repertoriadas aicí, e la pagina apareisserà <b>en gras</b> dins la [[Special:RecentChanges|tièra dels darrièrs cambiaments]] per èsser localizada mai aisidament.',
 'removedwatch'         => 'Suprimida de la lista de seguit',
-'removedwatchtext'     => 'La pagina "[[:$1]]" es estada suprimida de vòstra lista de seguit.',
+'removedwatchtext'     => 'La pagina « [[:$1]] » es estada levada de vòstra [[Special:Watchlist|lista de seguit]].',
 'watch'                => 'Seguir',
 'watchthispage'        => 'Seguir aquesta pagina',
 'unwatch'              => 'Arrestar de seguir',
@@ -2143,9 +2149,8 @@ Retorn e assisténcia :
 'delete-confirm'         => 'Escafar «$1»',
 'delete-legend'          => 'Escafar',
 'historywarning'         => 'Atencion : La pagina que sètz a mand de suprimir a un istoric :',
-'confirmdeletetext'      => "Sètz a mand de suprimir definitivament de la banca de donadas una pagina
-o un imatge, e mai totas sas versions anterioras.
-Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncias e que fasètz aquò en acòrdi amb las [[{{MediaWiki:Policy-url|règlas intèrnas}}]].",
+'confirmdeletetext'      => "Sètz a mand de suprimir una pagina o un fichièr, e mai totas sas versions anterioras istorizadas.
+Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncias e que fasètz aquò en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].",
 'actioncomplete'         => 'Accion efectuada',
 'actionfailed'           => 'L’accion a fracassat',
 'deletedtext'            => '"<nowiki>$1</nowiki>" es estat suprimit.
@@ -2346,9 +2351,9 @@ $1",
 # Block/unblock
 'blockip'                         => 'Blocar en escritura',
 'blockip-legend'                  => 'Blocar en escritura',
-'blockiptext'                     => "Utilizatz lo formulari çaijós per blocar l'accès en escritura a partir d'una adreça IP donada.
-Una tala mesura deu pas èsser presa pas que per empachar lo vandalisme e en acòrdi amb las [[{{MediaWiki:Policy-url|règlas intèrnas}}]].
-Donatz çaijós una rason precisa (per exemple en indicant las paginas que son estadas vandalizadas).",
+'blockiptext'                     => "Utilizatz lo formulari çaijós per blocar l'accès a las modificacions a partir d'una adreça IP especifica o d'un nom d'utilizaire.
+Una tala mesura deu pas èsser presa pas que per empachar lo vandalisme e en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].
+Donatz çaijós un motiu precís (per exemple en citant las paginas que son estadas vandalizadas).",
 'ipaddress'                       => 'Adreça IP :',
 'ipadressorusername'              => 'Adreça IP o nom d’utilizaire :',
 'ipbexpiry'                       => 'Durada del blocatge :',
@@ -2375,7 +2380,7 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipbhidename'                     => 'Amagar lo nom d’utilizaire de las modificacions e de las listas',
 'ipbwatchuser'                    => "Seguir las paginas d'utilizaire e de discussion d'aqueste utilizaire",
 'ipballowusertalk'                => 'Permet a aqueste utilizaire de modificar sa pròpria pagina de discussion pendent son periòde de blocatge',
-'ipb-change-block'                => 'Tronar blocar aqueste utilizaire amb aquestes paramètres',
+'ipb-change-block'                => 'Tornar blocar aqueste utilizaire amb aquestes paramètres',
 'badipaddress'                    => "L'adreça IP es incorrècta",
 'blockipsuccesssub'               => 'Blocatge capitat',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
@@ -2735,10 +2740,12 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizaire anonim|Utilizaires anonims}} de {{SITENAME}}',
 'siteuser'         => 'Utilizaire $1 de {{SITENAME}}',
+'anonuser'         => "l'utilizaire anonim $1 de {{SITENAME}}",
 'lastmodifiedatby' => 'Aquesta pagina es estada modificada pel darrièr còp lo $1 a $2 per $3.',
 'othercontribs'    => 'Basat sul trabalh de $1.',
 'others'           => 'autres',
 'siteusers'        => '{{PLURAL:$2|utilizaire|utilizaires}} $1 de {{SITENAME}}',
+'anonusers'        => "{{PLURAL:$2|l'utilizaire anonim|los utilizaires anonims}} $1 de {{SITENAME}}",
 'creditspage'      => 'Pagina de crèdits',
 'nocredits'        => 'I a pas d’entresenhas d’atribucion disponiblas per aquesta pagina.',
 

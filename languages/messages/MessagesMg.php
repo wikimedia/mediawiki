@@ -502,6 +502,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'badretype'                  => 'Tsy mitovy ny tenimiafina nampidirinao.',
 'userexists'                 => 'Efa misy mampiasa io solonanarana io. Mifidiana solonanarana hafa azafady.',
 'loginerror'                 => "Tsy fetezana teo amin'ny fidirana",
+'createaccounterror'         => 'Tsy afaka mamorona kaonty : $1',
 'nocookiesnew'               => "Voaforona ny kaonty-mpikambana, fa tsy niditra ianao. Mampiasa ny cookies ny {{SITENAME}} hoan'ny fampidirana fa tsy navelanao ampiasaina ny cokkies. Ataovy mande izy, mitovy anarana sy tenimiafina.",
 'nocookieslogin'             => 'Mampiasa cookies i {{SITENAME}} nefa ny navigateur-nao tsy manaiky cookies. Ovay hanaiky cookies aloha izy vao afaka manandrana miditra indray ianao.',
 'noname'                     => 'Tsy nanome solonanarana mety ianao.',
@@ -528,6 +529,7 @@ Raha olon-kafa io nangataka io, na tadidinao ihany ny tenimiafinao taloha ka
 tsy irinao hovana intsony, dia fafao fotsiny ity hafatra ity dia ilay 
 tenimiafina taloha ihany no ampiasao.',
 'noemail'                    => 'Tsy nanome adiresy imailaka i "$1".',
+'noemailcreate'              => 'Tsy maintsy misy ny adiresy imailaka ho atsofokao',
 'passwordsent'               => 'Nandefasana tenimiafina vaovao any amin\'ny adiresy imailak\'i "$1".
 Azafady midira rehefa voarainao io imailaka io.',
 'blocked-mailpassword'       => "Voasakana ny adiresy IP-nao, nesorina aminao ny asa ''password recovery'' mba tsy hanararaotra.",
@@ -663,6 +665,11 @@ Raha toa moa ka tsy nieritreritra ny hamorona ity takelaka ity ianao dia miveren
 'noarticletext'                    => "'''Tsy mbola nisy namorona io lahatsoratra io.
 Azonao atao ny [[Special:Search/{{PAGENAME}}||Tadiavo ny momba ny {{PAGENAME}}]].'''
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Na forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.",
+'noarticletext-nopermission'       => "Mbola tsy misy lahatsoratra ao amin'io pejy io. 
+
+Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy io]] ao amin'ny pejy hafa, mitady <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} anatin'ny tantaran'asa mikasika azy]</span>",
+'userpage-userdoesnotexist'        => 'Mbola tsy nanoratra anarana ato i « $1 ». Marino raha tena hamorona ity pejy ity ianao.',
+'userpage-userdoesnotexist-view'   => 'Tsy nanoratra anarana ato i « $1 ».',
 'clearyourcache'                   => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.
 '''Mozilla / Firefox / Safari:''' Tsindrio ny ''Shift'' rehefa manindry ''Reload'', na tsindrio ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ho an'ny Apple Mac); '''IE:''' tsindrio ''Ctrl'' rehefa manindry ''Refresh'', na tsindrio ''Ctrl-F5''; '''Konqueror:''': tsindrio fotsiny ny bokotra ''Reload'' na ''F5''; ny mpampiasa '''Opera''' angamba dia tokony hamafa ny cache-ny ao amin'ny ''Tools&rarr;Preferences''.",
 'usercssyoucanpreview'             => "'''Fika:''' Ampiasao ny bokotra 'Tsipalotra' mialoha ny hitehirizanao ny CSS-nao vaovao.",
@@ -703,7 +710,9 @@ amin'ny fanovana ny pejy manakaiky na mihoatra ny 32 ko.
 Tsara raha saratsarahinao ho fizarana maromaro ity pejy ity.'''",
 'readonlywarning'                  => "'''FAMPITANDREMANA: Nohidiana noho ny antony fikolokoloana aloha ny banky angona,
 koa tsy afaka mitahiry ny fanovana nataonao aloha ianao izao. Angamba tokony hanao Couper coller aloha 
-ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''",
+ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''
+
+Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'protectedpagewarning'             => "'''FAMPITANDREMANA:  Voaaro ity pejy ity ka ny mpikambana manana ny fahazoan-dàlana sysop ihany no afaka manova azy.'''",
 'semiprotectedpagewarning'         => "'''Naoty''' : Voaaro ity pejy ity, ny mpikambana nanokatra kaonty tato ihany no afaka manova azy.",
 'titleprotectedwarning'            => "'''TANDREMO''' : Ny mpikambana manana [[Special:ListGroupRights|alàlana manokana]] ihany no afaka manova ity pejy ity.",

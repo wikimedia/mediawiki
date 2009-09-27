@@ -1537,9 +1537,9 @@ tiu ĉi tiu dosiero pezas $2 bitokojn.',
 Bonvolu kontroli '''<tt>[[:$1]]</tt>''' krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
 [[$1|thumb]]",
 'filepageexists'              => "La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe '''<tt>[[:$1]]</tt>''', sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
- La resumo kiun vi entajpos ne aperos en la priskribo-paĝo.
- Por aperigi vian resumon, vi devos permane redakti ĝin.
-[[$1|dosiereto]]",
+La resumo kiun vi entajpos ne aperos en la priskribo-paĝo.
+Por aperigi vian resumon, vi devos permane redakti ĝin.
+[[$1|thumb]]",
 'fileexists-extension'        => "Dosiero kun simila nomo ekzistas: [[$2|thumb]]
 * Nomo de la alŝuta dosiero: '''<tt>[[:$1]]</tt>'''
 * Nomo de la ekzistanta dosiero: '''<tt>[[:$2]]</tt>'''

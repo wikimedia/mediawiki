@@ -598,13 +598,18 @@ Qey na hesabê newe parola, cıkewtış dıma şıma eşkeni na qısım de ''[[S
 'newarticletext'                   => "Ena pele, database ma de hona çiniyo.
 Eka tı wazene yew bıvırazi, bınê eno nuşte de yew quti esto u uca de bınuse (bıvinin [[{{MediaWiki:Helppage}}|help page]] qe informasyonê zafyeri).  
 Eka tı ita semed yew heta ra amey, ser gocekê '''back'''i klik bıkin.",
+'anontalkpagetext'                 => "----''No pel, pel o karbero hesab a nêkerdeyan o, ya zi karbero hesab akerdeyan o labele pê hesabê xo nêkewto de. No sebeb ra ma IP adres şuxulneni û ney IP adresan herkes eşkeno bıvino. Eke şıma qayil niye ina bo xo ri [[Special:UserLogin/signup|yew hesab bıvıraze]] veyaxut [[Special:UserLogin|hesab akere]].''",
 'noarticletext'                    => 'Ena pele dı hona çık çino.    
 Tı eşkeno zerre pelanê binan dı [[Special:Search/{{PAGENAME}}|ser ena name cıgeyro]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ser logan cıgeyro],
 ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurno]</span>.',
+'noarticletext-nopermission'       => 'No pel nıka veng o.
+No sernuşte şıma [[Special:Search/{{PAGENAME}}|pelanê binan de eşkeni bıgeri]]
+ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} itara eşekeni bıgere].</span>',
 'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" lazim niyo.
-Eka ti wazeno binusi, kontrol bike.',
+Eka ti wazeni binusi, kontrol bike.',
 'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nibiyo.',
+'clearyourcache'                   => "'''Not:''' Bade eyar qayd kerdış, gani hafızayê cıgerayox pak bıbo: '''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere veyaxut ''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' tena tuşê pel newe ra bar kere ser a ne.",
 'updated'                          => '(Rocaniye biyo)',
 'note'                             => "'''Not:'''",
 'previewnote'                      => "'''Teme! ena teyna verqeyda.'''

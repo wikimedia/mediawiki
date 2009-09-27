@@ -1637,7 +1637,10 @@ Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súbor
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
 'fileexists'                  => "Súbor s týmto názvom už existuje, prosím skontrolujte '''<tt>[[:$1]]</tt>''' ak nie ste si istý, či ho chcete zmeniť.
 [[$1|thumb]]",
-'filepageexists'              => "Popisná stránka tohto súboru už bola vytvorená na '''<tt>[[:$1]]</tt>''', ale žiadny súbor s týmto názvom momentálne neexistuje. Zhrnutie, ktoré zadáte sa neobjaví na popisnej stránke. Aby sa zhrnutie objavilo na popisnej stránke, budete ho musieť ručne upraviť.",
+'filepageexists'              => "Popisná stránka pre tento súbor už bola vytvorená na '''<tt>[[:$1]]</tt>''', ale žiadny súbor s týmto názvom momentálne neexistuje. 
+Zadané zhrnutie sa neobjaví na popisnej stránke. 
+Aby sa tam zhrnutie objavilo, budete potrebné ho manuálne upraviť.
+[[$1|thumb]]",
 'fileexists-extension'        => "Súbor s podobným názvom už existuje: [[$2|thumb]]
 * Názov súboru, ktoý nahrávate: '''<tt>[[:$1]]</tt>'''
 * Názov existujúceho súboru: '''<tt>[[:$2]]</tt>'''
