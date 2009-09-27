@@ -4,7 +4,7 @@
  */
 js2AddOnloadHook( function() {
 	mwUploadHelper.init();
-});
+} );
 var mwUploadFormTarget = '#mw-upload-form';
 // Set up the upload form bindings once all DOM manipulation is done
 var mwUploadHelper = {
@@ -12,7 +12,7 @@ var mwUploadHelper = {
 		var _this = this;
 		// If wgEnableFirefogg is not boolean false, set to true
 		if( typeof wgEnableFirefogg == 'undefined' )
-			wgEnableFirefogg = true;
+		wgEnableFirefogg = true;
 
 		if( wgEnableFirefogg ) {
 			// Set up the upload handler to Firefogg. Should work with the HTTP uploads too.
@@ -22,13 +22,13 @@ var mwUploadHelper = {
 				'form_rewrite': true,
 				'target_edit_from': mwUploadFormTarget,
 				'new_source_cb': function( orgFilename, oggName ) {
-			        if( $j( '#wpDestFile' ).val() == "" )
-					    $j( '#wpDestFile' ).val( oggName );
+					if( $j( '#wpDestFile' ).val() == "" )
+					$j( '#wpDestFile' ).val( oggName );
 					$j( '#wpDestFile' ).doDestCheck({
 						'warn_target': '#wpDestFile-warning'
-					});
+					} );
 				}
-			});
+			} );
 		} else {
 			// Add basic upload profile support ( http status monitoring, progress box for
 			// browsers that support it, etc.)
@@ -36,7 +36,7 @@ var mwUploadHelper = {
 				$j( '#wpUploadFileURL' ).baseUploadInterface( {
 					'api_url': wgServer + wgScriptPath + '/api.php',
 					'target_edit_from': mwUploadFormTarget
-				});
+				} );
 			}
 		}
 
@@ -45,8 +45,8 @@ var mwUploadHelper = {
 			$j( '#wpDestFile' ).change( function() {
 				$j( '#wpDestFile' ).doDestCheck({
 					'warn_target':'#wpDestFile-warning'
-				});
-			});
+				} );
+			} );
 		}
 
 		// Check if we have HTTP enabled & setup enable/disable toggle:
@@ -56,24 +56,24 @@ var mwUploadHelper = {
 
 			$j( "input[name='wpSourceType']" ).click( function() {
 				_this.toggleUpType( this.id == 'wpSourceTypeFile' );
-			});
+			} );
 		}
 		$j( '#wpUploadFile,#wpUploadFileURL' )
-			.focus( function() {
-				_this.toggleUpType( this.id == 'wpUploadFile' );
-			})
-			// Also setup the onChange event binding:
-			.change( function() {
-				if ( wgUploadAutoFill ) {
-					mwUploadHelper.doDestinationFill( this );
-				}
-			});
+		.focus( function() {
+			_this.toggleUpType( this.id == 'wpUploadFile' );
+		})
+		// Also setup the onChange event binding:
+		.change( function() {
+			if ( wgUploadAutoFill ) {
+				mwUploadHelper.doDestinationFill( this );
+			}
+		} );
 	},
 	/**
-	 * Set the upload radio buttons
-	 *
-	 * boolean set
-	 */
+	* Set the upload radio buttons
+	*
+	* boolean set
+	*/
 	toggleUpType: function( set ) {
 		$j( '#wpSourceTypeFile' ).attr( 'checked', set );
 		$j( '#wpUploadFile' ).attr( 'disabled', !set );
@@ -85,12 +85,12 @@ var mwUploadHelper = {
 		if( wgEnableFirefogg ) {
 			$j( '#wpUploadFile' ).firefogg({
 				'firefogg_form_action': $j( '#wpSourceTypeFile' ).attr( 'checked' )
-			});
+			} );
 		}
 	},
 	/**
-	 * Fill in a destination file-name based on a source asset name.
-	 */
+	* Fill in a destination file-name based on a source asset name.
+	*/
 	doDestinationFill: function( targetElm ) {
 		js_log( "doDestinationFill" )
 		// Remove any previously flagged errors
@@ -115,7 +115,7 @@ var mwUploadHelper = {
 				var ext = fname.substr( fname.lastIndexOf( '.' ) + 1 );
 				for( var i = 0; i < wgFileExtensions.length; i++ ) {
 					if( wgFileExtensions[i].toLowerCase() == ext.toLowerCase() )
-						found = true;
+					found = true;
 				}
 			}
 			if( !found ) {
@@ -134,7 +134,6 @@ var mwUploadHelper = {
 		// Do a destination check
 		$j( '#wpDestFile' ).doDestCheck({
 			'warn_target': '#wpDestFile-warning'
-		});
+		} );
 	}
 }
-
