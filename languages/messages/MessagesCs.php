@@ -1616,7 +1616,7 @@ $3',
 'recentchangeslinked-noresult' => 'V zadaném období nebyly na odkazovaných stránkách žádné změny.',
 'recentchangeslinked-summary'  => "Níže je seznam nedávných změn stránek odkazovaných ze zadané stránky (nebo patřících do dané kategorie). Vaše [[Special:Watchlist|sledované stránky]] jsou '''zvýrazněny'''.",
 'recentchangeslinked-page'     => 'Název stránky:',
-'recentchangeslinked-to'       => 'Zobrazit změny na stránkách, které odkazují na zadanou stránku',
+'recentchangeslinked-to'       => 'Zobrazit změny na stránkách odkazujících na zadanou stránku',
 
 # Upload
 'upload'                      => 'Načíst soubor',

@@ -913,7 +913,7 @@ Das Passwort für dieses neue Benutzerkonto kann auf der Spezialseite „[[Speci
 'newarticle'                       => '(Neu)',
 'newarticletext'                   => "Du bist einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
 Um die Seite anzulegen, trage deinen Text in die untenstehende Box ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für mehr Informationen).
-Bist du fälschigerweise hier, klicke die '''Zurück'''-Schaltfläche deines Browsers.",
+Bist du fälschlicherweise hier, klicke die '''Zurück'''-Schaltfläche deines Browsers.",
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
 Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]],
@@ -2473,7 +2473,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'blocklogtext'                    => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen.
 Automatisch gesperrte IP-Adressen werden nicht erfasst.
 Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernamen]] für alle aktiven Sperren.',
-'unblocklogentry'                 => 'entsperrte „$1“',
+'unblocklogentry'                 => 'hob die Sperre von „$1“ auf',
 'block-log-flags-anononly'        => 'nur Anonyme',
 'block-log-flags-nocreate'        => 'Erstellung von Benutzerkonten gesperrt',
 'block-log-flags-noautoblock'     => 'Autoblock deaktiviert',

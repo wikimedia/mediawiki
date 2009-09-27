@@ -165,7 +165,7 @@ Bitte fügen Sie alle Informationen jeder Anfrage hinzu, die Sie stellen.",
 'loginreqpagetext'                 => 'Sie müssen sich $1, um Seiten lesen zu können.',
 'newarticletext'                   => "Sie sind einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
 Um die Seite anzulegen, tragen Sie Ihren Text in die untenstehende Box ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für mehr Informationen).
-Sind Sie fälschigerweise hier, klicken Sie die '''Zurück'''-Schaltfläche Ihres Browsers.",
+Sind Sie fälschlicherweise hier, klicken Sie die '''Zurück'''-Schaltfläche Ihres Browsers.",
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können sie ignorieren. Sie können sich auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder sich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
 Sie können diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]],

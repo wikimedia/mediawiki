@@ -11,6 +11,7 @@
  * @author Demicx
  * @author Fulup
  * @author Kal-El
+ * @author Malafaya
  * @author Seha
  * @author Smooth O
  * @author לערי ריינהארט
@@ -1657,7 +1658,7 @@ Molimo Vas da provjerite '''<tt>[[:$1]]</tt>''' ako niste sigurni da li želite 
 'filepageexists'              => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>[[:$1]]</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
 Sažetak koji ste naveli neće se pojaviti na stranici opisa.
 Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite.
-[[$1|smanjeni pregled]]",
+[[$1|thumb]]",
 'fileexists-extension'        => "Datoteka sa sličnim nazivom postoji: [[$2|thumb]]
 * Naziv datoteke koja se postavlja: '''<tt>[[:$1]]</tt>'''
 * Naziv postojeće datoteke: '''<tt>[[:$2]]</tt>'''

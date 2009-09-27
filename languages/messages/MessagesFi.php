@@ -617,7 +617,9 @@ $1',
 Olet saattanut kirjoittaa väärin, tai seurannut virheellistä linkkiä.
 Tämä voi myös mahdollisesti olla ohjelmistovirhe.',
 'nosuchspecialpage' => 'Kyseistä toimintosivua ei ole',
-'nospecialpagetext' => 'Wikiohjelmisto ei tunnista pyytämääsi toimintosivua.',
+'nospecialpagetext' => '<strong>Ohjelmisto ei tunnista pyytämääsi toimintosivua.</strong>
+
+Luettelo toimintosivuista löytyy sivulta [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Virhe',
@@ -853,7 +855,9 @@ Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
 
 Salasanan tälle uudelle tunnukselle voi vaihtaa kirjautumisen jälkeen [[Special:ChangePassword|asetussivulla]].',
 'newarticle'                       => '(uusi)',
-'newarticletext'                   => 'Linkki toi sivulle, jota ei vielä ole. Voit luoda sivun kirjoittamalla alla olevaan tilaan. Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
+'newarticletext'                   => 'Linkki toi sivulle, jota ei vielä ole.
+Voit luoda sivun kirjoittamalla alla olevaan kenttään (katso [[{{MediaWiki:Helppage}}|ohjesivulta]] lisätietoja).
+Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext'                 => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:UserLogin/signup|luo itsellesi käyttäjätunnus]] tai [[Special:UserLogin|kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 'noarticletext'                    => 'Tällä hetkellä tällä sivulla ei ole tekstiä.
 Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta,
@@ -1649,6 +1653,11 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Pääsy estetty',
+'img-auth-nopathinfo'   => 'PATH_INFO puuttuu.
+Palvelintasi ei ole asetettu välittämään tätä tietoa.
+Se saattaa olla CGI-pohjainen eikä voi tukea img_authia.
+Katso http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
 'img-auth-nofile'       => 'Tiedostoa ”$1” ei ole.',
 'img-auth-noread'       => 'Käyttäjillä ei ole oikeutta lukea tiedostoa ”$1”.',
 

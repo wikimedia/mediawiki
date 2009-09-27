@@ -575,7 +575,7 @@ Galite toliau naudoti {{SITENAME}} anonimiškai arba [[Special:UserLogin|prisiju
 Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti, kad esate prisijungęs iki tol, kol išvalysite savo naršyklės podėlį.",
 'welcomecreation'            => '== Sveiki, $1! ==
 
-Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų.',
+Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo [[Special:Preferences|{{SITENAME}} nustatymų]].',
 'yourname'                   => 'Naudotojo vardas:',
 'yourpassword'               => 'Slaptažodis:',
 'yourpasswordagain'          => 'Pakartokite slaptažodį:',
@@ -1948,7 +1948,7 @@ El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustaty
 Būsimi puslapio bei atitinkamo aptarimo puslapio pakeitimai bus rodomi stebimųjų puslapių sąraše,
 taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąraše]], kad išsiskirtų iš kitų puslapių.",
 'removedwatch'         => 'Pašalinta iš stebimų',
-'removedwatchtext'     => 'Puslapis „[[:$1]]“ pašalintas iš jūsų stebimųjų sąrašo.',
+'removedwatchtext'     => 'Puslapis „[[:$1]]“ pašalintas iš jūsų [[Special:Watchlist|stebimųjų sąrašo]].',
 'watch'                => 'Stebėti',
 'watchthispage'        => 'Stebėti šį puslapį',
 'unwatch'              => 'Nebestebėti',

@@ -580,7 +580,9 @@ $1',
 Có thể bạn đã gõ nhầm địa chỉ URL, hoặc nhấn vào một liên kết sai.
 Nó cũng có thể là dấu hiệu của một lỗi trong phần mềm mà {{SITENAME}} sử dụng.',
 'nosuchspecialpage' => 'Không có trang đặc biệt nào có tên này',
-'nospecialpagetext' => 'Không có trang đặc biệt này.',
+'nospecialpagetext' => '<strong>Bạn đã yêu cầu một trang đặc biệt không tồn tại.</strong>
+
+Có danh sách trang đặc biệt tại [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Lỗi',
@@ -1428,6 +1430,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-bigdelete'             => 'Xóa trang có lịch sử lớn',
 'right-deleterevision'        => 'Xóa và phục hồi phiên bản nào đó của trang',
 'right-deletedhistory'        => 'Xem phần lịch sử đã xóa, mà không xem nội dung đi kèm',
+'right-deletedcontent'        => 'Xem văn bản đã xóa và các thay đổi giữa phiên bản đã xóa',
 'right-browsearchive'         => 'Tìm những trang đã xóa',
 'right-undelete'              => 'Phục hồi trang',
 'right-suppressrevision'      => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
@@ -2048,7 +2051,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 
 Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
 'removedwatch'         => 'Đã ra khỏi danh sách theo dõi',
-'removedwatchtext'     => 'Trang “[[:$1]]” đã được đưa ra khỏi danh sách theo dõi.',
+'removedwatchtext'     => 'Trang “[[:$1]]” đã được đưa ra khỏi [[Special:Watchlist|danh sách theo dõi]] của bạn.',
 'watch'                => 'Theo dõi',
 'watchthispage'        => 'Theo dõi trang này',
 'unwatch'              => 'Ngừng theo dõi',
@@ -2390,7 +2393,7 @@ $1',
 'unblocklink'                     => 'bỏ cấm',
 'change-blocklink'                => 'đổi mức cấm',
 'contribslink'                    => 'đóng góp',
-'autoblocker'                     => 'Bạn bị tự động cấm vì địa chỉ IP của bạn vừa rồi đã được “$1” sử dụng. Lý do đưa ra cho việc cấm $1 là: ”$2”',
+'autoblocker'                     => 'Bạn bị tự động cấm vì địa chỉ IP của bạn vừa rồi đã được “[[User:$1|$1]]” sử dụng. Lý do đưa ra cho việc cấm $1 là: ”$2”',
 'blocklogpage'                    => 'Nhật trình cấm',
 'blocklog-showlog'                => 'Thành viên này trước đây đã bị cấm. Nhật trình cấm được ghi ra ở đây để tiện theo dõi:',
 'blocklog-showsuppresslog'        => 'Thành viên trước đây đã từng bị cấm và ẩn đi. Nhật trình ẩn được ghi dưới đây để tiện theo dõi:',
@@ -2712,11 +2715,13 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Thành viên|Thành viên}} vô danh của {{SITENAME}}',
-'siteuser'         => 'Thành viên $1 của {{SITENAME}}',
+'siteuser'         => 'thành viên $1 của {{SITENAME}}',
+'anonuser'         => 'người vô danh $1 tại {{SITENAME}}',
 'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.',
 'othercontribs'    => 'Dựa trên công trình của $1.',
 'others'           => 'những người khác',
 'siteusers'        => '{{PLURAL:$2|Thành viên|Các thành viên}} $1 của {{SITENAME}}',
+'anonusers'        => '{{plural:$2|người|những người}} vô danh $1 tại {{SITENAME}}',
 'creditspage'      => 'Trang ghi nhận đóng góp',
 'nocredits'        => 'Không có thông tin ghi nhận đóng góp cho trang này.',
 

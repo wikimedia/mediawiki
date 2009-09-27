@@ -501,6 +501,7 @@ Algat unohtagoi [[Special:Preferences|järgeta personaližikš]] sait.',
 'userexists'              => 'Kirjutadud kävutajan nimi om jo rezerviruidud.
 Olgat hüväd, valikat toine kävutajan nimi.',
 'loginerror'              => 'Sistemha tulendan peituz.',
+'createaccounterror'      => 'Ei voi säta registracijad: $1',
 'nocookieslogin'          => '{{SITENAME}}-sait kävutab "cookie"-failad, miše tundištada kävutajid.
 Tö olet saupnuded "cookie"-failad.
 Otkat ned kävutamižhe i toštkat teiden tegend.',
@@ -522,6 +523,7 @@ Kirjutagat toine peitsana.",
 'mailmypassword'          => "Oigeta minei uz' peitsana e-počtadme",
 'passwordremindertitle'   => "Uz' pordaigaline peitsana {{SITENAME}}-saitan täht",
 'noemail'                 => '"$1"-kävutai ei ole andnu ičeze e-počtan adresad.',
+'noemailcreate'           => 'Bidab kirjutada todesine e-počtan adres',
 'passwordsent'            => "Uz' peitsana om oigetud $1-kävutajan e-počtan adresale.
 Olgat hüväd, kirjutagatoiš sistemha, konz sat sen.",
 'blocked-mailpassword'    => "Redaktiruind teiden IP-adresalpäi om kel'tud, peitsanan udištandan funkcii om mugažo blokiruidud, miše kaitas abidoičendaspäi.",
@@ -704,6 +706,7 @@ Tö voit pörttas tagaze i redaktiruida toine lehtpol', vai [[Special:UserLogin|
 'permissionserrorstext-withaction' => 'Teile ei sa $2 {{PLURAL:$1|necen sün|neciden süiden}} tagut:',
 'moveddeleted-notice'              => "Nece lehtpol' om čutud poiš.
 Alemba om anttud lehtpolen čudandan vai sirdandan istorii kut abuandmused.",
+'log-fulllog'                      => 'Ozutada kaclendnimikirjutez kogonaz',
 'edit-hook-aborted'                => 'Redakcijan azoti sabustaiprogramm.
 Ei ole ližasüid.',
 'edit-gone-missing'                => "Ei voi udištada lehtpol't.
@@ -723,7 +726,8 @@ Ei voi mülütada erasid šablonoid.',
 'parser-template-recursion-depth-warning' => 'Šablonan rekursijan süvuzröun om ülitadud ($1)',
 
 # "Undo" feature
-'undo-norev' => "Ei voi endištada lehtpol't, sikš miše mugošt lehtpol't ei ole vai se om jo čutud.",
+'undo-failure' => 'Ei voi tühjištada redakcijad, sikš miše läbiredakcijad konfliktuidas.',
+'undo-norev'   => "Ei voi endištada lehtpol't, sikš miše mugošt lehtpol't ei ole vai se om jo čutud.",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ei voi säta registracijad',
@@ -778,6 +782,7 @@ Detalid voidas olda [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-nologtype-text'    => 'Tö et olgoi andnuded aigkirjan tipad, kudambas pidab tehta se tegend.',
 'revdelete-nologid-title'     => 'Vär kirjutez aigkirjas',
 'revdelete-nologid-text'      => 'Tö et olgoi andnuded aigkirjan metkirjutest tegendan tehtes vai anttud kirjutest ei ole.',
+'revdelete-no-file'           => 'Mugošt failad ei ole.',
 'revdelete-show-file-submit'  => 'Ka',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valitud versii|Valitud versijad}} lehtpolišpäi [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valitud kirjutez aigkirjas|Valitud kirjutesed aigkirjas}}:'''",
@@ -970,6 +975,7 @@ Tö voit [[:\$1|säta mugoi lehtpol']].",
 'search-mwsuggest-disabled'        => 'taričendoita',
 'search-relatedarticle'            => 'Sidotud lehtpoled',
 'mwsuggest-disable'                => 'Ala ozuta AJAX-taričendoid',
+'searcheverything-enable'          => 'Ectä kaikiš nimiavarusiš',
 'searchrelated'                    => 'sidotud',
 'searchall'                        => 'kaik',
 'showingresults'                   => "Alemba ozutadas {{PLURAL:$1|'''1''' rezul'tat|'''$1''' rezul'tatad}} nomeraspäi #'''$2''' augotaden.",
@@ -1036,6 +1042,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'stub-threshold'              => 'Nägutesen märitamižen künduz <a href="#" class="stub">kosketust otetile</a> (baitoiš)',
 'recentchangesdays'           => 'Päiväd veresiden toižetusidenke, lugumär:',
 'recentchangesdays-max'       => '(maksimum $1 {{PLURAL:$1|päiv|päiväd}})',
+'recentchangescount'          => 'Redakcijoiden lugu, kudamb pidab ozutada augotižjärgendusen mödhe:',
 'savedprefs'                  => 'Teiden järgendused oma kirjutadud muštho.',
 'timezonelegend'              => 'Aigvö:',
 'localtime'                   => 'Tahonaig:',

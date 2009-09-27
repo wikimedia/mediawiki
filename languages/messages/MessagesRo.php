@@ -1997,7 +1997,7 @@ Protocoale suportate: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista de utilizatori activi',
-'activeusers-count'    => '$1 {{PLURAL:$1|modificare recentă|modificări recente}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|modificare recentă|modificări recente}} în {{PLURAL:$3|ultima zi|ultimele $3 zile}}',
 'activeusers-from'     => 'Afişează utilizatori începând cu:',
 'activeusers-noresult' => 'Niciun utilizator găsit.',
 
@@ -2066,7 +2066,7 @@ Adresa de e-mail introdusă de tine în [[Special:Preferences|preferinţele de u
 
 Dacă doriţi să eliminaţi această pagină din lista dv. de pagini urmărite în viitor, apăsaţi pe „Nu mai urmări” în bara de comenzi în timp ce această pagină este vizibilă.',
 'removedwatch'         => 'Ştearsă din lista de pagini urmărite',
-'removedwatchtext'     => 'Pagina "[[:$1]]" a fost eliminată din lista de pagini urmărite.',
+'removedwatchtext'     => 'Pagina "[[:$1]]" a fost eliminată din [[Special:Watchlist|lista de pagini urmărite]].',
 'watch'                => 'Urmăreşte',
 'watchthispage'        => 'Urmăreşte pagina',
 'unwatch'              => 'Nu mai urmări',
@@ -2395,7 +2395,8 @@ Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a rev
 'unblocklink'                     => 'deblochează',
 'change-blocklink'                => 'modifică blocarea',
 'contribslink'                    => 'contribuţii',
-'autoblocker'                     => 'Autoblocat fiindcă folosiţi aceeaşi [[adresă IP]] ca şi „$1”. Motivul este „$2”.',
+'autoblocker'                     => 'Autoblocat fiindcă folosiţi aceeaşi adresă IP ca şi „[[User:$1|$1]]”.
+Motivul blocării utilizatorului $1 este: „$2”',
 'blocklogpage'                    => 'Jurnal blocări',
 'blocklogentry'                   => 'a blocat "[[$1]]" pe o perioadă de $2 $3',
 'reblock-logentry'                => 'a fost schimbată blocarea pentru [[$1]] cu data expirării la $2 $3',

@@ -358,7 +358,9 @@ $1',
 A peul esse che it l'abie batù mal l'URL, o che it l'abie andàit daré a n'anliura nen giusta.
 Son-sì a podrìa ëdcò esse un bug an drinta al software dovrà da {{SITENAME}}.",
 'nosuchspecialpage' => "A-i é pa gnun-a pàgina special tan-me cola che chiel a l'ha ciamà.",
-'nospecialpagetext' => "A l'ha ciamà na pàgina special che a l'é pa staita arconossùa dal programa MediaWiki, ò pura a l'é nen disponibila.",
+'nospecialpagetext' => "<strong>It l'has ciamà na pàgina special pa bon-a.</strong>
+
+Na lista ëd pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Eror',
@@ -434,7 +436,9 @@ Coma rason a l'ha butà: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "A l'é sortù da 'nt ël sistema.
 A peul tiré anans a dovré {{SITENAME}} coma Utent anonim, ò pura a peul rintré torna ant ël sistema con l'istess stranòm che a dovrava prima, ò con un diferent.",
-'welcomecreation'            => '<h2>Bin avnù, $1!</h2><p>Sò cont a l\'è stait creà.<br />Mersì për avej sërnù dë giutene a fé chërse {{SITENAME}}.<br />Për fé {{SITENAME}} pì soa, e përchè a sia pì belfé dovrela, che as dësmentia nen dë compilé la pàgina dij "sò gust".',
+'welcomecreation'            => '==Bin ëvnù, $1!==
+Sò cont a l\'è stait creà.
+Che as dësmentia pa ëd cambié ij [[Special:Preferences|{{SITENAME}} "sò gust"]].',
 'yourname'                   => 'Sò stranòm',
 'yourpassword'               => 'Soa ciav',
 'yourpasswordagain'          => 'Che a bata torna soa ciav',
@@ -613,7 +617,9 @@ Për piasì, ch'a buta sempe tùit ij detaj an tute le comunicassion andova ch'a
 
 La ciav për cost neuv cont a peul esse cambià an dorvind la pàgina ''[[Special:ChangePassword|cambia ciav]]''",
 'newarticle'                       => '(Neuv)',
-'newarticletext'                   => 'Che a scriva sò test ambelessì.',
+'newarticletext'                   => "It ses andàit daré a un colegament a na pàgina che a esist ancó pa.
+Për creé la pàgina, ancamin-a a scrive ant ël box sota (varda la [[{{MediaWiki:Helppage}}|pàgina d'agiut]] për savèjne ëd pì).
+S'it ses sì për eror, sgnaca ël boton '''back''' ëd tò browser.",
 'anontalkpagetext'                 => "----''Costa a l'é la pàgina ëd ciaciarade për n'utent anònim che a l'é ancó pa dorbusse un cont, ò pura che a lo dòvra nen. Alora i l'oma da dovré ël nùmer IP address për deje n'identificassion a chiel/chila. S'it ses n'utent anònim e it l'has l'impression d'arsèive dij coment sensa sust, për piasì [[Special:UserLogin/signup|crea un cont]] o [[Special:UserLogin|Intra]] për evité dë fé confusion con dj'àutri utent anònim.''",
 'noarticletext'                    => 'Al moment costa pàgina a l\'é veuida.
 It peule [[Special:Search/{{PAGENAME}}|sërché costa vos]] an drinta a d\'àutre pàgine, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sërché ant ij registr colegà],

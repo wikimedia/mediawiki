@@ -515,7 +515,7 @@ $messages = array(
 'viewhelppage'      => 'Hulppagina bekieken',
 'categorypage'      => 'Kattegeriepagina bekieken',
 'viewtalkpage'      => 'Bekiek overlegpagina',
-'otherlanguages'    => "Interwiki's",
+'otherlanguages'    => 'Aandere talen',
 'redirectedfrom'    => '(deur-estuurd vanof "$1")',
 'redirectpagesub'   => 'Deurstuurpagina',
 'lastmodifiedat'    => "Disse pagina is 't les ewiezig op $1 um $2.",
@@ -683,7 +683,9 @@ De op-egeven rejen is ''$2''.",
 
 Je kunnen {{SITENAME}} noen anneniem gebruken of onder disse of een aandere gebrukersnaam je eigen weer anmelden.
 't Kan ween dat der een antal pagina's weer-egeven wonnen asof je an-emeld bin totda-j de kas van joew webkieker leegmaken.",
-'welcomecreation'            => '<h2>Welkom, $1!</h2><p>Joew gebrukersprefiel is an-emaak. Je kunnen noen joew persoonlijke veurkeuren instellen.</p>',
+'welcomecreation'            => '== Welkom, $1! ==
+Joew gebrukersnaam is an-emaak. 
+Vergeet neet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] in te stellen.',
 'yourname'                   => 'Gebrukersnaam',
 'yourpassword'               => 'Wachwoord',
 'yourpasswordagain'          => 'Opniej invoeren',
@@ -693,7 +695,7 @@ Je kunnen {{SITENAME}} noen anneniem gebruken of onder disse of een aandere gebr
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden',
 'loginprompt'                => 'Je mutten cookies an hemmen staon um an te kunnen melden bie {{SITENAME}}.',
-'userlogin'                  => 'Anmelden',
+'userlogin'                  => 'Anmelden / inschrieven',
 'logout'                     => 'Ofmelden',
 'userlogout'                 => 'Ofmelden',
 'notloggedin'                => 'Neet an-emeld',
@@ -726,7 +728,7 @@ Kiek de schriefwieze effen nao of [[Special:UserLogin/signup|maak een nieje gebr
 'passwordtooshort'           => 'Wachwoorden mutten uut teminsen {{PLURAL:$1|$1 teken|$1 tekens}} bestaon.',
 'password-name-match'        => 'Joew wachwoord en gebrukersnaam maggen neet liekeleens ween.',
 'mailmypassword'             => 'Niej wachwoord opsturen',
-'passwordremindertitle'      => 'niej tiedelik wachwoord veur {{SITENAME}}',
+'passwordremindertitle'      => 'Niej tiedelijk wachwoord veur {{SITENAME}}',
 'passwordremindertext'       => 'Iemand vanof \'t IP-adres $1 (werschienlijk jiezelf) hef evreugen 
 um een niej wachwoord veur {{SITENAME}} ($4) toe te sturen. 
 Der is een tiedelijk wachwoord an-emaak veur gebruker "$2":
@@ -864,8 +866,10 @@ Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 
 't Wachwoord veur disse gebruker kan ewiezig wonnen deur de pagina ''[[Special:ChangePassword|wachwoord wiezigen]]'' te gebruken.",
 'newarticle'                       => '(Niej)',
-'newarticletext'                   => "Disse pagina besteet nog neet. Hieronder ku-j wat schrieven en naokieken of opslaon. A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um weerumme te gaon.",
-'anontalkpagetext'                 => "---- ''Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:UserLogin|een gebrukersnaam anmaken of anmelden]].''",
+'newarticletext'                   => "Disse pagina besteet nog neet. 
+Hieronder ku-j wat schrieven en naokieken of opslaon (meer infermasie vie-j op de [[{{MediaWiki:Helppage}}|hulppagina]]) 
+A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um weerumme te gaon.",
+'anontalkpagetext'                 => "---- ''Disse overlegpagina heurt bie een annenieme gebruker dee nog gien gebrukersnaam hef, of 't neet gebruuk. We gebruken daorumme 't IP-adres um hum of heur te herkennen, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:UserLogin/signup|een gebrukersnaam anmaken]] of [[Special:UserLogin|anmelden]].''",
 'noarticletext'                    => 'Der steet op hejen gien tekse op disse pagina.
 Je kunnen [[Special:Search/{{PAGENAME}}|de titel opzeuken]] in aandere pagina\'s,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} zeuken in de logboeken],
@@ -2058,7 +2062,7 @@ De ontvanger kan dus drek beantwoorden.",
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" steet noen op joew [[Special:Watchlist|volglieste]].
 Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld wonnen, oek zullen disse pagina's '''vet-edrok''' ween in de lieste mit de [[Special:RecentChanges|leste wiezigingen]] zoda-j 't makkelijker zien kunnen.",
 'removedwatch'         => 'Van volglieste ofhaolen',
-'removedwatchtext'     => 'De pagina "$1" is van joew volglieste op-ehaold.',
+'removedwatchtext'     => 'De pagina "[[:$1]]" is van [[Special:Watchlist|joew volglieste]] of-ehaold.',
 'watch'                => 'Volgen',
 'watchthispage'        => 'Volg disse pagina',
 'unwatch'              => 'Neet volgen',

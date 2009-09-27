@@ -1321,6 +1321,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-bigdelete'             => 'Uzun tarihli sayfaları sil',
 'right-deleterevision'        => 'Sayfaların belirli revizyonlarını sil ve geri yükle',
 'right-deletedhistory'        => 'Silinmiş geçmiş girdilerini gör, ilgili metinleri olmadan',
+'right-deletedcontent'        => 'Silinmiş metni ve silinmiş revizyonlar arasındaki değişiklikleri gör',
 'right-browsearchive'         => 'Silinen sayfaları ara',
 'right-undelete'              => 'Bir sayfanın silinmesini geri al',
 'right-suppressrevision'      => 'Sysoplardan gizlenmiş revizyonları gözden geçir ve geri yükle',
@@ -1945,7 +1946,7 @@ Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler li
 
 Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
 'removedwatch'         => 'İzleme listenizden silindi',
-'removedwatchtext'     => '"<nowiki>$1</nowiki>" sayfası izleme listenizden silinmiştir.',
+'removedwatchtext'     => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenizden]] silinmiştir.',
 'watch'                => 'İzlemeye al',
 'watchthispage'        => 'Sayfayı izle',
 'unwatch'              => 'Sayfa izlemeyi durdur',
@@ -2072,7 +2073,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protect_expiry_invalid'      => 'Geçersiz bitiş tarihi.',
 'protect_expiry_old'          => 'Geçmişteki son kullanma zamanı.',
 'protect-unchain'             => 'Taşıma kilidini kaldır',
-'protect-text'                => '[[$1]] sayfasının koruma durumunu buradan görebilir ve değiştirebilirsiniz. Lütfen [[Project:Koruma politikası|koruma politikasına]] uygun hareket ettiğinizden emin olunuz.',
+'protect-text'                => "'''<nowiki>$1</nowiki>''' sayfasının koruma durumunu buradan görebilir ve değiştirebilirsiniz.",
 'protect-locked-blocked'      => "Engellenmiş iken koruma seviyelerini değiştiremezsiniz.
 '''$1''' sayfasının şu anki ayarları:",
 'protect-locked-dblock'       => "Aktif veritabanı kilidinden dolayı koruma seviyeleri değiştirilemez.
@@ -2593,11 +2594,13 @@ Geçici dosya kayıp.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} sitesinin anonim {{PLURAL:$1|kullanıcısı|kullanıcıları}}',
-'siteuser'         => '{{SITENAME}} kullanıcı $1',
+'siteuser'         => '{{SITENAME}} kullanıcısı $1',
+'anonuser'         => '{{SITENAME}} anonim kullanıcısı $1',
 'lastmodifiedatby' => 'Sayfa en son $3 tarafından $2, $1 tarihinde değiştirildi.',
 'othercontribs'    => '$1 tarafından yapılan çalışma baz alınmıştır.',
 'others'           => 'diğerleri',
-'siteusers'        => '{{SITENAME}} {{PLURAL:$2|kullanıcı|kullanıcılar}} $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|kullanıcısı|kullanıcıları}} $1',
+'anonusers'        => '{{SITENAME}} anonim {{PLURAL:$2|kullanıcısı|kullanıcıları}} $1',
 'creditspage'      => 'Sayfa künyesi',
 'nocredits'        => 'Bu sayfa için künye bilgisi mevcut değil.',
 

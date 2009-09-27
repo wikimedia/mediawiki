@@ -1638,7 +1638,10 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualizaç�
 'fileexists'                  => "Já existe um ficheiro com este nome.
 Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja alterar o ficheiro actual.
 [[$1|thumb]]",
-'filepageexists'              => "A página de descrição deste ficheiro já foi criada em '''<tt>[[:$1]]</tt>''', mas actualmente não existe nenhum ficheiro com este nome. O sumário que introduziu não aparecerá na página de descrição. Para o fazer aparecer, terá que o editar manualmente",
+'filepageexists'              => "A página de descrição deste ficheiro já foi criada em '''<tt>[[:$1]]</tt>''', mas atualmente não existe nenhum ficheiro com este nome.
+O sumário que introduzir não aparecerá na página de descrição.
+Para o fazer aparecer, terá que o editar manualmente.
+[[$1|thumb]]",
 'fileexists-extension'        => "Já existe um ficheiro de nome similar: [[$2|thumb]]
 * Nome do ficheiro que está sendo enviado: '''<tt>[[:$1]]</tt>'''
 * Nome do ficheiro existente: '''<tt>[[:$2]]</tt>'''

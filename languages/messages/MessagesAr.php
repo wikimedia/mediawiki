@@ -1260,7 +1260,14 @@ $1",
 'revdelete-concurrent-change' => 'خطأ في تعديل العنصر ذي التاريخ $2 $1: تظهر حالته أن شخصًا آخر عدّله أثناء محاولتك تعديله.
 من فضلك راجع السجلات.',
 'revdelete-only-restricted'   => 'لا تستطيع تنحية العناصر من عرض الإداريين بدون أن تحدد أيضًا إحدى خيارات التنحية الأخرى.',
+'revdelete-reason-dropdown'   => '* أسباب حذف عامة
+** خرق لحقوق النشر
+** معلومات شخصية غير ملائمة
+**معلومات تشهيرية محتملة',
+'revdelete-otherreason'       => 'سبب آخر/إضافي:',
+'revdelete-reasonotherlist'   => 'سبب آخر',
 'revdelete-edit-reasonlist'   => 'عدل أسباب الحذف',
+'revdelete-offender'          => 'مؤلف المراجعة:',
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
@@ -1458,7 +1465,7 @@ $1",
 'prefs-watchlist-days-max'      => '(حد أقصى 7 أيام)',
 'prefs-watchlist-edits'         => 'عدد التعديلات التي تعرض في قائمة المراقبة الموسعة:',
 'prefs-watchlist-edits-max'     => 'العدد الأقصى: 1000',
-'prefs-watchlist-token'         => 'مفتاح قائمة المراقبة',
+'prefs-watchlist-token'         => 'مفتاح قائمة المراقبة:',
 'prefs-misc'                    => 'متفرقات',
 'prefs-resetpass'               => 'غير كلمة السر',
 'prefs-email'                   => 'خيارات البريد الإلكتروني',
@@ -1724,7 +1731,7 @@ $1",
 'diff'                              => 'فرق',
 'hist'                              => 'تاريخ',
 'hide'                              => 'أخفِ',
-'show'                              => 'عرض',
+'show'                              => 'اعرض',
 'minoreditletter'                   => 'ط',
 'newpageletter'                     => 'ج‌',
 'boteditletter'                     => 'ب',
@@ -1870,6 +1877,11 @@ PICT # متنوع
 'upload-unknown-size'       => 'حجم غير معروف',
 'upload-http-error'         => 'صودف خطأ HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'رُفض الوصول',
+'img-auth-nofile'       => 'الملف "$1" غير موجود.',
+'img-auth-noread'       => 'لا يملك المستخدم صلاحية قراءة "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'لم يتمكن من الوصول للمسار',
 'upload-curl-error6-text'  => 'لم يمكن الوصول إلى المسار الذي حددته.
@@ -1880,7 +1892,7 @@ PICT # متنوع
 ربما تريد المحاولة في وقت أقل ازدحاما.',
 
 'license'            => 'ترخيص:',
-'license-header'     => 'ترخيص:',
+'license-header'     => 'ترخيص',
 'nolicense'          => 'غير محدد',
 'license-nopreview'  => '(العرض المسبق غير متوفر)',
 'upload_source_url'  => '  (مسار صحيح، يمكن الوصول إليه)',
@@ -2168,7 +2180,7 @@ PICT # متنوع
 
 # Special:ActiveUsers
 'activeusers'          => 'قائمة المستخدمين النشطين',
-'activeusers-count'    => '{{PLURAL:$1|لا تعديلات حديثة|تعديل حديث واحد|تعديلان حديثان|$1 تعديلات حديثة|$1 تعديلًا حديثًا|$1 تعديل حديث}}',
+'activeusers-count'    => '{{PLURAL:$1|لا تعديلات حديثة|تعديل حديث واحد|تعديلان حديثان|$1 تعديلات حديثة|$1 تعديلًا حديثًا|$1 تعديل حديث}} في {{PLURAL:$3||اليوم الماضي|اليومين الماضيين|$3 أيام ماضية|$3 يومًا ماضية|ال$1 يوم ماضي}}',
 'activeusers-from'     => 'اعرض المستخدمين بدءًا من:',
 'activeusers-noresult' => 'لا مستخدمون تم إيجادهم.',
 
@@ -2481,17 +2493,19 @@ $1',
 'month'               => 'من شهر (وأقدم):',
 'year'                => 'من سنة (وأقدم):',
 
-'sp-contributions-newbies'       => 'عرض مساهمات الحسابات الجديدة فقط',
-'sp-contributions-newbies-sub'   => 'للحسابات الجديدة',
-'sp-contributions-newbies-title' => 'مساهمات المستخدم للحسابات الجديدة',
-'sp-contributions-blocklog'      => 'سجل المنع',
-'sp-contributions-deleted'       => 'مساهمات المستخدم المحذوفة',
-'sp-contributions-logs'          => 'سجلات',
-'sp-contributions-talk'          => 'نقاش',
-'sp-contributions-userrights'    => 'إدارة صلاحيات المستخدم',
-'sp-contributions-search'        => 'بحث عن مساهمات',
-'sp-contributions-username'      => 'عنوان أيبي أو اسم مستخدم:',
-'sp-contributions-submit'        => 'ابحث',
+'sp-contributions-newbies'        => 'عرض مساهمات الحسابات الجديدة فقط',
+'sp-contributions-newbies-sub'    => 'للحسابات الجديدة',
+'sp-contributions-newbies-title'  => 'مساهمات المستخدم للحسابات الجديدة',
+'sp-contributions-blocklog'       => 'سجل المنع',
+'sp-contributions-deleted'        => 'مساهمات المستخدم المحذوفة',
+'sp-contributions-logs'           => 'سجلات',
+'sp-contributions-talk'           => 'نقاش',
+'sp-contributions-userrights'     => 'إدارة صلاحيات المستخدم',
+'sp-contributions-blocked-notice' => 'هذا المستخدم ممنوع حاليًا.
+إن آخر مدخلة في سجل المنع موجودة أدناه كمرجع:',
+'sp-contributions-search'         => 'بحث عن مساهمات',
+'sp-contributions-username'       => 'عنوان أيبي أو اسم مستخدم:',
+'sp-contributions-submit'         => 'ابحث',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',
@@ -2835,6 +2849,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 يمكنك رؤية مصدرها.',
 'tooltip-ca-history'              => 'النسخ السابقة لهذه الصفحة',
 'tooltip-ca-protect'              => 'احم هذه الصفحة',
+'tooltip-ca-unprotect'            => 'أزل حماية هذه الصفحة',
 'tooltip-ca-delete'               => 'احذف هذه الصفحة',
 'tooltip-ca-undelete'             => 'استرجع التعديلات التي تمت على هذه الصفحة قبل حذفها',
 'tooltip-ca-move'                 => 'انقل هذه الصفحة',
@@ -3643,7 +3658,7 @@ $1',
 'tag-filter-submit'       => 'مُرشّح',
 'tags-title'              => 'وسوم',
 'tags-intro'              => 'هذه الصفحة تعرض الوسوم التي ربما يعلم البرنامج تعديلا بها، ومعانيها.',
-'tags-tag'                => 'اسم وسم داخلي',
+'tags-tag'                => 'اسم الوسم',
 'tags-display-header'     => 'الظهور في قوائم التغييرات',
 'tags-description-header' => 'وصف كامل للمعنى',
 'tags-hitcount-header'    => 'تغييرات موسومة',
@@ -3669,5 +3684,19 @@ $1',
 'htmlform-submit'              => 'أرسل',
 'htmlform-reset'               => 'الرجوع عن التغييرات',
 'htmlform-selectorother-other' => 'أخرى',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'أضف تصنيفًا',
+'ajax-add-category-submit'     => 'أضف',
+'ajax-confirm-title'           => 'أكّد الإجراء',
+'ajax-confirm-prompt'          => 'بإمكانك تقديم ملخص تعديل أدناه.
+انقر "احفظ" لحفظ تعديلك.',
+'ajax-confirm-save'            => 'احفظ',
+'ajax-add-category-summary'    => 'إضافة التصنيف "$1"',
+'ajax-remove-category-summary' => 'إزالة التصنيف "$1"',
+'ajax-error-title'             => 'خطأ',
+'ajax-error-dismiss'           => 'موافق',
+'ajax-remove-category-error'   => 'لا يمكن إزالة هذا التصنيف.
+يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
 
 );
