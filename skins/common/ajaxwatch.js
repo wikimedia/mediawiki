@@ -28,15 +28,10 @@ wgAjaxWatch.setLinkText = function( newText ) {
 	if( wgAjaxWatch.iconMode ) {
 		for ( i = 0; i < wgAjaxWatch.watchLinks.length; i++ ) {
 			wgAjaxWatch.watchLinks[i].firstChild.alt = newText;
-			if( newText == wgAjaxWatch.watchingMsg || newText == wgAjaxWatch.unwatchingMsg ) {
-				wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
-					+ "/common/images/spinner.gif";
-			} else if( newText==wgAjaxWatch.watchMsg ) {
-				wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
-					+ "/vector/images/watch_off.gif";
-			} else if( newText==wgAjaxWatch.unwatchMsg ) {
-				wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
-					+ "/vector/images/watch_on.gif";
+			if ( newText == wgAjaxWatch.watchingMsg || newText == wgAjaxWatch.unwatchingMsg ) {
+				wgAjaxWatch.watchLinks[i].className += ' loading';
+			} else if ( newText == wgAjaxWatch.watchMsg || newText == wgAjaxWatch.unwatchMsg ) {
+				wgAjaxWatch.watchLinks[i].className = wgAjaxWatch.watchLinks[i].className.replace( /loading/i, '' );
 			}
 		}
 	} else {
@@ -152,29 +147,11 @@ wgAjaxWatch.onLoad = function() {
 		}
 	}
 	
-	// If we're using the icon, add rollover affects
-	try {
-		if( el1.firstChild.firstChild.tagName.match( /img/i ) ) {
-			wgAjaxWatch.iconMode = true;
-			wgAjaxWatch.imgBasePath = el1.firstChild.firstChild.src
-				.replace( /\/vector\/images\/watch_(off|on).gif/, "" );
-			el1.firstChild.onmouseover = function( e ) {
-				if ( !wgAjaxWatch.inprogress )
-					this.firstChild.src = wgAjaxWatch.imgBasePath
-						+ "/vector/images/watch_over.gif";
-			}
-			el1.firstChild.onmouseout = function( e ) {
-				if ( !wgAjaxWatch.inprogress )
-					this.firstChild.src = wgAjaxWatch.imgBasePath
-						+ "/vector/images/watch_" + ( wgAjaxWatch.watching ?
-							"on.gif" : "off.gif" );
-			}
-		}
-	} catch( e ) {
-		// not using the icon 
+	// Detect if the watch/unwatch feature is in icon mode
+	if ( el1.className.match( /icon/i ) ) {
+		wgAjaxWatch.iconMode = true;
 	}
-
-
+	
 	// The id can be either for the parent (Monobook-based) or the element
 	// itself (non-Monobook)
 	wgAjaxWatch.watchLinks.push( el1.tagName.toLowerCase() == "a"

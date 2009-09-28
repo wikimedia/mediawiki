@@ -60,7 +60,7 @@ class SkinVector extends SkinTemplate {
 	 */
 	function buildNavigationUrls() {
 		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle, $wgStylePath;
-		global $wgDisableLangConversion;
+		global $wgDisableLangConversion, $wgVectorUseIconWatch;
 
 		wfProfileIn( __METHOD__ );
 
@@ -271,7 +271,6 @@ class SkinVector extends SkinTemplate {
 				}
 			}
 			wfProfileOut( __METHOD__ . '-live' );
-
 			/**
 			 * The following actions use messages which, if made particular to
 			 * the Vector skin, would break the Ajax code which makes this
@@ -282,31 +281,21 @@ class SkinVector extends SkinTemplate {
 			 * the global versions.
 			 */
 			// Checks if the user is logged in
-			if( $this->loggedin ) {
-				// Checks if the user is watching this page
-				if( !$this->mTitle->userIsWatching() ) {
-					// Adds watch view link
-					$links['views']['watch'] = array(
-						'class' =>
-							( $action == 'watch' or $action == 'unwatch' ) ?
-								'selected' : false,
-						'text' => wfMsg( 'watch' ),
-						'img' => "{$wgStylePath}/vector/images/watch_off.gif",
-						'href' => $this->mTitle->getLocalUrl( 'action=watch' )
-					);
+			if ( $this->loggedin ) {
+				if ( $wgVectorUseIconWatch ) {
+					$class = 'icon ';
+					$place = 'views';
 				} else {
-					// Adds unwatch view link
-					$links['views']['unwatch'] = array(
-						'class' =>
-							($action == 'unwatch' or $action == 'watch') ?
-								'selected' : false,
-						'text' => wfMsg( 'unwatch' ),
-						'img' => "{$wgStylePath}/vector/images/watch_on.gif",
-						'href' => $this->mTitle->getLocalUrl( 'action=unwatch' )
-					);
+					$class = '';
+					$place = 'actions';
 				}
+				$mode = $this->mTitle->userIsWatching() ? 'unwatch' : 'watch';
+				$links[$place][$mode] = array(
+					'class' => $class . ( ( $action == 'watch' || $action == 'unwatch' ) ? ' selected' : false ),
+					'text' => wfMsg( $mode ), // uses 'watch' or 'unwatch' message
+					'href' => $this->mTitle->getLocalUrl( 'action=' . $mode )
+				);
 			}
-
 			// This is instead of SkinTemplateTabs - which uses a flat array
 			wfRunHooks( 'SkinTemplateNavigation', array( &$this, &$links ) );
 
