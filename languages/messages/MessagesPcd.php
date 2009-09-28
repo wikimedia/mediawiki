@@ -141,9 +141,12 @@ $messages = array(
 # Vector skin
 'vector-action-delete'       => 'Défacer',
 'vector-action-move'         => "Canger ch'nom",
+'vector-namespace-help'      => "Pache d'aïude",
 'vector-namespace-image'     => 'Fichié',
 'vector-namespace-main'      => 'Pache',
 'vector-namespace-mediawiki' => 'Message',
+'vector-namespace-special'   => 'Pache éspéchiale',
+'vector-namespace-talk'      => 'Pérlache',
 'vector-namespace-template'  => 'Modéle',
 'vector-namespace-user'      => 'Pache dechl uzeu',
 'vector-view-create'         => 'Créer',
@@ -270,6 +273,10 @@ $messages = array(
 # General errors
 'error'                => 'Bérlurache',
 'databaseerror'        => "Bérlurache din l'database",
+'laggedslavemode'      => "'''Afute:''' Pététe éq l'pache-lo n'o poin chés darins canjemints.",
+'missing-article'      => "El base éd dounées n'o poin treuvé ech teske d'eune pache éq ale d'vroait treuver, aveuc ch'nom  \"\$1\" \$2. <br />  Généralemint, ch'est pasqué in o sui eune anthieusse diff o bin un histourique érlié aveuc eune pache défachée.
+
+Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <br /> I feut signaler ch'probléme-lo à un [[Special:ListUsers/sysop|administrateu]], aveuc l'URL.",
 'missingarticle-rev'   => '(révision#: $1)',
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'internalerror'        => 'Bérlurache intérne',
@@ -317,6 +324,7 @@ j'm'escuse mais i feut prinde un aute nom.",
 'loginerror'              => 'Bérlurache del intrée',
 'mailmypassword'          => "Imèle un nouvieu mot d'passe",
 'passwordremindertitle'   => "Nouvieu mot d'passe tanporoère pou {{SITENAME}}",
+'accountcreated'          => "Ch'conpte est créé",
 
 # Edit page toolbar
 'bold_sample'     => 'Cros teske',

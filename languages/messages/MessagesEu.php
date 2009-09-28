@@ -451,12 +451,13 @@ Existitzen direnen zerrenda ikus dezakezu  [[Special:SpecialPages|{{int:specialp
 'databaseerror'        => 'Datu-base errorea',
 'dberrortext'          => 'Datu-basean kontsulta egiterakoan sintaxi errore bat gertatu da. Baliteke softwareak bug bat izatea. Datu-basean egindako azken kontsulta:
 <blockquote><tt>$1</tt></blockquote>
-Funtzio honekin: "<tt>$2</tt>".
-MySQL-(e)k emandako errore informazioa: "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Datu-basean kontsulta egiterakoan sintaxi errore bat gertatu da. Datu-basean egindako azken kontsulta:
+funtzio honekin: "<tt>$2</tt>".
+Datu-baseak emandako errore informazioa: "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Datu-basean kontsulta egiterakoan sintaxi errore bat gertatu da. 
+Datu-basean egindako azken kontsulta:
 "$1"
-Funtzio honekin: "$2".
-MySQL-(e)k emandako errore informazioa: "$3: $4"',
+funtzio honekin: "$2".
+Datu-baseak emandako errore informazioa: "$3: $4"',
 'laggedslavemode'      => 'Oharra: Baliteke orrialde honetan azken aldaketak ez erakustea.',
 'readonly'             => 'Datu-basea blokeatuta dago',
 'enterlockreason'      => 'Zehaztu blokeatzeko arrazoia, noiz kenduko den jakinaraziz',
@@ -702,7 +703,10 @@ Mesedez, detaile hauek eman itzazu egin nahi duzun edozein kontsulta egiteko gar
 Kontu berri honentzako pasahitza edozein unetan alda daiteke ''[[Special:ChangePassword|pasahitz aldaketa]]'' orrian, saioa hasi ondoren.",
 'newarticle'                       => '(Berria)',
 'newarticletext'                   => "Orrialde hau ez da existitzen oraindik. Orrialde sortu nahi baduzu, beheko koadroan idazten hasi zaitezke (ikus [[{{MediaWiki:Helppage}}|laguntza orrialdea]] informazio gehiagorako). Hona nahi gabe etorri bazara, nabigatzaileko '''atzera''' botoian klik egin.",
-'anontalkpagetext'                 => "----''Honako hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da. Bere IP helbidea erabili beharko da beraz identifikatzeko. Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea. Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:UserLogin|Izena eman edo saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
+'anontalkpagetext'                 => "----''Orrialde hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da. 
+Bere IP helbidea erabili beharko da beraz identifikatzeko. 
+Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea. 
+Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:UserLogin/signup|Izena eman]] edo [[Special:UserLogin|saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
 'noarticletext'                    => 'Oraindik ez dago testurik orrialde honetan.
 Beste orrialde batzuetan [[Special:Search/{{PAGENAME}}|bilatu dezakezu izenburu hau]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} bilatu lotutako logak],
@@ -1098,7 +1102,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-watchlist-days-max'      => '(gehienez 7 egun)',
 'prefs-watchlist-edits'         => 'Jarraipen zerrendan erakutsi beharreko aldaketa kopurua:',
 'prefs-watchlist-edits-max'     => '(Gehenezko zenbakia: 1000)',
-'prefs-watchlist-token'         => 'Jarraipen zerrendaren tokena',
+'prefs-watchlist-token'         => 'Jarraipen zerrendaren tokena:',
 'prefs-misc'                    => 'Denetarik',
 'prefs-resetpass'               => 'Pasahitza aldatu',
 'prefs-email'                   => 'E-posta aukerak',
@@ -1761,7 +1765,7 @@ Baimendutako protokoloak: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lankide aktiboen zerrenda',
-'activeusers-count'    => '{{PLURAL:$1|Aldaketa berri $1|$1 aldaketa berri}}',
+'activeusers-count'    => '{{PLURAL:$1|Aldaketa berri bat|$1 aldaketa berri}} azken {{PLURAL:$3|egunean|$3 egunetan}}',
 'activeusers-from'     => 'Bilatu honela hasten diren lankideak:',
 'activeusers-noresult' => 'Ez da lankiderik aurkitu.',
 
@@ -1824,7 +1828,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 
 Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'removedwatch'         => 'Jarraipen zerrendatik ezabatuta',
-'removedwatchtext'     => '"[[:$1]]" orrialdea zure jarraipen zerrendatik kendu da.',
+'removedwatchtext'     => '"[[:$1]]" orrialdea zure [[Special:Watchlist|jarraipen zerrendatik]] kendu da.',
 'watch'                => 'Jarraitu',
 'watchthispage'        => 'Orrialde hau jarraitu',
 'unwatch'              => 'Ez jarraitu',
@@ -1859,7 +1863,7 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'enotif_anon_editor'           => '$1 erabiltzaile anonimoa',
 'enotif_body'                  => 'Kaixo $WATCHINGUSERNAME,
 
-{{SITENAME}}(e)ko $PAGETITLE orrialdea $CHANGEDORCREATED egin du $PAGEEDITOR(e)k une honetan: $PAGEEDITDATE, ikus $PAGETITLE_URL azken bertsiorako.
+{{SITENAME}}(e)ko $PAGETITLE orrialdea $CHANGEDORCREATED egin da $PAGEEDITOR(e)k une honetan: $PAGEEDITDATE, ikus $PAGETITLE_URL azken bertsiorako.
 
 $NEWPAGE
 
@@ -1869,9 +1873,10 @@ Egilearekin harremanetan jarri:
 e-posta: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Ez dira oharpen gehiago bidaliko orrialde hau berriz bisitatzen ez baduzu. Horrez gain, orrialdeen oharpen konfigurazioa leheneratu dezakezu jarraipen zerrendatik.
+Ez dira oharpen gehiago bidaliko orrialde hau berriz bisitatzen ez baduzu. 
+Horrez gain, orrialdeen oharpen konfigurazioa leheneratu dezakezu jarraipen zerrendatik.
 
-             {{SITENAME}}(e)ko oharpen sistema
+             Adeitasunez {{SITENAME}}(e)ko oharpen sistema
 
 --
 Zure jarraipen zerrendako konfigurazioa aldatzeko, ikus
@@ -2252,8 +2257,8 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'movepage-page-moved'          => '$1 orrialdea $2(e)ra mugitu da.',
 'movepage-page-unmoved'        => '$1 orrialdea ezin da $2(e)ra mugitu.',
 'movepage-max-pages'           => '$1 {{PLURAL:$1|orrialderen|orrialdeen}} maximoa mugitu da eta jada ez dira gehiago mugituko modu automatikoan.',
-'1movedto2'                    => '$1 izenburua $2(r)engatik aldatu da',
-'1movedto2_redir'              => '$1 izenburua $2(r)engatik aldatu da birzuzenketaren gainetik',
+'1movedto2'                    => '[[$1]] [[$2]]-(e)ra mugitu da',
+'1movedto2_redir'              => '[[$1]] [[$2]]-(e)ra aldatu da birzuzenketaren gainetik',
 'move-redirect-suppressed'     => 'birzuzenketa ezabatua',
 'movelogpage'                  => 'Mugimendu erregistroa',
 'movelogpagetext'              => 'Mugitutako orrialdeen zerrenda bat azaltzen da jarraian.',
@@ -3053,7 +3058,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'fileduplicatesearch-result-n' => '"$1" fitxategiak {{PLURAL:$2|kopia zehatz bakarra du|$2 kopia zehatz ditu}}.',
 
 # Special:SpecialPages
-'specialpages'                   => 'Aparteko orrialdeak',
+'specialpages'                   => 'Orrialde bereziak',
 'specialpages-note'              => '----
 * Orrialde berezi arruntak.
 * <strong class="mw-specialpagerestricted">Mugatutako orrialde bereziak.</strong>',

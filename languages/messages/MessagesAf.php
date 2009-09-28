@@ -2360,7 +2360,7 @@ Gaan na [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [h
 'tooltip-ca-unwatch'              => 'Verwyder hierdie bladsy van u dophoulys',
 'tooltip-search'                  => 'Deursoek {{SITENAME}}',
 'tooltip-search-go'               => "Gaan na 'n bladsy met hierdie naam indien dit bestaan",
-'tooltip-search-fulltext'         => 'Deursoek die bladsye vir die teks',
+'tooltip-search-fulltext'         => 'Deursoek bladsye vir hierdie teks',
 'tooltip-p-logo'                  => 'Besoek die tuisblad',
 'tooltip-n-mainpage'              => 'Besoek die Tuisblad',
 'tooltip-n-mainpage-description'  => 'Gaan na die tuisblad',
@@ -2765,18 +2765,18 @@ Ander velde sal versteek wees.
 'confirmemail_loggedin'    => 'U e-posadres is nou bevestig.',
 'confirmemail_error'       => 'Iets het foutgegaan met die stoor van u bevestiging.',
 'confirmemail_subject'     => '{{SITENAME}}: E-posadres-bevestiging',
-'confirmemail_body'        => 'Iemand, waarskynlik van u IP-adres: $1, het \'n rekening "$2" geregistreer met hierdie e-posadres by {{SITENAME}}.
+'confirmemail_body'        => 'Iemand, waarskynlik u vanaf IP-adres: $1, het \'n rekening "$2" met hierdie e-posadres by {{SITENAME}} geregistreer.
 
-Om te bevestig dat hierdie adres werklik aan u behoort, en om die posfasiliteite by {{SITENAME}} te aktiveer, besoek hierdie skakel in u blaaier:
+Om te bevestig dat hierdie adres werklik aan u behoort, en om die posfasiliteite by {{SITENAME}} te aktiveer, besoek hierdie skakel in u webblaaier:
 
 $3
 
-Indien dit nié u was nie, ignoreer bloot die skakel (en hierdie pos).
-Follow this link to cancel the e-mail address confirmation:
+Indien dit nié u was nie, ignoreer bloot die skakel (en hierdie e-pos).
+Volg hierdie skakel om die bevestiging van u e-posadres te kanselleer:
 
 $5
 
-Hierde bevestigingkode verval om $4.',
+Hierdie bevestigingkode verval om $4.',
 'confirmemail_invalidated' => 'Die e-pos bevestiging is gekanselleer.',
 'invalidateemail'          => 'Kanselleer e-pos bevestiging',
 

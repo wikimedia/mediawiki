@@ -465,7 +465,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'go'                => 'Mine',
 'searcharticle'     => 'Mine',
 'history'           => 'Artikli ajalugu',
-'history_short'     => 'Ajalugu',
+'history_short'     => 'ajalugu',
 'updatedmarker'     => 'uuendatud pärast viimast külastust',
 'info_short'        => 'Info',
 'printableversion'  => 'Prinditav versioon',
@@ -588,7 +588,9 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 Võimalik, et sa sisestasid aadressi valesti või kasutasid vigast linki.
 Samuti ei ole välistatud, et tarkvaras, mida {{SITENAME}} kasutatab, on viga.',
 'nosuchspecialpage' => 'Sellist erilehekülge pole.',
-'nospecialpagetext' => 'Viki ei tunne sellist erilehekülge.',
+'nospecialpagetext' => '<strong>Viki ei tunne erilehekülge, mille poole pöördusid.</strong>
+
+Käibel olevad erileheküljed on loetletud leheküljel [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Viga',
@@ -666,7 +668,10 @@ $2',
 'logouttext'                 => "'''Te olete nüüd välja loginud.'''
 
 Te võite jätkata {{SITENAME}} kasutamist anonüümselt, aga ka sama või mõne teise kasutajana uuesti [[Special:UserLogin|sisse logida]].",
-'welcomecreation'            => '<h2>Tere tulemast, $1!</h2><p>Teie konto on loodud. Ärge unustage seada oma eelistusi.',
+'welcomecreation'            => '== Tere tulemast, $1! ==
+
+Sinu konto on loodud.
+Ära unusta oma {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|eelistusi]] seada.',
 'yourname'                   => 'Teie kasutajanimi',
 'yourpassword'               => 'Teie parool',
 'yourpasswordagain'          => 'Sisestage parool uuesti',
@@ -844,9 +849,7 @@ Seda parooli on võimalik muuta ''[[Special:ChangePassword|parooli muutmise lehe
 'newarticletext'                   => "Sellise pealkirjaga lehekülge ei ole veel loodud. Lehekülje loomiseks sisestage lehe tekst alljärgnevasse tekstikasti ja salvestage (lisainfo saamiseks vaadake [[{{MediaWiki:Helppage}}|juhendit]]).
 
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''tagasi''-nupule.",
-'anontalkpagetext'                 => "---- ''See on arutelulehekülg anonüümse kasutaja jaoks, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema IP-aadressi.
-Sellisel IP-aadressilt võib portaali kasutada mitu inimest.
-Kui oled osutatud IP kasutaja ning leiad, et siinsed kommentaarid ei puutu kuidagi sinusse, siis palun [[Special:UserLogin|loo konto või logi sisse]], et sind edaspidi teiste anonüümsete kasutajatega segi ei aetaks.''",
+'anontalkpagetext'                 => "----''See on anonüümse kasutaja arutelulehekülg. See kasutaja pole kontot loonud või ei kasuta seda. Sellepärast tuleb meil kasutaja tuvastamiseks kasutada tema IP-aadressi. Sellist IP-aadressi võib kasutada mitu kasutajat. Kui oled osutatud IP-aadressi kasutaja ning leiad, et siinsed kommentaarid ei puutu kuidagi sinusse, [[Special:UserLogin/signup|loo palun kasutajakonto]] või [[Special:UserLogin|logi sisse]], et sind edaspidi teiste anonüümsete kasutajatega segi ei aetaks.''",
 'noarticletext'                    => 'Käesoleval leheküljel hetkel teksti ei ole.
 Võid [[Special:Search/{{PAGENAME}}|otsida pealkirjaks olevat fraasi]] teistelt lehtedelt,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} uurida asjassepuutuvaid logisid] või [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduva lehekülje ise luua]</span>.',
@@ -1838,7 +1841,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'shortpages'              => 'Lühikesed leheküljed',
 'longpages'               => 'Pikad artiklid',
 'deadendpages'            => 'Edasipääsuta leheküljed',
-'deadendpagestext'        => 'Järgmised leheküljed ei viita ühelegi teisele Viki leheküljele.',
+'deadendpagestext'        => 'Järgmised leheküljed ei viita ühelegi teisele viki leheküljele.',
 'protectedpages'          => 'Kaitstud leheküljed',
 'protectedpages-indef'    => 'Ainult määramata ajani kaitstud',
 'protectedpages-cascade'  => 'Ainult kaskaadkaitsega',
@@ -1990,7 +1993,7 @@ Toetatud protokollid: <tt>$1</tt>',
 # Watchlist
 'watchlist'            => 'Jälgimisloend',
 'mywatchlist'          => 'Jälgimisloend',
-'watchlistfor'         => "('''$1''' jaoks)",
+'watchlistfor'         => "(kasutajale '''$1''')",
 'nowatchlist'          => 'Teie jälgimisloend on tühi.',
 'watchlistanontext'    => 'Et näha ja muuta oma jälgimisloendit, peate $1.',
 'watchnologin'         => 'Ei ole sisse logitud',
@@ -2002,7 +2005,7 @@ Edasised muudatused käesoleval lehel ja sellega seotud aruteluküljel reastatak
 
 Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "Lõpeta jälgimine".',
 'removedwatch'         => 'Jälgimisloendist kustutatud',
-'removedwatchtext'     => 'Artikkel "[[:$1]]" on jälgimisloendist kustutatud.',
+'removedwatchtext'     => 'Lehekülg "[[:$1]]" on [[Special:Watchlist|jälgimisloendist]] eemaldatud.',
 'watch'                => 'Jälgi',
 'watchthispage'        => 'Jälgi seda artiklit',
 'unwatch'              => 'Lõpeta jälgimine',
@@ -2500,7 +2503,7 @@ Kõik vikide vahelised toimingud on [[Special:Log/import|impordilogis]].',
 'importunknownsource'        => 'Unknown import source type
 Tundmatu tüüpi algallikas',
 'importcantopen'             => 'Ei saa imporditavat faili avada',
-'importbadinterwiki'         => 'Vigane interwiki link',
+'importbadinterwiki'         => 'Vigane vikidevaheline link',
 'importnotext'               => 'Tühi või ilma tekstita',
 'importsuccess'              => 'Importimine edukalt lõpetatud!',
 'importhistoryconflict'      => 'Konfliktne muudatuste ajalugu (võimalik, et seda lehekülge juba varem imporditud)',
@@ -3147,7 +3150,7 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'tags-hitcount'           => '$1 {{PLURAL:$1|muudatus|muudatust}}',
 
 # Database error messages
-'dberr-header'      => 'Selles wikis on probleem',
+'dberr-header'      => 'Selles vikis on probleem',
 'dberr-problems'    => 'Kahjuks on sellel saidil tehnilisi probleeme',
 'dberr-again'       => 'Oota mõni hetk ja lae lehekülg uuesti.',
 'dberr-info'        => '(Ei saa ühendust andmebaasi serveriga: $1)',

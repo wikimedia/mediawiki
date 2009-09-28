@@ -3669,8 +3669,22 @@ $messages['ru'] = array(
 	'mwe_related_videos' => 'Связанные видео',
 );
 
+/** Yakut (Саха тыла)
+ * @author HalanTul
+ */
+$messages['sah'] = array(
+	'mwe-crop' => 'Ойууну быс',
+	'mwe-apply_crop' => 'Ойууга төгүрүччу быһыыны тутун',
+	'mwe-reset_crop' => 'Быспыты төннөр',
+	'mwe-insert_image_page' => 'Сирэйгэ киллэрэн биэр',
+	'mwe-preview_insert' => 'Киллэриини угуох иннинэ көрүү',
+	'mwe-cancel_image_insert' => 'Киллэриини төннөр',
+	'mwe-sc_fileopts' => 'Клип ымпыгын-чымпыгын көннөрүү',
+);
+
 /** Slovak (Slovenčina)
  * @author Helix84
+ * @author Rudko
  */
 $messages['sk'] = array(
 	'mwe-crop' => 'Orezať obrázok',
@@ -3804,6 +3818,8 @@ $messages['sk'] = array(
 	'mwe-upload' => 'Nahrať súbor',
 	'mwe-destfilename' => 'Cieľový názov súboru:',
 	'mwe-summary' => 'Zhrnutie',
+	'mwe-download' => 'Stiahnuť',
+	'mwe-close_btn' => 'Zavrieť',
 	'mwe-do_not_warn_again' => 'Nateraz nezobrazovať',
 );
 
@@ -3822,6 +3838,20 @@ $messages['te'] = array(
 	'mwe-summary' => 'సారాశం',
 	'mwe-ok-button' => 'సరే',
 	'mwe-menu_btn' => 'మెనూ',
+);
+
+/** Turkish (Türkçe)
+ * @author Joseph
+ */
+$messages['tr'] = array(
+	'mwe-crop' => 'Resmi kırp',
+	'mwe-apply_crop' => 'Kırpmayı resme uygula',
+	'mwe-reset_crop' => 'Kırpmayı sıfırla',
+	'mwe-insert_image_page' => 'Sayfaya ekle',
+	'mwe-insert_into_sequence' => 'Sıraya ekle',
+	'mwe-preview_insert' => 'Eklemeyi önizle',
+	'mwe-cancel_image_insert' => 'Eklemeyi iptal et',
+	'mwe-sc_audio' => 'Ses denetimi',
 );
 
 /** Veps (Vepsan kel')

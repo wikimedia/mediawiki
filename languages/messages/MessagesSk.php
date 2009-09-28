@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Danny B.
  * @author Helix84
  * @author Liso
  * @author Maros
@@ -334,13 +335,13 @@ $messages = array(
 'editfont-serif'     => 'Pätkové písmo',
 
 # Dates
-'sunday'        => 'Nedeľa',
-'monday'        => 'Pondelok',
-'tuesday'       => 'Utorok',
-'wednesday'     => 'Streda',
-'thursday'      => 'Štvrtok',
-'friday'        => 'Piatok',
-'saturday'      => 'Sobota',
+'sunday'        => 'nedeľa',
+'monday'        => 'pondelok',
+'tuesday'       => 'utorok',
+'wednesday'     => 'streda',
+'thursday'      => 'štvrtok',
+'friday'        => 'piatok',
+'saturday'      => 'sobota',
 'sun'           => 'Ned',
 'mon'           => 'Pon',
 'tue'           => 'Uto',
@@ -348,18 +349,18 @@ $messages = array(
 'thu'           => 'Štv',
 'fri'           => 'Pia',
 'sat'           => 'Sob',
-'january'       => 'Január',
-'february'      => 'Február',
-'march'         => 'Marec',
-'april'         => 'Apríl',
-'may_long'      => 'Máj',
-'june'          => 'Jún',
-'july'          => 'Júl',
-'august'        => 'August',
-'september'     => 'September',
-'october'       => 'Október',
-'november'      => 'November',
-'december'      => 'December',
+'january'       => 'január',
+'february'      => 'február',
+'march'         => 'marec',
+'april'         => 'apríl',
+'may_long'      => 'máj',
+'june'          => 'jún',
+'july'          => 'júl',
+'august'        => 'august',
+'september'     => 'september',
+'october'       => 'október',
+'november'      => 'november',
+'december'      => 'december',
 'january-gen'   => 'januára',
 'february-gen'  => 'februára',
 'march-gen'     => 'marca',

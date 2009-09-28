@@ -2237,7 +2237,8 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}}, e.g. like this:<br />
 ( talk | block log | logs | deleted contributions | rights management )",
 'sp-contributions-userrights'     => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
-'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users.',
+'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users. Parameters:
+* $1 is the blocked user. Can be used for GENDER (optional)',
 'sp-contributions-username'       => 'This message appears whenever someone requests [[Special:Contributions]].',
 'sp-contributions-submit'         => '{{Identical|Search}}',
 
@@ -2357,6 +2358,10 @@ See also {{msg-mw|Blocklogentry}}.',
 'blocklogpage'                 => "The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[Special:Log]] pages and in the action links of Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").
 
 {{Identical|Block log}}",
+'blocklog-showlog'             => 'Parameters:
+* $1 is the blocked user. Can be used for GENDER (optional)',
+'blocklog-showsuppresslog'     => 'Parameters:
+* $1 is the blocked user. Can be used for GENDER (optional)',
 'blocklogentry'                => 'This is the text of an entry in the Block log, and recent changes, after hour (and date, only in the Block log) and sysop name: 
 * $1 is the blocked user or IP (with link to contributions and talk)
 * $2 is the duration of the block (hours, days etc.) or the specified expiry date
