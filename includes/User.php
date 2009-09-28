@@ -142,6 +142,7 @@ class User {
 		'createtalk',
 		'delete',
 		'deletedhistory',
+		'deletedcontent',
 		'deleterevision',
 		'edit',
 		'editinterface',
