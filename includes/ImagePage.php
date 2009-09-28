@@ -880,10 +880,9 @@ class ImageHistoryList {
 						),
 						array( 'known' )
 					);
-				}
-				// Bolden oversighted content
-				if( $file->isDeleted(File::DELETED_RESTRICTED) ) {
-					$del = "<strong>$del</strong>";
+					// Bolden oversighted content
+					if( $file->isDeleted(File::DELETED_RESTRICTED) )
+						$del = "<strong>$del</strong>";
 				}
 				$row .= "<span class='mw-revdelundel-link'>$del</span>";
 			}
