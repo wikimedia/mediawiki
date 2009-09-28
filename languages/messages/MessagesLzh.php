@@ -193,6 +193,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|門有檔壹。|門有檔$1，有$2檔也。}}',
 'category-file-count-limited'    => '門有檔$1。',
 'listingcontinuesabbrev'         => '續',
+'index-category'                 => '已索之頁',
+'noindex-category'               => '未索之頁',
 
 'mainpagetext'      => "<big>'''共筆臺已立'''</big>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]

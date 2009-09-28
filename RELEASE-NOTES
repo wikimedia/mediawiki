@@ -242,6 +242,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of anonymous users that edited the page
 * New permission 'sendemail' added. Default right for all registered users. Can
   for example be used to prevent new accounts from sending spam.
+* (bug 16979) Tracking categories for __INDEX__ and __NOINDEX__
 
 === Bug fixes in 1.16 ===
 

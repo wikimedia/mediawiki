@@ -258,6 +258,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Iste categoria contine solmente le sequente file.|Le sequente {{PLURAL:$1|file es|$1 files es}} in iste categoria, ex $2 in total.}}',
 'category-file-count-limited'    => 'Le sequente {{PLURAL:$1|file es|$1 files es}} in le categoria actual.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Paginas indexate',
+'noindex-category'               => 'Paginas non indexate',
 
 'mainpagetext'      => "<big>'''MediaWiki ha essite installate con successo.'''</big>",
 'mainpagedocfooter' => 'Consulta le [http://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.

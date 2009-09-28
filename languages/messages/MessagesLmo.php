@@ -203,6 +203,7 @@ süi titul dai sezziún (JavaScript)',
 'hidden-categories'        => '{{PLURAL:$1|Categuria scundüda|Categurij scundüü}}',
 'hidden-category-category' => 'Categurij scundüü',
 'listingcontinuesabbrev'   => 'cont.',
+'index-category'           => 'Paginn indicizaa',
 
 'about'         => 'A pruposit də',
 'newwindow'     => "(sa derviss in un'óltra finèstra)",

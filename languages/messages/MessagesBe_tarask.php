@@ -371,6 +371,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Гэтая катэгорыя ўтрымлівае толькі адзін файл.|{{PLURAL:$1|Паказаны $1 файл|Паказаныя $1 файлы|Паказаныя $1 файлаў}} гэтай катэгорыі з $2.}}',
 'category-file-count-limited'    => 'У гэтай катэгорыі — $1 {{PLURAL:$1|файл|файлы|файлаў}}.',
 'listingcontinuesabbrev'         => ' (працяг)',
+'index-category'                 => '{{ns:project}}:Індэксаваныя старонкі',
+'noindex-category'               => '{{ns:project}}:Не індэксаваныя старонкі',
 
 'mainpagetext'      => "<big>'''MediaWiki пасьпяхова ўсталяваная.'''</big>",
 'mainpagedocfooter' => 'Глядзіце [http://meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.
