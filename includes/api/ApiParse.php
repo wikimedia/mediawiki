@@ -178,7 +178,7 @@ class ApiParse extends ApiBase {
 		$result = array();
 		foreach( $links as $link ) {
 			$entry = array();
-			$bits = split( ':', $link, 2 );
+			$bits = explode( ':', $link, 2 );
 			$entry['lang'] = $bits[0];
 			$this->getResult()->setContent( $entry, $bits[1] );
 			$result[] = $entry;
