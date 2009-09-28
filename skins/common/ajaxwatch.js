@@ -159,12 +159,15 @@ wgAjaxWatch.onLoad = function() {
   	  wgAjaxWatch.imgBasePath = el1.firstChild.firstChild.src
 				.replace( /\/vector\/images\/watch_(off|on).gif/, "" );
   	  el1.firstChild.onmouseover = function( e ) {
-  	    this.firstChild.src = wgAjaxWatch.imgBasePath
-					+ "/vector/images/watch_over.gif";
+  	    if ( !wgAjaxWatch.inprogress )
+  		this.firstChild.src = wgAjaxWatch.imgBasePath
+			+ "/vector/images/watch_over.gif";
   	  }
   	  el1.firstChild.onmouseout = function( e ) {
-  	    this.firstChild.src = wgAjaxWatch.imgBasePath
-					+ "/vector/images/watch_" + ( wgAjaxWatch.watching ? "on.gif" : "off.gif");
+  	    if ( !wgAjaxWatch.inprogress )
+		this.firstChild.src = wgAjaxWatch.imgBasePath
+			+ "/vector/images/watch_" + ( wgAjaxWatch.watching ?
+				"on.gif" : "off.gif" );
   	  }
   	}
 	} catch( e ) {
