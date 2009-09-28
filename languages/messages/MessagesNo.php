@@ -353,6 +353,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende filen.|Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
 'category-file-count-limited'    => 'Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
 'listingcontinuesabbrev'         => ' forts.',
+'index-category'                 => 'Indekserte sider',
+'noindex-category'               => 'Ikke-indekserte sider',
 
 'mainpagetext'      => "<big>'''MediaWiki-programvaren er nå installert.'''</big>",
 'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.

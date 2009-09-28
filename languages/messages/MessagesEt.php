@@ -397,6 +397,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Selles kategoorias on ainult järgmine fail.|{{PLURAL:$1|Järgmine fail |Järgmised $1 faili}} on selles kategoorias (kokku $2).}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Järgmine fail|Järgmised $1 faili}} on selles kategoorias.',
 'listingcontinuesabbrev'         => 'jätk',
+'index-category'                 => 'Indeksiga leheküljed',
+'noindex-category'               => 'Indeksita leheküljed',
 
 'mainpagetext'      => "<big>'''MediaWiki tarkvara on edukalt paigaldatud.'''</big>",
 'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]

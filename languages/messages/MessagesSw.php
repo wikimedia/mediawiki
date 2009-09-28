@@ -239,6 +239,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Jamii hii ina faili zifuatazo tu.|Faili zifuatazo {{PLURAL:$1|ni|$1faili za}} katika jamii hii, nje ya $2 jumla.}}',
 'category-file-count-limited'    => 'Faili zifuatazo {{PLURAL:$1|file is|$1 ni faili za}} katika jamii hii.',
 'listingcontinuesabbrev'         => 'endelea',
+'index-category'                 => 'Kurasa kuu',
+'noindex-category'               => 'Kurasa zisizokuu',
 
 'mainpagetext'      => "<big>'''MediaWiki imefanikiwa kuingizwa.'''</big>",
 'mainpagedocfooter' => 'Shauriana na [http://meta.wikimedia.org/wiki/Help:Contents Mwongozo wa Mtumiaji] kwa habari juu ya utumiaji wa bidhaa pepe ya wiki.

@@ -454,6 +454,8 @@ $messages = array(
 'category-file-count'            => 'Cette catégorie contient {{PLURAL:$2|le fichier suivant|$2 fichiers, dont {{PLURAL:$1|celui|les $1}} ci-dessous}}.',
 'category-file-count-limited'    => '{{PLURAL:$1|Le fichier suivant figure|Les $1 fichiers suivants figurent}} dans la présente catégorie.',
 'listingcontinuesabbrev'         => '(suite)',
+'index-category'                 => 'Pages indexées',
+'noindex-category'               => 'Pages non indexées',
 
 'mainpagetext'      => "<big>'''MediaWiki a été installé avec succès.'''</big>",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.

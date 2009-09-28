@@ -140,6 +140,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Ii vibhag me khali etna file hai.|Kul jorr $2 me se ii vibhag me etna {{PLURAL:$1|file hai|$1 files hai}}.}}',
 'category-file-count-limited'    => 'Ii vibhag me etna {{PLURAL:$1|file hai|$1 files hai}}.',
 'listingcontinuesabbrev'         => 'aur',
+'index-category'                 => 'Indexed panna',
+'noindex-category'               => 'Bina index karaa gais panna',
 
 'mainpagetext'      => "<big>'''MediaWiki ke safalta se install kar dewa gais hai.'''</big>",
 'mainpagedocfooter' => "Wiki software ke use kare ke aur jaankari ke khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.

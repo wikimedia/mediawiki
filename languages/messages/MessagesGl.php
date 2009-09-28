@@ -317,6 +317,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Esta categoría só contén o seguinte ficheiro.|{{PLURAL:$1|O seguinte ficheiro está|Os seguintes $1 ficheiros están}} nesta categoría, dun total de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|O seguinte ficheiro está|Os seguintes $1 ficheiros están}} na categoría actual.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Páxinas indexadas',
+'noindex-category'               => 'Páxinas non indexadas',
 
 'mainpagetext'      => "<big>'''O programa Wiki foi instalado con éxito.'''</big>",
 'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.

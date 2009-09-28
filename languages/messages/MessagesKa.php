@@ -230,6 +230,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|ეს კატეგორია შეიცავს მხოლოს შემდეგ ფაილს.|შემდეგი {{PLURAL:$1|ფაილი არის|$1 ფაილები არიან}} ამ კატეგორიაში, $2-დან.}}',
 'category-file-count-limited'    => 'შემდეგი {{PLURAL:$1|ფაილი|$1 ფაილები}} ამ კატეგორიაშია.',
 'listingcontinuesabbrev'         => 'გაგრძ.',
+'index-category'                 => 'გვერდების ინდექსაცია',
+'noindex-category'               => 'არ არსებობს ინდექსირებული გვერდები',
 
 'linkprefix'        => '/^(.*?)(„|«)$/sD',
 'mainpagetext'      => "<big>'''მედიავიკი წარმატებით ჩაიტვირთა.'''</big>",

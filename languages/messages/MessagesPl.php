@@ -351,6 +351,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|W tej kategorii znajduje się tylko jeden plik.|W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}} z ogólnej liczby $2 plików.}}',
 'category-file-count-limited'    => 'W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}}.',
 'listingcontinuesabbrev'         => 'cd.',
+'index-category'                 => 'Strony indeksowane',
+'noindex-category'               => 'Strony nieindeksowane',
 
 'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
