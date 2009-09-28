@@ -169,6 +169,7 @@ class User {
 		'reupload',
 		'reupload-shared',
 		'rollback',
+		'sendemail',
 		'siteadmin',
 		'suppressionlog',
 		'suppressredirect',
