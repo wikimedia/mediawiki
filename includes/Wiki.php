@@ -60,7 +60,10 @@ class MediaWiki {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		if( !$this->initializeSpecialCases( $title, $output, $request ) ) {
+		// Call handleSpecialCases() to deal with all special requests...
+		if( !$this->handleSpecialCases( $title, $output, $request ) ) {
+			// ...otherwise treat it as an article view. The article
+			// may be a redirect to another article or URL.
 			$new_article = $this->initializeArticle( $title, $output, $request );
 			if( is_object( $new_article ) ) {
 				$article = $new_article;
@@ -169,21 +172,20 @@ class MediaWiki {
 	 * - redirect loop
 	 * - special pages
 	 *
-	 * FIXME: why is this crap called "initialize" when it performs everything?
-	 *
 	 * @param $title Title
 	 * @param $output OutputPage
 	 * @param $request WebRequest
 	 * @return bool true if the request is already executed
 	 */
-	function initializeSpecialCases( &$title, &$output, $request ) {
+	function handleSpecialCases( &$title, &$output, $request ) {
 		wfProfileIn( __METHOD__ );
-
 		$action = $this->getVal( 'Action' );
+		// Invalid titles
 		if( is_null($title) || $title->getDBkey() == '' ) {
 			$title = SpecialPage::getTitleFor( 'Badtitle' );
 			# Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
+		// Interwiki redirects
 		} else if( $title->getInterwiki() != '' ) {
 			if( $rdfrom = $request->getVal( 'rdfrom' ) ) {
 				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
@@ -200,6 +202,7 @@ class MediaWiki {
 				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
+		// Redirect loops, no title in URL, $wgUsePathInfo URLs
 		} else if( $action == 'view' && !$request->wasPosted() &&
 			( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
@@ -233,6 +236,7 @@ class MediaWiki {
 				$output->setSquidMaxage( 1200 );
 				$output->redirect( $targetUrl, '301' );
 			}
+		// Special pages
 		} else if( NS_SPECIAL == $title->getNamespace() ) {
 			/* actions that need to be made when we have a special pages */
 			SpecialPage::executePath( $title );
