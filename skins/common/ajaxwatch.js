@@ -24,29 +24,29 @@ wgAjaxWatch.watchLinks = []; // "watch"/"unwatch" links
 wgAjaxWatch.iconMode = false; // new icon driven functionality 
 wgAjaxWatch.imgBasePath = ""; // base img path derived from icons on load
 
-wgAjaxWatch.setLinkText = function(newText) {
-  if( wgAjaxWatch.iconMode ) {
-    for ( i = 0; i < wgAjaxWatch.watchLinks.length; i++ ) {
-  		wgAjaxWatch.watchLinks[i].firstChild.alt = newText;
-  		if( newText==wgAjaxWatch.watchingMsg || newText==wgAjaxWatch.unwatchingMsg ) {
-  		  wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
+wgAjaxWatch.setLinkText = function( newText ) {
+	if( wgAjaxWatch.iconMode ) {
+		for ( i = 0; i < wgAjaxWatch.watchLinks.length; i++ ) {
+			wgAjaxWatch.watchLinks[i].firstChild.alt = newText;
+			if( newText == wgAjaxWatch.watchingMsg || newText == wgAjaxWatch.unwatchingMsg ) {
+				wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
 					+ "/common/images/spinner.gif";
-  		} else if( newText==wgAjaxWatch.watchMsg ) {
-  		  wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
+			} else if( newText==wgAjaxWatch.watchMsg ) {
+				wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
 					+ "/vector/images/watch_off.gif";
-  		} else if( newText==wgAjaxWatch.unwatchMsg ) {
-  		  wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
+			} else if( newText==wgAjaxWatch.unwatchMsg ) {
+				wgAjaxWatch.watchLinks[i].firstChild.src = wgAjaxWatch.imgBasePath
 					+ "/vector/images/watch_on.gif";
-  		}
-  	}
-  } else{
-    for ( i = 0; i < wgAjaxWatch.watchLinks.length; i++ ) {
-  		changeText( wgAjaxWatch.watchLinks[i], newText );
-  	}
-  }
+			}
+		}
+	} else {
+		for ( i = 0; i < wgAjaxWatch.watchLinks.length; i++ ) {
+			changeText( wgAjaxWatch.watchLinks[i], newText );
+		}
+	}
 };
 
-wgAjaxWatch.setLinkID = function(newId) {
+wgAjaxWatch.setLinkID = function( newId ) {
 	// We can only set the first one
 	wgAjaxWatch.watchLinks[0].parentNode.setAttribute( 'id', newId );
 	akeytt(newId); // update tooltips for Monobook
@@ -153,25 +153,25 @@ wgAjaxWatch.onLoad = function() {
 	}
 	
 	// If we're using the icon, add rollover affects
-	try{
-	  if( el1.firstChild.firstChild.tagName.match( /img/i ) ) {
+	try {
+		if( el1.firstChild.firstChild.tagName.match( /img/i ) ) {
 			wgAjaxWatch.iconMode = true;
-  	  wgAjaxWatch.imgBasePath = el1.firstChild.firstChild.src
+			wgAjaxWatch.imgBasePath = el1.firstChild.firstChild.src
 				.replace( /\/vector\/images\/watch_(off|on).gif/, "" );
-  	  el1.firstChild.onmouseover = function( e ) {
-  	    if ( !wgAjaxWatch.inprogress )
-  		this.firstChild.src = wgAjaxWatch.imgBasePath
-			+ "/vector/images/watch_over.gif";
-  	  }
-  	  el1.firstChild.onmouseout = function( e ) {
-  	    if ( !wgAjaxWatch.inprogress )
-		this.firstChild.src = wgAjaxWatch.imgBasePath
-			+ "/vector/images/watch_" + ( wgAjaxWatch.watching ?
-				"on.gif" : "off.gif" );
-  	  }
-  	}
+			el1.firstChild.onmouseover = function( e ) {
+				if ( !wgAjaxWatch.inprogress )
+					this.firstChild.src = wgAjaxWatch.imgBasePath
+						+ "/vector/images/watch_over.gif";
+			}
+			el1.firstChild.onmouseout = function( e ) {
+				if ( !wgAjaxWatch.inprogress )
+					this.firstChild.src = wgAjaxWatch.imgBasePath
+						+ "/vector/images/watch_" + ( wgAjaxWatch.watching ?
+							"on.gif" : "off.gif" );
+			}
+		}
 	} catch( e ) {
-	  // not using the icon 
+		// not using the icon 
 	}
 
 
