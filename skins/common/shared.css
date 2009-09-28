@@ -541,6 +541,10 @@ span.mw-revdelundel-link,
 strong.mw-revdelundel-link {
 	font-size: 90%;
 }
+span.mw-revdelundel-hidden,
+input.mw-revdelundel-hidden {
+	visibility: hidden;
+}
 
 /* feed links */
 a.feedlink {

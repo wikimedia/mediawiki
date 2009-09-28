@@ -821,7 +821,7 @@ class ImageHistoryList {
 			. $navLinks . "\n"
 			. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
 			. '<tr><td></td>'
-			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
+			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deletedrevision') ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
 			. ( $this->showThumb ? '<th>' . wfMsgHtml( 'filehist-thumb' ) . '</th>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
@@ -847,7 +847,7 @@ class ImageHistoryList {
 		$row = $css = $selected = '';
 
 		// Deletion link
-		if( $local && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ) {
+		if( $local && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deletedrevision') ) ) {
 			$row .= '<td>';
 			# Link to remove from history
 			if( $wgUser->isAllowed( 'delete' ) ) {
@@ -860,18 +860,19 @@ class ImageHistoryList {
 					array(), $q, array( 'known' )
 				);
 			}
-			# Link to hide content
-			if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			# Link to hide content. Don't show useless link to people who cannot hide revisions.
+			if( $wgUser->isAllowed('deleterevision') || ($wgUser->isAllowed('deletedrevision') && $file->getVisibility()) ) {
 				if( $wgUser->isAllowed('delete') ) {
 					$row .= '<br/>';
 				}
-				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// If file is top revision or locked from this user, don't link
 				if( $iscur || !$file->userCan(File::DELETED_RESTRICTED) ) {
 					$del = wfMsgHtml( 'rev-delundel' );
 				} else {
 					list( $ts, $name ) = explode( '!', $img, 2 );
-					$del = $this->skin->link( $revdel, wfMsgHtml( 'rev-delundel' ),
+					$del = $this->skin->link(
+						SpecialPage::getTitleFor( 'Revisiondelete' ),
+						wfMsgHtml( 'rev-delundel' ),
 						array(),
 						array( 
 							'type' => 'oldimage',

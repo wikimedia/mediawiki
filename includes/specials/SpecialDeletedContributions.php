@@ -31,7 +31,7 @@ class DeletedContribsPager extends IndexPager {
 		list( $index, $userCond ) = $this->getUserCond();
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 		// Paranoia: avoid brute force searches (bug 17792)
-		if( !$wgUser->isAllowed( 'deleterevision' ) ) {
+		if( !$wgUser->isAllowed( 'deletedrevision' ) ) {
 			$conds[] = $this->mDb->bitAnd('ar_deleted',Revision::DELETED_USER) . ' = 0';
 		} else if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 			$conds[] = $this->mDb->bitAnd('ar_deleted',Revision::SUPPRESSED_USER) .
@@ -189,8 +189,9 @@ class DeletedContribsPager extends IndexPager {
 		} else {
 			$mflag = '';
 		}
-
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+		
+		// Don't show useless link to people who cannot hide revisions
+		if( $wgUser->isAllowed('deleterevision') || ($rev->getVisibility() && $wgUser->isAllowed('deletedrevision')) ) {
 			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
