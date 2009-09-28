@@ -282,7 +282,25 @@ abstract class ExternalUser {
 		$dbw->replace( 'external_user',
 			array( 'eu_wiki_id', 'eu_external_id' ),
 			array( 'eu_wiki_id' => $id,
-			       'eu_external_id' => $this->getId() ),
-		    __METHOD__ );
+				   'eu_external_id' => $this->getId() ),
+			__METHOD__ );
 	}
+	
+	/**
+	 * Check whether this external user id is already linked with
+	 * a local user.
+	 * @return Mixed User if the account is linked, Null otherwise.
+	 */
+	public final function getLocalUser(){
+		$dbr = wfGetDb( DB_SLAVE );
+		$row = $dbr->selectRow(
+			'external_user',
+			'*',
+			array( 'eu_external_id' => $this->getId() )
+		);
+		return $row
+			? User::newFromId( $row->eu_wiki_id )
+			: null;
+	}
+	
 }
