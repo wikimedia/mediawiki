@@ -27,8 +27,8 @@ var ajaxCategories = {
 					'cancel': function() {
 						var req = ajaxCategories.request;
 						if (req.abort)
-							req.abort()
-					},
+							req.abort();
+					}
 				} );
 
 				$j('#mw-addcategory-input').suggestions();
@@ -131,7 +131,7 @@ var ajaxCategories = {
 				var dialogOptions = {
 					'AutoOpen' : true,
 					'buttons' : buttons,
-					'width' : 450,
+					'width' : 450
 				};
 
 				$j('#catlinks').prepend(dialog);
@@ -148,7 +148,7 @@ var ajaxCategories = {
 			'intoken':'edit',
 			'titles':page,
 			'rvprop':'content|timestamp',
-			'format':'json',
+			'format':'json'
 		};
 
 		$j.get(wgScriptPath+'/api.php', getTokenVars,
@@ -172,7 +172,7 @@ var ajaxCategories = {
 							'summary':summary,
 							'token':token,
 							'basetimestamp':timestamp,
-							'format':'json',
+							'format':'json'
 						};
 
 						$j.post( wgScriptPath+'/api.php', postEditVars, doneFn,	'json' );
@@ -266,11 +266,13 @@ var ajaxCategories = {
 		$j('#bodyContent').append(dialog);
 
 		var buttons = {};
-		buttons[gM('ajax-error-dismiss')] = function(e) { dialog.dialog('close'); };
+		buttons[gM('ajax-error-dismiss')] = function(e) {
+			dialog.dialog('close');
+		};
 		var dialogOptions = {
 			'buttons' : buttons,
 			'AutoOpen' : true,
-			'title' : gM('ajax-error-title'),
+			'title' : gM('ajax-error-title')
 		};
 
 		dialog.dialog(dialogOptions);
@@ -318,7 +320,7 @@ var ajaxCategories = {
 		} );
 
 		clElement.append(promptContainer);
-	},
+	}
 };
 
 js2AddOnloadHook( ajaxCategories.setupAJAXCategories );
