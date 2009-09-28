@@ -981,7 +981,7 @@ class Revision {
 			global $wgUser;
 			$permission = ( $this->mDeleted & self::DELETED_RESTRICTED ) == self::DELETED_RESTRICTED
 				? 'suppressrevision'
-				: 'deleterevision';
+				: 'deletedrevision';
 			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {

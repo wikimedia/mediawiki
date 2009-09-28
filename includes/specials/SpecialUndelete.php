@@ -779,9 +779,12 @@ class UndeleteForm {
 		
 		$revdlink = '';
 		// Diffs already have revision delete links
-		if( !$this->mDiff && $wgUser->isAllowed( 'deleterevision' ) ) {
-			if( !$rev->userCan(Revision::DELETED_RESTRICTED ) ) {
+		if( !$this->mDiff && $wgUser->isAllowed( 'deletedrevision' ) ) {
+			// Don't show useless link to people who cannot hide revisions
+			if( !$rev->getVisibility() && !$wgUser->isAllowed( 'deleterevision' ) ) {
+				$revdlink = '';
 			// If revision was hidden from sysops
+			} else if( !$rev->userCan(Revision::DELETED_RESTRICTED ) ) {
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
 					'('.wfMsgHtml('rev-delundel').')' );
 			} else {
@@ -889,8 +892,8 @@ class UndeleteForm {
 			$targetPage = $rev->getTitle();
 			$targetQuery = array( 'oldid' => $rev->getId() );
 		}
-		// Add show/hide link if available
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+		// Add show/hide link if available. Don't show useless link to people who cannot hide revisions.
+		if( $wgUser->isAllowed('deleterevision') || ($rev->getVisibility() && $wgUser->isAllowed('deletedrevision')) ) {
 			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = ' ' . Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
@@ -1190,8 +1193,8 @@ class UndeleteForm {
 		}
 		// Edit summary
 		$comment = $sk->revComment( $rev );
-		// Show/hide link
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+		// Show/hide link. // Don't show useless link to people who cannot hide revisions.
+		if( $wgUser->isAllowed('deleterevision') || ($rev->getVisibility() && $wgUser->isAllowed('deletedrevision')) ) {
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
@@ -1237,7 +1240,8 @@ class UndeleteForm {
 		$data = htmlspecialchars( $data );
 		$comment = $this->getFileComment( $file, $sk );
 		$revdlink = '';
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+		// Add show/hide link if available. Don't show useless link to people who cannot hide revisions.
+		if( $wgUser->isAllowed('deleterevision') || ($file->getVisibility() && $wgUser->isAllowed('deletedrevision')) ) {
 			if( !$file->userCan(File::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml('rev-delundel').')' );

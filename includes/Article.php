@@ -3429,17 +3429,14 @@ class Article {
 			);
 
 		$cdel='';
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-			if( $revision->isCurrent() ) {
-			// We don't handle top deleted edits too well
-				$cdel = wfMsgHtml( 'rev-delundel' );
-			} else if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
+		// Don't show useless link to people who cannot hide revisions
+		if( $wgUser->isAllowed('deleterevision') || ($revision->getVisibility() && $wgUser->isAllowed('deletedrevision')) ) {
+			if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
 				$cdel = wfMsgHtml( 'rev-delundel' );
 			} else {
 				$cdel = $sk->link(
-					$revdel,
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
 					wfMsgHtml('rev-delundel'),
 					array(),
 					array(

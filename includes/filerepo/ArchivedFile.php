@@ -372,7 +372,7 @@ class ArchivedFile
 			global $wgUser;
 			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
 				? 'suppressrevision'
-				: 'deleterevision';
+				: 'deletedrevision';
 			wfDebug( "Checking for $permission due to $field match on $this->deleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {

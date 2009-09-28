@@ -318,31 +318,38 @@ CONTROL;
 		}
 
 		$rdel = ''; $ldel = '';
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				// If revision was hidden from sysops
-				$ldel = Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), '(' . wfMsgHtml( 'rev-delundel' ) . ')' );
-			} else {
-				$query = array( 
-					'type' => 'revision',
-					'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
-					'ids' => $this->mOldRev->getId()
-				);
-				$ldel = $sk->revDeleteLink( $query, $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) );
+		if( $wgUser->isAllowed( 'deletedrevision' ) ) {
+			// Don't show useless link to people who cannot hide revisions
+			if( $this->mOldRev->getVisibility() || $wgUser->isAllowed( 'deleterevision' ) ) {
+				if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
+					// If revision was hidden from sysops
+					$ldel = Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ),
+						'(' . wfMsgHtml( 'rev-delundel' ) . ')' );
+				} else {
+					$query = array( 
+						'type' => 'revision',
+						'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
+						'ids' => $this->mOldRev->getId()
+					);
+					$ldel = $sk->revDeleteLink( $query, $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) );
+				}
+				$ldel = "&nbsp;&nbsp;&nbsp;$ldel ";
 			}
-			$ldel = "&nbsp;&nbsp;&nbsp;$ldel ";
-			if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				// If revision was hidden from sysops
-				$rdel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
-			} else {
-				$query = array( 
-					'type' => 'revision',
-					'target' =>  $this->mNewRev->mTitle->getPrefixedDbkey(),
-					'ids' => $this->mNewRev->getId()
-				);
-				$rdel = $sk->revDeleteLink( $query, $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) );
+			// Don't show useless link to people who cannot hide revisions
+			if( $this->mNewRev->getVisibility() || $wgUser->isAllowed( 'deleterevision' ) ) {
+				if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
+					// If revision was hidden from sysops
+					$rdel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
+				} else {
+					$query = array( 
+						'type' => 'revision',
+						'target' =>  $this->mNewRev->mTitle->getPrefixedDbkey(),
+						'ids' => $this->mNewRev->getId()
+					);
+					$rdel = $sk->revDeleteLink( $query, $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) );
+				}
+				$rdel = "&nbsp;&nbsp;&nbsp;$rdel ";
 			}
-			$rdel = "&nbsp;&nbsp;&nbsp;$rdel ";
 		}
 
 		$oldHeader = '<div id="mw-diff-otitle1"><strong>'.$this->mOldtitle.'</strong></div>' .

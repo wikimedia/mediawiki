@@ -199,7 +199,7 @@ class OldLocalFile extends LocalFile {
 			global $wgUser;
 			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
 				? 'suppressrevision'
-				: 'deleterevision';
+				: 'deletedrevision';
 			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {

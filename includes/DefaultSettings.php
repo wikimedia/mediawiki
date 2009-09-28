@@ -1354,7 +1354,8 @@ $wgGroupPermissions['sysop']['createaccount']    = true;
 $wgGroupPermissions['sysop']['delete']           = true;
 $wgGroupPermissions['sysop']['bigdelete']        = true; // can be separately configured for pages with > $wgDeleteRevisionsLimit revs
 $wgGroupPermissions['sysop']['deletedhistory']   = true; // can view deleted history entries, but not see or restore the text
-$wgGroupPermissions['sysop']['deletedcontent']   = true; // can view deleted content
+$wgGroupPermissions['sysop']['deletedcontent']   = true; // can view deleted revision text
+$wgGroupPermissions['sysop']['deletedrevision']  = true; // can view hidden revision items (user/comment/text)
 $wgGroupPermissions['sysop']['undelete']         = true;
 $wgGroupPermissions['sysop']['editinterface']    = true;
 $wgGroupPermissions['sysop']['editusercss']      = true;
@@ -1605,7 +1606,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches do not keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '240';
+$wgStyleVersion = '241';
 
 
 # Server-side caching:

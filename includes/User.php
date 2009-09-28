@@ -143,6 +143,7 @@ class User {
 		'delete',
 		'deletedhistory',
 		'deletedcontent',
+		'deletedrevision',
 		'deleterevision',
 		'edit',
 		'editinterface',
