@@ -405,6 +405,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o ficheiro a seguir.|Há, nesta categoria, {{PLURAL:$1|o ficheiro a seguir|os $1 ficheiros a seguir}} (dentre um total de $2).}}',
 'category-file-count-limited'    => 'Nesta categoria há {{PLURAL:$1|um ficheiro|$1 ficheiros}}.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Páginas indexadas',
+'noindex-category'               => 'Páginas não indexadas',
 
 'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações acerca de como utilizar o software wiki.
@@ -706,6 +708,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'userexists'                 => 'O nome de utilizador que introduziu já existe.
 Escolha um nome diferente.',
 'loginerror'                 => 'Erro de autenticação',
+'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => 'A conta de utilizador foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor, os active, depois autentique-se com o seu nome de utilizador e a sua palavra-chave.',
 'nocookieslogin'             => 'Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para autenticar os utilizadores. Por favor active-os e tente novamente.',
 'noname'                     => 'Você não colocou um nome de utilizador válido.',
@@ -728,6 +731,7 @@ A sua palavra-chave temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
 
 Caso tenha sido outra pessoa a fazer este pedido, ou caso você já se tenha lembrado da sua palavra-chave e não deseja alterá-la, ignore esta mensagem e continue a utilizar a palavra-chave antiga.',
 'noemail'                    => 'Não há um endereço de correio electrónico associado ao utilizador "$1".',
+'noemailcreate'              => 'Você precisa fornecer um endereço de e-mail válido',
 'passwordsent'               => 'Uma nova palavra-chave encontra-se a ser enviada para o endereço de correio electrónico associado ao utilizador "$1".
 Por favor, volte a efectuar a autenticação ao recebê-la.',
 'blocked-mailpassword'       => 'O seu endereço de IP foi bloqueado de editar e, portanto, não será possível utilizar o lembrete de palavra-chave (para serem evitados envios abusivos a outras pessoas).',
@@ -1919,7 +1923,7 @@ Cada linha contém ligações para o primeiro e segundo redirecionamento, bem co
 'listusers-creationsort'  => 'Ordenar por data de criação',
 'usereditcount'           => '$1 {{PLURAL:$1|edição|edições}}',
 'usercreated'             => 'Criado em $1 às $2',
-'newpages'                => 'Páginas novas',
+'newpages'                => 'Páginas recentes',
 'newpages-username'       => 'Nome de utilizador:',
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
@@ -2000,7 +2004,7 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista de utilizadores ativos',
-'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}} {{PLURAL:$3|no último dia|nos últimos $3 days}}',
 'activeusers-from'     => 'Mostrar utilizadores começando em:',
 'activeusers-noresult' => 'Nenhum utilizador encontrado.',
 
@@ -3355,6 +3359,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'ajax-add-category'            => 'Adicionar categoria',
 'ajax-add-category-submit'     => 'Adicionar',
 'ajax-confirm-save'            => 'Gravar',
+'ajax-add-category-summary'    => 'Adicionado categoria "$1"',
 'ajax-remove-category-summary' => 'Remover categoria "$1"',
 'ajax-error-title'             => 'Erro',
 'ajax-error-dismiss'           => 'OK',

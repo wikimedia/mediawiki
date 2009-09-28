@@ -199,6 +199,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Sie ham neie Nachrichten: $1',
 'editsection'             => 'werkln',
 'editold'                 => 'werkln',
+'editlink'                => 'werkln',
 'viewsourcelink'          => 'in Quöitext ãschau',
 'editsectionhint'         => 'Åbschnitt beåaweitn: $1',
 'toc'                     => 'Inhoitsvazeichnis',
@@ -259,6 +260,7 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'remembermypassword'         => 'auf dem Computer dauahåft ãnmöidn',
 'yourdomainname'             => 'Eanane Domain:',
 'login'                      => 'Oomeidn',
+'nav-login-createaccount'    => 'Ãnmöidn',
 'userlogin'                  => 'Oomeidn',
 'logout'                     => 'Obmeidn',
 'userlogout'                 => 'Obmeidn',
@@ -374,6 +376,7 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'histlegend'       => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Untaschied zur aktuellen Version, (Vorherige) = Untaschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dera Zeit, Benutzername/IP-Adresse vom Bearbeiter, K = Kloane Änderung',
+'histfirst'        => 'öidaste',
 'histlast'         => 'Neiste',
 'historyempty'     => '(laa)',
 
@@ -586,7 +589,12 @@ Links aus Namensräume wern da net aufglistet.',
 'withoutinterwiki-submit' => 'Zoag',
 
 # Miscellaneous special pages
+'nbytes'                 => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'ncategories'            => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
+'nlinks'                 => '{{PLURAL:$1|a Link|$1 Links}}',
 'nmembers'               => '{{PLURAL:$1|1 Eitråg|$1 Eiträge}}',
+'nrevisions'             => '{{PLURAL:$1|oa Beåawatung|$1 Beåawatungen}}',
+'nviews'                 => '{{PLURAL:$1|1 Åbfråg|$1 Åbfrång}}',
 'uncategorizedtemplates' => 'Net kategorisierte Vorlagen',
 'prefixindex'            => 'ålle Seitn mid Präfix',
 'longpages'              => 'Lange Seitn',
@@ -595,6 +603,8 @@ Links aus Namensräume wern da net aufglistet.',
 'move'                   => 'vaschiam',
 'movethispage'           => 'de Seitn vaschiam',
 'notargettitle'          => 'Koa Seitn ogem',
+'pager-newer-n'          => '{{PLURAL:$1|nexta|nexde $1}}',
+'pager-older-n'          => '{{PLURAL:$1|voaheriga|voahering $1}}',
 
 # Book sources
 'booksources'               => 'ISBN-Suach',
@@ -622,6 +632,7 @@ Links aus Namensräume wern da net aufglistet.',
 'allpages-bad-ns'   => "Den Namensraum „$1“ gibt's in {{SITENAME}} net.",
 
 # Special:LinkSearch
+'linksearch'    => 'Weblinks suacha',
 'linksearch-ok' => 'Suacha',
 
 # Special:ListUsers
@@ -714,6 +725,7 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protect_expiry_invalid'      => "D'eigemne Daua is ungüitig.",
 'protect_expiry_old'          => "D'Sperrzeid liegt in da Vagãngnheid",
 'protect-unchain'             => 'Vaschiab-Schutz ändan',
+'protect-text'                => "Då kãnnst nåchschau und ändan, wia d'Seitn „$1“ gschützt is.",
 'protect-level-autoconfirmed' => 'Sperrung fia net registrierte Benutzer',
 'protect-summary-cascade'     => 'kaskadiarnd',
 
@@ -780,6 +792,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'unblocked'                => '[[User:$1|$1]] is freigem worn',
 'ipblocklist'              => 'Gspeade IP-Adressn und Benutzanãmen',
 'createaccountblock'       => 'Erstellung vo Benutzakonten gsperrt',
+'emailblock'               => 'E-Post vaschicka gspead',
 'blocklink'                => 'sperrn',
 'unblocklink'              => 'freigem',
 'change-blocklink'         => 'Sperr ändan',
@@ -790,6 +803,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'unblocklogentry'          => "håd d'Spear vu „$1“ aufghom",
 'block-log-flags-anononly' => 'netta Anonyme',
 'block-log-flags-nocreate' => "S'Eastöin vu Benutzakontn is gspead",
+'block-log-flags-noemail'  => 'E-Post vaschicka gspead',
 
 # Developer tools
 'unlockdb'            => 'Datenbank freigem',
@@ -811,11 +825,15 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'newtitle'               => 'Züi:',
 'move-watch'             => 'De Seitn beobachten',
 'movepagebtn'            => 'Seitn vaschiam',
+'pagemovedsub'           => "s'Vaschiam håd highaud",
+'movepage-moved'         => "<big>'''D'Seitn „$1“ is nåch „$2“ vaschom woan.'''</big>",
 'articleexists'          => 'Unter dem Nam existiert bereits a Seitn.
 Bitte nehmans an andern Nam.',
+'movedto'                => 'vaschom nåch',
 '1movedto2'              => 'håt [[$1]] nåch [[$2]] verschom',
 '1movedto2_redir'        => 'håt [[$1]] nåch [[$2]] verschom und dabei a Weiterleitung überschriem',
 'movelogpage'            => 'Vaschiabungs-Logbuach',
+'movereason'             => 'Weng wås:',
 'revertmove'             => 'zruck vaschiam',
 'delete_and_move'        => 'Löschn und vaschiam',
 'delete_and_move_reason' => 'glöscht, um Plåtz fia Vaschiam zum macha',
@@ -862,6 +880,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-t-contributions'         => "d'Listn vu de Beiträg vu dem Benutza ãschau",
 'tooltip-t-emailuser'             => 'Dem Benutza E-Post schicka',
 'tooltip-t-upload'                => 'Datein aufelådn',
+'tooltip-t-specialpages'          => 'Listn vu ålle Spezialseitn',
 'tooltip-ca-nstab-main'           => 'Seitninhalt ozoagn',
 'tooltip-ca-nstab-user'           => 'Benutzaseitn ãzoang',
 'tooltip-ca-nstab-image'          => "D'Dateiseitn ãnzoang",
@@ -875,6 +894,7 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'tooltip-compareselectedversions' => 'Unterschiede zwischn zwoa ausgewählte Versiona vo dera  Seitn vergleicha.',
 'tooltip-watch'                   => 'De Seitn da persönlichn Beobachtungslistn dazua doa.',
 'tooltip-recreate'                => 'Seitn nei erstelln, obwoi sie glöscht worn is.',
+'tooltip-rollback'                => 'Setzt ålle Beiträg, de vum gleichn Benutza gmåcht woan han, mid am anzing Klick auf de Veasion zruck, de aktuöi gwen is, bevoa dea oane zum weakln ãngfãnga håd.',
 
 # Attribution
 'lastmodifiedatby' => 'De Seitn is zletzt am $1 um $2 vo $3 gändert worn.',

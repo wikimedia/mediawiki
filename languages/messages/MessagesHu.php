@@ -473,7 +473,7 @@ $messages = array(
 'vector-view-edit'           => 'Szerkesztés',
 'vector-view-history'        => 'Laptörténet',
 'vector-view-view'           => 'Olvasás',
-'vector-view-viewsource'     => 'Lapforrás megtekintése',
+'vector-view-viewsource'     => 'A lap forrása',
 'actions'                    => 'Műveletek',
 'namespaces'                 => 'Névterek',
 'variants'                   => 'Változók',
@@ -1298,7 +1298,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'qbsettings-floatingright' => 'Lebegő jobboldali',
 
 # Preferences page
-'preferences'                   => 'Beállításaim',
+'preferences'                   => 'Beállítások',
 'mypreferences'                 => 'Beállításaim',
 'prefs-edits'                   => 'Szerkesztéseid száma:',
 'prefsnologin'                  => 'Nem jelentkeztél be',

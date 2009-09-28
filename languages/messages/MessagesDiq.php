@@ -612,10 +612,16 @@ ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FU
 Eka ti wazeni binusi, kontrol bike.',
 'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nibiyo.',
 'clearyourcache'                   => "'''Not:''' Bade eyar qayd kerdış, gani hafızayê cıgerayox pak bıbo: '''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere veyaxut ''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' tena tuşê pel newe ra bar kere ser a ne.",
+'usercssyoucanpreview'             => "'''Ardim:''' wexta şıma hona pel qayd nêkerd '''verqayd bımocni'''' bı tıkne u şıma bıeşke qontrol bıkeri.",
+'userjsyoucanpreview'              => "'''Ardim:''' wexta şıma hona pel qayd nêkerd '''verqayd bımocni'''' bı tıkne u şıma bıeşke qontrol bıkeri.",
+'usercsspreview'                   => "'''şıma tena verqaydê dosyayê CSS vineni.''' '''Dosyayê Karberi CSS hema qayd nebiyo!'''",
+'userjspreview'                    => "'''şıma tena test keni ya ziverqayn seyr keni - karberê JavaScript'i hema qayd nebiyo.'''",
+'userinvalidcssjstitle'            => "''Hişyari:''' \"\$1\" no name de yew tema çino. tema- nameyê ey.css u .js ney dosyayi gani pê herfa hurdiye bınusiye , yani {{ns:user}}:bıngeh/'''M'''onobook.css ney, {{ns:user}}:bıngeh/'''m'''onobook.css.",
 'updated'                          => '(Rocaniye biyo)',
 'note'                             => "'''Not:'''",
 'previewnote'                      => "'''Teme! ena teyna verqeyda.'''
 Vurnayışê tu hama qeyd nıbiyo!",
+'previewconflict'                  => 'No seyrkerdışê verqaydi serê qutiyê nuşte tezim kerdış de yo, eke şıma qayile vurnayişê maddeyi seyino bıvini, no mocneno şıma.',
 'session_fail_preview'             => 'Ma ef kere. Vindibiyayişê tayê datay ra a kerdışê hesabê şıma de ma vurnayişê şıma qayd nêkerd. Newe ra tesel (cereb) bıkere. Eke no qayde zi nêbo, [[Special:UserLogout|hesabê xo bıqefelne]] u newera a kere.',
 'session_fail_preview_html'        => "'''Ma meluli! Sebayê vindbiyayişê datasistemi ma vurnayişê şıma nêeşkeni qaydker.'''
 
@@ -657,19 +663,67 @@ Serkar o ke kılit kerdo; no beyanat dayo: $1",
 'template-semiprotected'           => '(nimey ena pele kılit biya)',
 'hiddencategories'                 => 'Ena pela bınê {{PLURAL:$1|1 hidden category|$1 categoriyan nımne}}:',
 'nocreatetitle'                    => 'Vıraştışê na peli de yew hed (limit) niya ro',
+'nocreatetext'                     => '{{SITENAME}}, Pelê neweyi vıraştış re destur çino.
+şıma eşkeni tepiya şêri u eke şıma qayd biyaye yê [[Special:UserLogin|şıma eşkeni hesab akeri]], eke niye [[Special:UserLogin|şıma eşkeni qayd bıbiy]].',
+'nocreate-loggedin'                => 'İcaze şıma çino şıma pelo newe akeri.',
+'permissionserrors'                => 'Xetayê icazeyi',
+'permissionserrorstext'            => 'Qey {{PLURAL:$1|sebebê|sebebê}} cêrini ra icazeyê şıma çin o:',
 'permissionserrorstext-withaction' => 'Desturê to be $2 çıniyo, semedê {{PLURAL:$1|ena sebebi|enê sebeban}} ra:',
+'recreate-moveddeleted-warn'       => "'''Hişyari: no pel o ke şıma vırazeni vere cû vırazyayo.'''
+
+Diqet bıkeri no vurnayişê şıma re gerek esto:",
 'moveddeleted-notice'              => 'Ma ena pele wederna.
 Qe referansi logê wedernayışi bın de mocnayiya.',
+'log-fulllog'                      => 'Temamê rocaneyi bıvine',
+'edit-hook-aborted'                => 'Vurnayiş vınderiya.
+Yew sebeb beyan nibı.',
+'edit-gone-missing'                => 'Pel rocanebiyaye niyo.
+Hewna kerde aseno.',
+'edit-conflict'                    => 'Vurnayişê pêverdiyaye .',
+'edit-no-change'                   => 'Vurnayişê şıma qebul nêbı, çunke nuşte de yew vurnayiş n3evıraziya.',
+'edit-already-exists'              => 'Pelo newe nêvıraziyeno.
+Pel ca ra esto.',
+
+# Parser/template warnings
+'expensive-parserfunction-warning'        => 'Hişyari: No pel de fonksiyoni zaf esti.
+
+No $2 daweti ra gani tay bıbo, na hel {{PLURAL:$1|1 dawet esto|$1 dawet esto}}.',
+'expensive-parserfunction-category'       => 'Pelê ke tede zaf fonksiyoni esti',
+'post-expand-template-inclusion-warning'  => 'Hişyari: zerreyê şabloni zaf gırdo.  
+Taye şabloni zerre pel de nêmociyayeni.',
+'post-expand-template-inclusion-category' => 'Pelê şabloni ke hed ra veceyi',
+'post-expand-template-argument-warning'   => 'Hişyari: No pel de tewr tay yew şablono herayi esto.',
+'post-expand-template-argument-category'  => 'Pelê ke şablonê eyi qebul niye',
+'parser-template-loop-warning'            => 'Gıreyê şabloni ca biyo: [[$1]]',
+'parser-template-recursion-depth-warning' => 'limitê şablonê newekerdışi biyo de ($1)',
+
+# "Undo" feature
+'undo-success' => 'No vurnayiş tepeye geryeno. pêverronayişêyê cêrıni kontrol bıkeri.',
+'undo-failure' => 'Sebayê pêverameyişê vurnayişan karo tepêya gırewtış nêbı.',
+'undo-norev'   => 'Vurnayiş tepêya nêgeryeno çunke ya vere cû hewna biyo ya zi ca ra çino.',
+'undo-summary' => "Vurnayişê $1'i [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tepêya gırewt.",
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Hesab a nıbeno',
+'cantcreateaccount-text' => "No IP adres ra ('''$1''') hesabvıraştışê karberi re [[User:$3|$3]] destur nêdiya .
+
+$3 sebebo ke dayo ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Qe ena pele logan bevinin',
+'nohistory'              => 'revizyonê vere cûyê no peli çino.',
+'currentrev'             => 'revizyono rocane',
 'currentrev-asof'        => 'Revizyonanê peniyan, tarixê $1',
 'revisionasof'           => 'Verziyonê roca $1ine',
+'revision-info'          => '$2, $1 tarix de revize kerdo',
 'previousrevision'       => '← Rewşa kıhanêre',
 'nextrevision'           => 'Tekrar-diyayışo newêr →',
 'currentrevisionlink'    => 'Revizyono peni',
 'cur'                    => 'ferq',
+'next'                   => 'badeyê ney',
 'last'                   => 'pey',
+'page_first'             => 'verin',
+'page_last'              => 'peyniyê',
 'histlegend'             => "Ferqê weçinıtış: Qutiya versiyonan isaret bık u dest bı ''enter''i ya zi gozaga cêrêne klik bık.<br />
 Cetwel: (pey) = ferqê versiyonê peni,
 (ver) = ferqê versiyonê verni, Q = vurnayışo qıçkek.",

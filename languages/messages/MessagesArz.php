@@ -315,6 +315,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
 'tog-enotifrevealaddr'        => 'بين الايميل بتاعى فى ايميلات الاعلام',
 'tog-shownumberswatching'     => 'بين عدد اليوزرز المراقبين',
+'tog-oldsig'                  => 'بروفه للامضا الحاليه',
 'tog-fancysig'                => 'امضا خام (من غير لينك أوتوماتيك)',
 'tog-externaleditor'          => 'استعمل محرر خارجى افتراضيا',
 'tog-externaldiff'            => 'استعمل فرق خارجى افتراضيا',
@@ -339,8 +340,10 @@ $messages = array(
 'underline-default' => 'على حسب إعدادات المتصفح',
 
 # Font style option in Special:Preferences
-'editfont-style'   => ':الفونت بتاع مساحة التعديل',
-'editfont-default' => 'حسب إعدادات البراوزر',
+'editfont-style'     => ':الفونت بتاع مساحة التعديل',
+'editfont-default'   => 'حسب إعدادات البراوزر',
+'editfont-monospace' => 'فونت  Monospaced',
+'editfont-sansserif' => 'فونت  Sans-serif',
 
 # Dates
 'sunday'        => 'الحد',
@@ -2179,7 +2182,7 @@ $NEWPAGE
 'protect-title'               => 'غير مستوى الحماية ل"$1"',
 'prot_1movedto2'              => '[[$1]] اتنقلت ل [[$2]]',
 'protect-legend'              => 'تأكيد الحماية',
-'protectcomment'              => 'تعليق:',
+'protectcomment'              => 'السبب:',
 'protectexpiry'               => 'تنتهى فى:',
 'protect_expiry_invalid'      => 'وقت الانتهاء مش صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع قديم.',
@@ -2664,6 +2667,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'tooltip-search-fulltext'         => 'دور فى الصفحات  على النص دا',
 'tooltip-p-logo'                  => 'الصفحه الرئيسيه',
 'tooltip-n-mainpage'              => 'زور الصفحه الرئيسيه',
+'tooltip-n-mainpage-description'  => 'زور الصفحه الرئيسيه',
 'tooltip-n-portal'                => 'عن المشروع، ممكن تعمل ايه، و فين تلاقى اللى بتدور عليه',
 'tooltip-n-currentevents'         => 'مطالعه سريعه لاهم الاخبار دلوقتى',
 'tooltip-n-recentchanges'         => 'لسته بالتعديلات الجديده فى الويكى',
