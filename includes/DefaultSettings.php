@@ -4096,11 +4096,18 @@ $wgEnforceHtmlIds = true;
 $wgUseTwoButtonsSearchForm = true;
 
 /**
- *  Search form behavior for Vector skin only
+ * Search form behavior for Vector skin only
  * true = use an icon search button
  * false = use Go & Search buttons
  */
 $wgVectorUseSimpleSearch = false;
+
+/**
+ * Watch and unwatch as an icon rather than a link for Vector skin only
+ * true = use an icon watch/unwatch button
+ * false = use watch/unwatch text link
+ */
+$wgVectorUseIconWatch = false;
 
 /**
  * Preprocessor caching threshold
