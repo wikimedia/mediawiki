@@ -1316,7 +1316,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-reset-passwords'       => 'Hesła druhich wužiwarjow wróćo stajić',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
 'right-versiondetail'         => 'Nadrobne informacije wo wersiji softwary pokazać',
-'right-root'                  => 'Wšě akcije na wikiju wuwjesć',
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
 
 # User rights log

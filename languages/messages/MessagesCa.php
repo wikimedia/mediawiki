@@ -1388,7 +1388,6 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exporta pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-versiondetail'         => 'Mostra la informació addicional de la versió del programari',
-'right-root'                  => 'Executar totes les accions en el wiki.',
 'right-sendemail'             => 'Envia un correu electrònic a altres usuaris.',
 
 # User rights log

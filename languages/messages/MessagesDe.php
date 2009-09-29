@@ -1540,7 +1540,6 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-reset-passwords'       => 'Das Passwort eines anderen Benutzers zurücksetzen',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-versiondetail'         => 'Detailinformation über die Software und ihre Versionsdaten einsehen',
-'right-root'                  => 'Alle Aktionen auf dem Wiki ausführen',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 
 # User rights log

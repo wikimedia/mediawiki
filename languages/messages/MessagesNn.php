@@ -1448,7 +1448,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
 'right-override-export-depth' => 'Eksportér sider inkludert lenka sider til ei djupn på 5',
 'right-versiondetail'         => 'Syn utvida informasjon om versjonen av programvara',
-'right-root'                  => 'Utfør alle handlingar på denne wikien',
 'right-sendemail'             => 'Send e-post til andre brukarar',
 
 # User rights log

@@ -1393,7 +1393,6 @@ teisės",
 'right-reset-passwords'       => 'Atstatyti kitų naudotojų slaptažodžius',
 'right-override-export-depth' => 'Eksportuoti puslapius įtraukiant susietus puslapius iki 5 lygio gylio',
 'right-versiondetail'         => 'Rodyti išplėstinę programinės įrangos versijos informaciją',
-'right-root'                  => 'Atlikti visus veiksmus vikisvetainėje.',
 
 # User rights log
 'rightslog'      => 'Naudotojų teisių istorija',

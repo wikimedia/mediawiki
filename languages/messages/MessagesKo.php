@@ -1454,7 +1454,6 @@ $1",
 'right-reset-passwords'       => '다른 사용자의 비밀번호를 변경',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-versiondetail'         => '소프트웨어 버전에 대한 자세한 정보를 보기',
-'right-root'                  => '이 위키에서 모든 권한을 행사',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',

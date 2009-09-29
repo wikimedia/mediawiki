@@ -1340,7 +1340,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
 'right-versiondetail'         => 'Nadrobne informacije wó wersiji softwary pokazaś',
-'right-root'                  => 'Wšykne akcije we wikiju wuwjasć',
 'right-sendemail'             => 'Drugim wužywarjam e-mail pósłaś',
 
 # User rights log

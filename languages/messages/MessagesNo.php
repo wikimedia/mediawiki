@@ -1419,7 +1419,6 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'right-reset-passwords'       => 'Nullstille andre brukeres passord',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-versiondetail'         => 'Vis utvidet informasjon om programvareversjon',
-'right-root'                  => 'Utføre alle handlinger på wikien',
 'right-sendemail'             => 'Send e-post til andre brukere',
 
 # User rights log

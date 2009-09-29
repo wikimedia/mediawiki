@@ -1201,7 +1201,6 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'right-userrights-interwiki' => 'Toižetada toižiden wiki-saitoiden kävutajiden oiktused',
 'right-siteadmin'            => 'Luklostada da avaita andmusiden baz',
 'right-reset-passwords'      => 'Heitta toižiden kävutajiden peitsanad',
-'right-root'                 => 'Kaiked tegendad neciš wikiš oma lasktud',
 
 # User rights log
 'rightslog'      => 'Kävutajan oiktusiden aigkirj',

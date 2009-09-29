@@ -1540,7 +1540,6 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-versiondetail'         => 'Voir les informations étendues sur les versions des logiciels',
-'right-root'                  => 'Réaliser toutes les actions sur le wiki',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
 
 # User rights log

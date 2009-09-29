@@ -1389,7 +1389,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-versiondetail'         => 'Monstrar le informationes complete super le versiones del software',
-'right-root'                  => 'Executar omne actiones in le wiki',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',

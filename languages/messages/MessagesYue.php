@@ -1339,7 +1339,6 @@ $1",
 'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-versiondetail'         => '顯示伸展軟件版本嘅資料',
-'right-root'                  => '響個wiki度進行全部嘅動作',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',

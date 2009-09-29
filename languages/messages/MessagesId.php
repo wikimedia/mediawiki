@@ -1482,7 +1482,6 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-reset-passwords'       => 'Mereset kata sandi pengguna lain',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-versiondetail'         => 'Tunjukkan informasi versi piranti lunak yang lebih lengkap',
-'right-root'                  => 'Lakukan semua aksi pada wiki',
 'right-sendemail'             => 'Kirim surat-e ke pengguna lain',
 
 # User rights log

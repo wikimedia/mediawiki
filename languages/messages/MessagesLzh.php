@@ -1180,7 +1180,6 @@ $1",
 'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
 'right-versiondetail'         => '示延用之版',
-'right-root'                  => '於wiki上行全動',
 
 # User rights log
 'rightslog'  => '職權志',
