@@ -8,7 +8,7 @@
  * @file
  *
  * @author AlefZet
- * @author Alessandro
+ * @author Don Alessandro
  * @author Urhixidur
  */
 
@@ -997,8 +997,8 @@ Daa körgezmeli körüniş içün [[Special:NewFiles|yañı fayllar galereyasın
 'filestatus'                  => 'Darqatuv şartları:',
 'filesource'                  => 'Menba:',
 'uploadedfiles'               => 'Yüklengen fayllar',
-'ignorewarning'               => 'Tenbini ignor etip faylnı yükle.',
-'ignorewarnings'              => 'Tenbini ignor et',
+'ignorewarning'               => 'Tenbige qulaq asmayıp faylnı yükle.',
+'ignorewarnings'              => 'Tenbilerge qulaq asma',
 'minlength1'                  => 'Faylnıñ adı eñ azdan bir ariften ibaret olmalı.',
 'illegalfilename'             => '"$1" faylınıñ adında serleva içün yasaqlı işaretler bar. Lütfen, fayl adını deñiştirip yañıdan yüklep baqıñız.',
 'badfilename'                 => 'Fayl adı $1 olaraq deñiştirildi.',
@@ -1042,7 +1042,7 @@ Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini de
 'uploadscripted'              => 'Bu faylda brauzer tarafından yañlışnen işlenip olur HTML kodu ya da skript bar.',
 'uploadcorrupt'               => 'Bu fayl ya zararlandı, ya da yañlış uzantılı. Lütfen, faylnı teşkerip yañıdan yüklep baqıñız.',
 'uploadvirus'                 => 'Bu fayl viruslıdır! $1 baqıñız',
-'sourcefilename'              => 'Yüklemege istegeniñiz fayl:',
+'sourcefilename'              => 'Yüklemege istegen faylıñız:',
 'destfilename'                => 'Faylnıñ istenilgen adı:',
 'upload-maxfilesize'          => 'Azamiy (maksimal) fayl büyükligi: $1',
 'watchthisupload'             => 'Bu faylnı közet',

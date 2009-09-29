@@ -447,7 +447,7 @@ $messages = array(
 'vector-view-create'         => 'Napravi',
 'vector-view-edit'           => 'Uređivanje',
 'vector-view-history'        => 'Vidi historiju',
-'vector-view-view'           => 'Čitati',
+'vector-view-view'           => 'Čitanje',
 'vector-view-viewsource'     => 'Pogledaj izvor',
 'actions'                    => 'Akcije',
 'namespaces'                 => 'Imenski prostori',
@@ -1514,6 +1514,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-versiondetail'         => 'Pregledavanje proširenih informacija o verzijama softvera',
 'right-root'                  => 'Izvršavanje svih akcija na wikiju',
+'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 
 # User rights log
 'rightslog'      => 'Zapisnik korisničkih prava',

@@ -10,6 +10,7 @@
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
+ * @author Xelgen
  * @author לערי ריינהארט
  */
 
@@ -414,6 +415,20 @@ $messages = array(
 'qbspecialpages' => 'Սպասարկող էջեր',
 'faq'            => 'ՀՏՀ',
 'faqpage'        => 'Project:ՀՏՀ',
+
+# Vector skin
+'vector-action-addsection'  => 'Ավելացնել քննարկում',
+'vector-namespace-category' => 'Կատեգորիա',
+'vector-namespace-project'  => 'Նախագծի էջ',
+'vector-namespace-special'  => 'Սպասարկող էջ',
+'vector-namespace-talk'     => 'Քննարկում',
+'vector-namespace-template' => 'Կաղապար',
+'vector-namespace-user'     => 'Մասնակցի էջ',
+'vector-view-create'        => 'Ստեղծել',
+'vector-view-edit'          => 'Խմբագրել',
+'vector-view-history'       => 'Պատմությունը',
+'vector-view-view'          => 'Կարդալ',
+'actions'                   => 'Գործողություններ',
 
 # Metadata in edit box
 'metadata_help' => 'Մետատվյալներ։',
