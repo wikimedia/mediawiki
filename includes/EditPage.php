@@ -138,7 +138,7 @@ class EditPage {
 				$wgMessageCache->loadAllMessages( $lang );
 				$text = wfMsgGetKey( $message, false, $lang, false );
 				if( wfEmptyMsg( $message, $text ) )
-					$text = '';
+					$text = $this->getPreloadedText( $preload );
 			} else {
 				# If requested, preload some text.
 				$text = $this->getPreloadedText( $preload );
