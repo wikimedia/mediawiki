@@ -543,6 +543,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   now links to the file rather than the file description page
 * Password fields built with HTMLForm now still have the type="password" attribute
   if $wgHtml5=false.
+* (bug 20860) Entries on Special:Allmessages now have direct "edit" link
 
 == API changes in 1.16 ==
 
