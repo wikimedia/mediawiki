@@ -232,9 +232,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAJAXCategoriesNamespaces.
 * Admins could disable some variants using $wgDisabledVariants now. ONLY apply
   on wikis enabled LanguageConverter.
-* A new permission, 'root', is created.  Analogous to root users on Unix
-  systems, the root permission effectively grants all other permissions on a
-  wiki. Useful for debugging and administration.
 * New configuration variable $wgShowPageOnRedlink that can be set to show the
   page instead of an edit interface when visiting a red link. The value can be
   specified for specific usergroups and namespaces.
