@@ -1465,7 +1465,6 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-versiondetail'         => 'Hiện thông tin phiên bản phần mềm mở rộng',
-'right-root'                  => 'Thực hiện mọi tác vụ trên wiki',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',

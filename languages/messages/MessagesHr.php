@@ -1493,7 +1493,6 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'right-reset-passwords'       => "Poništi (''resetiraj'') lozinku drugog suradnika",
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-versiondetail'         => 'Prikaži informaciju o proširenoj inačici softvera',
-'right-root'                  => 'Izvršavanje svih radnji na wikiju',
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',

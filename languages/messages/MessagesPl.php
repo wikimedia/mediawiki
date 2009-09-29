@@ -1464,7 +1464,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-versiondetail'         => 'Podgląd szczegółowych informacji o wersji oprogramowania',
-'right-root'                  => 'Możliwość wykonywania wszelkich czynności w wiki',
 'right-sendemail'             => 'Wysyłać e‐maile do innych użytkowników',
 
 # User rights log

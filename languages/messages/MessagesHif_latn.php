@@ -1256,7 +1256,6 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-versiondetail'         => 'Program ke baare me aur jaankari dekhao',
-'right-root'                  => 'Wiki pe sab chij karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',

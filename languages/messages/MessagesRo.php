@@ -1485,7 +1485,6 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-reset-passwords'       => 'Resetarea parolelor altor utilizatori',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-versiondetail'         => 'Arată informaţii extise despre versiunea programului',
-'right-root'                  => 'Realizaţi toate acţiunile pe wiki',
 
 # User rights log
 'rightslog'      => 'Jurnal permisiuni de utilizator',

@@ -1495,7 +1495,6 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-reset-passwords'       => "Cambiar lo senhal d'autres utilizaires",
 'right-override-export-depth' => 'Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls',
 'right-versiondetail'         => 'Vejatz las entresenhas espandidas sus las versions dels logicials',
-'right-root'                  => 'Realizar totas las accions sul wiki',
 
 # User rights log
 'rightslog'      => "Istoric de las modificacions d'estatut",

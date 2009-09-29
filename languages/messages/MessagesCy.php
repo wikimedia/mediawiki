@@ -1288,7 +1288,6 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-reset-passwords'       => 'Ailosod cyfrinair defnyddwyr eraill',
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
 'right-versiondetail'         => "Gweld y manylion estynedig am y fersiwn hwn o'r meddalwedd",
-'right-root'                  => 'Yn gallu gwneud popeth ar y wici',
 'right-sendemail'             => 'Anfon e-bost at ddefnyddwyr eraill',
 
 # User rights log

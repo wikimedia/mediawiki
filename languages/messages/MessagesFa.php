@@ -1623,7 +1623,6 @@ $1",
 'right-reset-passwords'       => 'از نو تنظیم کردن گذرواژهٔ دیگر کاربران',
 'right-override-export-depth' => 'برون‌ریزی صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵',
 'right-versiondetail'         => 'نمایش اطلاعات مفصل نسخهٔ نرم‌افزار',
-'right-root'                  => 'انجام همهٔ کارها در ویکی',
 'right-sendemail'             => 'ارسال پست الکترونیک به دیگر کاربران',
 
 # User rights log

@@ -1413,7 +1413,6 @@ L'operazione non può essere annullata.",
 'right-reset-passwords'       => 'Reimposta le password di altri utenti',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-versiondetail'         => 'Mostra le informazioni complete del software',
-'right-root'                  => 'Esegue tutte le azioni sul sito',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
 
 # User rights log

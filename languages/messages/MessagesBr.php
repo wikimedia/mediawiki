@@ -1303,7 +1303,6 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-versiondetail'         => 'Sellet ouzh an titouroù ouzhpenn diwar-benn stummoù ar meziantoù',
-'right-root'                  => 'Kas da benn an holl obererezhioù war ar wiki',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 
 # User rights log

@@ -1327,7 +1327,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-versiondetail'         => 'Detailinformatione iber d Software un d Versione aazeige',
-'right-root'                  => 'Alli Aktione uf em Wiki uusfiere',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
 
 # User rights log

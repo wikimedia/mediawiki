@@ -1378,7 +1378,6 @@ $1",
 'right-reset-passwords'       => '重设其他用户的密码',
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-versiondetail'         => '显示延伸软件版本的资料',
-'right-root'                  => '在wiki中进行所有的动作',
 
 # User rights log
 'rightslog'      => '用户权限日志',

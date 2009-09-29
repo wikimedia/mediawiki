@@ -1431,7 +1431,6 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-reset-passwords'       => 'Restablecer os contrasinais doutros usuarios',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-versiondetail'         => 'Mostrar a información ampliada da versión do software',
-'right-root'                  => 'Realizar todas as accións no wiki',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 
 # User rights log
