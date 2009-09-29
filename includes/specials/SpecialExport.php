@@ -96,7 +96,7 @@ class SpecialExport extends SpecialPage {
 			if ( $this->curonly ) {
 				$history = WikiExporter::CURRENT;
 			} elseif ( !$historyCheck ) {
-				if ( $limit > 0 && $limit < $wgExportMaxHistory ) {
+				if ( $limit > 0 && ($wgExportMaxHistory == 0 || $limit < $wgExportMaxHistory ) ) {
 					$history['limit'] = $limit;
 				}
 				if ( !is_null( $offset ) ) {
