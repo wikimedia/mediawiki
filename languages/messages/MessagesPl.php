@@ -1465,7 +1465,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-versiondetail'         => 'Podgląd szczegółowych informacji o wersji oprogramowania',
 'right-root'                  => 'Możliwość wykonywania wszelkich czynności w wiki',
-'right-sendemail'             => 'Wysyłać e-maile do innych użytkowników',
+'right-sendemail'             => 'Wysyłać e‐maile do innych użytkowników',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -2310,7 +2310,7 @@ $1',
 'sp-contributions-logs'           => 'rejestry',
 'sp-contributions-talk'           => 'dyskusja',
 'sp-contributions-userrights'     => 'zarządzanie uprawnieniami użytkowników',
-'sp-contributions-blocked-notice' => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest aktualnie {{GENDER:$1|zablokowany|zablokowana}}. Ostatni wpis rejestru blokad jest pokazany poniżej',
+'sp-contributions-blocked-notice' => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}. Ostatni wpis rejestru blokad jest pokazany poniżej',
 'sp-contributions-search'         => 'Szukaj wkładu',
 'sp-contributions-username'       => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-submit'         => 'Szukaj',

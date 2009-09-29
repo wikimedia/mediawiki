@@ -790,7 +790,7 @@ Tot die tijd kunnen er geen e-mails naar het e-mailadres gezonden worden.',
 Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLURAL:$1|uur|$1 uur}} verzonden.',
 'mailerror'                  => 'Fout bij het verzenden van e-mail: $1',
 'acct_creation_throttle_hit' => 'Bezoekers van deze wiki met hetzelfde IP-adres als u hebben de afgelopen dag {{PLURAL:$1|al 1 gebruiker|al $1 gebruikers}} geregistreerd, wat het maximale aantal in deze periode is.
-Daarom kunt u als bezoeker van dit IP-adres op dit moment geen nieuwe gebruiker registreren.',
+Daarom kunt u als vanaf uw IP-adres op dit moment geen nieuwe gebruiker registreren.',
 'emailauthenticated'         => 'Uw e-mailadres is bevestigd op $2 om $3.',
 'emailnotauthenticated'      => 'Uw e-mailadres is <strong>niet bevestigd</strong>.
 U ontvangt geen e-mail voor de onderstaande functies.',
@@ -807,7 +807,7 @@ Meld u aan en wijzig uw wachtwoord.
 
 Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'login-throttled'            => 'U hebt recentelijk te vaak geprobeerd aan te melden met een onjuist wachtwoord.
-Wachten even voordat u het opnieuw probereert.',
+Wacht even voordat u het opnieuw probeert.',
 'loginlanguagelabel'         => 'Taal: $1',
 
 # Password reset dialog
@@ -1392,7 +1392,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'resultsperpage'                => 'Resultaten per pagina:',
 'contextlines'                  => 'Regels per resultaat:',
 'contextchars'                  => 'Context per regel:',
-'stub-threshold'                => 'Drempel voor markering <a href="#" class="stub">beginnetje</a>:',
+'stub-threshold'                => 'Drempel voor markering als <a href="#" class="stub">beginnetje</a>:',
 'recentchangesdays'             => 'Aantal dagen weer te geven in de recente wijzigingen:',
 'recentchangesdays-max'         => '(maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount'            => 'Standaard aantal weer te geven bewerkingen:',
@@ -2249,7 +2249,7 @@ Feedback en andere assistentie:
 'deletepage'             => 'Deze pagina verwijderen',
 'confirm'                => 'Bevestig',
 'excontent'              => "De inhoud was: '$1'",
-'excontentauthor'        => 'inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
+'excontentauthor'        => 'De inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
 'exbeforeblank'          => "De inhoud was: '$1'",
 'exblank'                => 'pagina was leeg',
 'delete-confirm'         => '"$1" verwijderen',
@@ -3157,7 +3157,7 @@ Andere velden worden verborgen.
 'exif-planarconfiguration-1' => 'chunky gegevensformaat',
 'exif-planarconfiguration-2' => 'planar gegevensformaat',
 
-'exif-colorspace-ffff.h' => 'Niet gekalibreerd',
+'exif-colorspace-ffff.h' => 'Ongekalibreerd',
 
 'exif-componentsconfiguration-0' => 'bestaat niet',
 
@@ -3166,7 +3166,7 @@ Andere velden worden verborgen.
 'exif-exposureprogram-2' => 'Normaal programma',
 'exif-exposureprogram-3' => 'Diafragmaprioriteit',
 'exif-exposureprogram-4' => 'Sluiterprioriteit',
-'exif-exposureprogram-5' => 'Creatief (voorkeur voor hoge scherptediepte)',
+'exif-exposureprogram-5' => 'Creatief (voorkeur voor grote scherptediepte)',
 'exif-exposureprogram-6' => 'Actie (voorkeur voor hoge sluitersnelheid)',
 'exif-exposureprogram-7' => 'Portret (detailopname met onscherpe achtergrond)',
 'exif-exposureprogram-8' => 'Landschap (scherpe achtergrond)',

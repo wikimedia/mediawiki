@@ -144,9 +144,10 @@ $messages = array(
 'viewsource'         => 'XML yishʼį́ nisin',
 
 # Login and logout pages
-'yourname'           => 'Choyoołʼįįhí bizhiʼ:',
-'remembermypassword' => 'shipassword béédíínih',
-'nologinlink'        => 'Accountígíí ádíílííł',
+'yourname'                => 'Choyoołʼįįhí bizhiʼ:',
+'remembermypassword'      => 'shipassword béédíínih',
+'nav-login-createaccount' => 'Log in / accountígíí ádíílííł',
+'nologinlink'             => 'Accountígíí ádíílííł',
 
 # Edit pages
 'minoredit'        => 'tʼáá áłtsʼíísígo tʼéiyá naaltsoos łahgo áshłaa',
@@ -185,6 +186,8 @@ $messages = array(
 'noexactmatch'          => '\'\'\'Naaltssos "$1" wolyéhígíí ádin.\'\'\' Naaltsoos "$1" yaa halneʼígíí [[:$1|ánílééh]] nínízinísh?',
 'noexactmatch-nocreate' => "'''Naaltssos \"\$1\" wolyéhígíí ádin.'''",
 'notitlematches'        => 'naaltsoos ádin',
+'prevn'                 => '{{PLURAL:$1|$1}} ←',
+'nextn'                 => '→ {{PLURAL:$1|$1}}',
 'viewprevnext'          => '($1) ($2) ($3) shinááł',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 saad bikáaʼgi hólǫ́|$2 saad bikáaʼgi dahólǫ́}})',
 'search-redirect'       => '("$1"dę́ę́ʼ)',

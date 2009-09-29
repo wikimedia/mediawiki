@@ -760,7 +760,7 @@ La pasvorto por ĉi tiu nova konto povas esti ŝanĝita en la paĝo ''[[Special:
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:Helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
 'anontalkpagetext'                 => "---- ''Jen diskutopaĝo por anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. 
-Ni tial devas uzi la cifran IP-adreso por identigi lin/ŝin. 
+Ni tial devas uzi la cifran IP-adreson por identigi lin/ŝin. 
 Ĉi tia IP-adreso povas esti uzata de pluraj uzantoj.
 Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:UserLogin|krei konton]] aŭ [[Special:UserLogin|ensaluti]] por eviti estontan konfuzon kun aliaj anonimaj uzantoj.''",
 'noarticletext'                    => 'Mankas teksto en ĉi tiu paĝo.
@@ -1396,6 +1396,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-versiondetail'         => 'Montri la informon pri la etendita programara versio',
 'right-root'                  => 'Fari ĉiujn agojn en la vikio',
+'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
 
 # User rights log
 'rightslog'      => 'Protokolo de uzanto-rajtoj',
@@ -2306,7 +2307,8 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'unblocklink'                     => 'restarigi',
 'change-blocklink'                => 'ŝanĝi forbaron',
 'contribslink'                    => 'kontribuoj',
-'autoblocker'                     => 'Provizore forbarita aŭtomate pro tio, ke vi uzas la saman IP-adreson kiel "$1", kiu estis forbarita pro : "$2".',
+'autoblocker'                     => 'Aŭtomate forbarita ĉar via IP-adreso estis lastatempe uzita de "[[User:$1|$1]]".
+La kialo donita por la forbaro de $1 estis: "$2"',
 'blocklogpage'                    => 'Protokolo pri forbaroj',
 'blocklog-showlog'                => 'Ĉi tiu uzanto estis forbarita antaŭe. Jen la forbara protokolo por via informo:',
 'blocklog-showsuppresslog'        => 'Ĉi tiu uzanto estis forbarita kaj kaŝita antaŭe. Jen la protokolo pri subpremado por via informo:',

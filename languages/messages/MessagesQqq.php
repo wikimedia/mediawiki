@@ -1464,6 +1464,8 @@ Parameter $4 is a time.',
 'rcshowhideliu'                    => 'Option text in [[Special:RecentChanges]]',
 'rcshowhideanons'                  => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidepatr'                   => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].",
+'rcshowhidemine'                   => 'Parameters:
+* $1 can be "show" or "hide"',
 'rclinks'                          => "Used on [[Special:RecentChanges]].
 * '''\$1''' is a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
 * '''\$2''' is a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
@@ -2342,10 +2344,14 @@ See also {{msg-mw|Blocklogentry}}.',
 *See also {{msg-mw|Expiringblock}}
 
 {{Identical|Infinite}}",
-'expiringblock'                => "* contents of $4 in {{msg-mw|Blocklistline}}: (''{{int:Blocklistline}}'')
-* contents of $4 in {{msg-mw|Globalblocking-blocked}}:
-<blockquote>''{{int:Globalblocking-blocked}}''</blockquote>
-*See also {{msg-mw|Infiniteblock}}",
+'expiringblock'                => 'Parameters:
+* $1 is a date
+* $2 is a time
+
+Usage:
+* Substituted as $4 in in {{msg-mw|Blocklistline|notext=1}}
+* Substituted as $4 in  in {{msg-mw|Globalblocking-blocked|notext=1}}
+* See also {{msg-mw|Infiniteblock}}',
 'anononlyblock'                => 'Part of the log entry of user block.
 
 {{Identical|Anon only}}',
