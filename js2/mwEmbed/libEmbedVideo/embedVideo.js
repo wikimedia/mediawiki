@@ -2053,7 +2053,7 @@ embedVideo.prototype = {
 	},
 	//do common monitor code like update the playhead and play status 
 	//plugin objects are responsible for updating currentTime
-	monitor:function(){
+	monitor:function(){		
 		if( this.currentTime && this.currentTime > 0 && this.duration){
 			if( !this.userSlide ){
 				if( this.start_offset  ){ 
@@ -2152,13 +2152,11 @@ embedVideo.prototype = {
 		//do head request if on the same domain
 		return this.media_element.selected_source.URLTimeEncoding;
 	},
-	setSliderValue: function(perc, hide_progress){		
-		if(this.controls && $j('#mv_play_head_'+this_id).length != 0){		
-			var this_id = (this.pc)?this.pc.pp.id:this.id;
+	setSliderValue: function(perc, hide_progress){	
+		var this_id = (this.pc)?this.pc.pp.id:this.id;
+		if(this.controls && $j( '#mv_play_head_' + this_id).length != 0){					
 			var val = parseInt( perc*1000 ); 
-			$j('#mv_play_head_'+this_id).slider('value', val);
-			
-			//js_log("embed video set: " + '#mv_play_head_'+this_id + ' to ' + val);
+			$j('#mv_play_head_'+this_id).slider('value', val);				
 		}
 		//js_log('set#mv_seeker_slider_'+this_id + ' perc in: ' + perc + ' * ' + $j('#mv_seeker_'+this_id).width() + ' = set to: '+ val + ' - '+ Math.round(this.mv_seeker_width*perc) );
 		//js_log('op:' + offset_perc + ' *('+perc+' * ' + $j('#slider_'+id).width() + ')');
