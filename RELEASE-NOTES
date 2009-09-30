@@ -232,9 +232,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAJAXCategoriesNamespaces.
 * Admins could disable some variants using $wgDisabledVariants now. ONLY apply
   on wikis enabled LanguageConverter.
-* New configuration variable $wgShowPageOnRedlink that can be set to show the
-  page instead of an edit interface when visiting a red link. The value can be
-  specified for specific usergroups and namespaces.
 * (bug 16310) Credits page now lists IP addresses rather than saying the number
   of anonymous users that edited the page
 * New permission 'sendemail' added. Default right for all registered users. Can
