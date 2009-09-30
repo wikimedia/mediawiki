@@ -446,11 +446,11 @@ class ChangesList {
 	 * @return bool
 	 */
 	public static function userCan( $rc, $field ) {
-		if( ( $rc->mAttribs['rc_deleted'] & $field ) == $field ) {
+		if( $rc->mAttribs['rc_deleted'] & $field ) {
 			global $wgUser;
-			$permission = ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
+			$permission = ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED )
 				? 'suppressrevision'
-				: 'deletedrevision';
+				: ( $field & Revision::DELETED_TEXT ) ? 'deletedtext' : 'deletedhistory';
 			wfDebug( "Checking for $permission due to $field match on {$rc->mAttribs['rc_deleted']}\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {

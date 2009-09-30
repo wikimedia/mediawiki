@@ -3430,7 +3430,7 @@ class Article {
 
 		$cdel='';
 		// Don't show useless link to people who cannot hide revisions
-		if( $wgUser->isAllowed('deleterevision') || ($revision->getVisibility() && $wgUser->isAllowed('deletedrevision')) ) {
+		if( $wgUser->isAllowed('deleterevision') || ($revision->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
 			if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
 				$cdel = wfMsgHtml( 'rev-delundel' );

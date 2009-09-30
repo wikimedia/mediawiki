@@ -195,11 +195,11 @@ class OldLocalFile extends LocalFile {
 	 * @return bool
 	 */
 	function userCan( $field ) {
-		if( isset($this->deleted) && ($this->deleted & $field) == $field ) {
+		if( isset($this->deleted) && ($this->deleted & $field) ) {
 			global $wgUser;
-			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
+			$permission = ( $this->deleted & File::DELETED_RESTRICTED )
 				? 'suppressrevision'
-				: 'deletedrevision';
+				: ( $field & File::DELETED_FILE ) ? 'deletedtext' : 'deletedhistory';
 			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {

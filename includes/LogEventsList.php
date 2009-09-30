@@ -284,7 +284,7 @@ class LogEventsList {
 		$paramArray = LogPage::extractParams( $row->log_params );
 		$revert = $del = '';
 		// Some user can hide log items and have review links
-		if( !($this->flags & self::NO_ACTION_LINK) && $wgUser->isAllowed( 'deletedrevision' ) ) {
+		if( !($this->flags & self::NO_ACTION_LINK) && $wgUser->isAllowed( 'deletedhistory' ) ) {
 			// Don't show useless link to people who cannot hide revisions
 			if( $row->log_deleted || $wgUser->isAllowed( 'deleterevision' ) ) {
 				$del = $this->getShowHideLinks( $row ) . ' ';
@@ -381,7 +381,7 @@ class LogEventsList {
 				array( 'known', 'noclasses' )
 			) . ')';
 		// If an edit was hidden from a page give a review link to the history
-		} else if( self::typeAction($row,array('delete','suppress'),'revision','deletedrevision') ) {
+		} else if( self::typeAction($row,array('delete','suppress'),'revision','deletedhistory') ) {
 			if( count($paramArray) >= 2 ) {
 				// Different revision types use different URL params...
 				$key = $paramArray[0];
@@ -434,7 +434,7 @@ class LogEventsList {
 				$revert = wfMsg( 'parentheses', $wgLang->pipeList( $revert ) );
 			}
 		// Hidden log items, give review link
-		} else if( self::typeAction($row,array('delete','suppress'),'event','deletedrevision') ) {
+		} else if( self::typeAction($row,array('delete','suppress'),'event','deletedhistory') ) {
 			if( count($paramArray) >= 1 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// $paramArray[1] is a CSV of the IDs
@@ -547,11 +547,11 @@ class LogEventsList {
 	 * @return Boolean
 	 */
 	public static function userCan( $row, $field ) {
-		if( ( $row->log_deleted & $field ) == $field ) {
+		if( $row->log_deleted & $field ) {
 			global $wgUser;
-			$permission = ( $row->log_deleted & LogPage::DELETED_RESTRICTED ) == LogPage::DELETED_RESTRICTED
+			$permission = ( $row->log_deleted & LogPage::DELETED_RESTRICTED )
 				? 'suppressrevision'
-				: 'deletedrevision';
+				: 'deletedhistory';
 			wfDebug( "Checking for $permission due to $field match on $row->log_deleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
@@ -807,7 +807,7 @@ class LogPager extends ReverseChronologicalPager {
 			global $wgUser;
 			$this->mConds['log_user'] = $userid;
 			// Paranoia: avoid brute force searches (bug 17342)
-			if( !$wgUser->isAllowed( 'deletedrevision' ) ) {
+			if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0';
 			} else if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_USER) .
@@ -854,7 +854,7 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
-		if( !$wgUser->isAllowed( 'deletedrevision' ) ) {
+		if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
 		} else if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_ACTION) .
