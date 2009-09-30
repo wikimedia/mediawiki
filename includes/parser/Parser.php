@@ -3933,22 +3933,30 @@ class Parser
 	/**
 	 * Fetch the user's signature text, if any, and normalize to
 	 * validated, ready-to-insert wikitext.
+	 * If you have pre-fetched the nickname or the fancySig option, you can
+	 * specify them here to save a database query.
 	 *
 	 * @param User $user
 	 * @return string
-	 * @private
 	 */
-	function getUserSig( &$user ) {
+	function getUserSig( &$user, $nickname = false, $fancySig = null ) {
 		global $wgMaxSigChars;
 
 		$username = $user->getName();
-		$nickname = $user->getOption( 'nickname' );
+		
+		// If not given, retrieve from the user object.
+		if ( $nickname === false )
+			$nickname = $user->getOption( 'nickname' );
+		
+		if ( is_null( $fancySig ) )
+			$fancySig = $user->getBoolOption( 'fancysig' );
+			
 		$nickname = $nickname == null ? $username : $nickname;
 
 		if( mb_strlen( $nickname ) > $wgMaxSigChars ) {
 			$nickname = $username;
 			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
-		} elseif( $user->getBoolOption( 'fancysig' ) !== false ) {
+		} elseif( $fancySig !== false ) {
 			# Sig. might contain markup; validate this
 			if( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
