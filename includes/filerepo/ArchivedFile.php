@@ -358,6 +358,7 @@ class ArchivedFile
 	 * @return bool
 	 */
 	public function isDeleted( $field ) {
+		$this->load();
 		return ($this->deleted & $field) == $field;
 	}
 
@@ -368,6 +369,7 @@ class ArchivedFile
 	 * @return bool
 	 */
 	public function userCan( $field ) {
+		$this->load();
 		if( ($this->deleted & $field) == $field ) {
 			global $wgUser;
 			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
