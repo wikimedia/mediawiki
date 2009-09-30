@@ -1,0 +1,28 @@
+/* Babaco Color Scheme A */
+
+/* Still working on this */
+body {
+	background-color: #f9f9f9;
+	color: #000000;
+}
+a {
+	color: #003cb3;
+}
+a.new {
+	color: #990000;
+}
+
+a:visited,
+div.vectorTabs li.selected a:visited div.vectorTabs li.selected a:visited span {
+	color: #260e9c;
+}
+
+html .thumbimage,
+#toc, .toc, .mw-warning, div.thumbinner {
+	border-color: #c0c0c0;
+	background-color: #f0f0f0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	border-color: #8d8d8d;
+}
