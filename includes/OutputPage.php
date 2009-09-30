@@ -172,8 +172,8 @@ class OutputPage {
 	 */
 	function addCoreScripts2Top(){
 		global $wgEnableScriptLoader, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgEnableJS2system;
-		global $wgUseSiteJs, $wgUser, $wgJsMimeType;
-		// @todo We should deprecate wikibits in favor of mv_embed and jQuery
+		global $wgUser, $wgJsMimeType;
+		// @todo We should deprecate wikibits in favor of some mv_embed pieces and jQuery
 
 		if( $wgEnableJS2system ){
 			$core_classes = array( 'window.jQuery', 'mv_embed', 'wikibits' );
@@ -194,17 +194,6 @@ class OutputPage {
 			foreach( $core_classes as $js_class ){
 				$this->addScriptClass( $js_class );
 			}
-		}
-
-		$sk = $wgUser->getSkin();
-		//add site js:
-		if( $wgUseSiteJs ) {
-			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
-			$this->addScriptFile(  Skin::makeUrl( '-',
-					"action=raw$jsCache&gen=js&useskin=" .
-					urlencode( $sk->getSkinName() )
-					)
-				);
 		}
 		//now re-append any scripts that got added prior to the addCoreScripts2Top call
 		$this->mScripts = $this->mScripts . $postScripts;
@@ -1787,9 +1776,20 @@ class OutputPage {
 	 * also adds userjs to the end if enabled:
 	*/
 	function getHeadScripts( Skin $sk ) {
-		global $wgUser, $wgRequest, $wgJsMimeType;
+		global $wgUser, $wgRequest, $wgJsMimeType, $wgUseSiteJs;
 
 		$vars = Skin::makeGlobalVariablesScript( $sk->getSkinName() );
+
+		//add site JS if enabled:
+		if( $wgUseSiteJs ) {
+			$sk = $wgUser->getSkin();
+			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
+			$this->addScriptFile(  Skin::makeUrl( '-',
+					"action=raw$jsCache&gen=js&useskin=" .
+					urlencode( $sk->getSkinName() )
+					)
+				);
+		}
 
 		//add user js if enabled:
 		if( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
