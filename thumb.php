@@ -62,7 +62,7 @@ function wfThumbMain() {
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
 	} else {
-		$img = RepoGroup::singleton()->getLocalRepo()->findFile( $fileName );
+		$img = wfLocalFile( $fileName );
 	}
 
 	if ( !$img ) {
