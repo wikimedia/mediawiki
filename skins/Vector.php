@@ -26,8 +26,8 @@ class SkinVector extends SkinTemplate {
 	 * @param object $out Output page object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
-		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
-
+		global $wgStylePath, $wgJsMimeType, $wgStyleVersion, $wgScriptPath, $wgVectorExtraStyles;
+		
 		parent::initPage( $out );
 
 		// Append skin-specific styles
@@ -41,6 +41,13 @@ class SkinVector extends SkinTemplate {
 				$wgStylePath .
 				'/vector/csshover.htc")}</style><![endif]-->'
 		);
+		// Add extra stylesheets
+		// THIS IS ONLY USEFUL FOR EXPERIMENTING WITH DIFFERNT STYLE OPTIONS! THIS WILL BE REMOVED IN THE NEAR FUTURE.
+		if ( is_array( $wgVectorExtraStyles ) ) {
+			foreach ( $wgVectorExtraStyles as $style ) {
+				$out->addStyle( 'vector/' . $style, 'screen' );
+			}
+		}
 		// Append common IE fixes, which perhaps should be included in all
 		// skins, but for now it seems each skin needs to include them
 		// explicitly
