@@ -364,8 +364,18 @@ CONTROL;
 		# Check if this user can see the revisions
 		$allowed = $this->mOldRev->userCan(Revision::DELETED_TEXT)
 			&& $this->mNewRev->userCan(Revision::DELETED_TEXT);
-		$deleted = $this->mOldRev->isDeleted(Revision::DELETED_TEXT)
-			|| $this->mNewRev->isDeleted(Revision::DELETED_TEXT);
+		# Check if one of the revisions is deleted/suppressed
+		$deleted = $suppressed = false;
+		if( $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
+			$deleted = true; // old revisions text is hidden
+			if( $this->mOldRev->isDeleted(Revision::DELETED_RESTRICTED) )
+				$suppressed = true; // also suppressed
+		}
+		if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
+			$deleted = true; // new revisions text is hidden
+			if( $this->mNewRev->isDeleted(Revision::DELETED_RESTRICTED) )
+				$suppressed = true; // also suppressed
+		}
 		# Output the diff if allowed...
 		if( $deleted && (!$this->unhide || !$allowed) ) {
 			$this->showDiffStyle();
@@ -382,8 +392,8 @@ CONTROL;
 					'oldid' => $this->mOldid,
 					'unhide' => 1
 				) );
-				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
-					array( 'rev-deleted-unhide-diff', $link ) );
+				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", array( $msg, $link ) );
 			}
 		} else if( $wgEnableHtmlDiff && $this->htmldiff ) {
 			$multi = $this->getMultiNotice();
