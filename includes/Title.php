@@ -2206,21 +2206,11 @@ class Title {
 		}
 		return $p . $name;
 	}
-
-	/**
-	 * Secure and split - main initialisation function for this object
-	 *
-	 * Assumes that mDbkeyform has been set, and is urldecoded
-	 * and uses underscores, but not otherwise munged.  This function
-	 * removes illegal characters, splits off the interwiki and
-	 * namespace prefixes, sets the other forms, and canonicalizes
-	 * everything.
-	 * @return \type{\bool} true on success
-	 */
-	private function secureAndSplit() {
-		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
-
-		# Initialisation
+	
+	// Returns a simple regex that will match on characters and sequences invalid in titles.
+	//  Note that this doesn't pick up many things that could be wrong with titles, but that
+	//  replacing this regex with something valid will make many titles valid.
+	static function getTitleInvalidRegex() {
 		static $rxTc = false;
 		if( !$rxTc ) {
 			# Matching titles will be held as illegal.
@@ -2236,6 +2226,25 @@ class Title {
 				'|&#x[0-9A-Fa-f]+;' .
 				'/S';
 		}
+		
+		return $rxTc;
+	}
+
+	/**
+	 * Secure and split - main initialisation function for this object
+	 *
+	 * Assumes that mDbkeyform has been set, and is urldecoded
+	 * and uses underscores, but not otherwise munged.  This function
+	 * removes illegal characters, splits off the interwiki and
+	 * namespace prefixes, sets the other forms, and canonicalizes
+	 * everything.
+	 * @return \type{\bool} true on success
+	 */
+	private function secureAndSplit() {
+		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
+
+		# Initialisation
+		$rxTc = self::getTitleInvalidRegex();
 
 		$this->mInterwiki = $this->mFragment = '';
 		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
