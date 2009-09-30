@@ -24,8 +24,9 @@ body {
 	font-size: 1em;
 }
 body {
-	background-color: #f3f3f3;
 	background-image: url(images/page-base.png);
+	background-color: #f9f9f9;
+	color: #000000;
 }
 /* Content */
 #content {
@@ -186,14 +187,14 @@ body {
 	div.vectorTabs li.selected a span,
 	div.vectorTabs li.selected a:visited
 	div.vectorTabs li.selected a:visited span {
-		color: #333333;
+		color: #be5900;
 		text-decoration: none;
 	}
 	div.vectorTabs li.new a,
 	div.vectorTabs li.new a span,
 	div.vectorTabs li.new a:visited,
 	div.vectorTabs li.new a:visited span {
-		color: #a55858;
+		color: #990000;
 	}
 	/* Variants and Actions */
 	/* @noflip */
@@ -590,11 +591,11 @@ body {
 /* Links */
 a {
 	text-decoration: none;
-	color: #0645ad;
+	color: #003cb3;
 	background: none;
 }
 a:visited {
-	color: #0b0080;
+	color: #004d99;
 }
 a:active {
 	color: #faa700;
@@ -606,7 +607,7 @@ a.stub {
 	color: #772233;
 }
 a.new, #p-personal a.new {
-	color: #ba0000;
+	color: #990000;
 }
 a.new:visited, #p-personal a.new:visited {
 	color: #a55858;
@@ -638,7 +639,7 @@ h6 {
 	margin: 0;
 	padding-top: .5em;
 	padding-bottom: .17em;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid #8d8d8d;
 	width: auto;
 }
 h1 { font-size: 188%; }
@@ -765,8 +766,8 @@ select {
 #toc,
 .toc,
 .mw-warning {
-	border: 1px solid #aaa;
-	background-color: #f9f9f9;
+	border: 1px solid #c0c0c0;
+	background-color: #f0f0f0;
 	padding: 5px;
 	font-size: 95%;
 }
@@ -826,15 +827,16 @@ div.thumb {
 	background-color: transparent;
 }
 div.thumbinner {
-	border: 1px solid #ccc;
+	border: 1px solid #c0c0c0;
 	padding: 3px !important;
-	background-color: #f9f9f9;
+	background-color: #f0f0f0;
 	font-size: 94%;
 	text-align: center;
 	overflow: hidden;
 }
 html .thumbimage {
-	border: 1px solid #ccc;
+	border: 1px solid #c0c0c0;
+	background-color: #f0f0f0;
 }
 html .thumbcaption {
 	border: none;
@@ -954,6 +956,7 @@ h3, h4, h5 {
 	line-height: 1.2em;
 	font-size: 1.6em;
 	padding-bottom: 0;
+	color:#005780;
 }
 #content a.external,
 #content a[href ^="gopher://"] {
@@ -1031,7 +1034,6 @@ h3, h4, h5 {
 	padding-left: 15px !important;
 	text-transform: none;
 }
-
 .toccolours {
 	border: 1px solid #aaa;
 	background-color: #f9f9f9;
@@ -1049,37 +1051,6 @@ h3, h4, h5 {
 div#bodyContent {
 	line-height: 1.5em;
 }
-
-
-
-/* Babaco color scheme */
-/* Still working on this. Needs incorporated above once it's closer to final */
-body {
-	background-color: #f9f9f9;
-	color: #000000;
-}
-a {
-	color: #003cb3;
-}
-a.new {
-	color: #990000;
-}
-
-a:visited,
-div.vectorTabs li.selected a:visited div.vectorTabs li.selected a:visited span {
-	color: #260e9c;
-}
-
-html .thumbimage,
-#toc, .toc, .mw-warning, div.thumbinner {
-	border-color: #c0c0c0;
-	background-color: #f0f0f0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	border-color: #8d8d8d;
-}
-
 /* Watch/Unwatch Icon Styling */
 #ca-unwatch.icon,
 #ca-watch.icon {
