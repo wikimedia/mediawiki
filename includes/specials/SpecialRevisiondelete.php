@@ -1612,13 +1612,22 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 		$date = $wgLang->timeanddate( $this->file->getTimestamp(), true  );
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 		$key = $this->file->getKey();
-		return $this->special->skin->link( $undelete, $date, array(),
-			array(
-				'target' => $this->list->title->getPrefixedText(),
-				'file' => $key,
-				'token' => $wgUser->editToken( $key )
-			)
-		);
+		# Hidden files...
+		if( !$this->canView() ) {
+			$link = $date;
+		} else {
+			$link = $this->special->skin->link( $undelete, $date, array(),
+				array(
+					'target' => $this->list->title->getPrefixedText(),
+					'file' => $key,
+					'token' => $wgUser->editToken( $key )
+				)
+			);
+		}
+		if( $this->isDeleted() ) {
+			$link = '<span class="history-deleted">' . $link . '</span>';
+		}
+		return $link;
 	}
 }
 
