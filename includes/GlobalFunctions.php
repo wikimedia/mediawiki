@@ -2326,9 +2326,12 @@ function wfShellExec( $cmd, &$retval=null ) {
 				$cmd = escapeshellarg( $script ) . " $time $mem $filesize " . escapeshellarg( $cmd );
 			}
 		}
-	} elseif ( php_uname( 's' ) == 'Windows NT' && substr( php_uname( 'v' ), 6, 4 ) <= 6001 ) {
+	} elseif ( php_uname( 's' ) == 'Windows NT' && 
+		version_compare( PHP_VERSION, '5.3.0', '<' ) ) 
+	{
 		# This is a hack to work around PHP's flawed invocation of cmd.exe
 		# http://news.php.net/php.internals/21796
+		# Which is fixed in 5.3.0 :)
 		$cmd = '"' . $cmd . '"';
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
