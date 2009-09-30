@@ -530,7 +530,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20702) Parser functions can now be used correctly in
   MediaWiki:Missing-article
 * (bug 14117) "redirected from" is now also shown on foreign file redirects
-* (bug 20802) Fixed thumb.php redirect handling
 * (bug 17747) Only display thumbnail column in file history if the image can
   be rendered.
 * (bug 3421) Live preview no longer breaks user CSS/JS previews
