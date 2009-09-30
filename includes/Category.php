@@ -246,9 +246,11 @@ class Category {
 		} else {
 			# Let's be sure that the row exists in the table.  We don't need to
 			# do this if we got the row from the table in initialization!
+			$seqVal = $dbw->nextSequenceValue( 'category_cat_id_val' );
 			$dbw->insert(
 				'category',
-				array( 'cat_title' => $this->mName ),
+				array( 	'cat_id' => $seqVal, 
+								'cat_title' => $this->mName ),
 				__METHOD__,
 				'IGNORE'
 			);
