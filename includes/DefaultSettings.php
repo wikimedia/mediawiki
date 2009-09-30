@@ -4275,16 +4275,3 @@ $wgUploadMaintenance = false;
  * Use old names for change_tags indices.
  */
 $wgOldChangeTagsIndex = false;
-
-/**
- * View page instead of edit interface when visiting a red link
- * There are three ways to define this variable:
- *  1. Set $wgShowPageOnRedlink to true (false is default)
- *  2. Set $wgShowPageOnRedlink['usergroup'] to false. If a user is member of at least one usergroup for which the variable 
- *     has been set to false, the edit interface will be shown. Otherwise the page is shown.
- *  3. Set $wgShowPageOnRedlink['usergroup'][NS_XY] to false. Same as 2., but you can specify the namespace. The namespace
- *     is a numerical value (namespace index), you can use constants such as NS_MAIN or NS_USER_TALK.
- * If you use an array (2. or 3.), the default will be true (for 1. it's false). In 2. and 3. there is no way to overwrite 
- * a value 'false' once it has already been set (this is due to the undefined order of usergroups).
- */
-$wgShowPageOnRedlink = false;
