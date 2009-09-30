@@ -416,8 +416,10 @@ CREATE TABLE &mw_prefix.logging (
   log_action      VARCHAR2(10)         NOT NULL,
   log_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   log_user        NUMBER                REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  log_user_text 	VARCHAR2(255),
   log_namespace   NUMBER     NOT NULL,
   log_title       VARCHAR2(255)         NOT NULL,
+	log_page 				NUMBER,
   log_comment     VARCHAR2(255),
   log_params      CLOB,
   log_deleted     NUMBER      DEFAULT '0' NOT NULL

@@ -4072,7 +4072,8 @@ class Article {
 		}
 		$insertRows = array();
 		foreach( $insertCats as $cat ) {
-			$insertRows[] = array( 'cat_title' => $cat );
+			$insertRows[] = array( 	'cat_id' => $dbw->nextSequenceValue( 'category_cat_id_val' ),
+															'cat_title' => $cat );
 		}
 		$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
 
