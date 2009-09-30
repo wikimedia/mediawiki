@@ -16,17 +16,21 @@ function wfSpecialWatchlist( $par ) {
 	
 	// Add feed links
 	$wlToken = $wgUser->getOption( 'watchlisttoken' );
-	if ($wlToken) {
-		global $wgServer, $wgScriptPath, $wgFeedClasses;
-		$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
-							'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
-		$feedTemplate = $wgServer . $wgScriptPath . '/api.php?';
-		
-		foreach( $wgFeedClasses as $format => $class ) {
-			$theseParams = $apiParams + array( 'feedformat' => $format );
-			$url = $feedTemplate . wfArrayToCGI( $theseParams );
-			$wgOut->addFeedLink( $format, $url );
-		}
+	if (!$wlToken) {
+		$wlToken = sha1( mt_rand() . microtime( true ) );
+		$wgUser->setOption( 'watchlisttoken', $wlToken );
+		$wgUser->saveSettings();
+	}
+	
+	global $wgServer, $wgScriptPath, $wgFeedClasses;
+	$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
+						'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
+	$feedTemplate = $wgServer . $wgScriptPath . '/api.php?';
+	
+	foreach( $wgFeedClasses as $format => $class ) {
+		$theseParams = $apiParams + array( 'feedformat' => $format );
+		$url = $feedTemplate . wfArrayToCGI( $theseParams );
+		$wgOut->addFeedLink( $format, $url );
 	}
 
 	$skin = $wgUser->getSkin();
