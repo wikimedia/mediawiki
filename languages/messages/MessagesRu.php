@@ -13,6 +13,7 @@
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Amikeco
+ * @author Don Alessandro
  * @author EugeneZelenko
  * @author Ferrer
  * @author Flrn
@@ -1441,7 +1442,7 @@ $1",
 'right-bigdelete'             => 'удаление страниц с длинными историями',
 'right-deleterevision'        => 'удаление и восстановление конкретных версий страниц',
 'right-deletedhistory'        => 'просмотр истории удалённых страниц без доступа к удалённому тексту',
-'right-deletedcontent'        => 'просмотр удалённого текста и изменений между удалёнными версиями страниц',
+'right-deletedtext'           => 'просмотр удалённого текста и изменений между удалёнными версиями страниц',
 'right-browsearchive'         => 'поиск удалённых страниц',
 'right-undelete'              => 'восстановление страниц',
 'right-suppressrevision'      => 'просмотр и восстановление скрытых от администраторов версий страниц',

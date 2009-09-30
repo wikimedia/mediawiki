@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Dark Eagle
  * @author Knakts
  * @author Marozols
  * @author Papuass
@@ -214,6 +215,8 @@ $messages = array(
 'vector-view-history'        => 'Hronoloģija',
 'vector-view-view'           => 'Skatīt',
 'vector-view-viewsource'     => 'Aplūkot kodu',
+'actions'                    => 'Darbības',
+'variants'                   => 'Varianti',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',
@@ -968,7 +971,9 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'newpageletter'                     => 'J',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[šo lapu uzrauga $1 {{PLURAL:$1|lietotājs|lietotāji}}]',
+'rc_categories_any'                 => 'Jebkas',
 'newsectionsummary'                 => '/* $1 */ jauna sadaļa',
+'rc-enhanced-expand'                => 'Rādīt informāciju (nepieciešams JavaScript)',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Saistītās izmaiņas',
@@ -2011,6 +2016,7 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Faila vārds:',
+'fileduplicatesearch-submit'   => 'Meklēt',
 
 # Special:SpecialPages
 'specialpages'                   => 'Īpašās lapas',
@@ -2033,10 +2039,21 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'blankpage'              => 'Tukša lapa',
 'intentionallyblankpage' => 'Šī lapa ar nodomu ir atstāta tukša.',
 
+# Special:Tags
+'tags-edit' => 'rediģēt',
+
 # Database error messages
 'dberr-header' => 'Šim viki ir problēma',
 
 # HTML forms
 'htmlform-reset' => 'Atcelt izmaiņas',
+
+# Add categories per AJAX
+'ajax-add-category'         => 'Pievienot kategoriju',
+'ajax-add-category-submit'  => 'Pievienot',
+'ajax-confirm-save'         => 'Saglabāt',
+'ajax-add-category-summary' => 'Pievienot kategoriju "$1"',
+'ajax-error-title'          => 'Kļūda (Error)',
+'ajax-error-dismiss'        => 'OK',
 
 );

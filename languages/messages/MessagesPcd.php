@@ -678,21 +678,26 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'block-log-flags-nocreate' => "créhachon d'conpte intérdite",
 
 # Move page
-'movearticle'     => "Déplacer l'pache",
-'newtitle'        => 'Pou un nouvieu tite:',
-'move-watch'      => "Suire l'pache-lo",
-'movepagebtn'     => "Déplacer l'pache",
-'pagemovedsub'    => 'Déplachemint réussi',
-'movepage-moved'  => '<big>\'\'\'"$1" o té déplaché su "$2"\'\'\'</big>',
-'articleexists'   => "Il y o eune pache aveuc ch'nom-lo dja, ou bin ch'tite couési n'est poin valabe. <br /> I feut in prinde un eute",
-'talkexists'      => "'''L'pache ale o té déplachée   mais l'pache d'pérlache n'put poin éte déplachée ker il y o pécho eune pache d'pérlache aveuc ch'nouvieu nom. <br /> I feut foaire un touillache al main.'''",
-'movedto'         => 'Déplaché dsus',
-'movetalk'        => "Canjer ch'nom del pache d'pérlache apparièe",
-'1movedto2'       => 'déplacher [[$1]] dsus [[$2]]',
-'1movedto2_redir' => "il o déplaché [[$1]] su [[$2]] in écatant l'érsin",
-'movelogpage'     => "Déplacher ch'jornal",
-'movereason'      => 'Motif:',
-'revertmove'      => 'invérser',
+'movepagetalktext' => "L'pache éd pérlache achochonnèe sro oùtonmatiquemint érlonmée aveuc l'pache-lo ''' hormis si: ''' <br />
+*eune pache éd pérlache aveuc un teske essiste aveuc ch'nom-lo piécha, ou
+*os débiffez el casse édzou.
+
+Din chés cas-lo, I feut érlonmer ou ratatouiller l'pache aveuc l'main.",
+'movearticle'      => "Déplacer l'pache",
+'newtitle'         => 'Pou un nouvieu tite:',
+'move-watch'       => "Suire l'pache-lo",
+'movepagebtn'      => "Déplacer l'pache",
+'pagemovedsub'     => 'Déplachemint réussi',
+'movepage-moved'   => '<big>\'\'\'"$1" o té déplaché su "$2"\'\'\'</big>',
+'articleexists'    => "Il y o eune pache aveuc ch'nom-lo dja, ou bin ch'tite couési n'est poin valabe. <br /> I feut in prinde un eute",
+'talkexists'       => "'''L'pache ale o té déplachée   mais l'pache d'pérlache n'put poin éte déplachée ker il y o pécho eune pache d'pérlache aveuc ch'nouvieu nom. <br /> I feut foaire un touillache al main.'''",
+'movedto'          => 'Déplaché dsus',
+'movetalk'         => "Canjer ch'nom del pache d'pérlache apparièe",
+'1movedto2'        => 'déplacher [[$1]] dsus [[$2]]',
+'1movedto2_redir'  => "il o déplaché [[$1]] su [[$2]] in écatant l'érsin",
+'movelogpage'      => "Déplacher ch'jornal",
+'movereason'       => 'Motif:',
+'revertmove'       => 'invérser',
 
 # Export
 'export' => 'Ésporter chés paches',

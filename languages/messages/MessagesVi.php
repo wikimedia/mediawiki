@@ -1432,7 +1432,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-bigdelete'             => 'Xóa trang có lịch sử lớn',
 'right-deleterevision'        => 'Xóa và phục hồi phiên bản nào đó của trang',
 'right-deletedhistory'        => 'Xem phần lịch sử đã xóa, mà không xem nội dung đi kèm',
-'right-deletedcontent'        => 'Xem văn bản đã xóa và các thay đổi giữa phiên bản đã xóa',
+'right-deletedtext'           => 'Xem văn bản đã xóa và các thay đổi giữa phiên bản đã xóa',
 'right-browsearchive'         => 'Tìm những trang đã xóa',
 'right-undelete'              => 'Phục hồi trang',
 'right-suppressrevision'      => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
@@ -1465,6 +1465,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-versiondetail'         => 'Hiện thông tin phiên bản phần mềm mở rộng',
+'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',

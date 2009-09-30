@@ -1386,7 +1386,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'right-bigdelete'             => 'Slette sider med stor historikk',
 'right-deleterevision'        => 'Slette og gjenopprette enkeltrevisjoner av sider',
 'right-deletedhistory'        => 'Se slettet sidehistorikk uten tilhørende sidetekst',
-'right-deletedcontent'        => 'Vis slettet tekst og endringer mellom slettede versjoner',
+'right-deletedtext'           => 'Vis slettet tekst og endringer mellom slettede versjoner',
 'right-browsearchive'         => 'Søke i slettede sider',
 'right-undelete'              => 'Gjenopprette sider',
 'right-suppressrevision'      => 'Se og gjenopprette skjulte siderevisjoner',

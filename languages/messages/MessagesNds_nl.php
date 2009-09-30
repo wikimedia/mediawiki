@@ -1456,7 +1456,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-bigdelete'             => "Pagina's mit een grote geschiedenisse vortdoon",
 'right-deleterevision'        => "Versies van pagina's verbargen",
 'right-deletedhistory'        => 'Vort-edaone versies bekieken, zonder te kunnen zien wat der vort-edaon is',
-'right-deletedcontent'        => 'Bekiek vort-edaone tekse en wiezigingen tussen vort-edaone versies',
+'right-deletedtext'           => 'Bekiek vort-edaone tekse en wiezigingen tussen vort-edaone versies',
 'right-browsearchive'         => "Vort-edaone pagina's bekieken",
 'right-undelete'              => "Vort-edaone pagina's weerummeplaosen",
 'right-suppressrevision'      => 'Verbörgen versies bekieken en weerummeplaosen',

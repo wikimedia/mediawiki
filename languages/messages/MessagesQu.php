@@ -1410,7 +1410,7 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'right-bigdelete'             => "Wiñay kawsaysapa p'anqakunatapas qulluy",
 'right-deleterevision'        => "P'anqakunapaq sapaq musuqchasqankunata qulluy paqarichiy ima",
 'right-deletedhistory'        => 'Wiñay kawsaymanta qullusqa musuqchasqakunapaq pisichaykunata qhaway, manataq kapuq qillqakunatachu',
-'right-deletedcontent'        => 'Qullusqa musuqchasqapura qullusqa qillqata hukchasqakunatapas qhaway',
+'right-deletedtext'           => 'Qullusqa musuqchasqapura qullusqa qillqata hukchasqakunatapas qhaway',
 'right-browsearchive'         => "Qullusqa p'anqakunata maskay",
 'right-undelete'              => "Qullusqa p'anqata paqarichiy",
 'right-suppressrevision'      => 'Kamachiqkunamanta pakasqa musuqchasqakunata qhawaspa paqarichiy',

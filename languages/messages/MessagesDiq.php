@@ -730,10 +730,61 @@ Cetwel: (pey) = ferqê versiyonê peni,
 'history-fieldset-title' => 'Tarixê browsey',
 'histfirst'              => 'Verênêr',
 'histlast'               => 'Peyênêr',
+'historysize'            => '({{PLURAL:$1|1 bayt|$1 bayti}})',
+'historyempty'           => '(veng/tol)',
+
+# Revision feed
+'history-feed-title'          => 'tarixê vurnayiş',
+'history-feed-description'    => 'Wiki ser de tarixê vurnayişi.',
+'history-feed-item-nocomment' => '$1, $2 de',
+'history-feed-empty'          => 'Pelo ke şıma gereni n3easeno.
+Belka pel hewna biyo ya zi nameyê ey vuriyayo.
+zey no pel [[Special:Search|wiki de bigere]] tesel/cereb kere.',
 
 # Revision deletion
-'rev-delundel'   => 'bımocne/bınımne',
-'revdel-restore' => 'asayışi bıvurne',
+'rev-deleted-comment'         => '(nuşteyê şıma hewna biyo)',
+'rev-deleted-user'            => '(Nameyê karberi hewna biy)',
+'rev-deleted-event'           => '(Karê qayd şiyo hewna)',
+'rev-deleted-text-permission' => "revizyonê no peli '''şiyo hewna'''.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qaydê hewna şiyayeyan] teferruatan eşkeni bıvini.",
+'rev-deleted-text-unhide'     => "revizyonê no peli '''şiyo hewna'''.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qaydê hewna şiyayeyan] teferruatan eşkeni bıvini.
+eke şıma dewam bıkeri [$1 no revizyoni eşkeni bıvini].",
+'rev-suppressed-text-unhide'  => "revizyonê no peli '''çap biyo'''.
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qaydê vındernayeyani de] teferruati esi belka.
+eke dewam bıkeri şıma [$1 eşkeni no revizyoni bıvini].",
+'rev-deleted-text-view'       => "revizyonê no peli '''hewna şiyaye yo'''.
+eke şıma serkaribi şıma eşkeni bıvini no pel; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qaydê hewna şiyayeyani] teferruati esti belka.",
+'rev-suppressed-text-view'    => "revizyonê no peli '''çap biyo'''.
+eke şıma serkaribi şıma eşkeni bıvini no pelan; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qaydê vıdernayeyan] de teferruati esti.",
+'rev-deleted-no-diff'         => "vurnayişê no peli şıma nêeşkeni bıvini çunke revizyonani ra yew '''hewna şiyo'''.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rocaneyê hewna şiyayeyani] de teferruati esti.",
+'rev-deleted-unhide-diff'     => "no vurnayişan ra yewi '''şiyo hewna'''.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rocaneyê hewna biyayişi] de teferruati esti.
+eke şıma serkaibi şıma [$1 no vurnayişan eşkeni bıvini].",
+'rev-delundel'                => 'bımocne/bınımne',
+'revisiondelete'              => 'revizyonan hewna ker/tepiya biya',
+'revdelete-nooldid-title'     => 'revizyono ke wazyeno meqbul niyo',
+'revdelete-nooldid-text'      => 'qey no fonksiyon kerdış re yew vurnayişê şıma çino.',
+'revdelete-nologtype-title'   => 'qaydi nediya',
+'revdelete-nologtype-text'    => 'qey no karkerdış gani şıma tipa qayde bıvıcini.',
+'revdelete-nologid-title'     => 'rocane qebul nebı',
+'revdelete-nologid-text'      => 'qey no fonksiyon re yew tipa qaydi nêweçiniyayi.',
+'revdelete-no-file'           => 'dosyayo ke şıma wazeni çino.',
+'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" dosyayi $2 $3  vuriyayişê no tarixi de biye şıma wzeni bıvini?',
+'revdelete-show-file-submit'  => 'e/heya',
+'revdelete-selected'          => "'''[[:$1]] no peli u {{PLURAL:$2|vurnayişê ke şıma nişane kerdo|vurnayişê ke şıma nişane kerdo}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|vurnayiş3e nişane biyaye|vurnayişê nişan biyaye}}:'''",
+'revdelete-text'              => "'''revizyon3e ke hewna şiye zerrey3e tarix3e peli u rocaneyan de aseni, feqet şıma nêeşkeni hemıni ra bıreesi.'''
+
+{{SITENAME}} no keyepele de serkari eşkeni bıresi her ca.
+eke şıma zani şıma hê sekeni u nê [[{{MediaWiki:Policy-url}}|kriteran re]] diqet keni destur xo bıwaze .",
+'revdelete-suppress-text'     => "wedartış '''tena''' halê cêrinan re esto:
+* malumat3e şexsi
+*: ''adresê keyi u numreyê telefoni uêb.''",
+'revdelete-legend'            => 'eyarê aseyişan bıker',
+'revdelete-hide-text'         => 'nuşteyê vurnayişi bınımne',
+'revdel-restore'              => 'asayışi bıvurne',
 
 # Merge log
 'revertmerge' => 'Romevılêşne',

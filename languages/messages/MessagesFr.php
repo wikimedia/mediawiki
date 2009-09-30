@@ -1507,7 +1507,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-bigdelete'             => 'Supprimer des pages ayant un gros historique',
 'right-deleterevision'        => 'Supprimer ou restaurer une version particulière d’une page',
 'right-deletedhistory'        => 'Voir les entrées des historiques supprimés mais sans leur texte',
-'right-deletedcontent'        => 'Voir le texte supprimé et les différences entre les versions supprimées',
+'right-deletedtext'           => 'Voir le texte supprimé et les différences entre les versions supprimées',
 'right-browsearchive'         => 'Rechercher des pages supprimées',
 'right-undelete'              => 'Restaurer une page supprimée',
 'right-suppressrevision'      => 'Examiner et restaurer les versions masquées aux administrateurs',

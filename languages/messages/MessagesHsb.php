@@ -10,6 +10,7 @@
  * @author Dundak
  * @author J budissin
  * @author Michawiki
+ * @author Tchoř
  * @author Tlustulimu
  * @author לערי ריינהארט
  */
@@ -828,8 +829,8 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 
 Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadnej wersiji, S = snadna změna.',
 'history-fieldset-title' => 'Stawizny přepytać',
-'histfirst'              => 'tuchwilnu',
-'histlast'               => 'najstaršu',
+'histfirst'              => 'najstaršu',
+'histlast'               => 'tuchwilnu',
 'historysize'            => '({{PLURAL:$1|1 bajt|$1 bajtaj|$1 bajty|$1 bajtow}})',
 'historyempty'           => '(prózdna)',
 
@@ -1283,7 +1284,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-bigdelete'             => 'Strony z dołhimi stawiznami zničić',
 'right-deleterevision'        => 'Jednotliwe wersije wušmórnyć a wobnowić',
 'right-deletedhistory'        => 'Wušmórnjene zapiski stawiznow bjez přisłušneho teksta wobhladać',
-'right-deletedcontent'        => 'Wušmórnjeny tekst a změny mjez wušmórnjenymi wersijemi sej wobhladać',
+'right-deletedtext'           => 'Wušmórnjeny tekst a změny mjez wušmórnjenymi wersijemi sej wobhladać',
 'right-browsearchive'         => 'Zničene strony pytać',
 'right-undelete'              => 'Strony wobnowić',
 'right-suppressrevision'      => 'Wersije, kotrež su před administratorami schowane, přepruwować a wobnowić',

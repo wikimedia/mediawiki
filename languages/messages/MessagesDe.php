@@ -1507,7 +1507,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-bigdelete'             => 'Seiten löschen mit großer Versionsgeschichte',
 'right-deleterevision'        => 'Löschen und Wiederherstellen einzelner Versionen',
 'right-deletedhistory'        => 'Ansehen gelöschter Versionen in der Versionsgeschichte (ohne zugehörigen Text)',
-'right-deletedcontent'        => 'Gelöschte Texte und Versionsunterschiede zwischen gelöschten Versionen ansehen',
+'right-deletedtext'           => 'Gelöschte Texte und Versionsunterschiede zwischen gelöschten Versionen ansehen',
 'right-browsearchive'         => 'Suche nach gelöschten Seiten',
 'right-undelete'              => 'Seiten wiederherstellen',
 'right-suppressrevision'      => 'Ansehen und wiederherstellen von Versionen, die auch vor Administratoren verborgen sind',

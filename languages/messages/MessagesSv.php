@@ -1104,6 +1104,8 @@ Du har inte behörighet till det.',
 'revdelete-concurrent-change' => 'Fel vid förändring av objektet daterat $2, $1: dess status verkar ha ändrats av någon annan medan du försökte förändra det.
 Vänligen kontrollera loggarna.',
 'revdelete-only-restricted'   => 'Du kan inte hindra visning av objekt av administratörer utan att också välja en av de övriga visningshindrande alternativen.',
+'revdelete-otherreason'       => 'Annan/ytterligare anledning:',
+'revdelete-reasonotherlist'   => 'Annan anledning',
 'revdelete-edit-reasonlist'   => 'Redigera anledningar för radering',
 
 # Suppression log
@@ -1492,6 +1494,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-reset-passwords'       => 'Återställa andra användares lösenord',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-versiondetail'         => 'Visa den utökade mjukvaruversionsinformationen',
+'right-sendemail'             => 'Skicka e-post till andra användare',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
@@ -1701,6 +1704,10 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload-unknown-size'       => 'Okänd storlek',
 'upload-http-error'         => 'Ett HTTP-fel uppstod: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Åtkomst nekad',
+'img-auth-nofile'       => 'Filen "$1" finns inte.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
 'upload-curl-error6-text'  => 'Den angivna URL:en kunde inte nås. Kontrollera att den är korrekt och att webbplatsern fungerar.',
@@ -1708,7 +1715,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload-curl-error28-text' => 'Webbplatsen tog för lång tid på sig att svara. Kontrollera att den är uppe och försök igen om en liten stund.',
 
 'license'            => 'Licens:',
-'license-header'     => 'Licens:',
+'license-header'     => 'Licensiering',
 'nolicense'          => 'Ingen angiven',
 'license-nopreview'  => '(Förhandsvisning är inte tillgänglig)',
 'upload_source_url'  => ' (en giltig URL som är allmänt åtkomlig)',
@@ -3131,6 +3138,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'watchlistall2'    => 'alla',
 'namespacesall'    => 'alla',
 'monthsall'        => 'alla',
+'limitall'         => 'alla',
 
 # E-mail address confirmation
 'confirmemail'             => 'Bekräfta e-postadress',
@@ -3366,5 +3374,15 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'htmlform-submit'              => 'Spara',
 'htmlform-reset'               => 'Ogör ändringar',
 'htmlform-selectorother-other' => 'Andra',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Lägg till kategori',
+'ajax-add-category-submit'     => 'Lägg till',
+'ajax-confirm-prompt'          => 'Du kan skriva en redigeringssammanfattning nedanför.
+Klicka på "Spara" för att spara din redigering.',
+'ajax-confirm-save'            => 'Spara',
+'ajax-add-category-summary'    => 'Lägg till kategorin "$1"',
+'ajax-remove-category-summary' => 'Tag bort kategorin "$1"',
+'ajax-error-title'             => 'Fel',
 
 );

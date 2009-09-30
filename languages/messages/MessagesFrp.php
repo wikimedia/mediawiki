@@ -1529,7 +1529,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-bigdelete'             => 'Suprimar des pâges qu’ont un grant historico',
 'right-deleterevision'        => 'Suprimar ou refâre una vèrsion spècefica d’una pâge',
 'right-deletedhistory'        => 'Vêre les entrâs des historicos suprimâs mas sen lor tèxto',
-'right-deletedcontent'        => 'Vêre lo tèxto suprimâ et les difèrences entre les vèrsions suprimâs',
+'right-deletedtext'           => 'Vêre lo tèxto suprimâ et les difèrences entre les vèrsions suprimâs',
 'right-browsearchive'         => 'Rechèrchiér des pâges suprimâs',
 'right-undelete'              => 'Refâre una pâge suprimâ',
 'right-suppressrevision'      => 'Revêre et refâre les vèrsions cachiês ux administrators',

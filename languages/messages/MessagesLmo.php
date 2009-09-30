@@ -307,7 +307,7 @@ $1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A prupòsit de {{SITENAME}}',
-'aboutpage'            => 'Pruget:A pruposit',
+'aboutpage'            => 'Project:A pruposit',
 'copyright'            => "El cuntegnüü a l'è dispunibil sota a una licenza $1.",
 'copyrightpage'        => "{{ns:project}}:Dirit d'autur",
 'currentevents'        => 'Atüalitaa',
@@ -478,18 +478,23 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'template-protected'   => '(prutegiüü)',
 
 # History pages
-'next'       => 'pròssim',
-'last'       => 'ültima',
-'histlegend' => "Selezion di diferenz: seleziuná i balitt di version de cumpará e pö schisciá ''enter'' upüra al buton in scima ala tabèlina.<br />
+'revisionasof' => 'Revisión $1',
+'next'         => 'pròssim',
+'last'         => 'ültima',
+'histlegend'   => "Selezion di diferenz: seleziuná i balitt di version de cumpará e pö schisciá ''enter'' upüra al buton in scima ala tabèlina.<br />
 Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = diferenza cun l'ültima version, M = cambiament d'impurtanza minur.",
-'histfirst'  => 'Püssee vecc',
-'histlast'   => 'Püssee receent',
+'histfirst'    => 'Püssee vecc',
+'histlast'     => 'Püssee receent',
 
 # Diffs
+'lineno'                  => 'Riga $1:',
 'compareselectedversions' => 'Compara i version catad fœu',
+'editundo'                => "turna a 'me che l'era",
 
 # Search results
 'searchresults'                    => 'Risültaa de la recerca.',
+'searchresults-title'              => 'Resültaa de la ricerca de "$1"',
+'searchsubtitle'                   => 'Tì t\'hee cercaa \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tüt i paginn che scumincen per "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tüt i paginn che porten a "$1"]])',
 'noexactmatch'                     => "'''La pagina \"\$1\" la esista no.''' L'è pussibil [[:\$1|creala adèss]].",
 'noexactmatch-nocreate'            => "'''La pagina cun el titul \"\$1\" la esista no.'''",
 'toomanymatches'                   => "Gh'è tropi curispundens. Mudifichè la richiesta.",
@@ -509,6 +514,8 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'searchprofile-advanced-tooltip'   => 'Cerca int i namespace persunalizaa',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 parola|$2 paroll}})',
 'search-suggest'                   => 'Vurivet dì: $1',
+'search-mwsuggest-enabled'         => 'cun sügeriment',
+'search-mwsuggest-disabled'        => 'senza sügeriment',
 'powersearch'                      => 'Truvá',
 'powersearch-legend'               => 'Recerca avanzada',
 
@@ -600,6 +607,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'hist'                             => 'stòria',
 'hide'                             => 'Scund',
 'show'                             => 'Famm vedè',
+'minoreditletter'                  => 'm',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Cambiament culegaa',
@@ -658,6 +666,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'brokenredirects' => 'Redirezziún interótt',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'uncategorizedpages'      => 'Pagin mia categurizzaa',
 'uncategorizedcategories' => 'Categurii mia categurizzaa',
 'unusedcategories'        => 'Categurii mia druvaa',
@@ -823,6 +832,7 @@ Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'ipblocklist'            => 'Adrèss IP e druvàt blucaa',
 'blocklistline'          => "$1, $2 l'ha blucaa $3 ($4)",
 'blocklink'              => 'bloca',
+'unblocklink'            => 'desbloca',
 'contribslink'           => 'cuntribüzziún',
 'blocklogpage'           => 'Log di blocch',
 'blocklogentry'          => "l'ha blucaa [[$1]] per un temp de $2 $3",
@@ -864,12 +874,18 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 # Tooltip help for the actions
 'tooltip-pt-mytalk'               => 'La tua pagina de discüssión',
 'tooltip-pt-preferences'          => 'I to preferenz',
+'tooltip-pt-login'                => "Nünch cunsejum la registraziun, anca se l'è minga ubligatoria.",
 'tooltip-pt-logout'               => 'Va fö (logout)',
+'tooltip-ca-talk'                 => 'Discüssiun revard el cuntegnüü de la pagina.',
 'tooltip-ca-edit'                 => "Te pör mudifegà quela pagina chì. Per piasè dröva 'l butón per ved i cambiament prima de salvà.",
 'tooltip-ca-addsection'           => 'Scumencia una sezión növa',
 'tooltip-ca-delete'               => 'Scancela questa pagina',
 'tooltip-ca-move'                 => "Sposta 'sta pagina chì (cambiagh 'l titul)",
+'tooltip-search'                  => 'Cerca in {{SITENAME}}',
+'tooltip-search-go'               => "Va a una pagina che la se ciama cumpagn, semper che la gh'è",
+'tooltip-search-fulltext'         => 'Cerca quel test chì intra i paginn del sit',
 'tooltip-n-mainpage'              => 'Visité la pàgina principala',
+'tooltip-n-mainpage-description'  => 'Visita la pagina principala',
 'tooltip-n-portal'                => "Descripzion del proget, cossa ch'a podé far, dond trovar vergòt",
 'tooltip-n-currentevents'         => "Informazion ansima a vergòt ch'al riva.",
 'tooltip-n-recentchanges'         => 'Lista de canviamenc recenc del wiki',
@@ -878,6 +894,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'tooltip-t-whatlinkshere'         => "Lista de tuti li pàgini wiki ch'i liga scià",
 'tooltip-t-recentchangeslinked'   => 'Canviamenc recenc en li pàgini ligadi a chesta',
 'tooltip-feed-rss'                => 'Feed RSS per chesta pàgina',
+'tooltip-t-upload'                => 'Carga file multimediaj',
 'tooltip-t-specialpages'          => 'Lista de tütt i pagin speciaal',
 'tooltip-ca-nstab-project'        => 'Varda la pagina del pruget',
 'tooltip-preview'                 => 'Varda i mudifegh (semper mej fàl prima de salvà)',

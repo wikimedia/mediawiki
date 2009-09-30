@@ -1355,7 +1355,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-bigdelete'             => 'Esborrar pàgines amb historials grans',
 'right-deleterevision'        => 'Esborrar i restaurar versions específiques de pàgines',
 'right-deletedhistory'        => 'Veure els historials esborrats sense consultar-ne el text',
-'right-deletedcontent'        => 'Vegeu el text esborrat i els canvis entre revisions esborrades',
+'right-deletedtext'           => 'Vegeu el text esborrat i els canvis entre revisions esborrades',
 'right-browsearchive'         => 'Cercar pàgines esborrades',
 'right-undelete'              => 'Restaurar pàgines esborrades',
 'right-suppressrevision'      => 'Revisar i restaurar les versions amagades als administradors',

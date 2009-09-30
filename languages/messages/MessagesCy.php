@@ -1255,7 +1255,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-bigdelete'             => 'Dileu tudalennau a hanes llwythog iddynt',
 'right-deleterevision'        => 'Dileu a dad-ddileu golygiadau arbennig o dudalennau',
 'right-deletedhistory'        => 'Gweld cofnodion fersiynau sydd wedi eu dileu, heb y testun ynddynt',
-'right-deletedcontent'        => 'Gweld ysgrifen sydd wedi ei ddileu a newidiadau rhwng fersiynau ar ôl eu dileu',
+'right-deletedtext'           => 'Gweld ysgrifen sydd wedi ei ddileu a newidiadau rhwng fersiynau ar ôl eu dileu',
 'right-browsearchive'         => 'Chwilio drwy tudalennau dilëedig',
 'right-undelete'              => 'Adfer tudalen dilëedig',
 'right-suppressrevision'      => 'Adolygu ac adfer diwygiadau sydd wedi eu cuddio rhag gweinyddwyr',

@@ -1493,7 +1493,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-bigdelete'             => 'Mazání stránek s dlouhou historií',
 'right-deleterevision'        => 'Mazání a obnovování konkrétních revizí stránky',
 'right-deletedhistory'        => 'Zobrazování smazaných položek v historii bez odpovídajícího textu',
-'right-deletedcontent'        => 'Prohlížení smazaného textu a rozdílů mezi smazanými verzemi',
+'right-deletedtext'           => 'Prohlížení smazaného textu a rozdílů mezi smazanými verzemi',
 'right-browsearchive'         => 'Vyhledávání ve smazaných stránkách',
 'right-undelete'              => 'Obnovování smazaných stránek',
 'right-suppressrevision'      => 'Prohlížení a obnovování revizí skrytých před správci',

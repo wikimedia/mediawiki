@@ -1477,7 +1477,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-bigdelete'             => 'nagy történettel rendelkező fájlok törlése',
 'right-deleterevision'        => 'lapok adott változatainak törlése és helyreállítása',
 'right-deletedhistory'        => 'törölt lapváltozatok megtekintése, a szövegük nélkül',
-'right-deletedcontent'        => 'törölt változatok szövegének és a változatok közötti eltérés megtekintése',
+'right-deletedtext'           => 'törölt változatok szövegének és a változatok közötti eltérés megtekintése',
 'right-browsearchive'         => 'keresés a törölt lapok között',
 'right-undelete'              => 'lap helyreállítása',
 'right-suppressrevision'      => 'az adminisztrátorok elől elrejtett változatok megtekintése és helyreállítása',

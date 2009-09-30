@@ -1323,7 +1323,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-bigdelete'             => 'Uzun tarihli sayfaları sil',
 'right-deleterevision'        => 'Sayfaların belirli revizyonlarını sil ve geri yükle',
 'right-deletedhistory'        => 'Silinmiş geçmiş girdilerini gör, ilgili metinleri olmadan',
-'right-deletedcontent'        => 'Silinmiş metni ve silinmiş revizyonlar arasındaki değişiklikleri gör',
+'right-deletedtext'           => 'Silinmiş metni ve silinmiş revizyonlar arasındaki değişiklikleri gör',
 'right-browsearchive'         => 'Silinen sayfaları ara',
 'right-undelete'              => 'Bir sayfanın silinmesini geri al',
 'right-suppressrevision'      => 'Sysoplardan gizlenmiş revizyonları gözden geçir ve geri yükle',
