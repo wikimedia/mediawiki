@@ -1049,4 +1049,41 @@ div#bodyContent {
 	line-height: 1.5em;
 }
 
-	
+/* Watch/Unwatch Icon Styling */
+#ca-unwatch.icon,
+#ca-watch.icon {
+}
+#ca-unwatch.icon a,
+#ca-watch.icon a {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	display: block;
+	width: 26px;
+	height: 2.5em;
+}
+#ca-unwatch.icon a {
+	background-image: url(images/watch-icons.png);
+	background-position: -43px 60%;
+}
+#ca-watch.icon a {
+	background-image: url(images/watch-icons.png);
+	background-position: 5px 60%;
+}
+#ca-unwatch.icon a:hover {
+	background-image: url(images/watch-icons.png);
+	background-position: -67px 60%;
+}
+#ca-watch.icon a:hover {
+	background-image: url(images/watch-icons.png);
+	background-position: -19px 60%;
+}
+#ca-unwatch.icon a.loading,
+#ca-watch.icon a.loading {
+	background-image: url(images/watch-icon-loading.gif);
+	background-position: center 60%;
+}
+#ca-unwatch.icon a span,
+#ca-watch.icon a span {
+	display: none;
+}	
