@@ -852,11 +852,14 @@ class HTMLTextField extends HTMLFormField {
 					$attribs[$param] = '';
 				}
 			}
+		}
 			
-			# Implement tiny differences between some field variants
-			# here, rather than creating a new class for each one which
-			# is essentially just a clone of this one.
-			if ( isset( $this->mParams['type'] ) ) {
+		# Implement tiny differences between some field variants
+		# here, rather than creating a new class for each one which
+		# is essentially just a clone of this one.
+		if ( isset( $this->mParams['type'] ) ) {
+			# Options that apply only to HTML5
+			if( $wgHtml5 ){
 				switch ( $this->mParams['type'] ) {
 					case 'email':
 						$attribs['type'] = 'email';
@@ -868,10 +871,13 @@ class HTMLTextField extends HTMLFormField {
 						$attribs['type'] = 'number';
 						$attribs['step'] = 'any';
 						break;
-					case 'password':
-						$attribs['type'] = 'password';
-						break;
 				}
+			}
+			# Options that apply to HTML4 as well
+			switch( $this->mParams['type'] ){
+				case 'password':
+					$attribs['type'] = 'password';
+					break;
 			}
 		}
 
