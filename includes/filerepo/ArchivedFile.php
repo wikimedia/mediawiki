@@ -33,7 +33,7 @@ class ArchivedFile
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;
-		$this->group = '';
+		$this->group = 'deleted'; // needed for direct use of constructor
 		$this->key = '';
 		$this->size = 0;
 		$this->bits = 0;
