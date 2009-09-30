@@ -21,29 +21,16 @@ wgAjaxWatch.watching = false; // currently watching page
 wgAjaxWatch.inprogress = false; // ajax request in progress
 wgAjaxWatch.timeoutID = null; // see wgAjaxWatch.ajaxCall
 wgAjaxWatch.watchLinks = []; // "watch"/"unwatch" links
-wgAjaxWatch.iconMode = false; // new icon driven functionality 
-wgAjaxWatch.imgBasePath = ""; // base img path derived from icons on load
 
-wgAjaxWatch.setLinkText = function( newText ) {
-	if( wgAjaxWatch.iconMode ) {
-		for ( i = 0; i < wgAjaxWatch.watchLinks.length; i++ ) {
-			wgAjaxWatch.watchLinks[i].firstChild.alt = newText;
-			if ( newText == wgAjaxWatch.watchingMsg || newText == wgAjaxWatch.unwatchingMsg ) {
-				wgAjaxWatch.watchLinks[i].className += ' loading';
-			} else if ( newText == wgAjaxWatch.watchMsg || newText == wgAjaxWatch.unwatchMsg ) {
-				wgAjaxWatch.watchLinks[i].className = wgAjaxWatch.watchLinks[i].className.replace( /loading/i, '' );
-			}
-		}
-	} else {
-		for ( i = 0; i < wgAjaxWatch.watchLinks.length; i++ ) {
-			changeText( wgAjaxWatch.watchLinks[i], newText );
-		}
+wgAjaxWatch.setLinkText = function(newText) {
+	for (i = 0; i < wgAjaxWatch.watchLinks.length; i++) {
+		changeText(wgAjaxWatch.watchLinks[i], newText);
 	}
 };
 
-wgAjaxWatch.setLinkID = function( newId ) {
+wgAjaxWatch.setLinkID = function(newId) {
 	// We can only set the first one
-	wgAjaxWatch.watchLinks[0].parentNode.setAttribute( 'id', newId );
+	wgAjaxWatch.watchLinks[0].setAttribute( 'id', newId );
 	akeytt(newId); // update tooltips for Monobook
 };
 
@@ -125,33 +112,27 @@ wgAjaxWatch.processResult = function(request) {
 wgAjaxWatch.onLoad = function() {
 	// This document structure hardcoding sucks.  We should make a class and
 	// toss all this out the window.
-	
 	var el1 = document.getElementById("ca-unwatch");
 	var el2 = null;
-	if ( !el1 ) {
+	if (!el1) {
 		el1 = document.getElementById("mw-unwatch-link1");
 		el2 = document.getElementById("mw-unwatch-link2");
 	}
-	if( el1 ) {
+	if(el1) {
 		wgAjaxWatch.watching = true;
 	} else {
 		wgAjaxWatch.watching = false;
 		el1 = document.getElementById("ca-watch");
-		if ( !el1 ) {
+		if (!el1) {
 			el1 = document.getElementById("mw-watch-link1");
 			el2 = document.getElementById("mw-watch-link2");
 		}
-		if( !el1 ) {
+		if(!el1) {
 			wgAjaxWatch.supported = false;
 			return;
 		}
 	}
-	
-	// Detect if the watch/unwatch feature is in icon mode
-	if ( el1.className.match( /icon/i ) ) {
-		wgAjaxWatch.iconMode = true;
-	}
-	
+
 	// The id can be either for the parent (Monobook-based) or the element
 	// itself (non-Monobook)
 	wgAjaxWatch.watchLinks.push( el1.tagName.toLowerCase() == "a"
