@@ -1252,7 +1252,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-bigdelete'             => "Scangille le pàggene cu 'na storia longa longa",
 'right-deleterevision'        => 'Scangille o repristine le revisiune specifiche de le pàggene',
 'right-deletedhistory'        => "Vide le versiune, d'u cunde, scangellate, senza 'u teste lore associate",
-'right-deletedcontent'        => "Vide 'u teste scangellate e le cangiaminde 'mbrà le versiune scangellate",
+'right-deletedtext'           => "Vide 'u teste scangellate e le cangiaminde 'mbrà le versiune scangellate",
 'right-browsearchive'         => 'Cirche le pàggene scangellate',
 'right-undelete'              => "Repristine 'na pàgene",
 'right-suppressrevision'      => "Revide e repristine le revisiune scunnete da l'amministrature",

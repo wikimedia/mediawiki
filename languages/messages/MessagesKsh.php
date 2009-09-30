@@ -1504,7 +1504,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-bigdelete'             => 'Sigge fottschmiiße, och wann se ahle Versione ze baasch han',
 'right-deleterevision'        => 'Einzel Versione fun Sigge fottschmiiße un zeröck holle',
 'right-deletedhistory'        => 'Fottjeschmeße Versione vun Sigge opleßte lohße — dat zeich ävver nit der Tex aan',
-'right-deletedcontent'        => 'Fotjeschmeße Täx un Ungerscheid zwesche de verschtoche Versione aanloore',
+'right-deletedtext'           => 'Fotjeschmeße Täx un Ungerscheid zwesche de verschtoche Versione aanloore',
 'right-browsearchive'         => 'Noh fottjeschmesse Sigge söke',
 'right-undelete'              => 'Fottjeschmeße Sigge widder zeröck holle',
 'right-suppressrevision'      => 'Versione vun Sigge beloore un zeröck holle, di sujaa för de Wiki-Köbesse verstoche sin',

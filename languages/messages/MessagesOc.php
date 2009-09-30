@@ -416,6 +416,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Aquesta categoria conten unicament lo fichièr seguent.|{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins aquesta categoria, sus una soma de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins la presenta categoria.',
 'listingcontinuesabbrev'         => '(seguida)',
+'index-category'                 => 'Paginas indexadas',
+'noindex-category'               => 'Paginas pas indexadas',
 
 'mainpagetext'      => "<big>'''MediaWiki es estat installat amb succès.'''</big>",
 'mainpagedocfooter' => "Consultatz lo [http://meta.wikimedia.org/wiki/Ajuda:Contengut Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial.
@@ -1462,7 +1464,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-bigdelete'             => "Suprimir de paginas amb d'istorics grands",
 'right-deleterevision'        => "Suprimir e restablir una revision especifica d'una pagina",
 'right-deletedhistory'        => 'Veire las entradas dels istorics suprimits mas sens lor tèxte',
-'right-deletedcontent'        => 'Veire lo tèxte suprimit e las diferéncias entre las versions suprimidas',
+'right-deletedtext'           => 'Veire lo tèxte suprimit e las diferéncias entre las versions suprimidas',
 'right-browsearchive'         => 'Recercar de paginas suprimidas',
 'right-undelete'              => 'Restablir una pagina',
 'right-suppressrevision'      => 'Examinar e restablir las revisions amagadas als administrators',
@@ -1495,6 +1497,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-reset-passwords'       => "Cambiar lo senhal d'autres utilizaires",
 'right-override-export-depth' => 'Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls',
 'right-versiondetail'         => 'Vejatz las entresenhas espandidas sus las versions dels logicials',
+'right-sendemail'             => 'Mandar un corrièl als autres utilizaires',
 
 # User rights log
 'rightslog'      => "Istoric de las modificacions d'estatut",

@@ -1311,7 +1311,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'right-bigdelete'             => 'Scancela pagine con cronologie longhe',
 'right-deleterevision'        => 'Scondi version specifiche de le pagine',
 'right-deletedhistory'        => 'Varda i record scancelà de la cronologia, ma senza el testo associà a lori',
-'right-deletedcontent'        => 'Vardar el testo scancelà e i canbiamenti tra dele revision scancelà',
+'right-deletedtext'           => 'Vardar el testo scancelà e i canbiamenti tra dele revision scancelà',
 'right-browsearchive'         => 'Visualizza pagine scancelae',
 'right-undelete'              => 'Recupera na pagina',
 'right-suppressrevision'      => 'Rivarda e recupera version sconte',

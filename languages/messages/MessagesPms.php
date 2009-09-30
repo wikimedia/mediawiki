@@ -1222,7 +1222,7 @@ Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o 
 'right-bigdelete'             => 'Scanselé pàgine con stòrie longhe',
 'right-deleterevision'        => 'Scanselé e dëscanselé spessìfiche vërsion ëd pàgine',
 'right-deletedhistory'        => 'Vardé le revision ëd la stòria scanselà, sensa ël test associà',
-'right-deletedcontent'        => 'Varda ël test scanselà e ij cambi an tra le revision scanselà',
+'right-deletedtext'           => 'Varda ël test scanselà e ij cambi an tra le revision scanselà',
 'right-browsearchive'         => 'Sërché pàgine scanselà',
 'right-undelete'              => 'Arcuperé na pàgina',
 'right-suppressrevision'      => "Rivëdde e arcuperé revision stërmà a j'aministrador",

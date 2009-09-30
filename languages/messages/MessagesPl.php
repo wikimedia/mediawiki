@@ -1431,7 +1431,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-bigdelete'             => 'Usuwanie stron z długą historią edycji',
 'right-deleterevision'        => 'Usuwanie i odtwarzanie określonej wersji strony',
 'right-deletedhistory'        => 'Podgląd usuniętych wersji, bez przypisanego im tekstu',
-'right-deletedcontent'        => 'Podgląd usuniętego tekstu i zmian pomiędzy usuniętymi wersjami',
+'right-deletedtext'           => 'Podgląd usuniętego tekstu i zmian pomiędzy usuniętymi wersjami',
 'right-browsearchive'         => 'Przeszukiwanie usuniętych stron',
 'right-undelete'              => 'Odtwarzanie usuniętych stron',
 'right-suppressrevision'      => 'Podgląd i odtwarzanie wersji ukrytych przed Administratorami',

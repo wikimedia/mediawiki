@@ -1270,7 +1270,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-bigdelete'             => 'Diverkañ pajennoù dezho un hir a istor',
 'right-deleterevision'        => 'Diverkañ ha diziverkañ stummoù zo eus ur pajenn',
 'right-deletedhistory'        => 'Gwelet anvioù an istorioù diverket hep diskouez an destenn stag outo',
-'right-deletedcontent'        => "Gwelet ar skrid diverket hag an diforc'hioù etre ar stummoù diverket",
+'right-deletedtext'           => "Gwelet ar skrid diverket hag an diforc'hioù etre ar stummoù diverket",
 'right-browsearchive'         => 'Klask pajennoù bet diverket',
 'right-undelete'              => 'Assevel ur bajenn',
 'right-suppressrevision'      => 'Teuler ur sell war ar stummoù kuzhet ouzh ar verourien hag assevel anezho',

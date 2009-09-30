@@ -1356,7 +1356,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-bigdelete'             => 'Deler paginas con historias longe',
 'right-deleterevision'        => 'Deler e restaurar versiones specific de paginas',
 'right-deletedhistory'        => 'Vider entratas de historia delite, sin lor texto associate',
-'right-deletedcontent'        => 'Vider texto delite e differentias inter versiones delite',
+'right-deletedtext'           => 'Vider texto delite e differentias inter versiones delite',
 'right-browsearchive'         => 'Cercar in paginas delite',
 'right-undelete'              => 'Restaurar un pagina',
 'right-suppressrevision'      => 'Revider e restaurar versiones celate ab administratores',

@@ -172,6 +172,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Kategori iki namung nduwé berkas iki.|Dituduhaké {{PLURAL:$1|berkas|$1 berkas-berkas}} sing kalebu ing kategori iki saka gunggungé $2.}}',
 'category-file-count-limited'    => 'Kategori iki ndarbèni {{PLURAL:$1|berkas|$1 berkas-berkas}} sing kapacak ing ngisor iki.',
 'listingcontinuesabbrev'         => 'samb.',
+'index-category'                 => 'Kaca sing diindhèks',
+'noindex-category'               => 'Kaca sing ora diindhèks',
 
 'mainpagetext'      => "<big>'''Prangkat empuk wiki wis suksès dipasang.'''</big>",
 'mainpagedocfooter' => "Mangga maca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki
@@ -369,12 +371,16 @@ Iki manawa uga nuduhaké anané kesalahan ing piranti alus sing dipigunakaké d�
 # General errors
 'error'                => 'Kasalahan',
 'databaseerror'        => 'Kasalahan database',
-'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan database. Kasalahan iki mbokmenawa nuduhaké anané \'\'bug\'\' ing software. Panyuwunan database sing pungkasan iku: <blockquote><tt>$1</tt></blockquote> saka jroning fungsi "<tt>$2</tt>". MySQL ngasilaké kasalahan "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ana kasalahan sintaks ing panyuwunan database. 
-Panyuwunan database sing pungkasan iku:
+'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan basis data. 
+Kasalahan iki mbokmenawa nuduhaké anané \'\'bug\'\' ing software. 
+Panyuwunan basis data sing pungkasan yakuwi: <blockquote><tt>$1</tt></blockquote>
+saka jroning fungsi "<tt>$2</tt>". 
+Basis data ngasilaké kasalahan "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ana kasalahan sintaks ing panyuwunan basis data. 
+Panyuwunan basis data sing pungkasan iku:
 "$1" 
 saka jroning fungsi "$2". 
-MySQL ngasilaké Kasalahan "$3: $4".',
+Basis data ngasilaké kasalahan "$3: $4".',
 'laggedslavemode'      => 'Pènget: Kaca iki mbokmenawa isiné dudu pangowahan pungkasan.',
 'readonly'             => 'Database dikunci',
 'enterlockreason'      => 'Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka',
@@ -2190,7 +2196,7 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'movepage-page-moved'          => 'Kaca $1 wis dipindhah menyang $2.',
 'movepage-page-unmoved'        => 'Kaca $1 ora bisa dialihaké menyang $2.',
 'movepage-max-pages'           => 'Paling akèh $1 {{PLURAL:$1|kaca|kaca}} wis dialihaké lan ora ana manèh sing bakal dialihaké sacara otomatis.',
-'1movedto2'                    => '$1 dialihaké menyang $2',
+'1movedto2'                    => 'Ngalihaké [[$1]] menyang [[$2]]',
 '1movedto2_redir'              => '[[$1]] dipunalihaken menyang [[$2]] via pangalihan',
 'move-redirect-suppressed'     => 'pengalihan ditahan',
 'movelogpage'                  => 'Log pamindhahan',
@@ -2953,7 +2959,7 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:file}}:".',
 'fileduplicatesearch-result-n' => 'Berkas "$1" ora ndarbèni {{PLURAL:$2|1 duplikat idèntik|$2 duplikat idèntik}}.',
 
 # Special:SpecialPages
-'specialpages'                   => 'Kaca astaméwa',
+'specialpages'                   => 'Kaca istiméwa',
 'specialpages-note'              => '----
 Katrangan tampilan:
 * Kaca astamèwa normal

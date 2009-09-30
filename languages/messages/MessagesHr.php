@@ -1460,7 +1460,7 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'right-bigdelete'             => 'Brisanje stranica koje imaju veliku povijest',
 'right-deleterevision'        => 'Brisanje i vraćanje određene izmjene na stranici',
 'right-deletedhistory'        => 'Gledanje povijesti izmjena izbrisane stranice',
-'right-deletedcontent'        => 'Pregled izbrisanog teksta i izmjena između izbrisanih izmjena',
+'right-deletedtext'           => 'Pregled izbrisanog teksta i izmjena između izbrisanih izmjena',
 'right-browsearchive'         => 'Traženje obrisanih stranica',
 'right-undelete'              => 'Vraćanje stranica',
 'right-suppressrevision'      => 'Pregledavanje i vraćanje izmjena skrivenih od administratora',
