@@ -48,6 +48,7 @@ class ArchivedFile
 		$this->timestamp = NULL;
 		$this->deleted = 0;
 		$this->dataLoaded = false;
+		$this->exists = false;
 		
 		if( is_object($title) ) {
 			$this->title = $title;
@@ -142,6 +143,7 @@ class ArchivedFile
 			return;
 		}
 		$this->dataLoaded = true;
+		$this->exists = true;
 
 		return true;
 	}
@@ -192,6 +194,11 @@ class ArchivedFile
 	public function getID() {
 		$this->load();
 		return $this->id;
+	}
+	
+	public function exists() {
+		$this->load();
+		return $this->exists;
 	}
 
 	/**
