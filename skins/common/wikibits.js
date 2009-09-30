@@ -940,6 +940,7 @@ function jsMsg( message, className ) {
 	}
 
 	messageDiv.setAttribute( 'id', 'mw-js-message' );
+	messageDiv.style.display = 'block';
 	if( className ) {
 		messageDiv.setAttribute( 'class', 'mw-js-message-'+className );
 	}
