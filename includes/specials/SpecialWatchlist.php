@@ -20,7 +20,7 @@ function wfSpecialWatchlist( $par ) {
 		global $wgServer, $wgScriptPath, $wgFeedClasses;
 		$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
 							'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
-		$feedTemplate = $wgServer . '/' . $wgScriptPath . '/api.php?';
+		$feedTemplate = $wgServer . $wgScriptPath . '/api.php?';
 		
 		foreach( $wgFeedClasses as $format => $class ) {
 			$theseParams = $apiParams + array( 'feedformat' => $format );
