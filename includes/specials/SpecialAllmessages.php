@@ -299,8 +299,7 @@ class AllmessagesTablePager extends TablePager {
 
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
 				$talk  = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
-				$edit  = $this->mSkin->link( $title, wfMsg( 'edit' ), array(), 'action=edit' );
-				
+
 				if( $this->mCurrentRow->am_customised ){
 					$title = $this->mSkin->linkKnown( $title, $wgLang->lcfirst( $value ) );
 				} else {
@@ -323,7 +322,7 @@ class AllmessagesTablePager extends TablePager {
 						array( 'broken' )
 					);
 				}
-				return $title . ' (' . $wgLang->pipeList( array( $edit, $talk ) ) . ')';
+				return $title . ' (' . $talk . ')';
 
 			case 'am_default' :
 				return Sanitizer::escapeHtmlAllowEntities( $value, ENT_QUOTES );
