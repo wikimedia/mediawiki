@@ -59,8 +59,8 @@ class SkinVector extends SkinTemplate {
 	 * @private
 	 */
 	function buildNavigationUrls() {
-		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle, $wgStylePath;
-		global $wgDisableLangConversion, $wgVectorUseIconWatch;
+		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle;
+		global $wgDisableLangConversion;
 
 		wfProfileIn( __METHOD__ );
 
@@ -271,6 +271,7 @@ class SkinVector extends SkinTemplate {
 				}
 			}
 			wfProfileOut( __METHOD__ . '-live' );
+
 			/**
 			 * The following actions use messages which, if made particular to
 			 * the Vector skin, would break the Ajax code which makes this
@@ -281,21 +282,29 @@ class SkinVector extends SkinTemplate {
 			 * the global versions.
 			 */
 			// Checks if the user is logged in
-			if ( $this->loggedin ) {
-				if ( $wgVectorUseIconWatch ) {
-					$class = 'icon ';
-					$place = 'views';
+			if( $this->loggedin ) {
+				// Checks if the user is watching this page
+				if( !$this->mTitle->userIsWatching() ) {
+					// Adds watch action link
+					$links['actions']['watch'] = array(
+						'class' =>
+							( $action == 'watch' or $action == 'unwatch' ) ?
+								'selected' : false,
+						'text' => wfMsg( 'watch' ),
+						'href' => $this->mTitle->getLocalUrl( 'action=watch' )
+					);
 				} else {
-					$class = '';
-					$place = 'actions';
+					// Adds unwatch action link
+					$links['actions']['unwatch'] = array(
+						'class' =>
+							($action == 'unwatch' or $action == 'watch') ?
+								'selected' : false,
+						'text' => wfMsg( 'unwatch' ),
+						'href' => $this->mTitle->getLocalUrl( 'action=unwatch' )
+					);
 				}
-				$mode = $this->mTitle->userIsWatching() ? 'unwatch' : 'watch';
-				$links[$place][$mode] = array(
-					'class' => $class . ( ( $action == 'watch' || $action == 'unwatch' ) ? ' selected' : false ),
-					'text' => wfMsg( $mode ), // uses 'watch' or 'unwatch' message
-					'href' => $this->mTitle->getLocalUrl( 'action=' . $mode )
-				);
 			}
+
 			// This is instead of SkinTemplateTabs - which uses a flat array
 			wfRunHooks( 'SkinTemplateNavigation', array( &$this, &$links ) );
 
@@ -713,7 +722,7 @@ class VectorTemplate extends QuickTemplate {
 	<h5><?php $this->msg('views') ?></h5>
 	<ul <?php $this->html('userlangattributes') ?>>
 		<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
-			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo (array_key_exists('img',$link) ?  '<img src="'.$link['img'].'" alt="'.$link['text'].'" />' : '<span>'.htmlspecialchars( $link['text'] ).'</span>') ?></a></li>
+			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><span><?php echo htmlspecialchars( $link['text'] ) ?></span></a></li>
 		<?php endforeach; ?>
 	</ul>
 </div>

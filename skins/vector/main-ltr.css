@@ -24,9 +24,8 @@ body {
 	font-size: 1em;
 }
 body {
+	background-color: #f3f3f3;
 	background-image: url(images/page-base.png);
-	background-color: #f9f9f9;
-	color: #000000;
 }
 /* Content */
 #content {
@@ -187,14 +186,14 @@ body {
 	div.vectorTabs li.selected a span,
 	div.vectorTabs li.selected a:visited
 	div.vectorTabs li.selected a:visited span {
-		color: #be5900;
+		color: #333333;
 		text-decoration: none;
 	}
 	div.vectorTabs li.new a,
 	div.vectorTabs li.new a span,
 	div.vectorTabs li.new a:visited,
 	div.vectorTabs li.new a:visited span {
-		color: #990000;
+		color: #a55858;
 	}
 	/* Variants and Actions */
 	/* @noflip */
@@ -591,11 +590,11 @@ body {
 /* Links */
 a {
 	text-decoration: none;
-	color: #003cb3;
+	color: #0645ad;
 	background: none;
 }
 a:visited {
-	color: #004d99;
+	color: #0b0080;
 }
 a:active {
 	color: #faa700;
@@ -607,7 +606,7 @@ a.stub {
 	color: #772233;
 }
 a.new, #p-personal a.new {
-	color: #990000;
+	color: #ba0000;
 }
 a.new:visited, #p-personal a.new:visited {
 	color: #a55858;
@@ -639,7 +638,7 @@ h6 {
 	margin: 0;
 	padding-top: .5em;
 	padding-bottom: .17em;
-	border-bottom: 1px solid #8d8d8d;
+	border-bottom: 1px solid #aaa;
 	width: auto;
 }
 h1 { font-size: 188%; }
@@ -766,8 +765,8 @@ select {
 #toc,
 .toc,
 .mw-warning {
-	border: 1px solid #c0c0c0;
-	background-color: #f0f0f0;
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
 	padding: 5px;
 	font-size: 95%;
 }
@@ -827,16 +826,15 @@ div.thumb {
 	background-color: transparent;
 }
 div.thumbinner {
-	border: 1px solid #c0c0c0;
+	border: 1px solid #ccc;
 	padding: 3px !important;
-	background-color: #f0f0f0;
+	background-color: #f9f9f9;
 	font-size: 94%;
 	text-align: center;
 	overflow: hidden;
 }
 html .thumbimage {
-	border: 1px solid #c0c0c0;
-	background-color: #f0f0f0;
+	border: 1px solid #ccc;
 }
 html .thumbcaption {
 	border: none;
@@ -956,7 +954,6 @@ h3, h4, h5 {
 	line-height: 1.2em;
 	font-size: 1.6em;
 	padding-bottom: 0;
-	color:#005780;
 }
 #content a.external,
 #content a[href ^="gopher://"] {
@@ -1034,6 +1031,7 @@ h3, h4, h5 {
 	padding-left: 15px !important;
 	text-transform: none;
 }
+
 .toccolours {
 	border: 1px solid #aaa;
 	background-color: #f9f9f9;
@@ -1044,48 +1042,10 @@ h3, h4, h5 {
 	position: relative;
 	width: 100%;
 }
-
 #mw-js-message {
 	font-size: 0.8em;
 }
 div#bodyContent {
 	line-height: 1.5em;
 }
-/* Watch/Unwatch Icon Styling */
-#ca-unwatch.icon,
-#ca-watch.icon {
-}
-#ca-unwatch.icon a,
-#ca-watch.icon a {
-	margin: 0;
-	padding: 0;
-	outline: none;
-	display: block;
-	width: 26px;
-	height: 2.5em;
-}
-#ca-unwatch.icon a {
-	background-image: url(images/watch-icons.png);
-	background-position: -43px 60%;
-}
-#ca-watch.icon a {
-	background-image: url(images/watch-icons.png);
-	background-position: 5px 60%;
-}
-#ca-unwatch.icon a:hover {
-	background-image: url(images/watch-icons.png);
-	background-position: -67px 60%;
-}
-#ca-watch.icon a:hover {
-	background-image: url(images/watch-icons.png);
-	background-position: -19px 60%;
-}
-#ca-unwatch.icon a.loading,
-#ca-watch.icon a.loading {
-	background-image: url(images/watch-icon-loading.gif);
-	background-position: center 60%;
-}
-#ca-unwatch.icon a span,
-#ca-watch.icon a span {
-	display: none;
-}
+

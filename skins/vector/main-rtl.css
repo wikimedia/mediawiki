@@ -1042,7 +1042,6 @@ h3, h4, h5 {
 	position: relative;
 	width: 100%;
 }
-
 #mw-js-message {
 	font-size: 0.8em;
 }
@@ -1050,71 +1049,4 @@ div#bodyContent {
 	line-height: 1.5em;
 }
 
-
-
-/* Babaco color scheme */
-/* Still working on this. Needs incorporated above once it's closer to final */
-body {
-	background-color: #f9f9f9;
-	color: #000000;
-}
-a {
-	color: #003cb3;
-}
-a.new {
-	color: #990000;
-}
-
-a:visited,
-div.vectorTabs li.selected a:visited div.vectorTabs li.selected a:visited span {
-	color: #260e9c;
-}
-
-html .thumbimage,
-#toc, .toc, .mw-warning, div.thumbinner {
-	border-color: #c0c0c0;
-	background-color: #f0f0f0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	border-color: #8d8d8d;
-}
-
-/* Watch/Unwatch Icon Styling */
-#ca-unwatch.icon,
-#ca-watch.icon {
-}
-#ca-unwatch.icon a,
-#ca-watch.icon a {
-	margin: 0;
-	padding: 0;
-	outline: none;
-	display: block;
-	width: 26px;
-	height: 2.5em;
-}
-#ca-unwatch.icon a {
-	background-image: url(images/watch-icons.png);
-	background-position: -43px 60%;
-}
-#ca-watch.icon a {
-	background-image: url(images/watch-icons.png);
-	background-position: 5px 60%;
-}
-#ca-unwatch.icon a:hover {
-	background-image: url(images/watch-icons.png);
-	background-position: -67px 60%;
-}
-#ca-watch.icon a:hover {
-	background-image: url(images/watch-icons.png);
-	background-position: -19px 60%;
-}
-#ca-unwatch.icon a.loading,
-#ca-watch.icon a.loading {
-	background-image: url(images/watch-icon-loading.gif);
-	background-position: center 60%;
-}
-#ca-unwatch.icon a span,
-#ca-watch.icon a span {
-	display: none;
-}
+	
