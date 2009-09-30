@@ -1079,7 +1079,7 @@ $wgMessageStructure = array(
 		'right-bigdelete',
 		'right-deleterevision',
 		'right-deletedhistory',
-		'right-deletedcontent',
+		'right-deletedtext',
 		'right-browsearchive',
 		'right-undelete',
 		'right-suppressrevision',
