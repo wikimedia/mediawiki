@@ -821,7 +821,7 @@ class ImageHistoryList {
 			. $navLinks . "\n"
 			. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
 			. '<tr><td></td>'
-			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deletedrevision') ) ? '<td></td>' : '' )
+			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deletedhistory') ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
 			. ( $this->showThumb ? '<th>' . wfMsgHtml( 'filehist-thumb' ) . '</th>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
@@ -847,7 +847,7 @@ class ImageHistoryList {
 		$row = $css = $selected = '';
 
 		// Deletion link
-		if( $local && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deletedrevision') ) ) {
+		if( $local && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deletedhistory') ) ) {
 			$row .= '<td>';
 			# Link to remove from history
 			if( $wgUser->isAllowed( 'delete' ) ) {
@@ -861,7 +861,7 @@ class ImageHistoryList {
 				);
 			}
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
-			if( $wgUser->isAllowed('deleterevision') || ($wgUser->isAllowed('deletedrevision') && $file->getVisibility()) ) {
+			if( $wgUser->isAllowed('deleterevision') || ($wgUser->isAllowed('deletedhistory') && $file->getVisibility()) ) {
 				if( $wgUser->isAllowed('delete') ) {
 					$row .= '<br/>';
 				}

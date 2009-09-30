@@ -90,13 +90,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	);
 
 	public function __construct() {
-		parent::__construct( 'Revisiondelete', 'deletedrevision' );
+		parent::__construct( 'Revisiondelete', 'deletedhistory' );
 	}
 
 	public function execute( $par ) {
 		global $wgOut, $wgUser, $wgRequest;
-		if( !$wgUser->isAllowed( 'deletedrevision' ) ) {
-			$wgOut->permissionRequired( 'deletedrevision' );
+		if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+			$wgOut->permissionRequired( 'deletedhistory' );
 			return;
 		} else if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
@@ -261,7 +261,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return;
 		}
 		if( !$oimage->userCan(File::DELETED_FILE) ) {
-			$wgOut->permissionRequired( 'suppressrevision' );
+			if( $oimage->isDeleted( File::DELETED_RESTRICTED ) ) {
+				$wgOut->permissionRequired( 'suppressrevision' );
+			} else {
+				$wgOut->permissionRequired( 'deletedtext' );
+			}
 			return;
 		}
 		if ( !$wgUser->matchEditToken( $this->token, $archiveName ) ) {

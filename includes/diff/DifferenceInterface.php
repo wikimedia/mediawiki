@@ -318,7 +318,7 @@ CONTROL;
 		}
 
 		$rdel = ''; $ldel = '';
-		if( $wgUser->isAllowed( 'deletedrevision' ) ) {
+		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
 			// Don't show useless link to people who cannot hide revisions
 			if( $this->mOldRev->getVisibility() || $wgUser->isAllowed( 'deleterevision' ) ) {
 				if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {

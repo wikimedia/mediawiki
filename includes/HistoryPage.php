@@ -351,7 +351,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Xml::hidden( 'title', $this->title->getPrefixedDbKey() ) . "\n";
 
 		$this->buttons = '<div>';
-		if( $wgUser->isAllowed('deletedrevision') ) {
+		if( $wgUser->isAllowed('deletedhistory') ) {
 			$this->buttons .= Xml::element( 'button',
 				array(
 					'type' => 'submit',
@@ -464,7 +464,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$s = "($curlink) ($lastlink) $diffButtons";
 
-		if( $wgUser->isAllowed( 'deletedrevision' ) ) {
+		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
 			// Don't show useless link to people who cannot hide revisions
 			if( !$rev->getVisibility() && !$wgUser->isAllowed( 'deleterevision' ) ) {
 				$del = Xml::check( 'deleterevisions', false, array('class' => 'mw-revdelundel-hidden') );

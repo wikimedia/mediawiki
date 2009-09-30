@@ -377,11 +377,11 @@ class ArchivedFile
 	 */
 	public function userCan( $field ) {
 		$this->load();
-		if( ($this->deleted & $field) == $field ) {
+		if( $this->deleted & $field ) {
 			global $wgUser;
-			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
+			$permission = ( $this->deleted & File::DELETED_RESTRICTED )
 				? 'suppressrevision'
-				: 'deletedrevision';
+				: ( $field & File::DELETED_FILE ) ? 'deletedtext' : 'deletedhistory';
 			wfDebug( "Checking for $permission due to $field match on $this->deleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
