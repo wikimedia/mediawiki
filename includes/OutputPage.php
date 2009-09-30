@@ -28,8 +28,9 @@ class OutputPage {
 	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
 	var $mIsArticleRelated = true;
 	protected $mParserOptions = null; // lazy initialised, use parserOptions()
-	var $mShowFeedLinks = false;
-	var $mFeedLinksAppendQuery = false;
+	
+	var $mFeedLinks = array();
+	
 	var $mEnableClientCache = true;
 	var $mArticleBodyOnly = false;
 
@@ -575,14 +576,30 @@ class OutputPage {
 	public function isArticle() { return $this->mIsarticle; }
 	public function setPrintable() { $this->mPrintable = true; }
 	public function isPrintable() { return $this->mPrintable; }
-	public function setSyndicated( $show = true ) { $this->mShowFeedLinks = $show; }
-	public function isSyndicated() { return $this->mShowFeedLinks; }
-	public function setFeedAppendQuery( $val ) { $this->mFeedLinksAppendQuery = $val; }
 	public function getFeedAppendQuery() { return $this->mFeedLinksAppendQuery; }
 	public function setOnloadHandler( $js ) { $this->mOnloadHandler = $js; }
 	public function getOnloadHandler() { return $this->mOnloadHandler; }
 	public function disable() { $this->mDoNothing = true; }
 	public function isDisabled() { return $this->mDoNothing; }
+	
+	public function setSyndicated( $show = true ) { $this->mShowFeedLinks = $show; }
+	
+	public function setFeedAppendQuery( $val ) {
+		global $wgFeedClasses;
+		
+		$this->mFeedLinks = array();
+		
+		foreach( $wgFeedClasses as $type => $class ) {
+			$query = "feed=$type&".$val;
+			$this->mFeedLinks[$type] = $this->getTitle()->getLocalURL( $query );
+		}
+	}
+	
+	public function addFeedLink( $format, $href ) {
+		$this->mFeedLinks[$format] = $href;
+	}
+	
+	public function isSyndicated() { return count($this->mFeedLinks); }
 
 	public function setArticleRelated( $v ) {
 		$this->mIsArticleRelated = $v;
@@ -1916,22 +1933,8 @@ class OutputPage {
 	 * Return URLs for each supported syndication format for this page.
 	 * @return array associating format keys with URLs
 	 */
-	public function getSyndicationLinks() {
-		global $wgFeedClasses;
-		$links = array();
-
-		if( $this->isSyndicated() ) {
-			if( is_string( $this->getFeedAppendQuery() ) ) {
-				$appendQuery = "&" . $this->getFeedAppendQuery();
-			} else {
-				$appendQuery = "";
-			}
-
-			foreach( $wgFeedClasses as $format => $class ) {
-				$links[$format] = $this->getTitle()->getLocalUrl( "feed=$format{$appendQuery}" );
-			}
-		}
-		return $links;
+	public function getSyndicationLinks() {		
+		return $this->mFeedLinks;
 	}
 
 	/**
