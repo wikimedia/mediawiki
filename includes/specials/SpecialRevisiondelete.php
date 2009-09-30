@@ -1474,7 +1474,7 @@ class RevDel_FileItem extends RevDel_Item {
 	 * Overridden by RevDel_ArchivedFileItem.
 	 */
 	protected function getLink() {
-		global $wgLang;
+		global $wgLang, $wgUser;
 		$date = $wgLang->timeanddate( $this->file->getTimestamp(), true  );		
 		if ( $this->isDeleted() ) {
 			# Hidden files...
@@ -1486,7 +1486,8 @@ class RevDel_FileItem extends RevDel_Item {
 					$date, array(), 
 					array(
 						'target' => $this->list->title->getPrefixedText(),
-						'file' => $this->file->sha1 . '.' . $this->file->getExtension() 
+						'file'   => $this->file->getArchiveName(),
+						'token'  => $wgUser->editToken( $this->file->getArchiveName() )
 					)
 				);
 			}
