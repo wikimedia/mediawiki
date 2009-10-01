@@ -26,14 +26,14 @@ var MV_EMBED_VERSION = '1.0r19';
  * Configuration variables should be set by extending mwConfigOptions
  * here is the default config: 
  */
-var mwConfig = {
+var mwDefaultConfig = {
 	'skin_name': 'mvpcf',
 	'jui_skin': 'redmond',
 	'video_size':'400x300'
 }
 
-if( !mwConfigOptions )
-	var mwConfigOptions = {};
+if( !mwConfig )
+	var mwConfig = {};
 
 // Install the default config values for anything not set in mwConfig
 
@@ -154,7 +154,7 @@ function lcCssPath( cssSet ) {
  * this once for PHP & JavaScript)
  *
  * This is more verbose than the earlier version that compressed paths
- * but it's all good, gzipping helps compress repetetive path strings
+ * but it's all good, gzipping helps compress path strings
  * grouped by directory.
  *
  * Right now the PHP AutoLoader only reads this mv_embed.js file.
@@ -175,8 +175,8 @@ lcPaths({
 	"$j.fn.simpleUploadForm": "libAddMedia/simpleUploadForm.js",
 
 	"ctrlBuilder"	: "skins/ctrlBuilder.js",
-	"kskin"			: "skins/kskin/kskin.js",
-	"mvpcf"			: "skins/mvpcf/mvpcf.js",
+	"kskinConfig"	: "skins/kskin/kskin.js",
+	"mvpcfConfig"	: "skins/mvpcf/mvpcf.js",
 
 	"$j.secureEvalJSON"	: "jquery/plugins/jquery.secureEvalJSON.js",
 	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
@@ -237,7 +237,6 @@ lcPaths({
 	"mvTimedEffectsEdit": "libSequencer/mvTimedEffectsEdit.js",
 
 	"mvTextInterface"	: "libTimedText/mvTextInterface.js"
-
 });
 
 // Dependency mapping for CSS files for self-contained included plugins:
@@ -559,12 +558,15 @@ var mvJsLoader = {
 				_global['$j'] = jQuery.noConflict();
 				
 				//setup our global settings using the (jQuery helper) 
-				$j.extend( mwConfig, mwConfigOptions);
+				mwConfig = $j.extend( mwDefaultConfig, mwConfig);								
 				
 				// Set up the skin path
 				_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
 				_global['mv_skin_img_path'] = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 				_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';
+				
+				//setup skin dependent dependencies 
+				lcCssPath({'embedVideo'		: 'skins/' + mwConfig['skin_name'] + '/playerSkin.css'});				
 				
 				// Make sure the skin/style sheets are always available:
 				loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
@@ -577,7 +579,7 @@ var mvJsLoader = {
 				});
 				
 				js_log( 'jQuery loaded into $j' );
-				// Set up mvEmbed jQuery bindings:
+				// Set up mvEmbed jQuery bindings and config based dependencies
 				mv_jqueryBindings();
 			}
 			// Run the callback
@@ -591,19 +593,24 @@ var mvJsLoader = {
 		js_log( 'embedVideoCheck:' );		
 		// Make sure we have jQuery
 		_this.jQueryCheck( function() {
+			//set class videonojs to hidden
 			$j('.videonojs').html( gM('mwe-loading_txt') );
-			//Set up the embed video player class request: 
+			//Set up the embed video player class request: (include the skin js as well)  
 			var depReq = [
 				[
 					'$j.ui',
 					'embedVideo',
 					'ctrlBuilder',
-					'$j.cookie'
+					'$j.cookie'					
 				],
 				[
 					'$j.ui.slider'
 				]
-			];
+			];					
+			//add skin if set: 
+			if( mwConfig['skin_name'] )
+				depReq[0].push( mwConfig['skin_name'] + 'Config' );
+			
 			// Add PNG fix if needed:
 			if( $j.browser.msie || $j.browser.version < 7 )
 				depReq[0].push( '$j.fn.pngFix' );
@@ -708,62 +715,10 @@ var mwAddOnloadHook = js2AddOnloadHook;
  */
 function rewrite_by_id( vid_id, ready_callback ) {
 	js_log( 'f:rewrite_by_id: ' + vid_id );
-	// Force a recheck of the DOM for playlist or video elements:
+	// Force a re-check of the DOM for playlist or video elements:
 	mvJsLoader.embedVideoCheck( function() {
 		mv_video_embed( ready_callback, vid_id );
 	});
-}
-// Deprecated in favor of updates to OggHandler
-function rewrite_for_OggHandler( vidIdList ){
-	for( var i = 0; i < vidIdList.length; i++ ) {
-		var vidId = vidIdList[i];
-		js_log( 'looking at vid: ' + i +' ' + vidId );
-		// Grab the thumbnail and src of the video
-		var pimg = $j( '#' + vidId + ' img' );
-		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
-		var pwidth = pimg.attr( 'width' );
-		var pheight = pimg.attr( 'height' );
-
-		var type_attr = '';
-		// Check for audio
-		if( pwidth == '22' && pheight == '22' ) {
-			pwidth = '400';
-			pheight = '300';
-			type_attr = 'type="audio/ogg"';
-			poster_attr = '';
-		}
-
-		// Parsed values:
-		var src = '';
-		var duration = '';
-
-		var re = new RegExp( /videoUrl(&quot;:?\s*)*([^&]*)/ );
-		src = re.exec( $j( '#'+vidId).html() )[2];
-
-		var re = new RegExp( /length(&quot;:?\s*)*([^&]*)/ );
-		duration = re.exec( $j( '#'+vidId).html() )[2];
-
-		var re = new RegExp( /offset(&quot;:?\s*)*([^&]*)/ );
-		offset = re.exec( $j( '#'+vidId).html() )[2];
-		var offset_attr = offset ? 'startOffset="' + offset + '"' : '';
-
-		if( src ) {
-			// Replace the top div with the mv_embed based player:
-			var vid_html = '<video id="vid_' + i +'" '+
-					'src="' + src + '" ' +
-					poster_attr + ' ' +
-					type_attr + ' ' +
-					offset_attr + ' ' +
-					'duration="' + duration + '" ' +
-					'style="width:' + pwidth + 'px;height:' +
-						pheight + 'px;"></video>';
-			//js_log("Video HTML: " + vid_html);
-			$j( '#'+vidId ).html( vid_html );
-		}
-
-		// Rewrite that video ID:
-		rewrite_by_id( 'vid_' + i );
-	}
 }
 
 
@@ -922,7 +877,8 @@ function mv_jqueryBindings() {
 				],
 				[
 					'$j.ui.progressbar',
-					'$j.ui.dialog'
+					'$j.ui.dialog',
+					'$j.ui.draggable'
 				]
 			];
 			if( iObj.encoder_interface ) {
@@ -1001,12 +957,12 @@ function mv_jqueryBindings() {
 			return '<a href="' + href + '" ' + target_attr + style_attr + 
 				' class="ui-state-default ui-corner-all ui-icon_link ' +
 				className + '"><span class="ui-icon ui-icon-' + iconId + '" />' +
-				msg + '</a>';
+				'<span class="btnText">'+ msg +'<span></a>';
 		}
 		// Shortcut to bind hover state
-		$.fn.btnBind = function() {
+		$.fn.btnBind = function() {		
 			$j( this ).hover(
-				function() {
+				function() {					
 					$j( this ).addClass( 'ui-state-hover' );
 				},
 				function() {

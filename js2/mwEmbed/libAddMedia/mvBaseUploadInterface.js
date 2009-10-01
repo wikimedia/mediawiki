@@ -666,7 +666,7 @@ mvBaseUploadInterface.prototype = {
 	  var _this = this;
 	  
 	  //remove old instance:
-	  if($j('#upProgressDialog').length!=0){
+	  if($j('#upProgressDialog').length !=0 ){
 		 $j('#upProgressDialog').dialog( 'destroy' ).remove();
 	  }
 	  //re add it:
@@ -676,6 +676,7 @@ mvBaseUploadInterface.prototype = {
 		  title:_this.getProgressTitle(),
 		  bgiframe: true,
 		  modal: true,
+		  draggable:true,
 		  width:400,
 		  heigh:200,
 		  beforeclose: function(event, ui) {
@@ -688,9 +689,8 @@ mvBaseUploadInterface.prototype = {
 		  },
 		  buttons: _this.cancel_button()
 	  });
-	  $j('#upProgressDialog').html(
-	  	//set initial content:
-		'<div id="up-pbar-container" style="width:90%;height:15px;" >' +
+	  $j('#upProgressDialog').html(	  	
+		'<div id="up-pbar-container" style="width:90%;height:15px;" >' +		
 		'<div id="up-progressbar" style="height:15px;"></div>' +
 			'<div id="up-status-container">'+
 				'<span id="up-pstatus">0% - </span> ' +
@@ -705,7 +705,6 @@ mvBaseUploadInterface.prototype = {
 	  $j('#up-progressbar').progressbar({
 		  value:0
 	  });
-
 	},
 	cancel_button:function(){
 	   var _this = this;
