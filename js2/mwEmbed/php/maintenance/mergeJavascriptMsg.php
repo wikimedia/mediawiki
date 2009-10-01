@@ -27,37 +27,46 @@ This script helps merge msgs between javascript and php
 Usage:
 	-j merges javascript msgs into php
 	-p merges php msgs back into javascript
+	-q will disable screen output and wait time
 
 <?php
 die();
 }
 
 // get options (like override JS or override PHP)
-if ($argc != 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
+if ( in_array($argv[1], array('--help', '-help', '-h', '-?')) ) {
 	print_help();
 }
 $mergeToPhp = $mergeToJS = false;
-
-if( $argv[1] == '-j' ){
-	$mergeToPhp = true;
-}else if( $argv[1] == '-p' ) {
-	$mergeToJS = true;
-}else{
-	print_help();
+$showInfo = true;
+foreach($argv as $arg){
+	if( $arg == '-j' ){
+		$mergeToPhp = true;
+	}else if( $arg == '-p' ) {
+		$mergeToJS = true;
+	}else if( $arg == '-q'){
+		$showInfo = false;
+	}else if( $arg == 'mergeJavascriptMsg.php'){
+		//the script name do nothing
+	}else{
+		print_help();
+	}
 }
 
 
-if ( $mergeToPhp )
-print "Will merge *Javascript to PHP* in 3 seconds ";
+if($showInfo){
+	if ( $mergeToPhp )
+	print "Will merge *Javascript to PHP* in 3 seconds ";
 
-if ( $mergeToJS )
-print "Will merge *PHP to Javascript* in 3 seconds ";
+	if ( $mergeToJS )
+	print "Will merge *PHP to Javascript* in 3 seconds ";
 
-for ( $i = 0; $i < 3; $i++ ) {
-	print '.';
-	sleep( 1 );
+	for ( $i = 0; $i < 3; $i++ ) {
+		print '.';
+		sleep( 1 );
+	}
+	print "\n";
 }
-print "\n";
 
 // read in mwEmbed.i18n.php
 $rawLangFile = file_get_contents( $mwLangFilePath );
@@ -65,7 +74,8 @@ $rawLangFile = file_get_contents( $mwLangFilePath );
 $startInx = strpos( $rawLangFile, $mwSTART_MSG_KEY ) + strlen( $mwSTART_MSG_KEY );
 $endInx = strpos( $rawLangFile, $mwEND_MSG_KEY ) + 1;
 if ( $startInx === false || $endInx === false ) {
-	print "Could not find $mwSTART_MSG_KEY or $mwEND_MSG_KEY in mwEmbed.i18n.php\n";
+	if($showInfo)
+		print "Could not find $mwSTART_MSG_KEY or $mwEND_MSG_KEY in mwEmbed.i18n.php\n";
 	exit();
 }
 
@@ -96,13 +106,14 @@ foreach ( $objects as $fname => $object ) {
 // rebuild and output to single php file if mergeToPHP is on
 if ( $mergeToPhp ) {
 	if ( file_put_contents( $mwLangFilePath, trim( $preFile ) . "\n\t" . trim( $msgSet ) . "\n" . ltrim( $postFile ) ) ) {
-		print "updated $mwLangFilePath file\n";
+		if( $showInfo )
+			print "updated $mwLangFilePath file\n";
 		exit();
 	}
 }
 
 function doJsonMerge( $json_txt ) {
-	global $curFileName, $fname, $messages, $mergeToJS, $jsFileText;
+	global $curFileName, $fname, $messages, $mergeToJS, $jsFileText, $showInfo;
 
 	$outPhp = "\n\t/*\n";
 	$outPhp .= "\t * js file: {$curFileName}\n";
@@ -119,7 +130,8 @@ function doJsonMerge( $json_txt ) {
 			if ( isset( $messages['en'][$k] ) ) {
 				if ( $messages['en'][$k] != $v ) {
 					$doReplaceFlag = true;
-					print "'$k'does not match:\n" . $messages['en'][$k] . "\n!=\n" . $v . "\n";
+					if( $showInfo )
+						print "'$k'does not match:\n" . $messages['en'][$k] . "\n!=\n" . $v . "\n";
 				}
 				// add the actual value: (replace new lines (not compatible json)
 				// $jsMsgAry[$k] = str_replace("\n", '\\n', $messages['en'][$k]);
@@ -142,7 +154,8 @@ function doJsonMerge( $json_txt ) {
 			// print substr($str, 0, 600);
 
 			if ( file_put_contents( $fname, $str ) ) {
-				print "\nupdated $curFileName from php\n\n";
+				if( $showInfo )
+					print "\nupdated $curFileName from php\n\n";
 			} else {
 				die( "Could not write to: " . $fname );
 			}
@@ -151,7 +164,8 @@ function doJsonMerge( $json_txt ) {
 		return $outPhp;
 
 	} else {
-		print "Could not get any json vars from: $curFileName\n";
+		if($showInfo)
+			print "Could not get any json vars from: $curFileName\n";
 		return '';
 	}
 }

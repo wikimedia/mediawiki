@@ -120,6 +120,8 @@ $messages['en'] = array(
 	'fogg-transcoding' => 'Encoding video to Ogg',
 	'fogg-encoding-done' => 'Encoding complete',
 	'fogg-badtoken' => 'Token is not valid',
+	'fogg-preview' => 'Preview video',
+	'fogg-hidepreview' => 'Hide preview',
 
 	/*
 	 * js file: /libAddMedia/searchLibs/baseRemoteSearch.js
@@ -294,7 +296,7 @@ $messages['qqq'] = array(
 	'mwe-loading_txt' => '{{Identical|Loading}}',
 	'mwe-loading_title' => '{{Identical|Loading}}',
 	'mwe-error_load_lib' => 'Parameters:
-* $1 Corresponds to the JavaScript file that was not retrievable or does not define its class name. 
+* $1 Corresponds to the JavaScript file that was not retrievable or does not define its class name.
 * $2 Is the class name that was associated with the JavaScript file that was not found or could not be retrieved.',
 	'fogg-help-sticky' => 'This is the tooltip message for the help icon. Mousing over this icon displays the help message. This tooltip tells the user that when they click the icon the help message will remain displayed.',
 	'rsd_results_next' => '{{Identical|Next}}',
