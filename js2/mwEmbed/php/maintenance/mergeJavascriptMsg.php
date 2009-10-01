@@ -39,15 +39,15 @@ if ( in_array($argv[1], array('--help', '-help', '-h', '-?')) ) {
 }
 $mergeToPhp = $mergeToJS = false;
 $showInfo = true;
-foreach($argv as $arg){
+foreach($argv as $inx => $arg){
+	if($inx == 0)
+		continue;
 	if( $arg == '-j' ){
 		$mergeToPhp = true;
 	}else if( $arg == '-p' ) {
 		$mergeToJS = true;
 	}else if( $arg == '-q'){
 		$showInfo = false;
-	}else if( $arg == 'mergeJavascriptMsg.php'){
-		//the script name do nothing
 	}else{
 		print_help();
 	}
