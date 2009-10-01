@@ -38,8 +38,8 @@ class ReassignEdits extends Maintenance {
 	public function execute() {
 		if( $this->hasArg(0) && $this->hasArg(1) ) {
 			# Set up the users involved
-			$from =& $this->initialiseUser( $this->getArg(0) );
-			$to   =& $this->initialiseUser( $this->getArg(1) );
+			$from = $this->initialiseUser( $this->getArg(0) );
+			$to   = $this->initialiseUser( $this->getArg(1) );
 	
 			# If the target doesn't exist, and --force is not set, stop here
 			if( $to->getId() || $this->hasOption('force') ) {
@@ -100,9 +100,9 @@ class ReassignEdits extends Maintenance {
 			if( $total ) {
 				# Reassign edits
 				$this->output( "\nReassigning current edits..." );
-				$res = $dbw->update( 'revision', userSpecification( $to, 'rev_user', 'rev_user_text' ), $this->userConditions( $from, 'rev_user', 'rev_user_text' ), __METHOD__ );
+				$res = $dbw->update( 'revision', $this->userSpecification( $to, 'rev_user', 'rev_user_text' ), $this->userConditions( $from, 'rev_user', 'rev_user_text' ), __METHOD__ );
 				$this->output( "done.\nReassigning deleted edits..." );
-				$res = $dbw->update( 'archive', userSpecification( $to, 'ar_user', 'ar_user_text' ), $this->userConditions( $from, 'ar_user', 'ar_user_text' ), __METHOD__ );
+				$res = $dbw->update( 'archive', $this->userSpecification( $to, 'ar_user', 'ar_user_text' ), $this->userConditions( $from, 'ar_user', 'ar_user_text' ), __METHOD__ );
 				$this->output( "done.\n" );
 				# Update recent changes if required
 				if( $rc ) {
