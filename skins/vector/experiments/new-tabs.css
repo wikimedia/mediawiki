@@ -3,19 +3,30 @@ body {
 	background-color: #f9f9f9;
 	color: #000000;
 }
+
+/* new border color */
+#content {
+	background-image: url(images/new-border.png);
+}
+#head-base {
+	background-image: url(images/new-border.png);
+}
+#footer {
+	background-image: url(images/new-border.png);
+}
 	body div#left-navigation,
-	body div#right-navigation{
-		top:3.15em;
+	body div#right-navigation {
+		top:3em;
 	}
-	body div#right-navigation{
-		margin-top:3.15em;
+	body div#right-navigation {
+		margin-top:3em;
 	}
 	body #p-search form, 
 	body #p-search input, 
 	body #simpleSearch {
 		margin-top:0;
 	}
-	body div#p-cactions{
+	body div#p-cactions {
 		margin-top:0;
 	}
 	/* Namespaces and Views */
@@ -43,9 +54,9 @@ body {
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body div.vectorTabs ul li {
-		line-height: 1.125em;
+		line-height: 1.3em;
 		display: inline-block;
-		height: 1.85em;
+		height: 2em;
 		margin: 0 1px 0 0;
 		padding: 0;
 		background:none;
@@ -63,9 +74,8 @@ body {
 		border-top:1px solid #c0c0c0;
 		border-left:1px solid #c0c0c0;
 		border-right:1px solid #c0c0c0;
-		border-bottom:1px solid #a7d7f9;
 		display: inline-block;
-		height: 1.75em;
+		height: 1.9em;
 		padding-left: 0.4em;
 		padding-right: 0.4em;
 		background-image:url(images/tab-fade.png);
@@ -101,7 +111,7 @@ body {
 		background-position:top right;
 		border:none;
 	}
-	body div.vectorTabs li.last a{
+	body div.vectorTabs li.last a {
 		margin-right:7px;
 		padding-left:0.4em;
 		padding-right:0;
@@ -118,7 +128,7 @@ body {
 		background-position:top left;
 		border:none;
 	}
-	body div.vectorTabs li.first a{
+	body div.vectorTabs li.first a {
 		margin-left:7px;
 		padding-left:0em;
 		padding-right:0.4em;
@@ -137,32 +147,31 @@ body {
 		text-decoration: none;
 	}
 
-	body div.vectorTabs li.selected a{
+	body div.vectorTabs li.selected a {
 		border-top:1px solid #6cc8f3;
 		border-right:1px solid #6cc8f3;
 		border-left:1px solid #6cc8f3;
-		border-bottom:#ffffff;
-		height: 1.8em;
 		background-color:#fff;
+		height:1.95em;
 		background-image:none;
 	}
-	body div.vectorTabs li.selected.first{
+	body div.vectorTabs li.selected.first {
 		background-image: url(images/tab-active-first.png);
 		background-repeat:no-repeat;
 		background-position:top left;
 	}
-	body div.vectorTabs li.selected.first a{
+	body div.vectorTabs li.selected.first a {
 		margin-left:7px;
 		padding-right:0.4em;
 		padding-left:0.2em;
 		border-left:none;
 	}
-	body div.vectorTabs li.selected.last{
+	body div.vectorTabs li.selected.last {
 		background-image: url(images/tab-active-last.png);
 		background-repeat:no-repeat;
 		background-position:top right;
 	}
-	body div.vectorTabs li.selected.last a{
+	body div.vectorTabs li.selected.last a {
 		margin-right:7px;
 		padding-left:0.4em;
 		padding-right:0.2em;
@@ -190,13 +199,16 @@ body {
 		border-right:1px solid #c0c0c0;
 		padding-left: 0;
 		margin-left: 0px;
+		background-image: none !important;
+		
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body div.vectorMenu h5 a {
 		display: inline-block;
 		width: 24px;
-		height:1.5em;
-		background-image: none;
+		height:1.7em;
+		background-image: none !important;
+		
 	}
 	/* IGNORED BY IE6 */
 	div.vectorMenu h5 > a {
@@ -204,6 +216,7 @@ body {
 	}
 	div.vectorMenu div.menu {
 		position: relative;
+		left:1px;
 		display: none;
 		clear: both;
 		text-align: left;
@@ -275,17 +288,17 @@ body {
 		text-decoration: none;
 	}
 #ca-unwatch.icon,
-#ca-watch.icon{
+#ca-watch.icon {
 	background-color:#ffffff;
+	height:1.9em !important;
 	
 }
 #ca-unwatch.icon a,
 #ca-watch.icon a {
-	height: 1.75em !important;
-	padding-bottom:1px;
+	height: 1.9em !important;
 	border-bottom:none;
 }
 #ca-watch.icon a,
-#ca-unwatch.icon a{
+#ca-unwatch.icon a {
 	background-repeat:no-repeat;
 }
