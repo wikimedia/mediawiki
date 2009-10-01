@@ -604,10 +604,10 @@ $2',
 'logout'                     => '退出',
 'userlogout'                 => '退出',
 'notloggedin'                => '未登录',
-'nologin'                    => "您还没有账户吗？'''$1'''。",
+'nologin'                    => '您还没有账户吗？$1。',
 'nologinlink'                => '创建新账户',
 'createaccount'              => '创建新账户',
-'gotaccount'                 => "已经拥有账户？'''$1'''。",
+'gotaccount'                 => '已经拥有账户？$1。',
 'gotaccountlink'             => '登录',
 'createaccountmail'          => '通过电子邮件',
 'badretype'                  => '您所输入的密码并不相同。',
@@ -928,6 +928,9 @@ $2',
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的信息。",
 'rev-deleted-unhide-diff'     => "该页面的其中一次修订已经被'''删除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的信息。
+作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
+'rev-suppressed-unhide-diff'  => "该页面的其中一次修订已经被'''废止'''。
+在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中可能有更多的资料。
 作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
 'rev-delundel'                => '显示/隐藏',
 'revisiondelete'              => '删除/恢复删除修订',
@@ -1378,6 +1381,7 @@ $1",
 'right-reset-passwords'       => '重设其他用户的密码',
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-versiondetail'         => '显示延伸软件版本的资料',
+'right-sendemail'             => '发电子邮件给其他用户',
 
 # User rights log
 'rightslog'      => '用户权限日志',
