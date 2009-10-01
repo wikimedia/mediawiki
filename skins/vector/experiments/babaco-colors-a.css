@@ -1,19 +1,6 @@
 /* Babaco Color Scheme A */
-
-/* Still working on this */
-body {
-	background-color: #f9f9f9;
-	color: #000000;
-}
-a {
-	color: #003cb3;
-}
-a.new {
-	color: #990000;
-}
-
 a:visited,
-div.vectorTabs li.selected a:visited div.vectorTabs li.selected a:visited span {
+a:visited div.vectorTabs li.selected a:visited span {
 	color: #260e9c;
 }
 
@@ -23,6 +10,75 @@ html .thumbimage,
 	background-color: #f0f0f0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	border-color: #8d8d8d;
+/* Framework */
+body {
+	background-color: #f9f9f9;
+	color: #000000;
+}
+/* Links */
+a {
+	color: #003cb3;
+}
+a:visited {
+	color: #004d99;
+}
+a:active {
+	color: #be5900;
+}
+a.stub {
+	color: #772233;
+}
+a.new, #p-personal a.new {
+	color: #990000 !important;
+}
+a.new:visited, #p-personal a.new:visited {
+	color: #a55858;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	border-color:#8d8d8d;
+}
+body div.vectorTabs li.selected a,
+body div.vectorTabs li.selected a span,
+body div.vectorTabs li.selected a:visited
+body div.vectorTabs li.selected a:visited span {
+	color: #be5900 !important;
+}
+div.vectorTabs li.new a, 
+div.vectorTabs li.new a span, 
+div.vectorTabs li.new a:visited, 
+div.vectorTabs li.new a:visited span {
+	color:#990000;
+}
+/* Table of Contents */
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #c0c0c0;
+	background-color: #f0f0f0;
+}
+div.thumbinner {
+	border: 1px solid #c0c0c0;
+	background-color: #f0f0f0;
+}
+html .thumbimage {
+	border: 1px solid #c0c0c0;
+	background-color: #f0f0f0;
+}
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
+/* User Message */
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+}
+#firstHeading {
+	color:#005780;
 }
