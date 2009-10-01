@@ -466,10 +466,10 @@ $2',
 'logout'                     => '去簿',
 'userlogout'                 => '去簿',
 'notloggedin'                => '尚未登簿',
-'nologin'                    => "無簿乎？往'''$1'''。",
+'nologin'                    => '無簿乎？往$1。',
 'nologinlink'                => '增簿',
 'createaccount'              => '增簿',
-'gotaccount'                 => "有簿矣哉？往'''$1'''。",
+'gotaccount'                 => '有簿矣哉？往$1。',
 'gotaccountlink'             => '登簿',
 'createaccountmail'          => '同郵',
 'badretype'                  => '符節不合也。',
@@ -740,6 +740,9 @@ $2',
 'rev-deleted-unhide-diff'     => "此審'''刪'''矣，
 詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。
 有秩仍看者，[$1 看此審]也。",
+'rev-suppressed-unhide-diff'  => "此審'''廢'''矣，
+詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。
+有秩仍看者，[$1 看此審]也。",	
 'rev-delundel'                => '見/藏',
 'revisiondelete'              => '刪、還審',
 'revdelete-nooldid-title'     => '無此審。',
@@ -1180,6 +1183,7 @@ $1",
 'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
 'right-versiondetail'         => '示延用之版',
+'right-sendemail'             => '擬書傳予他簿',
 
 # User rights log
 'rightslog'  => '職權志',

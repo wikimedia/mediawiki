@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -582,10 +582,10 @@ $2',
 'logout'                     => '登出',
 'userlogout'                 => '登出',
 'notloggedin'                => '未登入',
-'nologin'                    => "您還沒有賬號嗎？'''$1'''。",
+'nologin'                    => "您還沒有賬號嗎？$1。",
 'nologinlink'                => '建立新賬號',
 'createaccount'              => '建立新賬號',
-'gotaccount'                 => "已經擁有賬號？'''$1'''。",
+'gotaccount'                 => "已經擁有賬號？$1。",
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過電郵',
 'badretype'                  => '您所輸入的密碼並不相同。',
@@ -908,6 +908,9 @@ $2',
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。",
 'rev-deleted-unhide-diff'     => "該頁面的其中一次修訂已經被'''刪除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。
+作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
+'rev-suppressed-unhide-diff'  => "該頁面的其中一次修訂已經被'''廢止'''。
+在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]中可能有更多的資料。
 作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
 'rev-delundel'                => '顯示/隱藏',
 'revisiondelete'              => '刪除/恢復刪除修訂',
@@ -1359,6 +1362,7 @@ $1",
 'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-versiondetail'         => '顯示延伸軟件版本的資料',
+'right-sendemail'             => '發電子郵件給其他用戶',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
