@@ -353,17 +353,23 @@ class Html {
 				# and we don't need <> escaped here, we may as well not call
 				# htmlspecialchars().  FIXME: verify that we actually need to
 				# escape \n\r\t here, and explain why, exactly.
-				if ( $wgHtml5 ) {
-					$ret .= " $key=$quote" . strtr( $value, array(
-						'&' => '&amp;',
-						'"' => '&quot;',
-						"\n" => '&#10;',
-						"\r" => '&#13;',
-						"\t" => '&#9;'
-					) ) . $quote;
-				} else {
-					$ret .= " $key=$quote" . Sanitizer::encodeAttribute( $value ) . $quote;
+				#
+				# We could call Sanitizer::encodeAttribute() for this, but we
+				# don't because we're stubborn and like our marginal savings on
+				# byte size from not having to encode unnecessary quotes.
+				$map = array(
+					'&' => '&amp;',
+					'"' => '&quot;',
+					"\n" => '&#10;',
+					"\r" => '&#13;',
+					"\t" => '&#9;'
+				);
+				if ( $wgWellFormedXml ) {
+					# '<' must be escaped in attributes for XML for some
+					# reason, per spec: http://www.w3.org/TR/xml/#NT-AttValue
+					$map['<'] = '&lt;';
 				}
+				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
 			}
 		}
 		return $ret;
