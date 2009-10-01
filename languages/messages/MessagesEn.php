@@ -1441,8 +1441,8 @@ There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.",
-'rev-suppressed-unhide-diff'     => "One of the revisions of this diff has been '''suppressed'''.
-There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
+'rev-suppressed-unhide-diff'  => "One of the revisions of this diff has been '''suppressed'''.
+There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.",
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
