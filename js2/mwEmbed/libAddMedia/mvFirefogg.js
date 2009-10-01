@@ -645,7 +645,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		var encodingStatus = function() {
 			var status = _this.fogg.status();
 
-			if( _this.show_preview == true ){
+			if( _this.show_preview == true && _this.fogg.state == 'encoding'){
 				_this.doRenderPreview();
 			}
 
@@ -709,26 +709,18 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 						'height': vH					
 					});
 					//if large video resize the dialog box:
-					if( vW > 400){ 
+					if( vW + 5 > 400){ 
 						//also resize the dialog box
-						$j('#upProgressDialog').parent().animate({
-							'width':  vW + 5,
-							'height' : vH + 30
-						});
+						$j('#upProgressDialog').dialog('option', 'width', vW + 20);	
+						$j('#upProgressDialog').dialog('option', 'height', 	vH + 120);	 			
 						
-						//also position the parent container				
-						$j('#upProgressDialog').parent().animate({
-							'left': ($j(document).width() - (vW + 5) )/2 ,
-							'top':  ($j(document).height() - (vH + 30) )/2						
-						});
+						//also position the dialog container				
+						$j('#upProgressDialog').dialog('option', 'position', 'center');
 					}
-				}
-				
-				//set flag to diplay video at res 
+				}								 
 				v.removeEventListener("loadedmetadata", resizeVid, true);
 				v.addEventListener("loadedmetadata", resizeVid, true);
-				v.load();
-				
+				v.load();				
 			}, 1000);
 		}
 	},
@@ -835,6 +827,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	  	    	this.action_done = true;
 	  	        this.fogg.cancel();
 	  	        $j(dlElm).empty().dialog('close');
+	  	        return false;
 	  	    }
 	  	} else{
 	  		return false;
