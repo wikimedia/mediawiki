@@ -585,7 +585,8 @@ abstract class AlphabeticPager extends IndexPager {
 				array( $pagingLinks['first'],
 				$pagingLinks['last'] )
 			) . ") " .
-			wfMsg( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
+			$pagingLinks['next'], $limits );
 
 		if( !is_array( $this->getIndexField() ) ) {
 			# Early return to avoid undue nesting
@@ -675,7 +676,11 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$this->mNavigationBar = "({$pagingLinks['first']}" .
 			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
 			"{$pagingLinks['last']}) " .
-			wfMsg( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			wfMsgHTML(
+				'viewprevnext',
+				$pagingLinks['prev'], $pagingLinks['next'],
+				$limits
+			);
 		return $this->mNavigationBar;
 	}
 
