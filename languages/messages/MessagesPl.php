@@ -1005,6 +1005,9 @@ Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/del
 'rev-deleted-unhide-diff'     => "Jedna z wersji tej strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 Jako administrator możesz [$1 obejrzeć porównanie wersji].",
+'rev-suppressed-unhide-diff'  => "Jedna z porównywanych wersji została '''ukryta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].
+Jako administrator możesz [$1 obejrzeć to porównanie wersji].",
 'rev-delundel'                => 'pokaż/ukryj',
 'revisiondelete'              => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'     => 'Nieprawidłowa wersja do przeprowadzenia operacji',

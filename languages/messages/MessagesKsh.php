@@ -1074,7 +1074,10 @@ Wann Ehr en [{{FULLURL:{{#spezial:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfi
 'rev-deleted-no-diff'         => "De kanns de Ongerscheide nit beloore, ein vun de Versione es '''fottjeschmeße'''.
 Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}].",
 'rev-deleted-unhide-diff'     => "Ein vun de Versione es '''fottjeschmeße'''.
-Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].
+Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}].
+Als ene Wiki_Köbes kanns De [$1 de Ungerscheide ävver aankike] wann De wells.",
+'rev-suppressed-unhide-diff'  => "Ein vun de Versione heh zwesche es '''verschtoche'''.
+Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:suppressionlog}}}}].
 Als ene Wiki_Köbes kanns De [$1 de Ungerscheide ävver aankike] wann De wells.",
 'rev-delundel'                => 'zeije/usblende',
 'revisiondelete'              => 'Versione fottschmieße un widder zeröck holle',
@@ -2832,7 +2835,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-ca-nstab-category'       => 'Dun die Saachjrupp aanzeije',
 'tooltip-minoredit'               => 'Deit Ding Änderunge als klein Mini-Änderunge markeere.',
 'tooltip-save'                    => 'Deit Ding Änderunge avspeichere.',
-'tooltip-preview'                 => 'Liss de Vör-Aansich vun dä Sigg un vun Dinge Änderunge ih datte en Avspeichere deis!',
+'tooltip-preview'                 => 'Liss de Vör-Aansich vun dä Sigg un vun Dinge Änderunge ih datte se Avspeichere deis!',
 'tooltip-diff'                    => 'Zeich Ding Änderunge am Tex aan.',
 'tooltip-compareselectedversions' => 'Dun de Ungerscheid zwesche dä beids usjewählde Versione zeije.',
 'tooltip-watch'                   => 'Op die Sigg hee oppasse.',

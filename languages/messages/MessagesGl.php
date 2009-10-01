@@ -971,11 +971,14 @@ Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'rev-deleted-unhide-diff'     => "Unha das revisións desta diferenza foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
 Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
+'rev-suppressed-unhide-diff'  => "Unha das revisións desta diferenza foi '''suprimida'''.
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
+Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-delundel'                => 'mostrar/agochar',
 'revisiondelete'              => 'Borrar/restaurar revisións',
 'revdelete-nooldid-title'     => 'Revisión inválida',
 'revdelete-nooldid-text'      => 'Non indicou a revisión ou revisións sobre as que realizar esta
-función, a revisión especificada non existe, ou está intentando agochar a revisión actual.',
+función, a revisión especificada non existe ou está intentando agochar a revisión actual.',
 'revdelete-nologtype-title'   => 'Non se especificou ningún tipo de rexistro',
 'revdelete-nologtype-text'    => 'Non especificou un tipo de rexistro co que levar a cabo esta acción.',
 'revdelete-nologid-title'     => 'Entrada de rexistro inválida',

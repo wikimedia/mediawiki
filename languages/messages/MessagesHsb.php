@@ -861,6 +861,9 @@ Hlej podrobnosće w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 
 'rev-deleted-unhide-diff'     => "Jedna z wersijow tutoho rozdźěla bu '''wušmórnjena'''.
 Podrobnosće hlej w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokol wušmórnjenjow].
 Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
+'rev-suppressed-unhide-diff'  => "Jedna z wersijow tutoho rozdźěla je so '''potłóčiła'''.
+Za podrobnosće hlej [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokol potłóčenjow].
+Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
 'rev-delundel'                => 'pokazać/schować',
 'revisiondelete'              => 'Wersije wušmórnyć/wobnowić',
 'revdelete-nooldid-title'     => 'Njepłaćiwa cilowa wersija',

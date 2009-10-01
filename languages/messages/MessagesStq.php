@@ -439,7 +439,7 @@ Dien Benutserkonto wuude iengjucht. Ferjeet nit, dien Ienstaalengen antoupaasjen
 'login'                      => 'Anmäldje',
 'nav-login-createaccount'    => 'Anmäldje',
 'loginprompt'                => 'Uum sik bie {{SITENAME}} anmäldje tou konnen, mouten Cookies aktivierd weese.',
-'userlogin'                  => 'Anmäldje',
+'userlogin'                  => 'Anmäldje / Benutserkonto moakje',
 'logout'                     => 'Oumäldje',
 'userlogout'                 => 'Oumäldje',
 'notloggedin'                => 'Nit anmälded',
@@ -611,7 +611,9 @@ Du koast $1 of aan fon do uur [[{{MediaWiki:Grouppage-sysop}}|Administratore]] k
 Dät Paaswoud foar dit näie Benutserkonto kon ap ju Spezioalsiede
 „[[Special:ChangePassword|Paaswoud annerje]]“ annerd wäide.',
 'newarticle'                       => '(Näi)',
-'newarticletext'                   => 'Hier dän Text fon dän näie Artikkel iendreege. Jädden bloot in ganse Satse schrieuwe un neen truch dät Uurheebergjucht schutsede Texte fon uur Ljuude kopierje.',
+'newarticletext'                   => "Du hääst n Link foulged ätter ne Siede, ju dät noch nit rakt.
+Uum ju Siede tou moakjen, dien Text fon dän näie Artikkel iendreege in ju unnerstoundene Box (sjuch ju [[{{MediaWiki:Helppage}}|Hälpesiede]] foar moor Informatione).
+Bäst du hier bie Fersjoon, klik ju '''Tourääch'''-Schaltfläche fon din Browser.",
 'anontalkpagetext'                 => "----''Dit is ju Diskussionssiede fon n uunbekoanden Benutser, die sik nit anmälded häd.
 Wail naan Noome deer is, wäd ju nuumeriske IP-Adrässe tou Identifizierenge ferwoand.
 Man oafte wäd sunne Adrässe fon moorere Benutsere ferwoand.
@@ -1699,7 +1701,7 @@ un die Artikkel wäd in ju [[Special:RecentChanges|fon do lääste Annerengen]] 
 
 Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede ap \"Ferjeet disse Siede\".",
 'removedwatch'         => 'Fon ju Beooboachtengsslieste ou hoald',
-'removedwatchtext'     => 'Ju Siede „<nowiki>$1</nowiki>“ wuude fon dien Beooboachtengslieste wächhoald.',
+'removedwatchtext'     => 'Ju Siede „[[:$1]]“ wuude fon dien [[Special:Watchlist|Beooboachtengslieste]] wächhoald.',
 'watch'                => 'Beooboachtje',
 'watchthispage'        => 'Siede beooboachtje',
 'unwatch'              => 'Nit moor beooboachtje',

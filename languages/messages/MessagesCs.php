@@ -328,7 +328,7 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Podtrhnout odkazy',
+'tog-underline'               => 'Podtrhávat odkazy:',
 'tog-highlightbroken'         => 'Formátovat odkazy na neexistující stránky <a href="" class="new">takto</a> (alternativa: takto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Zarovnat odstavce do bloku',
 'tog-hideminor'               => 'Skrýt malé editace v posledních změnách',
@@ -1070,6 +1070,9 @@ Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{f
 Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-deleted-unhide-diff'     => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
+'rev-suppressed-unhide-diff'  => "Jedna z revizí k tomuto porovnání byla '''utajena'''.
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].
 Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 'rev-delundel'                => 'skrýt/zobrazit',
 'revisiondelete'              => 'Smazat/obnovit revize',

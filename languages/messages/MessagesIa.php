@@ -927,6 +927,9 @@ Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page
 'rev-deleted-unhide-diff'     => "Un del versiones de iste diff ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
+'rev-suppressed-unhide-diff'  => "Un del versiones de iste diff ha essite '''supprimite'''.
+Il pote haber detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppresiones].
+Tu, qua administrator, pote totevia [$1 vider iste diff] si tu vole proceder.",
 'rev-delundel'                => 'revelar/celar',
 'revisiondelete'              => 'Deler/restaurar versiones',
 'revdelete-nooldid-title'     => 'Le version de destination es invalide',
@@ -1389,6 +1392,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-versiondetail'         => 'Monstrar le informationes complete super le versiones del software',
+'right-sendemail'             => 'Inviar e-mail a altere usatores',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',

@@ -687,6 +687,7 @@ $2',
 'userexists'                 => '입력하신 사용자 이름이 이미 등록되어 있습니다.
 다른 이름으로 만들어주십시오.',
 'loginerror'                 => '로그인 오류',
+'createaccounterror'         => '계정을 생성하지 못했습니다: $1',
 'nocookiesnew'               => '사용자 계정을 만들었지만, 아직 로그인하지 않았습니다. {{SITENAME}}에서는 로그인 정보를 저장하기 위해 쿠키를 사용합니다. 지금 사용하는 웹 브라우저는 쿠키를 사용하지 않도록 설정되어 있습니다. 로그인하기 전에 웹 브라우저에서 쿠키를 사용하도록 설정해주세요.',
 'nocookieslogin'             => '{{SITENAME}}에서는 로그인을 위해 쿠키를 사용합니다. 당신의 웹 브라우저에서 쿠키가 비활성되어 있습니다. 쿠키 사용을 활성화한 다음 로그인해 주세요.',
 'noname'                     => '사용자 이름이 올바르지 않습니다.',
@@ -836,7 +837,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 문서에 관련된 기록을 열람]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
 'noarticletext-nopermission'       => '이 문서는 내용이 없습니다.
 [[Special:Search/{{PAGENAME}}|이 문서의 제목을 검색]]하거나
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 관련 로그 찾아보기] 할 수 있습니다.</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 관련 로그]를 찾아볼 수 있습니다.</span>.',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'userpage-userdoesnotexist-view'   => '"$1" 사용자 계정은 등록되지 않았습니다.',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
@@ -1422,6 +1423,7 @@ $1",
 'right-bigdelete'             => '문서 역사가 긴 문서를 삭제',
 'right-deleterevision'        => '문서의 특정 판을 삭제 및 복구',
 'right-deletedhistory'        => '삭제된 문서의 내용을 제외한 역사를 보기',
+'right-deletedtext'           => '삭제된 문서의 내용과 편집상의 차이를 보기',
 'right-browsearchive'         => '삭제된 문서 검색',
 'right-undelete'              => '삭제된 문서 복구',
 'right-suppressrevision'      => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
@@ -1454,6 +1456,7 @@ $1",
 'right-reset-passwords'       => '다른 사용자의 비밀번호를 변경',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-versiondetail'         => '소프트웨어 버전에 대한 자세한 정보를 보기',
+'right-sendemail'             => '다른 사용자에게 이메일 보내기',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',
@@ -2678,6 +2681,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Attribution
 'anonymous'        => '{{PLURAL:$1}}{{SITENAME}} 익명 사용자',
 'siteuser'         => '{{SITENAME}} 사용자 $1',
+'anonuser'         => '{{SITENAME}} 익명 사용자 $1',
 'lastmodifiedatby' => '이 문서는 $3 사용자가 $1 $2에 마지막으로 바꾸었습니다.',
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
 'others'           => '기타',

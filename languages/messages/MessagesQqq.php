@@ -280,7 +280,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'vector-action-protect'      => 'Tab at top of page, in vector skin
 
 {{Identical|Protect}}',
-'vector-action-undelete'     => 'Tab at top of page, in vector skin.',
+'vector-action-undelete'     => 'Tab at top of page, in vector skin.
+{{Identical|Undelete}}',
 'vector-action-unprotect'    => 'Tab at top of page, in vector skin.
 
 {{Identical|Unprotect}}',
@@ -867,6 +868,10 @@ Please report at [[Support]] if you are unable to properly translate this messag
 * '''$4''' - time.",
 
 # Revision deletion
+'rev-deleted-text-unhide'     => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
+* $1 is a HTML link to the diff',
+'rev-suppressed-unhide-diff'  => 'This message is very similar to {{msg-mw|rev-deleted-unhide-diff}} and to {{msg-mw|rev-suppressed-text-unhide}}. Parameters:
+* $1 is a HTML link to the diff',
 'rev-delundel'                => 'Link in page history for oversight',
 'revisiondelete'              => '{{RevisionDelete}}
 It is the page title of [[Special:RevisionDelete]].',

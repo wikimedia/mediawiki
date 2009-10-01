@@ -898,6 +898,9 @@ Bir yönetici olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppr
 'rev-deleted-unhide-diff'     => "Bu değişikliğinin revizyonlarından birisi '''silinmiş'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.
 Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
+'rev-suppressed-unhide-diff'  => "Bu değişikliğinin revizyonlarından birisi '''bastırılmış'''.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} durdurma günlüğünde] ayrıntılar bulunabilir.
+Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
 'rev-delundel'                => 'göster/gizle',
 'revisiondelete'              => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',

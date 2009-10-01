@@ -870,6 +870,9 @@ Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'rev-deleted-unhide-diff'     => "Eini vu dr Versione isch '''glescht''' wore.
 Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
+'rev-suppressed-unhide-diff'  => "Eini vu dr Versione vu däne bode isch '''unterdruckt'''.
+Villicht het s Einzelheite derzue im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].
+As Administrator chasch [$1 dr Unterschid allno aaluege] wänn du witt wytermache.",
 'rev-delundel'                => 'zeig/versteck',
 'revisiondelete'              => 'Versione lesche/widerherstelle',
 'revdelete-nooldid-title'     => 'Kei Version aagee',
