@@ -20,14 +20,32 @@ $mwEND_MSG_KEY = ',
 );';
 $mwLangFilePath = '../languages/mwEmbed.i18n.php';
 include_once( $mwLangFilePath );
+
+function print_help(){
+?>
+This script helps merge msgs between javascript and php
+Usage:
+	-j merges javascript msgs into php
+	-p merges php msgs back into javascript
+
+<?php
+die();
+}
+
 // get options (like override JS or override PHP)
+if ($argc != 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
+	print_help();
+}
+$mergeToPhp = $mergeToJS = false;
 
-// merge left
-$mergeToPhp = false;
-$mergeToJS = true;
+if( $argv[1] == '-j' ){
+	$mergeToPhp = true;
+}else if( $argv[1] == '-p' ) {
+	$mergeToJS = true;
+}else{
+	print_help();
+}
 
-if ( $mergeToPhp && $mergeToJS )
-die( 'Please only set either $mergeToPhp or $mergeToJS' );
 
 if ( $mergeToPhp )
 print "Will merge *Javascript to PHP* in 3 seconds ";
