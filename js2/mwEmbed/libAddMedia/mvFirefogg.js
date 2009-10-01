@@ -379,10 +379,12 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		function getFrame() {
 			var v = $j('#fogg_preview_vid').get(0);
 			var canvas = $j('#fogg_preview_canvas').get(0);
-			canvas.width = 160;
-			canvas.height = canvas.width * v.videoHeight/v.videoWidth;
-			var ctx = canvas.getContext("2d");
-			ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
+			if( canvas ){
+				canvas.width = 160;
+				canvas.height = canvas.width * v.videoHeight/v.videoWidth;
+				var ctx = canvas.getContext("2d");
+				ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
+			}
   		}		
 		var previewI=null;
 		function preview() {				
@@ -695,16 +697,31 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				function resizeVid(){
 					var v = $j('#fogg_final_vid').get(0);					
 					if( v.videoWidth > 720 ){
-						$j(v).css({
-							'width':720,
-							'height': 720 * (v.videoHeight/v.videoWidth)							
-						});
+						var vW = 720;
+						var vH = 720 * (v.videoHeight/v.videoWidth)													
 					}else{
-						$j(v).css({
-							'width': v.videoWidth,
-							'height': v.videoHeight							
+						var vW = v.videoWidth;
+						var vH = v.videoHeight;												
+					}
+					//reize the video:
+					$j(v).css({
+						'width'	: vW,
+						'height': vH					
+					});
+					//if large video resize the dialog box:
+					if( vW > 400){ 
+						//also resize the dialog box
+						$j('#upProgressDialog').parent().animate({
+							'width':  vW + 5,
+							'height' : vH + 30
 						});
-					}					
+						
+						//also position the parent container				
+						$j('#upProgressDialog').parent().animate({
+							'left': ($j(document).width() - (vW + 5) )/2 ,
+							'top':  ($j(document).height() - (vH + 30) )/2						
+						});
+					}
 				}
 				
 				//set flag to diplay video at res 
