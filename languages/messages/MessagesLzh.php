@@ -742,7 +742,7 @@ $2',
 有秩仍看者，[$1 看此審]也。",
 'rev-suppressed-unhide-diff'  => "此審'''廢'''矣，
 詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。
-有秩仍看者，[$1 看此審]也。",	
+有秩仍看者，[$1 看此審]也。",
 'rev-delundel'                => '見/藏',
 'revisiondelete'              => '刪、還審',
 'revdelete-nooldid-title'     => '無此審。',

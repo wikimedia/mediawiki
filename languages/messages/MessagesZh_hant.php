@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -582,10 +582,10 @@ $2',
 'logout'                     => '登出',
 'userlogout'                 => '登出',
 'notloggedin'                => '未登入',
-'nologin'                    => "您還沒有賬號嗎？$1。",
+'nologin'                    => '您還沒有賬號嗎？$1。',
 'nologinlink'                => '建立新賬號',
 'createaccount'              => '建立新賬號',
-'gotaccount'                 => "已經擁有賬號？$1。",
+'gotaccount'                 => '已經擁有賬號？$1。',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過電郵',
 'badretype'                  => '您所輸入的密碼並不相同。',

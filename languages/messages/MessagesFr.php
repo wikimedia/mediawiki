@@ -1085,6 +1085,9 @@ Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''effacée'''.
 Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].
 En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
+'rev-suppressed-unhide-diff'  => "L'une des révisions de ce diff a été '''supprimée'''.
+Il peut y avoir des détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].
+En tant qu'administrateur, vous pouvez toujours [$1 voir ce diff] si vous souhaitez poursuivre.",
 'rev-delundel'                => 'afficher/masquer',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',
 'revdelete-nooldid-title'     => 'Version cible non valide',

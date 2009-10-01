@@ -731,60 +731,93 @@ Cetwel: (pey) = ferqê versiyonê peni,
 'histfirst'              => 'Verênêr',
 'histlast'               => 'Peyênêr',
 'historysize'            => '({{PLURAL:$1|1 bayt|$1 bayti}})',
-'historyempty'           => '(veng/tol)',
+'historyempty'           => '(thal)',
 
 # Revision feed
-'history-feed-title'          => 'tarixê vurnayiş',
-'history-feed-description'    => 'Wiki ser de tarixê vurnayişi.',
-'history-feed-item-nocomment' => '$1, $2 de',
-'history-feed-empty'          => 'Pelo ke şıma gereni n3easeno.
-Belka pel hewna biyo ya zi nameyê ey vuriyayo.
-zey no pel [[Special:Search|wiki de bigere]] tesel/cereb kere.',
+'history-feed-title'          => 'Tarixê çımraviyarnayışi',
+'history-feed-description'    => 'Wiki de tarixê çımraviyarnayışê na pele',
+'history-feed-item-nocomment' => '$1 miyanê $2i de',
+'history-feed-empty'          => 'Pela cıgeyrayiye çıniya.
+Beno ke ena esteriya, ya zi namê cı vuriyo.
+Seba pelanê muhimanê newan [[Special:Search|cıgeyrayışê wiki de]] bıcerebne.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(nuşteyê şıma hewna biyo)',
-'rev-deleted-user'            => '(Nameyê karberi hewna biy)',
-'rev-deleted-event'           => '(Karê qayd şiyo hewna)',
-'rev-deleted-text-permission' => "revizyonê no peli '''şiyo hewna'''.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qaydê hewna şiyayeyan] teferruatan eşkeni bıvini.",
-'rev-deleted-text-unhide'     => "revizyonê no peli '''şiyo hewna'''.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qaydê hewna şiyayeyan] teferruatan eşkeni bıvini.
-eke şıma dewam bıkeri [$1 no revizyoni eşkeni bıvini].",
-'rev-suppressed-text-unhide'  => "revizyonê no peli '''çap biyo'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qaydê vındernayeyani de] teferruati esi belka.
-eke dewam bıkeri şıma [$1 eşkeni no revizyoni bıvini].",
-'rev-deleted-text-view'       => "revizyonê no peli '''hewna şiyaye yo'''.
-eke şıma serkaribi şıma eşkeni bıvini no pel; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qaydê hewna şiyayeyani] teferruati esti belka.",
-'rev-suppressed-text-view'    => "revizyonê no peli '''çap biyo'''.
-eke şıma serkaribi şıma eşkeni bıvini no pelan; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qaydê vıdernayeyan] de teferruati esti.",
-'rev-deleted-no-diff'         => "vurnayişê no peli şıma nêeşkeni bıvini çunke revizyonani ra yew '''hewna şiyo'''.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rocaneyê hewna şiyayeyani] de teferruati esti.",
-'rev-deleted-unhide-diff'     => "no vurnayişan ra yewi '''şiyo hewna'''.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rocaneyê hewna biyayişi] de teferruati esti.
-eke şıma serkaibi şıma [$1 no vurnayişan eşkeni bıvini].",
+'rev-deleted-comment'         => '(tefşir esteriyo)',
+'rev-deleted-user'            => '(namey karberi esteriyo)',
+'rev-deleted-event'           => '(fealiyetê cıkewtışi esteriyo)',
+'rev-deleted-text-permission' => "Çımraviyarnayışê ena pele '''esteriyo'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
+'rev-deleted-text-unhide'     => "Çımraviyarnayışê ena pele '''esteriyo'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.
+Şıma be idarekerina xo ra şenê hewna [$1 nê çımraviyarnayışi bıvênê], eke wazenê dewam kerê.",
+'rev-suppressed-text-unhide'  => "Çımraviyarnayışê ena pele '''dewoşiyo'''.
+Beno ke [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] de teferruat esto.
+Şıma be idarekerina xo ra şenê hewna [$1 nê çımraviyarnayışi bıvênê], eke wazenê dewam kerê.",
+'rev-deleted-text-view'       => "Çımraviyarnayışê ena pele '''esteriyo'''.
+Şıma be idarekerina xo ra şenê ey bıvênê; beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
+'rev-suppressed-text-view'    => "Çımraviyarnayışê ena pele '''dewoşiyo'''.
+Şıma be idarekerina xo ra şenê ey bıvênê; beno ke [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] de teferruat esto.",
+'rev-deleted-no-diff'         => "Şıma nêşenê nê ferqi bıvênê, çıke çımraviyarnayışan ra  yew '''esteriyo'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
+'rev-deleted-unhide-diff'     => "Çımraviyarnayışanê na ferqi ra  yew '''esteriyo'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.
+Şıma be idarekerina xo ra şenê hewna [$1 nê ferqi bıvênê], eke wazenê dewam kerê.",
+'rev-suppressed-unhide-diff'  => "Nê revizyonani ra yewi '''çap biyo'''.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rocaneyê vındertışi] de teferru'ati esti.
+Eke şıma serkari u devam bıkeri [$1 no vurnayiş şıma eşkeni bıvini].",
 'rev-delundel'                => 'bımocne/bınımne',
-'revisiondelete'              => 'revizyonan hewna ker/tepiya biya',
-'revdelete-nooldid-title'     => 'revizyono ke wazyeno meqbul niyo',
-'revdelete-nooldid-text'      => 'qey no fonksiyon kerdış re yew vurnayişê şıma çino.',
-'revdelete-nologtype-title'   => 'qaydi nediya',
-'revdelete-nologtype-text'    => 'qey no karkerdış gani şıma tipa qayde bıvıcini.',
-'revdelete-nologid-title'     => 'rocane qebul nebı',
-'revdelete-nologid-text'      => 'qey no fonksiyon re yew tipa qaydi nêweçiniyayi.',
-'revdelete-no-file'           => 'dosyayo ke şıma wazeni çino.',
-'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" dosyayi $2 $3  vuriyayişê no tarixi de biye şıma wzeni bıvini?',
-'revdelete-show-file-submit'  => 'e/heya',
-'revdelete-selected'          => "'''[[:$1]] no peli u {{PLURAL:$2|vurnayişê ke şıma nişane kerdo|vurnayişê ke şıma nişane kerdo}}:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|vurnayiş3e nişane biyaye|vurnayişê nişan biyaye}}:'''",
-'revdelete-text'              => "'''revizyon3e ke hewna şiye zerrey3e tarix3e peli u rocaneyan de aseni, feqet şıma nêeşkeni hemıni ra bıreesi.'''
+'revisiondelete'              => 'Bıestere/çımraviyarnayışan peyser bia',
+'revdelete-nooldid-title'     => 'Çımraviyarnayışo waşte nêvêreno',
+'revdelete-nooldid-text'      => 'Şıma vıraştışê nê fonksiyoni rê ya yew çımraviyarnayışo waşte diyar nêkerdo, çımraviyarnayışo diyarkerde çıniyo, ya ki şıma wazenê ke çımraviyarnayışê nıkayêni bınımnê.',
+'revdelete-nologtype-title'   => 'Qet qeydê cınêdiya',
+'revdelete-nologtype-text'    => 'Qeydê şımawo diyar çıniyo ke nê fealiyet kewê.',
+'revdelete-nologid-title'     => 'Cıkewtış qebul nêbi',
+'revdelete-nologid-text'      => 'Şıma vıraştışê nê fonksiyoni rê ya yew cıkewtışo waşte diyar nêkerdo, ya ki çıkewtışo diyarkerde çıniyo.',
+'revdelete-no-file'           => 'Dosya diyarkerdiye çıniya.',
+'revdelete-show-file-confirm' => 'Şıma eminê ke wazenê çımraviyarnayışê esterıtey na dosya "<nowiki>$1</nowiki>" $2 ra $3 de bıvênê?',
+'revdelete-show-file-submit'  => 'Heya',
+'revdelete-selected'          => "'''[[:$1]]: ra {{PLURAL:$2|çımraviyarnayışo weçinıte|çımraviyarnayışê weçinıtey}}'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Qeydbiyayışo weçinıte|Qeydbiyayışê weçinıtey}}:'''",
+'revdelete-text'              => "'''Çımraviyarnayışê esterıtey u kerdışi hewna tarixê pele u qeydan de asenê, hema parçeyê zerrekê dinan areze nêbenê.'''
+Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşenê hewna bıresê zerrekê nımıtey u şenê ey anciya na eyni miyanpele ra peyser biarê.
 
-{{SITENAME}} no keyepele de serkari eşkeni bıresi her ca.
-eke şıma zani şıma hê sekeni u nê [[{{MediaWiki:Policy-url}}|kriteran re]] diqet keni destur xo bıwaze .",
-'revdelete-suppress-text'     => "wedartış '''tena''' halê cêrinan re esto:
-* malumat3e şexsi
-*: ''adresê keyi u numreyê telefoni uêb.''",
-'revdelete-legend'            => 'eyarê aseyişan bıker',
-'revdelete-hide-text'         => 'nuşteyê vurnayişi bınımne',
+Kerem u tesdiq kerê ke niyetê şıma be ney kerdeno, şıma netican zi fam kenê, u şıma ney gorey [[{{MediaWiki:Policy-url}}|destur]]i kenê.",
+'revdelete-suppress-text'     => "Wedardış gani '''tenya''' nê halanê cêrênan de bıxebıtiyo:
+* Melumatê kıfırio mıhtemel
+* Melumatê şexio bêmınasıb
+*: ''adresa keyey u numreyê têlefoni, numreyê siğorta sosyale, uêb.''",
+'revdelete-legend'            => 'Şertanê vênayışi rone',
+'revdelete-hide-text'         => 'Nuştey çımraviyarnayışi bınımne',
+'revdelete-hide-name'         => "hedef u vaqa' bınımne",
+'revdelete-hide-comment'      => 'kılmvatış memocne',
+'revdelete-hide-user'         => 'Karber u IP ê ke vurnayiş kerdo bınım.',
+'revdelete-hide-restricted'   => 'Malumatan pa serkaran u karberan ra bınım.',
+'revdelete-suppress'          => 'Hem ê binan ra hem zi serkaran ra malumatan bınım',
+'revdelete-hide-image'        => 'zerreyê dosyayi bınımn',
+'revdelete-unsuppress'        => 'reizyonê ke tepiya anciye serbest ker',
+'revdelete-log'               => 'qey hewn a kerdışi sebeb:',
+'revdelete-submit'            => 'revizyono ke nişane biyo, ey ser tetbiq bıker',
+'revdelete-logentry'          => '[[$1]] qey neyi esayişê revizyon vuriya',
+'logdelete-logentry'          => '[[$1]] qey neyi esayişê vaqayi vuriya',
+'revdelete-success'           => "'''Esayişê revizyoni bı muvaffaqi eyar bı.'''",
+'revdelete-failure'           => "'''Esayişê revizyoni eyar nibeno:'''
+$1",
+'logdelete-success'           => "'''Esayişê rocaneyi bı muvaffaqi eyar bı.'''",
+'logdelete-failure'           => "'''Esayişê rocaneyi eyar nêbı:'''
+$1",
 'revdel-restore'              => 'asayışi bıvurne',
+'pagehist'                    => 'vere cûyê peli',
+'deletedhist'                 => 'tarixê hewna şiyaye',
+'revdelete-content'           => 'mebhes',
+'revdelete-summary'           => 'kılmvatışê vuriyayişi',
+'revdelete-uname'             => 'nameyê karberi',
+'revdelete-restricted'        => 'verger (vergırewtış) ê ke qey xızmkaran biye',
+'revdelete-unrestricted'      => 'verger (ver gırewtış) ê ke qey xızmkaran diyê wera (wedariyê)',
+'revdelete-hid'               => 'bınım $1',
+'revdelete-unhid'             => 'bımoc (musnayiş) $1',
+'revdelete-log-message'       => '$2 qey {{PLURAL:$2|revizyon|revizyon}} $1',
+'logdelete-log-message'       => '$2 qey {{PLURAL:$2|vaqa|vaqa}} $1',
+'revdelete-hide-current'      => '$2 $1 ney çiye ke wexta diyayene wera (wedar dayiş) xeta da: no reviyon nınımiyeno.',
 
 # Merge log
 'revertmerge' => 'Romevılêşne',

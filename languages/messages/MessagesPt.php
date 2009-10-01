@@ -873,6 +873,9 @@ Se é um utilizador anónimo e sente que comentários irrelevantes foram direcci
 Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] noutras páginas,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pesquisar os registos relacionados],
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
+'noarticletext-nopermission'       => 'Não há actualmente texto nesta página.
+Você pode [[Special:Search/{{PAGENAME}}|procurar este título de página]] em outras páginas,
+ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} procurar os registos relacionados] </span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'clearyourcache'                   => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
@@ -1044,6 +1047,9 @@ Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
 Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
+'rev-suppressed-unhide-diff'  => "Uma das revisões deste diferencial foi '''suprimido'''.
+Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
+Como administrador você pode ainda [$1 pode ver o diferencial] se desejar prosseguir.",
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'     => 'Edição de destino inválida',
@@ -1113,6 +1119,7 @@ Por favor, verifique os registos.',
 'revdelete-otherreason'       => 'Outro/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar motivos de eliminação',
+'revdelete-offender'          => 'Autor da revisão:',
 
 # Suppression log
 'suppressionlog'     => 'Registo de supressões',
@@ -1468,6 +1475,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'right-bigdelete'             => 'Eliminar páginas com histórico grande',
 'right-deleterevision'        => 'Eliminar e restaurar edições específicas de páginas',
 'right-deletedhistory'        => 'Ver entradas de histórico eliminadas, sem o texto associado',
+'right-deletedtext'           => 'Ver texto eliminado e mudanças entre revisões eliminadas',
 'right-browsearchive'         => 'Buscar páginas eliminadas',
 'right-undelete'              => 'Restaurar uma página',
 'right-suppressrevision'      => 'Rever e restaurar edições ocultadas dos Sysops',
@@ -1500,6 +1508,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'right-reset-passwords'       => 'Repor a palavra-chave de outros utilizadores',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-versiondetail'         => 'Mostrar informações completas da versão de software',
+'right-sendemail'             => 'Enviar email a outros usuários',
 
 # User rights log
 'rightslog'      => 'Registo de privilégios de utilizador',
@@ -1713,7 +1722,14 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
+'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
+'img-auth-badtitle'     => 'Não é possível construir um título válido a partir de "$1".',
+'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na "lista branca".',
 'img-auth-nofile'       => 'O ficheiro "$1" não existe.',
+'img-auth-isdir'        => 'Você está a tentar aceder ao directório "$1".
+Apenas o acesso a ficheiros é permitido.',
+'img-auth-streaming'    => "A fazer o ''streaming'' de \"\$1\".",
+'img-auth-noread'       => 'O usuário não tem acesso à leitura de "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
@@ -1806,6 +1822,7 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 ** Violação de direitos de autor
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist'  => 'Editar motivos de eliminação',
+'filedelete-maintenance'      => 'Eliminação e restauro de ficheiros temporariamente desabilitados durante a manutenção.',
 
 # MIME search
 'mimesearch'         => 'Pesquisa MIME',
@@ -2166,19 +2183,20 @@ Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
 prossiga com cuidado.',
 
 # Rollback
-'rollback'         => 'Reverter edições',
-'rollback_short'   => 'Voltar',
-'rollbacklink'     => 'voltar',
-'rollbackfailed'   => 'A reversão falhou',
-'cantrollback'     => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',
-'alreadyrolled'    => 'Não foi possível reverter as edições de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discussão]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'rollback'          => 'Reverter edições',
+'rollback_short'    => 'Voltar',
+'rollbacklink'      => 'voltar',
+'rollbackfailed'    => 'A reversão falhou',
+'cantrollback'      => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',
+'alreadyrolled'     => 'Não foi possível reverter as edições de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discussão]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 alguém editou ou já reverteu a página.
 
 A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "O sumário de edição era: \"''\$1''\".",
-'revertpage'       => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
-'rollback-success' => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
-'sessionfailure'   => 'Foram detectados problemas com a sua sessão;
+'editcomment'       => "O sumário de edição era: \"''\$1''\".",
+'revertpage'        => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
+'revertpage-nouser' => 'Revertidas as edições de (nome de usuário removido) para a última revisão por [[User:$1|$1]]',
+'rollback-success'  => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
+'sessionfailure'    => 'Foram detectados problemas com a sua sessão;
 Esta acção foi cancelada como medida de protecção contra a intercepção de sessões.
 Experimente usar o botão "Voltar" e recarregar a página de onde veio e tente novamente.',
 
@@ -2408,6 +2426,8 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'contribslink'                    => 'contribs',
 'autoblocker'                     => 'Você foi automaticamente bloqueado, pois partilha um endereço de IP com "[[User:$1|$1]]". O motivo apresentado foi: "$2".',
 'blocklogpage'                    => 'Registo de bloqueio',
+'blocklog-showlog'                => 'Este usuário foi já bloqueado anteriormente.
+O registo de bloqueio é mostrado abaixo para referência:',
 'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
 'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2 $3',
 'blocklogtext'                    => 'Este é um registo de acções de bloqueio e desbloqueio.
@@ -2710,6 +2730,7 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',
 'siteuser'         => 'um utilizador da {{SITENAME}}: $1',
+'anonuser'         => 'usuário anónimo $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
@@ -3358,10 +3379,16 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 # Add categories per AJAX
 'ajax-add-category'            => 'Adicionar categoria',
 'ajax-add-category-submit'     => 'Adicionar',
+'ajax-confirm-title'           => 'Confirme a acção',
+'ajax-confirm-prompt'          => 'Você pode providenciar um sumário de edição abaixo.
+Carregue em "Gravar página" para gravar a sua edição.',
 'ajax-confirm-save'            => 'Gravar',
 'ajax-add-category-summary'    => 'Adicionado categoria "$1"',
 'ajax-remove-category-summary' => 'Remover categoria "$1"',
+'ajax-confirm-actionsummary'   => 'Acção a tomar:',
 'ajax-error-title'             => 'Erro',
 'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
+Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
 
 );
