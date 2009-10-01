@@ -437,7 +437,7 @@ mvBaseUploadInterface.prototype = {
 			var bObj = {};
 			bObj[ gM('mwe-return-to-form') ] = function(){
 					_this.form_post_override = false;
-					$j(this).dialog('close');
+					$j(this).empty().dialog('close');
 			 };
 
 			//@@TODO should be refactored to more specialUpload page type error handling
@@ -571,7 +571,7 @@ mvBaseUploadInterface.prototype = {
 				$j( _this.editForm ).submit();
 			};
 			bObj[ gM('mwe-return-to-form') ] = function(){
-				$j(this).dialog('close');
+				$j(this).empty().dialog('close');
 				_this.form_post_override = false;
 			}
 			_this.updateProgressWin( gM('mwe-uploadwarning'),  '<h3>' + gM('mwe-uploadwarning') + '</h3>' +wmsg + '<p>',bObj);
@@ -606,14 +606,14 @@ mvBaseUploadInterface.prototype = {
 				if( _this.done_upload_cb && typeof _this.done_upload_cb == 'function'){
 					js_log("call done_upload_cb");
 					//close up shop:
-					$j('#upProgressDialog').dialog('close');
+					$j('#upProgressDialog').empty().dialog('close');
 					//call the callback:
 					_this.done_upload_cb( apiRes.upload );
 					return false;
 				}else{
 					var bObj = {};
 					bObj[ gM('mwe-return-to-form')] = function(){
-						$j(this).dialog('close');
+						$j(this).empty().dialog('close');
 						_this.form_post_override = false;
 					}
 					bObj[ gM('mwe-go-to-resource') ] = function(){
@@ -638,10 +638,10 @@ mvBaseUploadInterface.prototype = {
 		 if(buttons){
 			 $j('#upProgressDialog').dialog('option','buttons', buttons);
 		 }else{
-			 //@@todo should convice the jquery ui people to not use object keys as user msg's
+			 //@@todo should fix jquery ui to not use object keys as user msg's
 			 var bObj = {};
 			 bObj[ gM('mwe-ok-button') ] =  function(){
-				  $j(this).dialog('close');
+				  $j(this).empty().dialog('close');
 			 };
 			 $j('#upProgressDialog').dialog('option','buttons', bObj);
 		 }
@@ -718,7 +718,7 @@ mvBaseUploadInterface.prototype = {
 		//confirm:
 		if( confirm( gM('mwe-cancel-confim') )){
 			//@@todo (cancel the encode / upload)
-			$j(this).dialog('close');
+			$j(this).empty().dialog('close');
 			return false;
 		}else{
 			return true;

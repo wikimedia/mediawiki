@@ -16,8 +16,8 @@ loadGM({
 	"fogg-transcoding" : "Encoding video to Ogg",
 	"fogg-encoding-done" : "Encoding complete",
 	"fogg-badtoken" : "Token is not valid",
-	"fogg-preview"	: "Preview Video",
-	"fogg-hidepreview" : "Hide Preview"
+	"fogg-preview"	: "Preview video",
+	"fogg-hidepreview" : "Hide preview"
 });
 
 var firefogg_install_links =  {
@@ -314,7 +314,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	//do firefogg specific additions: 
 	dispProgressOverlay:function(){
 		this.pe_dispProgressOverlay();
-		this.doPreviewControl();		
+		//if we are uploading video (not in passthrough mode show preview button)
+		if( ! this.encoder_settings['passthrough'] ){ 
+			this.doPreviewControl();	
+		}
 	},
 	doPreviewControl:function(){
 		var _this = this;
@@ -358,6 +361,8 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				
 				$j('#fogg_preview_canvas').hide('slow');
 			}
+			//don't follow the #
+			return false; 
 		});
 	}, 
 	doRenderPreview:function(){
@@ -365,8 +370,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		//set up the hidden video to pull frames from: 
 		if( $j('#fogg_preview_vid').length == 0 )
 			$j('body').append('<video id="fogg_preview_vid" style="display:none"></video>');	
-		var v = $j('#fogg_preview_vid').get(0);		
-					
+		var v = $j('#fogg_preview_vid').get(0);							
 		
 		function seekToEnd(){			
 		    var v = $j('#fogg_preview_vid').get(0);		    	
@@ -446,7 +450,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			_this.autoEncoderSettings();
 
 			//if set to passthough update the interface:
-			if(_this.encoder_settings['passthrough']==true){
+			if(_this.encoder_settings['passthrough'] == true){
 				$j(_this.target_passthrough_mode).show();
 			}else{
 				$j(_this.target_passthrough_mode).hide();
@@ -676,11 +680,38 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			//update upload status:
 			_this.doUploadStatus();
 		}else{
-			js_log("done with encoding (no upload) ");
+			js_log("done with encoding (no upload) ");						
 			//set stuats to 100% for one second:
-			_this.updateProgress( 1 );
+			_this.updateProgress( 1 );			
 			setTimeout(function(){
-				_this.updateProgressWin(gM('fogg-encoding-done'), gM('fogg-encoding-done'));
+				_this.updateProgressWin(gM('fogg-encoding-done'), 	
+					gM('fogg-encoding-done') + '<br>' + 				
+					//show the video at full resolution upto 720px wide
+					'<video controls="true" style="margin:auto" id="fogg_final_vid" src="' + 
+						 _this.fogg.previewUrl + '"></video>'					
+				);
+				//load the video and set a callback: 
+				var v = $j('#fogg_final_vid').get(0);
+				function resizeVid(){
+					var v = $j('#fogg_final_vid').get(0);					
+					if( v.videoWidth > 720 ){
+						$j(v).css({
+							'width':720,
+							'height': 720 * (v.videoHeight/v.videoWidth)							
+						});
+					}else{
+						$j(v).css({
+							'width': v.videoWidth,
+							'height': v.videoHeight							
+						});
+					}					
+				}
+				
+				//set flag to diplay video at res 
+				v.removeEventListener("loadedmetadata", resizeVid, true);
+				v.addEventListener("loadedmetadata", resizeVid, true);
+				v.load();
+				
 			}, 1000);
 		}
 	},
@@ -755,7 +786,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 								}else{
 									//if done action returns 'false' //close progress window
 									this.action_done = true;
-						  	       	$j('#upProgressDialog').dialog('close');
+						  	       	$j('#upProgressDialog').empty().dialog('close');
 								}
 						   	}else{
 						   		//update status (without done_upload_cb)
@@ -786,7 +817,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	  	    }else{
 	  	    	this.action_done = true;
 	  	        this.fogg.cancel();
-	  	        $j(dlElm).dialog('close');
+	  	        $j(dlElm).empty().dialog('close');
 	  	    }
 	  	} else{
 	  		return false;
