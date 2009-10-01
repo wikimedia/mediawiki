@@ -716,6 +716,12 @@ default_local_settings:{
 		var _this = this;
 		//do the base encoder settings setup:
 		this.basefogg_autoEncoderSettings();
+		
+		//special case see if we already have ogg video in adv encoder expose encode settings anyway: 
+		if( _this.isOggFormat() ){
+			_this.encoder_settings['passthrough'] = false;
+		}
+		
 		//make sure we are "encoding" if not display not a video file eror:
 		if( this.encoder_settings['passthrough'] ){
 			js_log("in passthrough mode (hide control)");

@@ -88,7 +88,7 @@ if( !mv_embed_path ) {
 	var mv_embed_path = getMvEmbedPath();
 }
 
-// Init the global message table if it has not been initialised already
+// Init the global message table if it has not been initialized already
 if( !gMsg ) {
 	var gMsg = {};
 }
