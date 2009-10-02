@@ -321,7 +321,7 @@ class SpecialSearch {
 		
 		// show direct page/create link
 		if( !is_null($t) ) {
-			if( !$t->exists() ) {
+			if( !$t->isKnown() ) {
 				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
 			} else {
 				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
