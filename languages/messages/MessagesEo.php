@@ -762,7 +762,7 @@ La pasvorto por ĉi tiu nova konto povas esti ŝanĝita en la paĝo ''[[Special:
 'anontalkpagetext'                 => "---- ''Jen diskutopaĝo por anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. 
 Ni tial devas uzi la cifran IP-adreson por identigi lin/ŝin. 
 Ĉi tia IP-adreso povas esti uzata de pluraj uzantoj.
-Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:UserLogin|krei konton]] aŭ [[Special:UserLogin|ensaluti]] por eviti estontan konfuzon kun aliaj anonimaj uzantoj.''",
+Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn al vi, bonvolu [[Special:UserLogin/signup|krei konton]] aŭ [[Special:UserLogin|ensaluti]] por eviti estontan konfuzon pro aliaj anonimaj uzantoj.''",
 'noarticletext'                    => 'Mankas teksto en ĉi tiu paĝo.
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} serĉi la rilatajn protokolojn],
@@ -937,6 +937,9 @@ Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAM
 'rev-deleted-unhide-diff'     => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
 Kiel administranto vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volas kontinui.",
+'rev-suppressed-unhide-diff'  => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
+Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} subpremada protokolo].
+Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volus.",
 'rev-delundel'                => 'montri/kaŝi',
 'revisiondelete'              => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'     => 'Nevalida cela versio',

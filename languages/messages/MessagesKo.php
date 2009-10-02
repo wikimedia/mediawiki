@@ -711,6 +711,7 @@ $2',
 
 만약 이 암호 요청을 다른 사람이 보낸 것이거나, 예전에 사용하던 암호를 기억해냈다면 이 메시지를 무시하고 예전 암호를 계속 사용할 수 있습니다.',
 'noemail'                    => '사용자 ‘$1’에 등록된 이메일 주소가 없습니다.',
+'noemailcreate'              => '바른 이메일 주소를 써야 합니다.',
 'passwordsent'               => '‘$1’ 계정의 새로운 암호를 이메일로 보냈습니다. 암호를 받고 다시 로그인해 주세요.',
 'blocked-mailpassword'       => '당신의 IP 주소는 편집이 차단되어 있습니다. 따라서 암호 되살리기 기능은 악용 방지를 위해 금지됩니다.',
 'eauthentsent'               => '확인 이메일을 보냈습니다. 이메일 내용의 지시대로 계정 확인 절차를 실행해 주십시오.',
@@ -1673,6 +1674,7 @@ PICT # 기타
 서버에 이 정보가 설정되어 있지 않습니다.
 CGI 기반이거나 img_auth 를 지원하지 않을 수 있습니다.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
+'img-auth-notindir'     => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
 'img-auth-badtitle'     => '"$1"에서 바른 제목을 만들 수 없습니다.',
 'img-auth-nofile'       => '"$1" 파일이 없습니다.',
 'img-auth-isdir'        => '"$1" 디렉토리에 접근을 시도했습니다.
@@ -1769,6 +1771,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 ** 저작권 침해
 ** 중복된 파일',
 'filedelete-edit-reasonlist'  => '삭제 이유 편집',
+'filedelete-maintenance'      => '점검 중에는 임시적으로 삭제와 복구를 할 수 없습니다.',
 
 # MIME search
 'mimesearch'         => 'MIME 검색',
@@ -1970,7 +1973,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:ActiveUsers
 'activeusers'          => '활동 중인 사용자 목록',
-'activeusers-count'    => '최근 편집 $1개',
+'activeusers-count'    => '최근 $3일 사이의 편집 $1개',
 'activeusers-from'     => '다음으로 시작하는 사용자를 보기:',
 'activeusers-noresult' => '사용자가 없습니다.',
 
@@ -2038,7 +2041,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'addedwatchtext'       => "\"[[:\$1]]\" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.
 앞으로 이 문서나 토론 문서가 바뀌면 [[Special:RecentChanges|최근 바뀜]]에서 알아보기 쉽게 '''굵은 글씨'''로 보일 것입니다.",
 'removedwatch'         => '주시문서 목록에서 제거',
-'removedwatchtext'     => '‘[[:$1]]’ 문서를 주시문서 목록에서 제거했습니다.',
+'removedwatchtext'     => '"[[:$1]]" 문서를 [[Special:Watchlist|주시문서 목록]]에서 뺐습니다.',
 'watch'                => '주시',
 'watchthispage'        => '주시하기',
 'unwatch'              => '주시 해제',
@@ -2686,6 +2689,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
 'others'           => '기타',
 'siteusers'        => '{{PLURAL:$2}}{{SITENAME}} 사용자 $1',
+'anonusers'        => '{{PLURAL:$2}}{{SITENAME}} 익명 사용자 $1',
 'creditspage'      => '문서 기여자들',
 'nocredits'        => '이 문서에서는 기여자 정보가 없습니다.',
 
@@ -3332,12 +3336,17 @@ $1',
 'htmlform-selectorother-other' => '기타',
 
 # Add categories per AJAX
-'ajax-add-category'          => '분류 추가',
-'ajax-add-category-submit'   => '추가',
-'ajax-confirm-save'          => '저장',
-'ajax-error-title'           => '오류',
-'ajax-error-dismiss'         => '확인',
-'ajax-remove-category-error' => '이 분류를 지울 수 없습니다.
+'ajax-add-category'            => '분류 추가',
+'ajax-add-category-submit'     => '추가',
+'ajax-confirm-prompt'          => '아래에 편집 요약을 쓸 수 있습니다.
+저장하려면 "저장"을 누르세요.',
+'ajax-confirm-save'            => '저장',
+'ajax-add-category-summary'    => '"$1" 분류 더하기',
+'ajax-remove-category-summary' => '"$1" 분류 지우기',
+'ajax-confirm-actionsummary'   => '할 일:',
+'ajax-error-title'             => '오류',
+'ajax-error-dismiss'           => '확인',
+'ajax-remove-category-error'   => '이 분류를 지울 수 없습니다.
 분류가 틀로 추가되었을 수 있습니다.',
 
 );

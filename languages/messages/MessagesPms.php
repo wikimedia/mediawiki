@@ -800,6 +800,9 @@ A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULL
 'rev-deleted-unhide-diff'     => "Un-a dle revision ëd coste diferense a l'é stàita '''scanselà'''.
 A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion].
 Com aministrador it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
+'rev-suppressed-unhide-diff'  => "Un-a dle revision dë sta diferensa-sì a l'é stàita '''scanselà'''.
+A peul ess-je dij detaj ant ël  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion].
+Com  aministrador it peule ancò [$1 vëdde sta diferensa-sì] s'it veule.",
 'rev-delundel'                => 'mostra/stërma',
 'revisiondelete'              => 'Scancela/disdëscancela revision',
 'revdelete-nooldid-title'     => 'Version nen spessificà',

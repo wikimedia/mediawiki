@@ -300,6 +300,8 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Hierdie kategorie bevat net die volgende lêer.|Die volgende {{PLURAL:$1|lêer|$1 lêers}} is in hierdie kategorie, uit 'n totaal van $2.}}",
 'category-file-count-limited'    => 'Die volgende {{PLURAL:$1|lêer|$1 lêers}} is in die huidige kategorie.',
 'listingcontinuesabbrev'         => 'vervolg',
+'index-category'                 => 'Geïndekseerde bladsye',
+'noindex-category'               => 'Ongeïndekseerde bladsye',
 
 'mainpagetext'      => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
 'mainpagedocfooter' => "Konsulteer '''[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.
@@ -493,7 +495,9 @@ $1",
 U het moontlik 'n tikfout gemaak of 'n ongeldige skakel gevolg. 
 Dit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 'nosuchspecialpage' => 'Ongeldige spesiale bladsy',
-'nospecialpagetext' => 'Ongeldige spesiale bladsy gespesifeer.',
+'nospecialpagetext' => "<strong>U het 'n spesiale bladsy wat nie bestaan nie aangevra.</strong>
+
+'n Lys met geldige spesiale bladsye is beskikbaar by [[Special:SpecialPages|spesiale bladsye]].",
 
 # General errors
 'error'                => 'Fout',
@@ -575,9 +579,9 @@ Die rede gegee is ''$2''.",
 'logouttext'                 => "'''U is nou uitgeteken'''
 
 U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan [[Special:UserLogin|inteken]] as dieselfde of 'n ander gebruiker.",
-'welcomecreation'            => '<h2>Welkom, $1.</h2>
+'welcomecreation'            => '== Welkom, $1! ==
 U rekening is geskep;
-moenie vergeet om u persoonlike voorkeure te stel nie.',
+moenie vergeet om u [[Special:Preferences|persoonlike voorkeure vir {{SITENAME}}]] te stel nie.',
 'yourname'                   => 'Gebruikersnaam:',
 'yourpassword'               => 'Wagwoord:',
 'yourpasswordagain'          => 'Herhaal wagwoord',
@@ -601,6 +605,7 @@ moenie vergeet om u persoonlike voorkeure te stel nie.',
 'userexists'                 => "Die gebruikersnaam wat u gekies het is reeds geneem.
 Kies asseblief 'n ander naam.",
 'loginerror'                 => 'Intekenfout',
+'createaccounterror'         => "Kon nie 'n rekening skep nie: $1",
 'nocookiesnew'               => 'Die gebruikersrekening is geskep, maar u is nie ingeteken nie.
 {{SITENAME}} gebruik koekies om gebruikers in te teken.
 U rekenaar laat tans nie koekies toe nie.
@@ -624,6 +629,7 @@ Maak seker dit is reg gespel of [[Special:UserLogin/signup|skep \'n nuwe rekenin
 
 Indien iemand anders hierdie navraag gerig het, of u het die wagwoord intussen onthou en wil nie meer die wagwoord wysig nie, kan u die boodskap ignoreer en voortgaan om die ou wagwoord te gebruik.',
 'noemail'                    => 'Daar is geen e-posadres vir gebruiker "$1" nie.',
+'noemailcreate'              => "U moet 'n geldige e-posadres verskaf",
 'passwordsent'               => 'Nuwe wagwoord gestuur na e-posadres vir "$1".
 Teken asseblief in na u dit ontvang het.',
 'blocked-mailpassword'       => 'U IP-adres is tans teen wysigings geblokkeer. Om verdere misbruik te voorkom is dit dus nie moontlik om die wagwoordherwinningfunksie te gebruik nie.',
@@ -1767,7 +1773,7 @@ Ondersteunde protokolle: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktiewe gebruikers',
-'activeusers-count'    => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}}',
+'activeusers-count'    => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laatste $3 dae}}',
 'activeusers-from'     => 'Wys gebruikers, beginnende by:',
 'activeusers-noresult' => 'Geen gebruikers gevind nie.',
 
@@ -2407,10 +2413,12 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} gebruiker $1',
+'anonuser'         => 'Anonieme {{SITENAME}}-gebruiker $1',
 'lastmodifiedatby' => 'Hierdie bladsy is laas op $1 om $2 deur $3 gewysig.',
 'othercontribs'    => 'Gebaseer op werk van $1.',
 'others'           => 'ander',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruikers|gebruikers}} $1',
+'anonusers'        => 'Anonieme {{SITENAME}}-{{PLURAL:$2|gebruiker|gebruikers}} $1',
 'creditspage'      => 'Outeursblad',
 
 # Spam protection
@@ -2968,6 +2976,8 @@ Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
 'ajax-add-category'            => 'Voeg kategorie by',
 'ajax-add-category-submit'     => 'Byvoeg',
 'ajax-confirm-title'           => 'Bevestig aksie',
+'ajax-confirm-prompt'          => 'U kan \'n wysigingsopsomming hier onder verskaf.
+Kliek "Stoor" om u wysiging te bêre.',
 'ajax-confirm-save'            => 'Stoor',
 'ajax-add-category-summary'    => 'Voeg kategorie "$1" by',
 'ajax-remove-category-summary' => 'Verwyder kategorie "$1"',

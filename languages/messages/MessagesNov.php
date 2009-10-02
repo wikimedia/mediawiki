@@ -147,6 +147,7 @@ $messages = array(
 'editsection'             => 'modifika',
 'editold'                 => 'modifika',
 'restorelink'             => '{{PLURAL:$1|unu ekartati modifiko|$1 ekartati modifikos}}',
+'red-link-title'          => '$1 (pagine non exista)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikle',

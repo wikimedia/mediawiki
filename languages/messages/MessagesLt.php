@@ -334,8 +334,8 @@ $messages = array(
 'vector-action-delete'       => 'Ištrinti',
 'vector-action-move'         => 'Perkelti',
 'vector-action-protect'      => 'Užrakinti',
-'vector-action-undelete'     => 'Atšaukti trynimą',
-'vector-action-unprotect'    => 'Atšaukti užrakinimą',
+'vector-action-undelete'     => 'Atkurti',
+'vector-action-unprotect'    => 'Atrakinti',
 'vector-namespace-category'  => 'Kategorija',
 'vector-namespace-help'      => 'Pagalbos puslapis',
 'vector-namespace-image'     => 'Failas',
@@ -1393,6 +1393,7 @@ teisės",
 'right-reset-passwords'       => 'Atstatyti kitų naudotojų slaptažodžius',
 'right-override-export-depth' => 'Eksportuoti puslapius įtraukiant susietus puslapius iki 5 lygio gylio',
 'right-versiondetail'         => 'Rodyti išplėstinę programinės įrangos versijos informaciją',
+'right-sendemail'             => 'Siųsti el. laišką kitiems naudotojams',
 
 # User rights log
 'rightslog'      => 'Naudotojų teisių istorija',
@@ -2413,7 +2414,7 @@ Prašome sujungti šiuos puslapius.'''",
 'movereason'                   => 'Priežastis:',
 'revertmove'                   => 'atmesti',
 'delete_and_move'              => 'Ištrinti ir perkelti',
-'delete_and_move_text'         => '==Reikalingas ištrynimas==
+'delete_and_move_text'         => '==Reikia ištrinti==
 
 Paskirties puslapis „[[:$1]]“ jau yra. Ar norite jį ištrinti, kad galėtumėte pervardinti?',
 'delete_and_move_confirm'      => 'Taip, trinti puslapį',

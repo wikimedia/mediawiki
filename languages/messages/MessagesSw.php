@@ -688,8 +688,15 @@ Elewa kwamba huwezi kutumia kipengele cha "umtumie barua pepe mtuaji huyu" bila 
 Anwani yako ya sasa ya IP ni $3, na namba ya kuzuiliwa ni #$5.
 Tafadhali jumlisha maelezo yote ya juu kwenye kila ulizo utakalolifanya.',
 'blockednoreason'                  => 'sababu haikutajwa',
+'blockedoriginalsource'            => "Chazo cha '''$1''' kimeonyeshwa hapo chini:",
+'blockededitsource'                => "Maandishi ya '''maharirio yako''' kwa '''$1''' yameonyeshwa chini:",
+'whitelistedittitle'               => 'Kuingia kunahitajika ili uweze kuhariri',
 'whitelistedittext'                => 'Inabidi $1 ili uweze kuhariri kurasa.',
+'confirmedittext'                  => 'Lazima uthibitishe anwani ya barua pepe yako kabla ya kuhariri kurasa.
+Tafadhali thibitisha anwani ya barua pepe yako kupitia [[Special:Preferences|mapendekezo yako ya mtumiaji]].',
 'nosuchsectiontitle'               => 'Fungu hili hamna',
+'nosuchsectiontext'                => 'Umejaribu kuhariri sehemu ambayo haipo.
+Kwa vile hakuna hiyo sehemu $1, hakuna mahali pa kuhifadhia ulichohariri.',
 'loginreqtitle'                    => 'Unatakiwa kuingia au kujisajili',
 'loginreqlink'                     => 'uingie',
 'loginreqpagetext'                 => 'Inabidi $1 ili uweze kutazama kurasa zingine.',
@@ -699,7 +706,14 @@ Tafadhali jumlisha maelezo yote ya juu kwenye kila ulizo utakalolifanya.',
 Unaweza kubadilisha nywila hili kwenye ukurasa wa ''[[Special:ChangePassword|kubadilisha nywila]]'' baada ya kuingia kwenye wiki.",
 'newarticle'                       => '(Mpya)',
 'newarticletext'                   => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
+'anontalkpagetext'                 => "----''Huu ni ukurasa wa majadiliano wa mtumiaji ambaye hana jina na bado hajaumba akaunti bado, au hajawahi kutumia kabisa.
+Kwa hiyo tunatumia namba za anwani ya IP yake kumtambulisha.
+Anwani ya IP kama hiyo inaweza kutumika na watumaiji kadhaa.
+Iwapo wewe ndiye huyu mtumiaji asiye na jina na maelezo kama haya yakakulenga moja kwa moja, tafadhali [[Special:UserLogin/signup|fungua akaunti]] au  [[Special:UserLogin|ingia]] ili kuepuka kuchanganywa na watumiaji wengine ambao hawana jina.''",
 'noarticletext'                    => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta kumbukumbu zinazohusika], au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu]</span>.',
+'noarticletext-nopermission'       => 'Kwa sasa hakuna maandishi katika ukurasa huu.
+Unaweza [[Special:Search/{{PAGENAME}}|kutafuta jina la ukurasa huu]] katika kurasa nyingine,
+au <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta ingizo linalofanana]</span>.',
 'note'                             => "'''Taarifa:'''",
 'previewnote'                      => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
 'session_fail_preview'             => "'''Pole! Hatukuweza kuhifadhi sahihisho lako kwa sababu data za kipindi zilipotelewa.'''

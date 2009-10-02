@@ -818,6 +818,29 @@ $1",
 'revdelete-log-message'       => '$2 qey {{PLURAL:$2|revizyon|revizyon}} $1',
 'logdelete-log-message'       => '$2 qey {{PLURAL:$2|vaqa|vaqa}} $1',
 'revdelete-hide-current'      => '$2 $1 ney çiye ke wexta diyayene wera (wedar dayiş) xeta da: no reviyon nınımiyeno.',
+'revdelete-show-no-access'    => '$2 $1 wexta ke ney tarix de mociyayene xeta da: ne çi "vergırewtı" nişane biyo.
+resayişê şıma çino.',
+'revdelete-modify-no-access'  => '$2 $1 no çi yê ke wexta vuriyayene xeta da: no çi "vergırewtı" nişane biyo.
+resayişê şıma çino.',
+'revdelete-modify-missing'    => "$1 ID' de wexta ke çiyek vuriyayene xeta vıraziya: database vindbiyaye yo!",
+'revdelete-no-change'         => "'''Hişyari:'''  $2 $1 no çi re ca ra eyarê esayişi waziyayo.",
+'revdelete-concurrent-change' => '$2 $1 no çi wexta ke vuriya xeta da: wina aseno ke wexta şıma vurnayiş kerdene o enate de yewna te vurnayiş kerdo.
+rocaneyan kontrol bıkere.',
+'revdelete-only-restricted'   => 'şıma heta tercihê çabbiyayişi nêweçina şıma nêeşkeni ne unsuran çabbıkeri.',
+'revdelete-reason-dropdown'   => '*sebebê hewna kerdışi umumi
+** ihlalê telifi
+** malumatê şexsiyo ke munasib niye',
+'revdelete-otherreason'       => 'ê bini/sebebê bini',
+'revdelete-reasonotherlist'   => 'sebebê bini',
+'revdelete-edit-reasonlist'   => 'sebebê hewna kerdışani bıvurn',
+'revdelete-offender'          => 'nuştoxê revizyoni:',
+
+# Suppression log
+'suppressionlog'     => 'qeydê pinani kerdışi',
+'suppressionlogtext' => 'qey listeya qedexan bıewne: [[Special:IPBlockList|IP listeya vergırewteyan]]',
+
+# History merging
+'mergehistory' => 'vere cûye pelan bıhewelın',
 
 # Merge log
 'revertmerge' => 'Romevılêşne',
