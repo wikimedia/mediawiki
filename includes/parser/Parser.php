@@ -201,6 +201,7 @@ class Parser
 		$this->mLinkHolders = new LinkHolderArray( $this );
 		$this->mLinkID = 0;
 		$this->mRevisionTimestamp = $this->mRevisionId = null;
+		$this->mVarCache = array();
 
 		/**
 		 * Prefix for temporary replacement strings for the multipass parser.
