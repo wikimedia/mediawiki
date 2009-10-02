@@ -164,6 +164,7 @@ $wgUpdates = array(
 		array( 'add_table', 'external_user', 'patch-external_user.sql' ),
 		array( 'add_index', 'log_search', 'ls_field_val', 'patch-log_search-rename-index.sql' ),
 		array( 'add_index', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
+		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
 	),
 
 	'sqlite' => array(
