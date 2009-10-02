@@ -124,6 +124,19 @@ if (isset($options['protect']) && $options['protect'] == 1)
 					continue;
 				}
 			} else {
+				if ( isset( $options['skip-dupes'] ) ) {
+					$repo = $image->getRepo();
+					$sha1 = File::sha1Base36( $file ); #XXX: we end up calculating this again when actually uploading. that sucks.
+
+					$dupes = $repo->findBySha1( $sha1 );
+
+					if ( $dupes ) {
+						echo( "{$base} already exists as " . $dupes[0]->getName() . ", skipping\n" );
+						$skipped++;
+						continue;
+					}
+				}
+
 				echo( "Importing {$base}..." );
 				$svar = 'added';
 			}
@@ -253,6 +266,7 @@ Options:
 --limit=<num>		Limit the number of images to process. Ignored or skipped images are not counted.
 --from=<name>		Ignore all files until the one with the given name. Useful for resuming
                         aborted imports. <name> should be the file's canonical database form.
+--skip-dupes		Skip images that were already uploaded under a different name (check SHA1)
 --sleep=<sec> 		Sleep between files. Useful mostly for debugging.
 --user=<username> 	Set username of uploader, default 'Maintenance script'
 --check-userblock 	Check if the user got blocked during import.
