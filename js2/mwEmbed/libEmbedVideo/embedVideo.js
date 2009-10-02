@@ -1168,79 +1168,80 @@ embedVideo.prototype = {
 		};
 	},
 	onClipDone:function(){
-			js_log('base:onClipDone');
-			//stop the clip (load the thumbnail etc) 
-			this.stop();
-			this.seek_time_sec = 0;
-			this.setSliderValue(0);
-			var _this = this;
+		js_log('base:onClipDone');
+		//stop the clip (load the thumbnail etc) 
+		this.stop();
+		this.seek_time_sec = 0;
+		this.setSliderValue(0);
+		var _this = this;
+		
+		if(this.width < 300){
+			return ;
+		}
+		this.onClipDone_disp=true;
+		this.thumbnail_disp=true;
+		
+		//make sure we are not in preview mode( no end clip actions in preview mode) 
+		if( this.preview_mode )
+			return ;
 			
-			if(this.width < 300){
-				return ;
-			}
-			this.onClipDone_disp=true;
-			this.thumbnail_disp=true;
-			//make sure we are not in preview mode( no end clip actions in preview mode) 
-			if( this.preview_mode )
-				return ;
-				
-			$j('#img_thumb_'+this.id).css('zindex',1);
-			$j( this.id + ' .play-btn-large').hide();
-	
-			//add black background
-			$j('#dc_'+this.id).append('<div id="black_back_'+this.id+'" ' +
-						'style="z-index:-2;position:absolute;background:#000;' +
-						'top:0px;left:0px;width:'+parseInt(this.width)+'px;' +
-						'height:'+parseInt(this.height)+'px;">' +
-					'</div>');	
-	
-			if( this.wikiTitleKey){
-				$j('#dc_'+this.id).append(
-				'<div class="related_vids" >' +
-				   '<h1>' + gM('mwe_related_videos') + '</h1>'+
-					'<ul>' +
-					'</ul>' +
-				'</div>'); 	
-				$j('#img_thumb_' + this.id).fadeOut("fast");
-				$j('#dc_'+ _this.id + ' .related_vids ul').html( gM('mwe-loading_txt') );
-				this.mvVideoAudioSearch();
-			}else{
-				//add the liks_info_div black back 
-				$j('#dc_'+this.id).append('<div id="liks_info_'+this.id+'" ' +
-						'style="width:' +parseInt(parseInt(this.width)/2)+'px;'+		
-						'height:'+ parseInt(parseInt(this.height)) +'px;'+
-						'position:absolute;top:10px;overflow:auto'+				
-						'width: '+parseInt( ((parseInt(this.width)/2)-15) ) + 'px;'+
-						'left:'+ parseInt( ((parseInt(this.width)/2)+15) ) +'px;">'+					
-					'</div>'									
-			   );
-			   //start animation (make thumb small in upper left add in div for "loading"			
-				$j('#img_thumb_'+this.id).animate({				
-						width:parseInt(parseInt(_this.width)/2),
-						height:parseInt(parseInt(_this.height)/2),
-						top:20,
-						left:10
-					},
-					1000, 
-					function(){
-						//animation done.. add "loading" to div if empty		
-						if($j('#liks_info_'+_this.id).html()==''){
-							$j('#liks_info_'+_this.id).html(gM('mwe-loading_txt'));
-						}		
-					}
-				)				   
-				//now load roe if run the showNextPrevLinks
-				if(this.roe && this.media_element.addedROEData==false){
-					do_request(this.roe, function(data)
-					{															   
-						_this.media_element.addROE(data);
-						_this.getNextPrevLinks();
-					});	
-				}else{
-					this.getNextPrevLinks();
+		$j('#img_thumb_'+this.id).css('zindex',1);
+		$j('#'+ this.id + ' .play-btn-large').hide();
+
+		//add black background
+		$j('#dc_'+this.id).append( '<div id="black_back_' + this.id + '" ' +
+					'style="z-index:-2;position:absolute;background:#000;' +
+					'top:0px;left:0px;width:' + parseInt( this.width ) + 'px;' +
+					'height:' + parseInt( this.height ) + 'px;">' +
+				'</div>');	
+
+		if( this.wikiTitleKey){
+			$j('#dc_'+this.id).append(
+			'<div class="related_vids" >' +
+			   '<h1>' + gM('mwe_related_videos') + '</h1>'+
+				'<ul>' +
+				'</ul>' +
+			'</div>'); 	
+			$j('#img_thumb_' + this.id).fadeOut("fast");
+			$j('#dc_'+ _this.id + ' .related_vids ul').html( gM('mwe-loading_txt') );
+			this.mvVideoAudioSearch();
+		}else{
+			//add the liks_info_div black back 
+			$j('#dc_'+this.id).append('<div id="liks_info_'+this.id+'" ' +
+					'style="width:' +parseInt(parseInt(this.width)/2)+'px;'+		
+					'height:'+ parseInt(parseInt(this.height)) +'px;'+
+					'position:absolute;top:10px;overflow:auto'+				
+					'width: '+parseInt( ((parseInt(this.width)/2)-15) ) + 'px;'+
+					'left:'+ parseInt( ((parseInt(this.width)/2)+15) ) +'px;">'+					
+				'</div>'									
+		   );
+		   //start animation (make thumb small in upper left add in div for "loading"			
+			$j('#img_thumb_'+this.id).animate({				
+					width:parseInt(parseInt(_this.width)/2),
+					height:parseInt(parseInt(_this.height)/2),
+					top:20,
+					left:10
+				},
+				1000, 
+				function(){
+					//animation done.. add "loading" to div if empty		
+					if($j('#liks_info_'+_this.id).html()==''){
+						$j('#liks_info_'+_this.id).html(gM('mwe-loading_txt'));
+					}		
 				}
-			}	   			
-		},
+			)				   
+			//now load roe if run the showNextPrevLinks
+			if(this.roe && this.media_element.addedROEData==false){
+				do_request(this.roe, function(data)
+				{															   
+					_this.media_element.addROE(data);
+					_this.getNextPrevLinks();
+				});	
+			}else{
+				this.getNextPrevLinks();
+			}
+		}	   			
+	},
 	//@@todo we should merge getNextPrevLinks with textInterface .. there is repeated code between them. 
 	getNextPrevLinks:function(){
 		js_log('f:getNextPrevLinks');
@@ -1997,7 +1998,7 @@ embedVideo.prototype = {
 		}
 		
 		//make sure the big playbutton is has click action: 
-		$j(_this.id + ' .play-btn-large').unbind('click').click(function(){
+		$j('#' + _this.id + ' .play-btn-large').unbind('click').click(function(){
 			$j('#' +_this.id).get(0).play();
 		});
 		
