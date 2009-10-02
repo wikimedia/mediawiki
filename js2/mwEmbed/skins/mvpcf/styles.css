@@ -97,6 +97,7 @@ div.floatleft, table.floatleft {
 
 
 /*Video player*/
+
 .videoPlayer {
 /*	width: 100%;*/
 	color: white;
@@ -448,7 +449,7 @@ div.floatleft, table.floatleft {
 	top:16%;
 	width:283px;
 }
-.videoComplete .videoOptionsComplete p {text-align: center; margin: 3px 0; padding: 0;}
+.videoComplete .videoOptionsComplete p { text-align: center; margin: 3px 0; padding: 0; }
 .videoComplete .videoOptionsComplete a {
 	color: white;
 /*	font-size: 22px;*/
@@ -492,61 +493,6 @@ div.floatleft, table.floatleft {
 	margin:10px;
 }
 
-#SEQUENCER CSS:
-#resizable css:
-/*
-.ui-resizable-handle { position: absolute; background: #ddd; display: none; }
-.ui-resizable .ui-resizable-handle { display: block }
-.ui-resizable-e { z-index:5; position:absolute; cursor: e-resize;
-	width: 15px;height:19px; top: 0px; bottom: 0px; right: 0px;
-	background: transparent url(images/slider_handle_red.gif) no-repeat scroll 0% 0%;
-}
-.ui-resizable-w { z-index:5; position:absolute; cursor: w-resize;
-	width: 15px;height:19px; top: 0px; bottom: 0px; left: 0px;
-	background: transparent url(images/slider_handle_green.gif) no-repeat scroll 0% 0%;
-}
-.ui-dragSpan {
-	filter: alpha(opacity=70); 
-	-moz-opacity: .7;
-	background-color:#AAF; 
-	position:absolute; 
-	left: 10px; 
-	right:10px;
-	height:19px;  
-}
-*/
-/*
-div.rsd_cp_tab_container{
-	display:inline;
-	margin:0;
-	padding:5px 2px 10px 2px;
-	background:#F7F7F7 url(remote_search/tab-bg.png) repeat-x scroll left bottom;
-	border:1px solid #777;	
-	margin-left:7px;
-	cursor:pointer;
-	float:left;
-	width:auto;
-}
-div.rsd_cp_tab {
-	display:inline;
-	margin:0;
-	padding:5px 2px 10px 2px;
-	background:#F7F7F7 url(remote_search/tab-bg.png) repeat-x scroll left bottom;
-	border:1px solid #777;	
-	margin-left:7px;
-	cursor:pointer;
-	float:left;
-	width:auto;
-	position:relative;
-}
-
-div.rsd_selected {
-	background:#FFFFFF none repeat scroll 0 0;	
-	border-bottom:0;
-	padding-top:6px;
-	z-index:2;
-}
-*/
 .rsd_cp_tab img{
 	border:0px;
 }
@@ -556,18 +502,6 @@ div.rsd_selected {
 	top:2px;
 	bottom:2px;		
 }
-/*#rsd_results {
-	border-top:0;
-	border:1px solid #777;
-	/*position:relative;*/	
-	background:#FFF;	
-	left:2px;
-	right:2px;
-	bottom:2px;	
-	overflow:auto;
-	position:absolute;
-	top:75px;
-}*/
 #rsd_resource_edit{
 	z-index:2;
 }

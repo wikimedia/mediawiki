@@ -713,7 +713,7 @@ mvPlayList.prototype = {
 		var _this=this;
 		//js_log('pl play');
 		//hide the playlist play button: 
-		$j('#big_play_link_'+this.id).hide();				
+		$j(this.id + ' .play-btn-large').hide();				
 		
 		//un-pause if paused:
 		if(this.paused)

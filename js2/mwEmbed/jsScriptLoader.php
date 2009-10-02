@@ -4,6 +4,7 @@
  * @file
  */
 // Check if we are being invoked in a MediaWiki context or stand alone usage:
+
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Load noMediaWiki helper
 	require_once( realpath( dirname( __FILE__ ) ) . '/php/noMediaWikiConfig.php' );
@@ -206,7 +207,6 @@ class jsScriptLoader {
 								if( $t->exists()
 									&& ( $t->getNamespace() == NS_MEDIAWIKI
 									|| $t->getNamespace() == NS_USER ) ){
-
 										$doAddWT = true;
 								}
 							}

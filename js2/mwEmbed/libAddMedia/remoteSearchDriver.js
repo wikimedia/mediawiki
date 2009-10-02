@@ -346,7 +346,7 @@ remoteSearchDriver.prototype = {
 				}
 			}
 		}
-
+		
 		//set up the default model config:
 		this.dmodalCss = {
 			'width':'auto',
