@@ -451,8 +451,8 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			//now setup encoder settings based source type:
 			_this.autoEncoderSettings();
 
-			//if set to passthough update the interface:
-			if(_this.encoder_settings['passthrough'] == true){
+			//if set to passthough update the interface (if not a form) 
+			if(_this.encoder_settings['passthrough'] == true && !_this.form_rewrite){
 				$j(_this.target_passthrough_mode).show();
 			}else{
 				$j(_this.target_passthrough_mode).hide();
