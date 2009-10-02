@@ -83,6 +83,9 @@ class PrefixSearch {
 			$keys[$wgContLang->caseFold( $page )] = $page;
 		}
 		foreach( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
+			if( !array_key_exists( $page, SpecialPage::$mList ) ) # bug 20885
+				continue;
+
 			foreach( $aliases as $alias ) {
 				$keys[$wgContLang->caseFold( $alias )] = $alias;
 			}
