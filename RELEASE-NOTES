@@ -535,6 +535,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Password fields built with HTMLForm now still have the type="password" attribute
   if $wgHtml5=false.
 * (bug 20836) Preload now works for MediaWiki namespace
+* (bug 20885) Search box no longer suggests unavailable special pages
 
 == API changes in 1.16 ==
 
