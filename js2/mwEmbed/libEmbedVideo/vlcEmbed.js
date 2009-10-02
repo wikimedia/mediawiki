@@ -194,20 +194,11 @@ var vlcEmbed = {
 /* events */
 	onOpen: function(){
 		this.setStatus("Opening...");
-		//document.getElementById("info_"+this.id).innerHTML = "Opening...";
-		//document.getElementById("PlayOrPause").disabled = true;
-		//document.getElementById("Stop").disabled = false;
 	},
 	onBuffer: function(){
 		this.setStatus("Buffering...");
-		//document.getElementById("info_"+this.id).innerHTML = "Buffering...";
-		//document.getElementById("PlayOrPause").disabled = true;
-		//document.getElementById("Stop").disabled = false;
 	},
 	onPlay: function(){
-		//document.getElementById("PlayOrPause").value = "Pause";
-		//document.getElementById("PlayOrPause").disabled = false;
-		//document.getElementById("Stop").disabled = false;
 		this.onPlaying();		
 	},
 	liveFeedRoll: 0,

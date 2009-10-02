@@ -1,17 +1,38 @@
 //set the dismissNativeWarn flag:
 _global['dismissNativeWarn'] = false;
 
+
+/** base ctrlBuilder object
+	@param the embedVideo element we are targeting
+*/
+var ctrlBuilder = function( embedObj ) {
+	return this.init( embedObj );
+};
+
 /* 
- * controlsBuilder:
- * 
+ * controlsBuilder prototype:
  */
-var ctrlBuilder = {
+ctrlBuilder.prototype = {
+	init:function( embedObj, opt ){
+		this.embedObj = embedObj;				
+		
+		//check for skin overrides for ctrlBuilder
+		if( _global[ embedObj.skin_name + 'Config'] )
+			$j.extend(this, _global[ embedObj.skin_name + 'Config']);
+			
+	},
+	pClass:'videoPlayer',
 	height:29,
 	supports:{
 		  'options':true,				 
 		  'borders':true			   
 	},	
-	getControls:function( embedObj ){	
+	getControls:function(){	
+		//set up local pointer to the embedObj
+		var embedObj = this.embedObj;
+		//set up loadl ctrlBuilder ref
+		var _this = this;
+		
 		js_log('f:controlsBuilder:: opt:' + this.options);		
 		this.id = (embedObj.pc)?embedObj.pc.pp.id:embedObj.id;
 		this.available_width = embedObj.playerPixelWidth();
@@ -31,17 +52,17 @@ var ctrlBuilder = {
 		
 			
 		//append options to body (if not already there)
-		if($j('#mv_vid_options_'+ctrlBuilder.id).length==0)
-			$j('body').append( this.components['mv_embedded_options'].o() );		
+		if($j('#mv_vid_options_' + this.id).length==0)
+			$j('body').append( this.components['mv_embedded_options'].o( this ) );		
 					
 		var o='';	
 		for( var i in this.components ){
 			if( this.supports[i] ){
 				if( this.available_width > this.components[i].w ){
 					//special case with playhead don't add unless we have 60px
-					if( i == 'play_head' && ctrlBuilder.available_width < 60 )
+					if( i == 'play_head' && this.available_width < 60 )
 						continue;						
-					o+=this.components[i].o();
+					o+=this.components[i].o( this  );
 					this.available_width -= this.components[i].w;
 				}else{
 					js_log('not enough space for control component:' + i);
@@ -54,7 +75,10 @@ var ctrlBuilder = {
 	 * addControlHooks
 	 * to be run once controls are attached to the dom
 	 */
-	addControlHooks:function(embedObj){								
+	addControlHooks:function(){		
+		//set up local pointer to the embedObj
+		var embedObj = this.embedObj;	
+		var _this = this;					
 		//add in drag/seek hooks: 
 		if(!embedObj.base_seeker_slider_offset &&  $j('#mv_seeker_slider_'+embedObj.id).get(0))
 			embedObj.base_seeker_slider_offset = $j('#mv_seeker_slider_'+embedObj.id).get(0).offsetLeft;			  
@@ -63,16 +87,16 @@ var ctrlBuilder = {
 		//		'start sec: '+embedObj.start_time_sec + ' base offset: '+embedObj.base_seeker_slider_offset);
 		
 		//add play hook: 
-		$j('#mv_play_pause_button_' + embedObj.id).unbind().btnBind().click(function(){
+		$j('#mv_play_pause_button_' + embedObj.id ).unbind().btnBind().click(function(){
 			$j('#' + embedObj.id).get(0).play();
 		})	
 		
-		//big_play_link_ play binding: 
-		$j('#big_play_link_' + embedObj.id).unbind().click(function(){
+		//do play-btn-large binding: 
+		$j('#' + embedObj.id + ' .play-btn-large' ).unbind().btnBind().click(function(){
 			$j('#' + embedObj.id).get(0).play();
 		});		
 		
-		//add recomend firefox if non-native playback:
+		//add recommend firefox if non-native playback:
 		if( embedObj.doNativeWarningCheck() ){															
 			$j('#dc_'+ embedObj.id).hover(
 				function(){										
@@ -109,7 +133,7 @@ var ctrlBuilder = {
 		}
 		
 		if( $j.browser.msie  &&  $j.browser.version <= 6){			
-			$j('#big_play_link_' + embedObj.id).pngFix();
+			$j( embedObj.id + ' .play-btn-large' ).pngFix();
 		}
 		
 		
@@ -137,7 +161,7 @@ var ctrlBuilder = {
 			start: function(event, ui){
 				var id = (embedObj.pc!=null)?embedObj.pc.pp.id:embedObj.id;
 				embedObj.userSlide=true;
-				$j('#big_play_link_'+id).fadeOut('fast');
+				$j(id + ' .play-btn-large').fadeOut('fast');
 				//if playlist always start at 0
 				embedObj.start_time_sec = (embedObj.instanceOf == 'mvPlayList')?0:
 								npt2seconds(embedObj.getTimeReq().split('/')[0]);	 
@@ -173,22 +197,22 @@ var ctrlBuilder = {
 		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-handle').css('z-index', 4);
 		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-range').addClass('ui-corner-all').css('z-index', 2);
 		//extended class list for jQuery ui themeing (we can probably refactor this with custom buffering highliter) 
-		$j('#mv_play_head_'+embedObj.id).append( ctrlBuilder.getMvBufferHtml() );
+		$j('#mv_play_head_'+embedObj.id).append( this.getMvBufferHtml() );
 				
 		//videoOptions: 
-		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_selection').click(function(){
+		$j('#mv_vid_options_' + this.id + ' .vo_selection').click(function(){
 			embedObj.selectPlaybackMethod();
-			$j('#mv_vid_options_'+ctrlBuilder.id).hide();
+			$j('#mv_vid_options_' + embedObj.id).hide();
 			return false;
 		});
 		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_download').click(function(){
 			embedObj.showVideoDownload();
-			$j('#mv_vid_options_'+ctrlBuilder.id).hide();
+			$j('#mv_vid_options_'+embedObj.id).hide();
 			return false;
 		})		
 		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_showcode').click(function(){
 			embedObj.showEmbedCode();
-			$j('#mv_vid_options_'+ctrlBuilder.id).hide();
+			$j('#mv_vid_options_'+embedObj.id).hide();
 			return false;
 		});		
 			
@@ -251,17 +275,45 @@ var ctrlBuilder = {
 				'ui-state-highlight ui-corner-all '+
 				'mv_buffer" style="width:0px;height:100%;z-index:1;top:0px" />';
 	},
+	getComponent:function( component ) {				
+		if( this.components[ component ] ){
+			return this.components[ component ].o( this );
+		}else{
+			return false;
+		}
+	},
+	/*
+	* components take in the embedObj and return some html for the given component. 
+	* components can be overwritten by skin javascript
+	*/
 	components:{
 		'borders':{
 			'w':8,
-			'o':function(){
+			'o':function( ctrlObj ){
 				return	'';
+			}
+		},
+		'play-btn-large':{
+			'w' : 130,
+			'h' : 96,
+			'o':function( ctrlObj ){						
+				//get dynamic position for big play button (@@todo maybe use margin:auto ? ) 
+				return $j('<div/>').attr({
+								'title'	: gM('mwe-play_clip'),
+								'class'	: "ui-state-default play-btn-large",
+							})
+							.css({
+								'left' 	: ((ctrlObj.embedObj.playerPixelWidth() - this.w)/2),
+								'top'	: ((ctrlObj.embedObj.playerPixelHeight() - this.h)/2)
+							})
+							//quick and dirty way to get at jquery html (might be a short cut I am missing?) 
+							.wrap('<div/>').parent().html();						
 			}
 		},
 		'mv_embedded_options':{
 			'w':0,
-			'o':function(){
-				var o= '<div id="mv_vid_options_'+ctrlBuilder.id+'" class="videoOptions">'+
+			'o':function( ctrlObj ){
+				var o= '<div id="mv_vid_options_'+ctrlObj.id+'" class="videoOptions">'+
 				'<div class="videoOptionsTop"></div>'+
 				'<div class="videoOptionsBox">'+
 				'<div class="block">'+
@@ -273,8 +325,8 @@ var ctrlBuilder = {
 						'<p class="short_match vo_showcode"><a href="#"><span>'+gM('mwe-share')+'</span></a></p>';
 					
 					//link to the stream page if we are not already there: 
-					if( ctrlBuilder.embedObj.roe && typeof mv_stream_interface == 'undefined' )
-						o+='<p class="short_match"><a href="javascript:$j(\'#'+ctrlBuilder.id+'\').get(0).doLinkBack()"><span><strong>Source Page</strong></span></a></p>';
+					if( ctrlObj.embedObj.roe && typeof mv_stream_interface == 'undefined' )
+						o+='<p class="short_match"><a href="javascript:$j(\'#'+ctrlObj.id+'\').get(0).doLinkBack()"><span><strong>Source Page</strong></span></a></p>';
 											
 				o+='</div>'+  
 				'</div><!--videoOptionsInner-->' +   
@@ -285,49 +337,49 @@ var ctrlBuilder = {
 		},
 		'fullscreen':{
 			'w':20,
-			'o':function(){
-				return '<div title="' + gM('mwe-player_fullscreen') + '" id="fullscreen_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-arrow-4-diag"></span></div>'
+			'o':function( ctrlObj ){
+				return '<div title="' + gM('mwe-player_fullscreen') + '" id="fullscreen_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-arrow-4-diag"></span></div>'
 			}
 		},
 		'options':{
 			'w':26,
-			'o':function(){
-				return '<div title="'+ gM('mwe-player_options') + '" id="options_button_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-wrench"></span></div>';						 
+			'o':function( ctrlObj ){
+				return '<div title="'+ gM('mwe-player_options') + '" id="options_button_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-wrench"></span></div>';						 
 			}
 		},
 		'pause':{
 			'w':24,
-			'o':function(){
-				return '<div title="' + gM('mwe-play_clip') + '" id="mv_play_pause_button_' + ctrlBuilder.id + '" class="ui-state-default ui-corner-all ui-icon_link lButton"><span class="ui-icon ui-icon-play"/></div>';
+			'o':function( ctrlObj ){
+				return '<div title="' + gM('mwe-play_clip') + '" id="mv_play_pause_button_' + ctrlObj.id + '" class="ui-state-default ui-corner-all ui-icon_link lButton"><span class="ui-icon ui-icon-play"/></div>';
 			}
 		},
 		'closed_captions':{
 			'w':23,
-			'o':function(){
-				return '<div title="' + gM('mwe-closed_captions') + '" id="timed_text_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-comment"></span></div>'
+			'o':function( ctrlObj ){
+				return '<div title="' + gM('mwe-closed_captions') + '" id="timed_text_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-comment"></span></div>'
 			}			
 		},
 		'volume_control':{
 			'w':23,
-			'o':function(){
-					return '<div title="' + gM('mwe-volume_control') + '" id="volume_control_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">' +
+			'o':function( ctrlObj ){
+					return '<div title="' + gM('mwe-volume_control') + '" id="volume_control_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">' +
 								'<span class="ui-icon ui-icon-volume-on"></span>' +
-								'<div style="position:absolute;display:none;" id="vol_container_'+ctrlBuilder.id+'" class="vol_container ui-corner-all">' +
-									'<div class="volume_bar" id="volume_bar_' + ctrlBuilder.id + '"></div>' +
+								'<div style="position:absolute;display:none;" id="vol_container_'+ctrlObj.id+'" class="vol_container ui-corner-all">' +
+									'<div class="volume_bar" id="volume_bar_' + ctrlObj.id + '"></div>' +
 								'</div>'+
 							'</div>';														
 			}
 		},
 		'time_display':{
 			'w':90,
-			'o':function(){
-				return '<div id="mv_time_'+ctrlBuilder.id+'" class="ui-widget time">' + ctrlBuilder.embedObj.getTimeReq() + '</div>';
+			'o':function( ctrlObj ){
+				return '<div id="mv_time_'+ctrlObj.id+'" class="ui-widget time">' + ctrlObj.embedObj.getTimeReq() + '</div>';
 			}
 		},
 		'play_head':{
 			'w':0, //special case (takes up remaining space) 
-			'o':function(){
-				return '<div class="play_head" id="mv_play_head_' + ctrlBuilder.id + '" style="width: ' + ( ctrlBuilder.available_width - 30 ) + 'px;"></div>';
+			'o':function( ctrlObj ){
+				return '<div class="play_head" id="mv_play_head_' + ctrlObj.id + '" style="width: ' + ( ctrlObj.available_width - 30 ) + 'px;"></div>';
 			}
 		}										
 	}	

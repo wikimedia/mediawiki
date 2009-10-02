@@ -94,10 +94,12 @@ var default_video_attributes = {
 	"linkback":null,
 	"embed_link":true,
 	"download_link":true,
-	"type":null	 //the content type of the media 
+	"type":null,	 //the content type of the media 
+	
+	"skin_name":null //if you want to select a custom skin per video tag. 
 };
 /*
- * the base source attibute checks
+ * the base source attribute checks
  */
 var mv_default_source_attr= new Array(
 	'id',
@@ -120,7 +122,7 @@ function mv_video_embed(swap_done_callback, force_id){
 	mvEmbed.init( swap_done_callback, force_id );
 }
 mvEmbed = {	
-	//flist stores the set of functions to run after the video has been swaped in. 
+	//flist stores the set of functions to run after the video has been swapped in. 
 	flist:new Array(),
 	init:function( swap_done_callback, force_id ){
 		
@@ -128,7 +130,7 @@ mvEmbed = {
 			mvEmbed.flist.push( swap_done_callback );
 			
 		//get mv_embed location if it has not been set
-		js_log('mv_embed ' + MV_EMBED_VERSION);				
+		js_log('mv_embed ' + MV_EMBED_VERSION);						
 		
 		var loadPlaylistLib=false;						
 		
@@ -138,7 +140,7 @@ mvEmbed = {
 			if( $j(this_elm).attr("id") == '' ){
 				$j(this_elm).attr("id", 'v'+ global_player_list.length);
 			}			
-			//stre a global reference to the id	
+			//store a global reference to the id	
 		   global_player_list.push( $j(this_elm).attr("id") );
 		   //if video doSwap
 		   switch( this_elm.tagName.toLowerCase()){
@@ -234,8 +236,8 @@ mvEmbed = {
 		$j('#'+embed_video.id).get(0).on_dom_swap();	
 			  
 		// now that "embed_video" is stable, do more initialization (if we are ready)
-		if($j('#'+embed_video.id).get(0).loading_external_data == false && 
-			   $j('#'+embed_video.id).get(0).init_with_sources_loadedDone == false){
+		if($j('#'+embed_video.id).get(0).loading_external_data == false
+			 && $j('#'+embed_video.id).get(0).init_with_sources_loadedDone == false){
 			//load and set ready state since source are available: 
 			$j('#'+embed_video.id).get(0).init_with_sources_loaded();
 		}
@@ -808,7 +810,11 @@ embedVideo.prototype = {
 	},
 	init: function(element){		
 		//this.element_pointer = element;
-
+		
+		//set the skin name from the config
+		//@@todo support skin as an attribute option
+		this.skin_name = mwConfig['skin_name'];
+		
 		//inherit all the default video_attributes
 		for(var attr in default_video_attributes){ //for in loop oky on user object
 			if(element.getAttribute(attr)){
@@ -844,7 +850,13 @@ embedVideo.prototype = {
 			this.user_missing_plugin_html=element.innerHTML;
 		}				  
 		// load all of the specified sources
-		this.media_element = new mediaElement(element);							 
+		this.media_element = new mediaElement(element);		
+		
+		//if we are displaying controls setup the ctrlBuilder  
+		if( this.controls ){
+			//set-up the local ctrlBuilder instance: 
+			this.ctrlBuilder = new ctrlBuilder( this );		
+		}			 
 	},
 	on_dom_swap: function(){
 		js_log('f:on_dom_swap');				
@@ -873,7 +885,7 @@ embedVideo.prototype = {
 		this.init_with_sources_loadedDone=true;				 
 		//autoseletct the source
 		this.media_element.autoSelectSource();		
-		//auto select player based on prefrence or default order
+		//auto select player based on default order
 		if( !this.media_element.selected_source )
 		{
 			//check for parent clip: 
@@ -925,13 +937,8 @@ embedVideo.prototype = {
 		//set up the new embedObj
 		js_log('f: inheritEmbedObj: embedding with ' + this.selected_player.library);
 		var _this = this;		
-		this.selected_player.load( function()
-		{
-			 js_log("selected_player::load:duration is: " +  _this.duration);  
+		this.selected_player.load( function(){			  
 			//js_log('inheriting '+_this.selected_player.library +'Embed to ' + _this.id + ' ' + $j('#'+_this.id).length);
-			//var _this = $j('#'+_this.id).get(0);
-			//js_log( 'type of ' + _this.selected_player.library +'Embed + ' +
-			//		eval('typeof '+_this.selected_player.library +'Embed')); 
 			eval('embedObj = ' +_this.selected_player.library +'Embed;');
 			for(var method in embedObj){ //for in loop oky for object  
 				//parent method preservation for local overwritten methods
@@ -979,12 +986,11 @@ embedVideo.prototype = {
 				var playable_sources = this.media_element.getPlayableSources();
 				for(var sInx=0; sInx < playable_sources.length; sInx++){  
 					var mime_type = playable_sources[sInx].mime_type;
-					if( mime_type=='video/ogg' ){
-						//they  have flash / h.264 fallback no need to push firefox :( 
+					if( mime_type=='video/ogg' ){						
 						foundOgg = true;
 					}
 				}
-				//no ogg no point in download firefox
+				//no ogg src... no point in download firefox link
 				if(!foundOgg)
 					return false;
 										
@@ -1022,7 +1028,7 @@ embedVideo.prototype = {
 	 * wrapEmebedContainer
 	 * wraps the embed code into a container to better support playlist function
 	 *  (where embed element is swapped for next clip
-	 *  (where plugin method does not support playlsits) 
+	 *  (where plugin method does not support playlist) 
 	 */
 	wrapEmebedContainer:function(embed_code){
 		//check if parent clip is set( ie we are in a playlist so name the embed container by playlistID)
@@ -1179,7 +1185,7 @@ embedVideo.prototype = {
 				return ;
 				
 			$j('#img_thumb_'+this.id).css('zindex',1);
-			$j('#big_play_link_'+this.id).hide();
+			$j( this.id + ' .play-btn-large').hide();
 	
 			//add black background
 			$j('#dc_'+this.id).append('<div id="black_back_'+this.id+'" ' +
@@ -1404,38 +1410,43 @@ embedVideo.prototype = {
 			return;
 		}else{
 			$j('#mv_embedded_controls_'+this.id).html( this.getControlsHTML() );
-			ctrlBuilder.addControlHooks(this);						
+			this.ctrlBuilder.addControlHooks(this);						
 		}		
 	},   
 	getControlsHTML:function()
 	{			
-		return ctrlBuilder.getControls( this );
+		return this.ctrlBuilder.getControls( this );
 	},	
 	getHTML : function (){		
-		//@@todo check if we have sources avaliable	
+		//@@todo check if we have sources available	
 		js_log('embedVideo:getHTML : ' + this.id  + ' resource type: ' + this.type);			
 		var _this = this;				 
 		var html_code = '';		
-		html_code = '<div id="videoPlayer_'+this.id+'" style="width:'+this.width+'px;position:relative;" class="videoPlayer">';		
+		html_code = '<div id="videoPlayer_' + this.id + '" style="width:' + this.width + 'px;position:relative;"'+ 
+						'class="' + this.ctrlBuilder.pClass + '">';		
 		html_code += '<div style="width:'+parseInt(this.width)+'px;height:'+parseInt(this.height)+'px;"  id="mv_embedded_player_'+this.id+'">' +
 						this.getThumbnailHTML() + 
 					'</div>';											
 		//js_log("mvEmbed:controls "+ typeof this.controls);									
 		if( this.controls )
 		{
+			//set-up the local ctrlBuilder instance: 
+			this.ctrlBuilder = new ctrlBuilder( this );
+			
 			js_log("f:getHTML:AddControls");
 			html_code +='<div id="mv_embedded_controls_' + this.id + '" class="ui-widget ui-corner-bottom ui-state-default controls" >';
 			html_code += this.getControlsHTML();	   
-			html_code +='</div>';	  
+			html_code +='</div>';	  			
 			//block out some space by encapulating the top level div 
 			$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
-					+(parseInt(this.height)+ctrlBuilder.height)+'px"></div>');					
+					+( parseInt(this.height) + this.ctrlBuilder.height )+'px"></div>');
+								
 		}
 		html_code += '</div>'; //videoPlayer div close		
 		//js_log('should set: '+this.id);
 		$j(this).html( html_code );					
 		//add hooks once Controls are in DOM
-		ctrlBuilder.addControlHooks(this);		
+		this.ctrlBuilder.addControlHooks(this);		
 						  
 		//js_log('set this to: ' + $j(this).html() );	
 		//alert('stop');
@@ -1587,7 +1598,7 @@ embedVideo.prototype = {
 			' id="img_thumb_'+this.id+'" src="' + this.thumbnail + '">';
 		
 		if(this.play_button == true && this.controls == true)
-			  thumb_html+=this.getPlayButton();
+			  thumb_html+= this.ctrlBuilder.getComponent( 'play-btn-large' );
 			  
 		   thumb_html+='</div>';
 		return thumb_html;
@@ -1627,15 +1638,7 @@ embedVideo.prototype = {
 		//js_log('pos of options button: t:'+pos['top']+' l:'+ pos['left']);
 		$j('#mv_vid_options_'+sel_id).css(pos).toggle();
 		return;
-	},
-	getPlayButton:function(id){
-		if(!id)id=this.id;
-		return '<div title="' + gM('mwe-play_clip') + '" id="big_play_link_'+id+'" class="large_play_button" '+
-			'style="left:'+((this.playerPixelWidth()-130)/2)+'px;'+
-			'top:' + ((this.playerPixelHeight()-96)/2) + 'px;">'+
-			'<img src="' + mv_skin_img_path + 'player_big_play_button.png">'+
-			'</div>';
-	},
+	},	
 	doLinkBack:function(){
 		if(this.roe && this.media_element.addedROEData==false){
 			var _this = this;
@@ -1994,7 +1997,7 @@ embedVideo.prototype = {
 		}
 		
 		//make sure the big playbutton is has click action: 
-		$j('#big_play_link_' + _this.id).unbind('click').click(function(){
+		$j(_this.id + ' .play-btn-large').unbind('click').click(function(){
 			$j('#' +_this.id).get(0).play();
 		});
 		
@@ -2253,20 +2256,12 @@ mediaPlayer.prototype =
 	{
 		return gM('mwe-ogg-player-' + this.id);
 	},
-	load : function(callback){
-		var libName = this.library+'Embed';
-		if( mvJsLoader.checkObjPath( libName ) ){
-			js_log('plugin loaded, do callback:');
-			callback();
-		}else{
-			var _this = this;											
-			//jQuery based get script does not work so well. 							
-			mvJsLoader.doLoad([ 
-				libName
-			],function(){
-				callback();							
-			});
-		}
+	load : function(callback){		
+		mvJsLoader.doLoad([ 
+			this.library + 'Embed'	
+		],function(){
+			callback();							
+		});
 	}	
 }
 /* players and supported mime types 

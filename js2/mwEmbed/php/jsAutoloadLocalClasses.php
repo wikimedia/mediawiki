@@ -4,7 +4,6 @@ if ( !defined( 'MEDIAWIKI' ) ) die( 1 );
 global $wgJSAutoloadLocalClasses, $wgMwEmbedDirectory;
 
 // Load classes from  mv_embed.js
-
 if ( is_file( $wgMwEmbedDirectory . 'mv_embed.js' ) ) {
 	// Read the file
 	$str = @file_get_contents( $wgMwEmbedDirectory . 'mv_embed.js' );

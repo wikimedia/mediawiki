@@ -1,0 +1,21 @@
+/*
+* K-skin player
+*/ 
+
+/* large play button */
+.k-player .play-btn-large { width:120px; height:55px; background: url(images/ksprite.png) no-repeat 28px -433px; position:absolute; cursor:pointer; border:none;} /*.ui-state-default */
+.k-player .play-btn-large.ui-state-hover { background: url(images/ksprite.png) no-repeat 28px -377px; }
+
+/* control icons: */
+.k-player .ui-state-default .ui-icon, .k-player .ui-state-hover .ui-icon {background:transparent url(images/ksprite.png) no-repeat scroll 0 -48px;}
+ 
+.k-player .ui-state-default .ui-icon-arrow-4-diag { background-position: 0 -32px;} /* fullscreen */
+.k-player .ui-state-hover .ui-icon-arrow-4-diag { background-position: -16px -32px;}
+.k-player .ui-state-default .ui-icon-volume-on,  .ui-state-hover .ui-icon-volume-off,  { margin-left:-6px; background-position: -16px -48px;}
+.k-player .ui-state-hover .ui-icon-volume-on, .ui-state-default .ui-icon-volume-off { margin-left:-6px; background-position: 0 -48px;}
+
+.k-player .ui-state-default .ui-icon-play { background:url(images/ksprite.png) no-repeat 0 0;}
+.k-player .ui-state-hover .ui-icon-play { background-position: -16px 0;}
+
+.k-player .ui-state-default .ui-icon-pause { background:url(images/ksprite.png) no-repeat 0 -17px;}
+.k-player .ui-state-hover .ui-icon-pause { background-position: -16px -17px;}
