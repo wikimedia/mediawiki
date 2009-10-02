@@ -1209,6 +1209,18 @@ $user: User (object) changing his passoword
 $newPass: new password
 $error: error (string) 'badretype', 'wrongpassword', 'error' or 'success'
 
+'ProtectionForm::buildForm': called after all protection type fieldsets are made in the form
+$article: the title being (un)protected
+$output: a string of the form HTML so far
+
+'ProtectionForm::showLogExtract': called after the protection log extract is shown
+$article: the page the form is shown for
+$out: OutputPage object
+
+'ProtectionForm::save': called when a protection form is submitted
+$article: the title being (un)protected
+$errorMsg: an html message string of an error
+
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
 &$obj: RawPage object
 &$text: The text that's going to be the output
