@@ -45,6 +45,14 @@ if (isset($options['protect']) && $options['protect'] == 1)
 		$user = User::newFromName( 'Maintenance script' );
 	$wgUser = $user;
 
+	# Get block check. If a value is given, this specified how often the check is performed
+	if ( isset( $options['check-userblock'] ) ) {
+		if ( !$options['check-userblock'] ) $checkUserBlock = 1;
+		else $checkUserBlock = (int)$options['check-userblock']; 
+	} else {
+		$checkUserBlock = false;
+	}
+
 	# Get --from 
 	$from = @$options['from'];
 
@@ -93,6 +101,14 @@ if (isset($options['protect']) && $options['protect'] == 1)
 				} else {
 					$ignored++;
 					continue;
+				}
+			}
+
+			if ( $checkUserBlock && ( ( $processed % $checkUserBlock ) == 0 ) ) {
+				$user->clearInstanceCache( 'name' ); //reload from DB!
+				if ( $user->isBlocked() ) {
+					echo( $user->getName() . " was blocked! Aborting." );
+					break;
 				}
 			}
 
@@ -239,6 +255,7 @@ Options:
                         aborted imports. <name> should be the file's canonical database form.
 --sleep=<sec> 		Sleep between files. Useful mostly for debugging.
 --user=<username> 	Set username of uploader, default 'Maintenance script'
+--check-userblock 	Check if the user got blocked during import.
 --comment=<text>  	Set upload summary comment, default 'Importing image file'.
 --comment-file=<file>  	Set upload summary comment the the content of <file>.
 --comment-ext=<ext>  	Causes the comment for each file to be loaded from a file with the same name
