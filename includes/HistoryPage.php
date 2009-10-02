@@ -340,7 +340,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
-		global $wgScript, $wgEnableHtmlDiff, $wgUser, $wgOut;
+		global $wgScript, $wgEnableHtmlDiff, $wgUser, $wgOut, $wgContLang;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -352,12 +352,14 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$this->buttons = '<div>';
 		if( $wgUser->isAllowed('deletedhistory') ) {
+			$float = $wgContLang->isRTL() ? 'left' : 'right';
 			$this->buttons .= Xml::element( 'button',
 				array(
 					'type' => 'submit',
 					'name' => 'action',
 					'value' => 'revisiondelete',
-					'style' => 'float: right',
+					'style' => "float: $float;",
+					'class' => 'mw-history-revisiondelete-button',
 				),
 				wfMsg( 'showhideselectedversions' )
 			) . "\n";
