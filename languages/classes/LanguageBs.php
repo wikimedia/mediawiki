@@ -10,6 +10,8 @@ class LanguageBs extends Language {
 		if ( !count($forms) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 3 );
 
+		// FIXME: CLDR defines 4 plural forms instead of 3. Plural for decimals is missing.
+		//        http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
 			return $forms[2];
 		} else {

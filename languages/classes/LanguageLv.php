@@ -23,6 +23,9 @@ class LanguageLv extends Language {
 	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count($forms) ) { return ''; }
+
+		// FIXME: CLDR defines 3 plural forms instead of 2.  Form for 0 is missing.
+		//        http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#lv
 		$forms = $this->preConvertPlural( $forms, 2 );
 
 		return ( ( $count % 10 == 1 ) && ( $count % 100 != 11 ) ) ? $forms[0] : $forms[1];
