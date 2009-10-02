@@ -591,7 +591,7 @@ class LogEventsList {
 			$param = array() ) {
 
 		$defaultParameters = array(
-			'lim' => 0,
+			'lim' => 25,
 			'conds' => array(),
 			'showIfEmpty' => true,
 			'msgKey' => array('')
