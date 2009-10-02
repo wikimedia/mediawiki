@@ -308,7 +308,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|Create}}',
 'vector-view-edit'           => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 {{Identical|Edit}}',
-'vector-view-history'        => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector',
+'vector-view-history'        => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+{{Identical|View history}}',
 'vector-view-view'           => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
 'vector-view-viewsource'     => 'Tab label in the Vector skin.
 {{Identical|View source}}',

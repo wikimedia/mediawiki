@@ -1065,7 +1065,7 @@ $2',
 'revdelete-suppress'          => 'تخبية البيانات عن السيسوبات و اليوزرز التانيين',
 'revdelete-hide-image'        => 'خبى المحتويات بتاعة الملف',
 'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
-'revdelete-log'               => 'تعليق  على السجل:',
+'revdelete-log'               => 'سبب المسح:',
 'revdelete-submit'            => 'طبق على النسخه المختاره',
 'revdelete-logentry'          => 'غير رؤية المراجعة ل[[$1]]',
 'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
@@ -1098,6 +1098,7 @@ $1",
 'revdelete-concurrent-change' => 'حصل غلط فى تعديل البند اللى بتاريخ $2,الساعه $1: حالته الظاهر فى حد تانى غيرها و انتا بتحاول تعدل فيها..
 لو سمحت بص على السجلات.',
 'revdelete-only-restricted'   => 'ماينفعش تمنع بنود من ان الاداريين يشوفوها من غير ما تختار كمان واحد من اختيارات الكبت التانيه.',
+'revdelete-reasonotherlist'   => 'سبب تانى',
 'revdelete-edit-reasonlist'   => 'عدل أسباب المسح',
 
 # Suppression log
@@ -1706,7 +1707,7 @@ PICT # misc.
 يمكن تجرب تانى فى وقت مايكونش فيه زحمة.',
 
 'license'            => 'ترخيص:',
-'license-header'     => 'ترخيص:',
+'license-header'     => 'الترخيص',
 'nolicense'          => 'مش متحدد',
 'license-nopreview'  => '(البروفه مش متوفره)',
 'upload_source_url'  => '  (اليوأرإل صحيح وممكن توصل ليه)',
@@ -1826,6 +1827,7 @@ PICT # misc.
 'statistics-header-edits'      => 'إحصاءات التعديلات',
 'statistics-header-views'      => 'إحصاءات المشاهدة',
 'statistics-header-users'      => 'الاحصاءات بتاعة اليوزر',
+'statistics-header-hooks'      => 'احصائيات تانيه',
 'statistics-articles'          => 'صفحات المحتوى',
 'statistics-pages'             => 'الصفحات',
 'statistics-pages-desc'        => 'كل الصفحات فى الويكى، بما فيها صفحات النقاش، التحويلات، إلى آخره.',
@@ -2838,6 +2840,8 @@ $1',
 'svg-long-desc'        => '(ملف SVG، اساسا $1 × $2 بكسل، حجم الملف: $3)',
 'show-big-image'       => 'الصورة بدقه كامله',
 'show-big-image-thumb' => '<small>حجم البروفه دى: $1 × $2 بكسل</small>',
+'file-info-gif-looped' => 'ملفوف',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|برواز|براويز}}',
 
 # Special:NewFiles
 'newimages'             => 'جاليرى الصور الجديده',
@@ -3164,6 +3168,7 @@ $1',
 'watchlistall2'    => 'الكل',
 'namespacesall'    => 'الكل',
 'monthsall'        => 'الكل',
+'limitall'         => 'الكل',
 
 # E-mail address confirmation
 'confirmemail'             => 'اعمل تأكيد للأيميل بتاعك',
@@ -3449,7 +3454,7 @@ $1',
 'tag-filter-submit'       => 'فلتر',
 'tags-title'              => 'وسوم',
 'tags-intro'              => 'الصفحه دى فيها ليستة الوسوم اللى ممكن البرنامج يعلم عى التعديل بيها، و معانيهم',
-'tags-tag'                => 'اسم وسم داخلى',
+'tags-tag'                => 'اسم الوسم',
 'tags-display-header'     => 'المظهر على ليستات التغيير',
 'tags-description-header' => 'وصف كامل للمعنى',
 'tags-hitcount-header'    => 'تغييرات موسومة',
@@ -3475,5 +3480,20 @@ $1',
 'htmlform-submit'              => 'تقديم',
 'htmlform-reset'               => 'الرجوع فى التغييرات',
 'htmlform-selectorother-other' => 'تانيين',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'ضيف تصنيف',
+'ajax-add-category-submit'     => 'ضيف',
+'ajax-confirm-title'           => 'تأكيد العمليه',
+'ajax-confirm-prompt'          => 'ممكن تضيف ملخص للتعديل تحت.
+دوس على "تسييف" علشان تسيف التعديل بتاعك.',
+'ajax-confirm-save'            => 'سييف',
+'ajax-add-category-summary'    => 'حط التصنيف "$1"',
+'ajax-remove-category-summary' => 'شيل التصنيف "$1"',
+'ajax-confirm-actionsummary'   => 'العمل المطلوب:',
+'ajax-error-title'             => 'غلط',
+'ajax-error-dismiss'           => 'طيب',
+'ajax-remove-category-error'   => 'مانفعش نشيل التصنيف دا.
+دا بيحصل عادة لما التصنيف بيتحط فى الصفحه عن طريق القالب',
 
 );

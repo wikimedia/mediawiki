@@ -1050,6 +1050,9 @@ Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'rev-deleted-unhide-diff'     => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
 Kao administrator Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
+'rev-suppressed-unhide-diff'  => "Jedna od revizija ove razlike je '''uklonjena'''.
+Postoji mnogo detalja u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku uklanjanja].
+Kao administrator i dalje možete [$1 vidjeti ove razlike] ako želite da nastavite.",
 'rev-delundel'                => 'pokaži/sakrij',
 'revisiondelete'              => 'Obriši/vrati revizije',
 'revdelete-nooldid-title'     => 'Nije unesena tačna revizija',

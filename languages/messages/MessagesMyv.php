@@ -214,6 +214,9 @@ $messages = array(
 'underline-never'   => 'Зярдояк',
 'underline-default' => 'Васнянь браузер',
 
+# Font style option in Special:Preferences
+'editfont-style' => 'Витнема-петнема уминенть фонт стилезэ',
+
 # Dates
 'sunday'        => 'Таргочи',
 'monday'        => 'Атяньчи',
@@ -307,6 +310,7 @@ $messages = array(
 'faqpage'        => 'Project:Сеедьстэ кепедень кевкстемат',
 
 # Vector skin
+'vector-action-addsection'   => 'Поладомс мезде кортамс',
 'vector-action-delete'       => 'Нардамс',
 'vector-action-move'         => 'Печтевтемс',
 'vector-action-protect'      => 'Аравтомс ванстомас',
@@ -533,8 +537,7 @@ $messages = array(
 'nouserspecified'            => 'Теицянь лем эряви.',
 'wrongpassword'              => 'Аволь истя сёрмадык совамо валот. Варчыка одов.',
 'wrongpasswordempty'         => 'Салавань валот кадовсь апак сёрмадо. Сёрмадыка одов.',
-'passwordtooshort'           => 'Совамо валот кувалмозо а саты. 
-Эйсэнзэ  {{PLURAL:$1|эряви 1 тешкс| эрявить $1 тешкст}}, аволь седе аламо.',
+'passwordtooshort'           => 'Совамо валонть кувалмозо  {{PLURAL:$1|улезэ 1 тешкс| улезт $1 тешкст}}, аволь седе аламо.',
 'mailmypassword'             => 'Кучт е-сёрмасо од совамо вал',
 'passwordremindertitle'      => '{{SITENAME}} туртов акуватень од совамо вал',
 'passwordremindertext'       => 'Кие-бути (кода неяви тон IP-тешксстэнть $1) вешсь,<br />
@@ -677,6 +680,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # Parser/template warnings
 'post-expand-template-argument-category' => 'Лопатнесэ улить лопа парцунонь нардань аргументт',
+'parser-template-loop-warning'           => 'Лопа парцунсто "чары реве" муевсь: [[$1]]',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Сёрмадома таркынесь а тееви',
@@ -722,7 +726,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'revdelete-hide-comment'    => 'Кекшемс витнемадо-петнемадо арсематнень',
 'revdelete-hide-user'       => 'Кекшемс витницянть-петницянть теиця лемензэ/IP-нзэ',
 'revdelete-hide-image'      => 'Кекшемс мезе файлатнесэ',
-'revdelete-log'             => 'Логто ёвтнема:',
+'revdelete-log'             => 'Нардамонть тувталозо:',
 'revdelete-submit'          => 'Аравтомс кочказь лиякстомтонть',
 'revdelete-logentry'        => '[[$1]]-нть лиякстомтоманть неявомазо полавтовсь',
 'revdel-restore'            => 'Полавтомс неявомачынзэ',
@@ -1013,31 +1017,38 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'action-importupload'       => 'совавтомс те лопанть файлань йовкстамо юртсто',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|полавтнема|полавтнемат}}',
-'recentchanges'                  => 'Чыяконь полавтнемат-лиякстомтомат',
-'recentchanges-legend'           => 'Улконь полавтнематнень аравтнемаст',
-'recentchanges-feed-description' => 'Мельга ваннынк кода ульнесть витьнемат-петнемат wiki-сэ те максовксонть.',
-'rcnote'                         => "$5, $4 шканть коряс муят алдо {{PLURAL:$1|Меельсе '''1''' лиякстомтоманть|Меельсе '''$1''' лиякстомтоматнень}}  меельсе {{PLURAL:$2|чинть|'''$2''' читнень}} шкасто.",
-'rcnotefrom'                     => "Ало невтезь  '''$2''' лиякстомтомасто саезь ('''$1''' видс).",
-'rclistfrom'                     => 'Невтемс од витьнематнень $1-нть эйстэ саезь.',
-'rcshowhideminor'                => '$1 апокшкэ витнемат-петнемат',
-'rcshowhidebots'                 => '$1 ботт',
-'rcshowhideliu'                  => '$1 совазь уськекирдийтне',
-'rcshowhideanons'                => '$1 лемтеме теицят',
-'rcshowhidepatr'                 => '$1 кона патрульсэ витьни-петни',
-'rcshowhidemine'                 => '$1 мезе мон витнинь-петнинь',
-'rclinks'                        => 'Невтемс меельсе $1 полавтнемат меельсе $2 чинь перть<br />$3',
-'diff'                           => 'кадовикс',
-'hist'                           => 'ист',
-'hide'                           => 'Кекшемс',
-'show'                           => 'Невтемс',
-'minoreditletter'                => 'а',
-'newpageletter'                  => 'О',
-'boteditletter'                  => 'б',
-'rc_categories_any'              => 'Кодамо илязо уле',
-'newsectionsummary'              => '/* $1 */ од пелькс',
-'rc-enhanced-expand'             => 'Невтемс седе ламо тень ланга (JavaScript эряви)',
-'rc-enhanced-hide'               => 'Кекшемс келейстэ ёвтазенть',
+'nchanges'                         => '$1 {{PLURAL:$1|полавтнема|полавтнемат}}',
+'recentchanges'                    => 'Чыяконь полавтнемат-лиякстомтомат',
+'recentchanges-legend'             => 'Улконь полавтнематнень аравтнемаст',
+'recentchanges-feed-description'   => 'Мельга ваннынк кода ульнесть витьнемат-петнемат wiki-сэ те максовксонть.',
+'recentchanges-legend-newpage'     => '$1, те - од лопа',
+'recentchanges-label-newpage'      => 'Те витнемась-петнемась од лопа тейсь',
+'recentchanges-legend-minor'       => '$1, те - а покшкэ витнема-петнема',
+'recentchanges-label-minor'        => 'Те а покшкэ витнемась-петнемась',
+'recentchanges-legend-bot'         => '$1, те - ботонь витнемазо-петнемазо',
+'recentchanges-label-bot'          => 'Те витнеманть-петнеманть теизе кона-кона бот',
+'recentchanges-legend-unpatrolled' => '$1, те витнеманть-петнеманть мельга а ванстнить',
+'rcnote'                           => "$5, $4 шканть коряс муят алдо {{PLURAL:$1|Меельсе '''1''' лиякстомтоманть|Меельсе '''$1''' лиякстомтоматнень}}  меельсе {{PLURAL:$2|чинть|'''$2''' читнень}} шкасто.",
+'rcnotefrom'                       => "Ало невтезь  '''$2''' лиякстомтомасто саезь ('''$1''' видс).",
+'rclistfrom'                       => 'Невтемс од витьнематнень $1-нть эйстэ саезь.',
+'rcshowhideminor'                  => '$1 апокшкэ витнемат-петнемат',
+'rcshowhidebots'                   => '$1 ботт',
+'rcshowhideliu'                    => '$1 совазь уськекирдийтне',
+'rcshowhideanons'                  => '$1 лемтеме теицят',
+'rcshowhidepatr'                   => '$1 кона патрульсэ витьни-петни',
+'rcshowhidemine'                   => '$1 мезе мон витнинь-петнинь',
+'rclinks'                          => 'Невтемс меельсе $1 полавтнемат меельсе $2 чинь перть<br />$3',
+'diff'                             => 'кадовикс',
+'hist'                             => 'ист',
+'hide'                             => 'Кекшемс',
+'show'                             => 'Невтемс',
+'minoreditletter'                  => 'а',
+'newpageletter'                    => 'О',
+'boteditletter'                    => 'б',
+'rc_categories_any'                => 'Кодамо илязо уле',
+'newsectionsummary'                => '/* $1 */ од пелькс',
+'rc-enhanced-expand'               => 'Невтемс седе ламо тень ланга (JavaScript эряви)',
+'rc-enhanced-hide'                 => 'Кекшемс келейстэ ёвтазенть',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сюлмавозь лиякстоматне',
@@ -1303,6 +1314,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'listusers-noresult' => 'Совицязо а муеви',
 'listusers-blocked'  => '(саймас саезь)',
 
+# Special:ActiveUsers
+'activeusers-noresult' => 'Якинзэ-пакинзэ арасть',
+
 # Special:Log/newusers
 'newuserlogpage'           => 'Теицянь шкамодо-теемадо конёв',
 'newuserlog-byemail'       => 'совамо вал кучозь е-сёрмасо',
@@ -1341,7 +1355,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'addedwatchtext'    => 'Лопась «[[:$1]]» совавтозь [[Special:Watchlist|ванома потмозот]].
 Седе тов те лопасонть ды мартонзо сюлмавозь кортнема лопасонть теезь витьнематне тешкставтовить те потмонтень, истяжо кармить кикстазь те лопасонть[[Special:RecentChanges|потмо од витнематне]], истя седе шождасто сынь неявить.',
 'removedwatch'      => 'Нардазь ванома потмокстонть',
-'removedwatchtext'  => 'Лопась «[[:$1]]» ульнесь нардазь тынк ванома потмокстонть.',
+'removedwatchtext'  => '«[[:$1]]» лопась нардавсь [[Special:Watchlist|ванома потмоксстот]].',
 'watch'             => 'Ванстнемс',
 'watchthispage'     => 'Ванстнемс те лопа мельга',
 'unwatch'           => 'А ванстнемс тень мельга',
@@ -1473,6 +1487,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'sp-contributions-newbies'     => 'Невтемс ансяк од теицятнень путовксост',
 'sp-contributions-newbies-sub' => 'Од акаунтс',
 'sp-contributions-blocklog'    => 'Пекстамонь журналось',
+'sp-contributions-logs'        => 'журналт',
 'sp-contributions-talk'        => 'кортнеме',
 'sp-contributions-search'      => 'Путовксонь вешнеме',
 'sp-contributions-username'    => 'IP адрес эли теицянь лем:',
@@ -1607,6 +1622,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'allmessages'                 => 'Систэмань вишка сёрмадовкс',
 'allmessagesname'             => 'Лемезэ',
 'allmessagescurrent'          => 'Тевате текстэсь',
+'allmessages-filter-legend'   => 'Сувтеме',
 'allmessages-filter-all'      => 'Весе',
 'allmessages-filter-modified' => 'Одолгавтозь',
 'allmessages-language'        => 'Келесь:',
@@ -1713,6 +1729,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'spambot_username'    => 'MediaWiki-нь шукшто ванькскавтома',
 
 # Info page
+'infosubtitle' => 'Лопанть информациянзо',
 'numedits'     => 'Зяроксть витнезь-петнезь (лопа): $1',
 'numtalkedits' => 'Зяроксть витнезь-петнезь (кортнема лопа): $1',
 'numwatchers'  => 'Зяро ванстнить тень мельга: $1',
@@ -1723,6 +1740,13 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'skinname-myskin'    => 'ЭсьМелемКоряс',
 'skinname-simple'    => 'Шожда',
 'skinname-modern'    => 'НееньШкань',
+
+# Math options
+'mw_math_simple' => 'HTML зярдо вельть шожда, лиякс PNG',
+'mw_math_html'   => 'HTML, те тееви, теик, лиякс PNG',
+'mw_math_source' => 'Кадык TeX хорматсо (текст вальмас)',
+'mw_math_modern' => 'Арьсезь неень шкань содый машинань вальмас',
+'mw_math_mathml' => 'MathML косо ули кода (варчамонь)',
 
 # Math errors
 'math_failure'          => 'А ловнови',

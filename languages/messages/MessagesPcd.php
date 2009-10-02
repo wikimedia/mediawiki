@@ -368,6 +368,7 @@ Vos cangemints, is sont poin coèr inrégistrés!",
 'templatesused'                    => 'Modèles imploïés pou chol pache:',
 'templatesusedpreview'             => "Modèles imploïés din ch'prévue-lo:",
 'template-protected'               => '(garanti)',
+'template-semiprotected'           => '(semi-garanti)',
 'hiddencategories'                 => '{{PLURAL:$1|Catégorie muchée|Catégories muchées}} pou chol pache:',
 'permissionserrorstext-withaction' => "Vos n’avez poin l'pérmichon éd $2, pou {{PLURAL:$1|ch'motif suivant|chés motifs suivants}}:",
 
@@ -613,6 +614,7 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 'protect-text'                => "Os pouvez vir pi canger ech nivieu d'protécchon ichi pou l'pache-lo '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Vos n’avez poin chés droés pou canger chés nivieus d'protécchon des paches.<br />
 Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
+'protect-cascadeon'           => "L'pache-lo ale est garantie ker ale est incluse din {{PLURAL:$1|eune pache qu'o té garantie|des paches éq ont té garanties}} aveuc l'option « protécchon in cascate» écanillée. <br /> Os povez canger ch'nivieu d'garantie del pache mais el garantie in cascate n'sro poin cangée.",
 'protect-default'             => 'Por tertous chés uzeus',
 'protect-fallback'            => 'I feut avoèr l\'pérmission "$1"',
 'protect-level-autoconfirmed' => 'Blotcher nouvieus pi mie-inrégistrés uzeus',
