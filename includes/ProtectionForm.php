@@ -274,6 +274,16 @@ class ProtectionForm {
 			throw new FatalError( "Unknown error at restriction save time." );
 		}
 
+		$errorMsg = '';
+		# Give extensions a change to handle added form items
+		if( !wfRunHooks( 'ProtectionForm::save', array($this->mArticle,&$errorMsg) ) ) {
+			throw new FatalError( "Unknown hook error at restriction save time." );
+		}
+		if( $errorMsg != '' ) {
+			$this->show( $errorMsg );
+			return false;
+		}
+
 		if( $wgRequest->getCheck( 'mwProtectWatch' ) ) {
 			$this->mArticle->doWatch();
 		} elseif( $this->mTitle->userIsWatching() ) {
@@ -390,6 +400,8 @@ class ProtectionForm {
 			Xml::closeElement( 'fieldset' ) .
 			"</td></tr>";
 		}
+		# Give extensions a chance to add items to the form
+		wfRunHooks( 'ProtectionForm::buildForm', array($this->mArticle,&$out) );
 
 		$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
 
@@ -554,5 +566,7 @@ class ProtectionForm {
 		# Show relevant lines from the protection log:
 		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'protect' ) ) );
 		LogEventsList::showLogExtract( $out, 'protect', $this->mTitle->getPrefixedText() );
+		# Let extensions add other relevant log extracts
+		wfRunHooks( 'ProtectionForm::showLogExtract', array($this->mArticle,$out) );
 	}
 }
