@@ -289,10 +289,12 @@ Bitte nemm eenen aundren.',
 'template-protected'   => "(be'schutst)",
 
 # History pages
-'cur'        => 'dise',
-'last'       => 'latste',
-'page_first' => 'easchte',
-'page_last'  => 'latste',
+'revisionasof'  => 'Versioon von $1',
+'revision-info' => 'Versioon von $1 von $2',
+'cur'           => 'dise',
+'last'          => 'latste',
+'page_first'    => 'easchte',
+'page_last'     => 'latste',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 omm $2',
