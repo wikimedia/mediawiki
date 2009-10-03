@@ -850,6 +850,9 @@ Marteze ez eus muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/delete|page={{
 'rev-deleted-unhide-diff'     => "'''Diverket''' eo bet unan eus kemmoù an diforc'h-mañ. 
 Marteze e kavot muoic'h a ditouroù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
 Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
+'rev-suppressed-unhide-diff'  => "'''Diverket''' ez eus bet unan eus adweladennoù an diff-mañ.
+Titouroù ouzhpenn a c'hall bezañ war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
+Evel merour e c'hallit atav [$1 sellet ouzh an diff-se] mar fell deoc'h kenderc'hel.",
 'rev-delundel'                => 'diskouez/kuzhat',
 'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
 'revdelete-nooldid-title'     => "N'eus stumm pal ebet evit an degasadennoù",

@@ -963,6 +963,9 @@ Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
 Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
+'rev-suppressed-unhide-diff'  => "En av sideversjonene i denne diffen har blitt '''skjul'''.
+Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
+Som administrator kan du fortsatt [$1 se diffen] om du ønsker det.",
 'rev-delundel'                => 'vis/skjul',
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
 'revdelete-nooldid-title'     => 'Ugyldig målversjon',

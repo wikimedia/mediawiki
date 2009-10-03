@@ -325,7 +325,7 @@ $messages = array(
 'edit'              => 'Bewirk',
 'create'            => 'Aanmake',
 'editthispage'      => 'Pazjena bewirke',
-'create-this-page'  => 'Dees pazjena aanmake',
+'create-this-page'  => 'Dees pagina aanmake',
 'delete'            => 'Wisse',
 'deletethispage'    => 'Wisse',
 'undelete_short'    => '$1 {{PLURAL:$1|bewirking|bewirkinge}} trökzètte',
@@ -425,7 +425,7 @@ $messages = array(
 'nstab-image'     => 'Besjtand',
 'nstab-mediawiki' => 'Berich',
 'nstab-template'  => 'Sjabloon',
-'nstab-help'      => 'Help pazjena',
+'nstab-help'      => 'Hulppagina',
 'nstab-category'  => 'Categorie',
 
 # Main script and global functions
@@ -707,10 +707,10 @@ Probeer 't opnieuw. Als 't dan nog neet lukt, meldt dich dan aaf en weer aan.'''
 'editingsection'                   => 'Bewirke van sectie van $1',
 'editingcomment'                   => 'Bewirke $1 (commentair)',
 'editconflict'                     => 'Bewirkingsconflik: $1',
-'explainconflict'                  => "Jemes angers haet dees pazjena verangerd naodats doe aan dees bewirking bis begos.
-'t Ierste teksveld tuint de hujige versie van de pazjena.
+'explainconflict'                  => "Emes angers haet dees pagina verangerd naodats doe aan dees bewirking bis begós.
+'t Ierste teksveld tuint de hujige versie van de pagina.
 De mós dien eige verangeringe dao-in inpasse.
-'''Allein''' d'n tèks in 't ierste teksveld weurt opgesjlage wens te noe op \"Pazjena opsjlaon\" duujs.",
+'''Allein''' d'n tèks in 't ierste teksveld weurt opgesjlage es te noe op \"Pagina opsjlaon\" duujs.",
 'yourtext'                         => 'Euren teks',
 'storedversion'                    => 'Opgesjlage versie',
 'nonunicodebrowser'                => "'''WAARSJUWING: Diene browser is voldit neet aan de unicode sjtandaarde, gebroek estebleef inne angere browser veurdas e artikele gis bewirke.'''",
@@ -1325,17 +1325,17 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'upload_directory_missing'    => 'De uploadmap ($1) is neet aanwezig en kos neet aangemaak waere door de webserver.',
 'upload_directory_read_only'  => 'De webserver kin neet sjrieve in de uploadmap ($1).',
 'uploaderror'                 => "fout in 't uploade",
-'uploadtext'                  => "Gebroek 't óngersjtaonde formuleer óm besjtande op te laje.
-Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:FileList|lies van opgelaje besjtande]].
-Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]].
+'uploadtext'                  => "Gebroek 't óngersjtaond formeleer óm besjtande te uploade.
+Óm ierder biegedone besjtande te betrachte of te zeuke, gank nao de [[Special:FileList|lies van geüploade besjtande]].
+Uploads waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]], ewegsjaffinge in 't [[Special:Log/delete|wislogbook]]
 
-Gebroek óm 'n plaetje of 'n besjtand in 'n pazjena op te numme 'ne link in de vörm:
+Gebroek óm 'n plaetje of 'n besjtand in 'n pagina op te numme 'ne link in de vörm:
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Besjtand.jpg]]</nowiki>''' veur vól versies
-* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Besjtand.png|alternatief teks]]</nowiki>''' veur 200px rendiesie mit alternatieve teks
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Besjtand.png|200px|thumb|alternatieve teks]]</nowiki>''' veur 'n 200px breid plaetje mit alternatieve teks es besjrieving
 of veur mediabesjtande:
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Besjtand.ogg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Besjtand.ogg]]</nowiki>''' óm gewoen nao 't besjtand te verwieze zónger 't waer te gaeve
 
-De letste link is bedoeld veur mediabestenj die gein aafbeilding zeen.",
+De lètste link is bedoeld veur mediabesjtande die gein plaetje zeen.",
 'upload-permitted'            => 'Toegelaote bestandstypes: $1.',
 'upload-preferred'            => 'Aangeweze bestandstypes: $1.',
 'upload-prohibited'           => 'Verbaoje bestandstypes: $1.',
@@ -1519,7 +1519,7 @@ De [$2 pagina mit de bestandjsbesjrieving] wurt hie ónger weergegaeve.',
 'unusedtemplateswlh'  => 'anger links',
 
 # Random page
-'randompage'         => 'Willekäörige pazjena',
+'randompage'         => 'Willekäörige pagina',
 'randompage-nopages' => 'd\'r zeen gein pagina\'s in deze naamruumde "$1".',
 
 # Random redirect
@@ -1783,7 +1783,7 @@ Ouch versjiene gevolgde pazjena\'s in \'t <b>vèt</b> in de [[Special:RecentChan
 'enotif_impersonal_salutation' => '{{SITENAME}} gebroeker',
 'changed'                      => 'verangerd',
 'created'                      => 'aangemaak',
-'enotif_subject'               => 'De {{SITENAME}}pazjena $PAGETITLE is $CHANGEDORCREATED door $PAGEEDITOR',
+'enotif_subject'               => 'De {{SITENAME}}pagina $PAGETITLE is $CHANGEDORCREATED door $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zuug $1 veur al verangeringe saer dien lèste bezeuk.',
 'enotif_lastdiff'              => 'Zuug $1 om deze wieziging te zeen.',
 'enotif_anon_editor'           => 'anonieme gebroeker $1',
@@ -1847,10 +1847,10 @@ Kónfermeer hiejónger dat dit inderdaod dien bedoeling is, dats doe de gevolge 
 'rollbacklink'     => 'Trökdrieje',
 'rollbackfailed'   => 'Ongedaon make van wieziginge mislùk.',
 'cantrollback'     => 'Trökdrejje van verangeringe neet meugelik: Dit artikel haet mer einen auteur.',
-'alreadyrolled'    => "'t Is neet meugelik óm de lèste verangering van [[:$1]] door [[User:$2|$2]] ([[User talk:$2|euverlik]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) óngedaon te make.
-Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon.
+'alreadyrolled'    => "'t Is neet mäögelik óm de lètste verangering van [[:$1]] door [[User:$2|$2]] ([[User talk:$2|euverlèk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) óngedaon te make.
+Emes angers haet de pagina al hersjtèld of haet 'n anger bewirking gedaon.
 
-De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+De lètste bewirking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'      => "'t Bewirkingscommentair waor: \"''\$1''\".",
 'revertpage'       => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]',
 'rollback-success' => 'Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.',
@@ -1919,7 +1919,7 @@ Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 'restriction-level-all'           => 'eder niveau',
 
 # Undelete
-'undelete'                     => 'Verwiederde pazjena trukplaatse',
+'undelete'                     => 'Eweggesjafde pagina betrachte',
 'undeletepage'                 => "Verwiederde pazjena's bekieke en trukplaatse",
 'undeletepagetitle'            => "''''t Volgende besteit oet verwiederde bewèrkinge van [[:$1]]'''.",
 'viewdeletedpage'              => "Betrach eweggesjafde pagina's",
@@ -2138,7 +2138,7 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 * es doe 't óngersjtaond vekske neet aanvinks",
 'movearticle'                  => 'Verplaats pazjena',
 'movenologin'                  => 'Neet aangemèld',
-'movenologintext'              => "Veur 't verplaatsje van 'n pazjena mos e zien [[Special:UserLogin|aangemèld]].",
+'movenologintext'              => "Veur 't verplaatse van 'n pagina mos te zien [[Special:UserLogin|aangemèld]].",
 'movenotallowed'               => "De kèns gein pazjena's verplaatse.",
 'movenotallowedfile'           => 'De höbs gein rechte om bestenj te hernömme.',
 'cant-move-user-page'          => "De höbs gein rechte om gebroekerspagina's te hernömme.",

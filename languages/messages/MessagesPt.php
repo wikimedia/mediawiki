@@ -2428,6 +2428,8 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'blocklogpage'                    => 'Registo de bloqueio',
 'blocklog-showlog'                => 'Este usuário foi já bloqueado anteriormente.
 O registo de bloqueio é mostrado abaixo para referência:',
+'blocklog-showsuppresslog'        => 'Este utilizador foi bloqueado e ocultado anteriomente.
+O registo de supressão é fornecido abaixo para referência:',
 'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
 'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2 $3',
 'blocklogtext'                    => 'Este é um registo de acções de bloqueio e desbloqueio.
@@ -2730,11 +2732,12 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',
 'siteuser'         => 'um utilizador da {{SITENAME}}: $1',
-'anonuser'         => 'usuário anónimo $1 de {{SITENAME}}',
+'anonuser'         => 'utilizador anónimo $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
-'siteusers'        => '{{PLURAL:$2|um utilizador|$2 utilizadores}} da {{SITENAME}}: $1',
+'siteusers'        => '{{PLURAL:$2|um utilizador|$2 utilizadores}} de {{SITENAME}}: $1',
+'anonusers'        => '{{PLURAL:$2|utilizador anónimo|utilizadores anónimos}} de {{SITENAME}}: $1',
 'creditspage'      => 'Créditos da página',
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 

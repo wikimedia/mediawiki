@@ -930,8 +930,8 @@ Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 'rev-deleted-unhide-diff'     => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
-'rev-suppressed-unhide-diff'  => "Una de les revisions d'aquest diff ha estat esborrada.
-Podeu veure més detalls al [{{fullurl:{{#special:Log}}/supress|page={{FULLPAGENAMEE}} registre de supressions]. Com a administrador es pot seguir seguir [$1 veient aquest diff] si voleu continuar.",
+'rev-suppressed-unhide-diff'  => "Una de les revisions d'aquest diff ha estat '''esborrada'''.
+Podeu veure'n més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions]. Com a administrador, podeu seguir [$1 veient aquest diff] si voleu continuar.",
 'rev-delundel'                => 'mostra/amaga',
 'revisiondelete'              => 'Esborrar/restaurar revisions',
 'revdelete-nooldid-title'     => 'La revisió objectiu no és vàlida',
@@ -2550,7 +2550,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'tooltip-pt-anonlogin'            => 'Us animem a registrar-vos, però no és obligatori.',
 'tooltip-pt-logout'               => "Finalitza la sessió d'usuari",
 'tooltip-ca-talk'                 => "Discussió sobre el contingut d'aquesta pàgina.",
-'tooltip-ca-edit'                 => 'Podeu editar aquesta pàgina. Si us plau, previsualitzeu abans de desar.',
+'tooltip-ca-edit'                 => 'Podeu editar aquesta pàgina. Si us plau, previsualitzeu-la abans de desar-la.',
 'tooltip-ca-addsection'           => 'Comença una nova secció',
 'tooltip-ca-viewsource'           => 'Aquesta pàgina està protegida. Podeu veure el seu codi font.',
 'tooltip-ca-history'              => "Versions antigues d'aquesta pàgina.",

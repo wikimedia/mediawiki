@@ -237,7 +237,7 @@ $messages = array(
 'category-article-count-limited' => "Mae'r {{PLURAL:$1|tudalen|dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn.",
 'category-file-count'            => "{{PLURAL:$2|Nid oes dim ffeiliau|Dim ond y ffeil sy'n dilyn sydd|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2}} yn y categori hwn.",
 'category-file-count-limited'    => "Mae'r {{PLURAL:$1|dim ffeil|un ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn y categori hwn.",
-'listingcontinuesabbrev'         => ' parh.',
+'listingcontinuesabbrev'         => 'parh.',
 
 'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''</big>",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
@@ -1117,6 +1117,9 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchangesdays-max'         => '(hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})',
 'recentchangescount'            => "Nifer y golygiadau i'w dangos yn ddiofyn:",
 'prefs-help-recentchangescount' => 'Mae hwn yn cynnwys newidiadau diweddar, hanesion tudalennau, a logiau.',
+'prefs-help-watchlist-token'    => "Gallwch gynhyrchu porthiant RSS ar gyfer eich rhestr wylio drwy osod allwedd gudd yn y blwch hwn.
+Gall unrhywun sy'n gwybod yr allwedd ddarllen eich rhestr wylio, felly gofalwch ddewis allwedd ddiogel.
+Dyma allwedd wedi ei chreu ar hap y gallwch ei defnyddio: $1",
 'savedprefs'                    => 'Mae eich dewisiadau wedi cael eu cadw.',
 'timezonelegend'                => 'Ardal amser:',
 'localtime'                     => 'Amser lleol:',

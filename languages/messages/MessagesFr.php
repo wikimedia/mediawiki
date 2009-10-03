@@ -2877,7 +2877,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 # Patrol log
 'patrol-log-page'      => 'Journal des versions patrouillées',
 'patrol-log-header'    => 'Voici un journal des versions patrouillées.',
-'patrol-log-line'      => 'a marqué la version $1 de $2 comme vérifiée $3',
+'patrol-log-line'      => 'a marqué la version $1 de $2 comme patrouillée $3',
 'patrol-log-auto'      => '(automatique)',
 'patrol-log-diff'      => 'v$1',
 'log-show-hide-patrol' => '$1 l’historique des versions patrouillées',
