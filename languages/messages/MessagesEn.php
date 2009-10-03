@@ -768,7 +768,7 @@ XHTML id names.
 'qbmyoptions'    => 'My pages',
 'qbspecialpages' => 'Special pages',
 'faq'            => 'FAQ',
-'faqpage'        => '{{ns:project}}:FAQ',
+'faqpage'        => 'Project:FAQ',
 'sitetitle'      => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'sitesubtitle'   => '', # do not translate or duplicate this message to other languages
 
@@ -866,23 +866,23 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'About {{SITENAME}}',
-'aboutpage'            => '{{ns:project}}:About',
+'aboutpage'            => 'Project:About',
 'copyright'            => 'Content is available under $1.',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Current events',
-'currentevents-url'    => '{{ns:project}}:Current events',
+'currentevents-url'    => 'Project:Current events',
 'disclaimers'          => 'Disclaimers',
-'disclaimerpage'       => '{{ns:project}}:General disclaimer',
+'disclaimerpage'       => 'Project:General disclaimer',
 'edithelp'             => 'Editing help',
 'edithelppage'         => 'Help:Editing',
 'helppage'             => 'Help:Contents',
 'mainpage'             => 'Main Page',
 'mainpage-description' => 'Main Page',
-'policy-url'           => '{{ns:project}}:Policy',
+'policy-url'           => 'Project:Policy',
 'portal'               => 'Community portal',
-'portal-url'           => '{{ns:project}}:Community Portal',
+'portal-url'           => 'Project:Community Portal',
 'privacy'              => 'Privacy policy',
-'privacypage'          => '{{ns:project}}:Privacy policy',
+'privacypage'          => 'Project:Privacy policy',
 
 'badaccess'        => 'Permission error',
 'badaccess-group0' => 'You are not allowed to execute the action you have requested.',
@@ -2340,7 +2340,7 @@ Remember to check for other links to the templates before deleting them.',
 
 'disambiguations'         => 'Disambiguation pages',
 'disambiguations-summary' => '', # do not translate or duplicate this message to other languages
-'disambiguationspage'     => '{{ns:template}}:disambig',
+'disambiguationspage'     => 'Template:disambig',
 'disambiguations-text'    => "The following pages link to a '''disambiguation page'''.
 They should link to the appropriate topic instead.<br />
 A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]]",
