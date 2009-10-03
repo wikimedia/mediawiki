@@ -119,6 +119,9 @@ mvPlayList.prototype = {
 		if(this.controls===false){			 
 			this.pl_layout.control_height=0;	
 			this.pl_layout.title_bar_height=0;			
+		}else{
+			//setup the controlBuilder object:
+			this.ctrlBuilder = new ctrlBuilder( this ); 
 		}						 
 	},			
 	//the element has now been swapped into the dom: 
@@ -438,7 +441,7 @@ mvPlayList.prototype = {
 				this.cur_clip.embed.getPlayButton()
 	        );
 	        //once the controls are in the DOM add hooks: 
-			ctrlBuilder.addControlHooks(this);
+			this.ctrlBuilder.addControlHooks(this);
 		}else{
 			//just append the video: 
 			$j('#dc_'+_this.id).append(
@@ -901,7 +904,7 @@ mvPlayList.prototype = {
 	//next prev button and more status display
 	getControlsHTML:function(){
 		//get controls from current clip  (add some playlist specific controls:		  			
-		return ctrlBuilder.getControls( this );
+		return this.ctrlBuilder.getControls( this );
 	},	
 	//ads colors/dividers between tracks
 	colorPlayHead: function(){
@@ -938,7 +941,7 @@ mvPlayList.prototype = {
 			barHtml+= 'filter:alpha(opacity=40);'+
 					'-moz-opacity:.40;">';	
 			
-			barHtml+= ctrlBuilder.getMvBufferHtml();
+			barHtml+= _this.ctrlBuilder.getMvBufferHtml();
 			
 			barHtml+='</div>';
 			
