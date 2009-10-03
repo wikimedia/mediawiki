@@ -12,10 +12,10 @@
  * Rules should come in the following order:
  *  zero, one, two, few, many, other (other is a special default case that applies to all)
  *
- * clrd also allows export of rule sets in json to associated javascript intepretation
+ * cldr also allows export of rule sets in json to associated javascript
  */
 
-class clrdConverter {
+class cldrConverter {
 	static $masterCLDR = array(
 		// if locale is known to have no plurals, there are no rules
 		array(
