@@ -7,7 +7,7 @@
  * @author Michael Dale
  * @email mdale@wikimedia.org
  *
- * further developed in open source development partnership with kaltura.
+ * Further developed in open source development partnership with kaltura.
  * more info at http://kaltura.com & http://kaltura.org
  *
  * mv_sequencer.js
@@ -1441,7 +1441,7 @@ mvSequencer.prototype = {
 		this.plObj.updateBaseStatus();
 
 		//once the controls are in the DOM add hooks:
-		ctrlBuilder.addControlHooks(this.plObj);
+		this.plObj.ctrlBuilder.addControlHooks(this.plObj);
 
 		//render out the "jump" div
 		if(this.timeline_mode=='time'){

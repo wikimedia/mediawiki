@@ -2,8 +2,9 @@
 _global['dismissNativeWarn'] = false;
 
 
-/** base ctrlBuilder object
-	@param the embedVideo element we are targeting
+/** 
+* base ctrlBuilder object
+*	@param the embedVideo element we are targeting
 */
 var ctrlBuilder = function( embedObj ) {
 	return this.init( embedObj );

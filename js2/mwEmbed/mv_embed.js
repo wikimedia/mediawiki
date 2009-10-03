@@ -19,8 +19,8 @@ var MV_DO_INIT=true;
 if( MV_EMBED_VERSION ){
 	MV_DO_INIT=false;
 }
-// Used to grab fresh copies of scripts. (should be changed on commit)
-var MV_EMBED_VERSION = '1.0r19';
+// Used to grab fresh copies of scripts. 
+var MV_EMBED_VERSION = '1.0r20';
 
 /*
  * Configuration variables should be set by extending mwConfigOptions
@@ -32,25 +32,9 @@ var mwDefaultConfig = {
 	'video_size':'400x300'
 }
 
+// (We install the default config values for anything not set in mwConfig once we know we have jquery)
 if( !mwConfig )
 	var mwConfig = {};
-
-// Install the default config values for anything not set in mwConfig
-
-// Whether or not to load java from an iframe.
-// Note: this is necessary for remote embedding because of Java's security model)
-if( !mv_java_iframe )
-	var mv_java_iframe = true;
-
-// For use when mv_embed with script-loader is in the root MediaWiki path
-var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
-
-var global_player_list = new Array(); // The global player list per page
-var global_req_cb = new Array(); // The global request callback array
-var _global = this; // Global obj
-var mv_init_done = false;
-var global_cb_count = 0;
-
 
 // parseUri 1.2.2
 // (c) Steven Levithan <stevenlevithan.com>
@@ -83,22 +67,169 @@ parseUri.options = {
 	}
 };
 
+// For use when mv_embed with script-loader is in the root MediaWiki path
+var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
+
+
+var _global = this; // Global obj
+
+/*
+* setup the empty global $mw object 
+* will ensure all our functions are properly namespaced
+*/
+if(!_global['$mw']){
+	_global['$mw'] = {}
+}
+
+//@@todo move these into $mw
+var mv_init_done = false;
+var global_cb_count = 0;
+var global_player_list = new Array(); // The global player list per page
+var global_req_cb = new Array(); // The global request callback array
+
 // Get the mv_embed location if it has not been set
 if( !mv_embed_path ) {
 	var mv_embed_path = getMvEmbedPath();
 }
 
-// Init the global message table if it has not been initialized already
-if( !gMsg ) {
-	var gMsg = {};
-}
 
-// Language msg loader
-function loadGM( msgSet ) {
-	for( var i in msgSet ) {
-		gMsg[ i ] = msgSet[i];
+/*
+* Language classes $mw.lang
+* 
+* Localized Language suport attempts to mirror the functionality of Language.php in MediaWiki
+* It contains methods for loading and transforming msg text
+* 
+* code style:: 
+* 	We could wrap each $mw extend in (function( $ ) { //functions here })($mw); and refrence $mw as $
+*/
+(function( $ ) {
+	$.lang = {};
+	/**
+	* Setup the lang object
+	*/
+	var gMsg = {};
+	/**
+	* loadGM function
+	* Loads a set of json messeges into the lang object. 
+	*
+	* @param json msgSet The set of msgs to be loaded 
+	*/
+	$.lang.loadGM = function( msgSet ){
+		for( var i in msgSet ) {
+			gMsg[ i ] = msgSet[i];
+		}
+	},
+	/**
+	 * Returns a transformed msg string
+	 *
+	 * it take a msg key and array of replacement values of form
+	 * $1, $2 and does relevant msgkey transformation returning 
+	 * the usser msg. 
+	 *
+	 * @param string key The msg key as set by loadGm
+	 * @param [mixed] args  An array of replacement strings
+	 * @return string 
+	 */
+	$.lang.gM = function( key , args ) {
+		var ms = '';
+		if ( key in gMsg ) {
+			ms = gMsg[ key ];
+			//test if we have a special replacement template call
+			
+			
+			if( typeof args == 'object' || typeof args == 'array' ) {
+				for( var v in args ) { 
+					// Message test replace arguments start at 1 instead of zero:
+					var rep = '\$'+ ( parseInt(v) + 1 );
+					ms = ms.replace( rep, args[v] );
+				}
+			} else if( typeof args =='string' || typeof args =='number' ) {
+				ms = ms.replace(/\$1/, args);
+			}
+			return ms;
+		} else {
+			// Missing key placeholder
+			return '&lt;' + key + '&gt;';
+		}
+	},
+	/**
+	 * gMsgLoadRemote loads remote msg strings
+	 * 
+	 * @param mixed msgSet the set of msg to load remotely
+	 * @param function callback  the callback to issue once string is ready
+	 */
+	$.lang.gMsgLoadRemote = function( msgSet, callback ) {
+		var ammessages = '';
+		if( typeof msgSet == 'object' ) {
+			for( var i in msgSet ) {
+				ammessages += msgSet[i] + '|';
+			}
+		} else if( typeof msgSet == 'string' ) {
+			ammessages += msgSet;
+		}
+		if( ammessages == '' ) {
+			js_log( 'gMsgLoadRemote: no message set requested' );		
+			return false;
+		}
+		do_api_req({
+			'data': {
+				'meta': 'allmessages',
+				'ammessages': ammessages
+			}
+		}, function( data ) {
+			if( data.query.allmessages ) {
+				var msgs = data.query.allmessages;
+				for( var i in msgs ) {
+					var ld = {};
+					ld[ msgs[i]['name'] ] = msgs[i]['*'];
+					loadGM( ld );
+				}
+			}
+			callback();
+		});
+	},
+	/**
+	 * Format a size in bytes for output, using an appropriate
+	 * unit (B, KB, MB or GB) according to the magnitude in question
+	 *
+	 * @param size Size to format
+	 * @return string Plain text (not HTML)
+	 */
+	$.lang.formatSize = function ( size ) {
+		// For small sizes no decimal places are necessary
+		var round = 0;
+		var msg = '';
+		if( size > 1024 ) {
+			size = size / 1024;
+			if( size > 1024 ) {
+				size = size / 1024;
+				// For MB and bigger two decimal places are smarter
+				round = 2;
+				if( size > 1024 ) {
+					size = size / 1024;
+					msg = 'mwe-size-gigabytes';
+				} else {
+					msg = 'mwe-size-megabytes';
+				}
+			} else {
+				msg = 'mwe-size-kilobytes';
+			}
+		} else {
+			msg = 'mwe-size-bytes';
+		}
+		// JavaScript does not let you choose the precision when rounding
+		var p = Math.pow(10,round);
+		var size = Math.round( size * p ) / p;
+		//@@todo we need a formatNum and we need to request some special packaged info to deal with that case.
+		return gM( msg , size );
 	}
-}
+})($mw);
+//setup legacy global shortcuts: 
+var loadGM = $mw.lang.loadGM;
+var gM = $mw.lang.gM;
+
+
+
 
 // All default messages in [English] should be overwritten by the CMS language message system.
 loadGM({
@@ -244,102 +375,7 @@ lcCssPath({
 	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
 	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
 })
-/**
- * Language Functions:
- *
- * These functions try to loosely mirror the functionality of Language.php in MediaWiki
- */
-function gM( key , args ) {
-	var ms = '';
-	if ( key in gMsg ) {
-		ms = gMsg[ key ];
-		if( typeof args == 'object' || typeof args == 'array' ) {
-			for( var v in args ) {
-				// Message test replace arguments start at 1 instead of zero:
-				var rep = '\$'+ ( parseInt(v) + 1 );
-				ms = ms.replace( rep, args[v] );
-			}
-		} else if( typeof args =='string' || typeof args =='number' ) {
-			ms = ms.replace(/\$1/, args);
-		}
-		return ms;
-	} else {
-		// Missing key placeholder
-		return '&lt;' + key + '&gt;';
-	}
-}
-/**
- * gMsgLoadRemote loads remote msg strings
- * 
- * @param mixed msgSet the set of msg to load remotely
- * @param function callback  the callback to pass loaded msg to  
- */
-function gMsgLoadRemote( msgSet, callback ) {
-	var ammessages = '';
-	if( typeof msgSet == 'object' ) {
-		for( var i in msgSet ) {
-			ammessages += msgSet[i] + '|';
-		}
-	} else if( typeof msgSet == 'string' ) {
-		ammessages += msgSet;
-	}
-	if( ammessages == '' ) {
-		js_log( 'gMsgLoadRemote: no message set requested' );		
-		return false;
-	}
-	do_api_req({
-		'data': {
-			'meta': 'allmessages',
-			'ammessages': ammessages
-		}
-	}, function( data ) {
-		if( data.query.allmessages ) {
-			var msgs = data.query.allmessages;
-			for( var i in msgs ) {
-				var ld = {};
-				ld[ msgs[i]['name'] ] = msgs[i]['*'];
-				loadGM( ld );
-			}
-		}
-		callback();
-	});
-}
 
-/**
- * Format a size in bytes for output, using an appropriate
- * unit (B, KB, MB or GB) according to the magnitude in question
- *
- * @param size Size to format
- * @return string Plain text (not HTML)
- */
-function formatSize( size ) {
-	// For small sizes no decimal places are necessary
-	var round = 0;
-	var msg = '';
-	if( size > 1024 ) {
-		size = size / 1024;
-		if( size > 1024 ) {
-			size = size / 1024;
-			// For MB and bigger two decimal places are smarter
-			round = 2;
-			if( size > 1024 ) {
-				size = size / 1024;
-				msg = 'mwe-size-gigabytes';
-			} else {
-				msg = 'mwe-size-megabytes';
-			}
-		} else {
-			msg = 'mwe-size-kilobytes';
-		}
-	} else {
-		msg = 'mwe-size-bytes';
-	}
-	// JavaScript does not let you choose the precision when rounding
-	var p = Math.pow(10,round);
-	var size = Math.round( size * p ) / p;
-	//@@todo we need a formatNum and we need to request some special packaged info to deal with that case.
-	return gM( msg , size );
-}
 
 // Get the loading image
 function mv_get_loading_img( style, class_attr ){

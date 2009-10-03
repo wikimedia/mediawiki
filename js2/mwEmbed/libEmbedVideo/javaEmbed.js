@@ -152,21 +152,7 @@ var javaEmbed = {
 			this.jce = window.frames['cframe_' + this.id ].document.getElementById( this.pid );
 		}else{
 			this.jce = $j('#'+this.pid).get( 0 );
-		}
-		/*if( ! mv_java_iframe ){
-			
-		}else{
-			if( $j('#iframe_' + this.pid ).length > 0 )
-				try{
-					this.jce = $j('#iframe_' + this.pid ).get(0).contentWindow.jPlayer;
-				}catch (e){
-					if(!this.logged_domain_error)
-						js_log("failed to grab jce we wont have time updates for java");
-					this.logged_domain_error = true;
-				}
-			else
-				return false;
-		}   */		 
+		}		 
 	},
 	doThumbnailHTML:function(){		
 		//empty out player html (jquery with java applets does mix) :			
