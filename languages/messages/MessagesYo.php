@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER             => 'Oníṣe',
 	NS_USER_TALK        => 'Ọ̀rọ̀_oníṣe',
 	NS_PROJECT_TALK     => 'Ọ̀rọ̀_$1',
-	NS_FILE             => 'Àwòrán',
-	NS_FILE_TALK        => 'Ọ̀rọ̀_àwòrán',
+	NS_FILE             => 'Fáìlì',
+	NS_FILE_TALK        => 'Ọ̀rọ̀_fáìlì',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Ọ̀rọ̀_mediaWiki',
 	NS_TEMPLATE         => 'Àdàkọ',
@@ -29,6 +29,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Ọ̀rọ̀_ìrànlọ́wọ́',
 	NS_CATEGORY         => 'Ẹ̀ka',
 	NS_CATEGORY_TALK    => 'Ọ̀rọ̀_ẹ̀ka',
+);
+
+$namespaceAliases = array(
+	'Àwòrán'       => NS_FILE,
+	'Ọ̀rọ̀_àwòrán' => NS_FILE_TALK,
 );
 
 $messages = array(
