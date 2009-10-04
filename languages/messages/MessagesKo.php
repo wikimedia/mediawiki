@@ -2535,7 +2535,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
 'allmessages-filter-legend'     => '필터',
 'allmessages-filter'            => '수정 상태로 거르기:',
-'allmessages-filter-unmodified' => '수정되지않음',
+'allmessages-filter-unmodified' => '수정되지 않음',
 'allmessages-filter-all'        => '모두',
 'allmessages-filter-modified'   => '수정됨',
 'allmessages-prefix'            => '접두어로 거르기:',

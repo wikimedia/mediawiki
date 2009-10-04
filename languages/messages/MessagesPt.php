@@ -10,6 +10,7 @@
  * @author Crazymadlover
  * @author Giro720
  * @author Heldergeovane
+ * @author Indech
  * @author Jens Liebenau
  * @author Jorge Morais
  * @author Leonardo.stabile
@@ -1722,6 +1723,10 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
+'img-auth-nopathinfo'   => 'Falta PATH_INFO
+Seu servidor não está configurado para passar essa informação.
+Pode ser baseado em CGI e não suportar img_auth.
+Veja http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
 'img-auth-badtitle'     => 'Não é possível construir um título válido a partir de "$1".',
 'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na "lista branca".',
@@ -1729,6 +1734,9 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'img-auth-isdir'        => 'Você está a tentar aceder ao directório "$1".
 Apenas o acesso a ficheiros é permitido.',
 'img-auth-streaming'    => "A fazer o ''streaming'' de \"\$1\".",
+'img-auth-public'       => 'Essa função de img_auth.php é para produzir arquivos a partir de uma wiki privada.
+Essa wiki está configurada como uma wiki pública.
+Para uma segurança otimizada, img_auth.php é desabilitado.',
 'img-auth-noread'       => 'O usuário não tem acesso à leitura de "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
