@@ -322,9 +322,11 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 
 j'm'escuse mais i feut prinde un aute nom.",
 'loginerror'              => 'Bérlurache del intrée',
+'nouserspecified'         => "Os dvez intrer un nom d'uzeu.",
 'mailmypassword'          => "Imèle un nouvieu mot d'passe",
 'passwordremindertitle'   => "Nouvieu mot d'passe tanporoère pou {{SITENAME}}",
 'accountcreated'          => "Ch'conpte est créé",
+'accountcreatedtext'      => "Ech conpte d'uzeu pou $1 o té créé.",
 
 # Edit page toolbar
 'bold_sample'     => 'Cros teske',
@@ -567,6 +569,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'mywatchlist'       => "M'lisse à suire",
 'watchlistfor'      => "(pou '''$1''')",
 'addedwatch'        => "Rajouté su l'lisse à suire",
+'addedwatchtext'    => "L' pache « [[:$1]] » o té rajoutée à vote [[Special:Watchlist|lisse à suire]].<br /> Chés  canjemints à vnir del pache-lo pi del page éd pérlache sront mis din l'lisse. L'pache sro '''in cros''' din el [[Special:RecentChanges|lisse d'chés darins canjemints]] pou les értreuver fachilmint. Pou értirer chol pache del ''lisse à suire'', bukez su « {{MediaWiki:Unwatch}} ».",
 'removedwatch'      => 'Értiré del lisse à suire',
 'removedwatchtext'  => "L'pache « [[:$1]] » o té értirée éd vote [[Special:Watchlist|lisse à suire]].",
 'watch'             => 'Suire',

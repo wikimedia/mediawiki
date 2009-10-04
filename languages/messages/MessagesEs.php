@@ -732,7 +732,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'link_sample'     => 'Título del enlace',
 'link_tip'        => 'Enlace interno',
 'extlink_sample'  => 'http://www.example.com Título del enlace',
-'extlink_tip'     => 'Enlace externo (recuerde añadir el prefijo http://)',
+'extlink_tip'     => 'Enlace externo (recuerda añadir el prefijo http://)',
 'headline_sample' => 'Texto de titular',
 'headline_tip'    => 'Titular de nivel 2',
 'math_sample'     => 'Escriba aquí una fórmula',
@@ -793,7 +793,7 @@ No puedes utilizar la función «enviar correo electrónico a este usuario»  a 
 
 Tu actual dirección IP es $3, y el identificador del bloqueo es #$5.
 Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
-'blockednoreason'                  => 'No se ha dado ninguna razón',
+'blockednoreason'                  => 'No se ha especificado el motivo',
 'blockedoriginalsource'            => "El código fuente de '''$1''' se muestra a continuación:",
 'blockededitsource'                => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
 'whitelistedittitle'               => 'Se requiere identificación para editar.',
@@ -1285,7 +1285,7 @@ Cualquiera que conozca la clave en este campo será capaz de leer tu lista de se
 'timezoneregion-europe'         => 'Europa',
 'timezoneregion-indian'         => 'Océano Índico',
 'timezoneregion-pacific'        => 'Océano Pacífico',
-'allowemail'                    => 'Habilitar la recepción de correo electrónico de otros usuarios',
+'allowemail'                    => 'Aceptar correo electrónico de otros usuarios',
 'prefs-searchoptions'           => 'Opciones de búsqueda',
 'prefs-namespaces'              => 'Espacios de nombres',
 'defaultns'                     => 'Buscar en estos espacios de nombres por defecto:',
@@ -1736,7 +1736,7 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 'filedelete-reason-dropdown'  => '*Razones de borrado habituales
 ** Violación de copyright
 ** Archivo duplicado',
-'filedelete-edit-reasonlist'  => 'Editar razones de borrado',
+'filedelete-edit-reasonlist'  => 'Edita los motivos del borrado',
 'filedelete-maintenance'      => 'Borrado y restauración de archivos temporalmente deshabilitados durante el mantenimiento.',
 
 # MIME search
@@ -2492,7 +2492,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'export-addcat'     => 'Añadir',
 'export-addnstext'  => 'Agregar páginas del nombre del sitio:',
 'export-addns'      => 'Agregar',
-'export-download'   => 'Guardar como fichero',
+'export-download'   => 'Guardar como archivo',
 'export-templates'  => 'Incluir plantillas',
 'export-pagelinks'  => 'Incluir páginas enlazadas a una profundidad de:',
 

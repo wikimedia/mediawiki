@@ -714,7 +714,10 @@ Labda itakusumbua kwamba kuna maoni mengine yanawekwa hapa na unaamini kwamba ha
 'noarticletext-nopermission'       => 'Kwa sasa hakuna maandishi katika ukurasa huu.
 Unaweza [[Special:Search/{{PAGENAME}}|kutafuta jina la ukurasa huu]] katika kurasa nyingine,
 au <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta ingizo linalofanana]</span>.',
+'userpage-userdoesnotexist'        => 'Akaunti ya mtumiaji "$1" haijasajilishwa.
+Ukitaka kuanzisha au kuhariri ukurasa huu tafadhali ucheki jina la akaunti.',
 'userpage-userdoesnotexist-view'   => 'Akaunti ya mtumiaji "$1" haijasajilishwa.',
+'updated'                          => '(Imesasishwa)',
 'note'                             => "'''Taarifa:'''",
 'previewnote'                      => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
 'session_fail_preview'             => "'''Pole! Hatukuweza kuhifadhi sahihisho lako kwa sababu data za kipindi zilipotelewa.'''
@@ -754,6 +757,9 @@ Kumbukumbu za kufuta na kuhamisha ukurasa huu zinapatikana hapa kukusaidia:",
 # "Undo" feature
 'undo-summary' => 'Tengua toleo $1 lililoandikwa na [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]])',
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Kushindwa kusajili akaunti',
+
 # History pages
 'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',
 'currentrev'             => 'Toleo la sasa',
@@ -780,15 +786,24 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'history-feed-item-nocomment' => '$1 kwenye $2',
 
 # Revision deletion
+'rev-deleted-comment'        => '(muhtasari ilifutwa)',
+'rev-deleted-user'           => '(jina la mtumiaji lilifutwa)',
+'rev-deleted-event'          => '(ingizo lilifutwa)',
 'rev-delundel'               => 'onyesha/ficha',
 'revdelete-show-file-submit' => 'Ndiyo',
 'revdel-restore'             => 'badilisha mwonekano',
 'pagehist'                   => 'Historia ya ukurasa',
+'deletedhist'                => 'Historia iliyofutwa',
+'revdelete-content'          => 'Maandiko',
 'revdelete-summary'          => 'muhtasari ya kuhariri',
 'revdelete-uname'            => 'jina la mtumiaji',
+'revdelete-hid'              => '$1 ilifichwa',
+'revdelete-unhid'            => '$1 iliachwa kufichwa',
+'revdelete-log-message'      => '$1 kwenye {{PLURAL:$2|sahihisho|masahihisho}} $2',
 'revdelete-otherreason'      => 'Sababu nyingine:',
 'revdelete-reasonotherlist'  => 'Sababu nyingine',
 'revdelete-edit-reasonlist'  => 'Kuhariri sababu za kufuta',
+'revdelete-offender'         => 'Mhariri wa toleo:',
 
 # History merging
 'mergehistory-reason' => 'Sababu:',
@@ -844,6 +859,7 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'searchall'                      => 'zote',
 'nonefound'                      => "'''Zingatia''': Utafutaji wa msingi unatafuta kwenye maeneo machache ya wiki tu.
 Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk) andika ''all:'' mwanzoni mwa kisanduku. Ukitaka kutafuta kwenye eneo linaloitwa ''fulani'' andika ''fulani:'' mwanzoni mwa kisanduku.",
+'search-nonefound'               => 'Hakuna matokeo ya kutafuta ulizio ule.',
 'powersearch'                    => 'Tafuta kwa hali ya juu',
 'powersearch-legend'             => 'Tafuta kwa hali ya juu',
 'powersearch-ns'                 => 'Tafuta kwenye maeneo ya wiki yafuatayo:',
@@ -853,6 +869,9 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'powersearch-toggleall'          => 'Zote',
 'powersearch-togglenone'         => 'Bila',
 'search-external'                => 'Kutafuta nje',
+'searchdisabled'                 => 'Kutafuta {{SITENAME}} kumesimamishwa.
+Unaweza kutafuta kwa kutumia Google punde si punde.
+Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wakati.',
 
 # Quickbar
 'qbsettings-none' => 'Hakuna',
@@ -862,6 +881,7 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'mypreferences'               => 'Mapendekezo yangu',
 'prefs-edits'                 => 'Idadi ya marekebisho:',
 'prefsnologin'                => 'Hujaingia',
+'prefsnologintext'            => 'Inabidi <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} uingie akaunti yako]</span> ili ubadilishe mapendekezo yako.',
 'changepassword'              => 'Badilisha neno la siri',
 'prefs-skin'                  => 'Sura',
 'skin-preview'                => 'Hakiki',
@@ -882,6 +902,7 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'prefs-rendering'             => 'Umbo',
 'saveprefs'                   => 'Hifadhi',
 'resetprefs'                  => 'Utupe mabadiliko yasijahifadhika',
+'restoreprefs'                => 'Rudisha mapendekezo ya msingi',
 'prefs-editing'               => 'Kuhariri',
 'prefs-edit-boxsize'          => 'Ukubwa wa dirisha la kuhariri.',
 'rows'                        => 'Mistari:',
@@ -1044,6 +1065,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'filename'          => 'Jina la faili',
 'filedesc'          => 'Muhtasari',
 'fileuploadsummary' => 'Muhtasari:',
+'uploadedfiles'     => 'Mafaili yaliyopakiwa:',
 'ignorewarning'     => 'Hifadhi bila kujali maonyo yoyote.',
 'successfulupload'  => 'Upakiaji ulifaulu',
 'uploadwarning'     => 'Ilani kuhusu kupakia',
@@ -1428,7 +1450,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'blocklogpage'             => 'Kumbukumbu ya uzuio',
 'blocklogentry'            => 'amemzuia [[$1]] mpaka $2 $3',
 'unblocklogentry'          => 'aliachisha kuzuia $1',
-'block-log-flags-nocreate' => 'uwezo wa kuunda akounti imesitishwa',
+'block-log-flags-nocreate' => 'uwezo wa kuunda akaunti imesitishwa',
 
 # Move page
 'move-page-legend' => 'Sogeza ukurasa',
