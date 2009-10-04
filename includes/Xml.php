@@ -714,6 +714,7 @@ class Xml {
 	
 	/**
 	 * Build a row for a table
+	 * @param $attribs An array of attributes to apply to the tr tag
 	 * @param $cells An array of strings to put in <td>
 	 * @return string
 	 */

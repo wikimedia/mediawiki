@@ -554,7 +554,7 @@ class WikiImporter {
 	
 	/**
 	 * Default per-revision callback, performs the import.
-	 * @param $revision WikiRevision
+	 * @param $rev WikiRevision
 	 * @private
 	 */
 	function importLogItem( $rev ) {
