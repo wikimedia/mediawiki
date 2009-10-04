@@ -128,7 +128,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Tühi_leht' ),
 	'LinkSearch'                => array( 'Otsi_välislinke' ),
 	'DeletedContributions'      => array( 'Kustutatud_kaastöö' ),
-	'Tags'                      => array( 'Tähistused' ),
+	'Tags'                      => array( 'Märgised' ),
 	'Activeusers'               => array( 'Teguskasutajad' ),
 );
 

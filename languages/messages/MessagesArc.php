@@ -13,6 +13,12 @@
  * @author The Thadman
  */
 
+$specialPageAliases = array(
+	'Preferences'               => array( 'ܓܒܝܬ̈ܐ' ),
+	'Watchlist'                 => array( 'ܪ̈ܗܝܬܐ' ),
+	'Recentchanges'             => array( 'ܫܘܚܠܦ̈ܐ_ܚܕܬ̈ܐ' ),
+);
+
 $magicWords = array(
 	'redirect'              => array( '0', '#ܨܘܝܒܐ', '#REDIRECT' ),
 );

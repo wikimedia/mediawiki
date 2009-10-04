@@ -134,6 +134,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'EmailDoğrulamaİptal' ),
 	'LinkSearch'                => array( 'DışBağlantıAra' ),
 	'Tags'                      => array( 'Etiketler' ),
+	'Activeusers'               => array( 'AktifKullanıcılar' ),
 );
 
 $magicWords = array(
