@@ -241,7 +241,7 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * Get a list of groups the specified user belongs to
 	 *
-	 * @param int $uid
+	 * @param $uid Integer: user id
 	 * @return array
 	 */
 	protected static function getGroups( $uid ) {
@@ -253,7 +253,7 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * Format a link to a group description page
 	 *
-	 * @param string $group
+	 * @param $group String: group name
 	 * @return string
 	 */
 	protected static function buildGroupLink( $group ) {

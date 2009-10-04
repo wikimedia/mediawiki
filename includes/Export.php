@@ -55,6 +55,7 @@ class WikiExporter {
 	 *                   limit: maximum number of rows to return
 	 *                   dir: "asc" or "desc" timestamp order
 	 * @param $buffer Int: one of WikiExporter::BUFFER or WikiExporter::STREAM
+	 * @param $text Int: one of WikiExporter::TEXT or WikiExporter::STUB
 	 */
 	function __construct( &$db, $history = WikiExporter::CURRENT,
 			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {

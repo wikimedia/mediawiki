@@ -606,9 +606,9 @@ abstract class WantedQueryPage extends QueryPage {
 	/**
 	 * Make a "what links here" link for a given title
 	 *
-	 * @param Title $title Title to make the link for
-	 * @param Skin $skin Skin to use
-	 * @param object $result Result row
+	 * @param $title Title to make the link for
+	 * @param $skin Skin object to use
+	 * @param $result Object: result row
 	 * @return string
 	 */
 	private function makeWlhLink( $title, $skin, $result ) {
