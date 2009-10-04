@@ -18,20 +18,20 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Arbennek',
-	NS_TALK             => 'Kows',
+	NS_TALK             => 'Kescows',
 	NS_USER             => 'Devnydhyer',
-	NS_USER_TALK        => 'Kows_Devnydhyer',
-	NS_PROJECT_TALK     => 'Kows_$1',
+	NS_USER_TALK        => 'Kescows_Devnydhyer',
+	NS_PROJECT_TALK     => 'Kescows_$1',
 	NS_FILE             => 'Restren',
-	NS_FILE_TALK        => 'Kows_Restren',
+	NS_FILE_TALK        => 'Kescows_Restren',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Kows_MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Kescows_MediaWiki',
 	NS_TEMPLATE         => 'Scantlyn',
-	NS_TEMPLATE_TALK    => 'Kows_Scantlyn',
+	NS_TEMPLATE_TALK    => 'Kescows_Scantlyn',
 	NS_HELP             => 'Gweres',
-	NS_HELP_TALK        => 'Kows_Gweres',
+	NS_HELP_TALK        => 'Kescows_Gweres',
 	NS_CATEGORY         => 'Class',
-	NS_CATEGORY_TALK    => 'Kows_Class',
+	NS_CATEGORY_TALK    => 'Kescows_Class',
 );
 
 $namespaceAliases = array(
