@@ -826,12 +826,11 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	  	    }else{
 	  	    	this.action_done = true;
 	  	        this.fogg.cancel();
-	  	        $j(dlElm).empty().dialog('close');
-	  	        return false;
+	  	        $j(dlElm).empty().dialog('close');	  	       
 	  	    }
-	  	} else{
-	  		return false;
 	  	}
+	  	//dont' follow the link:
+	  	return false;
 	},
 	/**
 	* procPageResponse should be faded out in favor of the upload api soon..

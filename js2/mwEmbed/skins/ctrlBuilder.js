@@ -1,6 +1,9 @@
 //set the dismissNativeWarn flag:
 _global['dismissNativeWarn'] = false;
 
+/**
+* Msg text is inhereited from embedVideo (we should move it here (although can't load ctrlBuilder without parent EmbedVideo obj)
+/
 
 /** 
 * base ctrlBuilder object

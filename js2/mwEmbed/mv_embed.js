@@ -139,7 +139,7 @@ if( !mv_embed_path ) {
 	 *
 	 * it take a msg key and array of replacement values of form
 	 * $1, $2 and does relevant msgkey transformation returning 
-	 * the usser msg. 
+	 * the user msg. 
 	 *
 	 * @param string key The msg key as set by loadGm
 	 * @param [mixed] args  An array of replacement strings
@@ -152,7 +152,7 @@ if( !mv_embed_path ) {
 		//swap in the arg values
 		var ms = $.lang.gMsgSwap( key, args);		
 		//a quick check to see if we need to send the msg via the 'parser'
-		//(we can add more detailed check once we suport more wiki syntax)
+		//(we can add more detailed check once we support more wiki syntax)
 		if(ms.indexOf('{{')==-1)
 			return ms;
 					
@@ -174,13 +174,13 @@ if( !mv_embed_path ) {
 		if(! gMsg[ key ])
 			return '&lt;' + key + '&gt;';// Missing key placeholder
 		//get the messege string:
-		ms = gMsg[ key ];
+		var ms = gMsg[ key ];
 		
 		//replace values 
 		if( typeof args == 'object' || typeof args == 'array' ) {
 			for( var v in args ) { 
 				// Message test replace arguments start at 1 instead of zero:
-				var rep = '\$'+ ( parseInt(v) + 1 );
+				var rep = new RegExp('\\$'+ ( parseInt(v) + 1 ), 'g');
 				ms = ms.replace( rep, args[v] );
 			}
 		} else if( typeof args =='string' || typeof args =='number' ) {
@@ -237,20 +237,23 @@ if( !mv_embed_path ) {
 		/**
 		 * Maps a given rule Index to template params:
 		 * 
+		 * if index is out of range return last param
 		 * @param 
 		 */ 
-		function getTempParamFromRuleInx( ruleInx ){
-			//var naturalOrder = ['zero', 'one', 'two', 'few', 'many', 'other'];			
-			//js_log('getTempParamFromRuleInx: ruleInx: ' + ruleInx + ' tempParamLength ' + tObj.param.length );		
+		function getTempParamFromRuleInx(tObj, ruleInx ){					
+			//js_log('getTempParamFromRuleInx: ruleInx: ' + ruleInx + ' tempParamLength ' + tObj.param.length );
+			if( ruleInx	>= tObj.param.length )
+				return  tObj.param[  tObj.param.length -1 ];
+			//else return the requested index:
 			return tObj.param[ ruleInx ];
 		}						
 		var rCount=0
-		//run the acutal rule lookup: 		
+		//run the actual rule lookup: 		
 		for(var ruleInx in rs){
 			cRule = rs[ruleInx];			
 			if( matchRuleTest( cRule, tObj.arg ) ){
 				js_log("matched rule: " + ruleInx );				
-				return getTempParamFromRuleInx( rCount );					
+				return getTempParamFromRuleInx(tObj, rCount );					
 			}
 			rCount ++;
 		}			
@@ -539,6 +542,10 @@ if( !mv_embed_path ) {
 var loadGM = $mw.lang.loadGM;
 var gM = $mw.lang.gM;
 
+//if some no-js2 script defined and loaded gMsg in global space: 
+if( _global['gMsg'] ){
+	loadGM( _global['gMsg'] );
+}
 
 // All default messages in [English] should be overwritten by the CMS language message system.
 $mw.lang.loadGM({
@@ -718,7 +725,7 @@ var mvJsLoader = {
 	// Base lib flags
 	onReadyEvents: new Array(),
 	doneReadyEvents: false,
-	jQueryCheckFlag: false,
+	jQuerySetupFlag: false,
 
 	// To keep consistency across threads
 	ptime: 0,
@@ -743,7 +750,7 @@ var mvJsLoader = {
 				}
 			}
 			if( all_libs_loaded ) {
-				js_log( 'All libraries already loaded, skipping load request' );
+				//js_log( 'Libraries ( ' + loadLibs  +  ') already loaded... skipping load request' );
 				callback();
 				return;
 			}
@@ -892,6 +899,7 @@ var mvJsLoader = {
 	 * checks for jQuery and adds the $j noConflict var
 	 */
 	jQueryCheck: function( callback ) {
+		//js_log( 'jQueryCheck::' );
 		// Skip stuff if $j is already loaded:
 		if( _global['$j'] && callback )
 			callback();					
@@ -903,7 +911,9 @@ var mvJsLoader = {
 			//only do the $j setup once: 
 			if(!_global['$j']){
 				_global['$j'] = jQuery.noConflict();
-				
+			}
+			if( _this.jQuerySetupFlag == false){
+				js_log('setup mv_embed jQuery bindings');
 				//setup our global settings using the (jQuery helper) 
 				mwConfig = $j.extend( mwDefaultConfig, mwConfig);								
 				
@@ -928,6 +938,7 @@ var mvJsLoader = {
 				js_log( 'jQuery loaded into $j' );
 				// Set up mvEmbed jQuery bindings and config based dependencies
 				mv_jqueryBindings();
+				_this.jQuerySetupFlag = true;
 			}
 			// Run the callback
 			if( callback ) {
@@ -937,7 +948,7 @@ var mvJsLoader = {
 	},
 	embedVideoCheck:function( callback ) {
 		var _this = this;
-		js_log( 'embedVideoCheck:' );		
+		js_log( 'embedVideoCheck:' );				
 		// Make sure we have jQuery
 		_this.jQueryCheck( function() {
 			//set class videonojs to hidden
@@ -976,14 +987,10 @@ var mvJsLoader = {
 	// unless js2AddOnloadHook was used or there is video on the page.
 	runQueuedFunctions: function() {
 		var _this = this;
-		this.doneReadyEvents = true;
-		if( this.jQueryCheckFlag ) {
-			this.jQueryCheck( function() {
-				_this.runReadyEvents();
-			});
-		} else {
-			this.runReadyEvents();
-		}
+		this.doneReadyEvents = true;		
+		this.jQueryCheck( function() {
+			_this.runReadyEvents();
+		});
 	},
 	runReadyEvents: function() {
 		js_log( "runReadyEvents" );
@@ -1050,8 +1057,6 @@ function js2AddOnloadHook( func ) {
 			func();
 		});
 	} else {
-		// If we are using js2AddOnloadHook we need to get jQuery into place (if it's not already included)
-		mvJsLoader.jQueryCheckFlag = true;
 		mvJsLoader.addLoadEvent( func );
 	}
 }

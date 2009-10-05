@@ -683,7 +683,7 @@ mvBaseUploadInterface.prototype = {
 			  if( event.button==0 && _this.action_done === false){
 				return _this.cancel_action();
 			  }else{
-				 //click on button (dont do close action);
+				 //click on button (don't do close action);
 				 return true;
 			  }
 		  },
@@ -718,11 +718,10 @@ mvBaseUploadInterface.prototype = {
 		//confirm:
 		if( confirm( gM('mwe-cancel-confim') )){
 			//@@todo (cancel the encode / upload)
-			$j(this).empty().dialog('close');
-			return false;
-		}else{
-			return true;
+			$j(this).empty().dialog('close');		
 		}
+		//dont' follow the link; 
+		return false;
 	}
 };
 
