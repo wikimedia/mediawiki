@@ -1404,11 +1404,11 @@ embedVideo.prototype = {
 		this.thumbnail_disp = true;
 	},
 	refreshControlsHTML:function(){
-		js_log('refreshing controls HTML');
-		if($j('#mv_embedded_controls_'+this.id).length==0)
+		js_log('refreshControlsHTML::');
+		if($j('#mv_embedded_controls_'+this.id).length == 0)
 		{
 			js_log('#mv_embedded_controls_'+this.id + ' not present, returning');
-			return;
+			return ;
 		}else{
 			$j('#mv_embedded_controls_'+this.id).html( this.getControlsHTML() );
 			this.ctrlBuilder.addControlHooks(this);						
@@ -1427,7 +1427,7 @@ embedVideo.prototype = {
 						'class="' + this.ctrlBuilder.pClass + '">';		
 		html_code += '<div style="width:'+parseInt(this.width)+'px;height:'+parseInt(this.height)+'px;"  id="mv_embedded_player_'+this.id+'">' +
 						this.getThumbnailHTML() + 
-					'</div>';											
+					'</div>';									
 		//js_log("mvEmbed:controls "+ typeof this.controls);									
 		if( this.controls )
 		{
@@ -1435,7 +1435,7 @@ embedVideo.prototype = {
 			this.ctrlBuilder = new ctrlBuilder( this );
 			
 			js_log("f:getHTML:AddControls");
-			html_code +='<div id="mv_embedded_controls_' + this.id + '" class="ui-widget ui-corner-bottom ui-state-default controls" >';
+			html_code +='<div id="mv_embedded_controls_' + this.id + '" class="ui-widget ui-corner-bottom ui-state-default  controls" >';
 			html_code += this.getControlsHTML();	   
 			html_code +='</div>';	  			
 			//block out some space by encapulating the top level div 

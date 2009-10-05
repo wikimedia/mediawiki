@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Test Plural Conversions (should match php) </title>
+<script type="text/javascript" src="../mv_embed.js"></script>
+<script type="text/javascript" src="testLangEn.js"></script>
+<style>
+td{
+	border:solid thin black;
+}
+</style>
+<script type="text/javascript" >
+	var langKey = 'en';
+js2AddOnloadHook( function(){
+		//build table output: 
+		var o = '<table>';
+		var msgTestSet = [ 'test_plural_msg', 'undelete_short' ];
+		var testNumberSet = [ 0, 1, 2, 5, 21, 22, 30 ];				
+		//now for each langage msg: 
+		$j.each(msgTestSet, function(inx, mKey){
+			//output table names:
+			o+='<tr>'+
+					'<td>$1:</td>'+
+					'<td>Msg key</td>'+
+					'<td>Msg text</td>'+
+					'<td>Msg Transform JS</td>'+
+					'<td>Msg Transform Mw</td>'+
+				'</tr>';
+		
+			//for each number value
+			for(var i in testNumberSet){
+				var numVal = testNumberSet[i];						
+				o+='<tr>'+
+						'<td>' + numVal + '</td>' + 
+						'<td>' + mKey + '</td>' + 
+						'<td>' + $mw.lang.gMsgNoTrans( mKey ) + '</td>' + 
+						'<td>' + $mw.lang.gM( mKey, numVal ) + '</td>';
+				//show mw col:						
+				if( mKey.substr(0, 5) == 'test_' ){
+					o+='<td> (test msg) </td>';
+				}else{  
+					o+='<td rel="' + mKey + '_' + numVal + '">loading<blink>...</blink></td>';
+					//get transform from mw (& compare and highlight) 
+				} 
+				o+='</tr>';										
+			}
+			//output a spacer:
+			o+='<tr><td colspan="6" height="20"> </td></tr>';			
+		});
+		o+='</table>';
+		//put the output into the page: 
+		$j('#table_out').html( o );
+});
+</script>
+</head>
+<body>
+<h3>Test Javascript plural msg transformations</h3>
+
+<div id="table_out"></div>
+
+
+</body>
+</html>

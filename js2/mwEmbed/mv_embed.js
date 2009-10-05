@@ -70,15 +70,14 @@ parseUri.options = {
 // For use when mv_embed with script-loader is in the root MediaWiki path
 var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
 
-
 var _global = this; // Global obj
 
 /*
 * setup the empty global $mw object 
 * will ensure all our functions are properly namespaced
 */
-if(!_global['$mw']){
-	_global['$mw'] = {}
+if(!window['$mw']){
+	window['$mw'] = {}
 }
 
 //@@todo move these into $mw
@@ -91,26 +90,29 @@ var global_req_cb = new Array(); // The global request callback array
 if( !mv_embed_path ) {
 	var mv_embed_path = getMvEmbedPath();
 }
-
-
-/*
-* Language classes $mw.lang
-* 
-* Localized Language suport attempts to mirror the functionality of Language.php in MediaWiki
-* It contains methods for loading and transforming msg text
-* 
-* code style:: 
-* 	We could wrap each $mw extend in (function( $ ) { //functions here })($mw); and refrence $mw as $
+/**
+* wrap the global $mw object here:
+*
+* Any global functions/classes that are not jQuery plugins should make
+* there way into the $mw namespace 
 */
 (function( $ ) {
+	/*
+	* Language classes $mw.lang
+	* 
+	* Localized Language support attempts to mirror the functionality of Language.php in MediaWiki
+	* It contains methods for loading and transforming msg text
+	* 
+	*/
 	$.lang = {};
 	/**
 	* Setup the lang object
 	*/
 	var gMsg = {};
+	var gRuleSet = {};
 	/**
 	* loadGM function
-	* Loads a set of json messeges into the lang object. 
+	* Loads a set of json messages into the lang object. 
 	*
 	* @param json msgSet The set of msgs to be loaded 
 	*/
@@ -119,6 +121,18 @@ if( !mv_embed_path ) {
 			gMsg[ i ] = msgSet[i];
 		}
 	},
+	/**
+	* loadRS function
+	* Loads a ruleset by given template key ie PLURAL : { //ruleSetObj }
+	*
+	* @param json ruleSet The ruleset object ( extends  gRuleSet )
+	*/
+	$.lang.loadRS = function( ruleSet ){
+		for( var i in ruleSet){
+			gRuleSet[ i ] = ruleSet[ i ];
+		}
+	}
+	
 	/**
 	 * Returns a transformed msg string
 	 *
@@ -131,12 +145,14 @@ if( !mv_embed_path ) {
 	 * @return string 
 	 */
 	$.lang.gM = function( key , args ) {
-		var ms = '';
-		if ( key in gMsg ) {
+		var supportedMagicLang = ['PLURAL'];
+						
+		if ( gMsg[ key ] ) {
+			var ms = '';
+			//get the messege string:
 			ms = gMsg[ key ];
-			//test if we have a special replacement template call
 			
-			
+			//replace values 
 			if( typeof args == 'object' || typeof args == 'array' ) {
 				for( var v in args ) { 
 					// Message test replace arguments start at 1 instead of zero:
@@ -146,12 +162,84 @@ if( !mv_embed_path ) {
 			} else if( typeof args =='string' || typeof args =='number' ) {
 				ms = ms.replace(/\$1/, args);
 			}
-			return ms;
+			
+			//a quick check to see if we need to send the msg via the 'parser'
+			//(we can add more detailed check once we suport more wiki syntax)
+			if(ms.indexOf('{{')==-1)
+				return ms;
+				
+			//send the msg key through the parser  
+			pObj = $.parse( ms );
+			//return the transformed msg
+			return pObj.getHTML(); 
+
 		} else {
 			// Missing key placeholder
 			return '&lt;' + key + '&gt;';
 		}
-	},
+	}
+	/**
+	* Process a special language template (ie PLURAL )
+	*/
+	$.lang.procLangTemp = function( tObj ){
+	
+		/* local lang templates: */		
+		function procPLURAL(){
+			//Plural matchRuleTest
+			function matchRuleTest(cRule, val){
+				js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
+				//check for simple cRule type:
+				if( typeof cRule == 'number'){					
+					return ( parseInt( val ) == parseInt( cRule) );					
+				}
+			}
+			//maps a given rule Index to template params: 
+			function getTempParamFromRuleInx( ruleInx ){
+				//in general this is a one to one mapping:
+				 
+				js_log('getTempParamFromRuleInx: ruleInx: ' + ruleInx + ' tempParamLength ' + tObj.param.length );
+				var cat = tObj;
+				debugger;
+				return tObj.param[ ruleInx ];
+			}
+			
+			//setup shortcuts
+			var rs = gRuleSet['PLURAL'];	
+			var val = tObj.val;		
+			for(var ruleInx in rs){
+				cRule = rs[ruleInx];
+				if( matchRuleTest( cRule, val )){
+					js_log("matched rule: " + ruleInx );
+					return getTempParamFromRuleInx( ruleInx );					
+				}
+			}			
+			js_log('no match found for: ' + val + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
+			//return the last /"other" template param 
+			return tObj.param [ tObj.param.length -1 ]; 					
+		}
+		
+		/*
+		* Master rule switch statement
+		*/
+		switch( tObj.n ){
+			case 'PLURAL':
+				return procPLURAL();
+			break;
+		}
+	}
+	/**
+	* gMsgNoTrans
+	* 
+	* @returns string The msg key without transforming it
+	*/
+	$.lang.gMsgNoTrans = function( key ){
+		if( gMsg[ key ] )
+			return gMsg[ key ]
+	
+		// Missing key placeholder
+		return '&lt;' + key + '&gt;';
+	}
+	
 	/**
 	 * gMsgLoadRemote loads remote msg strings
 	 * 
@@ -187,7 +275,7 @@ if( !mv_embed_path ) {
 			}
 			callback();
 		});
-	},
+	}
 	/**
 	 * Format a size in bytes for output, using an appropriate
 	 * unit (B, KB, MB or GB) according to the magnitude in question
@@ -223,16 +311,75 @@ if( !mv_embed_path ) {
 		//@@todo we need a formatNum and we need to request some special packaged info to deal with that case.
 		return gM( msg , size );
 	}
-})($mw);
+	
+	
+	/**
+	* MediaWiki wikitext "Parser"
+	*
+	* This is not feature complete but we need a way to get at template properties 
+	*
+	* Template parsing is based in part on Magnus initial version: en:User:Magnus_Manske/tmpl.js
+	*  
+	* @param wikiText the wikitext to be parsed
+	* @return parserObj returns a parser object that has methods for getting at 
+	* things you would want 
+	*/
+	$.parse = function( wikiText, opt ){
+		var parseObj = function( wikiText, opt){
+			return this.init( wikiText, opt )
+		}		
+		parseObj.prototype = {
+			pObj : {}, //the parser object that stores the parsed element structure
+			pOut : '', //the parser output string container 
+			init  :function( wikiText ){
+				this.wikiText = wikiText;
+				this.parse();
+			},
+			parse : function(){
+				//basic parser stores wikiText structure in pObj
+				
+				//tries to mirror Extension:Page Object Model
+			},
+			templates : function( name ){
+				//get template objects (optionally get a set by its name) 
+				//hard code for plural for now:  
+				return [{
+					'n': 'PLURAL',
+					'val': '1',
+					'param': ['one','other']
+				}];				
+			},
+			doMagicExpand : function(){
+				//expand all the templates
+				tSet = this.templates();
+				for(var tInx in tSet){
+					var tObj = tSet[ tInx ] ;
+					//@@todo replace PLURARL with tObj.n 					
+					this.pOut = this.pOut.replace( /\{\{PLURAL[^\}]*\}\}/, 
+								$.lang.procLangTemp(tObj) );					
+				}			
+			},
+			//returns the transformed wikitext
+			getHTML : function(){
+				//copy the wikiText into the output (where we will do replaces) 
+				this.pOut = this.wikiText;
+				this.doMagicExpand();
+				return this.pOut;				
+			}
+		};
+		//return the parserObj
+		return new parseObj( wikiText, opt) ;
+	}
+	
+	
+})(window.$mw);
 //setup legacy global shortcuts: 
 var loadGM = $mw.lang.loadGM;
 var gM = $mw.lang.gM;
 
 
-
-
 // All default messages in [English] should be overwritten by the CMS language message system.
-loadGM({
+$mw.lang.loadGM({
 	"mwe-loading_txt" : "loading <blink>...<\/blink>",
 	"mwe-loading_title" : "Loading...",
 	"mwe-size-gigabytes" : "$1 GB",
@@ -241,6 +388,8 @@ loadGM({
 	"mwe-size-bytes" : "$1 B",
 	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2"
 });
+
+
 
 /**
  * AutoLoader paths (this should mirror the file: jsAutoloadLocalClasses.php )
@@ -1013,7 +1162,7 @@ function mv_jqueryBindings() {
 /*
 * Utility functions:
 */
-// Simple URL rewriter (could probably be refactored into an inline regular expresion)
+// Simple URL rewriter (could probably be refactored into an inline regular exp)
 function getURLParamReplace( url, opt ) {
 	var pSrc = parseUri( url );
 	if( pSrc.protocol != '' ) {
@@ -1185,7 +1334,7 @@ function mwGetLocalApiUrl( url ) {
 	}
 	return false;
 }
-// Grab wiki form error for wiki html page proccessing (should be deprecated)
+// Grab wiki form error for wiki html page processing (should be deprecated because we use api now)
 function grabWikiFormError( result_page ) {
 		var res = {};
 		sp = result_page.indexOf( '<span class="error">' );
@@ -1234,7 +1383,7 @@ function do_request( req_url, callback ) {
 	} else {
 		// Get data via DOM injection with callback
 		global_req_cb.push( callback );
-		// Prepend json_ to feed_format if not already requesting json format
+		// Prepend json_ to feed_format if not already requesting json format (metavid specific) 
 		if( req_url.indexOf( "feed_format=" ) != -1 && req_url.indexOf( "feed_format=json" ) == -1 )
 			req_url = req_url.replace( /feed_format=/, 'feed_format=json_' );
 		loadExternalJs( req_url + '&cb=mv_jsdata_cb&cb_inx=' + (global_req_cb.length - 1) );

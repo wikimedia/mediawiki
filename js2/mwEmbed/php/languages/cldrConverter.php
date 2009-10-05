@@ -12,12 +12,11 @@
  * Rules should come in the following order:
  *  zero, one, two, few, many, other (other is a special default case that applies to all)
  *
- * clrd also allows export of rule sets in json to associated javascript intepretation
+ * cldr also allows export of rule sets in json to associated javascript
  */
-
-class clrdConverter {
+class cldrConverter {
 	static $masterCLDR = array(
-		// if locale is known to have no plurals, there are no rules
+		// if locales is known to have no plurals, there are no rules
 		array(
 			'locales'=> array('az','fa','hu','ja','ko','my to','tr','vi','yo','zh',
 								'bo','dz','id','jv ka','km','kn','ms','th')
@@ -190,13 +189,10 @@ class clrdConverter {
 		if( count( $forms ) == 1)
 			return $forms[0];
 
-		$forms = $this->preConvertPlural( $forms, $fomsCount );
-
 	}
 
-	function getCldrRuleSet(){
-		$code = $this->getCode();
-		foreach($this->masterCLDR as $ruleSet){
+	static function getCldrRuleSet( $code ){
+		foreach(self::$masterCLDR as $ruleSet){
 			if( in_array($code, $ruleSet['locales']) ){
 				return $ruleSet['rules'];
 			}

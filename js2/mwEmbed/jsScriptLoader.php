@@ -300,6 +300,8 @@ class jsScriptLoader {
 
 		// Do the language lookup
 		if ( $jmsg ) {
+			//see if any msgKey has the PLURAL template tag
+			//package in PLURAL mapping
 			foreach ( $jmsg as $msgKey => $default_en_value ) {
 				$jmsg[$msgKey] = wfMsgNoTrans( $msgKey );
 			}

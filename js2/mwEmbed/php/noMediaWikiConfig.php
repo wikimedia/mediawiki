@@ -24,6 +24,7 @@ $wgJSAutoloadLocalClasses = array();
 
 /*Localization:*/
 $wgEnableScriptLocalization = true;
+
 $mwLanguageCode = 'en';
 
 $wgContLanguageCode = '';
