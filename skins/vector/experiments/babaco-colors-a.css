@@ -12,8 +12,8 @@ html .thumbimage,
 
 /* Framework */
 body {
-	background-color: #f9f9f9;
-	color: #000000;
+	background-color: #f9f9f9 !important;
+	background-image:url(images/page-base-updated.png);
 }
 /* Links */
 a {
