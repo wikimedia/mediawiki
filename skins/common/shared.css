@@ -806,3 +806,11 @@ td.mw-enhanced-rc {
 	position: relative;
 	top: -16px;
 }
+
+.mw-small-spinner {
+	padding: 10px !important;
+	margin-right: 0.6em;
+	background-image: url(images/spinner.gif);
+	background-position: middle middle;
+	background-repeat: no-repeat;
+}
