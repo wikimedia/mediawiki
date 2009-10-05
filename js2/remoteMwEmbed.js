@@ -59,7 +59,8 @@ function rewrite_for_OggHandler( vidIdList ){
 		var type_attr = '';
 		// Check for audio
 		if( pwidth == '22' && pheight == '22' ) {
-			pwidth = '400';
+			//set width to parent width:
+			pwidth = $j( '#' + vidId ).width();
 			pheight = '100';
 			type_attr = 'type="audio/ogg"';
 			poster_attr = '';
