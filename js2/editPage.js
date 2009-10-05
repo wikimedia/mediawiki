@@ -19,17 +19,12 @@ var defaultAddMediaConfig = {
 		// The local wiki API URL:
 		'local_wiki_api_url': wgServer + wgScriptPath + '/api.php'
 };
-js2AddOnloadHook( function() {
-	mwEditPageHelper.init(
-		$j.extend( true, defaultAddMediaConfig, mwAddMediaConfig )
-	);
-});
 var mwEditPageHelper = {
 	init: function( amwConf ) {
 		var _this = this;		
 		// kind of tricky, it would be nice to use run on ready "loader" call here
 		if( typeof $j.wikiEditor != 'undefined' ) {
-			setTimeout( function() {
+			setTimeout( function() {				
 				$j( '.wikiEditor-ui [rel=file]' ).unbind().addMediaWiz(
 					amwConf
 				);
@@ -49,3 +44,9 @@ var mwEditPageHelper = {
 		);*/
 	}
 }
+
+js2AddOnloadHook( function() {
+	mwEditPageHelper.init(
+		$j.extend( true, defaultAddMediaConfig, mwAddMediaConfig )
+	);
+});

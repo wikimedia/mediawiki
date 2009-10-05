@@ -12,50 +12,58 @@ td{
 	var langKey = 'en';
 js2AddOnloadHook( function(){
 		//build table output: 
-		var o = '<table>';
-		var msgTestSet = [ 'test_plural_msg', 'undelete_short', 'category-subcat-count' ];
-		var testNumberSet = [ 0, 1, 2, 5, 21, 30 ];			
+		var o = '<table>';		
+		var msgTestSet = { 
+			'test_plural_msg':[ 0, 1, 2, 5, 21, 30 ], 
+			'undelete_short': [ 0, 1, 2, 5, 21, 30 ], 
+			//category-subcat-count' has two params:
+			'category-subcat-count' : [ 
+				[0,10], 
+				[1,2], 
+				[3,30] ]
+			};
+					
 		var passTest=0;
 		var failTest=0;
 		var testCount=0;	
 		//now for each langage msg: 
-		$j.each(msgTestSet, function(inx, mKey){
+		$j.each(msgTestSet, function(mKey, mTestSet){
 			//output table names:
 			o+='<tr>'+
 					'<td>$1:</td>'+
-					'<td>Msg key</td>'+
-					'<td>Msg text</td>'+
-					'<td>Msg Transform JS</td>'+
-					'<td>Msg Transform Mw</td>'+
+					'<td width="14%">Msg key</td>'+
+					'<td width="34%">Msg text</td>'+
+					'<td width="24%">Msg Transform JS</td>'+
+					'<td width="24%">Msg Transform Mw</td>'+
 				'</tr>';
 		
 			//for each number value
-			for(var i in testNumberSet){
-				var numVal = testNumberSet[i];										
+			for(var i in mTestSet){
+				var numVal = mTestSet[i];						
+				var numKey = (typeof numVal== 'object')? numVal.join( '_' ) : numVal; 											
 				o+='<tr>'+
 						'<td>' + numVal + '</td>' + 
 						'<td>' + mKey + '</td>' + 
 						'<td>' + $mw.lang.gMsgNoTrans( mKey ) + '</td>' + 
-						'<td id="' + mKey + '_' + numVal + '_js">' + $mw.lang.gM( mKey, numVal ) + '</td>';
+						'<td id="' + mKey + '_' + numKey + '_js">' + $mw.lang.gM( mKey, numVal ) + '</td>';
 				//show mw col:						
 				if( mKey.substr(0, 5) == 'test_' ){
 					o+='<td> (test msg) </td>';
 				}else{  
-					o+='<td id="' + mKey + '_' + numVal + '">loading<blink>...</blink></td>';					
+					o+='<td id="' + mKey + '_' + numKey + '">loading<blink>...</blink></td>';					
 					
 					//get transform from mw (& compare and highlight)
-					function doPopWmMsg(mKey, numVal){ 
+					function doPopWmMsg(mKey, numVal, numKey){ 
 						testCount++;
-						$j('#score_card').html('Running Tests <span id="perc_done">0</sapn>% done');
+						$j('#score_card').html('Running Tests <span id="perc_done">0</sapn>% done');												
 						do_api_req({
 							'data': {
 								'action':'parse',
 								'text': $mw.lang.gMsgSwap( mKey, numVal)
 							},
 							'url' : '../../../api.php'					
-						}, function( data ) {
-							js_log("got data::" + data.parse.text['*']);
-							var t = '#'+ mKey + '_'+ numVal; 
+						}, function( data ) {							
+							var t = '#'+ mKey + '_'+ numKey; 
 							if(data.parse && data.parse.text && data.parse.text['*']){
 								$j(t).html( data.parse.text['*'] );
 								//just get the part in the <p> to compare with js version
@@ -78,7 +86,7 @@ js2AddOnloadHook( function(){
 						});
 					};
 					//pop off an anonymous function call: 
-					doPopWmMsg(mKey, numVal);
+					doPopWmMsg(mKey, numVal, numKey);
 				} 
 				o+='</tr>';										
 			}
