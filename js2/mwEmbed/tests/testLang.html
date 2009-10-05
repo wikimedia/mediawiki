@@ -13,8 +13,11 @@ td{
 js2AddOnloadHook( function(){
 		//build table output: 
 		var o = '<table>';
-		var msgTestSet = [ 'test_plural_msg', 'undelete_short' ];
-		var testNumberSet = [ 0, 1, 2, 5, 21, 22, 30 ];				
+		var msgTestSet = [ 'test_plural_msg', 'undelete_short', 'category-subcat-count' ];
+		var testNumberSet = [ 0, 1, 2, 5, 21, 30 ];			
+		var passTest=0;
+		var failTest=0;
+		var testCount=0;	
 		//now for each langage msg: 
 		$j.each(msgTestSet, function(inx, mKey){
 			//output table names:
@@ -28,18 +31,54 @@ js2AddOnloadHook( function(){
 		
 			//for each number value
 			for(var i in testNumberSet){
-				var numVal = testNumberSet[i];						
+				var numVal = testNumberSet[i];										
 				o+='<tr>'+
 						'<td>' + numVal + '</td>' + 
 						'<td>' + mKey + '</td>' + 
 						'<td>' + $mw.lang.gMsgNoTrans( mKey ) + '</td>' + 
-						'<td>' + $mw.lang.gM( mKey, numVal ) + '</td>';
+						'<td id="' + mKey + '_' + numVal + '_js">' + $mw.lang.gM( mKey, numVal ) + '</td>';
 				//show mw col:						
 				if( mKey.substr(0, 5) == 'test_' ){
 					o+='<td> (test msg) </td>';
 				}else{  
-					o+='<td rel="' + mKey + '_' + numVal + '">loading<blink>...</blink></td>';
-					//get transform from mw (& compare and highlight) 
+					o+='<td id="' + mKey + '_' + numVal + '">loading<blink>...</blink></td>';					
+					
+					//get transform from mw (& compare and highlight)
+					function doPopWmMsg(mKey, numVal){ 
+						testCount++;
+						$j('#score_card').html('Running Tests <span id="perc_done">0</sapn>% done');
+						do_api_req({
+							'data': {
+								'action':'parse',
+								'text': $mw.lang.gMsgSwap( mKey, numVal)
+							},
+							'url' : '../../../api.php'					
+						}, function( data ) {
+							js_log("got data::" + data.parse.text['*']);
+							var t = '#'+ mKey + '_'+ numVal; 
+							if(data.parse && data.parse.text && data.parse.text['*']){
+								$j(t).html( data.parse.text['*'] );
+								//just get the part in the <p> to compare with js version
+								if( $j.trim( $j(t + ' p').html() )  != $j.trim( $j(t + '_js').html() ) ){									
+									$j(t).css('color', 'red');
+									failTest++;
+								}else{
+									$j(t).css('color', 'green');
+									passTest++;
+								}
+								var perc = ( failTest + passTest ) / testCount
+								if( perc != 1){
+									$j('#perc_done').html( Math.round(perc*1000)/1000 + '%');
+								}else{
+									$j('#score_card').html( "Passed: " + passTest + ' Failed:' +failTest);
+								}			
+							}else{
+								$t.html(' error ');
+							}
+						});
+					};
+					//pop off an anonymous function call: 
+					doPopWmMsg(mKey, numVal);
 				} 
 				o+='</tr>';										
 			}
@@ -54,7 +93,7 @@ js2AddOnloadHook( function(){
 </head>
 <body>
 <h3>Test Javascript plural msg transformations</h3>
-
+<div id="score_card" style="font-size:large"></div>
 <div id="table_out"></div>
 
 

@@ -211,7 +211,7 @@ mvBaseUploadInterface.prototype = {
 			_this.upload_mode == 'api' &&
 			( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked )
 		){
-			//@@TODO check for sendAsBinnary to support firefox 3.5 progress
+			//@@TODO check for sendAsBinnary to support firefox 3.5 progress on upload
 
 			//set the form target to iframe target:	
 			_this.iframeId = 'f_' + ($j('iframe').length + 1);					
