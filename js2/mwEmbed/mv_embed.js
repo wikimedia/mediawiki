@@ -70,7 +70,7 @@ parseUri.options = {
 // For use when mv_embed with script-loader is in the root MediaWiki path
 var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
 
-var _global = this; // Global obj
+var _global = this; // Global obj (depreciate use window) 
 
 /*
 * setup the empty global $mw object 
@@ -109,10 +109,11 @@ if( !mv_embed_path ) {
 	* Setup the lang object
 	*/
 	var gMsg = {};
-	var gRuleSet = {};
+	var gRuleSet = {};		
+		
 	/**
 	* loadGM function
-	* Loads a set of json messages into the lang object. 
+	* Loads a set of json messages into the lng object. 
 	*
 	* @param json msgSet The set of msgs to be loaded 
 	*/
@@ -144,89 +145,50 @@ if( !mv_embed_path ) {
 	 * @param [mixed] args  An array of replacement strings
 	 * @return string 
 	 */
-	$.lang.gM = function( key , args ) {
-		var supportedMagicLang = ['PLURAL'];
-						
-		if ( gMsg[ key ] ) {
-			var ms = '';
-			//get the messege string:
-			ms = gMsg[ key ];
-			
-			//replace values 
-			if( typeof args == 'object' || typeof args == 'array' ) {
-				for( var v in args ) { 
-					// Message test replace arguments start at 1 instead of zero:
-					var rep = '\$'+ ( parseInt(v) + 1 );
-					ms = ms.replace( rep, args[v] );
-				}
-			} else if( typeof args =='string' || typeof args =='number' ) {
-				ms = ms.replace(/\$1/, args);
-			}
-			
-			//a quick check to see if we need to send the msg via the 'parser'
-			//(we can add more detailed check once we suport more wiki syntax)
-			if(ms.indexOf('{{')==-1)
-				return ms;
-				
-			//send the msg key through the parser  
-			pObj = $.parse( ms );
-			//return the transformed msg
-			return pObj.getHTML(); 
-
-		} else {
-			// Missing key placeholder
-			return '&lt;' + key + '&gt;';
-		}
+	$.lang.gM = function( key , args ) {						
+		if(! gMsg[ key ])
+			return '&lt;' + key + '&gt;';// Missing key placeholder
+		
+		//swap in the arg values
+		var ms = $.lang.gMsgSwap( key, args);		
+		//a quick check to see if we need to send the msg via the 'parser'
+		//(we can add more detailed check once we suport more wiki syntax)
+		if(ms.indexOf('{{')==-1)
+			return ms;
+					
+		//make sure we have the lagMagic setup: 
+		$.lang.magicSetup();
+		//send the msg key through the parser  
+		pObj = $.parser.pNew( ms );
+		//return the transformed msg
+		return pObj.getHTML(); 		
 	}
 	/**
-	* Process a special language template (ie PLURAL )
+	* gMsgSwap
+	* 
+	* @param string key The msg key as set by loadGm
+	* @param [mixed] args  An array or string to be replaced
+	* @return string 
 	*/
-	$.lang.procLangTemp = function( tObj ){
-	
-		/* local lang templates: */		
-		function procPLURAL(){
-			//Plural matchRuleTest
-			function matchRuleTest(cRule, val){
-				js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
-				//check for simple cRule type:
-				if( typeof cRule == 'number'){					
-					return ( parseInt( val ) == parseInt( cRule) );					
-				}
-			}
-			//maps a given rule Index to template params: 
-			function getTempParamFromRuleInx( ruleInx ){
-				//in general this is a one to one mapping:
-				 
-				js_log('getTempParamFromRuleInx: ruleInx: ' + ruleInx + ' tempParamLength ' + tObj.param.length );
-				var cat = tObj;
-				debugger;
-				return tObj.param[ ruleInx ];
-			}
-			
-			//setup shortcuts
-			var rs = gRuleSet['PLURAL'];	
-			var val = tObj.val;		
-			for(var ruleInx in rs){
-				cRule = rs[ruleInx];
-				if( matchRuleTest( cRule, val )){
-					js_log("matched rule: " + ruleInx );
-					return getTempParamFromRuleInx( ruleInx );					
-				}
-			}			
-			js_log('no match found for: ' + val + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
-			//return the last /"other" template param 
-			return tObj.param [ tObj.param.length -1 ]; 					
-		}
+	$.lang.gMsgSwap = function( key , args ){
+		if(! gMsg[ key ])
+			return '&lt;' + key + '&gt;';// Missing key placeholder
+		//get the messege string:
+		ms = gMsg[ key ];
 		
-		/*
-		* Master rule switch statement
-		*/
-		switch( tObj.n ){
-			case 'PLURAL':
-				return procPLURAL();
-			break;
+		//replace values 
+		if( typeof args == 'object' || typeof args == 'array' ) {
+			for( var v in args ) { 
+				// Message test replace arguments start at 1 instead of zero:
+				var rep = '\$'+ ( parseInt(v) + 1 );
+				ms = ms.replace( rep, args[v] );
+			}
+		} else if( typeof args =='string' || typeof args =='number' ) {
+			ms = ms.replace(/\$1/g, args);
 		}
+		return ms;
 	}
+	 
 	/**
 	* gMsgNoTrans
 	* 
@@ -239,6 +201,63 @@ if( !mv_embed_path ) {
 		// Missing key placeholder
 		return '&lt;' + key + '&gt;';
 	}
+	/**
+	* Add Supported Magic Words to parser 
+	*/
+	//set the setupflag to false:
+	$.lang.doneSetup=false;	
+	$.lang.magicSetup = function(){
+		if(!$.lang.doneSetup){
+			$.parser.addMagic ( {
+				'PLURAL' : $.lang.procPLURAL
+			})
+			
+			$.lang.doneSetup = true;
+		}
+			
+	}
+	/**
+	* Process the PLURAL special language template key:
+	*/
+	$.lang.procPLURAL = function( tObj ){
+		//setup shortcuts 
+		// (gRuleSet is loaded from script-loader to contains local ruleset)
+		var rs = gRuleSet['PLURAL'];	
+		
+		/*
+		 * Plural matchRuleTest
+		 */
+		function matchRuleTest(cRule, val){
+			js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
+			//check for simple cRule type:
+			if( typeof cRule == 'number'){					
+				return ( parseInt( val ) == parseInt( cRule) );					
+			}
+		}
+		/**
+		 * Maps a given rule Index to template params:
+		 * 
+		 * @param 
+		 */ 
+		function getTempParamFromRuleInx( ruleInx ){
+			//var naturalOrder = ['zero', 'one', 'two', 'few', 'many', 'other'];			
+			//js_log('getTempParamFromRuleInx: ruleInx: ' + ruleInx + ' tempParamLength ' + tObj.param.length );		
+			return tObj.param[ ruleInx ];
+		}						
+		var rCount=0
+		//run the acutal rule lookup: 		
+		for(var ruleInx in rs){
+			cRule = rs[ruleInx];			
+			if( matchRuleTest( cRule, tObj.arg ) ){
+				js_log("matched rule: " + ruleInx );				
+				return getTempParamFromRuleInx( rCount );					
+			}
+			rCount ++;
+		}			
+		js_log('no match found for: ' + tObj.arg + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
+		//return the last /"other" template param 
+		return tObj.param [ tObj.param.length -1 ]; 					
+	}		
 	
 	/**
 	 * gMsgLoadRemote loads remote msg strings
@@ -310,60 +329,203 @@ if( !mv_embed_path ) {
 		var size = Math.round( size * p ) / p;
 		//@@todo we need a formatNum and we need to request some special packaged info to deal with that case.
 		return gM( msg , size );
-	}
+	};
 	
 	
 	/**
 	* MediaWiki wikitext "Parser"
 	*
 	* This is not feature complete but we need a way to get at template properties 
-	*
-	* Template parsing is based in part on Magnus initial version: en:User:Magnus_Manske/tmpl.js
+	*	
 	*  
 	* @param wikiText the wikitext to be parsed
 	* @return parserObj returns a parser object that has methods for getting at 
 	* things you would want 
-	*/
-	$.parse = function( wikiText, opt ){
+	*/	
+	$.parser = {};
+	var pMagicSet = {};
+	/**
+	 * parser addMagic 
+	 * 
+	 * lets you add a set of magic keys and associated callback funcions
+	 * callback: @param ( Object Template ) 
+	 * callback: @return the transformed template output
+	 * 
+	 * @param object magicSet key:callback
+	 */
+	$.parser.addMagic = function( magicSet ){
+		for(var i in magicSet)
+			pMagicSet[ i ] = magicSet[i];
+	}
+	
+	//actual parse call (returns parser object)
+	$.parser.pNew = function( wikiText, opt ){
 		var parseObj = function( wikiText, opt){
 			return this.init( wikiText, opt )
 		}		
 		parseObj.prototype = {
-			pObj : {}, //the parser object that stores the parsed element structure
+			//the wikiText "DOM"... stores the parsed wikiText structure
+			//wtDOM : {}, (not yet supported )
+			 
 			pOut : '', //the parser output string container 
 			init  :function( wikiText ){
+				this.wikiText = wikiText;				
+			},
+			updateText : function( wikiText ){
 				this.wikiText = wikiText;
-				this.parse();
+				//invalidate the output (will force a reparse) 
+				this.pOut = '';				
 			},
-			parse : function(){
-				//basic parser stores wikiText structure in pObj
+			parse : function(){			
+				this.pObj = {};
+				this.pObj.tmpl = new Array();
 				
-				//tries to mirror Extension:Page Object Model
+				//refrences for swap key			
+				this.pObj.tmpl_text = new Array();
+				this.pObj.tmpl_key = new Array();							 			
+ 				this.pObj.tmpl_ns = '' ; // wikiText with place-holder				 						
+				
+				//get templates losly based on Magnus_Manske/tmpl.js code:
+				var tcnt = 0 ;
+				var ts = '' ;				
+				var curt = 0 ;
+				var schar = 0;				
+				for ( var a = 0 ; a < this.wikiText.length ; a++ ) {
+					if ( this.wikiText[a] == '{' && this.wikiText[a+1] == '{' ) {						
+						//set the start index if the outer most template: 
+						if( tcnt == 0 )
+							schar = a;
+													
+						tcnt++ ;						
+						a++ ;
+						if ( tcnt > 1 ) ts += '{{' ;
+					} else if ( this.wikiText[a] == '}' && this.wikiText[a+1] == '}' ) {
+						if ( tcnt > 1 ) ts += '}}' ;
+						if ( tcnt > 0 ) tcnt-- ;
+						if ( tcnt == 0 ) {							
+							curt++ ;
+							//@@todo handle <nowiki> type stuff
+							tObj = {								
+								"s" : schar,
+								"e" : a + 2,
+								"iText" :  ts
+							}
+							//Get template name: 
+							tname = ts.split('\|').shift() ;
+							tname = tname.split('\{').shift() ;							
+							tname = tname.replace( /^\s+|\s+$/g, "" ); //trim 							
+							//check for arguments:			
+							if( tname.split(':').length == 1 ){				
+								tObj["name"] = tname
+							}else{
+								tObj["name"] = tname.split(':').shift();
+								tObj["arg"] = tname.split(':').pop();
+							}
+							
+							//set template params
+							//get all the params (not including the name)
+							var cat = ts;
+													 
+							var pSet = ts.split('\|');
+							pSet.splice(0,1);								
+							if( pSet.length ){								
+								tObj.param = new Array();
+								for(var pInx in pSet){
+									var tStr = pSet[ pInx ];
+									for(var b=0 ; b < tStr.length ; b++){
+										if(tStr[b] == '=' && b>0 && b<tStr.length && tStr[b-1]!='\\'){
+											//named param
+											tObj.param[ tStr.split('=').shift() ] =	tStr.split('=').pop();									
+										}else{
+											//indexed param
+											tObj.param[ pInx ] = tStr;
+										}
+									}
+								}
+							}
+							//here we could replace the template with a place holder 
+							// that we could target for clickback (say expand-o-templates)
+							var key1 = "##TMPL_HOLDER" + curt + ":" + "##" ;
+							this.pObj.tmpl_key[curt] = key1 ;														
+							this.pObj.tmpl_ns += key1 ;							
+							ts = '' ;																					
+							this.pObj.tmpl[ curt ] = tObj;
+						}
+						a++ ;
+				    } else {
+						if ( tcnt == 0 ) {
+							this.pObj.tmpl_ns += this.wikiText[a] ;
+						} else {
+							ts += this.wikiText[a] ;
+						}
+					}
+				}			
+				
+				//@@todo optionally support magic expansion(?) 
+				this.doMagicExpand();		    								
 			},
-			templates : function( name ){
+			templates : function( tname ){
 				//get template objects (optionally get a set by its name) 
 				//hard code for plural for now:  
-				return [{
-					'n': 'PLURAL',
-					'val': '1',
-					'param': ['one','other']
-				}];				
+				if(tname){
+					var tAry = new Array();
+					for(var i in this.pObj.tmpl){
+						if(this.pObj.tmpl[i]['name']==tname){
+							tAry.push( this.pObj.tmpl[i] );
+						}						
+					}	
+					return tAry;
+				}else{
+					return this.pObj.tmpl;
+				}								
 			},
-			doMagicExpand : function(){
-				//expand all the templates
+			doMagicExpand : function(){								
+				//for each template check if a pMagicSet exists:
 				tSet = this.templates();
-				for(var tInx in tSet){
-					var tObj = tSet[ tInx ] ;
-					//@@todo replace PLURARL with tObj.n 					
-					this.pOut = this.pOut.replace( /\{\{PLURAL[^\}]*\}\}/, 
-								$.lang.procLangTemp(tObj) );					
-				}			
+				for(var j in tSet){
+					var tObj = tSet[j];
+					if( tObj.name in pMagicSet){
+						tObj.oText = pMagicSet[ tObj.name ]( tObj );
+					}
+				}										
 			},
-			//returns the transformed wikitext
+			/**
+			 * Returns the transformed wikitext
+			 * 
+			 * Build output from swapable index 
+			 * 		(all transforms must be expanded in parse stage and linerarly rebuilt)  
+			 * Alternativly we could build output using a placeholder & replace system 
+			 * 		(this lets us be slightly more slopty with ordering and indexes, but probably slower)
+			 * 
+			 * Ideal: we build a 'wiki DOM' 
+			 * 		When editing you update the data structure directly
+			 * 		Then in output time you just go DOM->html-ish output without re-parsing anything			   
+			 */
 			getHTML : function(){
-				//copy the wikiText into the output (where we will do replaces) 
-				this.pOut = this.wikiText;
-				this.doMagicExpand();
+				//wikiText updates should invalidate pOut
+				if( this.pOut == ''){
+					this.parse();
+				}else{					 
+					return this.pOut; 
+				}				
+				
+				//build output from swapable index: (could be moved to 'parse')
+				tSet = this.templates();
+				if( !tSet.length )
+					return this.wikiText;
+				//return::
+				var cInx = 0;				
+				for(var i in tSet){
+					tObj = tSet[i];
+					//check start point (fill from source to that point)
+					this.pOut+= this.wikiText.substring(cInx, tObj.s );
+					//output the transformed template 
+					this.pOut+= tObj.oText;
+					cInx = tObj.e;
+				}
+				if( tObj.e < this.wikiText.length)
+					this.pOut += this.wikiText.substring( tObj.e );
+										
 				return this.pOut;				
 			}
 		};
