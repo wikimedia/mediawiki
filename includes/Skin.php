@@ -355,7 +355,7 @@ class Skin extends Linker {
 			# Weird back-compat stuff.
 			$skinName = $skinName['skinname'];
 		}
-		global $wgScript, $wgTitle, $wgStylePath, $wgUser;
+		global $wgScript, $wgTitle, $wgStylePath, $wgUser, $wgScriptExtension;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
 		global $wgBreakFrames, $wgRequest, $wgVariantArticlePath, $wgActionPaths;
@@ -385,6 +385,7 @@ class Skin extends Linker {
 			'stylepath' => $wgStylePath,
 			'wgArticlePath' => $wgArticlePath,
 			'wgScriptPath' => $wgScriptPath,
+			'wgScriptExtension' => $wgScriptExtension,
 			'wgScript' => $wgScript,
 			'wgVariantArticlePath' => $wgVariantArticlePath,
 			'wgActionPaths' => (object)$wgActionPaths,
