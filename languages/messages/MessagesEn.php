@@ -3001,6 +3001,7 @@ Please contact your Internet service provider or tech support and inform them of
 'sorbs_create_account_reason'     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.
 You cannot create an account',
 'cant-block-while-blocked'        => 'You cannot block other users while you are blocked.',
+'cant-see-hidden-user'            => 'The user you are trying to block has already been blocked and hidden. Since you do not have the hideuser right, you cannot see or edit the user\'s block.',
 
 # Developer tools
 'lockdb'              => 'Lock database',
