@@ -841,10 +841,13 @@ rocaneyan kontrol bıkere.',
 
 # History merging
 'mergehistory'                     => 'vere cûye pelan bıhewelın',
+'mergehistory-header'              => 'No pel, reviyonê yew peli eşkeno yewna pelo newe de piyawano.
+no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'mergehistory-box'                 => 'revizyonê pelanî yew bike:',
 'mergehistory-from'                => 'Pela çimeyî',
 'mergehistory-into'                => 'Pela destinasyonî',
 'mergehistory-list'                => 'tarixê vurnayîşî ke eşkeno yew bi.',
+'mergehistory-merge'               => '[[:$1]] qey ney revizyonê cêrini [[:$2]] şıma ekeni piyawani. Benatê wexto muwaqqet de piyayanayişê rezizyonan de tuşa radyo bıxebitne.',
 'mergehistory-go'                  => 'Vernayîşê yewbiyayeni bimocne',
 'mergehistory-submit'              => 'revizyonî yew bike',
 'mergehistory-empty'               => 'Revizyonî yew nibenê.',
@@ -994,6 +997,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'powersearch-toggleall'            => 'Hemî',
 'powersearch-togglenone'           => 'Çino',
 'search-external'                  => 'Cıgeyrayışê teberi',
+'searchdisabled'                   => '{{SITENAME}} no keyepel de cıgerayiş muweqqet bıryayo. no benatê de şıma pê Google eşkeni zerreyê {{SITENAME}} de cıgerayiş bıkeri.',
 
 # Quickbar
 'qbsettings'               => 'Çûpit',
@@ -1043,6 +1047,9 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'recentchangesdays-max'         => 'Tewr zaf $1 {{PLURAL:$1|roc|roci}}',
 'recentchangescount'            => 'Amarê vurnayîşî ke beno mucnaye:',
 'prefs-help-recentchangescount' => 'Enê vurnayîşê peni, tarixê pelanî u logî mucnenê.',
+'prefs-help-watchlist-token'    => 'no ca, pê miftah/kılito pinani vıraştış, listeyê seyrkerdışê şıma de yew RSS vırazeno.
+no ca de kam ke miftah bızano eşkeno listeyê seyrkerdışi bıweno, no semedi ra miftahê xo hol bıvıcine.
+miftaho ke raşt ameyo: $1',
 'savedprefs'                    => 'Tecihanê tu qeyd biy.',
 'timezonelegend'                => 'Wareyê saeti:',
 'localtime'                     => 'wextê mintiqa yê lokalî',
@@ -1069,6 +1076,8 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-files'                   => 'Dosyey',
 'prefs-custom-css'              => 'CSS xasî',
 'prefs-custom-js'               => 'JS xasî',
+'prefs-reset-intro'             => 'no pel de şıma tercihanê xo eşkeni bıbedelni tercihê keyepeli ke vera cû eyar biye.
+no tepiya nêgeryeno.',
 'prefs-emailconfirm-label'      => 'Konfirmasyonê e-maîlî',
 'prefs-textboxsize'             => 'Ebatê pencareyê vurnayîşî',
 'youremail'                     => 'E-Mail (mecbur niyo) *:',
@@ -1079,15 +1088,20 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'yourrealname'                  => 'Namo raştıkên:',
 'yourlanguage'                  => 'Zıwan:',
 'yournick'                      => 'imza:',
+'prefs-help-signature'          => 'mesajê ke pelê werenayişi de gani pê ney "<nowiki>~~~~</nowiki>" imza bıbi.',
 'badsig'                        => 'Îmzayê tu raşt niyo.
 Etiketê HTMLî kontrol bike.',
+'badsiglength'                  => 'İmzayê şıma zaf dergo.
+$1 gani bınê no {{PLURAL:$1|karakter|karakter}}de bıbo.',
 'yourgender'                    => 'Cenî/Merdim:',
 'gender-unknown'                => 'Nivaciye',
 'gender-male'                   => 'Merdim',
 'gender-female'                 => 'Cenî',
+'prefs-help-gender'             => 'keyfiyo: sofware qey adersê cinsiyet şuxulneno, no malumat umumiyo.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'Nameyo raşt waştena şıma rê mendo.
 Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de mocnenê.',
+'prefs-help-email'              => 'Dayişê adresê e-postayi keyfiyo; labele wexta ke parolayê şıma vind bıbo yew adres bıbo şıma re yewna parola erşawiyeno. Hem zi karberê binan de şıma eşkeni nımtıki xeberdayişi bıkeri.',
 'prefs-help-email-required'     => 'E-mail adrese mecburiya.',
 'prefs-info'                    => 'Enformasyonê temelî',
 'prefs-i18n'                    => 'Beynelbinel kerdişî',
@@ -1107,9 +1121,14 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'userrights-lookup-user'      => 'Grupanê karberî idare bike',
 'userrights-user-editname'    => 'Yew nameyê karberî binusne',
 'editusergroup'               => 'Grupanê karberî bivurne',
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) şıma desthelatiyê karberi vurneni.",
 'userrights-editusergroup'    => 'Grupanê karberî bivurne',
 'saveusergroups'              => 'Grupanê karberî qeyd bike',
 'userrights-groupsmember'     => 'Ezayê:',
+'userrights-groups-help'      => 'şıma grubê no karbero ke tedeyo eşkeni bıvurni:
+* qutiyo ke nişane kerdeyo, mocneno ke karber daxilê ney grubi yo.
+* qutiyo ke nişane nêkerdeyo, mocneno ke karber no grub de niyo.
+* *, ıne zi mocneno ke vıraştışê yew grubi ra dıma xo tepiya antış çiniyo.',
 'userrights-reason'           => 'Sebebê vurnayîşî',
 'userrights-no-interwiki'     => 'Wikipediyaya binî de ti nieşkenî heqqê karberî bivurne.',
 'userrights-nodatabase'       => 'Databasê $1î çini yo ya zi lokal ni yo.',
@@ -1305,6 +1324,13 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'upload_directory_missing'   => 'Direktorê dosyayê ($1)î biyo vînî u webserver de nieşkeno viraziye.',
 'upload_directory_read_only' => 'Direktorê dosyayê ($1)î webserver de nieşkeno binuse.',
 'uploaderror'                => 'Ğeletê bar kerdişî',
+'uploadtext'                 => "Qey barkerdişê dosyayî, formê cêrinî bişuxulne.
+Dosyayê ke vera cû bar biyê eke şima qayîl e ney dosyayan bivînê ya zî bigerî biewnê[[Special:FileList|listeyê dosyayê bar bîyaye]] (tekrar) bar bîyaye [[Special:Log/upload|rocaneyê barkerdişî]] de, hewn a şîyaye zî tîya de [[Special:Log/delete|rocaneyê hewn a kerdişî]] pawiyene.
+
+wexta şima qayîl e yew peli re dosya bierzî, formanê cêrinan ra yewi bişuxulne;
+* Qey xebitnayişê dosyayî: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.jpg]]</nowiki></tt>'''
+*Heto çep de zerreyê yew qutî de, qey xebitnayişi 'nuşteyê binîn' û 200 pikseli: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.png|200px|thumb|left|alt metin]]</nowiki></tt>'''
+* Dosya memocın, dosya te direk gırey bıerz: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosya.ogg]]</nowiki></tt>'''",
 'upload-permitted'           => 'Tipanê dosyayi ke izin ey estê: $1.',
 'upload-preferred'           => 'Tipanê dosyayi ke tercihe ey estê: $1',
 'upload-prohibited'          => 'tipanê dosyayi ke qedexe biyê: $1.',

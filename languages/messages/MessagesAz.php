@@ -182,7 +182,7 @@ $messages = array(
 'cancel'        => 'Ləğv et',
 'moredotdotdot' => 'Daha...',
 'mypage'        => 'Mənim səhifəm',
-'mytalk'        => 'Danişiqlarım',
+'mytalk'        => 'Danışıqlarım',
 'anontalk'      => 'Bu IP-yə aid müzakirə',
 'navigation'    => 'Rəhbər',
 'and'           => '&#32;və',
@@ -1116,11 +1116,11 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 
 # Move page
 'move-page-legend'        => 'Səhifənin adını dəyiş',
-'movepagetext'            => "Aşağıdakı formadan istifədə edilməsi səhifənin adını bütün tarixçəsini də köçürməklə yeni başlığa dəyişəcək. Əvvəlki başlıq yeni başlığa istiqamətləndirmə səhifəsinə çevriləcək. Köhnə səhifəyə keçidlər dəyişməyəcək, ona görə də təkrarlanan və ya qırıq istiqamətləndirmələri yoxlamağı yaddan çıxarmayın. Keçidlərin lazımi yerə istiqamətləndirilməsini təmin etmək sizin məsuliyyətinizdədir.
+'movepagetext'            => "Aşağıdakı formadan istifədə etmə səhifənin adını, bütün tarixçəsini də köçürməklə yeni başlığa dəyişəcək. Əvvəlki başlıq yeni başlığa istiqamətləndirmə səhifəsinə çevriləcək. Köhnə səhifəyə keçidlər dəyişməyəcək, ona görə də təkrarlanan və ya qırıq istiqamətləndirmələri yoxlamağı yaddan çıxarmayın. Keçidlərin lazımi yerə istiqamətləndirilməsini təmin etmək sizin məsuliyyətinizdədir.
 
 Nəzərə alın ki, hədəf başlığı altında bir səhifə mövcuddursa yerdəyişmə '''baş tutmayacaq'''. Buna həmin səhifənin boş olması və ya istiqamətləndirmə səhifəsi olması və keçmişdə redaktə edilməməsi halları istisnadır. Bu o deməkdir ki, səhvən adını dəyişdiyiniz səhifələri geri qaytara bilər, bununla yanaşı artıq mövcud olan səhifənin üzərinə başqa səhifə yaza bilməzsiniz.
 
-<b>XƏBƏRDARLIQ!</b>
+'''XƏBƏRDARLIQ!'''
 Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ola bilər, ona görə də bu dəyişikliyi yerinə yetirməzdən əvvəl bunun mümkün nəticələrini başa düşməniz xahiş olunur.",
 'movearticle'             => 'Səhifənin adını dəyişdir',
 'newtitle'                => 'Yeni başlıq',
@@ -1133,7 +1133,7 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 '1movedto2'               => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',
 '1movedto2_redir'         => '[[$1]] adı və məsiri dəyişildi : [[$2]]',
 'movelogpage'             => 'Yerdəyişmə qeydləri',
-'movereason'              => 'Səbəb',
+'movereason'              => 'Səbəb:',
 'revertmove'              => 'Əvvəlki vəziyyətinə',
 'delete_and_move'         => 'Sil və apar',
 'delete_and_move_text'    => '==Hazırki məqalənin silinməsi lazımdır==
@@ -1184,7 +1184,7 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 'tooltip-ca-watch'              => 'Bu səhifəni izlə',
 'tooltip-ca-unwatch'            => 'Bu səhifənin izlənmasini bitir',
 'tooltip-search'                => 'Bu vikini axtarin',
-'tooltip-p-logo'                => 'Ana Səhifə',
+'tooltip-p-logo'                => 'Ana səhifə',
 'tooltip-n-mainpage'            => 'Ana səhifəni ziyarət edin',
 'tooltip-n-portal'              => 'Layihə haqqında, nələr edəbilərsiniz, axtardıqlarınızı harda tapmaq olar',
 'tooltip-n-currentevents'       => 'Gündəlik xəbərlər ilə əlaqəli bilgilər',
@@ -1237,7 +1237,7 @@ $1',
 'nextdiff'     => 'Sonrakı redaktə →',
 
 # Media information
-'imagemaxsize'   => "Şəkilin maximal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
+'imagemaxsize'   => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
 'thumbsize'      => 'Kiçik ölçü:',
 'file-info-size' => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
 'file-nohires'   => '<small>Daha dəqiq versiyası yoxdur.</small>',

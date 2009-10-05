@@ -15,6 +15,7 @@
  * @author Delhovlyn
  * @author Dereckson
  * @author Diti
+ * @author Dodoïste
  * @author Elfix
  * @author Enzoreg
  * @author Esbardu
@@ -737,8 +738,8 @@ Votre compte a été créé.
 N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
 'yourname'                   => 'Nom d’utilisateur :',
 'yourpassword'               => 'Mot de passe :',
-'yourpasswordagain'          => 'Entrez de nouveau votre mot de passe :',
-'remembermypassword'         => 'M’identifier automatiquement à la prochaine visite sur cet ordinateur',
+'yourpasswordagain'          => 'Confirmez le mot de passe :',
+'remembermypassword'         => 'Me reconnecter automatiquement à la prochaine visite (cookie)',
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login'                      => 'Connexion',
@@ -2517,6 +2518,7 @@ Veuillez contacter votre fournisseur d’accès Internet ou votre support techni
 'sorbs_create_account_reason'     => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
 'cant-block-while-blocked'        => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
+'cant-see-hidden-user'            => "L'utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N'ayant pas le droit hideuser, vous ne pouvez pas voir ou modifier le blocage de l'utilisateur.",
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base de données',
