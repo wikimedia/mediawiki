@@ -55,29 +55,19 @@ div.vectorTabs li.new a:visited,
 div.vectorTabs li.new a:visited span {
 	color:#990000;
 }
-/* Table of Contents */
 #toc,
 .toc,
-.mw-warning {
+.mw-warning,
+div.gallerybox div.thumb,
+table.gallery,
+#preferences fieldset.prefsection fieldset,
+#preferences,
+html .thumbimage,
+.usermessage,
+img.thumbborder,
+div.thumbinner{
 	border: 1px solid #c0c0c0;
 	background-color: #f0f0f0;
-}
-div.thumbinner {
-	border: 1px solid #c0c0c0;
-	background-color: #f0f0f0;
-}
-html .thumbimage {
-	border: 1px solid #c0c0c0;
-	background-color: #f0f0f0;
-}
-img.thumbborder {
-	border: 1px solid #dddddd;
-}
-/* User Message */
-.usermessage {
-	background-color: #ffce7b;
-	border: 1px solid #ffa500;
-	color: black;
 }
 #firstHeading {
 	color:#005780;

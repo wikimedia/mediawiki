@@ -1,1 +1,63 @@
-/* Babaco Color Scheme B */
+/* Babaco Color Scheme A */
+
+
+html .thumbimage,
+#toc, .toc, .mw-warning, div.thumbinner {
+	border-color: #c0c0c0;
+	background-color: #f0f0f0;
+}
+
+/* Framework */
+body {
+	background-color: #f9f9f9;
+	color: #000000;
+}
+/* Links */
+a {
+	color: #003cb3;
+}
+a.stub {
+	color: #772233;
+}
+a.new, #p-personal a.new {
+	color: #990000 !important;
+}
+{
+	color: #260e9c;
+}
+a:visited,
+a:visited div.vectorTabs li.selected a:visited span,
+a.new:visited, 
+#p-personal a.new:visited {
+	color: #260e9c;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	border-color:#8d8d8d;
+}
+
+div.vectorTabs li.new a, 
+div.vectorTabs li.new a span, 
+div.vectorTabs li.new a:visited, 
+div.vectorTabs li.new a:visited span {
+	color:#990000;
+}
+
+#toc,
+.toc,
+.mw-warning,
+div.gallerybox div.thumb,
+table.gallery,
+#preferences fieldset.prefsection fieldset,
+#preferences,
+html .thumbimage,
+.usermessage,
+img.thumbborder,
+div.thumbinner{
+	border: 1px solid #c0c0c0;
+	background-color: #f0f0f0;
+}
