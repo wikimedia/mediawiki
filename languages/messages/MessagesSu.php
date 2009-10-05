@@ -540,6 +540,7 @@ Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
 'userexists'                 => 'Ngaran pamaké nu diasupkeun ku anjeun geus aya nu maké. 
 Mangga pilih ngaran nu séjén.',
 'loginerror'                 => 'Kasalahan asup log',
+'createaccounterror'         => 'Teu bisa nyieun rekening: $1',
 'nocookiesnew'               => "Rekening pamaké geus dijieun, tapi anjeun can asup log. {{SITENAME}} maké ''cookies'' pikeun ngasupkeun log pamaké. Anjeun boga ''cookies'' nu ditumpurkeun. Mangga fungsikeun, teras asup log migunakeun ngaran pamaké sarta sandi nu anyar.",
 'nocookieslogin'             => "{{SITENAME}} migunakeun ''cookies'' pikeun ngasupkeun pamaké kana log. Anjeun boga ''cookies'' nu ditumpurkeun. Mangga pungsikeun sarta cobian deui.",
 'noname'                     => 'Anjeun teu nuliskeun ngaran pamaké nu sah.',
@@ -560,6 +561,7 @@ Pariksa éjahanana, atawa paké formulir di handap pikeun [[Special:UserLogin/si
 
 Mun pamundut ieu datang ti nu séjén, atawa mun anjeun geus inget sandi anu tadina poho, sarta teu hayang ngarobah sandina, anjeun teu kudu ngawaro kana ieu surat sarta bisa tetep maké sandi anu ti heula.',
 'noemail'                    => 'Teu aya alamat surélék karékam pikeun "$1".',
+'noemailcreate'              => 'Anjeun kudu nyadiakeun alamat surélék anu bener',
 'passwordsent'               => 'Sandi anyar geus dikirim ka alamat surélék nu kadaptar pikeun "$1". Mangga asup log deui satutasna katarima.',
 'blocked-mailpassword'       => 'Alamat IP anjeun dipeungpeuk, moal bisa ngédit, and so
 is not allowed to use the password recovery function to prevent abuse.',
@@ -1234,6 +1236,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'recentchanges-legend'              => 'Pilihan parobahan anyar',
 'recentchangestext'                 => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
 'recentchanges-feed-description'    => 'Manggihan parobahan panganyarna dina wiki di asupan ieu.',
+'recentchanges-legend-newpage'      => '$1 - kaca anyar',
 'rcnote'                            => "Di handap ieu {{PLURAL:$1|'''1''' parobahan| '''$1''' parobahan anyar}} dina  {{PLURAL:$2|poé|'''$2''' poé}} ahir, nepi $5, $4.",
 'rcnotefrom'                        => 'Di handap ieu parobahan saprak <b>$2</b> (nu ditémbongkeun nepi ka <b>$1</b>).',
 'rclistfrom'                        => 'Témbongkeun nu anyar robah nepi ka $1',
@@ -1337,9 +1340,13 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'watchthisupload'             => 'Awaskeun kaca ieu',
 'filewasdeleted'              => 'Ngaran koropak ieu geus di hapus. Anjeun kudu ningali ka $1 sa acan muatkeun koropak deui',
 
-'upload-proto-error' => 'Salah protokol',
-'upload-file-error'  => 'Kasalahan internal',
-'upload-misc-error'  => 'Kasalahan muat anu teu kanyahoan',
+'upload-proto-error'  => 'Salah protokol',
+'upload-file-error'   => 'Kasalahan internal',
+'upload-misc-error'   => 'Kasalahan muat anu teu kanyahoan',
+'upload-unknown-size' => 'Ukuran teu kanyahoan',
+
+# img_auth script messages
+'img-auth-noread' => 'Pamaké teu boga kawenangan maca "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'URL teu kahontal',
@@ -1382,6 +1389,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'nolinkstoimage'            => 'Teu aya kaca nu numbu ka gambar ieu.',
 'sharedupload'              => 'Ieu koropak téh ti $1 nu bisa jadi dipaké ku proyék-proyék lianna.',
 'uploadnewversion-linktext' => 'ngamuatkeun vérsi anyar koropak ieu',
+'shared-repo-from'          => 'ti $1',
 
 # File reversion
 'filerevert'                => 'balikkeun $1',
@@ -1445,6 +1453,7 @@ Saméméh ngahapus, pariksa heula bisi aya tumbu ka ieu citakan.',
 'statistics-header-users' => 'Statistik pamaké',
 'statistics-articles'     => 'Halaman eusi',
 'statistics-pages'        => 'Kaca',
+'statistics-users-active' => 'Pamaké getol',
 'statistics-mostpopular'  => 'Kaca nu pangmindengna dibuka',
 
 'disambiguations'      => 'Kaca disambiguasi',

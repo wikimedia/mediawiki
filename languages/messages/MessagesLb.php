@@ -2302,6 +2302,7 @@ Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.
 'sorbsreason'                     => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
 'sorbs_create_account_reason'     => 'Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.',
 'cant-block-while-blocked'        => 'Dir däerft keng aner Benotzer spären, esou lang wéi dir selwer gespaart sidd.',
+'cant-see-hidden-user'            => "De Benotzer deen Dir versicht ze spären ass scho gespaart a v erstoppt. Well Dir d'Recht ''Hideuser'' net hutt kënnt Dir dëse Benotzer net gesinn an dem Benotzer seng Spär net änneren.",
 
 # Developer tools
 'lockdb'              => 'Datebank spären',

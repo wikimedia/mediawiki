@@ -525,6 +525,7 @@ $messages = array(
 # Statistics
 'statistics'              => '统计',
 'statistics-header-users' => '用户资料',
+'statistics-users-active' => '活跃用户',
 
 'brokenredirects'        => '坏脱个重定向',
 'brokenredirectstext'    => '下底个重定向链到弗存在个页面:',

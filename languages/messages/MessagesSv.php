@@ -1642,7 +1642,7 @@ Titta på '''<tt>[[:$1]]</tt>''', såvida du inte är säker på att du vill än
 'fileexists-extension'        => "En fil med ett liknande namn finns redan: [[$2|thumb]]
 * Namn på den fil du försöker ladda upp: '''<tt>[[:$1]]</tt>'''
 * Namn på filen som redan finns: '''<tt>[[:$2]]</tt>'''
-Den enda skillnaden är versaliseringen av filnamnsändelsen. Var vänlig kontrollera om filerna är identiska.",
+Var vänlig välj ett annat namn.",
 'fileexists-thumbnail-yes'    => "Filen verkar vara en bild med förminskad storlek ''(miniatyrbild)''. [[$1|thumb]]
 Var vänlig kontrollera filen '''<tt>[[:$1]]</tt>'''.
 Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.",

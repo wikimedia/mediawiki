@@ -745,7 +745,7 @@ Administrator hökmünde ony görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/su
 
 # History merging
 'mergehistory-from'   => 'Çeşme sahypa:',
-'mergehistory-into'   => 'Maksat edinilýän sahypa:',
+'mergehistory-into'   => 'Niýetlenilýän sahypa:',
 'mergehistory-reason' => 'Sebäp:',
 
 # Merge log
@@ -1038,6 +1038,14 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'reupload'            => 'Gaýtadan ýükle',
 'uploadnologin'       => 'Sessiýa açmansyňyz',
 'uploaderror'         => 'Ýükleme säwligi',
+'uploadtext'          => "Faýl ýüklemek üçin aşakdaky formdan peýdalanyň.
+Ozaldan ýüklenilgi faýllary görmek ýa-da agtarmak üçin [[Special:FileList|ýüklenilgi faýllaryň sanawyna]] serediň, (gaýtadan) ýüklenenler [[Special:Log/upload|ýükleme gündeliginde]], öçürilenler [[Special:Log/delete|öçürme gündeliginde]] saklanylýar.
+
+Bir sahypada faýl goýmaklyk üçin aşakdaky formlaryň birine görä çykgyt ulanyň;
+* Faýlyň doly wersiýasyny ulanmak üçin: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
+* Çep gyrada bir gutynyň içinde aşagyna kesgitleme hökmünde 'alt tekst' bilen, 200 piksel giňişligindäki wersiýany ulanmaklyk üçin: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt tekst]]</nowiki></tt>'''
+* Faýly görkezmän, faýla gönümel çykgyt bermek üçin: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''",
+'upload-permitted'    => 'Rugsat berilýän faýl görnüşleri: $1',
 'uploadlog'           => 'ýükleme gündeligi',
 'uploadlogpage'       => 'Ýükleme gündeligi',
 'filename'            => 'Faýl ady',
@@ -1046,17 +1054,77 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'filereuploadsummary' => 'Faýl üýtgeşmeleri:',
 'filesource'          => 'Çeşme:',
 'uploadedfiles'       => 'Ýüklenen faýllar',
+'ignorewarnings'      => 'Hiç hili duýduryşa ähmiýet berme',
 'successfulupload'    => 'Şowly ýükleme',
 'uploadwarning'       => 'Ýükleme duýduryşy',
 'savefile'            => 'Faýly ýazdyr',
 'uploadedimage'       => 'Ýüklenen: "[[$1]]"',
 'overwroteimage'      => '"[[$1]]" faýlynyň täze wersiýasy ýüklendi',
+'uploadvirus'         => 'Faýlda wirus bar! Jikme-jiklik: $1',
+'sourcefilename'      => 'Çeşme faýlyň ady:',
+'destfilename'        => 'Niýetlenilýän faýlyň ady:',
 'upload-maxfilesize'  => 'Maksimum faýl ölçegi: $1',
+'watchthisupload'     => 'Bu faýla gözegçilik et',
+'filewasdeleted'      => 'Şeýle atly faýl ozal ýüklenipdir we soňra öçürilipdir. Faýly ýüklemänkäňiz, $1 sahypasyna bir göz aýlaň.',
+'upload-wasdeleted'   => "'''Duýduryş: Ozal öçürilen bir faýly ýükleýärsiňiz.'''
 
-'upload-file-error'   => 'Içerki säwlik',
-'upload-unknown-size' => 'Näbelli ölçeg',
+Faýly ýüklemekligiň ýerliklidigini ýa-da däldigini göz öňünde tutuň.
+Bu faýlyň öçürme gündeligi aşakda berilýär:",
+'filename-bad-prefix' => "Ýükleýän faýlyňyzyň ady umuman sanly kameralar tarapyndan awtomatik usulda goşulýan düşnüksiz '''\"\$1\"''' bilen başlanýar.
+Faýlyňyz üçin has düşnükli bir at saýlamagyňyzy haýyş edýäris.",
+
+'upload-proto-error'        => 'Nädogry protokol',
+'upload-proto-error-text'   => 'Uzakdan ýükleme, <code>http://</code> ýa-da <code>ftp://</code> bilen başlaýan URL talap edýär.',
+'upload-file-error'         => 'Içerki säwlik',
+'upload-file-error-text'    => 'Serwerde wagtlaýyn faýl döretmäge synanyşylýarka bir içerki säwlik ýüze çykdy.
+Bir [[Special:ListUsers/sysop|administrator]] bilen habarlaşmagyňyzy haýyş edýäris.',
+'upload-misc-error'         => 'Näbelli ýükleme säwligi',
+'upload-misc-error-text'    => 'Ýükleme wagtynda näbelli bir säwlik ýüze çykdy.
+URL-niň dogrudygyny hem-de baryp bolýandygyny barlaň we gaýtadan synanyşyň.
+Eger-de problema gaýtalansa, onda bir [[Special:ListUsers/sysop|administrator]] bilen habarlaşyň.',
+'upload-too-many-redirects' => 'URL aşa köp gönükdirmani özünde jemleýär',
+'upload-unknown-size'       => 'Näbelli ölçeg',
+'upload-http-error'         => 'HTTP säwligi ýüze çykdy: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Barmak gadagan',
+'img-auth-nopathinfo'   => 'PATH_INFO ýok.
+Serweriňiz bu maglumaty geçirmeklik üçin sazlanmandyr.
+CGI esaslanýan hem-de img_auth-y goldamaýan bolmagy mümkin.
+http://www.mediawiki.org/wiki/Manual:Image_Authorization sahypasyna serediň.',
+'img-auth-notindir'     => 'Talap edlýän ýol sazlanan ýükleme direktoriýasynda däl.',
+'img-auth-badtitle'     => '"$1" bilen dogry bir at gurup bolanok.',
+'img-auth-nologinnWL'   => 'Sessiýa açmansyňyz, "$1" bolsa ak sanawda däl.',
+'img-auth-nofile'       => '"$1" faýly ýok.',
+'img-auth-isdir'        => '"$1" katalogyna barmaga synanyşýarsyňyz.
+Diňe faýla barmaklyga rugsat berilýär.',
+'img-auth-streaming'    => '"$1" akymlaýyn görkezilýär.',
+'img-auth-public'       => 'img_auth.php-niň funksiýasy hususy bir wikiden faýllary çykarmaklykdyr.
+Bu wiki umumy wiki hökmünde sazlangydyr.
+Howpsuzlygyň optimizasiýasy üçin, img_auth.php ýapylyp goýuldy.',
+'img-auth-noread'       => 'Ulanyjy "$1" faýlyny okamak üçin baryp bilmeýär.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL-ä baryp bolmaýar',
+'upload-curl-error6-text'  => 'Görkezilen URL-ä baryp bolmaýar.
+URL-niň dogrudygyny  we saýtyň ýerbe-ýerdigini barlaň.',
+'upload-curl-error28'      => 'Ýükleme wagty geçdi',
+'upload-curl-error28-text' => 'Bu saýtyň jogap bermegi örän uzaga çekýär.
+Saýtyň ýerbe-ýerdigini anyklaň, biraz salym garaşyň we gaýtadan synanyşyň.
+Saýtyň has az meşgul wagty synanyşsaňyz hem bolar.',
+
+'license'            => 'Lisenzirleme:',
+'license-header'     => 'Lisenzirleme',
+'nolicense'          => 'Hiçbirini saýlama',
+'license-nopreview'  => '(Deslapky syn elýeterli däl)',
+'upload_source_url'  => ' (dogry, köpçülige açyk bir URL)',
+'upload_source_file' => '(kompýuteriňizdäki bir faýl)',
 
 # Special:ListFiles
+'listfiles-summary'     => 'Bu ýörite sahypa ýüklenen ähli suratlary görkezýär.
+Gaýybana tertipde iň soňky ýüklenen suratlar sanawyň başynda görkezilýär.
+Bir sütüniň adyna tyklap sortirowkanyň tertibini üýtgedip bilersiňiz.',
+'listfiles_search_for'  => 'Media ady boýunça gözle:',
 'imgfile'               => 'faýl',
 'listfiles'             => 'Faýl sanawy',
 'listfiles_date'        => 'Sene',
@@ -1077,22 +1145,41 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'filehist-datetime'         => 'Sene/Wagt',
 'filehist-thumb'            => 'Miniatýura',
 'filehist-thumbtext'        => '$1 senesindäki wersiýanyň miniatýurasy',
+'filehist-nothumb'          => 'Miniatýura ýok',
 'filehist-user'             => 'Ulanyjy',
 'filehist-dimensions'       => 'Ölçegler',
 'filehist-filesize'         => 'Faýl ölçegi',
 'filehist-comment'          => 'Teswirleme',
+'filehist-missing'          => 'Faýl ýok',
 'imagelinks'                => 'Faýlyň çykgytlary',
 'linkstoimage'              => 'Bu faýla çykgydy bar bolan {{PLURAL:$1|sahypa|$1 sahypa}}:',
+'linkstoimage-more'         => '$1 gowrak {{PLURAL:$1|sahypa|sahypa}} bu faýla çykgyt berýär.
+Aşakdaky sanaw diňe şu faýla çykgyt berýän {{PLURAL:$1|ilkinji faýly |ilkinji $1 faýly}} görkezýär.
+[[Special:WhatLinksHere/$2|Doly sanaw]] bardyr.',
+'nolinkstoimage'            => 'Bu faýla çykgyt berýän hiçhili sahypa ýok.',
+'morelinkstoimage'          => 'Bu faýla [[Special:WhatLinksHere/$1|has köp çykgyt]] görkez.',
+'redirectstofile'           => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu faýla gönükdirýar:',
+'duplicatesoffile'          => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu faýlyň duplikatydyr ([[Special:FileDuplicateSearch/$2|jikme-jik maglumat]]):',
 'sharedupload'              => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.',
+'sharedupload-desc-there'   => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.
+Goşmaça maglumat üçin [$2 faýl düşündiriş sahypasyna] serediň.',
+'sharedupload-desc-here'    => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.
+[$2 Onuň faýl düşündiriş sahypasyndaky] düşündirişi aşakda görkezilýär.',
+'filepage-nofile'           => 'Şeýle atly faýl ýok.',
+'filepage-nofile-link'      => 'Şeýle atly faýl ýok, ama siz [$1 ony ýükläp bilersiňiz].',
 'uploadnewversion-linktext' => 'Bu faýlyň täze wersiýasyny ýükläň',
+'shared-repo-from'          => '$1 ammaryndan',
+'shared-repo'               => 'umumy ammar',
 
 # File reversion
 'filerevert'                => '$1 wersiýasyny yzyna getir',
 'filerevert-legend'         => 'Faýly yzyna getir',
 'filerevert-intro'          => "'''[[Media:$1|$1]]''' faýlyny [$3, $2 senesindäki $4 wersiýasy]na yzyna getirjek bolup dursuňyz.",
+'filerevert-comment'        => 'Teswir:',
 'filerevert-defaultcomment' => '$2, $1 senesindäki wersiýasyna yzyna getirildi',
 'filerevert-submit'         => 'Yzyna getir',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' faýly [$3, $2 senesindäki $4 wersiýasyna] yzyna getirildi.",
+'filerevert-badversion'     => 'Bu faýlyň berlen wagt belgili ozalky lokal wersiýasy ýok.',
 
 # File deletion
 'filedelete'                  => '$1 faýlyny öçür',
@@ -1107,11 +1194,17 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'filedelete-nofile-old'       => "'''$1''' üçin görkezilen aýratynlykda arhiwlenen wersiýa ýok.",
 'filedelete-otherreason'      => 'Başga/goşmaça sebäp:',
 'filedelete-reason-otherlist' => 'Başga sebäp',
+'filedelete-reason-dropdown'  => '*Adaty öçürme sebäpleri
+** Awtorlyk hukugynyň bozulmagy
+** Duplikat faýl',
 'filedelete-edit-reasonlist'  => 'Öçürme sebäplerini redaktirle',
+'filedelete-maintenance'      => 'Tehniki işler döwründe sahypalaryň öçürilmegi hem-de dikeldilmegi wagtlaýynça ýapylyp goýuldy.',
 
 # MIME search
-'mimesearch' => 'MIME gözlegi',
-'mimetype'   => 'MIME tipi:',
+'mimesearch'         => 'MIME gözlegi',
+'mimesearch-summary' => 'Bu sahypa faýllaryň  MIME tipi boýunça filtrlenmegini üpjün edýär. 
+Giriş formaty: mazmuntip/kiçitip, meselem <tt>surat/jpeg</tt>.',
+'mimetype'           => 'MIME tipi:',
 
 # Unwatched pages
 'unwatchedpages' => 'Gözegçilik edilmeýän sahypalar',
@@ -1837,17 +1930,17 @@ Başga bir ady synap görmegiňizi haýyş edýäris.',
 'revertmove'                   => 'yzyna getir',
 'delete_and_move'              => 'Öçür we adyny üýtget',
 'delete_and_move_text'         => '== Öçürilmegi zerur ==
-Maksat edinilýän "[[:$1]]" sahypasy eýýäm bar.
+Niýetlenilýän "[[:$1]]" sahypasy eýýäm bar.
 Ady üýgetmek üçin ony öçürmek isleýärsiňizmi?',
 'delete_and_move_confirm'      => 'Hawa, sahypany öçür',
 'delete_and_move_reason'       => 'At üýtgetmeklik üçin öçürildi',
-'selfmove'                     => 'Çeşme hem-de maksat edinilýän atlar birmeňzeş;
+'selfmove'                     => 'Çeşme hem-de niýetlenilýän atlar birmeňzeş;
 Şol bir ady üýtgedip bolmaýar.',
 'immobile-source-namespace'    => '"$1" at giňişliginde sahypalaryň adyny üýtgedip bolmaýar',
 'immobile-target-namespace'    => 'Sahypalaryň adyny "$1" at giňişligine üýtgedip bolmaýar',
 'immobile-target-namespace-iw' => 'Interwiki çykgydyny sahypanyň adyny üýtgetmeklikde ulanyp bolmaýar.',
 'immobile-source-page'         => 'Bu sahypanyň ady üýtgedilmeýär.',
-'immobile-target-page'         => 'Maksat edinilýän ada üýtgedip bolmaýar.',
+'immobile-target-page'         => 'Niýetlenilýän ada üýtgedip bolmaýar.',
 'imagenocrossnamespace'        => 'Faýlyň adyny faýl däl at giňişliklerine üýtgedip bolmaýar',
 'imagetypemismatch'            => 'Täze faýl giňeltmesi onuň görnüşine gabat gelmeýär',
 'imageinvalidfilename'         => 'Maksat edinilýän faýlyň ady nädogry',
@@ -1899,7 +1992,7 @@ Umumy MediaWiki lokalizasiýasyna goşan goşmak isleýän bolsaňyz, [http://ww
 'djvu_page_error'          => 'DjVu sahypasy elýeterden daşda',
 'djvu_no_xml'              => 'DjVu faýly üçin XML alyp bolmaýar',
 'thumbnail_invalid_params' => 'Nädogry miniatýura parametrleri',
-'thumbnail_dest_directory' => 'Maksat edinilýän direktoriýany döredip bolmaýar',
+'thumbnail_dest_directory' => 'Niýetlenilýän direktoriýany döredip bolmaýar',
 'thumbnail_image-type'     => 'Suratyň görnüşi goldanylmaýar',
 'thumbnail_gd-library'     => 'GD kitaphanasynyň doly däl konfigurasiýasy: ýok funksiýa $1',
 'thumbnail_image-missing'  => 'Faýl ýok bolarly: $1',
@@ -1914,7 +2007,7 @@ Wersiýalaryň seneleri we awtorlaryň atlary saklanyljakdyr.
 'import-interwiki-history'   => 'Bu sahypa üçin ähli geçmiş wersiýalary göçür',
 'import-interwiki-templates' => 'Ähli şablonlary giriz',
 'import-interwiki-submit'    => 'Importirle',
-'import-interwiki-namespace' => 'Maksat edinilýän at giňişligi:',
+'import-interwiki-namespace' => 'Niýetlenilýän at giňişligi:',
 'import-upload-filename'     => 'Faýlyň ady:',
 'import-comment'             => 'Teswir:',
 'importtext'                 => 'Faýly çeşme wikiden [[Special:Export|eksportirleme funksiýasyny]] ulanmak arkaly eksportirlemegiňizi haýyş edýäris.

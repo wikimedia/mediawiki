@@ -2469,6 +2469,7 @@ $1 já se encontra bloqueado. Deseja alterar as configurações?',
 'sorbsreason'                     => 'O seu endereço IP encontra-se listado como proxy aberto pela DNSBL utilizada por {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'O seu endereço de IP encontra-se listado como proxy aberto na DNSBL utilizada por {{SITENAME}}. Você não pode criar uma conta',
 'cant-block-while-blocked'        => 'Você não pode bloquear outros utilizadores enquanto estiver bloqueado.',
+'cant-see-hidden-user'            => 'O utilizador que você está tentando bloquear já está bloqueado ou oculto. Como você não possui privilégio de ocultar utilizadores, você não pode ver ou editar o bloqueio desse utilizador.',
 
 # Developer tools
 'lockdb'              => 'Trancar base de dados',

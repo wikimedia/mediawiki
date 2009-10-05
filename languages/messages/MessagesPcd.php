@@ -786,6 +786,7 @@ In érbéye seulemint chés lisses éd limérachon (aveuc * al copéte). <br /> 
 
 # Metadata
 'metadata'          => 'Metadata',
+'metadata-help'     => "Ech fichié-lo i conprinte des informacions métadatas éq ils sont suremint rajoutées par echl’apàrèl foto limérique ou ech éscanère utilisé pou l' créer.<br /> Si ch' fichié o té canjé dpui sin étot avoyé, quéques détals peute n'poin corésponne à l’imache modifiée.",
 'metadata-expand'   => 'Montrer chés métadatas del imache',
 'metadata-collapse' => 'Mucher chés métadatas del imache',
 'metadata-fields'   => "Chés cans d'chés métadonnées EXIF afiqués din ch'messache-lo is s'ront mis din l'pache d'édvisse éd l'image quant el tabe d'chés métadonnées ale s'ro rapetichée.<br />

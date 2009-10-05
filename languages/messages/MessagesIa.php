@@ -2392,6 +2392,7 @@ Per favor contacta tu providitor de servicio internet o supporto technic e infor
 'sorbs_create_account_reason'     => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.
 Tu non pote crear un conto',
 'cant-block-while-blocked'        => 'Tu non pote blocar altere usatores durante que tu mesme es blocate.',
+'cant-see-hidden-user'            => 'Le usator que tu tenta blocar ha ja essite blocate e celate. Post que tu non ha le derecto hideuser, tu non pote vider o modificar le blocada del usator.',
 
 # Developer tools
 'lockdb'              => 'Blocar base de datos',

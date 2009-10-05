@@ -2466,6 +2466,7 @@ $1 je již zablokován(a). Chcete změnit nastavení bloku?',
 'sorbsreason'                     => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server.',
 'sorbs_create_account_reason'     => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
 'cant-block-while-blocked'        => 'Nemůžete blokovat jiné uživatele, když jste zablokován(a).',
+'cant-see-hidden-user'            => 'Uživatel, kterého se snažíte blokovat, už byl zablokován a skryt. Jelikož nemáte oprávnění hideuser, nemůžete si nastavení bloku tohoto uživatele prohlédnout ani ho změnit.',
 
 # Developer tools
 'lockdb'              => 'Zamknout databázi',

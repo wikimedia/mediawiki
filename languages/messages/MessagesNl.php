@@ -2577,6 +2577,8 @@ Neem contact op met uw Internet-provider of uw helpdesk en stel die op de hoogte
 'sorbs_create_account_reason'     => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 U kunt geen gebruiker registreren.',
 'cant-block-while-blocked'        => 'U kunt andere gebruikers niet blokkeren terwijl u zelf geblokkeerd bent.',
+'cant-see-hidden-user'            => "De gebruiker die u probeert te blokken is al geblokkeerd en verborgen.
+Omdat u het recht 'hideuser' niet hebt, kunt u de blokkade van de gebruiker niet bekijken of bewerken.",
 
 # Developer tools
 'lockdb'              => 'Database blokkeren',

@@ -528,7 +528,8 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'पृष्ठम्',
-'nstab-user'      => 'प्रयोक्तृ-पृष्ठम्',
+'nstab-user'      => 'प्रयोक्तृपृष्ठम्',
+'nstab-media'     => 'माध्यमपृष्ठम्',
 'nstab-special'   => 'विशिष्टपृष्ठम्',
 'nstab-project'   => 'प्रकल्पपृष्ठम्',
 'nstab-image'     => 'सञ्चिका',

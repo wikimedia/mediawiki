@@ -630,10 +630,10 @@ Escolla un nome diferente.',
 'noname'                     => 'Non especificou un nome de usuario válido.',
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
-'nosuchuser'                 => 'Non hai ningún usuario chamado "$1".
+'nosuchuser'                 => 'Non existe ningún usuario chamado "$1".
 Os nomes de usuario diferencian entre maiúsculas e minúsculas.
 Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]].',
-'nosuchusershort'            => 'Non hai ningún usuario chamado "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Non existe ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
 'wrongpassword'              => 'O contrasinal escrito é incorrecto.
@@ -1494,7 +1494,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'recentchanges-legend-unpatrolled'  => '$1 - edición non patrullada',
 'recentchanges-label-unpatrolled'   => 'Esta edición aínda non foi comprobada',
 'rcnote'                            => "Embaixo {{PLURAL:$1|amósase '''1''' cambio|amósanse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $5 do $4.",
-'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
+'rcnotefrom'                        => "A continuación amósanse os cambios desde as '''$4''' do '''$3''' (móstranse ata '''$1''').",
 'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
 'rcshowhideminor'                   => '$1 as edicións pequenas',
 'rcshowhidebots'                    => '$1 os bots',
@@ -2410,6 +2410,7 @@ Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte t�
 'sorbs_create_account_reason'     => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na lista DNSBL usada por {{SITENAME}}.
 Polo tanto, non pode crear unha conta",
 'cant-block-while-blocked'        => 'Non pode bloquear outros usuarios mentres vostede estea bloqueado.',
+'cant-see-hidden-user'            => 'O usuario que intenta bloquear xa foi bloqueado e agochado. Dado que non ten o dereito necesario para agochar usuarios, non pode ver ou editar o bloqueo do usuario.',
 
 # Developer tools
 'lockdb'              => 'Fechar base de datos',

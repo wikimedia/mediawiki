@@ -801,6 +801,9 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'rev-deleted-unhide-diff'     => "Сирэй барылларыттан биирдэстэрэ '''сотуллубут'''.
 Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} бу сурунаалга] баара буолуо.
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
+'rev-suppressed-unhide-diff'  => "Бу тэҥнээһин биир барыла '''көстүбэтэтэ'''.
+Сиһилии [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} кистээһин сурунаалыгар] баар буолуон сөп.
+Дьаһабыл буоларыҥ быһыытынан [$1 барыллар уратыларын] син биир көрүөххүн сөп.",
 'rev-delundel'                => 'көрдөр/кистээ',
 'revisiondelete'              => 'Соторго/торуму төнүннэрэргэ',
 'revdelete-nooldid-title'     => 'Барыл чопчу ыйыллыбата',
