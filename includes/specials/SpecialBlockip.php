@@ -454,7 +454,7 @@ class IPBlockForm {
 					# If the name was hidden and the blocking user cannot hide
 					# names, then don't allow any block changes...
 					if( $currentBlock->mHideName && !$wgUser->isAllowed('hideuser') ) {
-						return array( 'hookaborted' );
+						return array( 'cant-see-hidden-user' );
 					}
 					$currentBlock->delete();
 					$block->insert();

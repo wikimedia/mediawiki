@@ -2024,6 +2024,7 @@ $wgMessageStructure = array(
 		'sorbsreason',
 		'sorbs_create_account_reason',
 		'cant-block-while-blocked',
+		'cant-see-hidden-user'
 	),
 	'developertools' => array(
 		'lockdb',
