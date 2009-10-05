@@ -43,7 +43,7 @@ class UpdateArticleCount extends Maintenance {
 	
 		if( $result !== false ) {
 			$this->output( "found {$result}.\n" );
-			if( isset( $options['update'] ) && $options['update'] ) {
+			if( $this->hasOption( 'update' ) ) {
 				$this->output( "Updating site statistics table... " );
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->update( 'site_stats', array( 'ss_good_articles' => $result ), array( 'ss_row_id' => 1 ), __METHOD__ );
