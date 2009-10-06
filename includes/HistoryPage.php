@@ -349,15 +349,17 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s = Xml::openElement( 'form', array( 'action' => $wgScript,
 			'id' => 'mw-history-compare' ) ) . "\n";
 		$s .= Xml::hidden( 'title', $this->title->getPrefixedDbKey() ) . "\n";
+		$s .= Xml::hidden( 'action', 'historysubmit' ) . "\n";
 
 		$this->buttons = '<div>';
 		if( $wgUser->isAllowed('deletedhistory') ) {
 			$float = $wgContLang->isRTL() ? 'left' : 'right';
+			# Note bug #20966, <button> is non-standard in IE<8
 			$this->buttons .= Xml::element( 'button',
 				array(
 					'type' => 'submit',
-					'name' => 'action',
-					'value' => 'revisiondelete',
+					'name' => 'revisiondelete',
+					'value' => '1',
 					'style' => "float: $float;",
 					'class' => 'mw-history-revisiondelete-button',
 				),

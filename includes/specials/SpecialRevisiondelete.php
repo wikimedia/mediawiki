@@ -119,7 +119,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// $this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
 
-		if ( $wgRequest->getVal( 'action' ) == 'revisiondelete' ) {
+		if ( $wgRequest->getVal( 'action' ) == 'historysubmit' ) {
 			# For show/hide form submission from history page
 			$this->targetObj = $GLOBALS['wgTitle'];
 			$this->typeName = 'revision';
