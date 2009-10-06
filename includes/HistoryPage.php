@@ -353,7 +353,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$this->buttons = '<div>';
 		if( $wgUser->isAllowed('deletedhistory') ) {
-			$float = $wgContLang->isRTL() ? 'left' : 'right';
+			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
 			$this->buttons .= Xml::element( 'button',
 				array(
