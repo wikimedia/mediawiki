@@ -239,6 +239,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16979) Tracking categories for __INDEX__ and __NOINDEX__
 * Two new hooks, ConfirmEmailComplete and InvalidateEmailComplete, which are
   called after a user's email has been successfully confirmed or invalidated.
+* (bug 19741) Moved the XCF files out of the main MediaWiki distribution, for 
+  a smaller subversion checkout.
+
 
 === Bug fixes in 1.16 ===
 
