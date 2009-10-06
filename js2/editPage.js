@@ -31,11 +31,13 @@ var mwEditPageHelper = {
 			}, 100 );
 		} else {
 			// Add the add-media-wizard button for old toolbar:
-			$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
-				mv_skin_img_path + 'Button_add_media.png">' );
-			$j( '#btn-add-media-wiz' ).addMediaWiz(
-				amwConf
-			);
+			if( $j('#btn-add-media-wiz').length == 0 ){
+				$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
+					mv_skin_img_path + 'Button_add_media.png">' );
+				$j( '#btn-add-media-wiz' ).addMediaWiz(
+					amwConf
+				);
+			}
 		}
 
 		// Add to new toolbar (need to use api)
