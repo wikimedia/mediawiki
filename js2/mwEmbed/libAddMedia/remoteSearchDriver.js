@@ -50,8 +50,6 @@ loadGM({
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
 	'target_container':null, //the div that will hold the search interface
-	//if using a modeal dialog (instead of target_container) how close to the edge of the window should we go:
-	'modal_edge_padding':'20px',
 
 	'target_invocation': null, //the button or link that will invoke the search interface
 
@@ -107,7 +105,7 @@ remoteSearchDriver.prototype = {
 	},	
 	/** the default content providers list.
 	 *
-	 * (should be note that special tabs like "upload" and "combined" don't go into the content proviers list:
+	 * (should be note that special tabs like "upload" and "combined" don't go into the content providers list:
 	 * @note do not use double underscore in content providers names (used for id lookup)
 	 *
 	 * @@todo we will want to load more per user-preference and per category lookup
@@ -345,17 +343,7 @@ remoteSearchDriver.prototype = {
 					this.content_providers[i].enabled = false;
 				}
 			}
-		}
-		
-		//set up the default model config:
-		this.dmodalCss = {
-			'width':'auto',
-			'height':'auto',
-			'top'	: this.modal_edge_padding,
-			'left'	: this.modal_edge_padding,
-			'right' : this.modal_edge_padding,
-			'bottom': this.modal_edge_padding
-		}
+		}		
 
 
 		//set up the target invocation:
@@ -386,6 +374,8 @@ remoteSearchDriver.prototype = {
 					_this.getTexboxSelection();
 			  //$j(_this.target_container).dialog("open");
 			  $j(_this.target_container).parents('.ui-dialog').fadeIn('slow');
+			  //re-center the dialog:
+			  $j(_this.target_container).dialog('option', 'position','center');
 		 });
 	},
 	//gets the in and out points for insert position or grabs the selected text for search
@@ -440,48 +430,40 @@ remoteSearchDriver.prototype = {
 			//js_log('added target id:' + $j(_this.target_container).attr('id'));
 			//get layout
 			//layout = _this.getMaxModalLayout();
+			js_log( 'width: ' + $j(window).width() +  ' height: ' + $j(window).height());
+			var cConf = {};
+			cConf['cancel'] = function(){
+				_this.cancelClipEditCB()
+			}
+			function doResize(){
+				js_log('do resize:: ' + _this.target_container);				
+				$j( '#rsd_modal_target').dialog('option', 'width', $j(window).width()-50 );
+				$j( '#rsd_modal_target').dialog('option', 'height', $j(window).height()-50 );
+				$j( '#rsd_modal_target').dialog('option', 'position','center');
+			}
+			
 			$j(_this.target_container).dialog({
 				bgiframe: true,
 				autoOpen: true,
 				modal: true,
 				draggable:false,
 				resizable:false,
-				buttons: {
-					'_': function() {
-						//just a place-holder
-					}
-				},
+				buttons:cConf,								
 				close: function() {
 					//if we are 'editing' a item close that					
 					_this.cancelClipEditCB();
 					js_log('closed modal');
 					$j(this).parents('.ui-dialog').fadeOut('slow');
 				}
-			}).parent('.ui-dialog').css( _this.dmodalCss );
+			});				
+			doResize();
+			$j(window).resize(function(){
+				doResize();
+			});
 			
-			//@@bind on resize to disable css dialog to update dmodelCss 
-			//(resize and drag presently disabled) 
-			/*.bind('resizestart', function(event, ui) {
-				 _this.dmodalCss = {};
-				 $j(this).css({});
-			})
-			//bind on drag to remove preset style as well
-			.bind('dragstart', function(event, ui) {
-				 _this.dmodalCss = {};
-				 $j(this).css({});
-			});*/
 			
-			/*var resizeTimer = false;
-			$j(window).bind('resize', function() {
-				var adjustModal = function(){
-					var layout = _this.getMaxModalLayout();
-					//js_log("should adjust: h " + layout.h + ' width:' + layout.w);
-					$j(_this.target_container).dialog('option', 'width', layout.w);
-					$j(_this.target_container).dialog('option', 'height', layout.h);
-				}
-				if (resizeTimer) clearTimeout(resizeTimer);
-				var resizeTimer = setTimeout(adjustModal, 100);
-			});*/
+			//re add cancel button
+			_this.cancelClipEditCB();
 			
 			//update the child position: (some of this should be pushed up-stream via dialog config options
 			$j(_this.target_container +'~ .ui-dialog-buttonpane').css({
@@ -490,11 +472,12 @@ remoteSearchDriver.prototype = {
 				'right':'0px',
 				'bottom':'0px'
 			});
-			//re add cancel button
-			_this.cancelClipEditCB();
+			/*
+			
+			
 			js_log('done setup of target_container: ' +
 				$j(_this.target_container +'~ .ui-dialog-buttonpane').length);
-
+			*/
 			
 		}
 	},

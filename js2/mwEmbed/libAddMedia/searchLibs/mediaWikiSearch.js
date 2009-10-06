@@ -176,7 +176,7 @@ mediaWikiSearch.prototype = {
 					}
 				};			
 				//attempt to parse out some stuff from the template: 
-				var desc = rObj.desc.match(/\|Description=(([^\n]*\n)*)\|Source=/)
+				var desc = rObj.desc.match(/\|Description\s*=\s*(([^\n]*\n)*)\|Source=/)
 				if( desc && desc[1] ){					
 					rObj.desc = $j.trim( desc[1] );
 				}										
