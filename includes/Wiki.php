@@ -465,6 +465,16 @@ class MediaWiki {
 			$action = 'nosuchaction';
 		}
 
+		# Workaround for bug #20966: inability of IE to provide an action dependent
+		# on which submit button is clicked.
+		if ( $action === 'historysubmit' ) {
+			if ( $request->getBool( 'revisiondelete' ) ) {
+				$action = 'revisiondelete';
+			} else {
+				$action = 'view';
+			}
+		}
+
 		switch( $action ) {
 			case 'view':
 				$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
