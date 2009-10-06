@@ -387,6 +387,13 @@ Una lista di paginn special la se pö truà in de la [[Special:SpecialPages|{{in
 'error'               => 'Erur',
 'databaseerror'       => 'Erur in del database',
 'readonly'            => 'Database blucaa',
+'missing-article'     => "El database l'ha minga truaa el test d'una pagina che l'avaria duvüü truà, ciamaa \"\$1\" \$2.
+
+Quest chì a l'è de solet causaa perchè al s'è riciamaa un paragón intra revisión vegg de la pagina o un ligam a una versión vegia d'una pagina che l'è stada scancelada
+
+Se l'è minga inscì, te pudariet vegh truà un bug in del software.
+
+Per piasè, fa raport a 'n'[[Special:ListUsers/sysop|aministradur]], cun la nota de l'URL.",
 'missingarticle-rev'  => '(revision#: $1)',
 'missingarticle-diff' => '(Diff: $1, $2)',
 'internalerror'       => 'Erur in del sistema',
@@ -454,8 +461,16 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'newpassword' => "Paròla d'urdin növa:",
 'retypenew'   => "Scriv ancamò la paròla d'urdin növa:",
 
+# Edit page toolbar
+'bold_sample'    => 'Test in grasset',
+'bold_tip'       => 'Test in grasset',
+'italic_sample'  => 'Test in cursiv',
+'italic_tip'     => 'Test in cursiv',
+'extlink_sample' => 'http://www.example.com titul del ligam',
+
 # Edit pages
 'summary'              => 'Argument de la mudifica:',
+'subject'              => 'Suget (intestazión)',
 'minoredit'            => "Chesta chi l'è una mudifica da impurtanza minuur",
 'watchthis'            => "Tegn d'öcc quela pagina chì",
 'savearticle'          => 'Salva',
@@ -472,19 +487,32 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'editingcomment'       => 'Redataant $1 (cumentari)',
 'yourtext'             => 'El tò test',
 'yourdiff'             => 'Diferenz',
+'copyrightwarning'     => "Ten per piasè present che tüt i cuntribüzión a {{SITENAME}} se cunsideren daa sota una licenza $2 (varda $1 per savèn püssee).
+Se te vöret minga che i tò test i poden vess mudifegaa e redistribüii d'una persona qualsessia senza nissüna limitazión, mandei minga a {{SITENAME}}<br />
+Cunt el test che te mandet tì te deciaret anca che, sota la tò respunsabilità, che el test te l'hee scrivüü depertì 'me uriginal, o pür che l'è una cobia d'una funt de dumini pübligh o un'altra funt libera in manera cumpagna.<br />
+'''MANDA MINGA DEL MATERIAL CHE L'E' CUERT D'UN DIRIT D'AUTUR SENZA UTURIZAZIUN'''",
 'longpagewarning'      => "'''Feegh da ment''': Quela pagina chì l'è longa $1 kilobyte; gh'è di browser ch'i pudarissen vegh di fastidi a mudifegà paginn ch'i riven arent o ch'i gh'hann püssee de 32kb. Per piasè vardee se l'è pussibil fà giò la pagina in tuchet püssee piscinin.",
 'protectedpagewarning' => "'''ATENZIÚN: chésta pagina l è staja blucava in manéra che dumá i üteent cunt i privilegi də sysop a pòdan mudificala.'''",
 'templatesused'        => 'Buete duvrade in chesta pàgina - Buett duvraat in chesta pàgina:',
 'template-protected'   => '(prutegiüü)',
 
 # History pages
-'revisionasof' => 'Revisión $1',
-'next'         => 'pròssim',
-'last'         => 'ültima',
-'histlegend'   => "Selezion di diferenz: seleziuná i balitt di version de cumpará e pö schisciá ''enter'' upüra al buton in scima ala tabèlina.<br />
+'revisionasof'     => 'Revisión $1',
+'previousrevision' => '←Versión püssee vegia',
+'cur'              => 'Cur',
+'next'             => 'pròssim',
+'last'             => 'ültima',
+'histlegend'       => "Selezion di diferenz: seleziuná i balitt di version de cumpará e pö schisciá ''enter'' upüra al buton in scima ala tabèlina.<br />
 Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = diferenza cun l'ültima version, M = cambiament d'impurtanza minur.",
-'histfirst'    => 'Püssee vecc',
-'histlast'     => 'Püssee receent',
+'histfirst'        => 'Püssee vecc',
+'histlast'         => 'Püssee receent',
+
+# Revision deletion
+'rev-delundel'   => 'fa vidè/scund',
+'revdel-restore' => 'Cambia la visibilità',
+
+# Merge log
+'revertmerge' => 'Scancela i ünión',
 
 # Diffs
 'lineno'                  => 'Riga $1:',
@@ -494,6 +522,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 # Search results
 'searchresults'                    => 'Risültaa de la recerca.',
 'searchresults-title'              => 'Resültaa de la ricerca de "$1"',
+'searchresulttext'                 => 'Per vegh püssee infurmazión in de la ricerca interna de {{SITENAME}}, varda [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].',
 'searchsubtitle'                   => 'Tì t\'hee cercaa \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tüt i paginn che scumincen per "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tüt i paginn che porten a "$1"]])',
 'noexactmatch'                     => "'''La pagina \"\$1\" la esista no.''' L'è pussibil [[:\$1|creala adèss]].",
 'noexactmatch-nocreate'            => "'''La pagina cun el titul \"\$1\" la esista no.'''",
@@ -513,11 +542,14 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'searchprofile-everything-tooltip' => 'Cerca depertüt (anca int i paginn de discüssion)',
 'searchprofile-advanced-tooltip'   => 'Cerca int i namespace persunalizaa',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 parola|$2 paroll}})',
+'search-section'                   => '(sessión $1)',
 'search-suggest'                   => 'Vurivet dì: $1',
 'search-mwsuggest-enabled'         => 'cun sügeriment',
 'search-mwsuggest-disabled'        => 'senza sügeriment',
 'powersearch'                      => 'Truvá',
 'powersearch-legend'               => 'Recerca avanzada',
+'powersearch-ns'                   => 'Cerca in di namespace:',
+'powersearch-redir'                => 'Lista i redirezión',
 
 # Preferences page
 'preferences'        => 'Preferenz',
@@ -575,7 +607,8 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 
 'group-user-member' => 'Dovratt',
 
-'grouppage-user' => '{{ns:project}}:Dovracc',
+'grouppage-user'  => '{{ns:project}}:Dovracc',
+'grouppage-sysop' => '{{ns:project}}:Aministradur',
 
 # Rights
 'right-edit'          => 'Edita pàgini',
@@ -608,12 +641,16 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'hide'                             => 'Scund',
 'show'                             => 'Famm vedè',
 'minoreditletter'                  => 'm',
+'rc-enhanced-expand'               => 'Varda i detali (al vör el JavaScript)',
+'rc-enhanced-hide'                 => 'Scund i detali',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Cambiament culegaa',
 'recentchangeslinked-feed'    => 'Cambiament culegaa',
 'recentchangeslinked-toolbox' => 'Cambiament culegaa',
 'recentchangeslinked-title'   => 'Mudifegh ligaa a "$1"',
+'recentchangeslinked-summary' => "Questa chì a l'è una lista di paginn faa de poch temp ai paginn culigaa a quela specifegada (o a member d'una categuria specifegada).
+I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten marcaa in \"grasset\"",
 
 # Upload
 'upload'            => 'Carga sü un file',
@@ -635,9 +672,14 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'listfiles_user' => 'Dovratt',
 
 # File description page
-'filehist-revert' => "Butar torna 'me ch'al era",
-'filehist-user'   => 'Dovrat',
-'imagelinks'      => 'Ligamm al file',
+'filehist'            => "Storia de l'archivi",
+'filehist-revert'     => "Butar torna 'me ch'al era",
+'filehist-current'    => 'curent',
+'filehist-thumb'      => 'Miniadüra',
+'filehist-user'       => 'Dovrat',
+'filehist-dimensions' => 'Dimensión',
+'filehist-comment'    => 'Uget',
+'imagelinks'          => 'Ligamm al file',
 
 # MIME search
 'mimesearch' => 'cérca MIME',
@@ -685,6 +727,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'listusers'               => 'Listá i üteent registraa',
 'newpages'                => 'Pagin nööf',
 'ancientpages'            => 'Pagin püssee vecc',
+'move'                    => 'Sposta',
 
 # Book sources
 'booksources' => 'Surgeent librari',
@@ -696,6 +739,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 
 # Special:AllPages
 'allpages'       => 'Tücc i pagin',
+'alphaindexline' => 'de $1 a $2',
 'allpagesfrom'   => 'Famm vedè i pagin a partì de:',
 'allpagesto'     => 'Fàm ved i paginn fín a:',
 'allarticles'    => 'Tucc i artícoj',
@@ -772,10 +816,12 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'undelete'           => 'Varda i pagin scancelaa',
 'undelete-nodiff'    => "Per questa pagina gh'è nanca una revisiun precedenta.",
 'undeletebtn'        => 'Rimett a post',
+'undeletelink'       => 'Varda/büta indree',
 'undeletedarticle'   => 'rimetüü a post "[[$1]]"',
 'undeletedrevisions' => '{{PLURAL:$1|1 revision|$1 versiun}} rimetüü a post',
 
 # Namespace form on various pages
+'namespace'      => 'Namespace:',
 'invert'         => 'Invertí la selezziún',
 'blanknamespace' => '(Principal)',
 
@@ -833,6 +879,7 @@ Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'blocklistline'          => "$1, $2 l'ha blucaa $3 ($4)",
 'blocklink'              => 'bloca',
 'unblocklink'            => 'desbloca',
+'change-blocklink'       => 'cambia bloch',
 'contribslink'           => 'cuntribüzziún',
 'blocklogpage'           => 'Log di blocch',
 'blocklogentry'          => "l'ha blucaa [[$1]] per un temp de $2 $3",
@@ -854,6 +901,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'movedto'         => 'spustaa vers:',
 '1movedto2'       => '[[$1]] spustaa in [[$2]]',
 '1movedto2_redir' => '[[$1]] movuu in [[$2]] par redirezion',
+'revertmove'      => "büta indree a 'mè che l'era",
 'delete_and_move' => 'Scancelá e mööf',
 
 # Export
@@ -879,6 +927,8 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'tooltip-ca-talk'                 => 'Discüssiun revard el cuntegnüü de la pagina.',
 'tooltip-ca-edit'                 => "Te pör mudifegà quela pagina chì. Per piasè dröva 'l butón per ved i cambiament prima de salvà.",
 'tooltip-ca-addsection'           => 'Scumencia una sezión növa',
+'tooltip-ca-viewsource'           => "Quela pagina chì a l'è pruteta, ma te pödet vidè el sò codes surgent",
+'tooltip-ca-history'              => 'Versión vegg de quela pagina chì',
 'tooltip-ca-delete'               => 'Scancela questa pagina',
 'tooltip-ca-move'                 => "Sposta 'sta pagina chì (cambiagh 'l titul)",
 'tooltip-search'                  => 'Cerca in {{SITENAME}}',
@@ -896,7 +946,12 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'tooltip-feed-rss'                => 'Feed RSS per chesta pàgina',
 'tooltip-t-upload'                => 'Carga file multimediaj',
 'tooltip-t-specialpages'          => 'Lista de tütt i pagin speciaal',
+'tooltip-t-print'                 => 'Versión bona de stampà de quela pagina chì',
+'tooltip-t-permalink'             => 'Ligam permanent a quela versión chì de la pagina',
+'tooltip-ca-nstab-main'           => 'Vardà la pagina de cuntegnüü',
+'tooltip-ca-nstab-special'        => "Questa chì a l'è una pagina speciala, se pö minga mudifegala",
 'tooltip-ca-nstab-project'        => 'Varda la pagina del pruget',
+'tooltip-save'                    => 'Salva i tò mudifegh',
 'tooltip-preview'                 => 'Varda i mudifegh (semper mej fàl prima de salvà)',
 'tooltip-compareselectedversions' => 'Far vider li diferenzi entra li doi version selezionadi da chesta pàgina',
 
@@ -918,6 +973,13 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 # Special:NewFiles
 'newimages' => 'Espusizziun di imàgin nööf',
 'ilsubmit'  => 'Truvá',
+
+# Bad image list
+'bad_image_list' => "El furmaa a l'è quest chì:
+
+Se tegnen bón dumà i list póntaa (i righ che scumincen per *). 
+El prim ligam de ogni riga la gh'ha de vess un ligam a un file minga desideraa.
+I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezión (che'l vör dì paginn induè che 'l file se'l pö riciamà in manera nurmala).",
 
 # External editor support
 'edit-externally'      => 'Redatá chest archivi cunt un prugramari da fö',

@@ -1789,6 +1789,9 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 # Special:NewFiles
 'newimages'             => 'Yañı resimler',
 'imagelisttext'         => "Aşağıdaki cedvelde $2 köre tizilgen {{PLURAL:$1|'''1''' fayldır|'''$1''' fayldır}}.",
+'newimages-summary'     => 'Bu mahsus saife soñki yüklengen fayllarnı köstere.',
+'newimages-legend'      => 'Süzgüç',
+'newimages-label'       => 'Fayl adı (ya da onıñ bir parçası):',
 'showhidebots'          => '(botlarnı $1)',
 'noimages'              => 'Resim yoq.',
 'ilsubmit'              => 'Qıdır',
@@ -1833,7 +1836,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 'exif-spectralsensitivity' => 'Spektral duyğulılıq',
 'exif-aperturevalue'       => 'Diafragma',
 'exif-brightnessvalue'     => 'parlaqlıq',
-'exif-lightsource'         => 'Yarıq turuşı',
+'exif-lightsource'         => 'Yarıq menbası',
 'exif-exposureindex'       => 'Ekspozitsiya indeksi',
 'exif-scenetype'           => 'Stsena çeşiti',
 'exif-digitalzoomratio'    => 'Yaqınlaştıruv koeffitsiyenti',
@@ -1885,6 +1888,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 'watchlistall2'    => 'episini',
 'namespacesall'    => 'Episi',
 'monthsall'        => 'Episi',
+'limitall'         => 'bütüni',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-mail adresini tasdıqla',
@@ -1950,6 +1954,7 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'imgmultipageprev' => '← evelki saife',
 'imgmultipagenext' => 'soñraki saife →',
 'imgmultigo'       => 'Bar',
+'imgmultigoto'     => '$1 saifesine bar',
 
 # Table pager
 'ascending_abbrev'         => 'kiçikten büyükke',

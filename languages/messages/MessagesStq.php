@@ -1384,11 +1384,12 @@ Unner '''<tt>[[:$1]]</tt>''' koast du die bewisje, of du dät wuddelk wolt.
 [[$1|thumb]]",
 'filepageexists'              => "Ju Beschrieuwengssiede foar disse Doatäi wuude al moaked as '''<tt>[[:$1]]</tt>''', man der bestoant neen Doatäi mäd dissen Noome.
 Ju ienroate Beschrieuwenge wäd nit ap ju Beschrieuwengssiede uurnuumen.
-Ju Beschrieuwengssiede moast du ätter dät Hoochleeden fon ju Doatäi noch mäd de Hounde beoarbaidje.",
-'fileexists-extension'        => "Een Doatei mäd n äänelken Noome existiert al: [[$2|thumb]]
+Ju Beschrieuwengssiede moast du ätter dät Hoochleeden fon ju Doatäi noch mäd de Hounde beoarbaidje.
+[[$1|thumb]]",
+'fileexists-extension'        => "Een Doatäi mäd n äänelken Noome existiert al: [[$2|thumb]]
 * Noome fon ju hoochtouleedende Doatäi: '''<tt>[[:$1]]</tt>'''
 * Noome fon ju anweesende Doatäi: '''<tt>[[:$2]]</tt>'''
-Bloot ju Doatäieendenge unnerschat sik in Groot-/Littikschrieuwenge. Pröif, of do Doatäie ätter dän Inhoold identisk sunt.",
+Wääl n uur Noome.",
 'fileexists-thumbnail-yes'    => "Bie ju Doatäi schient et sik uum ne Bielde fon ferlitjerde Grööte ''(thumbnail)'' tou honneljen. [[$1|thumb]]
 Pröif ju Doatäi '''<tt>[[:$1]]</tt>'''.
 Wan et sik uum ju Bielde in Originoalgrööte honnelt, dan houget neen apaate Foarschaubielde hoochleeden tou wäiden.",

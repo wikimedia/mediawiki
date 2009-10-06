@@ -1013,10 +1013,10 @@ Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Speci
 Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].
-Ylläpitäjänä voit silti [$1 katsoa tämän muutoksen].",
+Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen].",
 'rev-suppressed-unhide-diff'  => "Yksi tämän muutosvertailun versioista on '''häivytetty'''.
 Yksityiskohtia saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
-Ylläpitäjänä voit silti [$1 katsella tätä muutosta], jos haluat jatkaa.",
+Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-delundel'                => 'näytä tai piilota',
 'revisiondelete'              => 'Poista tai palauta versioita',
 'revdelete-nooldid-title'     => 'Ei kohdeversiota',
