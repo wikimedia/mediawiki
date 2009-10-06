@@ -545,6 +545,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   searching for special pages
 * (bug 20524) Hideuser: Show nice error when trying to block hidden user without 
   hideuser right
+* (bug 21026) Fixed file redirects on shared repos on non-English client wikis
 
 == API changes in 1.16 ==
 

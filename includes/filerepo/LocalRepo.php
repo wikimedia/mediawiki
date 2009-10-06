@@ -83,9 +83,9 @@ class LocalRepo extends FSRepo {
 			$title = Title::makeTitle( NS_FILE, $title->getText() );
 		}
 
-		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getPrefixedDBkey() ) );
+		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 		if ( $memcKey === false ) {
-			$memcKey = $this->getLocalCacheKey( 'image_redirect', md5( $title->getPrefixedDBkey() ) );
+			$memcKey = $this->getLocalCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 			$expiry = 300; // no invalidation, 5 minutes
 		} else {
 			$expiry = 86400; // has invalidation, 1 day
@@ -95,7 +95,7 @@ class LocalRepo extends FSRepo {
 			// Does not exist
 			return false;
 		} elseif ( strval( $cachedValue ) !== '' ) {
-			return Title::newFromText( $cachedValue );
+			return Title::newFromText( $cachedValue, NS_FILE );
 		} // else $cachedValue is false or null: cache miss
 
 		$id = $this->getArticleID( $title );
@@ -111,9 +111,9 @@ class LocalRepo extends FSRepo {
 			__METHOD__
 		);
 
-		if( $row ) {
+		if( $row && $row->rd_namespace == NS_FILE ) {
 			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
-			$wgMemc->set( $memcKey, $targetTitle->getPrefixedDBkey(), $expiry );
+			$wgMemc->set( $memcKey, $targetTitle->getDBkey(), $expiry );
 			return $targetTitle;
 		} else {
 			$wgMemc->set( $memcKey, '', $expiry );
@@ -193,7 +193,7 @@ class LocalRepo extends FSRepo {
 	 */	
 	function invalidateImageRedirect( $title ) {
 		global $wgMemc;
-		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getPrefixedDBkey() ) );
+		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 		if ( $memcKey ) {
 			$wgMemc->delete( $memcKey );
 		}
