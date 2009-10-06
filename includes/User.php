@@ -2946,7 +2946,7 @@ class User {
 	 */
 	function confirmEmail() {
 		$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
-		wfRunHooks( 'ConfirmEmailComplete', array( &$this ) );
+		wfRunHooks( 'ConfirmEmailComplete', array( $this ) );
 		return true;
 	}
 
@@ -2961,7 +2961,7 @@ class User {
 		$this->mEmailToken = null;
 		$this->mEmailTokenExpires = null;
 		$this->setEmailAuthenticationTimestamp( null );
-		wfRunHooks( 'InvalidateEmailComplete', array( &$this ) );
+		wfRunHooks( 'InvalidateEmailComplete', array( $this ) );
 		return true;
 	}
 
