@@ -1626,7 +1626,7 @@ Por favor, elige un nombre más descriptivo.",
 
 'upload-proto-error'        => 'Protocolo incorrecto',
 'upload-proto-error-text'   => 'Para subir archivos desde otra página la URL debe comenzar por <code>http://</code> o <code>ftp://</code>.',
-'upload-file-error'         => 'Error interno',
+'upload-file-error'         => 'Error interno al subir el archivo',
 'upload-file-error-text'    => 'Ha ocurrido un error interno mientras se intentaba crear un fichero temporal en el servidor. Por favor, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',
 'upload-misc-error'         => 'Error desconocido en la subida',
 'upload-misc-error-text'    => 'Ha ocurrido un error durante la subida. Por favor verifica que la URL es válida y accesible e inténtalo de nuevo. Si el problema persiste, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',

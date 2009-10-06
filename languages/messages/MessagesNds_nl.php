@@ -1031,8 +1031,11 @@ As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j da
 As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokken versies].",
 'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies '''vort-edaon''' is.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].",
-'rev-deleted-unhide-diff'     => "Eén van de bewarkingen van disse vergeliekingen is '''vort-edaon'''.
+'rev-deleted-unhide-diff'     => "Eén van de bewarkingen in disse vergeliekingen is '''vort-edaon'''.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].
+As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
+'rev-suppressed-unhide-diff'  => "Eén van de bewarkingen in disse vergeliekingen is '''vort-edaon'''.
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokken infermasie].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'rev-delundel'                => 'bekiek/verbarg',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
@@ -1489,6 +1492,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-reset-passwords'       => 'Wachwoorden van aandere gebrukers opniej instellen',
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wonnen, tot een diepte van 5",
 'right-versiondetail'         => 'Uut-ebreide versieinfermasie van de pregrammetuur laoten zien',
+'right-sendemail'             => 'Berich versturen naor aandere gebrukers',
 
 # User rights log
 'rightslog'      => 'Gebrukersrechenlogboek',
@@ -1566,7 +1570,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'boteditletter'                     => ' (bot)',
 'unpatrolledletter'                 => '!',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|keer|keer}} op een volglieste]',
-'rc_categories'                     => 'Kattegeriebeparking (scheiden mit "|")',
+'rc_categories'                     => 'Beparking tot kattegerieën (scheien mit "|")',
 'rc_categories_any'                 => 'alles',
 'newsectionsummary'                 => 'Niej onderwarp: /* $1 */',
 'rc-enhanced-expand'                => 'Details weergeven (hier he-j JavaScript veur neudig)',
@@ -2433,6 +2437,8 @@ De blokkering is onderdeel van de reeks $2, waovan de blokkering wè op-eheven k
 'sorbs_create_account_reason'     => 'Joew IP-adres is op-eneumen as open proxyserver in de DNS-blacklist de {{SITENAME}} ebruukt.
 Je kunnen gien gebrukerspagina anmaken.',
 'cant-block-while-blocked'        => 'Je kunnen aandere gebrukers neet blokkeren a-j zelf oek eblokkeerd bin.',
+'cant-see-hidden-user'            => 'De gebruker dee-j preberen te blokkeren is al eblokkeerd en verbörgen.
+Umda-j gien rech hemmen um gebrukers te verbargen, ku-j de blokkering van de gebruker neet bekieken of bewarken.',
 
 # Developer tools
 'lockdb'              => 'Databanke blokkeren',

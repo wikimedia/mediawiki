@@ -2262,6 +2262,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'sorbsreason'                     => 'D IP-Adräss isch in dr DNSBL vu {{SITENAME}} as uffige PROXY glischtet.',
 'sorbs_create_account_reason'     => 'D IP-Adräss isch in dr DNSBL vu {{SITENAME}} as uffige PROXY glischtet. S Aalege vu neije Benutzer isch nit megli.',
 'cant-block-while-blocked'        => 'Du derfsch kei anderi Benutzer sperre, derwylscht Du sälber gsperrt bisch.',
+'cant-see-hidden-user'            => 'Dr Benutzer, wu Du versuechsch z sperre, isch scho gsperrt un versteckt wore. Du chasch d Sperri vu däm Benutzer nit säh oder bearbeite, wel du s „hideuser“-Rächt nit hesch.',
 
 # Developer tools
 'lockdb'              => 'D Datebank sperre',

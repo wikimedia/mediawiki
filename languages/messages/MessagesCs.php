@@ -12,6 +12,7 @@
  * @author Li-sung
  * @author Martin Kozák
  * @author Matěj Grabovský
+ * @author Mercy
  * @author Michawiki
  * @author Mormegil
  * @author Ragimiri
@@ -1333,7 +1334,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-watchlist'               => 'Sledované stránky',
 'prefs-watchlist-days'          => 'Počet dní zobrazených ve sledovaných stránkách:',
 'prefs-watchlist-days-max'      => '(maximálně 7 dní)',
-'prefs-watchlist-edits'         => 'Počet editací zobrazených na zdokonalených sledovaných stránkách:',
+'prefs-watchlist-edits'         => 'Počet editací zobrazených ve zdokonalených sledovaných stránkách:',
 'prefs-watchlist-edits-max'     => '(maximum: 1000)',
 'prefs-watchlist-token'         => 'Klíč k seznamu sledovaných stránek:',
 'prefs-misc'                    => 'Různé',
@@ -1761,7 +1762,7 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 'nolicense'          => 'Bez udání licence',
 'license-nopreview'  => '(Náhled není dostupný)',
 'upload_source_url'  => ' (platné, veřejně přístupné URL)',
-'upload_source_file' => ' (soubor na vašem počítači)',
+'upload_source_file' => ' (soubor ve vašem počítači)',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
@@ -2585,7 +2586,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'allmessagesdefault'            => 'Původní text',
 'allmessagescurrent'            => 'Aktuální text',
 'allmessagestext'               => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.
-Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http://www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [http://translatewiki.net server translatewiki.net].',
+Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http://www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [http://translatewiki.net server translatewiki.net].',
 'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages není podporováno, neboť wgUseDatabaseMessages je vypnuto.',
 'allmessages-filter-legend'     => 'Filtr',
 'allmessages-filter'            => 'Filtr podle stavu:',
@@ -2675,7 +2676,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'tooltip-ca-watch'                => 'Přidat tuto stránku mezi sledované',
 'tooltip-ca-unwatch'              => 'Vyjmout tuto stránku ze sledovaných',
 'tooltip-search'                  => 'Prohledat tuto wiki',
-'tooltip-search-go'               => 'Jít na stránku s tímto jménem, pokud existuje',
+'tooltip-search-go'               => 'Jít na stránku s tímto názvem, pokud existuje',
 'tooltip-search-fulltext'         => 'Hledat stránky s tímto textem',
 'tooltip-p-logo'                  => 'Hlavní strana',
 'tooltip-n-mainpage'              => 'Navštívit Hlavní stranu',

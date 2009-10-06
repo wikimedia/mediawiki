@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aelske
  * @author Benopat
  * @author Cicero
  * @author Matthias
@@ -461,9 +462,9 @@ De verantwoordelike systeembeheerder gaof de volgende rae op:
 <p>$1',
 'missing-article'      => "In de database is gein inhaud aangetróffe veur de pagina \"\$1\" die d'r wel zou mote zien (\$2).
 
-Dit kan veurkómme as doe 'n verauwerde verwiezing nao 't versjil tösje twee versies van ein pagina volgs of 'n versie opvreugs die is eweggesjaf.
+Dit kan veurkómme as doe 'n auwer verwiezing nao 't versjil tösje twee versies van ein pagina volgs of 'n versie opvreugs die is eweggesjaf.
 
-Es dit neet 't geval is, höbs doe wellich 'n fout in de software gevónje.
+Es dit neet 't geval is, höbs doe mesjins 'n fout in de software gevónje.
 Maak hievan melding bie 'ne systeembeheerder van {{SITENAME}} en vermeld daobie de URL van dees pagina.",
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wijziging: $1, $2)',
@@ -830,7 +831,7 @@ Achtergrönj zeen meugelik te vinje in t [{{fullurl:{{#Special:Log}}/suppress|pa
 'rev-deleted-unhide-diff'     => "Eine venne angerversjiller is '''gwösj oete pebliek archiever'''.
 Details in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} wislog].
 Es behieërder kèns se nag [$1 de angering zeen] es se doearch wils gaon.",
-'rev-delundel'                => 'tuin/versjtaek',
+'rev-delundel'                => 'Laot zeen/versjtaek',
 'revisiondelete'              => 'Verwijder/herstel bewerkinge',
 'revdelete-nooldid-title'     => 'Geine doelverzie',
 'revdelete-nooldid-text'      => "Doe höbs gein(e) doelverzie(s) veur deze hanjeling opgegaeve, d'n aangaeving besteit neet, of doe perbeers de letste versie te verberge.",
@@ -907,7 +908,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 # Merge log
 'mergelog'           => 'Samevoegingslogbook',
 'pagemerge-logentry' => 'voegde [[$1]] nao [[$2]] same (versies tot en met $3)',
-'revertmerge'        => 'Samevoeging ongedaon make',
+'revertmerge'        => 'Samevoging ongedaon make',
 'mergelogpagetext'   => "Hiejonger zuut geer 'ne lies van recente samevoeginge van 'ne paginagesjiedenis nao 'ne angere.",
 
 # Diffs
@@ -1029,7 +1030,7 @@ Wens doe in dien zeukopdrach es veurvoegsel \"''all:''\" gebroeks waere alle pag
 Doe kans ouch 'n naamruumde es veurvoegsel gebroeke.",
 'search-nonefound'                 => "D'r zien gein resultate veur diene zeukopdrach.",
 'powersearch'                      => 'Zeuke',
-'powersearch-legend'               => 'Oetgebreijd zeuke',
+'powersearch-legend'               => 'Oetgebreid zeuke',
 'powersearch-ns'                   => 'Zeuke in naamruumdes:',
 'powersearch-redir'                => 'Doorverwiezinge waergaeve',
 'powersearch-field'                => 'Zeuk nao',
@@ -1294,7 +1295,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'diff'                              => 'vers',
 'hist'                              => 'hist',
 'hide'                              => 'Versjtaek',
-'show'                              => 'Tuin',
+'show'                              => 'Laot zeen',
 'minoreditletter'                   => 'K',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1748,11 +1749,11 @@ Dae kin dös drek reazjere.",
 'watchnologin'         => 'De bis neet aangemèld',
 'watchnologintext'     => "De mós [[Special:UserLogin|aangemèld]] zeen veur 't verangere van dien volglies.",
 'addedwatch'           => 'Aan volglies toegeveug',
-'addedwatchtext'       => 'De pazjena "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegeveug.
-Toekomstige verangeringe aan dees pazjena en de biebehurende euverlèkpazjena weure hie vermèld.
-Ouch versjiene gevolgde pazjena\'s in \'t <b>vèt</b> in de [[Special:RecentChanges|lies van recènte verangeringe]]. <!-- zodat u ze eenvoudiger kan opmerken.-->
+'addedwatchtext'       => 'De pagina "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegevoog.
+Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weure hie vermèld.
+Ouch versjiene gevolgde pagina\'s in \'t <b>vèt</b> in de [[Special:RecentChanges|lies van recènte verangeringe]]. <!-- zoedat u ze sjneller kint zeen.-->
 
-<!-- huh? Wen se ein pazjena van dien volgliest wils haole mos e op "sjtop volge"  -- pagina wenst te verwijderen van uw volgliest klik dan op "Van volgliest verwijderen" in de menubalk. -->',
+<!-- huh? Es se ein pazjena van dien volglies wils haole mos e op "sjtop volge"  -- pagina wenst te verwijderen van uw volglies klik dan op "Van volglies verwijderen" in de menubalk. -->',
 'removedwatch'         => 'Van volglies aafhoale',
 'removedwatchtext'     => 'De pagina "[[:$1]]" is van dien [[Special:Watchlist|volglies]] eweggesjaf.',
 'watch'                => 'Volg',
@@ -1867,7 +1868,7 @@ Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujig
 'protect-title'               => 'Besjerme van "$1"',
 'prot_1movedto2'              => '[[$1]] verplaats nao [[$2]]',
 'protect-legend'              => 'Bevèstig besjerme',
-'protectcomment'              => 'Rede:',
+'protectcomment'              => 'Rae:',
 'protectexpiry'               => 'Verlöp:',
 'protect_expiry_invalid'      => "De pazjena's aangegaeve verloup is ongeldig.",
 'protect_expiry_old'          => "De pazjena verlöp in 't verleje.",
@@ -1937,7 +1938,7 @@ Es d'r 'ne nuuj pagina mit dezelfde naam is aangemaak sins de pagina is eweggesj
 'undeleterevision-missing'     => "Ongeldige of missende versie. Meugelik höbse 'n verkeerde verwiezing of is de versie hersteld of verwiederd oet 't archief.",
 'undelete-nodiff'              => 'Gein eerdere versie gevonje.',
 'undeletebtn'                  => 'Trökzètte',
-'undeletelink'                 => 'betrachte/trökzètte',
+'undeletelink'                 => 'bekieke/trökzètte',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Ómgedriejde selectie',
 'undeletecomment'              => 'Infermasie:',
@@ -1968,7 +1969,7 @@ $1",
 # Namespace form on various pages
 'namespace'      => 'Naamruumde:',
 'invert'         => 'Ómgedriejde selectie',
-'blanknamespace' => '(huidnaamruumde)',
+'blanknamespace' => '(hoofnaamruumde)',
 
 # Contributions
 'contributions'       => 'Biedrages per gebroeker',
@@ -2294,7 +2295,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-ca-delete'               => 'Sjaf dees pazjena eweg',
 'tooltip-ca-undelete'             => 'Hersjtèl de verangeringe van dees pazjena van veurdat ze gewist woerd',
 'tooltip-ca-move'                 => 'Verplaats dees pagina',
-'tooltip-ca-watch'                => 'Dees pagina biedoon bie dien volglies',
+'tooltip-ca-watch'                => 'Dees pagina bie bie dien volglies zètte',
 'tooltip-ca-unwatch'              => 'Dees pagina van dien volglies ewegsjaffe',
 'tooltip-search'                  => 'Doorzeuk {{SITENAME}}',
 'tooltip-search-go'               => "Gank nao 'n pagina mit dezelfde naam es die besjteit",
@@ -2306,7 +2307,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-n-currentevents'         => "Achtergrondinfo van 't nuujs",
 'tooltip-n-recentchanges'         => 'De lies van recènte verangeringe in de wiki.',
 'tooltip-n-randompage'            => "Laaj 'n willekäörige pagina",
-'tooltip-n-help'                  => 'De plaats óm infermasie euver dit projek te vènje.',
+'tooltip-n-help'                  => 'De plaats óm informatie euver dit projek te vènje.',
 'tooltip-t-whatlinkshere'         => "Lies van alle wikipagina's die hiehaer verwieze",
 'tooltip-t-recentchangeslinked'   => "Recènte verangeringe in pagina's woehaer dees pagina verwis",
 'tooltip-feed-rss'                => 'RSS feed veur dees pazjena',

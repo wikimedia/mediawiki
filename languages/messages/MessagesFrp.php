@@ -1098,6 +1098,9 @@ Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{
 'rev-deleted-unhide-diff'     => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
+'rev-suppressed-unhide-diff'  => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'rev-delundel'                => 'fâre vêre / cachiér',
 'revisiondelete'              => 'Suprimar / refâre des vèrsions',
 'revdelete-nooldid-title'     => 'Vèrsion ciba envalida',
@@ -2561,6 +2564,7 @@ Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutra a
 'sorbs_create_account_reason'     => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.
 Vos pouede pas fâre un compto.",
 'cant-block-while-blocked'        => 'Vos pouede pas blocar d’ôtros utilisators tant que vos éte blocâ.',
+'cant-see-hidden-user'            => 'L’utilisator que vos tâchiéd de blocar at ja étâ blocâ et cachiê. Pas èyent lo drêt hideuser, vos pouede pas vêre ou ben changiér lo blocâjo a l’utilisator.',
 
 # Developer tools
 'lockdb'              => 'Vèrrolyér la bâsa de balyês',

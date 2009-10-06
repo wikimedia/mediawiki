@@ -1453,7 +1453,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'block-log-flags-nocreate' => 'uwezo wa kuunda akaunti imesitishwa',
 
 # Move page
-'move-page'        => 'Sogeza $1',
+'move-page'        => 'Hamisha $1',
 'move-page-legend' => 'Sogeza ukurasa',
 'movepagetext'     => "Tumia fomu hapo chini ili kubadilisha jina la ukurasa, pamoja na kuhamisha historia yake yote katika jina jipya lile lile.
 Jina la awali litahamishwa na kuelekezwa kwa ukurasa wa jina jipya.

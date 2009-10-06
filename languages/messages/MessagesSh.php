@@ -594,14 +594,66 @@ Ako je snimite, sve promjene učinjene od ove revizije će biti izgubljene.'''",
 Ukoliko ne želite da vaše pisanje bude nemilosrdno uređivano i redistribuirano po tuđoj volji, onda ga nemojte ovdje objavljivati.<br />
 Također obećavate kako ste ga napisali sami ili kopirali iz izvora u javnoj domeni ili sličnog slobodnog izvora.
 '''NEMOJTE SLATI RAD ZAŠTIĆEN AUTORSKIM PRAVIMA BEZ DOZVOLE!'''",
+'copyrightwarning2'                => "Zapamtite da svaki doprinos na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
+Također nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
+'''NE ŠALJITE DJELA ZAŠTIĆENA AUTORSKIM PRAVOM BEZ DOZVOLE!'''",
+'longpagewarning'                  => "'''PAŽNJA''': Ova stranica ima $1 kilobajta;  
+neki preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
+Molimo Vas da razmotrite razbijanje stranice na manje dijelove.",
+'longpageerror'                    => "'''Greška: Tekst, koji ste poslali, je dug $1 kilobajta, što je veće od maksimuma, koji iznosi $2 kilobajta.  
+Stranica ne može biti spremljena.'''",
+'readonlywarning'                  => "'''PAŽNJA: Baza je zaključana zbog održavanja, tako da nećete moći da snimite svoje izmjene za sada.  
+Možda želite da kopirate i nalijepite tekst u tekst editor i sačuvate ga za kasnije.'''
+
+Administrator koji je zaključao bazu je naveo slijedeće objašnjenje: $1",
+'protectedpagewarning'             => "'''PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorskim privilegijama mogu da je mijenjaju.'''",
+'semiprotectedpagewarning'         => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
+'cascadeprotectedwarning'          => "'''Upozorenje:''' Ova stranica je zaključana tako da je samo administratori mogu mijenjati, jer je ona uključena u {{PLURAL:$1|ovu, lančanu povezanu, zaštićenu stranicu|sljedeće, lančano povezane, zaštićene stranice}}:",
+'titleprotectedwarning'            => "'''UPOZORENJE: Ova stranica je zaključana tako da su potrebna [[Special:ListGroupRights|posebna prava]] da se ona napravi.'''",
 'templatesused'                    => 'Šabloni korišteni na ovoj stranici:',
 'templatesusedpreview'             => 'Šabloni korišteni u ovom pretpregledu:',
+'templatesusedsection'             => 'Šabloni korišteni u ovoj sekciji:',
 'template-protected'               => '(zaštićeno)',
 'template-semiprotected'           => '(polu-zaštićeno)',
 'hiddencategories'                 => 'Ova stranica pripada {{PLURAL:$1|1 skrivenoj kategoriji|$1 skrivenim kategorijama}}:',
+'nocreatetitle'                    => 'Stvaranje stranica ograničeno',
+'nocreatetext'                     => '{{SITENAME}} je ograničio/la postavljanje novih stranica.  
+Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti korisnički račun]].',
+'nocreate-loggedin'                => 'Nemate dopuštenje da kreirate nove stranice.',
+'permissionserrors'                => 'Greške pri odobrenju',
+'permissionserrorstext'            => 'Nemate dopuštenje da to uradite, iz {{PLURAL:$1|slijedećeg razloga|slijedećih razloga}}:',
 'permissionserrorstext-withaction' => 'Nemate dozvolu za $2, zbog {{PLURAL:$1|sljedećeg|sljedećih}} razloga:',
 'moveddeleted-notice'              => 'Ova stranica je obrisana.
 Registar brisanja za stranicu je dolje naveden radi referenci.',
+'edit-hook-aborted'                => 'Izmjena je poništena putem interfejsa.
+Nije ponuđeno nikakvo objašnjenje.',
+'edit-gone-missing'                => 'Stranica se nije mogla osvježiti.
+Izgleda da je obrisana.',
+'edit-conflict'                    => 'Sukob izmjena.',
+'edit-no-change'                   => 'Vaša izmjena je ignorirana, jer nije bilo promjena teksta stranice.',
+'edit-already-exists'              => 'Stranica nije mogla biti kreirana.
+Izgleda da već postoji.',
+
+# Parser/template warnings
+'expensive-parserfunction-warning'        => 'Upozorenje: Ova stranica sadrži previše poziva opterećujućih parserskih funkcija.
+
+Trebalo bi imati manje od $2 {{PLURAL:$2|poziv|poziva}}, a sad ima {{PLURAL:$1|$1 poziv|$1 poziva}}.',
+'expensive-parserfunction-category'       => 'Stranice sa previše poziva parserskih funkcija',
+'post-expand-template-inclusion-warning'  => "'''Upozorenje:''' Šablon koji je uključen je prevelik.
+Neki šabloni neće biti uključeni.",
+'post-expand-template-inclusion-category' => 'Stranice gdje su uključeni šabloni preveliki',
+'post-expand-template-argument-warning'   => "'''Upozorenje:''' Ova stranica sadrži najmanje jedan argument u šablonu koji ima preveliku veličinu.
+Ovakvi argumenti se trebaju izbjegavati.",
+'post-expand-template-argument-category'  => 'Stranice koje sadrže nedostajuće argumente u šablonu',
+'parser-template-loop-warning'            => 'Otkrivena kružna greška u šablonu: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Dubina uključivanja šablona prekoračena ($1)',
+
+# "Undo" feature
+'undo-success' => 'Izmjena se može vratiti.
+Molimo da provjerite usporedbu ispod da budete sigurni da to želite učiniti, a zatim spremite promjene da bi ste završili vraćanje izmjene.',
+'undo-failure' => 'Izmjene se ne mogu vratiti zbog konflikta sa izmjenama u međuvremenu.',
+'undo-norev'   => 'Izmjena se ne može vratiti jer ne postoji ranija ili je obrisana.',
+'undo-summary' => 'Vraćena izmjena $1 [[Special:Contributions/$2|korisnika $2]] ([[User talk:$2|razgovor]])',
 
 # History pages
 'viewpagelogs'           => 'Pogledaj protokole ove stranice',

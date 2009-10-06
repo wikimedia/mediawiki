@@ -2199,7 +2199,7 @@ $1',
 
 # Contributions
 'contributions'       => '利用者の投稿記録',
-'contributions-title' => '$1 の投稿記録',
+'contributions-title' => '「$1」の投稿記録',
 'mycontris'           => '自分の投稿記録',
 'contribsub2'         => '利用者: $1 ($2)',
 'nocontribs'          => '利用者の投稿記録は見つかりませんでした。',
@@ -2338,6 +2338,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'sorbsreason'                     => 'あなたのIPアドレスは{{SITENAME}}の使用しているDNSブラックリストに公開プロキシとして登録されています。',
 'sorbs_create_account_reason'     => 'あなたのIPアドレスは、{{SITENAME}}の使用しているDNSブラックリストに公開プロキシとして登録されています。アカウントは作成できません。',
 'cant-block-while-blocked'        => 'ブロックされているため、他の利用者をブロックできません。',
+'cant-see-hidden-user'            => '投稿ブロックしようとした利用者は、既にブロックされ秘匿されています。秘匿者権限を持っていないため、この利用者の投稿ブロックを変更出来ません。',
 
 # Developer tools
 'lockdb'              => 'データベースのロック',

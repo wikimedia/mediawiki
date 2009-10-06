@@ -626,7 +626,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Protect
 'protectedarticle'            => 'proteje "[[$1]]"',
 'prot_1movedto2'              => 'book tiha [[$1]] ba [[$2]]',
-'protectcomment'              => 'Komentáriu:',
+'protectcomment'              => 'Motivu:',
 'protectexpiry'               => "to'o:",
 'protect-fallback'            => 'Presiza priviléjiu "$1"',
 'protect-level-autoconfirmed' => "Blokeiu ema anónimu ho uza-na'in foun",

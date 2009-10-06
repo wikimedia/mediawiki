@@ -2445,6 +2445,7 @@ O tym poważnym problemie dotyczącym bezpieczeństwa należy poinformować dost
 'sorbs_create_account_reason'     => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Nie możesz utworzyć konta',
 'cant-block-while-blocked'        => 'Nie możesz zablokować innych użytkowników, kiedy sam jesteś zablokowany.',
+'cant-see-hidden-user'            => 'Konto użytkownika, które próbujesz zablokować, zostało już zablokowane oraz ukryte. Bez uprawnienia do ukrywania kont nie możesz zobaczyć oraz modyfikować blokady tego użytkownika.',
 
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',
