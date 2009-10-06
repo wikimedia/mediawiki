@@ -197,7 +197,7 @@ $wgImgAuthPublicTest = true; ///< defaults to true - if public read is turned on
 /**@{
  * File repository structures
  *
- * $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepo is
+ * $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepos is
  * an array of such structures. Each repository structure is an associative
  * array of properties configuring the repository.
  *
