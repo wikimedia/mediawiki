@@ -1587,6 +1587,14 @@ $user: User object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserIsBlockedFrom': Check if a user is blocked from a specific page (for specific block
+	exemptions).
+$user: User in question
+$title: Title of the page in question
+&$blocked: Out-param, whether or not the user is blocked from that page.
+&$allowUsertalk: If the user is blocked, whether or not the block allows users to edit their
+                  own user talk pages.
+
 'UserIsBlockedGlobally': Check if user is blocked on all wikis.
 &$user: User object
 $ip: User's IP address
