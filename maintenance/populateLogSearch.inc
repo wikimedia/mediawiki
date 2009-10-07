@@ -8,7 +8,7 @@
  * @ingroup Maintenance
  */
 
-define( 'LOG_SEARCH_BATCH_SIZE', 100 );
+define( 'LOG_SEARCH_BATCH_SIZE', 300 );
 
 function migrate_log_params( $db ) {
 	$start = $db->selectField( 'logging', 'MIN(log_id)', false, __FUNCTION__ );
