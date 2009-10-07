@@ -8,10 +8,10 @@
 }
 	body div#left-navigation,
 	body div#right-navigation {
-		top:3em;
+		top:3.2em;
 	}
 	body div#right-navigation {
-		margin-top:3em;
+		margin-top:3.2em;
 	}
 	body #p-search form, 
 	body #p-search input, 
@@ -46,7 +46,7 @@
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body div.vectorTabs ul li {
-		line-height: 1.3em;
+		line-height: 1em;
 		display: inline-block;
 		height: 2em;
 		margin: 0 1px 0 0;
@@ -67,12 +67,17 @@
 		border-left:1px solid #cccccc;
 		border-right:1px solid #cccccc;
 		display: inline-block;
-		height: 1.9em;
-		padding-left: 0.4em;
-		padding-right: 0.4em;
+		height: 1.7em;
+		padding-left: 0.6em;
+		padding-right: 0.6em;
 		background-image:url(images/tab-fade.png);
-		background-position:top left;
+		background-position:bottom left;
 		background-repeat:repeat-x;
+		background-color:#ffffff;
+	}
+	body div.vectorTabs li.new a{
+		background-image:url(images/tab-new-fade.png);
+		
 	}
 	div.vectorTabs li a,
 	div.vectorTabs li a span {
@@ -143,7 +148,7 @@
 		border-right:1px solid #6cc8f3;
 		border-left:1px solid #6cc8f3;
 		background-color:#fff;
-		height:1.95em;
+		height:1.75em;
 		background-image:none;
 	}
 	body div.vectorTabs li.selected.first {
@@ -153,8 +158,8 @@
 	}
 	body div.vectorTabs li.selected.first a {
 		margin-left:7px;
-		padding-right:0.4em;
-		padding-left:0.2em;
+		padding-right:0.6em;
+		padding-left:0.4em;
 		border-left:none;
 	}
 	body div.vectorTabs li.selected.last {
@@ -164,8 +169,8 @@
 	}
 	body div.vectorTabs li.selected.last a {
 		margin-right:7px;
-		padding-left:0.4em;
-		padding-right:0.2em;
+		padding-left:0.6em;
+		padding-right:0.4em;
 		border-right:none;
 	}
 	
@@ -191,7 +196,7 @@
 	body div.vectorMenu h5 a {
 		display: inline-block;
 		width: 24px;
-		height:1.7em;
+		height:1.5em;
 		background-image: none !important;
 		
 	}
@@ -275,12 +280,12 @@
 #ca-unwatch.icon,
 #ca-watch.icon {
 	background-color:#ffffff;
-	height:1.9em !important;
+	height:1.7em !important;
 	
 }
 #ca-unwatch.icon a,
 #ca-watch.icon a {
-	height: 1.9em !important;
+	height: 1.7em !important;
 	border-bottom:none;
 }
 #ca-watch.icon a,
