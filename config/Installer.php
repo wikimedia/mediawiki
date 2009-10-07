@@ -635,8 +635,8 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 
 	## Postgres specific:
 	$conf->DBport      = importPost( "DBport",      "5432" );
-	$conf->DBmwschema  = importPost( "DBmwschema",  "mediawiki" );
 	$conf->DBts2schema = importPost( "DBts2schema", "public" );
+	$conf->DBpgschema  = importPost( "DBpgschema",  "mediawiki" );
 	
 	## SQLite specific
 	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", "" );
@@ -648,8 +648,8 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	## DB2 specific:
 	// New variable in order to have a different default port number
 	$conf->DBport_db2   = importPost( "DBport_db2",      "50000" );
-	$conf->DBmwschema   = importPost( "DBmwschema",  "mediawiki" );
 	$conf->DBcataloged  = importPost( "DBcataloged",  "cataloged" );
+	$conf->DBdb2schema  = importPost( "DBdb2schema",  "mediawiki" );
 
 	// Oracle specific
 	$conf->DBprefix_ora     = importPost( "DBprefix_ora" );
@@ -823,8 +823,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		## Postgres specific:
 		$wgDBport      = $conf->DBport;
-		$wgDBmwschema  = $conf->DBmwschema;
 		$wgDBts2schema = $conf->DBts2schema;
+
+		if( $wgDBtype == 'postgres' ) {
+			$wgDBmwschema = $conf->DBpgschema;
+		} elseif ( $wgDBtype == 'ibm_db2' ) {
+			$wgDBmwschema = $conf->DBdb2schema;
+		}
 
 		if( $conf->DBprefix2 != '' ) {
 			// For MSSQL
@@ -1612,7 +1617,7 @@ if( count( $errs ) ) {
 
 	<?php database_switcher('postgres'); ?>
 	<div class="config-input"><?php aField( $conf, "DBport", "Database port:" ); ?></div>
-	<div class="config-input"><?php aField( $conf, "DBmwschema", "Schema for mediawiki:" ); ?></div>
+	<div class="config-input"><?php aField( $conf, "DBpgschema", "Schema for mediawiki:" ); ?></div>
 	<div class="config-input"><?php aField( $conf, "DBts2schema", "Schema for tsearch2:" ); ?></div>
 	<div class="config-desc">
 		<p>The username specified above (at "DB username") will have its search path set to the above schemas, 
@@ -1655,7 +1660,7 @@ if( count( $errs ) ) {
 		aField( $conf, "DBport_db2", "Database port:" );
 	?></div>
 	<div class="config-input"><?php
-		aField( $conf, "DBmwschema", "Schema for mediawiki:" );
+		aField( $conf, "DBdb2schema", "Schema for mediawiki:" );
 	?></div>
 	<div>Select one:</div>
 		<ul class="plain">
@@ -1841,7 +1846,7 @@ function writeLocalSettings( $conf ) {
 		$dbsettings =
 "# Postgres specific settings
 \$wgDBport           = \"{$slconf['DBport']}\";
-\$wgDBmwschema       = \"{$slconf['DBmwschema']}\";
+\$wgDBmwschema       = \"{$slconf['DBpgschema']}\";
 \$wgDBts2schema      = \"{$slconf['DBts2schema']}\";";
 	} elseif( $conf->DBtype == 'sqlite' ) {
 		$dbsettings =
@@ -1855,7 +1860,7 @@ function writeLocalSettings( $conf ) {
 		$dbsettings =
 "# DB2 specific settings
 \$wgDBport_db2       = \"{$slconf['DBport_db2']}\";
-\$wgDBmwschema       = \"{$slconf['DBmwschema']}\";
+\$wgDBmwschema       = \"{$slconf['DBdb2schema']}\";
 \$wgDBcataloged      = \"{$slconf['DBcataloged']}\";";
 	} elseif( $conf->DBtype == 'oracle' ) {
 		$dbsettings =
