@@ -651,7 +651,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$del = '';
 		}
 
-		$ret = "{$del}{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+		$ret = "{$del}{$d} {$histlink}{$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 		
 		# Denote if username is redacted for this edit
 		if( $rev->getVisibility() & Revision::DELETED_USER ) {
