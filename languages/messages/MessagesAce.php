@@ -97,7 +97,7 @@ $messages = array(
 'searchbutton'     => 'Mita',
 'searcharticle'    => 'Jak u',
 'history'          => 'Riwayat barosa',
-'history_short'    => 'Riwayat away',
+'history_short'    => 'Atra u likôt',
 'printableversion' => 'Seunalén citak',
 'permalink'        => 'Hubông teutap',
 'edit'             => 'Andam',
@@ -374,7 +374,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|neu’ubah|neu’ubah}}',
-'recentchanges'                  => 'Neu’ubah paléng barô',
+'recentchanges'                  => 'Ban',
 'recentchanges-legend'           => 'Peuniléh neu’ubah paléng barô',
 'recentchanges-feed-description' => 'Peutumèë neu’ubah paléng barô lam wiki bak eumpeuën nyoë.',
 'rcnote'                         => "Di yup nyoë nakeuh {{PLURAL:$1|nakeuh '''1''' neu’ubah paléng barô |nakeuh '''$1''' neu’ubah paléng barô}} lam {{PLURAL:$2|'''1''' uroë|'''$2''' uroë}} nyoë, trôk ‘an $5, $4.",
@@ -450,7 +450,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'randomredirect' => 'Peuninah saban sakri',
 
 # Statistics
-'statistics' => 'Statistik',
+'statistics' => 'Keunira',
 
 'disambiguations' => 'Ôn disambiguasi',
 
@@ -643,7 +643,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'blocklink'                => 'theun',
 'unblocklink'              => 'peugadöh theun',
 'change-blocklink'         => 'ubah theun',
-'contribslink'             => 'nyang geupeugèt',
+'contribslink'             => 'peuneugöt',
 'blocklogpage'             => 'Log peutheun',
 'blocklogentry'            => 'theun [[$1]] ngön watèë maté tanggay $2 $3',
 'unblocklogentry'          => 'peugadöh theun "$1"',

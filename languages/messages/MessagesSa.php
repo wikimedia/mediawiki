@@ -381,7 +381,7 @@ $messages = array(
 'cancel'        => 'निरसनम्',
 'moredotdotdot' => 'अपि च...',
 'mypage'        => 'मम पृष्ठम्',
-'mytalk'        => 'मम सम्भाषणम्',
+'mytalk'        => 'मम संभाषणम्',
 'anontalk'      => 'अस्य आइ.पी. संकेतस्य कृते संभाषणम्',
 'navigation'    => 'सुचलनम्',
 'and'           => '&#32;तथा च',
@@ -442,11 +442,11 @@ $messages = array(
 'printableversion'  => 'मुद्रणीय पाठान्तरम्',
 'permalink'         => 'स्थिरबन्धनम्',
 'print'             => 'मुद्रयतु',
-'edit'              => 'सम्पादयतु',
+'edit'              => 'संपादयतु',
 'create'            => 'सृजतु',
 'editthispage'      => 'इदं पृष्ठं सम्पादयतु',
 'create-this-page'  => 'इदं पृष्ठं सृज',
-'delete'            => 'विलोप',
+'delete'            => 'विनाशयतु',
 'deletethispage'    => 'एतत् पृष्ठं अपाकरोतु',
 'undelete_short'    => '{{PLURAL:$1|एकं सम्पादनं|$1 सम्पादनानि}} अनपाकरोतु',
 'protect'           => 'सुरक्षित करोसि',
@@ -561,7 +561,7 @@ $messages = array(
 'welcomecreation'         => '<h2>स्वागतम्‌, $1!</h2><p>भवतः/भवत्याः लेखा सृष्टाऽस्ति।
 भवान्/भवती स्वकीयानि {{SITENAME}} वरीयांसि (प्रिफ़रेन्सेस्)  स्वच्छानुसारं कर्तुं शक्नोति।',
 'yourname'                => 'प्रयोक्तृ-नाम :',
-'yourpassword'            => 'कूटशब्दः:',
+'yourpassword'            => 'रहस्यवाक् :',
 'yourpasswordagain'       => 'कूटशब्दं पुनः लिखतु।',
 'remembermypassword'      => 'अस्मिन् संगणके मम प्रवेशसंबंधि-सूचनाः स्मरतु',
 'login'                   => 'प्रविशतु',
@@ -573,7 +573,7 @@ $messages = array(
 'createaccount'           => 'लेखां रचयतु',
 'gotaccountlink'          => 'प्रविशतु',
 'loginsuccesstitle'       => 'सुस्वागतम्‌। प्रवेशः सिद्धः।',
-'mailmypassword'          => 'नूतनं कूटशब्दं विद्युत्पत्रेण(ई-मेल् इति) प्रेषयतु',
+'mailmypassword'          => 'नूतनं रहस्यवाक् विद्युत्पत्रेण प्रेषयतु',
 'loginlanguagelabel'      => 'भाषा : $1',
 
 # Password reset dialog
@@ -618,7 +618,7 @@ $messages = array(
 'anoneditwarning'                  => "'''सावधानो भवतु:''' भवता प्रवेशं न कृतम्। 
 अस्य पृष्ठस्य इतिहासे भवतः आइ-पी-संकेतः अंकितः भविष्यति।",
 'summary-preview'                  => 'सारांशस्य प्राग्दृश्यम् :',
-'newarticle'                       => '(नूतनम्)',
+'newarticle'                       => '(नवीनम्)',
 'newarticletext'                   => "भवता एतादृशमेकं पृष्टं प्रति संबंधनम् अनुसृतम्, यत्पृष्ठं न इदानींयावत् विद्यते।
 
 पृष्ठं स्रष्टुम् अधःप्रदत्तायां पेटिकायां टंकणं करोतु (सहाय्यार्थं [[{{MediaWiki:Helppage}}|अत्र]] क्लिक्करोतु।
@@ -662,7 +662,7 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 उप $2',
 
 # Revision deletion
-'rev-delundel'   => 'दर्शयतु/लोपयतु',
+'rev-delundel'   => 'दर्शयतु/गोपयतु',
 'revdel-restore' => 'दृश्यतां परिवर्तयतु',
 
 # Merge log
@@ -739,7 +739,7 @@ $messages = array(
 'rclinks'                        => 'अंतिमानि $1 परिवर्तनानि अंतिमेषु $2 दिनेषु, दर्शयतु<br />$3',
 'diff'                           => 'अन्तरम्',
 'hist'                           => 'इति.',
-'hide'                           => 'लोपयतु',
+'hide'                           => 'गोपयतु',
 'show'                           => 'दर्शयतु',
 'minoreditletter'                => 'लघु',
 'newpageletter'                  => 'न',
@@ -874,7 +874,7 @@ $messages = array(
 'protectlogpage'              => 'सुरक्षा-सूचिका',
 'protectedarticle'            => '"[[$1]]" इत्येतद् सुरक्षितीकृतमस्ति',
 'modifiedarticleprotection'   => '"[[$1]]" इत्येतदर्थं सुरक्षा-स्तरः परिवर्तित: :',
-'protectcomment'              => 'टिप्पणी:',
+'protectcomment'              => 'कारणम् :',
 'protectexpiry'               => 'अवसानम् :',
 'protect_expiry_invalid'      => 'अवसान-समयः अमान्योऽस्ति।',
 'protect_expiry_old'          => 'अवसान-समयः अतीतोऽस्ति।',
@@ -898,7 +898,7 @@ $messages = array(
 'undeletedarticle' => '"[[$1]]" इत्येतद् पुनःस्थापितमस्ति।',
 
 # Namespace form on various pages
-'namespace'      => 'नामाकाशः',
+'namespace'      => 'नामाकाशः :',
 'invert'         => 'चयनं विपरीतीकरोतु',
 'blanknamespace' => '(मुख्यः)',
 
@@ -998,9 +998,9 @@ $messages = array(
 'tooltip-ca-unwatch'              => 'इदं पृष्ठं स्व-निरीक्षासूचिकातः अपाकरोतु',
 'tooltip-search'                  => '{{SITENAME}} अन्वेषणं करोति',
 'tooltip-search-go'               => 'एतत्-शीर्षकीयम् पृष्ठं गच्छतु चेत् तद्वर्तते',
-'tooltip-search-fulltext'         => 'एतत्पाठम् पृष्ठेषु अन्विष्यतु',
+'tooltip-search-fulltext'         => 'एतत् पाठं पृष्ठेषु अन्विष्यतु',
 'tooltip-p-logo'                  => 'मुख्यपृष्ठम्  अभ्यागम्',
-'tooltip-n-mainpage'              => 'मुखपृष्ठं प्रति गच्छतु',
+'tooltip-n-mainpage'              => 'मुख्यपृष्ठं संदर्शयतु',
 'tooltip-n-mainpage-description'  => 'मुख्यपृष्ठं संदर्शयतु',
 'tooltip-n-portal'                => 'प्रकल्पविषये, भवता किं कर्तुं शक्यम्, कुत्र अन्वेषणं शक्यम्',
 'tooltip-n-currentevents'         => 'सद्यःघटितानां घटनानां विषये पृष्ठभूमिक-सूचना',
@@ -1065,7 +1065,7 @@ $messages = array(
 पंक्तौ परवर्तिनः संबंधनानि अपवादान् इव विचार्यन्ते, अर्थात् तादृशानि पृष्ठाणि यत्र संचिकैषा भवितुं शक्नोति।',
 
 # Metadata
-'metadata'          => 'अधिसमंकम्',
+'metadata'          => 'अधिदत्तानि',
 'metadata-help'     => 'अस्यां संचिकायां अतिरिक्ता सूचना अस्ति, कदाचित् आंकिक-छायाचित्रग्राहिना अथवा स्कैनर् इत्यनेन योजिता येन एषा स्रष्टा वा आंकिकीकृता वा स्यात्।
 
 यदि एषा संचिका मूलावस्थातः परिवर्तिता अस्ति, तदा अत्र कानिचिद् विवरणानि परिवर्तितां संचिकां न पूर्णतया प्रदर्शयन्तीति शक्यम्।',

@@ -1049,7 +1049,7 @@ $1",
 'logdelete-success'           => "'''Zmieniono widoczność zdarzeń.'''",
 'logdelete-failure'           => "'''Widoczność rejestru nie może zostać ustawiona – '''
 $1",
-'revdel-restore'              => 'Zmień widoczność',
+'revdel-restore'              => 'zmień widoczność',
 'pagehist'                    => 'Historia edycji strony',
 'deletedhist'                 => 'Usunięta historia edycji',
 'revdelete-content'           => 'zawartość',

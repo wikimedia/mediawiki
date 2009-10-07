@@ -770,6 +770,7 @@ $messages['cy'] = array(
  * @author Pill
  * @author Tbleher
  * @author The Evil IP address
+ * @author Umherirrender
  */
 $messages['de'] = array(
 	'mwe-crop' => 'Bild zuschneiden',
@@ -821,7 +822,7 @@ $messages['de'] = array(
 	'mwe-contextmenu_opt' => 'Kontextmenüs aktivieren',
 	'mwe-sequencer_credit_line' => 'Entwickelt von <a href="http://kaltura.com">Kaltura, Inc.</a> in Zusammenarbeit mit der <a href="http://wikimediafoundation.org/wiki/Home">Wikimedia Foundation</a> (<a href="#">mehr Informationen</a>).',
 	'mwe-loading_txt' => 'lade <blink>…</blink>',
-	'mwe-loading_title' => 'Lade…',
+	'mwe-loading_title' => 'Lade …',
 	'mwe-error_load_lib' => 'Fehler: JavaScript $1 war nicht abrufbar oder lässt $2 nicht zu',
 	'fogg-select_file' => 'Wähle Datei',
 	'fogg-select_new_file' => 'Wähle eine neue Datei',
@@ -829,7 +830,7 @@ $messages['de'] = array(
 	'fogg-save_local_file' => 'Ogg speichern',
 	'fogg-check_for_fogg' => 'Suche nach Firefogg <blink>…</blink>',
 	'fogg-installed' => 'Firefogg ist installiert',
-	'fogg-for_improved_uplods' => 'Für verbesserte Uploads:',
+	'fogg-for_improved_uplods' => 'Für verbessertes Hochladen:',
 	'fogg-please_install' => '<a href="$1">Installiere Firefogg</a>. Mehr <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">über Firefogg</a>',
 	'fogg-use_latest_fox' => 'Installiere bitte zuerst [http://de.www.mozilla.com/de/ Firefox 3.5] (oder eine spätere Version).
 <i>Besuche danach die Seite neu, um die <b>Firefogg</b>-Erweiterung zu installieren.</i>',
@@ -864,7 +865,7 @@ $messages['de'] = array(
 	'mwe-cc_pd_title' => 'Public Domain',
 	'mwe-unknown_license' => 'Unbekannte Lizenz',
 	'mwe-results_from' => 'Ergebnisse von <a href="$1" target="_new" >$2</a>',
-	'mwe-your_recent_uploads' => 'Deine letzten Uploads',
+	'mwe-your_recent_uploads' => 'Deine letzten hochgeladenen Dateien',
 	'mwe-upload_a_file' => 'Eine neue Datei hochladen',
 	'mwe-resource_page_desc' => 'Quellseitenbeschreibung:',
 	'mwe-edit_resource_desc' => 'Wikitextquellbeschreibung bearbeiten:',
@@ -886,8 +887,8 @@ $messages['de'] = array(
 	'mwe-upload-transcoded-status' => 'Transcodiert',
 	'mwe-uploaded-status' => 'Hochgeladen',
 	'mwe-upload-stats-fileprogres' => '$1 von $2',
-	'mwe-upload_completed' => 'Dein Upload ist abgeschlossen',
-	'mwe-upload_done' => '<a href="$1">Dein Upload <i>sollte</i> verfügbar sein</a>.',
+	'mwe-upload_completed' => 'Das Hochladen ist abgeschlossen',
+	'mwe-upload_done' => '<a href="$1">Deine hochgeladene Datei <i>sollte</i> verfügbar sein</a>.',
 	'mwe-upload-unknown-size' => 'Unbekannte Größe',
 	'mwe-cancel-confim' => 'Möchtest du wirklich abbrechen?',
 	'mwe-successfulupload' => 'Hochladen erfolgreich',
@@ -922,7 +923,7 @@ $messages['de'] = array(
 	'mwe-seek_to' => 'Suchen bis',
 	'mwe-download_segment' => 'Auswahl herunterladen:',
 	'mwe-download_full' => 'Ganze Videodatei herunterladen:',
-	'mwe-download_right_click' => 'Klicke zum Download die rechte Maustaste und wähle <i>Ziel speichern unter…</i> aus',
+	'mwe-download_right_click' => 'Klicke zum Herunterladen die rechte Maustaste und wähle <i>Ziel speichern unter…</i> aus',
 	'mwe-download_clip' => 'Video herunterladen',
 	'mwe-download_text' => 'Text herunterladen (<a style="color:white" title="cmml" href="http://wiki.xiph.org/index.php/CMML">CMML</a> xml):',
 	'mwe-download' => 'Herunterladen',
@@ -3137,7 +3138,12 @@ $messages['ja'] = array(
  * @author BRUTE
  */
 $messages['ka'] = array(
+	'mwe-sc_duration' => 'ხანგძლივობა',
+	'mwe-improve_transcript' => 'გაუმჯობესება',
+	'rsd_results_desc' => 'შედეგები',
+	'mwe-select_file' => 'ფაილის არჩევა',
 	'mwe-upload' => 'ფაილის დამატება',
+	'mwe-file-exists-duplicate' => 'ეს ფაილი არის დუბლიკატი შემდეგი ფაილისა:',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -3804,6 +3810,8 @@ $messages['oc'] = array(
 	'fogg-transcoding' => "Encodatge d'una vidèo al format Ogg",
 	'fogg-encoding-done' => 'Encodatge acabat',
 	'fogg-badtoken' => 'Lo geton es pas valid',
+	'fogg-preview' => 'Previsualizar la vidèo',
+	'fogg-hidepreview' => 'Amagar la previsualizacion',
 	'mwe-imported_from' => "$1 a importat dempuèi [$2 $3]. Vejatz la [$4 pagina de la ressorsa] originala per mai d'entresenhas.",
 	'mwe-stream_title' => '$1 $2 cap a $3',
 	'fogg-help-sticky' => 'Ajuda (clicar per manténer)',

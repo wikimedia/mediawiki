@@ -976,33 +976,53 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'rightsnone'    => '(hiç biri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'               => 'bu sahypany okamaga',
-'action-edit'               => 'bu sahypany redaktirlemäge',
-'action-createpage'         => 'sahypa döretmäge',
-'action-createtalk'         => 'pikir alyşma sahypasy döretmäge',
-'action-createaccount'      => 'bu ulanyjy hasabyny döretmäge',
-'action-minoredit'          => 'bu özgerdişi ujypsyzja diýip bellemäge',
-'action-move'               => 'bu sahypanyň adyny üýtgetmäge',
-'action-move-subpages'      => 'bu sahypanyň we onuň kiçi sahypalarynyň adyny üýtgetmäge',
-'action-move-rootuserpages' => 'düýp ulanyjy sahypalarynyň adyny üýtgetmäge',
-'action-movefile'           => 'bu faýlyň adyny üýtgetmäge',
-'action-upload'             => 'bu faýly ýüklemäge',
-'action-delete'             => 'bu sahypany öçürmäge',
-'action-browsearchive'      => 'öçürilen sahypalary gözlemäge',
-'action-userrights'         => 'ähli ulanyjy hukuklaryny redaktirlemäge',
+'action-read'                 => 'bu sahypany okamaga',
+'action-edit'                 => 'bu sahypany redaktirlemäge',
+'action-createpage'           => 'sahypa döretmäge',
+'action-createtalk'           => 'pikir alyşma sahypasy döretmäge',
+'action-createaccount'        => 'bu ulanyjy hasabyny döretmäge',
+'action-minoredit'            => 'bu özgerdişi ujypsyzja diýip bellemäge',
+'action-move'                 => 'bu sahypanyň adyny üýtgetmäge',
+'action-move-subpages'        => 'bu sahypanyň we onuň kiçi sahypalarynyň adyny üýtgetmäge',
+'action-move-rootuserpages'   => 'düýp ulanyjy sahypalarynyň adyny üýtgetmäge',
+'action-movefile'             => 'bu faýlyň adyny üýtgetmäge',
+'action-upload'               => 'bu faýly ýüklemäge',
+'action-upload_by_url'        => 'bir URL-den bu faýly ýüklemäge',
+'action-writeapi'             => 'API ýazmaklygy ulanmaga',
+'action-delete'               => 'bu sahypany öçürmäge',
+'action-deleterevision'       => 'bu wersiýany öçürmäge',
+'action-deletedhistory'       => 'bu sahypanyň öçürilen geçmişini görmäge',
+'action-browsearchive'        => 'öçürilen sahypalary gözlemäge',
+'action-undelete'             => 'bu sahypany yzyna dikeltmäge',
+'action-suppressrevision'     => 'bu gizlin wersiýany görmäge we dikeltmäge',
+'action-suppressionlog'       => 'bu hususy gündeligi görmäge',
+'action-block'                => 'bu ulanyjynyň redaktirlemegini blokirlemäge',
+'action-protect'              => 'bu sahypanyň gorag derejelerini üýtgetmäge',
+'action-import'               => 'bu sahypany başga bir wikiden importirlemäge',
+'action-importupload'         => 'bu sahypany bir faýl ýüklemesinden importirlemäge',
+'action-patrol'               => 'başga ulanyjylaryň özgerdişini patrullyk edilen diýip bellemäge',
+'action-autopatrol'           => 'öz özgerdişiňizi patrullyk edilen diýip bellemäge',
+'action-unwatchedpages'       => 'gözegçilik edilmeýän sahypalaryň sanawyny görmäge',
+'action-userrights'           => 'ähli ulanyjy hukuklaryny redaktirlemäge',
+'action-userrights-interwiki' => 'başga wikilerde ulanyjylaryň ulanyjy hukuklaryny redaktirlemäge',
+'action-siteadmin'            => 'maglumat bazasyny gulplamaga ýa-da açmaga',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|üýtgeşme|üýtgeşme}}',
 'recentchanges'                     => 'Soňky üýtgeşmeler',
 'recentchanges-legend'              => 'Soňky üýtgeşmeleriň opsiýalary',
 'recentchanges-feed-description'    => 'Bu lentadaky wikide edilen iň soňky üýtgeşmeleri yzarlaň.',
+'recentchanges-label-legend'        => 'Şertli belgiler: $1.',
 'recentchanges-legend-newpage'      => '$1 - täze sahypa',
 'recentchanges-label-newpage'       => 'Bu özgerdiş täze bir sahypa döretdi',
 'recentchanges-legend-minor'        => '$1 - ujypsyzja özgerdiş',
 'recentchanges-label-minor'         => 'Bu bir ujypsyzja özgerdiş',
 'recentchanges-legend-bot'          => '$1 - bot özgerdişi',
 'recentchanges-label-bot'           => 'Bu özgerdiş bir bot tarapyndan amala aşyryldy',
+'recentchanges-legend-unpatrolled'  => '$1 - patrullyk edilmedik özgerdiş',
+'recentchanges-label-unpatrolled'   => 'Bu özgerdişe heniz patrullyk edilmändir',
 'rcnote'                            => "Aşakda $5, $4 senesinden başlap, soňky {{PLURAL:$2|1 günde|'''$2''' günde}} edilen {{PLURAL:$1|'''1''' üýtgeşme|'''$1''' üýtgeşme}} görkezilýär.",
+'rcnotefrom'                        => '<b>$2</b> senesinden bäri edilen özgerdişler aşakda görkezilýär (<b>$1</b> sanysyna çenli).',
 'rclistfrom'                        => '$1 senesinden bäri edilen özgerdişleri görkez',
 'rcshowhideminor'                   => 'ujypsyzja özgerdişleri $1',
 'rcshowhidebots'                    => 'botlary $1',
@@ -1019,58 +1039,118 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'newpageletter'                     => 'T',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|ulanyjy|ulanyjy}} gözegçilik edýär]',
+'rc_categories'                     => 'Kategoriýalar bilen çäklendir ("|" bilen aýyr)',
+'rc_categories_any'                 => 'Islendik',
+'newsectionsummary'                 => '/* $1 */ täze bölüm',
 'rc-enhanced-expand'                => 'Jikme-jiklikleri görkez (JavaScript gerekli)',
 'rc-enhanced-hide'                  => 'Jikme-jiklikleri gizle',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Degişli üýtgeşmeler',
-'recentchangeslinked-feed'    => 'Degişli üýtgeşmeler',
-'recentchangeslinked-toolbox' => 'Degişli üýtgeşmeler',
-'recentchangeslinked-title'   => '"$1" bilen baglanyşykly üýtgeşmeler',
-'recentchangeslinked-summary' => "Aşakdaky sanaw, görkezilen sahypa (ýa-da görkezilen kategoriýanyň agzalaryna) çykgyt berýän sahypalarda edilen üýtgeşmeleriň sanawydyr.
+'recentchangeslinked'          => 'Degişli üýtgeşmeler',
+'recentchangeslinked-feed'     => 'Degişli üýtgeşmeler',
+'recentchangeslinked-toolbox'  => 'Degişli üýtgeşmeler',
+'recentchangeslinked-title'    => '"$1" bilen baglanyşykly üýtgeşmeler',
+'recentchangeslinked-noresult' => 'Berlen wagtyň dowamynda çykgyt berýän sahypalarda üýtgeşme bolmady.',
+'recentchangeslinked-summary'  => "Aşakdaky sanaw, görkezilen sahypa (ýa-da görkezilen kategoriýanyň agzalaryna) çykgyt berýän sahypalarda edilen üýtgeşmeleriň sanawydyr.
 [[Special:Watchlist|Gözegçilik sanawyňyzdaky]] sahypalar '''goýy''' ýazgy bilen görkezilýär.",
-'recentchangeslinked-page'    => 'Sahypanyň ady:',
-'recentchangeslinked-to'      => 'Tersine, berlen sahypa çykgyt berýän sahypalary görkez',
+'recentchangeslinked-page'     => 'Sahypanyň ady:',
+'recentchangeslinked-to'       => 'Tersine, berlen sahypa çykgyt berýän sahypalary görkez',
 
 # Upload
-'upload'              => 'Faýl ýükle',
-'uploadbtn'           => 'Faýl ýükle',
-'reupload'            => 'Gaýtadan ýükle',
-'uploadnologin'       => 'Sessiýa açmansyňyz',
-'uploaderror'         => 'Ýükleme säwligi',
-'uploadtext'          => "Faýl ýüklemek üçin aşakdaky formdan peýdalanyň.
+'upload'                      => 'Faýl ýükle',
+'uploadbtn'                   => 'Faýl ýükle',
+'reupload'                    => 'Gaýtadan ýükle',
+'reuploaddesc'                => 'Ýüklemäni goýbolsun et we ýükleme formuna gaýdyp bar',
+'uploadnologin'               => 'Sessiýa açmansyňyz',
+'uploadnologintext'           => 'Faýl ýüklemek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]].',
+'upload_directory_missing'    => '($1) ýükleme direktoriýasy ýok we web serwer ony döredip bilmeýär.',
+'upload_directory_read_only'  => '($1) ýükleme direktoriýasyna web serweriň ýazmak rugsady ýok.',
+'uploaderror'                 => 'Ýükleme säwligi',
+'uploadtext'                  => "Faýl ýüklemek üçin aşakdaky formdan peýdalanyň.
 Ozaldan ýüklenilgi faýllary görmek ýa-da agtarmak üçin [[Special:FileList|ýüklenilgi faýllaryň sanawyna]] serediň, (gaýtadan) ýüklenenler [[Special:Log/upload|ýükleme gündeliginde]], öçürilenler [[Special:Log/delete|öçürme gündeliginde]] saklanylýar.
 
 Bir sahypada faýl goýmaklyk üçin aşakdaky formlaryň birine görä çykgyt ulanyň;
 * Faýlyň doly wersiýasyny ulanmak üçin: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
 * Çep gyrada bir gutynyň içinde aşagyna kesgitleme hökmünde 'alt tekst' bilen, 200 piksel giňişligindäki wersiýany ulanmaklyk üçin: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt tekst]]</nowiki></tt>'''
 * Faýly görkezmän, faýla gönümel çykgyt bermek üçin: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''",
-'upload-permitted'    => 'Rugsat berilýän faýl görnüşleri: $1',
-'uploadlog'           => 'ýükleme gündeligi',
-'uploadlogpage'       => 'Ýükleme gündeligi',
-'filename'            => 'Faýl ady',
-'filedesc'            => 'Gysgaça düşündiriş',
-'fileuploadsummary'   => 'Gysgaça düşündiriş:',
-'filereuploadsummary' => 'Faýl üýtgeşmeleri:',
-'filesource'          => 'Çeşme:',
-'uploadedfiles'       => 'Ýüklenen faýllar',
-'ignorewarnings'      => 'Hiç hili duýduryşa ähmiýet berme',
-'successfulupload'    => 'Şowly ýükleme',
-'uploadwarning'       => 'Ýükleme duýduryşy',
-'savefile'            => 'Faýly ýazdyr',
-'uploadedimage'       => 'Ýüklenen: "[[$1]]"',
-'overwroteimage'      => '"[[$1]]" faýlynyň täze wersiýasy ýüklendi',
-'uploadvirus'         => 'Faýlda wirus bar! Jikme-jiklik: $1',
-'sourcefilename'      => 'Çeşme faýlyň ady:',
-'destfilename'        => 'Niýetlenilýän faýlyň ady:',
-'upload-maxfilesize'  => 'Maksimum faýl ölçegi: $1',
-'watchthisupload'     => 'Bu faýla gözegçilik et',
-'filewasdeleted'      => 'Şeýle atly faýl ozal ýüklenipdir we soňra öçürilipdir. Faýly ýüklemänkäňiz, $1 sahypasyna bir göz aýlaň.',
-'upload-wasdeleted'   => "'''Duýduryş: Ozal öçürilen bir faýly ýükleýärsiňiz.'''
+'upload-permitted'            => 'Rugsat berilýän faýl görnüşleri: $1',
+'upload-preferred'            => 'Ileri tutulýan faýl görnüşleri: $1.',
+'upload-prohibited'           => 'Gadagan edilen faýl görnüşleri: $1.',
+'uploadlog'                   => 'ýükleme gündeligi',
+'uploadlogpage'               => 'Ýükleme gündeligi',
+'uploadlogpagetext'           => 'Aşakda iň soňky faýl ýüklemelriniň sanawy görkezilýär.
+Ýakyndan göz aýlamak üçin [[Special:NewFiles|täze faýllaryň galereýasyna]] serediň.',
+'filename'                    => 'Faýl ady',
+'filedesc'                    => 'Gysgaça düşündiriş',
+'fileuploadsummary'           => 'Gysgaça düşündiriş:',
+'filereuploadsummary'         => 'Faýl üýtgeşmeleri:',
+'filestatus'                  => 'Awtorlyk hukugy statusy:',
+'filesource'                  => 'Çeşme:',
+'uploadedfiles'               => 'Ýüklenen faýllar',
+'ignorewarning'               => 'Duýduryşa ähmiýet berme we faýly ýazdyr',
+'ignorewarnings'              => 'Hiç hili duýduryşa ähmiýet berme',
+'minlength1'                  => 'Faýlyň ady iň bolmanda bir simwoldan ybarat bolmalydyr.',
+'illegalfilename'             => '"$1" faýl adynda sahypa atlarynda ulanylmagyna rugsat berilmeýän käbir simwollar bar. 
+Başga bir faýl ady bilen gaýtadan synanyşmagyňyzy haýyş edýäris.',
+'badfilename'                 => 'Faýlyň ady "$1" diýlip üýtgedildi.',
+'filetype-badmime'            => 'MIME tipli "$1" faýllarynyň ýüklenmegine rugsat berilmeýär.',
+'filetype-bad-ie-mime'        => 'Bu faýly ýükläp bolmaýar, sebäbi Internet Explorer ony rugsat berilmeýän hem-de potensial taýdan zyýanly faýl görnüşi bolan "$1" diýip kesgitleýär.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' islenilýän faýl görnüşi däl.
+Ileri tutulýan {{PLURAL:\$3|faýl görnüşi|faýl görnüşleri}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' rugsat berilýän faýl görnüşi däl. 
+Rugsat berilýän {{PLURAL:\$3|faýl görnüşi|faýl görnüşleri}} \$2.",
+'filetype-missing'            => 'Faýlyň hiçhili giňeltmesi ýok (".jpg" ýaly).',
+'large-file'                  => 'Faýllaryň $1 ölçeginden has uly bolmaklygy maslahat berilmeýär;
+bu faýlyň ölçegi $2.',
+'largefileserver'             => 'Bu faýl serweriň rugsat berýän ölçeginden has uly.',
+'emptyfile'                   => 'Ýüklän faýlyňyz boş ýaly-la. 
+Munuň sebäbi faýlyň adyndaky bir ýalňyşlyk bolmagy ahmal. 
+Faýly hakykatdan-da ýüklemek isleýändigiňizi anyklaň.',
+'fileexists'                  => "Şu atly faýl eýýäm bar.
+Üýtgetmek barada ikirjiňlenýän bolsaňyz, onda ilki bilen '''<tt>[[:$1]]</tt>''' faýlyna bir göz aýlaň.
+[[$1|thumb]]",
+'filepageexists'              => "Bu faýl üçin düşündiriş sahypasy '''<tt>[[:$1]]</tt>''' adresinde eýýäm döredilipdir, emma häzir şeýle atly faýl ýok.
+Ýazjak gysgaça mazmunyňyz düşündiriş sahypasynda peýda boljak däldir.
+Mazmunyň şol ýerde peýda bolmaklygy üçin, ony el bilen redaktirlemeli bolýarsyňyz.
+[[$1|thumb]]",
+'fileexists-extension'        => "Birmeňzeş atly bir faýl bar: [[$2|thumb]]
+* Ýüklenilýän faýlyň ady: '''<tt>[[:$1]]</tt>'''
+* Bar bolan faýlyň ady: '''<tt>[[:$2]]</tt>'''
+Başga bir at saýlamagyňyzy haýyş edýäris.",
+'fileexists-thumbnail-yes'    => "Bu faýl kiçeldilen ölçegli bir surat ýaly-la ''(thumbnail)''. 
+[[$1|thumb]]
+'''<tt>[[:$1]]</tt>''' faýlyny barlap görüň.
+Eger barlanylan faýl asyl ölçegindäki şol bir surat bolsa, onda goşmaça bir miniatýura ýüklemek hökman däl.",
+'file-thumbnail-no'           => "Bu faýlyň ady '''<tt>$1</tt>''' bilen başlanýar.
+Bu ölçegi kiçeldilen başga bir surat ýaly-la ''(thumbnail)''
+Eger sizde bu suratyň doly ölçeglisi bar bolsa şony ýükläň, ýogsam faýlyň adyny üýtgediň.",
+'fileexists-forbidden'        => 'Şu atly bir faýl bar we onuň üstüne ýazyp bolmaýar. 
+Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir at ulanmagyňyzy haýyş edýäris. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Şu atly bir faýl umumy faýl ammarynda eýýäm bar. 
+Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir at ulanmagyňyzy haýyş edýäris. [[File:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Bu faýl aşakdaky {{PLURAL:$1|faýlyň|faýllaryň}} dublikatydyr:',
+'file-deleted-duplicate'      => 'Şu faýl bilen birmeňzeş bir faýl ([[$1]]) ozal öçürilipdir. Bu faýly gaýtadan ýüklemänkäňiz şol faýlyň öçürme geçmişini barlaň.',
+'successfulupload'            => 'Şowly ýükleme',
+'uploadwarning'               => 'Ýükleme duýduryşy',
+'savefile'                    => 'Faýly ýazdyr',
+'uploadedimage'               => 'Ýüklenen: "[[$1]]"',
+'overwroteimage'              => '"[[$1]]" faýlynyň täze wersiýasy ýüklendi',
+'uploaddisabled'              => 'Ýüklemeklik ýapyk',
+'uploaddisabledtext'          => 'Faýl ýüklemeklik ýapyk.',
+'php-uploaddisabledtext'      => 'PHP-de faýl ýüklemek ýapyk dur. file_uploads sazlamasyny barlap görüň.',
+'uploadscripted'              => 'Bu faýlda web brauzeri tarapyndan ýalňyş teswirlenmegi mümkin bolan bir HTML ýa-da skript kody bar.',
+'uploadcorrupt'               => 'Bu faýla ýa zeper ýetipdir ýa-da onuň giňeltmesi ýalňyş. Faýly barlap, gaýtadan ýüklemegiňizi haýyş edýäris.',
+'uploadvirus'                 => 'Faýlda wirus bar! Jikme-jiklik: $1',
+'sourcefilename'              => 'Çeşme faýlyň ady:',
+'destfilename'                => 'Niýetlenilýän faýlyň ady:',
+'upload-maxfilesize'          => 'Maksimum faýl ölçegi: $1',
+'watchthisupload'             => 'Bu faýla gözegçilik et',
+'filewasdeleted'              => 'Şeýle atly faýl ozal ýüklenipdir we soňra öçürilipdir. Faýly ýüklemänkäňiz, $1 sahypasyna bir göz aýlaň.',
+'upload-wasdeleted'           => "'''Duýduryş: Ozal öçürilen bir faýly ýükleýärsiňiz.'''
 
 Faýly ýüklemekligiň ýerliklidigini ýa-da däldigini göz öňünde tutuň.
 Bu faýlyň öçürme gündeligi aşakda berilýär:",
-'filename-bad-prefix' => "Ýükleýän faýlyňyzyň ady umuman sanly kameralar tarapyndan awtomatik usulda goşulýan düşnüksiz '''\"\$1\"''' bilen başlanýar.
+'filename-bad-prefix'         => "Ýükleýän faýlyňyzyň ady umuman sanly kameralar tarapyndan awtomatik usulda goşulýan düşnüksiz '''\"\$1\"''' bilen başlanýar.
 Faýlyňyz üçin has düşnükli bir at saýlamagyňyzy haýyş edýäris.",
 
 'upload-proto-error'        => 'Nädogry protokol',
@@ -1159,7 +1239,7 @@ Aşakdaky sanaw diňe şu faýla çykgyt berýän {{PLURAL:$1|ilkinji faýly |il
 'nolinkstoimage'            => 'Bu faýla çykgyt berýän hiçhili sahypa ýok.',
 'morelinkstoimage'          => 'Bu faýla [[Special:WhatLinksHere/$1|has köp çykgyt]] görkez.',
 'redirectstofile'           => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu faýla gönükdirýar:',
-'duplicatesoffile'          => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu faýlyň duplikatydyr ([[Special:FileDuplicateSearch/$2|jikme-jik maglumat]]):',
+'duplicatesoffile'          => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu faýlyň dublikatydyr ([[Special:FileDuplicateSearch/$2|jikme-jik maglumat]]):',
 'sharedupload'              => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.',
 'sharedupload-desc-there'   => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.
 Goşmaça maglumat üçin [$2 faýl düşündiriş sahypasyna] serediň.',
@@ -1196,7 +1276,7 @@ Goşmaça maglumat üçin [$2 faýl düşündiriş sahypasyna] serediň.',
 'filedelete-reason-otherlist' => 'Başga sebäp',
 'filedelete-reason-dropdown'  => '*Adaty öçürme sebäpleri
 ** Awtorlyk hukugynyň bozulmagy
-** Duplikat faýl',
+** Dublikat faýl',
 'filedelete-edit-reasonlist'  => 'Öçürme sebäplerini redaktirle',
 'filedelete-maintenance'      => 'Tehniki işler döwründe sahypalaryň öçürilmegi hem-de dikeldilmegi wagtlaýynça ýapylyp goýuldy.',
 
