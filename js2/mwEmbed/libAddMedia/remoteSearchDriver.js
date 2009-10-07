@@ -58,7 +58,7 @@ var default_remote_search_options = {
 	'caret_pos':null,
 	'local_wiki_api_url':null,
 
-	//can be 'api', 'form', 'autodetect', 'remote_link'
+	//can be 'api', 'autodetect', 'remote_link'
 	'import_url_mode': 'autodetect',
 
 	'target_title':null,
@@ -695,52 +695,25 @@ remoteSearchDriver.prototype = {
 			do_api_req( {
 				'data': { 'action':'paraminfo', 'modules':'upload' },
 				'url': _this.local_wiki_api_url
-			}, function(data){
-				if( typeof data.paraminfo.modules[0].classname == 'undefined'){
-					//@@todo would be nice if API permission on: action=query&meta=userinfo&uiprop=rights
-					// upload_by_url property reflected if $wgAllowCopyUploads config value .. oh well.
-					$j.ajax({
-						type: "GET",
-						dataType: 'html',
-						url: wgArticlePath.replace( '$1', 'Special:Upload' ), //@@todo may have problems in localized special pages
-															   //(could hit meta=siteinfo & specialpagealiases )
-															   // but might be overkill for now cuz we want to switch to new-upload branch soon.
-						success: function( form_html ){
-							if( form_html.indexOf( 'wpUploadFileURL' ) != -1){
-								_this.import_url_mode = 'form';
+			}, function(data){				
+				//jump right into api checks: 
+				for( var i in data.paraminfo.modules[0].parameters ){
+					var pname = data.paraminfo.modules[0].parameters[i].name;
+					if( pname == 'url' ){
+						js_log( 'Autodetect Upload Mode: api: copy by url:: ' );
+						//check permission  too:
+						_this.checkForCopyURLPermission(function( canCopyUrl ){
+							if(canCopyUrl){
+								_this.import_url_mode = 'api';
+								js_log('import mode: ' + _this.import_url_mode);
+								callback();
 							}else{
 								_this.import_url_mode = 'none';
+								js_log('import mode: ' + _this.import_url_mode);
+								callback();
 							}
-							js_log('import mode: ' + _this.import_url_mode);
-							callback();
-						},
-						error: function(){
-							js_log('error in getting Special:Upload page');
-							_this.import_url_mode = 'none';
-
-							js_log('import mode: ' + _this.import_url_mode);
-							callback();
-						}
-					});
-				}else{
-					for( var i in data.paraminfo.modules[0].parameters ){
-						var pname = data.paraminfo.modules[0].parameters[i].name;
-						if( pname == 'url' ){
-							js_log( 'Autodetect Upload Mode: api: copy by url:: ' );
-							//check permission  too:
-							_this.checkForCopyURLPermission(function( canCopyUrl ){
-								if(canCopyUrl){
-									_this.import_url_mode = 'api';
-									js_log('import mode: ' + _this.import_url_mode);
-									callback();
-								}else{
-									_this.import_url_mode = 'none';
-									js_log('import mode: ' + _this.import_url_mode);
-									callback();
-								}
-							});
-							break;
-						}
+						});
+						break;
 					}
 				}
 			});
@@ -748,7 +721,7 @@ remoteSearchDriver.prototype = {
 	},
 	/*
 	 * checkForCopyURLPermission:
-	 * not really nessesary the api request to upload will return apopprirate error if the user lacks permission. or $wgAllowCopyUploads is set to false
+	 * not really nesesary the api request to upload will return apoprirate error if the user lacks permission. or $wgAllowCopyUploads is set to false
 	 * (use this function if we want to issue a warning up front)
 	 */
 	checkForCopyURLPermission:function( callback ){
@@ -833,7 +806,7 @@ remoteSearchDriver.prototype = {
 		if( loading_done ){
 			this.drawOutputResults();
 		}else{
-			//make sure the instance name is up-to-date refrence to _this;
+			//make sure the instance name is up-to-date refrerance to _this;
 			eval( _this.instance_name + ' = _this');
 			setTimeout( _this.instance_name + '.checkResultsDone()', 50);
 		}
@@ -1277,152 +1250,160 @@ remoteSearchDriver.prototype = {
 		rObj.target_resource_title = rObj.titleKey.replace(/File:|Image:/,'')
 
 		//check if local repository
-		//or if import mode if just "linking" (we should alaredy have the 'url'
+		//or if import mode if just "linking" (we should already have the 'url'
 
 		if( this.checkRepoLocal( cp ) || this.import_url_mode == 'remote_link'){
 			//local repo jump directly to check Import Resource callback:
 			 cir_callback( rObj );
-		}else{
+		}else{			
+			//check if the orginal  
+			_this.checkForFile(	
 			//update target_resource_title with resource repository prefix:
 			rObj.target_resource_title = cp.resource_prefix + rObj.target_resource_title;
+			reqObj['titles'] = _this.cFileNS + ':' + rObj.target_resource_title,						
+			//check if the file exists: 
+			_this.checkForFile( rObj.target_resource_title, function( imagePage ){
+				if( imagePage ){
+					//update to local src
+					rObj.local_src = imagePage['imageinfo'][0].url;
+					//@@todo maybe  update poster too?
+					rObj.local_poster = imagePage['imageinfo'][0].thumburl;
+					
+					//resource is already present (or resource with same name is already present)
+					rObj.target_resource_title = found_title.replace(/File:|Image:/,'');
+					cir_callback( rObj );
+				}else{
+					js_log("resource not present: update:"+ _this.cFileNS + ':' + rObj.target_resource_title);
 
-			//check if the resource is not already on this wiki
-			reqObj={
-				'action':'query',
-				'titles': _this.cFileNS + ':' + rObj.target_resource_title,
-				'prop'		: 'imageinfo',
-				'iiprop'	: 'url',
-				'iiurlwidth': '400'
-			};
+					//update the rObj with import info
+					rObj.pSobj.updateDataForImport( rObj );
 
-			do_api_req( {
-				'data':reqObj,
-				'url':this.local_wiki_api_url
-				}, function(data){
-					var found_title = false;
-					for(var i in data.query.pages){
-						if( i != '-1' && i != '-2' ){
-							js_log('found title: ' + i + ':' +  data.query.pages[i]['title']);
-							found_title=data.query.pages[i]['title'];
-							//update to local src
-							rObj.local_src = data.query.pages[i]['imageinfo'][0].url;
-							//@@todo maybe  update poster too?
-							rObj.local_poster = data.query.pages[i]['imageinfo'][0].thumburl;
-						}
-					}
-					if( found_title ){
-						js_log("checkImportResource:found title:" + found_title);
-						//resource is already present (or resource with same name is already present)
-						rObj.target_resource_title = found_title.replace(/File:|Image:/,'');
-						cir_callback( rObj );
+					//setup the resource description from resource description:
+					var wt = '{{Information '+"\n";
+
+					if( rObj.desc ){
+						wt += '|Description= ' + rObj.desc + "\n";
 					}else{
-						js_log("resource not present: update:"+ _this.cFileNS + ':' + rObj.target_resource_title);
+						wt += '|Description= ' + gM('mwe-missing_desc_see_source', rObj.link ) + "\n";
+					}
 
-						//update the rObj with import info
-						rObj.pSobj.updateDataForImport( rObj );
+					//output search specific info
+					wt+='|Source=' + rObj.pSobj.getImportResourceDescWiki( rObj ) + "\n";
 
-						//setup the resource description from resource description:
-						var wt = '{{Information '+"\n";
+					if( rObj.author )
+						wt+='|Author=' + rObj.author +"\n";
 
-						if( rObj.desc ){
-							wt += '|Description= ' + rObj.desc + "\n";
-						}else{
-							wt += '|Description= ' + gM('mwe-missing_desc_see_source', rObj.link ) + "\n";
-						}
+					if( rObj.date )
+						wt+='|Date=' + rObj.date +"\n";
 
-						//output search specific info
-						wt+='|Source=' + rObj.pSobj.getImportResourceDescWiki( rObj ) + "\n";
+					//add the Permision info:
+					wt+='|Permission=' + rObj.pSobj.getPermissionWikiTag( rObj ) +"\n";
 
-						if( rObj.author )
-							wt+='|Author=' + rObj.author +"\n";
+					if( rObj.other_versions )
+						wt+='|other_versions=' + rObj.other_versions + "\n";
 
-						if( rObj.date )
-							wt+='|Date=' + rObj.date +"\n";
+					wt+='}}';
 
-						//add the Permision info:
-						wt+='|Permission=' + rObj.pSobj.getPermissionWikiTag( rObj ) +"\n";
-
-						if( rObj.other_versions )
-							wt+='|other_versions=' + rObj.other_versions + "\n";
-
-						wt+='}}';
-
-						//get any extra categories or helpful links
-						wt+= rObj.pSobj.getExtraResourceDescWiki( rObj );
+					//get any extra categories or helpful links
+					wt+= rObj.pSobj.getExtraResourceDescWiki( rObj );
 
 
-						$j('#rsd_resource_import').remove();//remove any old resource imports
+					$j('#rsd_resource_import').remove();//remove any old resource imports
 
-						//@@ show user dialog to import the resource
-						$j( _this.target_container ).append('<div id="rsd_resource_import" '+
-						'class="ui-state-highlight ui-widget-content ui-state-error" ' +
-						'style="position:absolute;top:50px;left:50px;right:50px;bottom:50px;z-index:5">' +
-							'<h3 style="color:red">Resource: <span style="color:black">' + rObj.title + '</span> needs to be imported</h3>'+
-								'<div id="rsd_preview_import_container" style="position:absolute;width:50%;bottom:0px;left:0px;overflow:auto;top:30px;">' +
-									rObj.pSobj.getEmbedHTML( rObj, {'id': _this.target_container + '_rsd_pv_vid', 'max_height':'200','only_poster':true} )+ //get embedHTML with small thumb:
-									'<br style="clear both">'+
-									'<strong>'+gM('mwe-resource_page_desc') +'</strong>'+
-									'<div id="rsd_import_desc" syle="display:inline;">'+
-										mv_get_loading_img('position:absolute;top:5px;left:5px') +
-									'</div>'+
+					//@@ show user dialog to import the resource
+					$j( _this.target_container ).append('<div id="rsd_resource_import" '+
+					'class="ui-state-highlight ui-widget-content ui-state-error" ' +
+					'style="position:absolute;top:50px;left:50px;right:50px;bottom:50px;z-index:5">' +
+						'<h3 style="color:red">Resource: <span style="color:black">' + rObj.title + '</span> needs to be imported</h3>'+
+							'<div id="rsd_preview_import_container" style="position:absolute;width:50%;bottom:0px;left:0px;overflow:auto;top:30px;">' +
+								rObj.pSobj.getEmbedHTML( rObj, {'id': _this.target_container + '_rsd_pv_vid', 'max_height':'200','only_poster':true} )+ //get embedHTML with small thumb:
+								'<br style="clear both">'+
+								'<strong>'+gM('mwe-resource_page_desc') +'</strong>'+
+								'<div id="rsd_import_desc" syle="display:inline;">'+
+									mv_get_loading_img('position:absolute;top:5px;left:5px') +
 								'</div>'+
-								'<div id="rds_edit_import_container" style="position:absolute;left:50%;' +
-									'bottom:0px;top:30px;right:0px;overflow:auto;">'+
-									'<strong>' + gM('mwe-local_resource_title') + '</strong><br>'+
-									'<input type="text" size="30" value="' + rObj.target_resource_title + '" readonly="true"><br>'+
-									'<strong>' + gM('mwe-edit_resource_desc') + '</strong>' +
-									'<textarea id="rsd_import_ta" id="mv_img_desc" style="width:90%;" rows="8" cols="50">' +
-										wt +
-									'</textarea><br>' +
-									'<input type="checkbox" value="true" id="wpWatchthis" name="wpWatchthis" tabindex="7"/>' +
-									'<label for="wpWatchthis">'+gM('mwe-watch_this_page')+'</label><br><br><br>' +
+							'</div>'+
+							'<div id="rds_edit_import_container" style="position:absolute;left:50%;' +
+								'bottom:0px;top:30px;right:0px;overflow:auto;">'+
+								'<strong>' + gM('mwe-local_resource_title') + '</strong><br>'+
+								'<input type="text" size="30" value="' + rObj.target_resource_title + '" readonly="true"><br>'+
+								'<strong>' + gM('mwe-edit_resource_desc') + '</strong>' +
+								'<textarea id="rsd_import_ta" id="mv_img_desc" style="width:90%;" rows="8" cols="50">' +
+									wt +
+								'</textarea><br>' +
+								'<input type="checkbox" value="true" id="wpWatchthis" name="wpWatchthis" tabindex="7"/>' +
+								'<label for="wpWatchthis">'+gM('mwe-watch_this_page')+'</label><br><br><br>' +
 
-									$j.btnHtml(gM('mwe-do_import_resource'), 'rsd_import_doimport', 'check' ) + ' ' +
+								$j.btnHtml(gM('mwe-do_import_resource'), 'rsd_import_doimport', 'check' ) + ' ' +
 
-									$j.btnHtml(gM('mwe-update_preview'), 'rsd_import_apreview', 'refresh' ) + '<div style="clear:both;height:20px;"/>' +
+								$j.btnHtml(gM('mwe-update_preview'), 'rsd_import_apreview', 'refresh' ) + '<div style="clear:both;height:20px;"/>' +
 
-									$j.btnHtml(gM('mwe-cancel_import'), 'rsd_import_acancel', 'close' ) + ' ' +
+								$j.btnHtml(gM('mwe-cancel_import'), 'rsd_import_acancel', 'close' ) + ' ' +
 
-								'</div>'+
-								//output the rendered and non-renderd version of description for easy swiching:
-						'</div>');
-						//add hover:
-						//update video tag
-						rewrite_by_id(_this.target_container + '_rsd_pv_vid');
+							'</div>'+
+							//output the rendered and non-renderd version of description for easy swiching:
+					'</div>');
+					//add hover:
+					//update video tag
+					rewrite_by_id(_this.target_container + '_rsd_pv_vid');
+					//load the preview text:
+					_this.getParsedWikiText( wt, _this.cFileNS +':'+ rObj.target_resource_title, function( o ){
+						$j('#rsd_import_desc').html(o);
+					});
+					//add bindings:
+					$j( _this.target_container + ' .rsd_import_apreview').btnBind().click(function(){
+						/*$j('#rsd_import_desc').show().html(
+							mv_get_loading_img()
+						);*/
 						//load the preview text:
-						_this.getParsedWikiText( wt, _this.cFileNS +':'+ rObj.target_resource_title, function( o ){
+						_this.getParsedWikiText( $j('#rsd_import_ta').val(), _this.cFileNS +':'+ rObj.target_resource_title, function( o ){
+							js_log('got updated preivew: ');
 							$j('#rsd_import_desc').html(o);
 						});
-						//add bidings:
-						$j( _this.target_container + ' .rsd_import_apreview').btnBind().click(function(){
-							/*$j('#rsd_import_desc').show().html(
-								mv_get_loading_img()
-							);*/
-							//load the preview text:
-							_this.getParsedWikiText( $j('#rsd_import_ta').val(), _this.cFileNS +':'+ rObj.target_resource_title, function( o ){
-								js_log('got updated preivew: ');
-								$j('#rsd_import_desc').html(o);
-							});
+					});
+					$j(_this.target_container + ' .rsd_import_doimport').btnBind().click(function(){
+						//check import mode:							
+						if( _this.import_url_mode=='api'){
+							_this.doImportAPI( rObj , cir_callback);
+						}else{
+							js_log("Error: import mode is not form or API (can not copy asset)");
+						}
+					});
+					$j( _this.target_container + ' .rsd_import_acancel').btnBind().click(function(){
+						$j('#rsd_resource_import').fadeOut("fast",function(){
+							$j(this).remove();
 						});
-						$j(_this.target_container + ' .rsd_import_doimport').btnBind().click(function(){
-							//check import mode:
-							if(_this.import_url_mode=='form'){
-								_this.doImportSpecialPage( rObj, cir_callback );
-							}else if( _this.import_url_mode=='api'){
-								_this.doImportAPI( rObj , cir_callback);
-							}else{
-								js_log("Error: import mode is not form or API (can not copy asset)");
-							}
-						});
-						$j( _this.target_container + ' .rsd_import_acancel').btnBind().click(function(){
-							$j('#rsd_resource_import').fadeOut("fast",function(){
-								$j(this).remove();
-							});
-						});
-					}
+					});
 				}
 			);
 		}
+	},
+	checkForFile:function( fName, callback){	 
+		reqObj={
+				'action':'query',
+				'titles': _this.cFileNS + ':' + fName,
+				'prop'		: 'imageinfo',
+				'iiprop'	: 'url',
+				'iiurlwidth': '400'
+		};			
+		//first check the api for imagerepository
+		do_api_req( {
+			'data':reqObj,
+			'url':this.local_wiki_api_url
+			},function(data){
+				var found_title = false;
+				for(var i in data.query.pages){				
+					js_log('found title: ' + i + ':' +  data.query.pages[i]['title']);
+					found_title=data.query.pages[i]['title'];					
+				}
+				if( found_title ){
+					js_log("checkForFile found title:" + found_title);
+					callback( data.query.pages[i] );
+				}else{
+					callback( false );
+				}
+			}
+		);
 	},
 	doImportAPI:function(rObj, cir_callback){
 		var _this = this;
@@ -1431,7 +1412,7 @@ remoteSearchDriver.prototype = {
 			'mvBaseUploadInterface',
 			'$j.ui.progressbar'
 		],function(){
-			//initicate a download similar to url copy:
+			//initiate a download similar to url copy:
 			myUp = new mvBaseUploadInterface({
 				'api_url' : _this.local_wiki_api_url,
 				'done_upload_cb':function(){
@@ -1473,95 +1454,7 @@ remoteSearchDriver.prototype = {
 		}
 		callback(false);
 		return false;
-	},
-	/**
-	 * doImportSpecialPage
-	 * can be depricated once we support upload api support is widespred.
-	 */
-	doImportSpecialPage:function(rObj, cir_callback){
-		var _this = this;
-		 //get an edittoken:
-		do_api_req( {
-			'data':	{	'action':'query',
-						'prop':'info',
-						'intoken':'edit',
-						'titles': rObj.titleKey
-					},
-			'url':_this.local_wiki_api_url
-			}, function(data){
-				//could recheck if it has been created in the mean time
-				if( data.query.pages[-1] ){
-					var editToken = data.query.pages[-1]['edittoken'];
-					if(!editToken){
-						//@@todo give an ajax login or be more friendly in some way:
-						js_error("You don't have permission to upload (are you logged in?)");
-						//remove top level:
-						$j('#modalbox').fadeOut("normal",function(){
-							$j(this).remove();
-							$j('#mv_overlay').remove();
-						});
-					}else{
-						//not sure if we can do remote url uploads (so just do a local post)
-						js_log('got token for new page:' +editToken);
-						var postVars = {
-							'wpSourceType'			:'web',
-							'wpUploadFileURL'	 	: rObj.src,
-							'wpDestFile'		  	: rObj.target_resource_title,
-							'wpUploadDescription' 	: $j('#rsd_import_ta').val(),
-							'wpWatchthis'		 	: $j('#wpWatchthis').val(),
-							'wpUpload'				: 'Upload file'
-						}
-						//set to uploading:
-						$j('#rsd_resource_import').append('<div id="rsd_import_progress"'+
-							'style="position:absolute;top:0px;'+
-								'left:0px;width:100%;height:100%;'+
-								'z-index:5;background:#FFF;overflow:auto;">'+
-									'<div style="position:absolute;left:30%;right:30%"><h3>'+gM('mwe-importing_asset')+'</h3><br>' +
-										mv_get_loading_img('','mv_loading_bar_img') +
-									'</div>'+
-							'</div>'
-						);
-						$j.post(wgArticlePath.replace(/\$1/,'Special:Upload'),
-							postVars,
-							function(data){
-								//@@todo this will be replaced once we add upload image support to the api.
-
-								//very basic test to see if we got passed to the image page:
-								//@@todo more normalization stuff
-								var sstring ='var wgPageName = "' + _this.cFileNS + ':' + rObj.target_resource_title.replace(/ /g,'_') +'"';
-								if(data.indexOf( sstring ) !=-1){
-									js_log('found: ' + sstring);
-									$j('#rsd_resource_import').remove();
-									cir_callback( rObj );
-								}else{
-									js_log("Error or warning: (did not find: \"" + sstring + ' in output' );
-									pos_etitle = '<h1 class="firstHeading">';
-									var error_txt = form_txt = '';
-									var res = grabWikiFormError( data );
-
-									if( res.error_txt )
-										error_txt = res.error_txt;
-
-									if( res.form_txt )
-										form_txt = res.form_txt;
-
-									js_log( 'error text is: ' + error_txt );
-									$j( '#rsd_resource_import' ).html( '<h3>Error</h3>' + error_txt + '<br>' + form_txt +
-											'<br>'+
-										'<a href="#" id="rsd_import_error" >' + gM('mwe-cancel_import') + '</a>'
-									);
-									//set up cancel action:
-									$j('#rsd_import_error').click(function(){
-										$j('#rsd_resource_import').remove();
-									});
-								}
-							}
-						);
-					}
-				}
-			}
-		);
-	},
+	},	
 	previewResource:function( rObj ){
 		var _this = this;
 		this.checkImportResource( rObj, function(){
@@ -1640,7 +1533,8 @@ remoteSearchDriver.prototype = {
 		);
 	},
 	insertResource:function( rObj){
-		js_log('insertResource: ' + rObj.title);
+		js_log('insertResource: ' + rObj.title);					
+		
 		var _this = this
 		//dobule check that the resource is present:
 		this.checkImportResource( rObj, function(){
