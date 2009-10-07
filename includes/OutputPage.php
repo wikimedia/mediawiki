@@ -1819,7 +1819,7 @@ class OutputPage {
 		//add user js if enabled:
 		if( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
 			$action = $wgRequest->getVal( 'action', 'view' );
-			if( $this->mTitle->isJsSubpage() and $sk->userCanPreview( $action ) ) {
+			if( $this->mTitle && $this->mTitle->isJsSubpage() and $sk->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
 				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
