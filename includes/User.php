@@ -1338,6 +1338,9 @@ class User {
 			$blocked = false;
 			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
 		}
+		
+		wfRunHooks( 'UserIsBlockedFrom', array( $this, $title, &$blocked, &$allowUsertalk ) );
+		
 		wfProfileOut( __METHOD__ );
 		return $blocked;
 	}
