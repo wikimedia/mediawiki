@@ -206,7 +206,7 @@ class OutputPage {
 	 */
 	function addScriptClass( $js_class ){
 		global $wgDebugJavaScript, $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses,
-				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath, $wgEnableJS2system;
+				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath, $wgStylePath, $wgEnableJS2system;
 
 		$path = jsScriptLoader::getJsPathFromClass( $js_class );
 		if( $path !== false ){
@@ -217,7 +217,15 @@ class OutputPage {
 				}
 			} else {
 				// Source the script directly
-				$path = $wgScriptPath . '/' . $path;
+				$prefix = "skins/common/";
+				if( substr( $path, 0, 1 ) == '/' ) {
+					// straight path
+				} elseif( substr( $path, 0, strlen( $prefix ) ) == $prefix ) {
+					// Respect $wgStypePath
+					$path = "{$wgStylePath}/common/" . substr( $path, strlen( $prefix ) );
+				} else {
+					$path = $wgScriptPath . '/' . $path;
+				}
 				$urlAppend = ( $wgDebugJavaScript ) ? time() : $this->getURIDparam( $js_class );
 				$this->addScript( Html::linkedScript( "$path?$urlAppend" ) );
 
