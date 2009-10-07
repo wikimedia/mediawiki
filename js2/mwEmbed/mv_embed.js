@@ -150,11 +150,14 @@ if( !mv_embed_path ) {
 			return '&lt;' + key + '&gt;';// Missing key placeholder
 		
 		//swap in the arg values
-		var ms = $.lang.gMsgSwap( key, args);		
+		var ms =  $.lang.gMsgSwap( key, args) ;		
+		 
 		//a quick check to see if we need to send the msg via the 'parser'
 		//(we can add more detailed check once we support more wiki syntax)
-		if(ms.indexOf('{{')==-1)
+		if(ms.indexOf('{{')==-1){
 			return ms;
+			//return ms;
+		}
 					
 		//make sure we have the lagMagic setup: 
 		$.lang.magicSetup();
@@ -229,9 +232,54 @@ if( !mv_embed_path ) {
 		 */
 		function matchRuleTest(cRule, val){
 			js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
+			
+			function checkValue(compare, val){
+				if(typeof compare == 'string'){
+					range = compare.split('-');	
+					if( range.length >= 1 ){
+						if( val >= range[0] &&  val <= range[1] )
+							return true; 
+					}
+				}
+				//else do a direct compare
+				if(compare == val){
+					return true; 
+				}
+				return false;
+			}			
 			//check for simple cRule type:
 			if( typeof cRule == 'number'){					
 				return ( parseInt( val ) == parseInt( cRule) );					
+			}else if( typeof cRule == 'object' ){
+				var cmatch = {};		
+				//if a list we need to match all for rule match
+				for(var i in  cRule){
+					var cr = cRule[i]; 					
+					//set cr type
+					var crType =  '';
+					for( var j in cr ){
+						if(j == 'mod')
+							crType = 'mod'
+					}
+					switch(crType){
+						case 'mod':
+							if( cr ['is'] ){	
+								if( checkValue( val % cr['mod'], cr ['is'] ) )
+									cmatch[i] = true;																								
+							}else if( cr['not']){
+								if( ! checkValue( val % cr['mod'], cr ['not'] ) )
+									cmatch[i] = true;
+							}
+						break;
+					}
+				}
+				//check all the matches (taking into consideration "or" order) 
+				for(var i in cRule){					
+					if( ! cmatch[i] )
+						return false; 
+				}
+				return true;
+				
 			}
 		}
 		/**
