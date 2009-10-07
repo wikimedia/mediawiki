@@ -14,8 +14,10 @@ js2AddOnloadHook( function(){
 		//build table output: 
 		var o = '<table>';		
 		var msgTestSet = { 
+					
 			'test_plural_msg':[ 0, 1, 2, 5, 21, 30 ], 
-			'undelete_short': [ 0, 1, 2, 5, 21, 30 ], 
+			'undelete_short': [ 0, 1, 2, 5, 21, 30 ],
+			
 			//category-subcat-count' has two params:
 			'category-subcat-count' : [ 
 				[0,10], 
@@ -40,7 +42,7 @@ js2AddOnloadHook( function(){
 			//for each number value
 			for(var i in mTestSet){
 				var numVal = mTestSet[i];						
-				var numKey = (typeof numVal== 'object')? numVal.join( '_' ) : numVal; 											
+				var numKey = (typeof numVal== 'object')? numVal.join( '_' ).replace('/ /', '_') : numVal; 											
 				o+='<tr>'+
 						'<td>' + numVal + '</td>' + 
 						'<td>' + mKey + '</td>' + 
