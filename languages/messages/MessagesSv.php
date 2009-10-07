@@ -416,6 +416,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Denna kategori innehåller endast följande fil.|Följande {{PLURAL:$1|fil|$1 filer}} (av totalt $2) finns i denna kategori.}}',
 'category-file-count-limited'    => 'Följande {{PLURAL:$1|fil |$1 filer}} finns i den här kategorin.',
 'listingcontinuesabbrev'         => 'forts.',
+'index-category'                 => 'Indexerade sidor',
+'noindex-category'               => 'Icke-indexerade sidor',
 
 'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
@@ -714,6 +716,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'userexists'                 => 'Det valda användarnamnet används redan.
 Välj ett annat namn.',
 'loginerror'                 => 'Inloggningsproblem',
+'createaccounterror'         => 'Kunde inte skapa konto: $1',
 'nocookiesnew'               => 'Användarkontot skapades, men du är inte inloggad.
 {{SITENAME}} använder cookies för att logga in användare.
 Du har cookies avaktiverade.
@@ -739,6 +742,7 @@ Om denna begäran gjordes av någon annan, eller om du har kommit på ditt löse
 och inte längre önskar ändra det, så kan du ignorera detta meddelande och 
 fortsätta använda ditt gamla lösenord.',
 'noemail'                    => 'Användaren "$1" har inte registrerat någon e-postadress.',
+'noemailcreate'              => 'Du måste ange en giltig e-postadress',
 'passwordsent'               => 'Ett nytt lösenord har skickats till den e-postadress som användaren "$1" har registrerat. När du får meddelandet, var god logga in igen.',
 'blocked-mailpassword'       => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
 'eauthentsent'               => 'Ett e-brev för bekräftelse har skickats till den e-postadress som angivits.

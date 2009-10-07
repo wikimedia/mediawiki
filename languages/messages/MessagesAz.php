@@ -486,7 +486,10 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 Hesabınıza daxil olduqdan sonra, parolunuzu ''[[Special:ChangePassword|parolu dəyiş]]'' səhifəsində dəyişdirə bilərsiniz.",
 'newarticle'                 => '(Yeni)',
 'newarticletext'             => "Mövcud olmayan səhifəyə olan keçidi izlədiniz. Aşağıdakı sahəyə məzmununu yazaraq bu səhifəni '''siz''' yarada bilərsiniz. (əlavə məlumat üçün [[{{MediaWiki:Helppage}}|kömək səhifəsinə]] baxın). Əgər bu səhifəyə səhvən gəlmisinizsə sadəcə olaraq brauzerin '''geri''' düyməsinə vurun.",
-'anontalkpagetext'           => "----<big>'''''Bu səhifə anonim istifadəçiyə aid müzakirə səhifəsidir. Bu mesaj IP ünvana göndərilmişdir və əgər bu mesajın sizə aid olmadığını düşünürsünüzsə [[Special:UserLogin|qeydiyyatdan keçin]]. Bu zaman sizə yalnız öz fəaliyyətlərinizə görə mesaj gələcəkdir.'''''</big>",
+'anontalkpagetext'           => "----''Bu səhifə qeydiyyatdan keçməmiş və ya daxil olmamış anonim istifadəçiyə aid müzakirə səhifəsidir. 
+Ona görə bu istifadəçini rəqəmlərdən ibarət IP ünvanı ilə müəyyən etmək məcburiyyətindəyik.
+Belə IP ünvan bir neçə fərd tərəfindən istifadədə ola bilər.
+Əgər siz anonim istifadəçisinizsə və bu mesajın sizə aid olmadığını düşünürsünüzsə, onda  [[Special:UserLogin/signup|qeydiyyatdan keçin]] və ya [[Special:UserLogin|daxi olun]].''",
 'noarticletext'              => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
@@ -707,7 +710,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'uid'                       => 'İstifadəçi ID:',
 'prefs-memberingroups'      => 'Üzvü olduğu {{PLURAL:$1|qrup|qruplar}}:',
 'prefs-registration'        => 'Qeydiyyat vaxtı:',
-'yourrealname'              => 'Həqiqi adınız *',
+'yourrealname'              => 'Həqiqi adınız:',
 'yourlanguage'              => 'Dil:',
 'yournick'                  => 'Ləqəb:',
 'badsig'                    => 'Səhv xam imza.
@@ -859,7 +862,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'file-anchor-link'          => 'Fayl',
 'filehist-deleteone'        => 'sil',
 'filehist-datetime'         => 'Tarix/Vaxt',
-'filehist-user'             => 'Istifadəçi',
+'filehist-user'             => 'İstifadəçi',
 'filehist-dimensions'       => 'Ölçülər',
 'imagelinks'                => 'Fayl keçidləri',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
@@ -1114,7 +1117,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'protect-legend'              => 'Qorumayı təsdiq et',
 'protectcomment'              => 'Səbəb:',
 'protectexpiry'               => 'Vaxtı bitib',
-'protect_expiry_invalid'      => 'Bitmə vaxtı qüvvəsini itirmişdir',
+'protect_expiry_invalid'      => 'Bitmə vaxtı səhvdir',
 'protect_expiry_old'          => 'Bitmə vaxtı keçmişdir.',
 'protect-text'                => "Siz '''<nowiki>$1</nowiki>''' səhifəsinin mühafizə səviyyəsini görə və dəyişə bilərsiniz.",
 'protect-locked-blocked'      => "Səhifənin bloklu olduğu müddətdə siz mühafizə səviyyəsini dəyişə bilməzsiniz.
@@ -1219,12 +1222,16 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 
 # Move page
 'move-page-legend'        => 'Səhifənin adını dəyiş',
-'movepagetext'            => "Aşağıdakı formadan istifədə etmə səhifənin adını, bütün tarixçəsini də köçürməklə yeni başlığa dəyişəcək. Əvvəlki başlıq yeni başlığa istiqamətləndirmə səhifəsinə çevriləcək. Köhnə səhifəyə keçidlər dəyişməyəcək, ona görə də təkrarlanan və ya qırıq istiqamətləndirmələri yoxlamağı yaddan çıxarmayın. Keçidlərin lazımi yerə istiqamətləndirilməsini təmin etmək sizin məsuliyyətinizdədir.
+'movepagetext'            => "Aşağıdakı formadan istifədə etmə səhifənin adını, bütün tarixçəsini də köçürməklə yeni başlığa dəyişəcək. 
+Əvvəlki başlıq yeni başlığa istiqamətləndirmə səhifəsinə çevriləcək.
+Köhnə səhifəyə keçidləri avtomatik olaraq dəyişə bilərsiniz.
+Bu seçimi etmədiyiniz halda, [[Special:DoubleRedirects|təkrarlanan]] və ya [[Special:BrokenRedirects|qırıq istiqamətləndirmələri]] yoxlamağı yaddan çıxarmayın. 
+Keçidlərin lazımi yerə istiqamətləndirilməsini təmin etmək sizin məsuliyyətinizdədir.
 
 Nəzərə alın ki, hədəf başlığı altında bir səhifə mövcuddursa yerdəyişmə '''baş tutmayacaq'''. Buna həmin səhifənin boş olması və ya istiqamətləndirmə səhifəsi olması və keçmişdə redaktə edilməməsi halları istisnadır. Bu o deməkdir ki, səhvən adını dəyişdiyiniz səhifələri geri qaytara bilər, bununla yanaşı artıq mövcud olan səhifənin üzərinə başqa səhifə yaza bilməzsiniz.
 
 '''XƏBƏRDARLIQ!'''
-Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ola bilər, ona görə də bu dəyişikliyi yerinə yetirməzdən əvvəl bunun mümkün nəticələrini başa düşməniz xahiş olunur.",
+Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bilər, ona görə də bu dəyişikliyi yerinə yetirməzdən əvvəl, bunun mümkün nəticələrini başa düşdüyünüzdən əmin olun.",
 'movearticle'             => 'Səhifənin adını dəyişdir',
 'newtitle'                => 'Yeni başlıq',
 'move-watch'              => 'Bu səhifəni izlə',

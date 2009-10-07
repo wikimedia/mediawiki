@@ -368,6 +368,12 @@ Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPa
 'readonlytext'       => "La base di dâts pal moment e je blocade e no si puedin zontâ vôs e fâ modifichis, probabilmentri pe normâl manutenzion de base di dâts, daspò de cuâl dut al tornarà normâl.
 
 L'aministradôr ch'al à metût il bloc al à scrit cheste motivazion: $1",
+'missing-article'    => 'La base di dâts no à cjatât il test di une pagjine che e varès di vê vût cjatât, di non "$1" $2.
+
+Chest in gjenar al è causât dal jessi lâts daûr dal leam a une pagjine che e je stade eliminade, partint dal confront di dôs versions o di un leam tal storic.
+
+Se la cause no samee jessi cheste, tu podaressis vê cjatât un problem tal software.
+Segnalilu par plasê a un [[Special:ListUsers/sysop|administrator]], notant la URL.',
 'missingarticle-rev' => '(numar de revision: $1)',
 'filenotfound'       => 'No si pues cjatâ il file "$1".',
 'badtitle'           => 'Titul sbaliât',
@@ -575,7 +581,11 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'history-feed-item-nocomment' => '$1 ai $2',
 
 # Revision deletion
-'rev-delundel' => 'mostre/plate',
+'rev-delundel'   => 'mostre/plate',
+'revdel-restore' => 'cambie visibilitât',
+
+# Merge log
+'revertmerge' => 'Anule unions',
 
 # Diffs
 'history-title'           => 'Storic dai cambiaments di "$1"',
@@ -830,10 +840,10 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Dimension dal file',
 'filehist-comment'          => 'Coment',
-'imagelinks'                => 'Leams de figure',
+'imagelinks'                => 'Leams ae figure',
 'linkstoimage'              => '{{PLURAL:$1|La pagjine ca sot e je leade|Lis $1 pagjinis ca sot a son leadis}} a cheste figure:',
 'nolinkstoimage'            => 'No son pagjinis leadis a chest file.',
-'sharedupload'              => 'Chest file al è condivîs e al pues jessi doprât di altris progjets.',
+'sharedupload'              => 'Chest file al è ven di $1 e al pues jessi doprât di altris progjets.',
 'uploadnewversion-linktext' => 'Cjame sù une gnove version di chest file',
 
 # File deletion
@@ -934,8 +944,9 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'pager-older-n'           => '{{PLURAL:$1|1 plui vieri|$1 plui vieris}}',
 
 # Book sources
-'booksources'    => 'Fonts librariis',
-'booksources-go' => 'Va',
+'booksources'               => 'Fonts librariis',
+'booksources-search-legend' => 'Ricercje di fonts libraris',
+'booksources-go'            => 'Va',
 
 # Special:Log
 'specialloguserlabel'  => 'Utent:',
@@ -1024,7 +1035,7 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 
 <p>Se tu vuelis gjavâle de liste pi indevant, frache su \"No stâ tignî di voli\" te sbare in alt.",
 'removedwatch'         => 'Gjavade de liste',
-'removedwatchtext'     => 'La pagjine "<nowiki>$1</nowiki>" e je stade gjavade de liste di chês tignudis di voli.',
+'removedwatchtext'     => 'La pagjine "[[:$1]]" e je stade gjavade de [[Special:Watchlist|liste di chês tignudis di voli]].',
 'watch'                => 'Ten di voli',
 'watchthispage'        => 'Ten di voli cheste pagjine',
 'unwatch'              => 'No stâ tignî di voli',
@@ -1077,10 +1088,11 @@ Cjale $2 par une liste des ultimis eliminazions.',
 # Protect
 'protectlogpage'              => 'Regjistri des protezions',
 'protectedarticle'            => '$1 protezût',
+'modifiedarticleprotection'   => 'cambiât il nivel di protezion par "[[$1]]"',
 'protect-title'               => 'Protezint "$1"',
 'prot_1movedto2'              => '$1 movût in $2',
 'protect-legend'              => 'Conferme protezion',
-'protectcomment'              => 'Reson pe protezion',
+'protectcomment'              => 'Reson:',
 'protectexpiry'               => 'Scjadence:',
 'protect_expiry_invalid'      => 'Scjadence no valide.',
 'protect_expiry_old'          => 'La scjadence e je za passade.',
@@ -1111,6 +1123,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 # Undelete
 'viewdeletedpage'        => 'Viôt lis pagjinis eliminadis',
 'undeletebtn'            => 'Ripristine',
+'undeletelink'           => 'viôt/ripristine',
 'undeletecomment'        => 'Coment:',
 'undeletedarticle'       => 'al à recuperât "[[$1]]"',
 'undelete-search-submit' => 'Cîr',
@@ -1153,6 +1166,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'whatlinkshere-next'       => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
 'whatlinkshere-links'      => '← leams',
 'whatlinkshere-hideredirs' => '$1 re-indreçaments',
+'whatlinkshere-hidetrans'  => '$1 inclusions',
 'whatlinkshere-hidelinks'  => '$1 leams',
 'whatlinkshere-filters'    => 'Filtris',
 
@@ -1172,6 +1186,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'contribslink'             => 'contribûts',
 'blocklogpage'             => 'Regjistri dai blocs',
 'blocklogentry'            => 'al à blocât "[[$1]]"; scjadence $2 $3',
+'unblocklogentry'          => 'sblocât $1',
 'block-log-flags-nocreate' => 'creazion identitât blocade',
 
 # Developer tools
@@ -1212,7 +1227,7 @@ Sielç par plasê un altri non.',
 'talkexists'       => "'''La pagjine e je stade movude cun sucès, ma no si à podût movi la pagjine di discussion parcè che e esist za tal gnûf titul. Trasferìs il contignût a man par plasê.'''",
 'movedto'          => 'Movude in',
 'movetalk'         => 'Môf ancje la pagjine di discussion, se pussibil.',
-'1movedto2'        => '$1 movût in $2',
+'1movedto2'        => 'al à movût [[$1]] in [[$2]]',
 '1movedto2_redir'  => 'al à movût [[$1]] a [[$2]] par mieç di un re-indreçament',
 'movelogpage'      => 'Regjistri des pagjinis movudis',
 'movelogpagetext'  => 'Ca sot e je une liste des pagjinis movudis.',
@@ -1271,6 +1286,7 @@ Sielç par plasê un altri non.',
 'tooltip-search-fulltext'         => 'Cîr il test inserît intes pagjinis',
 'tooltip-p-logo'                  => 'Pagjine principâl',
 'tooltip-n-mainpage'              => 'Visite la pagjine principâl',
+'tooltip-n-mainpage-description'  => 'Visite la pagjine principâl',
 'tooltip-n-portal'                => 'Descrizion dal progjet, ce che tu puedis fâ e dulà che tu puedis cjatâ lis robis',
 'tooltip-n-currentevents'         => 'Informazions sui events di atualitât',
 'tooltip-n-recentchanges'         => 'Liste dai ultins cambiaments inte wiki.',
@@ -1302,6 +1318,8 @@ Sielç par plasê un altri non.',
 'tooltip-diff'                    => 'Mostre i cambiaments che tu âs fat al test.',
 'tooltip-compareselectedversions' => 'Viôt lis difarencis framieç lis dôs versions di cheste pagjine selezionadis.',
 'tooltip-watch'                   => 'Zonte cheste pagjine ae liste di chês tignudis di voli',
+'tooltip-rollback'                => '"Rollback" al anule il/i cambiament/s a cheste pagjine fats dal ultin utent cuntun sôl clic',
+'tooltip-undo'                    => '"Anule" al permet di anulâ chest cambiament e al vierç il modul pal cambiament te modalitât di anteprime. Al permet cussì di zontâ une reson tal somari.',
 
 # Stylesheets
 'monobook.css' => '/* modifiche chest file par personalizâ la skin monobook par dut il sît */',

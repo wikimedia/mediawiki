@@ -1039,6 +1039,9 @@ I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FUL
 'rev-deleted-unhide-diff'     => "Una de las revisions d'aquesta diferéncia es estada '''escafada'''.
 I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].
 En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se volètz.",
+'rev-suppressed-unhide-diff'  => "Una de las revisions d'aqueste diff es estada '''suprimida'''.
+I pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].
+En tant qu'administrator, podètz totjorn [$1 veire aqueste diff] se volètz contunhar.",
 'rev-delundel'                => 'afichar/amagar',
 'revisiondelete'              => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'     => 'Cibla per la revision invalida',
@@ -2455,6 +2458,7 @@ $1 ja es blocat. Volètz modificar los paramètres ?',
 'sorbs_create_account_reason'     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobèrt DNSBL per {{SITENAME}}.
 Podètz pas crear un compte',
 'cant-block-while-blocked'        => "Podètz pas blocar d'autres utilizaires pendent que sètz blocat(ada).",
+'cant-see-hidden-user'            => "L'utilizaire qu'ensajatz de blocar es ja estat blocat e amagat. Sens lo drech hideuser, podètz pas veire o modificar lo blocatge de l'utilizaire.",
 
 # Developer tools
 'lockdb'              => 'Varrolhar la banca',
