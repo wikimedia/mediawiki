@@ -3,8 +3,8 @@
 
 html .thumbimage,
 #toc, .toc, .mw-warning, div.thumbinner {
-	border-color: #c0c0c0;
-	background-color: #f0f0f0;
+	border-color: #cccccc;
+	background-color: #f7f7f7;
 }
 
 /* Framework */
@@ -20,7 +20,7 @@ a.stub {
 	color: #772233;
 }
 a.new, #p-personal a.new {
-	color: #990000 !important;
+	color: #a31205 !important;
 }
 {
 	color: #260e9c;
@@ -37,14 +37,14 @@ h3,
 h4,
 h5,
 h6 {
-	border-color:#8d8d8d;
+	border-color:#999999;
 }
 
 div.vectorTabs li.new a, 
 div.vectorTabs li.new a span, 
 div.vectorTabs li.new a:visited, 
 div.vectorTabs li.new a:visited span {
-	color:#990000;
+	color:#a31205;
 }
 
 #toc,
@@ -58,6 +58,6 @@ html .thumbimage,
 .usermessage,
 img.thumbborder,
 div.thumbinner{
-	border: 1px solid #c0c0c0;
-	background-color: #f0f0f0;
+	border: 1px solid #cccccc;
+	background-color: #f7f7f7;
 }
