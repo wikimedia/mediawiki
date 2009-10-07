@@ -546,6 +546,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20524) Hideuser: Show nice error when trying to block hidden user without 
   hideuser right
 * (bug 21026) Fixed file redirects on shared repos on non-English client wikis
+* (bug 21030) Fixed schema choices from being overwritten by defining unique field names per driver.
 
 == API changes in 1.16 ==
 
