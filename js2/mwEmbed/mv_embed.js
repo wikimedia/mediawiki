@@ -393,104 +393,137 @@ if( !mv_embed_path ) {
 				var ts = '' ;				
 				var curt = 0 ;
 				var schar = 0;				
-				for ( var a = 0 ; a < this.wikiText.length ; a++ ) {
-					if ( this.wikiText[a] == '{' && this.wikiText[a+1] == '{' ) {						
-						//set the start index if the outer most template: 
-						if( tcnt == 0 )
-							schar = a;
-													
-						tcnt++ ;						
-						a++ ;
-						if ( tcnt > 1 ) ts += '{{' ;
-					} else if ( this.wikiText[a] == '}' && this.wikiText[a+1] == '}' ) {
-						if ( tcnt > 1 ) ts += '}}' ;
-						if ( tcnt > 0 ) tcnt-- ;
-						if ( tcnt == 0 ) {							
-							curt++ ;
-							//@@todo handle <nowiki> type stuff
-							tObj = {								
-								"s" : schar,
-								"e" : a + 2,
-								"iText" :  ts
-							}
-							//Get template name: 
-							tname = ts.split('\|').shift() ;
-							tname = tname.split('\{').shift() ;							
-							tname = tname.replace( /^\s+|\s+$/g, "" ); //trim 							
-							//check for arguments:			
-							if( tname.split(':').length == 1 ){				
-								tObj["name"] = tname
-							}else{
-								tObj["name"] = tname.split(':').shift();
-								tObj["arg"] = tname.split(':').pop();
-							}
+				
+				
+				//build out nested template holders:
+				var depth = 0;
+				var tKey = 0;					
+				var ns = '';									
 							
-							//set template params
-							//get all the params (not including the name)
-							var cat = ts;
-													 
-							var pSet = ts.split('\|');
-							pSet.splice(0,1);								
-							if( pSet.length ){								
-								tObj.param = new Array();
-								for(var pInx in pSet){
-									var tStr = pSet[ pInx ];
-									for(var b=0 ; b < tStr.length ; b++){
-										if(tStr[b] == '=' && b>0 && b<tStr.length && tStr[b-1]!='\\'){
-											//named param
-											tObj.param[ tStr.split('=').shift() ] =	tStr.split('=').pop();									
-										}else{
-											//indexed param
-											tObj.param[ pInx ] = tStr;
-										}
-									}
+				/*
+				 * quickly recursive / parse out templates with top down recurse decent
+				 */ 
+				
+				// ~ probably a better algorithm out there / should mirror php parser flow ~
+				// ... but I am having fun with recursion so here it is...												
+				function rdpp ( txt ){										
+					var node = {};
+					//if we should output node text
+					var ont = true;					
+					//inspect each char					
+					for(var a=0; a < txt.length; a++){					
+						if( txt[a] == '{' && txt[a+1] == '{' ){
+							a=a+2;
+							node['p'] = node;							
+							if(!node['c'])
+								node['c'] = new Array();
+																
+							node['c'].push( rdpp( txt.substr( a ) ) );								
+							ont=true;																																			
+						}else if( txt[a] == '}' && txt[a+1] == '}'){
+							if( !node['p'] ){							
+								return node;
+							}
+							node = node['p'];
+							ont=false;
+							a=a+2;
+						}
+						if(!node['t'])
+							node['t']='';
+
+						if( txt[a] )
+								node['t']+=txt[a];
+					}
+					return node;
+				}									
+				/**
+				 * parse template text as template name and named params
+				 */
+				function parseTmplTxt( ts ){
+					var tObj = {};
+					//Get template name: 
+					tname = ts.split('\|').shift() ;
+					tname = tname.split('\{').shift() ;							
+					tname = tname.replace( /^\s+|\s+$/g, "" ); //trim 
+											
+					//check for arguments:			
+					if( tname.split(':').length == 1 ){				
+						tObj["name"] = tname;
+					}else{
+						tObj["name"] = tname.split(':').shift();
+						tObj["arg"] = tname.split(':').pop();
+					}
+					
+					js_log("TNAME::" + tObj["arg"] + ' from:: ' + ts);	
+					
+					var pSet = ts.split('\|');
+					pSet.splice(0,1);								
+					if( pSet.length ){								
+						tObj.param = new Array();
+						for(var pInx in pSet){
+							var tStr = pSet[ pInx ];
+							for(var b=0 ; b < tStr.length ; b++){
+								if(tStr[b] == '=' && b>0 && b<tStr.length && tStr[b-1]!='\\'){
+									//named param
+									tObj.param[ tStr.split('=').shift() ] =	tStr.split('=').pop();									
+								}else{
+									//indexed param
+									tObj.param[ pInx ] = tStr;
 								}
 							}
-							//here we could replace the template with a place holder 
-							// that we could target for clickback (say expand-o-templates)
-							var key1 = "##TMPL_HOLDER" + curt + ":" + "##" ;
-							this.pObj.tmpl_key[curt] = key1 ;														
-							this.pObj.tmpl_ns += key1 ;							
-							ts = '' ;																					
-							this.pObj.tmpl[ curt ] = tObj;
-						}
-						a++ ;
-				    } else {
-						if ( tcnt == 0 ) {
-							this.pObj.tmpl_ns += this.wikiText[a] ;
-						} else {
-							ts += this.wikiText[a] ;
 						}
 					}
-				}			
+					return tObj;
+				}
+				function getMagicTxtFromTempNode( node ){
+					node.tObj = parseTmplTxt ( node.t );
+					//do magic swap if templet key found in pMagicSet
+					if( node.tObj.name in pMagicSet){							
+						var nt = pMagicSet[ node.tObj.name ]( node.tObj );						
+						return nt;
+					}else{
+						//don't swap just return text
+						return node.t;
+					}			
+				}
+				/**
+				 * recurse_magic_swap
+				 * 
+				 * go last child first swap upward: (could probably be integrated above somehow) 
+				 */			
+				var pNode = null;	
+				function recurse_magic_swap( node ){					
+					if( !pNode )
+						pNode = node; 			
+																		
+					if( node['c'] ){						
+						//swap all the kids:					
+						for(var i in node['c']){								
+							var nt = recurse_magic_swap( node['c'][i] );									
+							//swap it into current
+							if( node.t ){							
+								node.t = node.t.replace( node['c'][i].t, nt);								
+							}	
+							//swap into parent
+							pNode.t  = pNode.t.replace( node['c'][i].t, nt);											
+						}
+						//do the current node:						
+						var nt = getMagicTxtFromTempNode( node );														
+						pNode.t = pNode.t.replace(node.t , nt);												
+						//run the swap for the outer most node						
+						return node.t;
+					}else{					
+						//node.t = getMagicFromTempObj( node.t )		
+						return getMagicTxtFromTempNode( node );
+					}
+				}		
+				//get text node system: 
+				var node = rdpp ( this.wikiText );			
+				//debugger;	
+				//parse out stuff: 
 				
-				//@@todo optionally support magic expansion(?) 
-				this.doMagicExpand();		    								
-			},
-			templates : function( tname ){
-				//get template objects (optionally get a set by its name) 
-				//hard code for plural for now:  
-				if(tname){
-					var tAry = new Array();
-					for(var i in this.pObj.tmpl){
-						if(this.pObj.tmpl[i]['name']==tname){
-							tAry.push( this.pObj.tmpl[i] );
-						}						
-					}	
-					return tAry;
-				}else{
-					return this.pObj.tmpl;
-				}								
-			},
-			doMagicExpand : function(){								
-				//for each template check if a pMagicSet exists:
-				tSet = this.templates();
-				for(var j in tSet){
-					var tObj = tSet[j];
-					if( tObj.name in pMagicSet){
-						tObj.oText = pMagicSet[ tObj.name ]( tObj );
-					}
-				}										
+				this.pOut = recurse_magic_swap( node);														
+															
 			},
 			/**
 			 * Returns the transformed wikitext
@@ -508,34 +541,13 @@ if( !mv_embed_path ) {
 				//wikiText updates should invalidate pOut
 				if( this.pOut == ''){
 					this.parse();
-				}else{					 
-					return this.pOut; 
-				}				
-				
-				//build output from swapable index: (could be moved to 'parse')
-				tSet = this.templates();
-				if( !tSet.length )
-					return this.wikiText;
-				//return::
-				var cInx = 0;				
-				for(var i in tSet){
-					tObj = tSet[i];
-					//check start point (fill from source to that point)
-					this.pOut+= this.wikiText.substring(cInx, tObj.s );
-					//output the transformed template 
-					this.pOut+= tObj.oText;
-					cInx = tObj.e;
 				}
-				if( tObj.e < this.wikiText.length)
-					this.pOut += this.wikiText.substring( tObj.e );
-										
-				return this.pOut;				
+				return this.pOut;												
 			}
 		};
 		//return the parserObj
 		return new parseObj( wikiText, opt) ;
-	}
-	
+	}	
 	
 })(window.$mw);
 //setup legacy global shortcuts: 
