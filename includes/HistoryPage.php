@@ -352,7 +352,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Xml::hidden( 'action', 'historysubmit' ) . "\n";
 
 		$this->buttons = '<div>';
-		if( $wgUser->isAllowed('deletedhistory') ) {
+		if( $wgUser->isAllowed('deleterevision') ) {
 			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
 			$this->buttons .= Xml::element( 'button',
@@ -468,7 +468,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$s = "($curlink) ($lastlink) $diffButtons";
 
-		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			// Don't show useless link to people who cannot hide revisions
 			if( !$rev->getVisibility() && !$wgUser->isAllowed( 'deleterevision' ) ) {
 				$del = Xml::check( 'deleterevisions', false, array('class' => 'mw-revdelundel-hidden') );
@@ -662,7 +662,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				);
 				$checkmark = array( 'checked' => 'checked' );
 			} else {
-				# Check visibility of old revisions
+				# Check ility of old revisions
 				if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = array(); // We will check the next possible one
