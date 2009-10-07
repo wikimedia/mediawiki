@@ -245,7 +245,7 @@ class SpecialContributions extends SpecialPage {
 				);
 			}
 		}
-	
+
 		// Old message 'contribsub' had one parameter, but that doesn't work for
 		// languages that want to put the "for" bit right after $user but before
 		// $links.  If 'contribsub' is around, use it for reverse compatibility,
@@ -433,9 +433,13 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function __construct( $target, $namespace = false, $year = false, $month = false, $tagFilter = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist rev-delundel pipe-separator' ) as $msg ) {
-			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
+
+		$msgs = array( 'uctop', 'diff', 'newarticle', 'rollbacklink', 'diff', 'hist', 'rev-delundel', 'pipe-separator' );
+
+		foreach( $msgs as $msg ) {
+			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape' ) );
 		}
+
 		$this->target = $target;
 		$this->namespace = $namespace;
 		$this->tagFilter = $tagFilter;
@@ -476,14 +480,16 @@ class ContribsPager extends ReverseChronologicalPager {
 			'options' => array( 'USE INDEX' => array('revision' => $index) ),
 			'join_conds' => $join_cond
 		);
-		
-		ChangeTags::modifyDisplayQuery( $queryInfo['tables'],
-										$queryInfo['fields'],
-										$queryInfo['conds'],
-										$queryInfo['join_conds'],
-										$queryInfo['options'],
-										$this->tagFilter );
-		
+
+		ChangeTags::modifyDisplayQuery(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			$queryInfo['join_conds'],
+			$queryInfo['options'],
+			$this->tagFilter
+		);
+
 		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;
 	}
@@ -558,12 +564,13 @@ class ContribsPager extends ReverseChronologicalPager {
 		if( $row->rev_id == $row->page_latest ) {
 			$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 			if( !$row->page_is_new ) {
-				$difftext .= '(' . $sk->linkKnown(
+				$difflink = $sk->linkKnown(
 					$page,
 					$this->messages['diff'],
 					array(),
 					array( 'diff' => 0 )
-				) . ')';
+				);
+				$difftext .= wfMsg( 'parentheses', $difflink );
 				# Add rollback link
 				if( $page->quickUserCan( 'rollback') && $page->quickUserCan( 'edit' ) ) {
 					$topmarktext .= ' '.$sk->generateRollback( $rev );
@@ -608,7 +615,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		if( $this->target == 'newbies' ) {
 			$userlink = ' . . ' . $sk->userLink( $row->rev_user, $row->rev_user_text );
-			$userlink .= ' (' . $sk->userTalkLink( $row->rev_user, $row->rev_user_text ) . ') ';
+			$userlink .= ' ' . wfMsg( 'parentheses', $sk->userTalkLink( $row->rev_user, $row->rev_user_text ) ) . ' ';
 		} else {
 			$userlink = '';
 		}
@@ -630,7 +637,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					'(' . $this->messages['rev-delundel'] . ')' ) . ' ';
+					wfMsg( 'parentheses', $this->messages['rev-delundel'] ) ) . ' ';
 			// Otherwise, show the link...
 			} else {
 				$query = array(
