@@ -1002,8 +1002,12 @@ class Preferences {
 		}
 	}
 
+	/**
+	 * @param object $user The user object
+	 * @return array Text/links to display as key; $skinkey as value
+	 */
 	static function generateSkinOptions( $user ) {
-		global $wgDefaultSkin;
+		global $wgDefaultSkin, $wgLang, $wgAllowUserCss, $wgAllowUserJs;
 		$ret = array();
 
 		$mptitle = Title::newMainPage();
@@ -1024,23 +1028,28 @@ class Preferences {
 		$sk = $user->getSkin();
 
 		foreach( $validSkinNames as $skinkey => $sn ) {
+			$linkTools = array();
+
+			# Mark the default skin
+			if( $skinkey == $wgDefaultSkin ) {
+				$linkTools[] = wfMsgHtml( 'default' );
+			}
+
+			# Create preview link
 			$mplink = htmlspecialchars( $mptitle->getLocalURL( "useskin=$skinkey" ) );
-			$previewlink = "(<a target='_blank' href=\"$mplink\">$previewtext</a>)";
-			$extraLinks = '';
-			global $wgAllowUserCss, $wgAllowUserJs;
+			$linkTools[] = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
+
+			# Create links to user CSS/JS pages
 			if( $wgAllowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
-				$customCSS = $sk->link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
-				$extraLinks .= " ($customCSS)";
+				$linkTools[] = $sk->link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
 			}
 			if( $wgAllowUserJs ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.js' );
-				$customJS = $sk->link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
-				$extraLinks .= " ($customJS)";
+				$linkTools[] = $sk->link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
 			}
-			if( $skinkey == $wgDefaultSkin )
-				$sn .= ' (' . wfMsgHtml( 'default' ) . ')';
-			$display = "$sn $previewlink{$extraLinks}";
+
+			$display = $sn . ' ' . wfMsg( 'parentheses', $wgLang->pipeList( $linkTools ) );
 			$ret[$display] = $skinkey;
 		}
 
