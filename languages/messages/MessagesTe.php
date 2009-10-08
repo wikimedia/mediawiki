@@ -540,7 +540,7 @@ $2',
 
 మీ ఖాతాని సృష్టించాం.
 మీ [[Special:Preferences|{{SITENAME}} అభిరుచులను]] మార్చుకోవడం మరువకండి.',
-'yourname'                   => 'సభ్యనామము',
+'yourname'                   => 'వాడుకరిపేరు:',
 'yourpassword'               => 'మీ సంకేతపదం',
 'yourpasswordagain'          => 'మళ్లీ సంకేతపదం ఇవ్వండి',
 'remembermypassword'         => 'ఈ కంప్యూటరులో నన్ను గుర్తుపెట్టుకో',
@@ -1662,7 +1662,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'usereditcount'           => '$1 {{PLURAL:$1|మార్పు|మార్పులు}}',
 'usercreated'             => '$1న $2కి చేరారు',
 'newpages'                => 'కొత్త పేజీలు',
-'newpages-username'       => 'సభ్యనామం:',
+'newpages-username'       => 'వాడుకరిపేరు:',
 'ancientpages'            => 'పాత పేజీలు',
 'move'                    => 'తరలించు',
 'movethispage'            => 'ఈ పేజీని తరలించు',
@@ -1997,7 +1997,7 @@ $NEWPAGE
 'undeletedpage'                => "<big>'''$1 ను పునస్థాపించాం'''</big>
 
 ఇటీవల జరిగిన తొలగింపులు, పునస్థాపనల కొరకు [[Special:Log/delete|తొలగింపు చిట్టా]]ని చూడండి.",
-'undelete-header'              => 'ఇటీవల తొలగించిన పేజీల కొరకు [[Special:Log/delete|తొలగింపు లాగ్]] చూడండి.',
+'undelete-header'              => 'ఇటీవల తొలగించిన పేజీల కొరకు [[Special:Log/delete|తొలగింపు చిట్టా]]ని చూడండి.',
 'undelete-search-box'          => 'తొలగించిన పేజీలను వెతుకు',
 'undelete-search-prefix'       => 'దీనితో మొదలయ్యే పేజీలు చూపించు:',
 'undelete-search-submit'       => 'వెతుకు',

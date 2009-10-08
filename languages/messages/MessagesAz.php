@@ -716,7 +716,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'badsig'                    => 'Səhv xam imza.
 HTML kodu yoxla.',
 'yourgender'                => 'Cins:',
-'gender-unknown'            => 'İstifadəçi',
+'gender-unknown'            => 'Göstərmə',
 'gender-male'               => 'Kişi',
 'gender-female'             => 'Qadın',
 'email'                     => 'E-məktub',

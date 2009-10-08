@@ -1523,6 +1523,7 @@ $messages['fi'] = array(
 	'mwe-summary' => 'Yhteenveto',
 	'mwe-upload-stats-fileprogres' => '$1 / $2',
 	'mwe-upload-unknown-size' => 'Tuntematon koko',
+	'mwe-cancel-confim' => 'Oletko varma, että haluat peruuttaa?',
 	'mwe-uploaderror' => 'Tallennusvirhe',
 	'mwe-uploadwarning' => 'Tallennusvaroitus',
 	'mwe-unknown-error' => 'Tuntematon virhe:',
@@ -3138,9 +3139,13 @@ $messages['ja'] = array(
  * @author BRUTE
  */
 $messages['ka'] = array(
+	'mwe-sc_audio' => 'აუდიო კონტროლი',
 	'mwe-sc_duration' => 'ხანგძლივობა',
 	'mwe-improve_transcript' => 'გაუმჯობესება',
+	'fogg-select_file' => 'ფაილის არჩევა',
 	'rsd_results_desc' => 'შედეგები',
+	'rsd_results_next' => 'შემდეგი',
+	'rsd_results_prev' => 'წინა',
 	'mwe-select_file' => 'ფაილის არჩევა',
 	'mwe-upload' => 'ფაილის დამატება',
 	'mwe-file-exists-duplicate' => 'ეს ფაილი არის დუბლიკატი შემდეგი ფაილისა:',
@@ -4512,7 +4517,9 @@ $messages['te'] = array(
 	'rsd_layout' => 'అమరిక:',
 	'mwe-summary' => 'సారాశం',
 	'mwe-ok-button' => 'సరే',
+	'mwe-player_fullscreen' => 'నిండుతెర',
 	'mwe-menu_btn' => 'మెనూ',
+	'mwe-close_btn' => 'మూసివేయి',
 );
 
 /** Turkish (Türkçe)

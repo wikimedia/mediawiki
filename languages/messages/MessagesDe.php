@@ -1342,7 +1342,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'datedefault'                   => 'Standard',
 'prefs-datetime'                => 'Datum und Zeit',
 'prefs-personal'                => 'Benutzerdaten',
-'prefs-rc'                      => 'Anzeige von „Letzte Änderungen“',
+'prefs-rc'                      => 'Letzte Änderungen',
 'prefs-watchlist'               => 'Beobachtungsliste',
 'prefs-watchlist-days'          => 'Anzahl der Tage, die die Beobachtungsliste standardmäßig umfassen soll:',
 'prefs-watchlist-days-max'      => 'Maximal 7 Tage',
