@@ -52,6 +52,7 @@ mvBaseUploadInterface.prototype = {
 	warnings_sessionkey:null,
 	chunks_supported:false,
 	form_post_override:false,
+	http_copy_upload : false,
 	action_done:false,
 	//the edit token:
 	etoken:false,
@@ -85,6 +86,10 @@ mvBaseUploadInterface.prototype = {
 			//set up the submit action:
 			$j( _this.editForm ).submit( function(){
 				js_log('setupForm.onSubmit:');
+				
+				//set the upload mode: 
+				_this.setWgUploadSelect();
+				
 				//run the original onsubmit (if not run yet set flag to avoid excessive chaining )
 				if( typeof( _this.org_onsubmit ) == 'function' ){
 					if( ! _this.org_onsubmit() ){
@@ -94,7 +99,7 @@ mvBaseUploadInterface.prototype = {
 				}
 				//check for post action override:
 				if( _this.form_post_override ){
-					js_log('form_post_override is true do form proccessing:');
+					js_log('form_post_override is true do form proccesing:');
 					return true;
 				}
 				//get the input form data in flat json:
@@ -117,7 +122,7 @@ mvBaseUploadInterface.prototype = {
 				}catch(e){
 					js_log('::error in dispProgressOverlay or detectUploadMode');
 				}
-
+				
 				//don't submit the form we will do the post in ajax
 				return false;
 			});
@@ -192,26 +197,20 @@ mvBaseUploadInterface.prototype = {
 		$j('#up-progressbar' ).progressbar( 'value', parseInt( 100 ) );
 		$j('#up-status-container').html( gM('mwe-upload-in-progress') );		
 	},
+	setWgUploadSelect: function(){
+		if( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked ){
+			this.http_copy_upload = false;
+		}else if(  $j('#wpSourceTypeURL').get(0).checked ){
+			this.http_copy_upload = true;
+		}
+	},
 	doUploadSwitch:function(){
 		var _this = this;
 		js_log('mvUPload:doUploadSwitch():' + _this.upload_mode);
 		//issue a normal post request
-		if( _this.upload_mode == 'post' ) {
-			//we don't support the upload api
-			//trick the browser into thinking the wpUpload button was pressed (there might be a cleaner way to do this)
-			$j(_this.editForm).append(
-				'<input type="hidden" name="wpUpload" value="' + $j('input[name=\'wpUpload\']').val() + '"/>'
-			);
-			//do normal post
-			_this.form_post_override = true;
-			js_log('doUploadSwitch:: submit call');
-			//do the submit :
-			_this.editForm.submit();
-		}else if(
-			_this.upload_mode == 'api' &&
-			( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked )
-		){
-			//@@TODO check for sendAsBinnary to support firefox 3.5 progress on upload
+		if( _this.upload_mode == 'api' && ! _this.http_copy_upload ){
+									
+			//@@TODO check for sendAsBinnary to support firefox/html5 progress on upload
 
 			//set the form target to iframe target:	
 			_this.iframeId = 'f_' + ($j('iframe').length + 1);					
@@ -242,11 +241,12 @@ mvBaseUploadInterface.prototype = {
 				if( tmpAryData[i]['name'] )
 					js_log('name: ' + tmpAryData[i]['name'] + ' = ' + tmpAryData[i]['value']);
 			}*/
-			$j(_this.editForm).submit();
+			$j( _this.editForm ).submit();
 
 			return false;
-		}else if( _this.upload_mode == 'api' && $j('#wpSourceTypeURL').get(0).checked){
+		}else if( _this.upload_mode == 'api' ){
 			js_log('doHttpUpload (no form submit) ');
+			
 			//if the api is supported.. && source type is http do upload with http status updates
 			var httpUpConf ={
 			    'url'		: $j('#wpUploadFileURL').val(),
@@ -310,7 +310,7 @@ mvBaseUploadInterface.prototype = {
 		//setup request:
 		var req = {
 			'action'		: 'upload',
-			'asyncdownload' : true	//do a s
+			'asyncdownload' : true	//do async download
 		};
 		//set config from options:
 		for(var i in opt){
@@ -407,8 +407,8 @@ mvBaseUploadInterface.prototype = {
 					//special case update the file progress where we have data size:
 					$j('#up-status-container').html(
 						gM('mwe-upload-stats-fileprogres', [
-							formatSize( data.upload['loaded'] ),
-							formatSize( data.upload['content_length'] )
+							$mw.lang.formatSize( data.upload['loaded'] ),
+							$mw.lang.formatSize( data.upload['content_length'] )
 							]
 						)
 					);
@@ -418,7 +418,7 @@ mvBaseUploadInterface.prototype = {
 					//for lack of content-length requests:
 					$j('#up-status-container').html(
 						gM('mwe-upload-stats-fileprogres', [
-							formatSize( data.upload['loaded'] ),
+							$mw.lang.formatSize( data.upload['loaded'] ),
 							gM('mwe-upload-unknown-size')
 							]
 						)
@@ -437,7 +437,7 @@ mvBaseUploadInterface.prototype = {
 			var bObj = {};
 			bObj[ gM('mwe-return-to-form') ] = function(){
 					_this.form_post_override = false;
-					$j(this).empty().dialog('close');
+					$j(this).dialog('close');
 			 };
 
 			//@@TODO should be refactored to more specialUpload page type error handling
@@ -571,7 +571,7 @@ mvBaseUploadInterface.prototype = {
 				$j( _this.editForm ).submit();
 			};
 			bObj[ gM('mwe-return-to-form') ] = function(){
-				$j(this).empty().dialog('close');
+				$j(this).dialog('close');
 				_this.form_post_override = false;
 			}
 			_this.updateProgressWin( gM('mwe-uploadwarning'),  '<h3>' + gM('mwe-uploadwarning') + '</h3>' +wmsg + '<p>',bObj);
@@ -606,14 +606,14 @@ mvBaseUploadInterface.prototype = {
 				if( _this.done_upload_cb && typeof _this.done_upload_cb == 'function'){
 					js_log("call done_upload_cb");
 					//close up shop:
-					$j('#upProgressDialog').empty().dialog('close');
+					$j('#upProgressDialog').dialog('close');
 					//call the callback:
 					_this.done_upload_cb( apiRes.upload );
 					return false;
 				}else{
 					var bObj = {};
 					bObj[ gM('mwe-return-to-form')] = function(){
-						$j(this).empty().dialog('close');
+						$j(this).dialog('close');
 						_this.form_post_override = false;
 					}
 					bObj[ gM('mwe-go-to-resource') ] = function(){
@@ -641,7 +641,7 @@ mvBaseUploadInterface.prototype = {
 			 //@@todo should fix jquery ui to not use object keys as user msg's
 			 var bObj = {};
 			 bObj[ gM('mwe-ok-button') ] =  function(){
-				  $j(this).empty().dialog('close');
+				  $j(this).dialog('close');
 			 };
 			 $j('#upProgressDialog').dialog('option','buttons', bObj);
 		 }
@@ -718,10 +718,8 @@ mvBaseUploadInterface.prototype = {
 		//confirm:
 		if( confirm( gM('mwe-cancel-confim') )){
 			//@@todo (cancel the encode / upload)
-			$j(this).empty().dialog('close');		
+			$j(this).dialog('close');				
 		}
-		//dont' follow the link; 
-		return false;
 	}
 };
 
