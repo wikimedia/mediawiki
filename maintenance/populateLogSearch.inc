@@ -24,7 +24,9 @@ function migrate_log_params( $db ) {
 	$blockEnd = $start + LOG_SEARCH_BATCH_SIZE - 1;
 	while( $blockEnd <= $end ) {
 		echo "...doing log_id from $blockStart to $blockEnd\n";
-		$cond = "log_id BETWEEN $blockStart AND $blockEnd";
+		$cond = array("log_id BETWEEN $blockStart AND $blockEnd");
+		# Applicable log types
+		$cond['log_type'] = array('delete','suppress');
 		$res = $db->select( 'logging', '*', $cond, __FUNCTION__ );
 		$batch = array();
 		while( $row = $db->fetchObject( $res ) ) {
