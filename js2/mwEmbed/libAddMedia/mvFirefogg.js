@@ -313,15 +313,16 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	//do firefogg specific additions: 
 	dispProgressOverlay:function(){
-		this.pe_dispProgressOverlay();
+		this.pe_dispProgressOverlay();		
+	
 		//if we are uploading video (not in passthrough mode show preview button)
-		if( ! this.encoder_settings['passthrough'] ){ 
+		if( ! this.encoder_settings['passthrough']  && ! this.http_copy_upload ){ 
 			this.doPreviewControl();	
 		}
 	},
 	doPreviewControl:function(){
 		var _this = this;
-		//prepend preview collapable				
+		//prepend preview (if fogg)				
 		$j('#upProgressDialog').append(		
 			'<div style="clear:both;height:3em"/>'+							
 			$j.btnHtml(gM('fogg-preview'), 'fogg_preview', 'triangle-1-e') + 

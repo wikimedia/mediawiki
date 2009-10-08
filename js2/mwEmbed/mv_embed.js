@@ -645,7 +645,8 @@ function mvGetClassPath(k){
 		//js_log('got class path:' + k +  ' : '+ mvClassPaths[k]);
 		return mvAutoLoadClasses[k];
 	} else {
-		return js_error('could not find path for requested class ' + k );
+		js_log('Error:: Could not find path for requested class ' + k );
+		return false;
 	}
 }
 if( typeof mvCssPaths == 'undefined' )
@@ -870,10 +871,11 @@ var mvJsLoader = {
 		}
 		if( this.checkLoading() ) {
 			//@@todo we should check the <script> Element .onLoad property to 
-			//make sure its just not a very slow connection
+			//make sure its just not a very slow connection or we can run the callback 
+			//(even though the class is not loaded) 
 			 
 			if( this.load_time++ > 4000 ){ // Time out after ~80 seconds
-				js_error( gM('mwe-error_load_lib', [mvGetClassPath(this.missing_path),  this.missing_path]) );
+				js_log( gM('mwe-error_load_lib', [mvGetClassPath(this.missing_path),  this.missing_path]) );
 				this.load_error = true;
 			} else {
 				setTimeout( 'mvJsLoader.doLoad()', 20 );
