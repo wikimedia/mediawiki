@@ -29,13 +29,11 @@ class DeleteOldRevisions extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Delete old (non-current) revisions from the database";
 		$this->addOption( 'delete', 'Actually perform the deletion' );
+		$this->addOption( 'page_id', 'List of page ids to work on', false );
 	}
 	
 	public function execute() {
 		$this->output( "Delete old revisions\n\n" );
-		if( count( $this->mArgs ) < 1 ) {
-			$this->error( "Must pass at least 1 page_id", true );
-		}
 		$this->doDelete( $this->hasOption( 'delete' ), $this->mArgs );
 	}
 	
