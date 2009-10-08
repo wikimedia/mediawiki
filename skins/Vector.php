@@ -157,7 +157,7 @@ class SkinVector extends SkinTemplate {
 						// Adds new section link
 						//$links['actions']['addsection']
 						$links['views']['addsection'] = array(
-							'class' => $section == 'new' ? 'selected' : false,
+							'class' => 'collapsible ' . ( $section == 'new' ? 'selected' : false ),
 							'text' => wfMsg( 'vector-action-addsection' ),
 							'href' => $this->mTitle->getLocalUrl(
 								'action=edit&section=new'
@@ -183,7 +183,7 @@ class SkinVector extends SkinTemplate {
 			if ( $this->mTitle->exists() ) {
 				// Adds history view link
 				$links['views']['history'] = array(
-					'class' => ($action == 'history') ? 'selected' : false,
+					'class' => 'collapsible ' . ( ($action == 'history') ? 'selected' : false ),
 					'text' => wfMsg( 'vector-view-history' ),
 					'href' => $this->mTitle->getLocalUrl( 'action=history' ),
 					'rel' => 'archives',
