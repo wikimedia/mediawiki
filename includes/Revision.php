@@ -979,9 +979,16 @@ class Revision {
 	public function userCan( $field ) {
 		if( $this->mDeleted & $field ) {
 			global $wgUser;
-			$permission = ( $this->mDeleted & self::DELETED_RESTRICTED )
-				? 'suppressrevision'
-				: ( $field & self::DELETED_TEXT ) ? 'deletedtext' : 'deletedhistory';
+			
+			$permission = '';
+			if ( $this->mDeleted & self::DELETED_RESTRICTED ) {
+				$permission = 'suppressrevision';
+			} elseif ( $field & self::DELETED_TEXT ) {
+				$permission = 'deletedtext';
+			} else {
+				$permission = 'deletedhistory';
+			}
+			
 			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
