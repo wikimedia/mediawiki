@@ -152,7 +152,7 @@
 	'kab' => 'Taqbaylit',	# Kabyle
 	'kg' => 'Kongo',		# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'ki' => 'Gĩkũyũ',	# Gikuyu
-	'kiu' => 'Kurmancî',	# Kurmanji
+	'kiu' => 'Kırmancki',	# Kirmanjki
 	'kj' => 'Kwanyama',		# Kwanyama
 	'kk' => 'Қазақша',	# Kazakh
 	'kk-arab' => "\xE2\x80\xABقازاقشا (تٴوتە)\xE2\x80\xAC",	# Kazakh Arabic
