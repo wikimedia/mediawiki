@@ -3338,6 +3338,7 @@ $1',
 # Add categories per AJAX
 'ajax-add-category'            => '분류 추가',
 'ajax-add-category-submit'     => '추가',
+'ajax-confirm-title'           => '편집 확인',
 'ajax-confirm-prompt'          => '아래에 편집 요약을 쓸 수 있습니다.
 저장하려면 "저장"을 누르세요.',
 'ajax-confirm-save'            => '저장',
