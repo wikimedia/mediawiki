@@ -1256,8 +1256,12 @@ remoteSearchDriver.prototype = {
 			//local repo jump directly to check Import Resource callback:
 			 cir_callback( rObj );
 		}else{			
-			//check if the orginal  
-			_this.checkForFile(	
+			//check if the file is local (can be shared repo)  
+			_this.checkForFile(rObj.target_resource_title, function(imagePage){
+				if( imagePage ){
+					 cir_callback( rObj );
+				}
+			});
 			//update target_resource_title with resource repository prefix:
 			rObj.target_resource_title = cp.resource_prefix + rObj.target_resource_title;
 			reqObj['titles'] = _this.cFileNS + ':' + rObj.target_resource_title,						
@@ -1374,8 +1378,8 @@ remoteSearchDriver.prototype = {
 							$j(this).remove();
 						});
 					});
-				}
-			);
+				}			
+			});
 		}
 	},
 	checkForFile:function( fName, callback){	 
