@@ -122,6 +122,7 @@ if( !mv_embed_path ) {
 			gMsg[ i ] = msgSet[i];
 		}
 	},
+	
 	/**
 	* loadRS function
 	* Loads a ruleset by given template key ie PLURAL : { //ruleSetObj }
@@ -600,6 +601,7 @@ if( !mv_embed_path ) {
 })(window.$mw);
 //setup legacy global shortcuts: 
 var loadGM = $mw.lang.loadGM;
+var loadRS = $mw.lang.loadRS;
 var gM = $mw.lang.gM;
 
 //if some no-js2 script defined and loaded gMsg in global space: 
@@ -844,7 +846,7 @@ var mvJsLoader = {
 				}else{
 					var scriptPath = puri.path;
 				}
-				js_log('scriptServer Path is: ' + scriptPath + "\n host script path:" + getMvEmbedURL() );
+				//js_log('scriptServer Path is: ' + scriptPath + "\n host script path:" + getMvEmbedURL() );
 				var dbug_attr = ( puri.queryKey['debug'] ) ? '&debug=true' : '';
 				this.libs[ last_class ] = scriptPath + '?class=' + class_set +
 					'&urid=' + getMvUniqueReqId() + dbug_attr;
