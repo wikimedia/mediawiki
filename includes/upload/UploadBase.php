@@ -137,6 +137,19 @@ abstract class UploadBase {
 		return empty( $this->mFileSize );
 	}
 
+	/*
+	 * getRealPath
+	 * @param string $srcPath the source path
+	 * @returns the real path if it was a virtual url
+	 */
+	function getRealPath( $srcPath ){
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		if ( $repo->isVirtualUrl( $srcPath ) ) {
+			return $repo->resolveVirtualUrl( $srcPath );
+		}
+		return $srcPath;
+	}
+
 	/**
 	 * Verify whether the upload is sane.
 	 * Returns self::OK or else an array with error information

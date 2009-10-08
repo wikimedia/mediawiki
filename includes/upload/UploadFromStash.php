@@ -2,24 +2,24 @@
 /**
  * @file
  * @ingroup upload
- * 
+ *
  * Implements uploading from previously stored file.
- * 
+ *
  * @author Bryan Tong Minh
  */
- 
+
 class UploadFromStash extends UploadBase {
 	public static function isValidSessionKey( $key, $sessionData ) {
-		return !empty( $key ) && 
-			is_array( $sessionData ) && 
-			isset( $sessionData[$key] ) && 
-			isset( $sessionData[$key]['version'] ) && 
+		return !empty( $key ) &&
+			is_array( $sessionData ) &&
+			isset( $sessionData[$key] ) &&
+			isset( $sessionData[$key]['version'] ) &&
 			$sessionData[$key]['version'] == self::SESSION_VERSION;
 	}
 
 	public static function isValidRequest( $request ) {
 		$sessionData = $request->getSessionData( 'wsUploadData' );
-		return self::isValidSessionKey( 
+		return self::isValidSessionKey(
 			$request->getInt( 'wpSessionKey' ),
 			$sessionData
 		);
@@ -34,10 +34,9 @@ class UploadFromStash extends UploadBase {
 			 * them in the session on the server and just give
 			 * an opaque key to the user agent.
 			 */
-			 
-			$repo = RepoGroup::singleton()->getLocalRepo();
+
 			parent::initialize( $name,
-				$repo->resolveVirtualUrl( $sessionData['mTempPath'] ),
+				$this->getRealPath ( $sessionData['mTempPath'] ),
 				$sessionData['mFileSize'],
 				false
 			);
