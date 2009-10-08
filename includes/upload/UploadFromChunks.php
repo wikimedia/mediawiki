@@ -105,18 +105,6 @@ class UploadFromChunks extends UploadBase {
 			return true;
 		}
 	}
-	/*
-	 * getRealPath
-	 * @param string $srcPath the source path
-	 * @returns the real path if it was a virtual url
-	 */
-	function getRealPath( $srcPath ){
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		if ( $repo->isVirtualUrl( $srcPath ) ) {
-			return $repo->resolveVirtualUrl( $srcPath );
-		}
-		return $srcPath;
-	}
 
 	// pretty ugly inter-mixing of mParam and local vars
 	function setupChunkSession( $summary, $comment, $watch ) {
