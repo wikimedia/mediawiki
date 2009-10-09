@@ -184,6 +184,8 @@ $messages['en'] = array(
 	'mwe-cancel_import' => 'Cancel import',
 	'mwe-importing_asset' => 'Importing asset',
 	'mwe-preview_insert_resource' => 'Preview insert of resource: $1',
+	"mwe-checking-resource"=> "Checking for resource",
+	"mwe-resource-needs-import"=> "Resource $1 needs to be imported",
 
 	/*
 	 * js file: /libAddMedia/simpleUploadForm.js
