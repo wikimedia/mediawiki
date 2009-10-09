@@ -14,7 +14,7 @@ abstract class FileRepo {
 	var $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
 	var $pathDisclosureProtection = 'paranoid';
-	var $descriptionCacheExpiry, $apiThumbCacheExpiry, $hashLevels;
+	var $descriptionCacheExpiry, $hashLevels, $url, $thumbUrl;
 
 	/**
 	 * Factory functions for creating new files
@@ -31,7 +31,7 @@ abstract class FileRepo {
 		$this->initialCapital = true; // by default
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection', 
-			'descriptionCacheExpiry', 'apiThumbCacheExpiry', 'hashLevels' ) as $var )
+			'descriptionCacheExpiry', 'hashLevels', 'url', 'thumbUrl' ) as $var )
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];
@@ -233,6 +233,15 @@ abstract class FileRepo {
 	 */
 	function getThumbScriptUrl() {
 		return $this->thumbScriptUrl;
+	}
+	
+	/**
+	 * Get the URL corresponding to one of the four basic zones
+	 * @param String $zone One of: public, deleted, temp, thumb
+	 * @return String or false
+	 */
+	function getZoneUrl( $zone ) {
+		return false;
 	}
 
 	/**

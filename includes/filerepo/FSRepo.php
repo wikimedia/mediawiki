@@ -6,7 +6,7 @@
  * @ingroup FileRepo
  */
 class FSRepo extends FileRepo {
-	var $directory, $deletedDir, $url, $deletedHashLevels, $fileMode;
+	var $directory, $deletedDir, $deletedHashLevels, $fileMode;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
 	var $oldFileFactory = false;
 	var $pathDisclosureProtection = 'simple';
@@ -76,7 +76,7 @@ class FSRepo extends FileRepo {
 	}
 
 	/**
-	 * Get the URL corresponding to one of the three basic zones
+	 * @see FileRepo::getZoneUrl()
 	 */
 	function getZoneUrl( $zone ) {
 		switch ( $zone ) {
@@ -85,11 +85,11 @@ class FSRepo extends FileRepo {
 			case 'temp':
 				return "{$this->url}/temp";
 			case 'deleted':
-				return false; // no public URL
+				return parent::getZoneUrl( $zone ); // no public URL
 			case 'thumb':
 				return $this->thumbUrl;
 			default:
-				return false;
+				return parent::getZoneUrl( $zone );
 		}
 	}
 
