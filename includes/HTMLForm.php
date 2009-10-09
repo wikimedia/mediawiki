@@ -51,6 +51,7 @@ class HTMLForm {
 	# A mapping of 'type' inputs onto standard HTMLFormField subclasses
 	static $typeMappings = array(
 		'text' => 'HTMLTextField',
+		'textarea' => 'HTMLTextAreaField',
 		'select' => 'HTMLSelectField',
 		'radio' => 'HTMLRadioField',
 		'multiselect' => 'HTMLMultiSelectField',
@@ -737,17 +738,7 @@ abstract class HTMLFormField {
 			$errors = Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
 		}
 
-		$html = '';
-
-		# Don't output a for= attribute for labels with no associated input.
-		# Kind of hacky here, possibly we don't want these to be <label>s at all.
-		$for = array();
-		if ( $this->needsLabel() ) {
-			$for['for'] = $this->mID;
-		}
-		$html .= Html::rawElement( 'td', array( 'class' => 'mw-label' ),
-					Html::rawElement( 'label', $for, $this->getLabel() )
-				);
+		$html = $this->getLabelHtml();
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-input' ),
 							$this->getInputHTML( $value ) ."\n$errors" );
 
@@ -780,6 +771,17 @@ abstract class HTMLFormField {
 
 	function getLabel() {
 		return $this->mLabel;
+	}
+	function getLabelHtml() {
+		# Don't output a for= attribute for labels with no associated input.
+		# Kind of hacky here, possibly we don't want these to be <label>s at all.
+		$for = array();
+		if ( $this->needsLabel() ) {
+			$for['for'] = $this->mID;
+		}
+		return Html::rawElement( 'td', array( 'class' => 'mw-label' ),
+					Html::rawElement( 'label', $for, $this->getLabel() )
+				);		
 	}
 
 	function getDefault() {
@@ -874,14 +876,58 @@ class HTMLTextField extends HTMLFormField {
 				}
 			}
 			# Options that apply to HTML4 as well
-			switch( $this->mParams['type'] ){
+			switch( $this->mParams['type'] ) {
+				# Pass through
 				case 'password':
-					$attribs['type'] = 'password';
+				case 'file':
+					$attribs['type'] = $this->mParams['type'];
 					break;
 			}
 		}
 
 		return Html::element( 'input', $attribs );
+	}
+}
+class HTMLTextAreaField extends HTMLFormField {
+	
+	function getCols() {
+		return isset( $this->mParams['cols'] ) 
+			? $this->mParams['cols'] 
+			: 80;
+	}
+	function getRows() {
+		return isset( $this->mParams['rows'] ) 
+			? $this->mParams['rows'] 
+			: 25;
+	}
+	
+	function getInputHTML( $value ) {
+		global $wgHtml5;
+		$attribs = array(
+			'id' => $this->mID,
+			'name' => $this->mName,
+			'cols' => $this->getCols(),
+			'rows' => $this->getRows(),
+		);
+
+
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
+		}
+		if ( !empty( $this->mParams['readonly'] ) ) {
+			$attribs['readonly'] = 'readonly';
+		}
+		
+		if ( $wgHtml5 ) {
+			foreach ( array( 'required', 'autofocus' ) as $param ) {
+				if ( isset( $this->mParams[$param] ) ) {
+					$attribs[$param] = '';
+				}
+			}
+		}
+			
+
+		return Html::element( 'textarea', $attribs, $value );
 	}
 }
 
