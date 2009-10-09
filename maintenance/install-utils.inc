@@ -38,7 +38,7 @@ function install_version_checks() {
 	if( !$test->ok ) {
 		echo "Your system has a combination of PHP and libxml2 versions which is buggy\n" .
 			"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
-			"Upgrade to PHP 5.2.9 or later and libxml2 2.7.2 or later!\n" .
+			"Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later!\n" .
 			"ABORTING (http://bugs.php.net/bug.php?id=45996 for details).\n";
 		die( -1 );
 	}
