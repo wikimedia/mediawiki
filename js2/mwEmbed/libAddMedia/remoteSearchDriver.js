@@ -44,7 +44,9 @@ loadGM({
 	"mwe-update_preview" : "Update preview",
 	"mwe-cancel_import" : "Cancel import",
 	"mwe-importing_asset" : "Importing asset",
-	"mwe-preview_insert_resource" : "Preview insert of resource: $1"
+	"mwe-preview_insert_resource" : "Preview insert of resource: $1",
+	"mwe-checking-resource": "Checking for resource",
+	"mwe-resource-needs-import": "Resource $1 needs to be imported"
 });
 
 var default_remote_search_options = {
@@ -154,6 +156,9 @@ remoteSearchDriver.prototype = {
 			'api_url':'http://commons.wikimedia.org/w/api.php',
 			'lib'	:'mediaWiki',
 			'resource_prefix': 'WC_', //prefix on imported resources (not applicable if the repository is local)
+			
+			//if we should check for shared repository asset ( generally only applicable to commons )
+			'check_shared':true,
 
 			//list all the domains where commons is local?
 			// probably should set this some other way by doing an api query
@@ -949,7 +954,7 @@ remoteSearchDriver.prototype = {
 						//get a thumb with proper resolution transform if possible:
 						o+='<img title="'+rItem.title+'" class="rsd_res_item" id="res_' + cp_id + '__' + rInx +
 								'" style="width:' + _this.thumb_width + 'px;" src="' +
-								cp.sObj.getImageTransform( rItem, {'width':_this.thumb_width } )
+								cp.sObj.getImageTransform( rItem, { 'width' : _this.thumb_width } )
 								+ '">';
 						//add a linkback to resource page in upper right:
 						if( rItem.link )
@@ -994,7 +999,7 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		$j('.mv_clip_'+_this.result_display_mode+'_result').hover(function(){
 			$j(this).addClass('mv_clip_'+_this.result_display_mode+'_result_over');
-			//also set the animated image if avaliable
+			//also set the animated image if available
 			var res_id = $j(this).children('.rsd_res_item').attr('id');
 			var rObj = _this.getResourceFromId( res_id );
 			if( rObj.poster_ani )
@@ -1022,14 +1027,14 @@ remoteSearchDriver.prototype = {
 		//add the edit layout window with loading place holders
 		$j( _this.target_container ).append('<div id="rsd_resource_edit" '+
 			'style="position:absolute;top:0px;left:0px;bottom:0px;right:4px;background-color:#FFF;">' +
-				'<div id="clip_edit_disp" style="position:absolute;' + overflow_style + 'width:100%;height:100%;padding:5px;'+
-					'width:' + (maxWidth) + 'px;" >' +
-						mv_get_loading_img('position:absolute;top:30px;left:30px') +
-				'</div>'+
 				'<div id="clip_edit_ctrl" class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;'+
-					'left:' + ( maxWidth + 10 ) +'px;top:5px;bottom:10px;right:0px;overflow:auto;padding:5px;">'+
+					'left:2px;top:5px;bottom:10px;width:' + ( maxWidth + 5 ) + 'px;overflow:auto;padding:5px;">'+
 						mv_get_loading_img() +
 				'</div>'+
+				'<div id="clip_edit_disp" class="ui-widget ui-widget-content ui-corner-all"' +  
+					'style="position:absolute;' + overflow_style + ';left:'+ ( maxWidth + 20 ) +'px;right:0px;top:5px;bottom:10px;padding:5px;>' +
+						mv_get_loading_img('position:absolute;top:30px;left:30px') +
+				'</div>'+			
 		'</div>');
 	},
 	resourceEdit:function( rObj, rsdElement){
@@ -1071,13 +1076,13 @@ remoteSearchDriver.prototype = {
 			'opacity':0
 		});
 		
-		//try and keep aspect ratio for the thumbnail that we clicked:				
-		var tRatio = rObj.orgheight / rObj.orgwidth;
+		//try and keep aspect ratio for the thumbnail that we clicked:		
+		var tRatio = $j(rsdElement).height() / $j(rsdElement).width();
 
 		if(	! tRatio )
 			var tRatio = 1; //set ratio to 1 if tRatio did not work. 
 
-		//js_log('set from ' +  tRatio + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth) );
+		js_log('Set from ' +  tRatio + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth) );
 		//scale up image and to swap with high res version
 		$j('#rsd_edit_img').animate({
 			'opacity':1,
@@ -1196,24 +1201,36 @@ remoteSearchDriver.prototype = {
 				//run the image clip tools
 				_this.cEdit = new mvClipEdit( mvClipInit );
 			});
-		}
-		if( mediaType == 'video' || mediaType == 'audio'){
-			//get any additonal embedding helper meta data prior to doing the acutal embed
-			// normally this meta should be provided in the search result (but archive.org has a seperate query for more meida meta)
+		}else if( mediaType == 'video' || mediaType == 'audio'){
+			js_log('media type:: ' + mediaType);
+			//get any additional embedding helper meta data prior to doing the actual embed
+			// normally this meta should be provided in the search result (but archive.org has another query for more media meta)
 			rObj.pSobj.getEmbedTimeMeta( rObj, function(){
 				//make sure we have the embedVideo libs:
+				var runFlag = false;
 				mvJsLoader.embedVideoCheck( function(){
+					//strange concurency issue with callbacks 
+					//@@todo try and figure out why this callback is fired twice
+					if(!runFlag){
+						runFlag = true;
+					}else{
+						js_log('only run embed vid once');
+						return false;
+					}
 					js_log('append html: ' + rObj.pSobj.getEmbedHTML( rObj, {id:'embed_vid'}) );
 					$j('#clip_edit_disp').html(
-						rObj.pSobj.getEmbedHTML( rObj, {id:'embed_vid'})
+						rObj.pSobj.getEmbedHTML( rObj, {
+							id : 'embed_vid'
+						})
 					);
+					js_log("about to call rewrite_by_id::embed_vid");					
 					//rewrite by id
-					rewrite_by_id('embed_vid',function(){
+					rewrite_by_id('embed_vid', function(){
 						//grab any information that we got from the ROE xml or parsed from the media file
 						rObj.pSobj.getEmbedObjParsedInfo( rObj, 'embed_vid' );
 						//add the re-sizable to the doLoad request:
 						clibs.push( '$j.ui.resizable');
-						clibs.push( '$j.fn.hoverIntent');
+						clibs.push( '$j.fn.hoverIntent');						
 						mvJsLoader.doLoad(clibs, function(){
 							//make sure the rsd_edit_img is hidden:
 							$j('#rsd_edit_img').remove();
@@ -1242,6 +1259,18 @@ remoteSearchDriver.prototype = {
 		}
 	},
 	checkImportResource:function( rObj, cir_callback){
+		var _this = this;		
+		//add a loader ontop:
+		$j.addLoaderDialog( gM('mwe-checking-resource') );		
+		//extend the callback with close dialog
+		var org_cir_callback = cir_callback;
+		cir_callback = function( rObj ){
+			var cat = org_cir_callback;			
+			$j.closeLoaderDialog();				
+			if( org_cir_callback && typeof org_cir_callback == 'function'){
+				org_cir_callback( rObj );
+			}
+		}			
 		//@@todo get the localized File/Image namespace name or do a general {NS}:Title
 		var cp = rObj.pSobj.cp;
 		var _this = this;
@@ -1252,39 +1281,49 @@ remoteSearchDriver.prototype = {
 		//check if local repository
 		//or if import mode if just "linking" (we should already have the 'url'
 
-		if( this.checkRepoLocal( cp ) || this.import_url_mode == 'remote_link'){
+		if( this.checkRepoLocal( cp ) || this.import_url_mode == 'remote_link'){		
 			//local repo jump directly to check Import Resource callback:
 			 cir_callback( rObj );
-		}else{			
-			js_log('check for: ' + rObj.target_resource_title);
+		}else{						
 			//check if the file is local (can be shared repo)  
-			_this.checkForFile(rObj.target_resource_title, function(imagePage){
-				if( imagePage ){
-					cir_callback( rObj );
-				}else{
-					//update target_resource_title with resource repository prefix:
-					rObj.target_resource_title = cp.resource_prefix + rObj.target_resource_title;
-					reqObj['titles'] = _this.cFileNS + ':' + rObj.target_resource_title,						
-					//check if the file exists: 
-					_this.checkForFile( rObj.target_resource_title, function( imagePage ){
-						if( imagePage ){
-							//update to local src
-							rObj.local_src = imagePage['imageinfo'][0].url;
-							//@@todo maybe  update poster too?
-							rObj.local_poster = imagePage['imageinfo'][0].thumburl;
-							
-							//resource is already present (or resource with same name is already present)
-							rObj.target_resource_title = found_title.replace(/File:|Image:/,'');
-							cir_callback( rObj );
-						}else{
-							_this.doImportInterface(rObj, callback);
-						}
-					});
-				}
-			});			
+			if( cp.check_shared ){			
+				_this.checkForFile(rObj.target_resource_title, function(imagePage){				
+					if( imagePage && imagePage['imagerepository'] == 'shared' ){						
+						cir_callback( rObj );
+					}else{
+						_this.checkPrefixNameImport( rObj, cir_callback );
+					}
+				});
+			}else{
+				_this.checkPrefixNameImport(rObj, cir_callback);
+			}
 		}
+	},
+	checkPrefixNameImport: function(rObj, cir_callback){
+		js_log('::checkPrefixNameImport:: ');
+		var cp = rObj.pSobj.cp;
+		var _this = this;		
+		//update target_resource_title with resource repository prefix:
+		rObj.target_resource_title = cp.resource_prefix + rObj.target_resource_title;							
+		//check if the file exists: 
+		_this.checkForFile( rObj.target_resource_title, function( imagePage ){		
+			if( imagePage ){
+				//update to local src
+				rObj.local_src = imagePage['imageinfo'][0].url;
+				//@@todo maybe  update poster too?
+				rObj.local_poster = imagePage['imageinfo'][0].thumburl;				
+				//update the title: 
+				rObj.target_resource_title = imagePage.title.replace(/File:|Image:/,'');
+				cir_callback( rObj );
+			}else{
+				//close the dialog and display the import interface: 
+				$j.closeLoaderDialog();
+				_this.doImportInterface(rObj, cir_callback);
+			}
+		});						
 	},	
-	doImportInterface : function( rObj, callback){							
+	doImportInterface : function( rObj, callback){		
+		var _this = this;					
 		js_log("doImportInterface:: update:"+ _this.cFileNS + ':' + rObj.target_resource_title);
 		//update the rObj with import info
 		rObj.pSobj.updateDataForImport( rObj );
@@ -1325,9 +1364,13 @@ remoteSearchDriver.prototype = {
 		$j( _this.target_container ).append('<div id="rsd_resource_import" '+
 		'class="ui-state-highlight ui-widget-content ui-state-error" ' +
 		'style="position:absolute;top:50px;left:50px;right:50px;bottom:50px;z-index:5">' +
-			'<h3 style="color:red">Resource: <span style="color:black">' + rObj.title + '</span> needs to be imported</h3>'+
+			'<h3 style="color:red">' + gM('mwe-resource-needs-import', rObj.title) + '</h3>' +
 				'<div id="rsd_preview_import_container" style="position:absolute;width:50%;bottom:0px;left:0px;overflow:auto;top:30px;">' +
-					rObj.pSobj.getEmbedHTML( rObj, {'id': _this.target_container + '_rsd_pv_vid', 'max_height':'200','only_poster':true} )+ //get embedHTML with small thumb:
+					rObj.pSobj.getEmbedHTML( rObj, {
+						'id': _this.target_container + '_rsd_pv_vid', 
+						'max_height':'220',
+						'only_poster':true
+					}) + //get embedHTML with small thumb:
 					'<br style="clear both">'+
 					'<strong>'+gM('mwe-resource_page_desc') +'</strong>'+
 					'<div id="rsd_import_desc" syle="display:inline;">'+
@@ -1352,20 +1395,20 @@ remoteSearchDriver.prototype = {
 					$j.btnHtml(gM('mwe-cancel_import'), 'rsd_import_acancel', 'close' ) + ' ' +
 
 				'</div>'+
-				//output the rendered and non-renderd version of description for easy swiching:
+				//output the rendered and non-rendered version of description for easy switching:
 		'</div>');
 		//add hover:
-		//update video tag
-		rewrite_by_id(_this.target_container + '_rsd_pv_vid');
+		
+		//update video tag (if a video) 
+		rewrite_by_id( _this.target_container + '_rsd_pv_vid');
+		
 		//load the preview text:
 		_this.getParsedWikiText( wt, _this.cFileNS +':'+ rObj.target_resource_title, function( o ){
 			$j('#rsd_import_desc').html(o);
 		});
 		//add bindings:
 		$j( _this.target_container + ' .rsd_import_apreview').btnBind().click(function(){
-			/*$j('#rsd_import_desc').show().html(
-				mv_get_loading_img()
-			);*/
+			js_log("do preview asset");			
 			//load the preview text:
 			_this.getParsedWikiText( $j('#rsd_import_ta').val(), _this.cFileNS +':'+ rObj.target_resource_title, function( o ){
 				js_log('got updated preivew: ');
@@ -1373,9 +1416,10 @@ remoteSearchDriver.prototype = {
 			});
 		});
 		$j(_this.target_container + ' .rsd_import_doimport').btnBind().click(function(){
-			//check import mode:							
-			if( _this.import_url_mode=='api'){
-				_this.doImportAPI( rObj , cir_callback);
+			js_log("do import asset:" + _this.import_url_mode);
+			//check import mode:					
+			if( _this.import_url_mode == 'api' ){
+				_this.doImportAPI( rObj , callback);
 			}else{
 				js_log("Error: import mode is not form or API (can not copy asset)");
 			}
@@ -1387,6 +1431,7 @@ remoteSearchDriver.prototype = {
 		});									
 	},						
 	checkForFile:function( fName, callback){
+		js_log("checkForFile::");
 		var _this = this;	 
 		reqObj={
 				'action':'query',
@@ -1400,27 +1445,34 @@ remoteSearchDriver.prototype = {
 			'data':reqObj,
 			'url':this.local_wiki_api_url
 			},function(data){
-				var found_title = false;				
-				for(var i in data.query.pages){				
-					js_log('found title: ' + i + ':' +  data.query.pages[i]['title']);					
-					found_title = data.query.pages[i]['title'];					
-				}
-				if( found_title ){					
-					callback( data.query.pages[i] );
-				}else{
-					callback( false );
+				if( data.query.pages ){ 			
+					for(var i in data.query.pages){		
+						for(var j in data.query.pages[i]){
+							if(j == 'missing' && data.query.pages[i].imagerepository != 'shared'){
+								js_log(fName + " not found");
+								callback( false );
+								return ;
+							}								
+						}		
+						//else page is found: 
+						js_log(fName + "  found");
+						callback( data.query.pages[i] );						
+					}
 				}
 			}
 		);
 	},
 	doImportAPI:function(rObj, cir_callback){
 		var _this = this;
+		js_log(":doImportAPI:");
+		$j.addLoaderDialog( gM('mwe-importing_asset') );		
 		//baseUploadInterface
 		mvJsLoader.doLoad([
 			'mvBaseUploadInterface',
 			'$j.ui.progressbar'
 		],function(){
-			//initiate a download similar to url copy:
+			js_log('mvBaseUploadInterface ready');
+			//initiate a upload object ( similar to url copy ):
 			myUp = new mvBaseUploadInterface({
 				'api_url' : _this.local_wiki_api_url,
 				'done_upload_cb':function(){
@@ -1433,9 +1485,13 @@ remoteSearchDriver.prototype = {
 					return cir_callback();					
 				}
 			});
-			//set the edit token if we have it handy
+			//get the edit token if we have it handy
 			_this.getEditToken(function( token ){
 				myUp.etoken = token;
+				
+				//close the loader now that we are ready to present the progress dialog::
+				$j.closeLoaderDialog();
+				
 				myUp.doHttpUpload({
 					'url'	    : rObj.src,
 					'filename'  : rObj.target_resource_title,
@@ -1468,7 +1524,7 @@ remoteSearchDriver.prototype = {
 		this.checkImportResource( rObj, function(){
 			//put another window ontop:
 			$j( _this.target_container ).append('<div id="rsd_preview_display"' +
-					'style="position:absolute;overflow:hidden;z-index:4;top:0px;bottom:75px;right:0px;left:0px;background-color:#FFF;">' +
+					'style="position:absolute;overflow:hidden;z-index:4;top:0px;bottom:0px;right:0px;left:0px;background-color:#FFF;">' +
 						mv_get_loading_img('top:30px;left:30px') +
 					'</div>');
 
@@ -1553,7 +1609,8 @@ remoteSearchDriver.prototype = {
 			if(_this.target_render_area && _this.cur_embed_code){
 				 //output with some padding:
 				 $j(_this.target_render_area).append( _this.cur_embed_code + '<div style="clear:both;height:10px">')
-				 //update if its video or audio:
+				 
+				 //update the player if video or audio:
 				 if( rObj.mime.indexOf('audio')!=-1 ||
 				 	 rObj.mime.indexOf('video')!=-1 ||
 				 	 rObj.mime.indexOf('/ogg') !=-1){
