@@ -49,26 +49,22 @@ var nativeEmbed = {
 		var _this = this;		
 		js_log("f:native:postEmbedJS:");		
 		this.getVID();
-		var doActualPlay= function(){
-			js_log("doActualPlay ");
-			_this.vid.play();
-		}
 		if(typeof this.vid != 'undefined'){			
 			//always load the media:
 			if( this.onlyLoadFlag ){ 
 				this.vid.load();
 			}else{	
-				this.vid.load();
-				setTimeout(doActualPlay, 500);				 				
+				//issue play request				
+				this.vid.play();
 			}							
 			setTimeout('$j(\'#'+this.id+'\').get(0).monitor()',100);		
 		}else{
 			js_log('could not grab vid obj trying again:' + typeof this.vid);
 			this.grab_try_count++;
-			if(	this.grab_count == 10 ){
+			if(	this.grab_count == 20 ){
 				js_log(' could not get vid object after 10 tries re-run: getEmbedObj()' ) ;						
 			}else{
-				setTimeout('$j(\'#'+this.id+'\').get(0).postEmbedJS()',100);
+				setTimeout('$j(\'#'+this.id+'\').get(0).postEmbedJS()', 200);
 			}			
 		}
 	},	
@@ -184,7 +180,7 @@ var nativeEmbed = {
 		this.getVID();
 		js_log('f:onloadedmetadata metadata ready (update duration)');	
 		//update duration if not set (for now trust the getDuration more than this.vid.duration		
-		if( this.getDuration()==0  &&  !isNaN( this.vid.duration )){
+		if( this.getDuration() == 0  &&  ! isNaN( this.vid.duration ) ){
 			js_log('updaed duration via native video duration: '+ this.vid.duration)
 			this.duration = this.vid.duration;
 		}
@@ -207,6 +203,7 @@ var nativeEmbed = {
 			}
 			setTimeout(doRetry, 100);			
 		}else{
+			js_log('native onClipDone done call');
 			this.onClipDone();
 		}
 	},	

@@ -987,7 +987,7 @@ var mvJsLoader = {
 				_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';
 				
 				//setup skin dependent dependencies 
-				lcCssPath({'embedVideo'		: 'skins/' + mwConfig['skin_name'] + '/playerSkin.css'});				
+				lcCssPath({'embedVideo'	: 'skins/' + mwConfig['skin_name'] + '/playerSkin.css'});				
 				
 				// Make sure the skin/style sheets are always available:
 				loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
@@ -1037,6 +1037,7 @@ var mvJsLoader = {
 			if( $j.browser.msie || $j.browser.version < 7 )
 				depReq[0].push( '$j.fn.pngFix' );
 			
+			//load the video libs: 
 			_this.doLoadDepMode( depReq, function() {
 				embedTypes.init();
 				callback();
@@ -1386,6 +1387,40 @@ function mv_jqueryBindings() {
 				}
 			)
 			return this;
+		}
+		/**
+		* addLoaderDialog
+		*  small helper for putting a loading dialog box on top of everything 
+		* (helps block for request that
+		* 
+		* @param msg text text of the loader msg
+		*/
+		$.addLoaderDialog = function( msg_txt ){			
+			if( $('#mwe_tmp_loader').length != 0 )
+				$('#mwe_tmp_loader').remove();
+			
+			$('body').append('<div id="mwe_tmp_loader" title="' + msg_txt + '" >' +				
+					gM('mwe-checking-resource') + '<br>' + 
+					mv_get_loading_img() +
+			'</div>');
+			
+			mvJsLoader.doLoadDepMode([
+				[					
+					'$j.ui'
+				],
+				[
+					'$j.ui.dialog'
+				]
+			], function() {				
+				$('#mwe_tmp_loader').dialog({
+					bgiframe: true,
+					height: 140,
+					modal: true
+				});
+			});
+		}
+		$.closeLoaderDialog = function(){
+			$('#mwe_tmp_loader').dialog('close');
 		}
 
 	})(jQuery);

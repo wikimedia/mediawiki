@@ -57,7 +57,7 @@ archiveOrgSearch.prototype = {
 			//set result info: 
 			this.num_results = data.response.numFound;
 		
-			for(var resource_id in data.response.docs){
+			for(var resource_id in data.response.docs){				
 				var resource = data.response.docs[resource_id];				
 				var rObj = {
 					//@@todo we should add .ogv or oga if video or audio:
@@ -89,13 +89,15 @@ archiveOrgSearch.prototype = {
 			}
 		}		
 	},
+	//getTitleKey:function(rObj){
+	//	return rObj['stream_name'] + '__' + rObj['start_time'].replace(/:/g,'.') + '_to_' + rObj['end_time'].replace(/:/g,'.') + '.ogg';;
+	//}
 	getEmbedTimeMeta:function(rObj, callback){
 		var _this = this;
 		do_api_req( {
 			'data':{'avinfo':1},
-			'url':_this.dnUrl + rObj.resourceKey + '/format=Ogg+video'
-		},function(data){			
-			var cat = data;
+			'url':_this.dnUrl + rObj.resourceKey + '/format=Ogg+video'			
+		},function(data){								
 			if(data['length'])
 				rObj.duration = data['length'];
 			if(data['width'])

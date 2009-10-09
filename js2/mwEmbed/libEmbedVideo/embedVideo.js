@@ -119,18 +119,18 @@ _global['dismissNativeWarn'] = false;
 * Converts all occurrences of <video> tag into video object
 */
 function mv_video_embed(swap_done_callback, force_id){
+	//check call stack
 	mvEmbed.init( swap_done_callback, force_id );
 }
 mvEmbed = {	
 	//flist stores the set of functions to run after the video has been swapped in. 
 	flist:new Array(),
-	init:function( swap_done_callback, force_id ){
-		
+	init:function( swap_done_callback, force_id ){		
 		if(swap_done_callback)
 			mvEmbed.flist.push( swap_done_callback );
 			
 		//get mv_embed location if it has not been set
-		js_log('mv_embed ' + MV_EMBED_VERSION);						
+		js_log('mv_video_embed:: ' + MV_EMBED_VERSION);						
 		
 		var loadPlaylistLib=false;						
 		
@@ -157,13 +157,14 @@ mvEmbed = {
 				   loadPlaylistLib=true;
 			   break;
 		   }		
-		}
-		
+		}		
 		if( force_id == null && force_id != '' ){
 			var j_selector = 'video,audio,playlist';			   	
-		}else{
+		}else{		
 			var j_selector = '#' + force_id;
 		}
+		
+		js_log('j_selector:: ' + j_selector);
 		//process selected elements: 
 		//ie8 does not play well with the jQuery video,audio,playlist selector use native: 
 		if($j.browser.msie && $j.browser.version >= 8){
@@ -2086,11 +2087,6 @@ embedVideo.prototype = {
 		}
 		//update buffer information 
 		this.updateBufferStatus();
-		
-		//check if we passed duration
-		if( this.duration && (this.currentTime > this.duration) ){
-			this.onClipDone();
-		}
 		
 		//update monitorTimerId to call child monitor
 		if( ! this.monitorTimerId ){

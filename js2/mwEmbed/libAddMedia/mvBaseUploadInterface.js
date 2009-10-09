@@ -303,10 +303,12 @@ mvBaseUploadInterface.prototype = {
 	},
 	doHttpUpload:function( opt ){
 		var _this = this;
+		//make sure to display the progress win:
+		_this.dispProgressOverlay();		
 		//set the http box to loading (in case we don't get an update for some time)
 		$j('#dlbox-centered').html( '<h5>' + _this.getProgressTitle() + '</h5>' +
 			mv_get_loading_img( 'left:40%;top:20%')
-		);
+		);		
 		//setup request:
 		var req = {
 			'action'		: 'upload',

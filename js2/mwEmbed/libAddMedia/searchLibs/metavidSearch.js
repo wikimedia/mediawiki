@@ -64,14 +64,14 @@ metavidSearch.prototype = {
 				rObj['titleKey'] =	 _this.getTitleKey( rObj );
 
 				//default width of metavid clips:
-				rObj['target_width'] = 400;
+				rObj['target_width'] = 400;					
 			}
 			//done loading:
 			_this.loading=0;
 		});
 	},
 	getTitleKey:function( rObj ){
-		return rObj['stream_name'] + '_start-' + rObj['start_time'].replace(/:/g,'.') + '_end-' + rObj['end_time'].replace(/:/g,'.') + '.ogg';
+		return rObj['stream_name'] + '_part_' + rObj['start_time'].replace(/:/g,'.') + '_to_' + rObj['end_time'].replace(/:/g,'.') + '.ogv';
 	},
 	getTitle:function( rObj ){
 		var sn = rObj['stream_name'].replace(/_/g, ' ');
