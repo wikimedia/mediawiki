@@ -521,7 +521,7 @@ class User {
 		|| User::isIP( $name )
 		|| strpos( $name, '/' ) !== false
 		|| strlen( $name ) > $wgMaxNameChars
-		|| $name != $wgContLang->ucfirst( $name ) ) {
+		|| $name != Title::capitalize( $name, NS_USER ) ) {
 			wfDebugLog( 'username', __METHOD__ .
 				": '$name' invalid due to empty, IP, slash, length, or lowercase" );
 			return false;
@@ -669,9 +669,8 @@ class User {
 	 *                - 'creatable'  Valid for batch processes, login and account creation
 	 */
 	static function getCanonicalName( $name, $validate = 'valid' ) {
-		# Force usernames to capital
-		global $wgContLang;
-		$name = $wgContLang->ucfirst( $name );
+		# Maybe force usernames to capital
+		$name = Title::capitalize( $name, NS_USER );
 
 		# Reject names containing '#'; these will be cleaned up
 		# with title normalisation, but then it's too late to

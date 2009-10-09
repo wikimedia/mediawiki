@@ -28,7 +28,7 @@ abstract class FileRepo {
 		$this->name = $info['name'];
 
 		// Optional settings
-		$this->initialCapital = true; // by default
+		$this->initialCapital = MWNamespace::isCapitalized( NS_FILE );
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection', 
 			'descriptionCacheExpiry', 'hashLevels', 'url', 'thumbUrl' ) as $var )
@@ -256,7 +256,7 @@ abstract class FileRepo {
 	 */
 	function getNameFromTitle( $title ) {
 		global $wgCapitalLinks;
-		if ( $this->initialCapital != $wgCapitalLinks ) {
+		if ( $this->initialCapital != MWNamespace::isCapitalized( NS_FILE ) ) {
 			global $wgContLang;
 			$name = $title->getUserCaseDBKey();
 			if ( $this->initialCapital ) {

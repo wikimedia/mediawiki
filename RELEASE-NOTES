@@ -89,6 +89,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   maintenance
 * New hook AbortNewAccountAuto, called before account creation from AuthPlugin-
   or ExtUser-driven requests.
+* $wgCapitalLinkOverrides added to configure per-namespace capitalization
 
 === New features in 1.16 ===
 
@@ -241,7 +242,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   called after a user's email has been successfully confirmed or invalidated.
 * (bug 19741) Moved the XCF files out of the main MediaWiki distribution, for 
   a smaller subversion checkout.
-
+* (bug 13750) First letter capitalization can now be a per-namespace setting
 
 === Bug fixes in 1.16 ===
 

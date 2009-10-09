@@ -164,7 +164,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach( $wgContLang->getFormattedNamespaces() as $ns => $title )
 		{
 			$data[$ns] = array(
-				'id' => intval($ns)
+				'id' => intval($ns),
+				'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
 			);
 			ApiResult :: setContent( $data[$ns], $title );
 			$canonical = MWNamespace::getCanonicalName( $ns );

@@ -8,7 +8,6 @@
  * MEDIAWIKI is defined
  */
 if( !defined( 'MEDIAWIKI' ) ) {
-	echo "This file is part of MediaWiki, it is not a valid entry point.\n";
 	exit( 1 );
 }
 
@@ -87,7 +86,6 @@ if ( !$wgLocalFileRepo ) {
 		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
-		'initialCapital' => $wgCapitalLinks,
 		'deletedDir' => $wgFileStore['deleted']['directory'],
 		'deletedHashLevels' => $wgFileStore['deleted']['hash']
 	);

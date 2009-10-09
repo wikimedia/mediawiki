@@ -75,13 +75,10 @@ class WithoutInterwikiPage extends PageQueryPage {
 }
 
 function wfSpecialWithoutinterwiki() {
-	global $wgRequest, $wgContLang, $wgCapitalLinks;
+	global $wgRequest, $wgContLang;
 	list( $limit, $offset ) = wfCheckLimits();
-	if( $wgCapitalLinks ) {
-		$prefix = $wgContLang->ucfirst( $wgRequest->getVal( 'prefix' ) );
-	} else {
-		$prefix = $wgRequest->getVal( 'prefix' );
-	}
+	// Only searching the mainspace anyway
+	$prefix = Title::capitalize( $wgRequest->getVal( 'prefix' ), NS_MAIN );
 	$wip = new WithoutInterwikiPage();
 	$wip->setPrefix( $prefix );
 	$wip->doQuery( $offset, $limit );
