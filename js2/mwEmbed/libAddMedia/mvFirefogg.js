@@ -334,6 +334,12 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		if( _this.show_preview == true){
 			$j('#fogg_preview_canvas').show();
 		}else{
+			//update icon:
+			$j(this).children('.ui-icon')
+				.removeClass('ui-icon-triangle-1-s')
+				.addClass('ui-icon-triangle-1-e');									
+			//update text:
+			$j(this).children('.btnText').text( gM('fogg-preview') );				
 			$j('#fogg_preview_canvas').hide();
 		}
 		//apply preview binding:
@@ -387,7 +393,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
 			}
   		}		
-		var previewI=null;
+  		var previewI=null;
 		function preview() {				
 			//initialize the video if not setup already:
 			var v = $j('#fogg_preview_vid').get(0);						
@@ -408,8 +414,11 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				var previewI = setInterval(function(){
 					if (_this.fogg.status() != "encoding"){
 						clearInterval(previewI);
-					}					
-					v.load();
+						_this.show_preview == false;
+					}
+					if (_this.show_preview == true) {
+						v.load();
+					}
 				}, 1000);			 
 			} 
 		}		
