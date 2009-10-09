@@ -1742,8 +1742,6 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'listgrouprights-rights'               => 'Heqqî',
 'listgrouprights-helppage'             => 'Help:Heqqanê gruban',
 'listgrouprights-members'              => '(lista ezayan)',
-'listgrouprights-right-display'        => '{{PLURAL:$2|Grubi|Grubi}} têare benê: $1',
-'listgrouprights-right-revoked'        => '{{PLURAL:$2|Grub|Grubi}} wedariyene/diyenê wera: $1',
 'listgrouprights-addgroup'             => 'şıma eşkenî hesabê xo re {{PLURAL:$2|grub|gruban}} têare kerî: $1',
 'listgrouprights-removegroup'          => 'şıma eşkenî hesabê xo ra {{PLURAL:$2|grub|gruban}} bıvecî: $1',
 'listgrouprights-addgroup-all'         => 'şıma hesabê xo re heme gruban eşkeni têare bıkeri',
