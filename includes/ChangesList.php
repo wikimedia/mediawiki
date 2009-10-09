@@ -449,9 +449,9 @@ class ChangesList {
 		if( $rc->mAttribs['rc_deleted'] & $field ) {
 			global $wgUser;
 			$permission = '';
-			if ( $rc->mAttribs['rc_deleted'] & self::DELETED_RESTRICTED ) {
+			if ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
-			} elseif ( $field & self::DELETED_TEXT ) {
+			} elseif ( $field & Revision::DELETED_TEXT ) {
 				$permission = 'deletedtext';
 			} else {
 				$permission = 'deletedhistory';
