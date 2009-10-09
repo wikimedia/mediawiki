@@ -2229,6 +2229,18 @@ class Title {
 		
 		return $rxTc;
 	}
+	
+	/**
+	 * Capitalize a text if it belongs to a namespace that capitalizes
+	 */
+	public static function capitalize( $text, $ns = NS_MAIN ) {
+		global $wgContLang;
+		
+		if ( MWNamespace::isCapitalized( $ns ) )
+			return $wgContLang->ucfirst( $text );
+		else
+			return $text;
+	}
 
 	/**
 	 * Secure and split - main initialisation function for this object
@@ -2241,7 +2253,7 @@ class Title {
 	 * @return \type{\bool} true on success
 	 */
 	private function secureAndSplit() {
-		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
+		global $wgContLang, $wgLocalInterwiki;
 
 		# Initialisation
 		$rxTc = self::getTitleInvalidRegex();
@@ -2403,8 +2415,8 @@ class Title {
 		 * site might be case-sensitive.
 		 */
 		$this->mUserCaseDBKey = $dbkey;
-		if( $wgCapitalLinks && $this->mInterwiki == '') {
-			$dbkey = $wgContLang->ucfirst( $dbkey );
+		if(  $this->mInterwiki == '') {
+			$dbkey = self::capitalize( $dbkey, $this->mNamespace );
 		}
 
 		/**

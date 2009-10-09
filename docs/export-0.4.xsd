@@ -10,8 +10,9 @@
 	as a list of defined namespaces.
 	
 	Version 0.4 adds per-revision delete flags, log exports,
-	discussion threading data, and a per-page redirect flag.
- 
+	discussion threading data, a per-page redirect flag, and
+	per-namespace capitalization.
+
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.4.xsd
 	
@@ -90,6 +91,7 @@
 		<simpleContent>
 			<extension base="string">
 				<attribute name="key" type="integer" />
+				<attribute name="case" type="mw:CaseType" />
 			</extension>
 		</simpleContent>
 	</complexType>

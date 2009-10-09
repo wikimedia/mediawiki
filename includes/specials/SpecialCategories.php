@@ -36,10 +36,7 @@ class CategoryPager extends AlphabeticPager {
 		parent::__construct();
 		$from = str_replace( ' ', '_', $from );
 		if( $from !== '' ) {
-			global $wgCapitalLinks, $wgContLang;
-			if( $wgCapitalLinks ) {
-				$from = $wgContLang->ucfirst( $from );
-			}
+			$from = Title::capitalize( $from, NS_CATEGORY );
 			$this->mOffset = $from;
 		}
 	}

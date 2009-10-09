@@ -305,10 +305,7 @@ abstract class UploadBase {
 		 * but ignore things like ucfirst() and spaces/underscore things
 		 */
 		$comparableName = str_replace( ' ', '_', $this->mDesiredDestName );
-		global $wgCapitalLinks, $wgContLang;
-		if ( $wgCapitalLinks ) {
-			$comparableName = $wgContLang->ucfirst( $comparableName );
-		}
+		$comparableName = Title::capitalize( $comparableName, NS_FILE );
 		if( $this->mDesiredDestName != $filename && $comparableName != $filename )
 			$warnings['badfilename'] = $filename;
 

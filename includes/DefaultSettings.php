@@ -213,10 +213,10 @@ $wgImgAuthPublicTest = true; ///< defaults to true - if public read is turned on
  *    thumbScriptUrl    The URL for thumb.php (optional, not recommended)
  *    transformVia404   Whether to skip media file transformation on parse and rely on a 404
  *                      handler instead.
- *    initialCapital    Equivalent to $wgCapitalLinks, determines whether filenames implicitly
- *                      start with a capital letter. The current implementation may give incorrect
- *                      description page links when the local $wgCapitalLinks and initialCapital
- *                      are mismatched.
+ *    initialCapital    Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE], 
+ *                      determines whether filenames implicitly start with a capital letter. 
+ *                      The current implementation may give incorrect description page links 
+ *                      when the local $wgCapitalLinks and initialCapital are mismatched.
  *    pathDisclosureProtection
  *                      May be 'paranoid' to remove all parameters from error messages, 'none' to
  *                      leave the paths in unchanged, or 'simple' to replace paths with
@@ -2437,6 +2437,18 @@ $wgShowCreditsIfMax = true;
 $wgCapitalLinks = true;
 
 /**
+ * @since 1.16 - This can now be set per-namespace. Some special namespaces (such
+ * as Special, see Namespace::$alwaysCapitalizedNamespaces for the full list) must be 
+ * true by default (and setting them has no effect), due to various things that 
+ * require them to be so. Also, since Talk namespaces need to directly mirror their 
+ * associated content namespaces, the values for those are ignored in favor of the 
+ * subject namespace's setting. Setting for NS_MEDIA is taken automatically from 
+ * NS_FILE.
+ * EX: $wgCapitalLinkOverrides[ NS_FILE ] = false;
+ */
+$wgCapitalLinkOverrides = array();
+
+/**
  * List of interwiki prefixes for wikis we'll accept as sources for
  * Special:Import (for sysops). Since complete page history can be imported,
  * these should be 'trusted'.
@@ -3448,7 +3460,7 @@ $wgNamespaceRobotPolicies = array();
  *     'Main_Page' => 'noindex,follow',
  *     # "Project", not the actual project name!
  *     'Project:X' => 'index,follow',
- *     # Needs to be "Abc", not "abc" (unless $wgCapitalLinks is false)!
+ *     # Needs to be "Abc", not "abc" (unless $wgCapitalLinks is false for that namespace)!
  *     'abc' => 'noindex,nofollow'
  *   );
  */
