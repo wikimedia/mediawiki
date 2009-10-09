@@ -26,9 +26,20 @@ class ForeignAPIRepo extends FileRepo {
 	function __construct( $info ) {
 		parent::__construct( $info );
 		$this->mApiBase = $info['apibase']; // http://commons.wikimedia.org/w/api.php
+		if( isset( $info['apiThumbCacheExpiry'] ) ) {
+			$this->apiThumbCacheExpiry = $info['apiThumbCacheExpiry'];
+		}
 		if( !$this->scriptDirUrl ) {
 			// hack for description fetches
 			$this->scriptDirUrl = dirname( $this->mApiBase );
+		}
+		// If we can cache thumbs we can guess sane defaults for these
+		if( $this->canCacheThumbs() && !$this->url ) {
+			global $wgLocalFileRepo;
+			$this->url = $wgLocalFileRepo['url'];
+		}
+		if( $this->canCacheThumbs() && !$this->thumbUrl ) {
+			$this->thumbUrl = $this->url . '/thumb';
 		}
 	}
 	
@@ -206,6 +217,20 @@ class ForeignAPIRepo extends FileRepo {
 		}
 	}
 	
+	/**
+	 * @see FileRepo::getZoneUrl()
+	 */
+	function getZoneUrl( $zone ) {
+		switch ( $zone ) {
+			case 'public':
+				return $this->url;
+			case 'thumb':
+				return $this->thumbUrl;
+			default:
+				return parent::getZoneUrl( $zone );
+		}
+	}
+
 	/**
 	 * Are we locally caching the thumbnails?
 	 * @return bool
