@@ -379,9 +379,14 @@ class ArchivedFile
 		$this->load();
 		if( $this->deleted & $field ) {
 			global $wgUser;
-			$permission = ( $this->deleted & File::DELETED_RESTRICTED )
-				? 'suppressrevision'
-				: ( $field & File::DELETED_FILE ) ? 'deletedtext' : 'deletedhistory';
+			$permission = '';
+			if ( $this->deleted & self::DELETED_RESTRICTED ) {
+				$permission = 'suppressrevision';
+			} elseif ( $field & self::DELETED_TEXT ) {
+				$permission = 'deletedtext';
+			} else {
+				$permission = 'deletedhistory';
+			}
 			wfDebug( "Checking for $permission due to $field match on $this->deleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {

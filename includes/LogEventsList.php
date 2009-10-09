@@ -549,9 +549,14 @@ class LogEventsList {
 	public static function userCan( $row, $field ) {
 		if( $row->log_deleted & $field ) {
 			global $wgUser;
-			$permission = ( $row->log_deleted & LogPage::DELETED_RESTRICTED )
-				? 'suppressrevision'
-				: 'deletedhistory';
+			$permission = '';
+			if ( $this->log_deleted & self::DELETED_RESTRICTED ) {
+				$permission = 'suppressrevision';
+			} elseif ( $field & self::DELETED_TEXT ) {
+				$permission = 'deletedtext';
+			} else {
+				$permission = 'deletedhistory';
+			}
 			wfDebug( "Checking for $permission due to $field match on $row->log_deleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
