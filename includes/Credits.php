@@ -167,7 +167,7 @@ class Credits {
 	}
 
 	/**
-	 * Get a link to $user_name page
+	 * Get a link to $user's user page
 	 * @param $user User object
 	 * @return String: html
 	 */
@@ -187,7 +187,7 @@ class Credits {
 	}
 
 	/**
-	 * Get a link to $user_name page
+	 * Get a link to $user's user page
 	 * @param $user_name String: user name
 	 * @param $linkText String: optional display
 	 * @return String: html
