@@ -1,5 +1,5 @@
 Some quickie unit tests done with the PHPUnit testing framework. To run the
-test suite, run 'make test' in this dir or 'php RunTests.php'
+test suite, run 'make test' in this dir.
 
 PHPUnit is no longer maintained by PEAR. To get the current version of
 PHPUnit, first uninstall any old version of PHPUnit or PHPUnit2 from PEAR, 
