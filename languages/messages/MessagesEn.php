@@ -2553,8 +2553,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-rights'               => 'Rights',
 'listgrouprights-helppage'             => 'Help:Group rights',
 'listgrouprights-members'              => '(list of members)',
-'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 ($2)</span>', # only translate this message to other languages if you have to change it
-'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 ($2)</span>', # only translate this message to other languages if you have to change it
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>', # only translate this message to other languages if you have to change it
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>', # only translate this message to other languages if you have to change it
 'listgrouprights-addgroup'             => 'Add {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-removegroup'          => 'Remove {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-addgroup-all'         => 'Add all groups',
