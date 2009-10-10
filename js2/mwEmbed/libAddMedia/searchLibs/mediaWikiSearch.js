@@ -149,7 +149,8 @@ mediaWikiSearch.prototype = {
 				}
 				
 				//make sure the page is not a redirect
-				if(page.revisions[0]['*'] && page.revisions[0]['*'].indexOf('#REDIRECT')===0){
+				if(page.revisions && page.revisions[0] && 
+					page.revisions[0]['*'] && page.revisions[0]['*'].indexOf('#REDIRECT') === 0){
 					//skip page is redirect 
 					continue;
 				}								
