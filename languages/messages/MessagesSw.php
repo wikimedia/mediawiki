@@ -722,6 +722,8 @@ Ukitaka kuanzisha au kuhariri ukurasa huu tafadhali ucheki jina la akaunti.',
 '''Konqueror: '''bonyeza ''Reload'' au bonyeza ''F5'';
 '''Opera:''' futa kache kwenye ''Tools → Preferences'';
 '''Internet Explorer:''' shikiria ''Ctrl'' wakati unabonyeza ''Refresh,'' au bonyeza ''Ctrl-F5''.",
+'usercssyoucanpreview'             => "'''Kidokezi:''' Bonyeza 'Onyesha hakikisho la mabadiliko' kujaribu CSS hii mpya kabla hujaihifadhi.",
+'userjsyoucanpreview'              => "'''Kidokezi:''' Bonyeza 'Onyesha hakikisho la mabadiliko' kujaribu JS hii mpya kabla hujaihifadhi.",
 'updated'                          => '(Imesasishwa)',
 'note'                             => "'''Taarifa:'''",
 'previewnote'                      => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",

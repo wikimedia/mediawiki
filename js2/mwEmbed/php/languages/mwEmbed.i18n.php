@@ -184,8 +184,8 @@ $messages['en'] = array(
 	'mwe-cancel_import' => 'Cancel import',
 	'mwe-importing_asset' => 'Importing asset',
 	'mwe-preview_insert_resource' => 'Preview insert of resource: $1',
-	"mwe-checking-resource"=> "Checking for resource",
-	"mwe-resource-needs-import"=> "Resource $1 needs to be imported",
+	'mwe-checking-resource' => 'Checking for resource',
+	'mwe-resource-needs-import' => 'Resource $1 needs to be imported',
 
 	/*
 	 * js file: /libAddMedia/simpleUploadForm.js
@@ -394,6 +394,13 @@ $messages['af'] = array(
 	'mwe-ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mwe-playerselect' => 'Mediaspelers',
 	'mwe-embed_site_or_blog' => 'Voeg by jou webblad of webjoernaal',
+);
+
+/** Aragonese (Aragonés)
+ * @author Juanpabl
+ */
+$messages['an'] = array(
+	'mwe-ok-button' => "D'alcuerdo",
 );
 
 /** Arabic (العربية)
@@ -935,7 +942,12 @@ $messages['de'] = array(
 	'mwe-chose_player' => 'Videoplayer auswählen',
 	'mwe-share_this_video' => 'Dieses Video teilen',
 	'mwe-video_credits' => 'Videocredits',
+	'mwe-menu_btn' => 'Menü',
 	'mwe-close_btn' => 'Schließen',
+	'mwe-ogg-player-vlc-mozilla' => 'VLC-Plugin',
+	'mwe-ogg-player-videoElement' => 'Eingebaute Ogg-Video Unterstützung',
+	'mwe-ogg-player-oggPlugin' => 'Allgemeines Ogg-Plugin',
+	'mwe-ogg-player-quicktime-mozilla' => 'QuickTime-Plugin',
 	'mwe-ogg-player-selected' => '(ausgewählt)',
 	'mwe-generic_missing_plugin' => 'Dein Browser scheint folgenden Wiedergabetyp nicht zu unterstützen: <b>$1</b><br />Besuche die <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Multimediahilfe</a>, um einen Player herunterzuladen.<br />',
 	'mwe-for_best_experience' => 'Für eine bessere Videowiedergabe wird empfohlen:<br /><b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed">Firefox 3.5</a>.</b>',
@@ -1678,6 +1690,8 @@ $messages['fr'] = array(
 	'mwe-cancel_import' => "Annuler l'importation",
 	'mwe-importing_asset' => "Import de l'asset",
 	'mwe-preview_insert_resource' => "Prévisualiser l'insertion de la ressource : $1",
+	'mwe-checking-resource' => 'Vérification de la ressource',
+	'mwe-resource-needs-import' => 'La ressource $1 doit être importée',
 	'mwe-select_file' => 'Sélectionnez un fichier',
 	'mwe-more_licence_options' => 'Pour plus d\'options de licences, consultez la <a href="$1">page de téléversement normal</a>',
 	'mwe-select_ownwork' => 'Je téléverse uniquement mes propres œuvres, et les place sous licence :',
@@ -3423,6 +3437,7 @@ $messages['lb'] = array(
 	'fogg-please_install' => '<a href="$1">Installéiert Firefogg</a>. Méi <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">iwwer Firefogg</a>',
 	'fogg-preview' => 'Video kucken ouni ze späicheren',
 	'mwe-imported_from' => "$1 huet vun [$2 $3] importéiert. Kuckt d'[$4 Originalquellsäit] fir méi Informatiounen.",
+	'mwe-stream_title' => '$1 $2 bis $3',
 	'fogg-help-sticky' => 'Hëllef (klickt fir festzestellen)',
 	'fogg-cg-meta' => 'Meta-Date fir de Clip',
 	'fogg-preset-custom' => 'Personaliséiert Astellungen',
@@ -3481,6 +3496,7 @@ $messages['lb'] = array(
 	'mwe-ogg-player-selected' => '(erausgesicht)',
 	'mwe-do_not_warn_again' => 'Fir den Ament ophalen.',
 	'mwe-embed_site_or_blog' => 'An äre Site oder Blog abauen',
+	'mwe_related_videos' => 'Ähnlech Videoen',
 );
 
 /** Eastern Mari (Олык Марий)
@@ -3650,6 +3666,8 @@ Selecteer één te bewerken clip.',
 	'mwe-cancel_import' => 'Importeren annuleren',
 	'mwe-importing_asset' => 'Bezig met het importeren van het bestand',
 	'mwe-preview_insert_resource' => 'Invoegen van bronbestand weergeven: $1',
+	'mwe-checking-resource' => 'Bezig met controle van bronbestand',
+	'mwe-resource-needs-import' => 'Het bronbestand $1 moet geïmporteerd worden',
 	'mwe-select_file' => 'Bestand selecteren',
 	'mwe-more_licence_options' => 'Gebruik de <a href="$1">reguliere uploadpagina</a> voor meer licentiemogelijkheden',
 	'mwe-select_ownwork' => 'Ik upload mijn eigen werk onder de volgende licentie:',
@@ -3974,6 +3992,34 @@ $messages['pl'] = array(
 	'mwe-auto_scroll' => 'automatyczne przewijanie',
 	'mwe-close' => 'zamknij',
 	'mwe-improve_transcript' => 'Popraw',
+	'mwe-menu_cliplib' => 'Dodaj media',
+	'mwe-zoom_in' => 'Powiększ',
+	'mwe-zoom_out' => 'Pomniejsz',
+	'mwe-loading_txt' => 'ładowanie <blink>...</blink>',
+	'mwe-loading_title' => 'Ładowanie...',
+	'fogg-select_file' => 'Wybierz plik',
+	'fogg-select_new_file' => 'Wybierz nowy plik',
+	'fogg-select_url' => 'Wybierz adres URL',
+	'fogg-save_local_file' => 'Zapisz w formacie Ogg',
+	'fogg-check_for_fogg' => 'Sprawdzanie czy używasz Firefogg <blink>...</blink>',
+	'fogg-installed' => 'Firefogg jest zainstalowany',
+	'fogg-for_improved_uplods' => 'Dla poprawy przesyłania:',
+	'fogg-please_install' => '<a href="$1">Zainstaluj Firefogg</a>. Więcej <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">o Firefogg</a>',
+	'fogg-use_latest_fox' => 'Należy najpierw zainstalować <a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg">Firefox 3.5</a> (lub nowszy). <i>Następnie wejść ponownie na tę stronę, aby zainstalować rozszerzenie <b>Firefogg.</b></i>',
+	'fogg-passthrough_mode' => 'Wybrany przez Ciebie plik jest już w formacie Ogg lub nie jest plikiem wideo',
+	'fogg-transcoding' => 'Kodowanie wideo do formatu Ogg',
+	'fogg-encoding-done' => 'Kodowanie zakończone',
+	'fogg-badtoken' => 'Token jest nieprawidłowy',
+	'fogg-preview' => 'Podgląd wideo',
+	'fogg-hidepreview' => 'Ukryj podgląd',
+	'fogg-help-sticky' => 'Pomoc (kliknij, aby przylepić)',
+	'fogg-cg-preset' => 'Domyślnie – <strong>$1</strong>',
+	'fogg-cg-quality' => 'Podstawowe ustawienia jakości i rozdzielczości',
+	'fogg-cg-meta' => 'Metadane klipu',
+	'fogg-cg-range' => 'Zakres kodowania',
+	'fogg-cg-advVideo' => 'Zaawansowane ustawienia kodowania wideo',
+	'fogg-cg-advAudio' => 'Zaawansowane ustawienia kodowania dźwięku',
+	'fogg-preset-custom' => 'Ustawienia niestandardowe',
 	'rsd_box_layout' => 'Układ okna',
 	'rsd_list_layout' => 'Układ listy',
 	'rsd_results_desc' => 'Wyniki',
@@ -3992,6 +4038,9 @@ $messages['pl'] = array(
 	'mwe-cc_sa_title' => 'Na tych samych zasadach',
 	'mwe-cc_pd_title' => 'Domena publiczna',
 	'mwe-unknown_license' => 'Licencja nieznana',
+	'rsd_config_error' => 'Błąd konfiguracji kreatora dodawania mediów – $1',
+	'mwe-upload' => 'Przesłanie pliku',
+	'mwe-summary' => 'Podsumowanie',
 );
 
 /** Portuguese (Português)
@@ -4362,6 +4411,7 @@ $messages['sah'] = array(
 	'mwe-start_time' => 'Саҕаланар кэмэ',
 	'mwe-end_time' => 'Түмүктэнэр кэмэ',
 	'mwe-close' => 'сап',
+	'mwe-improve_transcript' => 'Тупсарарга',
 );
 
 /** Slovak (Slovenčina)
@@ -4512,11 +4562,16 @@ $messages['te'] = array(
 	'mwe-sc_duration' => 'నిడివి',
 	'mwe-template_properties' => 'మూస లక్షణాలు',
 	'mwe-other_properties' => 'ఇతర లక్షణాలు',
+	'mwe-start_time' => 'ప్రారంభ సమయం',
+	'mwe-end_time' => 'ముగింపు సమయం',
+	'mwe-menu_options' => 'ఎంపికలు',
 	'mwe-other_options' => 'ఇతర ఎంపికలు',
 	'rsd_results_desc' => 'ఫలితాలు',
 	'rsd_results_next' => 'తదుపరి',
 	'rsd_results_prev' => 'గత',
 	'rsd_layout' => 'అమరిక:',
+	'mwe-your_recent_uploads' => 'ఇటీవలి మీ ఎక్కింపులు',
+	'mwe-upload_a_file' => 'కొత్త ఫైలుని ఎక్కించండి',
 	'mwe-summary' => 'సారాశం',
 	'mwe-ok-button' => 'సరే',
 	'mwe-player_fullscreen' => 'నిండుతెర',
