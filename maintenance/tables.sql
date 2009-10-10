@@ -1185,7 +1185,7 @@ CREATE TABLE /*_*/job (
   job_params blob NOT NULL
 ) /*$wgDBTableOptions*/;
 
-CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title);
+CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
 
 
 -- Details of updates to cached special pages
