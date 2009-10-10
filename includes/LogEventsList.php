@@ -555,7 +555,7 @@ class LogEventsList {
 		if( $row->log_deleted & $field ) {
 			global $wgUser;
 			$permission = '';
-			if ( $this->log_deleted & LogPage::DELETED_RESTRICTED ) {
+			if ( $row->log_deleted & LogPage::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
 			} elseif ( $field & LogPage::DELETED_TEXT ) {
 				$permission = 'deletedtext';
