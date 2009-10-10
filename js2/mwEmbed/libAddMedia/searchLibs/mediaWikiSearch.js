@@ -175,12 +175,39 @@ mediaWikiSearch.prototype = {
 					'meta':{
 						'categories':page.categories
 					}
-				};			
-				//attempt to parse out some stuff from the template: 
-				var desc = rObj.desc.match(/\|Description\s*=\s*(([^\n]*\n)*)\|Source=/)
+				};	
+				/*
+				 //to use once we get the wiki-text parser in shape
+				var pObj = $mw.parser.pNew( rObj.desc );
+				//structured data on commons is based on the "information" template: 
+				var tmplInfo = pObj.templates( 'information' );				
+				*/
+				
+				//attempt to parse out the description current user desc from the commons template: 
+				//@@todo these could be combined to a single regEx
+				// or better improve the wiki-text parsing and use above 
+				var desc = rObj.desc.match(/\|\s*description\s*=\s*(([^\n]*\n)*)\|\s*source=/i);
 				if( desc && desc[1] ){					
 					rObj.desc = $j.trim( desc[1] );
-				}										
+					var cat = wgUserLanguage;
+					//attempt to get the user language if set: 
+					if( wgUserLanguage ){		
+						//for some reason the RegExp object is not happy:
+						var reg = new RegExp( '\{\{\s*' + wgUserLanguage + '([^=]*)=([^\}]*)\}\}', 'gim' );						
+						var langMatch = reg.exec( rObj.desc );
+						if(langMatch && langMatch[2]){
+							rObj.desc = langMatch[2];
+						}else{											
+							//try simple lang template form:
+							var reg = new RegExp( '\{\{\s*' + wgUserLanguage + '\\|([^\}]*)\}\}', 'gim' );
+							var langMatch = reg.exec( rObj.desc );																						
+							if(langMatch && langMatch[1]){
+								rObj.desc = langMatch[1];
+							}						
+						}
+					}										
+				}
+													
 				//likely a audio clip if no poster and type application/ogg 
 				//@@todo we should return audio/ogg for the mime type or some other way to specify its "audio" 
 				if( ! rObj.poster && rObj.mime == 'application/ogg' ){					
