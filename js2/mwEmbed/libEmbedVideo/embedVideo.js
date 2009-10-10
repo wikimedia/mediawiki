@@ -47,7 +47,7 @@ loadGM({
 	"mwe-for_best_experience" : "For a better video playback experience we recommend:<br \/><b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mwe-do_not_warn_again" : "Dismiss for now.",
 	"mwe-playerselect" : "Players",
-	"mwe-read_before_embed" : "Please read the <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">security notes on remote embedding<\/a> before acually embeding!",
+	"mwe-read_before_embed" : "Please read the <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">security notes on remote embedding<\/a> before actually embedding!",
 	"mwe-embed_site_or_blog" : "Embed on your site or blog",
 	"mwe_related_videos" : "Related videos"
 });
