@@ -242,9 +242,14 @@ class LogEventsList {
 	
 	private function getExtraInputs( $types ) {
 		global $wgRequest;
+		$offender = $wgRequest->getVal('offender');
+		$user = User::newFromName( $offender, false );
+		if( !$user || ($user->getId() == 0 && !IP::isIPAddress($offender) ) ) {
+			$offender = ''; // Blank field if invalid
+		}
 		if( count($types) == 1 && $types[0] == 'suppress' ) {
 			return Xml::inputLabel( wfMsg('revdelete-offender'), 'offender',
-				'mw-log-offender', 20, $wgRequest->getVal('offender') );
+				'mw-log-offender', 20, $offender );
 		}
 		return '';
 	}
