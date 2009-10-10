@@ -19,36 +19,24 @@ var defaultAddMediaConfig = {
 		// The local wiki API URL:
 		'local_wiki_api_url': wgServer + wgScriptPath + '/api.php'
 };
-var mwEditPageHelper = {
-	init: function( amwConf ) {
-		var _this = this;		
-		// kind of tricky, it would be nice to use run on ready "loader" call here
-		if( typeof $j.wikiEditor != 'undefined' ) {
-			setTimeout( function() {				
-				$j( '.wikiEditor-ui [rel=file]' ).unbind().addMediaWiz(
-					amwConf
-				);
-			}, 100 );
-		} else {
-			// Add the add-media-wizard button for old toolbar:
-			if( $j('#btn-add-media-wiz').length == 0 ){
-				$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
-					mv_skin_img_path + 'Button_add_media.png">' );
-				$j( '#btn-add-media-wiz' ).addMediaWiz(
-					amwConf
-				);
-			}
-		}
-
-		// Add to new toolbar (need to use api)
-		/*$j( '[rel=insert] tool-file' ).addMediaWiz(
-				mwAddMediaConfig
-		);*/
-	}
-}
+		
 
 js2AddOnloadHook( function() {
-	mwEditPageHelper.init(
-		$j.extend( true, defaultAddMediaConfig, mwAddMediaConfig )
-	);
+	var amwConf = $j.extend( true, defaultAddMediaConfig, mwAddMediaConfig );
+	// kind of tricky, it would be nice to use run on ready "loader" call here
+	if( typeof $j.wikiEditor != 'undefined' ) {
+		setTimeout( function() {				
+			$j( '.wikiEditor-ui [rel=file]' ).unbind().addMediaWiz(
+				amwConf
+			);
+		}, 100 );
+	}
+	//add to the old-toolbar all the time:			
+	if( $j('#btn-add-media-wiz').length == 0 ){
+		$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
+			mv_skin_img_path + 'Button_add_media.png">' );
+		$j( '#btn-add-media-wiz' ).addMediaWiz(
+			amwConf
+		);
+	}		
 });
