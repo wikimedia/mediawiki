@@ -198,9 +198,9 @@ class OldLocalFile extends LocalFile {
 		if( isset($this->deleted) && ($this->deleted & $field) ) {
 			global $wgUser;
 			$permission = '';
-			if ( $this->deleted & self::DELETED_RESTRICTED ) {
+			if ( $this->deleted & File::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
-			} elseif ( $field & self::DELETED_TEXT ) {
+			} elseif ( $field & File::DELETED_TEXT ) {
 				$permission = 'deletedtext';
 			} else {
 				$permission = 'deletedhistory';
