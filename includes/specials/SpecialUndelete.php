@@ -576,7 +576,7 @@ class UndeleteForm {
 		if( $par != "" ) {
 			$this->mTarget = $par;
 		}
-		if ( $wgUser->isAllowed( 'deletedtext' ) && $wgUser->isAllowed( 'undelete' ) && !$wgUser->isBlocked() ) {
+		if ( $wgUser->isAllowed( 'undelete' ) && !$wgUser->isBlocked() ) {
 			$this->mAllowed = true; // user can restore
 			$this->mCanView = true; // user can view content
 		} elseif ( $wgUser->isAllowed( 'deletedtext' ) ) {
