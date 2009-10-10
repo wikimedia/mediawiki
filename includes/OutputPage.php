@@ -1807,7 +1807,6 @@ class OutputPage {
 
 		//add site JS if enabled:
 		if( $wgUseSiteJs ) {
-			$sk = $wgUser->getSkin();
 			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
 			$this->addScriptFile(  Skin::makeUrl( '-',
 					"action=raw$jsCache&gen=js&useskin=" .
