@@ -304,7 +304,8 @@ mvBaseUploadInterface.prototype = {
 	doHttpUpload:function( opt ){
 		var _this = this;
 		//make sure to display the progress win:
-		_this.dispProgressOverlay();		
+		_this.dispProgressOverlay();
+		
 		//set the http box to loading (in case we don't get an update for some time)
 		$j('#dlbox-centered').html( '<h5>' + _this.getProgressTitle() + '</h5>' +
 			mv_get_loading_img( 'left:40%;top:20%')
@@ -759,34 +760,36 @@ mvBaseUploadInterface.prototype = {
 				if( data.query.pages[-1] ){
 					//all good no file there
 				}else{
-					for(var page_id in data.query.pages){
-						var ntitle = ( data.query.normalized)? data.query.normalized[0].to : data.query.pages[ page_id ].title
-						var img = data.query.pages[ page_id ].imageinfo[0];
-						$j('#wpDestFile-warning').html(
-							'<ul>' +
-								'<li>'+
-									gM('mwe-fileexists', ntitle) +
-								'</li>'+
-								'<div class="thumb tright">' +
-									'<div style="width: ' + ( parseInt(img.thumbwidth)+2 ) + 'px;" class="thumbinner">' +
-										'<a title="' + ntitle + '" class="image" href="' + img.descriptionurl + '">' +
-											'<img width="' + img.thumbwidth + '" height="' + img.thumbheight + '" border="0" class="thumbimage" ' +
-											'src="' + img.thumburl + '"' +
-											'	 alt="' + ntitle + '"/>' +
-										'</a>' +
-										'<div class="thumbcaption">' +
-											'<div class="magnify">' +
-												'<a title="' + gM('thumbnail-more') + '" class="internal" ' +
-													'href="' + img.descriptionurl +'"><img width="15" height="11" alt="" ' +
-													'src="' + stylepath + "/common/images/magnify-clip.png\" />" +
-												'</a>'+
-											'</div>'+
-											gM('mwe-fileexists-thumb') +
-										'</div>' +
-									'</div>'+
-								'</div>' +
-							'</ul>'
-						);
+					for( var page_id in data.query.pages ) {
+						if( data.query.pages[ page_id ].imageinfo ) {
+							var ntitle = ( data.query.normalized)? data.query.normalized[0].to : data.query.pages[ page_id ].title
+							var img = data.query.pages[ page_id ].imageinfo[0];
+							$j('#wpDestFile-warning').html(
+								'<ul>' +
+									'<li>'+
+										gM('mwe-fileexists', ntitle) +
+									'</li>'+
+									'<div class="thumb tright">' +
+										'<div style="width: ' + ( parseInt(img.thumbwidth)+2 ) + 'px;" class="thumbinner">' +
+											'<a title="' + ntitle + '" class="image" href="' + img.descriptionurl + '">' +
+												'<img width="' + img.thumbwidth + '" height="' + img.thumbheight + '" border="0" class="thumbimage" ' +
+												'src="' + img.thumburl + '"' +
+												'	 alt="' + ntitle + '"/>' +
+											'</a>' +
+											'<div class="thumbcaption">' +
+												'<div class="magnify">' +
+													'<a title="' + gM('thumbnail-more') + '" class="internal" ' +
+														'href="' + img.descriptionurl +'"><img width="15" height="11" alt="" ' +
+														'src="' + stylepath + "/common/images/magnify-clip.png\" />" +
+													'</a>'+
+												'</div>'+
+												gM('mwe-fileexists-thumb') +
+											'</div>' +
+										'</div>'+
+									'</div>' +
+								'</ul>'
+							);
+						}
 					}
 				}
 			}

@@ -126,7 +126,7 @@ mediaWikiSearch.prototype = {
 		});			
 	},	
 	//same as below but returns your rObj for convenience 
-	addSingleResult:function( data ){	
+	addSingleResult:function( data ){
 		return this.addResults(data, true);
 	},
 	addResults:function( data, returnFirst ){	
@@ -137,7 +137,7 @@ mediaWikiSearch.prototype = {
 			if( typeof data['query-continue'].search != 'undefined')
 				this.more_results = true;			
 		}
-		//make sure we have pages to iderate: 	
+		//make sure we have pages to idorate: 	
 		if(data.query && data.query.pages){
 			for(var page_id in  data.query.pages){
 				var page =  data.query.pages[ page_id ];
