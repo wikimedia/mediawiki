@@ -210,8 +210,8 @@
 	'mus' => 'Mvskoke',	# Muskogee/Creek
 	'mwl' => 'Mirandés',	# Mirandese
 	'my' => 'မြန်မာဘာသာ',		# Burmese
-	'myv' => 'Эрзянь',         # Erzya
-	'mzn' => 'مَزِروني',		# Mazanderani
+	'myv' => 'Эрзянь',	# Erzya
+	'mzn' => 'مازِرونی',		# Mazanderani
 	'na' => 'Dorerin Naoero',		# Nauruan
 	'nah' => 'Nāhuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
 	'nan' => 'Bân-lâm-gú', # Min-nan -- (bug 8217) nan instead of zh-min-nan, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
