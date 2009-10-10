@@ -147,7 +147,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Nimbiar-me un correu tamién cuan bi aiga edizions menors de pachinas',
 'tog-enotifrevealaddr'        => 'Fer beyer a mía adreza de correu-e en os correus de notificazión',
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
-'tog-oldsig'                  => "Bista prebia d'a siñadura esistent:",
+'tog-oldsig'                  => "Bista prebia d'a siñadura:",
 'tog-fancysig'                => 'Tratar as siñaduras como wikitesto (sin de binclo automatico)',
 'tog-externaleditor'          => "Fer serbir l'editor esterno por defeuto (nomás ta espiertos, cal confegurar o suyo ordenador).",
 'tog-externaldiff'            => 'Fer serbir o bisualizador de cambeos esterno por defeuto (nomás ta espiertos, cal confegurar o suyo ordenador)',
@@ -171,7 +171,11 @@ $messages = array(
 'underline-default' => "Confegurazión por defeuto d'o nabegador",
 
 # Font style option in Special:Preferences
-'editfont-style' => "Estilo de fuent de l'aria d'edizión:",
+'editfont-style'     => "Tipo de letra de l'aria d'edizión:",
+'editfont-default'   => "O predeterminau d'o nabegador",
+'editfont-monospace' => 'Tipo de letra monoespaziada',
+'editfont-sansserif' => 'Tipo de letra sans-serif',
+'editfont-serif'     => 'Tipo de letra Serif',
 
 # Dates
 'sunday'        => 'domingo',
@@ -240,6 +244,8 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Ista categoría nomás contiene l'archibo siguient.|{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría, d'un total de $2.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría.",
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Pachinas indexadas',
+'noindex-category'               => 'Pachinas sin indexar',
 
 'mainpagetext'      => "<big>'''O programa MediaWiki s'ha instalato correutament.'''</big>",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
@@ -271,6 +277,9 @@ $messages = array(
 'qbspecialpages' => 'Pachinas espezials',
 'faq'            => 'Preguntas cutianas',
 'faqpage'        => 'Project:Preguntas cutianas',
+
+# Vector skin
+'vector-action-delete' => 'Borrar',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -748,10 +757,10 @@ Bellas plantillas no se bi encluyen.",
 'parser-template-recursion-depth-warning' => "S'ha brincato o limite de recursión de plantillas ($1)",
 
 # "Undo" feature
-'undo-success' => "A edizión puede esfer-se. Antis d'esfer a edizión, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer reyalment. Alabez, puede alzar os cambeos ta esfer a edizión.",
-'undo-failure' => 'No se puede esfer a edizión pues un atro usuario ha feito una edizión intermeya.',
-'undo-norev'   => "No s'ha puesto esfer a edizión porque no esistiba u ya s'eba borrato.",
-'undo-summary' => 'Esfeita a edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
+'undo-success' => 'A edizión puet desfer-se. Antes de desfer a edizión, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer reyalment. Alabez, puede alzar os cambeos ta esfer a edizión.',
+'undo-failure' => 'No se puet desfer a edizión pues un atro usuario ha feito una edizión intermeya.',
+'undo-norev'   => "No s'ha puesto desfer a edizión porque no esistiba u ya s'eba borrato.",
+'undo-summary' => 'Desfeita a edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No se puede creyar a cuenta',
@@ -879,7 +888,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'compareselectedversions' => 'Confrontar as bersions trigatas',
 'visualcomparison'        => 'Comparanza bisual',
 'wikicodecomparison'      => 'Comparanza de testo wiki',
-'editundo'                => 'esfer',
+'editundo'                => 'desfer',
 'diff-multi'              => "(S'ha amagato {{PLURAL:$1|una edizión entremeya|$1 edizions entremeyas}}.)",
 'diff-movedto'            => 'tresladato ta $1',
 'diff-styleadded'         => 'estilo $1 adibito',
@@ -2288,7 +2297,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-recreate'                => 'Recreya una pachina mesmo si ya ha estato borrata dinantes',
 'tooltip-upload'                  => 'Prenzipia a carga',
 'tooltip-rollback'                => '"Rebertir" rebierte todas as zagueras edizions d\'un mesmo usuario nomás con un clic.',
-'tooltip-undo'                    => '"Esfer" rebierte a edizión trigata y ubre a pachina d\'edizión en o modo de prebisualizazión. Premite escribir una razón en o resumen d\'edizión.',
+'tooltip-undo'                    => '"Desfer" rebierte a edizión trigata y ubre a pachina d\'edizión en o modo de prebisualizazión. Premite escribir una razón en o resumen d\'edizión.',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF desautibatos en iste serbidor.',
@@ -2904,5 +2913,14 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Cambeos etiquetatos',
 'tags-edit'               => 'editar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambeo|cambeos}}',
+
+# HTML forms
+'htmlform-reset' => 'Desfer cambios',
+
+# Add categories per AJAX
+'ajax-confirm-save'          => 'Alzar',
+'ajax-confirm-actionsummary' => 'Aczión á prener:',
+'ajax-error-title'           => 'Error',
+'ajax-error-dismiss'         => "D'alcuerdo",
 
 );

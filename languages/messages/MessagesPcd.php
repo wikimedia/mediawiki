@@ -388,6 +388,8 @@ Vos cangemints, is sont poin coèr inrégistrés!",
 'last'                   => 'dvant',
 'page_first'             => 'preumié',
 'page_last'              => 'darin',
+'histlegend'             => "Diff séléccion: buke chés boétes d'chés canjemints à comparète pi détriquer intrer ou ch'bouton édsou.<br />
+Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-chi, ({{MediaWiki:Last}}) = différinches aveuc el vérchon édvant, <b>m</b> = tiot canjemint.",
 'history-fieldset-title' => "S'déplacher din l'historique",
 'histfirst'              => "L'pu neu",
 'histlast'               => 'Darin',

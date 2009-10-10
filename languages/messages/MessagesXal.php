@@ -141,6 +141,7 @@ $messages = array(
 'currentevents'        => 'Ода болсн йовдл',
 'disclaimers'          => 'Дааврас эс зөвшәрлһн',
 'edithelp'             => 'Чикллһнә дөң',
+'edithelppage'         => 'Help:Чикллһн',
 'mainpage'             => 'Эклц',
 'mainpage-description' => 'Эклц',
 'portal'               => 'Бүрдәцин хург',
@@ -156,6 +157,7 @@ $messages = array(
 'editlink'            => 'чиклх',
 'viewsourcelink'      => 'ишиг үзүлх',
 'editsectionhint'     => '«$1» гидг хүвиг чиклх',
+'toc'                 => 'Һарг',
 'showtoc'             => 'үзүлх',
 'hidetoc'             => 'бултулх',
 'site-rss-feed'       => '$1 — RSS-зәңг',
@@ -227,6 +229,7 @@ $messages = array(
 'math_sample'     => 'Эсвин бичг',
 'math_tip'        => 'Эсвин бичг (LaTeX)',
 'nowiki_sample'   => 'чинр уга бичг',
+'nowiki_tip'      => 'Вики темдглһиг басх',
 'image_tip'       => 'Орцулсн боомг',
 'media_tip'       => 'Боомгин заалһ',
 'sig_tip'         => 'Тана тәвсн һар цагин темдгтә',
@@ -242,6 +245,7 @@ $messages = array(
 'showdiff'                         => 'Йилһән',
 'anoneditwarning'                  => "'''Урдаснь зәңг:''' та орв биш.
 Тадна IP хайг эн халхна чикллһнә сеткүлд бичҗ авх.",
+'summary-preview'                  => 'Эн учр-утх болх:',
 'accmailtitle'                     => 'Нууц үгтә бичг йовулла.',
 'newarticle'                       => '(Шин)',
 'noarticletext'                    => "Эн халх хоосн. Та [[Special:Search/{{PAGENAME}}|эн нернә сананд орулһна хәәх]] , <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} бүртклин бичгт хәәх], аль '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бүтәх]'''</span>.",
@@ -254,6 +258,7 @@ $messages = array(
 'templatesused'                    => 'Зурад эн халхд олзлсн:',
 'templatesusedpreview'             => 'Зурад эн хәләврт олзлсн:',
 'template-protected'               => '(харссн)',
+'template-semiprotected'           => '(зәрм харссн)',
 'permissionserrorstext-withaction' => 'Та $2 кеҗ болшго. Юнгад гихлә, эн {{PLURAL:$1|учрар|учрар}}:',
 'edit-conflict'                    => 'Чикллһнә керүл.',
 
@@ -280,9 +285,11 @@ $messages = array(
 'revertmerge' => 'Хувах',
 
 # Diffs
-'difference' => '(Йилһән)',
-'lineno'     => '$1 мөр:',
-'editundo'   => 'уга кех',
+'history-title'           => '$1 — хүврһнә тууҗ',
+'difference'              => '(Йилһән)',
+'lineno'                  => '$1 мөр:',
+'compareselectedversions' => 'Суңһсн янзс әдлцүлх',
+'editundo'                => 'уга кех',
 
 # Search results
 'searchresults'             => 'Хәәлһнә ашуд',
@@ -292,16 +299,21 @@ $messages = array(
 'noexactmatch'              => "'''\"\$1\" гидг нертә халх бәәшго.'''
 Та энгиг [[:\$1|бүтәж чаднат]].",
 'noexactmatch-nocreate'     => "'''\"\$1\" гидг нертә халх бәәшго.'''",
+'notitlematches'            => 'Нернә ирлцлһн уга',
 'prevn'                     => 'урдк {{PLURAL:$1|$1}}',
 'nextn'                     => 'дарук {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Гүүһәд хәләх ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|$2 үг|$2 үгмүд|$2 үгмүд}})',
+'search-redirect'           => '(авч одлһн $1)',
+'search-section'            => '($1 хүв)',
 'search-suggest'            => 'Та эниг таанат: $1 ?',
+'search-interwiki-caption'  => 'Садта проектмуд',
 'search-interwiki-more'     => '(дәкәд)',
 'search-mwsuggest-enabled'  => 'селвгтә',
 'search-mwsuggest-disabled' => 'селвг уга',
 'powersearch'               => 'Күчн хәәлһн',
 'powersearch-legend'        => 'Күчн хәәлһн',
+'powersearch-ns'            => 'Эн нернә у дотран хәәх:',
 'powersearch-redir'         => 'Авч одлһуд үзүлх',
 'powersearch-field'         => 'Хәәх',
 
@@ -373,30 +385,34 @@ $messages = array(
 'action-edit' => 'эн халхиг чиклх',
 
 # Recent changes
-'recentchanges'               => 'Кенз хүврлһд',
-'recentchanges-legend'        => 'Кенз хүврлһдә көгүд',
-'recentchangestext'           => 'Эн цагин дараһар бичсн кенз хүврлһд',
-'recentchanges-label-legend'  => 'Тәәлвр: $1.',
-'recentchanges-label-newpage' => 'Эн үүлдәр шин халх бүтәл',
-'recentchanges-label-minor'   => 'Эн баһ чинртә хуврлһн',
-'recentchanges-label-bot'     => 'Эн хүврһн көдлвр (робот) кехв',
-'rclistfrom'                  => 'Эн цагас хүврлһүдиг үзүлг: $1.',
-'rcshowhideminor'             => 'баһ чиклһдүдиг $1',
-'rcshowhidebots'              => 'көдлврүдиг $1',
-'rcshowhideliu'               => 'орлцачнриг $1',
-'rcshowhideanons'             => 'нер уга орлцачнриг $1',
-'rcshowhidemine'              => 'мини чиклһдүд $1',
-'rclinks'                     => 'Кенз $1 хүврлһдиг, кенз $2 өдрмүдт үзүлх<br />$3',
-'diff'                        => 'йилһ',
-'hist'                        => 'тууҗ',
-'hide'                        => 'бултулх',
-'show'                        => 'үзүлх',
-'minoreditletter'             => 'б',
-'newpageletter'               => 'Ш',
-'boteditletter'               => 'к',
-'newsectionsummary'           => '/* $1 */ Шин хүв',
-'rc-enhanced-expand'          => 'Тодрхасиг үзүлх (JavaScript кергтә)',
-'rc-enhanced-hide'            => 'Тодрхасиг бултулх',
+'nchanges'                     => '$1 {{PLURAL:$1|хүврлһн|хүврлһд}}',
+'recentchanges'                => 'Кенз хүврлһд',
+'recentchanges-legend'         => 'Кенз хүврлһдә көгүд',
+'recentchangestext'            => 'Эн цагин дараһар бичсн кенз хүврлһд',
+'recentchanges-label-legend'   => 'Тәәлвр: $1.',
+'recentchanges-legend-newpage' => '$1 — шин халх',
+'recentchanges-label-newpage'  => 'Эн үүлдәр шин халх бүтәл',
+'recentchanges-legend-minor'   => '$1 — баһ хүврлһн',
+'recentchanges-label-minor'    => 'Эн баһ чинртә хуврлһн',
+'recentchanges-legend-bot'     => '$1 — көдлврә хүврлһн',
+'recentchanges-label-bot'      => 'Эн хүврһн көдлвр (робот) кехв',
+'rclistfrom'                   => 'Эн цагас хүврлһүдиг үзүлг: $1.',
+'rcshowhideminor'              => 'баһ чиклһдүдиг $1',
+'rcshowhidebots'               => 'көдлврүдиг $1',
+'rcshowhideliu'                => 'орлцачнриг $1',
+'rcshowhideanons'              => 'нер уга орлцачнриг $1',
+'rcshowhidemine'               => 'мини чиклһдүд $1',
+'rclinks'                      => 'Кенз $1 хүврлһдиг, кенз $2 өдрмүдт үзүлх<br />$3',
+'diff'                         => 'йилһ',
+'hist'                         => 'тууҗ',
+'hide'                         => 'бултулх',
+'show'                         => 'үзүлх',
+'minoreditletter'              => 'б',
+'newpageletter'                => 'Ш',
+'boteditletter'                => 'к',
+'newsectionsummary'            => '/* $1 */ Шин хүв',
+'rc-enhanced-expand'           => 'Тодрхасиг үзүлх (JavaScript кергтә)',
+'rc-enhanced-hide'             => 'Тодрхасиг бултулх',
 
 # Recent changes linked
 'recentchangeslinked'      => 'Садн чикллһдүд',
@@ -429,6 +445,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|байд|байдуд|байдуд}}',
+'nmembers'      => '$1 {{PLURAL:$1|мөч|мөчин|мөчүд}}',
 'prefixindex'   => 'Цуг халхс эн эклцтә',
 'newpages'      => 'Шин халхс',
 'move'          => 'Көндәх',
@@ -438,6 +455,9 @@ $messages = array(
 
 # Book sources
 'booksources-go' => 'Ор',
+
+# Special:Log
+'log' => 'Сеткүлс',
 
 # Special:AllPages
 'allpages'       => 'Цуг халхс',
@@ -467,9 +487,16 @@ $messages = array(
 'unwatch'           => 'Хәләх биш',
 'watchlist-options' => 'Шинҗллһнә сеткүлин көгүд',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Шинҗллһнә бүтлклд немлһн...',
+'unwatching' => 'Шинҗлһнә бүрткләс һарһлһн...',
+
 # Delete
 'deletepage'            => 'Эн халхиг һарһҗ',
+'deletedtext'           => '«<nowiki>$1</nowiki>» һарһҗ болв.
+$2 кенз һарһлһда төлә хәләтн.',
 'deletedarticle'        => '«[[$1]]» халхиг һарһв',
+'dellogpage'            => 'Һарһллһна сеткүл',
 'deletecomment'         => 'Һарһллһна учр:',
 'deleteotherreason'     => 'Талдан аль дәкәд учр:',
 'deletereasonotherlist' => 'Талдан учр',
@@ -479,6 +506,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'      => 'Харсллһна сеткүл',
+'protectedarticle'    => '«[[$1]]» халх харсв',
 'protectcomment'      => 'Учр:',
 'protect-default'     => 'Цуг орлцачнрд зөв өгҗ',
 'protect-level-sysop' => 'Дарһас һанцхн',
@@ -487,18 +515,22 @@ $messages = array(
 'restriction-level'   => 'Зөвән кемҗән:',
 
 # Undelete
-'undeletelink' => 'гүүһәд хәләх/босхҗ тохрах',
+'undeletelink'     => 'гүүһәд хәләх/босхҗ тохрах',
+'undeletedarticle' => '«[[$1]]» хәрү кехв',
 
 # Namespace form on various pages
 'namespace'      => 'Нернә у:',
+'invert'         => 'Зөрү суңһлт',
 'blanknamespace' => '(Һол)',
 
 # Contributions
-'contributions' => 'Орлцачна өгүллһдүд',
-'mycontris'     => 'Мини өгүллһдүд',
-'uctop'         => '(ора)',
-'month'         => 'Эн сарас (болн эртәр):',
-'year'          => 'Эн җиләс (болн эртәр):',
+'contributions'       => 'Орлцачна өгүллһдүд',
+'contributions-title' => '$1 орлцачна демнлһн',
+'mycontris'           => 'Мини өгүллһдүд',
+'contribsub2'         => '$1 төлә ($2)',
+'uctop'               => '(ора)',
+'month'               => 'Эн сарас (болн эртәр):',
+'year'                => 'Эн җиләс (болн эртәр):',
 
 'sp-contributions-blocklog' => 'бүсллһнә сеткүл',
 'sp-contributions-talk'     => 'ухалвр',
@@ -506,9 +538,12 @@ $messages = array(
 'sp-contributions-submit'   => 'Хәәлһн',
 
 # What links here
-'whatlinkshere'      => 'Эн һазрур заалһуд',
-'whatlinkshere-page' => 'Халх:',
-'isredirect'         => 'авч оддг халх',
+'whatlinkshere'           => 'Эн һазрур заалһуд',
+'whatlinkshere-page'      => 'Халх:',
+'isredirect'              => 'авч оддг халх',
+'istemplate'              => 'оруллһн',
+'whatlinkshere-prev'      => '{{PLURAL:$1|урдк|урдк $1}}',
+'whatlinkshere-hidetrans' => '$1 оруллһд',
 
 # Block/unblock
 'blockip'          => 'Орлцачнриг бүслҗ',
@@ -520,14 +555,15 @@ $messages = array(
 'blocklogpage'     => 'Бүсллһнә сеткүл',
 
 # Move page
-'movearticle'  => 'Халхиг йовулх:',
-'newtitle'     => 'Шин нернь:',
-'move-watch'   => 'Эн халхиг хәләх',
-'movepagebtn'  => 'Халхиг йовулх',
-'pagemovedsub' => 'Йовудта йовуллһн',
-'movelogpage'  => 'Нернә хүврлһнә сеткүл',
-'movereason'   => 'Учр:',
-'revertmove'   => 'хәрүлһн',
+'movearticle'    => 'Халхиг йовулх:',
+'newtitle'       => 'Шин нернь:',
+'move-watch'     => 'Эн халхиг хәләх',
+'movepagebtn'    => 'Халхиг йовулх',
+'pagemovedsub'   => 'Йовудта йовуллһн',
+'movepage-moved' => '<big>\'\'\'"$1" шин нернь "$2" өгв\'\'\'</big>',
+'movelogpage'    => 'Нернә хүврлһнә сеткүл',
+'movereason'     => 'Учр:',
+'revertmove'     => 'хәрүлһн',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Тана орлцачна халх',
@@ -551,10 +587,12 @@ $messages = array(
 'tooltip-search-fulltext'        => 'Эн бичәтә халхс хәәх',
 'tooltip-n-mainpage'             => 'Һол халхд орх',
 'tooltip-n-mainpage-description' => 'Нүр халхд орх',
+'tooltip-n-portal'               => 'Проектин туск; та ю кеҗ чаднат; орм медлһн',
 'tooltip-n-recentchanges'        => 'Кенз хүврлһнә сеткүл',
 'tooltip-n-randompage'           => 'Болв чигн халхиг үзүлх',
 'tooltip-n-help'                 => 'Дөң өггдг һазр',
 'tooltip-t-whatlinkshere'        => 'Цуг вики халхс эн халхд заадг',
+'tooltip-t-recentchangeslinked'  => 'Кенз хүврлһд халхсд эн халх заадг',
 'tooltip-feed-rss'               => 'Эн халхна RSS зәңһллһн',
 'tooltip-feed-atom'              => 'Эн халхна Atom зәңгллһн',
 'tooltip-t-emailuser'            => 'Эн орлцачнрт E-mail бичг йовулх',
@@ -566,15 +604,36 @@ $messages = array(
 'tooltip-ca-nstab-user'          => 'Орлцачна халхиг үзүлх',
 'tooltip-ca-nstab-special'       => 'Эн көдлхнә халх. Та эниг чиклҗ чадхшв.',
 'tooltip-ca-nstab-project'       => 'Проектин халх',
+'tooltip-ca-nstab-image'         => 'Боомгин халхиг',
 'tooltip-minoredit'              => 'Эн хүврлһдиг баһ чинртә темдглх',
 'tooltip-save'                   => 'Тана сольлһдудиг хадһлтн',
 
+# Browsing diffs
+'previousdiff' => '← Урдк хүврлһн',
+'nextdiff'     => 'Дарук хүврлһн →',
+
 # Media information
 'file-info-size' => '($1 × $2 цегтә, боомгин кемҗән: $3, MIME янз: $4)',
+'svg-long-desc'  => '(SVG боомг, $1 × $2 мет цегтә, боомгин кемҗән: $3)',
+
+# Bad image list
+'bad_image_list' => 'Эн темдглһн кергтә:
+
+Бүртклин мөчүд һанцхн оньгтан авх (мөрәд * эклцта).
+Түрүн мөрәнә заалһ - тәвх хөрсн зургин заалһ.
+Дарук заалһуд эн мөрәд хаҗилһн болх (халхс зургиг орулҗ болх).',
 
 # Metadata
 'metadata-expand'   => 'Ик тодрхасиг үзүлх',
 'metadata-collapse' => 'Ик тодрхасиг бултулх',
+'metadata-fields'   => 'Эн мета өггцнә ормд зургин халхд тагчгар үзүсн болх. Талдан бултулсн бәәх.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'цуг',

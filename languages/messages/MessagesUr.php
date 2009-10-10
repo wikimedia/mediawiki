@@ -75,10 +75,14 @@ $messages = array(
 'tog-enotifminoredits'        => 'صفحات میں معمولی ترمیمات کے بارے میں بھی مجھے برقی ڈاک بھیجو',
 'tog-enotifrevealaddr'        => 'خبرداری برقی خطوط میں میرا برقی ڈاک پتہ ظاہر کرو',
 'tog-shownumberswatching'     => 'دیکھنے والے صارفین کی تعداد دکھاؤ',
+'tog-oldsig'                  => 'موجودہ دستخط کی نمائش:',
 'tog-fancysig'                => '(سادہ دستخط بلا خودکار ربط)',
 'tog-externaleditor'          => 'ہمیشہ بیرونی تدوین کار استعمال کرو (صرف ماہرین کیلئے، اِس کیلئے شمارندہ پر خاص ترتیبات درکار ہوتی ہیں)',
 'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer)',
 'tog-showjumplinks'           => 'Enable "jump to" accessibility links',
+'tog-uselivepreview'          => 'براہِ راست نمائش استعمال کرو (JavaScript چاہئے) (تجرباتی(',
+'tog-forceeditsummary'        => 'جب میں ترمیمی خلاصہ خالی چھوڑوں تو مجھے آگاہ کرو',
+'tog-watchlisthideown'        => 'زیرِنظرفہرست سے میری ترمیمات چھپاؤ',
 'tog-ccmeonemails'            => 'دیگر صارفین کو ارسال کردہ برقی خطوط کی نقول مجھے ارسال کریں۔',
 
 'underline-always' => 'ہمیشہ',
@@ -116,6 +120,8 @@ $messages = array(
 'october-gen'   => 'اکتوبر',
 'november-gen'  => 'نومبر',
 'december-gen'  => 'دسمبر',
+'jan'           => 'جنوری',
+'feb'           => 'فروری',
 'may'           => 'مئی',
 
 # Categories related messages
@@ -464,6 +470,7 @@ Warning: Page may not contain recent updates.',
 
 # Search results
 'searchresults'             => 'تلاش کا نتیجہ',
+'searchresults-title'       => 'نتائجِ تلاش برائے "$1"',
 'searchresulttext'          => 'ویکیپیڈیا میں تلاش کے بارے میں مزید معلومات کے لیۓ، ویکیپیڈیا میں تلاش کا صفحہ دیکھیۓ۔',
 'searchsubtitle'            => "آپ کی تلاش براۓ '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "آپ کی تلاش براۓ '''$1'''",
@@ -881,6 +888,13 @@ HTML tags جانچئے.',
 'import' => 'درآمد صفحات',
 
 # Tooltip help for the actions
+'tooltip-pt-login'               => 'آپ کیلئے داخلِ نوشتہ ہونا اچھا ہے؛ تاہم، یہ ضروری نہیں',
+'tooltip-ca-talk'                => 'مضمون بارے تبادلۂ خیال',
+'tooltip-ca-edit'                => 'آپ اس صفحہ میں ترمیم کرسکتے ہیں.
+برائے مہربانی! اپنی ترمیمات محفوظ کرنے سے پہلے نمائش کا بٹن استعمال کیجئے',
+'tooltip-search-go'              => 'اگر بالکل اِسی نام کا صفحہ موجود ہو تو اُس صفحہ پر جاؤ',
+'tooltip-search-fulltext'        => 'اس متن کیلئے صفحات تلاش کریں',
+'tooltip-p-logo'                 => 'سرورق پر جائیے',
 'tooltip-n-mainpage'             => 'اصل صفحہ پر جائیے',
 'tooltip-n-mainpage-description' => 'اصل صفحہ پر جائیے',
 'tooltip-n-portal'               => 'منصوبہ کے متعلق، آپ کیا کرسکتے ہیں، چیزیں کہاں ڈھونڈنی ہیں',
@@ -889,6 +903,8 @@ HTML tags جانچئے.',
 'tooltip-n-randompage'           => 'ایک تصادفی صفحہ لائیے',
 'tooltip-n-help'                 => 'ڈھونڈ نکالنے کی جگہ',
 'tooltip-t-whatlinkshere'        => 'اُن تمام ویکی صفحات کی فہرست جن کا یہاں ربط ہے',
+'tooltip-t-specialpages'         => 'تمام خاص صفحات کی فہرست',
+'tooltip-t-print'                => 'اِس صفحہ کا قابلِ طبعہ نسخہ',
 
 # Attribution
 'anonymous' => '{{SITENAME}} گمنام صارف',

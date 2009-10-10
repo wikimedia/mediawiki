@@ -1957,7 +1957,7 @@ PICT # متنوع
 'filerevert-intro'          => "أنت تسترجع '''[[Media:$1|$1]]''' [$4 لنسخة بتاريخ $2، $3].",
 'filerevert-comment'        => 'تعليق:',
 'filerevert-defaultcomment' => 'استرجع للنسخة بتاريخ $2، $1',
-'filerevert-submit'         => 'استرجاع',
+'filerevert-submit'         => 'استرجع',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' تم استرجاعها [$4 للنسخة بتاريخ $3، $2].",
 'filerevert-badversion'     => 'لا توجد نسخة محلية سابقة لهذا الملف بالتاريخ المعطى.',
 
@@ -2447,7 +2447,7 @@ $NEWPAGE
 'undeleterevision-missing'     => 'مراجعة غير صحيحة أو مفقودة.
 ربما لديك وصلة سيئة، أو ربما المراجعة تم استرجاعها أو إزالتها من الأرشيف.',
 'undelete-nodiff'              => 'لم يتم العثور على مراجعة سابقة.',
-'undeletebtn'                  => 'استرجاع',
+'undeletebtn'                  => 'استرجع',
 'undeletelink'                 => 'اعرض/استعد',
 'undeleteviewlink'             => 'اعرض',
 'undeletereset'                => 'أعد الضبط',

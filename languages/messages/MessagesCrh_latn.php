@@ -466,6 +466,11 @@ $2',
 'titleprotected'       => "Böyle serlevanen saife yaratmaq yasaqtır. Yasaqlağan: [[User:$1|$1]].
 Sebep: ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => "Yañlış sazlama. Bilinmegen virus skaneri: ''$1''",
+'virus-scanfailed'     => 'skan etüv muvafaqiyetsiz (kod $1)',
+'virus-unknownscanner' => 'bilinmegen antivirus:',
+
 # Login and logout pages
 'logouttext'                 => "'''Oturımnı qapattıñız.'''
 
@@ -786,6 +791,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'compareselectedversions' => 'Saylanğan versiyalarnı teñeştir',
 'editundo'                => 'lâğu et',
 'diff-multi'              => '({{PLURAL:$1|1 aradaki versiya|$1 aradaki versiya}} kösterilmedi.)',
+'diff-movedto'            => '$1 saifesine avuştırıldı',
 
 # Search results
 'searchresults'             => 'Qıdıruv neticeleri',
@@ -1207,10 +1213,11 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 Belki de olar bir konkret saifege bağlantı olmalı.<br />
 Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon yerleştirilgen olsa, o saife çoq manalıdır.",
 
-'doubleredirects'     => 'Yollamağa olğan yollamalar',
-'doubleredirectstext' => 'Bu saifede diger yollama saifelerine yollanma olğan saifeleri kösterile.
+'doubleredirects'            => 'Yollamağa olğan yollamalar',
+'doubleredirectstext'        => 'Bu saifede diger yollama saifelerine yollanma olğan saifeleri kösterile.
 Er satırda birinci ve ekinci yollamağa bağlantılar da, ekinci yollamanıñ maqsat saifesi (adetince o birinci yollamanıñ kerekli maqsadı ola) da bar.
-<s>Üstü çızılğan</s> meseleler endi çezilgen.',
+<s>Üstü sızılğan</s> meseleler endi çezilgen.',
+'double-redirect-fixed-move' => '[[$1]] avuştırıldı, şimdi [[$2]] saifesine yollap tura.',
 
 'brokenredirects'        => 'Bar olmağan saifege yapılğan yollamalar',
 'brokenredirectstext'    => 'Aşağıdaki yollamalar bar olmağan saifelerge bağlantı bereler:',
@@ -1219,6 +1226,7 @@ Er satırda birinci ve ekinci yollamağa bağlantılar da, ekinci yollamanıñ m
 
 'withoutinterwiki'         => 'Diger tillerdeki versiyalarğa bağlantıları olmağan saifeler',
 'withoutinterwiki-summary' => 'Bu saifelerde diger tillerdeki versiyalarğa bağlantılar yoq:',
+'withoutinterwiki-submit'  => 'Köster',
 
 'fewestrevisions' => 'Eñ az deñiştirme yapılğan saifeler',
 
@@ -1229,6 +1237,7 @@ Er satırda birinci ve ekinci yollamağa bağlantılar da, ekinci yollamanıñ m
 'nmembers'                => '{{PLURAL:$1|1 aza|$1 aza}}',
 'nrevisions'              => '{{PLURAL:$1|1 versiya|$1 versiya}}',
 'nviews'                  => '{{PLURAL:$1|1 körünüv|$1 körünüv}}',
+'specialpage-empty'       => 'Bu soratma içün iç netice yoq.',
 'lonelypages'             => 'Özüne iç bağlantı olmağan saifeler',
 'lonelypagestext'         => 'Aşağıdaki saifelerge {{SITENAME}} saytındaki diger saifelerden bağlantı berilmegen, ondan da ğayrı mezkür saifeler diger saiferlrge kirsetilmegen.',
 'uncategorizedpages'      => 'Er angi bir kategoriyada olmağan saifeler',
@@ -1257,6 +1266,7 @@ Er satırda birinci ve ekinci yollamağa bağlantılar da, ekinci yollamanıñ m
 'protectedpagestext'      => 'Bu saifelerniñ deñiştirüvge qarşı qorçalavı bar',
 'protectedtitles'         => 'Yasaqlanğan serlevalar',
 'listusers'               => 'Qullanıcılar cedveli',
+'listusers-editsonly'     => 'Tek deñişiklik yapqan qullanıcılarnı köster',
 'newpages'                => 'Yañı saifeler',
 'newpages-username'       => 'Qullanıcı adı:',
 'ancientpages'            => 'Eñ eski saifeler',
@@ -1341,6 +1351,7 @@ Ayrıca [[Special:WantedCategories|talap etilgen kategoriyalarnıñ cedveline]] 
 'emailccsubject'  => '$1 qullanıcısına yollanğan mektübiñizniñ kopiyası: $2',
 'emailsent'       => 'Mektüp yollandı',
 'emailsenttext'   => 'Siziñ e-mail beyanatıñız yollandı',
+'emailuserfooter' => 'Bu mektüp $1 tarafından $2 qullanıcısına, {{SITENAME}} saytındaki "Qullanıcığa e-mail yolla" funktsiyasınen yollanğan.',
 
 # Watchlist
 'watchlist'            => 'Közetüv cedveli',
@@ -1576,48 +1587,59 @@ Blok etmelerni közden keçirmek içün [[Special:IPBlockList|IP adresi blok eti
 'lockbtn' => 'Malümat bazası kilitli',
 
 # Move page
-'move-page-legend'        => 'Ad deñişikligi',
-'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirilir. Bunıñnen beraber deñişiklik jurnalı da yañı adğa avuştırılır.
+'move-page'                 => '$1 saifesiniñ adını deñiştirmektesiñiz',
+'move-page-legend'          => 'Ad deñişikligi',
+'movepagetext'              => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirilir. Bunıñnen beraber deñişiklik jurnalı da yañı adğa avuştırılır.
 Eski ad yañı adğa yollama olur. Eski serlevağa yollama saifelerni avtomatik olaraq yañartıp olasıñız. Bu işlemi avtomatik yapmağa istemeseñiz, bütün [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|yırtıq]] yollama saifelerini özüñiz tüzetmege mecbur olursıñız. Bağlantılar endiden berli doğru çalışmasından emin olmalısıñız.
 
 Yañı adda bir ad endi bar olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcut olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaq. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcut olğan saifeni tesadüfen yoq etalmaysıñız.
 
 '''TENBİ!'''
 Ad deñiştirüv populâr saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel ola bileceklerni köz ögüne alıñız.",
-'movepagetalktext'        => "Qoşulğan muzakere saifesiniñ de (bar olsa) adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
+'movepagetalktext'          => "Qoşulğan muzakere saifesiniñ de (bar olsa) adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
 *Aynı bu isimde boş olmağan bir muzakere saifesi endi bar;
 *Aşağıdaki boşluqqa işaret qoymadıñız.
 
 Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege mecbur olursıñız.",
-'movearticle'             => 'Eski ad',
-'movenologin'             => 'Oturım açmadıñız',
-'movenologintext'         => 'Saifeniñ adını deñiştirip olmaq içün [[Special:UserLogin|oturım açıñız]].',
-'movenotallowed'          => 'Saifeler adlarını deñiştirmege iziniñiz yoq.',
-'newtitle'                => 'Yañı ad',
-'move-watch'              => 'Bu saifeni közet',
-'movepagebtn'             => 'Adını deñiştir',
-'pagemovedsub'            => 'Ad deñişikligi tamamlandı',
-'movepage-moved'          => '<big>\'\'\'"$1" saifesiniñ adı "$2" olaraq deñiştirildi\'\'\'</big>',
-'articleexists'           => 'Bu adda bir saife endi bar ya da siz yazğan ad yasaqlı.
+'movearticle'               => 'Eski ad',
+'movenologin'               => 'Oturım açmadıñız',
+'movenologintext'           => 'Saifeniñ adını deñiştirip olmaq içün [[Special:UserLogin|oturım açıñız]].',
+'movenotallowed'            => 'Saifeler adlarını deñiştirmege iziniñiz yoq.',
+'newtitle'                  => 'Yañı ad',
+'move-watch'                => 'Bu saifeni közet',
+'movepagebtn'               => 'Adını deñiştir',
+'pagemovedsub'              => 'Ad deñişikligi tamamlandı',
+'movepage-moved'            => '<big>\'\'\'"$1" saifesiniñ adı "$2" olaraq deñiştirildi\'\'\'</big>',
+'movepage-moved-redirect'   => 'Bir yollama yaratıldı.',
+'movepage-moved-noredirect' => 'Yollama yaratıluvı bastırıldı.',
+'articleexists'             => 'Bu adda bir saife endi bar ya da siz yazğan ad yasaqlı.
 Lütfen, başqa bir ad saylap yazıñız.',
-'cantmove-titleprotected' => 'Siz yazğan yañı ad yasaqlıdır, bunıñ içün saife adını deñiştirmekniñ çaresi yoq.',
-'talkexists'              => "'''Saifeniñ adı deñiştirildi, amma muzakere saifesiniñ adını deñiştirmege mümkünlik yoqtır, çünki aynı bu adda bir saife endi bar. Lütfen, bularnı qolnen birleştiriñiz.'''",
-'movedto'                 => 'adı deñiştirildi:',
-'movetalk'                => 'Muzakere saifesiniñ adını deñiştir.',
-'1movedto2'               => '"[[$1]]" saifesiniñ adı "[[$2]]" olaraq deñiştirildi',
-'1movedto2_redir'         => '[[$1]] serlevası [[$2]] saifesine yollandı',
-'movelogpage'             => 'Ad deñişikligi jurnalı',
-'movelogpagetext'         => 'Aşağıda bulunğan cedvel adı deñiştirilgen saifelerni köstere',
-'movereason'              => 'Sebep',
-'revertmove'              => 'Kerige al',
-'delete_and_move'         => 'Yoq et ve adını deñiştir',
-'delete_and_move_text'    => '== Yoq etmek lâzimdir ==
+'cantmove-titleprotected'   => 'Siz yazğan yañı ad yasaqlıdır, bunıñ içün saife adını deñiştirmekniñ çaresi yoq.',
+'talkexists'                => "'''Saifeniñ adı deñiştirildi, amma muzakere saifesiniñ adını deñiştirmege mümkünlik yoqtır, çünki aynı bu adda bir saife endi bar. Lütfen, bularnı qolnen birleştiriñiz.'''",
+'movedto'                   => 'adı deñiştirildi:',
+'movetalk'                  => 'Muzakere saifesiniñ adını deñiştir.',
+'movepage-page-exists'      => '$1 saifesi endi bar, ve avtomatik olaraq yañıdan yazılıp olamaz.',
+'movepage-page-moved'       => '$1 saifesiniñ adı $2 olaraq deñiştirildi.',
+'movepage-page-unmoved'     => '$1 saifesiniñ adı $2 olaraq deñiştirilip olamay.',
+'1movedto2'                 => '"[[$1]]" saifesiniñ adı "[[$2]]" olaraq deñiştirildi',
+'1movedto2_redir'           => '[[$1]] serlevası [[$2]] saifesine yollandı',
+'move-redirect-suppressed'  => 'yollama bastırılğan',
+'movelogpage'               => 'Ad deñişikligi jurnalı',
+'movelogpagetext'           => 'Aşağıda bulunğan cedvel adı deñiştirilgen saifelerni köstere',
+'movesubpage'               => '{{PLURAL:$1|Alt saife|Alt saifeler}}',
+'movesubpagetext'           => 'Bu saifeniñ aşağıda kösterilgen $1 {{PLURAL:$1|alt saifesi|alt saifesi}} bar.',
+'movenosubpage'             => 'Bu saifeniñ alt saifesi yoq.',
+'movereason'                => 'Sebep',
+'revertmove'                => 'Kerige al',
+'delete_and_move'           => 'Yoq et ve adını deñiştir',
+'delete_and_move_text'      => '== Yoq etmek lâzimdir ==
 
 "[[:$1]]" saifesi endi bar. Adını deñiştirip olmaq içün onı yoq etmege isteysiñizmi?',
-'delete_and_move_confirm' => 'Ebet, bu saifeni yoq et',
-'delete_and_move_reason'  => 'İsim deñiştirip olmaq içün yoq etildi',
-'selfmove'                => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki asıl ile yañı adları bir kele.',
+'delete_and_move_confirm'   => 'Ebet, bu saifeni yoq et',
+'delete_and_move_reason'    => 'İsim deñiştirip olmaq içün yoq etildi',
+'selfmove'                  => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki asıl ile yañı adları bir kele.',
+'move-leave-redirect'       => 'Arqada bir yollama taşla',
 
 # Export
 'export' => 'Saifelerni eksport et',
@@ -2020,7 +2042,7 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'specialpages'                   => 'Mahsus saifeler',
 'specialpages-group-maintenance' => 'Baqım esabatları',
 'specialpages-group-other'       => 'Diger mahsus saifeler',
-'specialpages-group-login'       => 'Oturım aç / Qayd оl',
+'specialpages-group-login'       => 'Kiriş / Qayd oluv',
 'specialpages-group-changes'     => 'Soñki deñişiklikler ve jurnallar',
 'specialpages-group-media'       => 'Fayl esabatları ve yükleme',
 'specialpages-group-users'       => 'Qullanıcılar ve aqları',

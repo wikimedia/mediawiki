@@ -20,6 +20,11 @@ $messages = array(
 'tog-hideminor'             => 'Suma nsesae a wɔakɔ so a wɔnnkyɛree koraa',
 'tog-hidepatrolled'         => 'Suma nsesae a wɔapatrole wɔn ndansa yi ara',
 'tog-newpageshidepatrolled' => 'Suma nkrataafa a wɔapatrole wɔn fi krataafa-foforo lest no so',
+'tog-extendwatchlist'       => 'San list-nhwɛso no mu ama wo ehu nsesae nyinara a wɔakɔ so',
+'tog-usenewrc'              => 'Fa ndansa nsesae a woetu mpon fa di dwuma (wo hia JavaScript)',
+'tog-numberheadings'        => 'Ma ti-nsɛm no ara ankasa mma wɔn ho nɔmba',
+'tog-showtoolbar'           => 'Kyerɛ tulbaa a wɔde yɛ nsesa (wo hia JavaScript)',
+'tog-editondblclick'        => 'Sesa nkrataafa sɛ womia klik mpɛn mienu a (wo hia JavaScript)',
 
 # Dates
 'sunday'    => 'Kwasiada',
