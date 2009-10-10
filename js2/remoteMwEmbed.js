@@ -93,7 +93,7 @@ function rewrite_for_OggHandler( vidIdList ){
 						pheight + 'px;"></video>';
 			//set the video tag inner html and update the height				
 			$j( '#' + vidId ).html( vid_html )
-				.css('height', pheight + 20);
+				.css('height', pheight + 30);
 			
 		}
 		
