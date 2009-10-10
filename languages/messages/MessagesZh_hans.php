@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2319,6 +2319,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'sorbsreason'                     => '您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器。',
 'sorbs_create_account_reason'     => '由于您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
 'cant-block-while-blocked'        => '当您被封锁时不可以封锁其他用户。',
+'cant-see-hidden-user'            => '您现正尝试封锁的用户已经被封锁或隐藏。您现在没有隐藏用户的权限，您不可以查看或者编辑这位用户的封锁。',
 
 # Developer tools
 'lockdb'              => '锁定数据库',
