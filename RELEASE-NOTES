@@ -243,6 +243,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19741) Moved the XCF files out of the main MediaWiki distribution, for 
   a smaller subversion checkout.
 * (bug 13750) First letter capitalization can now be a per-namespace setting
+* (bug 21073) "User does not exist" message no longer displayed on sub-sub-pages
+  of existing users
 
 === Bug fixes in 1.16 ===
 

@@ -1209,11 +1209,13 @@ class Article {
 
 		# Show info in user (talk) namespace. Does the user exist?
 		if ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
-			$id = User::idFromName( $this->mTitle->getBaseText() );
-			$ip = User::isIP( $this->mTitle->getBaseText() );
+			$parts = explode( '/', $this->mTitle->getText() );
+			$rootPart = $parts[0];
+			$id = User::idFromName( $rootPart );
+			$ip = User::isIP( $rootPart );
 			if ( $id == 0 && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( '<div class="mw-userpage-userdoesnotexist error">$1</div>',
-					array( 'userpage-userdoesnotexist-view', $this->mTitle->getBaseText() ) );
+					array( 'userpage-userdoesnotexist-view', $rootPart ) );
 			}
 		}
 		wfRunHooks( 'ShowMissingArticle', array( $this ) );
