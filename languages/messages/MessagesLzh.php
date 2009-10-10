@@ -2030,6 +2030,7 @@ $1已被禁矣。爾是否改此置？',
 'proxyblocker'                    => '禁Proxy',
 'proxyblocksuccess'               => '成矣。',
 'cant-block-while-blocked'        => '爾然被禁，勿施於人。',
+'cant-see-hidden-user'            => '簿禁或藏矣。爾無藏之權，無視纂禁也。',
 
 # Developer tools
 'lockdb'              => '閉庫',

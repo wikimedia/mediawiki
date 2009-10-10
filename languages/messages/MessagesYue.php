@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2263,6 +2263,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'sorbsreason'                     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。',
 'sorbs_create_account_reason'     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 'cant-block-while-blocked'        => '當你被封鎖嗰陣唔可以封鎖其他用戶。',
+'cant-see-hidden-user'            => '你試緊封鎖嘅用戶已經封鎖咗或者隱藏咗。你而家冇隱藏用戶嘅權限，你唔可以睇或者改呢位用戶嘅封鎖。',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',

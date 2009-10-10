@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2302,6 +2302,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'sorbsreason'                     => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
 'sorbs_create_account_reason'     => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
 'cant-block-while-blocked'        => '當您被封鎖時不可以封鎖其他用戶。',
+'cant-see-hidden-user'            => '您現正嘗試封鎖的用戶已經被封鎖或隱藏。您現在沒有隱藏用戶的權限，您不可以查看或者編輯這位用戶的封鎖。',
 
 # Developer tools
 'lockdb'              => '禁止更改資料庫',
