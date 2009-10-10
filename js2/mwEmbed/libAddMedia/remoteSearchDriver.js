@@ -342,7 +342,7 @@ remoteSearchDriver.prototype = {
 		//modify the content provider config based on options: 
 		if(_this.enabled_cps != 'all'){
 			for(var i in this.content_providers){
-				if( $j.inArray(i, _this.enabled_cps)!= -1){
+				if( $j.inArray(i, _this.enabled_cps) != -1 ){
 					this.content_providers[i].enabled = true;
 				}else{
 					this.content_providers[i].enabled = false;
@@ -352,10 +352,10 @@ remoteSearchDriver.prototype = {
 
 
 		//set up the target invocation:
-		if( $j(this.target_invocation).length==0 ){
+		if( $j( this.target_invocation ).length==0 ){
 			js_log("RemoteSearchDriver:: no target invocation provided (will have to run your own doInitDisplay() )");
 		}else{
-			if(this.target_invocation){
+			if( this.target_invocation ){
 				$j(this.target_invocation).css('cursor','pointer').attr('title', gM('mwe-add_media_wizard')).click(function(){
 					_this.doInitDisplay();
 				});
@@ -560,7 +560,7 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		//set it to loading:
 		mv_set_loading('#tab-upload');
-		//do things async to keep interface snapy
+		//do things async to keep interface snappy
 		setTimeout(function(){
 			//do config variable reality checks:
 			if( _this.upload_api_target == 'local' ){
@@ -611,7 +611,7 @@ remoteSearchDriver.prototype = {
 
 
 						//fill in the user page:
-						if(typeof wgUserName != 'undefined' && wgUserName){
+						if(typeof wgUserName != 'undefined' && wgUserName){						
 							//load the upload bin with anything the current user has uploaded
 							cp.sObj.getUserRecentUploads( wgUserName, function(){
 								_this.drawOutputResults();
@@ -628,10 +628,10 @@ remoteSearchDriver.prototype = {
 								//add a loading div
 								_this.addResourceEditLoader();
 								//@@note: we have most of what we need in resultData imageinfo
-								cp.sObj.addByTitle( wTitle, function( rObj ){									
+								cp.sObj.addByTitle( wTitle, function( rObj ){								
 									//redraw (with added result if new)
 									_this.drawOutputResults();
-									//pull up recource editor:									
+									//pull up resource editor:									
 									_this.resourceEdit( rObj, $j('#res_upload__' + rObj.id).get(0) );									
 								});
 								//return false to close progress window:
@@ -726,7 +726,7 @@ remoteSearchDriver.prototype = {
 	},
 	/*
 	 * checkForCopyURLPermission:
-	 * not really nesesary the api request to upload will return apoprirate error if the user lacks permission. or $wgAllowCopyUploads is set to false
+	 * not really necessary the api request to upload will return appropriate error if the user lacks permission. or $wgAllowCopyUploads is set to false
 	 * (use this function if we want to issue a warning up front)
 	 */
 	checkForCopyURLPermission:function( callback ){
@@ -774,16 +774,19 @@ remoteSearchDriver.prototype = {
 		});
 	},
 	loadSearchLib:function(cp, callback){
-		var _this = this;
+		var _this = this;		
 		//set up the library req:
 		mvJsLoader.doLoad( [
 			'baseRemoteSearch',
-			cp.lib +'Search'
+			cp.lib + 'Search'
 		], function(){
 			js_log("loaded lib:: " + cp.lib );
 			//else we need to run the search:
-			var iObj = {'cp':cp, 'rsd':_this};
-			eval('cp.sObj = new '+cp.lib+'Search( iObj );');
+			var iObj = {
+				'cp'  : cp, 
+				'rsd' : _this
+			};
+			eval('cp.sObj = new ' + cp.lib + 'Search( iObj );' );
 			if(!cp.sObj){
 				js_log('Error: could not find search lib for ' + cp_id);
 				return false;
@@ -846,7 +849,7 @@ remoteSearchDriver.prototype = {
 
 			}
 			//do an upload tab if enabled:
-			if( this.enable_upload_tab ){
+			if( this.content_providers['upload'].enabled ){
 				o+='<li class="rsd_cp_tab" ><a id="rsd_tab_upload" href="#tab-upload">' + gM('mwe-upload_tab') + '</a></li>';
 				tabc+='<div id="tab-upload" />';
 				if(this.disp_item == 'upload')
@@ -873,7 +876,7 @@ remoteSearchDriver.prototype = {
 			_this.selectTab( $j(this).attr('id').replace(/rsd_tab_/, '') );
 		});*/
 
-		//setup key binding (no longer nessesary tabs provide this functionality)
+		//setup key binding (no longer nesesary tabs provide this functionality)
 		/*$j().keyup(function(e){
 			js_log('keyup on : ' +e.which );
 			//if escape pressed clear the interface:
@@ -922,23 +925,25 @@ remoteSearchDriver.prototype = {
 	drawOutputResults: function(){
 		js_log('f:drawOutputResults::' + this.disp_item);
 		var _this = this;
-		var o='';
-
+		var o='';		
+		
 		var cp_id = this.disp_item;
 		var tab_target = '';
 		if(this.disp_item == 'upload'){
 			tab_target = '#upload_bin';
-			var cp = this.content_providers['this_wiki'];
+			var cp = _this.content_providers['this_wiki'];		
 		}else{
 			var cp = this.content_providers[this.disp_item];
 			tab_target = '#tab-' + cp_id;
-		}
+			//output the results bar / controls			
+		}			
 		//empty the existing results:
 		$j(tab_target).empty();
-
-		//output the results bar / controls
-		_this.setResultBarControl();
-
+		//@@todo give the user upload control love 
+		if(this.disp_item != 'upload'){
+			_this.setResultBarControl();
+		}
+		
 		var drawResultCount	=0;
 
 		//output all the results for the current disp_item
@@ -1145,8 +1150,11 @@ remoteSearchDriver.prototype = {
 		js_log('cancelClipEditCB');
 		var b_target =   _this.target_container + '~ .ui-dialog-buttonpane';
 		$j('#rsd_resource_edit').remove();
+		//remove preview if its 'on'
+		$j('#rsd_preview_display').remove();
 		//restore the resource container:
 		$j('#rsd_results_container').show();
+		
 		//restore the title:
 		$j( _this.target_container ).dialog( 'option', 'title', gM('mwe-add_media_wizard'));
 		js_log("should update: " + b_target + ' with: cancel');
@@ -1683,7 +1691,11 @@ remoteSearchDriver.prototype = {
 	getPaging:function(target){
 		var _this = this;
 		var cp_id = this.disp_item;
-		var cp = this.content_providers[ this.disp_item ];
+		if( this.disp_item == 'upload'){
+			var cp = _this.content_providers['this_wiki'];
+		}else{		
+			var cp = this.content_providers[ this.disp_item ];
+		}
 		//js_log('getPaging:'+ cp_id + ' len: ' + cp.sObj.num_results);
 		var to_num = ( cp.limit > cp.sObj.num_results )?
 						(cp.offset + cp.sObj.num_results):

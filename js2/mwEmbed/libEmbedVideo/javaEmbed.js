@@ -14,7 +14,7 @@ var javaEmbed = {
 		'stop':true, 
 		'fullscreen':false, 
 		'time_display':true, 
-		'volume_control':false
+		'volume_control':false																												
 	},
 	getEmbedHTML : function (){
 		//big delay on embed html cuz its just for status updates and ie6 is crazy. 
