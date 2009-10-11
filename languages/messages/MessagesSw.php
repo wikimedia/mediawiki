@@ -727,6 +727,7 @@ Ukitaka kuanzisha au kuhariri ukurasa huu tafadhali ucheki jina la akaunti.',
 'updated'                          => '(Imesasishwa)',
 'note'                             => "'''Taarifa:'''",
 'previewnote'                      => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
+'previewconflict'                  => 'Hakikisho hii inaonyesha maandiko yaliyopo sanduku la juu yataonekayo ukiyahifadhi.',
 'session_fail_preview'             => "'''Pole! Hatukuweza kuhifadhi sahihisho lako kwa sababu data za kipindi zilipotelewa.'''
 Tafadhali jaribu tena.
 Kama bado haifanyi kazi, jaribu [[Special:UserLogout|kutoka kwenye akounti yako]], halafu ingia tena.",
@@ -1058,31 +1059,43 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'recentchangeslinked-to'       => 'Onyesha mabadiliko yaliyotokea kwenye kurasa zile zinazoungwa kufikia ukurasa uliotajwa',
 
 # Upload
-'upload'            => 'Pakia faili',
-'uploadbtn'         => 'Pakia faili',
-'uploadnologin'     => 'Hujaingia',
-'uploadtext'        => "Tumia fomu hapo chini kwa kupakizia mafaili.
+'upload'              => 'Pakia faili',
+'uploadbtn'           => 'Pakia faili',
+'uploadnologin'       => 'Hujaingia',
+'uploaderror'         => 'Hitilafu ya kupia',
+'uploadtext'          => "Tumia fomu hapo chini kwa kupakizia mafaili.
 Kwa kutazama au kutafuta faili zilizopakiwa awali, tafadhali nenda kwenye [[Special:FileList|orodha ya mafaili yaliyopakiwa]]. Kwa zile faili ambazo zishapitiwa, basi angalia [[Special:Log/upload|kumbukumbu ya mafaili]]. Kwa mafaili yaliyofutwa, tafadhali [[Special:Log/delete|tazama hapa]].
 
 Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.jpg]]</nowiki></tt>''' kwa kutumia toleo zima la faili
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></tt>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' kwa kuunga moja kwa moja bila kuonyesga faili",
-'uploadlogpage'     => 'Kumbukumbu ya upakiaji',
-'filename'          => 'Jina la faili',
-'filedesc'          => 'Muhtasari',
-'fileuploadsummary' => 'Muhtasari:',
-'uploadedfiles'     => 'Mafaili yaliyopakiwa:',
-'ignorewarning'     => 'Hifadhi bila kujali maonyo yoyote.',
-'successfulupload'  => 'Upakiaji ulifaulu',
-'uploadwarning'     => 'Ilani kuhusu kupakia',
-'savefile'          => 'Hifadhi faili',
-'uploadedimage'     => 'ameipakia "[[$1]]"',
-'overwroteimage'    => 'alipakia toleo jipya la "[[$1]]"',
-'watchthisupload'   => 'Kufuatilia faili hili',
+'uploadlog'           => 'kumbukumbu za kupakia',
+'uploadlogpage'       => 'Kumbukumbu ya upakiaji',
+'filename'            => 'Jina la faili',
+'filedesc'            => 'Muhtasari',
+'fileuploadsummary'   => 'Muhtasari:',
+'filereuploadsummary' => 'Mabadiliko ya faili:',
+'filestatus'          => 'Hali ya hakimiliki:',
+'uploadedfiles'       => 'Mafaili yaliyopakiwa:',
+'ignorewarning'       => 'Hifadhi bila kujali maonyo yoyote.',
+'ignorewarnings'      => 'Usijali ilani zozote',
+'successfulupload'    => 'Upakiaji ulifaulu',
+'uploadwarning'       => 'Ilani kuhusu kupakia',
+'savefile'            => 'Hifadhi faili',
+'uploadedimage'       => 'ameipakia "[[$1]]"',
+'overwroteimage'      => 'alipakia toleo jipya la "[[$1]]"',
+'sourcefilename'      => 'Jina la faili la chanzo:',
+'destfilename'        => 'Jina la faili la mwishilio:',
+'upload-maxfilesize'  => 'Ukubwa wa faili lisizidi: $1',
+'watchthisupload'     => 'Kufuatilia faili hili',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'KISARA (URL) haikupatikana',
 
 'license'        => 'Hakimiliki:',
 'license-header' => 'Hakimiliki',
+'nolicense'      => 'Haikuchaguliwa',
 
 # Special:ListFiles
 'imgfile'               => 'faili',

@@ -2654,7 +2654,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'anonymous'        => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$1|anonyymi käyttäjä|anonyymit käyttäjät}}',
 'siteuser'         => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $1',
 'anonuser'         => '{{GRAMMAR:genitive|{{SITENAME}}}} anonyymi käyttäjä $1',
-'lastmodifiedatby' => 'Tätä sivua muokkasi viimeksi ”$3” $2 kello $1.',
+'lastmodifiedatby' => 'Tätä sivua muokkasi viimeksi $3 $1 kello $2.',
 'othercontribs'    => 'Perustuu työlle, jonka teki $1.',
 'others'           => 'muut',
 'siteusers'        => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$2|käyttäjä|käyttäjät}} $1',

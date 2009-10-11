@@ -335,7 +335,7 @@ $messages = array(
 'tog-externaleditor'          => 'Utilisar un èditor de tèxto de defôr per dèfôt (por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
 'tog-externaldiff'            => 'Utilisar un comparator de defôr per dèfôt (por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
 'tog-showjumplinks'           => 'Activar los lims « navigacion » et « rechèrche » d’amont la pâge',
-'tog-uselivepreview'          => 'Utilisar la vua vito fêta (JavaScript dêt étre activâ) (èxpèrimentâl)',
+'tog-uselivepreview'          => 'Utilisar l’apèrçu vito fêt (JavaScript dêt étre activâ) (èxpèrimentâl)',
 'tog-forceeditsummary'        => 'M’avèrtir quand j’é pas spècefiâ de rèsumâ de changement',
 'tog-watchlisthideown'        => 'Cachiér mos prôpros changements de la lista de survelyence',
 'tog-watchlisthidebots'       => 'Cachiér los changements fêts per los bots de la lista de survelyence',
@@ -847,7 +847,7 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'savearticle'                      => 'Sôvar ceta pâge',
 'preview'                          => 'Prèvisualisacion',
 'showpreview'                      => 'Prèvisualisacion',
-'showlivepreview'                  => 'Vua vito fêta',
+'showlivepreview'                  => 'Apèrçu vito fêt',
 'showdiff'                         => 'Changements en cors',
 'anoneditwarning'                  => "'''Atencion :''' vos éte pas branchiê.
 Voutra adrèce IP serat encartâ dens l’historico de ceta pâge.",
@@ -1666,8 +1666,8 @@ Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs
 'reuploaddesc'                => 'Anular lo tèlèchargement et tornar u formulèro de tèlèchargement.',
 'uploadnologin'               => 'Pas branchiê',
 'uploadnologintext'           => 'Vos dête étre [[Special:UserLogin|branchiê]] por tèlèchargiér des fichiérs sur lo sèrvor.',
-'upload_directory_missing'    => 'Lo rèpèrtouèro de tèlèchargement ($1) est entrovâblo et at pas possu étre fêt per lo sèrvor Vouèbe.',
-'upload_directory_read_only'  => 'Lo rèpèrtouèro de tèlèchargement ($1) est pas accèssiblo en ècritura dês lo sèrvor Vouèbe.',
+'upload_directory_missing'    => 'Lo rèpèrtouèro de tèlèchargement ($1) est entrovâblo et pués at pas possu étre fêt per lo sèrvor vouèbe.',
+'upload_directory_read_only'  => 'Lo rèpèrtouèro de tèlèchargement ($1) est pas accèssiblo en ècritura dês lo sèrvor vouèbe.',
 'uploaderror'                 => 'Èrror de tèlèchargement',
 'uploadtext'                  => "Utilisâd ceti formulèro por tèlèchargiér des fichiérs sur lo sèrvor.
 Por vêre ou rechèrchiér des émâges mandâs dês devant, vêde la [[Special:FileList|lista de les émâges]].
@@ -2584,7 +2584,7 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 Oubliâd pas de [[Special:UnlockDB|la dèvèrrolyér]] quand vos aréd chavonâ voutra opèracion de mantegnence.',
 'unlockdbsuccesstext' => 'La bâsa de balyês at étâ dèvèrrolyê.',
 'lockfilenotwritable' => 'Lo fichiér de vèrrolyâjo de la bâsa de balyês est pas enscriptiblo.
-Por vèrrolyér ou ben dèvèrrolyér la bâsa de balyês, dêt étre accèssiblo en ècritura dês lo sèrvor Vouèbe.',
+Por vèrrolyér ou ben dèvèrrolyér la bâsa de balyês, dêt étre accèssiblo en ècritura dês lo sèrvor vouèbe.',
 'databasenotlocked'   => 'La bâsa de balyês est pas vèrrolyê.',
 
 # Move page
@@ -2971,7 +2971,7 @@ $1',
 'file-nohires'         => '<small>Gins de rèsolucion ples hôta disponibla.</small>',
 'svg-long-desc'        => '(Fichiér SVG, rèsolucion de $1 × $2 pixèls, talye : $3)',
 'show-big-image'       => 'Émâge en rèsolucion ples hôta',
-'show-big-image-thumb' => '<small>Talye de ceta vua : $1 × $2 pixèls</small>',
+'show-big-image-thumb' => '<small>Talye de ceti apèrçu : $1 × $2 pixèls</small>',
 'file-info-gif-looped' => 'en boclla',
 'file-info-gif-frames' => '$1 émâge{{PLURAL:$1||s}}',
 
@@ -3397,7 +3397,7 @@ Volyéd confirmar que vos dèsirâd franc refâre cela pâge.",
 # Live preview
 'livepreview-loading' => 'Chargement...',
 'livepreview-ready'   => 'Chargement... chavonâ !',
-'livepreview-failed'  => 'La vua vito fêta at pas reussia !
+'livepreview-failed'  => 'L’apèrçu vito fêt at pas reussi !
 Èprovâd la prèvisualisacion normala.',
 'livepreview-error'   => 'Empossiblo de sè branchiér : $1 « $2 ».
 Èprovâd la prèvisualisacion normala.',
@@ -3514,7 +3514,7 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 'version-svn-revision'             => '(v$2)',
 'version-license'                  => 'Licence',
 'version-software'                 => 'Programeries enstalâs',
-'version-software-product'         => 'Produit',
+'version-software-product'         => 'Marchandie',
 'version-software-version'         => 'Vèrsion',
 
 # Special:FilePath

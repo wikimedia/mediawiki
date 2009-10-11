@@ -1557,7 +1557,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges'                     => 'Mudanças recentes',
 'recentchanges-legend'              => 'Opções das mudanças recentes',
-'recentchangestext'                 => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
+'recentchangestext'                 => 'Acompanhe as mudanças mais recentes em {{SITENAME}} nesta página.',
 'recentchanges-feed-description'    => 'Acompanhe as Mudanças recentes deste wiki por este feed.',
 'recentchanges-label-legend'        => 'Legenda: $1.',
 'recentchanges-legend-newpage'      => '$1 -página nova',
