@@ -2726,14 +2726,10 @@ class Parser
 	 *	 exceeded, provide the values (optional)
 	 */
 	function limitationWarn( $limitationType, $current=null, $max=null) {
-		$msgName = $limitationType . '-warning';
 		//does no harm if $current and $max are present but are unnecessary for the message
-		$warning = wfMsgExt( $msgName, array( 'parsemag', 'escape' ), $current, $max ); 
+		$warning = wfMsgExt( "$limitationType-warning", array( 'parsemag', 'escape' ), $current, $max ); 
 		$this->mOutput->addWarning( $warning );
-		$cat = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( $limitationType . '-category' ) );
-		if ( $cat ) {
-			$this->mOutput->addCategory( $cat->getDBkey(), $this->getDefaultSort() );
-		}
+		$this->addTrackingCategory( "$limitationType-category" );
 	}
 
 	/**
@@ -3426,7 +3422,12 @@ class Parser
 	 * @return Bool whether the addition was successful
 	 */
 	protected function addTrackingCategory( $msg ){
-		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( $msg ) );
+		$cat = wfMsgForContent( $msg );
+		
+		# Allow tracking categories to be disabled by setting them to "-"
+		if( $cat === '-' ) return false;
+		
+		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		if ( $containerCategory ) {
 			$this->mOutput->addCategory( $containerCategory->getDBkey(), $this->getDefaultSort() );
 			return true;
