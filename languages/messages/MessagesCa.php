@@ -319,7 +319,7 @@ $messages = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
 
 'about'         => 'Quant a',
-'article'       => 'Contingut de la pàgina',
+'article'       => 'Pàgina de contingut',
 'newwindow'     => '(obre en una nova finestra)',
 'cancel'        => 'Anuŀla',
 'moredotdotdot' => 'Més...',
@@ -2024,7 +2024,7 @@ Suggeriments i ajuda:
 'confirm'                => 'Confirma',
 'excontent'              => 'el contingut era: «$1»',
 'excontentauthor'        => "el contingut era: «$1» (i l'únic coŀlaborador era [[Special:Contributions/$2|$2]])",
-'exbeforeblank'          => "el contingut abans d'estar en blanc era: '$1'",
+'exbeforeblank'          => "el contingut abans de buidar era: '$1'",
 'exblank'                => 'la pàgina estava en blanc',
 'delete-confirm'         => 'Elimina «$1»',
 'delete-legend'          => 'Elimina',

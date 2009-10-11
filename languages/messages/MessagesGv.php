@@ -45,6 +45,7 @@ $messages = array(
 'tog-watchmoves'          => 'Cur duillagyn ta scughit aym lesh my rolley arrey',
 'tog-watchdeletion'       => 'Cur duillagyn ta scryssit aym lesh my rolley arrey',
 'tog-minordefault'        => 'Myr roie-hoieaghey, cowraghey dagh reaghey myr myn-reaghey',
+'tog-previewontop'        => 'Taishbyney roie-haishbynys roish y chishtey reaghey',
 'tog-previewonfirst'      => 'Taishbyney roie-haishbynys ec y chied reaghey',
 'tog-enotifusertalkpages' => 'Cur post-l dou my vees y duillag ymmydeyr aym caghlaa',
 'tog-enotifminoredits'    => 'Cur dou post-l er myn-arraghey duillagyn chammah',
@@ -410,12 +411,15 @@ Foddee oo ceaghley yn fockle arrey noa da'n choontys noa shoh er duillag ''[[Spe
 'newarticletext'             => 'T’ou er jeet trooid kiangley dys duillag nagh vel ayn foast.  
 Son dy chroo y duillag, gow toshiaght screeuyn ‘sy chishtey çheu heese jeh shoh (jeeagh er [[{{MediaWiki:Helppage}}|duillag y chooney]] son ny smoo fys).  
 My haink oo dys shoh trooid marranys, crig er cramman ‘erash’ yn jeeagheyder ayd.',
-'noarticletext'              => 'Cha nel teks er y duillag shoh, foddee-shiu [[Special:Search/{{PAGENAME}}|ronsaghey yn enmys duillag shoh]] ayns duillagyn elley ny [{{fullurl:{{FULLPAGENAME}}|action=edit}} reaghey yn duillag shoh].',
+'noarticletext'              => "Cha nel teks 'sy duillag shoh ec y traa t'ayn.
+Foddee oo [[Special:Search/{{PAGENAME}}|ronsaghey enmys ny duillag shoh]] ayns duillagyn elley,
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} jean ronsaght 'sy lioaryn cooishyn ta bentyn rish],
+ny [{{fullurl:{{FULLPAGENAME}}|action=edit}} reaghey yn duillag shoh]</span>.",
 'note'                       => "'''Note:'''",
-'previewnote'                => "'''T'eh shoh ny roie-haishbynys;
-cha nel ny caghlaaghyn sauailt foast!'''",
+'previewnote'                => "'''Cooinnee nagh vel eh shoh agh ny roie-haishbynys;
+cha nel dty chaghlaaghyn sauailt foast!'''",
 'editing'                    => 'Reaghey $1',
-'editingsection'             => 'Reaghey $1 (rheynn)',
+'editingsection'             => 'Reaghey $1 (meer)',
 'editingcomment'             => 'Reaghey $1 (meer noa)',
 'yourtext'                   => 'Dty heks',
 'storedversion'              => 'Lhieggan stoyrit',
@@ -753,7 +757,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'brokenredirects-edit'   => 'reaghey',
 'brokenredirects-delete' => 'scryss',
 
-'withoutinterwiki'        => 'Duillagyn gyn kianglaghyn hengey',
+'withoutinterwiki'        => 'Duillagyn gyn kianglaghyn eddyrwiki',
 'withoutinterwiki-legend' => 'Roie-ockle',
 'withoutinterwiki-submit' => 'Taishbyney',
 
@@ -1126,6 +1130,7 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 'tooltip-search-fulltext'         => 'Ronsaghey ny duillagyn er son y teks shoh',
 'tooltip-p-logo'                  => 'Ard-ghuillag',
 'tooltip-n-mainpage'              => 'Cur keayrt er yn Ard-ghuillag',
+'tooltip-n-mainpage-description'  => 'Cur keayrt er yn ard-ghuillag',
 'tooltip-n-portal'                => "Mychione y çhalee, jean dty chooid share, c'raad reddyn dy feddyn",
 'tooltip-n-currentevents'         => 'Fow oayllys shaghadys fo chooishyn yn laa',
 'tooltip-n-recentchanges'         => "Rolley caghlaaghyn s'noa ayns y wiki.",

@@ -2632,42 +2632,109 @@ Ma aya bini numnen.
 'exif-focallength'                 => 'Deganiyê fokus ê lensi',
 'exif-subjectarea'                 => 'Wareyê ey',
 'exif-flashenergy'                 => 'Kuvetê flaşi',
+'exif-spatialfrequencyresponse'    => 'cewabê frekansê mekanî',
+'exif-focalplanexresolution'       => 'Focal plane X resolution',
+'exif-focalplaneyresolution'       => 'Focal plane Y resolution',
+'exif-focalplaneresolutionunit'    => 'Focal plane resolution unit',
+'exif-subjectlocation'             => 'cayê kerdoxi',
+'exif-exposureindex'               => 'rêzê (indexê) pozi',
+'exif-sensingmethod'               => 'metodê hiskerdışi',
 'exif-filesource'                  => 'çimeyê dosyayi',
+'exif-scenetype'                   => 'tipa sehneyi',
+'exif-cfapattern'                  => 'desenê (fesalê) CFAyi',
+'exif-customrendered'              => 'karê resmê xususiyi',
+'exif-exposuremode'                => 'poz kerdışi',
 'exif-whitebalance'                => 'Dengeyo Sipe',
+'exif-digitalzoomratio'            => 'dijital zoom',
+'exif-focallengthin35mmfilm'       => "filmê 35 mm'yın de dûriyê merkeziyi",
+'exif-scenecapturetype'            => 'tipa sehne gırewtışi',
+'exif-gaincontrol'                 => 'kontrolê sehneyi',
 'exif-contrast'                    => 'Kontrast',
 'exif-saturation'                  => 'Saturasyon',
 'exif-sharpness'                   => 'Tucî',
-'exif-gpslongitude'                => 'Derganiye',
+'exif-devicesettingdescription'    => "daşınasnayişê 'eyarê cihazi",
+'exif-subjectdistancerange'        => 'menzilê mesafeya kerdoxi',
+'exif-imageuniqueid'               => 'şınasnameyê resmê xususiyi',
+'exif-gpsversionid'                => 'revizyonê GPSyi',
+'exif-gpslatituderef'              => 'paralelê zıme û veroci',
+'exif-gpslatitude'                 => 'paralel',
+'exif-gpslongituderef'             => 'meridyenê rocvetış û rocawavi',
+'exif-gpslongitude'                => 'meridyen',
+'exif-gpsaltituderef'              => 'çımeyê berziyi',
+'exif-gpsaltitude'                 => 'berzî',
+'exif-gpstimestamp'                => "Wextê GPSyi (se'eta atomiki)",
+'exif-gpssatellites'               => 'Satellite yê ke pê peymawıtışi kenî',
+'exif-gpsstatus'                   => 'cayê gırewtoxi',
+'exif-gpsmeasuremode'              => 'moda peymawıtışi',
+'exif-gpsdop'                      => 'karê peymawıtışi',
 'exif-gpsspeedref'                 => 'Uniteyê pitî',
+'exif-gpsspeed'                    => 'pêtîyê receiveri',
 'exif-gpstrackref'                 => 'Referansê ke ser hetiyê hereketi',
 'exif-gpstrack'                    => 'hetiyê hereketi',
 'exif-gpsimgdirectionref'          => 'Referansê ke ser hetiyê resimi',
 'exif-gpsimgdirection'             => 'Hetiyê resimi',
+'exif-gpsmapdatum'                 => 'Geodetic survey data used',
+'exif-gpsdestlatituderef'          => 'Reference for latitude of destination',
+'exif-gpsdestlatitude'             => 'Latitude destination',
+'exif-gpsdestlongituderef'         => 'Reference for longitude of destination',
+'exif-gpsdestlongitude'            => 'Longitude of destination',
+'exif-gpsdestbearingref'           => 'Reference for bearing of destination',
+'exif-gpsdestbearing'              => 'Bearing of destination',
 'exif-gpsdestdistanceref'          => 'Referanse ke ser duriyeyê cayê şiyayişi',
 'exif-gpsdestdistance'             => 'Duriyeyê cayê şiyayişi',
+'exif-gpsprocessingmethod'         => 'Name of GPS processing method',
 'exif-gpsareainformation'          => 'Nameyê wareyê GPSi',
 'exif-gpsdatestamp'                => 'Tarixê GPSi',
+'exif-gpsdifferential'             => 'GPS differential correction',
+
+# EXIF attributes
+'exif-compression-1' => 'têhet nêanciyayo',
+'exif-compression-6' => 'wext o ke nêzaniyeno',
 
 'exif-unknowndate' => 'Tarix nizanyano',
 
 'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'kıştki-ser çarnayiş',
+'exif-orientation-3' => '180° çariyayo',
+'exif-orientation-4' => 'dergî-ser çarnayiş',
+'exif-orientation-5' => '90° çariyayo (çepser) u dergî-ser çarnayiş',
+'exif-orientation-6' => "90° çariyayo (hetê se'eti ra)",
+'exif-orientation-7' => "90° çariyayo (hetê se'eti ra) u dergî-ser çarnayiş",
+'exif-orientation-8' => '90° çariyayo (çepser)',
+
+'exif-planarconfiguration-1' => 'chunky format',
+'exif-planarconfiguration-2' => 'planar format',
 
 'exif-componentsconfiguration-0' => 'çini yo',
 
-'exif-exposureprogram-1' => 'Pe dest',
+'exif-exposureprogram-0' => 'nêdiya daşınasnayişi',
+'exif-exposureprogram-1' => 'Pê/bı dest',
 'exif-exposureprogram-2' => 'Programo normal',
+'exif-exposureprogram-3' => "'ewwıliyê kıfşi",
+'exif-exposureprogram-4' => "'ewwıliyê denklanşori",
+'exif-exposureprogram-5' => 'proğramo vıraştox',
+'exif-exposureprogram-6' => 'proğramê hareketi (qey antışê sehneyê hereketıni)',
+'exif-exposureprogram-7' => 'moda portreyi (zemin keno gerzawın, portre zi keno net u hema anceno)',
+'exif-exposureprogram-8' => 'moda peyzaji (têna çi yo ke dûri re çım verdeno)',
 
 'exif-subjectdistance-value' => '$1 metreyi',
 
 'exif-meteringmode-0'   => 'Nizanyeno',
+'exif-meteringmode-1'   => 'orta',
+'exif-meteringmode-2'   => 'gıraniyê merkeziyi ser',
+'exif-meteringmode-3'   => 'noqtayın',
+'exif-meteringmode-4'   => 'zaf noqtayın',
+'exif-meteringmode-5'   => 'Desenın/fesalın',
+'exif-meteringmode-6'   => 'qısmî',
 'exif-meteringmode-255' => 'Bin',
 
 'exif-lightsource-0'   => 'Nizanyeno',
 'exif-lightsource-1'   => 'Roşnê Tici',
 'exif-lightsource-2'   => 'Florasant',
+'exif-lightsource-3'   => 'roşnê bêbızate',
 'exif-lightsource-4'   => 'Flaş',
-'exif-lightsource-9'   => 'Hewayo hewl',
-'exif-lightsource-10'  => 'Hewayo hewr',
+'exif-lightsource-9'   => 'saye/hewayo weşî',
+'exif-lightsource-10'  => 'hewra/hora',
 'exif-lightsource-11'  => 'Virse',
 'exif-lightsource-12'  => 'Florasanê roşnê tici (D 5700 – 7100K)',
 'exif-lightsource-13'  => 'Florasanê sipe ye roci (N 4600 – 5400K)',
@@ -2676,35 +2743,65 @@ Ma aya bini numnen.
 'exif-lightsource-17'  => 'Roşna standarde A',
 'exif-lightsource-18'  => 'Roşna standarde B',
 'exif-lightsource-19'  => 'Roşna standarde C',
+'exif-lightsource-24'  => 'ISO volframê studyoyi',
 'exif-lightsource-255' => 'Çimeyê roşni yê bini',
 
 # Flash modes
+'exif-flash-fired-0'    => 'flash nêteqa/ta nêkewt',
+'exif-flash-fired-1'    => 'flash teqa/ta kewt',
+'exif-flash-return-0'   => 'moda roştê gêrayoxi qefelnaye yo',
+'exif-flash-return-2'   => 'roşto gêrayox çino',
+'exif-flash-return-3'   => 'roşto gêrayox tesbit bı/ca bı',
+'exif-flash-mode-1'     => 'flaşo mecburi teqa',
+'exif-flash-mode-2'     => 'flasho mecburi qefelnaye yo',
+'exif-flash-mode-3'     => 'moda otomatike',
 'exif-flash-function-1' => 'Fonksiyonê flaşi çini yo',
 'exif-flash-redeye-1'   => 'modê çim-sur tay kerdişi',
 
 'exif-focalplaneresolutionunit-2' => 'inchî',
 
+'exif-sensingmethod-1' => 'daşinasnayişê ey çino',
 'exif-sensingmethod-2' => 'Sensorê wareyê rengê yew-çipi',
 'exif-sensingmethod-3' => 'Sensorê wareyê rengê di-çipi',
 'exif-sensingmethod-4' => 'Sensorê wareyê rengê hirê-çipi',
+'exif-sensingmethod-5' => 'sensora têrêz a ke rengın his kena',
 'exif-sensingmethod-7' => 'Sensorê hirê-çizgi',
+'exif-sensingmethod-8' => 'sensora aritmetik a ke rengın his kena',
+
+'exif-scenetype-1' => 'ca de fotoğraf ker',
 
 'exif-customrendered-0' => 'Prosesê normali',
+'exif-customrendered-1' => 'proseso xususi',
+
+'exif-exposuremode-0' => 'pozkerdışê otomatiki',
+'exif-exposuremode-1' => 'pozkerdışê manueli',
+'exif-exposuremode-2' => 'Auto bracket',
+
+'exif-whitebalance-0' => 'balansê sıpi yo otomatiki',
+'exif-whitebalance-1' => 'balansê sıpi yo manueli',
 
 'exif-scenecapturetype-0' => 'Standard',
+'exif-scenecapturetype-1' => 'Manzara',
 'exif-scenecapturetype-2' => 'Portre',
+'exif-scenecapturetype-3' => 'şew-antış',
 
 'exif-gaincontrol-0' => 'çino',
+'exif-gaincontrol-1' => 'Low gain up',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
 
 'exif-contrast-0' => 'Normal',
-'exif-contrast-1' => 'Nemr',
-'exif-contrast-2' => 'Hişk',
+'exif-contrast-1' => 'Nerm',
+'exif-contrast-2' => 'Huşk',
 
 'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'mırdiyo kêm',
+'exif-saturation-2' => 'mırdiyo ziyed',
 
 'exif-sharpness-0' => 'Normal',
-'exif-sharpness-1' => 'Nemr',
-'exif-sharpness-2' => 'Hişk',
+'exif-sharpness-1' => 'Nerm',
+'exif-sharpness-2' => 'Huşk',
 
 'exif-subjectdistancerange-0' => 'Nizanyeno',
 'exif-subjectdistancerange-1' => 'Makro',
@@ -2719,8 +2816,20 @@ Ma aya bini numnen.
 'exif-gpslongitude-e' => 'derganiya rocvetış',
 'exif-gpslongitude-w' => 'Derganiya rocawan',
 
+'exif-gpsstatus-a' => 'peymawıtış dewam keno',
+'exif-gpsstatus-v' => 'şuxuliyayişê peymawıtışi',
+
+'exif-gpsmeasuremode-2' => '2-dimensional measurement',
+'exif-gpsmeasuremode-3' => '3-dimensional measurement',
+
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-n' => 'Gireyan',
+'exif-gpsspeed-k' => 'km/s',
+'exif-gpsspeed-m' => 'Mil/saat',
+'exif-gpsspeed-n' => 'milê deryayi',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'hetê raştê ey',
+'exif-gpsdirection-m' => 'hetê manyetikê ey',
 
 # External editor support
 'edit-externally'      => 'Ena dosya bıvurne pe yew programê harici',
@@ -2735,27 +2844,78 @@ Ma aya bini numnen.
 'limitall'         => 'hemi',
 
 # E-mail address confirmation
-'invalidateemail' => 'confirmasyonê e-maili iptal bik',
+'confirmemail'             => 'Adresê emaîlî xo konfirme bike',
+'confirmemail_noemail'     => 'Yew emaîlê tu raştîyê çin o ke [[Special:Preferences|tercihê karberî]] ayar bike.',
+'confirmemail_text'        => 'qey şuxulnayişê e-postayê wikiyi gani ewwil e-posyaê şıma tesdiq bıbo.
+adresa şıma re qey erşawıtışê e-postayê tesdiqi, butonê cêrıni bıtıknê.
+e-posta yo ke erşawiyeno tede gıreyê kodê tesdiqi esto, gıreyi bıtıkne akerê u e-postayê xo tesdiq kerê.',
+'confirmemail_pending'     => 'Yew codê konfirmasyonî ma ti ra şiravt;
+Eka ti newe hesabê xo viraşt, ti gani yew di dekika vindero u email xo kontrol bike, yani reyna yew hesab meviraz.',
+'confirmemail_send'        => 'Yew kodê konfirmasyonî email mina bişirave',
+'confirmemail_sent'        => 'Emailê konfirmasyonî şiravt',
+'confirmemail_oncreate'    => 'Yew codê konfirmasyonî ma ti ra şiravt;
+Ena kod semed ci kewtîşî lazim niyo, feqat ti gani sistem rê eno kod bimocne ke ti opsiyonê emailî wîkî a bike.',
+'confirmemail_sendfailed'  => '{{SITENAME}} nieşkenî ti ra yew emailê konfirmasyonî bişiravî.
+Rica keno ke adresê emailî xo kontrol bike.  
+
+Email şawitoğ eno reyna ard: $1',
+'confirmemail_invalid'     => 'Kodê konfirmasyonî raşt niyo.
+Wextê kod ê konfirmasyonî viyerto.',
+'confirmemail_needlogin'   => ' $1 lazimo ke ti adresê emaîl ê xo konfirme bike.',
+'confirmemail_success'     => 'Email adresê tu konfirme biy.
+Ti eşkeno [[Special:UserLogin|ci kewt]].',
+'confirmemail_loggedin'    => 'Eka email adresê tu konfirme biy.',
+'confirmemail_error'       => 'Konfirmasyon ni biy, yew ğelet esto.',
+'confirmemail_subject'     => '{{SITENAME}} konfirmasyonê adres ê emalî',
+'confirmemail_body'        => 'yew ten, muhtemelen şıma no IP-adresi ra,
+keyepelê {{SITENAME}}i de pê no $2 e-postayi hesab kerd a.   
+
+eke raşta no e-posta eyê şıma yo şıma gani tesdiq bıkerî, qey tesdiq kerdışi gani karê e-postayê keyepeli {{SITENAME}} aktif bıbo, qey aktif kerdışi gıreyê cêrıni bıtıkne.
+
+$3
+
+eke şıma hesab *a nêkerdo*, qey ibtalê tesdiqkerdışê adresa e-postayi gıreyê cêrıni bıtıknê:
+
+$5
+
+kodê tesdiqi heta ıney tarixi $4 meqbul o.',
+'confirmemail_invalidated' => 'Konfermasyonê adres ê emaîlî iptal biy',
+'invalidateemail'          => 'confirmasyonê e-maili iptal bik',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[Ena URL zaf dergo]',
+'scarytranscludedisabled' => '[Transcludê înterwîkîyî nihebityeno]',
+'scarytranscludefailed'   => '[Qe $1 fetch kerdişî nihebitiyeno]',
+'scarytranscludetoolong'  => '[Ena URL zaf dergo]',
 
 # Trackbacks
-'trackbackremove' => '([$1 biwedarne])',
+'trackbackbox'      => 'Ser ena pel trackbackî :<br />
+$1',
+'trackbackremove'   => '([$1 biwedarne])',
+'trackbacklink'     => 'Trackback',
+'trackbackdeleteok' => 'Trackback wedariyeyo.',
 
 # Delete conflict
-'recreate' => 'Reyna viraz',
+'deletedwhileediting' => "'''Teme''': Ena pele  verniyê ti de eseteriyaya!",
+'confirmrecreate'     => "Karberê [[User:$1|$1]]î ([[User talk:$1|talk]]), verniyê vurnayîşê ti ra ena pele wedarno, sebeb: ''$2''
+Ma rica keno konfirme bike ke ti raştî wazeno eno pel bivirazo.",
+'recreate'            => 'Reyna viraz',
 
 # action=purge
 'confirm_purge_button' => 'Temam',
+'confirm-purge-top'    => 'Cacheyê eno pel biestere?',
+'confirm-purge-bottom' => 'Purge kerdişê yew pel cacheyî estereno u revizyonê penîyî mucneno.',
 
 # Multipage image navigation
 'imgmultipageprev' => 'peleyê verin',
+'imgmultipagenext' => 'pelo serîn →',
 'imgmultigo'       => 'Şı!',
+'imgmultigoto'     => 'Şi pel $1',
 
 # Table pager
 'ascending_abbrev'         => 'cor',
 'descending_abbrev'        => 'cêr',
+'table_pager_next'         => 'Pelo serîn',
+'table_pager_prev'         => 'pelo binîn',
 'table_pager_first'        => 'Peleyê  yewin',
 'table_pager_last'         => 'Peleyê peni',
 'table_pager_limit'        => 'Yew pele de $1 tene bimocne',
@@ -2765,6 +2925,7 @@ Ma aya bini numnen.
 # Auto-summaries
 'autosumm-blank'   => 'Pele de her çi wederna',
 'autosumm-replace' => "Maqale pê '$1' vuriya",
+'autoredircomment' => 'Pele [[$1]] rê redirek biyo',
 'autosumm-new'     => "Pê '$1' pele viraziyo.",
 
 # Live preview
@@ -2774,72 +2935,160 @@ Ma aya bini numnen.
 'livepreview-error'   => 'Nieşken giredayi biy: $1 "$2".
 Verqeydo normal deneme bike.',
 
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Vurnayîşî ke {{PLURAL:$1|seniye|seniyeyî}} ra newiyerî belki inan nimucneno.',
+'lag-warn-high'   => 'Eka serverê databaseyî zaf hebitiyeno, ayra vurnayîşî ke {{PLURAL:$1|seniye|seniyeyî}} ra newiyerî belki inan nimucneno.',
+
 # Watchlist editor
-'watchlistedit-numitems'     => 'Listeyê seyirkerdişi ti de {{PLURAL:$1|1 title|$1 titles}} esta, feqet pelayanê minaqeşeyan dahil niyê.',
-'watchlistedit-normal-title' => 'Listeyê seyirkerdişi bivurne',
-'watchlistedit-raw-title'    => 'Listeyê seyirkerdişi ye hami bivurne',
-'watchlistedit-raw-legend'   => 'Listeyê seyirkerdişi ye hami bivurne',
-'watchlistedit-raw-done'     => 'Listeyê tuyê seyrkerdişi rocaniye biyo',
+'watchlistedit-numitems'       => 'Listeyê seyirkerdişi ti de {{PLURAL:$1|1 title|$1 titles}} esta, feqet pelayanê minaqeşeyan dahil niyê.',
+'watchlistedit-noitems'        => 'Listeyê seyr kerdişê tu de seroğ çin o.',
+'watchlistedit-normal-title'   => 'Listeyê seyirkerdişi bivurne',
+'watchlistedit-normal-legend'  => 'Listeyê seyr kerdişê tu de seroğ biwedarna.',
+'watchlistedit-normal-explain' => 'Listeyê seyr kerdîşî ti de serogî cor de mucnayiyo.
+Eka ti wazeno seroğ biwedarne, kuti ke kistê de, ay işaret bike u Seroğ Wedarne klik bike.
+Ti hem zi eşkeno [[Special:Watchlist/raw|edit the raw list]].',
+'watchlistedit-normal-submit'  => 'Seroğî biwedarnê',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 seroğ|$1 seroğî}} seyr kerdişê tu ra wedarno.',
+'watchlistedit-raw-title'      => 'Listeyê seyirkerdişi ye hami bivurne',
+'watchlistedit-raw-legend'     => 'Listeyê seyirkerdişi ye hami bivurne',
+'watchlistedit-raw-explain'    => 'Listeyê seyr kerdîşî ti de serogî cor de mucnayiyo u ti eşkeno pê dekerdiş u wedarnayîş liste bivurne; 
+Eka vurnayîşê ti qediyo, Listeyê Seyr Kerdişî Rocaniye Bike klik bike.  
+Ti hem zi eşkeno [[Special:Watchlist/edit|use the standard editor]].',
+'watchlistedit-raw-titles'     => 'Seroğî:',
+'watchlistedit-raw-submit'     => 'Listeyê seyr kerdişî xo update bike',
+'watchlistedit-raw-done'       => 'Listeyê tuyê seyrkerdişi rocaniye biyo',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 seroğ|$1 seroğî}} de kerd:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 seroğ|$1 seroğî}} de wedarno:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'vurnayışanê eleqadari bıvin',
 'watchlisttools-edit' => 'listey seyrkerdışi bevin u edit bık',
 'watchlisttools-raw'  => 'Listeyê seyr-kerdışi bıvin',
 
+# Core parser functions
+'unknown_extension_tag' => 'Etiketê ekstensiyon ê "$1"î nizanyeno',
+'duplicate-defaultsort' => '\'\'\'Teme:\'\'\' Tuşê default sort "$2" sero tuşê default sort "$1"î ra şino.',
+
 # Special:Version
-'version'                   => 'Versiyon',
-'version-specialpages'      => 'Pelanê xasiyan',
-'version-other'             => 'Bin',
-'version-hook-subscribedby' => 'Eza biyayoğ',
-'version-version'           => '(Versiyon $1)',
-'version-license'           => 'Lisans',
-'version-software'          => 'Softwareyê ronayi',
-'version-software-product'  => 'Mal',
-'version-software-version'  => 'Versiyon',
+'version'                          => 'Versiyon',
+'version-extensions'               => 'Ekstensiyonî ke ronaye',
+'version-specialpages'             => 'Pelanê xasiyan',
+'version-parserhooks'              => 'Çengelê Parserî',
+'version-variables'                => 'Vurnayeyî',
+'version-other'                    => 'Bin',
+'version-mediahandlers'            => 'Kulbê medyayî',
+'version-hooks'                    => 'Çengelî',
+'version-extension-functions'      => 'Funksiyonê ekstensiyonî',
+'version-parser-extensiontags'     => 'Etiketê ekstensiyon ê parserî',
+'version-parser-function-hooks'    => 'Çengelê ekstensiyon ê parserî',
+'version-skin-extension-functions' => 'Funksiyonê ekstensiyon ê çermeyî',
+'version-hook-name'                => 'Nameyê çengelî',
+'version-hook-subscribedby'        => 'Eza biyayoğ',
+'version-version'                  => '(Versiyon $1)',
+'version-license'                  => 'Lisans',
+'version-software'                 => 'Softwareyê ronayi',
+'version-software-product'         => 'Mal',
+'version-software-version'         => 'Versiyon',
 
 # Special:FilePath
-'filepath'        => 'Raherê dosyayi',
-'filepath-page'   => 'Dosya:',
-'filepath-submit' => 'Raher',
+'filepath'         => 'Raherê dosyayi',
+'filepath-page'    => 'Dosya:',
+'filepath-submit'  => 'Raher',
+'filepath-summary' => 'Ena pela xasî ser yew dosyayî patikayê temamî ano.
+Resiman ful resolasyon de mocnayiyê, tipê dosyayî binî pê direktorê programî başlî beno. 
+
+Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'kopyayê dosyayi bigêre',
+'fileduplicatesearch-summary'  => 'Qe dosyayê herdî bine harsh value de bigêre. 
+
+Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
 'fileduplicatesearch-legend'   => 'kopyayê ena dosya bigêre',
 'fileduplicatesearch-filename' => 'Nameyê dosyayi',
 'fileduplicatesearch-submit'   => 'bigêre',
+'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Ebatê dosyayî: $3<br />Tipê MIMEî: $4',
+'fileduplicatesearch-result-1' => "Dosyayê ''$1î'' de hem-kopya çini yo.",
+'fileduplicatesearch-result-n' => "Dosyayê ''$1î'' de {{PLURAL:$2|1 hem-kopya|$2 hem-kopyayî'}} esto.",
 
 # Special:SpecialPages
-'specialpages'                 => 'Pelê xasi',
-'specialpages-group-other'     => 'Pelê xasiyê bini',
-'specialpages-group-login'     => 'Cıkewtış / Hesab vıraştış',
-'specialpages-group-changes'   => 'Vurnayişê peni u logan',
-'specialpages-group-pages'     => 'listeyanê pelan',
-'specialpages-group-pagetools' => 'hacetanê pelayan',
-'specialpages-group-spam'      => 'hacetê spami',
+'specialpages'                   => 'Pelê xasi',
+'specialpages-note'              => '----
+* Pela xasî ye normalî.
+* <strong class="mw-specialpagerestricted">Pela xasî ye restriksiyonî.</strong>',
+'specialpages-group-maintenance' => 'Raporê pak tepiştîşî',
+'specialpages-group-other'       => 'Pelê xasiyê bini',
+'specialpages-group-login'       => 'Cıkewtış / Hesab vıraştış',
+'specialpages-group-changes'     => 'Vurnayişê peni u logan',
+'specialpages-group-media'       => 'Raporê medya u bar kerdîşî',
+'specialpages-group-users'       => 'Karber u heqqî',
+'specialpages-group-highuse'     => 'Pelî ke zaf klik benê',
+'specialpages-group-pages'       => 'listeyanê pelan',
+'specialpages-group-pagetools'   => 'hacetanê pelayan',
+'specialpages-group-wiki'        => 'Data u hacetê wîkîyî',
+'specialpages-group-redirects'   => 'Pela xasî reyna direk kenê',
+'specialpages-group-spam'        => 'hacetê spami',
 
 # Special:BlankPage
-'blankpage' => 'Pelo veng',
+'blankpage'              => 'Pelo veng',
+'intentionallyblankpage' => 'Ena pel bi zanayişî weng mendo.',
+
+# External image whitelist
+'external_image_whitelist' => '  #no satır zey xo verde/raverde<pre>
+#parçeyê ifadeya rêzbiyayeyani (têna zerreyê ıney de // ) u çıtayo/çiyo zi mende cêr de têare kerê.
+#ney URL ya (hotlink) resmê teberi de hemcıta benî.
+#Ê yê ke hemcıt (eşleşmek-hemçift) biyê zey resımi asenî, eqsê hal de zi zey gıreyê resmi aseno.
+satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
+#herfa gırd û qıci ferq nêkeno
+
+#parçeyê ifadeya rêzbiyayeyani bıerzê serê ney satıri. no satır zey xo verde/raverde </pre>',
 
 # Special:Tags
-'tag-filter-submit' => 'Filitre',
-'tags-title'        => 'Etiketan',
-'tags-tag'          => 'Nameyê etiketi',
-'tags-edit'         => 'bivurne',
+'tags'                    => 'Etiketê vurnayîş ê raştî',
+'tag-filter'              => '[[Special:Tags|Tag]] filitre:',
+'tag-filter-submit'       => 'Filitre',
+'tags-title'              => 'Etiketan',
+'tags-intro'              => 'Eno pel de listeyê eyiketî este ke belki software pê ey edit kenî.',
+'tags-tag'                => 'Nameyê etiketi',
+'tags-display-header'     => 'Listeyê vurnayîşî de esayîş',
+'tags-description-header' => 'Deskripsyonê manay ê hemî',
+'tags-hitcount-header'    => 'Vurnayîşî ke etiket biyê',
+'tags-edit'               => 'bivurne',
+'tags-hitcount'           => '$1 {{PLURAL:$1|vurnayîş|vurnayîşî}}',
 
 # Database error messages
-'dberr-header' => 'Ena Wiki de yew ğelet esta',
+'dberr-header'      => 'Ena Wiki de yew ğelet esta',
+'dberr-problems'    => 'Qusir ma mevin! Site ma de nika ğeletê teknikî  esto.',
+'dberr-again'       => 'Yew di dekika vinder u hin bar bike.',
+'dberr-info'        => '(Nieşkenî serverê databaseyî bireso: $1)',
+'dberr-usegoogle'   => 'Ti eşkeno hem zi ser Google de bigêre.',
+'dberr-outofdate'   => 'Note bike ke belki îdeksê tedesteyî rocaniye niyo.',
+'dberr-cachederror' => 'Pel ke ti wazeno yew kopyayê cacheyî ay esto, ay belki rocaniyeyo.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Inputê ti de tayê ğeletî estê',
+'htmlform-select-badoption'    => 'Ena değer ke ti spesife kerd yew opsiyonê raştî ni yo.',
+'htmlform-int-invalid'         => 'Ena değer ke ti spesife kerd yew reqem ni yo.',
+'htmlform-float-invalid'       => 'Ena değer ke ti spesife kerd yew amar ni yo.',
+'htmlform-int-toolow'          => 'Ena değer ke ti spesife kerd maxsimumê $1î ra kilmyer o.',
+'htmlform-int-toohigh'         => 'Ena değer ke ti spesife kerd maxsimumê $1î ra zafyer o.',
 'htmlform-submit'              => 'Bişirav',
+'htmlform-reset'               => 'Vurnayişî reyna biyar',
 'htmlform-selectorother-other' => 'Bin',
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Kategorî de bike',
 'ajax-add-category-submit'     => 'De bike',
+'ajax-confirm-title'           => 'Hereketî konfirme bike',
+'ajax-confirm-prompt'          => 'Ti eşkenî cêr de yew qisseyê vurnayîş ê xo bide.
+Tuşê "Qeyd ke"yî klik bike ke nuşteyanê tu qeyd biy.',
 'ajax-confirm-save'            => 'Qeyt bik',
 'ajax-add-category-summary'    => 'Kategorî de bike "$1"',
 'ajax-remove-category-summary' => 'kategoriyê "$1"i biwedarne',
+'ajax-confirm-actionsummary'   => 'çita bik:',
 'ajax-error-title'             => 'Xeta',
 'ajax-error-dismiss'           => 'Temam',
+'ajax-remove-category-error'   => 'Ma nieşkenî ena kategorî wedarne.
+Çi wext yew kategorî yew template de ca geno, ena probelem bena.',
 
 );
