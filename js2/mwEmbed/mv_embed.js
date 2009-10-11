@@ -19,12 +19,12 @@ var MV_DO_INIT=true;
 if( MV_EMBED_VERSION ){
 	MV_DO_INIT=false;
 }
-// Used to grab fresh copies of scripts. 
+// Used to grab fresh copies of scripts.
 var MV_EMBED_VERSION = '1.0r20';
 
 /*
  * Configuration variables should be set by extending mwConfigOptions
- * here is the default config: 
+ * here is the default config:
  */
 var mwDefaultConfig = {
 	'skin_name': 'mvpcf',
@@ -70,10 +70,10 @@ parseUri.options = {
 // For use when mv_embed with script-loader is in the root MediaWiki path
 var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
 
-var _global = this; // Global obj (depreciate use window) 
+var _global = this; // Global obj (depreciate use window)
 
 /*
-* setup the empty global $mw object 
+* setup the empty global $mw object
 * will ensure all our functions are properly namespaced
 */
 if(!window['$mw']){
@@ -94,35 +94,35 @@ if( !mv_embed_path ) {
 * wrap the global $mw object here:
 *
 * Any global functions/classes that are not jQuery plugins should make
-* there way into the $mw namespace 
+* there way into the $mw namespace
 */
 (function( $ ) {
 	/*
 	* Language classes $mw.lang
-	* 
+	*
 	* Localized Language support attempts to mirror the functionality of Language.php in MediaWiki
 	* It contains methods for loading and transforming msg text
-	* 
+	*
 	*/
 	$.lang = {};
 	/**
 	* Setup the lang object
 	*/
 	var gMsg = {};
-	var gRuleSet = {};		
-		
+	var gRuleSet = {};
+
 	/**
 	* loadGM function
-	* Loads a set of json messages into the lng object. 
+	* Loads a set of json messages into the lng object.
 	*
-	* @param json msgSet The set of msgs to be loaded 
+	* @param json msgSet The set of msgs to be loaded
 	*/
 	$.lang.loadGM = function( msgSet ){
 		for( var i in msgSet ) {
 			gMsg[ i ] = msgSet[i];
 		}
 	},
-	
+
 	/**
 	* loadRS function
 	* Loads a ruleset by given template key ie PLURAL : { //ruleSetObj }
@@ -134,55 +134,55 @@ if( !mv_embed_path ) {
 			gRuleSet[ i ] = ruleSet[ i ];
 		}
 	}
-	
+
 	/**
 	 * Returns a transformed msg string
 	 *
 	 * it take a msg key and array of replacement values of form
-	 * $1, $2 and does relevant msgkey transformation returning 
-	 * the user msg. 
+	 * $1, $2 and does relevant msgkey transformation returning
+	 * the user msg.
 	 *
 	 * @param string key The msg key as set by loadGm
 	 * @param [mixed] args  An array of replacement strings
-	 * @return string 
+	 * @return string
 	 */
-	$.lang.gM = function( key , args ) {						
+	$.lang.gM = function( key , args ) {
 		if(! gMsg[ key ])
 			return '&lt;' + key + '&gt;';// Missing key placeholder
-		
+
 		//swap in the arg values
-		var ms =  $.lang.gMsgSwap( key, args) ;		
-		 
+		var ms =  $.lang.gMsgSwap( key, args) ;
+
 		//a quick check to see if we need to send the msg via the 'parser'
 		//(we can add more detailed check once we support more wiki syntax)
 		if(ms.indexOf('{{')==-1){
 			return ms;
 			//return ms;
 		}
-					
-		//make sure we have the lagMagic setup: 
+
+		//make sure we have the lagMagic setup:
 		$.lang.magicSetup();
-		//send the msg key through the parser  
+		//send the msg key through the parser
 		pObj = $.parser.pNew( ms );
 		//return the transformed msg
-		return pObj.getHTML(); 		
+		return pObj.getHTML();
 	}
 	/**
 	* gMsgSwap
-	* 
+	*
 	* @param string key The msg key as set by loadGm
 	* @param [mixed] args  An array or string to be replaced
-	* @return string 
+	* @return string
 	*/
 	$.lang.gMsgSwap = function( key , args ){
 		if(! gMsg[ key ])
 			return '&lt;' + key + '&gt;';// Missing key placeholder
 		//get the messege string:
 		var ms = gMsg[ key ];
-		
-		//replace values 
+
+		//replace values
 		if( typeof args == 'object' || typeof args == 'array' ) {
-			for( var v in args ) { 
+			for( var v in args ) {
 				// Message test replace arguments start at 1 instead of zero:
 				var rep = new RegExp('\\$'+ ( parseInt(v) + 1 ), 'g');
 				ms = ms.replace( rep, args[v] );
@@ -192,70 +192,70 @@ if( !mv_embed_path ) {
 		}
 		return ms;
 	}
-	 
+
 	/**
 	* gMsgNoTrans
-	* 
+	*
 	* @returns string The msg key without transforming it
 	*/
 	$.lang.gMsgNoTrans = function( key ){
 		if( gMsg[ key ] )
 			return gMsg[ key ]
-	
+
 		// Missing key placeholder
 		return '&lt;' + key + '&gt;';
 	}
 	/**
-	* Add Supported Magic Words to parser 
+	* Add Supported Magic Words to parser
 	*/
 	//set the setupflag to false:
-	$.lang.doneSetup=false;	
+	$.lang.doneSetup=false;
 	$.lang.magicSetup = function(){
 		if(!$.lang.doneSetup){
 			$.parser.addMagic ( {
 				'PLURAL' : $.lang.procPLURAL
 			})
-			
+
 			$.lang.doneSetup = true;
 		}
-			
+
 	}
 	/**
 	* Process the PLURAL special language template key:
 	*/
 	$.lang.procPLURAL = function( tObj ){
-		//setup shortcuts 
+		//setup shortcuts
 		// (gRuleSet is loaded from script-loader to contains local ruleset)
-		var rs = gRuleSet['PLURAL'];	
-		
+		var rs = gRuleSet['PLURAL'];
+
 		/*
 		 * Plural matchRuleTest
 		 */
 		function matchRuleTest(cRule, val){
 			js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
-			
+
 			function checkValue(compare, val){
 				if(typeof compare == 'string'){
-					range = compare.split('-');	
+					range = compare.split('-');
 					if( range.length >= 1 ){
 						if( val >= range[0] &&  val <= range[1] )
-							return true; 
+							return true;
 					}
 				}
 				//else do a direct compare
 				if(compare == val){
-					return true; 
+					return true;
 				}
 				return false;
-			}			
+			}
 			//check for simple cRule type:
-			if( typeof cRule == 'number'){					
-				return ( parseInt( val ) == parseInt( cRule) );					
+			if( typeof cRule == 'number'){
+				return ( parseInt( val ) == parseInt( cRule) );
 			}else if( typeof cRule == 'object' ){
-				var cmatch = {};		
+				var cmatch = {};
 				//if a list we need to match all for rule match
 				for(var i in  cRule){
-					var cr = cRule[i]; 					
+					var cr = cRule[i];
 					//set cr type
 					var crType =  '';
 					for( var j in cr ){
@@ -264,9 +264,9 @@ if( !mv_embed_path ) {
 					}
 					switch(crType){
 						case 'mod':
-							if( cr ['is'] ){	
+							if( cr ['is'] ){
 								if( checkValue( val % cr['mod'], cr ['is'] ) )
-									cmatch[i] = true;																								
+									cmatch[i] = true;
 							}else if( cr['not']){
 								if( ! checkValue( val % cr['mod'], cr ['not'] ) )
 									cmatch[i] = true;
@@ -274,46 +274,46 @@ if( !mv_embed_path ) {
 						break;
 					}
 				}
-				//check all the matches (taking into consideration "or" order) 
-				for(var i in cRule){					
+				//check all the matches (taking into consideration "or" order)
+				for(var i in cRule){
 					if( ! cmatch[i] )
-						return false; 
+						return false;
 				}
 				return true;
-				
+
 			}
 		}
 		/**
 		 * Maps a given rule Index to template params:
-		 * 
+		 *
 		 * if index is out of range return last param
-		 * @param 
-		 */ 
-		function getTempParamFromRuleInx(tObj, ruleInx ){					
+		 * @param
+		 */
+		function getTempParamFromRuleInx(tObj, ruleInx ){
 			//js_log('getTempParamFromRuleInx: ruleInx: ' + ruleInx + ' tempParamLength ' + tObj.param.length );
 			if( ruleInx	>= tObj.param.length )
 				return  tObj.param[  tObj.param.length -1 ];
 			//else return the requested index:
 			return tObj.param[ ruleInx ];
-		}						
+		}
 		var rCount=0
-		//run the actual rule lookup: 		
+		//run the actual rule lookup:
 		for(var ruleInx in rs){
-			cRule = rs[ruleInx];			
+			cRule = rs[ruleInx];
 			if( matchRuleTest( cRule, tObj.arg ) ){
-				js_log("matched rule: " + ruleInx );				
-				return getTempParamFromRuleInx(tObj, rCount );					
+				js_log("matched rule: " + ruleInx );
+				return getTempParamFromRuleInx(tObj, rCount );
 			}
 			rCount ++;
-		}			
+		}
 		js_log('no match found for: ' + tObj.arg + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
-		//return the last /"other" template param 
-		return tObj.param [ tObj.param.length -1 ]; 					
-	}		
-	
+		//return the last /"other" template param
+		return tObj.param [ tObj.param.length -1 ];
+	}
+
 	/**
 	 * gMsgLoadRemote loads remote msg strings
-	 * 
+	 *
 	 * @param mixed msgSet the set of msg to load remotely
 	 * @param function callback  the callback to issue once string is ready
 	 */
@@ -327,7 +327,7 @@ if( !mv_embed_path ) {
 			ammessages += msgSet;
 		}
 		if( ammessages == '' ) {
-			js_log( 'gMsgLoadRemote: no message set requested' );		
+			js_log( 'gMsgLoadRemote: no message set requested' );
 			return false;
 		}
 		do_api_req({
@@ -382,95 +382,95 @@ if( !mv_embed_path ) {
 		//@@todo we need a formatNum and we need to request some special packaged info to deal with that case.
 		return gM( msg , size );
 	};
-	
-	
+
+
 	/**
 	* MediaWiki wikitext "Parser"
 	*
-	* This is not feature complete but we need a way to get at template properties 
-	*	
-	*  
+	* This is not feature complete but we need a way to get at template properties
+	*
+	*
 	* @param wikiText the wikitext to be parsed
-	* @return parserObj returns a parser object that has methods for getting at 
-	* things you would want 
-	*/	
+	* @return parserObj returns a parser object that has methods for getting at
+	* things you would want
+	*/
 	$.parser = {};
 	var pMagicSet = {};
 	/**
-	 * parser addMagic 
-	 * 
+	 * parser addMagic
+	 *
 	 * lets you add a set of magic keys and associated callback funcions
-	 * callback: @param ( Object Template ) 
+	 * callback: @param ( Object Template )
 	 * callback: @return the transformed template output
-	 * 
+	 *
 	 * @param object magicSet key:callback
 	 */
 	$.parser.addMagic = function( magicSet ){
 		for(var i in magicSet)
 			pMagicSet[ i ] = magicSet[i];
 	}
-	
+
 	//actual parse call (returns parser object)
 	$.parser.pNew = function( wikiText, opt ){
 		var parseObj = function( wikiText, opt){
 			return this.init( wikiText, opt )
-		}		
+		}
 		parseObj.prototype = {
 			//the wikiText "DOM"... stores the parsed wikiText structure
 			//wtDOM : {}, (not yet supported )
-			 
-			pOut : '', //the parser output string container 
+
+			pOut : '', //the parser output string container
 			init  :function( wikiText ){
-				this.wikiText = wikiText;				
+				this.wikiText = wikiText;
 			},
 			updateText : function( wikiText ){
 				this.wikiText = wikiText;
-				//invalidate the output (will force a reparse) 
-				this.pOut = '';				
+				//invalidate the output (will force a reparse)
+				this.pOut = '';
 			},
-			parse : function(){			
+			parse : function(){
 				this.pObj = {};
 				this.pObj.tmpl = new Array();
-				
-				//refrences for swap key			
+
+				//refrences for swap key
 				this.pObj.tmpl_text = new Array();
-				this.pObj.tmpl_key = new Array();							 			
- 				this.pObj.tmpl_ns = '' ; // wikiText with place-holder				 						
-				
+				this.pObj.tmpl_key = new Array();
+ 				this.pObj.tmpl_ns = '' ; // wikiText with place-holder
+
 				//get templates losly based on Magnus_Manske/tmpl.js code:
 				var tcnt = 0 ;
-				var ts = '' ;				
+				var ts = '' ;
 				var curt = 0 ;
-				var schar = 0;				
-				
-				
+				var schar = 0;
+
+
 				//build out nested template holders:
 				var depth = 0;
-				var tKey = 0;					
-				var ns = '';									
-							
+				var tKey = 0;
+				var ns = '';
+
 				/*
 				 * quickly recursive / parse out templates with top down recurse decent
-				 */ 
-				
+				 */
+
 				// ~ probably a better algorithm out there / should mirror php parser flow ~
-				// ... but I am having fun with recursion so here it is...												
-				function rdpp ( txt ){										
+				// ... but I am having fun with recursion so here it is...
+				function rdpp ( txt ){
 					var node = {};
 					//if we should output node text
-					var ont = true;					
-					//inspect each char					
-					for(var a=0; a < txt.length; a++){					
+					var ont = true;
+					//inspect each char
+					for(var a=0; a < txt.length; a++){
 						if( txt[a] == '{' && txt[a+1] == '{' ){
 							a=a+2;
-							node['p'] = node;							
+							node['p'] = node;
 							if(!node['c'])
 								node['c'] = new Array();
-																
-							node['c'].push( rdpp( txt.substr( a ) ) );								
-							ont=true;																																			
+
+							node['c'].push( rdpp( txt.substr( a ) ) );
+							ont=true;
 						}else if( txt[a] == '}' && txt[a+1] == '}'){
-							if( !node['p'] ){							
+							if( !node['p'] ){
 								return node;
 							}
 							node = node['p'];
@@ -484,37 +484,37 @@ if( !mv_embed_path ) {
 								node['t']+=txt[a];
 					}
 					return node;
-				}									
+				}
 				/**
 				 * parse template text as template name and named params
 				 */
 				function parseTmplTxt( ts ){
 					var tObj = {};
-					//Get template name: 
+					//Get template name:
 					tname = ts.split('\|').shift() ;
-					tname = tname.split('\{').shift() ;							
-					tname = tname.replace( /^\s+|\s+$/g, "" ); //trim 
-											
-					//check for arguments:			
-					if( tname.split(':').length == 1 ){				
+					tname = tname.split('\{').shift() ;
+					tname = tname.replace( /^\s+|\s+$/g, "" ); //trim
+
+					//check for arguments:
+					if( tname.split(':').length == 1 ){
 						tObj["name"] = tname;
 					}else{
 						tObj["name"] = tname.split(':').shift();
 						tObj["arg"] = tname.split(':').pop();
 					}
-					
-					js_log("TNAME::" + tObj["arg"] + ' from:: ' + ts);	
-					
+
+					js_log("TNAME::" + tObj["arg"] + ' from:: ' + ts);
+
 					var pSet = ts.split('\|');
-					pSet.splice(0,1);								
-					if( pSet.length ){								
+					pSet.splice(0,1);
+					if( pSet.length ){
 						tObj.param = new Array();
 						for(var pInx in pSet){
 							var tStr = pSet[ pInx ];
 							for(var b=0 ; b < tStr.length ; b++){
 								if(tStr[b] == '=' && b>0 && b<tStr.length && tStr[b-1]!='\\'){
 									//named param
-									tObj.param[ tStr.split('=').shift() ] =	tStr.split('=').pop();									
+									tObj.param[ tStr.split('=').shift() ] =	tStr.split('=').pop();
 								}else{
 									//indexed param
 									tObj.param[ pInx ] = tStr;
@@ -527,84 +527,84 @@ if( !mv_embed_path ) {
 				function getMagicTxtFromTempNode( node ){
 					node.tObj = parseTmplTxt ( node.t );
 					//do magic swap if templet key found in pMagicSet
-					if( node.tObj.name in pMagicSet){							
-						var nt = pMagicSet[ node.tObj.name ]( node.tObj );						
+					if( node.tObj.name in pMagicSet){
+						var nt = pMagicSet[ node.tObj.name ]( node.tObj );
 						return nt;
 					}else{
 						//don't swap just return text
 						return node.t;
-					}			
+					}
 				}
 				/**
 				 * recurse_magic_swap
-				 * 
-				 * go last child first swap upward: (could probably be integrated above somehow) 
-				 */			
-				var pNode = null;	
-				function recurse_magic_swap( node ){					
+				 *
+				 * go last child first swap upward: (could probably be integrated above somehow)
+				 */
+				var pNode = null;
+				function recurse_magic_swap( node ){
 					if( !pNode )
-						pNode = node; 			
-																		
-					if( node['c'] ){						
-						//swap all the kids:					
-						for(var i in node['c']){								
-							var nt = recurse_magic_swap( node['c'][i] );									
+						pNode = node;
+
+					if( node['c'] ){
+						//swap all the kids:
+						for(var i in node['c']){
+							var nt = recurse_magic_swap( node['c'][i] );
 							//swap it into current
-							if( node.t ){							
-								node.t = node.t.replace( node['c'][i].t, nt);								
-							}	
+							if( node.t ){
+								node.t = node.t.replace( node['c'][i].t, nt);
+							}
 							//swap into parent
-							pNode.t  = pNode.t.replace( node['c'][i].t, nt);											
+							pNode.t  = pNode.t.replace( node['c'][i].t, nt);
 						}
-						//do the current node:						
-						var nt = getMagicTxtFromTempNode( node );														
-						pNode.t = pNode.t.replace(node.t , nt);												
-						//run the swap for the outer most node						
+						//do the current node:
+						var nt = getMagicTxtFromTempNode( node );
+						pNode.t = pNode.t.replace(node.t , nt);
+						//run the swap for the outer most node
 						return node.t;
-					}else{					
-						//node.t = getMagicFromTempObj( node.t )		
+					}else{
+						//node.t = getMagicFromTempObj( node.t )
 						return getMagicTxtFromTempNode( node );
 					}
-				}		
-				//get text node system: 
-				var node = rdpp ( this.wikiText );			
-				//debugger;	
-				//parse out stuff: 
-				
-				this.pOut = recurse_magic_swap( node);														
-															
+				}
+				//get text node system:
+				var node = rdpp ( this.wikiText );
+				//debugger;
+				//parse out stuff:
+
+				this.pOut = recurse_magic_swap( node);
+
 			},
 			/**
 			 * Returns the transformed wikitext
-			 * 
-			 * Build output from swapable index 
-			 * 		(all transforms must be expanded in parse stage and linerarly rebuilt)  
-			 * Alternativly we could build output using a placeholder & replace system 
+			 *
+			 * Build output from swapable index
+			 * 		(all transforms must be expanded in parse stage and linerarly rebuilt)
+			 * Alternativly we could build output using a placeholder & replace system
 			 * 		(this lets us be slightly more slopty with ordering and indexes, but probably slower)
-			 * 
-			 * Ideal: we build a 'wiki DOM' 
+			 *
+			 * Ideal: we build a 'wiki DOM'
 			 * 		When editing you update the data structure directly
-			 * 		Then in output time you just go DOM->html-ish output without re-parsing anything			   
+			 * 		Then in output time you just go DOM->html-ish output without re-parsing anything
 			 */
 			getHTML : function(){
 				//wikiText updates should invalidate pOut
 				if( this.pOut == ''){
 					this.parse();
 				}
-				return this.pOut;												
+				return this.pOut;
 			}
 		};
 		//return the parserObj
 		return new parseObj( wikiText, opt) ;
-	}	
-	
+	}
+
 })(window.$mw);
-//setup legacy global shortcuts: 
+//setup legacy global shortcuts:
 var loadGM = $mw.lang.loadGM;
 var loadRS = $mw.lang.loadRS;
 var gM = $mw.lang.gM;
 
-//if some no-js2 script defined and loaded gMsg in global space: 
+//if some no-js2 script defined and loaded gMsg in global space:
 if( _global['gMsg'] ){
 	loadGM( _global['gMsg'] );
 }
@@ -838,11 +838,11 @@ var mvJsLoader = {
 						coma = ',';
 					}
 				}
-				//Build the url to the scriptServer striping its request paramaters: 
+				//Build the url to the scriptServer striping its request paramaters:
 				var puri = parseUri( getMvEmbedURL() );
 				if( ( getMvEmbedURL().indexOf('://') != -1 )
 					&& puri.host != parseUri( document.URL ).host )
-				{					
+				{
 					var scriptPath = puri.protocol + '://' + puri.authority + puri.path;
 				}else{
 					var scriptPath = puri.path;
@@ -870,10 +870,10 @@ var mvJsLoader = {
 			this.callbacks.push( callback );
 		}
 		if( this.checkLoading() ) {
-			//@@todo we should check the <script> Element .onLoad property to 
-			//make sure its just not a very slow connection or we can run the callback 
-			//(even though the class is not loaded) 
-			 
+			//@@todo we should check the <script> Element .onLoad property to
+			//make sure its just not a very slow connection or we can run the callback
+			//(even though the class is not loaded)
+
 			if( this.load_time++ > 4000 ){ // Time out after ~80 seconds
 				js_log( gM('mwe-error_load_lib', [mvGetClassPath(this.missing_path),  this.missing_path]) );
 				this.load_error = true;
@@ -952,7 +952,7 @@ var mvJsLoader = {
 			cur_path = (cur_path == '') ? cur_path + objPath[p] : cur_path + '.' + objPath[p];
 			eval( 'var ptest = typeof ( '+ cur_path + ' ); ');
 			if( ptest == 'undefined' ) {
-				this.missing_path = cur_path;				
+				this.missing_path = cur_path;
 				return false;
 			}
 		}
@@ -966,39 +966,39 @@ var mvJsLoader = {
 		//js_log( 'jQueryCheck::' );
 		// Skip stuff if $j is already loaded:
 		if( _global['$j'] && callback )
-			callback();					
+			callback();
 		var _this = this;
 		// Load jQuery
 		_this.doLoad([
 			'window.jQuery'
 		], function() {
-			//only do the $j setup once: 
+			//only do the $j setup once:
 			if(!_global['$j']){
 				_global['$j'] = jQuery.noConflict();
 			}
 			if( _this.jQuerySetupFlag == false){
 				js_log('setup mv_embed jQuery bindings');
-				//setup our global settings using the (jQuery helper) 
-				mwConfig = $j.extend( mwDefaultConfig, mwConfig);								
-				
+				//setup our global settings using the (jQuery helper)
+				mwConfig = $j.extend( mwDefaultConfig, mwConfig);
+
 				// Set up the skin path
 				_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
 				_global['mv_skin_img_path'] = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 				_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';
-				
-				//setup skin dependent dependencies 
-				lcCssPath({'embedVideo'	: 'skins/' + mwConfig['skin_name'] + '/playerSkin.css'});				
-				
+
+				//setup skin dependent dependencies
+				lcCssPath({'embedVideo'	: 'skins/' + mwConfig['skin_name'] + '/playerSkin.css'});
+
 				// Make sure the skin/style sheets are always available:
 				loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
 				loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/styles.css' );
-				
+
 				// Set up AJAX to not send dynamic URLs for loading scripts (we control that with
 				// the scriptLoader)
 				$j.ajaxSetup({
 					cache: true
 				});
-				
+
 				js_log( 'jQuery loaded into $j' );
 				// Set up mvEmbed jQuery bindings and config based dependencies
 				mv_jqueryBindings();
@@ -1012,32 +1012,32 @@ var mvJsLoader = {
 	},
 	embedVideoCheck:function( callback ) {
 		var _this = this;
-		js_log( 'embedVideoCheck:' );				
+		js_log( 'embedVideoCheck:' );
 		// Make sure we have jQuery
 		_this.jQueryCheck( function() {
 			//set class videonojs to hidden
 			$j('.videonojs').html( gM('mwe-loading_txt') );
-			//Set up the embed video player class request: (include the skin js as well)  
+			//Set up the embed video player class request: (include the skin js as well)
 			var depReq = [
 				[
 					'$j.ui',
 					'embedVideo',
 					'ctrlBuilder',
-					'$j.cookie'					
+					'$j.cookie'
 				],
 				[
 					'$j.ui.slider'
 				]
-			];					
-			//add skin if set: 
+			];
+			//add skin if set:
 			if( mwConfig['skin_name'] )
 				depReq[0].push( mwConfig['skin_name'] + 'Config' );
-			
+
 			// Add PNG fix if needed:
 			if( $j.browser.msie || $j.browser.version < 7 )
 				depReq[0].push( '$j.fn.pngFix' );
-			
-			//load the video libs: 
+
+			//load the video libs:
 			_this.doLoadDepMode( depReq, function() {
 				embedTypes.init();
 				callback();
@@ -1052,7 +1052,7 @@ var mvJsLoader = {
 	// unless js2AddOnloadHook was used or there is video on the page.
 	runQueuedFunctions: function() {
 		var _this = this;
-		this.doneReadyEvents = true;		
+		this.doneReadyEvents = true;
 		this.jQueryCheck( function() {
 			_this.runReadyEvents();
 		});
@@ -1114,7 +1114,7 @@ function setSwappableToLoading( e ) {
 	//}
 }
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
-function js2AddOnloadHook( func ) {	
+function js2AddOnloadHook( func ) {
 	// If we have already run the DOM-ready function, just run the function directly:
 	if( mvJsLoader.doneReadyEvents ) {
 		// Make sure jQuery is there:
@@ -1154,7 +1154,7 @@ if ( document.addEventListener ) {
  */
 function mv_write_modal( content, speed ) {
 	$j( '#modalbox,#mv_overlay' ).remove();
-	$j( 'body' ).append( 
+	$j( 'body' ).append(
 		'<div id="modalbox" style="background:#DDD;border:3px solid #666666;font-size:115%;' +
 		'top:30px;left:20px;right:20px;bottom:30px;position:fixed;z-index:100;">' +
 		content +
@@ -1218,7 +1218,7 @@ function mv_jqueryBindings() {
 			// Issue a request to get the CSS file (if not already included):
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
 			loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/mv_sequence.css' );
-			// Make sure we have the required mv_embed libs (they are not loaded when no video 
+			// Make sure we have the required mv_embed libs (they are not loaded when no video
 			// element is on the page)
 			mvJsLoader.embedVideoCheck( function() {
 				// Load the playlist object and then the jQuery UI stuff:
@@ -1243,7 +1243,7 @@ function mv_jqueryBindings() {
 					]
 				], function() {
 					js_log( 'calling new mvSequencer' );
-					// Initialise the sequence object (it will take over from there) 
+					// Initialise the sequence object (it will take over from there)
 					// No more than one mvSeq obj for now:
 					if( !_global['mvSeq'] ) {
 						_global['mvSeq'] = new mvSequencer( iObj );
@@ -1264,12 +1264,12 @@ function mv_jqueryBindings() {
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
 			loadExternalCss( mv_embed_path + 'skins/'+mwConfig['skin_name'] + '/styles.css' );
 
-			// Check if we already have Firefogg loaded (the call just updates the element's 
+			// Check if we already have Firefogg loaded (the call just updates the element's
 			// properties)
 			var sElm = $j( this.selector ).get( 0 );
 			if( sElm['firefogg'] ) {
 				if( sElm['firefogg'] == 'loading' ) {
-					js_log( "Error: called firefogg operations on Firefogg selector that is " + 
+					js_log( "Error: called firefogg operations on Firefogg selector that is " +
 						"not done loading" );
 					return false;
 				}
@@ -1310,7 +1310,7 @@ function mv_jqueryBindings() {
 			// Make sure we have everything loaded that we need:
 			mvJsLoader.doLoadDepMode( loadSet, function() {
 					js_log( 'firefogg libs loaded. target select:' + iObj.selector );
-					// Select interface provider based on whether we want to include the 
+					// Select interface provider based on whether we want to include the
 					// encoder interface or not
 					if( iObj.encoder_interface ) {
 						var myFogg = new mvAdvFirefogg( iObj );
@@ -1371,15 +1371,15 @@ function mv_jqueryBindings() {
 			var href = (opt.href) ? opt.href : '#';
 			var target_attr = (opt.target) ? ' target="' + opt.target + '" ' : '';
 			var style_attr = (opt.style) ? ' style="' + opt.style + '" ' : '';
-			return '<a href="' + href + '" ' + target_attr + style_attr + 
+			return '<a href="' + href + '" ' + target_attr + style_attr +
 				' class="ui-state-default ui-corner-all ui-icon_link ' +
 				className + '"><span class="ui-icon ui-icon-' + iconId + '" />' +
 				'<span class="btnText">'+ msg +'<span></a>';
 		}
 		// Shortcut to bind hover state
-		$.fn.btnBind = function() {		
+		$.fn.btnBind = function() {
 			$j( this ).hover(
-				function() {					
+				function() {
 					$j( this ).addClass( 'ui-state-hover' );
 				},
 				function() {
@@ -1390,28 +1390,28 @@ function mv_jqueryBindings() {
 		}
 		/**
 		* addLoaderDialog
-		*  small helper for putting a loading dialog box on top of everything 
+		*  small helper for putting a loading dialog box on top of everything
 		* (helps block for request that
-		* 
+		*
 		* @param msg text text of the loader msg
 		*/
-		$.addLoaderDialog = function( msg_txt ){			
+		$.addLoaderDialog = function( msg_txt ){
 			if( $('#mwe_tmp_loader').length != 0 )
 				$('#mwe_tmp_loader').remove();
-			
-			$('body').append('<div id="mwe_tmp_loader" title="' + msg_txt + '" >' +				
-					gM('mwe-checking-resource') + '<br>' + 
+
+			$('body').append('<div id="mwe_tmp_loader" title="' + msg_txt + '" >' +
+					gM('mwe-checking-resource') + '<br>' +
 					mv_get_loading_img() +
 			'</div>');
-			
+
 			mvJsLoader.doLoadDepMode([
-				[					
+				[
 					'$j.ui'
 				],
 				[
 					'$j.ui.dialog'
 				]
-			], function() {				
+			], function() {
 				$('#mwe_tmp_loader').dialog({
 					bgiframe: true,
 					height: 140,
@@ -1649,7 +1649,7 @@ function do_request( req_url, callback ) {
 	} else {
 		// Get data via DOM injection with callback
 		global_req_cb.push( callback );
-		// Prepend json_ to feed_format if not already requesting json format (metavid specific) 
+		// Prepend json_ to feed_format if not already requesting json format (metavid specific)
 		if( req_url.indexOf( "feed_format=" ) != -1 && req_url.indexOf( "feed_format=json" ) == -1 )
 			req_url = req_url.replace( /feed_format=/, 'feed_format=json_' );
 		loadExternalJs( req_url + '&cb=mv_jsdata_cb&cb_inx=' + (global_req_cb.length - 1) );
@@ -1803,7 +1803,7 @@ function getMvEmbedPath() {
 		mv_embed_path = mv_embed_url.substr( 0, mv_embed_url.indexOf( 'mv_embed.js' ) );
 	} else if( mv_embed_url.indexOf( 'mwScriptLoader.php' ) !== -1 ) {
 		// Script loader is in the root of MediaWiki, so include the default mv_embed extension path
-		mv_embed_path = mv_embed_url.substr( 0, mv_embed_url.indexOf( 'mwScriptLoader.php' ) ) 
+		mv_embed_path = mv_embed_url.substr( 0, mv_embed_url.indexOf( 'mwScriptLoader.php' ) )
 			+ mediaWiki_mvEmbed_path;
 	} else {
 		mv_embed_path = mv_embed_url.substr( 0, mv_embed_url.indexOf( 'jsScriptLoader.php' ) );
