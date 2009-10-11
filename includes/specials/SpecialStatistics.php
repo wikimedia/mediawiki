@@ -161,14 +161,22 @@ class SpecialStatistics extends SpecialPage {
 						array( 'class' => 'mw-statistics-jobqueue' ) );
 	}
 	private function getUserStats() {
-		global $wgLang, $wgRCMaxAge;
+		global $wgLang, $wgUser, $wgRCMaxAge;
+		$sk = $wgUser->getSkin();
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-users', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
 						$wgLang->formatNum( $this->users ),
 						array( 'class' => 'mw-statistics-users' ) ) .
-				$this->formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
+				$this->formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ) . ' ' .
+							$sk->link(
+								SpecialPage::getTitleFor( 'Activeusers' ),
+								wfMsgHtml( 'listgrouprights-members' ),
+								array(),
+								array(),
+								'known'
+							),
 						$wgLang->formatNum( $this->activeUsers ),
 						array( 'class' => 'mw-statistics-users-active' ),
 						'statistics-users-active-desc',
