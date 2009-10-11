@@ -2,19 +2,19 @@
  * this file exposes some of the functionality of mwEmbed to wikis
  * that do not yet have js2 enabled
  */
- 
+
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
 var reqAguments = urlparts[1];
 
-addOnloadHook( function(){	
+addOnloadHook( function(){
 	//only do rewrites if MV_EMBED / js2 is "off"
 	if( typeof MV_EMBED_VERSION == 'undefined' ) {
 		doPageSpecificRewrite();
 	}
 });
 
-function doPageSpecificRewrite() {	
+function doPageSpecificRewrite() {
 	// Add media wizard
 	if( wgAction == 'edit' || wgAction == 'submit' ) {
 		load_mv_embed( function() {
@@ -23,23 +23,23 @@ function doPageSpecificRewrite() {
 	}
 
 	// Firefogg integration
-	if( wgPageName == "Special:Upload" ){		
+	if( wgPageName == "Special:Upload" ){
 		load_mv_embed( function() {
 			importScriptURI( mwEmbedHostPath + '/uploadPage.js' + reqAguments );
 		} );
-	}	
-	
+	}
+
 	// OggHandler rewrite for view pages:
 	var vidIdList = [];
 	var divs = document.getElementsByTagName( 'div' );
 	for( var i = 0; i < divs.length; i++ ) {
 		if( divs[i].id && divs[i].id.substring( 0, 11 ) == 'ogg_player_' ) {
-			vidIdList.push( divs[i].getAttribute( "id" ) );			
+			vidIdList.push( divs[i].getAttribute( "id" ) );
 		}
-	}	
+	}
 	if( vidIdList.length > 0 ) {
 		load_mv_embed( function() {
-			mvJsLoader.embedVideoCheck( function() {				
+			mvJsLoader.embedVideoCheck( function() {
 				// Do utility rewrite of OggHandler content:
 				rewrite_for_OggHandler( vidIdList );
 			} );
@@ -49,7 +49,7 @@ function doPageSpecificRewrite() {
 // will be deprecated in favor of updates to OggHandler
 function rewrite_for_OggHandler( vidIdList ){
 	for( var i = 0; i < vidIdList.length; i++ ) {
-		var vidId = vidIdList[i];			
+		var vidId = vidIdList[i];
 		// Grab the thumbnail and src of the video
 		var pimg = $j( '#' + vidId + ' img' );
 		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
@@ -69,7 +69,7 @@ function rewrite_for_OggHandler( vidIdList ){
 		// Parsed values:
 		var src = '';
 		var duration = '';
-	
+
 		var re = new RegExp( /videoUrl(&quot;:?\s*)*([^&]*)/ );
 		src = re.exec( $j( '#'+vidId).html() )[2];
 
@@ -80,8 +80,8 @@ function rewrite_for_OggHandler( vidIdList ){
 		offset = re.exec( $j( '#'+vidId).html() )[2];
 		var offset_attr = offset ? 'startOffset="' + offset + '"' : '';
 
-		// Rewrite that video id (do async calls to avoid locking) 		
-		if( src ) {				
+		// Rewrite that video id (do async calls to avoid locking)
+		if( src ) {
 			// Replace the top div with the mv_embed based player:
 			var vid_html = '<video id="vid_' + i +'" '+
 					'src="' + src + '" ' +
@@ -91,13 +91,13 @@ function rewrite_for_OggHandler( vidIdList ){
 					'duration="' + duration + '" ' +
 					'style="width:' + pwidth + 'px;height:' +
 						pheight + 'px;"></video>';
-			//set the video tag inner html and update the height				
+			//set the video tag inner html and update the height
 			$j( '#' + vidId ).html( vid_html )
 				.css('height', pheight + 30);
-			
+
 		}
-		
-		rewrite_by_id( 'vid_' + i );		
+
+		rewrite_by_id( 'vid_' + i );
 	}
 }
 
