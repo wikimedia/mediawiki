@@ -230,12 +230,14 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'statistics' => 'Kisitsisinngorlugit paasissutissat',
 
 # Miscellaneous special pages
-'move' => 'Nuunneq',
+'newpages' => 'Quppernerit nutaat',
+'move'     => 'Nuunneq',
 
 # Special:Log
 'specialloguserlabel' => 'Pineqartoq:',
 
 # Special:AllPages
+'allarticles'    => 'Quppernerit tamarmik',
 'allpagessubmit' => 'Tassunngarit',
 
 # Watchlist

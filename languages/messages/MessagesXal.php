@@ -137,15 +137,18 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} тускар',
+'aboutpage'            => 'Project:Тодлҗ бичлһн',
 'copyright'            => 'Өггцн $1 йоста орҗ болм',
 'currentevents'        => 'Ода болсн йовдл',
 'disclaimers'          => 'Дааврас эс зөвшәрлһн',
+'disclaimerpage'       => 'Project:Даарас эс зөвшәрлһн',
 'edithelp'             => 'Чикллһнә дөң',
 'edithelppage'         => 'Help:Чикллһн',
 'mainpage'             => 'Эклц',
 'mainpage-description' => 'Эклц',
 'portal'               => 'Бүрдәцин хург',
 'privacy'              => 'Нууцин бодлһн',
+'privacypage'          => 'Project:Нууцин бодлһн',
 
 'ok'                  => 'Чик',
 'retrievedfrom'       => '"$1" гидг халхас йовулсн',
@@ -294,12 +297,14 @@ $messages = array(
 # Search results
 'searchresults'             => 'Хәәлһнә ашуд',
 'searchresults-title'       => 'Хәәлһнә ашуд "$1" төлә',
+'searchresulttext'          => 'Дәкәд өггцна төлә,  [[{{MediaWiki:Helppage}}|дөң өггдг һазрт]] хәләтн.',
 'searchsubtitle'            => '«[[:$1]]» сурвра ([[Special:Prefixindex/$1|эн нертә эклсн халхс]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|эн нерт заадг]])',
 'searchsubtitleinvalid'     => "Тадн '''$1''' төлә хәәләт",
 'noexactmatch'              => "'''\"\$1\" гидг нертә халх бәәшго.'''
 Та энгиг [[:\$1|бүтәж чаднат]].",
 'noexactmatch-nocreate'     => "'''\"\$1\" гидг нертә халх бәәшго.'''",
 'notitlematches'            => 'Нернә ирлцлһн уга',
+'notextmatches'             => 'Әдл бичг халхд уга',
 'prevn'                     => 'урдк {{PLURAL:$1|$1}}',
 'nextn'                     => 'дарук {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Гүүһәд хәләх ($1 {{int:pipe-separator}} $2) ($3)',
@@ -462,6 +467,7 @@ $messages = array(
 # Special:AllPages
 'allpages'       => 'Цуг халхс',
 'alphaindexline' => '$1 хөөн, $2 күртл',
+'prevpage'       => 'Урдк халх ($1)',
 'allarticles'    => 'Цуг халхс',
 'allpagessubmit' => 'Орх',
 
@@ -555,15 +561,19 @@ $2 кенз һарһлһда төлә хәләтн.',
 'blocklogpage'     => 'Бүсллһнә сеткүл',
 
 # Move page
-'movearticle'    => 'Халхиг йовулх:',
-'newtitle'       => 'Шин нернь:',
-'move-watch'     => 'Эн халхиг хәләх',
-'movepagebtn'    => 'Халхиг йовулх',
-'pagemovedsub'   => 'Йовудта йовуллһн',
-'movepage-moved' => '<big>\'\'\'"$1" шин нернь "$2" өгв\'\'\'</big>',
-'movelogpage'    => 'Нернә хүврлһнә сеткүл',
-'movereason'     => 'Учр:',
-'revertmove'     => 'хәрүлһн',
+'movearticle'     => 'Халхиг йовулх:',
+'newtitle'        => 'Шин нернь:',
+'move-watch'      => 'Эн халхиг хәләх',
+'movepagebtn'     => 'Халхиг йовулх',
+'pagemovedsub'    => 'Йовудта йовуллһн',
+'movepage-moved'  => '<big>\'\'\'"$1" шин нернь "$2" өгв\'\'\'</big>',
+'1movedto2_redir' => '',
+'movelogpage'     => 'Нернә хүврлһнә сеткүл',
+'movereason'      => 'Учр:',
+'revertmove'      => 'хәрүлһн',
+
+# Thumbnails
+'thumbnail-more' => 'Икдүлх',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Тана орлцачна халх',
@@ -626,7 +636,7 @@ $2 кенз һарһлһда төлә хәләтн.',
 # Metadata
 'metadata-expand'   => 'Ик тодрхасиг үзүлх',
 'metadata-collapse' => 'Ик тодрхасиг бултулх',
-'metadata-fields'   => 'Эн мета өггцнә ормд зургин халхд тагчгар үзүсн болх. Талдан бултулсн бәәх.
+'metadata-fields'   => 'Эн җигсәмҗд нерлгдсн мета өггцин аһу, дүрслгч халхд герәсләр үзүлгдх, наадкснь бултулгдх. 
 * make
 * model
 * datetimeoriginal

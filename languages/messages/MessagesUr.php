@@ -122,6 +122,8 @@ $messages = array(
 'december-gen'  => 'دسمبر',
 'jan'           => 'جنوری',
 'feb'           => 'فروری',
+'mar'           => 'مارچ',
+'apr'           => 'اپریل',
 'may'           => 'مئی',
 
 # Categories related messages
@@ -159,11 +161,13 @@ $messages = array(
 'permalink'         => 'مستقل کڑی',
 'print'             => 'طباعت',
 'edit'              => 'ترمیم',
+'create'            => 'تخلیق',
 'editthispage'      => 'اس صفحہ میں ترمیم کریں',
 'delete'            => 'حذف',
 'deletethispage'    => 'یہ صفحہ حذف کریں',
 'undelete_short'    => 'بحال {{PLURAL:$1|ایک ترمیم|$1 ترامیم}}',
 'protect'           => 'محفوظ',
+'protect_change'    => 'تبدیل کرو',
 'protectthispage'   => 'اس صفحےکومحفوظ کریں',
 'unprotect'         => 'غیر محفوظ',
 'unprotectthispage' => 'اس صفحےکو غیر محفوظ کریں',
@@ -464,9 +468,15 @@ Warning: Page may not contain recent updates.',
 'histfirst'        => 'قدیم ترین',
 'histlast'         => 'تازہ ترین',
 
+# Revision deletion
+'rev-delundel'   => 'دکھاؤ/چھپاؤ',
+'revdel-restore' => 'ظاہریت تبدیل کرو',
+
 # Diffs
 'difference'              => '(اصلاحات میں فرق)',
+'lineno'                  => 'لکیر $1:',
 'compareselectedversions' => 'منتخب متـن کا موازنہ',
+'editundo'                => 'استرجع',
 
 # Search results
 'searchresults'             => 'تلاش کا نتیجہ',
@@ -672,6 +682,7 @@ HTML tags جانچئے.',
 
 # File description page
 'file-anchor-link' => 'مسل',
+'filehist'         => 'ملف کی تاریخ',
 'imagelinks'       => 'روابط',
 'linkstoimage'     => 'اس ملف (فائل) سے درج ذیل صفحات رابطہ رکھتے ہیں:',
 'nolinkstoimage'   => 'ایسے کوئی صفحات نہیں جو اس ملف (فائل) سے رابطہ رکھتے ہوں۔',
@@ -739,6 +750,7 @@ HTML tags جانچئے.',
 'allarticles'    => 'تمام مقالات',
 'allpagesprev'   => 'پچھلا',
 'allpagesnext'   => 'اگلا',
+'allpagessubmit' => 'چلو',
 'allpagesprefix' => 'مطلوبہ سابقہ سے شروع ہونے والے صفحات کی نمائش:',
 
 # Special:Categories
@@ -816,6 +828,7 @@ HTML tags جانچئے.',
 'undeletepage'     => 'معائنہ خذف شدہ صفحات',
 'viewdeletedpage'  => 'حذف شدہ صفحات دیکھیے',
 'undeletebtn'      => 'بحال',
+'undeletelink'     => 'دیکھو/بحال کرو',
 'undeletecomment'  => 'تبصرہ:',
 'undeletedarticle' => 'بحال "[[$1]]"',
 
@@ -888,10 +901,13 @@ HTML tags جانچئے.',
 'import' => 'درآمد صفحات',
 
 # Tooltip help for the actions
+'tooltip-pt-mytalk'              => 'آپ کا صفحۂ گفتگو',
 'tooltip-pt-login'               => 'آپ کیلئے داخلِ نوشتہ ہونا اچھا ہے؛ تاہم، یہ ضروری نہیں',
 'tooltip-ca-talk'                => 'مضمون بارے تبادلۂ خیال',
 'tooltip-ca-edit'                => 'آپ اس صفحہ میں ترمیم کرسکتے ہیں.
 برائے مہربانی! اپنی ترمیمات محفوظ کرنے سے پہلے نمائش کا بٹن استعمال کیجئے',
+'tooltip-ca-history'             => 'صفحۂ ہٰذا کی سابقہ نظرثانی',
+'tooltip-search'                 => 'تلاش {{SITENAME}}',
 'tooltip-search-go'              => 'اگر بالکل اِسی نام کا صفحہ موجود ہو تو اُس صفحہ پر جاؤ',
 'tooltip-search-fulltext'        => 'اس متن کیلئے صفحات تلاش کریں',
 'tooltip-p-logo'                 => 'سرورق پر جائیے',
@@ -903,8 +919,13 @@ HTML tags جانچئے.',
 'tooltip-n-randompage'           => 'ایک تصادفی صفحہ لائیے',
 'tooltip-n-help'                 => 'ڈھونڈ نکالنے کی جگہ',
 'tooltip-t-whatlinkshere'        => 'اُن تمام ویکی صفحات کی فہرست جن کا یہاں ربط ہے',
+'tooltip-t-recentchangeslinked'  => 'اِس صفحہ سے مربوط صفحات میں حالیہ تبدیلیاں',
+'tooltip-t-upload'               => 'زبراثقالِ ملفات',
 'tooltip-t-specialpages'         => 'تمام خاص صفحات کی فہرست',
 'tooltip-t-print'                => 'اِس صفحہ کا قابلِ طبعہ نسخہ',
+'tooltip-t-permalink'            => 'صفحہ کے موجودہ نظرثانی کا مستقل ربط',
+'tooltip-ca-nstab-main'          => 'صفحۂ مضمون دیکھئے',
+'tooltip-ca-nstab-special'       => 'یہ ایک خاص صفحہ ہے، آپ اِس میں ترمیم نہیں کرسکتے',
 
 # Attribution
 'anonymous' => '{{SITENAME}} گمنام صارف',
