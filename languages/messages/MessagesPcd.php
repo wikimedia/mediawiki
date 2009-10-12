@@ -365,11 +365,14 @@ Vote adrèche IP, ale sro inrégistrée din l'historique éd chol pache.",
 'newarticletext'                   => "Os avez sui un loïen vers eune pache qui n’essiste poin coère ou qu' o té [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} défacée].
 Pou créer chol pache, intrez vote teske din l'boéte édsou (vir [[{{MediaWiki:Helppage}}|l'pache d’aïude]] ). <br />
 Si vos ètes ichi par bérlure, bukez su l'bouton '''értour''' du navigateu.",
+'noarticletext'                    => 'Achteure i n’y o nu teske su l\'pache-lo.<br /> Os povez [[Special:Search/{{PAGENAME}}|foaire eune érchérche du tite del pache]] din chés eutes paches, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} érchércher din chés érliées opéracions ] <br /> ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer chol pache]</span>.',
 'previewnote'                      => "'''Afute! ch'teske-lo ch'est seulemint eune prévue.'''
 
 Vos cangemints, is sont poin coèr inrégistrés!",
 'editing'                          => 'Éditer $1',
 'editingsection'                   => '$1 éditée (sekchon)',
+'copyrightwarning'                 => "Toutes chés contérbuchons su {{SITENAME}} ont érbéyées conme publiées dsou chés térmes del $2 (vir $1 pou pus d'détals). Si vos n'volez poin éq vos écrivures euchette canjés pi départis à volontè, mérci éd n'poin les soumétte ichi.<br />
+Os prométtez auchi éq vos avez écrit ch'teske vous-méme, ou éq vos l’avez ércopié d’eune source din ch'donmène public, ou d’eune libe érsource.<br /> '''N’IMPLOÉYEZ POIN D'TRAVAUX ÉDSOU DROÉ D’AUTEU SINS ACOR ÉSPRÉSSE !'''",
 'templatesused'                    => 'Modèles imploïés pou chol pache:',
 'templatesusedpreview'             => "Modèles imploïés din ch'prévue-lo:",
 'template-protected'               => '(garanti)',

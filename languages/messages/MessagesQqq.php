@@ -1195,7 +1195,8 @@ Used in [[Special:Preferences]]. Parameters are:
 'prefs-help-signature'          => 'Used in [[Special:Preferences]], tab User profile.',
 'badsig'                        => 'Error message displayed when entering invalid signature in user preferences',
 'badsiglength'                  => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
-'yourgender'                    => 'Used in [[Special:Preferences]], first tab.',
+'yourgender'                    => 'Used in [[Special:Preferences]], first tab.
+{{Identical|Gender}}',
 'gender-unknown'                => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
 'gender-male'                   => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.',
 'gender-female'                 => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.',

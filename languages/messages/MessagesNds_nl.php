@@ -626,8 +626,8 @@ vanuut de functie "$2"
 De databanke gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode'      => "<strong>Waorschuwing:</strong> 't is meugelijk dat leste wiezigingen in de tekse van dit artikel nog neet verwark bin.",
 'readonly'             => 'De databanke is beveilig',
-'enterlockreason'      => "Geef een rejen op veur de blokkering en hoelange as 't geet duren.",
-'readonlytext'         => "De databanke van {{SITENAME}} is noen esleuten veur nieje bewarkingen en wiezigingen, werschienlijk veur bestaansonderhoud. De verantwoordelijke systeembeheerder gaf hierveur de volgende rejen op: '''$1'''",
+'enterlockreason'      => "Geef een reden op veur de blokkering en hoelange as 't geet duren.",
+'readonlytext'         => "De databanke van {{SITENAME}} is noen esleuten veur nieje bewarkingen en wiezigingen, werschienlijk veur bestaansonderhoud. De verantwoordelijke systeembeheerder gaf hierveur de volgende reden op: '''$1'''",
 'missing-article'      => 'In de databanke steet gien tekse veur de pagina "$1" dee der wel in zol mutten staon ($2).
 
 Dit kan koemen deurda-j een ouwe verwiezing naor \'t verschil tussen twee versies van een pagina volgen of een versie opvragen dee vort-edaon is.
@@ -645,7 +645,7 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'filedeleteerror'      => 'Kon bestaand "$1" neet vortdoon.',
 'directorycreateerror' => 'Map "$1" kon neet an-emaak wonnen.',
 'filenotfound'         => 'Kon bestaand "$1" neet vienen.',
-'fileexistserror'      => 'Schrieven naor bestaand "$1" was neet meugelijk: \'t bestaand besteet al',
+'fileexistserror'      => 'Kon neet schrieven naor \'t bestaand "$1": \'t bestaand besteet al',
 'unexpected'           => 'Onverwachen weerde: "$1"="$2".',
 'formerror'            => 'Fout: kon formelier neet versturen',
 'badarticleerror'      => 'Disse haandeling kan op disse pagina neet uut-evoerd wonnen.',
@@ -673,7 +673,7 @@ $2',
 'customcssjsprotected' => 'Je kunnen disse pagina neet bewarken umdat der persoonlijke instellingen van een aandere gebruker in staon.',
 'ns-specialprotected'  => "Speciale pagina's kunnen neet bewörk wonnen.",
 'titleprotected'       => "'t Anmaken van disse pagina is beveilig deur [[User:$1|$1]].
-De op-egeven rejen is ''$2''.",
+De op-egeven reden is ''$2''.",
 
 # Virus scanner
 'virus-badscanner'     => "Slichte configurasie: onbekende virusscanner: ''$1''",
@@ -826,7 +826,7 @@ As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbao
 'blockedtext'                      => "<big>'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</big>
 
 Je bin eblokkeerd deur: $1.
-De op-egeven rejen is: ''$2''.
+De op-egeven reden is: ''$2''.
 
 * Eblokkeerd vanof: $8
 * Eblokkeerd tot: $6
@@ -837,7 +837,7 @@ Je kunnen gien gebruukmaken van de functie 'een berich sturen', behalven a-j een
 't IP-adres da-j noen gebruken is $3 en 't blokkeringsnummer is #$5. 
 Vermeld 't allebeie a-j argens op disse blokkering reageren.",
 'autoblockedtext'                  => 'Joew IP-adres is autematisch eblokkeerd umdat \'t gebruuk wönnen deur een aandere gebruker, dee eblokkeerd wönnen deur $1.
-De rejen hierveur was:
+De reden hierveur was:
 
 :\'\'$2\'\'
 
@@ -852,7 +852,7 @@ NB: je kunnen de optie "een berich sturen" neet gebruken, behalven a-j een geldi
 
 Joew IP-adres is $3 en joew blokkeernummer is $5. 
 Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
-'blockednoreason'                  => 'gien rejen op-egeven',
+'blockednoreason'                  => 'gien reden op-egeven',
 'blockedoriginalsource'            => "De brontekse van '''$1''' wonnen hieronder weer-egeven:",
 'blockededitsource'                => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
 'whitelistedittitle'               => 'Um disse pagina te bewarken, mu-j je anmelden',
@@ -942,8 +942,8 @@ As grund is angeven: $1",
 'nocreatetext'                     => "Disse webstee hef de meugelijkheid um nieje pagina's an te maken beteund. Je kunnen pagina's dee al bestaon wiezigen of je kunnen je [[Special:UserLogin|anmelden of een gebrukerspagina anmaken]].",
 'nocreate-loggedin'                => "Je hemmen gien toestemming um nieje pagina's an te maken.",
 'permissionserrors'                => 'Fouten mit de rechen',
-'permissionserrorstext'            => 'Je maggen of kunnen dit neet doon. De {{PLURAL:$1|rejen|rejens}} daoveur {{PLURAL:$1|is|bin}}:',
-'permissionserrorstext-withaction' => 'Je hemmen gien rech um $2, mit de volgende {{PLURAL:$1|rejen|rejens}}:',
+'permissionserrorstext'            => 'Je maggen of kunnen dit neet doon. De {{PLURAL:$1|reden|redens}} daorveur {{PLURAL:$1|is|bin}}:',
+'permissionserrorstext-withaction' => 'Je hemmen gien rech um $2, mit de volgende {{PLURAL:$1|reden|redens}}:',
 'recreate-moveddeleted-warn'       => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
@@ -952,7 +952,7 @@ Hieronder steet veur de dudelijkheid infermasie uut 't logboek vort-edaone pagin
 Hieronder steet de infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen.",
 'log-fulllog'                      => "'t Hele logboek bekieken",
 'edit-hook-aborted'                => 'De bewarking is of-ebreuken deur een hook.
-Der is gien rejen op-egeven.',
+Der is gien reden op-egeven.',
 'edit-gone-missing'                => "De pagina kon neet bie-ewark wonnen.
 't Schient dat 't vort-edaon is.",
 'edit-conflict'                    => 'Bewarkingskonflik.',
@@ -983,7 +983,7 @@ Sommigen mallen wonnen neet in-evoeg.',
 'cantcreateaccounttitle' => 'Anmaken van een gebrukersprefiel is neet meugelijk',
 'cantcreateaccount-text' => "'t Anmaken van gebrukers van dit IP-adres (<b>$1</b>) is eblokkeerd deur [[User:$3|$3]].
 
-De deur $3 op-egeven rejen is ''$2''",
+De deur $3 op-egeven reden is ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Bekiek logboeken veur disse pagina',
@@ -1066,7 +1066,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'revdelete-suppress'          => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-hide-image'        => 'Verbarg bestaansinhoud',
 'revdelete-unsuppress'        => 'Beparkingen veur weerummezetten versies vortdoon',
-'revdelete-log'               => "Rejen veur 't vortdoon:",
+'revdelete-log'               => "Reden veur 't vortdoon:",
 'revdelete-submit'            => 'De esillecteren versie toepassen',
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
@@ -1099,13 +1099,13 @@ Je hemmen gien toegang tot dit objek.',
 'revdelete-concurrent-change' => "Fout bie 't wiezigen van 't objek van $1 um $2 uur: de staotus is inmiddels ewiezig deur een aander.
 Kiek de logboeken nao.",
 'revdelete-only-restricted'   => 'Je kunnen gien objekken veur beheerders onderdrokken zonder da-j oek de aandere opties veur onderdrokken sillekteren.',
-'revdelete-reason-dropdown'   => "*Veulveurkoemde rejens veur 't vortdoon 
+'revdelete-reason-dropdown'   => "*Veulveurkoemde redens veur 't vortdoon 
 ** Schenden van de auteursrechen
 ** Ongeschikte persoonlijke infermasie
 ** Meugelijk lasterlijke infermasie",
-'revdelete-otherreason'       => 'Aandere rejen:',
-'revdelete-reasonotherlist'   => 'Aanderen rejen',
-'revdelete-edit-reasonlist'   => "Rejens veur 't vortdoon bewarken",
+'revdelete-otherreason'       => 'Aandere reden:',
+'revdelete-reasonotherlist'   => 'Aandere reden',
+'revdelete-edit-reasonlist'   => "Redens veur 't vortdoon bewarken",
 'revdelete-offender'          => 'Auteur versie:',
 
 # Suppression log
@@ -1132,7 +1132,7 @@ Kiek de logboeken nao.",
 'mergehistory-autocomment'         => '[[:$1]] samen-evoeg naor [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] samen-evoeg naor [[:$2]]: $3',
 'mergehistory-same-destination'    => "De bronpagina en doelpagina kunnen neet 'tzelfde ween",
-'mergehistory-reason'              => 'Rejen:',
+'mergehistory-reason'              => 'Reden:',
 
 # Merge log
 'mergelog'           => 'Samenvoegingslogboek',
@@ -1400,7 +1400,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 * Een an-evink vakjen betekent dat de gebruker lid is van de groep.
 * Een neet an-evink vakjen betekent dat de gebruker gien lid is van de groep.
 * Een "*" betekent da-j een gebruker neet uut een groep vort kunnen haolen naoda-j-m deran toe-evoeg hemmen, of aandersumme.',
-'userrights-reason'           => 'Rejen:',
+'userrights-reason'           => 'Reden:',
 'userrights-no-interwiki'     => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
 'userrights-nodatabase'       => 'Databanke $1 besteet neet of is gien plaoselijke databanke.',
 'userrights-nologin'          => 'Je mutten [[Special:UserLogin|an-emeld]] ween en as gebruker de juuste rechen hemmen um gebrukersrechen toe te kunnen wiezen.',
@@ -1594,7 +1594,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'uploadnologin'               => 'Neet an-emeld',
 'uploadnologintext'           => 'Je mutten [[Special:UserLogin|an-emeld]] ween um bestanen toe te kunnen voegen.',
 'upload_directory_missing'    => 'De bestaandtoevoegingsmap ($1) ontbreek en kon neet an-emaak wonnen deur de webserver.',
-'upload_directory_read_only'  => "Op 't mement ku-j gien bestanen toevoegen wegens technische rejens ($1).",
+'upload_directory_read_only'  => "Op 't mement ku-j gien bestanen toevoegen vanwegen technische preblemen ($1).",
 'uploaderror'                 => "Fout bie 't toevoegen van 't bestaand",
 'uploadtext'                  => "Gebruuk 't onderstaonde formelier um bestanen toe te voegen.
 Um eerder toe-evoegen bestanen te bekieken of te zeuken ku-j naor de [[Special:FileList|bestaanslieste]] gaon.
@@ -1705,7 +1705,7 @@ Allinnig toegang tot bestanen is toe-estaon.',
 'img-auth-streaming'    => 'Bezig mit \'t streumen van "$1".',
 'img-auth-public'       => "'t Doel van img_auth.php is de uutvoer van bestanen van een besleuten wiki.
 Disse wiki is in-esteld as peblieke wiki.
-Um beveiligingsrejens is img_auth.php uut-eschakeld.",
+Um beveiligingsredens is img_auth.php uut-eschakeld.",
 'img-auth-noread'       => 'De gebruker hef gien leestoegang tot "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1791,12 +1791,12 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filedelete-success-old'      => "De versie van '''[[Media:$1|$1]]''' van $3, $2 is vort-edaon.",
 'filedelete-nofile'           => "'''$1''' besteet neet.",
 'filedelete-nofile-old'       => "Der is gien versie van '''$1''' in 't archief mit de an-egeven eigenschappen.",
-'filedelete-otherreason'      => 'Aandere rejen:',
-'filedelete-reason-otherlist' => 'Aandere rejen',
-'filedelete-reason-dropdown'  => '*Veulveurkoemende rejens
+'filedelete-otherreason'      => 'Aandere reden:',
+'filedelete-reason-otherlist' => 'Aandere reden',
+'filedelete-reason-dropdown'  => '*Veulveurkoemende redens
 ** Auteursrechenschending
 ** Dit bestaand he-w dubbel',
-'filedelete-edit-reasonlist'  => "Rejen veur 't vortdoon van de bewarken",
+'filedelete-edit-reasonlist'  => "Reden veur 't vortdoon bewarken",
 'filedelete-maintenance'      => "'t Vortdoon en weerummeplaosen kan noen effen neet umda-w bezig bin mit onderhoud.",
 
 # MIME search
@@ -2144,14 +2144,14 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen
 'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
 'deletionlog'            => "Vort-edaone pagina's",
 'reverted'               => 'Eerdere versie hersteld',
-'deletecomment'          => 'Rejen',
-'deleteotherreason'      => 'Aandere/extra rejen:',
-'deletereasonotherlist'  => 'Aandere rejen',
-'deletereason-dropdown'  => "*Rejens veur 't vortdoon van pagina's
+'deletecomment'          => 'Reden',
+'deleteotherreason'      => 'Aandere/extra reden:',
+'deletereasonotherlist'  => 'Aandere reden',
+'deletereason-dropdown'  => "*Redens veur 't vortdoon van pagina's
 ** Op vrage van de auteur
 ** Schending van de auteursrechen
 ** Vandelisme",
-'delete-edit-reasonlist' => "Rejens veur 't vortdoon bewarken",
+'delete-edit-reasonlist' => "Redens veur 't vortdoon bewarken",
 'delete-toobig'          => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
 't Vortdoon van dit soort pagina's is mit rechen bepark um 't per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.",
 'delete-warning-toobig'  => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
@@ -2184,7 +2184,7 @@ De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|
 'protect-title'               => 'Instellen van beveiligingsnivo veur "$1"',
 'prot_1movedto2'              => '[[$1]] is ewiezig naor [[$2]]',
 'protect-legend'              => 'Beveiliging bevestigen',
-'protectcomment'              => 'Rejen:',
+'protectcomment'              => 'Reden:',
 'protectexpiry'               => 'Duur',
 'protect_expiry_invalid'      => 'Verlooptied is ongeldig.',
 'protect_expiry_old'          => 'De verlooptied is al veurbie.',
@@ -2208,14 +2208,14 @@ Hier staon de instellingen zoas ze noen bin veur de pagina '''$1''':",
 'protect-othertime'           => 'Aandere tiedsduur:',
 'protect-othertime-op'        => 'aandere tiedsduur',
 'protect-existing-expiry'     => 'Bestaonde verloopdaotum: $2 $3',
-'protect-otherreason'         => 'Aandere rejen:',
-'protect-otherreason-op'      => 'aandere rejen',
-'protect-dropdown'            => '*Veulveurkomende rejens veur beveiliging
+'protect-otherreason'         => 'Aandere reden:',
+'protect-otherreason-op'      => 'aandere reden',
+'protect-dropdown'            => '*Veulveurkomende redens veur beveiliging
 ** Vandelisme
 ** Spam
 ** Bewarkingsoorlog
 ** Preventieve beveiliging veulbezochen pagina',
-'protect-edit-reasonlist'     => 'Rejens veur beveiliging bewarken',
+'protect-edit-reasonlist'     => 'Redens veur beveiliging bewarken',
 'protect-expiry-options'      => '1 uur:1 hour,1 dag:1 day,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite',
 'restriction-type'            => 'Toegang',
 'restriction-level'           => 'Beveiligingsnivo',
@@ -2250,7 +2250,7 @@ A-j op '''''Herstel''''' klikken wonnen 't infermasieveld en alle hokjes leeg-em
 As der al een nieje pagina mit dezelfde naam an-emaak is, zullen disse versies as ouwe versies weerummeplaos wonnen, mar de op-esleugen versie zal neet ewiezig wonnen.',
 'undeleterevdel'               => "Herstellen kan neet as daor de leste versie van de pagina of 't bestaand gedeeltelijk mee vort-edaon wonnen.
 In dat geval mu-j de leste versie as zichbaor instellen.",
-'undeletehistorynoadmin'       => "Disse pagina is vort-edaon. De rejen hierveur steet hieronder, samen mit de infermasie van de gebrukers dee dit artikel ewiezig hemmen veurdat 't vort-edaon is. De tekse van 't artikel is allinnig zichbaor veur beheerders.",
+'undeletehistorynoadmin'       => "Disse pagina is vort-edaon. De reden hierveur steet hieronder, samen mit de infermasie van de gebrukers dee dit artikel ewiezig hemmen veurdat 't vort-edaon is. De tekse van 't artikel is allinnig zichbaor veur beheerders.",
 'undelete-revision'            => 'Vort-edaone versies van $1 (per $4 um $5) deur $3:',
 'undeleterevision-missing'     => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
 'undelete-nodiff'              => 'Gien eerdere versie evunnen.',
@@ -2336,13 +2336,13 @@ De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 # Block/unblock
 'blockip'                         => 'Gebruker blokkeren',
 'blockip-legend'                  => 'Een gebruker of IP-adres blokkeren',
-'blockiptext'                     => "Gebruuk dit formelier um een IP-adres of gebrukersnaam te blokkeren. 't Is bedoeld um vandelisme te veurkoemen en mit in akkerderen mit 't [[{{MediaWiki:Policy-url}}|beleid]]. Geef hieronder een rejen op (bieveurbeeld op welke pagina's de vandelisme epleeg is)",
+'blockiptext'                     => "Gebruuk dit formelier um een IP-adres of gebrukersnaam te blokkeren. 't Is bedoeld um vandelisme te veurkoemen en mit in akkerderen mit 't [[{{MediaWiki:Policy-url}}|beleid]]. Geef hieronder een reden op (bieveurbeeld op welke pagina's de vandelisme epleeg is)",
 'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres of gebrukersnaam',
 'ipbexpiry'                       => 'Verloop nao',
-'ipbreason'                       => 'Rejen',
-'ipbreasonotherlist'              => 'aandere rejen',
-'ipbreason-dropdown'              => "*Algemene rejens veur 't blokkeren
+'ipbreason'                       => 'Reden',
+'ipbreasonotherlist'              => 'aandere reden',
+'ipbreason-dropdown'              => "*Algemene redens veur 't blokkeren
 ** valse infermasie invoeren
 ** pagina's leegmaken
 ** ongewunste verwiezingen plaosen
@@ -2358,7 +2358,7 @@ De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 'ipbother'                        => 'Aandere tied',
 'ipboptions'                      => '2 uren:2 hours,1 dag:1 day,3 dagen:3 days,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite',
 'ipbotheroption'                  => 'aanders',
-'ipbotherreason'                  => 'Aandere/extra rejen:',
+'ipbotherreason'                  => 'Aandere/extra reden:',
 'ipbhidename'                     => 'Verbarg de gebrukersnaam in bewarkingen en liesten',
 'ipbwatchuser'                    => 'Gebrukerspagina en overlegpagina op volglieste zetten',
 'ipballowusertalk'                => 'Disse gebruker toestaon tiejens de blokkering zien eigen overlegpagina te bewarken',
@@ -2367,7 +2367,7 @@ De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 'blockipsuccesssub'               => 'Succesvol eblokkeerd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is noen eblokkeerd.<br />
 Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokkeringen.',
-'ipb-edit-dropdown'               => 'Blokkeerrejens bewarken',
+'ipb-edit-dropdown'               => 'Blokkeerredens bewarken',
 'ipb-unblock-addr'                => 'Deblokkeer $1',
 'ipb-unblock'                     => 'Deblokkeer een gebruker of IP-adres',
 'ipb-blocklist-addr'              => 'Bestaonde blokkeringen veur $1',
@@ -2399,7 +2399,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'unblocklink'                     => 'deblokkeer',
 'change-blocklink'                => 'blokkering wiezigen',
 'contribslink'                    => 'Biedragen',
-'autoblocker'                     => 'Vanzelf eblokkeerd umdat \'t IP-adres overenekump mit \'t IP-adres van [[User:$1|$1]], dee eblokkeerd is mit as rejen: "$2"',
+'autoblocker'                     => 'Vanzelf eblokkeerd umdat \'t IP-adres overenekump mit \'t IP-adres van [[User:$1|$1]], dee eblokkeerd is mit as reden: "$2"',
 'blocklogpage'                    => 'Blokkeerlogboek',
 'blocklog-showlog'                => "Disse gebruker is à eerder eblokkeerd.
 't Blokkeerlogboek steet hieronder as rifferentie:",
@@ -2501,7 +2501,7 @@ De overige pagina's wonnen neet autematisch herneumd.",
 'movesubpage'                  => "{{PLURAL:$1|Subpagina|Subpagina's}}",
 'movesubpagetext'              => "De {{PLURAL:$1|subpagina|$1 subpagina's}} van disse pagina vie-j hieronder.",
 'movenosubpage'                => "Disse pagina hef gien subpagina's.",
-'movereason'                   => 'Rejen:',
+'movereason'                   => 'Reden:',
 'revertmove'                   => 'Weerummedreien',
 'delete_and_move'              => 'Vortdoon en herneumen',
 'delete_and_move_text'         => '==Mut vort-edaon wonnen==
@@ -2531,7 +2531,7 @@ Zet in 't onderstaonde veld de namen van de pagina's dee-j uutvoeren willen, é�
 A-j dat leste doon willen dan ku-j oek een verwiezing gebruken, bieveurbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] veur de pagina \"{{MediaWiki:Mainpage}}\".",
 'exportcuronly'     => 'Allinnig de actuele versie, neet de veurgeschiedenisse',
 'exportnohistory'   => "----
-'''NB:''' 't uutvoeren van de hele geschiedenisse is uut-eschakeld vanwegen prestasierejens.",
+'''NB:''' 't uutvoeren van de hele geschiedenisse is uut-eschakeld vanwegen prestasieredens.",
 'export-submit'     => 'Uutvoeren',
 'export-addcattext' => "Pagina's toevoegen uut kattegerie:",
 'export-addcat'     => 'Toevoegen',
@@ -2682,7 +2682,7 @@ De tiedelijke map is neet anwezig.",
 'tooltip-upload'                  => 'Bestaandn toovoogn',
 'tooltip-rollback'                => 'Mit "weerummedreien" ku-j mit één klik de bewarking(en) van de leste gebruker dee disse pagina bewark hef weerummezetten.',
 'tooltip-undo'                    => 'A-j op "weerummedreien" klikken geet \'t bewarkingsvienster los en ku-j de veurige versie weerummezetten.
-Je kunnen in de bewarkingssamenvatting een rejen opgeven.',
+Je kunnen in de bewarkingssamenvatting een reden opgeven.',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metadata is uut-eschakeld op disse server.',
@@ -3152,7 +3152,7 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "'''Waorschuwing''': disse pagina is vort-edaon terwiel jie 't an 't bewarken wanen!",
-'confirmrecreate'     => "Gebruker [[User:$1|$1]] ([[User talk:$1|Overleg]]) hef disse pagina vort-edaon naoda-j  begunnen bin mit joew wieziging, mit opgave van de volgende rejen: ''$2''. Bevestig da-j 't artikel herschrieven willen.",
+'confirmrecreate'     => "Gebruker [[User:$1|$1]] ([[User talk:$1|Overleg]]) hef disse pagina vort-edaon naoda-j  begunnen bin mit joew wieziging, mit opgave van de volgende reden: ''$2''. Bevestig da-j 't artikel herschrieven willen.",
 'recreate'            => 'Herschrieven',
 
 # action=purge

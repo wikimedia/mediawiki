@@ -1761,7 +1761,7 @@ Gündeligiň görnüşini, ulanyjy adyny (baş-setir harpa duýgur), ýa-da täs
 # Special:Categories
 'categories'                    => 'Kategoriýalar',
 'categoriespagetext'            => 'Aşakdaky {{PLURAL:$1|kategoriýada|kategoriýalarda}} sahypa ýa-da media faýllary bardyr.
-[[Special:UnusedCategories|Ulanylmaýan kategoriýalar]] şu ýerde görkezilýär.
+[[Special:UnusedCategories|Ulanylmaýan kategoriýalar]] şu ýerde görkezilmeýär.
 Şeýle-de [[Special:WantedCategories|Talap edilýän kategoriýalara]] serediň.',
 'categoriesfrom'                => 'Şunuň bilen başlaýan kategoriýalary görkez:',
 'special-categories-sort-count' => 'mukdar boýunça tertiple',
@@ -2114,7 +2114,7 @@ $1',
 'sp-contributions-deleted'        => 'öçürilen ulanyjy goşantlary',
 'sp-contributions-logs'           => 'gündelikler',
 'sp-contributions-talk'           => 'çekişme',
-'sp-contributions-userrights'     => 'ulanyjy hukulary dolandyryşy',
+'sp-contributions-userrights'     => 'ulanyjy hukuklary dolandyryşy',
 'sp-contributions-blocked-notice' => 'Bu ulanyjy şu wagt blokirlengi.
 Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:',
 'sp-contributions-search'         => 'Goşantlary gözle',
@@ -2214,7 +2214,7 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 Salgylanmak üçin blokirleme gündeligi aşakda berilýär:',
 'blocklog-showsuppresslog'        => 'Bu ulanyjy ozaldan blokirlenipdir hem-de gizlenilipdir.
 Bökdeme gündeligi salgylanmak üçin aşakda berilýär:',
-'blocklogentry'                   => ', [[$1]] ulanyjysyny blokirledi, blokirleme möhleti: $2 $3',
+'blocklogentry'                   => 'blokirledi: [[$1]], blokirleme möhleti: $2 $3',
 'reblock-logentry'                => '[[$1]] üçin gutaryş wagtyny $2 edip, blokirleme sazlamalaryny üýtgetdi $3',
 'blocklogtext'                    => 'Ulanyjy blokirleme we blokirlemeni aýyrma gündeligi. 
 Awtomatik usulda blokirlenen IP adresleri sanawda görkezilmeýär. 

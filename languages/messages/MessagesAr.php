@@ -591,7 +591,7 @@ $messages = array(
 'vector-namespace-talk'      => 'نقاش',
 'vector-namespace-template'  => 'قالب',
 'vector-namespace-user'      => 'صفحة مستخدم',
-'vector-view-create'         => 'أنشىء',
+'vector-view-create'         => 'أنشئ',
 'vector-view-edit'           => 'عدل',
 'vector-view-history'        => 'اعرض التاريخ',
 'vector-view-view'           => 'اقرأ',
@@ -2423,7 +2423,7 @@ $NEWPAGE
 # Restrictions (nouns)
 'restriction-edit'   => 'التعديل',
 'restriction-move'   => 'النقل',
-'restriction-create' => 'أنشىء',
+'restriction-create' => 'أنشئ',
 'restriction-upload' => 'رفع',
 
 # Restriction levels
