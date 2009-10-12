@@ -1283,6 +1283,7 @@ class User {
 			list( $max, $period ) = $limit;
 			$summary = "(limit $max in {$period}s)";
 			$count = $wgMemc->get( $key );
+			// Already pinged?
 			if( $count ) {
 				if( $count > $max ) {
 					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
@@ -1293,11 +1294,11 @@ class User {
 				} else {
 					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
 				}
+				$wgMemc->incr( $key );
 			} else {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
-				$wgMemc->add( $key, 1, intval( $period ) );
+				$wgMemc->set( $key, 1, intval( $period ) ); // first ping
 			}
-			$wgMemc->incr( $key );
 		}
 
 		wfProfileOut( __METHOD__ );
