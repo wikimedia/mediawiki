@@ -505,10 +505,17 @@ div.floatleft, table.floatleft {
 #rsd_resource_edit{
 	z-index:2;
 }
+.rsd_file_type{
+	position : absolute;
+	bottom : 0px;
+	left : 3px;
+	font-size: x-small;
+	background:#FFF;
+}
 .rsd_license{
-	position:absolute;
-	bottom:0px;
-	left:0px;
+	position : absolute;
+	bottom : 0px;
+	right : 0px;
 }
 .rsd_license img{
 	float:left;
