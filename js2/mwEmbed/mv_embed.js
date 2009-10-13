@@ -617,7 +617,8 @@ $mw.lang.loadGM({
 	"mwe-size-megabytes" : "$1 MB",
 	"mwe-size-kilobytes" : "$1 K",
 	"mwe-size-bytes" : "$1 B",
-	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2"
+	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2",
+	"mwe-loading-add-media-wiz": "Loading add media wizard"
 });
 
 
@@ -1180,18 +1181,43 @@ function mv_remove_modal( speed ) {
 function mv_jqueryBindings() {
 	js_log( 'mv_jqueryBindings' );
 	(function( $ ) {
-		$.fn.addMediaWiz = function( iObj, callback ) {
-			// First set the cursor for the button to "loading"
-			$j( this.selector ).css( 'cursor', 'wait' ).attr( 'title', gM( 'mwe-loading_title' ) );
-
-			iObj['target_invocation'] = this.selector;
+		//non selector based add-media-wizard direct invocation with loader
+		$.addMediaWiz = function( iObj, callback ){			
+			js_log(".addMediaWiz call");
+			//check if already loaded:
+			if( _global['rsdMVRS'] ){
+				_global['rsdMVRS'].doReDisplay();
+				if( callback )
+					callback( _global['rsdMVRS'] );
+				return ;
+			}
+			//display a loader: 
+			$.addLoaderDialog( gM('mwe-loading-add-media-wiz') );
+			//load the addMedia wizard without a target: 
+			$.fn.addMediaWiz ( iObj, function( amwObj ){
+				//close the dialog
+				$.closeLoaderDialog();
+				//do the add-media-wizard display
+				amwObj.doInitDisplay();				
+				//call the parent callback:
+				if( callback )
+					callback( _global['rsdMVRS'] ); 
+			});
+		}
+		$.fn.addMediaWiz = function( iObj, callback ) {			
+			if( this.selector ){			
+				// First set the cursor for the button to "loading"
+				$j( this.selector ).css( 'cursor', 'wait' ).attr( 'title', gM( 'mwe-loading_title' ) );
+				//set the target: 
+				iObj['target_invocation'] = this.selector;
+			}
 
 			// Load the mv_embed_base skin:
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
 			loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name']+'/styles.css' );
 			// Load all the required libs:
 			mvJsLoader.jQueryCheck( function() {
-				// Load with staged dependencies (for IE and Safari that don't execute in order)
+				// Load with staged dependencies (for IE that does not execute in order)
 				mvJsLoader.doLoadDepMode([
 					[	'remoteSearchDriver',
 						'$j.cookie',
@@ -1398,12 +1424,13 @@ function mv_jqueryBindings() {
 		$.addLoaderDialog = function( msg_txt ){
 			if( $('#mwe_tmp_loader').length != 0 )
 				$('#mwe_tmp_loader').remove();
-
+			
+			//append the style free loader ontop: 
 			$('body').append('<div id="mwe_tmp_loader" title="' + msg_txt + '" >' +
-					gM('mwe-checking-resource') + '<br>' +
+					msg_txt + '<br>' +
 					mv_get_loading_img() +
 			'</div>');
-
+			//turn the loader into a real dialog loader: 
 			mvJsLoader.doLoadDepMode([
 				[
 					'$j.ui'

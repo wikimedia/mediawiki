@@ -24,19 +24,28 @@ var defaultAddMediaConfig = {
 js2AddOnloadHook( function() {
 	var amwConf = $j.extend( true, defaultAddMediaConfig, mwAddMediaConfig );
 	// kind of tricky, it would be nice to use run on ready "loader" call here
-	if( typeof $j.wikiEditor != 'undefined' ) {
-		setTimeout( function() {
-			$j( '.wikiEditor-ui [rel=file]' ).unbind().addMediaWiz(
+	if( typeof $j.wikiEditor != 'undefined' ) {		
+			$j( 'textarea#wpTextbox1' ).bind( 'wikiEditor-toolbar-buildSection-main',
+		    function( e, section ) {
+		        if ( typeof section.groups.insert.tools.file !== 'undefined' ) {
+		            section.groups.insert.tools.file.action = {
+		                'type': 'callback',
+		                'execute': function() { 
+		                	js_log('click add media wiz');
+		                	$j.addMediaWiz( amwConf );
+		                }
+		            };
+		        }
+		    }
+		);
+	}else{
+		//add to the old-toolbar
+		if( $j('#btn-add-media-wiz').length == 0 ){
+			$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
+				mv_skin_img_path + 'Button_add_media.png">' );
+			$j( '#btn-add-media-wiz' ).addMediaWiz(
 				amwConf
 			);
-		}, 100 );
-	}
-	//add to the old-toolbar all the time:
-	if( $j('#btn-add-media-wiz').length == 0 ){
-		$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
-			mv_skin_img_path + 'Button_add_media.png">' );
-		$j( '#btn-add-media-wiz' ).addMediaWiz(
-			amwConf
-		);
+		}
 	}
 });

@@ -103,6 +103,7 @@ $messages['en'] = array(
 	'mwe-size-kilobytes' => '$1 K',
 	'mwe-size-bytes' => '$1 B',
 	'mwe-error_load_lib' => 'Error: JavaScript $1 was not retrievable or does not define $2',
+	'mwe-loading-add-media-wiz' => "Loading add media wizard",
 
 	/*
 	 * js file: /libAddMedia/mvFirefogg.js

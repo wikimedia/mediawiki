@@ -387,7 +387,6 @@ remoteSearchDriver.prototype = {
 			}
 		}		
 
-
 		//set up the target invocation:
 		if( $j( this.target_invocation ).length==0 ){
 			js_log("RemoteSearchDriver:: no target invocation provided (will have to run your own doInitDisplay() )");
@@ -409,16 +408,23 @@ remoteSearchDriver.prototype = {
 		this.add_interface_bindings();
 
 		//update the target binding to just un-hide the dialog:
-		$j(this.target_invocation).unbind().click(function(){
-		 	  js_log("re-open");
-			  //update the base text:
-			  if( _this.target_textbox )
-					_this.getTexboxSelection();
-			  //$j(_this.target_container).dialog("open");
-			  $j(_this.target_container).parents('.ui-dialog').fadeIn('slow');
-			  //re-center the dialog:
-			  $j(_this.target_container).dialog('option', 'position','center');
-		 });
+		if( this.target_invocation ){
+			$j(this.target_invocation).unbind().click(function(){
+				js_log("doInitDisplay:target_invocation: click doReDisp");
+			 	 _this.doReDisplay();
+			 });
+		 }
+	},
+	doReDisplay: function(){
+		var _this = this;
+		js_log("doReDisplay::");
+		//update the base text:
+		if( _this.target_textbox )
+			_this.getTexboxSelection();
+		//$j(_this.target_container).dialog("open");
+		$j(_this.target_container).parents('.ui-dialog').fadeIn('slow');
+		//re-center the dialog:
+		$j(_this.target_container).dialog('option', 'position','center');
 	},
 	//gets the in and out points for insert position or grabs the selected text for search
 	getTexboxSelection:function(){
@@ -475,7 +481,7 @@ remoteSearchDriver.prototype = {
 			js_log( 'width: ' + $j(window).width() +  ' height: ' + $j(window).height());
 			var cConf = {};
 			cConf['cancel'] = function(){
-				_this.cancelClipEditCB()
+				_this.cancelClipEditCB();
 			}
 			function doResize(){
 				js_log('do resize:: ' + _this.target_container);				
@@ -492,9 +498,10 @@ remoteSearchDriver.prototype = {
 				resizable:false,
 				buttons:cConf,								
 				close: function() {
-					//if we are 'editing' a item close that					
-					_this.cancelClipEditCB();
-					js_log('closed modal');
+					//if we are 'editing' a item close that 
+					//@@todo maybe prompt the user? 					
+					_this.cancelClipEditCB();						
+					//$j(this).dialog('close');		
 					$j(this).parents('.ui-dialog').fadeOut('slow');
 				}
 			});				
