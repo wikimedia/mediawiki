@@ -30,7 +30,7 @@ loadGM({
 	"mwe-cc_sa_title" : "Share Alike",
 	"mwe-cc_pd_title" : "Public Domain",
 	"mwe-unknown_license" : "Unknown license",
-	"mwe-no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<p>Do you need to login?<\/p><p>If permissions are set, you may have to enable <a href=\"http:\/\/www.mediawiki.org\/wiki\/Manual:$wgAllowCopyUploads\">$wgAllowCopyUploads<\/a>.<\/p>",
+	"mwe-no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<p>Do you need to login?<\/p><p>Is upload_by_url permission set for you?<\/br> Do you need may have to enable <a href=\"http:\/\/www.mediawiki.org\/wiki\/Manual:$wgAllowCopyUploads\">$wgAllowCopyUploads<\/a>.<\/p>",
 	"mwe-results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
 	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
 	"rsd_config_error" : "Add media wizard configuration error: $1",
@@ -46,7 +46,13 @@ loadGM({
 	"mwe-importing_asset" : "Importing asset",
 	"mwe-preview_insert_resource" : "Preview insert of resource: $1",
 	"mwe-checking-resource": "Checking for resource",
-	"mwe-resource-needs-import": "Resource $1 needs to be imported"
+	"mwe-resource-needs-import": "Resource $1 needs to be imported",
+	"mwe-ftype-svg" : "SVG vector file",
+	"mwe-ftype-jpg" : "JPEG image file",
+	"mwe-ftype-png" : "PNG image file",
+	"mwe-ftype-oga"	: "Ogg audio file",
+	"mwe-ftype-ogg" : "Ogg video file",
+	"mwe-ftype-unk" : "Unknown File Format"
 });
 
 var default_remote_search_options = {
@@ -268,6 +274,37 @@ remoteSearchDriver.prototype = {
 							licenseObj.img_html +
 					'</a>'+
 				  '</div>';
+	},
+	/**
+	* getTypeIcon
+	* @param str mime type of the reqeusted file
+	*/
+	getTypeIcon:function( mimetype) {
+		var typestr = 'unk';
+		switch( mimetype ){
+			case 'image/svg+xml':
+				typestr = 'svg';
+			break;
+			case 'image/jpeg':
+				typestr = 'jpg'
+			break;
+			case 'image/png':
+				typestr = 'png';
+			break;
+			case 'audio/ogg':
+				typestr = 'oga';
+			case 'video/ogg':
+			case 'application/ogg':
+				typestr = 'ogg';
+			break;
+		}
+		
+		if(typestr=='unk')
+			js_log("unkown ftype: " + mimetype );
+			 
+		return '<div class="rsd_file_type ui-corner-all ui-state-default ui-widget-content" title="' + gM('mwe-ftype-' + typestr) + '">' +
+					typestr  +
+				'</div>'
 	},
 	/*
 	 * getLicenceKeyFromKey
@@ -966,9 +1003,16 @@ remoteSearchDriver.prototype = {
 							o+='<a target="_new" style="position:absolute;top:0px;right:0px" title="' +
 								 gM('mwe-resource_description_page') +
 								'" href="' + rItem.link + '"><img src="http://upload.wikimedia.org/wikipedia/commons/6/6b/Magnify-clip.png"></a>';
+								
+						//add file type icon if known
+						if( rItem.mime ){
+							o+= _this.getTypeIcon( rItem.mime );
+						}		
+								
 						//add license icons if present
 						if( rItem.license )
 							o+= _this.getlicenseImgSet( rItem.license );
+													
 					o+='</div>';
 				}else if(_this.result_display_mode == 'list'){
 					o+='<div id="mv_result_' + rInx + '" class="mv_clip_list_result" style="width:90%">';
