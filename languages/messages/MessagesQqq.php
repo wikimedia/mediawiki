@@ -1115,7 +1115,8 @@ $1 is the relevance of this result in per cent.
 {{Identical|My preferences}}',
 'prefs-edits'                   => 'In user preferences.',
 'prefsnologin'                  => '{{Identical|Not logged in}}',
-'changepassword'                => "Section heading on [[Special:Preferences]], tab 'User profile'.",
+'changepassword'                => "Section heading on [[Special:Preferences]], tab 'User profile'.
+{{Identical|Change password}}",
 'prefs-skin'                    => 'Used in user preferences.',
 'skin-preview'                  => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
@@ -3132,7 +3133,7 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 *$5 is a URL to [[Special:InvalidateEmail]]
 *$6 is a date 
 *$7 is a time',
-'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in [[Mediawiki:Invalidateemail]]) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
+'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail'          => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
 
 # Trackbacks

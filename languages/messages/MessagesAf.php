@@ -1509,14 +1509,20 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Toegang geweier',
+'img-auth-notindir'     => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
+'img-auth-badtitle'     => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
+'img-auth-nologinnWL'   => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
 'img-auth-nofile'       => 'Lêer "$1" bestaan nie.',
 'img-auth-isdir'        => 'U probeer om toegang na gids "$1" te kry.
 Slegs toegang tot lêers word toegelaat.',
 'img-auth-streaming'    => 'Besig met die stoom van "$1".',
+'img-auth-noread'       => 'Gebruiker het nie toegang om "$1" te lees nie.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'  => 'Kon nie die URL bereik nie',
-'upload-curl-error28' => 'Oplaai neem te lank',
+'upload-curl-error6'      => 'Kon nie die URL bereik nie',
+'upload-curl-error6-text' => 'Die URL is nie bereikbaar nie.
+Kontroleer of die URL korrek is, en of die webwerf wel beskikbaar is.',
+'upload-curl-error28'     => 'Oplaai neem te lank',
 
 'license'            => 'Lisensiëring:',
 'license-header'     => 'Lisensiëring',
@@ -1572,9 +1578,11 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 # File reversion
 'filerevert'                => 'Maak $1 ongedaan',
 'filerevert-legend'         => 'Maak lêer ongedaan',
+'filerevert-intro'          => "U is besig om die lêer '''[[Media:$1|$1]]''' terug te rol tot die [$4 weergawe op $2, $3]",
 'filerevert-comment'        => 'Opmerking:',
 'filerevert-defaultcomment' => 'Teruggerol na die weergawe van $1, $2',
 'filerevert-submit'         => 'Rol terug',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' is teruggerol na die [$4 weergawe op $2, $3].",
 'filerevert-badversion'     => 'Daar is geen vorige plaaslike weergawe van die lêer vir die gespesifiseerde tydstip nie.',
 
 # File deletion
@@ -1587,6 +1595,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'filedelete-success'          => "'''$1''' is geskrap.",
 'filedelete-success-old'      => "Die weergawe van '''[[Media:$1|$1]]''' op $3, $2 is geskrap.",
 'filedelete-nofile'           => "'''$1''' bestaan nie.",
+'filedelete-nofile-old'       => "Daar is geen weergawe van '''$1''' in die argief met die aangegewe eienskappe nie.",
 'filedelete-otherreason'      => 'Ander/ekstra rede:',
 'filedelete-reason-otherlist' => 'Andere rede',
 'filedelete-reason-dropdown'  => '*Algemene skrappingsredes:
@@ -2552,7 +2561,9 @@ Ander velde sal versteek wees.
 # EXIF tags
 'exif-imagewidth'                  => 'Wydte',
 'exif-imagelength'                 => 'Hoogte',
+'exif-bitspersample'               => 'Grepe per komponent',
 'exif-compression'                 => 'Kompressiemetode',
+'exif-photometricinterpretation'   => 'Pixel-komposisie',
 'exif-orientation'                 => 'Oriëntasie',
 'exif-samplesperpixel'             => 'Aantal komponente',
 'exif-planarconfiguration'         => 'Datastruktuur',
@@ -2784,6 +2795,10 @@ Ander velde sal versteek wees.
 'confirmemail_text'        => "Hierdie wiki vereis dat u e-posadres bevestig word voordat epos-funksies gebruik word. Klik onderstaande knoppie om 'n bevestigingspos na u adres te stuur. Die pos sal 'n skakel met 'n kode insluit; maak hierdie skakel oop in u webblaaier om te bevestig dat die adres geldig is.",
 'confirmemail_send'        => "Pos 'n bevestigingkode",
 'confirmemail_sent'        => 'Bevestigingpos gestuur.',
+'confirmemail_sendfailed'  => '{{SITENAME}} kon nie u bevestigings-epos uitstuur nie.
+Kontroleer u e-posadres vir ongeldige karakters.
+
+Die e-posprogram meld: $1',
 'confirmemail_invalid'     => 'Ongeldige bevestigingkode. Die kode het moontlik verval.',
 'confirmemail_needlogin'   => 'U moet $1 om u e-posadres te bevestig.',
 'confirmemail_success'     => 'U e-posadres is bevestig. U kan nou aanteken en die wiki gebruik.',
