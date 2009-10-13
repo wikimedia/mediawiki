@@ -50,7 +50,7 @@ class HistoryPage {
 	function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$msgs = array( 'cur', 'last', 'rev-delundel' );
+			$msgs = array( 'cur', 'last', 'rev-delundel', 'pipe-separator' );
 			foreach( $msgs as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities') );
 			}
@@ -463,10 +463,15 @@ class HistoryPager extends ReverseChronologicalPager {
 		$curlink = $this->curLink( $rev, $latest );
 		$lastlink = $this->lastLink( $rev, $next, $counter );
 		$diffButtons = $this->diffButtons( $rev, $firstInList, $counter );
+		$histLinks = Html::rawElement(
+				'span',
+				array( 'class' => 'mw-history-histlinks' ),
+				'(' . $curlink . $this->historyPage->message['pipe-separator'] . $lastlink . ') '
+		);
+		$s = $histLinks . $diffButtons;
+
 		$link = $this->revLink( $rev );
 		$classes = array();
-
-		$s = "($curlink) ($lastlink) $diffButtons";
 
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			// Don't show useless link to people who cannot hide revisions
