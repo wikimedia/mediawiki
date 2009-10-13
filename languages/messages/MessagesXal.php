@@ -522,6 +522,7 @@ $2 кенз һарһлһда төлә хәләтн.',
 
 # Undelete
 'undeletelink'     => 'гүүһәд хәләх/босхҗ тохрах',
+'undeleteinvert'   => 'Зөрү суңһлт',
 'undeletedarticle' => '«[[$1]]» хәрү кехв',
 
 # Namespace form on various pages

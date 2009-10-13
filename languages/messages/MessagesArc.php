@@ -844,7 +844,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'listusers-submit' => 'ܚܘܝ',
 
 # Special:ActiveUsers
-'activeusers-count' => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ ܚܕܬܐ|ܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ}}',
+'activeusers-count' => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ ܚܕܬܐ|ܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ}} ܒ {{PLURAL:$3|ܝܘܡܐ ܐܚܪܝܐ|$3 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܬܐ}}',
 'activeusers-from'  => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܐ ܥܡ:',
 
 # Special:Log/newusers
@@ -1024,7 +1024,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'blocklink'                  => 'ܚܪܘܡ',
 'unblocklink'                => 'ܫܩܘܠ ܚܪܡܐ',
 'change-blocklink'           => 'ܫܚܠܦ ܚܪܡܐ',
-'contribslink'               => 'ܫܘ̈ܬܦܘܝܬܐ',
+'contribslink'               => 'ܫܘܬܦܘܝܬ̈ܐ',
 'blocklogpage'               => 'ܣܓܠܐ ܕܚܪܡܐ',
 'blocklogentry'              => 'ܚܪܡ [[$1]] ܠܡܬܚܐ ܕ $2 $3',
 'unblocklogentry'            => 'ܫܩܠ ܚܪܡܐ ܡܢ $1',

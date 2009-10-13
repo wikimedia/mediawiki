@@ -731,6 +731,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'action-createaccount' => 'na hesabê karberi bıaferne',
 
 # Recent changes
+'nchanges'                       => '$1 {{PLURAL:$1|tedil|tedili}}',
 'recentchanges'                  => 'Vurnaisê peyêni',
 'recentchanges-legend'           => 'Alternatifê vurnaisunê peyênu',
 'recentchanges-feed-description' => 'Na weiyekerdena wiki de vurnaisê tewrpeyêne ke biyê ine teqib ke.',
@@ -806,8 +807,9 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'pager-older-n'      => '{{PLURAL:$1|1 khanêr|$1 khanêri}}',
 
 # Book sources
-'booksources'    => 'Çımê kıtabun',
-'booksources-go' => 'So',
+'booksources'               => 'Çımê kıtabun',
+'booksources-search-legend' => 'Serba çımeunê kıtabu cıfeteliye',
+'booksources-go'            => 'So',
 
 # Special:Log
 'specialloguserlabel' => 'Karber:',
@@ -820,6 +822,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'allpagessubmit' => 'So',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'Qeydê karberiê newey',
 'newuserlog-create-entry' => 'Hesabê karberê newey',
 
 # Special:ListGroupRights
@@ -883,6 +886,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'month'               => 'Asme ra (u ravêr):',
 'year'                => 'Serre ra (u ravêr):',
 
+'sp-contributions-blocklog' => 'qeydê engeli',
 'sp-contributions-username' => 'IP ya ki karber:',
 'sp-contributions-submit'   => 'Cıfeteliye',
 
@@ -1027,6 +1031,7 @@ Serba areze-kerdene qaytê ''math/README''y ke.",
 
 # Browsing diffs
 'previousdiff' => '← Vurnaiso khanêr',
+'nextdiff'     => 'Vurnaena newêre →',
 
 # Media information
 'file-info-size'       => '($1 × $2 piksel, gırsênia dosya: $3, MIME tipê cı: $4)',

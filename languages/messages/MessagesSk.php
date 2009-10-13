@@ -401,6 +401,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Táto kategória obsahuje iba nasledovný súbor.|V tejto kategórii sa {{PLURAL:$1|nachádza jeden súbor|nachádzajú $1 súbory|nachádza $1 súborov}} z $2 celkom.}}',
 'category-file-count-limited'    => 'V tejto kategórii sa {{PLURAL:$1|nachádza jeden súbor|nachádzajú $1 súbory|nachádza $1 súborov}}',
 'listingcontinuesabbrev'         => 'pokrač.',
+'index-category'                 => 'Indexované stránky',
+'noindex-category'               => 'neindexované stránky',
 
 'mainpagetext'      => "<big>'''Softvér MediaWiki bol úspešne nainštalovaný.'''</big>",
 'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
@@ -705,7 +707,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'userexists'                 => 'Zadané používateľské meno už používa niekto iný.
 Zadajte iné meno.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
-'createaccounterror'         => 'Nepodarilo sa vytvoriť užívateľský účet: $1',
+'createaccounterror'         => 'Nepodarilo sa vytvoriť účet: $1',
 'nocookiesnew'               => 'Používateľské konto bolo vytvorené, ale nie ste prihlásený. {{SITENAME}} používa cookies na prihlásenie. Máte cookies vypnuté. Zapnite ich a potom sa prihláste pomocou vášho nového používateľského mena a hesla.',
 'nocookieslogin'             => '{{SITENAME}} používa cookies na prihlásenie. Vy máte cookies vypnuté. Prosíme, zapnite ich a skúste znovu.',
 'noname'                     => 'Nezadali ste platné používateľské meno.',
@@ -1045,7 +1047,10 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE
 Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
 'rev-deleted-unhide-diff'     => "Jedna z revízií tohto rozdielu bola '''zmazaná'''.
 Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
-Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];",
+Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť].",
+'rev-suppressed-unhide-diff'  => "Jedna z revízií tohto rozdielu bola '''potlačená'''.
+Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].
+Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť].",
 'rev-delundel'                => 'zobraziť/skryť',
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'     => 'Neplatná cieľová revízia',
@@ -1466,7 +1471,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-bigdelete'             => 'Mazať stránky s veľkou históriou',
 'right-deleterevision'        => 'Mazať a obnovovať konkrétne revízie stránok',
 'right-deletedhistory'        => 'Zobrazovať zmazané položky histórie bez ich plného textu',
-'right-deletedtext'           => 'Prehliadať zmazané texty a zmeny medzi zmazanými verziami',
+'right-deletedtext'           => 'Zobrazovať zmazané texty a zmeny medzi zmazanými verziami',
 'right-browsearchive'         => 'Hľadať v zmazaných stránkach',
 'right-undelete'              => 'Obnoviť zmazanú stránku',
 'right-suppressrevision'      => 'Kontrolovať a obnovovať revízie skryté správcom',
@@ -1499,7 +1504,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-versiondetail'         => 'Zobraziť podrobné informácie o verzii softvéru',
-'right-sendemail'             => 'Poslať e-mail ostatným používateľom',
+'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -1647,9 +1652,9 @@ Zadané zhrnutie sa neobjaví na popisnej stránke.
 Aby sa tam zhrnutie objavilo, budete potrebné ho manuálne upraviť.
 [[$1|thumb]]",
 'fileexists-extension'        => "Súbor s podobným názvom už existuje: [[$2|thumb]]
-* Názov súboru, ktoý nahrávate: '''<tt>[[:$1]]</tt>'''
+* Názov súboru, ktorý nahrávate: '''<tt>[[:$1]]</tt>'''
 * Názov existujúceho súboru: '''<tt>[[:$2]]</tt>'''
-Jediný rozdiel je vo veľkosti písmen prípony. Prosím, skontrolujte totožnosť týchto súborov.",
+Prosím, vyberte preň iný názov.",
 'fileexists-thumbnail-yes'    => "Zdá sa, že súbor je obrázkom redukovanej veľkosti ''(náhľadom)''. [[$1|thumb]]
 Prosím, skontolujte súbor '''<tt>[[:$1]]</tt>'''.
 Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potrebné nahrávať ďalší náhľad.",
@@ -2019,7 +2024,7 @@ Podporované protokoly: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Zoznam aktívnych používateľov',
-'activeusers-count'    => '$1 {{PLURAL:$1|posledná úprava|posledné úpravy|posledných úprav}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|úprava|úpravy|úprav}} za {{PLURAL:$3|posledný deň|posledné $3 dni|posledných $3 dní}}',
 'activeusers-from'     => 'Zobraziť používateľov počínajúc:',
 'activeusers-noresult' => 'Neboli nájdení žiadni používatelia.',
 
@@ -2089,7 +2094,7 @@ Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniac
 
 Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{int:unwatch}}“ v záložkách na vrchu.",
 'removedwatch'         => 'Odstránená zo zoznamu sledovaných stránok',
-'removedwatchtext'     => 'Stránka „[[:$1]]“ bola odstránená z vášho zoznamu sledovaných stránok.',
+'removedwatchtext'     => 'Stránka „[[:$1]]“ bola odstránená z vášho [[Special:Watchlist|zoznamu sledovaných stránok]].',
 'watch'                => 'Sledovať',
 'watchthispage'        => 'Sledovať túto stránku',
 'unwatch'              => 'Nesledovať',
@@ -2421,7 +2426,8 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'unblocklink'                     => 'odblokuj',
 'change-blocklink'                => 'zmeniť blokovanie',
 'contribslink'                    => 'príspevky',
-'autoblocker'                     => 'Ste zablokovaný, pretože zdieľate IP adresu s „$1“. Dôvod „$2“.',
+'autoblocker'                     => 'Boli ste automaticky zablokovaný, pretože vašu IP adresu nedávno použil „[[User:$1|$1]]“.
+Uvedený dôvod zablokovania používateľa $2 bol: „$2“',
 'blocklogpage'                    => 'Záznam_blokovaní',
 'blocklog-showlog'                => 'Tento používateľ bol v minulosti zablokovaný. Záznam blokovaní uvádza nasledovný dôvod:',
 'blocklog-showsuppresslog'        => 'Tento používateľ bol v minulosti zablokovaný a skrytý. Záznam potlačení uvádza nasledovný dôvod:',
@@ -2456,6 +2462,7 @@ $1 je už zablokovaný. Chcete zmeniť voľby blokovania?',
 'sorbsreason'                     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL.',
 'sorbs_create_account_reason'     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v databáze DNSBL, ktorú používa {{SITENAME}}. Nemôžete si vytvoriť účet.',
 'cant-block-while-blocked'        => 'Nemôžete blokovať iných používateľov, kým ste zablokovaný.',
+'cant-see-hidden-user'            => 'Používateľ, ktorého sa pokúšate zablokovať už bol zablokovaný a skrytý. Pretože nemáte právo hideuser, nemôžete vidieť ani upravovať blokovanie používateľa.',
 
 # Developer tools
 'lockdb'              => 'Zamknúť databázu',
@@ -2759,12 +2766,13 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 
 # Attribution
 'anonymous'        => '$1 {{PLURAL:$1|anonymný používateľ|anonymní používatelia|anonymných používateľov}} {{GRAMMAR:genitív|{{SITENAME}}}}',
-'siteuser'         => 'používateľa {{GRAMMAR:genitív|{{SITENAME}}}} $1',
-'anonuser'         => '{{SITENAME}} anonymný používateľ $1',
+'siteuser'         => 'používateľ {{GRAMMAR:genitív|{{SITENAME}}}} $1',
+'anonuser'         => 'anonymný používateľ {{GRAMMAR:genitív|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Túto stránku naposledy upravoval používateľ $3 $2, $1.',
 'othercontribs'    => 'Založené na práci $1.',
 'others'           => 'iné',
 'siteusers'        => '{{PLURAL:$2|používateľ|používatelia|používateľov}} {{GRAMMAR:genitív|{{SITENAME}}}} $1',
+'anonusers'        => '{{PLURAL:$2|anonymný používateľ|anonymní používatelia}} {{GRAMMAR:genitív|{{SITENAME}}}}$1',
 'creditspage'      => 'Autori stránky',
 'nocredits'        => 'Pre túto stránku neexistujú žiadne dostupné ocenenia.',
 

@@ -1603,7 +1603,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'recentchanges-legend-bot'          => '$1 - modification faite par un robot',
 'recentchanges-label-bot'           => 'Cette modification a été effectuée par un robot.',
 'recentchanges-legend-unpatrolled'  => '$1 - modification non patrouillée',
-'recentchanges-label-unpatrolled'   => 'Cette modification n’a pas encore été vérifiée.',
+'recentchanges-label-unpatrolled'   => 'Cette modification n’a pas encore été patrouillée.',
 'rcnote'                            => 'Voici {{PLURAL:$1|la dernière modification effectuée|les $1 dernières modifications effectuées}} durant {{PLURAL:$2|la dernière journée|les <b>$2</b> derniers jours}} jusqu’à $5 le $4.',
 'rcnotefrom'                        => "Voici les modifications effectuées depuis le '''$2''' ('''$1''' au maximum).",
 'rclistfrom'                        => 'Afficher les nouvelles modifications depuis le $1.',
@@ -2872,10 +2872,10 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'markedaspatrolled'                   => 'Marqué comme non vandalisé',
 'markedaspatrolledtext'               => 'La version sélectionnée a été marquée comme non vandalisée.',
 'rcpatroldisabled'                    => 'La fonction de patrouille des modifications récentes n’est pas activée.',
-'rcpatroldisabledtext'                => 'La fonctionnalité de surveillance des modifications récentes n’est pas activée.',
+'rcpatroldisabledtext'                => 'La fonctionnalité de patrouille des modifications récentes est actuellement désactivée.',
 'markedaspatrollederror'              => 'Ne peut être marqué comme non vandalisé',
 'markedaspatrollederrortext'          => 'Vous devez sélectionner une version pour pouvoir la marquer comme non vandalisée.',
-'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme surveillées.',
+'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme patrouillées.',
 
 # Patrol log
 'patrol-log-page'      => 'Journal des versions patrouillées',
