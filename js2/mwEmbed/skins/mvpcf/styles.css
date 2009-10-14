@@ -509,8 +509,13 @@ div.floatleft, table.floatleft {
 	position : absolute;
 	bottom : 0px;
 	left : 3px;
-	font-size: x-small;
-	background:#FFF;
+	font-size: x-small;	
+}
+.rsd_linkback{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	font-size: x-small;	
 }
 .rsd_license{
 	position : absolute;

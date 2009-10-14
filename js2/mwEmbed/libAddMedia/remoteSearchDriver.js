@@ -21,6 +21,7 @@ loadGM({
 	"rsd_layout" : "Layout:",
 	"rsd_resource_edit" : "Edit resource: $1",
 	"mwe-resource_description_page" : "Resource description page",
+	"mwe-link" : "link",
 	"rsd_local_resource_title" : "Local resource title",
 	"rsd_do_insert" : "Do insert",
 	"mwe-cc_title" : "Creative Commons",
@@ -233,16 +234,16 @@ remoteSearchDriver.prototype = {
 		'cc':{
 			'base_img_url':'http://upload.wikimedia.org/wikipedia/commons/thumb/',
 			'base_license_url': 'http://creativecommons.org/licenses/',
-			'licenses':{
-				'by': 'by/3.0/',
-				'by-sa': 'by-sa/3.0/',
-				'by-nc-nd': 'by-nc-nd/3.0/',
-				'by-nc': 'by-nc/3.0/',
-				'by-nd': 'by-nd/3.0/',
-				'by-nc-sa': 'by-nc-sa/3.0/',
-				'by-sa': 'by-nc/3.0',
-				'pd': 'publicdomain/'
-			},
+			'licenses':[
+				'by',
+				'by-sa',
+				'by-nc-nd',
+				'by-nc',
+				'by-nd',
+				'by-nc-sa',
+				'by-sa',
+				'pd'
+			],
 			'license_img':{
 				'by':{
 					'im':'1/11/Cc-by_new_white.svg/20px-Cc-by_new_white.svg.png'
@@ -274,10 +275,64 @@ remoteSearchDriver.prototype = {
 							licenseObj.img_html +
 					'</a>'+
 				  '</div>';
+	},	
+	/*
+	 * getLicenceKeyFromKey
+	 * @param license_key the key of the license (must be defined in: this.licenses.cc.licenses)
+	 */
+	getLicenceFromKey:function( license_key , force_url){	
+		//set the current license pointer:
+		var cl = this.licenses.cc;
+		var title = gM('mwe-cc_title');
+		var imgs = '';
+		var license_set = license_key.split('-');
+		for(var i=0;i < license_set.length; i++){
+			var lkey =	 license_set[i];
+			if(! cl.license_img[ lkey ] ){
+				js_log("MISSING::" + lkey );
+			}
+			
+			title += ' ' + gM( 'mwe-cc_' + lkey + '_title');
+			imgs +='<img class="license_desc" width="20" src="' 
+				+ cl.base_img_url +	cl.license_img[ lkey ].im + '">';
+		}
+		var url = (force_url) ? force_url : cl.base_license_url + cl.licenses[ license_key ];
+		return {
+			'title'		: title,
+			'img_html'	: imgs,
+			'key'		 : license_key,
+			'lurl'		 : url
+		};
+	},
+	/*
+	 * getLicenceKeyFromUrl
+	 * @param licence_url the url of the license
+	 */
+	getLicenceFromUrl: function( license_url ){
+		//js_log("getLicenceFromUrl::" + license_url);				
+		//first do a direct lookup check:
+		for(var j =0; j < this.licenses.cc.licenses.length; j++){
+			var jL = this.licenses.cc.licenses[ j ];
+			//special 'pd' case: 
+			if( jL == 'pd'){
+				var keyCheck = 'publicdomain';
+			}else{
+				var keyCheck = jL;
+			}			
+			if( parseUri(license_url).path.indexOf('/'+ keyCheck +'/') != -1){
+				return this.getLicenceFromKey(jL , license_url);
+			}
+		};				
+		//could not find it return mwe-unknown_license
+		return {
+			'title'	 	: gM('mwe-unknown_license'),
+			'img_html'	: '<span>' + gM('mwe-unknown_license') + '</span>',
+			'lurl'		: license_url
+		};
 	},
 	/**
 	* getTypeIcon
-	* @param str mime type of the reqeusted file
+	* @param str mime type of the requested file
 	*/
 	getTypeIcon:function( mimetype) {
 		var typestr = 'unk';
@@ -305,53 +360,6 @@ remoteSearchDriver.prototype = {
 		return '<div class="rsd_file_type ui-corner-all ui-state-default ui-widget-content" title="' + gM('mwe-ftype-' + typestr) + '">' +
 					typestr  +
 				'</div>'
-	},
-	/*
-	 * getLicenceKeyFromKey
-	 * @param license_key the key of the license (must be defined in: this.licenses.cc.licenses)
-	 */
-	getLicenceFromKey:function( license_key , force_url){
-		if( typeof( this.licenses.cc.licenses[ license_key ]) == 'undefined')
-			return js_error('could not find:' + license_key);
-		//set the current license pointer:
-		var cl = this.licenses.cc;
-		var title = gM('mwe-cc_title');
-		var imgs = '';
-		var license_set = license_key.split('-');
-		for(var i=0;i < license_set.length; i++){
-			lkey =	 license_set[i];
-			title += ' ' + gM( 'mwe-cc_' + lkey + '_title');
-			imgs +='<img class="license_desc" width="20" src="' + cl.base_img_url +
-				cl.license_img[ lkey ].im + '">';
-		}
-		var url = (force_url) ? force_url : cl.base_license_url + cl.licenses[ license_key ];
-		return {
-			'title'		: title,
-			'img_html'	: imgs,
-			'key'		 : license_key,
-			'lurl'		 : url
-		};
-	},
-	/*
-	 * getLicenceKeyFromUrl
-	 * @param licence_url the url of the license
-	 */
-	getLicenceFromUrl: function( license_url ){
-		//js_log("getLicenceFromUrl::" + license_url);
-		//first do a direct lookup check:
-		for(var i in this.licenses.cc.licenses){
-			var lkey = this.licenses.cc.licenses[i].split('/')[0];
-			//guess by url trim
-			if( parseUri(license_url).path.indexOf('/'+ lkey +'/') != -1){
-				return this.getLicenceFromKey( i , license_url);
-			}
-		}
-		//could not find it return mwe-unknown_license
-		return {
-			'title'	 	: gM('mwe-unknown_license'),
-			'img_html'	: '<span>' + gM('mwe-unknown_license') + '</span>',
-			'lurl'		: license_url
-		};
 	},
 	//some default layout values:
 	thumb_width		 	: 80,
@@ -1007,9 +1015,10 @@ remoteSearchDriver.prototype = {
 								+ '">';
 						//add a linkback to resource page in upper right:
 						if( rItem.link )
-							o+='<a target="_new" style="position:absolute;top:0px;right:0px" title="' +
-								 gM('mwe-resource_description_page') +
-								'" href="' + rItem.link + '"><img src="http://upload.wikimedia.org/wikipedia/commons/6/6b/Magnify-clip.png"></a>';
+							o+='<div class="rsd_linkback ui-corner-all ui-state-default ui-widget-content" >' +								
+									'<a target="_new" title="' + gM('mwe-resource_description_page') +
+									'" href="' + rItem.link + '">'+ gM('mwe-link') + '</a>' + 
+								'</div>';
 								
 						//add file type icon if known
 						if( rItem.mime ){

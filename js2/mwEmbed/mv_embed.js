@@ -1441,6 +1441,8 @@ function mv_jqueryBindings() {
 			], function() {
 				$('#mwe_tmp_loader').dialog({
 					bgiframe: true,
+					draggable: false,
+					resizable: false,
 					height: 140,
 					modal: true
 				});
