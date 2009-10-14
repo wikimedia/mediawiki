@@ -282,7 +282,10 @@ class SpecialStatistics extends SpecialPage {
 	
 	private function getOtherStats( $stats ) {
 		global $wgLang;
-		
+
+		if ( !count( $stats ) )
+			return '';
+
 		$return = Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-hooks', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' );
