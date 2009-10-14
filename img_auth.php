@@ -30,11 +30,12 @@ require_once( dirname( __FILE__ ) . '/includes/WebStart.php' );
 wfProfileIn( 'img_auth.php' );
 require_once( dirname( __FILE__ ) . '/includes/StreamFile.php' );
 
-$perms = User::getGroupPermissions( array( '*' ) );
-
 // See if this is a public Wiki (no protections)
-if ( $wgImgAuthPublicTest && in_array( 'read', $perms, true ) )
+if ( $wgImgAuthPublicTest 
+	&& in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) )
+{
 	wfForbidden('img-auth-accessdenied','img-auth-public');
+}
 
 // Extract path and image information
 if( !isset( $_SERVER['PATH_INFO'] ) )
