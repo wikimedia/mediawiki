@@ -563,24 +563,13 @@ class ContribsPager extends ReverseChronologicalPager {
 		$difftext = $topmarktext = '';
 		if( $row->rev_id == $row->page_latest ) {
 			$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
-			if( !$row->page_is_new ) {
-				$difflink = $sk->linkKnown(
-					$page,
-					$this->messages['diff'],
-					array(),
-					array( 'diff' => 0 )
-				);
-				$difftext .= wfMsg( 'parentheses', $difflink );
-				# Add rollback link
-				if( $page->quickUserCan( 'rollback') && $page->quickUserCan( 'edit' ) ) {
-					$topmarktext .= ' '.$sk->generateRollback( $rev );
-				}
-			} else {
-				$difftext .= $this->messages['newarticle'];
+			# Add rollback link
+			if( !$row->page_is_new && $page->quickUserCan( 'rollback' ) && $page->quickUserCan( 'edit' ) ) {
+				$topmarktext .= ' '.$sk->generateRollback( $rev );
 			}
 		}
 		# Is there a visible previous revision?
-		if( !$rev->isDeleted(Revision::DELETED_TEXT) ) {
+		if( !$rev->isDeleted( Revision::DELETED_TEXT ) && $rev->getParentId() !== 0 ) {
 			$difftext = $this->messages['pipe-separator'] . $sk->linkKnown(
 				$page,
 				$this->messages['diff'],
