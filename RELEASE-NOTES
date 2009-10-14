@@ -557,6 +557,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   false on non-special pages
 * (bug 21113) "Other statistics" header on Special:Statistics is no more
   displayed when there isn't any entry in it
+* (bug 21114) Special:Contributions no longer shows diff links for new revisions
 
 == API changes in 1.16 ==
 
