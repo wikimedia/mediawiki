@@ -304,7 +304,7 @@ ctrlBuilder.prototype = {
 				//get dynamic position for big play button (@@todo maybe use margin:auto ? )
 				return $j('<div/>').attr({
 								'title'	: gM('mwe-play_clip'),
-								'class'	: "ui-state-default play-btn-large",
+								'class'	: "ui-state-default play-btn-large"
 							})
 							.css({
 								'left' 	: ((ctrlObj.embedObj.playerPixelWidth() - this.w)/2),
