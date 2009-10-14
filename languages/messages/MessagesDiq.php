@@ -362,12 +362,12 @@ Mesacê ke database dayo "$3: $4"',
 'readonly'             => 'database kılit biyo',
 'enterlockreason'      => 'Database kılit biyo',
 'readonlytext'         => 'Qey pawıtış ri yew sebeb vace. Texmini yew tarix vace şıma key pawıtış wedarneni:  $1',
-'missing-article'      => "Databasey ma, pela bı namê \"\$1\" \$2 dı gunê bıbo, nıdiya.
+'missing-article'      => "Banqa, pela be namê \"\$1\" \$2 ke gunê bıbo, nêdiye.
 
-Ena belki qe yew vurnayışo kıhan ya zi tarixê girê yew pela wedariya.
+Ena belki seba yew vurnayışo kıhan ya zi tarixê gırê yew pele esteriya.
 
-Eke ına niyo, belki ''software''i dı yew xeta esta.
-Ena bı namê ''URL''i yew [[Special:ListUsers/sysop|karber]]i ra vaci.",
+Eke wına niyo, belki ''software''i de yew xeta esta.
+Kerem kerê, naye be namey ''URL''i yew [[Special:ListUsers/sysop|karber]]i ra vacê.",
 'missingarticle-rev'   => '(tekrar diyayış#: $1)',
 'missingarticle-diff'  => '(Ferq: $1, $2)',
 'readonly_lag'         => 'Pêşkeşwanê caygeri u pêşkeşwane esıli wextaki xebityeyi database kılit bı.',
@@ -601,10 +601,10 @@ Qey na hesabê newe parola, cıkewtış dıma şıma eşkeni na qısım de ''[[S
 Eka tı wazene yew bıvırazi, bınê eno nuşte de yew quti esto u uca de bınuse (bıvinin [[{{MediaWiki:Helppage}}|help page]] qe informasyonê zafyeri).  
 Eka tı ita semed yew heta ra amey, ser gocekê '''back'''i klik bıkin.",
 'anontalkpagetext'                 => "----''No pel, pel o karbero hesab a nêkerdeyan o, ya zi karbero hesab akerdeyan o labele pê hesabê xo nêkewto de. No sebeb ra ma IP adres şuxulneni û ney IP adresan herkes eşkeno bıvino. Eke şıma qayil niye ina bo xo ri [[Special:UserLogin/signup|yew hesab bıvıraze]] veyaxut [[Special:UserLogin|hesab akere]].''",
-'noarticletext'                    => 'Ena pele dı hona çık çino.    
-Tı eşkeno zerre pelanê binan dı [[Special:Search/{{PAGENAME}}|ser ena name cıgeyro]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ser logan cıgeyro],
-ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurno]</span>.',
+'noarticletext'                    => 'Ena pele de hewna theba çıniyo.
+Tı şenay zerrey pelanê binan de [[Special:Search/{{PAGENAME}}|seba sernamey ena pele cıgeyrê]], 
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cıkewtışê aidi rê cıgeyrê],
+ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurnê]</span>.',
 'noarticletext-nopermission'       => 'No pel nıka veng o.
 No sernuşte şıma [[Special:Search/{{PAGENAME}}|pelanê binan de eşkeni bıgeri]]
 ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} itara eşekeni bıgere].</span>',
@@ -716,7 +716,7 @@ Sebebo ke terefê $3 ra diyao ''$2''",
 'currentrev-asof'        => 'Revizyonanê peniyan, tarixê $1',
 'revisionasof'           => 'Verziyonê roca $1ine',
 'revision-info'          => 'Teshihkerdışê roca $1ine be terefê $2',
-'previousrevision'       => '← Rewşa kıhanêre',
+'previousrevision'       => '← Çımraviyarnayışo kıhanêr',
 'nextrevision'           => 'Tekrar-diyayışo newêr →',
 'currentrevisionlink'    => 'Revizyono peni',
 'cur'                    => 'ferq',
@@ -935,17 +935,17 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 # Search results
 'searchresults'                    => 'Neticeyê cıgeyrayışi',
 'searchresults-title'              => '"$1" rê neticeyê cıgeyrayışi',
-'searchresulttext'                 => 'Qe informasyoni ser cıgeyrayışi {{SITENAME}}, bıvin [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Tı qe \'\'\'[[:$1]]\'\'\' gera ([[Special:Prefixindex/$1|all pages starting with "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
+'searchresulttext'                 => 'Zerrey {{SITENAME}} de heqa cıgeyrayışi de seba melumat gırewtışi, şenay qaytê [[{{MediaWiki:Helppage}}|{{int:help}}]] ke.',
+'searchsubtitle'                   => 'Tı semedê \'\'\'[[:$1]]\'\'\' cıgeyra. ([[Special:Prefixindex/$1|pelê ke pêro be "$1" ra dest niyaê pıra]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|pelê ke pêro be "$1"\' ra gırê xo esto]])',
 'searchsubtitleinvalid'            => "Tı cıgeyra qe '''$1'''",
 'noexactmatch'                     => "'''Ena nameyê \"\$1\"''' dı nuşte çino.
 Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 'noexactmatch-nocreate'            => "'''Ena name \"\$1\" dı pele çino.'''",
 'toomanymatches'                   => 'Zaf netice estê, ma rica kenê ke ser yewna çekuye bigêre',
 'titlematches'                     => 'seroğê pele meç keno',
-'notitlematches'                   => 'Titleyê pele match nıken',
+'notitlematches'                   => 'Qet yew serrêze de nêvêniya',
 'textmatches'                      => 'nuşteyê pele meç keno',
-'notextmatches'                    => 'Yew pelga bile match nıkeno',
+'notextmatches'                    => 'Qet yew pele de nêvêniya',
 'prevn'                            => '{{PLURAL:$1|$1}} verên',
 'nextn'                            => '{{PLURAL:$1|$1}} peyên',
 'prevn-title'                      => 'Verniyê $1î  {{PLURAL:$1|netice|neticeyan}}',
@@ -971,7 +971,7 @@ Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 'search-result-score'              => 'Eleqa: $1%',
 'search-redirect'                  => '(ber $1)',
 'search-section'                   => '(qısmê $1)',
-'search-suggest'                   => 'Tı wazeno: $1',
+'search-suggest'                   => 'To ney rê vat: $1',
 'search-interwiki-caption'         => 'Projey Bıray',
 'search-interwiki-default'         => '$1 neticeyan:',
 'search-interwiki-more'            => '(hona)',
@@ -1310,7 +1310,8 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'recentchangeslinked-toolbox'  => 'Ney sero vurnayışi',
 'recentchangeslinked-title'    => 'vurnayışan ser "$1"',
 'recentchangeslinked-noresult' => 'Pelanê ke link biye ey vurnayîşî çino.',
-'recentchangeslinked-summary'  => 'Ena liste dı vurnayışê peniyan ser peleyan esta ki ena peleyan gırediyaya yew specifik pele (ya zi yew specifik kategori). Peleyan ki zerre [[Special:Watchlist|your watchlist]] dı qalın herf dı nusiyeyo.',
+'recentchangeslinked-summary'  => "Lista cêrêne, pela bêlikerdiye rê (ya zi karberanê kategoriya bêlikerdiye rê) pelanê gırêdaoğan de lista de vurnayışê peyênana.
+[[Special:Watchlist|Lista şımawa seyrkedışi de]] peli be nuşteyo '''qolınd''' bêli kerdê.",
 'recentchangeslinked-page'     => 'Nameyê pele:',
 'recentchangeslinked-to'       => 'Pelayan ke ena pela ri gire bi, ser ayi vurnayışi bımoc',
 
@@ -2124,7 +2125,7 @@ qê referansi qeydê vernigrewtışi cêr de eşkera biyo:',
 'blocklink'                       => 'kılit ke',
 'unblocklink'                     => 'ake',
 'change-blocklink'                => 'kılit-kerdışi bıvurne',
-'contribslink'                    => 'iştıraqi',
+'contribslink'                    => 'iştıraki',
 'autoblocker'                     => 'Şıma otomatikmen kılit biy, çıke adresa şımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gureniyena. 
 Sebebê kılit-biyayışê $1\'i: "$2"o',
 'blocklogpage'                    => 'Protokolê kıliti',
@@ -2364,14 +2365,14 @@ dosyaya emaneti vindbiyo',
 'tooltip-pt-mytalk'               => 'Pela şımawa werênayışi',
 'tooltip-pt-anontalk'             => 'vurnayiş ê ke no Ipadresi ra biyo muneqeşa bıker',
 'tooltip-pt-preferences'          => 'Tercihê to',
-'tooltip-pt-watchlist'            => 'Liteyê pelgayan ki tı seyir keno',
+'tooltip-pt-watchlist'            => 'Lista pelanê ke to gırewtê seyrkerdış',
 'tooltip-pt-mycontris'            => 'Lista iştırakanê to',
 'tooltip-pt-login'                => 'Seba cıkewtışi şıma rê dewato; labelê, no zeruri niyo',
 'tooltip-pt-anonlogin'            => 'Seba cıkewtışi şıma rê dewato; labelê, no zeruri niyo',
 'tooltip-pt-logout'               => 'Veciye',
 'tooltip-ca-talk'                 => 'Pela tedeesteyan sero werênayış',
-'tooltip-ca-edit'                 => 'Tı eşkenay na pele bıvurnê.
-Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
+'tooltip-ca-edit'                 => 'Tı şenay na pele bıvurnê.
+Kerem ke, qeyd-kerdış ra ver gocega verqayti bıxebetne.',
 'tooltip-ca-addsection'           => 'Yew qısımo newe ake',
 'tooltip-ca-viewsource'           => 'Ena pele kılit biyo.
 
@@ -2423,7 +2424,7 @@ Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
 'tooltip-watch'                   => 'Eno pele listey tıyo seyir-kerdişi ri dek',
 'tooltip-recreate'                => 'pel hewn a bışiyo zi tepiya biya',
 'tooltip-upload'                  => 'Bar bike',
-'tooltip-rollback'                => 'Yew klik dı vurnayışê peni peyser biya',
+'tooltip-rollback'                => '"Peyser biya" be yew tik pela îştirak(an)ê peyên|i(an) peyser ano.',
 'tooltip-undo'                    => '"Undo" ena vurnayışê newi iptal kena u vurnayışê verni a kena.
 Tı eşkeno yew sebeb bınus.',
 

@@ -727,12 +727,17 @@ $2',
 
 דאָס פאַסווארט פאר דער נײַער קאנטע קען מען טוישן אויפֿן [[Special:ChangePassword|טוישן פאַסווארט]] בלאַט נאָכן ארײַנלאגירן.',
 'newarticle'                       => '(ניי)',
-'newarticletext'                   => "'''דער בלאַט עקזיסטירט נאָך נישט!''' איר קענט יעצט שרײַבן אַ נײַעם אַרטיקל אין דעם קעסטל אונטן. (זעט דעם [[הילף:אנהייבן א נייעם בלאט|הילף בלאַט]] ווי אַזוי צו שרײַבן אַרטיקלען).",
+'newarticletext'                   => "איר זענט צו אַ בלאַט וואָס עקזיסטירט נאָך נישט!
+כדי שאַפֿן דעם בלאַט, קלאַפט אַרײַן דעם טעקסט אין דעם קעסטל אונטן (זעט דעם [[{{MediaWiki:Helppage}}|הילף בלאַט]] פֿאַר מער אינפֿארמאַציע).
+אויב איר זענט אַהערגעקומען בטעות, דרוקט דעם '''Back''' קנעפל אין אײַער בלעטערער.",
 'anontalkpagetext'                 => "----'''דאס איז א רעדן בלאט פון א אן אנאנימען באַניצער וואס האט נאך נישט באַשאַפֿן קיין קאנטע, אדער באניצט זיך נישט דערמיט. דערוועגן, מוזן מיר זיך באניצן מיט זיין IP אדרעס כדי אים צו אידענטיפיצירן. עס קען זיין אז עטלעכע אנדערע ניצן אויך דעם  IP אדרעס. אויב זענט איר אן אנאנימער באַניצער וואס שפירט אז איר האט באקומען מעלדונגען וואס זענען נישט שייך צו אייך, ביטע [[Special:UserLogin/signup|באַשאַפֿט א קאנטע]] אדער [[Special:UserLogin|טוט זיך אריינלאגירן]] כדי צו פארמיידן דאס אין די עתיד זיך פארמישן מיט אנדערע אנאנימע באַניצערס.'''",
 'noarticletext'                    => 'דערווייל איז נישט פאַרהאן קיין שום טעקסט אין דעם בלאט.
 איר קענט [[Special:Search/{{PAGENAME}}|זוכן דעם בלאט טיטל]] אין אנדערע בלעטער,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} זוכן די רעלעוואנטע לאגביכער],
 אדער [{{fullurl:{{FULLPAGENAME}}|action=edit}} רעדאַקטירן דעם בלאט].',
+'noarticletext-nopermission'       => 'דערווײַל איז נישט פאַראַן קיין שום טעקסט אין דעם בלאַט.
+איר קענט [[Special:Search/{{PAGENAME}}| זוכן דעם בלאט טיטל] אין אנדערע בלעטער,
+אדער <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} נאָכזוכן די רעלעוואנטע לאגביכער]</span>.',
 'userpage-userdoesnotexist'        => 'באניצער קאנטע "$1" איז נישט אײַנגעשריבן. קוקט איבער צי איר ווילט שאפֿן/רעדאקטירן דעם בלאט.',
 'userpage-userdoesnotexist-view'   => 'באניצער קאנטע "$1" איז נישט איינגעשריבן.',
 'clearyourcache'                   => "'''אכטונג: נאכן אויפֿהיטן, ברויכט איר אפשר נאך אריבערגיין דעם בלעטערס קאש זיכרון (cache) צו זען די ענדערונגען.'''
@@ -1573,7 +1578,7 @@ $2',
 
 # Book sources
 'booksources'               => 'דרויסנדיגע ליטעראַטור ISBN',
-'booksources-search-legend' => 'זוכט פאר דערויסענדע ביכער מקורות',
+'booksources-search-legend' => 'זוכן פאר דרויסנדע ביכער מקורות',
 'booksources-go'            => 'גייט',
 'booksources-text'          => 'אונטן איז א ליסטע פון סייטס וואס פֿארקויפֿן נייע און גענוצטע ביכער און האבן אויך נאך אינפֿארמאציע וועגן די ביכער וואס איר זוכט:',
 
@@ -1618,7 +1623,7 @@ $2',
 'sp-deletedcontributions-contribs' => 'בײַשטײַערונגען',
 
 # Special:LinkSearch
-'linksearch'      => 'דערויסענדע לינקן',
+'linksearch'      => 'דרויסנדע לינקען',
 'linksearch-ns'   => 'נאמענטייל:',
 'linksearch-ok'   => 'זוכן',
 'linksearch-line' => '$1 פֿאַרבונדן פֿון $2',
@@ -1686,7 +1691,7 @@ $2',
 ענדערונגען צו דעם בלאט און צו זײַן פארבינדענעם רעדן בלאט וועלן זײַן אויסגערעכענט דא.
 און דער בלאט וועט זיין '''דיק''' [[Special:RecentChanges|ליסטע פון לעצטע ענדערונגען]] צו גרינגער מאכן דאס ארויסנעמען.",
 'removedwatch'      => 'אַראָפּגענומען געווארן פון דער אויפפַּאסונג ליסטע',
-'removedwatchtext'  => 'דער אַרטיקל "[[:$1]]" איז אָפּגעראַמעט געוואָרן פון אייער אױפֿפּאַסונג ליסטע',
+'removedwatchtext'  => 'דער בלאַט "[[:$1]]" איז אָפּגעראַמט געוואָרן פון [[Special:Watchlist|אייער אױפֿפּאַסונג ליסטע]].',
 'watch'             => 'אױפֿפּאַסן',
 'watchthispage'     => 'טוט אױפֿפּאַסן דעם בלאט',
 'unwatch'           => 'אויפֿהערן אויפֿפּאַסן',
@@ -1747,9 +1752,9 @@ $NEWPAGE
 'delete-confirm'         => 'אויסמעקן $1',
 'delete-legend'          => 'אויסמעקן',
 'historywarning'         => 'אכטונג – איר גייט אויסמעקן א בלאט מיט א היסטאריע פֿון פֿריערדיגע ווערסיעס:',
-'confirmdeletetext'      => 'איר גייט איצט אויסמעקן א בלאט אדער א בילד, צוזאמן מיט איר גאנצע היסטאריע, פון די דאטעבאזע.
+'confirmdeletetext'      => 'איר גייט איצט אויסמעקן א בלאט צוזאַמען מיט זײַן גאנצע היסטאריע.
 
-ביטע באשטעטיגט אז דאס איז טאקע אייער כוונה, אז איר פארשטייט פולערהייט די קאנסקווענסן פון אזא הארבע אקט, און אז דאס איז אין איינקלאנג מיטן פאליסי פון דעם סייט.',
+ביטע באשטעטיגט אז דאס איז טאקע אייער כוונה, אז איר פארשטייט פולערהייט די קאנסקווענסן פון דעם אַקט, און אז דאס איז אין איינקלאנג מיט [[{{MediaWiki:Policy-url}}|דער פאליסי]].',
 'actioncomplete'         => 'די אַקציע אָט זיך דורכגעפֿירט',
 'actionfailed'           => 'אקציע דורכגעפאלן',
 'deletedtext'            => '"<nowiki>$1</nowiki>" אויסגעמעקט. זעה $2 פאר רעקארד פון לעצטיגע אויסמעקונגען.',
@@ -1924,7 +1929,7 @@ $NEWPAGE
 'whatlinkshere-filters'    => 'פֿילטערס',
 
 # Block/unblock
-'blockip'                         => 'באנוצער ארויסטרייבן',
+'blockip'                         => 'באניצער ארויסטרייבן',
 'blockip-legend'                  => 'בלאקירן באַניצער',
 'blockiptext'                     => 'באנוצט זיך מיט די פארעם דא אונטן כדי צו בלאקירן איינגעשריבענע באנוצער אדער סתם ספעציפישע איי פי אדרעסן.
 
@@ -2101,19 +2106,24 @@ $NEWPAGE
 'export-pagelinks'  => 'אײַנשליסן פֿאַרבונדענע בלעטער ביז א טיף פֿון:',
 
 # Namespace 8 related
-'allmessages'               => 'סיסטעם מעלדונגען',
-'allmessagesname'           => 'נאָמען',
-'allmessagesdefault'        => 'גרונטלעכער טעקסט',
-'allmessagescurrent'        => 'איצטיגער טעקסט',
-'allmessagestext'           => 'אט דאס איז א ליסטע פון אלע סיסטעם מעלדונגען וואס זענען פאראן אין דעם  {{ns:mediawiki}}  נאמענטייל, וואס באדינען דעם אויפהאלט פונעם סייט.
+'allmessages'                   => 'סיסטעם מעלדונגען',
+'allmessagesname'               => 'נאָמען',
+'allmessagesdefault'            => 'גרונטלעכער טעקסט',
+'allmessagescurrent'            => 'איצטיגער טעקסט',
+'allmessagestext'               => 'אט דאס איז א ליסטע פון אלע סיסטעם מעלדונגען וואס זענען פאראן אין דעם  {{ns:mediawiki}}  נאמענטייל, וואס באדינען דעם אויפהאלט פונעם סייט.
 
 סיסאפן קענען ענדערן די מעלדונגען דורך דרוקן אויפן נאמען פון דער מעלדונג.
 
 ביטע באזוכט [http://www.mediawiki.org/wiki/Localisation מעדיעוויקי לאקאליזאציע] און [http://translatewiki.net בעטאוויקי] אויב איר ווילט ביישטייערן צו דער גענערישער מעדיעוויקי לאקאליזאציע.',
-'allmessagesnotsupportedDB' => 'מען קען זיך נישט באניצן מיט דעם בלאט וויבאלד די $wgUseDatabseMessages איז געווארן בטל.',
-'allmessages-filter-legend' => 'פילטער',
-'allmessages-filter-all'    => 'אלע',
-'allmessages-filter-submit' => 'צייג',
+'allmessagesnotsupportedDB'     => 'מען קען זיך נישט באניצן מיט דעם בלאט וויבאלד די $wgUseDatabseMessages איז געווארן בטל.',
+'allmessages-filter-legend'     => 'פילטער',
+'allmessages-filter'            => 'פֿילטערן לויטן סטאטוס פון מעלדונג:',
+'allmessages-filter-unmodified' => 'נישט מאדיפֿיצירט',
+'allmessages-filter-all'        => 'אלע',
+'allmessages-filter-modified'   => 'מאדיפֿיצירט',
+'allmessages-prefix'            => 'פֿילטערן לויט פרעפֿיקס',
+'allmessages-language'          => 'שפראַך:',
+'allmessages-filter-submit'     => 'צייג',
 
 # Thumbnails
 'thumbnail-more'           => 'פארגרעסער',
@@ -2123,6 +2133,8 @@ $NEWPAGE
 'djvu_no_xml'              => "מ'קען נישט באקומען דעם XML פֿאַר דער DjVu טעקע",
 'thumbnail_invalid_params' => 'אומגילטיגע קליינבילד פאראמעטערס',
 'thumbnail_dest_directory' => "מ'קען נישט שאפֿן דעם ציל קארטאטעק",
+'thumbnail_image-type'     => 'בילד טיפ נישט געשטיצט',
+'thumbnail_image-missing'  => 'טעקע פֿעלט אייגנטלעך: $1',
 
 # Special:Import
 'import'                     => 'אימפארטירן בלעטער',
@@ -2148,13 +2160,23 @@ $NEWPAGE
 'importnotext'               => 'ליידיג אדער נישט קיין טעקסט',
 'importsuccess'              => '!אימפארט אדורכגעפירט מיט דערפאלג!',
 'importhistoryconflict'      => 'קאנפליקטינג היסטאריע רעוויזיע עקזעסטירט (מעגליך אז דער בלאט איז געווארן אימפארטירט שוין פון פריער)',
+'importnosources'            => 'קיין מקורות פֿאַר צווישן־וויקי אימפארט, און דירעקט היסטאריע אַרויפֿלאָדן איז נישט דערמעגלעכט אַצינד.',
 'importnofile'               => 'קיין אימפארט טעקע איז נישט ארויפֿגעלאדן.',
+'importuploaderrorsize'      => 'אַרויפֿלאָדן פֿון אימפארט טעקע דורכגעפֿאלן.
+די טעקע איז גרעסער פֿון דער דערלויבטער אַרויפֿלאָדן גרייס.',
+'importuploaderrorpartial'   => 'אַרויפֿלאָדן פֿון אימפארט טעקע דורכגעפֿאלן.
+די טעקע איז נאר טיילווייז אַרויפֿגעלאָדן.',
+'importuploaderrortemp'      => 'אַרויפֿלאָדן פֿון אימפארט טעקע דורכגעפֿאלן.
+אַ פראוויזארישער טעקע־האלטער פֿעלט.',
 'import-noarticle'           => 'נישטא קיין בלאט צו אימפארטירן!',
+'import-upload'              => 'אַרויפֿלאָדן XML דאַטן',
 
 # Import log
-'importlogpage'                 => 'אימפארט לאג',
-'import-logentry-upload-detail' => '$1 {{PLURAL:$1|רעוויזיע|רעוויזיעס}}',
-'import-logentry-interwiki'     => 'אריבערגעוויקיט $1',
+'importlogpage'                    => 'אימפארט לאג',
+'import-logentry-upload'           => 'האט אימפארטירט [[$1]] דורך טעקע אַרויפֿלאָדן',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|רעוויזיע|רעוויזיעס}}',
+'import-logentry-interwiki'        => 'אריבערגעוויקיט $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|רעוויזיע|רעוויזיעס}} פֿון $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'אייער באניצער בלאט',
@@ -2170,9 +2192,10 @@ $NEWPAGE
 'tooltip-ca-talk'                 => 'שמועס איבער די אינהאלט בלאט',
 'tooltip-ca-edit'                 => "איר קענט ענדערן דעם בלאט, ביטע באנוצט זיך מיט ''פארויסדיגע ווייזונג'' קנעפל בעפארן אפהיטען",
 'tooltip-ca-addsection'           => 'הייב אן א נייער שמועס אפטיילונג',
-'tooltip-ca-viewsource'           => 'דאס איז א פארשלאסן בלאט, קענסט נאר קוקן איר מקור',
+'tooltip-ca-viewsource'           => 'דאס איז א פֿארשלאסענער בלאט, איר קענט נאר באַקוקן זיין מקור',
 'tooltip-ca-history'              => 'פריערדיגע ווערסיעס פון דעם בלאט.',
 'tooltip-ca-protect'              => 'באשיצט דעם בלאט',
+'tooltip-ca-unprotect'            => 'אומבאַשיצן דעם בלאַט',
 'tooltip-ca-delete'               => 'אויסמעקן דעם בלאט',
 'tooltip-ca-undelete'             => 'צוריק דרייען די ענדערונגען פון דעם בלאט פארן מעקן',
 'tooltip-ca-move'                 => 'באוועגט דעם בלאט',
@@ -2230,14 +2253,17 @@ $NEWPAGE
 # Attribution
 'anonymous'        => '{{PLURAL:$1|אַנאנימער באַניצער| אַנאנימע באַניצערס}} פֿון {{SITENAME}}',
 'siteuser'         => 'באַניצער {{SITENAME}} $1',
+'anonuser'         => '{{SITENAME}} אַנאנימער באַניצער $1',
 'lastmodifiedatby' => 'די לעצטע ענדערונג פֿון דעם בלאַט איז געווען $2, $1 דורך $3.',
 'othercontribs'    => 'באזירט אויף ארבעט פון $1.',
 'others'           => 'אנדערע',
 'siteusers'        => '{{PLURAL:$2|באַניצער| באַניצערס}} {{SITENAME}} $1',
+'anonusers'        => '{{SITENAME}} {{PLURAL:$2| אַנאנימער באַניצער|אַנאנימע באַניצער}} $1',
 'creditspage'      => 'בלאט קרעדיטס',
 
 # Spam protection
 'spamprotectiontitle' => 'ספעם באשיצונג פילטער',
+'spambot_username'    => 'מעדיעוויקי ספאם פוצן',
 
 # Info page
 'infosubtitle' => 'אינפארמאציע וועגן בלאט',
@@ -2279,11 +2305,13 @@ $NEWPAGE
 
 # Media information
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|איין בלאט|$3 בלעטער}}',
+'file-info'            => '(טעקע גרייס: $1, MIME טיפ: $2)',
 'file-info-size'       => '($1 × $2 פיקסעל, טעקע גרייס: $3, טיפ MIME: $4)',
 'file-nohires'         => '<small>נישטא מיט א העכערע רעזאלוציע.</small>',
 'svg-long-desc'        => '(טעקע SVG, נאמינעל: $1 × $2 פיקסעלן, טעקע גרייס: $3)',
 'show-big-image'       => 'בילד מיט דער גרעסטער רעזאלוציע',
 'show-big-image-thumb' => '<small>גרייס פון דער ווײַזונג: $1 × $2 פיקסעלן</small>',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|ראם|ראמען}}',
 
 # Special:NewFiles
 'newimages'             => 'גאַלעריע פֿון נײַע בילדער',
@@ -2342,13 +2370,15 @@ $NEWPAGE
 'exif-compressedbitsperpixel'   => 'בילד צוזאמקוועטשן מאוד',
 'exif-pixelydimension'          => 'גילטיגע ברייט פֿון בילד',
 'exif-pixelxdimension'          => 'גילטיגע הייך פֿון בילד',
+'exif-makernote'                => 'פֿאַבריצירער הערות',
 'exif-usercomment'              => 'באנוצער קאמענטורן',
 'exif-datetimeoriginal'         => 'דאטום און צייט פון פייל באשאפונג',
 'exif-datetimedigitized'        => 'דאטום און צייט פון דיזשיטייזונג',
-'exif-exposuretime'             => 'עקספאוזשער צייט',
+'exif-exposuretime'             => 'באַלײַכטן צייט',
 'exif-exposuretime-format'      => '$1 סעק ($2)',
 'exif-fnumber'                  => 'נומער F',
 'exif-exposureprogram'          => 'אויפדעקונג פראגראם',
+'exif-shutterspeedvalue'        => 'לעדל גיך',
 'exif-aperturevalue'            => 'עפֿן',
 'exif-brightnessvalue'          => 'אפענקייט',
 'exif-exposurebiasvalue'        => 'עקספאוזשער בייעס',
@@ -2361,6 +2391,7 @@ $NEWPAGE
 'exif-focalplaneresolutionunit' => 'פאקאל פלעין רעזאלוציע מאס',
 'exif-exposureindex'            => 'עקספאוזשער אינדעקס',
 'exif-filesource'               => 'מקור פֿון דער טעקע',
+'exif-scenetype'                => 'סצענע טיפ',
 'exif-cfapattern'               => 'פעטערן CFA',
 'exif-customrendered'           => 'קאסטעם בילד פראצעסירונג',
 'exif-exposuremode'             => 'עקספאוזשער מאוד',
@@ -2370,6 +2401,8 @@ $NEWPAGE
 'exif-contrast'                 => 'קאנטראסט',
 'exif-devicesettingdescription' => 'זאך סעטינגס אראפמאלונג',
 'exif-gpslatitude'              => 'לאטיטוד',
+'exif-gpslongituderef'          => 'מזרח אדער מערב לענג',
+'exif-gpslongitude'             => 'געאגראַפֿישע לענג',
 'exif-gpsaltituderef'           => 'אלטיטוט רעפערענץ',
 'exif-gpsaltitude'              => 'אלטיטוט',
 'exif-gpsdop'                   => 'מאס פוקנטליכקייט',
@@ -2390,10 +2423,14 @@ $NEWPAGE
 # EXIF attributes
 'exif-compression-1' => 'אומ-צאמגעקוועטשט',
 
+'exif-unknowndate' => 'אומבאַוואוסטע דאַטע',
+
+'exif-orientation-1' => 'נארמאַל',
+
 'exif-componentsconfiguration-0' => "ס'עקזיסטירט נישט.",
 
 'exif-exposureprogram-0' => 'נישט דעפענירט',
-'exif-exposureprogram-1' => 'מעניועל',
+'exif-exposureprogram-1' => 'האַנטלעך',
 'exif-exposureprogram-2' => 'נארמאלער פראגראם',
 'exif-exposureprogram-3' => 'עפענען פריאריטעט',
 'exif-exposureprogram-4' => 'צאמשפארן פריאריטעט',
@@ -2403,18 +2440,24 @@ $NEWPAGE
 'exif-exposureprogram-8' => 'לענדסקעיפ מצב (פאר בילדער פון פאנאראמעס וואס בעקגראונד איז אין פאקוס)',
 
 'exif-meteringmode-0'   => 'אומבאוויסט',
+'exif-meteringmode-1'   => 'דורכשניט',
 'exif-meteringmode-255' => 'אנדער',
+
+'exif-lightsource-0' => 'אומבאַוויסט',
 
 'exif-focalplaneresolutionunit-2' => 'אינטשעס',
 
 'exif-customrendered-0' => 'נארמאלער פראצעס',
 'exif-customrendered-1' => 'קאסטעם פראצעס',
 
-'exif-exposuremode-0' => 'אוטאמאטיק עקספאוזשער',
-'exif-exposuremode-1' => 'מעניואל עקספאוזשער',
+'exif-exposuremode-0' => 'אויטאמאטיש באַלײַכטן',
+'exif-exposuremode-1' => 'האַנט־באַלײַכטן',
 'exif-exposuremode-2' => 'אטאמאטישער לייסטל',
 
 'exif-scenecapturetype-0' => 'סטאנדארט',
+'exif-scenecapturetype-1' => 'לאַנדשאַפֿט',
+'exif-scenecapturetype-2' => 'פארטרעט',
+'exif-scenecapturetype-3' => 'נאַכט סצענע',
 
 'exif-gaincontrol-0' => 'גארנישט',
 'exif-gaincontrol-1' => 'נידעריגע צובאקומען ארויף',
@@ -2426,13 +2469,21 @@ $NEWPAGE
 'exif-contrast-1' => 'ווייך',
 'exif-contrast-2' => 'הארט',
 
+'exif-saturation-0' => 'נארמאַל',
+
 'exif-sharpness-0' => 'נארמאל',
 'exif-sharpness-1' => 'ווייך',
 'exif-sharpness-2' => 'הארט',
 
+'exif-subjectdistancerange-0' => 'אומבאַוויסט',
+
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'צפון לעטיטוד',
 'exif-gpslatitude-s' => 'דרום לאטיטוד',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'מזרח לענג',
+'exif-gpslongitude-w' => 'מערב לענג',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ק"מ אין א שעה',
@@ -2452,6 +2503,7 @@ $NEWPAGE
 'watchlistall2'    => 'אַלע',
 'namespacesall'    => 'אַלע',
 'monthsall'        => 'אלע',
+'limitall'         => 'אַלע',
 
 # E-mail address confirmation
 'confirmemail'             => 'באַשטעטיקט בליצפּאָסט אַדרעס',
@@ -2501,6 +2553,7 @@ $5
 'confirm-purge-top'    => 'אויסקלארן די קאשעי פון דעם בלאט?',
 
 # Multipage image navigation
+'imgmultipageprev' => '→ פֿריערדיגער בלאַט',
 'imgmultipagenext' => 'צום קומענדיגן בלאט ←',
 'imgmultigo'       => 'גייט!',
 'imgmultigoto'     => 'אריבער צו בלאט $1',
@@ -2601,6 +2654,10 @@ $5
 'blankpage'              => 'ליידיגער בלאַט',
 'intentionallyblankpage' => 'דער בלאַט איז ליידיג בכוונה',
 
+# Special:Tags
+'tag-filter-submit' => 'פֿילטער',
+'tags-edit'         => 'רעדאַקטירן',
+
 # Database error messages
 'dberr-header'   => 'די וויקי האט א פראבלעם',
 'dberr-problems' => 'אנטשולדיגט! דער דאזיקער סייט האט טעכנישע פראבלעמען.',
@@ -2609,6 +2666,7 @@ $5
 'htmlform-selectorother-other' => 'אנדער',
 
 # Add categories per AJAX
+'ajax-confirm-save'  => 'אויפֿהיטן',
 'ajax-error-title'   => 'גרײַז',
 'ajax-error-dismiss' => 'אויספֿירן',
 

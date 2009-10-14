@@ -102,15 +102,17 @@ $messages = array(
 'dec'           => '12.ай',
 
 # Categories related messages
-'pagecategories'        => '{{PLURAL:$1|Бөлүк|Бөлүктер}}',
-'category_header'       => '"$1" деп бөлүкте чүүлдер',
-'subcategories'         => 'Бичии бөлүктер',
-'category-media-header' => '"$1" деп бөлүкте медиа',
-'category-empty'        => "''Амгы бо бөлүкте медиа база арыннар чок.''",
+'pagecategories'           => '{{PLURAL:$1|Бөлүк|Бөлүктер}}',
+'category_header'          => '"$1" деп бөлүкте чүүлдер',
+'subcategories'            => 'Бичии бөлүктер',
+'category-media-header'    => '"$1" деп бөлүкте медиа',
+'category-empty'           => "''Амгы бо бөлүкте медиа база арыннар чок.''",
+'hidden-categories'        => '{{PLURAL:$1|Чажыт бөлүк|Чажыт бөлүктер}}',
+'hidden-category-category' => 'Чажыт бөлүктер',
 
 'about'         => 'Дугайында',
 'article'       => 'Допчу арын',
-'newwindow'     => '(чаа козенекке ажыытынар)',
+'newwindow'     => '(чаа көзенээ ажыытынар)',
 'cancel'        => 'Соксаар',
 'moredotdotdot' => 'Ам-даа...',
 'mypage'        => 'Мээң арыным',
@@ -160,7 +162,7 @@ $messages = array(
 'toolbox'           => 'Херекселдер',
 'userpage'          => 'Ажыглакчының арынын көөр',
 'projectpage'       => 'Проект арынын көөр',
-'imagepage'         => 'Медиа арынын көөр',
+'imagepage'         => 'Файл арнызын көөр',
 'mediawikipage'     => 'Чагаа арынын көөр',
 'templatepage'      => 'Хээ арынын көөр',
 'viewhelppage'      => 'Дуза арынын көөр',
@@ -186,6 +188,7 @@ $messages = array(
 'portal-url'           => 'Project:Ниитилелдиң хаалгазы',
 
 'retrievedfrom'       => '"$1" деп арынында парлаттынган',
+'youhavenewmessages'  => 'Силерде $1 бар. ($2)',
 'newmessageslink'     => 'чаа чагаалар',
 'newmessagesdifflink' => 'бурунгу өскерлиишкин',
 'editsection'         => 'өскертир',
@@ -201,13 +204,14 @@ $messages = array(
 'site-atom-feed'      => '$1 Атом Медээ Агымы',
 'page-rss-feed'       => '"$1" РСС Медээ Агымы',
 'page-atom-feed'      => '"$1" Атом Медээ Агымы',
+'red-link-title'      => '$1 (арынны чоктур)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Чүүл',
-'nstab-user'      => 'Ажыглакчының арыны',
+'nstab-user'      => 'Ажыглакчының арны',
 'nstab-media'     => 'Медиа арыны',
-'nstab-special'   => 'Тускай',
-'nstab-project'   => 'Проект арыны',
+'nstab-special'   => 'Тускай арын',
+'nstab-project'   => 'Проект арны',
 'nstab-image'     => 'Файл',
 'nstab-mediawiki' => 'Чагаа',
 'nstab-template'  => 'Хээ',
@@ -229,7 +233,7 @@ $messages = array(
 'viewsource'         => 'Бажы көөр',
 
 # Login and logout pages
-'yourname'           => 'Aжыглакчының ады',
+'yourname'           => 'Aжыглакчы ады',
 'yourpassword'       => 'Чажыт сөс',
 'remembermypassword' => 'Мени сактып алыр',
 'login'              => 'Кирер',
@@ -245,7 +249,7 @@ $messages = array(
 'userexists'         => 'Силерниң парлаан адыңар амгы уеде ажыглаттынып турар. өске аттан шилип алыңар.',
 'loginerror'         => 'Багай кирери',
 'loginsuccesstitle'  => 'Чедимчелиг кирери',
-'mailmypassword'     => 'Э-чагаа чажыт сөзүңер',
+'mailmypassword'     => 'Меңээ чаа чажыт сөс чорду',
 'accountcreated'     => 'Кирерини бүдүрген',
 'accountcreatedtext' => '$1 ажыглакчының кирерин бүдүрген.',
 'loginlanguagelabel' => 'Дыл: $1',
@@ -329,15 +333,17 @@ $messages = array(
 'compareselectedversions' => 'Шилип алган хевирлери деңнээр',
 
 # Search results
-'searchresults'  => 'Түңнелдер',
-'prevn'          => 'бүрүнгү {{PLURAL:$1|$1}}',
-'nextn'          => 'соонда {{PLURAL:$1|$1}}',
-'viewprevnext'   => '($1 {{int:pipe-separator}} $2) ($3) көөр',
-'searchhelp-url' => 'Help:Допчузу',
-'powersearch'    => 'Дилээр',
+'searchresults'      => 'Түңнелдер',
+'prevn'              => 'бүрүнгү {{PLURAL:$1|$1}}',
+'nextn'              => 'соонда {{PLURAL:$1|$1}}',
+'viewprevnext'       => '($1 {{int:pipe-separator}} $2) ($3) көөр',
+'searchhelp-url'     => 'Help:Допчузу',
+'search-result-size' => '$1 ($2 сөс)',
+'powersearch'        => 'Дилээр',
 
 # Preferences page
-'preferences'       => 'Дээре деп санаарылар',
+'preferences'       => 'Шилиирилер',
+'mypreferences'     => 'Мээң шилиирилерим',
 'changepassword'    => 'Чажыт сөстү өскертир',
 'prefs-skin'        => 'Кеш',
 'skin-preview'      => 'Чижеглей көөр',
@@ -371,6 +377,9 @@ $messages = array(
 
 'grouppage-sysop' => '{{ns:project}}:Администраторлар',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'бо арынны өскертир',
+
 # Recent changes
 'nchanges'                          => '$1 өскерлиишкин',
 'recentchanges'                     => 'Өскерлиишкиннер',
@@ -385,6 +394,9 @@ $messages = array(
 'show'                              => 'көргүзер',
 'number_of_watching_users_pageview' => '[$1 хайгаараар ажыглакчы]',
 'newsectionsummary'                 => '/* $1 */ чаа бөлгүм',
+
+# Recent changes linked
+'recentchangeslinked-page' => 'Арынның ады:',
 
 # Upload
 'upload'            => 'Файлды киирер',
@@ -420,7 +432,7 @@ $messages = array(
 'filehist-user'      => 'Ажыглакчы',
 'filehist-filesize'  => 'Файл хемчээли',
 'filehist-comment'   => 'Комментарий',
-'imagelinks'         => 'Холбаалар',
+'imagelinks'         => 'Файлдың xолбаалары',
 
 # File reversion
 'filerevert-comment' => 'Комментарий:',
@@ -495,7 +507,7 @@ $messages = array(
 'allpages'       => 'Шупту арыннар',
 'nextpage'       => 'Соонда арын ($1)',
 'prevpage'       => 'Бүрүнгү арын ($1)',
-'allarticles'    => 'Шупту чүүлдер',
+'allarticles'    => 'Шупту арыннар',
 'allpagesprev'   => 'Пертинде',
 'allpagesnext'   => 'Соонда',
 'allpagessubmit' => 'Чоруур',
@@ -569,6 +581,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'Pages that link here',
+'whatlinkshere-page'  => 'Арын:',
 'whatlinkshere-links' => '← холбаалар',
 
 # Block/unblock
@@ -613,11 +626,11 @@ $messages = array(
 'import-logentry-upload-detail' => '$1 үндүрери(лер)',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Мээң ажыглакчы арыным',
-'tooltip-pt-mytalk'         => 'Мээң чугаалажыр арыным',
+'tooltip-pt-userpage'       => 'Силерниң ажыглакчы арныңнар',
+'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
 'tooltip-pt-mycontris'      => 'Мээң деткимчемнерим даңзызы',
 'tooltip-pt-logout'         => 'Үнер',
-'tooltip-ca-talk'           => 'Допчу арыны дугайында чыгаалажыры',
+'tooltip-ca-talk'           => 'Допчу арны дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаар',
 'tooltip-ca-delete'         => 'Бо арынны ап каар',
 'tooltip-ca-move'           => 'Бо арынны шимчээр',
@@ -630,14 +643,14 @@ $messages = array(
 'tooltip-t-emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаар',
 'tooltip-t-upload'          => 'Файлдар киирер',
 'tooltip-t-specialpages'    => 'Шупту тускай арыннар даңзызы',
-'tooltip-ca-nstab-main'     => 'Допчы арынын көөр',
+'tooltip-ca-nstab-main'     => 'Допчы арнызын көөр',
 'tooltip-ca-nstab-user'     => 'Ажыглакчы арынын көөр',
 'tooltip-ca-nstab-media'    => 'Медиа арынын көөр',
-'tooltip-ca-nstab-project'  => 'Проект арынын көөр',
-'tooltip-ca-nstab-image'    => 'Файл арынын көөр',
+'tooltip-ca-nstab-project'  => 'Проект арнызын көөр',
+'tooltip-ca-nstab-image'    => 'Файл арнызын көөр',
 'tooltip-ca-nstab-template' => 'Хээни көөр',
 'tooltip-ca-nstab-help'     => 'Дуза арынын көөр',
-'tooltip-ca-nstab-category' => 'Бөлүк арынын көөр',
+'tooltip-ca-nstab-category' => 'Бөлүк арнызын көөр',
 'tooltip-save'              => 'Силерниң өскерлиишкиннериңерни шыгжаар',
 
 # Attribution

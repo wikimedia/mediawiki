@@ -691,6 +691,12 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'block-log-flags-nocreate' => "créhachon d'conpte intérdite",
 
 # Move page
+'movepagetext'     => "Implouéyez ch'formuloére édsou pou érlonmer éne pache, in déplachant tout sin histoérique vers ch'nouvieu nom. Echl’anthiu tite i varo eune pache éd érdirécchon vers ch'nouvieu tite. Os povez métte à jour oùtonmatiquemint chés érdirécchons à ch'momint-chi qu' pointette vers ch'tite original. <br /> Si os couésiyez éd n'poin l'foaire, os d'vez vérifier toute [[Special:DoubleRedirects|doube érdirécchon]] ou [[Special:BrokenRedirects|bérsiée érdirécchon]].<br /> Vos avez el résponsabilité d'vérifier éq chés loïens continuette éd pointer vers leu déstinnachon prévue.
+
+Notez éq l'pache n'éro '''poin''' déplachée s’il essiste déjo eune pache aveuc ch'nouvieu tite, sauf si l'pache o un histoérique éd canjemints vièrge ,   vide ou est éne simpe érdiréctchn. Cha pérmet d'érlonmer eune pache vers esn posicion d’origine si ch'déplachemint est éne berlure.
+
+'''AFUTE !'''<br />
+Cha put provoquer un canjemint radical pi imprévu pou eune pache souvint arbéyée ; vos dvez vos asseurer d’avoér conpérte chés consécanches dvint d'continuer.",
 'movepagetalktext' => "L'pache éd pérlache achochonnèe sro oùtonmatiquemint érlonmée aveuc l'pache-lo ''' hormis si: ''' <br />
 *eune pache éd pérlache aveuc un teske essiste aveuc ch'nom-lo piécha, ou
 *os débiffez el casse édzou.
