@@ -163,7 +163,7 @@ CREATE UNIQUE INDEX &mw_prefix.categorylinks_u01 ON &mw_prefix.categorylinks (cl
 CREATE INDEX &mw_prefix.categorylinks_i01 ON &mw_prefix.categorylinks (cl_to,cl_sortkey,cl_from);
 CREATE INDEX &mw_prefix.categorylinks_i02 ON &mw_prefix.categorylinks (cl_to,cl_timestamp);
 
-CREATE SEQUENCE category_cat_id_val;
+CREATE SEQUENCE category_id_seq;
 CREATE TABLE &mw_prefix.category (
   cat_id NUMBER NOT NULL,
   cat_title VARCHAR2(255) NOT NULL,
