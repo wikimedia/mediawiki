@@ -814,10 +814,11 @@ abstract class UploadBase {
 		#      Ask me (Duesentrieb) about it if it's ever needed.
 		$output = array();
 		if ( wfIsWindows() ) {
-			exec( "$command", $output, $exitCode );
+			$output = wfRunExternal($command, $exitCode);
 		} else {
 			exec( "$command 2>&1", $output, $exitCode );
 		}
+
 
 		# map exit code to AV_xxx constants.
 		$mappedCode = $exitCode;
@@ -829,6 +830,7 @@ abstract class UploadBase {
 			}
 		}
 
+		
 		if ( $mappedCode === AV_SCAN_FAILED ) {
 			# scan failed (code was mapped to false by $exitCodeMap)
 			wfDebug( __METHOD__ . ": failed to scan $file (code $exitCode).\n" );
