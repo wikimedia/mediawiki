@@ -14,6 +14,7 @@
  * @author Luka Krstulovic
  * @author MayaSimFan
  * @author Meno25
+ * @author Mvrban
  * @author Roberta F.
  * @author SpeedyGonsales
  * @author Suradnik13
@@ -879,7 +880,7 @@ Nakon prijave, lozinka za ovaj novi račun može biti promijenjena na stranici '
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.
 *Ako vam treba pomoć, idite na [[{{MediaWiki:Helppage}}|stranicu za pomoć]].
 *Ako ste ovamo dospjeli slučajno, kliknite "Natrag" (Back) u svom programu.',
-'anontalkpagetext'                 => "----''Ovo je stranica za razgovor s neprijavljenim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste neprijavljeni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:UserLogin|otvorite suradnički račun ili se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim neprijavljenim suradnicima.''",
+'anontalkpagetext'                 => "Ovo je stranica za razgovor s neprijavljenim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste neprijavljeni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:UserLogin/signup|otvorite]] suradnički račun ili se prijavite te tako u budućnosti izbjegnete zamjenu s drugim neprijavljenim suradnicima.''",
 'noarticletext'                    => 'Na ovoj stranici trenutačno nema sadržaja.
 Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane evidencije]
@@ -1040,6 +1041,9 @@ Kao administrator možete ju pregledati; vjerojatno postoji više podataka u [{{
 Možda postoji više informacija u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 'rev-deleted-unhide-diff'     => "Jedna od inačica ove izmjene je '''izbrisana'''. 
 Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja]. Kao administrator, možete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
+'rev-suppressed-unhide-diff'  => "Jedna od revizija ove razlike je '''uklonjena'''.
+Postoji mnogo detalja u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku uklanjanja].
+Kao administrator i dalje možete [$1 vidjeti ove razlike] ako želite da nastavite.",
 'rev-delundel'                => 'pokaži/skrij',
 'revisiondelete'              => 'Izbriši/vrati izmjene',
 'revdelete-nooldid-title'     => 'Nema tražene izmjene',
@@ -1493,6 +1497,7 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'right-reset-passwords'       => "Poništi (''resetiraj'') lozinku drugog suradnika",
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-versiondetail'         => 'Prikaži informaciju o proširenoj inačici softvera',
+'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',
@@ -1630,7 +1635,10 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'emptyfile'                   => 'Datoteka koju ste postavili je prazna. Možda se radi o krivo utipkanom imenu datoteke. Provjerite želite li zaista postaviti ovu datoteku.',
 'fileexists'                  => "Datoteka s ovim imenom već postoji, pogledajte '''<tt>[[:$1]]</tt>''' ako niste sigurni želite li je uistinu promijeniti.
 [[$1|thumb]]",
-'filepageexists'              => "Stranica s opisom za ovu datoteku je već napravljena na '''<tt>[[:$1]]</tt>''', ali trenutačno ne postoji datoteka s ovim imenom. Sažetak koji unesete se neće pojaviti na stranici s opisom. Kako bi se sažetak pojavio, morate ručno urediti stranicu.",
+'filepageexists'              => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>[[:$1]]</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
+Sažetak koji ste naveli neće se pojaviti na stranici opisa.
+Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite.
+[[$1|thumb]]",
 'fileexists-extension'        => "Već postoji datoteka sa sličnim imenom: [[$2|thumb]]
 * Ime datoteke koju postavljate: '''<tt>[[:$1]]</tt>'''
 * Ime postojeće datoteke: '''<tt>[[:$2]]</tt>'''
@@ -1990,7 +1998,7 @@ Također pogledajte [[Special:WantedCategories|tražene kategorije]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Popis aktivnih suradnika',
-'activeusers-count'    => 'Nedavno $1 {{PLURAL:$1|uređivanje|uređivanja|uređivanja}}',
+'activeusers-count'    => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
 'activeusers-from'     => 'Prikaži suradnike počevši od:',
 'activeusers-noresult' => 'Niti jedan suradnik nije nađen.',
 
@@ -2063,7 +2071,7 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 <b>podebljano</b> u [[Special:RecentChanges|popisu nedavnih promjena]], da biste je lakše primijetili.
 <p>Ako poželite ukloniti stranicu s popisa praćenja, pritisnite "Prekini praćenje" u traci s naredbama.</p>',
 'removedwatch'         => 'Uklonjeno s popisa praćenja',
-'removedwatchtext'     => 'Stranica "<nowiki>$1</nowiki>" je odstranjena s vašeg popisa praćenja.',
+'removedwatchtext'     => 'Stranica "[[:$1]]" je odstranjena s vašeg popisa praćenja [[Special:Watchlist|your watchlist]].',
 'watch'                => 'Prati',
 'watchthispage'        => 'Prati ovu stranicu',
 'unwatch'              => 'Prekini praćenje',
@@ -2435,6 +2443,7 @@ $1 je već blokiran. Želite promijeniti postavke blokiranja?',
 'sorbsreason'                     => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL.',
 'sorbs_create_account_reason'     => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL. Ne možete otvoriti račun.',
 'cant-block-while-blocked'        => 'Ne možete blokirati druge suradnike dok ste vi blokirani.',
+'cant-see-hidden-user'            => 'Korisnik kojeg pokušavate blokirati je već blokiran i sakriven. Pošto nemate prava hideuser (sakrivanje korisnika), ne možete vidjeti ni urediti korisnikovu blokadu.',
 
 # Developer tools
 'lockdb'              => 'Zaključaj bazu podataka',

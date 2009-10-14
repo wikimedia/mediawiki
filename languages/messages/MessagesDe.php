@@ -702,7 +702,7 @@ Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software ge
 'badtitle'             => 'Ungültiger Titel',
 'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
-'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $2, $3 Uhr',
+'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letzte Aktualisierung: $2, $3 Uhr',
 'querypage-no-updates' => "'''Die Aktualisierungsfunktion für diese Seite ist zurzeit deaktiviert. Die Daten werden bis auf Weiteres nicht erneuert.'''",
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />

@@ -22,6 +22,7 @@
  * @author NH
  * @author Najami
  * @author Ozp
+ * @author Per
  * @author Petter Strandmark
  * @author Poxnar
  * @author Purodha
@@ -764,7 +765,7 @@ Skriv in en adress med korrekt format eller töm fältet.',
 'createaccount-text'         => 'Någon har skapat ett konto åt din e-postadress på {{SITENAME}} ($4) med namnet "$2" och lösenordet "$3". Du bör nu logga in och ändra ditt lösenord.
 
 Du kan ignorera detta meddelande om kontot skapats av misstag.',
-'login-throttled'            => 'Du har nyligen gjort för många inloggningsförsök med fel lösenord till det här kontot.
+'login-throttled'            => 'Du har gjort för många misslyckade inloggningsförsök till det här kontot.
 Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
 
@@ -878,6 +879,7 @@ Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna 
 'noarticletext'                    => 'Det finns just nu ingen text på denna sida.
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} söka i loggarna], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
+'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
@@ -1075,7 +1077,7 @@ Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekven
 'revdelete-suppress'          => 'Undanhåll data även från administratörer',
 'revdelete-hide-image'        => 'Dölj filinnehåll',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
-'revdelete-log'               => 'Kommentar:',
+'revdelete-log'               => 'Orsak till radering:',
 'revdelete-submit'            => 'Tillämpa på vald version',
 'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'          => 'ändrade synlighet för åtgärder i [[$1]]',
@@ -1108,6 +1110,10 @@ Du har inte behörighet till det.',
 'revdelete-concurrent-change' => 'Fel vid förändring av objektet daterat $2, $1: dess status verkar ha ändrats av någon annan medan du försökte förändra det.
 Vänligen kontrollera loggarna.',
 'revdelete-only-restricted'   => 'Du kan inte hindra visning av objekt av administratörer utan att också välja en av de övriga visningshindrande alternativen.',
+'revdelete-reason-dropdown'   => '*Vanliga orsaker till radering
+** Brott mot copyright 
+** Opassande personupplysningar
+** Möjligt ärekränkande uppgifter',
 'revdelete-otherreason'       => 'Annan/ytterligare anledning:',
 'revdelete-reasonotherlist'   => 'Annan anledning',
 'revdelete-edit-reasonlist'   => 'Redigera anledningar för radering',
@@ -1699,7 +1705,7 @@ PICT # allmänt bildprefix
 'upload-proto-error'        => 'Felaktigt protokoll',
 'upload-proto-error-text'   => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
 'upload-file-error'         => 'Internt fel',
-'upload-file-error-text'    => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en systemadministratör.',
+'upload-file-error-text'    => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en [[Special:ListUsers/sysop|systemadministratör]].',
 'upload-misc-error'         => 'Okänt uppladdningsfel',
 'upload-misc-error-text'    => 'Ett okänt fel inträffade under uppladdningen.
 Kontrollera att URL:en giltig och försök igen.
@@ -2302,17 +2308,19 @@ $1',
 'month'               => 'Från månad (och tidigare):',
 'year'                => 'Från år (och tidigare):',
 
-'sp-contributions-newbies'       => 'Visa endast bidrag från nya konton',
-'sp-contributions-newbies-sub'   => 'Från nya konton',
-'sp-contributions-newbies-title' => 'Bidrag från nya konton',
-'sp-contributions-blocklog'      => 'Blockeringslogg',
-'sp-contributions-deleted'       => 'raderade användarbidrag',
-'sp-contributions-logs'          => 'Loggar',
-'sp-contributions-talk'          => 'diskussion',
-'sp-contributions-userrights'    => 'hantering av användarrättigheter',
-'sp-contributions-search'        => 'Sök efter användarbidrag',
-'sp-contributions-username'      => 'IP-adress eller användarnamn:',
-'sp-contributions-submit'        => 'Sök',
+'sp-contributions-newbies'        => 'Visa endast bidrag från nya konton',
+'sp-contributions-newbies-sub'    => 'Från nya konton',
+'sp-contributions-newbies-title'  => 'Bidrag från nya konton',
+'sp-contributions-blocklog'       => 'Blockeringslogg',
+'sp-contributions-deleted'        => 'raderade användarbidrag',
+'sp-contributions-logs'           => 'Loggar',
+'sp-contributions-talk'           => 'diskussion',
+'sp-contributions-userrights'     => 'hantering av användarrättigheter',
+'sp-contributions-blocked-notice' => 'Användaren är blockerad.
+Orsaken till senaste blockeringen kan ses nedan:',
+'sp-contributions-search'         => 'Sök efter användarbidrag',
+'sp-contributions-username'       => 'IP-adress eller användarnamn:',
+'sp-contributions-submit'         => 'Sök',
 
 # What links here
 'whatlinkshere'            => 'Vad som länkar hit',
@@ -2727,10 +2735,12 @@ Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym användare|Anonyma användare}} på {{SITENAME}}',
 'siteuser'         => 'användaren $1 på {{SITENAME}}',
+'anonuser'         => '{{SITENAME}} anonym användare $1',
 'lastmodifiedatby' => 'Den här sidan ändrades senast kl. $2 den $1 av $3.',
 'othercontribs'    => 'Baserad på arbete av $1.',
 'others'           => 'andra',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|användaren|användarna}} $1',
+'anonusers'        => '{{SITENAME}} {{PLURAL:$2|anonym|anonyma}} användare $1',
 'creditspage'      => 'Användare som bidragit till sidan',
 'nocredits'        => 'Det finns ingen information tillgänglig om vem som bidragit till denna sida.',
 
@@ -3388,5 +3398,7 @@ Klicka på "Spara" för att spara din redigering.',
 'ajax-add-category-summary'    => 'Lägg till kategorin "$1"',
 'ajax-remove-category-summary' => 'Tag bort kategorin "$1"',
 'ajax-error-title'             => 'Fel',
+'ajax-remove-category-error'   => 'Det var inte möjligt att ta bort den här kategorin.
+Oftast beror det på att kategorin har lagts till genom användande av en mall.',
 
 );
