@@ -1,18 +1,18 @@
 <?php
 /**
- * @file 
+ * @file
  * @ingroup upload
- * 
+ *
  * UploadBase and subclasses are the backend of MediaWiki's file uploads.
  * The frontends are formed by ApiUpload and SpecialUpload.
- * 
+ *
  * See also includes/docs/upload.txt
- * 
+ *
  * @author Brion Vibber
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
- 
+
 abstract class UploadBase {
 	protected $mTempPath;
 	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
@@ -117,7 +117,7 @@ abstract class UploadBase {
 		$this->mFileSize = $fileSize;
 		$this->mRemoveTempFile = $removeTempFile;
 	}
-	
+
 	/**
 	 * Initialize from a WebRequest. Override this in a subclass.
 	 */
@@ -222,7 +222,7 @@ abstract class UploadBase {
 
 		#check mime type, if desired
 		global $wgVerifyMimeType;
-		if ( $wgVerifyMimeType ) {		
+		if ( $wgVerifyMimeType ) {
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) )
 				return array( 'filetype-badmime', $mime );
@@ -263,7 +263,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check whether the user can edit, upload and create the image.
-	 * 
+	 *
 	 * @param User $user the user to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
 	 *               in case the user has proper permissions.
@@ -289,7 +289,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check for non fatal problems with the file
-	 * 
+	 *
 	 * @return array Array of warnings
 	 */
 	public function checkWarnings() {
@@ -349,9 +349,9 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Really perform the upload. Stores the file in the local repo, watches 
+	 * Really perform the upload. Stores the file in the local repo, watches
 	 * if necessary and runs the UploadComplete hook.
-	 * 
+	 *
 	 * @return mixed Status indicating the whether the upload succeeded.
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
@@ -359,8 +359,13 @@ abstract class UploadBase {
 		$status = $this->getLocalFile()->upload( $this->mTempPath, $comment, $pageText,
 			File::DELETE_SOURCE, $this->mFileProps, false, $user );
 
-		if( $status->isGood() && $watch )
-			$user->addWatch( $this->getLocalFile()->getTitle() );
+		if( $status->isGood() && $watch ){
+			//make sure the watch commit happens inline
+			$dbw = wfGetDB(DB_MASTER);
+			$dbw->begin();
+				$user->addWatch( $this->getLocalFile()->getTitle() );
+			$dbw->commit();
+		}
 
 		if( $status->isGood() )
 			wfRunHooks( 'UploadComplete', array( &$this ) );
@@ -371,7 +376,7 @@ abstract class UploadBase {
 	/**
 	 * Returns the title of the file to be uploaded. Sets mTitleError in case
 	 * the name was illegal.
-	 * 
+	 *
 	 * @return Title The title of the file or null in case the name was illegal
 	 */
 	public function getTitle() {
@@ -440,7 +445,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Return the local file and initializes if necessary. 
+	 * Return the local file and initializes if necessary.
 	 */
 	public function getLocalFile() {
 		if( is_null( $this->mLocalFile ) ) {
@@ -468,9 +473,9 @@ abstract class UploadBase {
 		return $status;
 	}
 
-	/** 
+	/**
 	 * Append a file to a stashed file.
-	 * 
+	 *
 	 * @param string $srcPath Path to file to append from
 	 * @param string $toAppendPath Path to file to append to
 	 * @return Status Status
@@ -503,7 +508,7 @@ abstract class UploadBase {
 			'mFileSize'       => $this->mFileSize,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
-		);		
+		);
 		return $key;
 	}
 
@@ -826,7 +831,7 @@ abstract class UploadBase {
 			}
 		}
 
-		
+
 		if ( $mappedCode === AV_SCAN_FAILED ) {
 			# scan failed (code was mapped to false by $exitCodeMap)
 			wfDebug( __METHOD__ . ": failed to scan $file (code $exitCode).\n" );
@@ -908,9 +913,9 @@ abstract class UploadBase {
 				return true;
 		}
 
-		/* Check shared conflicts: if the local file does not exist, but 
-		 * wfFindFile finds a file, it exists in a shared repository. 
-		 */ 
+		/* Check shared conflicts: if the local file does not exist, but
+		 * wfFindFile finds a file, it exists in a shared repository.
+		 */
 		$file = wfFindFile( $this->getTitle() );
 		if ( $file && !$wgUser->isAllowed( 'reupload-shared' ) )
 			return 'fileexists-shared-forbidden';
@@ -940,13 +945,13 @@ abstract class UploadBase {
 
 	/**
 	 * Helper function that does various existence checks for a file.
-	 * The following checks are performed: 
+	 * The following checks are performed:
 	 * - The file exists
 	 * - Article with the same name as the file exists
 	 * - File exists with normalized extension
 	 * - The file looks like a thumbnail and the original exists
-	 * 
-	 * @param File $file The file to check 
+	 *
+	 * @param File $file The file to check
 	 * @return mixed False if the file does not exists, else an array
 	 */
 	public static function getExistsWarning( $file ) {
@@ -955,10 +960,10 @@ abstract class UploadBase {
 
 		if( $file->getTitle()->getArticleID() )
 			return array( 'warning' => 'page-exists', 'file' => $file );
-		
+
 		if ( $file->wasDeleted() && !$file->exists() )
-			return array( 'warning' => 'was-deleted', 'file' => $file );		
-			
+			return array( 'warning' => 'was-deleted', 'file' => $file );
+
 		if( strpos( $file->getName(), '.' ) == false ) {
 			$partname = $file->getName();
 			$extension = '';
@@ -992,13 +997,13 @@ abstract class UploadBase {
 				// File does not exist, but we just don't like the name
 				return array( 'warning' => 'thumb-name', 'file' => $file, 'thumbFile' => $file_thb );
 		}
-		
+
 
 		foreach( self::getFilenamePrefixBlacklist() as $prefix ) {
 			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix )
 				return array( 'warning' => 'bad-prefix', 'file' => $file, 'prefix' => $prefix );
 		}
-		
+
 
 
 		return false;
