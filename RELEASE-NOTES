@@ -555,6 +555,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21030) Fixed schema choices from being overwritten by defining unique field names per driver.
 * (bug 21115) wgCanonicalSpecialPageName javascript variable is now always
   false on non-special pages
+* (bug 21113) "Other statistics" header on Special:Statistics is no more
+  displayed when there isn't any entry in it
 
 == API changes in 1.16 ==
 
