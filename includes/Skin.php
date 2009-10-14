@@ -391,7 +391,8 @@ class Skin extends Linker {
 			'wgActionPaths' => (object)$wgActionPaths,
 			'wgServer' => $wgServer,
 			'wgCanonicalNamespace' => $nsname,
-			'wgCanonicalSpecialPageName' => SpecialPage::resolveAlias( $wgTitle->getDBkey() ),
+			'wgCanonicalSpecialPageName' => $ns == NS_SPECIAL ?
+				SpecialPage::resolveAlias( $wgTitle->getDBkey() ) : false, # bug 21115
 			'wgNamespaceNumber' => $wgTitle->getNamespace(),
 			'wgPageName' => $wgTitle->getPrefixedDBKey(),
 			'wgTitle' => $wgTitle->getText(),
