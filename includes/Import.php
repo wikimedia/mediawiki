@@ -690,6 +690,7 @@ class WikiImporter {
 		switch( $name ) {
 		case "id":
 		case "title":
+		case "redirect":
 		case "restrictions":
 			$this->appendfield = $name;
 			$this->appenddata = "";
