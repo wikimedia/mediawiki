@@ -813,11 +813,7 @@ abstract class UploadBase {
 		#      that does not seem to be worth the pain.
 		#      Ask me (Duesentrieb) about it if it's ever needed.
 		$output = array();
-		if ( wfIsWindows() ) {
-			$output = wfRunExternal($command, $exitCode);
-		} else {
-			exec( "$command 2>&1", $output, $exitCode );
-		}
+		$output = wfShellExec($command, $exitCode);
 
 
 		# map exit code to AV_xxx constants.
