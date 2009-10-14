@@ -161,6 +161,7 @@ $messages['en'] = array(
 	'rsd_layout' => 'Layout:',
 	'rsd_resource_edit' => 'Edit resource: $1',
 	'mwe-resource_description_page' => 'Resource description page',
+	'mwe-link' => 'link',
 	'rsd_local_resource_title' => 'Local resource title',
 	'rsd_do_insert' => 'Do insert',
 	'mwe-cc_title' => 'Creative Commons',
