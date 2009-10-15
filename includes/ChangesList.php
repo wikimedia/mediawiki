@@ -286,7 +286,7 @@ class ChangesList {
 		# Diff link
 		if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
-		} else if( !$this->userCan($rc,Revision::DELETED_TEXT) ) {
+		} else if( !self::userCan($rc,Revision::DELETED_TEXT) ) {
 			$diffLink = $this->message['diff'];
 		} else {
 			$query = array(
