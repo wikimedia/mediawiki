@@ -336,26 +336,6 @@ mvBaseUploadInterface.prototype = {
 			_this.processApiResult( data );
 		});
 	},
-	doAjaxWarningIgnore:function(){
-		var _this = this;
-		if( !_this.upload_session_key )
-			return js_error('missing upload_session_key (can\'t ignore warnigns');
-		//do the ignore warnings submit to the api:
-		var req = {
-				'ignorewarnings' : 'true',
-				'sessionkey'	 :!_this.upload_session_key
-			};
-		//add token if present:
-		if(this.etoken)
-			req['token'] = this.etoken;
-
-		do_api_req({
-			'data':req,
-			'url': _this.api_url
-		},function(data){
-			_this.processApiResult(data);
-		});
-	},
 	doAjaxUploadStatus:function() {
 		var _this = this;	
 		
@@ -452,10 +432,10 @@ mvBaseUploadInterface.prototype = {
 				error_code = apiRes.error.code;
 			}else if( apiRes.upload.code ){
 				if(typeof apiRes.upload.code == 'object'){
-					if(apiRes.upload.code[0]){
+					if( apiRes.upload.code[0] ){
 						error_code = apiRes.upload.code[0];
 					}
-					if(apiRes.upload.code['status']){
+					if( apiRes.upload.code['status'] ){
 						error_code = apiRes.upload.code['status'];
 						if(apiRes.upload.code['filtered'])
 							errorReplaceArg =apiRes.upload.code['filtered'];
@@ -564,14 +544,36 @@ mvBaseUploadInterface.prototype = {
 				wmsg+='</li>';
 			}
 			wmsg+='</ul>';
-			if( apiRes.upload.warnings.sessionkey)
-			 	_this.warnings_sessionkey = apiRes.upload.warnings.sessionkey;
+			if( apiRes.upload.sessionkey)
+			 	_this.warnings_sessionkey = apiRes.upload.sessionkey;
+
 			var bObj = {};
 			bObj[ gM('mwe-ignorewarning') ] =  	function() {
-				js_log('ignorewarning req:')
-				//re-inciate the upload proccess
-				$j('#wpIgnoreWarning').attr('checked', true);
-				$j( _this.editForm ).submit();
+				//check if we have a stashed key: 
+				if( _this.warnings_sessionkey ){
+					//set to "loading" 
+					$j( '#upProgressDialog' ).html( mv_get_loading_img() );
+					//setup loading:
+					var req = {
+						'action' : 'upload',
+						'sessionkey': _this.warnings_sessionkey,
+						'ignorewarnings':1,
+						'filename': $j('#wpDestFile').val(),
+						'token' :  _this.etoken
+					};					
+					//run the upload from stash request
+					do_api_req({
+						'data': req,
+						'url' : _this.api_url
+					}, function( data ){
+						_this.processApiResult( data );
+					});
+				}else{
+					js_log('No session key re-sending upload')
+					//do a stashed upload
+					$j('#wpIgnoreWarning').attr('checked', true);
+					$j( _this.editForm ).submit();
+				}
 			};
 			bObj[ gM('mwe-return-to-form') ] = function(){
 				$j(this).dialog('close');

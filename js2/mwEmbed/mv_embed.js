@@ -1016,7 +1016,7 @@ var mvJsLoader = {
 		js_log( 'embedVideoCheck:' );
 		// Make sure we have jQuery
 		_this.jQueryCheck( function() {
-			//set class videonojs to hidden
+			//set class videonojs to loading
 			$j('.videonojs').html( gM('mwe-loading_txt') );
 			//Set up the embed video player class request: (include the skin js as well)
 			var depReq = [

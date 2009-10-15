@@ -57,11 +57,11 @@ class ApiUpload extends ApiBase {
 		// Check whether upload is enabled
 		if ( !UploadBase::isEnabled() )
 			$this->dieUsageMsg( array( 'uploaddisabled' ) );
-		
+
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
-			'sessionkey', 'file', 'url', 'enablechunks' );		
-			
+			'sessionkey', 'file', 'url', 'enablechunks' );
+
 		if ( $this->mParams['enablechunks'] ) {
 			/**
 			 * Chunked upload mode
@@ -88,11 +88,10 @@ class ApiUpload extends ApiBase {
 			/**
 			 * Return the status of the given background upload session_key:
 			 */
-			
 			// Check the session key
 			if( !isset( $_SESSION['wsDownload'][$this->mParams['sessionkey']] ) )
 					return $this->dieUsageMsg( array( 'invalid-session-key' ) );
-			
+
 			$sd =& $_SESSION['wsDownload'][$this->mParams['sessionkey']];
 			// Keep passing down the upload sessionkey
 			$statusResult = array(
@@ -100,22 +99,22 @@ class ApiUpload extends ApiBase {
 			);
 
 			// put values into the final apiResult if available
-			if( isset( $sd['apiUploadResult'] ) ) 
+			if( isset( $sd['apiUploadResult'] ) )
 				$statusResult['apiUploadResult'] = $sd['apiUploadResult'];
-			if( isset( $sd['loaded'] ) ) 
+			if( isset( $sd['loaded'] ) )
 				$statusResult['loaded'] = $sd['loaded'];
-			if( isset( $sd['content_length'] ) ) 
+			if( isset( $sd['content_length'] ) )
 				$statusResult['content_length'] = $sd['content_length'];
 
-			return $this->getResult()->addValue( null, 
+			return $this->getResult()->addValue( null,
 					$this->getModuleName(), $statusResult );
-			
+
 		} elseif( $this->mParams['sessionkey'] ) {
 			/**
 			 * Upload stashed in a previous request
 			 */
 			$this->mUpload = new UploadFromStash();
-			$this->mUpload->initialize( $this->mParams['filename'], 
+			$this->mUpload->initialize( $this->mParams['filename'],
 					$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
 		} else {
 			/**
@@ -135,14 +134,14 @@ class ApiUpload extends ApiBase {
 				);
 			} elseif ( isset( $this->mParams['url'] ) ) {
 				$this->mUpload = new UploadFromUrl();
-				$this->mUpload->initialize( $this->mParams['filename'], 
+				$this->mUpload->initialize( $this->mParams['filename'],
 						$this->mParams['url'], $this->mParams['asyncdownload'] );
 
 				$status = $this->mUpload->fetchFile();
 				if( !$status->isOK() ) {
 					return $this->dieUsage( 'fetchfileerror', $status->getWikiText() );
 				}
-				
+
 				// check if we doing a async request set session info and return the upload_session_key)
 				if( $this->mUpload->isAsync() ){
 					$upload_session_key = $status->value;
@@ -161,11 +160,11 @@ class ApiUpload extends ApiBase {
 				}
 			}
 		}
-		
+
 		if( !isset( $this->mUpload ) )
 			$this->dieUsage( 'No upload module set', 'nomodule' );
-		
-		
+
+
 		// Finish up the exec command:
 		$this->doExecUpload();
 
@@ -196,7 +195,7 @@ class ApiUpload extends ApiBase {
 		if( $permErrors !== true ) {
 			$this->dieUsageMsg( array( 'baddaccess-groups' ) );
 		}
-		
+
 		// TODO: Move them to ApiBase's message map
 		$verification = $this->mUpload->verifyUpload();
 		if( $verification['status'] !== UploadBase::OK ) {
@@ -210,8 +209,8 @@ class ApiUpload extends ApiBase {
 					break;
 				case UploadBase::FILETYPE_BADTYPE:
 					global $wgFileExtensions;
-					$this->dieUsage( 'This type of file is banned', 'filetype-banned', 
-							0, array( 
+					$this->dieUsage( 'This type of file is banned', 'filetype-banned',
+							0, array(
 								'filetype' => $verification['finalExt'],
 								'allowed' => $wgFileExtensions
 							) );
@@ -227,12 +226,12 @@ class ApiUpload extends ApiBase {
 					$this->dieUsage( 'Overwriting an existing file is not allowed', 'overwrite' );
 					break;
 				case UploadBase::VERIFICATION_ERROR:
-					$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );					
+					$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
 					$this->dieUsage( 'This file did not pass file verification', 'verification-error',
 							0, array( 'details' => $verification['details'] ) );
 					break;
 				case UploadBase::UPLOAD_VERIFICATION_ERROR:
-					$this->dieUsage( "The modification you tried to make was aborted by an extension hook", 
+					$this->dieUsage( "The modification you tried to make was aborted by an extension hook",
 							'hookaborted', 0, array( 'error' => $verification['error'] ) );
 					break;
 				default:
@@ -242,14 +241,12 @@ class ApiUpload extends ApiBase {
 			}
 			return $result;
 		}
-
 		if( !$this->mParams['ignorewarnings'] ) {
 			$warnings = $this->mUpload->checkWarnings();
 			if( $warnings ) {
-				
 				// Add indices
 				$this->getResult()->setIndexedTagName( $warnings, 'warning' );
-				
+
 				if( isset( $warnings['duplicate'] ) ) {
 					$dupes = array();
 					foreach( $warnings['duplicate'] as $key => $dupe )
@@ -262,16 +259,18 @@ class ApiUpload extends ApiBase {
 				if( isset( $warnings['exists'] ) ) {
 					$warning = $warnings['exists'];
 					unset( $warnings['exists'] );
-					$warnings[$warning['warning']] = $warning['file']->getName(); 
+					$warnings[$warning['warning']] = $warning['file']->getName();
 				}
-									
+
 				$result['result'] = 'Warning';
 				$result['warnings'] = $warnings;
 
 				$sessionKey = $this->mUpload->stashSession();
-				if ( !$sessionKey ) 
+				if ( !$sessionKey )
 					$this->dieUsage( 'Stashing temporary file failed', 'stashfailed' );
+
 				$result['sessionkey'] = $sessionKey;
+
 				return $result;
 			}
 		}
@@ -283,8 +282,8 @@ class ApiUpload extends ApiBase {
 		if( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
 			$this->getResult()->setIndexedTagName( $result['details'], 'error' );
-			
-			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );			
+
+			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 		}
 
 		$file = $this->mUpload->getLocalFile();
