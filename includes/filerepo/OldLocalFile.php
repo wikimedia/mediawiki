@@ -177,6 +177,7 @@ class OldLocalFile extends LocalFile {
 	 * @return bool
 	 */
 	function isDeleted( $field ) {
+		$this->load();
 		return ($this->deleted & $field) == $field;
 	}
 
@@ -185,6 +186,7 @@ class OldLocalFile extends LocalFile {
 	 * @return int
 	 */
 	function getVisibility() {
+		$this->load();
 		return (int)$this->deleted;
 	}
 
@@ -195,6 +197,7 @@ class OldLocalFile extends LocalFile {
 	 * @return bool
 	 */
 	function userCan( $field ) {
+		$this->load();
 		if( isset($this->deleted) && ($this->deleted & $field) ) {
 			global $wgUser;
 			$permission = '';
