@@ -559,6 +559,7 @@ class Preferences {
 					'label-message' => 'timezonelegend',
 					'options' => self::getTimezoneOptions(),
 					'default' => $tzSetting,
+					'size' => 20,
 					'section' => 'datetime/timeoffset',
 				);
 	}
@@ -588,6 +589,7 @@ class Preferences {
 					'type' => 'selectorother',
 					'section' => 'rendering/advancedrendering',
 					'options' => $stubThresholdOptions,
+					'size' => 20,
 					'label' => wfMsg( 'stub-threshold' ), // Raw HTML message. Yay?
 				);
 		$defaultPreferences['highlightbroken'] =
