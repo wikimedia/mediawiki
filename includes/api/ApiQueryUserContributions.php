@@ -121,7 +121,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	 * against `revision`.`rev_user_text`
 	 */
 	private function prepareUsername($user) {
-		if( $user ) {
+		if( !is_null( $user ) && $user !== '' ) {
 			$name = User::isIP( $user )
 				? $user
 				: User::getCanonicalName( $user, 'valid' );

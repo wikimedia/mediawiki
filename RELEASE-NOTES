@@ -617,6 +617,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20700) Add amprop=default to meta=allmessages to list default value for
   customized messages
 * Don't parse magic words in meta=allmessages, output messages unparsed
+* (bug 21105) list=usercontribs can now list contribs for User:0
 
 === Languages updated in 1.16 ===
 
