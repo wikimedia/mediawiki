@@ -192,7 +192,7 @@ class LoginForm {
 		if( $wgUser->isAnon() ) {
 			$wgUser = $u;
 			$wgUser->setCookies();
-			wfRunHooks( 'AddNewAccount', array( $wgUser ) );
+			wfRunHooks( 'AddNewAccount', array( $wgUser, false ) );
 			$wgUser->addNewUserLogEntry();
 			if( $this->hasSessionCookie() ) {
 				return $this->successfulCreation();
@@ -208,7 +208,7 @@ class LoginForm {
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->addHTML( wfMsgWikiHtml( 'accountcreatedtext', $u->getName() ) );
 			$wgOut->returnToMain( false, $self );
-			wfRunHooks( 'AddNewAccount', array( $u ) );
+			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry();
 			return true;
 		}
