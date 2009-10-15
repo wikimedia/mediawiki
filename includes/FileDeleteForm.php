@@ -137,10 +137,10 @@ class FileDeleteForm {
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
-					<td class='mw-input'>" .
+					<td class='mw-input'><strong>" .
 						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '3' ) ) .
-					"</td>
+					"</strong></td>
 				</tr>";
 		} else {
 			$suppress = '';
