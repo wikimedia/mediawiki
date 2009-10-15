@@ -500,6 +500,7 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::elementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
 
+		$text = '';
 		if( $row->rev_deleted & Revision::DELETED_TEXT ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif( isset( $row->old_text ) ) {
@@ -514,7 +515,7 @@ class XmlDumpWriter {
 				array( 'id' => $row->rev_text_id ),
 				"" ) . "\n";
 		}
-		
+
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
 
 		$out .= "    </revision>\n";
