@@ -557,8 +557,6 @@ class LogEventsList {
 			$permission = '';
 			if ( $row->log_deleted & LogPage::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
-			} elseif ( $field & LogPage::DELETED_TEXT ) {
-				$permission = 'deletedtext';
 			} else {
 				$permission = 'deletedhistory';
 			}
