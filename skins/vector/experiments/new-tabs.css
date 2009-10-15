@@ -52,6 +52,8 @@
 		margin: 0 1px 0 0;
 		padding: 0;
 		background:none;
+		overflow:hidden;
+		white-space:nowrap;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorTabs ul > li {
@@ -183,14 +185,12 @@
 	}
 	/* @noflip */
 	body #head div.vectorMenu h5 {
-
 		border-top:1px solid #cccccc;
 		border-left:1px solid #cccccc;
 		border-right:1px solid #cccccc;
 		padding-left: 0;
 		margin-left: 0px;
 		background-image: none !important;
-		
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body div.vectorMenu h5 a {
@@ -280,7 +280,7 @@
 #ca-unwatch.icon,
 #ca-watch.icon {
 	background-color:#ffffff;
-	height:1.7em !important;
+	height:1.75em !important;
 	
 }
 #ca-unwatch.icon a,

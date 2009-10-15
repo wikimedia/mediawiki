@@ -1,8 +1,6 @@
 /* Babaco Color Scheme A */
 
-#head-base{
-	background:url(images/page-base-fade.png) 0 100% repeat-x #ffffff;
-}
+
 a:visited,
 a:visited div.vectorTabs li.selected a:visited span {
 	color: #260e9c;
@@ -19,6 +17,7 @@ body {
 	background-color: #f9f9f9 !important;
 	background-image:url(images/page-base-updated.png);
 }
+
 /* Links */
 a {
 	color: #0066cc;
@@ -30,7 +29,7 @@ a:active {
 	color: #ff6600;
 }
 a.stub {
-	color: #772233;
+	color: #56228b;
 }
 a.new, #p-personal a.new {
 	color: #a31205 !important;
@@ -46,6 +45,19 @@ h4,
 h5,
 h6 {
 	border-color:#999999;
+	font-family:arial, sans-serif;
+}
+h1,
+h2{
+	font-family:georgia, times, serif;
+	letter-spacing:0.6px;
+}
+#toc h2, .toc h2 {
+	font-family:sans-serif;
+	letter-spacing:0px;
+}
+body div.vectorTabs li a {
+	font-weight:bold;
 }
 body div.vectorTabs li a, div.vectorTabs li a span{
 	color:#4d4d4d;
