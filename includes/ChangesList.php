@@ -446,20 +446,10 @@ class ChangesList {
 	 * @return bool
 	 */
 	public static function userCan( $rc, $field ) {
-		if( $rc->mAttribs['rc_deleted'] & $field ) {
-			global $wgUser;
-			$permission = '';
-			if ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED ) {
-				$permission = 'suppressrevision';
-			} elseif ( $field & Revision::DELETED_TEXT ) {
-				$permission = 'deletedtext';
-			} else {
-				$permission = 'deletedhistory';
-			}
-			wfDebug( "Checking for $permission due to $field match on {$rc->mAttribs['rc_deleted']}\n" );
-			return $wgUser->isAllowed( $permission );
+		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
+			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field );
 		} else {
-			return true;
+			return Revision::userCanBitfield( $rc->mAttribs['rc_deleted'], $field );
 		}
 	}
 

@@ -552,15 +552,26 @@ class LogEventsList {
 	 * @return Boolean
 	 */
 	public static function userCan( $row, $field ) {
-		if( $row->log_deleted & $field ) {
+		return self::userCanBitfield( $row->log_deleted, $field );
+	}
+	
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this log row, if it's marked as deleted.
+	 * @param $bitfield Integer (current field)
+	 * @param $field Integer
+	 * @return Boolean
+	 */
+	public static function userCanBitfield( $bitfield, $field ) {
+		if( $bitfield & $field ) {
 			global $wgUser;
 			$permission = '';
-			if ( $row->log_deleted & LogPage::DELETED_RESTRICTED ) {
+			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
 			} else {
 				$permission = 'deletedhistory';
 			}
-			wfDebug( "Checking for $permission due to $field match on $row->log_deleted\n" );
+			wfDebug( "Checking for $permission due to $field match on $bitfield\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
 			return true;

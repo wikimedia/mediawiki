@@ -377,20 +377,6 @@ class ArchivedFile
 	 */
 	public function userCan( $field ) {
 		$this->load();
-		if( $this->deleted & $field ) {
-			global $wgUser;
-			$permission = '';
-			if ( $this->deleted & File::DELETED_RESTRICTED ) {
-				$permission = 'suppressrevision';
-			} elseif ( $field & File::DELETED_FILE ) {
-				$permission = 'deletedtext';
-			} else {
-				$permission = 'deletedhistory';
-			}
-			wfDebug( "Checking for $permission due to $field match on $this->deleted\n" );
-			return $wgUser->isAllowed( $permission );
-		} else {
-			return true;
-		}
+		return Revision::userCanBitfield( $this->deleted, $field );
 	}
 }
