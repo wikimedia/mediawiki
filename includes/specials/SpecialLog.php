@@ -60,8 +60,6 @@ function wfSpecialLog( $par = '' ) {
 			$qc = array( 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() );
 		} else if( $offender && IP::isIPAddress( $offender->getName() ) ) {
 			$qc = array( 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() );
-		} else {
-			$qc = array( "1 = 0" ); // empty
 		}
 	}
 	# Create a LogPager item to get the results and a LogEventsList item to format them...
