@@ -414,18 +414,10 @@ mvClipEdit.prototype = {
 		});
 
 		//preview button:
-		$j('#'+this.control_ct + ' .inOutPreviewClip').hover(
-			function(){
-				$j(this).addClass('ui-state-hover');
-			},
-			function(){
-				$j(this).removeClass('ui-state-hover');
-			}
-		).click(function(){
+		$j('#'+this.control_ct + ' .inOutPreviewClip').btnBind().click(function(){
 			$j('#embed_vid').get(0).stop();
 			$j('#embed_vid').get(0).play();
-		});
-		//simple hover:
+		});		
 
 	},
 	getSetInOutHtml:function( setInt ){
@@ -445,7 +437,7 @@ mvClipEdit.prototype = {
 					'</td>' +
 				'</tr>' +
 			'</table>'+
-			'<a href="#" class="ui-state-default ui-corner-all ui-icon_link inOutPreviewClip"><span class="ui-icon ui-icon-video"></span>'+ gM('mwe-preview_inout') +'</a>';
+			$j.btnHtml( gM('mwe-preview_inout'), 'inOutPreviewClip', 'video');				
 	},
 	getInsertDescHtml:function(){
 		var o= '<h3>Inline Description</h3>'+
