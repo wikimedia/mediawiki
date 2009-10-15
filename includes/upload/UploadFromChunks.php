@@ -57,13 +57,14 @@ class UploadFromChunks extends UploadBase {
 		// check for the file:
 		return (bool)$request->getFileTempName( 'file' );
 	}
-
 	/* check warnings depending on chunk_mode */
 	function checkWarnings(){
-		$warning = array();
-		return $warning;
+		if( $this->chunk_mode == UploadFromChunks::DONE ){
+			return parent::checkWarnings();
+		}else{
+			return array();
+		}
 	}
-
 	function isEmptyFile(){
 		// does not apply to chunk init
 		if( $this->chunk_mode == UploadFromChunks::INIT ){
@@ -72,20 +73,17 @@ class UploadFromChunks extends UploadBase {
 			return parent::isEmptyFile();
 		}
 	}
-
  	/**
 	 * Verify whether the upload is sane.
 	 * Returns self::OK or else an array with error information
 	 */
 	function verifyUpload() {
-		// no checks on chunk upload mode:
-		if( $this->chunk_mode ==  UploadFromChunks::INIT )
-			return array( 'status' => self::OK );
-
-		// verify on init and last chunk request
-		if(	$this->chunk_mode == UploadFromChunks::CHUNK ||
-			$this->chunk_mode == UploadFromChunks::DONE )
+		// verify once DONE uploading chunks
+		if(	$this->chunk_mode == UploadFromChunks::DONE ){
 			return parent::verifyUpload();
+		}else{
+			return array( 'status' => self::OK );
+		}
 	}
 
 	// only run verifyFile on completed uploaded chunks
@@ -185,7 +183,7 @@ class UploadFromChunks extends UploadBase {
 				return $status;
 			}
 		} else if( $this->chunk_mode == UploadFromChunks::DONE ){
-			// update the values from the local (session init) if not paseed again)
+			// update the values from the local (session init) if not passed again)
 			if( $summary == '' )
 				$summary = $this->mSummary;
 
@@ -194,7 +192,9 @@ class UploadFromChunks extends UploadBase {
 
 			if( $watch == '' )
 				$watch = $this->mWatch;
+
 			$status = parent::performUpload( $summary, $comment, $watch, $user );
+
 			if( !$status->isGood() ) {
 				return $status;
 			}
@@ -209,7 +209,6 @@ class UploadFromChunks extends UploadBase {
 				)
 			);
 			exit( 0 );
-
 		}
 	}
 
