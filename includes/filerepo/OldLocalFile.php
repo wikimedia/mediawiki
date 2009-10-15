@@ -200,7 +200,7 @@ class OldLocalFile extends LocalFile {
 			$permission = '';
 			if ( $this->deleted & File::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
-			} elseif ( $field & File::DELETED_TEXT ) {
+			} elseif ( $field & File::DELETED_FILE ) {
 				$permission = 'deletedtext';
 			} else {
 				$permission = 'deletedhistory';
