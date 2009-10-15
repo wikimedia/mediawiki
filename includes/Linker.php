@@ -1453,11 +1453,11 @@ class Linker {
 			# Construct the HTML
 			$outText = '<div class="mw-templatesUsedExplanation">';
 			if ( $preview ) {
-				$outText .= wfMsgExt( 'templatesusedpreview', array( 'parse' ) );
+				$outText .= wfMsgExt( 'templatesusedpreview', array( 'parse' ), count( $templates ) );
 			} elseif ( $section ) {
-				$outText .= wfMsgExt( 'templatesusedsection', array( 'parse' ) );
+				$outText .= wfMsgExt( 'templatesusedsection', array( 'parse' ), count( $templates ) );
 			} else {
-				$outText .= wfMsgExt( 'templatesused', array( 'parse' ) );
+				$outText .= wfMsgExt( 'templatesused', array( 'parse' ), count( $templates ) );
 			}
 			$outText .= "</div><ul>\n";
 

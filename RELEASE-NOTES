@@ -543,8 +543,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3421) Live preview no longer breaks user CSS/JS previews
 * (bug 11264) The file logo on a file description page for documents (PDF, ...)
   now links to the file rather than the file description page
-* Password fields built with HTMLForm now still have the type="password" attribute
-  if $wgHtml5=false.
+* Password fields built with HTMLForm now still have the type="password"
+  attribute if $wgHtml5=false.
 * (bug 20836) Preload now works for MediaWiki namespace
 * (bug 20885) Search box no longer suggests unavailable special pages
 * (bug 20948) "Create this page" on Special:Search is no longer displayed when
@@ -552,12 +552,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20524) Hideuser: Show nice error when trying to block hidden user without 
   hideuser right
 * (bug 21026) Fixed file redirects on shared repos on non-English client wikis
-* (bug 21030) Fixed schema choices from being overwritten by defining unique field names per driver.
+* (bug 21030) Fixed schema choices from being overwritten by defining unique
+  field names per driver.
 * (bug 21115) wgCanonicalSpecialPageName javascript variable is now always
   false on non-special pages
 * (bug 21113) "Other statistics" header on Special:Statistics is no more
   displayed when there isn't any entry in it
 * (bug 21114) Special:Contributions no longer shows diff links for new revisions
+* (bug 21116) MediaWiki:Templatesused, MediaWiki:Templatesusedpreview and
+  MediaWiki:Templatesusedsection now support plural
 
 == API changes in 1.16 ==
 
