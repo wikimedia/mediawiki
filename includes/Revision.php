@@ -977,23 +977,36 @@ class Revision {
 	 * @return bool
 	 */
 	public function userCan( $field ) {
-		if( $this->mDeleted & $field ) {
+		return self::userCanBitfield( $this->mDeleted, $field );
+	}
+
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this revision, if it's marked as deleted. This is used
+	 * by various classes to avoid duplication.
+	 * @param int $bitfield (current field)
+	 * @param int $field one of self::DELETED_TEXT = File::DELETED_FILE,
+	 *                          self::DELETED_COMMENT = File::DELETED_COMMENT,
+	 *                          self::DELETED_USER = File::DELETED_USER
+	 * @return bool
+	 */
+	public static function userCanBitfield( $bitfield, $field ) {
+		if( $bitfield & $field ) { // aspect is deleted
 			global $wgUser;
 			$permission = '';
-			if ( $this->mDeleted & self::DELETED_RESTRICTED ) {
+			if ( $bitfield & self::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
 			} elseif ( $field & self::DELETED_TEXT ) {
 				$permission = 'deletedtext';
 			} else {
 				$permission = 'deletedhistory';
 			}
-			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
+			wfDebug( "Checking for $permission due to $field match on $bitfield\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
 			return true;
 		}
 	}
-
 
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row
