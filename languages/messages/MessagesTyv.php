@@ -119,6 +119,7 @@ $messages = array(
 'mytalk'        => 'Мээң чугаалажырым',
 'anontalk'      => 'Бо ИП-адрестиң чугаа',
 'navigation'    => 'Навигация',
+'and'           => '&#32;болгаш',
 
 # Cologne Blue skin
 'qbfind'         => 'Тывар',
@@ -143,10 +144,13 @@ $messages = array(
 'permalink'         => 'Үргүлчү холбаа',
 'print'             => 'Саазынга үндүрер',
 'edit'              => 'Өскертир',
+'create'            => 'Кылыр',
 'editthispage'      => 'Бо арынны өскертир',
+'create-this-page'  => 'Бо арынны кылыр',
 'delete'            => 'Ап каар',
 'deletethispage'    => 'Бо арынны ап каар',
 'protect'           => 'Камгалаар',
+'protect_change'    => 'өскертир',
 'protectthispage'   => 'Бо арынны камгалаар',
 'unprotect'         => 'Камгалалды ап каар',
 'unprotectthispage' => 'Бо арынның камгалалын ап каар',
@@ -193,12 +197,13 @@ $messages = array(
 'newmessagesdifflink' => 'бурунгу өскерлиишкин',
 'editsection'         => 'өскертир',
 'editold'             => 'өскертир',
+'editlink'            => 'өскертир',
 'editsectionhint'     => 'Бөгүмнү өскертир: $1',
 'toc'                 => 'Допчу',
 'showtoc'             => 'көргүзер',
 'hidetoc'             => 'чажырар',
 'viewdeleted'         => '{{grammar:accusative|$1}} көөр?',
-'restorelink'         => '$1 балаттынган өскерилгелер',
+'restorelink'         => '{{PLURAL:$1|$1 балаттынган өскерилгелер}}',
 'feedlinks'           => 'Агым:',
 'site-rss-feed'       => '$1 РСС Медээ Агымы',
 'site-atom-feed'      => '$1 Атом Медээ Агымы',
@@ -255,11 +260,13 @@ $messages = array(
 'loginlanguagelabel' => 'Дыл: $1',
 
 # Password reset dialog
-'resetpass_header'    => 'Чажыт сөстү катап чогаадып кылыр',
-'oldpassword'         => 'Эгри чажыт сөс:',
-'newpassword'         => 'Чаа чажыт сөс:',
-'resetpass_submit'    => 'Чажыт сөстү чоогадып кылыр база кирер.',
-'resetpass_forbidden' => '{{grammar:locative|{{SITENAME}}}} чажыт сөстү өскертивейн болбас',
+'resetpass'                 => 'Чажыт сөзү өскертир',
+'resetpass_header'          => 'Чажыт сөстү катап чогаадып кылыр',
+'oldpassword'               => 'Эгри чажыт сөс:',
+'newpassword'               => 'Чаа чажыт сөс:',
+'resetpass_submit'          => 'Чажыт сөстү чоогадып кылыр база кирер.',
+'resetpass_forbidden'       => '{{grammar:locative|{{SITENAME}}}} чажыт сөстү өскертивейн болбас',
+'resetpass-submit-loggedin' => 'Чажыт сөзү өскертир',
 
 # Edit page toolbar
 'bold_sample'     => 'Карартыр',
@@ -312,7 +319,7 @@ $messages = array(
 'page_last'           => 'сөөлгү',
 'histfirst'           => 'Эң эрте',
 'histlast'            => 'Эң дээм чаагы',
-'historysize'         => '($1 байт)',
+'historysize'         => '({{PLURAL:$1|$1 байт}})',
 'historyempty'        => '(куруг)',
 
 # Revision feed
@@ -327,10 +334,15 @@ $messages = array(
 'revdelete-hide-comment' => 'Өскерлиишкинниң комментарийн чажырар',
 'revdelete-hide-user'    => 'Чогаалчының адын/ИП-адресин чажырар',
 
+# History merging
+'mergehistory-reason' => 'Чылдагаан:',
+
 # Diffs
 'history-title'           => '"$1" деп арынның үндүрери төөгүзү',
 'lineno'                  => '$1 одуруг:',
 'compareselectedversions' => 'Шилип алган хевирлери деңнээр',
+'diff-width'              => 'калбаа',
+'diff-height'             => 'бедии',
 
 # Search results
 'searchresults'      => 'Түңнелдер',
@@ -338,32 +350,41 @@ $messages = array(
 'nextn'              => 'соонда {{PLURAL:$1|$1}}',
 'viewprevnext'       => '($1 {{int:pipe-separator}} $2) ($3) көөр',
 'searchhelp-url'     => 'Help:Допчузу',
-'search-result-size' => '$1 ($2 сөс)',
+'search-result-size' => '$1 ({{PLURAL:$2|$2 сөс}})',
 'powersearch'        => 'Дилээр',
 
 # Preferences page
-'preferences'       => 'Шилиирилер',
-'mypreferences'     => 'Мээң шилиирилерим',
-'changepassword'    => 'Чажыт сөстү өскертир',
-'prefs-skin'        => 'Кеш',
-'skin-preview'      => 'Чижеглей көөр',
-'prefs-personal'    => 'Ажыглакчының медээлери',
-'prefs-rc'          => 'Дээм чаагы өскерлиишкиннер',
-'prefs-watchlist'   => 'Хайгаарылга даңзызы',
-'saveprefs'         => 'Шыгжаар',
-'prefs-editing'     => 'Өскертир',
-'rows'              => 'Одуруглар:',
-'columns'           => 'Баганалар:',
-'searchresultshead' => 'Дилээр',
-'servertime'        => 'Сервер шакы',
-'default'           => 'ниити',
-'prefs-files'       => 'файлдар',
-'youremail'         => 'Э-чагааңар:',
-'username'          => 'Aжыглакчының ады:',
-'yourrealname'      => 'Шын адыңар *',
-'yourlanguage'      => 'Дылыңар:',
-'yournick'          => 'Шола ат:',
-'email'             => 'Э-чагаа',
+'preferences'               => 'Шилиирилер',
+'mypreferences'             => 'Мээң шилиирилерим',
+'changepassword'            => 'Чажыт сөстү өскертир',
+'prefs-skin'                => 'Кеш',
+'skin-preview'              => 'Чижеглей көөр',
+'prefs-personal'            => 'Ажыглакчының медээлери',
+'prefs-rc'                  => 'Дээм чаагы өскерлиишкиннер',
+'prefs-watchlist'           => 'Хайгаарылга даңзызы',
+'saveprefs'                 => 'Шыгжаар',
+'prefs-editing'             => 'Өскертир',
+'rows'                      => 'Одуруглар:',
+'columns'                   => 'Баганалар:',
+'searchresultshead'         => 'Дилээр',
+'servertime'                => 'Серверниң шагы:',
+'timezoneregion-africa'     => 'Африка',
+'timezoneregion-america'    => 'Америка',
+'timezoneregion-antarctica' => 'Антарктика',
+'timezoneregion-arctic'     => 'Арктика',
+'timezoneregion-asia'       => 'Азия',
+'timezoneregion-australia'  => 'Австралия',
+'timezoneregion-europe'     => 'Европа',
+'default'                   => 'ниити',
+'prefs-files'               => 'файлдар',
+'youremail'                 => 'Э-чагааңар:',
+'username'                  => 'Aжыглакчының ады:',
+'yourrealname'              => 'Шын адыңар *',
+'yourlanguage'              => 'Дылыңар:',
+'yournick'                  => 'Шола ат:',
+'gender-male'               => 'Эр',
+'gender-female'             => 'Кыс',
+'email'                     => 'Э-чагаа',
 
 # User rights
 'editinguser' => '<b>$1</b> деп ажыглакчыны өскертип турар ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
@@ -381,8 +402,9 @@ $messages = array(
 'action-edit' => 'бо арынны өскертир',
 
 # Recent changes
-'nchanges'                          => '$1 өскерлиишкин',
+'nchanges'                          => '{{PLURAL:$1|$1 өскерлиишкин}}',
 'recentchanges'                     => 'Өскерлиишкиннер',
+'recentchanges-legend-newpage'      => '$1 - чаа арын',
 'rcshowhideminor'                   => 'Бичии өскерлиишкиннерни $1',
 'rcshowhidebots'                    => 'Боттарну $1',
 'rcshowhideliu'                     => 'Кирер ажыглакчыларны $1',
@@ -392,7 +414,7 @@ $messages = array(
 'hist'                              => 'төөгү',
 'hide'                              => 'Чажырар',
 'show'                              => 'көргүзер',
-'number_of_watching_users_pageview' => '[$1 хайгаараар ажыглакчы]',
+'number_of_watching_users_pageview' => '[$1 хайгаараар {{PLURAL:$1|ажыглакчы}}]',
 'newsectionsummary'                 => '/* $1 */ чаа бөлгүм',
 
 # Recent changes linked
@@ -464,12 +486,12 @@ $messages = array(
 'fewestrevisions' => 'Эң эвээш үндүрери арыннар',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 байт',
-'ncategories'             => '$1 бөлүк',
-'nlinks'                  => '$1 холбаа',
-'nmembers'                => '$1 кежигүн',
-'nrevisions'              => '$1 үндүрери',
-'nviews'                  => '$1 көрүш',
+'nbytes'                  => '{{PLURAL:$1|$1 байт}}',
+'ncategories'             => '$1 {{PLURAL:$1|бөлүк}}',
+'nlinks'                  => '$1 {{PLURAL:$1|холбаа}}',
+'nmembers'                => '{{PLURAL:$1|$1 кежигүн}}',
+'nrevisions'              => '$1 {{PLURAL:$1|үндүрери}}',
+'nviews'                  => '$1 {{PLURAL:$1|көрүш}}',
 'specialpage-empty'       => 'Бо илеткелдиң түңнели чок.',
 'lonelypages'             => 'Чааскаан арыннар',
 'uncategorizedpages'      => 'Бөлүк эвес арыннар',
@@ -521,10 +543,10 @@ $messages = array(
 # E-mail user
 'emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаар',
 'defemailsubject' => '{{grammar:ablative|{{SITENAME}}}} э-чагаа',
-'emailfrom'       => 'Кайыын',
-'emailto'         => 'Каяа',
-'emailsubject'    => 'Кол сөс',
-'emailmessage'    => 'Чагаа',
+'emailfrom'       => 'Кайыын:',
+'emailto'         => 'Каяа:',
+'emailsubject'    => 'Кол сөс:',
+'emailmessage'    => 'Чагаа:',
 'emailsend'       => 'Чорудар',
 
 # Watchlist
@@ -552,7 +574,7 @@ $messages = array(
 'deletedarticle' => '"[[$1]]" деп арынны ап каан',
 
 # Protect
-'protectcomment'      => 'Комментарий:',
+'protectcomment'      => 'Чылдагаан:',
 'protect-default'     => '(ниити)',
 'protect-level-sysop' => 'Чүгле сисоплар',
 'pagesize'            => '(байттар)',
@@ -575,7 +597,7 @@ $messages = array(
 'uctop'         => '(баш)',
 
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң деткимчемнерин көргүзер',
-'sp-contributions-talk'     => 'Чугаалажыр',
+'sp-contributions-talk'     => 'чугаалажыр',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',
 'sp-contributions-submit'   => 'Дилээр',
 
@@ -623,12 +645,12 @@ $messages = array(
 'import-comment' => 'Комментарий:',
 
 # Import log
-'import-logentry-upload-detail' => '$1 үндүрери(лер)',
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|үндүрери}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'Силерниң ажыглакчы арныңнар',
 'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
-'tooltip-pt-mycontris'      => 'Мээң деткимчемнерим даңзызы',
+'tooltip-pt-mycontris'      => 'Силерниң деткимчемнериңер даңзызы',
 'tooltip-pt-logout'         => 'Үнер',
 'tooltip-ca-talk'           => 'Допчу арны дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаар',
@@ -654,7 +676,7 @@ $messages = array(
 'tooltip-save'              => 'Силерниң өскерлиишкиннериңерни шыгжаар',
 
 # Attribution
-'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес ажыглакчызы(лары)',
+'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес {{PLURAL:$1|ажыглакчызы|ажыглакчылары}}',
 
 # Skin names
 'skinname-standard'    => 'Classic',
@@ -673,6 +695,9 @@ $messages = array(
 # Browsing diffs
 'previousdiff' => '← Бүрүнгү ылгал',
 'nextdiff'     => 'Соонда ылгал →',
+
+# Media information
+'widthheightpage' => '$1x$2, $3 {{PLURAL:$3|арын}}',
 
 # Special:NewFiles
 'showhidebots' => '(боцду $1)',

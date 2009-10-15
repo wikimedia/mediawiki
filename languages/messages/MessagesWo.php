@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ahloubadar
  * @author Ibou
  * @author SF-Language
  * @author Urhixidur
@@ -411,10 +412,10 @@ Laaj bees mujje yónne ci dàttub njoxe bi moo doonoon:
 <blockquote><tt>$1</tt></blockquote>.
 bàyyikoo ci bii solo « <tt>$2</tt> ». 
 Dàttub njoxe bee delloo bii njuumte « <tt>$3 : $4</tt> ».',
-'dberrortextcl'        => 'Ab laaj ca dàttub njoxe ba jur na ab njuumtey mbindin.
-Laaj bi ñu mujje yónne dàttub njoxe bi moo doonoon : « $1 » 
-bàyyikoo ci bii solo « $2 ». 
-MySQL moo delloo bii njuumte « $3 : $4 ».',
+'dberrortextcl'        => ' Ab laaj ca dàttub njoxe ba jur na jafe-jafey mbindin.
+Laaj bi ñu mujje yónne dàttub njoxe bi moo doon : « $1 » 
+bàyyi koo ci bii solo « $2 ». 
+Dàttub njoxe delloo si bii njuumte « $3 : $4 ».',
 'laggedslavemode'      => 'Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def',
 'readonly'             => 'Dàttub njoxe bi dañu koo caabi',
 'enterlockreason'      => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',
@@ -470,7 +471,7 @@ Ngirte li mu joxe mooy ne « ''$2'' ».",
 Man ngaa wéy di jëfandikoo {{SITENAME}} ci anam buñ la dul xamme walla nga  [[Special:UserLogin|duggewaat]] ak wenn tur wi walla ak weneen.",
 'welcomecreation'            => '== Dalal-jamm, $1 ! ==
 
-Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAME}}.',
+Sosees na sam sàq. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAME}}.',
 'yourname'                   => 'Sa turu jëfandikukat',
 'yourpassword'               => 'Sa baatujàll',
 'yourpasswordagain'          => 'Bindaatal sa baatujàll',
@@ -533,7 +534,9 @@ Ngir moytu ay yaq, benn m-bataaxalu fattali rek lañu lay yónne ci diiru {{PLUR
 Baatujàll bu « $2 » mooy « $3 ». Li gën mooy nga dugg ci teel te soppi baatujàll bi.
 
 Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
-'login-throttled'            => 'Jéem ngaa dugg yoon yu bari ak bii baatujàll bu mii sàq. Xaaral tuuti laataa ngay jéemaat.',
+'login-throttled'            => 'Jéem ngaa dugg ay yoon te jàllul. 
+
+Ngalla néggandikul ab diir door a jéemaat.',
 'loginlanguagelabel'         => 'Làkk : $1',
 
 # Password reset dialog
@@ -634,9 +637,9 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 Baatujàllub bii jëfandikukat bu bees man nga ko soppi ci ''[[Special:ChangePassword|soppi baatujàll]]'' soo duggee ba noppi.",
 'newarticle'                       => '(Bees)',
 'newarticletext'                   => "Da ngaa topp ab lëkkalekaay buy jëme ci aw xët wu amagul. ngir sos xët wi léegi, duggalal sa mbind ci boyot bii ci suuf (man ngaa yër [[{{MediaWiki:Helppage}}|xëtu ndimbal wi]] ngir yeneeni xamle). Su fekkee njuumtee la fi indi cuqal ci '''dellu''' bu sa joowukaay.",
-'anontalkpagetext'                 => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukat bu kenn-xamul, bu bindoogul walla du jëfandikoo sàqam. 
-Kon ngir xamme ko faaw nga jëfandikoo màkkaanub IP wan. Te màkkaanub IP jëfandikukat yu bari man nañ ka bokk. 
-Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañu laa féetale ay kàddu yoo moomul, man ngaa [[Special:UserLogin|bindu]] walla [[Special:UserLogin|dugg]] ngi benn jaxase bañatee am ëllëg .''",
+'anontalkpagetext'                 => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukatu alaxam, bu bindoogul ba fim ne mbaa jëfandikoowul am sàqam. 
+Kon ngir xàmmee ko fàw nga jëfandikoo màkkaanub IP wam. Te màkkaanub IP jëfandikukat yu bari man nañ koo bokk. 
+Su fekkee jëfandikukatu alaxam nga, te nga gis ne dees laa féetale ay kàddu yoo moomul, ngalla [[Special:UserLogin|bindu]] walla [[Special:UserLogin|dugg]] ngir benn jaxase bañatee am ëllëg .''",
 'noarticletext'                    => 'Fi mu ne ni amul menn mbind ci xët wii; man ngaa [[Special:Search/{{PAGENAME}}|seet koju xët wi]] ci yeneen xët, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} seet ci xëtu jagleel wi ],
 walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii].',
 'userpage-userdoesnotexist'        => 'Mii sàqum jëfandikukat « $1 » du bu ku-bindu. Seetal bu baax ndax da ngaa namma sos walla soppi wii xët.',
