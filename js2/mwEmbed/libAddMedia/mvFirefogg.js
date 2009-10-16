@@ -7,7 +7,7 @@ loadGM({
 	"fogg-select_new_file" : "Select new file",
 	"fogg-select_url" : "Select URL",
 	"fogg-save_local_file" : "Save Ogg",
-	"fogg-check_for_fogg" : "Checking for Firefogg <blink>...<\/blink>",
+	"fogg-check_for_fogg" : "Checking for Firefogg ...",
 	"fogg-installed" : "Firefogg is installed",
 	"fogg-for_improved_uplods" : "For improved uploads:",
 	"fogg-please_install" : "<a href=\"$1\">Install Firefogg<\/a>. More <a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Firefogg\">about Firefogg<\/a>",

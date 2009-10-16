@@ -3,7 +3,7 @@
 */
 
 loadGM({
-	"mwe-loading_plugin" : "loading plugin <blink>...<\/blink>",
+	"mwe-loading_plugin" : "loading plugin ...",
 	"mwe-select_playback" : "Set playback preference",
 	"mwe-link_back" : "Link back",	
 	"mwe-error_swap_vid" : "Error: mv_embed was unable to swap the video tag for the mv_embed interface",
