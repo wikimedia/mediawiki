@@ -36,11 +36,14 @@ var nativeEmbed = {
 			eb+='autoplay="true" ';*/
 			
 		//continue with the other attr:						
-		eb+=		'oncanplaythrough="$j(\'#'+this.id+'\').get(0).oncanplaythrough();return false;" ' +
-					   'onloadedmetadata="$j(\'#'+this.id+'\').get(0).onloadedmetadata();return false;" ' + 
-					   'loadedmetadata="$j(\'#'+this.id+'\').get(0).onloadedmetadata();return false;" ' +
-					   'onprogress="$j(\'#'+this.id+'\').get(0).onprogress( event );return false;" '+
-					   'onended="$j(\'#'+this.id+'\').get(0).onended();return false;" >' +
+		eb+= 'oncanplaythrough="$j(\'#'+this.id+'\').get(0).oncanplaythrough();return false;" ' +
+			   'onloadedmetadata="$j(\'#'+this.id+'\').get(0).onloadedmetadata();return false;" ' + 
+			   'loadedmetadata="$j(\'#'+this.id+'\').get(0).onloadedmetadata();return false;" ' +
+			   'onprogress="$j(\'#'+this.id+'\').get(0).onprogress( event );return false;" '+
+			   'onended="$j(\'#'+this.id+'\').get(0).onended();return false;" '+
+			   'onseeking="$j(\'#'+this.id+'\').get(0).onseeking();" ' +
+       		   'onseeked="$j(\'#'+this.id+'\').get(0).onseeked();" ' +
+       		   '>' +			   
 			'</video>';
 		return eb;
 	},
@@ -68,7 +71,14 @@ var nativeEmbed = {
 			}			
 		}
 	},	
-	doSeek:function(perc){				
+	onseeking:function(){
+		this.seeking = true;
+		this.setStatus( '<blink>' + gM('mwe-seeking') + '</blink>' );
+	},
+	onseeked: function(){
+		this.seeking = false;
+	},
+	doSeek:function(perc){					
 		//js_log('native:seek:p: ' + perc+ ' : '  + this.supportsURLTimeEncoding() + ' dur: ' + this.getDuration() + ' sts:' + this.seek_time_sec );		
 		//@@todo check if the clip is loaded here (if so we can do a local seek)
 		if( this.supportsURLTimeEncoding() || !this.vid){			
@@ -100,7 +110,7 @@ var nativeEmbed = {
 			_this.getVID();		
 			//if we have duration then we are ready to do the seek
 			if(this.vid && this.vid.duration){
-				_this.doSeek(perc);
+				_this.doSeek( perc );
 			}else{			
 				//try to get player for 10 seconds: 
 				if( rfsCount < 200 ){

@@ -49,7 +49,8 @@ loadGM({
 	"mwe-playerselect" : "Players",
 	"mwe-read_before_embed" : "Please read the <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">security notes on remote embedding<\/a> before actually embedding!",
 	"mwe-embed_site_or_blog" : "Embed on your site or blog",
-	"mwe_related_videos" : "Related videos"
+	"mwe-related_videos" : "Related videos",
+	"mwe-seeking": "seeking"
 });
 
 //set the globals:
@@ -1043,7 +1044,7 @@ embedVideo.prototype = {
 		return 'function getEmbedHTML should be overitten by embedLib ';
 	},
 	//do seek function (should be overwritten by implementing embedLibs)
-	// first check if seek can be done on locally downloaded content. 
+	// to check if seek can be done on locally downloaded content. 
 	doSeek : function( perc ){		
 		if( this.supportsURLTimeEncoding() ){			
 			//make sure this.seek_time_sec is up-to-date:
@@ -1199,7 +1200,7 @@ embedVideo.prototype = {
 		if( this.wikiTitleKey){
 			$j('#dc_'+this.id).append(
 			'<div class="related_vids" >' +
-			   '<h1>' + gM('mwe_related_videos') + '</h1>'+
+			   '<h1>' + gM('mwe-related_videos') + '</h1>'+
 				'<ul>' +
 				'</ul>' +
 			'</div>'); 	
@@ -2060,7 +2061,7 @@ embedVideo.prototype = {
 	//plugin objects are responsible for updating currentTime
 	monitor:function(){		
 		if( this.currentTime && this.currentTime > 0 && this.duration){
-			if( !this.userSlide ){
+			if( !this.userSlide && ! this.seeking ){
 				if( this.start_offset  ){ 
 					//if start offset include that calculation 
 					this.setSliderValue( ( this.currentTime - this.start_offset ) / this.duration );			

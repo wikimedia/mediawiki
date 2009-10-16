@@ -278,7 +278,8 @@ $messages['en'] = array(
 	'mwe-playerselect' => 'Players',
 	'mwe-read_before_embed' => 'Please read the <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">security notes on remote embedding</a> before actually embedding!',
 	'mwe-embed_site_or_blog' => 'Embed on your site or blog',
-	'mwe_related_videos' => 'Related videos',
+	'mwe-related_videos' => 'Related videos',
+	'mwe-seeking' => "seeking",
 );
 
 /** Message documentation (Message documentation)
