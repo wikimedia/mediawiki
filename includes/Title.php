@@ -546,7 +546,7 @@ class Title {
 	 * @return \type{\string} Namespace text
 	 */
 	public function getNsText() {
-		global $wgContLang, $wgCanonicalNamespaceNames;
+		global $wgContLang;
 
 		if ( '' != $this->mInterwiki ) {
 			// This probably shouldn't even happen. ohh man, oh yuck.
@@ -555,8 +555,8 @@ class Title {
 			//
 			// Use the canonical namespaces if possible to try to
 			// resolve a foreign namespace.
-			if( isset( $wgCanonicalNamespaceNames[$this->mNamespace] ) ) {
-				return $wgCanonicalNamespaceNames[$this->mNamespace];
+			if( MWNamespace::exists( $this->mNamespace ) ) {
+				return MWNamespace::getCanonicalName( $this->mNamespace );
 			}
 		}
 		return $wgContLang->getNsText( $this->mNamespace );
@@ -3616,13 +3616,13 @@ class Title {
 	 * @return \type{\string} XML 'id' name
 	 */
 	public function getNamespaceKey( $prepend = 'nstab-' ) {
-		global $wgContLang, $wgCanonicalNamespaceNames;
+		global $wgContLang;
 		// Gets the subject namespace if this title
 		$namespace = MWNamespace::getSubject( $this->getNamespace() );
 		// Checks if cononical namespace name exists for namespace
-		if ( isset( $wgCanonicalNamespaceNames[$namespace] ) ) {
+		if ( MWNamespace::exists( $this->getNamespace() ) ) {
 			// Uses canonical namespace name
-			$namespaceKey = $wgCanonicalNamespaceNames[$namespace];
+			$namespaceKey = MWNamespace::getCanonicalName( $namespace );
 		} else {
 			// Uses text of namespace
 			$namespaceKey = $this->getSubjectNsText();

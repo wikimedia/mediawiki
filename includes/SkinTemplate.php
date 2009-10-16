@@ -134,7 +134,7 @@ class SkinTemplate extends Skin {
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks, $wgUseSiteJs, $wgDebugComments;
-		global $wgArticlePath, $wgScriptPath, $wgServer, $wgCanonicalNamespaceNames;
+		global $wgArticlePath, $wgScriptPath, $wgServer;
 
 		wfProfileIn( __METHOD__ );
 
@@ -226,8 +226,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'pageclass', $this->getPageClasses( $this->mTitle ) );
 		$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
 
-		$nsname = isset( $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] ) ?
-					$wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] :
+		$nsname = MWNamespace::exists( $this->mTitle->getNamespace() ) ?
+					MWNamespace::getCanonicalName( $this->mTitle->getNamespace() ) :
 					$this->mTitle->getNsText();
 
 		$tpl->set( 'nscanonical', $nsname );
