@@ -7,6 +7,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 * (bug 20239) MediaWiki:Imagemaxsize does not contain anymore a <br /> tag which
   was displayed to the user
+* (bug 21150) SQLite no longer raise an error when deleting files
 
 === Changes since 1.15.1 ===
 

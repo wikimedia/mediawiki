@@ -497,6 +497,13 @@ class DatabaseSqlite extends Database {
 		return $s;
 	}
 
+	/*
+	 * Build a concatenation list to feed into a SQL query
+	 */
+	function buildConcat( $stringList ) {
+		return '(' . implode( ') || (', $stringList ) . ')';
+	}
+
 } // end DatabaseSqlite class
 
 /**
