@@ -357,7 +357,7 @@ class Skin extends Linker {
 		}
 		global $wgScript, $wgTitle, $wgStylePath, $wgUser, $wgScriptExtension;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
-		global $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
+		global $wgOut, $wgArticle;
 		global $wgBreakFrames, $wgRequest, $wgVariantArticlePath, $wgActionPaths;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
@@ -365,7 +365,7 @@ class Skin extends Linker {
 		global $wgMWSuggestTemplate, $wgDBname, $wgEnableMWSuggest;
 
 		$ns = $wgTitle->getNamespace();
-		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
+		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
 		$separatorTransTable = $wgContLang->separatorTransformTable();
 		$separatorTransTable = $separatorTransTable ? $separatorTransTable : array();
 		$compactSeparatorTransTable = array(

@@ -107,6 +107,15 @@ class MWNamespace {
 			? $index - 1
 			: $index;
 	}
+	
+	/**
+	 * Returns whether the specified namespace exists
+	 */
+	public static function exists( $index ) {
+		global $wgCanonicalNamespaceNames;
+		return isset( $wgCanonicalNamespaceNames[$index] );
+	}
+
 
 	/**
 	 * Returns the canonical (English Wikipedia) name for a given index
