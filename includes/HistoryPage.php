@@ -259,8 +259,11 @@ class HistoryPage {
 		if( $rev->getComment() == '' ) {
 			global $wgContLang;
 			$title = wfMsgForContent( 'history-feed-item-nocomment',
-			$rev->getUserText(),
-			$wgContLang->timeanddate( $rev->getTimestamp() ) );
+				$rev->getUserText(),
+				$wgContLang->timeanddate( $rev->getTimestamp() ),
+				$wgContLang->date( $rev->getTimestamp() ),
+				$wgContLang->time( $rev->getTimestamp() )
+			);
 		} else {
 			$title = $rev->getUserText() .
 			wfMsgForContent( 'colon-separator' ) .
