@@ -611,7 +611,7 @@ if( _global['gMsg'] ){
 
 // All default messages in [English] should be overwritten by the CMS language message system.
 $mw.lang.loadGM({
-	"mwe-loading_txt" : "loading <blink>...<\/blink>",
+	"mwe-loading_txt" : "loading ...",
 	"mwe-loading_title" : "Loading...",
 	"mwe-size-gigabytes" : "$1 GB",
 	"mwe-size-megabytes" : "$1 MB",

@@ -393,7 +393,7 @@ mvPlayList.prototype = {
 	getHTML:function(){	
 		js_log('mvPlaylist:getHTML:  loading:' + this.loading);						
 		if(this.loading){		
-			$j('#'+this.id).html('loading playlist<blink>...</blink>'); 
+			$j('#'+this.id).html('loading playlist...'); 
 			if( this.loading_external_data ){
 				//load the data source chain of functions (to update the innerHTML)			   
 				this.getDataSource();  

@@ -73,7 +73,7 @@ var nativeEmbed = {
 	},	
 	onseeking:function(){
 		this.seeking = true;
-		this.setStatus( '<blink>' + gM('mwe-seeking') + '</blink>' );
+		this.setStatus( '' + gM('mwe-seeking') + '' );
 	},
 	onseeked: function(){
 		this.seeking = false;
