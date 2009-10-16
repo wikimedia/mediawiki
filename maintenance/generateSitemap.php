@@ -134,7 +134,7 @@ class GenerateSitemap extends Maintenance {
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g.\n" .
 									"\t\thttp://en.wikipedia.org. This is sometimes necessary because\n" .
 									"\t\tserver name detection may fail in command line scripts.", false, true );
-		$this->addOption( 'compress', 'Compress the sitemap files, can take value yes|no, default yes' );
+		$this->addOption( 'compress', 'Compress the sitemap files, can take value yes|no, default yes', false, true );
 	}
 
 	/**
