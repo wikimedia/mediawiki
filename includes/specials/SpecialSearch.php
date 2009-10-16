@@ -29,7 +29,7 @@
  * @param $par String: (default '')
  */
 function wfSpecialSearch( $par = '' ) {
-	global $wgRequest, $wgUser, $wgUseOldSearchUI;
+	global $wgRequest, $wgUser;
 	// Strip underscores from title parameter; most of the time we'll want
 	// text form here. But don't strip underscores from actual text params!
 	$titleParam = str_replace( '_', ' ', $par );
@@ -866,7 +866,7 @@ class SpecialSearch {
 	}
 
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
-		global $wgContLang, $wgCanonicalNamespaceNames, $wgLang;
+		global $wgContLang, $wgLang;
 		
 		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
 		
