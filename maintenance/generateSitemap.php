@@ -291,7 +291,7 @@ class GenerateSitemap extends Maintenance {
 					$this->file = $this->open( $this->fspath . $filename, 'wb' );
 					$this->write( $this->file, $this->openFile() );
 					fwrite( $this->findex, $this->indexEntry( $filename ) );
-					$this->output( "\t$this->fspath$filename" );
+					$this->output( "\t$this->fspath$filename\n" );
 					$length = $this->limit[0];
 					$i = 1;
 				}
