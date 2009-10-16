@@ -191,7 +191,6 @@ abstract class UploadBase {
 				$verification = array( $verification );
 			return array( 'status' => self::VERIFICATION_ERROR,
 					'details' => $verification );
-
 		}
 
 		$error = '';
@@ -818,7 +817,7 @@ abstract class UploadBase {
 		#      that does not seem to be worth the pain.
 		#      Ask me (Duesentrieb) about it if it's ever needed.
 		$output = array();
-		$output = wfShellExec($command, $exitCode);
+		$output = wfShellExec("$command 2>&1", $exitCode);
 
 
 		# map exit code to AV_xxx constants.
