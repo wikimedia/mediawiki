@@ -564,6 +564,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21079) There is no more line wrapping between label and field in Special:Log
 * (bug 20256) Fixed SQL errors on Special:Recentchanges and Special:Recentchangeslinked
   on SQLite backend
+* (bug 20880) Fixed updater failure on SQLite backend
 
 == API changes in 1.16 ==
 
