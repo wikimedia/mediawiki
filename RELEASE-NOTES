@@ -561,6 +561,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21114) Special:Contributions no longer shows diff links for new revisions
 * (bug 21116) MediaWiki:Templatesused, MediaWiki:Templatesusedpreview and
   MediaWiki:Templatesusedsection now support plural
+* (bug 21079) There is no more line wrapping between label and field in Special:Log
 
 == API changes in 1.16 ==
 
