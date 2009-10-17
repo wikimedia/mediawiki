@@ -299,6 +299,15 @@ class DatabaseSqlite extends DatabaseBase {
 		return - 1;
 	}
 
+	function unionSupportsOrderAndLimit() {
+		return false;
+	}
+
+	function unionQueries( $sqls, $all ) {
+		$glue = $all ? ' UNION ALL ' : ' UNION ';
+		return implode( $glue, $sqls );
+	}
+
 	function wasDeadlock() {
 		return $this->lastErrno() == SQLITE_BUSY;
 	}
