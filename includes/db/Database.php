@@ -1696,6 +1696,15 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Returns true if current database backend supports ORDER BY or LIMIT for separate subqueries 
+	 * within the UNION construct.
+	 * @return Boolean
+	 */
+	function unionSupportsOrderAndLimit() {
+		return true; // True for almost every DB supported
+	}
+
+	/**
 	 * Construct a UNION query
 	 * This is used for providing overload point for other DB abstractions
 	 * not compatible with the MySQL syntax.
