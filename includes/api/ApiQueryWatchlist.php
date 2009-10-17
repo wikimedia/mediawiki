@@ -59,7 +59,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		if (!is_null($params['owner']) && !is_null($params['token'])) {
-			$user = User::newFromName($params['owner']);
+			$user = User::newFromName($params['owner'],false);
+			if( !$user->getId() ) {
+				$this->dieUsage( 'Specified user does not exist' );
+			}
 			$token = $user->getOption('watchlisttoken');
 			if ($token == '' || $token != $params['token']) {
 				$this->dieUsage('Incorrect watchlist token provided -- please set a correct token in Special:Preferences', 'bad_wltoken');
@@ -84,8 +87,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_patrol = isset($prop['patrol']);
 
 			if ($this->fld_patrol) {
-				global $wgUser;
-				if (!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
+				if (!$user->useRCPatrol() && !$user->useNPPatrol())
 					$this->dieUsage('patrol property is not available', 'patrol');
 			}
 		}
