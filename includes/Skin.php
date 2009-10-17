@@ -363,6 +363,7 @@ class Skin extends Linker {
 		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
 		global $wgRestrictionTypes, $wgLivePreview;
 		global $wgMWSuggestTemplate, $wgDBname, $wgEnableMWSuggest;
+		global $wgSitename, $wgEnableIframeApiProxy, $wgEnableJS2system;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
@@ -413,6 +414,7 @@ class Skin extends Linker {
 			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
+			'wgSiteName' => $wgSitename,
 		);
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
@@ -440,6 +442,17 @@ class Skin extends Linker {
 			$vars['wgLivepreviewMessageReady']   = wfMsg( 'livepreview-ready' );
 			$vars['wgLivepreviewMessageFailed']  = wfMsg( 'livepreview-failed' );
 			$vars['wgLivepreviewMessageError']   = wfMsg( 'livepreview-error' );
+		}
+
+		//add api proxy var and script link if on the special proxy page:
+		if( $wgEnableJS2system &&
+			$wgTitle->getNamespace() == NS_MEDIAWIKI &&
+			$wgTitle->getDBKey() == 'ApiProxy' )
+		{
+			$vars['wgEnableIframeApiProxy'] = $wgEnableIframeApiProxy;			
+			//also add the apiProxy Page script if we are on that page
+			if( $wgEnableIframeApiProxy )
+				$wgOut->addScriptClass( 'apiProxyPage' );
 		}
 
 		if ( $wgOut->isArticleRelated() && $wgUseAjax && $wgAjaxWatch && $wgUser->isLoggedIn() ) {
@@ -864,7 +877,7 @@ END;
 		$catlinks = $this->getCategoryLinks();
 
 		$classes = 'catlinks';
-		
+
 		// Check what we're showing
 		global $wgOut, $wgUser;
 		$allCats = $wgOut->getCategoryLinks();
@@ -960,7 +973,7 @@ END;
 			else
 				$ret .= str_repeat( "<ul><li>\n", $diff );
 			$ret .= $display . "\n";
-			
+
 			$curIdent = $ident;
 		}
 		$ret .= str_repeat( '</li></ul>', $curIdent ) . '</li>';

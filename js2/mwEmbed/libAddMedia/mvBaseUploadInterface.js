@@ -359,16 +359,11 @@ mvBaseUploadInterface.prototype = {
 				//@@check if we are done
 				if( data.upload['apiUploadResult'] ){
 					//update status to 100%
-					_this.updateProgress( 1 );
-					if(typeof JSON == 'undefined'){
-						//we need to load the jQuery json parser: (older browsers don't have JSON.parse
-						mvJsLoader.doLoad([
-							'$j.secureEvalJSON'
-						],function(){
-							var  apiResult = $j.secureEvalJSON( data.upload['apiUploadResult'] );
-							_this.processApiResult( apiResult );
-						});
-					}else{
+					_this.updateProgress( 1 );				
+					//see if we need to load JSON substitue:
+					mvJsLoader.doLoad( [
+						'JSON'
+					],function(){							
 						var apiResult = {};
 						try{
 							apiResult = JSON.parse ( data.upload['apiUploadResult'] ) ;
@@ -377,7 +372,7 @@ mvBaseUploadInterface.prototype = {
 							js_log('errro: could not parse apiUploadResult ')
 						}
 						_this.processApiResult( apiResult );
-					}
+					});
 					return ;
 				}
 
