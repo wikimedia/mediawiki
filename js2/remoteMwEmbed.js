@@ -28,6 +28,15 @@ function doPageSpecificRewrite() {
 			importScriptURI( mwEmbedHostPath + '/uploadPage.js' + reqAguments );
 		} );
 	}
+	
+	// Special api proxy page
+	if( wgPageName == 'MediaWiki:ApiProxy' ){
+		var wgEnableIframeApiProxy = true;
+		load_mv_embed( function() {
+			importScriptURI( mwEmbedHostPath + '/ApiProxyPage.js' + reqAguments );
+		});
+	}
+	
 
 	// OggHandler rewrite for view pages:
 	var vidIdList = [];

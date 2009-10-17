@@ -35,9 +35,9 @@ baseRemoteSearch.prototype = {
 
 	//default search result values for paging:
 	offset			 :0,
-	limit			  :20,
-	more_results	:false,
-	num_results		:0,
+	limit			: 30,
+	more_results	: false,
+	num_results		: 0,
 
 	//init the object:
 	init: function( iObj ){
@@ -53,8 +53,9 @@ baseRemoteSearch.prototype = {
 		//do global getSearchResults bindings
 		this.last_query = $j('#rsd_q').val();
 		this.last_offset = this.cp.offset;
-		//@@todo its possible that video rss is the "default" format we could put that logic here:
-	},
+		//set the loading flag:		
+		this.loading=true;
+	},	
 	/*
 	* Parses and adds video rss based input format
 	* @param $data XML data to parse
@@ -145,6 +146,37 @@ baseRemoteSearch.prototype = {
 			_this.resultsObj[ inx ] = rObj;
 			_this.num_results++;
 		});
+	},
+	getEmbedHTML: function( rObj , options) {
+		if(!options)
+			options = {};
+		//set up the output var with the default values: 
+		var outOpt = { 'width': rObj.width, 'height': rObj.height};
+		if( options['max_height'] ){			
+			outOpt.height = (options.max_height > rObj.height) ? rObj.height : options.max_height;	
+			outOpt.width = (rObj.width / rObj.height) *outOpt.height;			
+		}						
+		options.style_attr = 'style="width:' + outOpt.width + 'px;height:' + outOpt.height +'px"';
+		options.id_attr = (options['id'])?' id = "' + options['id'] +'" ': '';
+		
+		if( rObj.mime.indexOf('image') != -1 ){
+			return this.getImageEmbedHTML( rObj, options );
+		}else{
+			js_log("ERROR:: no embed code for mime type: " + rObj.mime);
+			return ' Error missing embed code ';
+		}
+	},
+	getImageEmbedHTML:function( rObj, options ) {	
+		//if crop is null do base output: 
+		var imgHtml = '<img ' + options.id_attr + ' src="' + rObj.edit_url  + '"' + options.style_attr + ' >';
+		if( rObj.crop == null)
+			return imgHtml
+		//else do crop output:	
+			return '<div style="width:'+rObj.crop.w +'px;height: ' + rObj.crop.h +'px;overflow:hidden;position:relative">' +
+						'<div style="position:relative;top:-' + rObj.crop.y +'px;left:-' + rObj.crop.x +'px">'+
+							imgHtml + 
+						'</div>'+
+					'</div>';
 	},
 	//by default just return the existing image with callback
 	getImageObj:function( rObj, size, callback){

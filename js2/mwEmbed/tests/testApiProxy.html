@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Api Proxy Test</title>
+<script type="text/javascript" src="../mv_embed.js"></script>
+
+<script type="text/javascript" >
+//HARD coded local test: 
+var remote_wiki_host = 'http://127.1.1.100';
+var remote_script_path = '/wiki_trunk';
+
+js2AddOnloadHook( function(){	
+	$j('#hostName').text( remote_wiki_host );
+	//run the api-proxy setup:
+	$j.apiProxy(
+		'client', 
+		{
+			'server_frame': remote_wiki_host +  remote_script_path + '/index.php/MediaWiki:ApiProxy',
+			'client_frame_path'	: '/wiki_trunk/js2/mwEmbed/libMwApi/NestedCallbackIframe.html',
+		},
+		function(){
+			//callback function here: 
+			$j('#setupDone').show('slow');
+			$j('#doAppendCat').click( doCatAppend ); 		
+		}
+	);				
+});
+function doCatAppend(){
+	js_log('append cat to User page');
+	//first get our user name:
+	var rObj = {
+		'action':'query',
+		'meta':'userinfo'
+	}
+	//we use normal do_api_req with keywork 'proxy' for the url 
+	$mw.proxy.doRequest( rObj,
+		function(data){					
+			//now we get the data back for that domain
+			if( !data.query || !data.query.userinfo ){
+				js_log("Error no query.userinfo ");
+				return false;
+			}			
+			if( data.query.userinfo.id == 0 ){							
+				var btn = {};
+				btn['try again'] = function(){
+					doCatAppend();
+				}
+				btn['cancel'] = function(){
+					$j(this).close();
+				}
+				$j.addDialog("Not logged in", 
+					"Are you logged in on" + remote_wiki_host + " ? Please loggin", 
+					btn
+				)				
+			}else{
+				$j('#helloTarget').hide().text( data.query.userinfo.name ).fadeIn('slow');
+			}
+		}
+	);
+	return false;
+}
+</script>
+ 
+</head>
+<body>
+<h3> Simple API proxy testing system </h3>
+
+<div id="setupProxy">Setting up Proxy ... ( <span id="hostName"></span> )</div>
+<div id="setupDone" style="display:none;">
+<br> <a href="#" id="doAppendCat" >Hello User</a> <span id="helloTarget"><span>
+<br> Some other fun api stuff here...
+</div>
+
+</body>
+</html>

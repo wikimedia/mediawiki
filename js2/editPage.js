@@ -24,7 +24,7 @@ var defaultAddMediaConfig = {
 js2AddOnloadHook( function() {
 	var amwConf = $j.extend( true, defaultAddMediaConfig, mwAddMediaConfig );
 	// kind of tricky, it would be nice to use run on ready "loader" call here
-	if( typeof $j.wikiEditor != 'undefined' ) {		
+	if( typeof $j.wikiEditor != 'undefined' ) {
 			$j( 'textarea#wpTextbox1' ).bind( 'wikiEditor-toolbar-buildSection-main',
 		    function( e, section ) {
 		        if ( typeof section.groups.insert.tools.file !== 'undefined' ) {

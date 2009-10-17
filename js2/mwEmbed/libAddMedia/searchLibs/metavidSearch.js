@@ -26,10 +26,8 @@ metavidSearch.prototype = {
 	getSearchResults:function(){
 		//call parent:
 		this.parent_getSearchResults();
-
-		var _this = this;
-		//start loading:
-		_this.loading= 1;
+		//set local ref:
+		var _this = this;		
 		js_log('metavidSearch::getSearchResults()');
 		//proccess all options
 		var url = this.cp.api_url;

@@ -88,9 +88,9 @@ mediaWikiSearch.prototype = {
 	getSearchResults:function(){
 		//call parent: 
 		this.parent_getSearchResults();
-		
+		//set local ref:
 		var _this = this;
-		this.loading = true;
+				
 		js_log('f:getSearchResults for:' + $j('#rsd_q').val() );		
 		//do two queries against the Image / File / MVD namespace:
 										 
@@ -207,7 +207,7 @@ mediaWikiSearch.prototype = {
 						}
 					}										
 				}
-													
+										
 				//likely a audio clip if no poster and type application/ogg 
 				//@@todo we should return audio/ogg for the mime type or some other way to specify its "audio" 
 				if( ! rObj.poster && rObj.mime == 'application/ogg' ){					
@@ -307,36 +307,20 @@ mediaWikiSearch.prototype = {
 		if(!cEdit)
 			var cEdit = _this.cEdit;		
 	},
-	getEmbedHTML: function( rObj , options) {
+	getEmbedHTML: function( rObj , options) {		
 		if(!options)
-			options = {};
-		//set up the output var with the default values: 
-		var outOpt = { 'width': rObj.width, 'height': rObj.height};
-		if( options['max_height'] ){			
-			outOpt.height = (options.max_height > rObj.height) ? rObj.height : options.max_height;	
-			outOpt.width = (rObj.width / rObj.height) *outOpt.height;			
-		}						
-		var style_attr = 'style="width:' + outOpt.width + 'px;height:' + outOpt.height +'px"';
-		var id_attr = (options['id'])?' id = "' + options['id'] +'" ': '';
-		var cat = rObj;		
-		//return the html type: 
-		if(rObj.mime.indexOf('image')!=-1){
-			//if crop is null do base output: 
-			var imgHtml = '<img ' + id_attr + ' src="' + rObj.edit_url  + '"' + style_attr + ' >';
-			if( rObj.crop == null)
-				return imgHtml
-			//else do crop output:	
-				return '<div style="width:'+rObj.crop.w +'px;height: ' + rObj.crop.h +'px;overflow:hidden;position:relative">' +
-							'<div style="position:relative;top:-' + rObj.crop.y +'px;left:-' + rObj.crop.x +'px">'+
-								imgHtml + 
-							'</div>'+
-						'</div>';			
+			options = {};	
+		this.parent_getEmbedHTML( rObj, options);
+		//check for image output:
+		if( rObj.mime.indexOf('image') != -1 ){
+			return this.getImageEmbedHTML( rObj, options );		
 		}
+		//for video and audio output: 		
 		var ahtml='';
-		if(rObj.mime == 'application/ogg' || rObj.mime == 'audio/ogg'){
-			ahtml = id_attr + 
+		if( rObj.mime == 'application/ogg' || rObj.mime == 'audio/ogg' ){
+			ahtml = options.id_attr + 
 						' src="' + rObj.src + '" ' +
-						style_attr +
+						options.style_attr +
 						' poster="'+  rObj.poster + '" '										
 			if(rObj.mime.indexOf('application/ogg')!=-1){
 				return '<video ' + ahtml + '></video>'; 
@@ -346,13 +330,17 @@ mediaWikiSearch.prototype = {
 				return '<audio ' + ahtml + '></audio>';
 			}
 		}						
-		js_log('ERROR:unsupored mime type: ' + rObj.mime);
+		js_log( 'ERROR:unsupored mime type: ' + rObj.mime );
 	},
 	getInlineDescWiki:function( rObj ){						
 		var desc = this.parent_getInlineDescWiki( rObj );
+		
+		//strip categories for inline Desc: (should strip license tags too but not as easy)
+		desc = desc.replace(/\[\[Category\:[^\]]*\]\]/, '');
+		
 		//just grab the description tag for inline desc:
 		var descMatch = new RegExp(/Description=(\{\{en\|)?([^|]*|)/);			
-		var dparts = desc.match(descMatch);
+		var dparts = desc.match(descMatch);		
 				
 		if( dparts && dparts.length > 1){	
 			desc = (dparts.length == 2) ? dparts[1] : dparts[2].replace('}}','');
@@ -362,9 +350,6 @@ mediaWikiSearch.prototype = {
 		//else return the title since we could not find the desc:
 		js_log('Error: No Description Tag, Using::' + desc );
 		return desc;
-	},
-	parseWikiTemplate: function( text ){
-		//@@todo parse wiki Template return object with properties and values
 	},
 	//returns the inline wikitext for insertion (template based crops for now) 
 	getEmbedWikiCode: function( rObj ){		

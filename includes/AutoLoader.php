@@ -619,6 +619,7 @@ $wgJSAutoloadLocalClasses = array(
 	'uploadPage' => 'js2/uploadPage.js',
 	'editPage' => 'js2/editPage.js',
 	'ajaxCategories' => 'js2/ajaxcategories.js',
+	'apiProxyPage'	=> 'js2/apiProxyPage.js'
 );
 
 class AutoLoader {

@@ -23,23 +23,21 @@ archiveOrgSearch.prototype = {
 	},
 	getSearchResults:function(){
 		//call parent: 
-		this.parent_getSearchResults();
-		
-		var _this = this;		
-		this.loading=true;
+		this.parent_getSearchResults();		
+		var _this = this;				
 		js_log('f:getSearchResults for:' + $j('#rsd_q').val() );		
 		//build the query var
 		var q = $j('#rsd_q').val();
 		//@@todo check advanced options: include audio and images media types
-		//for now force (Ogg video) & a creativecommons license
+		//for now force (Ogg video) & url based license
 		q+=' format:(Ogg video)';
 		q+=' licenseurl:(http\\:\\/\\/*)';
 		var reqObj = {
 			'q': q, //just search for video atm
 			'fl':"description,title,identifier,licenseurl,format,license,thumbnail",			
 			'wt':'json',			
-			'rows':'30',
-			'indent':'yes'			
+			'rows' : this.cp.limit,
+			'start' : this.cp.offset						
 		}									
 		do_api_req( {
 			'data':reqObj, 
@@ -77,15 +75,7 @@ archiveOrgSearch.prototype = {
 					'pSobj'		 :_this				
 					
 				};																										 
-				this.resultsObj[ resource_id ] = rObj;
-				
-				//likely a audio clip if no poster and type application/ogg 
-				//@@todo we should return audio/ogg for the mime type or some other way to specify its "audio" 
-						
-				//this.num_results++;	
-				//for(var i in this.resultsObj[page_id]){
-				//	js_log('added: '+ i +' '+ this.resultsObj[page_id][i]);
-				//}
+				this.resultsObj[ resource_id ] = rObj;								
 			}
 		}		
 	},

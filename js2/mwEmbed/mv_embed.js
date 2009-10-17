@@ -91,7 +91,7 @@ if( !mv_embed_path ) {
 	var mv_embed_path = getMvEmbedPath();
 }
 /**
-* wrap the global $mw object here:
+* The global $mw object:
 *
 * Any global functions/classes that are not jQuery plugins should make
 * there way into the $mw namespace
@@ -382,8 +382,9 @@ if( !mv_embed_path ) {
 		//@@todo we need a formatNum and we need to request some special packaged info to deal with that case.
 		return gM( msg , size );
 	};
-
-
+	
+	
+	
 	/**
 	* MediaWiki wikitext "Parser"
 	*
@@ -429,36 +430,15 @@ if( !mv_embed_path ) {
 				this.pOut = '';
 			},
 			parse : function(){
-				this.pObj = {};
-				this.pObj.tmpl = new Array();
-
-				//refrences for swap key
-				this.pObj.tmpl_text = new Array();
-				this.pObj.tmpl_key = new Array();
- 				this.pObj.tmpl_ns = '' ; // wikiText with place-holder
-
-				//get templates losly based on Magnus_Manske/tmpl.js code:
-				var tcnt = 0 ;
-				var ts = '' ;
-				var curt = 0 ;
-				var schar = 0;
-
-
-				//build out nested template holders:
-				var depth = 0;
-				var tKey = 0;
-				var ns = '';
-
 				/*
-				 * quickly recursive / parse out templates with top down recurse decent
+				 * quickly recursive / parse out templates:
 				 */
 
 				// ~ probably a better algorithm out there / should mirror php parser flow ~
 				// ... but I am having fun with recursion so here it is...
-				function rdpp ( txt ){
+				// or at least mirror: http://www.mediawiki.org/wiki/Extension:Page_Object_Model
+				function rdpp ( txt , cn){
 					var node = {};
-					//if we should output node text
-					var ont = true;
 					//inspect each char
 					for(var a=0; a < txt.length; a++){
 						if( txt[a] == '{' && txt[a+1] == '{' ){
@@ -467,21 +447,20 @@ if( !mv_embed_path ) {
 							if(!node['c'])
 								node['c'] = new Array();
 
-							node['c'].push( rdpp( txt.substr( a ) ) );
-							ont=true;
+							node['c'].push( rdpp( txt.substr( a ), true ) );																																									
 						}else if( txt[a] == '}' && txt[a+1] == '}'){
 							if( !node['p'] ){
 								return node;
 							}
 							node = node['p'];
-							ont=false;
 							a=a+2;
 						}
 						if(!node['t'])
 							node['t']='';
-
+						
 						if( txt[a] )
 								node['t']+=txt[a];
+								
 					}
 					return node;
 				}
@@ -503,8 +482,8 @@ if( !mv_embed_path ) {
 						tObj["arg"] = tname.split(':').pop();
 					}
 
-					js_log("TNAME::" + tObj["arg"] + ' from:: ' + ts);
-
+					js_log("TNAME::" + tObj["name"] + ' from:: ' + ts);	
+					
 					var pSet = ts.split('\|');
 					pSet.splice(0,1);
 					if( pSet.length ){
@@ -566,25 +545,57 @@ if( !mv_embed_path ) {
 						return getMagicTxtFromTempNode( node );
 					}
 				}
-				//get text node system:
-				var node = rdpp ( this.wikiText );
-				//debugger;
-				//parse out stuff:
+				//parse out the template node structure:
+				this.pNode = rdpp ( this.wikiText );
+				//strip out the parent from the root	
+				this.pNode['p'] = null;
+				
+				//do the recusrive magic swap text:
+				this.pOut = recurse_magic_swap( this.pNode );
 
-				this.pOut = recurse_magic_swap( node);
-
+			},
+			
+			/*
+			 * parsed template api ~losely based off of ~POM~
+			 * http://www.mediawiki.org/wiki/Extension:Page_Object_Model
+			 */
+			
+			/**
+			 * templates
+			 * 
+			 * gets a requested template from the wikitext (if available)
+			 *  
+			 */
+			templates: function( tname ){
+				this.parse();
+				var tmplSet = new Array();
+				function getMatchingTmpl( node ){
+					if( node['c'] ){
+						for(var i in node['c']){
+							getMatchingTmpl( node['c'] );
+						}
+					}					
+					if( tname && node.tObj){
+						if( node.tObj['name'] == tname )
+							tmplSet.push( node.tObj );
+					}else if( node.tObj ){
+						tmplSet.push( node.tObj );
+					}
+				}				
+				getMatchingTmpl( this.pNode );				
+				return tmplSet;				
 			},
 			/**
 			 * Returns the transformed wikitext
-			 *
-			 * Build output from swapable index
-			 * 		(all transforms must be expanded in parse stage and linerarly rebuilt)
-			 * Alternativly we could build output using a placeholder & replace system
+			 * 
+			 * Build output from swapable index 
+			 * 		(all transforms must be expanded in parse stage and linerarly rebuilt)  
+			 * Alternativly we could build output using a placeholder & replace system 
 			 * 		(this lets us be slightly more slopty with ordering and indexes, but probably slower)
-			 *
-			 * Ideal: we build a 'wiki DOM'
+			 * 
+			 * Ideal: we build a 'wiki DOM' 
 			 * 		When editing you update the data structure directly
-			 * 		Then in output time you just go DOM->html-ish output without re-parsing anything
+			 * 		Then in output time you just go DOM->html-ish output without re-parsing anything			   
 			 */
 			getHTML : function(){
 				//wikiText updates should invalidate pOut
@@ -597,8 +608,9 @@ if( !mv_embed_path ) {
 		//return the parserObj
 		return new parseObj( wikiText, opt) ;
 	}
-
+	
 })(window.$mw);
+
 //setup legacy global shortcuts:
 var loadGM = $mw.lang.loadGM;
 var loadRS = $mw.lang.loadRS;
@@ -618,7 +630,8 @@ $mw.lang.loadGM({
 	"mwe-size-kilobytes" : "$1 K",
 	"mwe-size-bytes" : "$1 B",
 	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2",
-	"mwe-loading-add-media-wiz": "Loading add media wizard"
+	"mwe-loading-add-media-wiz": "Loading add media wizard",
+	"mwe-apiproxy-setup" : " Setting up API proxy"
 });
 
 
@@ -666,10 +679,6 @@ function lcCssPath( cssSet ) {
  * This is used by the script loader to auto-load classes (so we only define
  * this once for PHP & JavaScript)
  *
- * This is more verbose than the earlier version that compressed paths
- * but it's all good, gzipping helps compress path strings
- * grouped by directory.
- *
  * Right now the PHP AutoLoader only reads this mv_embed.js file.
  * In the future we could have multiple lcPath calls that PHP reads
  * (if our autoloading class list becomes too long) just have to add those
@@ -685,13 +694,15 @@ lcPaths({
 	"$j.ui"				: "jquery/jquery.ui/ui/ui.core.js",
 	"$j.fn.ColorPicker"	: "libClipEdit/colorpicker/js/colorpicker.js",
 	"$j.Jcrop"			: "libClipEdit/Jcrop/js/jquery.Jcrop.js",
-	"$j.fn.simpleUploadForm": "libAddMedia/simpleUploadForm.js",
-
+	"$j.fn.simpleUploadForm" : "libAddMedia/simpleUploadForm.js",
+	
+	"$mw.proxy"		: "libMwApi/mw.proxy.js", 
+	
 	"ctrlBuilder"	: "skins/ctrlBuilder.js",
 	"kskinConfig"	: "skins/kskin/kskin.js",
 	"mvpcfConfig"	: "skins/mvpcf/mvpcf.js",
 
-	"$j.secureEvalJSON"	: "jquery/plugins/jquery.secureEvalJSON.js",
+	"JSON"				: "libMwApi/json2.js",
 	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
 	"$j.contextMenu"	: "jquery/plugins/jquery.contextMenu.js",
 	"$j.fn.suggestions"	: "jquery/plugins/jquery.suggestions.js",
@@ -725,12 +736,13 @@ lcPaths({
 	"mvAdvFirefogg"			: "libAddMedia/mvAdvFirefogg.js",
 	"mvBaseUploadInterface"	: "libAddMedia/mvBaseUploadInterface.js",
 	"remoteSearchDriver"	: "libAddMedia/remoteSearchDriver.js",
-	"seqRemoteSearchDriver" : "libAddMedia/seqRemoteSearchDriver.js",
+	"seqRemoteSearchDriver" : "libSequencer/seqRemoteSearchDriver.js",
 
 	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
 	"mediaWikiSearch"		: "libAddMedia/searchLibs/mediaWikiSearch.js",
 	"metavidSearch"			: "libAddMedia/searchLibs/metavidSearch.js",
 	"archiveOrgSearch"		: "libAddMedia/searchLibs/archiveOrgSearch.js",
+	"flickrSearch"			: "libAddMedia/searchLibs/flickrSearch.js",
 	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
 
 	"mvClipEdit"			: "libClipEdit/mvClipEdit.js",
@@ -778,10 +790,6 @@ function mv_set_loading(target, load_id){
   * mvJsLoader class handles initialization and js file loads
   */
 
-// Shortcut
-function mwLoad( loadSet, callback ) {
-	mvJsLoader.doLoad( loadSet, callback );
-}
 var mvJsLoader = {
 	libreq : {},
 	libs : {},
@@ -1066,6 +1074,13 @@ var mvJsLoader = {
 	}
 }
 
+// Shortcut ( @@todo consolidate shortcuts & re-factor mvJsLoader )
+function mwLoad( loadSet, callback ) {
+	mvJsLoader.doLoad( loadSet, callback );
+}
+//$mw.shortcut
+$mw.load = mwLoad;
+
 // Load an external JS file. Similar to jquery .require plugin,
 // but checks for object availability rather than load state.
 
@@ -1172,15 +1187,30 @@ function mv_remove_modal( speed ) {
 /*
  * Store all the mwEmbed jQuery-specific bindings
  * (set up after jQuery is available).
- * This lets you call rewrites in a jQuery way
  *
- * @@ eventually we should refactor mwCode over to jQuery style plugins
- *	  and mv_embed.js will just handle dependency mapping and loading.
+ * These functions are genneraly are loaders that do the dynamic mapping of
+ * dependencies for a given compoent
+ * 
  *
  */
 function mv_jqueryBindings() {
 	js_log( 'mv_jqueryBindings' );
 	(function( $ ) {
+		/*
+		 * apiProxy Loader loader:
+		 * 
+		 * @param mode is either 'server' or 'client'
+		 */				
+		$.apiProxy = function( mode, pConf, callback ){
+			js_log('do apiProxy setup');
+			$.addLoaderDialog( gM('mwe-apiproxy-setup') );
+			mvJsLoader.doLoad( [
+				'$mw.proxy',
+				'JSON'
+			], function(){				
+				$mw.proxy[mode]( pConf, callback );
+			});	
+		}
 		//non selector based add-media-wizard direct invocation with loader
 		$.addMediaWiz = function( iObj, callback ){			
 			js_log(".addMediaWiz call");
@@ -1253,7 +1283,7 @@ function mv_jqueryBindings() {
 						'mvPlayList',
 						'$j.ui',
 						'$j.contextMenu',
-						'$j.secureEvalJSON',
+						'JSON',
 						'mvSequencer'
 					],
 					[
@@ -1421,14 +1451,15 @@ function mv_jqueryBindings() {
 		*
 		* @param msg text text of the loader msg
 		*/
-		$.addLoaderDialog = function( msg_txt ){
-			if( $('#mwe_tmp_loader').length != 0 )
-				$('#mwe_tmp_loader').remove();
-			
+		$.addLoaderDialog = function( msg_txt ){			
+			$.addDialog( msg_txt, msg_txt + '<br>' + mv_get_loading_img() );		
+		}
+		
+		$.addDialog = function ( title, msg_txt, btn ){
+			$('#mwe_tmp_loader').remove();
 			//append the style free loader ontop: 
-			$('body').append('<div id="mwe_tmp_loader" title="' + msg_txt + '" >' +
-					msg_txt + '<br>' +
-					mv_get_loading_img() +
+			$('body').append('<div id="mwe_tmp_loader" title="' + title + '" >' +
+					msg_txt +
 			'</div>');
 			//turn the loader into a real dialog loader: 
 			mvJsLoader.doLoadDepMode([
@@ -1444,14 +1475,21 @@ function mv_jqueryBindings() {
 					draggable: false,
 					resizable: false,
 					height: 140,
-					modal: true
+					modal: true,
+					buttons: btn
 				});
 			});
 		}
-		$.closeLoaderDialog = function(){
+		$.closeLoaderDialog = function(){			
 			$('#mwe_tmp_loader').dialog('close');
 		}
-
+	
+		$.mwProxy = function( apiConf ){
+			mvJsLoader.doLoad( ['$mw.apiProxy'], 
+			function(){
+				$mw.apiProxy( apiConf );
+			});
+		}
 	})(jQuery);
 }
 /*
@@ -1876,7 +1914,11 @@ if ( typeof DOMParser == "undefined" ) {
 * Utility functions
 */
 function js_log( string ) {
-	if( window.console ) {
+	///add any prepend debug strings if nessesary
+	if( mwConfig['debug_pre'] )
+		string = mwConfig['debug_pre']+ string;
+			
+	if( window.console ) {				
 		window.console.log( string );
 	} else {
 		/*

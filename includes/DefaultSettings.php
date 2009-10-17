@@ -213,9 +213,9 @@ $wgImgAuthPublicTest = true; ///< defaults to true - if public read is turned on
  *    thumbScriptUrl    The URL for thumb.php (optional, not recommended)
  *    transformVia404   Whether to skip media file transformation on parse and rely on a 404
  *                      handler instead.
- *    initialCapital    Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE], 
- *                      determines whether filenames implicitly start with a capital letter. 
- *                      The current implementation may give incorrect description page links 
+ *    initialCapital    Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
+ *                      determines whether filenames implicitly start with a capital letter.
+ *                      The current implementation may give incorrect description page links
  *                      when the local $wgCapitalLinks and initialCapital are mismatched.
  *    pathDisclosureProtection
  *                      May be 'paranoid' to remove all parameters from error messages, 'none' to
@@ -462,7 +462,7 @@ $wgMaxUploadSize = 1024*1024*100; # 100MB
 
 
 /**
- * Enable Firefogg support. Adds support for in-browser transcoding to Ogg 
+ * Enable Firefogg support. Adds support for in-browser transcoding to Ogg
  * Theora, chunked uploads for large image files and client side hash checks.
  *
  * Ignored unless $wgEnableJS2system is true.
@@ -2438,11 +2438,11 @@ $wgCapitalLinks = true;
 
 /**
  * @since 1.16 - This can now be set per-namespace. Some special namespaces (such
- * as Special, see Namespace::$alwaysCapitalizedNamespaces for the full list) must be 
- * true by default (and setting them has no effect), due to various things that 
- * require them to be so. Also, since Talk namespaces need to directly mirror their 
- * associated content namespaces, the values for those are ignored in favor of the 
- * subject namespace's setting. Setting for NS_MEDIA is taken automatically from 
+ * as Special, see Namespace::$alwaysCapitalizedNamespaces for the full list) must be
+ * true by default (and setting them has no effect), due to various things that
+ * require them to be so. Also, since Talk namespaces need to directly mirror their
+ * associated content namespaces, the values for those are ignored in favor of the
+ * subject namespace's setting. Setting for NS_MEDIA is taken automatically from
  * NS_FILE.
  * EX: $wgCapitalLinkOverrides[ NS_FILE ] = false;
  */
@@ -2787,7 +2787,7 @@ $wgEnableScriptLoader = false;
  *
  * note this will only check core scripts that are directly included on the page.
  * (not scripts loaded after the initial page display since after initial page
- * display scripts inherit the unique request id) 
+ * display scripts inherit the unique request id)
  *
  * and or you can update $wgStyleVersion
  */
@@ -2800,13 +2800,18 @@ $wgScriptModifiedCheck = true;
 $wgEnableJS2system = false;
 
 /*
+ * enable api iframe proxy
+ */
+$wgEnableIframeApiProxy = false;
+
+/*
  * boolean; if we should minify the output. (note if you send ?debug=true in
  * the page request it will automatically not group and not minify)
  */
 $wgEnableScriptMinify = true;
 
 /*
- * boolean; if we should enable javascript localization (it loads loadGM json 
+ * boolean; if we should enable javascript localization (it loads loadGM json
  * call with mediaWiki msgs)
  */
 $wgEnableScriptLocalization = true;
@@ -2817,7 +2822,7 @@ $wgEnableScriptLocalization = true;
 $wgMwEmbedDirectory = "js2/mwEmbed/";
 
 /*
- * Turn on debugging for the javascript script-loader & forces fresh copies 
+ * Turn on debugging for the javascript script-loader & forces fresh copies
  * of javascript
  */
 $wgDebugJavaScript = false;
@@ -3729,7 +3734,7 @@ $wgAjaxWatch = true;
 $wgAjaxUploadDestCheck = true;
 
 /**
- * Enable the AJAX upload interface (needed for large http uploads & to display 
+ * Enable the AJAX upload interface (needed for large http uploads & to display
  * progress on uploads for browsers that support it)
  */
 $wgAjaxUploadInterface = true;
@@ -4010,7 +4015,7 @@ $wgExceptionHooks = array();
  * Page property link table invalidation lists. When a page property
  * changes, this may require other link tables to be updated (eg
  * adding __HIDDENCAT__ means the hiddencat tracking category will
- * have been added, so the categorylinks table needs to be rebuilt). 
+ * have been added, so the categorylinks table needs to be rebuilt).
  * This array can be added to by extensions.
  */
 $wgPagePropLinkInvalidations = array(
