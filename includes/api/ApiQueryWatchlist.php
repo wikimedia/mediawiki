@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -61,7 +62,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (!is_null($params['owner']) && !is_null($params['token'])) {
 			$user = User::newFromName($params['owner'],false);
 			if( !$user->getId() ) {
-				$this->dieUsage( 'Specified user does not exist' );
+				$this->dieUsage( 'Specified user does not exist', 'bad_wlowner' );
 			}
 			$token = $user->getOption('watchlisttoken');
 			if ($token == '' || $token != $params['token']) {
