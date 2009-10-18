@@ -306,9 +306,9 @@ $wgDeferredUpdateList = array();
 $wgPostCommitUpdateList = array();
 
 if ( $wgAjaxWatch ) $wgAjaxExportList[] = 'wfAjaxWatch';
-if ( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'UploadForm::ajaxGetExistsWarning';
+if ( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
 if( $wgAjaxLicensePreview )
-	$wgAjaxExportList[] = 'UploadForm::ajaxGetLicensePreview';
+	$wgAjaxExportList[] = 'SpecialUpload::ajaxGetLicensePreview';
 
 # Placeholders in case of DB error
 $wgTitle = null;

@@ -41,6 +41,7 @@ class UploadFromStash extends UploadBase {
 				false
 			);
 
+			$this->mVirtualTempPath = $sessionData['mTempPath'];
 			$this->mFileProps = $sessionData['mFileProps'];
 	}
 
@@ -66,6 +67,16 @@ class UploadFromStash extends UploadBase {
 	 */
 	public function checkWarnings() {
 		return array();
+	}
+
+	/**
+	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
+	 * @return success
+	 */
+	public function unsaveUploadedFile() {
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$success = $repo->freeTemp( $this->mVirtualTempPath );
+		return $success;
 	}
 
 }

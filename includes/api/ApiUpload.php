@@ -230,7 +230,7 @@ class ApiUpload extends ApiBase {
 					$this->dieUsage( 'This file did not pass file verification', 'verification-error',
 							0, array( 'details' => $verification['details'] ) );
 					break;
-				case UploadBase::UPLOAD_VERIFICATION_ERROR:
+				case UploadBase::HOOK_ABORTED:
 					$this->dieUsage( "The modification you tried to make was aborted by an extension hook",
 							'hookaborted', 0, array( 'error' => $verification['error'] ) );
 					break;
