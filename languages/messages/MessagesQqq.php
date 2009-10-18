@@ -1017,6 +1017,7 @@ Used in the final position of a {{msg-mw|comma-separator}} separated list headed
 'diff-width'              => '{{Identical|Width}}',
 'diff-height'             => '{{Identical|Height}}',
 'diff-dt'                 => 'I guess that this refers to HTML, as described in the article [http://en.wikipedia.org/wiki/HTML_elements#Lists HTML elements] on Wikipedia.',
+'diff-img'                => '{{Identical|Image}}',
 'diff-i'                  => '{{Identical|Italic}}',
 'diff-b'                  => '{{Identical|Bold}}',
 'diff-font'               => '{{Identical|Font}}',
@@ -1199,8 +1200,10 @@ Used in [[Special:Preferences]]. Parameters are:
 'yourgender'                    => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Gender}}',
 'gender-unknown'                => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
-'gender-male'                   => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.',
-'gender-female'                 => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.',
+'gender-male'                   => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
+{{Identical|Male}}',
+'gender-female'                 => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
+{{Identical|Female}}',
 'email'                         => '{{Identical|E-mail}}',
 'prefs-help-realname'           => 'In user preferences.',
 'prefs-help-email'              => 'Shown as explanation text on [[Special:Preferences]].',

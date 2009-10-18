@@ -415,37 +415,99 @@ $messages['an'] = array(
  */
 $messages['ar'] = array(
 	'mwe-crop' => 'اقتص الصورة',
+	'mwe-sc_audio' => 'تحكم الصوت',
+	'mwe-sc_duration' => 'المدة',
+	'mwe-template_properties' => 'خصائص القالب',
+	'mwe-custom_title' => 'عنوان مُخصّص',
 	'mwe-edit_properties' => 'عدل الخصائص',
 	'mwe-other_properties' => 'خصائص أخرى',
 	'mwe-start_time' => 'وقت البداية',
 	'mwe-end_time' => 'وقت النهاية',
+	'mwe-auto_scroll' => 'لف تلقائي',
 	'mwe-close' => 'أغلق',
+	'mwe-improve_transcript' => 'حسّن',
+	'mwe-no_text_tracks_found' => 'لم توجد مقطوعات نصية',
+	'mwe-remove_transition' => 'أزل الترجمة',
+	'mwe-edit_transin' => 'عدّل الترجمة في المقطع',
+	'mwe-edit_transout' => 'عدّل الترجمة خارج المقطع',
 	'mwe-menu_clipedit' => 'حرّر الوسيط',
 	'mwe-menu_transition' => 'ترجمات ومؤثرات',
 	'mwe-menu_cliplib' => 'أضف وسيطًا',
 	'mwe-menu_options' => 'خيارات',
+	'mwe-loading_timeline' => 'يحمل الشريط الزمني...',
+	'mwe-loading_user_rights' => 'يحمل صلاحيات المستخدم...',
+	'mwe-edit_clip' => 'حرّر المقطع',
+	'mwe-saving_wait' => 'الحفظ قيد التنفيذ (من فضلك انتظر)',
+	'mwe-save_done' => 'اكتمل الحفظ',
+	'mwe-edit_cancel_confirm' => 'أمتأكد من أنك تريد إلغاء تعديلك؟ سوف تضيع التعديلات.',
 	'mwe-zoom_in' => 'قرّب',
 	'mwe-zoom_out' => 'بعّد',
+	'mwe-expand_track' => 'وسّع المقطوعة',
+	'mwe-collapse_track' => 'اطوِ المقطوعة',
 	'mwe-rmclip' => 'أزل المقطع',
+	'mwe-editor_options' => 'خيارات المحرر',
+	'mwe-editor_mode' => 'وضع المحرّر',
+	'mwe-simple_editor_desc' => 'مُحرّر بسيط (على نمط iMovie)',
+	'mwe-other_options' => 'خيارات أخرى',
+	'mwe-loading_txt' => 'يحمل...',
+	'mwe-loading_title' => 'يحمل...',
+	'fogg-select_file' => 'اختر ملفًا',
+	'fogg-select_new_file' => 'اختر ملفًا جديدًا',
+	'fogg-select_url' => 'اختر مسارًا',
+	'fogg-save_local_file' => 'احفظ Ogg',
+	'fogg-transcoding' => 'ترميز الفيديو إلى Ogg',
+	'fogg-encoding-done' => 'انتهى الترميز',
+	'fogg-preview' => 'عاين الفيديو',
+	'fogg-hidepreview' => 'أخفِ المعاينة',
+	'fogg-cg-meta' => 'بيانات المقطع العلوية',
+	'fogg-cg-range' => 'نطاق الترميز',
+	'fogg-cg-advVideo' => 'متحكمات ترميز فيديو متقدمة',
+	'fogg-cg-advAudio' => 'متحكمات ترميز صوت متقدمة',
+	'fogg-preset-custom' => 'إعدادات مُخصّصة',
+	'mwe-add_media_wizard' => 'أضف معالج وسائط',
 	'mwe-media_search' => 'بحث الميديا',
+	'rsd_list_layout' => 'تخطيط القائمة',
 	'rsd_results_desc' => 'نتائج',
 	'rsd_results_next' => 'تالي',
 	'rsd_results_prev' => 'سابق',
 	'mwe-upload_tab' => 'رفع',
+	'rsd_layout' => 'التخطيط:',
+	'mwe-link' => 'وصلة',
 	'mwe-cc_by_title' => 'عزو',
+	'mwe-cc_sa_title' => 'المشاركة على قدم المساواة',
 	'mwe-cc_pd_title' => 'ملكية عامة',
 	'mwe-unknown_license' => 'رخصة غير معروفة',
+	'mwe-results_from' => 'النتائج من <a href="$1" target="_new" >$2</a>',
 	'mwe-upload_a_file' => 'رفع ملف جديد',
 	'mwe-watch_this_page' => 'راقب هذه الصفحة',
 	'mwe-cancel_import' => 'إلغاء الاستيراد',
 	'mwe-select_file' => 'اختر الملف',
 	'mwe-upload' => 'رفع الملف',
 	'mwe-summary' => 'ملخص',
+	'mwe-upload_completed' => 'اكتمل رفعك',
+	'mwe-cancel-confim' => 'أمتأكد من أنك تريد الإلغاء؟',
+	'mwe-successfulupload' => 'نجح الرفع',
 	'mwe-uploaderror' => 'خطأ رفع',
+	'mwe-uploadwarning' => 'تحذير رفع',
 	'mwe-unknown-error' => 'خطأ غير معروف:',
+	'mwe-return-to-form' => 'ارجع إلى النموذج',
+	'mwe-fileexists-thumb' => '<center><b>ملف موجود</b></center>',
 	'mwe-cancel-button' => 'ألغِ',
 	'mwe-ok-button' => 'موافق',
+	'mwe-loading_plugin' => 'تحميل ملحق...',
+	'mwe-add_to_end_of_sequence' => 'أضف إلى نهاية السلسلة',
+	'mwe-play_clip' => 'شغّل المقطع',
+	'mwe-pause_clip' => 'ألبث المقطع',
+	'mwe-player_fullscreen' => 'املأ الشاشة',
+	'mwe-next_clip_msg' => 'شغّل المقطع التالي',
+	'mwe-prev_clip_msg' => 'شغل المقطع السابق',
+	'mwe-seek_to' => 'ابحث في',
+	'mwe-download_clip' => 'نزّل الفيديو',
+	'mwe-download' => 'نزّل',
 	'mwe-share' => 'مشاركة',
+	'mwe-clip_linkback' => 'صفحة مصدر المقطع',
+	'mwe-chose_player' => 'اختر مشغل الفيديو',
+	'mwe-share_this_video' => 'شارك هذا الفيديو',
 	'mwe-menu_btn' => 'قائمة',
 	'mwe-close_btn' => 'إغلاق',
 );
@@ -665,7 +727,8 @@ $messages['be-tarask'] = array(
 	'mwe-playerselect' => 'Прайгравальнікі',
 	'mwe-read_before_embed' => 'Калі ласка, <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">прачытайце гэта</a> перад устаўкай!',
 	'mwe-embed_site_or_blog' => 'Уставіць на Ваш сайт ці блёг',
-	'mwe_related_videos' => 'Зьвязаныя відэа',
+	'mwe-related_videos' => 'Зьвязаныя відэа',
+	'mwe-seeking' => 'пошук',
 );
 
 /** Bosnian (Bosanski)
@@ -805,6 +868,7 @@ $messages['de'] = array(
 	'mwe-cancel_image_insert' => 'Einfügen abbrechen',
 	'mwe-sc_fileopts' => 'Clipdetail bearbeiten',
 	'mwe-sc_inoutpoints' => 'Ein-Aus-Punkte setzen',
+	'mwe-sc_overlays' => 'Überlagerungen',
 	'mwe-sc_audio' => 'Audiosteuerung',
 	'mwe-sc_duration' => 'Dauer',
 	'mwe-template_properties' => 'Vorlageneigenschaften',
@@ -823,10 +887,13 @@ $messages['de'] = array(
 	'mwe-no_text_tracks_found' => 'Keine Textabschnitte gefunden',
 	'mwe-transition_in' => 'Übergang ein',
 	'mwe-transition_out' => 'Übergang aus',
+	'mwe-remove_transition' => 'Übergang entfernen',
+	'mwe-menu_transition' => 'Übergänge und Effekte',
 	'mwe-menu_resource_overview' => 'Quellübersicht',
 	'mwe-menu_options' => 'Optionen',
 	'mwe-loading_timeline' => 'Lade Zeitleiste …',
 	'mwe-loading_user_rights' => 'Lade Benutzerrechte …',
+	'mwe-no_edit_permissions' => 'Du hast keine Berechtigungen, Änderungen zu dieser Sequenz zu speichern',
 	'mwe-edit_clip' => 'Clip bearbeiten',
 	'mwe-edit_save' => 'Sequenzänderungen speichern',
 	'mwe-saving_wait' => 'Speichere (bitte warten)',
@@ -842,6 +909,8 @@ $messages['de'] = array(
 	'mwe-rmclip' => 'Clip entfernen',
 	'mwe-clip_in' => 'Clip hinzufügen',
 	'mwe-clip_out' => 'Clip entfernen',
+	'mwe-no_selected_resource' => '<h3>Keine Quelle ausgewählt</h3> Wähle einen Clip aus, um das Bearbeiten zu aktivieren.',
+	'mwe-error_edit_multiple' => '<h3>Mehrere Quellen ausgewählt</h3> Wähle nur einen Clip aus, um ihn zu bearbeiten.',
 	'mwe-editor_options' => 'Editoroptionen',
 	'mwe-editor_mode' => 'Editormodus',
 	'mwe-simple_editor_desc' => 'einfacher Editor (iMovie-Stil)',
@@ -852,6 +921,7 @@ $messages['de'] = array(
 	'mwe-loading_txt' => 'lade …',
 	'mwe-loading_title' => 'Lade …',
 	'mwe-error_load_lib' => 'Fehler: JavaScript $1 war nicht abrufbar oder lässt $2 nicht zu',
+	'mwe-apiproxy-setup' => 'API-Proxy-Konfiguration',
 	'fogg-select_file' => 'Wähle Datei',
 	'fogg-select_new_file' => 'Wähle eine neue Datei',
 	'fogg-select_url' => 'Wähle eine URL',
@@ -872,7 +942,11 @@ $messages['de'] = array(
 	'mwe-stream_title' => '$1 $2 bis $3',
 	'fogg-help-sticky' => 'Hilfe (klicken für das Feststellen)',
 	'fogg-cg-preset' => 'Voreinstellung: <strong>$1</strong>',
+	'fogg-cg-quality' => 'Qualitäts- und Auflösungs-Basiseinstellungen',
 	'fogg-cg-meta' => 'Metadaten für den Clip',
+	'fogg-cg-range' => 'Codierungsbereich',
+	'fogg-cg-advVideo' => 'Erweiterte Videocodierungseinstellungen',
+	'fogg-cg-advAudio' => 'Erweiterte Audiocodierungseinstellungen',
 	'fogg-preset-custom' => 'Benutzerdefinierte Einstellungen',
 	'mwe-add_media_wizard' => 'Media-Wizard hinzufügen',
 	'mwe-media_search' => 'Mediensuche',
@@ -893,7 +967,9 @@ $messages['de'] = array(
 	'mwe-cc_sa_title' => 'Weitergabe unter gleichen Bedingungen',
 	'mwe-cc_pd_title' => 'Public Domain',
 	'mwe-unknown_license' => 'Unbekannte Lizenz',
+	'mwe-no_import_by_url' => 'Dieser Benutzer oder dieses Wiki <b>kann keine</b> Posten von externen URLs importieren.<p>Musst du dich anmelden?</p><p>Wenn Berechtigungen konfiguriert sind, musst du möglicherweise <a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">$wgAllowCopyUploads</a> aktivieren.</p>',
 	'mwe-results_from' => 'Ergebnisse von <a href="$1" target="_new" >$2</a>',
+	'mwe-missing_desc_see_source' => 'Diesem Posten fehlt eine Beschreibung. Bitte sieh dir die [$1 Originalquelle] an und hilf mit, ihn zu beschreiben.',
 	'mwe-your_recent_uploads' => 'Deine letzten hochgeladenen Dateien',
 	'mwe-upload_a_file' => 'Eine neue Datei hochladen',
 	'mwe-resource_page_desc' => 'Quellseitenbeschreibung:',
@@ -903,6 +979,7 @@ $messages['de'] = array(
 	'mwe-do_import_resource' => 'Quelle importieren',
 	'mwe-update_preview' => 'Vorschau aktualisieren',
 	'mwe-cancel_import' => 'Import abbrechen',
+	'mwe-importing_asset' => 'Importiere',
 	'mwe-checking-resource' => 'Suche die Quelle',
 	'mwe-resource-needs-import' => 'Quelle $1 muss importiert werden',
 	'mwe-select_file' => 'Datei auswählen',
@@ -968,16 +1045,38 @@ $messages['de'] = array(
 	'mwe-close_btn' => 'Schließen',
 	'mwe-ogg-player-vlc-mozilla' => 'VLC-Plugin',
 	'mwe-ogg-player-videoElement' => 'Eingebaute Ogg-Video Unterstützung',
+	'mwe-ogg-player-vlc-activex' => 'VLC ActiveX',
 	'mwe-ogg-player-oggPlugin' => 'Allgemeines Ogg-Plugin',
 	'mwe-ogg-player-quicktime-mozilla' => 'QuickTime-Plugin',
+	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
+	'mwe-ogg-player-cortado' => 'Java Cortado',
+	'mwe-ogg-player-flowplayer' => 'Flowplayer',
 	'mwe-ogg-player-selected' => '(ausgewählt)',
+	'mwe-ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mwe-generic_missing_plugin' => 'Dein Browser scheint folgenden Wiedergabetyp nicht zu unterstützen: <b>$1</b><br />Besuche die <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Multimediahilfe</a>, um einen Player herunterzuladen.<br />',
 	'mwe-for_best_experience' => 'Für eine bessere Videowiedergabe wird empfohlen:<br /><b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed">Firefox 3.5</a>.</b>',
 	'mwe-do_not_warn_again' => 'Dieses Mal ignorieren.',
 	'mwe-playerselect' => 'Player',
 	'mwe-read_before_embed' => 'Bitte lies vor dem Einbinden die <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">Sicherheitsanmerkungen</a>!',
 	'mwe-embed_site_or_blog' => 'Auf deiner Website oder deinem Blog einbinden',
-	'mwe_related_videos' => 'Ähnliche Videos',
+	'mwe-related_videos' => 'Ähnliche Videos',
+	'mwe-seeking' => 'suchen',
+);
+
+/** Zazaki (Zazaki)
+ * @author Aspar
+ */
+$messages['diq'] = array(
+	'mwe-reset_crop' => 'qesnayiş sıfır ker',
+	'mwe-insert_image_page' => 'pela têarê ker',
+	'mwe-insert_into_sequence' => 'bıerz rêz',
+	'mwe-preview_insert' => 'têarêkerde seyr bıker',
+	'mwe-cancel_image_insert' => 'têare kerdış ibtal bıker',
+	'mwe-sc_fileopts' => 'teferruatê klibi bıvurn',
+	'mwe-sc_inoutpoints' => 'nuqtayê destpêkerdış u qediyayişi eyar ker',
+	'mwe-sc_overlays' => 'tebeqeyi',
+	'mwe-sc_audio' => 'kontrolê vengi',
+	'mwe-sc_duration' => 'mudde/zeman',
 );
 
 /** Lower Sorbian (Dolnoserbski)
@@ -1053,6 +1152,7 @@ $messages['dsb'] = array(
 	'mwe-loading_title' => 'Zacytujo se...',
 	'mwe-error_load_lib' => 'Zmólka: JavaScript $1 njejo wótwołujobny był abo njedefiněrujo $2',
 	'mwe-loading-add-media-wiz' => 'Zacytujo se asistent za pśidaśe medijow',
+	'mwe-apiproxy-setup' => 'Proksy API zarědowaś',
 	'fogg-select_file' => 'Dataju wubraś',
 	'fogg-select_new_file' => 'Nowu dataju wubraś',
 	'fogg-select_url' => 'URL wubraś',
@@ -1194,7 +1294,8 @@ $messages['dsb'] = array(
 	'mwe-playerselect' => 'Wótegrawaki',
 	'mwe-read_before_embed' => 'Pšosym cytaj <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">wěstotne pśipiski wó zdalonem zasajźenju</a>, nježli až napšawdu zasajźujoš!',
 	'mwe-embed_site_or_blog' => 'Do twójogo sedła abo bloga zasajźiś',
-	'mwe_related_videos' => 'Pśiwuzne wideo',
+	'mwe-related_videos' => 'Pśiwuzne wideo',
+	'mwe-seeking' => 'pyta se',
 );
 
 /** Greek (Ελληνικά)
@@ -1339,7 +1440,7 @@ $messages['el'] = array(
 	'mwe-do_not_warn_again' => 'Διαγραφή για τώρα.',
 	'mwe-playerselect' => 'Παίκτες',
 	'mwe-embed_site_or_blog' => 'Ενσωμάτωση στο σάιτ ή μπλογκ σας',
-	'mwe_related_videos' => 'Σχετικά βίντεο',
+	'mwe-related_videos' => 'Σχετικά βίντεο',
 );
 
 /** Esperanto (Esperanto)
@@ -1527,7 +1628,7 @@ $messages['es'] = array(
 	'mwe-ogg-player-quicktime-mozilla' => 'Plugin QuickTime',
 	'mwe-ogg-player-selected' => '(seleccionado)',
 	'mwe-playerselect' => 'Reproductores',
-	'mwe_related_videos' => 'Videos relacionados',
+	'mwe-related_videos' => 'Videos relacionados',
 );
 
 /** Basque (Euskara)
@@ -1677,6 +1778,7 @@ $messages['fr'] = array(
 	'mwe-loading_title' => 'Chargement...',
 	'mwe-error_load_lib' => "Erreur : JavaScript $1 n'a pas pu être trouvé ou ne définit pas $2",
 	'mwe-loading-add-media-wiz' => "Chargement de l'assistant d'ajout de média",
+	'mwe-apiproxy-setup' => 'Configuration du proxy API',
 	'fogg-select_file' => 'Sélectionnez un fichier',
 	'fogg-select_new_file' => 'Sélectionnez un nouveau fichier',
 	'fogg-select_url' => 'Sélectionnez une URL',
@@ -1818,7 +1920,8 @@ $messages['fr'] = array(
 	'mwe-playerselect' => 'Lecteurs',
 	'mwe-read_before_embed' => 'Veuillez <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">lire ceci</a> avant de procéder !',
 	'mwe-embed_site_or_blog' => 'Intégrer sur votre site ou blog',
-	'mwe_related_videos' => 'Vidéos associées',
+	'mwe-related_videos' => 'Vidéos associées',
+	'mwe-seeking' => 'recherche',
 );
 
 /** Galician (Galego)
@@ -1893,6 +1996,7 @@ $messages['gl'] = array(
 	'mwe-loading_txt' => 'cargando...',
 	'mwe-loading_title' => 'Cargando...',
 	'mwe-error_load_lib' => 'Erro: o JavaScript $1 non se puido atopar ou non definía $2',
+	'mwe-loading-add-media-wiz' => 'Cargando o asistente de engadido de soportes',
 	'fogg-select_file' => 'Seleccione un ficheiro',
 	'fogg-select_new_file' => 'Seleccione un ficheiro novo',
 	'fogg-select_url' => 'Seleccione un enderezo URL',
@@ -2034,7 +2138,8 @@ $messages['gl'] = array(
 	'mwe-playerselect' => 'Reprodutores',
 	'mwe-read_before_embed' => 'Por favor, <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">olle isto</a> antes da incrustación!',
 	'mwe-embed_site_or_blog' => 'Incrustar na súa páxina web ou blogue',
-	'mwe_related_videos' => 'Vídeos relacionados',
+	'mwe-related_videos' => 'Vídeos relacionados',
+	'mwe-seeking' => 'procurando',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
@@ -2264,7 +2369,8 @@ $messages['gsw'] = array(
 	'mwe-playerselect' => 'Abspilprogramm',
 	'mwe-read_before_embed' => 'Bitte lis d <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">Sicherheitsnotize iber s Yyfiege</a> voreb Du s wirkli yyfiege tuesch!',
 	'mwe-embed_site_or_blog' => 'Yygfiegt in Dyy Syte oder Dyy Blog',
-	'mwe_related_videos' => 'Verwandti Video',
+	'mwe-related_videos' => 'Verwandti Video',
+	'mwe-seeking' => 'Am Sueche',
 );
 
 /** Hebrew (עברית)
@@ -2429,7 +2535,7 @@ $messages['he'] = array(
 	'mwe-do_not_warn_again' => 'התעלמות לעת עתה.',
 	'mwe-playerselect' => 'נגנים',
 	'mwe-embed_site_or_blog' => 'הטמעה באתר או בבלוג שלכם',
-	'mwe_related_videos' => 'סרטונים קשורים',
+	'mwe-related_videos' => 'סרטונים קשורים',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
@@ -2509,6 +2615,7 @@ $messages['hsb'] = array(
 	'mwe-size-bytes' => '$1 B',
 	'mwe-error_load_lib' => 'Zmylk: JavaScript $1 njeda so wotwołać abo njedefinuje $2',
 	'mwe-loading-add-media-wiz' => 'Zacituje so asistent za přidaće medijow',
+	'mwe-apiproxy-setup' => 'Proksy API zarjadować',
 	'fogg-select_file' => 'Dataju wubrać',
 	'fogg-select_new_file' => 'Nowu dataju wubrać',
 	'fogg-select_url' => 'URL wubrać',
@@ -2651,7 +2758,8 @@ $messages['hsb'] = array(
 	'mwe-playerselect' => 'Wothrawaki',
 	'mwe-read_before_embed' => 'Prošu <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">čitaj to</a> do zasadźenja!',
 	'mwe-embed_site_or_blog' => 'Na twojim sydle abo blogu zasadźić',
-	'mwe_related_videos' => 'Přiwuzne wideja',
+	'mwe-related_videos' => 'Přiwuzne wideja',
+	'mwe-seeking' => 'pyta so',
 );
 
 /** Hungarian (Magyar)
@@ -2838,6 +2946,7 @@ $messages['ia'] = array(
 	'mwe-loading_title' => 'Cargamento...',
 	'mwe-error_load_lib' => 'Error: JavaScript $1 non esseva recuperabile o non defini $2',
 	'mwe-loading-add-media-wiz' => 'Cargamento del assistente pro adder multimedia',
+	'mwe-apiproxy-setup' => 'Configuration del proxy pro le API',
 	'fogg-select_file' => 'Seliger file',
 	'fogg-select_new_file' => 'Seliger nove file',
 	'fogg-select_url' => 'Seliger URL',
@@ -2979,7 +3088,8 @@ $messages['ia'] = array(
 	'mwe-playerselect' => 'Reproductores',
 	'mwe-read_before_embed' => 'Per favor lege le <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">notas de securitate super incastramento remote</a> ante de incastrar un cosa!',
 	'mwe-embed_site_or_blog' => 'Incastrar in tu sito o blog',
-	'mwe_related_videos' => 'Videos connexe',
+	'mwe-related_videos' => 'Videos connexe',
+	'mwe-seeking' => 'cercante',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -2988,17 +3098,36 @@ $messages['ia'] = array(
  */
 $messages['id'] = array(
 	'mwe-insert_image_page' => 'Sisipkan pada halaman',
+	'mwe-insert_into_sequence' => 'Sisipkan pada urutan',
 	'mwe-preview_insert' => 'Sisipkan pratayang',
 	'mwe-cancel_image_insert' => 'Batalkan penyisipan',
 	'mwe-sc_duration' => 'Durasi',
+	'mwe-template_properties' => 'Properti Templat',
+	'mwe-edit_properties' => 'Sunting properti',
+	'mwe-other_properties' => 'Properti lain',
+	'mwe-resource_page' => 'Sumber halaman:',
 	'mwe-start_time' => 'Waktu mulai',
 	'mwe-end_time' => 'Waktu selesai',
 	'mwe-close' => 'Tutup',
+	'mwe-improve_transcript' => 'Membaiki',
+	'mwe-menu_clipedit' => 'Sunting media',
+	'mwe-menu_cliplib' => 'Tambah media',
+	'mwe-menu_options' => 'Pilihan',
+	'mwe-edit_save' => 'Simpan perubahan urutan',
+	'mwe-saving_wait' => 'Penyimpanan dalam proses (mohoon tunggu)',
+	'mwe-save_done' => 'Menyimpanan lengkap',
+	'mwe-edit_cancel' => 'Batalkan suntingan urutan',
+	'mwe-edit_cancel_confirm' => 'Apakan anda yakin akan membatalkan suntingan anda? Perubahan akan hilang.',
+	'mwe-zoom_in' => 'Zum masuk',
+	'mwe-zoom_out' => 'Zum keluar',
+	'mwe-editor_options' => 'Pilihan penyunting',
+	'mwe-other_options' => 'Pilihan lain',
 	'fogg-select_file' => 'Pilih berkas',
 	'fogg-select_new_file' => 'Pilih berkas baru',
 	'fogg-select_url' => 'Pilih URL',
 	'fogg-save_local_file' => 'Simpan Ogg',
 	'mwe-stream_title' => '$1 $2 sampai  $3',
+	'mwe-media_search' => 'Cari media',
 	'rsd_results_desc' => 'Hasil',
 	'rsd_results_next' => 'selanjutnya',
 	'rsd_results_prev' => 'sebelumnya',
@@ -3019,9 +3148,18 @@ $messages['id'] = array(
 	'mwe-watch_this_page' => 'Pantau halaman ini',
 	'mwe-update_preview' => 'Perbaharui pratayang',
 	'mwe-select_file' => 'Pilih berkas',
+	'mwe-upload-unknown-size' => 'Ukuran tidak diketahui',
+	'mwe-successfulupload' => 'Unggah berhasil',
+	'mwe-uploaderror' => 'Unggah galat',
+	'mwe-cancel-button' => 'Batalkan',
+	'mwe-ok-button' => 'Oke',
+	'mwe-seek_to' => 'Cari ke',
+	'mwe-menu_btn' => 'Menu',
+	'mwe-close_btn' => 'Tutup',
 	'mwe-ogg-player-selected' => '(dipilih)',
 	'mwe-playerselect' => 'Pemutar',
-	'mwe_related_videos' => 'Video yang berhubungan',
+	'mwe-related_videos' => 'Video yang berhubungan',
+	'mwe-seeking' => 'mencari',
 );
 
 /** Italian (Italiano)
@@ -3109,6 +3247,7 @@ $messages['ja'] = array(
 	'mwe-loading_title' => '読み込み中…',
 	'mwe-error_load_lib' => 'エラー：JavaScript $1 は参照不能か、$2 を定義していません。',
 	'mwe-loading-add-media-wiz' => '追加メディアウィザードを読み込み中',
+	'mwe-apiproxy-setup' => '  API プロキシーをセットアップ中',
 	'fogg-select_file' => 'ファイルを選択',
 	'fogg-select_new_file' => '別のファイルを選択',
 	'fogg-select_url' => 'URLを選択',
@@ -3251,7 +3390,8 @@ $messages['ja'] = array(
 	'mwe-playerselect' => 'プレイヤー',
 	'mwe-read_before_embed' => '埋め込む前に<a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">注意事項</a>をお読みください。',
 	'mwe-embed_site_or_blog' => '自分のサイトやブログに埋め込む',
-	'mwe_related_videos' => '関連する動画',
+	'mwe-related_videos' => '関連する動画',
+	'mwe-seeking' => 'シーク中',
 );
 
 /** Georgian (ქართული)
@@ -3490,7 +3630,7 @@ Wann de Rääschte reschtesch jesaz sin, moß mer velleijsh noch <a href="http:/
 	'mwe-playerselect' => 'Affshpellprojramme',
 	'mwe-read_before_embed' => 'Beß esu joot un liß <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">övver de Sesherheit bemm Ennfööje övver et Netz</a> iih dat De jet ennfööschß!',
 	'mwe-embed_site_or_blog' => 'En en Websigg udder <i lang="en">Blog</i>_erinndonn',
-	'mwe_related_videos' => 'Verwandte Viddejos',
+	'mwe-related_videos' => 'Verwandte Viddejos',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -3556,6 +3696,7 @@ $messages['lb'] = array(
 	'rsd_no_results' => 'Kee Resultat bäi der Sich no <b>$1</b>',
 	'mwe-upload_tab' => 'Eroplueden',
 	'rsd_layout' => 'Layout:',
+	'mwe-link' => 'Link',
 	'rsd_do_insert' => 'Drasetzen',
 	'mwe-cc_by_title' => 'Attributioun',
 	'mwe-unknown_license' => 'Onbekannte Lizenz',
@@ -3604,7 +3745,7 @@ $messages['lb'] = array(
 	'mwe-ogg-player-selected' => '(erausgesicht)',
 	'mwe-do_not_warn_again' => 'Fir den Ament ophalen.',
 	'mwe-embed_site_or_blog' => 'An äre Site oder Blog abauen',
-	'mwe_related_videos' => 'Ähnlech Videoen',
+	'mwe-related_videos' => 'Ähnlech Videoen',
 );
 
 /** Eastern Mari (Олык Марий)
@@ -3624,10 +3765,17 @@ $messages['ml'] = array(
 	'mwe-insert_image_page' => 'താളിൽ ഉൾപ്പെടുത്തുക',
 	'mwe-preview_insert' => 'ഉൾപ്പെടുത്തലിന്റെ പ്രിവ്യൂ',
 	'mwe-cancel_image_insert' => 'ഉൾപ്പെടുത്തൽ റദ്ദാക്കുക',
+	'mwe-custom_title' => 'മാറ്റിയെഴുതാവുന്ന തലക്കെട്ട്',
+	'mwe-start_time' => 'തുടങ്ങുന്ന സമയം',
+	'mwe-end_time' => 'അവസാനിക്കുന്ന സമയം',
 	'mwe-close' => 'അടയ്ക്കുക',
 	'mwe-improve_transcript' => 'മെച്ചപ്പെടുത്തുക',
 	'mwe-menu_options' => 'ഐച്ഛികങ്ങൾ',
+	'mwe-loading_timeline' => 'സമയരേഖ ശേഖരിക്കുന്നു ...',
+	'mwe-loading_user_rights' => 'ഉപയോക്തൃ അവകാശങ്ങൾ ശേഖരിക്കുന്നു ...',
+	'mwe-saving_wait' => 'സേവ് ചെയ്യൽ പുരോഗമിക്കുന്നു (ദയവായി കാത്തിരിക്കുക)',
 	'mwe-save_done' => 'പൂർണ്ണമായത് സേവ് ചെയ്യുക',
+	'mwe-edit_cancel_confirm' => 'താങ്കളുടെ തിരുത്തൽ റദ്ദാക്കണം എന്നതിൽ താങ്കൾ ഉറച്ചു നിൽക്കുന്നുവോ? മാറ്റങ്ങൾ നഷ്ടമാവുന്നതാണ്.',
 	'mwe-zoom_in' => 'വലുതാക്കുക',
 	'mwe-zoom_out' => 'ചെറുതാക്കുക',
 	'mwe-other_options' => 'മറ്റ് ഐച്ഛികങ്ങൾ',
@@ -3637,10 +3785,21 @@ $messages['ml'] = array(
 	'fogg-select_new_file' => 'പുതിയ പ്രമാണം തിരഞ്ഞെടുക്കുക',
 	'fogg-select_url' => 'യു.ആർ.എൽ. തിരഞ്ഞെടുക്കുക',
 	'fogg-save_local_file' => 'ഓഗ് ആയി സേവ് ചെയ്യുക',
+	'fogg-check_for_fogg' => 'ഫയർഫോഗ് തിരയുന്നു...',
+	'fogg-installed' => 'ഫയർഫോഗ് ഇൻസ്റ്റോൾ ചെയ്തിട്ടുണ്ട്',
 	'fogg-for_improved_uplods' => 'മെച്ചപ്പെടുത്തിയ അപ്‌‌ലോഡുകൾക്കു വേണ്ടി:',
+	'fogg-please_install' => '<a href="$1">ഫയർഫോഗ് ഇൻസ്റ്റോൾ ചെയ്യുക</a>. <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">ഫയർഫോഗിനെ കുറിച്ചു കൂടുതൽ</a>',
+	'fogg-passthrough_mode' => 'താങ്കൾ തിരഞ്ഞെടുത്ത പ്രമാണം ഓഗ് (Ogg) തന്നെയാണ് അല്ലങ്കിൽ വീഡിയോ പ്രമാണം അല്ല',
 	'fogg-preview' => 'വീഡിയോയുടെ പ്രിവ്യൂ',
 	'fogg-hidepreview' => 'പ്രിവ്യൂ മറയ്ക്കുക',
 	'fogg-help-sticky' => 'സഹായം (നിൽക്കാൻ ഞെക്കുക)',
+	'rsd_results_desc' => 'ഫലങ്ങൾ',
+	'rsd_results_next' => 'അടുത്തത്',
+	'rsd_results_prev' => 'മുൻപത്തേത്',
+	'rsd_no_results' => '<b>$1</b> എന്ന തിരച്ചിലിനു ഫലങ്ങളൊന്നും ലഭ്യമായില്ല',
+	'mwe-upload_tab' => 'അപ്‌‌ലോഡ്',
+	'mwe-link' => 'കണ്ണി',
+	'mwe-cc_pd_title' => 'പൊതു സഞ്ചയം',
 	'mwe-unknown_license' => 'അപരിചിതമായ അനുമതി',
 	'mwe-your_recent_uploads' => 'താങ്കൾ സമീപകാലത്ത് അപ്‌‌ലോഡ് ചെയ്തവ',
 	'mwe-upload_a_file' => 'പുതിയ പ്രമാണം അപ്‌‌ലോഡ് ചെയ്യുക',
@@ -3653,8 +3812,33 @@ $messages['ml'] = array(
 	'mwe-select_ownwork' => 'ഞാൻ പൂർണ്ണമായും എന്റേതായ കൃതിയാണ് അപ്‌‌ലോഡ് ചെയ്യുന്നത്, അതിന്റെ ഉപയോഗാനുമതി ഇപ്രകാരമാണ്:',
 	'mwe-licence_cc-by-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ഷെയർ എലൈക്ക്(3.0)',
 	'mwe-upload' => 'പ്രമാണം അപ്‌‌ലോഡ് ചെയ്യുക',
+	'mwe-destfilename' => 'ലക്ഷ്യ പ്രമാണനാമം:',
+	'mwe-summary' => 'ചുരുക്കം',
+	'mwe-upload-in-progress' => 'അപ്‌‌ലോഡിങ് ചെയ്തുകൊണ്ടിരിക്കുന്നു (ഈ ജാലകം അടയ്ക്കരുത്)',
+	'mwe-uploaded-status' => 'അപ്‌‌ലോഡ് ചെയ്തിരിക്കുന്നു',
+	'mwe-upload-stats-fileprogres' => '$2 എന്നതിൽ $1',
+	'mwe-upload_completed' => 'താങ്കളുടെ അപ്‌‌ലോഡ് പൂർണ്ണമായിരിക്കുന്നു',
+	'mwe-upload-unknown-size' => 'വലിപ്പം അറിയില്ല',
+	'mwe-cancel-confim' => 'റദ്ദാക്കണമെന്നു താങ്കൾക്കു തീർച്ചയാണോ?',
+	'mwe-successfulupload' => 'അപ്‌‌ലോഡ് വിജയകരം',
+	'mwe-uploaderror' => 'അപ്‌‌ലോഡിൽ പിശക്',
+	'mwe-uploadwarning' => 'അപ്‌‌ലോഡ് മുന്നറിയിപ്പ്',
+	'mwe-unknown-error' => 'അപരിചിതമായ പിശക്:',
+	'mwe-return-to-form' => 'ഫോമിലേക്ക് തിരിച്ചു പോവുക',
+	'mwe-file-exists-duplicate' => 'താഴെ കൊടുത്തിരിക്കുന്ന പ്രമാണത്തിന്റെ അപരനാണ് ഈ പ്രമാണം:',
+	'mwe-fileexists' => 'ഇതേ പേരിൽ ഒരു പ്രമാണം നിലവിലുണ്ട്. അതിൽ മാറ്റം വരുത്തണോ എന്നു താങ്കൾക്ക് ഉറപ്പില്ലങ്കിൽ ദയവായി <b><tt>$1</tt></b> കാണുക.',
+	'mwe-fileexists-thumb' => '<center><b>നിലവിലുള്ള പ്രമാണം</b></center>',
+	'mwe-ignorewarning' => 'മുന്നറിയിപ്പ് അവഗണിക്കുക, എന്തായാലും പ്രമാണം സേവ് ചെയ്യുക',
+	'mwe-file-thumbnail-no' => '<b><tt>$1</tt></b> എന്നാണു പ്രമാണത്തിന്റെ പേര് ആരംഭിക്കുന്നത്',
+	'mwe-upload-misc-error' => 'അപ്‌‌ലോഡിൽ അപരിചിതമായ പിശക്',
 	'mwe-cancel-button' => 'റദ്ദാക്കുക',
 	'mwe-ok-button' => 'ശരി',
+	'mwe-link_back' => 'പിന്നിലേയ്ക്ക് കണ്ണി സൃഷ്ടിക്കുക',
+	'mwe-volume_control' => 'ശബ്ദ നിയന്ത്രണം',
+	'mwe-share' => 'പങ്ക് വെയ്ക്കുക',
+	'mwe-credits' => 'കടപ്പാടുകൾ',
+	'mwe-close_btn' => 'അടയ്ക്കുക',
+	'mwe-do_not_warn_again' => 'ഇപ്പോൾ ഒഴിവാക്കുക.',
 );
 
 /** Dutch (Nederlands)
@@ -3734,6 +3918,7 @@ Selecteer één te bewerken clip.',
 	'mwe-loading_title' => 'Laai...',
 	'mwe-error_load_lib' => 'Fout: JavaScript $1 kon niet opgehaald worden of definieert $2 niet',
 	'mwe-loading-add-media-wiz' => 'Bezig met het laden van de Wizard media toevoegen',
+	'mwe-apiproxy-setup' => 'Bezig met het opzetten van een API-proxy',
 	'fogg-select_file' => 'Bestand selecteren',
 	'fogg-select_new_file' => 'Kies nuwe lêer',
 	'fogg-select_url' => 'URL selecteren',
@@ -3878,7 +4063,8 @@ Via <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">afspeelmethod
 	'mwe-playerselect' => 'Mediaspelers',
 	'mwe-read_before_embed' => '<a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">Lees dit</a> voordat u gaat embedden!',
 	'mwe-embed_site_or_blog' => 'Toevoegen aan website of blog',
-	'mwe_related_videos' => "Gerelateerde video's",
+	'mwe-related_videos' => "Gerelateerde video's",
+	'mwe-seeking' => 'bezig met zoeken',
 );
 
 /** Occitan (Occitan)
@@ -4091,7 +4277,7 @@ $messages['oc'] = array(
 	'mwe-playerselect' => 'Lectors',
 	'mwe-read_before_embed' => 'Legissètz <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">aquò</a> abans de procedir !',
 	'mwe-embed_site_or_blog' => 'Integrar sus vòstre site o blog',
-	'mwe_related_videos' => 'Vidèos associadas',
+	'mwe-related_videos' => 'Vidèos associadas',
 );
 
 /** Polish (Polski)
@@ -4325,7 +4511,7 @@ $messages['pt'] = array(
 	'mwe-ogg-player-cortado' => 'Java Cortado',
 	'mwe-ogg-player-selected' => '(seleccionado)',
 	'mwe-embed_site_or_blog' => 'Embeber no seu sítio ou blog',
-	'mwe_related_videos' => 'Vídeos relacionados',
+	'mwe-related_videos' => 'Vídeos relacionados',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -4567,7 +4753,7 @@ $messages['ru'] = array(
 	'mwe-playerselect' => 'Проигрыватели',
 	'mwe-read_before_embed' => 'Пожалуйста, <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">прочтите это</a> перед встраиванием!',
 	'mwe-embed_site_or_blog' => 'Вставить на ваш сайт или в блог',
-	'mwe_related_videos' => 'Связанные видео',
+	'mwe-related_videos' => 'Связанные видео',
 );
 
 /** Yakut (Саха тыла)
@@ -4590,6 +4776,9 @@ $messages['sah'] = array(
 	'mwe-end_time' => 'Түмүктэнэр кэмэ',
 	'mwe-close' => 'сап',
 	'mwe-improve_transcript' => 'Тупсарарга',
+	'mwe-menu_options' => 'Туруоруулар',
+	'mwe-zoom_in' => 'Улаатыннар',
+	'mwe-zoom_out' => 'Кыччат',
 );
 
 /** Slovak (Slovenčina)
@@ -4994,7 +5183,7 @@ $messages['tr'] = array(
 	'mwe-playerselect' => 'Oynatıcılar',
 	'mwe-read_before_embed' => 'Lütfen gerçekten gömmeden <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">uzaktan gömme hakkındaki güvenlik notlarını</a> okuyun!',
 	'mwe-embed_site_or_blog' => 'Sitenize ya da blogunuza gömün',
-	'mwe_related_videos' => 'İlgili videolar',
+	'mwe-related_videos' => 'İlgili videolar',
 );
 
 /** Vèneto (Vèneto)
@@ -5203,6 +5392,6 @@ $messages['vi'] = array(
 	'mwe-do_not_warn_again' => 'Tạm kệ.',
 	'mwe-playerselect' => 'Trình chơi',
 	'mwe-embed_site_or_blog' => 'Nhúng vào website hay blog của bạn',
-	'mwe_related_videos' => 'Video liên quan',
+	'mwe-related_videos' => 'Video liên quan',
 );
 

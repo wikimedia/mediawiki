@@ -476,8 +476,7 @@ Coba dipriksa manèh pasang aksarané, utawa [[Special:UserLogin/signup|gawé ak
 'nouserspecified'            => 'Panjenengan kudu milih asma panganggo.',
 'wrongpassword'              => 'Tembung sandhi sing dipilih salah. Mangga coba manèh.',
 'wrongpasswordempty'         => 'Panjenengan ora milih tembung sandhi. Mangga dicoba manèh.',
-'passwordtooshort'           => 'Tembung sandi panjenengan kecendhaken. 
-Tembung sandi paling sethithik {{PLURAL:$1|1 aksara|$1 aksara}}.',
+'passwordtooshort'           => 'Tembung sesinglon paling sethithik cacahé {{PLURAL:$1|1 aksara|$1 aksara}}.',
 'password-name-match'        => 'Tembung sandi panjenengan kudu béda karo jeneng panganggo panjenengan.',
 'mailmypassword'             => 'Kirim tembung sandhi anyar',
 'passwordremindertitle'      => 'Pèngetan tembung sandhi saka {{SITENAME}}',
@@ -485,6 +484,7 @@ Tembung sandi paling sethithik {{PLURAL:$1|1 aksara|$1 aksara}}.',
 Tembung sandi sawetara mau bakal kadaluwarsa ing {{PLURAL:$5|sadina|$5 dina}}.
 Yèn wong liya sing nglakoni panyuwunan iki, utawa panjenengan éling tembung sandi panjenengan, lan ora kepéngin ngowahi, panjenengan ora usah nggubris pesen iki lan bisa tetep nganggo tembung sandi lawas.',
 'noemail'                    => 'Ora ana alamat layang e-mail sing kacathet kanggo panganggo "$1".',
+'noemailcreate'              => 'Panjenengan kudu maringi alamat e-mail sing absah',
 'passwordsent'               => 'Tembung sandhi anyar wis dikirim menyang alamat layang e-mail panjenengan sing wis didaftar kanggo "$1". Mangga mlebu log manèh sawisé nampa e-mail iku.',
 'blocked-mailpassword'       => "Alamat IP panjenengan diblokir saka panyuntingan, mulané panjenengan ora olèh nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
 'eauthentsent'               => 'Sawijining layang élèktronik (e-mail) kanggo ndhedhes (konfirmasi) wis dikirim menyang alamat layang élèktronik panjenengan. Panjenengan kudu nuruti instruksi sajroning layang iku kanggo ndhedhes yèn alamat iku bener kagungané panjenengan. {{SITENAME}} ora bakal ngaktifaké fitur layang élèktronik yèn langkah iki durung dilakoni.',
@@ -659,7 +659,7 @@ Pangurus sing ngunci basis data mènèhi katrangan kaya mengkéné: $1",
 'semiprotectedpagewarning'         => "'''Cathetan:''' Kaca iki lagi direksa, dadi namung panganggo kadaftar sing bisa nyunting.",
 'cascadeprotectedwarning'          => "'''PÈNGET:''' Kaca iki wis dikunci dadi namung panganggo mawa hak aksès pangurus waé sing bisa nyunting, amerga kalebu {{PLURAL:$1|kaca|kaca-kaca}} ing ngisor iki sing wis direksa mawa opsi 'pangreksan runtun' diaktifaké:",
 'titleprotectedwarning'            => "'''Pènget: Kaca iki wis dikunci saéngga [[Special:ListGroupRights|hak mligi]] dibutuhaké kanggo gawéné.'''",
-'templatesused'                    => 'Cithakan kang digunakaké ing kaca iki:',
+'templatesused'                    => '{{PLURAL:$1|Cithakan|Cithakan}} sing dienggo ing kaca iki:',
 'templatesusedpreview'             => 'Cithakan kang digunakaké ing pratilik iki:',
 'templatesusedsection'             => 'Cithakan kang digunakaké ing bagian iki:',
 'template-protected'               => '(direksa)',
@@ -824,6 +824,7 @@ Panjenengan ora nduwèni aksès menyang révisi iki.',
 'revdelete-concurrent-change' => 'Gagal ngowahi révisi tanggal $1, jam $2: statusé mbokmanawa wis diowahi déning panganggo liya bebarengan karo panjenengan.
 Mangga priksa cathetan log.',
 'revdelete-only-restricted'   => 'Panjenengan ora bisa ndhelikaké révisi-révisi iki saka pangurus tanpa milih uga salah siji opsi pandhelikan liyané.',
+'revdelete-reasonotherlist'   => 'Alesan liya',
 'revdelete-edit-reasonlist'   => 'Sunting alesan pambusakan',
 
 # Suppression log
@@ -2061,7 +2062,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipboptions'                      => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite',
 'ipbotheroption'                  => 'liyané',
 'ipbotherreason'                  => 'Alesan liya/tambahan',
-'ipbhidename'                     => 'Delikna jeneng panganggo saka suntingan lan dhaptar',
+'ipbhidename'                     => 'Delikna jeneng panganggo saka suntingan lan pratélan',
 'ipbwatchuser'                    => 'Ngawasi kaca panganggo lan kaca-kaca dhiskusi panganggo iki',
 'ipballowusertalk'                => 'Idinaké panganggo iki nyunting kaca wicarané dhéwé nalika diblokir',
 'ipb-change-block'                => 'Blokir manèh panganggo kanthi sèting iki',
@@ -2328,7 +2329,7 @@ Simpenen ing cakram padhet (''harddisk'') panjenengan lan unggahna ing kéné.",
 'tooltip-pt-anontalk'             => 'Dhiskusi perkara suntingan saka alamat IP iki',
 'tooltip-pt-preferences'          => 'Préferènsiku',
 'tooltip-pt-watchlist'            => 'Daftar kaca sing tak-awasi.',
-'tooltip-pt-mycontris'            => 'Dhaptar kontribusi panjenengan',
+'tooltip-pt-mycontris'            => 'Daftar kontribusi panjenengan',
 'tooltip-pt-login'                => 'Panjenengan diaturi mlebu log, nanging ora dikudokaké.',
 'tooltip-pt-anonlogin'            => 'Panjenengan disaranaké mlebu log, nanging ora diwajibaké.',
 'tooltip-pt-logout'               => 'Log metu (oncat)',
@@ -2403,7 +2404,7 @@ Simpenen ing cakram padhet (''harddisk'') panjenengan lan unggahna ing kéné.",
 # Spam protection
 'spamprotectiontitle' => 'Filter anti-spam',
 'spamprotectiontext'  => 'Kaca sing arep panjenengan simpen diblokir déning filter spam. 
-Mbokmanawa iki disebabaké anané pranala jaba sing klebu dhaptar ireng.',
+Mbokmanawa iki disebabaké anané pranala jaba sing klebu daftar ireng.',
 'spamprotectionmatch' => 'Tèks sing kapacak iki mancing filter spam kita: $1',
 'spambot_username'    => 'Resik-resik spam MediaWiki',
 'spam_reverting'      => 'Mbalèkaké menyang vèrsi pungkasan sing ora ana pranalané menyang $1',
@@ -2883,8 +2884,8 @@ Mangga didhedhes (dikonfirmasi) menawa panjenengan kersa nggawé ulang kaca iki.
 Cobanen mawa pratayang normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Owah-owahan pungkasan sing luwih anyar tinimbang $1 {{PLURAL:$1|dhetik|dhetik}} mbokmanawa ora muncul ing dhaptar iki.',
-'lag-warn-high'   => "Amarga gedhéné ''lag'' basis data server, owah-owahan pungkasan sing luwih anyar saka $1 {{PLURAL:$1|dhetik|dhetik}} mbokmanawa ora muncul ing dhaptar iki.",
+'lag-warn-normal' => 'Owah-owahan pungkasan sing luwih anyar tinimbang $1 {{PLURAL:$1|detik|detik}} mbokmanawa ora metu ing pratélan iki.',
+'lag-warn-high'   => "Amarga gedhéné ''lag'' basis data server, owah-owahan pungkasan sing luwih anyar saka $1 {{PLURAL:$1|detik|detik}} mbokmanawa ora metu ing daftar iki.",
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Daftar pangawasan panjenengan ngandhut {{PLURAL:$1|1 irah-irahan|$1 irah-irahan}}, ora kalebu kaca-kaca dhiskusi.',

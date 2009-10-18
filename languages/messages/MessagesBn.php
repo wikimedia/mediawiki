@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bellayet
+ * @author Jayantanth
  * @author Zaheen
  * @author לערי ריינהארט
  */
@@ -328,7 +329,7 @@ $messages = array(
 'editold'                 => 'সম্পাদনা করুন',
 'viewsourceold'           => 'উৎস দেখাও',
 'editlink'                => 'সম্পাদনা',
-'viewsourcelink'          => 'সোর্স দেখুন',
+'viewsourcelink'          => 'উৎস দেখুন',
 'editsectionhint'         => 'পরিচ্ছেদ সম্পাদনা: $1',
 'toc'                     => 'পরিচ্ছেদসমূহ',
 'showtoc'                 => 'দেখাও',

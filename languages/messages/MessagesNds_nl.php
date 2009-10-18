@@ -810,16 +810,16 @@ Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreuge
 'subject'                          => 'Onderwarp:',
 'minoredit'                        => 'kleine wieziging',
 'watchthis'                        => 'volg disse pagina',
-'savearticle'                      => 'Opslaon',
+'savearticle'                      => 'Pagina opslaon',
 'preview'                          => 'Naokieken',
-'showpreview'                      => 'Naokieken',
+'showpreview'                      => 'Bewarking naokieken',
 'showlivepreview'                  => 'Drekte weergave',
 'showdiff'                         => 'Verschil bekieken',
 'anoneditwarning'                  => "'''Waorschuwing:''' Je bin neet an-emeld.
 As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbaor ween.",
 'missingsummary'                   => "'''Herinnering:''' je hemmen gien samenvatting op-egeven veur de bewarking. A-j noen weer op ''Opslaon'' klikken wonnen de bewarking zonder samenvatting op-esleugen.",
 'missingcommenttext'               => 'Plaos joew opmarking hieronder.',
-'missingcommentheader'             => "'''Let wel:''' je hemmen gien onderwarptitel toe-evoeg. A-j opniej op \"Opslaon\" klikken wonnen de bewarking op-esleugen zonder onderwarptitel.",
+'missingcommentheader'             => "'''Let wel:''' je hemmen gien onderwarptitel toe-evoeg. A-j opniej op \"Pagina opslaon\" klikken wönnen de bewarking op-esleugen zonder onderwarptitel.",
 'summary-preview'                  => 'Samenvatting naokieken:',
 'subject-preview'                  => 'Onderwarp/kop naokieken:',
 'blockedtitle'                     => 'Gebruker is eblokkeerd',
@@ -882,8 +882,8 @@ Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere pagi
 'userpage-userdoesnotexist'        => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "$1"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
 'userpage-userdoesnotexist-view'   => 'Gebruker "$1" steet hier neet in-eschreven',
 'clearyourcache'                   => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut de kas van de webkieker nog leeg-emaak wonnen um 't te kunnen zien. '''Mozilla / Firefox / Safari:''' drok op ''Shift'' + ''Pagina verniejen,'' of ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Macintosh-computer); '''Konqueror: '''klik op ''verniejen'' of drok op ''F5;'' '''Opera:''' leeg de kas in ''Extra → Voorkeuren;'' '''Internet Explorer:''' huil ''Ctrl'' in-edrok terwiel je op ''Pagina verniejen'' klikken of ''Ctrl-F5'' gebruken.",
-'usercssyoucanpreview'             => "'''Tip:''' gebruuk de knoppe 'Pagina naokieken' um joew nieje css/js nao te kieken veurda-j 't opslaon.",
-'userjsyoucanpreview'              => "'''Tip:''' gebruuk de knoppe 'Pagina naokieken' um joew nieje css/js nao te kieken veurda-j 't opslaon.",
+'usercssyoucanpreview'             => "'''Tip:''' gebruuk de knoppe 'Bewarking naokieken' um joew nieje css/js nao te kieken veurda-j 't opslaon.",
+'userjsyoucanpreview'              => "'''Tip:''' gebruuk de knoppe 'Bewarking naokieken' um joew nieje css/js nao te kieken veurda-j 't opslaon.",
 'usercsspreview'                   => "'''Dit is allinnig een controle van joew persoonlijke CSS.'''
 ''''t Is nog neet op-esleugen!'''",
 'userjspreview'                    => "'''Denk deran da-j joew persoonlijke JavaScript allinnig nog mar an 't bekieken bin, 't is nog neet op-esleugen!'''",
@@ -908,18 +908,18 @@ As 't dan nog preblemen geef, prebeer dan um [[Special:UserLogout|opniej an te m
 
 't Bovenste bewarkingsveld laot de pagina zien zoas 't noen is. Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina. Helemaole onderan (bie \"Joew tekse\") steet nog een bewarkingsveld mit joew versie.
 
-Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"Opslaon\".",
+Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"Pagina opslaon\".",
 'yourtext'                         => 'Joew tekse',
 'storedversion'                    => 'Op-esleugen versie',
 'nonunicodebrowser'                => "'''Waorschuwing: de webkieker kan neet goed overweg mit unicode, schakel over op een aandere webkieker um de wiezigingen an te brengen!'''",
 'editingold'                       => "'''Waorschuwing: je bin een ouwere versie van disse pagina an 't bewarken. A-j de veraandering opslaon, wonnen alle niejere versies over-eschreven.'''",
 'yourdiff'                         => 'Wiezigingen',
-'copyrightwarning'                 => "Waort je dat alle biedragen an {{SITENAME}} vrie-egeven mutten wonnen onder de \$2 (zie \$1 veur meer infermasie).
-A-j neet willen dat joew tekse deur aander volk bewark en verspreid kan wonnen, slao de tekse dan neet op.<br />
-Deur op \"Opslaon\" te klikken beleuf je ons da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron.<br />
+'copyrightwarning'                 => "Waort je dat alle biedragen an {{SITENAME}} vrie-egeven mutten wönnen onder de \$2 (zie \$1 veur meer infermasie).
+A-j neet willen dat joew tekse deur aander volk bewark en verspreid kan wönnen, slao de tekse dan neet op.<br />
+Deur op \"Pagina opslaon\" te klikken beleuf je ons da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron.<br />
 '''Gebruuk gien spul mit auteursrechen, a-j daor gien toestemming veur hemmen!'''",
-'copyrightwarning2'                => "Waort je dat alle biedragen an {{SITENAME}} deur aander volk bewark of vort-edaon kan wonnen. A-j neet willen dat joew tekse deur aander volk bewark wonnen, slao de tekse dan neet op.<br />
-Deur op \"Opslaon\" te klikken beleuf je ons da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron (zie \$1 veur meer infermasie).
+'copyrightwarning2'                => "Waort je dat alle biedragen an {{SITENAME}} deur aander volk bewark of vort-edaon kan wönnen. A-j neet willen dat joew tekse deur aander volk bewark wönnen, slao de tekse dan neet op.<br />
+Deur op \"Pagina opslaon\" te klikken beleuf je ons da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron (zie \$1 veur meer infermasie).
 '''Gebruuk gien spul mit auteursrechen, a-j daor gien toestemming veur hemmen!'''",
 'longpagewarning'                  => "Disse pagina is $1 kB groot. 't Bewarken van grote pagina's kan veur preblemen zörgen bie ouwere webkiekers.",
 'longpageerror'                    => "'''Foutmelding: de tekse dee-j opslaon willen is $1 kilobytes. Dit is groter as 't toe-estaone maximum van $2 kilobytes. Joew tekse kan neet op-esleugen wonnen.'''",
@@ -931,9 +931,9 @@ As grund is angeven: $1",
 'semiprotectedpagewarning'         => "'''Let op:''' disse pagina ku-j allinnig bewarken a-j tenminsen vier dagen in-eschreven staon.",
 'cascadeprotectedwarning'          => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|cascade-beveiligen pagina|cascade-beveiligen pagina's}}:",
 'titleprotectedwarning'            => "'''Waorschuwing: disse pagina is beveilig. Je hemmen [[Special:ListGroupRights|bepaolde rechen]] neudig um 't an te kunnen maken.'''",
-'templatesused'                    => 'Mallen dee op disse pagina gebruuk bin:',
-'templatesusedpreview'             => 'Mallen dee in disse bewarking gebruuk wonnen:',
-'templatesusedsection'             => 'Mallen dee in disse sectie gebruuk wonnen:',
+'templatesused'                    => '{{PLURAL:$1|Mal|Mallen}} dee op disse pagina gebruuk wönnen:',
+'templatesusedpreview'             => '{{PLURAL:$1|Mal|Mallen}} dee in disse bewarking gebruuk wönnen:',
+'templatesusedsection'             => '{{PLURAL:$1|Mal|Mallen}} dee in dit subkopjen gebruuk wönnen:',
 'template-protected'               => '(beveilig)',
 'template-semiprotected'           => '(semibeveilig)',
 'hiddencategories'                 => 'Disse pagina vuilt in de volgende verbörgen {{PLURAL:$1|kattegerie|kattegerieën}}:',
@@ -1620,7 +1620,7 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur een overzichte.',
 'uploadedfiles'               => 'Toe-evoegen bestanen',
 'ignorewarning'               => 'Negeer alle waorschuwingen',
 'ignorewarnings'              => 'negeer waorschuwingen',
-'minlength1'                  => 'Bestaansnamen mutten tenminsen één letter lang ween.',
+'minlength1'                  => 'Bestaansnamen mutten uut tenminsen één letter bestaon.',
 'illegalfilename'             => 'De bestaansnaam "$1" bevat kerakters dee neet in namen van artikels veur maggen koemen. Geef \'t bestaand een aandere naam, en prebeer \'t dan opniej toe te voegen.',
 'badfilename'                 => 'De naam van \'t bestaand is ewiezig naor "$1".',
 'filetype-badmime'            => 'Bestanen mit \'t MIME-type "$1" maggen hier neet toe-evoeg wonnen.',
@@ -1629,7 +1629,7 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur een overzichte.',
 'filetype-banned-type'        => "'''\".\$1\"''' is gien toe-estaone bestaanstype.
 Toe-estaone {{PLURAL:\$3|bestaanstype is|bestaanstypes bin}} \$2.",
 'filetype-missing'            => 'Dit bestaand hef gien extensie (bv. ".jpg").',
-'large-file'                  => "'t Wonnen an-eraojen dat bestanen neet groter bin as $1, dit bestaand is $2.",
+'large-file'                  => 'Bestanen mutten neet groter ween as $1, dit bestaand is $2.',
 'largefileserver'             => "'t Bestaand is groter as dat de server toesteet.",
 'emptyfile'                   => "'t Bestaand da-j toe-evoeg hemmen is leeg. Dit kan koemen deur een tikfout in de bestaansnaam. Kiek effen nao o-j dit bestaand wè bedoelen.",
 'fileexists'                  => "Een ofbeelding mit disse naam besteet al; voeg 't bestaand onder een aandere naam toe.
@@ -1803,7 +1803,7 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'mimesearch'         => 'Zeuken op MIME-type',
 'mimesearch-summary' => "Op disse speciale pagina kunnen de bestanen naor 't MIME-type efiltreerd wonnen. De invoer mut altied 't media- en subtype bevatten, bieveurbeeld: <tt>ofbeelding/jpeg</tt>.",
 'mimetype'           => 'MIME-type:',
-'download'           => 'oflaojen',
+'download'           => 'binnenhaolen',
 
 # Unwatched pages
 'unwatchedpages' => "Pagina's dee neet evolg wonnen",
@@ -2456,7 +2456,7 @@ Mut de databanke vrie-egeven wonnen?',
 'lockdbsuccesstext'   => "De databanke is eblokkeerd.<br />
 Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit 't onderhoud.",
 'unlockdbsuccesstext' => 'De databanke is weer vrie-egeven.',
-'lockfilenotwritable' => "Gien schriefrechen op 't beveiligingsbestaand van de databanke. Um de databanke te blokkeren of de blokkering op te heffen, mut der eschreven kunnen wonnen deur de webserver.",
+'lockfilenotwritable' => "Gien schriefrechen op 't beveiligingsbestaand van de databanke. Um de databanke te blokkeren of de blokkering op te heffen, mut der eschreven kunnen wönnen deur de webserver.",
 'databasenotlocked'   => 'De databanke is neet eblokkeerd.',
 
 # Move page
@@ -2743,7 +2743,7 @@ Meestentieds wonnen dit veroorzaak deur een uutgaonde verwiezing dee op de zwart
 'math_lexing_error'     => 'Lexicografische fout in formule',
 'math_syntax_error'     => 'Syntactische fout in formule',
 'math_image_error'      => "'t Overzetten naor PNG is mislok.",
-'math_bad_tmpdir'       => 'De map veur tiedelijke bestanen veur wiskundige formules besteet neet of is kan neet an-emaak wonnen.',
+'math_bad_tmpdir'       => 'De map veur tiejelijke bestanen veur wiskundige formules besteet neet of is kan neet an-emaak wönnen.',
 'math_bad_output'       => 'De map veur wiskundebestanen besteet neet of is neet an te maken.',
 'math_notexvc'          => "Kan 't pregramma texvc neet vienen; configureer volgens de beschrieving in math/README.",
 
@@ -3337,7 +3337,7 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'ajax-add-category-submit'     => 'Derbie doon',
 'ajax-confirm-title'           => 'Haandeling bevestigen',
 'ajax-confirm-prompt'          => 'Je kunnen hieronder een bewarkingsamenvatting opgeven.
-Klik "Opslaon" um joew bewarking op te slaon.',
+Klik "Pagina opslaon" um joew bewarking op te slaon.',
 'ajax-confirm-save'            => 'Opslaon',
 'ajax-add-category-summary'    => 'Kattegerie "$1" derbie doon',
 'ajax-remove-category-summary' => 'Kattegerie "$1" vortdoon',

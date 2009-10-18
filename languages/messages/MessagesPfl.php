@@ -230,8 +230,8 @@ Dai Ännerunge sinn no nid gspaichert worre!",
 Wenn du nit willhsct, dass deswu du gschriwwe hoscht, gänneret un kopiert werre kann, dann duu s do nit naischraiwe.<br />
 du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effentliche, fraie Quell ('''public domain''')orrer vun ere ähnliche fraie Quell her hoscht.
 '''SCHRAIB DO NIX NAI, WAS URHEWERRECHTKLICH GSCHITZT ISCH!'''",
-'templatesused'                    => 'Vorlache wu uff derre Said gebraucht werre:',
-'templatesusedpreview'             => 'Vorlache wu in derre Vorschau gebraucht werre:',
+'templatesused'                    => '{{PLURAL:$1|Vorlach wu uff derre Said gebraucht werd|Vorlache wu uff derre Said gebraucht werre}}:',
+'templatesusedpreview'             => '{{PLURAL:$1|Vorlach wu in derre Vorschau gebraucht werd|Vorlache wu in derre Vorschau gebraucht werre}}:',
 'template-protected'               => '(gschitzt)',
 'template-semiprotected'           => '(halb-gschitzt)',
 'hiddencategories'                 => 'Die Said ghert zu {{PLURAL:$1|1 versteckelte Kategorie|$1 versteckelte Kategorie}}:',
