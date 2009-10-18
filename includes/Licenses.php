@@ -86,7 +86,7 @@ class Licenses extends HTMLFormField {
 		$position[] = $item;
 	}
 
-	protected function makeHtml( &$tagset, $depth = 0 ) {
+	protected function makeHtml( $tagset, $depth = 0 ) {
 		foreach ( $tagset as $key => $val )
 			if ( is_array( $val ) ) {
 				$this->html .= $this->outputOption(
