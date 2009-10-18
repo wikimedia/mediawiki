@@ -793,9 +793,9 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'semiprotectedpagewarning'         => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellte Benotzer s'ännere kënnen.",
 'cascadeprotectedwarning'          => "'''Passt op:''' Dës Säit gouf gespaart a kann nëmme vu Benotzer mat Administreursrechter geännert ginn. Si ass an dës {{PLURAL:$1|Säit|Säiten}} agebonnen, déi duerch Cascadespäroptioun gespaart {{PLURAL:$1|ass|sinn}}:'''",
 'titleprotectedwarning'            => "'''OPGEPASST: Dës Säit gouf gespaart sou datt [[Special:ListGroupRights|spezifesch Rechter]] gebraucht gi fir se uleeën ze kënnen.'''",
-'templatesused'                    => 'Schablounen déi op dëser Säit am Gebrauch sinn:',
-'templatesusedpreview'             => 'Schablounen déi an dëser nach net gespäicherter Versioun benotzt ginn:',
-'templatesusedsection'             => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
+'templatesused'                    => '{{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit am Gebrauch sinn:',
+'templatesusedpreview'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dëser nach net gespäicherter Versioun benotzt ginn:',
+'templatesusedsection'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dësem Abschnitt am Gebrauch {{PLURAL:$1|ass|sinn}}:',
 'template-protected'               => '(gespaart)',
 'template-semiprotected'           => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories'                 => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
@@ -1567,6 +1567,9 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'img-auth-isdir'        => 'Dir versicht op de Repertoire "$1" zouzegräifen.
 Nèemmen Datenofruff ass erlaabt.',
 'img-auth-streaming'    => '"$1" lueden.',
+'img-auth-public'       => "D'Fonctioun img_auth.php erlaabt et fir Fichieren vun enger privater Wiki erauszeginn.
+Dës Wiki ass als ëffentlech Wiki configuréiert.
+Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
 'img-auth-noread'       => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3103,7 +3106,7 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekannten Erweiderungs-Tag "$1"',
-'duplicate-defaultsort' => 'Opgepasst: De Sortéierschlëssel "$2" iwwerschreiwt de virege Sortéierschlëssel "$1".',
+'duplicate-defaultsort' => 'Opgepasst: Den Zortéierschlëssel "$2" iwwerschreift de viregen Zortéierschlëssel "$1".',
 
 # Special:Version
 'version'                          => 'Versioun',
@@ -3112,7 +3115,7 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 'version-parserhooks'              => 'Parser-Erweiderungen',
 'version-variables'                => 'Variablen',
 'version-other'                    => 'Aner',
-'version-mediahandlers'            => 'Medien-Ënnerstetzung',
+'version-mediahandlers'            => 'Medien-Ënnerstëtzung',
 'version-hooks'                    => 'Klameren',
 'version-extension-functions'      => 'Funktioune vun den Erweiderungen',
 'version-parser-extensiontags'     => "Parser-Erweiderungen ''(Taggen)''",

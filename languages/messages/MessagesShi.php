@@ -268,7 +268,22 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 '''ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!'''",
 
 # Search results
-'powersearch' => 'amsigl itqdmn',
+'searchprofile-everything-tooltip' => 'Cabba ɣ kullu may ityran ɣid (d ḥtta ɣ tisna nu umsgdal)',
+'searchprofile-advanced-tooltip'   => 'Cabba ɣ igmmaḍn li tuyzlaynin',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 taguri|$2 tiguriwin}})',
+'search-result-score'              => 'Tazdayt: $1%',
+'search-redirect'                  => '(Asmmati $1)',
+'search-section'                   => 'Ayyaw $1',
+'search-suggest'                   => 'Is trit att nnit: $1',
+'search-interwiki-caption'         => 'Tiwuriwin taytmatin',
+'search-interwiki-more'            => '(Uggar)',
+'search-relatedarticle'            => 'Tzdi',
+'mwsuggest-disable'                => 'Asbid AJAKS n mayttuynnan at tuyskar',
+'searcheverything-enable'          => 'Cabba ɣ graygat agmmaḍ',
+'searchrelated'                    => 'Tuyzday',
+'searchall'                        => 'Kullu',
+'showingresults'                   => "Ẓr azddar  {{PLURAL:$1|'''1''' May tuykfan|'''$1''' Mad kfan}} Bdu s #'''$2'''",
+'powersearch'                      => 'amsigl itqdmn',
 
 # Preferences page
 'localtime'    => 'loqt n ɣilli ɣtllit',

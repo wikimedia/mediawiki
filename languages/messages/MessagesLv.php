@@ -625,9 +625,9 @@ Admins, kas slēdza datubāzi, norādīja šādu paskaidrojumu: $1",
 'protectedpagewarning'       => "'''BRĪDINĀJUMS: Šī lapa ir bloķēta pret izmaiņām, tikai lietotāji ar admina privilēģijām var to izmainīt. To darot, noteikti ievēro [[Project:Norādījumi par aizsargātajām lapām|norādījumus par aizsargātajām lapām]].'''",
 'semiprotectedpagewarning'   => "'''Piezīme:''' Izmaiņu veikšana šajā lapā ir atļauta tikai reģistrētiem lietotājiem.",
 'titleprotectedwarning'      => "'''Brīdinājums: Šī lapa ir slēgta un to var izveidot tikai [[Special:ListGroupRights|noteikti]] lietotāji.'''",
-'templatesused'              => '<br />Šajā lapā izmantotās veidnes:',
-'templatesusedpreview'       => 'Šajā pirmskatā izmantotās veidnes:',
-'templatesusedsection'       => 'Šajā sadaļā izmantotās veidnes:',
+'templatesused'              => 'Šajā lapā {{PLURAL:$1|izmantotā veidne|izmantotās veidnes}}:',
+'templatesusedpreview'       => 'Šajā pirmskatā {{PLURAL:$1|izmanotā veidne|izmantotās veidnes}}:',
+'templatesusedsection'       => 'Šajā sadaļā {{PLURAL:$1|izmantotā veidne|izmantotās veidnes}}:',
 'template-protected'         => '(aizsargāta)',
 'template-semiprotected'     => '(daļēji aizsargāta)',
 'hiddencategories'           => 'Šī lapa ietilpst {{PLURAL:$1|1 slēptajā kategorijā|$1 slēptajās kategorijās}}:',
@@ -1602,6 +1602,8 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'autoblocker'                  => 'Tava IP ir nobloķēta automātiski, tāpēc, ka to nesen lietojis "[[User:$1|$1]]".
 Viņa bloķēšanas iemesls bija: "$2"',
 'blocklogpage'                 => 'Bloķēšanas reģistrs',
+'blocklog-showlog'             => 'Šis lietotājs ir bijis bloķēts jau agrāk.
+Te apakšā var apskatīties bloķēšanas reģistru:',
 'blocklogentry'                => 'nobloķēja [[$1]] uz $2 $3',
 'blocklogtext'                 => 'Šajā lapā ir pēdējo nobloķēto un atbloķēto lietotāju un IP adrešu saraksts. Te neparādās automātiski nobloķētās IP adreses.
 Šobrīd aktīvos blokus var apskatīties [[Special:IPBlockList|bloķēto lietotāju un IP adrešu sarakstā]].',
@@ -1609,9 +1611,17 @@ Viņa bloķēšanas iemesls bija: "$2"',
 'block-log-flags-nocreate'     => 'kontu veidošana atslēgta',
 'ipb_expiry_invalid'           => 'Nederīgs beigu termiņš',
 'ipb_already_blocked'          => '"$1" jau ir bloķēts',
+'ipb-needreblock'              => '== Jau bloķēts ==
+$1 jau ir bloķēts.
+Vai tu gribi izmainīt bloka uzstādījumus?',
+'ipb_cant_unblock'             => 'Kļūda: Bloka ID $1 nav atrasts.
+Tas, iespējams, jau ir atbloķēts.',
+'ipb_blocked_as_range'         => 'Kļūda: IP $1 nav bloķēta tieši, tāpēc to nevar atbloķēt.
+Tā ir bloķēta kā daļa no IP adrešu diapazona $2, kuru var atbloķēt.',
 'ip_range_invalid'             => 'Nederīgs IP diapazons',
 'proxyblocker'                 => 'Starpniekservera bloķētājs',
 'proxyblocksuccess'            => 'Darīts.',
+'cant-block-while-blocked'     => 'Tu nevari bloķēt citus lietotājus, kamēr pats esi bloķēts.',
 
 # Move page
 'move-page'               => 'Pārvietot $1',
@@ -1638,11 +1648,15 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
 'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:UserLogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
 'movenotallowed'          => 'Tev nav atļaujas pārvietot lapas.',
+'movenotallowedfile'      => 'Tev nav atļaujas pārvietot failus.',
+'cant-move-user-page'     => 'Tev nav atļaujas pārvietot lietotāju lapas (neskaitot apakšlapas).',
+'cant-move-to-user-page'  => 'Tev nav atļaujas pārvietot lapu uz lietotāja lapu (neskaitot lietotāja lapas apakšlapu).',
 'newtitle'                => 'Uz šādu lapu',
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',
 'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
 'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>',
+'movepage-moved-redirect' => 'Tika izveidota pāradresācija.',
 'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'cantmove-titleprotected' => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',
 'talkexists'              => "'''Šī lapa pati tika pārvietota veiksmīgi, bet tās diskusiju lapu nevarēja pārvietot, tapēc, ka jaunā nosaukuma lapai jau ir diskusiju lapa. Lūdzu apvieno šīs diskusiju lapas manuāli.'''",
@@ -1690,13 +1704,21 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'export-templates'  => 'Iekļaut veidnes',
 
 # Namespace 8 related
-'allmessages'               => 'Visi sistēmas paziņojumi',
-'allmessagesname'           => 'Nosaukums',
-'allmessagesdefault'        => 'Sākotnējais teksts',
-'allmessagescurrent'        => 'Pašreizējais teksts',
-'allmessagestext'           => "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
+'allmessages'                   => 'Visi sistēmas paziņojumi',
+'allmessagesname'               => 'Nosaukums',
+'allmessagesdefault'            => 'Sākotnējais teksts',
+'allmessagescurrent'            => 'Pašreizējais teksts',
+'allmessagestext'               => "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
 Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net translatewiki.net].",
-'allmessagesnotsupportedDB' => "Šī lapa nedarbojas, tāpēc, ka '''wgUseDatabaseMessages''' nedarbojas.",
+'allmessagesnotsupportedDB'     => "Šī lapa nedarbojas, tāpēc, ka '''wgUseDatabaseMessages''' nedarbojas.",
+'allmessages-filter-legend'     => 'Filtrs',
+'allmessages-filter'            => 'Filtrēt pēc izmainīšanas statusa:',
+'allmessages-filter-unmodified' => 'Nemodificēti',
+'allmessages-filter-all'        => 'Visi',
+'allmessages-filter-modified'   => 'Modificēti',
+'allmessages-prefix'            => 'Filtrēt pēc prefiksa:',
+'allmessages-language'          => 'Valoda:',
+'allmessages-filter-submit'     => 'Parādīt',
 
 # Thumbnails
 'thumbnail-more'  => 'Palielināt',
@@ -1728,6 +1750,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'tooltip-ca-viewsource'           => 'Šī lapa ir aizsargāta. Tu vari apskatīties tās izejas kodu.',
 'tooltip-ca-history'              => 'Šīs lapas iepriekšējās versijas.',
 'tooltip-ca-protect'              => 'Aizsargāt šo lapu',
+'tooltip-ca-unprotect'            => 'NEaizsargāt šo lapu',
 'tooltip-ca-delete'               => 'Dzēst šo lapu',
 'tooltip-ca-undelete'             => 'Atjaunot labojumus, kas izdarīti šajā lapā pirms lapas dzēšanas.',
 'tooltip-ca-move'                 => 'Pārvietot šo lapu',
@@ -1937,7 +1960,7 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Brīdinājums:''' Šī lapa tika izdzēsta, pēc tam, kad tu to sāki izmainīt!",
-'confirmrecreate'     => "Lietotājs [[User:$1|$1]] ([[User talk:$1|diskusija]]) izdzēssaa šo lapu, pēc tam, kad tu to biji sācis rediģēt, ar iemeslu:
+'confirmrecreate'     => "Lietotājs [[User:$1|$1]] ([[User talk:$1|diskusija]]) izdzēsa šo lapu, pēc tam, kad tu to biji sācis rediģēt, ar iemeslu:
 : ''$2''
 Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'recreate'            => 'Izveidot no jauna',
@@ -2051,6 +2074,8 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 # Add categories per AJAX
 'ajax-add-category'         => 'Pievienot kategoriju',
 'ajax-add-category-submit'  => 'Pievienot',
+'ajax-confirm-prompt'       => 'Te apakšā var norādīt izmaiņu kopsavilkumu.
+Uzspied uz "Saglabāt" lai saglabātu izmaiņas.',
 'ajax-confirm-save'         => 'Saglabāt',
 'ajax-add-category-summary' => 'Pievienot kategoriju "$1"',
 'ajax-error-title'          => 'Kļūda (Error)',

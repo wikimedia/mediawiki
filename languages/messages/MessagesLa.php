@@ -689,9 +689,9 @@ Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere
 aliquae navigatra paginas longiores quam 32 chiliocteti recensere non possunt.
 Considera paginam in partes minores frangere.',
 'protectedpagewarning'             => "'''CAVE: Haec pagina protecta est ut magistratus soli eam recenseant.'''",
-'templatesused'                    => 'Formulae hac in pagina adhibitae:',
-'templatesusedpreview'             => 'Formulae hoc in praeviso adhibitae:',
-'templatesusedsection'             => 'Formulae hac in parte adhibitae:',
+'templatesused'                    => '{{PLURAL:$1|Formula hac in pagina adhibita:|Formulae hac in pagina adhibitae:}}',
+'templatesusedpreview'             => '{{PLURAL:$1|Formula hoc in praeviso adhibita:|Formulae hoc in praeviso adhibitae:}}',
+'templatesusedsection'             => '{{PLURAL:$1|Formula hac in parte adhibita:|Formulae hac in parte adhibitae:}}',
 'template-protected'               => '(protecta)',
 'template-semiprotected'           => '(semi-protecta)',
 'hiddencategories'                 => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',

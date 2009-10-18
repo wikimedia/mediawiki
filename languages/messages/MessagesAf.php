@@ -762,7 +762,7 @@ Die wagwoord vir hierdie nuwe gebruiker kan verander word op die ''[[Special:Cha
 Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:Helppage}}|hulpbladsy]]
 vir meer inligting.
 Indien u per ongeluk hier is, gebruik u blaaier se '''terug'''- knoppie.",
-'anontalkpagetext'                 => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien u 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen u gerig is, [[Special:UserLogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
+'anontalkpagetext'                 => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien u 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen u gerig is, [[Special:UserLogin/signup|skep 'n rekening]] of [[Special:UserLogin|teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
 'noarticletext'                    => 'Hierdie bladsy bevat geen teks nie.
 U kan [[Special:Search/{{PAGENAME}}|na hierdie bladsytitel in ander bladsye soek]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} die verwante logs deursoek], of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'noarticletext-nopermission'       => 'Daar is tans geen teks in hierdie bladsy nie. U kan vir die bladsytitel [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
@@ -822,9 +822,9 @@ Een administrateur het die databasis geblokkeer vir hierdie rede: $1",
 'semiprotectedpagewarning'         => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
 'cascadeprotectedwarning'          => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",
 'titleprotectedwarning'            => "'''WAARSKUWING: Die bladsy is gesluit sodat net gebruikers met [[Special:ListGroupRights|spesiale regte]] dit sal kan skep.'''",
-'templatesused'                    => 'Sjablone in gebruik op hierdie blad:',
-'templatesusedpreview'             => 'Sjablone in hierdie voorskou gebruik:',
-'templatesusedsection'             => 'Sjablone gebruik in hierdie afdeling:',
+'templatesused'                    => 'Hierdie bladsy {{PLURAL:$1|gebruik sjabloon|gebruik sjablone}}:',
+'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablone}} gebruik in hierdie voorskou:',
+'templatesusedsection'             => 'Die volgende {{PLURAL:$1|sjabloon|sjablone}} word in hierdie afdeling gebruik:',
 'template-protected'               => '(beskermd)',
 'template-semiprotected'           => '(half-beskerm)',
 'hiddencategories'                 => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
@@ -962,6 +962,7 @@ $1",
 'revdelete-otherreason'       => 'Ander rede:',
 'revdelete-reasonotherlist'   => 'Ander rede',
 'revdelete-edit-reasonlist'   => 'Wysig skrap redes',
+'revdelete-offender'          => 'Outeur van hersiening:',
 
 # Suppression log
 'suppressionlog' => 'Verbergingslogboek',
@@ -1311,6 +1312,7 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-editusercssjs'         => 'Wysig ander gebruikers se CSS- en JS-lêers',
 'right-editusercss'           => 'Wysig ander gebruikers se CSS-lêers',
 'right-edituserjs'            => 'Wysig ander gebruikers se JS-lêers',
+'right-noratelimit'           => 'Negeer tydsafhanklike beperkings',
 'right-import'                => "Importeer bladsye vanaf ander wiki's",
 'right-importupload'          => "Importeer bladsye vanaf 'n lêer",
 'right-patrol'                => 'Merk ander se wysigings as gekontroleer',
@@ -1467,6 +1469,7 @@ Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<now
 'illegalfilename'            => 'Die lêernaam "$1" bevat karakters wat nie toegelaat word in bladsytitels nie. Verander asseblief die naam en probeer die lêer weer laai.',
 'badfilename'                => 'Prentnaam is verander na "$1".',
 'filetype-badmime'           => 'Lêers met MIME-tipe "$1" word nie toegelaat nie.',
+'filetype-bad-ie-mime'       => 'Die lêer kan nie opgelaai word nie omdat Internet Explorer dit sal identifiseer as "$1", \'n nie toegelate lêertipe wat moontlik skadelik is.',
 'filetype-unwanted-type'     => "'''\".\$1\"''' is 'n ongewenste lêertipe. 
 Aanbevole {{PLURAL:\$3|lêertipe|lêertipes}} is \$2.",
 'filetype-banned-type'       => "'''\".\$1\"''' is nie 'n toegelate lêertipe nie.
@@ -1519,10 +1522,13 @@ Slegs toegang tot lêers word toegelaat.',
 'img-auth-noread'       => 'Gebruiker het nie toegang om "$1" te lees nie.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'      => 'Kon nie die URL bereik nie',
-'upload-curl-error6-text' => 'Die URL is nie bereikbaar nie.
+'upload-curl-error6'       => 'Kon nie die URL bereik nie',
+'upload-curl-error6-text'  => 'Die URL is nie bereikbaar nie.
 Kontroleer of die URL korrek is, en of die webwerf wel beskikbaar is.',
-'upload-curl-error28'     => 'Oplaai neem te lank',
+'upload-curl-error28'      => 'Oplaai neem te lank',
+'upload-curl-error28-text' => "Die webwerf neem te lank om te antwoord.
+Kontroleer of die webwerf wel beskikbaar is of wag 'n rukkie en probeer dan weer.
+U kan miskien selfs tydens 'n minder besige tyd weer probeer.",
 
 'license'            => 'Lisensiëring:',
 'license-header'     => 'Lisensiëring',
@@ -1569,6 +1575,10 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'redirectstofile'           => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
 'duplicatesoffile'          => "Die volgende {{PLURAL:$1|lêer is 'n duplikaat|$1 lêers is duplikate}} van die lêer ([[Special:FileDuplicateSearch/$2|meer details]]):",
 'sharedupload'              => 'Die lêer kom vanaf $1 en mag moontlik ook op ander projekte gebruik word.',
+'sharedupload-desc-there'   => 'Hierdie lêer kom vanaf $1 en kan ook in ander projekte gebruik word.
+Sien die [$2 lêer se beskrywingsblad] vir meer inligting.',
+'sharedupload-desc-here'    => 'Hierdie lêer kom vanaf $1 en kan ook in ander projekte gebruik word.
+Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 'filepage-nofile'           => "Daar bestaan nie 'n lêer met die naam nie.",
 'filepage-nofile-link'      => "Daar bestaan nie 'n lêer met die naam nie, maar u kan een [$1 oplaai].",
 'uploadnewversion-linktext' => 'Laai een nuwe weergawe van hierdie lêer',
@@ -1602,6 +1612,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 ** Kopieregskending
 ** Duplikaatlêer',
 'filedelete-edit-reasonlist'  => 'Wysig skrap redes',
+'filedelete-maintenance'      => 'Die verwydering en terugplasing van lêers is tydelik opgeskort weens onderhoud.',
 
 # MIME search
 'mimesearch'         => 'MIME-soek',
@@ -2330,7 +2341,9 @@ Gaan na [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [h
 'djvu_page_error'          => 'DjVu-bladsy buite bereik',
 'djvu_no_xml'              => 'Die XML vir die DjVu-lêer kon nie bekom word nie',
 'thumbnail_invalid_params' => 'Ongeldige parameters vir duimnaelskets',
+'thumbnail_dest_directory' => 'Nie in staat om die gids te skep nie',
 'thumbnail_image-type'     => 'Die lêertipe word nie ondersteun nie',
+'thumbnail_gd-library'     => 'Onvolledige GD-biblioteek verstellings: die funksie $1 is weg',
 'thumbnail_image-missing'  => 'Lêer blyk weg te wees: $1',
 
 # Special:Import
@@ -2474,6 +2487,8 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 'math_unknown_function' => 'onbekende funksie',
 'math_lexing_error'     => 'leksikale fout',
 'math_syntax_error'     => 'sintaksfout',
+'math_image_error'      => 'PNG-omskakeling het gefaal.
+Kontroleer of latex, dvips en gs korrek geïnstalleer is en skakel om',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merk as gekontroleerd',

@@ -984,9 +984,9 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
 'cascadeprotectedwarning'          => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.",
 'titleprotectedwarning'            => "'''ATTENTION : Cette page a été protégée de telle manière que des [[Special:ListGroupRights|droits spécifiques]] sont requis pour pouvoir la créer.'''",
-'templatesused'                    => 'Modèles utilisés par cette page :',
-'templatesusedpreview'             => 'Modèles utilisés dans cette prévisualisation :',
-'templatesusedsection'             => 'Modèles utilisés dans cette section :',
+'templatesused'                    => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
+'templatesusedpreview'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
+'templatesusedsection'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette section :',
 'template-protected'               => '(protégé)',
 'template-semiprotected'           => '(semi-protégé)',
 'hiddencategories'                 => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} dont cette page fait partie :',
@@ -2597,7 +2597,7 @@ Veuillez en choisir un autre.',
 'delete_and_move_text'         => '== Suppression nécessaire ==
 La page de destination « [[:$1]] » existe déjà.
 Êtes-vous certain de vouloir la supprimer pour permettre ce déplacement ?',
-'delete_and_move_confirm'      => "'''Supprimer la page de destination'''",
+'delete_and_move_confirm'      => 'Oui, supprimer la page de destination',
 'delete_and_move_reason'       => 'Page supprimée pour permettre un déplacement',
 'selfmove'                     => 'Les titres d’origine et de destination sont les mêmes ;
 impossible de renommer une page sur elle-même.',

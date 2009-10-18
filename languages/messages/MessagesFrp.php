@@ -989,9 +989,9 @@ L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplica
 'cascadeprotectedwarning'          => "'''ATENCION :''' ceta pâge at étâ protègiê de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont changiér.
 Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|ceta pâge protègiê|cetes pâges protègiês}} avouéc la « protèccion en cascâda » activâ :",
 'titleprotectedwarning'            => "'''ATENCION : ceta pâge at étâ protègiê de façon que des [[Special:ListGroupRights|drêts spèceficos]] sont nècèssèros por la povêr fâre.'''",
-'templatesused'                    => 'Modèlos utilisâs sur ceta pâge :',
-'templatesusedpreview'             => 'Modèlos utilisâs dens ceta prèvisualisacion :',
-'templatesusedsection'             => 'Modèlos utilisâs dens ceta sèccion :',
+'templatesused'                    => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} per ceta pâge :',
+'templatesusedpreview'             => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta prèvisualisacion :',
+'templatesusedsection'             => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta sèccion :',
 'template-protected'               => '(protègiê)',
 'template-semiprotected'           => '(mié-protègiê)',
 'hiddencategories'                 => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
@@ -3575,7 +3575,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'tag-filter'              => 'Filtrar les [[Special:Tags|balises]] :',
 'tag-filter-submit'       => 'Filtrar',
 'tags-title'              => 'Balises',
-'tags-intro'              => 'Ceta pâge liste les balises que la programeria pôt utilisar por marcar un changement avouéc, et lor significacion.',
+'tags-intro'              => 'Ceta pâge liste les balises que la programeria pôt utilisar por marcar un changement et lor significacion.',
 'tags-tag'                => 'Nom de la balisa',
 'tags-display-header'     => 'Aparence dens les listes de changements',
 'tags-description-header' => 'Dèscripcion complèta de la balisa',
@@ -3615,7 +3615,7 @@ Clicâd dessus « Sôvar » por encartar voutron changement.',
 'ajax-confirm-actionsummary'   => 'Accion a menar :',
 'ajax-error-title'             => 'Èrror',
 'ajax-error-dismiss'           => 'D’acôrd',
-'ajax-remove-category-error'   => 'Empossiblo d’enlevar ceta catègorie.
+'ajax-remove-category-error'   => 'O at pas étâ possiblo d’enlevar ceta catègorie.
 En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge avouéc un modèlo.',
 
 );
