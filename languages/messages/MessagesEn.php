@@ -2038,7 +2038,7 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 # Upload
 'upload'                      => 'Upload file',
 'uploadbtn'                   => 'Upload file',
-'reuploaddesc'                => 'Cancel upload and return to the upload form ',
+'reuploaddesc'                => 'Cancel upload and return to the upload form',
 'uploadnologin'               => 'Not logged in',
 'uploadnologintext'           => 'You must be [[Special:UserLogin|logged in]] to upload files.',
 'upload_directory_missing'    => 'The upload directory ($1) is missing and could not be created by the webserver.',
@@ -2131,7 +2131,7 @@ Please check the file and upload again.',
 'destfilename'                => 'Destination filename:',
 'upload-maxfilesize'          => 'Maximum file size: $1',
 'upload-description'          => 'File description',
-'upload-options'              => '',
+'upload-options'              => '', # do not translate or duplicate this message to other languages
 'watchthisupload'             => 'Watch this file',
 'filewasdeleted'              => 'A file of this name has been previously uploaded and subsequently deleted.
 You should check the $1 before proceeding to upload it again.',
