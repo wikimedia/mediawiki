@@ -103,7 +103,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Special page entry point
 	 */
-	public function execute() {
+	public function execute( $par ) {
 		global $wgUser, $wgOut, $wgRequest;
 		
 		$this->setHeaders();
