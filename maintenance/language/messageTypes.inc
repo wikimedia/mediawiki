@@ -158,6 +158,7 @@ $wgIgnoredMessages = array(
 	'wantedtemplates-summary',
 	'activeusers-summary',
 	'editpage-tos-summary',
+	'upload-options',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
