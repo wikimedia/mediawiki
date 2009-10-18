@@ -469,36 +469,6 @@ function checkboxClickHandler(e) {
 	return true;
 }
 
-function toggle_element_activation(ida,idb) {
-	if ( !document.getElementById ) {
-		return;
-	}
-	// Show the appropriate upload size limit message
-	if( idb == 'wpUploadFileURL' ) {
-		var e = document.getElementById( 'mw-upload-maxfilesize' );
-		if( e ) e.style.display = "none";
-
-		var e = document.getElementById( 'mw-upload-maxfilesize-url' );
-		if( e ) e.style.display = "block";
-	}
-	if( idb == 'wpUploadFile' ) {
-		var e = document.getElementById( 'mw-upload-maxfilesize-url' );
-		if( e ) e.style.display =  "none";
-
-		var e = document.getElementById( 'mw-upload-maxfilesize' );
-		if( e ) e.style.display =  "block";
-	}
-	document.getElementById( ida ).disabled = true;
-	document.getElementById( idb ).disabled = false;
-}
-
-function toggle_element_check(ida,idb) {
-	if (!document.getElementById) {
-		return;
-	}
-	document.getElementById(ida).checked=true;
-	document.getElementById(idb).checked=false;
-}
 
 /*
 	Written by Jonathan Snook, http://www.snook.ca/jonathan

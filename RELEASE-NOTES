@@ -249,6 +249,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   limit exceeded, __NOINDEX__ tracking, etc) can now be disabled by setting the 
   system message ([[MediaWiki:expensive-parserfunction-category]] etc) to "-".
 * Added maintenance script sqlite.php for SQLite-specific maintenance tasks.
+* Rewrote Special:Upload to allow easier extension. 
+* Upload errors that can be solved by changing the filename now do not require
+  reuploading.
+
 
 === Bug fixes in 1.16 ===
 

@@ -34,6 +34,75 @@ function wgUploadSetup() {
 			}
 		}
 	}
+	
+	// Toggle source type
+	var sourceTypeCheckboxes = document.getElementsByName( 'wpSourceType' );
+	for ( var i = 0; i < sourceTypeCheckboxes.length; i++ ) {
+		sourceTypeCheckboxes[i].onchange = toggleUploadInputs;
+	}
+	
+	// AJAX wpDestFile warnings
+	if ( wgAjaxUploadDestCheck ) {
+		document.getElementById( 'wpDestFile' ).onchange = function ( e ) { 
+			wgUploadWarningObj.checkNow(this.value);
+		};
+		var optionsTable = document.getElementById( 'mw-htmlform-options' ).tBodies[0];
+		var row = document.createElement( 'tr' );
+		var td = document.createElement( 'td' );
+		td.id = 'wpDestFile-warning';
+		td.colSpan = 2;
+		row.appendChild( td );
+		optionsTable.appendChild( row );
+	}
+	
+	// License selector check
+	document.getElementById( 'wpLicense' ).onchange = licenseSelectorCheck;
+	
+	// fillDestFile setup
+	for ( var i = 0; i < wgUploadSourceIds.length; i++ )
+		document.getElementById( wgUploadSourceIds[i] ).onchange = function (e) {
+			fillDestFilename( this.id );
+		};
+}
+
+/**
+ * Iterate over all upload source fields and disable all except the selected one.
+ * 
+ * @param enabledId The id of the selected radio button 
+ * @return emptiness
+ */
+function toggleUploadInputs() {
+	// Iterate over all rows with UploadSourceField
+	var rows;
+	if ( document.getElementsByClassName ) {
+		rows = document.getElementsByClassName( 'mw-htmlform-field-UploadSourceField' );
+	} else {
+		// Older browsers don't support getElementsByClassName
+		rows = new Array();
+		
+		var allRows = document.getElementsByTagName( 'tr' );
+		for ( var i = 0; i < allRows.length; i++ ) {
+			if ( allRows[i].className == 'mw-htmlform-field-UploadSourceField' )
+				rows.push( allRows[i] );
+		}
+	}
+	
+	for ( var i = 0; i < rows.length; i++ ) {
+		var inputs = rows[i].getElementsByTagName( 'input' );
+		
+		// Check if this row is selected
+		var isChecked = true; // Default true in case wpSourceType is not found
+		for ( var j = 0; j < inputs.length; j++ ) {
+			if ( inputs[j].name == 'wpSourceType' )
+				isChecked = inputs[j].checked;
+		}
+		
+		// Disable all unselected rows
+		for ( var j = 0; j < inputs.length; j++ ) {
+			if ( inputs[j].type != 'radio')
+				inputs[j].disabled = !isChecked;
+		}
+	}
 }
 
 var wgUploadWarningObj = {
@@ -86,7 +155,7 @@ var wgUploadWarningObj = {
 		// ajax requests can be supported.
 		var obj = this;
 		var fileName = this.nameToCheck;
-		sajax_do_call( 'UploadForm::ajaxGetExistsWarning', [this.nameToCheck],
+		sajax_do_call( 'SpecialUpload::ajaxGetExistsWarning', [this.nameToCheck],
 			function (result) {
 				obj.processResult(result, fileName)
 			}
@@ -101,16 +170,7 @@ var wgUploadWarningObj = {
 
 	'setWarning' : function (warning) {
 		var warningElt = document.getElementById( 'wpDestFile-warning' );
-		var ackElt = document.getElementById( 'wpDestFileWarningAck' );
 		this.setInnerHTML(warningElt, warning);
-
-		// Set a value in the form indicating that the warning is acknowledged and
-		// doesn't need to be redisplayed post-upload
-		if ( warning == '' || warning == '&nbsp;' ) {
-			ackElt.value = '';
-		} else {
-			ackElt.value = '1';
-		}
 	},
 	'setInnerHTML' : function (element, text) {
 		// Check for no change to avoid flicker in IE 7
@@ -180,6 +240,7 @@ function fillDestFilename(id) {
 	}
 
 	// Capitalise first letter and replace spaces by underscores
+	// FIXME: $wgCapitalizedNamespaces
 	fname = fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ /g, '_');
 
 	// Output result
@@ -214,7 +275,7 @@ var wgUploadLicenseObj = {
 			}
 		}
 		injectSpinner( document.getElementById( 'wpLicense' ), 'license' );
-		sajax_do_call( 'UploadForm::ajaxGetLicensePreview', [license],
+		sajax_do_call( 'SpecialUpload::ajaxGetLicensePreview', [license],
 			function( result ) {
 				wgUploadLicenseObj.processResult( result, license );
 			}
