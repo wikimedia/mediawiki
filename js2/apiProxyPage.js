@@ -7,7 +7,6 @@
 /*
  * since this is proxy server set a pre-append debug flag to know which debug msgs are coming from where
  */
-
 if( !mwApiProxyConfig )
 	var mwApiProxyConfig = {};
 
@@ -18,10 +17,8 @@ var mwApiProxyDefaultConfig = {
 		'master_blacklist'	: []					
 };
 //user_white_list should also be checked and configured at runtime.
-
 js2AddOnloadHook( function() {				
 	//build our configuration from the default and mwApiProxyConfig vars
-	mwApiProxyConfig = $j.extend(true, mwApiProxyDefaultConfig,  mwApiProxyConfig);
-	
+	mwApiProxyConfig = $j.extend(true, mwApiProxyDefaultConfig,  mwApiProxyConfig);	
 	$j.apiProxy( 'server', mwApiProxyConfig );	
 });

@@ -18,22 +18,23 @@ function doPageSpecificRewrite() {
 	// Add media wizard
 	if( wgAction == 'edit' || wgAction == 'submit' ) {
 		load_mv_embed( function() {
-			importScriptURI( mwEmbedHostPath + '/editPage.js' + reqAguments );
+			loadExternalJs( mwEmbedHostPath + '/editPage.js' + reqAguments );
 		} );
 	}
 
 	// Firefogg integration
 	if( wgPageName == "Special:Upload" ){
 		load_mv_embed( function() {
-			importScriptURI( mwEmbedHostPath + '/uploadPage.js' + reqAguments );
+			loadExternalJs( mwEmbedHostPath + '/uploadPage.js' + reqAguments );
 		} );
 	}
 	
 	// Special api proxy page
-	if( wgPageName == 'MediaWiki:ApiProxy' ){
+	if( wgPageName == 'MediaWiki:ApiProxy' ){		
 		var wgEnableIframeApiProxy = true;
 		load_mv_embed( function() {
-			importScriptURI( mwEmbedHostPath + '/ApiProxyPage.js' + reqAguments );
+			js_log("Wiki:ApiProxy::");
+			loadExternalJs( mwEmbedHostPath + '/apiProxyPage.js' + reqAguments );
 		});
 	}
 	
@@ -113,14 +114,14 @@ function rewrite_for_OggHandler( vidIdList ){
 function getRemoteEmbedPath() {
 	for( var i = 0; i < document.getElementsByTagName( 'script' ).length; i++ ) {
 		var s = document.getElementsByTagName( 'script' )[i];
-		if( s.src.indexOf( 'remoteMwEmbed.js' ) != -1 ) {
+		if( s.src.indexOf( '/remoteMwEmbed.js' ) != -1 ) {
 			var reqStr = '';
 			var scriptPath = '';
 			if( s.src.indexOf( '?' ) != -1) {
 				reqStr = s.src.substr( s.src.indexOf( '?' ) );
-				scriptPath = s.src.substr( 0,  s.src.indexOf( '?' ) ).replace( 'remoteMwEmbed.js', '' );
+				scriptPath = s.src.substr( 0,  s.src.indexOf( '?' ) ).replace( '/remoteMwEmbed.js', '' );
 			} else {
-				scriptPath = s.src.replace( 'remoteMwEmbed.js', '' )
+				scriptPath = s.src.replace( '/remoteMwEmbed.js', '' )
 			}
 			// Use the external_media_wizard path:
 			return [scriptPath, reqStr];
@@ -129,6 +130,8 @@ function getRemoteEmbedPath() {
 }
 
 function load_mv_embed( callback ) {
+	if(console.log)
+		console.log( 'load_mv_embed');
 	// Inject mv_embed if needed
 	if( typeof mvEmbed == 'undefined' ) {
 		importScriptURI( mwEmbedHostPath + '/mwEmbed/mv_embed.js' + reqAguments );

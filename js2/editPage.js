@@ -20,13 +20,14 @@ var defaultAddMediaConfig = {
 		'local_wiki_api_url': wgServer + wgScriptPath + '/api.php'
 };
 
-
 js2AddOnloadHook( function() {
 	var amwConf = $j.extend( true, defaultAddMediaConfig, mwAddMediaConfig );
 	// kind of tricky, it would be nice to use run on ready "loader" call here
+	var didWikiEditorBind = false;
 	if( typeof $j.wikiEditor != 'undefined' ) {
 			$j( 'textarea#wpTextbox1' ).bind( 'wikiEditor-toolbar-buildSection-main',
 		    function( e, section ) {
+		    	didWikiEditorBind = true;
 		        if ( typeof section.groups.insert.tools.file !== 'undefined' ) {
 		            section.groups.insert.tools.file.action = {
 		                'type': 'callback',
@@ -47,6 +48,10 @@ js2AddOnloadHook( function() {
 			$j( '#btn-add-media-wiz' ).addMediaWiz(
 				amwConf
 			);
+		}else{
+			//make sure the wikieditor got binded: 
+			if( !didWikiEditorBind )
+				$j(".tool [rel='file']").addMediaWiz( amwConf );
 		}
-	},100)
+	}, 120)
 });

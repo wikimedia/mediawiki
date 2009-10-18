@@ -412,7 +412,7 @@ remoteSearchDriver.prototype = {
 			}
 		}		
 		//set the upload target name if unset
-		if( _this.upload_api_target == 'local' &&  ! _this.upload_api_name && wgSiteName)
+		if( _this.upload_api_target == 'local' &&  ! _this.upload_api_name && typeof wgSiteName != 'undefined')
 			_this.upload_api_name =  wgSiteName;
 		
 		
@@ -737,7 +737,7 @@ remoteSearchDriver.prototype = {
 		}
 	},
 	//issue a api request & cache the result
-	//this check can be avoided by setting the this.import_url_mode = 'api' | 'form' | insted of 'autodetect' or 'none'
+	//this check can be avoided by setting the this.import_url_mode = 'api' | 'form' | instead of 'autodetect' or 'none'
 	checkForCopyURLSupport:function ( callback ){
 		var _this = this;
 		js_log('checkForCopyURLSupport:: ');
@@ -961,7 +961,7 @@ remoteSearchDriver.prototype = {
 			'data':reqObj,
 			'url':this.local_wiki_api_url
 			}, function(data){
-				//@@todo propogate the rObj
+				//@@todo propagate the rObj
 				var rObj = {};
 			}
 		);
@@ -1240,7 +1240,7 @@ remoteSearchDriver.prototype = {
 			})
 
 	},
-	/*set-up the control actions for clipEdit with relevent callbacks */
+	/*set-up the control actions for clipEdit with relevant callbacks */
 	getClipEditControlActions:function( cp ){
 		var _this = this;
 		var cConf= {};
@@ -1494,7 +1494,7 @@ remoteSearchDriver.prototype = {
 			js_log("do preview asset");			
 			//load the preview text:
 			_this.getParsedWikiText( $j('#rsd_import_ta').val(), _this.cFileNS +':'+ rObj.target_resource_title, function( o ){
-				js_log('got updated preivew: ');
+				js_log('got updated preview: ');
 				$j('#rsd_import_desc').html(o);
 			});
 		});
@@ -1540,7 +1540,7 @@ remoteSearchDriver.prototype = {
 				{
 					'server_frame' : _this.upload_api_proxy_frame,					
 				},function(){
-					//now that the api is setup call actual import
+					//now that the api loaded call actual import
 					debugger;
 				}			
 			);	
