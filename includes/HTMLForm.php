@@ -63,6 +63,7 @@ class HTMLForm {
 		'selectorother' => 'HTMLSelectOrOtherField',
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
+		'edittools' => 'HTMLEditTools',
 	
 		# HTMLTextField will output the correct type="" attribute automagically.
 		# There are about four zillion other HTML 5 input types, like url, but
@@ -83,11 +84,15 @@ class HTMLForm {
 	protected $mPre = '';
 	protected $mHeader = '';
 	protected $mPost = '';
+	protected $mId;
 	
 	protected $mSubmitID;
+	protected $mSubmitName;
 	protected $mSubmitText;
+	protected $mSubmitTooltip;
 	protected $mTitle;
 	
+	protected $mUseMultipart = false;
 	protected $mHiddenFields = array();
 	protected $mButtons = array();
 	
@@ -111,6 +116,9 @@ class HTMLForm {
 				$section = $info['section'];
 
 			$info['name'] = $fieldname;
+
+			if ( isset( $info['type'] ) && $info['type'] == 'file' )
+				$this->mUseMultipart = true;
 
 			$field = self::loadInputFromParameters( $info );
 			$field->mParent = $this;
@@ -287,8 +295,8 @@ class HTMLForm {
 		$this->mHiddenFields[ $name ] = $value;
 	}
 	
-	public function addButton( $name, $value, $id=null ){
-		$this->mButtons[] = compact( 'name', 'value', 'id' );
+	public function addButton( $name, $value, $id=null, $attribs=null ){
+		$this->mButtons[] = compact( 'name', 'value', 'id', 'attribs' );
 	}
 
 	/**
@@ -327,19 +335,24 @@ class HTMLForm {
 	function wrapForm( $html ) {
 		
 		# Include a <fieldset> wrapper for style, if requested.
-		if( $this->mWrapperLegend !== false ){
+		if ( $this->mWrapperLegend !== false ){
 			$html = Xml::fieldset( $this->mWrapperLegend, $html );
 		}
-		
-		return Html::rawElement(
-			'form',
-			array(
-				'action' => $this->getTitle()->getFullURL(),
-				'method' => 'post',
-				'class'  => 'visualClear',
-			),
-			$html
+		# Use multipart/form-data
+		$encType = $this->mUseMultipart 
+			? 'multipart/form-data'
+			: 'application/x-www-form-urlencoded';
+		# Attributes
+		$attribs = array(
+			'action'  => $this->getTitle()->getFullURL(),
+			'method'  => 'post',
+			'class'   => 'visualClear',
+			'enctype' => $encType, 
 		);
+		if ( !empty( $this->mId ) )
+			$attribs['id'] = $this->mId;
+				
+		return Html::rawElement( 'form', $attribs, $html );
 	}
 
 	/**
@@ -350,7 +363,7 @@ class HTMLForm {
 		global $wgUser;
 		$html = '';
 
-		$html .= Html::hidden( 'wpEditToken', $wgUser->editToken() ) . "\n";
+		$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
 		$html .= Html::hidden( 'title', $this->getTitle() ) . "\n";
 		
 		foreach( $this->mHiddenFields as $name => $value ){
@@ -371,6 +384,12 @@ class HTMLForm {
 
 		if ( isset( $this->mSubmitID ) )
 			$attribs['id'] = $this->mSubmitID;
+		if ( isset( $this->mSubmitName ) ) 
+			$attribs['name'] = $this->mSubmitName;
+		if ( isset( $this->mSubmitTooltip ) ) {
+			global $wgUser;
+			$attribs += $wgUser->getSkin()->tooltipAndAccessKeyAttribs( $this->mSubmitTooltip );
+		}
 
 		$attribs['class'] = 'mw-htmlform-submit';
 
@@ -392,6 +411,8 @@ class HTMLForm {
 				'name'  => $button['name'],
 				'value' => $button['value']
 			);
+			if ( $button['attribs'] )
+			 	$attrs += $button['attribs'];
 			if( isset( $button['id'] ) )
 				$attrs['id'] = $button['id'];
 			$html .= Html::element( 'input', $attrs );
@@ -467,6 +488,15 @@ class HTMLForm {
 			? $this->mSubmitText 
 			: wfMsg( 'htmlform-submit' );
 	}
+	
+	public function setSubmitName( $name ) {
+		$this->mSubmitName = $name;
+	}
+	
+	public function setSubmitTooltip( $name ) {
+		$this->mSubmitTooltip = $name;
+	}
+
 
 	/**
 	 * Set the id for the submit button. 
@@ -476,6 +506,9 @@ class HTMLForm {
 		$this->mSubmitID = $t;
 	}
 	
+	public function setId( $id ) {
+		$this->mId = $id;
+	}
 	/**
 	 * Prompt the whole form to be wrapped in a <fieldset>, with
 	 * this text as its <legend> element.
@@ -514,7 +547,7 @@ class HTMLForm {
 	 * TODO: Document
 	 * @param $fields
 	 */
-	function displaySection( $fields ) {
+	function displaySection( $fields, $sectionName = '' ) {
 		$tableHtml = '';
 		$subsectionHtml = '';
 		$hasLeftColumn = false;
@@ -529,7 +562,7 @@ class HTMLForm {
 				if( $value->getLabel() != '&nbsp;' )
 					$hasLeftColumn = true;
 			} elseif ( is_array( $value ) ) {
-				$section = $this->displaySection( $value );
+				$section = $this->displaySection( $value, $key );
 				$legend = wfMsg( "{$this->mMessagePrefix}-$key" );
 				$subsectionHtml .= Xml::fieldset( $legend, $section ) . "\n";
 			}
@@ -538,9 +571,13 @@ class HTMLForm {
 		$classes = array();
 		if( !$hasLeftColumn ) // Avoid strange spacing when no labels exist
 			$classes[] = 'mw-htmlform-nolabel';
-		$classes = implode( ' ', $classes );
+		$attribs = array(
+			'classes' => implode( ' ', $classes ), 
+		);
+		if ( $sectionName ) 
+			$attribs['id'] = Sanitizer::escapeId( "mw-htmlform-$sectionName" );
 
-		$tableHtml = Html::rawElement( 'table', array( 'class' => $classes ),
+		$tableHtml = Html::rawElement( 'table', $attribs,
 			Html::rawElement( 'tbody', array(), "\n$tableHtml\n" ) ) . "\n";
 
 		return $subsectionHtml . "\n" . $tableHtml;
@@ -791,6 +828,19 @@ abstract class HTMLFormField {
 			return null;
 		}
 	}
+	
+	/**
+	 * Returns the attributes required for the tooltip and accesskey.
+	 * 
+	 * @return array Attributes
+	 */
+	public function getTooltipAndAccessKey() {
+		if ( empty( $this->mParams['tooltip'] ) )
+			return array();
+
+		global $wgUser;
+		return $wgUser->getSkin()->tooltipAndAccessKeyAttribs();
+	}
 
 	/**
 	 * flatten an array of options to a single array, for instance,
@@ -812,6 +862,7 @@ abstract class HTMLFormField {
 
 		return $flatOpts;
 	}
+	
 }
 
 class HTMLTextField extends HTMLFormField {
@@ -829,7 +880,7 @@ class HTMLTextField extends HTMLFormField {
 			'name' => $this->mName,
 			'size' => $this->getSize(),
 			'value' => $value,
-		);
+		) + $this->getTooltipAndAccessKey();
 
 		if ( isset( $this->mParams['maxlength'] ) ) {
 			$attribs['maxlength'] = $this->mParams['maxlength'];
@@ -908,7 +959,7 @@ class HTMLTextAreaField extends HTMLFormField {
 			'name' => $this->mName,
 			'cols' => $this->getCols(),
 			'rows' => $this->getRows(),
-		);
+		) + $this->getTooltipAndAccessKey();
 
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
@@ -996,7 +1047,8 @@ class HTMLCheckField extends HTMLFormField {
 		if ( !empty( $this->mParams['invert'] ) )
 			$value = !$value;
 
-		$attr = array( 'id' => $this->mID );
+		$attr = $this->getTooltipAndAccessKey(); 
+		$attr['id'] = $this->mID;
 		if( !empty( $this->mParams['disabled'] ) ) {
 			$attr['disabled'] = 'disabled';
 		}
@@ -1329,9 +1381,22 @@ class HTMLSubmitField extends HTMLFormField {
 		$this->mParent->addButton(
 			$this->mParams['name'],
 			$this->mParams['default'],
-			isset($this->mParams['id']) ? $this->mParams['id'] : null 
+			isset($this->mParams['id']) ? $this->mParams['id'] : null,
+			$this->getTooltipAndAccessKey()
 		);
 	}
 	
 	public function getInputHTML( $value ){ return ''; }
+}
+
+class HTMLEditTools extends HTMLFormField {
+	public function getInputHTML( $value ) {
+		return '';
+	}
+	public function getTableRow( $value ) {
+		return "<tr><td></td><td class=\"mw-input\">" 
+			. '<div class="mw-editTools">' 
+			. wfMsgForContent( 'edittools' )
+			. "</div></td></tr>\n";
+	}
 }
