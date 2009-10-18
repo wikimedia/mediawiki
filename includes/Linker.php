@@ -1938,9 +1938,9 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Returns raw bits of HTML, use titleAttrib() and accesskey()
+	 * Returns the attributes for the tooltip and access key
 	 */
-	public function tooltipAndAccesskey( $name ) {
+	public function tooltipAndAccesskeyAttribs( $name ) {	
 		global $wgEnableTooltipsAndAccesskeys;
 		if ( !$wgEnableTooltipsAndAccesskeys )
 			return '';
@@ -1957,8 +1957,15 @@ class Linker {
 		if ( $attribs['accesskey'] === false ) {
 			unset( $attribs['accesskey'] );
 		}
-		return Xml::expandAttributes( $attribs );
+		return $attribs;
 	}
+	/**
+	 * @deprecated Returns raw bits of HTML, use titleAttrib() and accesskey()
+	 */
+	public function tooltipAndAccesskey( $name ) {
+		return Xml::expandAttributes( $this->tooltipAndAccesskeyAttribs( $name ) );		
+	}
+	
 
 	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
 	public function tooltip( $name, $options = null ) {
