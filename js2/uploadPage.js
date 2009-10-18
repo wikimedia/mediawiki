@@ -2,9 +2,12 @@
  * This script is run on [[Special:Upload]].
  * It controls the invocation of the mvUploader class based on local config.
  */
+
 js2AddOnloadHook( function() {
+	js_log("never ran js2hook");
 	mwUploadHelper.init();
-} );
+});
+
 var mwUploadFormTarget = '#mw-upload-form';
 // Set up the upload form bindings once all DOM manipulation is done
 var mwUploadHelper = {
@@ -82,7 +85,7 @@ var mwUploadHelper = {
 		$j( '#wpUploadFileURL' ).attr( 'disabled', set );
 
 		// If Firefogg is enabled, toggle action according to wpSourceTypeFile selection
-		if( wgEnableFirefogg ) {
+		if( wgEnableFirefogg ) {			
 			$j( '#wpUploadFile' ).firefogg({
 				'firefogg_form_action': $j( '#wpSourceTypeFile' ).attr( 'checked' )
 			} );

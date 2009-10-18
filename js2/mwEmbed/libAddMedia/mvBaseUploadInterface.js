@@ -252,15 +252,9 @@ mvBaseUploadInterface.prototype = {
 			    'url'		: $j('#wpUploadFileURL').val(),
 			    'filename'	: $j('#wpDestFile').val(),
 			    'comment' 	: $j('#wpUploadDescription').val(),
-				'watch'		: ($j('#wpWatchthis').is(':checked'))?'true':'false'
-			}
-			//set up ignore warnings and watch arguments:
-			if( $j('#wpIgnoreWarning').is(':checked') ){
-				httpUpConf[ 'ignorewarnings'] =  'true';
-			}
-			if( $j('#wpWatchthis').is(':checked') ){
-				httpUpConf[ 'watch'] =  'true';
-			}
+				'watch'		: ($j('#wpWatchthis').is(':checked'))?'true':'false',
+				'ignorewarnings': ($j('#wpIgnoreWarning').is(':checked'))?'true':'false'
+			}			
 			//check for editToken
 			_this.etoken = $j("#wpEditToken").val();
 			_this.doHttpUpload( httpUpConf );
@@ -316,9 +310,7 @@ mvBaseUploadInterface.prototype = {
 			'asyncdownload' : true	//do async download
 		};
 		//set config from options:
-		for(var i in opt){
-			req[i]= opt[i];
-		}
+		$j.extend(req, opt);
 
 		//else try and get a token:
 		if(!_this.etoken  && _this.api_url){

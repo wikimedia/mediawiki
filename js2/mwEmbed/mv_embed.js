@@ -972,7 +972,7 @@ var mvJsLoader = {
 	 * checks for jQuery and adds the $j noConflict var
 	 */
 	jQueryCheck: function( callback ) {
-		//js_log( 'jQueryCheck::' );
+		js_log( 'jQueryCheck::' );
 		// Skip stuff if $j is already loaded:
 		if( _global['$j'] && callback )
 			callback();
@@ -1060,9 +1060,10 @@ var mvJsLoader = {
 	// Check the jQuery flag. This way, when remote embedding, we don't load jQuery
 	// unless js2AddOnloadHook was used or there is video on the page.
 	runQueuedFunctions: function() {
-		var _this = this;
-		this.doneReadyEvents = true;
+		js_log("runQueuedFunctions");
+		var _this = this;		
 		this.jQueryCheck( function() {
+			this.doneReadyEvents = true;
 			_this.runReadyEvents();
 		});
 	},
@@ -1131,6 +1132,7 @@ function setSwappableToLoading( e ) {
 }
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
 function js2AddOnloadHook( func ) {
+	js_log("js2AddOnloadHook::" + mvJsLoader.doneReadyEvents);
 	// If we have already run the DOM-ready function, just run the function directly:
 	if( mvJsLoader.doneReadyEvents ) {
 		// Make sure jQuery is there:
@@ -1158,30 +1160,19 @@ function rewrite_by_id( vid_id, ready_callback ) {
 /*********** INITIALIZATION CODE *************
  * set DOM-ready callback to init_mv_embed
  *********************************************/
-// for Mozilla browsers
+// for Mozilla / modern browsers
 if ( document.addEventListener ) {
-	document.addEventListener( "DOMContentLoaded", function(){ mwdomReady() }, false );
-} else {
-	// Use the onload method instead when DOMContentLoaded does not exist
-	window.onload = function() { mwdomReady() };
+	document.addEventListener( "DOMContentLoaded", mwdomReady, false );
 }
-/*
- * Should deprecate and use jquery.ui.dialog instead
- */
-function mv_write_modal( content, speed ) {
-	$j( '#modalbox,#mv_overlay' ).remove();
-	$j( 'body' ).append(
-		'<div id="modalbox" style="background:#DDD;border:3px solid #666666;font-size:115%;' +
-		'top:30px;left:20px;right:20px;bottom:30px;position:fixed;z-index:100;">' +
-		content +
-		'</div>' +
-		'<div id="mv_overlay" style="background:#000;cursor:wait;height:100%;left:0;position:fixed;' +
-		'top:0;width:100%;z-index:5;filter:alpha(opacity=60);-moz-opacity: 0.6;' +
-		'opacity: 0.6;"/>');
-	$j( '#modalbox,#mv_overlay' ).show( speed );
+var temp_f;
+if( window.onload ) {
+    temp_f = window.onload;
 }
-function mv_remove_modal( speed ) {
-	$j( '#modalbox,#mv_overlay' ).remove( speed );
+// Use the onload method as a backup (mwdomReady hanndles dobule init calls)
+window.onload = function () {
+    if( temp_f )
+        temp_f();
+	mwdomReady();    
 }
 
 /*
@@ -1202,13 +1193,21 @@ function mv_jqueryBindings() {
 		 * @param mode is either 'server' or 'client'
 		 */				
 		$.apiProxy = function( mode, pConf, callback ){
-			js_log('do apiProxy setup');
-			$.addLoaderDialog( gM('mwe-apiproxy-setup') );
+			js_log('do apiProxy setup');			
 			mvJsLoader.doLoad( [
 				'$mw.proxy',
 				'JSON'
 			], function(){				
-				$mw.proxy[mode]( pConf, callback );
+				//do the proxy setup or 
+				if( mode == 'client'){
+					//just do the setup (no callbcak for client setup) 
+					$mw.proxy.client( pConf );
+					if( callback )
+						callback();
+				}else if( mode=='server' ){
+					//do the request with the callback
+					$mw.proxy.server( pConf , callback );
+				}
 			});	
 		}
 		//non selector based add-media-wizard direct invocation with loader
@@ -1312,7 +1311,8 @@ function mv_jqueryBindings() {
 		/*
 		 * The Firefogg jQuery function:
 		 * @@note This Firefogg invocation could be made to work more like real jQuery plugins
-		 */
+		 */		
+		var queuedFirefoggConf = {};
 		$.fn.firefogg = function( iObj, callback ) {
 			if( !iObj )
 				iObj = {};
@@ -1325,8 +1325,9 @@ function mv_jqueryBindings() {
 			var sElm = $j( this.selector ).get( 0 );
 			if( sElm['firefogg'] ) {
 				if( sElm['firefogg'] == 'loading' ) {
-					js_log( "Error: called firefogg operations on Firefogg selector that is " +
-						"not done loading" );
+					js_log( "Queued firefogg operations ( firefogg " +
+						"not done loading ) " );
+					$j.extend( queuedFirefoggConf, iObj );
 					return false;
 				}
 				// Update properties
@@ -1377,6 +1378,11 @@ function mv_jqueryBindings() {
 						myFogg.doRewrite( callback );
 						var selectorElement = $j( iObj.selector ).get( 0 );
 						selectorElement['firefogg'] = myFogg;
+						
+						js_log('pre:'+ selectorElement['firefogg']['firefogg_form_action'])
+						if(queuedFirefoggConf)
+							$j.extend(selectorElement['firefogg'], queuedFirefoggConf);
+						js_log('post:'+ selectorElement['firefogg']['firefogg_form_action'])
 					}
 			});
 		}
@@ -1458,7 +1464,7 @@ function mv_jqueryBindings() {
 		$.addDialog = function ( title, msg_txt, btn ){
 			$('#mwe_tmp_loader').remove();
 			//append the style free loader ontop: 
-			$('body').append('<div id="mwe_tmp_loader" title="' + title + '" >' +
+			$('body').append('<div id="mwe_tmp_loader" style="display:none" title="' + title + '" >' +
 					msg_txt +
 			'</div>');
 			//turn the loader into a real dialog loader: 
@@ -1473,9 +1479,9 @@ function mv_jqueryBindings() {
 				$('#mwe_tmp_loader').dialog({
 					bgiframe: true,
 					draggable: false,
-					resizable: false,
-					height: 140,
+					resizable: false,					
 					modal: true,
+					width:400,
 					buttons: btn
 				});
 			});
@@ -1625,9 +1631,13 @@ function do_api_req( options, callback ) {
 	if( !options.data['action'] )
 		options.data['action'] = 'query';
 
-	// js_log('do api req: ' + options.url +'?' + jQuery.param(options.data) );
-	// Build request string
-	if( parseUri( document.URL ).host == parseUri( options.url ).host ) {
+	// js_log('do api req: ' + options.url +'?' + jQuery.param(options.data) );	
+	if( options.url == 'proxy' && $mw.proxy){
+		//assume the proxy is already "setup" since $mw.proxy is defined.
+		// @@todo we probably integrate that setup into the api call
+		$mw.proxy.doRequest( options.data,  callback);
+	
+	}else if( parseUri( document.URL ).host == parseUri( options.url ).host ) {
 		// Local request: do API request directly
 		$j.ajax({
 			type: "POST",
