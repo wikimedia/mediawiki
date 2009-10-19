@@ -728,7 +728,11 @@ mvBaseUploadInterface.prototype = {
 		//set up option defaults;
 		if(!opt.warn_target)
 			opt.warn_target = '#wpDestFile-warning';
-
+		
+		//add the wpDestFile-warning target:
+		if( $j( '#wpDestFile-warning' ).length == 0 )
+			$j('#mw-htmlform-options tr:last').after('<tr><td></td><td id="wpDestFile-warning"></td></tr>');			
+								
 		//empty target warn:
 		$j( opt.warn_target ).empty();
 		
@@ -743,7 +747,7 @@ mvBaseUploadInterface.prototype = {
 				'iiprop':'url|mime|size',
 				'iiurlwidth': 150
 			}
-		},function(data){	
+		},function(data){
 			//remove spinner:
 			$j('#mw-spinner-wpDestFile').remove();
 			if(data && data.query && data.query.pages){
@@ -754,11 +758,8 @@ mvBaseUploadInterface.prototype = {
 						if( data.query.pages[ page_id ].imageinfo ) {
 							var ntitle = ( data.query.normalized)? data.query.normalized[0].to : data.query.pages[ page_id ].title
 							var img = data.query.pages[ page_id ].imageinfo[0];
-							$j('#wpDestFile-warning').html(
-								'<ul>' +
-									'<li>'+
-										gM('mwe-fileexists', ntitle) +
-									'</li>'+
+							$j('#wpDestFile-warning').html(								
+									gM('mwe-fileexists', ntitle) +
 									'<div class="thumb tright">' +
 										'<div style="width: ' + ( parseInt(img.thumbwidth)+2 ) + 'px;" class="thumbinner">' +
 											'<a title="' + ntitle + '" class="image" href="' + img.descriptionurl + '">' +
@@ -776,8 +777,7 @@ mvBaseUploadInterface.prototype = {
 												gM('mwe-fileexists-thumb') +
 											'</div>' +
 										'</div>'+
-									'</div>' +
-								'</ul>'
+									'</div>'
 							);
 						}
 					}
