@@ -2557,9 +2557,7 @@ class Article {
 		$conds = $this->mTitle->pageCond();
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if( $latest === false ) {
-			$wgOut->showFatalError(
-				Html::rawElement( 'div', array( 'class' => 'error mw-error-cannotdelete' ), wfMsgExt( 'cannotdelete', array( 'parse' ) ) )
-			);
+			$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
 			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 			LogEventsList::showLogExtract(
 				$wgOut,

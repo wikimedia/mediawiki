@@ -252,8 +252,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Rewrote Special:Upload to allow easier extension. 
 * Upload errors that can be solved by changing the filename now do not require
   reuploading.
-* (bug 21047) Wrap "cannotdelete" message into a div with the generic 'error' 
-  class and a specific 'mw-error-cannotdelete' class
 
 === Bug fixes in 1.16 ===
 
