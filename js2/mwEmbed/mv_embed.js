@@ -1511,8 +1511,17 @@ function mv_jqueryBindings() {
 				});
 			});
 		}
-		$.closeLoaderDialog = function(){			
-			$('#mwe_tmp_loader').dialog('close');
+		$.closeLoaderDialog = function(){		
+			mvJsLoader.doLoadDepMode([
+				[
+					'$j.ui'
+				],
+				[
+					'$j.ui.dialog'
+				]
+			], function() {	
+				$j('#mwe_tmp_loader').dialog('close');
+			});
 		}
 	
 		$.mwProxy = function( apiConf ){
