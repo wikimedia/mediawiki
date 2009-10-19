@@ -658,7 +658,6 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 # Upload
 'upload'            => 'Laadey neese coadan',
 'uploadbtn'         => 'Laadey neese coadan',
-'reupload'          => 'Aalaadey neese',
 'uploadnologin'     => 'Cha nel oo loggit stiagh',
 'uploadlogpage'     => 'Lioar laadyn neese',
 'filename'          => 'Ennym y choadan',

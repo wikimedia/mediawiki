@@ -1411,7 +1411,6 @@ $1",
 # Upload
 'upload'                      => 'آپلود کتن فایل',
 'uploadbtn'                   => 'آپلود فایل',
-'reupload'                    => 'دگه آپلود',
 'reuploaddesc'                => 'کنسل آپلودء و ترر په فرم آپلود',
 'uploadnologin'               => 'وارد نهیت',
 'uploadnologintext'           => 'شما بایدن [[Special:UserLogin|واردبیت]] په آپلود کتن فایل.',

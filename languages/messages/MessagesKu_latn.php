@@ -825,7 +825,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 # Upload
 'upload'                 => 'Wêneyekî barbike',
 'uploadbtn'              => 'Wêneyê (ya tiştekî din ya mêdya) barbike',
-'reupload'               => 'Dîsa barbike',
 'reuploaddesc'           => 'Barkirinê biskîne û dîsa here rûpela barkirinê.',
 'uploadnologin'          => 'Xwe qeyd nekir',
 'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:UserLogin|têkevî]].',

@@ -1565,6 +1565,7 @@ Error message at [[Special:Upload]]",
 'php-uploaddisabledtext'      => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
 'uploadvirus'                 => 'Note displayed when uploaded file contains a virus',
 'sourcefilename'              => 'In [[Special:Upload]]',
+'sourceurl'                   => 'Caption for the upload-by-url feature at [[Special:Upload]]',
 'destfilename'                => 'In [[Special:Upload]]',
 'upload-maxfilesize'          => 'Shows at [[Special:Upload]] the maximum file size that can be uploaded.
 

@@ -1319,7 +1319,6 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 # Upload
 'upload'                      => 'Dosya bar ke',
 'uploadbtn'                   => 'Dosya bar ke',
-'reupload'                    => 'Reyna bar bike',
 'reuploaddesc'                => 'Barkerdışi iptal ke u peyser şo formê barkerdışi',
 'uploadnologin'               => 'Nicikewte',
 'uploadnologintext'           => 'Ti gani [[Special:UserLogin|cikewte]] biyo ke dosya bar bike.',

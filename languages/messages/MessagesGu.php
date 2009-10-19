@@ -945,7 +945,6 @@ Please log in again after you receive it.
 # Upload
 'upload'        => 'ફાઇલ ચડાવો',
 'uploadbtn'     => 'ફાઇલ ચડાવો',
-'reupload'      => 'ફરી ચડાવો',
 'uploadlogpage' => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
 'filesource'    => 'સ્ત્રોત:',
 'uploadedimage' => '"[[$1]]" ચઢાવ્યું',

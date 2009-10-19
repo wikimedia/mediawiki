@@ -449,7 +449,6 @@ $messages = array(
 # Upload
 'upload'            => 'Kā tóng-àn chiūⁿ-bāng',
 'uploadbtn'         => 'Kā tóng-àn chiūⁿ-bāng',
-'reupload'          => 'Têng sàng-chiūⁿ-bāng',
 'reuploaddesc'      => 'Tò khì sàng-chiūⁿ-bāng ê pió.',
 'uploadnologin'     => 'Bô teng-ji̍p',
 'uploadnologintext' => 'Bô [[Special:UserLogin|teng-ji̍p]] bē-sái-tit kā tóng-àn sàng-chiūⁿ-bāng.',

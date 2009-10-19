@@ -283,12 +283,36 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'searchrelated'                    => 'Tuyzday',
 'searchall'                        => 'Kullu',
 'showingresults'                   => "Ẓr azddar  {{PLURAL:$1|'''1''' May tuykfan|'''$1''' Mad kfan}} Bdu s #'''$2'''",
-'powersearch'                      => 'amsigl itqdmn',
+'showingresultsnum'                => "Ẓr azddar (ifsr ɣ uzddar) {{PLURAL:$3|'''1''' may kfa|'''$3''' mad kfan}} Bdu s #'''$2'''.",
+'showingresultsheader'             => "{{PLURAL:$5|May kfa '''$1''' ar '''$3'''|Mad kfan '''$1 - $2''' ar '''$3'''}} i '''$4'''",
+'nonefound'                        => "'''Arra''': Icnubbu ar tilin ɣir tiɣulin tuyzlaynin. Iɣ trit at cabbat ɣ kullu may tyuran d ḥtta tisnatin nu umsgdal s ''all:'', bdu acnubc  nek s kullu ma ɣɣid imun, ulla s assaɣ n tɣult li trit.",
+'search-nonefound'                 => 'Ur ittuykfa walu maygan zund ɣayli trit',
+'powersearch'                      => 'Amsigl imzwarn',
+'powersearch-legend'               => 'Amsigl imzwarn',
+'powersearch-ns'                   => 'Icnubbucn ɣ tɣulin',
+'powersearch-redir'                => 'Afsr n ismmatayn (Tifilit n ismmatayn)',
+'powersearch-field'                => 'Acnubc ɣ',
+'powersearch-togglelabel'          => 'Sti',
+'powersearch-toggleall'            => 'Kullu',
+'powersearch-togglenone'           => 'Walu',
+'search-external'                  => 'Acnubc b brra',
+'searchdisabled'                   => '{{SITENAME}} Acnubc ibid.
+Tzdar at cabbat ɣilad ɣ Google. 
+Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
+
+# Quickbar
+'qbsettings'            => 'Tafeggagt izrbn',
+'qbsettings-none'       => 'Ur iḥudda',
+'qbsettings-fixedleft'  => 'Aẓẓugz azlmaḍ',
+'qbsettings-fixedright' => 'Azzugz afasi',
 
 # Preferences page
-'localtime'    => 'loqt n ɣilli ɣtllit',
-'servertime'   => 'loqt n serveur',
-'yourlanguage' => 'tutlayt:',
+'preferences'   => 'Timssusmin',
+'mypreferences' => 'Timssusmin',
+'prefs-edits'   => 'Uṭṭun n n imbddeln',
+'localtime'     => 'loqt n ɣilli ɣtllit',
+'servertime'    => 'loqt n serveur',
+'yourlanguage'  => 'tutlayt:',
 
 # Upload
 'upload' => 'sΥlid afaylu',
@@ -312,16 +336,20 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'contribslink' => 'tikkin',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'       => 'tawriqt o-ssays ino',
-'tooltip-pt-login'        => 'yofak atqiyt, mach han origa bziz.',
-'tooltip-ca-talk'         => "assays f' mayllan ɣ twriqt ad",
-'tooltip-search'          => 'siggl ɣ {{SITENAME}}',
-'tooltip-n-mainpage'      => 'zord tawriqt tamzwarut',
-'tooltip-n-portal'        => "f' usenfar, matzdart atitskrt, maniɣrattaft ɣayli trit",
-'tooltip-n-recentchanges' => 'Umuɣ n yibeddlen imaynuten ɣ l-wiki',
-'tooltip-n-help'          => 'tkhassak lmɛiwna ?achkid sɣid',
-'tooltip-t-upload'        => 'sɣlid ifaylutn',
-'tooltip-t-specialpages'  => 'kolchi tiwriqin tesbtarin',
+'tooltip-pt-mytalk'              => 'tawriqt o-ssays ino',
+'tooltip-pt-login'               => 'yofak atqiyt, mach han origa bziz.',
+'tooltip-ca-talk'                => "assays f' mayllan ɣ twriqt ad",
+'tooltip-search'                 => 'siggl ɣ {{SITENAME}}',
+'tooltip-search-go'              => 'Ftu s tasna s w-assaɣ znd ɣ-wad  iɣ tlla',
+'tooltip-search-fulltext'        => 'Cnubc aṭṛiṣad ɣ tisnatin',
+'tooltip-p-logo'                 => 'Tasnat tamuqrant',
+'tooltip-n-mainpage'             => 'Kid tasnatad tamuqrant',
+'tooltip-n-mainpage-description' => 'Kid tasna tamuqrant',
+'tooltip-n-portal'               => "f' usenfar, matzdart atitskrt, maniɣrattaft ɣayli trit",
+'tooltip-n-recentchanges'        => 'Umuɣ n yibeddlen imaynuten ɣ l-wiki',
+'tooltip-n-help'                 => 'tkhassak lmɛiwna ?achkid sɣid',
+'tooltip-t-upload'               => 'sɣlid ifaylutn',
+'tooltip-t-specialpages'         => 'kolchi tiwriqin tesbtarin',
 
 'exif-gaincontrol-0' => 'walo',
 

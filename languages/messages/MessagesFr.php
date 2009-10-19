@@ -40,6 +40,7 @@
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
+ * @author Raymond
  * @author Remember the dot
  * @author Seb35
  * @author Sherbrooke
@@ -1641,7 +1642,6 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 # Upload
 'upload'                      => 'Téléverser un fichier',
 'uploadbtn'                   => 'Téléverser le fichier',
-'reupload'                    => 'Téléverser à nouveau',
 'reuploaddesc'                => 'Annuler et retourner au formulaire de téléversement',
 'uploadnologin'               => 'Non connecté(e)',
 'uploadnologintext'           => 'Vous devez être [[Special:UserLogin|connecté(e)]] pour téléverser des fichiers sur le serveur.',
@@ -1720,9 +1720,12 @@ Si vous voulez toujours téléverser votre fichier, veuillez revenir en arrière
 'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifier le fichier avant de le téléverser à nouveau.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
+'upload-source'               => 'Fichier source',
 'sourcefilename'              => 'Nom du fichier source :',
+'sourceurl'                   => 'URL source :',
 'destfilename'                => 'Nom sous lequel le fichier sera enregistré :',
 'upload-maxfilesize'          => 'Taille maximale du fichier : $1',
+'upload-description'          => 'Description du fichier',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été téléversé, puis supprimé.
 Vous devriez vérifier le $1 avant de procéder à un nouveau téléversement.',

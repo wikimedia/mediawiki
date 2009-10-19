@@ -886,7 +886,6 @@ $2',
 # Upload
 'upload'                      => '上傳檔案',
 'uploadbtn'                   => '上傳檔案',
-'reupload'                    => '上傳過',
 'reuploaddesc'                => '返回上傳列表。',
 'uploadnologin'               => '冇登入',
 'uploadnologintext'           => '倷要[[Special:UserLogin|登入]]再上傳得正檔案。',

@@ -1530,7 +1530,6 @@ Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on es
 # Upload
 'upload'                      => 'Faili üleslaadimine',
 'uploadbtn'                   => 'Laadi fail üles',
-'reupload'                    => 'Uuesti üleslaadimine',
 'reuploaddesc'                => 'Tagasi üleslaadimise vormi juurde.',
 'uploadnologin'               => 'Sisse logimata',
 'uploadnologintext'           => 'Kui Te soovite faile üles laadida, peate [[Special:UserLogin|sisse logima]].',

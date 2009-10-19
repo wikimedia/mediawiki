@@ -1050,7 +1050,6 @@ $messages = array(
 # Upload
 'upload'                      => 'Фиристодани парванда',
 'uploadbtn'                   => 'Фиристодани файл',
-'reupload'                    => 'Боргузории дубора',
 'reuploaddesc'                => 'Боргузориро лағв кунед ва ба форми боргузорӣ баргардед.',
 'uploadnologin'               => 'Вуруд накарда',
 'uploadnologintext'           => 'Барои фиристодани файлҳо Шумо бояд [[Special:UserLogin|вуруд кунед]].',

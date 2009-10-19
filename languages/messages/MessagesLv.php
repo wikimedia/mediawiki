@@ -989,7 +989,6 @@ Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''trek
 # Upload
 'upload'                 => 'Augšuplādēt failu',
 'uploadbtn'              => 'Augšuplādēt',
-'reupload'               => 'Vēlreiz augšuplādēt',
 'reuploaddesc'           => 'Atcelt augšupielādi un atgriezties pie augšupielādes veidnes.',
 'uploadnologin'          => 'Neesi iegājis',
 'uploadnologintext'      => 'Tev jābūt [[Special:UserLogin|iegājušam]], lai augšuplādētu failus.',

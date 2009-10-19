@@ -1577,7 +1577,6 @@ $1",
 # Upload
 'upload'                      => 'حمل',
 'uploadbtn'                   => 'حمل الملف',
-'reupload'                    => 'حمل مره تانيه',
 'reuploaddesc'                => 'إلغى التحميل وارجع لاستمارة التحميل',
 'uploadnologin'               => 'ما سجلتش الدخول',
 'uploadnologintext'           => 'لازم تكون [[Special:UserLogin|مسجل الدخول]] علشان تقدر تحمل الملفات.',

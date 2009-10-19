@@ -1457,7 +1457,6 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 # Upload
 'upload'                      => 'Dosya yükle',
 'uploadbtn'                   => 'Dosya yükle',
-'reupload'                    => 'Yeniden yükle',
 'reuploaddesc'                => 'Yükleme formuna geri dön.',
 'uploadnologin'               => 'Oturum açık değil',
 'uploadnologintext'           => 'Dosya yükleyebilmek için [[Special:UserLogin|oturum aç]]manız gerekiyor.',

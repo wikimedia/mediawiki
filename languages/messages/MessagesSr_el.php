@@ -1415,7 +1415,6 @@ Stranice sa [[Special:Watchlist|vašeg spiska nadgledanja]] su '''podebljane'''.
 # Upload
 'upload'                      => 'Pošalji fajl',
 'uploadbtn'                   => 'Pošalji fajl',
-'reupload'                    => 'Ponovo pošalji',
 'reuploaddesc'                => 'Vrati se na upitnik za slanje.',
 'uploadnologin'               => 'Niste prijavljeni',
 'uploadnologintext'           => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste slali fajlove.',

@@ -770,7 +770,6 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 # Upload
 'upload'                     => 'Dosya bar ke',
 'uploadbtn'                  => 'Dosya bar ke',
-'reupload'                   => 'Tekrar bar ke',
 'reuploaddesc'               => 'Bar-kerdene bıtexelne u racêre ra formê bar-kerdene',
 'uploadnologin'              => 'Ede cı nêkotê',
 'uploadnologintext'          => 'Sıma gunê [[Special:UserLogin|cı kuyê]] ke dosyeun bar kerê.',

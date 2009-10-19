@@ -1274,7 +1274,6 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 # Upload
 'upload'                      => 'Muatkeun koropak',
 'uploadbtn'                   => 'Muatkeun koropak',
-'reupload'                    => 'Muat ulang',
 'reuploaddesc'                => 'Balik ka formulir muatan.',
 'uploadnologin'               => 'Can asup log',
 'uploadnologintext'           => 'Anjeun kudu [[Special:UserLogin|asup log]] pikeun ngamuat koropak.',

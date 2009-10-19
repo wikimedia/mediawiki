@@ -1384,7 +1384,6 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 # Upload
 'upload'                      => "Careche 'u file",
 'uploadbtn'                   => "Careche 'nu fail",
-'reupload'                    => 'Recareche',
 'reuploaddesc'                => "Scangille 'u carecamende e tuerne a 'a schermete de le carecaminde",
 'uploadnologin'               => 'non ge sinde colleghete',
 'uploadnologintext'           => 'Tu a essere [[Special:UserLogin|colleghete]] pe carecà le file.',

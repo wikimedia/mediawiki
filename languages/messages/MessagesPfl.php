@@ -362,7 +362,6 @@ Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 # Upload
 'upload'        => 'Hochlade',
 'uploadbtn'     => 'Datei hochlade',
-'reupload'      => 'Widder hochlade',
 'uploadlogpage' => 'Dateie-Logbuch',
 'savefile'      => 'Datei schbeichere',
 'uploadedimage' => 'hot "[[$1]]" hochglare',

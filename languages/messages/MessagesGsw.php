@@ -1427,7 +1427,6 @@ Sytene, wo zu dyre [[Special:Watchlist|Beobachtigslischte]] ghöre, erschyne '''
 # Upload
 'upload'                      => 'Datei uffelade',
 'uploadbtn'                   => 'Bild lokal ufelade',
-'reupload'                    => 'Abbräche',
 'reuploaddesc'                => 'Abbrächen un zrugg zue dr Syte "Uffelade"',
 'uploadnologin'               => 'Nit aagmäldet',
 'uploadnologintext'           => 'Si mien [[Special:UserLogin|aagmäldet syy]], zum Dateie uffelade z chenne.',

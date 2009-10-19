@@ -1440,7 +1440,6 @@ Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 # Upload
 'upload'                      => 'Dataju pósłaś',
 'uploadbtn'                   => 'Dataju pósłaś',
-'reupload'                    => 'Dataju hyšći raz pósłaś.',
 'reuploaddesc'                => 'Upload pśetergnuś a slědk k uploadowemu formularoju',
 'uploadnologin'               => 'Njepśizjawjony(a)',
 'uploadnologintext'           => 'Dejš se [[Special:UserLogin|pśizjawiś]], aby mógał dataje uploadowaś.',

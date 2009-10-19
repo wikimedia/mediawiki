@@ -19,6 +19,7 @@
  * @author McDutchie
  * @author Mwpnl
  * @author Niels
+ * @author Raymond
  * @author SPQRobin
  * @author Servien
  * @author Siebrand
@@ -1673,7 +1674,6 @@ Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weerge
 # Upload
 'upload'                      => 'Bestand uploaden',
 'uploadbtn'                   => 'Bestand uploaden',
-'reupload'                    => 'Opnieuw uploaden',
 'reuploaddesc'                => 'Upload annuleren en terugkeren naar het uploadformulier',
 'uploadnologin'               => 'Niet aangemeld',
 'uploadnologintext'           => 'U moet [[Special:UserLogin|aangemeld]] zijn
@@ -1762,9 +1762,12 @@ Raadpleeg het verwijderingslogboek voordat u verder gaat.',
 'uploadcorrupt'               => 'Het bestand is corrupt of heeft een onjuiste extensie.
 Controleer het bestand en upload het opnieuw.',
 'uploadvirus'                 => 'Het bestand bevat een virus! Details: $1',
+'upload-source'               => 'Bronbestand',
 'sourcefilename'              => 'Oorspronkelijke bestandsnaam:',
+'sourceurl'                   => 'Bron-URL:',
 'destfilename'                => 'Opslaan als:',
 'upload-maxfilesize'          => 'Maximale bestandsgrootte: $1',
+'upload-description'          => 'Bestandsbeschrijving',
 'watchthisupload'             => 'Dit bestand volgen',
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd.
 Raadpleeg het $1 voordat u het opnieuw toevoegt.',

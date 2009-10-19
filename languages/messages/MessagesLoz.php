@@ -559,7 +559,6 @@ Informasi: (bye) = petuho a nca selt,
 # Upload
 'upload'            => 'Imegi uplodezi',
 'uploadbtn'         => 'Imegi uplodezi',
-'reupload'          => 'Uplodezi nca',
 'uploadnologin'     => 'Ni menuhile',
 'uploadnologintext' => 'A sa [[Special:UserLogin|menuhile]]
 di uplodezi media.',

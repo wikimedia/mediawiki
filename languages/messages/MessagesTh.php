@@ -1367,7 +1367,6 @@ $1",
 # Upload
 'upload'                      => 'อัปโหลด',
 'uploadbtn'                   => 'อัปโหลด',
-'reupload'                    => 'อัปโหลดใหม่',
 'reuploaddesc'                => 'กลับไปสู่หน้าอัปโหลด',
 'uploadnologin'               => 'ไม่ได้ล็อกอิน',
 'uploadnologintext'           => 'ต้องทำการ[[Special:UserLogin|ล็อกอิน]]ก่อนถึงจะอัปโหลดไฟล์ได้',

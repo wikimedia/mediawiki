@@ -1277,7 +1277,6 @@ $1",
 # Upload
 'upload'                     => '進獻',
 'uploadbtn'                  => '進獻',
-'reupload'                   => '復獻之',
 'reuploaddesc'               => '消進乃返載獻',
 'uploadnologin'              => '未登簿',
 'uploadnologintext'          => '[[Special:UserLogin|登簿]]始可進獻',

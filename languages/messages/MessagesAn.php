@@ -1279,7 +1279,6 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 # Upload
 'upload'                      => 'Cargar archibo',
 'uploadbtn'                   => 'Cargar un archibo',
-'reupload'                    => 'Cargar un atra begada',
 'reuploaddesc'                => "Anular a carga y tornar ta o formulario de carga d'archibos.",
 'uploadnologin'               => 'No ha enzetato una sesión',
 'uploadnologintext'           => "Ha d'estar [[Special:UserLogin|rechistrau]] ta cargar archibos.",

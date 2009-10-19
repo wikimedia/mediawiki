@@ -796,7 +796,6 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 # Upload
 'upload'            => 'Lai wan file poti',
 'uploadbtn'         => 'Lai file poti',
-'reupload'          => 'Ri-uploti',
 'uploadnologin'     => 'No kon',
 'uploaderror'       => 'Uplotifowtu',
 'uploadlog'         => 'uplotibuku',

@@ -1765,7 +1765,6 @@ $1",
 # Upload
 'upload'                      => 'رفع ملف',
 'uploadbtn'                   => 'ارفع الملف',
-'reupload'                    => 'أعد الرفع',
 'reuploaddesc'                => 'إلغاء الرفع والرجوع إلى استمارة الرفع',
 'uploadnologin'               => 'لم تقم بتسجيل الدخول',
 'uploadnologintext'           => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتتمكن من رفع الملفات.',

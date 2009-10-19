@@ -1213,7 +1213,6 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 # Upload
 'upload'                      => 'Xubir imaxe',
 'uploadbtn'                   => 'Xubir',
-'reupload'                    => 'Volver a xubir',
 'reuploaddesc'                => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'uploadnologin'               => 'Nun tas identificáu',
 'uploadnologintext'           => 'Tienes que tar [[Special:UserLogin|identificáu]] pa poder xubir archivos.',

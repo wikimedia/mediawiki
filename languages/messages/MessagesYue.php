@@ -1439,7 +1439,6 @@ $1",
 # Upload
 'upload'                      => '上載檔案',
 'uploadbtn'                   => '上載檔案',
-'reupload'                    => '再上載',
 'reuploaddesc'                => '取消上載再返到去上載表格',
 'uploadnologin'               => '重未登入',
 'uploadnologintext'           => '你必須先[[Special:UserLogin|登入]]去上載檔案。',

@@ -735,7 +735,6 @@ Is pàginas de sa [[Special:Watchlist|watchlist tua]] sunt in '''grassetu'''.",
 # Upload
 'upload'            => 'Càrriga file',
 'uploadbtn'         => 'Càrriga file',
-'reupload'          => 'Torra a carrigare',
 'reuploaddesc'      => 'Torra a su mòdulu pro su carrigamentu.',
 'uploadnologin'     => 'Non ses intrau',
 'uploadnologintext' => 'Su carrigamentu de files est permìtiu isceti a pustis de àere fatu su [[Special:UserLogin|log in]].',

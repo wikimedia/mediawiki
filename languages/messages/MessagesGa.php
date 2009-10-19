@@ -952,7 +952,6 @@ Tá na leathanaigh ar do [[Special:Watchlist|liosta faire]] i '''gcló trom'''."
 # Upload
 'upload'               => 'Uaslódaigh comhad',
 'uploadbtn'            => 'Uaslódaigh comhad',
-'reupload'             => 'Athuaslódáil',
 'reuploaddesc'         => 'Dul ar ais chuig an fhoirm uaslódála.',
 'uploadnologin'        => 'Nil tú logáilte isteach',
 'uploadnologintext'    => 'Ní mór duit [[Special:UserLogin|logáil isteach]] chun comhaid a huaslódáil.',

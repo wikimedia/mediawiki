@@ -1319,7 +1319,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 # Upload
 'upload'                      => 'Upload',
 'uploadbtn'                   => 'bestandj uploade',
-'reupload'                    => 'Opnuui uploade',
 'reuploaddesc'                => "Truuk nao 't uploadformeleer.",
 'uploadnologin'               => 'Neet aangemèld',
 'uploadnologintext'           => 'De mos [[Special:UserLogin|zien aangemèld]] om besjtande te uploade.',

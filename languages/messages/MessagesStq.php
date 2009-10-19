@@ -1325,7 +1325,6 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 # Upload
 'upload'                      => 'Hoochleede',
 'uploadbtn'                   => 'Doatäi hoochleede',
-'reupload'                    => 'Fonnäien hoochleede',
 'reuploaddesc'                => 'Oubreeke un tourääch tou ju Hoochleede-Siede.',
 'uploadnologin'               => 'Nit anmälded',
 'uploadnologintext'           => 'Du moast [[Special:UserLogin|anmälded weese]], uum Doatäie hoochleede tou konnen.',

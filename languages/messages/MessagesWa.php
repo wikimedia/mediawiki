@@ -757,7 +757,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 # Upload
 'upload'                      => 'Eberweter on fitchî',
 'uploadbtn'                   => 'Eberweter',
-'reupload'                    => 'En erî',
 'reuploaddesc'                => "Rivni al pådje d' eberwetaedje.",
 'uploadnologin'               => 'Nén elodjî',
 'uploadnologintext'           => 'I vs fåt esse [[Special:UserLogin|elodjî]] por vos pleur eberweter des fitchîs.',

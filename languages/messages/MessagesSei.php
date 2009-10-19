@@ -719,7 +719,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 # Upload
 'upload'            => 'Ciúchan uploadan',
 'uploadbtn'         => 'Ciúchan uploadan',
-'reupload'          => 'Re-uploadan',
 'uploadnologin'     => 'Necaápo',
 'uploadnologintext' => 'Zo coccebj Neces [[Special:UserLogin|caápo]] (re-)uploadande ciúchán.',
 'uploaderror'       => 'Römjde uploadan',

@@ -681,7 +681,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Upload
 'upload'            => 'ܐܣܩ ܠܦܦܐ',
 'uploadbtn'         => 'ܐܣܩ ܠܦܦܐ',
-'reupload'          => 'ܐܣܩ ܙܒܢܬܐ ܐܚܪܬܐ',
 'uploadnologin'     => 'ܠܐ ܥܠܝܠܐ',
 'uploadlog'         => 'ܣܓܠܐ ܕܣܠܩܐ',
 'uploadlogpage'     => 'ܣܓܠܐ ܕܣܠܩܐ',

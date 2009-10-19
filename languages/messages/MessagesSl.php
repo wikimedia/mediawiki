@@ -1385,7 +1385,6 @@ Strani iz [[Special:Watchlist|vašega spiska nadzorov]] so '''odebeljene'''.",
 # Upload
 'upload'                      => 'Naloži datoteko',
 'uploadbtn'                   => 'Naloži datoteko',
-'reupload'                    => 'Naloži drugo',
 'reuploaddesc'                => 'Vrnitev na obrazec za nalaganje.',
 'uploadnologin'               => 'Niste prijavljeni',
 'uploadnologintext'           => 'Za nalaganje datotek se [[Special:UserLogin|prijavite]].',

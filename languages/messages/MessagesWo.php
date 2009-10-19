@@ -1309,7 +1309,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 # Upload
 'upload'                      => 'Yeb ab dencukaay',
 'uploadbtn'                   => 'Yeb ŋara wi',
-'reupload'                    => 'Yebaat ko',
 'uploadnologin'               => 'Duggoo',
 'uploadnologintext'           => 'Faaw nga [[Special:UserLogin|dugg]] ngir man a yebi ŋara.',
 'upload_directory_missing'    => 'Wayndareb yeb bu ($1) nekku fi te joxekaayub web bi manu koo sos.',

@@ -1613,7 +1613,6 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 # Upload
 'upload'                      => 'Postavi datoteku',
 'uploadbtn'                   => 'Postavi datoteku',
-'reupload'                    => 'Ponovo pošaljite',
 'reuploaddesc'                => 'Vratite se na upitnik za slanje.',
 'uploadnologin'               => 'Niste prijavljeni',
 'uploadnologintext'           => 'Morate biti [[Special:UserLogin|prijavljeni]] da bi ste slali datoteke.',

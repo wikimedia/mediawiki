@@ -544,7 +544,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 # Upload
 'upload'                      => 'Hiki hake ʻa e faile',
 'uploadbtn'                   => 'Hiki hake',
-'reupload'                    => 'Toe hiki hake',
 'reuploaddesc'                => 'Foki ki he foomu hiki',
 'uploadnologin'               => 'Teʻeki kau ki ai',
 'uploadnologintext'           => 'ʻOku pau ke [[Special:UserLogin|kau-ki-ai]] kapau te ke fiehiki hake ha faile.',

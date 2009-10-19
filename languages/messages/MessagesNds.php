@@ -1429,7 +1429,6 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 # Upload
 'upload'                      => 'Hoochladen',
 'uploadbtn'                   => 'Datei hoochladen',
-'reupload'                    => 'Nee hoochladen',
 'reuploaddesc'                => 'Trüch to de Hoochladen-Siet.',
 'uploadnologin'               => 'Nich anmellt',
 'uploadnologintext'           => 'Du musst [[Special:UserLogin|anmellt wesen]], dat du Datein hoochladen kannst.',

@@ -1545,7 +1545,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 # Upload
 'upload'                      => 'Last opp fil',
 'uploadbtn'                   => 'Last opp fil',
-'reupload'                    => 'Nytt forsøk',
 'reuploaddesc'                => 'Attende til opplastingsskjemaet.',
 'uploadnologin'               => 'Ikkje innlogga',
 'uploadnologintext'           => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna laste opp filer.',

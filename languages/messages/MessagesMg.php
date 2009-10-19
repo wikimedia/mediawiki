@@ -1215,7 +1215,6 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 # Upload
 'upload'                      => 'Handefa rakitra',
 'uploadbtn'                   => 'Alefaso ny rakitra',
-'reupload'                    => 'Alefaso indray',
 'reuploaddesc'                => "Miverena any amin'ny fisy fandefasan-drakitra.",
 'uploadnologin'               => 'Tsy niditra',
 'uploadnologintext'           => 'Mila [[Special:UserLogin|misoratra anarana]] aloha vao afaka mandefa rakitra.',

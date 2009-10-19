@@ -15,6 +15,7 @@
  * @author Michawiki
  * @author MinuteElectron
  * @author Omnipaedista
+ * @author Raymond
  * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur
@@ -1495,7 +1496,6 @@ Paĝoj en [[Special:Watchlist|via atentaro]] estas '''grasaj'''.",
 # Upload
 'upload'                      => 'Alŝuti dosieron',
 'uploadbtn'                   => 'Alŝuti dosieron',
-'reupload'                    => 'Realŝuti',
 'reuploaddesc'                => 'Reveni al la alŝuta formularo.',
 'uploadnologin'               => 'Ne ensalutinta',
 'uploadnologintext'           => 'Se vi volas alŝuti dosierojn, vi devas [[Special:UserLogin|ensaluti]].',
@@ -1572,9 +1572,12 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'uploadscripted'              => 'HTML-aĵo aŭ skriptokodaĵo troviĝas en tiu ĉi tiu dosiero, kiun TTT-foliumilo eble interpretus erare.',
 'uploadcorrupt'               => 'La dosiero estas difektita aŭ havas malĝustan finaĵon. Bonvolu kontroli la dosieron kaj refoje alŝuti ĝin.',
 'uploadvirus'                 => 'Viruso troviĝas en la dosiero! Detaloj: $1',
+'upload-source'               => 'Fonta dosiero:',
 'sourcefilename'              => 'Fonta dosiernomo:',
+'sourceurl'                   => 'Fonta URL-o:',
 'destfilename'                => 'Celdosiernomo:',
 'upload-maxfilesize'          => 'Maksimuma dosier-pezo: $1',
+'upload-description'          => 'Dosiera priskribo',
 'watchthisupload'             => 'Atenti ĉi tiun dosieron',
 'filewasdeleted'              => 'Dosiero de ĉi nomo estis antaŭe alŝutita kaj poste redaktita. Vi kontrolu la $1 antaux alŝutante ĝin denove.',
 'upload-wasdeleted'           => "'''Averto: Vi alŝutas dosieron kiu estis antaŭe forigita.'''

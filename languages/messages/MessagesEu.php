@@ -1388,7 +1388,6 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 # Upload
 'upload'                      => 'Fitxategia igo',
 'uploadbtn'                   => 'Fitxategia igo',
-'reupload'                    => 'Berriz igo',
 'reuploaddesc'                => 'Igotzeko formulariora itzuli.',
 'uploadnologin'               => 'Saioa hasi gabe',
 'uploadnologintext'           => 'Fitxategiak igotzeko [[Special:UserLogin|saioa hasi]] behar duzu.',

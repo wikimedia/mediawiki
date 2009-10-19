@@ -423,7 +423,6 @@ $messages = array(
 # Upload
 'upload'            => 'Файлды киирер',
 'uploadbtn'         => 'Файлды киирер',
-'reupload'          => 'Катап киирер',
 'uploadnologin'     => 'Кирбес',
 'uploaderror'       => 'Кииреринге алдаг',
 'filename'          => 'файлдың ады:',

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -11,8 +11,10 @@
  * @author Bencmq
  * @author FireJackey
  * @author Jidanni
+ * @author KaiesTse
  * @author Liangent
  * @author Philip
+ * @author Raymond
  * @author Shinjiman
  * @author Skjackey tse
  * @author Wmr89502270
@@ -596,7 +598,7 @@ $2',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'noname'                     => '{{GENDER:|你|妳|你}}沒有輸入一個有效的用戶名。',
 'loginsuccesstitle'          => '登入成功',
-'loginsuccess'               => '{{GENDER:|你|妳|你}}現在以 "$1"的身份登入{{SITENAME}}。',
+'loginsuccess'               => '{{GENDER:|你|妳|你}}正在以"$1"的身份在{{SITENAME}}登入。',
 'nosuchuser'                 => '找不到用戶 "$1"。
 用戶名稱是有大小寫區分的。
 檢查您的拼寫，或者用下面的表格[[Special:UserLogin/signup|建立一個新賬號]]。',
@@ -803,7 +805,7 @@ $2',
 'semiprotectedpagewarning'         => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。",
 'cascadeprotectedwarning'          => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
 'titleprotectedwarning'            => "'''警告: 本頁面已被鎖上，需要[[Special:ListGroupRights|指定權限]]方可創建。'''",
-'templatesused'                    => '在這個頁面上使用的模板有:',
+'templatesused'                    => '此頁面包含以下模板:',
 'templatesusedpreview'             => '此次預覽中使用的模板有:',
 'templatesusedsection'             => '在這個段落上使用的模板有:',
 'template-protected'               => '（保護）',
@@ -1459,7 +1461,6 @@ $1",
 # Upload
 'upload'                      => '上傳檔案',
 'uploadbtn'                   => '上傳檔案',
-'reupload'                    => '重新上載',
 'reuploaddesc'                => '取消上載並返回上載表單',
 'uploadnologin'               => '未登入',
 'uploadnologintext'           => '您必須先[[Special:UserLogin|登入]]
@@ -1507,7 +1508,8 @@ $1",
 'largefileserver'             => '這個檔案的大小比伺服器配置允許的大小還要大。',
 'emptyfile'                   => '您所上傳的檔案不存在。這可能是由於檔案名鍵入錯誤。請檢查您是否真的要上傳此檔案。',
 'fileexists'                  => "已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
-'filepageexists'              => "這個檔案的描述頁已經在'''<tt>[[:$1]]</tt>'''創建，但是這個名稱的檔案尚未存在。您輸入了的摘要是不會顯示在該描述頁中。要令該摘要在該處中出現，您便要手動地去編輯它。",
+'filepageexists'              => "這個檔案的描述頁已於'''<tt>[[:$1]]</tt>'''建立，但是這個名稱的檔案尚未存在。因此您所輸入的摘要不會顯示在該描述頁中。如要摘要在該處中出現，您必需手動編輯它。
+[[$1|thumb]]",
 'fileexists-extension'        => "一個相似檔名的檔案已經存在: [[$2|thumb]]
 * 上載檔案的檔名: '''<tt>[[:$1]]</tt>'''
 * 現有檔案的檔名: '''<tt>[[:$2]]</tt>'''
@@ -1515,8 +1517,8 @@ $1",
 'fileexists-thumbnail-yes'    => "這個檔案好像是一幅圖像的縮圖版本''（縮圖）''。 [[$1|thumb]]
 請檢查清楚該檔案'''<tt>[[:$1]]</tt>'''。
 如果檢查後的檔案是同原本圖像的大小是一樣的話，就不用再上載多一幅縮圖。",
-'file-thumbnail-no'           => "該檔名是以'''<tt>$1</tt>'''開始。它好像一幅圖像的縮圖版本''（縮圖）''。
-如果{{GENDER:|你|妳|你}}有該圖像的完整大小，如不是請再修改檔名。",
+'file-thumbnail-no'           => "此圖像的檔案名稱以'''<tt>$1</tt>'''開始。它好像某幅圖像的縮小版本''（縮圖）''。
+如果{{GENDER:|你|妳|你}}有該圖像的完整大小版本，請上載它；否則請修改檔名。",
 'fileexists-forbidden'        => '已存在相同名稱的檔案，且不能覆蓋；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案。
 如果{{GENDER:|你|妳|你}}仍然想去上載它的話，請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
@@ -1533,9 +1535,12 @@ $1",
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
 'uploadcorrupt'               => '該檔案包含或具有一個不正確的擴展名。請檢查此檔案並重新上傳。',
 'uploadvirus'                 => '該檔案包含有病毒！詳情: $1',
+'upload-source'               => '檔案來源',
 'sourcefilename'              => '來源檔案名:',
+'sourceurl'                   => '來源網址',
 'destfilename'                => '目標檔案名:',
 'upload-maxfilesize'          => '檔案最大限制大小: $1',
+'upload-description'          => '檔案描述',
 'watchthisupload'             => '監視這個檔案',
 'filewasdeleted'              => '之前已經有一個同名檔案被上傳後又被刪除了。在上傳此檔案之前您需要檢查$1。',
 'upload-wasdeleted'           => "'''警告: 您現在重新上傳一個先前曾經刪除過的檔案。'''
@@ -1939,7 +1944,7 @@ Template:消除歧義',
 而且還會在[[Special:RecentChanges|最近更改]]中
 以'''粗體'''形式列出以使起更容易識別。",
 'removedwatch'         => '已停止監視',
-'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從[[Special:Watchlist|您的監視頁面]]中移除。',
+'removedwatchtext'     => '[[:$1]]已經從[[Special:Watchlist|您的監視頁面]]中移除。',
 'watch'                => '監視',
 'watchthispage'        => '監視本頁',
 'unwatch'              => '取消監視',
@@ -2001,7 +2006,7 @@ $NEWPAGE
 'deletepage'             => '刪除頁面',
 'confirm'                => '確認',
 'excontent'              => '內容為: "$1"',
-'excontentauthor'        => '內容為: "$1" （而且唯一貢獻者為"$2"）',
+'excontentauthor'        => '內容為：「$1」（而且唯一貢獻者為[[Special:Contributions/$2|$2]]）',
 'exbeforeblank'          => '被清空前的內容為: "$1"',
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
@@ -2035,10 +2040,9 @@ $NEWPAGE
 'rollbacklink'      => '恢復',
 'rollbackfailed'    => '無法恢復',
 'cantrollback'      => '無法恢復編輯；最後的貢獻者是本文的唯一作者。',
-'alreadyrolled'     => '無法恢復由[[User:$2|$2]] （[[User talk:$2|討論]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）進行的[[$1]]的最後編輯；
-其他人已經編輯或是恢復了該頁。
+'alreadyrolled'     => '無法恢復由[[User:$2|$2]] （[[User talk:$2|討論]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]在[[:$1]]上的編輯；其他人已經編輯或恢復了該頁。
 
-最後對頁面編輯的編輯者: [[User:$3|$3]] （[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
+該頁最後的編輯者是: [[User:$3|$3]] （[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment'       => "編輯摘要: \"''\$1''\"。",
 'revertpage'        => '恢復由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
 'revertpage-nouser' => '恢復由（移除了的用戶名）的編輯到[[User:$1|$1]]的最後一個修訂版本',

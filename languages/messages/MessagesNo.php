@@ -1520,7 +1520,6 @@ Sider som også er på din [[Special:Watchlist|overvåkningsliste]] vises i '''f
 # Upload
 'upload'                      => 'Last opp fil',
 'uploadbtn'                   => 'Last opp fil',
-'reupload'                    => 'Last opp fil igjen',
 'reuploaddesc'                => 'Avbryt opplasting og gå tilbake til opplastingsskjemaet',
 'uploadnologin'               => 'Ikke logget inn',
 'uploadnologintext'           => 'Du må være [[Special:UserLogin|logget inn]] for å kunne laste opp filer.',

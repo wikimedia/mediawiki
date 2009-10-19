@@ -14,6 +14,7 @@
  * @author Jack Phoenix
  * @author Mobe
  * @author Nike
+ * @author Raymond
  * @author Silvonen
  * @author Str4nd
  * @author Tarmo
@@ -1566,7 +1567,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 # Upload
 'upload'                      => 'Tallenna tiedosto',
 'uploadbtn'                   => 'Tallenna tiedosto',
-'reupload'                    => 'Lähetä uudelleen',
 'reuploaddesc'                => 'Peruuta tallennus ja palaa tallennuslomakkeelle.',
 'uploadnologin'               => 'Et ole kirjautunut sisään',
 'uploadnologintext'           => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.',
@@ -1636,9 +1636,12 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'               => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
 'uploadvirus'                 => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
+'upload-source'               => 'Lähdetiedosto',
 'sourcefilename'              => 'Lähdenimi',
+'sourceurl'                   => 'URL-lähde',
 'destfilename'                => 'Kohdenimi',
 'upload-maxfilesize'          => 'Suurin sallittu tiedostokoko: $1',
+'upload-description'          => 'Tiedoston kuvaus',
 'watchthisupload'             => 'Tarkkaile tätä tiedostoa',
 'filewasdeleted'              => 'Tämän niminen tiedosto on lisätty ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 'upload-wasdeleted'           => "'''Varoitus: Olet tallentamassa tiedostoa, joka on jo aikaisemmin poistettu.'''

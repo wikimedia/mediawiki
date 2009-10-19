@@ -26,6 +26,7 @@
  * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
+ * @author Raymond
  * @author Suisui
  * @author Whym
  * @author לערי ריינהארט
@@ -399,9 +400,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|カテゴリ}}',
-'category_header'                => 'カテゴリ “$1” にあるページ',
+'category_header'                => 'カテゴリ「$1」にあるページ',
 'subcategories'                  => 'サブカテゴリ',
-'category-media-header'          => 'カテゴリ “$1” にあるメディア',
+'category-media-header'          => 'カテゴリ「$1」にあるメディア',
 'category-empty'                 => "''このカテゴリにはページまたはメディアがひとつもありません。''",
 'hidden-categories'              => '{{PLURAL:$1|隠しカテゴリ}}',
 'hidden-category-category'       => '隠しカテゴリ',
@@ -1529,7 +1530,6 @@ $1",
 # Upload
 'upload'                      => 'アップロード',
 'uploadbtn'                   => 'アップロード',
-'reupload'                    => '再アップロード',
 'reuploaddesc'                => 'アップロードを中止してアップロード・フォームへ戻る',
 'uploadnologin'               => 'ログインしていません',
 'uploadnologintext'           => 'ファイルをアップロードするには[[Special:UserLogin|ログイン]]する必要があります。',

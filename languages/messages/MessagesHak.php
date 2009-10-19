@@ -753,7 +753,6 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 # Upload
 'upload'                      => 'Sông-chhòn tóng-on',
 'uploadbtn'                   => 'Song-chhòn tóng-on',
-'reupload'                    => 'Chhùng-sîn song-chai',
 'reuploaddesc'                => 'Fán-fì song-chai péu-tân.',
 'uploadnologin'               => 'Hàn-mò tên-ngi̍p',
 'uploadnologintext'           => 'Ngì pit-sî chó-siên [[Special:UserLogin|tên-ngi̍p]] chhòi-nèn sông-chai vùn-khien.',

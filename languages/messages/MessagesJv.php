@@ -1308,7 +1308,6 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 # Upload
 'upload'                      => 'Unggah',
 'uploadbtn'                   => 'Unggahna berkas',
-'reupload'                    => 'Unggah ulang',
 'reuploaddesc'                => 'Bali ing formulir pamotan',
 'uploadnologin'               => 'Durung mlebu log',
 'uploadnologintext'           => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] supaya olèh ngunggahaké gambar utawa berkas liyané.',

@@ -1516,7 +1516,6 @@ $2',
 # Upload
 'upload'                      => 'Качване',
 'uploadbtn'                   => 'Качване',
-'reupload'                    => 'Повторно качване',
 'reuploaddesc'                => 'Връщане към формуляра за качване.',
 'uploadnologin'               => 'Не сте влезли',
 'uploadnologintext'           => 'Необходимо е да [[Special:UserLogin|влезете]], за да може да качвате файлове.',

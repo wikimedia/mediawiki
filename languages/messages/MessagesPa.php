@@ -556,7 +556,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # Upload
 'upload'               => 'ਫਾਇਲ ਅੱਪਲੋਡ ਕਰੋ',
 'uploadbtn'            => 'ਫਾਇਲ ਅੱਪਲੋਡ ਕਰੋ',
-'reupload'             => 'ਰੀ-ਅੱਪਲੋਡ',
 'reuploaddesc'         => 'ਅੱਪਲੋਡ ਫਾਰਮ ਉੱਤੇ ਜਾਓ।',
 'uploadnologin'        => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
 'uploadnologintext'    => 'ਤੁਹਾਨੂੰ[[Special:UserLogin|logged in] ਕਰਨਾ ਪਵੇਗਾ]

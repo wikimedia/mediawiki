@@ -9,6 +9,7 @@
  *
  * @author AlefZet
  * @author Don Alessandro
+ * @author Raymond
  * @author Urhixidur
  */
 
@@ -562,7 +563,7 @@ Lütfen, qayta kirmezden evel biraz bekleñiz.',
 'resetpass_forbidden'       => 'Parol deñiştirmek yasaq',
 'resetpass-no-info'         => 'Bu saifege doğrudan irişmek içün oturım açmaq kereksiñiz.',
 'resetpass-submit-loggedin' => 'Parolni deñiştir',
-'resetpass-wrong-oldpass'   => 'Ruhsetsiz muvaqqat ya da al-azırki parоl.
+'resetpass-wrong-oldpass'   => 'Ruhsetsiz muvaqqat ya da şimdiki parоl.
 Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat parоl istediñiz.',
 'resetpass-temp-password'   => 'Muvaqqat parol:',
 
@@ -696,7 +697,7 @@ Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, 
 '''MÜELLİFLİK AQQINEN QORÇALANĞAN İÇ BİR METİNNİ MINDA RUHSETSİZ QOŞMAÑIZ!'''",
 'longpagewarning'                  => "'''TENBİ: Bu saife $1 kilobayt büyükligindedir; bazı brauzerler deñişiklik yapqan vaqıtta 32 kb ve üstü büyükliklerde problemalar yaşap olur. Saifeni parçalarğa ayırmağa tırışıñız.'''",
 'longpageerror'                    => "'''TENBİ: Bu saife $1 kilobayt büyükligindedir. Azamiy (maksimal) izinli büyüklik ise $2 kilobayt. Bu saife saqlanıp olamaz.'''",
-'readonlywarning'                  => "'''TENBİ: Baqım sebebi ile malümat bazası al-azırda kilitlidir. Bu sebepten deñişiklikleriñiz şimdi saqlap olamasıñız. Yazğanlarıñıznı başqa bir editor programmasına alıp saqlap olur ve daa soñ tekrar mında ketirip saqlap olursıñız'''
+'readonlywarning'                  => "'''TENBİ: Baqım sebebi ile malümat bazası şimdi kilitlidir. Bu sebepten deñişiklikleriñiz şimdi saqlap olamasıñız. Yazğanlarıñıznı başqa bir editor programmasına alıp saqlap olur ve daa soñ tekrar mında ketirip saqlap olursıñız'''
 
 Malümat bazasını kilitlegen administratоr öz areketini böyle añlattı: $1",
 'protectedpagewarning'             => "'''TENBİ: Bu saife qorçalav altına alınğan ve yalıñız administratorlar tarafından deñiştirilip olur.'''",
@@ -744,7 +745,7 @@ $3 mına bu sebepni bildirdi: ''$2''",
 # History pages
 'viewpagelogs'           => 'Bu saifeniñ jurnallarını köster',
 'nohistory'              => 'Bu saifeniñ keçmiş versiyası yoq.',
-'currentrev'             => 'Al-azırki versiya',
+'currentrev'             => 'Şimdiki versiya',
 'currentrev-asof'        => '$1 tarihında sоñki оlaraq deñiştirilgen saifeniñ şimdiki alı',
 'revisionasof'           => 'Saifeniñ $1 tarihındaki alı',
 'revision-info'          => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı',
@@ -756,8 +757,8 @@ $3 mına bu sebepni bildirdi: ''$2''",
 'last'                   => 'soñki',
 'page_first'             => 'ilk',
 'page_last'              => 'soñki',
-'histlegend'             => "(farq) = al-azırki versiya ile aradaki farq,
-(soñki) = evelki versiya ile aradaki farq, '''k''' = kiçik deñişiklik",
+'histlegend'             => "(farq) = şimdiki alnen aradaki farq,
+(soñki) = evelki alnen aradaki farq, '''k''' = kiçik deñişiklik",
 'history-fieldset-title' => 'Keçmişke baq',
 'histfirst'              => 'Eñ eski',
 'histlast'               => 'Eñ yañı',
@@ -1032,7 +1033,6 @@ Bundan ğayrı bu vikideki saifeñizden başqa qullanıcılarğa siznen bağlanm
 # Upload
 'upload'                      => 'Fayl yükle',
 'uploadbtn'                   => 'Fayl yükle',
-'reupload'                    => 'Yañıdan yükle',
 'reuploaddesc'                => 'Yükleme formasına keri qayt.',
 'uploadnologin'               => 'Oturım açmadıñız',
 'uploadnologintext'           => 'Fayl yüklep olmaq içün [[Special:UserLogin|oturım açmaq]] kereksiñiz.',
@@ -1159,14 +1159,16 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'filehist-deleteall'        => 'episini yoq et',
 'filehist-deleteone'        => 'yoq et',
 'filehist-revert'           => 'keri al',
-'filehist-current'          => 'al-azırki',
+'filehist-current'          => 'şimdiki',
 'filehist-datetime'         => 'Tarih ve saat',
 'filehist-thumb'            => 'Kiçik resim',
 'filehist-thumbtext'        => '$1 tarihındaki versiyanıñ ufaqlaştırılğan alı',
+'filehist-nothumb'          => 'Ufaqlaştırılğan resim yoq',
 'filehist-user'             => 'Qullanıcı',
 'filehist-dimensions'       => 'En × boy',
 'filehist-filesize'         => 'Fayl büyükligi',
 'filehist-comment'          => 'İzaat',
+'filehist-missing'          => 'Fayl yoq',
 'imagelinks'                => 'Fayl bağlantıları',
 'linkstoimage'              => 'Bu faylğa bağlantı olğan {{PLURAL:$1|1|$1}} saife:',
 'nolinkstoimage'            => 'Bu faylğa bağlanğan saife yoq.',
@@ -1280,8 +1282,8 @@ Er satırda birinci ve ekinci yollamağa bağlantılar da, ekinci yollamanıñ m
 'ancientpages'            => 'Eñ eski saifeler',
 'move'                    => 'Adını deñiştir',
 'movethispage'            => 'Saifeniñ adını deñiştir',
-'pager-newer-n'           => '{{PLURAL:$1|1 daa yañıca|$1 daa yañıca}}',
-'pager-older-n'           => '{{PLURAL:$1|1 daa eskice|$1 daa eskice}}',
+'pager-newer-n'           => '{{PLURAL:$1|daa yañı 1|daa yañı $1}}',
+'pager-older-n'           => '{{PLURAL:$1|daa eski 1|daa eski $1}}',
 
 # Book sources
 'booksources'               => 'Kitaplar menbası',

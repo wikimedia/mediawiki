@@ -1130,7 +1130,6 @@ Artikle na [[Special:Watchlist|pozorliśće]] sům '''rube'''.",
 # Upload
 'upload'                      => 'Wćepej plik',
 'uploadbtn'                   => 'Wćepej sam plik',
-'reupload'                    => 'Wćepej zaś',
 'reuploaddesc'                => 'Nazod do formulařa uod wćepywańo.',
 'uploadnologin'               => 'Ńy jest žeś zalogůwany',
 'uploadnologintext'           => 'Muśyš śe [[Special:UserLogin|zalůgować]] ńim wćepńeš pliki.',

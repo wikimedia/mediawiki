@@ -630,7 +630,6 @@ $messages = array(
 # Upload
 'upload'             => 'فائل چڑھاؤ',
 'uploadbtn'          => 'فائل چڑھاؤ',
-'reupload'           => 'دوبارہ چڑھاؤ',
 'reuploaddesc'       => 'فائل چڑانا چھڑو تے فائل چڑانے آلے فارم تے واپس ٹرو',
 'uploadnologin'      => 'لاگ ان نئیں ہوۓ',
 'uploaderror'        => 'فائل چڑاندیاں مسئلا ہویا اے',

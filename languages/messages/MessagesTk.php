@@ -1369,7 +1369,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 # Upload
 'upload'                      => 'Faýl ýükle',
 'uploadbtn'                   => 'Faýl ýükle',
-'reupload'                    => 'Gaýtadan ýükle',
 'reuploaddesc'                => 'Ýüklemäni goýbolsun et we ýükleme formuna gaýdyp bar',
 'uploadnologin'               => 'Sessiýa açmansyňyz',
 'uploadnologintext'           => 'Faýl ýüklemek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]].',

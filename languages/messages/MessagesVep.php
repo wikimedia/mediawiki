@@ -1298,7 +1298,6 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 # Upload
 'upload'                     => 'Jügutoitta fail',
 'uploadbtn'                  => 'Jügutoitta fail',
-'reupload'                   => 'Jügetoitta udes',
 'reuploaddesc'               => 'Pörttas jügetoitandan formannoks',
 'uploadnologin'              => 'Tö ei olgoi kirjutanus sistemha',
 'uploadnologintext'          => 'Teile pidab [[Special:UserLogin|kirjutadas sistemha]], miše failoid jügetoitmaha.',

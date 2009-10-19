@@ -29,6 +29,7 @@
  * @author Omnipaedista
  * @author Pietrodn
  * @author Ramac
+ * @author Raymond
  * @author Remember the dot
  * @author S.Örvarr.S
  * @author SabineCretella
@@ -863,9 +864,9 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 'semiprotectedpagewarning'         => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
 'cascadeprotectedwarning'          => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
 'titleprotectedwarning'            => "'''ATTENZIONE:  Questa pagina è stata bloccata in modo che siano necessari [[Special:ListGroupRights|diritti specifici]] per crearla.'''",
-'templatesused'                    => 'Template utilizzati in questa pagina:',
-'templatesusedpreview'             => 'Template utilizzati in questa anteprima:',
-'templatesusedsection'             => 'Template utilizzati in questa sezione:',
+'templatesused'                    => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa pagina:',
+'templatesusedpreview'             => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa anteprima:',
+'templatesusedsection'             => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa sezione:',
 'template-protected'               => '(protetto)',
 'template-semiprotected'           => '(semiprotetto)',
 'hiddencategories'                 => 'Questa pagina appartiene a {{PLURAL:$1|una categoria nascosta|$1 categorie nascoste}}:',
@@ -1509,7 +1510,6 @@ L'operazione non può essere annullata.",
 # Upload
 'upload'                      => 'Carica un file',
 'uploadbtn'                   => 'Carica',
-'reupload'                    => 'Carica di nuovo',
 'reuploaddesc'                => 'Torna al modulo per il caricamento.',
 'uploadnologin'               => 'Accesso non effettuato',
 'uploadnologintext'           => "Il caricamento dei file è consentito solo agli utenti registrati che hanno eseguito [[Special:UserLogin|l'accesso]] al sito.",
@@ -1581,6 +1581,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'sourcefilename'              => 'Nome del file di origine:',
 'destfilename'                => 'Nome del file di destinazione:',
 'upload-maxfilesize'          => 'Dimensione massima del file: $1',
+'upload-description'          => 'Descrizione del file',
 'watchthisupload'             => 'Aggiungi agli osservati speciali',
 'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare il log delle $1 prima di caricarlo di nuovo.',
 'upload-wasdeleted'           => "'''Attenzione: si sta per caricare un file già cancellato in passato.'''
@@ -2348,6 +2349,7 @@ L'utente $1 è già bloccato. Modificare le impostazioni?",
 'sorbsreason'                     => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'cant-block-while-blocked'        => 'Non è possibile bloccare altri utenti mentre si è bloccati.',
+'cant-see-hidden-user'            => 'L\'utente che si sta tentando di bloccare è stato già bloccato e nascosto. Poiché non hai il permesso "hideuser", non è possibile visualizzare o modificare il blocco dell\'utente.',
 
 # Developer tools
 'lockdb'              => 'Blocca il database',

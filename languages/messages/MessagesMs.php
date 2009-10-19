@@ -1427,7 +1427,6 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 # Upload
 'upload'                      => 'Muat naik fail',
 'uploadbtn'                   => 'Muat naik',
-'reupload'                    => 'Muat naik sekali lagi',
 'reuploaddesc'                => 'Kembali ke borang muat naik',
 'uploadnologin'               => 'Belum log masuk',
 'uploadnologintext'           => 'Anda perlu [[Special:UserLogin|log masuk]]

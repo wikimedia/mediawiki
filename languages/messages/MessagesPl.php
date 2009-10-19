@@ -1564,7 +1564,6 @@ Strony z [[Special:Watchlist|listy obserwowanych]] są '''wytłuszczone'''.",
 # Upload
 'upload'                      => 'Prześlij plik',
 'uploadbtn'                   => 'Prześlij plik',
-'reupload'                    => 'Prześlij ponownie',
 'reuploaddesc'                => 'Przerwij wysyłanie i wróć do formularza wysyłki',
 'uploadnologin'               => 'Nie jesteś zalogowany',
 'uploadnologintext'           => 'Musisz się [[Special:UserLogin|zalogować]] przed przesłaniem plików.',

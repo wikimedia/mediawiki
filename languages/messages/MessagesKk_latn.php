@@ -1373,7 +1373,6 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 # Upload
 'upload'                      => 'Qotarıp berw',
 'uploadbtn'                   => 'Qotarıp ber!',
-'reupload'                    => 'Qaýta qotarıp berw',
 'reuploaddesc'                => 'Qotarıp berwdi boldırmaw jäne qotarw pişinine qaýta kelw.',
 'uploadnologin'               => 'Kirmegensiz',
 'uploadnologintext'           => 'Faýl qotarw üşin [[Special:UserLogin|kirwiñiz]] kerek.',

@@ -438,7 +438,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Upload
 'upload'            => 'Siông-duòng ùng-giông',
 'uploadbtn'         => 'Siông-duòng ùng-giông',
-'reupload'          => 'Dṳ̀ng-sĭng siông-diòng',
 'reuploaddesc'      => 'Duōng kó̤ siông-duòng dăng-dăng.',
 'uploadnologin'     => 'Mò̤ láuk-diē',
 'uploadnologintext' => 'Sĕng [[Special:UserLogin|láuk-diē]] ciáh â̤-sāi siông-duòng ùng-giông.',

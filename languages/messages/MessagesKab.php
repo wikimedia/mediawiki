@@ -741,7 +741,6 @@ i yesɛan akk awalen i banen-d).",
 # Upload
 'upload'                      => 'Azen afaylu',
 'uploadbtn'                   => 'Azen afaylu',
-'reupload'                    => 'Ɛiwed azen',
 'reuploaddesc'                => 'Uɣal-d ar talɣa n tuznin.',
 'uploadnologin'               => 'Ur tekcimeḍ ara',
 'uploadnologintext'           => 'Yessefk [[Special:UserLogin|ad tkecmeḍ]]

@@ -1640,7 +1640,6 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 # Upload
 'upload'                      => 'Hochladen',
 'uploadbtn'                   => 'Datei hochladen',
-'reupload'                    => 'Abbrechen',
 'reuploaddesc'                => 'Abbrechen und zurück zur Hochladen-Seite',
 'uploadnologin'               => 'Nicht angemeldet',
 'uploadnologintext'           => 'Du musst [[Special:UserLogin|angemeldet sein]], um Dateien hochladen zu können.',

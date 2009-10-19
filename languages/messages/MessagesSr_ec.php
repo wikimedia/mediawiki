@@ -1455,7 +1455,6 @@ $2',
 # Upload
 'upload'                      => 'Пошаљи фајл',
 'uploadbtn'                   => 'Пошаљи фајл',
-'reupload'                    => 'Поново пошаљи',
 'reuploaddesc'                => 'Врати се на упитник за слање.',
 'uploadnologin'               => 'Нисте пријављени',
 'uploadnologintext'           => 'Морате бити [[Special:UserLogin|пријављени]]

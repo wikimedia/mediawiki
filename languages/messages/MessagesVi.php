@@ -14,6 +14,7 @@
  * @author Mxn
  * @author Neoneurone
  * @author Nguyễn Thanh Quang
+ * @author Raymond
  * @author Thaisk
  * @author Tmct
  * @author Trần Thế Trung
@@ -1565,7 +1566,6 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 # Upload
 'upload'                      => 'Tải tập tin lên',
 'uploadbtn'                   => 'Tải lên',
-'reupload'                    => 'Tải lại',
 'reuploaddesc'                => 'Hủy tác vụ tải và quay lại mẫu tải tập tin lên',
 'uploadnologin'               => 'Chưa đăng nhập',
 'uploadnologintext'           => 'Bạn phải [[Special:UserLogin|đăng nhập]] để tải tập tin lên.',
@@ -1642,9 +1642,12 @@ Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại v
 'uploadscripted'              => 'Tập tin này có chứa mã HTML hoặc script có thể khiến trình duyệt web thông dịch sai.',
 'uploadcorrupt'               => 'Tập tin bị hỏng hoặc có phần mở rộng không đúng. Xin kiểm tra và tải lại.',
 'uploadvirus'                 => 'Tập tin có virút! Chi tiết: $1',
+'upload-source'               => 'Tập tin gốc',
 'sourcefilename'              => 'Tên tập tin nguồn:',
+'sourceurl'                   => 'URL gốc:',
 'destfilename'                => 'Tên tập tin mới:',
 'upload-maxfilesize'          => 'Kích thước tập tin tối đa: $1',
+'upload-description'          => 'Miêu tả tập tin',
 'watchthisupload'             => 'Theo dõi tập tin này',
 'filewasdeleted'              => 'Một tên với tên này đã được tải lên trước đã rồi sau đó bị xóa. Bạn nên kiểm tra lại $1 trước khi tải nó lên lại lần nữa.',
 'upload-wasdeleted'           => "'''Cảnh báo: Bạn đang tải lên một tập tin từng bị xóa trước đây.'''
