@@ -52,11 +52,17 @@ h2{
 	font-family:georgia, times, serif;
 	letter-spacing:0.6px;
 }
+h2 .editsection{
+	font-family:sans-serif;
+	letter-spacing:0px;
+}
 #toc h2, .toc h2 {
 	font-family:sans-serif;
 	letter-spacing:0px;
 }
-
+body #panel div.portal div.body {
+	background-image:url(images/new-portal-break-ltr.png);
+}
 body div.vectorTabs li a, div.vectorTabs li a span{
 	color:#4d4d4d;
 }
