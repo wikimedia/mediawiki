@@ -405,7 +405,7 @@ class SpecialUpload extends SpecialPage {
 	 * @param array $details Result of UploadBase::verifyUpload
 	 */
 	protected function processVerificationError( $details ) {
-		global $wgFileExtensions;
+		global $wgFileExtensions, $wgLang;
 		
 		switch( $details['status'] ) {
 
