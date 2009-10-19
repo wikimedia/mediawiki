@@ -141,6 +141,7 @@ body {
 		background-image: url(images/tab-normal-fade.png);
 		background-position: bottom left;
 		background-repeat: repeat-x;
+		white-space:nowrap;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorTabs ul > li {
