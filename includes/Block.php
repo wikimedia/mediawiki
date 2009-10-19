@@ -87,14 +87,14 @@ class Block {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Check if two blocks are effectively equal
 	 *
 	 * @return Boolean
 	 */
 	public function equals( Block $block ) {
-		return ( 
+		return (
 			$this->mAddress == $block->mAddress
 			&& $this->mUser == $block->mUser
 			&& $this->mAuto == $block->mAuto
@@ -132,7 +132,7 @@ class Block {
 		global $wgAntiLockFlags;
 		if ( $this->mForUpdate || $this->mFromMaster ) {
 			$db = wfGetDB( DB_MASTER );
-			if ( !$this->mForUpdate || ($wgAntiLockFlags & ALF_NO_BLOCK_LOCK) ) {
+			if ( !$this->mForUpdate || ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) ) {
 				$options = array();
 			} else {
 				$options = array( 'FOR UPDATE' );
@@ -401,7 +401,7 @@ class Block {
 		);
 		$affected = $dbw->affectedRows();
 
-		if ($affected)
+		if ( $affected )
 			$this->doRetroactiveAutoblock();
 
 		return (bool)$affected;
@@ -453,8 +453,8 @@ class Block {
 		# Unset ipb_enable_autoblock for IP blocks, makes no sense
 		if ( !$this->mUser ) {
 			$this->mEnableAutoblock = 0;
-			
 		}
+
 		# bug 18860: non-anon-only IP blocks should be allowed to block email
 		if ( !$this->mUser && $this->mAnonOnly ) {
 			$this->mBlockEmail = 0;
@@ -468,28 +468,27 @@ class Block {
 			}
 		}
 	}
-	
-	
+
 	/**
-	* Retroactively autoblocks the last IP used by the user (if it is a user)
-	* blocked by this Block.
-	*
-	* @return Boolean: whether or not a retroactive autoblock was made.
-	*/
+	 * Retroactively autoblocks the last IP used by the user (if it is a user)
+	 * blocked by this Block.
+	 *
+	 * @return Boolean: whether or not a retroactive autoblock was made.
+	 */
 	public function doRetroactiveAutoblock() {
 		$dbr = wfGetDB( DB_SLAVE );
-		#If autoblock is enabled, autoblock the LAST IP used
+		# If autoblock is enabled, autoblock the LAST IP used
 		# - stolen shamelessly from CheckUser_body.php
 
-		if ($this->mEnableAutoblock && $this->mUser) {
+		if ( $this->mEnableAutoblock && $this->mUser ) {
 			wfDebug("Doing retroactive autoblocks for " . $this->mAddress . "\n");
-			
+
 			$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 			$conds = array( 'rc_user_text' => $this->mAddress );
-			
-			if ($this->mAngryAutoblock) {
+
+			if ( $this->mAngryAutoblock ) {
 				// Block any IP used in the last 7 days. Up to five IPs.
-				$conds[] = 'rc_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( time() - (7*86400) ) );
+				$conds[] = 'rc_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( time() - ( 7 * 86400 ) ) );
 				$options['LIMIT'] = 5;
 			} else {
 				// Just the last IP used.
@@ -497,10 +496,10 @@ class Block {
 			}
 
 			$res = $dbr->select( 'recentchanges', array( 'rc_ip' ), $conds,
-				__METHOD__ ,  $options);
+				__METHOD__ ,  $options );
 
 			if ( !$dbr->numRows( $res ) ) {
-				#No results, don't autoblock anything
+				# No results, don't autoblock anything
 				wfDebug("No IP found to retroactively autoblock\n");
 			} else {
 				while ( $row = $dbr->fetchObject( $res ) ) {
@@ -510,7 +509,7 @@ class Block {
 			}
 		}
 	}
-	
+
 	/**
 	 * Checks whether a given IP is on the autoblock whitelist.
 	 *
@@ -519,7 +518,7 @@ class Block {
 	 */
 	public static function isWhitelistedFromAutoblocks( $ip ) {
 		global $wgMemc;
-		
+
 		// Try to get the autoblock_whitelist from the cache, as it's faster
 		// than getting the msg raw and explode()'ing it.
 		$key = wfMemcKey( 'ipb', 'autoblock', 'whitelist' );
@@ -537,20 +536,20 @@ class Block {
 				continue;
 			}
 
-			$wlEntry = substr($line, 1);
-			$wlEntry = trim($wlEntry);
+			$wlEntry = substr( $line, 1 );
+			$wlEntry = trim( $wlEntry );
 
 			wfDebug("Checking $ip against $wlEntry...");
 
 			# Is the IP in this range?
-			if (IP::isInRange( $ip, $wlEntry )) {
+			if ( IP::isInRange( $ip, $wlEntry ) ) {
 				wfDebug(" IP $ip matches $wlEntry, not autoblocking\n");
 				return true;
 			} else {
 				wfDebug( " No match\n" );
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -568,12 +567,12 @@ class Block {
 		}
 
 		# Check for presence on the autoblock whitelist
-		if (Block::isWhitelistedFromAutoblocks($autoblockIP)) {
+		if ( Block::isWhitelistedFromAutoblocks( $autoblockIP ) ) {
 			return;
 		}
 		
 		## Allow hooks to cancel the autoblock.
-		if (!wfRunHooks( 'AbortAutoblock', array( $autoblockIP, &$this ) )) {
+		if ( !wfRunHooks( 'AbortAutoblock', array( $autoblockIP, &$this ) ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
 			return false;
 		}
@@ -585,8 +584,8 @@ class Block {
 			# If the user is already blocked. Then check if the autoblock would
 			# exceed the user block. If it would exceed, then do nothing, else
 			# prolong block time
-			if ($this->mExpiry &&
-			($this->mExpiry < Block::getAutoblockExpiry($ipblock->mTimestamp))) {
+			if ( $this->mExpiry &&
+			( $this->mExpiry < Block::getAutoblockExpiry( $ipblock->mTimestamp ) ) ) {
 				return;
 			}
 			# Just update the timestamp
@@ -613,8 +612,8 @@ class Block {
 		$ipblock->mAllowUsertalk = $this->mAllowUsertalk;
 		# If the user is already blocked with an expiry date, we don't
 		# want to pile on top of that!
-		if($this->mExpiry) {
-			$ipblock->mExpiry = min ( $this->mExpiry, Block::getAutoblockExpiry( $this->mTimestamp ));
+		if( $this->mExpiry ) {
+			$ipblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( $this->mTimestamp ) );
 		} else {
 			$ipblock->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 		}
@@ -627,8 +626,7 @@ class Block {
 	 * @return Boolean
 	 */
 	public function deleteIfExpired() {
-		$fname = 'Block::deleteIfExpired';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		if ( $this->isExpired() ) {
 			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
 			$this->delete();
@@ -637,7 +635,7 @@ class Block {
 			wfDebug( "Block::deleteIfExpired() -- not expired\n" );
 			$retVal = false;
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $retVal;
 	}
 
@@ -673,8 +671,8 @@ class Block {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'ipblocks',
 				array( /* SET */
-					'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
-					'ipb_expiry' => $dbw->timestamp($this->mExpiry),
+					'ipb_timestamp' => $dbw->timestamp( $this->mTimestamp ),
+					'ipb_expiry' => $dbw->timestamp( $this->mExpiry ),
 				), array( /* WHERE */
 					'ipb_address' => $this->mAddress
 				), 'Block::updateTimestamp'
@@ -703,14 +701,14 @@ class Block {
 	/**
 	 * Get/set the SELECT ... FOR UPDATE flag
 	 */
-	public function forUpdate( $x = NULL ) {
+	public function forUpdate( $x = null ) {
 		return wfSetVar( $this->mForUpdate, $x );
 	}
 
 	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 */
-	public function fromMaster( $x = NULL ) {
+	public function fromMaster( $x = null ) {
 		return wfSetVar( $this->mFromMaster, $x );
 	}
 
@@ -776,10 +774,10 @@ class Block {
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			// IPv6
-			if ( IP::isIPv6($range) && $parts[1] >= 64 && $parts[1] <= 128 ) {
+			if ( IP::isIPv6( $range ) && $parts[1] >= 64 && $parts[1] <= 128 ) {
 				$bits = $parts[1];
 				$ipint = IP::toUnsigned6( $parts[0] );
-				# Native 32 bit functions WONT work here!!!
+				# Native 32 bit functions WON'T work here!!!
 				# Convert to a padded binary number
 				$network = wfBaseConvert( $ipint, 10, 2, 128 );
 				# Truncate the last (128-$bits) bits and replace them with zeros
@@ -790,7 +788,7 @@ class Block {
 				$newip = IP::toOctet( $network );
 				$range = "$newip/{$parts[1]}";
 			} // IPv4
-			else if ( IP::isIPv4($range) && $parts[1] >= 16 && $parts[1] <= 32 ) {
+			elseif ( IP::isIPv4( $range ) && $parts[1] >= 16 && $parts[1] <= 32 ) {
 				$shift = 32 - $parts[1];
 				$ipint = IP::toUnsigned( $parts[0] );
 				$ipint = $ipint >> $shift << $shift;
@@ -821,7 +819,7 @@ class Block {
 		# works with CHAR(14) as well because "i" sorts after all numbers.
 		return 'infinity';
 	}
-	
+
 	/**
 	 * Convert a DB-encoded expiry into a real string that humans can read.
 	 *
@@ -830,7 +828,7 @@ class Block {
 	 */
 	public static function formatExpiry( $encoded_expiry ) {
 		static $msg = null;
-		
+
 		if( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock' );
@@ -838,19 +836,19 @@ class Block {
 				$msg[$key] = wfMsgHtml( $key );
 			}
 		}
-		
+
 		$expiry = Block::decodeExpiry( $encoded_expiry );
-		if ($expiry == 'infinity') {
+		if ( $expiry == 'infinity' ) {
 			$expirystr = $msg['infiniteblock'];
 		} else {
 			global $wgLang;
-			$expiredatestr = htmlspecialchars($wgLang->date( $expiry, true ));
-			$expiretimestr = htmlspecialchars($wgLang->time( $expiry, true ));
+			$expiredatestr = htmlspecialchars( $wgLang->date( $expiry, true ) );
+			$expiretimestr = htmlspecialchars( $wgLang->time( $expiry, true ) );
 			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array( $expiredatestr, $expiretimestr ) );
 		}
 		return $expirystr;
 	}
-	
+
 	/**
 	 * Convert a typed-in expiry time into something we can put into the database.
 	 * @param $expiry_input String: whatever was typed into the form
@@ -861,7 +859,7 @@ class Block {
 			$expiry = 'infinity';
 		} else {
 			$expiry = strtotime( $expiry_input );
-			if ($expiry < 0 || $expiry === false) {
+			if ( $expiry < 0 || $expiry === false ) {
 				return false;
 			}
 		}
