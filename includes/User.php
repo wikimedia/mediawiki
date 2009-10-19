@@ -1219,11 +1219,18 @@ class User {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedGroups;
+		global $wgRateLimitsExcludedIPs;
 		if( array_intersect( $this->getEffectiveGroups(), $wgRateLimitsExcludedGroups ) ) {
 			// Deprecated, but kept for backwards-compatibility config
 			return false;
 		}
-		return !$this->isAllowed( 'noratelimit' );
+		if( in_array( wfGetIP(), $wgRateLimitsExcludedIPs ) ) {
+			// No other good way currently to disable rate limits
+			// for specific IPs. :P
+			// But this is a crappy hack and should die.
+			return false;
+		}
+		return !$this->isAllowed('noratelimit');
 	}
 
 	/**

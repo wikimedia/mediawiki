@@ -252,6 +252,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Rewrote Special:Upload to allow easier extension. 
 * Upload errors that can be solved by changing the filename now do not require
   reuploading.
+* Added $wgRateLimitsExcludedIPs, to allow specific IPs to be whitelisted from
+  rate limits.
 
 === Bug fixes in 1.16 ===
 
