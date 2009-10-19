@@ -987,7 +987,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 # Upload
 'upload'                      => 'ፋይል / ሥዕል ለመላክ',
 'uploadbtn'                   => 'ፋይሉ ይላክ',
-'reupload'                    => 'እንደገና ለመላክ',
 'reuploaddesc'                => 'ለመሰረዝና ወደ መላኪያ ማመልከቻ ለመመለስ',
 'uploadnologin'               => 'ገና አልገቡም',
 'uploadnologintext'           => 'ፋይል ለመላክ አስቀድሞ [[Special:UserLogin|መግባት]] ያስፈልግዎታል።',

@@ -510,7 +510,6 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 
 # Upload
 'upload'            => 'Aufelådn',
-'reupload'          => 'Abbrecha',
 'uploadnologin'     => 'Net ogmeidt',
 'uploadnologintext' => "Sie miassn [[Special:UserLogin|ogmeidt sei]], wenn S' Dateien hoachladn wolln.",
 'uploadlog'         => 'Datei-Logbuach',

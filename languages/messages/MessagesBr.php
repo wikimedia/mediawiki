@@ -1403,7 +1403,6 @@ E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
 # Upload
 'upload'                      => 'Kargañ war ar servijer',
 'uploadbtn'                   => 'Kargañ ur restr',
-'reupload'                    => 'Eilañ adarre',
 'reuploaddesc'                => "Distreiñ d'ar furmskrid.",
 'uploadnologin'               => 'diluget',
 'uploadnologintext'           => "ret eo deoc'h bezañ [[Special:UserLogin|luget]]

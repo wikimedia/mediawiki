@@ -833,7 +833,6 @@ Pagini en [[Special:Watchlist|vua surveryo-listo]] esas '''dika'''.",
 # Upload
 'upload'            => 'Adkargar arkivo',
 'uploadbtn'         => 'Adkargar arkivo',
-'reupload'          => 'Ri-adkargar',
 'reuploaddesc'      => 'Retrovenar al adkargo-formularo.',
 'uploadnologin'     => 'Vu ne eniris',
 'uploadnologintext' => 'Vu mustas [[Special:UserLogin|enirir]] por adkargar arkivi.',

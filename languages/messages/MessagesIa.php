@@ -10,6 +10,7 @@
  * @author Julian Mendez
  * @author Malafaya
  * @author McDutchie
+ * @author Raymond
  * @author לערי ריינהארט
  */
 
@@ -1489,7 +1490,6 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] appare in litteras 
 # Upload
 'upload'                      => 'Cargar file',
 'uploadbtn'                   => 'Cargar file',
-'reupload'                    => 'Recargar',
 'reuploaddesc'                => 'Cancellar le carga e retornar al formulario de carga',
 'uploadnologin'               => 'Tu non te ha identificate',
 'uploadnologintext'           => 'Tu debe [[Special:UserLogin|aperir un session]] pro poter cargar files.',
@@ -1571,9 +1571,12 @@ Si tu vole totevia cargar iste file, per favor retorna e usa un nove nomine. [[F
 'uploadcorrupt'               => 'Le file es corrupte o su nomine ha un extension incorrecte.
 Per favor verifica le file e recarga lo.',
 'uploadvirus'                 => 'Le file contine un virus! Detalios: $1',
+'upload-source'               => 'File de origine',
 'sourcefilename'              => 'Nomine del file de origine:',
+'sourceurl'                   => 'URL de origine:',
 'destfilename'                => 'Nomine del file de destination:',
 'upload-maxfilesize'          => 'Grandor maximal del files: $1',
+'upload-description'          => 'Description del file',
 'watchthisupload'             => 'Observar iste file',
 'filewasdeleted'              => 'Un file con iste nomine ha anteriormente essite cargate e postea delite.
 Tu debe verificar le $1 ante de proceder e recargar lo.',

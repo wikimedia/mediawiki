@@ -17,6 +17,7 @@
  * @author Glanthor Reviol
  * @author Gondnok
  * @author KossuthRad
+ * @author Raymond
  * @author Samat
  * @author Terik
  * @author Tgr
@@ -1610,7 +1611,6 @@ A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' v
 # Upload
 'upload'                      => 'Fájl feltöltése',
 'uploadbtn'                   => 'Fájl feltöltése',
-'reupload'                    => 'Fájl feltöltése újra',
 'reuploaddesc'                => 'Visszatérés a feltöltési űrlaphoz.',
 'uploadnologin'               => 'Nem vagy bejelentkezve',
 'uploadnologintext'           => 'Csak regisztrált felhasználók tölthetnek fel fájlokat. [[Special:UserLogin|Jelentkezz be]] vagy regisztrálj!',
@@ -1687,9 +1687,12 @@ Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy ú
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',
 'uploadcorrupt'               => 'A fájl sérült vagy hibás a kiterjesztése. Légy szíves ellenőrizd a fájlt és próbálkozz újra!',
 'uploadvirus'                 => 'Ez a fájl vírust tartalmaz! A részletek: $1',
+'upload-source'               => 'Forrásfájl',
 'sourcefilename'              => 'Forrásfájl neve:',
+'sourceurl'                   => 'A forrás URL-címe:',
 'destfilename'                => 'Célfájlnév:',
 'upload-maxfilesize'          => 'Maximális fájlméret: $1',
+'upload-description'          => 'A fájl leírása',
 'watchthisupload'             => 'Fájl figyelése',
 'filewasdeleted'              => 'Korábban valaki már feltöltött ilyen néven egy fájlt, amelyet később töröltünk. Ellenőrizd a $1 bejegyzését, nehogy újra feltöltsd ugyanezt a fájlt.',
 'upload-wasdeleted'           => "'''Vigyázat: egy olyan fájlt akarsz feltölteni, ami korábban már törölve lett.'''

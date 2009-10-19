@@ -10,6 +10,7 @@
  * @author Cesco
  * @author EugeneZelenko
  * @author Jim-by
+ * @author Raymond
  * @author Red Winged Duck
  * @author Zedlik
  */
@@ -1561,7 +1562,6 @@ $1",
 # Upload
 'upload'                      => 'Загрузіць файл',
 'uploadbtn'                   => 'Загрузіць файл',
-'reupload'                    => 'Загрузіць зноў',
 'reuploaddesc'                => 'Адмяніць загрузку і вярнуцца да формы загрузкі',
 'uploadnologin'               => 'Вы не ўвайшлі ў сыстэму',
 'uploadnologintext'           => 'Вам трэба [[Special:UserLogin|ўвайсьці ў сыстэму]] для загрузкі файлаў.',
@@ -1639,9 +1639,12 @@ $1",
 'uploadcorrupt'               => 'Файл пашкоджаны альбо мае неадпаведнае пашырэньне.
 Калі ласка, праверце файл і загрузіце яго зноў.',
 'uploadvirus'                 => 'Файл утрымлівае вірус! Падрабязнасьці: $1',
+'upload-source'               => 'Крынічны файл',
 'sourcefilename'              => 'Пачатковая назва файла:',
+'sourceurl'                   => 'URL-адрас крыніцы:',
 'destfilename'                => 'Канчатковая назва файла:',
 'upload-maxfilesize'          => 'Максымальны памер файла: $1',
+'upload-description'          => 'Апісаньне файла',
 'watchthisupload'             => 'Назіраць за гэтым файлам',
 'filewasdeleted'              => 'Файл з такой назвай загружаўся, але быў выдалены.
 Вам трэба праверыць $1 перад новай загрузкай.',

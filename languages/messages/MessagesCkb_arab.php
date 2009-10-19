@@ -1414,7 +1414,6 @@ $1",
 # Upload
 'upload'                      => 'پەڕگەیەک بار بکە',
 'uploadbtn'                   => 'پەڕگە بار بکە',
-'reupload'                    => 'دیسان بار بکە',
 'reuploaddesc'                => 'هەڵوەشانەوەی بارکردن و گەڕانەوە بۆ فۆرمی بارکردن',
 'uploadnologin'               => 'لەژوورەوە نیت',
 'uploadnologintext'           => 'بۆ بارکردنی پەڕگەکان ئەشێ [[Special:UserLogin|لە ژوورەوە بیت]].',

@@ -1355,7 +1355,6 @@ Jë pàgine an dzora a [[Special:Watchlist|la lista ch'it ten-e sot euj]] a rest
 # Upload
 'upload'                      => 'Carié',
 'uploadbtn'                   => 'Carié',
-'reupload'                    => 'Caria torna',
 'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
 'uploadnologin'               => 'Pa an drinta al sistema',
 'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]]

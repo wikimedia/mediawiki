@@ -798,7 +798,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 # Upload
 'upload'                      => 'Uplaid file',
 'uploadbtn'                   => 'Uplaid file',
-'reupload'                    => 'Re-uplaid',
 'reuploaddesc'                => 'Gang back tae the uplaid form.',
 'uploadnologin'               => 'Nae loggit in',
 'uploadnologintext'           => 'Ye maun be [[Special:UserLogin|loggit in]] til uplaid files.',

@@ -817,7 +817,6 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 # Upload
 'upload'            => 'Qarşıya yüklə',
 'uploadbtn'         => 'Sənəd yüklə',
-'reupload'          => 'Təkrar yüklə',
 'reuploaddesc'      => 'Return to the upload form.',
 'uploadnologintext' => 'Fayl yükləmək üçün [[Special:UserLogin|daxil olmalısınız]].',
 'uploaderror'       => 'Yükləmə xətası',

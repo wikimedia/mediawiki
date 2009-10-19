@@ -12,6 +12,7 @@
  * @author Jóna Þórunn
  * @author Krun
  * @author Maxí
+ * @author Raymond
  * @author S.Örvarr.S
  * @author Spacebirdy
  * @author Steinninn
@@ -830,8 +831,8 @@ Stjórnandinn sem læsti honum gaf þessa skýringu: $1",
 'protectedpagewarning'             => "'''Viðvörun: Þessari síðu hefur verið læst svo aðeins notendur með möppudýraréttindi geti breytt henni.'''",
 'semiprotectedpagewarning'         => "'''Athugið''': Þessari síðu hefur verið læst þannig að aðeins innskráðir notendur geti breytt henni.",
 'titleprotectedwarning'            => "'''VIÐVÖRUN: Þessari síðu hefur verið læst svo aðeins [[Special:ListGroupRights|sérstakir notendur]] geta breytt henni.'''",
-'templatesused'                    => 'Snið notuð á þessari síðu:',
-'templatesusedpreview'             => 'Snið notuð í forskoðuninni:',
+'templatesused'                    => 'Snið {{PLURAL:$1|notað|notuð}} á þessari síðu:',
+'templatesusedpreview'             => 'Snið {{PLURAL:$1|notað|notuð}} í forskoðuninni:',
 'templatesusedsection'             => 'Snið notuð á hlutanum:',
 'template-protected'               => '(vernduð)',
 'template-semiprotected'           => '(hálfvernduð)',
@@ -1306,7 +1307,6 @@ Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
 # Upload
 'upload'                 => 'Hlaða inn skrá',
 'uploadbtn'              => 'Hlaða inn skrá',
-'reupload'               => 'Hlaða aftur inn',
 'reuploaddesc'           => 'Aftur á innhlaðningarformið.',
 'uploadnologin'          => 'Óinnskráð(ur)',
 'uploadnologintext'      => 'Þú verður að vera [[Special:UserLogin|skráð(ur) inn]]

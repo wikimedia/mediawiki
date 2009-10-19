@@ -1589,7 +1589,6 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 # Upload
 'upload'                      => 'Bestaand toevoegen',
 'uploadbtn'                   => 'Bestaand toevoegen',
-'reupload'                    => 'Opniej toevoegen',
 'reuploaddesc'                => 'Weerumme naor bestaandtoevoegingsformelier.',
 'uploadnologin'               => 'Neet an-emeld',
 'uploadnologintext'           => 'Je mutten [[Special:UserLogin|an-emeld]] ween um bestanen toe te kunnen voegen.',

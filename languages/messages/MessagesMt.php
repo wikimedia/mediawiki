@@ -1442,7 +1442,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 # Upload
 'upload'                      => "Tella' fajl",
 'uploadbtn'                   => "Tella' fajl",
-'reupload'                    => "Tella' mill-ġdid",
 'reuploaddesc'                => 'Mur lura għal formula',
 'uploadnologin'               => 'Għadek ma dħaltx ġewwa',
 'uploadnologintext'           => "Sabiex il-fajl jiġu ''uploaded'' inti trid tkun [[Special:UserLogin|dħalt]] b'kont reġistrat.",

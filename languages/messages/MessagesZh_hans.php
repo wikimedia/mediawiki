@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -12,9 +12,11 @@
  * @author Gzdavidwong
  * @author Jidanni
  * @author Jimmy xu wrk
+ * @author KaiesTse
  * @author Liangent
  * @author O
  * @author PhiLiP
+ * @author Raymond
  * @author Shinjiman
  * @author Wmr89502270
  * @author Wong128hk
@@ -1478,7 +1480,6 @@ $1",
 # Upload
 'upload'                      => '上传文件',
 'uploadbtn'                   => '上传文件',
-'reupload'                    => '重新上传',
 'reuploaddesc'                => '取消上传并返回上传表单',
 'uploadnologin'               => '未登录',
 'uploadnologintext'           => '您必须先[[Special:UserLogin|登录]]才能上传文件。',
@@ -1956,7 +1957,7 @@ Template:消除歧義',
 而且还会在[[Special:RecentChanges|最近更改]]中
 以'''粗体'''形式列出以使起更容易识别。",
 'removedwatch'         => '已停止监视',
-'removedwatchtext'     => '页面"<nowiki>$1</nowiki>"已经从[[Special:Watchlist|您的监视页面]]中移除。',
+'removedwatchtext'     => '页面[[:$1]]已经从[[Special:Watchlist|您的监视页面]]中移除。',
 'watch'                => '监视',
 'watchthispage'        => '监视此页',
 'unwatch'              => '取消监视',
@@ -2052,9 +2053,9 @@ $NEWPAGE
 'rollbacklink'      => '回退',
 'rollbackfailed'    => '回退失败',
 'cantrollback'      => '无法恢复编辑；最后的贡献者是本文的唯一作者。',
-'alreadyrolled'     => '无法回退由[[User:$2|$2]]（[[User talk:$2|讨论]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）在[[:$1]]上的最后一次编辑；其他人已经编辑或者回退了该页。
+'alreadyrolled'     => '无法回退由[[User:$2|$2]]（[[User talk:$2|讨论]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]在[[:$1]]上的编辑；其他人已经编辑或者回退了该页。
 
-对此页面的最后一次编辑是由[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）进行的。',
+该页最后的编辑者是[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment'       => '编辑摘要："<i>$1</i>"。',
 'revertpage'        => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后修订版本',
 'revertpage-nouser' => '恢复由（移除了的用户名）的编辑到[[User:$1|$1]]的最后一个修订版本',

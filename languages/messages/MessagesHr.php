@@ -1593,7 +1593,6 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 # Upload
 'upload'                      => 'Postavi datoteku',
 'uploadbtn'                   => 'Postavi datoteku',
-'reupload'                    => 'Ponovno postavi',
 'reuploaddesc'                => 'Vratite se u obrazac za postavljanje.',
 'uploadnologin'               => 'Niste prijavljeni',
 'uploadnologintext'           => 'Za postavljanje datoteka morate biti  [[Special:UserLogin|prijavljeni]].',

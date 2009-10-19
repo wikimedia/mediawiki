@@ -1456,7 +1456,6 @@ Säite vun [[Special:Watchlist|Ärer Iwwerwaachungslëscht]] si '''fett''' gesch
 # Upload
 'upload'                      => 'Eroplueden',
 'uploadbtn'                   => 'Fichier eroplueden',
-'reupload'                    => 'Nach eemol eroplueden',
 'reuploaddesc'                => 'Eroplueden ofbriechen an zréck op de Formulaire fir Eropzelueden',
 'uploadnologin'               => 'Net ageloggt',
 'uploadnologintext'           => 'Dir musst [[Special:UserLogin|ageloggt sinn]], fir Fichieren eroplueden zu kënnen.',

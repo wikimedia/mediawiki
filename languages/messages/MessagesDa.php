@@ -1459,7 +1459,6 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 # Upload
 'upload'                      => 'Læg en fil op',
 'uploadbtn'                   => 'Læg en fil op',
-'reupload'                    => 'Læg en fil op igen',
 'reuploaddesc'                => 'Tilbage til formularen til at lægge filer op.',
 'uploadnologin'               => 'Ikke logget på',
 'uploadnologintext'           => 'Du skal være [[Special:UserLogin|logget på]] for at kunne lægge filer op.',

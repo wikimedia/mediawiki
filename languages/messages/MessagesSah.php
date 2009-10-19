@@ -10,6 +10,7 @@
  * @author Bert Jickty
  * @author HalanTul
  * @author Meno25
+ * @author Raymond
  * @author Urhixidur
  */
 
@@ -691,8 +692,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'semiprotectedpagewarning'         => "'''Биллэрии:''' Бу сирэй хатанан турар, ааттарын билиһиннэрбит эрэ кыттааччылар уларытар кыахтаахтар.",
 'cascadeprotectedwarning'          => "'''Сэрэтии:''' Бу сирэйи \"дьаһабыллар\" бөлөххө киирэр кыттааччылар эрэ уларытар кыахтаахтар, тоҕо диэтэххэ сирэй каскаднай көмүскэллээх {{PLURAL:\$1|сирэй бөлөҕөр|сирэйдэр бөлөхтөрүгэр}} киирэр:",
 'titleprotectedwarning'            => "'''СЭРЭТИИ:  Маннык ааттаах сирэйи уларытар бобуллубут, [[Special:ListGroupRights|анал бырааптаах эрэ дьон]] уларытыан сөп .'''",
-'templatesused'                    => 'Манна туттуллубут халыыптар:',
-'templatesusedpreview'             => 'Манна туттуллубут халыыптар:',
+'templatesused'                    => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}} :',
+'templatesusedpreview'             => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}} бигэргэтиэх иннинэ көстүүлэрэ:',
 'templatesusedsection'             => 'Манна туттуллубут халыыптар:',
 'template-protected'               => '(хатаммыт)',
 'template-semiprotected'           => '(хатаммыт аҥардаах)',
@@ -1360,7 +1361,6 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 # Upload
 'upload'                      => 'Билэни киллэр',
 'uploadbtn'                   => 'Билэни киллэрии',
-'reupload'                    => 'Хат киллэр',
 'reuploaddesc'                => 'Тохтот уонна киллэрии форматыгар төнүн',
 'uploadnologin'               => 'Биикигэ ааккын билиһиннэрбэтиҥ',
 'uploadnologintext'           => 'Билэлэри киллэрэргэ манна [[Special:UserLogin|бэлиэтэниэххэ]] наада',

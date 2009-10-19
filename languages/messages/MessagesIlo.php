@@ -810,7 +810,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 # Upload
 'upload'                 => 'Mangipan iti file',
 'uploadbtn'              => 'Ipan ti file',
-'reupload'               => 'I-upload manen',
 'uploadnologin'          => 'Saan a nakastrek',
 'uploadnologintext'      => 'Nasken a [[Special:UserLogin|nakaserrekka]] tapno makaipanka iti files.',
 'uploaderror'            => 'Kammali iti panangipan',

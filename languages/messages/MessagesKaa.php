@@ -1167,7 +1167,6 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 # Upload
 'upload'             => 'Fayldı aploud qılıw',
 'uploadbtn'          => 'Aploud!',
-'reupload'           => 'Qayta aploud qılıw',
 'reuploaddesc'       => "Aploudtı biykar etiw ha'm aploud formasına qaytıw",
 'uploadnologin'      => 'Kirilmegen',
 'uploadnologintext'  => "Fayllardı aploud qılıw ushın [[Special:UserLogin|kiriwin'iz]] kerek.",

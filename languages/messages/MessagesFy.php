@@ -1361,7 +1361,6 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 # Upload
 'upload'                      => 'Bied triem oan',
 'uploadbtn'                   => 'Bied triem oan',
-'reupload'                    => "Op 'e nij oanbiede",
 'reuploaddesc'                => 'Werom nei oanbied-side.',
 'uploadnologin'               => 'Net oanmelde',
 'uploadnologintext'           => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om in triem oanbiede te kinnen.',

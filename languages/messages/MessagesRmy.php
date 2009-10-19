@@ -337,7 +337,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 # Upload
 'upload'      => 'Bichhal file',
 'uploadbtn'   => 'Bichhal file',
-'reupload'    => 'Pale bichhal',
 'filedesc'    => 'Xarno xalyaripen',
 'badfilename' => 'O chitrosko anav sas paruvdo; o nevo anav si "$1".',
 'savefile'    => 'Uxtav file',

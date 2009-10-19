@@ -1386,7 +1386,6 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 # Upload
 'upload'                      => 'Uwchlwytho ffeil',
 'uploadbtn'                   => 'Uwchlwytho ffeil',
-'reupload'                    => 'Ail-uwchlwytho',
 'reuploaddesc'                => "Dileu'r uwchlwytho a dychwelyd i'r ffurflen uwchlwytho",
 'uploadnologin'               => 'Nid ydych wedi mewngofnodi',
 'uploadnologintext'           => "Mae'n rhaid i chi [[Special:UserLogin|fewngofnodi]] er mwyn uwchlwytho ffeiliau.",

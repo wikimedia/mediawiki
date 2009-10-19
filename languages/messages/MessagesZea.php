@@ -939,7 +939,6 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 # Upload
 'upload'                     => 'Upload bestand',
 'uploadbtn'                  => "Bestand upload'n",
-'reupload'                   => "Opnieuw upload'n",
 'reuploaddesc'               => "Upload annuleern en teruggaene ni 't uploadformelier",
 'uploadnologin'              => 'Nie anemeld',
 'uploadnologintext'          => "Je mò [[Special:UserLogin|anemeld]] zien

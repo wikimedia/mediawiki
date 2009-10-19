@@ -1601,7 +1601,6 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 # Upload
 'upload'                      => 'Ladda upp fil',
 'uploadbtn'                   => 'Ladda upp fil',
-'reupload'                    => 'Ladda upp på nytt',
 'reuploaddesc'                => 'Avbryt uppladdningen och gå tillbaka till uppladdningsformuläret.',
 'uploadnologin'               => 'Inte inloggad',
 'uploadnologintext'           => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ladda upp filer.',

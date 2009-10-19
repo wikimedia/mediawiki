@@ -778,7 +778,6 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 # Upload
 'upload'                 => 'Tlahcuilōlquetza',
 'uploadbtn'              => 'Tlahcuilōlquetza',
-'reupload'               => 'Tiquiquetzāz occeppa',
 'uploadnologin'          => 'Ahmo ōtimocalac',
 'uploaderror'            => 'Tlaquetzaliztli ahcuallōtl',
 'uploadlog'              => 'tlaquetzaliztli tlahcuilōlloh',

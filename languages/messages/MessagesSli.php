@@ -769,7 +769,6 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 # Upload
 'upload'            => 'Huchloada',
 'uploadbtn'         => 'Datei huchloada',
-'reupload'          => 'Oabbrecha',
 'reuploaddesc'      => 'Oabbrecha un zurieck zur Huchloada-Seete',
 'uploadnologin'     => 'Nä oangemeldet',
 'uploadnologintext' => 'Du musst [[Special:UserLogin|oangemeldet sein]], um Dateia huchloada zu könna.',

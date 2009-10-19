@@ -1554,7 +1554,6 @@ $1",
 # Upload
 'upload'                      => '파일 올리기',
 'uploadbtn'                   => '파일 올리기',
-'reupload'                    => '다시 올리기',
 'reuploaddesc'                => '올리기를 취소하고 올리기 양식으로 돌아가기',
 'uploadnologin'               => '로그인하지 않음',
 'uploadnologintext'           => '파일을 올리려면 [[Special:UserLogin|로그인]]해야 합니다.',

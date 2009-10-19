@@ -1183,7 +1183,6 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 # Upload
 'upload'              => 'Fasciculum imponere',
 'uploadbtn'           => 'Fasciculum imponere',
-'reupload'            => 'Iterum imponere',
 'reuploaddesc'        => 'Siste imponere et ad imponendi formam redi',
 'uploadnologin'       => 'Conventum non est apertum',
 'uploadnologintext'   => 'Oportet [[Special:UserLogin|aperire conventum]] ut fasciculos imponas.',

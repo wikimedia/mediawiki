@@ -1238,7 +1238,6 @@ Faqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të '''theksuara'''.",
 # Upload
 'upload'                      => 'Ngarkoni skeda',
 'uploadbtn'                   => 'Ngarkoje',
-'reupload'                    => 'Ngarkojeni përsëri',
 'reuploaddesc'                => 'Kthehu tek formulari i dhënies.',
 'uploadnologin'               => 'Nuk keni hyrë brënda',
 'uploadnologintext'           => 'Duhet të keni [[Special:UserLogin|hyrë brenda]] për të dhënë skeda.',

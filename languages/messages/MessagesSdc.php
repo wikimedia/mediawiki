@@ -1009,7 +1009,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 # Upload
 'upload'                      => 'Carrigga un file',
 'uploadbtn'                   => 'Carrigga',
-'reupload'                    => 'Carrigga di nobu',
 'reuploaddesc'                => 'Canzella lu carriggamentu e turra a lu mòdulu',
 'uploadnologin'               => 'Intradda nò effettuadda',
 'uploadnologintext'           => 'È nezzessàriu [[Special:UserLogin|intrà]] pa carriggà file.',

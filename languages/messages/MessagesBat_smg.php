@@ -897,7 +897,6 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 # Upload
 'upload'                     => 'Ikeltė faila',
 'uploadbtn'                  => 'Ikeltė faila',
-'reupload'                   => 'Pakartuotė ikielima',
 'reuploaddesc'               => 'Sogrīžtė i ikielima fuorma.',
 'uploadnologin'              => 'Naprėsėjongis',
 'uploadnologintext'          => 'Nuoriedamė ikeltė faila, torėt būt [[Special:UserLogin|prėsėjongis]].',

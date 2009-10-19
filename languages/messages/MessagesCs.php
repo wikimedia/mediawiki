@@ -16,6 +16,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Ragimiri
+ * @author Raymond
  * @author Reaperman
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -1627,7 +1628,6 @@ $3',
 # Upload
 'upload'                      => 'Načíst soubor',
 'uploadbtn'                   => 'Načíst soubor',
-'reupload'                    => 'Načíst znovu',
 'reuploaddesc'                => 'Vrátit se k načtení.',
 'uploadnologin'               => 'Nejste přihlášen(a)',
 'uploadnologintext'           => 'Pro načtení souboru se musíte [[Special:UserLogin|přihlásit]].',
@@ -1698,9 +1698,12 @@ Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
 'uploadscripted'              => 'Tento soubor obsahuje HTML nebo kód skriptu, který by mohl být prohlížečem chybně interpretován.',
 'uploadcorrupt'               => 'Soubor je poškozen nebo nemá správnou příponu. Zkontrolujte prosím soubor a zkuste ho načíst znovu.',
 'uploadvirus'                 => 'Tento soubor obsahuje virus! Podrobnosti: $1',
+'upload-source'               => 'Zdrojový soubor',
 'sourcefilename'              => 'Jméno zdrojového souboru:',
+'sourceurl'                   => 'Zdrojové URL:',
 'destfilename'                => 'Cílové jméno:',
 'upload-maxfilesize'          => 'Maximální dovolená velikost souboru: $1',
+'upload-description'          => 'Popis souboru',
 'watchthisupload'             => 'Sledovat tento soubor',
 'filewasdeleted'              => 'Soubor stejného jména byl již dříve načten a posléze smazán. Podrobnosti obsahuje $1.',
 'upload-wasdeleted'           => "'''Upozornění: Načítáte soubor, který byl již dříve smazán.'''

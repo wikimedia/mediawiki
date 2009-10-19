@@ -998,7 +998,6 @@ king kekang watchlist (tala da reng babanten).",
 # Upload
 'upload'                      => 'Maglulan simpan/file',
 'uploadbtn'                   => 'Maglulan simpan (upload file)',
-'reupload'                    => 'Ilulan yang pasibayu',
 'reuploaddesc'                => 'Iurung ya ing pamaglulan at isubli ya king upload form',
 'uploadnologin'               => 'E maka-login',
 'uploadnologintext'           => 'Kailangan kang [[Special:UserLogin|maka-login]] ba kang makapaglulan simpan (upload files).',

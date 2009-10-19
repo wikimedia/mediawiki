@@ -606,7 +606,6 @@ Paginas sin [[Special:Watchlist|tia glista d'observaziun]] èn '''grassas'''.",
 # Upload
 'upload'            => 'Chargiar si in file',
 'uploadbtn'         => 'Chargiar si il file',
-'reupload'          => 'chargiar si danovamain',
 'reuploaddesc'      => 'Anavos tar la pagina da chargiar si.',
 'uploadnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] per chargiar si files.",
 'uploadtext'        => "Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:FileList|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].

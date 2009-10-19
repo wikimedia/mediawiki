@@ -784,7 +784,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 # Upload
 'upload'             => 'Cjame sù un file',
 'uploadbtn'          => 'Cjame sù un file',
-'reupload'           => 'Torne a cjamâ sù',
 'uploadnologin'      => 'No jentrât',
 'uploadnologintext'  => 'Tu scugnis [[Special:UserLogin|jentrâ]] cul to non utent par cjamâ sù files.',
 'uploaderror'        => 'Erôr cjamant sù',

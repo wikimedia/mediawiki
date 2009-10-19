@@ -44,6 +44,7 @@
  * @author Paucabot
  * @author Piolinfax
  * @author Platonides
+ * @author Raymond
  * @author Remember the dot
  * @author Richard Wolf VI
  * @author Sanbec
@@ -1534,19 +1535,17 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 # Upload
 'upload'                      => 'Subir archivo',
 'uploadbtn'                   => 'Subir un archivo',
-'reupload'                    => 'Subir otra vez',
 'reuploaddesc'                => 'Regresar al formulario para subir.',
 'uploadnologin'               => 'No ha iniciado sesión',
 'uploadnologintext'           => 'Tienes que [[Special:UserLogin|iniciar sesión]] para poder subir archivos.',
 'upload_directory_missing'    => 'El directorio de subida de archivos ($1) no existe, y no puede ser creado por el servidor.',
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
-'uploadtext'                  => "Utilize el siguiente formulario para subir archivos.
+'uploadtext'                  => "Utilice el siguiente formulario para subir archivos.
 Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:FileList|lista de archivos subidos]].
 Los archivos subidos quedarán registrado además en el [[Special:Log/upload|registro de archivos subidos]] y los borrados en el [[Special:Log/delete|registro de borrados]].
 
 Para incluir un archivo en una página, use un enlace como los que siguen
-
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 pixeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
@@ -1612,6 +1611,7 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
 'sourcefilename'              => 'Nombre del archivo origen:',
+'sourceurl'                   => 'Dirección original:',
 'destfilename'                => 'Nombre del archivo de destino:',
 'upload-maxfilesize'          => 'Tamaño máximo del archivo: $1',
 'watchthisupload'             => 'Vigilar este archivo',

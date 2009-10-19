@@ -1441,7 +1441,6 @@ Le pagine che te stè tegnendo d'ocio sui [[Special:Watchlist|osservati speciali
 # Upload
 'upload'                      => 'Carga sù un file',
 'uploadbtn'                   => 'Carga file',
-'reupload'                    => 'Carga da novo',
 'reuploaddesc'                => 'Lassa pèrdar el caricamento e torna al modulo de caricamento',
 'uploadnologin'               => 'Te devi far el login par exeguire sta operassion.',
 'uploadnologintext'           => 'Te ghè da far [[Special:UserLogin|el login]]

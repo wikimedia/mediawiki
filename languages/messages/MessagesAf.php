@@ -1422,7 +1422,6 @@ Bladsye op [[Special:Watchlist|u dophoulys]] word in '''vetdruk''' uitgewys.",
 # Upload
 'upload'                     => 'Laai lêer',
 'uploadbtn'                  => 'Laai lêer',
-'reupload'                   => 'Herlaai',
 'reuploaddesc'               => 'Keer terug na die laaivorm.',
 'uploadnologin'              => 'Nie ingeteken nie',
 'uploadnologintext'          => 'Teken eers in [[Special:UserLogin|logged in]]

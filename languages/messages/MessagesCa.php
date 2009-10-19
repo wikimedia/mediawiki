@@ -1487,7 +1487,6 @@ Les pàgines de la vostra [[Special:Watchlist|llista de seguiment]] apareixen en
 # Upload
 'upload'                      => 'Carrega',
 'uploadbtn'                   => 'Carrega un fitxer',
-'reupload'                    => 'Carrega de nou',
 'reuploaddesc'                => 'Torna al formulari per apujar.',
 'uploadnologin'               => 'No heu iniciat una sessió',
 'uploadnologintext'           => "Heu d'[[Special:UserLogin|iniciar una sessió]]

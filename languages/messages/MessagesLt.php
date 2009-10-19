@@ -1490,7 +1490,6 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 # Upload
 'upload'                      => 'Įkelti failą',
 'uploadbtn'                   => 'Įkelti failą',
-'reupload'                    => 'Pakartoti įkėlimą',
 'reuploaddesc'                => 'Atšaukti įkėlimą ir grįžti į įkėlimo formą.',
 'uploadnologin'               => 'Neprisijungęs',
 'uploadnologintext'           => 'Norėdami įkelti failą, turite būti [[Special:UserLogin|prisijungęs]].',

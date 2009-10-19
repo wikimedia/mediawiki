@@ -901,7 +901,6 @@ $messages = array(
 # Upload
 'upload'                => 'دوتنه پورته کول',
 'uploadbtn'             => 'دوتنه پورته کول',
-'reupload'              => 'بيا پورته کول',
 'uploadnologin'         => 'غونډال کې نه ياست ننوتي',
 'uploadnologintext'     => 'ددې لپاره چې دوتنې پورته کړای شۍ، تاسو ته پکار ده چې لومړی غونډال کې [[Special:UserLogin|ننوتنه]] ترسره کړی.',
 'uploaderror'           => 'د پورته کولو ستونزه',

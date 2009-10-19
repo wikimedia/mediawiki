@@ -19,6 +19,7 @@
  * @author MF-Warburg
  * @author Malafaya
  * @author Omnipaedista
+ * @author Raymond
  * @author Remember the dot
  * @author Sinopeus
  * @author Urhixidur
@@ -1619,7 +1620,6 @@ $1",
 # Upload
 'upload'                      => 'Φόρτωση αρχείου',
 'uploadbtn'                   => 'Φόρτωση αρχείου',
-'reupload'                    => 'Επανάληψη φόρτωσης',
 'reuploaddesc'                => 'Επιστροφή στη φόρμα φόρτωσης',
 'uploadnologin'               => 'Δεν έχετε συνδεθεί!',
 'uploadnologintext'           => 'Για να φορτώσετε αρχεία πρέπει πρώτα να [[Special:UserLogin|συνδεθείτε]].',

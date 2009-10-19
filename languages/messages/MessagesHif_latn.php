@@ -1353,7 +1353,6 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hae  '''mota''' kara gais 
 # Upload
 'upload'                      => 'File ke upload karo',
 'uploadbtn'                   => 'File upload karo',
-'reupload'                    => 'Fir se upload karo',
 'reuploaddesc'                => 'Upload ke cancel kar ke upload form pe lauto',
 'uploadnologin'               => 'Aap abhi loged in nai hai',
 'uploadnologintext'           => 'Aap ke [[Special:UserLogin|logged in]] kare ke chaahi, file upload kare ke khatir.',

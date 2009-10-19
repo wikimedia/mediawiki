@@ -1601,7 +1601,6 @@ Stránky, ktoré sa nachádzajú vo vašom [[Special:Watchlist|zozname sledovan�
 # Upload
 'upload'                      => 'Nahrať súbor',
 'uploadbtn'                   => 'Nahrať súbor',
-'reupload'                    => 'Zopakovať nahranie',
 'reuploaddesc'                => 'Zrušiť nahrávanie a vrátiť sa späť na nahrávací formulár.',
 'uploadnologin'               => 'Nie ste prihlásený',
 'uploadnologintext'           => 'Musíte byť [[Special:UserLogin|prihlásený/á]], aby ste mohli nahrávať súbory.',

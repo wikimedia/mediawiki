@@ -1576,7 +1576,6 @@ $1",
 # Upload
 'upload'                      => 'Загрузить файл',
 'uploadbtn'                   => 'Загрузить файл',
-'reupload'                    => 'Изменить загрузку',
 'reuploaddesc'                => 'Вернуться к форме загрузки',
 'uploadnologin'               => 'Вы не представились системе',
 'uploadnologintext'           => 'Вы должны [[Special:UserLogin|представиться системе]],

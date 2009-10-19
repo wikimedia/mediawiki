@@ -1584,7 +1584,6 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 # Upload
 'upload'                      => 'Unggah berkas',
 'uploadbtn'                   => 'Muatkan berkas',
-'reupload'                    => 'Muat ulang',
 'reuploaddesc'                => 'Kembali ke formulir pemuatan',
 'uploadnologin'               => 'Belum masuk log',
 'uploadnologintext'           => 'Anda harus [[Special:UserLogin|masuk log]] untuk dapat memuatkan berkas.',

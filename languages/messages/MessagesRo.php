@@ -1582,7 +1582,6 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 # Upload
 'upload'                      => 'Încarcă fişier',
 'uploadbtn'                   => 'Încarcă fişier',
-'reupload'                    => 'Re-trimite',
 'reuploaddesc'                => 'Revocare încărcare şi întoarcere la formularul de trimitere.',
 'uploadnologin'               => 'Nu sunteţi autentificat',
 'uploadnologintext'           => 'Trebuie să fiţi [[Special:UserLogin|autentificat]] pentru a putea trimite fişiere.',

@@ -1287,7 +1287,6 @@ $3ने ''$2'' कारण दिले आहे.",
 # Upload
 'upload'                      => 'संचिका चढवा',
 'uploadbtn'                   => 'संचिका चढवा',
-'reupload'                    => 'पुन्हा चढवा',
 'reuploaddesc'                => 'चढवायच्या पानाकडे परता',
 'uploadnologin'               => 'प्रवेश केलेला नाही',
 'uploadnologintext'           => 'संचिका चढविण्यासाठी तुम्हाला [[Special:UserLogin|प्रवेश]] करावा लागेल.',

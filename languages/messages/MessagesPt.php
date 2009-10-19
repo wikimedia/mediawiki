@@ -1606,7 +1606,6 @@ Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibida
 # Upload
 'upload'                      => 'Carregar ficheiro',
 'uploadbtn'                   => 'Carregar ficheiro',
-'reupload'                    => 'Re-enviar',
 'reuploaddesc'                => 'Cancelar o envio e retornar ao formulário de upload',
 'uploadnologin'               => 'Não autenticado',
 'uploadnologintext'           => 'Você necessita estar [[Special:UserLogin|autenticado]] para enviar ficheiros.',

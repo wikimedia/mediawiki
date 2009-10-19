@@ -1355,7 +1355,6 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 # Upload
 'upload'                      => 'Magkarga ng talaksan',
 'uploadbtn'                   => 'Magkarga ng talaksan',
-'reupload'                    => 'Magkarga muli',
 'reuploaddesc'                => 'Kanselahin/Iurong ang pagkarga at magbalik sa pormularyo ng pagkakarga',
 'uploadnologin'               => 'Hindi nakalagda',
 'uploadnologintext'           => 'Dapat ikaw ay [[Special:UserLogin|nakalagda]]

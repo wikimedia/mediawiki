@@ -1023,7 +1023,6 @@ Bu koe [[Special:Watchlist|rinafi suzdasiki]] tid '''vastaakorafu'''.",
 # Upload
 'upload'                      => 'Iyeltakkalvajara',
 'uploadbtn'                   => 'Va iyeltak kalvajá',
-'reupload'                    => 'Tolon kalvajá',
 'reuploaddesc'                => 'Empara va kalvajara nume dimpira',
 'uploadnologin'               => 'Dogluyariskaf',
 'uploadnologintext'           => 'Gotil [[Special:UserLogin|dogluyarakiraf]] ta kalvajara va iyeltak mo zanisiko.',

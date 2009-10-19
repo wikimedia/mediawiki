@@ -598,7 +598,6 @@ $1 {{int:pipe-separator}} $2',
 # Upload
 'upload'             => 'Lasit fiilla',
 'uploadbtn'          => 'Lasit fiilla',
-'reupload'           => 'Sádde ođđasit',
 'reuploaddesc'       => 'Máhca sáddenskovvái.',
 'uploadnologin'      => 'It leat čálligoahtán sisa',
 'uploadnologintext'  => 'Don fertet leat [[Special:UserLogin|čálligoahtán sisa]], ovdalgo sáhtát vurket fiillaid.',

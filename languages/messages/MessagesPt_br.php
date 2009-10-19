@@ -1577,7 +1577,6 @@ Páginas que estejam em [[Special:Watchlist|sua lista de páginas vigiadas]] sã
 # Upload
 'upload'                      => 'Carregar arquivo',
 'uploadbtn'                   => 'Carregar arquivo',
-'reupload'                    => 'Re-enviar',
 'reuploaddesc'                => 'Cancelar o envio e retornar ao formulário de upload',
 'uploadnologin'               => 'Não autenticado',
 'uploadnologintext'           => 'Você necessita estar [[Special:UserLogin|autenticado]] para enviar arquivos.',

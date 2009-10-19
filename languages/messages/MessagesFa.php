@@ -1724,7 +1724,6 @@ $1",
 # Upload
 'upload'                      => 'بارگذاری پرونده',
 'uploadbtn'                   => 'بارگذاری پرونده',
-'reupload'                    => 'بارگذاری دوباره',
 'reuploaddesc'                => 'بازگشت به فرم بارگذاری',
 'uploadnologin'               => 'به سیستم وارد نشده‌اید',
 'uploadnologintext'           => 'برای بار کردن پرونده‌ها باید [[Special:UserLogin|وارد سیستم شوید]].',

@@ -1531,7 +1531,6 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 # Upload
 'upload'                      => 'Cargar un ficheiro',
 'uploadbtn'                   => 'Cargar o ficheiro',
-'reupload'                    => 'Volver cargar',
 'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
 'uploadnologin'               => 'Non está dentro do sistema',
 'uploadnologintext'           => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',

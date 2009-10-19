@@ -892,7 +892,6 @@ Taa tohe-i ollaq rohkõmb ku $1 {{PLURAL:$1|märk|märki}}.",
 # Upload
 'upload'                      => 'Teedüstü üleslaatminõ',
 'uploadbtn'                   => 'Üleslaatminõ',
-'reupload'                    => 'Vahtsõst üleslaatminõ',
 'reuploaddesc'                => 'Tagasi üleslaatmisõ vormi mano.',
 'uploadnologin'               => 'Sa olõ-i nimega sisse lännüq',
 'uploadnologintext'           => 'Kui tahat teedüstüid üles laatiq, piät [[Special:UserLogin|nimega sisse minemä]].',

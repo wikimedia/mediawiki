@@ -1384,7 +1384,6 @@ L'operazioni nun pò èssiri annullata.",
 # Upload
 'upload'                      => 'Càrrica nu file',
 'uploadbtn'                   => 'Càrrica',
-'reupload'                    => 'Càrrica di novu',
 'reuploaddesc'                => 'Torna a lu mòdulu pi lu carricamentu.',
 'uploadnologin'               => 'Accessu nun effittuatu',
 'uploadnologintext'           => 'Hai a esèquiri [[Special:UserLogin|lu login]] pi carricari mmàggini o àutri files multimidiali.',

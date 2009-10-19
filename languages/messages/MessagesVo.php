@@ -1284,7 +1284,6 @@ Pads [[Special:Watchlist|galädaliseda olik]] '''pakazetons'''.",
 # Upload
 'upload'                      => 'Löpükön ragivi',
 'uploadbtn'                   => 'Löpükön ragivi',
-'reupload'                    => 'Löpükön dönu',
 'reuploaddesc'                => 'Nosükon lopükami e geikön lü löpükamafomet.',
 'uploadnologin'               => 'No enunädon oki',
 'uploadnologintext'           => 'Mutol [[Special:UserLogin|nunädön oli]] ad löpükön ragivis.',

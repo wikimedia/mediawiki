@@ -927,7 +927,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 # Upload
 'upload'                      => 'Ikargá an file',
 'uploadbtn'                   => 'Ikargá an file',
-'reupload'                    => 'Ikargá giraray',
 'reuploaddesc'                => 'Magbalik sa pormulario kan pagkarga.',
 'uploadnologin'               => 'Dai nakalaog',
 'uploadnologintext'           => "Kaipuhan ika si [[Special:UserLogin|nakadagos]]

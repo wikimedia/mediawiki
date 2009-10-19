@@ -454,7 +454,6 @@ $messages = array(
 # Upload
 'upload'            => '上载文物',
 'uploadbtn'         => '上载文件',
-'reupload'          => '重新上载',
 'uploadnologin'     => '朆登录',
 'uploadnologintext' => '倷板定要[[Special:UserLogin|登录]]仔再好上载文件。',
 'uploaderror'       => '上载出错',

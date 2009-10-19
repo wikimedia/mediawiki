@@ -1640,7 +1640,6 @@ Sigge uß Dinge [[Special:Watchlist|Oppaßliß]] sin '''fett''' jeschrevve.",
 # Upload
 'upload'                      => 'Daate huhlade',
 'uploadbtn'                   => 'Huhlade!',
-'reupload'                    => 'Noch ens huhlade',
 'reuploaddesc'                => 'Zeröck noh de Sigg zem Huhlade.',
 'uploadnologin'               => 'Nit Enjelogg',
 'uploadnologintext'           => 'Do mööts ald [[Special:UserLogin|enjelogg]] sin, öm Daate huhzelade.',

@@ -18,6 +18,7 @@
  * @author Manjith Joseph <manjithkaini@gmail.com>
  * @author Praveen Prakash <me.praveen@gmail.com>
  * @author Praveenp
+ * @author Raymond
  * @author Sadik Khalid
  * @author Sadik Khalid <sadik.khalid@gmail.com>
  * @author ShajiA
@@ -1429,7 +1430,7 @@ $1",
 # User rights log
 'rightslog'      => 'ഉപയോക്തൃ അവകാശ രേഖ',
 'rightslogtext'  => 'ഉപയോക്തൃ അവകാശങ്ങള്‍ക്കുണ്ടായ മാറ്റങ്ങള്‍ കാണിക്കുന്ന ഒരു ലോഗാണിത്.',
-'rightslogentry' => '$1ന്റെ ഗ്രൂപ്പ് അംഗത്വം $2ല്‍ നിന്നു $3ലേക്കു മാറ്റിയിരിക്കുന്നു',
+'rightslogentry' => '$1 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $2 എന്നതില്‍ നിന്നു $3 എന്നതിലേക്കു മാറ്റിയിരിക്കുന്നു',
 'rightsnone'     => '(ഒന്നുമില്ല)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1519,7 +1520,6 @@ $1",
 # Upload
 'upload'                      => 'അപ്‌ലോഡ്‌',
 'uploadbtn'                   => 'പ്രമാണം അപ്‌ലോഡ് ചെയ്യുക',
-'reupload'                    => 'ഒരിക്കല്‍കൂടി അപ്‌ലോഡ് ചെയ്യുക',
 'reuploaddesc'                => 'വീണ്ടും അപ്‌ലോഡ് ചെയ്ത് നോക്കാനായി തിരിച്ചു പോവുക.',
 'uploadnologin'               => 'ലോഗിന്‍ ചെയ്തിട്ടില്ല',
 'uploadnologintext'           => 'പ്രമാണങ്ങള്‍ അപ്‌ലോഡ് ചെയ്യാന്‍ താങ്കള്‍ [[Special:UserLogin|ലോഗിന്‍]] ചെയ്തിരിക്കണം',
@@ -2086,7 +2086,7 @@ $NEWPAGE
 
 താളിലെ അവസാന തിരുത്തൽ ചെയ്തിരിക്കുന്നത് [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ആണ്.',
 'editcomment'       => "തിരുത്തലിന്റെ ചുരുക്കം: \"''\$1''\" എന്നായിരുന്നു.",
-'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|സന്ദേശങ്ങള്‍]]) നടത്തിയ തിരുത്തലുകള്‍ നീക്കം ചെയ്തിരിക്കുന്നു; നിലവിലുള്ള അവസ്ഥ [[User:$1|$1]] സൃഷ്ടിച്ചതാ‍ണ്',
+'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|സംവാദം]]) നടത്തിയ തിരുത്തലുകള്‍ നീക്കം ചെയ്തിരിക്കുന്നു; നിലവിലുള്ള പതിപ്പ് [[User:$1|$1]] സൃഷ്ടിച്ചതാണ്',
 'revertpage-nouser' => '(ഉപയോക്തൃനാമം നീക്കിയിരിക്കുന്നു) നടത്തിയ തിരുത്തലുകൾ [[User:$1|$1]] സൃഷ്ടിച്ച അവസാന പതിപ്പിലേയ്ക്ക് മുൻപ്രാപനം ചെയ്തിരിക്കുന്നു',
 'rollback-success'  => '$1 ന്റെ തിരുത്തല്‍ തിരസ്ക്കരിച്ചിരിക്കുന്നു. $2 ചെയ്ത തൊട്ടു മുന്‍പത്തെ പതിപ്പിലേക്ക് സേവ് ചെയ്യുന്നു.',
 'sessionfailure'    => 'താങ്കളുടെ ലോഗിൻ സെഷനിൽ പ്രശ്നങ്ങളുള്ളതായി കാണുന്നു;

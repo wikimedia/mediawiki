@@ -1538,7 +1538,6 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 # Upload
 'upload'                      => 'Willañiqita churkuy',
 'uploadbtn'                   => 'Willañiqita churkuy',
-'reupload'                    => 'Huk kutita churkuy',
 'reuploaddesc'                => "Churkuna hunt'ana p'anqaman kutimuy.",
 'uploadnologin'               => 'Manaraqmi yaykurqunkichu',
 'uploadnologintext'           => '[[Special:UserLogin|Yaykunaykim]] tiyan willañiqikunata churkunaykipaq.',

@@ -1420,7 +1420,6 @@ Strony na [[Special:Watchlist|wobkedźbowankach]] su '''tučne'''.",
 # Upload
 'upload'                      => 'Dataju nahrać',
 'uploadbtn'                   => 'Dataju nahrać',
-'reupload'                    => 'Znowa nahrać',
 'reuploaddesc'                => 'Nahraće přetorhnyć a so k nahrawanskemu formularej wróćić.',
 'uploadnologin'               => 'Njepřizjewjeny',
 'uploadnologintext'           => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być, zo by dataje nahrawać móhł.',

@@ -867,7 +867,6 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 # Upload
 'upload'            => 'Ìrùsókè fáìlì',
 'uploadbtn'         => 'Ìrùsókè faili',
-'reupload'          => 'Àtún-rùsókè',
 'uploadnologin'     => 'Ẹ kò tíì wọlé',
 'uploadnologintext' => 'Ẹ gbọ́dọ̀ [[Special:UserLogin|wọlè]] láti rùsókè faili.',
 'uploaderror'       => 'Àsìse ìrùsókè',

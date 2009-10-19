@@ -1662,7 +1662,6 @@ Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs
 # Upload
 'upload'                      => 'Tèlèchargiér un fichiér',
 'uploadbtn'                   => 'Tèlèchargiér lo fichiér',
-'reupload'                    => 'Tornar tèlèchargiér',
 'reuploaddesc'                => 'Anular lo tèlèchargement et tornar u formulèro de tèlèchargement.',
 'uploadnologin'               => 'Pas branchiê',
 'uploadnologintext'           => 'Vos dête étre [[Special:UserLogin|branchiê]] por tèlèchargiér des fichiérs sur lo sèrvor.',

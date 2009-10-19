@@ -922,7 +922,6 @@ Las páhinas de la tu [[Special:Watchlist|lista e seguimientu]] están en '''neg
 # Upload
 'upload'                      => 'Empuntal archivu',
 'uploadbtn'                   => 'Empuntal archivu',
-'reupload'                    => 'Re-empuntal',
 'reuploaddesc'                => 'Cancelal el empuntu i gorvel al hormuláriu.',
 'uploadnologin'               => 'Nu estás rustriu',
 'uploadnologintext'           => 'Ebis estal [[Special:UserLogin|rustriu]]
