@@ -1396,7 +1396,9 @@ class HTMLEditTools extends HTMLFormField {
 	public function getTableRow( $value ) {
 		return "<tr><td></td><td class=\"mw-input\">" 
 			. '<div class="mw-editTools">' 
-			. wfMsgForContent( 'edittools' )
+			. wfMsgExt( empty( $this->mParams['message'] ) 
+				? 'edittools' : $this->mParams['message'], 
+				array( 'parse', 'content' ) )
 			. "</div></td></tr>\n";
 	}
 }
