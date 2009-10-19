@@ -72,7 +72,10 @@ flickrSearch.prototype = {
 		var _this = this;			
 		if(data.photos && data.photos.photo){			
 			//set result info: 
-			this.num_results = data.photos.total;			
+			this.num_results = data.photos.total;	
+			if( this.num_results > this.cp.offset + this.cp.limit ){
+				this.more_results = true;
+			}		
 			for(var resource_id in data.photos.photo){				
 				var resource = data.photos.photo[resource_id];	
 			

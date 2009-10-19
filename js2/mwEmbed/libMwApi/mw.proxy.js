@@ -41,8 +41,8 @@ loadGM({
 	"mwe-re-trying": "Retrying api request",	
 	"mwe-cancel" : "Cancel",
 	"mwe-proxy-not-ready": "Proxy is not configured",
-	"mwe-please-login" : "Please <a target=\"_new\" href=\"$1\">loggin</a> and or enable mwEmbed and retry the request",
-	"mwe-remember-loging": "As a genneral sequirty reminder. Only login to web sites when your address bar displayes that sites address" 
+	"mwe-please-login" : "Please <a target=\"_new\" href=\"$1\">login</a> on ($2) and or enable mwEmbed and retry the request",
+	"mwe-remember-loging": "As a general security reminder. Only login to web sites when your address bar displays that site's address" 
 });
 
 (function( $ ) {
@@ -61,8 +61,12 @@ loadGM({
 		if( pConf.server_frame )		
 			$.proxy.server_frame = pConf.server_frame;
 		
-		if( pConf.client_frame_path )
+		if( pConf.client_frame_path ){
 			$.proxy.client_frame_path = pConf.client_frame_path;
+		}else{
+			//guess the client frame path:
+			$.proxy.client_frame_path =  wgScriptPath +'/js2/mwEmbed/libMwApi/NestedCallbackIframe.html';
+		}
 				
 		if( parseUri( $.proxy.server_frame).host ==  parseUri( document.URL ).host ){
 			js_log("Error: why are you trying to proxy yourself? " );	
@@ -95,12 +99,13 @@ loadGM({
 			setTimeout(function(){
 				if( !frameProxyOk ){
 					//we timmed out no api proxy (should make sure the user is "logged in")
-					//for now let the implementation call proxyNotReadyDialog	
-					$.proxy.callback ( false );
+					js_log("Error:: api proxy timeout are we logged in? mwEmbed is on?");	
+					$.proxy.proxyNotReadyDialog();
 				}				
 			}, 5000);
 		}
 	}
+	var lastApiReq = {};
 	$.proxy.proxyNotReadyDialog = function(){
 		var btn = {};
 		btn[ gM('mwe-re-try') ] = function(){
@@ -115,12 +120,11 @@ loadGM({
 		//we will have to deal with that here as well: 
 		var login_url = pUri.protocol +'://'+ pUri.host + 
 				pUri.path.replace( 'MediaWiki:ApiProxy', 'Special:UserLogin');
-		$j.addDialog( gM('mwe-proxy-not-ready'), gM('mwe-please-login', login_url ) + 
+		$j.addDialog( gM('mwe-proxy-not-ready'), gM('mwe-please-login', [ login_url, pUri.host] ) + 
 						'<p style="font-size:small">' + gM('mwe-remember-loging') + '</p>', 
 			btn
 		)	
-	}
-	var lastApiReq = {};
+	}	
 	/* the do_api_request with callback: */
 	$.proxy.doRequest = function( reqObj, callback){
 		js_log("doRequest:: " + JSON.stringify( reqObj ) );		
@@ -134,7 +138,9 @@ loadGM({
 	 * The nested iframe action that passes its msg back up to the top instance	 
 	 */
 	$.proxy.nested = function( hashResult ){
-		//js_log( '$.proxy.nested callback :: ' + hashResult );
+		//close the loader if present: 
+		$j.closeLoaderDialog();
+		js_log( '$.proxy.nested callback :: ' + unescape( hashResult ) );
 		frameProxyOk = true;
 		//try to parse the hash result: 
 		try{

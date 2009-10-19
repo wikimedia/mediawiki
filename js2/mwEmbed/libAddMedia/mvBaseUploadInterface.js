@@ -50,7 +50,7 @@ mvBaseUploadInterface.prototype = {
 	parent_uploader:false,
 	formData:{}, //the form to be submitted
 	warnings_sessionkey:null,
-	chunks_supported:false,
+	chunks_supported:true,
 	form_post_override:false,
 	http_copy_upload : false,
 	action_done:false,
@@ -60,13 +60,8 @@ mvBaseUploadInterface.prototype = {
 		if(!iObj)
 			iObj = {};
 		//inherit iObj properties:
-		for(var i in default_bui_options){
-			if(iObj[i]){
-				this[i] = iObj[i];
-			}else{
-				this[i] = default_bui_options[i];
-			}
-		}
+		$j.extend( this, default_bui_options, iObj);		
+		js_log( "init mvBaseUploadInterface:: " + this.api_url);		
 	},
 	setupForm:function(){
 		var _this = this;
@@ -213,7 +208,8 @@ mvBaseUploadInterface.prototype = {
 			//@@TODO check for sendAsBinnary to support firefox/html5 progress on upload
 
 			//set the form target to iframe target:	
-			_this.iframeId = 'f_' + ($j('iframe').length + 1);					
+			_this.iframeId = 'f_' + ($j('iframe').length + 1);	
+							
 			//add the iframe
 			$j("body").append('<iframe src="javascript:false;" id="' + _this.iframeId + '" ' +
 				'name="' + _this.iframeId + '" style="display:none;" ></iframe>');	
@@ -394,8 +390,13 @@ mvBaseUploadInterface.prototype = {
 						)
 					);
 				}
-				//(we got a result) set it to 100ms + your server update interval (in our case 2s)
-				setTimeout(uploadStatus, 2100);
+				if( _this.api_url == 'proxy'){
+					//do the updates a bit more sporadically every 4.2 seconds 
+					setTimeout(uploadStatus, 4200);
+				}else{
+					//(we got a result) set it to 100ms + your server update interval (in our case 2s)
+					setTimeout(uploadStatus, 2100);
+				}
 			});
 		}
 		uploadStatus();
