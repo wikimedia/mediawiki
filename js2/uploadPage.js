@@ -24,8 +24,7 @@ var mwUploadHelper = {
 				'api_url': wgServer + wgScriptPath + '/api.php',
 				'form_rewrite': true,
 				'target_edit_from': mwUploadFormTarget,
-				'new_source_cb': function( orgFilename, oggName ) {
-					if( $j( '#wpDestFile' ).val() == "" )
+				'new_source_cb': function( orgFilename, oggName ) {					
 					$j( '#wpDestFile' ).val( oggName );
 					$j( '#wpDestFile' ).doDestCheck({
 						'warn_target': '#wpDestFile-warning'
