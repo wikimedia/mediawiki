@@ -283,7 +283,7 @@ class LoginForm {
 		}
 
 		# check for minimal password length
-		$valid = $u->isValidPassword( $this->mPassword );
+		$valid = $u->getPasswordValidity( $this->mPassword );
 		if ( $valid !== true ) {
 			if ( !$this->mCreateaccountMail ) {
 				$this->mainLoginForm( wfMsgExt( $valid, array( 'parsemag' ), $wgMinimalPasswordLength ) );
