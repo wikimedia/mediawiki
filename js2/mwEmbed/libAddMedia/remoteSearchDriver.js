@@ -230,7 +230,7 @@ remoteSearchDriver.prototype = {
 		'upload':{
 			'enabled':1,
 			'checked':1,
-			'title'	:'Upload',
+			'title'	:'Upload'
 		}
 	},
 	//define the licenses
