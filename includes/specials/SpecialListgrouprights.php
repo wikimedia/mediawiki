@@ -109,7 +109,7 @@ class SpecialListGroupRights extends SpecialPage {
 		$wgOut->addHTML(
 			Xml::closeElement( 'table' ) . "\n<br /><hr />\n"
 		);
-		$wgOut->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1</div>",'listgrouprights-key' );
+		$wgOut->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
 	}
 
 	/**
