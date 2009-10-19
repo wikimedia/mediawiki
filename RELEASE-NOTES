@@ -661,6 +661,7 @@ changes to languages because of MediaZilla reports.
 * (bug 19949) New linktrail for Greek (el)
 * (bug 19809) Korean (North Korea) (ko-kp) (new)
 * (bug 19968) Fixed "Project talk" namespace name for Maltese (mt)
+* (bug 21168) Added áâãàéêçíóôõúü to Portuguese (pt) linktrail
 
 == Compatibility ==
 
