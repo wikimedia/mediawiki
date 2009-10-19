@@ -383,6 +383,31 @@ if( !mv_embed_path ) {
 		return gM( msg , size );
 	};
 	
+	$.lang.formatNumber = function( num ){
+		/*
+			addSeparatorsNF
+		Str: The number to be formatted, as a string or number.		
+		outD: The decimal character for the output, such as ',' for the number 100,2
+		sep: The separator character for the output, such as ',' for the number 1,000.2
+		*/ 
+		function addSeparatorsNF(nStr, outD, sep){
+			nStr += '';
+			var dpos = nStr.indexOf( '.' );
+			var nStrEnd = '';
+			if (dpos != -1) {
+				nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
+				nStr = nStr.substring(0, dpos);
+			}
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(nStr)) {
+				nStr = nStr.replace(rgx, '$1' + sep + '$2');
+			}
+			return nStr + nStrEnd;
+		}		
+		//@@todo read language code and give periods or comas: 
+		return addSeparatorsNF( num, '.', ',');
+	}
+	
 	
 	
 	/**
@@ -1635,8 +1660,7 @@ function do_api_req( options, callback ) {
 	if( options.url == 'proxy' && $mw.proxy){
 		//assume the proxy is already "setup" since $mw.proxy is defined.
 		// @@todo we probably integrate that setup into the api call
-		$mw.proxy.doRequest( options.data,  callback);
-	
+		$mw.proxy.doRequest( options.data,  callback);	
 	}else if( parseUri( document.URL ).host == parseUri( options.url ).host ) {
 		// Local request: do API request directly
 		$j.ajax({

@@ -43,11 +43,7 @@ function getUserName( callback ){
 	}
 	//we use normal do_api_req with keywork 'proxy' for the url 
 	$mw.proxy.doRequest( rObj,
-		function( data ){
-			//if we have no data proxy is not setup?					
-			if(!data){
-				$mw.proxy.proxyNotReadyDialog();
-			}
+		function( data ){		
 			//now we get the data back for that domain
 			if( !data.query || !data.query.userinfo ){
 				js_log("Error no query.userinfo ");

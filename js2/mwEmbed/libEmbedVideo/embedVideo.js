@@ -1106,7 +1106,7 @@ embedVideo.prototype = {
 		    'generator'	:	'categories'
 		};				
 		var req_categories= new Array();						
-	    do_api_req( {
+	    do_api_req({
 			'data'	: reqObj, 
 			'url'	: commons_api_url
 	    },  function(data){ 
@@ -1164,8 +1164,7 @@ embedVideo.prototype = {
 								$j('#dc_'+ _this.id + ' .related_vids ul').append(liout) ;								
 							}
 						 }
-					};
-					//js_log( 'content: ' + $j('#dc_'+ _this.id + ' .related_vids ul').html() );
+					};					
 				}); //end do_api_req
 		};
 	},
@@ -2088,12 +2087,16 @@ embedVideo.prototype = {
 		}
 		//update buffer information 
 		this.updateBufferStatus();
-		
+		var _this = this;
 		//update monitorTimerId to call child monitor
 		if( ! this.monitorTimerId ){
 			//make sure an instance of this.id exists: 
 			if( document.getElementById(this.id) ){
-				this.monitorTimerId = setInterval('$j(\'#'+this.id+'\').get(0).monitor()', 250);
+				this.monitorTimerId = setInterval(function(){
+					if(_this.id && $j( '#'+_this.id ).length != 0){
+						$j( '#'+_this.id ).get(0).monitor();
+					}
+				}, 250);
 			}
 		}
 	},		
