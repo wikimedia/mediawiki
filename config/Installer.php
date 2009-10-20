@@ -1672,9 +1672,6 @@ if( count( $errs ) ) {
 	</fieldset>
 
 	<?php database_switcher('sqlite'); ?>
-	<div class="config-desc">
-		<b>NOTE:</b> SQLite only uses the <i>Database name</i> setting above, the user, password and root settings are ignored.
-	</div>
 	<div class="config-input"><?php
 		aField( $conf, "SQLiteDataDir", "SQLite data directory:" );
 	?></div>
