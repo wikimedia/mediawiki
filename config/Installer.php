@@ -62,7 +62,7 @@ $ourdb['mysql'] = array(
 	'compile'    => 'mysql',
 	'bgcolor'    => '#ffe5a7',
 	'rootuser'   => 'root',
-	'serverless'   => false
+	'serverless' => false
 );
 
 $ourdb['postgres'] = array(
@@ -71,7 +71,7 @@ $ourdb['postgres'] = array(
 	'compile'    => 'pgsql',
 	'bgcolor'    => '#aaccff',
 	'rootuser'   => 'postgres',
-	'serverless'   => false
+	'serverless' => false
 );
 
 $ourdb['sqlite'] = array(
@@ -80,7 +80,7 @@ $ourdb['sqlite'] = array(
 	'compile'    => 'pdo_sqlite',
 	'bgcolor'    => '#b1ebb1',
 	'rootuser'   => '',
-	'serverless'   =>  true
+	'serverless' =>  true
 );
 
 $ourdb['mssql'] = array(
@@ -89,7 +89,7 @@ $ourdb['mssql'] = array(
 	'compile'    => 'mssql_not_ready', # Change to 'mssql' after includes/DatabaseMssql.php added;
 	'bgcolor'    => '#ffc0cb',
 	'rootuser'   => 'administrator',
-	'serverless'   => false
+	'serverless' => false
 );
 
 $ourdb['ibm_db2'] = array(
@@ -98,7 +98,7 @@ $ourdb['ibm_db2'] = array(
 	'compile'    => 'ibm_db2',
 	'bgcolor'    => '#ffeba1',
 	'rootuser'   => 'db2admin',
-	'serverless'   => false
+	'serverless' => false
 );
 
 $ourdb['oracle'] = array(
@@ -107,7 +107,7 @@ $ourdb['oracle'] = array(
 	'compile'    => 'oci8',
 	'bgcolor'    => '#ffeba1',
 	'rootuser'   => '',
-	'serverless'   => false
+	'serverless' => false
 );
 
 ?>
