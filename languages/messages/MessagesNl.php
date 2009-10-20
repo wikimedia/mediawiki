@@ -19,7 +19,6 @@
  * @author McDutchie
  * @author Mwpnl
  * @author Niels
- * @author Raymond
  * @author SPQRobin
  * @author Servien
  * @author Siebrand

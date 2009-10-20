@@ -1093,7 +1093,10 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'sourcefilename'      => 'Jina la faili la chanzo:',
 'destfilename'        => 'Jina la faili la mwishilio:',
 'upload-maxfilesize'  => 'Ukubwa wa faili lisizidi: $1',
+'upload-description'  => 'Elezo la faili',
 'watchthisupload'     => 'Kufuatilia faili hili',
+
+'upload-unknown-size' => 'Ukubwa haujulikani',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'KISARA (URL) haikupatikana',
@@ -1161,7 +1164,8 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'listredirects' => 'Maelekezo',
 
 # Unused templates
-'unusedtemplates' => 'Vigezo ambavyo havitumiwi',
+'unusedtemplates'    => 'Vigezo ambavyo havitumiwi',
+'unusedtemplateswlh' => 'viungo vingine',
 
 # Random page
 'randompage' => 'Ukurasa wa bahati',

@@ -626,7 +626,11 @@ Den senaste databasfrågan att köras var:
 <blockquote><tt>$1</tt></blockquote>
 från funktionen "<tt>$2</tt>".
 Databasen returnerade felet "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ett felaktigt utformat sökbegrepp har påträffats. Senaste sökbegrepp var: "$1"  från funktionen "$2". MySQL svarade med felmeddelandet "$3: $4"',
+'dberrortextcl'        => 'Det har uppstått ett syntaxfel i databassökningen.
+Senaste sökbegrepp var:
+"$1"
+från funktionen "$2".
+Databasen svarade med felmeddelandet "$3: $4"',
 'laggedslavemode'      => 'Varning: Sidan kan sakna de senaste uppdateringarna.',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
@@ -878,6 +882,9 @@ En sådan IP-adress kan ibland användas av flera olika personer.
 Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:UserLogin/signup|skapa ett konto]] eller [[Special:UserLogin|logga in]]. Då undviker du framtida förväxlingar.''",
 'noarticletext'                    => 'Det finns just nu ingen text på denna sida.
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} söka i loggarna], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
+'noarticletext-nopermission'       => 'Det finns för tillfället ingen text på denna sida.
+Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] i andra sidor,
+eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} söka i relevanta loggar]</span>.',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
@@ -937,9 +944,9 @@ Administratören som låste databasen gav följande förklaring: $1",
 'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har skrivskyddats så att endast registrerade användare kan redigera den.",
 'cascadeprotectedwarning'          => "'''Varning:''' Den här sidan är låst så att bara användare med administratörsrättigheter kan redigera den, eftersom den är inkluderad på följande {{PLURAL:$1|sida|sidor}} som skyddats med kaskaderande skrivskydd:",
 'titleprotectedwarning'            => "'''VARNING: Den här sidan har skyddats så att [[Special:ListGroupRights|specifika rättigheter]] krävs för att skapa den.'''",
-'templatesused'                    => 'Mallar som används på den här sidan:',
-'templatesusedpreview'             => 'Mallar som används i förhandsgranskningen:',
-'templatesusedsection'             => 'Mallar som används i det här avsnittet:',
+'templatesused'                    => '{{PLURAL:$1|Mall|Mallar}} som används på den här sidan:',
+'templatesusedpreview'             => '{{PLURAL:$1|Mall|Mallar}} som används i denna förhandsgranskning:',
+'templatesusedsection'             => '{{PLURAL:$1|Mall|Mallar}} som används i det här avsnittet:',
 'template-protected'               => '(skyddad)',
 'template-semiprotected'           => '(delvis skyddad)',
 'hiddencategories'                 => 'Denna sida är medlem i följande dolda {{PLURAL:$1|kategori|kategorier}}:',
@@ -1046,6 +1053,9 @@ Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
 Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
+'rev-suppressed-unhide-diff'  => "En av versionerna för denna diff har blivit '''undanhållen'''.
+Det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
+Som administratör kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
 'rev-delundel'                => 'visa/göm',
 'revisiondelete'              => 'Ta bort/återställ versioner',
 'revdelete-nooldid-title'     => 'Ogiltig målversion',
@@ -1117,6 +1127,7 @@ Vänligen kontrollera loggarna.',
 'revdelete-otherreason'       => 'Annan/ytterligare anledning:',
 'revdelete-reasonotherlist'   => 'Annan anledning',
 'revdelete-edit-reasonlist'   => 'Redigera anledningar för radering',
+'revdelete-offender'          => 'Versionens författare:',
 
 # Suppression log
 'suppressionlog'     => 'Undanhållandelogg',
@@ -1472,6 +1483,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-bigdelete'             => 'Radera sidor med stor historik',
 'right-deleterevision'        => 'Radera och återställa enskilda sidversioner',
 'right-deletedhistory'        => 'Se raderad historik utan tillhörande sidtext',
+'right-deletedtext'           => 'Visa raderad text och ändringar mellan raderade versioner',
 'right-browsearchive'         => 'Söka efter raderade sidor',
 'right-undelete'              => 'Återställa raderade sidor',
 'right-suppressrevision'      => 'Se och återställa sidversioner som dolts för administratörer',
@@ -1647,7 +1659,10 @@ denna fil är $2.',
 'fileexists'                  => "Det finns redan en fil med detta namn.
 Titta på '''<tt>[[:$1]]</tt>''', såvida du inte är säker på att du vill ändra den.
 [[$1|thumb]]",
-'filepageexists'              => "Beskrivningssidan för denna fil har redan skapats på '''<tt>[[:$1]]</tt>''', men just nu finns ingen fil med detta namn. Den sammanfattning du skriver här kommer inte visas på beskrivningssidan. För att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.",
+'filepageexists'              => "Beskrivningssidan för denna fil har redan skapats på '''<tt>[[:$1]]</tt>''', men just nu finns ingen fil med detta namn.
+Den sammanfattning du skriver här kommer inte visas på beskrivningssidan.
+För att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.
+[[$1|thumb]]",
 'fileexists-extension'        => "En fil med ett liknande namn finns redan: [[$2|thumb]]
 * Namn på den fil du försöker ladda upp: '''<tt>[[:$1]]</tt>'''
 * Namn på filen som redan finns: '''<tt>[[:$2]]</tt>'''
@@ -1675,9 +1690,12 @@ Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn
 'uploadscripted'              => 'Denna fil innehåller HTML eller script som felaktigt kan komma att tolkas av webbläsare.',
 'uploadcorrupt'               => 'Antingen har det blivit något fel på filen, eller så har den en felaktig filändelse. Kontrollera din fil, och ladda upp på nytt.',
 'uploadvirus'                 => 'Filen innehåller virus! Detaljer: $1',
+'upload-source'               => 'Källfil',
 'sourcefilename'              => 'Ursprungsfilens namn:',
+'sourceurl'                   => 'Källans URL:',
 'destfilename'                => 'Nytt filnamn:',
 'upload-maxfilesize'          => 'Maximal filstorlek: $1',
+'upload-description'          => 'Filbeskrivning',
 'watchthisupload'             => 'Bevaka den här filen',
 'filewasdeleted'              => 'En fil med detta namn har tidigare laddats upp och därefter tagits bort. Du bör kontrollera $1 innan du fortsätter att ladda upp den.',
 'upload-wasdeleted'           => "'''Varning: Du håller på att ladda upp en fil som tidigare raderats.'''
@@ -1715,6 +1733,11 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Åtkomst nekad',
+'img-auth-nopathinfo'   => 'Saknad PATH_INFO.
+Din server är inte inställd för att ge denna information.
+Den kan vara CGI-baserad och stöttar inte img_auth.
+Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
 'img-auth-nofile'       => 'Filen "$1" finns inte.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1808,6 +1831,7 @@ Beskrivningen på dess [$2 filbeskrivningssida] visas nedan.',
 ** Upphovsrättsbrott
 ** Dubblettfil',
 'filedelete-edit-reasonlist'  => 'Redigera anledningar för radering',
+'filedelete-maintenance'      => 'Radering och återställning av filer tillfälligt avaktiverat under underhåll.',
 
 # MIME search
 'mimesearch'         => 'MIME-sökning',
@@ -2166,19 +2190,20 @@ Se $2 för noteringar om de senaste raderingarna.',
 'delete-warning-toobig'  => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Att radera sidan kan skapa problem med hanteringen av databasen på {{SITENAME}}; var försiktig.',
 
 # Rollback
-'rollback'         => 'Rulla tillbaka ändringar',
-'rollback_short'   => 'Återställning',
-'rollbacklink'     => 'rulla tillbaka',
-'rollbackfailed'   => 'Tillbakarullning misslyckades',
-'cantrollback'     => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
-'alreadyrolled'    => 'Det gick inte att rulla tillbaka den senaste redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
+'rollback'          => 'Rulla tillbaka ändringar',
+'rollback_short'    => 'Återställning',
+'rollbacklink'      => 'rulla tillbaka',
+'rollbackfailed'    => 'Tillbakarullning misslyckades',
+'cantrollback'      => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
+'alreadyrolled'     => 'Det gick inte att rulla tillbaka den senaste redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'      => "Redigeringskommentaren var: \"''\$1''\".",
-'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]',
-'rollback-success' => 'Återställde ändringar av $1;
+'editcomment'       => "Redigeringskommentaren var: \"''\$1''\".",
+'revertpage'        => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]',
+'revertpage-nouser' => 'Återställda redigeringar av (användarnamn borttaget) till senaste version av [[User:$1|$1]]',
+'rollback-success'  => 'Återställde ändringar av $1;
 ändrade tillbaka till senaste version av $2.',
-'sessionfailure'   => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
+'sessionfailure'    => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
 
 # Protect
 'protectlogpage'              => 'Skrivskyddslogg',
@@ -2443,6 +2468,7 @@ $1 är redan blockerad. Vill du ändra inställningarna?',
 'sorbs_create_account_reason'     => 'Din IP-adress är listad som en öppen proxy i den DNSBL som används av {{SITENAME}}.
 Du får inte skapa ett användarkonto',
 'cant-block-while-blocked'        => 'Du kan inte blockera andra användare medan du är blockerad.',
+'cant-see-hidden-user'            => 'Användaren du försöker blockera är redan blockerad och gömd. Eftersom du inte har hideuser-rättigheter, kan du inte se eller redigera användarens blockering.',
 
 # Developer tools
 'lockdb'              => 'Lås databas',
@@ -3361,7 +3387,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Märken',
 'tags-intro'              => 'Denna sida listar märkena som mjukvaran kan markera en redigering med, och deras betydelse.',
-'tags-tag'                => 'Internt märkesnamn',
+'tags-tag'                => 'Märkesnamn',
 'tags-display-header'     => 'Utseende på listor över ändringar',
 'tags-description-header' => 'Full beskrivning av betydelse',
 'tags-hitcount-header'    => 'Märkta ändringar',

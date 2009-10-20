@@ -15,7 +15,6 @@
  * @author Michawiki
  * @author MinuteElectron
  * @author Omnipaedista
- * @author Raymond
  * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur

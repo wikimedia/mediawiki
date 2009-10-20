@@ -10,7 +10,6 @@
  * @author Cesco
  * @author EugeneZelenko
  * @author Jim-by
- * @author Raymond
  * @author Red Winged Duck
  * @author Zedlik
  */

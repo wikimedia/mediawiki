@@ -1642,9 +1642,12 @@ Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'uploadcorrupt'               => 'Plik jest uszkodzony lub ma nieprawidłowe rozszerzenie.
 Sprawdź plik i załaduj poprawną wersję.',
 'uploadvirus'                 => 'W pliku jest wirus! Szczegóły: $1',
+'upload-source'               => 'Plik źródłowy',
 'sourcefilename'              => 'Nazwa oryginalna',
+'sourceurl'                   => 'Źródłowy adres URL',
 'destfilename'                => 'Nazwa docelowa',
 'upload-maxfilesize'          => 'Wielkość pliku ograniczona jest do $1',
+'upload-description'          => 'Opis pliku',
 'watchthisupload'             => 'Obserwuj ten plik',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został usunięty.
 Zanim załadujesz go ponownie, sprawdź $1.',

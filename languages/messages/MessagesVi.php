@@ -14,7 +14,6 @@
  * @author Mxn
  * @author Neoneurone
  * @author Nguyễn Thanh Quang
- * @author Raymond
  * @author Thaisk
  * @author Tmct
  * @author Trần Thế Trung
