@@ -44,7 +44,6 @@
  * @author Paucabot
  * @author Piolinfax
  * @author Platonides
- * @author Raymond
  * @author Remember the dot
  * @author Richard Wolf VI
  * @author Sanbec
@@ -872,9 +871,9 @@ El administrador que la bloqueó dio esta explicación: $1",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
 'titleprotectedwarning'            => "'''ATENCIÓN:  Esta página está protegida de modo que [[Special:ListGroupRights|derechos especificos]] son necesarios para crearlo.'''",
-'templatesused'                    => 'Plantillas usadas en esta página:',
-'templatesusedpreview'             => 'Plantillas usadas en esta previsualización:',
-'templatesusedsection'             => 'Plantillas usadas en esta sección:',
+'templatesused'                    => '{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta página:',
+'templatesusedpreview'             => '{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta previsualización:',
+'templatesusedsection'             => '{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta sección:',
 'template-protected'               => '(protegida)',
 'template-semiprotected'           => '(semiprotegida)',
 'hiddencategories'                 => 'Esta página es un miembro de {{PLURAL:$1|1 categoría oculta|$1 categorías ocultas}}:',
@@ -979,7 +978,10 @@ Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Specia
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
-Como administrador todavía puedes [$1 ver este cambio] si deseas proceder.",
+Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
+'rev-suppressed-unhide-diff'  => "Una de las revisiones de este cambio ha sido '''suprimida'''.
+Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE=}}}} registro de supresión].
+Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
 'rev-delundel'                => 'mostrar/ocultar',
 'revisiondelete'              => 'Borrar/restaurar revisiones',
 'revdelete-nooldid-title'     => 'No hay revisión destino',
@@ -1610,10 +1612,12 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador.',
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
+'upload-source'               => 'Archivo fuente',
 'sourcefilename'              => 'Nombre del archivo origen:',
 'sourceurl'                   => 'Dirección original:',
 'destfilename'                => 'Nombre del archivo de destino:',
 'upload-maxfilesize'          => 'Tamaño máximo del archivo: $1',
+'upload-description'          => 'Descripción de archivo',
 'watchthisupload'             => 'Vigilar este archivo',
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
 'upload-wasdeleted'           => "'''Atención: Está subiendo un archivo que ha sido borrado previamente.'''
@@ -1636,12 +1640,20 @@ Por favor, elige un nombre más descriptivo.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acceso denegado',
+'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+Su servidor no está configurado para pasar esta información.
+Puede que este basado en CGI y no soportar img_auth.
+Véase http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Ruta solicitad no esá en el directorio de cargas configurado',
 'img-auth-badtitle'     => 'Incapaz de construir un título válido de "$1".',
 'img-auth-nologinnWL'   => 'No has iniciado sesión y "$1" no está en la lista blanca.',
 'img-auth-nofile'       => 'Archivo "$1" no existe.',
 'img-auth-isdir'        => 'Estás tratando de acceder a un directorio "$1".
 Solamente acceso a archivos está permitido.',
+'img-auth-streaming'    => 'Streaming "$1".',
+'img-auth-public'       => 'La función de img_auth.php es mostrar archivos desde una wiki privada.
+Esta wiki está configurada como wiki pública.
+Para optima seguridad, img_auth.php está deshabilitado.',
 'img-auth-noread'       => 'Usuario no tiene acceso para leer "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2381,6 +2393,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'sorbsreason'                     => 'Su dirección IP está listada como proxy abierto en DNSBL.',
 'sorbs_create_account_reason'     => 'Su dirección IP está listada como proxy abierto en DNSBL. No puede crear una cuenta',
 'cant-block-while-blocked'        => 'No puedes bloquear a otros usuarios mientras estás bloqueado.',
+'cant-see-hidden-user'            => 'El usuario que está intentando bloquear ya ha sido bloqueado y oculto. Puesto que usted no tiene el derecho hideuser, usted no puede ver o editar los bloqueos del usuario.',
 
 # Developer tools
 'lockdb'              => 'Bloquear la base de datos',

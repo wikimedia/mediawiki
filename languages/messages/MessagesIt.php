@@ -29,7 +29,6 @@
  * @author Omnipaedista
  * @author Pietrodn
  * @author Ramac
- * @author Raymond
  * @author Remember the dot
  * @author S.Örvarr.S
  * @author SabineCretella

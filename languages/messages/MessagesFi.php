@@ -14,7 +14,6 @@
  * @author Jack Phoenix
  * @author Mobe
  * @author Nike
- * @author Raymond
  * @author Silvonen
  * @author Str4nd
  * @author Tarmo

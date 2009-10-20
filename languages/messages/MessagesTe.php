@@ -12,7 +12,6 @@
  * @author Meno25
  * @author Mpradeep
  * @author Ravichandra
- * @author Raymond
  * @author Sunil Mohan
  * @author Urhixidur
  * @author Veeven
@@ -1462,6 +1461,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'uploadvirus'                 => 'ఈ ఫైలులో వైరస్‌ ఉంది! వివరాలు: $1',
 'upload-source'               => 'మూల ఫైలు',
 'sourcefilename'              => 'మూలం ఫైలుపేరు:',
+'sourceurl'                   => 'మూల URL:',
 'destfilename'                => 'ఉద్దేశించిన ఫైలుపేరు:',
 'upload-maxfilesize'          => 'గరిష్ట ఫైలు పరిమాణం: $1',
 'upload-description'          => 'ఫైలు వివరణ',
@@ -1486,6 +1486,8 @@ $3 చెప్పిన కారణం: ''$2''",
 # img_auth script messages
 'img-auth-accessdenied' => 'అనుమతిని నిరాకరించారు',
 'img-auth-nofile'       => '"$1" అనే ఫైలు ఉనికిలో లేదు.',
+'img-auth-isdir'        => 'మీరు "$1" అనే సంచయాన్ని చూడడానికి ప్రయత్నిస్తున్నారు.
+ఫైళ్ళను చూడడానికి మాత్రమే అనుమతివుంది.',
 'img-auth-noread'       => '"$1"ని చూడడానికి వాడుకరికి అనుమతి లేదు.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

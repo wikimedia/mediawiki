@@ -26,7 +26,6 @@
  * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
- * @author Raymond
  * @author Suisui
  * @author Whym
  * @author לערי ריינהארט
@@ -1595,9 +1594,12 @@ $1",
 'uploadscripted'              => 'このファイルはウェブブラウザが誤って解釈してしまうおそれのあるHTMLまたはスクリプトコードを含んでいます。',
 'uploadcorrupt'               => '指定したファイルは壊れているか拡張子が正しくありません。ファイルを確認の上再度アップロードをしてください。',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています！詳細: $1',
+'upload-source'               => '元ファイル',
 'sourcefilename'              => 'ファイル名:',
+'sourceurl'                   => 'アップロード元 URL:',
 'destfilename'                => '掲載するファイル名:',
 'upload-maxfilesize'          => '最大ファイルサイズ: $1',
+'upload-description'          => 'ファイル説明',
 'watchthisupload'             => 'このファイルをウォッチ',
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。再度アップロードする前に$1を確認してください。',
 'upload-wasdeleted'           => "'''警告: 過去に削除されたファイルをアップロードしようとしています。'''

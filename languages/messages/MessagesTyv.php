@@ -592,7 +592,7 @@ $messages = array(
 
 # Contributions
 'contributions' => 'Ажыглакчыниң деткимчемнери',
-'mycontris'     => 'Мээң деткимчемнерим',
+'mycontris'     => 'Мээң деткимчелерим',
 'uctop'         => '(баш)',
 
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң деткимчемнерин көргүзер',
@@ -649,7 +649,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'Силерниң ажыглакчы арныңнар',
 'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
-'tooltip-pt-mycontris'      => 'Силерниң деткимчемнериңер даңзызы',
+'tooltip-pt-mycontris'      => 'Силерниң деткимчелериңер даңзызы',
 'tooltip-pt-logout'         => 'Үнер',
 'tooltip-ca-talk'           => 'Допчу арны дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаар',

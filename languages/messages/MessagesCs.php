@@ -16,7 +16,6 @@
  * @author Michawiki
  * @author Mormegil
  * @author Ragimiri
- * @author Raymond
  * @author Reaperman
  * @author Urhixidur
  * @author לערי ריינהארט
