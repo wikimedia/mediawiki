@@ -13,7 +13,7 @@ class Http {
 	var $body = '';
 
 	public static function request( $method, $url, $opts = array() ) {
-		$opts['method'] = ( strtoupper( $method ) == 'GET' || strtoupper( $method ) == 'POST' ) 
+		$opts['method'] = ( strtoupper( $method ) == 'GET' || strtoupper( $method ) == 'POST' )
 			? strtoupper( $method ) : null;
 		$req = HttpRequest::newRequest( $url, $opts );
 		$status = $req->doRequest();
@@ -42,7 +42,7 @@ class Http {
 		return Http::request( 'POST', $url, $opts );
 	}
 
-	public static function doDownload( $url, $target_file_path, $dl_mode = self::SYNC_DOWNLOAD, 
+	public static function doDownload( $url, $target_file_path, $dl_mode = self::SYNC_DOWNLOAD,
 		$redirectCount = 0 )
 	{
 		global $wgPhpCli, $wgMaxUploadSize, $wgMaxRedirects;
@@ -56,9 +56,9 @@ class Http {
 
 		// check for redirects:
 		if( isset( $head['Location'] ) && strrpos( $head[0], '302' ) !== false ) {
-			if( $redirectCount < $wgMaxRedirects ) { 
+			if( $redirectCount < $wgMaxRedirects ) {
 				if( self::isValidURI( $head['Location'] ) ) {
-					return self::doDownload( $head['Location'], $target_file_path, 
+					return self::doDownload( $head['Location'], $target_file_path,
 						$dl_mode, $redirectCount++ );
 				} else {
 					return Status::newFatal( 'upload-proto-error' );
@@ -75,12 +75,12 @@ class Http {
 		$content_length = ( isset( $head['Content-Length'] ) ) ? $head['Content-Length'] : null;
 		if( $content_length ) {
 			if( $content_length > $wgMaxUploadSize ) {
-				return Status::newFatal( 'requested file length ' . $content_length . 
+				return Status::newFatal( 'requested file length ' . $content_length .
 					' is greater than $wgMaxUploadSize: ' . $wgMaxUploadSize );
 			}
 		}
 
-		// check if we can find phpCliPath (for doing a background shell request to 
+		// check if we can find phpCliPath (for doing a background shell request to
 		// php to do the download:
 		if( $wgPhpCli && wfShellExecEnabled() && $dl_mode == self::ASYNC_DOWNLOAD ) {
 			wfDebug( __METHOD__ . "\nASYNC_DOWNLOAD\n" );
@@ -101,8 +101,8 @@ class Http {
 	 * should write to a file location and give updates
 	 *
 	 */
-	private static function initBackgroundDownload( $url, $target_file_path, 
-		$content_length = null ) 
+	private static function initBackgroundDownload( $url, $target_file_path,
+		$content_length = null )
 	{
 		global $wgMaxUploadSize, $IP, $wgPhpCli, $wgServer;
 		$status = Status::newGood();
@@ -124,14 +124,14 @@ class Http {
 		$_SESSION['wsDownload'][$upload_session_key]['loaded'] = 0;
 
 		// run the background download request:
-		$cmd = $wgPhpCli . ' ' . $IP . "/maintenance/http_session_download.php " . 
-			"--sid {$session_id} --usk {$upload_session_key}";
+		$cmd = $wgPhpCli . ' ' . $IP . "/maintenance/http_session_download.php " .
+			"--sid {$session_id} --usk {$upload_session_key} --wiki " . wfWikiId();
 		$pid = wfShellBackgroundExec( $cmd );
 		// the pid is not of much use since we won't be visiting this same apache any-time soon.
 		if( !$pid )
 			return Status::newFatal( 'could not run background shell exec' );
 
-		// update the status value with the $upload_session_key (for the user to 
+		// update the status value with the $upload_session_key (for the user to
 		// check on the status of the upload)
 		$status->value = $upload_session_key;
 
@@ -176,12 +176,12 @@ class Http {
 		// grab the session data to setup the request:
 		$sd =& $_SESSION['wsDownload'][$upload_session_key];
 
-		// update the wgServer var ( since cmd line thinks we are localhost 
+		// update the wgServer var ( since cmd line thinks we are localhost
 		// when we are really orgServer)
 		if( isset( $sd['orgServer'] ) && $sd['orgServer'] ) {
 			$wgServer = $sd['orgServer'];
 		}
-		// close down the session so we can other http queries can get session 
+		// close down the session so we can other http queries can get session
 		// updates: (if not $wgSessionsInMemcached)
 		if( !$wgSessionsInMemcached )
 			session_write_close();
@@ -193,7 +193,7 @@ class Http {
 			'do_close_session_update' => true
 		) );
 		// run the actual request .. (this can take some time)
-		wfDebug( __METHOD__ . 'do Session Download :: ' . $sd['url'] . ' tf: ' . 
+		wfDebug( __METHOD__ . 'do Session Download :: ' . $sd['url'] . ' tf: ' .
 			$sd['target_file_path'] . "\n\n");
 		$status = $req->doRequest();
 		//wfDebug("done with req status is: ". $status->isOK(). ' '.$status->getWikiText(). "\n");
@@ -285,7 +285,7 @@ class Http {
 		global $wgVersion;
 		return "MediaWiki/$wgVersion";
 	}
-	
+
 	/**
 	 * Checks that the given URI is a valid one
 	 * @param $uri Mixed: URI to check for validity
@@ -303,9 +303,9 @@ class HttpRequest {
 	var $target_file_path;
 	var $upload_session_key;
 	function __construct( $url, $opt ){
-		
+
 		global $wgSyncHTTPTimeout;
-		$this->url = $url;		
+		$this->url = $url;
 		// set the timeout to default sync timeout (unless the timeout option is provided)
 		$this->timeout = ( isset( $opt['timeout'] ) ) ? $opt['timeout'] : $wgSyncHTTPTimeout;
 		//check special key default
@@ -314,27 +314,27 @@ class HttpRequest {
 		}
 
 		$this->method = ( isset( $opt['method'] ) ) ? $opt['method'] : 'GET';
-		$this->target_file_path = ( isset( $opt['target_file_path'] ) ) 
+		$this->target_file_path = ( isset( $opt['target_file_path'] ) )
 			? $opt['target_file_path'] : false;
-		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) ) 
+		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) )
 			? $opt['upload_session_key'] : false;
 		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
 		$this->do_close_session_update = isset( $opt['do_close_session_update'] );
 		$this->postData = isset( $opt['postdata'] ) ? $opt['postdata'] : '';
 
 		$this->ssl_verifyhost = (isset( $opt['ssl_verifyhost'] ))? $opt['ssl_verifyhost']: false;
-		
-		$this->cainfo = (isset( $opt['cainfo'] ))? $op['cainfo']: false;	
-		
+
+		$this->cainfo = (isset( $opt['cainfo'] ))? $op['cainfo']: false;
+
 	}
-	
+
 	public static function newRequest($url, $opt){
 		# select the handler (use curl if available)
 		if ( function_exists( 'curl_init' ) ) {
 			return new curlHttpRequest($url, $opt);
 		} else {
 			return new phpHttpRequest($url, $opt);
-		}	
+		}
 	}
 
 	/**
@@ -349,12 +349,12 @@ class HttpRequest {
 		# Make sure we have a valid url
 		if( !Http::isValidURI( $this->url ) )
 			return Status::newFatal('bad-url');
-		//do the actual request: 				
+		//do the actual request:
 		return $this->doReq();
 	}
 }
 class curlHttpRequest extends HttpRequest {
-	public function doReq(){		
+	public function doReq(){
 		global $wgHTTPProxy, $wgTitle;
 
 		$status = Status::newGood();
@@ -372,7 +372,7 @@ class curlHttpRequest extends HttpRequest {
 
 		if($this->ssl_verifyhost)
 			curl_setopt( $c, CURLOPT_SSL_VERIFYHOST, $this->ssl_verifyhost);
-			
+
 		if($this->cainfo)
 			curl_setopt( $c, CURLOPT_CAINFO, $this->cainfo);
 
@@ -471,7 +471,7 @@ class curlHttpRequest extends HttpRequest {
 			}
 		}
 
-		curl_close( $c );		
+		curl_close( $c );
 		// return the result obj
 		return $status;
 	}
@@ -513,7 +513,7 @@ class phpHttpRequest extends HttpRequest {
 
 		// set the write back function (if we are writing to a file)
 		if( $this->target_file_path ) {
-			$cwrite = new simpleFileWriter( $this->target_file_path, 
+			$cwrite = new simpleFileWriter( $this->target_file_path,
 				$this->upload_session_key, $this->do_close_session_update );
 			if( !$cwrite->status->isOK() ) {
 				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
@@ -521,7 +521,7 @@ class phpHttpRequest extends HttpRequest {
 				return $status;
 			}
 
-			// read $fh into the simpleFileWriter (grab in 64K chunks since 
+			// read $fh into the simpleFileWriter (grab in 64K chunks since
 			// it's likely a ~large~ media file)
 			while ( !feof( $fh ) ) {
 				$contents = fread( $fh, 65536 );
@@ -557,8 +557,8 @@ class simpleFileWriter {
 	var $session_id = null;
 	var $session_update_interval = 0; // how often to update the session while downloading
 
-	function simpleFileWriter( $target_file_path, $upload_session_key, 
-		$do_close_session_update = false ) 
+	function simpleFileWriter( $target_file_path, $upload_session_key,
+		$do_close_session_update = false )
 	{
 		$this->target_file_path = $target_file_path;
 		$this->upload_session_key = $upload_session_key;
@@ -589,7 +589,7 @@ class simpleFileWriter {
 
 		if( $this->current_fsize > $wgMaxUploadSize ) {
 			wfDebug( __METHOD__ . " ::http download too large\n" );
-			$this->status = Status::newFatal( 'HTTP::file-has-grown-beyond-upload-limit-killing: ' . 
+			$this->status = Status::newFatal( 'HTTP::file-has-grown-beyond-upload-limit-killing: ' .
 				'downloaded more than ' .
 				$wgLang->formatSize( $wgMaxUploadSize ) . ' ' );
 			return 0;
