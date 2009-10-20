@@ -975,8 +975,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			if ("$wgSQLiteDataDir" == '') {
 				$wgSQLiteDataDir = dirname($_SERVER['DOCUMENT_ROOT']).'/data';
 			}
-			echo "<li>Attempting to connect to SQLite database at \"" . 
-				htmlspecialchars( $wgSQLiteDataDir ) .  "\"";
+			echo '<li>Attempting to connect to SQLite database at "' . 
+				htmlspecialchars( $wgSQLiteDataDir ) . '": ';
 			if ( !is_dir( $wgSQLiteDataDir ) ) {
 				if ( is_writable( dirname( $wgSQLiteDataDir ) ) ) {
 					$ok = wfMkdirParents( $wgSQLiteDataDir, $wgSQLiteDataDirMode );
@@ -984,25 +984,40 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$ok = false;
 				}
 				if ( !$ok ) {
-					echo ": cannot create data directory</li>";
+					echo "cannot create data directory</li>";
 					$errs['SQLiteDataDir'] = 'Enter a valid data directory';
 					continue;
 				}
 			}
 			if ( !is_writable( $wgSQLiteDataDir ) ) {
-				echo ": data directory not writable</li>";
+				echo "data directory not writable</li>";
 				$errs['SQLiteDataDir'] = 'Enter a writable data directory';
 				continue;
 			}
-			$dataFile = "$wgSQLiteDataDir/$wgDBname.sqlite";
-			if ( file_exists( $dataFile ) && !is_writable( $dataFile ) ) {
-				echo ": data file not writable</li>";
-				$errs['SQLiteDataDir'] = "$wgDBname.sqlite is not writable";
+			$dataFile = DatabaseSqlite::generateFileName( $wgSQLiteDataDir, $wgDBname );
+			if ( file_exists( $dataFile ) ) {
+				if ( !is_writable( $dataFile ) ) {
+					echo "data file not writable</li>";
+					$errs['SQLiteDataDir'] = basename( $dataFile ) . " is not writable";
+					continue;
+				}
+			} else {
+				if ( file_put_contents( $dataFile, '' ) === false ) {
+					echo 'could not create database file "' . htmlspecialchars( basename( $dataFile ) ) . "\"</li>\n";
+					$errs['SQLiteDataDir'] = "couldn't create " . basename( $dataFile );
+					continue;
+				}
+			}
+			try {
+				$wgDatabase = new DatabaseSqlite( false, false, false, $wgDBname, 1 );
+			}
+			catch( MWException $ex ) {
+				echo 'error: ' . htmlspecialchars( $ex->getMessage() ) . "</li>\n";
 				continue;
 			}
-			$wgDatabase = new DatabaseSqlite( false, false, false, $wgDBname, 1 );
+			
 			if (!$wgDatabase->isOpen()) {
-				print ": error: " . htmlspecialchars( $wgDatabase->lastError() ) . "</li>\n";
+				print "error: " . htmlspecialchars( $wgDatabase->lastError() ) . "</li>\n";
 				$errs['SQLiteDataDir'] = 'Could not connect to database';
 				continue;
 			} else {
