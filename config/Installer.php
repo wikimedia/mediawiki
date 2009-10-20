@@ -44,6 +44,8 @@ require_once( "$IP/includes/ProfilerStub.php" );
 require_once( "$IP/includes/GlobalFunctions.php" );
 require_once( "$IP/includes/Hooks.php" );
 require_once( "$IP/includes/Exception.php" );
+require_once( "$IP/includes/json/Services_JSON.php" );
+require_once( "$IP/includes/json/FormatJson.php" );
 
 # If we get an exception, the user needs to know
 # all the details
@@ -53,41 +55,60 @@ wfInstallExceptionHandler();
 ## Databases we support:
 
 $ourdb = array();
-$ourdb['mysql']['fullname']      = 'MySQL';
-$ourdb['mysql']['havedriver']    = 0;
-$ourdb['mysql']['compile']       = 'mysql';
-$ourdb['mysql']['bgcolor']       = '#ffe5a7';
-$ourdb['mysql']['rootuser']      = 'root';
 
-$ourdb['postgres']['fullname']   = 'PostgreSQL';
-$ourdb['postgres']['havedriver'] = 0;
-$ourdb['postgres']['compile']    = 'pgsql';
-$ourdb['postgres']['bgcolor']    = '#aaccff';
-$ourdb['postgres']['rootuser']   = 'postgres';
+$ourdb['mysql'] = array(
+	'fullname'   => 'MySQL',
+	'havedriver' => 0,
+	'compile'    => 'mysql',
+	'bgcolor'    => '#ffe5a7',
+	'rootuser'   => 'root',
+	'serverless'   => false
+);
 
-$ourdb['sqlite']['fullname']      = 'SQLite';
-$ourdb['sqlite']['havedriver']    = 0;
-$ourdb['sqlite']['compile']       = 'pdo_sqlite';
-$ourdb['sqlite']['bgcolor']       = '#b1ebb1';
-$ourdb['sqlite']['rootuser']      = '';
+$ourdb['postgres'] = array(
+	'fullname'   => 'PostgreSQL',
+	'havedriver' => 0,
+	'compile'    => 'pgsql',
+	'bgcolor'    => '#aaccff',
+	'rootuser'   => 'postgres',
+	'serverless'   => false
+);
 
-$ourdb['mssql']['fullname']      = 'MSSQL';
-$ourdb['mssql']['havedriver']    = 0;
-$ourdb['mssql']['compile']       = 'mssql not ready'; # Change to 'mssql' after includes/DatabaseMssql.php added;
-$ourdb['mssql']['bgcolor']       = '#ffc0cb';
-$ourdb['mssql']['rootuser']      = 'administrator';
+$ourdb['sqlite'] = array(
+	'fullname'   => 'SQLite',
+	'havedriver' => 0,
+	'compile'    => 'pdo_sqlite',
+	'bgcolor'    => '#b1ebb1',
+	'rootuser'   => '',
+	'serverless'   =>  true
+);
 
-$ourdb['ibm_db2']['fullname']   = 'DB2';
-$ourdb['ibm_db2']['havedriver'] = 0;
-$ourdb['ibm_db2']['compile']    = 'ibm_db2';
-$ourdb['ibm_db2']['bgcolor']    = '#ffeba1';
-$ourdb['ibm_db2']['rootuser']   = 'db2admin';
+$ourdb['mssql'] = array(
+	'fullname'   => 'MSSQL',
+	'havedriver' => 0,
+	'compile'    => 'mssql_not_ready', # Change to 'mssql' after includes/DatabaseMssql.php added;
+	'bgcolor'    => '#ffc0cb',
+	'rootuser'   => 'administrator',
+	'serverless'   => false
+);
 
-$ourdb['oracle']['fullname']   = 'Oracle';
-$ourdb['oracle']['havedriver'] = 0;
-$ourdb['oracle']['compile']    = 'oci8';
-$ourdb['oracle']['bgcolor']    = '#ffeba1';
-$ourdb['oracle']['rootuser']   = '';
+$ourdb['ibm_db2'] = array(
+	'fullname'   => 'DB2',
+	'havedriver' => 0,
+	'compile'    => 'ibm_db2',
+	'bgcolor'    => '#ffeba1',
+	'rootuser'   => 'db2admin',
+	'serverless'   => false
+);
+
+$ourdb['oracle'] = array(
+	'fullname'   => 'Oracle',
+	'havedriver' => 0,
+	'compile'    => 'oci8',
+	'bgcolor'    => '#ffeba1',
+	'rootuser'   => '',
+	'serverless'   => false
+);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -178,6 +199,7 @@ $ourdb['oracle']['rootuser']   = '';
 			font-size: 110%;
 			color: green;
 		}
+
 		.success-box {
 			font-size: 130%;
 		}
@@ -185,23 +207,25 @@ $ourdb['oracle']['rootuser']   = '';
 	</style>
 	<script type="text/javascript">
 	<!--
-	function hideall() {
-		<?php foreach (array_keys($ourdb) as $db) {
-		echo "\n		var i = document.getElementById('$db'); if (i) i.style.display='none';";
-		}
-		?>
-
+	<?php echo 'var databases = ' . FormatJson::encode( $ourdb ) . ';'; ?>
+	
+	function show(id, showOrHide) {
+		var i = document.getElementById(id);
+		if (i) i.style.display = showOrHide ? 'block' : 'none';
 	}
-	function toggleDBarea(id,defaultroot) {
+	function hideall() {
+		for (db in databases) {
+			show(db, false);
+		}
+	}
+	function toggleDBarea(id, defaultroot) {
 		hideall();
 		var dbarea = document.getElementById(id);
 		if (dbarea) dbarea.style.display = (dbarea.style.display == 'none') ? 'block' : 'none';
 		var db = document.getElementById('RootUser');
-		if (defaultroot) {
-<?php foreach (array_keys($ourdb) as $db) {
-			echo "			if (id == '$db') { db.value = '".$ourdb[$db]['rootuser']."';}\n";
-}?>
-		}
+		db.value = databases[id].rootuser;
+		show('db-server-settings1', !databases[id].serverless);
+		show('db-server-settings2', !databases[id].serverless);
 	}
 	// -->
 	</script>
@@ -664,17 +688,19 @@ $errs = array();
 if( preg_match( '/^$|^mediawiki$|#/i', $conf->Sitename ) ) {
 	$errs["Sitename"] = "Must not be blank or \"MediaWiki\" and may not contain \"#\"";
 }
-if( $conf->DBuser == "" ) {
-	$errs["DBuser"] = "Must not be blank";
-}
-if( ($conf->DBtype == 'mysql') && (strlen($conf->DBuser) > 16) ) {
-	$errs["DBuser"] = "Username too long";
-}
-if( $conf->DBpassword == "" && $conf->DBtype != "postgres" ) {
-	$errs["DBpassword"] = "Must not be blank";
-}
-if( $conf->DBpassword != $conf->DBpassword2 ) {
-	$errs["DBpassword2"] = "Passwords don't match!";
+if( !$ourdb[$conf->DBtype]['serverless'] ) {
+	if( $conf->DBuser == "" ) {
+		$errs["DBuser"] = "Must not be blank";
+	}
+	if( ($conf->DBtype == 'mysql') && (strlen($conf->DBuser) > 16) ) {
+		$errs["DBuser"] = "Username too long";
+	}
+	if( $conf->DBpassword == "" && $conf->DBtype != "postgres" ) {
+		$errs["DBpassword"] = "Must not be blank";
+	}
+	if( $conf->DBpassword != $conf->DBpassword2 ) {
+		$errs["DBpassword2"] = "Passwords don't match!";
+	}
 }
 if( !preg_match( '/^[A-Za-z_0-9]*$/', $conf->DBprefix ) ) {
 	$errs["DBprefix"] = "Invalid table prefix";
@@ -1543,38 +1569,42 @@ if( count( $errs ) ) {
 	?></ul>
 	</div>
 
-	<div class="config-input" style="clear:left">
-	<?php aField( $conf, "DBserver", "Database host:" ); ?>
+	<div id="db-server-settings1">
+		<div class="config-input" style="clear:left">
+		<?php aField( $conf, "DBserver", "Database host:" ); ?>
+		</div>
+		<p class="config-desc">
+			If your database server isn't on your web server, enter the name or IP address here.
+		</p>
 	</div>
-	<p class="config-desc">
-		If your database server isn't on your web server, enter the name or IP address here.
-	</p>
 
-	<div class="config-input"><?php aField( $conf, "DBname", "Database name:" ); ?></div>
-	<div class="config-input"><?php aField( $conf, "DBuser", "DB username:" ); ?></div>
-	<div class="config-input"><?php aField( $conf, "DBpassword", "DB password:", "password" ); ?></div>
-	<div class="config-input"><?php aField( $conf, "DBpassword2", "DB password confirm:", "password" ); ?></div>
-	<p class="config-desc">
-		If you only have a single user account and database available,
-		enter those here. If you have database root access (see below)
-		you can specify new accounts/databases to be created. This account 
-		will not be created if it pre-exists. If this is the case, ensure that it
-		has SELECT, INSERT, UPDATE, and DELETE permissions on the MediaWiki database.
-	</p>
+		<div class="config-input"><?php aField( $conf, "DBname", "Database name:" ); ?></div>
+	<div id="db-server-settings2">
+		<div class="config-input"><?php aField( $conf, "DBuser", "DB username:" ); ?></div>
+		<div class="config-input"><?php aField( $conf, "DBpassword", "DB password:", "password" ); ?></div>
+		<div class="config-input"><?php aField( $conf, "DBpassword2", "DB password confirm:", "password" ); ?></div>
+		<p class="config-desc">
+			If you only have a single user account and database available,
+			enter those here. If you have database root access (see below)
+			you can specify new accounts/databases to be created. This account 
+			will not be created if it pre-exists. If this is the case, ensure that it
+			has SELECT, INSERT, UPDATE, and DELETE permissions on the MediaWiki database.
+		</p>
 
-	<div class="config-input">
-		<label class="column">Superuser account:</label>
-		<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?> />
-		&nbsp;<label for="useroot">Use superuser account</label>
+		<div class="config-input">
+			<label class="column">Superuser account:</label>
+			<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?> />
+			&nbsp;<label for="useroot">Use superuser account</label>
+		</div>
+		<div class="config-input"><?php aField( $conf, "RootUser", "Superuser name:", "text" ); ?></div>
+		<div class="config-input"><?php aField( $conf, "RootPW", "Superuser password:", "password" ); ?></div>
+
+		<p class="config-desc">
+			If the database user specified above does not exist, or does not have access to create
+			the database (if needed) or tables within it, please check the box and provide details
+			of a superuser account,	such as <strong>root</strong>, which does.
+		</p>
 	</div>
-	<div class="config-input"><?php aField( $conf, "RootUser", "Superuser name:", "text" ); ?></div>
-	<div class="config-input"><?php aField( $conf, "RootPW", "Superuser password:", "password" ); ?></div>
-
-	<p class="config-desc">
-		If the database user specified above does not exist, or does not have access to create
-		the database (if needed) or tables within it, please check the box and provide details
-		of a superuser account,	such as <strong>root</strong>, which does.
-	</p>
 
 	<?php database_switcher('mysql'); ?>
 	<div class="config-input"><?php aField( $conf, "DBprefix", "Database table prefix:" ); ?></div>
@@ -2194,7 +2224,7 @@ function database_switcher($db) {
 	global $ourdb;
 	$color = $ourdb[$db]['bgcolor'];
 	$full = $ourdb[$db]['fullname'];
-	print "<fieldset id='$db'><legend>$full specific options</legend>\n";
+	print "<fieldset id='$db' style='clear:both'><legend>$full-specific options</legend>\n";
 }
 
 function printListItem( $item ) {

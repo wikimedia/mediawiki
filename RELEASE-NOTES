@@ -572,6 +572,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on SQLite backend
 * (bug 20880) Fixed updater failure on SQLite backend
 * (bug 21182) Fixed invalid HTML in Special:Listgrouprights
+* (bug 20242) Installer no longer promts for user credentials for SQLite databases
 
 == API changes in 1.16 ==
 
