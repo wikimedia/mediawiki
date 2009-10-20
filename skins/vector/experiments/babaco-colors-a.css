@@ -47,6 +47,9 @@ h6 {
 	border-color:#999999;
 	font-family:arial, sans-serif;
 }
+#firstHeading {
+	font-size:1.5em;
+}
 h1,
 h2{
 	font-family:georgia, times, serif;
@@ -92,4 +95,8 @@ img.thumbborder,
 div.thumbinner{
 	border: 1px solid #cccccc;
 	background-color: #f7f7f7;
+}
+#panel div.portal h5 {
+	font-weight:bold;
+	padding-bottom:0;
 }
