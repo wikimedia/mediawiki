@@ -24,7 +24,7 @@ class DatabaseSqlite extends DatabaseBase {
 		global $wgSQLiteDataDir;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
-		$this->mDatabaseFile = "$wgSQLiteDataDir/$dbName.sqlite";
+		$this->mDatabaseFile = self::generateFileName( $wgSQLiteDataDir, $dbName );
 		if( !is_readable( $this->mDatabaseFile ) )
 			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		$this->mName = $dbName;
@@ -84,6 +84,16 @@ class DatabaseSqlite extends DatabaseBase {
 			$this->mConn = null;
 		}
 		return true;
+	}
+
+	/**
+	 * Generates a database file name. Explicitly public for installer.
+	 * @param $dir String: Directory where database resides
+	 * @param $dbName String: Database name
+	 * @return String
+	 */
+	public static function generateFileName( $dir, $dbName ) {
+		return "$dir/$dbName.sqlite";
 	}
 
 	/**
@@ -420,8 +430,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * - this is the same way PostgreSQL works, MySQL reads in tables.sql and interwiki.sql using dbsource (which calls db->sourceFile)
 	 */
 	public function setup_database() {
-		global $IP, $wgSQLiteDataDir, $wgDBTableOptions;
-		$wgDBTableOptions = '';
+		global $IP;
 
 		# Process common MySQL/SQLite table definitions
 		$err = $this->sourceFile( "$IP/maintenance/tables.sql" );
