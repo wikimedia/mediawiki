@@ -640,7 +640,7 @@ class User {
 	 * @param $password String Desired password
 	 * @return mixed: true on success, string of error message on failure
 	 */
-	static function getPasswordValidity( $password ) {
+	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 		
 		if(!$this->isValidPassword( $password ))	{
