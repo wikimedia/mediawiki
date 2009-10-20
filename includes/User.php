@@ -643,14 +643,13 @@ class User {
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 		
-		if(!$this->isValidPassword( $password ))	{
+		if ( !$this->isValidPassword( $password ) ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
-			} elseif( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
+			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
 			}
-		}
-		else	{
+		} else {
 			return true;
 		}
 	}
