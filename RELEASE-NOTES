@@ -579,7 +579,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20911) Installer failed to create a SQLite database
 * (bug 20847) Deprecated deprecated akeytt() removed in wikibits.js leaving
   dummy
-* (bug 21161) Changing $wgCaCacheEpoch now always invalidates file cache
+* (bug 21161) Changing $wgCacheEpoch now always invalidates file cache
 * (bug 20268) Fixed row count estimation on SQLite backend
 
 == API changes in 1.16 ==
