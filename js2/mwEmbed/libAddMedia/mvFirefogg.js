@@ -508,23 +508,20 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		//grab the extension:
 		var sf = _this.fogg.sourceFilename;
 		var ext = '';
-		if(	sf.lastIndexOf('.') != -1){
-			ext = sf.substring( sf.lastIndexOf('.')+1 ).toLowerCase();
-		}
+		if(	sf.lastIndexOf('.') != -1)
+			ext = sf.substring( sf.lastIndexOf('.')+1 ).toLowerCase();		
 
 		//set to passthrough to true by default (images, arbitrary files that we want to send with http chunks)
 		this.encoder_settings['passthrough'] = true;
 
 		//see if we have video or audio:
-		if(  _this.isSourceAudio() || _this.isSourceVideo() ){
-			 _this.encoder_settings['passthrough'] = false;
-		}
+		if(  _this.isSourceAudio() || _this.isSourceVideo() )
+			 _this.encoder_settings['passthrough'] = false;		
 
 		//special case see if we already have ogg video:
-		if( _this.isOggFormat() ){
+		if( _this.isOggFormat() )
 			_this.encoder_settings['passthrough'] = true;
-		}
-
+		
 		js_log('base autoEncoderSettings::' + _this.sourceFileInfo.contentType  + ' passthrough:' + _this.encoder_settings['passthrough']);
 	},
 	isUnknown:function(){
