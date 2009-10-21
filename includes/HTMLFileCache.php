@@ -106,7 +106,6 @@ class HTMLFileCache {
 		global $wgCacheEpoch;
 
 		if( !$this->isFileCached() ) return false;
-		if( !$timestamp ) return true; // should be invalidated on change
 
 		$cachetime = $this->fileCacheTime();
 		$good = $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime;
