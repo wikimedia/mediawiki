@@ -887,7 +887,7 @@ Systemadministratoren som låste databasen gav følgjande årsak: $1",
 'semiprotectedpagewarning'         => "'''NB:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.",
 'cascadeprotectedwarning'          => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
 'titleprotectedwarning'            => "'''Åtvaring: Denne sida er verna, så berre [[Special:ListGroupRights|nokre brukarar]] kan opprette henne.'''",
-'templatesused'                    => 'Malar som er brukte på denne sida:',
+'templatesused'                    => '{{PLURAL:$1|Mal|Malar}} som er brukte på denne sida:',
 'templatesusedpreview'             => 'Malar som er brukte i denne førehandsvisinga:',
 'templatesusedsection'             => 'Malar som er brukte i denne bolken:',
 'template-protected'               => '(verna)',
@@ -989,6 +989,9 @@ Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'rev-deleted-unhide-diff'     => "Éin av versjonane i denne skilnaden er vorten '''sletta'''.
 Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
+'rev-suppressed-unhide-diff'  => "Ei av sideversjonane i denne lista over versjonar har vorte '''skjult'''.
+Det kan vera detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
+Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer det.",
 'rev-delundel'                => 'vis/gøym',
 'revisiondelete'              => 'Slett/attopprett versjonar',
 'revdelete-nooldid-title'     => 'Ugyldig målversjon',
@@ -1617,9 +1620,12 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'uploadscripted'              => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
 'uploadcorrupt'               => 'Fila er øydelagd eller har feil etternamn. Sjekk fila og prøv på nytt.',
 'uploadvirus'                 => 'Fila innheld virus! Detaljar: $1',
+'upload-source'               => 'Kjeldefil',
 'sourcefilename'              => 'Filsti:',
+'sourceurl'                   => 'URL til kjelda:',
 'destfilename'                => 'Målfilnamn:',
 'upload-maxfilesize'          => 'Maksimal filstorleik: $1',
+'upload-description'          => 'Filskildring',
 'watchthisupload'             => 'Overvak denne fila',
 'filewasdeleted'              => 'Ei fil med dette namnet har tidlegare vore lasta opp og sletta. Du bør sjekke $1 før du prøvar å laste henne opp att.',
 'upload-wasdeleted'           => "'''Åtvaring: Du nyopplastar ei fil som tidlegare har vorte sletta.'''

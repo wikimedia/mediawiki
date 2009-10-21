@@ -591,11 +591,11 @@ $messages = array(
 'blanknamespace' => '(Кол)',
 
 # Contributions
-'contributions' => 'Ажыглакчыниң деткимчемнери',
-'mycontris'     => 'Мээң деткимчелерим',
+'contributions' => 'Ажыглакчыниң немелделери',
+'mycontris'     => 'Мээң немелделерим',
 'uctop'         => '(баш)',
 
-'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң деткимчемнерин көргүзер',
+'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң немелделерин көргүзер',
 'sp-contributions-talk'     => 'чугаалажыр',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',
 'sp-contributions-submit'   => 'Дилээр',
@@ -617,7 +617,7 @@ $messages = array(
 'ipblocklist-username'     => 'Ажыглакчының ады азы ИП-адрес:',
 'ipblocklist-submit'       => 'Дилээр',
 'infiniteblock'            => 'кезээ-мөңгеде',
-'contribslink'             => 'деткимчемнер',
+'contribslink'             => 'немелделер',
 'block-log-flags-anononly' => 'чүгле ат эвес ажыглакчылар',
 
 # Developer tools
@@ -649,7 +649,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'Силерниң ажыглакчы арныңнар',
 'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
-'tooltip-pt-mycontris'      => 'Силерниң деткимчелериңер даңзызы',
+'tooltip-pt-mycontris'      => 'Силерниң немелделериңерның даңзазы',
 'tooltip-pt-logout'         => 'Үнер',
 'tooltip-ca-talk'           => 'Допчу арны дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаар',
@@ -661,6 +661,7 @@ $messages = array(
 'tooltip-n-recentchanges'   => 'Викиниң дээм чагы өскерлиишкиннери',
 'tooltip-feed-rss'          => 'Бо арының РСС медээ агымы',
 'tooltip-feed-atom'         => 'Бо арының Атом медээ агымы',
+'tooltip-t-contributions'   => 'Бо ажыглакчының немелделериниң даңзазын көөрү.',
 'tooltip-t-emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаар',
 'tooltip-t-upload'          => 'Файлдар киирер',
 'tooltip-t-specialpages'    => 'Шупту тускай арыннар даңзызы',

@@ -85,8 +85,11 @@ $messages = array(
 'dec'           => 'Бар',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Янз|Янзс}}',
-'subcategories'  => 'Баһар янзс',
+'pagecategories'         => '{{PLURAL:$1|Янз|Янзс}}',
+'category_header'        => '«$1» гидг нерәдлһтә халхс',
+'subcategories'          => 'Баһар янзс',
+'hidden-categories'      => '{{PLURAL:$1|Бултулсн янз|Бултулсн янзс}}',
+'listingcontinuesabbrev' => '(цааранднь)',
 
 'article'    => 'Бичг',
 'newwindow'  => '(шин терзд)',
@@ -140,6 +143,7 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} тускар',
 'aboutpage'            => 'Project:Тодлҗ бичлһн',
 'copyright'            => 'Өггцн $1 йоста орҗ болм',
+'copyrightpage'        => '{{ns:project}}:Бичсн күүнә зөв',
 'currentevents'        => 'Ода болсн йовдл',
 'disclaimers'          => 'Дааврас эс зөвшәрлһн',
 'disclaimerpage'       => 'Project:Даарас эс зөвшәрлһн',
@@ -182,7 +186,8 @@ $messages = array(
 'nstab-category' => 'Янз',
 
 # General errors
-'viewsource' => 'ишиг үзүлх',
+'missingarticle-rev' => '($1 тойгта халхна янз)',
+'viewsource'         => 'Ишиг үзүлх',
 
 # Login and logout pages
 'logouttext'              => "'''Та һарад бәәнәт.'''
@@ -242,6 +247,7 @@ $messages = array(
 
 # Edit pages
 'summary'                          => 'Учр-утх:',
+'subject'                          => 'Төр/нерәдлһн:',
 'minoredit'                        => 'Баһ чиклһн',
 'watchthis'                        => 'Хәләх',
 'savearticle'                      => 'Хадһлх',
@@ -316,6 +322,7 @@ $messages = array(
 'search-section'            => '($1 хүв)',
 'search-suggest'            => 'Та эниг таанат: $1 ?',
 'search-interwiki-caption'  => 'Садта проектмуд',
+'search-interwiki-default'  => '$1 ашуд:',
 'search-interwiki-more'     => '(дәкәд)',
 'search-mwsuggest-enabled'  => 'селвгтә',
 'search-mwsuggest-disabled' => 'селвг уга',
@@ -437,20 +444,26 @@ $messages = array(
 'fileuploadsummary' => 'Учр-утх:',
 'successfulupload'  => 'Йовудта тәвллһн',
 'savefile'          => 'Хадһлх',
+'uploadedimage'     => '«[[$1]]» тәвв',
 
 'license'        => 'Закан:',
 'license-header' => 'Закан:',
 
 # File description page
 'filehist'                  => 'Боомгин тууҗ',
+'filehist-help'             => 'Боомгин өңгрсн  цагин янз хәләх, цагиг дартн.',
 'filehist-current'          => 'ода цагин',
 'filehist-datetime'         => 'Өдр/цаг',
 'filehist-user'             => 'Орлцач',
 'imagelinks'                => 'Боомгд заалһуд',
+'linkstoimage'              => '{{PLURAL:$1|Эн $1 халх|Эн $1 халхс|Эн $1 халхс}} тер боомгд заалдг бәәнә:',
 'uploadnewversion-linktext' => 'Эн боомгин шин янз тәвх.',
 
 # Random page
 'randompage' => 'Уршг халх',
+
+# Statistics
+'statistics' => 'То бүрткл',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|байд|байдуд|байдуд}}',
@@ -463,6 +476,7 @@ $messages = array(
 'pager-older-n' => '{{PLURAL:$1|көгшәр 1|көгшәр $1}}',
 
 # Book sources
+'booksources'    => 'Дегтрин делгүрс',
 'booksources-go' => 'Ор',
 
 # Special:Log
@@ -504,6 +518,9 @@ $messages = array(
 
 # Delete
 'deletepage'            => 'Эн халхиг һарһҗ',
+'confirmdeletetext'     => 'Та цуг халхиг аль зургиг һарһҗ орхар бәәнәт.
+Буйн болтха, та үнәр тана үүлдин ашуд болн [[{{MediaWiki:Policy-url}}]] әңгин зокал медәд, эн батлҗ кетн.',
+'actioncomplete'        => 'Үүлд кев',
 'deletedtext'           => '«<nowiki>$1</nowiki>» һарһҗ болв.
 $2 кенз һарһлһда төлә хәләтн.',
 'deletedarticle'        => '«[[$1]]» халхиг һарһв',
@@ -516,18 +533,19 @@ $2 кенз һарһлһда төлә хәләтн.',
 'rollbacklink' => 'хәрү кех',
 
 # Protect
-'protectlogpage'         => 'Харсллһна сеткүл',
-'protectedarticle'       => '«[[$1]]» халх харсв',
-'protectcomment'         => 'Учр:',
-'protectexpiry'          => 'Өңгрнә:',
-'protect_expiry_invalid' => 'Буру өңгрллһнә цаг',
-'protect_expiry_old'     => 'Өңгрллһнә цаг бәәв.',
-'protect-default'        => 'Цуг орлцачнрд зөв өгҗ',
-'protect-level-sysop'    => 'Дарһас һанцхн',
-'protect-expiring'       => '$1 (UTC) гидг цагт өңгрнә',
-'protect-cantedit'       => 'Та эн халхна харсллһна кемҗән сольҗ чадхшв. Юнгад гихлә, та зөвән авв уга',
-'restriction-type'       => 'Зөв:',
-'restriction-level'      => 'Зөвән кемҗән:',
+'protectlogpage'              => 'Харсллһна сеткүл',
+'protectedarticle'            => '«[[$1]]» халх харсв',
+'protectcomment'              => 'Учр:',
+'protectexpiry'               => 'Өңгрнә:',
+'protect_expiry_invalid'      => 'Буру өңгрллһнә цаг',
+'protect_expiry_old'          => 'Өңгрллһнә цаг бәәв.',
+'protect-default'             => 'Цуг орлцачнрд зөв өгҗ',
+'protect-level-autoconfirmed' => 'Шин болн нер уга орлцачнрас  харсх',
+'protect-level-sysop'         => 'Дарһас һанцхн',
+'protect-expiring'            => '$1 (UTC) гидг цагт өңгрнә',
+'protect-cantedit'            => 'Та эн халхна харсллһна кемҗән сольҗ чадхшв. Юнгад гихлә, та зөвән авв уга',
+'restriction-type'            => 'Зөв:',
+'restriction-level'           => 'Зөвән кемҗән:',
 
 # Undelete
 'undeletelink'     => 'гүүһәд хәләх/босхҗ тохрах',
@@ -554,23 +572,29 @@ $2 кенз һарһлһда төлә хәләтн.',
 'sp-contributions-submit'   => 'Хәәлһн',
 
 # What links here
-'whatlinkshere'           => 'Эн һазрур заалһуд',
-'whatlinkshere-page'      => 'Халх:',
-'isredirect'              => 'авч оддг халх',
-'istemplate'              => 'оруллһн',
-'whatlinkshere-prev'      => '{{PLURAL:$1|урдк|урдк $1}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|дарук|дарук|дарук}} $1',
-'whatlinkshere-links'     => '← заалһуд',
-'whatlinkshere-hidetrans' => '$1 оруллһд',
+'whatlinkshere'            => 'Эн һазрур заалһуд',
+'whatlinkshere-page'       => 'Халх:',
+'isredirect'               => 'авч оддг халх',
+'istemplate'               => 'оруллһн',
+'isimage'                  => 'зургин  заалһ',
+'whatlinkshere-prev'       => '{{PLURAL:$1|урдк|урдк $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|дарук|дарук|дарук}} $1',
+'whatlinkshere-links'      => '← заалһуд',
+'whatlinkshere-hideredirs' => '$1 авч одлһд',
+'whatlinkshere-hidetrans'  => '$1 оруллһд',
+'whatlinkshere-filters'    => 'Шүрс',
 
 # Block/unblock
 'blockip'          => 'Орлцачнриг бүслҗ',
+'ipboptions'       => '2 часуд:2 hours,1 өдр:1 day,3 өдрмүд:3 days,1 долан хонг:1 week,2 долан хонгуд:2 weeks,1 сар:1 month,3 сармуд:3 months,6 сармуд:6 months,1 җил:1 year,мөнк:infinite',
 'ipblocklist'      => 'Бүслсн IP хайгуд болн орлцачнр',
 'blocklink'        => 'бүслх',
 'unblocklink'      => 'бүслх биш',
 'change-blocklink' => 'бүслһиг сольх',
 'contribslink'     => 'өгллһн',
 'blocklogpage'     => 'Бүсллһнә сеткүл',
+'blocklogentry'    => '[[$1]] бүслсн $2 күртл, $3 учрта',
+'unblocklogentry'  => '$1 бүслсн биш',
 
 # Move page
 'movearticle'     => 'Халхиг йовулх:',
@@ -585,6 +609,9 @@ $2 кенз һарһлһда төлә хәләтн.',
 'movelogpage'     => 'Нернә хүврлһнә сеткүл',
 'movereason'      => 'Учр:',
 'revertmove'      => 'хәрүлһн',
+
+# Export
+'export' => 'Халхин экспорт',
 
 # Thumbnails
 'thumbnail-more' => 'Икдүлх',
@@ -631,8 +658,11 @@ $2 кенз һарһлһда төлә хәләтн.',
 'tooltip-ca-nstab-special'       => 'Эн көдлхнә халх. Та эниг чиклҗ чадхшв.',
 'tooltip-ca-nstab-project'       => 'Проектин халх',
 'tooltip-ca-nstab-image'         => 'Боомгин халхиг',
+'tooltip-ca-nstab-template'      => 'Зуран халх',
+'tooltip-ca-nstab-category'      => 'Янзин халхиг үзүлх',
 'tooltip-minoredit'              => 'Эн хүврлһдиг баһ чинртә темдглх',
 'tooltip-save'                   => 'Тана сольлһдудиг хадһлтн',
+'tooltip-preview'                => 'Урдаснь хәләвр. Буйн болтха, энгиг олзлад, тегәд хадһлтн!',
 'tooltip-rollback'               => 'Кенз орлцачна хүврлһд нег дарцар хәрү кех',
 
 # Browsing diffs
@@ -640,8 +670,10 @@ $2 кенз һарһлһда төлә хәләтн.',
 'nextdiff'     => 'Дарук хүврлһн →',
 
 # Media information
-'file-info-size' => '($1 × $2 цегтә, боомгин кемҗән: $3, MIME янз: $4)',
-'svg-long-desc'  => '(SVG боомг, $1 × $2 мет цегтә, боомгин кемҗән: $3)',
+'file-info-size'       => '($1 × $2 цегтә, боомгин кемҗән: $3, MIME янз: $4)',
+'svg-long-desc'        => '(SVG боомг, $1 × $2 мет цегтә, боомгин кемҗән: $3)',
+'show-big-image'       => 'Күцц чинр',
+'show-big-image-thumb' => '<small>Урдаснь хәләврин кемҗән: $1 × $2 цегтә</small>',
 
 # Bad image list
 'bad_image_list' => 'Эн темдглһн кергтә:
@@ -674,6 +706,9 @@ $2 кенз һарһлһда төлә хәләтн.',
 # Auto-summaries
 'autosumm-blank' => 'Халх цеврүлв',
 'autosumm-new'   => 'Шин халх: «$1»',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Сеткүлиг хәләх аль чиклх',
 
 # Special:SpecialPages
 'specialpages' => 'Көдлхнә халхс',

@@ -260,9 +260,13 @@ lcont nek  tuyskar .
 'loginlanguagelabel'      => 'tutlayt: $1',
 
 # Edit pages
-'noarticletext'    => 'ɣila orilla walo l-ktba ɣ tawriqt ad, tzdart [[Special:Search/{{PAGENAME}}|atsiglt smiyt n tawriqt ad]] 
-ɣ tiwriqin yadni, nɣd [{{fullurl:{{FULLPAGENAME}}|action=edit}} atbdlt tawrikt ad]',
-'copyrightwarning' => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
+'noarticletext'              => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
+ulla cabba  [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
+'noarticletext-nopermission' => 'Ur illa may itt yuran ɣ tasna tad.
+Ẓr [[Special:Search/{{PAGENAME}}|search for this page title]] ɣ tisnatin yaḍnin,
+ulla <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}}search the related logs]</span>.',
+'copyrightwarning'           => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
 iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br />
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 '''ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!'''",
@@ -327,6 +331,9 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'watch'   => 'zaydtin i tochwafin-niw',
 'unwatch' => 'ḥiyd-t ɣ tachwafin ino',
 
+# Protect
+'protect-default' => 'Immurzm i kullu imsxdamn',
+
 # Contributions
 'mycontris' => 'tikkin ino',
 
@@ -347,6 +354,15 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'tooltip-ca-talk'                => 'Assays f mayllan ɣ tasnat ad',
 'tooltip-ca-edit'                => 'Tzḍaṛt  at tsbadelt tasna yad. Ifulki iɣt zwar turmt ɣ tasna w-arm',
 'tooltip-ca-addsection'          => 'Bdu ayyaw amaynu.',
+'tooltip-ca-viewsource'          => 'Tasnatad tuyḥba. mac dẓdart at tẓrt aɣbalu nes.',
+'tooltip-ca-history'             => 'Tunɣilt tamzwarut n tasna yad',
+'tooltip-ca-protect'             => 'Ḥbu tasna yad',
+'tooltip-ca-unprotect'           => 'Kkis aḥbu n tasna yad',
+'tooltip-ca-delete'              => 'Kkis tasna yad',
+'tooltip-ca-undelete'            => 'Rard imbddeln imzwura li ittyskarnin ɣ tasna yad',
+'tooltip-ca-move'                => 'Smmati tasna yad',
+'tooltip-ca-watch'               => 'Smd tasna yad itilli tsaggat.',
+'tooltip-ca-unwatch'             => 'Kkis tasna yad z ɣ tilli tsaggat',
 'tooltip-search'                 => 'siggl ɣ {{SITENAME}}',
 'tooltip-search-go'              => 'Ftu s tasna s w-assaɣ znd ɣ-wad  iɣ tlla',
 'tooltip-search-fulltext'        => 'Cnubc aṭṛiṣad ɣ tisnatin',
@@ -354,8 +370,12 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'tooltip-n-mainpage'             => 'Kid tasnatad tamuqrant',
 'tooltip-n-mainpage-description' => 'Kid tasna tamuqrant',
 'tooltip-n-portal'               => "f' usenfar, matzdart atitskrt, maniɣrattaft ɣayli trit",
-'tooltip-n-recentchanges'        => 'Umuɣ n yibeddlen imaynuten ɣ l-wiki',
-'tooltip-n-help'                 => 'tkhassak lmɛiwna ?achkid sɣid',
+'tooltip-n-currentevents'        => 'Tiɣri izrbn i kullu maɣid immusn',
+'tooltip-n-recentchanges'        => 'Umuɣ n imbddlen imaynuten ɣ l-wiki',
+'tooltip-n-randompage'           => 'Srbu yat tasna ɣik nna ka tga',
+'tooltip-n-help'                 => 'Adɣar n w-aws',
+'tooltip-t-whatlinkshere'        => 'Umuɣ n kullu tisnatin n Wiki lid ilkkmn ɣid',
+'tooltip-t-recentchangeslinked'  => 'Imbddln imaynutn n tisnatin li ittylkamn s tasna yad',
 'tooltip-t-upload'               => 'sɣlid ifaylutn',
 'tooltip-t-specialpages'         => 'kolchi tiwriqin tesbtarin',
 

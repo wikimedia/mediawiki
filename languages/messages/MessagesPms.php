@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Borichèt
  * @author Bèrto 'd Sèra
  * @author Dragonòt
  * @author SabineCretella
@@ -40,13 +41,13 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Anliure con la sotliniadura',
 'tog-highlightbroken'         => "Buta an evidensa j'anliure che a men-o a<br />
-dj'artìcol ancó pa scrit",
+dj'artìcoj ancó pa scrit",
 'tog-justify'                 => 'Paràgraf: giustificà',
-'tog-hideminor'               => 'Stërma le modifiche cite<br />ant sla pàgina "Ùltime Modìfiche"',
-'tog-hidepatrolled'           => "Stërma le modìfiche verifià ant j'ùltime modìfiche",
-'tog-newpageshidepatrolled'   => 'Stërma le pàgine verifià da la lista dle pàgine neuve',
+'tog-hideminor'               => 'Stërma le modìfiche cite<br />ant sla pàgina "Ùltime Modìfiche"',
+'tog-hidepatrolled'           => "Stërma le modìfiche verificà ant j'ùltime modìfiche",
+'tog-newpageshidepatrolled'   => 'Stërma le pàgine verificà da la lista dle pàgine neuve',
 'tog-extendwatchlist'         => 'Slarga la funsion "ten sot euj" an manera che a la smon-a tute le modìfiche, nen mach l\'ùltima',
-'tog-usenewrc'                => "Dòvra j'ùltime modìfiche an bela forma (a-i va JavaScript)",
+'tog-usenewrc'                => "Deuvra j'ùltime modìfiche an bela forma (a-i va JavaScript)",
 'tog-numberheadings'          => 'Tìtoj ëd paràgraf<br />che as nùmero daspërlor',
 'tog-showtoolbar'             => "Mostra la bara dj'utiss (a-i va Javascript)",
 'tog-editondblclick'          => "Dobia sgnacà për modifiché l'artìcol<br />(a-i va JavaScript)",
@@ -56,10 +57,10 @@ dj'artìcol ancó pa scrit",
 'tog-rememberpassword'        => "Vis-te la ciav<br />(nen mach për na session<br />- a l'ha da manca dij cookies)",
 'tog-editwidth'               => 'Slarga al màssim ël quàder ëd modìfica',
 'tog-watchcreations'          => 'Gionta le pàgine che i creo mi a la lista ëd lòn che im ten-o sot euj',
-'tog-watchdefault'            => "Notìfica dj'articoli neuv e ëd coj modificà",
+'tog-watchdefault'            => "Gionta le pàgine che i modìfico mi a la lista dle ròbe ch'i ten-o sot-euj",
 'tog-watchmoves'              => 'Gionta le pàgine che i tramudo a lòn che im ten-o sot euj',
 'tog-watchdeletion'           => 'Gionta le pàgine che i scancelo via a la lista ëd lòn che im ten-o sot euj',
-'tog-minordefault'            => 'Marca tute le modìfica coma cite<br />(mach coma predefinission dla casela)',
+'tog-minordefault'            => 'Marca tute le modìfice coma cite<br />(mach coma predefinission dla casela)',
 'tog-previewontop'            => 'Smon-e la preuva dzora al quàder ëd modìfica dël test e nen sota',
 'tog-previewonfirst'          => 'Smon na preuva la prima vira che as fa na modìfica',
 'tog-nocache'                 => "Dòvra pa la memorisassion ''cache'' për le pàgine",
@@ -1435,9 +1436,12 @@ Për piasì controla l'ampostassion file_uploads.",
 'uploadscripted'              => "St'archivi-sì a l'ha andrinta chèich-còs (dël còdes HTML ò pura dlë script) che a podrìe esse travajà mal da chèich programa ëd navigassion (browser).",
 'uploadcorrupt'               => "St'archivi-sì ò che a l'é falà ò che a l'ha n'estension cioca. Për piasì, che as contròla l'archivi e peuj che a preuva torna a carielo.",
 'uploadvirus'                 => "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
+'upload-source'               => 'Archivi sorgiss',
 'sourcefilename'              => "Nòm dl'archivi sorgiss:",
+'sourceurl'                   => 'URL sorgiss',
 'destfilename'                => "Nòm dl'archivi ëd destinassion:",
 'upload-maxfilesize'          => 'Dimension massima dël file: $1.',
+'upload-description'          => "Descrission dl'archivi",
 'watchthisupload'             => "Ten d'euj sto file-sì.",
 'filewasdeleted'              => "N'archivi con ës nòm-sì a l'é gia stait caria e peui scancelà. Për piasì, che a verìfica $1 anans che carielo n'àutra vira.",
 'upload-wasdeleted'           => "'''Dosman: a l'é antramentr ch'a carìa torna n'archivi ch'a l'era dëscancelasse.'''
