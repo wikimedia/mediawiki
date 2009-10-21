@@ -42,7 +42,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgEnableMWSuggest;
+		global $wgEnableOpenSearchSuggest;
 		$params = $this->extractRequestParams();
 		$search = $params['search'];
 		$limit = $params['limit'];
