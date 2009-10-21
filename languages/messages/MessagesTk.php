@@ -83,7 +83,7 @@ Sahypalary keşirleme',
 
 'underline-always'  => 'Hemişe',
 'underline-never'   => 'Hiç haçan',
-'underline-default' => 'Brauzeriň sazlamalary',
+'underline-default' => 'Brauzeriň gaýybanasy',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Özgerdiş meýdançasynyň şriftiniň tipi:',
@@ -441,7 +441,7 @@ Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir
 'welcomecreation'            => '== Hoş geldiňiz, $1! ==
 
 Hasabyňyz açyldy.  
-[[Special:Preferences|{{SITENAME}} saýtyndaky sazlamalaryňyzy]] üýtgetmegi ýatdan çykarmaň.',
+[[Special:Preferences|{{SITENAME}} saýtyndaky ileri tutmalaryňyzy]] üýtgetmegi ýatdan çykarmaň.',
 'yourname'                   => 'Ulanyjy adyňyz:',
 'yourpassword'               => 'Parolyňyz:',
 'yourpasswordagain'          => 'Paroly gaýtadan ýaz:',
@@ -504,7 +504,7 @@ Netijede, bu IP adresini ulanyjylar häzirki pursatda mundan artyk hasap açyp b
 'emailauthenticated'         => 'E-poçta adresiňiz $2 $3 senesinde tassyklanyldy.',
 'emailnotauthenticated'      => 'E-poçta adresiňiz heniz tassyklanmady.
 Aşakdaky funksiýalaryň hiç biri üçin e-poçta iberiljek däldir.',
-'noemailprefs'               => 'Bu funksiýalaryň işlemegi üçin sazlamalaryňyzda bir e-poçta adresi görkeziň.',
+'noemailprefs'               => 'Bu funksiýalaryň işlemegi üçin ileri tutmalaryňyzda bir e-poçta adresi görkeziň.',
 'emailconfirmlink'           => 'E-poçta adresiňizi tassyklaň',
 'invalidemailaddress'        => 'Nädogry formatda ýazylandygy üçin bu e-poçta adresini kabul edip bolmaýar.
 Dogry formatda e-poçta adresi ýazmagyňyzy ýa-da bu bölümi boş goýmagyňyzy haýyş edýäris.',
@@ -584,7 +584,7 @@ Blokirlemäniň sebäbi: \'\'$2\'\'.
 * Blokirlemäniň ahyry: $6
 * Blokirleme möhleti: $7
 
-Blokirleme barada pikir alyşmak üçin $1 ýa-da başga bir [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilen habarlaşyp bilersiňiz. [[Special:Preferences|Sazlamalarym]] böleginde dogry bir e-poçta adresi görkezilmedik bolsa, "Ulanyja e-poçta iber" amalyndan peýdalanyp bilmersiňiz, ony ulanmaklygyňyz bolsa blokirlenmändir.   
+Blokirleme barada pikir alyşmak üçin $1 ýa-da başga bir [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilen habarlaşyp bilersiňiz. [[Special:Preferences|Ileri tutmalarym]] böleginde dogry bir e-poçta adresi görkezilmedik bolsa, "Ulanyja e-poçta iber" amalyndan peýdalanyp bilmersiňiz, ony ulanmaklygyňyz bolsa blokirlenmändir.   
 Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
 Ýokaryda görkezilen ähli jikme-jiklikleri öz ähli ýüztutmalaryňyza girizmegiňizi haýyş edýäris.',
 'autoblockedtext'                  => 'IP adresiňiz awtomatik ýagdaýda blokirlendi, çünki $1 tarapyndan blokirlenen başga bir ulanyjy ony ulanypdyr.  
@@ -598,7 +598,7 @@ Görkezilen sebäp şu:
 
 Blokirleme barada pikir alyşmak üçin $1 ýa-da başga bir [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilen habarlaşyp bilersiňiz. 
 
-Bellik: [[Special:Preferences|Ulanyjy sazlamalaryňyza]] dogry bir e-poçta adresini bellige aldyrmadyk bolsaňyz, "Ulanyja e-poçta iber" amalyndan peýdalanyp bilmersiňiz, ony ulanmaklygyňyz bolsa blokirlenmändir.   
+Bellik: [[Special:Preferences|Ulanyjy ileri tutmalaryňyza]] dogry bir e-poçta adresini bellige aldyrmadyk bolsaňyz, "Ulanyja e-poçta iber" amalyndan peýdalanyp bilmersiňiz, ony ulanmaklygyňyz bolsa blokirlenmändir.   
 
 Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
 Ýokaryda görkezilen ähli jikme-jiklikleri ähli ýüztutmalaryňyza girizmegiňizi haýyş edýäris.',
@@ -608,7 +608,7 @@ Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
 'whitelistedittitle'               => 'Redaktirlemek üçin sessiýa açmaly',
 'whitelistedittext'                => 'Sahypa redaktirlemek üçin $1.',
 'confirmedittext'                  => 'Sahypa redaktirlemäp başlamankaňyz e-poçta adresiňizi tassyklamalysyňyz. 
-[[Special:Preferences|Ulanyjy sazlamalaryňyza]] e-poçta adresiňizi ýazyp tassyklamagyňyzy haýyş edýäris.',
+[[Special:Preferences|Ulanyjy ileri tutmalaryňyza]] e-poçta adresiňizi ýazyp tassyklamagyňyzy haýyş edýäris.',
 'nosuchsectiontitle'               => 'Beýle bölüm ýok',
 'nosuchsectiontext'                => 'Siz ýok bölümi redaktirlejek bolduňyz. $1 atly bölüm bolmansoň, özgerdişiňizi ýazdyrara ýer ýok.',
 'loginreqtitle'                    => 'Sessiýa açmagyňyz zerur',
@@ -637,7 +637,7 @@ Bu sahypany döretmek/redaktirlemek isleýän bolsaňyz, onda esewan boluň.',
 'clearyourcache'                   => "'''Bellik:''' Ýazdyranyňyzdan soň, üýtgeşmeleri görmek üçin brauzeriňiziň keşini arassalaň: 
 '''Mozilla / Firefox / Safari:''' ''Shift''-e basyp, ''Reload''-a tyklaň ýa-da ýa ''Ctrl-F5''-e ýa-da ''Ctrl-R''-a basyň (Macintosh üçin ''Command-R'');
 '''Konqueror:''' ''Reload''-a tyklaň ýa-da ''F5''-e basyň; 
-'''Opera:''' ''Gurallar → Sazlamalar''dan keşi arassalaň;
+'''Opera:''' ''Gurallar → Ileri tutmalar''dan keşi arassalaň;
 '''Internet Explorer:''' ''Ctrl''-a basyp, ''Refresh''-i tyklaň ýa-da ''Ctrl-F5''-e basyň.",
 'usercssyoucanpreview'             => "'''Ümleme:''' Täze CSS faýlyny ýazdyrmankaňyz, synap görmek üçin 'Deslapky syn' düwmesine basyň.",
 'userjsyoucanpreview'              => "'''Ümleme:''' Täze JS faýlyny ýazdyrmankaňyz, synap görmek üçin 'Deslapky syn' düwmesine basyň.",
@@ -1061,11 +1061,11 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'qbsettings-floatingright' => 'Saga ýaplanýar',
 
 # Preferences page
-'preferences'                   => 'Sazlamalar',
-'mypreferences'                 => 'Sazlamalarym',
+'preferences'                   => 'Ileri tutmalar',
+'mypreferences'                 => 'Ileri tutmalarym',
 'prefs-edits'                   => 'Özgerdiş sany:',
 'prefsnologin'                  => 'Sessiýa açmansyňyz',
-'prefsnologintext'              => 'Ulanyjy sazlamalaryny üýtgetmek üçin <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sessiýa açmagyňyz gerek]</span>.',
+'prefsnologintext'              => 'Ulanyjy ileri tutmalaryny üýtgetmek üçin <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sessiýa açmagyňyz gerek]</span>.',
 'changepassword'                => 'Paroly üýtget',
 'prefs-skin'                    => 'Bezeg',
 'skin-preview'                  => 'Deslapky syn',
@@ -1080,7 +1080,7 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'prefs-watchlist-edits'         => 'Giňeldilen gözegçilik sanawynda görkeziljek üýtgeşmeleriň maksimum sany:',
 'prefs-watchlist-edits-max'     => '(maksimum san: 1000)',
 'prefs-watchlist-token'         => 'Gözegçilik sanawynyň alamaty:',
-'prefs-misc'                    => 'Başga sazlamalar',
+'prefs-misc'                    => 'Başga',
 'prefs-resetpass'               => 'Paroly üýtget',
 'prefs-email'                   => 'E-poçta opsiýalary',
 'prefs-rendering'               => 'Daşky görnüş',
@@ -1103,7 +1103,7 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'prefs-help-watchlist-token'    => 'Bu meýdança gizlin açar ýazmagyňyz gözegçilik sanawyňyz üçin RSS translýasiýasyny döredýär.
 Bu meýdançadaky açary bilen adam gözegçilik sanawyňyzy okap biler, şonuň üçin hem başga bir howpsuz baha saýlaň.
 Gabat gelşine görä döredilen şu bahany ulanyp bilersiňiz: $1',
-'savedprefs'                    => 'Sazlamalaryňyz ýazdyryldy.',
+'savedprefs'                    => 'Ileri tutmalaryňyz ýazdyryldy.',
 'timezonelegend'                => 'Sagat guşaklygy',
 'localtime'                     => 'Ýerli wagt:',
 'timezoneuseserverdefault'      => 'Serweriň gaýybanasyny ulan',
@@ -1129,7 +1129,7 @@ Gabat gelşine görä döredilen şu bahany ulanyp bilersiňiz: $1',
 'prefs-files'                   => 'Faýllar',
 'prefs-custom-css'              => 'Hususy CSS',
 'prefs-custom-js'               => 'Hususy JS',
-'prefs-reset-intro'             => 'Bu sahypany öz sazlamalaryňyzy saýtyň gaýybana ýagdaýyna getirmek üçin ulanyp bilersiňiz. Muny yzyna dikeldip bolmaýar.',
+'prefs-reset-intro'             => 'Bu sahypada öz ileri tutmalaryňyzy saýtyň gaýybana ýagdaýyna getirip bilersiňiz. Yzyna dikeldip bolmaýar.',
 'prefs-emailconfirm-label'      => 'E-poçta tassyklamasy:',
 'prefs-textboxsize'             => 'Redaktirleme penjiresiniň ölçegi',
 'youremail'                     => 'E-poçta:',
@@ -1450,9 +1450,12 @@ Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir
 'uploadscripted'              => 'Bu faýlda web brauzeri tarapyndan ýalňyş teswirlenmegi mümkin bolan bir HTML ýa-da skript kody bar.',
 'uploadcorrupt'               => 'Bu faýla ýa zeper ýetipdir ýa-da onuň giňeltmesi ýalňyş. Faýly barlap, gaýtadan ýüklemegiňizi haýyş edýäris.',
 'uploadvirus'                 => 'Faýlda wirus bar! Jikme-jiklik: $1',
+'upload-source'               => 'Çeşme faýl',
 'sourcefilename'              => 'Çeşme faýlyň ady:',
+'sourceurl'                   => 'Çeşme URL:',
 'destfilename'                => 'Niýetlenilýän faýlyň ady:',
 'upload-maxfilesize'          => 'Maksimum faýl ölçegi: $1',
+'upload-description'          => 'Faýl düşündirişi',
 'watchthisupload'             => 'Bu faýla gözegçilik et',
 'filewasdeleted'              => 'Şeýle atly faýl ozal ýüklenipdir we soňra öçürilipdir. Faýly ýüklemänkäňiz, $1 sahypasyna bir göz aýlaň.',
 'upload-wasdeleted'           => "'''Duýduryş: Ozal öçürilen bir faýly ýükleýärsiňiz.'''
@@ -1822,11 +1825,11 @@ Goldanylýan protokollar: <tt>$1</tt>',
 
 # E-mail user
 'mailnologin'      => 'Iberer ýaly adres ýok',
-'mailnologintext'  => 'Başga ulanyjylara e-poçta ibermek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]] hem-de [[Special:Preferences|sazlamalarda]] dogry bir e-poçta adresiňiz bolmalydyr.',
+'mailnologintext'  => 'Başga ulanyjylara e-poçta ibermek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]] hem-de [[Special:Preferences|ileri tutmalarda]] dogry bir e-poçta adresiňiz bolmalydyr.',
 'emailuser'        => 'Bu ulanyja e-poçta iber',
 'emailpage'        => 'Ulanyja e-poçta iber',
-'emailpagetext'    => 'Bu ulanyja e-poçta habarlaşygy ibermek üçin aşakdaky formydan peýdalanyp bilersiňiz. 
-[[Special:Preferences|Ulanyjy sazlamalaryňyzda]] görkezen e-poçta adresiňiz e-poçtanyň "From (Kimden)" adresinde peýda bolar, şeýlelikde kabul ediji size gönüden-göni jogap berip biler.',
+'emailpagetext'    => 'Bu ulanyja e-poçta habarlaşygy ibermek üçin aşakdaky formdan peýdalanyp bilersiňiz. 
+[[Special:Preferences|Ulanyjy ileri tutmalaryňyzda]] görkezen e-poçta adresiňiz e-poçtanyň "Kimden" adresinde peýda bolar, şeýlelikde kabul ediji size gönüden-göni jogap berip biler.',
 'usermailererror'  => 'E-poçta säwlige duçar boldy:',
 'defemailsubject'  => '{{SITENAME}} e-poçtasy',
 'noemailtitle'     => 'E-poçta adresi ýok',
@@ -2253,9 +2256,9 @@ Hasap açyp bilmeýärsiňiz.',
 # Developer tools
 'lockdb'              => 'Maglumat bazasy gulply',
 'unlockdb'            => 'Maglumat bazasynyň gulpuny aç',
-'lockdbtext'          => 'Maglumat bazasyny gulplamaklyk ähli ulanyjylara sahypalary, öz sazlamalaryny we gözegçilik sanawlaryny redaktirlemäge hem-de üýtgetmäge, şeýle-de maglumat bazasynyň üýtgedilmegini talap edýän başga işleri amala aşyrmaga bolan mümkinçliklerini togtadýar. 
+'lockdbtext'          => 'Maglumat bazasyny gulplamaklyk ähli ulanyjylara sahypalary, öz ileri tutmalaryny we gözegçilik sanawlaryny redaktirlemäge hem-de üýtgetmäge, şeýle-de maglumat bazasynyň üýtgedilmegini talap edýän başga işleri amala aşyrmaga bolan mümkinçiliklerini togtadýar. 
 Hakykatdan-da bu işi etmek isleýändigiňizi hem-de abatlaýyş işleri gutaran badyna maglumat bazasynyň gulpuny açjakdygyňyzy tassyklaň.',
-'unlockdbtext'        => 'Maglumat bazasynyň gulpuny açmaklyk ähli ulanyjylara sahypalary, öz sazlamalaryny we gözegçilik sanawlaryny redaktirlemäge hem-de üýtgetmäge, şeýle-de maglumat bazasynyň üýtgedilmegini talap edýän başga işleri amala aşyrmaga bolan mümkinçliklerini gaýtaryp berýär. 
+'unlockdbtext'        => 'Maglumat bazasynyň gulpuny açmaklyk ähli ulanyjylara sahypalary, öz ileri tutmalaryny we gözegçilik sanawlaryny redaktirlemäge hem-de üýtgetmäge, şeýle-de maglumat bazasynyň üýtgedilmegini talap edýän başga işleri amala aşyrmaga bolan mümkinçliklerini gaýtaryp berýär. 
 Hakykatdan-da bu işi etmek isleýändigiňizi tassyklaň.',
 'lockconfirm'         => 'Hawa, hakykatdan-da maglumat bazasynyň gulpuny açmak isleýärin.',
 'unlockconfirm'       => 'Hawa, hakykatdan-da maglumat bazasynyň gulpuny açmak isleýärin.',
@@ -2443,7 +2446,7 @@ Kompýuteriňize ýazdyryň we şu ýere ýükläň.',
 'tooltip-pt-anonuserpage'         => 'Redaktirleýän IP-ňiz üçin ulanyjy sahypasy',
 'tooltip-pt-mytalk'               => 'Pikir alyşma sahypaňyz',
 'tooltip-pt-anontalk'             => 'Bu IP adresinden edilen özgerdişler barada pikir alyş',
-'tooltip-pt-preferences'          => 'Sazlamalaryňyz',
+'tooltip-pt-preferences'          => 'Ileri tutmalaryňyz',
 'tooltip-pt-watchlist'            => 'Gözegçilikde saklaýan sahypalarym',
 'tooltip-pt-mycontris'            => 'Eden goşantlaryňyzyň sanawy',
 'tooltip-pt-login'                => 'Sessiýa açmagyňyz maslahat berilýär, ýöne hökmany däl.',
@@ -2557,7 +2560,7 @@ latex, dvips, gs we convert gurluşlarynyň dogrulygyny barlaň',
 'math_bad_tmpdir'       => 'Matematikanyň wagtlaýyn katalogyny ýazyp ýa-da döredip bolanok',
 'math_bad_output'       => 'Matematika çykyş katalogyny ýazyp ýa-da döredip bolanok',
 'math_notexvc'          => 'texvc ýerine ýetirilýän faýl tapylmady; 
-sazlamak üçin math/README serediň.',
+konfigurirlemek üçin math/README serediň.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Patrullyk edilen diýip belle',
