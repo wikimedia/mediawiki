@@ -49,9 +49,8 @@ class ApiOpenSearch extends ApiBase {
 		$namespaces = $params['namespace'];
 		$suggest = $params['suggest'];
 
-		// $wgEnableMWSuggest hit incoming when $wgEnableMWSuggest is 
-		// disabled
-		if( $suggest && !$wgEnableMWSuggest )
+		// MWSuggest or similar hit
+		if( $suggest && !$wgEnableOpenSearchSuggest )
 			$srchres = array();
 		else {
 			// Open search results may be stored for a very long
@@ -91,7 +90,7 @@ class ApiOpenSearch extends ApiBase {
 			'search' => 'Search string',
 			'limit' => 'Maximum amount of results to return',
 			'namespace' => 'Namespaces to search',
-			'suggest' => 'Do nothing if $wgEnableMWSuggest is false',
+			'suggest' => 'Do nothing if $wgEnableOpenSearchSuggest is false',
 		);
 	}
 

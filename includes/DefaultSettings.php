@@ -1976,8 +1976,16 @@ $wgOpenSearchTemplate = false;
 /**
  * Enable suggestions while typing in search boxes
  * (results are passed around in OpenSearch format)
+ * Requires $wgEnableOpenSearchSuggest = true;
  */
 $wgEnableMWSuggest = false;
+
+/**
+ * Enable OpenSearch suggestions requested by MediaWiki. Set this to
+ * false if you've disabled MWSuggest or another suggestion script and
+ * want reduce load caused by cached scripts pulling suggestions.
+ */
+$wgEnableOpenSearchSuggest = true;
 
 /**
  *  Template for internal MediaWiki suggestion engine, defaults to API action=opensearch
