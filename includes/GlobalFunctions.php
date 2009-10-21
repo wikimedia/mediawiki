@@ -2236,6 +2236,12 @@ function wfSpecialList( $page, $details ) {
  */
 function wfUrlProtocols() {
 	global $wgUrlProtocols;
+	
+	// This function is called a lot, cache its return value
+	// TODO: Cache this in memcached instead?
+	static $retval = null;
+	if ( !is_null( $retval ) )
+		return $retval;
 
 	// Support old-style $wgUrlProtocols strings, for backwards compatibility
 	// with LocalSettings files from 1.5
@@ -2244,10 +2250,12 @@ function wfUrlProtocols() {
 		foreach ($wgUrlProtocols as $protocol)
 			$protocols[] = preg_quote( $protocol, '/' );
 
-		return implode( '|', $protocols );
+		$retval = implode( '|', $protocols );
 	} else {
-		return $wgUrlProtocols;
+		$retval = $wgUrlProtocols;
 	}
+	
+	return $retval;
 }
 
 /**
