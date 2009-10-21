@@ -350,63 +350,8 @@ function getInnerText(el) {
 	return str;
 }
 
-
-/**
- * Set up accesskeys/tooltips from the deprecated ta array.  If doId
- * is specified, only set up for that id.  Note that this function is
- * deprecated and will not be supported indefinitely -- use
- * updateTooltipAccessKey() instead.
- *
- * @param mixed doId string or null
- */
+/* Dummy for deprecated function */
 function akeytt( doId ) {
-	// A lot of user scripts (and some of the code below) break if
-	// ta isn't defined, so we make sure it is.  Explictly using
-	// window.ta avoids a "ta is not defined" error.
-	if (!window.ta) window.ta = new Array;
-
-	// Make a local, possibly restricted, copy to avoid clobbering
-	// the original.
-	var ta;
-	if ( doId ) {
-		ta = [doId];
-	} else {
-		ta = window.ta;
-	}
-
-	// Now deal with evil deprecated ta
-	var watchCheckboxExists = document.getElementById( 'wpWatchthis' ) ? true : false;
-	for (var id in ta) {
-		var n = document.getElementById(id);
-		if (n) {
-			var a = null;
-			var ak = '';
-			// Are we putting accesskey in it
-			if (ta[id][0].length > 0) {
-				// Is this object a object? If not assume it's the next child.
-
-				if (n.nodeName.toLowerCase() == "a") {
-					a = n;
-				} else {
-					a = n.childNodes[0];
-				}
-			 	// Don't add an accesskey for the watch tab if the watch
-			 	// checkbox is also available.
-				if (a && ((id != 'ca-watch' && id != 'ca-unwatch') || !watchCheckboxExists)) {
-					a.accessKey = ta[id][0];
-					ak = ' ['+tooltipAccessKeyPrefix+ta[id][0]+']';
-				}
-			} else {
-				// We don't care what type the object is when assigning tooltip
-				a = n;
-				ak = '';
-			}
-
-			if (a) {
-				a.title = ta[id][1]+ak;
-			}
-		}
-	}
 }
 
 var checkboxes;
@@ -967,7 +912,6 @@ function runOnloadHook() {
 	doneOnloadHook = true;
 
 	updateTooltipAccessKeys( null );
-	akeytt( null );
 	setupCheckboxShiftClick();
 	sortables_init();
 
