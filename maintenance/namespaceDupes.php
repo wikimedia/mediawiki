@@ -197,7 +197,6 @@ class NamespaceConflictChecker extends Maintenance {
 		$table = $this->db->tableName( $page );
 
 		$prefix     = $this->db->strencode( $name );
-		$likeprefix = str_replace( '_', '\\_', $prefix);
 		$encNamespace = $this->db->addQuotes( $ns );
 
 		$titleSql = "TRIM(LEADING '$prefix:' FROM {$page}_title)";
@@ -212,7 +211,7 @@ class NamespaceConflictChecker extends Maintenance {
 		               $titleSql     AS title
 		          FROM {$table}
 		         WHERE {$page}_namespace=0
-		           AND {$page}_title LIKE '$likeprefix:%'";
+		           AND {$page}_title " . $this->db->buildLike( $name . ':', $this-db->anyString() );
 
 		$result = $this->db->query( $sql, __METHOD__ );
 

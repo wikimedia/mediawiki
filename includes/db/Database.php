@@ -1490,13 +1490,57 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Escape string for safe LIKE usage
+	 * Escape string for safe LIKE usage.
+	 * WARNING: you should almost never use this function directly,
+	 * instead use buildLike() that escapes everything automatically
 	 */
 	function escapeLike( $s ) {
 		$s = str_replace( '\\', '\\\\', $s );
 		$s = $this->strencode( $s );
 		$s = str_replace( array( '%', '_' ), array( '\%', '\_' ), $s );
 		return $s;
+	}
+
+	/**
+	 * LIKE statement wrapper, receives a variable-length argument list with parts of pattern to match
+	 * containing either string literals that will be escaped or tokens returned by anyChar() or anyString().
+	 * Alternatively, the function could be provided with an array of aforementioned parameters.
+	 * 
+	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns a LIKE clause that searches
+	 * for subpages of 'My page title'.
+	 * Alternatively: $pattern = array( 'My_page_title/', $dbr->anyString() ); $query .= $dbr->buildLike( $pattern );
+	 *
+	 * @ return String: fully built LIKE statement
+	 */
+	function buildLike() {
+		$params = func_get_args();
+		if (count($params) > 0 && is_array($params[0])) {
+			$params = $params[0];
+		}
+
+		$s = '';
+		foreach( $params as $value) {
+			if( $value instanceof LikeMatch ) {
+				$s .= $value->toString();
+			} else {
+				$s .= $this->escapeLike( $value );
+			}
+		}
+		return " LIKE '" . $s . "' ";
+	}
+
+	/**
+	 * Returns a token for buildLike() that denotes a '_' to be used in a LIKE query
+	 */
+	function anyChar() {
+		return new LikeMatch( '_' );
+	}
+
+	/**
+	 * Returns a token for buildLike() that denotes a '%' to be used in a LIKE query
+	 */
+	function anyString() {
+		return new LikeMatch( '%' );
 	}
 
 	/**
@@ -2777,5 +2821,21 @@ class ResultWrapper implements Iterator {
 
 	function valid() {
 		return $this->current() !== false;
+	}
+}
+
+/**
+ * Used by DatabaseBase::buildLike() to represent characters that have special meaning in SQL LIKE clauses
+ * and thus need no escaping. Don't instantiate it manually, use Database::anyChar() and anyString() instead.
+ */
+class LikeMatch {
+	private $str;
+
+	public function __construct( $s ) {
+		$this->str = $s;
+	}
+
+	public function toString() {
+		return $this->str;
 	}
 }

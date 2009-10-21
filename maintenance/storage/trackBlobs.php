@@ -60,7 +60,7 @@ class TrackBlobs {
 				if ( $this->textClause != '' ) {
 					$this->textClause .= ' OR ';
 				}
-				$this->textClause .= 'old_text LIKE ' . $dbr->addQuotes( $dbr->escapeLike( "DB://$cluster/" ) . '%' );
+				$this->textClause .= 'old_text' . $dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
 			}
 		}
 		return $this->textClause;
@@ -99,7 +99,7 @@ class TrackBlobs {
 					'rev_id > ' . $dbr->addQuotes( $startId ),
 					'rev_text_id=old_id',
 					$textClause,
-					"old_flags LIKE '%external%'",
+					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 				),
 				__METHOD__,
 				array(
@@ -175,7 +175,7 @@ class TrackBlobs {
 				array( 
 					'old_id>' . $dbr->addQuotes( $startId ),
 					$textClause,
-					"old_flags LIKE '%external%'",
+					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 					'bt_text_id IS NULL'
 				),
 				__METHOD__,

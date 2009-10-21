@@ -69,8 +69,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	if ( $wpIlMatch != '' && !$wgMiserMode) {
 		$nt = Title::newFromUrl( $wpIlMatch );
 		if( $nt ) {
-			$m = $dbr->escapeLike( strtolower( $nt->getDBkey() ) );
-			$where[] = "LOWER(img_name) LIKE '%{$m}%'";
+			$where[] = 'LOWER(img_name) ' .  $dbr->buildLike( $dbr->anyString(), strtolower( $nt->getDBkey() ), $dbr->anyString() );
 			$searchpar['wpIlMatch'] = $wpIlMatch;
 		}
 	}

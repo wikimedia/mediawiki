@@ -854,6 +854,8 @@ class LogPager extends ReverseChronologicalPager {
 
 		$this->title = $title->getPrefixedText();
 		$ns = $title->getNamespace();
+		$db = $this->mDb;
+
 		# Using the (log_namespace, log_title, log_timestamp) index with a
 		# range scan (LIKE) on the first two parts, instead of simple equality,
 		# makes it unusable for sorting.  Sorted retrieval using another index
@@ -866,10 +868,8 @@ class LogPager extends ReverseChronologicalPager {
 		# log entries for even the busiest pages, so it can be safely scanned
 		# in full to satisfy an impossible condition on user or similar.
 		if( $pattern && !$wgMiserMode ) {
-			# use escapeLike to avoid expensive search patterns like 't%st%'
-			$safetitle = $this->mDb->escapeLike( $title->getDBkey() );
 			$this->mConds['log_namespace'] = $ns;
-			$this->mConds[] = "log_title LIKE '$safetitle%'";
+			$this->mConds[] = 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() );
 			$this->pattern = $pattern;
 		} else {
 			$this->mConds['log_namespace'] = $ns;
@@ -877,9 +877,9 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
 		if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
-			$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
+			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
 		} else if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
-			$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_ACTION) .
+			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::SUPPRESSED_ACTION) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}
 	}

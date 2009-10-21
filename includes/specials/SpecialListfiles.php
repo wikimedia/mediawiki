@@ -37,10 +37,8 @@ class ImageListPager extends TablePager {
 			$nt = Title::newFromUrl( $search );
 			if( $nt ) {
 				$dbr = wfGetDB( DB_SLAVE );
-				$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
-				$m = str_replace( "%", "\\%", $m );
-				$m = str_replace( "_", "\\_", $m );
-				$this->mQueryConds = array( "LOWER(img_name) LIKE '%{$m}%'" );
+				$this->mQueryConds = array( 'LOWER(img_name)' . $dbr->buildLike( $dbr->anyString(), 
+					strtolower( $nt->getDBkey() ), $dbr->anyString() ) );
 			}
 		}
 

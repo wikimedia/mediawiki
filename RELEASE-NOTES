@@ -581,6 +581,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   dummy
 * (bug 21161) Changing $wgCacheEpoch now always invalidates file cache
 * (bug 20268) Fixed row count estimation on SQLite backend
+* (bug 20275) Fixed LIKE queries on SQLite backend
 
 == API changes in 1.16 ==
 

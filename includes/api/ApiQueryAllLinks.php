@@ -84,7 +84,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		if (!is_null($params['from']))
 			$this->addWhere('pl_title>=' . $db->addQuotes($this->titlePartToKey($params['from'])));
 		if (isset ($params['prefix']))
-			$this->addWhere("pl_title LIKE '" . $db->escapeLike($this->titlePartToKey($params['prefix'])) . "%'");
+			$this->addWhere('pl_title' . $db->buildLike( $this->titlePartToKey($params['prefix']), $db->anyString() ) );
 
 		$this->addFields(array (
 			'pl_title',

@@ -109,8 +109,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 			else
 				$lower = $upper = IP::toHex($params['ip']);
 			$prefix = substr($lower, 0, 4);
+			
+			$db = $this->getDB();
 			$this->addWhere(array(
-				"ipb_range_start LIKE '$prefix%'",
+				'ipb_range_start' . $db->buildLike($prefix, $db->anyString()),
 				"ipb_range_start <= '$lower'",
 				"ipb_range_end >= '$upper'"
 			));

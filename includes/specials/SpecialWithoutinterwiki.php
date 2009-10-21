@@ -53,7 +53,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $page, $langlinks ) = $dbr->tableNamesN( 'page', 'langlinks' );
-		$prefix = $this->prefix ? "AND page_title LIKE '" . $dbr->escapeLike( $this->prefix ) . "%'" : '';
+		$prefix = $this->prefix ? 'AND page_title' . $dbr->buildLike( $this->prefix , $dbr->anyString() ) : '';
 		return
 		  "SELECT 'Withoutinterwiki'  AS type,
 		          page_namespace AS namespace,

@@ -418,6 +418,14 @@ class DatabaseSqlite extends DatabaseBase {
 		return $s;
 	}
 
+	function buildLike() {
+		$params = func_get_args();
+		if ( count( $params ) > 0 && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		return parent::buildLike( $params ) . "ESCAPE '\' ";
+	}
+
 	/**
 	 * How lagged is this slave?
 	 */

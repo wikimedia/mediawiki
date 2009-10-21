@@ -65,7 +65,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$from = (is_null($params['from']) ? null : $this->titlePartToKey($params['from']));
 		$this->addWhereRange('page_title', $dir, $from, null);
 		if (isset ($params['prefix']))
-			$this->addWhere("page_title LIKE '" . $db->escapeLike($this->titlePartToKey($params['prefix'])) . "%'");
+			$this->addWhere('page_title' . $db->buildLike($this->titlePartToKey($params['prefix']), $db->->anyString()));
 
 		if (is_null($resultPageSet)) {
 			$selectFields = array (

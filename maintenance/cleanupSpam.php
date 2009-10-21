@@ -40,7 +40,7 @@ class CleanupSpam extends Maintenance {
 			$wgUser->addToDatabase();
 		}
 		$spec = $this->getArg();
-		$like = LinkFilter::makeLike( $spec );
+		$like = LinkFilter::makeLikeArray( $spec );
 		if ( !$like ) {
 			$this->error( "Not a valid hostname specification: $spec", true );
 		}
@@ -53,7 +53,7 @@ class CleanupSpam extends Maintenance {
 				$dbr = wfGetDB( DB_SLAVE, array(), $wikiID );
 
 				$count = $dbr->selectField( 'externallinks', 'COUNT(*)', 
-					array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), __METHOD__ );
+					array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
 				if ( $count ) {
 					$found = true;
 					passthru( "php cleanupSpam.php --wiki='$wikiID' $spec | sed 's/^/$wikiID:  /'" );
@@ -69,7 +69,7 @@ class CleanupSpam extends Maintenance {
 
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ), 
-				array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), __METHOD__ );
+				array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
 			$count = $dbr->numRows( $res );
 			$this->output( "Found $count articles containing $spec\n" );
 			foreach ( $res as $row ) {
