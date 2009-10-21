@@ -1298,11 +1298,16 @@ CREATE TABLE /*_*/updatelog (
 
 -- A table to track tags for revisions, logs and recent changes.
 CREATE TABLE /*_*/change_tag (
-  ct_rc_id int NULL, -- RCID for the change
-  ct_log_id int NULL, -- LOGID for the change
-  ct_rev_id int NULL, -- REVID for the change
-  ct_tag varchar(255) NOT NULL, -- Tag applied
-  ct_params blob NULL -- Parameters for the tag, presently unused.
+  -- RCID for the change
+  ct_rc_id int NULL,
+  -- LOGID for the change
+  ct_log_id int NULL,
+  -- REVID for the change
+  ct_rev_id int NULL,
+  -- Tag applied
+  ct_tag varchar(255) NOT NULL,
+  -- Parameters for the tag, presently unused
+  ct_params blob NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/change_tag_rc_tag ON /*_*/change_tag (ct_rc_id,ct_tag);
@@ -1315,10 +1320,14 @@ CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_i
 -- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT
 -- that only works on MySQL 4.1+
 CREATE TABLE /*_*/tag_summary (
-  ts_rc_id int NULL, -- RCID for the change
-  ts_log_id int NULL, -- LOGID for the change
-  ts_rev_id int NULL, -- REVID for the change
-  ts_tags blob NOT NULL -- Comma-separated list of tags.
+  -- RCID for the change  
+  ts_rc_id int NULL,
+  -- LOGID for the change
+  ts_log_id int NULL,
+  -- REVID for the change
+  ts_rev_id int NULL,
+  -- Comma-separated list of tags
+  ts_tags blob NOT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/tag_summary_rc_id ON /*_*/tag_summary (ts_rc_id);

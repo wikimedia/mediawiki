@@ -307,7 +307,8 @@ ar_comment      tinyblob       TEXT
 fa_description  tinyblob       TEXT
 img_description tinyblob       TEXT
 ipb_reason      tinyblob       TEXT
-log_action      varbinary(10)  TEXT
+log_action      varbinary(32)  TEXT
+log_type        varbinary(32)  TEXT
 oi_description  tinyblob       TEXT
 rev_comment     tinyblob       TEXT
 rc_log_action   varbinary(255) TEXT
@@ -323,6 +324,9 @@ ipb_address       tinyblob       TEXT # IP address or username
 ipb_range_end     tinyblob       TEXT # hexadecimal
 ipb_range_start   tinyblob       TEXT # hexadecimal
 img_minor_mime    varbinary(32)  TEXT
+lc_lang           varbinary(32)  TEXT
+lc_value          varbinary(32)  TEXT
+
 img_sha1          varbinary(32)  TEXT
 job_cmd           varbinary(60)  TEXT # Should we limit to 60 as well?
 keyname           varbinary(255) TEXT # No tablename prefix (objectcache)

@@ -155,7 +155,9 @@ CREATE INDEX archive_user_text            ON archive (ar_user_text);
 CREATE TABLE redirect (
   rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
   rd_namespace  SMALLINT NOT NULL,
-  rd_title      TEXT     NOT NULL
+  rd_title      TEXT     NOT NULL,
+  rd_interwiki  TEXT     NULL,
+  rd_fragment   TEXT     NULL
 );
 CREATE INDEX redirect_ns_title ON redirect (rd_namespace,rd_title,rd_from);
 
@@ -197,6 +199,13 @@ CREATE TABLE externallinks (
 );
 CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
 CREATE INDEX externallinks_index   ON externallinks (el_index);
+
+CREATE TABLE external_user (
+  eu_wiki_id     INTEGER  NOT NULL  PRIMARY KEY,
+  eu_external_id TEXT
+);
+
+CREATE UNIQUE INDEX eu_external_id ON external_user (eu_external_id);
 
 CREATE TABLE langlinks (
   ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE,
@@ -624,6 +633,6 @@ INSERT INTO mediawiki_version (type,mw_version,sql_version,sql_date)
 CREATE TABLE l10n_cache (
   lc_lang     TEXT    NOT NULL,
   lc_key      TEXT    NOT NULL,
-  lc_value    TEXT    NOT NULL
+  lc_value    BYTEA   NOT NULL
 );
 CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
