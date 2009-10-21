@@ -55,8 +55,25 @@ function wgUploadSetup() {
 		optionsTable.appendChild( row );
 	}
 	
-	// License selector check
-	document.getElementById( 'wpLicense' ).onchange = licenseSelectorCheck;
+	if ( wgAjaxLicensePreview ) {
+		// License selector check
+		document.getElementById( 'wpLicense' ).onchange = licenseSelectorCheck;
+	
+		// License selector table row
+		var wpLicense = document.getElementById( 'wpLicense' );
+		var wpLicenseRow = wpLicense.parentNode.parentNode;
+		var wpLicenseTbody = wpLicenseRow.parentNode;
+		
+		var row = document.createElement( 'tr' );
+		var td = document.createElement( 'td' );
+		row.appendChild( td );
+		td = document.createElement( 'td' );
+		td.id = 'mw-license-preview';
+		row.appendChild( td );
+		
+		wpLicenseTbody.insertBefore( row, wpLicenseRow.nextSibling );
+	}
+	
 	
 	// fillDestFile setup
 	for ( var i = 0; i < wgUploadSourceIds.length; i++ )

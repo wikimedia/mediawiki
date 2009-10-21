@@ -183,6 +183,8 @@ class SpecialUpload extends SpecialPage {
 	 * @return UploadForm
 	 */
 	protected function getUploadForm( $message = '', $sessionKey = '' ) {
+		global $wgOut;
+		
 		# Initialize form
 		$form = new UploadForm( $this->watchCheck(), $this->mForReUpload, $sessionKey );
 		$form->setTitle( $this->getTitle() );
@@ -196,12 +198,20 @@ class SpecialUpload extends SpecialPage {
 		$form->addPreText( '<div id="uploadtext">' . wfMsgExt( 'uploadtext', 'parse' ) . '</div>');
 		# Add upload error message
 		$form->addPreText( $message );
+		
+		# Add footer to form
+		$uploadFooter = wfMsgNoTrans( 'uploadfooter' );
+		if ( $uploadFooter != '-' && !wfEmptyMsg( 'uploadfooter', $uploadFooter ) ) {
+			$form->addPostText( '<div id="mw-upload-footer-message">'
+				. $wgOut->parse( $uploadFooter ) . "</div>\n" );
+		}
+		
+		return $form;		
 
-		return $form;
 	}
 
 	/**
-	 * TODO: DOCUMENT
+	 * Shows the "view X deleted revivions link""
 	 */
 	protected function showViewDeletedLinks() {
 		global $wgOut, $wgUser;
@@ -644,7 +654,10 @@ class UploadForm extends HTMLForm {
 	}
 
 	/**
-	 *
+	 * Get the descriptor of the fieldset that contains the file source 
+	 * selection. The section is 'source'
+	 * 
+	 * @return array Descriptor array
 	 */
 	protected function getSourceSection() {
 		global $wgLang, $wgUser, $wgRequest;
@@ -710,8 +723,11 @@ class UploadForm extends HTMLForm {
 		return $descriptor;
 	}
 
+
 	/**
-	 *
+	 * Get the messages indicating which extensions are preferred and prohibitted.
+	 * 
+	 * @return string HTML string containing the message
 	 */
 	protected function getExtensionsMessage() {
 		# Print a list of allowed file extensions, if so configured.  We ignore
@@ -745,7 +761,10 @@ class UploadForm extends HTMLForm {
 	}
 
 	/**
-	 *
+	 * Get the descriptor of the fieldset that contains the file description
+	 * input. The section is 'description'
+	 * 
+	 * @return array Descriptor array
 	 */
 	protected function getDescriptionSection() {
 		global $wgUser, $wgOut;
@@ -773,6 +792,10 @@ class UploadForm extends HTMLForm {
 				'cols' => $cols,
 				'rows' => 8,
 			),
+			'EditTools' => array(
+				'type' => 'edittools',
+				'section' => 'description',
+			),
 			'License' => array(
 				'type' => 'select',
 				'class' => 'Licenses',
@@ -783,13 +806,6 @@ class UploadForm extends HTMLForm {
 		);
 		if ( $this->mForReUpload )
 			$descriptor['DestFile']['readonly'] = true;
-
-		global $wgUseAjax, $wgAjaxLicensePreview;
-		if ( $wgUseAjax && $wgAjaxLicensePreview )
-			$descriptor['AjaxLicensePreview'] = array(
-				'class' => 'UploadAjaxLicensePreview',
-				'section' => 'description'
-			);
 
 		global $wgUseCopyrightUpload;
 		if ( $wgUseCopyrightUpload ) {
@@ -811,7 +827,10 @@ class UploadForm extends HTMLForm {
 	}
 
 	/**
-	 *
+	 * Get the descriptor of the fieldset that contains the upload options, 
+	 * such as "watch this file". The section is 'options'
+	 * 
+	 * @return array Descriptor array
 	 */
 	protected function getOptionsSection() {
 		global $wgOut;
@@ -829,26 +848,14 @@ class UploadForm extends HTMLForm {
 				'label-message' => 'ignorewarnings',
 				'section' => 'options',
 			),
-			'EditTools' => array(
-				'type' => 'edittools',
-				'section' => 'options',
-			),
 		);
-
-		$uploadFooter = wfMsgNoTrans( 'uploadfooter' );
-		if ( $uploadFooter != '-' && !wfEmptyMsg( 'uploadfooter', $uploadFooter ) )
-			$descriptor['UploadFooter'] = array(
-				'type' => 'info',
-				'id' => 'mw-upload-footer-message',
-				'default' => $wgOut->parse( $uploadFooter ),
-			);
 
 		return $descriptor;
 
 	}
 
 	/**
-	 *
+	 * Add the upload JS and show the form.
 	 */
 	public function show() {
 		$this->addUploadJS();
@@ -856,7 +863,10 @@ class UploadForm extends HTMLForm {
 	}
 
 	/**
-	 *
+	 * Add upload JS to $wgOut
+	 * 
+	 * @param bool $autofill Whether or not to autofill the destination
+	 * 	filename text box
 	 */
 	protected function addUploadJS( $autofill = true ) {
 		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
@@ -886,6 +896,11 @@ class UploadForm extends HTMLForm {
 		}
 	}
 
+	/**
+	 * Empty function; submission is handled elsewhere.
+	 * 
+	 * @return bool false
+	 */
 	function trySubmit() {
 		return false;
 	}
@@ -893,7 +908,7 @@ class UploadForm extends HTMLForm {
 }
 
 /**
- * TODO: DOCUMENT
+ * A form field that contains a radio box in the label
  */
 class UploadSourceField extends HTMLTextField {
 	function getLabelHtml() {
@@ -921,15 +936,3 @@ class UploadSourceField extends HTMLTextField {
 	}
 }
 
-/**
- * TODO: Document
- * TODO: This can be migrated to JS only
- */
-class UploadAjaxLicensePreview extends HTMLFormField {
-	public function getTableRow( $value ) {
-		return "<tr><td></td><td id=\"mw-license-preview\"></td></tr>\n";
-	}
-	public function getInputHTML( $value ) {
-		return '';
-	}
-}
