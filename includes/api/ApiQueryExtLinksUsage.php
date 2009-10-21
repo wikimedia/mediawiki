@@ -77,14 +77,15 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			if(is_null($protocol))
 				$protocol = 'http://';
 
-			$likeQuery = LinkFilter::makeLike($query, $protocol);
+			$likeQuery = LinkFilter::makeLikeArray($query, $protocol);
 			if (!$likeQuery)
 				$this->dieUsage('Invalid query', 'bad_query');
-			$likeQuery = substr($likeQuery, 0, strpos($likeQuery,'%')+1);
-			$this->addWhere('el_index LIKE ' . $db->addQuotes( $likeQuery ));
+
+			$likeQuery = LinkFilter::keepOneWildcard($likeQuery);
+			$this->addWhere('el_index ' . $db->buildLike( $likeQuery ));
 		}
 		else if(!is_null($protocol))
-			$this->addWhere('el_index LIKE ' . $db->addQuotes( "$protocol%" ));
+			$this->addWhere('el_index ' . $db->buildLike( "$protocol", $db->anyString() ));
 
 		$prop = array_flip($params['prop']);
 		$fld_ids = isset($prop['ids']);

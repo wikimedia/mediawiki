@@ -165,7 +165,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhere($this->getDB()->bitAnd('rev_deleted',Revision::DELETED_USER) . ' = 0');
 		// We only want pages by the specified users.
 		if($this->prefixMode)
-			$this->addWhere("rev_user_text LIKE '" . $this->getDB()->escapeLike($this->userprefix) . "%'");
+			$this->addWhere('rev_user_text' . $this->getDB()->buildLike($this->userprefix, $this->getDB()->anyString()));
 		else
 			$this->addWhereFld('rev_user_text', $this->usernames);
 		// ... and in the specified timeframe.

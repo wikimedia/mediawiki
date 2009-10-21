@@ -286,7 +286,7 @@ class Block {
 		$options = array();
 		$db =& $this->getDBOptions( $options );
 		$conds = array(
-			"ipb_range_start LIKE '$range%'",
+			'ipb_range_start' . $db->buildLike( $range, $db->anyString() ),
 			"ipb_range_start <= '$iaddr'",
 			"ipb_range_end >= '$iaddr'"
 		);

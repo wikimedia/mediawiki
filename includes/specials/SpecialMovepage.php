@@ -416,7 +416,7 @@ class MovePageForm {
 			)
 		) ) {
 			$conds = array(
-				'page_title LIKE '.$dbr->addQuotes( $dbr->escapeLike( $ot->getDBkey() ) . '/%' )
+				'page_title' . $dbr->buildLike( $ot->getDBkey() . '/', $dbr->anyString() )
 					.' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
 			);
 			$conds['page_namespace'] = array();

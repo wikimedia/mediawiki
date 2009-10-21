@@ -262,10 +262,9 @@ class IPUnblockForm {
 				// Fixme -- encapsulate this sort of query-building.
 				$dbr = wfGetDB( DB_SLAVE );
 				$encIp = $dbr->addQuotes( IP::sanitizeIP($this->ip) );
-				$encRange = $dbr->addQuotes( "$range%" );
 				$encAddr = $dbr->addQuotes( $iaddr );
 				$conds[] = "(ipb_address = $encIp) OR 
-					(ipb_range_start LIKE $encRange AND
+					(ipb_range_start" . $dbr->buildLike( $range, $dbr->anyString() ) . " AND
 					ipb_range_start <= $encAddr
 					AND ipb_range_end >= $encAddr)";
 			} else {

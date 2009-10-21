@@ -115,7 +115,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				array( 'page_namespace', 'page_title', 'page_is_redirect' ),
 				array(
 					'page_namespace' => $namespace,
-					'page_title LIKE \'' . $dbr->escapeLike( $prefixKey ) .'%\'',
+					'page_title' . $dbr->buildLike( $prefixKey, $dbr->anyString() ),
 					'page_title >= ' . $dbr->addQuotes( $fromKey ),
 				),
 				__METHOD__,

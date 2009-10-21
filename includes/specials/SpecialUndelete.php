@@ -58,16 +58,15 @@ class PageArchive {
 		$title = Title::newFromText( $prefix );
 		if( $title ) {
 			$ns = $title->getNamespace();
-			$encPrefix = $dbr->escapeLike( $title->getDBkey() );
+			$prefix = $title->getDBkey();
 		} else {
 			// Prolly won't work too good
 			// @todo handle bare namespace names cleanly?
 			$ns = 0;
-			$encPrefix = $dbr->escapeLike( $prefix );
 		}
 		$conds = array(
 			'ar_namespace' => $ns,
-			"ar_title LIKE '$encPrefix%'",
+			'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
 		);
 		return self::listPages( $dbr, $conds );
 	}

@@ -69,7 +69,7 @@ function resolveStub( $id, $stubText, $flags ) {
 
 	# Get the (maybe) external row
 	$externalRow = $dbr->selectRow( 'text', array( 'old_text' ),
-		array( 'old_id' => $stub->mOldId, "old_flags LIKE '%external%'" ),
+		array( 'old_id' => $stub->mOldId, 'old_flags' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ) ),
 		$fname
 	);
 

@@ -105,7 +105,8 @@ function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 	# overwriting bulk storage concat rows. Don't compress external references, because
 	# the script doesn't yet delete rows from external storage.
 	$conds = array(
-		"old_flags NOT LIKE '%object%' AND old_flags NOT LIKE '%external%'");
+		'old_flags NOT ' . $dbr->buildLike( MATCH_STRING, 'object', MATCH_STRING ) . ' AND old_flags NOT '
+			. $dbr->buildLike( MATCH_STRING, 'external', MATCH_STRING ) );
 
 	if ( $beginDate ) {
 		if ( !preg_match( '/^\d{14}$/', $beginDate ) ) {

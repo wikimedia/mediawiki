@@ -1663,8 +1663,7 @@ class Title {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds['page_namespace'] = $this->getNamespace();
-		$conds[] = 'page_title LIKE ' . $dbr->addQuotes(
-				$dbr->escapeLike( $this->getDBkey() ) . '/%' );
+		$conds[] = 'page_title ' . $dbr->buildLike( $this->getDBkey() . '/', $dbr->anyString() );
 		$options = array();
 		if( $limit > -1 )
 			$options['LIMIT'] = $limit;
