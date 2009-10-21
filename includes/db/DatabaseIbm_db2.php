@@ -1662,29 +1662,7 @@ SQL;
 
 		$this->query( $sql, $fname );
 	}
-	
-	/**
-	 * Estimate rows in dataset
-	 * Returns estimated count, based on COUNT(*) output
-	 * Takes same arguments as Database::select()
-	 * @param string $table table name
-	 * @param array $vars unused
-	 * @param array $conds filters on the table
-	 * @param string $fname function name for profiling
-	 * @param array $options options for select
-	 * @return int row count
-	 */
-	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
-		$rows = 0;
-		$res = $this->select ($table, 'COUNT(*) as mwrowcount', $conds, $fname, $options );
-		if ($res) {
-			$row = $this->fetchRow($res);
-			$rows = (isset($row['mwrowcount'])) ? $row['mwrowcount'] : 0;
-		}
-		$this->freeResult($res);
-		return $rows;
-	}
-	
+
 	/**
 	 * Description is left as an exercise for the reader
 	 * @param mixed $b data to be encoded

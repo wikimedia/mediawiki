@@ -961,26 +961,26 @@ abstract class DatabaseBase {
 	
 	/**
 	 * Estimate rows in dataset
-	 * Returns estimated count, based on EXPLAIN output
+	 * Returns estimated count - not necessarily an accurate estimate across different databases,
+	 * so use sparingly
 	 * Takes same arguments as Database::select()
+	 *
+	 * @param string $table table name
+	 * @param array $vars unused
+	 * @param array $conds filters on the table
+	 * @param string $fname function name for profiling
+	 * @param array $options options for select
+	 * @return int row count
 	 */
 	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
-		$options['EXPLAIN'] = true;
-		$res = $this->select( $table, $vars, $conds, $fname, $options );
-		if ( $res === false )
-			return false;
-		if ( !$this->numRows( $res ) ) {
-			$this->freeResult($res);
-			return 0;
+		$rows = 0;
+		$res = $this->select ( $table, 'COUNT(*) AS rowcount', $conds, $fname, $options );
+		if ( $res ) {
+			$row = $this->fetchRow( $res );
+			$rows = ( isset( $row['rowcount'] ) ) ? $row['rowcount'] : 0;
 		}
-
-		$rows = 1;
-		while( $plan = $this->fetchObject( $res ) ) {
-			$rows *= $plan->rows > 0 ? $plan->rows : 1; // avoid resetting to zero
-		}
-
-		$this->freeResult($res);
-		return $rows;		
+		$this->freeResult( $res );
+		return $rows;
 	}
 
 	/**

@@ -446,22 +446,6 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * Estimate rows in dataset
-	 * Returns estimated count, based on EXPLAIN output
-	 * Takes same arguments as Database::select()
-	 */
-	function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
-		$rows = 0;
-		$res = $this->select ($table, 'COUNT(*)', $conds, $fname, $options );
-		if ($res) {
-			$row = $this->fetchObject($res);
-			$rows = $row[0];
-		}
-		$this->freeResult($res);
-		return $rows;
-	}
-	
-	/**
 	 * Determines whether a field exists in a table
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns NULL on failure
