@@ -2,7 +2,7 @@
 // * ajax.js:
   /*extern sajax_init_object, sajax_do_call */
 // * wikibits.js:
-  /*extern changeText, akeytt, hookEvent, jsMsg */
+  /*extern changeText, hookEvent, jsMsg */
 
 // These should have been initialized in the generated js
 /*extern wgAjaxWatch, wgPageName */
@@ -44,7 +44,6 @@ wgAjaxWatch.setLinkText = function( newText ) {
 wgAjaxWatch.setLinkID = function( newId ) {
 	// We can only set the first one
 	wgAjaxWatch.watchLinks[0].parentNode.setAttribute( 'id', newId );
-	akeytt(newId); // update tooltips for Monobook
 };
 
 wgAjaxWatch.setHref = function( string ) {

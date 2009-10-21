@@ -564,16 +564,21 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   false on non-special pages
 * (bug 21113) "Other statistics" header on Special:Statistics is no more
   displayed when there isn't any entry in it
-* (bug 21114) Special:Contributions no longer shows diff links for new revisions
+* (bug 21114) Special:Contributions no longer shows diff links for new
+  revisions
 * (bug 21116) MediaWiki:Templatesused, MediaWiki:Templatesusedpreview and
   MediaWiki:Templatesusedsection now support plural
-* (bug 21079) There is no more line wrapping between label and field in Special:Log
-* (bug 20256) Fixed SQL errors on Special:Recentchanges and Special:Recentchangeslinked
-  on SQLite backend
+* (bug 21079) There is no more line wrapping between label and field in
+  Special:Log
+* (bug 20256) Fixed SQL errors on Special:Recentchanges and
+  Special:Recentchangeslinked on SQLite backend
 * (bug 20880) Fixed updater failure on SQLite backend
 * (bug 21182) Fixed invalid HTML in Special:Listgrouprights
-* (bug 20242) Installer no longer promts for user credentials for SQLite databases
+* (bug 20242) Installer no longer promts for user credentials for SQLite
+  databases
 * (bug 20911) Installer failed to create a SQLite database
+* (bug 20847) Deprecated deprecated akeytt() removed in wikibits.js leaving
+  dummy
 
 == API changes in 1.16 ==
 
