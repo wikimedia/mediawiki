@@ -1559,6 +1559,8 @@ function do_postgres_updates() {
 		array("recentchanges", "rc_new_len",           "INTEGER"),
 		array("recentchanges", "rc_old_len",           "INTEGER"),
 		array("recentchanges", "rc_params",            "TEXT"),
+		array("redirect",      "rd_interwiki",         "TEXT NULL"),
+		array("redirect",      "rd_fragment",          "TEXT NULL"),
 		array("revision",      "rev_deleted",          "SMALLINT NOT NULL DEFAULT 0"),
 		array("revision",      "rev_len",              "INTEGER"),
 		array("revision",      "rev_parent_id",        "INTEGER DEFAULT NULL"),
