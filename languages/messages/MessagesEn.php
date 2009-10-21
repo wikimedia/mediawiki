@@ -2131,7 +2131,7 @@ Please check the file and upload again.',
 'destfilename'                => 'Destination filename:',
 'upload-maxfilesize'          => 'Maximum file size: $1',
 'upload-description'          => 'File description',
-'upload-options'              => '', # do not translate or duplicate this message to other languages
+'upload-options'              => 'Upload options',
 'watchthisupload'             => 'Watch this file',
 'filewasdeleted'              => 'A file of this name has been previously uploaded and subsequently deleted.
 You should check the $1 before proceeding to upload it again.',
