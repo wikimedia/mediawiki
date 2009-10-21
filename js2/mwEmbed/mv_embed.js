@@ -451,7 +451,7 @@ if( !mv_embed_path ) {
 			},
 			updateText : function( wikiText ){
 				this.wikiText = wikiText;
-				//invalidate the output (will force a reparse)
+				//invalidate the output (will force a re-parse )
 				this.pOut = '';
 			},
 			parse : function(){
@@ -530,7 +530,7 @@ if( !mv_embed_path ) {
 				}
 				function getMagicTxtFromTempNode( node ){
 					node.tObj = parseTmplTxt ( node.t );
-					//do magic swap if templet key found in pMagicSet
+					//do magic swap if template key found in pMagicSet
 					if( node.tObj.name in pMagicSet){
 						var nt = pMagicSet[ node.tObj.name ]( node.tObj );
 						return nt;
@@ -575,7 +575,7 @@ if( !mv_embed_path ) {
 				//strip out the parent from the root	
 				this.pNode['p'] = null;
 				
-				//do the recusrive magic swap text:
+				//do the recursive magic swap text:
 				this.pOut = recurse_magic_swap( this.pNode );
 
 			},
@@ -613,10 +613,10 @@ if( !mv_embed_path ) {
 			/**
 			 * Returns the transformed wikitext
 			 * 
-			 * Build output from swapable index 
-			 * 		(all transforms must be expanded in parse stage and linerarly rebuilt)  
-			 * Alternativly we could build output using a placeholder & replace system 
-			 * 		(this lets us be slightly more slopty with ordering and indexes, but probably slower)
+			 * Build output from swappable index 
+			 * 		(all transforms must be expanded in parse stage and linearly rebuilt)  
+			 * Alternatively we could build output using a place-holder & replace system 
+			 * 		(this lets us be slightly more slopy with ordering and indexes, but probably slower)
 			 * 
 			 * Ideal: we build a 'wiki DOM' 
 			 * 		When editing you update the data structure directly
@@ -641,11 +641,6 @@ var loadGM = $mw.lang.loadGM;
 var loadRS = $mw.lang.loadRS;
 var gM = $mw.lang.gM;
 
-//if some no-js2 script defined and loaded gMsg in global space:
-if( _global['gMsg'] ){
-	loadGM( _global['gMsg'] );
-}
-
 // All default messages in [English] should be overwritten by the CMS language message system.
 $mw.lang.loadGM({
 	"mwe-loading_txt" : "loading ...",
@@ -656,10 +651,10 @@ $mw.lang.loadGM({
 	"mwe-size-bytes" : "$1 B",
 	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2",
 	"mwe-loading-add-media-wiz": "Loading add media wizard",
-	"mwe-apiproxy-setup" : " Setting up API proxy"
+	"mwe-apiproxy-setup" : "Setting up API proxy",
+	"mwe-load-drag-item" : "Loading draged item", 
+	"mwe-ok" : "Ok" 
 });
-
-
 
 /**
  * AutoLoader paths (this should mirror the file: jsAutoloadLocalClasses.php )
@@ -757,6 +752,7 @@ lcPaths({
 	"$j.ui.draggable"		: "jquery/jquery.ui/ui/ui.draggable.js",
 	"$j.ui.selectable"		: "jquery/jquery.ui/ui/ui.selectable.js",
 
+	"$mw.dragDropFile"		: "libAddMedia/dragDropFile.js",
 	"mvFirefogg"			: "libAddMedia/mvFirefogg.js",
 	"mvAdvFirefogg"			: "libAddMedia/mvAdvFirefogg.js",
 	"mvBaseUploadInterface"	: "libAddMedia/mvBaseUploadInterface.js",
@@ -1133,8 +1129,6 @@ function mwdomReady( force ) {
 		document.getElementsByTagName( "playlist" )
 	];
 	if( e[0].length != 0 || e[1].length != 0 || e[2].length != 0 ) {
-		js_log( 'we have items to rewrite' );
-		setSwappableToLoading( e );
 		// Load libs and process them
 		mvJsLoader.embedVideoCheck( function() {
 			// Run any queued global events:
@@ -1148,16 +1142,9 @@ function mwdomReady( force ) {
 		mvJsLoader.runQueuedFunctions();
 	}
 }
-// A quick function that sets the initial text of swappable elements to "loading".
-// jQuery might not be ready. Does not destroy inner elements.
-function setSwappableToLoading( e ) {
-	//for(var i =0)
-	//for(var j = 0; i < j.length; j++){
-	//}
-}
+
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
-function js2AddOnloadHook( func ) {
-	js_log("js2AddOnloadHook::" + mvJsLoader.doneReadyEvents);
+function js2AddOnloadHook( func ) {	
 	// If we have already run the DOM-ready function, just run the function directly:
 	if( mvJsLoader.doneReadyEvents ) {
 		// Make sure jQuery is there:
@@ -1204,14 +1191,26 @@ window.onload = function () {
  * Store all the mwEmbed jQuery-specific bindings
  * (set up after jQuery is available).
  *
- * These functions are genneraly are loaders that do the dynamic mapping of
- * dependencies for a given compoent
+ * These functions are generaly are loaders that do the dynamic mapping of
+ * dependencies for a given componet
  * 
  *
  */
 function mv_jqueryBindings() {
 	js_log( 'mv_jqueryBindings' );
 	(function( $ ) {
+		/*
+		* dragDrop file loader 
+		*/
+		$.fn.dragFileUpload = function ( conf ){
+			if( this.selector ){	
+				var _this = this;	
+				//load the dragger and "setup"
+				$mw.load( ['$mw.dragDropFile'], function(){
+					$mw.dragDropFile( _this.selector );							
+				}); 
+			}					 
+		}
 		/*
 		 * apiProxy Loader loader:
 		 * 
@@ -1491,7 +1490,13 @@ function mv_jqueryBindings() {
 			//append the style free loader ontop: 
 			$('body').append('<div id="mwe_tmp_loader" style="display:none" title="' + title + '" >' +
 					msg_txt +
-			'</div>');
+			'</div>');			
+			//special btn == ok gives empty give a single "oky" -> "close"
+			if( btn == 'ok' ){
+				btn[ gM('mwe-ok') ] = function(){
+					$j('#mwe_tmp_loader').close();
+				}
+			}
 			//turn the loader into a real dialog loader: 
 			mvJsLoader.doLoadDepMode([
 				[

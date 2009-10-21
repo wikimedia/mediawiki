@@ -24,6 +24,11 @@ js2AddOnloadHook( function() {
 	var amwConf = $j.extend( true, defaultAddMediaConfig, mwAddMediaConfig );
 	// kind of tricky, it would be nice to use run on ready "loader" call here
 	var didWikiEditorBind = false;
+	
+	//setup the drag drop binding (will only work for html5 upload browsers) 
+	//$j( 'textarea#wpTextbox1' ).dragFileUpload();
+	
+	//set up the add-media-wizard binding: 
 	if( typeof $j.wikiEditor != 'undefined' ) {
 			$j( 'textarea#wpTextbox1' ).bind( 'wikiEditor-toolbar-buildSection-main',
 		    function( e, section ) {
