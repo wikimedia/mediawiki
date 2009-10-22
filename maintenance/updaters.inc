@@ -183,8 +183,12 @@ $wgUpdates = array(
 		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
-		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
+		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
 		array( 'add_table', 'l10n_cache',              'patch-l10n_cache.sql' ),
+		array( 'add_table', 'external_user', 'patch-external_user.sql' ),
+		array( 'add_index', 'log_search', 'ls_field_val', 'patch-log_search-rename-index.sql' ),
+		array( 'add_index', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
+		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
 	),
 );
 
