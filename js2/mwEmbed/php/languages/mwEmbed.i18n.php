@@ -208,7 +208,7 @@ $messages['en'] = array(
 	'mwe-ftype-png' => 'PNG image file',
 	'mwe-ftype-oga' => 'Ogg audio file',
 	'mwe-ftype-ogg' => 'Ogg video file',
-	'mwe-ftype-unk' => 'Unknown File Format',
+	'mwe-ftype-unk' => 'Unknown file format',
 
 	/*
 	 * js file: /libAddMedia/simpleUploadForm.js
