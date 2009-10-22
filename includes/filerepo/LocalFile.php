@@ -778,7 +778,7 @@ class LocalFile extends File
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false )
 	{
-		$pageText = UploadForm::getInitialPageText( $desc, $license, $copyStatus, $source );
+		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
 		if ( !$this->recordUpload2( $oldver, $desc, $pageText ) ) {
 			return false;
 		}
