@@ -83,6 +83,8 @@ class EditPage {
 	public $editFormTextAfterWarn;
 	public $editFormTextAfterTools;
 	public $editFormTextBottom;
+	public $editFormTextAfterContent;
+	public $previewTextAfterContent;
 
 	/* $didSave should be set to true whenever an article was succesfully altered. */
 	public $didSave = false;
@@ -106,6 +108,8 @@ class EditPage {
 		$this->editFormTextAfterWarn =
 		$this->editFormTextAfterTools =
 		$this->editFormTextBottom =
+		$this->editFormTextAfterContent =
+		$this->previewTextAfterContent =
 		$this->mPreloadText = "";
 	}
 	
@@ -1547,6 +1551,8 @@ END
 END
 );
 		$this->showTextbox1( $classes );
+		
+		$wgOut->addHTML( $this->editFormTextAfterContent );
 
 		$wgOut->wrapWikiMsg( "<div id=\"editpage-copywarn\">\n$1\n</div>", $copywarnMsg );
 		$wgOut->addHTML( <<<END
@@ -1870,7 +1876,7 @@ END
 			$wgOut->parse( $note ) . $conflict . "</div>\n";
 
 		wfProfileOut( __METHOD__ );
-		return $previewhead . $previewHTML;
+		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}
 	
 	function getTemplates() {
