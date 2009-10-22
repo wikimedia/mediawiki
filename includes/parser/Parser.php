@@ -3282,8 +3282,11 @@ class Parser
 					$output = Xml::escapeTagsOnly( $content );
 					break;
 				case 'math':
-					$output = $wgContLang->armourMath(
-						MathRenderer::renderMath( $content, $attributes ) );
+					if ( $this->mOptions->getUseTeX() ) {
+						$output = $wgContLang->armourMath(
+							MathRenderer::renderMath( $content, $attributes ) );
+					}
+					/* else let a tag hook handle it (bug 21222) */	
 					break;
 				case 'gallery':
 					$output = $this->renderImageGallery( $content, $attributes );

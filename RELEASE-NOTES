@@ -254,6 +254,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   reuploading.
 * Added $wgRateLimitsExcludedIPs, to allow specific IPs to be whitelisted from
   rate limits.
+* (bug 21222) When $wgUseTeX is not enabled, <math> is no longer registered with
+  the parser so extensions are free to implement their own <math> tag
 
 === Bug fixes in 1.16 ===
 
