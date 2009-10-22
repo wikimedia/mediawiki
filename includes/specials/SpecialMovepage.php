@@ -458,7 +458,7 @@ class MovePageForm {
 
 			$newPageName = preg_replace(
 				'#^'.preg_quote( $ot->getDBkey(), '#' ).'#',
-				$nt->getDBkey(),
+				str_replace( '\\', '\\\\', $nt->getDBkey() ), # bug 21234
 				$oldSubpage->getDBkey()
 			);
 			if( $oldSubpage->isTalkPage() ) {
