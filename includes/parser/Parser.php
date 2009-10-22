@@ -3285,9 +3285,9 @@ class Parser
 					if ( $this->mOptions->getUseTeX() ) {
 						$output = $wgContLang->armourMath(
 							MathRenderer::renderMath( $content, $attributes ) );
+							break;
 					}
 					/* else let a tag hook handle it (bug 21222) */	
-					break;
 				case 'gallery':
 					$output = $this->renderImageGallery( $content, $attributes );
 					break;
