@@ -258,6 +258,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the parser so extensions are free to implement their own <math> tag
 * (bug 21047) Wrap 'cannotdelete' into a div with the generic 'error' class and
   an own 'mw-error-cannotdelete' class
+* Maintenance scripts now set nonzero exit codes when terminating due to error
 
 === Bug fixes in 1.16 ===
 
