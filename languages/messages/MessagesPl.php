@@ -1648,6 +1648,7 @@ Sprawdź plik i załaduj poprawną wersję.',
 'destfilename'                => 'Nazwa docelowa',
 'upload-maxfilesize'          => 'Wielkość pliku ograniczona jest do $1',
 'upload-description'          => 'Opis pliku',
+'upload-options'              => 'Opcje przesyłania',
 'watchthisupload'             => 'Obserwuj ten plik',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został usunięty.
 Zanim załadujesz go ponownie, sprawdź $1.',

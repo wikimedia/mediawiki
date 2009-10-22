@@ -19,7 +19,6 @@
  * @author MF-Warburg
  * @author Malafaya
  * @author Omnipaedista
- * @author Raymond
  * @author Remember the dot
  * @author Sinopeus
  * @author Urhixidur

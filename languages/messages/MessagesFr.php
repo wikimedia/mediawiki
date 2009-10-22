@@ -40,7 +40,6 @@
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
- * @author Raymond
  * @author Remember the dot
  * @author Seb35
  * @author Sherbrooke
@@ -697,7 +696,7 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'unexpected'           => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror'            => 'Erreur : Impossible de soumettre le formulaire',
 'badarticleerror'      => 'Cette action ne peut pas être effectuée sur cette page.',
-'cannotdelete'         => 'Impossible de supprimer la page ou le fichier indiqué.
+'cannotdelete'         => 'Impossible de supprimer la page ou le fichier « $1 ».
 La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
 'badtitle'             => 'Mauvais titre',
 'badtitletext'         => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
@@ -810,6 +809,7 @@ Entrez une adresse bien formatée ou laissez ce champ vide.',
 Vous devriez ouvrir une session et modifier dès à présent votre mot de passe.
 
 Ignorez ce message si ce compte a été créé par erreur.',
+'usernamehasherror'          => "Le nom d'utilisateur ne peut pas contenir des caractères de hachage",
 'login-throttled'            => 'Vous avez tenté un trop grand nombre de connexions dernièrement.
 Veuillez attendre avant d’essayer à nouveau.',
 'loginlanguagelabel'         => 'Langue : $1',
@@ -1726,6 +1726,7 @@ Veuillez vérifier le fichier avant de le téléverser à nouveau.',
 'destfilename'                => 'Nom sous lequel le fichier sera enregistré :',
 'upload-maxfilesize'          => 'Taille maximale du fichier : $1',
 'upload-description'          => 'Description du fichier',
+'upload-options'              => 'Options de téléversement',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été téléversé, puis supprimé.
 Vous devriez vérifier le $1 avant de procéder à un nouveau téléversement.',

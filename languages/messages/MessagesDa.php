@@ -25,7 +25,6 @@
  * @author Peter Andersen
  * @author Purodha
  * @author Remember the dot
- * @author RobertL
  * @author Sir48
  * @author Slomox
  * @author Svip

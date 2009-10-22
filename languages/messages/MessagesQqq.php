@@ -1564,12 +1564,15 @@ Error message at [[Special:Upload]]",
 'uploaddisabledtext'          => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
 'php-uploaddisabledtext'      => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
 'uploadvirus'                 => 'Note displayed when uploaded file contains a virus',
+'upload-source'               => 'Caption above a section of the [[Special:Upload]] page',
 'sourcefilename'              => 'In [[Special:Upload]]',
 'sourceurl'                   => 'Caption for the upload-by-url feature at [[Special:Upload]]',
 'destfilename'                => 'In [[Special:Upload]]',
 'upload-maxfilesize'          => 'Shows at [[Special:Upload]] the maximum file size that can be uploaded.
 
 $1 is the value in KB/MB/GB',
+'upload-description'          => 'Caption above a section of the [[Special:Upload]] page',
+'upload-options'              => 'Caption above a section of the [[Special:Upload]] page',
 'watchthisupload'             => 'In [[Special:Upload]]',
 'filewasdeleted'              => 'This warning is shown when trying to upload a file that does not exist, but has previously been deleted.
 Parameters:
@@ -2675,7 +2678,7 @@ It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|
 If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
 
 See also {{msg-mw|Siteuser}}.',
-'anonusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
+'anonusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Support|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
 * $1 is a list of IP addresses

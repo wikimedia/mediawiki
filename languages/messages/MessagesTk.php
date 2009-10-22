@@ -552,7 +552,7 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 'math_tip'        => 'Matematiki formula (LaTeX formatynda)',
 'nowiki_sample'   => 'Erkin formatdaky tekstiňizi şu ýere ýazyň',
 'nowiki_tip'      => 'Wiki formatirlemesini hasap etme',
-'image_tip'       => 'Surat goşmak',
+'image_tip'       => 'Salnan faýl',
 'media_tip'       => 'Multimediýa faýlyna çykgyt',
 'sig_tip'         => 'Wagt belgili goluňyz',
 'hr_tip'          => 'Gorizontal liniýa (ýygy-ýygydan ulanmaň)',
@@ -1456,6 +1456,7 @@ Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir
 'destfilename'                => 'Niýetlenilýän faýlyň ady:',
 'upload-maxfilesize'          => 'Maksimum faýl ölçegi: $1',
 'upload-description'          => 'Faýl düşündirişi',
+'upload-options'              => 'Ýükleme opsiýalary',
 'watchthisupload'             => 'Bu faýla gözegçilik et',
 'filewasdeleted'              => 'Şeýle atly faýl ozal ýüklenipdir we soňra öçürilipdir. Faýly ýüklemänkäňiz, $1 sahypasyna bir göz aýlaň.',
 'upload-wasdeleted'           => "'''Duýduryş: Ozal öçürilen bir faýly ýükleýärsiňiz.'''
