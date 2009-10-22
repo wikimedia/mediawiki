@@ -54,7 +54,7 @@ loadGM({
 	"mwe-ftype-png" : "PNG image file",
 	"mwe-ftype-oga"	: "Ogg audio file",
 	"mwe-ftype-ogg" : "Ogg video file",
-	"mwe-ftype-unk" : "Unknown File Format"
+	"mwe-ftype-unk" : "Unknown file format"
 });
 
 var default_remote_search_options = {
