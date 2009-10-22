@@ -139,14 +139,14 @@ class SpecialActiveUsers extends SpecialPage {
 		global $wgOut, $wgLang, $wgRCMaxAge;
 
 		$this->setHeaders();
-		
+
 		$up = new ActiveUsersPager();
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
 
                 $s = Html::rawElement( 'div', array( 'class' => 'mw-activeusers-intro' ),
-                        wfMsg( 'activeusers-intro', $wgLang->formatNum( ceil( $wgRCMaxAge / 86400 ) )   )
+                        wfMsgExt( 'activeusers-intro', 'parsemag', $wgLang->formatNum( ceil( $wgRCMaxAge / 86400 ) ) )
                 );
 
 		$s .= $up->getPageHeader();
