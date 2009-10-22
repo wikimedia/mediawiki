@@ -354,8 +354,10 @@ class User {
 			$validate = 'valid';
 		}
 		$name = self::getCanonicalName( $name, $validate );
-		if ( $name === false ) {
-			return null;
+		if ( WikiError::isError( $name ) ) {
+			return $name;
+		} elseif ( $name === false ) {
+			return false;
 		} else {
 			# Create unloaded user object
 			$u = new User;
@@ -693,7 +695,7 @@ class User {
 		# with title normalisation, but then it's too late to
 		# check elsewhere
 		if( strpos( $name, '#' ) !== false )
-			return false;
+			return new WikiError( 'usernamehasherror' );
 
 		# Clean up name according to title rules
 		$t = ( $validate === 'valid' ) ?
