@@ -1122,6 +1122,7 @@ Please enter a well-formatted address or empty that field.',
 You should log in and change your password now.
 
 You may ignore this message, if this account was created in error.',
+'usernamehasherror'          => 'Username cannot contain hash characters',
 'login-throttled'            => 'You have made too many recent login attempts.
 Please wait before trying again.',
 'loginlanguagelabel'         => 'Language: $1',
@@ -1812,7 +1813,7 @@ This information will be public.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
-'prefs-help-email'              => 'E-mail address is optional, but allows a new password to be e-mailed to you if you forget your password.
+'prefs-help-email'              => 'E-mail address is optional, but is needed for password resets, should you forget your password.
 You can also choose to let others contact you through your user or talk page without needing to reveal your identity.',
 'prefs-help-email-required'     => 'E-mail address is required.',
 'prefs-info'                    => 'Basic information',
