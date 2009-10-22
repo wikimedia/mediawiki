@@ -232,7 +232,7 @@ abstract class Maintenance {
 			fwrite( $f, $err . "\n" );
 			fclose( $f );
 		}
-		if( $die ) die();
+		if( $die ) exit( 1 );
 	}
 
 	/**
