@@ -32,7 +32,7 @@ loadGM({
 	"mwe-cc_sa_title" : "Share Alike",
 	"mwe-cc_pd_title" : "Public Domain",
 	"mwe-unknown_license" : "Unknown license",
-	"mwe-no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<p>Do you need to login?<\/p><p>Is upload_by_url permission set for you?<\/br> Do you need may have to enable <a href=\"http:\/\/www.mediawiki.org\/wiki\/Manual:$wgAllowCopyUploads\">$wgAllowCopyUploads<\/a>.<\/p>",
+	"mwe-no_import_by_url" : "This user or wiki <b>cannot<\/b> import assets from remote URLs.<p>Do you need to login?<\/p><p>Is upload_by_url permission set for you?<br \/>Does the wiki have <a href=\"http:\/\/www.mediawiki.org\/wiki\/Manual:$wgAllowCopyUploads\">$wgAllowCopyUploads<\/a> enabled?<\/p>",
 	"mwe-results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
 	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
 	"rsd_config_error" : "Add media wizard configuration error: $1",
