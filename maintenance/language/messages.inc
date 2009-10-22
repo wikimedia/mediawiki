@@ -461,6 +461,7 @@ $wgMessageStructure = array(
 		'accountcreatedtext',
 		'createaccount-title',
 		'createaccount-text',
+		'usernamehasherror',
 		'login-throttled',
 		'loginlanguagelabel',
 		'loginlanguagelinks',
