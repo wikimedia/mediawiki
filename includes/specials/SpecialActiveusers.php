@@ -136,15 +136,20 @@ class SpecialActiveUsers extends SpecialPage {
 	 * @param $par Mixed: parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		global $wgOut;
+		global $wgOut, $wgLang, $wgRCMaxAge;
 
 		$this->setHeaders();
-
+		
 		$up = new ActiveUsersPager();
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
-		$s = $up->getPageHeader();
+
+                $s = Html::rawElement( 'div', array( 'class' => 'mw-activeusers-intro' ),
+                        wfMsg( 'activeusers-intro', $wgLang->formatNum( ceil( $wgRCMaxAge / 86400 ) )   )
+                );
+
+		$s .= $up->getPageHeader();
 		if( $usersbody ) {
 			$s .= $up->getNavigationBar();
 			$s .= Html::rawElement( 'ul', array(), $usersbody );
