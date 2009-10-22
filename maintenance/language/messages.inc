@@ -1644,6 +1644,7 @@ $wgMessageStructure = array(
 		'activeusers-from',
 		'activeusers-submit',
 		'activeusers-noresult',
+		'activeusers-intro',
 	),
 	'newuserlog' => array(
 		'newuserlogpage',
