@@ -198,7 +198,7 @@ class Preferences {
 		$defaultPreferences['gender'] =
 				array(
 					'type' => 'select',
-					'default' => 'male',
+					'default' => 'unknown',
 					'section' => 'personal/info',
 					'options' => array(
 						wfMsg( 'gender-male' ) => 'male',
