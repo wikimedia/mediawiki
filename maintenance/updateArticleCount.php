@@ -77,7 +77,7 @@ class UpdateArticleCount extends Maintenance {
 	private function makeSql( $dbr ) {
 		list( $page, $pagelinks ) = $dbr->tableNamesN( 'page', 'pagelinks' );
 		$nsset = $this->makeNsSet();
-		return "SELECT COUNT(DISTINCT page_namespace, page_title) AS pagecount " .
+		return "SELECT COUNT(DISTINCT page_id) AS pagecount " .
 			"FROM $page, $pagelinks " .
 			"WHERE pl_from=page_id and page_namespace IN ( $nsset ) " .
 			"AND page_is_redirect = 0 AND page_len > 0";

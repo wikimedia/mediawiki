@@ -585,6 +585,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20268) Fixed row count estimation on SQLite backend
 * (bug 20275) Fixed LIKE queries on SQLite backend
 * (bug 21234) Moving subpages of titles containing \\ now works properly
+* (bug 21006) maintenance/updateArticleCount.php now works again on PostgreSQL
 
 == API changes in 1.16 ==
 
