@@ -3281,16 +3281,16 @@ class Parser
 					$content = strtr($content, array('-{' => '-&#123;', '}-' => '&#125;-'));
 					$output = Xml::escapeTagsOnly( $content );
 					break;
+				case 'gallery':
+					$output = $this->renderImageGallery( $content, $attributes );
+					break;
 				case 'math':
 					if ( $this->mOptions->getUseTeX() ) {
 						$output = $wgContLang->armourMath(
 							MathRenderer::renderMath( $content, $attributes ) );
 							break;
 					}
-					/* else let a tag hook handle it (bug 21222) */	
-				case 'gallery':
-					$output = $this->renderImageGallery( $content, $attributes );
-					break;
+					/* else let a tag hook handle it (bug 21222) */
 				default:
 					if( isset( $this->mTagHooks[$name] ) ) {
 						# Workaround for PHP bug 35229 and similar
