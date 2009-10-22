@@ -2053,6 +2053,7 @@ class User {
 	 */
 	function getEffectiveGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
+			wfProfileIn( __METHOD__ );
 			$this->mEffectiveGroups = $this->getGroups();
 			$this->mEffectiveGroups[] = '*';
 			if( $this->getId() ) {
@@ -2066,6 +2067,7 @@ class User {
 				# Hook for additional groups
 				wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
 			}
+			wfProfileOut( __METHOD__ );
 		}
 		return $this->mEffectiveGroups;
 	}
