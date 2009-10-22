@@ -103,8 +103,21 @@ $messages['en'] = array(
 	'mwe-size-kilobytes' => '$1 K',
 	'mwe-size-bytes' => '$1 B',
 	'mwe-error_load_lib' => 'Error: JavaScript $1 was not retrievable or does not define $2',
-	'mwe-loading-add-media-wiz' => "Loading add media wizard",
-	'mwe-apiproxy-setup' => " Setting up API proxy",
+	'mwe-loading-add-media-wiz' => 'Loading add media wizard',
+	'mwe-apiproxy-setup' => 'Setting up API proxy',
+	'mwe-load-drag-item' => 'Loading dragged item',
+	'mwe-ok' => 'OK',
+
+	/*
+	 * js file: /libMwApi/mw.proxy.js
+	 */
+	'mwe-setting-up-proxy' => 'Setting up proxy...',
+	'mwe-re-try' => 'Retry API request',
+	'mwe-re-trying' => 'Retrying API request...',
+	'mwe-cancel' => 'Cancel',
+	'mwe-proxy-not-ready' => 'Proxy is not configured',
+	'mwe-please-login' => 'You are not <a target="_new" href="$1">logged in</a> on $2 or mwEmbed has not been enabled. Resolve the issue, and then retry the request.',
+	'mwe-remember-loging' => 'General security reminder: Only login to web sites when your address bar displays that site\'s address.',
 
 	/*
 	 * js file: /libAddMedia/mvFirefogg.js
@@ -154,7 +167,8 @@ $messages['en'] = array(
 	'mwe-media_search' => 'Media search',
 	'rsd_box_layout' => 'Box layout',
 	'rsd_list_layout' => 'List layout',
-	'rsd_results_desc' => 'Results',
+	'rsd_results_desc' => 'Results $1 to $2',
+	'rsd_results_total' => ' of $1 ',
 	'rsd_results_next' => 'next',
 	'rsd_results_prev' => 'previous',
 	'rsd_no_results' => 'No search results for <b>$1</b>',
@@ -172,12 +186,12 @@ $messages['en'] = array(
 	'mwe-cc_sa_title' => 'Share Alike',
 	'mwe-cc_pd_title' => 'Public Domain',
 	'mwe-unknown_license' => 'Unknown license',
-	'mwe-no_import_by_url' => 'This user or wiki <b>can not</b> import assets from remote URLs.<p>Do you need to login?</p><p>If permissions are set, you may have to enable <a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">$wgAllowCopyUploads</a>.</p>',
+	'mwe-no_import_by_url' => 'This user or wiki <b>cannot</b> import assets from remote URLs.<p>Do you need to login?</p><p>Is upload_by_url permission set for you?<br />Does the wiki have <a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">$wgAllowCopyUploads</a> enabled?</p>',
 	'mwe-results_from' => 'Results from <a href="$1" target="_new" >$2</a>',
 	'mwe-missing_desc_see_source' => 'This asset is missing a description. Please see the [$1 orginal source] and help describe it.',
 	'rsd_config_error' => 'Add media wizard configuration error: $1',
-	'mwe-your_recent_uploads' => 'Your recent uploads',
-	'mwe-upload_a_file' => 'Upload a new file',
+	'mwe-your_recent_uploads' => 'Your recent uploads to $1',
+	'mwe-upload_a_file' => 'Upload a new file to $1',
 	'mwe-resource_page_desc' => 'Resource page description:',
 	'mwe-edit_resource_desc' => 'Edit wiki text resource description:',
 	'mwe-local_resource_title' => 'Local resource title:',
@@ -188,7 +202,13 @@ $messages['en'] = array(
 	'mwe-importing_asset' => 'Importing asset',
 	'mwe-preview_insert_resource' => 'Preview insert of resource: $1',
 	'mwe-checking-resource' => 'Checking for resource',
-	'mwe-resource-needs-import' => 'Resource $1 needs to be imported',
+	'mwe-resource-needs-import' => 'Resource $1 needs to be imported to $2',
+	'mwe-ftype-svg' => 'SVG vector file',
+	'mwe-ftype-jpg' => 'JPEG image file',
+	'mwe-ftype-png' => 'PNG image file',
+	'mwe-ftype-oga' => 'Ogg audio file',
+	'mwe-ftype-ogg' => 'Ogg video file',
+	'mwe-ftype-unk' => 'Unknown File Format',
 
 	/*
 	 * js file: /libAddMedia/simpleUploadForm.js
@@ -280,7 +300,7 @@ $messages['en'] = array(
 	'mwe-read_before_embed' => 'Please read the <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">security notes on remote embedding</a> before actually embedding!',
 	'mwe-embed_site_or_blog' => 'Embed on your site or blog',
 	'mwe-related_videos' => 'Related videos',
-	'mwe-seeking' => "seeking",
+	'mwe-seeking' => 'seeking',
 );
 
 /** Message documentation (Message documentation)
