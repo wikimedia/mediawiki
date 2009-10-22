@@ -8,7 +8,6 @@
  * @file
  *
  * @author Agbad
- * @author Raymond
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  * @author Rotemliss

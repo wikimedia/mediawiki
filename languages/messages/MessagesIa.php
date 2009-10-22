@@ -10,7 +10,6 @@
  * @author Julian Mendez
  * @author Malafaya
  * @author McDutchie
- * @author Raymond
  * @author לערי ריינהארט
  */
 

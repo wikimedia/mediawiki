@@ -1703,6 +1703,7 @@ Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
 'destfilename'                => 'Cílové jméno:',
 'upload-maxfilesize'          => 'Maximální dovolená velikost souboru: $1',
 'upload-description'          => 'Popis souboru',
+'upload-options'              => 'Možnosti načtení',
 'watchthisupload'             => 'Sledovat tento soubor',
 'filewasdeleted'              => 'Soubor stejného jména byl již dříve načten a posléze smazán. Podrobnosti obsahuje $1.',
 'upload-wasdeleted'           => "'''Upozornění: Načítáte soubor, který byl již dříve smazán.'''

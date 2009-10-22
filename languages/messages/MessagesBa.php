@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Timming
  * @author Рустам Нурыев
  */
 

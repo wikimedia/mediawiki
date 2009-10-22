@@ -271,6 +271,28 @@ iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br 
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 '''ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!'''",
 
+# Diffs
+'editundo'             => 'Urri',
+'diff-multi'           => '({{PLURAL:$1|Gr yan usurri|$1 gr isuritn}} ura tuyfsar)',
+'diff-movedto'         => 'Tmmutti s $1',
+'diff-styleadded'      => '$1 anaw ittuysmadn',
+'diff-added'           => '$1 ittuysmad',
+'diff-changedto'       => 'Ibudl s dar $1',
+'diff-movedoutof'      => 'Immatti z dar $1',
+'diff-styleremoved'    => '$1 anaw ittuykkasn',
+'diff-removed'         => '$1 ittuykkas',
+'diff-changedfrom'     => 'Ibudl z $1',
+'diff-src'             => 'Aɣbalu',
+'diff-withdestination' => 'D usmmtay s $1',
+'diff-with'            => '&#32; d $1 $2',
+'diff-with-additional' => '$1 $2',
+'diff-with-final'      => '&#32; d $1 $2',
+'diff-width'           => 'Afsr',
+'diff-height'          => 'Attuy',
+'diff-p'               => "'''Agṭṭum'''",
+'diff-blockquote'      => "'''Asattuy'''",
+'diff-h1'              => "'''ansa (taskfalt 1)'''",
+
 # Search results
 'searchprofile-everything-tooltip' => 'Cabba ɣ kullu may ityran ɣid (d ḥtta ɣ tisna nu umsgdal)',
 'searchprofile-advanced-tooltip'   => 'Cabba ɣ igmmaḍn li tuyzlaynin',
@@ -281,8 +303,10 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'search-suggest'                   => 'Is trit att nnit: $1',
 'search-interwiki-caption'         => 'Tiwuriwin taytmatin',
 'search-interwiki-more'            => '(Uggar)',
+'search-mwsuggest-enabled'         => 'D mara ittuyskar',
+'search-mwsuggest-disabled'        => 'Ur illa marayttuskar',
 'search-relatedarticle'            => 'Tzdi',
-'mwsuggest-disable'                => 'Asbid AJAKS n mayttuynnan at tuyskar',
+'mwsuggest-disable'                => 'Asbid AJAX n maryttuynnan ayttuyskar',
 'searcheverything-enable'          => 'Cabba ɣ graygat agmmaḍ',
 'searchrelated'                    => 'Tuyzday',
 'searchall'                        => 'Kullu',
@@ -305,10 +329,12 @@ Tzdar at cabbat ɣilad ɣ Google.
 Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 # Quickbar
-'qbsettings'            => 'Tafeggagt izrbn',
-'qbsettings-none'       => 'Ur iḥudda',
-'qbsettings-fixedleft'  => 'Aẓẓugz azlmaḍ',
-'qbsettings-fixedright' => 'Azzugz afasi',
+'qbsettings'               => 'Tafeggagt izrbn',
+'qbsettings-none'          => 'Ur iḥudda',
+'qbsettings-fixedleft'     => 'Aẓẓugz azlmaḍ',
+'qbsettings-fixedright'    => 'Azzugz afasi',
+'qbsettings-floatingleft'  => 'Yaywul su uzlmad',
+'qbsettings-floatingright' => 'Yaywul su ufasi',
 
 # Preferences page
 'preferences'   => 'Timssusmin',

@@ -12,7 +12,6 @@
  * @author Jóna Þórunn
  * @author Krun
  * @author Maxí
- * @author Raymond
  * @author S.Örvarr.S
  * @author Spacebirdy
  * @author Steinninn
