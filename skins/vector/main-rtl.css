@@ -577,6 +577,22 @@ body {
 }
 
 /*
+ *  * Styles for the user login and create account forms
+ *   */
+#userlogin, #userloginForm {
+        border: solid 1px #cccccc;
+        padding: .8em;
+        margin: .5em;
+	float: right;
+}
+
+#userlogin {
+	min-width: 20em;
+	max-width: 90%;
+	width: 40em;
+}
+
+/*
  * 
  * The following code is slightly modified from monobook
  * 
