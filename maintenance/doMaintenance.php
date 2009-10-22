@@ -86,13 +86,10 @@ $wgTitle = null;
 
 // Do the work
 try {
-	$result = $maintenance->execute();
+	$maintenance->execute();
 } catch( MWException $mwe ) {
 	echo( $mwe->getText() );
-	$result = 1;
 }
 
 // Potentially debug globals
 $maintenance->globals();
-
-exit( intval( $result ) );
