@@ -3440,7 +3440,7 @@ $1',
 'specialpages'                   => 'דפים מיוחדים',
 'specialpages-note'              => '----
 * דפים מיוחדים רגילים.
-* <strong class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
+* <strong class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</strong>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other'       => 'דפים מיוחדים אחרים',
 'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',
