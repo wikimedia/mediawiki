@@ -928,8 +928,10 @@ CONTROL;
 		<td colspan='$colspan' class='diff-ntitle'>{$ntitle}</td>
 		</tr>";
 
-		if ( $multi != '' )
-		$header .= "<tr><td colspan='4' align='center' class='diff-multi'>{$multi}</td></tr>";
+		if ( $multi != '' ) {
+			$multiColspan = $diff ? 4 : 2;
+			$header .= "<tr><td colspan='{$multiColspan}' align='center' class='diff-multi'>{$multi}</td></tr>";
+		}
 
 		return $header . $diff . "</table>";
 	}
