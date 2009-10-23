@@ -1448,7 +1448,7 @@ $term: string of search term
 
 'SpecialUploadComplete': Called after successfully uploading a file from 
 Special:Upload
-$form: The UploadForm object
+$form: The SpecialUpload object
 
 'SpecialVersionExtensionTypes': called when generating the extensions credits,
 use this to change the tables headers
@@ -1493,16 +1493,20 @@ $article: article object removed
 $user: user that watched
 $article: article object that was watched
 
-'UploadForm:initial': before the upload form is generated
-$form: UploadForm object
-You might set the member-variables $uploadFormTextTop and
-$uploadFormTextAfterSummary to inject text (HTML) either before
-or after the editform.
+'UploadCreateFromRequest': when UploadBase::createFromRequest has been called
+string $type: the requested upload type
+&$className: the class name of the Upload instance to be created
 
-'UploadForm:BeforeProcessing': at the beginning of processUpload()
-$form: UploadForm object
-Lets you poke at member variables like $mUploadDescription before the
-file is saved.
+'UploadComplete': when Upload completes an upload
+&$upload: an UploadBase child instance
+
+'UploadFormInitDescriptor': after the descriptor for the upload form as been 
+assembled
+array $descriptor: the HTMLForm descriptor
+
+'UploadFormSourceDescriptors': after the standard source inputs have been 
+added to the descriptor
+array $descriptor: the HTMLForm descriptor
 
 'UploadVerification': additional chances to reject an uploaded file
 string $saveName: destination file name
