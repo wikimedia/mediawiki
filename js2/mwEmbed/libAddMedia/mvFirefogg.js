@@ -72,7 +72,7 @@ var default_firefogg_options = {
 	'firefogg_form_action':true,
 	
 	//if we should show a preview of encoding progress 
-	'show_preview':false,
+	'show_preview':false
 }
 
 
