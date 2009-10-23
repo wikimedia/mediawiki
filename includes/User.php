@@ -1185,10 +1185,10 @@ class User {
 	 * Whether the given IP is in a given DNS blacklist.
 	 *
 	 * @param $ip \string IP to check
-	 * @param $base \string URL of the DNS blacklist
+	 * @param $bases \string or Array of Strings: URL of the DNS blacklist
 	 * @return \bool True if blacklisted.
 	 */
-	function inDnsBlacklist( $ip, $base ) {
+	function inDnsBlacklist( $ip, $bases ) {
 		wfProfileIn( __METHOD__ );
 
 		$found = false;
@@ -1198,17 +1198,20 @@ class User {
 			# Reverse IP, bug 21255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
 
-			# Make hostname
-			$host = "$ipReversed.$base";
+			foreach( (array)$bases as $base ) {
+				# Make hostname
+				$host = "$ipReversed.$base";
 
-			# Send query
-			$ipList = gethostbynamel( $host );
+				# Send query
+				$ipList = gethostbynamel( $host );
 
-			if( $ipList ) {
-				wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
-				$found = true;
-			} else {
-				wfDebug( "Requested $host, not found in $base.\n" );
+				if( $ipList ) {
+					wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
+					$found = true;
+					break;
+				} else {
+					wfDebug( "Requested $host, not found in $base.\n" );
+				}
 			}
 		}
 
