@@ -87,8 +87,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   correctly (img_auth only)
 * $wgUploadMaintenance added to disable file deletions and restorations during
   maintenance
-* New hook AbortNewAccountAuto, called before account creation from AuthPlugin-
-  or ExtUser-driven requests.
 * $wgCapitalLinkOverrides added to configure per-namespace capitalization
 * (bug 21172) $wgSorbsUrl can now be an array with multiple DNSBL
 
@@ -259,6 +257,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the parser so extensions are free to implement their own <math> tag
 * (bug 21047) Wrap 'cannotdelete' into a div with the generic 'error' class and
   an own 'mw-error-cannotdelete' class
+* New hook AbortNewAccountAuto, called before account creation from AuthPlugin-
+  or ExtUser-driven requests.
 
 === Bug fixes in 1.16 ===
 
