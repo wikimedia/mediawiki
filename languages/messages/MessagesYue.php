@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -507,7 +507,8 @@ $1',
 'unexpected'           => '意外數值。 "$1"="$2"。',
 'formerror'            => '錯誤：表格交唔到',
 'badarticleerror'      => '喺呢頁唔可以做呢個動作。',
-'cannotdelete'         => '指定嗰頁或檔案唔刪得。（可能已經刪咗。）',
+'cannotdelete'         => '頁或檔案 "$1" 唔刪得。
+可能已經畀另一位刪咗。',
 'badtitle'             => '錯嘅標題',
 'badtitletext'         => '要求嘅標題唔啱、空白，跨語言或者跨維基連結標題錯誤。亦可能係標題包括咗一個或多過一個字元。',
 'perfcached'           => '以下嘅資料係嚟自快取，可能唔係最新嘅。',
@@ -611,6 +612,7 @@ $1',
 'createaccount-text'         => '有人響{{SITENAME}}度用咗你個電郵開咗個名叫 "$2" 嘅新戶口 ($4)，密碼係 "$3" 。你應該而家登入，改埋個密碼。
 
 如果個戶口係開錯咗嘅話，你可以唔埋呢篇信。',
+'usernamehasherror'          => '用戶名唔可以包含切細字元',
 'login-throttled'            => '你已經試咗太多次登入動作。請等多一陣再試過。',
 'loginlanguagelabel'         => '語言：$1',
 
@@ -1222,7 +1224,7 @@ $1",
 'email'                         => '電郵',
 'prefs-help-realname'           => '真名可以唔填。
 如果你畀埋佢，有需要嘅時候會用佢來標示你嘅工夫。',
-'prefs-help-email'              => '電郵地址可以唔填，但當你唔記得咗你個密碼嗰陣可以將新密碼寄番畀你。亦可以響人哋唔知你電郵地址嘅情況之下都可以聯絡你。',
+'prefs-help-email'              => '電郵地址可以唔填，但當你唔記得咗你個密碼嗰陣需要利用電郵地址將新密碼重設寄番畀你。亦可以響人哋唔知你電郵地址嘅情況之下都可以聯絡你。',
 'prefs-help-email-required'     => '需要電郵地址。',
 'prefs-info'                    => '基本資料',
 'prefs-i18n'                    => '國際化',
@@ -1508,9 +1510,13 @@ $1",
 'uploadscripted'              => '呢個檔案包含可能會誤被瀏覽器解釋執行嘅 HTML 或 script 代碼。',
 'uploadcorrupt'               => '呢個檔案已損壞或係用咗錯誤嘅副檔名。請檢查吓個檔案，然後再試下上載多次。',
 'uploadvirus'                 => '呢個檔案有病毒！詳情：$1',
+'upload-source'               => '來源檔案',
 'sourcefilename'              => '來源檔名:',
+'sourceurl'                   => '來源網址:',
 'destfilename'                => '目標檔名:',
 'upload-maxfilesize'          => '檔案最大限制大細: $1',
+'upload-description'          => '檔案描述',
+'upload-options'              => '上載選項',
 'watchthisupload'             => '監視呢個檔案',
 'filewasdeleted'              => '呢個檔案所使用嘅名曾經上載後，跟住就刪除咗。你應該響重新上載佢之前檢查吓$1。',
 'upload-wasdeleted'           => "'''警告: 你而家上載嘅一個檔案係先前曾經刪除過嘅。'''
@@ -1836,6 +1842,7 @@ Template:搞清楚',
 
 # Special:ActiveUsers
 'activeusers'          => '活躍用戶名單',
+'activeusers-intro'    => '呢個係響最近$1日之內有一啲動作嘅用戶名單。',
 'activeusers-count'    => '響$3日之內嘅$1次編輯',
 'activeusers-from'     => '顯示用戶開始於:',
 'activeusers-noresult' => '搵唔到用戶。',

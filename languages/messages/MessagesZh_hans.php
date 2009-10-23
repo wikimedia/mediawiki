@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -555,7 +555,8 @@ $1',
 'unexpected'           => '非正常值：“$1”=“$2”。',
 'formerror'            => '错误：无法提交表单',
 'badarticleerror'      => '无法在此页进行该操作。',
-'cannotdelete'         => '无法删除选定的页面或图像，它可能已被其他人删除了。',
+'cannotdelete'         => '无法删除页面或图像 "$1"。
+它可能已被其他人删除了。',
 'badtitle'             => '错误的标题',
 'badtitletext'         => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfcached'           => '下列是缓存数据，因此可能不是最新的：',
@@ -656,6 +657,7 @@ $2',
 'createaccount-text'         => '有人在{{SITENAME}}中利用您的邮箱创建了一个名为 "$2" 的新帐户（$4），密码是 "$3" 。您应该立即登录并更改密码。
 
 如果该账户创建错误的话，您可以忽略此信息。',
+'usernamehasherror'          => '用户名称不可以包含切细字符',
 'login-throttled'            => '您已经尝试多次的登录动作。
 请稍等多一会再试。',
 'loginlanguagelabel'         => '语言：$1',
@@ -1262,7 +1264,7 @@ $1",
 'email'                         => '电子邮箱',
 'prefs-help-realname'           => '真实姓名是可选的。
 如果您选择提供它，那它便用以对您的贡献署名。',
-'prefs-help-email'              => '电子邮件是可选的，但当您忘记您的个密码时可以将新密码寄回给您。您亦可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
+'prefs-help-email'              => '电子邮件是可选的，但当您忘记您的个密码时需要将新密码重设寄回给您。您亦可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
 'prefs-help-email-required'     => '需要电子邮件地址。',
 'prefs-info'                    => '基本资料',
 'prefs-i18n'                    => '国际化',
@@ -1551,9 +1553,13 @@ $1",
 'uploadscripted'              => '该文件包含可能被网络浏览器错误解释的 HTML 或脚本代码。',
 'uploadcorrupt'               => '该文件包含或具有一个不正确的扩展名。请检查此文件并重新上传。',
 'uploadvirus'                 => '该文件包含病毒！详情：$1',
+'upload-source'               => '来源文件',
 'sourcefilename'              => '源文件名：',
+'sourceurl'                   => '来源网址：',
 'destfilename'                => '目标文件名：',
-'upload-maxfilesize'          => '文件最大限制大小：$1',
+'upload-maxfilesize'          => '文件最大限制大小: $1',
+'upload-description'          => '文件描述',
+'upload-options'              => '上传选项',
 'watchthisupload'             => '监视这个文件',
 'filewasdeleted'              => '之前已经有一个同名文件被上传后又被删除了。在上传此文件之前您需要检查$1。',
 'upload-wasdeleted'           => "'''警告：您现在重新上传一个先前曾经删除过的文件。'''
@@ -1884,6 +1890,7 @@ Template:消除歧義',
 
 # Special:ActiveUsers
 'activeusers'          => '活跃用户列表',
+'activeusers-intro'    => '这个是在最近$1天之内有一些动作的用户列表。',
 'activeusers-count'    => '最近$3天内的$1次编辑',
 'activeusers-from'     => '显示用户开始于：',
 'activeusers-noresult' => '找不到用户。',
