@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -536,7 +536,8 @@ $1',
 'unexpected'           => '不正常值："$1"="$2"。',
 'formerror'            => '錯誤：無法提交表單',
 'badarticleerror'      => '無法在本頁上進行此項操作。',
-'cannotdelete'         => '無法刪除選定的頁面或圖像（它可能已經被其他人刪除了）。',
+'cannotdelete'         => '無法刪除頁面或圖像 "$1"。
+它可能已經被其他人刪除了。',
 'badtitle'             => '錯誤的標題',
 'badtitletext'         => '所請求頁面的標題是無效的、不存在，跨語言或跨wiki連結的標題錯誤。',
 'perfcached'           => '下列是快取資料，因此可能不是最新的:',
@@ -637,6 +638,7 @@ $2',
 'createaccount-text'         => '有人在{{SITENAME}}中利用您的電郵創建了一個名為 "$2" 的新帳戶（$4），密碼是 "$3" 。您應該立即登入並更改密碼。
 
 如果該帳戶創建錯誤的話，您可以忽略此信息。',
+'usernamehasherror'          => '用戶名稱不可以包含切細字元',
 'login-throttled'            => '您已經嘗試多次的登入動作。
 請稍等多一會再試。',
 'loginlanguagelabel'         => '語言: $1',
@@ -1243,7 +1245,7 @@ $1",
 'email'                         => '電子郵件',
 'prefs-help-realname'           => '真實姓名是可選的。
 如果您選擇提供它，那它便用以對您的貢獻署名。',
-'prefs-help-email'              => '電子郵件是可選的，但當您忘記您的個密碼時可以將新密碼寄回給您。您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
+'prefs-help-email'              => '電子郵件是可選的，但當您忘記您的個密碼時需要將新密碼重設寄回給您。您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
 'prefs-help-email-required'     => '需要電子郵件地址。',
 'prefs-info'                    => '基本資料',
 'prefs-i18n'                    => '國際化',
@@ -1534,12 +1536,13 @@ $1",
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
 'uploadcorrupt'               => '該檔案包含或具有一個不正確的擴展名。請檢查此檔案並重新上傳。',
 'uploadvirus'                 => '該檔案包含有病毒！詳情: $1',
-'upload-source'               => '檔案來源',
-'sourcefilename'              => '來源檔案名:',
-'sourceurl'                   => '來源網址',
-'destfilename'                => '目標檔案名:',
+'upload-source'               => '來源檔案',
+'sourcefilename'              => '來源檔案名：',
+'sourceurl'                   => '來源網址：',
+'destfilename'                => '目標檔案名：',
 'upload-maxfilesize'          => '檔案最大限制大小: $1',
 'upload-description'          => '檔案描述',
+'upload-options'              => '上載選項',
 'watchthisupload'             => '監視這個檔案',
 'filewasdeleted'              => '之前已經有一個同名檔案被上傳後又被刪除了。在上傳此檔案之前您需要檢查$1。',
 'upload-wasdeleted'           => "'''警告: 您現在重新上傳一個先前曾經刪除過的檔案。'''
@@ -1870,6 +1873,7 @@ Template:消除歧義',
 
 # Special:ActiveUsers
 'activeusers'          => '活躍用戶列表',
+'activeusers-intro'    => '這個是在最近$1天之內有一些動作的用戶列表。',
 'activeusers-count'    => '於$3天內的$1次編輯',
 'activeusers-from'     => '顯示用戶開始於：',
 'activeusers-noresult' => '找不到用戶。',
