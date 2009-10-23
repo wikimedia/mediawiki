@@ -499,8 +499,8 @@ Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente 
 'unexpected'           => 'Valor impreviste: "$1"="$2".',
 'formerror'            => 'Error: impossibile submitter formulario',
 'badarticleerror'      => 'Iste action non pote esser effectuate super iste pagina.',
-'cannotdelete'         => 'Impossibile deler le pagina o file specificate.
-Es possibile que un altere persona ha ja delite lo.',
+'cannotdelete'         => 'Le pagina o file "$1" non poteva esser delite.
+Es possibile que un altere persona lo ha ja delite.',
 'badtitle'             => 'Titulo invalide',
 'badtitletext'         => 'Le titulo de pagina requestate esseva invalide, vacue, o un titulo interlingual o interwiki incorrectemente ligate.
 Es possibile que illo contine un o plure characteres que non pote esser usate in titulos.',
@@ -625,6 +625,7 @@ Entra un adresse ben formatate, o vacua ille campo.',
 Tu deberea aperir un session e cambiar tu contrasigno ora.
 
 Tu pote ignorar iste message si iste conto ha essite create in error.',
+'usernamehasherror'          => 'Le nomine de usator non pote continer grillias/cardinales/signos de numero ("#")',
 'login-throttled'            => 'Tu ha facite troppo de tentativas de identification.
 Per favor attende ante de probar lo novemente.',
 'loginlanguagelabel'         => 'Lingua: $1',
@@ -1576,6 +1577,7 @@ Per favor verifica le file e recarga lo.',
 'destfilename'                => 'Nomine del file de destination:',
 'upload-maxfilesize'          => 'Grandor maximal del files: $1',
 'upload-description'          => 'Description del file',
+'upload-options'              => 'Optiones de cargamento',
 'watchthisupload'             => 'Observar iste file',
 'filewasdeleted'              => 'Un file con iste nomine ha anteriormente essite cargate e postea delite.
 Tu debe verificar le $1 ante de proceder e recargar lo.',
@@ -1932,6 +1934,7 @@ Protocollos supportate: <tt>$1</tt>',
 'activeusers-count'    => '$1 {{PLURAL:$1|modification|modificationes}} in le ultime {{PLURAL:$3|die|$3 dies}}',
 'activeusers-from'     => 'Presentar usatores a partir de:',
 'activeusers-noresult' => 'Nulle usator trovate.',
+'activeusers-intro'    => 'Isto es un lista de usatores que habeva alcun typo de activitate intra le ultime $1 {{PLURAL:$1|die|dies}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro de creation de usatores',

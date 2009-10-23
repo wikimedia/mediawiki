@@ -557,7 +557,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'unexpected'           => 'Valor inesperado: "$1"="$2".',
 'formerror'            => 'Erro: non se pode enviar o formulario',
 'badarticleerror'      => 'Non pode efectuarse esta acción nesta páxina.',
-'cannotdelete'         => 'Non se pode borrar a páxina ou imaxe especificada.
+'cannotdelete'         => 'Non se puido borrar a páxina ou imaxe "$1".
 Se cadra, xa foi borrada por alguén.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
@@ -678,6 +678,7 @@ Insira un enderezo cun formato válido ou baleire ese campo.',
 Debe acceder ao sistema e mudar o contrasinal agora.
 
 Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
+'usernamehasherror'          => 'O nome de usuario non pode conter cancelos ("#")',
 'login-throttled'            => 'Fixo demasiados intentos de inserir o contrasinal.
 Por favor, agarde antes de probar outra vez.',
 'loginlanguagelabel'         => 'Lingua: $1',
@@ -1610,9 +1611,13 @@ Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
 'uploadscripted'              => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
 'uploadcorrupt'               => 'O ficheiro está corrompido ou ten unha extensión incorrecta. Por favor verifique o ficheiro e súbao de novo.',
 'uploadvirus'                 => 'O ficheiro contén un virus! Detalles: $1',
+'upload-source'               => 'Ficheiro de orixe',
 'sourcefilename'              => 'Nome do ficheiro a cargar:',
+'sourceurl'                   => 'URL de orixe:',
 'destfilename'                => 'Nome do ficheiro de destino:',
 'upload-maxfilesize'          => 'Tamaño máximo para o ficheiro: $1',
+'upload-description'          => 'Descrición do ficheiro',
+'upload-options'              => 'Opcións de carga',
 'watchthisupload'             => 'Vixiar este ficheiro',
 'filewasdeleted'              => 'Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado.
 Debe comprobar o $1 antes de proceder a cargalo outra vez.',
@@ -1678,7 +1683,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 
 'license'            => 'Licenza:',
 'license-header'     => 'Licenza',
-'nolicense'          => 'Ningunha (os ficheiros sen licenza teñen que ser eliminados)',
+'nolicense'          => 'Ningunha (os ficheiros sen licenza serán eliminados)',
 'license-nopreview'  => '(A vista previa non está dispoñíbel)',
 'upload_source_url'  => '  (un URL válido e accesible publicamente)',
 'upload_source_file' => '  (un ficheiro no seu ordenador)',
@@ -1966,6 +1971,7 @@ Protocolos soportados: <tt>$1</tt>',
 'activeusers-count'    => '$1 {{PLURAL:$1|edición|edicións}} {{PLURAL:$3|no último día|nos últimos $3 días}}',
 'activeusers-from'     => 'Mostrar os usuarios que comecen por:',
 'activeusers-noresult' => 'Non se atopou ningún usuario.',
+'activeusers-intro'    => 'Esta é unha lista cos usuarios que tiveron algún tipo de actividade {{PLURAL:$1|no último día|nos últimos $1 días}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Rexistro de creación de usuarios',

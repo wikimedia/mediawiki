@@ -634,7 +634,7 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], ed
 'badarticleerror'      => 'Seda toimingut ei saa sellel leheküljel sooritada.',
 'cannotdelete'         => 'Seda lehekülge või pilti ei ole võimalik kustutada. (Võib-olla keegi teine juba kustutas selle.)',
 'badtitle'             => 'Vigane pealkiri',
-'badtitletext'         => 'Soovitud leheküljepealkiri oli vigane, tühi või teisest keeleversioonist või vikist valesti lingitud.
+'badtitletext'         => 'Soovitud lehekülje pealkiri oli vigane, tühi või teisest keeleversioonist või vikist valesti lingitud.
 See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.',
 'perfcached'           => 'Järgnevad andmed on puhverdatud ja ei pruugi olla kõige värskemad:',
 'perfcachedts'         => 'Järgmised andmed on vahemälus. Viimase uuendamise daatum on $1.',

@@ -2066,6 +2066,7 @@ PICT # שונות
 'activeusers-count'    => '{{PLURAL:$1|עריכה אחת|$1 עריכות}} ב{{PLURAL:$3|יום האחרון|־$3 הימים האחרונים|יומיים האחרונים}}',
 'activeusers-from'     => 'הצגת משתמשים החל מ:',
 'activeusers-noresult' => 'לא נמצאו משתמשים.',
+'activeusers-intro'    => 'זוהי רשימת המשתמשים שביצעו פעילות מכל סוג שהוא במשך {{PLURAL:$1|היממה האחרונה|$1 הימים האחרונים}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'יומן רישום משתמשים',

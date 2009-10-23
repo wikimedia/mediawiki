@@ -669,7 +669,7 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'unexpected'           => 'Valor emprèvua : « $1 » = « $2 ».',
 'formerror'            => 'Èrror : empossiblo de sometre lo formulèro',
 'badarticleerror'      => 'Cela accion pôt pas étre fêta sur ceta pâge.',
-'cannotdelete'         => 'Empossiblo de suprimar la pâge ou ben lo fichiér spècefiâ.
+'cannotdelete'         => 'Empossiblo de suprimar la pâge ou ben lo fichiér « $1 ».
 La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
 'badtitle'             => 'Crouyo titro',
 'badtitletext'         => 'Lo titro de la pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
@@ -795,6 +795,7 @@ Volyéd buchiér una adrèce bien formatâ ou ben lèssiér cél champ vouedo.',
 Vos vos devriâd branchiér et pués changiér dês ora voutron mot de pâssa.
 
 Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
+'usernamehasherror'          => 'Lo nom d’utilisator pôt pas contegnir des caractèros de chaplâjo',
 'login-throttled'            => 'Vos éd tentâ dèrriérement un trop grant nombro de branchements.
 Volyéd atendre devant que tornar èprovar.',
 'loginlanguagelabel'         => 'Lengoua : $1',
@@ -1747,9 +1748,13 @@ Volyéd controlar lo chouèx de configuracion « file_uploads ».',
 'uploadcorrupt'               => 'Cél fichiér est corrompu, il at una talye nula ou ben una èxtension envalida.
 Volyéd controlar lo fichiér devant que lo tornar tèlèchargiér.',
 'uploadvirus'                 => 'Cél fichiér contint un virus ! Por més de dètalys, vêde : $1',
+'upload-source'               => 'Fichiér sôrsa',
 'sourcefilename'              => 'Nom du fichiér sôrsa :',
+'sourceurl'                   => 'URL sôrsa :',
 'destfilename'                => 'Nom desot loquint lo fichiér serat encartâ :',
 'upload-maxfilesize'          => 'Talye la ples granta du fichiér : $1',
+'upload-description'          => 'Dèscripcion du fichiér',
+'upload-options'              => 'Chouèx de tèlèchargement',
 'watchthisupload'             => 'Siuvre ceti fichiér',
 'filewasdeleted'              => 'Un fichiér avouéc cél nom at ja étâ tèlèchargiê, et pués suprimâ.
 Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',

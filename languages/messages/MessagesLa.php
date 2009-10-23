@@ -469,7 +469,8 @@ Basis datorum erratum reddidit "$3: $4"',
 'filenotfound'         => 'Non potuit fasciculus "$1" inveniri.',
 'unexpected'           => 'Valor improvisus: "$1"="$2".',
 'badarticleerror'      => 'Haec actio non perfici potest in hac pagina.',
-'cannotdelete'         => 'Pagina vel fasciculus deleri non potuit. (Fortasse usor alius iam deleverat.)',
+'cannotdelete'         => 'Pagina vel fasciculus "$1" deleri non potuit.
+Fortasse usor alius iam deleverat.',
 'badtitle'             => 'Titulus malus',
 'badtitletext'         => 'Nomen paginae quaestae fuit invalidum, vacuum, aut praeverbium interlingualem vel intervicialem habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.',
 'wrong_wfQuery_params' => 'Parametri incorrectae pro wfQuery()<br />

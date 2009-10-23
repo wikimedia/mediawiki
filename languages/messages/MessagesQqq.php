@@ -23,6 +23,7 @@
  * @author Dalibor Bosits
  * @author Darth Kule
  * @author Dsvyas
+ * @author Erwin
  * @author Erwin85
  * @author EugeneZelenko
  * @author Fryed-peach
@@ -367,7 +368,8 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 'protect'           => 'Name of protect tab displayed for admins
 
 {{Identical|Protect}}',
-'protect_change'    => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).',
+'protect_change'    => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).
+{{Identical|Change}}',
 'protectthispage'   => '{{Identical|Protect this page}}',
 'unprotect'         => 'Name of unprotect tab displayed for admins
 

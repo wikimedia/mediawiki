@@ -311,6 +311,13 @@ class IPUnblockForm {
 			$wgOut->addHTML( $this->searchForm() );
 			$wgOut->addWikiMsg( 'ipblocklist-empty' );
 		}
+
+		$otherBlockLink = '';
+		wfRunHooks( 'getBlockList', array( &$otherBlockLink, $this->ip ) );
+		if( $otherBlockLink != '' ) {
+			$wgOut->addHTML( $otherBlockLink );
+		}
+
 	}
 
 	function searchForm() {

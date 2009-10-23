@@ -440,7 +440,7 @@ Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|administratorğa]] haber be
 'unexpected'           => 'beklenmegen deger: "$1"="$2".',
 'formerror'            => 'Hata: formanıñ malümatını yollamaqnıñ iç çaresi yoq',
 'badarticleerror'      => 'Siz yapmağa istegen işlev bu saifede yapılıp оlamay.',
-'cannotdelete'         => 'Belgilengen saife ya da fayl yoq etilip olamadı. Başqa bir qullanıcı tarafından yoq etilgen ola bile.',
+'cannotdelete'         => '"$1" saife ya da faylı yoq etilip olamadı. Başqa bir qullanıcı tarafından yoq etilgen ola bile.',
 'badtitle'             => 'Ruhsetsiz serleva',
 'badtitletext'         => 'İstenilgen saife adı doğru degil, o boştır, yahut tillerara bağlantı ya da vikilerara bağlantı doğru yazılmağan. İhtimalı bar ki, saife adında yasaqlanğan işaretler bar.',
 'perfcached'           => 'Malümatlar daa evelceden azırlanğan ola bilir. Bu sebepten eskirgen ola bilir!',
@@ -1389,7 +1389,7 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'watchlistcontains'    => 'Siziñ közetüv cedveliñizde {{PLURAL:$1|1|$1}} saife bar.',
 'iteminvalidname'      => '"$1" saifesi munasebetinen problema olıp çıqtı, elverişli olmağan isimdir…',
 'wlnote'               => "Aşağıda soñki {{PLURAL:$2|saat|'''$2''' saat}} içinde yapılğan soñki {{PLURAL:$1|deñişiklik|'''$1''' deñişiklik}} kösterile.",
-'wlshowlast'           => 'Soñki $2 kün $1 saat içün $3 köster',
+'wlshowlast'           => 'Soñki $1 saat içün, $2 kün içün ya da $3 köster',
 'watchlist-options'    => 'Közetüv cedveli sazlamaları',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1538,7 +1538,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'sp-contributions-submit'      => 'Qıdır',
 
 # What links here
-'whatlinkshere'            => 'Saifege bağlantılar',
+'whatlinkshere'            => 'Bu saifege bağlantılar',
 'whatlinkshere-title'      => '$1 saifesine bağlantı olğan saifeler',
 'whatlinkshere-page'       => 'Saife:',
 'linkshere'                => "Bu saifeler '''[[:$1]]''' saifesine bağlantısı olğan:",
