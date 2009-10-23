@@ -46,13 +46,13 @@ class UploadFromStash extends UploadBase {
 	}
 
 	public function initializeFromRequest( &$request ) {
-		$sessionKey = $request->getInt( 'wpSessionKey' );
+		$this->mSessionKey = $request->getInt( 'wpSessionKey' );
 		$sessionData = $request->getSessionData('wsUploadData');
 
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
 			$desiredDestName = $request->getText( 'wpUploadFile' );
-		return $this->initialize( $desiredDestName, $sessionData[$sessionKey], false );
+		return $this->initialize( $desiredDestName, $sessionData[$this->mSessionKey], false );
 	}
 
 	/**
@@ -62,11 +62,14 @@ class UploadFromStash extends UploadBase {
 		return true;
 	}
 
+	
 	/**
-	 * We're here from "ignore warnings anyway" so return just OK
+	 * There is no need to stash the image twice
 	 */
-	public function checkWarnings() {
-		return array();
+	public function stashSession() {
+		if ( !empty( $this->mSessionKey ) )
+			return $this->mSessionKey;
+		return parent::stashSession();
 	}
 
 	/**

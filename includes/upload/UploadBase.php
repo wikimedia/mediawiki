@@ -76,10 +76,16 @@ abstract class UploadBase {
 
 		// Get the upload class
 		$type = ucfirst( $type );
-		$className = 'UploadFrom' . $type;
-		wfDebug( __METHOD__ . ": class name: $className\n" );
-		if( !in_array( $type, self::$uploadHandlers ) )
-			return null;
+		
+		// Give hooks the chance to handle this request
+		$className = null;
+		wfRunHooks( 'UploadCreateFromRequest', array( $type, &$className ) );
+		if ( is_null( $className ) ) {
+			$className = 'UploadFrom' . $type;
+			wfDebug( __METHOD__ . ": class name: $className\n" );
+			if( !in_array( $type, self::$uploadHandlers ) )
+				return null;
+		}
 
 		// Check whether this upload class is enabled
 		if( !call_user_func( array( $className, 'isEnabled' ) ) )

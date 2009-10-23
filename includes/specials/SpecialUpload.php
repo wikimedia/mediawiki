@@ -56,7 +56,9 @@ class SpecialUpload extends SpecialPage {
 		$this->mRequest = $request;
 		$this->mSourceType        = $request->getVal( 'wpSourceType', 'file' );
 		$this->mUpload            = UploadBase::createFromRequest( $request );
-		$this->mUploadClicked     = $request->getCheck( 'wpUpload' ) && $request->wasPosted();
+		$this->mUploadClicked     = $request->wasPosted() 
+			&& ( $request->getCheck( 'wpUpload' ) 
+				|| $request->getCheck( 'wpUploadIgnoreWarning' ) );
 
 		// Guess the desired name from the filename if not provided
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
@@ -66,7 +68,8 @@ class SpecialUpload extends SpecialPage {
 		$this->mLicense           = $request->getText( 'wpLicense' );
 
 
-		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
+		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' )
+			|| $request->getCheck( 'wpUploadIgnoreWarning' );
 		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
 		$this->mCopyrightStatus   = $request->getText( 'wpUploadCopyStatus' );
 		$this->mCopyrightSource   = $request->getText( 'wpUploadSource' );
@@ -182,11 +185,16 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $sessionKey Session key in case this is a stashed upload
 	 * @return UploadForm
 	 */
-	protected function getUploadForm( $message = '', $sessionKey = '' ) {
+	protected function getUploadForm( $message = '', $sessionKey = '', $hideIgnoreWarning = false ) {
 		global $wgOut;
 		
 		# Initialize form
-		$form = new UploadForm( $this->watchCheck(), $this->mForReUpload, $sessionKey );
+		$form = new UploadForm( array(
+			'watch' => $this->watchCheck(), 
+			'forreupload' => $this->mForReUpload, 
+			'sessionkey' => $sessionKey,
+			'hideignorewarning' => $hideIgnoreWarning,
+		) );
 		$form->setTitle( $this->getTitle() );
 
 		# Check the token, but only if necessary
@@ -251,7 +259,10 @@ class SpecialUpload extends SpecialPage {
 		$sessionKey = $this->mUpload->stashSession();
 		$message = '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" .
 			'<div class="error">' . $message . "</div>\n";
-		$this->showUploadForm( $this->getUploadForm( $message, $sessionKey ) );
+		
+		$form = $this->getUploadForm( $message, $sessionKey );
+		$form->setSubmitText( wfMsg( 'upload-tryagain' ) );
+		$this->showUploadForm( $form );
 	}
 	/**
 	 * Stashes the upload, shows the main form, but adds an "continue anyway button"
@@ -286,10 +297,12 @@ class SpecialUpload extends SpecialPage {
 				}
 				$warningHtml .= $msg;
 		}
-		$warningHtml .= '</ul>';
+		$warningHtml .= "</ul>\n";
+		$warningHtml .= wfMsgExt( 'uploadwarning-text', 'parse' );
 
-		$form = $this->getUploadForm( $warningHtml, $sessionKey );
-		$form->setSubmitText( wfMsg( 'ignorewarning' ) );
+		$form = $this->getUploadForm( $warningHtml, $sessionKey, /* $hideIgnoreWarning */ true );
+		$form->setSubmitText( wfMsg( 'upload-tryagain' ) );
+		$form->addButton( 'wpUploadIgnoreWarning', wfMsg( 'ignorewarning' ) );
 		$form->addButton( 'wpCancelUpload', wfMsg( 'reuploaddesc' ) );
 
 		$this->showUploadForm( $form );
@@ -621,14 +634,18 @@ class UploadForm extends HTMLForm {
 	protected $mWatch;
 	protected $mForReUpload;
 	protected $mSessionKey;
+	protected $mHideIgnoreWarning;
+	
 	protected $mSourceIds;
 
-	public function __construct( $watch, $forReUpload = false, $sessionKey = '' ) {
+	public function __construct( $options = array() ) {
 		global $wgLang;
 
-		$this->mWatch = $watch;
-		$this->mForReUpload = $forReUpload;
-		$this->mSessionKey = $sessionKey;
+		$this->mWatch = !empty( $options['watch'] );
+		$this->mForReUpload = !empty( $options['forreupload'] );
+		$this->mSessionKey = isset( $options['sessionkey'] ) 
+				? $options['sessionkey'] : '';
+		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
 
 		$sourceDescriptor = $this->getSourceSection();
 		$descriptor = $sourceDescriptor
@@ -841,14 +858,16 @@ class UploadForm extends HTMLForm {
 				'id' => 'wpWatchthis',
 				'label-message' => 'watchthisupload',
 				'section' => 'options',
-			),
-			'IgnoreWarning' => array(
+			)
+		);
+		if ( !$this->mHideIgnoreWarning ) {
+			$descriptor['IgnoreWarning'] = array(
 				'type' => 'check',
 				'id' => 'wpIgnoreWarning',
 				'label-message' => 'ignorewarnings',
 				'section' => 'options',
-			),
-		);
+			);
+		}
 
 		return $descriptor;
 
