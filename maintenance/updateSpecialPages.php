@@ -32,7 +32,7 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgOut, $wgSpecialPageCacheUpdates, $wgQueryPages, $wgQueryCacheLimit;
+		global $IP, $wgOut, $wgSpecialPageCacheUpdates, $wgQueryPages, $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
 		$wgOut->disable();
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -72,7 +72,7 @@ class UpdateSpecialPages extends Maintenance {
 				continue;
 			}
 	
-			if ( $this->hasOption('override') && $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate ) ) {
+			if ( !$this->hasOption('override') && $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate ) ) {
 				$this->output( sprintf( "%-30s disabled\n", $special ) );
 				continue;
 			}
