@@ -3531,10 +3531,14 @@ $wgDisableHardRedirects = false;
 $wgEnableTooltipsAndAccesskeys = true;
 
 /**
- * Use http.dnsbl.sorbs.net to check for open proxies
+ * Whether to use DNS blacklists in $wgSorbsUrl to check for open proxies
  */
 $wgEnableSorbs = false;
-$wgSorbsUrl = 'http.dnsbl.sorbs.net.';
+
+/**
+ * List of DNS blacklists to use, if $wgEnableSorbs is true
+ */
+$wgSorbsUrl = array( 'http.dnsbl.sorbs.net.' );
 
 /**
  * Proxy whitelist, list of addresses that are assumed to be non-proxy despite
