@@ -198,7 +198,6 @@ class Preferences {
 		$defaultPreferences['gender'] =
 				array(
 					'type' => 'select',
-					'default' => 'unknown',
 					'section' => 'personal/info',
 					'options' => array(
 						wfMsg( 'gender-male' ) => 'male',
@@ -661,7 +660,6 @@ class Preferences {
 		$defaultPreferences['editfont'] =
 				array(
 					'type' => 'select',
-					'default' => 'default',
 					'section' => 'editing/advancedediting',
 					'label-message' => 'editfont-style',
 					'options' => array(
