@@ -1459,9 +1459,13 @@ Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili
 'uploadscripted'              => 'Fitxategi honek web zerbitzariak modu ezegokian interpretatu lezakeen HTML edo script kodea dauka.',
 'uploadcorrupt'               => 'Fitxategiak akatsak ditu edo luzapena ezegokia da. Mesedez, egiaztatu fitxategia ondo dagoela eta berriz igo.',
 'uploadvirus'                 => 'Fitxategiak birusa dauka! Xehetasunak: $1',
+'upload-source'               => 'Jatorrizko fitxategia',
 'sourcefilename'              => 'Iturri-fitxategiaren izena:',
+'sourceurl'                   => 'Jatorrizko URL-a:',
 'destfilename'                => 'Helburu fitxategi izena:',
 'upload-maxfilesize'          => 'Fitxategien gehienezko tamaina: $1',
+'upload-description'          => 'Fitxategiaren deskribapena',
+'upload-options'              => 'Igoera-aukerak',
 'watchthisupload'             => 'Fitxategi hau jarraitu',
 'filewasdeleted'              => 'Izen hau duen fitxategi bat igo eta ezabatu da jada. $1 aztertu beharko zenuke berriz igo aurretik.',
 'upload-wasdeleted'           => "'''Oharra: Lehenago ezabatutako fitxategia igotzen ari zara.'''

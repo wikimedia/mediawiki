@@ -591,7 +591,7 @@ Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając
 'unexpected'           => 'Nieoczekiwana wartość „$1”=„$2”.',
 'formerror'            => 'Błąd – nie można wysłać formularza',
 'badarticleerror'      => 'Dla tej strony ta operacja nie może być wykonana.',
-'cannotdelete'         => 'Nie można usunąć podanej strony lub grafiki.
+'cannotdelete'         => 'Strona lub plik „$1” nie może zostać usunięty.
 Możliwe, że zostały już usunięte przez kogoś innego.',
 'badtitle'             => 'Niepoprawny tytuł',
 'badtitletext'         => 'Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.',
@@ -2001,6 +2001,7 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'activeusers-count'    => 'w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
 'activeusers-from'     => 'Pokaż użytkowników zaczynając od',
 'activeusers-noresult' => 'Nie odnaleziono żadnego użytkownika.',
+'activeusers-intro'    => 'Poniżej znajduje się lista użytkowników, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nowi użytkownicy',

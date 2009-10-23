@@ -540,7 +540,8 @@ Bonvolu raporti ĉi tiun al [[Special:ListUsers/sysop|administranto]], notante l
 'unexpected'           => 'Neatendita valoro: "$1"="$2".',
 'formerror'            => 'Eraro: neeblis liveri formulon',
 'badarticleerror'      => 'Tiun ĉi agon oni ne povas apliki al tiu ĉi artikolo.',
-'cannotdelete'         => 'Neeblis forigi la elektitan paĝon aŭ dosieron.',
+'cannotdelete'         => 'Ne eblis forigi la elektitan paĝon aŭ dosieron "$1".
+Eble ĝi estis jam forigita de iu alia.',
 'badtitle'             => 'Fuŝa titolo',
 'badtitletext'         => 'La petita paĝotitolo estas nevalida, malplena, aŭ
 malĝuste ligita interlingva aŭ intervikia titolo.',
@@ -653,6 +654,7 @@ Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
 'createaccount-text'         => 'Iu kreis konton por via retadreso en {{SITENAME}} ($4) nomata "$2", kun pasvorto "$3". Vi ensalutu kaj ŝanĝu vian pasvorton nun.
 
 Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
+'usernamehasherror'          => 'Salutnomo ne povas enhavi kriphaketaĵajn signojn',
 'login-throttled'            => 'Vi tro ofte provis eniri la pasvorton por ĉi tiu konto. 
 Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
@@ -1577,6 +1579,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'destfilename'                => 'Celdosiernomo:',
 'upload-maxfilesize'          => 'Maksimuma dosier-pezo: $1',
 'upload-description'          => 'Dosiera priskribo',
+'upload-options'              => 'Alŝutaj agordoj',
 'watchthisupload'             => 'Atenti ĉi tiun dosieron',
 'filewasdeleted'              => 'Dosiero de ĉi nomo estis antaŭe alŝutita kaj poste redaktita. Vi kontrolu la $1 antaux alŝutante ĝin denove.',
 'upload-wasdeleted'           => "'''Averto: Vi alŝutas dosieron kiu estis antaŭe forigita.'''
@@ -1914,6 +1917,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'activeusers-count'    => '$1 {{PLURAL:$1|lasta redakto|lastaj redaktoj}} dum la {{PLURAL:$3|lasta tago|lastaj $3 tagoj}}',
 'activeusers-from'     => 'Montri uzantojn ekde:',
 'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
+'activeusers-intro'    => 'Jen listo de uzantoj kiu faris iom da agoj dum la lastaj $1 {{PLURAL:$1|tago|tagoj}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Protokolo de uzanto-kreado',

@@ -633,7 +633,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'unexpected'           => 'Neočekivana vrijednost: "$1"="$2".',
 'formerror'            => 'Greška: ne može se poslati upitnik',
 'badarticleerror'      => 'Ova akcija ne može biti izvršena na ovoj stranici.',
-'cannotdelete'         => 'Ne može se obrisati navedena stranica ili datoteka.
+'cannotdelete'         => 'Ne može se obrisati stranica ili datoteka "$1".
 Moguće je da ju je neko drugi već obrisao.',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Zahtjevani naslov stranice je bio neispravan, prazan ili neispravno povezan međujezički ili interviki naslov.',
@@ -749,6 +749,7 @@ Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
 Trebali biste se prijaviti i promjeniti šifru.
 
 Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
+'usernamehasherror'          => 'Korisničko ime ne može sadržavati haš znakove',
 'login-throttled'            => 'Previše puta ste se pokušali prijaviti.
 Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
@@ -2056,6 +2057,7 @@ Podržani protokoli: <tt>$1</tt>',
 'activeusers-count'    => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
 'activeusers-from'     => 'Prikaži korisnike koji počinju sa:',
 'activeusers-noresult' => 'Nije pronađen korisnik.',
+'activeusers-intro'    => 'Ovo je spisak korisnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Zapis novih korisnika',

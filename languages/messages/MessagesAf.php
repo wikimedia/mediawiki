@@ -11,6 +11,7 @@
  * @author Anrie
  * @author Arnobarnard
  * @author Byeboer
+ * @author Deadelf
  * @author Manie
  * @author Naudefj
  * @author Purodha
@@ -543,7 +544,8 @@ Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek.
 'unexpected'           => 'Onverwagte waarde: "$1"="$2".',
 'formerror'            => 'Fout: kon vorm nie stuur nie',
 'badarticleerror'      => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
-'cannotdelete'         => 'Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.',
+'cannotdelete'         => 'Die bladsy of lêer "$1" kon nie skrap word nie.
+Iemand anders het dit moontlik reeds geskrap.',
 'badtitle'             => 'Ongeldige titel',
 'badtitletext'         => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
@@ -653,6 +655,7 @@ Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
 U word aangeraai om in te teken so gou as moontlik u wagwoord te verander.
 
 Indien hierdie rekening foutief geskep is, kan u hierdie boodskap ignoreer.',
+'usernamehasherror'          => "'n Gebruikersnaam mag nie 'n hekkie-karakter (#) in hê nie",
 'login-throttled'            => "U het al te veel kere met 'n ongeldige wagwoord probeer aanteken.
 Wag asseblief alvorens u weer probeer.",
 'loginlanguagelabel'         => 'Taal: $1',
@@ -956,6 +959,7 @@ $1",
 'revdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|weergawe|weergawes}}',
 'logdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|gebeurtenis|gebeurtenisse}}',
 'revdelete-modify-missing'    => 'Fout met die wysiging van item ID $1: dit is nie in die databasis nie!',
+'revdelete-no-change'         => "'''Waarskuwing:''' die item van $1 om $2 uur het reeds die gevraagde sigbaarheidsinstellings.",
 'revdelete-reason-dropdown'   => '* Algemene redes vir skrapping
 ** Skending van outeursreg
 ** Onbetaamlike persoonlike inligting',
@@ -1492,9 +1496,13 @@ die lêer is $2.',
 Kyk na die "file_uploads"-instelling.',
 'uploadcorrupt'              => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
 'uploadvirus'                => "Hierdie lêer bevat 'n virus! Inligting: $1",
+'upload-source'              => 'Bronlêer',
 'sourcefilename'             => 'Bronlêernaam:',
+'sourceurl'                  => 'Bron-URL:',
 'destfilename'               => 'Teikenlêernaam:',
 'upload-maxfilesize'         => 'Maksimum lêer grootte: $1',
+'upload-description'         => 'Lêerbeskrywing',
+'upload-options'             => 'Oplaai-opsies',
 'watchthisupload'            => 'Hou die lêer dop',
 'upload-wasdeleted'          => "'''Waarskuwing: U is besig om 'n lêer op te laai wat voorheen verwyder is.'''
 
@@ -1700,11 +1708,11 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'unusedcategories'        => 'Ongebruikte kategorieë',
 'unusedimages'            => 'Ongebruikte lêers',
 'popularpages'            => 'Gewilde bladsye',
-'wantedcategories'        => 'Gesoekte kategorieë',
-'wantedpages'             => 'Gesogte bladsye',
+'wantedcategories'        => 'Benodigde kategorieë',
+'wantedpages'             => 'Benodigde bladsye',
 'wantedpages-badtitle'    => 'Ongeldige bladsynaam in resultaat: $1',
-'wantedfiles'             => 'Gesoekte lêers',
-'wantedtemplates'         => 'Gesoekte sjablone',
+'wantedfiles'             => 'Benodigde lêers',
+'wantedtemplates'         => 'Benodigde sjablone',
 'mostlinked'              => 'Bladsye met meeste skakels daarheen',
 'mostlinkedcategories'    => 'Kategorieë met die meeste skakels daarheen',
 'mostlinkedtemplates'     => 'Sjablone met die meeste skakels daarheen',
@@ -1718,6 +1726,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'deadendpagestext'        => 'Die volgende bladsye bevat nie skakels na ander bladsye in {{SITENAME}} nie:',
 'protectedpages'          => 'Beskermde bladsye',
 'protectedpages-indef'    => 'Slegs blokkades sonder vervaldatum',
+'protectedpages-cascade'  => 'Slegs blokkades wat neergolf',
 'protectedpagestext'      => 'Die volgende bladsye is beskerm teen verskuiwing of wysiging:',
 'protectedpagesempty'     => 'Geen bladsye is tans met die parameters beveilig nie.',
 'protectedtitles'         => 'Beskermde titels',
@@ -1747,6 +1756,8 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'booksources'               => 'Boekbronne',
 'booksources-search-legend' => 'Soek vir boekbronne',
 'booksources-go'            => 'Soek',
+'booksources-text'          => "Gevolg is 'n lys van skakels wat na ander webtuistes lei wat nuwe en gebruikte boeke verkoop, en wat dalk meer inligting kan bevat oor die boeke waarop u opsoek is:",
+'booksources-invalid-isbn'  => 'Die ingevoerde ISBN-kode blyk asof dit ongeldig is; maak asseblief seker dat u dit sonder fout oorgekopiëer het vanaf die oorspronklike bron.',
 
 # Special:Log
 'specialloguserlabel'  => 'Gebruiker:',
@@ -1809,6 +1820,7 @@ Ondersteunde protokolle: <tt>$1</tt>',
 'activeusers-count'    => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laatste $3 dae}}',
 'activeusers-from'     => 'Wys gebruikers, beginnende by:',
 'activeusers-noresult' => 'Geen gebruikers gevind nie.',
+'activeusers-intro'    => "Hierdie is 'n lys van gebruikers wat die laaste {{PLURAL:$1|dag|$1 dae}} enige aktiwiteit getoon het.",
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek van nuwe gebruikers',
@@ -1964,16 +1976,20 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'delete-edit-reasonlist' => 'Wysig skrap redes',
 'delete-toobig'          => "Die bladsy het 'n lang wysigingsgeskiedenis, meer as $1 {{PLURAL:$1|weergawe|weergawes}}.
 Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te voorkom.",
+'delete-warning-toobig'  => "Hierdie bladsy het 'n lang wysigingsgeskiedenis; meer as $1 {{PLURAL:$1|wysiging|wysigings}}.
+Deur weg te doen met hierdie bladsy mag dalk die werking van {{SITENAME}} versteur;
+Tree asseblief versigtig op.",
 
 # Rollback
-'rollback'         => 'Rol veranderinge terug',
-'rollback_short'   => 'Rol terug',
-'rollbacklink'     => 'Rol terug',
-'rollbackfailed'   => 'Terugrol onsuksesvol',
-'cantrollback'     => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
-'editcomment'      => "Die wysigsopsomming was: \"''\$1''\".",
-'revertpage'       => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
-'rollback-success' => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
+'rollback'          => 'Rol veranderinge terug',
+'rollback_short'    => 'Rol terug',
+'rollbacklink'      => 'Rol terug',
+'rollbackfailed'    => 'Terugrol onsuksesvol',
+'cantrollback'      => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
+'editcomment'       => "Die wysigsopsomming was: \"''\$1''\".",
+'revertpage'        => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
+'revertpage-nouser' => 'Rol wysigings deur (gebruikersnaam verwyder) terug na die laaste weergawe deur [[User:$1|$1]]',
+'rollback-success'  => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 
 # Protect
 'protectlogpage'              => 'Beskermlogboek',
@@ -1989,6 +2005,8 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'protect_expiry_old'          => 'Vervaltyd is in die verlede.',
 'protect-unchain'             => 'Gee regte om te skuif',
 'protect-text'                => "U kan die veiligheidsvlak vir blad '''<nowiki>$1</nowiki>''' hier bekyk of verander.",
+'protect-locked-blocked'      => "U kan nie beskermingsvlakke verander terwyl u geblok is nie.
+Hier volg die huidige oprigtings vir die bladsy '''$1''':",
 'protect-locked-access'       => "U rekening het nie regte om 'n bladsy se veiligheidsvlakke te verander nie.
 Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-cascadeon'           => 'Die bladsy word beskerm want dit is ingesluit by die volgende {{PLURAL:$1|blad|blaaie}} wat kaskade-beskerming geniet. U kan die veiligheidsvlak van die bladsy verander, maar dit sal nie die ander kaskade blaaie beïnvloed nie.',
@@ -2203,6 +2221,8 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir geblokkeerde adresse.",
 'ipb-needreblock'              => '== Hierdie gebruiker is reeds geblokkeer ==
 $1 is al geblokkeer.
 Wil u die instellings wysig?',
+'ipb_cant_unblock'             => 'Fout: Blokkade-ID $1 kan nie gevind word nie.
+Die blokkade is moontlik reeds opgehef.',
 'ip_range_invalid'             => 'Ongeldige IP waardegebied.',
 'blockme'                      => 'Versper my',
 'proxyblocker'                 => 'Proxyblokker',
@@ -2272,6 +2292,7 @@ Kies asseblief 'n ander naam.",
 'movepage-page-exists'         => 'Die bladsy $1 bestaan reeds en kan nie outomaties oorskryf word nie.',
 'movepage-page-moved'          => 'Die bladsy $1 was na $2 geskuif.',
 'movepage-page-unmoved'        => 'Die bladsy $1 kon nie na $2 geskuif word nie.',
+'movepage-max-pages'           => 'Die maksimum van $1 {{PLURAL:$1|bladsy|bladsye}} is geskuif. Die oorblywende bladsye na nie outomaties geskuif word nie.',
 '1movedto2'                    => '[[$1]] geskuif na [[$2]]',
 '1movedto2_redir'              => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
 'move-redirect-suppressed'     => 'aanstuur is onderdruk',
@@ -2368,17 +2389,22 @@ Gaan na [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [h
 'importnotext'               => 'Leeg of geen teks',
 'importsuccess'              => 'Klaar met importering!',
 'importnofile'               => 'Geen importlêer was opgelaai nie.',
+'importuploaderrorsize'      => 'Oplaai van invoer-lêer het misluk. 
+Die lêer is groter as die toelaatbare limiet.',
 'importuploaderrorpartial'   => 'Oplaai van invoer-lêer het misluk. 
 Die lêer is slegs gedeeltelik opgelaai.',
 'importuploaderrortemp'      => "Oplaai van invoer-lêer het misluk.
 'n Tydelike gids bestaan nie.",
 'import-noarticle'           => 'Geen bladsye om te importeer nie!',
+'import-nonewrevisions'      => 'Alle weergawes was voorheen ingevoer.',
 'xml-error-string'           => '$1 op reël $2, kolom $3 (greep $4): $5',
 'import-upload'              => 'Laai XML-data op',
 'import-token-mismatch'      => 'Sessiegegewens is verloor. Probeer asseblief weer.',
+'import-invalid-interwiki'   => 'Kan nie vanaf die gespesifiseerde importeer nie.',
 
 # Import log
 'importlogpage'                    => 'Invoer logboek',
+'import-logentry-upload'           => "[[$1]] ingevoer deur 'n lêer op te laai",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|weergawe|weergawes}}',
 'import-logentry-interwiki'        => 'importeer $1 via transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2',
@@ -2462,9 +2488,13 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruikers|gebruikers}} $1',
 'anonusers'        => 'Anonieme {{SITENAME}}-{{PLURAL:$2|gebruiker|gebruikers}} $1',
 'creditspage'      => 'Outeursblad',
+'nocredits'        => 'Geen outeursinligting is vir hierdie bladsy nie beskikbaar nie.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spamfilter',
+'spamprotectiontext'  => "Die bladsy wat u wou stoor was geblok deur die gemorspos-filter.
+Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons swartlys veroorsaak.",
+'spamprotectionmatch' => 'Die volgende teks is wat ons gemorspos-filter geaktiveer het: $1',
 
 # Info page
 'infosubtitle'   => 'Inligting vir bladsy',
@@ -2532,12 +2562,13 @@ $1',
 'visual-comparison' => 'Visuele vergelyking',
 
 # Media information
+'mediawarning'         => "'''Waarskuwing''': hierdie lêer bevat moontlik programkode wat u stelsel skade kan berokken.<hr />",
 'imagemaxsize'         => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
 'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
 'file-info'            => '(lêergrootte: $1, MIME-tipe: $2)',
 'file-info-size'       => '($1 × $2 pixels, lêergrootte: $3, MIME type: $4)',
-'file-nohires'         => '<small>Geen hoëre resolusie beskikbaar nie.</small>',
+'file-nohires'         => '<small>Geen hoër resolusie is beskikbaar nie.</small>',
 'svg-long-desc'        => '(SVG-lêer, nominaal $1 × $2 pixels, lêergrootte: $3)',
 'show-big-image'       => 'Volle resolusie',
 'show-big-image-thumb' => '<small>Grootte van hierdie voorskou: $1 × $2 pixels</small>',
@@ -2597,6 +2628,7 @@ Ander velde sal versteek wees.
 'exif-jpeginterchangeformatlength' => 'Grepe van JPEG-gegewens',
 'exif-transferfunction'            => 'Oordragfunksie',
 'exif-primarychromaticities'       => 'Chromasiteit van primêre kleure',
+'exif-referenceblackwhite'         => 'Paar swart en wit verwysingswaardes',
 'exif-datetime'                    => 'Tydstip laaste lêerwysiging',
 'exif-imagedescription'            => 'Beeldtitel',
 'exif-make'                        => 'Kamera vervaardiger:',

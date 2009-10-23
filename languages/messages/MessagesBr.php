@@ -465,7 +465,8 @@ Kasit keloù d'ur [[Special:ListUsers/sysop|merer]], en ur verkañ dezhañ choml
 'unexpected'           => 'Talvoudenn dic\'hortoz : "$1"="$2".',
 'formerror'            => 'Fazi: Dibosupl eo kinnig ar furmskrid',
 'badarticleerror'      => "N'haller ket seveniñ an ober-mañ war ar bajenn-mañ.",
-'cannotdelete'         => 'Dibosupl da ziverkañ ar bajenn pe ar skeudenn spisaet.',
+'cannotdelete'         => 'Dibosupl diverkañ ar bajenn pe ar restr "$1".
+Marteze e o bet diverket gant unan bennak all dija.',
 'badtitle'             => 'Titl fall',
 'badtitletext'         => "Faziek pe c'houllo eo titl ar bajenn goulennet; pe neuze eo faziek al liamm etreyezhel",
 'perfcached'           => "Krubuilhet eo ar roadennoù da-heul ha marteze n'int ket bet hizivaet.",

@@ -9,6 +9,7 @@
  *
  * @author Annabel
  * @author Effeietsanders
+ * @author Erwin
  * @author Erwin85
  * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
  * @author Fryed-peach
@@ -674,7 +675,7 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|systeembeheerder]] van {{
 'unexpected'           => 'Onverwachte waarde: "$1"="$2".',
 'formerror'            => 'Fout: formulier kon niet verzonden worden',
 'badarticleerror'      => 'Deze handeling kan niet op deze pagina worden uitgevoerd.',
-'cannotdelete'         => 'De pagina of het bestand kon niet verwijderd worden.
+'cannotdelete'         => 'De pagina of het bestand "$1" kon niet verwijderd worden.
 Mogelijk is deze al door iemand anders verwijderd.',
 'badtitle'             => 'Ongeldige paginanaam',
 'badtitletext'         => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
@@ -806,6 +807,7 @@ Het wachtwoord voor "$2" is "$3".
 Meld u aan en wijzig uw wachtwoord.
 
 Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
+'usernamehasherror'          => 'Een gebruikersnaam mag het karakter hekje ("#") niet bevatten.',
 'login-throttled'            => 'U hebt recentelijk te vaak geprobeerd aan te melden met een onjuist wachtwoord.
 Wacht even voordat u het opnieuw probeert.',
 'loginlanguagelabel'         => 'Taal: $1',
@@ -1767,6 +1769,7 @@ Controleer het bestand en upload het opnieuw.',
 'destfilename'                => 'Opslaan als:',
 'upload-maxfilesize'          => 'Maximale bestandsgrootte: $1',
 'upload-description'          => 'Bestandsbeschrijving',
+'upload-options'              => 'Uploadinstellingen',
 'watchthisupload'             => 'Dit bestand volgen',
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd.
 Raadpleeg het $1 voordat u het opnieuw toevoegt.',
@@ -2127,6 +2130,7 @@ Ondersteunde protocollen: <tt>$1</tt>',
 'activeusers-count'    => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
 'activeusers-from'     => 'Gebruikers worden weergegeven vanaf:',
 'activeusers-noresult' => 'Geen actieve gebruikers gevonden.',
+'activeusers-intro'    => 'Dit is een lijst met gebruikers die enige activiteit hebben laten zien in de afgelopen {{PLURAL:$1|dag|$1 dagen}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieuwe gebruikers',

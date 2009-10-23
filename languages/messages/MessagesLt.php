@@ -538,7 +538,7 @@ Prašome apie tai pranešti [[Special:ListUsers/sysop|administratoriui]], nepami
 'unexpected'           => 'Netikėta reikšmė: „$1“=„$2“.',
 'formerror'            => 'Klaida: nepavyko apdoroti formos duomenų',
 'badarticleerror'      => 'Veiksmas negalimas šiam puslapiui.',
-'cannotdelete'         => 'Nepavyko ištrinti nurodyto puslapio ar failo.
+'cannotdelete'         => 'Nepavyko ištrinti puslapio ar failo "$1".
 Galbūt jį jau kažkas kitas ištrynė.',
 'badtitle'             => 'Blogas pavadinimas',
 'badtitletext'         => 'Nurodytas puslapio pavadinimas buvo neleistinas, tuščias arba neteisingai sujungtas tarpkalbinis arba tarpprojektinis pavadinimas. Jame gali būti vienas ar daugiau simbolių, neleistinų pavadinimuose',
@@ -824,7 +824,7 @@ Ją užrakinusio administratoriaus paaiškinimas: $1",
 'semiprotectedpagewarning'         => "'''Pastaba:''' Šis puslapis buvo užrakintas, jį gali redaguoti tik registruoti naudotojai.",
 'cascadeprotectedwarning'          => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:",
 'titleprotectedwarning'            => "'''ĮSPĖJIMAS: Šis puslapis buvo užrakintas taip, kad tik [[Special:ListGroupRights|kai kurie naudotojai]] galėtų jį sukurti.'''",
-'templatesused'                    => 'Puslapyje naudojami šablonai:',
+'templatesused'                    => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
 'templatesusedpreview'             => 'Šablonai, naudoti šioje peržiūroje:',
 'templatesusedsection'             => 'Šablonai, naudoti šiame skyrelyje:',
 'template-protected'               => '(apsaugotas)',

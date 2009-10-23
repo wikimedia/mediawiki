@@ -37,7 +37,7 @@ $fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'Намаг эн тоолвчд тодлх',
+'tog-rememberpassword' => 'Намаг эн тоолдврд тодлх',
 
 # Dates
 'sunday'        => 'Нарн',
@@ -671,6 +671,7 @@ $2 кенз һарһлһда төлә хәләтн.',
 
 # Media information
 'file-info-size'       => '($1 × $2 цегтә, боомгин кемҗән: $3, MIME янз: $4)',
+'file-nohires'         => '<small>Икәр чинртә янз уга.</small>',
 'svg-long-desc'        => '(SVG боомг, $1 × $2 мет цегтә, боомгин кемҗән: $3)',
 'show-big-image'       => 'Күцц чинр',
 'show-big-image-thumb' => '<small>Урдаснь хәләврин кемҗән: $1 × $2 цегтә</small>',

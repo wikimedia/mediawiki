@@ -476,7 +476,7 @@ Wänn s des nit isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'unexpected'           => 'Wärt, wu nit erwartet woren isch: „$1“=„$2“.',
 'formerror'            => 'Fähler: Ds Formular het nid chönne verarbeitet wärde',
 'badarticleerror'      => 'D Aktion konn uf denne Artikel nit ongwendet werre.',
-'cannotdelete'         => 'Konn d Syte oder dr Artikel nit lesche. (Isch meglicherwis schu vun eber ondrem glescht worre.)',
+'cannotdelete'         => 'D Syte oder d Datei „$1“ cha nit glescht wäre. Si isch villicht scho vu eber anderem glescht wore.',
 'badtitle'             => 'Ugültiger Titel',
 'badtitletext'         => 'Dr Titel vu dr agforderte Syte isch nit giltig gsi, leer, oder e nit giltig Sprochgleich vun eme andre Wiki.',
 'perfcached'           => 'Die Informatione chömme us em Zwüschespeicher un sin derwiil villicht nid aktuell.
@@ -592,6 +592,7 @@ Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'createaccount-text'         => 'Fir Dii isch e Benutzerkonto "$2" uf {{SITENAME}} ($4) aaglait wore. S Passwort fir "$2" , wu automatisch generiert woren isch, isch "$3". Du sottsch Di jetz aamälde un s Passwort ändere.
 
 Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignoriere.',
+'usernamehasherror'          => 'In Benutzernäme derf s kei Rautezeiche din haa',
 'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
 'loginlanguagelabel'         => 'Sproch: $1',
 
@@ -1502,9 +1503,13 @@ Wänn Du die Datei einewäg wit uffelade, gang bitte zruck un ändere dr Name.
 'uploadscripted'              => 'In däre Datei git s HTML- oder Scriptcode, wu fälschligerwyys vun eme Webbrowser usgfiert chennt were.',
 'uploadcorrupt'               => 'Die Datei isch bschädigt oder het e falschi Datei-Erwyterig. Bitte iberprief d Datei un lad si no mol uffe.',
 'uploadvirus'                 => 'In däre Datei het s e Virus! Detail: $1',
+'upload-source'               => 'Quälldatei',
 'sourcefilename'              => 'Quälldatei:',
+'sourceurl'                   => 'Quäll-URL:',
 'destfilename'                => 'Ziilname:',
 'upload-maxfilesize'          => 'Maximali Dateigressi: $1',
+'upload-description'          => 'Dateibschryybig',
+'upload-options'              => 'Optione fir s Uffelade',
 'watchthisupload'             => 'Die Syte beobachte',
 'filewasdeleted'              => 'E Datei mit däm Name isch scho mol uffeglade wore un isch in dr Zwischezyt wider glescht wore. Bitte prief zerscht dr Yytrag im $1, voreb Du die Datei wirkli spycheresch.',
 'upload-wasdeleted'           => "'''Obacht: Du ladsch e Datei uffe, wu scho mol glescht woren isch.'''
@@ -1833,6 +1838,7 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'activeusers-count'    => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}} {{PLURAL:$3|am letschte Tag|in dr letschte $3 Täg}}',
 'activeusers-from'     => 'Zeig Benutzer ab:',
 'activeusers-noresult' => 'Kei Benutzer gfunde.',
+'activeusers-intro'    => 'Des isch e Lischt vu Benutzer, wu irgedebis bearbeitet hän {{PLURAL:$1|am letschte Tag|in dr letschte $1 Täg}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nejaamäldigs-Logbuech',

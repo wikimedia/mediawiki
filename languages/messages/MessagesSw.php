@@ -480,7 +480,7 @@ Tafadhali ripoti hili kwa [[Special:ListUsers/sysop|msimamizi]], na uache jina l
 'unexpected'           => 'Jambo lisilotegemewa: "$1"="$2".',
 'formerror'            => 'Hitilafu: haikufaulu kuweka fomu',
 'badarticleerror'      => 'Ukurasa huu hauwezi kutendewa kitendo hiki.',
-'cannotdelete'         => 'Haikuweza kufuta kurasa au faili lililotajwa.
+'cannotdelete'         => 'Haikuweza kufuta kurasa au faili linaloitwa "$1".
 Huenda likawa tayari lishafutwa na mtu mwingine.',
 'badtitle'             => 'Jina halifai',
 'badtitletext'         => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja a zaidi ambazo hazitumiki katika majina.',
@@ -762,6 +762,8 @@ Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.'''",
 Fikiria kama inafaa kuendelea kuhariri ukurasa huu.
 Kumbukumbu za kufuta na kuhamisha ukurasa huu zinapatikana hapa kukusaidia:",
 'log-fulllog'                      => 'Tazama kumbukumbu zote',
+'edit-gone-missing'                => 'Haikuwezakana kusasisha ukurasa.
+Inaonekana kwamba ukurasa umefutwa.',
 'edit-conflict'                    => 'Mgongano wa kuhariri.',
 'edit-no-change'                   => 'Uhariri wako haukufanikiwa, kwa sababu hapakuwa na mabadiliko yoyote kwenye maandishi.',
 'edit-already-exists'              => 'Haikufanikiwa kuanzisha ukurasa mpya.
@@ -803,7 +805,10 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'rev-deleted-user'           => '(jina la mtumiaji lilifutwa)',
 'rev-deleted-event'          => '(ingizo lilifutwa)',
 'rev-delundel'               => 'onyesha/ficha',
+'revisiondelete'             => 'Kufuta/kurudisha matoleo',
+'revdelete-nologtype-title'  => 'Aina ya kumbukumbu haikutajwa',
 'revdelete-show-file-submit' => 'Ndiyo',
+'revdelete-log'              => 'Sababu ya kufuta',
 'revdel-restore'             => 'badilisha mwonekano',
 'pagehist'                   => 'Historia ya ukurasa',
 'deletedhist'                => 'Historia iliyofutwa',

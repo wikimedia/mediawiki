@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Erwin
  * @author Erwin85
  * @author Jens Frank
  * @author Purodha
@@ -649,7 +650,8 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'unexpected'           => 'Onverwachen weerde: "$1"="$2".',
 'formerror'            => 'Fout: kon formelier neet versturen',
 'badarticleerror'      => 'Disse haandeling kan op disse pagina neet uut-evoerd wonnen.',
-'cannotdelete'         => 'Kon de pagina of ofbeelding neet vort-edaon wonnen.',
+'cannotdelete'         => 'De pagina of \'t bestaand "$1" kon neet vort-edaon wönnen.
+\'t Kan ween dat een aander \'t al vort-edaon hef.',
 'badtitle'             => 'Ongeldige naam',
 'badtitletext'         => 'De naam van de op-evreugen pagina is neet geldig, leeg, of een interwiki-verwiezing naor een onbekende of ongeldige wiki.',
 'perfcached'           => 'Disse gegevens kwammen uut de kas en bin werschienlijk neet actueel:',
@@ -762,6 +764,7 @@ Voer de juuste opmaak van 't adres in of laot 't veld leeg.",
 Meld je noen an en wiezig \'t wachwoord.
 
 Negeer dit berich as disse gebruker zonder joew toestemming an-emaak is.',
+'usernamehasherror'          => 'In een gebrukersnaam ma-j gien hekjen gebruken.',
 'login-throttled'            => "Je hemmen lestens te vake eprebeerd um an te melden mit een verkeerd wachwoord.
 Je mutten effen wachen veurda-j 't opniej preberen kunnen.",
 'loginlanguagelabel'         => 'Taal: $1',
@@ -1668,9 +1671,13 @@ Raodpleeg 't logboek mit vort-edaone pagina's veurda-j veurdan gaon.",
 'uploadcorrupt'               => "'t Bestaand is korrup of hef een verkeerde extensie. 
 Kiek 't bestaand nao en voeg 't bestaand opniej toe.",
 'uploadvirus'                 => "'t Bestaand bevat een virus! Gegevens: $1",
+'upload-source'               => 'Bronbestaand',
 'sourcefilename'              => 'Bestaansnaam op de hardeschieve:',
+'sourceurl'                   => 'Bronwebadres:',
 'destfilename'                => 'Opslaon as (optioneel)',
 'upload-maxfilesize'          => 'Maximale bestaansgrootte: $1',
+'upload-description'          => 'Bestaansbeschrieving',
+'upload-options'              => "Instellingen veur 't toevoegen van bestanen",
 'watchthisupload'             => 'Volg dit bestaand',
 'filewasdeleted'              => "Een bestaand mit disse naam is al eerder vort-edaon. Kiek 't $1 nao veurda-j 't opniej toevoegen.",
 'upload-wasdeleted'           => "'''Waorschuwing: je bin een bestaand an 't toevoegen dee eerder al vort-edaon is.'''
@@ -2000,6 +2007,7 @@ Ondersteunde protecollen: <tt>$1</tt>',
 'activeusers-count'    => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de of-eleupen {{PLURAL:$3|dag|$3 dagen}}',
 'activeusers-from'     => 'Gebrukers weergeven vanof:',
 'activeusers-noresult' => 'Gien actieve gebrukers evunnen.',
+'activeusers-intro'    => 'Dit is een lieste van gebrukers dee de of-eleupen $1 {{PLURAL:$1|dag|dagen}} enigszins actief ewes bin.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieje gebrukers',

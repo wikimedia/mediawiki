@@ -590,7 +590,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'unexpected'           => 'Valor inesperado: "$1"="$2".',
 'formerror'            => 'Error: no se pudo enviar el formulario',
 'badarticleerror'      => 'Esta acción no se puede llevar a cabo en esta página.',
-'cannotdelete'         => 'No se pudo borrar la página o archivo especificado.
+'cannotdelete'         => 'La página o archivo "$1" no se pudo borrar.
 Puede que ya haya sido borrado por alguien más.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
@@ -615,8 +615,8 @@ $2',
 'namespaceprotected'   => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",
 'customcssjsprotected' => 'No tienes permiso para editar esta página porque contiene elementos de la configuración personal de otro usuario.',
 'ns-specialprotected'  => 'Las páginas especiales no se pueden editar',
-'titleprotected'       => "Esta página ha sido protegida contra creación por [[User:$1|$1]].
-El motivo dado fue: ''$2''",
+'titleprotected'       => 'Esta página ha sido protegida contra creación por [[User:$1|$1]].
+El motivo dado fue: "\'\'$2\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Error de configuración: Antivirus desconocido: ''$1''",
@@ -785,7 +785,7 @@ La razón dada es esta:
 
 * Inicio del bloqueo: $8
 * Caducidad del bloqueo: $6
-* Bloqueo destinado a: $7 
+* Bloqueo destinado a: $7
 
 Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.
 
@@ -809,9 +809,14 @@ Por favor incluye todos los datos aquí mostrados en cualquier consulta que haga
 
 La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|Cambiar la contraseña]]'' después de la autenticación.",
 'newarticle'                       => '(Nuevo)',
-'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
+'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe.
+Si lo que quieres es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]].
+Si llegó aquí por error, vuelva a la página anterior.',
 'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
-'noarticletext'                    => 'En este momento no hay texto en esta página. Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otras páginas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
+'noarticletext'                    => 'En este momento no hay texto en esta página.
+Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otras páginas,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros],
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission'       => 'No hay actualmente texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros relacionados]</span>.',
@@ -879,7 +884,8 @@ El administrador que la bloqueó dio esta explicación: $1",
 'hiddencategories'                 => 'Esta página es un miembro de {{PLURAL:$1|1 categoría oculta|$1 categorías ocultas}}:',
 'edittools'                        => '<!-- Este texto aparecerá bajo los formularios de edición y subida. -->',
 'nocreatetitle'                    => 'Creación de páginas limitada',
-'nocreatetext'                     => 'Este wiki ha restringido la posibilidad de crear nuevas páginas. Puede volver atrás y editar una página existente, [[Special:UserLogin|identificarse o crear una cuenta]].',
+'nocreatetext'                     => '{{SITENAME}} ha restringido la posibilidad de crear nuevas páginas.
+Puede volver atrás y editar una página existente, [[Special:UserLogin|identificarse o crear una cuenta]].',
 'nocreate-loggedin'                => 'No tienes permiso para crear páginas nuevas.',
 'permissionserrors'                => 'Errores de permisos',
 'permissionserrorstext'            => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
@@ -1158,8 +1164,9 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchresulttext'                 => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Has consultado \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|todas las páginas que empiezan por "$1"]] {{int:pipe-separator}} [[Special:WhatLinksHere/$1|todas las páginas que enlazan con «$1»]])',
 'searchsubtitleinvalid'            => "Buscaste '''$1'''",
-'noexactmatch'                     => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
-'noexactmatch-nocreate'            => "'''No existe la página «$1».'''",
+'noexactmatch'                     => "'''No existe una página llamada \"\$1\".'''
+Puedes [[:\$1|crearla]].",
+'noexactmatch-nocreate'            => "'''No existe la página \"\$1\".'''",
 'toomanymatches'                   => 'Los resultados fueron demasiado extensos, por favor intente una consulta diferente',
 'titlematches'                     => 'Coincidencias de título de artículo',
 'notitlematches'                   => 'No hay coincidencias de título de artículo',
@@ -1618,6 +1625,7 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'destfilename'                => 'Nombre del archivo de destino:',
 'upload-maxfilesize'          => 'Tamaño máximo del archivo: $1',
 'upload-description'          => 'Descripción de archivo',
+'upload-options'              => 'Opciones de carga',
 'watchthisupload'             => 'Vigilar este archivo',
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
 'upload-wasdeleted'           => "'''Atención: Está subiendo un archivo que ha sido borrado previamente.'''
@@ -1953,6 +1961,7 @@ Protocolos soportados: <tt>$1</tt>',
 'activeusers-count'    => '$1 {{PLURAL:$1|edición|ediciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
 'activeusers-from'     => 'Mostrando a los usuarios empezando por:',
 'activeusers-noresult' => 'No se encontraron usuarios.',
+'activeusers-intro'    => 'Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro de creación de usuarios',
@@ -2423,9 +2432,9 @@ Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Spec
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que deberían hacerlo.
 
 Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o una redirección sin historial.
-Esto significa que podrás renombrar una página a su título original si has cometido un error, pero que no podrás sobreescribir una página existente.
+Esto significa que podrás renombrar una página a su título original si has cometido un error, pero que no podrás sobrescribir una página existente.
 
-'''¡ADVERTENCIA!'''
+'''¡Advertencia!'''
 Este puede ser un cambio drástico e inesperado para una página popular;
 por favor, asegúrate de entender las consecuencias del procedimiento antes de seguir adelante.",
 'movepagetalktext'             => "La página de discusión asociada, si existe, será renombrada automáticamente '''a menos que:'''
