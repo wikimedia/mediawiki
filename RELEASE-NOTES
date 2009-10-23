@@ -589,6 +589,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21234) Moving subpages of titles containing \\ now works properly
 * (bug 21006) maintenance/updateArticleCount.php now works again on PostgreSQL
 * (bug 19319) Add activeusers-intro message at top of SpecialActiveUsers page
+* (bug 21255) Fixed hostname construction for DNSBL checking
 
 == API changes in 1.16 ==
 
