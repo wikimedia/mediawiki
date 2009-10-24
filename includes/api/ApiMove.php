@@ -71,7 +71,18 @@ class ApiMove extends ApiBase {
 		if(!$toTitle)
 			$this->dieUsageMsg(array('invalidtitle', $params['to']));
 		$toTalk = $toTitle->getTalkPage();
-
+		
+		if ( $toTitle->getNamespace() == NS_FILE 
+			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle ) 
+			&& wfFindFile( $toTitle ) )
+		{
+			if ( !$params['ignorewarnings'] && $wgUser->isAllowed( 'reupload-shared' ) ) {
+				$this->dieUsageMsg(array('sharedfile-exists'));
+			} elseif ( !$wgUser->isAllowed( 'reupload-shared' ) ) {
+				$this->dieUsageMsg(array('cantoverwrite-sharedfile'));
+			}
+		}
+		
 		# Move the page
 		$hookErr = null;
 		$retval = $fromTitle->moveTo($toTitle, true, $params['reason'], !$params['noredirect']);
@@ -171,7 +182,8 @@ class ApiMove extends ApiBase {
 			'movesubpages' => false,
 			'noredirect' => false,
 			'watch' => false,
-			'unwatch' => false
+			'unwatch' => false,
+			'ignorewarnings' => false
 		);
 	}
 
@@ -186,7 +198,8 @@ class ApiMove extends ApiBase {
 			'movesubpages' => 'Move subpages, if applicable',
 			'noredirect' => 'Don\'t create a redirect',
 			'watch' => 'Add the page and the redirect to your watchlist',
-			'unwatch' => 'Remove the page and the redirect from your watchlist'
+			'unwatch' => 'Remove the page and the redirect from your watchlist',
+			'ignorewarnings' => 'Ignore any warnings'
 		);
 	}
 

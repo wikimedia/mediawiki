@@ -591,6 +591,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21006) maintenance/updateArticleCount.php now works again on PostgreSQL
 * (bug 19319) Add activeusers-intro message at top of SpecialActiveUsers page
 * (bug 21255) Fixed hostname construction for DNSBL checking
+* (bug 18019) Users are now warned when moving a file to a name in use on a
+  shared repository and only users with the 'reupload-shared' permission can
+  complete the move.
 
 == API changes in 1.16 ==
 

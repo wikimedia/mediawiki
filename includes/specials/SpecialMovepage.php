@@ -58,7 +58,7 @@ function wfSpecialMovepage( $par = null ) {
 class MovePageForm {
 	var $oldTitle, $newTitle; # Objects
 	var $reason; # Text input
-	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect; # Checks
+	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect, $moveOverShared; # Checks
 
 	private $watch = false;
 
@@ -79,6 +79,7 @@ class MovePageForm {
 		}
 		$this->moveSubpages = $wgRequest->getBool( 'wpMovesubpages', false );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
+		$this->moveOverShared = $wgRequest->getBool( 'wpMoveOverSharedFile', false );
 		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
@@ -136,6 +137,12 @@ class MovePageForm {
 			$confirm = false;
 		}
 
+		if ( !empty($err) && $err[0] == 'file-exists-sharedrepo' && $wgUser->isAllowed( 'reupload-shared' ) ) {
+			$wgOut->addWikiMsg( 'move-over-sharedrepo', $newTitle->getPrefixedText() );
+			$submitVar = 'wpMoveOverSharedFile';
+			$err = '';
+		}
+		
 		$oldTalk = $this->oldTitle->getTalkPage();
 		$considerTalk = ( !$this->oldTitle->isTalkPage() && $oldTalk->exists() );
 
@@ -351,6 +358,17 @@ class MovePageForm {
 			return;
 		}
 
+		# Show a warning if the target file exists on a shared repo
+		if ( $nt->getNamespace() == NS_FILE 
+			&& !( $this->moveOverShared && $wgUser->isAllowed( 'reupload-shared' ) )
+			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $nt ) 
+			&& wfFindFile( $nt ) )
+		{
+			$this->showForm( array('file-exists-sharedrepo') );
+			return;
+			
+		}
+		
 		if ( $wgUser->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = $this->leaveRedirect;
 		} else {
