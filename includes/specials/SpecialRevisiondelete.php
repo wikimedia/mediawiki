@@ -1047,6 +1047,11 @@ abstract class RevDel_Item {
 	 * Returns true if the current user can view the item
 	 */
 	abstract public function canView();
+	
+	/**
+	 * Returns true if the current user can view the item text/file
+	 */
+	abstract public function canViewContent();
 
 	/**
 	 * Get the current deletion bitfield value
@@ -1139,6 +1144,10 @@ class RevDel_RevisionItem extends RevDel_Item {
 	public function canView() {
 		return $this->revision->userCan( Revision::DELETED_RESTRICTED );
 	}
+	
+	public function canViewContent() {
+		return $this->revision->userCan( Revision::DELETED_TEXT );
+	}
 
 	public function getBits() {
 		return $this->revision->mDeleted;
@@ -1192,7 +1201,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	protected function getRevisionLink() {
 		global $wgLang;
 		$date = $wgLang->timeanddate( $this->revision->getTimestamp(), true );
-		if ( $this->isDeleted() && !$this->canView() ) {
+		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
 		return $this->special->skin->link(
@@ -1211,7 +1220,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	 * Overridden by RevDel_ArchiveItem
 	 */
 	protected function getDiffLink() {
-		if ( $this->isDeleted() && !$this->canView() ) {
+		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return wfMsgHtml('diff');
 		} else {
 			return 
@@ -1316,7 +1325,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 		global $wgLang;
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 		$date = $wgLang->timeanddate( $this->revision->getTimestamp(), true );
-		if ( $this->isDeleted() && !$this->canView() ) {
+		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
 		return $this->special->skin->link( $undelete, $date, array(),
@@ -1327,7 +1336,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 	}
 
 	protected function getDiffLink() {
-		if ( $this->isDeleted() && !$this->canView() ) {
+		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return wfMsgHtml( 'diff' );
 		}
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );		
@@ -1429,6 +1438,10 @@ class RevDel_FileItem extends RevDel_Item {
 	public function canView() {
 		return $this->file->userCan( File::DELETED_RESTRICTED );
 	}
+	
+	public function canViewContent() {
+		return $this->file->userCan( File::DELETED_FILE );
+	}
 
 	public function getBits() {
 		return $this->file->getVisibility();
@@ -1485,7 +1498,7 @@ class RevDel_FileItem extends RevDel_Item {
 		$date = $wgLang->timeanddate( $this->file->getTimestamp(), true  );		
 		if ( $this->isDeleted() ) {
 			# Hidden files...
-			if ( !$this->canView() ) {
+			if ( !$this->canViewContent() ) {
 				$link = $date;
 			} else {
 				$link = $this->special->skin->link( 
@@ -1616,7 +1629,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 		$key = $this->file->getKey();
 		# Hidden files...
-		if( !$this->canView() ) {
+		if( !$this->canViewContent() ) {
 			$link = $date;
 		} else {
 			$link = $this->special->skin->link( $undelete, $date, array(),
@@ -1681,6 +1694,10 @@ class RevDel_LogList extends RevDel_List {
 class RevDel_LogItem extends RevDel_Item {
 	public function canView() {
 		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED );
+	}
+	
+	public function canViewContent() {
+		return true; // none
 	}
 
 	public function getBits() {
