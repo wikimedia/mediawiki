@@ -404,19 +404,19 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else {
 			$out = '';
 		}
-		// Show link to edit the dropdown reasons
-		if( $wgUser->isAllowed( 'editinterface' ) ) {
-			$title = Title::makeTitle( NS_MEDIAWIKI, 'revdelete-reason-dropdown' );
-			$link = $wgUser->getSkin()->link(
-				$title,
-				wfMsgHtml( 'revdelete-edit-reasonlist' ),
-				array(),
-				array( 'action' => 'edit' )
-			);
-			$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
-		}
 		if( $this->mIsAllowed ) {
 			$out .= Xml::closeElement( 'form' ) . "\n";
+			// Show link to edit the dropdown reasons
+			if( $wgUser->isAllowed( 'editinterface' ) ) {
+				$title = Title::makeTitle( NS_MEDIAWIKI, 'revdelete-reason-dropdown' );
+				$link = $wgUser->getSkin()->link(
+					$title,
+					wfMsgHtml( 'revdelete-edit-reasonlist' ),
+					array(),
+					array( 'action' => 'edit' )
+				);
+				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
+			}
 		}
 		$wgOut->addHTML( $out );
 	}
