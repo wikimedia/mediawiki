@@ -2038,10 +2038,10 @@ Támogatott protokollok: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktív szerkesztők listája',
+'activeusers-intro'    => 'Ez a lap azon felhasználók listáját tartalmazza, akik csináltak valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
 'activeusers-count'    => '{{PLURAL:$1|egy|$1}} szerkesztés az utolsó {{PLURAL:$3|egy|$3}} napban',
 'activeusers-from'     => 'Szerkesztők listázása a következő névtől kezdve:',
 'activeusers-noresult' => 'Nem található ilyen szerkesztő.',
-'activeusers-intro'    => 'Ez a lap azon felhasználók listáját tartalmazza, akik csináltak valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Új szerkesztők naplója',

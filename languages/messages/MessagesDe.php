@@ -2064,10 +2064,10 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Liste aktiver Benutzer',
+'activeusers-intro'    => 'Dies ist eine Liste von Benutzern, die innerhalb {{PLURAL:$1|des letzten Tages|der letzten $1 Tage}} Aktivitäten aufwiesen.',
 'activeusers-count'    => '$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}} in den {{PLURAL:$3|letzten 24 Stunden|vergangenen $3 Tagen}}',
 'activeusers-from'     => 'Zeige Benutzer ab:',
 'activeusers-noresult' => 'Keine Benutzer gefunden.',
-'activeusers-intro'    => 'Dies ist eine Liste von Benutzern, die innerhalb {{PLURAL:$1|des letzten Tages|der letzten $1 Tage}} Aktivitäten aufwiesen.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Neuanmeldungs-Logbuch',

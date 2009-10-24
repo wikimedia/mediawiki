@@ -2072,10 +2072,10 @@ Protocoles reconnus : <tt>$1</tt>.',
 
 # Special:ActiveUsers
 'activeusers'          => 'Liste des utilisateurs actifs',
+'activeusers-intro'    => 'Ceci est une liste des utilisateurs qui ont exercé une quelconque activité au cours {{PLURAL:$1|de la dernière journée|des $1 derniers jours}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|modification récente|modifications récentes}} dans {{PLURAL:$3|le dernier jour|les $3 derniers jours}}',
 'activeusers-from'     => 'Afficher les utilisateurs depuis :',
 'activeusers-noresult' => 'Aucun utilisateur trouvé.',
-'activeusers-intro'    => 'Ceci est une liste des utilisateurs qui ont exercé une quelconque activité au cours {{PLURAL:$1|de la dernière journée|des $1 derniers jours}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Journal des créations de comptes utilisateur',

@@ -1914,10 +1914,10 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Listo de aktivaj uzantoj',
+'activeusers-intro'    => 'Jen listo de uzantoj kiu faris iom da agoj dum la lastaj $1 {{PLURAL:$1|tago|tagoj}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|lasta redakto|lastaj redaktoj}} dum la {{PLURAL:$3|lasta tago|lastaj $3 tagoj}}',
 'activeusers-from'     => 'Montri uzantojn ekde:',
 'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
-'activeusers-intro'    => 'Jen listo de uzantoj kiu faris iom da agoj dum la lastaj $1 {{PLURAL:$1|tago|tagoj}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Protokolo de uzanto-kreado',

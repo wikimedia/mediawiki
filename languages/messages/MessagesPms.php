@@ -1790,10 +1790,10 @@ Varda ëdcò [[Special:WantedCategories|Categorìe ciamà]].",
 
 # Special:ActiveUsers
 'activeusers'          => "Lista dj'utent ativ",
+'activeusers-intro'    => "Costa a l'é na lista d'utent ch'a l'han avù n'atività qualsëssìa ant j'ùltim $1 {{PLURAL:$1|di|di}}.",
 'activeusers-count'    => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
 'activeusers-from'     => "Mosta j'utent a parte da:",
 'activeusers-noresult' => 'Pa gnun utent trovà.',
-'activeusers-intro'    => "Costa a l'é na lista d'utent ch'a l'han avù n'atività qualsëssìa ant j'ùltim $1 {{PLURAL:$1|di|di}}.",
 
 # Special:Log/newusers
 'newuserlogpage'              => "Registr dla creassion dj'utent",

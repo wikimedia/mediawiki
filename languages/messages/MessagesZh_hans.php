@@ -1890,10 +1890,10 @@ Template:消除歧義',
 
 # Special:ActiveUsers
 'activeusers'          => '活跃用户列表',
+'activeusers-intro'    => '这个是在最近$1天之内有一些动作的用户列表。',
 'activeusers-count'    => '最近$3天内的$1次编辑',
 'activeusers-from'     => '显示用户开始于：',
 'activeusers-noresult' => '找不到用户。',
-'activeusers-intro'    => '这个是在最近$1天之内有一些动作的用户列表。',
 
 # Special:Log/newusers
 'newuserlogpage'              => '用户创建日志',
