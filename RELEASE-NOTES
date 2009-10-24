@@ -259,6 +259,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   an own 'mw-error-cannotdelete' class
 * New hook AbortNewAccountAuto, called before account creation from AuthPlugin-
   or ExtUser-driven requests.
+* (bug 3480) The warning saying that the page has a history when deleting it now
+  contains the number of revisions in the history
 
 === Bug fixes in 1.16 ===
 

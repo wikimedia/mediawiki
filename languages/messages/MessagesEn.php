@@ -2676,7 +2676,7 @@ Feedback and further assistance:
 'delete-confirm'         => 'Delete "$1"',
 'delete-backlink'        => '← $1', # only translate this message to other languages if you have to change it
 'delete-legend'          => 'Delete',
-'historywarning'         => "'''Warning:''' The page you are about to delete has a history:",
+'historywarning'         => "'''Warning:''' The page you are about to delete has a history with $1 {{PLURAL:$1|revision|revisions}}:",
 'confirmdeletetext'      => 'You are about to delete a page along with all of its history.
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'actioncomplete'         => 'Action complete',
