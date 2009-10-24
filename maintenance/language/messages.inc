@@ -2109,6 +2109,8 @@ $wgMessageStructure = array(
 		'move-leave-redirect',
 		'protectedpagemovewarning',
 		'semiprotectedpagemovewarning',
+		'move-over-sharedrepo',
+		'file-exists-sharedrepo',
 	),
 	'export' => array(
 		'export',
