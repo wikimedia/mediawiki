@@ -431,6 +431,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
 			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
 		}
+		if( $this->mIsAllowed ) {
+			$wgOut->addWikiMsg( 'revdelete-confirm' );
+		}
 	}
 	
 	/**
