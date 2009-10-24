@@ -2536,10 +2536,10 @@ Supported protocols: <tt>$1</tt>',
 # Special:ActiveUsers
 'activeusers'          => 'Active users list',
 'activeusers-summary'  => '', # do not translate or duplicate this message to other languages
+'activeusers-intro'    => 'This is a list of users who had some kind of activity within the last $1 {{PLURAL:$1|day|days}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|edit|edits}} in the last {{PLURAL:$3|day|$3 days}}',
 'activeusers-from'     => 'Display users starting at:',
 'activeusers-noresult' => 'No users found.',
-'activeusers-intro'    => 'This is a list of users who had some kind of activity within the last $1 {{PLURAL:$1|day|days}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'User creation log',
@@ -3109,7 +3109,7 @@ cannot move a page over itself.',
 'move-leave-redirect'          => 'Leave a redirect behind',
 'protectedpagemovewarning'     => "'''Warning:''' This page has been locked so that only users with administrator privileges can move it.",
 'semiprotectedpagemovewarning' => "'''Note:''' This page has been locked so that only registered users can move it.",
-'move-over-sharedrepo'         => '==File exists==
+'move-over-sharedrepo'         => '== File exists ==
 [[:$1]] exists on a shared repository. Moving a file to this title will override the shared file.',
 'file-exists-sharedrepo'       => 'The file name chosen is already in use on a shared repository.
 Please choose another name.',
