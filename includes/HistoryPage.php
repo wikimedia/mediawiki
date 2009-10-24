@@ -476,20 +476,29 @@ class HistoryPager extends ReverseChronologicalPager {
 		$link = $this->revLink( $rev );
 		$classes = array();
 
+		$del = '';
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			// Don't show useless link to people who cannot hide revisions
-			if( !$rev->getVisibility() && !$wgUser->isAllowed( 'deleterevision' ) ) {
-				$del = Xml::check( 'deleterevisions', false, array('class' => 'mw-revdelundel-hidden') );
-			// If revision was hidden from sysops
-			} else if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$del = Xml::check( 'deleterevisions', false, array('disabled' => 'disabled') );
+			// If revision was hidden from sysops, disable the checkbox
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
+			// Otherwise, enable the checkbox...
+			} else {
+				$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids['.$rev->getId().']' ) );
+			}
+		// User can only view deleted revisions...
+		} else if( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) {
+			// If revision was hidden from sysops, disable the link
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+					'(' . $this->historyPage->message['rev-delundel'] . ')' );
 			// Otherwise, show the link...
 			} else {
-				$id = $rev->getId();
-				$del = Xml::check( 'showhiderevisions', false, array( 'name' => "ids[$id]" ) );
+				$query = array( 'type' => 'revision',
+					'target' => $this->title->getPrefixedDbkey(), 'ids' => $rev->getId() ); 	 
+				$del .= $this->getSkin()->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
-			$s .= " $del ";
 		}
+		if( $del ) $s .= " $del ";
 
 		$s .= " $link";
 		$s .= " <span class='history-user'>" . $this->getSkin()->revUserTools( $rev, true ) . "</span>";
@@ -670,7 +679,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				);
 				$checkmark = array( 'checked' => 'checked' );
 			} else {
-				# Check ility of old revisions
+				# Check visibility of old revisions
 				if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = array(); // We will check the next possible one
