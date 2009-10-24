@@ -2599,7 +2599,8 @@ class Article {
 		// If the page has a history, insert a warning
 		if( $hasHistory && !$confirm ) {
 			$skin = $wgUser->getSkin();
-			$wgOut->addHTML( '<strong>' . wfMsgExt( 'historywarning', array( 'parseinline' ) ) . ' ' . $skin->historyLink() . '</strong>' );
+			$revisions = $this->estimateRevisionCount();
+			$wgOut->addHTML( '<strong>' . wfMsgExt( 'historywarning', array( 'parseinline' ), $revisions ) . ' ' . $skin->historyLink() . '</strong>' );
 			if( $bigHistory ) {
 				global $wgLang, $wgDeleteRevisionsLimit;
 				$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n",
