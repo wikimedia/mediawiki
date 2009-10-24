@@ -67,10 +67,16 @@ class IPBlockForm {
 			$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
 		}
 		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
-		# Re-check user's rights to hide names, very serious, defaults to 0
-		$this->BlockHideName = ( $wgRequest->getBool( 'wpHideName', 0 ) && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
+		# Re-check user's rights to hide names, very serious, defaults to null
+		if( $wgUser->isAllowed( 'hideuser' ) ) {
+			$this->BlockHideName = $wgRequest->getBool( 'wpHideName', null );
+		} else {
+			$this->BlockHideName = false;
+		}
 		$this->BlockAllowUsertalk = ( $wgRequest->getBool( 'wpAllowUsertalk', $byDefault ) && $wgBlockAllowsUTEdit );
 		$this->BlockReblock = $wgRequest->getBool( 'wpChangeBlock', false );
+		
+		$this->wasPosted = $wgRequest->wasPosted();
 	}
 
 	public function showForm( $err ) {
@@ -99,17 +105,17 @@ class IPBlockForm {
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
 			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
 		} elseif( $this->BlockAddress ) {
-			$userId = 0;
-			if( is_object( $user ) )
-				$userId = $user->getId();
+			$userId = is_object( $user ) ? $user->getId() : 0;
 			$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
 			if( !is_null( $currentBlock ) && !$currentBlock->mAuto && # The block exists and isn't an autoblock
 				( $currentBlock->mRangeStart == $currentBlock->mRangeEnd || # The block isn't a rangeblock
 				# or if it is, the range is what we're about to block
-				( $currentBlock->mAddress == $this->BlockAddress ) ) ) {
-					$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
-					$alreadyBlocked = true;
-					# Set the block form settings to the existing block
+				( $currentBlock->mAddress == $this->BlockAddress ) )
+			) {
+				$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
+				$alreadyBlocked = true;
+				# Set the block form settings to the existing block
+				if( !$this->wasPosted ) {
 					$this->BlockAnonOnly = $currentBlock->mAnonOnly;
 					$this->BlockCreateAccount = $currentBlock->mCreateAccount;
 					$this->BlockEnableAutoblock = $currentBlock->mEnableAutoblock;
@@ -122,6 +128,7 @@ class IPBlockForm {
 						$this->BlockOther = wfTimestamp( TS_ISO_8601, $currentBlock->mExpiry );
 					}
 					$this->BlockReason = $currentBlock->mReason;
+				}
 			}
 		}
 
@@ -261,7 +268,8 @@ class IPBlockForm {
 					<td class='mw-input'><strong>" .
 						Xml::checkLabel( wfMsg( 'ipbhidename' ),
 							'wpHideName', 'wpHideName', $this->BlockHideName,
-							array( 'tabindex' => '10' ) ) . "
+							array( 'tabindex' => '10' )
+						) . "
 					</strong></td>
 				</tr>"
 			);
@@ -433,7 +441,8 @@ class IPBlockForm {
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getId(),
 			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
-			$this->BlockEmail, isset( $this->BlockAllowUsertalk ) ? $this->BlockAllowUsertalk : $wgBlockAllowsUTEdit
+			$this->BlockEmail,
+			isset( $this->BlockAllowUsertalk ) ? $this->BlockAllowUsertalk : $wgBlockAllowsUTEdit
 		);
 
 		# Should this be privately logged?
