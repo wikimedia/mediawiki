@@ -3109,6 +3109,10 @@ cannot move a page over itself.',
 'move-leave-redirect'          => 'Leave a redirect behind',
 'protectedpagemovewarning'     => "'''Warning:''' This page has been locked so that only users with administrator privileges can move it.",
 'semiprotectedpagemovewarning' => "'''Note:''' This page has been locked so that only registered users can move it.",
+'move-over-sharedrepo'         => '==File exists==
+[[:$1]] exists on a shared repository. Moving a file to this title will override the shared file.',
+'file-exists-sharedrepo'       => 'The file name chosen is already in use on a shared repository.
+Please choose another name.',
 
 # Export
 'export'            => 'Export pages',

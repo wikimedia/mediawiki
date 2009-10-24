@@ -846,6 +846,8 @@ abstract class ApiBase {
 		'import-noarticle' => array('code' => 'badinterwiki', 'info' => 'Invalid interwiki title specified'),
 		'importbadinterwiki' => array('code' => 'badinterwiki', 'info' => 'Invalid interwiki title specified'),
 		'import-unknownerror' => array('code' => 'import-unknownerror', 'info' => "Unknown error on import: ``\$1''"),
+		'cantoverwrite-sharedfile' => array('code' => 'cantoverwrite-sharedfile', 'info' => 'The target file exists on a shared repository and you do not have permission to override it'),
+		'sharedfile-exists' => array('code' => 'fileexists-sharedrepo-perm', 'info' => 'The target file exists on a shared repository. Use the ignorewarnings parameter to override it.'),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array('code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects"),
