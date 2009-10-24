@@ -378,6 +378,7 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 # Contributions
 'mycontris' => 'tikkin ino',
+'year'      => 'Z usggas (d urbur):',
 
 'sp-contributions-talk' => 'assays',
 

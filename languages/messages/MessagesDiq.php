@@ -384,7 +384,8 @@ Kerem kerê, naye be namey ''URL''i yew [[Special:ListUsers/sysop|karber]]i ra v
 'unexpected'           => 'Endek texmin nêbeni: "$1"="$2".',
 'formerror'            => 'Xeta: Form nêerşawiyeno',
 'badarticleerror'      => 'Kar o ke şıma keni qebul nêbı.',
-'cannotdelete'         => 'Pel o ke şıma nişane kerd hewn a neşı. (belka yewna ten kerdo hewn a).',
+'cannotdelete'         => 'Pel  "$1" o ke şıma nişane kerd hewn a neşı. 
+Belka yewna ten kerdo hewn a.',
 'badtitle'             => 'Sernameya xırabe',
 'badtitletext'         => 'Sernameyê pela ke şıma waşt, nêvêrde, thal, ya gırê bênatey zıwani ğelet ya zi sernameyê bênatey wiki bi. Beno ke, tede yew ya zi zêdê işareti estê ke sernameyan de nêxebetiyenê.',
 'perfcached'           => 'Datayi cıwa ver hazır biye. No semedê ra nıkayin niyo!',

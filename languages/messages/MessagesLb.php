@@ -1868,6 +1868,7 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lëscht vun den aktive Benotzer',
+'activeusers-intro'    => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
 'activeusers-count'    => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLUAL:$3|gëschter|an de leschten $3 Deeg}}',
 'activeusers-from'     => 'Benotzer weisen, ugefaang bäi:',
 'activeusers-noresult' => 'Keng Benotzer fonnt.',
@@ -2004,7 +2005,7 @@ Reaktiounen a méi Hëllef:
 'exblank'                => "D'Säit war eidel",
 'delete-confirm'         => 'Läsche vu(n) "$1"',
 'delete-legend'          => 'Läschen',
-'historywarning'         => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
+'historywarning'         => "'''Opgepasst:''' Déi Säit déi Dir läsche wëllt huet en Historique mat  $1 {{PLURAL:$1|Versioun|Versiounen}}:",
 'confirmdeletetext'      => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen.
 W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt am Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] geschitt.",
 'actioncomplete'         => 'Aktioun ofgeschloss',
@@ -2407,6 +2408,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-leave-redirect'          => 'Viruleedung uleeën',
 'protectedpagemovewarning'     => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme Benotzer mat Administreurs-Rechter se réckele kënnen.",
 'semiprotectedpagemovewarning' => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme konfirméiert Benotzer se réckele kënnen.",
+'file-exists-sharedrepo'       => 'Den Numm vum Fichier deen dir erausgesicht hutt gëtt schonn op engem gemeinsame Repertoire benotzt.
+Sicht Iech w.e.g. en aneren Numm.',
 
 # Export
 'export'            => 'Säiten exportéieren',

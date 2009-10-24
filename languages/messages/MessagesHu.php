@@ -1613,6 +1613,7 @@ A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' v
 'upload'                      => 'Fájl feltöltése',
 'uploadbtn'                   => 'Fájl feltöltése',
 'reuploaddesc'                => 'Visszatérés a feltöltési űrlaphoz.',
+'upload-tryagain'             => 'Módosított fájl-leírás elküldése',
 'uploadnologin'               => 'Nem vagy bejelentkezve',
 'uploadnologintext'           => 'Csak regisztrált felhasználók tölthetnek fel fájlokat. [[Special:UserLogin|Jelentkezz be]] vagy regisztrálj!',
 'upload_directory_missing'    => 'A feltöltési könyvtár ($1) nem létezik vagy nem tudja létrehozni a kiszolgáló.',
@@ -1679,6 +1680,7 @@ Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy ú
 'file-deleted-duplicate'      => 'Egy ehhez hasonló fájlt ([[$1]]) korábban már töröltek. Ellenőrizd a fájl törlési naplóját, mielőtt újra feltöltenéd.',
 'successfulupload'            => 'A feltöltés sikerült',
 'uploadwarning'               => 'Feltöltési figyelmeztetés',
+'uploadwarning-text'          => 'Kérlek módosítsd a fájl leírását alább, majd próbáld újra.',
 'savefile'                    => 'Fájl mentése',
 'uploadedimage'               => '„[[$1]]” felküldve',
 'overwroteimage'              => 'feltöltötte a(z) „[[$1]]” fájl új változatát',
@@ -2173,7 +2175,7 @@ Visszajelzés és további segítség:
 'exblank'                => 'a lap üres volt',
 'delete-confirm'         => '$1 törlése',
 'delete-legend'          => 'Törlés',
-'historywarning'         => 'Figyelem: a lapnak, amit törölni készülsz, több változata van:',
+'historywarning'         => "'''Figyelem:''' a lapnak, amit törölni készülsz, $1 változattal rendelkező laptörténete van:",
 'confirmdeletetext'      => 'Egy lapot vagy fájlt készülsz törölni a teljes laptörténetével együtt.
 Kérjük, erősítsd meg, hogy valóban ezt szeretnéd tenni, átlátod a következményeit, és hogy a műveletet a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]] összhangban végzed.',
 'actioncomplete'         => 'Művelet végrehajtva',
@@ -2582,6 +2584,11 @@ Az átnevezés céljaként megadott „[[:$1]]” szócikk már létezik.  Ha az
 'move-leave-redirect'          => 'Átirányítás készítése a régi címről az új címre',
 'protectedpagemovewarning'     => "'''FIGYELEM:''' Ez a lap le van védve, ezért csak adminisztrátorok nevezhetik át.",
 'semiprotectedpagemovewarning' => "'''Megjegyzés:''' Ez a lap le van védve, ezért csak regisztrált szerkesztők nevezhetik át.",
+'move-over-sharedrepo'         => '== Létező fájlnév ==
+
+A(z) [[:$1]] néven már létezik fájl egy megosztott tárhelyen. Ha ilyen néven töltöd fel, el fogja takarni a közös tárhelyen levőt.',
+'file-exists-sharedrepo'       => 'A választott fájlnév már használatban van egy közös tárhelyen.
+Kérlek válassz másik nevet.',
 
 # Export
 'export'            => 'Lapok exportálása',
@@ -3269,7 +3276,7 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'autosumm-new'     => 'Új oldal, tartalma: „$1”',
 
 # Live preview
-'livepreview-loading' => 'Loading…',
+'livepreview-loading' => 'Betöltés…',
 'livepreview-ready'   => 'Betöltés… Kész!',
 'livepreview-failed'  => 'Az élő előnézet nem sikerült! Próbálkozz a normál előnézettel.',
 'livepreview-error'   => 'A csatlakozás nem sikerült: $1 "$2". Próbálkozz a normál előnézettel.',
