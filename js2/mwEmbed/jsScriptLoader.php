@@ -5,17 +5,22 @@
  */
 // Check if we are being invoked in a MediaWiki context or stand alone usage:
 
-if ( !defined( 'MEDIAWIKI' ) ) {
+//setup the script local script cache directory (has to be hard coded rather than config based  for fast non-mediawiki hits
+$wgScriptCacheDirectory = realpath( dirname( __FILE__ ) ) . '/php/script-cache';
+
+if ( !defined( 'MEDIAWIKI' ) && !defined( 'MW_CACHE_SCRIPT_CHECK' ) ){
 	// Load noMediaWiki helper
-	require_once( realpath( dirname( __FILE__ ) ) . '/php/noMediaWikiConfig.php' );
 	$myScriptLoader = new jsScriptLoader();
+	if( $myScriptLoader->outputFromCache() )
+		exit();
+	//else load up all the config and do normal doScriptLoader process:
+	require_once( realpath( dirname( __FILE__ ) ) . '/php/noMediaWikiConfig.php' );
 	$myScriptLoader->doScriptLoader();
-} else {
-	$wgExtensionMessagesFiles['mwEmbed'] = realpath( dirname( __FILE__ ) ) . '/php/mwEmbed.i18n.php';
 }
 
 class jsScriptLoader {
 	var $jsFileList = array();
+	var $langCode = '';
 	var $jsout = '';
 	var $rKey = ''; // the request key
 	var $error_msg = '';
@@ -23,32 +28,39 @@ class jsScriptLoader {
 	var $jsvarurl = false; // whether we should include generated JS (special class '-')
 	var $doProcReqFlag = true;
 
-	//@@todo fix: will break down if someone does }) in their msg text
-	const loadGMregEx = '/loadGM\s*\(\s*{(.*)}\s*\)\s*/siU';
+	function outputFromCache(){
+		// Process the request
+		$this->rKey = $this->preProcRequestVars();
+		// Setup file cache object
+		$this->sFileCache = new simpleFileCache( $this->rKey );
+		if ( $this->sFileCache->isFileCached() ) {
+			// Just output headers so we can use PHP's @readfile::
+			$this->outputJsHeaders();
+			$this->sFileCache->outputFromFileCache();
+			return true;
+		}
+		return false;
+	}
 
 	function doScriptLoader() {
 		global 	$wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $IP,
-				$wgEnableScriptMinify, $wgUseFileCache;
+				$wgEnableScriptMinify, $wgUseFileCache, $wgExtensionMessagesFiles;
 
-		// Process the request
-		$this->procRequestVars();
+		//load the ExtensionMessagesFiles
+		$wgExtensionMessagesFiles['mwEmbed'] = realpath( dirname( __FILE__ ) ) . '/php/languages/mwEmbed.i18n.php';
 
-		// If the cache is on and the file is present, grab it from there
-		if ( $wgUseFileCache && !$this->debug ) {
-			// Setup file cache object
-			$this->sFileCache = new simpleFileCache( $this->rKey );
-			if ( $this->sFileCache->isFileCached() ) {
-				// Just output headers so we can use PHP's "efficient" readfile
-				$this->outputJsHeaders();
-				$this->sFileCache->outputFromFileCache();
-				die();
-			}
-		}
+		//reset the rKey:
+		$this->rKey = '';
+		//do the post proc request with configuration vars:
+		$this->postProcRequestVars();
+		//update the filename (if gzip is on)
+		$this->sFileCache->getCacheFileName();
 
 		// Setup script loader header info
 		$this->jsout .= 'var mwSlScript = "' .  $_SERVER['SCRIPT_NAME']  . '";' . "\n";
 		$this->jsout .= 'var mwSlGenISODate = "' . date( 'c' ) . '";'  . "\n";
 		$this->jsout .= 'var mwSlURID = "' . htmlspecialchars( $this->urid ) . '";'  . "\n";
+		$this->jsout .= 'var mwLang = "' . htmlspecialchars( $this->langCode ) . '";' . "\n";
 		// Build the output
 
 		// Swap in the appropriate language per js_file
@@ -117,7 +129,7 @@ class jsScriptLoader {
 		}
 
 		// Check if we should minify
-		if ( $wgEnableScriptMinify && !$this->debug ) {
+		if ( !$this->debug ) {
 			// do the minification and output
 			$this->jsout = JSMin::minify( $this->jsout );
 		}
@@ -138,15 +150,13 @@ class jsScriptLoader {
 	}
 
 	function outputJsHeaders() {
-		global $wgJsMimeType;
 		// Output JS MIME type:
-		header( 'Content-Type: ' . $wgJsMimeType );
+		header( 'Content-Type: text/javascript' );
 		header( 'Pragma: public' );
-		// Cache forever
-		// The point is we never have to revalidate, since we should always change the request URL
+		// Cache for 1 day ( we should always change the request URL
 		// based on the SVN or article version.
-		$one_year = 60 * 60 * 24 * 365;
-		header( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $one_year ) . " GM" );
+		$one_day = 60 * 60 * 24;
+		header( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $one_day ) . " GM" );
 	}
 
 	function outputJsWithHeaders() {
@@ -163,11 +173,10 @@ class jsScriptLoader {
 			echo $this->jsout;
 		}
 	}
-
-	/**
-	 * Process request variables and load them into $this
+	/*
+	 * postProcRequestVars uses globals, configuration and mediaWiki to test wiki-titles and files exist etc.
 	 */
-	function procRequestVars() {
+	function postProcRequestVars(){
 		global $wgContLanguageCode, $wgEnableScriptMinify, $wgJSAutoloadClasses,
 		$wgJSAutoloadLocalClasses, $wgStyleVersion;
 
@@ -244,6 +253,66 @@ class jsScriptLoader {
 			$this->rKey .= '_min';
 		}
 	}
+	/**
+	 * Pre-process request variables without configuration to get a rKey for cache file check
+	 */
+	function preProcRequestVars() {
+		$rKey = '';
+		// Check for debug (won't use the cache)
+		if ( ( isset( $_GET['debug'] ) && $_GET['debug'] == 'true' ) ) {
+			//we are going to have to run postProcRequest
+			return false;
+		}
+
+		// Check for the urid. Be sure to escape it as it goes into our JS output.
+		if ( isset( $_GET['urid'] ) && $_GET['urid'] != '' ) {
+			$urid = htmlspecialchars( $_GET['urid'] );
+		}else{
+			die( 'missing urid param');
+		}
+
+		//get the language code (if not provided use the "default" language
+		if ( isset( $_GET['lang'] ) && $_GET['lang'] != '' ) {
+			//make sure its a valid lang code:
+			$langCode = preg_replace( "/[^A-Za-z]/", '', $_GET['lang']);
+		}else{
+			//set english as default
+			$langCode = 'en';
+		}
+
+
+		$reqClassList = false;
+		if ( isset( $_GET['class'] ) && $_GET['class'] != '' ) {
+			$reqClassList = explode( ',', $_GET['class'] );
+		}
+
+		// Check for the requested classes
+		if ( count( $reqClassList ) > 0 ) {
+			// Clean the class list and populate jsFileList
+			foreach (  $reqClassList as $reqClass ) {
+				//do some simple checks:
+				if ( trim( $reqClass ) != '' ){
+					if( substr( $reqClass, 0, 3 ) == 'WT:'  && strtolower( substr( $reqClass, -3) ) == '.js' ){
+						//wiki page requests (must end with .js):
+						$rKey .= $reqClass;
+					}else if( substr( $reqClass, 0, 3 ) != 'WT:' ){
+						//normal class requests:
+						$reqClass = preg_replace( "/[^A-Za-z0-9_\-\.]/", '', $reqClass );
+						$rKey .= $reqClass;
+					}else{
+						//not a valid class don't add it
+					}
+				}
+			}
+		}
+		// Add the language code to the rKey:
+		$rKey .= '_' . $langCode;
+
+		// Add the unique rid
+		$rKey .= $urid;
+
+		return $rKey;
+	}
 	public static function getJsPathFromClass( $reqClass ){
 		global $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses;
 		if ( isset( $wgJSAutoloadLocalClasses[$reqClass] ) ) {
@@ -256,7 +325,6 @@ class jsScriptLoader {
 	}
 	function doProcessJsFile( $file_path ) {
 		global $IP, $wgEnableScriptLocalization, $IP;
-
 		// Load the file
 		$str = @file_get_contents( "{$IP}/{$file_path}" );
 
@@ -265,56 +333,104 @@ class jsScriptLoader {
 			$this->error_msg .= 'Requested File: ' . htmlspecialchars( $file_path ) . ' could not be read' . "\n";
 			return '';
 		}
-		$this->cur_file = $file_path;
-
 		// Strip out js_log debug lines. Not much luck with this regExp yet:
 		// if( !$this->debug )
 		//	 $str = preg_replace('/\n\s*js_log\s*\([^\)]([^;]|\n])*;/', "\n", $str);
 
 		// Do language swap
-		if ( $wgEnableScriptLocalization )
-			$str = preg_replace_callback(
-					self::loadGMregEx,
-					array( $this, 'languageMsgReplace' ),
-					$str
-				);
+		if ( $wgEnableScriptLocalization ){
+			$inx = self::getLoadGmIndex( $str );
+			if($inx){
+				$translated = $this->languageMsgReplace( substr($str, $inx['s'], ($inx['e']-$inx['s']) ));
+				//return the final string (without double {})
+				return substr($str, 0, $inx['s']-1) . $translated . substr($str, $inx['e']+1);
+			}
+		}
 		return $str;
 	}
-	static public function getLocalizedMsgsFromClass( $class ){
-		global $IP;
-		$path = self::getJsPathFromClass( $class );
-		// Load the file
-		$str = @file_get_contents( "{$IP}/{$path}" );
-		//extract the msg:
-		preg_match(self::loadGMregEx, $str, $matches);
-		if( isset( $matches[1] )){
-			return self::languageMsgReplace( $matches, false );
+	static public function getLoadGmIndex( $str ){
+		$returnIndex = array();
+		preg_match('/loadGM\s*\(\s*\{/', $str, $matches, PREG_OFFSET_CAPTURE );
+		if( count($matches) == 0){
+			return false;
 		}
-		//if could not parse return empty string:
-		return '';
+		if( count( $matches ) > 0 ){
+			//offset + match str length gives startIndex:
+			$returnIndex['s'] = strlen( $matches[0][0] ) + $matches[0][1];
+			$foundMatch = true;
+		}
+		$ignorenext = false;
+		$inquote = false;
+		//look for closing } not inside quotes::
+		for ( $i = $returnIndex['s']; $i < strlen( $str ); $i++ ) {
+			$char = $str[$i];
+			if ( $ignorenext ) {
+				$ignorenext = false;
+			} else {
+				//search for a close } that is not in quotes or escaped
+				switch( $char ) {
+					case '"':
+						$inquote = !$inquote;
+					break;
+					case '}':
+						if( ! $inquote){
+							$returnIndex['e'] =$i;
+							return $returnIndex;
+						}
+					break;
+					case '\\':
+						if ( $inquote ) $ignorenext = true;
+					break;
+				}
+			}
+		}
 	}
-	static public function languageMsgReplace( $jvar ) {
-		if ( !isset( $jvar[1] ) )
+
+	static public function getInlineLoadGMFromClass( $class ){
+		global $IP;
+		$file_path = self::getJsPathFromClass( $class );
+		$str = @file_get_contents( "{$IP}/{$file_path}" );
+
+		$inx = self::getLoadGmIndex( $str );
+		if(!$inx)
 			return '';
-		$jmsg = FormatJson::decode( '{' . $jvar[1] . '}', true );
+		$jsmsg =  FormatJson::decode( '{' . substr($str, $inx['s'], ($inx['e']-$inx['s'])) . '}', true);
+		if( $jsmsg ){
+			self::getMsgKeys ( $jsmsg );
+			return 'loadGM('. FormatJson::encode( $jsmsg ) . ')';
+		}else{
+			//if could not parse return empty string:
+			return '';
+		}
+	}
+	static public function getMsgKeys(& $jmsg, $langCode = false){
+		global $wgContLanguageCode;
+		if(!$langCode)
+			$langCode = $wgContLanguageCode;
+		//get the msg keys for the a json array
+		foreach ( $jmsg as $msgKey => $default_en_value ) {
+			$jmsg[$msgKey] = wfMsgGetKey( $msgKey, true, $langCode, false );
+		}
+	}
+	function languageMsgReplace( $json_str ) {
+		$jmsg = FormatJson::decode( '{' . $json_str . '}', true );
 
 		// Do the language lookup
 		if ( $jmsg ) {
 			//see if any msgKey has the PLURAL template tag
 			//package in PLURAL mapping
-			foreach ( $jmsg as $msgKey => $default_en_value ) {
-				$jmsg[$msgKey] = wfMsgNoTrans( $msgKey );
-			}
+			self::getMsgKeys($jmsg, $this->langCode);
+
 			// Return the updated loadGM JSON with updated msgs:
-			return 'loadGM( ' . FormatJson::encode( $jmsg ) . ')';
+			return FormatJson::encode( $jmsg );
 		} else {
 			// Could not parse JSON return error: (maybe a alert?)
 			//we just make a note in the code, visitors will get the fallback language,
 			//developers will read the js source when its not behaving as expected.
-			return "/*
+			return "\n/*
 * Could not parse JSON language messages in this file,
 * Please check that loadGM call contains valid JSON (not javascript)
-*/\n\n" . $jvar[0]; //include the original fallback loadGM
+*/\n\n" . $json_str; //include the original fallback loadGM
 
 		}
 	}
@@ -328,28 +444,31 @@ class simpleFileCache {
 
 	public function __construct( &$rKey ) {
 		$this->rKey = $rKey;
-		$this->filename = $this->fileCacheName();
+		$this->getCacheFileName();
 	}
 
-	public function fileCacheName() {
-		global $wgUseGzip;
-		if ( !$this->mFileCache ) {
-			global $wgFileCacheDirectory;
+	public function getCacheFileName() {
+		global $wgUseGzip, $wgScriptCacheDirectory;
 
-			$hash = md5( $this->rKey );
-			# Avoid extension confusion
-			$key = str_replace( '.', '%2E', urlencode( $this->rKey ) );
+		$hash = md5( $this->rKey );
+		# Avoid extension confusion
+		$key = str_replace( '.', '%2E', urlencode( $this->rKey ) );
 
-			$hash1 = substr( $hash, 0, 1 );
-			$hash2 = substr( $hash, 0, 2 );
-			$this->mFileCache = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$this->rKey}.js";
+		$hash1 = substr( $hash, 0, 1 );
+		$hash2 = substr( $hash, 0, 2 );
+		$this->filename = "{$wgScriptCacheDirectory}/{$hash1}/{$hash2}/{$this->rKey}.js";
 
-			if ( $wgUseGzip )
-				$this->mFileCache .= '.gz';
+		// Check for defined files::
+		if( is_file( $this->filename ) )
+			return $this->filename;
 
-			wfDebug( " fileCacheName() - {$this->mFileCache}\n" );
+		if( is_file(  $this->filename .'.gz') ){
+			$this->filename.='.gz';
+			return $this->filename;
 		}
-		return $this->mFileCache;
+		//check the update the name based on the $wgUseGzip config var
+		if ( isset($wgUseGzip) && $wgUseGzip )
+			$this->filename.='.gz';
 	}
 
 	public function isFileCached() {
@@ -357,44 +476,48 @@ class simpleFileCache {
 	}
 
 	public function outputFromFileCache() {
-		global $wgUseGzip;
-		if ( $wgUseGzip ) {
-			if ( wfClientAcceptsGzip() ) {
-				header( 'Content-Encoding: gzip' );
-				readfile( $this->filename );
-			} else {
-				/* Send uncompressed. Check if fileCache is in compressed state (ends with .gz)
-				 * We're unlikely to execute this since $wgUseGzip would have created a new file
-				 * above, but just in case.
-				*/
-				if ( substr( $this->filename, - 3 ) == '.gz' ) {
-					readgzfile( $this->filename );
-				} else {
-					readfile( $this->filename );
-				}
-			}
+		if ( $this->clientAcceptsGzip() && substr( $this->filename, - 3 ) == '.gz'  ) {
+			header( 'Content-Encoding: gzip' );
+			readfile( $this->filename );
+			return true;
+		}
+		//output without gzip:
+		if ( substr( $this->filename, - 3 ) == '.gz' ) {
+			readgzfile( $this->filename );
 		} else {
-			// Just output the file
 			readfile( $this->filename );
 		}
 		return true;
 	}
+	public function clientAcceptsGzip(){
+		$m = array();
+		if ( preg_match(
+			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
+			$_SERVER['HTTP_ACCEPT_ENCODING'],
+			$m ) ) {
+			if ( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) )
+				return false;
 
+			return true;
+		}
+		return false;
+	}
 	public function saveToFileCache( &$text ) {
 		global $wgUseFileCache, $wgUseGzip;
 		if ( !$wgUseFileCache ) {
 			return 'Error: Called saveToFileCache with $wgUseFileCache off';
 		}
-		if ( strcmp( $text, '' ) == 0 ) return 'saveToFileCache: empty output file';
-
-		// Check the directories. If we could not create them, error out.
-		$status = $this->checkCacheDirs();
+		if ( strcmp( $text, '' ) == 0 )
+			return 'saveToFileCache: empty output file';
 
 		if ( $wgUseGzip ) {
 			$outputText = gzencode( trim( $text ) );
 		} else {
 			$outputText = trim( $text );
 		}
+
+		// Check the directories. If we could not create them, error out.
+		$status = $this->checkCacheDirs();
 
 		if ( $status !== true )
 			return $status;

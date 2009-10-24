@@ -1,1 +1,1 @@
-<?php require './mwScriptLoader.php'; 
+<?php require './mwScriptLoader.php';

@@ -5,15 +5,23 @@ global $wgJSAutoloadLocalClasses, $wgMwEmbedDirectory;
 
 // Load classes from  mv_embed.js
 if ( is_file( $wgMwEmbedDirectory . 'mv_embed.js' ) ) {
-	// Read the file
-	$str = @file_get_contents( $wgMwEmbedDirectory . 'mv_embed.js' );
 
-	// Call jsClassPathLoader() for each lcPaths() call in the JS source
-	$str = preg_replace_callback(
-		'/lcPaths\s*\(\s*{(.*)}\s*\)\s*/siU',
-		'jsClassPathLoader',
-		$str
-	);
+	//read the head of the file::
+	$f = fopen( $wgMwEmbedDirectory . 'mv_embed.js' , 'r');
+	$jsvar = '';
+	$file_head='';
+	while (!feof($f)) {
+		$file_head.= fread($f, 8192);
+		// Call jsClassPathLoader() for each lcPaths() call in the JS source
+		$replace_test = preg_replace_callback(
+			'/lcPaths\s*\(\s*{(.*)}\s*\)\s*/siU',
+			'jsClassPathLoader',
+			$file_head
+		);
+		if( $replace_test !== false )
+			break;
+	}
+	fclose( $f );
 }
 function jsClassPathLoader( $jvar ) {
 	global $wgJSAutoloadLocalClasses, $wgMwEmbedDirectory;

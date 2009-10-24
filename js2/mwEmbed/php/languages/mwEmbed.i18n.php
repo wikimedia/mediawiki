@@ -107,6 +107,8 @@ $messages['en'] = array(
 	'mwe-apiproxy-setup' => 'Setting up API proxy',
 	'mwe-load-drag-item' => 'Loading dragged item',
 	'mwe-ok' => 'OK',
+	'mwe-load-drag-item' => "Loading draged item",
+	'mwe-ok' => "Ok",
 
 	/*
 	 * js file: /libMwApi/mw.proxy.js
@@ -322,7 +324,7 @@ $messages['qqq'] = array(
 	'mwe-loading_txt' => '{{Identical|Loading}}',
 	'mwe-loading_title' => '{{Identical|Loading}}',
 	'mwe-error_load_lib' => 'Parameters:
-* $1 Corresponds to the JavaScript file that was not retrievable or does not define its class name. 
+* $1 Corresponds to the JavaScript file that was not retrievable or does not define its class name.
 * $2 Is the class name that was associated with the JavaScript file that was not found or could not be retrieved.',
 	'mwe-ok' => '{{Identical|OK}}',
 	'mwe-cancel' => '{{Identical|Cancel}}',

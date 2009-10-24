@@ -14,7 +14,7 @@ loadGM({
 	"rsd_box_layout" : "Box layout",
 	"rsd_list_layout" : "List layout",
 	"rsd_results_desc" : "Results $1 to $2",
-	"rsd_results_total" : " of $1 ",  
+	"rsd_results_desc_total" : "Results $1 to $2 of $3",  
 	"rsd_results_next" : "next",
 	"rsd_results_prev" : "previous",
 	"rsd_no_results" : "No search results for <b>$1<\/b>",
@@ -34,7 +34,7 @@ loadGM({
 	"mwe-unknown_license" : "Unknown license",
 	"mwe-no_import_by_url" : "This user or wiki <b>cannot<\/b> import assets from remote URLs.<p>Do you need to login?<\/p><p>Is upload_by_url permission set for you?<br \/>Does the wiki have <a href=\"http:\/\/www.mediawiki.org\/wiki\/Manual:$wgAllowCopyUploads\">$wgAllowCopyUploads<\/a> enabled?<\/p>",
 	"mwe-results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
-	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
+	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 original source] and help describe it.",
 	"rsd_config_error" : "Add media wizard configuration error: $1",
 	"mwe-your_recent_uploads" : "Your recent uploads to $1",
 	"mwe-upload_a_file" : "Upload a new file to $1",
@@ -399,7 +399,7 @@ remoteSearchDriver.prototype = {
 		
 		//merge in the options:  
 		//@@todo for cleaner config we should set _this.opt to the provided options) 
-		$j.extend( _this, default_remote_search_options, options);
+		$j.extend( _this, default_remote_search_options, options);			
 		
 		//update the base text:
 		if(_this.target_textbox)
@@ -1804,11 +1804,14 @@ remoteSearchDriver.prototype = {
 		var to_num = ( cp.limit > cp.sObj.num_results )?
 						(cp.offset + cp.sObj.num_results):
 						(cp.offset + cp.limit);
-		var out = gM('rsd_results_desc', [(cp.offset+1), to_num]);
+		var out = '';				
 		
 		//@@todo we should instead support the wiki number format template system instead of inline calls
-		if( cp.sObj.num_results  >  cp.limit)
-			out+= gM('rsd_results_total', $mw.lang.formatNumber( cp.sObj.num_results ) );
+		if( cp.sObj.num_results  >  cp.limit){
+			out+= gM('rsd_results_desc_total', [(cp.offset+1), to_num, $mw.lang.formatNumber( cp.sObj.num_results )] );
+		}else{
+			out+= gM('rsd_results_desc', [(cp.offset+1), to_num]);
+		}
 		//check if we have more results (next prev link)
 		if(  cp.offset >=  cp.limit )
 			out+=' <a href="#" id="rsd_pprev">' + gM('rsd_results_prev') + ' ' + cp.limit + '</a>';

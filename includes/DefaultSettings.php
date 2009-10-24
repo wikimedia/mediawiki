@@ -2813,12 +2813,6 @@ $wgEnableJS2system = false;
 $wgEnableIframeApiProxy = false;
 
 /*
- * boolean; if we should minify the output. (note if you send ?debug=true in
- * the page request it will automatically not group and not minify)
- */
-$wgEnableScriptMinify = true;
-
-/*
  * boolean; if we should enable javascript localization (it loads loadGM json
  * call with mediaWiki msgs)
  */
