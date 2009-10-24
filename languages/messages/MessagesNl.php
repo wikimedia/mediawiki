@@ -1599,7 +1599,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'action-movefile'             => 'dit bestand te hernoemen',
 'action-upload'               => 'dit bestand te uploaden',
 'action-reupload'             => 'dit bestaande bestand te overschrijven',
-'action-reupload-shared'      => 'dit bestand te uploaden, terwijl er al een bestand met dezelfde naam in de gedeelde repository staat',
+'action-reupload-shared'      => 'dit bestand te uploaden, terwijl er al een bestand met dezelfde naam in de gedeelde mediadatabank staat',
 'action-upload_by_url'        => 'dit bestand vanaf een URL te uploaden',
 'action-writeapi'             => 'de via de API te bewerken',
 'action-delete'               => 'deze pagina te verwijderen',
@@ -1676,6 +1676,7 @@ Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weerge
 'upload'                      => 'Bestand uploaden',
 'uploadbtn'                   => 'Bestand uploaden',
 'reuploaddesc'                => 'Upload annuleren en terugkeren naar het uploadformulier',
+'upload-tryagain'             => 'Bestandsbeschrijving bijwerken',
 'uploadnologin'               => 'Niet aangemeld',
 'uploadnologintext'           => 'U moet [[Special:UserLogin|aangemeld]] zijn
 om bestanden te uploaden.',
@@ -1753,6 +1754,7 @@ Als u het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
 Raadpleeg het verwijderingslogboek voordat u verder gaat.',
 'successfulupload'            => 'Het bestand is toegevoegd',
 'uploadwarning'               => 'Uploadwaarschuwing',
+'uploadwarning-text'          => 'Pas de onderstaande bestandsbeschrijving aan en probeer het daarna opnieuw.',
 'savefile'                    => 'Bestand opslaan',
 'uploadedimage'               => 'heeft "[[$1]]" geüpload',
 'overwroteimage'              => 'heeft een nieuwe versie van "[[$1]]" toegevoegd',
@@ -1890,7 +1892,7 @@ De [$2 pagina met de bestandsbeschrijving] wordt hieronder weergegeven.',
 'filepage-nofile-link'      => 'Er bestaat geen bestand met deze naam, maar u kunt het [$1 uploaden].',
 'uploadnewversion-linktext' => 'Een nieuwe versie van dit bestand uploaden',
 'shared-repo-from'          => 'van $1',
-'shared-repo'               => 'een gedeelde bestandenbank',
+'shared-repo'               => 'een gedeelde mediadatabank',
 
 # File reversion
 'filerevert'                => '$1 terugdraaien',
@@ -2684,6 +2686,11 @@ Wilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?',
 'move-leave-redirect'          => 'Een doorverwijzing achterlaten',
 'protectedpagemovewarning'     => "'''Waarschuwing:''' Deze pagina kan alleen door beheerders hernoemd worden.",
 'semiprotectedpagemovewarning' => "'''Let op:''' Deze pagina kan alleen door geregistreerde gebruikers hernoemd worden.",
+'move-over-sharedrepo'         => '== Het bestand bestaat al ==
+[[:$1]] bestaat al in een gedeelde mediadatabank.
+Door een bestand te hernoemen naar deze naam, is het bestand uit de gedeelde mediadatabank niet langer te gebruiken.',
+'file-exists-sharedrepo'       => 'Deze bestandsnaam bestaat al in een gedeelde mediadatabank.
+Kies een andere bestandsnaam.',
 
 # Export
 'export'            => 'Exporteren',

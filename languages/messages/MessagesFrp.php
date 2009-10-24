@@ -849,7 +849,7 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'preview'                          => 'Prèvisualisacion',
 'showpreview'                      => 'Prèvisualisacion',
 'showlivepreview'                  => 'Apèrçu vito fêt',
-'showdiff'                         => 'Changements en cors',
+'showdiff'                         => 'Changements que sont aprés étre fêts',
 'anoneditwarning'                  => "'''Atencion :''' vos éte pas branchiê.
 Voutra adrèce IP serat encartâ dens l’historico de ceta pâge.",
 'missingsummary'                   => "'''Rapèl :''' vos éd p’oncor balyê lo rèsumâ de voutron changement.

@@ -502,7 +502,7 @@ Se prega de segnalar l\'acaduto a un [[Special:ListUsers/sysop|aministrador]] sp
 'unexpected'           => 'Valor inprevisto: "$1"="$2".',
 'formerror'            => "Erór: el modulo no'l xè stà invià correttamente",
 'badarticleerror'      => 'Sta operazion no la xè consentìa su sta pàxena.',
-'cannotdelete'         => 'No se riesse mìa a scancełar la pàxena o el file indicà.
+'cannotdelete'         => 'No se riesse mìa a scancełar la pàxena o el file "$1".
 Podarìa èssar che qualchedun altro la gàbia zà scancelà.',
 'badtitle'             => "El titoło no'l xè mia giusto",
 'badtitletext'         => 'El titolo de la pagina richiesta el xe vodo, sbalià o con caràteri mia amessi, opure el deriva da un eròr in tei colegamenti tra siti wiki diversi o version in lengoe diverse del stesso sito.',
@@ -611,6 +611,7 @@ Inserissi un indirisso valido o svoda la casèła.",
 La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
 
 Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
+'usernamehasherror'          => "El nome utente no'l pode contegner caràteri hash",
 'login-throttled'            => 'Te ghè fato massa tentativi de autenticarte. 
 Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
@@ -1442,6 +1443,7 @@ Le pagine che te stè tegnendo d'ocio sui [[Special:Watchlist|osservati speciali
 'upload'                      => 'Carga sù un file',
 'uploadbtn'                   => 'Carga file',
 'reuploaddesc'                => 'Lassa pèrdar el caricamento e torna al modulo de caricamento',
+'upload-tryagain'             => 'Invia la descrission del file modificà',
 'uploadnologin'               => 'Te devi far el login par exeguire sta operassion.',
 'uploadnologintext'           => 'Te ghè da far [[Special:UserLogin|el login]]
 par poder cargar dei file.',
@@ -1505,6 +1507,7 @@ Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che t
 'file-deleted-duplicate'      => "Un file preciso identico de sto file ([[$1]]) el xe stà zà scancelà in precedensa. Te dovaressi darghe n'ociada a la cronologia scancelà prima de cargarlo de novo.",
 'successfulupload'            => 'Caricamento conpletà',
 'uploadwarning'               => 'Avixo de caricamento',
+'uploadwarning-text'          => 'Par piaser, cànbia la descrission del file qua de soto e próa da novo.',
 'savefile'                    => 'Salva file',
 'uploadedimage'               => 'gà cargà "[[$1]]"',
 'overwroteimage'              => 'gà cargà na version nova de "[[$1]]"',
@@ -1514,9 +1517,13 @@ Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che t
 'uploadscripted'              => 'Sto file contegne codexe HTML o de script, che podaria essere interpretà eroneamente da un browser web.',
 'uploadcorrupt'               => 'El file el xe coróto o el gà na estension mìa giusta. Controla el file e dopo próa de novo a cargarlo.',
 'uploadvirus'                 => 'Sto file contegne un virus! Detagli: $1',
+'upload-source'               => 'File de origine',
 'sourcefilename'              => 'Nome del file de origine:',
+'sourceurl'                   => 'URL de origine:',
 'destfilename'                => 'Nome del file de destinazion:',
 'upload-maxfilesize'          => 'Dimension massima del file: $1',
+'upload-description'          => 'Descrission del file',
+'upload-options'              => 'Opsioni de caricamento',
 'watchthisupload'             => "Tien d'ocio sto file",
 'filewasdeleted'              => 'Un file con sto nome xè stato xà caricà e scancełà in passato. Verifica $1 prima de caricarlo de novo.',
 'upload-wasdeleted'           => "'''Ocio: te stè cargando un file che in precedenza l'era stà scancelà.'''
@@ -1836,6 +1843,7 @@ Protocòli suportè: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista dei utenti ativi',
+'activeusers-intro'    => 'Sta qua xe la lista dei utenti che ga fato calcossa {{PLURAL:$1|sto ultimo zorno|sti ultimi $1 zorni}}.',
 'activeusers-count'    => "$1 {{PLURAL:$1|canbiamento|canbiamenti}} {{PLURAL:$3|ne l'ultimo zorno|in tei ultimi $3 zorni}}",
 'activeusers-from'     => 'Fà védar i utenti a partir da:',
 'activeusers-noresult' => 'Nissun utente catà.',
@@ -1970,7 +1978,7 @@ Par riscontri e ulteriore assistensa:
 'exblank'                => "ła pàxena l'era voda",
 'delete-confirm'         => 'Scancela "$1"',
 'delete-legend'          => 'Scancela',
-'historywarning'         => 'Ocio: La pàxena che te stè par scancełar la gà na cronołogia:',
+'historywarning'         => "'''Ocio:''' La pàxena che te sì drio scancełar la gà na cronołogia con $1 {{PLURAL:$1|revision|revision}}:",
 'confirmdeletetext'      => "Te stè par scancełar permanentemente na pàxena, insieme a tuta la so cronołogia.
 Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, che te capissi łe conseguense de la to azion, e che la to azion l'è pienamente otenperante a łe regołe stabilíe in
 [[{{MediaWiki:Policy-url}}]].",
@@ -2356,6 +2364,10 @@ La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarl
 'move-leave-redirect'          => 'Crea un redirect con lo spostamento',
 'protectedpagemovewarning'     => "'''Ocio:''' sta pàxena la xe stà blocà in maniera che solo i aministradori i possa spostarla.",
 'semiprotectedpagemovewarning' => "'''Ocio:''' Sta pàxena la xe stà blocà in maniera che solo i utenti registrài i possa spostarla.",
+'move-over-sharedrepo'         => "== File xà esistente ==
+[[:$1]] l'esiste de xà su de un deposito condiviso. Meténdoghe sto nome a n'altro file, quel vecio el sarà sorascrito.",
+'file-exists-sharedrepo'       => "El nome che te ghè sielto el xe xà doparà da n'altro file in te un deposito condiviso.
+Par piaser, daghe un nome difarente.",
 
 # Export
 'export'            => 'Esporta pàxene',

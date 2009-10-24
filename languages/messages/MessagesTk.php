@@ -402,8 +402,8 @@ Muny bir [[Special:ListUsers/sysop|administratora]] URL-ni belläp alyp ýetirme
 'unexpected'           => 'Garaşylmadyk baha: "$1"="$2".',
 'formerror'            => 'Säwlik: formy iberip bolmady',
 'badarticleerror'      => 'Bu işi bu sahypada amala aşyryp bolmaýar.',
-'cannotdelete'         => 'Görkezilen sahypany ýa-da faýly öçürip bolmady. 
-Başga bir ulanyjy tarapyndan eýýäm öçürilen bolmagy mümkin.',
+'cannotdelete'         => '"$1" sahypasyny ýa-da faýlyny öçürip bolmady. 
+Başga biri tarapyndan eýýäm öçürilen bolmagy mümkin.',
 'badtitle'             => 'Ýolbererliksiz at',
 'badtitletext'         => 'Isleýän sahypaňyzyň ady ýa nädogry ýa-da boş. Ýa-da bolmasa dilara ýa-da wikiara çykgyt nädogry berlipdir. Içinde atlarda ulanylmagy gadagan simwollardan biri ýa-da birnäçesi bar bolmagy ahmal.',
 'perfcached'           => 'Aşakdaky maglumatlar keşirlenen bolup, könelişen bolmaklary mümkin!',
@@ -516,6 +516,7 @@ Dogry formatda e-poçta adresi ýazmagyňyzy ýa-da bu bölümi boş goýmagyňy
 Saýtda sessiýaňyzy açyň we parolyňyzy üýtgediň.
 
 Eger-de ulanyjy hasabyny ýalňyşlyk bilen döreden bolsaňyz, onda bu habarlaşyga ünsem berip oturmaň.',
+'usernamehasherror'          => 'Ulanyjy adynda "gözenekli" simwol bolmaly däldir',
 'login-throttled'            => 'Sessiýa açmak üçin ýaňy-ýakynda aşa köp synanyşyk etdiňiz.
 Gaýtadan synanyşmankaňyz garaşmagyňyzy haýyş edýäris.',
 'loginlanguagelabel'         => 'Dil: $1',
@@ -1370,6 +1371,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'upload'                      => 'Faýl ýükle',
 'uploadbtn'                   => 'Faýl ýükle',
 'reuploaddesc'                => 'Ýüklemäni goýbolsun et we ýükleme formuna gaýdyp bar',
+'upload-tryagain'             => 'Üýtgedilen faýl düşündirişini tabşyr',
 'uploadnologin'               => 'Sessiýa açmansyňyz',
 'uploadnologintext'           => 'Faýl ýüklemek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]].',
 'upload_directory_missing'    => '($1) ýükleme direktoriýasy ýok we web serwer ony döredip bilmeýär.',
@@ -1441,6 +1443,7 @@ Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir
 'file-deleted-duplicate'      => 'Şu faýl bilen birmeňzeş bir faýl ([[$1]]) ozal öçürilipdir. Bu faýly gaýtadan ýüklemänkäňiz şol faýlyň öçürme geçmişini barlaň.',
 'successfulupload'            => 'Şowly ýükleme',
 'uploadwarning'               => 'Ýükleme duýduryşy',
+'uploadwarning-text'          => 'Aşakdaky faýl düşündirişini üýtgediň we gaýtadan synanyşyň.',
 'savefile'                    => 'Faýly ýazdyr',
 'uploadedimage'               => 'Ýüklenen: "[[$1]]"',
 'overwroteimage'              => '"[[$1]]" faýlynyň täze wersiýasy ýüklendi',
@@ -1793,6 +1796,7 @@ Goldanylýan protokollar: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Işjeň ulanyjylaryň sanawy',
+'activeusers-intro'    => 'Bu sanawda soňky $1 {{PLURAL:$1|günüň|günüň}} dowamynda nähilidir bir iş geçiren ulanyjylar görkezilýär.',
 'activeusers-count'    => 'Soňky {{PLURAL:$3|günde|$3 günde}} $1 sany {{PLURAL:$1|özgerdiş|özgerdiş}}',
 'activeusers-from'     => 'Şunuň bilen başlaýan ulanyjylary görkez:',
 'activeusers-noresult' => 'Ulanyjy tapylmady.',
@@ -2347,6 +2351,10 @@ Ady üýgetmek üçin ony öçürmek isleýärsiňizmi?',
 'move-leave-redirect'          => 'Gönükdirme goýup git',
 'protectedpagemovewarning'     => "'''Duýduryş:''' Bu sahypa gulplanypdyr, onuň adyny diňe administratorlyk hukuklaryna eýe bolan ulanyjylar üýtgedip bilýär.",
 'semiprotectedpagemovewarning' => "'''Bellik:''' Bu sahypa gulplanypdyr, onuň adyny diňe hasaba alnan ulanyjylar üýtgedip bilýär.",
+'move-over-sharedrepo'         => '== Faýl bar ==
+[[:$1]] faýly umumy ammarda bar. Şu ada faýl goýmaklyk bar bolan öňki faýly aradan aýyrjakdyr.',
+'file-exists-sharedrepo'       => 'Saýlanylyp alnan faýl ady umumy ammarda ulanylýar.
+Başga bir at saýlaň.',
 
 # Export
 'export'            => 'Sahypa eksportirle',

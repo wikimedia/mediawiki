@@ -1593,6 +1593,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'upload'                      => 'Bestaand toevoegen',
 'uploadbtn'                   => 'Bestaand toevoegen',
 'reuploaddesc'                => 'Weerumme naor bestaandtoevoegingsformelier.',
+'upload-tryagain'             => 'Bestaansbeschrieving biewarken',
 'uploadnologin'               => 'Neet an-emeld',
 'uploadnologintext'           => 'Je mutten [[Special:UserLogin|an-emeld]] ween um bestanen toe te kunnen voegen.',
 'upload_directory_missing'    => 'De bestaandtoevoegingsmap ($1) ontbreek en kon neet an-emaak wonnen deur de webserver.',
@@ -1661,6 +1662,7 @@ A-j 't bestaand asnog toevoegen willen, gao dan weerumme en kies een aandere naa
 Raodpleeg 't logboek mit vort-edaone pagina's veurda-j veurdan gaon.",
 'successfulupload'            => 'Bestaanstoevoeging was succesvol',
 'uploadwarning'               => 'Waorschuwing',
+'uploadwarning-text'          => "Pas de bestaansbeschrieving hieronder an en prebeer 't opniej",
 'savefile'                    => 'Bestaand opslaon',
 'uploadedimage'               => 'Toe-evoeg: [[$1]]',
 'overwroteimage'              => 'Nieje versie van "[[$1]]" toe-evoeg',
@@ -2528,6 +2530,10 @@ De overige pagina's wonnen neet autematisch herneumd.",
 'move-leave-redirect'          => 'Een deurverwiezing achterlaoten',
 'protectedpagemovewarning'     => "'''Waorschuwing:''' Disse pagina kan allinnig deur beheerders herneumd wonnen.",
 'semiprotectedpagemovewarning' => "'''Waorschuwing:''' Disse pagina kan allinnig deur eregistreren gebrukers herneumd wonnen.",
+'move-over-sharedrepo'         => "== 't Bestaand besteet al ==
+[[:$1]] besteet al in de edelen mediadatabanke. A-j een bestaand naor disse titel herneumen, dan ku-j  't edelen bestaand neet gebruken.",
+'file-exists-sharedrepo'       => 'Disse bestaansnaam besteet al in de edelen mediadatabanke.
+Kies een aandere bestaansnaam.',
 
 # Export
 'export'            => "Pagina's uutvoeren",

@@ -1460,6 +1460,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'upload'                      => 'Dosya yükle',
 'uploadbtn'                   => 'Dosya yükle',
 'reuploaddesc'                => 'Yükleme formuna geri dön.',
+'upload-tryagain'             => 'Değiştirilmiş dosya açıklamasını gönder',
 'uploadnologin'               => 'Oturum açık değil',
 'uploadnologintext'           => 'Dosya yükleyebilmek için [[Special:UserLogin|oturum aç]]manız gerekiyor.',
 'upload_directory_missing'    => 'Yükleme dizini ($1) kayıp ve websunucusu tarafından oluşturulamıyor.',
@@ -1524,6 +1525,7 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kul
 'file-deleted-duplicate'      => 'Bu dosyanın özdeşi olan başka bir dosya ([[$1]]) daha önceden silindi. Bu dosyayı yeniden yüklemeden önce diğer dosyanın silme kayıtlarını kontrol etmelisiniz.',
 'successfulupload'            => 'Yükleme başarılı',
 'uploadwarning'               => 'Yükleme uyarısı',
+'uploadwarning-text'          => 'Lütfen aşağıdaki dosya açıklamasını değiştirin ve tekrar deneyin.',
 'savefile'                    => 'Dosyayı kaydet',
 'uploadedimage'               => 'Yüklenen: "[[$1]]"',
 'overwroteimage'              => '"[[$1]]" resminin yeni versiyonu yüklenmiştir',
@@ -1884,6 +1886,7 @@ Desteklenen iletişim kuralları: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktif kullanıcı listesi',
+'activeusers-intro'    => 'Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.',
 'activeusers-count'    => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|değişiklik|değişiklik}}',
 'activeusers-from'     => 'Şununla başlayan kullanıcıları görüntüle:',
 'activeusers-noresult' => 'Kullanıcı bulunamadı.',
@@ -2022,7 +2025,7 @@ Yardım ve öneriler için:
 'exblank'                => 'sayfa içeriği boş',
 'delete-confirm'         => '"$1" sil',
 'delete-legend'          => 'sil',
-'historywarning'         => 'Uyarı: Silmek üzere olduğunuz sayfanın geçmişi vardır:',
+'historywarning'         => "'''Uyarı:''' Silmek üzere olduğunuz sayfanın $1 {{PLURAL:$1|revizyonlu|revizyonlu}} bir geçmişi var:",
 'confirmdeletetext'      => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
 Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[{{MediaWiki:Policy-url}}|Silme kurallarına]] uygun olduğuna eminseniz, işlemi onaylayın.',
 'actioncomplete'         => 'İşlem tamamlandı.',
@@ -2427,6 +2430,10 @@ Lütfen başka bir isim deneyiniz.',
 'move-leave-redirect'          => 'Arkada bir yönlendirme bırak',
 'protectedpagemovewarning'     => "'''UYARI:''' Bu sayfa kilitlenmiş, sadece yönetici ayrıcalıklarına sahip kullanıcılar taşıyabilir.",
 'semiprotectedpagemovewarning' => "'''Not:''' Bu sayfa kilitlenmiş, sadece kayıtlı kullanıcılar taşıyabilir.",
+'move-over-sharedrepo'         => '== Dosya mevcut ==
+[[:$1]] paylaşılmış havuzda mevcut. Bir dosyayı bu başlığa taşımak paylaşılmış dosyanın üstüne gelecektir.',
+'file-exists-sharedrepo'       => 'Seçilen isim paylaşılmış bir havuzda zaten mevcut.
+Lütfen başka bir isim seçin.',
 
 # Export
 'export'            => 'Sayfa kaydet',

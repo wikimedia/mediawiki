@@ -514,7 +514,7 @@ ya ki [{{fullurl:{{FULLPAGENAME}}|action=edit}} na pele bıvurnê]</span>.',
 'editingsection'         => 'Vurnaena $1 (qısım)',
 'yourtext'               => 'Metnê to',
 'yourdiff'               => 'Ferqi',
-'templatesused'          => 'Şablonê ke na pele de gureninê:',
+'templatesused'          => '{{PLURAL:$1|Şablono ke na pele de gurenino|Şablonê ke na pele de gureninê}}:',
 'template-protected'     => '(sevekna)',
 'template-semiprotected' => '(nêm-seveknais)',
 
@@ -892,7 +892,9 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'month'               => 'Asme ra (u ravêr):',
 'year'                => 'Serre ra (u ravêr):',
 
+'sp-contributions-newbies'  => 'Teyna iştırakunê neweqeydbiyaoğu basne',
 'sp-contributions-blocklog' => 'qeydê engeli',
+'sp-contributions-search'   => 'Ebe iştıraku cı feteliye',
 'sp-contributions-username' => 'IP ya ki karber:',
 'sp-contributions-submit'   => 'Cıfeteliye',
 

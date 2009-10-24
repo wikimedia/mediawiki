@@ -1643,6 +1643,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'upload'                      => 'Téléverser un fichier',
 'uploadbtn'                   => 'Téléverser le fichier',
 'reuploaddesc'                => 'Annuler et retourner au formulaire de téléversement',
+'upload-tryagain'             => 'Envoyer la description du fichier modifiée',
 'uploadnologin'               => 'Non connecté(e)',
 'uploadnologintext'           => 'Vous devez être [[Special:UserLogin|connecté(e)]] pour téléverser des fichiers sur le serveur.',
 'upload_directory_missing'    => 'Le répertoire de téléversement ($1) est introuvable et n’a pas pu être créé par le serveur web.',
@@ -1710,6 +1711,7 @@ Si vous voulez toujours téléverser votre fichier, veuillez revenir en arrière
 'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de le téléverser à nouveau.',
 'successfulupload'            => 'Téléversement effectué avec succès',
 'uploadwarning'               => 'Attention !',
+'uploadwarning-text'          => 'Modifiez la description du fichier est essayez de nouveau.',
 'savefile'                    => 'Sauvegarder le fichier',
 'uploadedimage'               => 'a téléversé « [[$1]] »',
 'overwroteimage'              => 'a téléversé une nouvelle version de « [[$1]] »',
@@ -2206,7 +2208,7 @@ Retour et assistance :
 'exblank'                => 'la page était vide',
 'delete-confirm'         => 'Supprimer « $1 »',
 'delete-legend'          => 'Supprimer',
-'historywarning'         => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
+'historywarning'         => "'''Attention :''' la page que vous êtes sur le point de supprimer a un historique qui contient $1 {{PLURAL:$1|révision|révisions}} :",
 'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'         => 'Action effectuée',
 'actionfailed'           => 'L’action a échoué',
@@ -2618,6 +2620,10 @@ impossible de renommer une page sur elle-même.',
 'move-leave-redirect'          => 'Laisser une redirection vers le nouveau titre',
 'protectedpagemovewarning'     => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d'administrateur puissent la renommer.",
 'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été bloqué afin que seul les utilisateurs enregistrés puissent la renommer.",
+'move-over-sharedrepo'         => '== Le fichier existe ==
+[[:$1]] existe déjà sur un dépôt partagé. Renommer ce fichier rendra le fichier sur le dépôt partage inaccessible.',
+'file-exists-sharedrepo'       => 'Le nom choisi est déjà utilisé par un fichier sur un dépôt partagé.
+Choisissez un autre nom.',
 
 # Export
 'export'            => 'Exporter des pages',
