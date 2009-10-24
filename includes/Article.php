@@ -2598,11 +2598,16 @@ class Article {
 
 		// If the page has a history, insert a warning
 		if( $hasHistory && !$confirm ) {
+			global $wgLang;
 			$skin = $wgUser->getSkin();
 			$revisions = $this->estimateRevisionCount();
-			$wgOut->addHTML( '<strong>' . wfMsgExt( 'historywarning', array( 'parseinline' ), $revisions ) . ' ' . $skin->historyLink() . '</strong>' );
+			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
+				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .' ' .
+				$skin->historyLink() .
+				'</strong>'
+			);
 			if( $bigHistory ) {
-				global $wgLang, $wgDeleteRevisionsLimit;
+				global $wgDeleteRevisionsLimit;
 				$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n",
 					array( 'delete-warning-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 			}
