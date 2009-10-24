@@ -152,7 +152,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					"(ar_namespace = $ns AND " .
 					"(ar_title $op '$title' OR " .
 					"(ar_title = '$title' AND " .
-					"ar_timestamp = '$ts')))");
+					"ar_timestamp $op= '$ts')))");
 		}
 
 		$this->addOption('LIMIT', $limit + 1);

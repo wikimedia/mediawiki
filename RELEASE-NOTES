@@ -651,6 +651,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   customized messages
 * Don't parse magic words in meta=allmessages, output messages unparsed
 * (bug 21105) list=usercontribs can now list contribs for User:0
+* (bug 21085) list=deletedrevs no longer returns only one revision when
+  drcontinue param is passed
 
 === Languages updated in 1.16 ===
 
