@@ -24,15 +24,26 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+//first do a quick static check for the cached file
+define('MW_CACHE_SCRIPT_CHECK', true);
+require_once( dirname(__FILE__) . '/js2/mwEmbed/jsScriptLoader.php');
+$myScriptLoader = new jsScriptLoader();
+if( $myScriptLoader->outputFromCache() ){
+	exit();
+}
+
+//Else load up mediaWiki stuff and continue scriptloader processing:
+
 // include WebStart.php
+ob_start();
 require_once('includes/WebStart.php');
+$webstartwhitespace = ob_end_clean();
 
 wfProfileIn( 'mwScriptLoader.php' );
 
-
 if( $wgRequest->isPathInfoBad() ){
 	wfHttpError( 403, 'Forbidden',
-		'Invalid file extension found in PATH_INFO. ' . 
+		'Invalid file extension found in PATH_INFO. ' .
 		'mwScriptLoader must be accessed through the primary script entry point.' );
 	return;
 }
@@ -44,12 +55,9 @@ if ( !$wgEnableScriptLoader ) {
 	die( 1 );
 }
 
-//moved to setup.php
-// load the mwEmbed language file:
-//$wgExtensionMessagesFiles['mwEmbed'] = "{$IP}/js2/mwEmbed/php/languages/mwEmbed.i18n.php";
-
-// run jsScriptLoader action:
-$myScriptLoader = new jsScriptLoader();
+//load the language file and
+// Run jsScriptLoader action:
 $myScriptLoader->doScriptLoader();
+
 
 wfProfileOut( 'mwScriptLoader.php' );

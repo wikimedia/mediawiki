@@ -347,8 +347,8 @@ mvBaseUploadInterface.prototype = {
 				//@@check if we are done
 				if( data.upload['apiUploadResult'] ){
 					//update status to 100%
-					_this.updateProgress( 1 );				
-					//see if we need to load JSON substitue:
+					_this.updateProgress( 1 );
+					//see if we need JSON
 					mvJsLoader.doLoad( [
 						'JSON'
 					],function(){							

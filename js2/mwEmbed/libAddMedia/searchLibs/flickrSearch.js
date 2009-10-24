@@ -26,7 +26,7 @@ flickrSearch.prototype = {
 	_licence_keys: '4,5,7,8',	
 	_srctypes: ['t','sq','s','m','o'],
 	licenceMap:{
-		'4' : 'http://creativecommons.org/licenses+/by/3.0/',
+		'4' : 'http://creativecommons.org/licenses/by/3.0/',
 		'5'	: 'http://creativecommons.org/licenses/by-sa/3.0/',
 		'7'	: 'http://www.flickr.com/commons/usage/',
 		'8' : 'http://www.usa.gov/copyright.shtml'

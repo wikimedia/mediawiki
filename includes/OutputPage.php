@@ -187,8 +187,7 @@ class OutputPage {
 		$this->mScripts = '';
 
 		if( $wgEnableScriptLoader ){
-			//directly add script_loader call
-			//(separate from other scriptloader calls that may include extensions with conditional js)
+			//directly add script_loader call for addCoreScripts2Top
 			$this->mScripts = $this->getScriptLoaderJs( $core_classes );
 		} else {
 			$so = '';
@@ -226,12 +225,11 @@ class OutputPage {
 				} else {
 					$path = $wgScriptPath . '/' . $path;
 				}
-				$urlAppend = ( $wgDebugJavaScript ) ? time() : $this->getURIDparam( $js_class );
-				$this->addScript( Html::linkedScript( "$path?$urlAppend" ) );
+				$this->addScript( Html::linkedScript( $path . "?" . $this->getURIDparam( $js_class ) ) );
 
 				//merge in language text (if js2 is on and we have loadGM function)
 				if( $wgEnableJS2system ){
-					$inlineMsg = jsScriptLoader::getLocalizedMsgsFromClass( $js_class );
+					$inlineMsg = jsScriptLoader::getInlineLoadGMFromClass( $js_class );
 					if( $inlineMsg != '' )
 						$this->addScript( Html::inlineScript( $inlineMsg ));
 				}
@@ -269,6 +267,9 @@ class OutputPage {
 	 */
 	function getURIDparam( $classAry = array() ) {
 		global $wgDebugJavaScript, $wgStyleVersion, $IP, $wgScriptModifiedCheck;
+		global $wgContLanguageCode;
+
+
 		if( $wgDebugJavaScript ) {
 			return 'urid=' . time();
 		} else {
@@ -306,6 +307,10 @@ class OutputPage {
 			//add the wiki rev id if set
 			if( $frev != 0 )
 				$urid.= "_" . $frev;
+
+
+			//Always the language key param to keep urls distinct per language
+			$urid.='&lang='.$wgContLanguageCode;
 
 			return $urid;
 		}
@@ -589,24 +594,24 @@ class OutputPage {
 	public function getOnloadHandler() { return $this->mOnloadHandler; }
 	public function disable() { $this->mDoNothing = true; }
 	public function isDisabled() { return $this->mDoNothing; }
-	
+
 	public function setSyndicated( $show = true ) { $this->mShowFeedLinks = $show; }
-	
+
 	public function setFeedAppendQuery( $val ) {
 		global $wgFeedClasses;
-		
+
 		$this->mFeedLinks = array();
-		
+
 		foreach( $wgFeedClasses as $type => $class ) {
 			$query = "feed=$type&".$val;
 			$this->mFeedLinks[$type] = $this->getTitle()->getLocalURL( $query );
 		}
 	}
-	
+
 	public function addFeedLink( $format, $href ) {
 		$this->mFeedLinks[$format] = $href;
 	}
-	
+
 	public function isSyndicated() { return count($this->mFeedLinks); }
 
 	public function setArticleRelated( $v ) {
@@ -1940,7 +1945,7 @@ class OutputPage {
 	 * Return URLs for each supported syndication format for this page.
 	 * @return array associating format keys with URLs
 	 */
-	public function getSyndicationLinks() {		
+	public function getSyndicationLinks() {
 		return $this->mFeedLinks;
 	}
 

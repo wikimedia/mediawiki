@@ -14,8 +14,6 @@ $IP = realpath( dirname( __FILE__ ) . '/../' );
 // $wgMwEmbedDirectory becomes the root $IP
 $wgMwEmbedDirectory = '';
 
-$wgFileCacheDirectory = realpath( dirname( __FILE__ ) ) . '/script-cache';
-
 $wgUseFileCache = true;
 
 // Init our wg Globals
@@ -49,23 +47,6 @@ require_once( realpath( dirname( __FILE__ ) ) . '/jsAutoloadLocalClasses.php' );
 // Get the JSmin class:
 require_once( realpath( dirname( __FILE__ ) ) . '/minify/JSMin.php' );
 
-// Some static utility MediaWiki functions that we use:
-function wfClientAcceptsGzip() {
-	global $wgUseGzip;
-	if ( $wgUseGzip ) {
-		# FIXME: we may want to blacklist some broken browsers
-		$m = array();
-		if ( preg_match(
-			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
-			$_SERVER['HTTP_ACCEPT_ENCODING'],
-			$m ) ) {
-			if ( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) return false;
-			wfDebug( " accepts gzip\n" );
-			return true;
-		}
-	}
-	return false;
-}
 function wfDebug() {
     return false;
 }
@@ -93,7 +74,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 
 	return @mkdir( $dir, $mode, true );  // PHP5 <3
 }
-function wfMsgNoTrans( $msgKey ) {
+function wfMsgGetKey( $msgKey ) {
     global $messages, $mwLanguageCode;
     // Make sure we have the messages file:
     require_once( realpath( dirname( __FILE__ ) ) . '/languages/mwEmbed.i18n.php' );

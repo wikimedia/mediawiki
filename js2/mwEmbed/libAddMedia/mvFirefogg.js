@@ -812,8 +812,8 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 						   //done state with error? ..not really possible given how firefogg works
 						   js_log(" Upload done in chunks mode, but no resultUrl!");
 					   }
-				   }else if( _this.upload_mode == 'post' && _this.api_url ) {
-					   _this.procPageResponse( response_text );
+				   }else{
+					   js_log("Error:: not supported upload mode" +  _this.upload_mode);
 				   }
 			}else{
 				//upload error:
@@ -838,52 +838,5 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	  	}
 	  	//dont' follow the link:
 	  	return false;
-	},
-	/**
-	* procPageResponse should be faded out in favor of the upload api soon..
-	* its all very fragile to read the html output and guess at stuff
-	*/
-	procPageResponse:function( result_page ){
-		var _this = this;
-		js_log('f:procPageResponse');
-		var sstring = 'var wgTitle = "' + this.formData['filename'].replace('_',' ');
-
-		if(wgArticlePath){
-			var result_txt = gM('mwe-upload_done', wgArticlePath.replace(/\$1/, 'File:' + _this.formData['filename'] ) );
-		}else{
-			result_txt = 'File has uploaded but api "done" URL was provided. Check the log for result page output';
-		}
-
-		//set the error text in case we dont' get far along in processing the response
-		_this.updateProgressWin( gM('mwe-upload_completed'), result_txt );
-
-		if( result_page && result_page.toLowerCase().indexOf( sstring.toLowerCase() ) != -1){
-			js_log( 'upload done got redirect found: ' + sstring + ' r:' + _this.done_upload_cb );
-			if( _this.done_upload_cb == 'redirect' ){
-				$j( '#dlbox-centered' ).html( '<h3>Upload Completed:</h3>' + result_txt + '<br>' + form_txt);
-				window.location = wgArticlePath.replace( /\$1/, 'File:' + _this.formData['wpDestFile'] );
-			}else{
-				//check if the add_done_action is a callback:
-				if( typeof _this.done_upload_cb == 'function' )
-					_this.done_upload_cb();
-			}
-		}else{
-			//js_log( 'upload page error: did not find: ' +sstring + ' in ' + "\n" + result_page );
-			var form_txt = '';
-			if( !result_page ){
-				//@@todo fix this:
-				//the mediaWiki upload system does not have an API so we can\'t read errors
-			}else{
-				var res = grabWikiFormError( result_page );
-
-				if(res.error_txt)
-					result_txt = res.error_txt;
-
-				if(res.form_txt)
-					form_txt = res.form_txt;
-			}
-			js_log( 'error text is: ' + result_txt );
-			$j( '#dlbox-centered' ).html( '<h3>' + gM('mwe-upload_completed') + '</h3>' + result_txt + '<br>' + form_txt);
-		}
 	}
 };

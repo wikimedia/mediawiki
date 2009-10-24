@@ -36,6 +36,151 @@ var mwDefaultConfig = {
 if( !mwConfig )
 	var mwConfig = {};
 
+
+/**
+ * AutoLoader paths 
+ * @path The path to the file (or set of files) with ending slash
+ * @gClasses The set of classes
+ * 		if it's an array, $j.className becomes jquery.className.js
+ * 		if it's an associative object then key => value pairs are used
+ */
+if( typeof mvAutoLoadClasses == 'undefined' )
+	mvAutoLoadClasses = {};
+
+// The script that loads the class set
+function lcPaths( classSet ){
+	for( var i in classSet ) {
+		mvAutoLoadClasses[i] = classSet[i];
+	}
+}
+
+function mvGetClassPath(k){
+	if( mvAutoLoadClasses[k] ) {
+		//js_log('got class path:' + k +  ' : '+ mvClassPaths[k]);
+		return mvAutoLoadClasses[k];
+	} else {
+		js_log('Error:: Could not find path for requested class ' + k );
+		return false;
+	}
+}
+if( typeof mvCssPaths == 'undefined' )
+	mvCssPaths = {};
+
+function lcCssPath( cssSet ) {
+	for( var i in cssSet ) {
+		mvCssPaths[i] = mv_embed_path + cssSet[i];
+	}
+}
+
+/*
+ * --  Load Class Paths --
+ *
+ * MUST BE VALID JSON (NOT JS)
+ * This is used by the script loader to auto-load classes (so we only define
+ * this once for PHP & JavaScript)
+ *
+ * Right now the PHP AutoLoader only reads this mv_embed.js file.
+ * In the future we could have multiple lcPath calls that PHP reads
+ * (if our autoloading class list becomes too long) just have to add those
+ * files to the jsAutoLoader file list. 
+ * (ie extensions that want to use the autoloader) 
+ */
+lcPaths({
+	"mv_embed"			: "mv_embed.js",
+	"window.jQuery"		: "jquery/jquery-1.3.2.js",
+	"$j.fn.pngFix"		: "jquery/plugins/jquery.pngFix.js",
+	"$j.fn.autocomplete": "jquery/plugins/jquery.autocomplete.js",
+	"$j.fn.hoverIntent"	: "jquery/plugins/jquery.hoverIntent.js",
+	"$j.fn.datePicker"	: "jquery/plugins/jquery.datePicker.js",
+	"$j.ui"				: "jquery/jquery.ui/ui/ui.core.js",
+	"$j.fn.ColorPicker"	: "libClipEdit/colorpicker/js/colorpicker.js",
+	"$j.Jcrop"			: "libClipEdit/Jcrop/js/jquery.Jcrop.js",
+	"$j.fn.simpleUploadForm" : "libAddMedia/simpleUploadForm.js",
+	
+	"$mw.proxy"		: "libMwApi/mw.proxy.js", 
+	
+	"ctrlBuilder"	: "skins/ctrlBuilder.js",
+	"kskinConfig"	: "skins/kskin/kskin.js",
+	"mvpcfConfig"	: "skins/mvpcf/mvpcf.js",
+
+	"JSON"				: "libMwApi/json2.js",
+	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
+	"$j.contextMenu"	: "jquery/plugins/jquery.contextMenu.js",
+	"$j.fn.suggestions"	: "jquery/plugins/jquery.suggestions.js",
+
+	"$j.effects.blind"		: "jquery/jquery.ui/ui/effects.blind.js",
+	"$j.effects.drop"		: "jquery/jquery.ui/ui/effects.drop.js",
+	"$j.effects.pulsate"	: "jquery/jquery.ui/ui/effects.pulsate.js",
+	"$j.effects.transfer"	: "jquery/jquery.ui/ui/effects.transfer.js",
+	"$j.ui.droppable"		: "jquery/jquery.ui/ui/ui.droppable.js",
+	"$j.ui.slider"			: "jquery/jquery.ui/ui/ui.slider.js",
+	"$j.effects.bounce"		: "jquery/jquery.ui/ui/effects.bounce.js",
+	"$j.effects.explode"	: "jquery/jquery.ui/ui/effects.explode.js",
+	"$j.effects.scale"		: "jquery/jquery.ui/ui/effects.scale.js",
+	"$j.ui.datepicker"		: "jquery/jquery.ui/ui/ui.datepicker.js",
+	"$j.ui.progressbar"		: "jquery/jquery.ui/ui/ui.progressbar.js",
+	"$j.ui.sortable"		: "jquery/jquery.ui/ui/ui.sortable.js",
+	"$j.effects.clip"		: "jquery/jquery.ui/ui/effects.clip.js",
+	"$j.effects.fold"		: "jquery/jquery.ui/ui/effects.fold.js",
+	"$j.effects.shake"		: "jquery/jquery.ui/ui/effects.shake.js",
+	"$j.ui.dialog"			: "jquery/jquery.ui/ui/ui.dialog.js",
+	"$j.ui.resizable"		: "jquery/jquery.ui/ui/ui.resizable.js",
+	"$j.ui.tabs"			: "jquery/jquery.ui/ui/ui.tabs.js",
+	"$j.effects.core"		: "jquery/jquery.ui/ui/effects.core.js",
+	"$j.effects.highlight"	: "jquery/jquery.ui/ui/effects.highlight.js",
+	"$j.effects.slide"		: "jquery/jquery.ui/ui/effects.slide.js",
+	"$j.ui.accordion"		: "jquery/jquery.ui/ui/ui.accordion.js",
+	"$j.ui.draggable"		: "jquery/jquery.ui/ui/ui.draggable.js",
+	"$j.ui.selectable"		: "jquery/jquery.ui/ui/ui.selectable.js",
+
+	"$mw.dragDropFile"		: "libAddMedia/dragDropFile.js",
+	"mvFirefogg"			: "libAddMedia/mvFirefogg.js",
+	"mvAdvFirefogg"			: "libAddMedia/mvAdvFirefogg.js",
+	"mvBaseUploadInterface"	: "libAddMedia/mvBaseUploadInterface.js",
+	"remoteSearchDriver"	: "libAddMedia/remoteSearchDriver.js",
+	"seqRemoteSearchDriver" : "libSequencer/seqRemoteSearchDriver.js",
+
+	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
+	"mediaWikiSearch"		: "libAddMedia/searchLibs/mediaWikiSearch.js",
+	"metavidSearch"			: "libAddMedia/searchLibs/metavidSearch.js",
+	"archiveOrgSearch"		: "libAddMedia/searchLibs/archiveOrgSearch.js",
+	"flickrSearch"			: "libAddMedia/searchLibs/flickrSearch.js",
+	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
+
+	"mvClipEdit"			: "libClipEdit/mvClipEdit.js",
+
+	"embedVideo"		: "libEmbedVideo/embedVideo.js",
+	"flashEmbed"		: "libEmbedVideo/flashEmbed.js",
+	"genericEmbed"		: "libEmbedVideo/genericEmbed.js",
+	"htmlEmbed"			: "libEmbedVideo/htmlEmbed.js",
+	"javaEmbed"			: "libEmbedVideo/javaEmbed.js",
+	"nativeEmbed"		: "libEmbedVideo/nativeEmbed.js",
+	"quicktimeEmbed"	: "libEmbedVideo/quicktimeEmbed.js",
+	"vlcEmbed"			: "libEmbedVideo/vlcEmbed.js",
+
+	"mvPlayList"		: "libSequencer/mvPlayList.js",
+	"mvSequencer"		: "libSequencer/mvSequencer.js",
+	"mvFirefoggRender"	: "libSequencer/mvFirefoggRender.js",
+	"mvTimedEffectsEdit": "libSequencer/mvTimedEffectsEdit.js",
+
+	"mvTextInterface"	: "libTimedText/mvTextInterface.js"
+});
+
+// Dependency mapping for CSS files for self-contained included plugins:
+lcCssPath({
+	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
+	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
+})
+
+
+
+
+
+
+
+
+
+
 // parseUri 1.2.2
 // (c) Steven Levithan <stevenlevithan.com>
 // MIT License
@@ -425,7 +570,7 @@ if( !mv_embed_path ) {
 	/**
 	 * parser addMagic
 	 *
-	 * lets you add a set of magic keys and associated callback funcions
+	 * lets you add a set of magic keys and associated callback functions
 	 * callback: @param ( Object Template )
 	 * callback: @return the transformed template output
 	 *
@@ -655,141 +800,6 @@ $mw.lang.loadGM({
 	"mwe-load-drag-item" : "Loading dragged item", 
 	"mwe-ok" : "OK" 
 });
-
-/**
- * AutoLoader paths (this should mirror the file: jsAutoloadLocalClasses.php )
- * Any file _not_ listed here won't be auto-loadable
- * @path The path to the file (or set of files) with ending slash
- * @gClasses The set of classes
- * 		if it's an array, $j.className becomes jquery.className.js
- * 		if it's an associative object then key => value pairs are used
- */
-if( typeof mvAutoLoadClasses == 'undefined' )
-	mvAutoLoadClasses = {};
-
-// The script that loads the class set
-function lcPaths( classSet ){
-	for( var i in classSet ) {
-		mvAutoLoadClasses[i] = classSet[i];
-	}
-}
-
-function mvGetClassPath(k){
-	if( mvAutoLoadClasses[k] ) {
-		//js_log('got class path:' + k +  ' : '+ mvClassPaths[k]);
-		return mvAutoLoadClasses[k];
-	} else {
-		js_log('Error:: Could not find path for requested class ' + k );
-		return false;
-	}
-}
-if( typeof mvCssPaths == 'undefined' )
-	mvCssPaths = {};
-
-function lcCssPath( cssSet ) {
-	for( var i in cssSet ) {
-		mvCssPaths[i] = mv_embed_path + cssSet[i];
-	}
-}
-
-/*
- * --  Load Class Paths --
- *
- * MUST BE VALID JSON (NOT JS)
- * This is used by the script loader to auto-load classes (so we only define
- * this once for PHP & JavaScript)
- *
- * Right now the PHP AutoLoader only reads this mv_embed.js file.
- * In the future we could have multiple lcPath calls that PHP reads
- * (if our autoloading class list becomes too long) just have to add those
- * files to the jsAutoLoader file list.
- */
-lcPaths({
-	"mv_embed"			: "mv_embed.js",
-	"window.jQuery"		: "jquery/jquery-1.3.2.js",
-	"$j.fn.pngFix"		: "jquery/plugins/jquery.pngFix.js",
-	"$j.fn.autocomplete": "jquery/plugins/jquery.autocomplete.js",
-	"$j.fn.hoverIntent"	: "jquery/plugins/jquery.hoverIntent.js",
-	"$j.fn.datePicker"	: "jquery/plugins/jquery.datePicker.js",
-	"$j.ui"				: "jquery/jquery.ui/ui/ui.core.js",
-	"$j.fn.ColorPicker"	: "libClipEdit/colorpicker/js/colorpicker.js",
-	"$j.Jcrop"			: "libClipEdit/Jcrop/js/jquery.Jcrop.js",
-	"$j.fn.simpleUploadForm" : "libAddMedia/simpleUploadForm.js",
-	
-	"$mw.proxy"		: "libMwApi/mw.proxy.js", 
-	
-	"ctrlBuilder"	: "skins/ctrlBuilder.js",
-	"kskinConfig"	: "skins/kskin/kskin.js",
-	"mvpcfConfig"	: "skins/mvpcf/mvpcf.js",
-
-	"JSON"				: "libMwApi/json2.js",
-	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
-	"$j.contextMenu"	: "jquery/plugins/jquery.contextMenu.js",
-	"$j.fn.suggestions"	: "jquery/plugins/jquery.suggestions.js",
-
-	"$j.effects.blind"		: "jquery/jquery.ui/ui/effects.blind.js",
-	"$j.effects.drop"		: "jquery/jquery.ui/ui/effects.drop.js",
-	"$j.effects.pulsate"	: "jquery/jquery.ui/ui/effects.pulsate.js",
-	"$j.effects.transfer"	: "jquery/jquery.ui/ui/effects.transfer.js",
-	"$j.ui.droppable"		: "jquery/jquery.ui/ui/ui.droppable.js",
-	"$j.ui.slider"			: "jquery/jquery.ui/ui/ui.slider.js",
-	"$j.effects.bounce"		: "jquery/jquery.ui/ui/effects.bounce.js",
-	"$j.effects.explode"	: "jquery/jquery.ui/ui/effects.explode.js",
-	"$j.effects.scale"		: "jquery/jquery.ui/ui/effects.scale.js",
-	"$j.ui.datepicker"		: "jquery/jquery.ui/ui/ui.datepicker.js",
-	"$j.ui.progressbar"		: "jquery/jquery.ui/ui/ui.progressbar.js",
-	"$j.ui.sortable"		: "jquery/jquery.ui/ui/ui.sortable.js",
-	"$j.effects.clip"		: "jquery/jquery.ui/ui/effects.clip.js",
-	"$j.effects.fold"		: "jquery/jquery.ui/ui/effects.fold.js",
-	"$j.effects.shake"		: "jquery/jquery.ui/ui/effects.shake.js",
-	"$j.ui.dialog"			: "jquery/jquery.ui/ui/ui.dialog.js",
-	"$j.ui.resizable"		: "jquery/jquery.ui/ui/ui.resizable.js",
-	"$j.ui.tabs"			: "jquery/jquery.ui/ui/ui.tabs.js",
-	"$j.effects.core"		: "jquery/jquery.ui/ui/effects.core.js",
-	"$j.effects.highlight"	: "jquery/jquery.ui/ui/effects.highlight.js",
-	"$j.effects.slide"		: "jquery/jquery.ui/ui/effects.slide.js",
-	"$j.ui.accordion"		: "jquery/jquery.ui/ui/ui.accordion.js",
-	"$j.ui.draggable"		: "jquery/jquery.ui/ui/ui.draggable.js",
-	"$j.ui.selectable"		: "jquery/jquery.ui/ui/ui.selectable.js",
-
-	"$mw.dragDropFile"		: "libAddMedia/dragDropFile.js",
-	"mvFirefogg"			: "libAddMedia/mvFirefogg.js",
-	"mvAdvFirefogg"			: "libAddMedia/mvAdvFirefogg.js",
-	"mvBaseUploadInterface"	: "libAddMedia/mvBaseUploadInterface.js",
-	"remoteSearchDriver"	: "libAddMedia/remoteSearchDriver.js",
-	"seqRemoteSearchDriver" : "libSequencer/seqRemoteSearchDriver.js",
-
-	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
-	"mediaWikiSearch"		: "libAddMedia/searchLibs/mediaWikiSearch.js",
-	"metavidSearch"			: "libAddMedia/searchLibs/metavidSearch.js",
-	"archiveOrgSearch"		: "libAddMedia/searchLibs/archiveOrgSearch.js",
-	"flickrSearch"			: "libAddMedia/searchLibs/flickrSearch.js",
-	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
-
-	"mvClipEdit"			: "libClipEdit/mvClipEdit.js",
-
-	"embedVideo"		: "libEmbedVideo/embedVideo.js",
-	"flashEmbed"		: "libEmbedVideo/flashEmbed.js",
-	"genericEmbed"		: "libEmbedVideo/genericEmbed.js",
-	"htmlEmbed"			: "libEmbedVideo/htmlEmbed.js",
-	"javaEmbed"			: "libEmbedVideo/javaEmbed.js",
-	"nativeEmbed"		: "libEmbedVideo/nativeEmbed.js",
-	"quicktimeEmbed"	: "libEmbedVideo/quicktimeEmbed.js",
-	"vlcEmbed"			: "libEmbedVideo/vlcEmbed.js",
-
-	"mvPlayList"		: "libSequencer/mvPlayList.js",
-	"mvSequencer"		: "libSequencer/mvSequencer.js",
-	"mvFirefoggRender"	: "libSequencer/mvFirefoggRender.js",
-	"mvTimedEffectsEdit": "libSequencer/mvTimedEffectsEdit.js",
-
-	"mvTextInterface"	: "libTimedText/mvTextInterface.js"
-});
-
-// Dependency mapping for CSS files for self-contained included plugins:
-lcCssPath({
-	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
-	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
-})
 
 
 // Get the loading image
@@ -1180,7 +1190,7 @@ var temp_f;
 if( window.onload ) {
     temp_f = window.onload;
 }
-// Use the onload method as a backup (mwdomReady hanndles dobule init calls)
+// Use the onload method as a backup
 window.onload = function () {
     if( temp_f )
         temp_f();
@@ -1284,7 +1294,8 @@ function mv_jqueryBindings() {
 					]
 				], function() {
 					iObj['instance_name'] = 'rsdMVRS';
-					_global['rsdMVRS'] = new remoteSearchDriver( iObj );
+					if( ! _global['rsdMVRS'] )
+						_global['rsdMVRS'] = new remoteSearchDriver( iObj );
 					if( callback ) {
 						callback( _global['rsdMVRS'] );
 					}
@@ -1714,36 +1725,6 @@ function mwGetLocalApiUrl( url ) {
 		return wgServer + wgScriptPath + '/api.php';
 	}
 	return false;
-}
-// Grab wiki form error for wiki html page processing (should be deprecated because we use api now)
-function grabWikiFormError( result_page ) {
-		var res = {};
-		sp = result_page.indexOf( '<span class="error">' );
-		if( sp != -1 ) {
-			se = result_page.indexOf( '</span>', sp );
-			res.error_txt = result_page.substr( sp, sp - se ) + '</span>';
-		} else {
-			// Look for warning
-			sp = result_page.indexOf( '<ul class="warning">' )
-			if( sp != -1 ) {
-				se = result_page.indexOf( '</ul>', sp );
-				res.error_txt = result_page.substr( sp, se - sp ) + '</ul>';
-				// Try to add the ignore form item
-				sfp = result_page.indexOf( '<form method="post"' );
-				if( sfp != -1 ) {
-					sfe = result_page.indexOf( '</form>', sfp );
-					res.form_txt = result_page.substr( sfp, sfe - sfp ) + '</form>';
-				}
-			} else {
-				// One more error type check
-				sp = result_page.indexOf( 'class="mw-warning-with-logexcerpt">' )
-				if( sp != -1 ) {
-					se = result_page.indexOf( '</div>', sp );
-					res.error_txt = result_page.substr( sp, se - sp ) + '</div>';
-				}
-			}
-		}
-		return res;
 }
 // Do a "normal" request
 function do_request( req_url, callback ) {
