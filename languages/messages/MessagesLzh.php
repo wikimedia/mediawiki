@@ -1631,10 +1631,10 @@ $1",
 
 # Special:ActiveUsers
 'activeusers'          => '躍簿',
+'activeusers-intro'    => '此乃為近$1天內之躍簿也。',
 'activeusers-count'    => '$3天內之$1易',
 'activeusers-from'     => '示簿始於：',
 'activeusers-noresult' => '無簿矣。',
-'activeusers-intro'    => '此乃為近$1天內之躍簿也。',
 
 # Special:Log/newusers
 'newuserlogpage'              => '誌簿',

@@ -2127,10 +2127,10 @@ Ondersteunde protocollen: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aanwezige gebruikers',
+'activeusers-intro'    => 'Dit is een lijst met gebruikers die enige activiteit hebben laten zien in de afgelopen {{PLURAL:$1|dag|$1 dagen}}.',
 'activeusers-count'    => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
 'activeusers-from'     => 'Gebruikers worden weergegeven vanaf:',
 'activeusers-noresult' => 'Geen actieve gebruikers gevonden.',
-'activeusers-intro'    => 'Dit is een lijst met gebruikers die enige activiteit hebben laten zien in de afgelopen {{PLURAL:$1|dag|$1 dagen}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieuwe gebruikers',

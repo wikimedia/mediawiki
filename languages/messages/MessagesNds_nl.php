@@ -2004,10 +2004,10 @@ Ondersteunde protecollen: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Actieve gebrukers',
+'activeusers-intro'    => 'Dit is een lieste van gebrukers dee de of-eleupen $1 {{PLURAL:$1|dag|dagen}} enigszins actief ewes bin.',
 'activeusers-count'    => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de of-eleupen {{PLURAL:$3|dag|$3 dagen}}',
 'activeusers-from'     => 'Gebrukers weergeven vanof:',
 'activeusers-noresult' => 'Gien actieve gebrukers evunnen.',
-'activeusers-intro'    => 'Dit is een lieste van gebrukers dee de of-eleupen $1 {{PLURAL:$1|dag|dagen}} enigszins actief ewes bin.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieje gebrukers',

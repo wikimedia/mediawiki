@@ -1817,10 +1817,10 @@ Ondersteunde protokolle: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktiewe gebruikers',
+'activeusers-intro'    => "Hierdie is 'n lys van gebruikers wat die laaste {{PLURAL:$1|dag|$1 dae}} enige aktiwiteit getoon het.",
 'activeusers-count'    => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laatste $3 dae}}',
 'activeusers-from'     => 'Wys gebruikers, beginnende by:',
 'activeusers-noresult' => 'Geen gebruikers gevind nie.',
-'activeusers-intro'    => "Hierdie is 'n lys van gebruikers wat die laaste {{PLURAL:$1|dag|$1 dae}} enige aktiwiteit getoon het.",
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek van nuwe gebruikers',

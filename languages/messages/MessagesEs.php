@@ -1958,10 +1958,10 @@ Protocolos soportados: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista de usuarios activos',
+'activeusers-intro'    => 'Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|edición|ediciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
 'activeusers-from'     => 'Mostrando a los usuarios empezando por:',
 'activeusers-noresult' => 'No se encontraron usuarios.',
-'activeusers-intro'    => 'Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro de creación de usuarios',

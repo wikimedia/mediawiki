@@ -1835,10 +1835,10 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lischt vu dr aktive Benutzer',
+'activeusers-intro'    => 'Des isch e Lischt vu Benutzer, wu irgedebis bearbeitet hän {{PLURAL:$1|am letschte Tag|in dr letschte $1 Täg}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}} {{PLURAL:$3|am letschte Tag|in dr letschte $3 Täg}}',
 'activeusers-from'     => 'Zeig Benutzer ab:',
 'activeusers-noresult' => 'Kei Benutzer gfunde.',
-'activeusers-intro'    => 'Des isch e Lischt vu Benutzer, wu irgedebis bearbeitet hän {{PLURAL:$1|am letschte Tag|in dr letschte $1 Täg}}.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nejaamäldigs-Logbuech',
