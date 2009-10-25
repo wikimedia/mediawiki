@@ -142,7 +142,7 @@ function doJsonMerge( $json_txt ) {
 		}
 		// merge the jsLanguage array back in and wrap the output
 		if ( $mergeToJS && $doReplaceFlag ) {
-			$json = FormatJson::encode( $jsMsgAry );
+			$json = json_encode( $jsMsgAry );
 			$json_txt = jsonReadable( $json );
 			// escape $1 for preg replace:
 			$json_txt = str_replace( '$', '\$', $json_txt );
