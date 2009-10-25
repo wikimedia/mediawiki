@@ -107,7 +107,6 @@ $messages['en'] = array(
 	'mwe-apiproxy-setup' => 'Setting up API proxy',
 	'mwe-load-drag-item' => 'Loading dragged item',
 	'mwe-ok' => 'OK',
-	'mwe-load-drag-item' => "Loading draged item",
 
 	/*
 	 * js file: /libMwApi/mw.proxy.js
@@ -169,7 +168,7 @@ $messages['en'] = array(
 	'rsd_box_layout' => 'Box layout',
 	'rsd_list_layout' => 'List layout',
 	'rsd_results_desc' => 'Results $1 to $2',
-	'rsd_results_total' => ' of $1 ',
+	'rsd_results_desc_total' => 'Results $1 to $2 of $3',
 	'rsd_results_next' => 'next',
 	'rsd_results_prev' => 'previous',
 	'rsd_no_results' => 'No search results for <b>$1</b>',
@@ -189,7 +188,7 @@ $messages['en'] = array(
 	'mwe-unknown_license' => 'Unknown license',
 	'mwe-no_import_by_url' => 'This user or wiki <b>cannot</b> import assets from remote URLs.<p>Do you need to login?</p><p>Is upload_by_url permission set for you?<br />Does the wiki have <a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">$wgAllowCopyUploads</a> enabled?</p>',
 	'mwe-results_from' => 'Results from <a href="$1" target="_new" >$2</a>',
-	'mwe-missing_desc_see_source' => 'This asset is missing a description. Please see the [$1 orginal source] and help describe it.',
+	'mwe-missing_desc_see_source' => 'This asset is missing a description. Please see the [$1 original source] and help describe it.',
 	'rsd_config_error' => 'Add media wizard configuration error: $1',
 	'mwe-your_recent_uploads' => 'Your recent uploads to $1',
 	'mwe-upload_a_file' => 'Upload a new file to $1',
