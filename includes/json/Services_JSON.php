@@ -135,6 +135,19 @@ class Services_JSON
 	{
 		$this->use = $use;
 	}
+	
+	private static $mHavePear = NULL;
+	/**
+	 * Returns cached result of class_exists('pear'), to avoid calling AutoLoader numerous times
+	 * in cases when PEAR is not present.
+	 * @return boolean
+	 */
+	private static function pearInstalled() {
+		if ( self::$mHavePear === NULL ) {
+			self::$mHavePear = class_exists( 'pear' );
+		}
+		return self::$mHavePear;
+	}
 
 	/**
 	 * convert a string from one UTF-16 char to one UTF-8 char
@@ -815,7 +828,7 @@ class Services_JSON
 	 */
 	function isError($data, $code = null)
 	{
-		if (class_exists('pear')) {
+		if ( self::pearInstalled() ) {
 			//avoid some strict warnings on PEAR isError check (looks like http://pear.php.net/bugs/bug.php?id=9950 has been around for some time)
 			return @PEAR::isError($data, $code);
 		} elseif (is_object($data) && (get_class($data) == 'services_json_error' ||
