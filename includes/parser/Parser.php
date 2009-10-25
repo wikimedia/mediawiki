@@ -3288,7 +3288,7 @@ class Parser
 					if ( $this->mOptions->getUseTeX() ) {
 						$output = $wgContLang->armourMath(
 							MathRenderer::renderMath( $content, $attributes ) );
-							break;
+						break;
 					}
 					/* else let a tag hook handle it (bug 21222) */
 				default:
