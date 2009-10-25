@@ -12,7 +12,61 @@ loadGM({
 	"fogg-cg-range" : "Encoding range",
 	"fogg-cg-advVideo" : "Advanced video encoding controls",
 	"fogg-cg-advAudio" : "Advanced audio encoding controls",
-	"fogg-preset-custom" : "Custom settings"
+	"fogg-preset-custom" : "Custom settings",
+	"fogg-webvideo-desc" : "Web video theora, vorbis 400kbs & 400px max width",
+	"fogg-savebandwith-desc" : "Low bandwith theora, vorbis 164kbs & 200px max size",
+	"fogg-highquality-desc" : "High quality theora, vorbis 1080px max width",
+	"fogg-videoQuality-title" : "Video quality",
+	"fogg-videoQuality-help" : "Used to set the <i>visual quality<\/i> of the encoded video. (not used if you set bitrate in advanced controls below)",
+	"fogg-starttime-title" : "Start second",
+	"fogg-starttime-help" : "Only encode from time in seconds",
+	"fogg-endtime-title" : "End second",
+	"fogg-endtime-help" : "Only encode to time in seconds",
+	"fogg-audioQuality-title" : "Audio quality",
+	"fogg-audioQuality-help" : "Used to set the <i>acoustic quality<\/i> of the encoded audio. (not used if you set bitrate in advanced controls below)",
+	"fogg-videoCodec-title" : "Video codec",
+	"fogg-videoCodec-help" : "Used to select the clip video codec. Presently only Theora is supported. More about the <a target=\"_new\" href=\"http:\/\/en.wikipedia.org\/wiki\/Theora\">theora codec<\/a>",
+	"fogg-audioCodec-title" : "Audio codec",
+	"fogg-audioCodec-help" : "Used to set the clip audio codec. Presently only Vorbis is supported. More about the <a target=\"_new\" href=\"http:\/\/en.wikipedia.org\/wiki\/Vorbis\">vorbis codec<\/a>",
+	"fogg-width-title" : "Video width",
+	"fogg-width-help" : "Resize to given width.",
+	"fogg-height-title" : "Video height",
+	"fogg-height-help" : "Resize to given height",
+	"fogg-videoBitrate-title" : "Video bitrate",
+	"fogg-videoBitrate-help" : "Video bitrate sets the encoding bitrate for video in (kb\/s)",
+	"fogg-twopass-title" : "Two pass encoding",
+	"fogg-twopass-help" : "Two pass encoding enables more constant quality by making two passes over the video file",
+	"fogg-framerate-title" : "Framerate",
+	"fogg-framerate-help" : "The video framerate. More about <a target=\"_new\" href=\"http:\/\/en.wikipedia.org\/wiki\/Framerate\">Framerate<\/a>",
+	"fogg-aspect-title" : "Aspect Ratio",
+	"fogg-aspect-help" : "The video aspect ratio can be fraction 4:3 or 16:9. More about <a target=\"_new\" href=\"http:\/\/en.wikipedia.org\/wiki\/Aspect_ratio_%28image%29\">aspect ratios<\/a>",
+	"fogg-keyframeInterval-title" : "Key Frame Interval",
+	"fogg-keyframeInterval-help" : "The keyframe interval in frames. Note: Most codecs force keyframes if the difference between frames is greater than keyframe encode size. More about <a href=\"http:\/\/en.wikipedia.org\/wiki\/I-frame\">keyframes<\/a>",
+	"fogg-denoise-title" : "Denoise filter",
+	"fogg-denoise-help" : "Denoise input video. More about <a href=\"http:\/\/en.wikipedia.org\/wiki\/Video_denoising\">denoise<\/a>",
+	"fogg-novideo-title" : "No Video",
+	"fogg-novideo-help" : "disable video in the output",
+	"fogg-audioBitrate-title" : "Audio bitrate",
+	"fogg-samplerate-title" : "Audio sample rate",
+	"fogg-samplerate-help" : "set output samplerate (in Hz).",
+	"fogg-noaudio-title" : "No audio",
+	"fogg-noaudio-help" : "disable audio in the output",
+	"fogg-title-title" : "Title",
+	"fogg-title-help" : "A title for your clip",
+	"fogg-artist-title" : "Artist name",
+	"fogg-artist-help" : "The artist that created this clip",
+	"fogg-date-title" : "Date",
+	"fogg-date-help" : "The date the footage was created or released",
+	"fogg-location-title" : "Location",
+	"fogg-location-help" : "The location of the footage",
+	"fogg-organization-title" : "Organization",
+	"fogg-organization-help" : "Name of organization (studio)",
+	"fogg-copyright-title" : "Copyright",
+	"fogg-copyright-help" : "The Copyright of the clip",
+	"fogg-license-title" : "License",
+	"fogg-license-help" : "The license of the clip (preferably a creative commons url)",
+	"fogg-contact-title" : "Contact",
+	"fogg-contact-help" : "Contact link"
 });
 
 var mvAdvFirefogg = function( iObj ){
@@ -48,7 +102,7 @@ default_local_settings:{
 			'conf': {}
 		},
 		'webvideo': {
-			'desc': "Web Video Theora, Vorbis 400kbs & 400px max width",
+			'desc': gM('fogg-webvideo-desc'),
 			'conf': {
 				'maxSize'      : 400,
 				'videoBitrate' : 544,
@@ -57,7 +111,7 @@ default_local_settings:{
 			}
 		},
 		'savebandwith': {
-			'desc': "Low Bandwith Theora, Vorbis 164kbs & 200px max size",
+			'desc': gM('fogg-savebandwith-desc'),
 			'conf': {
 				'maxSize'       : 200,
 				'videoBitrate'  : 164,
@@ -69,7 +123,7 @@ default_local_settings:{
 			}
 		},
 		'hqstream':{
-			'desc': "High Quality Theora, Vorbis 1080px max width",
+			'desc': gM('fogg-highquality-desc'),
 			'conf': {
 				'maxSize'      : 1080,
 				'videoQuality' : 6,
@@ -83,192 +137,141 @@ default_local_settings:{
 
 	//core firefogg default encoder configuration
 	//see encoder options here: http://www.firefogg.org/dev/index.html
+
+	
 	default_encoder_config : {
 		//base quality settings:
 		'videoQuality': {
-			'd'     : 5,
-			't'     : 'Video Quality',
+			'd'     : 5,			
 			'range' : {'min':0,'max':10},
 			'type'  : 'slider',
-			'group' : 'quality',
-			'help'  : "Used to set the <i>Visual Quality</i> of the encoded video. (not used if you set bitrate in advanced controls below)"
-		},
-		'twopass':{
-			't'     : "Two Pass Encoding",
-			'type'  : "boolean",
-			'group' : "quality",
-			'help'  : "Two Pass Encoding enables more consitant quality by making two passes over the video file"
+			'group' : 'quality'
 		},
 		'starttime':{
-			't'		: "Start Second",
 			'type'	: "float",
-			'group' : "range",
-			'help'	: "Only encode from time in seconds"
+			'group' : "range"			
 		},
-		'endtime':{
-			't'		: "End Second",
+		'endtime':{			
 			'type'	: "float",
-			'group' : "range",
-			'help'	: "only encode to time in seconds"
+			'group' : "range"	
 		},
 		'audioQuality': {
 			'd'			: 1,
-			't'			: 'Audio Quality',
 			'range'	 : {'min':-1,'max':10},
 			'type'	  : 'slider',
 			'group'	 : 'quality',
-			'help'	  : "Used to set the <i>Acoustic Quality</i> of the encoded audio. (not used if you set bitrate in advanced controls below)"
 		},
 		'videoCodec':{
 			'd'			: "theora",
-			't'			: 'Video Codec',
 			'selectVal'	: ['theora'],
 			'type'		: "select",
-			'group'		: "quality",
-			'help'	  : "Used to select the clip video codec. Presently only Theora is supported. More about the <a href=\"http://www.theora.org/\">theora codec</a> "
+			'group'		: "quality"
 		},
 		'audioCodec':{
 			'd'			: "vorbis",
-			't'			: 'Audio Codec',
 			'selectVal'	: ['vorbis'],
 			'type'		: "select",
-			'group'		: "quality",
-			'help'	  : "Used to set the clip audio codec. Presently only Vorbis is supported. More about the <a href=\"http://www.vorbis.com//\">vorbis codec</a> "
+			'group'		: "quality"
 		},
 		'width': {
-			't'			: 'Video Width',
 			'range'	 : {'min':0,'max':1080},
 			'step'		: 4,
 			'type'	  : 'slider',
-			'group'	 : "quality",
-			'help'		: "Resize to given width."
+			'group'	 : "quality"
 		},
 		'height': {
-			't'			: 'Video Height',
 			'range'	 : {'min':0,'max':1080},
 			'step'		: 4,
 			'type'		: "slider",
-			'group'		: "quality",
-			'help'		: "Resize to given height"
+			'group'		: "quality"
 		},
 		//advanced Video control configs:
 		'videoBitrate':{
-			't'			: 'Video Bitrate',
 			'range'		: {'min':1, 'max':16778},
 			'type'		: "slider",
 			'group'		: "advVideo",
-			'help'		: "Video Bitrate sets the encoding bitrate for video in (kb/s)"
 		} ,
+		'twopass':{
+			'type'  : "boolean",
+			'group' : "advVideo"
+		},
 		'framerate':{
-			't'			: 'Framerate',
 			'd'			: '24',
 			'selectVal'	: ['12', '16', {'24000:1001':'23.97'}, '24', '25', {'30000:1001':'29.97'}, '30'],
 			'type'		   : "select",
-			'group'		: "advVideo",
-			'help'		   : "The video Framerate. More about <a target=\"_new\" href=\"http://en.wikipedia.org/wiki/Frame_rate\">Framerate</a>"
+			'group'		: "advVideo"
 		},
 		'aspect':{
-			't'			: 'Aspect Ratio',
 			'd'			: '4:3',
 			'type'		: "select",
 			'selectVal'	: ['4:3', '16:9'],
-			'group'		: "advVideo",
-			'help'		: "The video aspect ratio can be fraction 4:3 or 16:9. More about <a target=\"_new\" href=\"http://en.wikipedia.org/wiki/Aspect_ratio_%28image%29\">aspect ratios</a>"
+			'group'		: "advVideo"
 		},
 		'keyframeInterval':{
 			'd'			: '64',
-			't'			: 'Key Frame Interval',
 			'range'	 : {'min':0,'max':65536},
 			'numberType': 'force keyframe every $1 frames',
 			'type'		 : 'int',
-			'group'		: 'advVideo',
-			'help'		: "The keyframe interval in frames. Note: Most codecs force keyframes if the difference between frames is greater than keyframe encode size. More about <a href=\"http://en.wikipedia.org/wiki/I-frame\">keyframes</a>"
+			'group'		: 'advVideo'
 		},
 		'denoise':{
 			'type'		: "boolean",
-			't'			: "Denoise Filter",
-			'group'		: 'advVideo',
-			'help'		: "Denoise input video. More about <a target=\"_new\" href=\"http://en.wikipedia.org/wiki/Video_denoising\">denoise</a>"
+			'group'		: 'advVideo'
 		},
 		'novideo':{
-			't'			: "No Video",
 			'type'		: "boolean",
-			'group'		: 'advVideo',
-			'help'		: "disable video in the output"
+			'group'		: 'advVideo'
 		},
 
 		//advanced Audio control Config:
 		'audioBitrate':{
-			't'			: "Audio Bitrate",
 			'range'		: {'min':32,'max':500},
 			'numberType': '$1 kbs',
-			'type'		: 'slider',
-			'group'		: 'advAudio'
+			'type'		: 'slider'
 		},
 		'samplerate':{
-			't'		: "Audio Sample Rate",
 			'type'		: 'select',
 			'selectVal'	: [{'22050':'22 kHz'}, {'44100':'44 khz'}, {'48000':'48 khz'}],
 			'formatSelect'	: function(val){
 				return (Math.round(val/100)*10) + ' Hz';
-			},
-			'help'		: "set output samplerate (in Hz)."
+			}
 		},
 		'noaudio':{
-			't'		: "No Audio",
 			'type'		: 'boolean',
-			'group'		: 'advAudio',
-			'help'		: "disable audio in the output"
+			'group'		: 'advAudio'
 		},
 
 		//meta tags:
 		'title':{
-			't'	: "Title",
 			'type'	: 'string',
-			'group' : 'meta',
-			'help'	: "A title for your clip"
+			'group' : 'meta'
 		},
 		'artist':{
-			't'	: "Artist Name",
 			'type'	: 'string',
-			'group' : 'meta',
-			'help'	: "The artist that created this clip"
+			'group' : 'meta'
 		},
 		'date':{
-			't'	: "Date",
 			'group' : 'meta',
-			'type'	: 'date',
-			'help'	: "The date the footage was created or released"
+			'type'	: 'date'
 		},
 		'location':{
-			't'	: "Location",
 			'type'	: 'string',
-			'group' : 'meta',
-			'help'	: "The location of the footage"
+			'group' : 'meta'
 		},
 		'organization':{
-			't'	: "Organization",
 			'type'	: 'string',
-			'group'	: 'meta',
-			'help'  : "Name of organization (studio)"
+			'group'	: 'meta'
 		},
 		'copyright':{
-			't'	: "Copyright",
 			'type'	: 'string',
-			'group'	: 'meta',
-			'help'	: "The Copyright of the clip"
+			'group'	: 'meta'
 		},
 		'license':{
-			't'	   : "License",
 			'type'	: 'string',
-			'group'   : 'meta',
-			'help'	: "The license of the clip (preferably a creative commons url)"
 		},
 		'contact':{
-			't'	: "Contact",
 			'type'	: 'string',
-			'group'	: 'meta',
-			'help'	: "Contact link"
+			'group'	: 'meta'
 		}
 	},
 	init:function( iObj ){
@@ -392,7 +395,7 @@ default_local_settings:{
 		var out ='';
 		out+='<tr><td valign="top">'+
 			'<label for="_' + cK + '">' +
-			 cConf.t + ':' +
+			 gM( 'fogg-' + cK + '-title') + ':' +
 			 '<span title="' + gM('fogg-help-sticky') + '" class="help_'+ cK + ' ui-icon ui-icon-info" style="float:left"></span>'+
 			 '</label></td><td valign="top">';
 		//if we don't value for this:
@@ -438,15 +441,13 @@ default_local_settings:{
 				out+='</select>';
 			break;
 		}
-		//output the help row:
-		if(cConf.help){
-			out+='<div class="helpRow_' + cK + '">'+
-					'<span class="helpClose_' + cK + ' ui-icon ui-icon-circle-close" '+
-					'title="Close Help"'+
-					'style="float:left"/>'+
-				 cConf.help +
-				 '</div>';
-		}
+		//output the help row:		
+		out+='<div class="helpRow_' + cK + '">'+
+				'<span class="helpClose_' + cK + ' ui-icon ui-icon-circle-close" '+
+				'title="Close Help"'+
+				'style="float:left"/>'+
+			 	gM('fogg-'+ cK + '-help') +
+			 '</div>';		
 		out+='</td></tr><tr><td colspan="2" height="10"></td></tr>';
 		return out;
 	},
@@ -495,47 +496,43 @@ default_local_settings:{
 		//bind control actions
 		for(var cK in this.default_encoder_config){
 			var cConf =  this.default_encoder_config[cK];
-			//set up the help for all types:
-			if(cConf.help){
-				//initial state is hidden:
-				$j( this.selector + ' .helpRow_' + cK).hide();
-				$j(this.selector + ' .help_' + cK).click(function(){
-					//get the ckId (assume its the last class)
-					var cK = _this.getClassId(this, 'help_');
+				
+			//initial state is hidden:
+			$j( this.selector + ' .helpRow_' + cK).hide();
+			$j(this.selector + ' .help_' + cK).click(function(){
+				//get the ckId (assume its the last class)
+				var cK = _this.getClassId(this, 'help_');
 
-					if(helpState[cK]){
-						$j(_this.selector + ' .helpRow_' + cK).hide('slow');
-						helpState[cK] = false;
-					}else{
-						$j(_this.selector + ' .helpRow_' + cK).show('slow');
-						helpState[cK] = true;
-					}
-					return false;
-				}).hover(
-					function(){
-						//get the ckId (assume its the last class)
-						var cK = _this.getClassId(this, 'help_');
-						$j( _this.selector + ' .helpRow_' + cK).show('slow');
-					},function(){
-						var cK = _this.getClassId(this, 'help_');
-						if(!helpState[cK])
-							$j( _this.selector + ' .helpRow_' + cK).hide('slow')
-					}
-				);
-				$j( _this.selector + ' .helpClose_' + cK).click(function(){
-					js_log("close help: " +cK);
-					//get the ckId (assume its the last class)
-					var cK = _this.getClassId(this, 'helpClose_');
+				if(helpState[cK]){
 					$j(_this.selector + ' .helpRow_' + cK).hide('slow');
 					helpState[cK] = false;
-					return false;
-				}).css('cursor', 'pointer');
-			}else{
-				$j(this.selector + ' .help_' + cK).hide();
-			}
+				}else{
+					$j(_this.selector + ' .helpRow_' + cK).show('slow');
+					helpState[cK] = true;
+				}
+				return false;
+			}).hover(
+				function(){
+					//get the ckId (assume its the last class)
+					var cK = _this.getClassId(this, 'help_');
+					$j( _this.selector + ' .helpRow_' + cK).show('slow');
+				},function(){
+					var cK = _this.getClassId(this, 'help_');
+					if(!helpState[cK])
+						$j( _this.selector + ' .helpRow_' + cK).hide('slow')
+				}
+			);
+			$j( _this.selector + ' .helpClose_' + cK).click(function(){
+				js_log("close help: " +cK);
+				//get the ckId (assume its the last class)
+				var cK = _this.getClassId(this, 'helpClose_');
+				$j(_this.selector + ' .helpRow_' + cK).hide('slow');
+				helpState[cK] = false;
+				return false;
+			}).css('cursor', 'pointer');			
 
 			//setup bindings for change values: (validate input)
-
+	
 			switch(	cConf.type ){
 				case 'boolean':
 					$j(_this.selector + ' ._'+cK).click(function(){
@@ -575,7 +572,7 @@ default_local_settings:{
 						max: this.default_encoder_config[ cK ].range.max,
 						slide: function(event, ui) {
 							$j( _this.selector + ' ._' + _this.getClassId(this, 'slider_') ).val( ui.value );
-
+	
 							//maintain source video aspect ratio:
 							if(_this.getClassId(this, 'slider_') == 'width'){
 								var hv = parseInt((_this.sourceFileInfo.video[0]['height']/_this.sourceFileInfo.video[0]['width'])* ui.value );
@@ -609,6 +606,7 @@ default_local_settings:{
 				break
 			}
 		}
+		
 		$j(this.target_control_container).accordion({
 			header: "h3",
 			collapsible: true,

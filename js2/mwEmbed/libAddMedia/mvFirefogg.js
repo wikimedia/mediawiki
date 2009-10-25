@@ -16,7 +16,7 @@ loadGM({
 	"fogg-transcoding" : "Encoding video to Ogg",
 	"fogg-encoding-done" : "Encoding complete",
 	"fogg-badtoken" : "Token is not valid",
-	"fogg-preview"	: "Preview video",
+	"fogg-preview" : "Preview video",
 	"fogg-hidepreview" : "Hide preview"
 });
 
