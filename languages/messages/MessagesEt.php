@@ -632,7 +632,8 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], ed
 'unexpected'           => 'Ootamatu väärtus: "$1"="$2".',
 'formerror'            => 'Viga: vormi ei saanud salvestada',
 'badarticleerror'      => 'Seda toimingut ei saa sellel leheküljel sooritada.',
-'cannotdelete'         => 'Seda lehekülge või pilti ei ole võimalik kustutada. (Võib-olla keegi teine juba kustutas selle.)',
+'cannotdelete'         => 'Lehekülge või faili "$1" ei saa kustutada.
+Võimalik, et keegi on selle juba kustutanud.',
 'badtitle'             => 'Vigane pealkiri',
 'badtitletext'         => 'Soovitud lehekülje pealkiri oli vigane, tühi või teisest keeleversioonist või vikist valesti lingitud.
 See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.',
@@ -2045,7 +2046,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'exblank'                => 'lehekülg oli tühi',
 'delete-confirm'         => 'Kustuta "$1"',
 'delete-legend'          => 'Kustuta',
-'historywarning'         => 'Hoiatus: leheküljel, mida tahate kustutada, on ajalugu:&nbsp;',
+'historywarning'         => 'Hoiatus: Kustutataval leheküljel on {{PLURAL:$1|ühe redaktsiooniga|$1 redaktsiooniga}} ajalugu:',
 'confirmdeletetext'      => 'Sa oled andmebaasist jäädavalt kustutamas lehte või pilti koos kogu tema ajalooga. Palun kinnita, et sa tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:Policy-url}}|sisekorraga]].',
 'actioncomplete'         => 'Toiming sooritatud',
 'actionfailed'           => 'Tegevus ebaõnnestus',

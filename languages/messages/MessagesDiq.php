@@ -781,9 +781,7 @@ Eke şıma serkari u devam bıkeri [$1 no vurnayiş şıma eşkeni bıvini].",
 'revdelete-selected'          => "'''[[:$1]]: ra {{PLURAL:$2|çımraviyarnayışo weçinıte|çımraviyarnayışê weçinıtey}}'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Qeydbiyayışo weçinıte|Qeydbiyayışê weçinıtey}}:'''",
 'revdelete-text'              => "'''Çımraviyarnayışê esterıtey u kerdışi hewna tarixê pele u qeydan de asenê, hema parçeyê zerrekê dinan areze nêbenê.'''
-Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşenê hewna bıresê zerrekê nımıtey u şenê ey anciya na eyni miyanpele ra peyser biarê.
-
-Kerem u tesdiq kerê ke niyetê şıma be ney kerdeno, şıma netican zi fam kenê, u şıma ney gorey [[{{MediaWiki:Policy-url}}|destur]]i kenê.",
+Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşenê hewna bıresê zerrekê nımıtey u şenê ey anciya na eyni miyanpele ra peyser biarê.",
 'revdelete-suppress-text'     => "Wedardış gani '''tenya''' nê halanê cêrênan de bıxebıtiyo:
 * Melumatê kıfırio mıhtemel
 * Melumatê şexio bêmınasıb

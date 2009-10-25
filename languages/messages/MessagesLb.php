@@ -913,9 +913,7 @@ Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerscheed kucke
 'revdelete-selected'          => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
 'logdelete-selected'          => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
 'revdelete-text'              => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''
-
-Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.
-Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu verstitt an datt Dir dëst am Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
+Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
 'revdelete-suppress-text'     => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
 * Net ubruechte perséinlechen Informatiounen
 *: ''Adressen, Telefonsnummeren, Sozialversécherungsnummeren asw.''",
@@ -1459,6 +1457,7 @@ Säite vun [[Special:Watchlist|Ärer Iwwerwaachungslëscht]] si '''fett''' gesch
 'upload'                      => 'Eroplueden',
 'uploadbtn'                   => 'Fichier eroplueden',
 'reuploaddesc'                => 'Eroplueden ofbriechen an zréck op de Formulaire fir Eropzelueden',
+'upload-tryagain'             => 'Déi geännert Beschreiwung vum Fichier schécken',
 'uploadnologin'               => 'Net ageloggt',
 'uploadnologintext'           => 'Dir musst [[Special:UserLogin|ageloggt sinn]], fir Fichieren eroplueden zu kënnen.',
 'upload_directory_missing'    => 'De Repertoire an deen Dir eropluede wollt ($1) feelt a konnt net vum Webserver ugeluecht ginn.',
@@ -1526,6 +1525,7 @@ Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet d
 'file-deleted-duplicate'      => 'En identesche Fichier ([[$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läsche no, Ier Dir en nach emol eropluet.',
 'successfulupload'            => 'Eroplueden erfollegräich',
 'uploadwarning'               => 'Opgepasst',
+'uploadwarning-text'          => "Ännert d'Beschreiwung hei ënnedrënner w.e.g. a versicht et nach eng Kéier.",
 'savefile'                    => 'Fichier späicheren',
 'uploadedimage'               => 'huet "[[$1]]" eropgelueden',
 'overwroteimage'              => 'huet eng nei Versioun vun "[[$1]]" eropgelueden',
@@ -2408,6 +2408,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-leave-redirect'          => 'Viruleedung uleeën',
 'protectedpagemovewarning'     => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme Benotzer mat Administreurs-Rechter se réckele kënnen.",
 'semiprotectedpagemovewarning' => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme konfirméiert Benotzer se réckele kënnen.",
+'move-over-sharedrepo'         => '== De Fichier gëtt et ==
+[[:$1]] gëtt et op engem gedeelte Repertoire. Wann dir e Fichier op dësen Titel réckelt dann ass dee gedeelte Fichier net méi accessibel.',
 'file-exists-sharedrepo'       => 'Den Numm vum Fichier deen dir erausgesicht hutt gëtt schonn op engem gemeinsame Repertoire benotzt.
 Sicht Iech w.e.g. en aneren Numm.',
 

@@ -947,10 +947,8 @@ funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'ac
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
 'revdelete-text'              => "'''Les revisions esborrades es mostraran encara als historials de les pàgines i als registres, si bé part del seu contingut serà inaccessible al públic.'''
-
-Els altres administradors de {{SITENAME}} encara podran accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional.
-
-Si us plau, confirmeu que és això el que desitjeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
+Els altres administradors de {{SITENAME}} encara podran accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional.",
+'revdelete-confirm'           => "Si us plau, confirmeu que és això el que desitjeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
 'revdelete-suppress-text'     => "Les supressions '''només''' han de ser portades a terme en els següents casos:
 * Informació personal inapropiada
 *: ''adreces personals, números de telèfon, números de la seguretat social, etc.''",

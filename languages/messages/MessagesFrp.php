@@ -1117,9 +1117,7 @@ la vèrsion ciba ègziste pas, ou ben o est la vèrsion d’ora.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Entrâ du jornal chouèsia|Entrâs du jornal chouèsies}} :'''",
 'revdelete-text'              => "'''Les vèrsions et les entrâs suprimâs aparètront adés dens l’historico de la pâge et dens los jornals, mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
-Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela méma entèrface, a muens que des rèstriccions de ples seyont betâs en place.
-
-Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].",
+Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela méma entèrface, a muens que des rèstriccions de ples seyont betâs en place.",
 'revdelete-suppress-text'     => "La suprèssion dêt étre utilisâ '''ren que''' dens cetos câs :
 * Enformacions a sè que vont pas avouéc :
 *: ''adrèce et numerô de tèlèfono, numerô de sècuritât sociâla, ...''",

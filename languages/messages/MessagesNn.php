@@ -1006,8 +1006,7 @@ Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer det.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:'''",
 'revdelete-text'              => "Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
-
-Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane. Ver venleg å stadfesta at du meiner å gjera dette, og at du skjønar fylgjene, og at du gjer dette i samsvar med [[{{MediaWiki:Policy-url}}|MediaWiki sine retningsliner]].",
+Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.",
 'revdelete-suppress-text'     => "Løyning av sideversjonar bør '''berre''' verta nytta i dei fylgjande tilfella:
 * Upassanda personleg informasjon
 *: ''heimeadresser og -telefonnummer,  personnummer, osb.''",

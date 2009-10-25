@@ -1103,9 +1103,8 @@ Einem Administrator kannst du [$1 diesen Link zum Versionsunterschied] nennen.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
 'revdelete-text'              => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
-
-Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.
-Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.",
+Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.",
+'revdelete-confirm'           => 'Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.',
 'revdelete-suppress-text'     => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
 * Unangebrachte persönliche Informationen
 *: ''Adressen, Telefonnummern, Sozialversicherungsnummern etc.''",

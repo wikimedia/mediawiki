@@ -1043,8 +1043,7 @@ funcţie, revizia specificată nu există, sau eşti pe cale să ascunzi revizia
 'revdelete-selected'          => "'''{{PLURAL:$2|Revizia aleasă|Reviziile alese}} pentru [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
 'revdelete-text'              => "'''Reviziile şterse vor apărea în istoricul paginii, dar conţinutul lor nu va fi accesibil publicului.'''
-
-Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă altă restricţie de către operatorii sitului. Confirmă că doreşti să finalizezi acţiunea, că înţelegi consecinţele şi că faci acest lucru în concordanţă cu [[{{MediaWiki:Policy-url}}|politica sitului]].",
+Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă altă restricţie de către operatorii sitului.",
 'revdelete-suppress-text'     => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
 * Informaţii personale inadecvate
 *: ''adrese şi numere de telefon personale, CNP, numere de securitate socială, etc.''",

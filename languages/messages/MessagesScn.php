@@ -862,9 +862,7 @@ All'amministratura è ancora possibili [$1 talìari lu confrontu] si nicissariu.
 'revdelete-selected'          => "'''{{PLURAL:$2|Virsioni silizziunata|Virsioni silizziunati}} di [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Eventu dû riggistru silizziunatu|Eventi dû riggistru silizziunati}}:'''",
 'revdelete-text'              => "'''Li virsioni cancillati rèstanu visìbbili ntâ cronoluggìa dâ pàggina, mentri lu testu cuntinutu nun è accissìbbili a lu pùbbricu.''' 
-L'àutri amministratura dû situ ponnu accèdiri comu è gghiè a li cuntinuti ammucciati e ripristinàrili attraversu sta stissa nterfaccia, siddu nun hannu statu mpustati àutri limitazzioni n fasi di nstallazzioni dû situ.
-
-Pi favuri cunferma ca voi fari chistu, ca sai di li conseguenzi da tò azioni e ca essa è conformi ê linii guida stabiliti [[{{MediaWiki:Policy-url}}|ntâ policy]]",
+L'àutri amministratura dû situ ponnu accèdiri comu è gghiè a li cuntinuti ammucciati e ripristinàrili attraversu sta stissa nterfaccia, siddu nun hannu statu mpustati àutri limitazzioni n fasi di nstallazzioni dû situ.",
 'revdelete-suppress-text'     => "La rimozzioni havi a essiri utilizzata '''sulu''' ni sti casi:
 * Dati pirsonali inoppurtuni
 *: ''ndirizzi, nnummara di telefunu, codici fiscali, ecc.''",

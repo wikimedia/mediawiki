@@ -1077,10 +1077,8 @@ vagy a legutolsó változatot próbáltad meg elrejteni.',
 'logdelete-selected'          => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
 'revdelete-text'              => "'''A törölt változatok és események továbbra is megjelennek a laptörténetben és a naplókban,
 azonban a tartalmuk egyes részei el lesznek rejtve a nyilvánosság elől.'''
-
-A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.
-
-Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a következményekkel, és hogy az [[{{MediaWiki:Policy-url}}|irányelveknek]] megfelelően cselekszel.",
+A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.",
+'revdelete-confirm'           => 'Kérlek erősítsd meg, hogy valóban ezt szeretnéd tenni; megértetted a következményeket, és amit teszel, az összhangban van [[{{MediaWiki:Policy-url}}|az irányelvekkel]].',
 'revdelete-suppress-text'     => "Az elrejtés '''csak''' a következő esetekben használható:
 * Illetlen személyes információk
 *: ''otthoni címek és telefonszámok, társadalombiztosítási számok stb.''",

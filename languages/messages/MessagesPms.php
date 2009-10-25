@@ -821,9 +821,7 @@ Com  aministrador it peule ancò [$1 vëdde sta diferensa-sì] s'it veule.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Event|Event}} dël registr selessionà:'''",
 'revdelete-text'              => "Le vërsion scanselà e j'event a së s-ciaireran sempe ant la stòria dla pàgina e ant ij registr, ma sò test al pùblich a-j andrà pì nen.'''
-J'àutri aministrator an dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé ël contnù stërmà e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen staita butà na restrission adissional.
-
-Për piasì conferma che it veulo fé sòn-sì, che it capisse le conseguense, e che i të stai fasend sòn-sì d'acòrdi con le [[{{MediaWiki:Policy-url}}|linie guida]].",
+J'àutri aministrator an dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé ël contnù stërmà e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen staita butà na restrission adissional.",
 'revdelete-suppress-text'     => "La scanselassion a dovrìa '''mach''' esse dovrà për cost cas:
 * Anformassion përsonaj nen aproprià
 *: ''adrësse ëd ca e nùmer ëd telefono, còdes fiscaj, etc.''",
@@ -1360,6 +1358,7 @@ Jë pàgine an dzora a [[Special:Watchlist|la lista ch'it ten-e sot euj]] a rest
 'upload'                      => 'Carié',
 'uploadbtn'                   => 'Carié',
 'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
+'upload-tryagain'             => 'Anseriss la descrission dël file modificà',
 'uploadnologin'               => 'Pa an drinta al sistema',
 'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 për podej carié dj'archivi.",
@@ -1429,6 +1428,7 @@ Se it veule ancó carié tò file, për piasì torna andré e dòvra un nòm dif
 It dovrìe controlé la stòria djë scanselament dël file prima ëd torna carielo.",
 'successfulupload'            => 'Carià complet',
 'uploadwarning'               => 'Avis che i soma dapress a carié',
+'uploadwarning-text'          => 'Për piasì modìfica la descrission dël file sota e preuva torna.',
 'savefile'                    => "Salva l'archivi",
 'uploadedimage'               => 'a l\'ha carià "[[$1]]"',
 'overwroteimage'              => 'a l\'ha carìa na version neuva ëd "[[$1]]"',
@@ -1929,7 +1929,7 @@ Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
 'exblank'                => "La pàgina a l'era veujda",
 'delete-confirm'         => 'Scancela "$1"',
 'delete-legend'          => 'Scancela',
-'historywarning'         => "Avis: la pàgina che a l'é antramentr che a scancela a l'ha na stòria:",
+'historywarning'         => "'''Avis:''' La pàgina che a l'é antramentr che a scansela a l'ha na stòria con $1 {{PLURAL:$1|revision|revision}}:",
 'confirmdeletetext'      => "A sta për scancelé d'autut da 'nt la base dat na pàgina ò pura na figura, ansema a tuta soa cronologìa.<p>
 Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont ëd le conseguense ëd lòn che a fa, e che sòn a resta an pien an régola con lòn che a l'é stabilì ant la [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Travaj fait e finì',
@@ -2338,6 +2338,10 @@ L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej
 'move-leave-redirect'          => 'Lassa na rediression',
 'protectedpagemovewarning'     => "'''Atension:''' Sta pàgina-sì a l'é stàita blocà parèj che mach utent con drit d'aministrador a peusso tramudela.",
 'semiprotectedpagemovewarning' => "'''Nota:''' Sta pàgina-sì a l'é stàita blocà parèj che utent argistrà a peusso tramudela.",
+'move-over-sharedrepo'         => '== Ël file a esist ==
+[[:$1]] a esist an dzora a un depòsit condivis. Tramudé un file a cost tìtol-sì a coaterà ël file condivis.',
+'file-exists-sharedrepo'       => "Ël nòm dël file sërnù a l'é già dovrà ant ël depòsit condivis.
+Për piasì sern n'àutr nòm.",
 
 # Export
 'export'            => 'Esporté dle pàgine',

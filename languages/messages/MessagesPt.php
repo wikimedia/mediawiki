@@ -1065,9 +1065,7 @@ Como administrador você pode ainda [$1 pode ver o diferencial] se desejar pross
 'revdelete-selected'          => "'''{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:'''",
 'revdelete-text'              => "'''Edições e eventos eliminados continuarão a aparecer no histórico e registos da página, mas partes do seu conteúdo estarão inacessíveis ao público.'''
-
-Outros administradores em {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.
-Por favor, confirme que pretende fazer isto, que compreende as consequências, e que vai fazê-lo em concordância com [[{{MediaWiki:Policy-url}}|a política]].",
+Outros administradores em {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.",
 'revdelete-suppress-text'     => "A supressão deverá '''apenas''' ser usada para os seguintes casos:
 * Informação pessoa inapropriada
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",

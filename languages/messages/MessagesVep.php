@@ -787,9 +787,7 @@ Detalid voidas olda [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-selected'          => "'''{{PLURAL:$2|Valitud versii|Valitud versijad}} lehtpolišpäi [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valitud kirjutez aigkirjas|Valitud kirjutesed aigkirjas}}:'''",
 'revdelete-text'              => "'''Čutud versijad ozutadas lehtpolen istorijas da aigkirjoiš, no järgeližed lugijad ei voiškakoi nähta niiden südäimišton erasid paloid.'''
-
-Administratorad voiškatas lugeda peittud südäimištod da endištada sidä necen interfeisan kal't siloi, konz ei ole ližakaidendusid.
-Olgat hüväd, meletagat völ kerdan, todest-ik tahtoit tehta necidä, el'gendat teiden tegendan effekt, et murekoi [[{{MediaWiki:Policy-url}}|saitan politikad]].",
+Administratorad voiškatas lugeda peittud südäimištod da endištada sidä necen interfeisan kal't siloi, konz ei ole ližakaidendusid.",
 'revdelete-legend'            => 'Säta kaidendused',
 'revdelete-hide-text'         => 'Peitta necen lehtpolen versijan tekst',
 'revdelete-hide-name'         => 'Peitta tegend da sen objekt',

@@ -539,7 +539,8 @@ La motivazion la xe sta qua: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''Logout efetuà.'''
 
-Ora te podi continuar a doparar {{SITENAME}} come utente anonimo, opure te podi far [[Special:UserLogin|de novo el login]] col nome utente de prima, opure con uno difarente. Nota che serte pagine le podarìa èssar visualizà come se te fussi ancora loggà, fin che no te neti la cache del to browser.",
+Ora te podi continuar a doparar {{SITENAME}} come utente anonimo, opure te podi far [[Special:UserLogin|de novo el login]] col nome utente de prima, opure con uno difarente. 
+Ocio che serte pagine le podarìa èssar visualizà come se te fussi ancora loggà, fin che no te neti la cache del to browser.",
 'welcomecreation'            => "== Benvegnù, $1! ==
 El to account l'è stà creà con sucesso.
 No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de {{SITENAME}}]].",
@@ -908,9 +909,8 @@ I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
 'revdelete-text'              => "'''Le revision e le azion scancelàe le restarà visibili ne la cronologia de la pagina, ma parte del testo contegnùo no'l sarà visìbile al publico.'''
-
-I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion.
-Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le conseguense e che te sì drio operar in conformità de le [[{{MediaWiki:Policy-url}}|linee-guida]].",
+I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion.",
+'revdelete-confirm'           => 'Par piaser, conferma che vol far sta azion, che te capissi le so conseguense, e che te sì drio operar secondo le [[{{MediaWiki:Policy-url}}|linee guida]].',
 'revdelete-suppress-text'     => "La sopression la se dovarìa doparar '''solo''' in sti casi qua:
 
 * Informassion personali mia apropriate

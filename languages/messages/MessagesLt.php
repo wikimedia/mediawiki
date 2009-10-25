@@ -948,9 +948,7 @@ Kaip administratorius, jūs vis tiek galite [$1 pamatyti šį skirtumą].",
 'revdelete-selected'          => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
 'revdelete-text'              => "'''Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.'''
-Kiti administratoriai iš {{SITENAME}} vistiek galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.
-
-Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].",
+Kiti administratoriai iš {{SITENAME}} vistiek galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.",
 'revdelete-suppress-text'     => "Ištrynimas turėtų būti taikomas '''tik''' šiais atvejais:
 * Netinkama asmeninė informacija
 *: ''namų adresai, telefonų numeriai, asmens kodai ir t. t.''",

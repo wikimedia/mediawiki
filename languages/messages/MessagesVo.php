@@ -818,9 +818,7 @@ Pats tefik ba patuvons in [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENA
 'revdelete-selected'          => "'''{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Lisedajenot|Lisedajenots}} pevälöl:'''",
 'revdelete-text'              => "'''Revids pemoüköl nog opubons in padajenotem, ab ninäd (vödem) onsik no gebidons publüge.'''
-
-Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}, kels kanons nog votükön ninädi peklänedöl u geükön padi medü fometem at (üf miedöfükams u neletians votik no lonöfons). 
-Fümedolös, das vilol dunön osi, das suemol sekis, e das dunol osi baiädü [[{{MediaWiki:Policy-url}}|dunamods lonöföl]].",
+Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}, kels kanons nog votükön ninädi peklänedöl u geükön padi medü fometem at (üf miedöfükams u neletians votik no lonöfons).",
 'revdelete-legend'            => 'Levälön miedükamis logova:',
 'revdelete-hide-text'         => 'Klänedön vödemi revida',
 'revdelete-hide-name'         => 'Klänedön duni e zeili',

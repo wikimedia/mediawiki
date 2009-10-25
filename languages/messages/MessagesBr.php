@@ -869,9 +869,8 @@ Evel merour e c'hallit atav [$1 sellet ouzh an diff-se] mar fell deoc'h kenderc'
 'revdelete-selected'          => "'''{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
 'revdelete-text'              => "'''Derc'hel a raio ar stummoù ha darvoudoù diverket da zont war wel war istor ar bajenn hag er marilhoù, met dazrn eus ar boued n'hallo ket bezañ gwelet gant an dud.'''
-
-Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn.
-Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg, hag en grit en ur zoujañ d'ar [[{{MediaWiki:Policy-url}}|reolennoù]].",
+Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn.",
+'revdelete-confirm'           => "Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg, hag en grit en ur zoujañ d'ar [[{{MediaWiki:Policy-url}}|reolennoù]].",
 'revdelete-suppress-text'     => "Ne zlefe an dilemel bezañ implijet '''nemet''' abalamour d'an abegoù da-heul :
 * Titouroù personel dizere
 *: ''chomlec'hioù, niverennoù pellgomz pe surentez sokial personel, hag all''",
@@ -1406,6 +1405,7 @@ E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
 'upload'                      => 'Kargañ war ar servijer',
 'uploadbtn'                   => 'Kargañ ur restr',
 'reuploaddesc'                => "Distreiñ d'ar furmskrid.",
+'upload-tryagain'             => 'Kas deskrivadur ar restr kemmet',
 'uploadnologin'               => 'diluget',
 'uploadnologintext'           => "ret eo deoc'h bezañ [[Special:UserLogin|luget]]
 evit eilañ restroù war ar servijer.",
@@ -1472,6 +1472,7 @@ Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit 
 'file-deleted-duplicate'      => "Diverket ez eus bet c'hoazh ur restr heñvel-poch ouzh ar restr-mañ ([[$1]]). Gwelloc'h e vefe deoc'h teuler ur sell war istor diverkadenn ar bajenn-se a-raok hec'h enporzhiañ en-dro.",
 'successfulupload'            => 'Eiladenn kaset da benn vat',
 'uploadwarning'               => 'Diwallit!',
+'uploadwarning-text'          => 'Cheñchit deskrivadur ar restr a-is ha klaskit en-dro.',
 'savefile'                    => 'Enrollañ ar restr',
 'uploadedimage'               => '"[[$1]]" enporzhiet',
 'overwroteimage'              => 'enporzhiet ur stumm nevez eus "[[$1]]"',
@@ -1835,6 +1836,7 @@ Protokoloù skoret : <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Roll an implijerien oberiant',
+'activeusers-intro'    => 'Setu aze ur roll eus an implijerien zo bet oberiant mui pe vui e-pad an $1 {{PLURAL:$1|deiz|deiz}} diwezhañ.',
 'activeusers-count'    => '$1 {{PLURAL:$1|degasadenn}} abaoe an {{PLURAL:$3|deiz}} diwezhañ',
 'activeusers-from'     => 'Diskouez an implijerien adal :',
 'activeusers-noresult' => "N'eus bet kavet implijer ebet.",
@@ -1973,7 +1975,7 @@ Evezhiadennoù ha skoazell pelloc\'h :
 'exblank'                => "pajenn c'houllo",
 'delete-confirm'         => 'Diverkañ "$1"',
 'delete-legend'          => 'Diverkañ',
-'historywarning'         => "Diwallit: War-nes diverkañ ur bajenn ganti un istor emaoc'h :",
+'historywarning'         => "'''Diwallit :''' War-nes diverkañ ur bajenn dezhi un istor ha bet kemmet $1 {{PLURAL:$1|gwezh|gwezh}} emaoc'h :",
 'confirmdeletetext'      => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
 Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Diverkadenn kaset da benn',
@@ -2374,6 +2376,8 @@ Diverkañ anezhañ a fell deoc'h ober evit reiñ lec'h d'an adkas ?",
 'move-leave-redirect'          => 'Lezel un adkas war-du an titl nevez',
 'protectedpagemovewarning'     => "'''DIWALLIT :''' Prennet eo bet ar bajenn-mañ, setu n'eus nemet an implijerien ganto gwrioù merañ a c'hall adenvel anezhi.",
 'semiprotectedpagemovewarning' => "'''NOTENN :''' Prennet eo bet ar bajenn-mañ, setu n'hall bezañ adanvet nemet gant an implijerien enskrivet",
+'file-exists-sharedrepo'       => "Implijet c'hoazh eo an anv dibabet gant ur restr zo war ur sanailh kenrannet.
+Grit gant un anv all.",
 
 # Export
 'export'            => 'Ezporzhiañ pajennoù',

@@ -804,7 +804,7 @@ Heslo: „$3“
 Měli byste se co nejdřív přihlásit a změnit si heslo.
 
 Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
-'usernamehasherror'          => 'Uživatelské jméno nemůže obsahovat znak mřížky (#).',
+'usernamehasherror'          => 'Uživatelské jméno nemůže obsahovat znak mřížka (#)',
 'login-throttled'            => 'Provedli jste příliš mnoho pokusů o přihlášení.
 Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel'         => 'Jazyk: $1',
@@ -1091,10 +1091,9 @@ Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
 'revdelete-text'              => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale některé jejich části nebudou veřejně dostupné.'''
-
 Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
-pokud nebyla nastavena další omezení.
-Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].",
+pokud nebyla nastavena další omezení.",
+'revdelete-confirm'           => 'Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'revdelete-suppress-text'     => "Utajování by se mělo používat '''pouze''' v následujících případech:
 * Nevhodné osobní údaje
 *: ''adresy bydliště a telefonní čísla, rodná čísla apod.''",
@@ -1630,6 +1629,7 @@ $3',
 'upload'                      => 'Načíst soubor',
 'uploadbtn'                   => 'Načíst soubor',
 'reuploaddesc'                => 'Vrátit se k načtení.',
+'upload-tryagain'             => 'Uložit upravený popis souboru',
 'uploadnologin'               => 'Nejste přihlášen(a)',
 'uploadnologintext'           => 'Pro načtení souboru se musíte [[Special:UserLogin|přihlásit]].',
 'upload_directory_missing'    => 'Adresář pro nahrávání souborů ($1) chybí a webový server ho nedokáže vytvořit.',
@@ -1690,6 +1690,7 @@ Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
 'file-deleted-duplicate'      => 'Identický soubor k tomuto ([[$1]]) byl již dříve smazán. Před tím, než soubor znovu nahrajete, byste měli zkontrolovat záznamy o předchozím smazání.',
 'successfulupload'            => 'Načtení úspěšně provedeno!',
 'uploadwarning'               => 'Varování',
+'uploadwarning-text'          => 'Prosíme, upravte popis souboru níže a zkuste to znovu.',
 'savefile'                    => 'Uložit soubor',
 'uploadedimage'               => 'načítá „[[$1]]“',
 'overwroteimage'              => 'načtena nová verze "[[$1]]"',
@@ -2047,6 +2048,7 @@ Podporované protokoly: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Seznam aktivních uživatelů',
+'activeusers-intro'    => 'Toto je seznam uživatelů, kteří byli nějak aktivní v {{plural:$1|posledním dni|posledních $1 dnech}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|editace|editace|editací}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
 'activeusers-from'     => 'Zobrazit uživatele počínaje od:',
 'activeusers-noresult' => 'Nenalezen žádný uživatel.',
@@ -2180,7 +2182,7 @@ Rady a kontakt:
 'exblank'                => 'stránka byla prázdná',
 'delete-confirm'         => 'Smazání stránky „$1“',
 'delete-legend'          => 'Smazat',
-'historywarning'         => 'Varování: Stránka, jíž chcete smazat, má historii:',
+'historywarning'         => "'''Varování:''' Stránka, kterou chcete smazat, má historii s $1 {{plural:$1|revizí|revizemi}}:",
 'confirmdeletetext'      => 'Chystáte se smazat stránku s celou její historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'actioncomplete'         => 'Provedeno',
 'actionfailed'           => 'Operace se nezdařila',
@@ -2566,6 +2568,10 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 'move-leave-redirect'          => 'Ponechat přesměrování',
 'protectedpagemovewarning'     => "'''VAROVÁNÍ:''' Tato stránka byla zamčena, takže ji mohou přesouvat pouze správci.",
 'semiprotectedpagemovewarning' => "'''Poznámka:''' Tato stránka byla zamčena, takže ji mohou přesouvat pouze registrovaní uživatelé.",
+'move-over-sharedrepo'         => '== Soubor existuje ==
+[[:$1]] existuje ve sdíleném úložišti. Přesun souboru na tento název způsobí potlačení sdíleného souboru.',
+'file-exists-sharedrepo'       => 'Vybrané jméno souboru je již používáno ve sdíleném úložišti.
+Prosíme, vyberte jiné jméno.',
 
 # Export
 'export'            => 'Exportovat stránky',

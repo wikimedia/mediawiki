@@ -1023,10 +1023,7 @@ wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:'''",
 'logdelete-selected'          => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
 'revdelete-text'              => "'''Usunięte wersje i czynności będą nadal widoczne w historii strony i rejestrach, ale ich treść nie będzie publicznie dostępna.'''
-
-Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych treści oraz będą mogli je odtworzyć używając standardowych mechanizmów, chyba że operator serwisu nałożył dodatkowe ograniczenia.
-
-Potwierdź, że jesteś pewien tego co robisz, rozumiesz konsekwencje oraz, że działasz zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]].",
+Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych treści oraz będą mogli je odtworzyć używając standardowych mechanizmów, chyba że operator serwisu nałożył dodatkowe ograniczenia.",
 'revdelete-suppress-text'     => "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:
 * Ujawnienie danych osobowych
 *: ''adres domowy, numer telefonu, numer PESEL itp''",

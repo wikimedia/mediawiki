@@ -776,9 +776,7 @@ Minangka pangurus, panjenengan isih bisa [$1 mirsani prabédan iki] yèn panjene
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisi kapilih|Revisi kapilih}} dari '''$1''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Log kapilih|Log kapilih}} kanggo:'''",
 'revdelete-text'              => "'''Revisi lan tindhakan sing wis kabusak bakal tetep muncul ing kaca versi sadurungé lan log, nanging bagéyan isiné ora bisa diaksès déning publik.'''
-Pangurus {{SITENAME}} liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mbatalaké pambusakan ngliwati antarmuka sing padha, kajaba ana pawatesan liya saka operator situs.
-
-Mangga dikonfirmasèkaké yèn panjenengan arep ngayahi bab iki, yèn panjenengan pirsa konsekuènsiné, lan panjenengan ngayahi iki miturut [[{{MediaWiki:Policy-url}}|kawicaksanan]].",
+Pangurus {{SITENAME}} liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mbatalaké pambusakan ngliwati antarmuka sing padha, kajaba ana pawatesan liya saka operator situs.",
 'revdelete-suppress-text'     => "Pandhelikan révisi '''mung''' bisa dipigunakaké kanggo kasus ing ngisor:
 * Informasi pribadi sing kurang pantes
 *: ''alamat omah lan nomer telepon, nomer kartu idhèntitas, lan sapanunggalané.''",

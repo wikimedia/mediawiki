@@ -868,9 +868,7 @@ Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaket
 'revdelete-selected'          => "'''{{PLURAL:$2|[[:$1]](r)en hautatutako berrikuspena:|[[:$1]](r)en hautatutako berrikuspenak}}'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:'''",
 'revdelete-text'              => "'''Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.'''
-
-{{SITENAME}}ko administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.
-Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[{{MediaWiki:Policy-url}}|politiken arabera]] egiten ari zarela.",
+{{SITENAME}}ko administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.",
 'revdelete-suppress-text'     => "Ezabaketa '''bakarrik''' arrazoi hauek direla eta erabili beharko litzateke:
 * Informazio pertsonal desegokia
 *: ''etxeko helbideak eta telefono zenbakiak, segurtasun sozial zenbakiak, etab.''",
