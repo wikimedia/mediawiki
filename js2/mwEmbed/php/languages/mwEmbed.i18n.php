@@ -108,7 +108,6 @@ $messages['en'] = array(
 	'mwe-load-drag-item' => 'Loading dragged item',
 	'mwe-ok' => 'OK',
 	'mwe-load-drag-item' => "Loading draged item",
-	'mwe-ok' => "Ok",
 
 	/*
 	 * js file: /libMwApi/mw.proxy.js
