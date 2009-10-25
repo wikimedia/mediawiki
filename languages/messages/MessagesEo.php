@@ -957,9 +957,7 @@ funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nuna
 'revdelete-selected'          => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
 'revdelete-text'              => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
-
-Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.
-Bonvolu konfirmi ke vi intencias fari ĉi tiel, ke vi komprenas la konsekvencojn, kaj ke vi faras ĉi tiel laŭ [[{{MediaWiki:Policy-url}}|la regularo]].",
+Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.",
 'revdelete-suppress-text'     => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
 * Netaŭga persona informo
 *: ''hejmaj adresoj kaj telefonnumeroj, ŝtataj identnumeroj, ktp.''",

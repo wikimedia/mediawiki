@@ -806,9 +806,7 @@ As Adminstrator koast du noch [$1 dissen Versionsunnerscheed bekiekje] wan du f�
 'revdelete-selected'          => "'''{{PLURAL:$2|Uutwäälde Version|Uutwäälde Versione}} fon [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}}:'''",
 'revdelete-text'              => "'''Läskede Versione un Aktione ferblieuwe in ju Versionsgeschichte un do Logbouke, man Deele deerfon sunt nit eepentelk ientoukiekjen.'''
-
-Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un konnen him mäd ju glieke Siede wier moakje, insowied uurhoop neen Ientuunengen bestounde.
-Bestäätigje, dät du dät dwoo wolt, do Konsequenze ferstoanst un dät in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlinien]] dääst.",
+Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un konnen him mäd ju glieke Siede wier moakje, insowied uurhoop neen Ientuunengen bestounde.",
 'revdelete-suppress-text'     => "Unnerdrukkengen schuulen '''bloot''' in do foulgjende Fälle foarnuumen waide:
 * Uunpaasende persöönelke Informatione
 *: ''Adressen, Telefonnummere, Sozialversicherungsnummere usw.''",

@@ -981,9 +981,7 @@ Agli amministratori è ancora consentito [$1 visualizzare il confronto] se neces
 'revdelete-selected'          => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
 'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
-
-Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.
-Conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].",
+Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
 'revdelete-suppress-text'     => "La rimozione deve essere utilizzata '''unicamente''' nei seguenti casi:
 * Dati personali inopportuni
 *: ''indirizzi, numeri di telefono, codici fiscali, ecc.''",

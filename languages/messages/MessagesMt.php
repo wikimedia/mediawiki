@@ -1006,9 +1006,7 @@ Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{ful
 'revdelete-selected'          => "'''{{PLURAL:$2|Reviżjoni magħżula|Reviżjonijiet magħżula}} ta' [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Avveniment tar-reġistru magħżul|Avvenimenti tar-reġistri magħżula}}:'''",
 'revdelete-text'              => "'''Reviżjonijiet u azzjonijiet imħassra xorta waħda jidhru fil-kronoloġija tal-paġna, filwaqt lipartijiet tal-kontenut jiġu inaċċessibli għall-pubbliku.'''
-L-amminstraturi l-oħrajn fuq {{SITENAME}} xorta jkunu jistgħu jidħlu fuq il-kontenut moħbi u jistgħu jirkuprawh minn din l-istess interfaċċa, sakemm restrizzjonijiet ulterjuri jiġu definiti.
-
-Jekk jogħġbok ikkonferma li intiż li tipproċedi fit-tħassir, u li tifhem il-konsegwenzi, u li qiegħed tagħmel dan skont il-linji gwida stabbiliti fil-[[{{MediaWiki:Policy-url}}|politika]].",
+L-amminstraturi l-oħrajn fuq {{SITENAME}} xorta jkunu jistgħu jidħlu fuq il-kontenut moħbi u jistgħu jirkuprawh minn din l-istess interfaċċa, sakemm restrizzjonijiet ulterjuri jiġu definiti.",
 'revdelete-legend'            => "Oħloq limiti ta' viżibilitá",
 'revdelete-hide-text'         => 'Aħbi l-kontenut tar-reviżjoni',
 'revdelete-hide-name'         => 'Aħbi l-azzjoni u it-tarka',

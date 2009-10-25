@@ -655,7 +655,8 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'unexpected'           => 'Nilai di luar jangkauan: "$1"="$2".',
 'formerror'            => 'Kesalahan: Tidak dapat mengirimkan formulir',
 'badarticleerror'      => 'Tindakan ini tidak dapat dilaksanakan di halaman ini.',
-'cannotdelete'         => 'Tidak dapat menghapus halaman atau berkas yang diminta.',
+'cannotdelete'         => 'Halaman atau berkas "$1" tidak dapat dihapus.
+Mungkin telah dihapus oleh orang lain.',
 'badtitle'             => 'Judul tidak sah',
 'badtitletext'         => 'Judul halaman yang diminta tidak sah, kosong, atau judul antarbahasa atau antarwiki yang salah sambung.',
 'perfcached'           => 'Data berikut ini diambil dari <em>cache</em> dan mungkin bukan data mutakhir:',
@@ -756,6 +757,7 @@ Harap masukkan alamat surat-e dalam format yang benar atau kosongkan isian terse
 'createaccount-text'         => 'Seseorang telah membuat sebuah akun untuk alamat surat-e Anda di {{SITENAME}} ($4) dengan nama "$2" dan kata sandi "$3". Anda dianjurkan untuk masuk log dan mengganti kata sandi Anda sekarang.
 
 Anda dapat mengabaikan pesan nini jika akun ini dibuat karena suatu kesalahan.',
+'usernamehasherror'          => 'Nama pengguna tidak bisa mengandung karakter hash',
 'login-throttled'            => 'Anda telah berkali-kali mencoba masuk log. 
 Silakan menunggu sebelum mencoba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
@@ -1044,9 +1046,7 @@ Sebagai pengurus anda masih dapat [$1 melihat perbedaan ini] jika anda ingin mel
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Log|Log-log}} pilihan untuk:'''",
 'revdelete-text'              => "'''Revisi-revisi dan tindakan-tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu dan halaman log, tapi teks isi tidak bisa diakses publik.'''
-
-Pengurus {{SITENAME}} lainnya akan tetap dapat mengakses isi yang tersembunyi ini dan dapat membatalkan penghapusannya menggunakan antarmuka yang sama, kecuali ada pembatasan lain yang dibuat oleh operator situs.
-Harap konfirmasikan bahwa Anda memang ingin melakukan tindakan ini, bahwa Anda mengerti akibat-akibatnya, dan bahwa tindakan ini telah sesuai dengan [[{{MediaWiki:Policy-url}}|kebijakan]].",
+Pengurus {{SITENAME}} lainnya akan tetap dapat mengakses isi yang tersembunyi ini dan dapat membatalkan penghapusannya menggunakan antarmuka yang sama, kecuali ada pembatasan lain yang dibuat oleh operator situs.",
 'revdelete-suppress-text'     => "Penyembunyian revisi '''hanya''' boleh digunakan untuk kasus-kasus berikut:
 * Informasi pribadi yang tak sepantasnya
 *: ''alamat rumah dan nomor telepon, nomor kartu identitas, dan lain-lain.''",
@@ -1585,6 +1585,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'upload'                      => 'Unggah berkas',
 'uploadbtn'                   => 'Muatkan berkas',
 'reuploaddesc'                => 'Kembali ke formulir pemuatan',
+'upload-tryagain'             => 'Kirim perubahan keterangan berkas',
 'uploadnologin'               => 'Belum masuk log',
 'uploadnologintext'           => 'Anda harus [[Special:UserLogin|masuk log]] untuk dapat memuatkan berkas.',
 'upload_directory_missing'    => 'Direktori pemuatan ($1) tidak ditemukan dan tidak dapat dibuat oleh server web.',
@@ -1647,6 +1648,7 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 'file-deleted-duplicate'      => 'Sebuah berkas yang identik dengan berkas ini ([[$1]]) sudah pernah dihapuskan sebelumnya. Anda harus memeriksa sejarah penghapusan berkas tersebut sebelum melanjutkan memuat ulang berkas ini.',
 'successfulupload'            => 'Berhasil dimuat',
 'uploadwarning'               => 'Peringatan pemuatan',
+'uploadwarning-text'          => 'Mohon perbaiki keterangan berkas dibawah dan coba lagi.',
 'savefile'                    => 'Simpan berkas',
 'uploadedimage'               => 'memuat "[[$1]]"',
 'overwroteimage'              => 'memuat versi baru dari "[[$1]]"',
@@ -1656,9 +1658,13 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 'uploadscripted'              => 'Berkas ini mengandung HTML atau kode yang dapat diinterpretasikan dengan keliru oleh penjelajah web.',
 'uploadcorrupt'               => 'Berkas tersebut rusak atau ekstensinya salah. Silakan periksa berkas tersebut dan muatkan kembali.',
 'uploadvirus'                 => 'Berkas tersebut mengandung virus! Rincian: $1',
+'upload-source'               => 'Sumber berkas',
 'sourcefilename'              => 'Nama berkas sumber:',
+'sourceurl'                   => 'Sumber URL:',
 'destfilename'                => 'Nama berkas tujuan:',
 'upload-maxfilesize'          => 'Ukuran berkas maksimum: $1',
+'upload-description'          => 'Keterangan berkas',
+'upload-options'              => 'Pilihan Mengunduh',
 'watchthisupload'             => 'Pantau berkas ini',
 'filewasdeleted'              => 'Suatu berkas dengan nama ini pernah dimuat dan selanjutnya dihapus. Harap cek $1 sebelum memuat lagi berkas tersebut.',
 'upload-wasdeleted'           => "'''Peringatan: Anda memuat suatu berkas yang telah pernah dihapus.'''
@@ -2119,7 +2125,7 @@ Umpan balik dan bantuan lebih lanjut:
 'exblank'                => 'halaman kosong',
 'delete-confirm'         => 'Hapus "$1"',
 'delete-legend'          => 'Hapus',
-'historywarning'         => 'Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:',
+'historywarning'         => "'''Peringatan:''' Halaman yang ingin Anda hapus mempunyai sejarah dengan $1 {{PLURAL:$1|revisi|revisi}}: :",
 'confirmdeletetext'      => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data. Pastikan bahwa Anda memang ingin melakukannya, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan {{SITENAME}}]].',
 'actioncomplete'         => 'Proses selesai',
 'actionfailed'           => 'Eksekusi gagal',

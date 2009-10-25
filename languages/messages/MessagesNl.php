@@ -1113,6 +1113,8 @@ Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'rev-suppressed-unhide-diff'  => "Een van de versies in deze verschillen is '''onderdrukt'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].
 Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
+'rev-deleted-diff-view'       => "Een van de versies in deze verschillen is '''verwijderd'''.
+Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
 'rev-delundel'                => 'weergeven/verbergen',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
 'revdelete-nooldid-title'     => 'Geen doelversie',
@@ -1127,10 +1129,8 @@ Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
 'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekhandeling|Geselecteerde logboekhandelingen}}:'''",
 'revdelete-text'              => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
-
-Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit formulier, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
-
-Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].",
+Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit formulier, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.",
+'revdelete-confirm'           => 'Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-suppress-text'     => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
 * Ongepaste persoonlijke informatie
 *: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoort.''",
@@ -2264,7 +2264,7 @@ Feedback en andere assistentie:
 'exblank'                => 'pagina was leeg',
 'delete-confirm'         => '"$1" verwijderen',
 'delete-legend'          => 'Verwijderen',
-'historywarning'         => 'Waarschuwing: de pagina die u wilt verwijderen heeft meerdere versies:',
+'historywarning'         => "'''Waarschuwing:''' de pagina die u wilt verwijderen heeft $1 {{PLURAL:$1|versie|versies}}:",
 'confirmdeletetext'      => 'U staat op het punt een pagina te verwijderen, inclusief de geschiedenis.
 Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat de verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
 'actioncomplete'         => 'Handeling voltooid',

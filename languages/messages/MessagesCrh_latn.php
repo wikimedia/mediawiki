@@ -131,7 +131,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Saifelerde kiçik deñişiklik olğanda da de maña e-mail yolla',
 'tog-enotifrevealaddr'        => 'Bildirüv mektüplerinde e-mail adresimni köster',
 'tog-shownumberswatching'     => 'Közetken qullanıcı sayısını köster',
-'tog-oldsig'                  => 'Şimdiki imza:',
+'tog-oldsig'                  => 'Şimdiki imzañız:',
 'tog-fancysig'                => 'İmza vikimetin kibi olsun (avtomatik bağlantı olmaz)',
 'tog-externaleditor'          => 'Deñişikliklerni başqa editor programması ile yap',
 'tog-externaldiff'            => 'Teñeştirmelerni tış programmağa yaptır.',
@@ -435,15 +435,15 @@ Malümat bazasınıñ bildirgen hatası "$3: $4".',
 'laggedslavemode'      => 'Diqqat! Bu saifede soñki yañaruv olmay bile.',
 'readonly'             => 'Malümat bazası kilitlendi',
 'enterlockreason'      => 'Blok etüvniñ sebebini ve devamını kirsetiñiz.',
-'readonlytext'         => 'Plan işlemelerinden sebep malümat bazası vaqtınca blok etildi. İşlemeler tamamlanğan soñ normalge dönecek.
+'readonlytext'         => 'Plan işlemelerinden sebep malümat bazası vaqtınca blok etildi. İşlemeler tamamlanğan soñ normal alına qaytacaq.
 
-Malümat bazasını kilitlegen administratornıñ açıqlaması: $1',
-'missing-article'      => 'Malümat bazasında tapılması kerek olğan saifeniñ metini tapılmadı, "$1" $2.
+Malümat bazasını kilitlegen idareciniñ añlatması: $1',
+'missing-article'      => 'Malümat bazasında tapılması kerek olğan saifeniñ metni tapılmadı, "$1" $2.
  
 Adetince yoq etilgen saifeniñ keçmiş saifesine eskirgen bağlantınen keçip baqqanda bu şey olıp çıqa.
  
 Mesele bunda olmasa, ihtimalı bar ki, programmada bir hata tapqandırsıñız.
-Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|administratorğa]] haber beriñiz.',
+Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|idarecige]] haber beriñiz.',
 'missingarticle-rev'   => '(versiya No. $1)',
 'missingarticle-diff'  => '(Farq: $1, $2)',
 'readonly_lag'         => 'Malümat bazasınıñ ekilemci serveri birlemci serverinen sinhronizirlengence malümat bazası deñiştirilmemesi içün avtomatik olaraq blok etildi.',
@@ -626,17 +626,17 @@ Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat par
 'blockedtitle'                     => 'Qullanıcı blok etildi.',
 'blockedtext'                      => '<big>\'\'\'Esabıñız ya da IP adresiñiz blok etildi.\'\'\'</big>
 
-Blok yapqan administrator: $1.
+Blok yapqan idareci: $1.
 Blok sebebi: \'\'"$2"\'\'.
 
 * Bloknıñ başı: $8
 * Bloknıñ soñu: $6
 * Blok etilgen: $7
 
-Blok etüvni muzakere etmek içün $1 qullanıcısına ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|administratorğa]] mektüp yollap olasıñız.
-Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[Special:Preferences|şahsiy sazlamalarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
-IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administratorlarğa mektüpleriñizde bu malümatnı bildiriñiz.',
-'autoblockedtext'                  => 'IP adresiñiz evelde blok etilgen qullanıcılardan biri tarafından qullanılğanı içün avtomatik olaraq blok etildi. Onı blok etken administrator ($1) böyle sebepni bildirdi:
+Blok etüvni muzakere etmek içün $1 qullanıcısına ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|idarecige]] mektüp yollap olasıñız.
+Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[Special:Preferences|şahsiy sazlamalarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, idarecige mektüp yollap olamazsıñız.
+IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, idarecilerge mektüpleriñizde bu malümatnı bildiriñiz.',
+'autoblockedtext'                  => 'IP adresiñiz evelde blok etilgen qullanıcılardan biri tarafından qullanılğanı içün avtomatik olaraq blok etildi. Onı blok etken idareci ($1) böyle sebepni bildirdi:
 
 :"$2"
 
@@ -644,9 +644,9 @@ IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administrator
 * Bloknıñ soñu: $6
 * Blok etilgen: $7
 
-Blok etüvni muzakere etmek içün $1 qullanıcığa ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|administratorğa]] mektüp yollap olasıñız.
-Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[Special:Preferences|şahsiy sazlamalarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
-IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administratorlarğa mektüpleriñizde onı bildiriñiz.',
+Blok etüvni muzakere etmek içün $1 qullanıcısına ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|idarecige]] mektüp yollap olasıñız.
+Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[Special:Preferences|şahsiy sazlamalarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, idarecige mektüp yollap olamazsıñız.
+IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, idarecilerge mektüpleriñizde onı bildiriñiz.',
 'blockednoreason'                  => 'sebep bildirilmedi',
 'blockedoriginalsource'            => 'Aşağıda "$1" saifesiniñ metini buluna.',
 'blockededitsource'                => "Aşağıda \"\$1\" saifesindeki '''yapqan deñiştirmeleriñizniñ''' metini buluna.",
@@ -717,10 +717,10 @@ Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, 
 'longpageerror'                    => "'''TENBİ: Bu saife $1 kilobayt büyükligindedir. Azamiy (maksimal) izinli büyüklik ise $2 kilobayt. Bu saife saqlanıp olamaz.'''",
 'readonlywarning'                  => "'''TENBİ: Baqım sebebi ile malümat bazası şimdi kilitlidir. Bu sebepten deñişiklikleriñiz şimdi saqlap olamasıñız. Yazğanlarıñıznı başqa bir editor programmasına alıp saqlap olur ve daa soñ tekrar mında ketirip saqlap olursıñız'''
 
-Malümat bazasını kilitlegen administratоr öz areketini böyle añlattı: $1",
-'protectedpagewarning'             => "'''TENBİ: Bu saife qorçalav altına alınğan ve yalıñız administratorlar tarafından deñiştirilip olur.'''",
+Malümat bazasını kilitlegen idareci öz areketini böyle añlattı: $1",
+'protectedpagewarning'             => "'''TENBİ: Bu saife qorçalanğan ve tek idareciler tarafından deñiştirilip olur.'''",
 'semiprotectedpagewarning'         => "'''Tenbi''': Bu saife tek qaydlı qullanıcılar tarafından deñiştirilip olur.",
-'cascadeprotectedwarning'          => "'''Tenbi:''' Bu saifeni tek \"Administratorlar\" gruppasına kirgen qullanıcılar deñiştirip olalar, çünki o kaskad qorçalav altında bulunğan {{PLURAL:\$1|saifege|saifelerge}} mensüptir:",
+'cascadeprotectedwarning'          => "'''Tenbi:''' Bu saifeni tek \"İdareciler\" gruppasına kirgen qullanıcılar deñiştirip olalar, çünki o kaskad qorçalav altında bulunğan {{PLURAL:\$1|saifege|saifelerge}} mensüptir:",
 'titleprotectedwarning'            => "'''TENBİ: Bu saife qorçalav altındadır, tek [[Special:ListGroupRights|mahsus aqlarğa]] saip qullanıcılar onı yaratıp olalar.'''",
 'templatesused'                    => 'Bu saifede qullanılğan {{PLURAL:$1|şablon|şablonlar}}:',
 'templatesusedpreview'             => 'Siz baqıp çıqqan saifeñizde qullanılğan {{PLURAL:$1|şablon|şablonlar}}:',
@@ -764,9 +764,9 @@ $3 mına bu sebepni bildirdi: ''$2''",
 'viewpagelogs'           => 'Bu saifeniñ jurnallarını köster',
 'nohistory'              => 'Bu saifeniñ keçmiş versiyası yoq.',
 'currentrev'             => 'Şimdiki versiya',
-'currentrev-asof'        => '$1 tarihında sоñki оlaraq deñiştirilgen saifeniñ şimdiki alı',
+'currentrev-asof'        => '$1 tarihında sоñki kere deñiştirilgen saifeniñ şimdiki alı',
 'revisionasof'           => 'Saifeniñ $1 tarihındaki alı',
-'revision-info'          => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı',
+'revision-info'          => 'Saifeniñ $2 tarafından yazılğan $1 tarihındaki alı',
 'previousrevision'       => '← Evelki alı',
 'nextrevision'           => 'Soñraki alı →',
 'currentrevisionlink'    => 'eñ yañı alını köster',
@@ -799,7 +799,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'revisiondelete'            => 'Versiyalarnı yoq et/keri ketir',
 'revdelete-hide-comment'    => 'Qısqa tarifni kösterme',
 'revdelete-hide-user'       => 'Deñişiklikni yapqan qullanıcı adını/IP-ni gizle',
-'revdelete-hide-restricted' => 'Malümatnı adiy qullanıcılardan kibi administratorlardan da gizle',
+'revdelete-hide-restricted' => 'Malümatnı adiy qullanıcılardan kibi idarecilerden de gizle',
 'revdelete-submit'          => 'Saylanğan versiyağa işlet',
 'revdel-restore'            => 'körünüvni deñiştir',
 
@@ -936,11 +936,11 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'yourrealname'                  => 'Kerçek adıñız:',
 'yourlanguage'                  => 'İnterfeys tili:',
 'yourvariant'                   => 'Til saylavı:',
-'yournick'                      => 'Siziñ lağabıñız (imzalarda kösterilecek):',
+'yournick'                      => 'Yañı imzañız:',
 'prefs-help-signature'          => 'Muzakere saifelerindeki tefsirlerni "<nowiki>~~~~</nowiki>" ile imzalamaq kerek, bu dört tilda yerine imzañız ve vaqıt kösterilir.',
 'badsig'                        => 'Yañlış imza. HTML tegleriniñ doğrulığını baqıñız.',
 'badsiglength'                  => 'Qarardan ziyade uzun imzadır, {{PLURAL:$1|1|$1}} ziyade işaretten ibaret olması mümkün degil.',
-'yourgender'                    => 'Cınıs:',
+'yourgender'                    => 'Cınsıñız:',
 'gender-unknown'                => 'Bildirilmegen',
 'gender-male'                   => 'Erkek',
 'gender-female'                 => 'Qadın',
@@ -977,20 +977,20 @@ Bundan ğayrı bu vikideki saifeñizden başqa qullanıcılarğa siznen bağlanm
 'group-user'          => 'Qullanıcılar',
 'group-autoconfirmed' => 'Avtomatik tasdıqlanğan qullanıcılar',
 'group-bot'           => 'Botlar',
-'group-sysop'         => 'Administratorlar',
+'group-sysop'         => 'İdareciler',
 'group-bureaucrat'    => 'Bürokratlar',
 'group-all'           => '(episi)',
 
 'group-user-member'          => 'Qullanıcı',
 'group-autoconfirmed-member' => 'Avtomatik tasdıqlanğan qullanıcı',
 'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
+'group-sysop-member'         => 'İdareci',
 'group-bureaucrat-member'    => 'Bürokrat',
 
 'grouppage-user'          => '{{ns:project}}:Qullanıcılar',
 'grouppage-autoconfirmed' => '{{ns:project}}:Avtomatik tasdıqlanğan qullanıcılar',
 'grouppage-bot'           => '{{ns:project}}:Botlar',
-'grouppage-sysop'         => '{{ns:project}}:Administratorlar',
+'grouppage-sysop'         => '{{ns:project}}:İdareciler',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokratlar',
 
 # User rights log
@@ -1139,9 +1139,9 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'upload-proto-error'      => 'Yañlış protokol',
 'upload-proto-error-text' => 'İnternetten bir resim faylı yüklemege isteseñiz adres <code>http://</code> ya da <code>ftp://</code>nen başlamalı.',
 'upload-file-error'       => 'İçki hata',
-'upload-file-error-text'  => 'Serverde muvaqqat fayl yaratılğan vaqıtta içki hata çıqtı. Lütfen, [[Special:ListUsers/sysop|administratorğa]] muracaat etiñiz.',
+'upload-file-error-text'  => 'Serverde muvaqqat fayl yaratılğan vaqıtta içki hata çıqtı. Lütfen, [[Special:ListUsers/sysop|idarecige]] muracaat etiñiz.',
 'upload-misc-error'       => 'Belgisiz yüklenüv hatası',
-'upload-misc-error-text'  => 'Belgisiz yüklenüv hatası. Lütfen, adresniñ doğru olğanını teşkerip tekrarlañız. Problema devam etse, [[Special:ListUsers/sysop|administratorğa]] muracaat etiñiz.',
+'upload-misc-error-text'  => 'Belgisiz yüklenüv hatası. Lütfen, adresniñ doğru olğanını teşkerip tekrarlañız. Problema devam etse, [[Special:ListUsers/sysop|idarecige]] muracaat etiñiz.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL adresine irişilip olamadı.',
@@ -1503,7 +1503,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'protect-default'             => 'Bütün qullanıcılarğa ruhset ber',
 'protect-fallback'            => '"$1" izni kerektir',
 'protect-level-autoconfirmed' => 'Qaydsız ve yañı qullanıcılarnı blоk et',
-'protect-level-sysop'         => 'tek administratorlar',
+'protect-level-sysop'         => 'tek idareciler',
 'protect-summary-cascade'     => 'kaskadlı',
 'protect-expiring'            => 'bite: $1 (UTC)',
 'protect-cascade'             => 'Bu saifede qullanılğan bütün saifelerni qorçalavğa al (kaskadlı qorçalav)',

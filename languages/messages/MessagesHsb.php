@@ -880,10 +880,7 @@ Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli c
 'revdelete-selected'          => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
 'revdelete-text'              => "'''Wušmórnjene wersije a podawki so w stawiznach a protokolach dale jewja, ale dźěle jich wobsaha budu njepřistupne za zjawnosć.'''
-
-Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.
-
-Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam]].",
+Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.",
 'revdelete-suppress-text'     => "Potłóčenje dyrbjało so '''jenož''' za slědowace pady wužiwać:
 * Njepřihódne wosobinske informacije
 *: ''bydlenske adresy a telefonowe čisła, čisła socialneho zawěsćenja atd.''",
@@ -1423,6 +1420,7 @@ Strony na [[Special:Watchlist|wobkedźbowankach]] su '''tučne'''.",
 'upload'                      => 'Dataju nahrać',
 'uploadbtn'                   => 'Dataju nahrać',
 'reuploaddesc'                => 'Nahraće přetorhnyć a so k nahrawanskemu formularej wróćić.',
+'upload-tryagain'             => 'Změnjene datajowe wopisanje wotpósłać',
 'uploadnologin'               => 'Njepřizjewjeny',
 'uploadnologintext'           => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być, zo by dataje nahrawać móhł.',
 'upload_directory_missing'    => 'Zapis nahraćow ($1) faluje a njeda so přez webserwer wutworić.',
@@ -1488,6 +1486,7 @@ Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń proš
 'file-deleted-duplicate'      => 'Dataja, kotraž je identiska z tutej dataju ([[$1]]), je so prjedy zničiła. Ty měł stawizny zničenja tuteje dataje přepruwować, prjedy pokročuješ z jeje zasonahrawanjom.',
 'successfulupload'            => 'Dataja bu wuspěšnje nahrata',
 'uploadwarning'               => 'Warnowanje',
+'uploadwarning-text'          => 'Prošu změń slědowace datajowe wopisanje a spytaj hišće raz.',
 'savefile'                    => 'Dataju składować',
 'uploadedimage'               => 'je dataju „[[$1]]” nahrał',
 'overwroteimage'              => 'je nowu wersiju dataje „[[$1]]“ nahrał',
@@ -1837,6 +1836,7 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lisćina aktiwnych wužiwarjow',
+'activeusers-intro'    => 'To je lisćina wužiwarjow, kotřiž běchu aktiwni za {{PLURAL:$1|posledni dźeń|poslednjej $1 dnjej|poslednje $1 dny|poslednich $1 dnjow}}:',
 'activeusers-count'    => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|zańdźenej dnju|zańdźenymaj $3 dnjomaj|zańdźenych $3 dnjach|zańdźenych $3 dnjach}}',
 'activeusers-from'     => 'Wužiwarjow zwobraznić, započinajo z:',
 'activeusers-noresult' => 'Žani wužiwarjo namakani.',
@@ -1973,7 +1973,7 @@ Wospjetne prašenja a dalša pomoc:
 'exblank'                => 'strona běše prózdna',
 'delete-confirm'         => '„$1“ wušmórnyć',
 'delete-legend'          => 'Wušmórnyć',
-'historywarning'         => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
+'historywarning'         => "'''KEDŹBU:''' Strona, kotruž chceš wušmórnyć, ma stawizny z $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}}:",
 'confirmdeletetext'      => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.
 Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
 'actioncomplete'         => 'Dokónčene',
@@ -2353,6 +2353,10 @@ Cilowa strona „[[:$1]]” hižo eksistuje. Chceš ju wušmórnyć, zo by so p�
 'move-leave-redirect'          => 'Daleposrědkowanje zawostajić',
 'protectedpagemovewarning'     => "'''WARNOWANJE:''' Tuta strona bu zawrjena, zo bychu jenož wužiwarjo z prawami administratora móhli ju přesunyć.",
 'semiprotectedpagemovewarning' => "'''Kedźbu:''' Tuta strona bu zawrjena, zo bychu jenož zregistrowani wužiwarjo móhli ju přesunyć.",
+'move-over-sharedrepo'         => '== Dataja eksistuje ==
+[[:$1]] eksistuje w hromadźe wužiwanym repozitoriju. Přesunjenje dataje k tutomu titulej budźe hromadźe wužiwanu dataju přepisować.',
+'file-exists-sharedrepo'       => 'Wubrane datajowe mjeno so hižo w hromadźe wužiwanym repozitoriju wužiwa.
+Prošu wubjer druhe mjeno.',
 
 # Export
 'export'            => 'Strony eksportować',

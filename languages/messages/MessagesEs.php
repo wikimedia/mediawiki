@@ -51,6 +51,7 @@
  * @author Technorum
  * @author Titoxd
  * @author Toniher
+ * @author Translationista
  * @author Urhixidur
  * @author XalD
  * @author לערי ריינהארט
@@ -704,6 +705,7 @@ Por favor, entre una dirección bien formada, o vacíe ese campo.',
 La contraseña asignada automáticamente es "$3". Por favor entra ahora y cambia tu contraseña.
 
 Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
+'usernamehasherror'          => 'El nombre de usuario no puede contener símbolos de almohadilla/numeral',
 'login-throttled'            => 'Has intentado demasiadas veces iniciar sesión. Por favor espera antes de intentarlo nuevamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
@@ -1002,9 +1004,7 @@ Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
 'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
-
-Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.
-Por favor confirme que está intentando hacer esto, que usted entiende las consecuencias, y que lo esta haciendo de acuerso con [[{{MediaWiki:Policy-url}}|la política]].",
+Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-suppress-text'     => "Supresión debería '''solamente''' ser usado para los siguientes casos:
 * Información personal inapropiada
 *: ''dirección domiciliaria y números telefónicos, números de la seguridad social, etc.''",
@@ -1545,6 +1545,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'upload'                      => 'Subir archivo',
 'uploadbtn'                   => 'Subir un archivo',
 'reuploaddesc'                => 'Regresar al formulario para subir.',
+'upload-tryagain'             => 'Envíe la descripción del archivo modificado',
 'uploadnologin'               => 'No ha iniciado sesión',
 'uploadnologintext'           => 'Tienes que [[Special:UserLogin|iniciar sesión]] para poder subir archivos.',
 'upload_directory_missing'    => 'El directorio de subida de archivos ($1) no existe, y no puede ser creado por el servidor.',
@@ -1610,6 +1611,7 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'file-deleted-duplicate'      => 'Un archivo idéntico a este ([[$1]]) ha sido borrado con anterioridad. Debes comprobar el historial de borrado del archivo ante de volver a subirlo.',
 'successfulupload'            => 'Subida con éxito',
 'uploadwarning'               => 'Advertencia de subida de archivo',
+'uploadwarning-text'          => 'Por favor, modifique la descripción del archivo abajo indicada e inténtelo de nuevo.',
 'savefile'                    => 'Guardar archivo',
 'uploadedimage'               => 'subió «[[$1]]»',
 'overwroteimage'              => 'subida una nueva versión de «[[$1]]»',
@@ -2498,6 +2500,10 @@ La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al 
 'move-leave-redirect'          => 'Dejar una redirección',
 'protectedpagemovewarning'     => "'''Advertencia:''' Esta página ha sido bloqueada de tal manera que solamente usuarios con privilegios de administrador puedan trasladarla.",
 'semiprotectedpagemovewarning' => "'''Nota:''' Esta página ha sido bloqueada tal que solamente usuarios registrados pueden moverla.",
+'move-over-sharedrepo'         => '== El archivo existe ==
+ [[:$1]] existe en un repositorio compartido. Mover el archivo a este título invalidará el archivo compartido.',
+'file-exists-sharedrepo'       => 'El nombre de archivo elegido ya está siendo usado en un repositorio compartido.
+Por favor, elija otro nombre.',
 
 # Export
 'export'            => 'Exportar páginas',

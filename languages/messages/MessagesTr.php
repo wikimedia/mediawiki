@@ -904,6 +904,10 @@ Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilir
 'rev-suppressed-unhide-diff'  => "Bu değişikliğinin revizyonlarından birisi '''bastırılmış'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} durdurma günlüğünde] ayrıntılar bulunabilir.
 Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
+'rev-deleted-diff-view'       => "Bu değişikliğinin revizyonlarından birisi '''silinmiş'''.
+Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme günlüğünde] ayrıntılar bulunabilir.",
+'rev-suppressed-diff-view'    => "Bu değişikliğinin revizyonlarından birisi '''bastırılmış'''.
+Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma günlüğünde] ayrıntılar bulunabilir.",
 'rev-delundel'                => 'göster/gizle',
 'revisiondelete'              => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',
@@ -918,9 +922,8 @@ Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilir
 'revdelete-selected'          => "'''[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
 'revdelete-text'              => "'''Silinen revizyonlar ve olaylar hala sayfa geçmişinde ve günlüklerde görünecektir, fakat içeriğin parçaları umumi olarak erişilemeyecektir.'''
-
-{{SITENAME}} sitesindeki diğer yöneticiler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.
-Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.",
+{{SITENAME}} sitesindeki diğer yöneticiler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.",
+'revdelete-confirm'           => 'Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.',
 'revdelete-suppress-text'     => "Saklama '''sadece''' aşağıdaki durumlar için kullanılmalıdır:
 * Uygunsuz kişisel bilgi
 *: ''ev adresleri ve telefon numaraları, sosyal güvenlik numaraları, vs.''",

@@ -888,13 +888,8 @@ As Administrator chasch [$1 dr Unterschid allno aaluege] wänn du witt wytermach
 'revdelete-selected'          => "'''{{PLURAL:$2|Usgwehlti Version|Usgwehlti Versione}} vu [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
 'revdelete-text'              => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
-
-{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.
-
-'''Gleschti Versionen un Aktione blyben in dr Versionsgschicht un in dr Logbiecher. Teil dervu sin aber fir d Efffentligkeit nimmi zuegänglig.'''
-
-Anderi Ammanne uf {{SITENAME}} hän alno Zuegriff uf dr versteckt Inhalt un chenne ne mit dr glyche Syte widerhärstelle, wänn s keini zuesätzlige Yyschränkige git.
-Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass des mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]] ibereinstimmt.",
+{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.",
+'revdelete-confirm'           => 'Bitte tue bstetige, ass Du vor hesch, des z mache, d Konsequänze drus verstohsch un s machsch in Inbereinstimmig mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]].',
 'revdelete-suppress-text'     => "Unterdruckige sotte '''nume''' in däne Fäll bruucht wäre:
 * Nit aabrochti Informatione
 *: ''Adrässe, Telifonnummere, Sozialversicherigsnummere usw.''",
@@ -1429,6 +1424,7 @@ Sytene, wo zu dyre [[Special:Watchlist|Beobachtigslischte]] ghöre, erschyne '''
 'upload'                      => 'Datei uffelade',
 'uploadbtn'                   => 'Bild lokal ufelade',
 'reuploaddesc'                => 'Abbrächen un zrugg zue dr Syte "Uffelade"',
+'upload-tryagain'             => 'Gändereti Dateibschryybig abschicke',
 'uploadnologin'               => 'Nit aagmäldet',
 'uploadnologintext'           => 'Si mien [[Special:UserLogin|aagmäldet syy]], zum Dateie uffelade z chenne.',
 'upload_directory_missing'    => 'S Upload-Verzeichnis ($1) fählt un het au dur dr Netzserver nit chenne aagleit wäre.',
@@ -1494,6 +1490,7 @@ Wänn Du die Datei einewäg wit uffelade, gang bitte zruck un ändere dr Name.
 'file-deleted-duplicate'      => 'E identischi Version vu däre Datei ([[$1]]) isch friejer scho mol glescht wore. Iberprief s Leschlogbuech, voreb Du si uffeladesch.',
 'successfulupload'            => 'Erfolgryych uffegelade',
 'uploadwarning'               => 'Warnig',
+'uploadwarning-text'          => 'Bitte tue unte d Dateibsschryybig ändere un versuech s nomol.',
 'savefile'                    => 'Datei spychere',
 'uploadedimage'               => 'het „[[$1]]“ ufeglade',
 'overwroteimage'              => 'het e neiji Version vu „[[$1]]“ uffeglade',
@@ -1968,7 +1965,7 @@ Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
 'exblank'                => 'Syte isch läär gsi',
 'delete-confirm'         => '„$1“ lesche',
 'delete-legend'          => 'Lesche',
-'historywarning'         => '<span style="color:#ff0000">OBACHT:</span> Die Syte, wu Du wit lesche, het e Versionsgschicht:',
+'historywarning'         => "'''Warnig:'''  Die Syte, wu Du wit lesche, het e Versionsgschicht mit $1 {{PLURAL:$1|Version|Versione}}:",
 'confirmdeletetext'      => 'Du bisch dra, e Artikel oder e Bild mitsamt dr Versionsgschicht fir immer us der Datebank z lesche.
 Bitte bi Dir iber d Konsequänze bewusst, un bi sicher, dass Du Di an unsri [[{{MediaWiki:Policy-url}}|Leitlinie]] haltsch.',
 'actioncomplete'         => 'Uftrag usgfiert.',
@@ -2350,6 +2347,10 @@ D Syte „[[:$1]]“ gits scho. Wottsch du si lösche, zume Platz zum verschiebe
 'move-leave-redirect'          => 'E Wyterleitig hinterloo',
 'protectedpagemovewarning'     => "'''WARNIG:''' Die Syte isch gschitzt wore, ass si nume Benutzer mit Ammannerächt chenne verschiebe.",
 'semiprotectedpagemovewarning' => "'''OBACHT:''' Die Syte isch gschitzt wore, ass si nume regischtrieti Benutzer chenne verschiebe.",
+'move-over-sharedrepo'         => '==Datei git s==
+[[:$1]] git s in ere gmeinsam gnutzte Mediedatebank. S Verschiebe vun ere Datei uf dää Titel iberschrybt di gmeinsam gnutzt Datei.',
+'file-exists-sharedrepo'       => 'Dr gwehlt Dateiname wird scho in ere gmeinsam gnutzte Mediedatebank brucht.
+Bitte wehl e andre Name.',
 
 # Export
 'export'            => 'Sytenen exportiere',

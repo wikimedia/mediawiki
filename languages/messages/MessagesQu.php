@@ -1003,9 +1003,7 @@ Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinki
 'revdelete-selected'          => "'''{{PLURAL:$2|Akllasqa llamk'apusqa|Akllasqa llamk'apusqakuna}} [[:$1]]-manta:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Akllasqa tukusqa|Akllasqa tukusqakuna}} hallch'api:'''",
 'revdelete-text'              => "'''Qullusqa llamk'apusqakunaqa p'anqap wiñay kawsayninpi hallch'ankunapipas paqarinqaraqmi, samiqninpa rakinkunataq manam uyanalla qhawanapaqchu.'''
-{{SITENAME}}pi huk kamachiqkunaqa p'anqap pakasqa samiqninta qhawaspa qullusqa kaymanta kutichiyta atinkuraqmi kay kaqlla uyapuratam llamk'achispa, kay wikip kamariqninkuna mana huk saywachanakunata tiyachiptinqa.
-
-Ama hina kaspa, ruraykachanaykita takyachiy, saqinakunata riqsispayki, [[{{MediaWiki:Policy-url}}|rurana tiksikama]] ruraspayki.",
+{{SITENAME}}pi huk kamachiqkunaqa p'anqap pakasqa samiqninta qhawaspa qullusqa kaymanta kutichiyta atinkuraqmi kay kaqlla uyapuratam llamk'achispa, kay wikip kamariqninkuna mana huk saywachanakunata tiyachiptinqa.",
 'revdelete-suppress-text'     => "Pakay ruranata '''kaylla kaptin''' llamk'achiy:
 * Runamanta mana allin willakuna
 *: ''wasi tiyay imamaytakuna, karu rimay huchhakuna, allin kawsay tarikuq wasimanta huchhakuna, chay hinakunapas.''",

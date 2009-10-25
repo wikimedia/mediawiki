@@ -613,7 +613,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'userlogin'                  => 'Rexistro',
 'logout'                     => 'Saír do sistema',
 'userlogout'                 => 'Saír ao anonimato',
-'notloggedin'                => 'Fóra do sistema',
+'notloggedin'                => 'Non accedeu ao sistema',
 'nologin'                    => "Non está rexistrado? '''$1'''.",
 'nologinlink'                => 'Cree unha conta',
 'createaccount'              => 'Crear unha conta nova',
@@ -990,9 +990,8 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
 'revdelete-text'              => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
-
-Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que sexa establecida unha restrición adicional.
-Por favor, confirme que esta é a súa intención, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].",
+Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que se estableza algunha restrición adicional.",
+'revdelete-confirm'           => 'Por favor, confirme que quere levar a cabo esta acción, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].',
 'revdelete-suppress-text'     => "A eliminación '''só''' debería ser usada nos seguintes casos:
 * Información persoal inapropiada
 *: ''domicilios e números de teléfono, números da seguridade social, etc.''",
@@ -1225,7 +1224,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'preferences'                   => 'Preferencias',
 'mypreferences'                 => 'As miñas preferencias',
 'prefs-edits'                   => 'Número de edicións:',
-'prefsnologin'                  => 'Non está dentro do sistema',
+'prefsnologin'                  => 'Non accedeu ao sistema',
 'prefsnologintext'              => 'Debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} acceder ao sistema]</span> para modificar as preferencias de usuario.',
 'changepassword'                => 'Cambiar o meu contrasinal',
 'prefs-skin'                    => 'Aparencia',
@@ -1533,7 +1532,8 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'upload'                      => 'Cargar un ficheiro',
 'uploadbtn'                   => 'Cargar o ficheiro',
 'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
-'uploadnologin'               => 'Non está dentro do sistema',
+'upload-tryagain'             => 'Enviar a descrición do ficheiro modificada',
+'uploadnologin'               => 'Non accedeu ao sistema',
 'uploadnologintext'           => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
 'upload_directory_missing'    => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
@@ -1602,6 +1602,7 @@ Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
 'file-deleted-duplicate'      => 'Un ficheiro idéntico a este ("[[$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
 'successfulupload'            => 'Carga con éxito',
 'uploadwarning'               => 'Advertencia ao cargar o ficheiro',
+'uploadwarning-text'          => 'Por favor, modifique a descrición do ficheiro e inténteo de novo.',
 'savefile'                    => 'Gardar o ficheiro',
 'uploadedimage'               => 'cargou "[[$1]]"',
 'overwroteimage'              => 'enviou unha nova versión de "[[$1]]"',
@@ -2103,7 +2104,7 @@ Axuda:
 'exblank'                => 'a páxina estaba baleira',
 'delete-confirm'         => 'Borrar "$1"',
 'delete-legend'          => 'Borrar',
-'historywarning'         => "'''Atención:''' a páxina que vai borrar ten un historial:",
+'historywarning'         => "'''Atención:''' a páxina que está a piques de borrar ten un historial {{PLURAL:$1|cunha revisión|con $1 revisións}}:",
 'confirmdeletetext'      => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'         => 'A acción foi completada',
@@ -2459,7 +2460,7 @@ por favor, asegúrese de que entende as consecuencias disto antes de proseguir."
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'                  => 'Mover esta páxina:',
-'movenologin'                  => 'Non está dentro do sistema',
+'movenologin'                  => 'Non accedeu ao sistema',
 'movenologintext'              => 'Debe ser un usuario rexistrado e [[Special:UserLogin|acceder ao sistema]] para mover unha páxina.',
 'movenotallowed'               => 'Non ten os permisos necesarios para mover páxinas.',
 'movenotallowedfile'           => 'Non ten os permisos necesarios para mover ficheiros.',
@@ -2513,6 +2514,10 @@ Quérea eliminar para facer sitio para mover?',
 'move-leave-redirect'          => 'Deixar unha redirección detrás',
 'protectedpagemovewarning'     => "'''Aviso:''' esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan mover.",
 'semiprotectedpagemovewarning' => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan mover.",
+'move-over-sharedrepo'         => '== O ficheiro xa existe ==
+"[[:$1]]" xa existe nun repositorio compartido. Ao mover un ficheiro a este título sobrescribirase o ficheiro compartido.',
+'file-exists-sharedrepo'       => 'O nome que elixiu para o ficheiro xa está en uso nun repositorio compartido.
+Por favor, escolla outro nome.',
 
 # Export
 'export'            => 'Exportar páxinas',

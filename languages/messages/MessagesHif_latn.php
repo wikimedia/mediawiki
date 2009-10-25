@@ -810,8 +810,7 @@ Ek administrator hoe ke kaaran aap fir bhi [$1 ii diff ke dekhe sakta hae] agar 
 'revdelete-selected'          => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
 'revdelete-text'              => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
-Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae bhi sake hai interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.
-Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natija samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke niche karta hai.",
+Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae bhi sake hai interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.",
 'revdelete-suppress-text'     => "Suppression ke '''khaali''' ii chij ke khatir kaam me lawa jaae sake hai:
 * Aapan baare me jaankari thik nai hai
 *: ''ghar ke address aur telephone number, social security number, etc.''",

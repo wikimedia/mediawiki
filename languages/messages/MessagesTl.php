@@ -875,10 +875,7 @@ Bilang isang tagapangasiwa, maaari mo pa ring [$1 tingnan ang pagkakaiba] kung n
 'revdelete-selected'          => "{{PLURAL:$2|Piniling|Mga piniling}} pagbabago ng '''$1:'''",
 'logdelete-selected'          => '{{PLURAL:$1|Piniling tala ng pangyayari|Piniling tala ng mga pangyayari}}:',
 'revdelete-text'              => "'''Makikita pa rin ang mga binurang pagbabago at mga kaganapan sa pahina ng kasaysayan at mga talaan, ngunit hindi mapupuntahan ng madla ang mga bahagi ng kanilang nilalaman.
-
-Makikita pa rin ng iba pang mga tagapangasiwang nasa {{SITENAME}} ang mga tinagong nilalaman
-at maaaring ibalik ito mula sa pagkakabura sa pamamagitan ng kaparehong ugnayang-hangganan, maliban na lamang kung may itinakdang karagdagang mga restriksyon.
-Pakitiyak kung ito ang nais mong gawin, na nauunawaan mo ang mga kahihinatnan, at ginagawa mo ito alinsunod sa [[{{MediaWiki:Policy-url}}|patakaran]].",
+Makikita pa rin ng iba pang mga tagapangasiwang nasa {{SITENAME}} ang mga tinagong nilalaman at maaaring ibalik ito mula sa pagkakabura sa pamamagitan ng kaparehong ugnayang-hangganan, maliban na lamang kung may itinakdang karagdagang mga restriksyon.",
 'revdelete-suppress-text'     => "Ang paglilingid ay dapat na gamitin '''lamang''' para sa sumusunod na mga pagkakataon:
 * Hindi naaangkop na kabatirang pansarili
 *: ''mga adres ng tahanan at bilang na pangtelepono, mga bilang na pangseguridad na sosyal, atbp.''",

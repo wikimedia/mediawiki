@@ -931,6 +931,10 @@ Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
 'rev-suppressed-unhide-diff'  => "Un del versiones de iste diff ha essite '''supprimite'''.
 Il pote haber detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppresiones].
 Tu, qua administrator, pote totevia [$1 vider iste diff] si tu vole proceder.",
+'rev-deleted-diff-view'       => "Un del versiones de iste diff ha essite '''delite'''.
+Como administrator tu pote vider iste diff; il pote haber detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+'rev-suppressed-diff-view'    => "Un del versiones de iste diff ha essite '''supprimite'''.
+Como administrator tu pote vider iste diff; il pote haber detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-delundel'                => 'revelar/celar',
 'revisiondelete'              => 'Deler/restaurar versiones',
 'revdelete-nooldid-title'     => 'Le version de destination es invalide',
@@ -946,9 +950,8 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 'revdelete-selected'          => "'''{{PLURAL:$2|Version seligite|Versiones seligite}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
 'revdelete-text'              => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
-
-Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.
-Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in conformitate con [[{{MediaWiki:Policy-url}}|le politica]].",
+Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
+'revdelete-confirm'           => 'Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politica]].',
 'revdelete-suppress-text'     => "Le suppression debe '''solmente''' esser usate pro le sequente casos:
 * Informationes personal inappropriate
 *: ''adresses de domicilio e numeros de telephono, numeros de securitate social, etc.''",
@@ -1491,6 +1494,7 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] appare in litteras 
 'upload'                      => 'Cargar file',
 'uploadbtn'                   => 'Cargar file',
 'reuploaddesc'                => 'Cancellar le carga e retornar al formulario de carga',
+'upload-tryagain'             => 'Submitter description modificate del file',
 'uploadnologin'               => 'Tu non te ha identificate',
 'uploadnologintext'           => 'Tu debe [[Special:UserLogin|aperir un session]] pro poter cargar files.',
 'upload_directory_missing'    => 'Le directorio de cargamento ($1) manca, e le servitor de web non poteva crear lo.',
@@ -1561,6 +1565,7 @@ Si tu vole totevia cargar iste file, per favor retorna e usa un nove nomine. [[F
 'file-deleted-duplicate'      => 'Un file identic a iste file ([[$1]]) esseva ja delite anteriormente. Tu deberea verificar le registro de deletiones concernente iste file ante de re-cargar lo.',
 'successfulupload'            => 'Cargamento succedite',
 'uploadwarning'               => 'Advertimento de cargamento',
+'uploadwarning-text'          => 'Per favor modifica le description del file ci infra e reproba.',
 'savefile'                    => 'Immagazinar file',
 'uploadedimage'               => 'cargava "[[$1]]"',
 'overwroteimage'              => 'cargava un nove version de "[[$1]]"',
@@ -2072,7 +2077,7 @@ Feedback e ulterior assistentia:
 'exblank'                => 'pagina esseva vacue',
 'delete-confirm'         => 'Deler "$1"',
 'delete-legend'          => 'Deler',
-'historywarning'         => 'Attention: Le pagina que tu va deler ha un historia:',
+'historywarning'         => "'''Attention:''' Le pagina que tu vole deler ha un historia con $1 {{PLURAL:$1|version|versiones}}:",
 'confirmdeletetext'      => 'Tu va deler un pagina con tote su historia.
 Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
 'actioncomplete'         => 'Action complete',
@@ -2502,6 +2507,10 @@ non pote renominar un pagina al mesme titulo.',
 'move-leave-redirect'          => 'Lassar un redirection',
 'protectedpagemovewarning'     => "'''ATTENTION:''' Iste pagina ha essite serrate de modo que solmente usatores con privilegios de administrator pote renominar lo.",
 'semiprotectedpagemovewarning' => "'''Nota:''' Iste pagina ha essite serrate de modo que solmente usatores registrate pote renominar lo.",
+'move-over-sharedrepo'         => '== File existe ==
+[[:$1]] existe ja in un deposito usate in commun. Si tu renomina le file a iste titulo, illo supplantara le file del deposito.',
+'file-exists-sharedrepo'       => 'Le nomine de file seligite es ja in uso in un deposito usate in commun.
+Per favor selige un altere nomine.',
 
 # Export
 'export'            => 'Exportar paginas',

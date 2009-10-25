@@ -1058,9 +1058,7 @@ Kao administrator i dalje možete [$1 vidjeti ove razlike] ako želite da nastav
 'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana izmjena|Odabrane izmjene|Odabrane izmjene}} stranice [[$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Odabrani zapis u evidenciji|Odabrani zapisi u evidenciji}}:'''",
 'revdelete-text'              => "'''Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena, ali njihov sadržaj neće biti dostupan javnosti.'''
-Drugi administratori ovoga projekta ({{SITENAME}}) moći će i dalje pristupiti skrivenom sadržaju i vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu nisu postavili dodatna ograničenja.
-
-Molimo potvrdite da to želite, da razumijete posljedice, i da to radite u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama projekta]].",
+Drugi administratori ovoga projekta ({{SITENAME}}) moći će i dalje pristupiti skrivenom sadržaju i vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu nisu postavili dodatna ograničenja.",
 'revdelete-suppress-text'     => "Sklanjanje uređivanja treba raditi '''iznimno''' u slijedećih par slučajeva:
 * Privatne informacije neprilične javnom mediju tipa
 *: ''kućna adresa i broj telefona, JMBG ili OIB, itd.''",

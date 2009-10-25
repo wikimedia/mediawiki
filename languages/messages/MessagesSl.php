@@ -884,10 +884,7 @@ Podrobnosti so morda navedene v  [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'revdelete-show-file-submit'  => 'Da',
 'revdelete-selected'          => "'''{{PLURAL:$2|Izbrana redakcija|$2 izbrani redakciji|$2 izbrane redakcije|$2 izbranih redakcij|$2 izbranih redakcij}} strani [[:$1]]:'''",
 'revdelete-text'              => "'''Izbrisane redakcije bodo v zgodovini strani še vedno navedene, vendar bo njihova vsebina za javnost nedostopna.'''
-
-Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji {{GRAMMAR:rodilnik|{{SITENAME}}}} in jo z uporabo istega vmesnika tudi obnovili, razen kjer bodo operaterji spletišča uveljavili dodatne omejitve.
-
-Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da to počnete v skladu s [[{{MediaWiki:Policy-url}}|pravili]].",
+Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji {{GRAMMAR:rodilnik|{{SITENAME}}}} in jo z uporabo istega vmesnika tudi obnovili, razen kjer bodo operaterji spletišča uveljavili dodatne omejitve.",
 'revdelete-legend'            => 'Nastavitve z redakcijami povezanih omejitev:',
 'revdelete-hide-text'         => 'Skrij besedilo redakcije',
 'revdelete-hide-name'         => 'Skrij dejanje in cilj',

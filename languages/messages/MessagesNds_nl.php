@@ -1054,9 +1054,7 @@ As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Esillecteren logboekboekactie|Esillecteren logboekacties}}:'''",
 'revdelete-text'              => "'''Vort-edaone bewarkingen staon nog altied in de geschiedenisse en in logboeken, mar neet iederene kan de inhoud zomar bekieken.'''
-
-Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.
-Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit doon in overeenstemming mit [[{{MediaWiki:Policy-url}}|'t beleid]] van disse wiki.",
+Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.",
 'revdelete-suppress-text'     => "Onderdrokken ma-j '''allinnig''' gebruken in de volgende gevallen:
 * Ongepassen persoonlijke infermasie
 *: ''adressen en tillefoonnummers, burgerservicenummers, en gao zo mar deur.''",

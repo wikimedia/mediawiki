@@ -1032,9 +1032,7 @@ Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
 'revdelete-text'              => "'''Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.'''
-
-Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilotetun sisällön ja he voivat palauttaa sen tämän käyttöliittymän kautta, ellei sitä ole rajoitettu.
-Varmista, että haluat tehdä tämän, ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.",
+Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilotetun sisällön ja he voivat palauttaa sen tämän käyttöliittymän kautta, ellei sitä ole rajoitettu.",
 'revdelete-suppress-text'     => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
 * Sopimattomat henkilötiedot
 *: ''kotiosoitteet, puhelinnumerot, sosiaaliturvatunnukset ja muut.''",

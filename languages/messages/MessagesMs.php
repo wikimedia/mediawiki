@@ -517,7 +517,8 @@ Sila catat URL bagi laman ini dan laporkan perkara ini kepada seorang [[Special:
 'unexpected'           => 'Nilai tanpa diduga: "$1"="$2".',
 'formerror'            => 'Ralat: borang tidak dapat dikirim.',
 'badarticleerror'      => 'Tindakan ini tidak boleh dilaksanakan pada laman ini.',
-'cannotdelete'         => 'Laman atau imej yang dinyatakan tidak dapat dihapuskan. Ia mungkin telah pun dihapuskan oleh orang yang lain.',
+'cannotdelete'         => 'Laman atau fail $1 tidak dapat dihapuskan.
+Ia mungkin telah pun dihapuskan oleh orang lain.',
 'badtitle'             => 'Tajuk tidak sah',
 'badtitletext'         => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
 'perfcached'           => 'Data berikut adalah teragregat dan mungkin bukan yang terkini.',
@@ -917,12 +918,8 @@ Sebagai seorang pentadbir anda masih boleh [$1 melihat semakan ini] jika anda in
 'revdelete-show-file-submit'  => 'Ya',
 'revdelete-selected'          => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
-'revdelete-text'              => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log,
-tetapi kandungannya tidak boleh diakses awam.'''
-
-Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya
-semula melalui laman ini melainkan mempunyai batasan.
-Sila sahkan bahawa anda hendak lakukan ini dan memahami akibatnya, dan anda mematuhi [[{{MediaWiki:Policy-url}}|polisi]].",
+'revdelete-text'              => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log, tetapi kandungannya tidak boleh diakses awam.'''
+Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya semula melalui laman ini melainkan mempunyai batasan.",
 'revdelete-suppress-text'     => "Pembatasan ini '''hanya''' untuk digunakan dalam kes-kes berikut:
 * Maklumat peribadi tidak sesuai
 *: ''alamat rumah dan nombor telefon, nombor keselamatan sosial, dsbg.''",
@@ -1933,7 +1930,7 @@ Maklum balas dan bantuan:
 'exblank'                => 'laman tersebut kosong',
 'delete-confirm'         => 'Hapus "$1"',
 'delete-legend'          => 'Hapus',
-'historywarning'         => '<b>Amaran</b>: Laman yang ingin anda hapuskan mengandungi sejarah:',
+'historywarning'         => "'''Amaran:''' Laman yang ingin anda hapuskan mengandungi sejarah dengan $1 {{PLURAL:$1|semakan|semakan}}:",
 'confirmdeletetext'      => 'Anda sudah hendak menghapuskan sebuah laman berserta semua sejarahnya.
 Sila sahkan bahawa anda memang hendak berbuat demikian, anda faham akan
 akibatnya, dan perbuatan anda mematuhi [[{{MediaWiki:Policy-url}}|dasar kami]].',

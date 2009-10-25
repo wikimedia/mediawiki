@@ -905,9 +905,7 @@ Ako administrator móžoš hyšći [$1 se toś ten rozdźěl woglědaś], jolic 
 'revdelete-selected'          => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
 'revdelete-text'              => "'''Wulašowane wersije a tšojenja budu se dalej w stawiznach boka a w protokolach pokazaś, ale źěle jich wopśimjeśa njebudu pśistupne za zjawnosć.'''
-
-Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći pśistup na schowane wopśimjeśe měś a mógu jo pśez samki interfejs wótnowiś,  snaźkuli su pśidatne wobgranicowanja.
-Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wótpowědujucy [[{{MediaWiki:Policy-url}}|zasadam]].",
+Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći pśistup na schowane wopśimjeśe měś a mógu jo pśez samki interfejs wótnowiś,  snaźkuli su pśidatne wobgranicowanja.",
 'revdelete-suppress-text'     => "Pódtłocenje by se dejał '''jano''' za slědujuce pady wužywaś:
 * Njegóźece se wósobinske informacije
 *: ''bydleńske adrese a telefonowe numery, numery socialnego zawěsćenja atd.''",
@@ -1442,6 +1440,7 @@ Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 'upload'                      => 'Dataju pósłaś',
 'uploadbtn'                   => 'Dataju pósłaś',
 'reuploaddesc'                => 'Upload pśetergnuś a slědk k uploadowemu formularoju',
+'upload-tryagain'             => 'Změnjone datajowe wopisanje wótpósłaś',
 'uploadnologin'               => 'Njepśizjawjony(a)',
 'uploadnologintext'           => 'Dejš se [[Special:UserLogin|pśizjawiś]], aby mógał dataje uploadowaś.',
 'upload_directory_missing'    => 'Nagrawański zapis ($1) felujo a njejo se pśez webserwer napóraś dał.',
@@ -1506,6 +1505,7 @@ Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosy
 'file-deleted-duplicate'      => 'Dataja, kótaraž jo identiska z toś teju dataju ([[$1]]) jo se pjerwjej wulašowała. Ty měł stawizny wulašowanja toś teje dataje pśeglědaś, pjerwjej až pokšacujoš z jeje zasejnagrawanjom.',
 'successfulupload'            => 'Upload jo był wuspěšny.',
 'uploadwarning'               => 'Warnowanje',
+'uploadwarning-text'          => 'Pšosym změń slědujuce datajowe wopisanje a wopytaj hyšći raz.',
 'savefile'                    => 'Dataju składowaś',
 'uploadedimage'               => 'Dataja "[[$1]]" jo uploadowana.',
 'overwroteimage'              => 'Nowa wersija "[[$1]]" jo se uploadowała.',
@@ -1856,6 +1856,7 @@ Pódpěrane protokole: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lisćina aktiwnych wužywarjow',
+'activeusers-intro'    => 'To jo lisćina wužywarjow, kotrež su byli aktiwne za {{PLURAL:$1|slědny źeń|slědnej $1 dnja|slědne $1 dny|slědnych $1 dnjow}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach|slědnych $3 dnjach}}',
 'activeusers-from'     => 'Wužywarjow zwobrazniś, zachopinajucy z:',
 'activeusers-noresult' => 'Žedne wužywarje namakane.',
@@ -1990,7 +1991,7 @@ Pčašanja a dalšna pomoc:
 'exblank'                => 'bok jo był prozny',
 'delete-confirm'         => '„$1“ lašowaś',
 'delete-legend'          => 'Lašowaś',
-'historywarning'         => 'Glědaj! Bok, kótaryž coš wulašowaś, ma stawizny:',
+'historywarning'         => "'''Glědaj:''' Bok, kótaryž coš wulašowaś, ma historiju z $1 {{PLURAL:$1|wersiju|wersijoma|wersijami|wersijami}}:",
 'confirmdeletetext'      => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
 'actioncomplete'         => 'Akcija jo se wugbała.',
 'actionfailed'           => 'Akcija jo se njeraźiła',
@@ -2379,6 +2380,10 @@ Bok „[[:$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten
 'move-leave-redirect'          => 'Daleposrědnjenje zawóstajiś',
 'protectedpagemovewarning'     => "'''WARNOWANJE:''' Toś ten bok jo se zastajił, aby jano wužiwarje z pšawami administratora mógli jen pśesunuś.",
 'semiprotectedpagemovewarning' => "'''Glědaj:''' Toś ten bok jo se zastajił, aby jano zregistrěrowane wužywarje mógli jen pśesunuś.",
+'move-over-sharedrepo'         => '== Dataja eksistěrujo ==
+[[:$1]] eksistěrujo w gromaźe wužywanem repozitoriumje. Pśesunjenje dataje k toś tomu titeloju buźo gromaźe wužywanu dataju pśepisowaś.',
+'file-exists-sharedrepo'       => 'Wubrane datajowe mě wužywa se južo w gromaźe wužywanem repozitoriumje.
+Pšosym wubjeŕ druge mě.',
 
 # Export
 'export'            => 'Boki eksportěrowaś',

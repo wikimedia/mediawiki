@@ -828,9 +828,7 @@ Administrator hökmünde ony görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/su
 'revdelete-selected'          => "'''[[:$1]] sahypasynyň {{PLURAL:$2|saýlanylan wersiýasy|saýlanylan wersiýalary}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Saýlanylan gündelik wakasy|Saýlanylan gündelik wakalary}}:'''",
 'revdelete-text'              => "'''Öçürilen wersiýalar we wakalar sahypa geçmişlerinde we gündeliklerde ýene-de görkeziljekdir, emma olaryň mazmunynyň käbir bölekleri jemgyýetçilige açyk boljak däldir.'''
-{{SITENAME}} saýtyndaky başga administratorlar gizlin mazmuny ýene-de görüp hem-de goşmaça çäklendirme goýulmadyk ýagdaýynda şol bir interfeýsiň üsti bilen ony yzyna dikeldip bilýärler.
-
-Şu işi anyk isleýändigiňizi, ýagny onuň netijelerine düşünýändiňizi we [[{{MediaWiki:Policy-url}}|kadalar boýunça]] amala aşyrýandygyňyzy tassyklamagyňyzy haýyş edýäris.",
+{{SITENAME}} saýtyndaky başga administratorlar gizlin mazmuny ýene-de görüp hem-de goşmaça çäklendirme goýulmadyk ýagdaýynda şol bir interfeýsiň üsti bilen ony yzyna dikeldip bilýärler.",
 'revdelete-suppress-text'     => "Gizlemeklik '''diňe''' aşakdaky ýagdaýlarda ulanylmalydyr:
 * Potensial taýdan töhmetçilikli maglumat
 * Ýerliksiz şahsy maglumat

@@ -1065,10 +1065,7 @@ Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete pre
 'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
 'revdelete-text'              => "'''Zmazané revízie a udalosti sú stále viditeľné v histórii úprav stránky, ale časti ich obsahu nebudú prístupné verejnosti.'''
-
-Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu
-ho znova obnoviť použitím tohto rozhrania v prípade, že nie sú stanovené ďalšie obmedzenia.
-Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že tak  robíte v súlade s [[{{MediaWiki:Policy-url}}|politikou]].",
+Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu ho znova obnoviť použitím tohto rozhrania v prípade, že nie sú stanovené ďalšie obmedzenia.",
 'revdelete-suppress-text'     => "Zatajenie by sa malo používať '''výlučne''' v nasledovných prípadoch:
 * Nevhodné osobné údaje
 *: ''adresy, telefóne čísla, rodné čísla a pod.''",

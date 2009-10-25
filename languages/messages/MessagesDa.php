@@ -920,9 +920,8 @@ Som administrator kan du stadig [$1 se forskellen] hvis du ønsker at fortsætte
 'revdelete-selected'          => "'''{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valgt logindførsel|Valgte logindførsler}}:'''",
 'revdelete-text'              => "'''Slettede versioner vil fortsat vises i sidehistorik og på logsider, men dele af deres indhold vil ikke være offentligt tilgængeligt.'''
-
-Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det skjulte indhold og kan gendanne det igen, medmindre der laves yderligere restriktioner.
-Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].",
+Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det skjulte indhold og kan gendanne det igen, medmindre der laves yderligere restriktioner.",
+'revdelete-confirm'           => 'Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].',
 'revdelete-suppress-text'     => "Skjulning bør '''kun''' bruges i de følgende tilfælde:
 * Upassende personlige oplysninger
 *: ''hjemadresser og -telefonnumre, CPR-numre og lign.''",

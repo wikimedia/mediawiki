@@ -245,6 +245,7 @@ Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} L�
 Einem Administrator können Sie [$1 diesen Link zum Versionsunterschied] nennen.",
 'revdelete-nooldid-text'      => 'Sie haben entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder Sie versuchen, die aktuelle Version zu entfernen.',
 'revdelete-show-file-confirm' => 'Sind Sie sicher, dass Sie die gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2 um $3 Uhr ansehen wollen?',
+'revdelete-confirm'           => 'Bitte bestätigen Sie, dass Sie beabsichtigen, dies zu tun, die Konsequenzen verstehen und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tuen.',
 'revdelete-show-no-access'    => 'Fehler beim Anzeigen des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
 Sie haben darauf keinen Zugriff.',
 'revdelete-modify-no-access'  => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
@@ -334,7 +335,7 @@ Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und lade
 Wenn Sie diese Datei trotzdem hochladen möchten, gehen Sie bitte zurück und ändern den Namen.
 [[File:$1|thumb|center|$1]]',
 'file-deleted-duplicate'      => 'Eine identische Datei dieser Datei ([[$1]]) wurde früher gelöscht. Überprüfen Sie das Lösch-Logbuch, bevor Sie sie hochladen.',
-'uploadwarning-text'          => 'Bitte änderen Sie unten die Dateibeschreibung und versuchen Sie es erneut.',
+'uploadwarning-text'          => 'Bitte ändern Sie unten die Dateibeschreibung und versuchen Sie es erneut.',
 'php-uploaddisabledtext'      => 'Das Hochladen von Dateien wurde in PHP deaktiviert.
 Bitte überprüfen Sie die <code>file_uploads</code>-Einstellung.',
 'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat eine falsche Datei-Erweiterung. Bitte überprüfen Sie die Datei und wiederholen Sie den Hochlade-Vorgang.',

@@ -352,10 +352,12 @@ $messages = array(
 'italic_tip'      => 'Курсив',
 'link_sample'     => 'Æрвитæны текст',
 'link_tip'        => 'Мидæг æрвитæн (æндæр статьямæ)',
+'extlink_sample'  => 'http://www.example.com æрвитæны текст',
 'extlink_tip'     => 'Æддаг æрвитæн (префикс http:// ма рох кæн)',
 'headline_sample' => 'Ам сæргонды текст уæд',
 'math_sample'     => 'Ныффысс формулæ',
 'math_tip'        => 'Математикон формулæ (формат LaTeX)',
+'media_tip'       => 'Файлмæ æрвитæн',
 
 # Edit pages
 'summary'                => 'Ивддзинæдты мидис:',
@@ -380,7 +382,7 @@ $messages = array(
 'longpagewarning'        => "'''РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
 Сæ бæрцуат 32 килобайтæй фылдæр кæмæн у, ахæм фæрстæ иуæй-иу браузерты раст нæ зынынц.
 Кæд ахæм вариант и, уæд ацы фарсæй цалдæр фарсы скæн.'''",
-'templatesused'          => 'Ацы фарсы шаблонтæ:',
+'templatesused'          => 'Ацы фарсы ис {{PLURAL:$1|шаблон|шаблоны}}:',
 'template-protected'     => '(æхгæд)',
 'template-semiprotected' => '(æрдæг-æхгæд)',
 'edit-conflict'          => 'Иввдзинæдты конфликт.',
@@ -536,6 +538,7 @@ $messages = array(
 'action-delete'   => 'ацы фарс аппарын',
 
 # Recent changes
+'nchanges'           => '$1 {{PLURAL:$1|ивдзинад|ивддзинады}}',
 'recentchanges'      => 'Фæстаг ивддзинæдтæ',
 'recentchangestext'  => 'Ацы фарсыл ирон Википедийы фæстаг ивддзинæдтæ фенæн ис.',
 'rcnote'             => 'Дæлдæр нымад сты афæстаг <strong>$2</strong> боны дæргъы конд <strong>{{PLURAL:$1|иу ивддзинад|$1 ивддзинады}}</strong>, $5, $4 уавæрмæ гæсгæ.',
@@ -675,6 +678,7 @@ $3',
 
 # E-mail user
 'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:UserLogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',
+'emailuser'       => 'Ацы архайæгæн электронон фыстæг рарвитт',
 'emailpage'       => 'Электронон фыстæг йæм барвит',
 
 # Watchlist
@@ -709,7 +713,7 @@ $3',
 
 # Protect
 'protectedarticle'       => '«[[$1]]» — фарс æхгæд æрцыд',
-'protectcomment'         => 'Сæхкæнынæн аххос:',
+'protectcomment'         => 'Аххос:',
 'protectexpiry'          => 'Кæдмæ æхгæд у:',
 'protect-level-sysop'    => 'Æрмæст админтæ',
 'protect-othertime'      => 'Æндæр рæстæг:',
@@ -726,9 +730,10 @@ $3',
 'blanknamespace' => '(Сæйраг)',
 
 # Contributions
-'contributions' => 'Йæ бавæрд',
-'mycontris'     => 'Дæ бавæрд',
-'uctop'         => '(уæле баззад)',
+'contributions'       => 'Йæ бавæрд',
+'contributions-title' => 'Архайæджы бавæрд: $1',
+'mycontris'           => 'Дæ бавæрд',
+'uctop'               => '(уæле баззад)',
 
 'sp-contributions-blocklog' => 'Хъодыты лог',
 'sp-contributions-talk'     => 'Дискусси',
@@ -820,6 +825,7 @@ $3',
 'tooltip-ca-nstab-image'        => 'Нывы фарс',
 'tooltip-ca-nstab-category'     => 'Категорийы фарс',
 'tooltip-minoredit'             => 'Чысыл ивддзинад у',
+'tooltip-save'                  => 'Цы ивддзинæдтæ бахастай, уыдон бавæр',
 'tooltip-diff'                  => 'Раздæры версимæ абаргæйæ цы ивддзинæдтæ хæссыс текстмæ, уый фен',
 'tooltip-watch'                 => 'Ацы фарс, дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъдмæ бафтау',
 

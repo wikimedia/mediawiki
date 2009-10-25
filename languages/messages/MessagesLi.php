@@ -842,8 +842,7 @@ Es behieërder kèns se nag [$1 de angering zeen] es se doearch wils gaon.",
 'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:'''",
 'revdelete-text'              => "'''Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.'''
-
-Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder. Confirmeer det se dit wils doon, es se de consekwensies begrieps, en detse dit mit de [[{{MediaWiki:Policy-url}}|beleid]] deis.",
+Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder.",
 'revdelete-suppress-text'     => "Versies verbèrge deentj '''allein''' gebroek te waere in de volgende gevalle:
 * Ongepaste perseunlike informatie
 *: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoors.''",

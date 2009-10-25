@@ -1072,9 +1072,7 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
 'revdelete-text'              => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
-
-Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.
-Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekvenserna, och att du gör detta i enlighet med [[{{MediaWiki:Policy-url}}|riktlinjerna]].",
+Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.",
 'revdelete-suppress-text'     => "Undanhållande ska '''bara''' användas i följande fall:
 * Opassande personlig information
 *: ''hemadresser och telefonnummer, personnummer, etc.''",

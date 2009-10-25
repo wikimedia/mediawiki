@@ -657,7 +657,8 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 'unexpected'           => 'Valor imprevista : « $1 » = « $2 ».',
 'formerror'            => 'Error: Impossible de sometre lo formulari',
 'badarticleerror'      => 'Aquesta accion pòt pas èsser efectuada sus aquesta pagina.',
-'cannotdelete'         => 'Impossible de suprimir la pagina o lo fichièr indicat. (Benlèu la supression ja es estada efectuada per qualqu’un d’autre.)',
+'cannotdelete'         => 'Impossible de suprimir la pagina o lo fichièr « $1 ».
+Benlèu la supression ja es estada efectuada per qualqu’un mai.',
 'badtitle'             => 'Títol marrit',
 'badtitletext'         => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
 'perfcached'           => 'Aquò es una version en amagatal e benlèu es pas a jorn.',
@@ -767,6 +768,7 @@ Picatz una adreça plan formatada o daissatz aqueste camp void.",
 'createaccount-text'         => "Qualqu'un a creat un compte per vòstra adreça de corrièr electronic sus {{SITENAME}} ($4) intitolat « $2 », amb per senhal « $3 ». Deuriaz dobrir una sessilha e cambiar, tre ara, aqueste senhal.
 
 Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
+'usernamehasherror'          => "Lo nom d'utilizaire pòt pas conténer de caractèrs de hachage",
 'login-throttled'            => 'Avètz ensajat tròp de temptativas de connexion darrièrament.
 Esperatz abans d’ensajar tornamai.',
 'loginlanguagelabel'         => 'Lenga: $1',
@@ -1056,10 +1058,7 @@ En tant qu'administrator, podètz totjorn [$1 veire aqueste diff] se volètz con
 'revdelete-selected'          => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
 'revdelete-text'              => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
-
-D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornamai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del site.
-
-Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequéncias, e qu'o fasètz en acòrd amb las [[{{MediaWiki:Policy-url}}|règlas]].",
+D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornamai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del site.",
 'revdelete-suppress-text'     => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
 * Informacions personalas inapropriadas
 *: ''adreça, numèro de telefòn, numèro de seguretat sociala, ...''",
@@ -2555,6 +2554,8 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'move-leave-redirect'          => 'Daissar una redireccion darrièr',
 'protectedpagemovewarning'     => "'''ATENCION:''' Aquesta pagina es estada blocada per que sonque los utilizaires qu'an los dreches d'administrators la pòscan tornar nomenar.",
 'semiprotectedpagemovewarning' => "'''Nòta :''' Aquesta pagina es estada blocada per que sonque los utilizaires enregistrats la pòscan tornar nomenar.",
+'move-over-sharedrepo'         => '== Lo fichièr existís ==
+[[:$1]] existís ja sus un depaus partejat. Tornar nomenar aqueste fichièr farà lo fichièr sul depaus partatge inaccessible.',
 
 # Export
 'export'            => 'Exportar de paginas',

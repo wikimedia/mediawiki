@@ -834,9 +834,7 @@ Cumme a 'n'amministratore tu puè angore [$1 vedè sta differenze] ce tu proprie
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisiona selezionete|Revisiune selezionete}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Fatte de l'archivije selezionete|Fatte de l'archivije selezionete}}:'''",
 'revdelete-text'              => "'''Le revisiune scangellete e le evende iessene angore jndr'à storie d'a pàgene e jndr'à l'archivije, ma stuezze d'u condenute lore pò essere inaccessibbele a 'u pubbleche.'''
-
-Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute scunnute e 'u ponne scangellà 'n'otra vote ausanne st'inderfacce, senze 'mbostà otre restriziune.
-Pe piacere conferme ca tu vuè ccu face sta cose, ca tu è capite le conseguenze, e ca tu ste face sta cose tenènne cunde de [[{{MediaWiki:Policy-url}}|le regole]].",
+Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute scunnute e 'u ponne scangellà 'n'otra vote ausanne st'inderfacce, senze 'mbostà otre restriziune.",
 'revdelete-suppress-text'     => "'A soppressione adda essere ausate '''sulamende''' jndr'à le case seguende:
 * Date personale inopportune
 *: ''indirizze, numere de telefono, codice fiscale, ecc.''",

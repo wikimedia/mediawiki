@@ -818,9 +818,8 @@ Como almenistrador, la puet beyer; talment trobe más detalles en o [{{fullurl:{
 'revdelete-selected'          => "'''{{PLURAL:$2|Bersión trigata|Bersions trigatas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Escaizimiento d'o rechistro trigato|Escaizimientos d'o rechistro trigatos}}:'''",
 'revdelete-text'              => "'''As bersions y escaizimientos borratos encara apareixerán en o istorial d'a pachina y en o rechistros, pero bellas partes d'o suyo conteniu serán inaczesibles ta o publico.'''
-Atros almenistradors de {{SITENAME}} encara podrán azeder t'o conteniu amagato y podrán esfer o borrau á trabiés d'ista mesma interfaz, fueras de si s'estableixen restrizions adizionals.
-
-Por fabor confirme que ye mirando de fer ísto, que entiende as consecuenzias, y que lo ye fendo d'alcuerdo con [[{{MediaWiki:Policy-url}}|as politicas]].",
+Atros almenistradors de {{SITENAME}} encara podrán azeder t'o conteniu amagato y podrán esfer o borrau á trabiés d'ista mesma interfaz, fueras de si s'estableixen restrizions adizionals.",
+'revdelete-confirm'           => "Por fabor confirme que ye mirando de fer ísto, que entiende as consecuenzias, y que lo ye fendo d'alcuerdo con [[{{MediaWiki:Policy-url}}|as politicas]].",
 'revdelete-legend'            => 'Establir as restrizions de bisibilidat:',
 'revdelete-hide-text'         => "Amagar o testo d'a bersión",
 'revdelete-hide-name'         => 'Amagar aizión y obchetibo',

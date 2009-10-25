@@ -980,9 +980,7 @@ Som administrator kan du fortsatt [$1 se diffen] om du ønsker det.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
 'revdelete-text'              => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
-
-Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.
-Vennligst bekreft at du vil gjøre dette, og at du skjønner følgene, og at du gjør dette i henhold til [[{{MediaWiki:Policy-url}}|MediaWiki sine retningslinjer]].",
+Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.",
 'revdelete-suppress-text'     => "Utelatelse bør '''kun''' brukes i følgende tilfeller:
 * Upassende personlige opplysninger
 *: ''hjemmeadresser og -telefonnummer, personnummer og lignende''",

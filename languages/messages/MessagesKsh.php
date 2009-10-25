@@ -1093,11 +1093,8 @@ Als ene Wiki_Köbes kanns De [$1 de Ungerscheide ävver aankike] wann De wells."
 'revdelete-selected'          => "'''{{PLURAL:$2|Ein usjewählte Version|$2 usjewählte Versione|Kein Version usjewählt}} vun [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:'''",
 'revdelete-text'              => "'''Dä fottjeschmesse Sigge ehre Enhald kanns De nit mieh aanluure. Se blieve ävver en de Liss met de Versione un en de Logböcher dren.'''
-
 Ene Wiki Köbes kann de fottjeschmessene Krom immer noch aanluere un kann en och widder herholle, usser wann bei 
-dem Wiki singe Installation dat anders fassjelaht woode es.
-
-Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat dat bedügge kann, un dat dat wat De donn wells, met de [[{{MediaWiki:Policy-url}}|Rääjelle]] zosamme jeiht.",
+dem Wiki singe Installation dat anders fassjelaht woode es.",
 'revdelete-suppress-text'     => "Dat sullt '''blooß''' jedonn wäde för:
 * unjenehmesch persöönlesch Daate
 *: ''Aanschreffte, Tellefoon- un ander Nummere, <span lang=\"en\">e-mail</span> Adräß, uew.''",
