@@ -1445,6 +1445,10 @@ As an administrator you can still [$1 view this diff] if you wish to proceed.",
 'rev-suppressed-unhide-diff'  => "One of the revisions of this diff has been '''suppressed'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.",
+'rev-deleted-diff-view'       => "One of the revisions of this diff has been '''deleted'''.
+As an administrator you can view this diff; there may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+'rev-suppressed-diff-view'    => "One of the revisions of this diff has been '''suppressed'''.
+As an administrator you can view this diff; there may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
 'revdelete-nooldid-title'     => 'Invalid target revision',

@@ -318,6 +318,7 @@ CONTROL;
 		}
 
 		$rdel = ''; $ldel = '';
+		# Handle RevisionDelete links...
 		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
 			// Don't show useless link to people who cannot hide revisions
 			if( $this->mOldRev->getVisibility() || $wgUser->isAllowed( 'deleterevision' ) ) {
@@ -376,7 +377,8 @@ CONTROL;
 			if( $this->mNewRev->isDeleted(Revision::DELETED_RESTRICTED) )
 				$suppressed = true; // also suppressed
 		}
-		# Output the diff if allowed...
+		# If the diff cannot be shown due to a deleted revision, then output
+		# the diff header and links to unhide (if available)...
 		if( $deleted && (!$this->unhide || !$allowed) ) {
 			$this->showDiffStyle();
 			$multi = $this->getMultiNotice();
@@ -395,6 +397,7 @@ CONTROL;
 				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
 				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", array( $msg, $link ) );
 			}
+		# Otherwise, output the HTML diff if requested...
 		} else if( $wgEnableHtmlDiff && $this->htmldiff ) {
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML( '<div class="diff-switchtype">' . $sk->link(
@@ -414,27 +417,34 @@ CONTROL;
 				)
 			) . '</div>');
 			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
+			# Add deletion notice if the user is viewing deleted content
+			if( $deleted ) {
+				$msg = $suppressed ? 'rev-suppressed-diff-view' : 'rev-deleted-diff-view';
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", $msg );
+			}
 			$this->renderHtmlDiff();
+		# Otherwise, output a regular diff...
 		} else {
 			if( $wgEnableHtmlDiff ) {
 				$wgOut->addHTML( '<div class="diff-switchtype">' . $sk->link(
 					$this->mTitle,
 					wfMsgHtml( 'visualcomparison' ),
-					array(
-						'id' => 'differences-switchtype'
-					),
+					array( 'id' => 'differences-switchtype' ),
 					array(
 						'diff' => $this->mNewid,
 						'oldid' => $this->mOldid,
 						'htmldiff' => 1
 					),
-					array(
-						'known',
-						'noclasses'
-					)
+					array( 'known', 'noclasses' )
 				) . '</div>');
 			}
-			$this->showDiff( $oldHeader, $newHeader );
+			# Add deletion notice if the user is viewing deleted content
+			$notice = '';
+			if( $deleted ) {
+				$msg = $suppressed ? 'rev-suppressed-diff-view' : 'rev-deleted-diff-view';
+				$notice = "<div class='mw-warning plainlinks'>\n".wfMsgExt($msg,'parseinline')."</div>\n";
+			}
+			$this->showDiff( $oldHeader, $newHeader, $notice );
 			if( !$diffOnly ) {
 				$this->renderNewRevision();
 			}
@@ -651,9 +661,9 @@ CONTROL;
 	 * Get the diff text, send it to $wgOut
 	 * Returns false if the diff could not be generated, otherwise returns true
 	 */
-	function showDiff( $otitle, $ntitle ) {
+	function showDiff( $otitle, $ntitle, $notice = '' ) {
 		global $wgOut;
-		$diff = $this->getDiff( $otitle, $ntitle );
+		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
 			$wgOut->addWikiMsg( 'missing-article', "<nowiki>(fixme, bug)</nowiki>", '' );
 			return false;
@@ -680,15 +690,16 @@ CONTROL;
 	 *
 	 * @param Title $otitle Old title
 	 * @param Title $ntitle New title
+	 * @param string $notice HTML between diff header and body
 	 * @return mixed
 	 */
-	function getDiff( $otitle, $ntitle ) {
+	function getDiff( $otitle, $ntitle, $notice = '' ) {
 		$body = $this->getDiffBody();
 		if ( $body === false ) {
 			return false;
 		} else {
 			$multi = $this->getMultiNotice();
-			return $this->addHeader( $body, $otitle, $ntitle, $multi );
+			return $this->addHeader( $body, $otitle, $ntitle, $multi, $notice );
 		}
 	}
 
@@ -911,8 +922,7 @@ CONTROL;
 	/**
 	 * Add the header to a diff body
 	 */
-	static function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
-		$colspan = 1;
+	static function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
 		$header = "<table class='diff'>";
 		if( $diff ) { // Safari/Chrome show broken output if cols not used
 			$header .= "
@@ -921,6 +931,10 @@ CONTROL;
 			<col class='diff-marker' />
 			<col class='diff-content' />";
 			$colspan = 2;
+			$multiColspan = 4;
+		} else {
+			$colspan = 1;
+			$multiColspan = 2;
 		}
 		$header .= "
 		<tr valign='top'>
@@ -929,8 +943,10 @@ CONTROL;
 		</tr>";
 
 		if ( $multi != '' ) {
-			$multiColspan = $diff ? 4 : 2;
 			$header .= "<tr><td colspan='{$multiColspan}' align='center' class='diff-multi'>{$multi}</td></tr>";
+		}
+		if ( $notice != '' ) {
+			$header .= "<tr><td colspan='{$multiColspan}' align='center' class='diff-multi'>{$notice}</td></tr>";
 		}
 
 		return $header . $diff . "</table>";
