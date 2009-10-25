@@ -563,7 +563,6 @@ $wgAutoloadLocalClasses = array(
 	'UnusedtemplatesPage' => 'includes/specials/SpecialUnusedtemplates.php',
 	'UnwatchedpagesPage' => 'includes/specials/SpecialUnwatchedpages.php',
 	'UploadForm' => 'includes/specials/SpecialUpload.php',
-	'UploadFormMogile' => 'includes/specials/SpecialUploadMogile.php',
 	'UserrightsPage' => 'includes/specials/SpecialUserrights.php',
 	'UsersPager' => 'includes/specials/SpecialListusers.php',
 	'WantedCategoriesPage' => 'includes/specials/SpecialWantedcategories.php',
