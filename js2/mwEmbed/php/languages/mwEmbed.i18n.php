@@ -173,7 +173,7 @@ $messages['en'] = array(
 	'fogg-videoCodec-title' => 'Video codec',
 	'fogg-videoCodec-help' => 'Used to select the clip video codec. Presently only Theora is supported. More about the <a target="_new" href="http://en.wikipedia.org/wiki/Theora">Theora codec</a>.',
 	'fogg-audioCodec-title' => 'Audio codec',
-	'fogg-audioCodec-help' => 'Used to set the clip audio codec. Presently only Vorbis is supported. More about the <a target="_new" href="http://en.wikipedia.org/wiki/Vorbis">vorbis codec</a>',
+	'fogg-audioCodec-help' => 'Used to set the clip audio codec. Presently only Vorbis is supported. More about the <a target="_new" href="http://en.wikipedia.org/wiki/Vorbis">Vorbis codec</a>.',
 	'fogg-width-title' => 'Video width',
 	'fogg-width-help' => 'Resize to given width.',
 	'fogg-height-title' => 'Video height',
