@@ -679,6 +679,7 @@ $wgMessageStructure = array(
 		'revdelete-selected',
 		'logdelete-selected',
 		'revdelete-text',
+		'revdelete-confirm',
 		'revdelete-suppress-text',
 		'revdelete-legend',
 		'revdelete-hide-text',
