@@ -147,16 +147,7 @@ class UpdateSearchIndex extends Maintenance {
 	private function lockSearchindex( &$db ) {
 		$write = array( 'searchindex' );
 		$read = array( 'page', 'revision', 'text', 'interwiki' );
-		$items = array();
-	
-		foreach( $write as $table ) {
-			$items[] = $db->tableName( $table ) . ' LOW_PRIORITY WRITE';
-		}
-		foreach( $read as $table ) {
-			$items[] = $db->tableName( $table ) . ' READ';
-		}
-		$sql = "LOCK TABLES " . implode( ',', $items );
-		$db->query( $sql, 'updateSearchIndex.php ' . __METHOD__ );
+		$db->lockTables( $read, $write, 'updateSearchIndex.php ' . __METHOD__ );
 	}
 
 	/**
@@ -164,7 +155,7 @@ class UpdateSearchIndex extends Maintenance {
 	 * @param &$db Database object
 	 */
 	private function unlockSearchindex( &$db ) {
-		$db->query( "UNLOCK TABLES", 'updateSearchIndex.php ' . __METHOD__ );
+		$db->unlockTables( 'updateSearchIndex.php ' . __METHOD__ );
 	}
 	
 	/**

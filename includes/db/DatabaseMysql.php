@@ -348,7 +348,7 @@ class DatabaseMysql extends DatabaseBase {
 
 		foreach( $write as $table ) {
 			$tbl = $this->tableName( $table ) . 
-					$lowPriority ? ' LOW_PRIORITY' : '' . 
+					( $lowPriority ? ' LOW_PRIORITY' : '' ) . 
 					' WRITE';
 			$items[] = $tbl;
 		}
