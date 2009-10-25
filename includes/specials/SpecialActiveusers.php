@@ -146,7 +146,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$usersbody = $up->getBody();
 
                 $s = Html::rawElement( 'div', array( 'class' => 'mw-activeusers-intro' ),
-                        wfMsgExt( 'activeusers-intro', 'parsemag', $wgLang->formatNum( ceil( $wgRCMaxAge / 86400 ) ) )
+                        wfMsgExt( 'activeusers-intro', array( 'parsemag', 'escape' ), $wgLang->formatNum( ceil( $wgRCMaxAge / 86400 ) ) )
                 );
 
 		$s .= $up->getPageHeader();
