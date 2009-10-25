@@ -946,7 +946,7 @@ CONTROL;
 			$header .= "<tr><td colspan='{$multiColspan}' align='center' class='diff-multi'>{$multi}</td></tr>";
 		}
 		if ( $notice != '' ) {
-			$header .= "<tr><td colspan='{$multiColspan}' align='center' class='diff-multi'>{$notice}</td></tr>";
+			$header .= "<tr><td colspan='{$multiColspan}' align='center'>{$notice}</td></tr>";
 		}
 
 		return $header . $diff . "</table>";
