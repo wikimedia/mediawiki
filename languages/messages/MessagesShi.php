@@ -363,6 +363,19 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 # Upload
 'upload' => 'sΥlid afaylu',
 
+# Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byt|byt}}',
+'ncategories'             => '$1 {{PLURAL:$1|taggayt|taggayin}}',
+'nlinks'                  => '$1 {{PLURAL:$1|azday|izdayn}}',
+'nmembers'                => '$1 {{PLURAL:$1|agmam|igmamn}}',
+'nrevisions'              => '$1 {{PLURAL:$1|asgadda|isgaddatn}}',
+'nviews'                  => '$1 {{PLURAL:$1|assag|issagn}}',
+'specialpage-empty'       => 'Ur illa mayttukfan i asaggu yad',
+'lonelypages'             => 'Tasnatiwin tigigilin',
+'lonelypagestext'         => 'Tisnawinad ur ur tuyzdaynt z ulla lant ɣ tisniwin yaḍnin ɣ {{SITENAME}}.',
+'uncategorizedpages'      => 'Tisnawinad ur llant ɣ graygan taggayt',
+'uncategorizedcategories' => 'Taggayin ur ittuyzlayn ɣ kraygan taggayt',
+
 # Special:AllPages
 'alphaindexline' => '$1 ar $2',
 
@@ -381,6 +394,24 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'year'      => 'Z usggas (d urbur):',
 
 'sp-contributions-talk' => 'assays',
+
+# What links here
+'whatlinkshere'            => 'May izdayn ɣid',
+'whatlinkshere-title'      => 'Tasniwin li izdayn d "$1"',
+'whatlinkshere-page'       => 'Tasna:',
+'whatlinkshere-backlink'   => '← $1',
+'linkshere'                => "Tasnawinad ar slkamnt i '''[[:$1]]''':",
+'nolinkshere'              => "Ur llant tasniwin li izdin d '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Ur tlla kra n tasna izdin d  '''[[:$1]]''' ɣ tɣult l-ittuystayn.",
+'isredirect'               => 'Tasna immutin',
+'istemplate'               => 'Illa gis',
+'isimage'                  => 'Azday awlaf',
+'whatlinkshere-prev'       => '{{PLURAL:$1|amzwaru|amzwaru $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|wali d yuckan|wali d yuckan $1}}',
+'whatlinkshere-links'      => '← izdayn',
+'whatlinkshere-hideredirs' => '$1 Ismmattayn',
+'whatlinkshere-hidelinks'  => '$1 izdayn',
+'whatlinkshere-hideimages' => '$1 izdayn awlaf',
 
 # Block/unblock
 'contribslink' => 'tikkin',

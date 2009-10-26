@@ -950,9 +950,9 @@ As grund is angeven: $1",
 'recreate-moveddeleted-warn'       => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
-Hieronder steet veur de dudelijkheid infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen:",
+Veur de dudelijkheid steet hieronder  't logboek mit vort-edaone infermasie en 't herneumlogboek veur disse pagina:",
 'moveddeleted-notice'              => "Disse pagina is vort-edaon.
-Hieronder steet de infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen.",
+Hieronder steet de infermasie uut 't logboek mit vort-edaone infermasie en 't herneumlogboek.",
 'log-fulllog'                      => "'t Hele logboek bekieken",
 'edit-hook-aborted'                => 'De bewarking is of-ebreuken deur een hook.
 Der is gien reden op-egeven.',
@@ -961,7 +961,7 @@ Der is gien reden op-egeven.',
 'edit-conflict'                    => 'Bewarkingskonflik.',
 'edit-no-change'                   => 'Joew bewarking is enegeerd, umdat der gien wieziging an de tekse edaon is.',
 'edit-already-exists'              => "De pagina kon neet an-emaak wonnen.
-'t Besteet à.",
+'t Besteet al.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Waorschuwing: disse pagina gebruuk te veul kosbaore parserfuncties.
@@ -1040,6 +1040,10 @@ As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'rev-suppressed-unhide-diff'  => "Eén van de bewarkingen in disse vergeliekingen is '''vort-edaon'''.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokken infermasie].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
+'rev-deleted-diff-view'       => "Een van de bewarkingen veur de verschillen dee-j op-evreugen hemmen '''vort-edaon'''.
+As beheerder ku-j disse verschillen bekieken. Meschien steet der meer over in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone infermasie].",
+'rev-suppressed-diff-view'    => "Een van de bewarkingen veur de verschillen dee-j op-evreugen hemmen is '''onderdrok'''.
+As beheerder ku-j disse verschillen bekieken. Meschien steet der over in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokken versies].",
 'rev-delundel'                => 'bekiek/verbarg',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'     => 'Gien doelversie',
@@ -1055,6 +1059,7 @@ As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'logdelete-selected'          => "'''{{PLURAL:$1|Esillecteren logboekboekactie|Esillecteren logboekacties}}:'''",
 'revdelete-text'              => "'''Vort-edaone bewarkingen staon nog altied in de geschiedenisse en in logboeken, mar neet iederene kan de inhoud zomar bekieken.'''
 Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.",
+'revdelete-confirm'           => "Bevestig da-j dit doon wollen, da-j de gevolgen dervan begriepen en da-j 't doon in overeenstemming mit 't geldende [[{{MediaWiki:Policy-url}}|beleid]].",
 'revdelete-suppress-text'     => "Onderdrokken ma-j '''allinnig''' gebruken in de volgende gevallen:
 * Ongepassen persoonlijke infermasie
 *: ''adressen en tillefoonnummers, burgerservicenummers, en gao zo mar deur.''",
@@ -1419,12 +1424,12 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'group-suppress'      => 'toezichhouwers',
 'group-all'           => '(alles)',
 
-'group-user-member'          => 'Gebruker',
-'group-autoconfirmed-member' => 'An-emelde gebruker',
+'group-user-member'          => 'gebruker',
+'group-autoconfirmed-member' => 'Autobevestigen gebruker',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'burocraot',
-'group-suppress-member'      => 'Toezichhouwer',
+'group-suppress-member'      => 'toezichhouwer',
 
 'grouppage-user'          => '{{ns:project}}:Gebrukers',
 'grouppage-autoconfirmed' => '{{ns:project}}:An-emelde gebrukers',
@@ -1447,7 +1452,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-suppressredirect'      => 'Gien deurverwiezing anmaken op de ouwe naam as een pagina herneumd wonnen',
 'right-upload'                => 'Bestanen toevoegen',
 'right-reupload'              => 'Een bestaond bestaand overschrieven',
-'right-reupload-own'          => 'Eigen toe-evoegen bestanen overschrieven',
+'right-reupload-own'          => 'Bestanen overschrieven dee-j der zelf bie ezet hemmen',
 'right-reupload-shared'       => 'Media uut de edelen mediadatabanke plaoselijk overschrieven',
 'right-upload_by_url'         => 'Bestanen toevoegen via een verwiezing',
 'right-purge'                 => 'De kas van een pagina legen',
@@ -1597,9 +1602,9 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'upload_directory_missing'    => 'De bestaandtoevoegingsmap ($1) ontbreek en kon neet an-emaak wonnen deur de webserver.',
 'upload_directory_read_only'  => "Op 't mement ku-j gien bestanen toevoegen vanwegen technische preblemen ($1).",
 'uploaderror'                 => "Fout bie 't toevoegen van 't bestaand",
-'uploadtext'                  => "Gebruuk 't onderstaonde formelier um bestanen toe te voegen.
-Um eerder toe-evoegen bestanen te bekieken of te zeuken ku-j naor de [[Special:FileList|bestaanslieste]] gaon.
-Toe-evoegen bestanen en media dee vort-edaon bin wonnen bie-ehuilen in 't [[Special:Log/upload|logboek mit toe-evoegen bestanen]] en 't [[Special:Log/delete|logboek mit vort-edaon bestanen]].
+'uploadtext'                  => "Gebruuk 't formelier hieronder um bestanen derbie te zetten.
+Um bestanen te bekieken of te zeuken dee-j der eerder al bie ezet hemmen, ku-j naor de [[Special:FileList|bestaanslieste]] gaon.
+Bestanen en media dee nao 't vortdoon opniej derbie zet wönnen ku-j in de smiezen houwen in 't [[Special:Log/upload|logboek mit nieje bestanen]] en 't [[Special:Log/delete|logboek mit vort-edaone infermasie]].
 
 Um 't bestaand in te voegen in een pagina ku-j een van de volgende codes gebruken:
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.jpg]]</nowiki>'''
@@ -1608,8 +1613,8 @@ Um 't bestaand in te voegen in een pagina ku-j een van de volgende codes gebruke
 'upload-permitted'            => 'Toe-estaone bestaanstypes: $1.',
 'upload-preferred'            => 'An-ewezen bestaanstypes: $1.',
 'upload-prohibited'           => 'Verbeujen bestaanstypes: $1.',
-'uploadlog'                   => 'Logboek toe-evoegen bestanen',
-'uploadlogpage'               => 'Toe-evoegen bestanen',
+'uploadlog'                   => 'logboek mit nieje bestanen',
+'uploadlogpage'               => 'Logboek mit nieje bestanen',
 'uploadlogpagetext'           => 'Hieronder steet een lieste mit bestanen dee net niej bin.
 Zie de [[Special:NewFiles|uutstalling mit media]] veur een overzichte.',
 'filename'                    => 'Bestaansnaam',
@@ -1618,7 +1623,7 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur een overzichte.',
 'filereuploadsummary'         => 'Bestaanswiezigingen:',
 'filestatus'                  => 'Auteursrechstaotus',
 'filesource'                  => 'Bron',
-'uploadedfiles'               => 'Toe-evoegen bestanen',
+'uploadedfiles'               => 'Nieje bestanen',
 'ignorewarning'               => 'Negeer alle waorschuwingen',
 'ignorewarnings'              => 'negeer waorschuwingen',
 'minlength1'                  => 'Bestaansnamen mutten uut tenminsen één letter bestaon.',
@@ -1639,8 +1644,8 @@ Toe-estaone {{PLURAL:\$3|bestaanstype is|bestaanstypes bin}} \$2.",
 De samenvatting dee-j op-egeven hemmen zal neet op de beschrievingspagina koemen.
 Bewark de pagina haandmaotig um joew beschrieving daor weer te geven.
 [[$1|thumb]]",
-'fileexists-extension'        => "Een bestaand mit een soortgelieke naam besteet à: [[$2|thumb]]
-* Naam van 't bestaand da-j toevoegen wollen: '''<tt>[[:$1]]</tt>'''
+'fileexists-extension'        => "Een bestaand mit een soortgelieke naam besteet al: [[$2|thumb]]
+* Naam van 't bestaand da-j derbie zetten wollen: '''<tt>[[:$1]]</tt>'''
 * Naam van 't bestaonde bestaand: '''<tt>[[:$2]]</tt>'''
 Kies een aandere naam.",
 'fileexists-thumbnail-yes'    => "Dit bestaand is een ofbeelding waovan de grootte verkleind is ''(ofbeeldingsoverzichte)''. [[$1|thumb]]
@@ -2010,7 +2015,7 @@ Ondersteunde protecollen: <tt>$1</tt>',
 'activeusers-noresult' => 'Gien actieve gebrukers evunnen.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Logboek nieje gebrukers',
+'newuserlogpage'              => 'Logboek mit anwas',
 'newuserlogpagetext'          => 'Hieronder staon de niej in-eschreven gebrukers',
 'newuserlog-byemail'          => 'wachwoord is verzunnen via de liendepos',
 'newuserlog-create-entry'     => 'Nieje gebruker',
@@ -2139,7 +2144,7 @@ Opmarkingen en veerdere hulpe:
 'exblank'                => 'Pagina was leeg',
 'delete-confirm'         => '"$1" vortdoon',
 'delete-legend'          => 'Vortdoon',
-'historywarning'         => 'Waorschuwing: disse pagina hef een veurgeschiedenisse. Kiek effen nao of je neet een ouwere versie van disse pagina herstellen kunnen.',
+'historywarning'         => "'''Waorschuwing''': de pagina dee-j vortdoon, hef $1 {{PLURAL:$1|versie|versies}}:",
 'confirmdeletetext'      => "Je staon op 't punt een pagina en de geschiedenisse dervan vort te doon.
 Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen en dat 't akkerdeert mit 't [[{{MediaWiki:Policy-url}}|beleid]].",
 'actioncomplete'         => 'Uut-evoerd',
@@ -2147,7 +2152,7 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen
 'deletedtext'            => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
 'deletedarticle'         => '"$1" vort-edaon',
 'suppressedarticle'      => 'hef "[[$1]]" verbörgen',
-'dellogpage'             => "Logboek vort-edaone pagina's",
+'dellogpage'             => 'Logboek mit vort-edaone infermasie',
 'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
 'deletionlog'            => "Vort-edaone pagina's",
 'reverted'               => 'Eerdere versie hersteld',
@@ -2274,8 +2279,8 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 'cannotundelete'               => "Weerummeplaosen van 't bestaand is mislok; een aander hef disse pagina meschien al weerummeplaos.",
 'undeletedpage'                => "<big>'''$1 is weerummeplaos'''</big>
 
-Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
-'undelete-header'              => "Zie [[Special:Log/delete|'t logboek vort-edaone pagina's]] veur pagina's dee 't les vort-edaon bin.",
+Bekiek 't [[Special:Log/delete|logboek mit vort-edaone infermasie]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
+'undelete-header'              => "Zie 't [[Special:Log/delete|logboek mit vort-edaone infermasie]] veur spul dat les vort-edaon is.",
 'undelete-search-box'          => "Deurzeuk vort-edaone pagina's",
 'undelete-search-prefix'       => "Bekiek pagina's vanof:",
 'undelete-search-submit'       => 'Zeuk',
@@ -2307,14 +2312,14 @@ $1",
 'month'               => 'Maond:',
 'year'                => 'Jaor:',
 
-'sp-contributions-newbies'        => 'Allinnig de biedragen van nieje gebrukers bekieken',
-'sp-contributions-newbies-sub'    => 'Veur niejelingen',
-'sp-contributions-newbies-title'  => 'Biedragen van nieje gebrukers',
-'sp-contributions-blocklog'       => 'Blokkeerlogboek',
+'sp-contributions-newbies'        => 'Allinnig biedragen van anwas bekieken',
+'sp-contributions-newbies-sub'    => 'Veur anwas',
+'sp-contributions-newbies-title'  => 'Biedragen van anwas',
+'sp-contributions-blocklog'       => 'blokkeerlogboek',
 'sp-contributions-deleted'        => 'vort-edaone gebrukersbiedragen',
 'sp-contributions-logs'           => 'logboeken',
 'sp-contributions-talk'           => 'overleg',
-'sp-contributions-userrights'     => 'Gebrukersrechenbeheer',
+'sp-contributions-userrights'     => 'gebrukersrechenbeheer',
 'sp-contributions-blocked-notice' => "Disse gebruker is op 't mement eblokkeerd.
 De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 'sp-contributions-search'         => 'Zeuken naor biedragen',
@@ -2402,20 +2407,20 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'blocklist-nousertalk'            => 'kan zien eigen overlegpagina neet bewarken',
 'ipblocklist-empty'               => 'De blokkeerlieste is leeg.',
 'ipblocklist-no-results'          => "'t Op-evreugen IP-adres of de gebrukersnaam is neet eblokkeerd.",
-'blocklink'                       => 'Blokkeer',
+'blocklink'                       => 'blokkeren',
 'unblocklink'                     => 'deblokkeer',
 'change-blocklink'                => 'blokkering wiezigen',
-'contribslink'                    => 'Biedragen',
+'contribslink'                    => 'biedragen',
 'autoblocker'                     => 'Vanzelf eblokkeerd umdat \'t IP-adres overenekump mit \'t IP-adres van [[User:$1|$1]], dee eblokkeerd is mit as reden: "$2"',
 'blocklogpage'                    => 'Blokkeerlogboek',
-'blocklog-showlog'                => "Disse gebruker is à eerder eblokkeerd.
+'blocklog-showlog'                => "Disse gebruker is al eerder eblokkeerd.
 't Blokkeerlogboek steet hieronder as rifferentie:",
-'blocklog-showsuppresslog'        => "Disse gebruker is à eerder eblokkeerd en wele bewarkingen van disse gebruker bin verbörgen.
+'blocklog-showsuppresslog'        => "Disse gebruker is al eerder eblokkeerd en wele bewarkingen van disse gebruker bin verbörgen.
 't Logboek mit onderdrokken versies steet hieronder as rifferentie:",
 'blocklogentry'                   => 'blokkeren "[[$1]]" veur $2 $3',
 'reblock-logentry'                => "hef de instellingen veur de blokkering van [[$1]] ewiezig. 't Loop noen of over $2 $3",
 'blocklogtext'                    => "Hier zie-j een lieste van de leste blokkeringen en deblokkeringen. Autematische blokkeringen en deblokkeringen koemen neet in 't logboek te staon. Zie de [[Special:IPBlockList|IP-blokkeerlieste]] veur de lieste van adressen dee noen eblokkeerd bin.",
-'unblocklogentry'                 => 'Blokkering van $1 op-eheven',
+'unblocklogentry'                 => 'blokkering van $1 is op-eheven',
 'block-log-flags-anononly'        => 'allinnig anneniemen',
 'block-log-flags-nocreate'        => 'anmaken van gebrukersprefielen uut-eschakeld',
 'block-log-flags-noautoblock'     => 'autoblokkeren uut-eschakeld',
@@ -3287,7 +3292,7 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Anmelden / inschrieven',
 'specialpages-group-changes'     => 'Leste wiezigingen en logboeken',
-'specialpages-group-media'       => 'Media-overzichen en toe-evoegen bestanen',
+'specialpages-group-media'       => 'Media-overzichen en nieje bestanen',
 'specialpages-group-users'       => 'Gebrukers en rechen',
 'specialpages-group-highuse'     => "Veulgebruken pagina's",
 'specialpages-group-pages'       => 'Paginaliesten',

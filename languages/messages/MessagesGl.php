@@ -975,6 +975,10 @@ Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-suppressed-unhide-diff'  => "Unha das revisións desta diferenza foi '''suprimida'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
 Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
+'rev-deleted-diff-view'       => "Unha das revisións desta diferenza foi '''borrada'''.
+Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-suppressed-diff-view'    => "Unha das revisións desta diferenza foi '''suprimida'''.
+Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
 'rev-delundel'                => 'mostrar/agochar',
 'revisiondelete'              => 'Borrar/restaurar revisións',
 'revdelete-nooldid-title'     => 'Revisión inválida',
