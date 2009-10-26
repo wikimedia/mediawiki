@@ -425,11 +425,11 @@ mvPlayList.prototype = {
 				'height:'+(this.height+this.pl_layout.title_bar_height + this.pl_layout.control_height)+'px;position:relative;">' +				
 			'</div>');		
 		if(this.controls==true){	
-			//append title & controler:
+			//append title:
 			$j('#dc_'+_this.id).append(
 				'<div style="font-size:13px;border:solid thin;width:'+this.width+'px;" id="ptitle_'+this.id+'"></div>' +
-				'<div class="videoPlayer" style="position:absolute;top:'+(_this.height+_this.pl_layout.title_bar_height+4)+'px">' +
-				'<div id="mv_embedded_controls_'+_this.id+'" class="ui-widget ui-corner-bottom ui-state-default controls" '+
+				'<div class="' + this.ctrlBuilder.pClass + '" style="position:absolute;top:'+(_this.height+_this.pl_layout.title_bar_height+4)+'px">' +
+				'<div class="ui-widget-header ui-helper-clearfix control-bar" '+
 					'style="width:' + _this.width + 'px" >' + 
 						 _this.getControlsHTML() +
 					'</div>'+
@@ -445,7 +445,7 @@ mvPlayList.prototype = {
 		}else{
 			//just append the video: 
 			$j('#dc_'+_this.id).append(
-				'<div class="videoPlayer" style="position:absolute;top:'+(_this.height+_this.pl_layout.title_bar_height+4)+'px"></div>'
+				'<div class="' + this.ctrlBuilder.pClass + '" style="position:absolute;top:'+(_this.height+_this.pl_layout.title_bar_height+4)+'px"></div>'
 			);
 		}			
 		this.setupClipDisplay();										 
@@ -554,7 +554,7 @@ mvPlayList.prototype = {
 	setSliderValue:function(value){				
 		//slider is on 1000 scale: 
 		var val = parseInt( value *1000 ); 			
-		$j('#mv_play_head_' + this.id).slider('value', val);		
+		$j('#' + this.id + ' .play_head').slider('value', val);		
 	},
 	getPlayHeadPos: function(prec_done){
 		var	_this = this;
@@ -911,10 +911,10 @@ mvPlayList.prototype = {
 		var _this = this;
 		
 		if( !_this.mv_seeker_width)
-			_this.mv_seeker_width = $j('#mv_play_head_'+_this.id).width();					
+			_this.mv_seeker_width = $j('#' + _this.id + ' .play_head').width();					
 	
 		if( !_this.track_len ) 
-			_this.track_len = $j('#mv_play_head_'+_this.id).width();
+			_this.track_len = $j('#' + _this.id + ' .play_head').width();
 			
 		//total duration:		
 		var pl_duration = _this.getDuration();
@@ -947,7 +947,7 @@ mvPlayList.prototype = {
 			
 			//background:#DDD +clip.getColor();
 			
-			$j('#mv_play_head_'+_this.id).append(barHtml);
+			$j('#' + _this.id + ' .play_head').append(barHtml);
 																										
 			//js_log('offset:' + cur_pixle +' width:'+pwidth+' add clip'+ clip.id + ' is '+clip.embed.getDuration() +' = ' + perc +' of ' + _this.track_len);
 			cur_pixle+=pwidth;								
@@ -1695,7 +1695,7 @@ var mvTransLib = {
 		this['type'][tObj.type][tObj.subtype].u(tObj,percent);
 	},
 	getTransitionIcon:function( type, subtype){
-		return mv_embed_path +'/skins/'+mwConfig['skin_name']+'/transition_images/'+ type+'_'+ subtype+ '.png';
+		return mv_embed_path +'/skins/common/transition_images/'+ type+'_'+ subtype+ '.png';
 	},
 	/*
 	 * mvTransLib: functional library mapping:
