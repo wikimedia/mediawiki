@@ -29,7 +29,7 @@ loadGM({
 	"mwe-share" : "Share",
 	"mwe-credits" : "Credits",
 	"mwe-clip_linkback" : "Clip source page",
-	"mwe-chose_player" : "Choose Video Player",
+	"mwe-chose_player" : "Choose video player",
 	"mwe-share_this_video" : "Share this video",
 	"mwe-video_credits" : "Video credits",
 	"mwe-menu_btn" : "Menu",
@@ -48,7 +48,7 @@ loadGM({
 	"mwe-for_best_experience" : "For a better video playback experience we recommend:<br \/><b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mwe-do_not_warn_again" : "Dismiss for now.",
 	"mwe-playerselect" : "Players",
-	"mwe-read_before_embed" : "<a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">Read This<\/a> before embedding.",
+	"mwe-read_before_embed" : "<a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">Read this<\/a> before embedding.",
 	"mwe-embed_site_or_blog" : "Embed on your site or blog",
 	"mwe-related_videos" : "Related videos",
 	"mwe-seeking" : "seeking"
