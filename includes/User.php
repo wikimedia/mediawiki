@@ -621,7 +621,7 @@ class User {
 	 * Is the input a valid password for this user?
 	 *
 	 * @param $password String Desired password
-	 * @return bool True or false
+	 * @return mixed: bool True or false or a message key explaining why the password is invalid
 	 */
 	function isValidPassword( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
@@ -645,14 +645,16 @@ class User {
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 		
-		if ( !$this->isValidPassword( $password ) ) {
+		if ( ( $result = $this->isValidPassword( $password ) ) === false ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
 			}
-		} else {
+		} elseif( $result === true ) {
 			return true;
+		} else {
+			return $result; //the isValidPassword hook set a string $result and returned false
 		}
 	}
 
@@ -1768,7 +1770,7 @@ class User {
 				throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
 			}
  
-			if( !$this->isValidPassword( $str ) ) {
+			if( $this->isValidPassword( $str ) !== true ) {
  				global $wgMinimalPasswordLength;
 				$valid = $this->getPasswordValidity( $str );
 				throw new PasswordError( wfMsgExt( $valid, array( 'parsemag' ),
