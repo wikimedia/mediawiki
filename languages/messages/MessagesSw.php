@@ -1277,6 +1277,11 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 # Special:Categories
 'categories' => 'Jamii',
 
+# Special:DeletedContributions
+'deletedcontributions'             => 'Michango ya mtumiaji aliyefutwa',
+'deletedcontributions-title'       => 'Michango ya mtumiaji aliyefutwa',
+'sp-deletedcontributions-contribs' => 'michango',
+
 # Special:LinkSearch
 'linksearch'    => 'Viungo vya nje',
 'linksearch-ns' => 'Eneo la wiki:',
@@ -1345,7 +1350,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 # Delete
 'deletepage'            => 'Futa ukurasa',
 'delete-legend'         => 'Futa',
-'historywarning'        => 'Ilani: Ukurasa unaotaka kufuta una historia yake:',
+'historywarning'        => "'''Ilani:''' Ukurasa unaotaka kufuta una historia ya {{PLURAL:$1|sahihisho|masahihisho}} $1:",
 'confirmdeletetext'     => 'Wewe unategemea kufuta ukurasa pamoja na historia yake yote.
 Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo yake, na kwamba unafuata [[{{MediaWiki:Policy-url}}|sera]].',
 'actioncomplete'        => 'Kitendo kimekwisha',
@@ -1403,13 +1408,14 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'restriction-upload' => 'Kupakia',
 
 # Undelete
-'viewdeletedpage'        => 'Tazama kurasa zilizofutwa',
-'undeletebtn'            => 'Rudisha',
-'undeletelink'           => 'onyesha/rejesha',
-'undeleteviewlink'       => 'tazama',
-'undeletecomment'        => 'Sababu:',
-'undeletedarticle'       => 'alirudisha "[[$1]]"',
-'undelete-search-submit' => 'Tafuta',
+'viewdeletedpage'           => 'Tazama kurasa zilizofutwa',
+'undeletebtn'               => 'Rudisha',
+'undeletelink'              => 'onyesha/rejesha',
+'undeleteviewlink'          => 'tazama',
+'undeletecomment'           => 'Sababu:',
+'undeletedarticle'          => 'alirudisha "[[$1]]"',
+'undelete-search-submit'    => 'Tafuta',
+'undelete-show-file-submit' => 'Ndiyo',
 
 # Namespace form on various pages
 'namespace'      => 'Chagua eneo la wiki:',
@@ -1428,6 +1434,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'sp-contributions-newbies'     => 'Onyesha michango ya akaunti mpya tu',
 'sp-contributions-newbies-sub' => 'Kwa akaunti mpya',
 'sp-contributions-blocklog'    => 'Kumbukumbu ya uzuio',
+'sp-contributions-logs'        => 'kumbukumbu',
 'sp-contributions-talk'        => 'majadiliano',
 'sp-contributions-search'      => 'Tafuta michango',
 'sp-contributions-username'    => 'Anwani ya IP au jina la mtumiaji:',
@@ -1477,6 +1484,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'ipbwatchuser'             => 'Fuatilia kurasa za mtumiaji na majadiliano ya mtumiaji huyu.',
 'ipballowusertalk'         => 'Ruhusu mtumiaji huyu kuhariri ukurasa wake mwenyewe wa majadiliano wakati kazuiliwa',
 'ipblocklist'              => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
+'emailblock'               => 'barua pepe imezuiliwa',
 'blocklink'                => 'zuia',
 'unblocklink'              => 'acha kuzuia',
 'change-blocklink'         => 'badilisha zuia',
@@ -1538,6 +1546,7 @@ Chagua jina lengine.',
 'allmessagesname'           => 'Jina',
 'allmessages-filter-legend' => 'Chuja',
 'allmessages-filter-all'    => 'Zote',
+'allmessages-language'      => 'Lugha:',
 
 # Thumbnails
 'thumbnail-more'  => 'Kuza',
@@ -1664,6 +1673,8 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-usercomment'             => 'Maoni ya mtumiaji',
 'exif-relatedsoundfile'        => 'Faili la sauti linalohusika',
 
+'exif-subjectdistancerange-0' => 'Haujulikani',
+
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
 'edit-externally-help' => '(Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
@@ -1696,6 +1707,9 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'confirmemail_invalidated' => 'Uthibitisho wa barua pepe umebatilishwa.',
 'invalidateemail'          => 'Batilisha barua pepe ya uthibitisho.',
 
+# Delete conflict
+'deletedwhileediting' => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
+
 # action=purge
 'confirm_purge_button' => 'Sawa',
 
@@ -1722,6 +1736,8 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 
 # Special:Version
 'version'                  => 'Toleo',
+'version-specialpages'     => 'Kurasa maalum',
+'version-other'            => 'Zingine',
 'version-version'          => '(Toleo $1)',
 'version-license'          => 'Ruhusa',
 'version-software-version' => 'Toleo',
