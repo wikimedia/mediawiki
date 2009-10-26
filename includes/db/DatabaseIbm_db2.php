@@ -85,13 +85,18 @@ END;
 class IBM_DB2Blob {
 	private $mData;
 
-	function __construct($data) {
+	public function __construct($data) {
 		$this->mData = $data;
 	}
 
-	function getData() {
+	public function getData() {
 		return $this->mData;
 	}
+	
+	public function __toString()
+    {
+        return $this->mData;
+    }
 }
 
 /**
@@ -770,6 +775,8 @@ EOF;
 			return "NULL";
 		} else if ($s instanceof Blob) {
 			return "'".$s->fetch($s)."'";
+		} else if ($s instanceof IBM_DB2Blob) {
+			return "'".$this->decodeBlob($s)."'";
 		}
 		$s = $this->strencode($s);
 		if ( is_numeric($s) ) {
