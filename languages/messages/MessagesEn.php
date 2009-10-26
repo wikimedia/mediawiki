@@ -1407,6 +1407,7 @@ The reason given by $3 is ''$2''",
 Legend: '''({{int:cur}})''' = difference with current revision,
 '''({{int:last}})''' = difference with preceding revision, '''{{int:minoreditletter}}''' = minor edit.",
 'history-fieldset-title' => 'Browse history',
+'history-show-deleted'   => 'Deleted only',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
 'histfirst'              => 'Earliest',
 'histlast'               => 'Latest',
