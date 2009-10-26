@@ -621,19 +621,11 @@ class User {
 	 * Is the input a valid password for this user?
 	 *
 	 * @param $password String Desired password
-	 * @return mixed: bool True or false or a message key explaining why the password is invalid
+	 * @return bool True or false
 	 */
 	function isValidPassword( $password ) {
-		global $wgMinimalPasswordLength, $wgContLang;
-
-		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
-			return $result;
-		if( $result === false )
-			return false;
- 
-		// Password needs to be long enough, and can't be the same as the username
-		return strlen( $password ) >= $wgMinimalPasswordLength
-			&& $wgContLang->lc( $password ) !== $wgContLang->lc( $this->mName );
+		//simple boolean wrapper for getPasswordValidity
+		return $this->getPasswordValidity( $password ) === true;
 	}
 
 	/**
@@ -645,7 +637,12 @@ class User {
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 		
-		if ( ( $result = $this->isValidPassword( $password ) ) === false ) {
+		$result = false; //init $result to false for the internal checks
+		
+		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
+			return $result;
+		
+		if ( $result === false ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
@@ -654,7 +651,7 @@ class User {
 		} elseif( $result === true ) {
 			return true;
 		} else {
-			return $result; //the isValidPassword hook set a string $result and returned false
+			return $result; //the isValidPassword hook set a string $result and returned true
 		}
 	}
 
@@ -1770,7 +1767,7 @@ class User {
 				throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
 			}
  
-			if( $this->isValidPassword( $str ) !== true ) {
+			if( !$this->isValidPassword( $str ) ) {
  				global $wgMinimalPasswordLength;
 				$valid = $this->getPasswordValidity( $str );
 				throw new PasswordError( wfMsgExt( $valid, array( 'parsemag' ),
