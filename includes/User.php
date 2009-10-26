@@ -2621,7 +2621,7 @@ class User {
 	 * Generate a string which will be different for any combination of
 	 * user options which would produce different parser output.
 	 * This will be used as part of the hash key for the parser cache,
-	 * so users will the same options can share the same cached data
+	 * so users with the same options can share the same cached data
 	 * safely.
 	 *
 	 * Extensions which require it should install 'PageRenderingHash' hook,
