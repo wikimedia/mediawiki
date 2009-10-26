@@ -18,19 +18,31 @@ var ctrlBuilder = function( embedObj ) {
  */
 ctrlBuilder.prototype = {
 	init:function( embedObj, opt ){
+		var _this = this;
 		this.embedObj = embedObj;
 
 		//check for skin overrides for ctrlBuilder
-		if( _global[ embedObj.skin_name + 'Config'] )
-			$j.extend(this, _global[ embedObj.skin_name + 'Config']);
-
+		if( _global[ embedObj.skin_name + 'Config'] ){
+			//clone as to not overide prototype: 	
+			var _this = $j.extend(true, {}, this, _global[ embedObj.skin_name + 'Config']);
+			return _this;
+		}
+		return this;		
 	},
-	pClass:'videoPlayer',
+	pClass : 'mv-player',
+	long_time_disp: true,
+	body_options : true,
 	height:29,
 	supports:{
 		  'options':true,
 		  'borders':true
 	},
+	menu_items:[
+		'playerselect',
+		'download',
+		'share',  
+		'credits',
+	],	
 	getControls:function(){
 		//set up local pointer to the embedObj
 		var embedObj = this.embedObj;
@@ -56,7 +68,7 @@ ctrlBuilder.prototype = {
 
 
 		//append options to body (if not already there)
-		if($j('#mv_vid_options_' + this.id).length==0)
+		if( _this.body_options && $j('#mv_vid_options_' + this.id).length == 0 )
 			$j('body').append( this.components['mv_embedded_options'].o( this ) );
 
 		var o='';
@@ -89,18 +101,19 @@ ctrlBuilder.prototype = {
 
 		//js_log('looking for: #mv_seeker_slider_'+embedObj.id + "\n " +
 		//		'start sec: '+embedObj.start_time_sec + ' base offset: '+embedObj.base_seeker_slider_offset);
-
+		var $tp=$j('#' + embedObj.id);
+		
 		//add play hook:
-		$j('#mv_play_pause_button_' + embedObj.id ).unbind().btnBind().click(function(){
+		$tp.find('.play-btn').unbind().btnBind().click(function(){
 			$j('#' + embedObj.id).get(0).play();
 		})
 
 		//do play-btn-large binding:
-		$j('#' + embedObj.id + ' .play-btn-large' ).unbind().btnBind().click(function(){
+		$tp.find('.play-btn-large' ).unbind().btnBind().click(function(){
 			$j('#' + embedObj.id).get(0).play();
 		});
 
-		//add recommend firefox if non-native playback:
+		//add recommend firefox if we have non-native playback:
 		if( embedObj.doNativeWarningCheck() ){
 			$j('#dc_'+ embedObj.id).hover(
 				function(){
@@ -147,17 +160,17 @@ ctrlBuilder.prototype = {
 		});
 
 		//options binding:
-		$j('#options_button_' + embedObj.id).unbind().btnBind().click(function(){
+		$tp.find('.options-btn').unbind().btnBind().click(function(){
 			$j('#' +embedObj.id).get(0).doOptionsHTML();
 		});
 
 		//fullscreen binding:
-		$j('#fullscreen_'+embedObj.id).unbind().btnBind().click(function(){
+		$tp.find('.fullscreen-btn').unbind().btnBind().click(function(){
 			$j('#' +embedObj.id).get(0).fullscreen();
 		});
 
-		js_log(" should add slider binding: " + $j('#mv_play_head_'+embedObj.id).length) ;
-		$j('#mv_play_head_'+embedObj.id).slider({
+		js_log(" should add slider binding: " + $j('#'+embedObj.id + ' .play_head').length) ;
+		$tp.find('.play_head').slider({
 			range: "min",
 			value: 0,
 			min: 0,
@@ -174,7 +187,7 @@ ctrlBuilder.prototype = {
 				var perc = ui.value/1000;
 				embedObj.jump_time = seconds2npt( parseFloat( parseFloat(embedObj.getDuration()) * perc ) + embedObj.start_time_sec);
 				//js_log('perc:' + perc + ' * ' + embedObj.getDuration() + ' jt:'+  this.jump_time);
-				embedObj.setStatus( gM('mwe-seek_to')+' '+embedObj.jump_time );
+				embedObj.setStatus( gM('mwe-seek_to', embedObj.jump_time ) );
 				//update the thumbnail / frame
 				if(embedObj.isPlaying==false){
 					embedObj.updateThumbPerc( perc );
@@ -193,36 +206,40 @@ ctrlBuilder.prototype = {
 					//set seek time (in case we have to do a url seek)
 					embedObj.seek_time_sec = npt2seconds( embedObj.jump_time, true );
 					js_log('do jump to: '+embedObj.jump_time + ' perc:' +perc + ' sts:' + embedObj.seek_time_sec);
+					embedObj.setStatus( gM('mwe-seeking') );
 					embedObj.doSeek(perc);
 				}
 			}
 		});
 		//up the z-index of the default status indicator:
-		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-handle').css('z-index', 4);
-		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-range').addClass('ui-corner-all').css('z-index', 2);
+		$tp.find('.play_head .ui-slider-handle').css('z-index', 4);
+		$tp.find('.play_head .ui-slider-range').addClass('ui-corner-all').css('z-index', 2);
 		//extended class list for jQuery ui themeing (we can probably refactor this with custom buffering highliter)
-		$j('#mv_play_head_'+embedObj.id).append( this.getMvBufferHtml() );
-
-		//videoOptions:
-		$j('#mv_vid_options_' + this.id + ' .vo_selection').click(function(){
-			embedObj.selectPlaybackMethod();
-			$j('#mv_vid_options_' + embedObj.id).hide();
+		$tp.find('.play_head').append( this.getMvBufferHtml() );
+			
+		$opt = $j('#mv_vid_options_'+embedObj.id);
+		//videoOptions ... @@todo should be merged with something more like kskin.js:
+		$opt.find('.vo_selection').click(function(){
+			embedObj.displayHTML();
+			embedObj.showPlayerselect( $tp.find('.videoOptionsComplete') );
+			$opt.hide();
 			return false;
 		});
-		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_download').click(function(){
-			embedObj.showVideoDownload();
-			$j('#mv_vid_options_'+embedObj.id).hide();
+		$opt.find('.vo_download').click(function(){
+			embedObj.displayHTML();
+			embedObj.showDownload( $tp.find('.videoOptionsComplete') );
+			$opt.hide();
 			return false;
 		})
-		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_showcode').click(function(){
+		$opt.find('.vo_showcode').click(function(){			
 			embedObj.showEmbedCode();
-			$j('#mv_vid_options_'+embedObj.id).hide();
+			$opt.hide();
 			return false;
 		});
 
 		//volume binding:
 		var hoverOverDelay=false;
-		$j('#volume_control_'+embedObj.id).unbind().btnBind().click(function(){
+		$tp.find('.volume_control').unbind().btnBind().click(function(){
 			$j('#' +embedObj.id).get(0).toggleMute();
 		}).hover(
 			function(){
@@ -259,9 +276,9 @@ ctrlBuilder.prototype = {
 			change:function(event, ui){
 				var perc = ui.value/100;
 				if (perc==0) {
-					$j('#volume_control_'+embedObj.id + ' span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
+					$j('#' + embedObj.id + ' .volume_control span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
 				}else{
-					$j('#volume_control_'+embedObj.id + ' span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
+					$j('#' + embedObj.id + ' .volume_control span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
 				}
 				//only run the onChange event if done by a user slide:
 				if(embedObj.userSlide){
@@ -272,7 +289,10 @@ ctrlBuilder.prototype = {
 				}
 			}
 		});
-
+		
+		//check if we have any custom skin hooks to run (only one per skin) 
+		if( this.addSkinControlHooks && typeof( this.addSkinControlHooks) == 'function')
+			this.addSkinControlHooks();
 	},
 	getMvBufferHtml:function(){
 		return '<div class="ui-slider-range ui-slider-range-min ui-widget-header ' +
@@ -296,7 +316,7 @@ ctrlBuilder.prototype = {
 			'o':function( ctrlObj ){
 				return	'';
 			}
-		},
+		}, 
 		'play-btn-large':{
 			'w' : 130,
 			'h' : 96,
@@ -309,8 +329,7 @@ ctrlBuilder.prototype = {
 							.css({
 								'left' 	: ((ctrlObj.embedObj.playerPixelWidth() - this.w)/2),
 								'top'	: ((ctrlObj.embedObj.playerPixelHeight() - this.h)/2)
-							})
-							//quick and dirty way to get at jquery html (might be a short cut I am missing?)
+							})							
 							.wrap('<div/>').parent().html();
 			}
 		},
@@ -342,31 +361,39 @@ ctrlBuilder.prototype = {
 		'fullscreen':{
 			'w':20,
 			'o':function( ctrlObj ){
-				return '<div title="' + gM('mwe-player_fullscreen') + '" id="fullscreen_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-arrow-4-diag"></span></div>'
+				return '<div title="' + gM('mwe-player_fullscreen') + '" class="ui-state-default ui-corner-all ui-icon_link rButton fullscreen-btn">'+				
+							'<span class="ui-icon ui-icon-arrow-4-diag"></span>'+
+						'</div>'
 			}
 		},
 		'options':{
 			'w':26,
 			'o':function( ctrlObj ){
-				return '<div title="'+ gM('mwe-player_options') + '" id="options_button_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-wrench"></span></div>';
+				return '<div title="' + gM('mwe-player_options') + '" class="ui-state-default ui-corner-all ui-icon_link rButton options-btn">' +
+							'<span class="ui-icon ui-icon-wrench"></span>' +							
+						'</div>';
 			}
 		},
 		'pause':{
 			'w':24,
-			'o':function( ctrlObj ){
-				return '<div title="' + gM('mwe-play_clip') + '" id="mv_play_pause_button_' + ctrlObj.id + '" class="ui-state-default ui-corner-all ui-icon_link lButton"><span class="ui-icon ui-icon-play"/></div>';
+			'o':function( ctrlObj ){				
+				return '<div title="' + gM('mwe-play_clip') + '" class="ui-state-default ui-corner-all ui-icon_link lButton play-btn">'+
+							'<span class="ui-icon ui-icon-play"/>'+
+						'</div>';
 			}
 		},
 		'closed_captions':{
 			'w':23,
 			'o':function( ctrlObj ){
-				return '<div title="' + gM('mwe-closed_captions') + '" id="timed_text_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-comment"></span></div>'
+				return '<div title="' + gM('mwe-closed_captions') + '" id="timed_text_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">'+
+							'<span class="ui-icon ui-icon-comment"></span>'+
+						'</div>'
 			}
 		},
 		'volume_control':{
 			'w':23,
 			'o':function( ctrlObj ){
-					return '<div title="' + gM('mwe-volume_control') + '" id="volume_control_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">' +
+					return '<div title="' + gM('mwe-volume_control') + '" class="ui-state-default ui-corner-all ui-icon_link rButton volume_control">' +
 								'<span class="ui-icon ui-icon-volume-on"></span>' +
 								'<div style="position:absolute;display:none;" id="vol_container_'+ctrlObj.id+'" class="vol_container ui-corner-all">' +
 									'<div class="volume_bar" id="volume_bar_' + ctrlObj.id + '"></div>' +
@@ -377,13 +404,13 @@ ctrlBuilder.prototype = {
 		'time_display':{
 			'w':90,
 			'o':function( ctrlObj ){
-				return '<div id="mv_time_'+ctrlObj.id+'" class="ui-widget time">' + ctrlObj.embedObj.getTimeReq() + '</div>';
+				return '<div class="ui-widget time-disp">' + ctrlObj.embedObj.getTimeReq() + '</div>';
 			}
 		},
 		'play_head':{
 			'w':0, //special case (takes up remaining space)
 			'o':function( ctrlObj ){
-				return '<div class="play_head" id="mv_play_head_' + ctrlObj.id + '" style="width: ' + ( ctrlObj.available_width - 30 ) + 'px;"></div>';
+				return '<div class="play_head" style="width: ' + ( ctrlObj.available_width - 30 ) + 'px;"></div>';
 			}
 		}
 	}

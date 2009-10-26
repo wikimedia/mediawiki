@@ -14,7 +14,7 @@ loadGM({
 	"rsd_box_layout" : "Box layout",
 	"rsd_list_layout" : "List layout",
 	"rsd_results_desc" : "Results $1 to $2",
-	"rsd_results_desc_total" : "Results $1 to $2 of $3",  
+	"rsd_results_desc_total" : "Results $1 to $2 of $3",
 	"rsd_results_next" : "next",
 	"rsd_results_prev" : "previous",
 	"rsd_no_results" : "No search results for <b>$1<\/b>",
@@ -47,12 +47,12 @@ loadGM({
 	"mwe-cancel_import" : "Cancel import",
 	"mwe-importing_asset" : "Importing asset",
 	"mwe-preview_insert_resource" : "Preview insert of resource: $1",
-	"mwe-checking-resource": "Checking for resource",
-	"mwe-resource-needs-import": "Resource $1 needs to be imported to $2",
+	"mwe-checking-resource" : "Checking for resource",
+	"mwe-resource-needs-import" : "Resource $1 needs to be imported to $2",
 	"mwe-ftype-svg" : "SVG vector file",
 	"mwe-ftype-jpg" : "JPEG image file",
 	"mwe-ftype-png" : "PNG image file",
-	"mwe-ftype-oga"	: "Ogg audio file",
+	"mwe-ftype-oga" : "Ogg audio file",
 	"mwe-ftype-ogg" : "Ogg video file",
 	"mwe-ftype-unk" : "Unknown file format"
 });
@@ -632,11 +632,11 @@ remoteSearchDriver.prototype = {
 		mv_set_loading('#tab-upload');
 		//do things async to keep interface snappy
 		setTimeout(function(){
-						
 			//check if we need to setup the proxy::
 			if( _this.upload_api_target == 'proxy' ){
-				//setup proxy
-				$j('#tab-upload').html( 'do proxy setup');
+				_this.setupProxy( function(){
+					_this.getUploadForm();
+				});														
 			}else{				
 				_this.getUploadForm();
 			}							
@@ -902,7 +902,7 @@ remoteSearchDriver.prototype = {
 						o+='<li class="rsd_cp_tab">';
 						o+='<a id="rsd_tab_' + cp_id + '" href="#tab-' + cp_id + '">';
 							if(cp.tab_img === true){
-								o+='<img alt="' + cp.title +'" src="' + mv_skin_img_path + 'remote_cp/' + cp_id + '_tab.png">';
+								o+='<img alt="' + cp.title +'" src="' + mv_embed_path +'/skins/common/remote_cp/' + cp_id + '_tab.png">';
 							}else{
 								o+= cp.title;
 							}

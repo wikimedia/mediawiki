@@ -8,7 +8,7 @@
  * since this is proxy server set a pre-append debug flag to know which debug msgs are coming from where
  */
  
-mwConfig['debug_pre'] = 'Proxy';
+$mw.conf['debug_pre'] = 'Proxy';
  
 if( !mwApiProxyConfig )
 	var mwApiProxyConfig = {};

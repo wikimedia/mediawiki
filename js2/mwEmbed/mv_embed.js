@@ -22,19 +22,6 @@ if( MV_EMBED_VERSION ){
 // Used to grab fresh copies of scripts.
 var MV_EMBED_VERSION = '1.0r20';
 
-/*
- * Configuration variables should be set by extending mwConfigOptions
- * here is the default config:
- */
-var mwDefaultConfig = {
-	'skin_name': 'mvpcf',
-	'jui_skin': 'redmond',
-	'video_size':'400x300'
-}
-
-// (We install the default config values for anything not set in mwConfig once we know we have jquery)
-if( !mwConfig )
-	var mwConfig = {};
 
 
 /**
@@ -173,14 +160,6 @@ lcCssPath({
 })
 
 
-
-
-
-
-
-
-
-
 // parseUri 1.2.2
 // (c) Steven Levithan <stevenlevithan.com>
 // MIT License
@@ -219,7 +198,8 @@ var _global = this; // Global obj (depreciate use window)
 
 /*
 * setup the empty global $mw object
-* will ensure all our functions are properly namespaced
+* will ensure all our functions and variables are properly namespaced
+* reducing chance of conflicts
 */
 if(!window['$mw']){
 	window['$mw'] = {}
@@ -242,6 +222,26 @@ if( !mv_embed_path ) {
 * there way into the $mw namespace
 */
 (function( $ ) {
+	/*
+	 * global config
+	 */
+	$.conf = {
+		'skin_name' : 'mvpcf',
+		'jui_skin' : 'redmond',
+		'video_size' : '400x300'		
+	}
+	
+	/*
+	* global flags
+	*/
+	$.g = {
+		'skin_list' : new Array(),
+		'mv_init_done' : false,
+		'global_cb_count' : 0,
+		'global_player_list' : new Array(), // The global player list per page
+		'global_req_cb' : new Array() // The global request callback array
+	}
+	 
 	/*
 	* Language classes $mw.lang
 	*
@@ -297,12 +297,13 @@ if( !mv_embed_path ) {
 
 		//swap in the arg values
 		var ms =  $.lang.gMsgSwap( key, args) ;
-
+		
+		
+		
 		//a quick check to see if we need to send the msg via the 'parser'
 		//(we can add more detailed check once we support more wiki syntax)
-		if(ms.indexOf('{{')==-1){
+		if(ms.indexOf('{{') === -1 && ms.indexOf('[') === -1){
 			return ms;
-			//return ms;
 		}
 
 		//make sure we have the lagMagic setup:
@@ -788,17 +789,16 @@ var gM = $mw.lang.gM;
 
 // All default messages in [English] should be overwritten by the CMS language message system.
 $mw.lang.loadGM({
-	"mwe-loading_txt" : "loading ...",
-	"mwe-loading_title" : "Loading...",
+	"mwe-loading_txt" : "Loading ...",
 	"mwe-size-gigabytes" : "$1 GB",
 	"mwe-size-megabytes" : "$1 MB",
 	"mwe-size-kilobytes" : "$1 K",
 	"mwe-size-bytes" : "$1 B",
 	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2",
-	"mwe-loading-add-media-wiz": "Loading add media wizard",
+	"mwe-loading-add-media-wiz" : "Loading add media wizard",
 	"mwe-apiproxy-setup" : "Setting up API proxy",
-	"mwe-load-drag-item" : "Loading dragged item", 
-	"mwe-ok" : "OK" 
+	"mwe-load-drag-item" : "Loading dragged item",
+	"mwe-ok" : "OK"
 });
 
 
@@ -818,9 +818,8 @@ function mv_set_loading(target, load_id){
 }
 
 /**
-  * mvJsLoader class handles initialization and js file loads
-  */
-
+* mvJsLoader class handles initialization and js file loads
+*/
 var mvJsLoader = {
 	libreq : {},
 	libs : {},
@@ -1019,19 +1018,15 @@ var mvJsLoader = {
 			if( _this.jQuerySetupFlag == false){
 				js_log('setup mv_embed jQuery bindings');
 				//setup our global settings using the (jQuery helper)
-				mwConfig = $j.extend( mwDefaultConfig, mwConfig);
 
 				// Set up the skin path
-				_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
-				_global['mv_skin_img_path'] = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
-				_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';
-
-				//setup skin dependent dependencies
-				lcCssPath({'embedVideo'	: 'skins/' + mwConfig['skin_name'] + '/playerSkin.css'});
+				_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' + $mw.conf['jui_skin'] + '/';
+				_global['mv_skin_img_path'] = mv_embed_path + 'skins/' + $mw.conf['skin_name'] + '/images/';
+				_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';			
 
 				// Make sure the skin/style sheets are always available:
 				loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-				loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/styles.css' );
+				loadExternalCss( mv_embed_path + 'skins/' + $mw.conf['skin_name'] + '/styles.css' );
 
 				// Set up AJAX to not send dynamic URLs for loading scripts (we control that with
 				// the scriptLoader)
@@ -1069,9 +1064,14 @@ var mvJsLoader = {
 					'$j.ui.slider'
 				]
 			];
-			//add skin if set:
-			if( mwConfig['skin_name'] )
-				depReq[0].push( mwConfig['skin_name'] + 'Config' );
+			
+			//add any requested skins (suports multiple skins per single page)
+			if( $mw.g['skin_list'] ){
+				for(var i in $mw.g['skin_list'] ){
+					depReq[0].push( $mw.g['skin_list'][i] + 'Config' );
+				}
+			}
+				
 
 			// Add PNG fix if needed:
 			if( $j.browser.msie || $j.browser.version < 7 )
@@ -1139,6 +1139,17 @@ function mwdomReady( force ) {
 		document.getElementsByTagName( "playlist" )
 	];
 	if( e[0].length != 0 || e[1].length != 0 || e[2].length != 0 ) {
+		//look for any skin classes we have to load: 
+		for(var j in e){
+			for(var k in e[j]){
+				if(e[j][k] && typeof( e[j][k]) == 'object'){
+					var	sn = e[j][k].getAttribute('skin_name')
+					if( sn && sn != ''){
+						$mw.g.skin_list.push( sn );
+					}
+				}
+			}
+		}				
 		// Load libs and process them
 		mvJsLoader.embedVideoCheck( function() {
 			// Run any queued global events:
@@ -1244,6 +1255,7 @@ function mv_jqueryBindings() {
 				}
 			});	
 		}
+		
 		//non selector based add-media-wizard direct invocation with loader
 		$.addMediaWiz = function( iObj, callback ){			
 			js_log(".addMediaWiz call");
@@ -1270,14 +1282,14 @@ function mv_jqueryBindings() {
 		$.fn.addMediaWiz = function( iObj, callback ) {			
 			if( this.selector ){			
 				// First set the cursor for the button to "loading"
-				$j( this.selector ).css( 'cursor', 'wait' ).attr( 'title', gM( 'mwe-loading_title' ) );
+				$j( this.selector ).css( 'cursor', 'wait' ).attr( 'title', gM( 'mwe-loading_txt' ) );
 				//set the target: 
 				iObj['target_invocation'] = this.selector;
 			}
 
 			// Load the mv_embed_base skin:
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-			loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name']+'/styles.css' );
+			loadExternalCss( mv_embed_path + 'skins/' + $mw.conf['skin_name'] + '/styles.css' );
 			// Load all the required libs:
 			mvJsLoader.jQueryCheck( function() {
 				// Load with staged dependencies (for IE that does not execute in order)
@@ -1307,7 +1319,7 @@ function mv_jqueryBindings() {
 			iObj['target_sequence_container'] = this.selector;
 			// Issue a request to get the CSS file (if not already included):
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-			loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/mv_sequence.css' );
+			loadExternalCss( mv_embed_path + 'skins/' + $mw.conf['skin_name'] + '/mv_sequence.css' );
 			// Make sure we have the required mv_embed libs (they are not loaded when no video
 			// element is on the page)
 			mvJsLoader.embedVideoCheck( function() {
@@ -1353,7 +1365,7 @@ function mv_jqueryBindings() {
 				iObj = {};
 			// Add the base theme CSS:
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-			loadExternalCss( mv_embed_path + 'skins/'+mwConfig['skin_name'] + '/styles.css' );
+			loadExternalCss( mv_embed_path + 'skins/' + $mw.conf['skin_name'] + '/styles.css' );
 
 			// Check if we already have Firefogg loaded (the call just updates the element's
 			// properties)
@@ -1944,8 +1956,8 @@ if ( typeof DOMParser == "undefined" ) {
 */
 function js_log( string ) {
 	///add any prepend debug strings if nessesary
-	if( mwConfig['debug_pre'] )
-		string = mwConfig['debug_pre']+ string;
+	if( $mw.conf['debug_pre'] )
+		string = $mw.conf['debug_pre']+ string;
 			
 	if( window.console ) {				
 		window.console.log( string );

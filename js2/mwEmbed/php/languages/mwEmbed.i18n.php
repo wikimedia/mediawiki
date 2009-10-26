@@ -96,8 +96,7 @@ $messages['en'] = array(
 	/*
 	 * js file: /mv_embed.js
 	 */
-	'mwe-loading_txt' => 'loading ...',
-	'mwe-loading_title' => 'Loading...',
+	'mwe-loading_txt' => 'Loading ...',	
 	'mwe-size-gigabytes' => '$1 GB',
 	'mwe-size-megabytes' => '$1 MB',
 	'mwe-size-kilobytes' => '$1 K',

@@ -5,6 +5,7 @@ var nativeEmbed = {
 	grab_try_count:0,
 	onlyLoadFlag:false,	
 	urlAppend:'',
+	prevCurrentTime:-1,
 	supports: {
 		'play_head':true, 
 		'pause':true,		 
@@ -71,10 +72,11 @@ var nativeEmbed = {
 		}
 	},	
 	onseeking:function(){
+		js_log("onseeking");
 		this.seeking = true;
 		this.setStatus( gM('mwe-seeking') );
 	},
-	onseeked: function(){
+	onseeked: function(){		
 		this.seeking = false;
 	},
 	doSeek:function(perc){					
@@ -98,7 +100,7 @@ var nativeEmbed = {
 	doNativeSeek:function(perc){	
 		this.seek_time_sec=0;			 
 		this.vid.currentTime = perc * this.vid.duration;		
-		this.parent_monitor();	
+		this.monitor();	
 	},
 	doPlayThenSeek:function(perc){
 		js_log('native::doPlayThenSeek::');
@@ -148,7 +150,7 @@ var nativeEmbed = {
 			_this.vid.addEventListener('seeked', once, false);
 		}
 	},
-	monitor : function(){
+	monitor : function(){		
 		this.getVID(); //make shure we have .vid obj
 		if(!this.vid){
 			js_log('could not find video embed: '+this.id + ' stop monitor');
@@ -159,8 +161,15 @@ var nativeEmbed = {
 		if(this.pc){
 			if(this.pc.pp.cur_clip.id != this.pc.id)
 				return true;
-		}								
-				
+		}	
+		
+		//do a seek check (on seeked does not seem fire consistantly) 	
+		if( this.prevCurrentTime != -1 && this.prevCurrentTime != 0
+			&& this.prevCurrentTime < this.currentTime && this.seeking)
+			this.seeking = false;		
+								
+		this.prevCurrentTime =	this.currentTime;
+		
 		//update currentTime				
 		this.currentTime = this.vid.currentTime;		
 		this.addPresTimeOffset();

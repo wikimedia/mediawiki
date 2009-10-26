@@ -38,11 +38,11 @@
 loadGM({
 	"mwe-setting-up-proxy" : "Setting up proxy...",
 	"mwe-re-try" : "Retry API request",
-	"mwe-re-trying": "Retrying API request...",
+	"mwe-re-trying" : "Retrying API request...",
 	"mwe-cancel" : "Cancel",
-	"mwe-proxy-not-ready": "Proxy is not configured",
-	"mwe-please-login" : "You are not <a target=\"_new\" href=\"$1\">logged in</a> on $2 or mwEmbed has not been enabled. Resolve the issue, and then retry the request.",
-	"mwe-remember-loging": "General security reminder: Only login to web sites when your address bar displays that site's address."
+	"mwe-proxy-not-ready" : "Proxy is not configured",
+	"mwe-please-login" : "You are not <a target=\"_new\" href=\"$1\">logged in<\/a> on $2 or mwEmbed has not been enabled. Resolve the issue, and then retry the request.",
+	"mwe-remember-loging" : "General security reminder: Only login to web sites when your address bar displays that site's address."
 });
 
 (function( $ ) {

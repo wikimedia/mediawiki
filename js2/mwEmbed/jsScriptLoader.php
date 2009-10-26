@@ -5,15 +5,15 @@
  */
 // Check if we are being invoked in a MediaWiki context or stand alone usage:
 
-//setup the script local script cache directory (has to be hard coded rather than config based  for fast non-mediawiki hits
+//setup the script local script cache directory (has to be hard coded rather than config based for fast non-mediawiki config hits
 $wgScriptCacheDirectory = realpath( dirname( __FILE__ ) ) . '/php/script-cache';
 
 if ( !defined( 'MEDIAWIKI' ) && !defined( 'MW_CACHE_SCRIPT_CHECK' ) ){
-	// Load noMediaWiki helper
+	// Load noMediaWiki helper for quick cache result
 	$myScriptLoader = new jsScriptLoader();
 	if( $myScriptLoader->outputFromCache() )
 		exit();
-	//else load up all the config and do normal doScriptLoader process:
+	//else load up all the config and do normal stand alone ScriptLoader process:
 	require_once( realpath( dirname( __FILE__ ) ) . '/php/noMediaWikiConfig.php' );
 	$myScriptLoader->doScriptLoader();
 }
@@ -163,7 +163,7 @@ class jsScriptLoader {
 		global $wgUseGzip;
 		$this->outputJsHeaders();
 		if ( $wgUseGzip ) {
-			if ( wfClientAcceptsGzip() ) {
+			if ( $this->clientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
 				echo gzencode( $this->jsout );
 			} else {
@@ -172,6 +172,20 @@ class jsScriptLoader {
 		} else {
 			echo $this->jsout;
 		}
+	}
+	
+	function clientAcceptsGzip() {		
+		$m = array();
+		if( preg_match(
+			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
+			$_SERVER['HTTP_ACCEPT_ENCODING'],
+			$m ) ) {
+			if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) 
+				return false;				
+			//no gzip support found
+			return true;	
+		}	
+		return false;	
 	}
 	/*
 	 * postProcRequestVars uses globals, configuration and mediaWiki to test wiki-titles and files exist etc.
