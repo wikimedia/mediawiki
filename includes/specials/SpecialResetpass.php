@@ -68,7 +68,7 @@ class SpecialResetpass extends SpecialPage {
 
 	function error( $msg ) {
 		global $wgOut;
-		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
+		$wgOut->addWikiText( '<div class="error">' . $msg . '</div>' );
 	}
 
 	function showForm() {
