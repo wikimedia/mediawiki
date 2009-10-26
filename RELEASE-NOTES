@@ -598,8 +598,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18019) Users are now warned when moving a file to a name in use on a
   shared repository and only users with the 'reupload-shared' permission can
   complete the move.
-* Any strings returned by the isValidPassword hook are now shown as error messages
-  instead of MediaWiki thinking that the hook said the password was valid.
+* User::isValidPassword now only returns boolean results, User::getPasswordValidity
+  can be used to get an error message string
 * The error message shown in Special:ChangePassword now parses wiki markup
 
 == API changes in 1.16 ==
