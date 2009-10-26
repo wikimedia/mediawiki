@@ -141,6 +141,7 @@ body {
 		background-image: url(images/tab-normal-fade.png);
 		background-position: bottom right;
 		background-repeat: repeat-x;
+		white-space:nowrap;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorTabs ul > li {
@@ -576,13 +577,13 @@ body {
 	margin-left: 0.25em;
 }
 
-/*
- *  * Styles for the user login and create account forms
- *   */
+/* 
+ * Styles for the user login and create account forms
+ */
 #userlogin, #userloginForm {
-        border: solid 1px #cccccc;
-        padding: .8em;
-        margin: .5em;
+	border: solid 1px #cccccc;
+	padding: 1.2em;
+	margin: .5em;
 	float: right;
 }
 
@@ -1102,4 +1103,4 @@ div#bodyContent {
 #ca-unwatch.icon a span,
 #ca-watch.icon a span {
 	display: none;
-}	
+}
