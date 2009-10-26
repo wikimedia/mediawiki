@@ -95,5 +95,3 @@ class FormatJson{
 		return json_decode( $value, $assoc );
 	}
 }
-
-?>
