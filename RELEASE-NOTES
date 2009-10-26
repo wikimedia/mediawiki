@@ -262,6 +262,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3480) The warning saying that the page has a history when deleting it now
   contains the number of revisions in the history
 * $wgStylePath and $wgLogo are now set in the default LocalSettings.php file.
+* (bug 20186) Allow filtering history for revision deletion.
 
 === Bug fixes in 1.16 ===
 

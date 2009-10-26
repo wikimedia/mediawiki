@@ -641,6 +641,7 @@ $wgMessageStructure = array(
 		'page_last',
 		'histlegend',
 		'history-fieldset-title',
+		'history-show-deleted',
 		'history_copyright',
 		'histfirst',
 		'histlast',
