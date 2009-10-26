@@ -904,14 +904,16 @@ class UploadForm extends HTMLForm {
 		);
 
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
-
+		
+		// For <charinsert> support; not provided by js2 yet
+		$wgOut->addScriptFile( 'edit.js' );
+		
 		if ( $wgEnableJS2system ) {
-			//js2version of upload page:
+			// JS2 upload scripts
 			$wgOut->addScriptClass( 'uploadPage' );
 		} else {
-			//legacy upload code:
+			// Legacy upload javascript
 			$wgOut->addScriptFile( 'upload.js' );
-			$wgOut->addScriptFile( 'edit.js' ); // For <charinsert> support
 		}
 	}
 
