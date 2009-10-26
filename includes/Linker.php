@@ -220,6 +220,9 @@ class Linker {
 		return $this->link( $target, $text, $customAttribs, $query, $options );
 	}
 
+	/**
+	 * Returns the Url used to link to a Title
+	 */
 	private function linkUrl( $target, $query, $options ) {
 		wfProfileIn( __METHOD__ );
 		# We don't want to include fragments for broken links, because they
@@ -242,6 +245,9 @@ class Linker {
 		return $ret;
 	}
 
+	/**
+	 * Returns the array of attributes used when linking to the Title $target
+	 */
 	private function linkAttribs( $target, $attribs, $options ) {
 		wfProfileIn( __METHOD__ );
 		global $wgUser;
@@ -301,6 +307,9 @@ class Linker {
 		return $ret;
 	}
 
+	/**
+	 * Default text of the links to the Title $target
+	 */
 	private function linkText( $target ) {
 		# We might be passed a non-Title by make*LinkObj().  Fail gracefully.
 		if( !$target instanceof Title ) {
@@ -360,7 +369,10 @@ class Linker {
 		}
 	}
 
-	/** @todo document */
+	/** 
+	 * Returns the filename part of an url.
+	 * Used as alternative text for external images.
+	 */
 	function fnamePart( $url ) {
 		$basename = strrchr( $url, '/' );
 		if ( false === $basename ) {
@@ -371,7 +383,10 @@ class Linker {
 		return $basename;
 	}
 
-	/** @todo document */
+	/** 
+	 * Return the code for images which were added via external links,
+	 * via Parser::maybeMakeExternalImage().
+	 */
 	function makeExternalImage( $url, $alt = '' ) {
 		if ( '' == $alt ) {
 			$alt = $this->fnamePart( $url );
@@ -714,7 +729,11 @@ class Linker {
 		}
 	}
 
-	/** @todo document */
+	/** 
+	 *  Make a link to a special page given its name and, optionally,
+	 * a message key from the link text. 
+	 * Usage example: $skin->specialLink( 'recentchanges' )
+	 */
 	function specialLink( $name, $key = '' ) {
 		global $wgContLang;
 
@@ -1215,12 +1234,16 @@ class Linker {
 		return "<span class=\"history-size\">$stxt</span>";
 	}
 
-	/** @todo document */
+	/**
+	 * Add another level to the Table of Contents
+	 */
 	function tocIndent() {
 		return "\n<ul>";
 	}
 
-	/** @todo document */
+	/**
+	 * Finish one or more sublevels on the Table of Contents
+	 */
 	function tocUnindent($level) {
 		return "</li>\n" . str_repeat( "</ul>\n</li>\n", $level>0 ? $level : 0 );
 	}
@@ -1238,12 +1261,20 @@ class Linker {
 			$tocline . '</span></a>';
 	}
 
-	/** @todo document */
+	/**
+	 * End a Table Of Contents line.
+	 * tocUnindent() will be used instead if we're ending a line below 
+	 * the new level.
+	 */
 	function tocLineEnd() {
 		return "</li>\n";
  	}
 
-	/** @todo document */
+	/** 
+	 * Wraps the TOC in a table and provides the hide/collapse javascript.
+	 * @param string $toc html of the Table Of Contents
+	 * @return string Full html of the TOC
+	 */
 	function tocList($toc) {
 		$title = wfMsgHtml('toc') ;
 		return
@@ -1264,6 +1295,7 @@ class Linker {
 	
 	/**
 	 * Generate a table of contents from a section tree
+	 * Currently unused.
 	 * @param $tree Return value of ParserOutput::getSections()
 	 * @return string HTML
 	 */
