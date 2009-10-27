@@ -262,7 +262,7 @@ class memcached
       $this->_timeout_microseconds = 0;
 
       $this->_connect_timeout = 0.01;
-      $this->_connect_attempts = 3;
+      $this->_connect_attempts = 2;
    }
 
    // }}}
@@ -704,15 +704,6 @@ class memcached
       $timeout = $this->_connect_timeout;
       $errno = $errstr = null;
       for ($i = 0; !$sock && $i < $this->_connect_attempts; $i++) {
-         if ($i > 0) {
-            # Sleep until the timeout, in case it failed fast
-            $elapsed = microtime(true) - $t;
-            if ( $elapsed < $timeout ) {
-               usleep(($timeout - $elapsed) * 1e6);
-            }
-            $timeout *= 2;
-         }
-         $t = microtime(true);
          if ($this->_persistant == 1)
          {
             $sock = @pfsockopen($ip, $port, $errno, $errstr, $timeout);
