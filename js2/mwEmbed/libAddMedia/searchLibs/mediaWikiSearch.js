@@ -240,30 +240,7 @@ mediaWikiSearch.prototype = {
 	},	
 	getImageObj:function( rObj, size, callback ){					
 		if( rObj.mime=='application/ogg' )
-			return callback( {'url':rObj.src, 'poster' : rObj.url } );
-		
-		//we can just use direct request urls
-		//@@todo thumb.php has some issues (cant serve the full image size, has poor erro handling etc) 
-		/*var baseImgUrl = this.cp.api_url.replace('api.php', 'thumb.php'); 
-		if ( rObj.mime=='image/jpeg' || rObj.mime=='image/png' ){
-			//if requested size is greater than org size return reduced size obj: 
-			if( size.width > rObj.orgwidth){
-				callback({ 
-						'url'	: baseImgUrl + '?f=' + rObj.titleKey.replace(/\s/g, '_') + '&w='+ rObj.orgwidth,
-						'width'	: rObj.orgwidth,
-						'height': rObj.orgheight
-				}); 
-				return false;
-			}			
-		}
-		//assuming svg or size is in range: give them requested size
-		callback({ 
-				'url'	: baseImgUrl + '?f=' + rObj.titleKey + '&w='+ size.width,
-				'width'	: size.width,
-				'height': Math.round( ( rObj.orgheight / rObj.orgwidth)*size.width ) 
-		}); 
-		return false;
-		*/		
+			return callback( {'url':rObj.src, 'poster' : rObj.url } );		
 		
 		//his could be depreciated if thumb.php improves
 		var reqObj = {

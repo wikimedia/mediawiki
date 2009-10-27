@@ -355,6 +355,7 @@ $messages['en'] = array(
 	'mwe-embed_site_or_blog' => 'Embed on your site or blog',
 	'mwe-related_videos' => 'Related videos',
 	'mwe-seeking' => 'seeking',
+	"mwe-copy-code" => "Copy code",
 );
 
 /** Message documentation (Message documentation)

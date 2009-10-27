@@ -7,6 +7,7 @@ var kskinConfig = {
 	//display time progres
 	long_time_disp: false,
 	body_options: false,
+	volume_layout: 'horizontal',
 	components:{
 		'play-btn-large' : { 
 			'h' : 55
@@ -18,6 +19,9 @@ var kskinConfig = {
 							'<span>' + gM('mwe-menu_btn') + '</span>' +
 						'</div>'
 			}
+		},		
+		'time_display':{
+			'w':70
 		},
 		'mv_embedded_options':{
 			'w':0,
@@ -107,6 +111,32 @@ var kskinConfig = {
 				$tp.find('.play-btn-large').fadeOut('fast');
 			}
 		});	
+		
+		//slider:
+		$tp.find('.volume-slider').slider({
+			range: "min",
+			value: 80,
+			min: 0,
+			max: 100,
+            slide: function(event, ui) {
+                     embedObj.updateVolumen(ui.value/100);
+            },
+			change: function(event, ui){
+				var level = ui.value/100;
+				if (level==0) {
+					$tp.find('.k-volume span').addClass('ui-icon-volume-off');
+				}else{
+					$tp.find('.k-volume span').removeClass('ui-icon-volume-off');
+				}
+				//only run the onChange event if done by a user slide:
+				if(embedObj.userSlide){
+					embedObj.userSlide=false;
+					embedObj.seeking=true;
+//					var perc = ui.value/100;
+					embedObj.updateVolumen(level);
+				}
+			}
+		});
 	
 	}
 }
