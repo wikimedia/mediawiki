@@ -624,8 +624,16 @@ class User {
 	 * @return bool True or false
 	 */
 	function isValidPassword( $password ) {
-		//simple boolean wrapper for getPasswordValidity
-		return $this->getPasswordValidity( $password ) === true;
+		global $wgMinimalPasswordLength, $wgContLang;
+
+		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
+			return $result;
+		if( $result === false )
+			return false;
+ 
+		// Password needs to be long enough, and can't be the same as the username
+		return strlen( $password ) >= $wgMinimalPasswordLength
+			&& $wgContLang->lc( $password ) !== $wgContLang->lc( $this->mName );
 	}
 
 	/**
@@ -637,21 +645,14 @@ class User {
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 		
-		$result = false; //init $result to false for the internal checks
-		
-		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
-			return $result;
-		
-		if ( $result === false ) {
+		if ( !$this->isValidPassword( $password ) ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
 			}
-		} elseif( $result === true ) {
-			return true;
 		} else {
-			return $result; //the isValidPassword hook set a string $result and returned true
+			return true;
 		}
 	}
 
