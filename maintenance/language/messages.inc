@@ -1988,6 +1988,7 @@ $wgMessageStructure = array(
 		'ipblocklist-sh-addressblocks',
 		'ipblocklist-summary',
 		'ipblocklist-submit',
+		'ipblocklist-otherblocks',
 		'blocklistline',
 		'infiniteblock',
 		'expiringblock',

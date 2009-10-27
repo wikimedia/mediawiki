@@ -782,6 +782,11 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getLocalURL()
 
+'getOtherBlockLogLink': Get links to the block log from extensions which blocks
+	users and/or IP addresses too
+$otherBlockLink: An array with links to other block logs
+$$this->ip: The requested IP address or username
+
 'GetPreferences': modify user preferences
 $user: User whose preferences are being modified.
 &$preferences: Preferences description array, to be fed to an HTMLForm object

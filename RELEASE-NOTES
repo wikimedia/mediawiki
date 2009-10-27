@@ -263,6 +263,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   contains the number of revisions in the history
 * $wgStylePath and $wgLogo are now set in the default LocalSettings.php file.
 * (bug 20186) Allow filtering history for revision deletion.
+* New hook getOtherBlockLogLink, called in Special:IPBlockList to show links
+  to block logs of other blocking extensions, i.e. GlobalBlocking
 
 === Bug fixes in 1.16 ===
 

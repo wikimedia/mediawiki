@@ -2953,6 +2953,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipblocklist-sh-addressblocks'    => '$1 single IP blocks',
 'ipblocklist-summary'             => '', # do not translate or duplicate this message to other languages
 'ipblocklist-submit'              => 'Search',
+'ipblocklist-otherblocks'         => 'Other blocks',
 'blocklistline'                   => '$1, $2 blocked $3 ($4)',
 'infiniteblock'                   => 'infinite',
 'expiringblock'                   => 'expires on $1 at $2',

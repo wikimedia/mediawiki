@@ -311,6 +311,20 @@ class IPUnblockForm {
 			$wgOut->addHTML( $this->searchForm() );
 			$wgOut->addWikiMsg( 'ipblocklist-empty' );
 		}
+
+		$otherBlockLink = array();
+		wfRunHooks( 'getOtherBlockLogLink', array( &$otherBlockLink, $this->ip ) );
+		if( count( $otherBlockLink ) ) {
+			$wgOut->addHTML(
+				Html::rawElement( 'h2', array(), wfMsg( 'ipblocklist-otherblocks' ) ) . "\n"
+			);
+			$list = '';
+			foreach( $otherBlockLink as $link ) {
+				$list .= Html::rawElement( 'li', array(), $link ) . "\n";
+			}
+			$wgOut->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-ipblocklist-otherblocks' ), $list ) . "\n" );
+		}
+
 	}
 
 	function searchForm() {
