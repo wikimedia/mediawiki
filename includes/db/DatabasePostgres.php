@@ -873,6 +873,81 @@ class DatabasePostgres extends DatabaseBase {
 
 	}
 
+	/**
+	 * INSERT SELECT wrapper
+	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
+	 * Source items may be literals rather then field names, but strings should be quoted with Database::addQuotes()
+	 * $conds may be "*" to copy the whole table
+	 * srcTable may be an array of tables.
+	 * @todo FIXME: implement this a little better (seperate select/insert)?
+	*/
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabasePostgres::insertSelect',
+		$insertOptions = array(), $selectOptions = array() )
+	{
+		$destTable = $this->tableName( $destTable );
+
+		// If IGNORE is set, we use savepoints to emulate mysql's behavior
+		$ignore = in_array( 'IGNORE', $insertOptions ) ? 'mw' : '';
+
+		if( is_array( $insertOptions ) ) {
+			$insertOptions = implode( ' ', $insertOptions );
+		}
+		if( !is_array( $selectOptions ) ) {
+			$selectOptions = array( $selectOptions );
+		}
+		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
+		if( is_array( $srcTable ) ) {
+			$srcTable = implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
+		} else {
+			$srcTable = $this->tableName( $srcTable );
+		}
+
+		// If we are not in a transaction, we need to be for savepoint trickery
+		$didbegin = 0;
+		if ( $ignore ) {
+			if( !$this->mTrxLevel ) {
+				$this->begin();
+				$didbegin = 1;
+			}
+			$olde = error_reporting( 0 );
+			$numrowsinserted = 0;
+			pg_query( $this->mConn, "SAVEPOINT $ignore");
+		}
+
+		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
+				" SELECT $startOpts " . implode( ',', $varMap ) .
+				" FROM $srcTable $useIndex";
+
+		if ( $conds != '*') {
+			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
+		}
+
+		$sql .= " $tailOpts";
+
+		$res = (bool)$this->query( $sql, $fname, $ignore );
+		if( $ignore ) {
+			$bar = pg_last_error();
+			if( $bar != false ) {
+				pg_query( $this->mConn, "ROLLBACK TO $ignore" );
+			} else {
+				pg_query( $this->mConn, "RELEASE $ignore" );
+				$numrowsinserted++;
+			}
+			$olde = error_reporting( $olde );
+			if( $didbegin ) {
+				$this->commit();
+			}
+
+			// Set the affected row count for the whole operation
+			$this->mAffectedRows = $numrowsinserted;
+
+			// IGNORE always returns true
+			return true;
+		}
+
+		return $res;
+	}
+	
 	function tableName( $name ) {
 		# Replace reserved words with better ones
 		switch( $name ) {
