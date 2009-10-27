@@ -849,7 +849,6 @@ class memcached
       if (!$this->_safe_fwrite($sock, "$cmd $key $amt\r\n"))
          return $this->_dead_sock($sock);
 
-      stream_set_timeout($sock, 1, 0);
       $line = fgets($sock);
       $match = array();
       if (!preg_match('/^(\d+)/', $line, $match))
