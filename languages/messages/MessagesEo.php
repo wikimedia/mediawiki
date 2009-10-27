@@ -905,6 +905,7 @@ La kialo donata de $3 estas ''$2''.",
 'page_last'              => 'lasta',
 'histlegend'             => 'Klarigo: (nuna) = vidu malsamojn kompare kun la nuna versio, (antaŭa) = malsamojn kompare kun la antaŭa versio, <strong>E</strong> = malgranda redakteto',
 'history-fieldset-title' => 'Traserĉi historion',
+'history-show-deleted'   => 'Forigitaĵoj nur',
 'histfirst'              => 'plej frua',
 'histlast'               => 'plej lasta',
 'historysize'            => '({{PLURAL:$1|1 bajto|$1 bajtoj}})',
@@ -942,6 +943,10 @@ Kiel administranto vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volas k
 'rev-suppressed-unhide-diff'  => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} subpremada protokolo].
 Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volus.",
+'rev-deleted-diff-view'       => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
+'rev-suppressed-diff-view'    => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
+Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].",
 'rev-delundel'                => 'montri/kaŝi',
 'revisiondelete'              => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'     => 'Nevalida cela versio',
@@ -2046,7 +2051,7 @@ Reagoj kaj plia helpo:
 'exblank'                => 'estis malplena',
 'delete-confirm'         => 'Forigi "$1"',
 'delete-legend'          => 'Forigi',
-'historywarning'         => 'Averto: la forigota paĝo havas historion:',
+'historywarning'         => "'''Averto:''' La forigota paĝo havas historion kun $! {{PLURAL:$1|revizio|revizioj}}:",
 'confirmdeletetext'      => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'         => 'Ago farita',
 'actionfailed'           => 'Ago malsukcesis',

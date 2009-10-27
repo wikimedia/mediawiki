@@ -1023,6 +1023,7 @@ Néhány sablon nem fog megjelenni.',
 'histlegend'             => 'Eltérések kijelölése: jelöld ki az összehasonlítandó változatokat, majd nyomd meg az Enter billentyűt, vagy az alul lévő gombot.<br />
 Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltérés az előző változattól, a = apró szerkesztés',
 'history-fieldset-title' => 'Keresés a laptörténetben',
+'history-show-deleted'   => 'Csak a törölt változatok',
 'histfirst'              => 'legelső',
 'histlast'               => 'legutolsó',
 'historysize'            => '({{PLURAL:$1|egy|$1}} bájt)',
@@ -1061,6 +1062,10 @@ Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közöt
 'rev-suppressed-unhide-diff'  => "A változatok közötti eltéréshez kiválasztott változatok egyike '''el lett rejtve'''.
 Részleteket az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
+'rev-deleted-diff-view'       => "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
+Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti eltérést; további részleteket pedig a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+'rev-suppressed-diff-view'    => "A változatok közötti eltéréshez kiválasztott változatok egyike '''el lett rejtve'''.
+Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti eltérést; további részleteket pedig az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].",
 'rev-delundel'                => 'megjelenítés/elrejtés',
 'revisiondelete'              => 'Változatok törlése vagy helyreállítása',
 'revdelete-nooldid-title'     => 'Érvénytelen célváltozat',

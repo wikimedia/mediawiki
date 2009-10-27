@@ -1074,6 +1074,7 @@ De door $3 opgegeven reden is ''$2''",
 'histlegend'             => 'Selectie voor verschillen: selecteer de te vergelijken versies en toets ENTER of de knop onderaan.<br />
 Verklaring afkortingen: (huidig) = verschil met huidige versie, (vorige) = verschil met voorgaande versie, k = kleine wijziging',
 'history-fieldset-title' => 'Door geschiedenis bladeren',
+'history-show-deleted'   => 'Alleen verwijderd',
 'histfirst'              => 'Oudste',
 'histlast'               => 'Nieuwste',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',

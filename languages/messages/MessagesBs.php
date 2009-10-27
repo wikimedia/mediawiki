@@ -1017,6 +1017,7 @@ Razlog koji je naveo $3 je ''$2''",
 Objašnjenje: '''(tren)''' = razlika sa trenutnom verzijom,
 '''(preth)''' = razlika sa prethodnom verzijom, '''m''' = mala izmjena.",
 'history-fieldset-title' => 'Pretraga historije',
+'history-show-deleted'   => 'Samo obrisane',
 'histfirst'              => 'Najstarije',
 'histlast'               => 'Najnovije',
 'historysize'            => '({{PLURAL:$1|1 bajt|$1 bajta|$1 bajtova}})',
@@ -1054,6 +1055,10 @@ Kao administrator Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da
 'rev-suppressed-unhide-diff'  => "Jedna od revizija ove razlike je '''uklonjena'''.
 Postoji mnogo detalja u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku uklanjanja].
 Kao administrator i dalje možete [$1 vidjeti ove razlike] ako želite da nastavite.",
+'rev-deleted-diff-view'       => "Jedna od revizija u ovoj razlici je '''obrisana'''.
+Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].",
+'rev-suppressed-diff-view'    => "Jedna od revizija u ovoj razlici je '''sakrivena'''.
+Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku sakrivanja].",
 'rev-delundel'                => 'pokaži/sakrij',
 'revisiondelete'              => 'Obriši/vrati revizije',
 'revdelete-nooldid-title'     => 'Nije unesena tačna revizija',
@@ -1614,6 +1619,7 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 'upload'                      => 'Postavi datoteku',
 'uploadbtn'                   => 'Postavi datoteku',
 'reuploaddesc'                => 'Vratite se na upitnik za slanje.',
+'upload-tryagain'             => 'Pošaljite izmijenjeni opis datoteke',
 'uploadnologin'               => 'Niste prijavljeni',
 'uploadnologintext'           => 'Morate biti [[Special:UserLogin|prijavljeni]] da bi ste slali datoteke.',
 'upload_directory_missing'    => 'Folder za postavljanje ($1) nedostaje i webserver ga ne može napraviti.',
@@ -1680,6 +1686,7 @@ Ako i dalje želite da postavite ovu datoteku, molimo Vas da se vratite i pošal
 'file-deleted-duplicate'      => 'Datoteka koje je identična ovoj datoteci ([[$1]]) je ranije bila obrisana. Trebate provjeriti historiju brisanja te datoteke prije nego što nastavite sa njenim ponovnim postavljanjem.',
 'successfulupload'            => 'Uspješno slanje',
 'uploadwarning'               => 'Upozorenje pri slanju',
+'uploadwarning-text'          => 'Molimo izmijeniti opis datoteke ispod i pokušajte kasnije.',
 'savefile'                    => 'Sačuvaj datoteku',
 'uploadedimage'               => 'poslato "[[$1]]"',
 'overwroteimage'              => 'postavljena nova verzija datoteke "[[$1]]"',
@@ -2192,7 +2199,7 @@ Fidbek i dalja pomoć:
 'exblank'                => 'stranica je bila prazna',
 'delete-confirm'         => 'Brisanje "$1"',
 'delete-legend'          => 'Obriši',
-'historywarning'         => 'Upozorenje:  Stranica koju želite da obrišete ima historiju:',
+'historywarning'         => "'''Upozorenje''':  Stranica koju želite da obrišete ima historiju sa $1 {{PLURAL:$1|revizijom|revizije|revizija}}:",
 'confirmdeletetext'      => 'Brisanjem ćete obrisati stranicu ili sliku zajedno sa historijom iz baze podataka, ali će se iste moći vratiti kasnije. 
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu sa [[{{MediaWiki:Policy-url}}|pravilima]].',
 'actioncomplete'         => 'Akcija završena',
@@ -2612,6 +2619,10 @@ Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 'move-leave-redirect'          => 'Ostavi preusmjerenje',
 'protectedpagemovewarning'     => "'''UPOZORENJE:''' Ova stranica je zaključana tako da je mogu premještati samo korisnici sa ovlastima administratora.",
 'semiprotectedpagemovewarning' => "'''Napomena:''' Ova stranica je zaključana tako da je mogu uređivati samo registrovani korisnici.",
+'move-over-sharedrepo'         => '== Datoteka postoji ==
+[[:$1]] postoji na dijeljenom repozitorijumu. Premještanje datoteke na ovaj naslov će prepisati dijeljenu datoteku.',
+'file-exists-sharedrepo'       => 'Ime datoteke koje ste odabrali je već korišteno u dijeljenom repozitorijumu.
+Molimo odaberite drugo ime.',
 
 # Export
 'export'            => 'Izvezite stranice',
