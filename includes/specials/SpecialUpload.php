@@ -334,7 +334,7 @@ class SpecialUpload extends SpecialPage {
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
 		if( !$status->isOK() )
-			return $this->mainUploadForm( $wgOut->parse( $status->getWikiText() ) );
+			return $this->showUploadForm( $this->getUploadForm( $wgOut->parse( $status->getWikiText() ) ) );
 
 		// Upload verification
 		$details = $this->mUpload->verifyUpload();
@@ -452,7 +452,7 @@ class SpecialUpload extends SpecialPage {
 
 			/** Statuses that require reuploading **/
 			case UploadBase::EMPTY_FILE:
-				$this->mainUploadForm( wfMsgHtml( 'emptyfile' ) );
+				$this->showUploadForm( $this->getUploadForm( wfMsgHtml( 'emptyfile' ) ) );
 				break;
 			case UploadBase::FILETYPE_BADTYPE:
 				$finalExt = $details['finalExt'];
@@ -729,7 +729,7 @@ class UploadForm extends HTMLForm {
 				'checked' => $selectedSourceType == 'url',
 			);
 		}
-		wfRunHooks( 'UploadFormSourceDescriptors', array( $descriptor, &$radio, $selectedSourceType ) );
+		wfRunHooks( 'UploadFormSourceDescriptors', array( &$descriptor, &$radio, $selectedSourceType ) );
 
 		$descriptor['Extensions'] = array(
 			'type' => 'info',
