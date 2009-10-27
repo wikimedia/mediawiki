@@ -32,6 +32,8 @@ ctrlBuilder.prototype = {
 	pClass : 'mv-player',
 	long_time_disp: true,
 	body_options : true,
+	//default volume layout is "vertical"
+	volume_layout : 'vertical',
 	height:29,
 	supports:{
 		  'options':true,
@@ -187,7 +189,11 @@ ctrlBuilder.prototype = {
 				var perc = ui.value/1000;
 				embedObj.jump_time = seconds2npt( parseFloat( parseFloat(embedObj.getDuration()) * perc ) + embedObj.start_time_sec);
 				//js_log('perc:' + perc + ' * ' + embedObj.getDuration() + ' jt:'+  this.jump_time);
-				embedObj.setStatus( gM('mwe-seek_to', embedObj.jump_time ) );
+				if( _this.long_time_disp ){
+					embedObj.setStatus( gM('mwe-seek_to', embedObj.jump_time ) );
+				}else{
+					embedObj.setStatus( embedObj.jump_time );
+				}
 				//update the thumbnail / frame
 				if(embedObj.isPlaying==false){
 					embedObj.updateThumbPerc( perc );
@@ -231,13 +237,23 @@ ctrlBuilder.prototype = {
 			$opt.hide();
 			return false;
 		})
-		$opt.find('.vo_showcode').click(function(){			
-			embedObj.showEmbedCode();
+		$opt.find('.vo_showcode').click(function(){	
+			embedObj.displayHTML();		
+			embedObj.showShare( $tp.find('.videoOptionsComplete') );			
 			$opt.hide();
 			return false;
 		});
-
-		//volume binding:
+		this.doVolumeBinding();		
+		
+		//check if we have any custom skin hooks to run (only one per skin) 
+		if( this.addSkinControlHooks && typeof( this.addSkinControlHooks) == 'function')
+			this.addSkinControlHooks();
+	},
+	doVolumeBinding:function(){
+		var embedObj = this.embedObj;
+		var _this = this;
+		var $tp=$j('#' + embedObj.id);
+		//default volume binding:
 		var hoverOverDelay=false;
 		$tp.find('.volume_control').unbind().btnBind().click(function(){
 			$j('#' +embedObj.id).get(0).toggleMute();
@@ -289,10 +305,6 @@ ctrlBuilder.prototype = {
 				}
 			}
 		});
-		
-		//check if we have any custom skin hooks to run (only one per skin) 
-		if( this.addSkinControlHooks && typeof( this.addSkinControlHooks) == 'function')
-			this.addSkinControlHooks();
 	},
 	getMvBufferHtml:function(){
 		return '<div class="ui-slider-range ui-slider-range-min ui-widget-header ' +
@@ -392,13 +404,21 @@ ctrlBuilder.prototype = {
 		},
 		'volume_control':{
 			'w':23,
-			'o':function( ctrlObj ){
-					return '<div title="' + gM('mwe-volume_control') + '" class="ui-state-default ui-corner-all ui-icon_link rButton volume_control">' +
-								'<span class="ui-icon ui-icon-volume-on"></span>' +
-								'<div style="position:absolute;display:none;" id="vol_container_'+ctrlObj.id+'" class="vol_container ui-corner-all">' +
-									'<div class="volume_bar" id="volume_bar_' + ctrlObj.id + '"></div>' +
-								'</div>'+
-							'</div>';
+			'o':function( ctrlObj ){					
+				var o='';
+				if ( ctrlObj.volume_layout == 'horizontal' )
+					o+='<div class="ui-slider ui-slider-horizontal rButton volume-slider"></div>';	
+					
+				o+= '<div title="' + gM('mwe-volume_control') + '" class="ui-state-default ui-corner-all ui-icon_link rButton volume_control">' +
+						'<span class="ui-icon ui-icon-volume-on"></span>';
+						
+				if( ctrlObj.volume_layout == 'vertical'){
+					o+='<div style="position:absolute;display:none;" id="vol_container_'+ctrlObj.id+'" class="vol_container ui-corner-all">' +
+							'<div class="volume_bar" id="volume_bar_' + ctrlObj.id + '"></div>' +
+						'</div>';
+				}
+				o+= '</div>';										
+				return o;
 			}
 		},
 		'time_display':{

@@ -18,11 +18,11 @@ loadGM({
 	"mwe-next_clip_msg" : "Play next clip",
 	"mwe-prev_clip_msg" : "Play previous clip",
 	"mwe-current_clip_msg" : "Continue playing this clip",
-	"mwe-seek_to" : "Seek to $1",
+	"mwe-seek_to" : "Seek $1",
 	"mwe-paused" : "paused",
 	"mwe-download_segment" : "Download selection:",
 	"mwe-download_full" : "Download full video file:",
-	"mwe-download_right_click" : "To download, right click and select <i>Save target as...<\/i>",
+	"mwe-download_right_click" : "To download, right click and select <i>Save link as...<\/i>",
 	"mwe-download_clip" : "Download video",
 	"mwe-download_text" : "Download text (<a style=\"color:white\" title=\"cmml\" href=\"http:\/\/wiki.xiph.org\/index.php\/CMML\">CMML<\/a> xml):",
 	"mwe-download" : "Download",
@@ -51,7 +51,8 @@ loadGM({
 	"mwe-read_before_embed" : "<a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">Read this<\/a> before embedding.",
 	"mwe-embed_site_or_blog" : "Embed on your site or blog",
 	"mwe-related_videos" : "Related videos",
-	"mwe-seeking" : "seeking"
+	"mwe-seeking" : "seeking",
+	"mwe-copy-code" : "Copy code"
 });
 
 //set the globals:
@@ -132,7 +133,7 @@ mvEmbed = {
 			mvEmbed.flist.push( swap_done_callback );
 			
 		//get mv_embed location if it has not been set
-		js_log('mv_video_embed:: ' + MV_EMBED_VERSION);						
+		js_log('mv_video_embed:: ' + $mw.version);						
 		
 		var loadPlaylistLib=false;						
 		
@@ -140,10 +141,10 @@ mvEmbed = {
 			js_log( "Do SWAP: " + $j(this_elm).attr("id") + ' tag: '+ this_elm.tagName.toLowerCase() );
 								
 			if( $j(this_elm).attr("id") == '' ){
-				$j(this_elm).attr("id", 'v'+ global_player_list.length);
+				$j(this_elm).attr("id", 'v'+ $mw.player_list.length);
 			}			
 			//store a global reference to the id	
-			global_player_list.push( $j(this_elm).attr("id") );			
+			$mw.player_list.push( $j(this_elm).attr("id") );			
 			
 			//if video doSwap
 			switch( this_elm.tagName.toLowerCase()){
@@ -247,16 +248,16 @@ mvEmbed = {
 			$j('#'+embed_video.id).get(0).init_with_sources_loaded();
 		}
 		
-		js_log('done with child: ' + embed_video.id + ' len:' + global_player_list.length);
+		js_log('done with child: ' + embed_video.id + ' len:' + $mw.player_list.length);
 		return true;
 	},
 	//this should not be needed.
 	checkClipsReady : function(){
 		//js_log('checkClipsReady');
 		var is_ready=true;	  
-		  for(var i=0; i < global_player_list.length; i++){
-			  if( $j('#'+global_player_list[i]).length !=0){
-				  var cur_vid =  $j('#'+global_player_list[i]).get(0);		  
+		  for(var i=0; i < $mw.player_list.length; i++){
+			  if( $j('#'+$mw.player_list[i]).length !=0){
+				  var cur_vid =  $j('#'+$mw.player_list[i]).get(0);		  
 				is_ready = ( cur_vid.ready_to_play ) ? is_ready : false;
 				if( !is_ready && cur_vid.load_error ){ 
 					is_ready=true;
@@ -1664,34 +1665,38 @@ embedVideo.prototype = {
 			}
 		}	   
 	},
-	//display the code to remotely embed this video:
-	showEmbedCode : function(embed_code){
-		if(!embed_code)
-			embed_code = this.getEmbeddingHTML();
-		var o='';
-		if(this.linkback){
-			o+='<a class="email" href="'+this.linkback+'">Share Clip via Link</a> '+
-			'<p>or</p> ';
-		}
-		o+='<div>' +
-				'<span style="color:#FFF;font-size:14px;">Embed Clip in Blog or Site</span><br>'+
-				'<span class="readthis" style="color:#FFF;font-size:12px;">' + gM('mwe-read_before_embed') +
-				'<div class="embed_code"> '+
-					'<textarea onClick="this.select();" id="embedding_user_html_'+this.id+'" name="embed">' +
-						embed_code+
-					'</textarea> '+
-					'<button onClick="$j(\'#'+this.id+'\').get(0).copyText(); return false;" class="copy_to_clipboard">Copy to Clipboard</button> '+
-				'</div> '+
-			'</div>';
-		this.displayHTML(o);
-		$j('#'+ this.id + ' .readthis a').css('font-color', 'red');
-	},
-	copyText:function(){
-	  $j('#embedding_user_html_'+this.id).focus().select();			
-	  if(document.selection){	  
-		  CopiedTxt = document.selection.createRange();	
-		  CopiedTxt.execCommand("Copy");
-	  }
+	showShare:function($target){	
+		var	embed_code = this.getEmbeddingHTML();
+		var o = '';
+		var _this = this;
+        //@todo: hook events to two a's for swapping in and out code for link vs. embed;
+        //       hook events for changing active class of li based on a.
+		o+= '<h2>' + gM('mwe-share_this_video') + '</h2>\n' +
+			' <ul>\n' +
+			'  <li><a href="#" class="active">'+gM('mwe-embed_site_or_blog')+'</a></li>\n';
+		if(this.linkback) {
+			o+=   '  <li><a href="#" id="k-share-link">' + this.linkback + '</a></li>\n';
+        }
+		o+=	'</ul>' +
+			'<div class="source_wrap"><textarea>' + embed_code + '</textarea></div>' +
+				'<button class="ui-state-default ui-corner-all copycode">' + gM('mwe-copy-code') + '</button>' +
+				'<div class="ui-state-highlight ui-corner-all">' + gM('mwe-read_before_embed') + '</div>' +
+			'</div>'
+		$target.html(o); 
+		$cpBtn = $j( '#' + this.id + ' .copycode');
+		$cpTxt = $j( '#' + this.id + ' .source_wrap textarea');
+		
+		$cpTxt.click(function(){
+			$j(this).get(0).select();
+		});
+		//add copy binding: 
+		$cpBtn.click(function(){						
+			$cpTxt.focus().get(0).select();			
+			if(document.selection){	  
+				CopiedTxt = document.selection.createRange();	
+				CopiedTxt.execCommand("Copy");
+			}
+		});
 	},
 	showTextInterface:function(){	
 		var _this = this;
@@ -2045,8 +2050,8 @@ embedVideo.prototype = {
 	},
 	//do common monitor code like update the playhead and play status 
 	//plugin objects are responsible for updating currentTime
-	monitor:function(){		
-		//js_log(' us: ' + this.userSlide + ' is seek: ' + this.seeking );
+	monitor:function(){		 
+		js_log(' ct: ' + this.currentTime + ' dur: ' + ( parseInt( this.duration ) + 1 )  + ' is seek: ' + this.seeking );
 		if( this.currentTime && this.currentTime > 0 && this.duration){
 			if( !this.userSlide && !this.seeking ){
 				if( this.start_offset  ){ 
@@ -2057,9 +2062,14 @@ embedVideo.prototype = {
 				}else{
 					this.setSliderValue( this.currentTime / this.duration );
 					var et = (this.ctrlBuilder.long_time_disp)? '/' + seconds2npt( this.duration ):'';
-					this.setStatus( seconds2npt( this.currentTime ) + et);
+					this.setStatus( seconds2npt( this.currentTime ) + et);					
 				}				
 			}
+			//check if we are "done"
+			if( this.currentTime > ( parseInt(this.duration) + 1 ) ){
+				js_log("should run clip done");
+				this.onClipDone();
+			}				
 		}else{
 			//media lacks duration just show end time
 			//js_log(' ct:' + this.currentTime + ' dur: ' + this.duration);
@@ -2398,9 +2408,9 @@ mediaPlayers.prototype =
 		}
 		if( selected_player )
 		{
-			for(var i=0; i < global_player_list.length; i++)
+			for(var i=0; i < $mw.player_list.length; i++)
 			{
-				var embed = $j('#'+global_player_list[i]).get(0);
+				var embed = $j('#'+$mw.player_list[i]).get(0);
 				if(embed.media_element.selected_source && (embed.media_element.selected_source.mime_type == mime_type))
 				{
 					embed.selectPlayer(selected_player);

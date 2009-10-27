@@ -128,3 +128,38 @@
 	width:8px;	
 	cusror: move;
 }
+
+
+.videoOptionsComplete textarea {
+	background:none repeat scroll 0 0 transparent;
+	border-color:#333 -moz-use-text-color -moz-use-text-color #333;
+	border-style:solid none none solid;
+	border-width:2px medium medium 2px;
+	color:#CCCCCC;
+	font:11px arial,sans-serif;
+	height:15px;
+	overflow:hidden;
+	padding-left:2px;
+	width:100%;
+}
+.videoOptionsComplete .copycode {
+	background:url("images/ksprite.png") no-repeat scroll 0 -81px #D4D4D4;
+	border:1px solid #000000;
+	color:#000000;
+	float:right;
+	height:24px;
+	padding:0 5px 3px;
+	width:84px;
+	font-size:1em;
+}
+.videoOptionsComplete div.ui-state-highlight {
+	background:none repeat scroll 0 0 transparent;
+	border-color:#554926;
+	color:#FFE96E;
+	float:left;
+	padding:2px 5px;
+}
+.videoOptionsComplete div.ui-state-highlight a {
+	color:#FFE96E;
+	font-weight:bold;
+}
