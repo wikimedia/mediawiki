@@ -601,6 +601,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * User::isValidPassword now only returns boolean results, User::getPasswordValidity
   can be used to get an error message string
 * The error message shown in Special:ChangePassword now parses wiki markup
+* (bug 18909) Add missing Postgres INSERT SELECT wrapper
 
 == API changes in 1.16 ==
 
