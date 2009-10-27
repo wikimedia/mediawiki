@@ -1069,6 +1069,7 @@ div#bodyContent {
 /* Watch/Unwatch Icon Styling */
 #ca-unwatch.icon,
 #ca-watch.icon {
+	margin-right:1px;
 }
 #ca-unwatch.icon a,
 #ca-watch.icon a {
@@ -1103,4 +1104,9 @@ div#bodyContent {
 #ca-unwatch.icon a span,
 #ca-watch.icon a span {
 	display: none;
+}
+div.vectorTabs ul {
+	background-image:url(images/tab-break.png);
+	background-position:right bottom;
+	background-repeat:no-repeat;
 }
