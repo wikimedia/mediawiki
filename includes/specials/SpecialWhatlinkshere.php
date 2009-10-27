@@ -396,6 +396,11 @@ class SpecialWhatLinksHere extends SpecialPage {
 		return $f;
 	}
 
+	/**
+	 * Create filter panel
+	 * 
+	 * @return string HTML fieldset and filter panel with the show/hide links
+	 */
 	function getFilterPanel() {
 		global $wgLang;
 		$show = wfMsgHtml( 'show' );
@@ -408,11 +413,14 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$types = array( 'hidetrans', 'hidelinks', 'hideredirs' );
 		if( $this->target->getNamespace() == NS_FILE )
 			$types[] = 'hideimages';
+
+		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans', 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
+		// To be sure they will be find by grep
 		foreach( $types as $type ) {
 			$chosen = $this->opts->getValue( $type );
-			$msg = wfMsgHtml( "whatlinkshere-{$type}", $chosen ? $show : $hide );
+			$msg = $chosen ? $show : $hide;
 			$overrides = array( $type => !$chosen );
-			$links[] = $this->makeSelfLink( $msg, array_merge( $changed, $overrides ) );
+			$links[] =  wfMsgHtml( "whatlinkshere-{$type}", $this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) );
 		}
 		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), $wgLang->pipeList( $links ) );
 	}
