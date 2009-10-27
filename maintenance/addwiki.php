@@ -222,7 +222,6 @@ See Wikimedia's [[m:|Meta-Wiki]] for the coordination of these projects.
 [[cu:]]
 [[cv:]]
 [[cy:]]
-[[cz:]]
 [[da:]]
 [[de:]]
 [[diq:]]
