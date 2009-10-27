@@ -737,6 +737,11 @@ class memcached
    function _dead_sock ($sock)
    {
       $host = array_search($sock, $this->_cache_sock);
+      $this->_dead_host($host);
+   }
+
+   function _dead_host ($host)
+   {
       @list ($ip, /* $port */) = explode(":", $host);
       $this->_host_dead[$ip] = time() + 30 + intval(rand(0, 10));
       $this->_host_dead[$host] = $this->_host_dead[$ip];
@@ -1005,7 +1010,7 @@ class memcached
          return null;
 
       if (!$this->_connect_sock($sock, $host))
-         return $this->_dead_sock($host);
+         return $this->_dead_host($host);
 
       // Do not buffer writes
       stream_set_write_buffer($sock, 0);
