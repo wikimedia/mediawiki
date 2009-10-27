@@ -179,18 +179,24 @@
 	/* Variants and Actions */
 	/* @noflip */
 	div.vectorMenu {
+		background-image:url(images/tab-fade.png);
+		background-position:bottom left;
+		background-repeat:repeat-x;
+		border-top:1px solid #cccccc;
+		border-left:1px solid #cccccc;
+		border-right:1px solid #cccccc;
 	}
 	body.rtl div.vectorMenu {
 		direction: rtl;
 	}
 	/* @noflip */
 	body #head div.vectorMenu h5 {
-		border-top:1px solid #cccccc;
-		border-left:1px solid #cccccc;
-		border-right:1px solid #cccccc;
+		background-image: url(../images/arrow-down-icon.png);
+		background-position: center center;
+		background-repeat: no-repeat;
 		padding-left: 0;
 		margin-left: 0px;
-		background-image: none !important;
+
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body div.vectorMenu h5 a {
@@ -281,12 +287,15 @@
 #ca-watch.icon {
 	background-color:#ffffff;
 	height:1.75em !important;
-	
+	background-image:url(images/tab-fade.png);
+	background-position:bottom left;
+	background-repeat:repeat-x;
 }
 #ca-unwatch.icon a,
 #ca-watch.icon a {
 	height: 1.7em !important;
 	border-bottom:none;
+	background-color:transparent;
 }
 #ca-watch.icon a,
 #ca-unwatch.icon a {

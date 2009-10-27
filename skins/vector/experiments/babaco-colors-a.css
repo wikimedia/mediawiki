@@ -45,17 +45,17 @@ h4,
 h5,
 h6 {
 	border-color:#999999;
-	font-family:arial, sans-serif;
+	font-family:georgia, times, serif;
 }
 #firstHeading {
 	font-size:1.5em;
 }
 h1,
 h2{
-	font-family:georgia, times, serif;
 	letter-spacing:0.6px;
 }
-h2 .editsection{
+h2 .editsection,
+.portal h5{
 	font-family:sans-serif;
 	letter-spacing:0px;
 }
@@ -98,5 +98,7 @@ div.thumbinner{
 }
 #panel div.portal h5 {
 	font-weight:bold;
-	padding-bottom:0;
+	margin-bottom:0;
+	padding-bottom:0.05em;
+	color:#000000;
 }
