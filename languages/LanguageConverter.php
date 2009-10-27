@@ -640,33 +640,6 @@ class LanguageConverter {
 	}
 
 	/**
-	 * a write lock to the cache
-	 *
-	 * @private
-	 */
-	function lockCache() {
-		global $wgMemc;
-		$success = false;
-		for($i=0; $i<30; $i++) {
-			if($success = $wgMemc->add($this->mCacheKey . "lock", 1, 10))
-				break;
-			sleep(1);
-		}
-		return $success;
-	}
-
-	/**
-	 * unlock cache
-	 *
-	 * @private
-	 */
-	function unlockCache() {
-		global $wgMemc;
-		$wgMemc->delete($this->mCacheKey . "lock");
-	}
-
-
-	/**
 	 * Load default conversion tables
 	 * This method must be implemented in derived class
 	 *
@@ -706,11 +679,8 @@ class LanguageConverter {
 
 			$this->postLoadTables();
 			$this->mTables[self::CACHE_VERSION_KEY] = true;
-
-			if($this->lockCache()) {
-				$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
-				$this->unlockCache();
-			}
+			
+			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
 			wfProfileOut( __METHOD__.'-recache' );
 		}
 		wfProfileOut( __METHOD__ );
