@@ -252,34 +252,39 @@ ctrlBuilder.prototype = {
 	doVolumeBinding:function(){
 		var embedObj = this.embedObj;
 		var _this = this;
-		var $tp=$j('#' + embedObj.id);
-		//default volume binding:
-		var hoverOverDelay=false;
+		var $tp=$j('#' + embedObj.id);		
 		$tp.find('.volume_control').unbind().btnBind().click(function(){
+			js_log('clicked volume control');
 			$j('#' +embedObj.id).get(0).toggleMute();
-		}).hover(
-			function(){
-				$j('#vol_container_' + embedObj.id).addClass('vol_container_top');
-				//set to "below" if playing and embedType != native
-				if(embedObj && embedObj.isPlaying && embedObj.isPlaying() && !embedObj.supports['overlays']){
-					$j('#vol_container_' + embedObj.id).removeClass('vol_container_top').addClass('vol_container_below');
+		});
+		//add vertical volume display hover
+		if( this.volume_layout == 'vertical'){
+			//default volume binding:
+			var hoverOverDelay = false;
+			var $tpvol = $tp.find('.vol_container');
+			$tp.find('.volume_control').hover(
+				function(){						
+					$tpvol.addClass('vol_container_top');					
+					//set to "below" if playing and embedType != native
+					if(embedObj && embedObj.isPlaying && embedObj.isPlaying() && !embedObj.supports['overlays']){
+						$tpvol.removeClass('vol_container_top').addClass('vol_container_below');
+					}	
+					$tpvol.fadeIn('fast');
+					hoverOverDelay = true;
+				},
+				function(){
+					hoverOverDelay= false;
+					setTimeout(function doHideVolume(){
+						if(!hoverOverDelay){
+							$tpvol.fadeOut('fast');
+						}
+					}, 500);
 				}
-
-				$j('#vol_container_' + embedObj.id).fadeIn('fast');
-				hoverOverDelay = true;
-			},
-			function(){
-				hoverOverDelay= false;
-				setTimeout(function doHideVolume(){
-					if(!hoverOverDelay){
-						$j('#vol_container_' + embedObj.id).fadeOut('fast');
-					}
-				}, 500);
-			}
-		);
-		//Volumen Slider
-		$j('#volume_bar_'+embedObj.id).slider({
-			orientation: "vertical",
+			);
+		}
+		
+		//setup slider:
+		var sliderConf = {
 			range: "min",
 			value: 80,
 			min: 0,
@@ -291,20 +296,20 @@ ctrlBuilder.prototype = {
 			},
 			change:function(event, ui){
 				var perc = ui.value/100;
-				if (perc==0) {
-					$j('#' + embedObj.id + ' .volume_control span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
+				if ( perc==0 ) {
+					$tp.find('.volume_control span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
 				}else{
-					$j('#' + embedObj.id + ' .volume_control span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
+					$tp.find('.volume_control span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
 				}
-				//only run the onChange event if done by a user slide:
-				if(embedObj.userSlide){
-					embedObj.userSlide=false;
-					embedObj.seeking=true;
-					var perc = ui.value/100;
-					embedObj.updateVolumen(perc);
-				}
+				var perc = ui.value/100;
+				embedObj.updateVolumen(perc);
 			}
-		});
+		}
+		
+		if( this.volume_layout == 'vertical')
+			sliderConf['orientation'] = "vertical";
+		
+		$tp.find( '.volume-slider' ).slider( sliderConf );	
 	},
 	getMvBufferHtml:function(){
 		return '<div class="ui-slider-range ui-slider-range-min ui-widget-header ' +
@@ -413,8 +418,8 @@ ctrlBuilder.prototype = {
 						'<span class="ui-icon ui-icon-volume-on"></span>';
 						
 				if( ctrlObj.volume_layout == 'vertical'){
-					o+='<div style="position:absolute;display:none;" id="vol_container_'+ctrlObj.id+'" class="vol_container ui-corner-all">' +
-							'<div class="volume_bar" id="volume_bar_' + ctrlObj.id + '"></div>' +
+					o+='<div style="position:absolute;display:none;" class="vol_container ui-corner-all">' +
+							'<div class="volume-slider" ></div>' +
 						'</div>';
 				}
 				o+= '</div>';										

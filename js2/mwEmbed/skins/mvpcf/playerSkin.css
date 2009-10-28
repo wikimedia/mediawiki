@@ -80,10 +80,10 @@
 	padding: 0 0 0 0;
 	
 }
-.volume_on {	
+.mv-player .volume_on {	
 	background: url(images/player_volume_tag.png) 0 8px no-repeat;
 }
-.volume_off{
+.mv-player .volume_off{
 	background: url(images/player_volume_tag_off.png) 0 8px no-repeat;
 }
 
@@ -96,7 +96,33 @@
 	margin: -1px 0 0 3px;
 	cursor: pointer;
 }
-
+.mv-player .vol_container{
+	z-index:99;
+	width:23px;
+	height:75px;
+	width:23px;
+	background: #CCC;
+}
+.mv-player .vol_container_below{
+	top:30px;
+}
+.mv-player .vol_container_top{
+	top:-77px;
+}
+.mv-player .vol_container .volume-slider{
+	margin-top:5px;	
+	height:65px;
+	width:10px;
+	margin-left: auto ;
+	margin-right: auto ;	
+}
+.mv-player .vol_container .ui-slider-handle{
+	cursor : pointer;
+	width:10px;
+	height:10px;	
+	position:absolute;
+	left:-1px;		
+}
 
 .mv-player .time-disp {
 	line-height: 32px;
@@ -117,20 +143,20 @@
 	margin-top:10px;	
 }
 
-.play_head .ui-slider-handle{
+.mv-player .play_head .ui-slider-handle{
 	width:10px;
 	height:15px;
 	margin-left:-5px;
 	margin-top:1px;
 }
 
-.inOutSlider .ui-slider-handle{
+.mv-player .inOutSlider .ui-slider-handle{
 	width:8px;	
 	cusror: move;
 }
 
 
-.videoOptionsComplete textarea {
+.mv-player .videoOptionsComplete textarea {
 	background:none repeat scroll 0 0 transparent;
 	border-color:#333 -moz-use-text-color -moz-use-text-color #333;
 	border-style:solid none none solid;
@@ -142,7 +168,7 @@
 	padding-left:2px;
 	width:100%;
 }
-.videoOptionsComplete .copycode {
+.mv-player .videoOptionsComplete .copycode {
 	background:url("images/ksprite.png") no-repeat scroll 0 -81px #D4D4D4;
 	border:1px solid #000000;
 	color:#000000;
@@ -152,14 +178,14 @@
 	width:84px;
 	font-size:1em;
 }
-.videoOptionsComplete div.ui-state-highlight {
+.mv-player .videoOptionsComplete div.ui-state-highlight {
 	background:none repeat scroll 0 0 transparent;
 	border-color:#554926;
 	color:#FFE96E;
 	float:left;
 	padding:2px 5px;
 }
-.videoOptionsComplete div.ui-state-highlight a {
+.mv-player .videoOptionsComplete div.ui-state-highlight a {
 	color:#FFE96E;
 	font-weight:bold;
 }

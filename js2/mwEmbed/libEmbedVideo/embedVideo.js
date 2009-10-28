@@ -1410,6 +1410,8 @@ embedVideo.prototype = {
 		$j( '#mv_embedded_player_' + this.id ).html( this.getThumbnailHTML() );
 		this.paused = true;		
 		this.thumbnail_disp = true;
+		//make sure the ctrlBuilder remain active: 
+		this.ctrlBuilder.addControlHooks(this);	
 	},
 	refreshControlsHTML:function(){
 		js_log('refreshControlsHTML::');
@@ -2004,17 +2006,15 @@ embedVideo.prototype = {
 			this.update_interval = null;
 		}
 	},
-	toggleMute:function(){
+	toggleMute:function(){	
 		var eid = (this.pc!=null)?this.pc.pp.id:this.id;	
-		if(this.muted){
-			this.muted=false;
-			$j('#volume_control_'+eid + ' span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
-			$j('#volume_bar_'+eid).slider('value', 100); 
+		if( this.muted ){
+			this.muted=false;			
+			$j('#' + eid + ' .volume-slider').slider('value', 100);
 			this.updateVolumen(1);
 		}else{
-			this.muted=true;
-			$j('#volume_control_'+eid + ' span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
-			$j('#volume_bar_'+eid).slider('value', 0);
+			this.muted=true;			
+			$j('#' + eid + ' .volume-slider').slider('value', 0);
 			this.updateVolumen(0); 
 		}
 		js_log('f:toggleMute::' + this.muted);		
@@ -2054,7 +2054,7 @@ embedVideo.prototype = {
 	//do common monitor code like update the playhead and play status 
 	//plugin objects are responsible for updating currentTime
 	monitor:function(){		 
-		js_log(' ct: ' + this.currentTime + ' dur: ' + ( parseInt( this.duration ) + 1 )  + ' is seek: ' + this.seeking );
+		//js_log(' ct: ' + this.currentTime + ' dur: ' + ( parseInt( this.duration ) + 1 )  + ' is seek: ' + this.seeking );
 		if( this.currentTime && this.currentTime > 0 && this.duration){
 			if( !this.userSlide && !this.seeking ){
 				if( this.start_offset  ){ 
