@@ -49,6 +49,7 @@ abstract class ApiBase {
 	const PARAM_MAX2 = 4; // Max value allowed for a parameter for bots and sysops. Only applies if TYPE='integer'
 	const PARAM_MIN = 5; // Lowest value allowed for a parameter. Only applies if TYPE='integer'
 	const PARAM_ALLOW_DUPLICATES = 6; // Boolean, do we allow the same value to be set more than once when ISMULTI=true
+	const PARAM_DEPRECATED = 7; // Boolean, is the parameter deprecated (will show a warning)
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -281,6 +282,11 @@ abstract class ApiBase {
 				$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
 				if (is_array($desc))
 					$desc = implode($paramPrefix, $desc);
+
+				$deprecated = isset( $paramSettings[self :: PARAM_DEPRECATED] ) ? 
+					$paramSettings[self :: PARAM_DEPRECATED] : false;
+				if( $deprecated )
+					$desc = "DEPRECATED! $desc";	
 
 				$type = isset($paramSettings[self :: PARAM_TYPE])? $paramSettings[self :: PARAM_TYPE] : null;
 				if (isset ($type)) {
@@ -528,6 +534,7 @@ abstract class ApiBase {
 			$multi = isset ($paramSettings[self :: PARAM_ISMULTI]) ? $paramSettings[self :: PARAM_ISMULTI] : false;
 			$type = isset ($paramSettings[self :: PARAM_TYPE]) ? $paramSettings[self :: PARAM_TYPE] : null;
 			$dupes = isset ($paramSettings[self:: PARAM_ALLOW_DUPLICATES]) ? $paramSettings[self :: PARAM_ALLOW_DUPLICATES] : false;
+			$deprecated = isset ($paramSettings[self:: PARAM_DEPRECATED]) ? $paramSettings[self :: PARAM_DEPRECATED] : false;
 
 			// When type is not given, and no choices, the type is the same as $default
 			if (!isset ($type)) {
@@ -621,6 +628,11 @@ abstract class ApiBase {
 			// Throw out duplicates if requested
 			if (is_array($value) && !$dupes)
 				$value = array_unique($value);
+				
+			// Set a warning if a deprecated parameter has been passed
+			if( $deprecated ) {
+				$this->setWarning( "The $encParamName parameter has been deprecated." );
+			}
 		}
 
 		return $value;

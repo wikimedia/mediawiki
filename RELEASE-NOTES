@@ -660,6 +660,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21105) list=usercontribs can now list contribs for User:0
 * (bug 21085) list=deletedrevs no longer returns only one revision when
   drcontinue param is passed
+* (bug 21106) Deprecated parameters now tagged in action=paraminfo
 
 === Languages updated in 1.16 ===
 

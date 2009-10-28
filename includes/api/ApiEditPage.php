@@ -190,15 +190,9 @@ class ApiEditPage extends ApiBase {
 		}
 		// Deprecated parameters
 		if ($params['watch']) 
-		{
 			$watch = true;
-			$this->setWarning('The watch parameter has been deprecated.');
-		}
 		elseif ($params['unwatch']) 
-		{
 			$watch = false;
-			$this->setWarning('The unwatch parameter has been deprecated.');
-		}
 		
 		if($watch)
 			$reqArr['wpWatchthis'] = '';
@@ -335,8 +329,14 @@ class ApiEditPage extends ApiBase {
 			'nocreate' => false,
 			'captchaword' => null,
 			'captchaid' => null,
-			'watch' => false,
-			'unwatch' => false,
+			'watch' => array(
+				ApiBase :: PARAM_DFLT => false,
+				ApiBase :: PARAM_DEPRECATED => true,
+			),
+			'unwatch' => array(
+				ApiBase :: PARAM_DFLT => false,
+				ApiBase :: PARAM_DEPRECATED => true,
+			),
 			'watchlist' => array(
 				ApiBase :: PARAM_DFLT => 'preferences',
 				ApiBase :: PARAM_TYPE => array(
@@ -377,8 +377,8 @@ class ApiEditPage extends ApiBase {
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
 			'createonly' => 'Don\'t edit the page if it exists already',
 			'nocreate' => 'Throw an error if the page doesn\'t exist',
-			'watch' => 'DEPRECATED! Add the page to your watchlist',
-			'unwatch' => 'DEPRECATED! Remove the page from your watchlist',
+			'watch' => 'Add the page to your watchlist',
+			'unwatch' => 'Remove the page from your watchlist',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 			'captchaid' => 'CAPTCHA ID from previous request',
 			'captchaword' => 'Answer to the CAPTCHA',

@@ -114,6 +114,9 @@ class ApiParamInfo extends ApiBase {
 			$a = array('name' => $n);
 			if(isset($paramDesc[$n]))
 				$a['description'] = implode("\n", (array)$paramDesc[$n]);
+			if(isset($p[ApiBase::PARAM_DEPRECATED]))
+				if($p[ApiBase::PARAM_DEPRECATED])
+					$a['deprecated'] = '';
 			if(!is_array($p))
 			{
 				if(is_bool($p))
