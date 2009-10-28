@@ -38,7 +38,7 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
+		global $wgUser, $wgAllowCopyUploads;
 
 		$this->getMain()->isWriteMode();
 		$this->mParams = $this->extractRequestParams();
@@ -133,6 +133,15 @@ class ApiUpload extends ApiBase {
 					$request->getFileSize( 'file' )
 				);
 			} elseif ( isset( $this->mParams['url'] ) ) {
+				//make sure upload by url is enabled: 
+				if( !$wgAllowCopyUploads )
+					$this->dieUsageMsg( array( 'uploaddisabled' ) );
+				
+				//make sure the current user can upload
+				if(! $wgUser->isAllowed('upload_by_url') )
+					$this->dieUsageMsg( array( 'badaccess-groups' ) );
+					
+				
 				$this->mUpload = new UploadFromUrl();
 				$this->mUpload->initialize( $this->mParams['filename'],
 						$this->mParams['url'], $this->mParams['asyncdownload'] );
