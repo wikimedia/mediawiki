@@ -1007,6 +1007,7 @@ La rason balhada per $3 èra ''$2''.",
 'histlegend'             => 'Legenda : ({{MediaWiki:Cur}}) = diferéncia amb la version actuala ,
 ({{MediaWiki:Last}}) = diferéncia amb la version precedenta, <b>m</b> = cambiament menor',
 'history-fieldset-title' => "Percórrer l'istoric",
+'history-show-deleted'   => 'Suprimits solament',
 'histfirst'              => 'Primièras contribucions',
 'histlast'               => 'Darrièras contribucions',
 'historysize'            => '({{PLURAL:$1|1 octet|$1 octets}})',
@@ -1044,6 +1045,10 @@ En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se volè
 'rev-suppressed-unhide-diff'  => "Una de las revisions d'aqueste diff es estada '''suprimida'''.
 I pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].
 En tant qu'administrator, podètz totjorn [$1 veire aqueste diff] se volètz contunhar.",
+'rev-deleted-diff-view'       => "Una de las revisions d'aquesta diff es estada '''suprimida'''.
+En tant qu'administrator podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
+'rev-suppressed-diff-view'    => "Una de las revisions d'aquesta diff es estada '''escafada'''.
+En tant qu'administrator podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
 'rev-delundel'                => 'afichar/amagar',
 'revisiondelete'              => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'     => 'Cibla per la revision invalida',
@@ -1059,6 +1064,7 @@ En tant qu'administrator, podètz totjorn [$1 veire aqueste diff] se volètz con
 'logdelete-selected'          => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
 'revdelete-text'              => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
 D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornamai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del site.",
+'revdelete-confirm'           => "Confirmatz que volètz efectuar aquesta accion, que ne comprenètz las consequéncias, e qu'o fasètz en acòrd amb [[{{MediaWiki:Policy-url}}|las règlas]].",
 'revdelete-suppress-text'     => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
 * Informacions personalas inapropriadas
 *: ''adreça, numèro de telefòn, numèro de seguretat sociala, ...''",
@@ -1540,6 +1546,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'upload'                      => 'Importar un fichièr',
 'uploadbtn'                   => 'Importar un fichièr',
 'reuploaddesc'                => 'Anullar lo cargament e tornar al formulari.',
+'upload-tryagain'             => 'Mandar la descripcion del fichièr modificada',
 'uploadnologin'               => 'Vos sètz pas identificat(ada)',
 'uploadnologintext'           => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 per copiar de fichièrs sul servidor.',
@@ -1606,6 +1613,7 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'file-deleted-duplicate'      => "Un fichièr identic a aqueste ([[$1]]) ja es estat suprimit. Vos caldriá verificar lo jornal de las supressions d'aqueste fichièr abans de la tornar telecargar.",
 'successfulupload'            => 'Importacion capitada',
 'uploadwarning'               => 'Atencion !',
+'uploadwarning-text'          => 'Modificatz la descripcion del fichièr es ensajatz tornarmai.',
 'savefile'                    => 'Salvar lo fichièr',
 'uploadedimage'               => '«[[$1]]» copiat sul servidor',
 'overwroteimage'              => 'a importat una version novèla de « [[$1]] »',
@@ -1621,6 +1629,7 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'destfilename'                => 'Nom jolqual lo fichièr serà enregistrat&nbsp;:',
 'upload-maxfilesize'          => 'Talha maximala del fichièr : $1',
 'upload-description'          => 'Descripcion del fichièr',
+'upload-options'              => 'Opcions de telecargament',
 'watchthisupload'             => 'Seguir aqueste fichièr',
 'filewasdeleted'              => 'Un fichièr amb aqueste nom ja es estat copiat, puèi suprimit. Vos caldriá verificar lo $1 abans de procedir a una còpia novèla.',
 'upload-wasdeleted'           => "'''Atencion : Sètz a importar un fichièr que ja es estat suprimit deperabans.'''
@@ -1962,6 +1971,7 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista dels utilizaires actius',
+'activeusers-intro'    => "Aquò es una lista dels utilizaires qu'an exerçat una activitat quina que siá al cors {{PLURAL:$1|de la darrièra jornada|dels $1 darrièrs jorns}}.",
 'activeusers-count'    => '$1 {{PLURAL:$1|modificacion recenta|modificacions recentas}} dins {{PLURAL:$3|lo darrièr jorn|los $3 darrièrs jorns}}',
 'activeusers-from'     => 'Afichar los utilizaires dempuèi :',
 'activeusers-noresult' => "Cap d'utilizaire pas trobat.",
@@ -2098,7 +2108,7 @@ Retorn e assisténcia :
 'exblank'                => 'pagina voida',
 'delete-confirm'         => 'Escafar «$1»',
 'delete-legend'          => 'Escafar',
-'historywarning'         => 'Atencion : La pagina que sètz a mand de suprimir a un istoric :',
+'historywarning'         => "'''Atencion :''' La pagina que sètz a mand de suprimir a un istoric que conten $1 {{PLURAL:$1|revision|revisions}} :",
 'confirmdeletetext'      => "Sètz a mand de suprimir una pagina o un fichièr, e mai totas sas versions anterioras istorizadas.
 Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncias e que fasètz aquò en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].",
 'actioncomplete'         => 'Accion efectuada',
@@ -2354,6 +2364,7 @@ a partir d'una adreça IP precedentament blocada.",
 'ipblocklist-sh-tempblocks'       => '$1 los blocatges temporaris',
 'ipblocklist-sh-addressblocks'    => "$1 los blocatges d'una sola adreça IP",
 'ipblocklist-submit'              => 'Recercar',
+'ipblocklist-otherblocks'         => 'Autres blocatges',
 'blocklistline'                   => '$1, $2 a blocat $3 ($4)',
 'infiniteblock'                   => 'permanent',
 'expiringblock'                   => 'expira lo $1 a $2',
@@ -2500,6 +2511,8 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'semiprotectedpagemovewarning' => "'''Nòta :''' Aquesta pagina es estada blocada per que sonque los utilizaires enregistrats la pòscan tornar nomenar.",
 'move-over-sharedrepo'         => '== Lo fichièr existís ==
 [[:$1]] existís ja sus un depaus partejat. Tornar nomenar aqueste fichièr farà lo fichièr sul depaus partatge inaccessible.',
+'file-exists-sharedrepo'       => 'Lo nom causit es ja utilizat per un fichièr sus un depaus partejat.
+Causissètz un autre nom.',
 
 # Export
 'export'            => 'Exportar de paginas',

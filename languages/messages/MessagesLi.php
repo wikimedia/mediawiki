@@ -465,7 +465,7 @@ De verantwoordelike systeembeheerder gaof de volgende rae op:
 Dit kan veurkómme as doe 'n auwer verwiezing nao 't versjil tösje twee versies van ein pagina volgs of 'n versie opvreugs die is eweggesjaf.
 
 Es dit neet 't geval is, höbs doe mesjins 'n fout in de software gevónje.
-Maak hievan melding bie 'ne systeembeheerder van {{SITENAME}} en vermeld daobie de URL van dees pagina.",
+Maak hievan melding bie 'ne [[Special:ListUsers/sysop|systeembeheerder]] van {{SITENAME}} en vermeld daobie de URL van dees pagina.",
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wijziging: $1, $2)',
 'readonly_lag'         => 'De database is autematis vergrendeld terwiel de ongergesjikte databaseservers synchronisere mit de huidserver.',
@@ -732,7 +732,7 @@ t Is geslaote waenger: $1",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveilig en kin allein door beheerders bewerk waere, omdat deze is opgenaome in de volgende {{PLURAL:$1|pagina|pagina's}} {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} met de cascade-optie:",
 'titleprotectedwarning'            => "'''WAORSJUWING: Deze pagina is beveilig zodet allein inkele gebroekers 'm kinne aanmake. De beneuds [[Special:ListGroupRights|speciale rechte]].'''",
 'templatesused'                    => 'Sjablone gebroek in dees pagina:',
-'templatesusedpreview'             => 'Sjablone gebroek in dees veurvertuining:',
+'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablone}} gebroek in dees veurvertuining:',
 'templatesusedsection'             => 'Sjablone die gebroek waere in deze subkop:',
 'template-protected'               => '(besjirmp)',
 'template-semiprotected'           => '(semi-besjörmp)',

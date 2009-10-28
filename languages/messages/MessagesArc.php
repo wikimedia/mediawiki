@@ -368,7 +368,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'editingcomment'                   => 'ܫܚܠܦܬܐ ܕ $1 (ܡܢܬܐ ܚܕܬܐ)',
 'yourtext'                         => 'ܟܬܒܬܐ ܕܝܠܟ',
 'yourdiff'                         => 'ܦܪ̈ܝܫܘܝܬܐ',
-'templatesused'                    => 'ܩܠܒ̈ܐ ܒܦܐܬܐ ܗܕܐ',
+'templatesused'                    => '{{PLURAL:$1|ܩܠܒܐ|ܩܠܒ̈ܐ}} ܒܦܐܬܐ ܗܕܐ:',
 'template-protected'               => '(ܢܛܝܪܐ)',
 'template-semiprotected'           => '(ܕܡܘܬ ܢܛܝܪܐ)',
 'nocreate-loggedin'                => 'ܠܝܬ ܠܟ ܦܣܣܐ ܕܒܪܝܐ ܕܦܐܬܐ ܗܕܐ.',
@@ -529,7 +529,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'youremail'                   => 'ܒܝܠܕܪܐ ܐܠܟܬܪܘܢܝܐ:',
 'username'                    => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'uid'                         => 'ܗܝܝܘܬܐ ܕܡܦܠܚܢܐ:',
-'prefs-memberingroups'        => 'ܗܕܡܐ ܕ {{PLURAL:$1|ܟܢܘܫܝܐ|ܟܢܘܫܝ̈ܐ}}:',
+'prefs-memberingroups'        => 'ܗܕܡܐ ܕ {{PLURAL:$1|ܟܢܘܫܬܐ|ܟܢܘܫܬ̈ܐ}}:',
 'prefs-registration'          => 'ܙܒܢܐ ܕܣܘܓܠܐ:',
 'yourrealname'                => 'ܫܡܐ ܫܪܝܪܐ:',
 'yourlanguage'                => 'ܠܫܢܐ:',
@@ -564,7 +564,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'userrights-reason'        => 'ܥܠܬܐ ܠܫܚܠܦܬܐ:',
 
 # Groups
-'group'            => 'ܟܢܘܫܝܐ:',
+'group'            => 'ܟܢܘܫܬܐ:',
 'group-user'       => 'ܡܦܠܚܢ̈ܐ',
 'group-bot'        => 'ܒܘܬ̈ܐ',
 'group-sysop'      => 'ܡܕܒܪ̈ܢܐ',
@@ -833,12 +833,12 @@ Note that some pages may continue to be displayed as if you were still logged in
 'newuserlog-create2-entry' => 'ܒܪܐ ܚܘܫܒܢܐ ܚܕܬܐ $1',
 
 # Special:ListGroupRights
-'listgrouprights'              => 'ܙܕܩ̈ܐ ܕܟܢܘܫܝܐ ܕܡܦܠܚܢ̈ܐ',
-'listgrouprights-group'        => 'ܟܢܘܫܝܐ',
+'listgrouprights'              => 'ܙܕܩ̈ܐ ܕܟܢܘܫܬܐ ܕܡܦܠܚܢ̈ܐ',
+'listgrouprights-group'        => 'ܟܢܘܫܬܐ',
 'listgrouprights-rights'       => 'ܙܕܩ̈ܐ',
-'listgrouprights-helppage'     => 'Help:ܙܕܩ̈ܐ ܕܟܢܘܫܝܐ',
+'listgrouprights-helppage'     => 'Help:ܙܕܩ̈ܐ ܕܟܢܘܫܬܐ',
 'listgrouprights-members'      => '(ܒܪܒܝܢ ܕܗܕܡ̈ܐ)',
-'listgrouprights-addgroup'     => 'ܐܘܣܦ {{PLURAL:$2|ܟܢܘܫܝܐ|ܟܢܘܫܝ̈ܐ}}: $1',
+'listgrouprights-addgroup'     => 'ܐܘܣܦ {{PLURAL:$2|ܟܢܘܫܬܐ|ܟܢܘܫܬ̈ܐ}}: $1',
 'listgrouprights-addgroup-all' => 'ܐܘܣܦ ܟܠ ܟܢܘܫܝ̈ܐ',
 
 # E-mail user

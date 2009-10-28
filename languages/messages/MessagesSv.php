@@ -658,8 +658,8 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'unexpected'           => 'Oväntat värde: "$1"="$2".',
 'formerror'            => 'Fel: Kunde inte sända formulär',
 'badarticleerror'      => 'Den åtgärden kan inte utföras på den här sidan.',
-'cannotdelete'         => 'Det gick inte att radera den angivna sidan eller filen.
-Den kanske redan blivit raderad av någon annan.',
+'cannotdelete'         => 'Sidan eller filen "$1" kunde inte raderas.
+Den kanske redan har raderats av någon annan.',
 'badtitle'             => 'Felaktig titel',
 'badtitletext'         => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
@@ -2107,7 +2107,7 @@ Feedback och ytterligare hjälp:
 'exblank'                => 'sidan var tom',
 'delete-confirm'         => 'Radera "$1"',
 'delete-legend'          => 'Radera',
-'historywarning'         => 'Varning: Sidan du håller på att radera har en historik:',
+'historywarning'         => "'''Varning:''' Sidan du håller på att radera har en historik med $1 {{PLURAL:$1|version|versioner}}:",
 'confirmdeletetext'      => 'Du håller på att ta bort en sida med hela dess historik.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'         => 'Genomfört',
