@@ -33,7 +33,21 @@ class ORAResult {
 	private $nrows;
 
 	private $unique;
+	private function array_unique_md($array_in) {  
+		$array_out = array();
+		$array_hashes = array();
 
+		foreach($array_in as $key => $item) {  
+			$hash = md5(serialize($item));  
+			if (!isset($array_hashes[$hash])) {  
+				$array_hashes[$hash] = $hash;  
+				$array_out[] = $item;
+			}  
+		}  
+		
+		return $array_out;  
+	}
+	
 	function __construct(&$db, $stmt, $unique = false) {
 		$this->db =& $db;
 
@@ -44,7 +58,7 @@ class ORAResult {
 		}
 
 		if ($unique) {
-			$this->rows = array_unique($this->rows);
+			$this->rows = $this->array_unique_md($this->rows);
 			$this->nrows = count($this->rows);
 		}
 
@@ -162,6 +176,7 @@ class DatabaseOracle extends DatabaseBase {
 	var $mAffectedRows;
 
 	var $ignore_DUP_VAL_ON_INDEX = false;
+	var $sequenceData = null;
 
 	function DatabaseOracle($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
@@ -513,11 +528,15 @@ class DatabaseOracle extends DatabaseBase {
 			$srcTable = $this->tableName( $srcTable );
 		}
 		
+		if (($sequenceData = $this->getSequenceData($destTable)) !== false &&
+				!isset($varMap[$sequenceData['column']]))
+			$varMap[$sequenceData['column']] = 'GET_SEQUENCE_VALUE(\''.$sequenceData['sequence'].'\')';
+		
 		// count-alias subselect fields to avoid abigious definition errors
 		$i=0;
 		foreach($varMap as $key=>&$val)
 			$val=$val.' field'.($i++);
-				
+		
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			" SELECT $startOpts " . implode( ',', $varMap ) .
 			" FROM $srcTable $useIndex ";
@@ -525,12 +544,12 @@ class DatabaseOracle extends DatabaseBase {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
 		$sql .= " $tailOpts";
-
+		
 		if (in_array('IGNORE', $insertOptions)) 
 			$this->ignore_DUP_VAL_ON_INDEX = true;
-
+		
 		$retval = $this->query( $sql, $fname );
-
+		
 		if (in_array('IGNORE', $insertOptions))
 			$this->ignore_DUP_VAL_ON_INDEX = false;
 		
@@ -594,6 +613,21 @@ class DatabaseOracle extends DatabaseBase {
 		$this->freeResult($res);
 		return $this->mInsertId;
 	}
+
+	/**
+	 * Return sequence_name if table has a sequence
+	 */
+	function getSequenceData($table) {
+		if ($this->sequenceData == NULL) {
+			$result = $this->query("SELECT lower(us.sequence_name), lower(utc.table_name), lower(utc.column_name) from user_sequences us, user_tab_columns utc where us.sequence_name = utc.table_name||'_'||utc.column_name||'_SEQ'");
+			
+			while(($row = $result->fetchRow()) !== false)
+				$this->sequenceData[$this->tableName($row[1])] = array('sequence' => $row[0], 'column' => $row[2]);
+		}
+		
+		return (isset($this->sequenceData[$table])) ? $this->sequenceData[$table] : false;
+	}
+	
 
 	# REPLACE query wrapper
 	# Oracle simulates this with a DELETE followed by INSERT

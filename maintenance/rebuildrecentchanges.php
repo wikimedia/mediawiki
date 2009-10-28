@@ -115,7 +115,8 @@ class RebuildRecentchanges extends Maintenance {
 				$emit = $obj->rc_timestamp;
 				$sql2 = "SELECT rev_id,rev_len FROM $revision " .
 					"WHERE rev_page={$lastCurId} ".
-					"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC LIMIT 1";
+					"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC";
+				$sql2 = $dbw->limitResult($sql2, 1, false);
 				$res2 = $dbw->query( $sql2 );
 				if( $row = $dbw->fetchObject( $res2 ) ) {
 					$lastOldId = intval($row->rev_id);
