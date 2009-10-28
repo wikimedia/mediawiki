@@ -268,10 +268,6 @@ class ApiEditPage extends ApiBase {
 			#case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
 			case EditPage::AS_TEXTBOX_EMPTY:
 				$this->dieUsageMsg(array('emptynewsection'));
-			case EditPage::AS_END:
-				# This usually means some kind of race condition
-				# or DB weirdness occurred. Throw an unknown error here.
-				$this->dieUsageMsg(array('unknownerror'));
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
 			case EditPage::AS_SUCCESS_UPDATE:
@@ -294,6 +290,14 @@ class ApiEditPage extends ApiBase {
 						$newArticle->getTimestamp());
 				}
 				break;
+			case EditPage::AS_END:
+				# This usually means some kind of race condition
+				# or DB weirdness occurred. Fall through to throw an unknown 
+				# error.
+				
+				# This needs fixing higher up, as Article::doEdit should be 
+				# used rather than Article::updateArticle, so that specific
+				# error conditions can be returned
 			default:
 				$this->dieUsageMsg(array('unknownerror', $retval));
 		}
