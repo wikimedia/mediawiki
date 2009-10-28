@@ -22,7 +22,6 @@ class LanguageConverter {
 	var $mTablesLoaded = false;
 	var $mTables;
 	var $mNamespaceTables;
-	var $mTitleDisplay='';
 	var $mDoTitleConvert=true, $mDoContentConvert=true;
 	var $mManualLevel; // 'bidirectional' 'unidirectional' 'disable' for each variants
 	var $mTitleFromFlag = false;
@@ -32,6 +31,8 @@ class LanguageConverter {
 	var $mFlags;
 	var $mDescCodeSep = ':',$mDescVarSep = ';';
 	var $mUcfirst = false;
+	var $mTitleOriginal = '';
+	var $mTitleDisplay = '';
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -439,8 +440,9 @@ class LanguageConverter {
 
 		$text = $this->convert( $text );
 
-		if ( $this->mTitleFromFlag )
-			$parser->mOutput->setTitleText( $this->mTitleDisplay );
+		$this->convertTitle();
+		$parser->mOutput->setTitleText( $this->mTitleDisplay );
+
 		return $text;
 	}
 	
@@ -461,34 +463,36 @@ class LanguageConverter {
 	}
 
 	/**
+	 * Pre convert title. Store the original title $this->mTitleOrginal;
+	 * store the default converted title to $this->mTitleDisplay.
+	 * @private
+	 */
+	function preConvertTitle( $text, $variant ){
+		$this->mTitleOriginal = $text;
+		
+		$text = $this->convertNamespace( $text, $variant );
+		$this->mTitleDisplay = $this->convert( $text );
+	}
+
+	/**
 	 * convert title
 	 * @private
 	 */
-	function convertTitle( $text, $variant ){
-		global $wgDisableTitleConversion, $wgUser;
-
-		// check for global param and __NOTC__ tag
-		if( $wgDisableTitleConversion || !$this->mDoTitleConvert || $wgUser->getOption('noconvertlink') == 1 ) {
-			$this->mTitleDisplay = $text;
-			return $text;
-		}
-
-		// use the title from the T flag if any
-		if( $this->mTitleFromFlag ){
-			$this->mTitleFromFlag = false;
-			return $this->mTitleDisplay;
-		}
-
-		global $wgRequest;
+	function convertTitle(){
+		global $wgDisableTitleConversion, $wgUser, $wgRequest;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
 		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
-		if ( $isredir == 'no' || $action == 'edit' || $action == 'submit' || $linkconvert == 'no' ) {
-			return $text;
-		} else {
-			$text = $this->convertNamespace( $text, $variant );
-			$this->mTitleDisplay = $this->convert( $text );
-			return $this->mTitleDisplay;
+
+		// check for the global variable, __NOTC__ magic word, and user setting
+		if( $wgDisableTitleConversion || !$this->mDoTitleConvert ||
+		    $wgUser->getOption('noconvertlink') == 1 ) {
+			$this->mTitleDisplay = $this->mTitleOriginal;
+		}
+		
+		// check for GET params
+		elseif  ( $isredir == 'no' || $action == 'edit' || $linkconvert == 'no' ) {
+			$this->mTitleDisplay = $this->mTitleOriginal;
 		}
 	}
 
@@ -526,7 +530,10 @@ class LanguageConverter {
 		$plang = $this->getPreferredVariant();
 
 		// for title convertion
-		if ( $isTitle ) return $this->convertTitle( $text, $plang );
+		if ( $isTitle ) {
+			$this->preConvertTitle( $text, $plang );
+			return $text;
+		}
 
 		$tarray = StringUtils::explode( $this->mMarkup['end'], $text );
 		$text = '';
