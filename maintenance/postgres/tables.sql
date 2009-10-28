@@ -82,9 +82,9 @@ $mw$;
 CREATE TRIGGER page_deleted AFTER DELETE ON page
   FOR EACH ROW EXECUTE PROCEDURE page_deleted();
 
-CREATE SEQUENCE rev_rev_id_val;
+CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
-  rev_id          INTEGER      NOT NULL  UNIQUE DEFAULT nextval('rev_rev_id_val'),
+  rev_id          INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
   rev_page        INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE,
   rev_text_id     INTEGER          NULL, -- FK
   rev_comment     TEXT,
@@ -103,17 +103,17 @@ CREATE INDEX rev_user_idx           ON revision (rev_user);
 CREATE INDEX rev_user_text_idx      ON revision (rev_user_text);
 
 
-CREATE SEQUENCE text_old_id_val;
+CREATE SEQUENCE text_old_id_seq;
 CREATE TABLE pagecontent ( -- replaces reserved word 'text'
-  old_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('text_old_id_val'),
+  old_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('text_old_id_seq'),
   old_text   TEXT,
   old_flags  TEXT
 );
 
 
-CREATE SEQUENCE pr_id_val;
+CREATE SEQUENCE page_restrictions_pr_id_seq;
 CREATE TABLE page_restrictions (
-  pr_id      INTEGER      NOT NULL  UNIQUE DEFAULT nextval('pr_id_val'),
+  pr_id      INTEGER      NOT NULL  UNIQUE DEFAULT nextval('page_restrictions_pr_id_seq'),
   pr_page    INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE,
   pr_type    TEXT         NOT NULL,
   pr_level   TEXT         NOT NULL,
@@ -233,9 +233,9 @@ CREATE TABLE hitcounter (
 );
 
 
-CREATE SEQUENCE ipblocks_ipb_id_val;
+CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE ipblocks (
-  ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_val'),
+  ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),
   ipb_address           TEXT             NULL,
   ipb_user              INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   ipb_by                INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
@@ -333,9 +333,9 @@ CREATE INDEX fa_notime    ON filearchive (fa_deleted_timestamp);
 CREATE INDEX fa_nouser    ON filearchive (fa_deleted_user);
 
 
-CREATE SEQUENCE rc_rc_id_seq;
+CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (
-  rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('rc_rc_id_seq'),
+  rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
   rc_timestamp       TIMESTAMPTZ  NOT NULL,
   rc_cur_time        TIMESTAMPTZ  NOT NULL,
   rc_user            INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
@@ -435,9 +435,9 @@ CREATE TABLE transcache (
 );
 
 
-CREATE SEQUENCE log_log_id_seq;
+CREATE SEQUENCE logging_log_id_seq;
 CREATE TABLE logging (
-  log_id          INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('log_log_id_seq'),
+  log_id          INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('logging_log_id_seq'),
   log_type        TEXT         NOT NULL,
   log_action      TEXT         NOT NULL,
   log_timestamp   TIMESTAMPTZ  NOT NULL,
@@ -563,9 +563,9 @@ CREATE TABLE updatelog (
 );
 
 
-CREATE SEQUENCE category_id_seq;
+CREATE SEQUENCE category_cat_id_seq;
 CREATE TABLE category (
-  cat_id       INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('category_id_seq'),
+  cat_id       INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('category_cat_id_seq'),
   cat_title    TEXT     NOT NULL,
   cat_pages    INTEGER  NOT NULL  DEFAULT 0,
   cat_subcats  INTEGER  NOT NULL  DEFAULT 0,
