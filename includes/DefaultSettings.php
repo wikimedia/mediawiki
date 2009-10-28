@@ -2892,9 +2892,6 @@ $wgMaxTocLevel = 999;
 /** Name of the external diff engine to use */
 $wgExternalDiffEngine = false;
 
-/** Whether to use inline diff */
-$wgEnableHtmlDiff = false;
-
 /** Use RC Patrolling to check for vandalism */
 $wgUseRCPatrol = true;
 

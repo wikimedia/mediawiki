@@ -28,7 +28,6 @@ class DifferenceEngine {
 	var $mRevisionsLoaded = false; // Have the revisions been loaded
 	var $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?
 	var $mCacheHit = false; // Was the diff fetched from cache?
-	var $htmldiff;
 
 	/**
 	 * Set this to true to add debug info to the HTML output.
@@ -51,11 +50,10 @@ class DifferenceEngine {
 	 * @param $new String: either 'prev' or 'next'.
 	 * @param $rcid Integer: ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
-	 * @param $htmldiff boolean If set, output using HTMLDiff instead of raw wikicode diff
 	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
 	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0,
-		$refreshCache = false, $htmldiff = false, $unhide = false )
+		$refreshCache = false, $unhide = false )
 	{
 		if ( $titleObj ) {
 			$this->mTitle = $titleObj;
@@ -87,7 +85,6 @@ class DifferenceEngine {
 		}
 		$this->mRcidMarkPatrolled = intval($rcid);  # force it to be an integer
 		$this->mRefreshCache = $refreshCache;
-		$this->htmldiff = $htmldiff;
 		$this->unhide = $unhide;
 	}
 
@@ -112,7 +109,7 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage( $diffOnly = false ) {
-		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol, $wgEnableHtmlDiff;
+		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
 		wfProfileIn( __METHOD__ );
 
 
@@ -264,12 +261,6 @@ CONTROL;
 			$query['diffonly'] = $diffOnly;
 		}
 
-		$htmldiffarg = $this->htmlDiffArgument();
-
-		if( $htmldiffarg ) {
-			$query['htmldiff'] = $htmldiffarg['htmldiff'];
-		}
-
 		# Make "previous revision link"
 		$query['diff'] = 'prev';
 		$query['oldid'] = $this->mOldid;
@@ -401,47 +392,8 @@ CONTROL;
 				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
 				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", array( $msg, $link ) );
 			}
-		# Otherwise, output the HTML diff if requested...
-		} else if( $wgEnableHtmlDiff && $this->htmldiff ) {
-			$multi = $this->getMultiNotice();
-			$wgOut->addHTML( '<div class="diff-switchtype">' . $sk->link(
-				$this->mTitle,
-				wfMsgHtml( 'wikicodecomparison' ),
-				array(
-					'id' => 'differences-switchtype'
-				),
-				array(
-					'diff' => $this->mNewid,
-					'oldid' => $this->mOldid,
-					'htmldiff' => 0
-				),
-				array(
-					'known',
-					'noclasses'
-				)
-			) . '</div>');
-			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
-			# Add deletion notice if the user is viewing deleted content
-			if( $deleted ) {
-				$msg = $suppressed ? 'rev-suppressed-diff-view' : 'rev-deleted-diff-view';
-				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", $msg );
-			}
-			$this->renderHtmlDiff();
 		# Otherwise, output a regular diff...
 		} else {
-			if( $wgEnableHtmlDiff ) {
-				$wgOut->addHTML( '<div class="diff-switchtype">' . $sk->link(
-					$this->mTitle,
-					wfMsgHtml( 'visualcomparison' ),
-					array( 'id' => 'differences-switchtype' ),
-					array(
-						'diff' => $this->mNewid,
-						'oldid' => $this->mOldid,
-						'htmldiff' => 1
-					),
-					array( 'known', 'noclasses' )
-				) . '</div>');
-			}
 			# Add deletion notice if the user is viewing deleted content
 			$notice = '';
 			if( $deleted ) {
@@ -517,70 +469,6 @@ CONTROL;
 		wfProfileOut( __METHOD__ );
 	}
 
-
-	function renderHtmlDiff() {
-		global $wgOut, $wgParser, $wgDebugComments;
-		wfProfileIn( __METHOD__ );
-
-		$this->showDiffStyle();
-
-		$wgOut->addHTML( '<h2>'.wfMsgHtml( 'visual-comparison' )."</h2>\n" );
-		#add deleted rev tag if needed
-		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
-		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
-		}
-
-		if( !$this->mNewRev->isCurrent() ) {
-			$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
-		}
-
-		$this->loadText();
-
-		// Old revision
-		if( is_object( $this->mOldRev ) ) {
-			$wgOut->setRevisionId( $this->mOldRev->getId() );
-		}
-
-		$popts = $wgOut->parserOptions();
-		$oldTidy = $popts->setTidy( true );
-		$popts->setEditSection( false );
-
-		$parserOutput = $wgParser->parse( $this->mOldtext, $this->getTitle(), $popts, true, true, $wgOut->getRevisionId() );
-		$popts->setTidy( $oldTidy );
-
-		//only for new?
-		//$wgOut->addParserOutputNoText( $parserOutput );
-		$oldHtml = $parserOutput->getText();
-		wfRunHooks( 'OutputPageBeforeHTML', array( &$wgOut, &$oldHtml ) );
-
-		// New revision
-		if( is_object( $this->mNewRev ) ) {
-			$wgOut->setRevisionId( $this->mNewRev->getId() );
-		}
-
-		$popts = $wgOut->parserOptions();
-		$oldTidy = $popts->setTidy( true );
-
-		$parserOutput = $wgParser->parse( $this->mNewtext, $this->getTitle(), $popts, true, true, $wgOut->getRevisionId() );
-		$popts->setTidy( $oldTidy );
-
-		$wgOut->addParserOutputNoText( $parserOutput );
-		$newHtml = $parserOutput->getText();
-		wfRunHooks( 'OutputPageBeforeHTML', array( &$wgOut, &$newHtml ) );
-
-		unset($parserOutput, $popts);
-
-		$differ = new HTMLDiffer(new DelegatingContentHandler($wgOut));
-		$differ->htmlDiff($oldHtml, $newHtml);
-		if ( $wgDebugComments ) {
-			$wgOut->addHTML( "\n<!-- HtmlDiff Debug Output:\n" . HTMLDiffer::getDebugOutput() . " End Debug -->" );
-		}
-
-		wfProfileOut( __METHOD__ );
-	}
-
 	/**
 	 * Show the first revision of an article. Uses normal diff headers in
 	 * contrast to normal "old revision" display style.
@@ -629,7 +517,6 @@ CONTROL;
 				array(
 					'diff' => 'next',
 					'oldid' => $this->mNewid,
-					$this->htmlDiffArgument()
 				),
 				array(
 					'known',
@@ -646,19 +533,6 @@ CONTROL;
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		wfProfileOut( __METHOD__ );
-	}
-
-	function htmlDiffArgument(){
-		global $wgEnableHtmlDiff;
-		if($wgEnableHtmlDiff){
-			if($this->htmldiff){
-				return array( 'htmldiff' => 1 );
-			}else{
-				return array( 'htmldiff' => 0 );
-			}
-		}else{
-			return array();
-		}
 	}
 
 	/**

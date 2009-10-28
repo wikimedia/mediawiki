@@ -359,7 +359,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
-		global $wgScript, $wgEnableHtmlDiff, $wgUser, $wgOut, $wgContLang;
+		global $wgScript, $wgUser, $wgOut, $wgContLang;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -385,34 +385,13 @@ class HistoryPager extends ReverseChronologicalPager {
 				wfMsg( 'showhideselectedversions' )
 			) . "\n";
 		}
-		if( $wgEnableHtmlDiff ) {
-			$this->buttons .= Xml::element( 'button',
-				array(
-					'type'      => 'submit',
-					'name'      => 'htmldiff',
-					'value'     => '1',
-					'class'     => 'historysubmit',
-					'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-				),
-				wfMsg( 'visualcomparison')
-			) . "\n";
-			$this->buttons .= $this->submitButton( wfMsg( 'wikicodecomparison'),
-				array(
-					'class'     => 'historysubmit',
-					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-				)
-			) . "\n";
-		} else {
-			$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions'),
-				array(
-					'class'     => 'historysubmit',
-					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-				)
-			) . "\n";
-		}
+		$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions'),
+			array(
+				'class'     => 'historysubmit',
+				'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+				'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+			)
+		) . "\n";
 		$this->buttons .= '</div>';
 		$s .= $this->buttons . '<ul id="pagehistory">' . "\n";
 		return $s;
