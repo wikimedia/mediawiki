@@ -377,7 +377,7 @@ class Block {
 		# Don't collide with expired blocks
 		Block::purgeExpired();
 
-		$ipb_id = $dbw->nextSequenceValue('ipblocks_ipb_id_val');
+		$ipb_id = $dbw->nextSequenceValue('ipblocks_ipb_id_seq');
 		$dbw->insert( 'ipblocks',
 			array(
 				'ipb_id' => $ipb_id,

@@ -79,7 +79,7 @@ BEGIN
 END;
 /*$mw$*/
 
-CREATE SEQUENCE rev_rev_id_val;
+CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE &mw_prefix.revision (
   rev_id          NUMBER      NOT NULL,
   rev_page        NUMBER          NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE,
@@ -100,7 +100,7 @@ CREATE INDEX &mw_prefix.revision_i02 ON &mw_prefix.revision (rev_page,rev_timest
 CREATE INDEX &mw_prefix.revision_i03 ON &mw_prefix.revision (rev_user,rev_timestamp);
 CREATE INDEX &mw_prefix.revision_i04 ON &mw_prefix.revision (rev_user_text,rev_timestamp);
 
-CREATE SEQUENCE text_old_id_val;
+CREATE SEQUENCE text_old_id_seq;
 CREATE TABLE &mw_prefix.pagecontent ( -- replaces reserved word 'text'
   old_id     NUMBER  NOT NULL,
   old_text   CLOB,
@@ -163,7 +163,7 @@ CREATE UNIQUE INDEX &mw_prefix.categorylinks_u01 ON &mw_prefix.categorylinks (cl
 CREATE INDEX &mw_prefix.categorylinks_i01 ON &mw_prefix.categorylinks (cl_to,cl_sortkey,cl_from);
 CREATE INDEX &mw_prefix.categorylinks_i02 ON &mw_prefix.categorylinks (cl_to,cl_timestamp);
 
-CREATE SEQUENCE category_id_seq;
+CREATE SEQUENCE category_cat_id_seq;
 CREATE TABLE &mw_prefix.category (
   cat_id NUMBER NOT NULL,
   cat_title VARCHAR2(255) NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE &mw_prefix.hitcounter (
   hc_id  NUMBER  NOT NULL
 );
 
-CREATE SEQUENCE ipblocks_ipb_id_val;
+CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE &mw_prefix.ipblocks (
   ipb_id                NUMBER      NOT NULL,
   ipb_address           VARCHAR2(255)     NULL,
@@ -314,7 +314,7 @@ CREATE INDEX &mw_prefix.filearchive_i02 ON &mw_prefix.filearchive (fa_storage_gr
 CREATE INDEX &mw_prefix.filearchive_i03 ON &mw_prefix.filearchive (fa_deleted_timestamp);
 CREATE INDEX &mw_prefix.filearchive_i04 ON &mw_prefix.filearchive (fa_user_text,fa_timestamp);
 
-CREATE SEQUENCE rc_rc_id_seq;
+CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE &mw_prefix.recentchanges (
   rc_id              NUMBER      NOT NULL,
   rc_timestamp       TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
@@ -409,7 +409,7 @@ CREATE TABLE &mw_prefix.transcache (
 CREATE UNIQUE INDEX &mw_prefix.transcache_u01 ON &mw_prefix.transcache (tc_url);
 
 
-CREATE SEQUENCE log_log_id_seq;
+CREATE SEQUENCE logging_log_id_seq;
 CREATE TABLE &mw_prefix.logging (
   log_id          NUMBER      NOT NULL,
   log_type        VARCHAR2(10)         NOT NULL,
@@ -488,7 +488,7 @@ CREATE INDEX &mw_prefix.querycachetwo_i01 ON &mw_prefix.querycachetwo (qcc_type,
 CREATE INDEX &mw_prefix.querycachetwo_i02 ON &mw_prefix.querycachetwo (qcc_type,qcc_namespace,qcc_title);
 CREATE INDEX &mw_prefix.querycachetwo_i03 ON &mw_prefix.querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
-CREATE SEQUENCE pr_id_val;
+CREATE SEQUENCE page_restrictions_pr_id_seq;
 CREATE TABLE &mw_prefix.page_restrictions (
   pr_id      NUMBER      NOT NULL,
   pr_page    NUMBER          NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE,

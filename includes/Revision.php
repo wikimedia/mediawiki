@@ -826,7 +826,7 @@ class Revision {
 
 		# Record the text (or external storage URL) to the text table
 		if( !isset( $this->mTextId ) ) {
-			$old_id = $dbw->nextSequenceValue( 'text_old_id_val' );
+			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert( 'text',
 				array(
 					'old_id'    => $old_id,
@@ -840,7 +840,7 @@ class Revision {
 		# Record the edit in revisions
 		$rev_id = isset( $this->mId )
 			? $this->mId
-			: $dbw->nextSequenceValue( 'rev_rev_id_val' );
+			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
 		$dbw->insert( 'revision',
 			array(
 				'rev_id'         => $rev_id,

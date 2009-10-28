@@ -512,6 +512,12 @@ class DatabaseOracle extends DatabaseBase {
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
+		
+		// count-alias subselect fields to avoid abigious definition errors
+		$i=0;
+		foreach($varMap as $key=>&$val)
+			$val=$val.' field'.($i++);
+				
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			" SELECT $startOpts " . implode( ',', $varMap ) .
 			" FROM $srcTable $useIndex ";
