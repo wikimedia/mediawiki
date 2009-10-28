@@ -624,16 +624,8 @@ class User {
 	 * @return bool True or false
 	 */
 	function isValidPassword( $password ) {
-		global $wgMinimalPasswordLength, $wgContLang;
-
-		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
-			return $result;
-		if( $result === false )
-			return false;
- 
-		// Password needs to be long enough, and can't be the same as the username
-		return strlen( $password ) >= $wgMinimalPasswordLength
-			&& $wgContLang->lc( $password ) !== $wgContLang->lc( $this->mName );
+		//simple boolean wrapper for getPasswordValidity
+		return $this->getPasswordValidity( $password ) === true;
 	}
 
 	/**
@@ -645,14 +637,27 @@ class User {
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 		
-		if ( !$this->isValidPassword( $password ) ) {
+		$result = false; //init $result to false for the internal checks
+		
+		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
+			return $result;
+		
+		if ( $result === false ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
+			} else {
+				//it seems weird returning true here, but this is because of the
+				//initialization of $result to false above. If the hook is never run or it
+				//doesn't modify $result, then we will likely get down into this if with
+				//a valid password.
+				return true;
 			}
-		} else {
+		} elseif( $result === true ) {
 			return true;
+		} else {
+			return $result; //the isValidPassword hook set a string $result and returned true
 		}
 	}
 
