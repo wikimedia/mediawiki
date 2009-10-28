@@ -186,7 +186,7 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_this_oldid' => 0,
 				'rc_last_oldid' => 0,
 				'rc_type'       => RC_LOG,
-				'rc_cur_id'     => 'COALESCE(page_id, 0)',
+				'rc_cur_id'     => $dbw->cascadingDeletes() ? 'page_id' : 'COALESCE(page_id, 0)',
 				'rc_log_type'   => 'log_type',
 				'rc_log_action' => 'log_action',
 				'rc_logid'      => 'log_id',

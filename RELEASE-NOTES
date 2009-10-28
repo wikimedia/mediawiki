@@ -666,6 +666,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21085) list=deletedrevs no longer returns only one revision when
   drcontinue param is passed
 * (bug 21106) Deprecated parameters now tagged in action=paraminfo
+* (bug 13453) rebuildrecentchanges maintenance script works on PG again
 
 === Languages updated in 1.16 ===
 
