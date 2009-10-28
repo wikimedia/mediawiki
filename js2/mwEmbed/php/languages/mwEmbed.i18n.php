@@ -321,11 +321,11 @@ $messages['en'] = array(
 	'mwe-next_clip_msg' => 'Play next clip',
 	'mwe-prev_clip_msg' => 'Play previous clip',
 	'mwe-current_clip_msg' => 'Continue playing this clip',
-	'mwe-seek_to' => 'Seek to $1',
+	'mwe-seek_to' => 'Seek $1',
 	'mwe-paused' => 'paused',
 	'mwe-download_segment' => 'Download selection:',
 	'mwe-download_full' => 'Download full video file:',
-	'mwe-download_right_click' => 'To download, right click and select <i>Save target as...</i>',
+	'mwe-download_right_click' => 'To download, right click and select <i>Save link as...</i>',
 	'mwe-download_clip' => 'Download video',
 	'mwe-download_text' => 'Download text (<a style="color:white" title="cmml" href="http://wiki.xiph.org/index.php/CMML">CMML</a> xml):',
 	'mwe-download' => 'Download',
@@ -355,7 +355,7 @@ $messages['en'] = array(
 	'mwe-embed_site_or_blog' => 'Embed on your site or blog',
 	'mwe-related_videos' => 'Related videos',
 	'mwe-seeking' => 'seeking',
-	"mwe-copy-code" => "Copy code",
+	'mwe-copy-code' => 'Copy code',
 );
 
 /** Message documentation (Message documentation)
