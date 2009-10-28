@@ -509,7 +509,6 @@ $messages = array(
 'lineno'                  => 'سِٽَ $1:',
 'compareselectedversions' => 'چونڊيل پرت ڀيٽيو',
 'editundo'                => 'اڻڪريو',
-'diff-multi'              => '({{PLURAL:$1|هڪ وسطي مسودو|$1 وسطي مسودا}} لڪايل.)',
 
 # Search results
 'noexactmatch'      => "'''\"\$1\" جي عنوان سان ڪو به صفحو ناهي.'''

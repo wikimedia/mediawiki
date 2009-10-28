@@ -282,10 +282,6 @@ $messages = array(
 # Revision deletion
 'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
 
-# Diffs
-'diff-with'       => '&#32;съ $1 $2',
-'diff-with-final' => '&#32;и $1 $2',
-
 # Search results
 'searchresults'            => 'иска́ниꙗ ито́гъ',
 'searchprofile-images'     => 'дѣ́ла',

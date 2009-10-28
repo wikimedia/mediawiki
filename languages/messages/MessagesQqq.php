@@ -999,31 +999,8 @@ Please note that the parameters in a log entry will appear in the log only in th
 'difference'              => 'Displayed under the title when viewing the difference between two or more edits.',
 'lineno'                  => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
 'compareselectedversions' => 'Used as button in history pages.',
-'visualcomparison'        => '{{Identical|Visual comparison}}',
 'editundo'                => 'Undo link when viewing diffs
 {{Identical|Undo}}',
-'diff-multi'              => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
-'diff-src'                => '{{Identical|Source}}',
-'diff-with'               => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
-* $1 is a name of a HTML attribute (for example <code>style</code> or <code>class</code>)
-* $2 is the value of the attribute (for example <code>background:red;</code> in <code>style="background:red;"</code>)
-Used in conjunction with {{msg-mw|diff-with-additional}} and {{msg-mw|diff-with-final}} in the head position before a {{msg-mw|comma-separator}} separated list.',
-'diff-with-additional'    => '{{optional}}
-
-* $1 is a name of a HTML attribute (for example <code>style</code> or <code>class</code>)
-* $2 is the value of the attribute (for example <code>background:red;</code> in <code>style="background:red;"</code>)
-Used, possibly repeatedly, in a {{msg-mw|comma-separator}} separated list after {{msg-mw|diff-with}} and before {{msg-mw|diff-with-final}}.',
-'diff-with-final'         => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
-* $1 is a name of a HTML attribute (for example <code>style</code> or <code>class</code>)
-* $2 is the value of the attribute (for example <code>background:red;</code> in <code>style="background:red;"</code>)
-Used in the final position of a {{msg-mw|comma-separator}} separated list headed by {{msg-mw|diff-with}} followed by zero or more repetitions of {{msg-mw|diff-with-additional}}.',
-'diff-width'              => '{{Identical|Width}}',
-'diff-height'             => '{{Identical|Height}}',
-'diff-dt'                 => 'I guess that this refers to HTML, as described in the article [http://en.wikipedia.org/wiki/HTML_elements#Lists HTML elements] on Wikipedia.',
-'diff-img'                => '{{Identical|Image}}',
-'diff-i'                  => '{{Identical|Italic}}',
-'diff-b'                  => '{{Identical|Bold}}',
-'diff-font'               => '{{Identical|Font}}',
 
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
@@ -2732,9 +2709,6 @@ The message appears after the name of the patroller.',
 # Browsing diffs
 'previousdiff' => 'Used when viewing the difference between edits. See also {{msg|nextdiff}}.',
 'nextdiff'     => 'Used when viewing the difference between edits. See also {{msg|previousdiff}}.',
-
-# Visual comparison
-'visual-comparison' => '{{Identical|Visual comparison}}',
 
 # Media information
 'mediawarning'         => 'Shows up on file description pages if the file type is not listed in [[mw:Manual:$wgTrustedMediaFormats|Manual:$wgTrustedMediaFormats]].',

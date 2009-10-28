@@ -352,18 +352,6 @@ $messages = array(
 'history-title' => 'Istory an folen "$1"',
 'lineno'        => 'Linen $1:',
 'editundo'      => 'diswul',
-'diff-movedto'  => 'movys dhe $1',
-'diff-added'    => '$1 keworrys',
-'diff-removed'  => '$1 dileys',
-'diff-width'    => 'les',
-'diff-height'   => 'ughelder',
-'diff-b'        => "'''tew'''",
-'diff-strong'   => "'''crev'''",
-'diff-font'     => "'''font'''",
-'diff-big'      => "'''bras'''",
-'diff-sub'      => "'''isscrif'''",
-'diff-sup'      => "'''gorscrif'''",
-'diff-strike'   => "'''treuslinys'''",
 
 # Search results
 'searchresults'                  => 'Sewyansow whilans',

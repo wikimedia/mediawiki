@@ -695,13 +695,6 @@ $messages = array(
 'lineno'                  => '$1 کرښه:',
 'compareselectedversions' => 'ټاکلې بڼې سره پرتله کول',
 'editundo'                => 'ناکړ',
-'diff-multi'              => '({{PLURAL:$1|يوه منځګړې مخليدنه نه ده ښکاره شوې|$1 منځګړې مخليدنې نه دي ښکاره شوي}}.)',
-'diff-movedto'            => '$1 ته ولېږدېده',
-'diff-changedto'          => '$1 ته بدل شو',
-'diff-src'                => 'سرچينه',
-'diff-table'              => "يو '''لښتليک'''",
-'diff-img'                => "يو '''انځور'''",
-'diff-font'               => "'''ليکبڼه'''",
 
 # Search results
 'searchresults'                  => 'د لټون پايلې',

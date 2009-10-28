@@ -835,9 +835,6 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'lineno'                  => 'Mstari $1:',
 'compareselectedversions' => 'Linganisha matoleo mawili uliyochagua',
 'editundo'                => 'tengua',
-'diff-multi'              => '(Hatuonyeshi {{PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
-'diff-i'                  => "'''kwa italiki'''",
-'diff-b'                  => "'''koze'''",
 
 # Search results
 'searchresults'                  => 'Matokeo ya utafutaji',

@@ -251,7 +251,6 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.'''",
 'difference' => "(Mba'épe ojaovy oñemyatyrõva'ekue)",
 'lineno'     => 'Jehai $1:',
 'editundo'   => 'embyai',
-'diff-multi' => '($1 ediciones intermedias no se muestran.)',
 
 # Search results
 'searchresults'     => 'Ojejuhúva jeheka',

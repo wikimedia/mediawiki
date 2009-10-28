@@ -448,25 +448,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'lineno'                   => 'ܣܪܛܐ $1:',
 'compareselectedversions'  => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
-'visualcomparison'         => 'ܦܘܚܡܐ ܚܝܪܝܐ',
-'wikicodecomparison'       => 'ܦܘܚܡܐ ܕܟܬܒܬܐ ܕܘܝܩܝ',
 'editundo'                 => 'ܠܐ ܥܒܘܕ',
-'diff-movedto'             => 'ܫܢܐ ܠ $1',
-'diff-added'               => '$1 ܐܘܣܦܬ',
-'diff-src'                 => 'ܥܩܪܐ',
-'diff-with'                => '&#32;ܥܡ $1 $2',
-'diff-with-final'          => '&#32;ܘ $1 $2',
-'diff-width'               => 'ܦܬܘܐ',
-'diff-height'              => 'ܐܘܪܟܐ',
-'diff-p'                   => "'''ܦܬܓܡܐ'''",
-'diff-table'               => "'''ܠܘܚܝܬܐ'''",
-'diff-img'                 => "'''ܨܘܪܬܐ'''",
-'diff-a'                   => "'''ܐܣܘܪܐ'''",
-'diff-i'                   => "'''ܦܠܝܡܬܐ'''",
-'diff-b'                   => "'''ܥܘܒܝܬܐ'''",
-'diff-strong'              => "'''ܚܝܠܬܢܐ'''",
-'diff-big'                 => "'''ܪܒܐ'''",
-'diff-del'                 => "'''ܡܫܝܐ'''",
 
 # Search results
 'searchresults'                  => 'ܦܠܛ̈ܐ ܕܒܘܨܝܐ',
@@ -1121,9 +1103,6 @@ Do you want to change the settings?',
 # Browsing diffs
 'previousdiff' => '← ܫܘܚܠܦܐ ܥܬܝܩܐ',
 'nextdiff'     => 'ܫܘܚܠܦܐ ܚܕܬܐ →',
-
-# Visual comparison
-'visual-comparison' => 'ܦܘܚܡܐ ܚܝܪܝܐ',
 
 # Special:NewFiles
 'newimages'       => 'ܒܝܬ ܓܠܚܐ ܕܠܦܦ̈ܐ ܚܕܬ̈ܐ',

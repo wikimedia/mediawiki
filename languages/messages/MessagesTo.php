@@ -432,7 +432,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'lineno'                  => 'Laini hono $1:',
 'compareselectedversions' => 'Fakatatau ongo paaki fili',
 'editundo'                => 'vete',
-'diff-multi'              => '(Naʻe ʻikai ʻasi mai ʻa e paaki lotoloto ʻe $1).',
 
 # Search results
 'searchresults'             => 'kumi hono ʻātunga',

@@ -749,7 +749,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'lineno'                  => 'Conha $1:',
 'compareselectedversions' => 'Dodisukera va reban siatos yo',
 'editundo'                => 'dimaskira',
-'diff-multi'              => '({{PLURAL:$1|1 walif betaks me zo nedir|$1 walif betaks me zo nedid}}.)',
 
 # Search results
 'searchresults'                  => 'Aneyaradanekseem',

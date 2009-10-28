@@ -349,7 +349,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'lineno'                  => 'Dâ̤ $1 hòng:',
 'compareselectedversions' => 'Bī-piâng gēng-sōng bēng-buōng',
 'editundo'                => 'chṳ̄-siĕu',
-'diff-multi'              => '(Dài-dŏng ô {{PLURAL:$1|ék|$1}} bĭk bēng-buōng mò̤ hiēng-sê.)',
 
 # Search results
 'searchresults'         => 'Sìng-tō̤ giék-guō',

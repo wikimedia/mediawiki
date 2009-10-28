@@ -630,7 +630,6 @@ Fanapunta na para u na'nuebu i kolumna anggen un usa i inachetton nabegasion.",
 'lineno'                  => 'Liña $1:',
 'compareselectedversions' => "Akompara i tinilaika siha ma'ayek",
 'editundo'                => 'funas',
-'diff-multi'              => "({{PLURAL:$1|Ti mana'a'annok unu na tinilaika gi talo'|Ti manmana'a'annok $1 na tinilaika siha gi talo'}}.)",
 
 # Search results
 'searchresults'             => 'Humuyongña i inaligao',

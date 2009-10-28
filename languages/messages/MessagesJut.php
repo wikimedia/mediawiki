@@ -450,7 +450,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'lineno'                  => 'Lenje $1:',
 'compareselectedversions' => 'Sammenlign valgte hersenenger',
 'editundo'                => 'baĝgøt',
-'diff-multi'              => '(Æ hersenengssammenlegnenge vetåger {{PLURAL:$1|en mellemleggende hersenenge|$1 mellemleggende hersenenger}}.)',
 
 # Search results
 'noexactmatch'   => "'''{{SITENAME}} har engen ertikel ve dette nav.''' Du ken [[:$1|åprette en ertikel ve dette nav]].",

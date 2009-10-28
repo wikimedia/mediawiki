@@ -341,8 +341,6 @@ $messages = array(
 'history-title'           => '"$1" деп арынның үндүрери төөгүзү',
 'lineno'                  => '$1 одуруг:',
 'compareselectedversions' => 'Шилип алган хевирлери деңнээри',
-'diff-width'              => 'калбаа',
-'diff-height'             => 'бедии',
 
 # Search results
 'searchresults'      => 'Түңнелдер',

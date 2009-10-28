@@ -477,7 +477,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'lineno'                  => '$1. liniya:',
 'compareselectedversions' => 'Karşılaştır versiyaları ani seçildi',
 'editundo'                => 'geeri al',
-'diff-multi'              => '({{PLURAL:$1|Ara versiya|$1 ara versiyalar}} gösterilmedi.)',
 
 # Search results
 'noexactmatch'   => " Başlaa bu olan bir yazı bulunamadı. Bu yazını var nicä [[:$1|'''siz çeketmää''']].",

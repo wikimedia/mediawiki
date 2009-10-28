@@ -310,7 +310,6 @@ $messages = array(
 # Diffs
 'history-title'           => '「$1」的修訂沿革',
 'compareselectedversions' => '比較選定的版本',
-'diff-multi'              => '($1個中途的修訂版本沒有顯示。)',
 
 # Search results
 'searchresults'    => '搜尋結果',

@@ -226,17 +226,7 @@ Sohmtehm dehm dohn ires am.',
 'revertmerge' => 'Ònmaj',
 
 # Diffs
-'editundo'          => 'chenj am bak tu wetin i bin bi bifo',
-'diff-multi'        => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown)',
-'diff-movedto'      => 'dèm dòn muf am go $1',
-'diff-styleadded'   => '$1 dèm dòn add dis stail',
-'diff-added'        => '$1 dèm dòn add am',
-'diff-changedto'    => 'Dèm dòn chenj am tu $1',
-'diff-movedoutof'   => 'Dèm dòn muf am kòmòt $1',
-'diff-styleremoved' => '$1 dèm dòn pul dis stail',
-'diff-removed'      => '$1 Dèm dòn pul am',
-'diff-changedfrom'  => 'Dèm dòn tek $1 mek',
-'diff-src'          => 'sòce',
+'editundo' => 'chenj am bak tu wetin i bin bi bifo',
 
 # Search results
 'prevn'              => 'Go bak {{PLURAL:$1|$1}}',

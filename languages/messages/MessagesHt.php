@@ -788,7 +788,6 @@ Sistèm an ap montre, anba paj sa, jounal tout vèsyon paj an ki efase pou sèvi
 'lineno'                  => 'Liy $1 :',
 'compareselectedversions' => 'Konpare vèsyon ki seleksyone yo',
 'editundo'                => 'Defè, anile',
-'diff-multi'              => '({{PLURAL:$1|Yon revizyon nan mitan evolisyon ki kache|$1 revizyon yo nan mitan evolisyon ki kache}})',
 
 # Search results
 'searchresults'             => 'Rezilta yo pou rechèch an',

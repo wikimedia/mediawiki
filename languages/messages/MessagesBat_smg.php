@@ -658,18 +658,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'lineno'                  => 'Eilotė $1:',
 'compareselectedversions' => 'Palīgintė pasėrinktas versėjės',
 'editundo'                => 'atšauktė',
-'diff-multi'              => '($1 {{PLURAL:$1|tarpėnis keitėms nier ruoduoms|tarpėnē keitėmā nier ruoduomė|tarpėniu keitėmu nier ruoduoma}}.)',
-'diff-movedto'            => 'parkelta i $1',
-'diff-styleadded'         => '$1 stilius pridiets',
-'diff-added'              => 'pridieta $1',
-'diff-changedto'          => 'pakeista i $1',
-'diff-movedoutof'         => 'ėškelta ėš $1',
-'diff-styleremoved'       => '$1 stilius ėštrėnts',
-'diff-removed'            => '$1 ėštrėnta',
-'diff-changedfrom'        => 'pakeista ėš $1',
-'diff-src'                => 'šaltėnis',
-'diff-width'              => 'platoms',
-'diff-height'             => 'aukštoms',
 
 # Search results
 'searchresults'                    => 'Paėiškuos rezoltatā',

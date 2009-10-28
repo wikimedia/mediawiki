@@ -452,8 +452,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'lineno'                  => 'ਲਾਈਨ $1:',
 'compareselectedversions' => 'ਚੁਣੇ ਵਰਜਨਾਂ ਦੀ ਤੁਲਨਾ',
 'editundo'                => 'ਵਾਪਸ(undo)',
-'diff-width'              => 'ਚੌੜਾਈ',
-'diff-height'             => 'ਉਚਾਈ',
 
 # Search results
 'searchresults'         => 'ਖੋਜ ਨਤੀਜੇ',

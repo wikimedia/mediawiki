@@ -425,10 +425,8 @@ $messages = array(
 'mergehistory-reason' => 'Аххос:',
 
 # Diffs
-'difference'  => '(Дыууæ верситы ’хсæн хъауджы)',
-'lineno'      => 'Рæнхъ $1:',
-'diff-width'  => 'уæрх',
-'diff-height' => 'бæрзæнд',
+'difference' => '(Дыууæ верситы ’хсæн хъауджы)',
+'lineno'     => 'Рæнхъ $1:',
 
 # Search results
 'searchresults'             => 'Цы ссардæуы',
