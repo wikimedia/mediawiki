@@ -1885,7 +1885,7 @@ embedVideo.prototype = {
 			if(dl_list!='')
 				out+=gM('mwe-download_full') + '<blockquote style="background:#000">' + dl_list + '</blockquote>';
 			if(dl_txt_list!='')
-				out+=gM('mwe-download_text')+'<blockquote style="background:#000">' + dl_txt_list +'</blockquote>';
+				out+=gM('mwe-download_text') + '<blockquote style="background:#000">' + dl_txt_list +'</blockquote>';
 			out+='</div>';
 			return out;
 		}
@@ -1902,6 +1902,9 @@ embedVideo.prototype = {
 			$target.html( getShowVideoDownload() );
 		}
 	},	
+	showCredits:function( $target ){
+		$target.html('<h2>' + gM('mwe-credits') + '</h2>');
+	},
 	/*
 	*  base embed controls
 	*	the play button calls
@@ -1937,7 +1940,7 @@ embedVideo.prototype = {
 		   
 	},
 	load:function(){
-		//should be done by child (no base way to load assets)
+		//should be done by child (no base way to pre-buffer video)
 		js_log('baseEmbed:load call');
 	},
 	getSrc:function(){

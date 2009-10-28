@@ -754,6 +754,7 @@ mvSequencer.prototype = {
 	},
 	//updates the clip details div if edit resource is set
 	doEditClip:function( cObj){
+		js_log('seq:doEditClip');
 		var _this = this;
 
 		//set default edit action (maybe edit_action can be sent via by context click)
@@ -763,7 +764,8 @@ mvSequencer.prototype = {
 		//load the clipEdit library if not already loaded:
 		mvJsLoader.doLoad( [
 			'mvClipEdit'
-		], function(){
+		], function(){			
+			//zero out the current editor: 
 			_this.myClipEditor = {};
 			//setup the cliploader
 			_this.myClipEditor = new mvClipEdit({

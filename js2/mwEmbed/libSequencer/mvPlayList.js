@@ -656,7 +656,7 @@ mvPlayList.prototype = {
 		this.cur_clip.embed.stop();
 	},
 	updateCurrentClip:function( new_clip ){				
-		js_log('f:updateCurrentClip:'+new_clip.id);		
+		js_log('f:updateCurrentClip:'+new_clip.id);				
 		//make sure we are not switching to the current
 		if( this.cur_clip.id == new_clip.id ){
 			js_log('trying to updateCurrentClip to same clip');
