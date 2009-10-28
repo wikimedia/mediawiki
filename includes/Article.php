@@ -943,11 +943,10 @@ class Article {
 		$rcid = $wgRequest->getVal( 'rcid' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 		$purge = $wgRequest->getVal( 'action' ) == 'purge';
-		$htmldiff = $wgRequest->getBool( 'htmldiff' );
 		$unhide = $wgRequest->getInt('unhide') == 1;
 		$oldid = $this->getOldID();
 
-		$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge, $htmldiff, $unhide );
+		$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge, $unhide );
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;
 		$de->showDiffPage( $diffOnly );

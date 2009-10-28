@@ -67,7 +67,6 @@ $wgIgnoredMessages = array(
 	'accesskey-preview',
 	'accesskey-diff',
 	'accesskey-compareselectedversions',
-	'accesskey-visualcomparison',
 	'accesskey-watch',
 	'accesskey-upload',
 	'addsection',

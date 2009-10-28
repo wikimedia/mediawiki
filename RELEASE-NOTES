@@ -89,6 +89,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   maintenance
 * $wgCapitalLinkOverrides added to configure per-namespace capitalization
 * (bug 21172) $wgSorbsUrl can now be an array with multiple DNSBL
+* $wgEnableHtmlDiff has been removed
 
 === New features in 1.16 ===
 
@@ -604,6 +605,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * User::isValidPassword now only returns boolean results, User::getPasswordValidity
   can be used to get an error message string
 * The error message shown in Special:ChangePassword now parses wiki markup
+* (bug 19859) Removed experimental HTMLDiff feature
 
 == API changes in 1.16 ==
 
