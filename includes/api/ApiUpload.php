@@ -73,11 +73,13 @@ class ApiUpload extends ApiBase {
 			if( isset( $status['error'] ) )
 				$this->dieUsageMsg( $status['error'] );
 
-		} elseif ( isset( $this->mParams['internalhttpsession'] ) && $this->mParams['internalhttpsession'] ) {
+		} elseif ( !empty( $this->mParams['internalhttpsession'] )  ) {
+			/**
+			 * Internal http mode
+			 */
+			
 			$sd = & $_SESSION['wsDownload'][ $this->mParams['internalhttpsession'] ];
 
-			//wfDebug("InternalHTTP:: " . print_r($this->mParams, true));
-			// get the params from the init session:
 			$this->mUpload = new UploadFromFile();
 
 			$this->mUpload->initialize( $this->mParams['filename'],
@@ -113,6 +115,10 @@ class ApiUpload extends ApiBase {
 			/**
 			 * Upload stashed in a previous request
 			 */
+			// Check the session key
+			if( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) )
+					return $this->dieUsageMsg( array( 'invalid-session-key' ) );
+			
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
 					$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
@@ -148,7 +154,7 @@ class ApiUpload extends ApiBase {
 
 				$status = $this->mUpload->fetchFile();
 				if( !$status->isOK() ) {
-					return $this->dieUsage( 'fetchfileerror', $status->getWikiText() );
+					return $this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
 				}
 
 				// check if we doing a async request set session info and return the upload_session_key)
@@ -164,8 +170,8 @@ class ApiUpload extends ApiBase {
 					$sd['mParams'] = $this->mParams;
 
 					return $this->getResult()->addValue( null, $this->getModuleName(),
-									array( 'upload_session_key' => $upload_session_key
-							));
+									array( 'upload_session_key' => $upload_session_key ) 
+					);
 				}
 			}
 		}
@@ -193,6 +199,7 @@ class ApiUpload extends ApiBase {
 		// Perform the upload
 		$result = $this->performUpload();
 		// Cleanup any temporary mess
+		// FIXME: This should be in a try .. finally block with performUpload
 		$this->mUpload->cleanupTempFile();
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
