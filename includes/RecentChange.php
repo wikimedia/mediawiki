@@ -156,7 +156,7 @@ class RecentChange
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp($this->mAttribs['rc_timestamp']);
 		$this->mAttribs['rc_cur_time'] = $dbw->timestamp($this->mAttribs['rc_cur_time']);
-		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'rc_rc_id_seq' );
+		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' );
 
 		## If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
 		if( $dbw->cascadingDeletes() and $this->mAttribs['rc_cur_id']==0 ) {
