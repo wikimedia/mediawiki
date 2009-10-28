@@ -1402,6 +1402,15 @@ global	$wgDatabase, $wgDBmwschema;
 }
 
 function
+pg_sequence_exists($seq)
+{
+global $wgDatabase, $wgDBmwschema;
+	$exists = $wgDatabase->selectField("pg_class","relname",
+		array( "relname" => $seq ) );
+	return $exists === $seq;
+}
+
+function
 pg_fkey_deltype($fkey)
 {
 global	$wgDatabase, $wgDBmwschema;
@@ -1504,8 +1513,8 @@ function do_postgres_updates() {
 	}
 
 	$newsequences = array(
-		"log_log_id_seq",
-		"pr_id_val",
+		"logging_log_id_seq",
+		"page_restrictions_pr_id_seq",
 	);
 
 	$newtables = array(
@@ -1828,6 +1837,14 @@ function do_postgres_updates() {
 	else {
 		wfOut( "Changing constraint \"revision_rev_user_fkey\" to ON DELETE RESTRICT\n" );
 		$wgDatabase->sourceFile(archive('patch-revision_rev_user_fkey.sql'));
+	}
+
+	#Update sequence names
+	if (pg_sequence_exists('page_restrictions_pr_id_seq')) {
+		wfOut( "... sequences already updated\n" );
+	} else {
+		wfOut( "Updating sequence names\n" );
+		$wgDatabase->sourceFile(archive('patch-update_sequences.sql'));
 	}
 
 	# Fix ipb_address index
