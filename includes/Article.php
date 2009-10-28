@@ -3370,6 +3370,11 @@ class Article {
 			return;
 		}
 
+		# Cascade unhide param in links for easy deletion browsing
+		$extraParams = array();
+		if( $wgRequest->getVal('unhide') ) {
+			$extraParams['unhide'] = 1;
+		}
 		$revision = Revision::newFromId( $oldid );
 
 		$current = ( $oldid == $this->mLatest );
@@ -3383,7 +3388,7 @@ class Article {
 				$this->mTitle,
 				wfMsgHtml( 'currentrevisionlink' ),
 				array(),
-				array(),
+				$extraParams,
 				array( 'known', 'noclasses' )
 			);
 		$curdiff = $current
@@ -3395,7 +3400,7 @@ class Article {
 				array(
 					'diff' => 'cur',
 					'oldid' => $oldid
-				),
+				) + $extraParams,
 				array( 'known', 'noclasses' )
 			);
 		$prev = $this->mTitle->getPreviousRevisionID( $oldid ) ;
@@ -3407,7 +3412,7 @@ class Article {
 				array(
 					'direction' => 'prev',
 					'oldid' => $oldid
-				),
+				) + $extraParams,
 				array( 'known', 'noclasses' )
 			)
 			: wfMsgHtml( 'previousrevision' );
@@ -3419,7 +3424,7 @@ class Article {
 				array(
 					'diff' => 'prev',
 					'oldid' => $oldid
-				),
+				) + $extraParams,
 				array( 'known', 'noclasses' )
 			)
 			: wfMsgHtml( 'diff' );
@@ -3432,7 +3437,7 @@ class Article {
 				array(
 					'direction' => 'next',
 					'oldid' => $oldid
-				),
+				) + $extraParams,
 				array( 'known', 'noclasses' )
 			);
 		$nextdiff = $current
@@ -3444,7 +3449,7 @@ class Article {
 				array(
 					'diff' => 'next',
 					'oldid' => $oldid
-				),
+				) + $extraParams,
 				array( 'known', 'noclasses' )
 			);
 
