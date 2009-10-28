@@ -29,6 +29,7 @@
  * @author Fryed-peach
  * @author Garas
  * @author GerardM
+ * @author Hamilton Abreu
  * @author Helix84
  * @author Huji
  * @author IAlex
@@ -418,7 +419,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'aboutpage'            => 'Used as the target of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. Therefore the content should be the same with the page name of the site description page. Only the message in the [[mw:Manual:$wgLanguageCode|site language]]  ([[MediaWiki:Aboutpage]]) is used. The link label is {{msg-mw|aboutsite}}.
 
 {{doc-important|Do not translate "Project:" part, for this is the namespace prefix.}}',
-'copyrightpage'        => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}',
+'copyrightpage'        => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}
+
+{{Identical|Copyright}}',
 'currentevents'        => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
 'currentevents-url'    => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. See also {{msg|currentevents}}.
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
@@ -1210,7 +1213,9 @@ Used in [[Special:Preferences]], tab "Recent changes".',
 'userrights'                     => 'Page title of [[Special:UserRights]].',
 'userrights-lookup-user'         => 'Label text when managing user rights ([[Special:UserRights]])',
 'userrights-user-editname'       => 'Displayed on [[Special:UserRights]].',
-'editusergroup'                  => '{{Identical|Edit user groups}}',
+'editusergroup'                  => 'Button name, in page [[Special:Userrights]] (only available to administrators), in the section named {{MediaWiki:userrights-lookup-user}}.
+
+{{Identical|Edit user groups}}',
 'editinguser'                    => "Appears on [[Special:UserRights]]. The '''last part''' of the message '''should remain completely untranslated''', but if your language has S-O-V word order, the verb can follow it.",
 'userrights-editusergroup'       => '{{Identical|Edit user groups}}',
 'saveusergroups'                 => 'Button text when editing user groups',
@@ -1460,7 +1465,8 @@ Parameter $4 is a time.',
 
 {{Identical|$1 bots}}",
 'rcshowhideliu'                    => 'Option text in [[Special:RecentChanges]]',
-'rcshowhideanons'                  => 'Option text in [[Special:RecentChanges]]',
+'rcshowhideanons'                  => "Option text in [[Special:RecentChanges]]
+* $1 is 'hide' or 'show'",
 'rcshowhidepatr'                   => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].",
 'rcshowhidemine'                   => 'Parameters:
 * $1 can be "show" or "hide"',
@@ -1911,7 +1917,9 @@ $1 is a page title",
 'allinnamespace'    => 'The page title of [[Special:Allpages]] and [[Special:PrefixIndex]], when the user limits the display to a certain namespace. When not limited, {{msg-mw|allarticles}} and {{msg-mw|prefixindex}} is used respectively.
 
 {{Identical|All pages}}',
-'allnotinnamespace' => 'Presumably intended to be used as a page title of [[Special:Allpages]] and probably also in [[Special:PrefixIndex]] when the user limit the display to other than a certain namespace.',
+'allnotinnamespace' => 'Presumably intended to be used as a page title of [[Special:Allpages]] and probably also in [[Special:PrefixIndex]] when the user limit the display to other than a certain namespace.
+
+{{Identical|All pages}}',
 'allpagesprev'      => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
 
 {{Identical|Previous}}",
@@ -3294,6 +3302,7 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-svn-revision'             => 'This is being used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345")
 
 {{Identical|Revision}}',
+'version-license'                  => '{{Identical|License}}',
 'version-software-product'         => 'Shown in [[Special:Version]]',
 'version-software-version'         => '{{Identical|Version}}',
 

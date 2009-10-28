@@ -1129,7 +1129,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'mergehistory-reason'              => 'Alasan:',
 
 # Merge log
-'mergelog'           => 'Gabung log',
+'mergelog'           => 'Log penggabungan',
 'pagemerge-logentry' => 'menggabungkan [[$1]] ke [[$2]] (revisi sampai dengan $3)',
 'revertmerge'        => 'Batal penggabungan',
 'mergelogpagetext'   => 'Di bawah ini adalah daftar penggabungan sejarah halaman ke halaman yang lain.',

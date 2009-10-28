@@ -379,7 +379,7 @@ Kerem kerê, nae be namê ''URL''i jü [[Special:ListUsers/sysop|karber]]i ra va
 'unexpected'           => 'Qimeto nêpawıte: "$1"="$2".',
 'formerror'            => 'Xeta: form niard',
 'badarticleerror'      => 'No faeliyet na pele de nêvıracino.',
-'cannotdelete'         => 'Pele ya ki dosya ke asniye nêesterina.
+'cannotdelete'         => 'Pela ya ki dosya "$1"  nêesteriye.
 Beno ke, verênde terefê kesê de bini ra esteriya.',
 'badtitle'             => 'Sernameo xırabın',
 'badtitletext'         => "Sernamê pela ke sıma wast, nêvêrde, thal, ya girê mabênê zoni ğelet ya ki sernamê mabênê ''wiki'' bi.
@@ -501,6 +501,7 @@ Kerem ke, oncia bıcerrebne.',
 'showdiff'               => 'Vurnaisun bıasne',
 'anoneditwarning'        => "'''Diqet:''' Tı cınêkota.
 Tarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
+'summary-preview'        => 'Verqaytê xulasa:',
 'blockednoreason'        => 'sebeb nêdiyo',
 'loginreqlink'           => 'cı kuye',
 'newarticle'             => '(Newe)',
@@ -510,11 +511,14 @@ Tı şikina zerrê pelunê binu de [[Special:Search/{{PAGENAME}}|seba sernamê n
 ya ki [{{fullurl:{{FULLPAGENAME}}|action=edit}} na pele bıvurnê]</span>.',
 'updated'                => '(Bi rozane)',
 'note'                   => "'''Not:'''",
+'previewnote'            => "'''Bıfıkıriye ke no teyna jü verqayto.'''
+Vurnaişê to hona qeyd nêbiyê!",
 'editing'                => 'Tıya $1 vurnena',
 'editingsection'         => 'Vurnaena $1 (qısım)',
 'yourtext'               => 'Metnê to',
 'yourdiff'               => 'Ferqi',
 'templatesused'          => '{{PLURAL:$1|Şablono ke na pele de gurenino|Şablonê ke na pele de gureninê}}:',
+'templatesusedpreview'   => '{{PLURAL:$1|Şablono ke na verqayt de gureno|Şablonê ke na verqayt de gurenê}}:',
 'template-protected'     => '(sevekna)',
 'template-semiprotected' => '(nêm-seveknais)',
 'hiddencategories'       => 'Na pele mensuba {{PLURAL:$1|1 kategoriya nımıtiya|$1 kategoriunê nımıtuna}}:',
@@ -743,6 +747,8 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'upload_directory_missing'   => "İndeksê bar-kerdena ($1)i çino u terefê ''webserver''i ra nêşikino ke bıaferiyo.",
 'upload_directory_read_only' => "İndeksê bar-kerdena ($1)i terefê ''webserver''i nênuşino.",
 'uploaderror'                => 'Xeta bar-kerdene',
+'uploadlogpage'              => 'Qeydê dosya barkerdene',
+'uploadedimage'              => '"[[$1]]" bar bi',
 
 # File description page
 'filehist'            => 'Tarixê dosya',
@@ -777,6 +783,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'newpages'           => 'Pelê newey',
 'ancientpages'       => 'Pelê khanêri',
 'move'               => 'Bere',
+'movethispage'       => 'Na pele bere',
 'pager-newer-n'      => '{{PLURAL:$1|1 newêr|$1 newêri}}',
 'pager-older-n'      => '{{PLURAL:$1|1 khanêr|$1 khanêri}}',
 
@@ -795,6 +802,9 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'prevpage'       => 'Pela verêne ($1)',
 'allarticles'    => 'Peli pêro',
 'allpagessubmit' => 'So',
+
+# Special:LinkSearch
+'linksearch' => 'Girê teberi',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Qeydê karberiê newey',
@@ -838,6 +848,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'modifiedarticleprotection' => 'serba "[[$1]]" sewiya seveknaene vurriye',
 'protectcomment'            => 'Sebeb:',
 'protectexpiry'             => 'Tarixê qediyaene:',
+'protect-level-sysop'       => 'Teyna idarekeri',
 'protect-summary-cascade'   => 'qedemein',
 'protect-expiring'          => 'tarixê qediyaene $1 (UTC)',
 'restriction-type'          => 'Destur:',
@@ -887,6 +898,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'whatlinkshere-filters'    => 'Filtrey',
 
 # Block/unblock
+'blockip'                         => 'Karberi kilıt ke',
 'ipboptions'                      => '2 saeti:2 hours,1 roze:1 day,3 roji:3 days,1 hefte:1 week,2 heftey:2 weeks,1 asme:1 month,3 asmi:3 months,6 asmi:6 months,1 serre:1 year,bêmıdet:infinite',
 'ipblocklist'                     => 'Adresê IPê kilıtbiyaey u namê karberu',
 'blocklink'                       => 'kilıt ke',
@@ -914,6 +926,8 @@ Serba men- u kilıt-biyaene nıkaêne qaytê [[Special:IPBlockList|lista kilıt-
 # Move page
 'movearticle' => 'Pele bere:',
 'move-watch'  => 'Na pele de şêr ke',
+'movepagebtn' => 'Pele bere',
+'movedto'     => 'berd be',
 '1movedto2'   => '[[$1]] berd be [[$2]]',
 'movelogpage' => 'Qeydê berdene',
 'movereason'  => 'Sebeb:',

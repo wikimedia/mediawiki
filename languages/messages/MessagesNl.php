@@ -2476,6 +2476,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'ipblocklist-sh-tempblocks'       => 'tijdelijke blokkades $1',
 'ipblocklist-sh-addressblocks'    => 'enkele IP-blokkades $1',
 'ipblocklist-submit'              => 'Zoeken',
+'ipblocklist-otherblocks'         => 'Andere blokkades',
 'blocklistline'                   => 'Op $1 blokkeerde $2: $3 ($4)',
 'infiniteblock'                   => 'onbeperkt',
 'expiringblock'                   => 'vervalt op $1 om $2',
