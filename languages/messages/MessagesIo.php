@@ -633,11 +633,7 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'difference'              => '(Diferi inter versioni)',
 'lineno'                  => 'Lineo $1:',
 'compareselectedversions' => 'Komparar selektita versioni',
-'visualcomparison'        => 'Vidala komparado',
-'wikicodecomparison'      => 'Wikitextala komparado',
 'editundo'                => 'des-facez',
-'diff-src'                => 'fonto',
-'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'             => 'Rezultaji dil sercho',
@@ -1382,9 +1378,6 @@ Vu darfos adjuntar kauso en la rezumo.',
 # Browsing diffs
 'previousdiff' => '← Plu anciena versiono',
 'nextdiff'     => 'Plu recenta versiono →',
-
-# Visual comparison
-'visual-comparison' => 'Vidala komparado',
 
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagino|pagini}}',

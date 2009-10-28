@@ -723,18 +723,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'difference'              => '(Difríochtaí idir leaganacha)',
 'lineno'                  => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
-'wikicodecomparison'      => 'Comparáid Vicítéacs',
 'editundo'                => 'cealaigh',
-'diff-multi'              => '({{PLURAL:$1|Leasú idirmheánach amháin|$1 leasú idirmheánach}} nach thaispeántar.)',
-'diff-movedto'            => 'a athrú go $1',
-'diff-changedfrom'        => 'a athrú as $1',
-'diff-src'                => 'foinse',
-'diff-width'              => 'leithead',
-'diff-height'             => 'airde',
-'diff-p'                  => "'''alt'''",
-'diff-a'                  => "'''nasc'''",
-'diff-big'                => "'''mór'''",
-'diff-del'                => "'''scriosta'''",
 
 # Search results
 'searchresults'                  => 'Torthaí an chuardaigh',

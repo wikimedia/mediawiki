@@ -748,16 +748,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'lineno'                  => 'Linya $1:',
 'compareselectedversions' => 'Ikomparar an mga piniling bersyon',
 'editundo'                => 'ibalik',
-'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} dai ipinahihiling.)',
-'diff-width'              => 'lakbáng',
-'diff-height'             => 'langkáw',
-'diff-blockquote'         => "saróng '''quote'''",
-'diff-h1'                 => "saróng '''pamayohan (tangga 1)'''",
-'diff-h2'                 => "saróng '''pamayohan (tangga 2)'''",
-'diff-h3'                 => "saróng '''pamayohan (tangga 3)'''",
-'diff-h4'                 => "saróng '''pamayohan (tangga 4)'''",
-'diff-h5'                 => "saróng '''pamayohan (tangga 5)'''",
-'diff-pre'                => "saróng '''naformat nang pagbagat'''",
 
 # Search results
 'searchresults'             => 'Hanapon an mga resulta',

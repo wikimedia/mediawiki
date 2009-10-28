@@ -237,24 +237,7 @@ $messages = array(
 'revdelete-hid'          => 'tapo $1',
 
 # Diffs
-'editundo'             => 'undo',
-'diff-movedto'         => 'naésu ri $1',
-'diff-changedto'       => 'naséllé ri $1',
-'diff-movedoutof'      => 'naéssu polé $1',
-'diff-removed'         => '$1 ripeddéni',
-'diff-changedfrom'     => 'naséllé polé $1',
-'diff-src'             => 'sumber',
-'diff-with'            => '&#32;sibawa $1 $2',
-'diff-with-additional' => '$1 $2',
-'diff-with-final'      => '&#32;na $1 $2',
-'diff-height'          => 'lampé',
-'diff-input'           => "séuwa '''input'''",
-'diff-a'               => "séuwa '''linke'''",
-'diff-i'               => "'''italik'''",
-'diff-b'               => "'''umpek'''",
-'diff-strong'          => "'''terek'''",
-'diff-big'             => "'''loppo'''",
-'diff-del'             => "'''ripeddé'''",
+'editundo' => 'undo',
 
 # Search results
 'searchsubtitle'        => "Masappa iko '''[[:$1]]'''",

@@ -801,10 +801,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'lineno'                  => 'Riga $1:',
 'compareselectedversions' => 'Cunfronta li versioni sciubaraddi',
 'editundo'                => 'annulla',
-'diff-multi'              => '({{PLURAL:$1|Una ribisioni di mezu nò musthradda|$1 ribisioni di mezu nò musthraddi}}.)',
-'diff-src'                => 'origini',
-'diff-font'               => "'''caratteri'''",
-'diff-big'                => "'''mannu'''",
 
 # Search results
 'searchresults'             => 'Risulthaddi di la zercha',

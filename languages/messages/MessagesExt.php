@@ -706,7 +706,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'lineno'                  => 'Línia $1:',
 'compareselectedversions' => 'Comparal velsionis aseñalás',
 'editundo'                => 'eshazel',
-'diff-multi'              => '(Nu se {{PLURAL:$1|muestra una revisión entelmeya|muestran $1 revisionis entelmeyas}}.)',
 
 # Search results
 'searchresults'             => 'Landeal resurtaus',

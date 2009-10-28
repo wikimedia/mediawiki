@@ -218,12 +218,8 @@ $messages = array(
 'mergehistory-reason' => 'Dungu:',
 
 # Diffs
-'lineno'       => 'Wirin $1:',
-'editundo'     => 'wüñoeltun',
-'diff-movedto' => 'Nengümülu $1 püle',
-'diff-img'     => "kiñe '''ad'''",
-'diff-big'     => "'''füta'''",
-'diff-del'     => "'''Ñamümün'''",
+'lineno'   => 'Wirin $1:',
+'editundo' => 'wüñoeltun',
 
 # Search results
 'viewprevnext'                   => 'Pen ($1 {{int:pipe-separator}} $2) ($3).',

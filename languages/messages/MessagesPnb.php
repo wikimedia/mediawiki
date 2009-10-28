@@ -465,7 +465,6 @@ $messages = array(
 'lineno'                  => 'لیک $1:',
 'compareselectedversions' => 'چنے صفحے آپنے سامنے کرو',
 'editundo'                => 'واپس',
-'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 درمیانی تبدیلی}} نئیں وکھائی گئی۔)',
 
 # Search results
 'searchresults'             => 'کھوج دا نتارا',

@@ -261,19 +261,8 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'mergehistory-reason' => 'Grund:',
 
 # Diffs
-'difference'        => '(Unnerschidd zwische Versione)',
-'editundo'          => 'zerick',
-'diff-styleadded'   => '$1-Style dezu geduh',
-'diff-added'        => '$1 dezu geduh',
-'diff-changedto'    => 'tscheenscht zu $1',
-'diff-styleremoved' => '$1-Style gelöscht',
-'diff-with'         => '&#32;mit $1 $2',
-'diff-with-final'   => '&#32;unn $1 $2',
-'diff-height'       => 'Heeh',
-'diff-table'        => "en '''Tabell'''",
-'diff-img'          => "en '''Bild'''",
-'diff-a'            => "en '''Gleecher'''",
-'diff-b'            => "'''fett'''",
+'difference' => '(Unnerschidd zwische Versione)',
+'editundo'   => 'zerick',
 
 # Search results
 'prevn'                    => '{{PLURAL:$1|letscht|letscht $1}}',

@@ -450,9 +450,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'lineno'                  => 'Linia $1:',
 'compareselectedversions' => 'Compare varias elejeda',
 'editundo'                => 'desfa',
-'diff-multi'              => '({{PLURAL:$1|$1 revise|$1 revises}} medial no mostrada.)',
-'diff-with'               => '&#32;con $1 $2',
-'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'             => 'Resultas de xerca',

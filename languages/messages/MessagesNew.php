@@ -311,11 +311,6 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'revisionasof'     => '$1 तक्कया संस्करण',
 'previousrevision' => '←पुलांगु संस्करण',
 
-# Diffs
-'diff-i'      => "'''ब्यक्वःगु'''",
-'diff-b'      => "'''गाढा'''",
-'diff-strong' => "'''कडा'''",
-
 # Search results
 'searchhelp-url' => 'Help:धलःपौ',
 'searchrelated'  => 'स्वापू दुःगु',

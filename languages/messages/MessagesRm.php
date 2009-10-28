@@ -480,7 +480,6 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'lineno'                  => 'Lingia $1:',
 'compareselectedversions' => 'cumparegliar las versiuns selecziunadas',
 'editundo'                => 'revocar',
-'diff-multi'              => '({{PLURAL:$1|Ina versiun|$1 versiuns}} tranter en na vegnan betg mussadas.)',
 
 # Search results
 'searchresults'             => 'Resultats da tschertga',

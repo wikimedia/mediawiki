@@ -458,7 +458,6 @@ $messages = array(
 'lineno'                  => 'লাইন $1:',
 'compareselectedversions' => 'বাসাইল সংস্করণহানি তুলনা কর',
 'editundo'                => 'আলকর',
-'diff-multi'              => '({{PLURAL:$1|হমবুকর রিভিসন আহান|$1 হমবুকর রিভিসন হানি}} দেহাদেনা এহাত না মিহিসে।)',
 
 # Search results
 'noexactmatch'   => "'''\"\$1\" চিংনাঙর কোন পাতা নেই।'''

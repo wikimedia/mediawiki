@@ -322,7 +322,6 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'lineno'                  => 'Baréh $1:',
 'compareselectedversions' => 'Peubandéng curak teupiléh',
 'editundo'                => 'peubateuë',
-'diff-multi'              => '({{PLURAL:$1|Sa|$1}} geunantoë antara hana geupeuleumah.)',
 
 # Search results
 'searchresults'             => 'Hasé mita',

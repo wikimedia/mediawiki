@@ -544,11 +544,6 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente,
 'lineno'                  => 'Lìnia $1:',
 'compareselectedversions' => 'Cumpara versiones scioberadas',
 'editundo'                => 'annudda',
-'diff-movedto'            => 'mòvidu a $1',
-'diff-src'                => 'mitza',
-'diff-with'               => '&#32;cun $1 $2',
-'diff-with-additional'    => '$1 $2',
-'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'                  => 'Resurtados de sa chirca',

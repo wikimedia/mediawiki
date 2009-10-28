@@ -589,7 +589,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'lineno'                  => 'Pozxáat $1:',
 'compareselectedversions' => 'Comparenom verción selectón',
 'editundo'                => 'iixponintöx',
-'diff-multi'              => '({{PLURAL:$1|1 revicion páult|$1 revición páultíi}} necohuatlöx.)',
 
 # Search results
 'searchresults'         => 'Resuluámde yahöx',

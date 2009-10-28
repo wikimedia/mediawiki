@@ -750,7 +750,6 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'lineno'                  => 'Gulis $1:',
 'compareselectedversions' => 'Pikumpara/piyanti la reng mepiling bersion',
 'editundo'                => 'iurung',
-'diff-multi'              => '({{PLURAL:$1|1 a pamagbayung miyalilan na |$1 pamagbayung miyalilan na}} a e makalto.)',
 
 # Search results
 'searchresults'             => 'Ding linual (resulta) king pamanintun',

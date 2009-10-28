@@ -295,7 +295,6 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 'lineno'                  => 'Tabrit $1:',
 'compareselectedversions' => 'Smequdda tunɣilin a',
 'editundo'                => 'Dwel',
-'diff-multi'              => '({{PLURAL:$1|ijj n ufegged|$1 ifeggiden}} war ad twamlen ca.)',
 
 # Search results
 'noexactmatch' => "'''war telli ca n Tasna qarn-as \"\$1\".'''

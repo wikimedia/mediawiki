@@ -683,7 +683,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'lineno'                  => 'Line $1:',
 'compareselectedversions' => 'Compare selectit versions',
 'editundo'                => 'undo',
-'diff-src'                => 'soorce',
 
 # Search results
 'searchresults'            => 'Rake results',

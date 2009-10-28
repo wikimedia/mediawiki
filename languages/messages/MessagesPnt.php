@@ -577,17 +577,6 @@ $messages = array(
 'lineno'                  => 'Γραμμή $1:',
 'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo'                => 'αναίρεση',
-'diff-multi'              => "({{PLURAL:$1|Μίαν αλλαγήν|$1 αλλαγάς}} 'κ δεκνίζκουνταν.)",
-'diff-src'                => 'πηγήν',
-'diff-with'               => '&#32;με $1 $2',
-'diff-with-final'         => '&#32;και $1 $2',
-'diff-width'              => 'πλάτος',
-'diff-height'             => 'ύψος',
-'diff-td'                 => "'''κελλίον'''",
-'diff-dt'                 => "'''όρον ορισμού'''",
-'diff-font'               => "'''γραμματοσειράν'''",
-'diff-big'                => "'''τρανόν'''",
-'diff-strike'             => "'''εγκάρσιον σβήσεμαν'''",
 
 # Search results
 'searchresults'             => 'Εύρον αποτελέσματα',

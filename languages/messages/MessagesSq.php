@@ -912,36 +912,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'difference'              => '(Ndryshime midis versioneve)',
 'lineno'                  => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhura',
-'visualcomparison'        => 'Krahasim vizual',
-'wikicodecomparison'      => 'Krahasim i wiki tekstit',
 'editundo'                => 'ktheje',
-'diff-multi'              => '({{PLURAL:$1|Një redaktim ndërmjet nuk është|$1 redaktime ndërmjet nuk janë}} treguar.)',
-'diff-movedto'            => 'bartur tek $1',
-'diff-styleadded'         => 'stili $1 u vendos',
-'diff-added'              => '$1 u vendos',
-'diff-changedto'          => 'u ndryshua në $1',
-'diff-movedoutof'         => 'u largua nga $1',
-'diff-styleremoved'       => 'stili $1 u largua',
-'diff-removed'            => '$1 u largua',
-'diff-changedfrom'        => 'ndryshuar nga $1',
-'diff-src'                => 'burimi',
-'diff-withdestination'    => 'me përcaktim $1',
-'diff-width'              => 'gjerësia',
-'diff-height'             => 'lartësia',
-'diff-p'                  => "'''paragraf'''",
-'diff-blockquote'         => "'''citat'''",
-'diff-div'                => "'''ndarje'''",
-'diff-table'              => "'''tabelë'''",
-'diff-tbody'              => "'''përmbajtje tabele'''",
-'diff-tr'                 => "'''rresht'''",
-'diff-th'                 => "'''kokë'''",
-'diff-dl'                 => "'''listë përcaktimi'''",
-'diff-dt'                 => "'''term përcaktimi'''",
-'diff-form'               => "'''formë'''",
-'diff-img'                => "'''figurë'''",
-'diff-a'                  => "'''nyje'''",
-'diff-font'               => "'''font'''",
-'diff-del'                => "'''grisur'''",
 
 # Search results
 'searchresults'                    => 'Rezultatet e kërkimit',
@@ -2249,9 +2220,6 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # Browsing diffs
 'previousdiff' => '← Ndryshimi më para',
 'nextdiff'     => 'Ndryshimi më pas →',
-
-# Visual comparison
-'visual-comparison' => 'Krahasim vizual',
 
 # Media information
 'mediawarning'         => "'''Kujdes''': Kjo skedë mund të ketë përmbajtje të dëmshme, duke e përdorur sistemi juaj mund të rrezikohet.<hr />",

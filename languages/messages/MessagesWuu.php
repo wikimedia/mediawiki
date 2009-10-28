@@ -350,7 +350,6 @@ $messages = array(
 # Diffs
 'compareselectedversions' => '比较选中个版本',
 'editundo'                => '撤销',
-'diff-multi'              => '（$1个中途个修订版本无没显示。）',
 
 # Search results
 'searchresults'             => '搜索结果',

@@ -812,8 +812,6 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'lineno'                  => '$1 satır:',
 'compareselectedversions' => 'Saylanğan versiyalarnı teñeştir',
 'editundo'                => 'lâğu et',
-'diff-multi'              => '({{PLURAL:$1|1 aradaki versiya|$1 aradaki versiya}} kösterilmedi.)',
-'diff-movedto'            => '$1 saifesine avuştırıldı',
 
 # Search results
 'searchresults'             => 'Qıdıruv neticeleri',
