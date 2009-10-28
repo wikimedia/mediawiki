@@ -15,7 +15,6 @@
  *
  */
 
-
 /**
  * AutoLoader paths 
  * @path The path to the file (or set of files) with ending slash
@@ -830,8 +829,8 @@ var mvJsLoader = {
 	missing_path : null,
 	doLoad: function( loadLibs, callback ) {
 		this.ctime++;
-
 		if( loadLibs && loadLibs.length != 0 ) {
+			//js_log("doLoad setup::" + JSON.stringify( loadLibs ) );
 			// Set up this.libs
 			// First check if we already have this library loaded
 			var all_libs_loaded = true;
@@ -842,7 +841,7 @@ var mvJsLoader = {
 				}
 			}
 			if( all_libs_loaded ) {
-				//js_log( 'Libraries ( ' + loadLibs  +  ') already loaded... skipping load request' );
+				js_log( 'Libraries ( ' + loadLibs  +  ') already loaded... skipping load request' );
 				callback();
 				return;
 			}
@@ -867,7 +866,7 @@ var mvJsLoader = {
 						coma = ',';
 					}
 				}
-				//Build the url to the scriptServer striping its request paramaters:
+				//Build the url to the scriptServer striping its request parameters:
 				var puri = parseUri( getMvEmbedURL() );
 				if( ( getMvEmbedURL().indexOf('://') != -1 )
 					&& puri.host != parseUri( document.URL ).host )
@@ -895,14 +894,14 @@ var mvJsLoader = {
 				}
 			}
 		}
+		
 		if( callback ) {
 			this.callbacks.push( callback );
 		}
 		if( this.checkLoading() ) {
 			//@@todo we should check the <script> Element .onLoad property to
-			//make sure its just not a very slow connection or we can run the callback
+			//make sure its just not a very slow connection
 			//(even though the class is not loaded)
-
 			if( this.load_time++ > 4000 ){ // Time out after ~80 seconds
 				js_log( gM('mwe-error_load_lib', [mvGetClassPath(this.missing_path),  this.missing_path]) );
 				this.load_error = true;
