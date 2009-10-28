@@ -273,7 +273,10 @@ CONTROL;
 		# Make "previous revision link"
 		$query['diff'] = 'prev';
 		$query['oldid'] = $this->mOldid;
-
+		# Cascade unhide param in links for easy deletion browsing
+		if( $this->unhide ) {
+			$query['unhide'] = 1;
+		}
 		$prevlink = $sk->link(
 			$this->mTitle,
 			wfMsgHtml( 'previousdiff' ),
@@ -286,10 +289,11 @@ CONTROL;
 				'noclasses'
 			)
 		);
+
 		# Make "next revision link"
 		$query['diff'] = 'next';
 		$query['oldid'] = $this->mNewid;
-
+		# Skip next link on the top revision
 		if( $this->mNewRev->isCurrent() ) {
 			$nextlink = '&nbsp;';
 		} else {
