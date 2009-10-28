@@ -531,6 +531,7 @@ div.mw-warning-with-logexcerpt {
 	padding: 3px;
 	margin-bottom: 3px;
 	border: 2px solid #2F6FAB;
+	clear: both;
 }
 div.mw-warning-with-logexcerpt ul li {
 	font-size: 90%;
