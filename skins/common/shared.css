@@ -815,3 +815,8 @@ td.mw-enhanced-rc {
 	background-position: middle middle;
 	background-repeat: no-repeat;
 }
+
+/* Sort arrows added by SortableTables */
+a.sortheader {
+	margin: 0 0.3em;
+}

@@ -534,8 +534,7 @@ function ts_makeSortable(table) {
 	for (var i = 0; i < firstRow.cells.length; i++) {
 		var cell = firstRow.cells[i];
 		if ((" "+cell.className+" ").indexOf(" unsortable ") == -1) {
-			cell.innerHTML += '&nbsp;&nbsp;'
-				+ '<a href="#" class="sortheader" '
+			cell.innerHTML += '<a href="#" class="sortheader" '
 				+ 'onclick="ts_resortTable(this);return false;">'
 				+ '<span class="sortarrow">'
 				+ '<img src="'
