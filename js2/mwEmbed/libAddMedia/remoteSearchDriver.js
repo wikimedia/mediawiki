@@ -72,6 +72,10 @@ var default_remote_search_options = {
 	'import_url_mode': 'api',
 
 	'target_title':null,
+	
+	//edit tools (can be an array of tools or keyword 'all')
+	'enabled_tools' : 'all',
+	
 
 	'target_textbox':null,
 	'target_render_area': null, //where output render should go:
@@ -515,10 +519,10 @@ remoteSearchDriver.prototype = {
 	},
 	init_modal:function(){
 		js_log("init_modal");
-		var _this = this;
-		_this.target_container = '#rsd_modal_target';
+		var _this = this;	
 		//add the parent target_container if not provided or missing
 		if(!_this.target_container || $j(_this.target_container).length==0){
+			_this.target_container = '#rsd_modal_target';
 			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:3em;left:0px;bottom:3em;right:0px;" title="' + gM('mwe-add_media_wizard') + '" ></div>');			
 			//js_log('appended: #rsd_modal_target' + $j(_this.target_container).attr('id'));
 			//js_log('added target id:' + $j(_this.target_container).attr('id'));
@@ -1261,7 +1265,8 @@ remoteSearchDriver.prototype = {
 			'control_ct'		: 'clip_edit_ctrl',
 			'media_type'		: mediaType,
 			'p_rsdObj'			: _this,
-			'controlActionsCb'	: _this.getClipEditControlActions( cp )
+			'controlActionsCb'	: _this.getClipEditControlActions( cp ),
+			'enabled_tools'		: _this.enabled_tools
 		};
 		//set the base clip edit lib class req set:
 		var clibs = ['mvClipEdit'];
@@ -1802,15 +1807,17 @@ remoteSearchDriver.prototype = {
 		}		
 		js_log('getPaging:'+ cp_id + ' len: ' + cp.sObj.num_results);
 		var to_num = ( cp.limit > cp.sObj.num_results )?
-						(cp.offset + cp.sObj.num_results):
-						(cp.offset + cp.limit);
+						(parseInt( cp.offset ) + parseInt( cp.sObj.num_results ) ):
+						( parseInt( cp.offset ) + parseInt( cp.limit) );
 		var out = '';				
 		
 		//@@todo we should instead support the wiki number format template system instead of inline calls
-		if( cp.sObj.num_results  >  cp.limit){
-			out+= gM('rsd_results_desc_total', [(cp.offset+1), to_num, $mw.lang.formatNumber( cp.sObj.num_results )] );
-		}else{
-			out+= gM('rsd_results_desc', [(cp.offset+1), to_num]);
+		if( cp.sObj.num_results != 0 ){ 
+			if( cp.sObj.num_results  >  cp.limit){		
+				out+= gM( 'rsd_results_desc_total', [(cp.offset+1), to_num, $mw.lang.formatNumber( cp.sObj.num_results )] );
+			}else{		
+				out+= gM( 'rsd_results_desc', [(cp.offset+1), to_num] );
+			}
 		}
 		//check if we have more results (next prev link)
 		if(  cp.offset >=  cp.limit )
@@ -1820,11 +1827,13 @@ remoteSearchDriver.prototype = {
 			out+=' <a href="#" id="rsd_pnext">' + gM('rsd_results_next') + ' ' + cp.limit + '</a>';
 
 		$j(target).html(out);
+		
 		//set bindings
 		$j('#rsd_pnext').click(function(){
 			cp.offset += cp.limit;
 			_this.runSearch( false );
 		});
+		
 		$j('#rsd_pprev').click(function(){
 			cp.offset -= cp.limit;
 			if(cp.offset<0)
