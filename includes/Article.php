@@ -3459,22 +3459,14 @@ class Article {
 			// If revision was hidden from sysops
 				$cdel = wfMsgHtml( 'rev-delundel' );
 			} else {
-				$cdel = $sk->link(
-					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					wfMsgHtml('rev-delundel'),
-					array(),
-					array(
-						'type' => 'revision',
-						'target' => urlencode( $this->mTitle->getPrefixedDbkey() ),
-						'ids' => urlencode( $oldid )
-					),
-					array( 'known', 'noclasses' )
+				$query = array(
+					'type'   => 'revision',
+					'target' => urlencode( $this->mTitle->getPrefixedDbkey() ),
+					'ids'    => urlencode( $oldid )
 				);
-				// Bolden oversighted content
-				if( $revision->isDeleted( Revision::DELETED_RESTRICTED ) )
-					$cdel = "<strong>$cdel</strong>";
+				$cdel = $sk->revDeleteLink( $query, $revision->isDeleted(File::DELETED_RESTRICTED) );
 			}
-			$cdel = "(<small>$cdel</small>) ";
+			$cdel .= ' ';
 		}
 		$unhide = $wgRequest->getInt('unhide') == 1 && $wgUser->matchEditToken( $wgRequest->getVal('token'), $oldid );
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
