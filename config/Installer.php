@@ -1268,7 +1268,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print " done.</li>\n";
 			
 		
-			if ($conf->DBtype == 'ibm_db2') {
+			if ( $conf->DBtype == 'ibm_db2' ) {
 				// Now that table creation is done, make sure everything is committed
 				// Do this before doing inserts through API
 				if ($wgDatabase->lastError()) {
@@ -1279,6 +1279,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					print "<li>MediaWiki tables successfully created</li>\n";
 					$wgDatabase->commit();
 				}
+			} elseif ( $conf->DBtype == 'sqlite' ) {
+				// Ensure proper searchindex format. We have to do that separately because
+				// if SQLite is compiled without the FTS3 module, table creation syntax will be invalid.
+				sqlite_setup_searchindex();
 			}
 
 			print "<li>Initializing statistics...</li>\n";

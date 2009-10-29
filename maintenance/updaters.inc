@@ -189,6 +189,9 @@ $wgUpdates = array(
 		array( 'add_index', 'log_search', 'ls_field_val', 'patch-log_search-rename-index.sql' ),
 		array( 'add_index', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
 		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
+		
+		// version-independent searchindex setup, added in 1.16
+		array( 'sqlite_setup_searchindex' ),
 	),
 );
 
@@ -1279,6 +1282,23 @@ function sqlite_initial_indexes() {
 	wfOut( "Adding initial indexes..." );
 	$wgDatabase->sourceFile( archive( 'initial-indexes.sql' ) );
 	wfOut( "done\n" );
+}
+
+function sqlite_setup_searchindex() {
+	global $wgDatabase;
+	$module = $wgDatabase->getFulltextSearchModule();
+	$fts3tTable = update_row_exists( 'fts3' );
+	if ( $fts3tTable &&  !$module ) {
+		wfOut( '...PHP is missing FTS3 support, downgrading tables...' );
+		$wgDatabase->sourceFile( archive( 'searchindex-no-fts.sql' ) );
+		wfOut( "done\n" );
+	} elseif ( !$fts3tTable && $module == 'FTS3' ) {
+		wfOut( '...adding FTS3 search capabilities...' );
+		$wgDatabase->sourceFile( archive( 'searchindex-fts3.sql' ) );
+		wfOut( "done\n" );
+	} else {
+		wfOut( "...fulltext search table appears to be in order.\n" );
+	}
 }
 
 function do_unique_pl_tl_il() {
