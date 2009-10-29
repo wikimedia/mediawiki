@@ -1,9 +1,8 @@
 <?php
 /**
- * Rebuild search index table from scratch.  This takes several
+ * Rebuild search index table from scratch.  This may take several
  * hours, depending on the database size and server configuration.
  *
- * This is only for MySQL (see bug 9905).
  * Postgres is trigger-based and should never need rebuilding.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -28,8 +27,8 @@
 require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class RebuildTextIndex extends Maintenance {
-
-	const RTI_CHUNK_SIZE = 500;
+ 	const RTI_CHUNK_SIZE = 500;
+	private $db;
 
 	public function __construct() {
 		parent::__construct();
@@ -41,46 +40,34 @@ class RebuildTextIndex extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-		
-		// Only do this for MySQL
-		$database = wfGetDB( DB_MASTER );
-		if( !$database instanceof DatabaseMysql ) {
-			$this->error( "This script is only for MySQL.", true );
-		}
+		global $wgTitle, $wgDBtype;
 
+		// Shouldn't be needed for Postgres
+		if ( $wgDBtype == 'postgres' ) {
+			$this->error( "This script does not work with PostgreSQL.\n", true );
+		}
+	
+		$this->db = wfGetDB( DB_MASTER );
 		$wgTitle = Title::newFromText( "Rebuild text index script" );
 	
-		$this->dropTextIndex( $database );
-		$this->doRebuildTextIndex( $database );
-		$this->createTextIndex( $database );
+		if ( $wgDBtype == 'mysql' ) {
+			$this->dropMysqlTextIndex();
+			$this->populateSearchIndex();
+			$this->createMysqlTextIndex();
+		} else {
+			$this->clearSearchIndex();
+			$this->populateSearchIndex();
+		}
 	
 		$this->output( "Done.\n" );
 	}
-	
-	private function dropTextIndex( &$database ) {
-		$searchindex = $database->tableName( 'searchindex' );
-		if ( $database->indexExists( "searchindex", "si_title" ) ) {
-			$this->output( "Dropping index...\n" );
-			$sql = "ALTER TABLE $searchindex DROP INDEX si_title, DROP INDEX si_text";
-			$database->query($sql, "dropTextIndex" );
-		}
-	}
 
-	private function createTextIndex( &$database ) {
-		$searchindex = $database->tableName( 'searchindex' );
-		$this->output( "\nRebuild the index...\n" );
-		$sql = "ALTER TABLE $searchindex ADD FULLTEXT si_title (si_title), " .
-		  "ADD FULLTEXT si_text (si_text)";
-		$database->query($sql, "createTextIndex" );
-	}
-	
-	private function doRebuildTextIndex( &$database ) {
-		list ($page, $revision, $text, $searchindex) = $database->tableNamesN( 'page', 'revision', 'text', 'searchindex' );
-
-		$sql = "SELECT MAX(page_id) AS count FROM $page";
-		$res = $database->query($sql, "rebuildTextIndex" );
-		$s = $database->fetchObject($res);
+	/**
+	 * Populates the search index with content from all pages
+	 */
+	protected function populateSearchIndex() {
+		$res = $this->db->select( 'page', 'MAX(page_id) AS count' );
+		$s = $this->db->fetchObject($res);
 		$count = $s->count;
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
@@ -88,21 +75,53 @@ class RebuildTextIndex extends Maintenance {
 		while ( $n < $count ) {
 			$this->output( $n . "\n" );
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
-			$sql = "SELECT page_id, page_namespace, page_title, old_flags, old_text
-					  FROM $page, $revision, $text
-					 WHERE page_id BETWEEN $n AND $end
-					   AND page_latest=rev_id
-					   AND rev_text_id=old_id";
-			$res = $database->query($sql, "rebuildTextIndex" );
+
+			$res = $this->db->select( array( 'page', 'revision', 'text' ), 
+				array( 'page_id', 'page_namespace', 'page_title', 'old_flags', 'old_text' ),
+				array( "page_id BETWEEN $n AND $end", 'page_latest = rev_id', 'rev_text_id = old_id' ),
+				__METHOD__
+				);
 	
 			foreach( $res as $s ) {
 				$revtext = Revision::getRevisionText( $s );
 				$u = new SearchUpdate( $s->page_id, $s->page_title, $revtext );
 				$u->doUpdate();
 			}
-			$database->freeResult( $res );
+			$this->db->freeResult( $res );
 			$n += self::RTI_CHUNK_SIZE;
 		}
+	}
+
+	/**
+	 * (MySQL only) Drops fulltext index before populating the table.
+	 */
+	private function dropMysqlTextIndex() {
+		$searchindex = $this->db->tableName( 'searchindex' );
+		if ( $this->db->indexExists( 'searchindex', 'si_title' ) ) {
+			$this->output( "Dropping index...\n" );
+			$sql = "ALTER TABLE $searchindex DROP INDEX si_title, DROP INDEX si_text";
+			$this->db->query($sql, __METHOD__ );
+		}
+	}
+
+	/**
+	 * (MySQL only) Adds back fulltext index after populating the table.
+	 */
+	private function createMysqlTextIndex() {
+		$searchindex = $this->db->tableName( 'searchindex' );
+		$this->output( "\nRebuild the index...\n" );
+		$sql = "ALTER TABLE $searchindex ADD FULLTEXT si_title (si_title), " .
+		  "ADD FULLTEXT si_text (si_text)";
+		$this->db->query( $sql, __METHOD__ );
+	}
+
+	/**
+	 * Deletes everything from search index.
+	 */
+	private function clearSearchIndex() {
+		$this->output( 'Clearing searchindex table...' );
+		$this->db->delete( 'searchindex', '*', __METHOD__ );
+		$this->output( "Done\n" );
 	}
 }
 

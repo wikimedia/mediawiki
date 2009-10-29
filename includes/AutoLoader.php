@@ -483,8 +483,10 @@ $wgAutoloadLocalClasses = array(
 	'SearchResult' => 'includes/search/SearchEngine.php',
 	'SearchResultSet' => 'includes/search/SearchEngine.php',
 	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
+	'SearchSqlite' => 'includes/search/SearchSqlite.php',
 	'SearchUpdate' => 'includes/search/SearchUpdate.php',
 	'SearchUpdateMyISAM' => 'includes/search/SearchUpdate.php',
+	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
 
 	# includes/specials
 	'SpecialAllmessages' => 'includes/specials/SpecialAllmessages.php',
