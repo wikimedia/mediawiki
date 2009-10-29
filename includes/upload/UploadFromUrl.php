@@ -39,7 +39,7 @@ class UploadFromUrl extends UploadBase {
 		global $wgTmpDirectory, $wgPhpCli;
 
 		// check for $asyncdownload request:
-		if( $asyncdownload !== false){
+		if( $asyncdownload ){
 			if( $wgPhpCli && wfShellExecEnabled() ){
 				$this->dl_mode = Http::ASYNC_DOWNLOAD;
 			} else {
