@@ -2,15 +2,178 @@
 <head>
 <title>Test Plural Conversions (should match php) </title>
 <script type="text/javascript" src="../mv_embed.js"></script>
-<script type="text/javascript" src="testLangEn.js"></script>
 <style>
 td{
 	border:solid thin black;
 }
 </style>
 <script type="text/javascript" >
-	var langKey = 'en';
+//shortLangKey is an array of at least one language from every group in cldrConverter.php
+var shortLangKey = ['en','az', 'da', 'pt'];
+
+//longlangKey is every language we have a much more verbose test
+var longLangKey = [
+		//no plurals, there are no rules
+		'az','fa','hu','ja','ko','my to','tr','vi','yo','zh',
+		'bo','dz','id','jv ka','km','kn','ms','th',
+		
+		/*
+		'zero' 	=> 0,
+		'one'	=> 1,
+		'two'	=> 2,
+		//n mod 100 in 3..10
+		'few'	=> array( 'mod' => 100, 'is'=>'3-10' ),
+		//n mod 100 in 11..99
+		'many'	=> array( 'mod' => 100, 'is'=>'11-99')
+		*/
+		'ar',
+		
+		/*
+		'one' => 1
+		*/		
+		'da','de','el','en','eo','es','et','fi','fo','gl',
+		'he','iw','it','nb','nl','nn','no','pt_PT','sv',
+		'af','bg','bn','ca','eu','fur','fy','gu','ha',
+		'is','ku','lb','ml','mr','nah','ne','om','or',
+		'pa','pap','ps','so','sq','sw','ta','te','tk',
+		'ur','zu','mn','gsw',
+		
+		/*
+		'one'=> '0-1'
+		*/
+		'pt','am','bh','fil','tl','guw','hi','ln','mg','nso','ti','wa',
+		
+		/*
+		'one' => array( 'is'=>'0-2', 'not' => 2)
+		*/
+		'fr',
+		 
+		/*
+		'zero' => 0,
+		//n mod 10 is 1 and n mod 100 is not 11
+		'one'=>array(
+				array( 'mod' => 10, 'is' => 1 ),
+				//AND
+				array( 'mod' => 100, 'not' => 11)
+			)
+		*/
+		'lv',
+		
+		/*
+		'one' => 1,
+		'two' => 2
+		*/
+		'ga','se','sma','smi','smj','smn','sms',
+		
+		
+		/*
+		'one' => 1,
+		//n is 0 OR n is not 1 AND n mod 100 in 1..19
+		'few' => array(
+					'or'=> array(
+						array( 'is' => 0),								
+						array(
+							array( 'not' => 1),
+							//and
+							array( 'mod' => 100, 'is'=>'1-19')
+						)
+					)
+				)
+			*/
+		'ro','mo',
+		
+		
+		/*
+		//n mod 10 is 1 and n mod 100 not in 11..19
+		'one' => array(
+					array( 'mod'=>10, 'is'=> 1 ),
+					array( 'mod'=> 100, 'not'=> '11-19')
+				),
+		//n mod 10 in 2..9 and n mod 100 not in 11..19
+		'few' => array(
+					array( 'mod'=> 10, 'is'=> '2-9' ),
+					array( 'mod'=> 100, 'not' => '11-19')
+				),
+		*/
+		'lt',
+		
+		
+		/*
+		//n mod 10 is 1 and n mod 100 is not 11
+		'one' => array(
+			array( 'mod' => 10, 'is' => 1),
+			array( 'mod' => 100, 'not' => 11)
+		),
+		//n mod 10 in 2..4 and n mod 100 not in 12..14
+		'few' => array(
+			array( 'mod' => 10, 'is' => '2-4'),
+			array( 'mod' => 100, 'not' => '12-14')
+		),
+		//n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14
+		'many' => array(
+			'or'=>array(
+				array( 'mod'=> 10, 'is' => 0),
+				array( 'mod'=> 10, 'is' => '5-9'),
+				array( 'mod'=> 100, 'is' => '11-14')
+			)
+		),
+		*/
+		'hr','ru','sr','uk','be','bs','sh',
+		
+		
+		/*
+		'one' => 1,
+		'few' => array(
+			//n mod 10 in 2..4
+			array( 'mod' => 10, 'is' => '2-4'),
+			//and n mod 100 not in 12..14
+			array( 'mod' => 100, 'not'=> '12-14'),
+			//and n mod 100 not in 22..24
+			array( 'mod' => 100, 'in' => '22-24')
+		)
+		*/
+		'pl', 
+		
+		/*
+		'one' => array( 'mod'=>100, 'is' => 1 ),
+		'two' => array( 'mod'=>100, 'is' => 2 ),
+		'few' => array( 'mod'=>100, 'is' => '3-4')
+		*/
+		'sl', 
+
+	
+		/*
+		'one' => 1,
+		//n is 0 or n mod 100 in 2..10
+		'few' => array(
+			array( 'is' => 0 ),
+			'or',
+			array( 'mod' => 100, 'is' => '2-10')
+		),
+		//n mod 100 in 11..19
+		'many' => array( 'mod'=>100, 'is' => '11-19')
+		*/	
+		'mt',
+		
+		/*
+		'one' => array('mod' => 10, 'is' => '1')
+		*/
+		'mk', 
+		
+		/*
+		'one' => 1,
+		'two' => 2,
+		//n is 8 or n is 11
+		'many' => array(
+			array( 'is' => 8 ),
+			array( 'is' => 11 )
+		)*/
+		'cy'
+];
+
 js2AddOnloadHook( function(){
+	//do mauall script loaders calls to test multiple languages:
+	
 		//build table output: 
 		var o = '<table>';		
 		var msgTestSet = { 

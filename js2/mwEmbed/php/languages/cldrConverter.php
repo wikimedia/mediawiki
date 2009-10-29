@@ -76,11 +76,13 @@ class cldrConverter {
 					'one' => 1,
 					//n is 0 OR n is not 1 AND n mod 100 in 1..19
 					'few' => array(
-								array( 'is' => 0),
-								'or',
-								array(
-									array( 'not' => 1),
-									array( 'mod' => 100, 'is'=>'1-19')
+								'or'=> array(
+									array( 'is' => 0),								
+									array(
+										array( 'not' => 1),
+										//and
+										array( 'mod' => 100, 'is'=>'1-19')
+									)
 								)
 							)
 				)
@@ -113,11 +115,11 @@ class cldrConverter {
 					),
 					//n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14
 					'many' => array(
-						array( 'mod'=> 10, 'is' => 0),
-						'or',
-						array( 'mod'=> 10, 'is' => '5-9'),
-						'or',
-						array( 'mod'=> 100, 'is' => '11-14')
+						'or'=>array(
+							array( 'mod'=> 10, 'is' => 0),
+							array( 'mod'=> 10, 'is' => '5-9'),
+							array( 'mod'=> 100, 'is' => '11-14')
+						)
 					),
 				)
 		),
