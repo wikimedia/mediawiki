@@ -153,8 +153,7 @@ mvEmbed = {
 					mvEmbed.swapEmbedVideoElement( this_elm, videoInterface );
 				break;
 				case 'audio':
-					var videoInterface = new embedVideo(this_elm);	 
-					videoInterface.type ='audio';
+					var videoInterface = new embedVideo(this_elm);	 					
 					mvEmbed.swapEmbedVideoElement( this_elm, videoInterface );
 				break;
 				case 'playlist':
@@ -213,8 +212,8 @@ mvEmbed = {
 		//make sure our div has a hight/width set:
 			
 		$j(embed_video).css({
-			'width':videoInterface.width,
-			'height':videoInterface.height
+			'width' : videoInterface.width,
+			'height' : videoInterface.height
 		}).html( mv_get_loading_img() );		
 		//inherit the video interface
 		for(var method in videoInterface){ //for in loop oky in Element context	
@@ -782,7 +781,7 @@ embedVideo.prototype = {
 	//for seek thumb updates:
 	cur_thumb_seek_time:0,
 	thumb_seek_interval:null,
-	
+	//set the default tag type to video: 	
 	seeking:false,
 	//set the buffered percent:	
 	bufferedPercent:0,	
@@ -839,10 +838,16 @@ embedVideo.prototype = {
 		   //make sure duration is in float:  
 		this.duration = parseFloat(this.duration);  
 		js_log("duration is: " +  this.duration);
-		//if style is set override width and height
+		
+		//get defaults		
 		var dwh = $mw.conf['video_size'].split('x');
-		this.width = element.style.width ? element.style.width : dwh[0];
-		this.height = element.style.height ? element.style.height : dwh[1];
+		this.width = element.style.width ? element.style.width : dwh[0];		
+		if( element.tagName == 'AUDIO' ){
+			this.height = element.style.height ? element.style.height : 0;
+		}else{
+			this.height = element.style.height ? element.style.height : dwh[1];
+		}				
+		
 		//set the plugin id
 		this.pid = 'pid_' + this.id;
 
