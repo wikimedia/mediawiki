@@ -3575,6 +3575,7 @@ class User {
 	}
 
 	protected function loadOptions() {
+		global $wgCookiePrefix;
 		$this->load();
 		if ( $this->mOptionsLoaded || !$this->getId() )
 			return;
@@ -3603,6 +3604,11 @@ class User {
 				$this->mOptionOverrides[$row->up_property] = $row->up_value;
 				$this->mOptions[$row->up_property] = $row->up_value;
 			}
+
+			//null skin if User::mId is loaded out of session data without persistant credentials
+			if ( !isset( $_SESSION['wsToken'] ) && !isset( $_COOKIE["{$wgCookiePrefix}Token"] ) )
+				$this->mOptions['skin'] = null;
+
 		}
 
 		$this->mOptionsLoaded = true;
