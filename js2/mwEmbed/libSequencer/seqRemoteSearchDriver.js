@@ -20,6 +20,8 @@ seqRemoteSearchDriver.prototype = {
 		}		
 		if(typeof this_seq.amw_conf != 'undefined')
 			$j.extend(iObj,  this_seq.amw_conf);
+			
+	
 		//inherit the remoteSearchDriver properties:n
 		var tmpRSD = new remoteSearchDriver( iObj );
 		for(var i in tmpRSD){
@@ -28,7 +30,7 @@ seqRemoteSearchDriver.prototype = {
 			}else{
 				this[i] = tmpRSD[i];
 			}
-		}
+		}			
 		//extend parent_do_refresh_timeline actions:
 		if(!this.pSeq.parent_do_refresh_timeline){
 			this.pSeq.parent_do_refresh_timeline = this.pSeq.do_refresh_timeline;
@@ -52,13 +54,13 @@ seqRemoteSearchDriver.prototype = {
 		//setup parent bindings:
 		this.parent_addResultBindings();
 
-		//add an aditional click binding
+		//Add an additional click binding
 		$j('.rsd_res_item').click(function(){
 			js_log('SeqRemoteSearch: rsd_res_item: click (remove sequence_add_target)');
 			_this.sequence_add_target =false;
 		});
 
-		//add an additional drag binding
+		//Add an additional drag binding
 		$j( '.rsd_res_item' ).draggable('destroy').draggable({
 			helper:function(){
 				return $j( this ).clone().appendTo('body').css({'z-index':9999}).get(0);
@@ -97,7 +99,7 @@ seqRemoteSearchDriver.prototype = {
 			if(tClip)
 				var target_order = tClip.order;
 		}
-		//@@todo show wating of sorts.
+		//@@todo show watting of sorts.
 
 		//get target order:
 		var cat = rObj;
@@ -144,7 +146,7 @@ seqRemoteSearchDriver.prototype = {
 		//don't resize to default (full screen behavior)
 		_this.dmodalCss = {};
 		//open up a new target_contaienr:
-		if($j('#seq_resource_import').length == 0)
+		if( $j('#seq_resource_import').length == 0 )
 			$j('body').append('<div id="seq_resource_import" style="position:relative"></div>');
 
 		$j('#seq_resource_import').dialog('destroy').dialog({

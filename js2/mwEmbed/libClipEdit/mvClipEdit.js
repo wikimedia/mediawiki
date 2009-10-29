@@ -41,7 +41,9 @@ var default_clipedit_values = {
 	'p_seqObj': null,	 //parent sequence Object
 
 	'controlActionsCb' : null, //the object that configures control Action callbacks
-
+	
+	//The set of tools to enable (by default 'all' else an array of tools from mvClipEdit.toolset list below: 
+	'enabled_tools': 'all',
 	'edit_action': null, //the requested edit action
 	'profile': 'inpage' //the given profile either "inpage" or "sequence"
 }
@@ -53,7 +55,8 @@ mvClipEdit.prototype = {
 	selTool:null, //selected tool
 	crop: null, //the crop values
 	base_img_src:null,
-
+	toolset : ['crop', 'layout'],
+	
 	init:function( iObj){
 		//init object:
 		for(var i in default_clipedit_values){
@@ -73,7 +76,6 @@ mvClipEdit.prototype = {
 				this.media_type = 'template';
 			}
 		}
-
 		//display control:
 		if(this.profile == 'sequence'){
 			this.doEditTypesMenu();
@@ -507,70 +509,90 @@ mvClipEdit.prototype = {
 		//copy over the desc text to the resource object
 		_this.rObj['inlineDesc']= $j('#mv_inline_img_desc').val();
 	},
+	appendTool: function( $target, tool_id ){
+		var _this = this;
+		switch(tool_id){
+			case 'layout':			
+				$target.append(	''+		
+					'<span style="float:left;">Layout:</span>' +
+						'<input type="radio" name="mv_layout" id="mv_layout_left" style="float:left"><div id="mv_layout_left_img" title="'+gM('mwe-layout_left')+'"/>'+
+						'<input type="radio" name="mv_layout" id="mv_layout_right" style="float:left"><div id="mv_layout_right_img" title="'+gM('mwe-layout_left')+'"/>'+
+					'<hr style="clear:both" /><br>' 
+				);
+				//make sure the default is reflected:
+				if( ! _this.rObj.layout )
+					_this.rObj.layout = 'right';
+				$j('#mv_layout_' + _this.rObj.layout)[0].checked = true;
+		
+				//left radio click
+				$j('#mv_layout_left,#mv_layout_left_img').click(function(){
+					$j('#mv_layout_right')[0].checked = false;
+					$j('#mv_layout_left')[0].checked = true;
+					_this.rObj.layout = 'left';
+				});
+				//right radio click
+				$j('#mv_layout_right,#mv_layout_right_img').click(function(){
+					$j('#mv_layout_left')[0].checked = false;
+					$j('#mv_layout_right')[0].checked = true;
+					_this.rObj.layout = 'right';
+				});		
+			break;
+			case 'crop':			
+				$target.append(	''+
+					'<div class="mv_edit_button mv_crop_button_base" id="mv_crop_button" alt="crop" title="'+gM('mwe-crop')+'"/>'+
+						'<a href="#" class="mv_crop_msg">' + gM('mwe-crop') + '</a> '+
+						'<span style="display:none" class="mv_crop_msg_load">' + gM('mwe-loading_txt') + '</span> '+
+						'<a href="#" style="display:none" class="mv_apply_crop">' + gM('mwe-apply_crop') + '</a> '+
+						'<a href="#" style="display:none" class="mv_reset_crop">' + gM('mwe-reset_crop') + '</a> '+
+					'<hr style="clear:both"/><br>'
+				);
+				//add binding: 
+				$j('#mv_crop_button,.mv_crop_msg,.mv_apply_crop').click(function(){
+					js_log('click:mv_crop_button: base width: ' + _this.rObj.width + ' bh: ' + _this.rObj.height);
+					if($j('#mv_crop_button').hasClass('mv_crop_button_selected')){
+						_this.applyCrop();
+					}else{
+						js_log('click:turn on');
+						_this.enableCrop();
+					}
+				});
+				$j('.mv_reset_crop').click(function(){
+					$j('.mv_apply_crop,.mv_reset_crop').hide();
+					$j('.mv_crop_msg').show();
+					$j('#mv_crop_button').removeClass('mv_crop_button_selected').addClass('mv_crop_button_base').attr('title',gM('mwe-crop'));
+					_this.rObj.crop=null;
+					$j('#' + _this.clip_disp_ct ).empty().html(
+						'<img src="' + _this.rObj.edit_url + '" id="rsd_edit_img">'
+					);
+				});				
+			break;
+			case 'scale':
+				/*scale:
+				 '<div class="mv_edit_button mv_scale_button_base" id="mv_scale_button" alt="crop" title="'+gM('mwe-scale')+'"></div>'+
+						'<a href="#" class="mv_scale_msg">' + gM('mwe-scale') + '</a><br>'+
+						'<a href="#" style="display:none" class="mv_apply_scale">' + gM('mwe-apply_scale') + '</a> '+
+						'<a href="#" style="display:none" class="mv_reset_scale">' + gM('mwe-reset_scale') + '</a><br> '+
+		
+				*/
+			break;
+		}
+	},
 	setUpImageCtrl:function(){
 		var _this = this;
+		var $tool_target = $j('#'+this.control_ct);
 		//by default apply Crop tool
-		$j('#'+this.control_ct).html(
-			'<h3>Edit tools</h3>' +
-					'<div class="mv_edit_button mv_crop_button_base" id="mv_crop_button" alt="crop" title="'+gM('mwe-crop')+'"/>'+
-					'<a href="#" class="mv_crop_msg">' + gM('mwe-crop') + '</a> '+
-					'<span style="display:none" class="mv_crop_msg_load">' + gM('mwe-loading_txt') + '</span> '+
-					'<a href="#" style="display:none" class="mv_apply_crop">' + gM('mwe-apply_crop') + '</a> '+
-					'<a href="#" style="display:none" class="mv_reset_crop">' + gM('mwe-reset_crop') + '</a> '+
-				'<hr style="clear:both"/><br>'+
-			'<span style="float:left;">Layout:</span>' +
-				'<input type="radio" name="mv_layout" id="mv_layout_left" style="float:left"><div id="mv_layout_left_img" title="'+gM('mwe-layout_left')+'"/>'+
-				'<input type="radio" name="mv_layout" id="mv_layout_right" style="float:left"><div id="mv_layout_right_img" title="'+gM('mwe-layout_left')+'"/>'+
-			'<hr style="clear:both" /><br>' +
-				_this.getInsertDescHtml()
-		);
-		//add the actions to the 'button bar'
-		_this.updateInsertControlActions()
-
-		/*scale:
-		 '<div class="mv_edit_button mv_scale_button_base" id="mv_scale_button" alt="crop" title="'+gM('mwe-scale')+'"></div>'+
-				'<a href="#" class="mv_scale_msg">' + gM('mwe-scale') + '</a><br>'+
-				'<a href="#" style="display:none" class="mv_apply_scale">' + gM('mwe-apply_scale') + '</a> '+
-				'<a href="#" style="display:none" class="mv_reset_scale">' + gM('mwe-reset_scale') + '</a><br> '+
-
-		*/
-		//add bindings:
-
-		//make sure the default is reflected:
-		if( ! _this.rObj.layout )
-			_this.rObj.layout = 'right';
-		$j('#mv_layout_' + _this.rObj.layout)[0].checked = true;
-
-		//left radio click
-		$j('#mv_layout_left,#mv_layout_left_img').click(function(){
-			$j('#mv_layout_right')[0].checked = false;
-			$j('#mv_layout_left')[0].checked = true;
-			_this.rObj.layout = 'left';
-		});
-		//right radio click
-		$j('#mv_layout_right,#mv_layout_right_img').click(function(){
-			$j('#mv_layout_left')[0].checked = false;
-			$j('#mv_layout_right')[0].checked = true;
-			_this.rObj.layout = 'right';
-		});
-		$j('#mv_crop_button,.mv_crop_msg,.mv_apply_crop').click(function(){
-			js_log('click:mv_crop_button: base width: ' + _this.rObj.width + ' bh: ' + _this.rObj.height);
-			if($j('#mv_crop_button').hasClass('mv_crop_button_selected')){
-				_this.applyCrop();
-			}else{
-				js_log('click:turn on');
-				_this.enableCrop();
+		if( _this.enabled_tools == 'all' || _this.enabled_tools.length > 0){
+			$tool_target.append( '<h3>Edit tools</h3>' );
+			for( var i in _this.toolset ){
+				var toolid = _this.toolset[i];
+				if( $j.inArray( toolid, _this.enabled_tools) != -1 || _this.enabled_tools=='all')
+					_this.appendTool( $tool_target, toolid );
 			}
-		});
-		$j('.mv_reset_crop').click(function(){
-			$j('.mv_apply_crop,.mv_reset_crop').hide();
-			$j('.mv_crop_msg').show();
-			$j('#mv_crop_button').removeClass('mv_crop_button_selected').addClass('mv_crop_button_base').attr('title',gM('mwe-crop'));
-			_this.rObj.crop=null;
-			$j('#' + _this.clip_disp_ct ).empty().html(
-				'<img src="' + _this.rObj.edit_url + '" id="rsd_edit_img">'
-			);
-		});
+		}
+		//add the insert description text field: 
+		$tool_target.append( _this.getInsertDescHtml() );
+		//add the actions to the 'button bar'
+		_this.updateInsertControlActions();
 	},
 	applyVideoAdj:function(){
 		js_log('applyVideoAdj::');

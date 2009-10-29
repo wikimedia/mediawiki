@@ -1,5 +1,5 @@
 /*
- * hanndles driving the firefogg render system 
+ * handles driving the firefogg render system 
 */
 
 var mvFirefoggRender = function( iObj ) {		

@@ -35,7 +35,7 @@ loadGM({
 	"mwe-menu_btn" : "Menu",
 	"mwe-close_btn" : "Close",
 	"mwe-ogg-player-vlc-mozilla" : "VLC plugin",
-	"mwe-ogg-player-videoElement" : "Native Ogg video support",
+	"mwe-ogg-player-videoElement" : "Native Ogg video",
 	"mwe-ogg-player-vlc-activex" : "VLC ActiveX",
 	"mwe-ogg-player-oggPlugin" : "Generic Ogg plugin",
 	"mwe-ogg-player-quicktime-mozilla" : "QuickTime plugin",
@@ -49,7 +49,7 @@ loadGM({
 	"mwe-do_not_warn_again" : "Dismiss for now.",
 	"mwe-playerselect" : "Players",
 	"mwe-read_before_embed" : "<a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">Read this<\/a> before embedding.",
-	"mwe-embed_site_or_blog" : "Embed on your site or blog",
+	"mwe-embed_site_or_blog" : "Embed on a page",
 	"mwe-related_videos" : "Related videos",
 	"mwe-seeking" : "seeking",
 	"mwe-copy-code" : "Copy code"
@@ -1866,10 +1866,7 @@ embedVideo.prototype = {
 		var _this = this;
 		//load the roe if available (to populate out download options:
 		function getShowVideoDownload(){
-			var out='<div style="color:white">' +
-					'<b style="color:white;">'+gM('mwe-download_segment')+'</b><br>';
-			out+='<blockquote style="background:#000">'+
-					gM('mwe-download_right_click') + '</blockquote><br>';
+				var out='<div style="color:white">';					
 			var dl_list='';
 			var dl_txt_list='';		
 			$j.each(_this.media_element.getSources(), function(index, source){
