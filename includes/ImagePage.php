@@ -870,22 +870,14 @@ class ImageHistoryList {
 					$del = wfMsgHtml( 'rev-delundel' );
 				} else {
 					list( $ts, $name ) = explode( '!', $img, 2 );
-					$del = $this->skin->link(
-						SpecialPage::getTitleFor( 'Revisiondelete' ),
-						wfMsgHtml( 'rev-delundel' ),
-						array(),
-						array( 
-							'type' => 'oldimage',
-							'target' => $wgTitle->getPrefixedText(), 
-							'ids' => $ts,
-						),
-						array( 'known' )
+					$query = array(
+						'type' => 'oldimage',
+						'target' => $wgTitle->getPrefixedText(), 
+						'ids' => $ts,
 					);
-					// Bolden oversighted content
-					if( $file->isDeleted(File::DELETED_RESTRICTED) )
-						$del = "<strong>$del</strong>";
+					$del = $this->skin->revDeleteLink( $query, $file->isDeleted(File::DELETED_RESTRICTED) );
 				}
-				$row .= "<span class='mw-revdelundel-link'>$del</span>";
+				$row .= $del;
 			}
 			$row .= '</td>';
 		}
