@@ -37,6 +37,7 @@
 	div.vectorTabs ul {
 		height: 100%;
 		list-style: none;
+		background-image:none;
 		margin: 0;
 		padding: 0;
 	}
