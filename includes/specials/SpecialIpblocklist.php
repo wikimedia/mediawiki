@@ -296,27 +296,36 @@ class IPUnblockForm {
 			$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
 		}
 
+		// Search form
+		$wgOut->addHTML( $this->searchForm() );
+
+		// Check for other blocks, i.e. global/tor blocks
+		$otherBlockLink = array();
+		wfRunHooks( 'getOtherBlockLogLink', array( &$otherBlockLink, $this->ip ) );
+
+		// Show additional header for the local block only when other blocks exists.
+		// Not necessary in a standard installation without such extensions enabled
+		if( count( $otherBlockLink ) ) {
+			$wgOut->addHTML(
+				Html::rawElement( 'h2', array(), wfMsg( 'ipblocklist-localblock' ) ) . "\n"
+			);
+		}
 		$pager = new IPBlocklistPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
 			$wgOut->addHTML(
-				$this->searchForm() .
 				$pager->getNavigationBar() .
 				Xml::tags( 'ul', null, $pager->getBody() ) .
 				$pager->getNavigationBar()
 			);
 		} elseif ( $this->ip != '') {
-			$wgOut->addHTML( $this->searchForm() );
 			$wgOut->addWikiMsg( 'ipblocklist-no-results' );
 		} else {
-			$wgOut->addHTML( $this->searchForm() );
 			$wgOut->addWikiMsg( 'ipblocklist-empty' );
 		}
 
-		$otherBlockLink = array();
-		wfRunHooks( 'getOtherBlockLogLink', array( &$otherBlockLink, $this->ip ) );
 		if( count( $otherBlockLink ) ) {
 			$wgOut->addHTML(
-				Html::rawElement( 'h2', array(), wfMsg( 'ipblocklist-otherblocks' ) ) . "\n"
+				Html::rawElement( 'h2', array(), wfMsgExt( 'ipblocklist-otherblocks', 'parseinline', count( $otherBlockLink ) ) ) . "\n"
 			);
 			$list = '';
 			foreach( $otherBlockLink as $link ) {

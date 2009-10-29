@@ -1931,6 +1931,7 @@ $wgMessageStructure = array(
 		'ipblocklist-sh-addressblocks',
 		'ipblocklist-summary',
 		'ipblocklist-submit',
+		'ipblocklist-localblock',
 		'ipblocklist-otherblocks',
 		'blocklistline',
 		'infiniteblock',
