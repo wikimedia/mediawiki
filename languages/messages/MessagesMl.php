@@ -2425,6 +2425,7 @@ $1 നിലവിൽ തടയപ്പെട്ടതാണ്.<br />
 'export-addns'      => 'ചേര്‍ക്കുക',
 'export-download'   => 'ഒരു പ്രമാണമാക്കി സൂക്ഷിക്കുക',
 'export-templates'  => 'ഫലകങ്ങളും ഉള്‍പ്പെടുത്തുക',
+'export-pagelinks'  => 'ഉൾപ്പെടുത്തേണ്ട കണ്ണികളുള്ള താളുകളുടെ ആഴം:',
 
 # Namespace 8 related
 'allmessages'                   => 'സന്ദേശസഞ്ചയം',
@@ -2748,10 +2749,12 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-exposureindex'               => 'Exposure index',
 'exif-sensingmethod'               => 'സം‌വേദന രീതി',
 'exif-filesource'                  => 'പ്രമാണത്തിന്റെ സ്രോതസ്സ്',
+'exif-scenetype'                   => 'ദൃശ്യ തരം',
 'exif-exposuremode'                => 'എക്സ്പോഷര്‍ മോഡ്',
 'exif-whitebalance'                => 'വൈറ്റ് ബാലന്‍സ്',
 'exif-digitalzoomratio'            => 'ഡിജിറ്റല്‍ സൂം അനുപാതം',
 'exif-focallengthin35mmfilm'       => '35 മില്ലീമീറ്റര്‍ ഫിലിമിലെ ഫോക്കസ് ദൂരം',
+'exif-scenecapturetype'            => 'ദൃശ്യ ഗ്രഹണ തരം',
 'exif-gaincontrol'                 => 'ദൃശ്യ നിയന്ത്രണം',
 'exif-contrast'                    => 'കോണ്‍‌ട്രാസ്റ്റ്',
 'exif-saturation'                  => 'സാച്ചുറേഷന്‍',
@@ -2763,12 +2766,17 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-gpslatitude'                 => 'അക്ഷാംശം',
 'exif-gpslongituderef'             => 'പൂര്‍വ്വരേഖാംശം അല്ലെങ്കില്‍ പശ്ചിമരേഖാംശം',
 'exif-gpslongitude'                => 'രേഖാംശം',
+'exif-gpsaltituderef'              => 'ഉന്നതിയുടെ അവലംബം',
 'exif-gpsaltitude'                 => 'ഉന്നതി',
 'exif-gpstimestamp'                => 'GPS സമയം (ആറ്റോമിക് ക്ലോക്ക്)',
 'exif-gpssatellites'               => 'അളക്കാന്‍ ഉപയോഗിച്ച കൃത്രിമോപഗ്രഹങ്ങള്‍',
+'exif-gpsstatus'                   => 'സ്വീകരണിയുടെ സ്ഥിതി',
+'exif-gpsdop'                      => 'അളവുകളുടെ കൃത്യത',
 'exif-gpsspeedref'                 => 'വേഗതയുടെ ഏകകം',
 'exif-gpsspeed'                    => 'GPS പരിഗ്രാഹിയുടെ ഗതിവേഗം (Speed of GPS receiver)',
+'exif-gpstrackref'                 => 'ചലനത്തിന്റെ ദിശയ്ക്കുള്ള അവലംബം',
 'exif-gpstrack'                    => 'ചലനത്തിന്റെ ദിശ',
+'exif-gpsimgdirectionref'          => 'ചിത്രത്തിന്റെ ദിശയ്ക്കുള്ള അവലംബം',
 'exif-gpsimgdirection'             => 'ചിത്രത്തിന്റെ ദിശ',
 'exif-gpsareainformation'          => 'GPS പ്രദേശത്തിന്റെ പേര്‌',
 'exif-gpsdatestamp'                => 'GPS തീയ്യതി',
@@ -2823,6 +2831,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 # Flash modes
 'exif-flash-fired-0' => 'ഫ്ലാഷ് ഉപയോഗിച്ചില്ല',
 'exif-flash-fired-1' => 'ഫ്ലാഷ് ഉപയോഗിച്ചു',
+'exif-flash-mode-1'  => 'നിർബന്ധിത ഫ്ലാഷ് അടിയ്ക്കൽ',
+'exif-flash-mode-3'  => 'സ്വയം പ്രവർത്തന രീതി',
 
 'exif-focalplaneresolutionunit-2' => 'ഇഞ്ച്',
 

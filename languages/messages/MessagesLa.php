@@ -8,6 +8,7 @@
  * @file
  *
  * @author Andrew Dalby
+ * @author Dferg
  * @author Esteban97
  * @author LeighvsOptimvsMaximvs
  * @author McDutchie
@@ -1720,6 +1721,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipbexpiry'                    => 'Exitus:',
 'ipbreason'                    => 'Causa:',
 'ipbreasonotherlist'           => 'Causa alia',
+'ipbanononly'                  => 'Solum usores anonymi obstruere',
 'ipbcreateaccount'             => 'Creationem rationum obstruere',
 'ipbemailban'                  => 'Litteras electronicas vetare',
 'ipbsubmit'                    => 'Obstruere hunc locum',

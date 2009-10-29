@@ -1501,6 +1501,7 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'recentchangeslinked-backlink' => '{{optional}}',
 'recentchangeslinked-summary'  => 'Summary of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-page'     => '{{Identical|Page name}}',
+'recentchangeslinked-to'       => 'Checkbox in [[Special:RecentChangesLinked]].',
 
 # Upload
 'upload'                      => 'Display name for link to [[Special:Upload]] for uploading files to the wiki.
@@ -2738,7 +2739,7 @@ For example of message in use see [[:File:Mouse10.gif]].',
 
 # Special:NewFiles
 'newimages'             => 'Page title of [[Special:NewImages]].',
-'imagelisttext'         => 'This is text on [[Special:NewImages]]. $1 is the number of files. $2 is the message {{msg-mw|Mediawiki:Bydate}}.',
+'imagelisttext'         => 'This is text on [[Special:NewImages]]. $1 is the number of files. $2 is the message {{msg-mw|Bydate}}.',
 'newimages-summary'     => 'This message is displayed at the top of [[Special:NewImages]] to explain what is shown on that special page.',
 'newimages-legend'      => 'Caption of the fieldset for the filter on [[Special:NewImages]]
 

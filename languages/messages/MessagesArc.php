@@ -291,7 +291,7 @@ $messages = array(
 # Login and logout pages
 'logouttext'              => "'''ܗܫܐ ܦܠܛܠܟ ܡܢ ܚܘܫܒܢܟ.'''
 
-You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.
+ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܬܚܫܚܢܐ ܠܐ ܝܕܝܥܐ. ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܬܚܫܚܢܐ ܐܚܪܢܐ.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation'         => '== ܒܫܝܢܐ, $1! ==
 ܐܬܒܪܝ ܚܘܫܒܢܟ.
@@ -403,6 +403,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 ܩܠܝܕܐ: '''({{int:cur}})''' = ܦܪܝܫܘܬܐ ܥܡ ܬܢܝܬܐ ܗܫܝܬܐ,
 '''({{int:last}})''' = ܦܪܝܫܘܬܐ ܥܡ ܬܢܝܬܐ ܩܕܝܡܬܐ, '''{{int:minoreditletter}}''' = ܫܘܚܠܦܐ ܙܥܘܪܐ.",
 'history-fieldset-title' => 'ܡܦܐܬ ܬܫܥܝܬܐ',
+'history-show-deleted'   => 'ܫܝܦܬ̈ܐ ܒܠܚܘܕ',
 'histfirst'              => 'ܩܕܝܡ ܟܠ',
 'histlast'               => 'ܐܚܪܝ ܟܠ',
 'historyempty'           => '(ܣܦܝܩܐ)',
@@ -1169,6 +1170,7 @@ Do you want to change the settings?',
 'watchlistall2'    => 'ܟܠ',
 'namespacesall'    => 'ܟܠ',
 'monthsall'        => 'ܟܠ',
+'limitall'         => 'ܟܠ',
 
 # E-mail address confirmation
 'confirmemail'             => 'ܚܬܬ ܒܝܠܕܪܐ ܐܠܟܬܪܘܢܝܐ',
@@ -1240,11 +1242,19 @@ Do you want to change the settings?',
 'blankpage' => 'ܦܐܬܐ ܣܦܝܩܬܐ',
 
 # Special:Tags
-'tags-edit' => 'ܫܚܠܦ',
+'tags-edit'     => 'ܫܚܠܦ',
+'tags-hitcount' => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
 
 # HTML forms
 'htmlform-submit'              => 'ܫܕܪ',
 'htmlform-reset'               => 'ܠܐ ܥܒܘܕ ܫܘܚܠܦ̈ܐ',
 'htmlform-selectorother-other' => 'ܐܚܪܢܐ',
+
+# Add categories per AJAX
+'ajax-add-category'        => 'ܐܘܣܦ ܣܕܪܐ',
+'ajax-add-category-submit' => 'ܐܘܣܦ',
+'ajax-confirm-save'        => 'ܢܛܘܪ',
+'ajax-error-title'         => 'ܦܘܕܐ',
+'ajax-error-dismiss'       => 'ܛܒ',
 
 );

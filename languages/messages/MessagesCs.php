@@ -2377,7 +2377,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'ipblocklist-sh-tempblocks'       => '$1 dočasná zablokování',
 'ipblocklist-sh-addressblocks'    => '$1 blokování jedné IP adresy',
 'ipblocklist-submit'              => 'Hledat',
-'ipblocklist-otherblocks'         => 'Jiná zablokování',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Jiné zablokování|Jiná zablokování}}',
 'blocklistline'                   => '$1 $2 zablokoval $3 ($4)',
 'infiniteblock'                   => 'do odvolání',
 'expiringblock'                   => 'do $1, $2',

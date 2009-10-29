@@ -642,7 +642,8 @@ Oznámte to prosím [[Special:ListUsers/sysop|správcovi]] a uveďte URL.',
 'unexpected'           => 'Neočakávaná hodnota: „$1“=„$2“.',
 'formerror'            => 'Chyba: nepodarilo sa odoslať formulár',
 'badarticleerror'      => 'Na tejto stránke túto činnosť nemožno vykonať.',
-'cannotdelete'         => 'Nebolo možné zmazať danú stránku alebo súbor. (Možno už bol zmazaný niekým iným.)',
+'cannotdelete'         => 'Nebolo možné zmazať stránku alebo súbor „$1“.
+Možno ju už zmazal nieto iný.',
 'badtitle'             => 'Neplatný nadpis',
 'badtitletext'         => 'Požadovaný nadpis bol neplatný, nezadaný, alebo nesprávne odkazovaný z inej jazykovej verzie {{GRAMMAR:genitív|{{SITENAME}}}}. Mohol tiež obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v nadpisoch.',
 'perfcached'           => 'Nasledujúce údaje pochádzajú z vyrovnávacej pamäte a nemusia byť úplne aktuálne.',
@@ -757,6 +758,7 @@ Z tohto dôvodu nemôžu návštevníci z tejto IP adresy momentálne vytvoriť 
 ($4) s názvom „$2“, s heslom „$3“. Mali by ste sa prihlásiť a svoje heslo teraz zmeniť.
 
 Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
+'usernamehasherror'          => 'Používateľské meno nemôže obsahovať znak mriežky.',
 'login-throttled'            => 'Nedávno ste uskutočnili príliš mnoho neúspešných pokusov o prihlásenie.
 Prosím, počkajte predtým, než to skúsite znova.',
 'loginlanguagelabel'         => 'Jazyk: $1',
@@ -938,9 +940,9 @@ Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1",
 'semiprotectedpagewarning'         => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
 'cascadeprotectedwarning'          => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
 'titleprotectedwarning'            => "'''UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba používatelia s [[Special:ListGroupRights|určitými právami]].'''",
-'templatesused'                    => 'Šablóny použité na tejto stránke:',
-'templatesusedpreview'             => 'Šablóny použité v tomto náhľade:',
-'templatesusedsection'             => 'Šablóny použité v tejto sekcii:',
+'templatesused'                    => '{{PLURAL:$1|Šablóna použitá|Šablóny použité}} na tejto stránke:',
+'templatesusedpreview'             => '{{PLURAL:$1|Šablóna použitá|Šablóny použité}} použité v tomto náhľade:',
+'templatesusedsection'             => '{{PLURAL:$1|Šablóna použitá|Šablóny použité}} použité v tejto sekcii:',
 'template-protected'               => '(zamknutá)',
 'template-semiprotected'           => '(čiastočne zamknutá)',
 'hiddencategories'                 => 'Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:',
@@ -1013,6 +1015,7 @@ Dôvod, ktorý $3 uviedol, je ''$2''",
 Legenda: (aktuálna) = rozdiel oproti aktuálnej verzii,
 (posledná) = rozdiel oproti predchádzajúcej verzii, D = drobná úprava',
 'history-fieldset-title' => 'Prechádzať históriou',
+'history-show-deleted'   => 'Iba zmazané',
 'histfirst'              => 'najskoršie',
 'histlast'               => 'posledné',
 'historysize'            => '(({{PLURAL:$1|jeden bajt|$1 bajty|$1 bajtov}}))',
@@ -1051,6 +1054,12 @@ Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete pre
 'rev-suppressed-unhide-diff'  => "Jedna z revízií tohto rozdielu bola '''potlačená'''.
 Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť].",
+'rev-deleted-diff-view'       => "jedna z revízií tohto rozdielu bola '''zmazaná'''.
+Ako správca si môžete tento rozdiel zobraziť.
+Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+'rev-suppressed-diff-view'    => "jedna z revízií tohto rozdielu bola '''potlačená'''.
+Ako správca si môžete tento rozdiel zobraziť.
+Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
 'rev-delundel'                => 'zobraziť/skryť',
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'     => 'Neplatná cieľová revízia',
@@ -1066,6 +1075,7 @@ Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete pre
 'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
 'revdelete-text'              => "'''Zmazané revízie a udalosti sú stále viditeľné v histórii úprav stránky, ale časti ich obsahu nebudú prístupné verejnosti.'''
 Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu ho znova obnoviť použitím tohto rozhrania v prípade, že nie sú stanovené ďalšie obmedzenia.",
+'revdelete-confirm'           => 'Prosím, potvrďte, že to naozaj chcete vykonať, rozumiete následkom a že to robíte v súlade s [[{{MediaWiki:Policy-url}}|politikou]].',
 'revdelete-suppress-text'     => "Zatajenie by sa malo používať '''výlučne''' v nasledovných prípadoch:
 * Nevhodné osobné údaje
 *: ''adresy, telefóne čísla, rodné čísla a pod.''",
@@ -1543,6 +1553,7 @@ Stránky, ktoré sa nachádzajú vo vašom [[Special:Watchlist|zozname sledovan�
 'upload'                      => 'Nahrať súbor',
 'uploadbtn'                   => 'Nahrať súbor',
 'reuploaddesc'                => 'Zrušiť nahrávanie a vrátiť sa späť na nahrávací formulár.',
+'upload-tryagain'             => 'Poslať zmenený popis súboru',
 'uploadnologin'               => 'Nie ste prihlásený',
 'uploadnologintext'           => 'Musíte byť [[Special:UserLogin|prihlásený/á]], aby ste mohli nahrávať súbory.',
 'upload_directory_missing'    => 'Adresár pre nahrávanie ($1) chýba a webový server ho nedokáže vytvoriť.',
@@ -1609,6 +1620,7 @@ Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný ná
 'file-deleted-duplicate'      => 'Súbor zhodný s týmto súborom ([[$1]]) už bol v minulosti zmazaný. Mali by ste skontrolovať históriu nahrávania tohto súboru predtým, než budete pokračovať v jeho nahrávaní.',
 'successfulupload'            => 'Nahranie bolo úspešné',
 'uploadwarning'               => 'Varovanie pri nahrávaní',
+'uploadwarning-text'          => 'Prosím, zmeňte popis súboru nižšie a skúste to znova.',
 'savefile'                    => 'Uložiť súbor',
 'uploadedimage'               => 'nahraný „[[$1]]“',
 'overwroteimage'              => 'bola nahraná nová verzia „[[$1]]“',
@@ -1618,9 +1630,13 @@ Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný ná
 'uploadscripted'              => 'Tento súbor obsahuje kód HTML alebo skript, ktorý može byť chybne interpretovaný prehliadačom.',
 'uploadcorrupt'               => 'Tento súbor je závadný alebo má nesprávnu príponu. Skontrolujte súbor a nahrajte ho znova.',
 'uploadvirus'                 => 'Súbor obsahuje vírus! Podrobnosti: $1',
+'upload-source'               => 'Zdrojový súbor',
 'sourcefilename'              => 'Názov zdrojového súboru:',
+'sourceurl'                   => 'Zdrojový URL:',
 'destfilename'                => 'Názov cieľového súboru:',
 'upload-maxfilesize'          => 'Maximálna veľkosť súboru: $1',
+'upload-description'          => 'Popis súboru',
+'upload-options'              => 'Možnosti nahrávania',
 'watchthisupload'             => 'Sledovať tento súbor',
 'filewasdeleted'              => 'Súbor s týmto názvom bol už nahraný a následne zmazaný. Mali by ste skontrolovať $1 predtým, ako budete pokračovať na opätovné nahranie.',
 'upload-wasdeleted'           => "'''Upozornenie: Nahrávate súbor, ktorý bol predtým zmazaný.'''
@@ -1964,6 +1980,7 @@ Podporované protokoly: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Zoznam aktívnych používateľov',
+'activeusers-intro'    => 'Toto je zoznam používateľov, ktorí $1 {{PLURAL:$1|za posledný 1 deň|za posledné $1 dni|za posledných $1 dní}} vykonali nejakú aktivitu.',
 'activeusers-count'    => '$1 {{PLURAL:$1|úprava|úpravy|úprav}} za {{PLURAL:$3|posledný deň|posledné $3 dni|posledných $3 dní}}',
 'activeusers-from'     => 'Zobraziť používateľov počínajúc:',
 'activeusers-noresult' => 'Neboli nájdení žiadni používatelia.',
@@ -2098,7 +2115,7 @@ Návrhy a ďalšia pomoc:
 'exblank'                => 'stránka bola prázdna',
 'delete-confirm'         => 'Zmazať „$1“',
 'delete-legend'          => 'Zmazať',
-'historywarning'         => 'UPOZORNENIE: Stránka, ktorú chcete zmazať má históriu:',
+'historywarning'         => "'''Upozornenie:''' Stránka, ktorú sa chystáte zmazať má históriu obsahujúcu $1 {{PLURAL:$1|revíziu|revízie|revízií}}:",
 'confirmdeletetext'      => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
 'actioncomplete'         => 'Úloha bola dokončená',
 'actionfailed'           => 'Operácia sa nepodarila',
@@ -2352,6 +2369,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipblocklist-sh-tempblocks'       => '$1 dočasných zablokovaní',
 'ipblocklist-sh-addressblocks'    => '$1 zablokovaní jednotlivej IP adresy',
 'ipblocklist-submit'              => 'Hľadať',
+'ipblocklist-otherblocks'         => 'Iné blokovania',
 'blocklistline'                   => '$1, $2 zablokoval $3 (ukončenie $4)',
 'infiniteblock'                   => 'na neurčito',
 'expiringblock'                   => 'vyprší $1 $2',
@@ -2511,6 +2529,10 @@ Cieľová stránka „[[:$1]]“ už existuje. Chcete ho vymazať a vytvoriť ta
 'move-leave-redirect'          => 'Zanechať presmerovanie',
 'protectedpagemovewarning'     => "'''Upozornenie:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba používatelia s oprávnením správcu.",
 'semiprotectedpagemovewarning' => "'''Upozornenie:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba zaregistrovaní používatelia.",
+'move-over-sharedrepo'         => '== Súbor existuje ==
+[[:$1]] existuje v zdieľanom úložisku. Presunutím súboru na tento názov prekryjete zdieľaný súbor.',
+'file-exists-sharedrepo'       => 'Názov súboru, ktorý ste zvolili sa už používa na zdieľanom úložisku.
+Prosím, zvoľte iný názov.',
 
 # Export
 'export'            => 'Export stránok',

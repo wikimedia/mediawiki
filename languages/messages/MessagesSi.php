@@ -1612,7 +1612,13 @@ PICT # විවිධ.
 එය CGI-පාදක වූවක් විය හැකි අතර img_auth සඳහා සහය නොදක්වයි.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'img-auth-notindir'     => 'ඉල්ලුම් කළ පෙත වින්‍යසගත උඩුගත කිරීම් නාමාවලියේ නැත.',
+'img-auth-badtitle'     => '"$!" මඟින් වලංගු මාතෘකාවක් ගොඩනැගිය නොහැකිය.',
+'img-auth-nologinnWL'   => 'ඔබ ඇතුල් වී නොමැති අතර "$1" සුදු ලැයිස්තුවේ නොමැත.',
 'img-auth-nofile'       => '"$1" ගොනුව නොපවතී.',
+'img-auth-isdir'        => 'ඔබ "$1" නාමාවලියට පිවිසීමට උත්සාහ කරයි.
+අවසර ලබා දෙන්නේ ගොනු ප්‍රවේශය සඳහා පමණි.',
+'img-auth-streaming'    => '"$1" ප්‍රවාහය වෙමින් පවතී.',
+'img-auth-noread'       => '"$1"  කියවීම සඳහා පරිශීලකයාට ප්‍රවේශවීම් නොමැත.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'කලාප ලිපිනය ( URL) වෙත සේන්දුවිය නොහැකි විය',
@@ -1710,13 +1716,14 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 ** හිමිකම් උල්ලංඝනය
 ** අනුපිටපත් කල ගොනුව',
 'filedelete-edit-reasonlist'  => 'මකා දැමීමට හේතූන් සංස්කරණය කරන්න',
+'filedelete-maintenance'      => 'නඩත්තුව අතරතුර ගොනු මැකීම හා ප්‍රතිසංස්කරණය තාවකාලිකව අක්‍රීය වේ.',
 
 # MIME search
 'mimesearch'         => 'MIME ගවේෂණය',
 'mimesearch-summary' => 'ගොනු, එහි MIME-වර්ගය අනුව පෙරහනය කිරීමට මෙම පිටුව අවකාශ සලසයි.
 ප්‍රදානය: අන්කර්ගතවර්ගය/උපවර්ගය, නිද. <tt>රූපය/jpeg</tt>.',
 'mimetype'           => 'MIME වර්ගය:',
-'download'           => 'බා ගැනීම',
+'download'           => 'භාගත කිරීම',
 
 # Unwatched pages
 'unwatchedpages' => 'මුර-නොකෙරෙන පිටු',
@@ -1744,6 +1751,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'statistics-header-edits'      => 'සංස්කරණ වල සංඛ්‍යාන දත්ත',
 'statistics-header-views'      => 'නැරඹුම් වල සංඛ්‍යාන දත්ත',
 'statistics-header-users'      => 'පරිශීලකයන් පිළිබඳ සංඛ්‍යාන දත්ත',
+'statistics-header-hooks'      => 'අනෙක් සංඛ්‍යා ලේඛන',
 'statistics-articles'          => 'අන්තර්ගත  පිටු',
 'statistics-pages'             => 'පිටු',
 'statistics-pages-desc'        => 'සාකච්ඡා පිටු, යළි-යොමුවීම් ආදිය ඇතුළු විකියෙහි සියළු පිටු.',
@@ -1911,6 +1919,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 
 # Special:ActiveUsers
 'activeusers'          => 'සක්‍රීය පරිශීලකයන් ලැයිස්තුව',
+'activeusers-intro'    => 'මෙය පසුගිය $1 {{PLURAL:$1|දිනය|දින}}තුළ යම් ක්‍රියාකාරකමක් කළ පරිශීලකයන්ගේ ලැයිස්තුවකි.',
 'activeusers-count'    => 'මෑත {{PLURAL:$1|සංස්කරණය|සංස්කරණයන් $1 }}',
 'activeusers-from'     => 'මෙයින් ඇරඹෙන පරිශීලකයන් පෙන්වන්න:',
 'activeusers-noresult' => 'කිසිදු පරිශීලකයෙකු හමුනොවිණි.',
@@ -2313,6 +2322,7 @@ $1',
 'ipblocklist-sh-tempblocks'       => 'තාවකාලික වාරණයන් $1',
 'ipblocklist-sh-addressblocks'    => 'ඒක අන්තර්ජාල-ලිපින වාරණයන් $1',
 'ipblocklist-submit'              => 'ගවේෂණය',
+'ipblocklist-otherblocks'         => 'අනෙක් අවහිර කිරීම්',
 'blocklistline'                   => '$1 දී, $2 විසින් $3 ($4) වාරණය කෙරිණි',
 'infiniteblock'                   => 'අනන්තය',
 'expiringblock'                   => '$1 දිනදී $2 වේලාවේදී  කල් ඉකුත්වේ',
