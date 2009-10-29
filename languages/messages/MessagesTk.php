@@ -777,6 +777,7 @@ $3 tarapyndan görkezilen sebäp: ''$2''",
 Şertli belgiler: '''({{int:cur}})''' = häzirki wersiýadan tapawudy,
 '''({{int:last}})''' = öňündäki wersiýadan tapawudy, '''{{int:minoreditletter}}''' = ujypsyzja özgerdiş.",
 'history-fieldset-title' => 'Geçmişe göz aýla',
+'history-show-deleted'   => 'Diňe öçürilenler',
 'histfirst'              => 'Iň irki',
 'histlast'               => 'Ýaňy-ýakyndaky',
 'historysize'            => '({{PLURAL:$1|1 baýt|$1 baýt}})',
@@ -814,6 +815,10 @@ Administrator hökmünde ony görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/su
 'rev-suppressed-unhide-diff'  => "Bu wersiýa tapawudynyň wersiýalarynyň biri '''bökdelipdir'''.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Bökdeme gündeliginde] jikme-jiklikleri bolmagy mümkin.
 Şonda-da administrator hökmünde isleseňiz [$1 bu wersiýa tapawudyny görüp bilersiňiz].",
+'rev-deleted-diff-view'       => "Bu aratapawudyň wersiýalarynyň biri '''öçürilipdir'''.
+Administrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} öçürme gündeliginde] jikme-jiklikler bar bolmagy mümkin.",
+'rev-suppressed-diff-view'    => "Bu aratapawudyň wersiýalarynyň biri '''bökdelipdir'''.
+Administrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} bökdeme gündeliginde] jikme-jiklikler bar bolmagy mümkin.",
 'rev-delundel'                => 'görkez/gizle',
 'revisiondelete'              => 'Wersiýalary öçür/yzyna dikelt',
 'revdelete-nooldid-title'     => 'Nädogry niýetlenilýän wersiýa',
@@ -829,6 +834,7 @@ Administrator hökmünde ony görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/su
 'logdelete-selected'          => "'''{{PLURAL:$1|Saýlanylan gündelik wakasy|Saýlanylan gündelik wakalary}}:'''",
 'revdelete-text'              => "'''Öçürilen wersiýalar we wakalar sahypa geçmişlerinde we gündeliklerde ýene-de görkeziljekdir, emma olaryň mazmunynyň käbir bölekleri jemgyýetçilige açyk boljak däldir.'''
 {{SITENAME}} saýtyndaky başga administratorlar gizlin mazmuny ýene-de görüp hem-de goşmaça çäklendirme goýulmadyk ýagdaýynda şol bir interfeýsiň üsti bilen ony yzyna dikeldip bilýärler.",
+'revdelete-confirm'           => 'Şu işi anyk isleýändigiňizi, ýagny onuň netijelerine düşünýändiňizi we [[{{MediaWiki:Policy-url}}|kadalar boýunça]] amala aşyrýandygyňyzy tassyklamagyňyzy haýyş edýäris.',
 'revdelete-suppress-text'     => "Gizlemeklik '''diňe''' aşakdaky ýagdaýlarda ulanylmalydyr:
 * Potensial taýdan töhmetçilikli maglumat
 * Ýerliksiz şahsy maglumat
@@ -1876,7 +1882,7 @@ Habarlaşmak we kömek soramak üçin:
 'exblank'                => 'sahypa boşdy',
 'delete-confirm'         => '"$1" sahypasyny öçür',
 'delete-legend'          => 'Öçür',
-'historywarning'         => "'''Duýduryş:''' Öçürjek bolup duran sahypaňyzyň geçmişi bar:",
+'historywarning'         => "'''Duýduryş:''' Öçürjek bolup duran sahypaňyzyň $1 {{PLURAL:$1| wersiýaly|wersiýaly}} geçmişi bar:",
 'confirmdeletetext'      => 'Sahypany ýa-da faýly tutuş geçmişi bilen bilelikde öçürjek bolup dursuňyz.
 Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{{MediaWiki:Policy-url}}|Öçürme kadalaryna]] laýyklykdadygyny bilýän bolsaňyz, amaly tassyklaň.',
 'actioncomplete'         => 'Iş ýerine ýetirildi',
@@ -2094,7 +2100,7 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 'blockip-legend'                  => 'Ulanyjyny blokirle',
 'blockiptext'                     => 'Aşakdaky formdan peýdalanyp, belli bir IP-niň ýa-da ulanyjy adynyň ýazmak hukugyny blokirläp bilersiňiz. 
 Bu diňe wandalizmiň öňüni almak üçin hem-de [[{{MediaWiki:Policy-url}}|kadalara]] laýyklykda edilmelidir. 
-Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypalryny görkeziň).',
+Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypalaryny görkeziň).',
 'ipaddress'                       => 'IP adresi:',
 'ipadressorusername'              => 'IP adresi ýa-da ulanyjy ady:',
 'ipbexpiry'                       => 'Gutarýan wagty:',
@@ -2143,6 +2149,7 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 'ipblocklist-sh-tempblocks'       => 'wagtlaýyn blokirlemeleri $1',
 'ipblocklist-sh-addressblocks'    => 'ýeke IP blokirlemelerini $1',
 'ipblocklist-submit'              => 'Gözle',
+'ipblocklist-otherblocks'         => 'Başga blokirlemeler',
 'blocklistline'                   => '$1, $2 blokirledi: $3 ($4)',
 'infiniteblock'                   => 'möhletsiz',
 'expiringblock'                   => '$2, $1 senesinde gutarýar',

@@ -308,6 +308,7 @@ $messages = array(
 'tog-watchlisthidebots'       => "Aħbi l-modifiki tal-bots mil-lista ta' osservazzjoni",
 'tog-watchlisthideminor'      => "Aħbi modifiki żgħar mil-lista t'osservazzjoni",
 'tog-watchlisthideliu'        => "Aħbi modifiki minn utenti illogjati mil-lista ta' osservazzjoni tiegħi",
+'tog-watchlisthideanons'      => "Aħbi modifiki minn utenti anonimi mil-lista ta' osservazzjoni",
 'tog-nolangconversion'        => 'Disattiva konversazzjonijiet fost varjanti lingwistiċi',
 'tog-ccmeonemails'            => "Ibgħatli kopji tal-posti elettroniċi li nibgħat 'l utenti l-oħrajn",
 'tog-diffonly'                => 'Turiex kontenut tal-paġni wara li tkun għamilt paragun bejn il-verżjonijiet',
@@ -317,6 +318,9 @@ $messages = array(
 'underline-always'  => 'Dejjem',
 'underline-never'   => 'Qatt',
 'underline-default' => 'Żomm l-issettjar tal-browser',
+
+# Font style option in Special:Preferences
+'editfont-default' => 'Żomm l-issettjar tal-browser',
 
 # Dates
 'sunday'        => 'Il-Ħadd',

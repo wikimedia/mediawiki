@@ -325,7 +325,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Desactivar conversão de variantes de idioma',
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros utilizadores',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
-'tog-showhiddencats'          => 'Exibir categorias ocultas',
+'tog-showhiddencats'          => 'Mostrar categorias ocultas',
 'tog-noconvertlink'           => 'Desactivar conversão de títulos de ligações',
 'tog-norollbackdiff'          => 'Omitir diferenças depois de desfazer edições em bloco',
 
@@ -621,7 +621,7 @@ A última tentativa de busca na base de dados foi:
 "$1"
 na função "$2".
 Base de dados retornou o erro "$3: $4"',
-'laggedslavemode'      => 'Aviso: A página poderá não conter actualizações recentes.',
+'laggedslavemode'      => "'''Aviso:''' A página pode não conter as actualizações mais recentes.",
 'readonly'             => 'Base de dados no modo "somente leitura"',
 'enterlockreason'      => 'Introduza um motivo para trancar, incluindo uma estimativa de quando poderá ser destrancada',
 'readonlytext'         => 'A base de dados está actualmente trancada para novas entradas e outras modificações, provavelmente por uma manutenção de rotina; a situação deverá ser normalizada dentro de algum tempo.
@@ -891,25 +891,26 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLP
 '''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'');
 '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Dica:''' Utilize o botão \"{{MediaWiki:showpreview/pt}}\" para testar o novo CSS antes de o gravar.",
-'userjsyoucanpreview'              => "'''Dica:''' Utilize o botão \"Mostrar previsão\" para testar seu novo JS antes de salvar.",
+'userjsyoucanpreview'              => "'''Dica:''' Utilize o botão \"{{MediaWiki:showpreview/pt}}\" para testar o seu novo JavaScript antes de gravar.",
 'usercsspreview'                   => "'''Lembre-se que está apenas a prever o seu CSS particular.
 Este ainda não foi gravado!'''",
-'userjspreview'                    => "'''Lembre-se que está apenas a testar/prever o seu JavaScript particular e que ele ainda não foi salvo!'''",
+'userjspreview'                    => "'''Lembre-se que está apenas a testar ou antever o seu JavaScript particular.'''
+Este ainda não foi gravado!",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/monobook.css aposto a {{ns:user}}:Alguém/Monobook.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Isto é apenas uma previsão.
-As modificações ainda não foram salvas!'''",
+'previewnote'                      => "'''Lembre-se que esta é apenas uma antevisão.'''
+As modificações ainda não foram gravadas!",
 'previewconflict'                  => 'Esta antevisão apresenta o texto da caixa de edição acima tal como este aparecerá se escolher gravá-lo.',
 'session_fail_preview'             => "'''Não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente.
 Caso continue a não funcionar, tente [[Special:UserLogout|sair]] e voltar a entrar na sua conta.'''",
-'session_fail_preview_html'        => "'''Não foi possível processar a sua edição devido a uma perda de dados de sessão.'''
+'session_fail_preview_html'        => "'''Não foi possível processar a sua edição devido à perda dos dados de sessão.'''
 
-''Devido a {{SITENAME}} possuir HTML bruto activo, a previsão não será exibida, como forma de precaução contra ataques por JavaScript.''
+''Como a wiki {{SITENAME}} possibilita o uso de HTML bruto, a antevisão está oculta por precaução contra ataques com JavaScript.''
 
-'''Por favor, tente novamente caso esta seja uma tentativa de edição legítima.
-Caso continue a não funcionar, tente [[Special:UserLogout|desautenticar-se]] e voltar a entrar na sua conta.'''",
+'''Se esta é uma tentativa legítima de edição tente novamente, por favor.'''
+Caso continue a não funcionar, tente [[Special:UserLogout|desautenticar-se]] e voltar a entrar na sua conta.",
 'token_suffix_mismatch'            => "'''A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação no identificador de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
 'editing'                          => 'Editando $1',
@@ -961,10 +962,10 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'recreate-moveddeleted-warn'       => "'''Atenção: Você está a recriar uma página que já foi anteriormente eliminada.'''
+'recreate-moveddeleted-warn'       => "'''Atenção: Está a recriar uma página que já foi eliminada.'''
 
-Certifique-se de que seja adequado prosseguir editando esta página.
-O registo de eliminação e de movimento desta página é exibido a seguir, para conveniência:",
+Certifique-se de que é adequado continuar a editar esta página.
+Para conveniência, é apresentado a seguir o registo de eliminação e de movimento desta página:",
 'moveddeleted-notice'              => 'Esta página foi eliminada.
 Disponibiliza-se abaixo o registo de eliminações e de movimento para esta página, para referência.',
 'log-fulllog'                      => 'Ver registo detalhado',
@@ -1148,7 +1149,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'mergehistory-into'                => 'Página de destino:',
 'mergehistory-list'                => 'Histórico de edições habilitadas para fusão',
 'mergehistory-merge'               => 'As edições de [[:$1]] a seguir poderão ser fundidas em [[:$2]]. Utilize a coluna de botões de opção para fundir apenas as edições feitas entre o intervalo de tempo especificado. Note que ao utilizar os links de navegação esta coluna será retornada a seus valores padrão.',
-'mergehistory-go'                  => 'Exibir edições habilitadas a serem fundidas',
+'mergehistory-go'                  => 'Mostrar edições que podem ser fundidas',
 'mergehistory-submit'              => 'Fundir edições',
 'mergehistory-empty'               => 'Não existem edições habilitadas a serem fundidas.',
 'mergehistory-success'             => 'Foram fundidas $3 {{PLURAL:$3|edição|edições}} de [[:$1]] em [[:$2]].',
@@ -1277,7 +1278,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-email'                   => 'Opções de email',
 'prefs-rendering'               => 'Aparência',
 'saveprefs'                     => 'Gravar',
-'resetprefs'                    => 'Eliminar as alterações não-salvas',
+'resetprefs'                    => 'Eliminar as alterações que não foram gravadas',
 'restoreprefs'                  => 'Restaurar todas as configurações padrão',
 'prefs-editing'                 => 'Opções de edição',
 'prefs-edit-boxsize'            => 'Tamanho da janela de edição.',
@@ -1288,9 +1289,9 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'contextlines'                  => 'Linhas por resultado:',
 'contextchars'                  => 'Contexto por linha:',
 'stub-threshold'                => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
-'recentchangesdays'             => 'Dias a serem exibidos nas Mudanças recentes:',
+'recentchangesdays'             => 'Dias a apresentar nas {{MediaWiki:recentchanges/pt}}:',
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
-'recentchangescount'            => 'Número de edições a serem exibidas por defeito:',
+'recentchangescount'            => 'Número de edições a apresentar por omissão:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registos.',
 'prefs-help-watchlist-token'    => 'O preenchimento desse campo com uma chave secreta irá gerar um feed RSS para a sua lista de vigiados.
 Qualquer um que conhecer a chave desta área poderá ler os sua lista de vigiados, então escolha uma palavra secreta segura.
@@ -1555,10 +1556,9 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'recentchangeslinked-toolbox'  => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra (ou de membros de uma categoria especificada).
-Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibidas em '''negrito'''.",
+'recentchangeslinked-summary'  => "Esta página especial lista as mudanças recentes em todas as páginas às quais a página fornecida se liga (ou em todas as que pertencem à categoria fornecida). Páginas nas suas [[Special:Watchlist|{{MediaWiki:watchlist/pt}}]] aparecem a '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
-'recentchangeslinked-to'       => 'Mostrar alterações a páginas relacionadas com a página fornecida',
+'recentchangeslinked-to'       => 'Inversamente, mostrar mudanças recentes nas páginas que se ligam a esta página',
 
 # Upload
 'upload'                      => 'Carregar ficheiro',
@@ -1871,7 +1871,7 @@ Cada linha contém ligações para o primeiro e segundo redirecionamento, bem co
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
 'nrevisions'              => '$1 {{PLURAL:$1|edição|edições}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
-'specialpage-empty'       => 'Actualmente não há dados a serem exibidos nesta página.',
+'specialpage-empty'       => 'Não existem dados para apresentar.',
 'lonelypages'             => 'Páginas órfãs',
 'lonelypagestext'         => 'As seguintes páginas ou não têm hiperligações a apontar para elas ou não são transcluídas a partir de outras páginas nesta wiki.',
 'uncategorizedpages'      => 'Páginas não categorizadas',
@@ -1927,9 +1927,9 @@ Cada linha contém ligações para o primeiro e segundo redirecionamento, bem co
 
 # Book sources
 'booksources'               => 'Fontes de livros',
-'booksources-search-legend' => 'Procurar por fontes livreiras',
+'booksources-search-legend' => 'Procurar fontes de livros',
 'booksources-go'            => 'Ir',
-'booksources-text'          => 'É exibida a seguir uma listagem de links para outros sítios que vendem livros novos e usados e que possam possuir informações adicionais sobre os livros que você está pesquisando:',
+'booksources-text'          => 'É apresentada abaixo uma lista de ligações para outros sítios na internet que vendem livros novos e usados e talvez possuam informações adicionais sobre os livros que procura:',
 'booksources-invalid-isbn'  => 'O número ISBN fornecido não parece ser válido; verifique a existência de erros ao copiar da fonte original.',
 
 # Special:Log
@@ -1947,24 +1947,24 @@ Pode reduzir a lista escolhendo um tipo de registo, o nome de utilizador (sensí
 'alphaindexline'    => '$1 até $2',
 'nextpage'          => 'Próxima página ($1)',
 'prevpage'          => 'Página anterior ($1)',
-'allpagesfrom'      => 'Começar exibindo páginas com:',
-'allpagesto'        => 'Terminar de exibir páginas em:',
+'allpagesfrom'      => 'Apresentar páginas desde:',
+'allpagesto'        => 'Apresentar páginas até:',
 'allarticles'       => 'Todas as páginas',
 'allinnamespace'    => 'Todas as páginas (espaço nominal $1)',
 'allnotinnamespace' => 'Todas as páginas (excepto as do espaço nominal $1)',
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Próximo',
 'allpagessubmit'    => 'Ir',
-'allpagesprefix'    => 'Exibir páginas com o prefixo:',
+'allpagesprefix'    => 'Apresentar páginas com o prefixo:',
 'allpagesbadtitle'  => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki.
 Ele talvez contenha um ou mais caracteres que não podem ser utilizados em títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} não possui o espaço nominal "$1".',
 
 # Special:Categories
 'categories'                    => 'Categorias',
-'categoriespagetext'            => '{{PLURAL:$1|A seguinte categoria contém páginas ou media|As seguintes categorias contêm páginas ou media}}.
-As [[Special:UnusedCategories|categorias não utilizadas]] não são exibidas nesta listagem.
-Veja também as [[Special:WantedCategories|categorias em falta]].',
+'categoriespagetext'            => '{{PLURAL:$1|A seguinte categoria contém páginas ou ficheiros multimédia|As seguintes categorias contêm páginas ou ficheiros multimédia}}.
+As [[Special:UnusedCategories|{{MediaWiki:unusedcategories/pt}}]] não são apresentadas nesta lista.
+Veja também as [[Special:WantedCategories|{{MediaWiki:wantedcategories/pt}}]].',
 'categoriesfrom'                => 'Listar categorias começando por:',
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
@@ -1985,7 +1985,7 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 
 # Special:ListUsers
 'listusersfrom'      => 'Mostrar utilizadores começando em:',
-'listusers-submit'   => 'Exibir',
+'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'Não foram encontrados utilizadores para a forma pesquisada.',
 'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
 
@@ -2304,7 +2304,8 @@ $1',
 'sp-contributions-logs'           => 'registos',
 'sp-contributions-talk'           => 'disc',
 'sp-contributions-userrights'     => 'Gestão de privilégios de utilizadores',
-'sp-contributions-blocked-notice' => 'Este utilizador encontra-se atualmente bloqueado. O último registo de bloqueio é exibido abaixo:',
+'sp-contributions-blocked-notice' => 'Este utilizador encontra-se actualmente bloqueado.
+Para referência, o último registo de bloqueio é apresentado abaixo:',
 'sp-contributions-search'         => 'Pesquisar contribuições',
 'sp-contributions-username'       => 'Endereço de IP ou utilizador:',
 'sp-contributions-submit'         => 'Pesquisar',
@@ -2375,12 +2376,13 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                    => 'O bloqueio de $1 foi removido com sucesso',
 'ipblocklist'                     => 'Utilizadores e endereços de IP bloqueados',
-'ipblocklist-legend'              => 'Procurar por um utilizador bloqueado',
+'ipblocklist-legend'              => 'Procurar um utilizador bloqueado',
 'ipblocklist-username'            => 'Utilizador ou endereço de IP:',
 'ipblocklist-sh-userblocks'       => '$1 bloqueios de contas',
 'ipblocklist-sh-tempblocks'       => '$1 bloqueios temporários',
 'ipblocklist-sh-addressblocks'    => '$1 bloqueios de IP único',
 'ipblocklist-submit'              => 'Pesquisar',
+'ipblocklist-otherblocks'         => 'Outros bloqueios',
 'blocklistline'                   => '$1, $2 bloqueou $3 ($4)',
 'infiniteblock'                   => 'infinito',
 'expiringblock'                   => 'expira em $1 às $2',
@@ -2642,7 +2644,7 @@ Grave o ficheiro no seu computador e importe-o aqui.',
 'tooltip-ca-edit'                 => 'Você pode editar esta página.
 Por favor, utilize o botão "{{MediaWiki:showpreview/pt}}" antes de gravar.',
 'tooltip-ca-addsection'           => 'Iniciar uma nova secção',
-'tooltip-ca-viewsource'           => 'Esta página está protegida; você pode exibir seu código, no entanto.',
+'tooltip-ca-viewsource'           => 'Esta página está protegida; só pode visualizar o conteúdo.',
 'tooltip-ca-history'              => 'Edições anteriores desta página.',
 'tooltip-ca-protect'              => 'Proteger esta página',
 'tooltip-ca-unprotect'            => 'Desproteger esta página',
@@ -2833,7 +2835,7 @@ $1',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de novos ficheiros',
-'imagelisttext'         => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' ficheiro organizado|de '''$1''' ficheiros organizados}} por $2.",
+'imagelisttext'         => "Abaixo é apresentada uma lista {{PLURAL:$1|de '''um''' ficheiro, organizado|de '''$1''' ficheiros, organizados}} $2.",
 'newimages-summary'     => 'Esta página especial mostra os ficheiros mais recentemente enviados.',
 'newimages-legend'      => 'Filtrar',
 'newimages-label'       => 'Nome de ficheiro (ou parte dele):',
@@ -2855,7 +2857,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
 'metadata-expand'   => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes restantes',
-'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por defeito.
+'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem serão incluídos na página de descrição da imagem quando a tabela de metadados estiver no modo "expandida". Por omissão, outros campos estarão ocultos.
 * make
 * model
 * datetimeoriginal
@@ -3233,8 +3235,8 @@ Tente a previsão comum.',
 Tente a previsão comum.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Possivelmente as alterações que sejam mais recentes do que $1 {{PLURAL:$1|segundo|segundos}} não serão exibidas nesta lista.',
-'lag-warn-high'   => 'Devido a sérios problemas de latência no servidor da base de dados, as alterações mais recentes que $1 {{PLURAL:$1|segundo|segundos}} poderão não ser exibidas nesta lista.',
+'lag-warn-normal' => 'Alterações realizadas {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} podem não constar desta lista.',
+'lag-warn-high'   => 'Devido à latência elevada do servidor da base de dados, as alterações realizadas {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} podem não constar desta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'A sua lista de vigiados possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',
@@ -3292,10 +3294,11 @@ Também pode [[Special:Watchlist/edit|editar a lista da maneira convencional]].'
 'filepath'         => 'Caminho do ficheiro',
 'filepath-page'    => 'Ficheiro:',
 'filepath-submit'  => 'Diretório',
-'filepath-summary' => 'Através desta página especial, é possível descobrir o endereço completo de um determinado ficheiro.
-As imagens serão exibidas em sua resolução máxima, outros tipos de ficheiros serão iniciados automaticamente em seus programas correspondentes.
+'filepath-summary' => 'Esta página especial retorna o endereço completo de um ficheiro ao seu navegador e este irá processá-lo.
+Imagens serão apresentadas pelo seu navegador na resolução máxima.
+Ficheiros de outro tipo serão arrancados pelo navegador directamente no programa que lhes está associado no seu computador.
 
-Introduza o nome do ficheiro sem utilizar o prefixo "{{ns:file}}:".',
+Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar por ficheiros duplicados',
@@ -3332,14 +3335,14 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco',
 
 # External image whitelist
-'external_image_whitelist' => '  # Deixe esta linha exatamente como ela está<pre> 
-# Coloque uma expressão regular (apenas a parte que vai entre os //) abaixo
-# Estas serão comparadas com as URLs de imagens externas (com links diretos)
-# Aquelas que corresponderem serão exibidas como imagens, caso contrário, apenas um link para a imagem será mostrado
-# As linhas que começam com # são tratadas como comentários
-# Esta lista ignora maiúsculas e minúsculas
+'external_image_whitelist' => ' # Deixe esta linha exatamente como ela está<pre> 
+# Coloque fragmentos de expressões regulares (apenas a parte entre //) em baixo
+# Estas serão comparadas com as URLs das imagens externas (com ligação directa)
+# As que corresponderem serão apresentadas como imagens, caso contrário apenas será apresentada uma ligação para a imagem
+# As linhas que começam com um símbolo de cardinal (#) são tratadas como comentários
+# Esta lista não é sensível a maiúsculas ou minúsculas
 
-# Coloque todos os fragmentos de regex acima desta linha. Deixe esta linha exatamente como ela está</ pre>',
+# Coloque todos os fragmentos de expressões regulares (regex) acima desta linha. Deixe esta linha exatamente como ela está</pre>',
 
 # Special:Tags
 'tags'                    => 'Etiquetas de modificação válidas',

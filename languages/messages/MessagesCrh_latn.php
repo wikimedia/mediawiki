@@ -155,7 +155,8 @@ $messages = array(
 'underline-default' => 'Brauzer qarar bersin',
 
 # Font style option in Special:Preferences
-'editfont-style' => 'Yazuv penceresinde şrift türü:',
+'editfont-style'   => 'Yazuv penceresinde şrift türü:',
+'editfont-default' => 'Brauzerge köre',
 
 # Dates
 'sunday'        => 'Bazar',
@@ -565,6 +566,7 @@ Neticede, bu IP adresini qullanğan ziyaretçiler şimdi daa ziyade esap açıp 
 Siz şimdi oturım açıp paroliñizni deñiştirmek kereksiñiz.
 
 Şu esap hata olaraq yaratılğan olsa bu mektüpke qulaq asmayıp olasıñız.',
+'usernamehasherror'          => 'Qullanıcı adında # işareti olamaz',
 'login-throttled'            => 'Yaqın zamanda pek çoq kere kirmege tırıştıñız.
 Lütfen, qayta kirmezden evel biraz bekleñiz.',
 'loginlanguagelabel'         => 'Til: $1',
@@ -617,7 +619,7 @@ Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat par
 'showpreview'                      => 'Baqıp çıq',
 'showlivepreview'                  => 'Tez baqıp çıquv',
 'showdiff'                         => 'Deñişikliklerni köster',
-'anoneditwarning'                  => "'''Diqqat''': Oturım açmağanıñızdan sebep siziñ IP adresiñiz deñişiklik tarihına yazılır.",
+'anoneditwarning'                  => "'''Diqqat''': Oturım açmağanıñızdan sebep deñişiklik tarihına siziñ IP adresiñiz yazılır.",
 'missingsummary'                   => "'''Hatırlatma.''' Deñiştirmeleriñizni qısqadan tarif etmediñiz. \"Saifeni saqla\" dögmesine tekrar basuv ile deñiştirmeleriñiz tefsirsiz saqlanacaqlar.",
 'missingcommenttext'               => 'Lütfen, aşağıda tefsir yazıñız.',
 'missingcommentheader'             => "'''Hatırlatma:''' Tefsir serlevasını yazmadıñız. \"Saifeni saqla\" dögmesine tekrar basqan soñ tefsiriñiz serlevasız saqlanır.",

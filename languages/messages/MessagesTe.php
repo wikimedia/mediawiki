@@ -2026,6 +2026,7 @@ $NEWPAGE
 
 'sp-contributions-newbies'        => 'కొత్త సభ్యులు చేసిన రచనలు మాత్రమే చూపించు',
 'sp-contributions-newbies-sub'    => 'కొత్తవారి కోసం',
+'sp-contributions-newbies-title'  => 'కొత్త ఖాతాల వాడుకరుల మార్పుచేర్పులు',
 'sp-contributions-blocklog'       => 'నిరోధాల చిట్టా',
 'sp-contributions-deleted'        => 'తొలగించబడిన వాడుకరి రచనలు',
 'sp-contributions-logs'           => 'చిట్టాలు',
@@ -2109,6 +2110,7 @@ $NEWPAGE
 'ipblocklist-username'            => 'సభ్యనామం లేదా IP అడ్రసు:',
 'ipblocklist-sh-userblocks'       => '$1 ఖాతా నిరోధాలు',
 'ipblocklist-sh-tempblocks'       => '$1 తాత్కాలిక నిరోధాలు',
+'ipblocklist-sh-addressblocks'    => 'ఏక ఐపీ నిరోధాలను $1',
 'ipblocklist-submit'              => 'వెతుకు',
 'ipblocklist-otherblocks'         => 'ఇతర నిరోధాలు',
 'blocklistline'                   => '$1, $2లు $3 ($4)ను నిరోధించారు.',

@@ -2381,6 +2381,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipblocklist-sh-tempblocks'       => 'ideiglenes blokkok $1',
 'ipblocklist-sh-addressblocks'    => 'egy IP-címre vonatkozó blokkok $1',
 'ipblocklist-submit'              => 'Keresés',
+'ipblocklist-otherblocks'         => 'további blokkok',
 'blocklistline'                   => '$1, $2 blokkolta $3 felhasználót ($4)',
 'infiniteblock'                   => 'végtelen',
 'expiringblock'                   => 'lejárat: $1 $2',

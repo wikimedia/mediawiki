@@ -1171,6 +1171,7 @@ $2',
 مفتاح: (الحالي) = الفرق مع النسخة الحالية
 (السابق) = الفرق مع النسخة السابقة، ط = تغيير طفيف',
 'history-fieldset-title' => 'تصفح التاريخ',
+'history-show-deleted'   => 'المحذوفة فقط',
 'histfirst'              => 'أول',
 'histlast'               => 'آخر',
 'historysize'            => '({{PLURAL:$1|1 بايت|$1 بايت}})',
@@ -1837,6 +1838,7 @@ PICT # متنوع
 
 # img_auth script messages
 'img-auth-accessdenied' => 'رُفض الوصول',
+'img-auth-badtitle'     => 'تعذر تشكيل عنوان صالح من "$1".',
 'img-auth-nologinnWL'   => 'لست والجًا و"$1" ليست في القائمة البيضاء.',
 'img-auth-nofile'       => 'الملف "$1" غير موجود.',
 'img-auth-isdir'        => 'أنت تحاول الوصول إلى الدليل "$1".

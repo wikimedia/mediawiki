@@ -953,6 +953,7 @@ El motivo dado por $3 es ''$2''",
 Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
 'history-fieldset-title' => 'Buscar en el historial',
+'history-show-deleted'   => 'Sólamente borrado',
 'histfirst'              => 'Primeras',
 'histlast'               => 'Últimas',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -990,6 +991,10 @@ Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
 'rev-suppressed-unhide-diff'  => "Una de las revisiones de este cambio ha sido '''suprimida'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE=}}}} registro de supresión].
 Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
+'rev-deleted-diff-view'       => "Una de las revisiones de este diff ha sido '''borrada'''.
+Como administrador puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+'rev-suppressed-diff-view'    => "Una de las revisiones de este diff ha sido '''suprimida'''.
+Como administrador todavía puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
 'rev-delundel'                => 'mostrar/ocultar',
 'revisiondelete'              => 'Borrar/restaurar revisiones',
 'revdelete-nooldid-title'     => 'No hay revisión destino',
@@ -1005,6 +1010,7 @@ Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
 'logdelete-selected'          => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
 'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
+'revdelete-confirm'           => 'Por favor confirme que desea realizar la operación, que entiende las consecuencias y que está ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
 'revdelete-suppress-text'     => "Supresión debería '''solamente''' ser usado para los siguientes casos:
 * Información personal inapropiada
 *: ''dirección domiciliaria y números telefónicos, números de la seguridad social, etc.''",
@@ -1051,7 +1057,8 @@ No tienes acceso a él.',
 'revdelete-only-restricted'   => 'No puede suprimir elementos a vista de los administradores sin seleccionar asímismo una de las otras opciones de supresión.',
 'revdelete-reason-dropdown'   => '*Razones de borrado comunes
 ** Violación de Copyright
-** Información personal inapropiada',
+** Información personal inapropiada
+** Difamación o libelo grave',
 'revdelete-otherreason'       => 'Otra/adicional razón:',
 'revdelete-reasonotherlist'   => 'Otra razón',
 'revdelete-edit-reasonlist'   => 'Editar razones de borrado',
@@ -2040,7 +2047,7 @@ Retroalimentación y asistencia adicional:
 'exblank'                => 'página estaba vacía',
 'delete-confirm'         => 'Borrar "$1"',
 'delete-legend'          => 'Borrar',
-'historywarning'         => 'Atención: La página que está a punto de borrar tiene un historial:',
+'historywarning'         => "'''¡Atención!:''' La página que está a punto de borrar tiene un historial de $1 {{PLURAL:$1|revisión|revisiones}}:",
 'confirmdeletetext'      => 'Estás a punto de borrar una página
 en forma permanente,
 así como todo su historial, de la base de datos.
@@ -2297,6 +2304,7 @@ Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
 'ipblocklist-sh-tempblocks'       => '$1 bloqueos temporales',
 'ipblocklist-sh-addressblocks'    => '$1 bloqueos de una sola dirección IP',
 'ipblocklist-submit'              => 'Buscar',
+'ipblocklist-otherblocks'         => 'Otros bloqueos',
 'blocklistline'                   => '$1, $2 bloquea a $3 ($4)',
 'infiniteblock'                   => 'infinito',
 'expiringblock'                   => 'expira el $1 a las $2',
