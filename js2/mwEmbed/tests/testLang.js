@@ -13,4 +13,5 @@ $mw.lang.loadRS({
 	'PLURAL' : { "one":1 }	
 });
 
-//need to run through script-loader
+//define a class by the name of this file:  
+$mw.testLang = {};

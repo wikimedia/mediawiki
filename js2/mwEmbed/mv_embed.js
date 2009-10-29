@@ -59,9 +59,10 @@ function lcCssPath( cssSet ) {
  *
  * Right now the PHP AutoLoader only reads this mv_embed.js file.
  * In the future we could have multiple lcPath calls that PHP reads
- * (if our autoloading class list becomes too long) just have to add those
- * files to the jsAutoLoader file list. 
- * (ie extensions that want to use the autoloader) 
+ * (if our autoloading class list becomes too long) 
+ * or 
+ * we could support direct file requests to the script loader instead 
+ * of shared class names read from a central location.
  */
 lcPaths({
 	"mv_embed"			: "mv_embed.js",
@@ -75,7 +76,9 @@ lcPaths({
 	"$j.Jcrop"			: "libClipEdit/Jcrop/js/jquery.Jcrop.js",
 	"$j.fn.simpleUploadForm" : "libAddMedia/simpleUploadForm.js",
 	
-	"$mw.proxy"		: "libMwApi/mw.proxy.js", 
+	"$mw.proxy"		: "libMwApi/mw.proxy.js",
+	
+	"$mw.testLang"	:  "tests/testLang.js",
 	
 	"ctrlBuilder"	: "skins/ctrlBuilder.js",
 	"kskinConfig"	: "skins/kskin/kskin.js",
