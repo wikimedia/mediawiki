@@ -1012,39 +1012,22 @@ class DatabaseOracle extends DatabaseBase {
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
-	/* redundand ... will remove after confirming bitwise operations functionality
 	public function makeList( $a, $mode = LIST_COMMA ) {
-        	if ( !is_array( $a ) ) {
+		if ( !is_array( $a ) ) {
 			throw new DBUnexpectedError( $this, 'DatabaseOracle::makeList called with incorrect parameters' );
 		}
-		$a2 = array();
-		foreach ($a as $key => $value) {
-			if (strpos($key, ' & ') !== FALSE)
-				$a2[preg_replace('/(.*)\s&\s(.*)/', 'BITAND($1, $2)', $key)] = $value;
-			elseif (strpos($key, ' | ') !== FALSE)
-				$a2[preg_replace('/(.*)\s|\s(.*)/', 'BITOR($1, $2)', $key)] = $value;
-			elseif (!is_array($value)) {
-				if (strpos($value, ' = ') !== FALSE) {
-					if (strpos($value, ' & ') !== FALSE)
-						$a2[$key] = preg_replace('/(.*)\s&\s(.*?)\s=\s(.*)/', 'BITAND($1, $2) = $3', $value);
-					elseif (strpos($value, ' | ') !== FALSE)
-						$a2[$key] = preg_replace('/(.*)\s|\s(.*?)\s=\s(.*)/', 'BITOR($1, $2) = $3', $value);
-					else $a2[$key] = $value;
-				} 
-				elseif (strpos($value, ' & ') !== FALSE)
-					$a2[$key] = preg_replace('/(.*)\s&\s(.*)/', 'BITAND($1, $2)', $value);
-				elseif (strpos($value, ' | ') !== FALSE)
-					$a2[$key] = preg_replace('/(.*)\s|\s(.*)/', 'BITOR($1, $2)', $value);
-				else
-					$a2[$key] = $value;
-			}
-			else
-				$a2[$key] = $value;
-		}
 
+		$a2 = array();
+		foreach($a as $col=>$val) {
+			$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
+			if ($col_type == 'CLOB')
+				$a2['TO_CHAR('.$col.')'] = $val;
+			else
+				$a2[$col] = $val;
+		}
+		
 		return parent::makeList($a2, $mode);
 	}
-	*/
 
 	function bitNot($field) {
 		//expecting bit-fields smaller than 4bytes
