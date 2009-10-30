@@ -39,7 +39,7 @@ class LogEventsList {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
 			$messages = array( 'revertmerge', 'protect_change', 'unblocklink', 'change-blocklink',
-				'revertmove', 'undeletelink', 'undeleteviewlink', 'revdel-restore', 'rev-delundel', 'hist', 'diff',
+				'revertmove', 'undeletelink', 'undeleteviewlink', 'revdel-restore', 'hist', 'diff',
 				'pipe-separator' );
 			foreach( $messages as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
@@ -507,22 +507,24 @@ class LogEventsList {
 	 * @return string
 	 */
 	private function getShowHideLinks( $row ) {
+		global $wgUser;
+		if( $row->log_type == 'suppress' ) {
+			return ''; // No one can hide items from the oversight log
+		}
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
 		// If event was hidden from sysops
 		if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-				'(' . $this->message['rev-delundel'] . ')' );
-		} else if( $row->log_type == 'suppress' ) {
-			$del = ''; // No one should be hiding from the oversight log
+			$del = $this->skin->revDeleteLinkDisabled( $canHide );
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
 			$page = Title::makeTitle( $row->log_namespace, $row->log_title );
 			$query = array(
 				'target' => $target->getPrefixedDBkey(),
-				'type' => 'logging',
-				'ids' => $row->log_id,
+				'type'   => 'logging',
+				'ids'    => $row->log_id,
 			);
 			$del = $this->skin->revDeleteLink( $query,
-				self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
+				self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
 		}
 		return $del;
 	}

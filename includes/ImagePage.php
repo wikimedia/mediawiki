@@ -861,21 +861,23 @@ class ImageHistoryList {
 				);
 			}
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
-			if( $wgUser->isAllowed('deleterevision') || ($wgUser->isAllowed('deletedhistory') && $file->getVisibility()) ) {
+			$canHide = $wgUser->isAllowed( 'deleterevision' );
+			if( $canHide || ($wgUser->isAllowed('deletedhistory') && $file->getVisibility()) ) {
 				if( $wgUser->isAllowed('delete') ) {
 					$row .= '<br/>';
 				}
 				// If file is top revision or locked from this user, don't link
 				if( $iscur || !$file->userCan(File::DELETED_RESTRICTED) ) {
-					$del = wfMsgHtml( 'rev-delundel' );
+					$del = $this->skin->revDeleteLinkDisabled( $canHide );
 				} else {
 					list( $ts, $name ) = explode( '!', $img, 2 );
 					$query = array(
-						'type' => 'oldimage',
+						'type'   => 'oldimage',
 						'target' => $wgTitle->getPrefixedText(), 
-						'ids' => $ts,
+						'ids'    => $ts,
 					);
-					$del = $this->skin->revDeleteLink( $query, $file->isDeleted(File::DELETED_RESTRICTED) );
+					$del = $this->skin->revDeleteLink( $query,
+						$file->isDeleted(File::DELETED_RESTRICTED), $canHide );
 				}
 				$row .= $del;
 			}
