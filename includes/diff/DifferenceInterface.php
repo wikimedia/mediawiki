@@ -315,34 +315,34 @@ CONTROL;
 		$rdel = ''; $ldel = '';
 		# Handle RevisionDelete links...
 		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
+			$canHide = $wgUser->isAllowed( 'deleterevision' );
 			// Don't show useless link to people who cannot hide revisions
-			if( $this->mOldRev->getVisibility() || $wgUser->isAllowed( 'deleterevision' ) ) {
+			if( $canHide || $this->mOldRev->getVisibility() ) {
 				if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
-					// If revision was hidden from sysops
-					$ldel = Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ),
-						'(' . wfMsgHtml( 'rev-delundel' ) . ')' );
+					$ldel = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 				} else {
 					$query = array( 
 						'type' => 'revision',
 						'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
 						'ids' => $this->mOldRev->getId()
 					);
-					$ldel = $sk->revDeleteLink( $query, $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) );
+					$ldel = $sk->revDeleteLink( $query,
+						$this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 				}
 				$ldel = "&nbsp;&nbsp;&nbsp;$ldel ";
 			}
 			// Don't show useless link to people who cannot hide revisions
 			if( $this->mNewRev->getVisibility() || $wgUser->isAllowed( 'deleterevision' ) ) {
 				if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
-					// If revision was hidden from sysops
-					$rdel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
+					$rdel = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 				} else {
 					$query = array( 
 						'type' => 'revision',
 						'target' =>  $this->mNewRev->mTitle->getPrefixedDbkey(),
 						'ids' => $this->mNewRev->getId()
 					);
-					$rdel = $sk->revDeleteLink( $query, $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) );
+					$rdel = $sk->revDeleteLink( $query,
+						$this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 				}
 				$rdel = "&nbsp;&nbsp;&nbsp;$rdel ";
 			}

@@ -669,6 +669,7 @@ $wgMessageStructure = array(
 		'rev-deleted-diff-view',
 		'rev-suppressed-diff-view',
 		'rev-delundel',
+		'rev-showdeleted',
 		'revisiondelete',
 		'revdelete-nooldid-title',
 		'revdelete-nooldid-text',

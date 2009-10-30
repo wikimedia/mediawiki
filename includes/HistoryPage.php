@@ -50,7 +50,7 @@ class HistoryPage {
 	function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$msgs = array( 'cur', 'last', 'rev-delundel', 'pipe-separator' );
+			$msgs = array( 'cur', 'last', 'pipe-separator' );
 			foreach( $msgs as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities') );
 			}
@@ -472,6 +472,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$classes = array();
 
 		$del = '';
+		// User can delete revisions...
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			// If revision was hidden from sysops, disable the checkbox
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
@@ -484,13 +485,13 @@ class HistoryPager extends ReverseChronologicalPager {
 		} else if( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					'(' . $this->historyPage->message['rev-delundel'] . ')' );
+				$cdel = $this->getSkin()->revDeleteLinkDisabled( false );
 			// Otherwise, show the link...
 			} else {
 				$query = array( 'type' => 'revision',
 					'target' => $this->title->getPrefixedDbkey(), 'ids' => $rev->getId() ); 	 
-				$del .= $this->getSkin()->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
+				$del .= $this->getSkin()->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ), false );
 			}
 		}
 		if( $del ) $s .= " $del ";

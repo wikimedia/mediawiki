@@ -1450,6 +1450,7 @@ As an administrator you can view this diff; there may be details in the [{{fullu
 'rev-suppressed-diff-view'    => "One of the revisions of this diff has been '''suppressed'''.
 As an administrator you can view this diff; there may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-delundel'                => 'show/hide',
+'rev-showdeleted'             => 'show',
 'revisiondelete'              => 'Delete/undelete revisions',
 'revdelete-nooldid-title'     => 'Invalid target revision',
 'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this

@@ -3369,6 +3369,8 @@ class Article {
 			return;
 		}
 
+		$unhide = $wgRequest->getInt('unhide') == 1 &&
+			$wgUser->matchEditToken( $wgRequest->getVal('token'), $oldid );
 		# Cascade unhide param in links for easy deletion browsing
 		$extraParams = array();
 		if( $wgRequest->getVal('unhide') ) {
@@ -3452,23 +3454,24 @@ class Article {
 				array( 'known', 'noclasses' )
 			);
 
-		$cdel='';
-		// Don't show useless link to people who cannot hide revisions
-		if( $wgUser->isAllowed('deleterevision') || ($revision->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
+		$cdel = '';
+		// User can delete revisions or view deleted revisions...
+		$canHide = $wgUser->isAllowed('deleterevision');
+		if( $canHide || ($revision->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
+			// Is this hidden from Sysops?
 			if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
-			// If revision was hidden from sysops
-				$cdel = wfMsgHtml( 'rev-delundel' );
+				$cdel = $sk->revDeleteLinkDisabled( $canHide );
 			} else {
 				$query = array(
 					'type'   => 'revision',
 					'target' => urlencode( $this->mTitle->getPrefixedDbkey() ),
 					'ids'    => urlencode( $oldid )
 				);
-				$cdel = $sk->revDeleteLink( $query, $revision->isDeleted(File::DELETED_RESTRICTED) );
+				$cdel = $sk->revDeleteLink( $query, $revision->isDeleted(File::DELETED_RESTRICTED), $canHide );
 			}
 			$cdel .= ' ';
 		}
-		$unhide = $wgRequest->getInt('unhide') == 1 && $wgUser->matchEditToken( $wgRequest->getVal('token'), $oldid );
+
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
 		$userlinks = $sk->revUserTools( $revision, !$unhide );
 

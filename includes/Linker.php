@@ -1636,16 +1636,30 @@ class Linker {
 	 *
 	 * @param array $query  Query parameters to be passed to link()
 	 * @param bool $restricted  Set to true to use a <strong> instead of a <span>
+	 * @param bool $delete Set to true to use (show/hide) rather than (show)
 	 *
 	 * @return string HTML <a> link to Special:Revisiondelete, wrapped in a
 	 * span to allow for customization of appearance with CSS
 	 */
-	public function revDeleteLink( $query = array(), $restricted = false ) {
+	public function revDeleteLink( $query = array(), $restricted = false, $delete = true ) {
 		$sp = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$text = wfMsgHtml( 'rev-delundel' );
+		$text = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
 		$tag = $restricted ? 'strong' : 'span';
 		$link = $this->link( $sp, $text, array(), $query, array( 'known', 'noclasses' ) );
 		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), "($link)" );
+	}
+	
+	/**
+	 * Creates a dead (show/hide) link for deleting revisions/log entries
+	 *
+	 * @param bool $delete Set to true to use (show/hide) rather than (show)
+	 *
+	 * @return string HTML text wrapped in a span to allow for customization
+	 * of appearance with CSS
+	 */
+	public function revDeleteLinkDisabled( $delete = true ) {
+		$text = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
+		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), "($text)" );
 	}
 
 	/* Deprecated methods */

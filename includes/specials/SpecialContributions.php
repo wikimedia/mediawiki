@@ -622,20 +622,20 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		// Don't show useless link to people who cannot hide revisions
-		if( $wgUser->isAllowed('deleterevision') || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
-			// If revision was hidden from sysops
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
+		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					wfMsg( 'parentheses', $this->messages['rev-delundel'] ) ) . ' ';
-			// Otherwise, show the link...
+				$del = $this->mSkin->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array(
-					'type' => 'revision',
+					'type'   => 'revision',
 					'target' => $page->getPrefixedDbkey(),
-					'ids' => $rev->getId() );
+					'ids'    => $rev->getId()
+				);
 				$del = $this->mSkin->revDeleteLink( $query,
-					$rev->isDeleted( Revision::DELETED_RESTRICTED ) ) . ' ';
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 			}
+			$del .= ' ';
 		} else {
 			$del = '';
 		}

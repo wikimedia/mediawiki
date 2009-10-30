@@ -783,25 +783,25 @@ class UndeleteForm {
 		} else {
 			$openDiv = '<div id="mw-undelete-revision">';
 		}
-		
-		$revdlink = '';
-		// Diffs already have revision delete links
-		if( !$this->mDiff && $wgUser->isAllowed( 'deletedhistory' ) ) {
-			// Don't show useless link to people who cannot hide revisions
-			if( !$rev->getVisibility() && !$wgUser->isAllowed( 'deleterevision' ) ) {
-				$revdlink = '';
-			// If revision was hidden from sysops
-			} else if( !$rev->userCan(Revision::DELETED_RESTRICTED ) ) {
-				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					'('.wfMsgHtml('rev-delundel').')' );
+
+		// Revision delete links
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
+		if( $this->mDiff ) {
+			$revdlink = ''; // diffs already have revision delete links
+		} else if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
+			if( !$rev->userCan(Revision::DELETED_RESTRICTED ) ) {
+				$revdlink = $skin->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array(
 					'type'   => 'archive',
 					'target' => $this->mTargetObj->getPrefixedDBkey(),
 					'ids'    => $rev->getTimestamp()
 				);
-				$revdlink = $skin->revDeleteLink( $query, $rev->isDeleted( File::DELETED_RESTRICTED ) );
+				$revdlink = $skin->revDeleteLink( $query,
+					$rev->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 			}
+		} else {
+			$revdlink = '';
 		}
 
 		$wgOut->addHTML( $openDiv . $revdlink . wfMsgWikiHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . '</div>' );
@@ -899,20 +899,20 @@ class UndeleteForm {
 			$targetPage = $rev->getTitle();
 			$targetQuery = array( 'oldid' => $rev->getId() );
 		}
-		// Add show/hide link if available. Don't show useless link to people who cannot hide revisions.
-		if( $wgUser->isAllowed('deleterevision') || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
-			// If revision was hidden from sysops
+		// Add show/hide deletion links if available
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
+		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
+			$del = ' ';
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$del = ' ' . Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					'(' . wfMsgHtml('rev-delundel') . ')' );
-			// Otherwise, show the link...
+				$del .= $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array( 
-					'type' => 'archive',
+					'type'   => 'archive',
 					'target' => $this->mTargetObj->getPrefixedDbkey(),
-					'ids' => $rev->getTimestamp() );
-				$del = ' ' . $sk->revDeleteLink( $query,
-					$rev->isDeleted( Revision::DELETED_RESTRICTED ) );
+					'ids'    => $rev->getTimestamp()
+				);
+				$del .= $sk->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 			}
 		} else {
 			$del = '';
@@ -1200,19 +1200,19 @@ class UndeleteForm {
 		}
 		// Edit summary
 		$comment = $sk->revComment( $rev );
-		// Show/hide link. // Don't show useless link to people who cannot hide revisions.
-		if( $wgUser->isAllowed('deleterevision') || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
+		// Revision delete links
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
+		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-			// If revision was hidden from sysops
-				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					'('.wfMsgHtml('rev-delundel').')' );
+				$revdlink = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array(
-					'type' => 'archive',
+					'type'   => 'archive',
 					'target' => $this->mTargetObj->getPrefixedDBkey(),
-					'ids' => $ts
+					'ids'    => $ts
 				);
-				$revdlink = $sk->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
+				$revdlink = $sk->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 			}
 		} else {
 			$revdlink = '';
@@ -1246,20 +1246,22 @@ class UndeleteForm {
 			')';
 		$data = htmlspecialchars( $data );
 		$comment = $this->getFileComment( $file, $sk );
-		$revdlink = '';
-		// Add show/hide link if available. Don't show useless link to people who cannot hide revisions.
-		if( $wgUser->isAllowed('deleterevision') || ($file->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
+		// Add show/hide deletion links if available
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
+		if( $canHide || ($file->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
 			if( !$file->userCan(File::DELETED_RESTRICTED ) ) {
-			// If revision was hidden from sysops
-				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml('rev-delundel').')' );
+				$revdlink = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array(
 					'type' => 'filearchive',
 					'target' => $this->mTargetObj->getPrefixedDBkey(),
 					'ids' => $row->fa_id
 				);
-				$revdlink = $sk->revDeleteLink( $query, $file->isDeleted( File::DELETED_RESTRICTED ) );
+				$revdlink = $sk->revDeleteLink( $query,
+					$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 			}
+		} else {
+			$revdlink = '';
 		}
 		return "<li>$checkBox $revdlink $pageLink . . $userLink $data $comment</li>\n";
 	}
