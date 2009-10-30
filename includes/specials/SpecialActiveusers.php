@@ -65,7 +65,7 @@ class ActiveUsersPager extends UsersPager {
 				'MAX(ipb_user) AS blocked'
 			),
 			'options' => array(
-				'GROUP BY' => 'rc_user_text',
+				'GROUP BY' => $dbr->implicitGroupby() ? 'rc_user_text' : 'rc_user_text, user_id',
 				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
 			),
 			'join_conds' => array(
