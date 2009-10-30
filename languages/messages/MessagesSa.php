@@ -497,8 +497,8 @@ $messages = array(
 'mainpage'             => 'मुख्यपृष्ठम्',
 'mainpage-description' => 'मुख्यपृष्ठम्',
 'policy-url'           => 'Project:नीतिः',
-'portal'               => 'समुदाय-द्वारकम्',
-'portal-url'           => 'Project:समुदाय-द्वारकम्',
+'portal'               => 'समुदाय द्वारकम्',
+'portal-url'           => 'Project:समुदाय द्वारकम्',
 'privacy'              => 'नैजता-नीतिः',
 'privacypage'          => 'Project:नैजता-नीतिः',
 
@@ -638,8 +638,8 @@ $messages = array(
 '''प्रतिलिप्यधिकारयुतान् लेखान्, अनुज्ञां विना, माऽत्र प्रददातु!'''",
 'templatesused'                    => 'अस्मिन् पृष्ठे प्रयुक्ताः बिंबधराः :',
 'templatesusedpreview'             => 'अस्मिन् प्राग्दृश्ये प्रयुक्ताः बिंबधराः :',
-'template-protected'               => '(सुरक्षितम्)',
-'template-semiprotected'           => '(अर्ध-सुरक्षितम्)',
+'template-protected'               => '(संरक्षितम्)',
+'template-semiprotected'           => '(अर्धसंरक्षितम्)',
 'hiddencategories'                 => 'इदं पृष्ठं {{PLURAL:$1|1 निगूढस्य श्रेण्याः |$1 निगूढानां श्रेणीनां}} सदस्यत्वेन विद्यते :',
 'permissionserrorstext-withaction' => 'भवान् $2 इत्येतदर्थम् अनुज्ञां न धारयति, अस्य कारणम्/कारणानि :',
 
@@ -809,7 +809,7 @@ $messages = array(
 # Special:AllPages
 'allpages'       => 'सकलानि पृष्ठाणि',
 'alphaindexline' => '$1 इत्यस्मात् $2 इतीदं यावत्',
-'prevpage'       => 'पूर्वतनं पृष्ठम् ($1)',
+'prevpage'       => 'पूर्वपृष्ठं ($1)',
 'allpagesfrom'   => 'इत्यस्मात् आरभमन्तः पृष्ठाणि दर्शयतु :',
 'allpagesto'     => 'दर्शयतु पृष्ठाणि येषाम् अंतम् एवम् :',
 'allarticles'    => 'सर्वाणि पृष्ठाणि',

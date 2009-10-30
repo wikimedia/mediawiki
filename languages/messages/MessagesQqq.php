@@ -883,7 +883,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 * $1 is a HTML link to the diff',
 'rev-suppressed-unhide-diff'  => 'This message is very similar to {{msg-mw|rev-deleted-unhide-diff}} and to {{msg-mw|rev-suppressed-text-unhide}}. Parameters:
 * $1 is a HTML link to the diff',
-'rev-delundel'                => 'Link in page history for oversight',
+'rev-delundel'                => 'Link in page history for oversight (see also {{msg-mw|rev-showdeleted}})',
+'rev-showdeleted'             => 'Link in page history for oversight (see also {{msg-mw|rev-delundel}})
+{{Identical|Show}}',
 'revisiondelete'              => '{{RevisionDelete}}
 It is the page title of [[Special:RevisionDelete]].',
 'revdelete-nooldid-title'     => '{{RevisionDelete}}',
@@ -2356,6 +2358,10 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
 'ipblocklist-submit'           => '{{Identical|Search}}',
+'ipblocklist-localblock'       => '[[File:Special IPBlockList new.png|thumb|Example]]
+Used on [[Special:IPBlockList]] as header when global blocks exists too.',
+'ipblocklist-otherblocks'      => '[[File:Special IPBlockList new.png|thumb|Example]]
+Used on [[Special:IPBlockList]] as header for global blocks',
 'blocklistline'                => 'This is the text of an entry in the [[Special:BlockList]].
 * $1 is the hour and date of the block. 
 * $2 is the sysop. 

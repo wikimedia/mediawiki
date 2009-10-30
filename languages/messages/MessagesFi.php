@@ -14,6 +14,7 @@
  * @author Jack Phoenix
  * @author Mobe
  * @author Nike
+ * @author Olli
  * @author Silvonen
  * @author Str4nd
  * @author Tarmo
@@ -754,6 +755,7 @@ Tästä johtuen tästä IP-osoitteesta ei voi tällä hetkellä luoda uusia tunn
 Tunnuksen $2 salasana on $3. Kirjaudu sisään ja vaihda salasanasi.
 
 Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.',
+'usernamehasherror'          => 'Käyttäjätunnus ei voi sisältää tiivistemerkkejä.',
 'login-throttled'            => 'Olet tehnyt liian monta kirjautumisyritystä.
 Odota ennen kuin yrität uudelleen.',
 'loginlanguagelabel'         => 'Kieli: $1',
@@ -1020,6 +1022,7 @@ Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen].",
 Yksityiskohtia saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
 Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-delundel'                => 'näytä tai piilota',
+'rev-showdeleted'             => 'näytä',
 'revisiondelete'              => 'Poista tai palauta versioita',
 'revdelete-nooldid-title'     => 'Ei kohdeversiota',
 'revdelete-nooldid-text'      => 'Et ole valinnut kohdeversiota tai -versioita.',
@@ -2040,7 +2043,7 @@ Palaute ja lisäapu osoitteessa:
 'exblank'                => 'oli tyhjä',
 'delete-confirm'         => 'Sivun ”$1” poistaminen',
 'delete-legend'          => 'Sivun poisto',
-'historywarning'         => 'Sivua, jonka aiot poistaa on muokattu useammin kuin kerran:',
+'historywarning'         => "'''Varoitus:''' Sivua, jota olet poistamassa on muokattu $1 {{PLURAL:$1|kerta|kertaa}}:",
 'confirmdeletetext'      => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'actioncomplete'         => 'Toiminto suoritettu',
 'actionfailed'           => 'Toiminto epäonnistui',
@@ -2280,7 +2283,8 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'ipblocklist-sh-tempblocks'       => '$1 väliaikaiset estot',
 'ipblocklist-sh-addressblocks'    => '$1 yksittäiset IP-estot',
 'ipblocklist-submit'              => 'Hae',
-'ipblocklist-otherblocks'         => 'Muut estot',
+'ipblocklist-localblock'          => 'Paikallinen esto',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Muu esto|Muut estot}}',
 'blocklistline'                   => '$1 – $2 on estänyt käyttäjän $3 ($4)',
 'infiniteblock'                   => 'ikuisesti',
 'expiringblock'                   => 'vanhenee $1 kello $2',

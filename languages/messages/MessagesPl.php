@@ -1015,6 +1015,7 @@ Jako administrator możesz zobaczyć porównanie. Szczegóły mogą znajdować s
 'rev-suppressed-diff-view'    => "Jedna z wersji użytych w porównaniu została '''ukryta'''.
 Jako administrator możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].",
 'rev-delundel'                => 'pokaż/ukryj',
+'rev-showdeleted'             => 'pokaż',
 'revisiondelete'              => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'     => 'Nieprawidłowa wersja do przeprowadzenia operacji',
 'revdelete-nooldid-text'      => 'Nie wybrano wersji, na których ma zostać wykonana ta operacja,
@@ -2343,7 +2344,8 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipblocklist-sh-tempblocks'       => '$1 tymczasowe blokady',
 'ipblocklist-sh-addressblocks'    => '$1 blokady pojedynczych adresów IP',
 'ipblocklist-submit'              => 'Szukaj',
-'ipblocklist-otherblocks'         => 'Inne blokady',
+'ipblocklist-localblock'          => 'Lokalna blokada',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Inna blokada|Inne blokady}}',
 'blocklistline'                   => '$1, $2 zablokował $3 ($4)',
 'infiniteblock'                   => 'na zawsze',
 'expiringblock'                   => 'wygasa $1 o $2',
