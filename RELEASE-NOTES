@@ -610,6 +610,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The error message shown in Special:ChangePassword now parses wiki markup
 * (bug 19859) Removed experimental HTMLDiff feature
 * Removed section edit links in edit conflict form
+* Allow SpecialActiveusers to work on non-MySQL databases
 
 == API changes in 1.16 ==
 
