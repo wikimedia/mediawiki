@@ -179,13 +179,13 @@ class SearchSqlite extends SearchEngine {
 	}
 	
 	protected function searchInternal( $term, $fulltext ) {
-		global $wgSearchMySQLTotalHits;
+		global $wgSearchMySQLTotalHits, $wgContLang;
 
 		if ( !$this->fulltextSearchSupported() ) {
 			return null;
 		}
 
-		$filteredTerm = $this->filter( $term );
+		$filteredTerm = $this->filter( $wgContLang->lc( $term ) );
 		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
 		
 		$total = null;
