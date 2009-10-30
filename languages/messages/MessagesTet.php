@@ -373,7 +373,6 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'lineno' => 'Liña $1:',
 
 # Search results
-'noexactmatch'       => "'''Pájina ''$1'' la iha.''' Ó bele [[:$1|kria pájina ne'e]].",
 'prevn'              => 'molok {{PLURAL:$1|$1}}',
 'nextn'              => 'oinmai {{PLURAL:$1|$1}}',
 'viewprevnext'       => 'Haree ($1 {{int:pipe-separator}} $2) ($3)',

@@ -356,7 +356,6 @@ $messages = array(
 'searchresulttext'          => '更加全面个关于拉{{SITENAME}}里向搜索个信息，请倷看[[{{MediaWiki:Helppage}}:搜索|搜索{{SITENAME}}]]。',
 'searchsubtitle'            => "倷搜寻 '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "倷搜寻 '''$1'''",
-'noexactmatch'              => "''呒拨叫\"\$1\"个页面啘。''' 倷可以[[:\$1|建立俚]]。",
 'prevn'                     => '上个 $1',
 'nextn'                     => '下个 {{PLURAL:$1|$1}}',
 'viewprevnext'              => '查看 （$1） （$2） （$3）',

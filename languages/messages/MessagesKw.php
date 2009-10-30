@@ -356,9 +356,6 @@ $messages = array(
 # Search results
 'searchresults'                  => 'Sewyansow whilans',
 'searchresults-title'            => 'Sewyansow whilans rag "$1"',
-'noexactmatch'                   => "'''Nag eus folen henwys \"\$1\".'''
-Whi a ell [[:\$1|gruthyl an folen-ma]].",
-'noexactmatch-nocreate'          => "'''Nag eus folen henwys \"\$1\".'''",
 'prevn'                          => 'kens {{PLURAL:$1|$1}}',
 'nextn'                          => 'nessa {{PLURAL:$1|$1}}',
 'viewprevnext'                   => 'Gweles ($1 {{int:pipe-separator}} $2) ($3)',

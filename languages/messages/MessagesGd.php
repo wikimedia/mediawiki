@@ -243,17 +243,16 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'compareselectedversions' => 'Coimeas lethbhreacan taghta',
 
 # Search results
-'searchresults'         => 'Toraidhean rannsachaidh',
-'noexactmatch-nocreate' => "'''Chan eil duilleag ann leis an ainm “$1”.'''",
-'notitlematches'        => "Chan eil tiotal duilleig a' samhlachadh",
-'notextmatches'         => "Chan eil teacsa duilleig a' samhlachadh",
-'prevn'                 => '{{PLURAL:$1|$1}} mu dheireadh',
-'nextn'                 => 'an ath {{PLURAL:$1|$1}}',
-'viewprevnext'          => 'Seall ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url'        => 'Help:Cuideachadh',
-'showingresults'        => "A' nochdadh $1 {{PLURAL:$1|thoradh|toradh|toraidhean|toradh}} gu h-ìosal a' tòiseachadh le #'''$2'''.",
-'showingresultsnum'     => "A' nochdadh '''$3''' {{PLURAL:$3|thoradh|toradh|toraidhean|toradh}}  gu h-ìosal a' tòiseachadh le #'''$2'''.",
-'powersearch'           => 'Rannsaich',
+'searchresults'     => 'Toraidhean rannsachaidh',
+'notitlematches'    => "Chan eil tiotal duilleig a' samhlachadh",
+'notextmatches'     => "Chan eil teacsa duilleig a' samhlachadh",
+'prevn'             => '{{PLURAL:$1|$1}} mu dheireadh',
+'nextn'             => 'an ath {{PLURAL:$1|$1}}',
+'viewprevnext'      => 'Seall ($1 {{int:pipe-separator}} $2) ($3).',
+'searchhelp-url'    => 'Help:Cuideachadh',
+'showingresults'    => "A' nochdadh $1 {{PLURAL:$1|thoradh|toradh|toraidhean|toradh}} gu h-ìosal a' tòiseachadh le #'''$2'''.",
+'showingresultsnum' => "A' nochdadh '''$3''' {{PLURAL:$3|thoradh|toradh|toraidhean|toradh}}  gu h-ìosal a' tòiseachadh le #'''$2'''.",
+'powersearch'       => 'Rannsaich',
 
 # Preferences page
 'preferences'    => 'Roghainnean',

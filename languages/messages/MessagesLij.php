@@ -533,7 +533,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'searchresults'         => 'Resultati da reçerca',
 'searchsubtitle'        => "Ti t'è çercoö '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Ti t'è çercoö '''$1'''",
-'noexactmatch'          => "'''No gh'è nisciûnn-a paggina c'a se ciamme \"\$1\".''' O se pêu [[:\$1|creâla òua]].",
 'prevn'                 => 'Preçedenti {{PLURAL:$1|$1}}',
 'nextn'                 => 'Proscima {{PLURAL:$1|$1}}',
 'viewprevnext'          => 'Veddi ($1 {{int:pipe-separator}} $2) ($3).',

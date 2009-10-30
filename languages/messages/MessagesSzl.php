@@ -760,9 +760,6 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'searchresulttext'                 => 'Coby dowjydźeć śe wjyncyj uo šnupańu w {{GRAMMAR:D.lp|{{SITENAME}}}}, uobezdřij [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Wyńiki šnupańo za "[[:$1]]" ([[Special:Prefixindex/$1|zajty kere začynajům śe uod „$1”]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|zajty kere sům adresowane do „$1”]])',
 'searchsubtitleinvalid'            => 'Lo zapytańo "$1"',
-'noexactmatch'                     => "'''Ńy mo sam zajtůw nazwanych \"\$1\".'''
-Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
-'noexactmatch-nocreate'            => "'''Ńy mo sam zajty uo mjańe \"\$1\".'''",
 'toomanymatches'                   => 'Za dužo elymyntůw kere pasujům do wzorca, wćep inkše zapytańy',
 'titlematches'                     => 'Znejdźono we titlach:',
 'notitlematches'                   => 'Ńy znejdźono we titlach',

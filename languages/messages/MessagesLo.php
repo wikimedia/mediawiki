@@ -487,7 +487,6 @@ $messages = array(
 # Search results
 'searchresulttext'          => 'ສຳຫຼັບ ຂໍ້ມູນເພີ່ມເຕີມ ກ່ຽວກັບ ການຊອກຫາ ຢູ່ {{SITENAME}}, ກະລຸນາເບິ່ງ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "ທ່ານ ຊອກຫາ '''[[:$1]]'''",
-'noexactmatch'              => "'''ຍັງບໍ່ມີໜ້າ ຊື່ວ່າ  \"\$1\".''' ທ່ານ ສາມາດ [[:\$1|ສ້າງໜ້ານີ້ໄດ້]].",
 'prevn'                     => '{{PLURAL:$1|$1}} ກ່ອນໜ້າ',
 'nextn'                     => '{{PLURAL:$1|$1}} ຕໍ່ໄປ',
 'viewprevnext'              => 'ເບິ່ງ ($1 {{int:pipe-separator}} $2) ($3).',

@@ -605,7 +605,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'searchresulttext'         => 'Po pus di racsegnes sol manire di fé des cweraedjes so {{SITENAME}}, loukîz [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'           => 'Pol cweraedje «[[$1]]»',
 'searchsubtitleinvalid'    => 'Pol cweraedje «$1»',
-'noexactmatch'             => "'''I n' a nole pådje avou l' tite «$1».''' Vos poloz [[:$1|ahiver cisse pådje la]].",
 'titlematches'             => 'Årtikes avou on tite ki corespond',
 'notitlematches'           => 'Nol årtike avou on tite ki corespond',
 'textmatches'              => 'Årtikes avou do tecse ki corespond',

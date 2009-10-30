@@ -315,7 +315,6 @@ $messages = array(
 'searchresults'    => '搜尋結果',
 'searchresulttext' => '有關搜尋{{SITENAME}}的更多詳情,參見[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
 'searchsubtitle'   => '查詢"[[:$1]]"',
-'noexactmatch'     => "'''沒找到標題為\"\$1\"的頁面。''' 您可以[[:\$1|建立此頁面]]。",
 'nonefound'        => '<strong>注意：</strong>失敗的搜尋往往是由於試圖搜尋諸如「的」或「和」之類的常見字所引起。',
 'powersearch'      => '搜尋',
 'searchdisabled'   => '{{SITENAME}}由於性能方面的原因，全文搜尋已被暫時停用。您可以暫時透過Google搜尋。請留意他們的索引可能會過時。',

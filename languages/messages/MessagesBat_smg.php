@@ -665,8 +665,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'searchresulttext'                 => 'Daugiau infuormacėjės aple paėiška pruojektė {{SITENAME}} rasėt [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Tamsta ėiškuojot \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|vėsė poslapē katrėi prasėded so "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|vėsė poslapē katrėi ruod i "$1"]])',
 'searchsubtitleinvalid'            => 'Jėškuom „$1“',
-'noexactmatch'                     => "'''Nier anėjuokė poslapė, pavadėnta „$1“.''' Tamsta galėt [[:$1|sokortė ta poslapi]].",
-'noexactmatch-nocreate'            => "'''Nier poslapė so pavadėnėmu „$1“.'''",
 'titlematches'                     => 'Straipsniu pavadėnėmu atitėkmenīs',
 'notitlematches'                   => 'Juokiū pavadinėma atitikmenū',
 'textmatches'                      => 'Poslapė torėnė atėtikmenīs',

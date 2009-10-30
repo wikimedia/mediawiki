@@ -756,9 +756,6 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'searchresulttext'          => 'Nung bisa kang karagdagang impormasiun tungkul king pamanintun king {{SITENAME}}, lon me ing [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Penintun me ing '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Penintunan me ing '''$1'''",
-'noexactmatch'              => "'''Alang bulung a maki bansag a \"\$1\".'''
-Malyari meng [[:\$1|lalangan ing bulung a iti]].",
-'noexactmatch-nocreate'     => "'''Alang bulung a mikipamansag a \"\$1\".'''",
 'toomanymatches'            => 'Masiadu lang dakal deng tinud (matches); subukan meng alilan ing kekang kutang (query)',
 'titlematches'              => 'Deng tinud/mipareu kareng bansag bulung (page title matches)',
 'notitlematches'            => 'Ala yang kapareu kareng bansag da ring bulung (page title)',

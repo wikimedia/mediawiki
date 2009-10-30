@@ -1024,8 +1024,6 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'searchresulttext'                 => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Du søgte efter \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alle sider som begynder med "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle sider som henviser til "$1"]])',
 'searchsubtitleinvalid'            => 'Til din søgning „$1“.',
-'noexactmatch'                     => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]].',
-'noexactmatch-nocreate'            => "'''Der er ingen side med navnet \"\$1\".'''",
 'toomanymatches'                   => 'Søgningen fandt for mange sider. Prøv venligst med en anden søgning.',
 'titlematches'                     => 'Artikeltitler der opfyldte forespørgslen',
 'notitlematches'                   => 'Ingen artikeltitler opfyldte forespørgslen',

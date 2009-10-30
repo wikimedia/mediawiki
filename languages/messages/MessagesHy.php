@@ -1030,11 +1030,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'searchresulttext'                 => '{{SITENAME}} կայքում որոնման մասին տեղեկությունների համար այցելեք [[{{MediaWiki:Helppage}}|{{int:help}}]] էջը։',
 'searchsubtitle'                   => "Դուք որոնել եք «'''[[:$1]]'''» ([[Special:Prefixindex/$1|այս անվանմամբ սկսվող էջերը]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|այս անվանվանը հղվող էջերը]])",
 'searchsubtitleinvalid'            => 'Դուք որոնել եք «$1»',
-'noexactmatch'                     => '«$1» անվանմամբ էջ գոյություն չունի։
-
-<span style="display: block; margin: 1.5em 2em">
-Դուք կարող եք <strong>[[:$1|ստեղծել այն]]</strong>։</span>',
-'noexactmatch-nocreate'            => "'''«$1» անվանմամբ էջ գոյություն չունի։'''",
 'titlematches'                     => 'Համընկած հոդվածների անվանումներ',
 'notitlematches'                   => 'Չկան համընկած հոդվածների անվանումներ',
 'textmatches'                      => 'Համընկած տեքստերով էջեր',

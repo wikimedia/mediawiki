@@ -1114,9 +1114,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchresulttext'                 => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Has consultado \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|todas las páginas que empiezan por "$1"]] {{int:pipe-separator}} [[Special:WhatLinksHere/$1|todas las páginas que enlazan con «$1»]])',
 'searchsubtitleinvalid'            => "Buscaste '''$1'''",
-'noexactmatch'                     => "'''No existe una página llamada \"\$1\".'''
-Puedes [[:\$1|crearla]].",
-'noexactmatch-nocreate'            => "'''No existe la página \"\$1\".'''",
 'toomanymatches'                   => 'Los resultados fueron demasiado extensos, por favor intente una consulta diferente',
 'titlematches'                     => 'Coincidencias de título de artículo',
 'notitlematches'                   => 'No hay coincidencias de título de artículo',

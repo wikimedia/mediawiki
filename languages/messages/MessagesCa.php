@@ -1051,8 +1051,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'searchresulttext'                 => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => "Heu cercat '''[[:$1]]'''  ([[Special:Prefixindex/$1|totes les pàgines que comencen amb «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totes les pàgines que enllacen amb «$1»]])",
 'searchsubtitleinvalid'            => "Heu cercat '''$1'''",
-'noexactmatch'                     => "'''No hi ha cap pàgina anomenada «$1».''' Si voleu, podeu ajudar [[:$1|creant-la]].",
-'noexactmatch-nocreate'            => "'''No hi ha cap pàgina amb títol «$1».'''",
 'toomanymatches'                   => "S'han retornat masses coincidències. Proveu-ho amb una consulta diferent.",
 'titlematches'                     => 'Coincidències de títol de la pàgina',
 'notitlematches'                   => 'No hi ha cap coincidència de títol de pàgina',

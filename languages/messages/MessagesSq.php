@@ -920,9 +920,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'searchresulttext'                 => 'Për më shumë informacion rreth kërkimit në {{SITENAME}} shikoni [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Kërkuat për "[[$1]]" ([[Special:Prefixindex/$1|të gjitha faqet që fillojnë me "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|të gjitha faqet që lidhen me"$1"]])',
 'searchsubtitleinvalid'            => 'Kërkim për "$1"',
-'noexactmatch'                     => "'''Nuk ka faqe të emëruar \"\$1\".'''
-Ju mund [[:\$1|të e krijoni këtë faqe]].",
-'noexactmatch-nocreate'            => "'''Faqja e titulluar \"\$1\" nuk ekziston'''",
 'toomanymatches'                   => 'Ky kërkim ka shumë përfundime, provoni një pyetje tjetër më përcaktuese',
 'titlematches'                     => 'Tituj faqesh që përputhen',
 'notitlematches'                   => 'Nuk ka asnjë titull faqeje që përputhet',

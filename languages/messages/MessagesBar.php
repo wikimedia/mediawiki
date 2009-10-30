@@ -417,9 +417,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'searchresulttext'          => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
 'searchsubtitle'            => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
 'searchsubtitleinvalid'     => 'Dei Suachãnfråg: „$1“.',
-'noexactmatch'              => "'''Es gibt ka Seitn mi'm Titl „$1“.'''
-Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
-'noexactmatch-nocreate'     => "'''A Seitn, de in Titl „$1“ håd, gibt's ned.'''",
 'notitlematches'            => 'Koane Üwareinstimmungen mid de Seitntitl',
 'prevn'                     => "d'voahearing {{PLURAL:$1|$1}}",
 'nextn'                     => 'de nextn {{PLURAL:$1|$1}}',

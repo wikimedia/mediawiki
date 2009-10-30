@@ -255,7 +255,6 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.'''",
 # Search results
 'searchresults'     => 'Ojejuhúva jeheka',
 'searchsubtitle'    => "Nde reporandúkuri: '''[[:$1]]-re'''",
-'noexactmatch'      => "'''Ndaipóri kuatiarogue hérava: \"\$1\".''' Ikatu ndetevoi [[:\$1|rehai]].",
 'prevn'             => '{{PLURAL:$1|$1}} mboyvegua',
 'viewprevnext'      => 'Hecha ($1 {{int:pipe-separator}} $2) ($3).',
 'showingresults'    => "Abajo se muestran hasta '''$1''' resultados empezando por el nº '''$2'''.",

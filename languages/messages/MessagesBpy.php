@@ -460,8 +460,6 @@ $messages = array(
 'editundo'                => 'আলকর',
 
 # Search results
-'noexactmatch'   => "'''\"\$1\" চিংনাঙর কোন পাতা নেই।'''
-তি [[:\$1|পাতা এহান হঙকরে পারর]]।",
 'prevn'          => 'পিসেদে {{PLURAL:$1|$1}}',
 'nextn'          => 'থাংনাত {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'চা ($1 {{int:pipe-separator}} $2) ($3)',

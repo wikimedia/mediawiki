@@ -399,8 +399,6 @@ $1',
 'editundo'                => 'لغو اصلاح آخر',
 
 # Search results
-'noexactmatch'   => "'''صفحه ای باای عنوان نه  \"\$1\".'''
-ایسا ترین [[:\$1| ای صفحه را ایجاد کنین]].",
 'prevn'          => 'قبلی {{PLURAL:$1|$1}}',
 'nextn'          => 'بعدی {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'مشاهده ($1 {{int:pipe-separator}} $2) ($3)',

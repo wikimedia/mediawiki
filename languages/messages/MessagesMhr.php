@@ -425,9 +425,6 @@ $messages = array(
 'searchresulttext'          => "{{SITENAME}}'ыште кычалмаш нерген шукырак палнеда гын, [[{{MediaWiki:Helppage}}|полышым]] ончыза.",
 'searchsubtitle'            => 'Тые кычалыч \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|чыла лаштык-влакым, кудыжо тӱҥалыт: "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|чыла лаштык-влакым, "$1" дене кылым палемдат]])',
 'searchsubtitleinvalid'     => "Тые кычалыч '''$1'''",
-'noexactmatch'              => "'''\"\$1\" лӱман лаштык уке.'''
-Тый [[:\$1|тиде лаштыкым ыштен]] кертат.",
-'noexactmatch-nocreate'     => "'''\"\$1\" лӱман лаштык уке.'''",
 'notitlematches'            => 'Лаштык-влакын лӱмыштышт икгайлык уке',
 'notextmatches'             => 'Лаштык-влакыште икгайлык возымо уке',
 'prevn'                     => 'кодшо {{PLURAL:$1|$1}}',

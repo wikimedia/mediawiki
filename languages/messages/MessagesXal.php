@@ -318,9 +318,6 @@ $messages = array(
 'searchresulttext'          => 'Дәкәд өггцна төлә,  [[{{MediaWiki:Helppage}}|дөң өггдг һазрт]] хәләтн.',
 'searchsubtitle'            => '«[[:$1]]» сурвра ([[Special:Prefixindex/$1|эн нертә эклсн халхс]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|эн нерт заадг]])',
 'searchsubtitleinvalid'     => "Тадн '''$1''' төлә хәәләт",
-'noexactmatch'              => "'''\"\$1\" гидг нертә халх бәәшго.'''
-Та энгиг [[:\$1|бүтәж чаднат]].",
-'noexactmatch-nocreate'     => "'''\"\$1\" гидг нертә халх бәәшго.'''",
 'notitlematches'            => 'Нернә ирлцлһн уга',
 'notextmatches'             => 'Әдл бичг халхд уга',
 'prevn'                     => 'урдк {{PLURAL:$1|$1}}',

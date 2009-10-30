@@ -486,7 +486,6 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'searchresults-title'       => 'Resultats da tschertga per "$1"',
 'searchsubtitle'            => 'Ti has tschertgà \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tut las paginas che entschevan cun "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|colliaziuns a "$1"]])',
 'searchsubtitleinvalid'     => "Ti has tschertgà '''$1'''",
-'noexactmatch-nocreate'     => "'''I n'exista nagina pagina cun il titel \"\$1\".'''",
 'prevn'                     => 'davos {{PLURAL:$1|$1}}',
 'nextn'                     => 'proxims {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Mussar ($1 {{int:pipe-separator}} $2) ($3).',

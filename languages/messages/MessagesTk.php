@@ -939,8 +939,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'searchresulttext'                 => '{{SITENAME}} boýunça gözleg geçirmek barada jikme-jik maglumat almak üçin [[{{MediaWiki:Helppage}}|{{int:help}}]] sahypasyna göz aýlap bilersiňiz.',
 'searchsubtitle'                   => '\'\'\'[[:$1]]\'\'\' üçin gözleg geçirdiňiz. ([[Special:Prefixindex/$1|"$1" bilen başlaýan ähli sahypalar]] {{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1"\' sahypasyna çykgydy bar bolan ähli sahypalar]])',
 'searchsubtitleinvalid'            => "Gözlenen: '''$1'''",
-'noexactmatch'                     => "'''\"\$1\" diýlip atlandyrylýan sahypa ýok.''' Bu sahypany siz [[:\$1|döredip bilersiňiz]].",
-'noexactmatch-nocreate'            => "'''\"\$1\" atly hiç hili sahypa ýok.'''",
 'toomanymatches'                   => 'Çakdanaşa köp gabat gelme tapyldy, başgaçarak talap ýazyp görüň',
 'titlematches'                     => 'Sahypa ady gabat gelýär',
 'notitlematches'                   => 'Şeýle atly sahypa gabat gelmedi',

@@ -1109,10 +1109,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'searchresulttext'                 => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[{{MediaWiki:Helppage}}|Hjelp]].',
 'searchsubtitle'                   => 'Du søkte etter «[[:$1]]» ([[Special:Prefixindex/$1|alle sider som byrjar med «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle sider som lenkjer til «$1»]])',
 'searchsubtitleinvalid'            => 'Du søkte etter «$1»',
-'noexactmatch'                     => "* '''{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].'''
-* <big>'''Du kan [[:$1|opprette ho no]]'''</big>.<br />
-(Men du bør søkje etter andre namnevariasjonar først, slik at du ikkje lagar ei side som allereie finst under eit anna namn!)",
-'noexactmatch-nocreate'            => "'''Inga side har tittelen «$1».'''",
 'toomanymatches'                   => 'Søket gav for mange treff, prøv ei anna spørjing',
 'titlematches'                     => 'Sidetitlar med treff på førespurnaden',
 'notitlematches'                   => 'Ingen sidetitlar hadde treff på førespurnaden',

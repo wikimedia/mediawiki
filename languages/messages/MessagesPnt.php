@@ -584,9 +584,6 @@ $messages = array(
 'searchresulttext'          => "Κι άλλο πολλά πληροφορίας για τ'αράεμαν σο {{SITENAME}} ευρίσκουνταν σο [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'            => 'Αραέβετε \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ούλα τα σελίδας ντ\'αρχίζνε με "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ούλα τα σελίδας ντο δεκνίζνε σο "$1"]])',
 'searchsubtitleinvalid'     => "Αράεψες το '''$1'''",
-'noexactmatch'              => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
-Εμπορείτε να [[:\$1|εφτάτε ατέναν]].",
-'noexactmatch-nocreate'     => "''''Κ έχ' σελίδαν με τ'όνομαν \"\$1\".'''",
 'notitlematches'            => "Κανέναν όνομαν σελίδας 'κ ταιριάζ",
 'notextmatches'             => "Κανέναν γράψιμον 'κ ταιριάζ",
 'prevn'                     => '{{PLURAL:$1|$1}} προηγουμένων',

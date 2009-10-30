@@ -950,9 +950,6 @@ Tink derom it brûken fan de navigaasjeferwizings dy kolom op'e nij ynstelt.",
 'searchresulttext'                 => 'Lês foar mear ynformaasje oer it sykjen yn de {{SITENAME}} de [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Foar fraach "[[:$1]]"',
 'searchsubtitleinvalid'            => 'Foar fraach "$1"',
-'noexactmatch'                     => "'''Der is gjin side mei krekt de titel \"\$1\".'''
-Jo kinne de [[:\$1|side oanmeitsje]].",
-'noexactmatch-nocreate'            => "'''Der is gjin side mei krekt de titel \"\$1\".'''",
 'toomanymatches'                   => 'Der wiene tefolle resultaten.
 Prebearje in oare sykopdracht.',
 'titlematches'                     => 'Titels',

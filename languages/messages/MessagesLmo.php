@@ -562,8 +562,6 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'searchresulttext'                 => 'Per vegh püssee infurmazión in de la ricerca interna de {{SITENAME}}, varda [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].',
 'searchsubtitle'                   => 'Tì t\'hee cercaa \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tüt i paginn che scumincen per "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tüt i paginn che porten a "$1"]])',
 'searchsubtitleinvalid'            => 'T\'hee cercaa "$1"',
-'noexactmatch'                     => "'''La pagina \"\$1\" la esista no.''' L'è pussibil [[:\$1|creala adèss]].",
-'noexactmatch-nocreate'            => "'''La pagina cun el titul \"\$1\" la esista no.'''",
 'toomanymatches'                   => "Gh'è tropi curispundens. Mudifichè la richiesta.",
 'notitlematches'                   => "La vus che t'hee ciamaa la se tröa minga intra i tituj di articuj",
 'notextmatches'                    => "La vus che t'hee ciamaa la gh'ha minga una curispundenza in del test di paginn.",

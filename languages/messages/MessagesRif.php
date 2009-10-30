@@ -297,8 +297,6 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 'editundo'                => 'Dwel',
 
 # Search results
-'noexactmatch' => "'''war telli ca n Tasna qarn-as \"\$1\".'''
-tzemred ad [[:\$1|tarnid cek]].",
 'prevn'        => 'zzat {{PLURAL:$1|$1}}',
 'nextn'        => 'deffar {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Ẓar ($1 {{int:pipe-separator}} $2) ($3)',

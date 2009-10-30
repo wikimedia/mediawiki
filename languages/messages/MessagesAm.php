@@ -706,8 +706,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'searchresulttext'                 => 'በተጨማሪ ስለ ፍለጋዎች ለመረዳት፣ [[{{MediaWiki:Helppage}}]] ያንብቡ።',
 'searchsubtitle'                   => "'''ፍለጋ ለ[[:$1]]፦'''",
 'searchsubtitleinvalid'            => "ለ'''$1''' ፈለጉ",
-'noexactmatch'                     => "በ«$1» አርዕስት የሚሰየም መጣጥፍ '''አልተገኘም'''፤ እርሶ ግን [[:$1|ሊፈጥሩት ይችላሉ]]... ።",
-'noexactmatch-nocreate'            => "'''«$1» የሚባል ገጽ የለም።'''",
 'toomanymatches'                   => 'ከመጠን በላይ ያሉ ስምምነቶች ተመለሱ፤ እባክዎ ሌላ ጥያቄ ይሞክሩ።',
 'titlematches'                     => 'የሚስማሙ አርዕስቶች',
 'notitlematches'                   => 'የሚስማሙ አርዕስቶች የሉም',
