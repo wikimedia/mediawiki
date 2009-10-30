@@ -600,8 +600,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'searchresulttext'               => 'Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                 => 'Ricercje di \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dutis lis pagjinis che a scomencin par "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dutis lis pagjinis che a pontin a "$1"]])',
 'searchsubtitleinvalid'          => 'Pal test "$1"',
-'noexactmatch'                   => "'''No esist une pagjine cul titul \"\$1\".''' Tu podaressis [[:\$1|creâle tu]].",
-'noexactmatch-nocreate'          => "'''La pagjine cun titul \"\$1\" no esist.'''",
 'toomanymatches'                 => 'Masse risultâts, prove par plasê une ricercje divierse.',
 'titlematches'                   => 'Corispondencis tai titui des pagjinis',
 'notitlematches'                 => 'Nissune corispondence tai titui des pagjinis',

@@ -875,9 +875,6 @@ Tö ei voigoi kävutada sidä.',
 'searchsubtitle'                   => 'Tö ecit \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kaik lehtpoled, kudambad augotase nimespäi "$1"]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|Kaik lehtpoled, kudambad kosketadas necidä nimed]])',
 'searchsubtitleinvalid'            => "Tö ecit '''$1'''",
-'noexactmatch'                     => "'''Ei ole \"\$1\"-nimitadud lehtpolid.'''
-Tö voit [[:\$1|säta mugoi lehtpol']].",
-'noexactmatch-nocreate'            => "'''E ole \"\$1\"-nimitadud lehtpolid.'''",
 'toomanymatches'                   => "Om löutud äjahko rezul'tatoid, olgat hüväd, eckat toine sana",
 'titlematches'                     => 'Löutud lehtpoliden nimed',
 'notitlematches'                   => 'Ei ole ningomid lehtpoliden nimid',

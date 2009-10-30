@@ -914,8 +914,6 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'searchresulttext'                 => '{{SITENAME}} me khoje khatir aur jaankari khatir, dekho [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Aap khoja rahaa  \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sab panna jon ki "$1" se suruu hoe hai]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|sab panna jon ki "$1" se jurre hai]])',
 'searchsubtitleinvalid'            => "Aap '''$1''' ke khoja hai",
-'noexactmatch'                     => "'''\"\$1\" naam ke koi panna nai hai.''' Aap saktaa hai [[:\$1|ii panna ke banae]].",
-'noexactmatch-nocreate'            => "'''\"\$1\" naam ke koi panna nai hai.'''",
 'toomanymatches'                   => 'Bahut dher match mila, duusra query se kosis karo',
 'titlematches'                     => 'Panna ke jon naam mile hai',
 'notitlematches'                   => 'Koi bhi panna ke naam nai mile hae',

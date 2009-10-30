@@ -939,9 +939,6 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'searchresulttext'                 => "Pe cchiù 'mbormaziune sus 'a recerche de {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'                   => 'Tu è cerchete pe \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tutte le pàggene ca accumenzene cu "$1"]]{{int:pipe-separator}} [[Special:WhatLinksHere/$1|tutte le pàggene ca appondene a "$1"]])',
 'searchsubtitleinvalid'            => "Tu è cerchete pe '''$1'''",
-'noexactmatch'                     => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
-Tu puè [[:\$1|ccrejà sta pàgene]].",
-'noexactmatch-nocreate'            => "'''Non ge stè 'na vosce ca se nnomene \"\$1\".'''",
 'toomanymatches'                   => "Troppe combronde sciute bbuene onne state returnete, pe piacere prueve cu 'n'otra inderrogazione",
 'titlematches'                     => "'U titele d'a pàgene se iacchje",
 'notitlematches'                   => "Nisciune titele de pàgene s'accocchie cu 'a recerche",

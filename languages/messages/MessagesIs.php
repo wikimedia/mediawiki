@@ -956,8 +956,6 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'searchresulttext'                 => 'Fyrir frekari upplýsingar um leit á {{SITENAME}} farið á [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => "Þú leitaðir að '''[[:$1]]''' ([[Special:Prefixindex/$1|öllum síðum sem hefjast á „$1“]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|öllum síðum sem tengja í „$1“]])",
 'searchsubtitleinvalid'            => "Þú leitaðir að '''$1'''",
-'noexactmatch'                     => "'''Engin síða ber nafnið „$1“.''' Þú getur [[:$1|búið hana til]].",
-'noexactmatch-nocreate'            => "'''Það er engin síða sem ber nafnið „$1“.'''",
 'toomanymatches'                   => 'Of mörgum niðurstöðum var skilað, gjörðu svo vel og reyndu aðra fyrirspurn',
 'titlematches'                     => 'Titlar greina sem pössuðu við fyrirspurnina',
 'notitlematches'                   => 'Engir greinartitlar pössuðu við fyrirspurnina',

@@ -1055,9 +1055,6 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'searchresulttext'                 => 'Pro plus informationes super le recerca in {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Tu cercava \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tote le paginas que comencia con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tote le paginas con ligamines a "$1"]])',
 'searchsubtitleinvalid'            => "Tu cercava '''$1'''",
-'noexactmatch'                     => "'''Non existe un pagina con le titulo \"\$1\".'''
-Tu pote [[:\$1|crear iste pagina]].",
-'noexactmatch-nocreate'            => "'''Non existe un pagina con titulo \"\$1\".'''",
 'toomanymatches'                   => 'Se retornava troppo de resultatos. Per favor prova un altere consulta.',
 'titlematches'                     => 'Correspondentias in le titulos de paginas',
 'notitlematches'                   => 'Nulle correspondentias in le titulos de paginas',

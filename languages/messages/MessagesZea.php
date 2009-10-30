@@ -764,8 +764,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'searchresulttext'      => 'Voe meêr informaotie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:ulpe}}]].',
 'searchsubtitle'        => "Je zoch ni '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Voe zoekopdracht "$1"',
-'noexactmatch'          => "'''Der besti hin pagina henaemd \"\$1\".''' Je kan dezen [[:\$1|anmaeken]].",
-'noexactmatch-nocreate' => "'''Der besti hin pagina genaemd \"\$1\".'''",
 'toomanymatches'        => 'Der waeren te vee resultaoten. Probeer asjeblieft een aore zoekopdracht.',
 'titlematches'          => 'Overeênkomst mie onderwerp',
 'notitlematches'        => "Hin resultaoten evon'n",

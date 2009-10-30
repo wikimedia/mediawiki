@@ -791,9 +791,6 @@ Please log in again after you receive it.
 'searchresulttext'          => '{{SITENAME}}માં કેવી રીતે શોધવું તેની વધુ માહિતિ માટે જુઓ: [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'તમે \'\'\'[[:$1]]\'\'\' માટે શોધ્યુ  ([[Special:Prefixindex/$1|"$1"થી શરૂ થતા બધા પાના]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1"ની સાથે જોડાયેલા બધા પાના]])',
 'searchsubtitleinvalid'     => "તમે '''$1''' શોધ્યું",
-'noexactmatch'              => "'''\"\$1\" શિર્ષક વાળું કોઇ પાનું નથી.'''
-<br />તમે [[:\$1|આ પાનું બનાવી શકો છો]].",
-'noexactmatch-nocreate'     => "'''\"\$1\" શિર્ષક વાળું કોઈ પાનું નથી.'''",
 'notitlematches'            => 'આ શબ્દ સાથે કોઇ શિર્ષક મળતું આવતું નથી',
 'notextmatches'             => 'આ શબ્દ કોઈ પાનાંમાં મળ્યો નથી',
 'prevn'                     => 'પહેલાનાં {{PLURAL:$1|$1}}',

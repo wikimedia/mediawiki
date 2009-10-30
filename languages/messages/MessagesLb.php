@@ -1025,10 +1025,6 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'searchresulttext'                 => "Fir méi Informatiounen iwwer d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'                   => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all Säiten déi op "$1" linken]])',
 'searchsubtitleinvalid'            => 'Dir hutt no "$1" gesicht.',
-'noexactmatch'                     => "'''Et gëtt keng Säit mam Titel \"\$1\".'''
-
-Dir kënnt [[:\$1|déi Säit uleeën]].",
-'noexactmatch-nocreate'            => "'''Et gëtt keng Säit mam Titel \"\$1\".'''",
 'toomanymatches'                   => 'Zevill Resultater goufe fonnt, versicht w.e.g. eng aner Ufro',
 'titlematches'                     => 'Iwwereneestëmmungen am Säitentitel',
 'notitlematches'                   => 'Keng Iwwereneestëmmunge mat Säitentitelen',

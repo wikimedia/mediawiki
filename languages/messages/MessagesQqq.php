@@ -1007,7 +1007,6 @@ Please note that the parameters in a log entry will appear in the log only in th
 
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
-'noexactmatch'                   => 'This is the message that you get if you follow a link to a page or article that does not exist.',
 'notitlematches'                 => 'Header of results page after a search for a title for which no page exists',
 'textmatches'                    => 'When displaying search results',
 'notextmatches'                  => 'Error message when there are no results',

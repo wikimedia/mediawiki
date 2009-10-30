@@ -436,7 +436,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 # Search results
 'searchresults'             => 'kumi hono ʻātunga',
 'searchresults-title'       => 'kumi "$1" hono ʻātunga',
-'noexactmatch'              => "'''ʻOku ʻikai ʻi ai ha kupu mo hono ʻuluʻitohi \"\$1\".''' ʻOku lava ke ke [[:\$1|fakatupu he kupú ni]].",
 'prevn'                     => '{{PLURAL:$1|$1}} ki muʻa',
 'nextn'                     => '{{PLURAL:$1|$1}} hoko',
 'viewprevnext'              => 'Vakai ki he ($1 {{int:pipe-separator}} $2) ($3).',

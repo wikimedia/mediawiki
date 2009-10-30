@@ -568,8 +568,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'searchresults'                    => 'Tlatēmoliztli',
 'searchsubtitle'                   => 'Ōtictēmōz \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|mochīntīn zāzaniltin mopēhua īca "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|mochīntīn zāzaniltin tzonhuilia "$1" īhuīc]])',
 'searchsubtitleinvalid'            => "Ōtictēmōz '''$1'''",
-'noexactmatch'                     => "'''Ahmo ia zāzanilli ītōcā \"\$1\".''' Tihuelīti [[:\$1|ticchīhua]].",
-'noexactmatch-nocreate'            => "'''Ahmo ia \"\$1\" zāzanilli.'''",
 'prevn'                            => '{{PLURAL:$1|$1}} achtopa',
 'nextn'                            => 'niman {{PLURAL:$1|$1}}',
 'viewprevnext'                     => 'Xiquintta ($1 {{int:pipe-separator}} $2) ($3).',

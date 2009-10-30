@@ -458,7 +458,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'searchresulttext'      => '{{SITENAME}} ਖੋਜ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਵੋ, ਵੇਖੋ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "ਤੁਸੀਂ '''[[:$1]]''' ਲਈ ਖੋਜ ਕੀਤੀ।",
 'searchsubtitleinvalid' => "ਤੁਸੀਂ'''$1''' ਲਈ ਖੋਜ ਕੀਤੀ।",
-'noexactmatch'          => "'''\"\$1\"''' ਟਾਇਟਲ ਨਾਲ ਦਾ ਕੋਈ ਪੇਜ ਨਹੀਂ ਹੈ। ਤੁਸੀਂ [[:\$1|ਇਹ ਪੇਜ]] ਬਣਾ ਸਕਦੇ ਹੋ।",
 'titlematches'          => 'ਆਰਟੀਕਲ ਟੈਕਸਟ ਮਿਲਦਾ',
 'notitlematches'        => 'ਕੋਈ ਪੇਜ ਟਾਇਟਲ ਨਹੀਂ ਮਿਲਦਾ',
 'textmatches'           => 'ਪੇਜ ਟੈਕਸਟ ਮਿਲਦਾ',

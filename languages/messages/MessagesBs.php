@@ -1176,12 +1176,6 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'searchresulttext'                 => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Tražili ste \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sve stranice koje počinju sa "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|sve stranice koje vode do "$1"]])',
 'searchsubtitleinvalid'            => 'Tražili ste $1',
-'noexactmatch'                     => "'''Nema stranice sa imenom \"\$1\".'''
-
-Možete [[:\$1|da napravite članak sa tim naslovom]].
-
-::*'''''<u>Opomena: Nemojte kopirati materijale za koje nemate dozvolu!</u>'''''",
-'noexactmatch-nocreate'            => "'''Ne postoji stranica sa naslovom \"\$1\".'''",
 'toomanymatches'                   => 'Pronađeno je previše rezultata, molimo pokušajte unijeti konkretniji izraz',
 'titlematches'                     => 'Naslov članka odgovara',
 'notitlematches'                   => 'Naslov članka ne odgovara.',

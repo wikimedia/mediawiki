@@ -721,7 +721,6 @@ Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 'searchresulttext'          => 'Lisateedüst otsmisõ kotsilõ kaeq [[{{MediaWiki:Helppage}}|{{SITENAME}} otsmisoppusõst]].',
 'searchsubtitle'            => 'Sa otsõt fraasi "[[:$1]]" ([[Special:Prefixindex/$1|kõik kiräkotussõga "$1" päälenakkajaq leheq]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kõik leheq, kon om linke artiklilõ "$1"]])',
 'searchsubtitleinvalid'     => 'Otsminõ "$1"',
-'noexactmatch'              => "'''Olõ-i lehte päälkiräga \"\$1\".''' Võit tuu [[:\$1|esiq luvvaq]].",
 'titlematches'              => "Artiklipäälkir'ost löüt",
 'notitlematches'            => "Artiklipäälkir'ost es lövväq",
 'textmatches'               => 'Artiklitekstest löüt',

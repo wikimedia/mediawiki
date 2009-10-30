@@ -623,8 +623,6 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'searchresults'            => 'Axtarış nəticələri',
 'searchresults-title'      => "''$1'' üçün axtarış nəticələri",
 'searchresulttext'         => '{{SITENAME}}-nı axtarmaqla bağlı ətraflı məlumat üçün [[{{MediaWiki:Helppage}}|{{int:kömək}}]] səhifəsinə baş çək.',
-'noexactmatch'             => "\"\$1\" başlığı altında məqalə yoxdur. Bu məqaləni özünüz '''[[:\$1|yarada bilərsiniz]]'''.",
-'noexactmatch-nocreate'    => "'''\"\$1\" adında səhifə mövcud deyil.'''",
 'notextmatches'            => 'Məqalələrdə uyğun məzmun tapılmadı',
 'prevn'                    => 'əvvəlki {{PLURAL:$1|$1}}',
 'nextn'                    => 'sonrakı {{PLURAL:$1|$1}}',

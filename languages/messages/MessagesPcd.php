@@ -422,10 +422,6 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 'searchresulttext'          => "Pou pus d'informachons quant qu'vos trachez {{SITENAME}}, vir [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'            => "Vos trachez  « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes chés paches aroutant pèr « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toutes chés paches qu'ont un loïen dsus « $1 »]])",
 'searchsubtitleinvalid'     => "vos trachez apreu '''$1'''",
-'noexactmatch'              => "'''I n'y o poin d'pache lonmée \"\$1\".'''
-
-Os pouvez [[:\$1|créer chol pache]].",
-'noexactmatch-nocreate'     => "'''I n'y o poin d'pache aveuc ch'nom \"\$1\".'''",
 'notitlematches'            => "Éj déniche mie d'pache aveuc ch'tite-lo",
 'textmatches'               => 'Teske del pache déniché',
 'notextmatches'             => "I n'y o poin d'pache aveuc ch'teske-lo",

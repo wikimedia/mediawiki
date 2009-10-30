@@ -755,8 +755,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'searchresulttext'          => 'Para sa iba pang impormasyon manonongod sa paghanap sa {{SITENAME}}, hilingon tabî an [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Hinanap mo an '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Hinanap mo an '''$1'''",
-'noexactmatch'              => "'''Mayong siring na pahinang may títulong \"\$1\".''' Pwede mong [[:\$1|gibohon ining pahina]].",
-'noexactmatch-nocreate'     => "'''Mayong pahina sa titulong \"\$1\".'''",
 'toomanymatches'            => 'Kadakol-dakol na angay an ipigbalik, probaran an ibang kahaputan',
 'titlematches'              => 'Angay an título kan artíkulo',
 'notitlematches'            => 'Mayong angay na título nin pahina',

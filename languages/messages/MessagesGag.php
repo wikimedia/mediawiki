@@ -479,7 +479,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'editundo'                => 'geeri al',
 
 # Search results
-'noexactmatch'   => " Başlaa bu olan bir yazı bulunamadı. Bu yazını var nicä [[:$1|'''siz çeketmää''']].",
 'prevn'          => 'ilerki {{PLURAL:$1|$1}}',
 'nextn'          => 'geeriki {{PLURAL:$1|$1}}',
 'viewprevnext'   => '($1 {{int:pipe-separator}} $2) ($3).',

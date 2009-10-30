@@ -842,8 +842,6 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'searchresulttext'               => 'Kwa maelezo zaidi kuhusu kutafuta {{SITENAME}}, tazama [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                 => 'Ulitafuta \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kurasa zote zinazoanza "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kurasa zote zinazoungwa na "$1"]])',
 'searchsubtitleinvalid'          => "Ulitafuta '''$1'''",
-'noexactmatch'                   => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
-'noexactmatch-nocreate'          => "'''Hakuna ukurasa unaoitwa \"\$1\".'''",
 'notitlematches'                 => 'Jina hili la ukurasa halikupatikana',
 'notextmatches'                  => 'Maandishi yaliyotafutwa hayakupatikana kwenye kurasa zo zote',
 'prevn'                          => '{{PLURAL:$1|uliotangulia|$1 zilizotangulia}}',

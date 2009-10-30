@@ -899,8 +899,6 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 'searchsubtitle'                   => 'Yaa ngi seet « \'\'\'[[:$1]]\'\'\' » ([[Special:Prefixindex/$1|wépp xët wu tambalee "$1"]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|wépp xët wu lëkkalook "$1"]])',
 'searchsubtitleinvalid'            => 'Yaa ngi seet « $1 »',
-'noexactmatch'                     => "'''Amul wenn xët wu tudd « $1 » wu am.''' man ngaa [[:$1|sakk xët wi]].",
-'noexactmatch-nocreate'            => "'''Amul wenn xët wu tudd« $1 ».'''",
 'toomanymatches'                   => 'Dafa bari ay yem-yem. Soppil laaj bi.',
 'titlematches'                     => 'Koju xët yi ñoo yam',
 'notitlematches'                   => 'Amul benn koju xët wu yam ak ceet gi',

@@ -1108,8 +1108,6 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'searchresulttext'                 => 'Lisainfot otsimise kohta vaata [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Otsisid fraasi "[[:$1]]" ([[Special:Prefixindex/$1|kõik sõnega "$1" algavad lehed]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kõik lehed, mis sisaldavad linke artiklile "$1"]])',
 'searchsubtitleinvalid'            => 'Päring "$1"',
-'noexactmatch'                     => "'''Artiklit pealkirjaga \"\$1\" ei leitud.''' Võite [[:\$1|selle artikli luua]].",
-'noexactmatch-nocreate'            => "'''Lehekülge pealkirjaga \"\$1\" ei eksisteeri.'''",
 'toomanymatches'                   => 'Liiga palju tulemusi, ürita teistsugust päringut',
 'titlematches'                     => 'Vasted artikli pealkirjades',
 'notitlematches'                   => 'Artikli pealkirjades otsitavat ei leitud',

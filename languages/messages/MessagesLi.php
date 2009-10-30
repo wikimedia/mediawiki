@@ -924,8 +924,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'searchresulttext'                 => 'Veur mier informatie euver zeuke op {{SITENAME}}, zuug [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Doe zeukdes veur \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginne mit "$1"]] {{int:pipe-separator}}[[Special:WhatLinksHere/$1|pagina\'s die verwieze nao "$1"]])',
 'searchsubtitleinvalid'            => 'Voor zoekopdracht "$1"',
-'noexactmatch'                     => "'''Dao besjteit gein pazjena mit de naam $1.''' De kèns 'm [[:$1|aanmake]].",
-'noexactmatch-nocreate'            => "'''Er besteit gein pagina genaamp \"\$1\".'''",
 'toomanymatches'                   => "d'r Wore te väöl resultate. Probeer estebleef  'n anger zeukopdrach.",
 'titlematches'                     => 'Overeinkoms mèt volgende titels',
 'notitlematches'                   => 'Geine inkele paginatitel gevónje mit de opgegaeve zeukterm',

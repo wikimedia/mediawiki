@@ -308,8 +308,6 @@ $messages = array(
 'editundo'                => 'འབད་བཤོལ།',
 
 # Search results
-'noexactmatch'   => "'''མགོ་མིང་ \"\$1\" ཅན་མའི་ཤོག་ལེབ་མེད།'''
-ཁྱོད་ཀྱིས་ [[:\$1|ཤོག་ལེབ་འདི་ གསརཔ་བཟོ་ཚུགས།]]",
 'prevn'          => 'ཧེ་མའི་ {{PLURAL:$1|$1}}',
 'nextn'          => 'ཤུལ་མའི་ {{PLURAL:$1|$1}}',
 'viewprevnext'   => '($1 {{int:pipe-separator}} $2) ($3) སྟོན།',

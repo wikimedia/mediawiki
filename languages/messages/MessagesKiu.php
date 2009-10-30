@@ -581,9 +581,6 @@ Serba pelunê muhimunê newun [[Special:Cıcêre|cıcêraişê wiki de]] bıcere
 'searchresulttext'          => 'Zerrê {{SITENAME}} de heqa cıfeteliyaene de serba melumat guretene, şikina qaytê [[{{MediaWiki:Helppage}}|{{int:help}}]] ke.',
 'searchsubtitle'            => 'Tı serba \'\'\'[[:$1]]\'\'\' cıfeteliya. ([[Special:Prefixindex/$1|pelê ke pêro be "$1" ra dest niyê pıra]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|pelê ke pêro be "$1"\' ra girê ho esto]])',
 'searchsubtitleinvalid'     => "Serbacıfeteliyae: '''$1'''",
-'noexactmatch'              => "'''Pela be namê \"\$1\"i nêvêniye.''' 
-Tı şikina na pele [[:\$1|bıaferne]].",
-'noexactmatch-nocreate'     => "'''Pele be namê \"\$1\"i çina.'''",
 'notitlematches'            => 'Qet zu serrêze de nêvêniya',
 'notextmatches'             => 'Qet zu pele de nêvêniya',
 'prevn'                     => '{{PLURAL:$1|$1}} verên',

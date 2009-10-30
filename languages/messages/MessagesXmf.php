@@ -339,7 +339,6 @@ $messages = array(
 'searchresulttext'          => 'უმოსი ინფორმაციაშენ {{SITENAME}}-შ ოგორუშენ რთხინთ ძირათინ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'თქვა დოგორით \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ირი ხასილა, დოჭყაფილი "$1"-ით]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ირი ხასილა, ბინუთ"$1"-შა]])',
 'searchsubtitleinvalid'     => "თქვა მიგორეთ '''$1'''",
-'noexactmatch'              => "'''ხასილა თე სახელით \"\$1\" ვაარსეენს.''' თქვა შეილებნა [[:\$1|თე გვერდიშ ღოლამა]].",
 'notitlematches'            => 'ვა უხუჯანს ნამუთინი ხასილაშ ჯოხო',
 'prevn'                     => 'წოხლენ $1',
 'nextn'                     => 'უკულ {{PLURAL:$1|$1}}',

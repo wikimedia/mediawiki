@@ -1026,8 +1026,6 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'searchresulttext'                 => 'Za više informacija o pretraživanju sajta {{SITENAME}}, pogledajte [[{{ns:project}}:Pretraživanje|Pretraživanje sajta {{SITENAME}}]].',
 'searchsubtitle'                   => "Tražili ste '''[[:$1]]'''",
 'searchsubtitleinvalid'            => "Tražili ste '''$1'''",
-'noexactmatch'                     => 'Ne postoji stranica sa naslovom "$1". Možete [[$1|napraviti ovu stranicu]].',
-'noexactmatch-nocreate'            => "'''Ne postoji stranica sa naslovom \"\$1\".'''",
 'toomanymatches'                   => 'Previše pogodaka je vrećno. Izmenite upit.',
 'titlematches'                     => 'Naslov stranice odgovara',
 'notitlematches'                   => 'Nijedan naslov stranice ne odgovara',

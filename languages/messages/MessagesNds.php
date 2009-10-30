@@ -1016,8 +1016,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'searchresulttext'                 => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:Helppage}}|{{SITENAME}} dörsöken]].',
 'searchsubtitle'                   => 'Du hest na „[[:$1]]“ söcht ([[Special:Prefixindex/$1|all Sieden, de mit „$1“ anfangt]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all Sieden, de na „$1“ wiest]])',
 'searchsubtitleinvalid'            => 'För de Söökanfraag „$1“',
-'noexactmatch'                     => 'Gifft kene Siet mit dissen Naam. Bruuk de Vulltextsöök oder legg de Siet [[:$1|nee]] an.',
-'noexactmatch-nocreate'            => "'''Gifft kene Siet mit’n Titel „$1“.'''",
 'toomanymatches'                   => 'To veel Sieden funnen för de Söök, versöök en annere Affraag.',
 'titlematches'                     => 'Övereenstimmen mit Överschriften',
 'notitlematches'                   => 'Kene Övereenstimmen',

@@ -689,7 +689,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'searchresulttext'         => 'For mair information aboot rakin {{SITENAME}}, see [[{{MediaWiki:Helppage}}|Rakin {{SITENAME}}]].',
 'searchsubtitle'           => "Ye raked for '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "Ye raked for '''$1'''",
-'noexactmatch'             => "'''There nae page wi the teetle \"\$1\".''' Ye can [[:\$1|mak this page]].",
 'titlematches'             => 'Airticle teitle matches',
 'notitlematches'           => 'Nae page teitle matches',
 'notextmatches'            => 'Nae page text matches',

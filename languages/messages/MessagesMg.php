@@ -875,8 +875,6 @@ Hijery ny [[Special:IPBlockList|lisitra ny adiresy IP sy mpikambana voasakana]] 
 'searchresulttext'                 => "Jereo ny [[{{MediaWiki:Helppage}}|fanazavana fanampiny momba ny fikarohana eto amin'ny {{SITENAME}}]].",
 'searchsubtitle'                   => "nitady lohatsoratra « '''[[:$1]]''' » ianao ([[Special:Prefixindex/$1|ny pejy rehetra manomboka amin'ny « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ny pejy rehetra manana rohy amin'ny « $1 »]])",
 'searchsubtitleinvalid'            => "Nitady « '''$1''' » ianao",
-'noexactmatch'                     => "'''Tsy misy pejy manana lohateny « $1 » ato.''' Afaka [[:$1|Amboarinao io pejy io]].",
-'noexactmatch-nocreate'            => "''Tsy misy pejy milohateny « $1 ».'''",
 'titlematches'                     => "Mifanitsy amin'ny lohatenin'ny lahatsoratra",
 'notitlematches'                   => 'Tsy nahitana lohateny mifanaraka',
 'textmatches'                      => "Mifanitsy amin'ny votoatin'ny pejy",

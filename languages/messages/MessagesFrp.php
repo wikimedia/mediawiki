@@ -1221,9 +1221,6 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'searchresulttext'                 => 'Por més d’enformacions sur la rechèrche dens {{SITENAME}}, vêde [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => "Vos éd rechèrchiê « '''[[:$1]]''' » ([[Special:Prefixindex/$1|totes les pâges que començont per « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totes les pâges qu’ont un lim de vers « $1 »]])",
 'searchsubtitleinvalid'            => "Vos éd rechèrchiê « '''$1''' »",
-'noexactmatch'                     => "'''Niona pâge avouéc lo titro « $1 » ègziste.'''
-Vos pouede [[:$1|fâre cela pâge]].",
-'noexactmatch-nocreate'            => "'''Ègziste gins de pâge avouéc lo titro « $1 ».'''",
 'toomanymatches'                   => 'Un trop grant nombro d’ocasions at étâ retornâ, volyéd sometre una requéta difèrenta.',
 'titlematches'                     => 'Corrèspondances dens los titros de les pâges',
 'notitlematches'                   => 'Nion titro de pâge corrèspond a la rechèrche.',

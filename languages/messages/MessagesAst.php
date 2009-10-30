@@ -829,8 +829,6 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'searchresulttext'                 => 'Pa más información tocante a busques en {{SITENAME}}, vete a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Buscasti \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toles páxines qu\'emprimen con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toles páxines qu\'enllacien a "$1"]])',
 'searchsubtitleinvalid'            => "Buscasti '''$1'''",
-'noexactmatch'                     => "'''Nun esiste la páxina \"\$1\".''' Pues [[:\$1|crear esta páxina]].",
-'noexactmatch-nocreate'            => "'''Nun hai nenguna páxina col títulu \"\$1\".'''",
 'toomanymatches'                   => 'Atopáronse demasiaes coincidencies, por favor fai una consulta diferente',
 'titlematches'                     => 'Coincidencies de los títulos de la páxina',
 'notitlematches'                   => 'Nun hai coincidencies nel títulu de la páxina',

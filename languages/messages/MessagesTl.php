@@ -957,9 +957,6 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 'searchresulttext'                 => 'Para sa mas maraming kabatiran hinggil sa paghahanap sa {{SITENAME}}, tingnan ang [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Hinanap mo ang \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|lahat ng mga pahinang nagsisimula sa "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|lahat ng mga pahinang nakakawing sa "$1"]])',
 'searchsubtitleinvalid'            => "Hinanap mo ang '''$1'''",
-'noexactmatch'                     => "'''Walang pahinang pinamagatang \"\$1\".'''
-Maaari mong [[:\$1|likhain ang pahinang ito]].",
-'noexactmatch-nocreate'            => "'''Walang pahinang pinamagatang \"\$1\".'''",
 'toomanymatches'                   => 'Napakaraming mga tumutugmang ibinalik, pakisubok ang isang ibang tanong',
 'titlematches'                     => 'Tumutugma ang pamagat ng pahina',
 'notitlematches'                   => 'Walang tumutugmang pamagat ng pahina',

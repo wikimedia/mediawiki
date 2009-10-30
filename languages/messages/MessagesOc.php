@@ -1165,9 +1165,6 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'searchresulttext'                 => "Per mai d'informacions sus la recèrca dins {{SITENAME}}, vejatz [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'                   => "Avètz recercat « '''[[:$1]]''' » ([[Special:Prefixindex/$1|totas las paginas que començan per « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totas las paginas qu'an un ligam cap a « $1 »]])",
 'searchsubtitleinvalid'            => 'Avètz recercat « $1 »',
-'noexactmatch'                     => "'''Cap de pagina amb lo títol « $1 » existís pas.
-''' Podètz [[:$1|crear aqueste article]].",
-'noexactmatch-nocreate'            => "'''I a pas de pagina intitolada « $1 ».'''",
 'toomanymatches'                   => 'Tròp d’ocuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
 'titlematches'                     => "Correspondéncias dins los títols d'articles",
 'notitlematches'                   => "Cap de títol d'article correspond pas a la recèrca.",
