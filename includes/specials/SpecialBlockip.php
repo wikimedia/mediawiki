@@ -345,7 +345,7 @@ class IPBlockForm {
 	 * @return array(message key, arguments) on failure, empty array on success
 	 */
 	function doBlock( &$userId = null, &$expiry = null ) {
-		global $wgUser, $wgSysopUserBans, $wgSysopRangeBans, $wgBlockAllowsUTEdit;
+		global $wgUser, $wgSysopUserBans, $wgSysopRangeBans, $wgBlockAllowsUTEdit, $wgBlockCIDRLimit;
 
 		$userId = 0;
 		# Expand valid IPv6 addresses, usernames are left as is
@@ -361,7 +361,7 @@ class IPBlockForm {
 		  	if( preg_match( "/^($rxIP4)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
 		  		# IPv4
 				if( $wgSysopRangeBans ) {
-					if( !IP::isIPv4( $this->BlockAddress ) || $matches[2] < 16 || $matches[2] > 32 ) {
+					if( !IP::isIPv4( $this->BlockAddress ) || $matches[2] < $wgBlockCIDRLimit || $matches[2] > 32 ) {
 						return array( 'ip_range_invalid' );
 					}
 					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
