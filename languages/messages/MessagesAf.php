@@ -917,6 +917,7 @@ Dit was moontlik geskrap of geskuif.
 'rev-deleted-text-permission' => "Die weergawe van die bladsy is '''verwyder'''. 
 Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skrapingslogboek].",
 'rev-delundel'                => 'wys/versteek',
+'rev-showdeleted'             => 'wys',
 'revisiondelete'              => 'Verwyder/herstel weergawes',
 'revdelete-nooldid-title'     => 'Ongeldige teiken weergawe',
 'revdelete-nologtype-title'   => 'Geen logboektipe verskaf nie',

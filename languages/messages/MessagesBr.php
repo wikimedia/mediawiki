@@ -575,6 +575,7 @@ Merkit ur chomlec'h reizh pe goullonderit ar vaezienn-mañ.",
 Mat e vefe deoc\'h en em lugañ ha cheñch ho ker-tremen bremañ.
 
 Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
+'usernamehasherror'          => "N''haller ket ober gant an arouezenn # en anvioù an implijerien",
 'login-throttled'            => "Re oc'h eus klasket en em lugañ en aner. 
 Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
@@ -857,6 +858,7 @@ Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
 Titouroù ouzhpenn a c'hall bezañ war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
 Evel merour e c'hallit atav [$1 sellet ouzh an diff-se] mar fell deoc'h kenderc'hel.",
 'rev-delundel'                => 'diskouez/kuzhat',
+'rev-showdeleted'             => 'diskouez',
 'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
 'revdelete-nooldid-title'     => "N'eus stumm pal ebet evit an degasadennoù",
 'revdelete-nooldid-text'      => "Pe n'eo ket bet spisaet ganeoc'h ar stumm(où) pal da implijout an arc'hwel-mañ evito. pe n'eus ket eus ar stummoù spisaet, pe emaoc'h o klask kuzhat ar stumm red.",
@@ -1285,7 +1287,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'action-protect'              => 'kemmañ liveoù gwareziñ ar bajenn-mañ',
 'action-import'               => 'Enporzhiañ ar bajenn-mañ adal ur wiki all',
 'action-importupload'         => 'Enporzhiañ ar bajenn-mañ adal ur restr pellgarget',
-'action-patrol'               => 'merkaén kemmoù ar re all evel gwiriet',
+'action-patrol'               => 'merkañ kemmoù ar re all evel gwiriet',
 'action-autopatrol'           => 'bezañ merket ho tegasadennoù evel gwiriet',
 'action-unwatchedpages'       => "gwelet roll ar pajennoù n'int ket evezhiet",
 'action-trackback'            => "zegas ur c'hilliamm",
@@ -1622,7 +1624,7 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 'statistics-jobqueue'          => 'Hirder ar [http://www.mediawiki.org/wiki/Manual:Job_queue roll gortoz evit an tretiñ]',
 'statistics-users'             => '[[Special:ListUsers|Implijerien]] enrollet',
 'statistics-users-active'      => 'Implijerien oberiant',
-'statistics-users-active-desc' => "Implijerien o deus degaset da nebeutaén ur c'hemm {{PLURAL:$1|an deiz paseet|e-pad an $1 deiz diwezhañ}}",
+'statistics-users-active-desc' => "Implijerien o deus degaset da nebeutañ ur c'hemm {{PLURAL:$1|an deiz paseet|e-kerzh an $1 deiz diwezhañ}}",
 'statistics-mostpopular'       => 'Pajennoù muiañ sellet',
 
 'disambiguations'      => 'Pajennoù digejañ',
@@ -2176,6 +2178,8 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'ipblocklist-sh-tempblocks'       => '$1 ar stankadennoù dibad',
 'ipblocklist-sh-addressblocks'    => "$1 stankadennoù ar chomlec'hioù IP unan",
 'ipblocklist-submit'              => 'Klask',
+'ipblocklist-localblock'          => "Stankadenn lec'hel",
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Stankadenn|Stankadennoù}} all',
 'blocklistline'                   => '$1, $2 en/he deus stanket $3 ($4)',
 'infiniteblock'                   => 'da viken',
 'expiringblock'                   => "a zeu d'e dermen d'an $1 da $2",
@@ -2319,6 +2323,8 @@ Diverkañ anezhañ a fell deoc'h ober evit reiñ lec'h d'an adkas ?",
 'move-leave-redirect'          => 'Lezel un adkas war-du an titl nevez',
 'protectedpagemovewarning'     => "'''DIWALLIT :''' Prennet eo bet ar bajenn-mañ, setu n'eus nemet an implijerien ganto gwrioù merañ a c'hall adenvel anezhi.",
 'semiprotectedpagemovewarning' => "'''NOTENN :''' Prennet eo bet ar bajenn-mañ, setu n'hall bezañ adanvet nemet gant an implijerien enskrivet",
+'move-over-sharedrepo'         => "== Bez' ez eus eus ar restr-se dija ==
+Bez' ez eus eus [[:$1]] war ur sanailh kenrannet dija. Ma cheñchit anv ar restr ne viot ket mui evit tizhout ar restr zo er sanailh kenrannet.",
 'file-exists-sharedrepo'       => "Implijet c'hoazh eo an anv dibabet gant ur restr zo war ur sanailh kenrannet.
 Grit gant un anv all.",
 

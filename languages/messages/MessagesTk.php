@@ -820,6 +820,7 @@ Administrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Speci
 'rev-suppressed-diff-view'    => "Bu aratapawudyň wersiýalarynyň biri '''bökdelipdir'''.
 Administrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} bökdeme gündeliginde] jikme-jiklikler bar bolmagy mümkin.",
 'rev-delundel'                => 'görkez/gizle',
+'rev-showdeleted'             => 'görkez',
 'revisiondelete'              => 'Wersiýalary öçür/yzyna dikelt',
 'revdelete-nooldid-title'     => 'Nädogry niýetlenilýän wersiýa',
 'revdelete-nooldid-text'      => 'Bu funksiýany ýerine ýetirmek üçin kesgitli bir niýetlenilýän wersiýa görkezmänsiňiz. Görkezen wersiýaňyz ýok ýa-da bar bolan wersiýany gizlemäge synanyşýarsyňyz.',
@@ -2147,7 +2148,8 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 'ipblocklist-sh-tempblocks'       => 'wagtlaýyn blokirlemeleri $1',
 'ipblocklist-sh-addressblocks'    => 'ýeke IP blokirlemelerini $1',
 'ipblocklist-submit'              => 'Gözle',
-'ipblocklist-otherblocks'         => 'Başga blokirlemeler',
+'ipblocklist-localblock'          => 'Lokal blokirleme',
+'ipblocklist-otherblocks'         => 'Başga {{PLURAL:$1|blokirleme|blokirlemeler}}',
 'blocklistline'                   => '$1, $2 blokirledi: $3 ($4)',
 'infiniteblock'                   => 'möhletsiz',
 'expiringblock'                   => '$2, $1 senesinde gutarýar',

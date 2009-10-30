@@ -1083,6 +1083,7 @@ Jako správce si můžete tento rozdíl prohlédnout; podrobnosti mohou být uve
 'rev-suppressed-diff-view'    => "Jedna z revizí k tomuto porovnání byla '''utajena'''.
 Jako správce si můžete tento rozdíl prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-delundel'                => 'skrýt/zobrazit',
+'rev-showdeleted'             => 'zobrazit',
 'revisiondelete'              => 'Smazat/obnovit revize',
 'revdelete-nooldid-title'     => 'Nezadána revize',
 'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
@@ -2375,6 +2376,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'ipblocklist-sh-tempblocks'       => '$1 dočasná zablokování',
 'ipblocklist-sh-addressblocks'    => '$1 blokování jedné IP adresy',
 'ipblocklist-submit'              => 'Hledat',
+'ipblocklist-localblock'          => 'Místní zablokování',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Jiné zablokování|Jiná zablokování}}',
 'blocklistline'                   => '$1 $2 zablokoval $3 ($4)',
 'infiniteblock'                   => 'do odvolání',

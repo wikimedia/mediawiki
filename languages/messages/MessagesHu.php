@@ -1067,6 +1067,7 @@ Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti e
 'rev-suppressed-diff-view'    => "A változatok közötti eltéréshez kiválasztott változatok egyike '''el lett rejtve'''.
 Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti eltérést; további részleteket pedig az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].",
 'rev-delundel'                => 'megjelenítés/elrejtés',
+'rev-showdeleted'             => 'megjelenítés',
 'revisiondelete'              => 'Változatok törlése vagy helyreállítása',
 'revdelete-nooldid-title'     => 'Érvénytelen célváltozat',
 'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozato(ka)t, a megadott változat nem létezik,
@@ -2379,7 +2380,8 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipblocklist-sh-tempblocks'       => 'ideiglenes blokkok $1',
 'ipblocklist-sh-addressblocks'    => 'egy IP-címre vonatkozó blokkok $1',
 'ipblocklist-submit'              => 'Keresés',
-'ipblocklist-otherblocks'         => 'további blokkok',
+'ipblocklist-localblock'          => 'Helyi blokk',
+'ipblocklist-otherblocks'         => 'További {{PLURAL:$1|blokk|blokkok}}',
 'blocklistline'                   => '$1, $2 blokkolta $3 felhasználót ($4)',
 'infiniteblock'                   => 'végtelen',
 'expiringblock'                   => 'lejárat: $1 $2',

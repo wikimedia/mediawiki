@@ -1095,6 +1095,7 @@ Als Administrator kannst du diesen Versionsunterschied sehen. Details finden sic
 'rev-suppressed-diff-view'    => "Eine der Versionen dieses Versionsunterschiedes wurde '''unterdrückt'''.
 Als Administrator kannst du diesen Versionsunterschied sehen. Details finden sich im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
 'rev-delundel'                => 'zeige/verstecke',
+'rev-showdeleted'             => 'zeige',
 'revisiondelete'              => 'Versionen löschen/wiederherstellen',
 'revdelete-nooldid-title'     => 'Keine Version angegeben',
 'revdelete-nooldid-text'      => 'Du hast entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder du versuchst, die aktuelle Version zu entfernen.',
@@ -2399,7 +2400,8 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'ipblocklist-sh-tempblocks'       => 'Befristete Sperren $1',
 'ipblocklist-sh-addressblocks'    => 'IP-Sperren $1',
 'ipblocklist-submit'              => 'Suchen',
-'ipblocklist-otherblocks'         => 'Andere Sperren',
+'ipblocklist-localblock'          => 'Lokale Sperre',
+'ipblocklist-otherblocks'         => 'Andere {{PLURAL:$1|Sperre|Sperren}}',
 'blocklistline'                   => '$1, $2 sperrte $3 ($4)',
 'infiniteblock'                   => 'unbegrenzt',
 'expiringblock'                   => 'endet am $1 um $2 Uhr',

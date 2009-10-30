@@ -1097,6 +1097,7 @@ En tant qu'administrateur vous pouvez voir ce diff ; il peut y avoir plus de dé
 'rev-suppressed-diff-view'    => "Une des révisions de ce diff a été '''effacée'''.
 En tant qu'administrateur vous pouvez voir ce diff ; il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-delundel'                => 'afficher/masquer',
+'rev-showdeleted'             => 'afficher',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',
 'revdelete-nooldid-title'     => 'Version cible non valide',
 'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la version cible de cette fonction, elle n’existe pas, ou il s’agit de la version actuelle.',
@@ -2286,7 +2287,7 @@ Le contenu effectif de ces versions supprimées n’est accessible qu’aux admi
 'undeleterevision-missing'     => 'Version incorrecte ou manquante.
 Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou supprimée de l’archive.',
 'undelete-nodiff'              => 'Aucune version précédente trouvée.',
-'undeletebtn'                  => 'restaurer',
+'undeletebtn'                  => 'Restaurer',
 'undeletelink'                 => 'visualiser/rétablir',
 'undeleteviewlink'             => 'voir',
 'undeletereset'                => 'Réinitialiser',
@@ -2419,7 +2420,8 @@ Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] p
 'ipblocklist-sh-tempblocks'       => '$1 les blocages temporaires',
 'ipblocklist-sh-addressblocks'    => '$1 les blocages d’adresses IP uniques',
 'ipblocklist-submit'              => 'Rechercher',
-'ipblocklist-otherblocks'         => 'Autres blocages',
+'ipblocklist-localblock'          => 'Blocage local',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Autre blocage|Autres blocages}}',
 'blocklistline'                   => '$1 : $2 a bloqué $3 ; $4',
 'infiniteblock'                   => 'permanent',
 'expiringblock'                   => 'expire le $1 à $2',
