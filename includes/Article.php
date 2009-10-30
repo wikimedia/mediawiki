@@ -3456,11 +3456,10 @@ class Article {
 
 		$cdel = '';
 		// User can delete revisions or view deleted revisions...
-		$canHide = $wgUser->isAllowed('deleterevision');
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
 		if( $canHide || ($revision->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
-			// Is this hidden from Sysops?
 			if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$cdel = $sk->revDeleteLinkDisabled( $canHide );
+				$cdel = $sk->revDeleteLinkDisabled( $canHide ); // rev was hidden from Sysops
 			} else {
 				$query = array(
 					'type'   => 'revision',
