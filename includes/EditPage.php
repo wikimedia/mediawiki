@@ -1601,13 +1601,13 @@ END
 );
 
 		if ( $this->isConflict && wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
-			$wgOut->wrapWikiMsg( '==$1==', "yourdiff" );
+			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
 			$de = new DifferenceEngine( $this->mTitle );
 			$de->setText( $this->textbox2, $this->textbox1 );
 			$de->showDiff( wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
-			$wgOut->wrapWikiMsg( '==$1==', "yourtext" );
+			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 			$this->showTextbox2();
 		}
 		$wgOut->addHTML( $this->editFormTextBottom );

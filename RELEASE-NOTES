@@ -609,6 +609,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   can be used to get an error message string
 * The error message shown in Special:ChangePassword now parses wiki markup
 * (bug 19859) Removed experimental HTMLDiff feature
+* Removed section edit links in edit conflict form
 
 == API changes in 1.16 ==
 
