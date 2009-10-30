@@ -48,7 +48,6 @@ class SearchSqlite extends SearchEngine {
 			$res = $this->db->selectField( 'updatelog', 'ul_key', array( 'ul_key' => 'fts3' ), __METHOD__ );
 			self::$fulltextSupported = $res && $this->db->numRows( $res ) > 0;
 		}
-		wfDebug( "*************************************************************" . self::$fulltextSupported . "****************\n" );
 		return self::$fulltextSupported;
 	}
 
