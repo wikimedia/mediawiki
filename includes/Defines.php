@@ -201,6 +201,7 @@ require_once dirname(__FILE__).'/normal/UtfNormalDefines.php';
 # Hook support constants
 define( 'MW_SUPPORTS_EDITFILTERMERGED', 1 );
 define( 'MW_SUPPORTS_PARSERFIRSTCALLINIT', 1 );
+define( 'MW_SUPPORTS_LOCALISATIONCACHE', 1 );
 
 # Allowed values for Parser::$mOutputType
 # Parameter to Parser::startExternalParse().
