@@ -1329,14 +1329,12 @@ function do_log_search_population() {
 }
 
 /***********************************************************************
- * Start PG crap
+ * Start PG stuff
  * TODO: merge with above
  ***********************************************************************/
 
-function
-pg_describe_table($table)
-{
-global	$wgDatabase, $wgDBmwschema;
+function pg_describe_table($table) {
+	global	$wgDatabase, $wgDBmwschema;
 	$q = <<<END
 SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
 	WHERE pg_class.relnamespace = pg_namespace.oid 
@@ -1359,10 +1357,8 @@ END;
 	return $cols;
 }
 
-function
-pg_describe_index($idx)
-{
-global	$wgDatabase, $wgDBmwschema;
+function pg_describe_index($idx) {
+	global	$wgDatabase, $wgDBmwschema;
 
 	// first fetch the key (which is a list of columns ords) and
 	// the table the index applies to (an oid)
@@ -1410,10 +1406,8 @@ END;
 	return $colnames;
 }
 
-function
-pg_index_exists($table, $index)
-{
-global	$wgDatabase, $wgDBmwschema;
+function pg_index_exists($table, $index) {
+	global	$wgDatabase, $wgDBmwschema;
 	$exists = $wgDatabase->selectField("pg_indexes", "indexname",
 			array(	"indexname" => $index,
 				"tablename" => $table,
@@ -1421,19 +1415,8 @@ global	$wgDatabase, $wgDBmwschema;
 	return $exists === $index;
 }
 
-function
-pg_sequence_exists($seq)
-{
-global $wgDatabase, $wgDBmwschema;
-	$exists = $wgDatabase->selectField("pg_class","relname",
-		array( "relname" => $seq ) );
-	return $exists === $seq;
-}
-
-function
-pg_fkey_deltype($fkey)
-{
-global	$wgDatabase, $wgDBmwschema;
+function pg_fkey_deltype($fkey) {
+	global	$wgDatabase, $wgDBmwschema;
 	$q = <<<END
 SELECT confdeltype FROM pg_constraint, pg_namespace
 	WHERE connamespace=pg_namespace.oid
@@ -1448,10 +1431,8 @@ END;
 	return $row[0];
 }
 
-function
-pg_rule_def($table, $rule)
-{
-global	$wgDatabase, $wgDBmwschema;
+function pg_rule_def($table, $rule) {
+	global	$wgDatabase, $wgDBmwschema;
 	$q = <<<END
 SELECT definition FROM pg_rules
 	WHERE schemaname = %s
@@ -1572,7 +1553,7 @@ function do_postgres_updates() {
 		array("ipblocks",      "ipb_enable_autoblock", "SMALLINT NOT NULL DEFAULT 1"),
 		array("filearchive",   "fa_deleted",           "SMALLINT NOT NULL DEFAULT 0"),
 		array("logging",       "log_deleted",          "SMALLINT NOT NULL DEFAULT 0"),
-		array("logging",       "log_id",               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq')"),
+		array("logging",       "log_id",               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('logging_log_id_seq')"),
 		array("logging",       "log_params",           "TEXT"),
 		array("mwuser",        "user_editcount",       "INTEGER"),
 		array("mwuser",        "user_hidden",          "SMALLINT NOT NULL DEFAULT 0"),
@@ -1583,7 +1564,7 @@ function do_postgres_updates() {
 		array("oldimage",      "oi_metadata",          "BYTEA NOT NULL DEFAULT ''"),
 		array("oldimage",      "oi_minor_mime",        "TEXT NOT NULL DEFAULT 'unknown'"),
 		array("oldimage",      "oi_sha1",              "TEXT NOT NULL DEFAULT ''"),
-		array("page_restrictions", "pr_id",            "INTEGER NOT NULL UNIQUE DEFAULT nextval('pr_id_val')"),
+		array("page_restrictions", "pr_id",            "INTEGER NOT NULL UNIQUE DEFAULT nextval('page_restrictions_pr_id_val')"),
 		array("profiling",     "pf_memory",            "NUMERIC(18,10) NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_deleted",           "SMALLINT NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_log_action",        "TEXT"),
@@ -1676,14 +1657,19 @@ function do_postgres_updates() {
 	$newrules = array(
 	);
 
+	#Check new sequences, rename if needed
 	foreach ($newsequences as $ns) {
-		if ($wgDatabase->sequenceExists($ns)) {
-			wfOut( "... sequence \"$ns\" already exists\n" );
+		if( $wgDatabase->sequenceExists('pr_id_val') ) {
+			wfOut( "Updating sequence names\n" );
+			$wgDatabase->sourceFile(archive('patch-update_sequences.sql'));
 			continue;
+		} elseif ( $wgDatabase->sequenceExists('page_restrictions_pr_id_seq') ) {
+			wfOut( "... sequences already updated\n" );
+			continue;
+		} else {
+			wfOut( "Creating sequence \"$ns\"\n" );
+			$wgDatabase->query("CREATE SEQUENCE $ns");
 		}
-
-		wfOut( "Creating sequence \"$ns\"\n" );
-		$wgDatabase->query("CREATE SEQUENCE $ns");
 	}
 
 	foreach ($newtables as $nt) {
@@ -1857,14 +1843,6 @@ function do_postgres_updates() {
 	else {
 		wfOut( "Changing constraint \"revision_rev_user_fkey\" to ON DELETE RESTRICT\n" );
 		$wgDatabase->sourceFile(archive('patch-revision_rev_user_fkey.sql'));
-	}
-
-	#Update sequence names
-	if (pg_sequence_exists('page_restrictions_pr_id_seq')) {
-		wfOut( "... sequences already updated\n" );
-	} else {
-		wfOut( "Updating sequence names\n" );
-		$wgDatabase->sourceFile(archive('patch-update_sequences.sql'));
 	}
 
 	# Fix ipb_address index
