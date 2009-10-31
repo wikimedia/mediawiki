@@ -8,11 +8,14 @@ td{
 }
 </style>
 <script type="text/javascript" >
+//for just setting one or two to test at a time for debug
+var langKeyDebug = ['en'];
+
 //shortLangKey is an array of at least one language from every group in cldrConverter.php
-var shortLangKey = ['en','az', 'da', 'pt'];
+var langKeyGroups = ['en','az', 'da', 'pt', 'fr', 'lv', 'ga','hr','cy','mk','mt','pl','sl'];
 
 //longlangKey is every language we have a much more verbose test
-var longLangKey = [
+var langKeyAll = [
 		//no plurals, there are no rules
 		'az','fa','hu','ja','ko','my to','tr','vi','yo','zh',
 		'bo','dz','id','jv ka','km','kn','ms','th',
@@ -173,103 +176,116 @@ var longLangKey = [
 
 js2AddOnloadHook( function(){
 	//do mauall script loaders calls to test multiple languages:
-	
+	function doLangTable(langSet){		
 		//build table output: 
-		var o = '<table>';		
-		var msgTestSet = { 
-					
-			'test_plural_msg':[ 0, 1, 2, 5, 21, 30 ], 
-			
-			'undelete_short': [ 0, 1, 2, 5, 21, 30 ],
-			
+		var msgTestSet = { 												
+			'undelete_short': [ 0, 1, 2, 5, 21, 30 ],			
 			//category-subcat-count' has two params:
 			'category-subcat-count' : [ 
 				[0,10], 
 				[1,2], 
-				[3,30] ]
-			
-			};
+				[3,30] 
+			]			
+		};
 					
 		var passTest=0;
 		var failTest=0;
 		var testCount=0;	
-		//now for each langage msg: 
-		$j.each(msgTestSet, function(mKey, mTestSet){
-			//output table names:
-			o+='<tr>'+
-					'<td>$1:</td>'+
-					'<td width="14%">Msg key</td>'+
-					'<td width="34%">Msg text</td>'+
-					'<td width="24%">Msg Transform JS</td>'+
-					'<td width="24%">Msg Transform Mw</td>'+
-				'</tr>';
-		
-			//for each number value
-			for(var i in mTestSet){
-				var numVal = mTestSet[i];						
-				var numKey = (typeof numVal== 'object')? numVal.join( '_' ).replace('/ /', '_') : numVal; 											
-				o+='<tr>'+
-						'<td>' + numVal + '</td>' + 
-						'<td>' + mKey + '</td>' + 
-						'<td>' + $mw.lang.gMsgNoTrans( mKey ) + '</td>' + 
-						'<td id="' + mKey + '_' + numKey + '_js">' + $mw.lang.gM( mKey, numVal ) + '</td>';
-				//show mw col:						
-				if( mKey.substr(0, 5) == 'test_' ){
-					o+='<td> (test msg) </td>';
-				}else{  
-					o+='<td id="' + mKey + '_' + numKey + '">loading...</td>';					
-					
-					//get transform from mw (& compare and highlight)
-					function doPopWmMsg(mKey, numVal, numKey){ 
-						testCount++;
-						$j('#score_card').html('Running Tests <span id="perc_done">0</sapn>% done');												
-						do_api_req({
-							'data': {
-								'action':'parse',
-								'text': $mw.lang.gMsgSwap( mKey, numVal)
-							},
-							'url' : '../../../api.php'					
-						}, function( data ) {							
-							var t = '#'+ mKey + '_'+ numKey; 
-							if(data.parse && data.parse.text && data.parse.text['*']){
-								$j(t).html( data.parse.text['*'] );
-								//just get the part in the <p> to compare with js version
-								if( $j.trim( $j(t + ' p').html() )  != $j.trim( $j(t + '_js').html() ) ){									
-									$j(t).css('color', 'red');
-									failTest++;
-								}else{
-									$j(t).css('color', 'green');
-									passTest++;
-								}
-								var perc = ( failTest + passTest ) / testCount
-								if( perc != 1){
-									$j('#perc_done').html( Math.round(perc*1000)/1000 + '%');
-								}else{
-									$j('#score_card').html( "Passed: " + passTest + ' Failed:' +failTest);
-								}			
-							}else{
-								$t.html(' error ');
-							}
-						});
-					};
-					//pop off an anonymous function call: 
-					doPopWmMsg(mKey, numVal, numKey);
-				} 
-				o+='</tr>';										
-			}
-			//output a spacer:
-			o+='<tr><td colspan="6" height="20"> </td></tr>';			
-		});
-		o+='</table>';
-		//put the output into the page: 
-		$j('#table_out').html( o );
+		$j.each(langSet, function(na, langKey){					
+			js_log('load language key: ' + langKey);			
+			//do a manual call to the script-lodaer:
+			js_log('do load: ' + '../../../mwScriptLoader.php?class=$mw.testLang&urid=5&lang='+langKey );
+			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid=8&lang='+langKey, function(){
+				var o='';
+				o+='<tr><td colspan="6" height="20" style="font-size:large"><b>Lang:' + langKey + '</b></td></tr>';		
+				//now for each langage msg: 
+				$j.each(msgTestSet, function(mKey, mTestSet){
+					//output table names:
+					o+='<tr>'+
+							'<td>$1[,$2]</td>'+
+							'<td width="14%">Msg key</td>'+
+							'<td width="34%">Msg text</td>'+
+							'<td width="24%">Msg Transform JS</td>'+
+							'<td width="24%">Msg Transform Mw</td>'+
+						'</tr>';
+				
+					//for each number value
+					for(var i in mTestSet){
+						var numVal = mTestSet[i];						
+						var numKey = (typeof numVal== 'object')? numVal.join( '_' ).replace('/ /', '_') : numVal;
+						var tkey = mKey + '_' + numKey + '_' + langKey; 											
+						o+='<tr>'+
+								'<td>' + numVal + '</td>' + 
+								'<td>' + mKey + '</td>' + 
+								'<td>' + $mw.lang.gMsgNoTrans( mKey ) + '</td>' + 
+								'<td id="' + tkey + '_js">' + $mw.lang.gM( mKey, numVal ) + '</td>';
+						//show mw col:						
+						if( mKey.substr(0, 5) == 'test_' ){
+							o+='<td> (test msg) </td>';
+						}else{  
+							o+='<td id="' + tkey + '">loading...</td>';					
+							
+							//get transform from mw (& compare and highlight)
+							function doPopWmMsg(mKey, numVal, numKey){ 
+								//set the local tkey:
+								var tkey = mKey + '_' + numKey + '_' + langKey;
+								testCount++;
+								$j('#score_card').html('Running Tests <span id="perc_done">0</sapn>% done');	
+								var msgparam = (typeof numVal== 'object')? numVal.join( '|' ) : numVal;		
+								do_api_req({
+									'data': {
+										'action' : 'parse',
+										'text' : '{{int:' + mKey + '|' + msgparam + '}}'
+									},
+									'url' : '../../../api.php'					
+								}, function( data ) {							
+									var t = '#'+ tkey ; 								
+									if(data.parse && data.parse.text && data.parse.text['*']){
+										$j(t).html( data.parse.text['*'] );
+										//just get the part in the <p> to compare with js version
+										if( $j.trim( $j(t + ' p').html() )  != $j.trim( $j(t + '_js').html() ) ){									
+											$j(t).css('color', 'red');
+											failTest++;
+										}else{
+											$j(t).css('color', 'green');
+											passTest++;
+										}
+										var perc = ( failTest + passTest ) / testCount
+										if( perc != 1){
+											$j('#perc_done').html( Math.round(perc*1000)/1000 + '%');
+										}else{
+											var failHtlm = (failTest == 0)?failTest: '<span style="color:red">'+ failTest+'</span>';
+											$j('#score_card').html( 
+												'Passed: <span style="color:green">' + passTest + '</span> Failed:' + failHtlm );
+										}			
+									}else{
+										$t.html(' error ');
+									}
+								});
+							};
+							//pop off an anonymous function call
+							doPopWmMsg(mKey, numVal, numKey);
+						} 
+						o+='</tr>';										
+					}
+					//output a spacer:
+					o+='<tr><td colspan="6" height="20"> </td></tr>';			
+				});
+				//put the output into the page: 
+				$j('#table_out').append( o );
+			});
+		});// each lang key
+	}
+	//by default run the "debug" set:
+	doLangTable( langKeyDebug );
 });
+
 </script>
 </head>
 <body>
 <h3>Test Javascript plural msg transformations</h3>
 <div id="score_card" style="font-size:large"></div>
-<div id="table_out"></div>
+<table id="table_out"></table>
 
 
 </body>

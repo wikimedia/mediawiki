@@ -1,11 +1,6 @@
-This folder holds cached versions of grouped script requests (if running mwEmbed in stand-alone-mode.
-(otherwise  $wgFileCacheDirectory from mediaWiki is used) 
+This folder holds cached versions of grouped script requests
 
 Be sure to enable write access by your web-server to this directory. 
-  
-You can specify a different directory by updating the $wgFileCacheDirectory variable in noMediaWikiConfig.php
 
 You can empty this directory at any time and should not be a problem.
-
-You may want to update your include call since the script server sends long expire headers since it ment to work in conjunction with mediaWiki dynamic pages that output fresh request ids as scripts update. 
 

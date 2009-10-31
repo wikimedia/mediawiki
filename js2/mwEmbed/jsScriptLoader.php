@@ -173,19 +173,19 @@ class jsScriptLoader {
 			echo $this->jsout;
 		}
 	}
-	
-	function clientAcceptsGzip() {		
+
+	function clientAcceptsGzip() {
 		$m = array();
 		if( preg_match(
 			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
 			$_SERVER['HTTP_ACCEPT_ENCODING'],
 			$m ) ) {
-			if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) 
-				return false;				
+			if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) )
+				return false;
 			//no gzip support found
-			return true;	
-		}	
-		return false;	
+			return true;
+		}
+		return false;
 	}
 	/*
 	 * postProcRequestVars uses globals, configuration and mediaWiki to test wiki-titles and files exist etc.
@@ -206,6 +206,15 @@ class jsScriptLoader {
 			// Just give it the current style sheet ID:
 			// @@todo read the svn version number
 			$this->urid = $wgStyleVersion;
+		}
+
+		//get the language code (if not provided use the "default" language
+		if ( isset( $_GET['lang'] ) && $_GET['lang'] != '' ) {
+			//make sure its a valid lang code:
+			$this->langCode = preg_replace( "/[^A-Za-z]/", '', $_GET['lang']);
+		}else{
+			//set english as default
+			$this->langCode = 'en';
 		}
 
 		$reqClassList = false;
