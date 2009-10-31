@@ -102,7 +102,7 @@ $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Bağlantılarnıñ tübüni sız',
+'tog-underline'               => 'Bağlantılarnıñ tübüni sızuv:',
 'tog-highlightbroken'         => 'Boş bağlantılarnı <a href="" class="new">bu şekilde</a> (alternativ: <a href="" class="internal">bu şekilde</a>) köster.',
 'tog-justify'                 => 'Paragraf eki yaqqa yaslap tiz',
 'tog-hideminor'               => 'Kiçik deñişikliklerni "Soñki deñişiklikler" saifesinde gizle',
@@ -1468,7 +1468,7 @@ Yardım ve teklifler içün:
 'exblank'               => 'saife metini boş',
 'delete-confirm'        => '"$1" saifesini yoq etmektesiñiz',
 'delete-legend'         => 'Yoq etüv',
-'historywarning'        => 'Tenbi: Siz yoq etmek üzre olğan saifeniñ keçmişi bardır:',
+'historywarning'        => "'''Tenbi:''' Siz yoq etmege istegen saifeñizniñ $1 {{PLURAL:$1|versiyalı|versiyalı}} keçmişi bardır:",
 'confirmdeletetext'     => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
 Lütfen, neticelerini añlağanıñıznı ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
 'actioncomplete'        => 'Areket tamamlandı',

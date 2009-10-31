@@ -629,10 +629,10 @@ Base de dados retornou o erro "$3: $4"',
 Quem fez o bloqueio oferece a seguinte explicação: $1',
 'missing-article'      => 'A base de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome "$1" $2.
 
-Isto geralmente é causado pelo seguimento de uma ligação de diferença desactualizada ou de história de uma página que foi removida.
+Geralmente, esta situação deve ocorrer ao clicar numa ligação de diferenças desactualizada ou numa ligação para o histórico de uma página que tenha sido removida.
 
-Se não for este o caso, você pode ter encontrado um defeito no software.
-Por favor, reporte este facto a um [[Special:ListUsers/sysop|administrador]], tomando nota da URL.',
+Se nenhuma destas situações for o caso, pode ter encontrado um defeito no programa.
+Por favor, anote a URL e reporte este incidente a um [[Special:ListUsers/sysop|administrador]].',
 'missingarticle-rev'   => '(revisão#: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'A base de dados foi automaticamente bloqueada enquanto os servidores secundários se sincronizam com o principal',
@@ -651,7 +651,8 @@ Por favor, reporte este facto a um [[Special:ListUsers/sysop|administrador]], to
 'cannotdelete'         => 'Não foi possível eliminar a página ou ficheiro "$1".
 A sua eliminação pode ter sido já feita por outro utilizador.',
 'badtitle'             => 'Título inválido',
-'badtitletext'         => 'O título de página requisitado é inválido, vazio, ou uma ligação incorrecta de inter-linguagem ou título inter-wiki. Pode ser que ele contenha um ou mais caracteres que não podem ser utilizados em títulos.',
+'badtitletext'         => 'O título de página pedido era inválido, vazio, ou uma ligação interlíngua ou interwiki incorrecta.
+Talvez contenha um ou mais caracteres que não se podem usar em títulos.',
 'perfcached'           => 'Os dados seguintes encontram-se na cache e podem não estar actualizados.',
 'perfcachedts'         => 'Os seguintes dados encontram-se armazenados na cache e foram actualizados pela última vez a $1.',
 'querypage-no-updates' => 'Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.',
@@ -681,10 +682,10 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 'virus-unknownscanner' => 'antivírus desconhecido:',
 
 # Login and logout pages
-'logouttext'                 => "'''Você agora está desautenticado.'''
+'logouttext'                 => "'''Já não está autenticado.'''
 
 Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de utilizador ou com um nome de utilizador diferente.
-Tenha em atenção que algumas páginas poderão continuar a ser apresentadas como se você ainda estivesse autenticado até que a cache de seu navegador seja limpa.",
+Tenha em atenção que algumas páginas poderão continuar a ser apresentadas como se ainda estivesse autenticado até limpar a ''cache'' do seu navegador.",
 'welcomecreation'            => '== Bem-vindo, $1! ==
 A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
@@ -696,7 +697,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'externaldberror'            => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
 'login'                      => 'Autenticar-se',
 'nav-login-createaccount'    => 'Entrar / criar conta',
-'loginprompt'                => 'Você necessita de ter os <i>cookies</i> ligados para poder autenticar-se na {{SITENAME}}.',
+'loginprompt'                => "É necessário ter os ''cookies'' activados no seu navegador para poder autenticar-se na {{SITENAME}}.",
 'userlogin'                  => 'Criar uma conta ou entrar',
 'logout'                     => 'Sair',
 'userlogout'                 => 'Sair',
@@ -712,8 +713,13 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 Escolha um nome diferente.',
 'loginerror'                 => 'Erro de autenticação',
 'createaccounterror'         => 'Não foi possível criar a conta: $1',
-'nocookiesnew'               => 'A conta de utilizador foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor, os active, depois autentique-se com o seu nome de utilizador e a sua palavra-chave.',
-'nocookieslogin'             => 'Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para autenticar os utilizadores. Por favor active-os e tente novamente.',
+'nocookiesnew'               => "A conta de utilizador foi criada, mas neste momento não está autenticado.
+A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
+Os ''cookies'' estão desactivados no seu navegador.
+Por favor, active-os e autentique-se com o seu nome de utilizador e a sua palavra-chave.",
+'nocookieslogin'             => "A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
+Os ''cookies'' estão desactivados no seu navegador.
+Por favor, active-os e tente novamente.",
 'noname'                     => 'Você não colocou um nome de utilizador válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
@@ -760,7 +766,7 @@ Deve agora entrar e alterar a sua palavra-chave.
 
 Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'usernamehasherror'          => 'O nome de utilizador não pode conter o símbolo de cardinal (#).',
-'login-throttled'            => 'Você fez muitas tentativas recentes de se autenticar com esta conta.
+'login-throttled'            => 'Realizou demasiadas tentativas de autenticação com esta conta.
 Por favor, aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
@@ -864,7 +870,7 @@ Por favor, introduza e valide o seu e-mail através das [[Special:Preferences|pr
 Porque não existe uma secção $1, não há nenhum local onde a sua edição possa ser gravada.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
-'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',
+'loginreqpagetext'                 => 'Precisa de $1 para poder visualizar outras páginas.',
 'accmailtitle'                     => 'Palavra-chave enviada.',
 'accmailtext'                      => "Uma palavra-chave gerada aleatoriamente para [[User talk:$1|$1]] foi enviada para $2.
 
@@ -906,12 +912,12 @@ As modificações ainda não foram gravadas!",
 'session_fail_preview'             => "'''Não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente.
 Caso continue a não funcionar, tente [[Special:UserLogout|sair]] e voltar a entrar na sua conta.'''",
-'session_fail_preview_html'        => "'''Não foi possível processar a sua edição devido à perda dos dados de sessão.'''
+'session_fail_preview_html'        => "'''Não foi possível processar a sua edição devido à perda dos dados da sessão.'''
 
 ''Como a wiki {{SITENAME}} possibilita o uso de HTML bruto, a antevisão está oculta por precaução contra ataques com JavaScript.''
 
 '''Se esta é uma tentativa legítima de edição tente novamente, por favor.'''
-Caso continue a não funcionar, tente [[Special:UserLogout|desautenticar-se]] e voltar a entrar na sua conta.",
+Caso continue a não funcionar, tente [[Special:UserLogout|{{lc:{{MediaWiki:logout/pt}}}}]] e voltar a entrar na sua conta.",
 'token_suffix_mismatch'            => "'''A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação no identificador de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
 'editing'                          => 'Editando $1',
@@ -962,7 +968,7 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 'nocreate-loggedin'                => 'Você não possui permissões de criar novas páginas.',
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
+'permissionserrorstext-withaction' => 'Não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'recreate-moveddeleted-warn'       => "'''Aviso: Está a recriar uma página anteriormente eliminada.'''
 
 Verifique se é apropriado continuar a editar esta página.
@@ -1482,12 +1488,12 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'action-createaccount'        => 'criar esta conta de utilizador',
 'action-minoredit'            => 'marcar esta edição como uma edição menor',
 'action-move'                 => 'mover esta página',
-'action-move-subpages'        => 'mover esta página e suas subpáginas',
+'action-move-subpages'        => 'mover esta página e as respectivas subpáginas',
 'action-move-rootuserpages'   => 'mover páginas raiz de utilizadores',
 'action-movefile'             => 'mover este ficheiro',
 'action-upload'               => 'enviar este ficheiro',
-'action-reupload'             => 'sobrescrever o ficheiro existente',
-'action-reupload-shared'      => 'sobrescrever este ficheiro disponível em um repositório partilhado',
+'action-reupload'             => 'sobrepor este ficheiro existente',
+'action-reupload-shared'      => 'sobrepor este ficheiro num repositório partilhado',
 'action-upload_by_url'        => 'enviar este ficheiro através de uma URL',
 'action-writeapi'             => 'utilizar o modo de escrita da API',
 'action-delete'               => 'eliminar esta página',
@@ -1502,7 +1508,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'action-import'               => 'importar esta página a partir de outra wiki',
 'action-importupload'         => 'importar esta página a partir de um ficheiro xml',
 'action-patrol'               => 'marcar as edições de outros utilizadores como patrulhadas',
-'action-autopatrol'           => 'ter suas edições marcadas como patrulhadas',
+'action-autopatrol'           => 'marcar como patrulhadas as suas próprias edições',
 'action-unwatchedpages'       => 'ver a lista de páginas não-vigiadas',
 'action-trackback'            => 'enviar um trackback',
 'action-mergehistory'         => 'fundir o histórico de edições desta página',
@@ -1603,7 +1609,7 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualizaç�
 {{PLURAL:\$3|O tipo permitido é|Os tipos permitidos são}} \$2.",
 'filetype-missing'            => 'O ficheiro não possui uma extensão (como, por exemplo, ".jpg").',
 'large-file'                  => 'É recomendável que os ficheiros não sejam maiores que $1; este possui $2.',
-'largefileserver'             => 'O tamanho deste ficheiro é superior ao qual o servidor encontra-se configurado para permitir.',
+'largefileserver'             => 'O tamanho deste ficheiro é superior ao permitido pela configuração do servidor.',
 'emptyfile'                   => 'O ficheiro que está a tentar carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do ficheiro. Por favor verifique se realmente deseja carregar este ficheiro.',
 'fileexists'                  => "Já existe um ficheiro com este nome.
 Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja alterar o ficheiro actual.
@@ -1647,7 +1653,8 @@ Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um no
 'upload-description'          => 'Descrição do ficheiro',
 'upload-options'              => 'Opções de transferência para o servidor',
 'watchthisupload'             => 'Vigiar este ficheiro',
-'filewasdeleted'              => 'Um ficheiro com este nome foi carregado anteriormente e subsequentemente eliminado. Você precisa verificar o $1 antes de proceder ao carregamento novamente.',
+'filewasdeleted'              => 'Um ficheiro com este nome foi carregado anteriormente e subsequentemente eliminado.
+Deverá verificar o $1 antes de voltar a carregá-lo.',
 'upload-wasdeleted'           => "'''Aviso: Está a enviar um ficheiro anteriormente eliminado.'''
 
 Verifique se é apropriado prosseguir este envio.
@@ -1689,7 +1696,7 @@ Pode ser baseado em CGI e não suportar img_auth.
 Veja http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
 'img-auth-badtitle'     => 'Não é possível construir um título válido a partir de "$1".',
-'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na "lista branca".',
+'img-auth-nologinnWL'   => 'Não está autenticado e o ficheiro "$1" não está na "lista branca".',
 'img-auth-nofile'       => 'O ficheiro "$1" não existe.',
 'img-auth-isdir'        => 'Está tentando aceder à pasta "$1".
 Só é permitido o acesso a ficheiros.',
@@ -1767,7 +1774,7 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 # File reversion
 'filerevert'                => 'Reverter $1',
 'filerevert-legend'         => 'Reverter ficheiro',
-'filerevert-intro'          => "Você está revertendo '''[[Media:$1|$1]]''' para a [$4 versão das $3 de $2].",
+'filerevert-intro'          => "Está prestes a reverter o ficheiro '''[[Media:$1|$1]]''' para a [$4 versão das $3 de $2].",
 'filerevert-comment'        => 'Comentário:',
 'filerevert-defaultcomment' => 'Revertido para a versão de $1 - $2',
 'filerevert-submit'         => 'Reverter',
@@ -1955,8 +1962,8 @@ Pode reduzir a lista escolhendo um tipo de registo, o nome de utilizador (sensí
 'allpagesnext'      => 'Próximo',
 'allpagessubmit'    => 'Ir',
 'allpagesprefix'    => 'Apresentar páginas com o prefixo:',
-'allpagesbadtitle'  => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki.
-Ele talvez contenha um ou mais caracteres que não podem ser utilizados em títulos.',
+'allpagesbadtitle'  => 'O título de página fornecido era inválido ou tinha um prefixo de ligação interlíngua ou interwiki.
+Talvez contenha um ou mais caracteres que não se podem usar em títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} não possui o espaço nominal "$1".',
 
 # Special:Categories
@@ -1979,8 +1986,8 @@ Veja também as [[Special:WantedCategories|{{MediaWiki:wantedcategories/pt}}]].'
 'linksearch-ns'    => 'Espaço nominal:',
 'linksearch-ok'    => 'Pesquisar',
 'linksearch-text'  => 'É possível utilizar "caracteres mágicos" como em "*.wikipedia.org".<br />Protocolos suportados: <tt>$1</tt>',
-'linksearch-line'  => '$1 está lincado em $2',
-'linksearch-error' => '"Caracteres mágicos" (wildcards) podem ser utilizados apenas no início do endereço.',
+'linksearch-line'  => 'Ligação para $1 na página $2',
+'linksearch-error' => "Caracteres de substituição ''(wildcards)'' só podem ser utilizados no início do endereço.",
 
 # Special:ListUsers
 'listusersfrom'      => 'Mostrar utilizadores começando em:',
@@ -1990,8 +1997,8 @@ Veja também as [[Special:WantedCategories|{{MediaWiki:wantedcategories/pt}}]].'
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista de utilizadores ativos',
-'activeusers-intro'    => 'Esta é uma lista dos utilizadores com qualquer actividade nos últimos $1 {{PLURAL:$1|dia|dias}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}} {{PLURAL:$3|no último dia|nos últimos $3 days}}',
+'activeusers-intro'    => 'Esta é uma lista dos utilizadores com qualquer actividade {{PLURAL:$1|no último dia|nos últimos $1 dias}}.',
+'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
 'activeusers-from'     => 'Mostrar utilizadores começando em:',
 'activeusers-noresult' => 'Nenhum utilizador encontrado.',
 
@@ -2439,15 +2446,15 @@ $1 já se encontra bloqueado. Deseja alterar as configurações?',
 # Developer tools
 'lockdb'              => 'Trancar base de dados',
 'unlockdb'            => 'Destrancar base de dados',
-'lockdbtext'          => 'Trancar a base de dados suspenderá a habilidade de todos os utilizadores de editarem páginas, mudarem suas preferências, lista de vigiados e outras coisas que requerem mudanças na base de dados.
-Por favor, confirme que você realmente pretende fazer isso e que vai destrancar a base de dados quando a manutenção estiver concluída.',
+'lockdbtext'          => 'Trancar a base de dados impedirá todos os utilizadores de editar páginas, mudar as suas preferências, editar a lista de vigiados e de qualquer outra acção que requer mudanças na base de dados.
+Por favor, confirme que é precisamente isso que pretende fazer e que vai destrancar a base de dados quando a manutenção estiver concluída.',
 'unlockdbtext'        => 'Desbloquear a base de dados vai restaurar a habilidade de todos os utilizadores de editarem páginas,  mudarem suas preferências, alterarem suas listas de vigiados e outras coisas que requerem mudanças na base de dados.
 Por favor, confirme que realmente pretende fazer isso.',
 'lockconfirm'         => 'Sim, eu realmente desejo bloquear a base de dados.',
 'unlockconfirm'       => 'Sim, eu realmente desejo desbloquear a base de dados.',
 'lockbtn'             => 'Bloquear base de dados',
 'unlockbtn'           => 'Desbloquear base de dados',
-'locknoconfirm'       => 'Você não seleccionou a caixa de confirmação.',
+'locknoconfirm'       => 'Não marcou a caixa de confirmação.',
 'lockdbsuccesssub'    => 'Bloqueio bem sucedido',
 'unlockdbsuccesssub'  => 'Desbloqueio bem sucedido',
 'lockdbsuccesstext'   => 'A base de dados da {{SITENAME}} foi bloqueada.<br />
@@ -2789,13 +2796,13 @@ Este bloqueio foi provavelmente causado por uma ligação para um sítio externo
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como patrulhada',
 'markaspatrolledtext'                 => 'Marcar esta página como patrulhada',
-'markedaspatrolled'                   => 'Marcado como patrulhado',
+'markedaspatrolled'                   => 'Marcada como patrulhada',
 'markedaspatrolledtext'               => 'A edição seleccionada foi marcada como patrulhada.',
 'rcpatroldisabled'                    => 'Edições patrulhadas nas Mudanças Recentes desactivadas',
 'rcpatroldisabledtext'                => 'A funcionalidade de edições patrulhadas nas Mudanças Recentes está actualmente desactivada.',
 'markedaspatrollederror'              => 'Não é possível marcar como patrulhada',
 'markedaspatrollederrortext'          => 'É necessário especificar uma edição a ser marcada como patrulhada.',
-'markedaspatrollederror-noautopatrol' => 'Você não está autorizado a marcar suas próprias edições como edições patrulhadas.',
+'markedaspatrollederror-noautopatrol' => 'Não está autorizado a marcar as suas próprias edições como edições patrulhadas.',
 
 # Patrol log
 'patrol-log-page'      => 'Registo de edições patrulhadas',
@@ -3237,7 +3244,7 @@ Tente a previsão comum.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Alterações realizadas {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} podem não constar desta lista.',
-'lag-warn-high'   => 'Devido à latência elevada do servidor da base de dados, as alterações realizadas {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} podem não constar desta lista.',
+'lag-warn-high'   => 'Devido a latência elevada do servidor da base de dados, as alterações realizadas {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} podem não constar desta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'A sua lista de vigiados possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',
@@ -3369,11 +3376,11 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Existem problemas com alguns dos dados introduzidos',
-'htmlform-select-badoption'    => 'O valor que você especificou não é uma opção válida.',
-'htmlform-int-invalid'         => 'O valor que você especificou não é um inteiro.',
+'htmlform-select-badoption'    => 'O valor que especificou não é uma opção válida.',
+'htmlform-int-invalid'         => 'O valor que especificou não é um inteiro.',
 'htmlform-float-invalid'       => 'O valor que especificou não é um número.',
-'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',
-'htmlform-int-toohigh'         => 'O valor que você especificou está acima do máximo de $1',
+'htmlform-int-toolow'          => 'O valor que especificou é inferior ao mínimo de $1',
+'htmlform-int-toohigh'         => 'O valor que especificou é superior ao máximo de $1',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',

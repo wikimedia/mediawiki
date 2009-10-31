@@ -2418,6 +2418,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipb_already_blocked'             => '"$1" már blokkolva',
 'ipb-needreblock'                 => '== Már blokkolva ==
 $1 már blokkolva van. Meg szeretnéd változtatni a beállításokat?',
+'ipb-otherblocks-header'          => 'További {{PLURAL:$1|blokk|blokkok}}',
 'ipb_cant_unblock'                => 'Hiba: A(z) $1 blokkolási azonosító nem található. Lehet, hogy már feloldották a blokkolását.',
 'ipb_blocked_as_range'            => 'Hiba: a(z) $1 IP-cím nem blokkolható közvetlenül, és nem lehet feloldani. A(z) $2 tartomány részeként van blokkolva, amely feloldható.',
 'ip_range_invalid'                => 'Érvénytelen IP-tartomány.',

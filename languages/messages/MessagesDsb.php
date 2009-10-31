@@ -855,6 +855,7 @@ Legenda:
 * (Aktualne) = Rozdźěl k aktualnej wersiji, (pśedchadna) = rozdźěl k pśedchadnej wersiji
 * Cas/datum = W toś tom casu aktualna wersija, wužywarske mě/IP-adresa wobźěłarja, D = drobna změna',
 'history-fieldset-title' => 'W stawiznach pytaś',
+'history-show-deleted'   => 'Jano wulašowane',
 'histfirst'              => 'nejstarše',
 'histlast'               => 'nejnowše',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 byta|$1 byty}})',
@@ -891,7 +892,12 @@ Ako administrator móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic 
 'rev-suppressed-unhide-diff'  => "Jadna z wersijow twójogo rozdźěla jo se '''pódtłócyła'''.
 Za drobnostki glědaj [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokol pódłócenjow].
 Ako administrator móžoš hyšći [$1 se toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
+'rev-deleted-diff-view'       => "Jadna z wersijow toś togo rozdźěla jo se '''wulašowała'''.
+Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-suppressed-diff-view'    => "Jadna z wersijow toś togo rozdźěla jo se '''pódtłocyła'''.
+Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
 'rev-delundel'                => 'pokazaś/schowaś',
+'rev-showdeleted'             => 'pokazaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
 'revdelete-nooldid-title'     => 'Njepłaśiwa celowa wersija',
 'revdelete-nooldid-text'      => 'Njejsy pak žednu celowu wersiju pódał, aby se toś ta funkcija wuwjadła, pódana funkcija njeeksistěrujo pak wopytujoš aktualnu wersiju chowaś.',
@@ -906,6 +912,7 @@ Ako administrator móžoš hyšći [$1 se toś ten rozdźěl woglědaś], jolic 
 'logdelete-selected'          => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
 'revdelete-text'              => "'''Wulašowane wersije a tšojenja budu se dalej w stawiznach boka a w protokolach pokazaś, ale źěle jich wopśimjeśa njebudu pśistupne za zjawnosć.'''
 Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći pśistup na schowane wopśimjeśe měś a mógu jo pśez samki interfejs wótnowiś,  snaźkuli su pśidatne wobgranicowanja.",
+'revdelete-confirm'           => 'Pšosym wobkšuś, až coš to cyniś, až rozmějoš konsekwence a až cyniš to pó [[{{MediaWiki:Policy-url}}|pšawidłach]].',
 'revdelete-suppress-text'     => "Pódtłocenje by se dejał '''jano''' za slědujuce pady wužywaś:
 * Njegóźece se wósobinske informacije
 *: ''bydleńske adrese a telefonowe numery, numery socialnego zawěsćenja atd.''",
@@ -2179,6 +2186,8 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokě
 'ipblocklist-sh-tempblocks'       => 'nachylne blokěrowanja $1',
 'ipblocklist-sh-addressblocks'    => 'Blokěrowanja jadnotliwych IP $1',
 'ipblocklist-submit'              => 'Pytaś',
+'ipblocklist-localblock'          => 'Lokalne blokěrowanje',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Druge blokěrowanje|Drugej blokěrowani|Druge blokěrowanja|Druge blokěrowanja}}',
 'blocklistline'                   => '$1, $2 jo blokěrował $3 (až do $4)',
 'infiniteblock'                   => 'njewobgranicowany',
 'expiringblock'                   => 'pśepadnjo $1 $2',
@@ -2217,6 +2226,7 @@ Na boce [[Special:IPBlockList|Lisćina blokěrowanych IP-adresow a wužywarskich
 'ipb_already_blocked'             => '"$1" jo južo blokěrowany.',
 'ipb-needreblock'                 => '== Južo zablokěrowany ==
 $1 jo južo zablokěrowany. Coš nastajenja změniś?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Druge blokěrowanje|Drugej blokěrowani|Druge blokěrowanja|Druge blokěrowanja}}',
 'ipb_cant_unblock'                => 'Zmólka: Blokěrowańska ID $1 njejo se namakała. Blokěrowanje jo było južo wótpórane.',
 'ipb_blocked_as_range'            => 'Zmólka: IP-adresa $1 njejo direktnje blokěrowana a njeda se wótblokěrowaś. Jo pak ako źěl wobcerka $2 blokěrowana, kótaryž da se wótblokěrowaś.',
 'ip_range_invalid'                => 'Njepłaśecy wobłuk IP-adresow.',

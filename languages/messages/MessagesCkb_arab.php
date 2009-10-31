@@ -2088,7 +2088,7 @@ $1',
 'sp-contributions-talk'          => 'قسە',
 'sp-contributions-userrights'    => 'بەڕێوبەرایەتی مافەکانی بەکارهێنەر',
 'sp-contributions-search'        => 'گەڕین بۆ بەشدارییەکان',
-'sp-contributions-username'      => 'ئەدرەسی IP یان بەکارھێنەر:',
+'sp-contributions-username'      => 'ئەدرەسی IP یا ناوی بەکارھێنەری:',
 'sp-contributions-submit'        => 'بگەڕە',
 
 # What links here
