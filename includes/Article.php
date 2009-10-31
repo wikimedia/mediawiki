@@ -3463,8 +3463,8 @@ class Article {
 			} else {
 				$query = array(
 					'type'   => 'revision',
-					'target' => urlencode( $this->mTitle->getPrefixedDbkey() ),
-					'ids'    => urlencode( $oldid )
+					'target' => $this->mTitle->getPrefixedDbkey(),
+					'ids'    => $oldid
 				);
 				$cdel = $sk->revDeleteLink( $query, $revision->isDeleted(File::DELETED_RESTRICTED), $canHide );
 			}
