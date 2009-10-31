@@ -1572,6 +1572,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'file-deleted-duplicate'      => 'Tiedosto, joka on identtinen tämän tiedoston kanssa ([[$1]]) on aiemmin poistettu. Katso kyseisen tiedoston poistoloki ennen kuin jatkat uudelleentallentamista.',
 'successfulupload'            => 'Tallennus onnistui',
 'uploadwarning'               => 'Tallennusvaroitus',
+'uploadwarning-text'          => 'Muuta alla olevaa tiedostokuvausta ja yritä uudelleen.',
 'savefile'                    => 'Tallenna',
 'uploadedimage'               => 'tallensi tiedoston [[$1]]',
 'overwroteimage'              => 'tallensi uuden version [[$1]]',
@@ -2323,6 +2324,7 @@ Alla on ote häivytyslokista.',
 'ipb_already_blocked'             => '”$1” on jo estetty.',
 'ipb-needreblock'                 => '== Estetty jo ==
 $1 on jo estetty. Haluatko muuttaa eston asetuksia?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Muu esto|Muut estot}}',
 'ipb_cant_unblock'                => 'Estoa ”$1” ei löytynyt. Se on saatettu poistaa.',
 'ipb_blocked_as_range'            => 'IP-osoite $1 on estetty välillisesti ja sen estoa ei voi poistaa. Se on estetty osana verkkoaluetta $2, jonka eston voi poistaa',
 'ip_range_invalid'                => 'Virheellinen IP-alue.',
@@ -2425,6 +2427,8 @@ $1 {{PLURAL:$1|sivu|sivua}} siirrettiin.',
 'move-leave-redirect'          => 'Jätä paikalle ohjaus',
 'protectedpagemovewarning'     => "'''Varoitus:''' Tämä sivu on lukittu siten, että vain ylläpitäjät voivat siirtää sitä.",
 'semiprotectedpagemovewarning' => "Tämä sivu on '''lukittu''' siten, että vain rekisteröityneet käyttäjät voivat siirtää sitä.",
+'file-exists-sharedrepo'       => 'Valittu tiedostonimi on jo käytössä jaetussa varastossa.
+Valitse toinen nimi.',
 
 # Export
 'export'            => 'Sivujen vienti',

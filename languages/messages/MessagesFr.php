@@ -2461,6 +2461,7 @@ Consultez la [[Special:IPBlockList|liste des IP bloquées]] pour voir les bannis
 'ipb_already_blocked'             => '« $1 » est déjà bloqué',
 'ipb-needreblock'                 => '== Déjà bloqué ==
 $1 est déjà bloqué. Voulez-vous modifier les paramètres ?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Autre blocage|Autres blocages}}',
 'ipb_cant_unblock'                => 'Erreur : identifiant de blocage $1 non trouvé.
 Il est possible qu’un déblocage ait déjà été effectué.',
 'ipb_blocked_as_range'            => 'Erreur : l’adresse IP $1 n’est pas bloquée directement et ne peut donc pas être débloquée.

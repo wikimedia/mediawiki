@@ -254,7 +254,7 @@ süi titul dai sezziún (JavaScript)',
 'errorpagetitle'    => 'Erur',
 'returnto'          => 'Turna indré a $1.',
 'tagline'           => 'De {{SITENAME}}',
-'help'              => 'Pàgin da jütt',
+'help'              => 'Paginn de jüt',
 'search'            => 'Cerca',
 'searchbutton'      => 'Cerca',
 'go'                => 'Innanz',
@@ -756,10 +756,11 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'listredirects' => 'Listá i pagin re-indirizzaa',
 
 # Unused templates
-'unusedtemplates' => 'Templat mia druvaa',
+'unusedtemplates'    => 'Templat mia druvaa',
+'unusedtemplateswlh' => 'alter culegament',
 
 # Random page
-'randompage' => 'Página a caas',
+'randompage' => 'Una pagina a cas',
 
 # Statistics
 'statistics'              => 'Statistich',
@@ -813,7 +814,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'allpages'       => 'Tücc i pagin',
 'alphaindexline' => 'de $1 a $2',
 'prevpage'       => 'Pagina prima ($1)',
-'allpagesfrom'   => 'Famm vedè i pagin a partì de:',
+'allpagesfrom'   => 'Fàm vedè i paginn a partì da:',
 'allpagesto'     => 'Fàm ved i paginn fín a:',
 'allarticles'    => 'Tucc i artícoj',
 'allpagesprev'   => 'Precedent',
@@ -1091,8 +1092,8 @@ Che te scernet, per piasè, un nom diferent per quel articul chì.",
 'tooltip-n-portal'                => "Descripzion del proget, cossa ch'a podé far, dond trovar vergòt",
 'tooltip-n-currentevents'         => "Informazion ansima a vergòt ch'al riva.",
 'tooltip-n-recentchanges'         => 'Lista de canviamenc recenc del wiki',
-'tooltip-n-randompage'            => "Càrrega una pàgina a l'azard",
-'tooltip-n-help'                  => "Pàgini d'aida",
+'tooltip-n-randompage'            => 'Carega una pagina a cas',
+'tooltip-n-help'                  => 'Paginn de jüt',
 'tooltip-t-whatlinkshere'         => "Lista de tuti li pàgini wiki ch'i liga scià",
 'tooltip-t-recentchangeslinked'   => 'Canviamenc recenc en li pàgini ligadi a chesta',
 'tooltip-feed-rss'                => 'Feed RSS per chesta pàgina',

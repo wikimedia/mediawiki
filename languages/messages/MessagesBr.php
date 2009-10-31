@@ -575,7 +575,7 @@ Merkit ur chomlec'h reizh pe goullonderit ar vaezienn-mañ.",
 Mat e vefe deoc\'h en em lugañ ha cheñch ho ker-tremen bremañ.
 
 Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
-'usernamehasherror'          => "N''haller ket ober gant an arouezenn # en anvioù an implijerien",
+'usernamehasherror'          => "N'haller ket ober gant an arouezenn # en anvioù an implijerien",
 'login-throttled'            => "Re oc'h eus klasket en em lugañ en aner. 
 Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
@@ -857,6 +857,10 @@ Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
 'rev-suppressed-unhide-diff'  => "'''Diverket''' ez eus bet unan eus adweladennoù an diff-mañ.
 Titouroù ouzhpenn a c'hall bezañ war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
 Evel merour e c'hallit atav [$1 sellet ouzh an diff-se] mar fell deoc'h kenderc'hel.",
+'rev-deleted-diff-view'       => "'''Dilamet''' ez eus bet unan eus stummoù an dif.-mañ.
+Evel merour e c'hallit gwelet an dif.-mañ; muioc'h a ditouroù a c'hall bezañ e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù]",
+'rev-suppressed-diff-view'    => "'''Diverket''' ez eus bet unan eus stummoù an dif.-mañ.
+Evel merour e c'hallit gwelet an dif.-mañ; muioc'h a ditouroù a c'hall bezañ e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù]",
 'rev-delundel'                => 'diskouez/kuzhat',
 'rev-showdeleted'             => 'diskouez',
 'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
@@ -2217,6 +2221,7 @@ Setu aze an abeg(où) m\'eo bet stanket $1 : "$2$',
 'ipb_already_blocked'             => 'Stanket eo "$1" dija',
 'ipb-needreblock'                 => "== Stanket dija ==
 Stanket eo $1 c'hoazh. Kemmañ an arventennoù a fell deoc'h ?",
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Stankadenn|Stankadnenoù}} all',
 'ipb_cant_unblock'                => "Fazi: N'eo ket stanket an ID $1. Moarvat eo bet distanket c'hoazh.",
 'ipb_blocked_as_range'            => "Fazi : N'eo ket bet stanket ar chomlec'h IP $1 war-eeun, setu n'hall ket bezañ distanket. Stanket eo bet dre al live $2 avat, hag a c'hall bezañ distanket.",
 'ip_range_invalid'                => 'Stankañ IP direizh.',

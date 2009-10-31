@@ -1454,13 +1454,13 @@ This action allows editing of all of the "user rights", not just the rights of t
 * $5 is a time alone.
 
  Example: "\'\'Below are the last 50 changes in the last 7 days, as of 14:48, 24 January 2008.\'\'"',
-'rcnotefrom'                       => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
+'rcnotefrom'                       => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time. The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
 
 Parameter $1 is the maximum number of changes that are displayed.
 Parameter $2 is a date and time.
 Parameter $3 is a date.
 Parameter $4 is a time.',
-'rclistfrom'                       => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description.',
+'rclistfrom'                       => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor'                  => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidebots'                   => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].
 
@@ -2361,7 +2361,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'ipblocklist-localblock'       => '[[File:Special IPBlockList new.png|thumb|Example]]
 Used on [[Special:IPBlockList]] as header when global blocks exists too.',
 'ipblocklist-otherblocks'      => '[[File:Special IPBlockList new.png|thumb|Example]]
-Used on [[Special:IPBlockList]] as header for global blocks',
+Used on [[Special:IPBlockList]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks.',
 'blocklistline'                => 'This is the text of an entry in the [[Special:BlockList]].
 * $1 is the hour and date of the block. 
 * $2 is the sysop. 
@@ -2418,6 +2418,8 @@ See also {{msg-mw|Blocklistline}}.',
 'block-log-flags-nousertalk'   => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
 'ipb_expiry_temp'              => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
 'ipb_already_blocked'          => '{{Identical|$1 is already blocked}}',
+'ipb-otherblocks-header'       => '[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]
+Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks',
 'blockme'                      => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'sorbs'                        => '{{optional}}',
 

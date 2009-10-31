@@ -2385,6 +2385,7 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:IPB
 'ipb_already_blocked'             => '„$1” jest już zablokowany',
 'ipb-needreblock'                 => '== Istniejąca blokada ==
 $1 jest już zablokowany. Czy chcesz zmienić ustawienia blokady?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Inna blokada|Inne blokady}}',
 'ipb_cant_unblock'                => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać zdjęta wcześniej.',
 'ipb_blocked_as_range'            => 'Błąd – adres IP $1 nie został zablokowany bezpośrednio i nie może zostać odblokowany.
 Należy on do zablokowanego zakresu adresów $2. Odblokować można tylko cały zakres.',

@@ -2384,6 +2384,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'ipb-needreblock'                 => '== Disse gebruker is al eblokkeerd ==
 $1 is al eblokkeerd.
 Wi-j de instellingen wiezigen?',
+'ipb-otherblocks-header'          => 'Aandere {{PLURAL:$1|blokkering|blokkeringen}}',
 'ipb_cant_unblock'                => "Foutmelding: blokkade ID $1 neet evunnen, 't is meschien al edeblokkeerd.",
 'ipb_blocked_as_range'            => "Fout: 't IP-adres $1 is neet drek eblokkeerd en de blokkering kan neet op-eheven wönnen.
 De blokkering is onderdeel van de reeks $2, waorvan de blokkering wel op-eheven kan wönnen.",

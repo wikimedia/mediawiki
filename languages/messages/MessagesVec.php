@@ -897,6 +897,7 @@ Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de
 Consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
 I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
 'rev-delundel'                => 'mostra/scondi',
+'rev-showdeleted'             => 'mostra',
 'revisiondelete'              => 'Scanceła o ripristina version',
 'revdelete-nooldid-title'     => 'Version mìa specificà',
 'revdelete-nooldid-text'      => 'No xe stà specificà alcuna version de la pagina su cui eseguir sta funzion.',

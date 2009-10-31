@@ -13,6 +13,7 @@
  * @author Matasg
  * @author Meno25
  * @author Pdxx
+ * @author Pėstininkas
  * @author Siggis
  * @author Tomasdd
  * @author Urhixidur
@@ -491,9 +492,9 @@ $1',
 Galbūt Jūs padarėte klaidą adrese ar paspaudėte ant neteisingos nuorodos.
 Šios problemos priežastis taip pat gali būti klaida programinėje įrangoje, kurią naudoja {{SITENAME}}.',
 'nosuchspecialpage' => 'Nėra tokio specialiojo puslapio',
-'nospecialpagetext' => '<strong>Jūs prašėte neleistino specialiojo puslapio</strong>
+'nospecialpagetext' => '<strong>Toks specialusis puslapis neegzistuoja</strong>
 
-Leistinų specialiųjų puslapių sąrašą galite rasti [[Special:SpecialPages|specialiųjų puslapių sąraše]].',
+Egzistuojančių specialiųjų puslapių sąrašą galite rasti [[Special:SpecialPages|specialiųjų puslapių sąraše]].',
 
 # General errors
 'error'                => 'Klaida',
@@ -702,15 +703,15 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'subject'                          => 'Tema/antraštė:',
 'minoredit'                        => 'Tai smulkus pataisymas',
 'watchthis'                        => 'Stebėti šį puslapį',
-'savearticle'                      => 'Įrašyti puslapį',
+'savearticle'                      => 'Išsaugoti puslapį',
 'preview'                          => 'Peržiūra',
 'showpreview'                      => 'Rodyti peržiūrą',
 'showlivepreview'                  => 'Tiesioginė peržiūra',
 'showdiff'                         => 'Rodyti skirtumus',
 'anoneditwarning'                  => "'''Dėmesio:''' Jūs nesate prisijungęs. Jūsų IP adresas bus įrašytas į šio puslapio istoriją.",
-'missingsummary'                   => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
+'missingsummary'                   => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įšsaugoti, jūsų keitimas bus išsaugotas be jo.",
 'missingcommenttext'               => 'Prašome įvesti komentarą.',
-'missingcommentheader'             => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
+'missingcommentheader'             => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Išsaugoti, jūsų keitimas bus įrašytas be jo.",
 'summary-preview'                  => 'Komentaro peržiūra:',
 'subject-preview'                  => 'Skyrelio/antraštės peržiūra:',
 'blockedtitle'                     => 'Naudotojas yra užblokuotas',

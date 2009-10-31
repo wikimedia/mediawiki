@@ -2441,6 +2441,7 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'ipb_already_blocked'             => '„$1“ wurde bereits gesperrt.',
 'ipb-needreblock'                 => '== Sperre vorhanden ==
 „$1“ ist bereits gesperrt. Möchtest du die Sperrparameter ändern?',
+'ipb-otherblocks-header'          => 'Andere {{PLURAL:$1|Sperre|Sperren}}',
 'ipb_cant_unblock'                => 'Fehler: Sperr-ID $1 nicht gefunden. Die Sperre wurde bereits aufgehoben.',
 'ipb_blocked_as_range'            => 'Fehler: Die IP-Adresse $1 wurde als Teil der Bereichssperre $2 indirekt gesperrt. Eine Entsperrung von $1 alleine ist nicht möglich.',
 'ip_range_invalid'                => 'Ungültiger IP-Adressbereich.',

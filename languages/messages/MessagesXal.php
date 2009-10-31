@@ -91,7 +91,7 @@ $messages = array(
 'hidden-categories'      => '{{PLURAL:$1|Бултулсн янз|Бултулсн янзс}}',
 'listingcontinuesabbrev' => '(цааранднь)',
 
-'article'    => 'Бичг',
+'article'    => 'Зүүл',
 'newwindow'  => '(шин терзд)',
 'cancel'     => 'Уга кех',
 'mytalk'     => 'Күүндлһн бәәрм',
@@ -134,7 +134,7 @@ $messages = array(
 'otherlanguages'   => 'Талдан келнд',
 'redirectedfrom'   => '($1 гидг һазрас авч одсмн)',
 'redirectpagesub'  => 'Авч оддг халх',
-'lastmodifiedat'   => 'Эн халхна кенз чиклһн: $2, $1.',
+'lastmodifiedat'   => 'Эн халхна шидрә чиклһн: $2, $1.',
 'jumpto'           => 'Тал ирх:',
 'jumptonavigation' => 'Һазр медлһн',
 'jumptosearch'     => 'хәәлһн',
@@ -162,7 +162,7 @@ $messages = array(
 'retrievedfrom'       => '"$1" гидг халхас йовулсн',
 'youhavenewmessages'  => 'Та $1та бәәнәт ($2).',
 'newmessageslink'     => 'шин зәңгс',
-'newmessagesdifflink' => 'кенз сольлһн',
+'newmessagesdifflink' => 'шидрә сольлһн',
 'editsection'         => 'чиклх',
 'editold'             => 'чиклх',
 'editlink'            => 'чиклх',
@@ -272,7 +272,7 @@ $messages = array(
 'editing'                          => '«$1» гидг халхиг чикллһн',
 'editingsection'                   => '«$1» гидг халхна чикллһн (хүв)',
 'copyrightwarning'                 => "Буйн болтха, цуг өгүллһдүд {{SITENAME}} төлә $2 гидг закаһар кесн, тоолсн бәәдг тускар тодлтн (Дәкәд өггцд төлә $1 хәләтн).  Та тана бичсн чилклсн аль делгрңсн бәәҗ седхлә биш, эн ормд бичә бичтн.<br /> Дәкәд та маднд эн эврәнь бичсн, күмн әмтнә хазас аль цацу сул медснәс бәәдг үгән өгнәт. '''Зөвән авхла уга, харссн бичсн күүнә көдлмш бичә тәвтн!'''",
-'copyrightwarning2'                => "Буйн болтха, цуг өгүллһдүд {{SITENAME}} төлә чиклсн аль һарһсн бәәдг чадта тускар тодлтн.  Та тана бичсн чилклсн аль делгрңсн бәәҗ седхлә биш, эн ормд бичә бичтн.<br /> Дәкәд та маднд эн эврәнь бичсн, күмн әмтнә хазас аль цацу сул медснәс бәәдг үгән өгнәт. '''Зөвән авхла уга, харссн бичсн күүнә көдлмш бичә тәвтн!'''",
+'copyrightwarning2'                => "Буйн болтха, цуг өгүллһдүд {{SITENAME}} төлә чиклсн аль һарһсн бәәдг чадта тускар тодлтн.  Та тана бичсн чилклсн аль делгрңсн бәәҗ седхлә биш, эн ормд бичә бичтн.<br /> Дәкәд та маднд эн эврәнь бичсн, күмн әмтнә хазас аль цацу сул медснәс бәәдг үгән өгнәт ($1 хәләтн). '''Зөвән авхла уга, харссн бичсн күүнә көдлмш бичә тәвтн!'''",
 'templatesused'                    => 'Эн халхд олзлсн {{PLURAL:$1|зурас|зурас}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Зура|Зурас}} эн хәләврт олзлсн:',
 'template-protected'               => '(харссн)',
@@ -293,7 +293,7 @@ $messages = array(
 'histlegend'             => "Тәәлвр: (ода) — одачн янзас йилһән; (урдк) — урдк янзас йилһән; '''б''' — баһ хүврлһн",
 'history-fieldset-title' => 'Тууҗиг хәләх',
 'histfirst'              => 'Эрт',
-'histlast'               => 'Кенз',
+'histlast'               => 'Шидрә',
 
 # Revision deletion
 'rev-delundel'   => 'үзүлх/бултулх',
@@ -416,7 +416,7 @@ $messages = array(
 'recentchanges-feed-description' => 'Эн зәңгллһд шидрә хүврһд шинҗлх.',
 'recentchanges-label-legend'     => 'Тәәлвр: $1.',
 'recentchanges-legend-newpage'   => '$1 — шин халх',
-'recentchanges-label-newpage'    => 'Эн үүлдәр шин халх бүтәл',
+'recentchanges-label-newpage'    => 'Эн үүлдәр шин халх бүтәв',
 'recentchanges-legend-minor'     => '$1 — баһ хүврлһн',
 'recentchanges-label-minor'      => 'Эн баһ чинртә хуврлһн',
 'recentchanges-legend-bot'       => '$1 — көдлврә хүврлһн',
@@ -478,7 +478,7 @@ $messages = array(
 'uploadnewversion-linktext' => 'Эн боомгин шин янз тәвх.',
 
 # Random page
-'randompage' => 'Уршг халх',
+'randompage' => 'Уршг зүүл',
 
 # Statistics
 'statistics' => 'То бүрткл',
@@ -549,7 +549,7 @@ $messages = array(
 Буйн болтха, та үнәр тана үүлдин ашуд болн [[{{MediaWiki:Policy-url}}]] әңгин зокал медәд, эн батлҗ кетн.',
 'actioncomplete'        => 'Үүлд кев',
 'deletedtext'           => '«<nowiki>$1</nowiki>» һарһҗ болв.
-$2 кенз һарһлһда төлә хәләтн.',
+$2 шидрә һарһлһдин төлә хәләтн.',
 'deletedarticle'        => '«[[$1]]» халхиг һарһв',
 'dellogpage'            => 'Һарһллһна сеткүл',
 'deletecomment'         => 'Һарһллһна учр:',
@@ -561,7 +561,7 @@ $2 кенз һарһлһда төлә хәләтн.',
 
 # Protect
 'protectlogpage'              => 'Харсллһна сеткүл',
-'protectedarticle'            => '«[[$1]]» халх харсв',
+'protectedarticle'            => '«[[$1]]» халхиг харсв',
 'modifiedarticleprotection'   => '[[$1]] халхна харсллһна кемҗән хүврлх',
 'protectcomment'              => 'Учр:',
 'protectexpiry'               => 'Өңгрнә:',
@@ -675,7 +675,7 @@ $2 кенз һарһлһда төлә хәләтн.',
 'tooltip-ca-addsection'           => 'Шин хүв эклх',
 'tooltip-ca-viewsource'           => 'Эн халх харссн бәәнә.
 Та энүнә медсн үзҗ чаднат.',
-'tooltip-ca-history'              => 'Эн халха кенз чикллһдүд',
+'tooltip-ca-history'              => 'Эн халхна шидрә чикллһдүд',
 'tooltip-ca-protect'              => 'Эн халхиг харсх',
 'tooltip-ca-delete'               => 'Эн халхиг һарһх',
 'tooltip-ca-move'                 => 'Эн халхиг көндәх',
