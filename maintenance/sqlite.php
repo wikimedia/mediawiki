@@ -54,7 +54,7 @@ class SqliteMaintenance extends Maintenance {
 		if ( $this->db->query( 'VACUUM' ) ) {
 			clearstatcache();
 			$newSize = filesize( $this->db->mDatabaseFile );
-			$this->output( sprintf( "Database size was %d bytes, now %d (%.1f%% reduction).\n",
+			$this->output( sprintf( "Database size was %d, now %d (%.1f%% reduction).\n",
 				$prevSize, $newSize, ( $prevSize - $newSize) * 100.0 / $prevSize ) );
 		} else {
 			$this->output( 'Error\n' );
