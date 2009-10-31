@@ -1481,7 +1481,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
 'revdelete-log'               => 'Reason for deletion:',
-'revdelete-submit'            => 'Apply to selected revision',
+'revdelete-submit'            => 'Apply to selected {{PLURAL:$1|revision|revisions}}',
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
 'revdelete-success'           => "'''Revision visibility successfully set.'''",
