@@ -105,6 +105,9 @@ class IPBlockForm {
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
 			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
 		} elseif( $this->BlockAddress ) {
+			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
+			wfRunHooks( 'getOtherBlockLogLink', array( &$otherBlockedMsgs, $this->BlockAddress ) );
+
 			$userId = is_object( $user ) ? $user->getId() : 0;
 			$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
 			if( !is_null( $currentBlock ) && !$currentBlock->mAuto && # The block exists and isn't an autoblock
@@ -112,7 +115,6 @@ class IPBlockForm {
 				# or if it is, the range is what we're about to block
 				( $currentBlock->mAddress == $this->BlockAddress ) )
 			) {
-				$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
 				$alreadyBlocked = true;
 				# Set the block form settings to the existing block
 				if( !$this->wasPosted ) {
@@ -130,6 +132,23 @@ class IPBlockForm {
 					$this->BlockReason = $currentBlock->mReason;
 				}
 			}
+		}
+
+		# Show other blocks from extensions, i.e. GlockBlocking and TorBlock
+		if( count( $otherBlockedMsgs ) ) {
+			$wgOut->addHTML(
+				Html::rawElement( 'h2', array(), wfMsgExt( 'ipb-otherblocks-header', 'parseinline',  count( $otherBlockedMsgs ) ) ) . "\n"
+			);
+			$list = '';
+			foreach( $otherBlockedMsgs as $link ) {
+				$list .= Html::rawElement( 'li', array(), $link ) . "\n";
+			}
+			$wgOut->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-blockip-alreadyblocked' ), $list ) . "\n" );
+		}
+
+		# Username/IP is blocked already locally
+		if( $alreadyBlocked ) {
+			$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
 		}
 
 		$scBlockExpiryOptions = wfMsgForContent( 'ipboptions' );

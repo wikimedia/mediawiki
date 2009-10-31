@@ -2938,6 +2938,7 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 'ipb-needreblock'                 => '== Already blocked ==
 $1 is already blocked.
 Do you want to change the settings?',
+'ipb-otherblocks-header'          => 'Other {{PLURAL:$1|block|blocks}}',
 'ipb_cant_unblock'                => 'Error: Block ID $1 not found.
 It may have been unblocked already.',
 'ipb_blocked_as_range'            => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
