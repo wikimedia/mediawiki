@@ -96,6 +96,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$this->fld_redirect = isset($prop['redirect']);
 		$this->fld_patrolled = isset($prop['patrolled']);
 		$this->fld_loginfo = isset($prop['loginfo']);
+		$this->fld_tags = isset($prop['tags']);
 	}
 
 	/**
@@ -210,6 +211,18 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				$this->addJoinConds(array('page' => array('LEFT JOIN', array('rc_namespace=page_namespace', 'rc_title=page_title'))));
 				$this->addFields('page_is_redirect');
 			}
+		}
+		
+		if($this->fld_tags) {
+			$this->addTables('tag_summary');
+			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', array('rc_id=ts_rc_id'))));
+			$this->addFields('ts_tags');
+		}
+			
+		if(!is_null($params['tag'])) {
+			$this->addTables('change_tag');
+			$this->addJoinConds(array('change_tag' => array('INNER JOIN', array('rc_id=ct_rc_id'))));
+			$this->addWhereFld('ct_tag' , $params['tag']);
 		}
 		$this->token = $params['token'];
 		$this->addOption('LIMIT', $params['limit'] +1);
@@ -343,6 +356,16 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				$row->rc_log_type, $row->rc_timestamp);
 		}
 		
+		if ($this->fld_tags) {
+			if ($row->ts_tags) {
+				$tags = explode(',', $row->ts_tags);
+				$this->getResult()->setIndexedTagName($tags, 'tag');
+				$vals['tags'] = $tags;
+			} else {
+				$vals['tags'] = array();
+			}
+		}
+			
 		if(!is_null($this->token))
 		{
 			$tokenFunctions = $this->getTokenFunctions();
@@ -416,6 +439,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'redirect',
 					'patrolled',
 					'loginfo',
+					'tags'
 				)
 			),
 			'token' => array(

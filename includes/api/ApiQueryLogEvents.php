@@ -51,6 +51,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_timestamp = in_array('timestamp', $prop);
 		$this->fld_comment = in_array('comment', $prop);
 		$this->fld_details = in_array('details', $prop);
+		$this->fld_tags = in_array('tags', $prop);
 
 		list($tbl_logging, $tbl_page, $tbl_user) = $db->tableNamesN('logging', 'page', 'user');
 
@@ -84,6 +85,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf('log_title', $this->fld_title);
 		$this->addFieldsIf('log_comment', $this->fld_comment);
 		$this->addFieldsIf('log_params', $this->fld_details);
+		
+		if($this->fld_tags) {
+			$this->addTables('tag_summary');
+			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', 'log_id=ts_log_id')));
+			$this->addFields('ts_tags');
+		}
+		
+		if( !is_null($params['tag']) ) {
+			$this->addTables('change_tag');
+			$this->addJoinConds(array('change_tag' => array('INNER JOIN', array('log_id=ct_log_id'))));
+			$this->addWhereFld('ct_tag', $params['tag']);
+		}
 		
 		if( !is_null($params['type']) ) {
 			$this->addWhereFld('log_type', $params['type']);
@@ -247,6 +260,16 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 		}
 
+		if ($this->fld_tags) {
+			if ($row->ts_tags) {
+				$tags = explode(',', $row->ts_tags);
+				$this->getResult()->setIndexedTagName($tags, 'tag');
+				$vals['tags'] = $tags;
+			} else {
+				$vals['tags'] = array();
+			}
+		}
+		
 		return $vals;
 	}
 
@@ -265,6 +288,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					'timestamp',
 					'comment',
 					'details',
+					'tags'
 				)
 			),
 			'type' => array (

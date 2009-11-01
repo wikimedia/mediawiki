@@ -42,7 +42,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
-			$fld_comment = false, $fld_user = false, $fld_content = false;
+			$fld_comment = false, $fld_user = false, $fld_content = false, $fld_tags = false;
 
 	protected function getTokenFunctions() {
 		// tokenname => function
@@ -121,9 +121,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		$db = $this->getDB();
-		$this->addTables('revision');
+		$this->addTables(array('page', 'revision'));
 		$this->addFields(Revision::selectFields());
-		$this->addTables('page');
 		$this->addWhere('page_id = rev_page');
 
 		$prop = array_flip($params['prop']);
@@ -143,6 +142,19 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addFields( Revision::selectPageFields() );
 		}
 
+		if (isset ($prop['tags'])) {
+			$this->fld_tags = true;
+			$this->addTables('tag_summary');
+			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', array('rev_id=ts_rev_id'))));
+			$this->addFields('ts_tags');
+		}
+		
+		if( !is_null($params['tag']) ) {
+			$this->addTables('change_tag');
+			$this->addJoinConds(array('change_tag' => array('INNER JOIN', array('rev_id=ct_rev_id'))));
+			$this->addWhereFld('ct_tag' , $params['tag']);
+		}
+		
 		if (isset ($prop['content'])) {
 
 			// For each page we will request, the user must have read rights for that page
@@ -293,9 +305,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$this->setContinueEnumParameter('startid', intval($row->rev_id));
 				break;
 			}
-			$revision = new Revision( $row );
+			
 			//
-			$fit = $this->addPageSubItem($revision->getPage(), $this->extractRowInfo($revision), 'rev');
+			$fit = $this->addPageSubItem($row->rev_page, $this->extractRowInfo($row), 'rev');
 			if(!$fit)
 			{
 				if($enumRevMode)
@@ -311,7 +323,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$db->freeResult($res);
 	}
 
-	private function extractRowInfo( $revision ) {
+	private function extractRowInfo( $row ) {
+		$revision = new Revision( $row );
 		$title = $revision->getTitle();
 		$vals = array ();
 
@@ -353,6 +366,16 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}	
 
+		if ($this->fld_tags) {
+			if ($row->ts_tags) {
+				$tags = explode(',', $row->ts_tags);
+				$this->getResult()->setIndexedTagName($tags, 'tag');
+				$vals['tags'] = $tags;
+			} else {
+				$vals['tags'] = array();
+			}
+		}
+		
 		if(!is_null($this->token))
 		{
 			$tokenFunctions = $this->getTokenFunctions();
@@ -427,6 +450,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'size',
 					'comment',
 					'content',
+					'tags'
 				)
 			),
 			'limit' => array (
