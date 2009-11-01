@@ -35,15 +35,12 @@ def GetFileFromURL( url, dest ):
     print( 'Download complete.\n' )
     return
 
-def GetFileFromZip( path ):
+def GetFileFromUnihan( path ):
     print( 'Extracting files from %s ...' % path )
-    if pyversion[:3] == '2.5':
-        text = zipfile.ZipFile(path).read('Unihan.txt')
-        uhfile = uniopen('Unihan.txt', 'w')
-        uhfile.write(text)
-        uhfile.close()
-    else:
-        zipfile.ZipFile(path).extractall()
+    text = zipfile.ZipFile(path).read('Unihan_Variants.txt')
+    uhfile = uniopen('Unihan_Variants.txt', 'w')
+    uhfile.write(text)
+    uhfile.close()
     return
 
 def GetFileFromTar( path, member, rename ):
@@ -285,7 +282,7 @@ def main():
     # Extract the file from a comressed files
     
     # Unihan.txt Simp. & Trad
-    GetFileFromZip( han_dest )
+    GetFileFromUnihan( han_dest )
     
     # Make word lists
     t_wordlist = []
@@ -365,7 +362,7 @@ def main():
     
     # Make char to char convertion table
     # Unihan.txt, dict t2s_code, s2t_code = { 'U+XXXX': 'U+YYYY( U+ZZZZ) ... ', ... }
-    ( t2s_code, s2t_code ) = ReadUnihanFile( 'Unihan.txt' )
+    ( t2s_code, s2t_code ) = ReadUnihanFile( 'Unihan_Variants.txt' )
     # dict t2s_1tomany = { '\uXXXX': '\uYYYY\uZZZZ ... ', ... }
     t2s_1tomany = {}
     t2s_1tomany.update( GetDefaultTable( t2s_code ) )
@@ -457,6 +454,16 @@ $zh2Hant = array(\n'''
     print ('Writing ZhConversion.php ... ')
     f.write( php )
     f.close()
+    
+    #Remove temp files
+    print ('Deleting temp files ... ')
+    os.remove('EZ.txt.in')
+    os.remove('phrase_lib.txt')
+    os.remove('tsi.src')
+    os.remove('Unihan_Variants.txt')
+    os.remove('Wubi.txt.in')
+    os.remove('Ziranma.txt.in')
+    
 
 if __name__ == '__main__':
     main()
