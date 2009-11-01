@@ -53,6 +53,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošalji mi e-poštu takođe za male izmjene stranica',
 'tog-enotifrevealaddr'        => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji prate',
+'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
 'tog-fancysig'                => 'Smatraj potpis kao wikitekst (bez automatskog linka)',
 'tog-externaleditor'          => 'Po defaultu koristite eksterni editor (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
 'tog-externaldiff'            => 'Koristi vanjski (diff) program za prikaz razlika (samo za naprednije korisnike, potrebne posebne postavke na vašem računaru)',
@@ -73,6 +74,13 @@ $messages = array(
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
 'underline-default' => 'Po postavkama preglednika',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Stil slova područja uređivanja:',
+'editfont-default'   => 'Po postavkama preglednika',
+'editfont-monospace' => 'Slova sa jednostrukim razmakom',
+'editfont-sansserif' => 'Slova bez serifa',
+'editfont-serif'     => 'Slova serif',
 
 # Dates
 'january'   => 'januar',
@@ -144,6 +152,33 @@ $messages = array(
 'qbmyoptions'    => 'Moje opcije',
 'qbspecialpages' => 'Posebne stranice',
 
+# Vector skin
+'vector-action-addsection'   => 'Dodaj temu',
+'vector-action-delete'       => 'Brisanje',
+'vector-action-move'         => 'Preusmjeri',
+'vector-action-protect'      => 'Zaštiti',
+'vector-action-undelete'     => 'Vrati obrisano',
+'vector-action-unprotect'    => 'Oslobodi od zaštite',
+'vector-namespace-category'  => 'Kategorija',
+'vector-namespace-help'      => 'Stranica pomoći',
+'vector-namespace-image'     => 'Datoteka',
+'vector-namespace-main'      => 'Stranica',
+'vector-namespace-media'     => 'Medijska stranica',
+'vector-namespace-mediawiki' => 'Poruka',
+'vector-namespace-project'   => 'Stranica projekta',
+'vector-namespace-special'   => 'Posebna stranica',
+'vector-namespace-talk'      => 'Razgovor',
+'vector-namespace-template'  => 'Šablon',
+'vector-namespace-user'      => 'Korisnička stranica',
+'vector-view-create'         => 'Napravi',
+'vector-view-edit'           => 'Uredi',
+'vector-view-history'        => 'Pregled historije',
+'vector-view-view'           => 'Čitaj',
+'vector-view-viewsource'     => 'Vidi izvor (source)',
+'actions'                    => 'Akcije',
+'namespaces'                 => 'Imenski prostori',
+'variants'                   => 'Varijante',
+
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',
 
@@ -201,6 +236,11 @@ $messages = array(
 'jumpto'            => 'Skoči na:',
 'jumptonavigation'  => 'navigacija',
 'jumptosearch'      => 'pretraga',
+'view-pool-error'   => 'Žao nam je, serveri su trenutno preopterećeni.
+Previše korisnika pokušava da pregleda ovu stranicu.
+Molimo pričekajte trenutak prije nego što ponovno pokušate pristupiti ovoj stranici.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',
@@ -273,7 +313,9 @@ Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:
 'databaseerror'        => 'Greška u bazi podataka',
 'dberrortext'          => 'Desila se sintaksna greška upita baze.
 Ovo se desilo zbog moguće greške u softveru.
-Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote> iz funkcije "<tt>$2</tt>".
+Posljednji pokušani upit je bio: 
+<blockquote><tt>$1</tt></blockquote> 
+iz funkcije "<tt>$2</tt>".
 MySQL je vratio grešku "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Desila se sintaksna greška upita baze.
 Posljednji pokušani upit je bio:
@@ -297,6 +339,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'readonly_lag'         => 'Baza podataka je zaključana dok se sekundarne baze podataka na serveru ne sastave sa glavnom.',
 'internalerror'        => 'Interna pogreška',
 'internalerror_info'   => 'Interna greška: $1',
+'fileappenderror'      => 'Ne može se primijeniti "$1" na "$2".',
 'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
 'filerenameerror'      => 'Ne može se promjeniti ime datoteke "$1" u "$2".',
 'filedeleteerror'      => 'Ne može se izbrisati datoteka "$1".',
@@ -306,7 +349,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'unexpected'           => 'Neočekivana vrijednost: "$1"="$2".',
 'formerror'            => 'Greška: ne može se poslati formular',
 'badarticleerror'      => 'Ova akcija ne može biti izvršena na ovoj stranici.',
-'cannotdelete'         => 'Ne može se obrisati navedena stranica ili datoteka.
+'cannotdelete'         => 'Ne može se obrisati stranica ili datoteka "$1".
 Moguće je da ju je neko drugi već obrisao.',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Zatražena stranica je bila nevaljana, prazna ili neispravno povezana s među-jezičkim ili inter-wiki naslovom.
@@ -373,6 +416,7 @@ Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].
 'userexists'                 => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
 'loginerror'                 => 'Greška pri prijavljivanju',
+'createaccounterror'         => 'Ne može se napraviti račun: $1',
 'nocookiesnew'               => "Korisnički nalog je napravljen, ali niste prijavljeni.  
 {{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  
 Vi ste onemogućili kolačiće na Vašem računaru.  
@@ -393,8 +437,8 @@ Provjerite da li ste dobro ukucali.',
 Molimo Vas da pokušate ponovno.',
 'wrongpasswordempty'         => 'Unesena šifra je bila prazna.
 Molimo Vas da pokušate ponovno.',
-'passwordtooshort'           => 'Vaša lozinka je prekratka.
-Lozinka mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}}.',
+'passwordtooshort'           => 'Lozinka mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}}.',
+'password-name-match'        => 'Vaša lozinka mora biti različita od Vašeg korisničkog imena.',
 'mailmypassword'             => 'Pošalji mi novu lozinku putem E-maila',
 'passwordremindertitle'      => 'Nova privremena lozinka za {{SITENAME}}',
 'passwordremindertext'       => 'Neko (vjerovatno Vi, sa IP adrese $1) je zahtjevao da vam pošaljemo novu šifru za {{SITENAME}}  ($4). Privremena šifra za korisnika "$2" je napravljena i glasi "$3". Ako ste to željeli, sad treba da se prijavite i promjenite šifru.
@@ -402,6 +446,7 @@ Vaša privremena šifra će isteči za {{PLURAL:$5|$5 dan|$5 dana}}.
 
 Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše šifre i ne želite više da je promjenite, možete da ignorišete ovu poruku i da nastavite koristeći vašu staru šifru.',
 'noemail'                    => 'Ne postoji adresa e-maila za korisnika "$1".',
+'noemailcreate'              => 'Morate da navedete valjanu e-mail adresu',
 'passwordsent'               => 'Nova šifra je poslata na e-mail adresu korisnika "$1".
 Molimo Vas da se prijavite pošto je primite.',
 'blocked-mailpassword'       => 'Da bi se spriječila nedozvoljena akcija, Vašoj IP adresi je onemogućeno uređivanje stranica kao i mogućnost zahtijevanje nove šifre.',
@@ -426,8 +471,9 @@ Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
 Trebali biste se prijaviti i promjeniti šifru.
 
 Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
-'login-throttled'            => 'Previše puta ste pokušali unijeti šifru za korisnički račun.
-Molimo vas da sačekate prije nego što pokušate ponovo.',
+'usernamehasherror'          => 'Korisničko ime ne može sadržavati haš znakove',
+'login-throttled'            => 'Previše puta ste se pokušali prijaviti.
+Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Password reset dialog
@@ -545,13 +591,18 @@ Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo
 Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] u drugim stranicama,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretraživati srodne registre],
 ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
+'noarticletext-nopermission'       => 'Trenutno nema teksta na ovoj stranici.
+Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane registre]</span>.',
 'userpage-userdoesnotexist'        => 'Korisnički račun "$1" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
+'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'clearyourcache'                   => "'''Pažnja: Nakon što snimite izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
 '''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macintoshu);
 '''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
 '''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
 '''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
+'usercssyoucanpreview'             => "'''Pažnja:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS prije nego što ga snimite.",
+'userjsyoucanpreview'              => "'''Pažnja:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi JS prije nego što ga snimite.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
 '''Još uvijek nije snimljen!'''",
 'userjspreview'                    => "'''Zapamite da je ovo samo test/pretpregled Vaše JavaScript-e.'''
@@ -610,9 +661,9 @@ Administrator koji je zaključao bazu je naveo slijedeće objašnjenje: $1",
 'semiprotectedpagewarning'         => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
 'cascadeprotectedwarning'          => "'''Upozorenje:''' Ova stranica je zaključana tako da je samo administratori mogu mijenjati, jer je ona uključena u {{PLURAL:$1|ovu, lančanu povezanu, zaštićenu stranicu|sljedeće, lančano povezane, zaštićene stranice}}:",
 'titleprotectedwarning'            => "'''UPOZORENJE: Ova stranica je zaključana tako da su potrebna [[Special:ListGroupRights|posebna prava]] da se ona napravi.'''",
-'templatesused'                    => 'Šabloni korišteni na ovoj stranici:',
-'templatesusedpreview'             => 'Šabloni korišteni u ovom pretpregledu:',
-'templatesusedsection'             => 'Šabloni korišteni u ovoj sekciji:',
+'templatesused'                    => '{{PLURAL:$1|Šablon|Šabloni}} koji su upotrebljeni na ovoj stranici:',
+'templatesusedpreview'             => '{{PLURAL:$1|Šablon|Šabloni}} prikazani u ovom pregledu:',
+'templatesusedsection'             => '{{PLURAL:$1|Šablon|Šabloni}} korišteni u ovoj sekciji:',
 'template-protected'               => '(zaštićeno)',
 'template-semiprotected'           => '(polu-zaštićeno)',
 'hiddencategories'                 => 'Ova stranica pripada {{PLURAL:$1|1 skrivenoj kategoriji|$1 skrivenim kategorijama}}:',
@@ -623,8 +674,13 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLo
 'permissionserrors'                => 'Greške pri odobrenju',
 'permissionserrorstext'            => 'Nemate dopuštenje da to uradite, iz {{PLURAL:$1|slijedećeg razloga|slijedećih razloga}}:',
 'permissionserrorstext-withaction' => 'Nemate dozvolu za $2, zbog {{PLURAL:$1|sljedećeg|sljedećih}} razloga:',
+'recreate-moveddeleted-warn'       => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
+
+Razmotrite da li je nastavljanje uređivanja ove stranice u skladu s pravilima.  
+Ovdje je naveden registar brisanja i premještanja s obrazloženjem:",
 'moveddeleted-notice'              => 'Ova stranica je obrisana.
-Registar brisanja za stranicu je dolje naveden radi referenci.',
+Registar brisanja i premještanja stranice je prikazan ispod kao referenca.',
+'log-fulllog'                      => 'Vidi potpuni registar',
 'edit-hook-aborted'                => 'Izmjena je poništena putem interfejsa.
 Nije ponuđeno nikakvo objašnjenje.',
 'edit-gone-missing'                => 'Stranica se nije mogla osvježiti.
@@ -655,25 +711,110 @@ Molimo da provjerite usporedbu ispod da budete sigurni da to želite učiniti, a
 'undo-norev'   => 'Izmjena se ne može vratiti jer ne postoji ranija ili je obrisana.',
 'undo-summary' => 'Vraćena izmjena $1 [[Special:Contributions/$2|korisnika $2]] ([[User talk:$2|razgovor]])',
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Nije moguće napraviti korisnički račun',
+'cantcreateaccount-text' => "Pravljenje korisničkog računa sa ove IP adrese ('''$1''') je blokirano od strane [[User:$3|$3]].
+
+Razlog koji je naveo $3 je ''$2''",
+
 # History pages
 'viewpagelogs'           => 'Pogledaj protokole ove stranice',
+'nohistory'              => 'Ne postoji historija izmjena za ovu stranicu.',
+'currentrev'             => 'Trenutna revizija',
 'currentrev-asof'        => 'Trenutna revizija na dan $1',
 'revisionasof'           => 'Izmjena od $1',
+'revision-info'          => 'Trenutna revizija na dan $1',
 'previousrevision'       => '← Starija revizija',
 'nextrevision'           => 'Novija izmjena →',
 'currentrevisionlink'    => 'Trenutna verzija',
 'cur'                    => 'tren',
+'next'                   => 'slijed',
 'last'                   => 'preth',
+'page_first'             => 'prva',
+'page_last'              => 'zadnja',
 'histlegend'             => "Odabir razlika: označite radio dugme verzija za usporedbu i pritisnite enter ili dugme na dnu.<br />
 Objašnjenje: '''({{int:cur}})''' = razlika sa trenutnom verzijom,
 '''({{int:last}})''' = razlika sa prethodnom verzijom, '''{{int:minoreditletter}}''' = manja izmjena.",
 'history-fieldset-title' => 'Pretraga historije',
+'history-show-deleted'   => 'Samo obrisane',
 'histfirst'              => 'Najstarije',
 'histlast'               => 'Najnovije',
+'historysize'            => '({{PLURAL:$1|1 bajt|$1 bajta|$1 bajtova}})',
+'historyempty'           => '(prazno)',
+
+# Revision feed
+'history-feed-title'          => 'Historija izmjena',
+'history-feed-description'    => 'Historija promjena ove stranice na wikiju',
+'history-feed-item-nocomment' => '$1 u $2',
+'history-feed-empty'          => 'Tražena stranica ne postoji.
+Moguće da je izbrisana sa wikija, ili preimenovana.
+Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 
 # Revision deletion
-'rev-delundel'   => 'pokaži/sakrij',
-'revdel-restore' => 'promijeni dostupnost',
+'rev-deleted-comment'         => '(komentar uklonjen)',
+'rev-deleted-user'            => '(korisničko ime uklonjeno)',
+'rev-deleted-event'           => '(stavka registra obrisana)',
+'rev-deleted-text-permission' => "Revizija ove stranice je '''obrisana'''.
+Detalje možete vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru brisanja].",
+'rev-deleted-text-unhide'     => "Revizija ove stranice je '''obrisana'''.
+Detalje o tome možer vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru brisanja].
+Kao administrator još je uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
+'rev-suppressed-text-unhide'  => "Ova revizija stranice je '''uklonjena'''.
+Možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registru uklanjanja].
+Kao administrator Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite.",
+'rev-deleted-text-view'       => "Revizija ove stranice je '''obrisana'''.
+Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru brisanja].",
+'rev-suppressed-text-view'    => "Ova revizija stranice je '''uklonjena'''.
+Kao administrator Vi je možete vidjeti; možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registru uklanjanja].",
+'rev-deleted-no-diff'         => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
+Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registrima brisanja].",
+'rev-deleted-unhide-diff'     => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
+Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru brisanja].
+Kao administrator Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
+'rev-suppressed-unhide-diff'  => "Jedna od revizija ove razlike je '''uklonjena'''.
+Postoji mnogo detalja u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registru uklanjanja].
+Kao administrator i dalje možete [$1 vidjeti ove razlike] ako želite da nastavite.",
+'rev-deleted-diff-view'       => "Jedna od revizija u ovoj razlici je '''obrisana'''.
+Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru brisanja].",
+'rev-suppressed-diff-view'    => "Jedna od revizija u ovoj razlici je '''sakrivena'''.
+Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru sakrivanja].",
+'rev-delundel'                => 'pokaži/sakrij',
+'revisiondelete'              => 'Obriši/vrati revizije',
+'revdelete-nooldid-title'     => 'Nije unesena tačna revizija',
+'revdelete-nooldid-text'      => 'Niste precizno odredili odredišnu reviziju/revizije da se izvrši ova funkcija, 
+ili ta revizija ne postoji, ili pokušavate sakriti trenutnu reviziju.',
+'revdelete-nologtype-title'   => 'Nije naveden tip registra',
+'revdelete-nologtype-text'    => 'Niste odredili tip registra za izvršavanje ove akcije na njemu.',
+'revdelete-nologid-title'     => 'Nevaljana stavka registra',
+'revdelete-nologid-text'      => 'Niste odredili ciljnu stavku registra za izvršavanje ove funkcije ili navedena stavka ne postoji.',
+'revdelete-no-file'           => 'Navedena datoteka ne postoji.',
+'revdelete-show-file-confirm' => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
+'revdelete-show-file-submit'  => 'Da',
+'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Označena stavka registra|Označene stavke registra}}:'''",
+'revdelete-text'              => "'''Obrisane revizije i događaji će i dalje biti vidljivi u historiji stranice i registrima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
+Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.",
+'revdelete-confirm'           => 'Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
+'revdelete-suppress-text'     => "Ograničenja bi trebala biti korištena '''samo''' u sljedećim slučajevima:
+* Osjetljive korisničke informacije
+*: ''kućne adrese, brojevi telefona, brojevi bankovnih kartica itd.''",
+'revdelete-legend'            => 'Postavi ograničenja vidljivosti',
+'revdelete-hide-text'         => 'Sakrij tekst revizije',
+'revdelete-hide-name'         => 'Sakrij akciju i cilj',
+'revdelete-hide-comment'      => 'Sakrij izmjene komentara',
+'revdelete-hide-user'         => 'Sakrij korisničko ime urednika/IP',
+'revdelete-hide-restricted'   => 'Ograniči podatke za administratore kao i za druge korisnike',
+'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
+'revdelete-hide-image'        => 'Sakrij sadržaj datoteke',
+'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
+'revdelete-log'               => 'Razlog za brisanje:',
+'revdelete-submit'            => 'Primijeni na odabrane {{PLURAL:$1|izmjena|izmjene}}',
+'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
+'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
+'revdelete-success'           => "'''Vidljivost revizije uspješno postavljena.'''",
+'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti postavljena:'''
+$1",
+'revdel-restore'              => 'promijeni dostupnost',
 
 # Merge log
 'revertmerge' => 'Ukini spajanje',

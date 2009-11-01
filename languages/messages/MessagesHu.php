@@ -1098,7 +1098,7 @@ A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az e
 'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
 'revdelete-log'               => 'A törlés oka:',
-'revdelete-submit'            => 'Alkalmazás a kiválasztott változatra',
+'revdelete-submit'            => 'Alkalmazás a kiválasztott {{PLURAL:$1|változatra|változatokra}}',
 'revdelete-logentry'          => 'módosította [[$1]] változatának láthatóságát',
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
 'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",

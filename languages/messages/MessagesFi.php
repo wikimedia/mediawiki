@@ -1021,6 +1021,10 @@ Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen].",
 'rev-suppressed-unhide-diff'  => "Yksi tämän muutosvertailun versioista on '''häivytetty'''.
 Yksityiskohtia saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
 Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
+'rev-deleted-diff-view'       => "Yksi tämän muutosvertailun versioista on '''poistettu'''.
+Ylläpitäjänä voit silti nähdä tämän muutoksen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
+'rev-suppressed-diff-view'    => "Yksi tämän muutosvertailun versioista on '''häivytetty'''.
+Ylläpitäjänä voit silti nähdä tämän muutoksen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
 'rev-delundel'                => 'näytä tai piilota',
 'rev-showdeleted'             => 'näytä',
 'revisiondelete'              => 'Poista tai palauta versioita',
@@ -1051,7 +1055,7 @@ Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilote
 'revdelete-hide-image'        => 'Piilota tiedoston sisältö',
 'revdelete-unsuppress'        => 'Poista rajoitukset palautetuilta versiolta',
 'revdelete-log'               => 'Syy poistoon:',
-'revdelete-submit'            => 'Toteuta',
+'revdelete-submit'            => 'Toteuta {{PLURAL:$1|valittuun versioon|valittuihin versioihin}}',
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
 'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
 'revdelete-success'           => 'Version näkyvyys asetettu.',
@@ -1913,6 +1917,7 @@ Tuetut protokollat: <tt>$1</tt>.',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktiivisten käyttäjien lista',
+'activeusers-intro'    => 'Tämä on luettelo käyttäjistä, jotka ovat tehneet jotain viimeisen $1 {{PLURAL:$1|päivän}} sisällä.',
 'activeusers-count'    => '$1 {{PLURAL:$1|muokkaus|muokkausta}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
 'activeusers-from'     => 'Näytä käyttäjät alkaen',
 'activeusers-noresult' => 'Käyttäjiä ei löytynyt.',
@@ -2427,6 +2432,8 @@ $1 {{PLURAL:$1|sivu|sivua}} siirrettiin.',
 'move-leave-redirect'          => 'Jätä paikalle ohjaus',
 'protectedpagemovewarning'     => "'''Varoitus:''' Tämä sivu on lukittu siten, että vain ylläpitäjät voivat siirtää sitä.",
 'semiprotectedpagemovewarning' => "Tämä sivu on '''lukittu''' siten, että vain rekisteröityneet käyttäjät voivat siirtää sitä.",
+'move-over-sharedrepo'         => '== Tiedosto on olemassa ==
+[[:$1]] on olemassa jaetussa tietovarastossa. Tiedoston siirtäminen tälle nimelle ohittaa jaetun tiedoston.',
 'file-exists-sharedrepo'       => 'Valittu tiedostonimi on jo käytössä jaetussa varastossa.
 Valitse toinen nimi.',
 

@@ -121,7 +121,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Mostre leams sbaliâts <a href="" class="new">cussì</a> (invezit di cussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justifiche paragraf',
 'tog-hideminor'               => 'Plate lis piçulis modifichis tai ultins cambiaments',
-'tog-usenewrc'                => 'Ultins cambiaments avanzâts (JavaScript)',
+'tog-usenewrc'                => 'Dopre i ultins cambiaments avanzâts (covente JavaScript)',
 'tog-numberheadings'          => 'Numerazion automatiche dai titui',
 'tog-showtoolbar'             => 'Mostre sbare dai imprescj pe modifiche (JavaScript)',
 'tog-editondblclick'          => 'Cambie lis pagjinis fracant dôs voltis (JavaScript)',
@@ -241,6 +241,14 @@ $messages = array(
 'qbmyoptions'    => 'Mês pagjinis',
 'qbspecialpages' => 'Pagjinis speciâls',
 
+# Vector skin
+'vector-action-delete'       => 'Elimine',
+'vector-namespace-category'  => 'Categorie',
+'vector-namespace-mediawiki' => 'Messaç',
+'vector-namespace-template'  => 'Model',
+'actions'                    => 'Azions',
+'variants'                   => 'Variants',
+
 'errorpagetitle'    => 'Erôr',
 'returnto'          => 'Torne a $1.',
 'tagline'           => 'Di {{SITENAME}}',
@@ -273,14 +281,14 @@ $messages = array(
 'talkpagelinktext'  => 'discussion',
 'specialpage'       => 'Pagjine speciâl',
 'personaltools'     => 'Imprescj personâi',
-'postcomment'       => 'Zonte un coment',
+'postcomment'       => 'Gnove sezion',
 'articlepage'       => 'Cjale la vôs',
 'talk'              => 'Discussion',
 'views'             => 'Visitis',
 'toolbox'           => 'imprescj',
 'userpage'          => 'Cjale pagjine dal utent',
 'projectpage'       => 'Cjale pagjine dal progjet',
-'imagepage'         => 'Cjale pagjine de figure',
+'imagepage'         => 'Cjale pagjine dal file',
 'mediawikipage'     => 'Cjale la pagjine dal messaç',
 'templatepage'      => 'Cjale il model',
 'viewhelppage'      => 'Cjale la pagjine di jutori',
@@ -443,6 +451,7 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'loginlanguagelabel'      => 'Lenghe: $1',
 
 # Password reset dialog
+'resetpass'   => 'Gambie peraule clâf',
 'oldpassword' => 'Vecje peraule clâf',
 'newpassword' => 'Gnove peraule clâf',
 'retypenew'   => 'Torne a scrivi chê gnove',
@@ -532,8 +541,8 @@ Cun di plui, inviant il test tu declaris che tu âs scrit tu chest o tu lu âs c
 'readonlywarning'                  => "'''ATENZION: La base di dâts e je blocade par vie de manutenzion, par cui no si podin salvâ lis modifichis par cumò. Par no pierdilis, tu puedis copiâ e tacâ il test inserît fin cumò e salvâlu intun file di test.'''
 
 L'aministradôr che al à blocât la base di dâts al à ufiert chest spiegazion: $1",
-'templatesused'                    => 'Modei doprâts par cheste pagjine:',
-'templatesusedpreview'             => 'Modei doprâts in cheste anteprime:',
+'templatesused'                    => '{{PLURAL:$1|Model doprât|Modei doprâts}} par cheste pagjine:',
+'templatesusedpreview'             => '{{PLURAL:$1|Model doprât|Modei doprâts}} in cheste anteprime:',
 'templatesusedsection'             => 'Modei doprâts in cheste sezion:',
 'template-protected'               => '(protezût)',
 'template-semiprotected'           => '(semi-protezût)',

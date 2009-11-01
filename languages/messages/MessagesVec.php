@@ -927,7 +927,7 @@ I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti scont
 'revdelete-hide-image'        => 'Scondi i contenuti del file',
 'revdelete-unsuppress'        => 'Elimina le limitazion su le revision ripristinà',
 'revdelete-log'               => 'Motivo de la scancelassion:',
-'revdelete-submit'            => 'Àplica a ła revixion selezionà',
+'revdelete-submit'            => 'Àplica a {{PLURAL:$1|la|le}} revision selezionà',
 'revdelete-logentry'          => 'gà modificà la visibilità par una revision de [[$1]]',
 'logdelete-logentry'          => "gà modificà la visibilità de l'evento [[$1]]",
 'revdelete-success'           => "'''Visibilità de la revision inpostà coretamente.'''",

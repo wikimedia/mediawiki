@@ -229,7 +229,7 @@ $messages = array(
 
 # General errors
 'viewsource'    => 'страни́цѧ исто́чьнъ о́браꙁъ',
-'viewsourcefor' => 'бо $1',
+'viewsourcefor' => '$1 дѣлꙗ',
 
 # Login and logout pages
 'yourname'                => 'твоѥ́ и́мѧ',
@@ -263,7 +263,7 @@ $messages = array(
 'note'               => "'''НАРОЧИ́ТО:'''",
 'editing'            => 'исправлѥ́ниѥ: $1',
 'editingsection'     => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
-'templatesused'      => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
+'templatesused'      => 'сѥѩ страни́цѧ {{PLURAL:$1|сь обраꙁь́ць по́льꙃоуѥтъ сѧ ѥ́стъ|с҄и обраꙁьца́ по́льꙃоуѭтъ сѧ ѥстє́|с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ}} :',
 'template-protected' => '(ꙁабранєно ѥ́стъ)',
 
 # History pages
@@ -304,12 +304,14 @@ $messages = array(
 'yourrealname'        => 'и́стиньно и́мѧ :',
 'yourlanguage'        => 'ѩꙁꙑ́къ :',
 'yournick'            => 'аѵто́графъ :',
+'gender-male'         => 'мѫжъ',
+'gender-female'       => 'жєна',
 
 # Groups
 'group-user'       => 'по́льꙃєватєлє',
 'group-bot'        => 'аѵтома́ти',
 'group-sysop'      => 'съмотри́тєлє',
-'group-bureaucrat' => 'Чинода́тєлє',
+'group-bureaucrat' => 'чинода́тєлє',
 
 'group-user-member'       => 'по́льꙃєватєл҄ь',
 'group-bot-member'        => 'аѵтома́тъ',
@@ -389,6 +391,8 @@ $messages = array(
 
 # Statistics
 'statistics'              => 'Статїстїка',
+'statistics-header-pages' => 'страни́цѧ статїстїка',
+'statistics-header-edits' => 'мѣ́нъ статїстїка',
 'statistics-header-users' => 'по́льꙃєватєлъ статїстїка',
 'statistics-articles'     => 'истиньнꙑ члѣ́ни',
 'statistics-pages'        => 'страни́цѧ',

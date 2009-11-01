@@ -403,7 +403,8 @@ Yèn dudu iki panyebabé, panjenengan manawa bisa nemokaké kasalahan (''bug'') 
 'unexpected'           => 'Biji (\'\'nilai\'\') ing njabaning jangkauan: "$1"="$2".',
 'formerror'            => 'Kasalahan: Ora bisa ngirimaké formulir',
 'badarticleerror'      => 'Pratingkah iku ora bisa katindhakaké ing kaca iki.',
-'cannotdelete'         => 'Ora bisa mbusak kaca, gambar utawa berkas sing disuwun.',
+'cannotdelete'         => 'Kaca utawa berkas "$1" ora bisa dibusak.
+Manawa wis dibusak déning wong liya.',
 'badtitle'             => 'Judhulé ora sah',
 'badtitletext'         => 'Judhul kaca sing panjenengan ora bisa dituduhaké, kosong, utawa dadi judhul antar-basa utawa judhul antar-wiki. Iku bisa uga ana  sawijining utawa luwih aksara sing ora bisa didadèkaké judhul.',
 'perfcached'           => 'Data iki dijupuk saka <em>cache</em> lan mbokmenawa dudu data pungkasan:',
@@ -440,7 +441,7 @@ Alesané yaiku ''$2''.",
 Supaya dimangertèni bilih ana kaca sing isih nganggo panjenengan kacathet ing sistém amerga panjenengan durung mbusak <em>cache</em> ''browser'' panjenengan.",
 'welcomecreation'            => '== Sugeng rawuh, $1! ==
 
-Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan.',
+Akun panjenengan wis kacipta. Aja lali nata konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] panjenengan.',
 'yourname'                   => 'Asma pangangeman',
 'yourpassword'               => 'tembung sandhi',
 'yourpasswordagain'          => 'Balènana tembung sandhi',
@@ -464,6 +465,7 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo.
 Mangga pilih asma liyané.',
 'loginerror'                 => 'Kasalahan mlebu log',
+'createaccounterror'         => 'Ora bisa nyipta akun: $1',
 'nocookiesnew'               => "Rékening utawa akun panganggo panjenengan wis digawé, nanging panjenengan durung mlebu log. {{SITENAME}} nggunakaké ''cookies'' kanggo  log panganggo. ''Cookies'' ing panjlajah wèb panjengengan dipatèni. Mangga diaktifaké lan mlebu log manèh mawa jeneng panganggo lan tembung sandhi panjenengan.",
 'nocookieslogin'             => "{{SITENAME}} nggunakaké ''cookies'' kanggo log panganggoné. ''Cookies'' ing panjlajah wèb panjenengan dipatèni. Mangga ngaktifaké manèh lan coba manèh.",
 'noname'                     => 'Asma panganggo sing panjenengan pilih ora sah.',
@@ -504,6 +506,7 @@ Amarga saka kuwi., tamu kanthi alamat IP iki ora bisa gawé akun manèh kanggo s
 'createaccount-text'         => 'Ana wong sing nggawé sawijining akun utawa rékening kanggo alamat e-mail panjenengan ing {{SITENAME}} ($4) mawa jeneng "$2" lan tembung sandi "$3". Panjenengan disaranaké kanggo mlebu log lan ngganti tembung sandi panjenengan saiki.
 
 Panjenengan bisa nglirwakaké pesen iki yèn akun utawa rékening iki digawé déné sawijining kaluputan.',
+'usernamehasherror'          => 'Jeneng panganggo ora bisa ngandhut tandha pager',
 'login-throttled'            => 'Panjenengan wis kakèhan njajal mlebu log.
 Tulung nunggu dhisik sadurungé njajal manèh.',
 'loginlanguagelabel'         => 'Basa: $1',
@@ -660,7 +663,7 @@ Pangurus sing ngunci basis data mènèhi katrangan kaya mengkéné: $1",
 'cascadeprotectedwarning'          => "'''PÈNGET:''' Kaca iki wis dikunci dadi namung panganggo mawa hak aksès pangurus waé sing bisa nyunting, amerga kalebu {{PLURAL:$1|kaca|kaca-kaca}} ing ngisor iki sing wis direksa mawa opsi 'pangreksan runtun' diaktifaké:",
 'titleprotectedwarning'            => "'''Pènget: Kaca iki wis dikunci saéngga [[Special:ListGroupRights|hak mligi]] dibutuhaké kanggo gawéné.'''",
 'templatesused'                    => '{{PLURAL:$1|Cithakan|Cithakan}} sing dienggo ing kaca iki:',
-'templatesusedpreview'             => 'Cithakan kang digunakaké ing pratilik iki:',
+'templatesusedpreview'             => '{{PLURAL:$1|Cithakan|Cithakan-cithakan}} sing dienggo ing pratilik iki:',
 'templatesusedsection'             => 'Cithakan kang digunakaké ing bagian iki:',
 'template-protected'               => '(direksa)',
 'template-semiprotected'           => '(semi-pangreksan)',
@@ -790,7 +793,7 @@ Pangurus {{SITENAME}} liyané bakal tetep bisa ngaksès isi sing kadhelikaké ik
 'revdelete-hide-image'        => 'Dhelikna isi berkas',
 'revdelete-unsuppress'        => 'Busak watesan ing revisi sing dibalèkaké',
 'revdelete-log'               => 'Alesan pambusakan:',
-'revdelete-submit'            => 'Trapna ing revisi kapilih',
+'revdelete-submit'            => 'Trapna ing {{PLURAL:$1|révisi|révisi}} kapilih',
 'revdelete-logentry'          => 'owahna tampilan revisi kanggo [[$1]]',
 'logdelete-logentry'          => 'owahna aturan pandhelikan saka [[$1]]',
 'revdelete-success'           => 'Aturan pandhelikan revisi bisa kasil ditrapaké.',
@@ -1321,9 +1324,13 @@ Mangga priksa panyetèlan pangunggahan berkas.',
 'uploadscripted'              => 'Berkas iki ngandhut HTML utawa kode sing bisa diinterpretasi salah déning panjlajah wèb.',
 'uploadcorrupt'               => 'Berkasé rusak utawa èkstènsiné salah. Mangga dipriksa dhisik berkas iki lan diunggahaké manèh.',
 'uploadvirus'                 => 'Berkas iki ngamot virus! Détil: $1',
+'upload-source'               => 'Berkas sumber',
 'sourcefilename'              => 'Jeneng berkas sumber',
+'sourceurl'                   => 'URL sumber:',
 'destfilename'                => 'Jeneng berkas sing dituju',
 'upload-maxfilesize'          => 'Ukuran maksimal berkas: $1',
+'upload-description'          => 'Katrangan berkas',
+'upload-options'              => 'Opsi pangundhuhan',
 'watchthisupload'             => 'Awasana berkas iki',
 'filewasdeleted'              => 'Sawijining berkas mawa jeneng iki wis tau diunggahaké lan sawisé dibusak. 
 Mangga priksanen $1 sadurungé ngunggahaké berkas iku manèh.',
@@ -1343,6 +1350,9 @@ Mangga kontak [[Special:ListUsers/sysop|pangurus]].',
 'upload-too-many-redirects' => 'URL ngandhut kakèhan pengalihan',
 'upload-unknown-size'       => 'Ukuran ora diweruhi',
 'upload-http-error'         => 'Ana kasalahan HTTP: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Aksès ditulak',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-é ora bisa dihubungi',
@@ -1770,7 +1780,7 @@ Umpan balik lan pitulung sabanjuré:
 'exblank'                => 'kaca kosong',
 'delete-confirm'         => 'Busak "$1"',
 'delete-legend'          => 'Busak',
-'historywarning'         => 'Pènget: Kaca sing bakal panjenengan busak ana sajarahé:',
+'historywarning'         => "'''Pènget''': Kaca sing bakal panjenengan busak ana sajarahé $1 {{PLURAL:$1|révisi|révisi}}:",
 'confirmdeletetext'      => 'Panjenengan bakal mbusak kaca utawa berkas iki minangka permanèn karo kabèh sajarahé saka basis data. Pastèkna dhisik menawa panjenengan pancèn nggayuh iki, ngerti kabèh akibat lan konsekwènsiné, lan apa sing bakal panjenengan tumindak iku cocog karo [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].',
 'actioncomplete'         => 'Proses tuntas',
 'actionfailed'           => 'Tindakan gagal',
@@ -2026,6 +2036,7 @@ Pirsani [[Special:IPBlockList|Daftar blokir IP]] kanggo ninjo ulang pamblokiran.
 'ipblocklist-sh-tempblocks'       => '$1 pamblokiran sauntara wektu',
 'ipblocklist-sh-addressblocks'    => '$1 pamblokiran IP tunggal',
 'ipblocklist-submit'              => 'Golèk',
+'ipblocklist-localblock'          => 'Blokade lokal',
 'blocklistline'                   => '$1, $2 mblokir $3 ($4)',
 'infiniteblock'                   => 'salawasé',
 'expiringblock'                   => 'kadaluwarsa ing $1, $2',
@@ -2958,5 +2969,12 @@ Katrangan tampilan:
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalna pangowahan',
 'htmlform-selectorother-other' => 'Liya',
+
+# Add categories per AJAX
+'ajax-add-category'        => 'Tambah kategori',
+'ajax-add-category-submit' => 'Tambah',
+'ajax-confirm-save'        => 'Simpen',
+'ajax-error-title'         => 'Kaluputan',
+'ajax-error-dismiss'       => 'OK',
 
 );

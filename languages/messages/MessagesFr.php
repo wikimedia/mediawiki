@@ -1126,7 +1126,7 @@ Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-hide-image'        => 'Masquer le contenu du fichier',
 'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
 'revdelete-log'               => 'Raison de la suppression :',
-'revdelete-submit'            => 'Appliquer à la version sélectionnée',
+'revdelete-submit'            => 'Appliquer {{PLURAL:$1|à la révision sélectionnée|aux révisions sélectionnées}}',
 'revdelete-logentry'          => 'a modifié la visibilité de la version de [[$1]]',
 'logdelete-logentry'          => 'a modifié la visibilité de l’événement de [[$1]]',
 'revdelete-success'           => "'''Visibilité des versions changée avec succès.'''",

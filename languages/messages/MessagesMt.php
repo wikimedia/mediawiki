@@ -1021,7 +1021,7 @@ L-amminstraturi l-oħrajn fuq {{SITENAME}} xorta jkunu jistgħu jidħlu fuq il-k
 'revdelete-hide-image'        => 'Aħbi l-kontenut tal-fajl',
 'revdelete-unsuppress'        => 'Neħħi limiti fuq reviżjonijiet irkuprati',
 'revdelete-log'               => 'Raġuni għat-tħassir:',
-'revdelete-submit'            => 'Applika lil reviżjoni magħżula',
+'revdelete-submit'            => 'Applika lir-{{PLURAL:$1|reviżjoni magħżulha|reviżjonijiet magħżula}}',
 'revdelete-logentry'          => "Il-Visibilitá tar-reviżjoni ta' [[$1]] inbidlet",
 'logdelete-logentry'          => "Il-Visibilitá tal-avveniment ta' $1 inbidlet",
 'revdelete-success'           => "'''Il-Visibilitá tar-Reviżjoni ġiet setjata b'suċċess.'''",
@@ -1869,29 +1869,29 @@ Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħ
 'enotif_newpagetext'           => 'Din hija paġna ġdida.',
 'enotif_impersonal_salutation' => "Utent ta' {{SITENAME}}",
 'changed'                      => 'modifikata',
-'created'                      => 'inħoloq',
+'created'                      => 'inħolqot',
 'enotif_subject'               => 'Il-Paġna $PAGETITLE ta\' {{SITENAME}} ġiet $CHANGEDORCREATED minn $PAGEEDITOR',
 'enotif_lastvisited'           => 'Ara $1 għal modifiki kollha mill-aħħar żjara.',
 'enotif_lastdiff'              => 'Ara $1 biex tara din l-modifika.',
 'enotif_anon_editor'           => 'utent anonimu $1',
 'enotif_body'                  => 'Għażiż $WATCHINGUSERNAME,
 
-Il-Paġna $PAGETITLE ta\' {{SITENAME}} ġiet $CHANGEDORCREATED - $PAGEEDITDATE minn $PAGEEDITOR; il-verżjoni kurrenti tinsab fl-indirizz $PAGETITLE_URL.
+Il-paġna $PAGETITLE ta\' {{SITENAME}} $CHANGEDORCREATED - $PAGEEDITDATE minn $PAGEEDITOR; il-verżjoni kurrenti tinsab fl-indirizz $PAGETITLE_URL.
 
 $NEWPAGE
 
-Taqsira tal-modifikatur: $PAGESUMMARY $PAGEMINOREDIT
+Taqsira tal-modifikatur, imdaħħla mill-awtur: $PAGESUMMARY $PAGEMINOREDIT
 
-Agħmel kuntatt mal-modifikatur:
-mail: $PAGEEDITOR_EMAIL
+Agħmel kuntatt mal-awtur tal-modifika:
+ittra-e: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Mhux se jiġu mibgħuta notifiki aktar fil-każ ta\' aktar modifiki, sakemm ma tmurx fil-paġna. Inoltri, huwa possibli li terġa\' tpoġġi l-avviż mill-ġdid għal paġni kollha fil-lista t\'osservazzjoni speċjali.
+Mhux se jiġu mibgħuta notifiki oħra f\'każ ta\' aktar modifiki sakemm ma tmurx fil-paġna. Huwa possibbli li terġa\' tpoġġi l-avviż mill-ġdid għal paġni kollha fil-lista t\'osservazzjoni speċjali.
 
-                 Is-Sistema ta\' notifikazzjoni ta\' {{SITENAME}}, fis-servizz tiegħek 
+                 Is-sistema ta\' notifika ta\' {{SITENAME}}, fis-servizz tiegħek 
 
 --
-Biex tagħmel modifiki fil-lista t\'osservazzjoni tiegħek:
+Biex tbiddel l-impostazzjonijiet tal-lista t\'osservazzjoni tiegħek, żur
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Biex tagħti l-kumment tiegħek u għal aktar għajnuna:
@@ -1906,7 +1906,7 @@ Biex tagħti l-kumment tiegħek u għal aktar għajnuna:
 'exblank'                => 'paġna kienet vojta',
 'delete-confirm'         => 'Ħassar "$1"',
 'delete-legend'          => 'Ħassar',
-'historywarning'         => 'Twissija: Il-paġna li se tħassar għanda kronoloġija:',
+'historywarning'         => "Twissija: Il-paġna li se tħassar għandha kronoloġija b'{{PLURAL:$1|reviżjoni waħda|numru ta' reviżjonijiet}}:",
 'confirmdeletetext'      => "Int se tħassar għal kollox mid-database paġna jew stampa, flimkien mal-kronoloġija kollha tagħha. Jekk jogħġbok, ikkonferma li hija x-xewqa tiegħek li tkompli bit-tħassir ta' din il-paġna, u tifhem il-konsegwenzi ta' li qiegħed tagħmel, u li qiegħed tagħmilhom skont il- [[{{MediaWiki:Policy-url}}|politika]] stabbilita.",
 'actioncomplete'         => 'Azzjoni mwettqa',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ġiet imħassra.

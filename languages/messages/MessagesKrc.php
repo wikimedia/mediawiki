@@ -120,7 +120,7 @@ $messages = array(
 'retrievedfrom'       => 'Чыкъгъаны — «$1»',
 'youhavenewmessages'  => 'Сизге $1 келди ($2).',
 'newmessageslink'     => 'джангы билдириуле',
-'newmessagesdifflink' => 'ахыр тюрлениу',
+'newmessagesdifflink' => 'сюзюу бетигизни ахыр тюрлениуи',
 'editsection'         => 'тюзетиу',
 'editold'             => 'тюзет',
 'editlink'            => 'тюзетиу',
@@ -296,7 +296,7 @@ $messages = array(
 'rclistfrom'                     => '$1 башлаб джангы тюрлениулени кёгюз',
 'rcshowhideminor'                => 'гитче тюзетиулени $1',
 'rcshowhidebots'                 => 'ботланы $1',
-'rcshowhideliu'                  => '$1 кирген къошулуучуланы',
+'rcshowhideliu'                  => 'кирген къошулуучуланы $1',
 'rcshowhideanons'                => 'анонимлени $1',
 'rcshowhidemine'                 => 'кесими тюзетиулерим $1',
 'rclinks'                        => 'Ахыр $2 кюнню ичинде этилиннген $1 тюрлениуню кёгюз;<br /> $3',
@@ -366,7 +366,7 @@ $messages = array(
 'allpagesfrom'   => 'Мунга башланнган бетлени чыгъар:',
 'allpagesto'     => 'Мында чыгъарыуну тохтат:',
 'allarticles'    => 'Бютёу бары бетле',
-'allpagessubmit' => 'Этиу',
+'allpagessubmit' => 'Кёгюз',
 
 # Special:LinkSearch
 'linksearch' => 'Тыш джибериуле',
@@ -384,7 +384,7 @@ $messages = array(
 # Watchlist
 'watchlist'         => 'Сынчыкълау списогум',
 'mywatchlist'       => 'Сынчыкълау списогум',
-'watchlistfor'      => "('''$1''' къошулуучу)",
+'watchlistfor'      => "('''$1''' ючюн)",
 'addedwatch'        => 'Сынчыкълау бетге къош',
 'addedwatchtext'    => '«[[:$1]]» бет [[Special:Watchlist|сынчыкълау бетигизге]] къошулду.
 Бу бетни эмда муну бла байламлы сюзюу бетни тюрлениулери ол списокда белгиленникдиле, [[Special:RecentChanges|джангы тюрлениулени списогуну]] бетинде уа къалын шрифт бла чертилинникдиле, кёрюрге тынчыракъ болурча.',
@@ -446,12 +446,12 @@ $messages = array(
 
 # Namespace form on various pages
 'namespace'      => 'Атла алам:',
-'invert'         => 'Сайланнганны айландырыргъа',
+'invert'         => 'Сайланнганны айландыр',
 'blanknamespace' => '(Тамал)',
 
 # Contributions
 'contributions'       => 'Къошулуучуну къошханы',
-'contributions-title' => '$1 къошулуучуню къошагъы',
+'contributions-title' => '$1 къошулуучуну къошагъы',
 'mycontris'           => 'Мени къошханым',
 'contribsub2'         => '$1 ($2) къошакъ',
 'uctop'               => '(ахыргъы)',
@@ -555,7 +555,7 @@ $messages = array(
 'tooltip-search'                  => 'Бу сёзню излерге',
 'tooltip-search-go'               => 'Тамам быллай аты болгъан бетге кёчерге',
 'tooltip-search-fulltext'         => 'Быллай текст болгъан бетлени табаргъа',
-'tooltip-n-mainpage'              => 'Баш бетге кёчерге',
+'tooltip-n-mainpage'              => 'Баш бетге кёчюу',
 'tooltip-n-mainpage-description'  => 'Баш бетге кёчюу',
 'tooltip-n-portal'                => 'Проектни юсюнден, сизни не этерге боллугъугъузню юсюнден, хар не къайда болгъаныны юсюнден',
 'tooltip-n-currentevents'         => 'Бусагъатда болгъан ишлени списогу',
@@ -573,7 +573,7 @@ $messages = array(
 'tooltip-t-print'                 => 'Бу бетни басмагъа версиясы',
 'tooltip-t-permalink'             => 'Бетни бу версиясына дайым линк',
 'tooltip-ca-nstab-main'           => 'Статьяны ичиндеги',
-'tooltip-ca-nstab-user'           => 'Къошулуучуну бетина къара',
+'tooltip-ca-nstab-user'           => 'Къошулуучуну бетине къарау',
 'tooltip-ca-nstab-special'        => 'Бу специал бетди, тюрлендирилмейди',
 'tooltip-ca-nstab-project'        => 'Проектни бетине къара',
 'tooltip-ca-nstab-image'          => 'Файлны бетине къара',
@@ -590,7 +590,7 @@ $messages = array(
 
 # Browsing diffs
 'previousdiff' => '← Алдагъы тюзетиу',
-'nextdiff'     => 'Эндиги тюзетиу',
+'nextdiff'     => 'Эндиги тюзетиу →',
 
 # Media information
 'file-info-size'       => '($1 × $2 пиксель, файлны ёлчеми: $3, MIME тибы: $4)',

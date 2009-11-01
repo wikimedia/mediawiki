@@ -414,7 +414,7 @@ $messages = array(
 'noindex-category'               => "Pagina's dee neet eïndexeerd bin",
 
 'mainpagetext'      => "<big>'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''</big>",
-'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
+'mainpagedocfooter' => "Bekiek de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
 
 == Meer hulpe ==
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Lieste mit instellingen]
@@ -478,7 +478,7 @@ $messages = array(
 'tagline'           => 'Van {{SITENAME}}',
 'help'              => 'Hulpe en kontak',
 'search'            => 'Zeuken',
-'searchbutton'      => 'Zeuken',
+'searchbutton'      => 'zeuken',
 'go'                => 'artikel',
 'searcharticle'     => 'artikel',
 'history'           => 'Geschiedenisse',
@@ -952,9 +952,9 @@ As grund is angeven: $1",
 'recreate-moveddeleted-warn'       => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
-Veur de dudelijkheid steet hieronder  't logboek mit vort-edaone infermasie en 't herneumlogboek veur disse pagina:",
+Veur de dudelijkheid steet hieronder  't vortdologboek en 't herneumlogboek veur disse pagina:",
 'moveddeleted-notice'              => "Disse pagina is vort-edaon.
-Hieronder steet de infermasie uut 't logboek mit vort-edaone infermasie en 't herneumlogboek.",
+Hieronder steet de infermasie uut 't vortdologboek en 't herneumlogboek.",
 'log-fulllog'                      => "'t Hele logboek bekieken",
 'edit-hook-aborted'                => 'De bewarking is of-ebreuken deur een hook.
 Der is gien reden op-egeven.',
@@ -1024,27 +1024,27 @@ De deur $3 op-egeven reden is ''$2''",
 'rev-deleted-user'            => '(gebrukersnaam vort-edaon)',
 'rev-deleted-event'           => '(antekening vort-edaon)',
 'rev-deleted-text-permission' => "Disse bewarking is '''vort-edaon'''.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].",
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
 'rev-deleted-text-unhide'     => "Disse bewarking is '''vort-edaon'''.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].
 As beheerder ku-j [$1 disse versie bekieken] a-j willen.",
 'rev-suppressed-text-unhide'  => "Disse bewarking is '''onderdrok'''.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokken infermasie].
 As beheerder ku-j [$1 disse versie bekieken] a-j willen.",
 'rev-deleted-text-view'       => "Disse bewarking is '''vort-edaon'''.
-As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone infermasie].",
+As beheerder van disse wiki ku-j 't wel zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-text-view'    => "Disse bewarking is '''onderdrok'''.
 As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokken versies].",
 'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies '''vort-edaon''' is.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].",
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
 'rev-deleted-unhide-diff'     => "Eén van de bewarkingen in disse vergeliekingen is '''vort-edaon'''.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'rev-suppressed-unhide-diff'  => "Eén van de bewarkingen in disse vergeliekingen is '''vort-edaon'''.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokken infermasie].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'rev-deleted-diff-view'       => "Een van de bewarkingen veur de verschillen dee-j op-evreugen hemmen '''vort-edaon'''.
-As beheerder ku-j disse verschillen bekieken. Meschien steet der meer over in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone infermasie].",
+As beheerder ku-j disse verschillen bekieken. Meschien steet der meer over in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-diff-view'    => "Een van de bewarkingen veur de verschillen dee-j op-evreugen hemmen is '''onderdrok'''.
 As beheerder ku-j disse verschillen bekieken. Meschien steet der over in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokken versies].",
 'rev-delundel'                => 'bekiek/verbarg',
@@ -1077,7 +1077,7 @@ Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummep
 'revdelete-hide-image'        => 'Verbarg bestaansinhoud',
 'revdelete-unsuppress'        => 'Beparkingen veur weerummezetten versies vortdoon',
 'revdelete-log'               => "Reden veur 't vortdoon:",
-'revdelete-submit'            => 'De ekeuzen versie toepassen',
+'revdelete-submit'            => 'Toepassen op de ekeuzen {{PLURAL:$1|bewarking|bewarkingen}}',
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
 'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
@@ -1550,7 +1550,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'uploaderror'                 => "Fout bie 't toevoegen van 't bestaand",
 'uploadtext'                  => "Gebruuk 't formelier hieronder um bestanen derbie te zetten.
 Um bestanen te bekieken of te zeuken dee-j der eerder al bie ezet hemmen, ku-j naor de [[Special:FileList|bestaanslieste]] gaon.
-Bestanen en media dee nao 't vortdoon opniej derbie zet wönnen ku-j in de smiezen houwen in 't [[Special:Log/upload|logboek mit nieje bestanen]] en 't [[Special:Log/delete|logboek mit vort-edaone infermasie]].
+Bestanen en media dee nao 't vortdoon opniej derbie zet wönnen ku-j in de smiezen houwen in 't [[Special:Log/upload|logboek mit nieje bestanen]] en 't [[Special:Log/delete|vortdologboek]].
 
 Um 't bestaand in te voegen in een pagina ku-j een van de volgende codes gebruken:
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.jpg]]</nowiki>'''
@@ -1608,7 +1608,7 @@ A-j 't bestaand asnog toevoegen willen, gao dan weerumme en kies een aandere naa
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dit bestaand is liekeleens as {{PLURAL:$1|'t volgende bestaand|de volgende bestanen}}:",
 'file-deleted-duplicate'      => "Een bestaand dat liekeleens is an dit bestaand ([[$1]]) is eerder al vort-edaon.
-Raodpleeg 't logboek mit vort-edaone pagina's veurda-j veurdan gaon.",
+Bekiek 't vortdologboek veurda-j veurdan gaon.",
 'successfulupload'            => 'Bestaanstoevoeging was succesvol',
 'uploadwarning'               => 'Waorschuwing',
 'uploadwarning-text'          => "Pas de bestaansbeschrieving hieronder an en prebeer 't opniej",
@@ -1634,7 +1634,7 @@ Kiek 't bestaand nao en voeg 't bestaand opniej toe.",
 'upload-wasdeleted'           => "'''Waorschuwing: je bin een bestaand an 't toevoegen dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wönnen.
-'t Logboek mit vort-edaone pagina's ku-j hier vienen:",
+'t Logboek mit alle vort-edaone infermasie ku-j hier vienen:",
 'filename-bad-prefix'         => "De naam van 't bestaand da-j toevoegen, begint mit '''\"\$1\"''', dit is een neet-beschrievende naam dee meestentieds autematisch deur een digitale camera egeven wonnen. Kies een dudelijke naam veur 't bestaand.",
 
 'upload-proto-error'        => 'Verkeerd protecol',
@@ -2098,9 +2098,9 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen
 'deletedtext'            => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
 'deletedarticle'         => '"$1" vort-edaon',
 'suppressedarticle'      => 'hef "[[$1]]" verbörgen',
-'dellogpage'             => 'Logboek mit vort-edaone infermasie',
+'dellogpage'             => 'Vortdologboek',
 'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
-'deletionlog'            => "Vort-edaone pagina's",
+'deletionlog'            => 'Vortdologboek',
 'reverted'               => 'Eerdere versie hersteld',
 'deletecomment'          => 'Reden',
 'deleteotherreason'      => 'Aandere/extra reden:',
@@ -2225,8 +2225,8 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 'cannotundelete'               => "Weerummeplaosen van 't bestaand is mislok; een aander hef disse pagina meschien al weerummeplaos.",
 'undeletedpage'                => "<big>'''$1 is weerummeplaos'''</big>
 
-Bekiek 't [[Special:Log/delete|logboek mit vort-edaone infermasie]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
-'undelete-header'              => "Zie 't [[Special:Log/delete|logboek mit vort-edaone infermasie]] veur spul dat les vort-edaon is.",
+Bekiek 't [[Special:Log/delete|vortdologboek]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
+'undelete-header'              => "Zie 't [[Special:Log/delete|vortdologboek ]] veur spul dat krek vort-edaon is.",
 'undelete-search-box'          => "Deurzeuk vort-edaone pagina's",
 'undelete-search-prefix'       => "Bekiek pagina's vanof:",
 'undelete-search-submit'       => 'Zeuk',

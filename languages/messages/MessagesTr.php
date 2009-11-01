@@ -342,7 +342,7 @@ $messages = array(
 'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Hata',
-'returnto'          => "$1'e dön.",
+'returnto'          => '$1 sayfasına dön.',
 'tagline'           => '{{SITENAME}} sitesinden',
 'help'              => 'Yardım',
 'search'            => 'ara',
@@ -910,6 +910,7 @@ Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Lo
 'rev-suppressed-diff-view'    => "Bu değişikliğinin revizyonlarından birisi '''bastırılmış'''.
 Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma günlüğünde] ayrıntılar bulunabilir.",
 'rev-delundel'                => 'göster/gizle',
+'rev-showdeleted'             => 'göster',
 'revisiondelete'              => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',
 'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok. Sunulmuş olan revizyon mevcut değil, veya mevcut revizyonu gizlemeye çalışıyorsunuz.',
@@ -938,7 +939,7 @@ Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Lo
 'revdelete-hide-image'        => 'Dosya içeriğini gizle',
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
 'revdelete-log'               => 'Silinme için sebep:',
-'revdelete-submit'            => 'Seçilen sürüme uygula',
+'revdelete-submit'            => 'Seçilen {{PLURAL:$1|sürüme|sürümlere}} uygula',
 'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
 'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
 'revdelete-success'           => "'''Revizyon görünürlüğü başarıyla ayarlandı.'''",
@@ -1020,7 +1021,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'lineno'                   => '$1. satır:',
 'compareselectedversions'  => 'Seçilen sürümleri karşılaştır',
 'showhideselectedversions' => 'Seçili sürümleri göster/gizle',
-'editundo'                 => 'geriye al',
+'editundo'                 => 'geri al',
 
 # Search results
 'searchresults'                    => 'Arama sonuçları',
@@ -2228,6 +2229,8 @@ $1',
 'ipblocklist-sh-tempblocks'       => 'Geçici engellemeleri $1',
 'ipblocklist-sh-addressblocks'    => 'Tek IP engellemelerini $1',
 'ipblocklist-submit'              => 'Ara',
+'ipblocklist-localblock'          => 'Yerel engelleme',
+'ipblocklist-otherblocks'         => 'Diğer {{PLURAL:$1|engelleme|engellemeler}}',
 'blocklistline'                   => '$1, $2 engellendi: $3 ($4)',
 'infiniteblock'                   => 'Süresiz',
 'expiringblock'                   => '$1 $2 tarihinde doluyor',
@@ -2266,6 +2269,7 @@ Gizleme günlüğü referans için aşağıda sağlanmıştır:',
 'ipb_already_blocked'             => '"$1" zaten engellenmiş',
 'ipb-needreblock'                 => '== Zaten engellenmiş ==
 $1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?',
+'ipb-otherblocks-header'          => 'Diğer {{PLURAL:$1|engelleme|engellemeler}}',
 'ipb_cant_unblock'                => 'Hata: Engelleme IDsi $1 bulunamadı.
 Engelleme kaldırılmış olabilir.',
 'ipb_blocked_as_range'            => 'Hata: $1 IP adresi doğrudan engellenmemiş ve engelleme kaldırılamaz.
@@ -2355,7 +2359,7 @@ Lütfen başka bir isim deneyiniz.',
 'movesubpagetext'              => 'Bu sayfanın aşağıda gösterilen $1 {{PLURAL:$1|altsayfası|altsayfası}} vardır.',
 'movenosubpage'                => 'Bu sayfanın altsayfası yoktur.',
 'movereason'                   => 'Neden:',
-'revertmove'                   => 'geriye al',
+'revertmove'                   => 'geri al',
 'delete_and_move'              => 'Sil ve taşı',
 'delete_and_move_text'         => '==Silinmesi gerekiyor==
 

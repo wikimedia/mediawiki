@@ -599,13 +599,13 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => 'Acção não existente',
-'nosuchactiontext'  => 'A ação especificada pela URL é inválida.
-Você poderá ter introduzido mal a URL, ou ter seguido uma ligação incorreta.
-Isto poderá também ser indicador de um defeito em {{SITENAME}}.',
+'nosuchactiontext'  => 'A acção especificada pela URL é inválida.
+É possível que tenha escrito mal a URL ou seguido uma ligação incorrecta.
+Isto pode também ser indicativo de um defeito no programa usado pela {{SITENAME}}.',
 'nosuchspecialpage' => 'Não existe a página especial requisitada',
-'nospecialpagetext' => '<strong>Você requisitou uma página especial inválida.</strong>
+'nospecialpagetext' => '<strong>Requisitou uma página especial inválida.</strong>
 
-Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:SpecialPages|{{int:specialpages}}]].',
+Uma lista das páginas especiais válidas pode ser encontrada em [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erro',
@@ -670,7 +670,7 @@ Query: $2',
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
-'namespaceprotected'   => "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",
+'namespaceprotected'   => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssjsprotected' => 'Não possui permissão para editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
 'ns-specialprotected'  => 'Não é possível editar páginas especiais',
 'titleprotected'       => "Este título foi protegido, para que não seja criado.
@@ -720,7 +720,7 @@ Por favor, active-os e autentique-se com o seu nome de utilizador e a sua palavr
 'nocookieslogin'             => "A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
 Os ''cookies'' estão desactivados no seu navegador.
 Por favor, active-os e tente novamente.",
-'noname'                     => 'Você não colocou um nome de utilizador válido.',
+'noname'                     => 'Não especificou um nome de utilizador válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser'                 => 'Não existe nenhum utilizador com o nome "$1".
@@ -740,7 +740,7 @@ A sua palavra-chave temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
 
 Caso tenha sido outra pessoa a fazer este pedido, ou caso você já se tenha lembrado da sua palavra-chave e não deseja alterá-la, ignore esta mensagem e continue a utilizar a palavra-chave antiga.',
 'noemail'                    => 'Não há um endereço de correio electrónico associado ao utilizador "$1".',
-'noemailcreate'              => 'Você precisa fornecer um endereço de e-mail válido',
+'noemailcreate'              => 'Precisa de fornecer um endereço de correio electrónico válido',
 'passwordsent'               => 'Uma nova palavra-chave encontra-se a ser enviada para o endereço de correio electrónico associado ao utilizador "$1".
 Por favor, volte a efectuar a autenticação ao recebê-la.',
 'blocked-mailpassword'       => 'O seu endereço de IP foi bloqueado de editar e, portanto, não será possível utilizar o lembrete de palavra-chave (para serem evitados envios abusivos a outras pessoas).',
@@ -772,7 +772,8 @@ Por favor, aguarde antes de tentar novamente.',
 
 # Password reset dialog
 'resetpass'                 => 'Alterar palavra-chave',
-'resetpass_announce'        => 'Você foi autenticado através de uma palavra-chave temporária. Para prosseguir, será necessário definir uma nova palavra-chave.',
+'resetpass_announce'        => 'Autenticou-se usando uma palavra-chave temporária enviada por correio electrónico.
+Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass_text'            => '<!-- Adicionar texto aqui -->',
 'resetpass_header'          => 'Alterar palavra-chave da conta',
 'oldpassword'               => 'Palavra-chave antiga',
@@ -781,10 +782,10 @@ Por favor, aguarde antes de tentar novamente.',
 'resetpass_submit'          => 'Definir palavra-chave e entrar',
 'resetpass_success'         => 'Sua palavra-chave foi alterada com sucesso! Autenticando-se...',
 'resetpass_forbidden'       => 'Não é possível alterar palavras-chave',
-'resetpass-no-info'         => 'Você precisa estar autenticado para aceder a esta página directamente.',
+'resetpass-no-info'         => 'Precisa estar autenticado para aceder directamente a esta página.',
 'resetpass-submit-loggedin' => 'Alterar palavra-chave',
 'resetpass-wrong-oldpass'   => 'Palavra-chave temporária ou actual inválida. 
-Você pode já ter alterado com sucesso a sua palavra-chave, ou solicitado uma nova palavra-chave temporária.',
+Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
 
 # Edit page toolbar
@@ -876,20 +877,19 @@ Porque não existe uma secção $1, não há nenhum local onde a sua edição po
 
 A palavra-chave para esta nova conta pode ser alterada na página ''[[Special:ChangePassword|{{MediaWiki:changepassword/pt}}]]'' após autenticação.",
 'newarticle'                       => '(Nova)',
-'newarticletext'                   => "Você seguiu uma ligação para uma página que ainda não existe.
-Para criá-la, escreva o seu conteúdo na caixa abaixo
-(veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
-Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back'') do seu navegador.",
+'newarticletext'                   => "Seguiu uma ligação para uma página que ainda não existe.
+Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
+Se chegou aqui por engano, clique no botão '''voltar''' (ou ''back'') do seu navegador.",
 'anontalkpagetext'                 => "----''Esta é a página de discussão de um utilizador anónimo que ainda não criou uma conta ou não a utiliza, pelo que temos de utilizar o endereço IP para identificá-lo(a).
 Um endereço IP pode ser partilhado por vários utilizadores.
 Se é um utilizador anónimo e sente que lhe foram direccionados comentários irrelevantes, por favor [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
-'noarticletext'                    => 'Não existe atualmente texto nesta página.
-Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] noutras páginas,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pesquisar os registos relacionados],
+'noarticletext'                    => 'Ainda não existe texto nesta página.
+Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} procurar registos relacionados]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
-'noarticletext-nopermission'       => 'Não há actualmente texto nesta página.
-Você pode [[Special:Search/{{PAGENAME}}|procurar este título de página]] em outras páginas,
-ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} procurar os registos relacionados] </span>.',
+'noarticletext-nopermission'       => 'Ainda não existe texto nesta página.
+Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas
+ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} procurar registos relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
@@ -931,8 +931,8 @@ Terá de reintegrar as suas mudanças no texto da caixa acima.
 '''Só''' o texto na caixa acima será gravado quando clicar \"{{MediaWiki:savearticle/pt}}\".<br />",
 'yourtext'                         => 'Seu texto',
 'storedversion'                    => 'Versão guardada',
-'nonunicodebrowser'                => "'''AVISO: O seu navegador não é compatível com as especificações unicode.
-Um contorno terá de ser utilizado para permitir que você possa editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
+'nonunicodebrowser'                => "'''Aviso: O seu navegador não é compatível com as especificações Unicode.
+Foi activado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
 'editingold'                       => "'''Aviso: Está editando uma revisão desactualizada desta página.'''
 Se gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
 'yourdiff'                         => 'Diferenças',
@@ -965,9 +965,9 @@ O administrador que bloqueou a base de dados forneceu a seguinte explicação: $
 'nocreatetitle'                    => 'A criação de páginas encontra-se limitada',
 'nocreatetext'                     => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|autenticar-se ou criar uma conta]].',
-'nocreate-loggedin'                => 'Você não possui permissões de criar novas páginas.',
+'nocreate-loggedin'                => 'Não possui permissão para criar novas páginas.',
 'permissionserrors'                => 'Erros de permissões',
-'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
+'permissionserrorstext'            => 'Não possui permissão para fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'recreate-moveddeleted-warn'       => "'''Aviso: Está a recriar uma página anteriormente eliminada.'''
 
@@ -1073,6 +1073,7 @@ Como administrador, pode visualizar a listagem de diferenças; poderão existir 
 'rev-suppressed-diff-view'    => "Uma das revisões nesta listagem de diferenças foi '''suprimida'''.
 Como administrador, pode visualizar a listagem de diferenças; poderão existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
 'rev-delundel'                => 'mostrar/esconder',
+'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'     => 'Edição de destino inválida',
 'revdelete-nooldid-text'      => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
@@ -1088,8 +1089,9 @@ Como administrador, pode visualizar a listagem de diferenças; poderão existir 
 'revdelete-text'              => "'''Edições e eventos eliminados continuarão a aparecer no histórico e registos da página, mas partes do seu conteúdo estarão inacessíveis ao público.'''
 Outros administradores em {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.",
 'revdelete-confirm'           => 'Por favor confirme que pretende executar esta acção, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
-'revdelete-suppress-text'     => "A supressão deverá '''apenas''' ser usada para os seguintes casos:
-* Informação pessoa inapropriada
+'revdelete-suppress-text'     => "A supressão '''só''' deverá ser usada nos seguintes casos:
+* Informação potencialmente caluniosa, difamatória ou injuriosa
+* Informação pessoal imprópria
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend'            => 'Definir restrições de visualização',
 'revdelete-hide-text'         => 'Ocultar texto da edição',
@@ -1101,7 +1103,7 @@ Outros administradores em {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-hide-image'        => 'Ocultar conteúdos do ficheiro',
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
 'revdelete-log'               => 'Motivo da eliminação:',
-'revdelete-submit'            => 'Aplicar à edição seleccionada',
+'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à edição seleccionada|às edições seleccionadas}}',
 'revdelete-logentry'          => 'modificou visibilidade de edições de [[$1]]',
 'logdelete-logentry'          => 'alterou a visibilidade de eventos para [[$1]]',
 'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
@@ -1298,9 +1300,9 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'            => 'Número de edições a apresentar por omissão:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registos.',
-'prefs-help-watchlist-token'    => 'O preenchimento desse campo com uma chave secreta irá gerar um feed RSS para a sua lista de vigiados.
-Qualquer um que conhecer a chave desta área poderá ler os sua lista de vigiados, então escolha uma palavra secreta segura.
-Aqui está uma palavra secreta gerada aleatoriamente que você poderá usar: $1',
+'prefs-help-watchlist-token'    => "Preencher este campo com uma senha secreta gera um ''feed'' RSS para a sua lista de páginas vigiadas.
+Qualquer pessoa que conheça a senha deste campo será capaz de ler a sua lista de vigiados, por isso escolha um valor seguro.
+Eis um valor gerado aleatoriamente, que pode usar: $1",
 'savedprefs'                    => 'As suas preferências foram gravadas.',
 'timezonelegend'                => 'Fuso horário:',
 'localtime'                     => 'Horário local:',
@@ -1327,7 +1329,7 @@ Aqui está uma palavra secreta gerada aleatoriamente que você poderá usar: $1'
 'prefs-files'                   => 'Ficheiros',
 'prefs-custom-css'              => 'CSS personalizada',
 'prefs-custom-js'               => 'JS personalizado',
-'prefs-reset-intro'             => 'Você pode usar esta página para restaurar as suas preferências para os valores predefinidos do sítio.
+'prefs-reset-intro'             => 'Pode usar esta página para repôr as configurações-padrão das preferências. As suas preferências serão modificadas para os valores predefinidos do sítio.
 Esta acção não pode ser desfeita.',
 'prefs-emailconfirm-label'      => 'Confirmação do email:',
 'prefs-textboxsize'             => 'Tamanho da janela de edição',
@@ -1568,7 +1570,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 # Upload
 'upload'                      => 'Carregar ficheiro',
 'uploadbtn'                   => 'Carregar ficheiro',
-'reuploaddesc'                => 'Cancelar o envio e retornar ao formulário de upload',
+'reuploaddesc'                => 'Cancelar o envio e voltar ao formulário de carregamento',
 'upload-tryagain'             => 'Submeta a descrição de ficheiro modificada',
 'uploadnologin'               => 'Não autenticado',
 'uploadnologintext'           => 'Você necessita estar [[Special:UserLogin|autenticado]] para enviar ficheiros.',
@@ -1924,7 +1926,7 @@ Cada linha contém ligações para o primeiro e segundo redirecionamento, bem co
 'unusedimagestext'        => 'Por favor, note que outros websites podem apontar para um ficheiro através de um URL directo e, por isso, podem estar a ser listadas aqui, mesmo estando em uso.',
 'unusedcategoriestext'    => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
 'notargettitle'           => 'Sem alvo',
-'notargettext'            => 'Você não especificou uma página alvo ou um utilizador para executar esta função.',
+'notargettext'            => 'Especifique sobre que página alvo ou utilizador pretende executar esta função.',
 'nopagetitle'             => 'Página alvo não existe',
 'nopagetext'              => 'A página alvo especificada não existe.',
 'pager-newer-n'           => '{{PLURAL:$1|1 posterior|$1 posteriores}}',
@@ -2193,13 +2195,15 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
 'protect-unchain'             => 'Desbloquear permissões de moção',
-'protect-text'                => "Você pode, nesta página, alterar o nível de proteção para '''<nowiki>$1</nowiki>'''.",
-'protect-locked-blocked'      => "Você não poderá alterar os níveis de proteção enquanto estiver bloqueado. Esta é a configuração atual para a página '''$1''':",
+'protect-text'                => "Pode visualizar e alterar aqui o nível de protecção da página '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Não pode alterar níveis de protecção enquanto estiver bloqueado.
+Esta é a configuração presente para a página '''$1''':",
 'protect-locked-dblock'       => "Não é possível alterar os níveis de proteção, uma vez que a base de dados se encontra trancada.
 Esta é a configuração atual para a página '''$1''':",
 'protect-locked-access'       => "Sua conta não possui permissões para alterar os níveis de proteção de uma página.
 Esta é a configuração atual para a página '''$1''':",
-'protect-cascadeon'           => 'Esta página encontra-se protegida, uma vez que se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "protecção progressiva" activada. Você poderá alterar o nível de protecção desta página, mas isso não afectará a "protecção progressiva".',
+'protect-cascadeon'           => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "protecção progressiva" activada.
+Pode alterar o nível de protecção desta página, mas isso não afectará a "protecção progressiva".',
 'protect-default'             => 'Permitir todos os utilizadores',
 'protect-fallback'            => 'É necessário o privilégio de "$1"',
 'protect-level-autoconfirmed' => 'Bloquear utilizadores novos e não registados',
@@ -2208,7 +2212,7 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-expiring'            => 'expira em $1 (UTC)',
 'protect-expiry-indefinite'   => 'infinito',
 'protect-cascade'             => 'Proteja quaisquer páginas que estejam incluídas nesta (proteção progressiva)',
-'protect-cantedit'            => 'Você não pode alterar o nível de proteção desta página uma vez que você não se encontra habilitado a editá-la.',
+'protect-cantedit'            => 'Não pode alterar o nível de protecção desta página, porque não tem permissão para editá-la.',
 'protect-othertime'           => 'Outra duração:',
 'protect-othertime-op'        => 'outra duração',
 'protect-existing-expiry'     => 'A proteção atual expirará às $3 de $2',
@@ -2430,6 +2434,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'ipb_already_blocked'             => '"$1" já se encontra bloqueado',
 'ipb-needreblock'                 => '== Já se encontra bloqueado ==
 $1 já se encontra bloqueado. Deseja alterar as configurações?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}',
 'ipb_cant_unblock'                => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'ipb_blocked_as_range'            => 'Erro: O IP $1 não se encontra bloqueado de forma direta, não podendo ser desbloqueado deste modo. Se encontra bloqueado como parte do "range" $2, o qual pode ser desbloqueado.',
 'ip_range_invalid'                => 'Gama de IPs inválida.',
@@ -2466,27 +2471,28 @@ Lembre-se de [[Special:UnlockDB|remover o bloqueio]] após a manutenção.',
 # Move page
 'move-page'                    => 'Mover $1',
 'move-page-legend'             => 'Mover página',
-'movepagetext'                 => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico de edições para o novo título.
-É possível corrigir de forma automática redirecionamentos que apontem para o título original.
-Caso escolha para que isso não seja feito, certifique-se de verificar redirecionamentos [[Special:DoubleRedirects|duplos]] ou [[Special:BrokenRedirects|quebrados]].
-É de sua responsabilidade ter certeza de que os links continuem apontando para onde se é suposto apontar.
+'movepagetext'                 => "Usando o formulário abaixo pode mover esta página e todo o seu histórico de edições para uma nova página com outro nome.
+A página original será transformada num redireccionamento para a nova página.
+Pode corrigir de forma automática os redireccionamentos existentes que apontam para a página original.
+Caso escolha não o fazer, certifique-se de que não existem [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
+É da sua responsabilidade verificar que as ligações continuam a apontar para onde é suposto que apontem.
 
-Note que a página '''não''' será movida se já existir uma página com o novo título, a não ser que ele esteja vazio ou seja um redirecionamento e não tenha histórico de edições.
-Isto significa que pode renomear uma página de volta para o nome que tinha anteriormente se cometer algum engano, e que não pode sobrescrever uma página.
+Note que a página '''não''' será movida se já existir uma página com o novo nome, a menos que esta esteja vazia ou seja um redireccionamento sem qualquer histórico de edições.
+Isto significa que pode mover uma página de volta para o seu nome original se cometeu algum engano e que não pode mover uma página para cima de outra já existente.
 
 '''CUIDADO!'''
-Isto pode ser uma mudança drástica e inesperada para uma página popular;
-por favor, tenha certeza de que compreende as conseqüências da mudança antes de prosseguir.",
-'movepagetalktext'             => "A página de \"discussão\" associada, se existir, será automaticamente movida, '''a não ser que:'''
-*Uma página de discussão com conteúdo já exista sob o novo título, ou
-*Você não marque a caixa abaixo.
+Para uma página popular esta acção pode representar uma mudança drástica e inesperada;
+por favor, certifique-se de que compreende as consequências da mudança antes de prosseguir.",
+'movepagetalktext'             => "Se existir uma página de discussão associada, ela será automaticamente movida, '''a não ser que:'''
+*já exista uma página de discussão com o novo título que não esteja vazia, ou
+*desmarque a correspondente caixa de selecção abaixo.
 
-Nestes casos, você terá que mover ou mesclar a página manualmente, se assim desejar.",
+Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la com a existente, se assim desejar.",
 'movearticle'                  => 'Mover página',
 'movenologin'                  => 'Não autenticado',
-'movenologintext'              => 'Você precisa ser um utilizador registado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
-'movenotallowed'               => 'Você não possui permissão de mover páginas.',
-'movenotallowedfile'           => 'Você não possui permissão de mover ficheiros.',
+'movenologintext'              => 'Precisa ser um utilizador registado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
+'movenotallowed'               => 'Não possui permissão para mover páginas.',
+'movenotallowedfile'           => 'Não possui permissão para mover ficheiros.',
 'cant-move-user-page'          => 'Não possui permissão de mover páginas de utilizadores (pode mover sub-páginas).',
 'cant-move-to-user-page'       => 'Não possui permissão de mover uma página para uma página de utilizador (pode movê-la para uma sub-página de utilizador).',
 'newtitle'                     => 'Para novo título',
@@ -2662,7 +2668,7 @@ Por favor, utilize o botão "{{MediaWiki:showpreview/pt}}" antes de gravar.',
 'tooltip-ca-unwatch'              => 'Remover esta página dos vigiados',
 'tooltip-search'                  => 'Pesquisar nesta wiki',
 'tooltip-search-go'               => 'Ir a uma página com este exato nome, caso exista',
-'tooltip-search-fulltext'         => 'Procurar por páginas contendo este texto',
+'tooltip-search-fulltext'         => 'Procurar páginas que contêm este texto',
 'tooltip-p-logo'                  => 'Visite a página principal',
 'tooltip-n-mainpage'              => 'Visitar a página principal',
 'tooltip-n-mainpage-description'  => 'Visitar a página principal',
@@ -2854,10 +2860,11 @@ $1',
 'sp-newimages-showfrom' => 'Mostrar novos ficheiros a partir de $2, $1',
 
 # Bad image list
-'bad_image_list' => 'The format is as follows:
+'bad_image_list' => 'O formato é o seguinte:
 
-Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
-Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
+Só são reconhecidos elementos na forma de lista (linhas começadas por *).
+A primeira ligação em cada linha deve ser uma ligação ao ficheiro que se pretende bloquear.
+Quaisquer outras ligações nessa mesma linha são consideradas excepções (ou seja, páginas de onde se pode aceder ao ficheiro).',
 
 # Metadata
 'metadata'          => 'Metadados',
@@ -3170,16 +3177,16 @@ O mailer retornou: $1',
 'confirmemail_error'       => 'Alguma coisa correu mal ao guardar a sua confirmação.',
 'confirmemail_subject'     => '{{SITENAME}} confirmação de endereço de e-mail',
 'confirmemail_body'        => 'Alguém, provavelmente você com o endereço de IP $1,
-registou uma conta "$2" com este endereço de e-mail em {{SITENAME}}.
+registou uma conta "$2" com este endereço de correio electrónico na {{SITENAME}}.
 
-Para confirmar que esta conta realmente é sua, e para activar
-as funcionalidades de e-mail em {{SITENAME}},
-abra o seguinte endereço no seu navegador:
+Para confirmar que esta conta é realmente sua e activar
+as funcionalidades de correio electrónico na {{SITENAME}},
+abra a seguinte ligação no seu navegador:
 
 $3
 
-Caso este *não* seja você, siga o seguinte endereço
-para cancelar a confirmação do endereço de e-mail:
+Caso este *não* seja você, abra a seguinte ligação
+para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
@@ -3203,7 +3210,7 @@ $1',
 'deletedwhileediting' => "'''Aviso''': Esta página foi eliminada após ter começado a editá-la!",
 'confirmrecreate'     => "Enquanto você editava esta página, o utilizador [[User:$1|$1]] ([[User talk:$1|Discussão]]) eliminou-a pelo seguinte motivo:
 : ''$2''
-Por favor, confirme que realmente deseja recriar esta página.",
+Por favor, confirme que deseja realmente recriar esta página.",
 'recreate'            => 'Recriar',
 
 # action=purge
