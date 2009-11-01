@@ -3578,7 +3578,7 @@ class User {
 	protected function loadOptions() {
 		global $wgCookiePrefix;
 		$this->load();
-		if ( $this->mOptionsLoaded )
+		if ( $this->mOptionsLoaded || !$this->getId() )
 			return;
 
 		$this->mOptions = self::getDefaultOptions();
@@ -3590,11 +3590,20 @@ class User {
 				$this->mOptions[$key] = $value;
 			}
 		} else {
-			$this->mOptionOverrides = array();
-			if ( $this->getId() ) {
-				$this->loadOptionsFromDatabase();
-			} else {
-				$this->loadOptionsFromCookie();
+			wfDebug( "Loading options for user " . $this->getId() . " from database.\n" );
+			// Load from database
+			$dbr = wfGetDB( DB_SLAVE );
+
+			$res = $dbr->select(
+				'user_properties',
+				'*',
+				array( 'up_user' => $this->getId() ),
+				__METHOD__
+			);
+
+			while( $row = $dbr->fetchObject( $res ) ) {
+				$this->mOptionOverrides[$row->up_property] = $row->up_value;
+				$this->mOptions[$row->up_property] = $row->up_value;
 			}
 
 			//null skin if User::mId is loaded out of session data without persistant credentials
@@ -3608,73 +3617,23 @@ class User {
 		wfRunHooks( 'UserLoadOptions', array( $this, &$this->mOptions ) );
 	}
 
-	protected function loadOptionsFromDatabase() {
-		wfDebug( "Loading options for user ".$this->getId()." from database.\n" );
-		// Load from database
-		$dbr = wfGetDB( DB_SLAVE );
-		
-		$res = $dbr->select(
-			'user_properties',
-			'*',
-			array('up_user' => $this->getId()),
-			__METHOD__
-		);
-		
-		while( $row = $dbr->fetchObject( $res ) ) {
-			$this->mOptionOverrides[$row->up_property] = $row->up_value;
-			$this->mOptions[$row->up_property] = $row->up_value;
-		}
-	}
-	
-	protected function loadOptionsFromCookie() {
-		global $wgCookiePrefix;
-		$cookie = $_COOKIE[$wgCookiePrefix."Options"];
-		
-		$overrides = json_decode($cookie, true); // Load assoc array from cookie
-		
-		foreach( $overrides as $key => $value ) {
-			$this->mOptions[$key] = $value;
-			$this->mOptionOverrides[$key] = $value;
-		}
-	}
-	
 	protected function saveOptions() {
 		global $wgAllowPrefChange;
 
+		$extuser = ExternalUser::newFromUser( $this );
+
 		$this->loadOptions();
+		$dbw = wfGetDB( DB_MASTER );
+		
+		$insert_rows = array();
 		
 		$saveOptions = $this->mOptions;
-		
-		$extuser = ExternalUser::newFromUser( $this );
-		foreach( $saveOptions as $key => $value ) {
-			if ( $extuser && isset( $wgAllowPrefChange[$key] ) ) {
-				switch ( $wgAllowPrefChange[$key] ) {
-					case 'local':
-					case 'message':
-						break;
-					case 'semiglobal':
-					case 'global':
-						$extuser->setPref( $key, $value );
-				}
-			}
-		}
 		
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
 		if( !wfRunHooks( 'UserSaveOptions', array( $this, &$saveOptions ) ) )
 			return;
 
-		if ( $this->getId() ) {
-			$this->saveOptionsToDatabase( $saveOptions );
-		} else {
-			$this->saveOptionsToCookie( $saveOptions );
-		}
-	}
-	
-	protected function saveOptionsToDatabase( $saveOptions ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$insert_rows = array();
-		
 		foreach( $saveOptions as $key => $value ) {
 			# Don't bother storing default values
 			if ( ( is_null( self::getDefaultOption( $key ) ) &&
@@ -3686,6 +3645,16 @@ class User {
 						'up_value' => $value,
 					);
 			}
+			if ( $extuser && isset( $wgAllowPrefChange[$key] ) ) {
+				switch ( $wgAllowPrefChange[$key] ) {
+					case 'local':
+					case 'message':
+						break;
+					case 'semiglobal':
+					case 'global':
+						$extuser->setPref( $key, $value );
+				}
+			}
 		}
 
 		$dbw->begin();
@@ -3694,12 +3663,6 @@ class User {
 		$dbw->commit();
 	}
 
-	protected function saveOptionsToCookie( $saveOptions ) {
-		global $wgRequest;
-		
-		$data = json_encode( $saveOptions );
-		$wgRequest->response()->setCookie( 'Options', $data, 86400 * 360 );
-	}
 	/**
 	 * Provide an array of HTML 5 attributes to put on an input element
 	 * intended for the user to enter a new password.  This may include
