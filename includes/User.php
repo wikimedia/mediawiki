@@ -693,8 +693,9 @@ class User {
 	 *                - 'creatable'  Valid for batch processes, login and account creation
 	 */
 	static function getCanonicalName( $name, $validate = 'valid' ) {
-		# Maybe force usernames to capital
-		$name = Title::capitalize( $name, NS_USER );
+		# Force usernames to capital
+		global $wgContLang;
+		$name = $wgContLang->ucfirst( $name );
 
 		# Reject names containing '#'; these will be cleaned up
 		# with title normalisation, but then it's too late to
