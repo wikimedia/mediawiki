@@ -5,12 +5,13 @@
  */
 
 /**
+ * @param $ip part of title: Special:Ipblocklist/<ip>.
  * @todo document
  */
-function wfSpecialIpblocklist() {
+function wfSpecialIpblocklist( $ip = '' ) {
 	global $wgUser, $wgOut, $wgRequest;
-
-	$ip = trim( $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) ) );
+	$ip = $wgRequest->getVal( 'ip', $ip );
+	$ip = trim( $wgRequest->getVal( 'wpUnblockAddress', $ip ) );
 	$id = $wgRequest->getVal( 'id' );
 	$reason = $wgRequest->getText( 'wpUnblockReason' );
 	$action = $wgRequest->getText( 'action' );
