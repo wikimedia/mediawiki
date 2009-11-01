@@ -696,7 +696,7 @@ Zanim jakiekolwiek inne wiadomości zostaną wysłane na ten adres, należy wyko
 'throttled-mailpassword'     => 'Przypomnienie hasła zostało już wysłane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich $1 godzin}}.
 W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.',
 'mailerror'                  => 'W trakcie wysyłania wiadomości e‐mail wystąpił błąd: $1',
-'acct_creation_throttle_hit' => 'Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|czytelnicy już utworzyli dziś $1 konta|czytelnicy już utworzyli dziś $1 kont}}, co jest maksymalną dopuszczalną liczbą w tym czasie.
+'acct_creation_throttle_hit' => 'Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|utworzono dziś $1 konta|utworzono dziś $1 kont}}, co jest maksymalną dopuszczalną liczbą w tym czasie.
 W związku z tym, osoby korzystające z tego adresu IP w chwili obecnej nie mogą założyć kolejnego.',
 'emailauthenticated'         => 'Twój adres e‐mail został potwierdzony $2 o $3.',
 'emailnotauthenticated'      => "Twój adres '''e‐mail nie został potwierdzony'''.
@@ -1045,7 +1045,7 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-hide-image'        => 'Ukryj zawartość pliku',
 'revdelete-unsuppress'        => 'Wyłącz utajnianie dla odtwarzanej historii zmian',
 'revdelete-log'               => 'Powód usunięcia:',
-'revdelete-submit'            => 'Zaakceptuj dla wybranej wersji',
+'revdelete-submit'            => 'Zaakceptuj dla {{PLURAL:$1|wybranej|wybranych}} wersji',
 'revdelete-logentry'          => 'zmienił widoczność wersji w [[$1]]',
 'logdelete-logentry'          => 'zmienił widoczność zdarzenia dla [[$1]]',
 'revdelete-success'           => "'''Zmieniono widoczność wersji.'''",
@@ -1430,7 +1430,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-minoredit'            => 'do oznaczenia tej edycji jako drobna zmiana',
 'action-move'                 => 'przeniesienia tej strony',
 'action-move-subpages'        => 'przeniesienia tej strony oraz jej podstron',
-'action-move-rootuserpages'   => 'przenoszenia stron użytkowników (za wyjątkiem podstron)',
+'action-move-rootuserpages'   => 'przenoszenia stron użytkowników (bez podstron)',
 'action-movefile'             => 'przeniesienia tego pliku',
 'action-upload'               => 'przesłania tego pliku',
 'action-reupload'             => 'nadpisania tego pliku',

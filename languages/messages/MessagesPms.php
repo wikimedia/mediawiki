@@ -842,7 +842,7 @@ J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé �
 'revdelete-hide-image'        => "Stërma ël contnù dl'archivi",
 'revdelete-unsuppress'        => "Gava le limitassion da 'nt le version ciapà andaré",
 'revdelete-log'               => 'Rason për la scanselassion:',
-'revdelete-submit'            => 'But-jlo a la version selessionà',
+'revdelete-submit'            => 'But-jlo a {{PLURAL:$1|la version|le version}} selessionà',
 'revdelete-logentry'          => 'visibilità dla revision cangià për [[$1]]',
 'logdelete-logentry'          => "a l'ha cangiaje visibilità a l'event [[$1]]",
 'revdelete-success'           => "'''Visibilità dla revision butà coma ch'as dev.'''",
@@ -2180,6 +2180,7 @@ coj che sio ij blocagi ativ al dì d'ancheuj.",
 'ipb-needreblock'                 => "== Già blocà ==
 $1 a l'é già blocà.
 It veule cambié le ampostassion?",
+'ipb-otherblocks-header'          => 'Àutr {{PLURAL:$1|blòch|blòch}}',
 'ipb_cant_unblock'                => 'Eror: As treuva nen ël blòch con identificativ $1. A peul esse che a sia un blòch già gavà via.',
 'ipb_blocked_as_range'            => "Eror: L'adrëssa IP $1 a l'ha gnun blòch diret ansima e donca a peul pa esse dësblocà. A resta blocà mach për via ch'a l'é ciapà andrinta al ragg $2, e lolì as peul pa dësblochesse.",
 'ip_range_invalid'                => 'Nùmer IP nen bon.',

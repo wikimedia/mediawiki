@@ -804,7 +804,7 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşenê h
 'revdelete-hide-image'        => 'zerreyê dosyayi bınımn',
 'revdelete-unsuppress'        => 'reizyonê ke tepiya anciye serbest ker',
 'revdelete-log'               => 'qey hewn a kerdışi sebeb:',
-'revdelete-submit'            => 'revizyono ke nişane biyo, ey ser tetbiq bıker',
+'revdelete-submit'            => 'Cewab be {{PLURAL:$1|çımraviyarnayışi|çımraviyarnayışan}} de',
 'revdelete-logentry'          => '[[$1]] qey neyi esayişê revizyon vuriya',
 'logdelete-logentry'          => '[[$1]] qey neyi esayişê vaqayi vuriya',
 'revdelete-success'           => "'''Esayişê revizyoni bı muvaffaqi eyar bı.'''",
@@ -2107,6 +2107,7 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'ipb-needreblock'                 => '==Zaten blok biya ==
 "$1" zaten blok biya
 Ti wazene ayaran bivurne?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Kılitkerdışo bin|Kılitkerdışê bini}}',
 'ipb_cant_unblock'                => 'xeta: IDyê ver-grewtışi $1 nêesa/asa.
 belka ver-grewtış wedariyayo.',
 'ipb_blocked_as_range'            => 'xeta: $1 verniyê IPadresi direk nêgeriyayo u ver-gırewtışi nêwedariyeno .

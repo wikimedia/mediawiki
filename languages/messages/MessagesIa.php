@@ -967,7 +967,7 @@ Altere administratores in {{SITENAME}} continuara a poter acceder al contento ce
 'revdelete-hide-image'        => 'Celar contento del file',
 'revdelete-unsuppress'        => 'Eliminar restrictiones super versiones restaurate',
 'revdelete-log'               => 'Motivo pro deletion:',
-'revdelete-submit'            => 'Applicar al version seligite',
+'revdelete-submit'            => 'Applicar al {{PLURAL:$1|version|versiones}} seligite',
 'revdelete-logentry'          => 'cambiava le visibilitate de versiones pro [[$1]]',
 'logdelete-logentry'          => 'cambiava le visibilitate de eventos pro [[$1]]',
 'revdelete-success'           => "'''Le visibilitate de versiones ha essite definite con successo.'''",
@@ -2333,6 +2333,7 @@ Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos
 'ipb_already_blocked'             => '"$1" es ja blocate',
 'ipb-needreblock'                 => '== Ja blocate ==
 $1 es ja blocate. Esque tu vole cambiar le configurationes?',
+'ipb-otherblocks-header'          => 'Altere {{PLURAL:$1|blocada|blocadas}}',
 'ipb_cant_unblock'                => 'Error: ID de blocada $1 non trovate. Es possibile que illo ha ja essite disblocate.',
 'ipb_blocked_as_range'            => 'Error: Le IP $1 non es blocate directemente e non pote esser disblocate.
 Illo es, nonobstante, blocate como parte del intervallo $2, le qual pote esser disblocate.',

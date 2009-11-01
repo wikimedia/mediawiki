@@ -1086,7 +1086,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-hide-image'        => 'Dölj filinnehåll',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
 'revdelete-log'               => 'Orsak till radering:',
-'revdelete-submit'            => 'Tillämpa på vald version',
+'revdelete-submit'            => 'Tillämpa på {{PLURAL:$1|vald version|valda versioner}}',
 'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'          => 'ändrade synlighet för åtgärder i [[$1]]',
 'revdelete-success'           => "'''Versionens synlighet har ändrats.'''",
