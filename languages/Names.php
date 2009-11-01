@@ -97,6 +97,7 @@
 	'fr' => 'Français',	# French
 	'frc' => 'Français cadien', # Cajun French
 	'frp' => 'Arpetan',	# Franco-Provençal/Arpitan
+	'frr' => 'Frasch',	# North Frisian
 	'fur' => 'Furlan',		# Friulian
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
@@ -167,6 +168,7 @@
 	'ko' => '한국어',	# Korean
 	'ko-kp' => '한국어 (조선)',	# Korean (DPRK)
 	'kr' => 'Kanuri',		# Kanuri, Central
+	'krc' => 'Къарачай-Малкъар', # Karachay-Balkar
 	'kri' => 'Krio', # Krio
 	'krj' => 'Kinaray-a', # Kinaray-a
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
