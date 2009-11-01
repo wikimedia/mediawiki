@@ -674,6 +674,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   drcontinue param is passed
 * (bug 21106) Deprecated parameters now tagged in action=paraminfo
 * (bug 13453) rebuildrecentchanges maintenance script works on PG again
+* (bug 19004) Added support for tags
 
 === Languages updated in 1.16 ===
 
