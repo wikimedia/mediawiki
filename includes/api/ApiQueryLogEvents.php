@@ -309,6 +309,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			),
 			'user' => null,
 			'title' => null,
+			'tag' => null,
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -329,6 +330,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'user' => 'Filter entries to those made by the given user.',
 			'title' => 'Filter entries to those related to a page.',
 			'limit' => 'How many total event entries to return.'
+			'tag' => 'Only list event entries tagged with this tag.',
 		);
 	}
 

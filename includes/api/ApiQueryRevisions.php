@@ -149,7 +149,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addFields('ts_tags');
 		}
 		
-		if( isset($params['tag']) ) {
+		if( !is_null($params['tag']) ) {
 			$this->addTables('change_tag');
 			$this->addJoinConds(array('change_tag' => array('INNER JOIN', array('rev_id=ct_rev_id'))));
 			$this->addWhereFld('ct_tag' , $params['tag']);
@@ -484,6 +484,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'excludeuser' => array(
 				ApiBase :: PARAM_TYPE => 'user'
 			),
+			'tag' => null,
 			'expandtemplates' => false,
 			'generatexml' => false,
 			'section' => null,
@@ -514,6 +515,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'continue' => 'When more results are available, use this to continue',
 			'diffto' => array('Revision ID to diff each revision to.',
 				'Use "prev", "next" and "cur" for the previous, next and current revision respectively.'),
+			'tag' => 'Only list revisions tagged with this tag',
 		);
 	}
 
