@@ -166,16 +166,16 @@ süi titul dai sezziún (JavaScript)',
 'may_long'      => 'macc',
 'june'          => 'gjügn',
 'july'          => 'lüi',
-'august'        => 'avóst',
-'september'     => 'setembər',
+'august'        => 'Agust',
+'september'     => 'Setember',
 'october'       => 'Utuber',
-'november'      => 'nuvembər',
-'december'      => 'dicember',
-'january-gen'   => 'Giner',
-'february-gen'  => 'Fevrer',
+'november'      => 'Nuvember',
+'december'      => 'Dicember',
+'january-gen'   => 'Genar',
+'february-gen'  => 'Febrar',
 'march-gen'     => 'Marz',
 'april-gen'     => 'Avril',
-'may-gen'       => 'Mag',
+'may-gen'       => 'Magg',
 'june-gen'      => 'Giugn',
 'july-gen'      => 'Luj',
 'august-gen'    => 'Aoust',
@@ -197,17 +197,18 @@ süi titul dai sezziún (JavaScript)',
 'dec'           => 'Dic',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Categuria|Categurij}}',
-'category_header'          => 'Artìcuj int la categuria "$1"',
-'subcategories'            => 'Suta-categurij',
-'category-media-header'    => 'File int la categuria "$1"',
-'category-empty'           => "''Per 'l mument quela categuria chì la gh'ha denter né de paginn ne d'archivi mültimedia''",
-'hidden-categories'        => '{{PLURAL:$1|Categuria scundüda|Categurij scundüü}}',
-'hidden-category-category' => 'Categurij scundüü',
-'category-subcat-count'    => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà una sota-categuria, missa chì de sota.|Quela categuria chì la gh'ha {{PLURAL:$1|una sota-categuria|$1 sota-categurij}},  seguent sü un tutal de $2.}}",
-'category-article-count'   => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà quela pagina chì.|In quela categuria chì gh'è {{PLURAL:$1|la pagina indicada|i $1 paginn indicaa}} de $2 che gh'hinn in tutal.}}",
-'listingcontinuesabbrev'   => 'cont.',
-'index-category'           => 'Paginn indicizaa',
+'pagecategories'                => '{{PLURAL:$1|Categuria|Categurij}}',
+'category_header'               => 'Artìcuj int la categuria "$1"',
+'subcategories'                 => 'Suta-categurij',
+'category-media-header'         => 'File int la categuria "$1"',
+'category-empty'                => "''Per 'l mument quela categuria chì la gh'ha denter né de paginn ne d'archivi mültimedia''",
+'hidden-categories'             => '{{PLURAL:$1|Categuria scundüda|Categurij scundüü}}',
+'hidden-category-category'      => 'Categurij scundüü',
+'category-subcat-count'         => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà una sota-categuria, missa chì de sota.|Quela categuria chì la gh'ha {{PLURAL:$1|una sota-categuria|$1 sota-categurij}},  seguent sü un tutal de $2.}}",
+'category-subcat-count-limited' => "Quela categuria chì la gh'ha denter {{PLURAL:$1|la sut-categuria| i $1 sut-categurij}} chì abass.",
+'category-article-count'        => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà quela pagina chì.|In quela categuria chì gh'è {{PLURAL:$1|la pagina indicada|i $1 paginn indicaa}} de $2 che gh'hinn in tutal.}}",
+'listingcontinuesabbrev'        => 'cont.',
+'index-category'                => 'Paginn indicizaa',
 
 'about'         => 'A pruposit də',
 'article'       => 'Pagina de cuntegnüü',
@@ -420,13 +421,12 @@ Per piasè, fa raport a 'n'[[Special:ListUsers/sysop|aministradur]], cun la nota
 'protectedpagetext'   => "Cula pagina chi l'è stata blucà per impedinn la mudifica.",
 'viewsourcetext'      => "L'è pussibil vèd e cupià el codes surgent de cula pagina chí:",
 'editinginterface'    => "'''Attenzion''': el testo de quella pagina chì el fà part de l'interfacia utent del sitt. Tutt i modifigh che te fet se vedaran subit su i messagg visualizzaa per tutt i utent.",
+'ns-specialprotected' => 'I paginn special i pören mía vess mudifegaa',
 
 # Login and logout pages
-'logouttext'              => "'''Adess a seis descunetacc.'''<br />
-A podé tirar innanz a dovrar la {{SITENAME}} in manera anònima, a podé
-sa cunèta amò cont l'istess o un olt nomm. Tegné cunt che di
-pagini i podressa vess fadi vider compagn che a saressov amò conetacc, fin coura che
-a scancelé mia la memòria cava dal vost bigat.",
+'logouttext'              => "'''Adess a sii descuness.'''<br />
+A pudé andà inanz a druvà la {{SITENAME}} in manera anònima, o a pudé
+cunètev anmò cun l'istess suranomm o cun un suranomm diferent. Tegné cünt che certi paginn pödass che i se veden anmò cume se a füdissi anmò cuness, fin quand che hii nò vudaa 'l ''cache'' del voster browser.",
 'welcomecreation'         => "== Benvegnüü, $1! ==
 'L to cünt l'è staa pruntaa. Desmenteghet mía de mudifegà i to [[Special:Preferences|preferenz de {{SITENAME}}]].",
 'yourname'                => 'El to suranóm:',
@@ -440,7 +440,7 @@ a scancelé mia la memòria cava dal vost bigat.",
 'logout'                  => 'Va fö',
 'userlogout'              => 'Và fö',
 'notloggedin'             => 'Te seet minga dent in del sistema',
-'nologin'                 => "A gh'hiiv anmò da registrav? '''$1'''.",
+'nologin'                 => "Gh'avii anmò da registrav? '''$1'''.",
 'nologinlink'             => 'Creé un cünt!',
 'createaccount'           => 'Creá un cünt',
 'gotaccount'              => "Gh'hee-t giamò un cünt? '''$1'''.",
@@ -457,6 +457,9 @@ Per piasè, abilita i cookies e pröa anmò a andà dent cunt el tò nom e la pa
 'noname'                  => "Vüü avii mía specificaa un nomm d'üsüari valévul.",
 'loginsuccesstitle'       => "La cunessiun l'è scumenzada cun sücess.",
 'loginsuccess'            => 'Al é connectaa a {{SITENAME}} compagn "$1".',
+'nosuchuser'              => "A gh'è nissün druvat cun 'l nom ''$1''. <br>
+I suranomm i henn sensibil a i leter majùscul.<br>
+Cuntrola 'l nom che t'hee metüü denter o [[Special:UserLogin/signup|crea un cünt növ]].",
 'nosuchusershort'         => "Ghe n'è mia d'ütent cun el nom de \"<nowiki>\$1</nowiki>\". Ch'el cuntrola se l'ha scrivüü giüst.",
 'nouserspecified'         => "Te gh'heet da specificà un nom del druvatt.",
 'wrongpassword'           => "La ciav che t'hee metüü dreent l'è no giüsta. Pröva turna per piasè.",
@@ -469,9 +472,13 @@ Sariss mej andà drent int el sit almanch una völta prima de cambià la ciav.
 Se te no staa ti a ciamà 'sta ciav chì, o magara t'hee truaa la ciav vegia e te vör pü cambiala, te pör ignurà 'stu messag chì e 'ndà inanz a druà la ciav vegia.",
 'passwordsent'            => "Una parola ciav bele növa l'è staa spedii a l'indiriz e-mail registra da l'ütent \"\$1\".
 Per piasè, ve drent anmò dop che te l'ricevüü.",
-'emailauthenticated'      => 'Ul tò adrèss e-mail l è staa verificaa: $1.',
+'blocked-mailpassword'    => "'L to indirizz IP l'è blucaa, e per quela resón lì te pö mía druvà la funzion de recüper de la password.",
+'emailauthenticated'      => "'L tò indirizz e-mail l'è staa verificaa 'l $2 ai $3.",
 'emailnotauthenticated'   => 'Ul tò adrèss da pòsta letronica l è mia staa gnamò verificaa. Nissün mesacc al saraa mandaa par i servizzi che segütan.',
+'emailconfirmlink'        => "Cunferma 'l to indirizz e-mail",
 'accountcreated'          => 'Cunt bell-e-cread',
+'accountcreatedtext'      => "'L cünt del druvat $1 l'è bele pruntaa.",
+'loginlanguagelabel'      => 'Lengua: $1',
 
 # Password reset dialog
 'oldpassword' => "Paròla d'urdin végja:",
@@ -549,7 +556,7 @@ Cunt el test che te mandet tì te deciaret anca che, sota la tò respunsabilità
 'histlegend'             => "Selezion di diferenz: seleziuná i balitt di version de cumpará e pö schisciá ''enter'' upüra al buton in scima ala tabèlina.<br />
 Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = diferenza cun l'ültima version, M = cambiament d'impurtanza minur.",
 'history-fieldset-title' => 'Varda la cronolugia',
-'histfirst'              => 'Püssee vecc',
+'histfirst'              => 'Püssee vegg',
 'histlast'               => 'Püssee receent',
 
 # Revision deletion
@@ -760,7 +767,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'mimesearch' => 'cérca MIME',
 
 # Unwatched pages
-'unwatchedpages' => "Pagin mia tegnüü d'öcc",
+'unwatchedpages' => "Paginn mía tegnüü d'ögg",
 
 # List redirects
 'listredirects' => 'Listá i pagin re-indirizzaa',
@@ -771,6 +778,9 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 
 # Random page
 'randompage' => 'Una pagina a cas',
+
+# Random redirect
+'randomredirect' => 'Un redirect a cas',
 
 # Statistics
 'statistics'              => 'Statistich',
@@ -786,31 +796,33 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'nmembers'                => '$1 {{PLURAL:$1|element|element}}',
-'uncategorizedpages'      => 'Pagin mia categurizzaa',
-'uncategorizedcategories' => 'Categurii mia categurizzaa',
-'unusedcategories'        => 'Categurii mia druvaa',
+'uncategorizedpages'      => "Paginn ch'i gh'hann mía de categuria",
+'uncategorizedcategories' => 'Categurij mía categurizaa',
+'uncategorizedimages'     => "''File'' ch'i gh'hann mía de categuria.",
+'uncategorizedtemplates'  => "Mudel ch'i gh'hann mía de categuria.",
+'unusedcategories'        => 'Categurij mía druvaa',
 'unusedimages'            => 'Imagin mia druvaa',
-'wantedcategories'        => 'Categurii ricercaa',
+'wantedcategories'        => 'Categurij ricercaa',
 'wantedpages'             => 'Pagin ricercaa',
 'mostlinked'              => 'Püssè ligaa a pagin',
-'mostlinkedcategories'    => 'Püssè ligaa ai categurii',
-'mostcategories'          => 'Articui cun püssè categurii',
+'mostlinkedcategories'    => 'Categurij cun püssee ligamm',
+'mostcategories'          => 'Articui cun püssee categurij',
 'mostimages'              => 'Püssè ligaa a imagin',
 'mostrevisions'           => 'Articui cun püssè revisiún',
 'prefixindex'             => 'Tüt i paginn cun prefiss',
-'shortpages'              => 'Pagin püssee curt',
-'longpages'               => 'Pagin püssè luunch',
+'shortpages'              => 'Paginn püssee cürt',
+'longpages'               => 'Paginn püssee lungh',
 'deadendpages'            => 'Pagin senza surtida',
 'listusers'               => 'Lista di druvat registraa',
-'newpages'                => 'Pagin nööf',
-'ancientpages'            => 'Pagin püssee vecc',
+'newpages'                => 'Paginn növ',
+'ancientpages'            => 'Paginn püssee vegg',
 'move'                    => 'Sposta',
 'movethispage'            => 'Sposta quela pagina chì',
 'pager-newer-n'           => '{{PLURAL:$1|1|$1}} püssee növ',
 'pager-older-n'           => '{{PLURAL:$1|1|$1}} püssee vegg',
 
 # Book sources
-'booksources'               => 'Surgeent librari',
+'booksources'               => 'Surgent per i lìber',
 'booksources-search-legend' => 'Cerca i fónt di liber',
 'booksources-go'            => 'Va',
 
@@ -833,7 +845,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'allpagesprefix' => "Varda i pagin ch'i scumenza per:",
 
 # Special:Categories
-'categories' => 'Categurii',
+'categories' => 'Categurij',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'Cuntribüziun scancelaa',
@@ -847,6 +859,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'newuserlog-create-entry' => 'Növ druvat',
 
 # Special:ListGroupRights
+'listgrouprights'         => 'Dirit del grüp di druvat',
 'listgrouprights-members' => '(Lista di member)',
 
 # E-mail user
@@ -866,7 +879,7 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'removedwatchtext'  => 'La pagina "[[:$1]]" l\'è stada scancelada de la tò lista di [[Special:Watchlist|paginn sot ögg]].',
 'watch'             => "Tegn d'öcc",
 'watchthispage'     => "Tegn d'öcc questa pagina",
-'unwatch'           => "Tegn pü d'öcc",
+'unwatch'           => "Tegn pü d'ögg",
 'watchnochange'     => "Nissün cambiameent l è stai faa süi articui/págin che ti tegnat d'öcc indal períut da teemp selezziunaa.",
 'watchlist-details' => '{{PLURAL:$1|$1 pagina|$1 paginnn}} tegnüü sot ögg, asca i paginn de discüssión.',
 'wlshowlast'        => 'Fa vidé i ültim $1 uur $2 dí $3',
@@ -1100,12 +1113,12 @@ Che te scernet, per piasè, un nom diferent per quel articul chì.",
 'tooltip-n-mainpage'              => 'Visité la pàgina principala',
 'tooltip-n-mainpage-description'  => 'Visita la pagina principala',
 'tooltip-n-portal'                => "Descrizión del pruget, 'sè ch'a pudé fà, indè che se pö truvà i rob.",
-'tooltip-n-currentevents'         => "Informazion ansima a vergòt ch'al riva.",
-'tooltip-n-recentchanges'         => 'Lista de canviamenc recenc del wiki',
+'tooltip-n-currentevents'         => "Infurmazión sura a vergòt d'atüalità.",
+'tooltip-n-recentchanges'         => 'Lista di ültim mudifegh a la wiki',
 'tooltip-n-randompage'            => 'Carega una pagina a cas',
 'tooltip-n-help'                  => 'Paginn de jüt',
 'tooltip-t-whatlinkshere'         => "Lista de tuti li pàgini wiki ch'i liga scià",
-'tooltip-t-recentchangeslinked'   => 'Canviamenc recenc en li pàgini ligadi a chesta',
+'tooltip-t-recentchangeslinked'   => 'Lista di ültim cambiament ai paginn culegaa a questa',
 'tooltip-feed-rss'                => 'Feed RSS per chesta pàgina',
 'tooltip-feed-atom'               => 'Atom feed per quela pagina chì',
 'tooltip-t-contributions'         => 'Varda la lista di cuntribüzión de quel duvrat chì',
@@ -1155,7 +1168,7 @@ Che te scernet, per piasè, un nom diferent per quel articul chì.",
 'show-big-image-thumb' => '<small>Dimensión de quela anteprima chì: $1 × $2 pixel</small>',
 
 # Special:NewFiles
-'newimages' => 'Espusizziun di imàgin nööf',
+'newimages' => 'Espusizión di imàgin növ',
 'ilsubmit'  => 'Truvá',
 
 # Bad image list

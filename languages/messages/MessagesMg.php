@@ -1052,7 +1052,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 # Groups
 'group'               => 'Gropy :',
 'group-user'          => 'Mpikambana',
-'group-autoconfirmed' => 'Mpikambana voasoratra',
+'group-autoconfirmed' => 'Mpikambana voamarina',
 'group-bot'           => 'Mpikambana rôbô',
 'group-sysop'         => 'Mpandrindra',
 'group-bureaucrat'    => 'Borōkraty',
@@ -1307,13 +1307,31 @@ Hamarino tsara aloha dia avereno alefa indray.',
 # Random page
 'randompage' => 'Takelaka kisendra',
 
+# Random redirect
+'randomredirect'         => 'Pejy fihodinana kisendra',
+'randomredirect-nopages' => "Tsy misy pejy fihodinana eo amin'ny anaran-tsehatra «$1»",
+
 # Statistics
 'statistics'               => 'Fanao pejy',
+'statistics-header-pages'  => "Statistikan'ny pejy",
+'statistics-header-edits'  => "Statistikan'ny fanovana",
+'statistics-header-views'  => "Statistikan'ny tsidika",
 'statistics-header-users'  => "Statistikan'ny mpikambana",
+'statistics-articles'      => 'Lahatsoratra',
+'statistics-pages'         => 'Pejy rehetra',
+'statistics-pages-desc'    => "Pejy rehetra eto amin'ity wiki ity: pejin-dresaka, redirect, sns.",
+'statistics-files'         => 'Rakitra voaray',
+'statistics-edits'         => "Fanovana efa natao teto amin'ny {{SITENAME}}",
 'statistics-edits-average' => "Isan'ny fanovana isaky ny pejy",
 'statistics-views-total'   => 'Tsidika',
 'statistics-views-peredit' => 'Tsidika isaky ny fanovana',
 'statistics-jobqueue'      => 'halava ny [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
+'statistics-users'         => '[[Special:ListUsers|Mpikambana]] nanoratra anarana',
+'statistics-users-active'  => 'Mpikambana manova matetika',
+'statistics-mostpopular'   => 'Pejy voatsidika',
+
+'disambiguations'     => 'pejina homonimia',
+'disambiguationspage' => 'Template:homonimia',
 
 'brokenredirects'        => 'Tapaka ny redirection',
 'brokenredirectstext'    => "Mirohy any amin'ny pejy tsy misy ireto redirection manaraka ireto",

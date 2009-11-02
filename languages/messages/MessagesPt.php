@@ -286,7 +286,7 @@ $messages = array(
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Ocultar páginas patrulhadas da lista de páginas novas',
-'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações, e não apenas as mais recentes',
+'tog-extendwatchlist'         => 'Expandir a listagem de mudanças às {{lc:{{int:watchlist}}}} para mostrar todas as alterações, não apenas as mais recentes',
 'tog-usenewrc'                => 'Usar a versão melhorada das mudanças recentes (requer JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -296,15 +296,15 @@ $messages = array(
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
 'tog-editwidth'               => 'Aumentar a largura da caixa de edição para preencher todo o ecrã',
-'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
-'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
+'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de {{lc:{{int:watchlist}}}}',
+'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de {{lc:{{int:watchlist}}}}',
 'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
-'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de vigiados',
+'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de {{lc:{{int:watchlist}}}}',
 'tog-minordefault'            => 'Marcar todas as edições como secundárias, por defeito',
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desactivar caching de páginas',
-'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página da minha lista de vigiados for alterada',
+'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma das minhas {{lc:{{int:watchlist}}}} for alterada',
 'tog-enotifusertalkpages'     => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
@@ -316,17 +316,17 @@ $messages = array(
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
 'tog-uselivepreview'          => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
-'tog-watchlisthideown'        => 'Esconder as minhas edições da lista de vigiados',
-'tog-watchlisthidebots'       => 'Esconder edições efectuadas por robôs da lista de vigiados',
-'tog-watchlisthideminor'      => 'Esconder edições menores da lista de vigiados',
-'tog-watchlisthideliu'        => 'Ocultar edições de utilizadores autenticados da lista de vigiados',
-'tog-watchlisthideanons'      => 'Ocultar edições de utilizadores anónimos da lista de vigiados',
-'tog-watchlisthidepatrolled'  => 'Esconder edições patrulhadas na lista de artigos vigiados',
-'tog-nolangconversion'        => 'Desactivar conversão de variantes de idioma',
+'tog-watchlisthideown'        => 'Esconder as minhas edições na listagem de mudanças às {{lc:{{int:watchlist}}}}',
+'tog-watchlisthidebots'       => 'Esconder edições de robôs na listagem de mudanças às {{lc:{{int:watchlist}}}}',
+'tog-watchlisthideminor'      => 'Esconder edições menores na listagem de mudanças às {{lc:{{int:watchlist}}}}',
+'tog-watchlisthideliu'        => 'Esconder edições de utilizadores autenticados na listagem de mudanças às {{lc:{{int:watchlist}}}}',
+'tog-watchlisthideanons'      => 'Esconder edições de utilizadores anónimos na listagem de mudanças às {{lc:{{int:watchlist}}}}',
+'tog-watchlisthidepatrolled'  => 'Esconder edições patrulhadas na listagem de alterações às {{lc:{{int:watchlist}}}}',
+'tog-nolangconversion'        => 'Impossibilitar conversão de variantes de idioma',
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros utilizadores',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Mostrar categorias ocultas',
-'tog-noconvertlink'           => 'Desactivar conversão de títulos de ligações',
+'tog-noconvertlink'           => 'Impossibilitar a conversão de títulos de ligações',
 'tog-norollbackdiff'          => 'Omitir diferenças depois de desfazer edições em bloco',
 
 'underline-always'  => 'Sempre',
@@ -367,30 +367,30 @@ $messages = array(
 'october'       => 'outubro',
 'november'      => 'novembro',
 'december'      => 'dezembro',
-'january-gen'   => 'janeiro',
-'february-gen'  => 'fevereiro',
-'march-gen'     => 'março',
-'april-gen'     => 'abril',
-'may-gen'       => 'maio',
-'june-gen'      => 'junho',
-'july-gen'      => 'julho',
-'august-gen'    => 'agosto',
-'september-gen' => 'setembro',
-'october-gen'   => 'outubro',
-'november-gen'  => 'novembro',
-'december-gen'  => 'dezembro',
-'jan'           => 'jan.',
-'feb'           => 'fev.',
-'mar'           => 'mar.',
-'apr'           => 'abr.',
-'may'           => 'maio',
-'jun'           => 'jun.',
-'jul'           => 'jul.',
-'aug'           => 'ago.',
-'sep'           => 'set.',
-'oct'           => 'out.',
-'nov'           => 'nov.',
-'dec'           => 'dez.',
+'january-gen'   => 'Janeiro',
+'february-gen'  => 'Fevereiro',
+'march-gen'     => 'Março',
+'april-gen'     => 'Abril',
+'may-gen'       => 'Maio',
+'june-gen'      => 'Junho',
+'july-gen'      => 'Julho',
+'august-gen'    => 'Agosto',
+'september-gen' => 'Setembro',
+'october-gen'   => 'Outubro',
+'november-gen'  => 'Novembro',
+'december-gen'  => 'Dezembro',
+'jan'           => 'Jan.',
+'feb'           => 'Fev.',
+'mar'           => 'Mar.',
+'apr'           => 'Abr.',
+'may'           => 'Mai.',
+'jun'           => 'Jun.',
+'jul'           => 'Jul.',
+'aug'           => 'Ago.',
+'sep'           => 'Set.',
+'oct'           => 'Out.',
+'nov'           => 'Nov.',
+'dec'           => 'Dez.',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
@@ -581,8 +581,8 @@ $1',
 'feed-unavailable'        => 'Os "feeds" não se encontram disponíveis',
 'site-rss-feed'           => 'Feed RSS $1',
 'site-atom-feed'          => 'Feed Atom $1',
-'page-rss-feed'           => 'Feed RSS de "$1"',
-'page-atom-feed'          => 'Feed Atom de "$1"',
+'page-rss-feed'           => "''Feed'' RSS de \"\$1\"",
+'page-atom-feed'          => "''Feed'' Atom de \"\$1\"",
 'red-link-title'          => '$1 (página não existe)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -734,11 +734,12 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'password-name-match'        => 'A sua palavra-passe deverá ser diferente do seu nome de utilizador.',
 'mailmypassword'             => 'Enviar uma nova palavra-chave por e-mail',
 'passwordremindertitle'      => 'Nova palavra-chave temporária em {{SITENAME}}',
-'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova palavra-chave para {{SITENAME}} ($4).
-Foi criada uma palavra-chave temporária para o utilizador "$2", e foi reposta como "$3". Caso esta tenha sido a sua intenção, entre na sua conta e escolha uma nova palavra-chave agora.
-A sua palavra-chave temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
+'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço IP $1) solicitou uma nova palavra-chave para a sua conta na {{SITENAME}} ($4).
+Foi criada a palavra-chave temporária "$3" para o utilizador "$2".
+Se o pedido foi feito por si, entre agora na sua conta e escolha uma nova palavra-chave.
+A palavra-chave temporária expira após {{PLURAL:$5|um dia|$5 dias}}.
 
-Caso tenha sido outra pessoa a fazer este pedido, ou caso você já se tenha lembrado da sua palavra-chave e não deseja alterá-la, ignore esta mensagem e continue a utilizar a palavra-chave antiga.',
+Caso outra pessoa tenha feito o pedido, ou se entretanto se recordou da sua palavra-chave e já não deseja alterá-la, ignore esta mensagem e continue a utilizar a palavra-chave antiga.',
 'noemail'                    => 'Não há um endereço de correio electrónico associado ao utilizador "$1".',
 'noemailcreate'              => 'Precisa de fornecer um endereço de correio electrónico válido',
 'passwordsent'               => 'Uma nova palavra-chave encontra-se a ser enviada para o endereço de correio electrónico associado ao utilizador "$1".
@@ -801,20 +802,20 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'headline_tip'    => 'Secção de nível 2',
 'math_sample'     => 'Inserir fórmula aqui',
 'math_tip'        => 'Fórmula matemática (LaTeX)',
-'nowiki_sample'   => 'Inserir texto não-formatado aqui',
+'nowiki_sample'   => 'Inserir texto sem formatos aqui',
 'nowiki_tip'      => 'Ignorar formatação wiki',
 'image_sample'    => 'Exemplo.jpg',
-'image_tip'       => 'Ficheiro embutido',
+'image_tip'       => 'Ficheiro incorporado',
 'media_sample'    => 'Exemplo.ogg',
 'media_tip'       => 'Ligação para ficheiro',
-'sig_tip'         => 'Sua assinatura, com hora e data',
+'sig_tip'         => 'A sua assinatura, com hora e data',
 'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
 
 # Edit pages
 'summary'                          => 'Sumário:',
 'subject'                          => 'Assunto/cabeçalho:',
 'minoredit'                        => 'Marcar como edição menor',
-'watchthis'                        => 'Observar esta página',
+'watchthis'                        => 'Vigiar esta página',
 'savearticle'                      => 'Gravar página',
 'preview'                          => 'Prever',
 'showpreview'                      => 'Mostrar previsão',
@@ -1021,14 +1022,16 @@ A justificativa apresentada por $3 foi ''$2''",
 'previousrevision'       => '← Versão anterior',
 'nextrevision'           => 'Versão posterior →',
 'currentrevisionlink'    => 'ver versão actual',
-'cur'                    => 'atu',
+'cur'                    => 'act',
 'next'                   => 'prox',
 'last'                   => 'ant',
 'page_first'             => 'primeira',
 'page_last'              => 'última',
-'histlegend'             => "Seleção de diferença: marque as caixas de opção das versões que deseja comparar e carregue em 'Enter' ou no botão no fundo da página.<br />
-Legenda: '''(atu)''' = diferenças da versão atual,
-'''(ant)''' = diferenças da versão anterior, '''m''' = edição menor",
+'histlegend'             => "Selecção de diferenças: use os botões de opção para marcar as versões que deseja comparar.
+Pressione 'Enter' ou clique o botão \"{{int:compareselectedversions}}\".<br />
+Legenda: '''({{int:cur}})''' = diferenças para a versão actual,
+'''({{int:last}})''' = diferenças para a versão anterior,
+'''{{int:minoreditletter}}''' = edição menor",
 'history-fieldset-title' => 'Navegar pelo histórico',
 'history-show-deleted'   => 'Somente eliminados',
 'histfirst'              => 'Mais antigas',
@@ -1053,21 +1056,21 @@ Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'rev-deleted-text-unhide'     => "Esta edição desta página foi '''eliminada'''.
 Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
 Por ser um administrador, você pode mesmo assim [$1 ver esta edição] se desejar prosseguir.",
-'rev-suppressed-text-unhide'  => "Esta edição desta página foi '''suprimida'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
-Por ser um administrador, você pode ainda [$1 ver esta edição] se desejar prosseguir.",
+'rev-suppressed-text-unhide'  => "Esta edição de página foi '''suprimida'''.
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
+Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-deleted-text-view'       => "Esta edição desta página foi '''eliminada'''.
 Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 'rev-suppressed-text-view'    => "Esta edição desta página foi '''suprimida'''.
 Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
-'rev-deleted-no-diff'         => "Você não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+'rev-deleted-no-diff'         => "Não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
+Podem haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
 Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
-'rev-suppressed-unhide-diff'  => "Uma das revisões deste diferencial foi '''suprimido'''.
-Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
-Como administrador você pode ainda [$1 pode ver o diferencial] se desejar prosseguir.",
+'rev-suppressed-unhide-diff'  => "Uma das revisões destas diferenças foi '''suprimida'''.
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
+Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-deleted-diff-view'       => "Uma das revisões nesta listagem de diferenças foi '''eliminada'''.
 Como administrador, pode visualizar a listagem de diferenças; poderão existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-suppressed-diff-view'    => "Uma das revisões nesta listagem de diferenças foi '''suprimida'''.
@@ -1189,9 +1192,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 # Search results
 'searchresults'                    => 'Resultados de pesquisa',
 'searchresults-title'              => 'Resultados da pesquisa por "$1"',
-'searchresulttext'                 => 'Para mais informações de como pesquisar em {{SITENAME}}, consulte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext'                 => 'Para mais informações sobre pesquisas na {{SITENAME}}, consulte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Você pesquisou por \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|páginas iniciadas por "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|páginas que apontam para "$1"]])',
-'searchsubtitleinvalid'            => 'Você pesquisou por "$1"',
+'searchsubtitleinvalid'            => 'Pesquisou "$1"',
 'toomanymatches'                   => 'Foram retornados demasiados resultados. Por favor, tente um filtro de pesquisa diferente',
 'titlematches'                     => 'Resultados nos títulos das páginas',
 'notitlematches'                   => 'Nenhum título de página coincide com o termo pesquisado',
@@ -1222,8 +1225,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'search-result-score'              => 'Relevancia: $1%',
 'search-redirect'                  => '(redirecionamento de $1)',
 'search-section'                   => '(secção $1)',
-'search-suggest'                   => 'Será que quis dizer: $1',
-'search-interwiki-caption'         => 'Projetos irmãos',
+'search-suggest'                   => 'Será que queria dizer: $1',
+'search-interwiki-caption'         => 'Projectos irmãos',
 'search-interwiki-default'         => 'Resultados de $1:',
 'search-interwiki-more'            => '(mais)',
 'search-mwsuggest-enabled'         => 'com sugestões',
@@ -1274,12 +1277,12 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-datetime'                => 'Data e hora',
 'prefs-personal'                => 'Perfil de utilizador',
 'prefs-rc'                      => 'Mudanças recentes',
-'prefs-watchlist'               => 'Lista de páginas vigiadas',
-'prefs-watchlist-days'          => 'Dias a mostrar na lista de vigiados:',
+'prefs-watchlist'               => '{{lc:{{int:watchlist}}}}',
+'prefs-watchlist-days'          => 'Dias a mostrar na listagem de mudanças às {{lc:{{int:watchlist}}}}:',
 'prefs-watchlist-days-max'      => '(máximo: 7 dias)',
-'prefs-watchlist-edits'         => 'Número de edições a mostrar na lista de vigiados expandida:',
+'prefs-watchlist-edits'         => 'Número de edições a mostrar na listagem de mudanças expandida:',
 'prefs-watchlist-edits-max'     => '(máximo: 1000)',
-'prefs-watchlist-token'         => 'Sinal da lista de vigiados:',
+'prefs-watchlist-token'         => 'Senha secreta da lista de {{lc:{{int:watchlist}}}}:',
 'prefs-misc'                    => 'Diversos',
 'prefs-resetpass'               => 'Alterar palavra-chave',
 'prefs-email'                   => 'Opções de email',
@@ -1300,8 +1303,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'            => 'Número de edições a apresentar por omissão:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registos.',
-'prefs-help-watchlist-token'    => "Preencher este campo com uma senha secreta gera um ''feed'' RSS para a sua lista de páginas vigiadas.
-Qualquer pessoa que conheça a senha deste campo será capaz de ler a sua lista de vigiados, por isso escolha um valor seguro.
+'prefs-help-watchlist-token'    => "Preencher este campo com uma senha secreta gera um ''feed'' RSS para a sua lista de {{lc:{{int:watchlist}}}}.
+Qualquer pessoa que conheça esta senha será capaz de ler a sua lista de {{lc:{{int:watchlist}}}}, por isso escolha um valor seguro.
 Eis um valor gerado aleatoriamente, que pode usar: $1",
 'savedprefs'                    => 'As suas preferências foram gravadas.',
 'timezonelegend'                => 'Fuso horário:',
@@ -1370,7 +1373,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'prefs-diffs'                   => 'Diffs',
 
 # User rights
-'userrights'                  => 'Gestão de privilégios de utilizadores',
+'userrights'                  => 'Privilégios de utilizadores',
 'userrights-lookup-user'      => 'Gerir grupos do utilizador',
 'userrights-user-editname'    => 'Introduza um nome de utilizador:',
 'editusergroup'               => 'Editar Grupos do Utilizador',
@@ -1563,7 +1566,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'recentchangeslinked-toolbox'  => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as mudanças recentes em todas as páginas às quais a página fornecida se liga (ou em todas as que pertencem à categoria fornecida). Páginas nas suas [[Special:Watchlist|{{MediaWiki:watchlist/pt}}]] aparecem a '''negrito'''.",
+'recentchangeslinked-summary'  => "Esta página especial lista as mudanças recentes em todas as páginas para as quais a página fornecida possui ligações (ou em todas as que pertencem à categoria fornecida). Páginas nas suas [[Special:Watchlist|{{lc:{{MediaWiki:watchlist/pt}}}}]] aparecem a '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
 'recentchangeslinked-to'       => 'Inversamente, mostrar mudanças recentes nas páginas que se ligam a esta página',
 
@@ -1571,11 +1574,11 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'upload'                      => 'Carregar ficheiro',
 'uploadbtn'                   => 'Carregar ficheiro',
 'reuploaddesc'                => 'Cancelar o envio e voltar ao formulário de carregamento',
-'upload-tryagain'             => 'Submeta a descrição de ficheiro modificada',
+'upload-tryagain'             => 'Submeta a descrição do ficheiro modificado',
 'uploadnologin'               => 'Não autenticado',
 'uploadnologintext'           => 'Você necessita estar [[Special:UserLogin|autenticado]] para enviar ficheiros.',
-'upload_directory_missing'    => 'A directoria de carregamentos ($1) está em falta e não pôde ser criada pelo webserver.',
-'upload_directory_read_only'  => 'O directório de recebimento de ficheiros ($1) não tem permissões de escrita para o servidor Web.',
+'upload_directory_missing'    => 'O directório de carregamento de ficheiros ($1) não existe e não pôde ser criado pelo servidor de internet.',
+'upload_directory_read_only'  => 'O servidor de internet não possui permissão de escrita no directório de carregamento de ficheiros ($1).',
 'uploaderror'                 => 'Erro ao carregar',
 'uploadtext'                  => "Utilize o formulário abaixo para carregar novos ficheiros.
 Para ver ou pesquisar imagens anteriormente carregadas, consulte a [[Special:FileList|lista de ficheiros carregados]]. (Re)envios são também registados no [[Special:Log/upload|registo de carregamentos]], e as eliminações, no [[Special:Log/delete|registo de eliminação]].
@@ -1637,7 +1640,7 @@ Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um no
 'file-deleted-duplicate'      => 'Um ficheiro idêntico a este ([[$1]]) foi eliminado anteriormente. Verifique o motivo da eliminação de tal ficheiro antes de prosseguir com o re-envio.',
 'successfulupload'            => 'Envio efectuado com sucesso',
 'uploadwarning'               => 'Aviso de envio',
-'uploadwarning-text'          => 'Por favor modifique a descrição do ficheiro em baixo e tente novamente.',
+'uploadwarning-text'          => 'Por favor modifique a descrição do ficheiro abaixo e tente novamente.',
 'savefile'                    => 'Gravar ficheiro',
 'uploadedimage'               => 'carregou "[[$1]]"',
 'overwroteimage'              => 'foi enviada uma nova versão de "[[$1]]"',
@@ -1645,7 +1648,8 @@ Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um no
 'uploaddisabledtext'          => 'O carregamento de ficheiros encontra-se desactivado.',
 'php-uploaddisabledtext'      => 'O carregamento de ficheiros por PHP está desactivado. Por favor, verifique a configuração file_uploads.',
 'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um navegador web.',
-'uploadcorrupt'               => 'O ficheiro encontra-se corrompido ou tem uma extensão incorreta. Por gentileza, verifique o ocorrido e tente novamente.',
+'uploadcorrupt'               => 'O ficheiro está corrompido ou a extensão indicada no nome não corresponde ao tipo de ficheiro.
+Por favor, verifique o ficheiro e a extensão e tente carregá-lo novamente.',
 'uploadvirus'                 => 'O ficheiro contém vírus! Detalhes: $1',
 'upload-source'               => 'Ficheiro fonte',
 'sourcefilename'              => 'Nome do ficheiro de origem:',
@@ -1653,7 +1657,7 @@ Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um no
 'destfilename'                => 'Nome do ficheiro de destino:',
 'upload-maxfilesize'          => 'Tamanho máximo do ficheiro: $1',
 'upload-description'          => 'Descrição do ficheiro',
-'upload-options'              => 'Opções de transferência para o servidor',
+'upload-options'              => 'Opções de carregamento',
 'watchthisupload'             => 'Vigiar este ficheiro',
 'filewasdeleted'              => 'Um ficheiro com este nome foi carregado anteriormente e subsequentemente eliminado.
 Deverá verificar o $1 antes de voltar a carregá-lo.',
@@ -1696,16 +1700,16 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 Seu servidor não está configurado para passar essa informação.
 Pode ser baseado em CGI e não suportar img_auth.
 Veja http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
+'img-auth-notindir'     => 'O caminho especificado não está localizado no directório de carregamentos configurado.',
 'img-auth-badtitle'     => 'Não é possível construir um título válido a partir de "$1".',
 'img-auth-nologinnWL'   => 'Não está autenticado e o ficheiro "$1" não está na "lista branca".',
 'img-auth-nofile'       => 'O ficheiro "$1" não existe.',
-'img-auth-isdir'        => 'Está tentando aceder à pasta "$1".
+'img-auth-isdir'        => 'Está tentando aceder ao directório "$1".
 Só é permitido o acesso a ficheiros.',
 'img-auth-streaming'    => "A fazer o ''streaming'' de \"\$1\".",
-'img-auth-public'       => 'Essa função de img_auth.php é para produzir arquivos a partir de uma wiki privada.
-Essa wiki está configurada como uma wiki pública.
-Para uma segurança otimizada, img_auth.php é desabilitado.',
+'img-auth-public'       => 'A função do img_auth.php é produzir ficheiros a partir de uma wiki privada.
+Esta wiki está configurada como uma wiki pública.
+Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'img-auth-noread'       => 'O utilizador não tem acesso de leitura ao ficheiro "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1739,22 +1743,22 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 # File description page
 'file-anchor-link'          => 'Ficheiro',
 'filehist'                  => 'Histórico do ficheiro',
-'filehist-help'             => 'Clique em uma data/horário para ver o ficheiro tal como ele se encontrava em tal momento.',
+'filehist-help'             => 'Clique numa data/hora para ver o ficheiro tal como se encontrava nesse momento.',
 'filehist-deleteall'        => 'eliminar todas',
 'filehist-deleteone'        => 'eliminar',
 'filehist-revert'           => 'restaurar',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Data/Horário',
 'filehist-thumb'            => 'Miniatura',
-'filehist-thumbtext'        => 'Miniatura da versão das $1',
+'filehist-thumbtext'        => "Miniatura ''(thumbnail)'' da versão das $1",
 'filehist-nothumb'          => 'Miniatura indisponível',
 'filehist-user'             => 'Utilizador',
 'filehist-dimensions'       => 'Dimensões',
 'filehist-filesize'         => 'Tamanho do ficheiro',
 'filehist-comment'          => 'Comentário',
 'filehist-missing'          => 'Ficheiro em falta',
-'imagelinks'                => 'Ligações de ficheiros',
-'linkstoimage'              => '{{PLURAL:$1|A seguinte página aponta|As seguintes $1 páginas apontam}} para este ficheiro:',
+'imagelinks'                => 'Ligações para este ficheiro',
+'linkstoimage'              => '{{PLURAL:$1|A seguinte página contém|As seguintes $1 páginas contêm}} ligações para este ficheiro:',
 'linkstoimage-more'         => 'Mais de $1 {{PLURAL:$1|página aponta|páginas apontam}} para este ficheiro.
 A lista a seguir mostra apenas {{PLURAL:$1|o primeiro link de página|os primeiros $1 links de páginas}} para este ficheiro.
 Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
@@ -1913,7 +1917,7 @@ Cada linha contém ligações para o primeiro e segundo redirecionamento, bem co
 'protectedtitles'         => 'Títulos protegidos',
 'protectedtitlestext'     => 'Os títulos a seguir encontram-se protegidos contra criação',
 'protectedtitlesempty'    => 'Não há títulos protegidos com os parâmetros fornecidos.',
-'listusers'               => 'Lista de utilizadores',
+'listusers'               => 'Utilizadores',
 'listusers-editsonly'     => 'Mostrar apenas utilizadores com edições',
 'listusers-creationsort'  => 'Ordenar por data de criação',
 'usereditcount'           => '$1 {{PLURAL:$1|edição|edições}}',
@@ -1998,7 +2002,7 @@ Veja também as [[Special:WantedCategories|{{MediaWiki:wantedcategories/pt}}]].'
 'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista de utilizadores ativos',
+'activeusers'          => 'Utilizadores activos',
 'activeusers-intro'    => 'Esta é uma lista dos utilizadores com qualquer actividade {{PLURAL:$1|no último dia|nos últimos $1 dias}}.',
 'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
 'activeusers-from'     => 'Mostrar utilizadores começando em:',
@@ -2060,32 +2064,33 @@ O e-mail que introduziu nas [[Special:Preferences|suas preferências]] irá apar
 'watchlist'            => 'Páginas vigiadas',
 'mywatchlist'          => 'Páginas vigiadas',
 'watchlistfor'         => "(para '''$1''')",
-'nowatchlist'          => 'A sua lista de vigiados não possui títulos.',
-'watchlistanontext'    => 'Por favor, $1 para ver ou editar os títulos na sua lista de vigiados.',
+'nowatchlist'          => 'A sua lista de {{lc:{{int:watchlist}}}} está vazia.',
+'watchlistanontext'    => 'Por favor, $1 para ver ou editar a sua lista de {{lc:{{int:watchlist}}}}.',
 'watchnologin'         => 'Não está autenticado',
-'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de vigiados.',
+'watchnologintext'     => 'Precisa de estar [[Special:UserLogin|autenticado]] para modificar a sua lista de {{lc:{{int:watchlist}}}}.',
 'addedwatch'           => 'Adicionado à lista',
-'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de vigiados]].
-Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
-'removedwatch'         => 'Removida da lista de vigiados',
-'removedwatchtext'     => 'A página "[[:$1]]" foi removida de [[Special:Watchlist|sua lista de vigiados]].',
+'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua lista de [[Special:Watchlist|{{lc:{{int:watchlist}}}}]], onde serão indicadas quaisquer
+modificações futuras desta página e da respectiva página de discussão.
+O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|{{lc:{{int:recentchanges}}}}]] para que a encontre facilmente.",
+'removedwatch'         => 'Removida da lista de {{lc:{{int:watchlist}}}}',
+'removedwatchtext'     => 'A página "[[:$1]]" foi removida da sua lista de [[Special:Watchlist|{{lc:{{int:watchlist}}}}]].',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
 'unwatch'              => 'Desinteressar-se',
 'unwatchthispage'      => 'Parar de vigiar esta página',
 'notanarticle'         => 'Não é uma página de conteúdo',
 'notvisiblerev'        => 'Edição eliminada',
-'watchnochange'        => 'Nenhum dos elementos vigiados foi editado durante o período considerado.',
-'watchlist-details'    => 'Existem $1 {{PLURAL:$1|página|páginas}} na sua lista de vigiados, excluindo páginas de discussão.',
-'wlheader-enotif'      => '* A notificação por email encontra-se activada.',
+'watchnochange'        => 'Nenhuma das {{lc:{{int:watchlist}}}} foi editada no período apresentado.',
+'watchlist-details'    => '{{PLURAL:$1|Existe $1 página|Existem $1 páginas}} na sua lista de {{lc:{{int:watchlist}}}}, excluindo páginas de discussão.',
+'wlheader-enotif'      => '* A notificação por correio electrónico está activada.',
 'wlheader-showupdated' => "* As páginas modificadas desde a sua última visita são mostradas a '''negrito'''.",
-'watchmethod-recent'   => 'verificando edições recentes para os vigiados',
-'watchmethod-list'     => 'verificando páginas vigiadas para edições recentes',
-'watchlistcontains'    => 'A sua lista de vigiados contém $1 {{PLURAL:$1|página|páginas}}.',
+'watchmethod-recent'   => 'verificando as mudanças recentes em busca de {{lc:{{int:watchlist}}}}',
+'watchmethod-list'     => 'verificando as {{lc:{{int:watchlist}}}} em busca de mudanças recentes',
+'watchlistcontains'    => 'A sua lista de {{lc:{{int:watchlist}}}} contém $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname'      => "Problema com item '$1', nome inválido...",
 'wlnote'               => "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas '''$1''' alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
 'wlshowlast'           => 'Ver últimas $1 horas $2 dias $3',
-'watchlist-options'    => 'Opções da lista de vigiados',
+'watchlist-options'    => 'Opções da lista de {{lc:{{int:watchlist}}}}',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigiando...',
@@ -2101,10 +2106,10 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_lastvisited'           => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_lastdiff'              => 'Consulte $1 para ver esta alteração.',
 'enotif_anon_editor'           => 'utilizador anonimo $1',
-'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
+'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
 
 $NEWPAGE
 
@@ -2114,12 +2119,12 @@ Contacte o editor:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de vigiados.
+Até que visite esta página, não haverá lugar a mais notificações no caso de alterações futuras. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas.
 
-             O seu amigável sistema de notificação de {{SITENAME}}
+             O seu amigável sistema de notificação da {{SITENAME}}
 
 --
-Para alterar as suas preferências da lista de vigiados, visite
+Para alterar as suas preferências da lista de páginas vigiadas, visite
 {{fullurl:Special:Watchlist/edit}}
 
 Contacto e assistência:
@@ -2322,14 +2327,14 @@ Para referência, o último registo de bloqueio é apresentado abaixo:',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
-'whatlinkshere-title'      => 'Páginas que apontam para "$1"',
+'whatlinkshere-title'      => 'Páginas que possuem ligações para "$1"',
 'whatlinkshere-page'       => 'Página:',
 'linkshere'                => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
 'nolinkshere'              => "Não existem ligações para '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
 'isredirect'               => 'página de redireccionamento',
 'istemplate'               => 'inclusão',
-'isimage'                  => 'link de imagem',
+'isimage'                  => 'ligação para uma imagem',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links'      => '← links',
@@ -2451,10 +2456,9 @@ $1 já se encontra bloqueado. Deseja alterar as configurações?',
 # Developer tools
 'lockdb'              => 'Trancar base de dados',
 'unlockdb'            => 'Destrancar base de dados',
-'lockdbtext'          => 'Trancar a base de dados impedirá todos os utilizadores de editar páginas, mudar as suas preferências, editar a lista de vigiados e de qualquer outra acção que requer mudanças na base de dados.
+'lockdbtext'          => 'Trancar a base de dados impedirá todos os utilizadores de editar páginas, mudar as suas preferências, editar a lista de {{lc:{{int:watchlist}}}} e executar qualquer outra acção que requer mudanças na base de dados.
 Por favor, confirme que é precisamente isso que pretende fazer e que vai destrancar a base de dados quando a manutenção estiver concluída.',
-'unlockdbtext'        => 'Desbloquear a base de dados vai restaurar a habilidade de todos os utilizadores de editarem páginas,  mudarem suas preferências, alterarem suas listas de vigiados e outras coisas que requerem mudanças na base de dados.
-Por favor, confirme que realmente pretende fazer isso.',
+'unlockdbtext'        => 'Destrancar a base de dados vai possibilitar a todos os utilizadores editar páginas, mudar as suas preferências, alterar as suas listas de {{lc:{{int:watchlist}}}} e executar qualquer outra acção que requer mudanças na base de dados. Por favor, confirme que é isso que pretende fazer.',
 'lockconfirm'         => 'Sim, eu realmente desejo bloquear a base de dados.',
 'unlockconfirm'       => 'Sim, eu realmente desejo desbloquear a base de dados.',
 'lockbtn'             => 'Bloquear base de dados',
@@ -2643,16 +2647,16 @@ Grave o ficheiro no seu computador e importe-o aqui.',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Sua página de utilizador',
+'tooltip-pt-userpage'             => 'A sua página de utilizador',
 'tooltip-pt-anonuserpage'         => 'A página de utilizador para o ip que está a utilizar para editar',
-'tooltip-pt-mytalk'               => 'Sua página de discussão',
+'tooltip-pt-mytalk'               => 'A sua página de discussão',
 'tooltip-pt-anontalk'             => 'Discussão sobre edições deste endereço de IP',
-'tooltip-pt-preferences'          => 'Minhas preferências',
-'tooltip-pt-watchlist'            => 'A lista de páginas às quais você está monitorando alterações',
-'tooltip-pt-mycontris'            => 'Lista das suas contribuições',
+'tooltip-pt-preferences'          => 'Configuração dos comportamentos da wiki preferidos por si',
+'tooltip-pt-watchlist'            => 'Lista das páginas cujas alterações está a vigiar',
+'tooltip-pt-mycontris'            => 'Lista das suas edições de páginas',
 'tooltip-pt-login'                => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
 'tooltip-pt-anonlogin'            => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
-'tooltip-pt-logout'               => 'Sair',
+'tooltip-pt-logout'               => 'Terminar esta sessão na wiki',
 'tooltip-ca-talk'                 => 'Discussão sobre o conteúdo da página',
 'tooltip-ca-edit'                 => 'Você pode editar esta página.
 Por favor, utilize o botão "{{MediaWiki:showpreview/pt}}" antes de gravar.',
@@ -2664,8 +2668,8 @@ Por favor, utilize o botão "{{MediaWiki:showpreview/pt}}" antes de gravar.',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-undelete'             => 'Restaurar edições feitas a esta página antes da eliminação',
 'tooltip-ca-move'                 => 'Mover esta página',
-'tooltip-ca-watch'                => 'Adicionar esta página aos vigiados',
-'tooltip-ca-unwatch'              => 'Remover esta página dos vigiados',
+'tooltip-ca-watch'                => 'Adicionar esta página à lista de {{lc:{{int:mywatchlist}}}}',
+'tooltip-ca-unwatch'              => 'Remover esta página da lista de {{lc:{{int:watchlist}}}}',
 'tooltip-search'                  => 'Pesquisar nesta wiki',
 'tooltip-search-go'               => 'Ir a uma página com este exato nome, caso exista',
 'tooltip-search-fulltext'         => 'Procurar páginas que contêm este texto',
@@ -2679,8 +2683,8 @@ Por favor, utilize o botão "{{MediaWiki:showpreview/pt}}" antes de gravar.',
 'tooltip-n-help'                  => 'Um local reservado para auxílio.',
 'tooltip-t-whatlinkshere'         => 'Lista de todas as páginas que se ligam a esta',
 'tooltip-t-recentchangeslinked'   => 'Mudanças recentes em páginas relacionadas a esta',
-'tooltip-feed-rss'                => 'Feed RSS desta página',
-'tooltip-feed-atom'               => 'Feed Atom desta página',
+'tooltip-feed-rss'                => "''Feed'' RSS desta página",
+'tooltip-feed-atom'               => "''Feed'' Atom desta página",
 'tooltip-t-contributions'         => 'Ver as contribuições deste utilizador',
 'tooltip-t-emailuser'             => 'Enviar um e-mail a este utilizador',
 'tooltip-t-upload'                => 'Carregar ficheiros',
@@ -2702,7 +2706,7 @@ Por favor, utilize o botão "{{MediaWiki:showpreview/pt}}" antes de gravar.',
 'tooltip-preview'                 => 'Antever as suas alterações, por favor utilize antes de gravar!',
 'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões seleccionadas desta página.',
-'tooltip-watch'                   => 'Adicionar esta página à sua lista de vigiados',
+'tooltip-watch'                   => 'Adicionar esta página à lista de {{lc:{{int:watchlist}}}}',
 'tooltip-recreate'                => 'Recriar a página apesar de ter sido eliminada',
 'tooltip-upload'                  => 'Iniciar o upload',
 'tooltip-rollback'                => '"{{int:rollbacklink}}" reverte, com um só clique, as edições do último editor desta página.',
@@ -2711,29 +2715,29 @@ Permite colocar uma justificação no sumário da edição.',
 
 # Stylesheets
 'common.css'      => '/* Código CSS colocado aqui será aplicado a todos os temas */',
-'standard.css'    => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-standard/pt}} */',
-'nostalgia.css'   => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-nostalgia/pt}} */',
-'cologneblue.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-cologneblue/pt}} */',
-'monobook.css'    => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-monobook/pt}} */',
-'myskin.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-myskin/pt}} */',
-'chick.css'       => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-chick/pt}} */',
-'simple.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-simple/pt}} */',
-'modern.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-modern/pt}} */',
-'vector.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema {{MediaWiki:skinname-vector/pt}} */',
+'standard.css'    => '/* Código CSS colocado aqui afectará os utilizadores do tema Clássico */',
+'nostalgia.css'   => '/* Código CSS colocado aqui afectará os utilizadores do tema Nostalgia */',
+'cologneblue.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Azul colonial */',
+'monobook.css'    => '/* Código CSS colocado aqui afectará os utilizadores do tema Monobook */',
+'myskin.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema MySkin */',
+'chick.css'       => '/* Código CSS colocado aqui afectará os utilizadores do tema Chique */',
+'simple.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema Simples */',
+'modern.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema Moderno */',
+'vector.css'      => '/* Código CSS colocado aqui afectará os utilizadores do tema Vector */',
 'print.css'       => '/* Código CSS colocado aqui afectará as impressões */',
 'handheld.css'    => '/* Código CSS colocado aqui afectará dispositivos móveis baseados no tema configurado em $wgHandheldStyle */',
 
 # Scripts
 'common.js'      => '/* Código Javascript colocado aqui será carregado para todos os utilizadores em cada carregamento de página */',
-'standard.js'    => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-standard/pt}} */',
-'nostalgia.js'   => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-nostalgia/pt}} */',
-'cologneblue.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-cologneblue/pt}} */',
-'monobook.js'    => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-monobook/pt}} */',
-'myskin.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-myskin/pt}} */',
-'chick.js'       => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-chick/pt}} */',
-'simple.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-simple/pt}} */',
-'modern.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-modern/pt}} */',
-'vector.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema {{MediaWiki:skinname-vector/pt}} */',
+'standard.js'    => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Clássico */',
+'nostalgia.js'   => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Nostalgia */',
+'cologneblue.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Azul colonial */',
+'monobook.js'    => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Monobook */',
+'myskin.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema MySkin */',
+'chick.js'       => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Chick */',
+'simple.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Simples */',
+'modern.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Moderno */',
+'vector.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */',
 
 # Metadata
 'nodublincore'      => 'Os metadados RDF para Dublin Core estão desabilitados neste servidor.',
@@ -2795,8 +2799,8 @@ Este bloqueio foi provavelmente causado por uma ligação para um sítio externo
 'math_lexing_error'     => 'Erro léxico',
 'math_syntax_error'     => 'Erro de sintaxe',
 'math_image_error'      => 'Falha na conversão para PNG. Verifique a instalação do latex, dvips, gs e convert',
-'math_bad_tmpdir'       => 'Ocorreram problemas na criação ou escrita no directorio temporário math',
-'math_bad_output'       => 'Ocorreram problemas na criação ou escrita no directorio de resultados math',
+'math_bad_tmpdir'       => "Não foi possível criar o directório temporário ''math'' ou, se já existe, escrever nele",
+'math_bad_output'       => "Não foi possível criar o directório de resultados ''math'' ou, se já existe, escrever nele",
 'math_notexvc'          => 'O executável texvc não foi encontrado. Consulte math/README para instruções da configuração.',
 
 # Patrolling
@@ -2843,7 +2847,7 @@ $1',
 'file-nohires'         => '<small>Sem resolução maior disponível.</small>',
 'svg-long-desc'        => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
 'show-big-image'       => 'Resolução completa',
-'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
+'show-big-image-thumb' => '<small>Dimensões desta previsão: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'cíclico',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|quadro|quadros}}',
 
@@ -2868,8 +2872,8 @@ Quaisquer outras ligações nessa mesma linha são consideradas excepções (ou 
 
 # Metadata
 'metadata'          => 'Metadados',
-'metadata-help'     => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizá-lo.
-Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
+'metadata-help'     => "Este ficheiro contém informação adicional, provavelmente adicionada pela câmara digital ou ''scanner'' utilizados para criá-lo ou digitalizá-lo.
+Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.",
 'metadata-expand'   => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes restantes',
 'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem serão incluídos na página de descrição da imagem quando a tabela de metadados estiver no modo "expandida". Por omissão, outros campos estarão ocultos.
@@ -3146,7 +3150,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',
-'edit-externally-help' => '(Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
+'edit-externally-help' => '(Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todas',
@@ -3254,31 +3258,31 @@ Tente a previsão comum.',
 'lag-warn-high'   => 'Devido a latência elevada do servidor da base de dados, as alterações realizadas {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} podem não constar desta lista.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'A sua lista de vigiados possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',
-'watchlistedit-noitems'        => 'A sua lista de vigiados não contém títulos.',
-'watchlistedit-normal-title'   => 'Editar lista de vigiados',
-'watchlistedit-normal-legend'  => 'Remover títulos da lista de vigiados',
-'watchlistedit-normal-explain' => 'Os títulos na sua lista de vigiados são mostrados a seguir.
-Para remover um título, marque a caixa ao lado do mesmo e clique o botão "{{MediaWiki:watchlistedit-normal-submit/pt}}".
-Também pode [[Special:Watchlist/raw|editar a lista crua]].',
-'watchlistedit-normal-submit'  => 'Remover títulos',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de vigiados:',
-'watchlistedit-raw-title'      => 'Edição crua dos vigiados',
-'watchlistedit-raw-legend'     => 'Edição crua dos vigiados',
-'watchlistedit-raw-explain'    => 'Os títulos na sua lista de vigiados são mostrados a seguir.
-Pode adicionar ou remover títulos editando a lista, desde que mantenha um único título por linha.
-Quando terminar, clique no botão "{{MediaWiki:watchlistedit-raw-submit/pt}}".
+'watchlistedit-numitems'       => 'A sua lista de {{lc:{{int:watchlist}}}} contém {{PLURAL:$1|uma página|$1 páginas}}, excluindo páginas de discussão.',
+'watchlistedit-noitems'        => 'A sua lista de {{lc:{{int:watchlist}}}} está vazia.',
+'watchlistedit-normal-title'   => 'Editar lista de {{lc:{{int:watchlist}}}}',
+'watchlistedit-normal-legend'  => 'Remover páginas da lista de {{lc:{{int:watchlist}}}}',
+'watchlistedit-normal-explain' => 'As suas {{lc:{{int:watchlist}}}} são listadas abaixo.
+Para remover uma página, marque a caixa de selecção correspondente e clique o botão "{{int:watchlistedit-normal-submit}}".
+Também pode [[Special:Watchlist/raw|{{lc:{{int:watchlisttools-raw}}}}]].',
+'watchlistedit-normal-submit'  => 'Remover páginas',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}} da sua lista de {{lc:{{int:watchlist}}}}:',
+'watchlistedit-raw-title'      => 'Editar a lista de {{lc:{{int:watchlist}}}} em forma de texto',
+'watchlistedit-raw-legend'     => 'Editar a lista de {{lc:{{int:watchlist}}}} em forma de texto',
+'watchlistedit-raw-explain'    => 'A sua lista de {{lc:{{int:watchlist}}}} é apresentada abaixo.
+Pode adicionar novas linhas ou remover linhas para aumentar ou reduzir a lista, desde que mantenha uma única página por linha.
+Quando terminar, clique no botão "{{int:watchlistedit-raw-submit}}".
 Também pode [[Special:Watchlist/edit|editar a lista da maneira convencional]].',
-'watchlistedit-raw-titles'     => 'Títulos:',
-'watchlistedit-raw-submit'     => 'Actualizar a lista de vigiados',
-'watchlistedit-raw-done'       => 'A sua lista de vigiados foi actualizada.',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|Foi adicionado um título|Foram adicionados $1 títulos}}:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|Foi removido um título|Foram removidos $1 títulos}}:',
+'watchlistedit-raw-titles'     => 'Páginas:',
+'watchlistedit-raw-submit'     => 'Actualizar a lista de {{lc:{{int:watchlist}}}}',
+'watchlistedit-raw-done'       => 'A sua lista de {{lc:{{int:watchlist}}}} foi actualizada.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Foi adicionada uma página|Foram adicionadas $1 páginas}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ver alterações relevantes',
-'watchlisttools-edit' => 'Ver e editar a lista de vigiados',
-'watchlisttools-raw'  => 'Edição crua da lista de vigiados',
+'watchlisttools-edit' => 'Ver e editar a lista de {{lc:{{int:watchlist}}}}',
+'watchlisttools-raw'  => 'Editar a lista de {{lc:{{int:watchlist}}}} em forma de texto',
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',

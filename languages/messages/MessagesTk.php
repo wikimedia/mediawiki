@@ -87,7 +87,7 @@ Sahypalary keşirleme',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Özgerdiş meýdançasynyň şriftiniň tipi:',
-'editfont-default'   => 'Brauzeriň sazlan şrifti',
+'editfont-default'   => 'Brauzeriň gaýybanasy',
 'editfont-monospace' => 'Mono-inli şrift',
 'editfont-sansserif' => 'Sans-serif şrifti',
 'editfont-serif'     => 'Serif şrifti',
@@ -850,7 +850,7 @@ Administrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Speci
 'revdelete-hide-image'        => 'Faýlyň mazmunyny gizle',
 'revdelete-unsuppress'        => 'Dikeldilen wersiýalardaky çäklendirmeleri aýyr',
 'revdelete-log'               => 'Öçürmekligiň sebäbi:',
-'revdelete-submit'            => 'Saýlanylan wersiýada peýdalan',
+'revdelete-submit'            => 'Saýlanylan {{PLURAL:$1|wersiýada|wersiýalarda}}  peýdalan',
 'revdelete-logentry'          => '[[$1]] üçin wersiýa görünme derejesini üýtgetdi',
 'logdelete-logentry'          => '[[$1]] üçin waka görünme derejesini üýtgetdi',
 'revdelete-success'           => "'''Wersiýa görünme derejesi şowlulyk bilen sazlandy.'''",
@@ -1037,8 +1037,8 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'restoreprefs'                  => 'Ähli gaýybana sazlamalary dikelt',
 'prefs-editing'                 => 'Redaktirleme',
 'prefs-edit-boxsize'            => 'Redaktirleme penjiresiniň ölçegi.',
-'rows'                          => 'Setir:',
-'columns'                       => 'Sütün:',
+'rows'                          => 'Hatarlar:',
+'columns'                       => 'Sütünler:',
 'searchresultshead'             => 'Gözleg',
 'resultsperpage'                => 'Sahypa başyna netije sany:',
 'contextlines'                  => 'Netije başyna setir sany:',
@@ -1598,7 +1598,7 @@ Olar muňa derek degişli anyk sahypa çykgyt bermelidir.<br />
 
 'doubleredirects'            => 'Jübüt gönükdirmeler',
 'doubleredirectstext'        => 'Bu sahypa başga gönükdirme sahypalaryna gönükdirýän sahypalaryň sanawyny görkezýär.
-Her setir birinji we ikinji gönükdirmeleri, şeýle-de ikinji gönükdirmäniň maksady bolup durýan hem-de şol bir wagtyň özünde birinji gönükdirmäniň adatça barmaly ýeri bolan "hakyky" maksat edinilýän sahypany öz içine alýar.  
+Her bir hatar birinji we ikinji gönükdirmeleri, şeýle-de ikinji gönükdirmäniň maksady bolup durýan hem-de şol bir wagtyň özünde birinji gönükdirmäniň adatça barmaly ýeri bolan "hakyky" maksat edinilýän sahypany öz içine alýar.  
 <s>Üsti çyzylan</s> ýazgylar düzedilenlerdir.',
 'double-redirect-fixed-move' => '[[$1]] sahypasynyň ady üýtgedildi. 
 Ol indi [[$2]] sahypasyna gönükdirýär.',
@@ -2190,6 +2190,7 @@ Häzirki wagtda blokirlengi duran ulanyjylary [[Special:IPBlockList|IP blokirlem
 'ipb_already_blocked'             => '"$1" eýýäm blokirlenipdir.',
 'ipb-needreblock'                 => '== Eýýäm blokirlenipdir ==
 $1 eýýäm blokirlenipdir. Sazlamalary üýtgetmek isleýärsiňizmi?',
+'ipb-otherblocks-header'          => 'Başga {{PLURAL:$1|blokirleme|blokirlemeler}}',
 'ipb_cant_unblock'                => 'Säwlik: $1 ID blokirlemesi tapylmady.
 Blokirlemesi eýýäm aýyrylan bolmagy mümkin.',
 'ipb_blocked_as_range'            => 'Säwlik: $1 IP adresi gönüden-göni blokirlenipdir we blokirlemäni aýryp bolmaýar. 
@@ -2615,7 +2616,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-yresolution'                 => 'Dik ölçeg',
 'exif-resolutionunit'              => 'X we Y ölçegleriniň birligi',
 'exif-stripoffsets'                => 'Surat maglumatlarynyň ýeri',
-'exif-rowsperstrip'                => 'Setir başyna hatarlaryň sany',
+'exif-rowsperstrip'                => 'Zolak başyna hatarlaryň sany',
 'exif-stripbytecounts'             => 'Gysylan setir başyna baýt',
 'exif-jpeginterchangeformat'       => 'JPEG SOI ofseti',
 'exif-jpeginterchangeformatlength' => 'JPEG maglumatlarynyň baýtlary',

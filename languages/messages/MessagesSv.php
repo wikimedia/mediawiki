@@ -9,6 +9,7 @@
  *
  * @author Boivie
  * @author Fluff
+ * @author GameOn
  * @author Grillo
  * @author Habj
  * @author Habjchen
@@ -769,6 +770,7 @@ Skriv in en adress med korrekt format eller töm fältet.',
 'createaccount-text'         => 'Någon har skapat ett konto åt din e-postadress på {{SITENAME}} ($4) med namnet "$2" och lösenordet "$3". Du bör nu logga in och ändra ditt lösenord.
 
 Du kan ignorera detta meddelande om kontot skapats av misstag.',
+'usernamehasherror'          => 'Användarnamnet får inte innehålla #.',
 'login-throttled'            => 'Du har gjort för många misslyckade inloggningsförsök till det här kontot.
 Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
@@ -1019,6 +1021,7 @@ Anledningen till blockeringen var "$2".',
 'histlegend'             => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
 Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
 'history-fieldset-title' => 'Bläddra i historiken',
+'history-show-deleted'   => 'Endast borttagna',
 'histfirst'              => 'Första',
 'histlast'               => 'Senaste',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 byte}})',
@@ -1041,7 +1044,7 @@ Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rev-deleted-text-unhide'     => "Den här versionen av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
 Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
-'rev-suppressed-text-unhide'  => "Den här versionen av sidan har '''undanhållen'''.
+'rev-suppressed-text-unhide'  => "Den här versionen av sidan har blivit '''undanhållen'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
 Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 'rev-deleted-text-view'       => "Denna version av sidan har '''raderats'''.
@@ -1056,7 +1059,12 @@ Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att 
 'rev-suppressed-unhide-diff'  => "En av versionerna för denna diff har blivit '''undanhållen'''.
 Det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
 Som administratör kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
+'rev-deleted-diff-view'       => "En av revisionerna för denna diff har blivit '''raderad'''.
+Som en administratör kan du se denna diff, det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+'rev-suppressed-diff-view'    => "En av versionerna för denna diff har blivit '''undanhållen'''.
+Som administratör kan du se denna diff; det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-delundel'                => 'visa/göm',
+'rev-showdeleted'             => 'visa',
 'revisiondelete'              => 'Ta bort/återställ versioner',
 'revdelete-nooldid-title'     => 'Ogiltig målversion',
 'revdelete-nooldid-text'      => 'Antingen har du inte angivit någon sidversion att utföra funktionen på,
@@ -1073,6 +1081,7 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
 'revdelete-text'              => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
 Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.",
+'revdelete-confirm'           => 'Var god bekräfta att du vill göra detta, och att du förstår konsekvenserna, och att du gör så i enlighet med [[{{MediaWiki:Policy-url}}|policyn]].',
 'revdelete-suppress-text'     => "Undanhållande ska '''bara''' användas i följande fall:
 * Opassande personlig information
 *: ''hemadresser och telefonnummer, personnummer, etc.''",
@@ -1261,7 +1270,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-watchlist-days-max'      => '(maximalt 7 dygn)',
 'prefs-watchlist-edits'         => 'Maximalt antal redigeringar som visas i utökad bevakningslista:',
 'prefs-watchlist-edits-max'     => '(maximalt antal: 1 000)',
-'prefs-watchlist-token'         => 'Bevakningslistsnyckel',
+'prefs-watchlist-token'         => 'Bevakningslistsnyckel:',
 'prefs-misc'                    => 'Diverse',
 'prefs-resetpass'               => 'Ändra lösenord',
 'prefs-email'                   => 'Alternativ för e-post',
@@ -1554,6 +1563,7 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 'upload'                      => 'Ladda upp fil',
 'uploadbtn'                   => 'Ladda upp fil',
 'reuploaddesc'                => 'Avbryt uppladdningen och gå tillbaka till uppladdningsformuläret.',
+'upload-tryagain'             => 'Skicka modifierad filbeskrivning',
 'uploadnologin'               => 'Inte inloggad',
 'uploadnologintext'           => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ladda upp filer.',
 'upload_directory_missing'    => 'Uppladdningskatalogen ($1) saknas och kunde inte skapas av webbservern.',
@@ -1621,6 +1631,7 @@ Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn
 'file-deleted-duplicate'      => 'En identisk fil till den här filen ([[$1]]) har tidigare raderats. Du bör kontrollera den filens raderingshistorik innan du fortsätter att återuppladda den.',
 'successfulupload'            => 'Uppladdningen lyckades',
 'uploadwarning'               => 'Uppladdningsvarning',
+'uploadwarning-text'          => 'Var god och ändra filbeskrivningen nedanför och försök igen.',
 'savefile'                    => 'Spara fil',
 'uploadedimage'               => 'laddade upp "[[$1]]"',
 'overwroteimage'              => 'laddade upp ny version av "[[$1]]"',
@@ -1636,6 +1647,7 @@ Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn
 'destfilename'                => 'Nytt filnamn:',
 'upload-maxfilesize'          => 'Maximal filstorlek: $1',
 'upload-description'          => 'Filbeskrivning',
+'upload-options'              => 'Uppladdningsalternativ',
 'watchthisupload'             => 'Bevaka den här filen',
 'filewasdeleted'              => 'En fil med detta namn har tidigare laddats upp och därefter tagits bort. Du bör kontrollera $1 innan du fortsätter att ladda upp den.',
 'upload-wasdeleted'           => "'''Varning: Du håller på att ladda upp en fil som tidigare raderats.'''
@@ -1678,7 +1690,16 @@ Din server är inte inställd för att ge denna information.
 Den kan vara CGI-baserad och stöttar inte img_auth.
 Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
+'img-auth-badtitle'     => 'Kan inte skapa en giltig titel från "$1"',
+'img-auth-nologinnWL'   => 'Du är inte inloggad och "$1" finns inte i vitlistan.',
 'img-auth-nofile'       => 'Filen "$1" finns inte.',
+'img-auth-isdir'        => 'Du försöker få åtkomst till en katalog "$1".
+Endast åtkomst till filer är tillåten.',
+'img-auth-streaming'    => 'Strömmar "$1".',
+'img-auth-public'       => 'Funktionaliteten i img_auth.php är att skicka filer från en privat wiki.
+Denna wiki är konfigurerad som en publik wiki.
+För optimal säkerhet, har img_auth.php blivit avaktiverad.',
+'img-auth-noread'       => 'Användaren har inte tillåtelse att läsa "$1"',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
@@ -1971,7 +1992,8 @@ Stödda protokoll: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista över aktiva användare',
-'activeusers-count'    => '$1 {{PLURAL:$1|nylig redigering|nyliga redigeringar}}',
+'activeusers-intro'    => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dagen|dagarna}}.',
+'activeusers-count'    => '$1 {{PLURAL:$1|redigering|redigeringar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
 'activeusers-from'     => 'Visa användare från och med:',
 'activeusers-noresult' => 'Inga användare funna.',
 
@@ -2359,6 +2381,8 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipblocklist-sh-tempblocks'       => '$1 tillfälliga blockeringar',
 'ipblocklist-sh-addressblocks'    => '$1 blockeringar av enskilda IP-adresser',
 'ipblocklist-submit'              => 'Sök',
+'ipblocklist-localblock'          => 'Lokalblockering',
+'ipblocklist-otherblocks'         => 'Övriga {{PLURAL:$1|blockering|blockeringar}}',
 'blocklistline'                   => '$1, $2 blockerade $3 ($4)',
 'infiniteblock'                   => 'för evigt',
 'expiringblock'                   => 'utgår den $1 kl $2',
@@ -2376,6 +2400,10 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'autoblocker'                     => 'Automatisk blockerad eftersom din IP-adress nyligen använts av "[[User:$1|$1]]".
 Motiveringen som angavs för blockeringen av $1 var: "$2".',
 'blocklogpage'                    => 'Blockeringslogg',
+'blocklog-showlog'                => 'Denna användare har blivit blockerad tidigare.
+Blockeringsloggen är tillgänglig nedan som referens:',
+'blocklog-showsuppresslog'        => 'Denna användare har tidigare blivit blockerad och gömd.
+Undanhållandeloggen visas nedan för referens:',
 'blocklogentry'                   => 'blockerade [[$1]] med blockeringstid på $2 $3',
 'reblock-logentry'                => 'ändrade blockeringsinställningar för [[$1]] med en varaktighet på $2 $3',
 'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar.
@@ -2396,6 +2424,7 @@ I [[Special:IPBlockList|blockeringslistan]] listas alla IP-adresser och använda
 'ipb_already_blocked'             => '"$1" är redan blockerad',
 'ipb-needreblock'                 => '== Redan blockerad ==
 $1 är redan blockerad. Vill du ändra inställningarna?',
+'ipb-otherblocks-header'          => 'Andra {{PLURAL:$1|blockering|blockeringar}}',
 'ipb_cant_unblock'                => 'Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.',
 'ipb_blocked_as_range'            => 'Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.',
 'ip_range_invalid'                => 'Ogiltigt IP-intervall.',
@@ -2504,6 +2533,10 @@ Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den 
 'move-leave-redirect'          => 'Lämna kvar en omdirigering',
 'protectedpagemovewarning'     => "'''VARNING:''' Den här sidan har låsts så att endast användare med administratörsrättigheter kan flytta den.",
 'semiprotectedpagemovewarning' => "'''Not:''' Den här sidan har låsts så att endast registrerade användare kan flytta den.",
+'move-over-sharedrepo'         => '== Filen existerar ==
+[[:$1]] existerar på en delad källa. Om du flyttar en fil till detta namn kommer den delad filen bli överskriven.',
+'file-exists-sharedrepo'       => 'Detta filnamn existerar redan på en delad källa.
+Var god välj ett annat namn.',
 
 # Export
 'export'            => 'Exportera sidor',
@@ -3354,12 +3387,15 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 # Add categories per AJAX
 'ajax-add-category'            => 'Lägg till kategori',
 'ajax-add-category-submit'     => 'Lägg till',
+'ajax-confirm-title'           => 'Bekräfta handling',
 'ajax-confirm-prompt'          => 'Du kan skriva en redigeringssammanfattning nedanför.
 Klicka på "Spara" för att spara din redigering.',
 'ajax-confirm-save'            => 'Spara',
 'ajax-add-category-summary'    => 'Lägg till kategorin "$1"',
 'ajax-remove-category-summary' => 'Tag bort kategorin "$1"',
+'ajax-confirm-actionsummary'   => 'Handling att utföra:',
 'ajax-error-title'             => 'Fel',
+'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'Det var inte möjligt att ta bort den här kategorin.
 Oftast beror det på att kategorin har lagts till genom användande av en mall.',
 

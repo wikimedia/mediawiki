@@ -892,7 +892,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'mergehistory-reason' => 'Сәбәп:',
 
 # Merge log
-'mergelog'    => 'Берләштерүләр журналы',
+'mergelog'    => 'Берләштерүләр көндәлеге',
 'revertmerge' => 'Бүләргә',
 
 # Diffs
@@ -1015,6 +1015,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'nchanges'                          => '$1 {{PLURAL:$1|үзгәртү|үзгәртү}}',
 'recentchanges'                     => 'Соңгы үзгәртүләр',
 'recentchanges-legend'              => 'Соңгы үзгәртүләр көйләүләре',
+'recentchanges-feed-description'    => 'Бу агымда соңгы үзгәртүләрне күзәтү.',
 'recentchanges-legend-newpage'      => '$1 — яңа бит',
 'recentchanges-legend-minor'        => '$1 — кече үзгәртү',
 'recentchanges-legend-bot'          => '$1 — ботның үзгәртүе',
@@ -1474,8 +1475,17 @@ $3 күрсәткән сәбәп: ''$2''",
 
 # Metadata
 'metadata'          => 'Мета мәгълүматлар',
+'metadata-help'     => 'Бу файлда гадәттә санлы камера яки сканер тарафыннан өстәлгән мәгълүмат бар. Әгәр бу файл төзү вакытыннан соң үзгәртелгән булса, аның кайбер параметрлары дөрес булмаска мөмкин.',
 'metadata-expand'   => 'Өстәмә мәгълүматларны күрсәтү',
 'metadata-collapse' => 'Өстәмә мәгълүматларны яшерү',
+'metadata-fields'   => 'Бу исемлеккә кергән метабирелмәләр кырлары рәсем битендә күрсәтелер, калганнары исә килешү буенча яшерелер.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
 
 # EXIF tags
 'exif-brightnessvalue' => 'Яктылык',

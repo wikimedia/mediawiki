@@ -246,6 +246,8 @@ $messages = array(
 'privacy'              => 'Хибардзинады политикæ',
 'privacypage'          => 'Project:Хибардзинады политикæ',
 
+'badaccess-group0' => 'Ацы архайд ракæныны бар дæм нæй.',
+
 'versionrequired' => 'Хъæуы MediaWiki-йы версии $1',
 
 'ok'                  => 'Афтæ уæд!',
@@ -301,6 +303,7 @@ $messages = array(
 'directorycreateerror' => 'Нæй саразæн файлдон «$1».',
 'filenotfound'         => 'Нæй ссарæн файл «$1».',
 'unexpected'           => 'Æнæмбæлон æмиасад: «$1»=«$2».',
+'formerror'            => 'Рæдыд: формæ арвитæн нæй',
 'cannotdelete'         => 'Нæй аппарæн файл кæнæ фарс "$1".
 Æндæр исчи йæ аппæрста мыййаг.',
 'badtitle'             => 'Æнæмбæлон сæргонд',
@@ -388,6 +391,7 @@ $messages = array(
 'template-protected'     => '(æхгæд)',
 'template-semiprotected' => '(æрдæг-æхгæд)',
 'edit-conflict'          => 'Иввдзинæдты конфликт.',
+'edit-already-exists'    => 'Ног фарс скæнæн нæй. Ахæм фарс ис.',
 
 # History pages
 'viewpagelogs'           => 'Ацы фарсæн йæ логтæ равдис',
@@ -400,6 +404,7 @@ $messages = array(
 'nextrevision'           => 'Ногдæр верси →',
 'currentrevisionlink'    => 'Нырыккон верси',
 'cur'                    => 'ныр.',
+'next'                   => 'фæдылдзог',
 'last'                   => 'раздæры',
 'page_first'             => 'фыццаг',
 'page_last'              => 'фæстаг',
@@ -407,6 +412,7 @@ $messages = array(
 'history-fieldset-title' => 'Истори фен',
 'histfirst'              => 'раздæр',
 'histlast'               => 'фæстæдæр',
+'historysize'            => '({{PLURAL:$1|1 байт|$1 байты}})',
 'historyempty'           => '(афтид)',
 
 # Revision feed
@@ -469,9 +475,10 @@ $messages = array(
 'prefs-watchlist-days'      => 'Цал боны ивддзинæдтæ æвдисын:',
 'saveprefs'                 => 'Афтæ уæд',
 'rows'                      => 'Рæнхътæ:',
-'timezonelegend'            => 'Сахаты таг',
+'timezonelegend'            => 'Сахаты таг:',
 'localtime'                 => 'Бынæттон рæстæг:',
 'timezoneoffset'            => 'Хъауджыдæрдзинад',
+'servertime'                => 'Серверы рæстæг:',
 'timezoneregion-africa'     => 'Африкæ',
 'timezoneregion-america'    => 'Америкæ',
 'timezoneregion-antarctica' => 'Антарктикæ',
@@ -529,11 +536,12 @@ $messages = array(
 'rightsnone' => '(нæй)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'     => 'ацы фарс кæсын',
-'action-edit'     => 'ацы фарс ивын',
-'action-move'     => 'ацы фарсы ном ивын',
-'action-movefile' => 'ацы файлы ном ивын',
-'action-delete'   => 'ацы фарс аппарын',
+'action-read'       => 'ацы фарс кæсын',
+'action-edit'       => 'ацы фарс ивын',
+'action-createpage' => 'фæрстæ скæн',
+'action-move'       => 'ацы фарсы ном ивын',
+'action-movefile'   => 'ацы файлы ном ивын',
+'action-delete'     => 'ацы фарс аппарын',
 
 # Recent changes
 'nchanges'           => '$1 {{PLURAL:$1|ивдзинад|ивддзинады}}',
@@ -841,6 +849,10 @@ $3',
 'skinname-monobook'    => 'Моно-чиныг',
 'skinname-myskin'      => 'Мæхи',
 'skinname-chick'       => 'Карк',
+
+# Math errors
+'math_unknown_function' => 'нæзонгæ функци',
+'math_syntax_error'     => 'синтаксисы рæдыд',
 
 # Browsing diffs
 'previousdiff' => '← Раздæры ивддзинад',

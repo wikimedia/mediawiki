@@ -698,6 +698,7 @@ $messages = array(
 'movepagebtn'             => '页面捅荡',
 'pagemovedsub'            => '捅荡成功哉',
 'articleexists'           => '叫该个名字个页面已经勒浪哉，要么倷拣个名字是无效个。请重新拣个名字。',
+'cantmove-titleprotected' => '侬弗可以移动迭个页面到个个位置，因为迭个新标题已经拨保护拉许以防止创建。',
 'movedto'                 => '捅到',
 'movetalk'                => '捅搭界个讲张页面',
 '1movedto2'               => '[[$1]]捅到[[$2]]',

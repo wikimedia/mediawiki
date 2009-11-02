@@ -504,7 +504,7 @@ $1',
 
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Obtenido de "$1"',
-'youhavenewmessages'      => 'Tiene $1 ($2).',
+'youhavenewmessages'      => 'Tienes $1 ($2).',
 'newmessageslink'         => 'nuevos mensajes',
 'newmessagesdifflink'     => '(diferencia)',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
@@ -632,7 +632,6 @@ Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas
 'welcomecreation'            => '== ¡Bienvenido(a), $1! ==
 
 Tu cuenta ha sido creada. 
-
 No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'yourname'                   => 'Su nombre de usuario:',
 'yourpassword'               => 'Contraseña:',
@@ -669,7 +668,8 @@ Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'nosuchusershort'            => 'No hay un usuario con el nombre "<nowiki>$1</nowiki>". Compruebe que lo ha escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
-'wrongpasswordempty'         => 'No ha escrito una contraseña, inténtelo de nuevo.',
+'wrongpasswordempty'         => 'No has escrito una contraseña.
+Por favor, intente de nuevo.',
 'passwordtooshort'           => 'Comtraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
 'password-name-match'        => 'Tu contraseña debe ser diferente de tu nombre de usuario.',
 'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
@@ -1025,7 +1025,7 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
 'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
 'revdelete-log'               => 'Razón para borrado:',
-'revdelete-submit'            => 'Aplicar a la revisión seleccionada',
+'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la revisión seleccionada|las revisiones seleccionadas}}',
 'revdelete-logentry'          => 'cambiada la visibilidad de la revisión para [[$1]]',
 'logdelete-logentry'          => 'cambiada la visibilidad de eventos de [[$1]]',
 'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
@@ -1971,7 +1971,7 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'watchlistfor'         => "(para '''$1''')",
 'nowatchlist'          => 'No tiene ninguna página en su lista de seguimiento.',
 'watchlistanontext'    => 'Para ver o editar las entradas de tu lista de seguimiento es necesario $1.',
-'watchnologin'         => 'No ha iniciado sesión',
+'watchnologin'         => 'No has iniciado sesión',
 'watchnologintext'     => 'Debes [[Special:UserLogin|iniciar sesión]] para modificar tu lista de seguimiento.',
 'addedwatch'           => 'Añadido a la lista de seguimiento',
 'addedwatchtext'       => "La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista de seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar.
@@ -2342,6 +2342,7 @@ Consulte la [[Special:IPBlockList|lista de direcciones IP bloqueadas]] para ver 
 'ipb_already_blocked'             => '"$1" ya se encuentra bloqueado.',
 'ipb-needreblock'                 => '== Ya está bloqueado ==
 $1 ya está bloqueado. ¿Quieres cambiar el bloqueo?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Otro bloqueo|Otros bloqueos}}',
 'ipb_cant_unblock'                => "'''Error''': Número ID $1 de bloqueo no encontrado. Pudo haber sido desbloqueado ya.",
 'ipb_blocked_as_range'            => 'Error: la dirección IP $1 no está bloqueada directamente y no puede ser desbloqueada.
 Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado.',
