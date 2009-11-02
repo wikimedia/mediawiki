@@ -15,6 +15,7 @@
  * @author Eduardo.mps
  * @author GKnedo
  * @author Giro720
+ * @author Hamilton Abreu
  * @author Heldergeovane
  * @author Jorge Morais
  * @author Leonardo.stabile
@@ -318,6 +319,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros usuários',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Exibir categorias ocultas',
+'tog-noconvertlink'           => 'Desabilitar conversão de títulos de ligações',
 'tog-norollbackdiff'          => 'Omitir diferenças depois de desfazer edições em bloco',
 
 'underline-always'  => 'Sempre',

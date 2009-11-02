@@ -317,7 +317,7 @@ $messages = array(
 'minoredit'          => 'Hemm yw chanj bian',
 'watchthis'          => 'Golya an folen ma',
 'savearticle'        => 'Gwitha',
-'preview'            => 'Ragweles',
+'preview'            => 'Ragwel',
 'showpreview'        => 'Ragweles',
 'showdiff'           => 'Disqwedhes an chanjyow',
 'loginreqlink'       => 'omgelmy',
@@ -465,10 +465,11 @@ $messages = array(
 'recentchanges-legend-newpage' => '$1 - folen nowyth',
 'recentchanges-legend-minor'   => '$1 - chanj bian',
 'recentchanges-label-minor'    => 'Hemm yw chanj bian',
-'recentchanges-legend-bot'     => '$1 - chanj gans bot',
-'rclistfrom'                   => 'Disqwedhes chanjyow nowyth ow talleth dhyworth $1.',
+'recentchanges-legend-bot'     => '$1 - chanj gen bot',
+'rclistfrom'                   => 'Disqwedhes chanjyow nowyth ow talleth dhort $1.',
 'rcshowhideminor'              => '$1 chanjyow bian',
 'rcshowhidebots'               => '$1 botow',
+'rcshowhideliu'                => '$1 devnydhoryon omgelmys',
 'rcshowhideanons'              => '$1 devnydhyoryon dyhanow',
 'rcshowhidemine'               => '$1 ow chanjyow',
 'diff'                         => 'dyffrans',
@@ -745,6 +746,9 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'Ke',
+
+# Auto-summaries
+'autosumm-new' => "Formys folen nowydh gen: '$1'",
 
 # Special:Version
 'version'         => 'Versyon',

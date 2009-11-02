@@ -10,6 +10,7 @@
  * @author Amikeco
  * @author ArnoLagrange
  * @author Jens Liebenau
+ * @author Lucas
  * @author Malafaya
  * @author Melancholie
  * @author Michawiki
@@ -948,6 +949,7 @@ Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en 
 'rev-suppressed-diff-view'    => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
 Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].",
 'rev-delundel'                => 'montri/kaŝi',
+'rev-showdeleted'             => 'montri',
 'revisiondelete'              => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'     => 'Nevalida cela versio',
 'revdelete-nooldid-text'      => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun 
@@ -963,6 +965,7 @@ funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nuna
 'logdelete-selected'          => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
 'revdelete-text'              => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
 Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.",
+'revdelete-confirm'           => 'Bonvolu konfirmi ke vi intencias fari ĉi tion, ke vi komprenas la konsekvencojn kaj ke vi faras ĉi tion laŭ [[{{MediaWiki:Policy-url}}|la regularo]].',
 'revdelete-suppress-text'     => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
 * Netaŭga persona informo
 *: ''hejmaj adresoj kaj telefonnumeroj, ŝtataj identnumeroj, ktp.''",
@@ -976,7 +979,7 @@ Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj re
 'revdelete-hide-image'        => 'Kaŝi enhavon de dosieroj',
 'revdelete-unsuppress'        => 'Forigi limigojn al restarigitaj versioj',
 'revdelete-log'               => 'Kialo por forigado:',
-'revdelete-submit'            => 'Apliki al la selektita versio',
+'revdelete-submit'            => 'Apliki al {{PLURAL:$1|elektita revizio|elektitaj revizioj}}',
 'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
 'revdelete-success'           => "'''Revizia videbleco estas sukcese farita.'''",
@@ -1443,6 +1446,7 @@ Paĝoj en [[Special:Watchlist|via atentaro]] estas '''grasaj'''.",
 'upload'                      => 'Alŝuti dosieron',
 'uploadbtn'                   => 'Alŝuti dosieron',
 'reuploaddesc'                => 'Reveni al la alŝuta formularo.',
+'upload-tryagain'             => 'Enigi ŝanĝitan dosieran priskribon',
 'uploadnologin'               => 'Ne ensalutinta',
 'uploadnologintext'           => 'Se vi volas alŝuti dosierojn, vi devas [[Special:UserLogin|ensaluti]].',
 'upload_directory_missing'    => 'La alŝuta dosierujo ($1) estas nek trovebla nek kreebla de la retservilo.',
@@ -1509,6 +1513,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'file-deleted-duplicate'      => 'Duplikata dosiero de ĉi tiu dosiero ([[$1]]) estis antaŭe forigita. Vi legu la forigan historion de tiu dosiero antaŭ provi realŝuti ĝin.',
 'successfulupload'            => 'Alŝuto sukcesis!',
 'uploadwarning'               => 'Alŝuta averto',
+'uploadwarning-text'          => 'Bonvolu ŝanĝi la dosieran priskribon kaj reprovi.',
 'savefile'                    => 'Konservi dosieron',
 'uploadedimage'               => 'alŝutis "[[$1]]"',
 'overwroteimage'              => 'alŝutis novan version de "[[$1]]"',
@@ -2246,6 +2251,8 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'ipblocklist-sh-tempblocks'       => '$1 provizoraj forbaroj',
 'ipblocklist-sh-addressblocks'    => '$1 unuopaj IP-adresaj foraroj',
 'ipblocklist-submit'              => 'Serĉi',
+'ipblocklist-localblock'          => 'Loka forbaro',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Alia forbaro|Aliaj forbaroj}}',
 'blocklistline'                   => 'Je $1, $2 forbaris $3 ($4)',
 'infiniteblock'                   => 'senfina',
 'expiringblock'                   => 'senvalidiĝas je $1 $2',
@@ -2283,6 +2290,7 @@ La kialo donita por la forbaro de $1 estis: "$2"',
 'ipb_already_blocked'             => '"$1" estas jam forbarita',
 'ipb-needreblock'                 => '== Jam forbarita ==
 $1 estas jam forbarita. Ĉu vi volas ŝanĝi la opciojn?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Alia forbaro|Aliaj forbaroj}}',
 'ipb_cant_unblock'                => 'Eraro: Forbar-identigo $1 ne estas trovita. Ĝi eble estis jam malforbarita.',
 'ipb_blocked_as_range'            => 'Eraro: La IP-adreso $1 ne estas forbarita rekte kaj ne povas esti malforbarita. Tamen ĝi estas forbarita kiel parto de la intervalo $2, kiu ne povas esti malforbarita.',
 'ip_range_invalid'                => 'Malvalida IP-adresa intervalo.',
@@ -2405,6 +2413,10 @@ La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon 
 'move-leave-redirect'          => 'Forlasi kiel alidirektilon',
 'protectedpagemovewarning'     => "'''Averto:''' Ĉi tiu paĝo estis ŝlosita tiel nur uzantoj kun administranto-rajtoj povas movi ĝin.",
 'semiprotectedpagemovewarning' => "'''Notu:''' Ĉi tiu paĝo estis ŝlosita tiel ĝi estas nur movebla de registritaj uzantoj.",
+'move-over-sharedrepo'         => '== Dosiero ekzistas ==
+[[:$1]] ekzistas en komuna dosierujo. Movante la dosieron al ĉi tiu titolo anstataŭigos la komunan dosieron.',
+'file-exists-sharedrepo'       => 'La elektita dosiernomo jam estas uzita en komun dosierujo.
+Bonvolu elekti alian nomon.',
 
 # Export
 'export'            => 'Eksporti paĝojn',
