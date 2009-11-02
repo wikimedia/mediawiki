@@ -99,7 +99,7 @@ class FileDeleteForm {
 				$log = new LogPage( 'delete' );
 				$logComment = wfMsgForContent( 'deletedrevision', $oldimage );
 				if( trim( $reason ) != '' )
-					$logComment .= ": {$reason}";
+					$logComment .= wfMsgForContent( 'colon-separator' ) . $reason;
 					$log->addEntry( 'delete', $title, $logComment );
 			}
 		} else {

@@ -2880,7 +2880,7 @@ class Title {
 		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		if ( $reason ) {
-			$comment .= ": $reason";
+			$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
 		}
 
 		$now = wfTimestampNow();

@@ -358,7 +358,7 @@ class PageArchive {
 		}
 
 		if( trim( $comment ) != '' )
-			$reason .= ": {$comment}";
+			$reason .= wfMsgForContent( 'colon-separator' ) . $comment;
 		$log->addEntry( 'restore', $this->title, $reason );
 
 		return array($textRestored, $filesRestored, $reason);
