@@ -425,6 +425,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'excludeuser' => array(
 				ApiBase :: PARAM_TYPE => 'user'
 			),
+			'tag' => null,
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_DFLT => 'title|timestamp|ids',
@@ -495,6 +496,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			),
 			'type' => 'Which types of changes to show.',
 			'limit' => 'How many total changes to return.'
+			'tag' => 'Only list changes tagged with this tag.',
 		);
 	}
 
