@@ -294,14 +294,15 @@ if( !mv_embed_path ) {
 		
 		//a quick check to see if we need to send the msg via the 'parser'
 		//(we can add more detailed check once we support more wiki syntax)
-		if(ms.indexOf('{{') === -1 && ms.indexOf('[') === -1){
+		if( ms.indexOf('{{') === -1 && ms.indexOf('[') === -1){
 			return ms;
 		}
 
 		//make sure we have the lagMagic setup:
+		//@@todo move to init
 		$.lang.magicSetup();
 		//send the msg key through the parser
-		pObj = $.parser.pNew( ms );
+		var pObj = $.parser.pNew( ms );		
 		//return the transformed msg
 		return pObj.getHTML();
 	}
@@ -598,10 +599,12 @@ if( !mv_embed_path ) {
 				 */
 
 				// ~ probably a better algorithm out there / should mirror php parser flow ~
+				//	 (we are already running white-space issues ie php parse strips whitespace diffrently)
+				
 				// ... but I am having fun with recursion so here it is...
 				// or at least mirror: http://www.mediawiki.org/wiki/Extension:Page_Object_Model
 				function rdpp ( txt , cn){
-					var node = {};
+					var node = {};					
 					//inspect each char
 					for(var a=0; a < txt.length; a++){
 						if( txt[a] == '{' && txt[a+1] == '{' ){
@@ -630,7 +633,7 @@ if( !mv_embed_path ) {
 				/**
 				 * parse template text as template name and named params
 				 */
-				function parseTmplTxt( ts ){
+				function parseTmplTxt( ts ){				
 					var tObj = {};
 					//Get template name:
 					tname = ts.split('\|').shift() ;
@@ -645,14 +648,18 @@ if( !mv_embed_path ) {
 						tObj["arg"] = tname.split(':').pop();
 					}
 
-					js_log("TNAME::" + tObj["name"] + ' from:: ' + ts);	
-					
+					js_log("TNAME::" + tObj["name"] + ' from:: ' + ts);						
 					var pSet = ts.split('\|');
-					pSet.splice(0,1);
+					pSet.splice(0,1);					
 					if( pSet.length ){
 						tObj.param = new Array();
-						for(var pInx in pSet){
+						for(var pInx in pSet){							
 							var tStr = pSet[ pInx ];
+							//check for empty param
+							if(tStr==''){
+								tObj.param[ pInx ] = '';
+								continue;
+							}
 							for(var b=0 ; b < tStr.length ; b++){
 								if(tStr[b] == '=' && b>0 && b<tStr.length && tStr[b-1]!='\\'){
 									//named param
@@ -663,7 +670,7 @@ if( !mv_embed_path ) {
 								}
 							}
 						}
-					}
+					}							
 					return tObj;
 				}
 				function getMagicTxtFromTempNode( node ){
@@ -764,7 +771,7 @@ if( !mv_embed_path ) {
 				//wikiText updates should invalidate pOut
 				if( this.pOut == ''){
 					this.parse();
-				}
+				}				
 				return this.pOut;
 			}
 		};
@@ -1204,8 +1211,8 @@ window.onload = function () {
  * Store all the mwEmbed jQuery-specific bindings
  * (set up after jQuery is available).
  *
- * These functions are generaly are loaders that do the dynamic mapping of
- * dependencies for a given componet
+ * These functions are genneraly are loaders that do the dynamic mapping of
+ * dependencies for a given commponet
  * 
  *
  */
