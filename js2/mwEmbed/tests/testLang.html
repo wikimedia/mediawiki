@@ -8,8 +8,9 @@ td{
 }
 </style>
 <script type="text/javascript" >
+var scriptLoaderURID = 't10';
 //for just setting one or two to test at a time for debug
-var langKeyDebug = ['en'];
+var langKeyDebug = ['fr'];
 
 //shortLangKey is an array of at least one language from every group in cldrConverter.php
 var langKeyGroups = ['en','az', 'da', 'pt', 'fr', 'lv', 'ga','hr','cy','mk','mt','pl','sl'];
@@ -194,8 +195,8 @@ js2AddOnloadHook( function(){
 		$j.each(langSet, function(na, langKey){					
 			js_log('load language key: ' + langKey);			
 			//do a manual call to the script-lodaer:
-			js_log('do load: ' + '../../../mwScriptLoader.php?class=$mw.testLang&urid=5&lang='+langKey );
-			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid=8&lang='+langKey, function(){
+			js_log('do load: ' + '../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&lang='+langKey );
+			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&lang='+langKey, function(){
 				var o='';
 				o+='<tr><td colspan="6" height="20" style="font-size:large"><b>Lang:' + langKey + '</b></td></tr>';		
 				//now for each langage msg: 
@@ -235,15 +236,23 @@ js2AddOnloadHook( function(){
 								do_api_req({
 									'data': {
 										'action' : 'parse',
+										'uselang' : 'fr',
 										'text' : '{{int:' + mKey + '|' + msgparam + '}}'
 									},
 									'url' : '../../../api.php'					
 								}, function( data ) {							
 									var t = '#'+ tkey ; 								
 									if(data.parse && data.parse.text && data.parse.text['*']){
-										$j(t).html( data.parse.text['*'] );
+										$j(t).html( data.parse.text['*'] );										
+										var js_txt = $j.trim( $j(t + '_js').text().replace('\n', '') );
+										var php_txt = $j.trim( $j(t + ' p').text())
 										//just get the part in the <p> to compare with js version
-										if( $j.trim( $j(t + ' p').html() )  != $j.trim( $j(t + '_js').html() ) ){									
+										if( js_txt != php_txt ){
+										var cat = $j.trim( $j(t + ' p').text() );
+										var dog =  $j.trim( $j(t + '_js').text() );											
+											if( cat == dog)
+												alert('wtf');
+											//debugger;									
 											$j(t).css('color', 'red');
 											failTest++;
 										}else{

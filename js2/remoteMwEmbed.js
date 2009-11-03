@@ -6,7 +6,6 @@
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
 var reqAguments = urlparts[1];
-
 addOnloadHook( function(){
 	//only do rewrites if MV_EMBED / js2 is "off"
 	if( typeof MV_EMBED_VERSION == 'undefined' ) {
