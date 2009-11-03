@@ -1012,21 +1012,18 @@ class DatabaseOracle extends DatabaseBase {
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
-	public function makeList( $a, $mode = LIST_COMMA ) {
-		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this, 'DatabaseOracle::makeList called with incorrect parameters' );
-		}
+	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 
-		$a2 = array();
-		foreach($a as $col=>$val) {
+		$conds2 = array();
+		foreach($conds as $col=>$val) {
 			$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
 			if ($col_type == 'CLOB')
-				$a2['TO_CHAR('.$col.')'] = $val;
+				$conds2['TO_CHAR('.$col.')'] = $val;
 			else
-				$a2[$col] = $val;
+				$conds2[$col] = $val;
 		}
-		
-		return parent::makeList($a2, $mode);
+
+		return parent::delete( $table, $conds2, $fname );
 	}
 
 	function bitNot($field) {
