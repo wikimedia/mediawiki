@@ -329,7 +329,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'dir' => 'In which direction to enumerate.',
 			'user' => 'Filter entries to those made by the given user.',
 			'title' => 'Filter entries to those related to a page.',
-			'limit' => 'How many total event entries to return.'
+			'limit' => 'How many total event entries to return.',
 			'tag' => 'Only list event entries tagged with this tag.',
 		);
 	}
