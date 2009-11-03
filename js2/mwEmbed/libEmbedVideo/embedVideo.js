@@ -2495,10 +2495,10 @@ var embedTypes = {
 		
 		 // ActiveX plugins
 		 if($j.browser.msie){
-			  // check for flash		 
-			   if ( this.testActiveX( 'ShockwaveFlash.ShockwaveFlash')){				   
-				   //try to get the flash version for omtk include: 
-				   try {
+			// check for flash		 
+			if ( this.testActiveX( 'ShockwaveFlash.ShockwaveFlash')){				   
+				//try to get the flash version for omtk include: 
+				try {
 					a = new ActiveXObject(SHOCKWAVE_FLASH_AX + ".7");
 					d = a.GetVariable("$version");	// Will crash fp6.0.21/23/29
 					if (d) {
@@ -2506,15 +2506,15 @@ var embedTypes = {
 						//we need flash version 10 or greater:
 						if(parseInt( d[0]) >=10){
 							this.players.addPlayer( omtkPlayer );
-						}
-						
+						}					
 					}					
-				}catch(e) {}				
-				
-				   //flowplayer has pretty good compatiablity 
-				   // (but if we wanted to be fancy we would check for version of flash and update the mp4/h.264 support
-				   this.players.addPlayer( flowPlayer );				   
-			   }
+				}catch(e) {
+					//failed to check for flash
+				}				
+				//flowplayer has pretty good compatiablity 
+				// (but if we wanted to be fancy we would check for version of flash and update the mp4/h.264 support
+				this.players.addPlayer( flowPlayer );				   
+			}
 			 // VLC
 			 if ( this.testActiveX( 'VideoLAN.VLCPlugin.2' ) )
 				 this.players.addPlayer(vlcActiveXPlayer);
@@ -2570,7 +2570,7 @@ var embedTypes = {
 					continue;
 				}
 		
-				if ( javaEnabled && type == 'application/x-java-applet' ) {
+				if ( javaEnabled || type == 'application/x-java-applet' ) {
 					this.players.addPlayer(cortadoPlayer);
 					continue;
 				}				
