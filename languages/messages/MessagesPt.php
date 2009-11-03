@@ -615,7 +615,7 @@ Isto pode indicar um bug no software.
 A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
-base de dados retornou o erro "<tt>$3: $4</tt>".',
+A base de dados retornou o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu um erro de sintaxe na pesquisa à base de dados.
 A última tentativa de busca na base de dados foi:
 "$1"

@@ -511,7 +511,7 @@ Móže być, zo je hižo wot někoho druheho wušmórnjena.',
 Funkcija: $1
 
 Wotprašenje: $2',
-'viewsource'           => 'Žórło wobhladać',
+'viewsource'           => 'žórło wobhladać',
 'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akcije wobmjezowane',
 'actionthrottledtext'  => 'Jako připrawa přećiwo spamej, je častosć wuwjedźenja tuteje akcije w krótkej dobje wobmjezowana a ty sy tutón limit překročił. Prošu spytaj za něšto mjeńšiny hišće raz.',
