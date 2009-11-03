@@ -50,18 +50,13 @@ h6 {
 #firstHeading {
 	font-size:1.5em;
 }
-h1,
-h2{
-	letter-spacing:0.6px;
-}
 h2 .editsection,
 .portal h5{
 	font-family:sans-serif;
-	letter-spacing:0px;
+
 }
 #toc h2, .toc h2 {
 	font-family:sans-serif;
-	letter-spacing:0px;
 }
 body #panel div.portal div.body {
 	background-image:url(images/new-portal-break-ltr.png);
