@@ -495,7 +495,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				'For example, to see only minor edits done by logged-in users, set show=minor|!anon'
 			),
 			'type' => 'Which types of changes to show.',
-			'limit' => 'How many total changes to return.'
+			'limit' => 'How many total changes to return.',
 			'tag' => 'Only list changes tagged with this tag.',
 		);
 	}
