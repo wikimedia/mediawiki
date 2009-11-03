@@ -46,6 +46,7 @@ h5,
 h6 {
 	border-color:#999999;
 	font-family:georgia, times, serif;
+	font-weight:normal;
 }
 #firstHeading {
 	font-size:1.5em;
