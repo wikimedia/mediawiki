@@ -380,9 +380,7 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'unexpected'           => 'Aasa karaa gais jaankari nai hai: "$1"="$2".',
 'formerror'            => 'Galti: form ke submit nai kare sakaa',
 'badarticleerror'      => 'Ii chij ke ii panna me nai karaa jae sake hai.',
-'cannotdelete'         => 'Jon panna nai to file ke aap mitae kare mangtaa rahaa uske nai mitae sakaa.
-
-Sait aur koi iske mitae de hoi.',
+'cannotdelete'         => '{{PLURAL:$1|Template|Template}} ke ii jhalak me kaam me lawa gais hae:',
 'badtitle'             => 'Kharaab title',
 'badtitletext'         => 'Jon panna aap mangta hai uske page title invalid, galat, nai to an incorrectly linked inter-language or inter-wiki title. Isme sait ek yah jaada character hoi jon ki title me nai kaam me lawa jae sake hai.',
 'perfcached'           => 'Niche likha data ke cache karaa gais hai aur sait purana hoi.',
@@ -501,6 +499,7 @@ Meharbaani kar ke achchha address ke enter karo nai to uu field ke khali kar do.
 'createaccount-text'         => 'Koi aap ke e-mail katir {{SITENAME}} ($4) named "$2" me account banais hai jiske password hai "$3".
 Aap ke chaahi ki aap login kar ke password ke badal do.
 Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
+'usernamehasherror'          => 'Sadasya ke naam me hash akchhar ke nai kaam me lawa jaae sake hae',
 'login-throttled'            => 'Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hai. 
 Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
@@ -686,9 +685,9 @@ Administrator jon ki iske lock karis hai ii kaaran diis hai: $1",
 'semiprotectedpagewarning'         => "'''Suchna:''' Ii panna ke band kar dewa gais hai jisse ki khali registered sadasya iske badle sake hai.",
 'cascadeprotectedwarning'          => "'''Chetawani:''' Ii panna ke band kar dewa gais jiske kaaran khali uu sadasya jiske lage sysop privileges hai iske badle sake hai, kahe ki iske niche likha gais cascade-protected {{PLURAL:$1|panna|panna}} me rakkha gais hai:",
 'titleprotectedwarning'            => "'''CHETAUNI: Ii panna ke lock kar dewa gais hai jisse ki [[Special:ListGroupRights|specific rights]] ke jarie iske badla jaae sake hai.'''",
-'templatesused'                    => 'Ii panna me kaam me lawa gae templates:',
-'templatesusedpreview'             => 'Ii jhalak me jon template kaam me lawa gais hai',
-'templatesusedsection'             => 'Ii section me kaam me lawa gais templates:',
+'templatesused'                    => '{{PLURAL:$1|Template|Templates}} ke ii panna me kaam me lawa gais hae:',
+'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} ii jhalak me kaam me lawa gais hae:',
+'templatesusedsection'             => '{{PLURAL:$1|Template|Templates}} ii hissa me kaam me lawa gais hae:',
 'template-protected'               => '(surakchhit)',
 'template-semiprotected'           => '(aadha-surakchhit)',
 'hiddencategories'                 => 'Ii panna {{PLURAL:$1|1 hidden category|$1 hidden categories}} ke member hai:',
@@ -762,6 +761,7 @@ Iske kaaran, jon ki $3 diis hai, ''$2'' hai",
 Legend: (abhi) = abhi ke version se farka,
 (pahile waala) = pahile waala version se farka, M = chhota sampadan.',
 'history-fieldset-title' => 'Itihaas me khojo',
+'history-show-deleted'   => 'Khaali mitawa gais',
 'histfirst'              => 'Sab se puraana',
 'histlast'               => 'Sab se nawaa',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -796,6 +796,9 @@ Ek administrator rahe ke kaaran aap iske dekhe saktaa hae; Iske baare me aur jaa
 'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae''' dewa gais hae.
 Aur jaankari saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
 Ek administrator hoe ke kaaran aap fir bhi [$1 ii diff ke dekhe sakta hae] agar aap aage barrhe mangtaa hai tab.",
+'rev-suppressed-unhide-diff'  => 'Ii antar me ke ek balao ke nai dekhawa jaae hae.
+Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me milii.
+Ek administrator hoe ke kaaran aap [$1 view this diff] ke dekehe saktaa hae',
 'rev-delundel'                => 'dekhao/lukao',
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
 'revdelete-nooldid-title'     => 'Target revision jon ki valid nai hai',

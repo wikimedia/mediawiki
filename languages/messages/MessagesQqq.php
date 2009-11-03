@@ -59,6 +59,7 @@
  * @author Octahedron80
  * @author PhiLiP
  * @author Platonides
+ * @author Prima klasy4na
  * @author Purodha
  * @author Raymond
  * @author Ryan Schmidt
@@ -723,7 +724,8 @@ Tip for internal links',
 {{Identical|Embedded file}}',
 'media_sample'    => '{{optional}}',
 'media_tip'       => 'This is the text that appears when you hover the mouse over the fifth button from the right in the edit toolbar.',
-'sig_tip'         => 'This is the text that appears when you hover the mouse over the second key from the right on the edit toolbar.',
+'sig_tip'         => 'This is the text that appears when you hover the mouse over the second key from the right on the edit toolbar.
+{{Identical|Signature with timestamp}}',
 'hr_tip'          => 'This is the text that appears when you hover the mouse over the first button on the right on the edit toolbar.',
 
 # Edit pages

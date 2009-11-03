@@ -16,6 +16,7 @@
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Khaledelmansoury
  * @author Li-sung
+ * @author Lyzzy
  * @author MF-Warburg
  * @author Melancholie
  * @author Meno25
@@ -2741,7 +2742,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer geladen, die den Kölnisch-Blau-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'monobook.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Monobook-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'myskin.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Myskin-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'chick.js'       => '/* Das folgende JavaScript wird für Benutzer geladen, die den KükenSkin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'chick.js'       => '/* Das folgende JavaScript wird für Benutzer geladen, die den Küken-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'simple.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Einfach-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'modern.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Modern-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'vector.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Vector-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',

@@ -11,6 +11,7 @@
  * @author Fohanno
  * @author Fulup
  * @author Malafaya
+ * @author Y-M D
  * @author לערי ריינהארט
  */
 
@@ -585,9 +586,9 @@ Gortozit a-raok klask en-dro.",
 'resetpass_announce'        => "En em enrollet oc’h dre ur ger-tremen da c'hortoz kaset deoc'h dre bostel. A-benn bezañ enrollet da vat e rankit spisaat ur ger-tremen nevez amañ :",
 'resetpass_text'            => '<!-- Ouzhpennañ testenn amañ -->',
 'resetpass_header'          => 'Cheñch ger-tremen ar gont',
-'oldpassword'               => 'Ger-tremen kozh',
+'oldpassword'               => 'Ger-tremen kozh :',
 'newpassword'               => 'Ger-tremen nevez :',
-'retypenew'                 => 'Kadarnaat ar ger-tremen nevez',
+'retypenew'                 => 'Kadarnaat ar ger-tremen nevez :',
 'resetpass_submit'          => 'Kemmañ ar ger-tremen hag en em lugañ',
 'resetpass_success'         => "Kemmet mat eo bet ho ker-tremen ! Emaoc'h oc'h en em lugañ e-barzh...",
 'resetpass_forbidden'       => "N'haller ket cheñch ar gerioù-termen",

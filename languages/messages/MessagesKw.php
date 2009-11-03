@@ -618,7 +618,8 @@ $messages = array(
 'restriction-upload' => 'Ughcarga',
 
 # Undelete
-'undelete-search-submit' => 'Whila',
+'undelete-search-submit'    => 'Whila',
+'undelete-show-file-submit' => 'Ea',
 
 # Namespace form on various pages
 'blanknamespace' => '(Penn)',
@@ -650,11 +651,17 @@ $messages = array(
 'whatlinkshere-filters'   => 'Sidhlow',
 
 # Block/unblock
-'blockip'                => 'Let devnydhyer',
-'ipb-blocklist-contribs' => 'Kevrohow rag $1',
-'ipblocklist-submit'     => 'Whila',
-'blocklink'              => 'let',
-'contribslink'           => 'kevrohow',
+'blockip'                    => 'Let devnydhyer',
+'ipaddress'                  => 'Trigva IP:',
+'ipadressorusername'         => 'Trigva IP po hanow-usyer:',
+'ipbreason'                  => 'Acheson:',
+'ipbreasonotherlist'         => 'Acheson aral',
+'ipb-blocklist-contribs'     => 'Kevrohow rag $1',
+'ipblocklist-submit'         => 'Whila',
+'blocklink'                  => 'let',
+'contribslink'               => 'kevrohow',
+'block-log-flags-anononly'   => 'devnydhyoryon dyhanow hepken',
+'block-log-flags-hiddenname' => 'hanow-usyer kovys',
 
 # Move page
 'move-page'        => 'Movya $1',
@@ -668,14 +675,22 @@ $messages = array(
 'movereason'       => 'Acheson:',
 
 # Export
-'export' => 'Esperthy folennow',
+'export'        => 'Esperthy folennow',
+'export-addcat' => 'Keworra',
+'export-addns'  => 'Keworra',
+
+# Namespace 8 related
+'allmessagesname' => 'Hanow',
 
 # Thumbnails
 'thumbnail-more' => 'Brashe',
 
 # Special:Import
+'import'                  => 'Ymperthi folennow',
 'import-interwiki-submit' => 'Ymperthy',
 'import-upload-filename'  => 'Hanow-restren:',
+'importstart'             => 'Owth ymperthi folennow...',
+'import-noarticle'        => 'Folen veth dhe ymperthi!',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'Agas folen devnydhyer',

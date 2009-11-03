@@ -388,6 +388,7 @@ $messages = array(
 'category-file-count'            => '다음은 이 분류에 속하는 파일 {{PLURAL:$2|$1 개|$2 개 가운데 $1 개}} 입니다.',
 'category-file-count-limited'    => '이 분류에 파일이 $1개 있습니다.',
 'listingcontinuesabbrev'         => ' (계속)',
+'noindex-category'               => '색인에서 제외되는 문서',
 
 'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
@@ -666,7 +667,7 @@ $2',
 [[Special:Preferences|{{SITENAME}} 사용자 환경 설정]]을 바꿀 수 있습니다.',
 'yourname'                   => '계정 이름:',
 'yourpassword'               => '비밀번호:',
-'yourpasswordagain'          => '암호 확인',
+'yourpasswordagain'          => '암호 재입력:',
 'remembermypassword'         => '로그인 상태를 저장하기',
 'yourdomainname'             => '도메인 이름',
 'externaldberror'            => '외부 인증 데이터베이스에 오류가 있거나, 외부 계정을 갱신할 권한이 없습니다.',
@@ -835,11 +836,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 만약 잘못 찾아온 문서라면, 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 'anontalkpagetext'                 => '----
 여기는 계정을 만들지 않았거나 사용하고 있지 않은 비등록 사용자를 위한 토론 문서입니다. 비등록 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다. IP 주소는 여러 사용자가 공유할 수 있습니다. 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 비등록 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 나중에 다른 비등록 사용자에게 줄 혼란을 줄일 수 있습니다.',
-'noarticletext'                    => '이런 문서는 없습니다.
-이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 문서에 관련된 기록을 열람]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
-'noarticletext-nopermission'       => '이 문서는 내용이 없습니다.
-[[Special:Search/{{PAGENAME}}|이 문서의 제목을 검색]]하거나
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 관련 로그]를 찾아볼 수 있습니다.</span>.',
+'noarticletext'                    => '‘{{FULLPAGENAME}}’ 문서가 존재하지 않습니다.
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 기록]을 확인하거나, 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
+'noarticletext-nopermission'       => '‘{{FULLPAGENAME}}’ 문서가 존재하지 않습니다.
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 기록]을 확인할 수 있습니다.',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'userpage-userdoesnotexist-view'   => '"$1" 사용자 계정은 등록되지 않았습니다.',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
@@ -1486,7 +1486,7 @@ $1",
 'recentchangeslinked-feed'     => '가리키는 글의 바뀜',
 'recentchangeslinked-toolbox'  => '가리키는 글의 바뀜',
 'recentchangeslinked-title'    => '‘$1’ 문서에 관련된 문서 바뀜',
-'recentchangeslinked-noresult' => '여기를 가리키는 글 중에는 주어진 기간 동안의 최근 바뀜이 없습니다.',
+'recentchangeslinked-noresult' => '이 문서에서 링크하는 문서 중, 해당 기간에 바뀐 문서가 없습니다.',
 'recentchangeslinked-summary'  => "여기를 가리키는 문서(분류일 경우 이 분류에 포함된 문서)에 대한 최근 바뀜이 나와 있습니다.
 [[Special:Watchlist|주시하는 문서]]는 '''굵은''' 글씨로 나타납니다.",
 'recentchangeslinked-page'     => '문서 이름:',

@@ -392,8 +392,8 @@ Pe piacere manne 'na comunicazzione a 'n'[[Special:ListUsers/sysop|amministrator
 'unexpected'           => 'Valore inattese: "$1"="$2".',
 'formerror'            => "Errore: non ge riesche a reggistrà 'u form",
 'badarticleerror'      => "Quest'azione non ge pò essere fatte sus 'a sta pàgene.",
-'cannotdelete'         => "Non ge puè scangellà 'a pàgene o 'u file specifichete.
-Pò essere ca ggià ha state scangellete da quacche otre.",
+'cannotdelete'         => '\'A pàgene o \'u file "$1" non ge pò essere scangellate.
+Pò essere ca ggià ha state scangellete da quacche otre.',
 'badtitle'             => 'Titele sbagliete',
 'badtitletext'         => "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.
 Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
@@ -519,6 +519,7 @@ Pe piacere mitte l'indirizze a cumme criste cumanne, ce nò no 'u scè mettènne
 Tu, mò, t\'avisse a collegà e cangià \'a password toje.
 
 Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore.',
+'usernamehasherror'          => "'U nome utende non ge pò tenè carattere hash",
 'login-throttled'            => "Urtemamende tu è pruvate troppe vote a trasè jndr'à Uicchipèdie
 Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel'         => 'Lénga: $1',
@@ -712,9 +713,9 @@ L'amministratore ca ha bloccate 'u database ha scritte stu mutive: $1",
 'semiprotectedpagewarning'         => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
 'cascadeprotectedwarning'          => "'''FA ATTENZIO':''' Sta pàgene ha state blocchete accussì sulamende l'utinde ca tènene le deritte de amministratore a ponne cangià, purcè inglude {{PLURAL:$1|pàgene|pàggrnr}} prutette a cascate:",
 'titleprotectedwarning'            => "'''ATTENZIONE: Sta pàgene ha state blocchete accussì sulamende [[Special:ListGroupRights|specifice diritte]] a ponne ccrejà.'''",
-'templatesused'                    => "Template ausete sus 'a sta pàgene:",
-'templatesusedpreview'             => "Template ausete jndr'à sta andeprime:",
-'templatesusedsection'             => "Jndr'à sta sezione sonde ausete chiste template:",
+'templatesused'                    => "{{PLURAL:$1|Template|Template}} ausate sus 'a sta pàgene:",
+'templatesusedpreview'             => "{{PLURAL:$1|Template|Template}} ausate jndr'à sta andeprime:",
+'templatesusedsection'             => "{{PLURAL:$1|Template|Template}} ausate jndr'à sta sezione:",
 'template-protected'               => '(prutette)',
 'template-semiprotected'           => '(mmienze protette)',
 'hiddencategories'                 => 'Sta pàgene jè membre de {{PLURAL:$1|1 categorja|$1 categorije}} scunnute:',
@@ -786,6 +787,7 @@ Pe piacere verifichesce 'u combronde sotte pe condrollà ca quiste ca tu vuè cc
 Leggenda: (cur) = differenze cu 'a versiona corrende,
 (last) = differenze ca 'a versione precedende, M = cangiaminde stuédeche.",
 'history-fieldset-title' => "Sfogghje 'a storie",
+'history-show-deleted'   => 'Sule le scangellate',
 'histfirst'              => 'Prime',
 'histlast'               => 'Urteme',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -821,6 +823,7 @@ Pò essere ca jacchie quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/de
 Pò essere ca iacchije quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde]..
 Cumme a 'n'amministratore tu puè angore [$1 vedè sta differenze] ce tu proprie si inderessate.",
 'rev-delundel'                => 'fa vedè/scunne',
+'rev-showdeleted'             => 'fà vedè',
 'revisiondelete'              => 'Scangille/Repristine revisiune',
 'revdelete-nooldid-title'     => 'Revisione de destinazione invalida',
 'revdelete-nooldid-text'      => "Tu non g'è specificate 'na revisione da arrivà pe abbilità sta funzione. 'A specifica revisione non g'esiste oppure tu stè pruève a scunnè 'a revisona corrende.",
@@ -848,7 +851,7 @@ Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute s
 'revdelete-hide-image'        => "Scunne 'u codenute d'u fail",
 'revdelete-unsuppress'        => 'Live le restriziune sus a le revisiune repristinate',
 'revdelete-log'               => 'Mutive pu scangellamende:',
-'revdelete-submit'            => 'Applichesce a le revisiune selezionete',
+'revdelete-submit'            => "Applichesce a {{PLURAL:$1|'a revisione|le revisiune}} selezionate",
 'revdelete-logentry'          => "ha state cangete 'a visibbilità d'a revisione de [[$1]]",
 'logdelete-logentry'          => "ha state cangete 'a visibbilità de l'evende de [[$1]]",
 'revdelete-success'           => "'''Visibbilità de le revisiune 'mbostate correttamende.'''",
@@ -1404,9 +1407,13 @@ Pe piacere verifiche le 'mbostaziune d'u ''file_uploads''.",
 'uploadcorrupt'               => "'U file face schife o tène 'n'estenziona incorrette.
 Pe piacere condrolle 'u file e carechele 'n'otra vote.",
 'uploadvirus'                 => "Alanga toje, 'u file condiene 'nu virus! Dettaglie: $1",
+'upload-source'               => 'File sorgende',
 'sourcefilename'              => "Nome d'u fail d'origgine:",
+'sourceurl'                   => 'URL sorgende:',
 'destfilename'                => "Nome d'u file de destinazione:",
 'upload-maxfilesize'          => "Dimenzione massima d'u file: $1",
+'upload-description'          => "Descrizione d'u file",
+'upload-options'              => 'Opzione pu carecamende',
 'watchthisupload'             => 'Condrolle stu file',
 'filewasdeleted'              => "'Nu file ca se chiamave cumme a quidde tue ha state apprime carecate e pò ha state scangellete.
 Tu avissa condrollà 'u $1 apprime ca condinue cu 'u carecamende.",
@@ -1885,7 +1892,7 @@ Segnalaziune e otre assistenze:
 'delete-confirm'         => 'Scangille "$1"',
 'delete-backlink'        => '← $1',
 'delete-legend'          => 'Scangille',
-'historywarning'         => "Vide Bbuene: 'a pàgene ca ste scangille tène 'na storie de cangiaminde:",
+'historywarning'         => "Vide Bbuene: 'a pàgene ca ste scangille tène 'na storie de cangiaminde cu $1 {{PLURAL:$1|revisione|revisiune}}:",
 'confirmdeletetext'      => "Vide Bbuene, vide ca ste scangille 'na pàgene ca tène pure nu sbuenne de cangiaminde.
 Conferme quidde ca ste face, ce si sicure ca è capite quidde ca ste cumbine e ce è corrette rispette a [[{{MediaWiki:Policy-url}}|le regole de scangellazione]], ce no statte quiete.",
 'actioncomplete'         => 'Aziona Combletete',
@@ -2154,6 +2161,8 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'ipblocklist-sh-tempblocks'       => '$1 le blocche temboranee',
 'ipblocklist-sh-addressblocks'    => '$1 le blocche de le singhele indirizze IP',
 'ipblocklist-submit'              => 'Cirche',
+'ipblocklist-localblock'          => 'Blocche locale',
+'ipblocklist-otherblocks'         => 'Otre {{PLURAL:$1|blocche|blocche}}',
 'blocklistline'                   => '$1, $2 blocchete $3 ($4)',
 'infiniteblock'                   => 'quanne pisce a iaddine',
 'expiringblock'                   => "more 'u $1 a le $2",
@@ -2195,6 +2204,7 @@ Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operaziun
 'ipb_already_blocked'             => '"$1" jè ggià blocchete',
 'ipb-needreblock'                 => "== Già blocchete ==
 $1 ha state già blocchete. Vuè cu cange le 'mbostaziune?",
+'ipb-otherblocks-header'          => 'Otre {{PLURAL:$1|blocche|blocche}}',
 'ipb_cant_unblock'                => "Errore: L'ID $1 d'u blocche non ge se iacchie.
 Pò essere ca ha state già sbloccate.",
 'ipb_blocked_as_range'            => "Errore: l'IP $1 non g'à state bloccate direttamende e non ge pò essere sbloccate.

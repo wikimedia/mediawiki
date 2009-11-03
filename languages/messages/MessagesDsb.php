@@ -528,7 +528,7 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 'wrong_wfQuery_params' => 'Njedobre parametery za wfQuery()<br />
 Funkcija: $1<br />
 Wótpšašanje: $2',
-'viewsource'           => 'Žrědłowy tekst wobglědaś',
+'viewsource'           => 'Žrědło se wobglědaś',
 'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akcije limitowane',
 'actionthrottledtext'  => 'Ako napšawa pśeśiwo spamoju, móžoš toś tu akciju jano někotare raze we wěstym case wuwjasć. Sy toś ten limit dośěgnuł. Pšosym wopytaj za někotare minuty hyšći raz.',

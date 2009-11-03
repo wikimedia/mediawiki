@@ -19,6 +19,7 @@
  * @author Felis
  * @author FollowTheMedia
  * @author Gianfranco
+ * @author Klutzy
  * @author Marco 27
  * @author Martorell
  * @author Marzedu
@@ -595,7 +596,8 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'unexpected'           => 'Valore imprevisto: "$1"="$2".',
 'formerror'            => 'Errore: impossibile inviare il modulo',
 'badarticleerror'      => 'Operazione non consentita per questa pagina.',
-'cannotdelete'         => 'Impossibile cancellare la pagina o il file richiesto (potrebbe essere stato già cancellato).',
+'cannotdelete'         => 'Non è stato possibile cancellare il file "$1".
+Potrebbe essere stato già cancellato da qualcun altro.',
 'badtitle'             => 'Titolo non corretto',
 'badtitletext'         => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
 'perfcached'           => "I dati che seguono sono estratti da una copia ''cache'' del database, non aggiornati in tempo reale.",
@@ -637,7 +639,7 @@ Alcune pagine potrebbero continuare ad apparire come se il logout non fosse avve
 L'account è stato creato correttamente. Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
 'yourname'                   => 'Nome utente',
 'yourpassword'               => 'Password:',
-'yourpasswordagain'          => 'Ripeti la password',
+'yourpasswordagain'          => 'Ripeti la password:',
 'remembermypassword'         => 'Ricorda la password su questo computer',
 'yourdomainname'             => 'Specificare il dominio',
 'externaldberror'            => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
@@ -702,6 +704,7 @@ Perciò, gli utenti che usano questo indirizzo IP non possono creare altri accou
 È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
 
 Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
+'usernamehasherror'          => 'Il nome utente non può contenere caratteri hash',
 'login-throttled'            => 'Sono stati effettuati troppi tentativi di accesso in breve tempo. 
 Riprovare più tardi.',
 'loginlanguagelabel'         => 'Lingua: $1',
@@ -935,6 +938,7 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 
 Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
 'history-fieldset-title' => 'Scorri nella cronologia',
+'history-show-deleted'   => 'Solo quelli cancellati',
 'histfirst'              => 'Prima',
 'histlast'               => 'Ultima',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 byte}})',
@@ -967,6 +971,13 @@ Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log de
 'rev-deleted-unhide-diff'     => "Una delle revisioni di questo confronto tra versioni è stata '''cancellata'''.
 Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.
 Agli amministratori è ancora consentito [$1 visualizzare il confronto] se necessario.",
+'rev-suppressed-unhide-diff'  => "Una delle revisioni di questo confronto di versioni è stata '''rimossa'''.
+Potrebbero esserci dettagli nel [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log delle rimozioni].
+In quanto amministratore puoi ancora [$1 visualizzare questo confronto di versioni], se vuoi procedere.",
+'rev-deleted-diff-view'       => "Una delle revisioni di questo confronto di versioni è stata '''cancellata'''.
+In quanto amministratore, puoi visualizzare questo confronto di versioni; potrebbero esserci dettagli nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log delle cancellazioni].",
+'rev-suppressed-diff-view'    => "Una delle revisioni di questo confronto di versioni è stata '''rimossa'''.
+In quanto amministratore puoi visualizzare questo confronto di versioni; potrebbero esserci dettagli nel [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log delle rimozioni].",
 'rev-delundel'                => 'mostra/nascondi',
 'rev-showdeleted'             => 'mostra',
 'revisiondelete'              => 'Cancella o ripristina versioni',
@@ -983,6 +994,7 @@ Agli amministratori è ancora consentito [$1 visualizzare il confronto] se neces
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
 'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
+'revdelete-confirm'           => 'Per favore conferma che questo è quanto intendi fare, che sei consapevole delle conseguenze, e che stai facendo questo nel rispetto delle [[{{MediaWiki:Policy-url}}|linee guida]].',
 'revdelete-suppress-text'     => "La rimozione deve essere utilizzata '''unicamente''' nei seguenti casi:
 * Dati personali inopportuni
 *: ''indirizzi, numeri di telefono, codici fiscali, ecc.''",
@@ -996,7 +1008,7 @@ Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti
 'revdelete-hide-image'        => 'Nascondi i contenuti del file',
 'revdelete-unsuppress'        => 'Elimina le limitazioni sulle revisioni ripristinate',
 'revdelete-log'               => 'Motivo per la cancellazione:',
-'revdelete-submit'            => 'Applica alla revisione selezionata',
+'revdelete-submit'            => 'Applica {{PLURAL:$1|alla revisione selezionata|alle revisioni selezionate}}',
 'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
 'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
@@ -1451,6 +1463,7 @@ L'operazione non può essere annullata.",
 'upload'                      => 'Carica un file',
 'uploadbtn'                   => 'Carica',
 'reuploaddesc'                => 'Torna al modulo per il caricamento.',
+'upload-tryagain'             => 'Invia la descrizione del file modificato',
 'uploadnologin'               => 'Accesso non effettuato',
 'uploadnologintext'           => "Il caricamento dei file è consentito solo agli utenti registrati che hanno eseguito [[Special:UserLogin|l'accesso]] al sito.",
 'upload_directory_missing'    => 'La directory di upload ($1) non esiste e non può essere creata dal server web.',
@@ -1509,6 +1522,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'file-deleted-duplicate'      => 'Un file identico a questo ([[$1]]) è stato cancellato in passato. Verificare la cronologia delle cancellazioni prima di caricarlo di nuovo.',
 'successfulupload'            => 'Caricamento completato',
 'uploadwarning'               => 'Avviso di caricamento',
+'uploadwarning-text'          => 'Per favore modifica qui sotto la descrizione del file e prova di nuovo.',
 'savefile'                    => 'Salva file',
 'uploadedimage'               => 'ha caricato "[[$1]]"',
 'overwroteimage'              => 'ha caricato una nuova versione di "[[$1]]"',
@@ -1518,10 +1532,13 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'uploadscripted'              => 'Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.',
 'uploadcorrupt'               => "Il file è corrotto o ha un'estensione non corretta. Controllare il file e provare di nuovo il caricamento.",
 'uploadvirus'                 => 'Questo file contiene un virus! Dettagli: $1',
+'upload-source'               => 'File di origine',
 'sourcefilename'              => 'Nome del file di origine:',
+'sourceurl'                   => 'URL di origine:',
 'destfilename'                => 'Nome del file di destinazione:',
 'upload-maxfilesize'          => 'Dimensione massima del file: $1',
 'upload-description'          => 'Descrizione del file',
+'upload-options'              => 'Opzioni di caricamento',
 'watchthisupload'             => 'Aggiungi agli osservati speciali',
 'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare il log delle $1 prima di caricarlo di nuovo.',
 'upload-wasdeleted'           => "'''Attenzione: si sta per caricare un file già cancellato in passato.'''
@@ -1566,6 +1583,7 @@ Consultare http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nofile'       => 'File "$1" non esiste.',
 'img-auth-isdir'        => 'Si sta tentando di accedere a una directory "$1".
 Solo l\'accesso ai file è consentito.',
+'img-auth-streaming'    => '"$1" in streaming.',
 'img-auth-public'       => 'La funzione di img_auth.php è di dare in output file da un sito wiki privato.
 Questo sito è configurato come un wiki pubblico.
 Per una sicurezza ottimale, img_auth.php è disattivato.',
@@ -1861,6 +1879,7 @@ Protocolli supportati: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista degli utenti attivi',
+'activeusers-intro'    => 'Questo è un elenco di utenti che hanno avuto qualche tipo di attività da $1 {{PLURAL:$1|giorno|giorni}} a questa parte.',
 'activeusers-count'    => "$1 {{PLURAL:$1|modifica|modifiche}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
 'activeusers-from'     => 'Mostra gli utenti a partire da:',
 'activeusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
@@ -1994,7 +2013,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'exblank'                => 'la pagina era vuota',
 'delete-confirm'         => 'Cancella "$1"',
 'delete-legend'          => 'Cancella',
-'historywarning'         => 'Attenzione! La pagina che si sta per cancellare ha una cronologia:',
+'historywarning'         => "'''Attenzione:''' La pagina che stai per cancellare ha una cronologia con $1 {{PLURAL:$1|revisione|revisioni}}:",
 'confirmdeletetext'      => 'Stai per cancellare una pagina con tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Azione completata',
 'actionfailed'           => 'Azione fallita',
@@ -2241,6 +2260,8 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'ipblocklist-sh-tempblocks'       => '$1 i blocchi temporanei',
 'ipblocklist-sh-addressblocks'    => '$1 i blocchi dei singoli IP',
 'ipblocklist-submit'              => 'Ricerca',
+'ipblocklist-localblock'          => 'Blocchi locali',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Altro blocco|Altri blocchi}}',
 'blocklistline'                   => '$1, $2 ha bloccato $3 ($4)',
 'infiniteblock'                   => 'infinito',
 'expiringblock'                   => 'scade il $1 alle $2',
@@ -2278,6 +2299,7 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'ipb_already_blocked'             => 'L\'utente "$1" è già bloccato',
 'ipb-needreblock'                 => "== Già bloccato ==
 L'utente $1 è già bloccato. Modificare le impostazioni?",
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Altro blocco|Altri blocchi}}',
 'ipb_cant_unblock'                => 'Errore: Impossibile trovare il blocco con ID $1. Il blocco potrebbe essere già stato rimosso.',
 'ipb_blocked_as_range'            => "Errore: L'indirizzo IP $1 non è soggetto a blocco individuale e non può essere sbloccato. Il blocco è invece attivo a livello dell'intervallo $2, che può essere sbloccato.",
 'ip_range_invalid'                => 'Intervallo di indirizzi IP non valido.',
@@ -2379,6 +2401,10 @@ La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla 
 'move-leave-redirect'          => 'Crea un redirect con lo spostamento',
 'protectedpagemovewarning'     => "'''Attenzione: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano spostarla.'''",
 'semiprotectedpagemovewarning' => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano spostarla.",
+'move-over-sharedrepo'         => '== File già esistente ==
+[[:$1]] è già presente in una struttura condivisa. Spostare un file a questo titolo comporterà la sovrascrittura del file condiviso.',
+'file-exists-sharedrepo'       => 'Il nome che hai scelto per il file è già utilizzato.
+Per favore, scegli un nome diverso.',
 
 # Export
 'export'            => 'Esporta pagine',
@@ -2661,6 +2687,7 @@ $1',
 'svg-long-desc'        => '(file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3)',
 'show-big-image'       => 'Versione ad alta risoluzione',
 'show-big-image-thumb' => '<small>Dimensioni di questa anteprima: $1 × $2 pixel</small>',
+'file-info-gif-looped' => 'animato',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
 
 # Special:NewFiles
