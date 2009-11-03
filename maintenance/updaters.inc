@@ -99,7 +99,7 @@ $wgUpdates = array(
 		// 1.9
 		array( 'add_field', 'user',          'user_newpass_time', 'patch-user_newpass_time.sql' ),
 		array( 'add_table', 'redirect',                           'patch-redirect.sql' ),
-		array( 'add_table', 'querycachetwo', 'patch-querycachetwo.sql' ),
+		array( 'add_table', 'querycachetwo',                      'patch-querycachetwo.sql' ),
 		array( 'add_field', 'ipblocks',      'ipb_enable_autoblock', 'patch-ipb_optional_autoblock.sql' ),
 		array( 'do_backlinking_indices_update' ),
 		array( 'add_field', 'recentchanges', 'rc_old_len',        'patch-rc_len.sql' ),
@@ -145,50 +145,50 @@ $wgUpdates = array(
 		array( 'do_filearchive_indices_update' ),
 		
 		// 1.14
-		array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
+		array( 'add_field', 'site_stats',    'ss_active_users',  'patch-ss_active_users.sql' ),
 		array( 'do_active_users_init' ),
-		array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' ),
+		array( 'add_field', 'ipblocks',      'ipb_allow_usertalk', 'patch-ipb_allow_usertalk.sql' ),
 
 		// 1.15
 		array( 'do_unique_pl_tl_il' ),
-		array( 'add_table', 'change_tag',			   'patch-change_tag.sql' ),
-		array( 'add_table', 'tag_summary',			   'patch-change_tag.sql' ),
-		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
+		array( 'add_table', 'change_tag',                        'patch-change_tag.sql' ),
+		array( 'add_table', 'tag_summary',                       'patch-change_tag.sql' ),
+		array( 'add_table', 'valid_tag',                         'patch-change_tag.sql' ),
 
 		// 1.16
-		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
-		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
+		array( 'add_table', 'user_properties',                   'patch-user_properties.sql' ),
+		array( 'add_table', 'log_search',                        'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
-		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
-		array( 'add_table', 'l10n_cache',              'patch-l10n_cache.sql' ),
-		array( 'add_table', 'external_user', 'patch-external_user.sql' ),
-		array( 'add_index', 'log_search', 'ls_field_val', 'patch-log_search-rename-index.sql' ),
-		array( 'add_index', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
-		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
+		array( 'add_field', 'logging',       'log_user_text',    'patch-log_user_text.sql' ),
+		array( 'add_table', 'l10n_cache',                        'patch-l10n_cache.sql' ),
+		array( 'add_table', 'external_user',                     'patch-external_user.sql' ),
+		array( 'add_index', 'log_search',    'ls_field_val',     'patch-log_search-rename-index.sql' ),
+		array( 'add_index', 'change_tag',    'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
+		array( 'add_field', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
 	),
 
 	'sqlite' => array(
 		// 1.14
-		array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
+		array( 'add_field', 'site_stats',    'ss_active_users',  'patch-ss_active_users.sql' ),
 		array( 'do_active_users_init' ),
-		array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' ),
+		array( 'add_field', 'ipblocks',      'ipb_allow_usertalk', 'patch-ipb_allow_usertalk.sql' ),
 		array( 'sqlite_initial_indexes' ),
 
 		// 1.15
-		array( 'add_table', 'change_tag',			   'patch-change_tag.sql' ),
-		array( 'add_table', 'tag_summary',			   'patch-change_tag.sql' ),
-		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
+		array( 'add_table', 'change_tag',                        'patch-change_tag.sql' ),
+		array( 'add_table', 'tag_summary',                       'patch-change_tag.sql' ),
+		array( 'add_table', 'valid_tag',                         'patch-change_tag.sql' ),
 
 		// 1.16
-		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
-		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
+		array( 'add_table', 'user_properties',                   'patch-user_properties.sql' ),
+		array( 'add_table', 'log_search',                        'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
-		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
-		array( 'add_table', 'l10n_cache',              'patch-l10n_cache.sql' ),
-		array( 'add_table', 'external_user', 'patch-external_user.sql' ),
-		array( 'add_index', 'log_search', 'ls_field_val', 'patch-log_search-rename-index.sql' ),
-		array( 'add_index', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
-		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
+		array( 'add_field', 'logging',       'log_user_text',    'patch-log_user_text.sql' ),
+		array( 'add_table', 'l10n_cache',                        'patch-l10n_cache.sql' ),
+		array( 'add_table', 'external_user',                     'patch-external_user.sql' ),
+		array( 'add_index', 'log_search',    'ls_field_val',     'patch-log_search-rename-index.sql' ),
+		array( 'add_index', 'change_tag',    'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
+		array( 'add_field', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
 		
 		// version-independent searchindex setup, added in 1.16
 		array( 'sqlite_setup_searchindex' ),
