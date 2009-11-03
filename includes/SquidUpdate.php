@@ -26,8 +26,7 @@ class SquidUpdate {
 	}
 
 	static function newFromLinksTo( &$title ) {
-		$fname = 'SquidUpdate::newFromLinksTo';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		# Get a list of URLs linking to this page
 		$dbr = wfGetDB( DB_SLAVE );
@@ -37,7 +36,7 @@ class SquidUpdate {
 				'pl_namespace' => $title->getNamespace(),
 				'pl_title'     => $title->getDBkey(),
 				'pl_from=page_id' ),
-			$fname );
+			__METHOD__ );
 		$blurlArr = $title->getSquidURLs();
 		if ( $dbr->numRows( $res ) <= $this->mMaxTitles ) {
 			while ( $BL = $dbr->fetchObject ( $res ) )
@@ -48,7 +47,7 @@ class SquidUpdate {
 		}
 		$dbr->freeResult ( $res ) ;
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return new SquidUpdate( $blurlArr );
 	}
 
@@ -97,8 +96,7 @@ class SquidUpdate {
 			return SquidUpdate::HTCPPurge( $urlArr );
 		}
 
-		$fname = 'SquidUpdate::purge';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$maxsocketspersquid = 8; //  socket cap per Squid
 		$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
@@ -199,13 +197,12 @@ class SquidUpdate {
 			@fclose($socket);
 		}
 		#$this->debug("\n");
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	static function HTCPPurge( $urlArr ) {
 		global $wgHTCPMulticastAddress, $wgHTCPMulticastTTL, $wgHTCPPort;
-		$fname = 'SquidUpdate::HTCPPurge';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$htcpOpCLR = 4;                 // HTCP CLR
 
@@ -217,7 +214,7 @@ class SquidUpdate {
 		}
 
 		// pfsockopen doesn't work because we need set_sock_opt
-	        $conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+		$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		if ( $conn ) {
 			// Set socket options
 			socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
@@ -257,9 +254,9 @@ class SquidUpdate {
 			}
 		} else {
 			$errstr = socket_strerror( socket_last_error() );
-			wfDebug( "SquidUpdate::HTCPPurge(): Error opening UDP socket: $errstr\n" );
+			wfDebug( __METHOD__ . "(): Error opening UDP socket: $errstr\n" );
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	function debug( $text ) {
