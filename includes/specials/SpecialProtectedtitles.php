@@ -94,7 +94,7 @@ class ProtectedTitlesForm {
 	function showOptions( $namespace, $type='edit', $level, $sizetype, $size ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
-		$title = SpecialPage::getTitleFor( 'ProtectedTitles' );
+		$title = SpecialPage::getTitleFor( 'Protectedtitles' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
