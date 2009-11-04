@@ -318,6 +318,10 @@ class ProtectionForm {
 			Xml::openElement( 'tbody' );
 
 		foreach( $this->mRestrictions as $action => $selected ) {
+			// Special case: apply upload protection only on images
+			if ( $action == 'upload' && $this->mTitle->getNamespace() != NS_FILE )
+				continue;
+			
 			/* Not all languages have V_x <-> N_x relation */
 			$msg = wfMsg( 'restriction-' . $action );
 			if( wfEmptyMsg( 'restriction-' . $action, $msg ) ) {
@@ -547,8 +551,8 @@ class ProtectionForm {
 		}
 		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
 		$options = (object)array(
-			'tableId' => 'mw-protect-table-move',
-			'labelText' => wfMsg( 'protect-unchain' ),
+			'tableId' => 'mwProtectSet',
+			'labelText' => wfMsg( 'protect-unchain-permissions' ),
 			'numTypes' => count($this->mApplicableTypes),
 			'existingMatch' => 1 == count( array_unique( $this->mExistingExpiry ) ),
 		);

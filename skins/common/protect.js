@@ -22,7 +22,7 @@ var ProtectionForm = {
 		
 		var boxbody = box.getElementsByTagName('tbody')[0]
 		var row = document.createElement( 'tr' );
-		boxbody.insertBefore( row, boxbody.firstChild );
+		boxbody.insertBefore( row, boxbody.firstChild.nextSibling );
 
 		this.existingMatch = opts.existingMatch;
 
