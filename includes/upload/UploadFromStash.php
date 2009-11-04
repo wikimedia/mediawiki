@@ -27,7 +27,7 @@ class UploadFromStash extends UploadBase {
 	/*
 	 * some $na vars for uploadBase method compatibility.
 	 */
-	public function initialize( $name, $sessionData, $na, $na2=false ) {
+	public function initialize( $name, $sessionData, $na=false, $na2=false ) {
 			/**
 			 * Confirming a temporarily stashed upload.
 			 * We don't want path names to be forged, so we keep
