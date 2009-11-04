@@ -127,11 +127,11 @@ mvTimedEffectsEdit.prototype = {
 		js_log('type:' + _this.rObj['type']);
 		$j(appendTarget).html(gM('mwe-loading_txt'));
 		//@@todo integrate into core and loading system:
-		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/editor.js?' + getMvUniqueReqId() );
-		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/pixastic.all.js?' + getMvUniqueReqId() );
-		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/ui.js?' + getMvUniqueReqId() );
-		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/uidata.js?' + getMvUniqueReqId() );
-		loadExternalCss(mv_embed_path + 'libClipEdit/pixastic-editor/pixastic.all.js?' + getMvUniqueReqId() );
+		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/editor.js?' + getMwReqParam() );
+		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/pixastic.all.js?' + getMwReqParam() );
+		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/ui.js?' + getMwReqParam() );
+		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/uidata.js?' + getMwReqParam() );
+		loadExternalCss(mv_embed_path + 'libClipEdit/pixastic-editor/pixastic.all.js?' + getMwReqParam() );
 
 		var isPixasticReady = function(){
 			if(typeof PixasticEditor != 'undefined'){

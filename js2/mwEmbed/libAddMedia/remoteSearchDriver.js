@@ -236,12 +236,75 @@ remoteSearchDriver.prototype = {
 			'checked':1,
 			'title'	:'Upload'
 		}
+	},	
+	//some default layout values:
+	thumb_width		 	: 80,
+	image_edit_width	: 400,
+	video_edit_width	: 400,
+	insert_text_pos		: 0,	  //insert at the start (will be overwritten by the user cursor pos)
+	result_display_mode : 'box', //box or list
+
+	cUpLoader			: null,
+	cEdit				: null,
+	proxySetupDone		: null,
+	dmodalCss			: {},
+
+	init: function( options ){
+		var _this = this;
+		js_log('remoteSearchDriver:init');
+		
+		//merge in the options:  
+		//@@todo for cleaner config we should set _this.opt to the provided options) 
+		$j.extend( _this, default_remote_search_options, options);			
+		
+		//update the base text:
+		if(_this.target_textbox)
+		   _this.getTexboxSelection();
+
+		//modify the content provider config based on options: 
+		if(_this.enabled_cps != 'all'){
+			for(var i in this.content_providers){
+				if( $j.inArray(i, _this.enabled_cps) != -1 ){
+					this.content_providers[i].enabled = true;
+				}else{
+					this.content_providers[i].enabled = false;
+				}
+			}
+		}		
+		//set the upload target name if unset
+		if( _this.upload_api_target == 'local' &&  ! _this.upload_api_name && typeof wgSiteName != 'undefined')
+			_this.upload_api_name =  wgSiteName;
+			
+		//if the upload_api_proxy_frame is set _this.upload_api_target to "proxy"
+		if( _this.upload_api_proxy_frame )
+			_this.upload_api_target = 'proxy';
+		
+		//map "local" to the local api 			
+		if( _this.upload_api_target == 'local' ){
+			if( ! _this.local_wiki_api_url ){
+				$j('#tab-upload').html( gM( 'rsd_config_error', 'missing_local_api_url' ) );
+				return false;
+			}else{
+				_this.upload_api_target = _this.local_wiki_api_url;
+			}
+		}		
+						
+		//set up the target invocation:
+		if( $j( this.target_invocation ).length==0 ){
+			js_log("RemoteSearchDriver:: no target invocation provided (will have to run your own doInitDisplay() )");
+		}else{
+			if( this.target_invocation ){
+				$j(this.target_invocation).css('cursor','pointer').attr('title', gM('mwe-add_media_wizard')).click(function(){
+					_this.doInitDisplay();
+				});
+			}
+		}
 	},
 	//define the licenses
 	// ... this will get complicated quick...
-	// (just look at complexity for creative commons without exessive "duplicate data")
+	// (just look at complexity for creative commons without excessive "duplicate data")
 	// ie cc_by could be "by/3.0/us/" or "by/2.1/jp/" to infinitum...
-	// some complexity should be negated by license equivalances.
+	// some complexity should be negated by license equivalences.
 
 	// but we will have to abstract into another class let content providers provide license urls
 	// and we have to clone the license object and allow local overrides
@@ -385,69 +448,6 @@ remoteSearchDriver.prototype = {
 					typestr  +
 				'</div>'
 	},
-	//some default layout values:
-	thumb_width		 	: 80,
-	image_edit_width	: 400,
-	video_edit_width	: 400,
-	insert_text_pos		: 0,	  //insert at the start (will be overwritten by the user cursor pos)
-	result_display_mode : 'box', //box or list
-
-	cUpLoader			: null,
-	cEdit				: null,
-	proxySetupDone		: null,
-	dmodalCss			: {},
-
-	init: function( options ){
-		var _this = this;
-		js_log('remoteSearchDriver:init');
-		
-		//merge in the options:  
-		//@@todo for cleaner config we should set _this.opt to the provided options) 
-		$j.extend( _this, default_remote_search_options, options);			
-		
-		//update the base text:
-		if(_this.target_textbox)
-		   _this.getTexboxSelection();
-
-		//modify the content provider config based on options: 
-		if(_this.enabled_cps != 'all'){
-			for(var i in this.content_providers){
-				if( $j.inArray(i, _this.enabled_cps) != -1 ){
-					this.content_providers[i].enabled = true;
-				}else{
-					this.content_providers[i].enabled = false;
-				}
-			}
-		}		
-		//set the upload target name if unset
-		if( _this.upload_api_target == 'local' &&  ! _this.upload_api_name && typeof wgSiteName != 'undefined')
-			_this.upload_api_name =  wgSiteName;
-			
-		//if the upload_api_proxy_frame is set _this.upload_api_target to "proxy"
-		if( _this.upload_api_proxy_frame )
-			_this.upload_api_target = 'proxy';
-		
-		//map "local" to the local api 			
-		if( _this.upload_api_target == 'local' ){
-			if( ! _this.local_wiki_api_url ){
-				$j('#tab-upload').html( gM( 'rsd_config_error', 'missing_local_api_url' ) );
-				return false;
-			}else{
-				_this.upload_api_target = _this.local_wiki_api_url;
-			}
-		}		
-						
-		//set up the target invocation:
-		if( $j( this.target_invocation ).length==0 ){
-			js_log("RemoteSearchDriver:: no target invocation provided (will have to run your own doInitDisplay() )");
-		}else{
-			if( this.target_invocation ){
-				$j(this.target_invocation).css('cursor','pointer').attr('title', gM('mwe-add_media_wizard')).click(function(){
-					_this.doInitDisplay();
-				});
-			}
-		}
-	},
 	doInitDisplay:function(){
 		var _this = this;
 		//setup the parent container:
@@ -528,10 +528,10 @@ remoteSearchDriver.prototype = {
 			//js_log('added target id:' + $j(_this.target_container).attr('id'));
 			//get layout
 			js_log( 'width: ' + $j(window).width() +  ' height: ' + $j(window).height());
-			var cConf = {};
-			cConf['cancel'] = function(){
+			var cBtn = {};
+			cBtn[ gM('mwe-cancel') ] = function(){
 				_this.cancelClipEditCB();
-			}
+			}			
 			function doResize(){
 				js_log('do resize:: ' + _this.target_container);				
 				$j( '#rsd_modal_target').dialog('option', 'width', $j(window).width()-50 );
@@ -545,7 +545,7 @@ remoteSearchDriver.prototype = {
 				modal: true,
 				draggable:false,
 				resizable:false,
-				buttons:cConf,								
+				buttons:cBtn,								
 				close: function() {
 					//if we are 'editing' a item close that 
 					//@@todo maybe prompt the user? 					
@@ -559,7 +559,7 @@ remoteSearchDriver.prototype = {
 			});
 			
 			
-			//re add cancel button
+			//add cancel callback and updated button with icon
 			_this.cancelClipEditCB();
 			
 			//update the child position: (some of this should be pushed up-stream via dialog config options
@@ -1225,7 +1225,7 @@ remoteSearchDriver.prototype = {
 		$j( _this.target_container ).dialog( 'option', 'title', gM('mwe-add_media_wizard'));
 		js_log("should update: " + b_target + ' with: cancel');
 		//restore the buttons:		
-		$j(b_target).html( $j.btnHtml( 'Cancel' , 'mv_cancel_rsd', 'close'))
+		$j(b_target).html( $j.btnHtml( gM('mwe-cancel') , 'mv_cancel_rsd', 'close'))
 			.children('.mv_cancel_rsd')
 			.btnBind()
 			.click(function(){

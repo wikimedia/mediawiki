@@ -12,7 +12,9 @@ loadGM({
 	"mwe-upload" : "Upload file",
 	"mwe-destfilename" : "Destination filename:",
 	"mwe-summary" : "Summary",
-	"mwe-error_not_loggedin" : "You do not appear to be logged in or do not have upload privileges."
+	"mwe-error_not_loggedin" : "You do not appear to be logged in or do not have upload privileges.",
+	"mwe-watch-this-file" : "Watch this file",
+	"mwe-ignore-any-warnings" : "Ignore any warnings"
 });
 
 var default_form_options = {
@@ -64,16 +66,16 @@ var default_form_options = {
 						'<textarea id="wpUploadDescription" cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
 						
 						'<input type="checkbox" value="true" id="wpWatchthis" name="watch" tabindex="7"/>'+
-						'<label for="wpWatchthis">Watch this file</label>'+
+						'<label for="wpWatchthis">'+ gM('mwe-watch-this-file') +'</label>'+
 						
 						'<input type="checkbox" value="true" id="wpIgnoreWarning" name="ignorewarnings" tabindex="8"/>'+
-						'<label for="wpIgnoreWarning">Ignore any warnings</label></br>'+
+						'<label for="wpIgnoreWarning">' + gM('mwe-ignore-any-warnings') + '</label></br>'+
 						
 						'<div id="wpDestFile-warning"></div>' +
-						'<div style="clear:both;"></div>' +
+						'<div style="clear:both;"></div>' +'<p>' + 
 			
 						gM('mwe-select_ownwork') + '<br>' +
-						'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('mwe-licence_cc-by-sa') + '<br>' +
+						'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('mwe-licence_cc-by-sa') + '</p>' +
 			
 						'<input type="submit" accesskey="s" value="' + gM('mwe-upload') + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
 						//close the form and div

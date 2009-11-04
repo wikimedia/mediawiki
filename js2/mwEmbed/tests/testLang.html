@@ -195,8 +195,8 @@ js2AddOnloadHook( function(){
 		$j.each(langSet, function(na, langKey){					
 			js_log('load language key: ' + langKey);			
 			//do a manual call to the script-lodaer:
-			js_log('do load: ' + '../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&lang='+langKey );
-			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&lang='+langKey, function(){
+			js_log('do load: ' + '../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&uselang='+langKey );
+			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&uselang='+langKey, function(){
 				var o='';
 				o+='<tr><td colspan="6" height="20" style="font-size:large"><b>Lang:' + langKey + '</b></td></tr>';		
 				//now for each langage msg: 

@@ -57,6 +57,9 @@ class jsScriptLoader {
 		$this->sFileCache->getCacheFileName();
 
 		// Setup script loader header info
+		// @@todo we might want to put these into the $mw var per class request set
+		// and or include a callback to avoid pulling in old browsers that don't support
+		// the onLoad attribute for script elements.
 		$this->jsout .= 'var mwSlScript = "' .  $_SERVER['SCRIPT_NAME']  . '";' . "\n";
 		$this->jsout .= 'var mwSlGenISODate = "' . date( 'c' ) . '";'  . "\n";
 		$this->jsout .= 'var mwSlURID = "' . htmlspecialchars( $this->urid ) . '";'  . "\n";
@@ -65,70 +68,13 @@ class jsScriptLoader {
 
 		// Swap in the appropriate language per js_file
 		foreach ( $this->jsFileList as $classKey => $file_name ) {
-			// Special case: title classes
-			if ( substr( $classKey, 0, 3 ) == 'WT:' ) {
-				global $wgUser;
-				// Get just the title part
-				$title_block = substr( $classKey, 3 );
-				if ( $title_block[0] == '-' && strpos( $title_block, '|' ) !== false ) {
-					// Special case of "-" title with skin
-					$parts = explode( '|', $title_block );
-					$title = array_shift( $parts );
-					foreach ( $parts as $tparam ) {
-						list( $key, $val ) = explode( '=', $tparam );
-						if ( $key == 'useskin' ) {
-							$skin = $val;
-						}
-					}
-					$sk = $wgUser->getSkin();
-					// Make sure the skin name is valid
-					$skinNames = Skin::getSkinNames();
-					$skinNames = array_keys( $skinNames );
-					if ( in_array( strtolower( $skin ), $skinNames ) ) {
-						$this->jsout .= $sk->generateUserJs( $skin ) . "\n";
-						// success
-						continue;
-					}
-				} else {
-					// Make sure the wiki title ends with .js
-					if ( substr( $title_block, - 3 ) != '.js' ) {
-						$this->error_msg .= 'WikiTitle includes should end with .js';
-						continue;
-					}
-					// It's a wiki title, append the output of the wikitext:
-					$t = Title::newFromText( $title_block );
-					$a = new Article( $t );
-					// Only get the content if the page is not empty:
-					if ( $a->getID() !== 0 ) {
-						$this->jsout .= $a->getContent() . "\n";
-					}
-					continue;
-				}
-			}
-
-			// Dealing with files
-
-			// Check that the filename ends with .js and does not include ../ traversing
-			if ( substr( $file_name, - 3 ) != '.js' ) {
-				$this->error_msg .= "\nError file name must end with .js: " . htmlspecialchars( $file_name ) . " \n ";
-				continue;
-			}
-			if ( strpos( $file_name, '../' ) !== false ) {
-				$this->error_msg .= "\nError file name must not traverse paths: " . htmlspecialchars( $file_name ) . " \n ";
-				continue;
-			}
-
-			if ( trim( $file_name ) != '' ) {
-				// If in debug mode, add a comment with the file name
-				if ( $this->debug )
-					$this->jsout .= "\n/**
-* File: " . htmlspecialchars( $file_name ) . "
-*/\n";
-				$this->jsout .= ( $this->doProcessJsFile( $file_name ) ) . "\n";
+			//get the script content
+			$jstxt = $this->getScriptText($classKey, $file_name);
+			if( $jstxt ){
+				$this->jsout .= $this->doProcessJs( $jstxt );
 			}
 		}
-
-		// Check if we should minify
+		// Check if we should minify the whole thing:
 		if ( !$this->debug ) {
 			// do the minification and output
 			$this->jsout = JSMin::minify( $this->jsout );
@@ -141,14 +87,90 @@ class jsScriptLoader {
 		}
 		// Check for an error msg
 		if ( $this->error_msg != '' ) {
+			//just set the content type (don't send cache header)
+			header( 'Content-Type: text/javascript' );
 			echo 'alert(\'Error With ScriptLoader.php ::' . str_replace( "\n", '\'+"\n"+' . "\n'", $this->error_msg ) . '\');';
 			echo trim( $this->jsout );
 		} else {
-			// All good, let's output "cache forever" headers
+			// All good, let's output "cache" headers
 			$this->outputJsWithHeaders();
 		}
 	}
+	function getScriptText($classKey, $file_name=''){
+		$jsout = '';
+		// Special case: title classes
+		if ( substr( $classKey, 0, 3 ) == 'WT:' ) {
+			global $wgUser;
+			// Get just the title part
+			$title_block = substr( $classKey, 3 );
+			if ( $title_block[0] == '-' && strpos( $title_block, '|' ) !== false ) {
+				// Special case of "-" title with skin
+				$parts = explode( '|', $title_block );
+				$title = array_shift( $parts );
+				foreach ( $parts as $tparam ) {
+					list( $key, $val ) = explode( '=', $tparam );
+					if ( $key == 'useskin' ) {
+						$skin = $val;
+					}
+				}
+				$sk = $wgUser->getSkin();
+				// Make sure the skin name is valid
+				$skinNames = Skin::getSkinNames();
+				$skinNames = array_keys( $skinNames );
+				if ( in_array( strtolower( $skin ), $skinNames ) ) {
+					// If in debug mode, add a comment with wiki title and rev:
+					if ( $this->debug )
+						$jsout .= "\n/**\n* GenerateUserJs: \n*/\n";
+					return $jsout . $sk->generateUserJs( $skin ) . "\n";
+				}
+			} else {
+				// Make sure the wiki title ends with .js
+				if ( substr( $title_block, - 3 ) != '.js' ) {
+					$this->error_msg .= 'WikiTitle includes should end with .js';
+					return false;
+				}
+				// It's a wiki title, append the output of the wikitext:
+				$t = Title::newFromText( $title_block );
+				$a = new Article( $t );
+				// Only get the content if the page is not empty:
+				if ( $a->getID() !== 0 ) {
+					// If in debug mode, add a comment with wiki title and rev:
+					if ( $this->debug )
+						$jsout .= "\n/**\n* WikiJSPage: " . htmlspecialchars( $title_block ) . " rev: " . $a->getID() . " \n*/\n";
 
+					return $jsout . $a->getContent() . "\n";
+				}
+			}
+		}else{
+			// Dealing with files
+
+			// Check that the filename ends with .js and does not include ../ traversing
+			if ( substr( $file_name, - 3 ) != '.js' ) {
+				$this->error_msg .= "\nError file name must end with .js: " . htmlspecialchars( $file_name ) . " \n ";
+				return false;
+			}
+			if ( strpos( $file_name, '../' ) !== false ) {
+				$this->error_msg .= "\nError file name must not traverse paths: " . htmlspecialchars( $file_name ) . " \n ";
+				return false;
+			}
+
+			if ( trim( $file_name ) != '' ) {
+				if ( $this->debug )
+					$jsout .= "\n/**\n* File: " . htmlspecialchars( $file_name ) . "\n*/\n";
+
+				$jsFileStr = $this->doGetJsFile( $file_name ) . "\n";
+				if( $jsFileStr ){
+					return $jsout . $jsFileStr;
+				}else{
+					$this->error_msg .= "\nError could not read file: ". htmlspecialchars( $file_name )  ."\n";
+					return false;
+				}
+			}
+		}
+				//if we did not return some js
+		$this->error_msg .= "\nUnknown error\n";
+		return false;
+	}
 	function outputJsHeaders() {
 		// Output JS MIME type:
 		header( 'Content-Type: text/javascript' );
@@ -209,9 +231,9 @@ class jsScriptLoader {
 		}
 
 		//get the language code (if not provided use the "default" language
-		if ( isset( $_GET['lang'] ) && $_GET['lang'] != '' ) {
+		if ( isset( $_GET['uselang'] ) && $_GET['uselang'] != '' ) {
 			//make sure its a valid lang code:
-			$this->langCode = preg_replace( "/[^A-Za-z]/", '', $_GET['lang']);
+			$this->langCode = preg_replace( "/[^A-Za-z]/", '', $_GET['uselang']);
 		}else{
 			//set english as default
 			$this->langCode = 'en';
@@ -277,7 +299,8 @@ class jsScriptLoader {
 		}
 	}
 	/**
-	 * Pre-process request variables without configuration to get a rKey for cache file check
+	 * Pre-process request variables ~without configuration~ or much utility function~
+	 *  This is to quickly get a rKey that we can check against the cache
 	 */
 	function preProcRequestVars() {
 		$rKey = '';
@@ -295,9 +318,9 @@ class jsScriptLoader {
 		}
 
 		//get the language code (if not provided use the "default" language
-		if ( isset( $_GET['lang'] ) && $_GET['lang'] != '' ) {
+		if ( isset( $_GET['uselang'] ) && $_GET['uselang'] != '' ) {
 			//make sure its a valid lang code:
-			$langCode = preg_replace( "/[^A-Za-z]/", '', $_GET['lang']);
+			$langCode = preg_replace( "/[^A-Za-z]/", '', $_GET['uselang']);
 		}else{
 			//set english as default
 			$langCode = 'en';
@@ -346,21 +369,25 @@ class jsScriptLoader {
 			return false;
 		}
 	}
-	function doProcessJsFile( $file_path ) {
-		global $IP, $wgEnableScriptLocalization, $IP;
+	function doGetJsFile( $file_path ) {
+		global $IP;
 		// Load the file
 		$str = @file_get_contents( "{$IP}/{$file_path}" );
 
 		if ( $str === false ) {
 			// @@todo check PHP error level. Don't want to expose paths if errors are hidden.
 			$this->error_msg .= 'Requested File: ' . htmlspecialchars( $file_path ) . ' could not be read' . "\n";
-			return '';
+			return false;
 		}
+		return $str;
+	}
+	function doProcessJs( $str ){
+		global $wgEnableScriptLocalization;
 		// Strip out js_log debug lines. Not much luck with this regExp yet:
 		// if( !$this->debug )
 		//	 $str = preg_replace('/\n\s*js_log\s*\([^\)]([^;]|\n])*;/', "\n", $str);
 
-		// Do language swap
+		// Do language swap by index:
 		if ( $wgEnableScriptLocalization ){
 			$inx = self::getLoadGmIndex( $str );
 			if($inx){
@@ -369,6 +396,7 @@ class jsScriptLoader {
 				return substr($str, 0, $inx['s']-1) . $translated . substr($str, $inx['e']+1);
 			}
 		}
+		//return the js str unmodified if we did not transform with the localization.
 		return $str;
 	}
 	static public function getLoadGmIndex( $str ){
@@ -409,23 +437,26 @@ class jsScriptLoader {
 		}
 	}
 
-	static public function getInlineLoadGMFromClass( $class ){
-		global $IP;
-		$file_path = self::getJsPathFromClass( $class );
-		$str = @file_get_contents( "{$IP}/{$file_path}" );
-
-		$inx = self::getLoadGmIndex( $str );
-		if(!$inx)
-			return '';
-		$jsmsg =  FormatJson::decode( '{' . substr($str, $inx['s'], ($inx['e']-$inx['s'])) . '}', true);
+	function getInlineLoadGMFromClass( $class ){
+		$jsmsg = $this->getMsgKeysFromClass( $class );
 		if( $jsmsg ){
 			self::getMsgKeys ( $jsmsg );
-			return 'loadGM('. FormatJson::encode( $jsmsg ) . ')';
+			return 'loadGM(' . FormatJson::encode( $jsmsg ) . ');';
 		}else{
 			//if could not parse return empty string:
 			return '';
 		}
 	}
+	function getMsgKeysFromClass( $class ){
+		$file_path = self::getJsPathFromClass( $class );
+		$str = $this->getScriptText($class,  $file_path);
+
+		$inx = self::getLoadGmIndex( $str );
+		if(!$inx)
+			return '';
+		return FormatJson::decode( '{' . substr($str, $inx['s'], ($inx['e']-$inx['s'])) . '}', true);
+	}
+
 	static public function getMsgKeys(& $jmsg, $langCode = false){
 		global $wgContLanguageCode;
 		if(!$langCode)

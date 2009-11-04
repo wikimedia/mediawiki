@@ -797,14 +797,15 @@ $mw.lang.loadGM({
 	"mwe-loading-add-media-wiz" : "Loading add media wizard",
 	"mwe-apiproxy-setup" : "Setting up API proxy",
 	"mwe-load-drag-item" : "Loading dragged item",
-	"mwe-ok" : "OK"
+	"mwe-ok" : "OK",
+	"mwe-cancel" : "Cancel"
 });
 
 
 // Get the loading image
 function mv_get_loading_img( style, class_attr ){
 	var style_txt = (style)?style:'';
-	var class_attr = (class_attr)?'class="'+class_attr+'"':'class="mv_loading_img"';
+	var class_attr = (class_attr) ? 'class="' + class_attr + '"' : 'class="mv_loading_img"';
 	return '<div '+class_attr+' style="' + style +'"></div>';
 }
 
@@ -885,10 +886,9 @@ var mvJsLoader = {
 				}else{
 					var scriptPath = puri.path;
 				}
-				//js_log('scriptServer Path is: ' + scriptPath + "\n host script path:" + getMvEmbedURL() );
-				var dbug_attr = ( puri.queryKey['debug'] ) ? '&debug=true' : '';
+				//js_log('scriptServer Path is: ' + scriptPath + "\n host script path:" + getMvEmbedURL() );				
 				this.libs[ last_class ] = scriptPath + '?class=' + class_set +
-					'&urid=' + getMvUniqueReqId() + dbug_attr;
+					'&' + getMwReqParam();
 
 			} else {
 				// Do many requests
@@ -899,7 +899,7 @@ var mvJsLoader = {
 						// Do a direct load of the file (pass along unique request id from
 						// request or mv_embed Version )
 						var qmark = (libLoc.indexOf( '?' ) !== true) ? '?' : '&';
-						this.libs[curLib] = mv_embed_path + libLoc + qmark + 'urid=' + getMvUniqueReqId();
+						this.libs[curLib] = mv_embed_path + libLoc + qmark + getMwReqParam();
 					}
 				}
 			}
@@ -1850,7 +1850,7 @@ function loadExternalCss( url ) {
 	}
 
 	if( url.indexOf('?') == -1 ) {
-		url += '?' + getMvUniqueReqId();
+		url += '?' + getMwReqParam();
 	}
 	if( !styleSheetPresent( url ) ) {
 		js_log( 'load css: ' + url );
@@ -1882,25 +1882,34 @@ function getMvEmbedURL() {
 	return false;
 }
 // Get a unique request ID to ensure fresh JavaScript
-function getMvUniqueReqId() {
-	if( _global['urid'] )
-		return _global['urid'];
+function getMwReqParam() {	
+	if( _global['req_param'] )
+		return _global['req_param'];
 	var mv_embed_url = getMvEmbedURL();
-	// If we have a URI, return it
-	var urid = parseUri( mv_embed_url ).queryKey['urid']
-	if( urid ) {
-		_global['urid']	= urid;
-		return urid;
-	}
-	// If we're in debug mode, get a fresh unique request key
-	if( parseUri( mv_embed_url ).queryKey['debug'] == 'true' ) {
+	
+	var req_param = '';
+	
+	// If we have a URI, add it to the req
+	var urid = parseUri( mv_embed_url ).queryKey['urid']	
+	// If we're in debug mode, get a fresh unique request key and pass on "debug" param
+	if( parseUri( mv_embed_url ).queryKey['debug'] == 'true' ){
 		var d = new Date();
-		var urid = d.getTime();
-		_global['urid']	= urid;
-		return urid;
+		req_param += 'urid=' + d.getTime() + '&debug=true';		
+	}else if( urid ) {
+		// Set from request urid:
+		req_param += 'urid=' + urid;
+	}else{
+		// Otherwise, just use the mv_embed version
+		req_param += 'urid=' + $mw.version;
 	}
-	// Otherwise, just return the mv_embed version
-	return $mw.version;
+	//add the lang param:
+	var langKey = parseUri( mv_embed_url ).queryKey['uselang'];
+	if( langKey )
+		req_param += '&uselang=' + langKey;
+			
+	_global['req_param'] = req_param;
+		
+	return _global['req_param'];
 }
 /*
  * Set the global mv_embed path based on the script's location

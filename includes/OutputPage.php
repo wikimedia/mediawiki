@@ -41,6 +41,7 @@ class OutputPage {
 	var $mParseWarnings = array();
 	var $mSquidMaxage = 0;
 	var $mRevisionId = null;
+	var $mScriptLoader = null;
 	protected $mTitle = null;
 
 	/**
@@ -227,9 +228,12 @@ class OutputPage {
 				}
 				$this->addScript( Html::linkedScript( $path . "?" . $this->getURIDparam( $js_class ) ) );
 
-				//merge in language text (if js2 is on and we have loadGM function)
+				// Merge in language text (if js2 is on and we have loadGM function &  scriptLoader is "off")
 				if( $wgEnableJS2system ){
-					$inlineMsg = jsScriptLoader::getInlineLoadGMFromClass( $js_class );
+					if( !$this->mScriptLoader )
+						$this->mScriptLoader = new jsScriptLoader();
+
+					$inlineMsg = $this->mScriptLoader->getInlineLoadGMFromClass( $js_class );
 					if( $inlineMsg != '' )
 						$this->addScript( Html::inlineScript( $inlineMsg ));
 				}
@@ -266,12 +270,14 @@ class OutputPage {
 	 * Get the unique request ID parameter for the script-loader request
 	 */
 	function getURIDparam( $classAry = array() ) {
-		global $wgDebugJavaScript, $wgStyleVersion, $IP, $wgScriptModifiedCheck;
-		global $wgContLanguageCode;
+		global $wgDebugJavaScript, $wgStyleVersion, $IP, $wgScriptModifiedFileCheck;
+		global $wgLang,  $wgScriptModifiedMsgCheck;
 
+		//Always the language key param to keep urls distinct per language
+		$uriParam = 'uselang=' . $wgLang->getCode();
 
 		if( $wgDebugJavaScript ) {
-			return 'urid=' . time();
+			return $uriParam . '&urid=' . time();
 		} else {
 			//support single class_name attr
 			if( gettype( $classAry) == 'string'  ){
@@ -279,14 +285,6 @@ class OutputPage {
 			}
 			$ftime =  $frev = 0;
 			foreach( $classAry as $class ) {
-				if( $wgScriptModifiedCheck ) {
-					$js_path =  jsScriptLoader::getJsPathFromClass( $class );
-					if( $js_path ) {
-						$cur_ftime = filemtime ( $IP ."/". $js_path );
-						if( $cur_ftime > $ftime )
-							$ftime = $cur_ftime;
-					}
-				}
 				// Add the latest revision ID if the class set includes a WT (wiki title)
 				if( substr($class, 0, 3) == 'WT:'){
 					$title_str = substr($class, 3);
@@ -295,27 +293,52 @@ class OutputPage {
 						if( $t->getLatestRevID() > $frev  )
 							$frev = $t->getLatestRevID();
 					}
+				}else{
+					//check for file modified time:
+					if( $wgScriptModifiedFileCheck ) {
+						$js_path =  jsScriptLoader::getJsPathFromClass( $class );
+						if( $js_path ) {
+							$cur_ftime = filemtime ( $IP ."/". $js_path );
+							if( $cur_ftime > $ftime )
+								$ftime = $cur_ftime;
+						}
+					}
 				}
 			}
 			//build the actual unique request id:
-			$urid = "urid={$wgStyleVersion}";
+			$uriParam = "&urid={$wgStyleVersion}";
 
 			// Add the file modification time if set
 			if( $ftime != 0 )
-				$urid .= "_" . $ftime;
+				$uriParam .= "_" . $ftime;
 
 			//add the wiki rev id if set
 			if( $frev != 0 )
-				$urid.= "_" . $frev;
+				$uriParam.= "_" . $frev;
 
-
-			//Always the language key param to keep urls distinct per language
-			$urid.='&lang='.$wgContLanguageCode;
-
-			return $urid;
+			//add the latest msg rev id if $wgScriptModifiedMsgCheck is enabled:
+			if( $wgScriptModifiedMsgCheck ){
+				$dbr = wfGetDB( DB_SLAVE );
+				// Grab the latest mediaWiki msg rev id:
+				$res = $dbr->select( 'recentchanges',
+						'rc_id',
+						array( 'rc_namespace'=> NS_MEDIAWIKI ),
+						__METHOD__,
+						array( 	'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => 1 ,
+								'USE INDEX' => array('recentchanges' => 'rc_timestamp' )
+						)
+					);
+				if( $dbr->numRows($res) != 0){
+					$rc = $dbr->fetchObject( $res );
+					if( $rc->rc_id ){
+						$uriParam.= '_' . $rc->rc_id;
+					}
+				}
+				//@@todo we could otherwise use the the SVN version if not already covered by $wgStyleVersion above
+			}
+			return $uriParam;
 		}
 	}
-
 	/**
 	 * Given a script path, get the JS class name, or false if no such path is registered.
 	 * @param $path string

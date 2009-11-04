@@ -293,51 +293,51 @@ mvSequencer.prototype = {
 						'</span>'+
 						'<input id="seq_save_summary" tabindex="1" maxlength="200" value="" size="30" name="seq_save_summary"/>'+
 					'</div>');
+			var bConf = {};
+			bConf[ gM('mwe-cancel') ] = function(){
+				$j(this).dialog('close');
+			};
+			bConf[ gm('mwe-edit_save') ] = function(){
+				var saveReq = {
+					'action'	: 'edit',
+					'title'		: _this.plObj.mTitle,
+					//the text is the sequence XML + the description
+					'text'		: _this.getSeqOutputHLRDXML() + "\n" +
+								  _this.plObj.wikiDesc,
+					'token'		: _this.sequenceEditToken,
+					'summary'	: $j('#seq_save_summary').val()
+				};
+				//change to progress bar and save:
+				$j('#seq_save_dialog').html('<div class="progress" /><br>' +
+					gM('mwe-saving_wait')
+				)
+				$j('#seq_save_dialog .progress').progressbar({
+					value: 100
+				});
+				//run the Seq Save Request:
+				do_api_req( {
+					'data': saveReq,
+					'url' : _this.getLocalApiUrl()
+				},function(data){
+					$j('#seq_save_dialog').html( gM('mwe-save_done') );
+					$j('#seq_save_dialog').dialog('option',
+						'buttons', {
+							"Done":function(){
+								//refresh the page?
+								window.location.reload();
+							},
+							"Do More Edits": function() {
+								$j(this).dialog("close");
+							}
+					});
+				});
+			};
 			//dialog:
 			$j('#seq_save_dialog').dialog({
 				bgiframe: true,
 				autoOpen: true,
 				modal: true,
-				buttons:{
-					"Save":function(){
-						var saveReq = {
-							'action'	: 'edit',
-							'title'		: _this.plObj.mTitle,
-							//the text is the sequence XML + the description
-							'text'		: _this.getSeqOutputHLRDXML() + "\n" +
-										  _this.plObj.wikiDesc,
-							'token'		: _this.sequenceEditToken,
-							'summary'	: $j('#seq_save_summary').val()
-						};
-						//change to progress bar and save:
-						$j('#seq_save_dialog').html('<div class="progress" /><br>' +
-							gM('mwe-saving_wait')
-						)
-						$j('#seq_save_dialog .progress').progressbar({
-							value: 100
-						});
-						//run the Seq Save Request:
-						do_api_req( {
-							'data': saveReq,
-							'url' : _this.getLocalApiUrl()
-						},function(data){
-							$j('#seq_save_dialog').html( gM('mwe-save_done') );
-							$j('#seq_save_dialog').dialog('option',
-								'buttons', {
-									"Done":function(){
-										//refresh the page?
-										window.location.reload();
-									},
-									"Do More Edits": function() {
-										$j(this).dialog("close");
-									}
-							});
-						});
-					},
-					"Cancel":function(){
-						$j(this).dialog('close');
-					}
-				}
+				buttons: bConf
 			});
 		})
 	},
