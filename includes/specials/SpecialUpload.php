@@ -887,7 +887,7 @@ class UploadForm extends HTMLForm {
 	 * @param bool $autofill Whether or not to autofill the destination
 	 * 	filename text box
 	 */
-	protected function addUploadJS( $autofill = true ) {
+	protected function addUploadJS( ) {
 		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
 		global $wgEnableFirefogg, $wgEnableJS2system;
 		global $wgOut;
@@ -899,7 +899,7 @@ class UploadForm extends HTMLForm {
 			'wgAjaxUploadDestCheck' => $wgUseAjax && $wgAjaxUploadDestCheck,
 			'wgAjaxLicensePreview' => $wgUseAjax && $wgAjaxLicensePreview,
 			'wgEnableFirefogg' => (bool)$wgEnableFirefogg,
-			'wgUploadAutoFill' => (bool)$autofill,
+			'wgUploadAutoFill' => !$this->mForReUpload,
 			'wgUploadSourceIds' => $this->mSourceIds,
 		);
 

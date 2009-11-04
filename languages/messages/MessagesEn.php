@@ -2683,7 +2683,7 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'protectexpiry'               => 'Expires:',
 'protect_expiry_invalid'      => 'Expiry time is invalid.',
 'protect_expiry_old'          => 'Expiry time is in the past.',
-'protect-unchain'             => 'Unlock move permissions',
+'protect-unchain-permissions' => 'Unlock further protect options',
 'protect-text'                => "You may view and change the protection level here for the page '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "You cannot change protection levels while blocked.
 Here are the current settings for the page '''$1''':",
