@@ -46,7 +46,7 @@ class SearchUpdate {
 		$text = $wgContLang->stripForSearch( $this->mText );
 
 		wfProfileIn( $fname.'-regexps' );
-		$text = preg_replace( "/<\\/?\\s*[A-Za-z][A-Za-z0-9]*\\s*([^>]*?)>/",
+		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
 			' ', $wgContLang->lc( " " . $text . " " ) ); # Strip HTML markup
 		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
 		  "\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
