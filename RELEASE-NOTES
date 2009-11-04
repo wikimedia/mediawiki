@@ -619,6 +619,7 @@ Hopefully we will remove this configuration var soon)
 * Removed section edit links in edit conflict form
 * Allow SpecialActiveusers to work on non-MySQL databases
 * (bug 6579) Fixed protecting images from uploading only 
+* (bug 18609) Search index was empty for some pages
 
 == API changes in 1.16 ==
 
