@@ -114,8 +114,8 @@ var sequencerDefaultValues = {
 	//trackObj used to payload playlist Track Object (when inline not present)
 	tracks:{}
 }
-var mvSequencer = function(iObj) {
-	return this.init(iObj);
+var mvSequencer = function( iObj ) {
+	return this.init( iObj );
 };
 //set up the mvSequencer object
 mvSequencer.prototype = {
@@ -215,9 +215,9 @@ mvSequencer.prototype = {
 		//add the container divs (with basic layout ~universal~
 		$j(this.target_sequence_container).html(''+
 			'<div id="' + this.video_container_id + '" style="position:absolute;right:0px;top:0px;' +
-				'width:' + this.video_width + 'px;height:'+this.video_height+'px;border:solid thin blue;background:#FFF;font-color:black;"/>'+
+				'width:' + this.video_width + 'px;height:' + (this.video_height+54) + 'px;"/>'+
 			'<div id="' + this.timeline_id + '" class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;' +
-				'left:0px;right:0px;top:'+(this.video_height+34)+'px;bottom:35px;overflow:auto;">'+
+				'left:0px;right:0px;top:'+(this.video_height+60)+'px;bottom:35px;overflow:auto;">'+
 					gM('mwe-loading_timeline')+ '</div>'+
 			'<div class="seq_status" style="position:absolute;left:0px;width:300px;"></div>'+
 			'<div class="seq_save_cancel" style="position:absolute;'+
@@ -228,7 +228,7 @@ mvSequencer.prototype = {
 				gM('mwe-sequencer_credit_line') +
 			'</div>'+
 			'<div id="'+this.sequence_tools_id+'" style="position:absolute;' +
-				'left:0px;right:'+(this.video_width+15)+'px;top:0px;height:'+(this.video_height+23)+'px;"/>'
+				'left:0px;right:'+(this.video_width+10)+'px;top:0px;height:'+(this.video_height+47)+'px;"/>'
 		).css({
 			'min-width':'850px'
 		});
@@ -236,9 +236,9 @@ mvSequencer.prototype = {
 		/*js_log('set: '+this.target_sequence_container + ' html to:'+ "\n"+
 			$j(this.target_sequence_container).html()
 		);*/
+		
 		//first check if we got a cloned PL object:
 		//(when the editor is invoked with the plalylist already on the page)
-		//@@NOT WORKING... (need a better "clone" function)
 		/*if( this.plObj != 'null' ){
 			js_log('found plObj clone');
 			//extend with mvSeqPlayList object:
@@ -260,7 +260,7 @@ mvSequencer.prototype = {
 		}
 		$j('#'+this.video_container_id).html('<playlist ' + src_attr +
 			' style="width:' + this.video_width + 'px;height:' + this.video_height + 'px;" '+
-			' controls="false" id="' + this.plObj_id + '" />');
+			' sequencer="true" id="' + this.plObj_id + '" />');
 		rewrite_by_id( this.plObj_id );
 		setTimeout(this.instance_name +'.checkReadyPlObj()', 25);
 	},
@@ -297,7 +297,7 @@ mvSequencer.prototype = {
 			bConf[ gM('mwe-cancel') ] = function(){
 				$j(this).dialog('close');
 			};
-			bConf[ gm('mwe-edit_save') ] = function(){
+			bConf[ gM('mwe-edit_save') ] = function(){
 				var saveReq = {
 					'action'	: 'edit',
 					'title'		: _this.plObj.mTitle,
@@ -1435,7 +1435,7 @@ mvSequencer.prototype = {
 		$j(this.target_sequence_container).append('<div id="'+ this.timeline_id +'_pl_control"'+
 			' style="position:absolute;top:' + (this.plObj.height) +'px;'+
 			'right:1px;width:'+this.plObj.width+'px;height:'+this.plObj.org_control_height+'" '+
-			'class="' + this.plObj.ctrlBuilder.pClass + '"><div class="ui-widget ui-corner-bottom ui-state-default controls">'+
+			'class="' + this.plObj.ctrlBuilder.pClass + '"><div class="ui-widget ui-corner-bottom ui-state-default control-bar">'+
 					 this.plObj.getControlsHTML() +
 				 '</div>'+
 			'</div>');
@@ -1443,7 +1443,7 @@ mvSequencer.prototype = {
 		this.plObj.updateBaseStatus();
 
 		//once the controls are in the DOM add hooks:
-		this.plObj.ctrlBuilder.addControlHooks(this.plObj);
+		this.plObj.ctrlBuilder.addControlHooks( $j('#' + this.timeline_id + '_pl_control' ) );
 
 		//render out the "jump" div
 		if(this.timeline_mode=='time'){
@@ -1499,7 +1499,7 @@ mvSequencer.prototype = {
 		//refresh player:
 		this.plObj.getHTML();
 
-		this.render_playheadhead_seeker();
+		//this.render_playheadhead_seeker();
 		this.render_tracks();
 		this.jt(this.playline_time);
 

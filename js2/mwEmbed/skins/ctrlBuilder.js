@@ -93,17 +93,15 @@ ctrlBuilder.prototype = {
 	 * addControlHooks
 	 * to be run once controls are attached to the dom
 	 */
-	addControlHooks:function(){
+	addControlHooks:function( $tp ){		
 		//set up local pointer to the embedObj
 		var embedObj = this.embedObj;
-		var _this = this;
-		//add in drag/seek hooks:
-		if(!embedObj.base_seeker_slider_offset &&  $j('#mv_seeker_slider_'+embedObj.id).get(0))
-			embedObj.base_seeker_slider_offset = $j('#mv_seeker_slider_'+embedObj.id).get(0).offsetLeft;
-
-		//js_log('looking for: #mv_seeker_slider_'+embedObj.id + "\n " +
-		//		'start sec: '+embedObj.start_time_sec + ' base offset: '+embedObj.base_seeker_slider_offset);
-		var $tp=$j('#' + embedObj.id);
+		var _this = this;	
+		//var embed_id = (embedObj.pc!=null)?embedObj.pc.pp.id:embedObj.id;		
+				
+		if( !$tp )
+			$tp = $j( '#' + embedObj.id );
+		
 		
 		//add play hook:
 		$tp.find('.play-btn').unbind().btnBind().click(function(){
@@ -171,7 +169,7 @@ ctrlBuilder.prototype = {
 			$j('#' +embedObj.id).get(0).fullscreen();
 		});
 
-		js_log(" should add slider binding: " + $j('#'+embedObj.id + ' .play_head').length) ;
+		js_log(" should add slider binding: " + $tp.find('.play_head').length) ;
 		$tp.find('.play_head').slider({
 			range: "min",
 			value: 0,

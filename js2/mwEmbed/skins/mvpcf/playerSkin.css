@@ -109,7 +109,7 @@
 .mv-player .vol_container_top{
 	top:-77px;
 }
-.mv-player .vol_container .volume-slider{
+.	ayer .vol_container .volume-slider{
 	margin-top:5px;	
 	height:65px;
 	width:10px;
@@ -129,7 +129,7 @@
 	height: 29px;
 	overflow: visible;
 	font-size: 10.2px;
-	width: 80px;
+	width: 85px;
 	float: right;
 	display: inline;
 	border:none;
@@ -140,7 +140,8 @@
 	display: inline;	
 	height: 10px;
 	margin-left:10px;
-	margin-top:10px;	
+	margin-top:10px;
+	position:relative;	
 }
 
 .mv-player .play_head .ui-slider-handle{

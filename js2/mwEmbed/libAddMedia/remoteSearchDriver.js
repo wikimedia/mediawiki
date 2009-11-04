@@ -1557,7 +1557,7 @@ remoteSearchDriver.prototype = {
 		}
 	},
 	checkForFile:function( fName, callback){
-		js_log("checkForFile::");
+		js_log("checkForFile::" + fName );
 		var _this = this;	 
 		reqObj={
 				'action':'query',

@@ -154,7 +154,8 @@ mvPlayList.prototype = {
 		 *	this_plObj_Clone.sequencer=true;
 		 *	this_plObj_Clone.id= 'seq_plobj';
 		 *	debugger;
-		*/		
+		 */		
+		 
 		//load sequencer: 
 		$j("#sequencer_target").sequencer({				
 			"mv_pl_src" : this.src						
@@ -412,36 +413,31 @@ mvPlayList.prototype = {
 		}
 	},
 	renderDisplay:function(){		
-		js_log('mvPlaylist:renderDisplay:: track length: ' +this.default_track.getClipCount() );''
-		
-		var _this=this;			
-		//setup layout for title and dc_ clip container  
-										
-		
-		//add the playlist controls:
+		js_log('mvPlaylist:renderDisplay:: track length: ' +this.default_track.getClipCount() );	
+		var _this=this;											
 							
 		//append container and videoPlayer; 
 		$j(this).html('<div id="dc_'+this.id+'" style="width:'+this.width+'px;' +
-				'height:'+(this.height+this.pl_layout.title_bar_height + this.pl_layout.control_height)+'px;position:relative;">' +				
+				'height:'+ ( this.height + this.pl_layout.title_bar_height +
+				this.pl_layout.control_height ) + 'px;position:relative;">' +				
 			'</div>');		
-		if(this.controls==true){	
+		if(this.controls == true){
+			var cpos = _this.height + _this.pl_layout.title_bar_height;
+			//give more space if not in sequence:
+			cpos+= (this.sequencer)?2:5;				
 			//append title:
 			$j('#dc_'+_this.id).append(
 				'<div style="font-size:13px;border:solid thin;width:'+this.width+'px;" id="ptitle_'+this.id+'"></div>' +
-				'<div class="' + this.ctrlBuilder.pClass + '" style="position:absolute;top:'+(_this.height+_this.pl_layout.title_bar_height+4)+'px">' +
+				'<div class="' + this.ctrlBuilder.pClass + '" style="position:absolute;top:'+cpos+'px">' +
 				'<div class="ui-widget-header ui-helper-clearfix control-bar" '+
 					'style="width:' + _this.width + 'px" >' + 
 						 _this.getControlsHTML() +
 					'</div>'+
 				'</div>'
 			);												
-					
-			//add the play button:						
-			$j('#dc_'+_this.id).append(
-				this.cur_clip.embed.getPlayButton()
-	        );
-	        //once the controls are in the DOM add hooks: 
-			this.ctrlBuilder.addControlHooks(this);
+								
+	        //once the controls are in the DOM add hooks:	        
+			this.ctrlBuilder.addControlHooks( );
 		}else{
 			//just append the video: 
 			$j('#dc_'+_this.id).append(
@@ -467,9 +463,10 @@ mvPlayList.prototype = {
 			cout+='"></div>';
 			$j('#dc_'+_this.id).append( cout );	
 			//update the embed html:					 
-			clip.embed.height=_this.height;
-			clip.embed.width=_this.width;				
-			clip.embed.play_button=false;
+			clip.embed.height = _this.height;
+			clip.embed.width = _this.width;				
+			clip.embed.play_button = false;
+			clip.embed.controls = false;
 			
 			clip.embed.getHTML();//get the thubnails for everything			
 			
@@ -524,15 +521,14 @@ mvPlayList.prototype = {
 	updateBaseStatus:function(){
 		var _this = this;
 		js_log('Playlist:updateBaseStatus');
+		
 		$j('#ptitle_'+this.id).html(''+
 			'<b>' + this.title + '</b> '+				
 			this.getClipCount()+' clips, <i>'+
-			seconds2npt( this.getDuration() ) + '</i>');
-			
-		//only show the inline edit button if mediaWiki write API is enabled:
+			seconds2npt( this.getDuration() ) + '</i>');			
 		
 		//should probably be based on if we have a provider api url
-		if( typeof wgEnableWriteAPI != 'undefined'){
+		if( typeof wgEnableWriteAPI != 'undefined' && !this.sequencer ){
 			$j( $j.btnHtml('edit', 'editBtn_'+this.id, 'pencil', 
 				{'style':'position:absolute;right:0;;font-size:x-small;height:10px;margin-bottom:0;padding-bottom:7px;padding-top:0;'} )
     			).click(function(){	
@@ -549,17 +545,18 @@ mvPlayList.prototype = {
 	},	
 	/*setStatus override (could call the jquery directly) */
 	setStatus:function(value){
-		$j('#mv_time_'+this.id).html( value );
+		$j('#'+this.id + ' .time-disp' ).text( value );
 	},
 	setSliderValue:function(value){				
 		//slider is on 1000 scale: 
-		var val = parseInt( value *1000 ); 			
+		var val = parseInt( value *1000 ); 
+		js_log('update slider: #' + this.id + ' .play_head to ' + val );	
 		$j('#' + this.id + ' .play_head').slider('value', val);		
 	},
 	getPlayHeadPos: function(prec_done){
 		var	_this = this;
 		if($j('#mv_seeker_'+this.id).length==0){
-			//js_log('no playhead so we can\'t get playhead pos' );
+			js_log('no playhead so we can\'t get playhead pos' );
 			return 0;
 		}
 		var track_len = $j('#mv_seeker_'+this.id).css('width').replace(/px/, '');
@@ -714,7 +711,7 @@ mvPlayList.prototype = {
 	//playlist play
 	play: function(){
 		var _this=this;
-		//js_log('pl play');
+		js_log('pl play');
 		//hide the playlist play button: 
 		$j(this.id + ' .play-btn-large').hide();				
 		
@@ -1125,10 +1122,11 @@ mvClip.prototype = {
 		
 		//if in sequence mode hide controls / embed links		 
 		//			init_pl_embed.play_button=false;
-		init_pl_embed.controls=false;	
+		//init_pl_embed.controls=true;	
 		//if(this.pp.sequencer=='true'){
 		init_pl_embed.embed_link=null;	
-		init_pl_embed.linkback=null;	
+		init_pl_embed.linkback=null;
+			
 		
 		if(this.poster)init_pl_embed['thumbnail']=this.poster;
 		
