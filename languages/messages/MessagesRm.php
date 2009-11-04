@@ -817,7 +817,6 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 'protectexpiry'               => 'Pretegì enfin:',
 'protect_expiry_invalid'      => "Il temp endatà n'è betg valaivel.",
 'protect_expiry_old'          => 'Il temp da proteger giascha en il passà.',
-'protect-unchain'             => 'Midar la protecziun per spustar',
 'protect-text'                => "Qua pos ti contemplar ed midar il livel da protecziun per l'artitgel '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Tes conto d'utilisader n'ha betg il dretg da midar ils livels da protecziun. 
 Qua èn las reglas actualas per l'artitgel '''$1''':",

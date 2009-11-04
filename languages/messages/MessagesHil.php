@@ -515,7 +515,6 @@ Lantawa $2 para sa mga lista sang mga bag-o lang ginkakas.',
 'protectexpiry'               => 'Ekspayr:',
 'protect_expiry_invalid'      => 'Ang Oras sang pag-ekspayr ay hindi tuod.',
 'protect_expiry_old'          => 'Ang Oras sang pag-ekspayr ay sang ligad pa.',
-'protect-unchain'             => 'Di-paglock ang napasaylo nga mga permiso',
 'protect-text'                => "Pwede mo malantaw kag mabag-o ang lebel sang proteksiyon diri para sa pahina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Ang imo akawnt ay wala permiso para mabag-o ang pahina sa lebel sang proteksiyon.
 Ari diri ang mga pinkabag-o nga mga seting para sa pahina '''$1''':",

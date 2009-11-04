@@ -1872,7 +1872,6 @@ Sjoch [[Special:ProtectedPages|Skoattele side]] foar mear ynformaasje.',
 'protectexpiry'               => 'Ferrint nei',
 'protect_expiry_invalid'      => 'Tiid fan ferrinnen is net jildich.',
 'protect_expiry_old'          => 'Tiid fan ferrinnen leit yn it ferline.',
-'protect-unchain'             => 'Keppeling foar werneamen frijjaan.',
 'protect-text'                => "Hjir kin jo it nivo fan skoatteljen sjen en oanpasse foar de side '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Jo kinne it befeiligingsnivo net feroarje wylst jo blokkearre binne.
 Hjir binne de hjoeddeiske ynstellings foar de side '''$1''':",

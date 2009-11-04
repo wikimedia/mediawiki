@@ -2034,7 +2034,6 @@ $NEWPAGE
 'protectexpiry'               => '到期：',
 'protect_expiry_invalid'      => '输入的终止时间无效。',
 'protect_expiry_old'          => '终止时间已过去。',
-'protect-unchain'             => '移动权限解锁',
 'protect-text'                => '你可以在这里浏览和修改对页面<strong><nowiki>$1</nowiki></strong>的保护级别。',
 'protect-locked-blocked'      => '您不能在被查封时更改保护级别。
 以下是<strong>$1</strong>现时的保护级别：',

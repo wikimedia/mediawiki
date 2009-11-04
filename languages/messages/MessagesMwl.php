@@ -902,7 +902,6 @@ Consulte $2 para um registo de eliminações recentes.',
 'protectexpiry'               => 'Data de balidade:',
 'protect_expiry_invalid'      => 'La data de balidade ye ambálido.',
 'protect_expiry_old'          => 'La data de balidade stá ne l passado.',
-'protect-unchain'             => 'Zbloguiar permissones pa arrastrar',
 'protect-text'                => "Tu eiqui puodes ber i demudar ls nibles de porteçon pa esta páigina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "La tue cuonta nun ten permissones pa demudar ls nibles de porteçon dua páigina.
 Esta ye la cunfiguraçon atual pa la páigina '''$1''':",

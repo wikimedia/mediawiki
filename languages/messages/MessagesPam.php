@@ -1478,7 +1478,6 @@ Lon me ing [[Special:ProtectedPages|tala ring bulung a protektadu/makakambil]] p
 'protectexpiry'               => 'Mayari ya keng:',
 'protect_expiry_invalid'      => 'E matatanggap ing panaun nung kapilan ya mayari.',
 'protect_expiry_old'          => 'Keta ya pang milabas ing panaun a miyari ya.',
-'protect-unchain'             => 'Lako la pangakandadu deng paintulut king pamanalis',
 'protect-text'                => "Malyari meng lon at alilan ing sikan ning proteksiun (protection level) para king bulung keti '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "E mo maliaring alilan deng sikan/lebel ning proteksiun kabang makasabat ka.
 Deni reng kasalungsungan a makatuldu (settings) para king bulung '''$1''':",

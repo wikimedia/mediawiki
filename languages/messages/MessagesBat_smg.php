@@ -1301,7 +1301,6 @@ Prašoum paspaustė „atgal“ ėr parkrautė poslapi ėš katruo atiejot, ė p
 'protectexpiry'               => 'Beng galiuotė:',
 'protect_expiry_invalid'      => 'Galiuojėma čiesos īr nateisėngs.',
 'protect_expiry_old'          => 'Galiuojėma čiesos īr praėitī.',
-'protect-unchain'             => 'Atrakintė parvadinėma teises',
 'protect-text'                => "Čė Tamsta galėt paveizėtė ė pakeistė apsauguos līgi šėtuo poslapio '''$1'''.",
 'protect-locked-access'       => "Tamstas paskīra netor teisiu keistė poslapiu apsauguos līgiu.
 Čė īr dabartėnē nustatīmā poslapiō '''$1''':",

@@ -1147,7 +1147,6 @@ naisubli manen iti naudi a version ni $2.',
 'protectexpiry'               => 'Agpaso inton:',
 'protect_expiry_invalid'      => 'Saan a mabalin ti oras a panagpaso.',
 'protect_expiry_old'          => 'Adda iti napalabas ti oras ti panagpaso.',
-'protect-unchain'             => 'Luktan dagiti pammalubos iti panagiyakar',
 'protect-text'                => "Mabalinmo a kitaen ken sukatan ti agpang ti saluad ditoy ti panid a '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Awanan pammalubos ti accountmo a mangbaliw kadagiti level ti saluad ti panid.
 Dagitoy dagiti agdama a settings ti panid a '''$1''':",

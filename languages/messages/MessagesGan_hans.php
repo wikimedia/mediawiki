@@ -1224,7 +1224,6 @@ $NEWPAGE
 'protectexpiry'               => '期限:',
 'protect_expiry_invalid'      => '到期时间无效。',
 'protect_expiry_old'          => '到期时间已过。',
-'protect-unchain'             => '莫锁到移动权限',
 'protect-text'                => "倷到个首能浏览或修改页面'''$1'''𠮶保护级别。",
 'protect-locked-blocked'      => "倷改伓正拖封锁时𠮶保护级别。下底系'''$1'''现今𠮶保护级别:",
 'protect-locked-dblock'       => "数据库锁到嘞就改伓正保护级别。下底系'''$1'''现今𠮶保护级别:",

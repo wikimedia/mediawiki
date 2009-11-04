@@ -2105,7 +2105,6 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'protectexpiry'               => 'Caducidad:',
 'protect_expiry_invalid'      => 'Tiempo de caducidad incorrecto.',
 'protect_expiry_old'          => 'El tiempo de expiración está en el pasado.',
-'protect-unchain'             => 'Configurar permisos para traslados',
 'protect-text'                => "Puedes ver y modificar el nivel de protección de la página '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "No puede cambiar los niveles de protección estando bloqueado. A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-locked-dblock'       => "Los niveles de protección no se pueden cambiar debido a un bloqueo activo de la base de datos.
@@ -2547,7 +2546,7 @@ No hay un directorio temporal.',
 # Import log
 'importlogpage'                    => 'Registro de importaciones',
 'importlogpagetext'                => 'Importaciones administrativas de páginas con historial desde otros wikis.',
-'import-logentry-upload'           => 'importada [[$1]] por subida de archivo',
+'import-logentry-upload'           => 'importó [[$1]] por subida de archivo',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'import-logentry-interwiki'        => 'transwikificada $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} desde $2',

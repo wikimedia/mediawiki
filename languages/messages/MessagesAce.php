@@ -572,7 +572,6 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'protectexpiry'               => 'Maté tanggay:',
 'protect_expiry_invalid'      => 'Watèë maté tanggay hana sah.',
 'protect_expiry_old'          => 'Watèë maté tanggay nakeuh bak masa u likôt.',
-'protect-unchain'             => 'Peuhah neulindông peupinah',
 'protect-text'                => "Droëneuh jeuët neu’eu atawa neugantoë tingkat lindông keu ôn '''<nowiki>$1</nowiki>''' nyoë pat.",
 'protect-locked-access'       => "Nan dapeuta Droëneuh hana hak keu jak gantoë tingkat lindông ôn. Nyoë pat nakeuh konfigurasi atra jinoë keu ôn '''$1''':",
 'protect-cascadeon'           => 'Ôn nyoë teungöh geulindông kareuna geupeuseureuta lam {{PLURAL:$1|ôn|ôn-ôn}} nyoë nyang ka geulindông ngön peuniléh lindông meuturôt geupeuudép.

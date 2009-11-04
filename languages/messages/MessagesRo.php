@@ -2125,7 +2125,6 @@ revenire la ultima versiune de $2.',
 'protectexpiry'               => 'Expiră:',
 'protect_expiry_invalid'      => 'Timpul de expirare este nevalid.',
 'protect_expiry_old'          => 'Timpul de expirare este în trecut.',
-'protect-unchain'             => 'Deblochează permisiunile de mutare',
 'protect-text'                => "Poţi vizualiza sau modifica nivelul de protecţie pentru pagina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Nu poţi schimba nivelurile de protecţie fiind blocat.
 Iată configuraţia curentă a paginii '''$1''':",

@@ -473,7 +473,6 @@ Guck $2 fer e Lischt vun de letschte Leschunge.',
 'protectexpiry'               => 'Bis:',
 'protect_expiry_invalid'      => 'Zaidraum isch nid gildich.',
 'protect_expiry_old'          => 'Zaidraum licht in de Vergangehääd.',
-'protect-unchain'             => 'Verschiebschutz ännere',
 'protect-text'                => "Du kannscht de Schutzstatus vun de Said '''<nowiki>$1</nowiki>''' aagucke un ännere.",
 'protect-locked-access'       => "Dai Benutzerkonto hot ken Recht zum de Schutzstatus vun ener Said ze ännere.
 Do hot s di aktuelle Aistellunge vun de Said '''$1''':",

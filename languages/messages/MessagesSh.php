@@ -1107,7 +1107,6 @@ posljednji kontributor je jedini na ovoj stranici.',
 'protectexpiry'               => 'Ističe:',
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Upisani vremenski rok je u prošlosti.',
-'protect-unchain'             => 'Deblokirajte dozvole premještanja',
 'protect-text'                => "Ovdje možete gledati i izmijeniti nivo zaštite za stranicu '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Nemate ovlasti za mijenjanje stepena zaštite.
 Slijede trenutne postavke stranice '''$1''':",

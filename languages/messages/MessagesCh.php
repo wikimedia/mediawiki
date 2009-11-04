@@ -937,7 +937,6 @@ Chek $2 para i historian muna\'suha gi halacha.',
 'protectexpiry'               => 'Munhåyan:',
 'protect_expiry_invalid'      => 'Lachi i oran funhåyan.',
 'protect_expiry_old'          => 'Esta maloffan i oran funhåyan.',
-'protect-unchain'             => "Na'suha i petmisun kinanya",
 'protect-text'                => "Siña un tulaika i nibet proteksion ni påhina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Ti nahong i petmisu kuenta-mu tumulaika nibet proteksion ni påhina siha.
 Estague taiguini i nibet i påhina '''$1''':",

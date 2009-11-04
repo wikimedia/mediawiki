@@ -971,7 +971,6 @@ s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
 'protectexpiry'               => 'Iscadèntzia:',
 'protect_expiry_invalid'      => "S'iscadèntzia est imbàlida.",
 'protect_expiry_old'          => 'Iscadentzia giai passada.',
-'protect-unchain'             => 'Sblocca is permissos de mòvere',
 'protect-text'                => "Custu modulu serbit pro castiari e cambiari su livellu de amparadura de sa pàgina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Non tenes su permissu pro cambiare is livellus de amparadura de sa pàgina. 
 Is impostatziones atuales pro sa pàgina '''$1''':",

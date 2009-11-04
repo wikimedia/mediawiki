@@ -535,7 +535,6 @@ $messages = array(
 'prot_1movedto2'              => '[[$1]] გინოღალირიე ხასილაშა [[$2]]',
 'protectcomment'              => 'კომენტარ:',
 'protectexpiry'               => 'ვადა',
-'protect-unchain'             => 'გინოღალას ალობას ბლოკიშ მონწყუმა',
 'protect-default'             => '(სტანდარტულ)',
 'protect-fallback'            => 'საჭიროე "$1"-იშ ულაფა',
 'protect-level-autoconfirmed' => 'ვარეგისტრირებულ მახვარებელეფიშ დაბლოკვა',

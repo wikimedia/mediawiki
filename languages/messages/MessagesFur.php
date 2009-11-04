@@ -1099,7 +1099,6 @@ Cjale $2 par une liste des ultimis eliminazions.',
 'protectexpiry'               => 'Scjadence:',
 'protect_expiry_invalid'      => 'Scjadence no valide.',
 'protect_expiry_old'          => 'La scjadence e je za passade.',
-'protect-unchain'             => 'Sbloche i permès di spostament',
 'protect-text'                => "Ca tu puedis viodi e cambiâ il nivel di protezion pe pagjine '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "No tu âs i permès che a coventis par cambiâ i nivei di protezion de pagjine.
 Lis impuestazions atuâls pe pagjine a son '''$1''':",

@@ -1156,7 +1156,6 @@ Please log in again after you receive it.
 'protectexpiry'               => 'સમાપ્તિ:',
 'protect_expiry_invalid'      => 'સમાપ્તિનો સમય માન્ય નથી.',
 'protect_expiry_old'          => 'સમાપ્તિનો સમય ભૂતકાળમાં છે.',
-'protect-unchain'             => 'ખસેડવાની પરવાનગી આપો',
 'protect-text'                => "અહિં તમે પાનાં '''<nowiki>$1</nowiki>'''નું સુરક્ષા સ્તર જોઈ શકો છો અને તેમાં ફેરફાર પણ કરી શકશો.",
 'protect-locked-access'       => "તમને પાનાંની સુરક્ષાનાં સ્તરમાં ફેરફાર કરવાની પરવાનગી નથી.
 પાનાં '''$1'''નું હાલનું સેટીંગ અહિં જોઈ શકો છો:",

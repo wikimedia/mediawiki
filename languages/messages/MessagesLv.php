@@ -1430,7 +1430,6 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protectexpiry'               => 'Beidzas:',
 'protect_expiry_invalid'      => 'Beigu termiņš ir nederīgs.',
 'protect_expiry_old'          => 'Beigu termiņs ir pagātnē.',
-'protect-unchain'             => 'Mainīt pārvietošanas atļaujas',
 'protect-text'                => "Šeit var apskatīties un izmainīt lapas '''<nowiki>$1</nowiki>''' aizsardzības līmeni.",
 'protect-locked-access'       => "Jūsu kontam nav atļaujas mainīt lapas aizsardzības pakāpi.
 Pašreizējie lapas '''$1''' iestatījumi ir:",

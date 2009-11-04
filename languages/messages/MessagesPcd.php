@@ -621,7 +621,6 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 'protectexpiry'               => "Date d'éspirachon:",
 'protect_expiry_invalid'      => "L'date d'éspirachon ale n'est mie possibe.",
 'protect_expiry_old'          => "L'date d'éspirachon ale est déjo érpassée.",
-'protect-unchain'             => 'Déblotcher chés pérmichons éd déplachemint',
 'protect-text'                => "Os pouvez vir pi canger ech nivieu d'protécchon ichi pou l'pache-lo '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Vos n’avez poin chés droés pou canger chés nivieus d'protécchon des paches.<br />
 Vlo chés réglages del pache '''$1''' à ch'momint-chi:",

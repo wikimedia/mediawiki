@@ -1066,7 +1066,6 @@ Tan-awa ang $2 para sa rekord sa mga bag-ong napapas.',
 'protectexpiry'               => 'Matapos:',
 'protect_expiry_invalid'      => 'Dili puyde ang expiry time.',
 'protect_expiry_old'          => 'Ang expiry time miagi na.',
-'protect-unchain'             => 'I-unlock ang permiso sa pagbalhin',
 'protect-text'                => "Puyde nimo tan-awon ug usbon ang proteksyon dinhi para sa panid nga '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Walay permiso ang imong akawnt nga mag-usab og level sa proteksyon sa panid.
 Kini ang kasamtangan nga mga setting sa panid nga '''$1''':",

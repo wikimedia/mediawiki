@@ -1692,7 +1692,6 @@ Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núvera
 'protectexpiry'               => 'Rennur út:',
 'protect_expiry_invalid'      => 'Ógildur tími.',
 'protect_expiry_old'          => 'Tíminn er þegar runninn út.',
-'protect-unchain'             => 'Opna fyrir færslur',
 'protect-text'                => "Hér getur þú skoðað og breytt verndunarstigi síðunnar '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Þú hefur ekki heimild til þess að vernda eða afvernda síður.
 Núverandi staða síðunnar er '''$1''':",

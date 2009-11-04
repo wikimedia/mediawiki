@@ -2127,7 +2127,6 @@ $NEWPAGE
 'protectexpiry'               => 'تنتهى فى:',
 'protect_expiry_invalid'      => 'وقت الانتهاء مش صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع قديم.',
-'protect-unchain'             => 'استعادة سماح النقل',
 'protect-text'                => "ممكن هنا تعرض و تغير مستوى الحمايه للصفحه '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "انت مش ممكن تغير مستويات الحماية وأنت ممنوع.
 الإعدادات بتاعة الصفحة '''$1''' دلوقتى هي:",

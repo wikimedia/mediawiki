@@ -1026,7 +1026,6 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'protectexpiry'               => 'Lasi:',
 'protect_expiry_invalid'      => 'A lasi ben fowtu.',
 'protect_expiry_old'          => 'A lasi ben ini iksini.',
-'protect-unchain'             => 'Gi dribi u',
 'protect-text'                => "Dyaso ben yu kan tu kenki nanga aluku a tapunivo fu a papira '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "'''Yu masyin abi no lesi tu kenki a tapunivo.'''
 Disi ben a tapunivo fu a papira '''[[$1]]''' now:",

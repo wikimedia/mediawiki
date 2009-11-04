@@ -741,7 +741,6 @@ Vide $2 per un catalogo de sutraes resente.',
 'protectexpiry'               => 'Fini:',
 'protect_expiry_invalid'      => 'Ora de fini no es legal.',
 'protect_expiry_old'          => 'Ora de fini es en la pasada.',
-'protect-unchain'             => 'Desecura la permetes de move',
 'protect-text'                => "Tu pote vide e cambia la nivel de proteje asi per la paje '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Tu conta no ave permite per cambia niveles de proteje.
 Asi es la ajustas presente per la paje '''$1''':",

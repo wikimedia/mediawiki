@@ -955,7 +955,6 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'protectexpiry'               => 'Sperrdauer:',
 'protect_expiry_invalid'      => 'De eengegebene Lengde ies ungieltig.',
 'protect_expiry_old'          => 'De Sperrzeit liegt ei dar Vergangenheet.',
-'protect-unchain'             => 'Verschiebeschutz ändern',
 'protect-text'                => 'Hier koast du dan Schutzstatus fier de Seite „$1“ asahn on ändern.',
 'protect-locked-access'       => "Dei Benutzerkonto verfiegt nee ieber de nuutwendiga Rechte zerr Ännerong des Seitaschutzes. Hier sein de aktuella Seitaschutzeinstellunga fier de Seite '''„$1“:'''",
 'protect-cascadeon'           => 'Diese Seyte ies gegenwärtig Teel eener Kaskadensperre. Se ies ei de {{PLURAL:$1|folgende Seyte|folgenda Seyta}} eingebunda, welche durch die Kaskadensperroption geschietzt {{PLURAL:$1|ies|sein}}. Dar Seytaschutzstatus koan fier diese Seyte geändert waan, dies hoot jedoch kenn Einfluss uff de Kaskadensperre:',

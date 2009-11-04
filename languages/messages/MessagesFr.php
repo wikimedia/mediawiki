@@ -2217,7 +2217,6 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protectexpiry'               => 'Date d’expiration :',
 'protect_expiry_invalid'      => 'La date d’expiration est invalide.',
 'protect_expiry_old'          => 'La date d’expiration est déjà passée.',
-'protect-unchain'             => 'Débloquer les permissions de déplacement',
 'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Vous ne pouvez pas modifier les niveaux de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
 Voici les réglages actuels de la page '''$1''' :",

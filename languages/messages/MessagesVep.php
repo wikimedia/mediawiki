@@ -1749,7 +1749,6 @@ Kc. [[Special:ProtectedPages|kaitud lehtpoliden nimikirjutez]].',
 'protectexpiry'               => 'lopstrok:',
 'protect_expiry_invalid'      => 'Lopstrok om vär.',
 'protect_expiry_old'          => 'Lopstrokun aig om jo männu.',
-'protect-unchain'             => 'Heitta blokiruind lehtpolen udesnimitandaspäi',
 'protect-text'                => "Sab nähta da toižetada kaičendpind naku '''<nowiki>$1</nowiki>'''-lehtpolen täht.",
 'protect-locked-blocked'      => "Teiden registracii om blokiruidud, i sikš tö et voigoi toižetada lehtpolen kaičendpindad.
 Naku oma nügüdläižed järgendused '''$1'''-lehtpolen täht.",

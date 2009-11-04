@@ -1975,7 +1975,6 @@ L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]{
 'protectexpiry'               => 'Scadensa:',
 'protect_expiry_invalid'      => 'Scadensa mìa valida.',
 'protect_expiry_old'          => 'Scadensa zà passà.',
-'protect-unchain'             => 'Sbloca i permessi de spostamento',
 'protect-text'                => "Sto modulo qua el consente de védar e modificar el livel de protezion par la pagina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "No se pol mìa canbiar i livèi de protezion co ghe xe un bloco ativo. Le inpostazion corenti par la pagina le xe '''$1''':",
 'protect-locked-dblock'       => "No se pol canbiar i livèi de protezion durante un bloco del database.

@@ -594,7 +594,6 @@ Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
 'protectexpiry'               => 'Boarasnuvve:',
 'protect_expiry_invalid'      => 'Ov-jiltiige buaorasjnuvvenaigi.',
 'protect_expiry_old'          => 'Boarasnuvvenaigi lea vaesedh.',
-'protect-unchain'             => 'Tjuevtedh jåhtaluhpie',
 'protect-text'                => "Daesnie dorje datne vuajna jih värrhtoedimmie vaarjelidhdaltese dejstie bielie '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Dov nuhtjien åtna ijje luhpie gåajkoe värrhtoedimmie tjaeleste-vaarjelidh.
 Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",

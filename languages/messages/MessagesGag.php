@@ -696,7 +696,6 @@ Yakın zamanda silinenleri görmää deyni: $2.',
 'protectexpiry'               => 'Bitmää datası:',
 'protect_expiry_invalid'      => 'Yannış bitmää datası.',
 'protect_expiry_old'          => 'Bitmää datası geçti.',
-'protect-unchain'             => 'Taşıma kilidini kaldır',
 'protect-text'                => 'Var nicä görmää hem diiştirmää buradan [[$1]] sayfasın korunmaa düzeyini.',
 'protect-locked-access'       => "Sizin esapın yok izni yazının korunmak düzeyini diiştirmää.
 Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
