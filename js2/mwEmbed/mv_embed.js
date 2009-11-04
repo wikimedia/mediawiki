@@ -1679,7 +1679,7 @@ function do_api_req( options, callback ) {
 		return js_error( 'Error: request paramaters must be an object' );
 	}
 	// Generate the URL if it's missing
-	if( typeof options.url == 'undefined' || options.url === false ) {
+	if( typeof options.url == 'undefined' || !options.url ) {
 		if( !wgServer || ! wgScriptPath ) {
 			return js_error('Error: no api url for api request');
 		}

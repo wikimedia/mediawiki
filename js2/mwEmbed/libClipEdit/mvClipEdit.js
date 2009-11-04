@@ -30,7 +30,8 @@ loadGM({
 	"mwe-preview_inout" : "Preview in-out points",
 	"mwe-edit-tools" : "Edit tools",
 	"mwe-inline-description" : "Inline description",
-	"mwe-edit-video-tools" : "Edit video tools:"
+	"mwe-edit-video-tools" : "Edit video tools:",
+	"mwe-duration" : "Duration:"
 });
 
 var default_clipedit_values = {
@@ -102,22 +103,25 @@ mvClipEdit.prototype = {
 		'duration':{
 			'media':['image','template'],
 			'doEdit':function( _this, target ){
-				//(_this is a smilClip instance)
-				//do clock mouse scroll duration editor
+				function doUpdateDur( inputElm ){
+					js_log("update duration:" + $j( inputElm ).val() );
+					//update the parent sequence object:
+					_this.rObj.dur = smilParseTime( $j( inputElm ).val() );
+					//update the playlist:
+					_this.p_seqObj.do_refresh_timeline( true );
+				}
+							
 				$j(target).html(
-						'<label for="ce_dur">Duration: </label>' +
+						'<label for="ce_dur">' + gM('mwe-duration') + '</label>' +
 						'<input name="ce_dur" tabindex="1" maxlength="11" value="'+
 							seconds2npt( _this.rObj.getDuration() )+
 							'" size="10"/>'+
 					'</div>'
 				).children("input[name='ce_dur']").change(function(){
-					 js_log("update duration:" + $j(this).val() );
-					 //update the parent sequence object:
-					 _this.rObj.dur = smilParseTime( $j(this).val() );
-					 //update the playlist:
-					 _this.p_seqObj.do_refresh_timeline( true );
+					 doUpdateDur(this);					
 				});
-
+				//Strange can't chain this binding for some reason...
+				$j(target).find("input[name='ce_dur']").upDownTimeInputBind( doUpdateDur );
 			}
 		},
 		'inoutpoints':{
@@ -144,7 +148,7 @@ mvClipEdit.prototype = {
 		'fileopts':{
 			'media':['image','video','template'],
 			'doEdit':function(_this, target ){
-				//if media type is template we have to query to get its URI to get its paramaters
+				//if media type is template we have to query to get its URI to get its parameters
 				if(_this.media_type == 'template' && !_this.rObj.tVars){
 					mv_set_loading('#sub_cliplib_ic');
 					var reqObj ={	'action':'query',
@@ -391,9 +395,11 @@ mvClipEdit.prototype = {
 	},
 	setInOutBindings:function(){
 		var _this = this;
+		//setup a top level shortcut: 
+		var $tp = $j('#'+this.control_ct);
 
-		var start_sec = npt2seconds($j('#'+this.control_ct + ' .startInOut').val() );
-		var end_sec   = npt2seconds($j('#'+this.control_ct + ' .endInOut').val() );
+		var start_sec = npt2seconds( $tp.find('.startInOut').val() );
+		var end_sec   = npt2seconds( $tp.find('.endInOut').val() );
 
 		//if we don't have 0 as start then assume we are in a range request and give some buffer area:
 		var min_slider =  (start_sec - 60 < 0 ) ? 0 : start_sec - 60;
@@ -403,23 +409,49 @@ mvClipEdit.prototype = {
 			max_slider = end_sec;
 		}
 
-		$j('#'+this.control_ct + ' .inOutSlider').slider({
+		$tp.find('.inOutSlider').slider({
 			range: true,
 			min: min_slider,
 			max: max_slider,
+			animate: true,
 			values: [start_sec, end_sec],
 			slide: function(event, ui) {
 				//js_log(" vals:"+  seconds2npt( ui.values[0] ) + ' : ' + seconds2npt( ui.values[1]) );
-				$j('#'+_this.control_ct + ' .startInOut').val( seconds2npt( ui.values[0] ) );
-				$j('#'+_this.control_ct + ' .endInOut').val( seconds2npt( ui.values[1] ) );
+				$tp.find('.startInOut').val( seconds2npt( ui.values[0] ) );
+				$tp.find('.endInOut').val( seconds2npt( ui.values[1] ) );
 			},
 			change:function(event, ui){
 				do_video_time_update( seconds2npt( ui.values[0]), seconds2npt( ui.values[1] ) );
 			}
+		});		
+		
+		//bind up and down press when focus on start or end 
+		$tp.find('.startInOut').upDownTimeInputBind( function( inputElm ){		
+			var s_sec = npt2seconds( $j( inputElm ).val() );
+			var e_sec = npt2seconds( $tp.find('.endInOut').val() )  							
+			if( s_sec > e_sec )
+				$j( inputElm ).val( seconds2npt( e_sec - 1 ) );				
+			//update the slider: 
+			var values = $tp.find('.inOutSlider').slider('option', 'values');
+			js_log('in slider len: ' + $tp.find('.inOutSlider').length);
+			//set to 5 
+			$tp.find('.inOutSlider').slider('value', 10 );
+			debugger;
+			$tp.find('.inOutSlider').slider('option', 'values', [s_sec, e_sec] );
+			var values = $tp.find('.inOutSlider').slider('option', 'values');
+			js_log('values (after update):' + values );
 		});
-
+		$tp.find('.endInOut').upDownTimeInputBind( function( inputElm ){			
+			var s_sec = npt2seconds( $tp.find('.startInOut').val() );  	
+			var e_sec = npt2seconds( $j( inputElm ).val() );					
+			if( e_sec < s_sec )
+				$j( inputElm ).val(  seconds2npt( s_sec + 1 ) );						
+			//update the slider: 
+			$tp.find('.inOutSlider').slider('option', 'values', [ s_sec, e_sec ]);
+		});
+		
 		//preview button:
-		$j('#'+this.control_ct + ' .inOutPreviewClip').btnBind().click(function(){
+		$j('#'+this.control_ct + ' .inOutPreviewClip').btnBind().click(function(){			
 			$j('#embed_vid').get(0).stop();
 			$j('#embed_vid').get(0).play();
 		});		
@@ -429,14 +461,14 @@ mvClipEdit.prototype = {
 		return '<strong>' + gM('mwe-set_in_out_points') + '</strong>'+
 			'<table border="0" style="background: transparent; width:94%;height:50px;">'+
 				'<tr>' +
-					'<td style="width:55px">'+
+					'<td style="width:90px">'+
 						gM('mwe-start_time') +
 						'<input class="ui-widget-content ui-corner-all startInOut" size="9" value="' + setInt.start_ntp +'">'+
 					'</td>' +
 					'<td>' +
 						'<div class="inOutSlider"></div>'+
 					'</td>' +
-					'<td style="width:55px">'+
+					'<td style="width:90px;text-align:right;">'+
 						gM('mwe-end_time') +
 						'<input class="ui-widget-content ui-corner-all endInOut" size="9" value="'+ setInt.end_ntp +'">'+
 					'</td>' +
@@ -599,14 +631,14 @@ mvClipEdit.prototype = {
 	},
 	applyVideoAdj:function(){
 		js_log('applyVideoAdj::');
+		$tp = $j('#'+this.control_ct );
 
 		//be sure to "stop the video (some plugins can't have DOM elements on top of them)
 		$j('#embed_vid').get(0).stop();
 
-		//update video related keys:
-		;
-		this.rObj['start_time'] = $j('#'+this.control_ct + ' .startInOut').val();
-		this.rObj['end_time']   = $j('#'+this.control_ct + ' .endInOut').val() ;
+		//update video related keys
+		this.rObj['start_time'] = $tp.find('.startInOut').val();
+		this.rObj['end_time']   = $tp.find('.endInOut').val() ;
 
 		//do the local video adjust
 		if(typeof this.rObj.pSobj['applyVideoAdj'] != 'undefined'){
@@ -621,7 +653,7 @@ mvClipEdit.prototype = {
 		js_log( 'click:turn off' );
 		var cat = _this.rObj;
 		if(_this.rObj.crop){
-			//empty out and display croped:
+			//empty out and display cropped:
 			$j('#'+_this.clip_disp_ct ).empty().html(
 				'<div id="mv_cropcotainer" style="overflow:hidden;position:absolute;'+
 					'width:' + _this.rObj.crop.w + 'px;'+
@@ -674,16 +706,6 @@ if(typeof mv_lock_vid_updates == 'undefined')
 	mv_lock_vid_updates= false;
 
 function add_adjust_hooks(mvd_id, adj_callback){
-	/*myClipEdit = new mvClipEdit({
-		'control_ct': '#mvd_form_'+mvd_id
-	});
-	$j('#mvd_form_'+mvd_id).html(
-		mvClipEdit.getSetInOutHtml({
-			'start_ntp'	:  $j('#mv_start_hr_' + mvd_id).val(),
-			'end_ntp'	:  $j('#mv_end_hr_' + mvd_id).val()
-		})
-	);
-	mvClipEdit.setInOutBindings();*/
 
 	var start_sec = npt2seconds($j('#mv_start_hr_' + mvd_id).val() );
 	var end_sec   = npt2seconds($j('#mv_end_hr_' + mvd_id).val()  );
@@ -709,7 +731,7 @@ function add_adjust_hooks(mvd_id, adj_callback){
 		change:function(event, ui){
 			do_video_time_update( seconds2npt( ui.values[0]), seconds2npt( ui.values[1] ) );
 		}
-	});
+	});	
 	$j('.mv_adj_hr').change(function(){
 		//preserve track duration for nav and seq:
 		//ie seems to crash so no interface updates for IE for the time being
@@ -727,8 +749,7 @@ function add_adjust_hooks(mvd_id, adj_callback){
 
 function do_video_time_update(start_time, end_time, mvd_id)	{
 	js_log('do_video_time_update: ' +start_time +' '+ end_time);
-
-	if(mv_lock_vid_updates==false){
+	if( mv_lock_vid_updates == false ){
 		//update the vid title:
 		$j('#mv_videoPlayerTime').html( start_time + ' to ' + end_time );
 		var ebvid = $j('#embed_vid').get(0);
@@ -741,3 +762,37 @@ function do_video_time_update(start_time, end_time, mvd_id)	{
 		}
 	}
 }
+
+//some custom jquery bindings: 
+(function( $ ) {
+	$.fn.upDownTimeInputBind = function( inputCB ){			
+		$( this.selector ).unbind('focus').focus(function(){			
+			var doDelayCall = true;
+			$(this).addClass('ui-state-focus');	
+			//bind up down keys
+			$(this).unbind('keydown').keydown(function (e) {
+				var sec = npt2seconds( $j(this).val() );
+				var k = e.which;																	
+				if(k == 38 ){//up												
+					$(this).val( seconds2npt( sec + 1 ) );
+				}else if( k == 40 ){ //down			
+					var sval = ( (sec - 1) < 0 ) ? 0 : (sec - 1)		
+					$(this).val(  seconds2npt( sval ) );						
+				}				
+				//set the delay updates:
+				if(k == 38 || k == 40){ 
+					var _inputElm = this;
+					if(doDelayCall){								
+						setTimeout(function(){
+							inputCB( _inputElm );
+							doDelayCall = true;
+						},500);
+						doDelayCall = false;
+					}					
+				}		
+			});						
+		}).unbind('blur').blur(function(){
+			$(this).removeClass('ui-state-focus');											
+		});
+	}
+})(jQuery);

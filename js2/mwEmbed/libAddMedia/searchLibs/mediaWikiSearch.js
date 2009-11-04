@@ -188,10 +188,9 @@ mediaWikiSearch.prototype = {
 				// or better improve the wiki-text parsing and use above 
 				var desc = rObj.desc.match(/\|\s*description\s*=\s*(([^\n]*\n)*)\|\s*source=/i);
 				if( desc && desc[1] ){					
-					rObj.desc = $j.trim( desc[1] );
-					var cat = wgUserLanguage;
+					rObj.desc = $j.trim( desc[1] );					
 					//attempt to get the user language if set: 
-					if( wgUserLanguage ){		
+					if( typeof wgUserLanguage != 'undefined' && wgUserLanguage ){		
 						//for some reason the RegExp object is not happy:
 						var reg = new RegExp( '\{\{\s*' + wgUserLanguage + '([^=]*)=([^\}]*)\}\}', 'gim' );						
 						var langMatch = reg.exec( rObj.desc );

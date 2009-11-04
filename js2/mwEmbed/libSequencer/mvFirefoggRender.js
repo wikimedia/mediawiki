@@ -1,7 +1,6 @@
 /*
  * handles driving the firefogg render system 
 */
-
 var mvFirefoggRender = function( iObj ) {		
 	return this.init( iObj );
 };

@@ -1416,7 +1416,7 @@ embedVideo.prototype = {
 		this.paused = true;		
 		this.thumbnail_disp = true;
 		//make sure the ctrlBuilder remain active: 
-		this.ctrlBuilder.addControlHooks(this);	
+		this.ctrlBuilder.addControlHooks();	
 	},
 	refreshControlsHTML:function(){
 		js_log('refreshControlsHTML::');
@@ -1426,7 +1426,7 @@ embedVideo.prototype = {
 			return ;
 		}else{
 			$j('#' + this.id + ' .control-bar').html( this.getControlsHTML() );
-			this.ctrlBuilder.addControlHooks(this);						
+			this.ctrlBuilder.addControlHooks();						
 		}		
 	},   
 	getControlsHTML:function()
@@ -1462,7 +1462,7 @@ embedVideo.prototype = {
 		//js_log('should set: '+this.id);
 		$j(this).html( html_code );					
 		//add hooks once Controls are in DOM
-		this.ctrlBuilder.addControlHooks(this);		
+		this.ctrlBuilder.addControlHooks();		
 						  
 		//js_log('set this to: ' + $j(this).html() );	
 		//alert('stop');
@@ -2334,12 +2334,9 @@ mediaPlayers.prototype =
 	},
 	addPlayer : function(player, mime_type)
 	{		
-		//js_log('Adding ' + player.id + ' with mime_type ' + mime_type);
 		for (var i =0; i < this.players.length; i++){
-			if (this.players[i].id == player.id)
-			{
-				if(mime_type!=null)
-				{
+			if (this.players[i].id == player.id){
+				if(mime_type!=null){
 					//make sure the mime_type is not already there:
 					var add_mime = true; 
 					for(var j=0; j < this.players[i].supported_types.length; j++ ){
@@ -2347,15 +2344,16 @@ mediaPlayers.prototype =
 							add_mime=false;
 					}					
 					if(add_mime)
-						this.players[i].supported_types.push(mime_type);
+						this.players[i].supported_types.push( mime_type );
 				}
-				return;
+				return ;
 			}
 		}
 		//player not found: 
-		if(mime_type!=null)
-			player.supported_types.push(mime_type);	  
-				 
+		if( mime_type != null )
+			player.supported_types.push(mime_type);
+				  
+		js_log('Adding ' + player.id + ' with mime_type ' + mime_type);	 
 		this.players.push( player );
 	},
 	getMIMETypePlayers : function(mime_type)
@@ -2483,15 +2481,13 @@ var embedTypes = {
 		this.players.addPlayer( htmlPlayer );			
 		 // In Mozilla, navigator.javaEnabled() only tells us about preferences, we need to
 		 // search navigator.mimeTypes to see if it's installed
-		 var javaEnabled = navigator.javaEnabled();
-		 // In Opera, navigator.javaEnabled() is all there is
-		 var invisibleJava = $j.browser.opera;
+		 var javaEnabled = navigator.javaEnabled();		 		 
 		 // Some browsers filter out duplicate mime types, hiding some plugins
-		 var uniqueMimesOnly = $j.browser.opera || $j.browser.safari;
+		 var uniqueMimesOnly = $j.browser.opera || $j.browser.safari;		 
 		 // Opera will switch off javaEnabled in preferences if java can't be found.
 		 // And it doesn't register an application/x-java-applet mime type like Mozilla does.
-		 if ( invisibleJava && javaEnabled )
-			 this.players.addPlayer( cortadoPlayer );
+		 if ( javaEnabled )
+			 this.players.addPlayer( cortadoPlayer );				
 		
 		 // ActiveX plugins
 		 if($j.browser.msie){
@@ -2518,10 +2514,11 @@ var embedTypes = {
 			 // VLC
 			 if ( this.testActiveX( 'VideoLAN.VLCPlugin.2' ) )
 				 this.players.addPlayer(vlcActiveXPlayer);
-			 // Java
-			 if ( javaEnabled && this.testActiveX( 'JavaWebStart.isInstalled' ) )
-				 this.players.addPlayer(cortadoPlayer);
-			 // quicktime
+				 
+			 // Java ActiveX
+			 if ( this.testActiveX( 'JavaWebStart.isInstalled' ) )
+				 this.players.addPlayer( cortadoPlayer );
+			 // quicktime (currently off) 
 			 //if ( this.testActiveX( 'QuickTimeCheckObject.QuickTimeCheck.1' ) )
 			 //	this.players.addPlayer(quicktimeActiveXPlayer);			 
 		 }				 
@@ -2551,7 +2548,7 @@ var embedTypes = {
 			}
 		}		 
 		
-		 // Mozilla plugins
+		 // "navigator" plugins
 		if( navigator.mimeTypes && navigator.mimeTypes.length > 0) {
 			for ( var i = 0; i < navigator.mimeTypes.length; i++ ) {
 				var type = navigator.mimeTypes[i].type;
@@ -2570,8 +2567,8 @@ var embedTypes = {
 					continue;
 				}
 		
-				if ( javaEnabled || type == 'application/x-java-applet' ) {
-					this.players.addPlayer(cortadoPlayer);
+				if ( type == 'application/x-java-applet' ) {
+					this.players.addPlayer( cortadoPlayer );
 					continue;
 				}				
 		
