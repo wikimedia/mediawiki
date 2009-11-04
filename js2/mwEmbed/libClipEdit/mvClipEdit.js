@@ -29,8 +29,8 @@ loadGM({
 	"mwe-end_time" : "End time",
 	"mwe-preview_inout" : "Preview in-out points",
 	"mwe-edit-tools" : "Edit tools",
-	"mwe-inline-description" : "Inline Description",
-	"mwe-edit-video-tools" : "Edit Video Tools:"
+	"mwe-inline-description" : "Inline description",
+	"mwe-edit-video-tools" : "Edit video tools:"
 });
 
 var default_clipedit_values = {
