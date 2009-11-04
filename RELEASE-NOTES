@@ -620,6 +620,7 @@ Hopefully we will remove this configuration var soon)
 * Allow SpecialActiveusers to work on non-MySQL databases
 * (bug 6579) Fixed protecting images from uploading only 
 * (bug 18609) Search index was empty for some pages
+* (bug 13453) rebuildrecentchanges maintenance script works on PG again
 
 == API changes in 1.16 ==
 
@@ -680,7 +681,6 @@ Hopefully we will remove this configuration var soon)
 * (bug 21085) list=deletedrevs no longer returns only one revision when
   drcontinue param is passed
 * (bug 21106) Deprecated parameters now tagged in action=paraminfo
-* (bug 13453) rebuildrecentchanges maintenance script works on PG again
 * (bug 19004) Added support for tags
 * (bug 21083) list=allusers no longer returns current timestamp for users
   without registration date
