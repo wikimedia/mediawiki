@@ -2800,7 +2800,14 @@ $wgEnableScriptLoader = false;
  *
  * and or you can update $wgStyleVersion
  */
-$wgScriptModifiedCheck = true;
+$wgScriptModifiedFileCheck = true;
+
+/*
+ * $wgScriptModifiedMsgCheck Checks MediaWiki NS for latest
+ * Revision for generating the request id.
+ *
+ */
+$wgScriptModifiedMsgCheck = true;
 
 /*
  * enable js2 Script System

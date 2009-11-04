@@ -148,17 +148,16 @@ seqRemoteSearchDriver.prototype = {
 		//open up a new target_contaienr:
 		if( $j('#seq_resource_import').length == 0 )
 			$j('body').append('<div id="seq_resource_import" style="position:relative"></div>');
-
+		var bConf = {};
+		bConf[ gM( 'mwe-cancel' ) ] = function() {
+			$j(this).dialog("close");
+		}
 		$j('#seq_resource_import').dialog('destroy').dialog({
 			bgiframe: true,
 			width:750,
 			height:480,
 			modal: true,
-			buttons: {
-				"Cancel": function() {
-						$j(this).dialog("close");
-					}
-				}
+			buttons: bConf
 		});
 		_this.target_container = '#seq_resource_import';
 		//do parent resource edit (with updated target)

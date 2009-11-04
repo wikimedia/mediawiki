@@ -27,9 +27,7 @@ loadGM({
 	"mwe-file-thumbnail-no" : "The filename begins with <b><tt>$1<\/tt><\/b>",
 	"mwe-go-to-resource" : "Go to resource page",
 	"mwe-upload-misc-error" : "Unknown upload error",
-	"mwe-wgfogg_warning_bad_extension" : "You have selected a file with an unsuported extension (<a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Firefogg#Supported_File_Types\">more information<\/a>).",
-	"mwe-cancel-button" : "Cancel",
-	"mwe-ok-button" : "OK"
+	"mwe-wgfogg_warning_bad_extension" : "You have selected a file with an unsuported extension (<a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Firefogg#Supported_File_Types\">more information<\/a>)."
 });
 
 var default_bui_options = {
@@ -633,7 +631,7 @@ mvBaseUploadInterface.prototype = {
 		 }else{
 			 //@@todo should fix jquery ui to not use object keys as user msg's
 			 var bObj = {};
-			 bObj[ gM('mwe-ok-button') ] =  function(){
+			 bObj[ gM('mwe-ok') ] =  function(){
 				  $j(this).dialog('close');
 			 };
 			 $j('#upProgressDialog').dialog('option','buttons', bObj);
@@ -702,7 +700,7 @@ mvBaseUploadInterface.prototype = {
 	cancel_button:function(){
 	   var _this = this;
 	   var cancelBtn = new Array();
-	   cancelBtn[ gM('mwe-cancel-button') ] =  function(){
+	   cancelBtn[ gM('mwe-cancel') ] =  function(){
 	   		return _this.cancel_action(this)
 	   };
 	   return cancelBtn;

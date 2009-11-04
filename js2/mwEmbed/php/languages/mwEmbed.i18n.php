@@ -35,6 +35,9 @@ $messages['en'] = array(
 	'mwe-start_time' => 'Start time',
 	'mwe-end_time' => 'End time',
 	'mwe-preview_inout' => 'Preview in-out points',
+	'mwe-edit-tools' => 'Edit tools',
+	'mwe-inline-description' => 'Inline Description',
+	'mwe-edit-video-tools' => 'Edit Video Tools:',
 
 	/*
 	 * js file: /libTimedText/mvTextInterface.js
@@ -106,6 +109,7 @@ $messages['en'] = array(
 	'mwe-apiproxy-setup' => 'Setting up API proxy',
 	'mwe-load-drag-item' => 'Loading dragged item',
 	'mwe-ok' => 'OK',
+	'mwe-cancel' => 'Cancel',
 
 	/*
 	 * js file: /libMwApi/mw.proxy.js
@@ -113,7 +117,6 @@ $messages['en'] = array(
 	'mwe-setting-up-proxy' => 'Setting up proxy...',
 	'mwe-re-try' => 'Retry API request',
 	'mwe-re-trying' => 'Retrying API request...',
-	'mwe-cancel' => 'Cancel',
 	'mwe-proxy-not-ready' => 'Proxy is not configured',
 	'mwe-please-login' => 'You are not <a target="_new" href="$1">logged in</a> on $2 or mwEmbed has not been enabled. Resolve the issue, and then retry the request.',
 	'mwe-remember-loging' => 'General security reminder: Only login to web sites when your address bar displays that site\'s address.',
@@ -274,6 +277,8 @@ $messages['en'] = array(
 	'mwe-destfilename' => 'Destination filename:',
 	'mwe-summary' => 'Summary',
 	'mwe-error_not_loggedin' => 'You do not appear to be logged in or do not have upload privileges.',
+	'mwe-watch-this-file' => 'Watch this file',
+	'mwe-ignore-any-warnings' => 'Ignore any warnings',
 
 	/*
 	 * js file: /libAddMedia/mvBaseUploadInterface.js
@@ -300,8 +305,6 @@ $messages['en'] = array(
 	'mwe-go-to-resource' => 'Go to resource page',
 	'mwe-upload-misc-error' => 'Unknown upload error',
 	'mwe-wgfogg_warning_bad_extension' => 'You have selected a file with an unsuported extension (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">more information</a>).',
-	'mwe-cancel-button' => 'Cancel',
-	'mwe-ok-button' => 'OK',
 
 	/*
 	 * js file: /libEmbedVideo/embedVideo.js

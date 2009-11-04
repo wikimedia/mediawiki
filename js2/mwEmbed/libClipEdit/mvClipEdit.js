@@ -27,7 +27,10 @@ loadGM({
 	"mwe-set_in_out_points" : "Set in-out points",
 	"mwe-start_time" : "Start time",
 	"mwe-end_time" : "End time",
-	"mwe-preview_inout" : "Preview in-out points"
+	"mwe-preview_inout" : "Preview in-out points",
+	"mwe-edit-tools" : "Edit tools",
+	"mwe-inline-description" : "Inline Description",
+	"mwe-edit-video-tools" : "Edit Video Tools:"
 });
 
 var default_clipedit_values = {
@@ -369,7 +372,7 @@ mvClipEdit.prototype = {
 		var eb = $j('#embed_vid').get(0);
 		//turn on preview to avoid onDone actions
 		eb.preview_mode = true;
-		$j('#'+this.control_ct).html('<h3>Edit Video Tools:</h3>');
+		$j('#'+this.control_ct).html('<h3>' + gM('mwe-edit-video-tools') + '</h3>');
 		if( eb.supportsURLTimeEncoding() ){
 			$j('#'+this.control_ct).append(
 				_this.getSetInOutHtml({
@@ -442,7 +445,7 @@ mvClipEdit.prototype = {
 			$j.btnHtml( gM('mwe-preview_inout'), 'inOutPreviewClip', 'video');				
 	},
 	getInsertDescHtml:function(){
-		var o= '<h3>Inline Description</h3>'+
+		var o= '<h3>' + gM('mwe-inline-description') + '</h3>'+
 					'<textarea style="width:95%" id="mv_inline_img_desc" rows="5" cols="30">';
 		if( this.p_rsdObj ){
 			//if we have a parent remote search driver let it parse the inline description
@@ -582,7 +585,7 @@ mvClipEdit.prototype = {
 		var $tool_target = $j('#'+this.control_ct);
 		//by default apply Crop tool
 		if( _this.enabled_tools == 'all' || _this.enabled_tools.length > 0){
-			$tool_target.append( '<h3>Edit tools</h3>' );
+			$tool_target.append( '<h3>'+ gM('mwe-edit-tools') +'</h3>' );
 			for( var i in _this.toolset ){
 				var toolid = _this.toolset[i];
 				if( $j.inArray( toolid, _this.enabled_tools) != -1 || _this.enabled_tools=='all')
