@@ -2807,7 +2807,7 @@ $wgScriptModifiedFileCheck = true;
  * Revision for generating the request id.
  *
  */
-$wgScriptModifiedMsgCheck = true;
+$wgScriptModifiedMsgCheck = false;
 
 /*
  * enable js2 Script System

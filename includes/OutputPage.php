@@ -240,7 +240,7 @@ class OutputPage {
 			}
 			return true;
 		}
-		print "could not find: $js_class\n";
+		//print "could not find: $js_class\n";
 		wfDebug( __METHOD__ . ' could not find js_class: ' . $js_class );
 		return false; // could not find the class
 	}
