@@ -720,7 +720,6 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protectexpiry'               => 'Sperrdaua:',
 'protect_expiry_invalid'      => "D'eigemne Daua is ungüitig.",
 'protect_expiry_old'          => "D'Sperrzeid liegt in da Vagãngnheid",
-'protect-unchain'             => 'Vaschiab-Schutz ändan',
 'protect-text'                => "Då kãnnst nåchschau und ändan, wia d'Seitn „$1“ gschützt is.",
 'protect-level-autoconfirmed' => 'Sperrung fia net registrierte Benutzer',
 'protect-summary-cascade'     => 'kaskadiarnd',

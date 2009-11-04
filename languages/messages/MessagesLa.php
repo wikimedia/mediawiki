@@ -1596,7 +1596,6 @@ ad emendationem proximam ab $2.',
 'protectexpiry'               => 'Exitus:',
 'protect_expiry_invalid'      => 'Tempus post quod res exitur est invalidum.',
 'protect_expiry_old'          => 'Tempus est praeteritus.',
-'protect-unchain'             => 'Permissiones paginae movendae aperire',
 'protect-text'                => "Hic tibi licet protectiones legere et mutare paginae '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Tibi non licet protectionem paginarum mutare.
 Ecce protectiones paginae '''$1''':",

@@ -108,11 +108,11 @@ $messages = array(
 'tog-uselivepreview'          => 'Ampesao ny topi-maso maikamaika (mila Javascript) (mbola am-panandramana)',
 'tog-forceeditsummary'        => 'Teneno ahy ra tsy nametraka ny ambangovangony',
 'tog-watchlisthideown'        => "Tsy ampiseho anatin'ny pejy fanaraha-maso ny zavatra nosoratako",
-'tog-watchlisthidebots'       => "Asitrio amin'ny lisitro ny fanovàna nataon'ny Rindrankajy",
+'tog-watchlisthidebots'       => "Asitriho amin'ny lisitro ny fanovàna nataon'ny rôbô",
 'tog-watchlisthideminor'      => "Tsy aseho ny fisoloina kely anatin'ny pejy fanaraha-maso",
-'tog-watchlisthideliu'        => "Asitrio amin'ny lisitro ny fanovàna nataon'ny mpikambana hafa",
-'tog-watchlisthideanons'      => "Asitrio amin'ny lisitro ny fanovana nataon'ny IP",
-'tog-watchlisthidepatrolled'  => "Asitrio amin'ny lisitro ny fanovàna nojerena",
+'tog-watchlisthideliu'        => "Asitriho amin'ny lisitro ny fanovàna nataon'ny mpikambana hafa",
+'tog-watchlisthideanons'      => "Asitriho amin'ny lisitro ny fanovana nataon'ny IP",
+'tog-watchlisthidepatrolled'  => "Asitriho amin'ny lisitro ny fanovàna efa nojerena",
 'tog-ccmeonemails'            => "Andefaso tahaka ny imailaka alefako amin'ny mpikambana hafa",
 'tog-diffonly'                => "Aza ampiseo ny voatonin'ny pejy eo amban'ny diff",
 'tog-showhiddencats'          => 'Asehoy ny sokajy misitrika',
@@ -415,7 +415,7 @@ Toy izao no navalin\'ny MySQL "$3: $4"',
 Mihidy vonjimaika aloha ny banky angona ka tsy afaka anaovana fanovana na fanampiana vaovao. Azo inoana fa asa fikolokoloana mahazatra ihany io ka rehefa vita izay asa izay dia hverina amin'ny laoniny izy.
 
 Ny mpitantana nanidy azy dia nametraka ito fanazavana ito: $1",
-'missing-article'      => "Tsy hita ny ''database'' ilay lahatsoratra nà pejy iray tokony hitany, manana lohateny  « $1 » $2.
+'missing-article'      => "Tsy hita ny ''database'' ilay lahatsoratrana pejy iray tokony hitany, manana lohateny  « $1 » $2.
 
 Misy io tsy feterana io rehefa manaraka rohy mitondra any amin'ny diff efa lany daty na any amin'ny tantaran'asa nà pejy voafafa.
 
@@ -461,7 +461,7 @@ Andramo indray afaka minitra vitsivitsy.",
 
 $2',
 'namespaceprotected'   => "Tsy manana alalàna manova ny toeran'anarana « '''$1''' » ianao.",
-'customcssjsprotected' => "Tsy azonao atao no manova n'ity pejy ity, satria manana ny safidy nà mpikambana ny votoatiny.",
+'customcssjsprotected' => "Tsy azonao atao ny manova ity pejy ity, satria misy ny safidin'ny mpikambana hafa ity pejy ity.",
 'ns-specialprotected'  => "Tsy afaka ovaina ny pejy anatin'ny toeran'anarana « {{ns:special}} » .",
 'titleprotected'       => "Voaaron'i [[User:$1|$1]] ity lohateny ity mba tsy hamorona pejy mitondra ity anarana ity.
 Ny antony napetraka dia : « ''$2'' ».",
@@ -817,14 +817,14 @@ Afaka mijery ny lahatsoratra nasitrika sy mamerina azy ny mpandrindra hafa ny {{
 'revdelete-suppress-text'     => "Ny famafàna pejy dia ampiasaina rehefa :
 * Misy information tsy sarababem-bahoaka tsy metimety
 *: ''Misy adiresy nomeraona antso an-tariby, nomeraona sécurité sociale, sns.''",
-'revdelete-legend'            => 'Ampetraho ny restriction nà fijerena :',
-'revdelete-hide-text'         => "Asitrio ny lahatsoratr'ity version ity",
-'revdelete-hide-name'         => 'Asitrio ny asa sy ny tarigehitra',
-'revdelete-hide-comment'      => 'asitrio ny ambangovangony',
-'revdelete-hide-user'         => "Asitrio ny solonanaran'ny mpikambana/adiresy IP",
+'revdelete-legend'            => "Ampetraho ny fepetra momban'ny fahitana :",
+'revdelete-hide-text'         => "Asitriho ny lahatsoratr'ity version ity",
+'revdelete-hide-name'         => 'Asitriho ny asa sy ny tanjona',
+'revdelete-hide-comment'      => 'asitriho ny ambangovangony',
+'revdelete-hide-user'         => "Asitriho ny solonanaran'ny mpikambana/adiresy IP",
 'revdelete-hide-restricted'   => "Fafao ireo votoatiny ireo amin'ny mpiandrindra sy amin'ny mpikambana hafa",
 'revdelete-suppress'          => "Manitrika ny votoatiny ho an'ny mpandrindra",
-'revdelete-hide-image'        => "asitrio ny votoatin'ilay rakitra",
+'revdelete-hide-image'        => "asitriho ny votoatin'ilay rakitra",
 'revdelete-log'               => "Anbangovangon'ny tantaran'asa :",
 'revdelete-submit'            => "Ataovy amin'ny version nosafidiako",
 'revdelete-logentry'          => "nanova ny fahitan'ny/i [[$1]]",
@@ -927,7 +927,7 @@ Hijery ny [[Special:IPBlockList|lisitra ny adiresy IP sy mpikambana voasakana]] 
 'searchrelated'                    => 'voadinika',
 'searchall'                        => 'rehetra',
 'showingresults'                   => "Omeo ny valiny{{PLURAL:$1||}} miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
-'showingresultsnum'                => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.',
+'showingresultsnum'                => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.{{PLURAL:||}}',
 'nonefound'                        => "'''Fanamarihana''': ny mahatonga ny fikarohana tsy hahita vokany matetika dia ny 
 fampiasanao teny miasa matetika toy ny \"izay\" sy ny \"tsy\",
 na ny fanomezanao teny mihoatra ny iray (ny pejy ahitana ny teny rehetra hokarohina
@@ -1189,7 +1189,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'rc_categories'                     => 'Ferana amin\'ireto sokajy ireto ihany (saraho amin\'ny "|")',
 'rc_categories_any'                 => 'Tsy misy fetrany',
 'rc-enhanced-expand'                => 'Jereo ny detail (mila JavaScript)',
-'rc-enhanced-hide'                  => 'Asitrio ny adidiny',
+'rc-enhanced-hide'                  => 'Asitriho ny adidiny sy ny antsipiriany',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Novaina',
@@ -1386,8 +1386,7 @@ wiki ity aza izy.</p>",
 'specialloguserlabel'  => 'Mpikambana:',
 'speciallogtitlelabel' => 'Lohateny:',
 'log'                  => "Tantaran'asa",
-'alllogstext'          => "
-Fisehoan'ny tantaran'asa (logs) momba ny upload, famafana, fiarovana, fisakanana, ary sysop.
+'alllogstext'          => "Fisehon'ny tantaran'asa (logs) rehetra eto amin'ny {{SITENAME}} momba ny upload, famafana, fiarovana, fisakanana, ary sysop.
 Mifidiana karazana tantaran'asa (log type), Solonanarana mpikambana, na ny pejy voakasik'izany mba hahafahanao
 mampihena ny tantaran'asa miseho eto.",
 'logempty'             => 'Tsy nahitana.',
@@ -1557,7 +1556,6 @@ Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 'protectexpiry'               => 'Daty fialàna :',
 'protect_expiry_invalid'      => 'Tsy mety ilay daty fialàna.',
 'protect_expiry_old'          => 'Efa lasa ilay daty fialàna.',
-'protect-unchain'             => 'Avela ny fahefahana manova anarana',
 'protect-text'                => "Afaka jerenao na ovainao eto ny politikam-piarovana ny pejy '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Tsy afaka ovanao ny sokajy ny fiarovana raha tsy mahazo manoratra ianao.
 Ity ny sokajy ny pejy '''$1''' :",
@@ -1618,7 +1616,7 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'nocontribs'          => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.",
 'uctop'               => ' (loha)',
 'month'               => "Tamin'ny volana (sy teo aloha) :",
-'year'                => "Tamin'ny taona (sy taloha-ny) :",
+'year'                => "Tamin'ny taona (sy teo aloha) :",
 
 'sp-contributions-newbies'    => "Ny fandraisan'anjara ny mpikambana vaovao ihany no ampiseho eto",
 'sp-contributions-blocklog'   => "tantaran'asa ny fanakanana",

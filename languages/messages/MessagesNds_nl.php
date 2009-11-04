@@ -2146,7 +2146,6 @@ De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|
 'protectexpiry'               => 'Duur',
 'protect_expiry_invalid'      => 'Verlooptied is ongeldig.',
 'protect_expiry_old'          => 'De verlooptied is al veurbie.',
-'protect-unchain'             => 'Ontkoppel de naamwiezigingsrechen',
 'protect-text'                => "Hier ku-j 't beveiligingsnivo veur de pagina '''$1''' instellen.",
 'protect-locked-blocked'      => "Je kunnen beveiligingsnivo's neet wiezigen terwiel je eblokkeerd bin. Hier bin de instellingen zoas ze noen bin veur de pagina '''$1''':",
 'protect-locked-dblock'       => "Beveiligingsnivo's kunnen effen neet ewiezig wönnen umdat de databanke noen beveilig is.

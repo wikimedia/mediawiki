@@ -2245,7 +2245,6 @@ Vêde la [[Special:ProtectedPages|lista de les pâges protègiês]] por vêre le
 'protectexpiry'               => 'Dâta d’èxpiracion :',
 'protect_expiry_invalid'      => 'La dâta d’èxpiracion est envalida.',
 'protect_expiry_old'          => 'La dâta d’èxpiracion est ja passâ.',
-'protect-unchain'             => 'Dèblocar les pèrmissions de changement de nom',
 'protect-text'                => "Vos pouede vêre et changiér lo nivél de protèccion de la pâge '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Vos pouede pas changiér los nivéls de protèccion tant que vos éte blocâ.
 Vê-que la configuracion d’ora de la pâge '''$1''' :",

@@ -814,7 +814,6 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'protectexpiry'               => 'Fetatšatši:',
 'protect_expiry_invalid'      => 'Fetatšatši, nako ye ga ya dumelwa.',
 'protect_expiry_old'          => 'Fetatšatši ke ya nako yeo e fetilego.',
-'protect-unchain'             => 'Dumella (tloša senotlolo) tumello ya go huduga',
 'protect-text'                => "O ka lebelela lego fetola seemo sa go lota sa letlakala '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Tšhupaleloko ya gago ga ena tumello ya go fetola seemo sago lota ga letlakala. 
 Seemo sa go lota ga letlakala '''$1''':",

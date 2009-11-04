@@ -404,9 +404,9 @@ $messages = array(
 'vector-namespace-user'      => 'Сторінка користувача',
 'vector-view-create'         => 'Створити',
 'vector-view-edit'           => 'Редагувати',
-'vector-view-history'        => 'Перегляд історії',
-'vector-view-view'           => 'Перегляд',
-'vector-view-viewsource'     => 'Перегляд коду',
+'vector-view-history'        => 'Переглянути історію',
+'vector-view-view'           => 'Читати',
+'vector-view-viewsource'     => 'Переглянути код',
 'actions'                    => 'Дії',
 'namespaces'                 => 'Простори назв',
 'variants'                   => 'Варіанти',
@@ -475,8 +475,8 @@ $messages = array(
 $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Опис {{grammar:accusative|{{SITENAME}}}}',
-'aboutpage'            => 'Project:Опис',
+'aboutsite'            => 'Про {{grammar:accusative|{{SITENAME}}}}',
+'aboutpage'            => 'Project:Про',
 'copyright'            => 'Вміст доступний згідно з $1.',
 'copyrightpage'        => '{{ns:project}}:Авторське право',
 'currentevents'        => 'Поточні події',
@@ -904,7 +904,7 @@ $1',
 'nocreate-loggedin'                => 'У вас нема дозволу створювати нові сторінки.',
 'permissionserrors'                => 'Помилки прав доступу',
 'permissionserrorstext'            => 'У вас нема прав на виконання цієї операції з {{PLURAL:$1|наступної причини|наступних причин}}:',
-'permissionserrorstext-withaction' => 'У вас немає дозволу на $2 з {{PLURAL:$1|наступної причини|наступних причин}}:',
+'permissionserrorstext-withaction' => 'У вас нема дозволу на $2 з {{PLURAL:$1|такої причини|таких причин}}:',
 'recreate-moveddeleted-warn'       => "'''Попередження: ви намагаєтеся створити сторінку, яка раніше вже була вилучена.'''
 
 Перевірте, чи справді вам потрібно знову створювати цю сторінку.
@@ -2134,7 +2134,6 @@ $NEWPAGE
 'protectexpiry'               => 'Закінчується:',
 'protect_expiry_invalid'      => 'Неправильний час закінчення захисту.',
 'protect_expiry_old'          => 'Час закінчення — в минулому.',
-'protect-unchain'             => 'Розблокувати перейменування сторінки',
 'protect-text'                => "Тут ви можете переглянути та змінити рівень захисту сторінки '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Ви не можете змінювати рівень захисту сторінки, доки ваш обліковий запис заблокований.
 Поточні установки для сторінки '''$1''':",

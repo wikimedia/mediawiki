@@ -2168,7 +2168,6 @@ Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných za
 'protectexpiry'               => 'Zamknuté do:',
 'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',
-'protect-unchain'             => 'Odomknúť povolenia pre presun',
 'protect-text'                => "Tu si môžete pozrieť a zmeniť úroveň ochrany stránky '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
 Tu sú aktuálne nastavenia stránky '''$1''':",

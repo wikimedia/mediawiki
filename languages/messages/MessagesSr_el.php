@@ -1918,7 +1918,6 @@ Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda poku�
 'protectexpiry'               => 'Ističe:',
 'protect_expiry_invalid'      => 'Vreme isteka nije odgovarajuće.',
 'protect_expiry_old'          => 'Vreme isteka je u prošlosti.',
-'protect-unchain'             => 'Otključaj dozvole premeštanja',
 'protect-text'                => "Ovde možete pogledati i menjati nivo zaštite za stranicu '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Ne možete menjati nivoe zaštite dok ste blokirani.
 Ovo su trenutna podešavanja za stranicu '''$1''':",

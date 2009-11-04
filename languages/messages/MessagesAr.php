@@ -2339,7 +2339,6 @@ $NEWPAGE
 'protectexpiry'               => 'تنتهي في:',
 'protect_expiry_invalid'      => 'وقت الانتهاء غير صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع يقع في الماضي.',
-'protect-unchain'             => 'فصل سماح النقل',
 'protect-text'                => "يمكنك هنا أن تعرض وتغير مستوى الحماية للصفحة '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "لا يمكنك تغيير مستويات الحماية وأنت ممنوع.
 الإعدادات الحالية للصفحة '''$1''' هي:",
@@ -3484,7 +3483,7 @@ $1',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'اعرض التغييرات المرتبطة',
-'watchlisttools-edit' => 'اعرض وعدّل قائمة المراقبة',
+'watchlisttools-edit' => 'اعرض قائمة المراقبة وعدّلها',
 'watchlisttools-raw'  => 'عدل قائمة المراقبة الخام',
 
 # Iranian month names

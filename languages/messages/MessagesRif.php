@@ -520,7 +520,6 @@ Xemm $2 i tikkas timaynutin.',
 'protectexpiry'               => 'itsala:',
 'protect_expiry_invalid'      => 'Akud n usali war icni ca.',
 'protect_expiry_old'          => 'Akud usali yeεda.',
-'protect-unchain'             => 'Arzem turagin n usnaqel',
 'protect-text'                => "tzemred ad teẓṛed u atbedeld aswir n uḥeṭṭu n Tasna ya da '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Amiḍan inecc war ɣars turagt bac ad ibeddel aswir n uḥeṭṭu n Tasna .
 Aqa (settings) n Tasna '''$1''':",

@@ -672,7 +672,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'protectexpiry'               => 'Udløb:',
 'protect_expiry_invalid'      => 'Æ udløbstiid er ugyldeg.',
 'protect_expiry_old'          => "Æ udløbstiid legger i'n førtiid.",
-'protect-unchain'             => 'Ændre flytnengsbeskyttelse',
 'protect-text'                => "Her ken beskyttelsesståt før æ side '''<nowiki>$1</nowiki>''' ses og ændres.",
 'protect-locked-access'       => "Den brugerkonto har ekke de nødvendege rettegheder til at æ ændre sidebeskyttelse. Her er de aktuelle beskyttelsesendstellenger før æ side '''„$1“:'''",
 'protect-cascadeon'           => 'Denne side er del åf en nedarvet skrevebeskyttelse. Wen er endeholt i nedenstående {{PLURAL:$1|side|sider}}, søm er skrevebeskyttet ve tilvalg åf "nedarvende sidebeskyttelse" Æ sidebeskyttelse ken ændres før denne side, det påverker dog ekke\'n kaskadespærrenge:',

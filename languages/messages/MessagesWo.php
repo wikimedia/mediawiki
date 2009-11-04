@@ -1750,7 +1750,6 @@ nemmeekul [[Special:ProtectedPages|limu xët yi ñu aar]] ngir gis ab lim ci xë
 'protectexpiry'               => 'Jeexintal :',
 'protect_expiry_invalid'      => 'Waxtub njeextal bi baaxul.',
 'protect_expiry_old'          => 'Waxtub njeextal bi weesu na.',
-'protect-unchain'             => 'Caabeedi sañal tuddewaat yi',
 'protect-text'                => "Fii man nga fee gise ak soppi tolluwaayu kaaraange gu wii xët '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Manoo soppi tolluwaayu kaaraange gi su ñu la téyee.  
 Nii la xët wi tëdde '''$1''' :",

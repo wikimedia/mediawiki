@@ -791,7 +791,6 @@ A sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
 'protectexpiry'               => 'Simpekile:',
 'protect_expiry_invalid'      => 'Bufosi di simpekile.',
 'protect_expiry_old'          => 'Simpekile sa kwa bundau.',
-'protect-unchain'             => 'Petuho nyanganyisize tumelelo',
 'protect-text'                => "A sa kamukile e hloli bukelezi di petulo '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Zwa sebelu ni sa hloli bukelezi.
 Petohoni di petulo '''$1''' sa:",

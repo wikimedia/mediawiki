@@ -121,7 +121,7 @@ süi titul dai sezziún (JavaScript)',
 'tog-watchdefault'            => "Gjüntá i pagin redataa in dala lista dii pagin tegnüü d'öcc",
 'tog-watchmoves'              => "Giunta i paginn ch'hoo muvüü a la lista di paginn che tegni sot ögg",
 'tog-watchdeletion'           => "Giunta i paginn ch'hoo scancelaa a la lista di paginn che tegni sot ögg",
-'tog-minordefault'            => 'Marcá sempar tücc i redatazziún cuma "da minuur impurtanza"',
+'tog-minordefault'            => 'Marca tücc i mudifegh cume piscinìn',
 'tog-previewontop'            => "Fá vidé un'anteprima anaanz dala finèstra da redatazziún",
 'tog-previewonfirst'          => "Fá vidé l'anteprima ala prima redatazziún",
 'tog-nocache'                 => 'DIsativa la "cache" per i paginn',
@@ -506,10 +506,10 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'hr_tip'          => 'Riga urizuntala (duprala cun giüdizi)',
 
 # Edit pages
-'summary'                          => 'Argument de la mudifica:',
+'summary'                          => 'Mutiv per la mudifega:',
 'subject'                          => 'Suget (intestazión)',
-'minoredit'                        => "Chesta chi l'è una mudifica da impurtanza minuur",
-'watchthis'                        => "Tegn d'öcc quela pagina chì",
+'minoredit'                        => "Questa chì l'è una mudifega piscinina",
+'watchthis'                        => "Tegn d'ögg quela pagina chì",
 'savearticle'                      => 'Salva',
 'preview'                          => 'Varda prima de salvà la pagina',
 'showpreview'                      => 'Famm vedè prima',
@@ -535,7 +535,7 @@ Se te vöret minga che i tò test i poden vess mudifegaa e redistribüii d'una p
 Cunt el test che te mandet tì te deciaret anca che, sota la tò respunsabilità, che el test te l'hee scrivüü depertì 'me uriginal, o pür che l'è una cobia d'una funt de dumini pübligh o un'altra funt libera in manera cumpagna.<br />
 '''MANDA MINGA DEL MATERIAL CHE L'E' CUERT D'UN DIRIT D'AUTUR SENZA UTURIZAZIUN'''",
 'longpagewarning'                  => "'''Feegh da ment''': Quela pagina chì l'è longa $1 kilobyte; gh'è di browser ch'i pudarissen vegh di fastidi a mudifegà paginn ch'i riven arent o ch'i gh'hann püssee de 32kb. Per piasè vardee se l'è pussibil fà giò la pagina in tuchet püssee piscinin.",
-'protectedpagewarning'             => "'''Ocio: quela pagina chì l'è stada blucaa in manéra che dumá i druvat cunt i privilegg de sysop i pören mudificàla.'''",
+'protectedpagewarning'             => "'''Ocio: quela pagina chì l'è stada blucaa in manéra che dumá i dupradur cunt i privilegg de sysop i pören mudificàla.'''",
 'templatesused'                    => '{{PLURAL:$1|Mudel|Mudej}} dopraa in quela pagina chì:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mudel|Mudej}} dopraa in quela pröva chì:',
 'template-protected'               => '(prutegiüü)',
@@ -554,7 +554,7 @@ Cunt el test che te mandet tì te deciaret anca che, sota la tò respunsabilità
 'next'                   => 'pròssim',
 'last'                   => 'ültima',
 'histlegend'             => "Selezion di diferenz: seleziuná i balitt di version de cumpará e pö schisciá ''enter'' upüra al buton in scima ala tabèlina.<br />
-Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = diferenza cun l'ültima version, M = cambiament d'impurtanza minur.",
+Spiegazzion di símbul: (cur) = diferenza cun la version curenta, (ültima) = diferenza cun l'ültima version, M = mudifega piscinína.",
 'history-fieldset-title' => 'Varda la cronolugia',
 'histfirst'              => 'Püssee vegg',
 'histlast'               => 'Püssee receent',
@@ -581,6 +581,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version de adess, (ültima) = d
 'searchsubtitleinvalid'            => 'T\'hee cercaa "$1"',
 'toomanymatches'                   => "Gh'è tropi curispundens. Mudifichè la richiesta.",
 'notitlematches'                   => "La vus che t'hee ciamaa la se tröa minga intra i tituj di articuj",
+'textmatches'                      => "Truvaa int 'l test di paginn",
 'notextmatches'                    => "La vus che t'hee ciamaa la gh'ha minga una curispundenza in del test di paginn.",
 'prevn'                            => 'precedent {{PLURAL:$1|$1}}',
 'nextn'                            => 'pròssim {{PLURAL:$1|$1}}',
@@ -621,7 +622,7 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'prefs-math'         => 'Matem',
 'datedefault'        => 'Nissüna preferenza',
 'prefs-datetime'     => 'Data e urari',
-'prefs-personal'     => 'Carateristich dal druvat',
+'prefs-personal'     => 'Carateristich dal dupradur',
 'prefs-rc'           => 'Cambiament recent',
 'prefs-misc'         => 'Vari',
 'saveprefs'          => 'Tegn i mudifech',
@@ -701,10 +702,10 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'rcnote'                           => "De sota gh'è {{PLURAL:$1|è '''1''' mudifega|a hinn i ültim '''$1''' mudifegh}} in di ültim {{PLURAL:$2|dì|'''$2''' dì}}, a partì de ur $5 del $4.",
 'rcnotefrom'                       => "Chì de sota gh'è la lista di mudifegh de <b>$2</b> (fina a <b>$1</b>).",
 'rclistfrom'                       => 'Fà vidè i cambiament növ a partì de $1',
-'rcshowhideminor'                  => '$1 mudifegh minur',
+'rcshowhideminor'                  => '$1 i mudifegh piscinín',
 'rcshowhidebots'                   => '$1 i bot',
-'rcshowhideliu'                    => '$1 druvat cunetüü',
-'rcshowhideanons'                  => '$1 dovrat anònim',
+'rcshowhideliu'                    => '$1 i dupradur cunetüü',
+'rcshowhideanons'                  => '$1 i dovrat anònim',
 'rcshowhidemine'                   => '$1 i mè mudifich',
 'rclinks'                          => 'Fá vidé i ültim $1 cambiameent indi ültim $2 dí<br />$3',
 'diff'                             => 'dif',
@@ -750,6 +751,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 # File description page
 'filehist'                  => "Storia de l'archivi",
 'filehist-help'             => "Schiscia in sü un grüp data/ura per vidè el file cumè che'l se presentava in quel mument là",
+'filehist-deleteone'        => 'Scancèla',
 'filehist-revert'           => "Butar torna 'me ch'al era",
 'filehist-current'          => 'curent',
 'filehist-datetime'         => 'Data/Ura',
@@ -762,6 +764,11 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'linkstoimage'              => "{{PLURAL:$1|Quela pagina chì la gh'ha |$1 Quij paginn chì i gh'hann}} ligam al file:",
 'sharedupload'              => "Quel archivi chì al vegn de $1 e'l pö vess dupraa d'alter pruget",
 'uploadnewversion-linktext' => 'Carga una versión növa de quel file chì',
+
+# File deletion
+'filedelete-reason-dropdown' => '*I sòlit resón per i scancelament
+** Viulazión de copyright
+** File dubi',
 
 # MIME search
 'mimesearch' => 'cérca MIME',
@@ -813,7 +820,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'shortpages'              => 'Paginn püssee cürt',
 'longpages'               => 'Paginn püssee lungh',
 'deadendpages'            => 'Pagin senza surtida',
-'listusers'               => 'Lista di druvat registraa',
+'listusers'               => 'Lista di dupradur registraa',
 'newpages'                => 'Paginn növ',
 'ancientpages'            => 'Paginn püssee vegg',
 'move'                    => 'Sposta',
@@ -893,22 +900,23 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'changed'            => 'cambiaa',
 
 # Delete
-'deletepage'            => 'Scancela la pagina',
-'historywarning'        => "Atenziún: La pagina che a sii dré a scancelá la gh'a una stòria:",
-'confirmdeletetext'     => "A te see lì per scancelà una pagina cun tüta la sua crunulugìa.
+'deletepage'             => 'Scancela la pagina',
+'historywarning'         => "'''Ocio!''' La pagina che a sii adree a scancelà la gh'a una stòria cun $1 {{PLURAL:$1|revisión|revisionn}}:",
+'confirmdeletetext'      => "A te see lì per scancelà una pagina cun tüta la sua crunulugìa.
 Per piasè, dà la cunferma che te gh'hee intenzión de andà inanz cun 'l scancelament, che te see al curent di cunseguenz, e che te see adree a fàl segónd i regulament de [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'        => 'Aziun cumpletada',
-'deletedtext'           => 'La pagina "<nowiki>$1</nowiki>" l\'è stada scancelada. Varda el $2 per una lista di ültim scancelaziun.',
-'deletedarticle'        => 'l\'ha scancelaa "[[$1]]"',
-'dellogpage'            => 'Register di scancelament',
-'deletionlog'           => 'log di scancelament',
-'deletecomment'         => 'Mutiif dala scancelazziun',
-'deleteotherreason'     => 'Alter mutiv:',
-'deletereasonotherlist' => 'Altra resón',
-'deletereason-dropdown' => "*Mutiv cumün de scancelaziun
+'actioncomplete'         => 'Aziun cumpletada',
+'deletedtext'            => 'La pagina "<nowiki>$1</nowiki>" l\'è stada scancelada. Varda el $2 per una lista di ültim scancelaziun.',
+'deletedarticle'         => 'l\'ha scancelaa "[[$1]]"',
+'dellogpage'             => 'Register di scancelament',
+'deletionlog'            => 'log di scancelament',
+'deletecomment'          => 'Mutiv del scancelament',
+'deleteotherreason'      => 'Alter mutiv:',
+'deletereasonotherlist'  => 'Altra resón',
+'deletereason-dropdown'  => "*Mutiv cumün de scancelaziun
 ** Richiesta de l'aütur
 ** Viulaziun del copyright
 ** Vandalism",
+'delete-edit-reasonlist' => 'Mudifega i mutiv del scancelament',
 
 # Rollback
 'rollback'         => 'Rollback',
@@ -930,7 +938,6 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'protectexpiry'               => 'Scadenza:',
 'protect_expiry_invalid'      => 'Scadenza pü bona',
 'protect_expiry_old'          => 'Scadenza giamò passada',
-'protect-unchain'             => 'Desbloca i permiss de spostà i paginn',
 'protect-text'                => "Chì se pö vardà e müdà el nivel de prutezión de la pagina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "El tò cünt a l'ha minga la qualifega per pudè müdà el nivel de prutezión.
 Quest chì a hinn i regulazión curent per la pagina '''$1''':",
@@ -1218,7 +1225,7 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Varda i mudifegh impurtant',
-'watchlisttools-edit' => 'Vardà e mudifegà la lista di paginn che te tegnet sot ögg',
+'watchlisttools-edit' => 'Varda e mudifega la lista di paginn che te tegnet sut ögg',
 'watchlisttools-raw'  => 'Mudifega la lista in furmaa test',
 
 # Special:Version

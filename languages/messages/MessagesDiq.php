@@ -1870,7 +1870,6 @@ qey malumato ziyed bıewnê [[Special:ProtectedPages|protected pages list]].',
 'protectexpiry'               => 'Qediyeno:',
 'protect_expiry_invalid'      => 'Demo qediyayışi raşt niyo.',
 'protect_expiry_old'          => 'Demo qediyayışi tarix dı.',
-'protect-unchain'             => 'desturê berdışi a bık',
 'protect-text'                => "Tı eşkeno bıvin u seviyê kılit-kerdışi bıvin '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "seviyeya qedexe biyayeyan nevuriyeno.
 '''$1''' eyarê peli:",

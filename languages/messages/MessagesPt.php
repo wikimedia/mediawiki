@@ -830,7 +830,7 @@ Se clicar novamente em \"{{MediaWiki:savearticle/pt}}\" a sua edição será gra
 'summary-preview'                  => 'Previsão de sumário:',
 'subject-preview'                  => 'Previsão de assunto/título:',
 'blockedtitle'                     => 'O utilizador está bloqueado',
-'blockedtext'                      => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
+'blockedtext'                      => '<big>O seu nome de utilizador ou endereço IP foi bloqueado</big>
 
 O bloqueio foi realizado por $1.
 O motivo apresentado foi \'\'$2\'\'.
@@ -839,11 +839,11 @@ O motivo apresentado foi \'\'$2\'\'.
 * Expiração do bloqueio: $6
 * Destinatário do bloqueio: $7
 
-Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.
+Pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.
 
-Note que para utilizar a funcionalidade "{{MediaWiki:emailpage/pt}}" precisa de ter um endereço de email válido nas suas [[Special:Preferences|preferências de utilizador]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
+Note que para utilizar a funcionalidade "Contactar utilizador" precisa de ter um endereço de email válido nas suas [[Special:Preferences|preferências de utilizador]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
 
-O seu endereço de IP neste momento é $3 e a ID (identificação) do bloqueio é #$5.
+O seu endereço IP neste momento é $3 e a ID de bloqueio é #$5.
 Por favor, inclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio.',
 'autoblockedtext'                  => 'O seu endereço de IP foi bloqueado de forma automática, uma vez que foi utilizado recentemente por outro utilizador, o qual foi bloqueado por $1.
 O motivo apresentado foi:
@@ -854,9 +854,9 @@ O motivo apresentado foi:
 * Expiração do bloqueio: $6
 * Destinatário do bloqueio: $7
 
-Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.
+Pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.
 
-Note que para utilizar a funcionalidade "{{MediaWiki:emailpage/pt}}" precisa de ter um endereço de email válido nas suas [[Special:Preferences|preferências de utilizador]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
+Note que para utilizar a funcionalidade "Contactar utilizador" precisa de ter um endereço de email válido nas suas [[Special:Preferences|preferências de utilizador]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
 
 O seu endereço de IP neste momento é $3 e a ID (identificação) do bloqueio é #$5.
 Por favor, inclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio.',
@@ -874,9 +874,9 @@ Porque não existe uma secção $1, não há nenhum local onde a sua edição po
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Precisa de $1 para poder visualizar outras páginas.',
 'accmailtitle'                     => 'Palavra-chave enviada.',
-'accmailtext'                      => "Uma palavra-chave gerada aleatoriamente para [[User talk:$1|$1]] foi enviada para $2.
+'accmailtext'                      => 'Uma palavra-chave gerada aleatoriamente para [[User talk:$1|$1]] foi enviada para $2.
 
-A palavra-chave para esta nova conta pode ser alterada na página ''[[Special:ChangePassword|{{MediaWiki:changepassword/pt}}]]'' após autenticação.",
+A palavra-chave para esta nova conta pode ser alterada na página [[Special:ChangePassword|alterar palavra-chave]] após autenticação.',
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => "Seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
@@ -1236,8 +1236,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'searcheverything-enable'          => 'Procurar em todos os espaços nominais',
 'searchrelated'                    => 'relacionados',
 'searchall'                        => 'todos',
-'showingresults'                   => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
-'showingresultsnum'                => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
+'showingresults'                   => "Abaixo {{PLURAL:$1|é apresentado '''um''' resultado|são apresentados até '''$1''' resultados}}, começando pelo '''$2'''º.",
+'showingresultsnum'                => "Abaixo {{PLURAL:$3|é apresentado '''um''' resultado|são apresentados '''$3''' resultados}}, começando pelo '''$2'''º.",
 'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1–$2''' de '''$3'''}} para '''$4'''",
 'nonefound'                        => "'''Nota''': Por omissão, apenas alguns dos espaços nominais são pesquisados.
 Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (inclusive páginas de discussão, predefinições, etc.), ou use como prefixo o espaço nominal desejado.",
@@ -1526,7 +1526,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'recentchanges'                     => 'Mudanças recentes',
 'recentchanges-legend'              => 'Opções das mudanças recentes',
 'recentchangestext'                 => 'Acompanhe as mudanças mais recentes em {{SITENAME}} nesta página.',
-'recentchanges-feed-description'    => "Acompanhe as mudanças recentes na wiki através deste ''feed''.",
+'recentchanges-feed-description'    => "Acompanhe as mudanças mais recentes na wiki através deste ''feed''.",
 'recentchanges-label-legend'        => 'Legenda: $1.',
 'recentchanges-legend-newpage'      => '$1 -página nova',
 'recentchanges-label-newpage'       => 'Esta edição criou uma página nova',
@@ -1950,7 +1950,7 @@ Cada linha contém ligações para o primeiro e segundo redirecionamento, bem co
 'log'                  => 'Registos',
 'all-logs-page'        => 'Todos os registos públicos',
 'alllogstext'          => 'Apresentação combinada de todos os registos disponíveis na wiki {{SITENAME}}.
-Pode reduzir a lista escolhendo um tipo de registo, o nome de utilizador (sensível a maiúsculas), ou o título da página afectada (também sensível a maiúsculas).',
+Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um título de página. Respeite maiúsculas e minúsculas.',
 'logempty'             => 'Nenhum item idêntico no registo.',
 'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com tal texto',
 
@@ -2199,7 +2199,7 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'protectexpiry'               => 'Expiração',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
-'protect-unchain'             => 'Desbloquear permissões de moção',
+'protect-unchain-permissions' => 'Desbloquear outras opções de protecção',
 'protect-text'                => "Pode visualizar e alterar aqui o nível de protecção da página '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Não pode alterar níveis de protecção enquanto estiver bloqueado.
 Esta é a configuração presente para a página '''$1''':",

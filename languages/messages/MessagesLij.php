@@ -827,7 +827,6 @@ L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).
 'protectexpiry'               => 'Scadensa:',
 'protect_expiry_invalid'      => 'Scadensa invalida.',
 'protect_expiry_old'          => 'Data de scadensa into passòu.',
-'protect-unchain'             => 'Scollegâ i permissi de stramûo',
 'protect-text'                => "Chì o l'è poscibbile vedde e modificâ o livello de protession pe-a paggina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "No ti g'hæ permisso pe modificâ i livelli de protession da paggina.
 Queste son e impostassioîn correnti pe 'sta paggina ('''$1'''):",

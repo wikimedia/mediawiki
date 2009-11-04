@@ -1061,7 +1061,6 @@ Gade $2 pou wè yon lis efasman resan.',
 'protectexpiry'               => 'Ekspirasyon(Paj an pe ke ekspire si ou pa mete anyen)',
 'protect_expiry_invalid'      => 'Dat ou mete a pou li ekspire pa bon',
 'protect_expiry_old'          => 'dat ekspirasyon an ja pase;',
-'protect-unchain'             => 'Debloàke pèmisyon yo pou renonmen, deplase',
 'protect-text'                => "Ou mèt konsilte epi modifye nivo pwoteksyon paj sa a '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Ou pa genyen dwa ki ap pèmèt ou modifye pwoteksyon paj sa a.
 Men reglaj pou paj '''$1''' an kounye a:",

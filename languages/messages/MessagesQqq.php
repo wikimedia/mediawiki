@@ -2147,7 +2147,6 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'protect-legend'            => 'Legend of the fieldset around the input form of the protection form.',
 'protectcomment'            => '{{Identical|Reason}}',
 'protectexpiry'             => '{{Identical|Expires}}',
-'protect-unchain'           => 'Used for a checkbox to be able to change move permissions. See [[meta:Protect]] for more information.',
 'protect-text'              => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default'           => '{{Identical|Default}}',
 'protect-fallback'          => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',

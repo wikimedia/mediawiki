@@ -1385,7 +1385,6 @@ tu escrucaol pa cargal otra vezi la páhina i güervi a ententalu.",
 'protectexpiry'               => 'Acabiha:',
 'protect_expiry_invalid'      => 'La fecha e cauciá nu es correta.',
 'protect_expiry_old'          => 'La fecha e cauciá está nel pasau.',
-'protect-unchain'             => 'Desatarugal los premisus pa movel páhinas',
 'protect-text'                => "Aquí pueis vel i chambal el nivel de proteción la páhina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Nu pueis chambal los nivelis de proteción mentris estés atarugau. Velaquí las ocionis atulais la páhina '''$1''':",
 'protect-locked-dblock'       => "Nu se puein chambal los nivelis de proteción ebiu a un tarugu ativu ena basi e datus.

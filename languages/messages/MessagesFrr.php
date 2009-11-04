@@ -489,7 +489,6 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'protectexpiry'               => 'Spärduur:',
 'protect_expiry_invalid'      => 'Jü önjjääwen duur as üngülti.',
 'protect_expiry_old'          => 'Jü spärtid lait in jü jütid.',
-'protect-unchain'             => 'Ferschüweschüts änre',
 'protect-text'                => 'Heer koost dü e schütsstatus for jü sid "$1" önjkiike än änre.',
 'protect-locked-access'       => "Din brükerkonto ferfäiget ai ouer da nüsie ruchte tu jü änring foon e sideschüts. Heer san da aktuäle sideschütsönjstalinge fon jü sid '''„$1“:'''",
 'protect-cascadeon'           => 'Jüdeer sid as nütutids diilj foon e kaskaadenspäre. Jü as önj {{PLURAL:$1|jü füliende sid|da füliende side}} önjbünen, huk döör jü kaskaadenspäropsjoon schütsed {{PLURAL:$1|as|san}}. Di sideschütsstatus koon for jüdeer sid änred wårde, dåtdeer heet ouers nån influs aw jü kaskaadenspäre:',

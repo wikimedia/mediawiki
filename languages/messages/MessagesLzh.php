@@ -1747,7 +1747,6 @@ $NEWPAGE
 'protectexpiry'               => '屆期',
 'protect_expiry_invalid'      => '屆期不明。',
 'protect_expiry_old'          => '屆期已過。',
-'protect-unchain'             => '准遷之',
 'protect-text'                => "緘捆'''<nowiki>$1</nowiki>'''。",
 'protect-locked-blocked'      => "簿禁，'''$1'''緘昔如下：",
 'protect-locked-dblock'       => "庫鎖，'''$1'''緘昔如下：",
