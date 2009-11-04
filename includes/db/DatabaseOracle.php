@@ -419,7 +419,7 @@ class DatabaseOracle extends DatabaseBase {
 		if (!is_array($options))
 			$options = array($options);
 
-    if (in_array('IGNORE', $options))
+		if (in_array('IGNORE', $options))
 			$this->ignore_DUP_VAL_ON_INDEX = true;
 
 		if (!is_array(reset($a))) {
@@ -648,6 +648,8 @@ class DatabaseOracle extends DatabaseBase {
 			$rows = array($rows);
 		}
 
+		$sequenceData = $this->getSequenceData($table);
+
 		foreach( $rows as $row ) {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
@@ -677,6 +679,9 @@ class DatabaseOracle extends DatabaseBase {
 				$sql .= ')';
 				$this->query( $sql, $fname );
 			}
+
+			if ($sequenceData !== false && !isset($row[$sequenceData['column']]))
+				$row[$sequenceData['column']] = $this->nextSequenceValue($sequenceData['sequence']);
 
 			# Now insert the row
 			$this->insert( $table, $row, $fname );
