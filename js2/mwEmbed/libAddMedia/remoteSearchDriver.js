@@ -262,17 +262,21 @@ remoteSearchDriver.prototype = {
 		   _this.getTexboxSelection();
 
 		//modify the content provider config based on options: 		
-		for(var i in this.content_providers){				
-			if( $j.inArray(i, _this.enabled_cps) != -1 ){
-				//if no default display set to first enabled cp: 
-				if( !this.disp_item )
-					this.disp_item = i;
-				this.content_providers[i].enabled = true;
+		for(var i in this.content_providers){		
+			if(	_this.enabled_cps == 'all' && !this.disp_item  ){	
+				this.disp_item = i; 
 			}else{
-				if( _this.enabled_cps != 'all' ){
-					this.content_providers[i].enabled = false;
-				}
-			}		
+				if( $j.inArray(i, _this.enabled_cps) != -1 ){
+					//if no default display set to first enabled cp: 
+					if( !this.disp_item )
+						this.disp_item = i;
+					this.content_providers[i].enabled = true;
+				}else{
+					if( _this.enabled_cps != 'all' ){
+						this.content_providers[i].enabled = false;
+					}
+				}		
+			}
 		}
 			
 		//set the upload target name if unset
