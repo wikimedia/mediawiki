@@ -1751,7 +1751,7 @@ $wgMessageStructure = array(
 		'protectexpiry',
 		'protect_expiry_invalid',
 		'protect_expiry_old',
-		'protect-unchain',
+		'protect-unchain-permissions',
 		'protect-text',
 		'protect-locked-blocked',
 		'protect-locked-dblock',

@@ -96,6 +96,7 @@ Hopefully we will remove this configuration var soon)
 * $wgEnableHtmlDiff has been removed
 * (bug 3340) $wgBlockCIDRLimit added (default: 16) to configure the low end of
   CIDR ranges for blocking
+* Added upload by default to $wgRestrictionTypes
 
 === New features in 1.16 ===
 
@@ -617,6 +618,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 19859) Removed experimental HTMLDiff feature
 * Removed section edit links in edit conflict form
 * Allow SpecialActiveusers to work on non-MySQL databases
+* (bug 6579) Fixed protecting images from uploading only 
 
 == API changes in 1.16 ==
 
