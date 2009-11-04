@@ -209,7 +209,7 @@ class ApiUpload extends ApiBase {
 		$result = array();
 		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
 		if( $permErrors !== true ) {
-			$this->dieUsageMsg( array( 'baddaccess-groups' ) );
+			$this->dieUsageMsg( array( 'badaccess-groups' ) );
 		}
 
 		// TODO: Move them to ApiBase's message map
