@@ -208,8 +208,7 @@ class DatabaseOracle extends DatabaseBase {
 		return true;
 	}
 
-	static function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0)
+	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 )
 	{
 		return new DatabaseOracle( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
@@ -289,7 +288,9 @@ class DatabaseOracle extends DatabaseBase {
 		$union_unique = (preg_match('/\/\* UNION_UNIQUE \*\/ /', $sql) != 0);
 		//EXPLAIN syntax in Oracle is EXPLAIN PLAN FOR and it return nothing
 		//you have to select data from plan table after explain
+		$olderr = error_reporting(E_ERROR);
 		$explain_id = date('dmYHis');
+		error_reporting($olderr);
 		$sql = preg_replace('/^EXPLAIN /', 'EXPLAIN PLAN SET STATEMENT_ID = \''.$explain_id.'\' FOR', $sql, 1, $explain_count);
 			
 		
@@ -446,33 +447,30 @@ class DatabaseOracle extends DatabaseBase {
 		$first = true;
 		foreach ($row as $col => $val) {
 			if ($first)
-				$sql .= ':'.$col;
+				$sql .= $val !== NULL ? ':'.$col : 'NULL';
 			else
-				$sql.= ', :'.$col;
+				$sql .= $val !== NULL ? ', :'.$col : ', NULL';
 			
 			$first = false;
 		}
 		$sql .= ')';
 
-		$stmt = oci_parse($this->mConn, $sql);
-		foreach ($row as $col => $val) {
-			if (!is_object($val)) {
-				if (oci_bind_by_name($stmt, ":$col", $row[$col]) === false)
-					$this->reportQueryError($this->lastErrno(), $this->lastError(), $sql, __METHOD__);
-			}
-		}
 		
 		$stmt = oci_parse($this->mConn, $sql);
-		foreach ($row as $col => $val) {
+		foreach ($row as $col => &$val) {
 			$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
-			if ($col_type != 'BLOB' && $col_type != 'CLOB') {
+			
+			if ($val === NULL) {
+				// do nothing ... null was inserted in statement creation
+			} elseif ($col_type != 'BLOB' && $col_type != 'CLOB') {
 				if (is_object($val))
 					$val = $val->getData();
-				
+			
 				if (preg_match('/^timestamp.*/i', $col_type) == 1 && strtolower($val) == 'infinity') 
 					$val = '31-12-2030 12:00:00.000000';
 				
-				if (oci_bind_by_name($stmt, ":$col", $wgLang->checkTitleEncoding($val)) === false)
+				$val = $wgLang->checkTitleEncoding($val);
+				if (oci_bind_by_name($stmt, ":$col", $val) === false)
 					$this->reportQueryError($this->lastErrno(), $this->lastError(), $sql, __METHOD__);
 			} else {
 				if (($lob[$col] = oci_new_descriptor($this->mConn, OCI_D_LOB)) === false) {
@@ -489,7 +487,7 @@ class DatabaseOracle extends DatabaseBase {
 				}
 			}
 		}
-		
+
 		$olderr = error_reporting(E_ERROR);
 		if (oci_execute($stmt, OCI_DEFAULT) === false) {
 			$e = oci_error($stmt);
@@ -720,14 +718,14 @@ class DatabaseOracle extends DatabaseBase {
 		return $size;
 	}
 
-	function limitResult($sql, $limit, $offset) {
+	function limitResult( $sql, $limit, $offset=false ) {
 		if ($offset === false)
 			$offset = 0;
 		return "SELECT * FROM ($sql) WHERE rownum >= (1 + $offset) AND rownum < (1 + $limit + $offset)";
 	}
 
 
-	function unionQueries($sqls, $all = false) {
+	function unionQueries($sqls, $all) {
 		$glue = ' UNION ALL ';
 		return 'SELECT * '.($all?'':'/* UNION_UNIQUE */ ').'FROM ('.implode( $glue, $sqls ).')' ;
 	}
@@ -801,7 +799,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * Query whether a given column exists in the mediawiki schema
 	 * based on prebuilt table to simulate MySQL field info and keep query speed minimal
 	 */
-	function fieldExists( $table, $field ) {
+	function fieldExists( $table, $field, $fname = 'DatabaseOracle::fieldExists' ) {
 		if (!isset($this->fieldInfo_stmt))
 			$this->fieldInfo_stmt = oci_parse($this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name = upper(:tab) and column_name = UPPER(:col)');
 
@@ -821,7 +819,8 @@ class DatabaseOracle extends DatabaseBase {
 		if (!isset($this->fieldInfo_stmt))
 			$this->fieldInfo_stmt = oci_parse($this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name = upper(:tab) and column_name = UPPER(:col)');
 
-		oci_bind_by_name($this->fieldInfo_stmt, ':tab', trim($table, '"'));
+		$table = trim($table, '"');
+		oci_bind_by_name($this->fieldInfo_stmt, ':tab', $table);
 		oci_bind_by_name($this->fieldInfo_stmt, ':col', $field);
 
 		if (oci_execute($this->fieldInfo_stmt, OCI_DEFAULT) === false) {
