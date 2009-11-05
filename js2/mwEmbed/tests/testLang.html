@@ -10,7 +10,7 @@ td{
 <script type="text/javascript" >
 var scriptLoaderURID = 't11';
 //for just setting one or two to test at a time for debug
-var langKeyDebug = ['fr'];
+var langKeyDebug = [ 'az', 'da', 'pt', 'fr', 'lv',c 'en'];
 
 //shortLangKey is an array of at least one language from every group in cldrConverter.php
 var langKeyGroups = ['en','az', 'da', 'pt', 'fr', 'lv', 'ga','hr','cy','mk','mt','pl','sl'];
@@ -177,7 +177,7 @@ var langKeyAll = [
 
 js2AddOnloadHook( function(){
 	//do mauall script loaders calls to test multiple languages:
-	function doLangTable(langSet){		
+	function doLangTable( langSet ){		
 		//build table output: 
 		var msgTestSet = { 												
 			'undelete_short': [ 0, 1, 2, 5, 21, 30 ],			
@@ -192,11 +192,11 @@ js2AddOnloadHook( function(){
 		var passTest=0;
 		var failTest=0;
 		var testCount=0;	
-		$j.each(langSet, function(na, langKey){					
-			js_log('load language key: ' + langKey);			
-			//do a manual call to the script-lodaer:
-			js_log('do load: ' + '../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&uselang='+langKey );
-			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&uselang='+langKey, function(){
+		
+					
+		//do a manual call to the script-lodaer:
+		function doProcLangKey(langKey){			
+			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&uselang='+langKey, function(){			
 				var o='';
 				o+='<tr><td colspan="6" height="20" style="font-size:large"><b>Lang:' + langKey + '</b></td></tr>';		
 				//now for each langage msg: 
@@ -236,7 +236,7 @@ js2AddOnloadHook( function(){
 								do_api_req({
 									'data': {
 										'action' : 'parse',
-										'uselang' : 'fr',
+										'uselang' : langKey,
 										'text' : '{{int:' + mKey + '|' + msgparam + '}}'
 									},
 									'url' : '../../../api.php'					
@@ -266,6 +266,10 @@ js2AddOnloadHook( function(){
 											var failHtlm = (failTest == 0)?failTest: '<span style="color:red">'+ failTest+'</span>';
 											$j('#score_card').html( 
 												'Passed: <span style="color:green">' + passTest + '</span> Failed:' + failHtlm );
+												
+											//done with this lang... call outer function if we have lang keys left to proccess:
+											if(langSet.length!=0)
+												doProcLangKey( langSet.pop() );		
 										}			
 									}else{
 										$t.html(' error ');
@@ -281,9 +285,10 @@ js2AddOnloadHook( function(){
 					o+='<tr><td colspan="6" height="20"> </td></tr>';			
 				});
 				//put the output into the page: 
-				$j('#table_out').append( o );
-			});
-		});// each lang key
+				$j('#table_out').append( o );								
+			});			
+		}//procc lang key:
+		doProcLangKey( langSet.pop() );
 	}
 	//by default run the "debug" set:
 	doLangTable( langKeyDebug );
