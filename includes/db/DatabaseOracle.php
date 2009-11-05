@@ -276,9 +276,9 @@ class DatabaseOracle extends DatabaseBase {
 
 	function doQuery($sql) {
 		wfDebug("SQL: [$sql]\n");
-		if (!mb_check_encoding($sql)) {
-			throw new MWException("SQL encoding is invalid");
-		}
+//		if (!mb_check_encoding($sql)) {
+//			throw new MWException("SQL encoding is invalid\n$sql");
+//		}
 
 		//handle some oracle specifics
 		//remove AS column/table/subquery namings
@@ -478,8 +478,8 @@ class DatabaseOracle extends DatabaseBase {
 					throw new DBUnexpectedError($this, "Cannot create LOB descriptor: " . $e['message']);
 				}
 					
-				if (is_object($val)) {
-					$lob[$col]->writeTemporary($val->getData());
+				if ($col_type == 'BLOB') { //is_object($val)) {
+					$lob[$col]->writeTemporary($val); //->getData());
 					oci_bind_by_name($stmt, ":$col", $lob[$col], -1, SQLT_BLOB);
 				} else {
 					$lob[$col]->writeTemporary($val);
@@ -952,13 +952,14 @@ class DatabaseOracle extends DatabaseBase {
 		return str_replace("'", "''", $s);
 	}
 
+/*
 	function encodeBlob($b) {
-		return new ORABlob($b);
+		return $b; //new ORABlob($b);
 	}
 	function decodeBlob($b) {
 		return $b; //return $b->load();
 	}
-
+*/
 	function addQuotes( $s ) {
 		global $wgLang;
 		if (isset($wgLang->mLoaded) && $wgLang->mLoaded)
