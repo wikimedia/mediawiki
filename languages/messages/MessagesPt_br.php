@@ -725,6 +725,7 @@ A sua senha temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
 
 Se foi outra pessoa quem fez este pedido, ou se você já lembrou a sua senha, e não quer mais alterá-la, você pode ignorar esta mensagem e continuar utilizando sua senha antiga.',
 'noemail'                    => 'Não há um endereço de e-mail associado ao usuário "$1".',
+'noemailcreate'              => 'Você precisa fornecer um endereço de e-mail válido',
 'passwordsent'               => 'Uma nova senha está sendo enviada para o endereço de e-mail registrado para "$1".
 Por favor, reconecte-se ao recebê-lo.',
 'blocked-mailpassword'       => 'O seu endereço de IP foi bloqueado de editar e, portanto, não será possível utilizar o lembrete de senha (para serem evitados envios abusivos a outras pessoas).',
@@ -860,6 +861,9 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 'noarticletext'                    => 'Atualmente não existe texto nesta página.
 Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar nos registros relacionados],
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta página]</span>.',
+'noarticletext-nopermission'       => 'Não há actualmente texto nesta página.
+Você pode [[Special:Search/{{PAGENAME}}|procurar este título de página]] em outras páginas,
+ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} procurar os registos relacionados] </span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'Conta de usuário "$1" não está registrada.',
 'clearyourcache'                   => "'''Nota - Depois de salvar, você terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
@@ -1030,6 +1034,9 @@ Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de supressão].
 Por ser um administrador, você ainda pode [$1 ver estas diferenças], se desejar prosseguir.",
+'rev-suppressed-unhide-diff'  => "Uma das revisões deste diferencial foi '''suprimido'''.
+Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
+Como administrador você pode ainda [$1 pode ver o diferencial] se desejar prosseguir.",
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'     => 'Nenhuma revisão selecionada',
@@ -1423,6 +1430,7 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'right-reset-passwords'       => 'Redefinir a senha de outros usuários',
 'right-override-export-depth' => 'Export páginas incluindo páginas ligadas até uma profundidade de 5 ligações',
 'right-versiondetail'         => "Mostrar informação ampliada sobre a versão do ''software''.",
+'right-sendemail'             => 'Enviar email a outros usuários',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
@@ -1627,6 +1635,7 @@ PICT # misc.
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
+'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
 'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na lista branca.',
 'img-auth-nofile'       => 'Arquivo "$1" não existe.',
 'img-auth-isdir'        => 'Você está tentando acessar o diretório "$1".

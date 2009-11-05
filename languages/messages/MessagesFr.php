@@ -2217,6 +2217,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protectexpiry'               => 'Date d’expiration :',
 'protect_expiry_invalid'      => 'La date d’expiration est invalide.',
 'protect_expiry_old'          => 'La date d’expiration est déjà passée.',
+'protect-unchain-permissions' => "Déverrouiller davantage d'options de protection",
 'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Vous ne pouvez pas modifier les niveaux de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
 Voici les réglages actuels de la page '''$1''' :",
@@ -2862,7 +2863,8 @@ $1',
 'nextdiff'     => 'Modification suivante →',
 
 # Media information
-'mediawarning'         => "'''Attention :''' ce fichier pourrait contenir du code malveillant, votre système pouvant être compromis lors de son exécution.<hr />",
+'mediawarning'         => "'''Attention :''' ce type de fichier peut contenir du code malveillant.
+Si vous l'exécutez, votre système peut être compromis.<hr />",
 'imagemaxsize'         => "Format maximal des images :<br />''(pour les pages de description d’images)''",
 'thumbsize'            => 'Taille de la miniature :',
 'widthheightpage'      => '$1 × $2, $3 page{{PLURAL:$3||s}}',

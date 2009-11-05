@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -921,7 +921,7 @@ $2',
 'rev-suppressed-diff-view'    => "差異中的一次修訂已被'''廢止'''。
 作為管理員，您可以查看此差異。詳細訊息可在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]中找到。",
 'rev-delundel'                => '顯示/隱藏',
-'rev-showdeleted'             => '顯示',		
+'rev-showdeleted'             => '顯示',
 'revisiondelete'              => '刪除/恢復刪除修訂',
 'revdelete-nooldid-title'     => '無效的目標修訂',
 'revdelete-nooldid-text'      => '您尚未指定一個目標修訂去進行這個功能、
@@ -937,7 +937,7 @@ $2',
 'logdelete-selected'          => "'''選取'''$1'''的日誌項目:'''",
 'revdelete-text'              => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
 在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
-'revdelete-confirm'           => "請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
+'revdelete-confirm'           => '請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
 'revdelete-suppress-text'     => "壓制'''只'''應在以下的情況下進行:
 * 不合適的個人資料
 *: ''住家地址、電話號碼、社群保安號碼等。''",

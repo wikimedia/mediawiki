@@ -1566,6 +1566,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'destfilename'                => 'Målfilnamn:',
 'upload-maxfilesize'          => 'Maksimal filstorleik: $1',
 'upload-description'          => 'Filskildring',
+'upload-options'              => 'Val for opplasting',
 'watchthisupload'             => 'Overvak denne fila',
 'filewasdeleted'              => 'Ei fil med dette namnet har tidlegare vore lasta opp og sletta. Du bør sjekke $1 før du prøvar å laste henne opp att.',
 'upload-wasdeleted'           => "'''Åtvaring: Du nyopplastar ei fil som tidlegare har vorte sletta.'''
@@ -1899,6 +1900,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 
 # Special:ActiveUsers
 'activeusers'          => 'Liste over aktive brukarar',
+'activeusers-intro'    => 'Dette er ei liste over brukarar som har hatt ei eller anna form for aktivitet innanfor {{PLURAL:$1|den siste dagen|dei siste dagane}}.',
 'activeusers-count'    => '{{PLURAL:$1|Éi endring|$1 endringer}} {{PLURAL:$3|det siste dygnet|dei siste $3 dygna}}',
 'activeusers-from'     => 'Vis brukarar frå og med:',
 'activeusers-noresult' => 'Ingen brukarar funne.',
@@ -2274,6 +2276,7 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'ipblocklist-sh-tempblocks'       => '$1 mellombelse blokkeringar',
 'ipblocklist-sh-addressblocks'    => '$1 blokkeringar av individuelle IP-adresser',
 'ipblocklist-submit'              => 'Søk',
+'ipblocklist-localblock'          => 'Lokal blokkering',
 'blocklistline'                   => '$1, $2 blokkerte $3 ($4)',
 'infiniteblock'                   => 'uendeleg opphøyrstid',
 'expiringblock'                   => 'endar den $1 ved $2',
@@ -2410,6 +2413,8 @@ Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flyttin
 'move-leave-redirect'          => 'La det vere att ei omdirigering',
 'protectedpagemovewarning'     => "'''ÅTVARING:''' Denne sida har vorte låst, slik at berre brukarar med rettar som administrator kan flytta henne.",
 'semiprotectedpagemovewarning' => "'''Notér:''' Denne sida har vorte låst, slik at berre registrerte brukarar kan flytta henne.",
+'file-exists-sharedrepo'       => 'Det valde filnamnet er allereie i bruk på ei delt kjelde.
+Ver venleg og velg eit anna namn.',
 
 # Export
 'export'            => 'Eksporter sider',
