@@ -23,7 +23,7 @@ function doPageSpecificRewrite() {
 	}
 
 	// Firefogg integration
-	if( wgPageName == "Special:Upload" ){
+	if( wgPageName == "Special:Upload" ){		
 		load_mv_embed( function() {
 			loadExternalJs( mwEmbedHostPath + '/uploadPage.js' + reqAguments );
 		} );
@@ -128,20 +128,17 @@ function getRemoteEmbedPath() {
 	}
 }
 
-function load_mv_embed( callback ) {
-	if(console.log)
-		console.log( 'load_mv_embed');
+function load_mv_embed( callback ) {	
 	// Inject mv_embed if needed
-	if( typeof mvEmbed == 'undefined' ) {
-		importScriptURI( mwEmbedHostPath + '/mwEmbed/mv_embed.js' + reqAguments );
-		check_for_mv_embed( callback );
-	} else {
-		check_for_mv_embed( callback );
+	if( typeof $mw == 'undefined' ) {
+		var mvurl = mwEmbedHostPath + '/mwEmbed/mv_embed.js' + reqAguments ;
+		importScriptURI( mvurl );		
 	}
+	check_for_mv_embed( callback );
 }
 
 function check_for_mv_embed( callback ) {
-	if( typeof MV_EMBED_VERSION == 'undefined' ) {
+	if( typeof $mw == 'undefined' ) {
 		setTimeout( function(){
 			check_for_mv_embed( callback );
 		}, 25 );
