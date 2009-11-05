@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -855,6 +855,7 @@ $1',
 'histlegend'             => "選擇唔同版本：響兩個唔同版本嘅圓框分別撳一下，再撳最底的「比較被選修訂」掣以作比較。<br />
 說明：'''（{{int:cur}}）'''= 同現時修訂版本嘅差別，'''（{{int:last}}）'''= 同前一個修訂版本嘅差別，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
+'history-show-deleted'   => '只顯示刪除咗嘅',
 'histfirst'              => '最早',
 'histlast'               => '最近',
 'historysize'            => '($1 {{PLURAL:$1|byte|bytes}})',
@@ -894,7 +895,12 @@ $1',
 'rev-suppressed-unhide-diff'  => "呢頁嘅其中一次修訂已經'''廢止咗'''。
 喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
+'rev-deleted-diff-view'       => "呢個差異嘅其中一次修訂已經'''刪除咗'''。
+作為管理員你可以去睇呢個差異；喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+'rev-suppressed-diff-view'    => "呢個差異嘅其中一次修訂已經'''廢止咗'''。
+作為管理員你可以去睇呢個差異；喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。",
 'rev-delundel'                => '顯示／隱藏',
+'rev-showdeleted'             => '顯示',
 'revisiondelete'              => '刪除／反刪除修訂',
 'revdelete-nooldid-title'     => '無效嘅目標修訂',
 'revdelete-nooldid-text'      => '講清用邊個修訂去做呢樣嘢、
@@ -910,6 +916,7 @@ $1',
 'logdelete-selected'          => "'''揀[[:$1]]嘅日誌事件：'''",
 'revdelete-text'              => "'''刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，但係佢哋嘅文字內容係唔可以供公眾瀏覽。'''
 其他喺{{SITENAME}}嘅管理員仍然可以睇已經隱藏咗嘅內容，同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。",
+'revdelete-confirm'           => '請確認你肯定去做嘅話，你就要明白到後果，同埋呢個程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
 'revdelete-suppress-text'     => "壓制'''只'''應該響下面嘅情況之下進行:
 * 唔合適嘅個人資料
 *: ''屋企地址、電話號碼、社群保安號碼等。''",
@@ -923,7 +930,7 @@ $1',
 'revdelete-hide-image'        => '隱藏資料內容',
 'revdelete-unsuppress'        => '響已經恢復咗嘅修訂度移除限制',
 'revdelete-log'               => '記錄註解：',
-'revdelete-submit'            => '應用到已經選取嘅修訂',
+'revdelete-submit'            => '應用到已經選取嘅{{PLURAL:$1|修訂}}',
 'revdelete-logentry'          => '已經更改[[$1]]嘅修訂可見性',
 'logdelete-logentry'          => '已經更改[[$1]]嘅事件可見性',
 'revdelete-success'           => "'''修訂可見性已經成功噉設定。'''",
@@ -1383,6 +1390,7 @@ $1",
 'upload'                      => '上載檔案',
 'uploadbtn'                   => '上載檔案',
 'reuploaddesc'                => '取消上載再返到去上載表格',
+'upload-tryagain'             => '遞交改咗嘅檔案描述',
 'uploadnologin'               => '重未登入',
 'uploadnologintext'           => '你必須先[[Special:UserLogin|登入]]去上載檔案。',
 'upload_directory_missing'    => '嗰個上載嘅目錄 ($1) 唔見咗，唔可以由網頁伺服器建立。',
@@ -1442,6 +1450,7 @@ $1",
 'file-deleted-duplicate'      => '一個同名嘅檔案 ([[$1]]) 響之前刪除過。你應該響重新上載之前檢查一下嗰個檔案嘅刪除紀錄。',
 'successfulupload'            => '成功嘅上載',
 'uploadwarning'               => '上載警告',
+'uploadwarning-text'          => '請修改下面嘅檔案描述再重試。',
 'savefile'                    => '儲存檔案',
 'uploadedimage'               => '上載咗"[[$1]]"',
 'overwroteimage'              => '已經上載咗"[[$1]]"嘅新版本',
@@ -1916,7 +1925,7 @@ wiki: $PAGEEDITOR_WIKI
 'exblank'                => '頁面之前係空嘅',
 'delete-confirm'         => '刪除"$1"',
 'delete-legend'          => '刪除',
-'historywarning'         => '警告：你要刪除嘅頁面有歷史版本：',
+'historywarning'         => '警告：你要刪除嘅頁面有$1次修訂嘅歷史版本：',
 'confirmdeletetext'      => '你準備刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
 請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
@@ -1968,6 +1977,7 @@ wiki: $PAGEEDITOR_WIKI
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '到期時間唔正確。',
 'protect_expiry_old'          => '到期時間係響之前過去嘅。',
+'protect-unchain-permissions' => '解除更多嘅保護選項',
 'protect-text'                => "你可以喺呢度睇到同修改頁面'''<nowiki>$1</nowiki>'''嘅保護等級。",
 'protect-locked-blocked'      => "當你響被封鎖嗰陣唔可以改呢版嘅保護等級。
 呢個係'''$1'''版嘅現時設定：",
@@ -2162,6 +2172,8 @@ $1',
 'ipblocklist-sh-tempblocks'       => '$1次暫時封鎖',
 'ipblocklist-sh-addressblocks'    => '$1次單IP封鎖',
 'ipblocklist-submit'              => '搵',
+'ipblocklist-localblock'          => '本地封鎖',
+'ipblocklist-otherblocks'         => '其它{{PLURAL:$1|封鎖|封鎖}}',
 'blocklistline'                   => '$1，$2已經封鎖咗$3（$4）',
 'infiniteblock'                   => '不設期限',
 'expiringblock'                   => '$1 $2 期滿',
@@ -2198,6 +2210,7 @@ $1',
 'ipb_already_blocked'             => '"$1"已經封鎖咗',
 'ipb-needreblock'                 => '== 已經封鎖咗 ==
 $1已經被封鎖。你係咪想更改呢個設定？',
+'ipb-otherblocks-header'          => '其它{{PLURAL:$1|封鎖|封鎖}}',
 'ipb_cant_unblock'                => '錯誤：搵唔到封鎖ID$1。可能已經解封咗。',
 'ipb_blocked_as_range'            => '錯誤：個IP $1 無直接封鎖，唔可以解封。但係佢係響 $2 嘅封鎖範圍之內，嗰段範圍係可以解封嘅。',
 'ip_range_invalid'                => '無效嘅IP範圍',
@@ -2303,6 +2316,10 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'move-leave-redirect'          => '留底跳轉',
 'protectedpagemovewarning'     => "'''警告：'''呢一版已經鎖咗，淨係得有管理員權限嘅用戶先至可以去搬佢。",
 'semiprotectedpagemovewarning' => "'''留意：'''呢一版已經鎖咗，淨係畀註冊咗嘅用戶去搬佢。",
+'move-over-sharedrepo'         => '== 檔案已經存在 ==
+[[:$1]]已經響共有資源存在，將檔案移動到呢個標題會覆蓋共有資源度嘅檔案。',
+'file-exists-sharedrepo'       => '同名檔案已於共享資源存在。
+請選擇另一個檔名。',
 
 # Export
 'export'            => '倒出/導出/匯出（Export）頁面',

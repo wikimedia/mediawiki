@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -879,6 +879,7 @@ $2',
 'histlegend'             => "差異選擇: 標記要比較修訂版本的單選按鈕並點擊底部的按鈕進行比較。<br />
 說明: '''（{{int:cur}}）''' 指與當前修訂版本比較，'''（{{int:last}}）''' 指與前一個修訂修訂版本比較，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
+'history-show-deleted'   => '僅已刪除的',
 'histfirst'              => '最早版本',
 'histlast'               => '最新版本',
 'historysize'            => '（$1 位元組）',
@@ -915,7 +916,12 @@ $2',
 'rev-suppressed-unhide-diff'  => "該頁面的其中一次修訂已經被'''廢止'''。
 在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]中可能有更多的資料。
 作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
+'rev-deleted-diff-view'       => "差異中的一次修訂已被'''刪除'''。
+作為管理員，您可以查看此差異。詳細訊息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中找到。",
+'rev-suppressed-diff-view'    => "差異中的一次修訂已被'''廢止'''。
+作為管理員，您可以查看此差異。詳細訊息可在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]中找到。",
 'rev-delundel'                => '顯示/隱藏',
+'rev-showdeleted'             => '顯示',		
 'revisiondelete'              => '刪除/恢復刪除修訂',
 'revdelete-nooldid-title'     => '無效的目標修訂',
 'revdelete-nooldid-text'      => '您尚未指定一個目標修訂去進行這個功能、
@@ -931,6 +937,7 @@ $2',
 'logdelete-selected'          => "'''選取'''$1'''的日誌項目:'''",
 'revdelete-text'              => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
 在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
+'revdelete-confirm'           => "請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
 'revdelete-suppress-text'     => "壓制'''只'''應在以下的情況下進行:
 * 不合適的個人資料
 *: ''住家地址、電話號碼、社群保安號碼等。''",
@@ -944,7 +951,7 @@ $2',
 'revdelete-hide-image'        => '隱藏檔案內容',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
 'revdelete-log'               => '日誌註釋：',
-'revdelete-submit'            => '應用於選取的修訂',
+'revdelete-submit'            => '應用於選取的{{PLURAL:$1|修訂}}',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
 'revdelete-success'           => "'''修訂的可見性已經成功設定。'''",
@@ -1404,6 +1411,7 @@ $1",
 'upload'                      => '上傳檔案',
 'uploadbtn'                   => '上傳檔案',
 'reuploaddesc'                => '取消上載並返回上載表單',
+'upload-tryagain'             => '提交修改後的檔案描述',
 'uploadnologin'               => '未登入',
 'uploadnologintext'           => '您必須先[[Special:UserLogin|登入]]
 才能上載檔案。',
@@ -1468,6 +1476,7 @@ $1",
 'file-deleted-duplicate'      => '一個相同名稱的檔案 （[[$1]]） 在先前刪除過。您應該在重新上傳之前檢查一下該檔案之刪除紀錄。',
 'successfulupload'            => '上傳成功',
 'uploadwarning'               => '上載警告',
+'uploadwarning-text'          => '請修改以下的檔案描述並重試。',
 'savefile'                    => '保存檔案',
 'uploadedimage'               => '已上載"[[$1]]"',
 'overwroteimage'              => '已經上載"[[$1]]"的新版本',
@@ -1955,7 +1964,7 @@ $NEWPAGE
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
 'delete-legend'          => '刪除',
-'historywarning'         => '警告: 您將要刪除的頁內含有歷史',
+'historywarning'         => '警告: 您將要刪除的頁內含有$1次修訂的歷史',
 'confirmdeletetext'      => '您即將刪除一個頁面或圖像以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
@@ -2007,6 +2016,7 @@ $NEWPAGE
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '輸入的終止時間無效。',
 'protect_expiry_old'          => '終止時間已過去。',
+'protect-unchain-permissions' => '解除鎖定更多的保護選項',
 'protect-text'                => "{{GENDER:|你|妳|你}}可以在這裡瀏覽和修改對頁面'''<nowiki>$1</nowiki>'''的保護級別。",
 'protect-locked-blocked'      => "您不能在被查封時更改保護級別。
 以下是'''$1'''現時的保護級別:",
@@ -2201,6 +2211,8 @@ $1',
 'ipblocklist-sh-tempblocks'       => '$1次臨時封鎖',
 'ipblocklist-sh-addressblocks'    => '$1次單IP封鎖',
 'ipblocklist-submit'              => '搜尋',
+'ipblocklist-localblock'          => '本地封鎖',
+'ipblocklist-otherblocks'         => '其它{{PLURAL:$1|封鎖|封鎖}}',
 'blocklistline'                   => '$1，$2禁封$3 （$4）',
 'infiniteblock'                   => '永久',
 'expiringblock'                   => '$1 $2 到期',
@@ -2238,6 +2250,7 @@ $1被封禁的理由是“$2”',
 'ipb_already_blocked'             => '已經封鎖"$1"',
 'ipb-needreblock'                 => '== 已經封鎖 ==
 $1已經被封鎖。您是否想更改這個設定？',
+'ipb-otherblocks-header'          => '其它{{PLURAL:$1|封鎖|封鎖}}',
 'ipb_cant_unblock'                => '錯誤: 找不到查封ID$1。可能已經解除封禁。',
 'ipb_blocked_as_range'            => '錯誤: 該IP $1 無直接查封，不可以解除封禁。但是它是在 $2 的查封範圍之內，該段範圍是可以解除封禁的。',
 'ip_range_invalid'                => '無效的IP範圍。',
@@ -2350,6 +2363,10 @@ $1已經被封鎖。您是否想更改這個設定？',
 'move-leave-redirect'          => '留下重新定向',
 'protectedpagemovewarning'     => "'''警告：'''這個頁面已經被鎖上，只有擁有管理員權限的用戶才可以移動它。",
 'semiprotectedpagemovewarning' => "'''注意：'''這個頁面已經被鎖上，只有已經註冊的用戶才可以移動它。",
+'move-over-sharedrepo'         => '== 檔案已存在 ==
+[[:$1]]已於共享資源存在，將檔案移動到此標題會覆蓋共享資源中的檔案。',
+'file-exists-sharedrepo'       => '同名檔案已於共享資源存在。
+請選擇另一個檔案名。',
 
 # Export
 'export'            => '匯出頁面',
