@@ -32,10 +32,9 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * todo: check if these should be true like parent class
+	 * @todo: check if it should be true like parent class
 	 */
 	function implicitGroupby()   { return false; }
-	function implicitOrderby()   { return false; }
 
 	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 ) {
 		return new DatabaseSqlite( $server, $user, $password, $dbName, $failFunction, $flags );
