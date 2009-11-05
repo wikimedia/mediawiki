@@ -276,9 +276,9 @@ class DatabaseOracle extends DatabaseBase {
 
 	function doQuery($sql) {
 		wfDebug("SQL: [$sql]\n");
-//		if (!mb_check_encoding($sql)) {
-//			throw new MWException("SQL encoding is invalid\n$sql");
-//		}
+		if (!mb_check_encoding($sql)) {
+			throw new MWException("SQL encoding is invalid\n$sql");
+		}
 
 		//handle some oracle specifics
 		//remove AS column/table/subquery namings
@@ -653,6 +653,11 @@ class DatabaseOracle extends DatabaseBase {
 		foreach( $rows as $row ) {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
+				$condsDelete = array();
+				foreach ( $uniqueIndexes as $index )
+					$condsDelete[$index] = $row[$index];
+				$this->delete( $table, $condsDelete, $fname);
+/*
 				$sql = "DELETE FROM $table WHERE ";
 				$first = true;
 				foreach ( $uniqueIndexes as $index ) {
@@ -677,7 +682,9 @@ class DatabaseOracle extends DatabaseBase {
 					}
 				}
 				$sql .= ')';
-				$this->query( $sql, $fname );
+
+				$this->doQuery( $sql);//, $fname );
+*/
 			}
 
 			if ($sequenceData !== false && !isset($row[$sequenceData['column']]))
@@ -972,12 +979,24 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
+		global $wgLang;
+
+		$conds2 = array();
+		foreach($conds as $col=>$val) {
+			$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
+			if ($col_type == 'CLOB')
+				$conds2['TO_CHAR('.$col.')'] = $wgLang->checkTitleEncoding($val);
+			else
+				$conds2[$col] = $wgLang->checkTitleEncoding($val);
+		}
+
 		if (is_array($table)) 
 			foreach ($table as $tab)
 				$tab = $this->tableName($tab);
 		else
 			$table = $this->tableName($table);
-		return parent::selectRow($table, $vars, $conds, $fname, $options, $join_conds);
+
+		return parent::selectRow($table, $vars, $conds2, $fname, $options, $join_conds);
 	}
 
 	/**
@@ -1018,14 +1037,15 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
+		global $wgLang;
 
 		$conds2 = array();
 		foreach($conds as $col=>$val) {
 			$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
 			if ($col_type == 'CLOB')
-				$conds2['TO_CHAR('.$col.')'] = $val;
+				$conds2['TO_CHAR('.$col.')'] = $wgLang->checkTitleEncoding($val);
 			else
-				$conds2[$col] = $val;
+				$conds2[$col] = $wgLang->checkTitleEncoding($val);
 		}
 
 		return parent::delete( $table, $conds2, $fname );
