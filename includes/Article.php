@@ -60,7 +60,9 @@ class Article {
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
-		return $t == null ? null : new static( $t );
+		# FIXME: doesn't inherit right
+		return $t == null ? null : new self( $t );
+		#return $t == null ? null : new static( $t ); // PHP 5.3
 	}
 
 	/**
