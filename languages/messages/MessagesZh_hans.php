@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -899,7 +899,7 @@ $2',
 'histlegend'             => "差异选择：标记要比较修订版本的单选按钮并点击底部的按钮进行比较。<br />
 说明：'''（{{int:cur}}）''' 指与当前修订版本比较，'''（{{int:last}}）''' 指与前一个修订版本比较，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '浏览历史',
-'history-show-deleted'   => '仅删除',
+'history-show-deleted'   => '仅已删除的',
 'histfirst'              => '最早版本',
 'histlast'               => '最新版本',
 'historysize'            => '（$1字节）',
@@ -936,10 +936,10 @@ $2',
 'rev-suppressed-unhide-diff'  => "该页面的其中一次修订已经被'''废止'''。
 在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中可能有更多的资料。
 作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
-'rev-deleted-diff-view'       => "差异中的一个版本已被'''删除'''。
-作为管理员，你可以查看此差异。详细信息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
-'rev-suppressed-diff-view'    => "差异中的一个版本已被'''隐藏'''。
-作为管理员，你可以查看此差异。详细信息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 隐藏日志]中找到。",
+'rev-deleted-diff-view'       => "差异中的一次修订已被'''删除'''。
+作为管理员，您可以查看此差异。详细信息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
+'rev-suppressed-diff-view'    => "差异中的一次修订已被'''废止'''。
+作为管理员，您可以查看此差异。详细信息可在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中找到。",
 'rev-delundel'                => '显示/隐藏',
 'rev-showdeleted'             => '显示',
 'revisiondelete'              => '删除/恢复删除修订',
@@ -957,7 +957,7 @@ $2',
 'logdelete-selected'          => "'''选取'''$1'''的日志项目：'''",
 'revdelete-text'              => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
 在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。",
-'revdelete-confirm'           => '请确认您的行为代表了共识，并且您的操作符合[[{{MediaWiki:Policy-url}}|方针]]。',
+'revdelete-confirm'           => '请确认您肯定去做的话，您就要明白到后果，以及这个程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
 'revdelete-suppress-text'     => "'''只有'''出现以下的情况下才应阻止访问：
 * 不合适的个人信息
 *: ''家庭地址、电话号码、身份证号码等。''",
@@ -971,7 +971,7 @@ $2',
 'revdelete-hide-image'        => '隐藏文件内容',
 'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
 'revdelete-log'               => '删除原因：',
-'revdelete-submit'            => '应用于选中的{{PLURAL:$1|修订|修订}}',
+'revdelete-submit'            => '应用于选中的{{PLURAL:$1|修订}}',
 'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
 'revdelete-success'           => "'''修订的可见性已经成功设置。'''",
@@ -1495,7 +1495,7 @@ $1",
 'file-deleted-duplicate'      => '一个相同名称的文件 （[[$1]]） 在先前删除过。您应该在重新上传之前检查一下该文件之删除纪录。',
 'successfulupload'            => '上传成功',
 'uploadwarning'               => '上传警告',
-'uploadwarning-text'          => '请修改以下的文件描述并重试',
+'uploadwarning-text'          => '请修改以下的文件描述并重试。',
 'savefile'                    => '保存文件',
 'uploadedimage'               => '已上传“[[$1]]”',
 'overwroteimage'              => '已上传“[[$1]]”的新版本',
@@ -2034,6 +2034,7 @@ $NEWPAGE
 'protectexpiry'               => '到期：',
 'protect_expiry_invalid'      => '输入的终止时间无效。',
 'protect_expiry_old'          => '终止时间已过去。',
+'protect-unchain-permissions' => '解除锁定更多的保护选项',
 'protect-text'                => '你可以在这里浏览和修改对页面<strong><nowiki>$1</nowiki></strong>的保护级别。',
 'protect-locked-blocked'      => '您不能在被查封时更改保护级别。
 以下是<strong>$1</strong>现时的保护级别：',
@@ -2228,8 +2229,8 @@ $1',
 'ipblocklist-sh-tempblocks'       => '$1次临时封锁',
 'ipblocklist-sh-addressblocks'    => '$1次单IP封锁',
 'ipblocklist-submit'              => '搜索',
-'ipblocklist-localblock'          => '本地封禁',
-'ipblocklist-otherblocks'         => '其他{{PLURAL:$1|封禁|封禁}}',
+'ipblocklist-localblock'          => '本地封锁',
+'ipblocklist-otherblocks'         => '其他{{PLURAL:$1|封锁|封锁}}',
 'blocklistline'                   => '$1，$2禁封$3 （$4）',
 'infiniteblock'                   => '永久',
 'expiringblock'                   => '$1 $2 到期',
@@ -2268,7 +2269,7 @@ $1被封禁的理由是“$2”',
 'ipb_already_blocked'             => '已经封锁"$1"',
 'ipb-needreblock'                 => '== 已经封锁 ==
 $1已经被封锁。您是否想更改这个设置？',
-'ipb-otherblocks-header'          => '其他{{PLURAL:$1|封禁|封禁}}',
+'ipb-otherblocks-header'          => '其他{{PLURAL:$1|封锁|封锁}}',
 'ipb_cant_unblock'                => '错误：找不到查封ID$1。可能已经解除封禁。',
 'ipb_blocked_as_range'            => '错误：该IP $1 无直接查封，不可以解除封禁。但是它是在 $2 的查封范围之内，该段范围是可以解除封禁的。',
 'ip_range_invalid'                => '无效的IP范围。',
@@ -2383,7 +2384,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'move-over-sharedrepo'         => '== 文件已存在 ==
 [[:$1]]已于共享资源存在，将文件移动到此标题会覆盖共享资源中的文件。',
 'file-exists-sharedrepo'       => '同名文件已于共享资源存在。
-请使用另一个文件名。',
+请选择另一个文件名。',
 
 # Export
 'export'            => '导出页面',
