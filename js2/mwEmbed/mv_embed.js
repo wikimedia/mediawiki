@@ -371,7 +371,7 @@ if( !mv_embed_path ) {
 		 * Plural matchRuleTest
 		 */
 		function matchRuleTest(cRule, val){
-			js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
+			//js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
 
 			function checkValue(compare, val){
 				if(typeof compare == 'string'){
@@ -440,12 +440,12 @@ if( !mv_embed_path ) {
 		for(var ruleInx in rs){
 			cRule = rs[ruleInx];
 			if( matchRuleTest( cRule, tObj.arg ) ){
-				js_log("matched rule: " + ruleInx );
+				//js_log("matched rule: " + ruleInx );
 				return getTempParamFromRuleInx(tObj, rCount );
 			}
 			rCount ++;
 		}
-		js_log('no match found for: ' + tObj.arg + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
+		//js_log('no match found for: ' + tObj.arg + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
 		//return the last /"other" template param
 		return tObj.param [ tObj.param.length -1 ];
 	}
@@ -603,7 +603,7 @@ if( !mv_embed_path ) {
 				
 				// ... but I am having fun with recursion so here it is...
 				// or at least mirror: http://www.mediawiki.org/wiki/Extension:Page_Object_Model
-				function rdpp ( txt , cn){
+				function rdpp ( txt , cn){				
 					var node = {};					
 					//inspect each char
 					for(var a=0; a < txt.length; a++){
@@ -614,18 +614,18 @@ if( !mv_embed_path ) {
 								node['c'] = new Array();
 
 							node['c'].push( rdpp( txt.substr( a ), true ) );																																									
-						}else if( txt[a] == '}' && txt[a+1] == '}'){
+						}else if( txt[a] == '}' && txt[a+1] == '}'){							
+							a=a+2;
 							if( !node['p'] ){
 								return node;
-							}
-							node = node['p'];
-							a=a+2;
+							}							
+							node = node['p'];							
 						}
 						if(!node['t'])
 							node['t']='';
-						
-						if( txt[a] )
-								node['t']+=txt[a];
+						//dont put closures into output:
+						if( txt[a] &&  txt[a]!='}' )
+								node['t'] += txt[a];
 								
 					}
 					return node;
@@ -648,7 +648,7 @@ if( !mv_embed_path ) {
 						tObj["arg"] = tname.split(':').pop();
 					}
 
-					js_log("TNAME::" + tObj["name"] + ' from:: ' + ts);						
+					//js_log("TNAME::" + tObj["name"] + ' from:: ' + ts);						
 					var pSet = ts.split('\|');
 					pSet.splice(0,1);					
 					if( pSet.length ){
