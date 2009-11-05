@@ -3238,8 +3238,8 @@ $1',
 'fileduplicatesearch-filename' => 'Назва файла:',
 'fileduplicatesearch-submit'   => 'Шукаць',
 'fileduplicatesearch-info'     => '$1 × $2 піксэляў<br />Памер файла: $3<br />Тып MIME: $4',
-'fileduplicatesearch-result-1' => 'Файл «$1» ня мае ідэнтычных копій.',
-'fileduplicatesearch-result-n' => 'Файл «$1» мае $2 {{PLURAL:$2|ідэнтычную копію|ідэнтычных копіі|ідэнтычных копій}}.',
+'fileduplicatesearch-result-1' => 'Файл «$1» ня мае ідэнтычных копіяў.',
+'fileduplicatesearch-result-n' => 'Файл «$1» мае $2 {{PLURAL:$2|ідэнтычную копію|ідэнтычныя копіі|ідэнтычных копіяў}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Спэцыяльныя старонкі',
