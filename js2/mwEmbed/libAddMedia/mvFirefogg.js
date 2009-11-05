@@ -313,10 +313,9 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	//do firefogg specific additions: 
 	dispProgressOverlay:function(){
-		this.pe_dispProgressOverlay();		
-	
+		this.pe_dispProgressOverlay();			
 		//if we are uploading video (not in passthrough mode show preview button)
-		if( ! this.encoder_settings['passthrough']  && ! this.http_copy_upload ){ 
+		if( this.fogg_enabled && ! this.encoder_settings['passthrough']  && ! this.http_copy_upload ){ 
 			this.doPreviewControl();	
 		}
 	},

@@ -220,7 +220,7 @@ if( !mv_embed_path ) {
 	$.conf = {
 		'skin_name' : 'mvpcf',
 		'jui_skin' : 'redmond',
-		'video_size' : '400x300'		
+		'video_size' : '400x300'	
 	}
 	// the version of mwEmbed
 	$.version = '1.0r21';

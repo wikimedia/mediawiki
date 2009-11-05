@@ -202,7 +202,9 @@ mvBaseUploadInterface.prototype = {
 		js_log('mvUPload:doUploadSwitch():' + _this.upload_mode);
 		//issue a normal post request
 		if( _this.upload_mode == 'api' && ! _this.http_copy_upload ){
-									
+			//get the token from the page: 
+			_this.etoken = $j("#wpEditToken").val();
+			
 			//@@TODO check for sendAsBinnary to support firefox/html5 progress on upload
 
 			//set the form target to iframe target:	

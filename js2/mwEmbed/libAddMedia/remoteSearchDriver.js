@@ -264,7 +264,9 @@ remoteSearchDriver.prototype = {
 		//modify the content provider config based on options: 		
 		for(var i in this.content_providers){		
 			if(	_this.enabled_cps == 'all' && !this.disp_item  ){	
-				this.disp_item = i; 
+				this.disp_item = i;
+				//end the for loop (no need to idorate if enabled_cps == 'all'
+				break;
 			}else{
 				if( $j.inArray(i, _this.enabled_cps) != -1 ){
 					//if no default display set to first enabled cp: 
