@@ -402,6 +402,31 @@ class DatabaseMysql extends DatabaseBase {
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseMysql::duplicateTableStructure' ) {
+		if ( strcmp( $this->getServerVersion(), '4.1' ) < 0 ) {
+			# Hack for MySQL versions < 4.1, which don't support
+			# "CREATE TABLE ... LIKE". Note that
+			# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
+			# would not create the indexes we need....
+			#
+			# Note that we don't bother changing around the prefixes here be-
+			# cause we know we're using MySQL anyway.
+
+			$res = $this->query( "SHOW CREATE TABLE $oldName" );
+			$row = $this->fetchRow( $res );
+			$create = $row[1];
+			$create_tmp = preg_replace( '/CREATE TABLE `(.*?)`/', 
+				'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . "TABLE `$newName`", $create );
+			if ($create === $create_tmp) {
+				# Couldn't do replacement
+				throw new MWException( "could not create temporary table $newName" );
+			}
+			$this->query( $create_tmp, $fname );
+		} else {
+			return parent::duplicateTableStructure( $oldName, $newName, $temporary );
+		}
+	}
+
 }
 
 /**

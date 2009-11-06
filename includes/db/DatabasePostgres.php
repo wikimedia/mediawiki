@@ -1085,6 +1085,10 @@ class DatabasePostgres extends DatabaseBase {
 		return $this->lastErrno() == '40P01';
 	}
 
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabasePostgres::duplicateTableStructure' ) {
+		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName INCLUDING DEFAULTS)", $fname );
+	}
+
 	function timestamp( $ts=0 ) {
 		return wfTimestamp(TS_POSTGRES,$ts);
 	}

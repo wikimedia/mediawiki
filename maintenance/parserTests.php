@@ -53,6 +53,16 @@ ENDS;
     exit( 0 );
 }
 
+# Cases of weird db corruption were encountered when running tests on earlyish
+# versions of SQLite
+if ( $wgDBtype == 'sqlite' ) {
+	$db = wfGetDB( DB_MASTER );
+	$version = $db->getServerVersion();
+	if ( version_compare( $version, '3.6' ) < 0 ) {
+		die( "Parser tests require SQLite version 3.6 or later, you have $version\n" );
+	}
+}
+
 # There is a convention that the parser should never
 # refer to $wgTitle directly, but instead use the title
 # passed to it.
