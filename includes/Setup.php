@@ -128,6 +128,18 @@ if ( $wgUseSharedUploads ) {
 		);
 	}
 }
+if( $wgUseInstantCommons ) {
+	$wgForeignFileRepos[] = array(
+	   'class'                   => 'ForeignAPIRepo',
+	   'name'                    => 'wikimediacommons',
+	   'apibase'                 => 'http://commons.wikimedia.org/w/api.php',
+	   'fetchDescription'        => true,
+	   'descriptionCacheExpiry'  => 43200,
+	   'apiThumbCacheExpiry'     => 86400,
+	);
+}
+
+
 if ( !class_exists( 'AutoLoader' ) ) {
 	require_once( "$IP/includes/AutoLoader.php" );
 }

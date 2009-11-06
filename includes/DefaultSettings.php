@@ -257,6 +257,13 @@ $wgForeignFileRepos = array();
 /**@}*/
 
 /**
+ * Use Commons as a remote file repository. Essentially a wrapper, when this
+ * is enabled $wgForeignFileRepos will point at Commons with a set of default
+ * settings
+ */
+$wgUseInstantCommons = false;
+
+/**
  * Allowed title characters -- regex character class
  * Don't change this unless you know what you're doing
  *

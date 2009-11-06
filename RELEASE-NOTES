@@ -97,6 +97,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 3340) $wgBlockCIDRLimit added (default: 16) to configure the low end of
   CIDR ranges for blocking
 * Added upload by default to $wgRestrictionTypes
+* $wgUseInstantCommons added for quick and easy enabling of Commons as a remote
+  file repository
 
 === New features in 1.16 ===
 
