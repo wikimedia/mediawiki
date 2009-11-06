@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2649,7 +2649,8 @@ $1',
 'nextdiff'     => '下一版本→',
 
 # Media information
-'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr />",
+'mediawarning'         => "'''警告''': 該檔案類型可能包含惡意代碼。
+執行它可能對您的系統帶來危險。<hr />",
 'imagemaxsize'         => "圖像大小限制:<br />''（用在檔案描述頁面中）''",
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',
