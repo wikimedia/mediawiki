@@ -56,8 +56,9 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg(array('sessionfailure'));
 
 		$titleObj = Title::newFromText($params['title']);
-		if(!$titleObj)
+		if(!$titleObj || $titleObj->isExternal())
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
+			
 		// Some functions depend on $wgTitle == $ep->mTitle
 		global $wgTitle;
 		$wgTitle = $titleObj;

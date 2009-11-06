@@ -685,6 +685,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 21083) list=allusers no longer returns current timestamp for users
   without registration date
 * (bug 20554) Expose average slave lag (avglag) as well as maxlag
+* (bug 20967) action=edit allows creation of invalid titles
 
 === Languages updated in 1.16 ===
 
