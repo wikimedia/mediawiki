@@ -2256,7 +2256,9 @@ class Article {
 	 * @return bool true on success
 	 */
 	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
-		global $wgUser, $wgRestrictionTypes, $wgContLang;
+		global $wgUser, $wgContLang;
+		
+		$restrictionTypes = $this->mTitle->getProtectionTypes();
 
 		$id = $this->mTitle->getArticleID();
 		if ( $id <= 0 ) {
@@ -2286,7 +2288,7 @@ class Article {
 		$current = array();
 		$updated = Article::flattenRestrictions( $limit );
 		$changed = false;
-		foreach( $wgRestrictionTypes as $action ) {
+		foreach( $restrictionTypes as $action ) {
 			if( isset( $expiry[$action] ) ) {
 				# Get current restrictions on $action
 				$aLimits = $this->mTitle->getRestrictions( $action );

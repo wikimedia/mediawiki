@@ -68,6 +68,8 @@ class ApiProtect extends ApiBase {
 			else
 				$this->dieUsageMsg(array('toofewexpiries', count($expiry), count($params['protections'])));
 		}
+		
+		$restrictionTypes = $titleObj->getProtectionTypes();
 			
 		$protections = array();
 		$expiryarray = array();
@@ -80,7 +82,7 @@ class ApiProtect extends ApiBase {
 				$this->dieUsageMsg(array('create-titleexists'));
 			if(!$titleObj->exists() && $p[0] != 'create')
 				$this->dieUsageMsg(array('missingtitles-createonly'));
-			if(!in_array($p[0], $wgRestrictionTypes) && $p[0] != 'create')
+			if(!in_array($p[0], $restrictionTypes) && $p[0] != 'create')
 				$this->dieUsageMsg(array('protect-invalidaction', $p[0]));
 			if(!in_array($p[1], $wgRestrictionLevels) && $p[1] != 'all')
 				$this->dieUsageMsg(array('protect-invalidlevel', $p[1]));

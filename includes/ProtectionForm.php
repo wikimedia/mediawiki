@@ -54,20 +54,29 @@ class ProtectionForm {
 	var $mExistingExpiry = array();
 
 	function __construct( Article $article ) {
-		global $wgRequest, $wgUser;
-		global $wgRestrictionTypes, $wgRestrictionLevels;
+		global $wgUser;
+		// Set instance variables.
 		$this->mArticle = $article;
 		$this->mTitle = $article->mTitle;
-		$this->mApplicableTypes = $this->mTitle->exists() ? $wgRestrictionTypes : array('create');
-
-		$this->mCascade = $this->mTitle->areRestrictionsCascading();
-
-		// The form will be available in read-only to show levels.
+		$this->mApplicableTypes = $this->mTitle->getProtectionTypes();
+		
+		// Check if the form should be disabled.
+		// If it is, the form will be available in read-only to show levels.
 		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors('protect',$wgUser);
 		$this->disabled = wfReadOnly() || $this->mPermErrors != array();
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
+		
+		$this->loadData();
+	}
+	
+	// Loads the current state of protection into the object.
+	function loadData() {
+		global $wgRequest, $wgUser;
+		global $wgRestrictionLevels;
+		
+		$this->mCascade = $this->mTitle->areRestrictionsCascading();
 
 		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
 		$this->mReasonSelection = $wgRequest->getText( 'wpProtectReasonSelection' );
@@ -76,6 +85,8 @@ class ProtectionForm {
 		foreach( $this->mApplicableTypes as $action ) {
 			// Fixme: this form currently requires individual selections,
 			// but the db allows multiples separated by commas.
+			
+			// Pull the actual restriction from the DB
 			$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
 
 			if ( !$this->mRestrictions[$action] ) {
@@ -318,10 +329,6 @@ class ProtectionForm {
 			Xml::openElement( 'tbody' );
 
 		foreach( $this->mRestrictions as $action => $selected ) {
-			// Special case: apply upload protection only on images
-			if ( $action == 'upload' && $this->mTitle->getNamespace() != NS_FILE )
-				continue;
-			
 			/* Not all languages have V_x <-> N_x relation */
 			$msg = wfMsg( 'restriction-' . $action );
 			if( wfEmptyMsg( 'restriction-' . $action, $msg ) ) {
