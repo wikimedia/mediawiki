@@ -13,3 +13,4 @@ grant create view to &wiki_user.;
 grant create synonym to &wiki_user.;
 grant create table to &wiki_user.;
 grant create sequence to &wiki_user.;
+grant create trigger to &wiki_user.;

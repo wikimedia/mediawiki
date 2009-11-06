@@ -282,7 +282,8 @@ class DatabaseOracle extends DatabaseBase {
 
 		//handle some oracle specifics
 		//remove AS column/table/subquery namings
-		$sql = preg_replace('/ as /i', ' ', $sql);
+		if(!defined('MEDIAWIKI_INSTALL'))
+			$sql = preg_replace('/ as /i', ' ', $sql);
 		// Oracle has issues with UNION clause if the statement includes LOB fields
 		// So we do a UNION ALL and then filter the results array with array_unique
 		$union_unique = (preg_match('/\/\* UNION_UNIQUE \*\/ /', $sql) != 0);
@@ -746,6 +747,12 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->lastErrno() == 'OCI-00060';
 	}
 
+
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
+		$temporary = $temporary ? 'TRUE' : 'FALSE';
+		return $this->query( 'BEGIN DUPLICATE_TABLE(\''.$oldName.'\', \''.$newName.'\', '.$temporary.'); END;', $fname );
+	}
+
 	function timestamp($ts = 0) {
 		return wfTimestamp(TS_ORACLE, $ts);
 	}
@@ -986,8 +993,11 @@ class DatabaseOracle extends DatabaseBase {
 			$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
 			if ($col_type == 'CLOB')
 				$conds2['TO_CHAR('.$col.')'] = $wgLang->checkTitleEncoding($val);
-			else
+			elseif ($col_type == 'VARCHAR2' && !mb_check_encoding($val)) {
 				$conds2[$col] = $wgLang->checkTitleEncoding($val);
+			} else {
+				$conds2[$col] = $val;
+			}
 		}
 
 		if (is_array($table)) 
