@@ -2636,7 +2636,8 @@ $1',
 'nextdiff'     => 'Méi nei Ännerung →',
 
 # Media information
-'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier kann e béiswëllege Programmcode enthalen. Duerch d'Eroplueden an d'Opmaache vum Fichier kann Äre Computer beschiedegt ginn.<hr />",
+'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier kann e béiswëllege Programmcode enthalen.
+Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.<hr />",
 'imagemaxsize'         => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
 'thumbsize'            => 'Gréisst vun der Miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',

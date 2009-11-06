@@ -822,6 +822,13 @@ Pò essere ca jacchie quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/de
 'rev-deleted-unhide-diff'     => "Une de le revisiune de sta differenza ha state '''scangellate'''.
 Pò essere ca iacchije quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde]..
 Cumme a 'n'amministratore tu puè angore [$1 vedè sta differenze] ce tu proprie si inderessate.",
+'rev-suppressed-unhide-diff'  => "Une de le revisiune de sta differenze ha state '''soppresse'''.
+Pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archivie de le soppressiune].
+Cumme 'n'amministratore tu puè angore [$1 vedè sta differenze] ce te inderesse avveramende.",
+'rev-deleted-diff-view'       => "Une de le revisiune de sta differenze ha state '''scangellate'''.
+Cumme 'n'amministratore tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archivie de le scangellaminde].",
+'rev-suppressed-diff-view'    => "Une de le revisiune de sta differenze ha state '''soppresse'''.
+Cumme 'n'amministratore tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archivie de le soppressiune].",
 'rev-delundel'                => 'fa vedè/scunne',
 'rev-showdeleted'             => 'fà vedè',
 'revisiondelete'              => 'Scangille/Repristine revisiune',
@@ -838,6 +845,7 @@ Cumme a 'n'amministratore tu puè angore [$1 vedè sta differenze] ce tu proprie
 'logdelete-selected'          => "'''{{PLURAL:$1|Fatte de l'archivije selezionete|Fatte de l'archivije selezionete}}:'''",
 'revdelete-text'              => "'''Le revisiune scangellete e le evende iessene angore jndr'à storie d'a pàgene e jndr'à l'archivije, ma stuezze d'u condenute lore pò essere inaccessibbele a 'u pubbleche.'''
 Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute scunnute e 'u ponne scangellà 'n'otra vote ausanne st'inderfacce, senze 'mbostà otre restriziune.",
+'revdelete-confirm'           => 'Pe piacere conferme ca tu vuè ccu face sta cose, ce tu è capite le conseguenze e ce quidde ca ste face jè in accorde cu le [[{{MediaWiki:Policy-url}}|reghele]] de Uicchipèdie.',
 'revdelete-suppress-text'     => "'A soppressione adda essere ausate '''sulamende''' jndr'à le case seguende:
 * Date personale inopportune
 *: ''indirizze, numere de telefono, codice fiscale, ecc.''",
@@ -1326,6 +1334,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'upload'                      => "Careche 'u file",
 'uploadbtn'                   => "Careche 'nu fail",
 'reuploaddesc'                => "Scangille 'u carecamende e tuerne a 'a schermete de le carecaminde",
+'upload-tryagain'             => "Conferme 'u cangiamende d'a descrizione d'u file",
 'uploadnologin'               => 'non ge sinde colleghete',
 'uploadnologintext'           => 'Tu a essere [[Special:UserLogin|colleghete]] pe carecà le file.',
 'upload_directory_missing'    => "'A cartelle de le carecaminde ($1) s'à perdute o pò essere ca non g'à state ccreate da 'u webserver.",
@@ -1396,6 +1405,7 @@ ce tu vuè angore carecà stu file, pe piacere tuèrne rrete e ause 'nu nome nu�
 Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a carecarle.",
 'successfulupload'            => 'Carecamende sciute apposte',
 'uploadwarning'               => 'Avvise de carecamende',
+'uploadwarning-text'          => "Pe piacere cange 'a descrizione d'u file sotte e pruève 'notra vote.",
 'savefile'                    => "Reggistre 'u file",
 'uploadedimage'               => 'carechete "[[$1]]"',
 'overwroteimage'              => 'ha state carechete \'na versiona nove de "[[$1]]"',
@@ -1756,6 +1766,7 @@ Protocolle supportate: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => "Liste de l'utinde attive",
+'activeusers-intro'    => "Queste jè 'n'elenghe de utinde ca avene fatte certe tipe de attività fine a l'urteme $1 {{PLURAL:$1|sciurne|sciurne}}.",
 'activeusers-count'    => "$1 {{PLURAL:$1|cangiamende|cangiaminde}} jndr'à l'urteme {{PLURAL:$3|sciurne|$3 sciurne}}",
 'activeusers-from'     => "Fà vedè l'utinde partenne da:",
 'activeusers-noresult' => 'Nisciune utende acchiate.',
@@ -1955,6 +1966,7 @@ Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le 
 'protectexpiry'               => 'More:',
 'protect_expiry_invalid'      => 'Orarie de scadenze jè invalide.',
 'protect_expiry_old'          => "L'ore de scadenza jè jndr'à 'u passate.",
+'protect-unchain-permissions' => 'Sbluecche otre opzione de protezzione',
 'protect-text'                => "Tu puè vedè e cangià 'u levèlle de protezzione p'a pàgene '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Tu non ge puè cangià le levèlle de protezzione quanne si bloccate.
 Aqquà stonne le 'mbostaziune corrende pa pàgene '''$1''':",
@@ -2220,6 +2232,7 @@ Pe piacere condatte 'u provider de Indernette tue o 'u supporte tecniche e 'mbor
 'sorbs_create_account_reason'     => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.
 Tu nonge puè ccrejà 'nu cunde utende",
 'cant-block-while-blocked'        => 'Tu non ge puè bloccà otre utinde quanne tu si blocchete.',
+'cant-see-hidden-user'            => "L'utende ca tu ste pruève a bloccà ha state già bloccate e scunnute. Ce tu non ge tine le deritte ''hideuser'', tu non ge puè vedè o cangià 'u blocche de l'utende.",
 
 # Developer tools
 'lockdb'              => 'Blocche databeise',
@@ -2321,6 +2334,10 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'move-leave-redirect'          => "Lasse 'nu ridirezionamende rréte",
 'protectedpagemovewarning'     => "'''Attenziò:''' Sta pàgene ha state bloccate accussì sulamende l'utinde cu le deritte d'amministratore 'a ponne spustà.",
 'semiprotectedpagemovewarning' => "'''Vide Bbuène:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrate 'a ponne spustà.",
+'move-over-sharedrepo'         => "== 'U file esiste ==
+[[:$1]] esiste sus a 'n'archivie condivise. Spustanne 'u file sus a stu titele tu vè sovrascrive 'u file condivise.",
+'file-exists-sharedrepo'       => "'U nome d'u file ca è scacchiate jè già ausate sus a 'n'archivie condivise.
+Pe piacere scacchiene 'notre.",
 
 # Export
 'export'            => 'Pàggene esportete',
@@ -2578,7 +2595,8 @@ $1",
 'nextdiff'     => 'Cangiaminde cchiù nuève →',
 
 # Media information
-'mediawarning'         => "'''Attenziò''': Stu file pò condenè codece viziuse, ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.<hr />",
+'mediawarning'         => "'''Attenziò''': Stu file pò condenè codece viziuse.
+Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.<hr />",
 'imagemaxsize'         => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
 'thumbsize'            => "Dimenziona d'a miniature:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',

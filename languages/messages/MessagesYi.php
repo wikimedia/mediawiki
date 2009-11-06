@@ -344,8 +344,8 @@ $messages = array(
 'help'              => 'הילף',
 'search'            => 'זוכן',
 'searchbutton'      => 'זוכן',
-'go'                => 'גייט',
-'searcharticle'     => 'גיי',
+'go'                => 'גיין',
+'searcharticle'     => 'גיין',
 'history'           => 'בלאט היסטאריע',
 'history_short'     => 'היסטאריע',
 'updatedmarker'     => 'דערהיינטיגט זינט מיין לעצטע וויזיט',
@@ -1557,7 +1557,7 @@ $2',
 # Book sources
 'booksources'               => 'דרויסנדיגע ליטעראַטור ISBN',
 'booksources-search-legend' => 'זוכן פאר דרויסנדע ביכער מקורות',
-'booksources-go'            => 'גייט',
+'booksources-go'            => 'גיין',
 'booksources-text'          => 'אונטן איז א ליסטע פון סייטס וואס פֿארקויפֿן נייע און גענוצטע ביכער און האבן אויך נאך אינפֿארמאציע וועגן די ביכער וואס איר זוכט:',
 
 # Special:Log
@@ -2109,7 +2109,7 @@ $NEWPAGE
 'allmessages-filter-modified'   => 'מאדיפֿיצירט',
 'allmessages-prefix'            => 'פֿילטערן לויט פרעפֿיקס',
 'allmessages-language'          => 'שפראַך:',
-'allmessages-filter-submit'     => 'צייג',
+'allmessages-filter-submit'     => 'צייגן',
 
 # Thumbnails
 'thumbnail-more'           => 'פארגרעסער',
@@ -2257,8 +2257,8 @@ $NEWPAGE
 'numedits'     => 'צאל פון רעדאקציעס (בלאט): $1',
 
 # Math errors
-'math_unknown_error'    => 'אומבאקאנטער פֿעלער',
-'math_unknown_function' => 'אומבאקאנטער פונקציע',
+'math_unknown_error'    => 'אומבאַקאַנטער פֿעלער',
+'math_unknown_function' => 'אומבאַקאַנטע פֿונקציע',
 'math_syntax_error'     => 'סינטאקס גרייז',
 
 # Patrolling
@@ -2556,7 +2556,7 @@ $5
 'table_pager_first'        => 'ערשטער בלאט',
 'table_pager_last'         => 'לעצטער בלאט',
 'table_pager_limit'        => 'ווײַז $1 פרטים א בלאט',
-'table_pager_limit_submit' => 'גיי',
+'table_pager_limit_submit' => 'גיין',
 'table_pager_empty'        => 'קיין רעזולטאטן',
 
 # Auto-summaries

@@ -2804,7 +2804,8 @@ $1',
 'nextdiff'     => 'Porovnání s novější verzí →',
 
 # Media information
-'mediawarning'         => "'''Upozornění''': Tento soubor může obsahovat škodlivý kód, spuštěním můžete ohrozit svůj počítač.<hr />",
+'mediawarning'         => "'''Upozornění''': Tento typ souboru může obsahovat škodlivý kód.
+Otevřením souboru můžete ohrozit svůj počítač.<hr />",
 'imagemaxsize'         => "Maximální velikost obrázku:<br />
 ''(na stránce s popisem souboru)''",
 'thumbsize'            => 'Velikost náhledu:',

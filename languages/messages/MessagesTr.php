@@ -2032,6 +2032,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protectexpiry'               => 'Bitiş tarihi:',
 'protect_expiry_invalid'      => 'Geçersiz bitiş tarihi.',
 'protect_expiry_old'          => 'Geçmişteki son kullanma zamanı.',
+'protect-unchain-permissions' => 'İleriki koruma seçeneklerinin kilidini kaldır',
 'protect-text'                => "'''<nowiki>$1</nowiki>''' sayfasının koruma durumunu buradan görebilir ve değiştirebilirsiniz.",
 'protect-locked-blocked'      => "Engellenmiş iken koruma seviyelerini değiştiremezsiniz.
 '''$1''' sayfasının şu anki ayarları:",
@@ -2649,7 +2650,8 @@ $1',
 'nextdiff'     => 'Sonraki sürümle aradaki fark →',
 
 # Media information
-'mediawarning'         => "'''Uyarı!''': Bu dosya kötü niyetli kodlar içerebilir ve işletim sisteminize zarar verebilir.<hr />",
+'mediawarning'         => "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.
+Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
 'imagemaxsize'         => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'            => 'Küçük boyut:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
