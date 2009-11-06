@@ -104,7 +104,7 @@ class Http {
 	private static function initBackgroundDownload( $url, $target_file_path,
 		$content_length = null )
 	{
-		global $wgMaxUploadSize, $IP, $wgPhpCli, $wgServer;
+		global $IP, $wgPhpCli, $wgServer;
 		$status = Status::newGood();
 
 		// generate a session id with all the details for the download (pid, target_file_path )
