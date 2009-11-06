@@ -2334,7 +2334,7 @@ $1',
 'nextdiff'     => '後辨→',
 
 # Media information
-'mediawarning'         => "'''警'''日：此檔疑惡，行之恐諜也。<hr />",
+'mediawarning'         => "'''警'''：此檔型疑惡。行之恐諜也。<hr />",
 'imagemaxsize'         => "述檔頁惟列：<br />''（用於檔）''",
 'thumbsize'            => '縮圖幅',
 'widthheight'          => '$1矩$2',

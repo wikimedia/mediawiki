@@ -2666,7 +2666,8 @@ $1',
 'nextdiff'     => '下一版本→',
 
 # Media information
-'mediawarning'         => "'''警告'''：该文件可能包含恶意代码，运行它可能对您的系统带来危险。<hr />",
+'mediawarning'         => "'''警告'''：该文件类型可能包含恶意代码。
+运行它可能对您的系统带来危险。<hr />",
 'imagemaxsize'         => "图像大小限制：<br />''（用于文件描述页面）''",
 'thumbsize'            => '缩略图大小：',
 'widthheightpage'      => '$1×$2，$3页',
