@@ -350,7 +350,10 @@ div.floatleft, table.floatleft {
 }
 
 .rsd_cp_tab img{
-	border:0px;
+	border:0px;	
+}
+.rsd_cp_tab a{
+	height:16px;
 }
 .rsd_results_container{
 	left:2px;
