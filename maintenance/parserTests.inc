@@ -589,6 +589,7 @@ class ParserTest {
 	 * Ideally this should replace the global configuration entirely.
 	 */
 	private function setupGlobals($opts = '', $config = '') {
+		global $wgDBtype;
 		if( !isset( $this->uploadDir ) ) {
 			$this->uploadDir = $this->setupUploadDir();
 		}
@@ -623,7 +624,7 @@ class ParserTest {
 			'wgServerName' => 'Britney-Spears',
 			'wgLanguageCode' => $lang,
 			'wgContLanguageCode' => $lang,
-			'wgDBprefix' => 'parsertest_',
+			'wgDBprefix' => $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_',
 			'wgRawHtml' => isset( $opts['rawhtml'] ),
 			'wgLang' => null,
 			'wgContLang' => null,
@@ -722,7 +723,7 @@ class ParserTest {
 		if ( $this->databaseSetupDone ) {
 			return;
 		}
-		if ( $wgDBprefix === 'parsertest_' ) {
+		if ( $wgDBprefix === 'parsertest_' || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_')) {
 			throw new MWException( 'setupDatabase should be called before setupGlobals' );
 		}
 		$this->databaseSetupDone = true;
@@ -746,17 +747,19 @@ class ParserTest {
 			# fix back and forth so tableName() works right.
 			$this->changePrefix( $this->oldTablePrefix );
 			$oldTableName = $db->tableName( $tbl );
-			$this->changePrefix( 'parsertest_' );
+			$this->changePrefix( $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_' );
 			$newTableName = $db->tableName( $tbl );
 
-			if ( $db->tableExists( $tbl ) && $wgDBtype != 'postgres' ) {
+			if ( $db->tableExists( $tbl ) && $wgDBtype != 'postgres' && $wgDBtype != 'oracle' ) {
 				$db->query( "DROP TABLE $newTableName" );
 			}
 			# Create new table
 			$db->duplicateTableStructure( $oldTableName, $newTableName, $temporary );
 		}
+		if ($wgDBtype == 'oracle')
+			$db->query('BEGIN FILL_WIKI_INFO; END;');
 
-		$this->changePrefix( 'parsertest_' );
+		$this->changePrefix( $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_' );
 
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
@@ -780,6 +783,10 @@ class ParserTest {
 				   'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
 				   'iw_local'  => 1 ),
 			) );
+		# Hack-on-Hack: Insert a test user to be able to insert an image
+		$db->insert( 'user', array(
+			'user_id'         => 1,
+			'user_name'       => 'Tester') );
 
 		# Hack: Insert an image to work with
 		$db->insert( 'image', array(
@@ -823,7 +830,7 @@ class ParserTest {
 	}
 
 	private function teardownDatabase() {
-		global $wgDBprefix;
+		global $wgDBprefix, $wgDBtype;
 		if ( !$this->databaseSetupDone ) {
 			return;
 		}
@@ -838,8 +845,12 @@ class ParserTest {
 		$tables = $this->listTables();
 		$db = wfGetDB( DB_MASTER );
 		foreach ( $tables as $table ) {
-			$db->query( "DROP TABLE `parsertest_$table`" );
-		}*/
+			$sql = $wgDBtype == 'oracle' ? "DROP TABLE pt_$table DROP CONSTRAINTS" : "DROP TABLE `parsertest_$table`";
+			$db->query( $sql );
+		}
+		if ($wgDBtype == 'oracle')
+			$db->query('BEGIN FILL_WIKI_INFO; END;');
+		*/
 	}
 	
 	/**
@@ -1463,6 +1474,8 @@ class DbTestRecorder extends DbTestPreviewer  {
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
 			if ($wgDBtype === 'postgres')
 				$this->db->sourceFile( dirname(__FILE__) . '/testRunner.postgres.sql' );
+			elseif ($wgDBtype === 'oracle')
+				$this->db->sourceFile( dirname(__FILE__) . '/testRunner.ora.sql' );
 			else
 				$this->db->sourceFile( dirname(__FILE__) . '/testRunner.sql' );
 			echo "OK, resuming.\n";
