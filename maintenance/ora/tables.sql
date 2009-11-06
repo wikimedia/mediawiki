@@ -643,7 +643,7 @@ CREATE OR REPLACE PROCEDURE duplicate_table(p_oldname IN VARCHAR2, p_newname IN 
 IS
        v_oldname VARCHAR2(32) := RTRIM(LTRIM(p_oldname, '"'), '"');
        v_newname VARCHAR2(32) := RTRIM(LTRIM(p_newname, '"'), '"');
-
+       v_prefix VARCHAR2(32) := SUBSTR(v_newname, 1, INSTR(v_newname, v_oldname, -1)-1);
        e_table_not_exist EXCEPTION;
        PRAGMA EXCEPTION_INIT(e_table_not_exist, -00942);
 BEGIN
@@ -666,29 +666,40 @@ BEGIN
           EXECUTE IMMEDIATE 'ALTER TABLE '||v_newname||' MODIFY '||rc.column_name||' DEFAULT '||substr(rc.data_default, 1, 2000);
        END LOOP;
        
-       FOR rc IN (SELECT REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl ('INDEX', index_name), 32767, 1),
-                                 USER||'"."'||v_oldname, USER||'"."'||v_newname) DDLVC2
-                                 , index_name
-                    FROM user_indexes ui
-                    WHERE table_name = v_oldname
-                      AND index_type != 'LOB') LOOP
-          EXECUTE IMMEDIATE SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE')-1);
-       END LOOP;
-
-       FOR rc IN (SELECT REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl ('CONSTRAINT', constraint_name), 32767, 1),
-                                 USER||'"."'||v_oldname, USER||'"."'||v_newname) DDLVC2
+       FOR rc IN (SELECT REPLACE(REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl ('CONSTRAINT', constraint_name), 32767, 1),
+                                 USER||'"."', USER||'"."'||v_prefix),
+                                 '"'||constraint_name||'"', '"'||v_prefix||constraint_name||'"') DDLVC2
                                  , constraint_name
                     FROM user_constraints uc
                     WHERE table_name = v_oldname
-                      AND constraint_type NOT IN ('C', 'P')
-                      AND NOT EXISTS (SELECT NULL FROM user_indexes
-                                       WHERE table_name = uc.table_name
-                                         AND index_name = uc.constraint_name)) LOOP
+                      AND constraint_type = 'P') LOOP
+          EXECUTE IMMEDIATE SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE')-1);
+       END LOOP;
+
+       FOR rc IN (SELECT REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl ('REF_CONSTRAINT', constraint_name), 32767, 1),
+                                 USER||'"."', USER||'"."'||v_prefix) DDLVC2
+                                 , constraint_name
+                    FROM user_constraints uc
+                    WHERE table_name = v_oldname
+                      AND constraint_type = 'R') LOOP
+          EXECUTE IMMEDIATE rc.ddlvc2;
+       END LOOP;
+
+       FOR rc IN (SELECT REPLACE(REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl ('INDEX', index_name), 32767, 1),
+                                 USER||'"."', USER||'"."'||v_prefix),
+                                 '"'||index_name||'"', '"'||v_prefix||index_name||'"') DDLVC2
+                                 , index_name
+                    FROM user_indexes ui
+                    WHERE table_name = v_oldname
+                      AND index_type != 'LOB'
+                      AND NOT EXISTS (SELECT NULL FROM user_constraints
+                                       WHERE table_name = ui.table_name
+                                         AND constraint_name = ui.index_name)) LOOP
           EXECUTE IMMEDIATE SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE')-1);
        END LOOP;
 
        FOR rc IN (SELECT REPLACE(REPLACE(UPPER(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl ('TRIGGER', trigger_name), 32767, 1)),
-                                 USER||'"."'||v_oldname, USER||'"."'||v_newname),
+                                 USER||'"."', USER||'"."'||v_prefix),
                                  ' ON '||v_oldname, ' ON '||v_newname) DDLVC2
                                  , trigger_name
                     FROM user_triggers
