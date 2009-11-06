@@ -898,6 +898,27 @@ class LoadBalancer {
 		}
 		return array( $host, $maxLag );
 	}
+	
+	/**
+	 * Gets the average lag of slaves.
+	 * May attempt to open connections to slaves on the default DB.
+	 */
+	function getAvgLag() {
+		$lag = 0;
+		$count = 0;
+		foreach ( $this->mServers as $i => $conn ) {
+			$conn = $this->getAnyOpenConnection( $i );
+			if ( !$conn ) {
+				$conn = $this->openConnection( $i );
+			}
+			if ( !$conn ) {
+				continue;
+			}
+			$lag += $conn->getLag();
+			$count++;
+		}
+		return ($count > 1) ? $lag / $count : $lag;
+	}
 
 	/**
 	 * Get lag time for each server
