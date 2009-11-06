@@ -965,18 +965,20 @@ class Title {
 	/**
 	 * Does the title correspond to a protected article?
 	 * @param $what \type{\string} the action the page is protected from,
-	 * by default checks move and edit
+	 * by default checks all actions.
 	 * @return \type{\bool}
 	 */
 	public function isProtected( $action = '' ) {
-		global $wgRestrictionLevels, $wgRestrictionTypes;
+		global $wgRestrictionLevels;
+		
+		$restrictionTypes = $this->getProtectionTypes();
 
 		# Special pages have inherent protection
 		if( $this->getNamespace() == NS_SPECIAL )
 			return true;
 
 		# Check regular protection levels
-		foreach( $wgRestrictionTypes as $type ){
+		foreach( $restrictionTypes as $type ){
 			if( $action == $type || $action == '' ) {
 				$r = $this->getRestrictions( $type );
 				foreach( $wgRestrictionLevels as $level ) {
@@ -1774,12 +1776,7 @@ class Title {
 	 *         The restriction array is an array of each type, each of which contains an array of unique groups.
 	 */
 	public function getCascadeProtectionSources( $get_pages = true ) {
-		global $wgRestrictionTypes;
-
-		# Define our dimension of restrictions types
 		$pagerestrictions = array();
-		foreach( $wgRestrictionTypes as $action )
-			$pagerestrictions[$action] = array();
 
 		if ( isset( $this->mCascadeSources ) && $get_pages ) {
 			return array( $this->mCascadeSources, $this->mCascadingRestrictions );
@@ -1830,7 +1827,13 @@ class Title {
 					$sources[$page_id] = Title::makeTitle($page_ns, $page_title);
 					# Add groups needed for each restriction type if its not already there
 					# Make sure this restriction type still exists
-					if ( isset($pagerestrictions[$row->pr_type]) && !in_array($row->pr_level, $pagerestrictions[$row->pr_type]) ) {
+					
+					if ( !isset( $pagerestrictions[$row->pr_type] ) ) {
+						$pagerestrictions[$row->pr_type] = array();
+					}
+					
+					if ( isset($pagerestrictions[$row->pr_type]) &&
+							!in_array($row->pr_level, $pagerestrictions[$row->pr_type]) ) {
 						$pagerestrictions[$row->pr_type][]=$row->pr_level;
 					}
 				} else {
@@ -1880,10 +1883,11 @@ class Title {
 	}
 	
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = NULL ) {
-		global $wgRestrictionTypes;
 		$dbr = wfGetDB( DB_SLAVE );
+		
+		$restrictionTypes = $this->getProtectionTypes();
 
-		foreach( $wgRestrictionTypes as $type ){
+		foreach( $restrictionTypes as $type ){
 			$this->mRestrictions[$type] = array();
 			$this->mRestrictionsExpiry[$type] = Block::decodeExpiry('');
 		}
@@ -1922,8 +1926,9 @@ class Title {
 			foreach( $rows as $row ) {
 				# Cycle through all the restrictions.
 
-				// Don't take care of restrictions types that aren't in $wgRestrictionTypes
-				if( !in_array( $row->pr_type, $wgRestrictionTypes ) )
+				// Don't take care of restrictions types that aren't allowed
+				
+				if( !in_array( $row->pr_type, $restrictionTypes ) )
 					continue;
 
 				// This code should be refactored, now that it's being used more generally,
@@ -3761,5 +3766,19 @@ class Title {
 
 		return !in_array( $this->mNamespace, $bannedNamespaces );
 
+	}
+	
+	public function getProtectionTypes() {
+		global $wgRestrictionTypes;
+		$types = $this->exists() ? $wgRestrictionTypes : array('create');
+		
+		if ( $this->getNamespace() == NS_FILE ) {
+			$types[] = 'upload';
+		}
+		
+		wfRunHooks( 'ProtectionFormGetApplicableTypes',
+				array( $this, &$types ) );
+				
+		return $types;
 	}
 }
