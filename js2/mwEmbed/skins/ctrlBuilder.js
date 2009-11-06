@@ -416,7 +416,7 @@ ctrlBuilder.prototype = {
 						'<span class="ui-icon ui-icon-volume-on"></span>';
 						
 				if( ctrlObj.volume_layout == 'vertical'){
-					o+='<div style="position:absolute;display:none;" class="vol_container ui-corner-all">' +
+					o+='<div style="position:absolute;display:none;left:0px;" class="vol_container ui-corner-all">' +
 							'<div class="volume-slider" ></div>' +
 						'</div>';
 				}
