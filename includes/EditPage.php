@@ -2586,7 +2586,7 @@ END
 		 		$wgOut->rateLimited();
 		 		return false;
 
-		 	case self::AS_NO_CREATE_PERMISSION;
+		 	case self::AS_NO_CREATE_PERMISSION:
 		 		$this->noCreatePermission();
 		 		return;
 
