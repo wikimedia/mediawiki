@@ -753,9 +753,7 @@ class ParserTest {
 				$db->query( "DROP TABLE $newTableName" );
 			}
 			# Create new table
-			$db->begin();
 			$db->duplicateTableStructure( $oldTableName, $newTableName, $temporary );
-			$db->commit();
 		}
 
 		$this->changePrefix( 'parsertest_' );
