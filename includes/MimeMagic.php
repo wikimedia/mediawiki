@@ -469,16 +469,18 @@ class MimeMagic {
 		}
 
 		/*
-		 * look for PHP
-		 * Check for this before HTML/XML...
-		 * Warning: this is a heuristic, and won't match a file with a lot of non-PHP before.
-		 * It will also match text files which could be PHP. :)
+		 * Look for PHP.  Check for this before HTML/XML...  Warning: this is a
+		 * heuristic, and won't match a file with a lot of non-PHP before.  It
+		 * will also match text files which could be PHP. :)
+		 *
+		 * FIXME: For this reason, the check is probably useless -- an attacker
+		 * could almost certainly just pad the file with a lot of nonsense to
+		 * circumvent the check in any case where it would be a security
+		 * problem.  On the other hand, it causes harmful false positives (bug
+		 * 16583).  The heuristic has been cut down to exclude three-character
+		 * strings like "<? ", but should it be axed completely?
 		 */
 		if( ( strpos( $head, '<?php' ) !== false ) ||
-		    ( strpos( $head, '<? ' ) !== false ) ||
-		    ( strpos( $head, "<?\n" ) !== false ) ||
-		    ( strpos( $head, "<?\t" ) !== false ) ||
-		    ( strpos( $head, "<?=" ) !== false ) ||
 
 		    ( strpos( $head, "<\x00?\x00p\x00h\x00p" ) !== false ) ||
 		    ( strpos( $head, "<\x00?\x00 " ) !== false ) ||
