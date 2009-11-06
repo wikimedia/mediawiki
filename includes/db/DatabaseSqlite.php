@@ -520,6 +520,10 @@ class DatabaseSqlite extends DatabaseBase {
 		return '(' . implode( ') || (', $stringList ) . ')';
 	}
 
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseSqlite::duplicateTableStructure' ) {
+		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName AS SELECT * FROM $oldName LIMIT 0", $fname );
+	}
+
 } // end DatabaseSqlite class
 
 /**

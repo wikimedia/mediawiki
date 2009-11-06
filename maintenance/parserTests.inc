@@ -735,56 +735,27 @@ class ParserTest {
 			$this->useTemporaryTables = false;
 		}
 
-		$temporary = $this->useTemporaryTables ? 'TEMPORARY' : '';
+		$temporary = $this->useTemporaryTables || $wgDBtype == 'postgres';
 
 		$db = wfGetDB( DB_MASTER );
 		$tables = $this->listTables();
 
-		if ( !( $wgDBtype == 'mysql' && strcmp( $db->getServerVersion(), '4.1' ) < 0 ) ) {
-			# Database that supports CREATE TABLE ... LIKE
-			
-			if( $wgDBtype == 'postgres' ) {
-				$def = 'INCLUDING DEFAULTS';
-				$temporary = 'TEMPORARY';
-			} else {
-				$def = '';
-			}
-			foreach ( $tables as $tbl ) {
-				# Clean up from previous aborted run.  So that table escaping
-				# works correctly across DB engines, we need to change the pre-
-				# fix back and forth so tableName() works right.
-				$this->changePrefix( $this->oldTablePrefix );
-				$oldTableName = $db->tableName( $tbl );
-				$this->changePrefix( 'parsertest_' );
-				$newTableName = $db->tableName( $tbl );
+		foreach ( $tables as $tbl ) {
+			# Clean up from previous aborted run.  So that table escaping
+			# works correctly across DB engines, we need to change the pre-
+			# fix back and forth so tableName() works right.
+			$this->changePrefix( $this->oldTablePrefix );
+			$oldTableName = $db->tableName( $tbl );
+			$this->changePrefix( 'parsertest_' );
+			$newTableName = $db->tableName( $tbl );
 
-				if ( $db->tableExists( $tbl ) && $wgDBtype != 'postgres' ) {
-					$db->query( "DROP TABLE $newTableName" );
-				}
-				# Create new table
-				$db->query( "CREATE $temporary TABLE $newTableName (LIKE $oldTableName $def)" );
+			if ( $db->tableExists( $tbl ) && $wgDBtype != 'postgres' ) {
+				$db->query( "DROP TABLE $newTableName" );
 			}
-		} else {
-			# Hack for MySQL versions < 4.1, which don't support
-			# "CREATE TABLE ... LIKE". Note that
-			# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
-			# would not create the indexes we need....
-			#
-			# Note that we don't bother changing around the prefixes here be-
-			# cause we know we're using MySQL anyway.
-			foreach ($tables as $tbl) {
-				$oldTableName = $db->tableName( $tbl );
-				$res = $db->query("SHOW CREATE TABLE $oldTableName");
-				$row = $db->fetchRow($res);
-				$create = $row[1];
-				$create_tmp = preg_replace('/CREATE TABLE `(.*?)`/', 
-					"CREATE $temporary TABLE `parsertest_$tbl`", $create);
-				if ($create === $create_tmp) {
-					# Couldn't do replacement
-					wfDie("could not create temporary table $tbl");
-				}
-				$db->query($create_tmp);
-			}
+			# Create new table
+			$db->begin();
+			$db->duplicateTableStructure( $oldTableName, $newTableName, $temporary );
+			$db->commit();
 		}
 
 		$this->changePrefix( 'parsertest_' );

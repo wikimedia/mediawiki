@@ -1991,6 +1991,21 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Creates a new table with structure copied from existing table
+	 * Note that unlike most database abstraction functions, this function does not
+	 * automatically append database prefix, because it works at a lower
+	 * abstraction level.
+	 *
+	 * @param $oldName String: name of table whose structure should be copied
+	 * @param $newName String: name of table to be created
+	 * @param $temporary Boolean: whether the new table should be temporary
+	 * @return Boolean: true if operation was successful
+	 */
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'Database::duplicateTableStructure' ) {
+		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName)", $fname );
+	}
+
+	/**
 	 * Return MW-style timestamp used for MySQL schema
 	 */
 	function timestamp( $ts=0 ) {
