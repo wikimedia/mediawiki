@@ -222,6 +222,8 @@ if( !mv_embed_path ) {
 		'jui_skin' : 'redmond',
 		'video_size' : '400x300'	
 	}
+	//list valid skins here:
+	$.valid_skins = ['mvpcf', 'kskin'];
 	// the version of mwEmbed
 	$.version = '1.0r21';
 	
@@ -1142,9 +1144,13 @@ function mwdomReady( force ) {
 		for(var j in e){
 			for(var k in e[j]){
 				if(e[j][k] && typeof( e[j][k]) == 'object'){
-					var	sn = e[j][k].getAttribute('skin_name')
+					var	sn = e[j][k].getAttribute('class');				
 					if( sn && sn != ''){
-						$mw.skin_list.push( sn );
+						for(var n=0;n< $mw.valid_skins.length;n++){ 
+							if( sn.indexOf($mw.valid_skins[n]) !== -1){
+								$mw.skin_list.push( $mw.valid_skins[n] );
+							}
+						}
 					}
 				}
 			}

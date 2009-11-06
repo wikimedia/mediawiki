@@ -98,8 +98,6 @@ var default_video_attributes = {
 	"embed_link":true,
 	"download_link":true,
 	"type":null,	 //the content type of the media 
-	
-	"skin_name":null //if you want to select a custom skin per video tag. 
 };
 /*
  * the base source attribute checks
@@ -823,9 +821,18 @@ embedVideo.prototype = {
 			}
 		}
 		
-		//set the skin name from the config (if not set locally) 
-		if( !this.skin_name )
-			this.skin_name = $mw.conf['skin_name'];
+		//set the skin name from the class  
+		var	sn = element.getAttribute('class');
+		if( sn && sn != ''){
+			for(var n=0;n< $mw.valid_skins.length;n++){ 
+				if( sn.indexOf($mw.valid_skins[n]) !== -1){
+					this.skin_name = $mw.valid_skins[n];
+				}
+			}
+		}
+		//set the default if unset: 
+		if(!this.skin_name)
+			this.skin_name = $mw.conf.skin_name;
 		
 		//make sure startOffset is cast as an int		   
 		if( this.startOffset && this.startOffset.split(':').length >= 2)
