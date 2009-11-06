@@ -684,6 +684,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 19004) Added support for tags
 * (bug 21083) list=allusers no longer returns current timestamp for users
   without registration date
+* (bug 20554) Expose average slave lag (avglag) as well as maxlag
 
 === Languages updated in 1.16 ===
 

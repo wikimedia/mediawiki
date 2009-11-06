@@ -95,6 +95,24 @@ class MediaWiki {
 			return true;
 		}
 	}
+	
+	/**
+	 * Check if the average lag of database slaves is higher that $avgLag, and
+	 * if it's the case, output an error message
+	 *
+	 * @param $avgLag int: maximum lag allowed for the request, as supplied by
+	 *                the client
+	 * @return bool true if the request can continue
+	 */
+	function checkAvgLag( $avgLag ) {
+		list( $host, $lag ) = wfGetLB()->getAvgLag();
+		if( $lag > $avgLag ) {
+			wfAvglagError( $lag, $avgLag );
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 	/**
 	 * Checks some initial queries

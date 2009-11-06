@@ -394,6 +394,20 @@ class ApiMain extends ApiBase {
 				return;
 			}
 		}
+		
+		if( $module->shouldCheckAvglag() && isset( $params['avglag'] ) ) {
+			// Check for avglag
+			global $wgShowHostnames;
+			$avgLag = $params['avglag'];
+			$lag = wfGetLB()->getAvgLag();
+			if ( $lag > $avgLag ) {
+				header( 'Retry-After: ' . max( intval( $avgLag ), 5 ) );
+				header( 'X-Database-Lag: ' . intval( $lag ) );
+
+				$this->dieUsage( "Lag: $lag seconds average", 'avglag' );
+				return;
+			}
+		}
 
 		global $wgUser;
 		if ($module->isReadMode() && !$wgUser->isAllowed('read'))
@@ -477,6 +491,9 @@ class ApiMain extends ApiBase {
 			'maxlag'  => array (
 				ApiBase :: PARAM_TYPE => 'integer'
 			),
+			'avglag'  => array (
+				ApiBase :: PARAM_TYPE => 'integer'
+			),
 			'smaxage' => array (
 				ApiBase :: PARAM_TYPE => 'integer',
 				ApiBase :: PARAM_DFLT => 0
@@ -498,6 +515,7 @@ class ApiMain extends ApiBase {
 			'action' => 'What action you would like to perform',
 			'version' => 'When showing help, include version for each module',
 			'maxlag' => 'Maximum lag',
+			'avglag' => 'Average lag',
 			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
 			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
 			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
