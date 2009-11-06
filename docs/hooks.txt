@@ -553,6 +553,11 @@ $user: the user who did the block (not the one being blocked)
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
+'CacheHeadersAfterSet': after cache headers have been set in 
+OutputPage::sendCacheControl, so they can be overridden without 
+disabling output method
+$this: OutputPage instance
+ 
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
