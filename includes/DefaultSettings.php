@@ -1452,7 +1452,7 @@ $wgGroupsRemoveFromSelf = array();
  * You probably shouldn't change this.
  * Translated through restriction-* messages.
  */
-$wgRestrictionTypes = array( 'edit', 'move', 'upload' );
+$wgRestrictionTypes = array( 'edit', 'move' );
 
 /**
  * Rights which can be required for each protection level (via action=protect)
