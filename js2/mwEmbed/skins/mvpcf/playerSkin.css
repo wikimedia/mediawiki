@@ -80,10 +80,7 @@
 	padding: 0 0 0 0;
 	
 }
-.mv-player .volume-slider{
-	height:74px;
-	left:5px;
-}
+
 .mv-player .volume_on {	
 	background: url(images/player_volume_tag.png) 0 8px no-repeat;
 }
@@ -113,7 +110,7 @@
 .mv-player .vol_container_top{
 	top:-77px;
 }
-.	ayer .vol_container .volume-slider{
+.mv-player .vol_container .volume-slider{
 	margin-top:5px;	
 	height:65px;
 	width:10px;
