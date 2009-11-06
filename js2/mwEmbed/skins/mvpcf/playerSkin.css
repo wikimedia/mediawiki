@@ -80,6 +80,10 @@
 	padding: 0 0 0 0;
 	
 }
+.mv-player .volume-slider{
+	height:74px;
+	left:5px;
+}
 .mv-player .volume_on {	
 	background: url(images/player_volume_tag.png) 0 8px no-repeat;
 }
