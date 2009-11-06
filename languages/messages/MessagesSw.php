@@ -746,6 +746,7 @@ Kama bado haifanyi kazi, jaribu [[Special:UserLogout|kutoka kwenye akounti yako]
 Iwapo bado haifanyikazi, jaribu [[Special:UserLogout|kutoka]] na uingie tena.",
 'editing'                          => 'Kuhariri $1',
 'editingsection'                   => 'Unahariri $1 (fungu)',
+'editingcomment'                   => 'Una hariri$1 (sehemu mpya)',
 'editconflict'                     => 'Mgongano wa kuhariri: $1',
 'explainconflict'                  => "Mtu mwingine amebadilisha ukurasa huu tangu ulipoanza kuihariri.
 Sanduku la juu inaonyesha maandiko yaliyopo sasa hivi kwenye ukurasa.
@@ -753,6 +754,7 @@ Mabadiliko yako yanaonyeshwa kwenye sanduku la chini.
 Inabidi uingize mabadiliko yako ndani ya sanduku la juu.
 Ni maandiko yaliyopo ndani ya sanduku la juu '''tu''' ambayo yatahifadhiwa utakapobonyeza \"Hifadhi ukurasa\".",
 'yourtext'                         => 'Maandishi yako',
+'storedversion'                    => 'Mapitio yaliyohifadhiwa',
 'editingold'                       => "'''ANGALIA: Unakuwa unahariri toleo la zamani la ukurasa huu.
 Ukiendelea kulihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.'''",
 'yourdiff'                         => 'Tofauti',

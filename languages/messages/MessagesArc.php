@@ -961,9 +961,15 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # What links here
 'whatlinkshere'            => 'ܡܐ ܐܣܪ ܠܟܐ؟',
+'whatlinkshere-title'      => 'ܦܐܬܬ̈ܐ ܕܐܣܝܪܝܢ ܥܡ "$1"',
 'whatlinkshere-page'       => 'ܦܐܬܐ:',
+'linkshere'                => "ܦܐܬܬ̈ܐ ܗܠܝܢ ܐܣܝܪܝܢ ܥܡ '''[[:$1]]''':",
+'nolinkshere'              => "ܠܝܬ ܦܐܬܬ̈ܐ ܐܣܪܝܢ ܥܡ '''[[:$1]]'''.",
+'nolinkshere-ns'           => "ܠܝܬ ܦܐܬܬ̈ܐ ܐܣܪܝܢ ܥܡ '''[[:$1]]''' ܒܚܩܠܐ ܓܒܝܐ.",
 'isredirect'               => 'ܨܝܒ ܦܐܬܐ',
 'isimage'                  => 'ܐܣܘܪܐ ܕܨܘܪܬܐ',
+'whatlinkshere-prev'       => '{{PLURAL:$1|ܩܕܝܡܐ|$1 ܩܕ̈ܝܡܐ}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|ܚܕܬܐ|$1 ܚܕ̈ܬܐ}}',
 'whatlinkshere-links'      => '← ܐܣܘܪ̈ܐ',
 'whatlinkshere-hideredirs' => '$1 ܨܘܝܒܐ',
 'whatlinkshere-hidelinks'  => '$1 ܐܣܘܪ̈ܐ',

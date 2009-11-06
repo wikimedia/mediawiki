@@ -317,10 +317,10 @@ $messages = array(
 'tog-previewontop'            => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
 'tog-previewonfirst'          => 'Perlihatkan pratayang pada suntingan pertama',
 'tog-nocache'                 => 'Matikan <em>cache</em> halaman',
-'tog-enotifwatchlistpages'    => 'Kirimi saya surat-e jika suatu halaman yang saya pantau berubah',
-'tog-enotifusertalkpages'     => 'Kirimi saya surat-e jika halaman pembicaraan saya berubah',
-'tog-enotifminoredits'        => 'Kirimi saya surat-e juga pada perubahan kecil',
-'tog-enotifrevealaddr'        => 'Tampilkan alamat surat-e saya pada surat-e notifikasi',
+'tog-enotifwatchlistpages'    => 'Kirimi saya surel jika suatu halaman yang saya pantau berubah',
+'tog-enotifusertalkpages'     => 'Kirimi saya surel jika halaman pembicaraan saya berubah',
+'tog-enotifminoredits'        => 'Kirimi saya surel juga pada perubahan kecil',
+'tog-enotifrevealaddr'        => 'Tampilkan alamat surel saya pada surel notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
 'tog-oldsig'                  => 'Pratayang tandatangan:',
 'tog-fancysig'                => 'Perlakukan tanda tangan sebagai teks wiki (tanpa suatu pranala otomatis)',
@@ -336,7 +336,7 @@ $messages = array(
 'tog-watchlisthideanons'      => 'Sembunyikan suntingan pengguna anonim dari daftar pantauan',
 'tog-watchlisthidepatrolled'  => 'Sembunyikan suntingan terpatroli dari daftar pantauan',
 'tog-nolangconversion'        => 'Matikan konversi varian',
-'tog-ccmeonemails'            => 'Kirimkan saya salinan surat-e yang saya kirimkan ke orang lain',
+'tog-ccmeonemails'            => 'Kirimkan saya salinan surel yang saya kirimkan ke orang lain',
 'tog-diffonly'                => 'Jangan tampilkan isi halaman di bawah perbedaan suntingan',
 'tog-showhiddencats'          => 'Tampilkan kategori tersembunyi',
 'tog-norollbackdiff'          => 'Jangan tampilkan perbedaan setelah melakukan pengembalian',
@@ -709,7 +709,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'createaccount'              => 'Buat akun baru',
 'gotaccount'                 => "Sudah terdaftar sebagai pengguna? '''$1'''.",
 'gotaccountlink'             => 'Masuk log',
-'createaccountmail'          => 'melalui surat-e',
+'createaccountmail'          => 'melalui surel',
 'badretype'                  => 'Kata sandi yang Anda masukkan salah.',
 'userexists'                 => 'Nama pengguna yang Anda masukkan sudah dipakai.
 Silakan pilih nama yang lain.',
@@ -730,33 +730,35 @@ Silakan periksa kembali ejaan Anda.',
 'wrongpasswordempty'         => 'Anda tidak memasukkan kata sandi. Silakan coba lagi.',
 'passwordtooshort'           => 'Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}}.',
 'password-name-match'        => 'Kata sandi Anda harus berbeda dari nama pengguna Anda.',
-'mailmypassword'             => 'Surat-e kata sandi baru',
+'mailmypassword'             => 'Kirim kata sandi baru',
 'passwordremindertitle'      => 'Peringatan kata sandi dari {{SITENAME}}',
 'passwordremindertext'       => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta kata sandi baru untuk {{SITENAME}} ($4). Kata sandi sementara untuk pengguna "$2" telah dibuatkan dan diset menjadi "$3". Jika memang Anda yang mengajukan permintaan ini, Anda perlu masuk log dan memilih kata sandi baru sekarang. Kata sandi sementara Anda akan kedaluwarsa dalam waktu {{PLURAL:$5|satu hari|$5 hari}}.
 
 Jika orang lain yang melakukan permintaan ini, atau jika Anda telah mengingat kata sandi Anda dan akan tetap menggunakan kata sandi tersebut, silakan abaikan pesan ini dan tetap gunakan kata sandi lama Anda.',
-'noemail'                    => 'Tidak ada alamat surat-e yang tercatat untuk pengguna "$1".',
+'noemail'                    => 'Tidak ada alamat surel yang tercatat untuk pengguna "$1".',
 'noemailcreate'              => 'Anda perlu menyediakan alamat surel yang sah',
-'passwordsent'               => 'Kata sandi baru telah dikirimkan ke surat-e yang didaftarkan untuk "$1". Silakan masuk log kembali setelah menerima surat-e tersebut.',
+'passwordsent'               => 'Kata sandi baru telah dikirimkan ke alamat surel yang didaftarkan untuk "$1".
+Silakan masuk log kembali setelah menerima surel tersebut.',
 'blocked-mailpassword'       => 'Alamat IP Anda diblokir dari penyuntingan dan karenanya tidak diizinkan menggunakan fungsi pengingat kata sandi untuk mencegah penyalahgunaan.',
-'eauthentsent'               => 'Sebuah surat elektronik untuk konfirmasi telah dikirim ke alamat surat elektronik Anda. Anda harus mengikuti instruksi di dalam surat elektronik tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. {{SITENAME}} tidak akan mengaktifkan fitur surat elektronik jika langkah ini belum dilakukan.',
+'eauthentsent'               => 'Sebuah surel untuk konfirmasi telah dikirim ke alamat surel.
+Anda harus mengikuti instruksi di dalam surel tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. {{SITENAME}} tidak akan mengaktifkan fitur surel jika langkah ini belum dilakukan.',
 'throttled-mailpassword'     => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|jam|$1 jam}} terakhir. 
 Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|jam|$1 jam}}.',
-'mailerror'                  => 'Kesalahan dalam mengirimkan surat-e: $1',
+'mailerror'                  => 'Kesalahan dalam mengirimkan surel: $1',
 'acct_creation_throttle_hit' => 'Pengunjung wiki ini dengan alamat IP yang sama dengan Anda telah membuat {{PLURAL:$1|1 akun|$1 akun}} dalam satu hari terakhir, hingga jumlah maksimum yang diijinkan.
 Karenanya, pengunjung dengan alamat IP ini tidak dapat lagi membuat akun lain untuk sementara.',
-'emailauthenticated'         => 'Alamat surat-e Anda telah dikonfirmasi pada $3, $2.',
-'emailnotauthenticated'      => 'Alamat surat-e Anda belum dikonfirmasi. Sebelum dikonfirmasi Anda tidak bisa menggunakan fitur surat elektronik.',
-'noemailprefs'               => 'Anda harus memasukkan alamat surat-e di preferensi Anda untuk dapat menggunakan fitur-fitur ini.',
-'emailconfirmlink'           => 'Konfirmasikan alamat surat-e Anda',
-'invalidemailaddress'        => 'Alamat surat-e ini tidak dapat diterima karena formatnya tidak sesuai.
-Harap masukkan alamat surat-e dalam format yang benar atau kosongkan isian tersebut.',
+'emailauthenticated'         => 'Alamat surel Anda telah dikonfirmasi pada $3, $2.',
+'emailnotauthenticated'      => 'Alamat surel Anda belum dikonfirmasi. Sebelum dikonfirmasi Anda tidak bisa menggunakan fitur surel.',
+'noemailprefs'               => 'Anda harus memasukkan alamat surel di preferensi Anda untuk dapat menggunakan fitur-fitur ini.',
+'emailconfirmlink'           => 'Konfirmasikan alamat surel Anda',
+'invalidemailaddress'        => 'Alamat surel ini tidak dapat diterima karena formatnya tidak sesuai.
+Harap masukkan alamat surel dalam format yang benar atau kosongkan isian tersebut.',
 'accountcreated'             => 'Akun dibuat',
 'accountcreatedtext'         => 'Akun pengguna untuk $1 telah dibuat.',
 'createaccount-title'        => 'Pembuatan akun untuk {{SITENAME}}',
-'createaccount-text'         => 'Seseorang telah membuat sebuah akun untuk alamat surat-e Anda di {{SITENAME}} ($4) dengan nama "$2" dan kata sandi "$3". Anda dianjurkan untuk masuk log dan mengganti kata sandi Anda sekarang.
+'createaccount-text'         => 'Seseorang telah membuat sebuah akun untuk alamat surel Anda di {{SITENAME}} ($4) dengan nama "$2" dan kata sandi "$3". Anda dianjurkan untuk masuk log dan mengganti kata sandi Anda sekarang.
 
-Anda dapat mengabaikan pesan nini jika akun ini dibuat karena suatu kesalahan.',
+Anda dapat mengabaikan pesan ini jika akun ini dibuat karena suatu kesalahan.',
 'usernamehasherror'          => 'Nama pengguna tidak bisa mengandung tanda pagar',
 'login-throttled'            => 'Anda telah berkali-kali mencoba masuk log. 
 Silakan menunggu sebelum mencoba lagi.',
@@ -764,7 +766,7 @@ Silakan menunggu sebelum mencoba lagi.',
 
 # Password reset dialog
 'resetpass'                 => 'Ganti kata sandi',
-'resetpass_announce'        => 'Anda telah masuk log dengan kode sementara yang dikirim melalui surat-e. Untuk melanjutkan, Anda harus memasukkan kata sandi baru di sini:',
+'resetpass_announce'        => 'Anda telah masuk log dengan kode sementara yang dikirim melalui surel. Untuk melanjutkan, Anda harus memasukkan kata sandi baru di sini:',
 'resetpass_text'            => '<!-- Tambahkan teks di sini -->',
 'resetpass_header'          => 'Ganti kata sandi akun',
 'oldpassword'               => 'Kata sandi lama:',
@@ -829,7 +831,7 @@ Alasan yang diberikan adalah ''$2''.
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
-Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi akun]] dan Anda tidak diblokir untuk menggunakannya.
+Anda tidak dapat menggunakan fitur 'Kirim surel ke pengguna ini' kecuali Anda telah memasukkan alamat surel yang sah di [[Special:Preferences|preferensi akun]] dan Anda tidak diblokir untuk menggunakannya.
 
 Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5.
 Tolong sertakan salah satu atau kedua informasi ini pada setiap pertanyaan yang Anda buat.",
@@ -843,7 +845,7 @@ Tolong sertakan salah satu atau kedua informasi ini pada setiap pertanyaan yang 
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
-Anda tidak dapat menggunakan fitur "kirim surat-e pengguna ini" kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi akun]] Anda dan Anda tidak diblokir untuk menggunakannya.
+Anda tidak dapat menggunakan fitur "kirim surel ke pengguna ini" kecuali Anda telah memasukkan alamat surel yang sah di [[Special:Preferences|preferensi akun]] Anda dan Anda tidak diblokir untuk menggunakannya.
 
 Alamat IP Anda saat ini adalah $3, dan ID pemblokiran adalah #$5.
 Tolong sertakan informasi-informasi ini dalam setiap pertanyaan Anda.',
@@ -852,8 +854,8 @@ Tolong sertakan informasi-informasi ini dalam setiap pertanyaan Anda.',
 'blockededitsource'                => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 'whitelistedittitle'               => 'Perlu masuk log untuk menyunting',
 'whitelistedittext'                => 'Anda harus $1 untuk dapat menyunting artikel.',
-'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surat-e Anda sebelum menyunting halaman.
-Harap masukkan dan validasikan alamat surat-e Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',
+'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surel Anda sebelum menyunting halaman.
+Harap masukkan dan validasikan alamat surel Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',
 'nosuchsectiontitle'               => 'Subbagian tersebut tak ditemukan',
 'nosuchsectiontext'                => 'Anda mencoba menyunting suatu subbagian tidak ada. Karena subbagian $1 tidak ada, suntingan Anda tak dapat disimpan.',
 'loginreqtitle'                    => 'Harus masuk log',
@@ -1244,7 +1246,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-watchlist-token'         => 'Token pantauan:',
 'prefs-misc'                    => 'Lain-lain',
 'prefs-resetpass'               => 'Ganti kata sandi',
-'prefs-email'                   => 'Opsi surat-e',
+'prefs-email'                   => 'Opsi surel',
 'prefs-rendering'               => 'Tampilan',
 'saveprefs'                     => 'Simpan',
 'resetprefs'                    => 'Batalkan perubahan',
@@ -1282,7 +1284,7 @@ Berikut ini adalah nilai acak yang dapat Anda gunakan: $1',
 'timezoneregion-europe'         => 'Eropa',
 'timezoneregion-indian'         => 'Samudera Hindia',
 'timezoneregion-pacific'        => 'Samudera Pasifik',
-'allowemail'                    => 'Ijinkan pengguna lain mengirim surat-e',
+'allowemail'                    => 'Izinkan pengguna lain mengirim surel',
 'prefs-searchoptions'           => 'Opsi pencarian',
 'prefs-namespaces'              => 'Ruang nama',
 'defaultns'                     => 'Atau cari dalam ruang-ruang nama berikut:',
@@ -1292,7 +1294,7 @@ Berikut ini adalah nilai acak yang dapat Anda gunakan: $1',
 'prefs-custom-js'               => 'JS pribadi',
 'prefs-reset-intro'             => 'Anda dapat menggunakan halaman ini untuk mengembalikan preferensi Anda ke setelan baku situs.
 Pengembalian preferensi tidak dapat dibatalkan.',
-'prefs-emailconfirm-label'      => 'Konfirmasi surat-e:',
+'prefs-emailconfirm-label'      => 'Konfirmasi surel:',
 'prefs-textboxsize'             => 'Ukuran kotak suntingan',
 'youremail'                     => 'Surel:',
 'username'                      => 'Nama pengguna:',
@@ -1317,7 +1319,7 @@ Jangan lebih dari $1 {{PLURAL:$1|karakter|karakter}}.',
 Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
 'prefs-help-email'              => 'Alamat surel bersifat manasuka, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surel tersebut.
 Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui halaman pengguna atau halaman pembicaraan pengguna Anda tanpa perlu membuka identitas Anda.',
-'prefs-help-email-required'     => 'Alamat surat-e dibutuhkan.',
+'prefs-help-email-required'     => 'Alamat surel dibutuhkan.',
 'prefs-info'                    => 'Informasi dasar',
 'prefs-i18n'                    => 'Internasionalisasi',
 'prefs-signature'               => 'Tanda tangan',
@@ -1409,7 +1411,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-suppressrevision'      => 'Memeriksa dan mengembalikan revisi-revisi yang disembunyikan dari Opsis',
 'right-suppressionlog'        => 'Melihat log privat',
 'right-block'                 => 'Memblokir penyuntingan oleh pengguna lain',
-'right-blockemail'            => 'Memblokir pengiriman surat-e oleh pengguna',
+'right-blockemail'            => 'Memblokir pengiriman surel oleh pengguna',
 'right-hideuser'              => 'Memblokir nama pengguna dan menyembunyikannya dari publik',
 'right-ipblock-exempt'        => 'Abaikan pemblokiran IP, pemblokiran otomatis, dan rentang pemblokiran',
 'right-proxyunbannable'       => 'Abaikan pemblokiran otomatis atas proxy',
@@ -1436,7 +1438,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-reset-passwords'       => 'Mereset kata sandi pengguna lain',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-versiondetail'         => 'Tunjukkan informasi versi piranti lunak yang lebih lengkap',
-'right-sendemail'             => 'Kirim surat-e ke pengguna lain',
+'right-sendemail'             => 'Kirim surel ke pengguna lain',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
@@ -1950,13 +1952,13 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 # Special:Log/newusers
 'newuserlogpage'              => 'Log pengguna baru',
 'newuserlogpagetext'          => 'Di bawah ini adalah log pendaftaran pengguna baru',
-'newuserlog-byemail'          => 'kata sandi dikirim melalui surat-e',
+'newuserlog-byemail'          => 'kata sandi dikirim melalui surel',
 'newuserlog-create-entry'     => 'mendaftar sebagai pengguna',
 'newuserlog-create2-entry'    => 'membuat akun baru $1',
 'newuserlog-autocreate-entry' => 'akun pengguna dibuat secara otomatis',
 
 # Special:ListGroupRights
-'listgrouprights'                      => 'Hak-hak grup pengguna',
+'listgrouprights'                      => 'Hak kelompok pengguna',
 'listgrouprights-summary'              => 'Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka masing-masing. Informasi lebih lanjut mengenai hak masing-masing dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}|halaman bantuan hak pengguna]].',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Hak yang berlaku</span>
 * <span class="listgrouprights-revoked">Hak yang dicabut</span>',
@@ -1974,19 +1976,19 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'listgrouprights-removegroup-self-all' => 'Dapat menghapus semua grup dari akun sendiri',
 
 # E-mail user
-'mailnologin'      => 'Tidak ada alamat surat-e',
-'mailnologintext'  => 'Anda harus [[Special:UserLogin|masuk log]] dan mempunyai alamat surat-e yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surat-e kepada pengguna lain.',
-'emailuser'        => 'Surat-e pengguna',
-'emailpage'        => 'Kirimi pengguna ini surat-e',
-'emailpagetext'    => 'Anda dapat menggunakan formulir di bawah ini untuk mengirimkan pesan surat-e ke pengguna ini.
-Alamat surat-e yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] akan muncul sebagai alamat "Dari" dalam surat-e tersebut, sehingga penerima dapat membalasa surat-e langsung kepada Anda.',
+'mailnologin'      => 'Tidak ada alamat surel',
+'mailnologintext'  => 'Anda harus [[Special:UserLogin|masuk log]] dan mempunyai alamat surel yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surel kepada pengguna lain.',
+'emailuser'        => 'Surel pengguna',
+'emailpage'        => 'Kirim surel ke pengguna ini',
+'emailpagetext'    => 'Anda dapat menggunakan formulir di bawah ini untuk mengirimkan surel ke pengguna ini.
+Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] akan muncul sebagai alamat "Dari" dalam surel tersebut, sehingga penerima dapat langsung membalas kepada Anda.',
 'usermailererror'  => 'Kesalahan objek surat:',
-'defemailsubject'  => 'Surat-e {{SITENAME}}',
-'noemailtitle'     => 'Tidak ada alamat surat-e',
-'noemailtext'      => 'Pengguna ini tidak memberikan suatu alamat surat-e yang valid.',
-'nowikiemailtitle' => 'Surat-e tak diizinkan',
-'nowikiemailtext'  => 'Pengguna ini telah memilih untuk tidak menerima surat-e dari pengguna lain.',
-'email-legend'     => 'Kirim surat-e ke pengguna {{SITENAME}} lainnya',
+'defemailsubject'  => 'Surel {{SITENAME}}',
+'noemailtitle'     => 'Tidak ada alamat surel',
+'noemailtext'      => 'Pengguna ini tidak memberikan suatu alamat surel yang valid.',
+'nowikiemailtitle' => 'Surel tak diizinkan',
+'nowikiemailtext'  => 'Pengguna ini telah memilih untuk tidak menerima surel dari pengguna lain.',
+'email-legend'     => 'Kirim surel ke pengguna {{SITENAME}} lainnya',
 'emailfrom'        => 'Dari:',
 'emailto'          => 'Untuk:',
 'emailsubject'     => 'Perihal:',
@@ -1994,9 +1996,9 @@ Alamat surat-e yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]
 'emailsend'        => 'Kirim',
 'emailccme'        => 'Kirimi saya salinan pesan saya.',
 'emailccsubject'   => 'Salinan pesan Anda untuk $1: $2',
-'emailsent'        => 'Surat-e terkirim',
-'emailsenttext'    => 'Surat-e Anda telah dikirimkan.',
-'emailuserfooter'  => 'Surat-e ini dikirimkan oleh $1 kepada $2 menggunakan fungsi "Suratepengguna" di {{SITENAME}}.',
+'emailsent'        => 'Surel terkirim',
+'emailsenttext'    => 'Surel Anda telah dikirimkan.',
+'emailuserfooter'  => 'Surel ini dikirimkan oleh $1 kepada $2 menggunakan fungsi "Suratepengguna" di {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Daftar pantauan saya',
@@ -2019,7 +2021,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'notvisiblerev'        => 'Revisi telah dihapus',
 'watchnochange'        => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
 'watchlist-details'    => 'Terdapat {{PLURAL:$1|$1 halaman|$1 halaman}} di daftar pantauan Anda, tidak termasuk halaman pembicaraan.',
-'wlheader-enotif'      => '* Notifikasi surat-e diaktifkan.',
+'wlheader-enotif'      => '* Notifikasi surel diaktifkan.',
 'wlheader-showupdated' => "* Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''",
 'watchmethod-recent'   => 'periksa daftar perubahan terbaru terhadap halaman yang dipantau',
 'watchmethod-list'     => 'periksa halaman yang dipantau terhadap perubahan terbaru',
@@ -2052,7 +2054,7 @@ $NEWPAGE
 Ringkasan suntingan: $PAGESUMMARY $PAGEMINOREDIT
 
 Hubungi penyunting:
-surat: $PAGEEDITOR_EMAIL
+surel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Kami tidak akan mengirimkan pemberitahuan perubahan lainnya sampai Anda mengunjungi halaman tersebut. Anda juga dapat menghapus tanda notifikasi untuk semua halaman pantauan Anda pada daftar pantauan Anda.
@@ -2291,7 +2293,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 ** Nama pengguna tak layak',
 'ipbanononly'                     => 'Hanya blokir pengguna anonim',
 'ipbcreateaccount'                => 'Cegah pembuatan akun',
-'ipbemailban'                     => 'Cegah pengguna mengirimkan surat-e',
+'ipbemailban'                     => 'Cegah pengguna mengirimkan surel',
 'ipbenableautoblock'              => 'Blokir alamat IP terakhir yang digunakan pengguna ini secara otomatis, dan semua alamat berikutnya yang mereka coba gunakan untuk menyunting.',
 'ipbsubmit'                       => 'Blokir pengguna ini',
 'ipbother'                        => 'Waktu lain:',
@@ -2605,7 +2607,7 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'tooltip-feed-rss'                => 'Umpan RSS untuk halaman ini',
 'tooltip-feed-atom'               => 'Umpan Atom untuk halaman ini',
 'tooltip-t-contributions'         => 'Lihat daftar kontribusi pengguna ini',
-'tooltip-t-emailuser'             => 'Kirimkan surat-e kepada pengguna ini',
+'tooltip-t-emailuser'             => 'Kirimkan surel kepada pengguna ini',
 'tooltip-t-upload'                => 'Muatkan gambar atau berkas media',
 'tooltip-t-specialpages'          => 'Daftar semua halaman istimewa',
 'tooltip-t-print'                 => 'Versi cetak halaman ini',
@@ -2749,7 +2751,8 @@ $1',
 'nextdiff'     => 'Revisi selanjutnya →',
 
 # Media information
-'mediawarning'         => "'''Peringatan:''' Berkas ini mungkin mengandung kode berbahaya yang jika dijalankan dapat mempengaruhi sistem Anda.<hr />",
+'mediawarning'         => "'''Peringatan''': Berkas ini mungkin mengandung kode berbahaya.
+Jika dijalankan, sistem Anda akan berisiko terserang.<hr />",
 'imagemaxsize'         => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'            => 'Ukuran miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
@@ -3075,37 +3078,40 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'limitall'         => 'semua',
 
 # E-mail address confirmation
-'confirmemail'             => 'Konfirmasi alamat surat-e',
-'confirmemail_noemail'     => 'Anda tidak memberikan alamat surat-e yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
-'confirmemail_text'        => 'Wiki ini mengharuskan Anda untuk melakukan konfirmasi atas alamat surat elektronik Anda sebelum fitur-fitur surat elektronik dapat digunakan. Tekan tombol di bawah ini untuk mengirimi Anda sebuah surat elektronik yang berisi kode konfirmasi yang berupa sebuah alamat internet. Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan bahwa alamat surat elektronik Anda valid.',
+'confirmemail'             => 'Konfirmasi alamat surel',
+'confirmemail_noemail'     => 'Anda tidak memberikan alamat surel yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
+'confirmemail_text'        => '{{SITENAME}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surel Anda sebelum fitur-fitur surel dapat digunakan.
+Tekan tombol di bawah ini untuk mengirimi Anda sebuah surel yang berisi kode konfirmasi yang berupa sebuah alamat internet.
+Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan bahwa alamat surel Anda valid.',
 'confirmemail_pending'     => 'Suatu kode konfirmasi telah dikirimkan kepada Anda; jika Anda baru saja membuat akun Anda, silakan tunggu beberapa menit untuk surat tersebut tiba sebelum mencoba untuk meminta satu kode baru.',
 'confirmemail_send'        => 'Kirim kode konfirmasi',
-'confirmemail_sent'        => 'Surat elektronik berisi kode konfirmasi telah dikirim.',
-'confirmemail_oncreate'    => 'Suatu kode konfirmasi telah dikirimkan ke alamat surat-e Anda. Kode ini tidak dibutuhkan untuk masuk log, tapi dibutuhkan sebelum menggunakan semua fitur yang menggunakan surat-e di wiki ini.',
+'confirmemail_sent'        => 'Surel berisi kode konfirmasi telah dikirim.',
+'confirmemail_oncreate'    => 'Suatu kode konfirmasi telah dikirimkan ke alamat surel Anda. Kode ini tidak dibutuhkan untuk masuk log, tapi dibutuhkan sebelum menggunakan semua fitur yang menggunakan surel di wiki ini.',
 'confirmemail_sendfailed'  => '{{SITENAME}} tidak berhasil mengirimkan surat konfirmasi Anda.
-Harap cek kemungkinan karakter ilegal pada alamat surat-e.
+Harap cek kemungkinan karakter ilegal pada alamat surel.
 
-Aplikasi pengiriman surat-e menginformasikan: $1',
+Aplikasi pengiriman surel menginformasikan: $1',
 'confirmemail_invalid'     => 'Kode konfirmasi salah. Kode tersebut mungkin sudah kadaluwarsa.',
-'confirmemail_needlogin'   => 'Anda harus melakukan $1 untuk mengkonfirmasikan alamat surat-e Anda.',
-'confirmemail_success'     => 'Alamat surat-e Anda telah dikonfirmasi. Sekarang Anda dapat masuk log dan mulai menggunakan wiki.',
-'confirmemail_loggedin'    => 'Alamat surat elektronik Anda telah dikonfirmasi.',
+'confirmemail_needlogin'   => 'Anda harus melakukan $1 untuk mengkonfirmasikan alamat surel Anda.',
+'confirmemail_success'     => 'Alamat surel Anda telah dikonfirmasi.
+Sekarang Anda dapat [[Special:UserLogin|masuk log]] dan mulai menggunakan wiki.',
+'confirmemail_loggedin'    => 'Alamat surel Anda telah dikonfirmasi.',
 'confirmemail_error'       => 'Terjadi kesalahan sewaktu menyimpan konfirmasi Anda.',
-'confirmemail_subject'     => 'Konfirmasi alamat surat-e {{SITENAME}}',
-'confirmemail_body'        => 'Seseorang, mungkin Anda, dari alamat IP $1, telah mendaftarkan akun "$2" dengan alamat surat-e ini di {{SITENAME}}.
+'confirmemail_subject'     => 'Konfirmasi alamat surel {{SITENAME}}',
+'confirmemail_body'        => 'Seseorang, mungkin Anda, dari alamat IP $1, telah mendaftarkan akun "$2" dengan alamat surel ini di {{SITENAME}}.
 
-Untuk mengkonfirmasikan bahwa akun ini benar dimiliki oleh Anda sekaligus mengaktifkan fitur surat-e di {{SITENAME}}, ikuti pranala berikut pada penjelajah web Anda:
+Untuk mengkonfirmasikan bahwa akun ini benar dimiliki oleh Anda sekaligus mengaktifkan fitur surel di {{SITENAME}}, ikuti pranala berikut pada penjelajah web Anda:
 
 $3
 
 Jika Anda merasa *tidak pernah* mendaftar, jangan ikuti pranala di atas.
-Klik pada pranala ini untuk membatalkan konfirmasi alamat surat-e:
+Klik pada pranala ini untuk membatalkan konfirmasi alamat surel:
 
 $5
 
 Kode konfirmasi ini akan kadaluwarsa pada $4.',
-'confirmemail_invalidated' => 'Konfirmasi alamat surat-e dibatalkan',
-'invalidateemail'          => 'Batalkan konfirmasi surat-e',
+'confirmemail_invalidated' => 'Konfirmasi alamat surel dibatalkan',
+'invalidateemail'          => 'Batalkan konfirmasi surel',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi interwiki dimatikan]',

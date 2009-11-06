@@ -2824,7 +2824,8 @@ $1',
 'nextdiff'     => 'Nyare redigering →',
 
 # Media information
-'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
+'mediawarning'         => "'''Varning''': Den här filen kan innehålla elak kod.
+Om du kör den kan din dator skadas.<hr />",
 'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',

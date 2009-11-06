@@ -2703,7 +2703,8 @@ $1',
 'nextdiff'     => 'Uudempi muutos →',
 
 # Media information
-'mediawarning'         => "'''Varoitus''': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",
+'mediawarning'         => "'''Varoitus''': Tämä tiedostomuoto saattaa sisältää vahingollista koodia.
+Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",
 'imagemaxsize'         => 'Kuvien enimmäiskoko kuvaussivuilla',
 'thumbsize'            => 'Pikkukuvien koko',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',
