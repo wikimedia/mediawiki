@@ -57,6 +57,11 @@ define( 'MW_ATTRIBS_REGEX',
 	   )?(?=$space|\$)/sx" );
 
 /**
+ * Regular expression to match URIs that could trigger script execution
+ */
+define( 'MW_SCRIPT_URL_PATTERN', '/(^|\s)(javascript|vbscript)[^\w]/i' );
+
+/**
  * List of all named character entities defined in HTML 4.01
  * http://www.w3.org/TR/html4/sgml/entities.html
  * @private
@@ -631,7 +636,7 @@ class Sanitizer {
 				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' ||
 				$attribute === 'datatype' || $attribute === 'typeof' ) {  
 				//Paranoia. Allow "simple" values but suppress javascript
-				if ( preg_match( '/(^|\s)javascript\s*:/i', $value ) ) {
+				if ( preg_match( MW_SCRIPT_URL_PATTERN, $value ) ) {
 					continue; 
 				}
 			}
