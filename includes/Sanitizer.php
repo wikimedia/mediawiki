@@ -626,6 +626,16 @@ class Sanitizer {
 					$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
 			}
 
+			//RDFa properties allow URIs. check them
+			if ( $attribute === 'rel' || $attribute === 'rev' || 
+				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' ||
+				$attribute === 'datatype' || $attribute === 'typeof' ) {  
+				//Paranoia. Allow "simple" values but suppress javascript
+				if ( preg_match( '/(^|\s)javascript\s*:/i', $value ) ) {
+					continue; 
+				}
+			}
+
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
 			$out[$attribute] = $value;
@@ -1154,7 +1164,11 @@ class Sanitizer {
 	 * @return Array
 	 */
 	static function setupAttributeWhitelist() {
-		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style' );
+		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style',
+				 #RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
+				 'about', 'property', 'resource', 'datatype', 'typeof', 
+				);
+
 		$block = array_merge( $common, array( 'align' ) );
 		$tablealign = array( 'align', 'char', 'charoff', 'valign' );
 		$tablecell = array( 'abbr',
