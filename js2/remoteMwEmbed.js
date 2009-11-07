@@ -62,15 +62,9 @@ function doPageSpecificRewrite() {
 }
 // will be depreciated in favor of updates to OggHandler
 function rewrite_for_OggHandler( vidIdList ){
-	function procVidId(vidId){
-		if( $j( '#'+vidId).length == 0){
-			if(vidIdList.length != 0){
-				setTimeout( function(){
-					procVidId( vidIdList.pop() )
-				}, 1);
-			}
-			return ;
-		}
+	function procVidId( vidId ){
+		js_log('vidIdList length: ' + vidIdList.length + ' left in the set: ' + vidIdList );
+		
 		// Grab the thumbnail and src of the video
 		var pimg = $j( '#' + vidId + ' img' );
 		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
@@ -90,9 +84,8 @@ function rewrite_for_OggHandler( vidIdList ){
 
 		// Parsed values:
 		var src = '';
-		var duration = '';		
-		var wikiTitleKey = $j( '#'+vidId + ' img').attr('alt').replace(' ', '_');		
-
+		var duration = '';	
+		var wikiTitleKey = $j( '#'+vidId + ' img').filter(':first').attr('alt').replace(/ /g, '_');
 		var re = new RegExp( /videoUrl(&quot;:?\s*)*([^&]*)/ );
 		src = re.exec( $j( '#'+vidId ).html() )[2];
 
@@ -117,24 +110,24 @@ function rewrite_for_OggHandler( vidIdList ){
 			}else{
 				html_out='<video' + common_attr +
 				poster_attr + ' ' +
-				'style="width:' + pwidth + 'px;height:' +
-				pheight + 'px;">'
+				'style="width:' + pwidth + 'px;height:' + pheight + 'px;">' +
 				'</video>';
 			}	
 			//set the video tag inner html and update the height
 			$j( '#' + vidId ).html( html_out )
 				.css('height', pheight + 30);
 
-		}		
-		rewrite_by_id( 'vid_' + i, function(){
+		}				
+		rewrite_by_id( vidId, function(){
 			if(vidIdList.length != 0){
+				alert('did first rewite now doing another');
 				setTimeout( function(){
 					procVidId( vidIdList.pop() )
 				}, 1);
 			}
 		});
 	};
-	//proccess each item in the vidIdList (with setTimeout to avoid locking)
+	//process each item in the vidIdList (with setTimeout to avoid locking)
 	setTimeout( function(){
 		procVidId( vidIdList.pop() )
 	}, 1);
