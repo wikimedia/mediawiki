@@ -1,11 +1,10 @@
 
 loadGM({
-	"mwe-select_transcript_set" : "Select layers",
+	"mwe-select_transcript_set" : "Select subtitles",
 	"mwe-auto_scroll" : "auto scroll",
 	"mwe-close" : "close",
 	"mwe-improve_transcript" : "Improve",
-	"mwe-no_text_tracks_found" : "No text tracks were found",
-	"mwe-subtitles" : "$1 subtitles"
+	"mwe-no_text_tracks_found" : "No text tracks were found"
 })
 // text interface object (for inline display captions)
 var mvTextInterface = function( parentEmbed ){
@@ -86,7 +85,7 @@ mvTextInterface.prototype = {
 												'category' : 'SUB',
 												'lang' 	: langKey,
 												'type' 	: mimeTypes[ extension ],
-												'title'	: gM('mwe-subtitles', langData[ langKey]),
+												'title'	: langData[ langKey],
 												'src' : wgServer + wgScript + '?title=' + subPage.title + '&action=raw'
 											});
 											_this.pe.media_element.tryAddSource( textElm );

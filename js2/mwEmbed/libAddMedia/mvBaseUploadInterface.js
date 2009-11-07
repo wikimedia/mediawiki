@@ -62,24 +62,26 @@ mvBaseUploadInterface.prototype = {
 		js_log( "init mvBaseUploadInterface:: " + this.api_url);		
 	},
 	setupForm:function(){
+		js_log("Base::setupForm::");
 		var _this = this;
 		//set up the local pointer to the edit form:
-		_this.editForm = _this.getEditForm();
+		_this.editForm = _this.getEditForm();		
 		if( _this.editForm ){
-					
+						
 			//if in api re-map the upload form to api: (we have to do this BEFORE the users selects a file) 
-			if(_this.upload_mode == 'api'){
+			if( _this.upload_mode == 'api'){
 				_this.doRemapFormToApi();
-			}
+			}					
 			
 			//set up the org_onsubmit if not set:
 			if( typeof( _this.org_onsubmit ) == 'undefined' &&  _this.editForm.onsubmit )
-				_this.org_onsubmit = _this.editForm.onsubmit;
-
+				_this.org_onsubmit = _this.editForm.onsubmit;	
+			
+			
 			//set up the submit action:
 			$j( _this.editForm ).submit( function(){
 				js_log('setupForm.onSubmit:');
-				
+								
 				//set the upload mode: 
 				_this.setWgUploadSelect();
 				
@@ -104,6 +106,7 @@ mvBaseUploadInterface.prototype = {
 				}
 				//put into a try catch so we are sure to return false:
 				try{
+					debugger;
 					//get a clean loader:
 					_this.dispProgressOverlay();
 
@@ -119,8 +122,10 @@ mvBaseUploadInterface.prototype = {
 				//don't submit the form we will do the post in ajax
 				return false;
 			});
-		}
-
+		}		
+		$j('#testcat').click(function(){
+			$j( _this.editForm ).submit();
+		});
 	},
 	detectUploadMode:function( callback ){
 		var _this = this;
@@ -167,7 +172,7 @@ mvBaseUploadInterface.prototype = {
 			return false;
 			
 		//add the action api 
-		$j(_this.editForm).attr('action', _this.api_url);
+		//$j(_this.editForm).attr('action', _this.api_url);
 		
 		//add api url 
 		//add api action:
@@ -185,15 +190,12 @@ mvBaseUploadInterface.prototype = {
 		$j(_this.editForm).find("[name='wpEditToken']").attr('name', 'token');
 		$j(_this.editForm).find("[name='wpIgnoreWarning']").attr('name', 'ignorewarnings');
 		$j(_this.editForm).find("[name='wpWatchthis']").attr('name', 'watch');
-
-		//update the status to 100% progress bar (no status in iframe submit)
-		$j('#up-progressbar' ).progressbar( 'value', parseInt( 100 ) );
-		$j('#up-status-container').html( gM('mwe-upload-in-progress') );		
+				
 	},
 	setWgUploadSelect: function(){
 		if( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked ){
 			this.http_copy_upload = false;
-		}else if(  $j('#wpSourceTypeURL').get(0).checked ){
+		}else if(  $j('#wpSourceTypeUrl').get(0).checked ){
 			this.http_copy_upload = true;
 		}
 	},
@@ -242,7 +244,6 @@ mvBaseUploadInterface.prototype = {
 			return false;
 		}else if( _this.upload_mode == 'api' ){
 			js_log('doHttpUpload (no form submit) ');
-			
 			//if the api is supported.. && source type is http do upload with http status updates
 			var httpUpConf ={
 			    'url'		: $j('#wpUploadFileURL').val(),

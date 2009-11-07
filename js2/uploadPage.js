@@ -4,7 +4,6 @@
  */
 
 js2AddOnloadHook( function() {
-	js_log("never ran js2hook");
 	mwUploadHelper.init();
 });
 
