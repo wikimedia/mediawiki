@@ -760,7 +760,10 @@ class Linker {
 	 * hook play with them, *then* expand it all at once. 
 	 */
 	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
-		$attribsText = $this->getExternalLinkAttributes( 'external ' . $linktype );
+		if ( isset( $attribs[ 'class' ] ) ) $class = $attribs[ 'class' ]; # yet another hack :(
+		else $class =  'external ' . $linktype;
+
+		$attribsText = $this->getExternalLinkAttributes( $class );
 		$url = htmlspecialchars( $url );
 		if( $escape ) {
 			$text = htmlspecialchars( $text );

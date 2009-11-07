@@ -129,7 +129,7 @@ class Parser
 		$this->mFunctionHooks = array();
 		$this->mFunctionTagHooks = array();
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
-		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery' );
+		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery', 'a' );
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x0a\\x0d]*?)\]/S';
@@ -3284,6 +3284,9 @@ class Parser
 				case 'gallery':
 					$output = $this->renderImageGallery( $content, $attributes );
 					break;
+				case 'a':
+					$output = $this->renderHyperlink( $content, $attributes, $frame );
+					break;
 				case 'math':
 					if ( $this->mOptions->getUseTeX() ) {
 						$output = $wgContLang->armourMath(
@@ -4330,6 +4333,35 @@ class Parser
 		return Xml::openElement( 'pre', $attribs ) .
 			Xml::escapeTagsOnly( $content ) .
 			'</pre>';
+	}
+
+	/**
+	* Tag hook handler for 'a'. Renders a HTML &lt;a&gt; tag, allowing most attributes, filtering href against
+	* allowed protocols and spam blacklist.
+	**/
+	function renderHyperlink( $text, $params, $frame = false ) {
+		foreach ( $params as $name => $value ) {
+			$params[ $name ] = $this->replaceVariables( $value, $frame );
+		}
+
+		$whitelist = Sanitizer::attributeWhitelist( 'a' );
+		$params = Sanitizer::validateAttributes( $params, $whitelist );
+
+		$content = $this->recursiveTagParse( trim( $text ), $frame );
+
+		if ( isset( $params[ 'href' ] ) ) {
+			$href = $params[ 'href' ];
+			$this->mOutput->addExternalLink( $href );
+			unset( $params[ 'href' ] );
+		} else {
+			# Non-link <a> tag
+			return Xml::openElement( 'a', $params ) . $content . Xml::closeElement( 'a' ); 
+		}
+
+		$sk = $this->mOptions->getSkin();
+		$html = $sk->makeExternalLink( $href, $content, false, '', $params );
+
+		return $html;
 	}
 
 	/**
