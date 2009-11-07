@@ -834,6 +834,11 @@ $title: Title object, pages linked to this title are purged.
 $imagePage: ImagePage object ($this)
 $output: $wgOut
 
+'ImagePageAfterImageLinks': called after the image links section on an image 
+	page is built
+$imagePage: ImagePage object ($this)
+&$html: HTML for the hook to add
+
 'ImagePageFileHistoryLine': called when a file history line is contructed
 $file: the file
 $line: the HTML of the history line

@@ -132,6 +132,12 @@ class ImagePage extends Article {
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
 		$this->imageRedirects();
 		$this->imageLinks();
+		
+		# Allow extensions to add something after the image links
+		$html = '';
+		wfRunHooks( 'ImagePageAfterImageLinks', array( $this, &$html ) );
+		if ( $html)
+			$wgOut->addHTML( $html );
 
 		if( $showmeta ) {
 			global $wgStylePath, $wgStyleVersion;
