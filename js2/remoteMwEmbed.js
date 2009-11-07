@@ -91,16 +91,16 @@ function rewrite_for_OggHandler( vidIdList ){
 		// Parsed values:
 		var src = '';
 		var duration = '';		
-		var wikiTitleKey = $j( '#'+vidId + ' a').attr('href').replace('\/wiki\/', '');		
+		var wikiTitleKey = $j( '#'+vidId + ' img').attr('alt').replace(' ', '_');		
 
 		var re = new RegExp( /videoUrl(&quot;:?\s*)*([^&]*)/ );
-		src = re.exec( $j( '#'+vidId).html() )[2];
+		src = re.exec( $j( '#'+vidId ).html() )[2];
 
 		var re = new RegExp( /length(&quot;:?\s*)*([^&]*)/ );
-		duration = re.exec( $j( '#'+vidId).html() )[2];
+		duration = re.exec( $j( '#'+vidId ).html() )[2];
 
 		var re = new RegExp( /offset(&quot;:?\s*)*([^&]*)/ );
-		offset = re.exec( $j( '#'+vidId).html() )[2];
+		offset = re.exec( $j( '#'+vidId ).html() )[2];
 		var offset_attr = offset ? 'startOffset="' + offset + '"' : '';
 
 		if( src ) {
