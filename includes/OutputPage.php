@@ -28,9 +28,9 @@ class OutputPage {
 	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
 	var $mIsArticleRelated = true;
 	protected $mParserOptions = null; // lazy initialised, use parserOptions()
-	
+
 	var $mFeedLinks = array();
-	
+
 	var $mEnableClientCache = true;
 	var $mArticleBodyOnly = false;
 
@@ -306,7 +306,7 @@ class OutputPage {
 				}
 			}
 			//build the actual unique request id:
-			$uriParam = "&urid={$wgStyleVersion}";
+			$uriParam .= "&urid={$wgStyleVersion}";
 
 			// Add the file modification time if set
 			if( $ftime != 0 )
