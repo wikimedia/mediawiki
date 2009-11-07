@@ -335,7 +335,7 @@ mediaSource.prototype =
 			}
 		}				
 		//update duration from hit if present: 
-		if(this.durationHint)
+		if( this.durationHint )
 			this.duration = this.durationHint;		
 					
 			
