@@ -48,7 +48,7 @@ $messages['en'] = array(
 	'mwe-close' => 'close',
 	'mwe-improve_transcript' => 'Improve',
 	'mwe-no_text_tracks_found' => 'No text tracks were found',
-	'mwe-subtitles' => '$1 Subtitles',
+	'mwe-subtitles' => '$1 subtitles',
 
 	/*
 	 * js file: /libSequencer/mvTimedEffectsEdit.js
@@ -312,7 +312,7 @@ $messages['en'] = array(
 	 * js file: /libAddMedia/dragDropFile.js
 	 */
 	'mwe-upload-multi' => 'Upload {{PLURAL:$1|file|files}}',
-	'mwe-review-upload' => 'Review File {{PLURAL:$1|Upload|Uploads}}',
+	'mwe-review-upload' => 'Review file {{PLURAL:$1|upload|uploads}}',
 
 	/*
 	 * js file: /libEmbedVideo/embedVideo.js

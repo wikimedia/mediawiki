@@ -5,7 +5,7 @@ loadGM({
 	"mwe-close" : "close",
 	"mwe-improve_transcript" : "Improve",
 	"mwe-no_text_tracks_found" : "No text tracks were found",
-	"mwe-subtitles" : "$1 Subtitles"
+	"mwe-subtitles" : "$1 subtitles"
 })
 // text interface object (for inline display captions)
 var mvTextInterface = function( parentEmbed ){
@@ -36,7 +36,7 @@ mvTextInterface.prototype = {
 		if(this.pe.roe || _this.pe.wikiTitleKey ){
 			if(!this.pe.media_element.addedROEData){
 				js_log("load roe data!");
-				$j('#mv_txt_load_'+_this.pe.id).show(); //show the loading icon		
+				$j('#mv_txt_load_'+_this.pe.id).show(); //show the loading icon
 				if(_this.pe.roe){
 					do_request( _this.pe.roe, function(data)
 					{
@@ -44,16 +44,16 @@ mvTextInterface.prototype = {
 						_this.pe.media_element.addROE(data);
 						_this.getParseTimedText_rowReady();
 					});
-				}else if( _this.pe.wikiTitleKey ){					
-					do_api_req({	
-							'url':	apiUrl,					
+				}else if( _this.pe.wikiTitleKey ){
+					do_api_req({
+							'url':	apiUrl,
 							'data': {
 								'list' : 'allpages',
 								'apprefix' : 'TimedText:' + _this.pe.wikiTitleKey
 							}
 					}, function( subData ) {
 						do_api_req({
-								'url':	apiUrl,	
+								'url':	apiUrl,
 								'data': {
 									'meta' : 'siteinfo',
 									'siprop' : 'languages'
@@ -64,12 +64,12 @@ mvTextInterface.prototype = {
 									for(var j in lagRaw){
 										langData[ lagRaw[j].code ] = lagRaw[j]['*'];
 									}
-									for(var i in subData.query.allpages){								
+									for(var i in subData.query.allpages){
 										var subPage = subData.query.allpages[i];
 										langKey = subPage.title.split('.');
 										langKey = langKey[ langKey.length-2 ];
 										if( !langData[ langKey] ){
-											js_log('Error: langkey:'+ langKey + ' not found'); 
+											js_log('Error: langkey:'+ langKey + ' not found');
 										}else{
 											var textElm = document.createElement('text');
 											$j(textElm).attr({
@@ -77,13 +77,13 @@ mvTextInterface.prototype = {
 												'lang' 	: langKey,
 												'type' 	: "text/x-srt",
 												'title'	: gM('mwe-subtitles', langData[ langKey]),
-												'src' : wgServer + wgScript + '?title=' + subPage.title + '&action=raw'	
-											});											 	 								
+												'src' : wgServer + wgScript + '?title=' + subPage.title + '&action=raw'
+											});
 											_this.pe.media_element.tryAddSource( textElm );
 											_this.getParseTimedText_rowReady();
 										}
 									}
-								});		//do_api_req({			
+								});		//do_api_req({
 					});	//function( subData ) {
 				}
 			}else{
