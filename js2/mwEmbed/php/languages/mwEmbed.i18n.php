@@ -12,11 +12,6 @@ $messages = array();
 
 $messages['en'] = array(
 	/*
-	 * js file /libAddMedia/dragDropFile.js
-	 */
-	'mwe-upload-multi' => 'Upload {{PLURAL:$1|file|files}}',
-	'mwe-review-upload' => 'Review File {{PLURAL:$1|Upload|Uploads}}',
-	/*
 	 * js file: /libClipEdit/mvClipEdit.js
 	 */
 	'mwe-crop' => 'Crop image',
@@ -41,8 +36,9 @@ $messages['en'] = array(
 	'mwe-end_time' => 'End time',
 	'mwe-preview_inout' => 'Preview in-out points',
 	'mwe-edit-tools' => 'Edit tools',
-	'mwe-inline-description' => 'Inline Description',
-	'mwe-edit-video-tools' => 'Edit Video Tools:',
+	'mwe-inline-description' => 'Caption',
+	'mwe-edit-video-tools' => 'Edit video tools:',
+	'mwe-duration' => 'Duration:',
 
 	/*
 	 * js file: /libTimedText/mvTextInterface.js
@@ -311,6 +307,12 @@ $messages['en'] = array(
 	'mwe-go-to-resource' => 'Go to resource page',
 	'mwe-upload-misc-error' => 'Unknown upload error',
 	'mwe-wgfogg_warning_bad_extension' => 'You have selected a file with an unsuported extension (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">more information</a>).',
+
+	/*
+	 * js file: /libAddMedia/dragDropFile.js
+	 */
+	'mwe-upload-multi' => 'Upload {{PLURAL:$1|file|files}}',
+	'mwe-review-upload' => 'Review File {{PLURAL:$1|Upload|Uploads}}',
 
 	/*
 	 * js file: /libEmbedVideo/embedVideo.js
