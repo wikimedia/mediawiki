@@ -32,7 +32,7 @@ class RebuildAll extends Maintenance {
 	public function execute() {
 		global $wgDBtype;
 		// Rebuild the text index
-		if ( $wgDBtype == 'mysql' ) {
+		if ( $wgDBtype != 'postgres' ) {
 			$this->output( "** Rebuilding fulltext search index (if you abort this will break searching; run this script again to fix):\n" );
 			$rebuildText = $this->runChild( 'RebuildTextIndex', 'rebuildtextindex.php' );
 			$rebuildText->execute();
