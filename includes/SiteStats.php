@@ -204,7 +204,6 @@ class SiteStatsUpdate {
 	}
 
 	function doUpdate() {
-		$fname = 'SiteStatsUpdate::doUpdate';
 		$dbw = wfGetDB( DB_MASTER );
 
 		$updates = '';
@@ -221,7 +220,7 @@ class SiteStatsUpdate {
 
 			# Need a separate transaction because this a global lock
 			$dbw->begin();
-			$dbw->query( $sql, $fname );
+			$dbw->query( $sql, __METHOD__ );
 			$dbw->commit();
 		}
 	}
