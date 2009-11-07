@@ -610,6 +610,8 @@ class Sanitizer {
 	 */
 	static function validateAttributes( $attribs, $whitelist ) {
 		$whitelist = array_flip( $whitelist );
+		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
+
 		$out = array();
 		foreach( $attribs as $attribute => $value ) {
 			if( !isset( $whitelist[$attribute] ) ) {
@@ -638,6 +640,15 @@ class Sanitizer {
 				//Paranoia. Allow "simple" values but suppress javascript
 				if ( preg_match( MW_SCRIPT_URL_PATTERN, $value ) ) {
 					continue; 
+				}
+			}
+
+			# NOTE: even though elements using href/src are not allowed directly, supply
+			#       validation code that can be used by tag hook handlers, etc
+			if ( $attribute === 'href' || $attribute === 'src' ) {
+				if ( !preg_match( $hrefExp, $value ) ) {
+					continue; //drop any href or src attributes not using an allowed protocol.
+						  //NOTE: this also drops all relative URLs
 				}
 			}
 
@@ -1278,6 +1289,9 @@ class Sanitizer {
 			# 11.2.6
 			'td'         => array_merge( $common, $tablecell, $tablealign ),
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
+
+			# 12.2 # NOTE: <a> is not allowed directly, but the attrib whitelist is used from the Parser object
+			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa 
 
 			# 13.2
 			# Not usually allowed, but may be used for extension-style hooks
