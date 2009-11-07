@@ -353,7 +353,7 @@ class Sanitizer {
 		if ( !$staticInitialised ) {
 
 			$htmlpairsStatic = array( # Tags that must be closed
-				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
+				'a', 'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
@@ -605,6 +605,8 @@ class Sanitizer {
 	 */
 	static function validateAttributes( $attribs, $whitelist ) {
 		$whitelist = array_flip( $whitelist );
+		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
+
 		$out = array();
 		foreach( $attribs as $attribute => $value ) {
 			if( !isset( $whitelist[$attribute] ) ) {
@@ -624,6 +626,23 @@ class Sanitizer {
 				global $wgEnforceHtmlIds;
 				$value = Sanitizer::escapeId( $value,
 					$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
+			}
+
+			if ( $attribute === 'href' || $attribute === 'src' ) {
+				if ( !preg_match( $hrefExp, $value ) ) {
+					continue; //drop any href or src attributes not using an allowed protocol.
+						  //NOTE: this also drops all relative URLs
+				}
+			}
+
+			//RDFa properties allow URIs. check them
+			if ( $attribute === 'rel' || $attribute === 'rev' || 
+				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' ||
+				$attribute === 'datatype' || $attribute === 'typeof' ) {  
+				//Paranoia. Allow "simple" values but suppress javascript
+				if ( preg_match( '/(^|\s)javascript\s*:/i', $value ) ) {
+					continue; 
+				}
 			}
 
 			// If this attribute was previously set, override it.
@@ -1154,7 +1173,11 @@ class Sanitizer {
 	 * @return Array
 	 */
 	static function setupAttributeWhitelist() {
-		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style' );
+		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style',
+				 #RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
+				 'about', 'property', 'resource', 'datatype', 'typeof', 
+				);
+
 		$block = array_merge( $common, array( 'align' ) );
 		$tablealign = array( 'align', 'char', 'charoff', 'valign' );
 		$tablecell = array( 'abbr',
@@ -1259,6 +1282,9 @@ class Sanitizer {
 			# 11.2.6
 			'td'         => array_merge( $common, $tablecell, $tablealign ),
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
+
+			# 12.2
+			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa 
 
 			# 13.2
 			# Not usually allowed, but may be used for extension-style hooks
