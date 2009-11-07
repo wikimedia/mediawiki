@@ -63,7 +63,8 @@ ctrlBuilder.prototype = {
 
 		//special case vars:
 		if( ( embedObj.roe ||
-				(embedObj.media_element.timedTextSources &&
+			  embedObj.wikiTitleKey ||
+				( embedObj.media_element.timedTextSources &&
 				embedObj.media_element.timedTextSources() )
 			)  && embedObj.show_meta_link  )
 			this.supports['closed_captions']=true;
@@ -155,7 +156,7 @@ ctrlBuilder.prototype = {
 
 
 		//captions binding:
-		$j('#timed_text_'  + embedObj.id).unbind().btnBind().click(function(){
+		$tp.find('.timed-text').unbind().btnBind().click(function(){
 			$j('#' + embedObj.id).get(0).showTextInterface();
 		});
 
@@ -400,7 +401,7 @@ ctrlBuilder.prototype = {
 		'closed_captions':{
 			'w':23,
 			'o':function( ctrlObj ){
-				return '<div title="' + gM('mwe-closed_captions') + '" id="timed_text_'+ctrlObj.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">'+
+				return '<div title="' + gM('mwe-closed_captions') + '" class="ui-state-default ui-corner-all ui-icon_link rButton timed-text">'+
 							'<span class="ui-icon ui-icon-comment"></span>'+
 						'</div>'
 			}

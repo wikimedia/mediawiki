@@ -1,11 +1,15 @@
 /* firefox 3.6 drag-drop uploading 
 */
-var TCNDDU = TCNDDU || {};
-		
-(function( $ ) {
-	$.dragDropFile = function ( selector ) {
+loadGM({
+	"mwe-upload-multi" : "Upload {{PLURAL:$1|file|files}}",
+	"mwe-review-upload": "Review File {{PLURAL:$1|Upload|Uploads}}"
+});
+
+(function($){
+	$.fn.dragDropFile = function () {
+		js_log("drag drop: " + this.selector);
 		//setup drag binding and highlight
-		var dC = $j( selector ).get(0);
+		var dC = $j( this.selector ).get(0);
 		dC.addEventListener("dragenter", 
 			function(event){
 				$j(dC).css('border', 'solid red');
@@ -26,50 +30,71 @@ var TCNDDU = TCNDDU || {};
 			}, false);
 		dC.addEventListener("drop", 
 			function( event ){															
-				//for some reason scope does not persist for events so here we go: 
 				doDrop( event );
-				//handle the drop loader and call event 
-				
+				//handle the drop loader and call event 				
 			}, false);
-	function doDrop(event){		
-		var dt = event.dataTransfer,
-			files = dt.files,
-			imgPreviewFragment = document.createDocumentFragment(),
-			count = files.length,
-			domElements;
-			
-		event.stopPropagation();
-		event.preventDefault();
-		// ( error out if they dragged multiple files for now) 
-		if( files.length > 1 ){
-			js_log( 'errro multiple files');
-			
-			return false;
-		}
-		for (var i = 0; i < count; i++) {
-			if(files[i].fileSize < 1048576) {
-				domElements = [
-					document.createElement('li'),
-					document.createElement('a'),
-					document.createElement('img')
-				];
-			
-				domElements[2].src = files[i].getAsDataURL(); // base64 encodes local file(s)
-				domElements[2].width = 300;
-				domElements[2].height = 200;
-				domElements[1].appendChild(domElements[2]);
-				domElements[0].id = "item"+i;
-				domElements[0].appendChild(domElements[1]);
+		function doDrop(event){
+			var dt = event.dataTransfer,
+				files = dt.files,				
+				fileCount = files.length;
 				
-				imgPreviewFragment.appendChild(domElements[0]);
-				
-				dropListing.appendChild(imgPreviewFragment);
-				
-				TCNDDU.processXHR(files.item(i), i);
-			} else {
-				alert("file is too big, needs to be below 1mb");
-			}	
+			event.stopPropagation();
+			event.preventDefault();
+						
+			$j('#multiple_file_input').remove();
+			
+			$j('body').append('<div title="' + gM('mwe-upload-multi', fileCount) + '" '+
+			'style="position:absolute;bottom:5em;top:3em;right:0px;left:0px" '+
+			'id="multiple_file_input">'+					
+			'</div>');
+		
+			
+			var cBtn = {};			
+			cBtn[ gM('mwe-cancel') ] = function(){
+				$j(this).dialog('close');
+			}
+			cBtn[ gM('mwe-upload-multi', fileCount) ] = function(){
+				alert('do multiple file upload');
+			}
+			//open up the dialog 
+			$j('#multiple_file_input').dialog({
+				bgiframe: true,
+				autoOpen: true,
+				modal: true,
+				draggable:false,
+				resizable:false,
+				buttons:cBtn
+			});
+			$j('#multiple_file_input').dialogFitWindow();
+			$j(window).resize(function(){
+				$j('#multiple_file_input').dialogFitWindow();
+			});
+			//add the inital table / title: 
+			$j('#multiple_file_input').html('<h3>' + gM('mwe-review-upload') + '</h3>'+
+				'<table width="100%" border="1" class="table_list" style="border:none;"></table>');
+			$j.each(files, function(i, file){		
+				if(file.fileSize < 64048576) {	
+					$j('#multiple_file_input .table_list').append(
+						'<tr>' +
+							'<td width="300" style="padding:5px"><img width="250" src="'+ file.getAsDataURL() +'">' +'</td>'+
+							'<td valign="top">' + 
+								'File Name: <input name="file['+i+'][title]" value="' + file.name + '"><br>'+
+								'File Desc: <textarea style="width:300px;" name="file['+i+'][desc]"></textarea><br>'+ 
+							'</td>'+
+						'</tr>'
+					);											
+					/*$j.addDialog( "upload this image", '<img width="300" src="' + files[i].getAsDataURL() + '">' +
+						'<br>name: ' + files[i].name + '</br>' +
+						'<br>size: ' + files[i].fileSize + '</br>' +
+						'<br>mime: ' + files[i].mediaType + '</br>');
+					*/
+					//do the add-media-wizard with the upload tab 					
+				} else {
+					alert("file is too big, needs to be below 64mb");
+				}	
+			}); 
 		}
 	}
-	
-})(window.$mw);
+})(jQuery);
+
+
