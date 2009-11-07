@@ -29,7 +29,7 @@ loadGM({
 	"mwe-end_time" : "End time",
 	"mwe-preview_inout" : "Preview in-out points",
 	"mwe-edit-tools" : "Edit tools",
-	"mwe-inline-description" : "Inline description",
+	"mwe-inline-description" : "Caption",
 	"mwe-edit-video-tools" : "Edit video tools:",
 	"mwe-duration" : "Duration:"
 });

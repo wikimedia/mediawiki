@@ -21,7 +21,12 @@ function doPageSpecificRewrite() {
 			loadExternalJs( mwEmbedHostPath + '/editPage.js' + reqAguments );
 		} );
 	}
-
+	
+	//timed text dispaly:
+	if(wgPageName.indexOf("TimedText") === 0){
+		
+	}
+	
 	// Firefogg integration
 	if( wgPageName == "Special:Upload" ){		
 		load_mv_embed( function() {
@@ -55,29 +60,38 @@ function doPageSpecificRewrite() {
 		} );
 	}
 }
-// will be deprecated in favor of updates to OggHandler
+// will be depreciated in favor of updates to OggHandler
 function rewrite_for_OggHandler( vidIdList ){
-	for( var i = 0; i < vidIdList.length; i++ ) {
-		var vidId = vidIdList[i];
+	function procVidId(vidId){
+		if( $j( '#'+vidId).length == 0){
+			if(vidIdList.length != 0){
+				setTimeout( function(){
+					procVidId( vidIdList.pop() )
+				}, 1);
+			}
+			return ;
+		}
 		// Grab the thumbnail and src of the video
 		var pimg = $j( '#' + vidId + ' img' );
 		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
 		var pwidth = pimg.attr( 'width' );
 		var pheight = pimg.attr( 'height' );
 
-		var type_attr = '';
+		var tag_type = 'video';
+		
 		// Check for audio
 		if( pwidth == '22' && pheight == '22' ) {
 			//set width to parent width:
 			pwidth = $j( '#' + vidId ).width();
 			pheight = '100';
-			type_attr = 'type="audio/ogg"';
+			tag_type = 'audio';
 			poster_attr = '';
 		}
 
 		// Parsed values:
 		var src = '';
-		var duration = '';
+		var duration = '';		
+		var wikiTitleKey = $j( '#'+vidId + ' a').attr('href').replace('\/wiki\/', '');		
 
 		var re = new RegExp( /videoUrl(&quot;:?\s*)*([^&]*)/ );
 		src = re.exec( $j( '#'+vidId).html() )[2];
@@ -89,27 +103,42 @@ function rewrite_for_OggHandler( vidIdList ){
 		offset = re.exec( $j( '#'+vidId).html() )[2];
 		var offset_attr = offset ? 'startOffset="' + offset + '"' : '';
 
-		// Rewrite that video id (do async calls to avoid locking)
 		if( src ) {
-			// Replace the top div with the mv_embed based player:
-			var vid_html = '<video id="vid_' + i +'" '+
+			var html_out = '';
+			
+			var common_attr = ' id="vid_' + i +'" '+
+					'wikiTitleKey="' + wikiTitleKey + '" ' +
 					'src="' + src + '" ' +
-					poster_attr + ' ' +
-					type_attr + ' ' +
-					offset_attr + ' ' +
-					'duration="' + duration + '" ' +
-					'style="width:' + pwidth + 'px;height:' +
-						pheight + 'px;"></video>';
+					'durationHint="' + duration + '" ' +
+					offset_attr + ' ';
+					
+			if( tag_type == 'audio' ){
+				html_out='<audio' + common_attr + '></audio>'
+			}else{
+				html_out='<video' + common_attr +
+				poster_attr + ' ' +
+				'style="width:' + pwidth + 'px;height:' +
+				pheight + 'px;">'
+				'</video>';
+			}	
 			//set the video tag inner html and update the height
-			$j( '#' + vidId ).html( vid_html )
+			$j( '#' + vidId ).html( html_out )
 				.css('height', pheight + 30);
 
-		}
-
-		rewrite_by_id( 'vid_' + i );
-	}
+		}		
+		rewrite_by_id( 'vid_' + i, function(){
+			if(vidIdList.length != 0){
+				setTimeout( function(){
+					procVidId( vidIdList.pop() )
+				}, 1);
+			}
+		});
+	};
+	//proccess each item in the vidIdList (with setTimeout to avoid locking)
+	setTimeout( function(){
+		procVidId( vidIdList.pop() )
+	}, 1);
 }
-
 function getRemoteEmbedPath() {
 	for( var i = 0; i < document.getElementsByTagName( 'script' ).length; i++ ) {
 		var s = document.getElementsByTagName( 'script' )[i];

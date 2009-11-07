@@ -114,7 +114,7 @@ lcPaths({
 	"$j.ui.draggable"		: "jquery/jquery.ui/ui/ui.draggable.js",
 	"$j.ui.selectable"		: "jquery/jquery.ui/ui/ui.selectable.js",
 
-	"$mw.dragDropFile"		: "libAddMedia/dragDropFile.js",
+	"$j.fn.dragDropFile"		: "libAddMedia/dragDropFile.js",
 	"mvFirefogg"			: "libAddMedia/mvFirefogg.js",
 	"mvAdvFirefogg"			: "libAddMedia/mvAdvFirefogg.js",
 	"mvBaseUploadInterface"	: "libAddMedia/mvBaseUploadInterface.js",
@@ -1232,8 +1232,8 @@ function mv_jqueryBindings() {
 			if( this.selector ){	
 				var _this = this;	
 				//load the dragger and "setup"
-				$mw.load( ['$mw.dragDropFile'], function(){
-					$mw.dragDropFile( _this.selector );							
+				$mw.load( ['$j.fn.dragDropFile'], function(){
+					$j(_this.selector).dragDropFile();							
 				}); 
 			}					 
 		}
@@ -1506,6 +1506,26 @@ function mv_jqueryBindings() {
 			return this;
 		}
 		/**
+		* resize the dialog to fit the window
+		*/
+		$.fn.dialogFitWindow = function(opt){			
+			var opt_default = {'hspace':50,'vspace':50};
+			if(!opt)
+				var opt={};			
+			$j.extend(opt, opt_default);
+			$j( this.selector).dialog('option', 'width', $j(window).width() - opt.hspace );
+			$j( this.selector).dialog('option', 'height', $j(window).height() - opt.vspace );
+			$j( this.selector).dialog('option', 'position','center');
+				//update the child position: (some of this should be pushed up-stream via dialog config options
+			$j( this.selector +'~ .ui-dialog-buttonpane').css({
+				'position':'absolute',
+				'left':'0px',
+				'right':'0px',
+				'bottom':'0px',
+			});			
+		}
+		
+		/**
 		* addLoaderDialog
 		*  small helper for putting a loading dialog box on top of everything
 		* (helps block for request that
@@ -1514,7 +1534,7 @@ function mv_jqueryBindings() {
 		*/
 		$.addLoaderDialog = function( msg_txt ){			
 			$.addDialog( msg_txt, msg_txt + '<br>' + mv_get_loading_img() );		
-		}
+		}						
 		
 		$.addDialog = function ( title, msg_txt, btn ){
 			$('#mwe_tmp_loader').remove();
@@ -1767,7 +1787,8 @@ function do_request( req_url, callback ) {
 		global_req_cb.push( callback );
 		// Prepend json_ to feed_format if not already requesting json format (metavid specific)
 		if( req_url.indexOf( "feed_format=" ) != -1 && req_url.indexOf( "feed_format=json" ) == -1 )
-			req_url = req_url.replace( /feed_format=/, 'feed_format=json_' );
+			req_url = req_url.replace( /feed_format=/, 'feed_format=json_' );		
+		
 		loadExternalJs( req_url + '&cb=mv_jsdata_cb&cb_inx=' + (global_req_cb.length - 1) );
 	}
 }

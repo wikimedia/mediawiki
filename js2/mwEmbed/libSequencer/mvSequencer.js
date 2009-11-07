@@ -217,14 +217,14 @@ mvSequencer.prototype = {
 			'<div id="' + this.video_container_id + '" style="position:absolute;right:0px;top:0px;' +
 				'width:' + this.video_width + 'px;height:' + (this.video_height+54) + 'px;"/>'+
 			'<div id="' + this.timeline_id + '" class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;' +
-				'left:0px;right:0px;top:'+(this.video_height+60)+'px;bottom:35px;overflow:auto;">'+
+				'left:0px;right:0px;top:'+(this.video_height+60)+'px;bottom:20px;overflow:auto;">'+
 					gM('mwe-loading_timeline')+ '</div>'+
 			'<div class="seq_status" style="position:absolute;left:0px;width:300px;"></div>'+
 			'<div class="seq_save_cancel" style="position:absolute;'+
-				'left:5px;bottom:0px;height:25px;">'+
+				'left:5px;bottom:0px;height:15px;">'+
 					gM('mwe-loading_user_rights') +
 			'</div>'+
-			'<div class="about_editor" style="position:absolute;right:5px;bottom:7px;">' +
+			'<div class="about_editor" style="position:absolute;right:5px;bottom:0px;">' +
 				gM('mwe-sequencer_credit_line') +
 			'</div>'+
 			'<div id="'+this.sequence_tools_id+'" style="position:absolute;' +
@@ -442,7 +442,7 @@ mvSequencer.prototype = {
 				//add in play box and container tracks
 				$j('#'+timeline_id).append(''+
 					'<div id="interface_container_track_' + i + '" ' +
-					'	style="position:absolute;top:25px;height:'+(track_height+30)+'px;left:10px;right:0px;"' +
+					'	style="position:absolute;top:5px;height:'+(track_height+30)+'px;left:10px;right:0px;"' +
 					'>'+
 						'<div id="container_track_'+i+'" style="position:relative;top:0px;' +
 							'height:'+(track_height+30)+'px;left:0px;right:0px;" class="container_track">' +

@@ -519,7 +519,7 @@ mediaElement.prototype =
 			this.thumbnail = $j(video_element).attr('poster');
 		
 		if($j(video_element).attr('wikiTitleKey'))
-			this.wikiTitleKey=$j(video_element).attr('wikiTitleKey');
+			this.wikiTitleKey = $j(video_element).attr('wikiTitleKey');
 			
 		// Process all inner <source> elements	
 		//js_log("inner source count: " + video_element.getElementsByTagName('source').length );
@@ -679,13 +679,13 @@ mediaElement.prototype =
 	},
 	/** Adds a single mediaSource using the provided element if
 		the element has a 'src' attribute.		
-		@param element {element} <video>, <source> or <mediaSource> element.
+		@param element {element} <video>, <source> or <mediaSource> <text> element.
 	*/
 	tryAddSource:function(element)
 	{
 		js_log('f:tryAddSource:'+ $j(element).attr("src"));		
 		if (! $j(element).attr("src")){
-			//js_log("element has no src");
+			js_log("element has no src");
 			return false;
 		}
 		var new_src = $j(element).attr('src');
@@ -700,7 +700,7 @@ mediaElement.prototype =
 		}
 		var source = new mediaSource( element );		
 		this.sources.push(source);		
-		//alert('pushed source to stack'+ source + 'sl:'+this.sources.length);
+		js_log('pushed source to stack'+ source + 'sl:'+this.sources.length);
 	},
 	getPlayableSources: function(){		 
 		 var playable_sources= new Array();
@@ -1738,11 +1738,7 @@ embedVideo.prototype = {
 				], function(){					
 					_this.textInterface = new mvTextInterface( _this );							
 					//show interface
-					_this.textInterface.show();
-					js_log("NEW TEXT INTERFACE");
-					for(var i in _this.textInterface.availableTracks){
-						js_log("tracks in new interface: "+_this.id+ ' tid:' + i);						
-					}
+					_this.textInterface.show();					
 				}
 			);
 		}else{

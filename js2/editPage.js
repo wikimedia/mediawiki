@@ -59,4 +59,6 @@ js2AddOnloadHook( function() {
 				$j(".tool [rel='file']").addMediaWiz( amwConf );
 		}
 	}, 120)
+	//drag drop for editbar: 
+	//$j('textarea#wpTextbox1').dragFileUpload();
 });

@@ -15,9 +15,16 @@ mediaWikiSearch.prototype = {
 		//inherit the cp settings for 
 	},	
 	//returns a rObj by title 
-	addByTitle:function( title , callback){		
+	addByTitle:function( title , callback, redirect_count){		
 		js_log("AddByTitle::" + title);
-		var _this = this;
+		var _this = this;		
+		if(!redirect_count)
+			redirect_count=0;
+		if(redirect_count > 5){
+			js_log('Error: addByTitle too many redirects');
+			callback( false );
+			return false;
+		}
 		var reqObj = {
 			'action':'query',
 			'titles':'File:'+title,	
@@ -29,7 +36,24 @@ mediaWikiSearch.prototype = {
 		do_api_req( {
 			'data':reqObj, 
 			'url':this.cp.api_url 
-			}, function(data){						
+			}, function(data){	
+				//check for redirect
+				for(var i in data.query.pages){
+					var page = data.query.pages[i];					
+					if(page.revisions[0]['*'] && page.revisions[0]['*'].indexOf('#REDIRECT') === 0){
+					 	var re = new RegExp(/[^\[]*\[\[([^\]]*)/);
+						var pt = page.revisions[0]['*'].match( re );
+						if( pt[1] ){
+							_this.addByTitle( pt[1], callback, redirect_count++);
+							return ;
+						}else{
+							js_log('Error: addByTitle could not proccess redirect');
+							callback( false );
+							return false;
+						}
+					}
+				}
+				//if not a redirect do the callback directly: 	
 				callback( _this.addSingleResult(data) );			
 			}
 		);			

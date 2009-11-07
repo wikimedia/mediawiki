@@ -525,7 +525,7 @@ remoteSearchDriver.prototype = {
 
 		js_log('got caret_pos:' + this.caret_pos.s);
 		//restore text value: (creating textRanges sometimes screws with the text content)
-		$j(this.target_textbox).val(this.caret_pos.text);
+		$j(this.target_textbox).val( this.caret_pos.text );
 	},
 	init_modal:function(){
 		js_log("init_modal");
@@ -541,13 +541,7 @@ remoteSearchDriver.prototype = {
 			var cBtn = {};
 			cBtn[ gM('mwe-cancel') ] = function(){
 				_this.cancelClipEditCB();
-			}			
-			function doResize(){
-				js_log('do resize:: ' + _this.target_container);				
-				$j( '#rsd_modal_target').dialog('option', 'width', $j(window).width()-50 );
-				$j( '#rsd_modal_target').dialog('option', 'height', $j(window).height()-50 );
-				$j( '#rsd_modal_target').dialog('option', 'position','center');
-			}
+			}						
 			
 			$j(_this.target_container).dialog({
 				bgiframe: true,
@@ -563,22 +557,13 @@ remoteSearchDriver.prototype = {
 					$j(this).parents('.ui-dialog').fadeOut('slow');				
 				}
 			});				
-			doResize();
+			$j(_this.target_container).dialogFitWindow();
 			$j(window).resize(function(){
-				doResize();
-			});
-			
+				$j(_this.target_container).dialogFitWindow();
+			});			
 			
 			//add cancel callback and updated button with icon
-			_this.cancelClipEditCB();
-			
-			//update the child position: (some of this should be pushed up-stream via dialog config options
-			$j(_this.target_container +'~ .ui-dialog-buttonpane').css({
-				'position':'absolute',
-				'left':'0px',
-				'right':'0px',
-				'bottom':'0px'
-			});			
+			_this.cancelClipEditCB();					
 		}
 	},
 	//sets up the initial html interface
@@ -708,7 +693,7 @@ remoteSearchDriver.prototype = {
 						_this.addResourceEditLoader();
 						//@@note: we have most of what we need in resultData imageinfo
 						cp.sObj.addByTitle( wTitle, function( rObj ){								
-							//redraw (with added result if new)
+							//redraw ( with added result if new )
 							_this.drawOutputResults();
 							//pull up resource editor:									
 							_this.resourceEdit( rObj, $j('#res_upload__' + rObj.id).get(0) );									
