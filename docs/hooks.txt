@@ -259,12 +259,6 @@ $reason: the reason for the move (added in 1.13)
 $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
 
-'AbortNewAccountAuto': Return false to cancel account creation when the
-    request is coming from an AuthPlugin or ExtUser, rather than a 
-    manually-submitted CreateAccount form.
-$user: the User object about to be created (read-only, incomplete)
-$message: out parameter: error message to display on abort
-
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
@@ -355,6 +349,12 @@ $tokenFunctions: array(action => callback)
 the database
 $article: the article (object) being loaded from the database
 $content: the content (string) of the article
+
+'ArticleConfirmDelete': before writing the confirmation form for article
+	deletion
+$article: the article (object) being deleted
+$output: the OutputPage object ($wgOut)
+&$reason: the reason (string) the article is being deleted
 
 'ArticleDelete': before an article is deleted
 $article: the article (object) being deleted
@@ -848,6 +848,20 @@ $css: the line CSS class
 $page: ImagePage object
 &$file: File object
 &$displayFile: displayed File object
+
+'ImgAuthBeforeStream': executed before file is streamed to user, but only when
+	using img_auth.php
+&$title: the Title object of the file as it would appear for the upload page
+&$path: the original file and path name when img_auth was invoked by the the web
+	server
+&$name: the name only component of the file
+&$result: The location to pass back results of the hook routine (only used if
+	failed)
+	$result[0]=The index of the header message
+	$result[1]=The index of the body text message
+	$result[2 through n]=Parameters passed to body text message. Please note the
+	header message cannot receive/use parameters.
+
 
 'InitializeArticleMaybeRedirect': MediaWiki check to see if title is a redirect
 $title: Title object ($wgTitle)
