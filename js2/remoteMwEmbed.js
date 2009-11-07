@@ -84,13 +84,16 @@ function rewrite_for_OggHandler( vidIdList ){
 
 		// Parsed values:
 		var src = '';
-		var duration = '';	
+		var duration_attr = '';	
 		var wikiTitleKey = $j( '#'+vidId + ' img').filter(':first').attr('alt').replace(/ /g, '_');
 		var re = new RegExp( /videoUrl(&quot;:?\s*)*([^&]*)/ );
 		src = re.exec( $j( '#'+vidId ).html() )[2];
 
-		var re = new RegExp( /length(&quot;:?\s*)*([^&]*)/ );
-		duration = re.exec( $j( '#'+vidId ).html() )[2];
+		var re = new RegExp( /length(&quot;:?\s*)*([^,]*)/ );
+		var dv = re.exec( $j( '#'+vidId ).html() )[2];
+		if( dv ){
+			duration_attr = 'durationHint="'+ dv +'" ';
+		}
 
 		var re = new RegExp( /offset(&quot;:?\s*)*([^&]*)/ );
 		offset = re.exec( $j( '#'+vidId ).html() )[2];
@@ -99,10 +102,10 @@ function rewrite_for_OggHandler( vidIdList ){
 		if( src ) {
 			var html_out = '';
 			
-			var common_attr = ' id="vid_' + i +'" '+
+			var common_attr = ' id="mwe_' + vidId +'" '+
 					'wikiTitleKey="' + wikiTitleKey + '" ' +
 					'src="' + src + '" ' +
-					'durationHint="' + duration + '" ' +
+					duration_attr +
 					offset_attr + ' ';
 					
 			if( tag_type == 'audio' ){
@@ -118,7 +121,7 @@ function rewrite_for_OggHandler( vidIdList ){
 				.css('height', pheight + 30);
 
 		}				
-		rewrite_by_id( vidId, function(){
+		rewrite_by_id( 'mwe_' + vidId, function(){
 			if(vidIdList.length != 0){
 				alert('did first rewite now doing another');
 				setTimeout( function(){
