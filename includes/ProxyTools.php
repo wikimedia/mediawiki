@@ -195,12 +195,11 @@ function wfParseCIDR( $range ) {
  */
 function wfIsLocallyBlockedProxy( $ip ) {
 	global $wgProxyList;
-	$fname = 'wfIsLocallyBlockedProxy';
 
 	if ( !$wgProxyList ) {
 		return false;
 	}
-	wfProfileIn( $fname );
+	wfProfileIn( __METHOD__ );
 
 	if ( !is_array( $wgProxyList ) ) {
 		# Load from the specified file
@@ -217,7 +216,7 @@ function wfIsLocallyBlockedProxy( $ip ) {
 	} else {
 		$ret = false;
 	}
-	wfProfileOut( $fname );
+	wfProfileOut( __METHOD__ );
 	return $ret;
 }
 
