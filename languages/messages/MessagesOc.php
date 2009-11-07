@@ -2165,6 +2165,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protectexpiry'               => 'Expiracion (expira pas per defaut)',
 'protect_expiry_invalid'      => 'Lo temps d’expiracion es invalid',
 'protect_expiry_old'          => 'Lo temps d’expiracion ja es passat.',
+'protect-unchain-permissions' => "Desvarrolhar ancara mai d'opcions de proteccion",
 'protect-text'                => "Podètz consultar e modificar lo nivèl de proteccion de la pagina '''<nowiki>$1</nowiki>'''. Asseguratz-vos que seguissètz las règlas intèrnas.",
 'protect-locked-blocked'      => "Podètz pas modificar lo nivèl de proteccion tant que sètz blocat. Vaquí los reglatges actuals de la pagina '''$1''' :",
 'protect-locked-dblock'       => "Lo nivèl de proteccion pòt pas èsser modificat perque la banca de donadas es blocada. Vaquí los reglatges actuals de la pagina '''$1''' :",
@@ -2795,7 +2796,8 @@ $1",
 'nextdiff'     => 'Cambiament seguent →',
 
 # Media information
-'mediawarning'         => '<b>Atencion</b>: Aqueste fichièr pòt conténer de còde malvolent, vòstre sistèma pòt èsser mes en dangièr per son execucion. <hr />',
+'mediawarning'         => "'''Atencion :''' Aqueste fichièr pòt conténer de còde malvolent.
+Se l'executatz, vòstre sistèma pòt èsser compromés.<hr />",
 'imagemaxsize'         => "Format maximal dels imatges :<br />''(per las paginas de descripcion d’imatges)''",
 'thumbsize'            => 'Talha de la miniatura :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',

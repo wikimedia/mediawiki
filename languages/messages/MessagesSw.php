@@ -725,12 +725,12 @@ Ukitaka kuanzisha au kuhariri ukurasa huu tafadhali ucheki jina la akaunti.',
 '''Internet Explorer:''' shikiria ''Ctrl'' wakati unabonyeza ''Refresh,'' au bonyeza ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Kidokezi:''' Bonyeza 'Onyesha hakikisho la mabadiliko' kujaribu CSS hii mpya kabla hujaihifadhi.",
 'userjsyoucanpreview'              => "'''Kidokezi:''' Bonyeza 'Onyesha hakikisho la mabadiliko' kujaribu JS hii mpya kabla hujaihifadhi.",
-'usercsspreview'                   => "'''Kumbuku kwamba unahakiki mandhari ya CSS za ukurasa wako tu.'''
-'''Haija hifadhiwa bado!'''",
+'usercsspreview'                   => "'''Kumbuka kwamba unahakiki mandhari ya CSS za ukurasa wako tu.'''
+'''Haijahifadhiwa bado!'''",
 'userjspreview'                    => "'''Kumbuka kwamba unajaribu/kuhakiki mandhari ya ukurasa wako wa JavaScript tu.'''
-'''Haija hifadhiwa bado!'''",
+'''Haijahifadhiwa bado!'''",
 'userinvalidcssjstitle'            => "'''Onyo:''' Hakuna umbo \"\$1\".
-Kumbuka kwamba desturi ya kurasa za .css na .js hutumia herufi ndogo, yaani, {{ns:user}}:Foo/monobook.css kinyume na {{ns:user}}:Foo/Monobook.css.",
+Kumbuka kwamba desturi ya kurasa za .css na .js hutumia herufi ndogo, yaani, {{ns:user}}:Foo/monobook.css na si {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Imesasishwa)',
 'note'                             => "'''Taarifa:'''",
 'previewnote'                      => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
@@ -744,9 +744,12 @@ Kama bado haifanyi kazi, jaribu [[Special:UserLogout|kutoka kwenye akounti yako]
 
 '''Iwapo hili ni haririo la jaribio halali, tafadhali jaribu tena.'''
 Iwapo bado haifanyikazi, jaribu [[Special:UserLogout|kutoka]] na uingie tena.",
+'token_suffix_mismatch'            => "'''Uhariri wako umekataliwa kwa sababu koteja yako imeharibu herufi za ishara ya kuhariri.'''
+Uharirio umekataliwa ili kuzuia uharibifu wa maandishi ya kurasa.
+Haya hutokea kwa muda ambao unatumia huduma ya seva ya wavu isiyotiwa jina na yenye hitilafu nyingi.",
 'editing'                          => 'Kuhariri $1',
 'editingsection'                   => 'Unahariri $1 (fungu)',
-'editingcomment'                   => 'Una hariri$1 (sehemu mpya)',
+'editingcomment'                   => 'Una hariri $1 (sehemu mpya)',
 'editconflict'                     => 'Mgongano wa kuhariri: $1',
 'explainconflict'                  => "Mtu mwingine amebadilisha ukurasa huu tangu ulipoanza kuihariri.
 Sanduku la juu inaonyesha maandiko yaliyopo sasa hivi kwenye ukurasa.
@@ -754,16 +757,27 @@ Mabadiliko yako yanaonyeshwa kwenye sanduku la chini.
 Inabidi uingize mabadiliko yako ndani ya sanduku la juu.
 Ni maandiko yaliyopo ndani ya sanduku la juu '''tu''' ambayo yatahifadhiwa utakapobonyeza \"Hifadhi ukurasa\".",
 'yourtext'                         => 'Maandishi yako',
-'storedversion'                    => 'Mapitio yaliyohifadhiwa',
+'storedversion'                    => 'Pitio lililohifadhiwa mwishoni',
 'editingold'                       => "'''ANGALIA: Unakuwa unahariri toleo la zamani la ukurasa huu.
 Ukiendelea kulihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.'''",
 'yourdiff'                         => 'Tofauti',
 'copyrightwarning'                 => "Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
 Usipotaka maandishi yako yaweze kuharirishwa bure na kutolewa wakati wowote, basi usiyaandike hapa.<br />
 Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. '''USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!'''",
+'copyrightwarning2'                => "Tafadhali elewa kwamba michango yote ya {{SITENAME}} inaweza kuhahariwa, kubadilishwa, au kuondolewa na wachangiaji wengine.
+Ikiwa hutaki maandishi yako yasihaririwe na yeyote, basi usiyaweke hapa.<br />
+Pia una tuahidi kwamba umeandika haya wewe mwenyewe, au umenakili kutoka katika tovuti ya umma au chanzo cha wazo sawa na hiki (tazama  $1 kwa maelezo).
+'''Usiandike makala yenye hatimiliki bila ya ruhusa halali!'''",
 'longpagewarning'                  => "'''ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
 Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.'''",
+'longpageerror'                    => "'''Hitilafu: Maandishi uliyoyaweka yana urefu wa kilobati $1, ambayo ni marefu kuliko kiwango cha kawaida cha kilobaiti $2.'''
+Hayawezi kuhifadhiwa.",
+'readonlywarning'                  => "'''Onyo: Hifadhidata imefungwa kwa ajili ya matengenezo, kwa hiyo hautakuwa na uwezo wa kuhifadhi maharirio yako kwa sasa.'''
+Unaweza kukata-na-kabandika maandishi yako kwenye faili na kulihifadhi kwa ajili ya baadaye.
+
+Msimamizi aliyefunga ametoa maelezo haya: $1",
 'protectedpagewarning'             => "'''ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.'''",
+'semiprotectedpagewarning'         => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumiaji waliojisajili tu ndiyo wanaweza kuuhariri.",
 'templatesused'                    => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} kwenye ukurasa huu:',
 'templatesusedpreview'             => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} katika mandhari haya:',
 'template-protected'               => '(kulindwa)',
@@ -1551,7 +1565,7 @@ Chagua jina lengine.',
 'export' => 'Hamisha kurasa',
 
 # Namespace 8 related
-'allmessages'               => 'Ujumbe za mfumo',
+'allmessages'               => 'Jumbe za mfumo',
 'allmessagesname'           => 'Jina',
 'allmessages-filter-legend' => 'Chuja',
 'allmessages-filter-all'    => 'Zote',

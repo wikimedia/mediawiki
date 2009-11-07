@@ -803,7 +803,7 @@ Yang berikut ialah penjelasan yang diberikan: $1",
 'titleprotectedwarning'            => "'''AMARAN: Laman ini telah dikunci supaya hanya pengguna dengan [[Special:ListGroupRights|hak-hak tertentu]] sahaja boleh menciptanya.'''",
 'templatesused'                    => 'Templat yang digunakan dalam laman ini:',
 'templatesusedpreview'             => 'Templat yang digunakan dalam pratonton ini:',
-'templatesusedsection'             => 'Templat yang digunakan dalam bahagian ini:',
+'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} digunakan dalam bahagian ini:',
 'template-protected'               => '(dilindungi)',
 'template-semiprotected'           => '(dilindungi separa)',
 'hiddencategories'                 => 'Laman ini terdapat dalam $1 kategori tersembunyi:',
@@ -2514,7 +2514,8 @@ $1',
 'nextdiff'     => 'Suntingan berikutnya →',
 
 # Media information
-'mediawarning'         => "'''Amaran''': Fail ini boleh mengandungi kod yang berbahaya dan merosakkan komputer anda.<hr />",
+'mediawarning'         => "'''Amaran''': Fail jenis ini mungkin mengandungi kod berbahaya.
+Dengan menjalankannya, komputer anda mungkin akan terjejas.<hr />",
 'imagemaxsize'         => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
 'thumbsize'            => 'Saiz imej ringkas:',
 'widthheightpage'      => '$1×$2, $3 halaman',

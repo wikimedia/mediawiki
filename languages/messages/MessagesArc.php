@@ -126,6 +126,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'           => '{{PLURAL:$1|ܣܕܪܐ|ܣܕܪ̈ܐ}}',
 'category_header'          => 'ܦܐܬܬ̈ܐ ܒܣܕܪܐ ܕ "$1"',
+'subcategories'            => 'ܣܕܪ̈ܐ ܦܪ̈ܥܝܐ',
 'hidden-categories'        => '{{PLURAL:$1|ܣܕܪܐ ܛܘܫܝܐ|ܣܕܪ̈ܐ ܛܘܫܝܐ}}',
 'hidden-category-category' => 'ܣܕܪ̈ܐ ܛܘܫܝ̈ܐ',
 'listingcontinuesabbrev'   => '(ܫܘܠܡܐ)',
@@ -222,13 +223,16 @@ $messages = array(
 'otherlanguages'    => 'ܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
 'redirectedfrom'    => '(ܨܝܒ ܡܢ $1)',
 'redirectpagesub'   => 'ܦܐܬܐ ܕܨܘܝܒܐ',
+'lastmodifiedat'    => 'ܫܘܚܠܦܐ ܐܚܪܝܐ ܕܦܐܬܐ ܗܕܐ ܗܘܐ ܒܣܝܩܘܡ $1, $2.',
 'protectedpage'     => 'ܦܐܬܐ ܢܛܝܪܬܐ',
+'jumpto'            => 'ܫܘܪ ܠ:',
 'jumptonavigation'  => 'ܐܠܦܪܘܬܐ',
 'jumptosearch'      => 'ܒܨܝܐ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'ܡܢܘ {{SITENAME}}',
 'aboutpage'            => 'Project:ܡܢܘ',
+'copyright'            => 'ܚܒܝܫܬ̈ܐ ܐܝܬ ܬܚܝܬ $1.',
 'copyrightpage'        => '{{ns:project}}:ܙܕܩ̈ܐ ܕܚܬܡܐ',
 'currentevents'        => 'ܓܕ̈ܫܐ ܗܫܝ̈ܐ',
 'currentevents-url'    => 'Project:ܓܕ̈ܫܐ ܗܫܝ̈ܐ',
@@ -420,6 +424,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'revdelete-selected'         => "'''{{PLURAL:$2|ܬܢܝܬܐ ܓܒܝܬܐ|ܬܢܝܬ̈ܐ ܓܒܝܬܐ}} ܕ [[:$1]]:'''",
 'revdelete-hide-text'        => 'ܛܫܝ ܟܬܒܬܐ ܕܬܢܝܬܐ',
 'revdelete-hide-user'        => 'ܛܫܝ ܫܡܐ/ܐܝ ܦܝ (IP) ܕܡܦܠܚܢܐ',
+'revdel-restore'             => 'ܫܚܠܦ ܚܙܝܬܐ',
 'pagehist'                   => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
 'deletedhist'                => 'ܬܫܥܝܬܐ ܫܝܦܬܐ',
 'revdelete-summary'          => 'ܫܚܠܦ ܦܣܝܩܬ̈ܐ',
@@ -461,6 +466,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 'notitlematches'                 => 'ܠܝܬ ܫܡܐ ܕܦܐܬܐ ܐܘܝܢܐ',
 'textmatches'                    => 'ܟܬܒܬܐ ܐܘܝܢܬܐ',
 'notextmatches'                  => 'ܠܝܬ ܟܬܒܬܐ ܐܘܝܢܬܐ',
+'prevn'                          => 'ܩܕܝܡܐ {{PLURAL:$1|$1}}',
+'nextn'                          => 'ܐܚܪܢܐ {{PLURAL:$1|$1}}',
 'shown-title'                    => 'ܚܘܝ $1 {{PLURAL:$1|ܦܠܛܐ|ܦܠܛ̈ܐ}} ܠܟܠ ܦܐܬܐ',
 'viewprevnext'                   => 'ܚܘܝ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'              => 'ܓܒܝܬ̈ܐ ܕܒܘܨܝܐ',
@@ -475,6 +482,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'search-result-size'             => '$1 ({{PLURAL:$2|1 ܡܠܬܐ|$2 ܡܠ̈ܐ}})',
 'search-redirect'                => '(ܨܝܒ $1)',
 'search-section'                 => '(ܡܢܬܐ $1)',
+'search-suggest'                 => 'ܣܟܠ ܐܢܬ: $1',
 'search-interwiki-default'       => 'ܦܠܛ̈ܐ ܕ $1:',
 'search-interwiki-more'          => '(ܝܬܝܪ)',
 'search-mwsuggest-enabled'       => 'ܥܡ ܡܚܫܚܬ̈ܐ',
@@ -752,6 +760,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'fewestrevisions' => 'ܦܐܬܬ̈ܐ ܥܡ ܬܢܝܬ̈ܐ ܒܨܝܪ ܡܢ ܟܠ',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|ܒܐܝܛ|ܒܐܝܛ̈ܐ}}',
 'ncategories'             => '$1 {{PLURAL:$1|ܣܕܪܐ|ܣܕܪ̈ܐ}}',
 'nlinks'                  => '$1 {{PLURAL:$1|ܐܣܘܪܐ|ܐܣܘܪ̈ܐ}}',
 'nmembers'                => '$1 {{PLURAL:$1|ܗܕܡܐ|ܗܕܡ̈ܐ}}',
@@ -785,8 +794,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'suppress'                => 'ܚܝܘܪܐ',
 
 # Book sources
-'booksources'    => 'ܙܠ',
-'booksources-go' => 'ܙܠ',
+'booksources'               => 'ܙܠ',
+'booksources-search-legend' => 'ܒܨܝ ܥܠ ܡܒܘܥ̈ܐ ܕܟܬܒ̈ܐ',
+'booksources-go'            => 'ܙܠ',
 
 # Special:Log
 'specialloguserlabel' => 'ܡܦܠܚܢܐ:',
@@ -796,6 +806,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Special:AllPages
 'allpages'          => 'ܟܠ ܦܐܬܬ̈ܐ',
 'alphaindexline'    => '$1 ܠ $2',
+'prevpage'          => 'ܦܐܬܐ ܩܕܝܡܬܐ ($1)',
 'allpagesfrom'      => 'ܚܘܝ ܦܐܬܬ̈ܐ ܕܫܪܐ ܥܡ:',
 'allpagesto'        => 'ܚܘܝ ܦܐܬܬ̈ܐ ܕܫܠܡ ܥܡ:',
 'allarticles'       => 'ܟܠ ܡܓܠ̈ܐ',
@@ -887,6 +898,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'exblank'                => 'ܦܐܬܐ ܣܦܝܩܬܐ ܗܘܐ',
 'delete-confirm'         => 'ܫܘܦ "$1"',
 'delete-legend'          => 'ܫܘܦ',
+'actioncomplete'         => 'ܥܡܠܝܬܐ ܓܡܪܬ',
 'deletedarticle'         => 'ܫܦ "[[$1]]"',
 'dellogpage'             => 'ܣܓܠܐ ܕܫܝܦܐ',
 'deletionlog'            => 'ܣܓܠܐ ܕܫܝܦܐ',

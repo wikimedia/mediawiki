@@ -37,7 +37,13 @@ $fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'Намаг эн тоолдврд тодлх',
+'tog-underline'             => 'Заалһиг татас татх:',
+'tog-hideminor'             => 'Шидрә хүврлһдә сеткүлд баһ хүврлһиг бултулх',
+'tog-hidepatrolled'         => 'Шидрә хүврлһдә сеткүлд шүүсн хүврлһиг бултулх',
+'tog-newpageshidepatrolled' => 'Шин халхна сеткүләс шүүсн хүврлһиг бултулх',
+'tog-rememberpassword'      => 'Намаг эн тоолдврд тодлх',
+'tog-oldsig'                => 'Бәәдг тәвсн һарна хәләвр:',
+'tog-fancysig'              => 'Эврән тәвсн һарна бики темдлһн (авто заалһта уга)',
 
 # Dates
 'sunday'        => 'Нарн',
@@ -47,6 +53,13 @@ $messages = array(
 'thursday'      => 'Пүрвә',
 'friday'        => 'Басң',
 'saturday'      => 'Бембә',
+'sun'           => 'Нрн',
+'mon'           => 'Срң',
+'tue'           => 'Мгр',
+'wed'           => 'Үлм',
+'thu'           => 'Прв',
+'fri'           => 'Бсң',
+'sat'           => 'Бмб',
 'january'       => 'Туула',
 'february'      => 'Лу',
 'march'         => 'Моһа',
@@ -93,53 +106,92 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|Тер янз һанцхн халхта.|{{PLURAL:$1|$1 халхиг үзүлв|$1 халхсиг үзүлв|$1 халхсиг үзүлв}}, $2 ут туршдан.}}',
 'listingcontinuesabbrev' => '(цааранднь)',
 
-'article'    => 'Зүүл',
-'newwindow'  => '(шин терзд)',
-'cancel'     => 'Уга кех',
-'mytalk'     => 'Күүндлһн бәәрм',
-'anontalk'   => 'IP хайгна күндллһн',
-'navigation' => 'Орм медлһн',
+'about'         => 'Тодлҗ бичлһн',
+'article'       => 'Зүүл',
+'newwindow'     => '(шин терзд)',
+'cancel'        => 'Уга кех',
+'moredotdotdot' => 'Цааранднь...',
+'mypage'        => 'Мини эврә халх',
+'mytalk'        => 'Күүндлһн бәәрм',
+'anontalk'      => 'IP хайгна күндллһн',
+'navigation'    => 'Орм медлһн',
+'and'           => '&#32;болн',
 
 # Cologne Blue skin
 'qbfind'         => 'Хәәлһн',
+'qbbrowse'       => 'Гүүһәд хәләх',
 'qbspecialpages' => 'Көдлхнә халхс',
+'faq'            => 'Хатяр биш сурсн сурвруд',
+'faqpage'        => 'Project:Хатяр биш сурсн сурвруд',
 
-'errorpagetitle'   => 'Эндү',
-'returnto'         => '«$1» тал хәрү ирх.',
-'tagline'          => '{{grammar:genitive|{{SITENAME}}}} гидг һазрас өггцн',
-'help'             => 'Цәәлһлһн',
-'search'           => 'Хәәлһн',
-'searchbutton'     => 'Хәәлһн',
-'go'               => 'Ор',
-'searcharticle'    => 'Ор',
-'history'          => 'тууҗ',
-'history_short'    => 'Тууҗ',
-'printableversion' => 'Барин бәәдл',
-'permalink'        => 'Даңгин заалһ',
-'edit'             => 'Чиклх',
-'create'           => 'Бүтәх',
-'editthispage'     => 'Эн халхиг чиклх',
-'create-this-page' => 'Эн халхиг бүтәх',
-'delete'           => 'Һарһх',
-'deletethispage'   => 'Эн халхиг һарһх',
-'protect'          => 'Харсх',
-'protect_change'   => 'сольх',
-'protectthispage'  => 'Эн халхиг харсх',
-'unprotect'        => 'Харсх уга',
-'newpage'          => 'Шин халх',
-'talkpage'         => 'Ухалвр',
-'talkpagelinktext' => 'Ухалвр',
-'personaltools'    => 'Эврән зер-зев',
-'talk'             => 'Ухалвр',
-'views'            => 'Хәләврүд',
-'toolbox'          => 'Зер-зев',
-'otherlanguages'   => 'Талдан келнд',
-'redirectedfrom'   => '($1 гидг һазрас авч одсмн)',
-'redirectpagesub'  => 'Авч оддг халх',
-'lastmodifiedat'   => 'Эн халхна шидрә чиклһн: $2, $1.',
-'jumpto'           => 'Тал ирх:',
-'jumptonavigation' => 'Һазр медлһн',
-'jumptosearch'     => 'хәәлһн',
+# Vector skin
+'vector-action-addsection'   => 'Төриг немх',
+'vector-action-delete'       => 'Һарһх',
+'vector-action-move'         => 'Көндәх',
+'vector-action-protect'      => 'Харсх',
+'vector-action-undelete'     => 'Һарһх биш',
+'vector-action-unprotect'    => 'Харсх биш',
+'vector-namespace-category'  => 'Янз',
+'vector-namespace-help'      => 'Цәәлһлһнә халх',
+'vector-namespace-image'     => 'Боомг',
+'vector-namespace-main'      => 'Халх',
+'vector-namespace-media'     => 'Медиа халх',
+'vector-namespace-mediawiki' => 'Зәңг',
+'vector-namespace-project'   => 'Проектин туск',
+'vector-namespace-special'   => 'Көдлхнә халх',
+'vector-namespace-talk'      => 'Ухалвр',
+'vector-namespace-template'  => 'Зура',
+'vector-namespace-user'      => 'Демнчна халх',
+'vector-view-create'         => 'Бүтәх',
+'vector-view-edit'           => 'Чиклх',
+'vector-view-history'        => 'Тууҗин хәләвр',
+'vector-view-view'           => 'Умшлһн',
+'vector-view-viewsource'     => 'Темдгллһнә хәләвр',
+'actions'                    => 'Үүлд',
+'namespaces'                 => 'Нернә ус',
+'variants'                   => 'Суңһлтс',
+
+# Metadata in edit box
+'metadata_help' => 'Мета өггцн:',
+
+'errorpagetitle'    => 'Эндү',
+'returnto'          => '«$1» тал хәрү ирх.',
+'tagline'           => '{{grammar:genitive|{{SITENAME}}}} гидг һазрас өггцн',
+'help'              => 'Цәәлһлһн',
+'search'            => 'Хәәлһн',
+'searchbutton'      => 'Хәәлһн',
+'go'                => 'Ор',
+'searcharticle'     => 'Ор',
+'history'           => 'тууҗ',
+'history_short'     => 'Тууҗ',
+'printableversion'  => 'Барин бәәдл',
+'permalink'         => 'Даңгин заалһ',
+'edit'              => 'Чиклх',
+'create'            => 'Бүтәх',
+'editthispage'      => 'Эн халхиг чиклх',
+'create-this-page'  => 'Эн халхиг бүтәх',
+'delete'            => 'Һарһх',
+'deletethispage'    => 'Эн халхиг һарһх',
+'protect'           => 'Харсх',
+'protect_change'    => 'сольх',
+'protectthispage'   => 'Эн халхиг харсх',
+'unprotect'         => 'Харсх уга',
+'unprotectthispage' => 'Тер халхиг харсх уга',
+'newpage'           => 'Шин халх',
+'talkpage'          => 'Ухалвр',
+'talkpagelinktext'  => 'Ухалвр',
+'personaltools'     => 'Эврән зер-зев',
+'postcomment'       => 'Шин хүв',
+'talk'              => 'Ухалвр',
+'views'             => 'Хәләврүд',
+'toolbox'           => 'Зер-зев',
+'otherlanguages'    => 'Талдан келнд',
+'redirectedfrom'    => '($1 гидг һазрас авч одсмн)',
+'redirectpagesub'   => 'Авч оддг халх',
+'lastmodifiedat'    => 'Эн халхна шидрә чиклһн: $2, $1.',
+'jumpto'            => 'Тал ирх:',
+'jumptonavigation'  => 'Һазр медлһн',
+'jumptosearch'      => 'хәәлһн',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} тускар',
@@ -190,8 +242,18 @@ $messages = array(
 'nstab-category' => 'Янз',
 
 # General errors
-'missingarticle-rev' => '($1 тойгта халхна янз)',
-'viewsource'         => 'Ишиг үзүлх',
+'error'               => 'Эндү',
+'missing-article'     => 'Өггцнә халһлд сурсн халхин бичг олв уга. Эн халх олх йоста: "$1" нертә $2. 
+
+Тер йовдл һарһсн халхна тууҗин өңгрсн заалһиг дахлһна арһ болад бәәнә. 
+
+Эс гиҗ, тиим болх зөвтә, та заклһна теткүлин эндүһиг олв. 
+Буйн болтха, URL заалһ бичәд, тер йовдлин туск [[Special:ListUsers/sysop|закрачд]] келтн.',
+'missingarticle-rev'  => '($1 тойгта халхна янз)',
+'missingarticle-diff' => '(йилһән: $1, $2)',
+'badtitle'            => 'Буру нернь',
+'badtitletext'        => 'Сурсн нерн буру, хоосн, аль му бичсн келн хоорнд нертә. Тиим чигн биз, нерн зөв уга үзгтә.',
+'viewsource'          => 'Ишиг үзүлх',
 
 # Login and logout pages
 'logouttext'              => "'''Та һарад бәәнәт.'''
@@ -220,9 +282,22 @@ $messages = array(
 Буйн болтха, талдан нернь автн.',
 'loginerror'              => 'Орлһна эндү',
 'createaccounterror'      => 'Бичгдлһиг бүтәх болшго: $1',
+'noname'                  => 'Та зөвтә демнчна нернь бичв уга.',
 'loginsuccesstitle'       => 'Йовудта орлһн',
+'loginsuccess'            => "''' Тадн ода «$1» нертә {{SITENAME}} гидг нерәдлһтә төсвд бәәнәт.'''",
+'nosuchuser'              => '«$1» гидг нерәдлһтә демнч бәәшго. 
+Демнчна нерт баһ болн ик үзгүд әдл биш болна. 
+«<nowiki>$1</nowiki>» гидг нерәдлһтә демнч бәәшго.
+Бичлһиг шүүтн аль [[Special:UserLogin/signup|бигчдлһиг бүтәтн]].',
+'nosuchusershort'         => '«<nowiki>$1</nowiki>» гидг нерәдлһтә демнч бәәшго.
+Бичлһиг шүүтн.',
+'nouserspecified'         => 'Та демнчна нернь бичх йостав.',
 'wrongpassword'           => 'Та буру нууц үг бичв.
 Дәкәд арһ хәәтн.',
+'wrongpasswordempty'      => 'Та хоосн нууц үгиг бичв. 
+Дәкәд арһ хәәтн.',
+'passwordtooshort'        => 'Нууц үг баһар биш $1 {{PLURAL:$1|үзгтә|үзгүдта|үзгүдта}} бәәх йоста.',
+'password-name-match'     => 'Нууц үг денмнчна нертә әдл биш бәәх йоста.',
 'mailmypassword'          => 'Шин нууц үгиг E-mail бичгәр йовулҗ',
 'loginlanguagelabel'      => 'Келн: $1',
 
@@ -232,6 +307,7 @@ $messages = array(
 'oldpassword'               => 'Көгшн нууц үг:',
 'newpassword'               => 'Шин нууц үг:',
 'retypenew'                 => 'Шин нууц үгиг дәкәд бичтн:',
+'resetpass_success'         => 'Тана нууц үгиг йовудта сольв! Та ода орнат...',
 'resetpass-submit-loggedin' => 'Нууц үгиг сольх',
 
 # Edit page toolbar
@@ -276,6 +352,8 @@ $messages = array(
 Тана сольлһдуд ода чигн хадһлсн уга!",
 'editing'                          => '«$1» гидг халхиг чикллһн',
 'editingsection'                   => '«$1» гидг халхна чикллһн (хүв)',
+'editconflict'                     => 'Чикллһнә керүл: $1',
+'yourtext'                         => 'Тана бичсн',
 'copyrightwarning'                 => "Буйн болтха, цуг өгүллһдүд {{SITENAME}} төлә $2 гидг закаһар кесн, тоолсн бәәдг тускар тодлтн (Дәкәд өггцд төлә $1 хәләтн).  Та тана бичсн чилклсн аль делгрңсн бәәҗ седхлә биш, эн ормд бичә бичтн.<br /> Дәкәд та маднд эн эврәнь бичсн, күмн әмтнә хазас аль цацу сул медснәс бәәдг үгән өгнәт. '''Зөвән авхла уга, харссн бичсн күүнә көдлмш бичә тәвтн!'''",
 'copyrightwarning2'                => "Буйн болтха, цуг өгүллһдүд {{SITENAME}} төлә чиклсн аль һарһсн бәәдг чадта тускар тодлтн.  Та тана бичсн чилклсн аль делгрңсн бәәҗ седхлә биш, эн ормд бичә бичтн.<br /> Дәкәд та маднд эн эврәнь бичсн, күмн әмтнә хазас аль цацу сул медснәс бәәдг үгән өгнәт ($1 хәләтн). '''Зөвән авхла уга, харссн бичсн күүнә көдлмш бичә тәвтн!'''",
 'templatesused'                    => 'Эн халхд олзлсн {{PLURAL:$1|зурас|зурас}}:',
@@ -645,22 +723,39 @@ $2 шидрә һарһлһдин төлә хәләтн.',
 'block-log-flags-nocreate' => 'бичгдлһиг бүтәҗ болшго',
 
 # Move page
-'movearticle'     => 'Халхиг йовулх:',
-'newtitle'        => 'Шин нернь:',
-'move-watch'      => 'Эн халхиг шинҗлх',
-'movepagebtn'     => 'Халхиг йовулх',
-'pagemovedsub'    => 'Йовудта йовуллһн',
-'movepage-moved'  => '<big>\'\'\'"$1" шин нернь "$2" өгв\'\'\'</big>',
-'articleexists'   => 'Тер нерәдлһтә халх бәәнә, аль та буру нернь суңһвт.
+'movepagetext'     => "Та дораһар цаасар, халхин хүврлһнә тууҗ көндәд, терүнә нериг сольх. 
+Хуучн нерн шин нерд авч оддг болх. 
+Та хуучн нерд эврәр авч одлһд шинрүлҗ чаднат. 
+Эн кехлә уга, буйн болтха, [[Special:DoubleRedirects|давхр]] болн [[Special:BrokenRedirects|татасн]] авч одлһд шүүтн. 
+Та заалһуд чик үлдг даавртә бәәнәт. 
+
+Шинҗлтн: тер нертә халх бәәдг (авч оддг, хоосн, тууҗта уга йовдлас биш) бәәхлә, халх '''көндх уга'''. 
+Тер учрар, эндүһәр көндлһн кехлә, та халхиг хәрү көндҗ чаднат, болв бәәдг халхиг зүлгхшт. 
+
+'''УРДАСНЬ ЗӘҢГ!'''
+Көндллһн «ачта» халхин ик-генткн хүврлһиг кеҗ чадна. Цаараньдн кехәр, тадна үүлдин ашуд медтн.",
+'movepagetalktext' => "Терүнә ухалвр халх әврәр көндәх. '''Эс гиҗ:'''
+
+*Тер нертә хоосн уга ухалвр халх бәәнә.
+*Та дораһар ховдиг сунһв уга.
+
+Тер учрар, седхлә, та эврә һарар көндәтн аль нер сольтн.",
+'movearticle'      => 'Халхиг йовулх:',
+'newtitle'         => 'Шин нернь:',
+'move-watch'       => 'Эн халхиг шинҗлх',
+'movepagebtn'      => 'Халхиг йовулх',
+'pagemovedsub'     => 'Йовудта йовуллһн',
+'movepage-moved'   => '<big>\'\'\'"$1" шин нернь "$2" өгв\'\'\'</big>',
+'articleexists'    => 'Тер нерәдлһтә халх бәәнә, аль та буру нернь суңһвт.
 Буйн болтха, талдан нернь өгтн.',
-'talkexists'      => "'''Халхин йовудта көндллһн. Болв, ухалвр халх көндәх болшго. Юнгад гихлә, эн нерәдлһтә халх бәәнә. Буйн болтха, териг һарар неҗәлтн.'''",
-'movedto'         => 'көндсн:',
-'movetalk'        => 'Өөр ухалвр халхиг көндәх.',
-'1movedto2'       => '«[[$1]]» «[[$2]]» халхд көндв',
-'1movedto2_redir' => '«[[$1]]»  «[[$2]]» халхд көндв (авч одлһн уга).',
-'movelogpage'     => 'Нернә хүврлһнә сеткүл',
-'movereason'      => 'Учр:',
-'revertmove'      => 'хәрүлһн',
+'talkexists'       => "'''Халхин йовудта көндллһн. Болв, ухалвр халх көндәх болшго. Юнгад гихлә, эн нерәдлһтә халх бәәнә. Буйн болтха, териг һарар неҗәлтн.'''",
+'movedto'          => 'көндсн:',
+'movetalk'         => 'Өөр ухалвр халхиг көндәх.',
+'1movedto2'        => '«[[$1]]» «[[$2]]» халхд көндв',
+'1movedto2_redir'  => '«[[$1]]»  «[[$2]]» халхд көндв (авч одлһн уга).',
+'movelogpage'      => 'Нернә хүврлһнә сеткүл',
+'movereason'       => 'Учр:',
+'revertmove'       => 'хәрүлһн',
 
 # Export
 'export' => 'Халхин экспорт',

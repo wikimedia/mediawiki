@@ -108,6 +108,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'সম্পাদনা এলাকার ফন্ট স্টাইল:',
+'editfont-default'   => 'ব্রাউজার পূর্বনির্ধারিত',
 'editfont-monospace' => 'মনোস্পেস ফন্ট',
 'editfont-serif'     => 'সেরিফ ফন্ট',
 

@@ -504,7 +504,7 @@ $1',
 
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Obtenido de "$1"',
-'youhavenewmessages'      => 'Tienes $1 ($2).',
+'youhavenewmessages'      => 'Tiene $1 ($2).',
 'newmessageslink'         => 'nuevos mensajes',
 'newmessagesdifflink'     => '(diferencia)',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
@@ -976,9 +976,9 @@ Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 'rev-deleted-text-unhide'     => "Esta revisión de página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
 Como administrador todavía puedes [$1 ver esta revisión] si deseas proceder.",
-'rev-suppressed-text-unhide'  => "Esta revisión de la página ha sido& '''suprimida'''.
+'rev-suppressed-text-unhide'  => "Esta revisión de la página ha sido '''suprimida'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
-Como administrador podrá seguir [$1 ver esta revisión] si desea continuar.",
+Como administrador podrá seguir [$1 viendo esta revisión] si desea continuar.",
 'rev-deleted-text-view'       => "Esta revisión de la página ha sido '''borrada'''.
 Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-suppressed-text-view'    => "Esta revisión de la página ha sido '''suprimida'''.
@@ -1013,12 +1013,13 @@ Como administrador todavía puede ver el contenido; puede que existan más detal
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm'           => 'Por favor confirme que desea realizar la operación, que entiende las consecuencias y que está ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
 'revdelete-suppress-text'     => "Supresión debería '''solamente''' ser usado para los siguientes casos:
+* Información potencialmente difamatoria o libelo grave.
 * Información personal inapropiada
-*: ''dirección domiciliaria y números telefónicos, números de la seguridad social, etc.''",
+*: ''domicilios y números de teléfono, números de afiliación a la seguridad social, etc.''",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-name'         => 'Ocultar acción y objetivo',
-'revdelete-hide-comment'      => 'Ocultar comentario de edición',
+'revdelete-hide-comment'      => 'Ocultar el resumen de edición',
 'revdelete-hide-user'         => 'Ocultar el nombre/IP del editor',
 'revdelete-hide-restricted'   => 'Suprimir datos a los administradores así como al resto',
 'revdelete-suppress'          => 'Suprimir datos a los administradores así como al resto',
@@ -1026,8 +1027,8 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
 'revdelete-log'               => 'Razón para borrado:',
 'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la revisión seleccionada|las revisiones seleccionadas}}',
-'revdelete-logentry'          => 'cambiada la visibilidad de la revisión para [[$1]]',
-'logdelete-logentry'          => 'cambiada la visibilidad de eventos de [[$1]]',
+'revdelete-logentry'          => 'cambió la visibilidad de revisiones de [[$1]]',
+'logdelete-logentry'          => 'cambió la visibilidad de eventos de [[$1]]',
 'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
 'revdelete-failure'           => "'''La visibilidad de la revisión no se ha podido establecer:'''
 $1",
@@ -1048,13 +1049,13 @@ $1",
 'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
 'revdelete-hide-current'      => 'Error al ocultar el objeto de fecha $1 a las $2: es la revisión actual.
 No puede ser ocultada.',
-'revdelete-show-no-access'    => 'Error mostrando el item fechado $2, $1: este item ha sido marcado "restringido".
-No tienes acceso a él.',
-'revdelete-modify-no-access'  => 'Error modificando el item fechado $2, $1: este item ha sido marcado "restringido".
-No tienes acceso a él.',
-'revdelete-modify-missing'    => 'Error modificando item ID $1: está perdido de la base de datos!',
+'revdelete-show-no-access'    => 'Error mostrando el objeto de fecha $2, $1: este objeto ha sido marcado como "restringido".
+No tiene acceso a él.',
+'revdelete-modify-no-access'  => 'Error modificando el objeto de fecha $2, $1: este objeto ha sido marcado como "restringido".
+No tiene acceso a él.',
+'revdelete-modify-missing'    => 'Error modificando el objeto ID $1: ¡no se encuentra en la base de datos!',
 'revdelete-no-change'         => "'''Atención:''' la revisión de fecha $1 a las $2 ya tiene las restricciones de visibilidad solicitadas.",
-'revdelete-concurrent-change' => 'Error modificando el item fechado $2, $1: su status parece haber sido cambiado por alguien más cuando tratabas de modificarlo. Por favor verifica los registros.',
+'revdelete-concurrent-change' => 'Error modificando el objeto de fecha $2, $1: su estado parece haber sido cambiado por alguien más cuando tratabas de modificarlo. Por favor verifica los registros.',
 'revdelete-only-restricted'   => 'No puede suprimir elementos a vista de los administradores sin seleccionar asímismo una de las otras opciones de supresión.',
 'revdelete-reason-dropdown'   => '*Razones de borrado comunes
 ** Violación de Copyright
@@ -1067,8 +1068,8 @@ No tienes acceso a él.',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supresiones',
-'suppressionlogtext' => 'Debajo está una lista de borrados y bloqueos relacionados con contenido oculto a los sysops.
-Mira [[Special:IPBlockList|el registro de bloqueos]] para una lista de bloqueos activos.',
+'suppressionlogtext' => 'Debajo está una lista de borrados y bloqueos relacionados con contenido oculto a los administradores.
+Mire [[Special:IPBlockList|la lista de bloqueos activos]] para ver una lista de bloqueos actualmente operativos.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páginas',
@@ -2724,7 +2725,8 @@ $1',
 'nextdiff'     => 'Edición más nueva →',
 
 # Media information
-'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso, ejecutarlo podría comprometer la seguridad de tu equipo.<hr />",
+'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso.
+Ejecutarlo podría comprometer la seguridad de su equipo.<hr />",
 'imagemaxsize'         => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize'            => 'Tamaño de las vistas en miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:|página|páginas}}',
