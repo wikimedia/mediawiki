@@ -17,7 +17,7 @@ addOnloadHook( function(){
 function doPageSpecificRewrite() {
 	// Add media wizard
 	if( wgAction == 'edit' || wgAction == 'submit' ) {
-		load_mv_embed( function() {
+		load_mv_embed( function() {			
 			loadExternalJs( mwEmbedHostPath + '/editPage.js' + reqAguments );
 		} );
 	}

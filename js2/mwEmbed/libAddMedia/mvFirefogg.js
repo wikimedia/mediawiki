@@ -182,7 +182,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		//hide all targets:
 		var hide_target_list='';
 		var coma='';
-		$j.each(default_firefogg_options, function(target, na){
+		$j.each( default_firefogg_options, function(target, na) {
 			if(target.substring(0, 6)=='target'){
 				hide_target_list+=coma + _this[target];
 				coma=',';
@@ -190,7 +190,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		});
 		$j( hide_target_list ).hide();
 		//now that the proper set of items has been hiiden show:
-		$j( this.selector ).show();
+		$j( _this.selector ).show();
 
 
 		//hide all but check-for-fogg
@@ -199,7 +199,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 
 			//if rewriting the form lets keep the text input around:
 			if( _this.form_rewrite )
-				$j(this.target_input_file_name).show();
+				$j( _this.target_input_file_name ).show();
 
 			//show select file:
 			$j( this.target_btn_select_file ).unbind(
@@ -547,7 +547,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		return gM('mwe-upload-transcode-in-progress');
 	},
 	doUploadSwitch:function(){
-		var _this = this;
+		var _this = this;		
 		js_log("firefogg: doUploadSwitch:: " + this.fogg_enabled + ' up mode:' +  _this.upload_mode);
 		//make sure firefogg is enabled otherwise do parent UploadSwich:
 		if( !this.fogg_enabled || !this.firefogg_form_action )
