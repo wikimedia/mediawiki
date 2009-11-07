@@ -498,13 +498,6 @@ $messages['af'] = array(
 	'mwe-embed_site_or_blog' => 'Voeg by jou webblad of webjoernaal',
 );
 
-/** Aragonese (Aragonés)
- * @author Juanpabl
- */
-$messages['an'] = array(
-	'mwe-ok-button' => "D'alcuerdo",
-);
-
 /** Arabic (العربية)
  * @author Meno25
  * @author OsamaK
@@ -547,9 +540,9 @@ $messages['ar'] = array(
 	'mwe-simple_editor_desc' => 'مُحرّر بسيط (على نمط iMovie)',
 	'mwe-other_options' => 'خيارات أخرى',
 	'mwe-loading_txt' => 'يحمل...',
+	'mwe-cancel' => 'ألغِ',
 	'mwe-re-try' => 'أعد طلب الواجهة البرمجية',
 	'mwe-re-trying' => 'يعيد طلب الواجهة البرمجية...',
-	'mwe-cancel' => 'ألغِ',
 	'fogg-select_file' => 'اختر ملفًا',
 	'fogg-select_new_file' => 'اختر ملفًا جديدًا',
 	'fogg-select_url' => 'اختر مسارًا',
@@ -615,8 +608,6 @@ $messages['ar'] = array(
 	'mwe-unknown-error' => 'خطأ غير معروف:',
 	'mwe-return-to-form' => 'ارجع إلى النموذج',
 	'mwe-fileexists-thumb' => '<center><b>ملف موجود</b></center>',
-	'mwe-cancel-button' => 'ألغِ',
-	'mwe-ok-button' => 'موافق',
 	'mwe-loading_plugin' => 'تحميل ملحق...',
 	'mwe-add_to_end_of_sequence' => 'أضف إلى نهاية السلسلة',
 	'mwe-play_clip' => 'شغّل المقطع',
@@ -1045,7 +1036,6 @@ $messages['bs'] = array(
 	'mwe-other_options' => 'Ostale opcije',
 	'mwe-contextmenu_opt' => 'Omogući kontekstne menije',
 	'mwe-loading_txt' => 'učitavam ...',
-	'mwe-loading_title' => 'Učitavanje...',
 	'fogg-select_file' => 'Odaberi datoteku',
 	'fogg-select_new_file' => 'Odaberi novu datoteku',
 	'fogg-select_url' => 'Odaberi URL',
@@ -1063,7 +1053,6 @@ $messages['bs'] = array(
 	'mwe-add_media_wizard' => 'Dodaj media čarobnjak',
 	'mwe-media_search' => 'Pretraga medije',
 	'rsd_results_desc' => 'Rezultati $1 od $2',
-	'rsd_results_total' => ' od $1',
 	'rsd_results_next' => 'slijedeći',
 	'rsd_results_prev' => 'prethodni',
 	'rsd_no_results' => 'Nema rezultata pretrage za <b>$1</b>',
@@ -1096,8 +1085,6 @@ $messages['bs'] = array(
 	'mwe-unknown-error' => 'Nepoznata greška:',
 	'mwe-file-exists-duplicate' => 'Ova datoteka je dvojnik slijedećih datoteka:',
 	'mwe-upload-misc-error' => 'Nepoznata greška pri postavljanju',
-	'mwe-cancel-button' => 'Odustani',
-	'mwe-ok-button' => 'U redu',
 	'mwe-player_fullscreen' => 'Puni ekran',
 	'mwe-download' => 'Učitavanje',
 	'mwe-share' => 'Dijeli',
@@ -1201,7 +1188,6 @@ $messages['cs'] = array(
  */
 $messages['cy'] = array(
 	'mwe-loading_txt' => "wrthi'n llwytho ...",
-	'mwe-loading_title' => "Wrthi'n llwytho...",
 );
 
 /** German (Deutsch)
@@ -2253,8 +2239,6 @@ $messages['eo'] = array(
 	'mwe-upload' => 'Alŝuti dosieron',
 	'mwe-summary' => 'Resumo',
 	'mwe-upload-stats-fileprogres' => '$1 el $2',
-	'mwe-cancel-button' => 'Nuligi',
-	'mwe-ok-button' => 'OK',
 	'mwe-player_fullscreen' => 'Plenekrana',
 	'mwe-download_full' => 'Elŝuti kompletan filmetan dosieron:',
 	'mwe-download_clip' => 'Elŝuti filmeton',
@@ -2589,7 +2573,6 @@ $messages['fi'] = array(
 	'mwe-unknown-error' => 'Tuntematon virhe:',
 	'mwe-return-to-form' => 'Palaa lomakkeeseen',
 	'mwe-upload-misc-error' => 'Tuntematon tallennusvirhe',
-	'mwe-cancel-button' => 'Peruuta',
 	'mwe-player_options' => 'Soittimen asetukset',
 	'mwe-player_fullscreen' => 'Koko näyttö',
 	'mwe-download_full' => 'Lataa koko videotiedosto:',
@@ -3204,8 +3187,6 @@ $messages['grc'] = array(
 	'rsd_results_next' => 'ἑπομέναι',
 	'rsd_results_prev' => 'προηγούμεναι',
 	'mwe-upload' => 'Ἐπιφορτίζειν ἀρχεῖον',
-	'mwe-cancel-button' => 'Ἀκυροῦν',
-	'mwe-ok-button' => 'εἶεν',
 );
 
 /** Swiss German (Alemannisch)
@@ -4796,8 +4777,8 @@ $messages['it'] = array(
 	'mwe-menu_options' => 'Opzioni',
 	'mwe-other_options' => 'Altre opzioni',
 	'mwe-contextmenu_opt' => 'Attiva i menu contestuali',
-	'mwe-setting-up-proxy' => 'Installazione del proxy in corso...',
 	'mwe-cancel' => 'Annulla',
+	'mwe-setting-up-proxy' => 'Installazione del proxy in corso...',
 	'mwe-proxy-not-ready' => 'Il Proxy non è configurato',
 	'fogg-installed' => 'Firefogg è installato',
 	'fogg-preview' => 'Anteprima video',
@@ -4818,7 +4799,6 @@ $messages['it'] = array(
 	'mwe-ftype-unk' => 'Formato del file sconosciuto',
 	'mwe-upload-unknown-size' => 'Dimensione sconosciuta',
 	'mwe-file-exists-duplicate' => 'Questo file è un duplicato del seguente file:',
-	'mwe-cancel-button' => 'Annulla',
 	'mwe-player_fullscreen' => 'Schermo intero',
 	'mwe-close_btn' => 'Chiudi',
 );
@@ -5157,7 +5137,6 @@ $messages['ko'] = array(
 	'mwe-ftype-oga' => 'Ogg 소리 파일',
 	'mwe-ftype-ogg' => 'Ogg 비디오 파일',
 	'mwe-successfulupload' => '파일 올리기 성공',
-	'mwe-cancel-button' => '취소',
 	'mwe-loading_plugin' => '플러그인을 불러오는 중...',
 	'mwe-player_options' => '플레이어 설정',
 	'mwe-player_fullscreen' => '전체 화면',
@@ -5565,13 +5544,6 @@ $messages['lb'] = array(
 	'mwe-related_videos' => 'Ähnlech Videoen',
 	'mwe-seeking' => 'sichen',
 	'mwe-copy-code' => 'Code kopéieren',
-);
-
-/** Eastern Mari (Олык Марий)
- * @author Сай
- */
-$messages['mhr'] = array(
-	'mwe-ok-button' => 'Йӧра',
 );
 
 /** Malayalam (മലയാളം)
@@ -6362,6 +6334,14 @@ $messages['oc'] = array(
 	'mwe-related_videos' => 'Vidèos associadas',
 	'mwe-seeking' => 'recèrca',
 	'mwe-copy-code' => 'Copiar lo còde',
+);
+
+/** Deitsch (Deitsch)
+ * @author Xqt
+ */
+$messages['pdc'] = array(
+	'rsd_results_next' => 'weiter',
+	'rsd_results_prev' => 'zerick',
 );
 
 /** Polish (Polski)
@@ -7162,8 +7142,6 @@ $messages['sk'] = array(
 	'mwe-fileexists' => 'Súbor s týmto názvom už existuje. Prosím, skontrolujte <b><tt>$1</tt></b> ak si nie ste istý, či ho chcete zmeniť.',
 	'mwe-fileexists-thumb' => '<center><b>Existujúci súbor</b></center>',
 	'mwe-ignorewarning' => 'Ignorovať upozornenie a napriek nemu uložiť súbor',
-	'mwe-cancel-button' => 'Zrušiť',
-	'mwe-ok-button' => 'OK',
 	'mwe-download' => 'Stiahnuť',
 	'mwe-close_btn' => 'Zavrieť',
 	'mwe-do_not_warn_again' => 'Nateraz nezobrazovať',
@@ -7307,8 +7285,6 @@ $messages['te'] = array(
 	'mwe-uploaderror' => 'ఎక్కింపులో పొరపాటు',
 	'mwe-uploadwarning' => 'ఎక్కింపు హెచ్చరిక',
 	'mwe-file-exists-duplicate' => 'ఈ ఫైలు క్రింది ఫైలుకి నకిలీ:',
-	'mwe-cancel-button' => 'రద్దుచేయి',
-	'mwe-ok-button' => 'సరే',
 	'mwe-player_fullscreen' => 'నిండుతెర',
 	'mwe-menu_btn' => 'మెనూ',
 	'mwe-close_btn' => 'మూసివేయి',
@@ -7663,8 +7639,10 @@ $messages['vec'] = array(
 	'fogg-copyright-title' => "Diriti d'autor",
 	'fogg-license-title' => 'Licensa',
 	'rsd_results_desc' => 'Risultati da $1 a $2',
+	'rsd_results_desc_total' => 'Risultati da $1 a $2 de $3',
 	'rsd_results_next' => 'quel dopo',
 	'rsd_results_prev' => 'quel prima',
+	'rsd_no_results' => 'No gò catà gnente che corisponde a <b>$1</b>',
 	'mwe-upload_tab' => 'Cargar',
 	'mwe-resource_description_page' => 'Pagina de descrission de la risorsa',
 	'mwe-link' => 'colegamento',
@@ -7754,7 +7732,6 @@ $messages['vep'] = array(
 	'mwe-upload-unknown-size' => 'Tundmatoi suruz',
 	'mwe-uploaderror' => 'Jügutoitandan petuz',
 	'mwe-unknown-error' => 'Tundmatoi petuz:',
-	'mwe-ok-button' => 'OK',
 	'mwe-link_back' => 'Kosketuz tagaze',
 	'mwe-play_clip' => 'Väta klip',
 	'mwe-credits' => 'Tegijad',
