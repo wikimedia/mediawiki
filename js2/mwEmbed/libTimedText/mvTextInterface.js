@@ -66,8 +66,18 @@ mvTextInterface.prototype = {
 									}
 									for(var i in subData.query.allpages){
 										var subPage = subData.query.allpages[i];
-										langKey = subPage.title.split('.');
-										langKey = langKey[ langKey.length-2 ];
+										var langKey = subPage.title.split('.');
+										var extension = langKey.pop();
+										langKey = langKey.pop();
+										var mimeTypes = {
+										    'srt': 'text/x-srt',
+										    'cmml': 'text/cmml'
+										}
+										if( !mimeTypes[ extension ] ){
+											js_log('Error: unknown extension:'+ extension);
+											continue;
+										}
+
 										if( !langData[ langKey] ){
 											js_log('Error: langkey:'+ langKey + ' not found');
 										}else{
@@ -75,7 +85,7 @@ mvTextInterface.prototype = {
 											$j(textElm).attr({
 												'category' : 'SUB',
 												'lang' 	: langKey,
-												'type' 	: "text/x-srt",
+												'type' 	: mimeTypes[ extension ],
 												'title'	: gM('mwe-subtitles', langData[ langKey]),
 												'src' : wgServer + wgScript + '?title=' + subPage.title + '&action=raw'
 											});
