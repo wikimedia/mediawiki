@@ -1565,7 +1565,8 @@ Note that using the navigation links will reset this column.',
 'compareselectedversions'  => 'Compare selected revisions',
 'showhideselectedversions' => 'Show/hide selected revisions',
 'editundo'                 => 'undo',
-
+'diff-multi'               => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown)',
+ 
 # Search results
 'searchresults'                    => 'Search results',
 'searchresults-title'              => 'Search results for "$1"',
