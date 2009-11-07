@@ -144,7 +144,8 @@ lcPaths({
 	"mvFirefoggRender"	: "libSequencer/mvFirefoggRender.js",
 	"mvTimedEffectsEdit": "libSequencer/mvTimedEffectsEdit.js",
 
-	"mvTextInterface"	: "libTimedText/mvTextInterface.js"
+	"mvTextInterface"	: "libTimedText/mvTextInterface.js",
+	"mvTimedTextEdit"	: "libTimedText/mvTimedTextEdit.js"
 });
 
 // Dependency mapping for CSS files for self-contained included plugins:
