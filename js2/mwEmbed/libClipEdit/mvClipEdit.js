@@ -1,7 +1,7 @@
 /*
-	hanndles clip edit controls
+	handles clip edit controls
 	'inoutpoints':0,	//should let you set the in and out points of clip
-	'panzoom':0,		 //should allow setting keyframes and tweenning modes
+	'panzoom':0,		 //should allow setting keyframes and tweening modes
 	'overlays':0,		 //should allow setting "locked to clip" overlay tracks
 	'audio':0			//should allow controlling the audio volume (with keyframes)
 */
@@ -135,14 +135,16 @@ mvClipEdit.prototype = {
 				var start_ntp = (_this.rObj.embed.start_ntp) ? _this.rObj.embed.start_ntp : seconds2npt( 0 );
 				if(!start_ntp)
 					seconds2npt( 0 );
-
-				$j(target).html(
-					_this.getSetInOutHtml({
-						'start_ntp'	: start_ntp,
-						'end_ntp'	: end_ntp
-					})
-				);
-				_this.setInOutBindings();
+				//make sure we have an end time				
+				if( end_ntp ){				
+					$j(target).html(
+						_this.getSetInOutHtml({
+							'start_ntp'	: start_ntp,
+							'end_ntp'	: end_ntp
+						})
+					);
+					_this.setInOutBindings();
+				}
 			}
 		},
 		'fileopts':{
@@ -378,13 +380,15 @@ mvClipEdit.prototype = {
 		eb.preview_mode = true;
 		$j('#'+this.control_ct).html('<h3>' + gM('mwe-edit-video-tools') + '</h3>');
 		if( eb.supportsURLTimeEncoding() ){
-			$j('#'+this.control_ct).append(
-				_this.getSetInOutHtml({
-					'start_ntp'	: eb.start_ntp,
-					'end_ntp'	: eb.end_ntp
-				})
-			);
-			_this.setInOutBindings();
+			if(eb.end_ntp){
+				$j('#'+this.control_ct).append(
+					_this.getSetInOutHtml({
+						'start_ntp'	: eb.start_ntp,
+						'end_ntp'	: eb.end_ntp
+					})
+				);
+				_this.setInOutBindings();
+			}
 		}
 		//if in a sequence we have no need for insertDesc
 		if( !_this.p_seqObj){
