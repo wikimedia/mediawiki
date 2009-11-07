@@ -4,7 +4,8 @@ loadGM({
 	"mwe-auto_scroll" : "auto scroll",
 	"mwe-close" : "close",
 	"mwe-improve_transcript" : "Improve",
-	"mwe-no_text_tracks_found" : "No text tracks were found"
+	"mwe-no_text_tracks_found" : "No text subtitles found",
+	"mwe-add-edit-subs"	: "Add/edit subtitles"
 })
 // text interface object (for inline display captions)
 var mvTextInterface = function( parentEmbed ){
@@ -18,6 +19,11 @@ mvTextInterface.prototype = {
 	autoscroll:true,
 	add_to_end_on_this_pass:false,
 	scrollTimerId:0,
+	found_tracks: false,
+	suportedMime:{
+	    'srt': 'text/x-srt',
+	    'cmml': 'text/cmml'
+	},
 	init:function( parentEmbed ){
 		   //init a new availableTracks obj:
 		this.availableTracks={};
@@ -28,7 +34,7 @@ mvTextInterface.prototype = {
 	},
 	//@@todo separate out data loader & data display
 	getTimedTextTracks:function(){
-		js_log("load timed text from roe: "+ this.pe.roe);
+		//js_log("load timed text from roe: "+ this.pe.roe);
 		var _this = this;
 		var apiUrl = mwGetLocalApiUrl();
 		//if roe not yet loaded do load it:
@@ -39,13 +45,12 @@ mvTextInterface.prototype = {
 				if(_this.pe.roe){
 					do_request( _this.pe.roe, function(data)
 					{
-						//continue
 						_this.pe.media_element.addROE(data);
 						_this.getParseTimedText_rowReady();
 					});
 				}else if( _this.pe.wikiTitleKey ){
 					do_api_req({
-							'url':	apiUrl,
+							'url' :	apiUrl,
 							'data': {
 								'list' : 'allpages',
 								'apprefix' : 'TimedText:' + _this.pe.wikiTitleKey
@@ -68,11 +73,8 @@ mvTextInterface.prototype = {
 										var langKey = subPage.title.split('.');
 										var extension = langKey.pop();
 										langKey = langKey.pop();
-										var mimeTypes = {
-										    'srt': 'text/x-srt',
-										    'cmml': 'text/cmml'
-										}
-										if( !mimeTypes[ extension ] ){
+										
+										if( ! _this.suportedMime[ extension ] ){
 											js_log('Error: unknown extension:'+ extension);
 											continue;
 										}
@@ -84,14 +86,15 @@ mvTextInterface.prototype = {
 											$j(textElm).attr({
 												'category' : 'SUB',
 												'lang' 	: langKey,
-												'type' 	: mimeTypes[ extension ],
+												'type' 	: _this.suportedMime[ extension ],
 												'title'	: langData[ langKey],
 												'src' : wgServer + wgScript + '?title=' + subPage.title + '&action=raw'
 											});
-											_this.pe.media_element.tryAddSource( textElm );
-											_this.getParseTimedText_rowReady();
+											_this.pe.media_element.tryAddSource( textElm );											
 										}
 									}
+									//after all text loaded:
+									_this.getParseTimedText_rowReady();
 								});		//do_api_req({
 					});	//function( subData ) {
 				}
@@ -107,15 +110,12 @@ mvTextInterface.prototype = {
 			}
 		}
 	},
-	getParseTimedText_rowReady: function (){
-		var _this = this;
-		//create timedTextObj
-		var default_found=false;
+	getParseTimedText_rowReady: function (){		
+		var _this = this;		
+		//create timedTextObj		
 		js_log("mv_txt_load_:SHOW mv_txt_load_");
 		$j('#mv_txt_load_'+_this.pe.id).show(); //show the loading icon
-
 		$j.each( this.pe.media_element.sources, function(inx, source){
-
 			if( typeof source.id == 'undefined' || source.id == null ){
 				source.id = 'tt_' + inx;
 			}
@@ -128,7 +128,7 @@ mvTextInterface.prototype = {
 				//display if requested:
 				if( source['default'] == "true" ){
 					//we did set at least one track by default tag
-					default_found=true;
+					_this.found_tracks=true;
 					js_log('do load timed text: ' + source.id );
 					_this.loadAndDisplay( source.id );
 				}else{
@@ -136,22 +136,15 @@ mvTextInterface.prototype = {
 				}
 			}
 		});
-
 		//no default clip found take the first_id
-		if(!default_found){
+		if(!_this.found_tracks){
 			$j.each( _this.availableTracks, function(inx, sourceTrack){
 				_this.loadAndDisplay( sourceTrack.id );
-				default_found=true;
-				//retun after loading first available
+				_this.found_tracks=true;
+				//return after loading first available
 				return false;
 			});
 		}
-
-		//if nothing found anywhere update the loading icon to say no tracks found
-		if(!default_found)
-			$j('#mv_txt_load_'+_this.pe.id).html( gM('mwe-no_text_tracks_found') );
-
-
 	},
 	loadAndDisplay: function ( track_id){
 		var _this = this;
@@ -299,7 +292,7 @@ mvTextInterface.prototype = {
 	applyTsSelect:function(){
 		var _this = this;
 		//update availableTracks
-		$j('#mvtsel_'+this.pe.id+' .mvTsSelect').each(function(){
+		$j('#mvtsel_' + this.pe.id + ' .mvTsSelect').each(function(){
 			if(this.checked){
 				var track_id = this.name;
 				//if not yet loaded now would be a good time
@@ -394,13 +387,23 @@ mvTextInterface.prototype = {
 	},
 	getMenu:function(){
 		var out='';
+		var _this = this;
 		//add in loading icon:
 		var as_checked = (this.autoscroll)?'checked':'';
-		out+= '<div id="tt_mmenu_'+this.pe.id+'" class="ui-widget-header" style="font-size:.6em;position:absolute;top:0;height:30px;left:0px;right:0px;">' +
-				$j.btnHtml(gM('mwe-select_transcript_set'), 'tt-select', 'shuffle');
-		if(this.pe.media_element.linkback){
-			out+=' ' + $j.btnHtml(gM('mwe-improve_transcript'), 'tt-improve', 'document', {href:this.pe.media_element.linkback, target:'_new'});
+		out += '<div id="tt_mmenu_'+this.pe.id+'" class="ui-widget-header" style="font-size:.6em;position:absolute;top:0;height:30px;left:0px;right:0px;">';
+		out += $j.btnHtml( gM('mwe-select_transcript_set'), 'tt-select', 'shuffle');
+		
+		_this.editlink = '';
+	
+		if( this.pe.media_element.linkback ){			
+			_this.editlink = this.pe.media_element.linkback;
+		}else if(this.pe.wikiTitleKey && wgServer && wgScript) { //check for wikiTitleKey (for edit linkback)
+			//only local:
+			_this.editlink = wgServer + wgScript + '?title=TimedText:' + this.pe.wikiTitleKey +'.'+ wgContentLanguage + '.srt&action=edit';	
 		}
+		if(_this.editlink!='')
+			out+=' ' + $j.btnHtml(gM('mwe-improve_transcript'), 'tt-improve', 'document', {href:_this.editlink, target:'_new'});
+		
 		out+='<input onClick="document.getElementById(\''+this.pe.id+'\').textInterface.setAutoScroll(this.checked);return false;" ' +
 				'type="checkbox" '+as_checked +'>'+gM('mwe-auto_scroll') + ' ' +
               $j.btnHtml(gM('mwe-close'), 'tt-close', 'circle-close');
@@ -420,6 +423,15 @@ mvTextInterface.prototype = {
 	    });
 	    //use hard-coded link:
 	    $j(mt + ' .tt-improve').btnBind();
+	    
+	    //dobule check we have sublties (else add default missing msg) 
+	    //if nothing found anywhere update the loading icon to say no tracks found		
+		if(!_this.found_tracks){
+			$j( '#mmbody_' + _this.pe.id).html( ''+
+				'<h3>' + gM('mwe-no_text_tracks_found') + '</h3>' +
+				'<a href="' + _this.editlink + '">'+ gM('mwe-add-edit-subs') + '</a>'
+				);			
+		}
 	}
 }
 

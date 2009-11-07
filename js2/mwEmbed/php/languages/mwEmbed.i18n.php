@@ -49,6 +49,8 @@ $messages['en'] = array(
 	'mwe-improve_transcript' => 'Improve',
 	'mwe-no_text_tracks_found' => 'No text tracks were found',
 	'mwe-subtitles' => '$1 subtitles',
+	'mwe-no_text_tracks_found' => 'No text subtitles found',
+	'mwe-add-edit-subs'	=> 'Add/edit subtitles',
 
 	/*
 	 * js file: /libSequencer/mvTimedEffectsEdit.js
