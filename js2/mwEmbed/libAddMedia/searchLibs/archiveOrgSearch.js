@@ -87,7 +87,7 @@ archiveOrgSearch.prototype = {
 		do_api_req( {
 			'data':{'avinfo':1},
 			'url':_this.dnUrl + rObj.resourceKey + '/format=Ogg+video'			
-		},function(data){								
+		},function(data){											
 			if(data['length'])
 				rObj.duration = data['length'];
 			if(data['width'])
@@ -103,7 +103,11 @@ archiveOrgSearch.prototype = {
 		if(!options)
 			options ={};
 		var id_attr = (options['id'])?' id = "' + options['id'] +'" ': '';
-		var src = rObj.src + '?t=0:0:0/'+ seconds2npt( rObj.duration );
+		if( rObj.duration ){
+			var src = rObj.src + '?t=0:0:0/'+ seconds2npt( rObj.duration );
+		}else{
+			var src = rObj.src;
+		}
 		if(rObj.mime == 'application/ogg' || rObj.mime == 'audio/ogg' || rObj.mime=='video/ogg'){
 			return '<video ' + id_attr + ' src="' + src + '" poster="' + rObj.poster + '" type="video/ogg"></video>';
 		}

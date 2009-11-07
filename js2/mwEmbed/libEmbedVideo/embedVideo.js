@@ -1665,17 +1665,19 @@ embedVideo.prototype = {
 	doLinkBack:function(){
 		if(this.roe && this.media_element.addedROEData==false){
 			var _this = this;
-			this.displayHTML(gM('mwe-loading_txt'));
+			this.displayHTML( gM('mwe-loading_txt') );
 			do_request(this.roe, function(data)
 			   {
 				  _this.media_element.addROE(data);							 
 				  _this.doLinkBack();
 			   });			   
 		}else{
-			if(this.media_element.linkback){			
+			if( this.linkback){
+				window.location = this.linkback;
+			}else if(this.media_element.linkback){			
 				window.location = this.media_element.linkback;
 			}else{
-				this.displayHTML(gM('mwe-could_not_find_linkback'));
+				this.displayHTML( gM('mwe-could_not_find_linkback') );
 			}
 		}	   
 	},
@@ -1703,6 +1705,7 @@ embedVideo.prototype = {
 		$cpTxt.click(function(){
 			$j(this).get(0).select();
 		});
+		
 		//add copy binding: 
 		$cpBtn.click(function(){						
 			$cpTxt.focus().get(0).select();			

@@ -364,7 +364,7 @@ ctrlBuilder.prototype = {
 						'<p class="short_match vo_showcode"><a href="#"><span>'+gM('mwe-share')+'</span></a></p>';
 
 					//link to the stream page if we are not already there:
-					if( ctrlObj.embedObj.roe && typeof mv_stream_interface == 'undefined' )
+					if( ( ctrlObj.embedObj.roe || ctrlObj.embedObj.linkback ) && typeof mv_stream_interface == 'undefined' )
 						o+='<p class="short_match"><a href="javascript:$j(\'#'+ctrlObj.id+'\').get(0).doLinkBack()"><span><strong>Source Page</strong></span></a></p>';
 
 				o+='</div>'+
