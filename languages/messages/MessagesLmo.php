@@ -307,7 +307,7 @@ süi titul dai sezziún (JavaScript)',
 'categorypage'      => 'Fà vidè la categuria',
 'viewtalkpage'      => 'Varda i discüssiun',
 'otherlanguages'    => 'Alter lenguv',
-'redirectedfrom'    => '(Redirezión de $1)',
+'redirectedfrom'    => '(Rimandaa da $1)',
 'redirectpagesub'   => 'Pagina de redirezión',
 'lastmodifiedat'    => "Quela pagina chì l'è stada mudifegada l'ültima völta del $1, a $2.",
 'viewcount'         => "Quela pagina chì a l'è stada legiüda {{PLURAL:$1|una völta|$1 völta}}.",
@@ -898,6 +898,7 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 
 'enotif_newpagetext' => "Chesta-chí l'è una pàgina növa.",
 'changed'            => 'cambiaa',
+'enotif_subject'     => 'La pagina $PAGETITLE de {{SITENAME}} l\'è stada $CHANGEDORCREATED da $PAGEEDITOR',
 
 # Delete
 'deletepage'             => 'Scancela la pagina',

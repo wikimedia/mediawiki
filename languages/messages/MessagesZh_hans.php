@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2261,7 +2261,7 @@ $1被封禁的理由是“$2”',
 'block-log-flags-noemail'         => '禁止电子邮件',
 'block-log-flags-nousertalk'      => '不可编辑自己的讨论页面',
 'block-log-flags-angry-autoblock' => '加强自动封锁已启用',
-'block-log-flags-hiddenname'      => '隐藏用户名称',
+'block-log-flags-hiddenname'      => '用户名隐藏',
 'range_block_disabled'            => '只有管理员才能创建禁止查封的范围。',
 'ipb_expiry_invalid'              => '无效的终止时间。',
 'ipb_expiry_temp'                 => '隐藏用户名封锁必须是永久性的。',

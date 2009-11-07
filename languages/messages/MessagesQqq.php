@@ -749,7 +749,9 @@ Tip for internal links',
 The text "Save" is in {{msg-mw|savearticle}}.',
 'missingcommentheader'             => '
 The text "Save" is in {{msg-mw|savearticle}}.',
-'summary-preview'                  => 'Preview of the edit summary, shown under the edit summary itself.',
+'summary-preview'                  => 'Preview of the edit summary, shown under the edit summary itself.
+Should match: {{msg-mw|summary}}.',
+'subject-preview'                  => 'Should match {{msg-mw|subject}}',
 'blockedtext'                      => 'Text displayed to blocked users.
 
 Parameters:
@@ -801,6 +803,7 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'editing'                          => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'editingsection'                   => 'The variable $1 is the page name.  This message displays at the top of the page when a user is editing a page section.',
 'explainconflict'                  => 'The text "Save page" is in {{msg-mw|savearticle}}.',
+'storedversion'                    => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
 'yourdiff'                         => '',
 'copyrightwarning'                 => 'Copyright warning displayed under the edit box in editor',
 'longpagewarning'                  => 'Warning displayed when trying to edit a long page',

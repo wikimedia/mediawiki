@@ -1984,6 +1984,7 @@ Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro
 'protectexpiry'               => 'Termen',
 'protect_expiry_invalid'      => 'Direizh eo termen ar prantad.',
 'protect_expiry_old'          => 'Echuet eo ar prantad termen.',
+'protect-unchain-permissions' => "Dibrennañ muioc'h a zibarzhioù gwareziñ",
 'protect-text'                => "Amañ e c'hallit gwelet ha cheñch live gwareziñ ar bajenn '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "E-keit ha ma viot stanket ne viot ket evit cheñch al live gwareziñ. Setu aze arventennoù a-vremañ ar bajenn '''$1''':",
 'protect-locked-dblock'       => "N'haller ket cheñch al liveoù gwareziñ rk prennet eo an diaz titouroù.

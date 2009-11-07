@@ -1793,7 +1793,7 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'statistics-users-active-desc' => 'Pengguna yang telah melakukan suatu aktivitas dalam {{PLURAL:$1|sehari|$1 hari}} terakhir.',
 'statistics-mostpopular'       => 'Halaman yang paling banyak ditampilkan',
 
-'disambiguations'      => 'Halaman disambiguasi',
+'disambiguations'      => 'Disambiguasi',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "Halaman-halaman berikut memiliki pranala ke suatu '''halaman disambiguasi'''.
 Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />

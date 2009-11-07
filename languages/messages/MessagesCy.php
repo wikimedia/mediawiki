@@ -732,7 +732,7 @@ Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.
 Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
 '''Dim ond''' y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
 'yourtext'                         => 'Eich testun',
-'storedversion'                    => "Fersiwn o'r storfa",
+'storedversion'                    => 'Y golygiad diweddaraf yn y storfa',
 'nonunicodebrowser'                => "'''RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn rhan o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.'''",
 'editingold'                       => "'''RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon. Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli.'''",
 'yourdiff'                         => 'Gwahaniaethau',
@@ -2520,8 +2520,8 @@ $1",
 'nextdiff'     => 'Y fersiwn dilynol →',
 
 # Media information
-'mediawarning'         => "'''Rhybudd''': Gallasai'r ffeil hon gynnwys côd maleisus; os ydyw mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth lwytho'r ffeil.
-<hr />",
+'mediawarning'         => "'''Rhybudd''': Gallasai'r math hwn o ffeil gynnwys côd maleisus. 
+Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil.<hr />",
 'imagemaxsize'         => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
 'thumbsize'            => 'Maint mân-lun :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',

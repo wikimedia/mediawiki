@@ -518,7 +518,7 @@ $messages = array(
 'talk'              => 'Vitalap',
 'views'             => 'Nézetek',
 'toolbox'           => 'Eszközök',
-'userpage'          => 'Szerkesztő lapjának megtekintése',
+'userpage'          => 'Felhasználó lapjának megtekintése',
 'projectpage'       => 'Projektlap megtekintése',
 'imagepage'         => 'A fájl leírólapjának megtekintése',
 'mediawikipage'     => 'Üzenetlap megtekintése',
@@ -537,7 +537,7 @@ $messages = array(
 'jumptosearch'      => 'keresés',
 'view-pool-error'   => 'Sajnáljuk, de a szerverek jelenleg túl vannak terhelve.
 Túl sok felhasználó próbálta megtekinteni ezt az oldalt.
-Kérlek várj egy kicsit, mielőtt újrapróbálkoznál a lap megtekintésével.
+Kérlek, várj egy kicsit, mielőtt újrapróbálkoznál a lap megtekintésével.
 
 $1',
 
@@ -563,7 +563,7 @@ $1',
 
 'badaccess'        => 'Engedélyezési hiba',
 'badaccess-group0' => 'Ezt a tevékenységet nem végezheted el.',
-'badaccess-groups' => 'Ezt a tevékenységet csak a(z) $1 {{PLURAL:$2|csoportba|csoportok valamelyikébe}} tartozó szerkesztő végezheti el.',
+'badaccess-groups' => 'Ezt a tevékenységet csak a(z) $1 {{PLURAL:$2|csoportba|csoportok valamelyikébe}} tartozó felhasználó végezheti el.',
 
 'versionrequired'     => 'A MediaWiki $1-s verziója szükséges',
 'versionrequiredtext' => 'A lap használatához a MediaWiki $1-s verziójára van szükség. Lásd a [[Special:Version|verzió]] lapot.',
@@ -3197,6 +3197,9 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Törlöd az oldal gyorsítótárban (cache) található változatát?',
 'confirm-purge-bottom' => 'A lap ürítésével törlődik annak gyorsítótárazott változata, és a legújabb tartalom fog megjelenni.',
+
+# Separators for various lists, etc.
+'ellipsis' => '…',
 
 # Multipage image navigation
 'imgmultipageprev' => '← előző oldal',

@@ -966,7 +966,7 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 'revdelete-hide-image'        => 'Amaga el contingut del fitxer',
 'revdelete-unsuppress'        => 'Suprimir les restriccions de les revisions restaurades',
 'revdelete-log'               => "Motiu d'esborrat:",
-'revdelete-submit'            => 'Aplica a la revisió seleccionada',
+'revdelete-submit'            => 'Aplica a {{PLURAL:$1|la revisió seleccionada|les revisions seleccionades}}',
 'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
 'revdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquesta revissió.'''",
@@ -1432,6 +1432,7 @@ Les pàgines de la vostra [[Special:Watchlist|llista de seguiment]] apareixen en
 'upload'                      => 'Carrega',
 'uploadbtn'                   => 'Carrega un fitxer',
 'reuploaddesc'                => 'Torna al formulari per apujar.',
+'upload-tryagain'             => "Envia la descripció de l'arxiu modificat",
 'uploadnologin'               => 'No heu iniciat una sessió',
 'uploadnologintext'           => "Heu d'[[Special:UserLogin|iniciar una sessió]]
 per a penjar-hi fitxers.",
@@ -2659,7 +2660,8 @@ $1",
 'nextdiff'     => "Vés a l'edició següent →",
 
 # Media information
-'mediawarning'         => "'''Advertència''': Aquest fitxer podria contenir codi maliciós, si l'executeu podeu comprometre la seguretat del vostre sistema.<hr />",
+'mediawarning'         => "'''Advertència''': Aquest fitxer podria contenir codi maliciós.
+Si l'executeu, podeu comprometre la seguretat del vostre sistema.<hr />",
 'imagemaxsize'         => "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 'thumbsize'            => 'Mida de la miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',
