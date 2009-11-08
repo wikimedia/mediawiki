@@ -22,10 +22,11 @@ function doPageSpecificRewrite() {
 	}
 	
 	//timed text dispaly:
-	if(wgPageName.indexOf("TimedText") === 0){
-		load_mv_embed( function() {
+	if(wgPageName.indexOf("TimedText") === 0){		
+		load_mv_embed(function(){
+			alert('wtf');
 			loadExternalJs( mwEmbedHostPath + '/mwEmbed/libTimedText/mvTimeTextEdit.js' + reqAguments );
-		} );
+		});
 	}
 	
 	// Firefogg integration

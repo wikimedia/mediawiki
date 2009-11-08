@@ -1171,7 +1171,8 @@ function mwdomReady( force ) {
 }
 
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
-function js2AddOnloadHook( func ) {	
+function js2AddOnloadHook( func ) {
+	js_log('js2AddOnloadHook::');
 	// If we have already run the DOM-ready function, just run the function directly:
 	if( mvJsLoader.doneReadyEvents ) {
 		// Make sure jQuery is there:
