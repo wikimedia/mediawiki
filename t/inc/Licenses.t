@@ -2,7 +2,7 @@
 <?php
 require 't/Test.php';
 
-plan(3);
+plan(4);
 
 error_reporting( E_ALL );
 
