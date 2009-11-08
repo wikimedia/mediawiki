@@ -1093,11 +1093,11 @@ var mvJsLoader = {
 	// Check the jQuery flag. This way, when remote embedding, we don't load jQuery
 	// unless js2AddOnloadHook was used or there is video on the page.
 	runQueuedFunctions: function() {
-		js_log("runQueuedFunctions");
+		js_log("runQueuedFunctions");		
 		var _this = this;		
-		this.jQueryCheck( function() {
-			this.doneReadyEvents = true;
+		this.jQueryCheck( function() {			
 			_this.runReadyEvents();
+			_this.doneReadyEvents = true;
 		});
 	},
 	runReadyEvents: function() {
@@ -1172,15 +1172,14 @@ function mwdomReady( force ) {
 
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
 function js2AddOnloadHook( func ) {
-	js_log('js2AddOnloadHook::');
+	js_log('js2AddOnloadHook::' + func );	
 	// If we have already run the DOM-ready function, just run the function directly:
-	if( mvJsLoader.doneReadyEvents ) {
-		// Make sure jQuery is there:
-		mvJsLoader.jQueryCheck( function() {
-			func();
-		});
+	if( mvJsLoader.doneReadyEvents ) {			
+		func();
 	} else {
-		mvJsLoader.addLoadEvent( func );
+		mvJsLoader.jQueryCheck( function() {			
+			mvJsLoader.addLoadEvent( func );
+		})
 	}
 }
 // Deprecated mwAddOnloadHook in favor of js2 naming (for clear separation of js2 code from old MW code
