@@ -54,8 +54,9 @@ js2AddOnloadHook( function() {
       }
       do_api_req({
 	        'data': {
-		        'list' : 'allpages',
-		        'apprefix' : apprefix
+  					'list' : 'allpages',
+		        'apprefix' : apprefix.replace("TimedText:", ""),
+  					'apnamespace' : 102
 	        }
       }, function( subData ) {
 	      for(var i in subData.query.allpages){
