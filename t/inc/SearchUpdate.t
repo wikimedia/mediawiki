@@ -58,4 +58,7 @@ EOT
 is( updateText( 'a > b' ), 'a b', 'Handle unclosed tags' );
 
 $text = str_pad( "foo <barbarbar \n", 10000, 'x' );
-ok( updateText( $text ) != '', 'Bug 18609' );
+
+todo_start("Bug 18609");
+isnt( updateText( $text ), '', 'Bug 18609' );
+todo_end();
