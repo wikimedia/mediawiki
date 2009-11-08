@@ -3,7 +3,7 @@
 
 require 't/Test.php';
 
-plan( 1010 );
+plan( 1120 );
 
 require_ok( 'includes/IP.php' );
 
