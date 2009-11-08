@@ -1134,9 +1134,11 @@ embedVideo.prototype = {
 				for(var pageid in  data.query.pages){
 					if(data.query.pages[pageid].title)
 						req_categories.push(data.query.pages[pageid].title);
-				}					   	
+				}
+				_this.getRelatedFromCat( req_categories );					   	
+			}else{
+				_this.doThumbnailHTML();			
 			}
-			_this.getRelatedFromCat( req_categories );
 		});		
 	},
 	getRelatedFromCat:function(catAry){
@@ -1225,42 +1227,45 @@ embedVideo.prototype = {
 			$j('#img_thumb_' + this.id).fadeOut("fast");
 			$j('#dc_'+ _this.id + ' .related_vids ul').html( gM('mwe-loading_txt') );
 			this.mvVideoAudioSearch();
-		}else{
-			//add the liks_info_div black back 
-			$j('#dc_'+this.id).append('<div id="liks_info_'+this.id+'" ' +
-					'style="width:' +parseInt(parseInt(this.width)/2)+'px;'+		
-					'height:'+ parseInt(parseInt(this.height)) +'px;'+
-					'position:absolute;top:10px;overflow:auto'+				
-					'width: '+parseInt( ((parseInt(this.width)/2)-15) ) + 'px;'+
-					'left:'+ parseInt( ((parseInt(this.width)/2)+15) ) +'px;">'+					
-				'</div>'									
-		   );
-		   //start animation (make thumb small in upper left add in div for "loading"			
-			$j('#img_thumb_'+this.id).animate({				
-					width:parseInt(parseInt(_this.width)/2),
-					height:parseInt(parseInt(_this.height)/2),
-					top:20,
-					left:10
-				},
-				1000, 
-				function(){
-					//animation done.. add "loading" to div if empty		
-					if($j('#liks_info_'+_this.id).html()==''){
-						$j('#liks_info_'+_this.id).html(gM('mwe-loading_txt'));
-					}		
-				}
-			)				   
-			//now load roe if run the showNextPrevLinks
-			if(this.roe && this.media_element.addedROEData==false){
-				do_request(this.roe, function(data)
-				{															   
-					_this.media_element.addROE(data);
-					_this.getNextPrevLinks();
-				});	
-			}else{
-				this.getNextPrevLinks();
+		}else{		
+			this.onClipDoneDisp();
+		}					
+	},
+	onClipDoneDisp:function(){
+		//add the liks_info_div black back 
+		$j('#dc_'+this.id).append('<div id="liks_info_'+this.id+'" ' +
+				'style="width:' +parseInt(parseInt(this.width)/2)+'px;'+		
+				'height:'+ parseInt(parseInt(this.height)) +'px;'+
+				'position:absolute;top:10px;overflow:auto'+				
+				'width: '+parseInt( ((parseInt(this.width)/2)-15) ) + 'px;'+
+				'left:'+ parseInt( ((parseInt(this.width)/2)+15) ) +'px;">'+					
+			'</div>'									
+	   );
+	   //start animation (make thumb small in upper left add in div for "loading"			
+		$j('#img_thumb_'+this.id).animate({				
+				width:parseInt(parseInt(_this.width)/2),
+				height:parseInt(parseInt(_this.height)/2),
+				top:20,
+				left:10
+			},
+			1000, 
+			function(){
+				//animation done.. add "loading" to div if empty		
+				if($j('#liks_info_'+_this.id).html()==''){
+					$j('#liks_info_'+_this.id).html(gM('mwe-loading_txt'));
+				}		
 			}
-		}	   			
+		)				   
+		//now load roe if run the showNextPrevLinks
+		if(this.roe && this.media_element.addedROEData==false){
+			do_request(this.roe, function(data)
+			{															   
+				_this.media_element.addROE(data);
+				_this.getNextPrevLinks();
+			});	
+		}else{
+			this.getNextPrevLinks();
+		}	   	
 	},
 	//@@todo we should merge getNextPrevLinks with textInterface .. there is repeated code between them. 
 	getNextPrevLinks:function(){
@@ -1332,7 +1337,8 @@ embedVideo.prototype = {
 			}
 		}else{
 			js_log('no annotative track found');
-			$j('#liks_info_'+this.id).html('no metadata found for related links');
+			//$j('#liks_info_'+this.id).html('no metadata found for related links');
+			_this.doThumbnailHTML();
 		}
 		//query current request time +|- 60s to get prev next speech links. 
 	},
