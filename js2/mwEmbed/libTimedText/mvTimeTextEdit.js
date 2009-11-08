@@ -8,6 +8,13 @@ if( !mwAddMediaConfig )
 
 var mvTimedTextEdit = {};
 
+loadGM({
+  "mwe-add-subs-file"      : "Add/Replace Subtitle",
+  "mwe-add-subs-file-title": "Select Subtitle to upload",
+  "mwe-error-only-srt"     : "Only srt files can be uploaded right now."
+})
+
+
 js2AddOnloadHook( function() {
   function getSubtitle(f) {
       var name = f.files[0].name;
@@ -33,35 +40,35 @@ js2AddOnloadHook( function() {
           languageSelect += '<option value="'+code+'">'+language+'('+code+')</option>';
         }
         languageSelect += '/</select>';
-		    var cBtn = {};
-		    cBtn[ gM('mwe-cancel') ] = function(){
-			    $j(this).dialog('close');
-		    }
-		    cBtn[ gM('mwe-ok') ] = function(){
-			    var file = $j('#timed_text_file_upload');
-			    var langKey = file[0].files[0].name.split('.');
-			    var extension = langKey.pop();
-			    langKey = langKey.pop();
-			    var mimeTypes = {
-			        'srt': 'text/x-srt',
-			        'cmml': 'text/cmml'
-			    }
-			    if( !mimeTypes[ extension ] ){
-				    js_log('Error: unknown extension:'+ extension);
-			    }
-			    //get language from form
-    		  langKey = $j('#timed_text_language').val();
+        var cBtn = {};
+        cBtn[ gM('mwe-cancel') ] = function(){
+          $j(this).dialog('close');
+        }
+        cBtn[ gM('mwe-ok') ] = function(){
+          var file = $j('#timed_text_file_upload');
+          var langKey = file[0].files[0].name.split('.');
+          var extension = langKey.pop();
+          langKey = langKey.pop();
+          var mimeTypes = {
+              'srt': 'text/x-srt',
+              'cmml': 'text/cmml'
+          }
+          if( !mimeTypes[ extension ] ){
+            js_log('Error: unknown extension:'+ extension);
+          }
+          //get language from form
+          langKey = $j('#timed_text_language').val();
 
-			    if(extension == "srt") {
-      	    var srt = getSubtitle(file[0]);
-			      $j(this).html("saving...");
-			      $j('.ui-dialog-buttonpane').remove();
+          if(extension == "srt") {
+            var srt = getSubtitle(file[0]);
+            $j(this).html("saving...");
+            $j('.ui-dialog-buttonpane').remove();
 
-      		  var editToken = $j('input[name=wpEditToken]').val();
-      		  var title = wgTitle.split('.');
-      		  title.pop();
-      		  title.pop();
-      		  title = title.join('.') + '.' + langKey + '.srt';
+            var editToken = $j('input[name=wpEditToken]').val();
+            var title = wgTitle.split('.');
+            title.pop();
+            title.pop();
+            title = title.join('.') + '.' + langKey + '.srt';
             do_api_req({
               'data': {
                 'action' : 'edit',
@@ -75,24 +82,28 @@ js2AddOnloadHook( function() {
                   $j(dialog).dialog('close');
                }}(this)
             );
-			    } else {
-    			  $j(this).html("error only srt works right now.");
-			    }			  
-		    }
-        $j.addDialog("Select Subtitle to upload",
-           '<input type="file" id="timed_text_file_upload"></input><br>' + languageSelect,
+          } else {
+            $j(this).html(gM("mwe-error-only-srt"));
+          }
+        }
+        $j.addDialog(gM("mwe-add-subs-file-title"),
+           '<input type="file" id="timed_text_file_upload"></input><br />' + languageSelect,
            cBtn);
         $j('#timed_text_file_upload').change(function(ev) {
-			    var langKey = this.files[0].name.split('.');
-			    var extension = langKey.pop();
-			    langKey = langKey.pop();
-    		  $j('#timed_text_language').val( langKey );
+          var langKey = this.files[0].name.split('.');
+          var extension = langKey.pop();
+          langKey = langKey.pop();
+          $j('#timed_text_language').val( langKey );
         });
     });
   }
+  $j('#toolbar').hide();
+  var ttoolbar = $j('<div>');
+  $j('#toolbar').after(ttoolbar);
+
   var button = $j('<button>');
   button.click(uploadSubtitles)
-  button.text("Upload Subtitle");
-  $j('#toolbar').append(button);
+  button.text(gM("mwe-add-subs-file"));
+  ttoolbar.append(button);
 });
 
