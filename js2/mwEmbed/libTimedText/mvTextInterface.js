@@ -281,33 +281,32 @@ mvTextInterface.prototype = {
 		//debugger;
 		for(var i in _this.availableTracks){ //for in loop ok on object
 			var checked = ( _this.availableTracks[i].display ) ? 'checked' : '';
-			selHTML+='<li><input name="'+i+'" class="mvTsSelect" type="checkbox" ' + checked + '>'+
+			selHTML+='<li><input name="language" value="'+i+'" class="mvTsSelect" type="radio" ' + checked + ' onChange="document.getElementById(\'' + this.pe.id + '\').textInterface.applyTsSelect();return false;">'+
 				_this.availableTracks[i].getTitle() + '</li>';
 		}
 		selHTML+='</ul>' +
-					'<a href="#" onClick="document.getElementById(\'' + this.pe.id + '\').textInterface.applyTsSelect();return false;">'+gM('mwe-close')+'</a>'+
-				'</div>';
+				 '</div>';
 		$j('#metaBox_'+_this.pe.id).append( selHTML );
 	},
 	applyTsSelect:function(){
 		var _this = this;
 		//update availableTracks
 		$j('#mvtsel_' + this.pe.id + ' .mvTsSelect').each(function(){
+			var track_id = $j(this).val();
 			if(this.checked){
-				var track_id = this.name;
 				//if not yet loaded now would be a good time
 				if(! _this.availableTracks[ track_id ].loaded ){
 					_this.loadAndDisplay( track_id);
 				}else{
-					_this.availableTracks[this.name].display=true;
+					_this.availableTracks[track_id].display=true;
 					//display the named class:
-					$j('#mmbody_'+_this.pe.id +' .tt_'+this.name ).fadeIn("fast");
+					$j('#mmbody_'+_this.pe.id +' .tt_'+track_id ).fadeIn("fast");
 				}
 			}else{
-				if(_this.availableTracks[this.name].display){
-					_this.availableTracks[this.name].display=false;
+				if(_this.availableTracks[track_id].display){
+					_this.availableTracks[track_id].display=false;
 					//hide unchecked
-					$j('#mmbody_'+_this.pe.id +' .tt_'+this.name ).fadeOut("fast");
+					$j('#mmbody_'+_this.pe.id +' .tt_'+track_id ).fadeOut("fast");
 				}
 			}
 		});
