@@ -623,6 +623,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 18609) Search index was empty for some pages
 * (bug 13453) rebuildrecentchanges maintenance script works on PG again
 * (bug 16583) Reduce false positives when checking for PHP (on upload, etc.)
+* (bug 20112) Bitrotted tests in the t/ directory were failing.
 
 == API changes in 1.16 ==
 
