@@ -120,7 +120,5 @@ js2AddOnloadHook( function() {
   button.text(gM("mwe-watch-video"));
   ttoolbar.append(button);
 
-  alert();
-
 });
 
