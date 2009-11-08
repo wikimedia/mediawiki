@@ -1006,8 +1006,10 @@ var mvJsLoader = {
 	jQueryCheck: function( callback ) {
 		js_log( 'jQueryCheck::' );
 		// Skip stuff if $j is already loaded:
-		if( _global['$j'] && callback )
+		if( _global['$j'] && callback ){
 			callback();
+			return ;
+		}
 		var _this = this;
 		// Load jQuery
 		_this.doLoad([
@@ -1156,7 +1158,7 @@ function mwdomReady( force ) {
 				}
 			}
 		}				
-		// Load libs and process them
+		// Load libs and process videos
 		mvJsLoader.embedVideoCheck( function() {
 			// Run any queued global events:
 			mv_video_embed( function() {
@@ -1164,20 +1166,18 @@ function mwdomReady( force ) {
 			});
 		});
 	} else {
-		// If we already have jQuery, make sure it's loaded into its proper context $j
-		// Run any queued global events
 		mvJsLoader.runQueuedFunctions();
 	}
 }
 
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
 function js2AddOnloadHook( func ) {
-	//js_log('js2AddOnloadHook::' + func );	
+	//js_log('js2AddOnloadHook::' );	
 	// If we have already run the DOM-ready function, just run the function directly:
-	if( mvJsLoader.doneReadyEvents ) {			
+	if( mvJsLoader.doneReadyEvents ) {	
 		func();
 	} else {
-		mvJsLoader.jQueryCheck( function() {			
+		mvJsLoader.jQueryCheck( function() {
 			mvJsLoader.addLoadEvent( func );
 		})
 	}
