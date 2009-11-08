@@ -52,9 +52,10 @@ mvTextInterface.prototype = {
 							'url' :	apiUrl,
 							'data': {
 								'list' : 'allpages',
-								'apprefix' : 'TimedText:' + _this.pe.wikiTitleKey
+								'apprefix' : _this.pe.wikiTitleKey,
+								'apnamespace' : 102
 							}
-					}, function( subData ) {						
+					}, function( subData ) {					
 						_this.doProcSubPages( subData, wgServer + wgScriptPath);
 					});
 				}
@@ -138,9 +139,9 @@ mvTextInterface.prototype = {
 				'titles': 'File:' + _this.pe.wikiTitleKey, 
 				'prop' : 'imageinfo'
 			}
-		},function( data ){
-			js_log('image is shared checking commons for subtitles');
+		},function( data ){			
 			if( data.query.pages && data.query.pages['-1'] && data.query.pages['-1'].imagerepository == 'shared'){
+				js_log('image is shared checking commons for subtitles');
 				//found shared repo assume commons: 
 				do_api_req({
 					'url': 'http://commons.wikimedia.org/w/api.php',
@@ -153,6 +154,9 @@ mvTextInterface.prototype = {
 					_this.editlink = 'http://commons.wikimedia.org/wiki/TimedText:' +  _this.pe.wikiTitleKey +'.'+ wgUserLanguage +'.srt';
 					_this.doProcSubPages( data, 'http://commons.wikimedia.org/w/' );
 				});
+			}else{
+				//no shared repo do normal proc
+				_this.getParseTimedText_rowReady();
 			}
 		});
 	},
@@ -352,7 +356,7 @@ mvTextInterface.prototype = {
 		selHTML+='</ul>' +
 				 '</div>';
 		$j('#metaBox_'+_this.pe.id).append( selHTML );
-		$j('.mvTsSelect').click(function(){
+		$j('.mvTsSelect').click(function(){			
 			_this.applyTsSelect();
 		});
 	},
@@ -374,6 +378,7 @@ mvTextInterface.prototype = {
 				if(_this.availableTracks[track_id].display){
 					_this.availableTracks[track_id].display=false;
 					//hide unchecked
+					alert('hide: ' + '#mmbody_'+_this.pe.id +' .tt_'+track_id + ' len: ' + $j('#mmbody_'+_this.pe.id +' .tt_'+track_id ).length );
 					$j('#mmbody_'+_this.pe.id +' .tt_'+track_id ).fadeOut("fast");
 				}
 			}
