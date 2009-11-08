@@ -24,7 +24,7 @@ js2AddOnloadHook( function() {
       return srtData;
   }
   function getVideoTitle() {
-    var videoTitle = wgTitle.split('.');
+    var videoTitle = wgPageName.split('.');
     videoTitle.pop();
     videoTitle.pop();
     videoTitle = videoTitle.join('.').replace('TimedText:', 'File:');
