@@ -93,11 +93,11 @@ js2AddOnloadHook( function() {
 
             if(extension == "srt") {
               var srt = getSubtitle(file[0]);
-              $j(this).html("saving...");
+              $j(this).html("saving...<br>"+mv_get_loading_img());
               $j('.ui-dialog-buttonpane').remove();
 
               var editToken = $j('input[name=wpEditToken]').val();
-              var title = wgTitle.split('.');
+              var title = wgPageName.split('.');
               title.pop();
               title.pop();
               title = title.join('.') + '.' + langKey + '.srt';
