@@ -178,7 +178,7 @@ mvTextInterface.prototype = {
 		}		
 		$j.each( this.pe.media_element.sources, function(inx, source){
 			if( typeof source.id == 'undefined' || source.id == null ){
-				source.id = 'tt_' + inx;
+				source.id = 'text_' + inx;
 			}
 			var tObj = new timedTextObj( source ); 
 			//make sure its a valid timed text format (we have not loaded or parsed yet) : (
@@ -226,7 +226,7 @@ mvTextInterface.prototype = {
 		_this.availableTracks[ track_id ].display=true;
 		//setup the layout:
 		this.setup_layout();
-		js_log("SHOULD ADD: "+ track_id + ' count:' +  _this.availableTracks[ track_id ].textNodes.length);
+		js_log("SHOULD ADD: track:"+ track_id + ' count:' +  _this.availableTracks[ track_id ].textNodes.length);
 
 		//a flag to avoid checking all clips if we know we are adding to the end:
 		_this.add_to_end_on_this_pass = false;
@@ -236,7 +236,7 @@ mvTextInterface.prototype = {
 		var track_id = track_id;
 		var addNextClip = function(){
 			var text_clip = _this.availableTracks[ track_id ].textNodes[i];
-			_this.add_merge_text_clip(text_clip);
+			_this.add_merge_text_clip(text_clip, track_id);
 			i++;
 			if(i < _this.availableTracks[ track_id ].textNodes.length){
 				setTimeout(addNextClip, 1);
@@ -244,7 +244,7 @@ mvTextInterface.prototype = {
 		}
 		addNextClip();
 	},
-	add_merge_text_clip: function( text_clip ){
+	add_merge_text_clip: function( text_clip, track_id ){
 		var _this = this;
 		//make sure the clip does not already exist:
 		if($j('#tc_'+text_clip.id).length==0){
@@ -253,17 +253,16 @@ mvTextInterface.prototype = {
 
 			var insertHTML = '<div id="tc_'+text_clip.id+'" ' +
 				'start_sec="' + text_clip_start_time + '" ' +
-				'start="'+text_clip.start+'" end="'+text_clip.end+'" class="mvtt tt_'+text_clip.type_id+'">' +
+				'start="'+text_clip.start+'" end="'+text_clip.end + '" ' +
+				'class="mvtt track_' + track_id + '">' +
 					'<div class="mvttseek" style="top:0px;left:0px;right:0px;height:20px;font-size:small">'+
 						text_clip.start + ' to ' +text_clip.end+
 					'</div>'+
 					text_clip.body +
 			'</div>';
-			//js_log("ADDING CLIP: "  + text_clip_start_time + ' html: ' + insertHTML);
 			if(!_this.add_to_end_on_this_pass){
 				$j('#mmbody_'+this.pe.id +' .mvtt').each(function(){
 					if(!inserted){
-						//js_log( npt2seconds($j(this).attr('start')) + ' > ' + text_clip_start_time);
 						if( $j(this).attr('start_sec') > text_clip_start_time){
 							inserted=true;
 							$j(this).before(insertHTML);
@@ -372,14 +371,13 @@ mvTextInterface.prototype = {
 				}else{
 					_this.availableTracks[track_id].display=true;
 					//display the named class:
-					$j('#mmbody_'+_this.pe.id +' .tt_'+track_id ).fadeIn("fast");
+					$j('#mmbody_'+_this.pe.id +' .track_'+track_id ).show();
 				}
 			}else{
 				if(_this.availableTracks[track_id].display){
 					_this.availableTracks[track_id].display=false;
-					//hide unchecked
-					alert('hide: ' + '#mmbody_'+_this.pe.id +' .tt_'+track_id + ' len: ' + $j('#mmbody_'+_this.pe.id +' .tt_'+track_id ).length );
-					$j('#mmbody_'+_this.pe.id +' .tt_'+track_id ).fadeOut("fast");
+					//hide unchecked				
+					$j('#mmbody_'+_this.pe.id +' .track_'+track_id ).hide();
 				}
 			}
 		});
