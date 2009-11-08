@@ -1141,9 +1141,6 @@ $wgDebugRawPage         = false;
  */
 $wgDebugComments        = false;
 
-/** Does nothing. Obsolete? */
-$wgLogQueries           = false;
-
 /**
  * Write SQL queries to the debug log
  */
