@@ -68,10 +68,10 @@ is( $file_hl2->getArchiveVirtualUrl(), 'mwrepo://test/public/archive/a/a2', 'Get
 is( $file_hl0->getArchiveVirtualUrl( '!' ), 'mwrepo://test/public/archive/%21', 'Get archive virtual url, hasLev 0' );
 is( $file_hl2->getArchiveVirtualUrl( '!' ), 'mwrepo://test/public/archive/a/a2/%21', 'Get archive virtual url, hasLev 2' );
 
-is( $file_hl0->getThumbVirtualUrl(), 'mwrepo://test/public/thumb/Test%21', 'Get thumb virtual url, hasLev 0' );
-is( $file_hl2->getThumbVirtualUrl(), 'mwrepo://test/public/thumb/a/a2/Test%21', 'Get thumb virtual url, hasLev 2' );
-is( $file_hl0->getThumbVirtualUrl( '!' ), 'mwrepo://test/public/thumb/Test%21/%21', 'Get thumb virtual url, hasLev 0' );
-is( $file_hl2->getThumbVirtualUrl( '!' ), 'mwrepo://test/public/thumb/a/a2/Test%21/%21', 'Get thumb virtual url, hasLev 2' );
+is( $file_hl0->getThumbVirtualUrl(), 'mwrepo://test/thumb/Test%21', 'Get thumb virtual url, hasLev 0' );
+is( $file_hl2->getThumbVirtualUrl(), 'mwrepo://test/thumb/a/a2/Test%21', 'Get thumb virtual url, hasLev 2' );
+is( $file_hl0->getThumbVirtualUrl( '!' ), 'mwrepo://test/thumb/Test%21/%21', 'Get thumb virtual url, hasLev 0' );
+is( $file_hl2->getThumbVirtualUrl( '!' ), 'mwrepo://test/thumb/a/a2/Test%21/%21', 'Get thumb virtual url, hasLev 2' );
 
 is( $file_hl0->getUrl(), '/testurl/Test%21', 'Get url, hasLev 0' );
 is( $file_hl2->getUrl(), '/testurl/a/a2/Test%21', 'Get url, hasLev 2' );
