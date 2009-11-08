@@ -399,7 +399,7 @@ $messages = array(
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MediaWiki er no installert.'''</big>",
-'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvaren.
+'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.
 
 ==Kome i gang==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste over oppsettsinnstillingar]
@@ -588,14 +588,14 @@ $1',
 'nosuchaction'      => 'Funksjonen finst ikkje',
 'nosuchactiontext'  => 'Handlinga som er oppgjeven i adressa er ugyldig.
 Du har kanskje stava adressa feil, eller følgt ei feil lenkja.
-Dette kan òg skuldast ein feil i programvaren som er nytta av {{SITENAME}}.',
+Dette kan òg skuldast ein feil i programvara som er nytta av {{SITENAME}}.',
 'nosuchspecialpage' => 'Det finst inga slik spesialside',
 'nospecialpagetext' => 'Du har bede om ei spesialside som ikkje finst. Lista over spesialsider finn du [[Special:SpecialPages|her]].',
 
 # General errors
 'error'                => 'Feil',
 'databaseerror'        => 'Databasefeil',
-'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvaren. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå innan funksjonen «<tt>$2</tt>». Databasen returnerte feilen «<tt>$3: $4</tt>».',
+'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå innan funksjonen «<tt>$2</tt>». Databasen returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. 
 Den sist prøvde førespurnaden var: «$1» frå funksjonen «$2».
 Databasen returnerte feilen «$3: $4».',
@@ -1103,6 +1103,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'compareselectedversions'  => 'Samanlikn valde versjonar',
 'showhideselectedversions' => 'Syn/skjul valde versjonar',
 'editundo'                 => 'angre',
+'diff-multi'               => '({{PLURAL:$1|Éin versjon mellom desse er ikkje vist|$1 versjonar mellom desse er ikkje viste}}.)',
 
 # Search results
 'searchresults'                    => 'Søkjeresultat',

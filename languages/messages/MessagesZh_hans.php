@@ -1048,6 +1048,7 @@ $1",
 'compareselectedversions'  => '比较选定的修订版本',
 'showhideselectedversions' => '显示／隐藏选定的修订版本',
 'editundo'                 => '撤销',
+'diff-multi'               => '（$1个中途的修订版本没有显示）',
 
 # Search results
 'searchresults'                    => '搜索结果',

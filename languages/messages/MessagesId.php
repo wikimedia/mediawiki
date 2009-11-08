@@ -302,7 +302,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Kembangkan daftar pantauan untuk menunjukkan semua perubahan, tidak hanya yang terbaru',
 'tog-usenewrc'                => 'Gunakan tampilan perubahan terbaru tingkat lanjut (memerlukan JavaScript)',
 'tog-numberheadings'          => 'Beri nomor judul secara otomatis',
-'tog-showtoolbar'             => 'Perlihatkan <em>toolbar</em> (batang alat) penyuntingan',
+'tog-showtoolbar'             => 'Perlihatkan bilah alat penyuntingan',
 'tog-editondblclick'          => 'Sunting halaman dengan klik ganda (JavaScript)',
 'tog-editsection'             => 'Fungsikan penyuntingan sub-bagian melalui pranala [sunting]',
 'tog-editsectiononrightclick' => 'Fungsikan penyuntingan sub-bagian dengan klik-kanan pada judul bagian (JavaScript)',
@@ -317,9 +317,9 @@ $messages = array(
 'tog-previewontop'            => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
 'tog-previewonfirst'          => 'Perlihatkan pratayang pada suntingan pertama',
 'tog-nocache'                 => 'Matikan <em>cache</em> halaman',
-'tog-enotifwatchlistpages'    => 'Kirimi saya surel jika suatu halaman yang saya pantau berubah',
-'tog-enotifusertalkpages'     => 'Kirimi saya surel jika halaman pembicaraan saya berubah',
-'tog-enotifminoredits'        => 'Kirimi saya surel juga pada perubahan kecil',
+'tog-enotifwatchlistpages'    => 'Kirimkan saya surel jika suatu halaman yang saya pantau berubah',
+'tog-enotifusertalkpages'     => 'Kirimkan saya surel jika halaman pembicaraan saya berubah',
+'tog-enotifminoredits'        => 'Kirimkan saya surel juga pada perubahan kecil',
 'tog-enotifrevealaddr'        => 'Tampilkan alamat surel saya pada surel notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
 'tog-oldsig'                  => 'Pratayang tandatangan:',
@@ -1150,6 +1150,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'compareselectedversions'  => 'Bandingkan versi terpilih',
 'showhideselectedversions' => 'Tampilkan/sembunyikan versi terpilih',
 'editundo'                 => 'batalkan',
+'diff-multi'               => '({{PLURAL:$1|Satu|$1}} revisi antara tak ditampilkan.)',
 
 # Search results
 'searchresults'                    => 'Hasil pencarian',
@@ -1313,11 +1314,11 @@ Jangan lebih dari $1 {{PLURAL:$1|karakter|karakter}}.',
 'gender-unknown'                => 'Tak dinyatakan',
 'gender-male'                   => 'Laki-laki',
 'gender-female'                 => 'Perempuan',
-'prefs-help-gender'             => 'Manasuka: digunakan untuk perbaikan penyebutan gender oleh perangkat lunak. Informasi ini akan terbuka untuk umum.',
+'prefs-help-gender'             => 'Opsional: digunakan untuk perbaikan penyebutan gender oleh perangkat lunak. Informasi ini akan terbuka untuk umum.',
 'email'                         => 'Surel',
-'prefs-help-realname'           => 'Nama asli bersifat manasuka. 
+'prefs-help-realname'           => 'Nama asli bersifat opsional. 
 Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
-'prefs-help-email'              => 'Alamat surel bersifat manasuka, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surel tersebut.
+'prefs-help-email'              => 'Alamat surel bersifat opsional, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surel tersebut.
 Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui halaman pengguna atau halaman pembicaraan pengguna Anda tanpa perlu membuka identitas Anda.',
 'prefs-help-email-required'     => 'Alamat surel dibutuhkan.',
 'prefs-info'                    => 'Informasi dasar',
@@ -1994,7 +1995,7 @@ Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] 
 'emailsubject'     => 'Perihal:',
 'emailmessage'     => 'Pesan:',
 'emailsend'        => 'Kirim',
-'emailccme'        => 'Kirimi saya salinan pesan saya.',
+'emailccme'        => 'Kirimkan saya salinan pesan saya.',
 'emailccsubject'   => 'Salinan pesan Anda untuk $1: $2',
 'emailsent'        => 'Surel terkirim',
 'emailsenttext'    => 'Surel Anda telah dikirimkan.',

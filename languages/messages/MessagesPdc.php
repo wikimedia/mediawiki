@@ -141,6 +141,10 @@ $messages = array(
 'personaltools'    => 'Paerseenlich Gscharr',
 'talk'             => 'Gschwetz',
 'toolbox'          => 'Schapp',
+'userpage'         => 'Yuuserblatt zeige',
+'imagepage'        => 'Feils zeige',
+'templatepage'     => 'Moddle zeige',
+'viewtalkpage'     => 'Gschwetz zeige',
 'otherlanguages'   => 'Annere Schprooche',
 'redirectedfrom'   => '(Weiterleitung vun $1)',
 'redirectpagesub'  => 'Weiterleitung',
@@ -178,7 +182,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'editlink'                => 'ennere',
 'editsectionhint'         => 'Abschnitt ennere: $1',
 'toc'                     => 'Lischt vum Inhalt',
+'showtoc'                 => 'Zeige',
 'hidetoc'                 => 'Verschwinne losse',
+'viewdeleted'             => '$1 zeige?',
 'feedlinks'               => 'Feed:',
 'site-rss-feed'           => 'RSS-Feed fer $1',
 'site-atom-feed'          => 'Atom-Feed fer $1',
@@ -245,17 +251,25 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'previousrevision' => '← letscht Version',
 'next'             => 'Neegscht',
 'last'             => 'Letscht',
+'page_first'       => 'Aafang',
 'page_last'        => 'End',
 'histlast'         => 'Letscht',
+'historysize'      => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
 'historyempty'     => '(leer)',
 
 # Revision deletion
 'rev-deleted-user'           => '(Yuuser-Naame gelöscht)',
 'rev-delundel'               => 'zeig/verschwinne losse',
+'rev-showdeleted'            => 'zeig',
 'revdelete-show-file-submit' => 'Ya',
 'revdelete-hide-text'        => 'Text vun de Version verschwinne losse',
+'pagehist'                   => 'Gschicht',
 'revdelete-uname'            => 'Yuuser-Naame',
 'revdelete-log-message'      => '$1 fer $2 {{PLURAL:$2|Version|Versione}}',
+'revdelete-otherreason'      => 'Annere Grind dezu:',
+'revdelete-reasonotherlist'  => 'Annere Grind',
+'revdelete-edit-reasonlist'  => "Grind fer's Loesche ennere",
+'revdelete-offender'         => 'Schreiwer fun daer Version:',
 
 # History merging
 'mergehistory-reason' => 'Grund:',
@@ -302,6 +316,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'timezoneregion-australia' => 'Australie',
 'timezoneregion-europe'    => 'Eiropaa',
 'prefs-namespaces'         => 'Blatznaame',
+'prefs-files'              => 'Feils',
 'username'                 => 'Yuuser-Naame:',
 'uid'                      => 'Yuuser-ID:',
 'prefs-memberingroups'     => 'Mitglied vun de {{PLURAL:$1|Yuuser-Druppe|Yuuser-Druppe}}:',
@@ -343,10 +358,12 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'rightsnone' => '(ken)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'   => 'es Blatt zu lese',
-'action-edit'   => 'des Blatt zu ennere',
-'action-move'   => 'des Blatt zu ziehe',
-'action-delete' => 'des Blatt zu lösche',
+'action-read'     => 'es Blatt zu lese',
+'action-edit'     => 'des Blatt zu ennere',
+'action-move'     => 'des Blatt zu ziehe',
+'action-movefile' => 'Des Feil ziehe',
+'action-upload'   => 'Des Feil ufflade',
+'action-delete'   => 'des Blatt zu lösche',
 
 # Recent changes
 'nchanges'                     => '$1 {{PLURAL:$1|Ennering|Enneringe}}',
@@ -377,15 +394,19 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # Upload
 'upload'          => 'Ufflade',
 'uploadbtn'       => 'Feil ufflade',
+'filename'        => 'Feilnaame',
+'badfilename'     => 'Daer Feilnaame iss gennert warre nooch „$1“.',
 'watchthisupload' => 'Watsch des Blatt',
 
 # Special:ListFiles
+'listfiles'       => 'Lischt vun Feils',
 'listfiles_name'  => 'Naame',
 'listfiles_user'  => 'Yuuser',
 'listfiles_size'  => 'Grees',
 'listfiles_count' => 'Versione',
 
 # File description page
+'file-anchor-link'    => 'Feil',
 'filehist'            => 'Versione vun Feils',
 'filehist-deleteall'  => 'All Versione lösche',
 'filehist-deleteone'  => 'Sell Version lösche',
@@ -393,6 +414,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'filehist-datetime'   => 'Version vum',
 'filehist-user'       => 'Yuuser',
 'filehist-dimensions' => 'Grees',
+'filehist-filesize'   => 'Grees vum Feil',
 'filehist-comment'    => 'Comment',
 'shared-repo-from'    => 'vun $1',
 
@@ -401,9 +423,11 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'filerevert-submit'  => 'Zerick',
 
 # File deletion
-'filedelete'         => 'Lösche „$1“',
-'filedelete-comment' => 'Grund:',
-'filedelete-submit'  => 'Lösche',
+'filedelete'                  => 'Lösche „$1“',
+'filedelete-comment'          => 'Grund:',
+'filedelete-submit'           => 'Lösche',
+'filedelete-otherreason'      => 'Annere Grind dezu:',
+'filedelete-reason-otherlist' => 'Annerer Gund',
 
 # Random page
 'randompage' => 'Ennich Ardickel',
@@ -418,6 +442,8 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 'brokenredirects-edit'   => 'ennere',
 'brokenredirects-delete' => 'lösche',
+
+'withoutinterwiki-submit' => 'Zeig',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|Byte|Bytes}}',
@@ -453,6 +479,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'linksearch-ns' => 'Blatznaame:',
 
 # Special:ListUsers
+'listusers-submit'   => 'Zeig',
 'listusers-noresult' => 'Ken Yuuser gfunne.',
 
 # Special:ListGroupRights
@@ -559,7 +586,8 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'delete_and_move_confirm' => 'Ya, es Blatt lösche',
 
 # Export
-'export-addns' => 'Dezu duh',
+'export-addcat' => 'Dezu duh',
+'export-addns'  => 'Dezu duh',
 
 # Namespace 8 related
 'allmessagesname'               => 'Naame',
@@ -570,6 +598,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Thumbnails
 'thumbnail-more' => 'greeser mache',
+
+# Special:Import
+'import-upload-filename' => 'Feilnaame:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Dei Yuuser-Blatt',
@@ -590,7 +621,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'tooltip-t-upload'               => 'Feils ufflade',
 'tooltip-t-specialpages'         => 'Lischt vun alle besunnere Bledder',
 'tooltip-t-print'                => 'Des Blatt fer zum Drucke',
+'tooltip-ca-nstab-user'          => 'Yuuserblatt zeige',
 'tooltip-ca-nstab-special'       => 'Sell iss en besunneres Blatt. Du kannscht es Blatt net ennere.',
+'tooltip-ca-nstab-image'         => 'Feil zeige',
 
 # Attribution
 'siteuser'  => '{{SITENAME}}-Yuuser $1',
@@ -688,5 +721,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # HTML forms
 'htmlform-reset'               => 'Enneringe zerick nemme',
 'htmlform-selectorother-other' => 'Annere',
+
+# Add categories per AJAX
+'ajax-add-category-submit' => 'Dezu duh',
+'ajax-error-dismiss'       => 'OK',
 
 );

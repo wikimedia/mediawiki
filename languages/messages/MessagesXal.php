@@ -476,14 +476,14 @@ $messages = array(
 'group-user-member'          => 'Демнч',
 'group-autoconfirmed-member' => 'Эврә батлсн демнчнр',
 'group-bot-member'           => 'Көдлвр',
-'group-sysop-member'         => 'Дарһа',
-'group-bureaucrat-member'    => 'Сегләтр',
+'group-sysop-member'         => 'Закрач',
+'group-bureaucrat-member'    => 'Нойнч',
 
 'grouppage-user'          => '{{ns:project}}:Демнч',
 'grouppage-autoconfirmed' => '{{ns:project}}:Эврә батлсн демнчнр',
 'grouppage-bot'           => '{{ns:project}}:Көдлврүд',
-'grouppage-sysop'         => '{{ns:project}}:Дарһас',
-'grouppage-bureaucrat'    => '{{ns:project}}:Сегләтрс',
+'grouppage-sysop'         => '{{ns:project}}:Закрачуд',
+'grouppage-bureaucrat'    => '{{ns:project}}:Нойнчуд',
 
 # User rights log
 'rightslog' => 'Демнчна зөвәнә сеткүл',

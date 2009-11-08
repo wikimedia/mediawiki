@@ -1207,6 +1207,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'compareselectedversions'  => 'Comparer les versions sélectionnées',
 'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
 'editundo'                 => 'défaire',
+'diff-multi'               => '({{PLURAL:$1|Une version intermédiaire masquée|$1 versions intermédiaires masquées}})',
 
 # Search results
 'searchresults'                    => 'Résultats de la recherche',
@@ -1226,7 +1227,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'shown-title'                      => 'Afficher $1 résultat{{PLURAL:$1||s}} par page',
 'viewprevnext'                     => 'Voir ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Options de recherche',
-'searchmenu-exists'                => "'''Il y a une page ayant comme titre « [[:$1]] » sur ce wiki'''",
+'searchmenu-exists'                => "'''Il existe une page nommée « [[:$1]] » sur ce wiki'''",
 'searchmenu-new'                   => "'''Créer la page « [[:$1|$1]] » sur ce wiki !'''",
 'searchhelp-url'                   => 'Help:Accueil',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechercher les pages commençant par ce préfixe]]',

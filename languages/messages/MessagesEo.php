@@ -645,7 +645,7 @@ ne rajtas uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
 Tial, vizitantoj kun ĉi tiu IP-adreso ne povas krei pluajn kontojn ĉi-momente.',
 'emailauthenticated'         => 'Via retadreso estis aŭtentikigita ekde $2 $3.',
 'emailnotauthenticated'      => 'Via retadreso <strong>ne jam estas aŭtentigata.</strong> Tial ne eblas elekti ajnan funkcion sube listigatan.',
-'noemailprefs'               => 'Specifigu retpoŝtan adreson por ĉi tiuj ecoj funkcii.',
+'noemailprefs'               => 'Specifu retpoŝtan adreson por ĉi tiuj ecoj funkcii.',
 'emailconfirmlink'           => 'Konfirmu vian retpoŝtan adreson',
 'invalidemailaddress'        => 'La retadreso ne povas esti akceptita, ĉar ĝi verŝajne havas nevalidan formaton.
 Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
@@ -953,12 +953,12 @@ Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en 
 'revisiondelete'              => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'     => 'Nevalida cela versio',
 'revdelete-nooldid-text'      => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun 
-funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan version.',
+funkcion, la specifita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan version.',
 'revdelete-nologtype-title'   => 'Neniu protokol-tipo estis donita',
-'revdelete-nologtype-text'    => 'Vi ne specifigis protokolan tipon por fari ĉi tiun funkcion.',
+'revdelete-nologtype-text'    => 'Vi ne specifis protokolan tipon por fari ĉi tiun funkcion.',
 'revdelete-nologid-title'     => 'Nevalida protokol-linio',
 'revdelete-nologid-text'      => 'Vi aŭ ne specifis celan protokolan eventon por fari ĉi tiun funkcion aŭ la specifa protokolero ne ekzistas.',
-'revdelete-no-file'           => 'La dosiero specifigita ne ekzistas.',
+'revdelete-no-file'           => 'La specifita dosiero ne ekzistas.',
 'revdelete-show-file-confirm' => 'Ĉu vi certas ke vi volas vidi forigitan revizion de la dosiero "<nowiki>$1</nowiki>" de $2, $3?',
 'revdelete-show-file-submit'  => 'Jes',
 'revdelete-selected'          => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
@@ -1032,7 +1032,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'mergehistory-from'                => 'Fontpaĝo:',
 'mergehistory-into'                => 'Celpaĝo:',
 'mergehistory-list'                => 'Kunigebla redakthistorio',
-'mergehistory-merge'               => 'La jenaj versioj de [[:$1]] povas esti kunigitaj en [[:$2]]. Uzu la radio-butonan kolumnon por enkunigi nur la versiojn kreitajn ĉe kaj antaŭ la specifigita tempo. Notu ke uzado de navigado-ligiloj restarigos ĉi tiun kolumnon.',
+'mergehistory-merge'               => 'La jenaj versioj de [[:$1]] povas esti kunigitaj en [[:$2]]. Uzu la radio-butonan kolumnon por enkunigi nur la versiojn kreitajn ĉe kaj antaŭ la specifita tempo. Notu ke uzado de navigado-ligiloj restarigos ĉi tiun kolumnon.',
 'mergehistory-go'                  => 'Montri kunigeblajn redaktojn',
 'mergehistory-submit'              => 'Kunigi versiojn',
 'mergehistory-empty'               => 'Neniuj versioj estas kunigeblaj.',
@@ -1060,6 +1060,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'compareselectedversions'  => 'Kompari la elektitajn versiojn',
 'showhideselectedversions' => 'Montri/kaŝi elektitajn versiojn',
 'editundo'                 => 'malfari',
+'diff-multi'               => '({{PLURAL:$1|Unu meza versio|$1 mezaj versioj}} ne montrata.)',
 
 # Search results
 'searchresults'                    => 'Serĉrezultoj',
@@ -1652,7 +1653,7 @@ Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
 'filedelete-success'          => "'''$1''' estas forigita.",
 'filedelete-success-old'      => "La versio de '''[[Media:$1|$1]]''' ekde $3, $2 estas forigita.",
 'filedelete-nofile'           => "'''$1''' ne ekzistas.",
-'filedelete-nofile-old'       => "Estas neniuarkivita versio de '''$1''' kun la specifigitaj atribuoj.",
+'filedelete-nofile-old'       => "Estas neniu arkivita versio de '''$1''' kun la specifitaj atribuoj.",
 'filedelete-otherreason'      => 'Alia/plua kialo:',
 'filedelete-reason-otherlist' => 'Alia kialo',
 'filedelete-reason-dropdown'  => '* Oftaj kialoj de forigo
@@ -2503,7 +2504,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'xml-error-string'           => '$1 ĉe linio $2, kolumno $3 (bitiko $4): $5',
 'import-upload'              => 'Alŝuti XML-datenojn',
 'import-token-mismatch'      => 'Seancaj datenoj perdiĝis. Bonvolu reprovi.',
-'import-invalid-interwiki'   => 'Ne povas importi de la specifigita vikio.',
+'import-invalid-interwiki'   => 'Ne povas importi de la specifita vikio.',
 
 # Import log
 'importlogpage'                    => 'Protokolo de importaĵoj',
@@ -2646,7 +2647,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'rcpatroldisabled'                    => 'Patrolado de lastaj ŝanĝoj malaktivigita',
 'rcpatroldisabledtext'                => 'La funkcio patrolado de la lastaj ŝanĝoj estas nun malaktivigita.',
 'markedaspatrollederror'              => 'Ne povas marki kiel patrolitan',
-'markedaspatrollederrortext'          => 'Vi devas specifigi version por marki kiel patrolitan.',
+'markedaspatrollederrortext'          => 'Vi devas specifi version por marki kiel patrolitan.',
 'markedaspatrollederror-noautopatrol' => 'Vi ne rajtas marki viajn proprajn ŝanĝojn kiel patrolitajn.',
 
 # Patrol log
@@ -2673,8 +2674,8 @@ $1',
 'nextdiff'     => 'Pli nova redakto →',
 
 # Media information
-'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
-<hr />",
+'mediawarning'         => "'''Warning''': This file type may contain malicious code.
+By executing it, your system may be compromised.<hr />",
 'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
@@ -2744,7 +2745,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-whitepoint'                  => 'Koloreco de blanka punkto',
 'exif-primarychromaticities'       => 'Kolorecoj de primaraĵoj',
 'exif-ycbcrcoefficients'           => 'Koeficientoj de kolorspaca transformiga matrikso',
-'exif-referenceblackwhite'         => 'Paro de nigraj kaj blankaj referencaj valutoj',
+'exif-referenceblackwhite'         => 'Paro de nigraj kaj blankaj referencaj valoroj',
 'exif-datetime'                    => 'Dato kaj tempo de dosiera ŝanĝo',
 'exif-imagedescription'            => 'Titolo de bildo',
 'exif-make'                        => 'Fabrikejo de fotilo',
@@ -3148,7 +3149,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Serĉu duplikatajn dosierojn',
-'fileduplicatesearch-summary'  => 'Serĉu duplikatajn dosierojn bazite de haketvaluto.
+'fileduplicatesearch-summary'  => 'Serĉu duplikatajn dosierojn bazite de haketvaloro.
 
 Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'fileduplicatesearch-legend'   => 'Serĉi duplikaton',
@@ -3214,11 +3215,11 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Estas problemoj kun iom da via enigo',
-'htmlform-select-badoption'    => 'La valuto kiun vi specifigis ne estas valida.',
-'htmlform-int-invalid'         => 'La valuto kiun vi specifigis ne estas entjero.',
-'htmlform-float-invalid'       => 'La valuto specifigita ne estas numero.',
-'htmlform-int-toolow'          => 'La valuto kiun vi specifigis estas sub la minimumo de $1',
-'htmlform-int-toohigh'         => 'La valuto kiun vi specifigis estas super la maksimumo de $1',
+'htmlform-select-badoption'    => 'La valoro, kiun vi specifis, ne estas valida.',
+'htmlform-int-invalid'         => 'La valoro, kiun vi specifis, ne estas entjero.',
+'htmlform-float-invalid'       => 'La valoro, kiun vi specifis, ne estas numero.',
+'htmlform-int-toolow'          => 'La valoro, kiun vi specifis, estas sub la minimumo de $1',
+'htmlform-int-toohigh'         => 'La valoro, kiun vi specifis, estas super la maksimumo de $1',
 'htmlform-submit'              => 'Ek!',
 'htmlform-reset'               => 'Malfari ŝanĝojn',
 'htmlform-selectorother-other' => 'Alia',

@@ -621,6 +621,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'lineno'                  => 'Sətir $1:',
 'compareselectedversions' => 'Seçilən versiyaları müqaisə et',
 'editundo'                => 'əvvəlki halına qaytar',
+'diff-multi'              => '({{PLURAL:$1|bir aralıq dəyişiklik|$1 aralıq dəyişiklik}} göstərilməmişdir.)',
 
 # Search results
 'searchresults'            => 'Axtarış nəticələri',

@@ -215,7 +215,7 @@ $messages = array(
 'category-article-count-limited' => 'ئەم {{PLURAL:$1|لاپەڕە|$1 لاپەڕانە}}، لەم هاوپۆلەدان.',
 'category-file-count'            => '{{PLURAL:$2|ئەم هاوپۆلە تەنها ئەم پەڕگەی لەخۆ گرتووە.|ئەم‌ {{PLURAL:$1|پەڕگەیە}} کە بەشێکە لە هەموو $2پەڕگەی ئەم هاوپۆلە‌ دەیبینی.}}',
 'category-file-count-limited'    => 'ئەم {{PLURAL:$1|پەڕگە|پەڕگانە}} لەم هاوپۆلەدایە.',
-'listingcontinuesabbrev'         => 'درێژە',
+'listingcontinuesabbrev'         => '(درێژە)',
 
 'mainpagetext'      => "<big>'''ویكیمیدیا به‌سه‌ركه‌وتووی دامه‌زرا.'''</big>",
 'mainpagedocfooter' => 'بكه‌ [http://meta.wikimedia.org/wiki/Help:ناوه‌ڕۆكی چۆنێتی به‌كارهێنان] بۆ وه‌ده‌ست هێنانی زانیاریی له‌سه‌ر چۆنێتی كارگێڕی نه‌رمه‌كاڵای ویكی، سه‌ردانی.
@@ -970,6 +970,7 @@ $1",
 'compareselectedversions'  => 'ھەڵسەنگاندنی وەشانە ھەڵبژاردراوەکان',
 'showhideselectedversions' => 'نیشان‌دان\\داشاردنی پێداچوونەوەکانی هەڵبژێردراو',
 'editundo'                 => 'پووچەڵ‌کردنەوە',
+'diff-multi'               => '({{PLURAL:$1|پێداچوونەوەیەکی نێوانیی|$1 پێداچوونەوەی نێوانیی}} نیشان نەدراوە)',
 
 # Search results
 'searchresults'                    => 'ئەنجامەکانی گەڕان',

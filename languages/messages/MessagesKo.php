@@ -1116,6 +1116,7 @@ $1",
 'compareselectedversions'  => '선택된 판들을 비교하기',
 'showhideselectedversions' => '선택한 판을 보이기/숨기기',
 'editundo'                 => '편집 취소',
+'diff-multi'               => '(중간의 편집 $1 개 숨겨짐)',
 
 # Search results
 'searchresults'                    => '검색 결과',
