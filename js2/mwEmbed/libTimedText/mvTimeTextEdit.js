@@ -11,7 +11,8 @@ var mvTimedTextEdit = {};
 loadGM({
   "mwe-add-subs-file"      : "Add/Replace Subtitle",
   "mwe-add-subs-file-title": "Select Subtitle to upload",
-  "mwe-error-only-srt"     : "Only srt files can be uploaded right now."
+  "mwe-error-only-srt"     : "Only srt files can be uploaded right now.",
+  "mwe-watch-video"        : "Watch video"
 })
 
 
@@ -21,6 +22,13 @@ js2AddOnloadHook( function() {
       var srtData = f.files[0].getAsBinary();
       srtData = srtData.replace('\r\n', '\n');
       return srtData;
+  }
+  function getVideoTitle() {
+    var videoTitle = wgTitle.split('.');
+    videoTitle.pop();
+    videoTitle.pop();
+    videoTitle = videoTitle.join('.').replace('TimedText:', 'File:');
+    return videoTitle;
   }
   function uploadSubtitles() {
     do_api_req({
@@ -105,5 +113,14 @@ js2AddOnloadHook( function() {
   button.click(uploadSubtitles)
   button.text(gM("mwe-add-subs-file"));
   ttoolbar.append(button);
+  ttoolbar.append(' ');
+
+  var button = $j('<button>');
+  button.click(function() { document.location.href = wgArticlePath.replace('$1', getVideoTitle()); })
+  button.text(gM("mwe-watch-video"));
+  ttoolbar.append(button);
+
+  alert();
+
 });
 
