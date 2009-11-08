@@ -12,7 +12,7 @@ require 'includes/Setup.php';
 function buildTestDatabase( $tables ) {
 	global $wgDBprefix, $wgDBserver, $wgDBname, $wgDBtype;
 	$oldPrefix = $wgDBprefix;
-	$wgDBprefix = 'parsertest';
+	$wgDBprefix = 'parsertest_';
 
 	$db = wfGetDB ( DB_SLAVE );
 

@@ -3,6 +3,8 @@
 
 define( 'MEDIAWIKI', true );
 require 't/Test.php';
+require 'LocalSettings.php';
+require_once('includes/LocalisationCache.php');
 
 plan( 19 );
 
