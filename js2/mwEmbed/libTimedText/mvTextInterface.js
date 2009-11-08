@@ -1,4 +1,3 @@
-
 loadGM({
 	"mwe-select_transcript_set" : "Select subtitles",
 	"mwe-auto_scroll" : "auto scroll",
@@ -19,6 +18,7 @@ mvTextInterface.prototype = {
 	autoscroll:true,
 	add_to_end_on_this_pass:false,
 	scrollTimerId:0,	
+	editlink: '',
 	suportedMime:{
 	    'srt': 'text/x-srt',
 	    'cmml': 'text/cmml'
@@ -54,47 +54,9 @@ mvTextInterface.prototype = {
 								'list' : 'allpages',
 								'apprefix' : 'TimedText:' + _this.pe.wikiTitleKey
 							}
-					}, function( subData ) {
-						do_api_req({
-								'url':	apiUrl,
-								'data': {
-									'meta' : 'siteinfo',
-									'siprop' : 'languages'
-								}
-							}, function( langDataRaw ) {
-									var langData = {};
-									var lagRaw = langDataRaw.query.languages;
-									for(var j in lagRaw){
-										langData[ lagRaw[j].code ] = lagRaw[j]['*'];
-									}
-									for(var i in subData.query.allpages){
-										var subPage = subData.query.allpages[i];
-										var langKey = subPage.title.split('.');
-										var extension = langKey.pop();
-										langKey = langKey.pop();
-										if( ! _this.suportedMime[ extension ] ){
-											js_log('Error: unknown extension:'+ extension);
-											continue;
-										}
-
-										if( !langData[ langKey] ){
-											js_log('Error: langkey:'+ langKey + ' not found');
-										}else{											
-											var textElm = document.createElement('text');
-											$j(textElm).attr({
-												'category' : 'SUB',
-												'lang' 	: langKey,
-												'type' 	: _this.suportedMime[ extension ],
-												'title'	: langData[ langKey],
-												'src' : wgServer + wgScript + '?title=' + subPage.title + '&action=raw'
-											});
-											_this.pe.media_element.tryAddSource( textElm );											
-										}
-									}
-									//after all text loaded:
-									_this.getParseTimedText_rowReady();
-								});	//do_api_req({
-					});	//function( subData ) {
+					}, function( subData ) {						
+						_this.doProcSubPages( subData, wgServer + wgScriptPath);
+					});
 				}
 			}else{
 				js_log('row data ready (no roe request)');
@@ -108,6 +70,92 @@ mvTextInterface.prototype = {
 			}
 		}
 	},
+	doProcSubPages: function( subData, hostPath ){
+		var _this = this;
+		//look for text tracks:
+		var foundTextTracks = false;
+		do_api_req({
+			'url':	hostPath + '/api.php',
+			'data': {
+				'meta' : 'siteinfo',
+				'siprop' : 'languages'
+			}
+		}, function( langDataRaw ) {
+				var langData = {};
+				var lagRaw = langDataRaw.query.languages;
+				for(var j in lagRaw){
+					langData[ lagRaw[j].code ] = lagRaw[j]['*'];
+				}
+				for(var i in subData.query.allpages){
+					var subPage = subData.query.allpages[i];
+					var langKey = subPage.title.split('.');
+					var extension = langKey.pop();
+					langKey = langKey.pop();
+					if( ! _this.suportedMime[ extension ] ){
+						js_log('Error: unknown extension:'+ extension);
+						continue;
+					}
+
+					if( !langData[ langKey] ){
+						js_log('Error: langkey:'+ langKey + ' not found');
+					}else{											
+						var textElm = document.createElement('text');
+						$j(textElm).attr({
+							'category' : 'SUB',
+							'lang' 	: langKey,
+							'type' 	: _this.suportedMime[ extension ],
+							'title'	: langData[ langKey],							
+						});
+						//set src to remote friendly 
+						if( wgServer &&  hostPath.indexOf(wgServer)!==-1){
+							$j(textElm).attr('src', hostPath + '/index.php?title=' + subPage.title + '&action=raw');
+						}else{
+							$j(textElm).attr({
+								'apisrc'	: hostPath + '/api.php',
+								'titleKey' 	: subPage.title
+							});
+						}												
+						_this.pe.media_element.tryAddSource( textElm );
+						foundTextTracks = true;											
+					}
+				}
+				//after all text loaded (or we have allready checked commons
+				if(foundTextTracks || hostPath.indexOf('commons.wikimedia') !== -1){
+					//alert('calling 			getParseTimedText_rowReady ');		
+					_this.getParseTimedText_rowReady();				
+				}else {
+					_this.checkSharedRepo();
+				}
+			});	//do_api_req({
+	},
+	checkSharedRepo:function(){
+		var _this = this;
+		js_log('checking for shared value of image');
+		//check if its a shared repo
+		do_api_req({
+			'data':{
+				'action':'query',
+				'titles': 'File:' + _this.pe.wikiTitleKey, 
+				'prop' : 'imageinfo'
+			}
+		},function( data ){
+			js_log('image is shared checking commons for subtitles');
+			if( data.query.pages && data.query.pages['-1'] && data.query.pages['-1'].imagerepository == 'shared'){
+				//found shared repo assume commons: 
+				do_api_req({
+					'url': 'http://commons.wikimedia.org/w/api.php',
+					'data':{
+						'list' : 'allpages',
+						'apprefix' : _this.pe.wikiTitleKey,
+						'apnamespace' : 102
+					}
+				},function( data ){		
+					_this.editlink = 'http://commons.wikimedia.org/wiki/TimedText:' +  _this.pe.wikiTitleKey +'.'+ wgUserLanguage +'.srt';
+					_this.doProcSubPages( data, 'http://commons.wikimedia.org/w/' );
+				});
+			}
+		});
+	},
 	getParseTimedText_rowReady: function (){		
 		var _this = this;		
 		var found_tracks = false;
@@ -116,12 +164,13 @@ mvTextInterface.prototype = {
 		$j('#mv_txt_load_'+_this.pe.id).show(); //show the loading icon
 		
 		//setup edit link: 
-		_this.editlink = '';	
-		if( this.pe.media_element.linkback ){			
-			_this.editlink = this.pe.media_element.linkback;
-		}else if(this.pe.wikiTitleKey && wgServer && wgScript) { //check for wikiTitleKey (for edit linkback)
-			//only local:
-			_this.editlink = wgServer + wgScript + '?title=TimedText:' + this.pe.wikiTitleKey +'.'+ wgContentLanguage + '.srt&action=edit';	
+		if( _this.editlink == ''){
+			if( this.pe.media_element.linkback ){			
+				_this.editlink = this.pe.media_element.linkback;
+			}else if(this.pe.wikiTitleKey && wgServer && wgScript) { //check for wikiTitleKey (for edit linkback)
+				//only local:
+				_this.editlink = wgServer + wgScript + '?title=TimedText:' + this.pe.wikiTitleKey +'.'+ wgContentLanguage + '.srt&action=edit';	
+			}
 		}		
 		$j.each( this.pe.media_element.sources, function(inx, source){
 			if( typeof source.id == 'undefined' || source.id == null ){
@@ -286,7 +335,7 @@ mvTextInterface.prototype = {
 				'right:0px;bottom:0px;' +
 				'height:'+(this.pe.height-30)+
 				'px;overflow:auto;"><span style="display:none;" id="mv_txt_load_' + this.pe.id + '">'+
-					gM('mwe-loading_txt')+'</span>' +
+					mv_get_loading_img() +'</span>' +
 				'</div>';
 	},
 	getTsSelect:function(){
@@ -412,11 +461,11 @@ mvTextInterface.prototype = {
 		out += $j.btnHtml( gM('mwe-select_transcript_set'), 'tt-select', 'shuffle');
 				
 		if(_this.editlink!='')
-			out+=' ' + $j.btnHtml(gM('mwe-improve_transcript'), 'tt-improve', 'document', {href:_this.editlink, target:'_new'});
+			out+=' ' + $j.btnHtml(gM('mwe-improve_transcript'), 'tt-improve' );
 		
-		out+='<input class="tt-scroll" type="checkbox" '+ as_checked + '>';
+		out+= '<input class="tt-scroll" type="checkbox" '+ as_checked + '>' + gM('mwe-auto_scroll');
 		
-		out+=gM('mwe-auto_scroll') + $j.btnHtml(gM('mwe-close'), 'tt-close', 'circle-close');
+		out+=' ' + $j.btnHtml(gM('mwe-close'), 'tt-close', 'circle-close');
 		
 		out+='</div>';
 		return out;
@@ -432,11 +481,12 @@ mvTextInterface.prototype = {
 	       $j( '#' +  _this.pe.id).get(0).textInterface.getTsSelect();
 	       return false;
 	    });
-	    $j(mt + '.tt-scroll').click(function(){
+	    $j(mt + ' .tt-scroll').click(function(){
 	     	_this.setAutoScroll(this.checked);	     	
 	     });
-	    //use hard-coded link:
-	    $j(mt + ' .tt-improve').btnBind();	    	    
+	    $j(mt + ' .tt-improve').unbind().btnBind().click(function(){	    	    	
+	    	document.location.href =  _this.editlink;
+	    });	    	    	    
 	}
 }
 
@@ -494,7 +544,6 @@ timedTextCMML = {
 		js_log('textCMML: loading track: '+ this.src);
 
 		//:: Load transcript range ::
-
 		var pcurl =  parseUri( _this.getSRC() );
 		//check for urls without time keys:
 		if( typeof pcurl.queryKey['t'] == 'undefined'){
@@ -506,6 +555,7 @@ timedTextCMML = {
 			});
 			return ;
 		}
+		//temporal urls: 
 		var req_time = pcurl.queryKey['t'].split('/');
 		req_time[0]=npt2seconds(req_time[0]);
 		req_time[1]=npt2seconds(req_time[1]);
@@ -554,11 +604,37 @@ timedTextSRT = {
 	load: function( range, callback ){
 		var _this = this;
 		js_log('textSRT: loading : '+ _this.getSRC() );
-		do_request( _this.getSRC() , function(data){
-			_this.doParse( data );
-			_this.loaded=true;
-			callback();
-		});
+		if( _this.getSRC() ){
+			do_request( _this.getSRC() , function(data){
+				_this.doParse( data );
+				_this.loaded=true;
+				callback();
+			});
+		}else if( _this.source.apisrc ){
+			do_api_req({
+				'url' : _this.source.apisrc, 
+				'data': {
+					'titles': _this.source.titleKey,
+					'prop':'revisions',
+					'rvprop':'content'
+				}
+			},function(data){
+				if(data && data.query && data.query.pages){
+					for(var i in data.query.pages){
+						var page = data.query.pages[i];
+						if(page.revisions){
+							for(var j in page.revisions){
+								if( page.revisions[j]['*'] ){
+									_this.doParse( page.revisions[j]['*'] );
+									_this.loaded=true;
+									callback();
+								}
+							}
+						}
+					}
+				}
+			});
+		}
 	},
 	doParse:function( data ){
 		//split up the transcript chunks:
