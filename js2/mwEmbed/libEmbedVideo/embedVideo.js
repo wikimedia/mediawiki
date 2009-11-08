@@ -105,6 +105,8 @@ var default_video_attributes = {
 var mv_default_source_attr= new Array(
 	'id',
 	'src',
+	'apisrc',
+	'titleKey',
 	'title',
 	'URLTimeEncoding', //boolean if we support temporal url requests on the source media
 	'startOffset',
@@ -683,21 +685,18 @@ mediaElement.prototype =
 	*/
 	tryAddSource:function(element)
 	{
-		js_log('f:tryAddSource:'+ $j(element).attr("src"));		
-		if (! $j(element).attr("src")){
-			js_log("element has no src");
-			return false;
-		}
-		var new_src = $j(element).attr('src');
-		//make sure an existing element with the same src does not already exist:		 
-		for( var i=0; i < this.sources.length; i++ ){				
-			if(this.sources[i].src == new_src){
-				//js_log('checking existing: '+this.sources[i].getURI() + ' != '+ new_src);	 
-				//can't add it all but try to update any additional attr: 
-				this.sources[i].updateSource(element);
-				return false;
+		js_log('f:tryAddSource:'+ $j(element).attr("src"));				
+		if ( $j(element).attr("src") ){
+			var new_src = $j(element).attr('src');
+			//make sure an existing element with the same src does not already exist:		 
+			for( var i=0; i < this.sources.length; i++ ){				
+				if(this.sources[i].src == new_src){
+					//js_log('checking existing: '+this.sources[i].getURI() + ' != '+ new_src);	 
+					//can't add it all but try to update any additional attr: 
+					this.sources[i].updateSource(element);
+				}
 			}
-		}
+		}				
 		var source = new mediaSource( element );		
 		this.sources.push(source);		
 		js_log('pushed source to stack'+ source + 'sl:'+this.sources.length);
@@ -1733,7 +1732,7 @@ embedVideo.prototype = {
 						'height:'+ parseInt( this.height )+'px;width:400px;' +						
 						'display:none;" ' +
 						'id="metaBox_' + this.id + '">'+
-							gM('mwe-loading_txt') +
+							mv_get_loading_img() +
 						'</div>');					
 		}
 		//fade in the text display

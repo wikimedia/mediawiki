@@ -2,7 +2,6 @@
  * this file exposes some of the functionality of mwEmbed to wikis
  * that do not yet have js2 enabled
  */
-
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
 var reqAguments = urlparts[1];
