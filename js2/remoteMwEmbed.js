@@ -65,7 +65,7 @@ function doPageSpecificRewrite() {
 // will be depreciated in favor of updates to OggHandler
 function rewrite_for_OggHandler( vidIdList ){
 	function procVidId( vidId ){
-		//don't proccess empty vids
+		//don't process empty vids
 		if(!vidId)
 			return ;
 		js_log('vidIdList on: ' + vidId +' length: ' + vidIdList.length + ' left in the set: ' + vidIdList );
@@ -73,16 +73,14 @@ function rewrite_for_OggHandler( vidIdList ){
 		// Grab the thumbnail and src of the video
 		var pimg = $j( '#' + vidId + ' img' );
 		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
-		var pwidth = pimg.attr( 'width' );
-		var pheight = pimg.attr( 'height' );
+		var pwidth = $j( '#' + vidId).width();
+		var pheight = $j( '#' + vidId ).height();
 
 		var tag_type = 'video';
 		
 		// Check for audio
-		if( pwidth == '22' && pheight == '22' ) {
-			//set width to parent width:
-			pwidth = $j( '#' + vidId ).width();
-			pheight = '100';
+		if( pheight == '22' || pheight == '52') {
+			//set width to parent width:			
 			tag_type = 'audio';
 			poster_attr = '';
 		}
@@ -115,7 +113,7 @@ function rewrite_for_OggHandler( vidIdList ){
 					offset_attr + ' ';
 					
 			if( tag_type == 'audio' ){
-				html_out='<audio' + common_attr + '></audio>'
+				html_out='<audio' + common_attr + ' style="width:' + pwidth + 'px;"></audio>';
 			}else{
 				html_out='<video' + common_attr +
 				poster_attr + ' ' +
