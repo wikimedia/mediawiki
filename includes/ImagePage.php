@@ -230,14 +230,18 @@ class ImagePage extends Article {
 	 * @return string
 	 */
 	protected function showTOC( $metadata ) {
-		global $wgLang;
-		$r = '<ul id="filetoc">
-			<li><a href="#file">' . wfMsgHtml( 'file-anchor-link' ) . '</a></li>
-			<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>
-			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . "</a></li>\n" .
-			($metadata ? '			<li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . "
-			</ul>\n";
-		return $r;
+		$r = array(
+				'<li><a href="#file">' . wfMsgHtml( 'file-anchor-link' ) . '</a></li>',
+				'<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>',
+				'<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . '</a></li>', 
+		);
+		if ( $metadata ) {
+			$r[] = '<li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>';
+		}
+	
+		wfRunHooks( 'ImagePageShowTOC', array( $this, &$r ) );
+		
+		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
 	}
 
 	/**

@@ -849,6 +849,10 @@ $page: ImagePage object
 &$file: File object
 &$displayFile: displayed File object
 
+'ImagePageShowTOC': called when the file toc on an image page is generated
+$page: ImagePage object
+&$toc: Array of <li> strings
+
 'ImgAuthBeforeStream': executed before file is streamed to user, but only when
 	using img_auth.php
 &$title: the Title object of the file as it would appear for the upload page
