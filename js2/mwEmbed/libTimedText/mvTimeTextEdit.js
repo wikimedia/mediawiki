@@ -37,72 +37,97 @@ js2AddOnloadHook( function() {
         'siprop' : 'languages'
       }
       }, function( langDataRaw ) {
-        var langData = {};
-        var languageSelect = '<select id="timed_text_language">';
-
-        var lagRaw = langDataRaw.query.languages;
-        for(var j in lagRaw){
-          var code = lagRaw[j].code;
-          var language = lagRaw[j]['*'];
-          langData[ code ] = language;
-          languageSelect += '<option value="'+code+'">'+language+'('+code+')</option>';
-        }
-        languageSelect += '/</select>';
-        var cBtn = {};
-        cBtn[ gM('mwe-cancel') ] = function(){
-          $j(this).dialog('close');
-        }
-        cBtn[ gM('mwe-ok') ] = function(){
-          var file = $j('#timed_text_file_upload');
-          var langKey = file[0].files[0].name.split('.');
-          var extension = langKey.pop();
-          langKey = langKey.pop();
-          var mimeTypes = {
-              'srt': 'text/x-srt',
-              'cmml': 'text/cmml'
+        var apprefix = wgTitle.split('.');
+        apprefix.pop();
+        apprefix.pop();
+        apprefix = apprefix.join('.');
+			  do_api_req({
+					  'data': {
+						  'list' : 'allpages',
+						  'apprefix' : apprefix
+					  }
+			  }, function( subData ) {
+			    var availableSubtitles = {};
+					for(var i in subData.query.allpages){
+						var subPage = subData.query.allpages[i];
+						var langKey = subPage.title.split('.');
+						var extension = langKey.pop();
+						langKey = langKey.pop();
+						availableSubtitles[langKey] = subPage.title;
           }
-          if( !mimeTypes[ extension ] ){
-            js_log('Error: unknown extension:'+ extension);
-          }
-          //get language from form
-          langKey = $j('#timed_text_language').val();
+          var langData = {};
+          var languageSelect = '<select id="timed_text_language">';
 
-          if(extension == "srt") {
-            var srt = getSubtitle(file[0]);
-            $j(this).html("saving...");
-            $j('.ui-dialog-buttonpane').remove();
-
-            var editToken = $j('input[name=wpEditToken]').val();
-            var title = wgTitle.split('.');
-            title.pop();
-            title.pop();
-            title = title.join('.') + '.' + langKey + '.srt';
-            do_api_req({
-              'data': {
-                'action' : 'edit',
-                'title' : title,
-                'text' : srt,
-                'token': editToken
-              }
-            }, function(dialog) {
-                return function( result ) {
-                  document.location.href = wgArticlePath.replace('/$1', '?title=' + title + '&action=edit');
-                  $j(dialog).dialog('close');
-               }}(this)
-            );
-          } else {
-            $j(this).html(gM("mwe-error-only-srt"));
+          var lagRaw = langDataRaw.query.languages;
+          for(var j in lagRaw){
+            var code = lagRaw[j].code;
+            var language = lagRaw[j]['*'];
+            langData[ code ] = language;
+            languageSelect += '<option value="'+code+'">';
+            if (availableSubtitles[code]) {
+              languageSelect += language+'('+code+') +';
+            } else {
+              languageSelect += language+'('+code+') -';
+            }
+            languageSelect += '</option>';
           }
-        }
-        $j.addDialog(gM("mwe-add-subs-file-title"),
-           '<input type="file" id="timed_text_file_upload"></input><br />' + languageSelect,
-           cBtn);
-        $j('#timed_text_file_upload').change(function(ev) {
-          var langKey = this.files[0].name.split('.');
-          var extension = langKey.pop();
-          langKey = langKey.pop();
-          $j('#timed_text_language').val( langKey );
-        });
+          languageSelect += '/</select>';
+          var cBtn = {};
+          cBtn[ gM('mwe-cancel') ] = function(){
+            $j(this).dialog('close');
+          }
+          cBtn[ gM('mwe-ok') ] = function(){
+            var file = $j('#timed_text_file_upload');
+            var langKey = file[0].files[0].name.split('.');
+            var extension = langKey.pop();
+            langKey = langKey.pop();
+            var mimeTypes = {
+                'srt': 'text/x-srt',
+                'cmml': 'text/cmml'
+            }
+            if( !mimeTypes[ extension ] ){
+              js_log('Error: unknown extension:'+ extension);
+            }
+            //get language from form
+            langKey = $j('#timed_text_language').val();
+
+            if(extension == "srt") {
+              var srt = getSubtitle(file[0]);
+              $j(this).html("saving...");
+              $j('.ui-dialog-buttonpane').remove();
+
+              var editToken = $j('input[name=wpEditToken]').val();
+              var title = wgTitle.split('.');
+              title.pop();
+              title.pop();
+              title = title.join('.') + '.' + langKey + '.srt';
+              do_api_req({
+                'data': {
+                  'action' : 'edit',
+                  'title' : title,
+                  'text' : srt,
+                  'token': editToken
+                }
+              }, function(dialog) {
+                  return function( result ) {
+                    document.location.href = wgArticlePath.replace('/$1', '?title=' + title + '&action=edit');
+                    $j(dialog).dialog('close');
+                 }}(this)
+              );
+            } else {
+              $j(this).html(gM("mwe-error-only-srt"));
+            }
+          }
+          $j.addDialog(gM("mwe-add-subs-file-title"),
+             '<input type="file" id="timed_text_file_upload"></input><br />' + languageSelect,
+             cBtn);
+          $j('#timed_text_file_upload').change(function(ev) {
+            var langKey = this.files[0].name.split('.');
+            var extension = langKey.pop();
+            langKey = langKey.pop();
+            $j('#timed_text_language').val( langKey );
+          });
+      });
     });
   }
   $j('#toolbar').hide();
