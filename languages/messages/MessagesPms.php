@@ -222,9 +222,9 @@ dj'artìcoj ancó pa scrit",
 'vector-view-edit'           => 'Modìfica',
 'vector-view-history'        => 'Varda stòria',
 'vector-view-view'           => 'Les',
-'vector-view-viewsource'     => 'Varda sorzigg',
+'vector-view-viewsource'     => 'Varda sorgiss',
 'actions'                    => 'Assion',
-'namespaces'                 => 'Namespace',
+'namespaces'                 => '',
 'variants'                   => 'Variant',
 
 # Metadata in edit box
@@ -922,6 +922,7 @@ Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.",
 'compareselectedversions'  => 'Paragon-a le version selessionà',
 'showhideselectedversions' => 'Mosta/stërma le vërsion selessionà',
 'editundo'                 => "buta 'me ch'a l'era",
+'diff-multi'               => '({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
 
 # Search results
 'searchresults'                    => "Arsultà dl'arserca",
@@ -2555,8 +2556,8 @@ $1",
 'nextdiff'     => 'Modìfica pì neuva →',
 
 # Media information
-'mediawarning'         => "'''Atension!''': st'archivi-sì a podrìa avej andrinta dël còdes butà-lì da cheidun për fé ëd darmagi.
-An fasend-lo travajé ansima a sò calcolador chiel a podrìa porteje ëd dann a sò sistema.<hr />",
+'mediawarning'         => "'''Atension!''': st'archivi-sì a podrìa avèj andrinta dël còdes butà-lì da cheidun për fé ëd darmagi.
+An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a sò sistema.<hr />",
 'imagemaxsize'         => "Lìmit ëd la dimension ëd la figura:<br /> ''(për pàgine ëd descrission dij file)''",
 'thumbsize'            => 'Amzura dle figurin-e:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgine}}',

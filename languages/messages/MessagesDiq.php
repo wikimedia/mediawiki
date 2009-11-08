@@ -883,6 +883,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'compareselectedversions'  => 'Versiyonan control bık',
 'showhideselectedversions' => 'Revizyonê weçînayîşî bimocne/binumne',
 'editundo'                 => 'peyser bia',
+'diff-multi'               => '({{PLURAL:$1|Yew revizyonê miyanî|$1 revizyonê miyanî}} nimocno)',
 
 # Search results
 'searchresults'                    => 'Neticeyê cıgeyrayışi',
@@ -2479,7 +2480,8 @@ $1',
 'nextdiff'     => 'Vurnayışo newêr →',
 
 # Media information
-'mediawarning'         => "'''hişyari!''': na dosya de belka kodê niyetxırabi estî u beno ke zerar bıdo sistemê şuxulnayişê şıma.<hr />",
+'mediawarning'         => "''Hişyari!''': Na dosya de belka kodê niyetxırabi estî.
+Beno ke zerar bıdo sistemê şuxulnayişê şıma.<hr />",
 'imagemaxsize'         => "Limitê ebat ê resimi:<br />''(qe pela deskripsiyonê dosyayan)''",
 'thumbsize'            => 'Ebadê Thumbnaili',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pele|peleyi}}',

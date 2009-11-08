@@ -1011,6 +1011,7 @@ Please note that the parameters in a log entry will appear in the log only in th
 'compareselectedversions' => 'Used as button in history pages.',
 'editundo'                => 'Undo link when viewing diffs
 {{Identical|Undo}}',
+'diff-multi'              => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
 
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',

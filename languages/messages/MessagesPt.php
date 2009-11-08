@@ -1190,6 +1190,7 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'compareselectedversions'  => 'Compare as versões seleccionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versões selecionadas',
 'editundo'                 => 'desfazer',
+'diff-multi'               => '({{PLURAL:$1|uma edição intermédia não está sendo exibida|$1 edições intermédias não estão sendo exibidas}}.)',
 
 # Search results
 'searchresults'                    => 'Resultados de pesquisa',

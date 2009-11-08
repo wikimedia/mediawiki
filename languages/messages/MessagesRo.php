@@ -648,7 +648,9 @@ Te rog anunţă acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'badarticleerror'      => 'Această acţiune nu poate fi efectuată pe această pagină.',
 'cannotdelete'         => 'Comanda de ştergere nu s-a putut executa! Probabil că ştergerea a fost operată între timp.',
 'badtitle'             => 'Titlu incorect',
-'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.',
+'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.
+
+Poate conţine unul sau mai multe caractere ce nu poate fi folosit în titluri.',
 'perfcached'           => 'Datele următoare au fost păstrate în cache şi s-ar putea să nu fie la zi.',
 'perfcachedts'         => "Informaţiile de mai jos provin din ''cache''; ultima actualizare s-a efectuat la $1.",
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informaţiile de aici nu sunt împrospătate.',
@@ -1139,6 +1141,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'compareselectedversions'  => 'Compară versiunile marcate',
 'showhideselectedversions' => 'Arată/ascunde reviziile marcate',
 'editundo'                 => 'anulează',
+'diff-multi'               => '({{PLURAL:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
 
 # Search results
 'searchresults'                    => 'Rezultatele căutării',

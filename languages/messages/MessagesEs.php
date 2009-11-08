@@ -504,9 +504,9 @@ $1',
 
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Obtenido de "$1"',
-'youhavenewmessages'      => 'Tiene $1 ($2).',
+'youhavenewmessages'      => 'Tienes $1 ($2).',
 'newmessageslink'         => 'nuevos mensajes',
-'newmessagesdifflink'     => '(diferencia)',
+'newmessagesdifflink'     => 'ultima modificación',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
@@ -1109,6 +1109,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'compareselectedversions'  => 'Comparar versiones seleccionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versiones seleccionadas',
 'editundo'                 => 'deshacer',
+'diff-multi'               => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 
 # Search results
 'searchresults'                    => 'Resultados de la búsqueda',

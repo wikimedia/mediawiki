@@ -1096,6 +1096,7 @@ $1",
 'compareselectedversions'  => '選択した版同士を比較',
 'showhideselectedversions' => '選択した版を表示もしくは非表示',
 'editundo'                 => '取り消し',
+'diff-multi'               => '({{PLURAL:$1|間の$1版}}分が非表示)',
 
 # Search results
 'searchresults'                    => '検索結果',

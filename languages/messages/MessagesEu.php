@@ -602,6 +602,7 @@ Mesedez, formatu egokia duen helbide bat zehaztu, edo hutsik utzi.',
 Orain bertan sar zaitezke eta zure pasahitza aldatu.
 
 Kontu honen sorrera akats bat dela uste baduzu mezu honi ez diozu zertan jaramonik egin.',
+'usernamehasherror'          => 'Erabiltzaile-izenak ezin du kuxin-karaktererik eduki',
 'login-throttled'            => 'Saioa hasteko saiakera gehiegi egin berri dituzu.
 Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
@@ -954,6 +955,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'compareselectedversions'  => 'Hautatutako bertsioak alderatu',
 'showhideselectedversions' => 'Erakutsi/izkutatu aukeratutako berrikuspenak',
 'editundo'                 => 'desegin',
+'diff-multi'               => '({{PLURAL:$1|Ez da tarteko berrikuspen 1|Ez dira tarteko $1 berrikuspen}} erakusten.)',
 
 # Search results
 'searchresults'                    => 'Bilaketaren emaitzak',
@@ -2095,6 +2097,7 @@ Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'ipblocklist-sh-tempblocks'       => 'Denbora baterako blokeoak $1',
 'ipblocklist-sh-addressblocks'    => 'IP bakarreko blokeoak $1',
 'ipblocklist-submit'              => 'Bilatu',
+'ipblocklist-localblock'          => 'Tokiko blokeoa',
 'blocklistline'                   => '$1, $2(e)k $3 blokeatu du (iraungipena: $4)',
 'infiniteblock'                   => 'infinitu',
 'expiringblock'                   => 'iraungipen data $1, $2',
@@ -2407,10 +2410,12 @@ Laburpenean arrazoi bat gehitzea baimentzen du',
 # Attribution
 'anonymous'        => '{{SITENAME}}(e)ko lankide {{PLURAL:$1|anonimoa|anonimoak}}',
 'siteuser'         => '{{SITENAME}}(e)ko $1 erabiltzailea',
+'anonuser'         => '{{SITENAME}}-(e)ko $1 erabiltzaile anonimoa',
 'lastmodifiedatby' => 'Orrialdearen azken aldaketa: $2, $1. Nork: $3.',
 'othercontribs'    => '$1(r)en lanean oinarrituta.',
 'others'           => 'besteak',
 'siteusers'        => '{{SITENAME}}(e)ko $1 {{PLURAL:$2|erabiltzailea|erabiltzaileak}}',
+'anonusers'        => '{{SITENAME}}-(e)ko $1 {{PLURAL:$2|erabiltzaile}} anonimoak',
 'creditspage'      => 'Orrialdearen kredituak',
 'nocredits'        => 'Ez dago krediturik eskuragarri orrialde honentzako.',
 
