@@ -2,9 +2,21 @@
  * this file exposes some of the functionality of mwEmbed to wikis
  * that do not yet have js2 enabled
  */
+ 
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var reqAguments = urlparts[1];
+var mwRemoteVersion = 58776;
+
+reqArguments = urlparts[1];
+
+//setup up request Params: 
+var reqParts = urlparts[1].split('&');
+var reqParam={};
+for(var i=0;i< reqParts.length; i++){
+	var p = reqParts[i].split('=');
+	if( p.length == 2 )
+		reqParam[ p[0] ]=  p[1];
+}
 
 addOnloadHook( function(){
 	//only do rewrites if MV_EMBED / js2 is "off"
@@ -17,22 +29,21 @@ function doPageSpecificRewrite() {
 	// Add media wizard
 	if( wgAction == 'edit' || wgAction == 'submit' ) {
 		load_mv_embed( function() {			
-			loadExternalJs( mwEmbedHostPath + '/editPage.js' + reqAguments );
+			loadExternalJs( mwEmbedHostPath + '/editPage.js' + reqArguments );
 		} );
 	}
 	
-	//timed text dispaly:
+	//timed text display:
 	if(wgPageName.indexOf("TimedText") === 0){		
 		load_mv_embed(function(){
-			alert('wtf');
-			loadExternalJs( mwEmbedHostPath + '/mwEmbed/libTimedText/mvTimeTextEdit.js' + reqAguments );
+			loadExternalJs( mwEmbedHostPath + '/mwEmbed/libTimedText/mvTimeTextEdit.js' + reqArguments );
 		});
 	}
 	
 	// Firefogg integration
 	if( wgPageName == "Special:Upload" ){		
 		load_mv_embed( function() {
-			loadExternalJs( mwEmbedHostPath + '/uploadPage.js' + reqAguments );
+			loadExternalJs( mwEmbedHostPath + '/uploadPage.js' + reqArguments );
 		} );
 	}
 	
@@ -41,7 +52,7 @@ function doPageSpecificRewrite() {
 		var wgEnableIframeApiProxy = true;
 		load_mv_embed( function() {
 			js_log("Wiki:ApiProxy::");
-			loadExternalJs( mwEmbedHostPath + '/apiProxyPage.js' + reqAguments );
+			loadExternalJs( mwEmbedHostPath + '/apiProxyPage.js' + reqArguments );
 		});
 	}
 	
@@ -74,8 +85,7 @@ function rewrite_for_OggHandler( vidIdList ){
 		var pimg = $j( '#' + vidId + ' img' );
 		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
 		var pwidth = $j( '#' + vidId).width();
-		var pheight = $j( '#' + vidId ).height();
-
+		var pheight = $j( '#' + vidId + ' img').height();
 		var tag_type = 'video';
 				
 		// Check for audio
@@ -156,9 +166,24 @@ function getRemoteEmbedPath() {
 
 function load_mv_embed( callback ) {	
 	// Inject mv_embed if needed
-	if( typeof $mw == 'undefined' ) {
-		var mvurl = mwEmbedHostPath + '/mwEmbed/mv_embed.js' + reqAguments ;
-		importScriptURI( mvurl );		
+	if( typeof $mw == 'undefined' ) {	
+		if( reqParam['uselang'] || reqParam['useloader'] ){
+			var rurl = mwEmbedHostPath + '/mwEmbed/jsScriptLoader.php?class=mv_embed';
+			if(typeof window.jQuery == 'undefined'){
+				rurl+= ',window.jQuery';
+			}
+			if(reqParam['urid']){
+				rurl+='&urid=' + reqParam['urid'];
+			}else{
+				rurl+='&urid=' + mwRemoteVersion;
+			}
+			if(reqParam['uselang'] )
+				rurl+='&uselang=' + reqParam['uselang'];
+			//do import url:  
+			importScriptURI(rurl); 
+		}else{
+			importScriptURI( mwEmbedHostPath + '/mwEmbed/mv_embed.js' + reqArguments );
+		}
 	}
 	check_for_mv_embed( callback );
 }

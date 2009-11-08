@@ -74,13 +74,15 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 
 	return @mkdir( $dir, $mode, true );  // PHP5 <3
 }
-function wfMsgGetKey( $msgKey ) {
+function wfMsgGetKey( $msgKey, $na, $langKey=false ) {
     global $messages, $mwLanguageCode;
+    if(!$langKey){
+    	$langKey = $mwLanguageCode;
+    }
     // Make sure we have the messages file:
     require_once( realpath( dirname( __FILE__ ) ) . '/languages/mwEmbed.i18n.php' );
-
-    if ( isset( $messages[$mwLanguageCode] ) && isset( $messages[$mwLanguageCode][$msgKey] ) ) {
-        return $messages[$mwLanguageCode][$msgKey];
+    if ( isset( $messages[$mwLanguageCode] ) && isset( $messages[$langKey][$msgKey] ) ) {
+        return $messages[$langKey][$msgKey];
     } else {
         return '&lt;' . $msgKey . '&gt;';
     }
