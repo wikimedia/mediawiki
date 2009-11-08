@@ -77,7 +77,7 @@ function rewrite_for_OggHandler( vidIdList ){
 		var pheight = $j( '#' + vidId ).height();
 
 		var tag_type = 'video';
-		
+				
 		// Check for audio
 		if( pheight == '22' || pheight == '52') {
 			//set width to parent width:			
