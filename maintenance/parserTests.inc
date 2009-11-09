@@ -785,15 +785,19 @@ class ParserTest {
 			) );
 
 
-		#Anonymous user
-		$db->insert( 'user', array(
-			'user_id'         => 0,
-			'user_name'       => 'Anonymous') );
+		if ($wgDBtype == 'oracle') {
+			# Insert 0 and 1 user_ids to prevent FK violations
+			
+			#Anonymous user
+			$db->insert( 'user', array(
+				'user_id'         => 0,
+				'user_name'       => 'Anonymous') );
 
-		# Hack-on-Hack: Insert a test user to be able to insert an image
-		$db->insert( 'user', array(
-			'user_id'         => 1,
-			'user_name'       => 'Tester') );
+			# Hack-on-Hack: Insert a test user to be able to insert an image
+			$db->insert( 'user', array(
+				'user_id'         => 1,
+				'user_name'       => 'Tester') );
+		}
 
 		# Hack: Insert an image to work with
 		$db->insert( 'image', array(
