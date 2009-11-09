@@ -5,7 +5,7 @@
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = '1.02';
+var mwRemoteVersion = '1.03';
 
 reqArguments = urlparts[1];
 
@@ -169,6 +169,7 @@ function load_mv_embed( callback ) {
 	if( typeof $mw == 'undefined' ) {	
 		if( reqParam['uselang'] || reqParam['useloader'] ){
 			var rurl = mwEmbedHostPath + '/mwEmbed/jsScriptLoader.php?class=mv_embed';
+			//add jQuery too if we need it: 
 			if(typeof window.jQuery == 'undefined'){
 				rurl+= ',window.jQuery';
 			}
