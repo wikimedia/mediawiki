@@ -1061,6 +1061,7 @@ Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 Ako správca si môžete tento rozdiel zobraziť.
 Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
 'rev-delundel'                => 'zobraziť/skryť',
+'rev-showdeleted'             => 'zobraziť',
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'     => 'Neplatná cieľová revízia',
 'revdelete-nooldid-text'      => 'Neuviedli ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať, uvedená revízia neexistuje alebo sa pokúšate skryť aktuálnu revíziu.',
@@ -1089,7 +1090,7 @@ Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupov
 'revdelete-hide-image'        => 'Skryť obsah súboru',
 'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
 'revdelete-log'               => 'Dôvod zmazania:',
-'revdelete-submit'            => 'Použiť na zvolenú revíziu',
+'revdelete-submit'            => 'Použiť na {{PLURAL:$1|zvolenú revíziu|zvolené revízie}}',
 'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
 'revdelete-success'           => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
@@ -1169,6 +1170,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'compareselectedversions'  => 'Porovnať označené verzie',
 'showhideselectedversions' => 'Zobraziť/skryť vybrané revízie',
 'editundo'                 => 'vrátiť',
+'diff-multi'               => '{{PLURAL:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
 
 # Search results
 'searchresults'                    => 'Výsledky vyhľadávania',

@@ -20,6 +20,7 @@
  * @author MF-Warburg
  * @author Melancholie
  * @author Meno25
+ * @author Merlissimo
  * @author Metalhead64
  * @author MichaelFrey
  * @author Omnipaedista
@@ -1206,6 +1207,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'compareselectedversions'  => 'Gewählte Versionen vergleichen',
 'showhideselectedversions' => 'Ausgewählte Versionen zeigen/verstecken',
 'editundo'                 => 'rückgängig',
+'diff-multi'               => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischenliegende Version|$1 dazwischenliegende Versionen}} mit ein.)',
 
 # Search results
 'searchresults'                    => 'Suchergebnisse',

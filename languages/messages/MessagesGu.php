@@ -714,8 +714,8 @@ Please log in again after you receive it.
 'longpagewarning'                  => "'''ચેતવણી: આ પાનું $1 કિલોબાઇટ્સ લાંબુ છે;
 કેટલાંક બ્રાઉઝરોમાં લગભગ ૩૨ કિલોબાઇટ્સ જેટલાં કે તેથી મોટાં પાનાઓમાં ફેરફાર કરવામાં મુશ્કેલી પડી શકે છે.
 બને ત્યાં સુધી પાનાને નાનાં વિભાગોમાં વિભાજીત કરી નાંખો.'''",
-'templatesused'                    => 'આ પાનામાં વપરાયેલા ઢાંચાઓ:',
-'templatesusedpreview'             => 'આ પૂર્વાવલોકનમાં વપરાયેલાં ઢાંચાઓ:',
+'templatesused'                    => 'આ પાનામાં વપરાયેલ {{PLURAL:$1|ઢાંચો|ઢાંચાઓ}}:',
+'templatesusedpreview'             => 'આ પૂર્વાવલોકનમાં વપરાયેલ {{PLURAL:$1|ઢાંચો|ઢાંચાઓ}}:',
 'template-protected'               => '(સુરક્ષિત)',
 'template-semiprotected'           => '(અર્ધ સુરક્ષિત)',
 'hiddencategories'                 => 'આ પાનું {{PLURAL:$1|૧ છુપી શ્રેણી|$1 છુપી શ્રેણીઓ}}નું સભ્ય છે:',
@@ -746,6 +746,8 @@ Please log in again after you receive it.
 'last'                   => 'છેલ્લું',
 'page_first'             => 'પહેલું',
 'page_last'              => 'છેલ્લું',
+'histlegend'             => "વિવિધ પસંદગી:સરખામણી માટે સુધારેલી આવૃતિઓના રેડિયોબોક્ષોને ચિહ્નિત કરો અને એન્ટર અથવા તળીયાનું બટન દબાવો.<br />
+મુદ્રાલેખ:'''({{int:cur}})''' = વર્તમાન સુધારેલી આવૃતિઓનો તફાવત, '''({{int:last}})''' = પૂર્વવર્તી સુધારેલી આવૃતિઓનો તફાવત, '''{{int:minoreditletter}}''' = નાનું સંપાદન.",
 'history-fieldset-title' => 'ઇતિહાસ ઉખેળો',
 'histfirst'              => 'સૌથી જુનું',
 'histlast'               => 'સૌથી નવું',
@@ -784,6 +786,7 @@ Please log in again after you receive it.
 'lineno'                  => 'લીટી $1:',
 'compareselectedversions' => 'પસંદ કરેલા સરખાવો',
 'editundo'                => 'રદ કરો',
+'diff-multi'              => '({{PLURAL:$1|વચગાળાનું એક પુનરાવર્તન|વચગાળાનાં $1 પુનરાવર્તનો}} દર્શાવેલ નથી.)',
 
 # Search results
 'searchresults'             => 'પરિણામોમાં શોધો',
@@ -1218,6 +1221,7 @@ Please log in again after you receive it.
 'whatlinkshere-next'       => '{{PLURAL:$1|પછીનું|પછીનાં $1}}',
 'whatlinkshere-links'      => '←  કડીઓ',
 'whatlinkshere-hideredirs' => 'અન્યત્ર વાળેલાં પાનાં $1',
+'whatlinkshere-hidetrans'  => '$1 આરપાર સમાવેશનો',
 'whatlinkshere-hidelinks'  => 'કડીઓ $1',
 'whatlinkshere-filters'    => 'ચાળણી',
 

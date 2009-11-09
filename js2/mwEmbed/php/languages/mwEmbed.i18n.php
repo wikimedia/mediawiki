@@ -382,6 +382,7 @@ $messages['en'] = array(
 /** Message documentation (Message documentation)
  * @author EugeneZelenko
  * @author Fryed-peach
+ * @author McDutchie
  * @author Purodha
  * @author Siebrand
  * @author Tbleher
@@ -425,6 +426,7 @@ $messages['qqq'] = array(
 	'mwe-select_file' => '{{Identical|Select file}}',
 	'mwe-upload' => '{{Identical|Upload file}}',
 	'mwe-summary' => '{{Identical|Summary}}',
+	'mwe-closed_captions' => "Closed captions are also known as '''subtitles'''.",
 	'mwe-seek_to' => 'This is a status message in the mwEmbed JavaScript video viewer. Parameters:
 * $1 is the time of the video that is being sought',
 	'mwe-download' => '{{Identical|Download}}',
@@ -1135,6 +1137,8 @@ $messages['cs'] = array(
 	'mwe-insert_image_page' => 'Vložit do stránky',
 	'mwe-preview_insert' => 'Náhled vložení',
 	'mwe-cancel_image_insert' => 'Zrušit vkládání',
+	'mwe-no_text_tracks_found' => 'Žádné titulky nenalezeny',
+	'mwe-add-edit-subs' => 'Přidat/editovat titulky',
 	'mwe-loading-add-media-wiz' => 'Načítá se průvodce pro přidání souboru',
 	'mwe-cancel' => 'Storno',
 	'fogg-check_for_fogg' => 'Ověřuje se Firefogg…',
@@ -1183,10 +1187,18 @@ $messages['cs'] = array(
 	'mwe-ignorewarning' => 'Ignorovat varování a přesto soubor načíst',
 	'mwe-go-to-resource' => 'Přejít k souboru',
 	'mwe-upload-misc-error' => 'Neznámá chyba',
+	'mwe-play_clip' => 'Přehrát klip',
+	'mwe-pause_clip' => 'Pozastavit klip',
+	'mwe-volume_control' => 'Ovládání hlasitosti',
+	'mwe-player_options' => 'Možnosti přehrávače',
+	'mwe-closed_captions' => 'Titulky',
 	'mwe-player_fullscreen' => 'Celá obrazovka',
-	'mwe-seek_to' => 'Skočit na $1',
+	'mwe-seek_to' => 'Přesun na $1',
+	'mwe-download_full' => 'Stažení celého videosouboru:',
 	'mwe-download' => 'Stáhnout',
+	'mwe-share' => 'Sdílet',
 	'mwe-chose_player' => 'Vybrat přehrávač videa',
+	'mwe-share_this_video' => 'Sdílet toto video',
 	'mwe-close_btn' => 'Zavřít',
 	'mwe-ogg-player-vlc-mozilla' => 'Zásuvný modul VLC',
 	'mwe-ogg-player-videoElement' => 'Vestavěná podpora pro Ogg video',
@@ -1202,7 +1214,10 @@ $messages['cs'] = array(
 	'mwe-for_best_experience' => 'Pro příjemnější přehrávání videa doporučujeme:<br /><b><a href="http://www.mozilla-europe.org/cs/firefox/?from=mwEmbed">Firefox 3.5</a>.</b>',
 	'mwe-do_not_warn_again' => 'Skrýt toto hlášení.',
 	'mwe-playerselect' => 'Přehrávače',
+	'mwe-read_before_embed' => 'Před vkládáním <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">čtěte upozornění</a>.',
+	'mwe-embed_site_or_blog' => 'Vložení na stránku',
 	'mwe-seeking' => 'přesun',
+	'mwe-copy-code' => 'Kopírovat kód',
 );
 
 /** Welsh (Cymraeg)
@@ -1215,6 +1230,7 @@ $messages['cy'] = array(
 /** German (Deutsch)
  * @author Jan Luca
  * @author Lukas9950
+ * @author McDutchie
  * @author Metalhead64
  * @author Pill
  * @author Tbleher
@@ -1493,6 +1509,7 @@ $messages['de'] = array(
 
 /** Zazaki (Zazaki)
  * @author Aspar
+ * @author McDutchie
  * @author Mirzali
  * @author Xoser
  */
@@ -1713,6 +1730,7 @@ $messages['diq'] = array(
 	'mwe-destfilename' => 'nameyê dosyayi ya hedefi',
 	'mwe-summary' => 'bı kılmi',
 	'mwe-error_not_loggedin' => 'şıma nêkewte cı ya zi heqê şıma çino',
+	'mwe-watch-this-file' => 'Ena dosya seyr bike',
 	'mwe-ignore-any-warnings' => 'ikazan ra diqet meke',
 	'mwe-upload-transcode-in-progress' => 'newe ra kodkerdış u barkerdış dewam keno (na pencıra ramecanê)',
 	'mwe-upload-in-progress' => 'barkerdış dewam keno (na pencera ramecanê)',
@@ -1736,6 +1754,7 @@ $messages['diq'] = array(
 	'mwe-go-to-resource' => 'şo pelê çımeyi',
 	'mwe-upload-misc-error' => 'xetaya barkerdışi yo ke nêzaniyeno',
 	'mwe-wgfogg_warning_bad_extension' => 'dosyaya ke şıma vıcina parçeyê aye re destek çino (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">qey malumato zêd</a>).',
+	'mwe-upload-multi' => '{{PLURAL:$1|dosya|dosyayan}} bar bike',
 	'mwe-review-upload' => '{{PLURAL:$1|bar biyayen|bar biyayenan}} kontrol bike',
 	'mwe-loading_plugin' => 'loading plugin ...',
 	'mwe-select_playback' => 'tercihê kaydayişi eyar ker',
@@ -1825,6 +1844,10 @@ $messages['dsb'] = array(
 	'mwe-no_text_tracks_found' => 'Žedne tekstowe cery namakane',
 	'mwe-subtitles' => 'Pódtitele $1',
 	'mwe-add-edit-subs' => 'Pódtitele pśidaś/wobźěłaś',
+	'mwe-add-subs-file' => 'Pódtitek pśidaś/wuměniś',
+	'mwe-add-subs-file-title' => 'Pódtitel za nagraśe wubraś',
+	'mwe-error-only-srt' => 'Jano srt-dataje daju se direktnje nagraś.',
+	'mwe-watch-video' => 'Wideo se woglědaś',
 	'mwe-transition_in' => 'Zablendowanje',
 	'mwe-transition_out' => 'Wublendowanje',
 	'mwe-effects' => 'Skład efektow',
@@ -2045,7 +2068,7 @@ $messages['dsb'] = array(
 	'mwe-pause_clip' => 'Klip zastajiś',
 	'mwe-volume_control' => 'Regulěrowanje głosnosći',
 	'mwe-player_options' => 'Opcije wótegrawaka',
-	'mwe-closed_captions' => 'Pópisanja zacyniś',
+	'mwe-closed_captions' => 'Pódtitele',
 	'mwe-player_fullscreen' => 'Połna wobrazowka',
 	'mwe-next_clip_msg' => 'Pśiducy klip wótegraś',
 	'mwe-prev_clip_msg' => 'Pjerwjejšny klip wótegraś',
@@ -2491,7 +2514,7 @@ $messages['es'] = array(
 	'mwe-pause_clip' => 'Pausar clip',
 	'mwe-volume_control' => 'Control de volumen',
 	'mwe-player_options' => 'Opciones de reproductor',
-	'mwe-closed_captions' => 'Cerrar subtítulos',
+	'mwe-closed_captions' => 'Subtítulos',
 	'mwe-player_fullscreen' => 'Pantalla completa',
 	'mwe-next_clip_msg' => 'Reproducir siguiente clip',
 	'mwe-prev_clip_msg' => 'Reproducir clip anterior',
@@ -2526,7 +2549,7 @@ $messages['es'] = array(
 	'mwe-for_best_experience' => 'Para una mejor experiencia de reproducción de video, recomendamos: <br /><b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed">Firefox 3.5</a>.</b>',
 	'mwe-do_not_warn_again' => 'Descartar por ahora.',
 	'mwe-playerselect' => 'Reproductores',
-	'mwe-embed_site_or_blog' => 'Incluir en su sitio web o blog',
+	'mwe-embed_site_or_blog' => 'Insertar en una página',
 	'mwe-related_videos' => 'Videos relacionados',
 	'mwe-seeking' => 'buscando',
 	'mwe-copy-code' => 'Copiar código',
@@ -2664,6 +2687,10 @@ $messages['fr'] = array(
 	'mwe-no_text_tracks_found' => 'Pas de trace de texte trouvée',
 	'mwe-subtitles' => 'Sous-titres en $1',
 	'mwe-add-edit-subs' => 'Ajouter/modifier des sous-titres',
+	'mwe-add-subs-file' => 'Ajouter/remplacer un sous-titre',
+	'mwe-add-subs-file-title' => 'Sélectionner le sous-titre à téléverser',
+	'mwe-error-only-srt' => 'Seuls les fichiers srt peuvent être téléversés actuellement.',
+	'mwe-watch-video' => 'Regarder la vidéo',
 	'mwe-transition_in' => 'Transition entrante',
 	'mwe-transition_out' => 'Transition sortante',
 	'mwe-effects' => "Pile d'effets",
@@ -2884,7 +2911,7 @@ $messages['fr'] = array(
 	'mwe-pause_clip' => 'Mettre le clip en pause',
 	'mwe-volume_control' => 'Contrôle du volume',
 	'mwe-player_options' => 'Options du lecteur',
-	'mwe-closed_captions' => 'Fermer les légendes',
+	'mwe-closed_captions' => 'Sous-titres',
 	'mwe-player_fullscreen' => 'Plein écran',
 	'mwe-next_clip_msg' => 'Lire le clip suivant',
 	'mwe-prev_clip_msg' => 'Lire le clip précédent',
@@ -2927,6 +2954,7 @@ $messages['fr'] = array(
 );
 
 /** Galician (Galego)
+ * @author McDutchie
  * @author Toliño
  */
 $messages['gl'] = array(
@@ -2961,6 +2989,11 @@ $messages['gl'] = array(
 	'mwe-improve_transcript' => 'Mellorar',
 	'mwe-no_text_tracks_found' => 'Non se atopou ningunha pista de texto',
 	'mwe-subtitles' => 'Subtítulos en $1',
+	'mwe-add-edit-subs' => 'Engadir/editar subtítulos',
+	'mwe-add-subs-file' => 'Engadir/substituír subtítulos',
+	'mwe-add-subs-file-title' => 'Seleccione os subtítulos a cargar',
+	'mwe-error-only-srt' => 'Nestes intres só se poden cargar ficheiros srt.',
+	'mwe-watch-video' => 'Reproducir o vídeo',
 	'mwe-transition_in' => 'Transición de entrada',
 	'mwe-transition_out' => 'Transición de saída',
 	'mwe-effects' => 'Pila de efectos',
@@ -3181,7 +3214,7 @@ $messages['gl'] = array(
 	'mwe-pause_clip' => 'Pór o vídeo en pausa',
 	'mwe-volume_control' => 'Control do volume',
 	'mwe-player_options' => 'Opcións do reprodutor',
-	'mwe-closed_captions' => 'Pechar os subtítulos',
+	'mwe-closed_captions' => 'Subtítulos',
 	'mwe-player_fullscreen' => 'Pantalla completa',
 	'mwe-next_clip_msg' => 'Reproducir o seguinte vídeo',
 	'mwe-prev_clip_msg' => 'Reproducir o vídeo anterior',
@@ -3235,6 +3268,7 @@ $messages['grc'] = array(
 
 /** Swiss German (Alemannisch)
  * @author Als-Holder
+ * @author McDutchie
  * @author Purodha
  */
 $messages['gsw'] = array(
@@ -3730,6 +3764,10 @@ $messages['hsb'] = array(
 	'mwe-no_text_tracks_found' => 'Žane tekstowe ćěrje njebuchu namakane',
 	'mwe-subtitles' => 'Podtitule $1',
 	'mwe-add-edit-subs' => 'Podtitule přidać/wobdźěłać',
+	'mwe-add-subs-file' => 'Podtitul přidać/narunać',
+	'mwe-add-subs-file-title' => 'Podtitul za nahraće wubrać',
+	'mwe-error-only-srt' => 'Jenož srt-dataje hodźa so direktnje nahrać.',
+	'mwe-watch-video' => 'Wideo wobkedźbować',
 	'mwe-transition_in' => 'Zablendować',
 	'mwe-transition_out' => 'Wublendować',
 	'mwe-effects' => 'Stapl efektow',
@@ -3955,7 +3993,7 @@ $messages['hsb'] = array(
 	'mwe-pause_clip' => 'Klip zastajić',
 	'mwe-volume_control' => 'Regulowanje sylnosće zwuka',
 	'mwe-player_options' => 'Opcije wothrawaka',
-	'mwe-closed_captions' => 'Widejowe titule začinić',
+	'mwe-closed_captions' => 'Podtitule',
 	'mwe-player_fullscreen' => 'Połna wobrazowka',
 	'mwe-next_clip_msg' => 'Přichodny klip wothrać',
 	'mwe-prev_clip_msg' => 'Předchadny klip wothrać',
@@ -4000,6 +4038,7 @@ $messages['hsb'] = array(
 /** Hungarian (Magyar)
  * @author Dani
  * @author Glanthor Reviol
+ * @author McDutchie
  */
 $messages['hu'] = array(
 	'mwe-crop' => 'Kép vágása',
@@ -4546,7 +4585,7 @@ $messages['ia'] = array(
 	'mwe-pause_clip' => 'Pausar clip',
 	'mwe-volume_control' => 'Controlo de volumine',
 	'mwe-player_options' => 'Optiones de reproductor',
-	'mwe-closed_captions' => 'Clauder subtitulos',
+	'mwe-closed_captions' => 'Subtitulos',
 	'mwe-player_fullscreen' => 'Plen schermo',
 	'mwe-next_clip_msg' => 'Reproducer sequente clip',
 	'mwe-prev_clip_msg' => 'Reproducer precedente clip',
@@ -4625,6 +4664,7 @@ $messages['id'] = array(
 	'mwe-improve_transcript' => 'Membaiki',
 	'mwe-no_text_tracks_found' => 'Tidak ada trek teks yang ditemukan',
 	'mwe-subtitles' => 'Teks film $1',
+	'mwe-add-edit-subs' => 'Tambah/sunting subjudul',
 	'mwe-transition_in' => 'Transisi masuk',
 	'mwe-transition_out' => 'Transisi keluar',
 	'mwe-effects' => 'Tumpuk efek',
@@ -4926,6 +4966,7 @@ $messages['it'] = array(
  * @author Aotake
  * @author Fryed-peach
  * @author Hosiryuhosi
+ * @author McDutchie
  * @author 青子守歌
  */
 $messages['ja'] = array(
@@ -5275,6 +5316,7 @@ $messages['ko'] = array(
 );
 
 /** Ripoarisch (Ripoarisch)
+ * @author McDutchie
  * @author Purodha
  */
 $messages['ksh'] = array(
@@ -5494,6 +5536,7 @@ Wann de Rääschte reschtesch jesaz sin, moß mer velleijsh noch <a href="http:/
 );
 
 /** Luxembourgish (Lëtzebuergesch)
+ * @author McDutchie
  * @author Robby
  */
 $messages['lb'] = array(
@@ -5686,6 +5729,7 @@ $messages['lb'] = array(
 );
 
 /** Malayalam (മലയാളം)
+ * @author McDutchie
  * @author Praveenp
  */
 $messages['ml'] = array(
@@ -5696,6 +5740,7 @@ $messages['ml'] = array(
 	'mwe-insert_into_sequence' => 'അനുവർത്തനത്തിലേയ്ക്ക് ഉൾപ്പെടുത്തുക',
 	'mwe-preview_insert' => 'ഉൾപ്പെടുത്തലിന്റെ പ്രിവ്യൂ',
 	'mwe-cancel_image_insert' => 'ഉൾപ്പെടുത്തൽ റദ്ദാക്കുക',
+	'mwe-sc_fileopts' => 'ചലച്ചിത്രശകലത്തിന്റെ വിവരങ്ങൾ തിരുത്തുക',
 	'mwe-sc_audio' => 'ശബ്ദ നിയന്ത്രണം',
 	'mwe-sc_duration' => 'കാലയളവ്',
 	'mwe-template_properties' => 'ഫലക വിശേഷതകൾ',
@@ -5714,6 +5759,9 @@ $messages['ml'] = array(
 	'mwe-no_text_tracks_found' => 'അടിയെഴുത്തുകൾക്കായുള്ള എഴുത്തുകളൊന്നും കണ്ടെത്താനായില്ല',
 	'mwe-subtitles' => '$1 അടിയെഴുത്തുകൾ',
 	'mwe-add-edit-subs' => 'അടിയെഴുത്തുകൾ ചേർക്കുക/തിരുത്തുക',
+	'mwe-add-subs-file' => 'അടിയെഴുത്തുകൾ ചേർക്കുക/മാറ്റിച്ചേർക്കുക',
+	'mwe-add-subs-file-title' => 'അപ്‌‌ലോഡ് ചെയ്യാനായി അടിയെഴുത്ത് തിരഞ്ഞെടുക്കുക',
+	'mwe-watch-video' => 'ചലച്ചിത്രം കാണുക',
 	'mwe-menu_clipedit' => 'മീഡിയ തിരുത്തുക',
 	'mwe-menu_cliplib' => 'മീഡിയ കൂട്ടിച്ചേർക്കുക',
 	'mwe-menu_resource_overview' => 'സ്രോതസ്സ് അവലോകനം',
@@ -5721,6 +5769,7 @@ $messages['ml'] = array(
 	'mwe-loading_timeline' => 'സമയരേഖ ശേഖരിക്കുന്നു ...',
 	'mwe-loading_user_rights' => 'ഉപയോക്തൃ അവകാശങ്ങൾ ശേഖരിക്കുന്നു ...',
 	'mwe-no_edit_permissions' => 'ഈ അനുവർത്തനത്തിൽ മാറ്റങ്ങൾ സേവ് ചെയ്യാനുള്ള അനുമതി താങ്കൾക്കില്ല',
+	'mwe-edit_clip' => 'ചലച്ചിത്രശകലം തിരുത്തുക',
 	'mwe-edit_save' => 'അനുവർത്തനത്തിലെ മാറ്റങ്ങൾ സേവ് ചെയ്യുക',
 	'mwe-saving_wait' => 'സേവ് ചെയ്യൽ പുരോഗമിക്കുന്നു (ദയവായി കാത്തിരിക്കുക)',
 	'mwe-save_done' => 'പൂർണ്ണമായത് സേവ് ചെയ്യുക',
@@ -5728,7 +5777,10 @@ $messages['ml'] = array(
 	'mwe-edit_cancel_confirm' => 'താങ്കളുടെ തിരുത്തൽ റദ്ദാക്കണം എന്നതിൽ താങ്കൾ ഉറച്ചു നിൽക്കുന്നുവോ? മാറ്റങ്ങൾ നഷ്ടമാവുന്നതാണ്.',
 	'mwe-zoom_in' => 'വലുതാക്കുക',
 	'mwe-zoom_out' => 'ചെറുതാക്കുക',
+	'mwe-cut_clip' => 'ചലച്ചിത്രശകലം മുറിയ്ക്കുക',
 	'mwe-rmclip' => 'ചലച്ചിത്രശകലം നീക്കംചെയ്യുക',
+	'mwe-clip_in' => 'ചലച്ചിത്രശകലം ഉൾപ്പെടുത്തുക',
+	'mwe-clip_out' => 'ചലച്ചിത്രശകലം പുറംതള്ളുക',
 	'mwe-no_selected_resource' => '<h3>ഒരു സ്രോതസ്സും തിരഞ്ഞെടുത്തിട്ടില്ല</h3> മാറ്റംവരുത്തുവാൻ ഒരു ചലച്ചിത്രശകലം തിരഞ്ഞെടുക്കുക.',
 	'mwe-error_edit_multiple' => '<h3>നിരവധി സ്രോതസ്സുകൾ തിരഞ്ഞെടുത്തിരിക്കുന്നു</h3> മാറ്റംവരുത്തുവാനായി ഒരു ചലച്ചിത്രശകലം തിരഞ്ഞെടുക്കുക.',
 	'mwe-editor_options' => 'തിരുത്തലുപകരണ ഐച്ഛികങ്ങൾ',
@@ -5871,11 +5923,14 @@ $messages['ml'] = array(
 	'mwe-loading_plugin' => 'പ്ലഗ്ഗിൻ ശേഖരിക്കുന്നു...',
 	'mwe-link_back' => 'പിന്നിലേയ്ക്ക് കണ്ണി സൃഷ്ടിക്കുക',
 	'mwe-add_to_end_of_sequence' => 'അനുവർത്തനത്തിന്  ഒടുവിൽ ചേർക്കുക',
+	'mwe-play_clip' => 'ചലച്ചിത്രശകലം പ്രവർത്തിപ്പിക്കുക',
+	'mwe-pause_clip' => 'ചലച്ചിത്രശകലം തത്കാലം നിർത്തുക',
 	'mwe-volume_control' => 'ശബ്ദ നിയന്ത്രണം',
 	'mwe-player_options' => 'പ്ലേയർ ഐച്ഛികങ്ങൾ',
 	'mwe-closed_captions' => 'തലക്കുറികൾ അടയ്ക്കുക',
 	'mwe-player_fullscreen' => 'പൂർണ്ണസ്ക്രീൻ',
 	'mwe-next_clip_msg' => 'അടുത്ത ചലച്ചിത്രശകലം പ്രവർത്തിപ്പിക്കുക',
+	'mwe-current_clip_msg' => 'ഈ ചലച്ചിത്രശകലം പ്രവർത്തിപ്പിക്കുന്നതു തുടരുക',
 	'mwe-seek_to' => '$1 നോക്കുക',
 	'mwe-paused' => 'തത്കാലം നിർത്തിവെച്ചിരിക്കുന്നു',
 	'mwe-download_segment' => 'തിരഞ്ഞെടുത്തത് ഡൗൺലോഡ് ചെയ്യുക:',
@@ -5886,6 +5941,7 @@ $messages['ml'] = array(
 	'mwe-download' => 'ഡൗൺലോഡ് ചെയ്യുക',
 	'mwe-share' => 'പങ്ക് വെയ്ക്കുക',
 	'mwe-credits' => 'കടപ്പാടുകൾ',
+	'mwe-clip_linkback' => 'ചലച്ചിത്രശകലത്തിന്റെ സ്രോതസ് താൾ',
 	'mwe-chose_player' => 'ചലച്ചിത്ര പ്ലേയർ തിരഞ്ഞെടുക്കുക',
 	'mwe-share_this_video' => 'ഈ ചലച്ചിത്രം പങ്ക് വെയ്ക്കുക',
 	'mwe-video_credits' => 'ചലച്ചിത്രത്തിനുള്ള കടപ്പാടുകൾ',
@@ -6173,7 +6229,7 @@ Selecteer één te bewerken clip.',
 	'mwe-pause_clip' => 'Clip pauzeren',
 	'mwe-volume_control' => 'Volumebeheer',
 	'mwe-player_options' => 'Mediaspelerinstellingen',
-	'mwe-closed_captions' => 'Bijschriften sluiten',
+	'mwe-closed_captions' => 'Ondertiteling',
 	'mwe-player_fullscreen' => 'Volledig scherm',
 	'mwe-next_clip_msg' => 'Volgende clip afspelen',
 	'mwe-prev_clip_msg' => 'Vorige clip afspelen',
@@ -6523,6 +6579,7 @@ $messages['pdc'] = array(
 );
 
 /** Polish (Polski)
+ * @author McDutchie
  * @author Sp5uhe
  */
 $messages['pl'] = array(
@@ -6867,13 +6924,20 @@ $messages['ru'] = array(
 	'mwe-end_time' => 'Время окончания',
 	'mwe-preview_inout' => 'Просмотр точек ввода-вывода',
 	'mwe-edit-tools' => 'Инструменты редактирования',
-	'mwe-inline-description' => 'Встроенное описание',
+	'mwe-inline-description' => 'Заголовок',
 	'mwe-edit-video-tools' => 'Инструменты редактирования видео:',
+	'mwe-duration' => 'Длительность:',
 	'mwe-select_transcript_set' => 'Выбрать слои',
 	'mwe-auto_scroll' => 'автопрокрутка',
 	'mwe-close' => 'закрыть',
 	'mwe-improve_transcript' => 'Улучшить',
 	'mwe-no_text_tracks_found' => 'Не найдено текстовых дорожек',
+	'mwe-subtitles' => 'субтитры — $1',
+	'mwe-add-edit-subs' => 'Добавить/править субтитры',
+	'mwe-add-subs-file' => 'Добавить/править субтитры',
+	'mwe-add-subs-file-title' => 'Выбор субтитров для загрузки',
+	'mwe-error-only-srt' => 'Сейчас могут загружаться только srt-файлы.',
+	'mwe-watch-video' => 'Просмотреть видео',
 	'mwe-transition_in' => 'Переход в',
 	'mwe-transition_out' => 'Переход из',
 	'mwe-effects' => 'Набор эффектов',
@@ -7082,6 +7146,8 @@ $messages['ru'] = array(
 	'mwe-go-to-resource' => 'Перейти на страницу ресурсов',
 	'mwe-upload-misc-error' => 'Неизвестная ошибка загрузки',
 	'mwe-wgfogg_warning_bad_extension' => 'Вы выбрали файл с неподдерживаемым расширением (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">дополнительная информация</a>).',
+	'mwe-upload-multi' => 'Загрузить {{PLURAL:$1|файл|файлы}}',
+	'mwe-review-upload' => 'Просмотреть {{PLURAL:$1|загрузку файла|загрузки файлов}}',
 	'mwe-loading_plugin' => 'загрузка плагина ...',
 	'mwe-select_playback' => 'Установить настройки воспроизведения',
 	'mwe-link_back' => 'Обратная ссылка',
@@ -7092,7 +7158,7 @@ $messages['ru'] = array(
 	'mwe-pause_clip' => 'Приостановить клип',
 	'mwe-volume_control' => 'Регулировка громкости',
 	'mwe-player_options' => 'Настройки проигрывателя',
-	'mwe-closed_captions' => 'Закрывать заголовки',
+	'mwe-closed_captions' => 'Субтитры',
 	'mwe-player_fullscreen' => 'На весь экран',
 	'mwe-next_clip_msg' => 'Воспроизвести следующий клип',
 	'mwe-prev_clip_msg' => 'Воспроизвести предыдущий клип',
@@ -7108,7 +7174,7 @@ $messages['ru'] = array(
 	'mwe-share' => 'Поделиться',
 	'mwe-credits' => 'Создатели',
 	'mwe-clip_linkback' => 'Исходная страница клипа',
-	'mwe-chose_player' => 'Выберите проигрыватель видео',
+	'mwe-chose_player' => 'Выбор проигрывателя',
 	'mwe-share_this_video' => 'Поделиться этим видео',
 	'mwe-video_credits' => 'О создателях видео',
 	'mwe-menu_btn' => 'Меню',
@@ -7478,6 +7544,7 @@ $messages['te'] = array(
 /** Turkish (Türkçe)
  * @author Aspar
  * @author Joseph
+ * @author McDutchie
  */
 $messages['tr'] = array(
 	'mwe-crop' => 'Resmi kırp',
@@ -7775,6 +7842,7 @@ $messages['uk'] = array(
 	'mwe-start_time' => 'Час початку',
 	'rsd_results_next' => 'наступний',
 	'mwe-summary' => 'Опис змін',
+	'mwe-closed_captions' => 'Приховані титри',
 );
 
 /** Vèneto (Vèneto)

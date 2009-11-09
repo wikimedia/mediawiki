@@ -828,7 +828,7 @@ Syy: '''$2'''
 Voit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.
 Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]] tai jos esto on asetettu koskemaan myös sähköpostin lähettämistä.
 IP-osoitteesi on $3 ja estotunnus on #$5.
-Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
+Liitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 'autoblockedtext'                  => "IP-osoitteesi on estetty automaattisesti, koska sitä on käyttänyt toinen käyttäjä, jonka on estänyt ylläpitäjä $1.
 Eston syy on:
 
@@ -843,7 +843,7 @@ Voit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|yl
 Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]] tai jos esto on asetettu koskemaan myös sähköpostin lähettämistä.
 
 IP-osoitteesi on $3 ja estotunnus on #$5.
-Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
+Liitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 'blockednoreason'                  => '(syytä ei annettu)',
 'blockedoriginalsource'            => 'Sivun ”$1” lähdekoodi:',
 'blockededitsource'                => 'Muokkauksesi sivuun ”$1”:',
@@ -1133,6 +1133,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'compareselectedversions'  => 'Vertaile valittuja versioita',
 'showhideselectedversions' => 'Näytä tai piilota valitut versiot',
 'editundo'                 => 'kumoa',
+'diff-multi'               => '(Versioiden välissä {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta}}.)',
 
 # Search results
 'searchresults'                    => 'Hakutulokset',
