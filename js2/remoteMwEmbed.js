@@ -5,7 +5,7 @@
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = '1.0';
+var mwRemoteVersion = '1.02';
 
 reqArguments = urlparts[1];
 

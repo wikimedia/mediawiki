@@ -257,10 +257,6 @@ remoteSearchDriver.prototype = {
 		//@@todo for cleaner config we should set _this.opt to the provided options) 
 		$j.extend( _this, default_remote_search_options, options);			
 		
-		//update the base text:
-		if(_this.target_textbox)
-		   _this.getTexboxSelection();
-
 		//modify the content provider config based on options: 		
 		for(var i in this.content_providers){		
 			if(	_this.enabled_cps == 'all' && !this.disp_item  ){	
@@ -460,6 +456,10 @@ remoteSearchDriver.prototype = {
 	},
 	doInitDisplay:function(){
 		var _this = this;
+		
+		//try and get the text selection: 	
+		_this.getTexboxSelection();
+		
 		//setup the parent container:
 		this.init_modal();
 		//fill in the html:
@@ -479,54 +479,30 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		js_log("doReDisplay::");
 		//update the base text:
-		if( _this.target_textbox )
-			_this.getTexboxSelection();
+		_this.getTexboxSelection();
+		if( _this.default_query !=  $j('#rsd_q').val() ){
+			$j('#rsd_q').val( _this.default_query );
+			_this.runSearch();
+		}
 		//$j(_this.target_container).dialog("open");
 		$j(_this.target_container).parents('.ui-dialog').fadeIn('slow');
 		//re-center the dialog:
 		$j(_this.target_container).dialog('option', 'position','center');
 	},
 	//gets the in and out points for insert position or grabs the selected text for search
-	getTexboxSelection:function(){
-		//update the caretPos
-		this.getCaretPos();
-
-		//if we have highlighted text use that as the query: (would be fun to add context menu once we have rich editor in-place)
-		if( this.caret_pos.selection )
-			this.default_query = this.caret_pos.selection
-
-	},
-	getCaretPos:function(){
-		this.caret_pos={};
-		var txtarea = $j(this.target_textbox).get(0);
-		var getTextCusorStartPos = function (o){
-			if (o.createTextRange) {
-					var r = document.selection.createRange().duplicate()
-					r.moveEnd('character', o.value.length)
-					if (r.text == '') return o.value.length
-					return o.value.lastIndexOf(r.text)
-				} else return o.selectionStart
-		}
-		var getTextCusorEndPos = function (o){
-			if (o.createTextRange) {
-				var r = document.selection.createRange().duplicate();
-				r.moveStart('character', -o.value.length);
-				return r.text.length;
-			} else{
-				return o.selectionEnd
+	getTexboxSelection:function(){		
+		if(this.target_textbox){
+			//get the selection text:
+			var ts = $j(this.target_textbox).textSelection();
+			if(ts!=''){
+				this.default_query = ts;
 			}
+			//get the caretPos / value
+			this.caret_pos={};
+			this.caret_pos.text = $j(this.target_textbox).val();		
+			this.caret_pos.s = $j(this.target_textbox).getCaretPosition();
 		}
-		this.caret_pos.s = getTextCusorStartPos( txtarea );
-		this.caret_pos.e = getTextCusorEndPos( txtarea );
-		this.caret_pos.text = txtarea.value;
-		if(this.caret_pos.s && this.caret_pos.e &&
-				(this.caret_pos.s != this.caret_pos.e))
-			this.caret_pos.selection = this.caret_pos.text.substring(this.caret_pos.s, this.caret_pos.e).replace(/ /g, '\xa0') || '\xa0';
-
-		js_log('got caret_pos:' + this.caret_pos.s);
-		//restore text value: (creating textRanges sometimes screws with the text content)
-		$j(this.target_textbox).val( this.caret_pos.text );
-	},
+	},	
 	init_modal:function(){
 		js_log("init_modal");
 		var _this = this;	
