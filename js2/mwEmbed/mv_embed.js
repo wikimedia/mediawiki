@@ -1175,8 +1175,8 @@ function mwdomReady( force ) {
 }
 
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
-function js2AddOnloadHook( func ) {
-	//js_log('js2AddOnloadHook:: jquery:' + typeof window.jQuery + ' $j: ' + typeof $j);	
+function js2AddOnloadHook( func ) {	
+	js_log('js2AddOnloadHook:: jquery:' +func);	
 	//check for jQuery then add the load event (to run after video tag rewrites (if present) 
 	mvJsLoader.jQueryCheck( function() {
 		if( mvJsLoader.doneReadyEvents ) {
