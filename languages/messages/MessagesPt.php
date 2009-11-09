@@ -1190,7 +1190,7 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'compareselectedversions'  => 'Compare as versões seleccionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versões selecionadas',
 'editundo'                 => 'desfazer',
-'diff-multi'               => '({{PLURAL:$1|uma edição intermédia não está sendo exibida|$1 edições intermédias não estão sendo exibidas}}.)',
+'diff-multi'               => '({{PLURAL:$1|uma edição intermédia não apresentada|$1 edições intermédias não apresentadas}})',
 
 # Search results
 'searchresults'                    => 'Resultados de pesquisa',
@@ -1316,7 +1316,7 @@ Eis um valor gerado aleatoriamente, que pode usar: $1",
 'timezoneuseoffset'             => 'Outro (especificar diferença)',
 'timezoneoffset'                => 'Diferença horária¹:',
 'servertime'                    => 'Horário do servidor:',
-'guesstimezone'                 => 'Preencher a partir do navegador (browser)',
+'guesstimezone'                 => 'Preencher a partir do navegador',
 'timezoneregion-africa'         => 'África',
 'timezoneregion-america'        => 'América',
 'timezoneregion-antarctica'     => 'Antártida',

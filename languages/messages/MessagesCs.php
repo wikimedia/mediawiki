@@ -1193,6 +1193,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'compareselectedversions'  => 'Porovnat vybrané verze',
 'showhideselectedversions' => 'Zobrazit/skrýt vybrané revize',
 'editundo'                 => 'zrušit editaci',
+'diff-multi'               => '({{PLURAL:$1|Není zobrazena jedna mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}}.)',
 
 # Search results
 'searchresults'                    => 'Výsledky hledání',
@@ -1751,7 +1752,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filehist-comment'          => 'Komentář',
 'filehist-missing'          => 'Soubor chybí',
 'imagelinks'                => 'Odkazy na soubor',
-'linkstoimage'              => 'Na soubor {{plural:$1|odkazuje tato stránka|odkazují tyto stránky}}:',
+'linkstoimage'              => 'Na soubor {{PLURAL:$1|odkazuje tato stránka|odkazují tyto $1 stránky|odkazuje těchto $1 stránek}}:',
 'linkstoimage-more'         => 'Na tento soubor {{PLURAL:$1|odkazuje více stránek|odkazují více než $1 stránky|odkazuje více než $1 stránek}}.
 Následující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $1}}.
 Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',

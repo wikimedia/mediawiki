@@ -1101,6 +1101,7 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'compareselectedversions'  => 'Võrdle valitud redaktsioone',
 'showhideselectedversions' => 'Näita/peida valitud versioonid',
 'editundo'                 => 'eemalda',
+'diff-multi'               => '({{PLURAL:$1|Ühte vahepealset muudatust|$1 vahepealset muudatust}} ei näidata.)',
 
 # Search results
 'searchresults'                    => 'Otsingu tulemused',
@@ -2923,15 +2924,17 @@ Veateade meili saatmisel: $1',
 'confirmemail_loggedin'    => 'Sinu e-posti aadress on nüüd kinnitatud.',
 'confirmemail_error'       => 'Viga kinnituskoodi salvestamisel.',
 'confirmemail_subject'     => '{{SITENAME}}: e-posti aadressi kinnitamine',
-'confirmemail_body'        => 'Keegi, ilmselt sa ise, registreeris IP aadressilt $1 saidil {{SITENAME}} kasutajakonto "$2".
+'confirmemail_body'        => 'Keegi IP-aadressilt $1, ilmselt sa ise, registreeris selle e-posti aadressiga võrgukohas {{SITENAME}} konto "$2".
 
-Kinnitamaks, et see kasutajakonto tõepoolest kuulub sulle ning aktiveerimaks e-posti teenuseid, ava oma brauseris järgnev link:
+Kinnitamaks, et see kasutajakonto tõepoolest kuulub sulle ning e-posti teenuste aktiveerimiseks, ava oma võrgulehitsejas järgnev link:
 
 $3
 
-Kui see *ei* ole sinu loodud konto, siis ava järgnev link $5 kinnituse tühistamiseks. 
+Kui see *pole* sinu loodud konto, ava järgnev link kinnituse tühistamiseks:
 
-Kinnituskood aegub $4.',
+$5
+
+Kinnituskood aegub kuupäeval $4.',
 'confirmemail_invalidated' => 'E-aadressi kinnitamine tühistati',
 'invalidateemail'          => 'Tühista e-posti kinnitus',
 

@@ -1051,7 +1051,7 @@ Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'block-log-flags-nocreate' => 'creazión de növ cünt blucada',
 
 # Move page
-'movepagetext'     => "Duvraant la büeta chí-da-sota al re-numinerà una pàgina, muveent tüta la suva stòria al nomm nööf. Ul vecc títul al deventarà una pàgina da redirezziun al nööf títul. I liamm a la vegja pàgina i sarà mia cambiaa: assürévas da cuntrulá par redirezziun dopi u rumpüüt.
+'movepagetext'            => "Duvraant la büeta chí-da-sota al re-numinerà una pàgina, muveent tüta la suva stòria al nomm nööf. Ul vecc títul al deventarà una pàgina da redirezziun al nööf títul. I liamm a la vegja pàgina i sarà mia cambiaa: assürévas da cuntrulá par redirezziun dopi u rumpüüt.
 A sii respunsàbil da assüráss che i liamm i sigüta a puntá intúe i è süpunüü da ná.
 Nutii che la pàgina la sarà '''mia''' muvüda se a gh'è gjamò una pàgina al nööf títul, a maanch che la sía vöja, una redirezziun cun nissüna stòtia d'esizziun passada. Cheest-chí al signífega ch'a pudii renuminá indrée
 una pàgina intúe l'évuf renuminada via par eruur, e che vüü pudii mia surascriif una pàgina esisteent.
@@ -1059,28 +1059,29 @@ una pàgina intúe l'évuf renuminada via par eruur, e che vüü pudii mia suras
 
 <b>ATENZIUN!</b>
 Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupülara: par piasée assürévas ch'a ii capii i cunsegueenz da cheest-chí prima da ná inaanz.",
-'movepagetalktext' => "La pagina de discüssión tacada a quel articul chì, la sarà spustada in manera utumatega insema a l'articul, '''asca in quij cas chì:'''
+'movepagetalktext'        => "La pagina de discüssión tacada a quel articul chì, la sarà spustada in manera utumatega insema a l'articul, '''asca in quij cas chì:'''
 * quand che la pagina a l'è spustada intra namespace diferent
 * se in del növ titul al gh'è giamò una pagina de discüssiun (minga vöja)
 * el quadret de cunferma chì de sota a l'è staa deseleziónaa.
 In quij cas chì, se'l var la pena, ghe sarà de spustà a man i infurmazión de la pagina de discüssión.",
-'movearticle'      => "Möva l'articul",
-'newtitle'         => 'Titul növ:',
-'move-watch'       => "Gionta chela pagina chí ai pàgin à tegní d'œucc.",
-'movepagebtn'      => 'Sposta quela pagina chì',
-'pagemovedsub'     => "San Martin l'è bele fat!",
-'movepage-moved'   => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>",
-'articleexists'    => "Una pagina che la se ciama cumpagn la gh'è giamò, opüra el nom che t'hee scernüü al va minga ben. <br />
-Che te scernet, per piasè, un nom diferent per quel articul chì.",
-'talkexists'       => "'''La pagina a l'è stada spustada ben, ma'l s'è pudüü minga spustà la pagina de discüssión perchè gh'en è giamò un altra cun l'istess nom. Per piasè met insema i cuntegnüü di dò paginn a man'''",
-'movedto'          => 'spustaa vers:',
-'movetalk'         => 'Sposta anca la pagina de discüssión',
-'1movedto2'        => '[[$1]] spustaa in [[$2]]',
-'1movedto2_redir'  => '[[$1]] movuu in [[$2]] par redirezion',
-'movelogpage'      => 'Register di San Martin',
-'movereason'       => 'Resón:',
-'revertmove'       => "büta indree a 'mè che l'era",
-'delete_and_move'  => 'Scancelá e mööf',
+'movearticle'             => "Möva l'articul",
+'newtitle'                => 'Titul növ:',
+'move-watch'              => "Gionta chela pagina chí ai pàgin à tegní d'œucc.",
+'movepagebtn'             => 'Sposta quela pagina chì',
+'pagemovedsub'            => "San Martin l'è bele fat!",
+'movepage-moved'          => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>",
+'movepage-moved-redirect' => "L'è staa creaa un redirect.",
+'articleexists'           => "Una pagina che la se ciama cumpagn la gh'è giamò, opüra el nom che hii scernüü al va minga ben. <br />
+Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
+'talkexists'              => "'''La pagina a l'è stada spustada ben, ma'l s'è pudüü minga spustà la pagina de discüssión perchè gh'en è giamò un altra cun l'istess nom. Per piasè met insema i cuntegnüü di dò paginn a man'''",
+'movedto'                 => 'spustaa vers:',
+'movetalk'                => 'Sposta anca la pagina de discüssión',
+'1movedto2'               => '[[$1]] spustaa in [[$2]]',
+'1movedto2_redir'         => '[[$1]] movuu in [[$2]] par redirezion',
+'movelogpage'             => 'Register di San Martin',
+'movereason'              => 'Resón:',
+'revertmove'              => "büta indree a 'mè che l'era",
+'delete_and_move'         => 'Scancelá e mööf',
 
 # Export
 'export' => 'Espurtá pagin',

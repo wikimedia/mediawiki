@@ -191,7 +191,11 @@ $messages = array(
 'faqpage'        => 'Project:ብጊየጥ',
 
 # Vector skin
-'vector-action-addsection' => 'ርዕስ ጨምር',
+'vector-action-addsection'  => 'ርዕስ ጨምር',
+'vector-action-delete'      => 'አጥፋ',
+'vector-namespace-category' => 'መደብ',
+'vector-namespace-image'    => 'ፋይል',
+'vector-namespace-talk'     => 'ውይይት',
 
 # Metadata in edit box
 'metadata_help' => 'ተጨማሪ መረጃ:',
@@ -699,6 +703,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'lineno'                  => 'መስመር፡ $1፦',
 'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
 'editundo'                => 'ለውጡ ይገለበጥ',
+'diff-multi'              => '(ከነዚህ 2 እትሞች መካከል {{PLURAL:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
 
 # Search results
 'searchresults'                    => 'የፍለጋ ውጤቶች',
