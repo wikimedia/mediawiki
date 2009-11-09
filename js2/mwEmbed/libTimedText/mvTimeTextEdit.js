@@ -9,11 +9,11 @@ if( !mwAddMediaConfig )
 var mvTimedTextEdit = {};
 
 loadGM({
-  "mwe-add-subs-file"      : "Add/Replace Subtitle",
-  "mwe-add-subs-file-title": "Select Subtitle to upload",
-  "mwe-error-only-srt"     : "Only srt files can be uploaded right now.",
+  "mwe-add-subs-file"      : "Add/replace subtitle",
+  "mwe-add-subs-file-title": "Select subtitle to upload",
+  "mwe-error-only-srt"     : "You can only upload srt files.",
   "mwe-watch-video"        : "Watch video",
-  "mwe-select-other-language": "Select Other Language"
+  "mwe-select-other-language": "Select other language"
 })
 
 

@@ -57,7 +57,7 @@ $messages['en'] = array(
 	 */
 	 'mwe-add-subs-file'      => 'Add/replace subtitle',
 	 'mwe-add-subs-file-title'=> 'Select subtitle to upload',
-	 'mwe-error-only-srt'     => 'Only srt files can be uploaded right now.',
+	 'mwe-error-only-srt'     => 'You can only upload srt files.',
 	 'mwe-watch-video'        => 'Watch video',
 
 	/*
