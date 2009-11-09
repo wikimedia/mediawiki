@@ -426,7 +426,8 @@ class DatabaseOracle extends DatabaseBase {
 		if (!is_array(reset($a))) {
 			$a = array($a);
 		}
-		foreach ($a as $row) {
+
+		foreach ($a as &$row) {
 			$this->insertOneRow($table, $row, $fname);
 		}
 		$retVal = true;
@@ -470,7 +471,7 @@ class DatabaseOracle extends DatabaseBase {
 				if (preg_match('/^timestamp.*/i', $col_type) == 1 && strtolower($val) == 'infinity') 
 					$val = '31-12-2030 12:00:00.000000';
 				
-				$val = $wgLang->checkTitleEncoding($val);
+				$val = ($wgLang != null) ? $wgLang->checkTitleEncoding($val) : $val;
 				if (oci_bind_by_name($stmt, ":$col", $val) === false)
 					$this->reportQueryError($this->lastErrno(), $this->lastError(), $sql, __METHOD__);
 			} else {
@@ -1049,16 +1050,18 @@ class DatabaseOracle extends DatabaseBase {
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 		global $wgLang;
 
-		$conds2 = array();
-		foreach($conds as $col=>$val) {
-			$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
-			if ($col_type == 'CLOB')
-				$conds2['TO_CHAR('.$col.')'] = $wgLang->checkTitleEncoding($val);
-			else
-				$conds2[$col] = $wgLang->checkTitleEncoding($val);
-		}
-
-		return parent::delete( $table, $conds2, $fname );
+		if ($wgLang != null) {
+			$conds2 = array();
+			foreach($conds as $col=>$val) {
+				$col_type=$this->fieldInfo($this->tableName($table), $col)->type();
+				if ($col_type == 'CLOB')
+					$conds2['TO_CHAR('.$col.')'] = $wgLang->checkTitleEncoding($val);
+				else
+					$conds2[$col] = $wgLang->checkTitleEncoding($val);
+			}
+		
+			return parent::delete( $table, $conds2, $fname );
+		} else return parent::delete( $table, $conds, $fname );
 	}
 
 	function bitNot($field) {

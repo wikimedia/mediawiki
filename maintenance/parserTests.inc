@@ -783,6 +783,13 @@ class ParserTest {
 				   'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
 				   'iw_local'  => 1 ),
 			) );
+
+
+		#Anonymous user
+		$db->insert( 'user', array(
+			'user_id'         => 0,
+			'user_name'       => 'Anonymous') );
+
 		# Hack-on-Hack: Insert a test user to be able to insert an image
 		$db->insert( 'user', array(
 			'user_id'         => 1,

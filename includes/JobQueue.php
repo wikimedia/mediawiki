@@ -267,12 +267,13 @@ abstract class Job {
 				return;
 			}
 		}
-		$fields['job_id'] = $dbw->nextSequenceValue( 'job_job_id_seq' );
 		$dbw->insert( 'job', $fields, __METHOD__ );
 	}
 
 	protected function insertFields() {
+		$dbw = wfGetDB( DB_MASTER );
 		return array(
+			'job_id' => $dbw->nextSequenceValue( 'job_job_id_seq' ),
 			'job_cmd' => $this->command,
 			'job_namespace' => $this->title->getNamespace(),
 			'job_title' => $this->title->getDBkey(),
