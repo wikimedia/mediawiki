@@ -5,7 +5,7 @@
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = '1.03';
+var mwRemoteVersion = '1.05';
 
 reqArguments = urlparts[1];
 
@@ -36,7 +36,9 @@ function doPageSpecificRewrite() {
 	//timed text display:
 	if(wgPageName.indexOf("TimedText") === 0){		
 		load_mv_embed(function(){
-			loadExternalJs( mwEmbedHostPath + '/mwEmbed/libTimedText/mvTimeTextEdit.js' + reqArguments );
+			$mw.load( ['mvTimeTextEdit'],function(){
+				//could run init here (but mvTimeTextEdit included onLoad actions)
+			});
 		});
 	}
 	
