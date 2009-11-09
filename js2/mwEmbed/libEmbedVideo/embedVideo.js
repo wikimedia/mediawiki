@@ -13,7 +13,7 @@ loadGM({
 	"mwe-pause_clip" : "Pause clip",
 	"mwe-volume_control" : "Volume control",
 	"mwe-player_options" : "Player options",
-	"mwe-closed_captions" : "Close captions",
+	"mwe-closed_captions" : "Closed captions",
 	"mwe-player_fullscreen" : "Fullscreen",
 	"mwe-next_clip_msg" : "Play next clip",
 	"mwe-prev_clip_msg" : "Play previous clip",
