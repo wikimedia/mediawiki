@@ -3187,11 +3187,12 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
  * to use this outside maintenance scripts in its present form.
  *
  * @param $maxLag Integer
+ * @param $wiki mixed Wiki identifier accepted by wfGetLB
  * @return null
  */
-function wfWaitForSlaves( $maxLag ) {
+function wfWaitForSlaves( $maxLag, $wiki = false ) {
 	if( $maxLag ) {
-		$lb = wfGetLB();
+		$lb = wfGetLB( $wiki );
 		list( $host, $lag ) = $lb->getMaxLag();
 		while( $lag > $maxLag ) {
 			$name = @gethostbyaddr( $host );
