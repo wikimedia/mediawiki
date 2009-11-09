@@ -785,6 +785,11 @@ if( !mv_embed_path ) {
 	
 })(window.$mw);
 
+//load in js2 stopgap into proper location: 
+if(gMsg){
+	$mw.lang.loadGM( gMsg )
+}
+
 //setup legacy global shortcuts:
 var loadGM = $mw.lang.loadGM;
 var loadRS = $mw.lang.loadRS;
@@ -1176,7 +1181,7 @@ function mwdomReady( force ) {
 
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
 function js2AddOnloadHook( func ) {	
-	js_log('js2AddOnloadHook:: jquery:' +func);	
+	//js_log('js2AddOnloadHook:: jquery:' +func);	
 	//check for jQuery then add the load event (to run after video tag rewrites (if present) 
 	mvJsLoader.jQueryCheck( function() {
 		if( mvJsLoader.doneReadyEvents ) {
