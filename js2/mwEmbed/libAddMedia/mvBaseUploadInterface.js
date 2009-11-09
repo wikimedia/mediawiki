@@ -224,8 +224,8 @@ mvBaseUploadInterface.prototype = {
 			//set the action to the api url:
 			$j(_this.editForm).attr('action', _this.api_url );
 			
-			js_log('do iframe form submit to: ' +  $j(_this.editForm).attr('target') 
-					+ ' destName:' + $j(_this.editForm).find("[name='filename']").val() );					
+			js_log('do iframe form submit to: ' +  $j(_this.editForm).attr('target') );
+			js_log(' destName:' + $j(_this.editForm).find("[name='filename']").val() );					
 			
 			
 			//do post override
