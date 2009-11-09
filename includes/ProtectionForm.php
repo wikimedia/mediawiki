@@ -58,7 +58,7 @@ class ProtectionForm {
 		// Set instance variables.
 		$this->mArticle = $article;
 		$this->mTitle = $article->mTitle;
-		$this->mApplicableTypes = $this->mTitle->getProtectionTypes();
+		$this->mApplicableTypes = $this->mTitle->getRestrictionTypes();
 		
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
