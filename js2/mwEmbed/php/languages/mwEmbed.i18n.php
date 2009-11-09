@@ -53,6 +53,14 @@ $messages['en'] = array(
 	'mwe-add-edit-subs'	=> 'Add/edit subtitles',
 
 	/*
+	 * js file: /libTimedText/mvTimeTextEdit.js
+	 */
+	 'mwe-add-subs-file'      => 'Add/replace subtitle',
+	 'mwe-add-subs-file-title'=> 'Select subtitle to upload',
+	 'mwe-error-only-srt'     => 'Only srt files can be uploaded right now.',
+	 'mwe-watch-video'        => 'Watch video',
+
+	/*
 	 * js file: /libSequencer/mvTimedEffectsEdit.js
 	 */
 	'mwe-transition_in' => 'Transition in',

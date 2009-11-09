@@ -146,7 +146,7 @@ lcPaths({
 	"mvTimedEffectsEdit": "libSequencer/mvTimedEffectsEdit.js",
 
 	"mvTextInterface"	: "libTimedText/mvTextInterface.js",
-	"mvTimedTextEdit"	: "libTimedText/mvTimedTextEdit.js"
+	"mvTimeTextEdit"	: "libTimedText/mvTimeTextEdit.js"
 });
 
 // Dependency mapping for CSS files for self-contained included plugins:
@@ -786,7 +786,7 @@ if( !mv_embed_path ) {
 })(window.$mw);
 
 //load in js2 stopgap into proper location: 
-if(gMsg){
+if( typeof gMsg != 'undefined'){
 	$mw.lang.loadGM( gMsg )
 }
 

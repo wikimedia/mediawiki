@@ -55,8 +55,20 @@ mvTextInterface.prototype = {
 								'apprefix' : _this.pe.wikiTitleKey,
 								'apnamespace' : 102
 							}
-					}, function( subData ) {					
-						_this.doProcSubPages( subData, wgServer + wgScriptPath);
+					}, function( subData ) {
+						if(	subData.error && subData.error.code == 'apunknown_apnamespace'){
+							do_api_req({
+								'url' :	apiUrl,
+								'data': {
+									'list' : 'allpages',
+									'apprefix' : 'TimedText:' + _this.pe.wikiTitleKey,
+								}
+							}, function( subData ) {
+								_this.doProcSubPages( subData, wgServer + wgScriptPath);
+							});
+						}else{
+							_this.doProcSubPages( subData, wgServer + wgScriptPath);
+						}
 					});
 				}
 			}else{
