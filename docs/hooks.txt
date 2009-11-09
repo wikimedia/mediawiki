@@ -1260,11 +1260,6 @@ $errorMsg: an html message string of an error
 $article: the page the form is shown for
 $out: OutputPage object
 
-'ProtectionFormGetApplicableTypes': Allows extensions to modify the types of protection
-  that can be applied.
-$title: The title in question.
-&$types: The types of protection available.
-
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
 &$obj: RawPage object
 &$text: The text that's going to be the output
@@ -1502,6 +1497,11 @@ $extTypes: associative array of extensions types
 database result
 &$titleArray: set this to an object to override the default object returned
 $res: database result used to create the object
+
+'TitleGetRestrictionTypes': Allows extensions to modify the types of protection
+  that can be applied.
+$title: The title in question.
+&$types: The types of protection available.
 
 'TitleMoveComplete': after moving an article (title)
 $old: old title

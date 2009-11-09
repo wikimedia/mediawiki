@@ -971,7 +971,7 @@ class Title {
 	public function isProtected( $action = '' ) {
 		global $wgRestrictionLevels;
 		
-		$restrictionTypes = $this->getProtectionTypes();
+		$restrictionTypes = $this->getRestrictionTypes();
 
 		# Special pages have inherent protection
 		if( $this->getNamespace() == NS_SPECIAL )
@@ -1885,7 +1885,7 @@ class Title {
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = NULL ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		
-		$restrictionTypes = $this->getProtectionTypes();
+		$restrictionTypes = $this->getRestrictionTypes();
 
 		foreach( $restrictionTypes as $type ){
 			$this->mRestrictions[$type] = array();
@@ -3768,7 +3768,7 @@ class Title {
 
 	}
 	
-	public function getProtectionTypes() {
+	public function getRestrictionTypes() {
 		global $wgRestrictionTypes;
 		$types = $this->exists() ? $wgRestrictionTypes : array('create');
 		
@@ -3776,8 +3776,7 @@ class Title {
 			$types[] = 'upload';
 		}
 		
-		wfRunHooks( 'ProtectionFormGetApplicableTypes',
-				array( $this, &$types ) );
+		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
 				
 		return $types;
 	}

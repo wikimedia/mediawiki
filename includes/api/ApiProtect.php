@@ -69,7 +69,7 @@ class ApiProtect extends ApiBase {
 				$this->dieUsageMsg(array('toofewexpiries', count($expiry), count($params['protections'])));
 		}
 		
-		$restrictionTypes = $titleObj->getProtectionTypes();
+		$restrictionTypes = $titleObj->getRestrictionTypes();
 			
 		$protections = array();
 		$expiryarray = array();

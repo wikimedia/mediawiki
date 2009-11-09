@@ -2258,7 +2258,7 @@ class Article {
 	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
 		global $wgUser, $wgContLang;
 		
-		$restrictionTypes = $this->mTitle->getProtectionTypes();
+		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 
 		$id = $this->mTitle->getArticleID();
 		if ( $id <= 0 ) {
