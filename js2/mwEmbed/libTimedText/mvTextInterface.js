@@ -173,7 +173,7 @@ mvTextInterface.prototype = {
 				_this.editlink = this.pe.media_element.linkback;
 			}else if(this.pe.wikiTitleKey && wgServer && wgScript) { //check for wikiTitleKey (for edit linkback)
 				//only local:
-				_this.editlink = wgServer + wgScript + '?title=TimedText:' + this.pe.wikiTitleKey +'.'+ wgContentLanguage + '.srt&action=edit';	
+				_this.editlink = wgServer + wgScript + '?title=TimedText:' + this.pe.wikiTitleKey +'.'+ wgUserLanguage + '.srt&action=edit';	
 			}
 		}		
 		$j.each( this.pe.media_element.sources, function(inx, source){
