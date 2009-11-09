@@ -10,7 +10,7 @@ var mwRemoteVersion = '1.02';
 reqArguments = urlparts[1];
 
 //setup up request Params: 
-var reqParts = urlparts[1].split('&');
+var reqParts = urlparts[1].substring(1).split('&');
 var reqParam={};
 for(var i=0;i< reqParts.length; i++){
 	var p = reqParts[i].split('=');
@@ -28,7 +28,7 @@ addOnloadHook( function(){
 function doPageSpecificRewrite() {
 	// Add media wizard
 	if( wgAction == 'edit' || wgAction == 'submit' ) {
-		load_mv_embed( function() {			
+		load_mv_embed( function() {	
 			loadExternalJs( mwEmbedHostPath + '/editPage.js' + reqArguments );
 		} );
 	}
@@ -177,8 +177,12 @@ function load_mv_embed( callback ) {
 			}else{
 				rurl+='&urid=' + mwRemoteVersion;
 			}
+			if(reqParam['debug'])
+				rurl+='&debug=true';
+
 			if(reqParam['uselang'] )
 				rurl+='&uselang=' + reqParam['uselang'];
+				
 			//do import url:  
 			importScriptURI(rurl); 
 		}else{
