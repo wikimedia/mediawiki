@@ -44,7 +44,7 @@ class jsScriptLoader {
 
 	function doScriptLoader() {
 		global 	$wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $IP,
-				$wgEnableScriptMinify, $wgUseFileCache, $wgExtensionMessagesFiles;
+		$wgEnableScriptMinify, $wgUseFileCache, $wgExtensionMessagesFiles;
 
 		//load the ExtensionMessagesFiles
 		$wgExtensionMessagesFiles['mwEmbed'] = realpath( dirname( __FILE__ ) ) . '/php/languages/mwEmbed.i18n.php';
@@ -83,7 +83,7 @@ class jsScriptLoader {
 		if ( $wgUseFileCache && !$this->debug ) {
 			$status = $this->sFileCache->saveToFileCache( $this->jsout );
 			if ( $status !== true )
-				$this->error_msg .= $status;
+			$this->error_msg .= $status;
 		}
 		// Check for an error msg
 		if ( $this->error_msg != '' ) {
@@ -120,7 +120,7 @@ class jsScriptLoader {
 				if ( in_array( strtolower( $skin ), $skinNames ) ) {
 					// If in debug mode, add a comment with wiki title and rev:
 					if ( $this->debug )
-						$jsout .= "\n/**\n* GenerateUserJs: \n*/\n";
+					$jsout .= "\n/**\n* GenerateUserJs: \n*/\n";
 					return $jsout . $sk->generateUserJs( $skin ) . "\n";
 				}
 			} else {
@@ -136,7 +136,7 @@ class jsScriptLoader {
 				if ( $a->getID() !== 0 ) {
 					// If in debug mode, add a comment with wiki title and rev:
 					if ( $this->debug )
-						$jsout .= "\n/**\n* WikiJSPage: " . htmlspecialchars( $title_block ) . " rev: " . $a->getID() . " \n*/\n";
+					$jsout .= "\n/**\n* WikiJSPage: " . htmlspecialchars( $title_block ) . " rev: " . $a->getID() . " \n*/\n";
 
 					return $jsout . $a->getContent() . "\n";
 				}
@@ -156,7 +156,7 @@ class jsScriptLoader {
 
 			if ( trim( $file_name ) != '' ) {
 				if ( $this->debug )
-					$jsout .= "\n/**\n* File: " . htmlspecialchars( $file_name ) . "\n*/\n";
+				$jsout .= "\n/**\n* File: " . htmlspecialchars( $file_name ) . "\n*/\n";
 
 				$jsFileStr = $this->doGetJsFile( $file_name ) . "\n";
 				if( $jsFileStr ){
@@ -167,7 +167,7 @@ class jsScriptLoader {
 				}
 			}
 		}
-				//if we did not return some js
+		//if we did not return some js
 		$this->error_msg .= "\nUnknown error\n";
 		return false;
 	}
@@ -200,10 +200,10 @@ class jsScriptLoader {
 		$m = array();
 		if( preg_match(
 			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
-			$_SERVER['HTTP_ACCEPT_ENCODING'],
-			$m ) ) {
+		$_SERVER['HTTP_ACCEPT_ENCODING'],
+		$m ) ) {
 			if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) )
-				return false;
+			return false;
 			//no gzip support found
 			return true;
 		}
@@ -259,9 +259,9 @@ class jsScriptLoader {
 								//make sure its a valid wikipage before doing processing
 								$t = Title::newFromDBkey( substr( $reqClass, 3) );
 								if( $t->exists()
-									&& ( $t->getNamespace() == NS_MEDIAWIKI
-									|| $t->getNamespace() == NS_USER ) ){
-										$doAddWT = true;
+								&& ( $t->getNamespace() == NS_MEDIAWIKI
+								|| $t->getNamespace() == NS_USER ) ){
+									$doAddWT = true;
 								}
 							}
 						}
@@ -384,8 +384,8 @@ class jsScriptLoader {
 	function doProcessJs( $str ){
 		global $wgEnableScriptLocalization;
 		// Strip out js_log debug lines. Not much luck with this regExp yet:
-		// if( !$this->debug )
-		//	 $str = preg_replace('/\n\s*js_log\s*\([^\)]([^;]|\n])*;/', "\n", $str);
+		if( !$this->debug )
+			 $str = preg_replace('/\n\s*js_log\(([^\)]*\))*\s*[\;\n]/U', "\n", $str);
 
 		// Do language swap by index:
 		if ( $wgEnableScriptLocalization ){
@@ -422,16 +422,16 @@ class jsScriptLoader {
 				switch( $char ) {
 					case '"':
 						$inquote = !$inquote;
-					break;
+						break;
 					case '}':
 						if( ! $inquote){
 							$returnIndex['e'] =$i;
 							return $returnIndex;
 						}
-					break;
+						break;
 					case '\\':
 						if ( $inquote ) $ignorenext = true;
-					break;
+						break;
 				}
 			}
 		}
@@ -453,14 +453,14 @@ class jsScriptLoader {
 
 		$inx = self::getLoadGmIndex( $str );
 		if(!$inx)
-			return '';
+		return '';
 		return FormatJson::decode( '{' . substr($str, $inx['s'], ($inx['e']-$inx['s'])) . '}', true);
 	}
 
 	static public function getMsgKeys(& $jmsg, $langCode = false){
 		global $wgContLanguageCode;
 		if(!$langCode)
-			$langCode = $wgContLanguageCode;
+		$langCode = $wgContLanguageCode;
 		//get the msg keys for the a json array
 		foreach ( $jmsg as $msgKey => $default_en_value ) {
 			$jmsg[$msgKey] = wfMsgGetKey( $msgKey, true, $langCode, false );
@@ -514,7 +514,7 @@ class simpleFileCache {
 
 		// Check for defined files::
 		if( is_file( $this->filename ) )
-			return $this->filename;
+		return $this->filename;
 
 		if( is_file(  $this->filename .'.gz') ){
 			$this->filename.='.gz';
@@ -522,7 +522,7 @@ class simpleFileCache {
 		}
 		//check the update the name based on the $wgUseGzip config var
 		if ( isset($wgUseGzip) && $wgUseGzip )
-			$this->filename.='.gz';
+		$this->filename.='.gz';
 	}
 
 	public function isFileCached() {
@@ -547,10 +547,10 @@ class simpleFileCache {
 		$m = array();
 		if ( preg_match(
 			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
-			$_SERVER['HTTP_ACCEPT_ENCODING'],
-			$m ) ) {
+		$_SERVER['HTTP_ACCEPT_ENCODING'],
+		$m ) ) {
 			if ( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) )
-				return false;
+			return false;
 
 			return true;
 		}
@@ -562,7 +562,7 @@ class simpleFileCache {
 			return 'Error: Called saveToFileCache with $wgUseFileCache off';
 		}
 		if ( strcmp( $text, '' ) == 0 )
-			return 'saveToFileCache: empty output file';
+		return 'saveToFileCache: empty output file';
 
 		if ( $wgUseGzip ) {
 			$outputText = gzencode( trim( $text ) );
@@ -574,7 +574,7 @@ class simpleFileCache {
 		$status = $this->checkCacheDirs();
 
 		if ( $status !== true )
-			return $status;
+		return $status;
 		$f = fopen( $this->filename, 'w' );
 		if ( $f ) {
 			fwrite( $f, $outputText );

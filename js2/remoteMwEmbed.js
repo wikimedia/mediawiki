@@ -5,7 +5,7 @@
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = 58776;
+var mwRemoteVersion = '1.0';
 
 reqArguments = urlparts[1];
 
@@ -139,7 +139,7 @@ function rewrite_for_OggHandler( vidIdList ){
 			if( vidIdList.length != 0 ){
 				setTimeout( function(){
 					procVidId( vidIdList.pop() )
-				}, 1);
+				}, 10);
 			}
 		});
 	};

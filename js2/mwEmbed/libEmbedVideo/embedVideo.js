@@ -1726,10 +1726,11 @@ embedVideo.prototype = {
 		//@@todo support position config
 		var loc = $j(this).position();			
 		if($j('#metaBox_'+this.id).length==0){
+			var theight =  (parseInt( this.height ) < 200) ? 200 : this.height;
 			$j(this).after('<div class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;z-index:10;'+
 						'top:' + (loc.top) + 'px;' +
-						'left:' + (parseInt( loc.left ) + parseInt(this.width) + 10 )+'px;' +
-						'height:'+ parseInt( this.height )+'px;width:400px;' +						
+						'left:' + (parseInt( loc.left ) + parseInt(this.width) + 10 ) + 'px;' +
+						'height:' + theight + 'px;width:400px;' +						
 						'display:none;" ' +
 						'id="metaBox_' + this.id + '">'+
 							mv_get_loading_img() +

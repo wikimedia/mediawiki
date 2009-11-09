@@ -23,7 +23,7 @@ ctrlBuilder.prototype = {
 
 		//check for skin overrides for ctrlBuilder
 		if( _global[ embedObj.skin_name + 'Config'] ){
-			//clone as to not overide prototype: 	
+			//clone as to not override prototype: 	
 			var _this = $j.extend(true, {}, this, _global[ embedObj.skin_name + 'Config']);
 			return _this;
 		}
@@ -119,8 +119,9 @@ ctrlBuilder.prototype = {
 			$j('#dc_'+ embedObj.id).hover(
 				function(){
 					if($j('#gnp_' + embedObj.id).length==0){
+						var toppos = ( embedObj.instanceOf == 'mvPlayList')?25:10;
 						$j(this).append('<div id="gnp_' + embedObj.id + '" class="ui-state-highlight ui-corner-all" ' +
-							'style="position:absolute;display:none;background:#FFF;top:10px;left:10px;right:10px;">' +
+							'style="position:absolute;display:none;background:#FFF;top:'+toppos+'px;left:10px;right:10px;">' +
 							gM('mwe-for_best_experience') +
 						'<br><input id="ffwarn_'+embedObj.id+'" type=\"checkbox\">' +
 							gM('mwe-do_not_warn_again') +
@@ -128,7 +129,7 @@ ctrlBuilder.prototype = {
 						$j('#ffwarn_'+embedObj.id).click(function(){
 							if( $j(this).is(':checked') ){
 								//set up a cookie for 7 days:
-								$j.cookie('dismissNativeWarn', true, { expires: 5 });
+								$j.cookie('dismissNativeWarn', true, { expires: 7 });
 								//set the current instance
 								_global['dismissNativeWarn'] = true;
 								$j('#gnp_' + embedObj.id).fadeOut('slow');
@@ -170,7 +171,7 @@ ctrlBuilder.prototype = {
 			$j('#' +embedObj.id).get(0).fullscreen();
 		});
 
-		js_log(" should add slider binding: " + $tp.find('.play_head').length) ;
+		js_log(" should add slider binding: " + $tp.find('.play_head').length);
 		$tp.find('.play_head').slider({
 			range: "min",
 			value: 0,
