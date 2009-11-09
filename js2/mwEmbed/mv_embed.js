@@ -88,6 +88,7 @@ lcPaths({
 	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
 	"$j.contextMenu"	: "jquery/plugins/jquery.contextMenu.js",
 	"$j.fn.suggestions"	: "jquery/plugins/jquery.suggestions.js",
+	"$j.fn.textSelection"	: "jquery/plugins/jquery.textSelection.js",
 
 	"$j.effects.blind"		: "jquery/jquery.ui/ui/effects.blind.js",
 	"$j.effects.drop"		: "jquery/jquery.ui/ui/effects.drop.js",
@@ -1004,13 +1005,14 @@ var mvJsLoader = {
 	 * checks for jQuery and adds the $j noConflict var
 	 */
 	jQueryCheck: function( callback ) {
-		js_log( 'jQueryCheck::' );
+		//js_log( 'jQueryCheck::' );
+		var _this = this;
 		// Skip stuff if $j is already loaded:
 		if( _global['$j'] && callback ){
 			callback();
-			return ;
-		}
-		var _this = this;
+			if( _this.jQuerySetupFlag )
+				return ;
+		}		
 		// Load jQuery
 		_this.doLoad([
 			'window.jQuery'
@@ -1020,7 +1022,7 @@ var mvJsLoader = {
 				_global['$j'] = jQuery.noConflict();
 			}
 			if( _this.jQuerySetupFlag == false){
-				js_log('setup mv_embed jQuery bindings');
+				//js_log('setup mv_embed jQuery bindings');
 				//setup our global settings using the (jQuery helper)
 
 				// Set up the skin path
@@ -1104,8 +1106,10 @@ var mvJsLoader = {
 	},
 	runReadyEvents: function() {
 		js_log( "runReadyEvents" );
-		while( this.onReadyEvents.length ) {
-			this.onReadyEvents.shift()();
+		while( this.onReadyEvents.length ) {	
+			var func = this.onReadyEvents.shift();
+			//js_log('run onReady:: ' + func );
+			func();
 		}
 	}
 }
@@ -1172,15 +1176,16 @@ function mwdomReady( force ) {
 
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
 function js2AddOnloadHook( func ) {
-	//js_log('js2AddOnloadHook::' );	
-	// If we have already run the DOM-ready function, just run the function directly:
-	if( mvJsLoader.doneReadyEvents ) {	
-		func();
-	} else {
-		mvJsLoader.jQueryCheck( function() {
+	//js_log('js2AddOnloadHook:: jquery:' + typeof window.jQuery + ' $j: ' + typeof $j);	
+	//check for jQuery then add the load event (to run after video tag rewrites (if present) 
+	mvJsLoader.jQueryCheck( function() {
+		if( mvJsLoader.doneReadyEvents ) {
+			//js_log('run queued event: ' + func);	
+			func();
+		} else {		
 			mvJsLoader.addLoadEvent( func );
-		})
-	}
+		}
+	});
 }
 // Deprecated mwAddOnloadHook in favor of js2 naming (for clear separation of js2 code from old MW code
 var mwAddOnloadHook = js2AddOnloadHook;
@@ -1302,6 +1307,7 @@ function mv_jqueryBindings() {
 				mvJsLoader.doLoadDepMode([
 					[	'remoteSearchDriver',
 						'$j.cookie',
+						'$j.fn.textSelection',
 						'$j.ui'
 					],[
 						'$j.ui.resizable',

@@ -46,7 +46,7 @@ js2AddOnloadHook( function() {
 		);
 	}		
 	//add to old toolbar if wikiEditor did not remove '#toolbar' from the page:    
-	setTimeout(function(){					
+	setTimeout(function(){			
 		if( $j('#btn-add-media-wiz').length == 0 && $j( '#toolbar' ).length != 0 ){
 			$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
 				mv_skin_img_path + 'Button_add_media.png">' );
