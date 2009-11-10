@@ -1005,6 +1005,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'compareselectedversions'  => 'Confronta łe version selezionà',
 'showhideselectedversions' => 'Mostra/scondi version selessionà',
 'editundo'                 => 'anuła',
+'diff-multi'               => '({{PLURAL:$1|Una revision intermedia non mostrà|$1 revision intermedie non mostrà}}.)',
 
 # Search results
 'searchresults'                    => 'Risultato de la riserca',
@@ -2205,6 +2206,7 @@ Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
 'ipb_already_blocked'             => 'L\'utente "$1" el xe zà blocà',
 'ipb-needreblock'                 => '== Xà blocà ==
 $1 xe xà blocà. Vuto canbiar le inpostassion?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Altro bloco|Altri blochi}}',
 'ipb_cant_unblock'                => 'Eror: Inpossibile catar el bloco con ID $1. El bloco el podarìa èssar zà stà cavà.',
 'ipb_blocked_as_range'            => "Eror: L'indirizo IP $1 no'l xe sogeto a bloco individual e no'l pol èssar sblocà. El bloco el xe invesse ativo a livel de l'intervalo $2, che el pol èssar sblocà.",
 'ip_range_invalid'                => 'Intervało de indirissi IP mìa vałido.',

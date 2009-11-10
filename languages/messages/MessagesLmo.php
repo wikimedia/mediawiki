@@ -204,7 +204,7 @@ süi titul dai sezziún (JavaScript)',
 'category-empty'                => "''Per 'l mument quela categuria chì la gh'ha denter né de paginn ne d'archivi mültimedia''",
 'hidden-categories'             => '{{PLURAL:$1|Categuria scundüda|Categurij scundüü}}',
 'hidden-category-category'      => 'Categurij scundüü',
-'category-subcat-count'         => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà una sota-categuria, missa chì de sota.|Quela categuria chì la gh'ha {{PLURAL:$1|una sota-categuria|$1 sota-categurij}},  seguent sü un tutal de $2.}}",
+'category-subcat-count'         => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà una sota-categuria, missa chì de sota.|Quela categuria chì la gh'ha {{PLURAL:$1|una sota-categuria|$1 sota-categurij}} chì de sota, sü un tutal de $2.}}",
 'category-subcat-count-limited' => "Quela categuria chì la gh'ha denter {{PLURAL:$1|la sut-categuria| i $1 sut-categurij}} chì abass.",
 'category-article-count'        => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà quela pagina chì.|In quela categuria chì gh'è {{PLURAL:$1|la pagina indicada|i $1 paginn indicaa}} de $2 che gh'hinn in tutal.}}",
 'listingcontinuesabbrev'        => 'cont.',
@@ -762,7 +762,9 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'filehist-comment'          => 'Uget',
 'imagelinks'                => 'Ligamm al file',
 'linkstoimage'              => "{{PLURAL:$1|Quela pagina chì la gh'ha |$1 Quij paginn chì i gh'hann}} ligam al file:",
-'sharedupload'              => "Quel archivi chì al vegn de $1 e'l pö vess dupraa d'alter pruget",
+'sharedupload'              => "Quel archivi chì al vegn de $1 e'l pö vess dupraa da alter pruget",
+'sharedupload-desc-here'    => "Quel ''file'' chì al vegn de $1 e 'l pö vess druvaa da alter pruget. 
+La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada chì suta.",
 'uploadnewversion-linktext' => 'Carga una versión növa de quel file chì',
 
 # File deletion
@@ -902,6 +904,8 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 
 # Delete
 'deletepage'             => 'Scancela la pagina',
+'excontent'              => "'l cuntegnüü l'era: '$1'",
+'excontentauthor'        => "'l cuntegnüü l'era: '$1' (e l'ünich cuntribüdur l'era staa '[[Special:Contributions/$2|$2]]')",
 'historywarning'         => "'''Ocio!''' La pagina che a sii adree a scancelà la gh'a una stòria cun $1 {{PLURAL:$1|revisión|revisionn}}:",
 'confirmdeletetext'      => "A te see lì per scancelà una pagina cun tüta la sua crunulugìa.
 Per piasè, dà la cunferma che te gh'hee intenzión de andà inanz cun 'l scancelament, che te see al curent di cunseguenz, e che te see adree a fàl segónd i regulament de [[{{MediaWiki:Policy-url}}]].",

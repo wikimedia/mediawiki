@@ -628,6 +628,31 @@ $messages = array(
 'watching'   => 'Шинҗллһнә бүтлклд немлһн...',
 'unwatching' => 'Шинҗлһнә бүрткләс һарһлһн...',
 
+'changed'     => 'сольв',
+'created'     => 'бүтәв',
+'enotif_body' => 'Мендвт, күндтә $WATCHINGUSERNAME,
+
+$PAGEEDITDATE өдрт «{{SITENAME}}» төсвин $PAGETITLE гидг нерәдлһтә халхиг $PAGEEDITOR $CHANGEDORCREATED. Ода болсн халхна янз үзҗ седхлә, $PAGETITLE_URL хәләтн.
+
+$NEWPAGE
+
+Хүврлһнә учр-утх: $PAGESUMMARY $PAGEMINOREDIT
+
+Хүврлчт бичг йовуллһн:
+e-mail\'ар $PAGEEDITOR_EMAIL
+бикиһәр $PAGEEDITOR_WIKI
+
+Если Вы не посетите эту страницу, то в случае её дальнейших изменений уведомлений больше не будет. Вы можете также отключить опцию уведомления для всех страниц в вашем списке наблюдения.
+
+             {{grammar:genitive|{{SITENAME}}}} зәңгллһнә церглт
+
+--
+Тана шинҗллһнә сеткүлин көгүдиг сольҗ седхлә, эниг дахтн:
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Хәрү холва болн тус:
+{{fullurl:{{MediaWiki:Helppage}}}}',
+
 # Delete
 'deletepage'            => 'Эн халхиг һарһҗ',
 'confirmdeletetext'     => 'Та цуг халхиг аль зургиг һарһҗ орхар бәәнәт.

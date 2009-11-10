@@ -770,7 +770,7 @@ Teña en conta que non pode empregar "enviarlle un correo electrónico a este us
 
 O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
 Por favor, inclúa eses datos nas consultas que faga.',
-'blockednoreason'                  => 'non foi dada ningunha razón',
+'blockednoreason'                  => 'non se deu ningunha razón',
 'blockedoriginalsource'            => "O código fonte de '''$1''' móstrase a continuación:",
 'blockededitsource'                => "O texto das '''súas edicións''' en '''$1''' móstrase a continuación:",
 'whitelistedittitle'               => 'Cómpre acceder ao sistema para poder editar',
@@ -1092,6 +1092,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'compareselectedversions'  => 'Comparar as versións seleccionadas',
 'showhideselectedversions' => 'Mostrar/Agochar as versións seleccionadas',
 'editundo'                 => 'desfacer',
+'diff-multi'               => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial.)',
 
 # Search results
 'searchresults'                    => 'Resultados da procura',

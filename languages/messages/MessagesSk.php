@@ -2170,6 +2170,7 @@ Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných za
 'protectexpiry'               => 'Zamknuté do:',
 'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',
+'protect-unchain-permissions' => 'Odomknúť ďalšie možnosti ochrany',
 'protect-text'                => "Tu si môžete pozrieť a zmeniť úroveň ochrany stránky '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
 Tu sú aktuálne nastavenia stránky '''$1''':",
@@ -2368,7 +2369,8 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipblocklist-sh-tempblocks'       => '$1 dočasných zablokovaní',
 'ipblocklist-sh-addressblocks'    => '$1 zablokovaní jednotlivej IP adresy',
 'ipblocklist-submit'              => 'Hľadať',
-'ipblocklist-otherblocks'         => 'Iné blokovania',
+'ipblocklist-localblock'          => 'Lokálny blok',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Iný blok|Iné blokovania}}',
 'blocklistline'                   => '$1, $2 zablokoval $3 (ukončenie $4)',
 'infiniteblock'                   => 'na neurčito',
 'expiringblock'                   => 'vyprší $1 $2',
@@ -2408,6 +2410,7 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'ipb_already_blocked'             => '„$1“ je už zablokovaný',
 'ipb-needreblock'                 => '== Už je zablokovaný ==
 $1 je už zablokovaný. Chcete zmeniť voľby blokovania?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Iný blok|Iné blokovania}}',
 'ipb_cant_unblock'                => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
 'ipb_blocked_as_range'            => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',
 'ip_range_invalid'                => 'Neplatný IP rozsah.',
@@ -2818,8 +2821,8 @@ $1',
 'nextdiff'     => 'Ďalšia úprava →',
 
 # Media information
-'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód, po spustení ktorého by bol váš systém kompromitovaný.
-<hr />",
+'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód.
+Po spustení môže byť váš systém kompromitovaný.<hr />",
 'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',

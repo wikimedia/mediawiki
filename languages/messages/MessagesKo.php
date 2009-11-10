@@ -1004,6 +1004,9 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'rev-deleted-unhide-diff'     => "이 비교에 사용된 판 가운데 하나가 '''삭제'''되었습니다.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에 자세한 내용이 있을 수 있습니다.
 관리자로서 작업하고 싶다면 여전히 [$1 비교 보기]를 계속할 수 있습니다.",
+'rev-suppressed-unhide-diff'  => "이 비교에 사용된 판 가운데 하나가 '''숨김'''되었습니다.
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]]에 자세한 내용이 있을 수 있습니다.
+관리자로 작업하고 싶다면 [$1 해당 편집]을 볼 수도 있습니다.",
 'rev-delundel'                => '보이기/숨기기',
 'rev-showdeleted'             => '표시',
 'revisiondelete'              => '판 삭제/복구',
