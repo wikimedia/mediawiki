@@ -208,6 +208,7 @@ body {
 	body.rtl div.vectorMenu {
 		direction: rtl;
 	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	/* @noflip */
 	#head div.vectorMenu h5 {
 		float: left;
@@ -217,6 +218,10 @@ body {
 		padding-left: 1px;
 		margin-left: -1px;
 		font-size:100% !important;
+	}
+	/* IGNORED BY IE6 */
+	#head div.vectorMenu > h5 {
+		background-image: none;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorMenu h5 a {
@@ -332,6 +337,7 @@ body {
 	}
 	#simpleSearch label {
 		font-size: 0.8em;
+		top: 0.25em;
 	}
 	#simpleSearch input#searchInput {
 		margin: 0;
