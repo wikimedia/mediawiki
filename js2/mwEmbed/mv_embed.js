@@ -320,7 +320,7 @@ if( !mv_embed_path ) {
 	$.lang.gMsgSwap = function( key , args ){
 		if(! gMsg[ key ])
 			return '&lt;' + key + '&gt;';// Missing key placeholder
-		//get the messege string:
+		//get the messeage string:
 		var ms = gMsg[ key ];
 
 		//replace values
@@ -351,7 +351,7 @@ if( !mv_embed_path ) {
 	/**
 	* Add Supported Magic Words to parser
 	*/
-	//set the setupflag to false:
+	// Set the setupflag to false:
 	$.lang.doneSetup=false;
 	$.lang.magicSetup = function(){
 		if(!$.lang.doneSetup){
@@ -522,16 +522,15 @@ if( !mv_embed_path ) {
 		// JavaScript does not let you choose the precision when rounding
 		var p = Math.pow(10,round);
 		var size = Math.round( size * p ) / p;
-		//@@todo we need a formatNum and we need to request some special packaged info to deal with that case.
 		return gM( msg , size );
 	};
 	
 	$.lang.formatNumber = function( num ){
 		/*
-			addSeparatorsNF
-		Str: The number to be formatted, as a string or number.		
-		outD: The decimal character for the output, such as ',' for the number 100,2
-		sep: The separator character for the output, such as ',' for the number 1,000.2
+		*	addSeparatorsNF
+		* @param Str: The number to be formatted, as a string or number.		
+		* @param outD: The decimal character for the output, such as ',' for the number 100,2
+		* @param sep: The separator character for the output, such as ',' for the number 1,000.2
 		*/ 
 		function addSeparatorsNF(nStr, outD, sep){
 			nStr += '';
@@ -568,9 +567,7 @@ if( !mv_embed_path ) {
 	/**
 	 * parser addMagic
 	 *
-	 * lets you add a set of magic keys and associated callback functions
-	 * callback: @param ( Object Template )
-	 * callback: @return the transformed template output
+	 * Lets you add a set of magic keys and associated callback functions
 	 *
 	 * @param object magicSet key:callback
 	 */
@@ -603,7 +600,7 @@ if( !mv_embed_path ) {
 				 */
 
 				// ~ probably a better algorithm out there / should mirror php parser flow ~
-				//	 (we are already running white-space issues ie php parse strips whitespace diffrently)
+				//	 (we are already running white-space issues ie php parse strips whitespace differently)
 				
 				// ... but I am having fun with recursion so here it is...
 				// or at least mirror: http://www.mediawiki.org/wiki/Extension:Page_Object_Model
@@ -627,7 +624,7 @@ if( !mv_embed_path ) {
 						}
 						if(!node['t'])
 							node['t']='';
-						//dont put closures into output:
+						//don't put closures into output:
 						if( txt[a] &&  txt[a]!='}' )
 								node['t'] += txt[a];
 								
@@ -730,7 +727,7 @@ if( !mv_embed_path ) {
 			},
 			
 			/*
-			 * parsed template api ~losely based off of ~POM~
+			 * parsed template api ~loosely based off of ~POM~
 			 * http://www.mediawiki.org/wiki/Extension:Page_Object_Model
 			 */
 			
@@ -762,10 +759,10 @@ if( !mv_embed_path ) {
 			/**
 			 * Returns the transformed wikitext
 			 * 
-			 * Build output from swappable index 
+			 * Build output from swapable index 
 			 * 		(all transforms must be expanded in parse stage and linearly rebuilt)  
 			 * Alternatively we could build output using a place-holder & replace system 
-			 * 		(this lets us be slightly more slopy with ordering and indexes, but probably slower)
+			 * 		(this lets us be slightly more sloppy with ordering and indexes, but probably slower)
 			 * 
 			 * Ideal: we build a 'wiki DOM' 
 			 * 		When editing you update the data structure directly
@@ -827,7 +824,7 @@ function mv_set_loading(target, load_id){
 }
 
 /**
-* mvJsLoader class handles initialization and js file loads
+* mvJsLoader class handles initialisation and js file loads
 */
 var mvJsLoader = {
 	libreq : {},
@@ -1028,7 +1025,7 @@ var mvJsLoader = {
 			}
 			if( _this.jQuerySetupFlag == false){
 				//js_log('setup mv_embed jQuery bindings');
-				//setup our global settings using the (jQuery helper)
+				// Setup our global settings using the (jQuery helper)
 
 				// Set up the skin path
 				_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' + $mw.conf['jui_skin'] + '/';
@@ -1076,13 +1073,12 @@ var mvJsLoader = {
 				]
 			];
 			
-			//add any requested skins (suports multiple skins per single page)
+			//add any requested skins (supports multiple skins per single page)
 			if( $mw.skin_list ){
 				for(var i in $mw.skin_list  ){
 					depReq[0].push( $mw.skin_list[i] + 'Config' );
 				}
-			}
-				
+			}				
 
 			// Add PNG fix if needed:
 			if( $j.browser.msie || $j.browser.version < 7 )
@@ -1192,7 +1188,7 @@ function js2AddOnloadHook( func ) {
 		}
 	});
 }
-// Deprecated mwAddOnloadHook in favor of js2 naming (for clear separation of js2 code from old MW code
+// Deprecated mwAddOnloadHook in favour of js2 naming (for clear separation of js2 code from old MW code
 var mwAddOnloadHook = js2AddOnloadHook;
 /*
  * This function allows for targeted rewriting
@@ -1228,8 +1224,8 @@ window.onload = function () {
  * Store all the mwEmbed jQuery-specific bindings
  * (set up after jQuery is available).
  *
- * These functions are genneraly are loaders that do the dynamic mapping of
- * dependencies for a given commponet
+ * These functions are generally are loaders that do the dynamic mapping of
+ * dependencies for a given component
  * 
  *
  */
@@ -1404,7 +1400,7 @@ function mv_jqueryBindings() {
 				}
 				return sElm['firefogg'];
 			} else {
-				// Avoid concurency
+				// Avoid concurrency
 				sElm['firefogg'] = 'loading';
 			}
 			// Add the selector
@@ -2005,7 +2001,7 @@ if ( typeof DOMParser == "undefined" ) {
 * Utility functions
 */
 function js_log( string ) {
-	///add any prepend debug strings if nessesary (used for cross browser)
+	// Add any prepend debug strings if necessary (used for cross browser)
 	if( $mw.conf['debug_pre'] )
 		string = $mw.conf['debug_pre']+ string;
 			

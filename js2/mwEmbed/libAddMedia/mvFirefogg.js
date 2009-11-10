@@ -27,51 +27,50 @@ var firefogg_install_links =  {
 };
 
 var default_firefogg_options = {
-	//what to do when finished uploading
+	// What to do when finished uploading
 	'done_upload_cb':false,
-	//if firefoog is enabled
+	// If firefoog is enabled
 	'fogg_enabled':false,
-	//the api url to upload to
+	// The api url to upload to
 	'api_url':null,
-	//the passthrough flag (enables un-modified uploads)
+	// The passthrough flag (enables un-modified uploads)
 	'passthrough': false,
-	//if we will be showing the encoder interface
+	// If we will be showing the encoder interface
 	'encoder_interface': false,
-	//if we want to limit the library functionality to "only firefoog" (no upload or progress bars)
+	// If we want to limit the library functionality to "only firefoog" (no upload or progress bars)
 	'only_fogg': false,
 
-
-	//callbacks:
+	// Callbacks:
 	'new_source_cb': false, //called on source name update passes along source name
 
-	//target control container or form (can't be left null)
+	// Target control container or form (can't be left null)
 	'selector': '',
 
-	//if not rewriting a form we are encoding local.
+	// If not rewriting a form we are encoding local.
 	'form_rewrite': false,
 
-	//taget buttons:
+	// Target buttons:
 	'target_btn_select_file': false,
 	'target_btn_select_new_file': false,
 
 	//'target_btn_select_url': false,
-
 	'target_btn_save_local_file': false,
 	'target_input_file_name': false,
 
 
-	//target install descriptions
+	// Target install descriptions
 	'target_check_for_fogg': false,
 	'target_installed': false,
 	'target_please_install': false,
 	'target_use_latest_fox': false,
-	//status:
+	
+	// Status:
 	'target_passthrough_mode':false,
 
-	//if firefogg should take over the form submit action
+	// If firefogg should take over the form submit action
 	'firefogg_form_action':true,
 	
-	//if we should show a preview of encoding progress 
+	// If we should show a preview of encoding progress 
 	'show_preview':false
 }
 
@@ -100,11 +99,11 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		if(!iObj)
 			iObj = {};
 
-		//if we have no api_url set upload to "post"
+		// If we have no api_url set upload to "post"
 		if(!iObj.api_url)
 			iObj.upload_mode = 'post';
 
-		//inherit iObj properties:
+		// Inherit iObj properties:
 		for(var i in default_firefogg_options){
 			if(iObj[i]){
 				this[i] = iObj[i];
@@ -112,11 +111,11 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				this[i] = default_firefogg_options[i];
 			}
 		}
-		//check if we want to limit the usage:
+		// Check if we want to limit the usage:
 		if(!this.only_fogg){
 			var myBUI = new mvBaseUploadInterface( iObj );
 
-			//standard extends code:
+			// Standard extends code:
 			for(var i in myBUI){
 				if(this[i]){
 					this['pe_'+ i] = myBUI[i];
@@ -139,7 +138,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				_this.form_rewrite = true;
 			}
 		}
-		//check if we are rewriting an input or a form:
+		// Check if we are rewriting an input or a form:
 		if( this.form_rewrite ){
 			this.setupForm();
 		}else{
@@ -147,7 +146,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			this.doControlBindings();
 		}
 
-		//doRewrite is done:
+		// doRewrite is done:
 		if(callback)
 			callback();
 	},
@@ -157,10 +156,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		$j.each(default_firefogg_options, function(target, na){
 			if(target.substring(0, 6)=='target'){
 				//js_log('check for target html: ' + target);
-				//check for the target if missing add to the output:
+				// Check for the target if missing add to the output:
 				if( _this[target] === false){
 					out += _this.getTargetHtml(target) + ' ';
-					//update the target selector
+					// Update the target selector
 				    _this[target] = _this.selector + ' .' + target;
 				}
 			}
@@ -179,7 +178,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	doControlBindings: function(){
 		var _this = this;
 
-		//hide all targets:
+		// Hide all targets:
 		var hide_target_list='';
 		var coma='';
 		$j.each( default_firefogg_options, function(target, na) {
@@ -188,20 +187,20 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				coma=',';
 			}
 		});
+		
+		// Hide all but check-for-fogg
 		$j( hide_target_list ).hide();
-		//now that the proper set of items has been hiiden show:
+		// Now that the proper set of items has been hiiden show:
 		$j( _this.selector ).show();
-
-
-		//hide all but check-for-fogg
-		//check for firefogg
+		
+		// Check for firefogg
 		if( _this.firefoggCheck() ){
 
-			//if rewriting the form lets keep the text input around:
+			// If rewriting the form lets keep the text input around:
 			if( _this.form_rewrite )
 				$j( _this.target_input_file_name ).show();
 
-			//show select file:
+			// Show select file:
 			$j( this.target_btn_select_file ).unbind(
 				).attr('disabled', false
 				).css({'display':'inline'}
@@ -215,7 +214,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		    })
 
 		}else{
-			//first check firefox version:
+			// First check firefox version:
 			if(!( $j.browser.mozilla && $j.browser.version >= '1.9.1' )) {
 				js_log( 'show use latest::' + _this.target_use_latest_fox );
 				if( _this.target_use_latest_fox ){
@@ -227,11 +226,11 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				return ;
 			}
 
-			//if rewriting form use upload msg text
+			// If rewriting form use upload msg text
 			var upMsg = (_this.form_rewrite) ? gM('fogg-for_improved_uplods') : '';
 			$j( _this.target_please_install ).html( upMsg + gM('fogg-please_install', _this.getOSlink() )).css('padding', '10px').show();
 		}
-		//setup the target save local file bindins:
+		// Setup the target save local file bindings:
 		$j( _this.target_btn_save_local_file ).unbind().click(function(){
 			_this.saveLocalFogg();
 		});
@@ -260,7 +259,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			return false;
 		}
 	},
-	//assume input target
+	// Assume input target
 	setupForm: function(){
 		js_log('firefogg::setupForm::');
 		//to parent form setup if we want http updates
@@ -269,7 +268,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			this.pe_setupForm();
 		}
 
-		//check if we have firefogg (if not just add a link and stop proccessing)
+		// Check if we have firefogg (if not just add a link and stop processing)
 		if( !this.firefoggCheck() ){
 			//add some status indicators if not provided:
 			if(!this.target_please_install){
@@ -280,12 +279,12 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				$j(this.selector).after ( this.getTargetHtml('target_use_latest_fox') );
 				this.target_use_latest_fox = this.selector + ' ~ .target_use_latest_fox';
 			}
-			//update download link:
+			// Update download link:
 			this.doControlBindings();
 			return ;
 		}
 
-		//change the file browser to type text: (can't directly change input from "file" to "text" so longer way:
+		// Change the file browser to type text: (can't directly change input from "file" to "text" so longer way:
 		var inTag = '<input ';
 		$j.each($j(this.selector).get(0).attributes, function(i, attr){
 			var val = attr.value;
@@ -302,26 +301,26 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		$j(this.selector).replaceWith(inTag);
 
 		this.target_input_file_name = 'input[name=' + $j(this.selector).attr('name') + ']';
-		//update the selector to the control target:
+		
+		// Update the selector to the control target:
 		this.selector = '#' + $j(this.selector).attr('name') +  "_fogg-control";
 
 		this.doControlHTML();
-		//check for the other inline status indicator targets:
 
-		//update the bindings:
+		// Update the bindings:
 		this.doControlBindings();
 	},
-	//do firefogg specific additions: 
+	// Do firefogg specific additions: 
 	dispProgressOverlay:function(){
 		this.pe_dispProgressOverlay();			
-		//if we are uploading video (not in passthrough mode show preview button)
+		// If we are uploading video (not in passthrough mode show preview button)
 		if( this.fogg_enabled && ! this.encoder_settings['passthrough']  && ! this.http_copy_upload ){ 
 			this.doPreviewControl();	
 		}
 	},
 	doPreviewControl:function(){
 		var _this = this;
-		//prepend preview (if fogg)				
+		// Prepend preview (if fogg)				
 		$j('#upProgressDialog').append(		
 			'<div style="clear:both;height:3em"/>'+							
 			$j.btnHtml(gM('fogg-preview'), 'fogg_preview', 'triangle-1-e') + 
@@ -329,51 +328,51 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				'<canvas style="margin:auto;" id="fogg_preview_canvas" />' +
 			'</div>'
 		);
-		//set initial state
+		// Set initial state
 		if( _this.show_preview == true){
 			$j('#fogg_preview_canvas').show();
 		}else{
-			//update icon:
+			// Update icon:
 			$j(this).children('.ui-icon')
 				.removeClass('ui-icon-triangle-1-s')
 				.addClass('ui-icon-triangle-1-e');									
-			//update text:
+			// Update text:
 			$j(this).children('.btnText').text( gM('fogg-preview') );				
 			$j('#fogg_preview_canvas').hide();
 		}
-		//apply preview binding:
+		// Apply preview binding:
 		$j('#upProgressDialog .fogg_preview').btnBind().click( function(){
 			js_log("click .foog_preview" + $j(this).children('.ui-icon').attr('class') );
-			//check state: 
+			// Check state: 
 			if( $j(this).children('.ui-icon').hasClass('ui-icon-triangle-1-e') ){
 				_this.show_preview = true; 			
-				//update icon:
+				// Update icon:
 				$j(this).children('.ui-icon')
 					.removeClass('ui-icon-triangle-1-e')
 					.addClass('ui-icon-triangle-1-s'); 
-				//update text
+				// Update text
 				$j(this).children('.btnText').text( gM('fogg-hidepreview') );
 				 
-				//show preview window			
+				// Show preview window			
 				$j('#fogg_preview_canvas').show('fast');
 			}else{					
 				_this.show_preview = false; 						
-				//update icon:
+				// Update icon:
 				$j(this).children('.ui-icon')
 					.removeClass('ui-icon-triangle-1-s')
 					.addClass('ui-icon-triangle-1-e');									
-				//update text:
+				// Update text:
 				$j(this).children('.btnText').text( gM('fogg-preview') );				
 				
 				$j('#fogg_preview_canvas').hide('slow');
 			}
-			//don't follow the #
+			// Don't follow the #
 			return false; 
 		});
 	}, 
 	doRenderPreview:function(){
 		var _this = this;		
-		//set up the hidden video to pull frames from: 
+		// Set up the hidden video to pull frames from: 
 		if( $j('#fogg_preview_vid').length == 0 )
 			$j('body').append('<video id="fogg_preview_vid" style="display:none"></video>');	
 		var v = $j('#fogg_preview_vid').get(0);							
@@ -394,21 +393,21 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
   		}		
   		var previewI=null;
 		function preview() {				
-			//initialize the video if not setup already:
+			// Initialize the video if not setup already:
 			var v = $j('#fogg_preview_vid').get(0);						
 			if( v.src != _this.fogg.previewUrl ){		
 				js_log('init preview with url:' + _this.fogg.previewUrl); 		
 				v.src = _this.fogg.previewUrl;
 				
-				//set the video to seek to the end of the video
+				// Set the video to seek to the end of the video
 				v.removeEventListener("loadedmetadata", seekToEnd, true);
 				v.addEventListener("loadedmetadata", seekToEnd, true);
 				
-				//render a frame once seek is complete: 
+				// Render a frame once seek is complete: 
 				v.removeEventListener("seeked", getFrame, true);
 				v.addEventListener("seeked", getFrame, true);
 				
-				//refresh the video duration/meta:
+				// Refresh the video duration/meta:
 				clearInterval(previewI);
 				var previewI = setInterval(function(){
 					if (_this.fogg.status() != "encoding"){
@@ -426,7 +425,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	getEditForm:function(){
 		if( this.target_edit_from )
 			return this.pe_getEditForm();
-		//else try to get the parent "from" of the file selector:
+		// Else try to get the parent "from" of the file selector:
 		return $j(this.selector).parents('form:first').get(0);
 	},
 	selectFogg:function(){
@@ -438,17 +437,17 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	selectFoggActions:function(){
 		var _this = this;
 		js_log('videoSelectReady');
-		//if not already hidden hide select file and show "select new":
+		// If not already hidden hide select file and show "select new":
 		$j(_this.target_btn_select_file).hide();
 
-		//show and setup binding for select new file:
+		// Show and setup binding for select new file:
 		$j(_this.target_btn_select_new_file).show().unbind().click(function(){
 			//create new fogg instance:
 			_this.fogg = new Firefogg();
 			_this.selectFogg();
 		});
 
-		//update if we are in passthrough mode or going to encode
+		// Update if we are in passthrough mode or going to encode
 		if( _this.fogg.sourceInfo && _this.fogg.sourceFilename  ){
 			//update the source status
 			try{
@@ -457,22 +456,22 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				js_error('error could not parse fogg sourceInfo');
 			}
 
-			//now setup encoder settings based source type:
+			// Now setup encoder settings based source type:
 			_this.autoEncoderSettings();
 
-			//if set to passthough update the interface (if not a form) 
+			// If set to passthough update the interface (if not a form) 
 			if(_this.encoder_settings['passthrough'] == true && !_this.form_rewrite){
 				$j(_this.target_passthrough_mode).show();
 			}else{
 				$j(_this.target_passthrough_mode).hide();
-				//if set to encoder expose the encode button:
+				// If set to encoder expose the encode button:
 				if( !_this.form_rewrite ){
 					$j(_this.target_btn_save_local_file).show();
 				}
 			}
 			//~otherwise the encoding will be triggered by the form~
 
-			//do source name update callback:
+			// Do source name update callback:
 			js_log(" should update: " + _this.target_input_file_name + ' to: ' + _this.fogg.sourceFilename );
 			$j(_this.target_input_file_name).val(_this.fogg.sourceFilename).show();
 
@@ -492,32 +491,32 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		}
 	},
 	saveLocalFogg:function(){
-	   //request target location:
+	   // Request target location:
 	   if(this.fogg){
 		   if(!this.fogg.saveVideoAs() )
 			   return false;
 
-		   //we have set a target now call the encode:
+		  // We have set a target now call the encode:
 		  this.doEncode();
 	   }
 	},
-	//simple auto encoder settings just enable passthough if file is not video or > 480 pixles tall
+	// Simple auto encoder settings just enable passthough if file is not video or > 480 pixles tall
 	autoEncoderSettings:function(){
 		var _this = this;
-		//grab the extension:
+		// Grab the extension:
 		var sf = _this.fogg.sourceFilename;
 		var ext = '';
 		if(	sf.lastIndexOf('.') != -1)
 			ext = sf.substring( sf.lastIndexOf('.')+1 ).toLowerCase();		
 
-		//set to passthrough to true by default (images, arbitrary files that we want to send with http chunks)
+		// Set to passthrough to true by default (images, arbitrary files that we want to send with http chunks)
 		this.encoder_settings['passthrough'] = true;
 
-		//see if we have video or audio:
+		// See if we have video or audio:
 		if(  _this.isSourceAudio() || _this.isSourceVideo() )
 			 _this.encoder_settings['passthrough'] = false;		
 
-		//special case see if we already have ogg video:
+		// Special case see if we already have ogg video:
 		if( _this.isOggFormat() )
 			_this.encoder_settings['passthrough'] = true;
 		
@@ -538,22 +537,22 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	getProgressTitle:function(){
 		js_log("fogg:getProgressTitle f:" + this.fogg_enabled  + ' rw:' + this.form_rewrite);
-		//return the parent if we don't have fogg turned on:
+		// Return the parent if we don't have fogg turned on:
 		if(! this.fogg_enabled || !this.firefogg_form_action )
 			return this.pe_getProgressTitle();
 		if( !this.form_rewrite )
 		  return gM('fogg-transcoding');
-		//else return our upload+transcode msg:
+		// Else return our upload+transcode msg:
 		return gM('mwe-upload-transcode-in-progress');
 	},
 	doUploadSwitch:function(){
 		var _this = this;		
 		js_log("firefogg: doUploadSwitch:: " + this.fogg_enabled + ' up mode:' +  _this.upload_mode);
-		//make sure firefogg is enabled otherwise do parent UploadSwich:
+		// Make sure firefogg is enabled otherwise do parent UploadSwich:
 		if( !this.fogg_enabled || !this.firefogg_form_action )
 			return _this.pe_doUploadSwitch();
 
-		//check what mode to use firefogg in:
+		// Check what mode to use firefogg in:
 		if( _this.upload_mode == 'post' ){
 			_this.doEncode();
 		}else if( _this.upload_mode == 'api' ){ //if api mode and chunks supported do chunkUpload
@@ -562,16 +561,17 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			js_error( 'Error: unrecongized upload mode: ' + _this.upload_mode );
 		}
 	},
-	//doChunkUpload does both uploading and encoding at the same time and uploads one meg chunks as they are ready
+	/**
+	* doChunkUpload
+	* does both uploading and encoding at the same time and uploads one meg chunks
+	*/
 	doChunkUpload : function(){
 		js_log('firefogg::doChunkUpload');
 		var _this = this;
 		_this.action_done = false;
 		
-		//extension should already be ogg but since its user editable,
-		//check again
-		//we are transcoding so we know it will be an ogg
-		//(should not be done for passthrough mode)
+		// File extension should already be ogg but since its user editable,
+		// (should not be needed for passthrough mode)
 		var sf = _this.formData['filename'];
 		var ext = '';
 		if(	sf.lastIndexOf('.') != -1){
@@ -581,9 +581,9 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			var extreg = new RegExp(ext + '$', 'i');
 			_this.formData['filename'] = sf.replace(extreg, '.ogg');
 		}
-		//add chunk response hook to build the resultURL when uploading chunks
+		// Add chunk response hook to build the resultURL when uploading chunks
 
-		//check for editToken:
+		// Check for editToken:
 		if(!this.etoken){
 			js_log('missing token try ' + _this.formData['token']);
 			if( _this.formData['token']){
@@ -611,7 +611,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	doChunkWithFormData:function(){
 		var _this = this;
 		js_log("firefogg::doChunkWithFormData"  + _this.etoken);
-		//build the api url:
+		// Build the api url:
 		var aReq ={
 			'action': 'upload',
 			'format': 'json',
@@ -633,10 +633,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		js_log('foggEncode: '+ JSON.stringify( _this.encoder_settings ) );
 		_this.fogg.upload( JSON.stringify( _this.encoder_settings ),  _this.api_url ,  JSON.stringify( aReq ) );
 
-		//update upload status:
+		// Update upload status:
 		_this.doUploadStatus();
 	},
-	//doEncode and monitor progress:
+	// doEncode and monitor progress:
 	doEncode : function(){
 		var _this = this;
 		_this.action_done = false;
@@ -644,10 +644,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		js_log('doEncode: with: ' +  JSON.stringify( _this.encoder_settings ) );
 		_this.fogg.encode( JSON.stringify( _this.encoder_settings ) );
 
-		 //show transcode status:
+		 // Show transcode status:
 		$j('#up-status-state').html( gM('mwe-upload-transcoded-status') );
 
-		//setup a local function for timed callback:
+		// Setup a local function for timed callback:
 		var encodingStatus = function() {
 			var status = _this.fogg.status();
 
@@ -655,10 +655,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				_this.doRenderPreview();
 			}
 
-			//update progress bar
+			// Update progress bar
 			_this.updateProgress( _this.fogg.progress() );
 
-			//loop to get new status if still encoding
+			// Loop to get new status if still encoding
 			if( _this.fogg.state == 'encoding' ) {
 				setTimeout(encodingStatus, 500);
 			}else if ( _this.fogg.state == 'encoding done' ) { //encoding done, state can also be 'encoding failed
@@ -674,7 +674,8 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		var _this = this;
 		js_log('::encodeDone::');
 		_this.action_done = true;
-		//send to the post url:
+		
+		// Send to the post url:
 		if( _this.form_rewrite && _this.upload_mode == 'post' ){
 			js_log('done with encoding do POST upload:' + _this.editForm.action);
 			// ignore warnings & set source type
@@ -685,16 +686,16 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			delete _this.formData[ 'file' ];
 
 			_this.fogg.post( _this.editForm.action, 'wpUploadFile', JSON.stringify( _this.formData ) );
-			//update upload status:
+			// Update upload status:
 			_this.doUploadStatus();
 		}else{
 			js_log("done with encoding (no upload) ");						
-			//set stuats to 100% for one second:
+			// Set status to 100% for one second:
 			_this.updateProgress( 1 );			
 			setTimeout(function(){
 				_this.updateProgressWin(gM('fogg-encoding-done'), 	
 					gM('fogg-encoding-done') + '<br>' + 				
-					//show the video at full resolution upto 720px wide
+					// Show the video at full resolution up-to 720px wide
 					'<video controls="true" style="margin:auto" id="fogg_final_vid" src="' + 
 						 _this.fogg.previewUrl + '"></video>'					
 				);
@@ -709,12 +710,12 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 						var vW = v.videoWidth;
 						var vH = v.videoHeight;												
 					}
-					//reize the video:
+					// Resize the video:
 					$j(v).css({
 						'width'	: vW,
 						'height': vH					
 					});
-					//if large video resize the dialog box:
+					// If large video resize the dialog box:
 					if( vW + 5 > 400){ 
 						//also resize the dialog box
 						$j('#upProgressDialog').dialog('option', 'width', vW + 20);	
@@ -735,9 +736,9 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		$j( '#up-status-state' ).html( gM('mwe-uploaded-status')  );
 
 		_this.oldResponseText = '';
-		//setup a local function for timed callback:
+		// Setup a local function for timed callback:
 		var uploadStatus = function(){
-			//get the response text:
+			// Get the response text:
 			var response_text =  _this.fogg.responseText;
 			if(!response_text){
 				   try{
@@ -751,7 +752,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			if( _this.oldResponseText != response_text){
 				js_log('new result text:' + response_text + ' state:' + _this.fogg.state);
 				_this.oldResponseText = response_text;
-				//try and parse the response text and check for errors
+				// Try and parse the response text and check for errors
 				try{
 					var apiResult = JSON.parse( response_text );
 				}catch(e){
@@ -763,7 +764,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 					}					
 				}
 				if(apiResult && _this.apiUpdateErrorCheck( apiResult ) === false){
-					//stop status update we have an error
+					// Stop status update we have an error
 					_this.action_done = true;
 					_this.fogg.cancel();
 					return false;
@@ -775,17 +776,17 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				}
 			}
 			
-			//update progress bar
+			// Update progress bar
 			_this.updateProgress( _this.fogg.progress() );
 
-			//loop to get new status if still uploading (could also be encoding if we are in chunk upload mode)
+			// Loop to get new status if still uploading (could also be encoding if we are in chunk upload mode)
 			if( _this.fogg.state == 'encoding' || _this.fogg.state == 'uploading') {
 				setTimeout(uploadStatus, 100);
-			}//check upload state
+			}// Check upload state
 			else if( _this.fogg.state == 'upload done' ||
 						 _this.fogg.state == 'done' ||
 						 _this.fogg.state == 'encoding done' ) {
-				   //if in "post" upload mode read the html response (should be depricated):
+				   // If in "post" upload mode read the html response (should be deprecated):
 				   if( _this.upload_mode == 'api' ){
 					   if( apiResult && apiResult.resultUrl ){
 					   		var buttons ={};
@@ -794,28 +795,28 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 							}
 							var go_to_url_txt = gM('mwe-go-to-resource');
 						   	if( typeof _this.done_upload_cb == 'function' ){
-						   		//if done action return 'true'
+						   		// If done action return 'true'
 								if( _this.done_upload_cb( _this.formData ) ){
-									//update status
+									// Update status
 						   			_this.updateProgressWin( gM('mwe-successfulupload'),  gM( 'mwe-upload_done', apiResult.resultUrl),buttons);
 								}else{
-									//if done action returns 'false' //close progress window
+									// If done action returns 'false' //close progress window
 									this.action_done = true;
 						  	       	$j('#upProgressDialog').empty().dialog('close');
 								}
 						   	}else{
-						   		//update status (without done_upload_cb)
+						   		// Update status (without done_upload_cb)
 						   		_this.updateProgressWin( gM('mwe-successfulupload'),  gM( 'mwe-upload_done', apiResult.resultUrl),buttons);
 						   	}
 					   }else{
-						   //done state with error? ..not really possible given how firefogg works
+						   // Done state with error? ..not really possible given how firefogg works
 						   js_log(" Upload done in chunks mode, but no resultUrl!");
 					   }
 				   }else{
 					   js_log("Error:: not supported upload mode" +  _this.upload_mode);
 				   }
 			}else{
-				//upload error:
+				// Upload error:
 				js_log('Error:firefogg upload error: ' + _this.fogg.state );
 		   }
 	   }
@@ -835,7 +836,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	  	        $j(dlElm).empty().dialog('close');	  	       
 	  	    }
 	  	}
-	  	//dont' follow the link:
+	  	// Dont' follow the link:
 	  	return false;
 	}
 };

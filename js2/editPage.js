@@ -25,7 +25,7 @@ js2AddOnloadHook( function() {
 	// kind of tricky, it would be nice to use run on ready "loader" call here
 	var didWikiEditorBind = false;	
 	
-	//setup the drag drop binding (will only work for html5 upload browsers) 
+	//Set-up the drag drop binding (will only work for html5 upload browsers) 
 	//$j('textarea#wpTextbox1').dragFileUpload();
 	
 	//set up the add-media-wizard binding: 
@@ -46,7 +46,7 @@ js2AddOnloadHook( function() {
 		    }
 		);
 	}		
-	//add to old toolbar if wikiEditor did not remove '#toolbar' from the page:    
+	//Add to old toolbar if wikiEditor did not remove '#toolbar' from the page:    
 	setTimeout(function(){
 		if( $j('#btn-add-media-wiz').length == 0 && $j( '#toolbar' ).length != 0 ){
 			js_log(' old toolbar bind:');
@@ -57,7 +57,7 @@ js2AddOnloadHook( function() {
 			);
 		}else{
 			js_log('failed to bind via build section bind via target:');
-			//make sure the wikieditor got binded: 
+			//Make sure the wikieditor got binded: 
 			if( !didWikiEditorBind )
 				$j(".tool[rel='file']").unbind().addMediaWiz( amwConf );
 		}

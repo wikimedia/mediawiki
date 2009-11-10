@@ -1,9 +1,8 @@
 /**
- * the base Upload Interface for uploading.
+ * The base Upload Interface for uploading.
  *
- * this base uploader is optionally extended by Firefogg
+ * This base upload class is optionally extended by Firefogg
  *
- * @@todo: checkme: gM 'thumbnail-more' is used; only defined in MediaWiki core. Will that work properly?
  */
 loadGM({
 	"mwe-upload-transcode-in-progress" : "Transcode and upload in progress (do not close this window)",
@@ -37,7 +36,7 @@ var default_bui_options = {
 	'done_upload_cb': null,
 	'target_edit_from':null,
 
-	//default upload mode is 'api' but if no api_url will try tp post
+	// Default upload mode is 'api'
 	'upload_mode': 'api'
 
 }
@@ -46,80 +45,80 @@ var mvBaseUploadInterface = function( iObj ){
 }
 mvBaseUploadInterface.prototype = {
 	parent_uploader:false,
-	formData:{}, //the form to be submitted
+	formData:{}, // The form data to be submitted
 	warnings_sessionkey:null,
 	chunks_supported:true,
 	form_post_override:false,
 	http_copy_upload : false,
 	action_done:false,
-	//the edit token:
+	// The edit token:
 	etoken:false,
 	init: function( iObj ){
 		if(!iObj)
 			iObj = {};
-		//inherit iObj properties:
+		// Inherit iObj properties:
 		$j.extend( this, default_bui_options, iObj);		
 		js_log( "init mvBaseUploadInterface:: " + this.api_url);		
 	},
 	setupForm:function(){
 		js_log("Base::setupForm::");
 		var _this = this;
-		//set up the local pointer to the edit form:
+		// Set up the local pointer to the edit form:
 		_this.editForm = _this.getEditForm();		
 		if( _this.editForm ){
 						
-			//if in api re-map the upload form to api: (we have to do this BEFORE the users selects a file) 
+			// If in api re-map the upload form to api: (we have to do this BEFORE the users selects a file) 
 			if( _this.upload_mode == 'api'){
 				_this.doRemapFormToApi();
 			}					
 			
-			//set up the org_onsubmit if not set:
+			// Set up the org_onsubmit if not set:
 			if( typeof( _this.org_onsubmit ) == 'undefined' &&  _this.editForm.onsubmit )
 				_this.org_onsubmit = _this.editForm.onsubmit;	
 			
 			
-			//set up the submit action:
+			// Set up the submit action:
 			$j( _this.editForm ).submit( function(){
 				js_log('setupForm.onSubmit:');
 								
-				//set the upload mode: 
+				// Set the upload mode: 
 				_this.setWgUploadSelect();
 				
-				//run the original onsubmit (if not run yet set flag to avoid excessive chaining )
+				// Run the original onsubmit (if not run yet set flag to avoid excessive chaining )
 				if( typeof( _this.org_onsubmit ) == 'function' ){
 					if( ! _this.org_onsubmit() ){
 						//error in org submit return false;
 						return false;
 					}
 				}
-				//check for post action override:
+				// Check for post action override:
 				if( _this.form_post_override ){
 					js_log('form_post_override is true do form proccesing:');
 					return true;
 				}
-				//get the input form data in flat json:
+				// Get the input form data in flat json:
 				js_log('update formData::');
 				var tmpAryData = $j( _this.editForm ).serializeArray();
 				for(var i=0; i < tmpAryData.length; i++){
 					if( tmpAryData[i]['name'] )
 						_this.formData[ tmpAryData[i]['name'] ] = tmpAryData[i]['value'];
 				}
-				//put into a try catch so we are sure to return false:
+				// Put into a try catch so we are sure to return false:
 				try{
 					debugger;
-					//get a clean loader:
+					// Get a clean loader:
 					_this.dispProgressOverlay();
 
-					//for some unknown reason we have to drop down the #p-search z-index:
+					// For some unknown reason we have to drop down the #p-search z-index:
 					$j('#p-search').css('z-index', 1);
 
-					//select upload mode:					
+					// Select upload mode:					
 					_this.detectUploadMode();
 				}catch(e){
 					js_log('::error in dispProgressOverlay or detectUploadMode');
 				}
 				
-				//don't submit the form we will do the post in ajax
+				// Don't submit the form we will do the post in ajax
 				return false;
 			});
 		}		
@@ -130,7 +129,7 @@ mvBaseUploadInterface.prototype = {
 	detectUploadMode:function( callback ){
 		var _this = this;
 		js_log('detectUploadMode::' +  _this.upload_mode);
-		//check the upload mode:
+		// Check the upload mode:
 		if( _this.upload_mode == 'autodetect' ){
 			js_log('detectUploadMode::' + _this.upload_mode + ' api:' + _this.api_url);
 			if( ! _this.api_url )
@@ -164,8 +163,7 @@ mvBaseUploadInterface.prototype = {
 			_this.doUploadSwitch();
 		}
 	},
-	//@@NOTE this could probably be depricated to just have a special:upload page that uses api keys? 
-	// or maybe its usefull to seperate js and non-js submits
+	//@@NOTE this could probably be deprecated in favor of automated input
 	doRemapFormToApi:function(){
 		var _this = this;
 		if( !_this.api_url )
