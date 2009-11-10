@@ -73,16 +73,16 @@ var mvAdvFirefogg = function( iObj ){
 	return this.init( iObj );
 }
 var default_mvAdvFirefogg_config = {
-	//which config groups to include
+	// Which config groups to include
 	'config_groups'	 : ['preset', 'range', 'quality', 'meta', 'advVideo', 'advAudio'],
 
-	//if you want to load any custom presets must follow the mvAdvFirefogg.presetConf json outline below
+	// If you want to load any custom presets must follow the mvAdvFirefogg.presetConf json outline below
 	'custom_presets'	: {},
 
-	//any firefog config properties that may need to be excluded from options
+	// Any firefog config properties that may need to be excluded from options
 	'exclude_settings' : [],
 
-	//the control container (where we put all the controls)
+	// The control container (where we put all the controls)
 	'target_control_container':false
 }
 
@@ -90,49 +90,50 @@ mvAdvFirefogg.prototype = {
 	//the global groupings and titles for for configuration options :
 	config_groups : [ 'preset', 'range', 'quality', 'meta', 'advVideo', 'advAudio'],
 	//list of pre-sets:
+
 	//local instance encoder config:
-default_local_settings:{
-	'd'	: 'webvideo',
-	'type'	: 'select',
-	'selectVal': ['webvideo'],
-	'group' : "preset",
-	'pSet' : {
-		'custom':{
-			'descKey': 'fogg-preset-custom',
-			'conf': {}
-		},
-		'webvideo': {
-			'desc': gM('fogg-webvideo-desc'),
-			'conf': {
-				'maxSize'      : 400,
-				'videoBitrate' : 544,
-				'audioBitrate' : 96,
-				'noUpscaling'  : true,
-			}
-		},
-		'savebandwith': {
-			'desc': gM('fogg-savebandwith-desc'),
-			'conf': {
-				'maxSize'       : 200,
-				'videoBitrate'  : 164,
-				'audioBitrate'  : 32,
-				'samplerate'    : 22050,
-				'framerate'     : 15,
-				'channels'      : 1,
-				'noUpscaling'   : true
-			}
-		},
-		'hqstream':{
-			'desc': gM('fogg-highquality-desc'),
-			'conf': {
-				'maxSize'      : 1080,
-				'videoQuality' : 6,
-				'audioQuality' : 3,
-				'noUpscaling'  : true,
-			}
-		},
-	}
-},
+	default_local_settings:{
+		'd'	: 'webvideo',
+		'type'	: 'select',
+		'selectVal': ['webvideo'],
+		'group' : "preset",
+		'pSet' : {
+			'custom':{
+				'descKey': 'fogg-preset-custom',
+				'conf': {}
+			},
+			'webvideo': {
+				'desc': gM('fogg-webvideo-desc'),
+				'conf': {
+					'maxSize'      : 400,
+					'videoBitrate' : 544,
+					'audioBitrate' : 96,
+					'noUpscaling'  : true,
+				}
+			},
+			'savebandwith': {
+				'desc': gM('fogg-savebandwith-desc'),
+				'conf': {
+					'maxSize'       : 200,
+					'videoBitrate'  : 164,
+					'audioBitrate'  : 32,
+					'samplerate'    : 22050,
+					'framerate'     : 15,
+					'channels'      : 1,
+					'noUpscaling'   : true
+				}
+			},
+			'hqstream':{
+				'desc': gM('fogg-highquality-desc'),
+				'conf': {
+					'maxSize'      : 1080,
+					'videoQuality' : 6,
+					'audioQuality' : 3,
+					'noUpscaling'  : true,
+				}
+			},
+		}
+	},
 	local_settings: {},
 
 	//core firefogg default encoder configuration
@@ -576,13 +577,13 @@ default_local_settings:{
 							//maintain source video aspect ratio:
 							if(_this.getClassId(this, 'slider_') == 'width'){
 								var hv = parseInt((_this.sourceFileInfo.video[0]['height']/_this.sourceFileInfo.video[0]['width'])* ui.value );
-								//update the height value:	  the new hight value is > that orginal the slider:
+								//update the height value:	  the new height value is > that original the slider:
 								if(hv > _this.updateInterfaceValue('height', hv))
 									return false;
 							}
 							if(_this.getClassId(this, 'slider_') == 'height'){
 								var wv = parseInt((_this.sourceFileInfo.video[0]['width']/_this.sourceFileInfo.video[0]['height'])* ui.value );
-								//update the height value:	  the new hight value is > that orginal the slider:
+								//update the height value:	  the new height value is > that original the slider:
 								if(wv > _this.updateInterfaceValue('width', wv))
 									return false;
 							}
@@ -724,7 +725,7 @@ default_local_settings:{
 		if( this.encoder_settings['passthrough'] ){
 			js_log("in passthrough mode (hide control)");
 			//hide all controls
-			//dispaly not encodable video
+			//display not encodable video
 			$j(this.target_control_container).hide('slow');
 			$j(this.target_passthrough_mode).show('slow');
 			return ;
@@ -775,7 +776,7 @@ default_local_settings:{
 			}
 			setValues(k, val, maxVal);
 		}
-		//audio stream settings, assumes for now thare is only one stream
+		//audio stream settings, assumes for now there is only one stream
 		for(var i in this.sourceFileInfo.audio[0]){
 			var val = this.sourceFileInfo.audio[0][i];
 			var k = false;

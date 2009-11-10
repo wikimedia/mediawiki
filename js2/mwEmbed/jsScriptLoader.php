@@ -3,17 +3,18 @@
  * This core jsScriptLoader class provides the script loader functionality
  * @file
  */
-// Check if we are being invoked in a MediaWiki context or stand alone usage:
 
-//setup the script local script cache directory (has to be hard coded rather than config based for fast non-mediawiki config hits
+
+//Setup the script local script cache directory (has to be hard coded rather than config based for fast non-mediawiki config hits
 $wgScriptCacheDirectory = realpath( dirname( __FILE__ ) ) . '/php/script-cache';
 
+// Check if we are being invoked in a MediaWiki context or stand alone usage:
 if ( !defined( 'MEDIAWIKI' ) && !defined( 'MW_CACHE_SCRIPT_CHECK' ) ){
 	// Load noMediaWiki helper for quick cache result
 	$myScriptLoader = new jsScriptLoader();
 	if( $myScriptLoader->outputFromCache() )
 		exit();
-	//else load up all the config and do normal stand alone ScriptLoader process:
+	//Else load up all the config and do normal stand alone ScriptLoader process:
 	require_once( realpath( dirname( __FILE__ ) ) . '/php/noMediaWikiConfig.php' );
 	$myScriptLoader->doScriptLoader();
 }
@@ -396,7 +397,7 @@ class jsScriptLoader {
 				return substr($str, 0, $inx['s']-1) . $translated . substr($str, $inx['e']+1);
 			}
 		}
-		//return the js str unmodified if we did not transform with the localization.
+		//return the js str unmodified if we did not transform with the localisation.
 		return $str;
 	}
 	static public function getLoadGmIndex( $str ){
@@ -535,7 +536,7 @@ class simpleFileCache {
 			readfile( $this->filename );
 			return true;
 		}
-		//output without gzip:
+		// Output without gzip:
 		if ( substr( $this->filename, - 3 ) == '.gz' ) {
 			readgzfile( $this->filename );
 		} else {

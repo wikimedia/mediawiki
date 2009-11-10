@@ -73,7 +73,7 @@ var mwUploadHelper = {
 	/**
 	* Set the upload radio buttons
 	*
-	* boolean set
+	* @boolean set
 	*/
 	toggleUpType: function( set ) {
 		$j( '#wpSourceTypeFile' ).attr( 'checked', set );

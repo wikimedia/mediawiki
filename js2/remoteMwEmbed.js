@@ -6,6 +6,7 @@
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
 var mwRemoteVersion = '1.05';
+var mwUseScriptLoader = true;
 
 reqArguments = urlparts[1];
 
@@ -19,7 +20,7 @@ for(var i=0;i< reqParts.length; i++){
 }
 
 addOnloadHook( function(){
-	//only do rewrites if MV_EMBED / js2 is "off"
+	// Only do rewrites if MV_EMBED / js2 is "off"
 	if( typeof MV_EMBED_VERSION == 'undefined' ) {
 		doPageSpecificRewrite();
 	}
@@ -33,7 +34,7 @@ function doPageSpecificRewrite() {
 		} );
 	}
 	
-	//timed text display:
+	// Timed text display:
 	if(wgPageName.indexOf("TimedText") === 0){		
 		load_mv_embed(function(){
 			$mw.load( ['mvTimeTextEdit'],function(){
@@ -75,7 +76,7 @@ function doPageSpecificRewrite() {
 		} );
 	}
 }
-// will be depreciated in favor of updates to OggHandler
+// This will be depreciated in favour of updates to OggHandler
 function rewrite_for_OggHandler( vidIdList ){
 	function procVidId( vidId ){
 		//don't process empty vids
@@ -169,9 +170,9 @@ function getRemoteEmbedPath() {
 function load_mv_embed( callback ) {	
 	// Inject mv_embed if needed
 	if( typeof $mw == 'undefined' ) {	
-		if( reqParam['uselang'] || reqParam['useloader'] ){
+		if( ( reqParam['uselang'] || reqParam['useloader'] ) && mwUseScriptLoader){
 			var rurl = mwEmbedHostPath + '/mwEmbed/jsScriptLoader.php?class=mv_embed';
-			//add jQuery too if we need it: 
+			// Add jQuery too if we need it: 
 			if(typeof window.jQuery == 'undefined'){
 				rurl+= ',window.jQuery';
 			}
@@ -185,8 +186,7 @@ function load_mv_embed( callback ) {
 
 			if(reqParam['uselang'] )
 				rurl+='&uselang=' + reqParam['uselang'];
-				
-			//do import url:  
+							
 			importScriptURI(rurl); 
 		}else{
 			importScriptURI( mwEmbedHostPath + '/mwEmbed/mv_embed.js' + reqArguments );

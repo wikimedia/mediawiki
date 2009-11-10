@@ -10,11 +10,9 @@ td{
 <script type="text/javascript" >
 var scriptLoaderURID = 't14';
 //for just setting one or two to test at a time for debug
-var langKeyDebug = ['en'];
-//var langKeyDebug = [ 'az', 'da', 'pt', 'fr', 'lv', 'en'];
-
-//shortLangKey is an array of at least one language from every group in cldrConverter.php
-var langKeyGroups = ['en','az', 'da', 'pt', 'fr', 'lv', 'ga','hr','cy','mk','mt','pl','sl'];
+//var langKeyDebug = ['sl']; //pl
+var langKeyDebug = [ 'az', 'da', 'pt', 'fr', 'lv', 'en'];
+//var langKeyDebug = ['en','az', 'da', 'pt', 'fr', 'lv', 'ga','hr','cy','mk','mt','pl','sl'];
 
 //longlangKey is every language we have a much more verbose test
 var langKeyAll = [
@@ -181,7 +179,7 @@ js2AddOnloadHook( function(){
 	function doLangTable( langSet ){		
 		//build table output: 
 		var msgTestSet = { 												
-			'mwe-upload-multi' : [ 0, 1, 2, 5, 21, 30 ],			
+			'undelete_short' : [ 0, 1, 2, 5, 21, 30 ],			
 			//category-subcat-count' has two params:
 			'category-subcat-count' : [ 
 				[0,10], 

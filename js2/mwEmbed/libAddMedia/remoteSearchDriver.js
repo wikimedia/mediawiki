@@ -1,11 +1,7 @@
 /*
- * a library for doing remote media searches
- *
- * initial targeted archives are:
-	the local wiki
-	wikimedia commons
-	metavid
-	and archive.org
+ * remoteSearchDriver
+ * Provides a base interface for the Add-Media-Wizard 
+ * supporting remote searching of http archives for free images/audio/video assets
  */
 
 loadGM({
@@ -54,7 +50,22 @@ loadGM({
 	"mwe-ftype-png" : "PNG image file",
 	"mwe-ftype-oga" : "Ogg audio file",
 	"mwe-ftype-ogg" : "Ogg video file",
-	"mwe-ftype-unk" : "Unknown file format"
+	"mwe-ftype-unk" : "Unknown file format",
+	
+	"rsd-wiki_commons-title": "Wikimedia Commons",
+	"rsd-wiki_commons": "Wikimedia Commons, an archive of freely-licensed educational media content (images, sound and video clips)",
+	
+	"rsd-this_wiki-title" : "This Wiki",
+	"rsd-this_wiki-desc" : "The local wiki install",
+	
+	"rsd-archive_org-title": "Archive.org",
+	"rsd-archive_org-desc" : "The Internet Archive, a digital library of cultural artifacts",
+	
+	"rsd-flickr-title" : "Flickr.com",
+	"rsd-flickr-desc" : "Flickr.com, a online photo sharing site",
+	"rsd-metavid-title" : "Meavid.org",
+	"rsd-metavid-desc" : "Metavid a community archive of US House and Senate floor proceedings"
+	
 });
 
 var default_remote_search_options = {
@@ -68,12 +79,12 @@ var default_remote_search_options = {
 	'caret_pos':null,
 	'local_wiki_api_url':null,
 
-	//can be 'api', 'autodetect', 'remote_link'
+	// Can be 'api', 'autodetect', 'remote_link'
 	'import_url_mode': 'api',
 
 	'target_title':null,
 	
-	//edit tools (can be an array of tools or keyword 'all')
+	// Edit tools (can be an array of tools or keyword 'all')
 	'enabled_tools' : 'all',
 	
 
@@ -81,7 +92,8 @@ var default_remote_search_options = {
 	'target_render_area': null, //where output render should go:
 	'instance_name': null, //a globally accessible callback instance name
 	'default_query':null, //default search query
-	//specific to sequence profile
+	
+	//Specific to sequence profile
 	'p_seq':null,
 	'cFileNS':'File', //What is the canonical namespace prefix for images
 					  //@@todo (should get that from the api or in-page vars)
@@ -103,7 +115,7 @@ if(typeof stylepath == 'undefined')
 	stylepath = '';
 
 /*
- *	base remoteSearch Driver interface
+ *	Base remoteSearch Driver interface
  */
 var remoteSearchDriver = function(iObj){
 	return this.init( iObj );
@@ -132,10 +144,10 @@ remoteSearchDriver.prototype = {
 		 *
 
 			@enabled: whether the search provider can be selected
-			@checked: whether the search provider will show up as seleatable tab (todo: user preference)
+			@checked: whether the search provider will show up as selectable tab
 			@d:	   default: if the current cp should be displayed (only one should be the default)
 			@title:   the title of the search provider
-			@desc:	   can use html... todo: need to localize
+			@desc:	   can use html
 			@api_url: the url to query against given the library type:
 			@lib:	   the search library to use corresponding to the
 						search object ie: 'mediaWiki' = new mediaWikiSearchSearch()
@@ -150,22 +162,18 @@ remoteSearchDriver.prototype = {
 			@local_domains : sets of domains for which the content is local
 			//@@todo should query wgForeignFileRepos setting maybe interwikimap from the api
 		 */
+		
 		'this_wiki':{
 			'enabled': 1,
-			'checked': 1,
-			'title'	 : 'This Wiki',
-			'desc'	 : '(should be updated with the proper text) maybe import from some config value',
+			'checked': 1,			
 			'api_url':  ( wgServer && wgScriptPath )? wgServer + wgScriptPath+ '/api.php': null,
 			'lib'	 : 'mediaWiki',
 			'local'	 : true,
 			'tab_img': false
-		},
+		},		
 		'wiki_commons':{
 			'enabled': 1,
-			'checked': 1,
-			'title'	 :'Wikimedia Commons',
-			'desc'	 : 'Wikimedia Commons is a media file repository making available public domain '+
-					 'and freely-licensed educational media content (images, sound and video clips) to all.',
+			'checked': 1,			
 			'homepage': 'http://commons.wikimedia.org/wiki/Main_Page',
 			'api_url':'http://commons.wikimedia.org/w/api.php',
 			'lib'	:'mediaWiki',
@@ -184,9 +192,7 @@ remoteSearchDriver.prototype = {
 		},
 		'archive_org':{
 			'enabled':1,
-			'checked':1,
-			'title' : 'Archive.org',
-			'desc'	: 'The Internet Archive, a digital library of cultural artifacts',
+			'checked':1,			
 			'homepage':'http://www.archive.org/about/about.php',
 
 			'api_url':'http://homeserver7.us.archive.org:8983/solr/select',
@@ -197,24 +203,20 @@ remoteSearchDriver.prototype = {
 		},
 		'flickr':{
 			'enabled':1,
-			'checked':1,
-			'title' : 'flickr.com',
-			'desc'	: 'flickr.com, a online photo sharing site',
+			'checked':1,		
 			'homepage':'http://www.flickr.com/about/',
 
 			'api_url':'http://www.flickr.com/services/rest/',
 			'lib'	: 'flickr',
 			'local'	: false,
-			//resources from fliker don't have a human parsable identieifer/title
+			//resources from fliker don't have a human parsable identifier/title
 			'resource_prefix': '',
 			'tab_img':true
-		},
+		},				
 		'metavid':{
 			'enabled' : 1,
 			'checked' : 1,
-			'title'	: 'Metavid.org',
 			'homepage':'http://metavid.org/wiki/Metavid_Overview',
-			'desc'	: 'Metavid hosts thousands of hours of US house and senate floor proceedings',
 			'api_url':'http://metavid.org/w/index.php?title=Special:MvExportSearch',
 			'lib'	: 'metavid',
 			'local'	:false,			//if local set to true we can use local
@@ -877,9 +879,9 @@ remoteSearchDriver.prototype = {
 						o+='<li class="rsd_cp_tab">';
 						o+='<a id="rsd_tab_' + cp_id + '" href="#tab-' + cp_id + '">';
 							if(cp.tab_img === true){
-								o+='<img alt="' + cp.title +'" src="' + mv_embed_path +'/skins/common/remote_cp/' + cp_id + '_tab.png">';
+								o+='<img alt="' + gM('rsd-' + cp_id + '-title' ) +'" src="' + mv_embed_path +'/skins/common/remote_cp/' + cp_id + '_tab.png">';
 							}else{
-								o+= cp.title;
+								o+= gM('rsd-' + cp_id + '-title' );
 							}
 						o+='</a>';
 						o+='</li>';
@@ -888,7 +890,7 @@ remoteSearchDriver.prototype = {
 					tabc+='<div id="tab-'+ cp_id +'" class="rsd_results"/>';
 
 			}
-			//do an upload tab if enabled:
+			// Do an upload tab if enabled:
 			if( this.content_providers['upload'].enabled ){
 				o+='<li class="rsd_cp_tab" ><a id="rsd_tab_upload" href="#tab-upload">' + gM('mwe-upload_tab') + '</a></li>';
 				tabc+='<div id="tab-upload" />';
@@ -896,25 +898,25 @@ remoteSearchDriver.prototype = {
 					selected_tab = inx++;
 			}
 			o+='</ul>';
-			//output the tab content containers:
+			// Output the tab content containers:
 			o+=tabc;
 		o+='</div>'; //close tab container
 
-		//output the respective results holders
+		// Output the respective results holders
 		$j('#rsd_results_container').html(o);
-		//setup bindings for tabs make them sortable: (@@todo remember order)
+		// Setup bindings for tabs make them sortable: (@@todo remember order)
 		js_log('selected tab is: ' + selected_tab);
 		$j("#rsd_tabs_container").tabs({
 			selected:selected_tab,
 			select: function(event, ui) {
 				_this.selectTab( $j(ui.tab).attr('id').replace('rsd_tab_', '') );
 			}
-		//add sorting
+		// Add sorting
 		}).find(".ui-tabs-nav").sortable({axis:'x'});
 		//@@todo store sorted repo 
 
 	},
-	//resource title
+	// Resource title
 	getResourceFromTitle : function( rTitle , callback){
 		var _this = this;
 		reqObj={
@@ -964,9 +966,9 @@ remoteSearchDriver.prototype = {
 		}else{
 			var cp = this.content_providers[this.disp_item];
 			tab_target = '#tab-' + cp_id;
-			//output the results bar / controls			
+			// Output the results bar / controls			
 		}			
-		//empty the existing results:
+		// Empty the existing results:
 		$j(tab_target).empty();
 		//@@todo give the user upload control love 
 		if(this.disp_item != 'upload'){
@@ -975,34 +977,34 @@ remoteSearchDriver.prototype = {
 		
 		var drawResultCount	= 0;
 
-		//output all the results for the current disp_item
+		// Output all the results for the current disp_item
 		if( typeof cp['sObj'] != 'undefined' ){			
 			$j.each(cp.sObj.resultsObj, function(rInx, rItem){
 				if( _this.result_display_mode == 'box' ){
 					o+='<div id="mv_result_' + rInx + '" class="mv_clip_box_result" style="width:' +
 							_this.thumb_width + 'px;height:'+ (_this.thumb_width-20) +'px;position:relative;">';
-						//check for missing poster types for audio
+						// Check for missing poster types for audio
 						if( rItem.mime=='audio/ogg' && !rItem.poster ){
 							rItem.poster = mv_skin_img_path + 'sound_music_icon-80.png';
 						}
-						//get a thumb with proper resolution transform if possible:
+						// Get a thumb with proper resolution transform if possible:
 						o+='<img title="'+rItem.title+'" class="rsd_res_item" id="res_' + cp_id + '__' + rInx +
 								'" style="width:' + _this.thumb_width + 'px;" src="' +
 								cp.sObj.getImageTransform( rItem, { 'width' : _this.thumb_width } )
 								+ '">';
-						//add a linkback to resource page in upper right:
+						// Add a linkback to resource page in upper right:
 						if( rItem.link )
 							o+='<div class="rsd_linkback ui-corner-all ui-state-default ui-widget-content" >' +								
 									'<a target="_new" title="' + gM('mwe-resource_description_page') +
 									'" href="' + rItem.link + '">'+ gM('mwe-link') + '</a>' + 
 								'</div>';
 								
-						//add file type icon if known
+						// Add file type icon if known
 						if( rItem.mime ){
 							o+= _this.getTypeIcon( rItem.mime );
 						}		
 								
-						//add license icons if present
+						// Add license icons if present
 						if( rItem.license )
 							o+= _this.getlicenseImgSet( rItem.license );
 													
@@ -1013,7 +1015,7 @@ remoteSearchDriver.prototype = {
 								 _this.thumb_width + 'px;" src="' +
 								 cp.sObj.getImageTransform( rItem, {'width':_this.thumb_width } )
 								  + '">';
-						//add license icons if present
+						// Add license icons if present
 						if( rItem.license )
 							o+= _this.getlicenseImgSet( rItem.license );
 
@@ -1024,13 +1026,13 @@ remoteSearchDriver.prototype = {
 				drawResultCount++;
 			});
 			js_log('append to: ' + '#tab-' + cp_id);
-			//put in the tab output (plus clear the output)
+			// Put in the tab output (plus clear the output)
 			$j(tab_target).append( o + '<div style="clear:both"/>');
 		}
 
 		js_log( 'did drawResultCount :: ' + drawResultCount + ' append: ' + $j('#rsd_q').val() );
 
-		//remove any old search res
+		// Remove any old search res
 		$j('#rsd_no_search_res').remove();
 		if( drawResultCount == 0 )
 			$j('#tab-' + cp_id).append( '<span style="padding:10px">' + gM( 'rsd_no_results', $j('#rsd_q').val() ) + '</span>');
@@ -1041,7 +1043,7 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		$j('.mv_clip_'+_this.result_display_mode+'_result').hover(function(){
 			$j(this).addClass('mv_clip_'+_this.result_display_mode+'_result_over');
-			//also set the animated image if available
+			// Also set the animated image if available
 			var res_id = $j(this).children('.rsd_res_item').attr('id');
 			var rObj = _this.getResourceFromId( res_id );
 			if( rObj.poster_ani )
@@ -1050,11 +1052,11 @@ remoteSearchDriver.prototype = {
 			$j(this).removeClass('mv_clip_'+_this.result_display_mode+'_result_over');
 			var res_id = $j(this).children('.rsd_res_item').attr('id');
 			var rObj = _this.getResourceFromId( res_id );
-			//restore the original (non animated)
+			// Restore the original (non animated)
 			if( rObj.poster_ani )
 				$j('#' + res_id ).attr('src', rObj.poster);
 		});
-		//resource click action: (bring up the resource editor)
+		// Resource click action: (bring up the resource editor)
 		$j('.rsd_res_item').unbind().click(function(){
 			var rObj = _this.getResourceFromId( $j(this).attr("id") );
 			_this.resourceEdit( rObj, this );
@@ -1064,9 +1066,9 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		if(!maxWidth)maxWidth=400;
 		if(!overflow_style)overflow_style='overflow:auto;';
-		//remove any old instance:
+		// Remove any old instance:
 		$j( _this.target_container ).find('#rsd_resource_edit').remove();
-		//add the edit layout window with loading place holders
+		// Add the edit layout window with loading place holders
 		$j( _this.target_container ).append('<div id="rsd_resource_edit" '+
 			'style="position:absolute;top:0px;left:0px;bottom:0px;right:4px;background-color:#FFF;">' +
 				'<div id="clip_edit_ctrl" class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;'+
@@ -1082,24 +1084,24 @@ remoteSearchDriver.prototype = {
 	resourceEdit:function( rObj, rsdElement){
 		js_log('f:resourceEdit:' + rObj.title);
 		var _this = this;
-		//remove any existing resource edit interface:
+		// Remove any existing resource edit interface:
 		$j('#rsd_resource_edit').remove();
 		//set the media type:
 		if(rObj.mime.indexOf('image')!=-1){
-			//set width to default image_edit_width
+			// Set width to default image_edit_width
 			var maxWidth = _this.image_edit_width;
 			var mediaType = 'image';
 		}else if(rObj.mime.indexOf('audio')!=-1){
 			var maxWidth = _this.video_edit_width;
 			var mediaType = 'audio';
 		}else{
-			//set to default video size:
+			// Set to default video size:
 			var maxWidth = _this.video_edit_width;
 			var mediaType = 'video';
 		}
-		//so that transcripts show ontop
+		// So that transcripts show ontop
 		var overflow_style = ( mediaType =='video' )?'':'overflow:auto;';
-		//append to the top level of model window:
+		// Append to the top level of model window:
 		_this.addResourceEditLoader(maxWidth, overflow_style);
 		//update add media wizard title:
 		$j( _this.target_container ).dialog( 'option', 'title', gM('mwe-add_media_wizard')+': '+ gM('rsd_resource_edit', rObj.title ) );
@@ -1109,7 +1111,7 @@ remoteSearchDriver.prototype = {
 
 		$j('#rsd_edit_img').remove();//remove any existing rsd_edit_img
 
-		//left side holds the image right size the controls /
+		// Left side holds the image right size the controls /
 		$j(rsdElement).clone().attr('id', 'rsd_edit_img').appendTo('#clip_edit_disp').css({
 			'position':'absolute',
 			'top':'40%',
@@ -1118,14 +1120,14 @@ remoteSearchDriver.prototype = {
 			'opacity':0
 		});
 		
-		//try and keep aspect ratio for the thumbnail that we clicked:		
+		// Try and keep aspect ratio for the thumbnail that we clicked:		
 		var tRatio = $j(rsdElement).height() / $j(rsdElement).width();
 
 		if(	! tRatio )
 			var tRatio = 1; //set ratio to 1 if tRatio did not work. 
 
 		js_log('Set from ' +  tRatio + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth) );
-		//scale up image and to swap with high res version
+		// Scale up image and to swap with high res version
 		$j('#rsd_edit_img').animate({
 			'opacity':1,
 			'top':'5px',
@@ -1139,13 +1141,13 @@ remoteSearchDriver.prototype = {
 				$j('.mv_loading_img').remove();
 			});
 		}
-		//also fade in the container:
+		// Also fade in the container:
 		$j('#rsd_resource_edit').animate({
 			'opacity':1,
 			'background-color':'#FFF',
 			'z-index':99
 		});
-		//do load the media Editor
+		// Do load the media Editor
 		_this.doMediaEdit( rObj , mediaType );
 	},
 	loadHQImg:function(rObj, size, target_img_id, callback){
@@ -1161,7 +1163,7 @@ remoteSearchDriver.prototype = {
 			// See if we need to animate some transition
 			if( size.width != imObj.width ){
 				js_log('loadHQImg:size mismatch: ' + size.width + ' != ' + imObj.width );
-				//set the target id to the new size:
+				// Set the target id to the new size:
 				$j('#'+target_img_id).animate( {
 					'width':imObj.width + 'px',
 					'height':imObj.height + 'px'
@@ -1170,12 +1172,12 @@ remoteSearchDriver.prototype = {
 				js_log('using req size: ' + imObj.width + 'x' + imObj.height);
 				$j('#'+target_img_id).animate( {'width':imObj.width+'px', 'height' : imObj.height + 'px'});
 			}
-			//don't swap it in until its loaded:
+			// Don't swap it in until its loaded:
 			var img = new Image();
-			// load the image image:
+			// Load the image image:
 			$j(img).load(function () {
 					 $j('#'+target_img_id).attr('src', rObj.edit_url );
-					 //let the caller know we are done and what size we ended up with:
+					 // Let the caller know we are done and what size we ended up with:
 					 callback();
 				}).error(function () {
 					js_log("Error with:  " +  rObj.edit_url);
@@ -1187,15 +1189,15 @@ remoteSearchDriver.prototype = {
 		js_log('cancelClipEditCB');
 		var b_target =   _this.target_container + '~ .ui-dialog-buttonpane';
 		$j('#rsd_resource_edit').remove();
-		//remove preview if its 'on'
+		// Remove preview if its 'on'
 		$j('#rsd_preview_display').remove();
-		//restore the resource container:
+		// Restore the resource container:
 		$j('#rsd_results_container').show();
 		
-		//restore the title:
+		// Restore the title:
 		$j( _this.target_container ).dialog( 'option', 'title', gM('mwe-add_media_wizard'));
 		js_log("should update: " + b_target + ' with: cancel');
-		//restore the buttons:		
+		// Restore the buttons:		
 		$j(b_target).html( $j.btnHtml( gM('mwe-cancel') , 'mv_cancel_rsd', 'close'))
 			.children('.mv_cancel_rsd')
 			.btnBind()
@@ -1204,7 +1206,9 @@ remoteSearchDriver.prototype = {
 			})
 
 	},
-	/*set-up the control actions for clipEdit with relevant callbacks */
+	/* getClipEditControlActions
+	* Set-up the control actions for clipEdit with relevant callbacks 
+	*/
 	getClipEditControlActions:function( cp ){
 		var _this = this;
 		var cConf= {};
@@ -1212,7 +1216,7 @@ remoteSearchDriver.prototype = {
 		cConf['insert'] = function(rObj){
 			_this.insertResource(rObj);
 		}
-		//if not directly inserting the resource is support a preview option:
+		// If not directly inserting the resource is support a preview option:
 		if( _this.import_url_mode != 'remote_link'){
 			cConf['preview'] = function(rObj){
 				_this.previewResource( rObj )
@@ -1223,7 +1227,7 @@ remoteSearchDriver.prototype = {
 		}
 		return cConf;
 	},
-	//loads the media editor:
+	// Loads the media editor:
 	doMediaEdit:function( rObj , mediaType){
 		var _this = this;
 		var cp = rObj.pSobj.cp;
@@ -1239,29 +1243,29 @@ remoteSearchDriver.prototype = {
 			'controlActionsCb'	: _this.getClipEditControlActions( cp ),
 			'enabled_tools'		: _this.enabled_tools
 		};
-		//set the base clip edit lib class req set:
+		// Set the base clip edit lib class req set:
 		var clibs = ['mvClipEdit'];
 		
 		if( mediaType == 'image'){
-			//display the mvClipEdit obj once we are done loading:
+			// Display the mvClipEdit obj once we are done loading:
 			mvJsLoader.doLoad( clibs, function(){
-				//run the image clip tools
+				// Run the image clip tools
 				_this.cEdit = new mvClipEdit( mvClipInit );
 			});
 		}else if( mediaType == 'video' || mediaType == 'audio'){
 			js_log('media type:: ' + mediaType);
-			//get any additional embedding helper meta data prior to doing the actual embed
+			// Get any additional embedding helper meta data prior to doing the actual embed
 			// normally this meta should be provided in the search result (but archive.org has another query for more media meta)
 			rObj.pSobj.getEmbedTimeMeta( rObj, function(){
-				//make sure we have the embedVideo libs:
+				// Make sure we have the embedVideo libs:
 				var runFlag = false;
 				mvJsLoader.embedVideoCheck( function(){
-					//strange concurency issue with callbacks 
+					// Strange concurrency issue with callbacks 
 					//@@todo try and figure out why this callback is fired twice
 					if(!runFlag){
 						runFlag = true;
 					}else{
-						js_log('only run embed vid once');
+						js_log('Error: embedVideoCheck run twice');
 						return false;
 					}
 					js_log('append html: ' + rObj.pSobj.getEmbedHTML( rObj, {id:'embed_vid'}) );
@@ -1271,17 +1275,17 @@ remoteSearchDriver.prototype = {
 						})
 					);
 					js_log("about to call rewrite_by_id::embed_vid");					
-					//rewrite by id
+					// Rewrite by id
 					rewrite_by_id('embed_vid', function(){
-						//grab any information that we got from the ROE xml or parsed from the media file
+						// Grab any information that we got from the ROE xml or parsed from the media file
 						rObj.pSobj.getEmbedObjParsedInfo( rObj, 'embed_vid' );
-						//add the re-sizable to the doLoad request:
+						// Add the re-sizable to the doLoad request:
 						clibs.push( '$j.ui.resizable');
 						clibs.push( '$j.fn.hoverIntent');						
 						mvJsLoader.doLoad(clibs, function(){
-							//make sure the rsd_edit_img is hidden:
+							// Make sure the rsd_edit_img is hidden:
 							$j('#rsd_edit_img').remove();
-							//run the image clip tools
+							// Run the image clip tools
 							_this.cEdit = new mvClipEdit( mvClipInit );
 						});
 					});
@@ -1293,7 +1297,7 @@ remoteSearchDriver.prototype = {
 		if( cp.local ){
 			return true;
 		}else{
-			//check if we can embed the content locally per a domain name check:
+			// Check if we can embed the content locally per a domain name check:
 			var local_host = parseUri( this.local_wiki_api_url ).host;
 			if( cp.local_domains ) {
 				for(var i=0;i < cp.local_domains.length; i++){
@@ -1307,9 +1311,9 @@ remoteSearchDriver.prototype = {
 	},
 	checkImportResource:function( rObj, cir_callback){
 		var _this = this;		
-		//add a loader ontop:
+		// Add a loader ontop:
 		$j.addLoaderDialog( gM('mwe-checking-resource') );		
-		//extend the callback with close dialog
+		// Extend the callback with close dialog
 		var org_cir_callback = cir_callback;
 		cir_callback = function( rObj ){
 			var cat = org_cir_callback;			
@@ -1322,17 +1326,17 @@ remoteSearchDriver.prototype = {
 		var cp = rObj.pSobj.cp;
 		var _this = this;
 
-		//update base target_resource_title:
+		// Update base target_resource_title:
 		rObj.target_resource_title = rObj.titleKey.replace(/File:|Image:/,'')
 
 		//check if local repository
 		//or if import mode if just "linking" (we should already have the 'url'
 
 		if( this.checkRepoLocal( cp ) || this.import_url_mode == 'remote_link'){		
-			//local repo jump directly to check Import Resource callback:
+			// Local repo jump directly to check Import Resource callback:
 			 cir_callback( rObj );
 		}else{						
-			//check if the file is local (can be shared repo)  
+			// Check if the file is local (can be shared repo)  
 			if( cp.check_shared ){			
 				_this.checkForFile(rObj.target_resource_title, function(imagePage){				
 					if( imagePage && imagePage['imagerepository'] == 'shared' ){						
@@ -1727,7 +1731,7 @@ remoteSearchDriver.prototype = {
 		if( this.content_providers[this.disp_item] ){
 			var cp = this.content_providers[this.disp_item];
 			about_desc ='<span style="position:relative;top:0px;font-style:italic;">' +
-					'<i>' + gM('mwe-results_from', [cp.homepage, cp.title]) + '</i></span>';
+					'<i>' + gM('mwe-results_from', [cp.homepage, gM('rsd-' + this.disp_item + '-title' ) ]) + '</i></span>';
 			$j('#tab-'+this.disp_item).append( '<div id="rds_results_bar">'+
 				'<span style="float:left;top:0px;font-style:italic;">'+
 					gM('rsd_layout')+' '+

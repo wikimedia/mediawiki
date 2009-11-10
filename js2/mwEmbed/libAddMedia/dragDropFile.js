@@ -43,10 +43,11 @@ loadGM({
 
 			$j('#multiple_file_input').remove();
 
-			$j('body').append('<div title="' + gM('mwe-upload-multi', fileCount) + '" '+
-			'style="position:absolute;bottom:5em;top:3em;right:0px;left:0px" '+
-			'id="multiple_file_input">'+
-			'</div>');
+			$j('body').append('<div title="' + gM('mwe-upload-multi', fileCount) + '" ' +
+				'style="position:absolute;bottom:5em;top:3em;right:0px;left:0px" ' +
+				'id="multiple_file_input">' +
+				'</div>'
+			);
 
 
 			var cBtn = {};
