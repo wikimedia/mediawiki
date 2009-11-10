@@ -1362,7 +1362,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'group-bot'           => 'Bot',
 'group-sysop'         => 'Pengurus',
 'group-bureaucrat'    => 'Birokrat',
-'group-suppress'      => 'Pengawas suntingan',
+'group-suppress'      => 'Pengawas',
 'group-all'           => '(semua)',
 
 'group-user-member'          => 'Pengguna',
@@ -1370,14 +1370,14 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Pengurus',
 'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Pengawas suntingan',
+'group-suppress-member'      => 'Pengawas',
 
 'grouppage-user'          => '{{ns:project}}:Pengguna',
 'grouppage-autoconfirmed' => '{{ns:project}}:Pengguna terkonfirmasi otomatis',
 'grouppage-bot'           => '{{ns:project}}:Bot',
 'grouppage-sysop'         => '{{ns:project}}:Pengurus',
 'grouppage-bureaucrat'    => '{{ns:project}}:Birokrat',
-'grouppage-suppress'      => '{{ns:project}}:Pengawas suntingan',
+'grouppage-suppress'      => '{{ns:project}}:Pengawas',
 
 # Rights
 'right-read'                  => 'Membaca halaman',
@@ -1878,7 +1878,7 @@ Nama yang telah <s>dicoret</s> berarti telah dibetulkan.',
 'nopagetext'              => 'Halaman yang Anda tuju tidak ditemukan.',
 'pager-newer-n'           => '{{PLURAL:$1|1 lebih baru|$1 lebih baru}}',
 'pager-older-n'           => '{{PLURAL:$1|1 lebih lama|$1 lebih lama}}',
-'suppress'                => 'Pengawas suntingan',
+'suppress'                => 'Pengawas',
 
 # Book sources
 'booksources'               => 'Sumber buku',

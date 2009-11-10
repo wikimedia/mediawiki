@@ -435,7 +435,7 @@ $messages = array(
 'tog-watchdefault'            => 'أضف الصفحات التي أعدلها إلى قائمة مراقبتي',
 'tog-watchmoves'              => 'أضف الصفحات التي أنقلها إلى قائمة مراقبتي',
 'tog-watchdeletion'           => 'أضف الصفحات التي أحذفها إلى قائمة مراقبتي',
-'tog-minordefault'            => 'علم على كل التعديلات كطفيفة افتراضيا',
+'tog-minordefault'            => 'علّم كل التعديلات طفيفة افتراضيا',
 'tog-previewontop'            => 'أظهر العرض المسبق قبل صندوق التحرير',
 'tog-previewonfirst'          => 'أظهر معاينة مع أول تعديل',
 'tog-nocache'                 => 'عطل تخزين الصفحة',
@@ -554,7 +554,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة متكررة حول ميدياويكي]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
 
-'about'         => 'حول',
+'about'         => 'عن',
 'article'       => 'صفحة محتوى',
 'newwindow'     => '(تفتح في نافذة جديدة)',
 'cancel'        => 'ألغِ',
@@ -667,8 +667,8 @@ $messages = array(
 $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'حول {{SITENAME}}',
-'aboutpage'            => 'Project:حول',
+'aboutsite'            => 'عن {{SITENAME}}',
+'aboutpage'            => 'Project:عن',
 'copyright'            => 'المحتوى متوفر تحت $1.',
 'copyrightpage'        => '{{ns:project}}:حقوق النسخ',
 'currentevents'        => 'الأحداث الجارية',
@@ -1580,6 +1580,7 @@ $1",
 'right-bigdelete'             => 'حذف الصفحات ذات التواريخ الكبيرة',
 'right-deleterevision'        => 'حذف واسترجاع مراجعات معينة من الصفحات',
 'right-deletedhistory'        => 'رؤية مدخلات التاريخ المحذوفة، بدون نصوصها المصاحبة',
+'right-deletedtext'           => 'عرض النص المحذوف والتغييرات بين المراجعات المحذوفة',
 'right-browsearchive'         => 'البحث في الصفحات المحذوفة',
 'right-undelete'              => 'استرجاع صفحة',
 'right-suppressrevision'      => 'مراجعة واسترجاع المراجعات المخفية عن مديري النظام',
@@ -2340,6 +2341,7 @@ $NEWPAGE
 'protectexpiry'               => 'تنتهي في:',
 'protect_expiry_invalid'      => 'وقت الانتهاء غير صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع يقع في الماضي.',
+'protect-unchain-permissions' => 'ألغِ قفل خيارات الحماية الأخرى',
 'protect-text'                => "يمكنك هنا أن تعرض وتغير مستوى الحماية للصفحة '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "لا يمكنك تغيير مستويات الحماية وأنت ممنوع.
 الإعدادات الحالية للصفحة '''$1''' هي:",
@@ -2816,7 +2818,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'tooltip-pt-login'                => 'يفضل أن تسجل الدخول، لكنه ليس إلزاميا.',
 'tooltip-pt-anonlogin'            => 'من المفضل أن تقوم بتسجيل الدخول، هذا ليس إلزاميا.',
 'tooltip-pt-logout'               => 'خروج',
-'tooltip-ca-talk'                 => 'نقاش حول صفحة المحتوى',
+'tooltip-ca-talk'                 => 'نقاش عن صفحة المحتوى',
 'tooltip-ca-edit'                 => 'يمكنك تعديل هذه الصفحة.
 من فضلك استخدم زر العرض المسبق قبل الحفظ.',
 'tooltip-ca-addsection'           => 'ابدأ قسما جديدا',
@@ -3467,17 +3469,17 @@ $1',
 'watchlistedit-normal-title'   => 'تعديل قائمة المراقبة',
 'watchlistedit-normal-legend'  => 'إزالة عناوين من قائمة المراقبة',
 'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل.
-لإزالة عنوان، اضغط على الصندوق بجواره، واضغط إزالة العناوين.
+لإزالة عنوان، اضغط على الصندوق بجواره، واضغط أزل العناوين.
 يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
-'watchlistedit-normal-submit'  => 'إزالة العناوين',
+'watchlistedit-normal-submit'  => 'أزل العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته من قائمة مراقبتك:',
-'watchlistedit-raw-title'      => 'عدل قائمة المراقبة الخام',
+'watchlistedit-raw-title'      => 'تعديل قائمة المراقبة الخام',
 'watchlistedit-raw-legend'     => 'عدّل قائمة المراقبة الخام',
 'watchlistedit-raw-explain'    => 'العناوين في قائمة مراقبتك معروضة بالأسفل، ويمكن تعديلها عن طريق الإضافة والإزالة من القائمة؛ عنوان واحد لكل سطر.
-عند الانتهاء، اضغط تحديث قائمة المراقبة.
+عند الانتهاء، اضغط حدّث قائمة المراقبة.
 يمكنك أيضا [[Special:Watchlist/edit|استخدام المحرر القياسي]].',
 'watchlistedit-raw-titles'     => 'العناوين:',
-'watchlistedit-raw-submit'     => 'تحديث قائمة المراقبة',
+'watchlistedit-raw-submit'     => 'حدّث قائمة المراقبة',
 'watchlistedit-raw-done'       => 'قائمة مراقبتك تم تحديثها.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إضافته:',
 'watchlistedit-raw-removed'    => 'تمت إزالة {{PLURAL:$1||عنوان واحد|عنوانين|$1 عناوين|$1 عنوانًا|$1 عنوان}}:',
@@ -3485,7 +3487,7 @@ $1',
 # Watchlist editing tools
 'watchlisttools-view' => 'اعرض التغييرات المرتبطة',
 'watchlisttools-edit' => 'اعرض قائمة المراقبة وعدّلها',
-'watchlisttools-raw'  => 'عدل قائمة المراقبة الخام',
+'watchlisttools-raw'  => 'عدّل قائمة المراقبة الخام',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'فروردین',

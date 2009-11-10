@@ -1735,6 +1735,7 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Rhestr defnyddwyr gweithgar',
+'activeusers-intro'    => 'Dyma restr y defnyddwyr a fuont yn weithgar o fewn y {{PLURAL:$1|diwrnod|diwrnod|deuddydd|tridiau|$1 niwrnod|$1 diwrnod}} diwethaf.',
 'activeusers-count'    => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}} yn ystod y {{PLURAL:$3|diwrnod|diwrnod|deuddydd|tridiau|$3 diwrnod|$3 diwrnod}} diwethaf',
 'activeusers-from'     => "Rhestru'r defnyddwyr gan ddechrau gyda:",
 'activeusers-noresult' => "Dim defnyddwyr i'w cael.",

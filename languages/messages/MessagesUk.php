@@ -1121,6 +1121,7 @@ $1",
 'compareselectedversions'  => 'Порівняти вибрані версії',
 'showhideselectedversions' => 'Показати/приховати обрані версії',
 'editundo'                 => 'скасувати',
+'diff-multi'               => '($1 {{PLURAL:$1|проміжна версія не показана|проміжні версії не показані|проміжних версій не показані}}.)',
 
 # Search results
 'searchresults'                    => 'Результати пошуку',
@@ -2707,6 +2708,7 @@ The wiki server can't provide data in a format your client can read.",
 'skinname-chick'       => 'Курча',
 'skinname-simple'      => 'Просте',
 'skinname-modern'      => 'Сучасне',
+'skinname-vector'      => 'Векторне',
 
 # Math options
 'mw_math_png'    => 'Завжди генерувати PNG',

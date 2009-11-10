@@ -79,7 +79,9 @@ $messages = array(
 'dec'           => 'Dis.',
 
 # Categories related messages
+'pagecategories'         => '{{PLURAL:$1|Abdeeling|Abdeelinge}}',
 'category_header'        => 'Bledder in Kategorie „$1“',
+'subcategories'          => 'Unnerabdeeling',
 'listingcontinuesabbrev' => '(weiter)',
 
 'about'         => 'Iwwer',
@@ -103,16 +105,17 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-delete'     => 'Lösche',
-'vector-action-move'       => 'Ziehe',
-'vector-namespace-help'    => 'Hilfblatt',
-'vector-namespace-image'   => 'Feil',
-'vector-namespace-main'    => 'Blatt',
-'vector-namespace-special' => 'Besunneres Blatt',
-'vector-namespace-talk'    => 'Gschwetz',
-'vector-namespace-user'    => 'Yuuser-Blatt',
-'vector-view-edit'         => 'Ennere',
-'vector-view-view'         => 'Lese',
+'vector-action-delete'      => 'Lösche',
+'vector-action-move'        => 'Ziehe',
+'vector-namespace-category' => 'Abdeeling',
+'vector-namespace-help'     => 'Hilfblatt',
+'vector-namespace-image'    => 'Feil',
+'vector-namespace-main'     => 'Blatt',
+'vector-namespace-special'  => 'Besunneres Blatt',
+'vector-namespace-talk'     => 'Gschwetz',
+'vector-namespace-user'     => 'Yuuser-Blatt',
+'vector-view-edit'          => 'Ennere',
+'vector-view-view'          => 'Lese',
 
 'errorpagetitle'   => 'Mischteek',
 'returnto'         => 'Zerick zum Blatt $1.',
@@ -193,12 +196,13 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'red-link-title'          => '$1 (Blatt gebt es net)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'    => 'Blatt',
-'nstab-user'    => 'Yuuser-Blatt',
-'nstab-special' => 'Besunneres Blatt',
-'nstab-project' => 'Project-Blatt',
-'nstab-image'   => 'Feil',
-'nstab-help'    => 'Hilf',
+'nstab-main'     => 'Blatt',
+'nstab-user'     => 'Yuuser-Blatt',
+'nstab-special'  => 'Besunneres Blatt',
+'nstab-project'  => 'Project-Blatt',
+'nstab-image'    => 'Feil',
+'nstab-help'     => 'Hilf',
+'nstab-category' => 'Abdeeling',
 
 # General errors
 'error'               => 'Mischteek',
@@ -317,12 +321,14 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'timezoneregion-europe'    => 'Eiropaa',
 'prefs-namespaces'         => 'Blatznaame',
 'prefs-files'              => 'Feils',
+'youremail'                => 'E-Poschde:',
 'username'                 => 'Yuuser-Naame:',
 'uid'                      => 'Yuuser-ID:',
 'prefs-memberingroups'     => 'Mitglied vun de {{PLURAL:$1|Yuuser-Druppe|Yuuser-Druppe}}:',
 'yourlanguage'             => 'Schprooch:',
 'yourgender'               => 'Geschlecht:',
 'gender-female'            => 'Weiblich',
+'email'                    => 'E-Poschde',
 'prefs-diffs'              => 'Unnerschidd vun Versione',
 
 # User rights
@@ -399,6 +405,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'watchthisupload' => 'Watsch des Blatt',
 
 # Special:ListFiles
+'imgfile'         => 'Feil',
 'listfiles'       => 'Lischt vun Feils',
 'listfiles_name'  => 'Naame',
 'listfiles_user'  => 'Yuuser',
@@ -447,6 +454,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'ncategories'       => '$1 {{PLURAL:$1|Abdeeling|Abdeelinge}}',
 'nlinks'            => '{{PLURAL:$1|1 Gleecher|$1 Gleecher}}',
 'shortpages'        => 'Glee Bledder',
 'longpages'         => 'Grosse Bledder',
@@ -486,8 +494,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'listgrouprights-group' => 'Druppe',
 
 # E-mail user
-'emailfrom' => 'Vun:',
-'emailto'   => 'Fer:',
+'defemailsubject' => '{{SITENAME}}-E-Poschde',
+'emailfrom'       => 'Vun:',
+'emailto'         => 'Fer:',
 
 # Watchlist
 'watchlist'         => 'Mei Watsch-Lischt',
@@ -601,6 +610,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Special:Import
 'import-upload-filename' => 'Feilnaame:',
+'import-comment'         => 'Anmaerricking:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Dei Yuuser-Blatt',
