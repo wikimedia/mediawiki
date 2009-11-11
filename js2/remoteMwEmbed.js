@@ -5,18 +5,16 @@
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = '1.05';
+var mwRemoteVersion = '1.06';
 var mwUseScriptLoader = true;
-
-reqArguments = urlparts[1];
 
 //setup up request Params: 
 var reqParts = urlparts[1].substring(1).split('&');
-var reqParam={};
+var mwReqParam={};
 for(var i=0;i< reqParts.length; i++){
 	var p = reqParts[i].split('=');
 	if( p.length == 2 )
-		reqParam[ p[0] ]=  p[1];
+		mwReqParam[ p[0] ] = p[1];
 }
 
 addOnloadHook( function(){
@@ -30,13 +28,14 @@ function doPageSpecificRewrite() {
 	// Add media wizard
 	if( wgAction == 'edit' || wgAction == 'submit' ) {
 		load_mv_embed( function() {	
-			loadExternalJs( mwEmbedHostPath + '/editPage.js' + reqArguments );
-		} );
+			loadExternalJs( mwEmbedHostPath + '/editPage.js?' + mwGetReqArgs() );
+		});
 	}
 	
 	// Timed text display:
 	if(wgPageName.indexOf("TimedText") === 0){		
 		load_mv_embed(function(){
+			// Load with mw loader to get localized interface:
 			$mw.load( ['mvTimeTextEdit'],function(){
 				//could run init here (but mvTimeTextEdit included onLoad actions)
 			});
@@ -46,7 +45,7 @@ function doPageSpecificRewrite() {
 	// Firefogg integration
 	if( wgPageName == "Special:Upload" ){		
 		load_mv_embed( function() {
-			loadExternalJs( mwEmbedHostPath + '/uploadPage.js' + reqArguments );
+			loadExternalJs( mwEmbedHostPath + '/uploadPage.js?' + mwGetReqArgs() );
 		} );
 	}
 	
@@ -55,7 +54,7 @@ function doPageSpecificRewrite() {
 		var wgEnableIframeApiProxy = true;
 		load_mv_embed( function() {
 			js_log("Wiki:ApiProxy::");
-			loadExternalJs( mwEmbedHostPath + '/apiProxyPage.js' + reqArguments );
+			loadExternalJs( mwEmbedHostPath + '/apiProxyPage.js?' + mwGetReqArgs() );
 		});
 	}
 	
@@ -166,30 +165,37 @@ function getRemoteEmbedPath() {
 		}
 	}
 }
+function mwGetReqArgs(){
+	var rurl = '';
+	if(mwReqParam['debug'])
+		rurl += 'debug=true&';
 
-function load_mv_embed( callback ) {	
+	if(mwReqParam['uselang'] )
+		rurl += 'uselang=' + mwReqParam['uselang'] + '&';
+
+	if( mwReqParam['urid'] ){
+		rurl += 'urid=' + mwReqParam['urid'];
+	}else{
+		// Make sure to use an urid 
+		// This way remoteMwEmbed can control version of code being requested
+		rurl += 'urid=' + mwRemoteVersion;
+	}
+	return rurl;
+}
+function load_mv_embed( callback ) {
 	// Inject mv_embed if needed
 	if( typeof $mw == 'undefined' ) {	
-		if( ( reqParam['uselang'] || reqParam['useloader'] ) && mwUseScriptLoader){
+		if( ( mwReqParam['uselang'] || mwReqParam['useloader'] ) && mwUseScriptLoader){
 			var rurl = mwEmbedHostPath + '/mwEmbed/jsScriptLoader.php?class=mv_embed';
 			// Add jQuery too if we need it: 
 			if(typeof window.jQuery == 'undefined'){
-				rurl+= ',window.jQuery';
-			}
-			if(reqParam['urid']){
-				rurl+='&urid=' + reqParam['urid'];
-			}else{
-				rurl+='&urid=' + mwRemoteVersion;
-			}
-			if(reqParam['debug'])
-				rurl+='&debug=true';
-
-			if(reqParam['uselang'] )
-				rurl+='&uselang=' + reqParam['uselang'];
+				rurl += ',window.jQuery';
+			}	
+			rurl += '&' + mwGetReqArgs();								
 							
-			importScriptURI(rurl); 
+			importScriptURI( rurl ); 
 		}else{
-			importScriptURI( mwEmbedHostPath + '/mwEmbed/mv_embed.js' + reqArguments );
+			importScriptURI( mwEmbedHostPath + '/mwEmbed/mv_embed.js?' + mwGetReqArgs() );
 		}
 	}
 	check_for_mv_embed( callback );

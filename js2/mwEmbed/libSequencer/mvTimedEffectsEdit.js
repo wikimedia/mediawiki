@@ -12,7 +12,8 @@ loadGM({
 	"mwe-effects" : "Effects stack",
 	"mwe-remove_transition" : "Remove transition",
 	"mwe-edit_transin" : "Edit transition into clip",
-	"mwe-edit_transout" : "Edit transition out of clip"
+	"mwe-edit_transout" : "Edit transition out of clip",
+	"mwe-add-transition" : "Add a Transition"
 });
 
 var default_timed_effect_values = {
@@ -246,12 +247,12 @@ mvTimedEffectsEdit.prototype = {
 				break;
 			}
 		}
-		//and finally add effect timeline scrubber (for timed effects this also stores keyframes)
+		//and finally add effect timeline scruber (for timed effects this also stores keyframes)
 
 	},
 	getTransitionListControl : function(target_out){
 		js_log("getTransitionListControl");
-		var o= '<h3>Add a Transition:</h3>';
+		var o= '<h3>' + gM('mwe-add-transition') +'</h3>';
 		for(var type in mvTransLib['type']){
 			js_log('on tran type: ' + i);
 			var base_trans_name = i;

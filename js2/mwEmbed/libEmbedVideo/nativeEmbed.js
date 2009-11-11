@@ -80,26 +80,29 @@ var nativeEmbed = {
 		this.seeking = false;
 	},
 	doSeek:function(perc){					
-		//js_log('native:seek:p: ' + perc+ ' : '  + this.supportsURLTimeEncoding() + ' dur: ' + this.getDuration() + ' sts:' + this.seek_time_sec );		
+		js_log('native:seek:p: ' + perc+ ' : '  + this.supportsURLTimeEncoding() + ' dur: ' + this.getDuration() + ' sts:' + this.seek_time_sec );		
 		//@@todo check if the clip is loaded here (if so we can do a local seek)
-		if( this.supportsURLTimeEncoding() || !this.vid){			
-			//make sure we could not do a local seek instead:
+		if( this.supportsURLTimeEncoding() ){			
+			// Make sure we could not do a local seek instead:
 			if( perc < this.bufferedPercent && this.vid.duration && !this.didSeekJump ){
 				js_log("do local seek " + perc + ' is already buffered < ' + this.bufferedPercent);
 				this.doNativeSeek(perc);
-			}else{
+			}else{			
+				// We support URLTimeEncoding call parent seek: 
 				this.parent_doSeek(perc);
 			}			
 		}else if(this.vid && this.vid.duration ){	   
 			//(could also check bufferedPercent > perc seek (and issue oggz_chop request or not) 
 			this.doNativeSeek( perc );	
 		}else{
+			//try to do a play then seek: 
 			this.doPlayThenSeek( perc )
 		}				  
 	},	
 	doNativeSeek:function(perc){	
+		js_log('native::doNativeSeek::' + perc);
 		this.seek_time_sec=0;			 
-		this.vid.currentTime = perc * this.vid.duration;		
+		this.vid.currentTime = perc * this.duration;		
 		this.monitor();	
 	},
 	doPlayThenSeek:function(perc){
@@ -107,14 +110,17 @@ var nativeEmbed = {
 		var _this = this;
 		this.play();
 		var rfsCount = 0;
-		var readyForSeek = function(){
-			_this.getVID();		
+		var readyForSeek = function(){		
+			_this.getVID();
+			if(_this.vid)		
+				js_log('readyForSeek looking::' + _this.vid.duration);
 			//if we have duration then we are ready to do the seek
-			if(this.vid && this.vid.duration){
-				_this.doSeek( perc );
+			if( _this.vid && _this.vid.duration ){
+				_this.doNativeSeek( perc );
 			}else{			
-				//try to get player for 10 seconds: 
-				if( rfsCount < 200 ){
+				//Try to get player for 40 seconds: 
+				//(it would be nice if the onmetadata type callbacks where fired consistently)
+				if( rfsCount < 800 ){
 					setTimeout(readyForSeek, 50);
 					rfsCount++;
 				}else{

@@ -34,9 +34,8 @@ loadGM({
 	"mwe-video_credits" : "Video credits",
 	"mwe-menu_btn" : "Menu",
 	"mwe-close_btn" : "Close",
-	"mwe-ogg-player-vlc-mozilla" : "VLC plugin",
+	"mwe-ogg-player-vlc-player" : "VLC player",
 	"mwe-ogg-player-videoElement" : "Native Ogg video",
-	"mwe-ogg-player-vlc-activex" : "VLC ActiveX",
 	"mwe-ogg-player-oggPlugin" : "Generic Ogg plugin",
 	"mwe-ogg-player-quicktime-mozilla" : "QuickTime plugin",
 	"mwe-ogg-player-quicktime-activex" : "QuickTime ActiveX",
@@ -59,45 +58,45 @@ loadGM({
 var commons_api_url =  'http://commons.wikimedia.org/w/api.php';
 
 var default_video_attributes = {
-	"id":null,
-	"class":null,
-	"style":null,
-	"name":null,
-	"innerHTML":null,
-	"width":"320",
-	"height":"240",
+	"id" : null,
+	"class" : null,
+	"style" : null,
+	"name" : null,
+	"innerHTML" : null,
+	"width" : "320",
+	"height" : "240",
 
 	//video attributes:
-	"src":null,
-	"autoplay":false,
-	"start":0,
-	"end":null,
-	"controls":true,
-	"muted":false,
-	"wikiTitleKey":null,
+	"src" : null,
+	"autoplay" : false,
+	"start" : 0,
+	"end" : null,
+	"controls" : true,
+	"muted" : false,
+	"wikiTitleKey" : null,
 	
 	//roe url (for xml based metadata)
-	"roe":null,
+	"roe" : null,
 	//if roe includes metadata tracks we can expose a link to metadata
-	"show_meta_link":true,
+	"show_meta_link" : true,
 
 	//default state attributes per html5 spec:
 	//http://www.whatwg.org/specs/web-apps/current-work/#video)
-	"paused":true,
-	"readyState":0,  //http://www.whatwg.org/specs/web-apps/current-work/#readystate
-	"currentTime":0, //current playback position (should be updated by plugin)
-	"duration":null,   //media duration (read from file or the temporal url)
-	"networkState":0,
+	"paused" : true,
+	"readyState" : 0,  //http://www.whatwg.org/specs/web-apps/current-work/#readystate
+	"currentTime"  :0, //current playback position (should be updated by plugin)
+	"duration"  :null,   //media duration (read from file or the temporal url)
+	"networkState" : 0,
 
-	"startOffset":null, //if serving an ogg_chop segment use this to offset the presentation time 
+	"startOffset" : null, //if serving an ogg_chop segment use this to offset the presentation time 
 
 	//custom attributes for mv_embed:
-	"play_button":true,	
-	"thumbnail":null,
-	"linkback":null,
-	"embed_link":true,
-	"download_link":true,
-	"type":null,	 //the content type of the media 
+	"play_button" : true,	
+	"thumbnail" : null,
+	"linkback" : null,
+	"embed_link" : true,
+	"download_link" : true,
+	"type" :null,	 //the content type of the media 
 };
 /*
  * the base source attribute checks
@@ -109,10 +108,12 @@ var mv_default_source_attr= new Array(
 	'titleKey',
 	'title',
 	'URLTimeEncoding', //boolean if we support temporal url requests on the source media
-	'startOffset',
+	'startOffset',	
+	
 	'durationHint',
 	'start',
-	'end',	
+	'end',
+	
 	'default',
 	'lang'
 );
@@ -335,10 +336,7 @@ mediaSource.prototype =
 			if( $j(element).attr( attr ) ) {
 				this[ attr ] =  $j(element).attr( attr );
 			}
-		}				
-		//update duration from hit if present: 
-		if( this.durationHint )
-			this.duration = this.durationHint;		
+		}	
 					
 			
 		if ( $j(element).attr('type'))
@@ -430,7 +428,8 @@ mediaSource.prototype =
 		return this.index;
 	},
 	/*
-	 * function getDuration in milliseconds
+	 * function parseURLDuration 
+	 * getDuration in milliseconds
 	 * special case derive duration from request url
 	 * supports media_url?t=ntp_start/ntp_end url request format
 	 */
@@ -460,9 +459,9 @@ mediaSource.prototype =
 		//js_log('f:parseURLDuration() for:' + this.src  + ' d:' + this.duration);
 	},
 	/** Attempts to detect the type of a media file based on the URI.
-		@param {String} uri URI of the media file.
-		@returns The guessed MIME type of the file.
-		@type String
+	*	@param {String} uri URI of the media file.
+	*	@returns The guessed MIME type of the file.
+	*	@type String
 	*/
 	detectType:function(uri)
 	{
@@ -473,10 +472,22 @@ mediaSource.prototype =
 		var end_inx =  (uri.indexOf('?')!=-1)? uri.indexOf('?') : uri.length;
 		var no_param_uri = uri.substr(0, end_inx);
 		switch( no_param_uri.substr(no_param_uri.lastIndexOf('.'),4).toLowerCase() ){
-			case '.flv':return 'video/x-flv';break;
-			case '.ogg': case '.ogv': return 'video/ogg';break;
-			case '.oga': return 'audio/ogg'; break;
-			case '.anx':return 'video/ogg';break;
+			case '.mp4': 
+				return 'video/h264'; 
+			break;
+			case '.flv': 
+				return 'video/x-flv'; 
+			break;
+			case '.ogg': 
+			case '.ogv': 
+				return 'video/ogg';
+			break;
+			case '.oga': 
+				return 'audio/ogg'; 
+			break;
+			case '.anx':
+				return 'video/ogg';
+			break;
 		}
 	}
 };
@@ -488,7 +499,7 @@ mediaSource.prototype =
 	@param {element} video_element <video> element used for initialization.
 	@constructor
 */
-function mediaElement(video_element)
+function mediaElement( video_element )
 {
 	this.init(video_element);
 };
@@ -509,10 +520,7 @@ mediaElement.prototype =
 		var _this = this;
 		js_log('Initializing mediaElement...' );
 		this.sources = new Array();
-		this.thumbnail = mv_default_thumb_url;
-		// Process the source element:
-		if($j(video_element).attr("src"))
-			this.tryAddSource(video_element);			  
+		this.thumbnail = mv_default_thumb_url;				  
 		
 		if($j(video_element).attr('thumbnail'))
 			this.thumbnail = $j(video_element).attr('thumbnail');
@@ -522,11 +530,24 @@ mediaElement.prototype =
 		
 		if($j(video_element).attr('wikiTitleKey'))
 			this.wikiTitleKey = $j(video_element).attr('wikiTitleKey');
-			
-		// Process all inner <source> elements	
-		//js_log("inner source count: " + video_element.getElementsByTagName('source').length );
+	
+		if($j(video_element).attr('durationHint')){
+			this.durationHint = $j(video_element).attr('durationHint');			
+			//convert duration hint if needed:
+			var sc = this.durationHint.split(':');
+			if( sc.length >=1 ){
+				this.duration = npt2seconds( this.durationHint );
+			}else{
+				this.duration = parseFloat( this.durationHint );
+			}
+		}
 		
-		$j(video_element).find('source,text').each(function(inx, inner_source){			
+		// Process the video_element as a source element:
+		if($j(video_element).attr("src"))
+			this.tryAddSource(video_element);	
+		
+		// Process all inner <source> elements	
+		$j(video_element).find('source,text,itext').each(function(inx, inner_source){			
 			_this.tryAddSource( inner_source );
 		});						  
 	},
@@ -578,14 +599,15 @@ mediaElement.prototype =
 		for(var i=0; i < playable_sources.length; i++){
 			if( i==index ){
 				this.selected_source = playable_sources[i];
-				//update the user selected format: 
+				// Update the user selected format: 
 				embedTypes.players.userSelectFormat( playable_sources[i].mime_type );
 				break;
 			}
 		}		
 	},
-	/** selects the default source via cookie preference, default marked, or by id order
-	 * */
+	/** 
+	* selects the default source via cookie preference, default marked, or by id order
+	*/
 	autoSelectSource:function(){ 
 		js_log('f:autoSelectSource:');	
 		//@@todo read user preference for source		
@@ -600,14 +622,14 @@ mediaElement.prototype =
 				this.selected_source = playable_sources[source];				
 				return true;
 			}
-			//set via user-preference
+			// Set via user-preference
 			if(embedTypes.players.preference['format_prefrence'] == mime_type){
 				 js_log('set via preference: '+playable_sources[source].mime_type);
 				 this.selected_source = playable_sources[source];
 				 return true; 
 			}															
 		}	   
-		//set Ogg via player support		
+		// Set Ogg via player support		
 		for(var source=0; source < playable_sources.length; source++){
 			js_log('f:autoSelectSource:' + playable_sources[source].mime_type);
 			var mime_type =playable_sources[source].mime_type;					
@@ -623,7 +645,7 @@ mediaElement.prototype =
 				}
 			}
 		}
-		//set basic flash
+		// Set basic flash
 		for(var source=0; source < playable_sources.length; source++){  
 			var mime_type =playable_sources[source].mime_type;										
 			if( mime_type=='video/x-flv' ){
@@ -632,7 +654,7 @@ mediaElement.prototype =
 				return true;
 			}						
 		}
-		//set h264 flash 
+		// Set h264 flash 
 		for(var source=0; source < playable_sources.length; source++){  
 			var mime_type =playable_sources[source].mime_type;										
 			if( mime_type=='video/h264' ){
@@ -641,7 +663,7 @@ mediaElement.prototype =
 				return true;
 			}			   
 		}		
-		//select first source		
+		// Select first source		
 		if (!this.selected_source)
 		{
 			js_log('set via first source:' + playable_sources[0]);
@@ -683,7 +705,7 @@ mediaElement.prototype =
 		the element has a 'src' attribute.		
 		@param element {element} <video>, <source> or <mediaSource> <text> element.
 	*/
-	tryAddSource:function(element)
+	tryAddSource:function( element )
 	{
 		js_log('f:tryAddSource:'+ $j(element).attr("src"));				
 		if ( $j(element).attr("src") ){
@@ -696,8 +718,16 @@ mediaElement.prototype =
 					this.sources[i].updateSource(element);
 				}
 			}
-		}				
-		var source = new mediaSource( element );		
+		}					
+		var source = new mediaSource( element );
+		// Inherit some properties from the parent <video> element if unset: 
+		if( !source.duration && this.duration)
+			source.duration = this.duration;
+			
+		if( !source.startOffset && this.startOffset)
+			source.startOffset =this.startOffset;
+		
+				
 		this.sources.push(source);		
 		js_log('pushed source to stack'+ source + 'sl:'+this.sources.length);
 	},
@@ -820,6 +850,8 @@ embedVideo.prototype = {
 			}
 		}
 		
+		
+		
 		//set the skin name from the class  
 		var	sn = element.getAttribute('class');
 		if( sn && sn != ''){
@@ -939,7 +971,7 @@ embedVideo.prototype = {
 		}		
 	},
 	inheritEmbedObj:function(){		
-		js_log("inheritEmbedObj:duration is: " +  this.duration);  
+		js_log("inheritEmbedObj:duration is: " +  this.getDuration() );  
 		//@@note: tricky cuz direct overwrite is not so ideal.. since the extended object is already tied to the dom
 		//clear out any non-base embedObj stuff:
 		if(this.instanceOf){
@@ -1061,7 +1093,7 @@ embedVideo.prototype = {
 		//return this.wrapEmebedContainer( this.getEmbedObj() );
 		return 'function getEmbedHTML should be overitten by embedLib ';
 	},
-	//do seek function (should be overwritten by implementing embedLibs)
+	// Do seek function (should be overwritten by implementing embedLibs)
 	// to check if seek can be done on locally downloaded content. 
 	doSeek : function( perc ){		
 		if( this.supportsURLTimeEncoding() ){			
@@ -1078,7 +1110,7 @@ embedVideo.prototype = {
 	},
 	/*
 	 * seeks to the requested time and issues a callback when ready 
-	 * (should be overwitten by client that supports frame serving)
+	 * (should be overwritten by client that supports frame serving)
 	 */	
 	setCurrentTime:function( time, callback){
 		js_log('error: base embed setCurrentTime can not frame serve (override via plugin)');
@@ -1099,14 +1131,15 @@ embedVideo.prototype = {
 		this.closeDisplayedHTML();
 
 //		if(!this.selected_player){
-//			return this.getPluginMissingHTML();		
+//			return this.getPluginMissingHTML();
+		
 		//Set "loading" here
 		$j('#mv_embedded_player_'+_this.id).html(''+
 			'<div style="color:black;width:'+this.width+'px;height:'+this.height+'px;">' + 
 				gM('mwe-loading_plugin') + 
 			'</div>'					
 		);
-		// schedule embedding
+		// Schedule embedding
 		this.selected_player.load(function()
 		{
 			js_log('performing embed for ' + _this.id);			
@@ -1231,6 +1264,7 @@ embedVideo.prototype = {
 		}					
 	},
 	onClipDoneDisp:function(){
+		var _this = this;
 		//add the liks_info_div black back 
 		$j('#dc_'+this.id).append('<div id="liks_info_'+this.id+'" ' +
 				'style="width:' +parseInt(parseInt(this.width)/2)+'px;'+		
@@ -1242,8 +1276,8 @@ embedVideo.prototype = {
 	   );
 	   //start animation (make thumb small in upper left add in div for "loading"			
 		$j('#img_thumb_'+this.id).animate({				
-				width:parseInt(parseInt(_this.width)/2),
-				height:parseInt(parseInt(_this.height)/2),
+				width : parseInt( parseInt(_this.width)/2 ),
+				height : parseInt( parseInt(_this.height)/2 ),
 				top:20,
 				left:10
 			},
@@ -1925,7 +1959,7 @@ embedVideo.prototype = {
 	*  base embed controls
 	*	the play button calls
 	*/
-	play:function(){
+	play : function(){
 		var eid = (this.pc!=null)?this.pc.pp.id:this.id;
 				
 		//js_log( "mv_embed play:" + this.id);		
@@ -2084,7 +2118,7 @@ embedVideo.prototype = {
 			}
 			//check if we are "done"
 			if( this.currentTime > ( parseInt(this.duration) + 1 ) ){
-				js_log("should run clip done");
+				js_log("should run clip done ct:: " + this.currentTime + ' > ' +  parseInt( this.duration + 1 ) );
 				this.onClipDone();
 			}				
 		}else{
@@ -2289,16 +2323,16 @@ mediaPlayer.prototype =
 /* players and supported mime types 
 @@todo ideally we query the plugin to get what mime types it supports in practice not always reliable/avaliable
 */
-var flowPlayer = new mediaPlayer('flowplayer',['video/x-flv', 'video/h264'],'flash');
+var flowPlayer = new mediaPlayer('flowplayer', ['video/x-flv', 'video/h264'], 'flowplayer');
+//var kplayer = new mediaPlayer('kplayer', ['video/x-flv', 'video/h264'], 'kplayer');
 
 var omtkPlayer = new mediaPlayer('omtkplayer',['audio/ogg'], 'omtk' );
 
 var cortadoPlayer = new mediaPlayer('cortado',['video/ogg', 'audio/ogg'],'java');
 var videoElementPlayer = new mediaPlayer('videoElement',['video/ogg', 'audio/ogg'],'native');
 
-var vlcMineList = ['video/ogg','audio/ogg', 'video/x-flv', 'video/mp4',  'video/h264'];
-var vlcMozillaPlayer = new mediaPlayer('vlc-mozilla',vlcMineList,'vlc');
-var vlcActiveXPlayer = new mediaPlayer('vlc-activex',vlcMineList,'vlc');
+var vlcMineList = ['video/ogg', 'audio/ogg', 'video/x-flv', 'video/mp4',  'video/h264'];
+var vlcPlayer = new mediaPlayer('vlc-player', vlcMineList, 'vlc');
 
 //add generic
 var oggPluginPlayer = new mediaPlayer('oggPlugin',['video/ogg'],'generic');
@@ -2330,8 +2364,8 @@ mediaPlayers.prototype =
 		this.loadPreferences();
 		
 		//set up default players order for each library type		
-		this.default_players['video/x-flv'] = ['flash','vlc'];
-		this.default_players['video/h264'] = ['flash', 'vlc'];
+		this.default_players['video/x-flv'] = ['flowplayer', 'vlc'];
+		this.default_players['video/h264'] = ['flowplayer', 'vlc'];
 		
 		this.default_players['video/ogg'] = ['native','vlc','java', 'generic'];		
 		this.default_players['application/ogg'] = ['native','vlc','java', 'generic'];		
@@ -2521,6 +2555,8 @@ var embedTypes = {
 				}				
 				//flowplayer has pretty good compatiablity 
 				// (but if we wanted to be fancy we would check for version of flash and update the mp4/h.264 support
+				
+				//this.players.addPlayer( kplayer );
 				this.players.addPlayer( flowPlayer );				   
 			}
 			 // VLC
@@ -2575,7 +2611,7 @@ var embedTypes = {
 					pluginName = '';
 				}				
 				if ( pluginName.toLowerCase() == 'vlc multimedia plugin' || pluginName.toLowerCase() == 'vlc multimedia plug-in' ) {
-					this.players.addPlayer(vlcMozillaPlayer, type);
+					this.players.addPlayer( vlcPlayer, type);
 					continue;
 				}
 		
@@ -2607,8 +2643,10 @@ var embedTypes = {
 					this.players.addPlayer(vlcMozillaPlayer, type);
 					continue;
 				}*/
-				if(type=='application/x-shockwave-flash'){
-					this.players.addPlayer( flowPlayer );
+				if( type == 'application/x-shockwave-flash' ){
+				
+					//this.players.addPlayer( kplayer );
+					this.players.addPlayer( flowPlayer );	
 					
 					//check version to add omtk:
 					var flashDescription = navigator.plugins["Shockwave Flash"].description;

@@ -9,11 +9,12 @@ if( !mwAddMediaConfig )
 var mvTimedTextEdit = {};
 
 loadGM({
-  "mwe-add-subs-file"      : "Add/replace subtitle",
-  "mwe-add-subs-file-title": "Select subtitle to upload",
-  "mwe-error-only-srt"     : "You can only upload srt files.",
-  "mwe-watch-video"        : "Watch video",
-  "mwe-select-other-language": "Select other language"
+  "mwe-upload-subs-file" : "Upload subtitle",
+  "mwe-add-subs-file-title" : "Select subtitle to upload",
+  "mwe-error-only-srt" : "You can only upload srt files.",
+  "mwe-watch-video" : "Watch video",
+  "mwe-select-other-language" : "Select other language",
+  "mwe-saving" : "saving.."
 })
 
 
@@ -25,7 +26,7 @@ js2AddOnloadHook( function() {
       return srtData;
   }
   function getVideoTitle() {
-    var videoTitle = wgTitle.split('.');
+    var videoTitle = wgPageName.split('.');
     videoTitle.pop();
     videoTitle.pop();
     videoTitle = videoTitle.join('.').replace('TimedText:', 'File:');
@@ -80,13 +81,13 @@ js2AddOnloadHook( function() {
           cBtn[ gM('mwe-ok') ] = function(){
           	//get language from form
             langKey = $j('#timed_text_language').val();
-            var title = wgTitle.split('.');
+            var title = wgPageName.split('.');
             title.pop();
             title.pop();
             title = title.join('.') + '.' + langKey + '.srt';
             
             var file = $j('#timed_text_file_upload');
-            if( file[0].files[0]){
+            if(!file[0].files[0]){
             	//no file to upload just jump to the lang key: 
             	document.location.href = wgArticlePath.replace('/$1', '?title=' + title + '&action=edit');
             	return ;
@@ -105,7 +106,7 @@ js2AddOnloadHook( function() {
 
             if(extension == "srt") {
               var srt = getSubtitle(file[0]);
-              $j(this).html("saving...");
+              $j(this).text( gM('mwe-saving' ) );
               $j('.ui-dialog-buttonpane').remove();
 
               var editToken = $j('input[name=wpEditToken]').val();
@@ -147,14 +148,14 @@ js2AddOnloadHook( function() {
   $j(tselect).after(ttoolbar);
 
   var button = $j('<button>');
-  button.click(uploadSubtitles)
-  button.text(gM("mwe-add-subs-file"));
-  ttoolbar.append(button);
+	  button.click(uploadSubtitles)
+	  button.text(gM("mwe-upload-subs-file"));
+	  ttoolbar.append(button);
   ttoolbar.append(' ');
 
   var button = $j('<button>');
-  button.click(function() { document.location.href = wgArticlePath.replace('$1', getVideoTitle()); })
-  button.text(gM("mwe-watch-video"));
+	  button.click(function() { document.location.href = wgArticlePath.replace('$1', getVideoTitle()); })
+	  button.text(gM("mwe-watch-video"));
   ttoolbar.append(button);
 
 });
