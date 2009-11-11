@@ -55,7 +55,7 @@ loadGM({
 	"rsd-wiki_commons-title": "Wikimedia Commons",
 	"rsd-wiki_commons": "Wikimedia Commons, an archive of freely-licensed educational media content (images, sound and video clips)",
 	
-	"rsd-this_wiki-title" : "This Wiki",
+	"rsd-this_wiki-title" : "This wiki",
 	"rsd-this_wiki-desc" : "The local wiki install",
 	
 	"rsd-archive_org-title": "Archive.org",
@@ -63,7 +63,7 @@ loadGM({
 	
 	"rsd-flickr-title" : "Flickr.com",
 	"rsd-flickr-desc" : "Flickr.com, a online photo sharing site",
-	"rsd-metavid-title" : "Meavid.org",
+	"rsd-metavid-title" : "Metavid.org",
 	"rsd-metavid-desc" : "Metavid a community archive of US House and Senate floor proceedings"
 	
 });
