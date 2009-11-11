@@ -48,7 +48,7 @@ $messages['en'] = array(
 	'mwe-error-only-srt' => 'You can only upload srt files.',
 	'mwe-watch-video' => 'Watch video',
 	'mwe-select-other-language' => 'Select other language',
-	'mwe-saving' => 'saving..',
+	'mwe-saving' => 'saving...',
 
 	/*
 	 * js file: /libTimedText/mvTextInterface.js
