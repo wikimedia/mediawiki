@@ -1549,22 +1549,19 @@ if (jQ) {
 /************************************************
 ********* mv_embed extension to flowplayer.js ***
 ************************************************/	 
-var flashEmbed = {
-	instanceOf:'flashEmbed',
+var flowplayerEmbed = {
+	instanceOf:'flowplayerEmbed',
 	monitorTimerId : 0,
 	old_pid:0,
 	didSeekJump:false,
 	startedTimedPlayback:false,		
 	didDateStartTimeRestore:false,
 	supports: {
-		'play_head':true, 
-		'pause':true,
-		'stop':true, 
-		//'fullscreen':true, 
-		'time_display':true, 
-		'volume_control':true,
-		'overlay':false,
-		'fullscreen':false
+		'play_head' : true, 
+		'pause' : true,
+		'stop' : true, 
+		'time_display' : true, 
+		'volume_control' : true
 	},
 	getEmbedHTML: function (){
 		setTimeout('document.getElementById(\''+this.id+'\').postEmbedJS()', 150);

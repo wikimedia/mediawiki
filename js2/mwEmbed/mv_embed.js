@@ -132,7 +132,8 @@ lcPaths({
 	"mvClipEdit"			: "libClipEdit/mvClipEdit.js",
 
 	"embedVideo"		: "libEmbedVideo/embedVideo.js",
-	"flashEmbed"		: "libEmbedVideo/flashEmbed.js",
+	"flowplayerEmbed"	: "libEmbedVideo/flowplayerEmbed.js",
+	"kplayerEmbed"		: "libEmbedVideo/kplayerEmbed.js",
 	"genericEmbed"		: "libEmbedVideo/genericEmbed.js",
 	"htmlEmbed"			: "libEmbedVideo/htmlEmbed.js",
 	"javaEmbed"			: "libEmbedVideo/javaEmbed.js",
@@ -1010,8 +1011,10 @@ var mvJsLoader = {
 		//js_log( 'jQueryCheck::' );
 		var _this = this;
 		// Skip stuff if $j is already loaded:
-		if( _global['$j'] && callback ){
-			callback();
+		if( _global['$j'] ){
+			callback(); //call the callback now
+			callback=null;
+			// Check if we have jquery-ui css loaded and assigned skin globals
 			if( _this.jQuerySetupFlag )
 				return ;
 		}		
@@ -1046,11 +1049,12 @@ var mvJsLoader = {
 				// Set up mvEmbed jQuery bindings and config based dependencies
 				mv_jqueryBindings();
 				_this.jQuerySetupFlag = true;
-			}
-			// Run the callback
-			if( callback ) {
-				callback();
-			}
+				
+				// Run the callback if not already run above
+				if( callback ) {
+					callback();
+				}
+			}			
 		});
 	},
 	embedVideoCheck:function( callback ) {
@@ -1093,6 +1097,7 @@ var mvJsLoader = {
 		});
 	},
 	addLoadEvent: function( fn ) {
+		//js_log('add ready event: ' + fn );
 		this.onReadyEvents.push( fn );
 	},
 	// Check the jQuery flag. This way, when remote embedding, we don't load jQuery
@@ -1106,7 +1111,7 @@ var mvJsLoader = {
 		});
 	},
 	runReadyEvents: function() {
-		js_log( "runReadyEvents" );
+		js_log( "runReadyEvents" +  this.onReadyEvents.length );
 		while( this.onReadyEvents.length ) {	
 			var func = this.onReadyEvents.shift();
 			//js_log('run onReady:: ' + func );
@@ -1663,15 +1668,25 @@ function npt2seconds( npt_str ) {
 	// Strip "npt:" time definition if present
 	npt_str = npt_str.replace( 'npt:', '' );
 
+	var hour = 0;
+	var min = 0;
+	var sec = 0;
+
 	times = npt_str.split( ':' );
-	if( times.length != 3 ){
-		js_log( 'error: npt2seconds on ' + npt_str );
-		return false;
+	if( times.length == 3 ){
+		sec = times[2];
+		min = times[1];
+		hour = times[0];
+	}else if(times.length == 2){
+		sec = times[1];
+		min = times[0];
+	}else{
+		sec = times[0];
 	}
 	// Sometimes a comma is used instead of period for ms
-	times[2] = times[2].replace( /,\s?/, '.' );
+	sec = sec.replace( /,\s?/, '.' );
 	// Return seconds float
-	return parseInt( times[0] * 3600) + parseInt( times[1] * 60 ) + parseFloat( times[2] );
+	return parseInt( hour * 3600) + parseInt( min * 60 ) + parseFloat( sec );
 }
 /*
  * Simple helper to grab an edit token
@@ -1769,7 +1784,7 @@ function do_api_req( options, callback ) {
 	}
 }
 function mwGetLocalApiUrl( url ) {
-	if ( wgServer && wgScriptPath ) {
+	if ( typeof wgServer != 'undefined' && typeof wgScriptPath  != 'undefined') {
 		return wgServer + wgScriptPath + '/api.php';
 	}
 	return false;

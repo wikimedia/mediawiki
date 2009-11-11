@@ -55,10 +55,12 @@ $messages['en'] = array(
 	/*
 	 * js file: /libTimedText/mvTimeTextEdit.js
 	 */
-	 'mwe-add-subs-file'      => 'Add/replace subtitle',
-	 'mwe-add-subs-file-title'=> 'Select subtitle to upload',
-	 'mwe-error-only-srt'     => 'You can only upload srt files.',
-	 'mwe-watch-video'        => 'Watch video',
+	 'mwe-upload-subs-file' => "Upload/replace subtitle",
+	 'mwe-add-subs-file-title' => 'Select subtitle to upload',
+	 'mwe-error-only-srt' => 'You can only upload srt files.',
+	 'mwe-watch-video' => 'Watch video',
+ 	 'mwe-select-other-language' => 'Select other language',
+ 	 'mwe-saving' => 'saving..',
 
 	/*
 	 * js file: /libSequencer/mvTimedEffectsEdit.js
@@ -277,6 +279,20 @@ $messages['en'] = array(
 	'mwe-ftype-oga' => 'Ogg audio file',
 	'mwe-ftype-ogg' => 'Ogg video file',
 	'mwe-ftype-unk' => 'Unknown file format',
+
+	'rsd-wiki_commons-title'=> 'Wikimedia Commons',
+	'rsd-wiki_commons'=> 'Wikimedia Commons, an archive of freely-licensed educational media content (images, sound and video clips)',
+
+	'rsd-this_wiki-title' => 'This Wiki',
+	'rsd-this_wiki-desc' => 'The local wiki install',
+
+	'rsd-archive_org-title'=> 'Archive.org',
+	'rsd-archive_org-desc' => 'The Internet Archive, a digital library of cultural artifacts',
+
+	'rsd-flickr-title' => 'Flickr.com',
+	'rsd-flickr-desc' => 'Flickr.com, a online photo sharing site',
+	'rsd-metavid-title' => 'Meavid.org',
+	'rsd-metavid-desc' => 'Metavid a community archive of US House and Senate floor proceedings',
 
 	/*
 	 * js file: /libAddMedia/simpleUploadForm.js

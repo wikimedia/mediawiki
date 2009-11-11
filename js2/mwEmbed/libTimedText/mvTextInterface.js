@@ -39,21 +39,26 @@ mvTextInterface.prototype = {
 		//if roe not yet loaded do load it:
 		if(this.pe.roe || _this.pe.wikiTitleKey ){
 			if(!this.pe.media_element.addedROEData){
-				js_log("load roe data!");
 				$j('#mv_txt_load_'+_this.pe.id).show(); //show the loading icon
-				if(_this.pe.roe){
+				if( _this.pe.roe ){
 					do_request( _this.pe.roe, function(data)
 					{
 						_this.pe.media_element.addROE(data);
 						_this.getParseTimedText_rowReady();
 					});
 				}else if( _this.pe.wikiTitleKey ){
+					//check for a clear namespace key:
+					var timedtext_ns = 102; 				
+					if( wgNamespaceIds && wgNamespaceIds['timedtext']){
+						timedtext_ns = wgNamespaceIds['timedtext'];
+					}
 					do_api_req({
 							'url' :	apiUrl,
 							'data': {
 								'list' : 'allpages',
 								'apprefix' : _this.pe.wikiTitleKey,
-								'apnamespace' : 102
+								'apnamespace' : timedtext_ns,
+								'prop':'revisions'
 							}
 					}, function( subData ) {
 						if(	subData.error && subData.error.code == 'apunknown_apnamespace'){
@@ -87,6 +92,8 @@ mvTextInterface.prototype = {
 		var _this = this;
 		//look for text tracks:
 		var foundTextTracks = false;
+		
+		//get all the known languages:
 		do_api_req({
 			'url':	hostPath + '/api.php',
 			'data': {
@@ -117,17 +124,13 @@ mvTextInterface.prototype = {
 							'category' : 'SUB',
 							'lang' 	: langKey,
 							'type' 	: _this.suportedMime[ extension ],
-							'title'	: langData[ langKey],							
+							'title'	: langData[ langKey]									
 						});
-						//set src to remote friendly 
-						if( wgServer &&  hostPath.indexOf(wgServer)!==-1){
-							$j(textElm).attr('src', hostPath + '/index.php?title=' + subPage.title + '&action=raw');
-						}else{
-							$j(textElm).attr({
-								'apisrc'	: hostPath + '/api.php',
-								'titleKey' 	: subPage.title
-							});
-						}												
+						// We use the api since ?action raw on the real title has cache issues 
+						$j( textElm ).attr({
+							'apisrc'	: hostPath + '/api.php',
+							'titleKey' 	: subPage.title
+						});
 						_this.pe.media_element.tryAddSource( textElm );
 						foundTextTracks = true;											
 					}
@@ -192,12 +195,12 @@ mvTextInterface.prototype = {
 			if( typeof source.id == 'undefined' || source.id == null ){
 				source.id = 'text_' + inx;
 			}
-			var tObj = new timedTextObj( source ); 
+			var tObj = new timedTextObj( source );
 			//make sure its a valid timed text format (we have not loaded or parsed yet) : (
 			if( tObj.lib != null ){	
 				_this.availableTracks.push( tObj );				
-				//display if requested:
-				if( ( wgUserLanguage && source['lang'] == wgUserLanguage ) || source['default'] == "true" ){
+				//display requested language if we can know that: 
+				if( ( typeof wgUserLanguage != 'undefined' && source['lang'] == wgUserLanguage ) || source['default'] == "true" ){
 					//we did set at least one track by default tag
 					found_tracks = true;					
 					_this.loadAndDisplay( _this.availableTracks.length -1 );
@@ -206,15 +209,17 @@ mvTextInterface.prototype = {
 				}
 			}
 		});
+		
 		//no default clip found take the userLanguage key if set:
-		if(!found_tracks){			
+		if( !found_tracks ){			
 			$j.each( _this.availableTracks, function(inx, source){				
 				_this.loadAndDisplay( inx );
 				found_tracks=true;
 				//return after loading first available
 				return false;
 			});
-		}		
+		}
+		
 	    //if nothing found anywhere give the not found msg: 
 		if(!found_tracks){
 			$j( '#metaBox_' + _this.pe.id).html( ''+
@@ -226,11 +231,11 @@ mvTextInterface.prototype = {
 	loadAndDisplay: function ( track_id){
 		var _this = this;
 		$j('#mv_txt_load_'+_this.pe.id).show();//show the loading icon
-		_this.availableTracks[ track_id ].load(_this.default_time_range, function(){
+		_this.availableTracks[ track_id ].load( _this.default_time_range, function(){
 			$j('#mv_txt_load_'+_this.pe.id).hide();
 			_this.addTrack( track_id );
 		});
-	},
+	},	
 	addTrack: function( track_id ){
 		js_log('f:displayTrack:'+ track_id);
 		var _this = this;
@@ -238,7 +243,7 @@ mvTextInterface.prototype = {
 		_this.availableTracks[ track_id ].display=true;
 		//setup the layout:
 		this.setup_layout();
-		js_log("SHOULD ADD: track:"+ track_id + ' count:' +  _this.availableTracks[ track_id ].textNodes.length);
+		js_log( "SHOULD ADD: track:" + track_id + ' count:' +  _this.availableTracks[ track_id ].textNodes.length);
 
 		//a flag to avoid checking all clips if we know we are adding to the end:
 		_this.add_to_end_on_this_pass = false;
@@ -248,10 +253,12 @@ mvTextInterface.prototype = {
 		var track_id = track_id;
 		var addNextClip = function(){
 			var text_clip = _this.availableTracks[ track_id ].textNodes[i];
-			_this.add_merge_text_clip(text_clip, track_id);
-			i++;
-			if(i < _this.availableTracks[ track_id ].textNodes.length){
-				setTimeout(addNextClip, 1);
+			if(	text_clip ){	
+				_this.add_merge_text_clip(text_clip, track_id);
+				i++;
+				if(i < _this.availableTracks[ track_id ].textNodes.length){
+					setTimeout(addNextClip, 1);
+				}
 			}
 		}
 		addNextClip();
@@ -259,7 +266,7 @@ mvTextInterface.prototype = {
 	add_merge_text_clip: function( text_clip, track_id ){
 		var _this = this;
 		//make sure the clip does not already exist:
-		if($j('#tc_'+text_clip.id).length==0){
+		if( $j('#tc_'+text_clip.id).length==0 ){
 			var inserted = false;
 			var text_clip_start_time = npt2seconds( text_clip.start );
 

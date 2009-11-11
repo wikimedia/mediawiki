@@ -213,7 +213,7 @@ ctrlBuilder.prototype = {
 					embedObj.seek_time_sec = npt2seconds( embedObj.jump_time, true );
 					js_log('do jump to: '+embedObj.jump_time + ' perc:' +perc + ' sts:' + embedObj.seek_time_sec);
 					embedObj.setStatus( gM('mwe-seeking') );
-					embedObj.doSeek(perc);
+					embedObj.doSeek( perc );
 				}
 			}
 		});
