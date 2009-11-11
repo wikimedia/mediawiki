@@ -48,6 +48,8 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 	function getQueryInfo() {
+		global $wgDBtype;
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array( 'rc_user > 0' ); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
@@ -65,7 +67,7 @@ class ActiveUsersPager extends UsersPager {
 				'MAX(ipb_user) AS blocked'
 			),
 			'options' => array(
-				'GROUP BY' => $dbr->implicitGroupby() ? 'rc_user_text' : 'rc_user_text, user_id',
+				'GROUP BY' => ( $dbr->implicitGroupby() || $wgDBtype == 'sqlite' ) ? 'rc_user_text' : 'rc_user_text, user_id',
 				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
 			),
 			'join_conds' => array(
