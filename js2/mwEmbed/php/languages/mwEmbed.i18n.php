@@ -41,26 +41,24 @@ $messages['en'] = array(
 	'mwe-duration' => 'Duration:',
 
 	/*
+	 * js file: /libTimedText/mvTimeTextEdit.js
+	 */
+	'mwe-upload-subs-file' => 'Upload subtitle',
+	'mwe-add-subs-file-title' => 'Select subtitle to upload',
+	'mwe-error-only-srt' => 'You can only upload srt files.',
+	'mwe-watch-video' => 'Watch video',
+	'mwe-select-other-language' => 'Select other language',
+	'mwe-saving' => 'saving..',
+
+	/*
 	 * js file: /libTimedText/mvTextInterface.js
 	 */
-	'mwe-select_transcript_set' => 'Select layers',
+	'mwe-select_transcript_set' => 'Select subtitles',
 	'mwe-auto_scroll' => 'auto scroll',
 	'mwe-close' => 'close',
 	'mwe-improve_transcript' => 'Improve',
-	'mwe-no_text_tracks_found' => 'No text tracks were found',
-	'mwe-subtitles' => '$1 subtitles',
 	'mwe-no_text_tracks_found' => 'No text subtitles found',
-	'mwe-add-edit-subs'	=> 'Add/edit subtitles',
-
-	/*
-	 * js file: /libTimedText/mvTimeTextEdit.js
-	 */
-	 'mwe-upload-subs-file' => "Upload/replace subtitle",
-	 'mwe-add-subs-file-title' => 'Select subtitle to upload',
-	 'mwe-error-only-srt' => 'You can only upload srt files.',
-	 'mwe-watch-video' => 'Watch video',
- 	 'mwe-select-other-language' => 'Select other language',
- 	 'mwe-saving' => 'saving..',
+	'mwe-add-edit-subs' => 'Add/edit subtitles',
 
 	/*
 	 * js file: /libSequencer/mvTimedEffectsEdit.js
@@ -71,6 +69,7 @@ $messages['en'] = array(
 	'mwe-remove_transition' => 'Remove transition',
 	'mwe-edit_transin' => 'Edit transition into clip',
 	'mwe-edit_transout' => 'Edit transition out of clip',
+	'mwe-add-transition' => 'Add a Transition',
 
 	/*
 	 * js file: /libSequencer/mvSequencer.js
@@ -279,19 +278,15 @@ $messages['en'] = array(
 	'mwe-ftype-oga' => 'Ogg audio file',
 	'mwe-ftype-ogg' => 'Ogg video file',
 	'mwe-ftype-unk' => 'Unknown file format',
-
-	'rsd-wiki_commons-title'=> 'Wikimedia Commons',
-	'rsd-wiki_commons'=> 'Wikimedia Commons, an archive of freely-licensed educational media content (images, sound and video clips)',
-
-	'rsd-this_wiki-title' => 'This Wiki',
+	'rsd-wiki_commons-title' => 'Wikimedia Commons',
+	'rsd-wiki_commons' => 'Wikimedia Commons, an archive of freely-licensed educational media content (images, sound and video clips)',
+	'rsd-this_wiki-title' => 'This wiki',
 	'rsd-this_wiki-desc' => 'The local wiki install',
-
-	'rsd-archive_org-title'=> 'Archive.org',
+	'rsd-archive_org-title' => 'Archive.org',
 	'rsd-archive_org-desc' => 'The Internet Archive, a digital library of cultural artifacts',
-
 	'rsd-flickr-title' => 'Flickr.com',
 	'rsd-flickr-desc' => 'Flickr.com, a online photo sharing site',
-	'rsd-metavid-title' => 'Meavid.org',
+	'rsd-metavid-title' => 'Metavid.org',
 	'rsd-metavid-desc' => 'Metavid a community archive of US House and Senate floor proceedings',
 
 	/*
@@ -374,9 +369,8 @@ $messages['en'] = array(
 	'mwe-video_credits' => 'Video credits',
 	'mwe-menu_btn' => 'Menu',
 	'mwe-close_btn' => 'Close',
-	'mwe-ogg-player-vlc-mozilla' => 'VLC plugin',
+	'mwe-ogg-player-vlc-player' => 'VLC player',
 	'mwe-ogg-player-videoElement' => 'Native Ogg video',
-	'mwe-ogg-player-vlc-activex' => 'VLC ActiveX',
 	'mwe-ogg-player-oggPlugin' => 'Generic Ogg plugin',
 	'mwe-ogg-player-quicktime-mozilla' => 'QuickTime plugin',
 	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
