@@ -330,7 +330,7 @@ class SpecialContributions extends SpecialPage {
 	
 		$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
 		if( !wfEmptyMsg( 'sp-contributions-explain', $explain ) )
-			$f .= "<p>{$explain}</p>";
+			$f .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
 	
 		$f .= '</fieldset>' .
 			Xml::closeElement( 'form' );
