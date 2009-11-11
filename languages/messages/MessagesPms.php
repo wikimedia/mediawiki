@@ -351,13 +351,13 @@ $1",
 'nstab-special'   => 'Pàgina special',
 'nstab-project'   => 'Pàgina ëd servissi',
 'nstab-image'     => 'Figura',
-'nstab-mediawiki' => 'Messagi',
+'nstab-mediawiki' => 'Mëssagi',
 'nstab-template'  => 'Stamp',
 'nstab-help'      => 'Agiut',
 'nstab-category'  => 'Categorìa',
 
 # Main script and global functions
-'nosuchaction'      => 'Operassione nen arconossùa',
+'nosuchaction'      => 'Operassion nen arconossùa',
 'nosuchactiontext'  => "L'operassion che a l'ha ciamà ant l'anliura a l'é nen arconossùa.
 A peul esse che it l'abie batù mal l'URL, o che it l'abie andàit daré a n'anliura nen giusta.
 Son-sì a podrìa ëdcò esse un bug an drinta al software dovrà da {{SITENAME}}.",

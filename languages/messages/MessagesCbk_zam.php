@@ -7,11 +7,14 @@
  * @ingroup Language
  * @file
  *
+ * @author Weekeejames
  */
 
 $fallback = "es";
 
 $messages = array(
+'about' => 'Acerca de',
+
 'help'           => 'Ayuda',
 'search'         => 'Busqueda',
 'history_short'  => 'Historia',
@@ -21,19 +24,23 @@ $messages = array(
 'otherlanguages' => 'na otro maga lenguaje',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Acerca de {{SITENAME}}',
+'aboutpage'            => 'Project:Acerca de',
 'mainpage'             => 'El Primero Pagina',
 'mainpage-description' => 'El Primero Pagina',
 'portal'               => 'Portal del Comunidad',
 
 # Login and logout pages
-'acct_creation_throttle_hit' => 'Pasencia. Ya crea ya tu $1 maga cuenta. No puede mas tu rehistra pa otra vez.',
-'accountcreated'             => 'El rehistro cuenta de usario es creando',
-'accountcreatedtext'         => 'El cuenta por usario $1 ya crea ya.',
+'acct_creation_throttle_hit' => 'Ya crea ya {{PLURAL:$1|un cuenta registro |$1 maga cuenta registro}} el maga visita de este wiki usando el de uste direccion de IP  en el ultimo dia. Ya sobra ya na maximo numero que ta puede permiti el sistema para crea cuenta. Por causa de este razon, no puede mas crea nuevo cuenta usando el de uste direccion de IP este maga tiempo.',
+'accountcreated'             => 'El cuenta registro del usuario es creando.',
+'accountcreatedtext'         => 'Creao ya el cuenta registro por usuario $1.',
 
 # Edit pages
 'blockedtitle' => 'El usario es prohibido',
-'accmailtitle' => 'El contraseña imbiao ya.',
-'accmailtext'  => 'El contraseña por "$1" ya imbia ya para con $2.',
+'accmailtitle' => 'Enviao ya el contraseña.',
+'accmailtext'  => "El contraseña que el sistema ya escogi automatico por usuario [[User talk:$1|$1]] enviado ya a $2.
+
+El contraseña de este nuevo cuenta puede cambia na pagina ''[[Special:ChangePassword|Cambia el contraseña]]'' despues el autenticacion.",
 
 # Preferences page
 'changepassword' => 'Cambia con el contraseña',
@@ -54,10 +61,14 @@ $messages = array(
 'created' => 'creao',
 
 # Delete
-'actioncomplete' => 'Accion completo',
+'actioncomplete' => 'Completo el accion.',
 
 # Block/unblock
 'blockip'           => 'Prohibi con el usario',
 'blockipsuccesssub' => 'El prohibicion es confirmado',
+
+# Move page
+'1movedto2'       => 'Ya move con el articulo de nombre [[$1]] y ahora cambiado ya na nombre [[$2]].',
+'1movedto2_redir' => 'Ya move con el articulo de nombre [[$1]] sobre un redireccion y ahora cambiado ya na nombre [[$2]].',
 
 );

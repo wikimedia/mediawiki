@@ -729,6 +729,7 @@ Grunna dette vil ikkje vitjande som nyttar denne IP-adressa kunna oppretta nye k
 'createaccount-text'         => 'Nokon oppretta ein brukarkonto for $2 på {{SITENAME}} ($4). Passordet til «$2» er «$3». Du bør logge inn og endre passordet ditt med ein gong.
 
 Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.',
+'usernamehasherror'          => 'Brukarnamn kan ikkje innehalda nummerteikn.',
 'login-throttled'            => 'Du har prøvd å logge inn for mange gonger. Ver venleg og vent før du prøver igjen.',
 'loginlanguagelabel'         => 'Språk: $1',
 
@@ -958,6 +959,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'page_last'              => 'siste',
 'histlegend'             => 'Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />Forklaring: (no) = skilnad frå den noverande versjonen, (førre) = skilnad frå den førre versjonen, <b>s</b> = småplukk',
 'history-fieldset-title' => 'Finn dato',
+'history-show-deleted'   => 'Berre sletta',
 'histfirst'              => 'Første',
 'histlast'               => 'Siste',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 byte}})',
@@ -993,7 +995,12 @@ Som administrator kan du framleis [$1 sjå skilnaden] om du ynskjer å halda fra
 'rev-suppressed-unhide-diff'  => "Ei av sideversjonane i denne lista over versjonar har vorte '''skjult'''.
 Det kan vera detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
 Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer det.",
+'rev-deleted-diff-view'       => "Ei av endringaen i dette oversynet har vorte '''sletta'''.
+Som administrator kan du sjå oversynet; det kan vera detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-suppressed-diff-view'    => "En av endringaen i dette oversynet har vorte '''skjult'''.
+Som administrator kan du sjå dette oversynet; det kan vera detaljar i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-delundel'                => 'vis/gøym',
+'rev-showdeleted'             => 'syn',
 'revisiondelete'              => 'Slett/attopprett versjonar',
 'revdelete-nooldid-title'     => 'Ugyldig målversjon',
 'revdelete-nooldid-text'      => 'Du har ikkje oppgjeve kva for versjon(ar) du vil utføre denne handlinga på, versjonen eksisterer ikkje, eller du prøver å gøyme den noverande versjonen.',
@@ -1008,6 +1015,7 @@ Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer det.",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:'''",
 'revdelete-text'              => "Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
 Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.",
+'revdelete-confirm'           => 'Stadfest at du ynskjer å gjera dette, at du skjønar konsekvensane, og at du gjer det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].',
 'revdelete-suppress-text'     => "Løyning av sideversjonar bør '''berre''' verta nytta i dei fylgjande tilfella:
 * Upassanda personleg informasjon
 *: ''heimeadresser og -telefonnummer,  personnummer, osb.''",
@@ -1490,6 +1498,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'upload'                      => 'Last opp fil',
 'uploadbtn'                   => 'Last opp fil',
 'reuploaddesc'                => 'Attende til opplastingsskjemaet.',
+'upload-tryagain'             => 'Send inn endra filskildring',
 'uploadnologin'               => 'Ikkje innlogga',
 'uploadnologintext'           => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna laste opp filer.',
 'upload_directory_missing'    => 'Opplastingsmappa ($1) manglar og kunne ikkje opprettast av tenaren.',
@@ -1552,6 +1561,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'file-deleted-duplicate'      => 'Ei identisk fil ([[$1]]) har tidlegare blitt sletta. Du bør sjekka slettehistorikken til denne før du held fram med å lasta ho opp på nytt.',
 'successfulupload'            => 'Opplastinga er ferdig',
 'uploadwarning'               => 'Opplastingsåtvaring',
+'uploadwarning-text'          => 'Ver venleg og endra filskildringa nedanfor og prøv på nytt',
 'savefile'                    => 'Lagre fil',
 'uploadedimage'               => 'Lasta opp «[[$1]]»',
 'overwroteimage'              => 'lasta opp ein ny versjon av «[[$1]]»',
@@ -2086,6 +2096,7 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'protectexpiry'               => 'Endar:',
 'protect_expiry_invalid'      => 'Utløpstida er ugyldig.',
 'protect_expiry_old'          => 'Utløpstida har allereie vore.',
+'protect-unchain-permissions' => 'Lås opp fleire alternativ for vern',
 'protect-text'                => "Her kan du kan sjå og endre på graden av vern for sida '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Du kan ikkje endre nivå på vern medan du er blokkert. Dette er dei noverande innstillingane for sida '''$1''':",
 'protect-locked-dblock'       => "Du kan ikkje endre nivå på vern fordi databasen er låst akkurat no. Dette er dei noverande innstillingane for sida '''$1''':",
@@ -2278,6 +2289,7 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'ipblocklist-sh-addressblocks'    => '$1 blokkeringar av individuelle IP-adresser',
 'ipblocklist-submit'              => 'Søk',
 'ipblocklist-localblock'          => 'Lokal blokkering',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Anna blokkering|Andre blokkeringar}}',
 'blocklistline'                   => '$1, $2 blokkerte $3 ($4)',
 'infiniteblock'                   => 'uendeleg opphøyrstid',
 'expiringblock'                   => 'endar den $1 ved $2',
@@ -2317,6 +2329,7 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:IPB
 'ipb_already_blocked'             => '«$1» er allereie blokkert',
 'ipb-needreblock'                 => '== Alt blokkert ==
 $1 er alt blokkert. Vil du endre innstillingane?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Anna blokkering|Andre blokkeringar}}',
 'ipb_cant_unblock'                => 'Feil: Fann ikkje blokkeringsnummeret $1. Blokkeringa kan vere oppheva allereie.',
 'ipb_blocked_as_range'            => 'Feil: IP-en $1 er ikkje direkte blokkert og kan ikkje opphevast. Adressa er blokkert som ein del av blokkeringa av IP-intervallet $2. Denne blokkeringa kan opphevast.',
 'ip_range_invalid'                => 'Ugyldig IP-adresseserie.',
@@ -2414,6 +2427,8 @@ Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flyttin
 'move-leave-redirect'          => 'La det vere att ei omdirigering',
 'protectedpagemovewarning'     => "'''ÅTVARING:''' Denne sida har vorte låst, slik at berre brukarar med rettar som administrator kan flytta henne.",
 'semiprotectedpagemovewarning' => "'''Notér:''' Denne sida har vorte låst, slik at berre registrerte brukarar kan flytta henne.",
+'move-over-sharedrepo'         => '== Fila finnst ==
+[[:$1]] finst på ei delt kjelde. Om du flyttar ei fil til dette namnet, vil du overstyra den delte fila.',
 'file-exists-sharedrepo'       => 'Det valde filnamnet er allereie i bruk på ei delt kjelde.
 Ver venleg og velg eit anna namn.',
 
@@ -2695,7 +2710,7 @@ $1',
 'nextdiff'     => 'Nyare endring →',
 
 # Media information
-'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt ta skade.<hr />",
+'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.<hr />",
 'imagemaxsize'         => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
 'thumbsize'            => 'Miniatyrstørrelse:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',

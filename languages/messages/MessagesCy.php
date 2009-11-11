@@ -1439,6 +1439,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ni chaniatawyd mynediad',
+'img-auth-nologinnWL'   => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
 'img-auth-nofile'       => 'Nid oes ffeil a\'r enw "$1" ar gael.',
 'img-auth-noread'       => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
 
@@ -2126,6 +2127,7 @@ $1',
 'ipblocklist-sh-tempblocks'       => '$1 blociau dros dro',
 'ipblocklist-sh-addressblocks'    => '$1 blociau IP unigol',
 'ipblocklist-submit'              => 'Chwilier',
+'ipblocklist-localblock'          => 'Bloc lleol',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Bloc arall|Bloc arall|Blociau eraill|Blociau eraill|Blociau eraill|Blociau eraill}}',
 'blocklistline'                   => '$1, $2 wedi blocio $3 ($4)',
 'infiniteblock'                   => 'bloc parhaus',
@@ -2143,6 +2145,10 @@ $1',
 'contribslink'                    => 'cyfraniadau',
 'autoblocker'                     => 'Rydych chi wedi cael eich blocio yn awtomatig gan eich bod chi\'n rhannu cyfeiriad IP gyda "[[User:$1|$1]]". Dyma\'r rheswm a roddwyd dros flocio $1: "$2".',
 'blocklogpage'                    => 'Lòg blociau',
+'blocklog-showlog'                => "Cafodd y defnyddiwr hwn ei flocio o'r blaen.
+Dyma'r lòg blocio perthnasol:",
+'blocklog-showsuppresslog'        => "Cafodd y defnyddiwr hwn ei flocio a'i guddio o'r blaen.
+Dyma'r lòg cuddio perthnasol:",
 'blocklogentry'                   => 'wedi blocio "[[$1]]" am gyfnod $2 $3',
 'reblock-logentry'                => 'wedi newid y gosodiadau blocio ar [[$1]], gan ddod i ben am $2 $3',
 'blocklogtext'                    => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:IPBlockList|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
@@ -2161,6 +2167,7 @@ $1',
 'ipb_already_blocked'             => 'Mae "$1" eisoes wedi ei flocio',
 'ipb-needreblock'                 => "== Wedi blocio'n barod ==
 Mae $1 wedi ei flocio'n barod. Ydych chi am newid y gosodiadau?",
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Bloc|Bloc|Blociau|Blociau|Blociau|Blociau}} eraill',
 'ipb_cant_unblock'                => "Gwall: Ni chafwyd hyd i'r bloc a'r ID $1.
 Hwyrach ei fod wedi ei ddad-flocio'n barod.",
 'ipb_blocked_as_range'            => "Gwall: Nid yw'r IP $1 wedi ei blocio'n uniongyrchol ac felly ni ellir ei datflocio. Wedi dweud hynny, y mae'n rhan o'r amrediad $2 sydd wedi ei blocio; gellir datflocio'r amrediad.",
