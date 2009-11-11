@@ -69,7 +69,7 @@ $messages['en'] = array(
 	'mwe-remove_transition' => 'Remove transition',
 	'mwe-edit_transin' => 'Edit transition into clip',
 	'mwe-edit_transout' => 'Edit transition out of clip',
-	'mwe-add-transition' => 'Add a Transition',
+	'mwe-add-transition' => 'Add a transition',
 
 	/*
 	 * js file: /libSequencer/mvSequencer.js
