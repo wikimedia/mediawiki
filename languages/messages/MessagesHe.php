@@ -1197,6 +1197,7 @@ $1",
 'compareselectedversions'  => 'השוואת הגרסאות שנבחרו',
 'showhideselectedversions' => 'הצגת/הסתרת הגרסאות שנבחרו',
 'editundo'                 => 'ביטול',
+'diff-multi'               => '({{PLURAL:$1|גרסת ביניים אחת אינה מוצגת|$1 גרסאות ביניים אינן מוצגות}})',
 
 # Search results
 'searchresults'                    => 'תוצאות החיפוש',
