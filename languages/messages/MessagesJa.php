@@ -27,6 +27,7 @@
  * @author Muttley
  * @author Mzm5zbC3
  * @author Suisui
+ * @author Web comic
  * @author Whym
  * @author לערי ריינהארט
  * @author 青子守歌
@@ -1452,9 +1453,9 @@ $1",
 'hist'                              => '履歴',
 'hide'                              => '非表示',
 'show'                              => '表示',
-'minoreditletter'                   => '細',
-'newpageletter'                     => '新',
-'boteditletter'                     => 'ボ',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'unpatrolledletter'                 => '未',
 'number_of_watching_users_pageview' => '[$1{{PLURAL:$1|人}}がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限 ("|" で区切る)',

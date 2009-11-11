@@ -10,6 +10,7 @@
  * @author Nkosi ya Cabinda
  * @author Sab
  * @author Wikimistusik
+ * @author Zetud
  */
 
 $namespaceNames = array(
@@ -749,6 +750,7 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'lineno'                  => 'Conha $1:',
 'compareselectedversions' => 'Dodisukera va reban siatos yo',
 'editundo'                => 'dimaskira',
+'diff-multi'              => '({{PLURAL:$1|1 walif betaks me zo nedir|$1 walif betaks me zo nedid}}.)',
 
 # Search results
 'searchresults'                  => 'Aneyaradanekseem',
@@ -1543,7 +1545,7 @@ Badona rekolon zo gotuvlardar.',
 'undeleterevisions'         => '$1 fardudjayana betara',
 'undeletehistory'           => "Ede rin va bu co-dimplekul, kota betara ko izvot zo co-dimplekur.
 
-Si une nouvelle page avec le même nom a été crée depuis la suppression, les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
+Si une nouvelle page avec le même nom a été créée depuis la suppression, les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
 'undelete-revision'         => 'Sulayana betara va $1 (ba $4 ke $5) gan $3 :',
 'undelete-nodiff'           => 'Mek abdif betaks trasin.',
 'undeletebtn'               => 'Skura va dimplekura !',
