@@ -287,7 +287,7 @@ $messages['en'] = array(
 	'rsd-flickr-title' => 'Flickr.com',
 	'rsd-flickr-desc' => 'Flickr.com, a online photo sharing site',
 	'rsd-metavid-title' => 'Metavid.org',
-	'rsd-metavid-desc' => 'Metavid a community archive of US House and Senate floor proceedings',
+	'rsd-metavid-desc' => 'Metavid.org, a community archive of US House and Senate floor proceedings',
 
 	/*
 	 * js file: /libAddMedia/simpleUploadForm.js
