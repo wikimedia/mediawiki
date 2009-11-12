@@ -75,27 +75,27 @@ class memcached
    // {{{ properties
    // {{{ public
 
-		// {{{ constants
-		// {{{ flags
+	// {{{ constants
+	// {{{ flags
 
-		/**
-		 * Flag: indicates data is serialized
-		 */
-		const SERIALIZED = 1;
+	/**
+	 * Flag: indicates data is serialized
+	 */
+	const SERIALIZED = 1;
 
-		/**
-		 * Flag: indicates data is compressed
-		 */
-		const COMPRESSED = 2;
+	/**
+	 * Flag: indicates data is compressed
+	 */
+	const COMPRESSED = 2;
 
-		// }}}
+	// }}}
 
-		/**
-		 * Minimum savings to store data compressed
-		 */
-		const COMPRESSION_SAVINGS = 0.20;
+	/**
+	 * Minimum savings to store data compressed
+	 */
+	const COMPRESSION_SAVINGS = 0.20;
 
-		// }}}
+	// }}}
 
 
 	/**
