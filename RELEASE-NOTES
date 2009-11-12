@@ -278,6 +278,8 @@ Hopefully we will remove this configuration var soon)
 * rebuildtextindex.php maintenance script now supports databases other than
   MySQL
 * upgrade1_5.php now requires to be run --update option to prevent confusion
+* (bug 17662) Customizable default preload/editintro in add-new-section link 
+  for Talk page
 
 === Bug fixes in 1.16 ===
 

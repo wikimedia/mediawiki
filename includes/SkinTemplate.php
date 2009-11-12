@@ -740,10 +740,19 @@ class SkinTemplate extends Skin {
 				// adds new section link if page is a current revision of a talk page or
 				if ( ( $wgArticle && $wgArticle->isCurrent() && $istalk ) || $wgOut->showNewSectionLink() ) {
 					if ( !$wgOut->forceHideNewSectionLink() ) {
+						$urlArgs = 'action=edit&section=new';
+						$preloadMsg = wfMsg( 'talk-addsection-preload' );
+						$editintroMsg = wfMsg( 'talk-addsection-editintro' );
+						if( '' != $preloadMsg  ) {
+							$urlArgs .= '&preload=' . urlencode( $preloadMsg );
+						}
+						if( '' != $editintroMsg ) {
+							$urlArgs .= '&editintro=' . urlencode( $editintroMsg );
+						}
 						$content_actions['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
 							'text' => wfMsg( 'addsection' ),
-							'href' => $this->mTitle->getLocalUrl( 'action=edit&section=new' )
+							'href' => $this->mTitle->getLocalUrl( $urlArgs )
 						);
 					}
 				}
