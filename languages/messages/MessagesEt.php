@@ -1954,11 +1954,11 @@ Toetatud protokollid: <tt>$1</tt>',
 'watchnologin'         => 'Ei ole sisse logitud',
 'watchnologintext'     => 'Jälgimisloendi muutmiseks peate [[Special:UserLogin|sisse logima]].',
 'addedwatch'           => 'Lisatud jälgimisloendile',
-'addedwatchtext'       => 'Lehekülg "<nowiki>$1</nowiki>" on lisatud Teie [[Special:Watchlist|jälgimisloendile]].
+'addedwatchtext'       => "Lehekülg \"[[:\$1]]\" on sinu [[Special:Watchlist|jälgimisloendisse]] lisatud.
 
-Edasised muudatused käesoleval lehel ja sellega seotud aruteluküljel reastatakse jälgimisloendis ning [[Special:RecentChanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile <b>rasvase</b> kirja abil.
+Edasised muudatused käesoleval lehel ja sellega seotud aruteluleheküljel ilmuvad jälgimisloendisse ning [[Special:RecentChanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile '''rasvase''' kirja abil.
 
-Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "Lõpeta jälgimine".',
+Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"Lõpeta jälgimine\".",
 'removedwatch'         => 'Jälgimisloendist kustutatud',
 'removedwatchtext'     => 'Lehekülg "[[:$1]]" on [[Special:Watchlist|jälgimisloendist]] eemaldatud.',
 'watch'                => 'Jälgi',

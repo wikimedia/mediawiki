@@ -359,8 +359,8 @@ $1",
 # Main script and global functions
 'nosuchaction'      => 'Operassion nen arconossùa',
 'nosuchactiontext'  => "L'operassion che a l'ha ciamà ant l'anliura a l'é nen arconossùa.
-A peul esse che it l'abie batù mal l'URL, o che it l'abie andàit daré a n'anliura nen giusta.
-Son-sì a podrìa ëdcò esse un bug an drinta al software dovrà da {{SITENAME}}.",
+A peul esse che it l'abie batù mal l'URL, o che it sie andàit dapress a n'anliura nen giusta.
+Sossì a podrìa ëdcò esse un bigat andrinta al programa dovrà da {{SITENAME}}.",
 'nosuchspecialpage' => "A-i é pa gnun-a pàgina special tan-me cola che chiel a l'ha ciamà.",
 'nospecialpagetext' => "<strong>It l'has ciamà na pàgina special pa bon-a.</strong>
 

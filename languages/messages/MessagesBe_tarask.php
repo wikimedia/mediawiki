@@ -2511,11 +2511,11 @@ $1 ужо заблякаваны. Вы жадаеце зьмяніць пара�
 Калі ласка, наведайце [http://www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [http://translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фільтар',
-'allmessages-filter'            => 'Фільтар па стану зьменаў:',
+'allmessages-filter'            => 'Фільтар па стане зьменаў:',
 'allmessages-filter-unmodified' => 'Ня зьмененыя',
 'allmessages-filter-all'        => 'Усе',
 'allmessages-filter-modified'   => 'Зьмененыя',
-'allmessages-prefix'            => 'Фільтар па прэфіксу:',
+'allmessages-prefix'            => 'Фільтар па прэфіксе:',
 'allmessages-language'          => 'Мова:',
 'allmessages-filter-submit'     => 'Паказаць',
 

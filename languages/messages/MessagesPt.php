@@ -473,7 +473,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Erro',
 'returnto'          => 'Voltar para $1.',
-'tagline'           => 'De {{SITENAME}}',
+'tagline'           => 'Da {{SITENAME}}',
 'help'              => 'Ajuda',
 'search'            => 'Pesquisa',
 'searchbutton'      => 'Pesquisar',
@@ -532,7 +532,7 @@ Por favor espere um pouco antes de tentar aceder à página novamente.
 $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Sobre {{SITENAME}}',
+'aboutsite'            => 'Sobre a {{SITENAME}}',
 'aboutpage'            => 'Project:Sobre',
 'copyright'            => 'Conteúdo disponível sob $1.',
 'copyrightpage'        => '{{ns:project}}:Direitos_de_autor',
@@ -733,7 +733,7 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'passwordtooshort'           => 'A sua palavra-chave deve de ter no mínimo {{PLURAL:$1|1 caráter|$1 carateres}}.',
 'password-name-match'        => 'A sua palavra-passe deverá ser diferente do seu nome de utilizador.',
 'mailmypassword'             => 'Enviar uma nova palavra-chave por e-mail',
-'passwordremindertitle'      => 'Nova palavra-chave temporária em {{SITENAME}}',
+'passwordremindertitle'      => 'Nova palavra-chave temporária na {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço IP $1) solicitou uma nova palavra-chave para a sua conta na {{SITENAME}} ($4).
 Foi criada a palavra-chave temporária "$3" para o utilizador "$2".
 Se o pedido foi feito por si, entre agora na sua conta e escolha uma nova palavra-chave.
@@ -761,7 +761,7 @@ Em resultado, visitantes que usam este endereço IP não podem criar mais nenhum
 Introduza um endereço correctamente formatado ou esvazie o campo.',
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta de utilizador para $1 foi criada.',
-'createaccount-title'        => 'Criação de conta em {{SITENAME}}',
+'createaccount-title'        => 'Criação de conta na {{SITENAME}}',
 'createaccount-text'         => 'Alguém criou uma conta com o nome $2 para o seu endereço de email na wiki {{SITENAME}} ($4), com a palavra-chave "$3".
 Deve agora entrar e alterar a sua palavra-chave.
 
@@ -964,7 +964,7 @@ O administrador que bloqueou a base de dados forneceu a seguinte explicação: $
 'hiddencategories'                 => 'Esta página integra {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
 'edittools'                        => '<!-- O texto colocado aqui será mostrado abaixo dos formulários de edição e de envio de ficheiros. -->',
 'nocreatetitle'                    => 'A criação de páginas encontra-se limitada',
-'nocreatetext'                     => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
+'nocreatetext'                     => 'A {{SITENAME}} restringe a criação de novas páginas por utilizadores anónimos.
 Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|autenticar-se ou criar uma conta]].',
 'nocreate-loggedin'                => 'Não possui permissão para criar novas páginas.',
 'permissionserrors'                => 'Erros de permissões',
@@ -1090,7 +1090,7 @@ Como administrador, pode visualizar a listagem de diferenças; poderão existir 
 'revdelete-selected'          => "'''{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:'''",
 'revdelete-text'              => "'''Edições e eventos eliminados continuarão a aparecer no histórico e registos da página, mas partes do seu conteúdo estarão inacessíveis ao público.'''
-Outros administradores em {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.",
+Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.",
 'revdelete-confirm'           => 'Por favor confirme que pretende executar esta acção, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text'     => "A supressão '''só''' deverá ser usada nos seguintes casos:
 * Informação potencialmente caluniosa, difamatória ou injuriosa
@@ -1254,9 +1254,9 @@ Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (inclusive página
 'powersearch-toggleall'            => 'Todos',
 'powersearch-togglenone'           => 'Nenhum',
 'search-external'                  => 'Pesquisa externa',
-'searchdisabled'                   => 'A pesquisa da {{SITENAME}} se encontra desabilitada.
-Utilize nesse meio tempo mecanismos externos, tal como o do Google.
-Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desactualizados.',
+'searchdisabled'                   => 'Foi impossibilitada a realização de pesquisas na {{SITENAME}}.
+Entretanto, pode realizar pesquisas através do Google.
+Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode estar desactualizada.',
 
 # Quickbar
 'qbsettings'               => 'Barra Rápida',
@@ -1529,7 +1529,7 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges'                     => 'Mudanças recentes',
 'recentchanges-legend'              => 'Opções das mudanças recentes',
-'recentchangestext'                 => 'Acompanhe as mudanças mais recentes em {{SITENAME}} nesta página.',
+'recentchangestext'                 => 'Acompanhe nesta página as mudanças mais recentes da {{SITENAME}}.',
 'recentchanges-feed-description'    => "Acompanhe as mudanças mais recentes na wiki através deste ''feed''.",
 'recentchanges-label-legend'        => 'Legenda: $1.',
 'recentchanges-legend-newpage'      => '$1 - página nova',
@@ -1848,7 +1848,7 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 'statistics-pages'             => 'Páginas',
 'statistics-pages-desc'        => 'Todas as páginas da wiki, incluindo páginas de discussão, redireccionamentos, etc.',
 'statistics-files'             => 'Ficheiros carregados',
-'statistics-edits'             => 'Edições de página desde que {{SITENAME}} foi instalado',
+'statistics-edits'             => 'Edições de página desde que a {{SITENAME}} foi instalada',
 'statistics-edits-average'     => 'Média de edições por página',
 'statistics-views-total'       => 'Total de visualizações',
 'statistics-views-peredit'     => 'Visualizações por edição',
@@ -1976,7 +1976,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allpagesprefix'    => 'Apresentar páginas com o prefixo:',
 'allpagesbadtitle'  => 'O título de página fornecido era inválido ou tinha um prefixo de ligação interlínguas ou interwikis.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
-'allpages-bad-ns'   => '{{SITENAME}} não possui o espaço nominal "$1".',
+'allpages-bad-ns'   => 'A {{SITENAME}} não possui o espaço nominal "$1".',
 
 # Special:Categories
 'categories'                    => 'Categorias',
@@ -2166,11 +2166,11 @@ Consulte $2 para um registo de eliminações recentes.',
 ** Violação de direitos de autor
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar motivos de eliminação',
-'delete-toobig'          => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
-A eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.',
+'delete-toobig'          => 'Esta página possui um longo histórico, com mais de $1 {{PLURAL:$1|edição|edições}}.
+A eliminação de tais páginas foi restringida na {{SITENAME}}, para evitar problemas acidentais.',
 'delete-warning-toobig'  => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
-Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
-prossiga com cuidado.',
+Eliminá-la poderá causar problemas na base de dados da {{SITENAME}};
+prossiga com precaução.',
 
 # Rollback
 'rollback'          => 'Reverter edições',
@@ -2758,12 +2758,12 @@ Permite colocar uma justificação no sumário da edição.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',
 'siteuser'         => 'um utilizador da {{SITENAME}}: $1',
-'anonuser'         => 'utilizador anónimo $1 de {{SITENAME}}',
+'anonuser'         => 'utilizador anónimo $1 da {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
-'siteusers'        => '{{PLURAL:$2|um utilizador|$2 utilizadores}} de {{SITENAME}}: $1',
-'anonusers'        => '{{PLURAL:$2|utilizador anónimo|utilizadores anónimos}} de {{SITENAME}}: $1',
+'siteusers'        => '{{PLURAL:$2|um utilizador|$2 utilizadores}} da {{SITENAME}}: $1',
+'anonusers'        => '{{PLURAL:$2|utilizador anónimo|utilizadores anónimos}} da {{SITENAME}}: $1',
 'creditspage'      => 'Créditos da página',
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 
