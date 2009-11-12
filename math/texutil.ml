@@ -481,7 +481,7 @@ let find = function
     | "\\underbrace"       -> LITERAL (TEX_ONLY "\\underbrace ")
     | "\\overleftarrow"    -> LITERAL (TEX_ONLY "\\overleftarrow ")
     | "\\overrightarrow"   -> LITERAL (TEX_ONLY "\\overrightarrow ")
-    | "\\overleftrightarrow"->LITERAL (TEX_ONLY "\\overleftrightarrow ")
+    | "\\overleftrightarrow"-> (tex_use_ams(); LITERAL (TEX_ONLY "\\overleftrightarrow "))
     | "\\check"            -> FUN_AR1 "\\check "
     | "\\acute"            -> FUN_AR1 "\\acute "
     | "\\grave"            -> FUN_AR1 "\\grave "
