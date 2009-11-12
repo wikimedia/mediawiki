@@ -600,6 +600,8 @@ $wgMessageStructure = array(
 		'edit-conflict',
 		'edit-no-change',
 		'edit-already-exists',
+		'talk-addsection-preload',
+		'talk-addsection-editintro',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
