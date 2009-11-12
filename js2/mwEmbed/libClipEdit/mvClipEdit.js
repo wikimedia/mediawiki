@@ -153,11 +153,12 @@ mvClipEdit.prototype = {
 				//if media type is template we have to query to get its URI to get its parameters
 				if(_this.media_type == 'template' && !_this.rObj.tVars){
 					mv_set_loading('#sub_cliplib_ic');
-					var reqObj ={	'action':'query',
-									'prop':'revisions',
-									'titles': _this.rObj.uri,
-									'rvprop':'content'
-								};
+					var reqObj ={	
+						'action':'query',
+						'prop':'revisions',
+						'titles': _this.rObj.uri,
+						'rvprop':'content'
+					};
 					//get the interface uri from the plObject
 					var api_url = _this.p_seqObj.plObj.interface_url;
 					//first check
@@ -175,32 +176,9 @@ mvClipEdit.prototype = {
 									var template_rev = page['revisions'][0]['*'];
 								}
 							}
-
-							//do a regular ex to get the ~likely~ template values
-							//(of course this sucks)
-							//but maybe this will make its way into the api sometime soon to support wysiwyg type editors
-							//idealy it would expose a good deal of info about the template params
-							js_log('matching against: ' + template_rev);
-							var tempVars = template_rev.match(/\{\{\{([^\}]*)\}\}\}/gi);
-							//clean up results:
-							_this.rObj.tVars = new Array();
-							for(var i=0; i < tempVars.length; i++){
-								var tvar = tempVars[i].replace('{{{','').replace('}}}','');
-								//strip anything after a |
-								if(tvar.indexOf('|') != -1){
-									tvar = tvar.substr(0, tvar.indexOf('|'));
-								}
-								//check for duplicates:
-								var do_add=true;
-								for(var j=0; j < _this.rObj.tVars.length; j++){
-									js_log('checking: ' + _this.rObj.tVars[j] + ' against:' + tvar);
-									if( _this.rObj.tVars[j] == tvar)
-										do_add=false;
-								}
-								//add the template vars to the output obj
-								if(do_add)
-									_this.rObj.tVars.push( tvar );
-							}
+							var pObj = mw.parser.pNew( template_rev );
+							_this.rObj.tVars = pObj.getTemplateVars();
+							//run the editor now that we have updated the tVars: 													
 							_this.doEditOpts(target);
 						}
 					);

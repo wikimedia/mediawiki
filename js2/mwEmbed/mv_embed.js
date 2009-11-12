@@ -730,7 +730,33 @@ if( !mv_embed_path ) {
 				this.pOut = recurse_magic_swap( this.pNode );
 
 			},
-			
+			/**
+			* getTemplateVars special function to grab template paramaters 
+			* from template text
+			* 
+			* @returns {Array} template vars names
+			*/
+			getTemplateVars:function(){
+				//do a regular ex to get the ~likely~ template values
+				//(of course this sucks)
+				//but maybe this will make its way into the api sometime soon to support wysiwyg type editors
+				//ideally it would expose a good deal of info about the template params
+				js_log('matching against: ' + this.wikiText);
+				var tempVars = this.wikiText.match(/\{\{\{([^\}]*)\}\}\}/gi);
+				//clean up results:
+				var tVars = new Array();
+				for(var i=0; i < tempVars.length; i++){
+					var tvar = tempVars[i].replace('{{{','').replace('}}}','');
+					// Strip anything after a |
+					if(tvar.indexOf('|') != -1){
+						tvar = tvar.substr(0, tvar.indexOf('|'));
+					}
+					// Add if not already there
+					if( $j.inArray(tvar, tVars) == -1)
+						 tVars.push( tvar );					
+				}
+				return tVars;
+			},			
 			/*
 			 * parsed template api ~loosely based off of ~POM~
 			 * http://www.mediawiki.org/wiki/Extension:Page_Object_Model
@@ -839,7 +865,7 @@ function mv_set_loading(target, load_id){
 }
 
 /**
-* mvJsLoader class handles initialisation and js file loads
+* mvJsLoader class handles initialization and js file loads
 */
 var mvJsLoader = {
 	libreq : {},

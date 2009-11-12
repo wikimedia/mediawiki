@@ -1,5 +1,6 @@
 /**
  * metavid: mv_flashEmbed builds off of flowplayer api (included first in this file) 
+ * THIS WILL BE DEPRECIATED SOON
  */
  
  /**

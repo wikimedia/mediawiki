@@ -58,7 +58,7 @@ class jsScriptLoader {
 		$this->sFileCache->getCacheFileName();
 
 		// Setup script loader header info
-		// @@todo we might want to put these into the $mw var per class request set
+		// @@todo we might want to put these into the mw var per class request set
 		// and or include a callback to avoid pulling in old browsers that don't support
 		// the onLoad attribute for script elements.
 		$this->jsout .= 'var mwSlScript = "' .  $_SERVER['SCRIPT_NAME']  . '";' . "\n";
