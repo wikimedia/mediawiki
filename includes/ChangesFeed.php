@@ -20,14 +20,14 @@ class ChangesFeed {
 
 	public function execute( $feed, $rows, $limit=0, $hideminor=false, $lastmod=false, $target='' ) {
 		global $messageMemc, $wgFeedCacheTimeout;
-		global $wgSitename, $wgContLanguageCode;
+		global $wgSitename, $wgLang;
 
 		if ( !FeedUtils::checkFeedOutput( $this->format ) ) {
 			return;
 		}
 
 		$timekey = wfMemcKey( $this->type, $this->format, 'timestamp' );
-		$key = wfMemcKey( $this->type, $this->format, $limit, $hideminor, $target );
+		$key = wfMemcKey( $this->type, $this->format, $limit, $hideminor, $target, $wgLang->getCode() );
 
 		FeedUtils::checkPurge($timekey, $key);
 
@@ -55,7 +55,7 @@ class ChangesFeed {
 	public function saveToCache( $feed, $timekey, $key ) {
 		global $messageMemc;
 		$expire = 3600 * 24; # One day
-		$messageMemc->set( $key, $feed );
+		$messageMemc->set( $key, $feed, $expire );
 		$messageMemc->set( $timekey, wfTimestamp( TS_MW ), $expire );
 	}
 

@@ -628,6 +628,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 21470) MediaWiki:Sp-contributions-explain is now wrapped in a <p> with
   id "mw-sp-contributions-explain"
 * (bug 19159) Fixed \overleftrightarrow in texvc
+* (bug 19391) Fix caching for Recent ChangesFeed.
 
 == API changes in 1.16 ==
 
