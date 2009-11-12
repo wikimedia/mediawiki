@@ -157,6 +157,9 @@ $wgIgnoredMessages = array(
 	'wantedtemplates-summary',
 	'activeusers-summary',
 	'editpage-tos-summary',
+	'talk-addsection-preload',
+	'talk-addsection-editintro',
+	
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
