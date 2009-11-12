@@ -4,10 +4,10 @@
  */
 
 // Setup configuration vars (if not set already)
-if( !mwAddMediaConfig )
-	var mwAddMediaConfig = {};
+if ( !mwAddMediaConfig )
+	var mwAddMediaConfig = { };
 
-//The default editPage AMW config
+// The default editPage AMW config
 var defaultAddMediaConfig = {
 		'profile': 'mediawiki_edit',
 		'target_textbox': '#wpTextbox1',
@@ -21,35 +21,35 @@ var defaultAddMediaConfig = {
 };
 
 js2AddOnloadHook( function() {
-	js_log("edit page js2AddOnloadHook::");
+	js_log( "edit page js2AddOnloadHook::" );
 	var amwConf = $j.extend( true, defaultAddMediaConfig, mwAddMediaConfig );
 	// kind of tricky, it would be nice to use run on ready "loader" call here
-	var didWikiEditorBind = false;	
+	var didWikiEditorBind = false;
 	
-	//Set-up the drag drop binding (will only work for html5 upload browsers) 
-	//$j('textarea#wpTextbox1').dragFileUpload();
-	
-	//set up the add-media-wizard binding: 
-	if( typeof $j.wikiEditor != 'undefined' ) {
-			//the below seems to be broken :(
+	// Set-up the drag drop binding (will only work for html5 upload browsers) 
+	// $j('textarea#wpTextbox1').dragFileUpload();
+
+	// set up the add-media-wizard binding: 
+	if ( typeof $j.wikiEditor != 'undefined' ) {
+			// the below seems to be broken :(
 			$j( 'textarea#wpTextbox1' ).bind( 'wikiEditor-toolbar-buildSection-main',
 		    function( e, section ) {
 		    	didWikiEditorBind = true;
 		        if ( typeof section.groups.insert.tools.file !== 'undefined' ) {
 		            section.groups.insert.tools.file.action = {
 		                'type': 'callback',
-		                'execute': function() { 
-		                	js_log('click add media wiz');
+		                'execute': function() {
+		                	js_log( 'click add media wiz' );
 		                	$j.addMediaWiz( amwConf );
 		                }
 		            };
 		        }
 		    }
 		);
-	}		
-	//Add to old toolbar if wikiEditor did not remove '#toolbar' from the page:    
-	setTimeout(function(){
-		if( $j('#btn-add-media-wiz').length == 0 && $j( '#toolbar' ).length != 0 ){
+	}
+	// Add to old toolbar if wikiEditor did not remove '#toolbar' from the page:    
+	setTimeout( function() {
+		if ( $j( '#btn-add-media-wiz' ).length == 0 && $j( '#toolbar' ).length != 0 ) {
 			js_log( 'Do old toolbar bind:' );
 			didWikiEditorBind = true;
 			$j( '#toolbar' ).append( '<img style="cursor:pointer" id="btn-add-media-wiz" src="' +
@@ -57,13 +57,13 @@ js2AddOnloadHook( function() {
 			$j( '#btn-add-media-wiz' ).addMediaWiz(
 				amwConf
 			);
-		}else{			
-			//Make sure the wikieditor got binded: 
-			if( !didWikiEditorBind ){
+		} else {
+			// Make sure the wikieditor got binded: 
+			if ( !didWikiEditorBind ) {
 				js_log( 'Failed to bind via build section bind via target:' );
-				$j(".tool[rel='file']").unbind().addMediaWiz( amwConf );
+				$j( ".tool[rel='file']" ).unbind().addMediaWiz( amwConf );
 			}
 		}
-	}, 120)
+	}, 120 )
 
-});
+} );

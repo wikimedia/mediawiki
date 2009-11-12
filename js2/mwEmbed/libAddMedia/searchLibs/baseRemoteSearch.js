@@ -1,8 +1,8 @@
-//base remote search obj
+// base remote search obj
 
-loadGM({
+loadGM( {
 	"mwe-imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more information."
-})
+} )
 // @key is name of rObj variable
 // @value is where to find the value in the item xml
 //
@@ -19,228 +19,228 @@ var rsd_default_rss_item_mapping = {
 	'title'		: 'title',
 	'link'		: 'link',
 	'desc'		: 'description',
-	//multiple items
+	// multiple items
 	'category'  : '.media:category@label|url'
 }
 
-var baseRemoteSearch = function(iObj) {
-	return this.init(iObj);
+var baseRemoteSearch = function( iObj ) {
+	return this.init( iObj );
 };
 baseRemoteSearch.prototype = {
 
 	completed_req:0,
 	num_req:0,
 
-	resultsObj:{},
+	resultsObj: { },
 
-	//default search result values for paging:
+	// default search result values for paging:
 	offset			 :0,
 	limit			: 30,
 	more_results	: false,
 	num_results		: 0,
 
-	//init the object:
-	init: function( iObj ){
-		js_log('mvBaseRemoteSearch:init');
-		for(var i in iObj){
+	// init the object:
+	init: function( iObj ) {
+		js_log( 'mvBaseRemoteSearch:init' );
+		for ( var i in iObj ) {
 			this[i] = iObj[i];
 		}
 		return this;
 	},
-	getSearchResults:function(){
-		//empty out the current results before issuing a request
-		this.resultsObj = {};
-		//do global getSearchResults bindings
-		this.last_query = $j('#rsd_q').val();
+	getSearchResults:function() {
+		// empty out the current results before issuing a request
+		this.resultsObj = { };
+		// do global getSearchResults bindings
+		this.last_query = $j( '#rsd_q' ).val();
 		this.last_offset = this.cp.offset;
-		//set the loading flag:		
-		this.loading=true;
-	},	
+		// set the loading flag:		
+		this.loading = true;
+	},
 	/*
 	* Parses and adds video rss based input format
 	* @param $data XML data to parse
 	* @param provider_url	 the source url (used to generate absolute links)
 	*/
-	addRSSData:function( data , provider_url ){
-		js_log('f:addRSSData');
+	addRSSData:function( data , provider_url ) {
+		js_log( 'f:addRSSData' );
 		var _this = this;
 		var http_host = '';
 		var http_path = '';
-		if(provider_url){
+		if ( provider_url ) {
 			pUrl =  parseUri( provider_url );
-			http_host = pUrl.protocol +'://'+ pUrl.authority;
+			http_host = pUrl.protocol + '://' + pUrl.authority;
 			http_path = pUrl.directory;
 		}
-		var items = data.getElementsByTagName('item');
-		//js_log('found ' + items.length );
-		$j.each(items, function(inx, item){
-			var rObj = {};
-			for(var i in rsd_default_rss_item_mapping){
-				var selector = rsd_default_rss_item_mapping[i].split('@');
+		var items = data.getElementsByTagName( 'item' );
+		// js_log('found ' + items.length );
+		$j.each( items, function( inx, item ) {
+			var rObj = { };
+			for ( var i in rsd_default_rss_item_mapping ) {
+				var selector = rsd_default_rss_item_mapping[i].split( '@' );
 
-				var flag_multiple = (  selector[0].substr(0,1) == '.' ) ? true : false;
-				if( flag_multiple ){
+				var flag_multiple = (  selector[0].substr( 0, 1 ) == '.' ) ? true : false;
+				if ( flag_multiple ) {
 					rObj[i] = new Array();
-					var tag_name = selector[0].substr(1);
-				}else{
+					var tag_name = selector[0].substr( 1 );
+				} else {
 					var tag_name = selector[0];
 				}
 
 				var attr_name = null;
-				if( typeof selector[1] != 'undefined'){
+				if ( typeof selector[1] != 'undefined' ) {
 					attr_name = selector[1];
-					if( attr_name.indexOf('|') != -1 )
-						attr_name = attr_name.split('|');
+					if ( attr_name.indexOf( '|' ) != - 1 )
+						attr_name = attr_name.split( '|' );
 				}
 
-				$j.each( item.getElementsByTagName( tag_name ), function ( inx, node ){
+				$j.each( item.getElementsByTagName( tag_name ), function ( inx, node ) {
 					var tag_val = '';
-					if( node!=null && attr_name == null ){
-						if( node.childNodes[0] != null){
-							//trim and strip html:
-							tag_val = $j.trim( node.firstChild.nodeValue ).replace(/(<([^>]+)>)/ig,"");
+					if ( node != null && attr_name == null ) {
+						if ( node.childNodes[0] != null ) {
+							// trim and strip html:
+							tag_val = $j.trim( node.firstChild.nodeValue ).replace( / ( < ( [ ^ > ] + ) > ) / ig, "" );
 						}
 					}
-					if( node!=null && attr_name != null){
-						if( typeof attr_name == 'string' ){
+					if ( node != null && attr_name != null ) {
+						if ( typeof attr_name == 'string' ) {
 							tag_val = $j.trim( $j( node ).attr( attr_name ) );
-						}else{
-							var attr_vals = {};
-							for( var j in attr_name ){
-								if( $j(node).attr( attr_name[j] ).length != 0)
-									attr_vals[ attr_name[j] ] = $j.trim( $j(node).attr( attr_name[j]) ).replace(/(<([^>]+)>)/ig,"");
+						} else {
+							var attr_vals = { };
+							for ( var j in attr_name ) {
+								if ( $j( node ).attr( attr_name[j] ).length != 0 )
+									attr_vals[ attr_name[j] ] = $j.trim( $j( node ).attr( attr_name[j] ) ).replace( / ( < ( [ ^ > ] + ) > ) / ig, "" );
 							}
 							tag_val = attr_vals ;
 						}
 					}
-					if(flag_multiple){
-						rObj[i].push( tag_val)
-					}else{
+					if ( flag_multiple ) {
+						rObj[i].push( tag_val )
+					} else {
 						rObj[i] = tag_val;
 					}
-				});
+				} );
 
 
 			} // done with property loop
 
 
-			//make relative urls absolute:
-			var url_param = new Array('src', 'poster');
-			for(var j=0; j < url_param.length; j++){
+			// make relative urls absolute:
+			var url_param = new Array( 'src', 'poster' );
+			for ( var j = 0; j < url_param.length; j++ ) {
 				var p = url_param[j];
-				if(typeof rObj[p] != 'undefined'){
-					if( rObj[p].substr(0,1)=='/' ){
+				if ( typeof rObj[p] != 'undefined' ) {
+					if ( rObj[p].substr( 0, 1 ) == '/' ) {
 						rObj[p] = http_host + rObj[p];
 					}
-					if( parseUri( rObj[i] ).host ==  rObj[p]){
+					if ( parseUri( rObj[i] ).host ==  rObj[p] ) {
 						rObj[p] = http_host + http_path + rObj[p];
 					}
 				}
 			}
-			//force a mime type for now.. in the future generalize for other RSS feeds and conversions
+			// force a mime type for now.. in the future generalize for other RSS feeds and conversions
 			rObj['mime'] = 'video/ogg';
-			//add pointer to parent search obj:( this.cp.limit )? this.cp.limit : this.limit,
+			// add pointer to parent search obj:( this.cp.limit )? this.cp.limit : this.limit,
 
 			rObj['pSobj'] = _this;
-			//add the result to the result set:
+			// add the result to the result set:
 			_this.resultsObj[ inx ] = rObj;
 			_this.num_results++;
-		});
+		} );
 	},
-	getEmbedHTML: function( rObj , options) {
-		if(!options)
-			options = {};
-		//set up the output var with the default values: 
-		var outOpt = { 'width': rObj.width, 'height': rObj.height};
-		if( options['max_height'] ){			
-			outOpt.height = (options.max_height > rObj.height) ? rObj.height : options.max_height;	
-			outOpt.width = (rObj.width / rObj.height) *outOpt.height;			
-		}						
-		options.style_attr = 'style="width:' + outOpt.width + 'px;height:' + outOpt.height +'px"';
-		options.id_attr = (options['id'])?' id = "' + options['id'] +'" ': '';
+	getEmbedHTML: function( rObj , options ) {
+		if ( !options )
+			options = { };
+		// set up the output var with the default values: 
+		var outOpt = { 'width': rObj.width, 'height': rObj.height };
+		if ( options['max_height'] ) {
+			outOpt.height = ( options.max_height > rObj.height ) ? rObj.height : options.max_height;
+			outOpt.width = ( rObj.width / rObj.height ) * outOpt.height;
+		}
+		options.style_attr = 'style="width:' + outOpt.width + 'px;height:' + outOpt.height + 'px"';
+		options.id_attr = ( options['id'] ) ? ' id = "' + options['id'] + '" ': '';
 		
-		if( rObj.mime.indexOf('image') != -1 ){
+		if ( rObj.mime.indexOf( 'image' ) != - 1 ) {
 			return this.getImageEmbedHTML( rObj, options );
-		}else{
-			js_log("ERROR:: no embed code for mime type: " + rObj.mime);
+		} else {
+			js_log( "ERROR:: no embed code for mime type: " + rObj.mime );
 			return ' Error missing embed code ';
 		}
 	},
-	getImageEmbedHTML:function( rObj, options ) {	
-		//if crop is null do base output: 
+	getImageEmbedHTML:function( rObj, options ) {
+		// if crop is null do base output: 
 		var imgHtml = '<img ' + options.id_attr + ' src="' + rObj.edit_url  + '"' + options.style_attr + ' >';
-		if( rObj.crop == null)
+		if ( rObj.crop == null )
 			return imgHtml
-		//else do crop output:	
-			return '<div style="width:'+rObj.crop.w +'px;height: ' + rObj.crop.h +'px;overflow:hidden;position:relative">' +
-						'<div style="position:relative;top:-' + rObj.crop.y +'px;left:-' + rObj.crop.x +'px">'+
-							imgHtml + 
-						'</div>'+
+		// else do crop output:	
+			return '<div style="width:' + rObj.crop.w + 'px;height: ' + rObj.crop.h + 'px;overflow:hidden;position:relative">' +
+						'<div style="position:relative;top:-' + rObj.crop.y + 'px;left:-' + rObj.crop.x + 'px">' +
+							imgHtml +
+						'</div>' +
 					'</div>';
 	},
-	//by default just return the existing image with callback
-	getImageObj:function( rObj, size, callback){
-		callback( {'url':rObj.poster} );
+	// by default just return the existing image with callback
+	getImageObj:function( rObj, size, callback ) {
+		callback( { 'url':rObj.poster } );
 	},
-	//by default just return the rObj.desc
-	getInlineDescWiki:function( rObj ){
-		//return striped html  & trim white space
-		if(rObj.desc)
-			return $j.trim( rObj.desc.replace(/(<([^>]+)>)/ig,"") );
-		//no desc avaliable:
+	// by default just return the rObj.desc
+	getInlineDescWiki:function( rObj ) {
+		// return striped html  & trim white space
+		if ( rObj.desc )
+			return $j.trim( rObj.desc.replace( / ( < ( [ ^ > ] + ) > ) / ig, "" ) );
+		// no desc avaliable:
 		return '';
 	},
-	//default license permission wiki text is cc based template mapping (does not confirm the templates actually exist)
-	getPermissionWikiTag: function( rObj ){
-		if(!rObj.license)
-			return '';//no license info
-		//check that its a defined creative commons licnese key:
-		if(  this.rsd.licenses.cc.licenses[ rObj.license.key ] != 'undefined' ){
+	// default license permission wiki text is cc based template mapping (does not confirm the templates actually exist)
+	getPermissionWikiTag: function( rObj ) {
+		if ( !rObj.license )
+			return '';// no license info
+		// check that its a defined creative commons licnese key:
+		if (  this.rsd.licenses.cc.licenses[ rObj.license.key ] != 'undefined' ) {
 			return '{{Cc-' + rObj.license.key + '}}';
-		}else if( rObj.license.lurl ) {
+		} else if ( rObj.license.lurl ) {
 			return '{{Template:External_License|' + rObj.license.lurl + '}}';
 		}
 
 	},
-	getImportResourceDescWiki:function(rObj){
-		return gM('mwe-imported_from', [rObj.title,  this.cp.homepage, this.cp.title, rObj.link]);
+	getImportResourceDescWiki:function( rObj ) {
+		return gM( 'mwe-imported_from', [rObj.title,  this.cp.homepage, this.cp.title, rObj.link] );
 	},
-	//for thigns like categories and the like
-	getExtraResourceDescWiki:function( rObj ){
+	// for thigns like categories and the like
+	getExtraResourceDescWiki:function( rObj ) {
 		return '';
 	},
-	//by default just return the poster (clients can overide)
-	getImageTransform:function(rObj, opt){
+	// by default just return the poster (clients can overide)
+	getImageTransform:function( rObj, opt ) {
 		return rObj.poster;
 	},
-	getEmbedObjParsedInfo:function(rObj, eb_id){
+	getEmbedObjParsedInfo:function( rObj, eb_id ) {
 		return rObj;
 	},
-	getEmbedTimeMeta:function(rObj, callback){
+	getEmbedTimeMeta:function( rObj, callback ) {
 		callback();
 	},
-	getEmbedWikiCode:function(rObj){
-		var layout = ( rObj.layout)? rObj.layout:"right"
-		var o= '[[' + this.rsd.cFileNS + ':' + rObj.target_resource_title + '|thumb|'+layout;
+	getEmbedWikiCode:function( rObj ) {
+		var layout = ( rObj.layout ) ? rObj.layout:"right"
+		var o = '[[' + this.rsd.cFileNS + ':' + rObj.target_resource_title + '|thumb|' + layout;
 
-		if(!rObj.target_width && rObj.width){
-			rObj.target_width = (rObj.width < 640)? rObj.width: '640';
+		if ( !rObj.target_width && rObj.width ) {
+			rObj.target_width = ( rObj.width < 640 ) ? rObj.width: '640';
 		}
 
-		if(rObj.target_width)
-			o+='|' + rObj.target_width + 'px';
+		if ( rObj.target_width )
+			o += '|' + rObj.target_width + 'px';
 
-		if( rObj.inlineDesc )
-			o+='|' + rObj.inlineDesc;
+		if ( rObj.inlineDesc )
+			o += '|' + rObj.inlineDesc;
 
-		o+=']]';
+		o += ']]';
 		return o;
 	},
-	updateTargetResourceTitle:function(rObj){
-		rObj.target_resource_title = rObj.titleKey.replace(/File:|Image:/,'');
+	updateTargetResourceTitle:function( rObj ) {
+		rObj.target_resource_title = rObj.titleKey.replace( / File: | Image: / , '' );
 		rObj.target_resource_title = this.cp.resource_prefix + rObj.target_resource_title;
 	},
-	updateDataForImport:function( rObj ){
+	updateDataForImport:function( rObj ) {
 		return rObj;
 	}
 }
