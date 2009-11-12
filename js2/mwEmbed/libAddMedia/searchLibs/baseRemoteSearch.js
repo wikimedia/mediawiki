@@ -98,7 +98,7 @@ baseRemoteSearch.prototype = {
 					if ( node != null && attr_name == null ) {
 						if ( node.childNodes[0] != null ) {
 							// trim and strip html:
-							tag_val = $j.trim( node.firstChild.nodeValue ).replace( / ( < ( [ ^ > ] + ) > ) / ig, "" );
+							tag_val = $j.trim( node.firstChild.nodeValue ).replace(/(<([^>]+)>)/ig,"");
 						}
 					}
 					if ( node != null && attr_name != null ) {
@@ -108,7 +108,7 @@ baseRemoteSearch.prototype = {
 							var attr_vals = { };
 							for ( var j in attr_name ) {
 								if ( $j( node ).attr( attr_name[j] ).length != 0 )
-									attr_vals[ attr_name[j] ] = $j.trim( $j( node ).attr( attr_name[j] ) ).replace( / ( < ( [ ^ > ] + ) > ) / ig, "" );
+									attr_vals[ attr_name[j] ] = $j.trim( $j(node).attr( attr_name[j]) ).replace(/(<([^>]+)>)/ig,"");
 							}
 							tag_val = attr_vals ;
 						}
@@ -186,7 +186,7 @@ baseRemoteSearch.prototype = {
 	getInlineDescWiki:function( rObj ) {
 		// return striped html  & trim white space
 		if ( rObj.desc )
-			return $j.trim( rObj.desc.replace( / ( < ( [ ^ > ] + ) > ) / ig, "" ) );
+			return $j.trim( rObj.desc.replace(/(<([^>]+)>)/ig,"") );
 		// no desc avaliable:
 		return '';
 	},

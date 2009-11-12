@@ -69,10 +69,10 @@ metavidSearch.prototype = {
 		} );
 	},
 	getTitleKey:function( rObj ) {
-		return rObj['stream_name'] + '_part_' + rObj['start_time'].replace( / : / g, '.' ) + '_to_' + rObj['end_time'].replace( / : / g, '.' ) + '.ogv';
+		return rObj['stream_name'] + '_part_' + rObj['start_time'].replace(/:/ g, '.' ) + '_to_' + rObj['end_time'].replace(/:/g, '.' ) + '.ogv';
 	},
 	getTitle:function( rObj ) {
-		var sn = rObj['stream_name'].replace( / _ / g, ' ' );
+		var sn = rObj['stream_name'].replace( /_/ g, ' ' );
 		sn = sn.charAt( 0 ).toUpperCase() + sn.substr( 1 );
 		return gM( 'mwe-stream_title', [ sn, rObj.start_time, rObj.end_time ] );
 	},

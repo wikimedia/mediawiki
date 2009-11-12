@@ -376,7 +376,9 @@ mediaSource.prototype = {
 			if ( !npt2seconds( end_ntp ) )
 				end_ntp = this.end_ntp;
 										  
-			this.src = getURLParamReplace( this.src, { 't': start_ntp + '/' + end_ntp } );
+			this.src = getURLParamReplace( this.src, { 
+				't': start_ntp + '/' + end_ntp 
+			});
 			
 			// update the duration
 			this.parseURLDuration();
@@ -820,9 +822,9 @@ embedVideo.prototype = {
 		if ( typeof s != 'String' ) {
 			s = s.toString();
 		}
-		return s.replace( / & / g, '&amp;' )
-			. replace( / < / g, '&lt;' )
-			. replace( / > / g, '&gt;' );
+		return s.replace( /&/g, '&amp;' )
+			. replace( /</g, '&lt;' )
+			. replace( />/g, '&gt;' );
 	},
 	hq : function ( s ) {
 		return '"' + this.hx( s ) + '"';
@@ -1198,7 +1200,7 @@ embedVideo.prototype = {
 				 			local_poster = page['imageinfo'][0].thumburl;
 				 		}
 						var descriptionurl = page['imageinfo'][0].descriptionurl;
-						var title_str = page.title.replace( / File: | .ogv$ | .oga$ | .ogg$ / gi, "" );
+						var title_str = page.title.replace( /File:|.ogv$|.oga$|.ogg$/gi, "" );
 						// only link to other videos: 								
 						if ( descriptionurl.match( /\.ogg$|\.ogv$|\.oga$/gi ) != null) {
 							var liout = '<li>' +
@@ -1418,7 +1420,7 @@ embedVideo.prototype = {
 					var clip = this.anno_data_cache[link_id];
 					var title_msg = '';
 					for ( var j in clip['meta'] ) {
-						title_msg += j.replace( / _ / g, ' ' ) + ': ' + clip['meta'][j].replace( / _ / g, ' ' ) + " <br>";
+						title_msg += j.replace( /_/g, ' ' ) + ': ' + clip['meta'][j].replace( /_/g, ' ' ) + " <br>";
 					}
 					var time_req =	 clip.time_req;
 					if ( link_type == 'current' ) // if current start from end of current clip play to end of current meta:				 
@@ -1552,7 +1554,10 @@ embedVideo.prototype = {
 		// check if our thumbnail has a time attribute: 
 		if ( my_thumb_src.indexOf( 't=' ) !== - 1 ) {
 			var time_ntp =  seconds2npt ( options.time + parseInt( this.start_offset ) );
-			my_thumb_src = getURLParamReplace( my_thumb_src, { 't':time_ntp, 'size': options.size } );
+			my_thumb_src = getURLParamReplace( my_thumb_src, { 
+				't':time_ntp, 
+				'size': options.size 
+			});
 		}
 		var thumb_class = ( typeof options['thumb_class'] != 'undefined' ) ? options['thumb_class'] : '';
 		return '<div class="ui-corner-all ' + thumb_class + '" src="' + my_thumb_src + '" ' +
@@ -1574,7 +1579,10 @@ embedVideo.prototype = {
 		}
 		if ( this.org_thum_src.indexOf( 't=' ) !== - 1 ) {
 			this.last_thumb_url = getURLParamReplace( this.org_thum_src,
-				{ 't' : seconds2npt( float_sec + parseInt( this.start_offset ) ) } );
+				{ 
+					't' : seconds2npt( float_sec + parseInt( this.start_offset ) ) 
+				}
+			);
 			if ( !this.thumbnail_updating ) {
 				this.updateThumbnail( this.last_thumb_url , false );
 				this.last_thumb_url = null;
@@ -1893,7 +1901,7 @@ embedVideo.prototype = {
 		// Set up the click bindings:
 		$target.find( "[rel='sel_source']" ).each( function() {
 			$j( this ).click( function() {
-				var iparts = $j( this ).attr( 'id' ).replace( / sc_ / , '' ).split( '_' );
+				var iparts = $j( this ).attr( 'id' ).replace(/sc_/ , '' ).split( '_' );
 				var source_id = iparts[0];
 				var default_player_id = iparts[1];
 				js_log( 'source id: ' +  source_id + ' player id: ' + default_player_id );

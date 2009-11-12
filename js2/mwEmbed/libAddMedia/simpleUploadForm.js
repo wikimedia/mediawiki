@@ -110,7 +110,7 @@ var default_form_options = {
 				} else {
 					fname = path.substring( backslash + 1, 10000 );
 				}
-				fname = fname.charAt( 0 ).toUpperCase().concat( fname.substring( 1, 10000 ) ).replace( / / g, '_' );
+				fname = fname.charAt( 0 ).toUpperCase().concat( fname.substring( 1, 10000 ) ).replace( / /g, '_' );
 				// Output result
 				$j( "#wpDestFile" ).val( fname );
 				// do destination check

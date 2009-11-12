@@ -422,7 +422,7 @@ remoteSearchDriver.prototype = {
 				return this.getLicenceFromKey( jL , license_url );
 			}
 		};
-		// could not find it return mwe-unknown_license
+		// Could not find it return mwe-unknown_license
 		return {
 			'title'	 	: gM( 'mwe-unknown_license' ),
 			'img_html'	: '<span>' + gM( 'mwe-unknown_license' ) + '</span>',
@@ -677,12 +677,12 @@ remoteSearchDriver.prototype = {
 						_this.addResourceEditLoader();
 						// @@note: we have most of what we need in resultData imageinfo
 						cp.sObj.addByTitle( wTitle, function( rObj ) {
-							// redraw ( with added result if new )
+							// Redraw ( with added result if new )
 							_this.drawOutputResults();
-							// pull up resource editor:									
+							// Pull up resource editor:									
 							_this.resourceEdit( rObj, $j( '#res_upload__' + rObj.id ).get( 0 ) );
 						} );
-						// return false to close progress window:
+						// Return false to close progress window:
 						return false;
 					}
 				} );
@@ -943,9 +943,9 @@ remoteSearchDriver.prototype = {
 	},
 	// @@todo we could load the id with the content provider id to find the object faster...
 	getResourceFromId:function( rid ) {
-		// js_log('getResourceFromId:' + rid );
+		js_log('getResourceFromId:' + rid );
 		// strip out /res/ if preset:
-		rid = rid.replace( / res_ / , '' );
+		rid = rid.replace( /res_/ , '' );
 		// js_log("looking at: " + rid);
 		p = rid.split( '__' );
 		var cp_id = p[0];
@@ -1336,7 +1336,7 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 
 		// Update base target_resource_title:
-		rObj.target_resource_title = rObj.titleKey.replace( / File: | Image: / , '' )
+		rObj.target_resource_title = rObj.titleKey.replace( /File:|Image:/ , '' )
 
 		// check if local repository
 		// or if import mode if just "linking" (we should already have the 'url'
@@ -1373,7 +1373,7 @@ remoteSearchDriver.prototype = {
 				// @@todo maybe  update poster too?
 				rObj.local_poster = imagePage['imageinfo'][0].thumburl;
 				// update the title: 
-				rObj.target_resource_title = imagePage.title.replace( / File: | Image: / , '' );
+				rObj.target_resource_title = imagePage.title.replace(/File:|Image:/ , '' );
 				cir_callback( rObj );
 			} else {
 				// close the dialog and display the import interface: 

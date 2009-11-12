@@ -185,7 +185,7 @@ mediaWikiSearch.prototype = {
 					'id'		 : page_id,
 					'titleKey'	 : page.title,
 					'link'		 : page.imageinfo[0].descriptionurl,
-					'title'		 : page.title.replace( / File: | .jpg | .png | .svg | .ogg | .ogv | .oga / ig, '' ),
+					'title'		 : page.title.replace(/File:.jpg|.png|.svg|.ogg|.ogv|.oga/ig, ''),
 					'poster'	 : page.imageinfo[0].thumburl,
 					'thumbwidth' : page.imageinfo[0].thumbwidth,
 					'thumbheight': page.imageinfo[0].thumbheight,
