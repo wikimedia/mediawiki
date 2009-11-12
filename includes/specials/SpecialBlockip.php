@@ -99,6 +99,7 @@ class IPBlockForm {
 		$user = User::newFromName( $this->BlockAddress );
 
 		$alreadyBlocked = false;
+		$otherBlockedMsgs = array();
 		if( $err && $err[0] != 'ipb_already_blocked' ) {
 			$key = array_shift( $err );
 			$msg = wfMsgReal( $key, $err );
