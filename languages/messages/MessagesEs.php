@@ -804,7 +804,7 @@ Por favor incluye todos los datos aquí mostrados en cualquier consulta que haga
 'nosuchsectiontitle'               => 'No existe tal sección',
 'nosuchsectiontext'                => 'Has intentado editar una sección que no existe. Como no hay sección $1, no hay ningún lugar donde guardar tu edición.',
 'loginreqtitle'                    => 'Se requiere identificación',
-'loginreqlink'                     => 'identificarse',
+'loginreqlink'                     => 'identificarte',
 'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
 'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] ha sido enviada a $2.

@@ -80,7 +80,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Abdeeling|Abdeelinge}}',
-'category_header'        => 'Bledder in Kategorie „$1“',
+'category_header'        => 'Bledder in Abdeeling „$1“',
 'subcategories'          => 'Unnerabdeeling',
 'listingcontinuesabbrev' => '(weiter)',
 
@@ -177,7 +177,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Vun „$1“',
 'youhavenewmessages'      => 'Du hast $1 uff deinem $2.',
-'newmessageslink'         => 'neie Comments',
+'newmessageslink'         => 'Neiichkeede',
 'newmessagesdifflink'     => 'Gschwetz-Blatt',
 'youhavenewmessagesmulti' => 'Du hascht neie Comments: $1',
 'editsection'             => 'Ennere',
@@ -234,6 +234,8 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'link_tip'       => 'Gleecher',
 'extlink_sample' => 'http://www.example.com Gleecher-Text',
 'extlink_tip'    => 'Gewebbgleecher (acht uff http://)',
+'image_sample'   => 'Beeschpiel.jpg',
+'media_sample'   => 'Beeschpiel.ogg',
 'media_tip'      => 'Gleecher fer Feil',
 
 # Edit pages
@@ -422,7 +424,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'filehist-user'       => 'Yuuser',
 'filehist-dimensions' => 'Grees',
 'filehist-filesize'   => 'Grees vum Feil',
-'filehist-comment'    => 'Comment',
+'filehist-comment'    => 'Anmaerricking',
 'shared-repo-from'    => 'vun $1',
 
 # File reversion
@@ -481,6 +483,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'allnotinnamespace' => 'Alle Bledder (net vun $1 Blatznaame)',
 'allpagesprev'      => 'Letscht',
 'allpagesnext'      => 'Neegscht',
+
+# Special:Categories
+'categories' => 'Abdeelinge',
 
 # Special:LinkSearch
 'linksearch'    => 'Gewebbgleecher',
@@ -655,7 +660,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # EXIF tags
 'exif-imagelength' => 'Leng',
 'exif-software'    => 'Geyuust Software',
-'exif-usercomment' => 'Comments vun Yuuser',
+'exif-usercomment' => 'Anmaerrickinge vun Yuuser',
 'exif-gpsaltitude' => 'Heech',
 
 'exif-subjectdistance-value' => '$1 Meter',

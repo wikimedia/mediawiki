@@ -1445,7 +1445,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'recentchangestext'                => 'Text in recent changes',
 'recentchanges-label-legend'       => 'Used at [[Special:RecentChanges]] and [[Special:Watchlist]].',
 'recentchanges-legend-newpage'     => '* $1 - message {{msg-mw|newpageletter}} ({{int:newpageletter}})',
-'recentchanges-label-newpage'      => 'Tooltip for {{msg-mw|minoreditletter}}',
+'recentchanges-label-newpage'      => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-legend-minor'       => '* $1 - message {{msg-mw|minoreditletter}} ({{int:minoreditletter}})',
 'recentchanges-label-minor'        => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-legend-bot'         => '* $1 - message {{msg-mw|boteditletter}} ({{int:boteditletter}})',
