@@ -449,8 +449,10 @@ remoteSearchDriver.prototype = {
 			break;
 		}
 		
-		if(typestr=='unk')
+		if(typestr=='unk'){
 			js_log("unkown ftype: " + mimetype );
+			return '';
+		}		
 			 
 		return '<div class="rsd_file_type ui-corner-all ui-state-default ui-widget-content" title="' + gM('mwe-ftype-' + typestr) + '">' +
 					typestr  +
@@ -1789,7 +1791,7 @@ remoteSearchDriver.prototype = {
 		//@@todo we should instead support the wiki number format template system instead of inline calls
 		if( cp.sObj.num_results != 0 ){ 
 			if( cp.sObj.num_results  >  cp.limit){		
-				out+= gM( 'rsd_results_desc_total', [(cp.offset+1), to_num, $mw.lang.formatNumber( cp.sObj.num_results )] );
+				out+= gM( 'rsd_results_desc_total', [(cp.offset+1), to_num, mw.lang.formatNumber( cp.sObj.num_results )] );
 			}else{		
 				out+= gM( 'rsd_results_desc', [(cp.offset+1), to_num] );
 			}

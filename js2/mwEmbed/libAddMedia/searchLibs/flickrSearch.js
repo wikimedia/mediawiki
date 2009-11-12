@@ -80,8 +80,8 @@ flickrSearch.prototype = {
 				var resource = data.photos.photo[resource_id];	
 			
 				var rObj = {
-					'titleKey'	 :  resource.title + '.jpg',
-					'resourceKey':  resource.id,
+					'titleKey'	 : resource.title + '.jpg',
+					'resourceKey': resource.id,
 					'link'		 : _this.dtUrl + resource.pathalias + '/'+ resource.id,				
 					'title'		 : resource.title,
 					'thumbwidth' : resource.width_t,

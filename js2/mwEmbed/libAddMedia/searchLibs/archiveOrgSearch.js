@@ -6,11 +6,11 @@ var archiveOrgSearch = function ( iObj){
 	return this.init( iObj );
 }
 archiveOrgSearch.prototype = {
-	//archive.org constants: 
+	// Archive.org constants: 
 	dnUrl:'http://www.archive.org/download/',
 	dtUrl:'http://www.archive.org/details/',
 	init:function( iObj ){
-		//init base class and inherit: 
+		// Init base class and inherit: 
 		var baseSearch = new baseRemoteSearch( iObj );
 		for(var i in baseSearch){
 			if(typeof this[i] =='undefined'){
@@ -19,7 +19,7 @@ archiveOrgSearch.prototype = {
 				this['parent_'+i] =  baseSearch[i];
 			}
 		}
-		//inherit the cp settings for 
+		// Inherit the cp settings for 
 	},
 	getSearchResults:function(){
 		//call parent: 

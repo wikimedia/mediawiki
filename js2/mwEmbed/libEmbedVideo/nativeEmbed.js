@@ -157,13 +157,14 @@ var nativeEmbed = {
 		}
 	},
 	monitor : function(){		
-		this.getVID(); //make shure we have .vid obj
+		this.getVID(); //make sure we have .vid obj
 		if(!this.vid){
 			js_log('could not find video embed: '+this.id + ' stop monitor');
 			this.stopMonitor();			
 			return false;
 		}		
-		//don't update status if we are not the current clip (playlist leekage?) .. should move to playlist overwite of monitor? 
+		//don't update status if we are not the current clip 
+		//(playlist leakage?) .. should move to playlist overwrite of monitor? 
 		if(this.pc){
 			if(this.pc.pp.cur_clip.id != this.pc.id)
 				return true;

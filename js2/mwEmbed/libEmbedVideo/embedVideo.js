@@ -54,9 +54,6 @@ loadGM({
 	"mwe-copy-code" : "Copy code"
 });
 
-//set the globals:
-var commons_api_url =  'http://commons.wikimedia.org/w/api.php';
-
 var default_video_attributes = {
 	"id" : null,
 	"class" : null,
@@ -134,7 +131,7 @@ mvEmbed = {
 			mvEmbed.flist.push( swap_done_callback );
 			
 		//get mv_embed location if it has not been set
-		js_log('mv_video_embed:: ' + $mw.version);						
+		js_log('mv_video_embed:: ' + mw.version);						
 		
 		var loadPlaylistLib=false;						
 		
@@ -142,10 +139,10 @@ mvEmbed = {
 			js_log( "Do SWAP: " + $j(this_elm).attr("id") + ' tag: '+ this_elm.tagName.toLowerCase() );
 								
 			if( $j(this_elm).attr("id") == '' ){
-				$j(this_elm).attr("id", 'v'+ $mw.player_list.length);
+				$j(this_elm).attr("id", 'v'+ mw.player_list.length);
 			}			
 			//store a global reference to the id	
-			$mw.player_list.push( $j(this_elm).attr("id") );			
+			mw.player_list.push( $j(this_elm).attr("id") );			
 			
 			//if video doSwap
 			switch( this_elm.tagName.toLowerCase()){
@@ -248,16 +245,16 @@ mvEmbed = {
 			$j('#'+embed_video.id).get(0).init_with_sources_loaded();
 		}
 		
-		js_log('done with child: ' + embed_video.id + ' len:' + $mw.player_list.length);
+		js_log('done with child: ' + embed_video.id + ' len:' + mw.player_list.length);
 		return true;
 	},
 	//this should not be needed.
 	checkClipsReady : function(){
 		//js_log('checkClipsReady');
 		var is_ready=true;	  
-		  for(var i=0; i < $mw.player_list.length; i++){
-			  if( $j('#'+$mw.player_list[i]).length !=0){
-				  var cur_vid =  $j('#'+$mw.player_list[i]).get(0);		  
+		  for(var i=0; i < mw.player_list.length; i++){
+			  if( $j('#'+mw.player_list[i]).length !=0){
+				  var cur_vid =  $j('#'+mw.player_list[i]).get(0);		  
 				is_ready = ( cur_vid.ready_to_play ) ? is_ready : false;
 				if( !is_ready && cur_vid.load_error ){ 
 					is_ready=true;
@@ -855,15 +852,15 @@ embedVideo.prototype = {
 		//set the skin name from the class  
 		var	sn = element.getAttribute('class');
 		if( sn && sn != ''){
-			for(var n=0;n< $mw.valid_skins.length;n++){ 
-				if( sn.indexOf($mw.valid_skins[n]) !== -1){
-					this.skin_name = $mw.valid_skins[n];
+			for(var n=0;n< mw.valid_skins.length;n++){ 
+				if( sn.indexOf(mw.valid_skins[n]) !== -1){
+					this.skin_name = mw.valid_skins[n];
 				}
 			}
 		}
 		//set the default if unset: 
 		if(!this.skin_name)
-			this.skin_name = $mw.conf.skin_name;
+			this.skin_name = mw.conf.skin_name;
 		
 		//make sure startOffset is cast as an int		   
 		if( this.startOffset && this.startOffset.split(':').length >= 2)
@@ -878,7 +875,7 @@ embedVideo.prototype = {
 		js_log("duration is: " +  this.duration);
 		
 		//get defaults		
-		var dwh = $mw.conf['video_size'].split('x');
+		var dwh = mw.conf['video_size'].split('x');
 		this.width = element.style.width ? element.style.width : dwh[0];		
 		if( element.tagName == 'AUDIO' ){
 			this.height = element.style.height ? element.style.height : 0;
@@ -1189,7 +1186,7 @@ embedVideo.prototype = {
 			};
 			do_api_req({
 				'data':reqObj, 
-				'url': commons_api_url
+				'url': mw.commons_api_url
 			},  function(data){ 		            
 		            //empty the videos:		            
 		            $j('#dc_'+ _this.id + ' .related_vids ul').html(' ');
@@ -2457,9 +2454,9 @@ mediaPlayers.prototype =
 		}
 		if( selected_player )
 		{
-			for(var i=0; i < $mw.player_list.length; i++)
+			for(var i=0; i < mw.player_list.length; i++)
 			{
-				var embed = $j('#'+$mw.player_list[i]).get(0);
+				var embed = $j('#'+mw.player_list[i]).get(0);
 				if(embed.media_element.selected_source && (embed.media_element.selected_source.mime_type == mime_type))
 				{
 					embed.selectPlayer(selected_player);

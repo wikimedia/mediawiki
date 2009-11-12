@@ -180,7 +180,7 @@ ctrlBuilder.prototype = {
 			start: function(event, ui){
 				var id = (embedObj.pc!=null)?embedObj.pc.pp.id:embedObj.id;
 				embedObj.userSlide=true;
-				$j(id + ' .play-btn-large').fadeOut('fast');
+				$j( id + ' .play-btn-large').fadeOut('fast');
 				//if playlist always start at 0
 				embedObj.start_time_sec = (embedObj.instanceOf == 'mvPlayList')?0:
 								npt2seconds(embedObj.getTimeReq().split('/')[0]);
@@ -201,7 +201,7 @@ ctrlBuilder.prototype = {
 			},
 			change:function(event, ui){
 				//only run the onChange event if done by a user slide:
-				if(embedObj.userSlide){
+				if( embedObj.userSlide ){
 					embedObj.userSlide=false;
 					embedObj.seeking=true;
 					//stop the monitor timer (if we can)
@@ -220,7 +220,7 @@ ctrlBuilder.prototype = {
 		//up the z-index of the default status indicator:
 		$tp.find('.play_head .ui-slider-handle').css('z-index', 4);
 		$tp.find('.play_head .ui-slider-range').addClass('ui-corner-all').css('z-index', 2);
-		//extended class list for jQuery ui themeing (we can probably refactor this with custom buffering highliter)
+		//extended class list for jQuery ui themeing (we can probably refactor this with custom buffering highlighter)
 		$tp.find('.play_head').append( this.getMvBufferHtml() );
 			
 		$opt = $j('#mv_vid_options_'+embedObj.id);
