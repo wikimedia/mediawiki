@@ -277,6 +277,7 @@ Hopefully we will remove this configuration var soon)
 * Added search capabilities to SQLite backend
 * rebuildtextindex.php maintenance script now supports databases other than
   MySQL
+* upgrade1_5.php now requires to be run --update option to prevent confusion
 
 === Bug fixes in 1.16 ===
 
