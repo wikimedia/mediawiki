@@ -2260,7 +2260,7 @@ embedVideo.prototype = {
 		var eid = (this.pc)?this.pc.pp.id:this.id;
 		//update status:
 		$j('#' + eid + ' .time-disp').html(value);
-	}	
+	},	
 	/**
 	* Helper Functions for selected source 
 	*/	
@@ -2273,7 +2273,7 @@ embedVideo.prototype = {
 	supportsURLTimeEncoding: function(){
 		//do head request if on the same domain
 		return this.media_element.selected_source.URLTimeEncoding;
-	},
+	}
 }
 
 

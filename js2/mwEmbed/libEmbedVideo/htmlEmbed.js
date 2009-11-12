@@ -34,6 +34,7 @@ var htmlEmbed ={
 		this.monitor();				
 	},
 	stop:function(){
+		this.currentTime = 0;
 		this.pause();
 		//window.clearInterval( this.monitorTimerId );
 	},

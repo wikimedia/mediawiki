@@ -1,5 +1,5 @@
 /*
- * JS2-style edit.js
+ * JS2-style mvTimedTextEdit.js
  */
 
 // Setup configuration vars (if not set already)

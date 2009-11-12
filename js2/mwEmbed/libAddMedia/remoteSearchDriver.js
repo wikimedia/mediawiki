@@ -259,6 +259,10 @@ remoteSearchDriver.prototype = {
 		//@@todo for cleaner config we should set _this.opt to the provided options) 
 		$j.extend( _this, default_remote_search_options, options);			
 		
+		//Quick fix for cases where people put ['all'] instead of 'all' for enabled_cps
+		if( _this.enabled_cps.length == 1 && _this.enabled_cps[0] == 'all')
+			_this.enabled_cps = 'all';
+		
 		//modify the content provider config based on options: 		
 		for(var i in this.content_providers){		
 			if(	_this.enabled_cps == 'all' && !this.disp_item  ){	
@@ -266,7 +270,7 @@ remoteSearchDriver.prototype = {
 				//end the for loop (no need to idorate if enabled_cps == 'all'
 				break;
 			}else{
-				if( $j.inArray(i, _this.enabled_cps) != -1 ){
+				if( $j.inArray( i, _this.enabled_cps ) != -1 ){
 					//if no default display set to first enabled cp: 
 					if( !this.disp_item )
 						this.disp_item = i;
@@ -687,7 +691,7 @@ remoteSearchDriver.prototype = {
 	},
 	runSearch: function( restPage ){
 		js_log("f:runSearch::" + this.disp_item);
-		//draw_direct_flag
+
 		var draw_direct_flag = true;
 			
 		//check if its the special upload tab case:
@@ -711,7 +715,7 @@ remoteSearchDriver.prototype = {
 			draw_direct_flag = false;
 		}
 		if( !draw_direct_flag ){
-			//see if we should reset the pageing
+			//see if we should reset the paging
 			if( restPage ){
 				cp.sObj.offset = cp.offset = 0;
 			}
@@ -719,22 +723,22 @@ remoteSearchDriver.prototype = {
 			//set the content to loading while we do the search:
 			$j('#tab-' + this.disp_item).html( mv_get_loading_img() );
 
-			//make sure the search library is loaded and issue the search request
+			// Make sure the search library is loaded and issue the search request
 			this.getLibSearchResults( cp );
 		}
 	},
-	//issue a api request & cache the result
-	//this check can be avoided by setting the this.import_url_mode = 'api' | 'form' | instead of 'autodetect' or 'none'
+	// Issue a api request & cache the result
+	// this check can be avoided by setting the this.import_url_mode = 'api' | 'form' | instead of 'autodetect' or 'none'
 	checkForCopyURLSupport:function ( callback ){
 		var _this = this;
 		js_log('checkForCopyURLSupport:: ');		
 		
-		//see if we already have the import mode:
+		// See if we already have the import mode:
 		if( this.import_url_mode != 'autodetect'){
 			js_log('import mode: ' + _this.import_url_mode);
 			callback();
 		}
-		//if we don't have the local wiki api defined we can't auto-detect use "link"
+		// If we don't have the local wiki api defined we can't auto-detect use "link"
 		if( ! _this.upload_api_target ){
 			js_log('import mode: remote link (no import_wiki_api_url)');
 			_this.import_url_mode = 'remote_link';
@@ -742,8 +746,11 @@ remoteSearchDriver.prototype = {
 		}
 		if( this.import_url_mode == 'autodetect' ){
 			do_api_req( {
-				'data': { 'action':'paraminfo', 'modules':'upload' },
-				'url': _this.upload_api_target
+				'url': _this.upload_api_target,
+				'data': { 
+					'action':'paraminfo', 
+					'modules':'upload' 
+				}
 			}, function(data){				
 				//jump right into api checks: 
 				for( var i in data.paraminfo.modules[0].parameters ){
@@ -812,7 +819,7 @@ remoteSearchDriver.prototype = {
 			return false;
 		}
 		_this.loadSearchLib(cp, function(){
-			//do search
+			// Do the search
 			cp.sObj.getSearchResults();
 			_this.checkResultsDone();
 		});
