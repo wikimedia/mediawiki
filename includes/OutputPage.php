@@ -1791,7 +1791,7 @@ class OutputPage {
 		$dir = $wgContLang->getDir();
 
 		if ( $wgHtml5 ) {
-			$ret .= "<!doctype html>\n";
+			$ret .= "<!DOCTYPE html>\n";
 			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
