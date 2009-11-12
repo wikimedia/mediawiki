@@ -533,7 +533,7 @@ class memcached
 	 * @return  boolean
 	 * @access  public
 	 */
-   function replace ($key, $value, $exp=0)
+	function replace ($key, $value, $exp=0)
 	{
 		return $this->_set('replace', $key, $value, $exp);
 	}
@@ -591,7 +591,7 @@ class memcached
 	 * @return  boolean  TRUE on success
 	 * @access  public
 	 */
-   function set ($key, $value, $exp=0)
+	function set ($key, $value, $exp=0)
 	{
 		return $this->_set('set', $key, $value, $exp);
 	}
@@ -606,7 +606,7 @@ class memcached
 	 *
 	 * @access  public
 	 */
-   function set_compress_threshold ($thresh)
+	function set_compress_threshold ($thresh)
 	{
 		$this->_compress_threshold = $thresh;
 	}
