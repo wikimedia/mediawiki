@@ -7,9 +7,9 @@ loadGM({
 	"mwe-upload-multi" : "Upload {{PLURAL:$1|file|files}}"	
 });
 
-$mw.lang.loadRS({
+mw.lang.loadRS({
 	'PLURAL' : { "one" : 1 }	
 });
 
 //define a class by the name of this file:  
-$mw.testLang = {};
+mw.testLang = {};

@@ -246,4 +246,4 @@ loadGM({
 		}	
 	}
 	
-})(window.$mw);
+})(window.mw);

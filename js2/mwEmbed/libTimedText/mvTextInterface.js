@@ -27,15 +27,14 @@ mvTextInterface.prototype = {
 		//init a new availableTracks obj:
 		this.availableTracks = new Array();
 		//set the parent embed object:
-		this.pe=parentEmbed;
+		this.pe = parentEmbed;
 		//parse roe if not already done:
-		this.getTimedTextTracks();
+		this.getTextTracks();
 	},
 	//@@todo separate out data loader & data display
-	getTimedTextTracks:function(){
+	getTextTracks:function(){
 		//js_log("load timed text from roe: "+ this.pe.roe);
 		var _this = this;
-		var apiUrl = mwGetLocalApiUrl();
 		//if roe not yet loaded do load it:
 		if(this.pe.roe || _this.pe.wikiTitleKey ){
 			if(!this.pe.media_element.addedROEData){
@@ -46,35 +45,9 @@ mvTextInterface.prototype = {
 						_this.pe.media_element.addROE(data);
 						_this.getParseTimedText_rowReady();
 					});
-				}else if( _this.pe.wikiTitleKey ){
+				}else if( _this.pe.wikiTitleKey ){				
 					//check for a clear namespace key:
-					var timedtext_ns = 102; 				
-					if( wgNamespaceIds && wgNamespaceIds['timedtext']){
-						timedtext_ns = wgNamespaceIds['timedtext'];
-					}
-					do_api_req({
-							'url' :	apiUrl,
-							'data': {
-								'list' : 'allpages',
-								'apprefix' : _this.pe.wikiTitleKey,
-								'apnamespace' : timedtext_ns,
-								'prop':'revisions'
-							}
-					}, function( subData ) {
-						if(	subData.error && subData.error.code == 'apunknown_apnamespace'){
-							do_api_req({
-								'url' :	apiUrl,
-								'data': {
-									'list' : 'allpages',
-									'apprefix' : 'TimedText:' + _this.pe.wikiTitleKey,
-								}
-							}, function( subData ) {
-								_this.doProcSubPages( subData, wgServer + wgScriptPath);
-							});
-						}else{
-							_this.doProcSubPages( subData, wgServer + wgScriptPath);
-						}
-					});
+					_this.getTextTracksWikiTitle()					
 				}
 			}else{
 				js_log('row data ready (no roe request)');
@@ -87,6 +60,38 @@ mvTextInterface.prototype = {
 				js_log('no roe data or timed text sources');
 			}
 		}
+	},
+	getTextTracksWikiTitle:function(){
+		var apiUrl = mw.getLocalApiUrl();
+		var _this = this;
+		
+		var timedtext_ns = 102; 				
+		if( typeof wgNamespaceIds != 'undefined' && wgNamespaceIds['timedtext']){
+			timedtext_ns = wgNamespaceIds['timedtext'];
+		}
+		do_api_req({
+				'url' :	apiUrl,
+				'data': {
+					'list' : 'allpages',
+					'apprefix' : _this.pe.wikiTitleKey,
+					'apnamespace' : timedtext_ns,
+					'prop':'revisions'
+				}
+		}, function( subData ) {
+			if(	subData.error && subData.error.code == 'apunknown_apnamespace'){
+				do_api_req({
+					'url' :	apiUrl,
+					'data': {
+						'list' : 'allpages',
+						'apprefix' : 'TimedText:' + _this.pe.wikiTitleKey,
+					}
+				}, function( subData ) {
+					_this.doProcSubPages( subData, wgServer + wgScriptPath);
+				});
+			}else{
+				_this.doProcSubPages( subData, wgServer + wgScriptPath);
+			}
+		});
 	},
 	doProcSubPages: function( subData, hostPath ){
 		var _this = this;
@@ -159,7 +164,7 @@ mvTextInterface.prototype = {
 				js_log('image is shared checking commons for subtitles');
 				//found shared repo assume commons: 
 				do_api_req({
-					'url': 'http://commons.wikimedia.org/w/api.php',
+					'url': mw.commons_api_url,
 					'data':{
 						'list' : 'allpages',
 						'apprefix' : _this.pe.wikiTitleKey,

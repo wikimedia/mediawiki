@@ -36,7 +36,7 @@ function doPageSpecificRewrite() {
 	if(wgPageName.indexOf("TimedText") === 0){		
 		load_mv_embed(function(){
 			// Load with mw loader to get localized interface:
-			$mw.load( ['mvTimeTextEdit'],function(){
+			mw.load( ['mvTimeTextEdit'],function(){
 				//could run init here (but mvTimeTextEdit included onLoad actions)
 			});
 		});
@@ -184,7 +184,7 @@ function mwGetReqArgs(){
 }
 function load_mv_embed( callback ) {
 	// Inject mv_embed if needed
-	if( typeof $mw == 'undefined' ) {	
+	if( typeof mw == 'undefined' ) {	
 		if( ( mwReqParam['uselang'] || mwReqParam['useloader'] ) && mwUseScriptLoader){
 			var rurl = mwEmbedHostPath + '/mwEmbed/jsScriptLoader.php?class=mv_embed';
 			// Add jQuery too if we need it: 
@@ -202,7 +202,7 @@ function load_mv_embed( callback ) {
 }
 
 function check_for_mv_embed( callback ) {
-	if( typeof $mw == 'undefined' ) {
+	if( typeof mw == 'undefined' ) {
 		setTimeout( function(){
 			check_for_mv_embed( callback );
 		}, 25 );

@@ -4,7 +4,7 @@
 
 var kskinConfig = {
 	pClass: 'k-player',
-	//display time progres
+	//display time progress
 	long_time_disp: false,
 	body_options: false,
 	volume_layout: 'horizontal',
@@ -38,11 +38,11 @@ var kskinConfig = {
 										'<a href="#" title="' + gM( 'mwe-' + mk ) +'">' + gM( 'mwe-' + mk ) +'</a></li>';
 							}							
 						o+='</ul>' +
-						//we have to substract the width of the k-menu-bar
+						// We have to subtract the width of the k-menu-bar
 						'<div class="k-menu-screens" style="width:' + ( embedObj.playerPixelWidth() -75) +
 							'px; height:' + (embedObj.playerPixelHeight() - ctrlBuilder.height) + 'px;">';
 						
-						//output menu item containers: 
+						// Output menu item containers: 
 						for(i=0; i < ctrlObj.menu_items.length; i++){							
 							o+= '<div class="menu-screen menu-' + ctrlObj.menu_items[i] + '"></div>';
 						}													 				
@@ -57,46 +57,49 @@ var kskinConfig = {
 		var _this = this;
 		var $tp=$j('#' + embedObj.id);
 		
-		//adds options and bindings: (we do this onClick for faster vidoe tag startup times)  
+		// Adds options and bindings: (we do this onClick )  
 		var addMvOptions = function(){
-			if($j('#' + embedObj.id + ' .k-menu').length != 0 )
+			if( $j('#' + embedObj.id + ' .k-menu').length != 0 )
 				return false;
 				
-			$j('#' + embedObj.id + ' .' + _this.pClass).prepend( _this.components['mv_embedded_options'].o( $tp.get(0).ctrlBuilder ));
+			$j('#' + embedObj.id + ' .' + _this.pClass).prepend(
+				_this.components['mv_embedded_options'].o( $tp.get(0).ctrlBuilder )
+			);
 			
-			//by default its hidden:
+			// By default its hidden:
    			$tp.find('.k-menu').hide();
    			
-   			//output menu-items: 
+   			// Output menu-items: 
    			for(i=0; i < _this.menu_items.length ; i++){   				
 		        $tp.find('.k-' +  _this.menu_items[i] + '-btn').click(function(){ 
 		        	var mk = $j(this).attr('rel');
 		        	$target = $j('#' + embedObj.id  + ' .menu-'+mk).hide();		        	
-		        	//gennerate the menu html not already done:
+		        	// Generate the menu html not already done:
 		        	if( $target.children().length == 0 ){
 						//call the function show{Menuitem} with target:	        		
 						embedObj['show' + mk.charAt(0).toUpperCase() + mk.substring(1)](
 							$j('#' + embedObj.id + ' .menu-'+mk)
 						);
 		        	}		        			        
-		        	//slide out the others 
+		        	// Slide out the others 
 		        	 $j('#' + embedObj.id  + ' .menu-screen').hide();
 		        	 $target.fadeIn("fast");
 					//don't follow the # link								
 		            return false;
 				});	
    			}			
-		}   		
-   		//options menu display:			
+		}  
+		 		
+   		// Options menu display:			
    		$tp.find('.k-options').click(function(){          		   
 			if($j('#' + embedObj.id + ' .k-menu').length == 0 ){
 	   			//stop the player if it does not support overlays: 
 				if(!embedObj.supports['overlays'])
 					$tp.get(0).stop();
-			//add the options       				
+			// Add the options       				
 				addMvOptions();
 			}
-	   		//set up the text and menu:       			 					
+	   		// Set up the text and menu:       			 					
 			var $ktxt = $j(this);
 			var $kmenu = $tp.find('.k-menu');
 			if( $kmenu.is(':visible') ){
