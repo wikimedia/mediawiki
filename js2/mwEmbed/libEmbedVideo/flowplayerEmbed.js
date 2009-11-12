@@ -1476,7 +1476,7 @@ extend( window.flashembed, {
 			if ( typeof _d != "undefined" ) {
 				_d = _d.replace( /^.*\s+(\S+\s+\S+$ )/, "$1" );
 				var _m = parseInt( _d.replace( /^(.*)\..*$/, "$1" ), 10 );
-				var _r = / r / .test( _d ) ? parseInt( _d.replace( / ^ . * r( . * )$ / , "$1" ), 10 ) : 0;
+				var _r = / r / .test( _d ) ? parseInt( _d.replace( /^.*r(.*)$/ , "$1" ), 10 ) : 0;
 				version = [_m, _r];
 			}
 			

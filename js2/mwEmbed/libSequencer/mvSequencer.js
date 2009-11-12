@@ -808,7 +808,7 @@ mvSequencer.prototype = {
 		} else {
 			// @@we need a api entry point to store a "clipboard"
 			if ( this_seq.clipboardEditToken && this_seq.plObj.interface_url ) {
-				var req_url = this_seq.plObj.interface_url.replace( / api.php / , 'index.php' ) + '?action=ajax&rs=mv_seqtool_clipboard&rsargs[]=copy';
+				var req_url = this_seq.plObj.interface_url.replace( /api.php/, 'index.php' ) + '?action=ajax&rs=mv_seqtool_clipboard&rsargs[]=copy';
 				$j.ajax( {
 					type: "POST",
 					url:req_url,

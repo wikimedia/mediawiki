@@ -559,7 +559,7 @@ mvPlayList.prototype = {
 			js_log( 'no playhead so we can\'t get playhead pos' );
 			return 0;
 		}
-		var track_len = $j( '#mv_seeker_' + this.id ).css( 'width' ).replace( / px / , '' );
+		var track_len = $j( '#mv_seeker_' + this.id ).css( 'width' ).replace( /px/ , '' );
 		// assume the duration is static and present at .duration during playback
 		var clip_perc = this.cur_clip.embed.duration / this.getDuration();
 		var perc_offset = time_offset = 0;
@@ -1231,7 +1231,7 @@ mvClip.prototype = {
 					js_log( "time is: " + time );
 					this.img = this.img.replace( /t\=[^&]*/gi, "t=" + time );
 					if ( this.img.indexOf( '&size=' ) != - 1 ) {
-						this.img = this.img.replace( / size = [ ^ &] * / gi, "size=" + size );
+						this.img = this.img.replace( /size=[^&]*/gi, "size=" + size );
 					} else {
 						this.img += '&size=' + size;
 					}
