@@ -160,7 +160,7 @@ class LocalisationCache {
 					break;
 				default:
 					throw new MWException( 
-						'Please set $wgLocalisationConf[\'store\'] to something sensible.' );
+						'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.' );
 			}
 		}
 
