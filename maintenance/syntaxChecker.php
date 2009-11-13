@@ -25,7 +25,7 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class SyntaxChecker extends Maintenance {
 
 	// List of files we're going to check
-	private $mFiles, $mFailures = array();
+	private $mFiles, $mFailures = array(), $mWarnings = array();
 
 	public function __construct() {
 		parent::__construct();
@@ -52,9 +52,11 @@ class SyntaxChecker extends Maintenance {
 			} else {
 				$this->checkFileWithCli( $f );
 			}
+			$this->checkForMistakes( $f );
 		}
 		$this->output( "\nDone! " . count( $this->mFiles ) . " files checked, " .
-			count( $this->mFailures ) . " failures found\n" );
+			count( $this->mFailures ) . " failures and " . count( $this->mWarnings ) .
+			" warnings found\n" );
 	}
 
 	/**
@@ -132,6 +134,33 @@ class SyntaxChecker extends Maintenance {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Check a file for non-fatal coding errors, such as byte-order marks in the beginning
+	 * or pointless ?> closing tags at the end.
+	 *
+	 * @param $file String String Path to a file to check for errors
+	 * @return boolean
+	 */
+	private function checkForMistakes( $file ) {
+		$text = file_get_contents( $file );
+
+		$this->checkRegex( $file, $text, '/^[\s\r\n]+<\?/', 'leading whitespace' );
+		$this->checkRegex( $file, $text, '/\?>[\s\r\n]*$/', 'trailing ?>' );
+		$this->checkRegex( $file, $text, '/^[\xFF\xFE\xEF]/', 'byte-order mark' );
+	}
+
+	private function checkRegex( $file, $text, $regex, $desc ) {
+		if ( !preg_match( $regex, $text ) ) {
+			return;
+		}
+
+		if ( !isset( $this->mWarnings[$file] ) ) {
+			$this->mWarnings[$file] = array();
+		}
+		$this->mWarnings[$file][] = $desc;
+		$this->output( "Warning in file $file: $desc found.\n" );
 	}
 }
 
