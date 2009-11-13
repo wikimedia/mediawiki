@@ -1167,12 +1167,6 @@ $wgShowDebug            = false;
 $wgSpecialVersionShowHooks =  false;
 
 /**
- * By default, only show the MediaWiki, PHP, Database versions.
- * Setting this to true will try and determine versions of all helper programs.
- */
-$wgSpecialVersionExtended = false;
-
-/**
  * Whether to show "we're sorry, but there has been a database error" pages.
  * Displaying errors aids in debugging, but may display information useful
  * to an attacker.
