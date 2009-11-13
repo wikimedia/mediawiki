@@ -474,8 +474,15 @@ class SpecialUpload extends SpecialPage {
 				$this->uploadError( wfMsgExt( $code, 'parseinline', $details['details'] ) );
 				break;
 			case UploadBase::HOOK_ABORTED:
-				$error = $details['error'];
-				$this->uploadError( wfMsgExt( $error, 'parseinline' ) );
+				if ( is_array( $details['error'] ) ) { # allow hooks to return error details in an array
+					$args = $details['error'];
+					$error = array_shift( $args );
+				} else {
+					$error = $details['error'];
+					$args = null;
+				}
+
+				$this->uploadError( wfMsgExt( $error, 'parseinline', $args ) );
 				break;
 			default:
 				throw new MWException( __METHOD__ . ": Unknown value `{$details['status']}`" );

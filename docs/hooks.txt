@@ -1549,7 +1549,10 @@ array $descriptor: the HTMLForm descriptor
 'UploadVerification': additional chances to reject an uploaded file
 string $saveName: destination file name
 string $tempName: filesystem path to the temporary file for checks
-string &$error: output: HTML error to show if upload canceled by returning false
+string &$error: output: message key for message to show if upload canceled 
+	by returning false. May also be an array, where the first element
+	is the message key and the remaining elements are used as parameters to
+	the message.
 
 'UploadComplete': Upon completion of a file upload
 $uploadBase: UploadBase (or subclass) object. File can be accessed by
