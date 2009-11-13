@@ -230,6 +230,13 @@ if( !$wgAllowUserSkin ) {
 	$wgHiddenPrefs[] = 'skin';
 }
 
+if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
+	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
+	if ( $wgMimeType == 'application/xhtml+xml' ) $wgHtml5Version = 'XHTML+RDFa 1.0';
+	else $wgHtml5Version = 'HTML+RDFa 1.0';
+}
+
+
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 

@@ -129,7 +129,7 @@ class SkinTemplate extends Skin {
 		global $wgArticle, $wgUser, $wgLang, $wgContLang;
 		global $wgScript, $wgStylePath, $wgContLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
-		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
+		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
@@ -208,6 +208,7 @@ class SkinTemplate extends Skin {
 
 			$tpl->setRef( 'xhtmldefaultnamespace', $wgXhtmlDefaultNamespace );
 			$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
+			$tpl->set( 'html5version', $wgHtml5Version );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
 			$tpl->set( 'csslinks', $out->buildCssLinks() );
 
