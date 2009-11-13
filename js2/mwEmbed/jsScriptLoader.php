@@ -239,6 +239,7 @@ class jsScriptLoader {
 			//set english as default
 			$this->langCode = 'en';
 		}
+		$this->langCode = self::checkForCommonsLanguageFormHack( $this->langCode );
 
 		$reqClassList = false;
 		if ( isset( $_GET['class'] ) && $_GET['class'] != '' ) {
@@ -327,6 +328,8 @@ class jsScriptLoader {
 			$langCode = 'en';
 		}
 
+		$langCode = self::checkForCommonsLanguageFormHack( $langCode );
+
 
 		$reqClassList = false;
 		if ( isset( $_GET['class'] ) && $_GET['class'] != '' ) {
@@ -360,6 +363,21 @@ class jsScriptLoader {
 
 		return $rKey;
 	}
+	public static function checkForCommonsLanguageFormHack( $langKey){
+		$formNames = array( 'ownwork', 'fromflickr', 'fromwikimedia', 'fromgov');
+		foreach($formNames as $formName){
+			// Directly reference a form Name then its "english"
+			if( $formName == $langKey )
+				return 'en';
+			// If the langKey includes a form name (ie esownwork)
+			// then strip the form name use that as the language key
+			if( strpos($langKey, $formName)!==false){
+				return str_replace($formName, '', $langKey);
+			}
+		}
+		//else just return the key unchanged:
+		return $langKey;
+	}
 	public static function getJsPathFromClass( $reqClass ){
 		global $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses;
 		if ( isset( $wgJSAutoloadLocalClasses[$reqClass] ) ) {
@@ -384,7 +402,7 @@ class jsScriptLoader {
 	}
 	function doProcessJs( $str ){
 		global $wgEnableScriptLocalization;
-		// Strip out js_log debug lines. Not much luck with this regExp yet:
+		// Strip out js_log debug lines (if not in debug mode)
 		if( !$this->debug )
 			 $str = preg_replace('/\n\s*js_log\(([^\)]*\))*\s*[\;\n]/U', "\n", $str);
 
@@ -460,16 +478,17 @@ class jsScriptLoader {
 
 	static public function getMsgKeys(& $jmsg, $langCode = false){
 		global $wgContLanguageCode;
+		//check the langCode
 		if(!$langCode)
-		$langCode = $wgContLanguageCode;
-		//get the msg keys for the a json array
+			$langCode = $wgContLanguageCode;
+
+		// Get the msg keys for the a json array
 		foreach ( $jmsg as $msgKey => $default_en_value ) {
 			$jmsg[$msgKey] = wfMsgGetKey( $msgKey, true, $langCode, false );
 		}
 	}
 	function languageMsgReplace( $json_str ) {
 		$jmsg = FormatJson::decode( '{' . $json_str . '}', true );
-
 		// Do the language lookup
 		if ( $jmsg ) {
 			//see if any msgKey has the PLURAL template tag
