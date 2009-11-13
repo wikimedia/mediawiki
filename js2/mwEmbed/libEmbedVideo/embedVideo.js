@@ -325,7 +325,7 @@ mediaSource.prototype = {
 		// Set default URLTimeEncoding if we have a time  url:
 		// not ideal way to discover if content is on an oggz_chop server. 
 		// should check some other way. 
-		var pUrl = parseUri ( this.src );
+		var pUrl = mw.parseUri ( this.src );
 		if ( typeof pUrl['queryKey']['t'] != 'undefined' ) {
 			this['URLTimeEncoding'] = true;
 		}
@@ -443,7 +443,7 @@ mediaSource.prototype = {
 	parseURLDuration : function() {
 		// check if we have a URLTimeEncoding: 
 		if ( this.URLTimeEncoding ) {
-			var annoURL = parseUri( this.src );
+			var annoURL = mw.parseUri( this.src );
 			if ( annoURL.queryKey['t'] ) {
 				var times = annoURL.queryKey['t'].split( '/' );
 				this.start_ntp = times[0];
@@ -1146,16 +1146,16 @@ embedVideo.prototype = {
 	},
 	relatedTitleKeySearch:function() {
 		var _this = this;
-		js_log( 'Switch video Relational' );
 		var reqObj = {
 			'action' : 'query',
-			'titles' : this.wikiTitleKey,
+			//normalize the File NS (ie sometimes its present in wikiTitleKey other times not
+			'titles' : 'File:' + this.wikiTitleKey.replace(/File:|Image:/,''),
 		    'generator' : 'categories'
 		};
 		var req_categories = new Array();
 	    do_api_req( {
-			'data'	: reqObj,
-			'url'	: commons_api_url
+	    	'url'	: mw.commons_api_url,
+			'data'	: reqObj			
 	    },  function( data ) {
 			req_categories = Array();
 			if ( data.query && data.query.pages ) {
@@ -1320,7 +1320,7 @@ embedVideo.prototype = {
 		js_log( 'we have annotative track:' + anno_track_url );
 		// Zero out seconds (should improve cache hit rate and generally expands metadata search)
 		// @@todo this could be replaced with a regExp
-		var annoURL = parseUri( anno_track_url );
+		var annoURL = mw.parseUri( anno_track_url );
 		var times = annoURL.queryKey['t'].split( '/' );
 		var stime_parts = times[0].split( ':' );
 		var etime_parts = times[1].split( ':' );
@@ -1670,7 +1670,7 @@ embedVideo.prototype = {
 
 		var embed_thumb_html;
 		if ( thumbnail.substring( 0, 1 ) == '/' ) {
-			eURL = parseUri( mv_embed_path );
+			eURL = mw.parseUri( mv_embed_path );
 			embed_thumb_url = eURL.protocol + '://' + eURL.host + thumbnail;
 			// js_log('set from mv_embed_path:'+embed_thumb_html);
 		} else {
@@ -1761,22 +1761,25 @@ embedVideo.prototype = {
 	},
 	showTextInterface:function() {
 		var _this = this;
+		if( $j( '#metaBox_' + this.id ).is( ':visible' ) ) {
+			$j( '#metaBox_' + this.id ).fadeOut("fast");
+		}else{
+			$j( '#metaBox_' + this.id ).fadeIn( "fast" );
+		}
 		// display the text container with loading text: 
 		// @@todo support position config
 		var loc = $j( this ).position();
-		if ( $j( '#metaBox_' + this.id ).length == 0 ) {
-			var theight =  ( parseInt( this.height ) < 200 ) ? 200 : parseInt( this.height );
+		if ( $j( '#metaBox_' + this.id ).length == 0 ) {			
+			var theight = ( ( parseInt( this.height ) + this.ctrlBuilder.height ) < 200 ) ? 200 : ( parseInt( this.height ) + this.ctrlBuilder.height );
 			$j( this ).after( '<div class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;z-index:10;' +
 				'top:' + ( loc.top ) + 'px;' +
-				'left:' + ( parseInt( loc.left ) + parseInt( this.width ) + 10 ) + 'px;' +
+				'left:' + ( parseInt( loc.left ) + parseInt( this.width ) + 10) + 'px;' +
 				'height:' + theight + 'px;width:400px;' +
 				'display:none;" ' +
 				'id="metaBox_' + this.id + '">' +
 					mv_get_loading_img() +
 				'</div>' );
-		}
-		// fade in the text display
-		$j( '#metaBox_' + this.id ).fadeIn( "fast" );
+		}		
 		// check if textObj present:
 		if ( typeof this.textInterface == 'undefined' ) {
 			// load the default text interface:

@@ -418,7 +418,7 @@ remoteSearchDriver.prototype = {
 			} else {
 				var keyCheck = jL;
 			}
-			if ( parseUri( license_url ).path.indexOf( '/' + keyCheck + '/' ) != - 1 ) {
+			if ( mw.parseUri( license_url ).path.indexOf( '/' + keyCheck + '/' ) != - 1 ) {
 				return this.getLicenceFromKey( jL , license_url );
 			}
 		};
@@ -943,9 +943,9 @@ remoteSearchDriver.prototype = {
 	},
 	// @@todo we could load the id with the content provider id to find the object faster...
 	getResourceFromId:function( rid ) {
-		js_log('getResourceFromId:' + rid );
+		//js_log('getResourceFromId:' + rid );
 		// strip out /res/ if preset:
-		rid = rid.replace( /res_/ , '' );
+		rid = rid.replace( /res_/, '' );
 		// js_log("looking at: " + rid);
 		p = rid.split( '__' );
 		var cp_id = p[0];
@@ -1307,7 +1307,7 @@ remoteSearchDriver.prototype = {
 			return true;
 		} else {
 			// Check if we can embed the content locally per a domain name check:
-			var local_host = parseUri( this.local_wiki_api_url ).host;
+			var local_host = mw.parseUri( this.local_wiki_api_url ).host;
 			if ( cp.local_domains ) {
 				for ( var i = 0; i < cp.local_domains.length; i++ ) {
 					var ld = cp.local_domains[i];

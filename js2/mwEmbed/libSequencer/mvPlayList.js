@@ -368,7 +368,7 @@ mvPlayList.prototype = {
 	makeURLAbsolute:function() {
 		if ( this.src ) {
 			if ( this.src.indexOf( '://' ) == - 1 ) {
-				var purl = parseUri( document.URL );
+				var purl = mw.parseUri( document.URL );
 				if ( this.src.charAt( 0 ) == '/' ) {
 					this.src = purl.protocol + '://' + purl.host + this.src;
 				} else {

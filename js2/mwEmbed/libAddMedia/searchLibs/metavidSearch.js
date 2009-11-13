@@ -49,7 +49,7 @@ metavidSearch.prototype = {
 			// do some metavid specific pos processing on the rObj data:
 			for ( var i in _this.resultsObj ) {
 				var rObj = _this.resultsObj[i];
-				var proe = parseUri( rObj['roe_url'] );
+				var proe = mw.parseUri( rObj['roe_url'] );
 				rObj['start_time'] = proe.queryKey['t'].split( '/' )[0];
 				rObj['end_time'] = proe.queryKey['t'].split( '/' )[1];
 				rObj['stream_name'] = proe.queryKey['stream_name'];

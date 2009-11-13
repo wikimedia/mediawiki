@@ -246,7 +246,7 @@ mvClipEdit.prototype = {
 		} else {
 			// var res_page =
 			var res_src = _this.rObj.src;
-			var res_title = parseUri( _this.rObj.src ).file;
+			var res_title = mw.parseUri( _this.rObj.src ).file;
 		}
 		o +=	'<tr>' +
 					'<td colspan="2"><b>' + gM( 'mwe-other_properties' ) + '</b></td>' +

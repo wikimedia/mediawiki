@@ -7,7 +7,7 @@
  *
  * @url http://metavid.org
  *
- * parseUri:
+ * mw.parseUri:
  * http://stevenlevithan.com/demo/parseuri/js/
  *
  * Config values: you can manually set the location of the mv_embed folder here
@@ -47,7 +47,7 @@ if ( typeof mvCssPaths == 'undefined' )
 
 function lcCssPath( cssSet ) {
 	for ( var i in cssSet ) {
-		mvCssPaths[i] = mv_embed_path + cssSet[i];
+		mvCssPaths[i] = cssSet[i];
 	}
 }
 
@@ -155,39 +155,7 @@ lcPaths( {
 lcCssPath( {
 	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
 	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
-} )
-
-
-// parseUri 1.2.2
-// (c) Steven Levithan <stevenlevithan.com>
-// MIT License
-function parseUri (str) {
-	var	o   = parseUri.options,
-		m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
-		uri = {},
-		i   = 14;
-
-	while (i--) uri[o.key[i]] = m[i] || "";
-
-	uri[o.q.name] = {};
-	uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
-		if ($1) uri[o.q.name][$1] = $2;
-	});
-
-	return uri;
-};
-parseUri.options = {
-	strictMode: false,
-	key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],
-	q:   {
-		name:   "queryKey",
-		parser: /(?:^|&)([^&=]*)=?([^&]*)/g
-	},
-	parser: {
-		strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
-		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
-	}
-};
+})
 
 // For use when mv_embed with script-loader is in the root MediaWiki path
 var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
@@ -207,10 +175,6 @@ if ( !window['mw'] ) {
 // @@todo move these into mw
 var global_req_cb = new Array(); // The global request callback array
 
-// Get the mv_embed location if it has not been set
-if ( !mv_embed_path ) {
-	var mv_embed_path = getMvEmbedPath();
-}
 /**
 * The global mw object:
 *
@@ -298,13 +262,11 @@ if ( !mv_embed_path ) {
 			return '&lt;' + key + '&gt;';// Missing key placeholder
 
 		// swap in the arg values
-		var ms =  $.lang.gMsgSwap( key, args ) ;
-		
-		
+		var ms =  $.lang.gMsgSwap( key, args );				
 		
 		// a quick check to see if we need to send the msg via the 'parser'
 		// (we can add more detailed check once we support more wiki syntax)
-		if ( ms.indexOf( '{{' ) === - 1 && ms.indexOf( '[' ) === - 1 ) {
+		if ( ms.indexOf( '{{' ) === -1 && ms.indexOf( '[' ) === -1 ) {
 			return ms;
 		}
 
@@ -326,9 +288,9 @@ if ( !mv_embed_path ) {
 	$.lang.gMsgSwap = function( key , args ) {
 		if ( ! gMsg[ key ] )
 			return '&lt;' + key + '&gt;';// Missing key placeholder
-		// get the messeage string:
+		// get the message string:
 		var ms = gMsg[ key ];
-
+		
 		// replace values
 		if ( typeof args == 'object' || typeof args == 'array' ) {
 			for ( var v in args ) {
@@ -820,8 +782,47 @@ if ( !mv_embed_path ) {
 		}
 		return false;
 	}
-		
+	
+	/**
+	* Utility Functions
+	* 
+	* parseUri 1.2.2
+	* (c) Steven Levithan <stevenlevithan.com>
+	*  MIT License
+	*/	
+	$.parseUri = function (str) {
+		var	o   = $.parseUri.options,
+			m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+			uri = {},
+			i   = 14;
+	
+		while (i--) uri[o.key[i]] = m[i] || "";
+	
+		uri[o.q.name] = {};
+		uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
+			if ($1) uri[o.q.name][$1] = $2;
+		});
+	
+		return uri;
+	};
+	$.parseUri.options = {
+		strictMode: false,
+		key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],
+		q:   {
+			name:   "queryKey",
+			parser: /(?:^|&)([^&=]*)=?([^&]*)/g
+		},
+		parser: {
+			strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
+			loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
+		}
+	};			
 } )( window.mw );
+
+// Get the mv_embed location if it has not been set
+if ( !mv_embed_path ) {
+	var mv_embed_path = getMvEmbedPath();
+}
 
 // load in js2 stopgap into proper location: 
 if ( typeof gMsg != 'undefined' ) {
@@ -906,7 +907,7 @@ var mvJsLoader = {
 			// Do a check for any CSS we may need and get it
 			for ( var i = 0; i < loadLibs.length; i++ ) {
 				if ( typeof mvCssPaths[ loadLibs[i] ] != 'undefined' ) {
-					loadExternalCss( mvCssPaths[ loadLibs[i] ] );
+					loadExternalCss( mv_embed_path + mvCssPaths[ loadLibs[i] ] );
 				}
 			}
 
@@ -925,9 +926,9 @@ var mvJsLoader = {
 					}
 				}
 				// Build the url to the scriptServer striping its request parameters:
-				var puri = parseUri( getMvEmbedURL() );
+				var puri = mw.parseUri( getMvEmbedURL() );
 				if ( ( getMvEmbedURL().indexOf( '://' ) != - 1 )
-					&& puri.host != parseUri( document.URL ).host )
+					&& puri.host != mw.parseUri( document.URL ).host )
 				{
 					var scriptPath = puri.protocol + '://' + puri.authority + puri.path;
 				} else {
@@ -1226,10 +1227,10 @@ function js2AddOnloadHook( func ) {
 	// js_log('js2AddOnloadHook:: jquery:' +func);	
 	// If we are ready run directly else add load event: 
 	if ( mvJsLoader.doneReadyEvents ) {
-		js_log( 'run queued event: ' + func );
+		//js_log( 'run queued event: ' + func );
 		func();
 	} else {
-		js_log( 'add to load event: ' + func );
+		//js_log( 'add to load event: ' + func );
 		mvJsLoader.addLoadEvent( func );
 	}
 }
@@ -1646,7 +1647,7 @@ function mv_jqueryBindings() {
 */
 // Simple URL rewriter (could probably be refactored into an inline regular exp)
 function getURLParamReplace( url, opt ) {
-	var pSrc = parseUri( url );
+	var pSrc = mw.parseUri( url );
 	if ( pSrc.protocol != '' ) {
 		var new_url = pSrc.protocol + '://' + pSrc.authority + pSrc.path + '?';
 	} else {
@@ -1789,7 +1790,7 @@ function do_api_req( options, callback ) {
 		// assume the proxy is already "setup" since mw.proxy is defined.
 		// @@todo we probably integrate that setup into the api call
 		mw.proxy.doRequest( options.data,  callback );
-	} else if ( parseUri( document.URL ).host == parseUri( options.url ).host ) {
+	} else if ( mw.parseUri( document.URL ).host == mw.parseUri( options.url ).host ) {
 		// Local request: do API request directly
 		$j.ajax( {
 			type: "POST",
@@ -1825,9 +1826,9 @@ function do_api_req( options, callback ) {
 }
 // Do a "normal" request
 function do_request( req_url, callback ) {
-	js_log( 'do_request::req_url:' + req_url + ' != ' +  parseUri( req_url ).host );
+	js_log( 'do_request::req_url:' + req_url + ' != ' +  mw.parseUri( req_url ).host );
 	// If we are doing a request to the same domain or relative link, do a normal GET
-	if ( parseUri( document.URL ).host == parseUri( req_url ).host ||
+	if ( mw.parseUri( document.URL ).host == mw.parseUri( req_url ).host ||
 		req_url.indexOf( '://' ) == - 1 ) // Relative url
 	{
 		// Do a direct request
@@ -1974,9 +1975,9 @@ function getMwReqParam() {
 	var req_param = '';
 	
 	// If we have a URI, add it to the req
-	var urid = parseUri( mv_embed_url ).queryKey['urid']
+	var urid = mw.parseUri( mv_embed_url ).queryKey['urid']
 	// If we're in debug mode, get a fresh unique request key and pass on "debug" param
-	if ( parseUri( mv_embed_url ).queryKey['debug'] == 'true' ) {
+	if ( mw.parseUri( mv_embed_url ).queryKey['debug'] == 'true' ) {
 		var d = new Date();
 		req_param += 'urid=' + d.getTime() + '&debug=true';
 	} else if ( urid ) {
@@ -1987,7 +1988,7 @@ function getMwReqParam() {
 		req_param += 'urid=' + mw.version;
 	}
 	// add the lang param:
-	var langKey = parseUri( mv_embed_url ).queryKey['uselang'];
+	var langKey = mw.parseUri( mv_embed_url ).queryKey['uselang'];
 	if ( langKey )
 		req_param += '&uselang=' + langKey;
 			
@@ -2013,7 +2014,7 @@ function getMvEmbedPath() {
 	}
 	// Make an absolute URL (if it's relative and we don't have an mv_embed path)
 	if ( mv_embed_path.indexOf( '://' ) == - 1 ) {
-		var pURL = parseUri( document.URL );
+		var pURL = mw.parseUri( document.URL );
 		if ( mv_embed_path.charAt( 0 ) == '/' ) {
 			mv_embed_path = pURL.protocol + '://' + pURL.authority + mv_embed_path;
 		} else {

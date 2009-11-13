@@ -803,7 +803,7 @@ mvSequencer.prototype = {
 			this_seq.clipboard.push( cur_clip.getAttributeObj() );
 		} );
 		// upload clipboard to the server (if possible)
-		if ( parseUri(  document.URL ).host != parseUri( this_seq.plObj.interface_url ).host ) {
+		if ( mw.parseUri(  document.URL ).host != mw.parseUri( this_seq.plObj.interface_url ).host ) {
 			js_log( 'error: presently we can\'t copy clips across domains' );
 		} else {
 			// @@we need a api entry point to store a "clipboard"

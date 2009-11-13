@@ -67,7 +67,7 @@ loadGM( {
 			$.proxy.client_frame_path =  wgScriptPath + '/js2/mwEmbed/libMwApi/NestedCallbackIframe.html';
 		}
 				
-		if ( parseUri( $.proxy.server_frame ).host ==  parseUri( document.URL ).host ) {
+		if ( mw.parseUri( $.proxy.server_frame ).host ==  mw.parseUri( document.URL ).host ) {
 			js_log( "Error: why are you trying to proxy yourself? " );
 			return false;
 		}
@@ -78,7 +78,7 @@ loadGM( {
 	/* setup a iframe request hash */
 	$.proxy.doFrameProxy = function( reqObj ) {
 		var hashPack = {
-			'cd': parseUri( document.URL ).host,
+			'cd': mw.parseUri( document.URL ).host,
 			'cfp': $.proxy.client_frame_path,
 			'req': reqObj
 		}
@@ -114,7 +114,7 @@ loadGM( {
 		btn[ gM( 'mwe-cancel' ) ] = function() {
 			$j.closeLoaderDialog();
 		}
-		var pUri =  parseUri( $.proxy.server_frame );
+		var pUri =  mw.parseUri( $.proxy.server_frame );
 		// this is sort of a temporary hack if we change the MediaWiki:ApiProxy key
 		// we will have to deal with that here as well: 
 		var login_url = pUri.protocol + '://' + pUri.host +
@@ -165,7 +165,7 @@ loadGM( {
 		$j( 'body' ).html( 'proxy setup' );
 		
 		// read the anchor action from the requesting url
-		var jmsg = unescape( parseUri( document.URL ).anchor );
+		var jmsg = unescape( mw.parseUri( document.URL ).anchor );
 		try {
 			var aObj = JSON.parse( jmsg );
 		} catch ( e ) {
@@ -176,7 +176,7 @@ loadGM( {
 			return false;
 		}
 		
-		js_log( "Setup server on: "  + parseUri( document.URL ).host +
+		js_log( "Setup server on: "  + mw.parseUri( document.URL ).host +
 			' client from: ' + aObj.cd +
 			' to nested target: ' + aObj.cfp );
 		
