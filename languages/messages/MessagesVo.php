@@ -832,7 +832,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'revdelete-hide-image'        => 'Klänedön ragivaninädi',
 'revdelete-unsuppress'        => 'Moükön miedükamis fomamas pegegetöl',
 'revdelete-log'               => 'Küpet jenotalisedik:',
-'revdelete-submit'            => 'Gebön me fomam pevälöl',
+'revdelete-submit'            => 'Gebön me {{PLURAL:$1|fomam pevälöl|fomams pevälöls}}',
 'revdelete-logentry'          => 'logov fomamas pada: [[$1]] pevotükon',
 'logdelete-logentry'          => 'logov jenota: [[$1]] pevotükon',
 'revdelete-success'           => 'Logov padafomama pelonon benosekiko.',
@@ -849,6 +849,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'revdelete-unhid'             => '$1 pesäklänedon',
 'revdelete-log-message'       => '$1 tefü {{PLURAL:$2|fomam|fomams}} $2',
 'logdelete-log-message'       => '$1 tefü {{PLURAL:$2|jenot|jenots}} $2',
+'revdelete-otherreason'       => 'Kod votik/zuik:',
 'revdelete-reasonotherlist'   => 'Kod votik',
 'revdelete-edit-reasonlist'   => 'Redakön kodis moükama',
 
@@ -891,6 +892,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'lineno'                  => 'Lien $1:',
 'compareselectedversions' => 'Leigodolöd fomamis pevälöl',
 'editundo'                => 'sädunön',
+'diff-multi'              => '({{PLURAL:$1|Revid vüik bal no pejonon|Revids vüik $1 no pejonons}}.)',
 
 # Search results
 'searchresults'                    => 'Sukaseks',
@@ -1317,6 +1319,7 @@ Begolös yufi [[Special:ListUsers/sysop|guvana]].',
 'upload-misc-error-text'  => 'Pöl nesevädik äjenon dü löpükam.
 Fümedolös, begö! das el URL lonöfon e kanon palogön, e poso steifülolös nogna.
 If säkäd at laibinon, kosikolös ko [[Special:ListUsers/sysop|guvan]] tefü on.',
+'upload-unknown-size'     => 'Gretot nesevädik',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No eplöpos ad rivön eli URL',

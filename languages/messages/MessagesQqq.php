@@ -12,6 +12,7 @@
  * @author AlexSm
  * @author AnakngAraw
  * @author Ans
+ * @author Antime
  * @author Aotake
  * @author Bangin
  * @author Bennylin
@@ -2427,6 +2428,7 @@ See also {{msg-mw|Blocklistline}}.',
 Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks',
 'blockme'                      => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'sorbs'                        => '{{optional}}',
+'cant-see-hidden-user'         => 'المستخدم الذي تحاول منعه تم منعه مسبقا وإخفائه. بما أنك لا تمتلك صلاحية إخفاء المستخدم ، لا يمكنك مشاهدة المنع أو تعديله.',
 
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].

@@ -188,7 +188,7 @@ $messages = array(
 'mainpage-description' => 'Tasna tamzwarut',
 'policy-url'           => 'Project:Tasirtit',
 'portal'               => 'Ağur n w-amun',
-'portal-url'           => 'Ağur n w-amun',
+'portal-url'           => 'Project:Ağur n w-amun',
 'privacy'              => 'Tasrtit n imzlayn',
 'privacypage'          => 'Project:Tasirtit ni imzlayn',
 
@@ -196,17 +196,27 @@ $messages = array(
 'badaccess-group0' => 'Ur ak ittuyskar at sbadelt ma trit',
 'badaccess-groups' => 'Mara tskrt ittuyzlay ɣir imsxdamn ɣ tamsmunt{{PLURAL:$2|tamsmunt|yat ɣ timsmuna}}: $1.',
 
-'retrievedfrom'      => 'itsglbd mn "$1"',
-'youhavenewmessages' => 'illa dark $1 ($2).',
-'editsection'        => 'bddl',
-'editold'            => 'bddl',
-'editsectionhint'    => 'bdl section: $1',
-'showtoc'            => 'sbaynd',
-'hidetoc'            => 'ḥbou',
-'site-rss-feed'      => "$1 lqm n' RSS",
-'site-atom-feed'     => "$1 lqm n' atom",
-'page-rss-feed'      => '"$1" tlqim RSS',
-'red-link-title'     => '$1 (tasnatad ur tlli)',
+'ok'                      => 'Waxxa',
+'pagetitle'               => '(MediaWiki)$1 - {{SITENAME}}',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
+'retrievedfrom'           => 'Yurrid z "$1"',
+'youhavenewmessages'      => 'Illa dark $1 ($2).',
+'newmessageslink'         => 'Tibratin timaynutin',
+'newmessagesdifflink'     => 'Imbddeln imĝura',
+'youhavenewmessagesmulti' => 'Dark tibratin timaynutin ɣ $1',
+'editsection'             => 'Ẓreg (bddel)',
+'editsection-brackets'    => '[$1]',
+'editold'                 => 'Ẓreg (bddel)',
+'viewsourceold'           => 'Mel aɣbalu',
+'editlink'                => 'Ẓreg (bddel)',
+'viewsourcelink'          => 'Mel aɣbalu',
+'editsectionhint'         => 'Ẓreg ayyaw: $1',
+'showtoc'                 => 'sbaynd',
+'hidetoc'                 => 'ḥbou',
+'site-rss-feed'           => "$1 lqm n' RSS",
+'site-atom-feed'          => "$1 lqm n' atom",
+'page-rss-feed'           => '"$1" tlqim RSS',
+'red-link-title'          => '$1 (tasnatad ur tlli)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Tasnat',
@@ -272,7 +282,8 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 '''ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!'''",
 
 # Diffs
-'editundo' => 'Urri',
+'editundo'   => 'Urri',
+'diff-multi' => '({{PLURAL:$1|Gr yan usurri|$1 gr isuritn}} ura tuyfsar)',
 
 # Search results
 'searchprofile-everything-tooltip' => 'Cabba ɣ kullu may ityran ɣid (d ḥtta ɣ tisna nu umsgdal)',

@@ -327,7 +327,7 @@ $messages = array(
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Mostrar categorias ocultas',
 'tog-noconvertlink'           => 'Impossibilitar a conversão dos títulos de ligações',
-'tog-norollbackdiff'          => 'Omitir diferenças depois de desfazer edições em bloco',
+'tog-norollbackdiff'          => 'Omitir diferenças depois de reverter edições em bloco',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
@@ -615,12 +615,12 @@ Isto pode indicar um defeito neste programa.
 A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
-A base de dados retornou o erro "<tt>$3: $4</tt>".',
+A base de dados devolveu o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu um erro sintáctico na pesquisa à base de dados.
 A última tentativa de busca na base de dados foi:
 "$1"
 na função "$2".
-A base de dados retornou o erro "$3: $4"',
+A base de dados devolveu o erro "$3: $4"',
 'laggedslavemode'      => "'''Aviso:''' A página pode não conter as actualizações mais recentes.",
 'readonly'             => 'Base de dados no modo "somente leitura"',
 'enterlockreason'      => 'Introduza um motivo para trancar, incluindo uma estimativa de quando poderá ser destrancada',
@@ -653,22 +653,23 @@ A sua eliminação pode ter sido já feita por outro utilizador.',
 'badtitle'             => 'Título inválido',
 'badtitletext'         => 'O título de página solicitado era inválido, vazio, ou uma ligação interlínguas ou interwikis incorrecta.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
-'perfcached'           => 'Os dados seguintes encontram-se na cache e podem não estar actualizados.',
-'perfcachedts'         => 'Os seguintes dados encontram-se armazenados na cache e foram actualizados pela última vez a $1.',
-'querypage-no-updates' => 'Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.',
+'perfcached'           => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar actualizados.",
+'perfcachedts'         => "Os seguintes dados encontram-se armazenados na ''cache'' e foram actualizados pela última vez a $1.",
+'querypage-no-updates' => 'As actualizações estão presentemente desactivadas para esta página.
+Por enquanto, os dados aqui presentes não poderão ser actualizados.',
 'wrong_wfQuery_params' => 'Parâmetros incorrectos para wfQuery()<br />
-Function: $1<br />
-Query: $2',
-'viewsource'           => 'Ver código',
+Função: $1<br />
+Consulta: $2',
+'viewsource'           => 'Ver conteúdo',
 'viewsourcefor'        => 'para $1',
 'actionthrottled'      => 'Acção limitada',
-'actionthrottledtext'  => 'Como medida "anti-spam", está impedido de realizar esta operação demasiadas vezes num curto espaço de tempo, e já excedeu esse limite. Por favor, tente de novo dentro de alguns minutos.',
+'actionthrottledtext'  => "Como medida anti-''spam'', está impedido de realizar esta operação demasiadas vezes num curto espaço de tempo e já excedeu esse limite. Por favor, tente de novo dentro de alguns minutos.",
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Pode ver e copiar o conteúdo desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projeto destinado à tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afectarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
-'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
+'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "protecção progressiva" activada):
 $2',
 'namespaceprotected'   => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssjsprotected' => 'Não possui permissão para editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
@@ -695,7 +696,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'remembermypassword'         => 'Lembrar a minha palavra-chave entre sessões.',
 'yourdomainname'             => 'Seu domínio',
 'externaldberror'            => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
-'login'                      => 'Autenticar-se',
+'login'                      => 'Autenticação',
 'nav-login-createaccount'    => 'Entrar / criar conta',
 'loginprompt'                => "É necessário ter os ''cookies'' activados no seu navegador para poder autenticar-se na {{SITENAME}}.",
 'userlogin'                  => 'Criar uma conta ou entrar',
@@ -1198,7 +1199,7 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'searchresulttext'                 => 'Para mais informações sobre pesquisas na {{SITENAME}}, consulte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Você pesquisou por \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|páginas iniciadas por "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|páginas que apontam para "$1"]])',
 'searchsubtitleinvalid'            => 'Pesquisou "$1"',
-'toomanymatches'                   => 'Foram retornados demasiados resultados. Por favor, tente um filtro de pesquisa diferente',
+'toomanymatches'                   => 'Foram devolvidos demasiados resultados. Por favor, tente um filtro de pesquisa diferente',
 'titlematches'                     => 'Resultados nos títulos das páginas',
 'notitlematches'                   => 'Nenhum título de página coincide com o termo pesquisado',
 'textmatches'                      => 'Resultados nos textos das páginas',
@@ -1464,16 +1465,16 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'right-editusercssjs'         => 'Editar os ficheiros CSS e JS de outros utilizadores',
 'right-editusercss'           => 'Editar os ficheiros CSS de outros utilizadores',
 'right-edituserjs'            => 'Editar os ficheiros JS de outros utilizadores',
-'right-rollback'              => 'Reverter rapidamente o último utilizador que editou uma página em particular',
+'right-rollback'              => 'Reverter rapidamente as edições do último utilizador que editou uma página em particular',
 'right-markbotedits'          => 'Marcar edições revertidas como edições de bot',
-'right-noratelimit'           => 'Não afectado pelos limites de velocidade de operação',
+'right-noratelimit'           => 'Não ser afectado pelos limites de velocidade de operação',
 'right-import'                => 'Importar páginas de outras wikis',
 'right-importupload'          => 'Importar páginas de um ficheiro xml',
 'right-patrol'                => 'Marcar edições de outros utilizadores como patrulhadas',
 'right-autopatrol'            => 'Ter edições automaticamente marcadas como patrulhadas',
 'right-patrolmarks'           => 'Usar funcionalidades de patrulhagem das mudanças recentes',
 'right-unwatchedpages'        => 'Ver uma lista de páginas não vigiadas',
-'right-trackback'             => "Submeter um 'trackback'",
+'right-trackback'             => "Submeter um ''trackback''",
 'right-mergehistory'          => 'Fundir o histórico de edições de páginas',
 'right-userrights'            => 'Editar todos os privilégios de utilizador',
 'right-userrights-interwiki'  => 'Editar privilégios de utilizadores noutras wikis',
@@ -1519,7 +1520,7 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'action-patrol'               => 'marcar as edições de outros utilizadores como patrulhadas',
 'action-autopatrol'           => 'marcar como patrulhadas as suas próprias edições',
 'action-unwatchedpages'       => 'ver a lista de páginas não-vigiadas',
-'action-trackback'            => 'enviar um trackback',
+'action-trackback'            => "submeter um ''trackback''",
 'action-mergehistory'         => 'fundir o histórico de edições desta página',
 'action-userrights'           => 'editar os privilégios de utilizadores',
 'action-userrights-interwiki' => 'editar privilégios de utilizadores de outras wikis',
@@ -1810,7 +1811,7 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 ** Violação de direitos de autor
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist'  => 'Editar motivos de eliminação',
-'filedelete-maintenance'      => 'Eliminação e restauro de ficheiros temporariamente desabilitados durante a manutenção.',
+'filedelete-maintenance'      => 'Eliminação e restauro de ficheiros foram temporariamente impossibilitadas durante a manutenção.',
 
 # MIME search
 'mimesearch'         => 'Pesquisa MIME',
@@ -1860,8 +1861,9 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 
 'disambiguations'      => 'Desambiguações',
 'disambiguationspage'  => 'Template:disambig',
-'disambiguations-text' => "As páginas a seguir ligam a \"''páginas de desambiguação''\" ao invés de aos tópicos adequados.<br /> 
-Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => 'As páginas abaixo contêm ligações para páginas de desambiguação.
+Estas ligações deviam ser desambiguadas, apontando-as para a página apropriada.<br /> 
+Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].',
 
 'doubleredirects'            => 'Redireccionamentos duplos',
 'doubleredirectstext'        => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
@@ -1957,7 +1959,7 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'all-logs-page'        => 'Todos os registos públicos',
 'alllogstext'          => 'Apresentação combinada de todos os registos disponíveis na wiki {{SITENAME}}.
 Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um título de página. Respeite maiúsculas e minúsculas.',
-'logempty'             => 'Nenhum item idêntico no registo.',
+'logempty'             => 'Não há dados a apresentar.',
 'log-title-wildcard'   => 'Procurar títulos iniciados por este texto',
 
 # Special:AllPages
@@ -2048,7 +2050,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'emailpage'        => 'Contactar utilizador',
 'emailpagetext'    => 'Utilize o formulário abaixo para enviar uma mensagem a este utilizador.
 O e-mail que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo "Remetente" do e-mail, para que o destinatário lhe possa responder directamente.',
-'usermailererror'  => 'Objecto de correio retornou um erro:',
+'usermailererror'  => 'O sistema de correio devolveu o erro:',
 'defemailsubject'  => 'E-mail: {{SITENAME}}',
 'noemailtitle'     => 'Sem endereço de e-mail',
 'noemailtext'      => 'Este utilizador não especificou um endereço de e-mail válido.',
@@ -2321,10 +2323,10 @@ $1',
 'sp-contributions-newbies'        => 'Pesquisar apenas nas contribuições de contas recentes',
 'sp-contributions-newbies-sub'    => 'Para contas novas',
 'sp-contributions-newbies-title'  => 'Contribuições de contas novas',
-'sp-contributions-blocklog'       => 'Registo de bloqueios',
-'sp-contributions-deleted'        => 'Contribuições de utilizador eliminadas',
+'sp-contributions-blocklog'       => 'registo de bloqueios',
+'sp-contributions-deleted'        => 'contribuições eliminadas',
 'sp-contributions-logs'           => 'registos',
-'sp-contributions-talk'           => 'disc',
+'sp-contributions-talk'           => 'discussão',
 'sp-contributions-userrights'     => 'gestão de privilégios de utilizador',
 'sp-contributions-blocked-notice' => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
@@ -2433,8 +2435,8 @@ Endereços IP sujeitos a bloqueio automático não são listados.
 Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos actualmente válidos.',
 'unblocklogentry'                 => 'desbloqueou $1',
 'block-log-flags-anononly'        => 'apenas utilizadores anónimos',
-'block-log-flags-nocreate'        => 'criação de contas desabilitada',
-'block-log-flags-noautoblock'     => 'bloqueio automático desabilitado',
+'block-log-flags-nocreate'        => 'criação de contas impossibilitada',
+'block-log-flags-noautoblock'     => 'bloqueio automático impossibilitado',
 'block-log-flags-noemail'         => 'impedido de enviar e-mail',
 'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'autobloqueio melhorado activado',
@@ -2452,7 +2454,7 @@ $1 já se encontra bloqueado. Deseja alterar as configurações?',
 'ip_range_invalid'                => 'Gama de IPs inválida.',
 'blockme'                         => 'Bloquear-me',
 'proxyblocker'                    => 'Bloqueador de proxy',
-'proxyblocker-disabled'           => 'Esta função está desabilitada.',
+'proxyblocker-disabled'           => 'Esta função foi impossibilitada.',
 'proxyblockreason'                => "O seu endereço IP foi bloqueado por ser um ''proxy'' público.
 Por favor, contacte o seu fornecedor do serviço de internet ou o seu serviço de apoio técnico e informe-os deste problema de segurança grave.",
 'proxyblocksuccess'               => 'Concluído.',
@@ -2751,8 +2753,8 @@ Permite colocar uma justificação no sumário da edição.',
 'vector.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */',
 
 # Metadata
-'nodublincore'      => 'Os metadados RDF para Dublin Core estão desabilitados neste servidor.',
-'nocreativecommons' => 'Os metadados RDF para Creative Commons estão desabilitados neste servidor.',
+'nodublincore'      => 'Os metadados RDF para Dublin Core foram impossibilitados neste servidor.',
+'nocreativecommons' => 'Os metadados RDF para Creative Commons foram impossibilitados neste servidor.',
 'notacceptable'     => 'O servidor não pode fornecer os dados num formato que o seu cliente possa ler.',
 
 # Attribution
@@ -3185,7 +3187,7 @@ Esse código não é exigido para que se possa autenticar no sistema, mas será 
 'confirmemail_sendfailed'  => 'Não foi possível enviar o email de confirmação.
 Verifique se o seu endereço de e-mail possui caracteres inválidos.
 
-O mailer retornou: $1',
+O sistema de correio devolveu o erro: $1',
 'confirmemail_invalid'     => 'Código de confirmação inválido. O código poderá ter expirado.',
 'confirmemail_needlogin'   => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
 'confirmemail_success'     => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
@@ -3211,16 +3213,16 @@ Este código de confirmação irá expirar a $4.',
 'invalidateemail'          => 'Cancelar confirmação de e-mail',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[A transclusão de páginas de outros wikis encontra-se desabilitada]',
+'scarytranscludedisabled' => '[Transclusão interwikis foi impossibilitada]',
 'scarytranscludefailed'   => '[Não foi possível obter a predefinição a partir de $1]',
 'scarytranscludetoolong'  => '[URL longa demais]',
 
 # Trackbacks
-'trackbackbox'      => 'Trackbacks para esta página:<br />
-$1',
+'trackbackbox'      => "Ligações ''trackback'' para esta página:<br />
+$1",
 'trackbackremove'   => '([$1 Eliminar])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'O trackback foi eliminado com sucesso.',
+'trackbacklink'     => "''Trackback''",
+'trackbackdeleteok' => "O ''trackback'' foi eliminado com sucesso.",
 
 # Delete conflict
 'deletedwhileediting' => "'''Aviso''': Esta página foi eliminada após ter começado a editá-la!",

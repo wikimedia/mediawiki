@@ -818,6 +818,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'lineno'                  => '$1 satır:',
 'compareselectedversions' => 'Saylanğan versiyalarnı teñeştir',
 'editundo'                => 'lâğu et',
+'diff-multi'              => '({{PLURAL:$1|1 aradaki versiya|$1 aradaki versiya}} kösterilmedi.)',
 
 # Search results
 'searchresults'             => 'Qıdıruv neticeleri',
@@ -1853,8 +1854,8 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'nextdiff'     => 'Soñraki deñişiklik →',
 
 # Media information
-'mediawarning'         => "'''DİQQAT!''': Bu faylda yaman maqsatlı (virus kibi) qısım bulunıp ola ve operatsion sistemañızğa zarar ketirip olur.
-<hr />",
+'mediawarning'         => "'''İhtar''': Bu fayl türüniñ içinde yaman niyetli kod ola bile.
+Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.<hr />",
 'imagemaxsize'         => "Resim ölçüsi sıñırı:<br />''(fayl malümat saifeleri içün)''",
 'thumbsize'            => 'Kiçik ölçü:',
 'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1|$3}} saife',

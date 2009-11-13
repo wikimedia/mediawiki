@@ -370,20 +370,20 @@ Na lista ëd pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:Speci
 'error'                => 'Eror',
 'databaseerror'        => 'Eror ant la base dat',
 'dberrortext'          => 'A l\'é capitaje n\'eror ëd sintassi ant la domanda mandà a la base dat.
-Sòn-sì a peul andiché n\'eror ant ël software.
-L\'ùltima domanda mandà a la base dat a l\'é staita:
+Sòn a peul vorèj dì n\'eror ant ël programa.
+L\'ùltima domanda mandà a la base dat a l\'é stàita:
 <blockquote><tt>$1</tt></blockquote>
 da \'nt la funsion "<tt>$2</tt>".
 La base dat a l\'ha dane andré n\'eror "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'A-i é staje n\'eror ant la sintassi d\'anterogassion dla base dat.
-L\'ùltima anterogassion a l\'é staita:
+L\'ùltima anterogassion a l\'é stàita:
 "$1"
 da andrinta a la funsion "$2".
 La base dat a l\'ha dane n\'eror "$3: $4"',
 'laggedslavemode'      => 'Avis: la pàgina a podrìa ëdcò nen mostré tute soe modìfiche.',
 'readonly'             => 'Acess a la base dat sërà për chèich temp.',
 'enterlockreason'      => 'Che a buta na rason për ël blocagi, con andrinta data e ora ëd quand che a stima che a sarà gavà.',
-'readonlytext'         => "La base dat ëd {{SITENAME}} për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël server. Se a l'é parej motobin ampressa la base a sarà torna doèrta.<br />
+'readonlytext'         => "La base dat ëd {{SITENAME}} për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël servent. Se a l'é parèj, motobin ampressa la base a sarà torna duvèrta.<br />
 L'aministrator che a l'ha blocala a l'ha lassà sto messagi-sì:
 <p>:$1",
 'missing-article'      => "Ël database a l'ha nen trovà ël test ëd na pagina che a l'avrìa dovù trové, ciamà \"\$1\" \$2.
