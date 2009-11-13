@@ -610,7 +610,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 };
 
 // exclude the following css properties to add px
-var	exclude = / z - ? index | font - ? weight | opacity | zoom | line - ? height / i,
+var exclude = / z - ? index | font - ? weight | opacity | zoom | line - ? height /i,
 	// cache defaultView
 	defaultView = document.defaultView || { },
 	toString = Object.prototype.toString;
@@ -791,7 +791,7 @@ jQuery.extend( {
 		}
 
 		// Make sure we're using the right name for getting the float value
-		if ( name.match( / float / i ) )
+		if ( name.match( / float /i ) )
 			name = styleFloat;
 
 		if ( !force && style && style[ name ] )
@@ -800,10 +800,10 @@ jQuery.extend( {
 		else if ( defaultView.getComputedStyle ) {
 
 			// Only "float" is needed here
-			if ( name.match( / float / i ) )
+			if ( name.match( / float /i ) )
 				name = "float";
 
-			name = name.replace( / ( [A - Z] ) / g, "-$1" ).toLowerCase();
+			name = name.replace( / ( [A - Z] ) /g, "-$1" ).toLowerCase();
 
 			var computedStyle = defaultView.getComputedStyle( elem, null );
 
