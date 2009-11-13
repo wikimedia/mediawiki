@@ -140,6 +140,8 @@ href="" class="internal"}?{/a}) basne.',
 'category-file-count'            => '{{PLURAL:$2|Na kategoriye de teyna ana dosya esta.|Na kategoriye de $2 ra pêro pia, {{PLURAL:$1|ana dosya esta|ani $1 dosyey estê.}}}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Ana dosya kategoriya peyêne dera|Ani $1 dosyey kategoriya peyêne derê}}.',
 'listingcontinuesabbrev'         => 'işt.',
+'index-category'                 => 'Pelê endeksıni',
+'noindex-category'               => 'Pelê bêendekşi',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MediaWiki ebe mıwefeq instale bi.'''</big>",
@@ -256,6 +258,11 @@ href="" class="internal"}?{/a}) basne.',
 'jumpto'            => 'So be:',
 'jumptonavigation'  => 'pusula',
 'jumptosearch'      => 'cıfeteliye',
+'view-pool-error'   => 'Qaytê qusıri mekerê, serverê ma nıka jêde bar gureto ho ser.
+Hedê ho ra jêde karberi kenê ke şêrê na pele bıkerê.
+Sıma rê zamet, tenê vınderê, hata ke reyna kenê ke na pele kuyê.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Heqa {{SITENAME}} de',
@@ -445,6 +452,7 @@ Vurnaena [[Special:Preferences|melumatanê {{SITENAME}}]] ho vira mekerê.',
 'userexists'              => 'No namê karberi guretiyo.
 Kerem ke, namêna weçine.',
 'loginerror'              => 'Xeta cıkotene',
+'createaccounterror'      => 'Hesab nêvırajino: $1',
 'noname'                  => 'Ebe namê do vêrdoği ra cınêkota.',
 'loginsuccesstitle'       => 'Cıkotene biye ra',
 'loginsuccess'            => "'''Sıta {{SITENAME}} de ebe namê karberi \"\$1\" kota cı.'''",
@@ -463,12 +471,18 @@ Kerem ke, oncia bıcerrebne.',
 'mailerror'               => 'Xeta rusnaena e-postey: $1',
 'emailconfirmlink'        => 'Adresa e-postê ho tesdiq ke',
 'accountcreated'          => 'Hesab vırajiya',
+'accountcreatedtext'      => 'Serba $1i hesabê karberi vırajiya.',
+'createaccount-title'     => 'Serba {{SITENAME}}i vırajiyaene hesabê karberi',
 'loginlanguagelabel'      => 'Zon: $1',
 
 # Password reset dialog
-'oldpassword' => 'Parola khane:',
-'newpassword' => 'Parola newiye:',
-'retypenew'   => 'Parola newiye tekrar ke:',
+'resetpass'           => 'Parola bıvurne',
+'resetpass_header'    => 'Parola hesabi bıvurne',
+'oldpassword'         => 'Parola khane:',
+'newpassword'         => 'Parola newiye:',
+'retypenew'           => 'Parola newiye tekrar ke:',
+'resetpass_submit'    => 'Parola ayar ke u cı kuye',
+'resetpass_forbidden' => 'Paroley nêşikinê bıvurniyê',
 
 # Edit page toolbar
 'bold_sample'     => 'Nusto qolınd',

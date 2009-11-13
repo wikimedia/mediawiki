@@ -42,6 +42,9 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
 'aboutpage'            => 'Project:Acerca de',
+'copyrightpage'        => '{{ns:project}}:Maga derecho del autor',
+'currentevents'        => 'Maga sucesos actual',
+'currentevents-url'    => 'Project:Maga sucesos actual',
 'mainpage'             => 'El Primero Pagina',
 'mainpage-description' => 'El Primero Pagina',
 'portal'               => 'Portal del Comunidad',

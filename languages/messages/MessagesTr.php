@@ -24,6 +24,7 @@
  * @author Suelnur
  * @author Urhixidur
  * @author Uğur Başak
+ * @author Vito Genovese
  * @author לערי ריינהארט
  */
 
@@ -665,7 +666,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'nowiki_sample'   => 'Serbest format yazınızı buraya yazınız',
 'nowiki_tip'      => 'wiki formatlamasını devre dışı bırak',
 'image_sample'    => 'Örnek.jpg',
-'image_tip'       => 'Resim ekleme',
+'image_tip'       => 'Gömülü dosya',
 'media_sample'    => 'Örnek.ogg',
 'media_tip'       => 'Medya dosyasına bağlantı',
 'sig_tip'         => 'İmzanız ve tarih',
@@ -710,7 +711,7 @@ Belirtilen sebep şudur:
 * Engellemenin bitişi: $6
 * Bloke edilmesi istenen: $7
 
-Engelleme hakkında tartışmak için $1 ile veya diğer [[{{MediaWiki:Grouppage-sysop}}|yöneticilerden]] biriyle irtibata geçebilirsiniz.
+Engelleme hakkında tartışmak için $1 ile veya diğer [[{{MediaWiki:Grouppage-sysop}}|hizmetlilerden]] biriyle irtibata geçebilirsiniz.
 
 Not, [[Special:Preferences|kullanıcı tercihlerinize]] geçerli bir e-posta adresi kaydetmediyseniz  "kullanıcıya e-posta gönder" özelliğinden faydalanamayabilirsiniz ve bu özelliği kullanmaktan engellenmediniz. 
 
@@ -728,7 +729,7 @@ Lütfen yapacağınız herhangi bir sorguda yukarıdaki bütün detayları bulun
 'loginreqlink'                     => 'oturum aç',
 'loginreqpagetext'                 => 'Diğer sayfaları görmek için $1 olmalısınız.',
 'accmailtitle'                     => 'Parola gönderildi.',
-'accmailtext'                      => "[[User talk:$1|$1]] için rasgele oluşturulan parola $2 adresine gönderildi.
+'accmailtext'                      => "[[User talk:$1|$1]] için rastgele oluşturulan parola $2 adresine gönderildi.
 
 Bu yeni hesap için parola, giriş yapıldıktan sonra ''[[Special:ChangePassword|parolayı değiştir]]'' bölümünde değiştirilebilir.",
 'newarticle'                       => '(Yeni)',
@@ -788,10 +789,10 @@ Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalam
 Kaydedilmesi mümkün değildir.'''",
 'readonlywarning'                  => "'''DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz'''
 
-Kilitleyen yönetici şu açıklamayı eklemiştir: $1",
-'protectedpagewarning'             => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca yönetici olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
+Kilitleyen hizmetli şu açıklamayı eklemiştir: $1",
+'protectedpagewarning'             => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca hizmetli olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
 'semiprotectedpagewarning'         => "'''Uyarı''': Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.",
-'cascadeprotectedwarning'          => "'''UYARI:''' Bu sayfa sadece yöneticilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü  \"kademeli\" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:\$1|sayfada|sayfada}} kullanılmaktadır:",
+'cascadeprotectedwarning'          => "'''UYARI:''' Bu sayfa sadece hizmetlilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü  \"kademeli\" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:\$1|sayfada|sayfada}} kullanılmaktadır:",
 'titleprotectedwarning'            => "'''UYARI: Bu sayfa [[Special:ListGroupRights|özel hakları]] olanların oluşturabilmeleri için kilitlenmiştir.'''",
 'templatesused'                    => 'Bu sayfada kullanılan {{PLURAL:$1|şablon|şablonlar}}:',
 'templatesusedpreview'             => 'Bu önizlemede kullanılan {{PLURAL:$1|şablon|şablonlar}}:',
@@ -889,26 +890,26 @@ Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama y
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.",
 'rev-deleted-text-unhide'     => "Bu sayfa revizyonu '''silinmiş'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.
-Bir yönetici olarak eğer devam ederseniz [$1 bu revizyonu hala görebilirsiniz].",
+Bir hizmetli olarak eğer devam ederseniz [$1 bu revizyonu hala görebilirsiniz].",
 'rev-suppressed-text-unhide'  => "Bu sayfa revizyonu '''bastırılmış'''.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Durdurma kayıtlarında] ayrıntıları bulunabilir.
-Bir yönetici olarak eğer devam ederseniz [$1 bu revizyonu hala görebilirsiniz].",
+Bir hizmetli olarak eğer devam ederseniz [$1 bu revizyonu hala görebilirsiniz].",
 'rev-deleted-text-view'       => "Bu sayfa revizyonu '''silinmiş'''.
-Bir yönetici olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme kayıtlarında] ayrıntılar bulunabilir.",
+Bir hizmetli olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme kayıtlarında] ayrıntılar bulunabilir.",
 'rev-suppressed-text-view'    => "Bu sayfa revizyonu '''bastırılmış'''.
-Bir yönetici olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma kayıtlarında] ayrıntılar bulunabilir.",
+Bir hizmetli olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma kayıtlarında] ayrıntılar bulunabilir.",
 'rev-deleted-no-diff'         => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''silinmiş'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.",
 'rev-deleted-unhide-diff'     => "Bu değişikliğinin revizyonlarından birisi '''silinmiş'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.
-Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
+Bir hizmetli olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
 'rev-suppressed-unhide-diff'  => "Bu değişikliğinin revizyonlarından birisi '''bastırılmış'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} durdurma günlüğünde] ayrıntılar bulunabilir.
-Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
+Bir hizmetli olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
 'rev-deleted-diff-view'       => "Bu değişikliğinin revizyonlarından birisi '''silinmiş'''.
-Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme günlüğünde] ayrıntılar bulunabilir.",
+Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme günlüğünde] ayrıntılar bulunabilir.",
 'rev-suppressed-diff-view'    => "Bu değişikliğinin revizyonlarından birisi '''bastırılmış'''.
-Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma günlüğünde] ayrıntılar bulunabilir.",
+Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma günlüğünde] ayrıntılar bulunabilir.",
 'rev-delundel'                => 'göster/gizle',
 'rev-showdeleted'             => 'göster',
 'revisiondelete'              => 'Sürümleri sil/geri getir',
@@ -924,7 +925,7 @@ Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Lo
 'revdelete-selected'          => "'''[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
 'revdelete-text'              => "'''Silinen revizyonlar ve olaylar hala sayfa geçmişinde ve günlüklerde görünecektir, fakat içeriğin parçaları umumi olarak erişilemeyecektir.'''
-{{SITENAME}} sitesindeki diğer yöneticiler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.",
+{{SITENAME}} sitesindeki diğer hizmetliler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.",
 'revdelete-confirm'           => 'Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.',
 'revdelete-suppress-text'     => "Saklama '''sadece''' aşağıdaki durumlar için kullanılmalıdır:
 * Uygunsuz kişisel bilgi
@@ -934,8 +935,8 @@ Bir yönetici olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Lo
 'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
 'revdelete-hide-comment'      => 'Özeti gösterme',
 'revdelete-hide-user'         => "Değişikliği yapan kullanıcı adını/IP'i gizle",
-'revdelete-hide-restricted'   => 'Verileri yöneticilerle birlikte diğerlerinden de sakla',
-'revdelete-suppress'          => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
+'revdelete-hide-restricted'   => 'Verileri hizmetlilerle birlikte diğerlerinden de sakla',
+'revdelete-suppress'          => 'Verileri hem diğerlerinden hem de hizmetlilerden gizle',
 'revdelete-hide-image'        => 'Dosya içeriğini gizle',
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
 'revdelete-log'               => 'Silinme için sebep:',
@@ -970,7 +971,7 @@ Erişiminiz yok.',
 'revdelete-no-change'         => "'''Uyarı:'''  $2 $1 tarihli öğe için zaten görünürlük ayarı istenmiş.",
 'revdelete-concurrent-change' => '$2 $1 tarihli öğe değiştirilirken hata: öğenin durumu siz değiştirmeye çalışırken bir başkası tarafından değiştirilmiş görünüyor.
 Lütfen günlükleri kontrol edin.',
-'revdelete-only-restricted'   => 'Öğeleri, diğer bastırma seçeneklerinden birini seçmeksizin, yönetici görünümden bastıramazsınız.',
+'revdelete-only-restricted'   => 'Öğeleri, diğer bastırma seçeneklerinden birini seçmeden, hizmetli görünümden bastıramazsınız.',
 'revdelete-reason-dropdown'   => '*Genel silme sebepleri
 ** Telif ihlali
 ** Uygunsuz kişisel bilgi',
@@ -981,8 +982,8 @@ Lütfen günlükleri kontrol edin.',
 
 # Suppression log
 'suppressionlog'     => 'Gizleme kayıtları',
-'suppressionlogtext' => 'Aşağıdaki, yöneticilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir. 
-Şuanda işlevsel olan yasak ve engellemelerin listesi için [[Special:IPBlockList|IP engelleme listesine]] bakın.',
+'suppressionlogtext' => 'Aşağıdaki, hizmetlilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir. 
+Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:IPBlockList|IP engelleme listesine]] bakın.',
 
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
@@ -1022,6 +1023,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'compareselectedversions'  => 'Seçilen sürümleri karşılaştır',
 'showhideselectedversions' => 'Seçili sürümleri göster/gizle',
 'editundo'                 => 'geri al',
+'diff-multi'               => '(Gösterilmeyen {{PLURAL:$1|$1 ara değişiklik|$1 ara değişiklik}} bulunmaktadır.)',
 
 # Search results
 'searchresults'                    => 'Arama sonuçları',
@@ -1219,7 +1221,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'userrights-reason'           => 'Değiştirme nedeni:',
 'userrights-no-interwiki'     => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
 'userrights-nodatabase'       => '$1 veritabanı mevcut veya bölgesel değil',
-'userrights-nologin'          => 'Kullanıcı haklarını atamak için yönetici hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
+'userrights-nologin'          => 'Kullanıcı haklarını atamak için hizmetli hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
 'userrights-notallowed'       => 'Kullanıcı hesabınızın kullanıcı haklarını atamak için izni yok.',
 'userrights-changeable-col'   => 'Değiştirebildiğiniz gruplar',
 'userrights-unchangeable-col' => 'Değiştirebilmediğiniz gruplar',
@@ -1489,7 +1491,7 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kul
 'upload-description'          => 'Dosya açıklaması',
 'upload-options'              => 'Yükleme seçenekleri',
 'watchthisupload'             => 'Bu dosyayı izle',
-'filewasdeleted'              => 'Bu isimde bir dosya yakın zamanda yüklendi ve ardından yöneticiler tarafından silindi. Dosyayı yüklemeden önce, $1 sayfasına bir göz atınız.',
+'filewasdeleted'              => 'Bu isimde bir dosya yakın zamanda yüklendi ve ardından hizmetliler tarafından silindi. Dosyayı yüklemeden önce, $1 sayfasına bir göz atınız.',
 'upload-wasdeleted'           => "'''Uyarı: Daha önce silinmiş olan bir dosyayı yüklüyorsunuz.'''
 
 Dosyanın yüklenmesinin uygun olup olmadığını dikkate almalısınız.
@@ -1519,7 +1521,7 @@ Lütfen bir [[Special:ListUsers/sysop|yonetici]]yle iletişime geçin.',
 'upload-misc-error'         => 'Bilinmeyen yükleme hatası',
 'upload-misc-error-text'    => 'Yükleme sırasında bilinmeyen bir hata meydana geldi.
 Lütfen bağlantının geçerli ve ulaşılabilir olduğunu doğrulayın ve yeniden deneyin.
-Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|yönetici]]yle temasa geçin',
+Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa geçin',
 'upload-too-many-redirects' => 'URL çok fazla yönlendirme içeriyor',
 'upload-unknown-size'       => 'Bilinmeyen boyut',
 'upload-http-error'         => 'Bir HTTP hatası oluştu: $1',
@@ -1559,12 +1561,12 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Bu özel sayfa yüklenilen tüm resimleri gösterir.
-Varsayılan olarak en son yüklenen resimler listenin başında gösterilir.
+'listfiles-summary'     => 'Bu özel sayfa yüklenilen tüm dosyaları gösterir.
+Varsayılan olarak en son yüklenen dosyalar listenin başında gösterilir.
 Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
 'listfiles_search_for'  => 'Medya adı ara:',
 'imgfile'               => 'dosya',
-'listfiles'             => 'Resim listesi',
+'listfiles'             => 'Dosya listesi',
 'listfiles_date'        => 'Tarih',
 'listfiles_name'        => 'Ad',
 'listfiles_user'        => 'Kullanıcı',
@@ -1715,12 +1717,12 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'specialpage-empty'       => 'Bu rapor için hiç sonuç yok.',
 'lonelypages'             => 'Kendisine hiç bağlantı olmayan sayfalar',
 'lonelypagestext'         => 'Aşağıdaki sayfalara {{SITENAME}} sitesindeki diğer sayfalardan bağlantı verilmemiş yada çapraz dahil edilmemişler.',
-'uncategorizedpages'      => 'Herhangi bir kategoride olmayan sayfalar',
-'uncategorizedcategories' => 'Herhangi bir kategoride olmayan kategoriler',
-'uncategorizedimages'     => 'Herhangi bir kategoride olmayan resimler',
-'uncategorizedtemplates'  => 'Kategorize edilmemiş şablonlar',
+'uncategorizedpages'      => 'Kategorisiz sayfalar',
+'uncategorizedcategories' => 'Kategorisiz kategoriler',
+'uncategorizedimages'     => 'Kategorisiz dosyalar',
+'uncategorizedtemplates'  => 'Kategorisiz şablonlar',
 'unusedcategories'        => 'Kullanılmayan kategoriler',
-'unusedimages'            => 'Kullanılmayan resimler',
+'unusedimages'            => 'Kullanılmayan dosyalar',
 'popularpages'            => 'Popüler sayfalar',
 'wantedcategories'        => 'İstenen kategoriler',
 'wantedpages'             => 'İstenen sayfalar',
@@ -1731,7 +1733,7 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'mostlinkedcategories'    => 'En çok maddeye sahip kategoriler',
 'mostlinkedtemplates'     => 'En çok kullanılan şablonlar',
 'mostcategories'          => 'En fazla kategoriye bağlanmış sayfalar',
-'mostimages'              => 'En çok kullanılan resimler',
+'mostimages'              => 'En çok bağlantı verilmiş dosyalar',
 'mostrevisions'           => 'En çok değişikliğe uğramış sayfalar',
 'prefixindex'             => 'Önek ile tüm sayfalar',
 'shortpages'              => 'Kısa sayfalar',
@@ -2094,7 +2096,7 @@ Arşiv düzenli olarak temizlenebilir.',
 Silindikten sonra aynı isimle yeni bir sayfa oluşturulmuşsa, geri gelen revizyonlar varolan sayfanın geçmişinde görünecektir.',
 'undeleterevdel'               => 'Eğer üst sayfada sonuçlanacaksa ya da dosya revizyonu kısmen silinmiş ise, silmeyi geri alma uygulanamaz.
 Böyle durumlarda, en yeni silinen revizyonu seçmemeli ya da gizlemesini kaldırmalısınız.',
-'undeletehistorynoadmin'       => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
+'undeletehistorynoadmin'       => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece hizmetliler tarafından görülebilir.',
 'undelete-revision'            => '$3 tarafından $1 sayfasının silinmiş revizyonu ($4 tarihinden beri, $5 saatinde):',
 'undeleterevision-missing'     => 'Geçersiz veya kayıp revizyon.
 Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz bağlantı yanlıştır.',
@@ -2377,7 +2379,7 @@ Lütfen başka bir isim deneyiniz.',
 'imageinvalidfilename'         => 'Hedef dosya adı geçersiz',
 'fix-double-redirects'         => 'Orijinal başlığa işaret eden yönlendirmeleri güncelle',
 'move-leave-redirect'          => 'Arkada bir yönlendirme bırak',
-'protectedpagemovewarning'     => "'''UYARI:''' Bu sayfa kilitlenmiş, sadece yönetici ayrıcalıklarına sahip kullanıcılar taşıyabilir.",
+'protectedpagemovewarning'     => "'''UYARI:''' Bu sayfa kilitlenmiş, sadece hizmetli ayrıcalıklarına sahip kullanıcılar taşıyabilir.",
 'semiprotectedpagemovewarning' => "'''Not:''' Bu sayfa kilitlenmiş, sadece kayıtlı kullanıcılar taşıyabilir.",
 'move-over-sharedrepo'         => '== Dosya mevcut ==
 [[:$1]] paylaşılmış havuzda mevcut. Bir dosyayı bu başlığa taşımak paylaşılmış dosyanın üstüne gelecektir.',
@@ -2522,7 +2524,7 @@ Geçici dosya kayıp.',
 'tooltip-feed-atom'               => 'Bu sayfa için atom beslemesi',
 'tooltip-t-contributions'         => 'Kullanıcının katkı listesini gör',
 'tooltip-t-emailuser'             => 'Kullanıcıya e-posta gönder',
-'tooltip-t-upload'                => 'Sisteme resim ya da medya dosyaları yükleyin',
+'tooltip-t-upload'                => 'Dosya yükle',
 'tooltip-t-specialpages'          => 'Tüm özel sayfaların listesini göster',
 'tooltip-t-print'                 => 'Bu sayfanın basılmaya uygun görünümü',
 'tooltip-t-permalink'             => 'Sayfanın bu sürümüne kalıcı bağlantı',
@@ -2531,7 +2533,7 @@ Geçici dosya kayıp.',
 'tooltip-ca-nstab-media'          => 'Medya sayfasını göster',
 'tooltip-ca-nstab-special'        => 'Bu özel sayfa olduğu için değişiklik yapamazsınız.',
 'tooltip-ca-nstab-project'        => 'Proje sayfasını göster',
-'tooltip-ca-nstab-image'          => 'Resim sayfasını göster',
+'tooltip-ca-nstab-image'          => 'Dosya sayfasını göster',
 'tooltip-ca-nstab-mediawiki'      => 'Sistem mesajını göster',
 'tooltip-ca-nstab-template'       => 'Şablonu göster',
 'tooltip-ca-nstab-help'           => 'Yardım sayfasını görmek için tıklayın',
@@ -2665,7 +2667,7 @@ Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kare|kare}}',
 
 # Special:NewFiles
-'newimages'             => 'Yeni resimler',
+'newimages'             => 'Yeni dosya galerisi',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş {{PLURAL:$1|adet dosyayı|adet dosyayı}} göstermektedir.",
 'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir.',
 'newimages-legend'      => 'Filtre',
@@ -2674,7 +2676,7 @@ Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',
 'bydate'                => 'kronolojik sırayla',
-'sp-newimages-showfrom' => '$1, $2 tarihi itibarı ile yeni resimleri göster',
+'sp-newimages-showfrom' => '$1, $2 tarihi itibarı ile yeni dosyaları göster',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3',
@@ -2683,10 +2685,11 @@ Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
 'hours-abbrev'   => 's',
 
 # Bad image list
-'bad_image_list' => 'Format şöyle:
+'bad_image_list' => 'Format şu şekildedir:
 
-Sadece liste nesneleri (* ile başlayanlar) dikkate alınmaktadır. Satırdaki ilk link kötü resmin linki olmalıdır.
-Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayfada satıriçinde görünebilir.',
+Sadece liste öğeleri (* ile başlayanlar) dikkate alınmaktadır. 
+Satırdaki ilk bağlantı, kötü dosyaya giden bir bağlantı olmalıdır.
+Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sayfada satır içinde görünebilir.',
 
 # Variants for Tajiki language
 'variantname-tg' => 'tg',
