@@ -921,14 +921,15 @@ $wgHtml5 = true;
 $wgHtml5Version = null;
 
 /**
- * Enabled RDFa attributes for use in wikitext.
+ * Enabled RDFa attributes for use in wikitext. 
+ * NOTE: Interaction with HTML5 is somewhat underspecified.
  */
 $wgAllowRdfaAttributes = true;
 
 /**
- * Enabled HTML 5 data attributes for use in wikitext, if $wgHtml5 is also true.
+ * Enabled HTML 5 microdata attributes for use in wikitext, if $wgHtml5 is also true.
  */
-$wgAllowItemAttributes = true;
+$wgAllowMicrodataAttributes = true;
 
 /**
  * Should we try to make our HTML output well-formed XML?  If set to false,

@@ -650,11 +650,12 @@ class Sanitizer {
 					$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
 			}
 
-			//RDFa and microdata properties allow URIs. check them
+			//RDFa and microdata properties allow URLs, URIs and/or CURIs. check them for sanity
 			if ( $attribute === 'rel' || $attribute === 'rev' || 
-				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' ||
-				$attribute === 'datatype' || $attribute === 'typeof' ||
-				$attribute === 'item' || $attribute === 'itemprop' || $attribute === 'subject' ) {  
+				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' || #RDFa
+				$attribute === 'datatype' || $attribute === 'typeof' ||                             #RDFa
+				$attribute === 'itemid' || $attribute === 'itemprop' || $attribute === 'itemref' || #HTML5 microdata
+				$attribute === 'itemscope' || $attribute === 'itemtype' ) {                         #HTML5 microdata
 
 				//Paranoia. Allow "simple" values but suppress javascript
 				if ( preg_match( MW_EVIL_URI_PATTERN, $value ) ) {
@@ -1199,7 +1200,7 @@ class Sanitizer {
 	 * @return Array
 	 */
 	static function setupAttributeWhitelist() {
-		global $wgAllowRdfaAttributes, $wgHtml5, $wgAllowItemAttributes;
+		global $wgAllowRdfaAttributes, $wgHtml5, $wgAllowMicrodataAttributes;
 
 		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style', 'xml:lang' );
 
@@ -1210,10 +1211,10 @@ class Sanitizer {
 			) );
 		}
 
-		if ( $wgHtml5 && $wgAllowItemAttributes ) {
-			# add HTML5 microdata tages as pecified by http://www.w3.org/TR/html5/microdata.html
+		if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
+			# add HTML5 microdata tages as pecified by http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
-			    'item', 'itemprop', 'subject'
+			    'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
 			) );
 		}
 
