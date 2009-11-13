@@ -1486,8 +1486,8 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-submit'            => 'Apply to selected {{PLURAL:$1|revision|revisions}}',
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
-'revdelete-success'           => "'''Revision visibility successfully set.'''",
-'revdelete-failure'           => "'''Revision visibility could not be set:'''
+'revdelete-success'           => "'''Revision visibility successfully updated.'''",
+'revdelete-failure'           => "'''Revision visibility could not be updated:'''
 $1",
 'logdelete-success'           => "'''Log visibility successfully set.'''",
 'logdelete-failure'           => "'''Log visibility could not be set:'''
