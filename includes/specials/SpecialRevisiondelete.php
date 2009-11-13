@@ -1097,7 +1097,8 @@ class RevDel_RevisionList extends RevDel_List {
 				'rev_id'   => $ids,
 				'rev_page = page_id'
 			),
-			__METHOD__
+			__METHOD__,
+			array( 'ORDER BY' => 'rev_id DESC' )
 		);
 	}
 
@@ -1275,7 +1276,8 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 					'ar_title'     => $this->title->getDBkey(),
 					'ar_timestamp' => $timestamps
 				),
-				__METHOD__
+				__METHOD__,
+				array( 'ORDER BY' => 'ar_timestamp DESC' )
 			);
 	}
 
@@ -1371,7 +1373,8 @@ class RevDel_FileList extends RevDel_List {
 				'oi_name'         => $this->title->getDBkey(),
 				'oi_archive_name' => $archiveNames
 			),
-			__METHOD__
+			__METHOD__,
+			array( 'ORDER BY' => 'oi_timestamp DESC' )
 		);
 	}
 
@@ -1589,7 +1592,8 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 				'fa_name' => $this->title->getDBkey(),
 				'fa_id'   => $ids
 			),
-			__METHOD__
+			__METHOD__,
+			array( 'ORDER BY' => 'fa_id DESC' )
 		);
 	}
 
@@ -1664,7 +1668,8 @@ class RevDel_LogList extends RevDel_List {
 		$ids = array_map( 'intval', $this->ids );
 		return $db->select( 'logging', '*',
 			array( 'log_id' => $ids ),
-			__METHOD__
+			__METHOD__,
+			array( 'ORDER BY' => 'log_id DESC' )
 		);
 	}
 
