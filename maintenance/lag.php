@@ -1,33 +1,50 @@
 <?php
 
-$wgUseNormalUser = true;
-require_once('commandLine.inc');
+/**
+ * Shows database lag
+ *
+ * @ingroup Maintenance
+ */
 
-if ( isset( $options['r'] ) ) {
-	$lb = wfGetLB();
-	print 'time     ';
-	for( $i = 0; $i < $lb->getServerCount(); $i++ ) {
-		$hostname = $lb->getServerName( $i );
-		printf("%-12s ", $hostname );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
+
+class DatabaseLag extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Shows database lag";
+		$this->addOption( 'r', "Don't exit immediately, but show the lag every 5 seconds" );
 	}
-	print("\n");
-	
-	while( 1 ) {
-		$lags = $lb->getLagTimes();
-		unset( $lags[0] );
-		print( gmdate( 'H:i:s' ) . ' ' );
-		foreach( $lags as $i => $lag ) {
-			printf("%-12s " , $lag === false ? 'false' : $lag );
+
+	public function execute() {
+		if ( $this->hasOption( 'r' ) ) {
+			$lb = wfGetLB();
+			$this->output( 'time     ' );
+			for( $i = 0; $i < $lb->getServerCount(); $i++ ) {
+				$hostname = $lb->getServerName( $i );
+				$this->output( sprintf( "%-12s ", $hostname ) );
+			}
+			$this->output( "\n" );
+
+			while( 1 ) {
+				$lags = $lb->getLagTimes();
+				unset( $lags[0] );
+				$this->output( gmdate( 'H:i:s' ) . ' ' );
+				foreach( $lags as $i => $lag ) {
+					$this->output( sprintf( "%-12s " , $lag === false ? 'false' : $lag ) );
+				}
+				$this->output( "\n" );
+				sleep( 5 );
+			}
+		} else {
+			$lb = wfGetLB();
+			$lags = $lb->getLagTimes();
+			foreach( $lags as $i => $lag ) {
+				$name = $lb->getServerName( $i );
+				$this->output( sprintf( "%-20s %s\n" , $name, $lag === false ? 'false' : $lag ) );
+			}
 		}
-		print("\n");
-		sleep(5);
-	}
-} else {
-	$lb = wfGetLB();
-	$lags = $lb->getLagTimes();
-	foreach( $lags as $i => $lag ) {
-		$name = $lb->getServerName( $i );
-		printf("%-20s %s\n" , $name, $lag === false ? 'false' : $lag );
 	}
 }
-?>
+
+$maintClass = "DatabaseLag";
+require_once( DO_MAINTENANCE );
