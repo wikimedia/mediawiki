@@ -88,6 +88,7 @@ var vlcEmbed = {
 	},
 	// disable local seeking (while we don't know what we have avaliable)
 	doSeek : function( perc ) {
+		this.getVLC();
 		if ( this.supportsURLTimeEncoding() ) {
 			this.parent_doSeek( perc );
 		} else if ( this.vlc ) {

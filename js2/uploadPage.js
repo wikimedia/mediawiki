@@ -3,10 +3,6 @@
  * It controls the invocation of the mvUploader class based on local config.
  */
 
-js2AddOnloadHook( function() {
-	mwUploadHelper.init();
-} );
-
 var mwUploadFormTarget = '#mw-upload-form';
 // Set up the upload form bindings once all DOM manipulation is done
 var mwUploadHelper = {
@@ -128,7 +124,7 @@ var mwUploadHelper = {
 			}
 		}
 		// Capitalise first letter and replace spaces by underscores
-		fname = fname.charAt( 0 ).toUpperCase().concat( fname.substring( 1, 10000 ) ).replace( / / g, '_' );
+		fname = fname.charAt( 0 ).toUpperCase().concat( fname.substring( 1, 10000 ) ).replace(/ /g, '_' );
 		// Output result
 		$j( '#wpDestFile' ).val( fname );
 
@@ -138,3 +134,8 @@ var mwUploadHelper = {
 		} );
 	}
 }
+
+
+js2AddOnloadHook( function() {
+	mwUploadHelper.init();
+} );

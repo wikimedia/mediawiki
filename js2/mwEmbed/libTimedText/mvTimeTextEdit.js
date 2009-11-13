@@ -6,7 +6,7 @@
 if ( !mwAddMediaConfig )
   var mwAddMediaConfig = { };
 
-var mvTimedTextEdit = { };
+var mvTimeTextEdit = { };
 
 loadGM( {
   "mwe-upload-subs-file" : "Upload subtitle",

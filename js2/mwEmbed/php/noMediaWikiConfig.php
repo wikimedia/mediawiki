@@ -47,6 +47,9 @@ require_once( realpath( dirname( __FILE__ ) ) . '/jsAutoloadLocalClasses.php' );
 // Get the JSmin class:
 require_once( realpath( dirname( __FILE__ ) ) . '/minify/JSMin.php' );
 
+// Get the messages file:
+require_once( realpath( dirname( __FILE__ ) ) . '/languages/mwEmbed.i18n.php' );
+
 function wfDebug() {
     return false;
 }
@@ -79,8 +82,6 @@ function wfMsgGetKey( $msgKey, $na, $langKey=false ) {
     if(!$langKey){
     	$langKey = $mwLanguageCode;
     }
-    // Make sure we have the messages file:
-    require_once( realpath( dirname( __FILE__ ) ) . '/languages/mwEmbed.i18n.php' );
     if ( isset( $messages[$mwLanguageCode] ) && isset( $messages[$langKey][$msgKey] ) ) {
         return $messages[$langKey][$msgKey];
     } else {

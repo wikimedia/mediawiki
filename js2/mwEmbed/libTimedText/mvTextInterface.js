@@ -571,7 +571,7 @@ timedTextCMML = {
 		js_log( 'textCMML: loading track: ' + this.src );
 
 		// :: Load transcript range ::
-		var pcurl =  parseUri( _this.getSRC() );
+		var pcurl =  mw.parseUri( _this.getSRC() );
 		// check for urls without time keys:
 		if ( typeof pcurl.queryKey['t'] == 'undefined' ) {
 			// in which case just get the full time req:

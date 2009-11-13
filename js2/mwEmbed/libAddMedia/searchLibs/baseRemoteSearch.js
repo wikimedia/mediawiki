@@ -67,7 +67,7 @@ baseRemoteSearch.prototype = {
 		var http_host = '';
 		var http_path = '';
 		if ( provider_url ) {
-			pUrl =  parseUri( provider_url );
+			pUrl =  mw.parseUri( provider_url );
 			http_host = pUrl.protocol + '://' + pUrl.authority;
 			http_path = pUrl.directory;
 		}
@@ -132,7 +132,7 @@ baseRemoteSearch.prototype = {
 					if ( rObj[p].substr( 0, 1 ) == '/' ) {
 						rObj[p] = http_host + rObj[p];
 					}
-					if ( parseUri( rObj[i] ).host ==  rObj[p] ) {
+					if ( mw.parseUri( rObj[i] ).host ==  rObj[p] ) {
 						rObj[p] = http_host + http_path + rObj[p];
 					}
 				}

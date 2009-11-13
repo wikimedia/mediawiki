@@ -1,11 +1,11 @@
 /*
- * this file exposes some of the functionality of mwEmbed to wikis
+ * This file exposes some of the functionality of mwEmbed to wikis
  * that do not yet have js2 enabled
  */
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = '1.06';
+var mwRemoteVersion = '1.07';
 var mwUseScriptLoader = true;
 
 // setup up request Params: 
