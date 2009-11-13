@@ -915,6 +915,16 @@ $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 $wgHtml5 = true;
 
 /**
+ * Enabled RDFa attributes for use in wikitext.
+ */
+$wgAllowRdfaAttributes = true;
+
+/**
+ * Enabled HTML 5 data attributes for use in wikitext, if $wgHtml5 is also true.
+ */
+$wgAllowItemAttributes = true;
+
+/**
  * Should we try to make our HTML output well-formed XML?  If set to false,
  * output will be a few bytes shorter, and the HTML will arguably be more
  * readable.  If set to true, life will be much easier for the authors of
