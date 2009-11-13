@@ -1769,7 +1769,7 @@ class OutputPage {
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
-		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
+		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgEnableScriptLoader, $wgHtml5;
 
 		$this->addMeta( "http:Content-Type", "$wgMimeType; charset={$wgOutputEncoding}" );
@@ -1792,7 +1792,9 @@ class OutputPage {
 
 		if ( $wgHtml5 ) {
 			$ret .= "<!DOCTYPE html>\n";
-			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
+			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\" ";
+			if ($wgHtml5Version) $ret .= " version=\"$wgHtml5Version\" ";
+			$ret .= ">\n";
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
 			$ret .= "<html xmlns=\"{$wgXhtmlDefaultNamespace}\" ";

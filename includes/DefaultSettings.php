@@ -915,6 +915,12 @@ $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 $wgHtml5 = true;
 
 /**
+ * Defines the value of the version attribute in the &lt;html&gt; tag, if any.
+ * Will be initialized later if not set explicitly.
+ */
+$wgHtml5Version = null;
+
+/**
  * Enabled RDFa attributes for use in wikitext.
  */
 $wgAllowRdfaAttributes = true;
