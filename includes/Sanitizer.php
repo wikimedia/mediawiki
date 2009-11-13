@@ -43,7 +43,7 @@ define( 'MW_CHAR_REFS_REGEX',
 $attrib = '[A-Za-z0-9]';
 $space = '[\x09\x0a\x0d\x20]';
 define( 'MW_ATTRIBS_REGEX',
-	"/(?:^|$space)($attrib+)
+	"/(?:^|$space)((?:xml:|xmlns:)?$attrib+)
 	  ($space*=$space*
 		(?:
 		 # The attribute value: quoted or alone
@@ -59,7 +59,12 @@ define( 'MW_ATTRIBS_REGEX',
 /**
  * Regular expression to match URIs that could trigger script execution
  */
-define( 'MW_SCRIPT_URL_PATTERN', '/(^|\s)(javascript|vbscript)[^\w]/i' );
+define( 'MW_EVIL_URI_PATTERN', '!(^|\s|\*/\s*)(javascript|vbscript)([^\w]|$)!i' );
+
+/**
+ * Regular expression to match namespace attributes
+ */
+define( 'MW_XMLNS_ATTRIBUTE_PATTRN', "/^xmlns:$attrib+$/" );
 
 /**
  * List of all named character entities defined in HTML 4.01
@@ -614,9 +619,21 @@ class Sanitizer {
 
 		$out = array();
 		foreach( $attribs as $attribute => $value ) {
+			#allow XML namespace declaration. Useful especially with RDFa
+			print "($attribute=$value)";
+
+			if ( preg_match( MW_XMLNS_ATTRIBUTE_PATTRN, $attribute ) ) {
+				if ( !preg_match( MW_EVIL_URI_PATTERN, $value ) ) {
+					$out[$attribute] = $value;
+				}
+
+				continue;
+			}
+
 			if( !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
+
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
 			if( $attribute == 'style' ) {
@@ -633,12 +650,14 @@ class Sanitizer {
 					$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
 			}
 
-			//RDFa properties allow URIs. check them
+			//RDFa and microdata properties allow URIs. check them
 			if ( $attribute === 'rel' || $attribute === 'rev' || 
 				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' ||
-				$attribute === 'datatype' || $attribute === 'typeof' ) {  
+				$attribute === 'datatype' || $attribute === 'typeof' ||
+				$attribute === 'item' || $attribute === 'itemprop' || $attribute === 'subject' ) {  
+
 				//Paranoia. Allow "simple" values but suppress javascript
-				if ( preg_match( MW_SCRIPT_URL_PATTERN, $value ) ) {
+				if ( preg_match( MW_EVIL_URI_PATTERN, $value ) ) {
 					continue; 
 				}
 			}
@@ -1180,10 +1199,23 @@ class Sanitizer {
 	 * @return Array
 	 */
 	static function setupAttributeWhitelist() {
-		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style',
-				 #RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
-				 'about', 'property', 'resource', 'datatype', 'typeof', 
-				);
+		global $wgAllowRdfaAttributes, $wgHtml5, $wgAllowItemAttributes;
+
+		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style', 'xml:lang' );
+
+		if ( $wgAllowRdfaAttributes ) {
+			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
+			$common = array_merge( $common, array(
+			    'about', 'property', 'resource', 'datatype', 'typeof', 
+			) );
+		}
+
+		if ( $wgHtml5 && $wgAllowItemAttributes ) {
+			# add HTML5 microdata tages as pecified by http://www.w3.org/TR/html5/microdata.html
+			$common = array_merge( $common, array(
+			    'item', 'itemprop', 'subject'
+			) );
+		}
 
 		$block = array_merge( $common, array( 'align' ) );
 		$tablealign = array( 'align', 'char', 'charoff', 'valign' );
