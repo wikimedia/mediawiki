@@ -614,13 +614,15 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	static function validateAttributes( $attribs, $whitelist ) {
+		global $wgAllowRdfaAttributes;
+
 		$whitelist = array_flip( $whitelist );
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
 
 		$out = array();
 		foreach( $attribs as $attribute => $value ) {
-			#allow XML namespace declaration. Useful especially with RDFa
-			if ( preg_match( MW_XMLNS_ATTRIBUTE_PATTRN, $attribute ) ) {
+			#allow XML namespace declaration if RDFa is enabled
+			if ( $wgAllowRdfaAttributes && preg_match( MW_XMLNS_ATTRIBUTE_PATTRN, $attribute ) ) {
 				if ( !preg_match( MW_EVIL_URI_PATTERN, $value ) ) {
 					$out[$attribute] = $value;
 				}
