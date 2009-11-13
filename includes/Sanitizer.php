@@ -620,8 +620,6 @@ class Sanitizer {
 		$out = array();
 		foreach( $attribs as $attribute => $value ) {
 			#allow XML namespace declaration. Useful especially with RDFa
-			print "($attribute=$value)";
-
 			if ( preg_match( MW_XMLNS_ATTRIBUTE_PATTRN, $attribute ) ) {
 				if ( !preg_match( MW_EVIL_URI_PATTERN, $value ) ) {
 					$out[$attribute] = $value;
