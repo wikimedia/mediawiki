@@ -126,7 +126,7 @@ class jsScriptLoader {
 				}
 			} else {
 				// Make sure the wiki title ends with .js
-				if ( substr( $title_block, - 3 ) != '.js' ) {
+				if ( substr( $title_block, -3 ) != '.js' ) {
 					$this->error_msg .= 'WikiTitle includes should end with .js';
 					return false;
 				}
@@ -146,7 +146,7 @@ class jsScriptLoader {
 			// Dealing with files
 
 			// Check that the filename ends with .js and does not include ../ traversing
-			if ( substr( $file_name, - 3 ) != '.js' ) {
+			if ( substr( $file_name, -3 ) != '.js' ) {
 				$this->error_msg .= "\nError file name must end with .js: " . htmlspecialchars( $file_name ) . " \n ";
 				return false;
 			}
@@ -550,13 +550,13 @@ class simpleFileCache {
 	}
 
 	public function outputFromFileCache() {
-		if ( $this->clientAcceptsGzip() && substr( $this->filename, - 3 ) == '.gz'  ) {
+		if ( $this->clientAcceptsGzip() && substr( $this->filename, -3 ) == '.gz'  ) {
 			header( 'Content-Encoding: gzip' );
 			readfile( $this->filename );
 			return true;
 		}
 		// Output without gzip:
-		if ( substr( $this->filename, - 3 ) == '.gz' ) {
+		if ( substr( $this->filename, -3 ) == '.gz' ) {
 			readgzfile( $this->filename );
 		} else {
 			readfile( $this->filename );

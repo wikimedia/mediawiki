@@ -63,7 +63,7 @@ var vlcEmbed = {
 			// @@todo if client supports seeking no need to send seek_offset to URI
 			js_log( 'vlc play::' + this.getSrc() );
 			var itemId = this.vlc.playlist.add( this.getSrc() );
-			if ( itemId != - 1 ) {
+			if ( itemId != -1 ) {
 				// play
 				this.vlc.playlist.playItem( itemId );
 			} else {
@@ -192,7 +192,7 @@ var vlcEmbed = {
 		// update the status and check timmer via universal parent monitor
 		this.parent_monitor();
 	},
-/* events */
+	/* events */
 	onOpen: function() {
 		this.setStatus( "Opening..." );
 	},
@@ -212,16 +212,16 @@ var vlcEmbed = {
 			this.duration = this.vlc.input.length / 1000;
 		}
 		this.currentTime = this.vlc.input.time / 1000;
-   },
-   onPause: function() {
-		this.parent_pause(); // update the inteface if paused via native control
-   },
-   onStop: function() {
-	   js_log( 'vlc:onStop:' );
-	   if ( !this.seeking )
-		  this.onClipDone();
 	},
-   /* js hooks/controls */
+	onPause: function() {
+		this.parent_pause(); // update the inteface if paused via native control
+	},
+	onStop: function() {
+		js_log( 'vlc:onStop:' );
+		if ( !this.seeking )
+			this.onClipDone();
+	},
+	/* js hooks/controls */
 	play : function() {
 		js_log( 'f:vlcPlay' );
 			this.getVLC();
@@ -269,19 +269,19 @@ var vlcEmbed = {
 		this.getVLC();
 		if ( this.vlc )
 			this.vlc.audio.toggleMute();
-    },
-    // @@ Suport UpDateVolumen 
-    updateVolumen:function( perc ) {
-    	this.getVLC();
+	},
+	// @@ Suport UpDateVolumen 
+	updateVolumen:function( perc ) {
+		this.getVLC();
 		if ( this.vlc )
 			this.vlc.audio.volume = perc * 100;
-    },
-    // @@ Get Volumen
-    getVolumen:function() {
-    	this.getVLC();
-    	if ( this.vlc )
-    		return this.vlc.audio.volume / 100;
-    },
+	},
+	// @@ Get Volumen
+	getVolumen:function() {
+		this.getVLC();
+		if ( this.vlc )
+		return this.vlc.audio.volume / 100;
+	},
 	fullscreen : function() {
 		if ( this.vlc ) {
 			if ( this.vlc.video )
@@ -305,4 +305,3 @@ var vlcEmbed = {
 		this.vlc = this.getPluginEmbed();
 	}
 };
-

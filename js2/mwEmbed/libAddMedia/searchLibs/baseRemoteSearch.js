@@ -115,7 +115,7 @@ baseRemoteSearch.prototype = {
 		var attr_name = null;
 		if ( typeof selector[1] != 'undefined' ) {
 			attr_name = selector[1];
-			if ( attr_name.indexOf( '|' ) != - 1 )
+			if ( attr_name.indexOf( '|' ) != -1 )
 				attr_name = attr_name.split( '|' );
 		}
 
@@ -159,7 +159,7 @@ baseRemoteSearch.prototype = {
 		options.style_attr = 'style="width:' + outOpt.width + 'px;height:' + outOpt.height + 'px"';
 		options.id_attr = ( options['id'] ) ? ' id = "' + options['id'] + '" ': '';
 		
-		if ( rObj.mime.indexOf( 'image' ) != - 1 ) {
+		if ( rObj.mime.indexOf( 'image' ) != -1 ) {
 			return this.getImageEmbedHTML( rObj, options );
 		} else {
 			js_log( "ERROR:: no embed code for mime type: " + rObj.mime );

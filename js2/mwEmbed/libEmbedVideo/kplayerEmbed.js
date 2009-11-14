@@ -71,4 +71,4 @@ function onKdpReady( playerId ) {
 	 attachKdpEvents();
 	 addKdpListners();
 	 */
- }
+}

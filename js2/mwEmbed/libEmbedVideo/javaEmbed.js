@@ -1,7 +1,7 @@
 window.cortadoDomainLocations = {
-	'upload.wikimedia.org'  : 'http://upload.wikimedia.org/jars/cortado.jar',
-	'tinyvid.tv'			: 'http://tinyvid.tv/static/cortado.jar',
-	'media.tinyvid.tv'		: 'http://media.tinyvid.tv/cortado.jar'
+	'upload.wikimedia.org' : 'http://upload.wikimedia.org/jars/cortado.jar',
+	'tinyvid.tv' : 'http://tinyvid.tv/static/cortado.jar',
+	'media.tinyvid.tv' : 'http://media.tinyvid.tv/cortado.jar'
 }
 
 var javaEmbed = {
@@ -32,7 +32,7 @@ var javaEmbed = {
 		// @@todo we should have src property in our base embed object
 		var mediaSrc = this.getSrc();
 		
-		if ( mediaSrc.indexOf( '://' ) != - 1 & mw.parseUri( document.URL ).host !=  mw.parseUri( mediaSrc ).host ) {
+		if ( mediaSrc.indexOf( '://' ) != -1 & mw.parseUri( document.URL ).host !=  mw.parseUri( mediaSrc ).host ) {
 			if ( window.cortadoDomainLocations[mw.parseUri( mediaSrc ).host] ) {
 				applet_loc =  window.cortadoDomainLocations[mw.parseUri( mediaSrc ).host];
 			} else {
@@ -104,9 +104,9 @@ var javaEmbed = {
 		// once currentTime is updated call parent_monitor 
 		this.parent_monitor();
 	},
-   /* 
-	* (local cortado seek does not seem to work very well)  
-	*/
+	/* 
+	 * (local cortado seek does not seem to work very well)  
+	 */
 	doSeek:function( perc ) {
 		js_log( 'java:seek:p: ' + perc + ' : '  + this.supportsURLTimeEncoding() + ' dur: ' + this.getDuration() + ' sts:' + this.seek_time_sec );
 		this.getJCE();

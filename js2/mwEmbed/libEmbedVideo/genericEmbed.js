@@ -11,7 +11,7 @@ var genericEmbed = {
 	instanceOf:'genericEmbed',
 	getEmbedHTML:function() {
 		return '<object type="application/ogg" ' +
-				  'width="' + this.width + '" height="' + this.height + '" ' +
-				  'data="' + this.getURI( this.seek_time_sec ) + '"></object>';
+			'width="' + this.width + '" height="' + this.height + '" ' +
+			'data="' + this.getURI( this.seek_time_sec ) + '"></object>';
 	}
 };

@@ -1,36 +1,37 @@
-/* 
- * used to embed HTML as a movie clip 
- * for use with mv_playlist SMIL additions 
+/*
+ * used to embed HTML as a movie clip
+ * for use with mv_playlist SMIL additions
  * (we make assumptions about this.pc (parent clip) being available)
  */
 var pcHtmlEmbedDefaults = {
 	'dur':4 // default duration of 4 seconds
 }
+
 var htmlEmbed = {
-	 supports: {
+	supports: {
 		'play_head':true,
 		'pause':true,
 		'fullscreen':false,
 		'time_display':true,
 		'volume_control':true,
-		
+
 		'overlays':true,
-		'playlist_swap_loader':true // if the object supports playlist functions		
-	   },
-	   ready_to_play:true,
-	   pauseTime:0,
-	   currentTime:0,
-	   start_offset:0,
-	   monitorTimerId:false,
+		'playlist_swap_loader':true // if the object supports playlist functions
+	},
+	ready_to_play:true,
+	pauseTime:0,
+	currentTime:0,
+	start_offset:0,
+	monitorTimerId:false,
 	play:function() {
 		// call the parent
 		this.parent_play();
-		
+
 		js_log( 'f:play: htmlEmbedWrapper' );
 		var ct = new Date();
 		this.clockStartTime = ct.getTime();
-			
-		// start up monitor: 
+
+		// start up monitor:
 		this.monitor();
 	},
 	stop:function() {
@@ -43,16 +44,16 @@ var htmlEmbed = {
 		var ct = new Date();
 		this.pauseTime = this.currentTime;
 		js_log( 'pause time: ' + this.pauseTime );
-		
+
 		window.clearInterval( this.monitorTimerId );
 	},
-	// monitor just needs to keep track of time (do it at frame rate time) . 
+	// monitor just needs to keep track of time (do it at frame rate time) .
 	monitor:function() {
 		// js_log('html:monitor: '+ this.currentTime);
 		var ct = new Date();
 		this.currentTime = ( ( ct.getTime() - this.clockStartTime ) / 1000 ) + this.pauseTime;
 		var ct = new Date();
-		// js_log('mvPlayList:monitor trueTime: '+ this.currentTime);										
+		// js_log('mvPlayList:monitor trueTime: '+ this.currentTime);
 
 		if ( ! this.monitorTimerId ) {
 			if ( document.getElementById( this.id ) ) {
@@ -62,7 +63,7 @@ var htmlEmbed = {
 			}
 		}
 	},
-	// set up minimal media_element emulation:	 
+	// set up minimal media_element emulation:
 	media_element: {
 		autoSelectSource:function() {
 			return true;
@@ -82,61 +83,60 @@ var htmlEmbed = {
 	},
 	renderTimelineThumbnail:function( options ) {
 		js_log( "HTMLembed req w, height: " + options.width + ' ' + options.height );
-		// generate a scaled down version _that_ we can clone if nessisary  
-		// add a not vissiable container to the body:		
+		// generate a scaled down version _that_ we can clone if nessisary
+		// add a not vissiable container to the body:
 		var do_refresh = ( typeof options['refresh'] != 'undefined' ) ? true:false;
-		
+
 		var thumb_render_id =   this.id + '_thumb_render_' + options.height;
 		if ( $j( '#' + thumb_render_id ).length == 0  ||  do_refresh ) {
-			// set the font scale down percentage: (kind of arbitrary) 
+			// set the font scale down percentage: (kind of arbitrary)
 			var scale_perc = options.width / this.pc.pp.width;
 			js_log( 'scale_perc:' + options.width + ' / ' + $j( this ).width() + ' = ' + scale_perc );
-			// min scale font percent of 70 (overflow is hidden) 
+			// min scale font percent of 70 (overflow is hidden)
 			var font_perc  = ( Math.round( scale_perc * 100 ) < 80 ) ? 80 : Math.round( scale_perc * 100 );
 			var thumb_class = ( typeof options['thumb_class'] != 'undefined' ) ? options['thumb_class'] : '';
 			$j( 'body' ).append( '<div id="' + thumb_render_id + '" style="display:none">' +
-									'<div class="' + thumb_class + '" ' +
-									'style="width:' + options.width + 'px;height:' + options.height + 'px;" >' +
-											this.getThumbnailHTML( {
-												'width':  options.width,
-												'height': options.height
-											} ) +
-									'</div>' +
-								'</div>'
-							  );
-			// scale down the fonts:		
+				'<div class="' + thumb_class + '" ' +
+				'style="width:' + options.width + 'px;height:' + options.height + 'px;" >' +
+				this.getThumbnailHTML( {
+					'width':  options.width,
+					'height': options.height
+				} ) +
+				'</div>' +
+				'</div>'
+			);
+			// scale down the fonts:
 			$j( '#' + thumb_render_id + ' *' ).filter( 'span,div,p,h,h1,h2,h3,h4,h5,h6' ).css( 'font-size', font_perc + '%' )
-			
+
 			// replace out links:
 			$j( '#' + thumb_render_id + ' a' ).each( function() {
 				$j( this ).replaceWith( "<span>" + $j( this ).html() + "</span>" );
 			} );
-			
+
 			// scale images that have width or height:
 			$j( '#' + thumb_render_id + ' img' ).filter( '[width]' ).each( function() {
 				$j( this ).attr( {
-						'width': Math.round( $j( this ).attr( 'width' ) * scale_perc ),
-						'height': Math.round( $j( this ).attr( 'height' ) * scale_perc )
-					 }
-				);
+					'width': Math.round( $j( this ).attr( 'width' ) * scale_perc ),
+					'height': Math.round( $j( this ).attr( 'height' ) * scale_perc )
+				} );
 			} );
 		}
 		return $j( '#' + thumb_render_id ).html();
 	},
-	// nothing to update in static html display: (return a static representation) 
+	// nothing to update in static html display: (return a static representation)
 	// @@todo render out a mini text "preview"
 	updateThumbTime:function( float_time ) {
 		return ;
 	},
 	getEmbedHTML:function() {
 		js_log( 'f:html:getEmbedHTML: ' + this.id );
-		// set up the css for our parent div:		 
+		// set up the css for our parent div:
 		$j( this ).css( {
 			'width':this.pc.pp.width,
 			'height':this.pc.pp.height,
 			'overflow':"hidden"
 		} );
-		// @@todo support more smil animation layout stuff: 
+		// @@todo support more smil animation layout stuff:
 
 		// wrap output in videoPlayer_ div:
 		$j( this ).html( '<div id="videoPlayer_' + this.id + '">' + this.getThumbnailHTML() + '</div>' );
@@ -169,7 +169,7 @@ var htmlEmbed = {
 	getDuration:function() {
 		if ( this.pc.dur )
 			return this.pc.dur;
-		// return default value:  
+		// return default value:
 		return pcHtmlEmbedDefaults.dur;
 	},
 	updateVideoTime:function( start_ntp, end_ntp ) {

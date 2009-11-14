@@ -602,7 +602,7 @@ mvClipEdit.prototype = {
 			$tool_target.append( '<h3>' + gM( 'mwe-edit-tools' ) + '</h3>' );
 			for ( var i in _this.toolset ) {
 				var toolid = _this.toolset[i];
-				if ( $j.inArray( toolid, _this.enabled_tools ) != - 1 || _this.enabled_tools == 'all' )
+				if ( $j.inArray( toolid, _this.enabled_tools ) != -1 || _this.enabled_tools == 'all' )
 					_this.appendTool( $tool_target, toolid );
 			}
 		}

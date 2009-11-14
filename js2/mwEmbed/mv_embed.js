@@ -504,7 +504,7 @@ var global_req_cb = new Array(); // The global request callback array
 			nStr += '';
 			var dpos = nStr.indexOf( '.' );
 			var nStrEnd = '';
-			if ( dpos != - 1 ) {
+			if ( dpos != -1 ) {
 				nStrEnd = outD + nStr.substring( dpos + 1, nStr.length );
 				nStr = nStr.substring( 0, dpos );
 			}
@@ -710,11 +710,11 @@ var global_req_cb = new Array(); // The global request callback array
 				for ( var i = 0; i < tempVars.length; i++ ) {
 					var tvar = tempVars[i].replace( '{{{', '' ).replace( '}}}', '' );
 					// Strip anything after a |
-					if ( tvar.indexOf( '|' ) != - 1 ) {
+					if ( tvar.indexOf( '|' ) != -1 ) {
 						tvar = tvar.substr( 0, tvar.indexOf( '|' ) );
 					}
 					// Add if not already there
-					if ( $j.inArray( tvar, tVars ) == - 1 )
+					if ( $j.inArray( tvar, tVars ) == -1 )
 						 tVars.push( tvar );
 				}
 				return tVars;
@@ -954,7 +954,7 @@ var mvJsLoader = {
 				}
 				// Build the url to the scriptServer striping its request parameters:
 				var puri = mw.parseUri( getMvEmbedURL() );
-				if ( ( getMvEmbedURL().indexOf( '://' ) != - 1 )
+				if ( ( getMvEmbedURL().indexOf( '://' ) != -1 )
 					&& puri.host != mw.parseUri( document.URL ).host )
 				{
 					var scriptPath = puri.protocol + '://' + puri.authority + puri.path;
@@ -1229,7 +1229,7 @@ function mwdomReady( force ) {
 					var	sn = e[j][k].getAttribute( 'class' );
 					if ( sn && sn != '' ) {
 						for ( var n = 0; n < mw.valid_skins.length; n++ ) {
-							if ( sn.indexOf( mw.valid_skins[n] ) !== - 1 ) {
+							if ( sn.indexOf( mw.valid_skins[n] ) !== -1 ) {
 								mw.skin_list.push( mw.valid_skins[n] );
 							}
 						}
@@ -1839,7 +1839,7 @@ function do_api_req( options, callback ) {
 			options.jsonCB = 'callback';
 
 		var req_url = options.url;
-		var paramAnd = ( req_url.indexOf( '?' ) == - 1 ) ? '?' : '&';
+		var paramAnd = ( req_url.indexOf( '?' ) == -1 ) ? '?' : '&';
 		// Put all the parameters into the URL
 		for ( var i in options.data ) {
 			req_url += paramAnd + encodeURIComponent( i ) + '=' + encodeURIComponent( options.data[i] );
@@ -1873,9 +1873,9 @@ function do_request( req_url, callback ) {
 		// Get data via DOM injection with callback
 		global_req_cb.push( callback );
 		// Prepend json_ to feed_format if not already requesting json format (metavid specific) 
-		if ( req_url.indexOf( "feed_format=" ) != - 1 && req_url.indexOf( "feed_format=json" ) == - 1 )
+		if ( req_url.indexOf( "feed_format=" ) != -1 && req_url.indexOf( "feed_format=json" ) == -1 )
 			req_url = req_url.replace( /feed_format=/, 'feed_format=json_' );		
-		loadExternalJs( req_url + '&cb=mv_jsdata_cb&cb_inx=' + ( global_req_cb.length - 1 ) );
+		loadExternalJs( req_url + '&cb=mv_jsdata_cb&cb_inx=' + ( global_req_cb.length -1 ) );
 	}
 }
 
@@ -1946,7 +1946,7 @@ function loadExternalCss( url ) {
 		return ;
 	}
 
-	if ( url.indexOf( '?' ) == - 1 ) {
+	if ( url.indexOf( '?' ) == -1 ) {
 		url += '?' + getMwReqParam();
 	}
 	if ( !styleSheetPresent( url ) ) {
@@ -1966,9 +1966,9 @@ function getMvEmbedURL() {
 		// Check for mv_embed.js and/or script loader
 		var src = js_elements[i].getAttribute( "src" );
 		if ( src ) {
-			if ( src.indexOf( 'mv_embed.js' ) != - 1 || (
-				( src.indexOf( 'mwScriptLoader.php' ) != - 1 || src.indexOf( 'jsScriptLoader.php' ) != - 1 )
-				&& src.indexOf( 'mv_embed' ) != - 1 ) ) // (check for class=mv_embed script_loader call)
+			if ( src.indexOf( 'mv_embed.js' ) != -1 || (
+				( src.indexOf( 'mwScriptLoader.php' ) != -1 || src.indexOf( 'jsScriptLoader.php' ) != -1 )
+				&& src.indexOf( 'mv_embed' ) != -1 ) ) // (check for class=mv_embed script_loader call)
 			{
 				_global['mv_embed_url'] = src;
 				return src;
@@ -2015,9 +2015,9 @@ function getMvEmbedPath() {
 	if ( _global['mv_embed_path'] )
 		return _global['mv_embed_path'];
 	var mv_embed_url = getMvEmbedURL();
-	if ( mv_embed_url.indexOf( 'mv_embed.js' ) !== - 1 ) {
+	if ( mv_embed_url.indexOf( 'mv_embed.js' ) !== -1 ) {
 		mv_embed_path = mv_embed_url.substr( 0, mv_embed_url.indexOf( 'mv_embed.js' ) );
-	} else if ( mv_embed_url.indexOf( 'mwScriptLoader.php' ) !== - 1 ) {
+	} else if ( mv_embed_url.indexOf( 'mwScriptLoader.php' ) !== -1 ) {
 		// Script loader is in the root of MediaWiki, so include the default mv_embed extension path
 		mv_embed_path = mv_embed_url.substr( 0, mv_embed_url.indexOf( 'mwScriptLoader.php' ) )
 			+ mediaWiki_mvEmbed_path;
@@ -2025,7 +2025,7 @@ function getMvEmbedPath() {
 		mv_embed_path = mv_embed_url.substr( 0, mv_embed_url.indexOf( 'jsScriptLoader.php' ) );
 	}
 	// Make an absolute URL (if it's relative and we don't have an mv_embed path)
-	if ( mv_embed_path.indexOf( '://' ) == - 1 ) {
+	if ( mv_embed_path.indexOf( '://' ) == -1 ) {
 		var pURL = mw.parseUri( document.URL );
 		if ( mv_embed_path.charAt( 0 ) == '/' ) {
 			mv_embed_path = pURL.protocol + '://' + pURL.authority + mv_embed_path;
