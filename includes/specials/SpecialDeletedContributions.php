@@ -372,6 +372,15 @@ class DeletedContributionsPage extends SpecialPage {
 				wfMsgHtml( 'sp-deletedcontributions-contribs' )
 			);
 
+			# Add a link to change user rights for privileged users
+			$userrightsPage = new UserrightsPage();
+			if( 0 !== $id && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
+				$tools[] = $sk->linkKnown(
+					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
+					wfMsgHtml( 'sp-contributions-userrights' )
+				);
+			}
+
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 
 			$links = $wgLang->pipeList( $tools );
