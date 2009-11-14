@@ -37,7 +37,7 @@ $in = fopen("DerivedNormalizationProps.txt", "rt" );
 if( !$in ) {
 	print "Can't open DerivedNormalizationProps.txt for reading.\n";
 	print "If necessary, fetch this file from the internet:\n";
-	print "http://www.unicode.org/Public/UNIDATA/CompositionExclusions.txt\n";
+	print "http://www.unicode.org/Public/UNIDATA/DerivedNormalizationProps.txt\n";
 	exit(-1);
 }
 print "Initializing normalization quick check tables...\n";
@@ -91,7 +91,7 @@ $canon = 0;
 
 print "Reading character definitions...\n";
 while( false !== ($line = fgets( $in ) ) ) {
-	$columns = split(';', $line);
+	$columns = explode(';', $line);
 	$codepoint = $columns[0];
 	$name = $columns[1];
 	$canonicalCombiningClass = $columns[3];
@@ -182,7 +182,7 @@ global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp, \$utfCheck
 \$utfCanonicalComp = unserialize( '$serComp' );
 \$utfCanonicalDecomp = unserialize( '$serCanon' );
 \$utfCheckNFC = unserialize( '$serCheckNFC' );
-?" . ">\n";
+\n";
 	fputs( $out, $outdata );
 	fclose( $out );
 	print "Wrote out UtfNormalData.inc\n";
@@ -203,7 +203,7 @@ if( $out ) {
 /** */
 global \$utfCompatibilityDecomp;
 \$utfCompatibilityDecomp = unserialize( '$serCompat' );
-?" . ">\n";
+\n";
 	fputs( $out, $outdata );
 	fclose( $out );
 	print "Wrote out UtfNormalDataK.inc\n";
