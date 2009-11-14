@@ -824,6 +824,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'lineno'                  => 'Llinia $1:',
 'compareselectedversions' => 'Comparar les versiones seleicionaes',
 'editundo'                => 'esfacer',
+'diff-multi'              => '({{PLURAL:$1|1 revisión intermedia non amosada|$1 revisiones intermedies non amosaes}})',
 
 # Search results
 'searchresults'                    => 'Resultaos de la busca',

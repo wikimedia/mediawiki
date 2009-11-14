@@ -1113,6 +1113,7 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 'lineno'                  => 'Jol nömiri $1:',
 'compareselectedversions' => 'Bölektengen nusqalardı salıstırw',
 'editundo'                => 'joqqa şığarw',
+'diff-multi'              => '(Aradağı $1 tüzetw körsetilmegen.)',
 
 # Search results
 'searchresults'             => 'İzdew nätïjeleri',

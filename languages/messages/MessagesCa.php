@@ -1048,6 +1048,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'compareselectedversions'  => 'Compara les versions seleccionades',
 'showhideselectedversions' => 'Mostrar/ocultar les versions seleccionades',
 'editundo'                 => 'desfés',
+'diff-multi'               => '(Hi ha {{PLURAL:$1|una revisió intermèdia|$1 revisions intermèdies}})',
 
 # Search results
 'searchresults'                    => 'Resultats de la cerca',

@@ -1143,6 +1143,7 @@ $1",
 'compareselectedversions'  => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'عرض/تخبية المراجعات المختاره.',
 'editundo'                 => 'استرجاع',
+'diff-multi'               => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخه متوسطه}} مش معروضه.)',
 
 # Search results
 'searchresults'                    => 'نتايج التدوير',

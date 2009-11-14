@@ -755,6 +755,7 @@ $2',
 'lineno'                  => '第$1行:',
 'compareselectedversions' => '比較揀正嗰版本',
 'editundo'                => '還原',
+'diff-multi'              => '（$1回半中間嗰改動伓會顯示。）',
 
 # Search results
 'searchresults'             => '尋到嗰結果',

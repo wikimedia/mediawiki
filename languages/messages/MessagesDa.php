@@ -1017,6 +1017,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'compareselectedversions'  => 'Sammenlign valgte versioner',
 'showhideselectedversions' => 'Vis/skjul udvalgte versioner',
 'editundo'                 => 'fjern redigering',
+'diff-multi'               => '(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)',
 
 # Search results
 'searchresults'                    => 'Søgeresultater',

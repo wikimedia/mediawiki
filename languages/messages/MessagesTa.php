@@ -771,6 +771,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'lineno'                  => 'வரிசை $1:',
 'compareselectedversions' => 'தெரிவு செய்யப்பட்ட பதிப்புக்களை ஒப்பிடவும்',
 'editundo'                => 'மீளமை',
+'diff-multi'              => '({{PLURAL:$1|ஒரு இடைப்பட்ட திருத்தம்|$1 இடைப்பட்ட திருத்தங்கள்}}  காட்டப்படவில்லை.)',
 
 # Search results
 'searchresults'                    => 'தேடல் முடிவுகள்',

@@ -869,6 +869,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'compareselectedversions'  => 'Bandhingna vèrsi kapilih',
 'showhideselectedversions' => 'Tampilaké/dhelikaké révisi kapilih',
 'editundo'                 => 'batalna',
+'diff-multi'               => '({{PLURAL:$1|Sawiji|$1}} revisi antara sing ora dituduhaké.)',
 
 # Search results
 'searchresults'                    => 'Kasil panggolèkan',

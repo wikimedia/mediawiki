@@ -889,7 +889,7 @@ Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaket
 'revdelete-submit'            => 'Hautatutako {{PLURAL:$1|berrikuspenari|berrikuspenei}} aplikatu',
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
 'logdelete-logentry'          => '[[$1]]en gertakarien ikusgarritasuna aldatu da',
-'revdelete-success'           => "'''Berrikuspenen ikusgarritasuna ondo ezarri da.'''",
+'revdelete-success'           => "'''Berrikuspenen ikusgarritasuna eguneratu da.'''",
 'logdelete-success'           => "'''Log ikusgarritasuna ondo ezarri da.'''",
 'revdel-restore'              => 'Ikusgarritasuna aldatu',
 'pagehist'                    => 'Orriaren historia',
@@ -2497,7 +2497,8 @@ $1',
 'nextdiff'     => 'Aldaketa berriagoa →',
 
 # Media information
-'mediawarning'         => "'''Oharra''': Fitxategi honek kode mingarria izan lezake; zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
+'mediawarning'         => "'''Oharra''': Fitxategi honek kode mingarria izan lezake.
+Zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
 'imagemaxsize'         => "Irudiaren tamainaren muga:<br />''(fitxategi deskribapen-orrietarako)''",
 'thumbsize'            => 'Irudi txikiaren tamaina:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|orrialde|orrialde}}',

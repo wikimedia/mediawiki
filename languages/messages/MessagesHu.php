@@ -1101,8 +1101,8 @@ A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az e
 'revdelete-submit'            => 'Alkalmazás a kiválasztott {{PLURAL:$1|változatra|változatokra}}',
 'revdelete-logentry'          => 'módosította [[$1]] változatának láthatóságát',
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
-'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
-'revdelete-failure'           => "'''Nem sikerült módosítani a változat láthatóságát:'''
+'revdelete-success'           => "'''A változat láthatósága sikeresen frissítve.'''",
+'revdelete-failure'           => "'''Nem sikerült frissíteni a változat láthatóságát:'''
 $1",
 'logdelete-success'           => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
 'logdelete-failure'           => "'''Nem sikerült módosítani a naplóbejegyzés láthatóságát:'''
@@ -1175,6 +1175,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'compareselectedversions'  => 'Kiválasztott változatok összehasonlítása',
 'showhideselectedversions' => 'A kiválasztott verziók megjelenítése/elrejtése',
 'editundo'                 => 'visszavonás',
+'diff-multi'               => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
 
 # Search results
 'searchresults'                    => 'A keresés eredménye',
@@ -3210,10 +3211,10 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 # Table pager
 'ascending_abbrev'         => 'növ',
 'descending_abbrev'        => 'csökk',
-'table_pager_next'         => 'Következő lap',
-'table_pager_prev'         => 'Előző lap',
-'table_pager_first'        => 'Első lap',
-'table_pager_last'         => 'Utolsó lap',
+'table_pager_next'         => 'Következő oldal',
+'table_pager_prev'         => 'Előző oldal',
+'table_pager_first'        => 'Első oldal',
+'table_pager_last'         => 'Utolsó oldal',
 'table_pager_limit'        => 'Laponként $1 tétel megjelenítése',
 'table_pager_limit_submit' => 'Ugrás',
 'table_pager_empty'        => 'Nincs találat',

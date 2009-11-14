@@ -758,6 +758,7 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'lineno'                  => 'Rehel $1:',
 'compareselectedversions' => 'Anevienkte versies verhelieken',
 'editundo'                => 'onedaene maeken',
+'diff-multi'              => '({{PLURAL:$1|Eên tussenlihhende versie wor|$1 tussenlihhende versies worn}} nie weereheven)',
 
 # Search results
 'searchresults'         => 'Zoekresultaoten',

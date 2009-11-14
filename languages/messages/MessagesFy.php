@@ -943,6 +943,7 @@ Tink derom it brûken fan de navigaasjeferwizings dy kolom op'e nij ynstelt.",
 'compareselectedversions'  => 'Ferlykje selektearre ferzjes',
 'showhideselectedversions' => 'Oantikke ferzjes wol/net sjen litte',
 'editundo'                 => 'werom sette',
+'diff-multi'               => '({{PLURAL:$1|Ien tuskenlizzende ferzje wurdt|$1 tuskenlizzende ferzjes wurde}} net sjen litten.)',
 
 # Search results
 'searchresults'                    => 'Sykresultaat',

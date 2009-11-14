@@ -820,6 +820,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'lineno'                  => 'Qatar No $1:',
 'compareselectedversions' => "Saylang'an nusqalardı salıstırıw",
 'editundo'                => 'qaytar',
+'diff-multi'              => "(Aradag'ı {{PLURAL:$1|bir nusqa|$1 nusqa}} ko'rsetilmeydi.)",
 
 # Search results
 'searchresults'                    => "İzlew na'tiyjeleri",

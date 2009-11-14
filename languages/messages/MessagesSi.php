@@ -1084,6 +1084,7 @@ $1",
 'compareselectedversions'  => 'තෝරාගෙන ඇති අනුවාද සසඳන්න',
 'showhideselectedversions' => 'තෝරාගත් සංශෝධන පෙන්වන්න/සඟවන්න',
 'editundo'                 => 'අහෝසි',
+'diff-multi'               => '({{PLURAL:$1|එක් අතරමැදි සංශෝධනයක්| අතරමැදි සංශෝධන $1 ක්}} පෙන්නුම් කර නොමැත.)',
 
 # Search results
 'searchresults'                    => 'ගවේෂණ ප්‍රතිඵල',

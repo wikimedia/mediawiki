@@ -328,6 +328,7 @@ $messages = array(
 'hidetoc'                 => 'মেথেল আরুম কর',
 'thisisdeleted'           => '$1 দেহাদে নাইলে বারো হঙকর?',
 'viewdeleted'             => '$1 দেহাদে?',
+'feedlinks'               => 'ফিড:',
 'site-rss-feed'           => '$1 আরএসএস ফিড',
 'site-atom-feed'          => '$1 এটম ফিড',
 'page-rss-feed'           => '"$1" আরএসএস ফিড',
@@ -380,6 +381,7 @@ $messages = array(
 'badtitletext'         => 'হেইচা করিসত পাতাহানর চিঙনাঙহান চুম নাইসে, খালি বা আর ঠার বা আন্তঃউইকি চিঙনাঙ মিলাপ অসিল। হয়ত এহানত আক বারো গজে কোন আখর মিহিসে, যেতা চিঙনাঙে বরানি লালুইসে।',
 'viewsource'           => 'উৎসহান চা',
 'viewsourcefor'        => '$1-র কা',
+'actionthrottled'      => 'কামর গতিহান তাপকরানি',
 'viewsourcetext'       => 'পাতা এহানর উত্স চা বারো কপি করে পারর:',
 'protectedinterface'   => 'পাতা এহানর মেথেল উইকি সফটওয়্যারর ইন্টারফেসর পৌহান দের, অহানে এহানরে ইতু করিয়া থনা অসে এবিউসেত্ত ঙাক্করানির কাজে।',
 
@@ -397,11 +399,13 @@ $messages = array(
 'userlogin'                  => 'হমানি / নৱা একাউন্ট খুলানি',
 'logout'                     => 'নিকুলানি',
 'userlogout'                 => 'নিকুলানি',
+'notloggedin'                => 'তি লগ-ইন নাকরিসত',
 'nologin'                    => 'তরতা একাউন্টহান নেই থাং? $1',
 'nologinlink'                => 'একাউন্ট আহান খুল',
 'createaccount'              => 'একাউন্ট খুল',
 'gotaccount'                 => "মান্নাপা একাউন্ট আহান আগেত্তর আসে? '''$1'''।",
 'gotaccountlink'             => 'লগইন',
+'createaccountmail'          => 'ই-মেইলন',
 'badretype'                  => 'খন্তাচাবি (password) দ্বিয়গি না মিলের।',
 'loginerror'                 => 'লগইনে লালুইসে',
 'loginsuccesstitle'          => 'লগইনহান চুমিল',
@@ -479,8 +483,10 @@ $messages = array(
 
 তি $1 নাইলেউ [[{{MediaWiki:Grouppage-sysop}}|প্রশাসকর]] মা যে কোন আগর লগে বিষয় এহান্ন য়্যারি পরি দে পারর। বিশেষ মাতিলতাঃ তর ই-মেইল ঠিকানাহান যদি [[Special:Preferences|তর পছন তালিকাত]] বরিয়া নাথার, অতা ইলে তি উইকিপিডিয়াত হের আতাকুরারে ই-মেইল করানি নুৱারবে। তর আইপি ঠিকানাহান ইলতাই $3 বারো থেপকরিসি আইপিগ ইলতাই #$5। 
 কৃপা করিয়া যে কোন যোগাযোগর সময়ত এরে আইপি ঠিকানাহানি যেসাদেউ বরিস।",
+'blockednoreason'                  => 'কোন কারণ দেনা নাইসে',
 'confirmedittext'                  => 'যেহানউ সম্পাদনা করানির আগে তর ই-মেইল ঠিকানাহন যেসাদেউ লেপকরানি লাগতই। কৃপাকরিয়া তর ই-মেইল ঠিকানাহান [[Special:Preferences|আতাকুরার পছনতালিকা]]ত চুমকরে বরা।',
 'loginreqtitle'                    => 'লগইন দরকার ইসে',
+'loginreqlink'                     => 'লগ-ইন',
 'accmailtitle'                     => 'খন্তাচাবি(password) দিয়াপেঠৱা দিলাং।',
 'accmailtext'                      => '"$1"-র খন্তাচাবি(password) $2-রাঙ দিয়াপেঠৱাদেনা ইল।',
 'newarticle'                       => '(নুৱা)',
@@ -549,6 +555,7 @@ $messages = array(
 'lineno'                  => 'লাইন $1:',
 'compareselectedversions' => 'বাসাইল সংস্করণহানি তুলনা কর',
 'editundo'                => 'আলকর',
+'diff-multi'              => '({{PLURAL:$1|হমবুকর রিভিসন আহান|$1 হমবুকর রিভিসন হানি}} দেহাদেনা এহাত না মিহিসে।)',
 
 # Search results
 'searchresults'             => 'বিসারলে অতার ফলাফল',
@@ -601,10 +608,24 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:প্রশাসকগি',
 
 # User rights log
-'rightslog' => 'আতাকুরার অধিকারর লগ',
+'rightslog'  => 'আতাকুরার অধিকারর লগ',
+'rightsnone' => '(নেই)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'পাতা এহান পতা',
+'action-read'               => 'পাতা এহান পাকর',
+'action-edit'               => 'পাতা এহান পতা',
+'action-createpage'         => 'পাতা হঙকর',
+'action-createtalk'         => 'য়্যারীর পাতা হঙকর',
+'action-createaccount'      => 'আতাকুরার একাউন্টহান হঙকর',
+'action-minoredit'          => 'হুরকা পতানিহান বুলিয়া লেপকর',
+'action-move'               => 'পাতাহান থেইকর',
+'action-move-subpages'      => 'পাতাহান বারো অহানর তলর পাতাহানি হাবি থেইকর',
+'action-move-rootuserpages' => 'গুরিগর পাতাহানির আতাকুরার পাতাহানি থেইকর',
+'action-delete'             => 'পাতা এহান পুস',
+'action-browsearchive'      => 'পুসিসি পাতা বিসারা',
+'action-block'              => 'পতাকুরা এগরে পতানি নাদি',
+'action-trackback'          => 'আলথক ট্রাক সাবমিট কর',
+'action-mergehistory'       => 'পাতা এহানর ইতাহাসহান সুপকরিক',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|সিলপা|সিলপাহানি}}',

@@ -1030,6 +1030,7 @@ $2',
 يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى،
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} البحث في السجلات المتعلقة]،
 أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة]</span>.',
+'noarticletext-nopermission'       => 'لا يوجد حاليا أي نص في هذه الصفحة.يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى,أو <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} بحث السجلات المتصلة]</span>.',
 'userpage-userdoesnotexist'        => 'حساب المستخدم "$1" غير مسجل.
 من فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.',
 'userpage-userdoesnotexist-view'   => 'حساب المستخدم "$1" غير مسجل.',
@@ -1207,6 +1208,9 @@ $2',
 'rev-deleted-unhide-diff'     => "واحدة من مراجعتي هذا الفرق تم '''حذفها'''.
 ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 كإداري مازال بإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
+'rev-suppressed-unhide-diff'  => "واحدة من مراجعتي هذا الفرق تم '''حذفها'''.
+ربما توجد تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
+كإداري مازال بإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
 'rev-delundel'                => 'أظهر/أخفِ',
 'rev-showdeleted'             => 'أظهر',
 'revisiondelete'              => 'حذف/استرجاع المراجعات',
@@ -1241,8 +1245,8 @@ $2',
 'revdelete-submit'            => 'طبّق على {{PLURAL:$1||المراجعة المختارة|المراجعتين المختارتين|المراجعات المختارة}}',
 'revdelete-logentry'          => 'غير رؤية المراجعة ل[[$1]]',
 'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
-'revdelete-success'           => "'''تم ضبط رؤية المراجعات بنجاح.'''",
-'revdelete-failure'           => "'''تعذّر ضبط رؤية المراجعة:'''
+'revdelete-success'           => "'''تم تحديث رؤية المراجعات بنجاح.'''",
+'revdelete-failure'           => "'''تعذّر تحديث رؤية المراجعة:'''
 $1",
 'logdelete-success'           => "'''تم ضبط رؤية السجلات بنجاح.'''",
 'logdelete-failure'           => "'''تعذّر ضبط رؤية السجل:'''
@@ -1839,6 +1843,7 @@ PICT # متنوع
 
 # img_auth script messages
 'img-auth-accessdenied' => 'رُفض الوصول',
+'img-auth-notindir'     => 'المسار المطلوب غير موجود في مجلد الرفع المضبوط.',
 'img-auth-badtitle'     => 'تعذر تشكيل عنوان صالح من "$1".',
 'img-auth-nologinnWL'   => 'لست والجًا و"$1" ليست في القائمة البيضاء.',
 'img-auth-nofile'       => 'الملف "$1" غير موجود.',

@@ -1145,6 +1145,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'compareselectedversions'  => 'Compare as versões selecionadas',
 'showhideselectedversions' => 'Mostrar/esconder versões selecionadas',
 'editundo'                 => 'desfazer',
+'diff-multi'               => '({{PLURAL:$1|uma edição intermediária não está sendo exibida|$1 edições intermediárias não estão sendo exibidas}}.)',
 
 # Search results
 'searchresults'                    => 'Resultados de pesquisa',

@@ -1129,8 +1129,8 @@ Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-submit'            => 'Appliquer {{PLURAL:$1|à la révision sélectionnée|aux révisions sélectionnées}}',
 'revdelete-logentry'          => 'a modifié la visibilité de la version de [[$1]]',
 'logdelete-logentry'          => 'a modifié la visibilité de l’événement de [[$1]]',
-'revdelete-success'           => "'''Visibilité des versions changée avec succès.'''",
-'revdelete-failure'           => "'''La visibilité de la révision n’a pas pu être définie :'''
+'revdelete-success'           => "'''Visibilité des versions mise à jour avec succès.'''",
+'revdelete-failure'           => "'''La visibilité de la version n’a pas pu être mise à jour :'''
 $1",
 'logdelete-success'           => "'''Visibilité du journal paramétrée avec succès.'''",
 'logdelete-failure'           => "'''La visibilité du journal n’a pas pu être définie :'''

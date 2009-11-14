@@ -888,6 +888,7 @@ Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akro
 'compareselectedversions'  => 'Wäälde Versione ferglieke',
 'showhideselectedversions' => 'Uutwäälde Versione wiese/fersteete',
 'editundo'                 => 'tounichte moakje',
+'diff-multi'               => '(Die Versionsfergliek belukt {{PLURAL:$1|ne deertwiske lääsende Version|$1 deertwiske lääsende Versione}} mee ien.)',
 
 # Search results
 'searchresults'                    => 'Säikresultoate',

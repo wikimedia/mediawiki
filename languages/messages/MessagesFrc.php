@@ -592,6 +592,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'lineno'                  => 'Ligne $1:',
 'compareselectedversions' => 'Comparer les versions choisies',
 'editundo'                => 'renverser',
+'diff-multi'              => '({{PLURAL:$1|Un changement moyen caché|$1 changements moyens cachés}})',
 
 # Search results
 'searchresults'    => 'Résultats de la charche',

@@ -947,6 +947,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'compareselectedversions'  => 'Fari lu paraguni',
 'showhideselectedversions' => 'Ammustra/ammuccia virsioni silizziunati',
 'editundo'                 => 'annulla',
+'diff-multi'               => '({{PLURAL:$1|Na rivisioni ntirmèdia nun ammustrata|$1 rivisioni ntirmedi nun ammustrati}}.)',
 
 # Search results
 'searchresults'                    => 'Risurtati dâ circata',

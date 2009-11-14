@@ -757,6 +757,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'lineno'                  => 'Linya $1:',
 'compareselectedversions' => 'Ikomparar an mga piniling bersyon',
 'editundo'                => 'ibalik',
+'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} dai ipinahihiling.)',
 
 # Search results
 'searchresults'             => 'Hanapon an mga resulta',

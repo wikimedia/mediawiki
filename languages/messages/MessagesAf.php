@@ -941,8 +941,8 @@ Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{F
 'revdelete-submit'            => 'Pas op gekose weergawe toe',
 'revdelete-logentry'          => 'sigbaarheid van weergawe is gewysig vir [[$1]]',
 'logdelete-logentry'          => 'verander sigbaarheid van gebeurtenis [[$1]]',
-'revdelete-success'           => "'''Sigbaarheid van die wysiging suksesvol gestel.'''",
-'revdelete-failure'           => "'''Sigbaarheid kon nie vir die weergawe gestel word nie:'''
+'revdelete-success'           => "'''Die sigbaarheid van die wysiging is suksesvol opgedateer.'''",
+'revdelete-failure'           => "'''Die sigbaarheid van die wysiging kon nie opgedateer word nie:'''
 $1",
 'logdelete-success'           => "'''Sigbaarheid van die gebeurtenis suksesvol gestel.'''",
 'logdelete-failure'           => "'''Sigbaarheid kon nie vir die logboekreël gestel word nie:'''
@@ -1003,6 +1003,7 @@ $1",
 'compareselectedversions'  => 'Vergelyk gekose weergawes',
 'showhideselectedversions' => 'Wys/versteek gekose weergawes',
 'editundo'                 => 'maak ongedaan',
+'diff-multi'               => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} word nie gewys nie.)',
 
 # Search results
 'searchresults'                    => 'soekresultate',

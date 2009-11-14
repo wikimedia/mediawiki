@@ -867,6 +867,7 @@ Tö ei voigoi kävutada sidä.',
 'compareselectedversions'  => 'Rindatada valitud versijad',
 'showhideselectedversions' => 'Ozutada/peitta valitud versijad',
 'editundo'                 => 'heitta pätand',
+'diff-multi'               => "({{PLURAL:$1|üks' keskmäine versii ei ole|$1 keskmäšt versijad ei olgoi}} ozutadud)",
 
 # Search results
 'searchresults'                    => "Ectä rezul'tatad",

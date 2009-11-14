@@ -595,6 +595,7 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 'lineno'                  => 'Thi $1-hàng：',
 'compareselectedversions' => 'Pí-káu sién-thin ke pán-pún',
 'editundo'                => 'Chhat-sêu',
+'diff-multi'              => '（$1-ke chûng-thù ke siû-thin pán-pún mò-yû hién-sṳ.）',
 
 # Search results
 'searchresults'         => 'Chhìm-cháu kiet-kó',

@@ -950,6 +950,7 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 'compareselectedversions'  => 'Paghambingin ang mga napiling bersyon',
 'showhideselectedversions' => 'Ipakita/itago ang napiling mga bersyon',
 'editundo'                 => 'ibalik',
+'diff-multi'               => '({{PLURAL:$1|Isang panggitnang pagbabago|$1 panggitnang mga pagbabago}} hindi ipinakita.)',
 
 # Search results
 'searchresults'                    => 'Kinalabasan/Resulta ng paghahanap',

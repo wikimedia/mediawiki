@@ -1014,8 +1014,8 @@ Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|á revisión seleccionada|ás revisións seleccionadas}}',
 'revdelete-logentry'          => 'mudou a visibilidade dunha revisión de "[[$1]]"',
 'logdelete-logentry'          => 'mudouse a visibilidade do evento para [[$1]]',
-'revdelete-success'           => "'''Configurouse sen problemas a visibilidade da revisión.'''",
-'revdelete-failure'           => "'''A visibilidade da revisión non pode ser fixada:'''
+'revdelete-success'           => "'''Actualizouse sen problemas a visibilidade da revisión.'''",
+'revdelete-failure'           => "'''Non se puido actualizar a visibilidade da revisión:'''
 $1",
 'logdelete-success'           => "'''Configurouse sen problemas a visibilidade do rexistro.'''",
 'logdelete-failure'           => "'''A visibilidade do rexistro non pode ser fixada:'''

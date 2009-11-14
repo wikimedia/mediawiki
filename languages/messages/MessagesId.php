@@ -1072,8 +1072,8 @@ Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini d
 'revdelete-submit'            => 'Terapkan pada {{PLURAL:$1|revisi|revisi}} terpilih',
 'revdelete-logentry'          => 'ubah tampilan revisi untuk [[$1]]',
 'logdelete-logentry'          => 'mengubah aturan penyembunyian dari [[$1]]',
-'revdelete-success'           => 'Aturan penyembunyian revisi berhasil diterapkan.',
-'revdelete-failure'           => "'''Mode tampilan revisi tak dapat diterapkan:'''
+'revdelete-success'           => "'''Keterlihatan revisi berhasil diperbarui.'''",
+'revdelete-failure'           => "'''Keterlihatan revisi tak dapat diperbarui:'''
 $1",
 'logdelete-success'           => 'Aturan penyembunyian tindakan berhasil diterapkan.',
 'logdelete-failure'           => "'''Aturan penyembunyian tidak dapat diterapkan:'''

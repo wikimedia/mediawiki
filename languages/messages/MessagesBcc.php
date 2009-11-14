@@ -984,6 +984,7 @@ $1",
 'compareselectedversions'  => 'مقایسه انتخاب بوتگین نسخه یان',
 'showhideselectedversions' => 'نمایش/پنهان کتن نسخ انتخابی',
 'editundo'                 => 'خنثی کتن',
+'diff-multi'               => '({{PLURAL:$1|یک متوسطین بازبینیان میانی}} پیش دارگ نه بیت .)',
 
 # Search results
 'searchresults'                    => 'نتایج گردگ',

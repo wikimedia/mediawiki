@@ -943,8 +943,8 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-submit'            => 'Seçilen {{PLURAL:$1|sürüme|sürümlere}} uygula',
 'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
 'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
-'revdelete-success'           => "'''Revizyon görünürlüğü başarıyla ayarlandı.'''",
-'revdelete-failure'           => "'''Revizyon görünürlüğü ayarlanamıyor:'''
+'revdelete-success'           => "'''Revizyon görünürlüğü başarıyla güncellendi.'''",
+'revdelete-failure'           => "'''Revizyon görünürlüğü güncellenemiyor:'''
 $1",
 'logdelete-success'           => "'''Günlük görünürlüğü başarıyla ayarlandı.'''",
 'logdelete-failure'           => "'''Günlük görünürlüğü ayarlanamadı:'''

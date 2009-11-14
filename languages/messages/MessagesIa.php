@@ -970,8 +970,8 @@ Altere administratores in {{SITENAME}} continuara a poter acceder al contento ce
 'revdelete-submit'            => 'Applicar al {{PLURAL:$1|version|versiones}} seligite',
 'revdelete-logentry'          => 'cambiava le visibilitate de versiones pro [[$1]]',
 'logdelete-logentry'          => 'cambiava le visibilitate de eventos pro [[$1]]',
-'revdelete-success'           => "'''Le visibilitate de versiones ha essite definite con successo.'''",
-'revdelete-failure'           => "'''Le visibilitate del version non poteva esser cambiate:'''
+'revdelete-success'           => "'''Le visibilitate del version ha essite actualisate con successo.'''",
+'revdelete-failure'           => "'''Le visibilitate del version non poteva esser actualisate:'''
 $1",
 'logdelete-success'           => "'''Le visibilitate del registro ha essite definite con successo.'''",
 'logdelete-failure'           => "'''Le visibilitate del registro non poteva esser cambiate:'''
@@ -1050,6 +1050,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'compareselectedversions'  => 'Comparar versiones seligite',
 'showhideselectedversions' => 'Revelar/celar le versiones seligite',
 'editundo'                 => 'annullar',
+'diff-multi'               => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non es monstrate)',
 
 # Search results
 'searchresults'                    => 'Resultatos del recerca',

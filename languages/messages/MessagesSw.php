@@ -778,18 +778,26 @@ Unaweza kukata-na-kabandika maandishi yako kwenye faili na kulihifadhi kwa ajili
 Msimamizi aliyefunga ametoa maelezo haya: $1",
 'protectedpagewarning'             => "'''ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.'''",
 'semiprotectedpagewarning'         => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumiaji waliojisajili tu ndiyo wanaweza kuuhariri.",
+'cascadeprotectedwarning'          => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumia wenye haki za usimamizi tu ndiyo wanaweza kuuhariri, kwa sababu umejumlishwa kwenye kurasa zingine zenye {{PLURAL:$1|page|kulindwa}}:",
+'titleprotectedwarning'            => "'''Ilani: Ukurasa umefungwa kwa hiyo [[Special:ListGroupRights|haki maalumu]] zinahitajika ili kuanzisha ukurasa huu.'''",
 'templatesused'                    => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} kwenye ukurasa huu:',
 'templatesusedpreview'             => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} katika mandhari haya:',
+'templatesusedsection'             => '{{PLURAL:$1|Kigezo kilichotumika|Vigezo vilivyotumika}} katika sehemu hii:',
 'template-protected'               => '(kulindwa)',
 'template-semiprotected'           => '(ulindaji kwa kiasi)',
 'hiddencategories'                 => 'Ukurasa huu uliomo katika jamii {{PLURAL:$1|iliofichwa 1|zilizofichwa $1}}:',
+'nocreatetitle'                    => 'Si wote wanaoweza kuanzisha ukurasa',
 'nocreatetext'                     => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:UserLogin|ingia au anza akaunti]].',
 'nocreate-loggedin'                => 'Huna ruhusa ya kuazisha kurasa mpya.',
+'permissionserrors'                => 'Hitilafu za ruhusa',
+'permissionserrorstext'            => 'Huna ruhusa ya kufanya hivyo, kwa ajili ya sababu {{PLURAL:$1|ifuatayo|zifuatazo}}:',
 'permissionserrorstext-withaction' => 'Huruhusiwi $2, kwa sababu {{PLURAL:$1|hiyo|hizo}}:',
 'recreate-moveddeleted-warn'       => "'''Ilani: Unatengeneza tena ukurasa uliofutwa tayari.'''
 
 Fikiria kama inafaa kuendelea kuhariri ukurasa huu.
 Kumbukumbu za kufuta na kuhamisha ukurasa huu zinapatikana hapa kukusaidia:",
+'moveddeleted-notice'              => 'Ukurasa huu umefutwa.
+Kumbukumbu za kufuta na kuhamisha ukurasa huu zimetolewa chini, ili zifikike kwa urahisi.',
 'log-fulllog'                      => 'Tazama kumbukumbu zote',
 'edit-gone-missing'                => 'Haikuwezakana kusasisha ukurasa.
 Inaonekana kwamba ukurasa umefutwa.',
@@ -864,6 +872,7 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'lineno'                  => 'Mstari $1:',
 'compareselectedversions' => 'Linganisha matoleo mawili uliyochagua',
 'editundo'                => 'tengua',
+'diff-multi'              => '(Hatuonyeshi {{PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
 
 # Search results
 'searchresults'                  => 'Matokeo ya utafutaji',
@@ -1069,7 +1078,7 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'rcshowhideliu'                  => '$1 watumiaji sasa',
 'rcshowhideanons'                => '$1 watumiaji bila majina',
 'rcshowhidepatr'                 => '$1 masahihisho yanayofanywa doria',
-'rcshowhidemine'                 => '$1 masahihisho zangu',
+'rcshowhidemine'                 => '$1 masahihisho yangu',
 'rclinks'                        => 'Onyesha mabadiliko $1 yaliyofanywa wakati wa siku $2 zilizopita<br />$3',
 'diff'                           => 'tofauti',
 'hist'                           => 'hist',

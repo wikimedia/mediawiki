@@ -989,6 +989,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'compareselectedversions'  => 'Usgwählti Versione verglyche',
 'showhideselectedversions' => 'Uusgwehlti Versione zeige/verstecke',
 'editundo'                 => 'rückgängig',
+'diff-multi'               => '(Der Versioneverglych zeigt ou d Änderige vo {{PLURAL:$1|1 Version|$1 Versione}} derzwüsche.)',
 
 # Search results
 'searchresults'                    => 'Suech-Ergäbnis',
