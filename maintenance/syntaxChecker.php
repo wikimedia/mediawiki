@@ -31,6 +31,8 @@ class SyntaxChecker extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Check syntax for all PHP files in MediaWiki";
 		$this->addOption( 'with-extensions', 'Also recurse the extensions folder' );
+		$this->addOption( 'file', 'Specific file to check, either with absolute path or relative to the root of this MediaWiki installation',
+			false, true);
 	}
 
 	protected function getDbType() {
@@ -38,9 +40,7 @@ class SyntaxChecker extends Maintenance {
 	}
 
 	public function execute() {
-		$this->output( "Building file list..." );
 		$this->buildFileList();
-		$this->output( "done.\n" );
 
 		// ParseKit is broken on PHP 5.3+, disabled until this is fixed
 		$useParseKit = function_exists( 'parsekit_compile_file' ) && version_compare( PHP_VERSION, '5.3', '<' );
@@ -64,6 +64,22 @@ class SyntaxChecker extends Maintenance {
 	 */
 	private function buildFileList() {
 		global $IP;
+
+		if ( $this->hasOption( 'file' ) ) {
+			$file = $this->getOption( 'file' );
+			if ( !file_exists( $file ) ) {
+				if ( file_exists( "$IP/$file" ) ) {
+					$file = "$IP/$file";
+				} else {
+					$this->error( "Error: couldn't open file $file.\n", true );
+				}
+			}
+			$this->mFiles[] = $file;
+			$this->output( "Checking file $file.\n" );
+			return; // process only this file
+		}
+
+		$this->output( "Building file list..." );
 
 		// Only check files in these directories. 
 		// Don't just put $IP, because the recursive dir thingie goes into all subdirs
@@ -90,6 +106,16 @@ class SyntaxChecker extends Maintenance {
 				}
 			}
 		}
+
+		// Manually add two user-editable files that are usually sources of problems
+		if ( file_exists( "$IP/LocalSettings.php" ) ) {
+			$this->mFiles[] = "$IP/LocalSettings.php";
+		}
+		if ( file_exists( "$IP/AdminSettings.php" ) ) {
+			$this->mFiles[] = "$IP/AdminSettings.php";
+		}
+
+		$this->output( "done.\n" );
 	}
 
 	/**
