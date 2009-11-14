@@ -103,7 +103,7 @@ var default_form_options = {
 				var slash = path.lastIndexOf( '/' );
 				var backslash = path.lastIndexOf( '\\' );
 				var fname;
-				if ( slash == - 1 && backslash == - 1 ) {
+				if ( slash == -1 && backslash == -1 ) {
 					fname = path;
 				} else if ( slash > backslash ) {
 					fname = path.substring( slash + 1, 10000 );

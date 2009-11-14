@@ -1198,7 +1198,7 @@ mvSequencer.prototype = {
 				if ( this.timeline_mode == 'time' ) {
 					$j( '.ui-resizable-handle' ).mousedown( function() {
 						js_log( 'hid: ' +  $j( this ).attr( 'class' ) );
-						this_seq.resize_mode = ( $j( this ).attr( 'class' ).indexOf( 'ui-resizable-e' ) != - 1 ) ?
+						this_seq.resize_mode = ( $j( this ).attr( 'class' ).indexOf( 'ui-resizable-e' ) != -1 ) ?
 										'resize_end':'resize_start';
 					} );
 				}

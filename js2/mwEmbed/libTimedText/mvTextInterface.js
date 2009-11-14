@@ -141,7 +141,7 @@ mvTextInterface.prototype = {
 					}
 				}
 				// after all text loaded (or we have allready checked commons
-				if ( foundTextTracks || hostPath.indexOf( 'commons.wikimedia' ) !== - 1 ) {
+				if ( foundTextTracks || hostPath.indexOf( 'commons.wikimedia' ) !== -1 ) {
 					// alert('calling 			getParseTimedText_rowReady ');		
 					_this.getParseTimedText_rowReady();
 				} else {

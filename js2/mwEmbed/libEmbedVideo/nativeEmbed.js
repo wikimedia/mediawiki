@@ -5,7 +5,7 @@ var nativeEmbed = {
 	grab_try_count:0,
 	onlyLoadFlag:false,
 	urlAppend:'',
-	prevCurrentTime: - 1,
+	prevCurrentTime: -1,
 	supports: {
 		'play_head':true,
 		'pause':true,
@@ -15,7 +15,7 @@ var nativeEmbed = {
 		
 		'overlays':true,
 		'playlist_swap_loader':true // if the object supports playlist functions		
-   },
+	},
 	getEmbedHTML : function () {
 		var embed_code =  this.getEmbedObj();
 		js_log( "embed code: " + embed_code )
@@ -171,7 +171,7 @@ var nativeEmbed = {
 		}
 		
 		// do a seek check (on seeked does not seem fire consistantly) 	
-		if ( this.prevCurrentTime != - 1 && this.prevCurrentTime != 0
+		if ( this.prevCurrentTime != -1 && this.prevCurrentTime != 0
 			&& this.prevCurrentTime < this.currentTime && this.seeking )
 			this.seeking = false;
 								
@@ -189,7 +189,7 @@ var nativeEmbed = {
 	getSrc:function() {
 		var src = this.parent_getSrc();
 		if (  this.urlAppend != '' )
-			return src + ( ( src.indexOf( '?' ) == - 1 ) ? '?':'&' ) + this.urlAppend;
+			return src + ( ( src.indexOf( '?' ) == -1 ) ? '?':'&' ) + this.urlAppend;
 		return src;
 	},
 	/*

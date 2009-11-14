@@ -343,9 +343,9 @@ mvPlayList.prototype = {
 				var first_line = this.data.substring( 0, this.data.indexOf( "\n" ) );
 				js_log( 'first line: ' + first_line );
 				// string
-				if ( first_line.indexOf( '#EXTM3U' ) != - 1 ) {
+				if ( first_line.indexOf( '#EXTM3U' ) != -1 ) {
 					this.srcType = 'm3u';
-				} else if ( first_line.indexOf( '<smil' ) != - 1 ) {
+				} else if ( first_line.indexOf( '<smil' ) != -1 ) {
 					// @@todo parse string
 					this.srcType = 'smil';
 				}
@@ -367,7 +367,7 @@ mvPlayList.prototype = {
 	// simple function to make a path into an absolute url if its not already
 	makeURLAbsolute:function() {
 		if ( this.src ) {
-			if ( this.src.indexOf( '://' ) == - 1 ) {
+			if ( this.src.indexOf( '://' ) == -1 ) {
 				var purl = mw.parseUri( document.URL );
 				if ( this.src.charAt( 0 ) == '/' ) {
 					this.src = purl.protocol + '://' + purl.host + this.src;
@@ -1142,7 +1142,7 @@ mvClip.prototype = {
 		js_log( "f:doAdjust: " + side + ' , ' +  delta );
 		if ( this.embed ) {
 			if ( side == 'start' ) {
-				var start_offset = parseInt( this.embed.start_offset ) + parseInt( delta * - 1 );
+				var start_offset = parseInt( this.embed.start_offset ) + parseInt( delta * -1 );
 				this.embed.updateVideoTime( seconds2npt( start_offset ), seconds2npt ( this.embed.start_offset + this.embed.getDuration() ) );
 			} else if ( side == 'end' ) {
 				var end_offset = parseInt( this.embed.start_offset ) + parseInt( this.embed.getDuration() ) + parseInt( delta );
@@ -1225,12 +1225,12 @@ mvClip.prototype = {
 				return this.img;
 			} else {
 				// if a metavid image (has request parameters) use size and time args
-				if ( this.img.indexOf( '?' ) != - 1 ) {
+				if ( this.img.indexOf( '?' ) != -1 ) {
 					js_log( 'get with offset: ' + start_offset );
 					var time = seconds2npt( start_offset + ( this.embed.start_offset / 1000 ) );
 					js_log( "time is: " + time );
 					this.img = this.img.replace( /t\=[^&]*/gi, "t=" + time );
-					if ( this.img.indexOf( '&size=' ) != - 1 ) {
+					if ( this.img.indexOf( '&size=' ) != -1 ) {
 						this.img = this.img.replace( /size=[^&]*/gi, "size=" + size );
 					} else {
 						this.img += '&size=' + size;

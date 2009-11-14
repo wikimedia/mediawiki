@@ -98,7 +98,7 @@ var mwUploadHelper = {
 		var slash = path.lastIndexOf( '/' );
 		var backslash = path.lastIndexOf( '\\' );
 		var fname;
-		if ( slash == - 1 && backslash == - 1 ) {
+		if ( slash == -1 && backslash == -1 ) {
 			fname = path;
 		} else if ( slash > backslash ) {
 			fname = path.substring( slash + 1, 10000 );
@@ -108,7 +108,7 @@ var mwUploadHelper = {
 		// URLs are less likely to have a useful extension. Don't include them in the extension check.
 		if ( wgFileExtensions && $j( targetElm ).attr( 'id' ) != 'wpUploadFileURL' ) {
 			var found = false;
-			if ( fname.lastIndexOf( '.' ) != - 1 ) {
+			if ( fname.lastIndexOf( '.' ) != -1 ) {
 				var ext = fname.substr( fname.lastIndexOf( '.' ) + 1 );
 				for ( var i = 0; i < wgFileExtensions.length; i++ ) {
 					if ( wgFileExtensions[i].toLowerCase() == ext.toLowerCase() )

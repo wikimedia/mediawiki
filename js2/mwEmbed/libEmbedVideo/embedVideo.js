@@ -472,7 +472,7 @@ mediaSource.prototype = {
 		// we can issue a HEAD request and read the mime type of the media...
 		// (this will detect media mime type independently of the url name)
 		// http://www.jibbering.com/2002/4/httprequest.html (this should be done by extending jquery's ajax objects)
-		var end_inx =  ( uri.indexOf( '?' ) != - 1 ) ? uri.indexOf( '?' ) : uri.length;
+		var end_inx =  ( uri.indexOf( '?' ) != -1 ) ? uri.indexOf( '?' ) : uri.length;
 		var no_param_uri = uri.substr( 0, end_inx );
 		switch( no_param_uri.substr( no_param_uri.lastIndexOf( '.' ), 4 ).toLowerCase() ) {
 			case '.mp4':
@@ -583,7 +583,7 @@ mediaElement.prototype = {
 		// apply mime filter: 
 		   var source_set = new Array();
 		for ( var i = 0; i < this.sources.length ; i++ ) {
-			if ( this.sources[i].mime_type.indexOf( mime_filter ) != - 1 )
+			if ( this.sources[i].mime_type.indexOf( mime_filter ) != -1 )
 				source_set.push( this.sources[i] );
 		}
 		return source_set;
@@ -859,7 +859,7 @@ embedVideo.prototype = {
 		var	sn = element.getAttribute( 'class' );
 		if ( sn && sn != '' ) {
 			for ( var n = 0; n < mw.valid_skins.length; n++ ) {
-				if ( sn.indexOf( mw.valid_skins[n] ) !== - 1 ) {
+				if ( sn.indexOf( mw.valid_skins[n] ) !== -1 ) {
 					this.skin_name = mw.valid_skins[ n ];
 				}
 			}
@@ -1265,7 +1265,7 @@ embedVideo.prototype = {
 				'style="width:' + parseInt( parseInt( this.width ) / 2 ) + 'px;' +
 				'height:' + parseInt( parseInt( this.height ) ) + 'px;' +
 				'position:absolute;top:10px;overflow:auto' +
-				'width: ' + parseInt( ( ( parseInt( this.width ) / 2 ) - 15 ) ) + 'px;' +
+				'width: ' + parseInt( ( ( parseInt( this.width ) / 2 ) -15 ) ) + 'px;' +
 				'left:' + parseInt( ( ( parseInt( this.width ) / 2 ) + 15 ) ) + 'px;">' +
 			'</div>'
 	   );
@@ -1551,7 +1551,7 @@ embedVideo.prototype = {
 	renderTimelineThumbnail:function( options ) {
 		var my_thumb_src = this.media_element.getThumbnailURL();
 		// check if our thumbnail has a time attribute: 
-		if ( my_thumb_src.indexOf( 't=' ) !== - 1 ) {
+		if ( my_thumb_src.indexOf( 't=' ) !== -1 ) {
 			var time_ntp =  seconds2npt ( options.time + parseInt( this.start_offset ) );
 			my_thumb_src = getURLParamReplace( my_thumb_src, { 
 				't':time_ntp, 
@@ -1576,7 +1576,7 @@ embedVideo.prototype = {
 		if ( typeof this.org_thum_src == 'undefined' ) {
 			this.org_thum_src = this.media_element.getThumbnailURL();
 		}
-		if ( this.org_thum_src.indexOf( 't=' ) !== - 1 ) {
+		if ( this.org_thum_src.indexOf( 't=' ) !== -1 ) {
 			this.last_thumb_url = getURLParamReplace( this.org_thum_src,
 				{ 
 					't' : seconds2npt( float_sec + parseInt( this.start_offset ) ) 
@@ -1673,7 +1673,7 @@ embedVideo.prototype = {
 			embed_thumb_url = eURL.protocol + '://' + eURL.host + thumbnail;
 			// js_log('set from mv_embed_path:'+embed_thumb_html);
 		} else {
-			embed_thumb_url = ( thumbnail.indexOf( 'http://' ) != - 1 ) ? thumbnail:mv_embed_path + thumbnail;
+			embed_thumb_url = ( thumbnail.indexOf( 'http://' ) != -1 ) ? thumbnail:mv_embed_path + thumbnail;
 		}
 		var embed_code_html = '&lt;script type=&quot;text/javascript&quot; ' +
 					'src=&quot;' + mv_embed_path + 'mv_embed.js&quot;&gt;&lt;/script&gt' +
@@ -1701,7 +1701,7 @@ embedVideo.prototype = {
 		var sel_id = ( this.pc != null ) ? this.pc.pp.id:this.id;
 		var pos = $j( '#' + sel_id + ' .options-btn' ).offset();
 		pos['top'] = pos['top'] + 24;
-		pos['left'] = pos['left'] - 124;
+		pos['left'] = pos['left'] -124;
 		// js_log('pos of options button: t:'+pos['top']+' l:'+ pos['left']);
 		$j( '#mv_vid_options_' + sel_id ).css( pos ).toggle();
 		return;
@@ -1932,7 +1932,7 @@ embedVideo.prototype = {
 			$j.each( _this.media_element.getSources(), function( index, source ) {
 				var dl_line = '<li>' + '<a style="color:white" href="' + source.getURI() + '"> '
 					+ source.getTitle() + '</a> ' + '</li>' + "\n";
-				if (	 source.getURI().indexOf( '?t=' ) !== - 1 ) {
+				if (	 source.getURI().indexOf( '?t=' ) !== -1 ) {
 					out += dl_line;
 				} else if ( this.getMIMEType() == "text/cmml" || this.getMIMEType() == "text/x-srt" ) {
 					dl_txt_list += dl_line;
@@ -2491,7 +2491,7 @@ mediaPlayers.prototype =
 		for ( var i in this.preference )
 			cookieVal += i + '=' + this.preference[i] + '&';
 			
-		cookieVal = cookieVal.substr( 0, cookieVal.length - 1 );
+		cookieVal = cookieVal.substr( 0, cookieVal.length -1 );
 		var week = 7 * 86400 * 1000;
 		$j.cookie( 'ogg_player_exp', cookieVal, { 'expires':week } );
 	}
@@ -2602,7 +2602,7 @@ var embedTypes = {
 			for ( var i = 0; i < navigator.mimeTypes.length; i++ ) {
 				var type = navigator.mimeTypes[i].type;
 				var semicolonPos = type.indexOf( ';' );
-				if ( semicolonPos > - 1 ) {
+				if ( semicolonPos > -1 ) {
 					type = type.substr( 0, semicolonPos );
 				}
 				// js_log('on type: '+type);

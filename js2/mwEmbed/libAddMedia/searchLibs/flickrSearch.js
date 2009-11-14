@@ -1,19 +1,19 @@
 /*
-* basic flickr search uses flickr jsonp api  
-* http://www.flickr.com/services/api/
-* 
-* uses the "example api_key" 519b66e3fd8d8080e27a64fe51101e2c
-* should update with a different "public" key sometime soon
-http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=519b66e3fd8d8080e27a64fe51101e2c
-*
-* we look for licenses from method=flickr.photos.licenses.getInfo
-* per http://commons.wikimedia.org/wiki/Special:Upload?uselang=fromflickr
-* we are interested in:  
-	(4) Attribution License 
-	(5) Attribution-ShareAlike License, 
-	(7) No known copyright restrictions,
-	(8) United States Government Work
-*/
+ * basic flickr search uses flickr jsonp api  
+ * http://www.flickr.com/services/api/
+ * 
+ * uses the "example api_key" 519b66e3fd8d8080e27a64fe51101e2c
+ * should update with a different "public" key sometime soon
+ * http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=519b66e3fd8d8080e27a64fe51101e2c
+ *
+ * we look for licenses from method=flickr.photos.licenses.getInfo
+ * per http://commons.wikimedia.org/wiki/Special:Upload?uselang=fromflickr
+ * we are interested in:  
+ *	(4) Attribution License 
+ *	(5) Attribution-ShareAlike License, 
+ *	(7) No known copyright restrictions,
+ *	(8) United States Government Work
+ */
 
 var flickrSearch = function ( iObj ) {
 	return this.init( iObj );

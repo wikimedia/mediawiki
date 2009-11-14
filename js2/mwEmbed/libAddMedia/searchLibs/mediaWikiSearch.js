@@ -312,7 +312,7 @@ mediaWikiSearch.prototype = {
 			options = { };
 		this.parent_getEmbedHTML( rObj, options );
 		// check for image output:
-		if ( rObj.mime.indexOf( 'image' ) != - 1 ) {
+		if ( rObj.mime.indexOf( 'image' ) != -1 ) {
 			return this.getImageEmbedHTML( rObj, options );
 		}
 		// for video and audio output: 		
@@ -322,11 +322,11 @@ mediaWikiSearch.prototype = {
 						' src="' + rObj.src + '" ' +
 						options.style_attr +
 						' poster="' +  rObj.poster + '" '
-			if ( rObj.mime.indexOf( 'application/ogg' ) != - 1 ) {
+			if ( rObj.mime.indexOf( 'application/ogg' ) != -1 ) {
 				return '<video ' + ahtml + '></video>';
 			}
 					
-			if ( rObj.mime.indexOf( 'audio/ogg' ) != - 1 ) {
+			if ( rObj.mime.indexOf( 'audio/ogg' ) != -1 ) {
 				return '<audio ' + ahtml + '></audio>';
 			}
 		}
