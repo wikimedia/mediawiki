@@ -1570,6 +1570,7 @@ Note that using the navigation links will reset this column.',
 'diff-multi'               => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown)',
 
 # Search results
+'search-summary'                   => '', # do not translate or duplicate this message to other languages
 'searchresults'                    => 'Search results',
 'searchresults-title'              => 'Search results for "$1"',
 'searchresulttext'                 => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',

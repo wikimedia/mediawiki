@@ -773,6 +773,7 @@ $wgMessageStructure = array(
 		'diff-multi',
 	),
 	'search' => array(
+		'search-summary',
 		'searchresults',
 		'searchresults-title',
 		'searchresulttext',
