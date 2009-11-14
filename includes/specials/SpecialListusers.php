@@ -193,11 +193,11 @@ class UsersPager extends AlphabeticPager {
 			Xml::option( wfMsg( 'group-all' ), '' );
 		foreach( $this->getAllGroups() as $group => $groupText )
 			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
-		$out .= Xml::closeElement( 'select' ) . '<br/>';
+		$out .= Xml::closeElement( 'select' ) . '<br />';
 		$out .= Xml::checkLabel( wfMsg('listusers-editsonly'), 'editsOnly', 'editsOnly', $this->editsOnly );
 		$out .= '&nbsp;';
 		$out .= Xml::checkLabel( wfMsg('listusers-creationsort'), 'creationSort', 'creationSort', $this->creationSort );
-		$out .= '<br/>';
+		$out .= '<br />';
 
 		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 

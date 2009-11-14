@@ -506,7 +506,7 @@ CONTROL;
 		if( !$next ) {
 			$nextlink = '';
 		} else {
-			$nextlink = '<br/>' . $sk->link(
+			$nextlink = '<br />' . $sk->link(
 				$this->mTitle,
 				wfMsgHtml( 'nextdiff' ),
 				array(
@@ -523,7 +523,7 @@ CONTROL;
 			);
 		}
 		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\">" .
-			$sk->revUserTools( $this->mNewRev ) . "<br/>" . $sk->revComment( $this->mNewRev ) . $nextlink . "</div>\n";
+			$sk->revUserTools( $this->mNewRev ) . "<br />" . $sk->revComment( $this->mNewRev ) . $nextlink . "</div>\n";
 
 		$wgOut->addHTML( $header );
 

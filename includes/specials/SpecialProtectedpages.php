@@ -142,10 +142,10 @@ class ProtectedPagesForm {
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
-			"<br/><span style='white-space: nowrap'>" .
+			"<br /><span style='white-space: nowrap'>" .
 			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
 			$this->getCascadeCheck( $cascadeOnly ) . "&nbsp;\n" .
-			"</span><br/><span style='white-space: nowrap'>" .
+			"</span><br /><span style='white-space: nowrap'>" .
 			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
 			"</span>" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
