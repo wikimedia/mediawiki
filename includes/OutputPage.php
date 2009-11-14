@@ -571,7 +571,7 @@ class OutputPage {
 	 * This function allows good tags like <sup> in the <h1> tag, but not bad tags like <script>.
 	 * This function automatically sets <title> to the same content as <h1> but with all tags removed.
 	 * Bad tags that were escaped in <h1> will still be escaped in <title>, and good tags like <i> will be dropped entirely.
-         */
+	 */
 	public function setPageTitle( $name ) {
 		global $wgContLang;
 		$name = $wgContLang->convert( $name, true );
