@@ -80,7 +80,7 @@ class MovePageForm {
 		$this->moveSubpages = $wgRequest->getBool( 'wpMovesubpages', false );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
 		$this->moveOverShared = $wgRequest->getBool( 'wpMoveOverSharedFile', false );
-		$this->watch = $wgRequest->getCheck( 'wpWatch' );
+		$this->watch = $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn();
 	}
 
 	/**
@@ -290,15 +290,20 @@ class MovePageForm {
 			);
 		}
 
-		$watchChecked = $this->watch || $wgUser->getBoolOption( 'watchmoves' ) 
-			|| $this->oldTitle->userIsWatching();
-		$wgOut->addHTML( "
+		$watchChecked = $wgUser->isLoggedIn() && ($this->watch || $wgUser->getBoolOption( 'watchmoves' ) 
+			|| $this->oldTitle->userIsWatching());
+		# Don't allow watching if user is not logged in
+		if( $wgUser->isLoggedIn() ) {
+			$wgOut->addHTML( "
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
 					Xml::checkLabel( wfMsg( 'move-watch' ), 'wpWatch', 'watch', $watchChecked ) .
 				"</td>
-			</tr>
+			</tr>");
+		}
+
+		$wgOut->addHTML( "	
 				{$confirm}
 			<tr>
 				<td>&nbsp;</td>
@@ -531,7 +536,7 @@ class MovePageForm {
 		}
 
 		# Deal with watches (we don't watch subpages)
-		if( $this->watch ) {
+		if( $this->watch && $wgUser->isLoggedIn() ) {
 			$wgUser->addWatch( $ot );
 			$wgUser->addWatch( $nt );
 		} else {

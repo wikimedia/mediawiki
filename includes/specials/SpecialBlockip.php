@@ -66,7 +66,7 @@ class IPBlockForm {
 		if( self::canBlockEmail( $wgUser ) ) {
 			$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
 		}
-		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
+		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false ) && $wgUser->isLoggedIn();
 		# Re-check user's rights to hide names, very serious, defaults to null
 		if( $wgUser->isAllowed( 'hideuser' ) ) {
 			$this->BlockHideName = $wgRequest->getBool( 'wpHideName', null );
@@ -295,8 +295,9 @@ class IPBlockForm {
 			);
 		}
 
-		# Watchlist their user page?
-		$wgOut->addHTML("
+		# Watchlist their user page? (Only if user is logged in)
+		if( $wgUser->isLoggedIn() ) {
+			$wgOut->addHTML("
 			<tr id='wpEnableWatchUser'>
 				<td>&nbsp;</td>
 				<td class='mw-input'>" .
@@ -305,7 +306,8 @@ class IPBlockForm {
 						array( 'tabindex' => '11' ) ) . "
 				</td>
 			</tr>"
-		);
+			);
+		}
 
 		# Can we explicitly disallow the use of user_talk?
 		global $wgBlockAllowsUTEdit;

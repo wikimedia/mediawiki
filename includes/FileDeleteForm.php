@@ -112,7 +112,7 @@ class FileDeleteForm {
 				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason, &$error)) ) {
 					if( $article->doDeleteArticle( $reason, $suppress, $id ) ) {
 						global $wgRequest;
-						if( $wgRequest->getCheck( 'wpWatch' ) ) {
+						if( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
 							$article->doWatch();
 						} elseif( $title->userIsWatching() ) {
 							$article->doUnwatch();
@@ -173,14 +173,18 @@ class FileDeleteForm {
 						array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '2', 'id' => 'wpReason' ) ) .
 				"</td>
 			</tr>
-			{$suppress}
+			{$suppress}";
+		if( $wgUser->isLoggedIn() ) {	
+			$form .= "
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
 					Xml::checkLabel( wfMsg( 'watchthis' ),
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
-			</tr>
+			</tr>";
+		}
+		$form .= "
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .

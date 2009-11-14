@@ -633,6 +633,8 @@ Hopefully we will remove this configuration var soon)
   id "mw-sp-contributions-explain"
 * (bug 19159) Fixed \overleftrightarrow in texvc
 * (bug 19391) Fix caching for Recent ChangesFeed.
+* (bug 21455) Fixed "Watch this page" checkbox appearing on some special pages
+  even to non-logged in users
 
 == API changes in 1.16 ==
 
