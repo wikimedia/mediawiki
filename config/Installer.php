@@ -1514,7 +1514,7 @@ if( count( $errs ) ) {
 		<br /><br />
 		MediaWiki can also detect and support eAccelerator, Turck MMCache, APC, and XCache, but
 		these should not be used if the wiki will be running on multiple application servers.
-		<br/><br/>
+		<br /><br />
 		DBA (Berkeley-style DB) is generally slower than using no cache at all, and is only 
 		recommended for testing.
 	</p>
@@ -1660,9 +1660,9 @@ if( count( $errs ) ) {
 	</div>
 	<p class="config-desc">
 		This option is ignored on upgrade, the same character set will be kept. 
-		<br/><br/>
+		<br /><br />
 		<b>WARNING:</b> If you use <b>backwards-compatible UTF-8</b> on MySQL 4.1+, and subsequently back up the database with <tt>mysqldump</tt>, it may destroy all non-ASCII characters, irreversibly corrupting your backups!.
-		<br/><br/>
+		<br /><br />
 		In <b>binary mode</b>, MediaWiki stores UTF-8 text to the database in binary fields. This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters. In <b>UTF-8 mode</b>, MySQL will know what character set your data is in, and can present and convert it appropriately, but it won't let you store characters above the <a target="_blank" href="http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes">Basic Multilingual Plane</a>.
 	</p>
 	</fieldset>

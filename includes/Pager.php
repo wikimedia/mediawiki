@@ -909,8 +909,8 @@ abstract class TablePager extends IndexPager {
 		$disabledTexts = array();
 		foreach ( $labels as $type => $label ) {
 			$msgLabel = wfMsgHtml( $label );
-			$linkTexts[$type] = "<img src=\"$path/{$images[$type]}\" alt=\"$msgLabel\"/><br/>$msgLabel";
-			$disabledTexts[$type] = "<img src=\"$path/{$disabledImages[$type]}\" alt=\"$msgLabel\"/><br/>$msgLabel";
+			$linkTexts[$type] = "<img src=\"$path/{$images[$type]}\" alt=\"$msgLabel\"/><br />$msgLabel";
+			$disabledTexts[$type] = "<img src=\"$path/{$disabledImages[$type]}\" alt=\"$msgLabel\"/><br />$msgLabel";
 		}
 		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
 

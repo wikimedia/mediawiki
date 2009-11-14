@@ -457,8 +457,8 @@ Per piasè, abilita i cookies e pröa anmò a andà dent cunt el tò nom e la pa
 'noname'                  => "Vüü avii mía specificaa un nomm d'üsüari valévul.",
 'loginsuccesstitle'       => "La cunessiun l'è scumenzada cun sücess.",
 'loginsuccess'            => 'Al é connectaa a {{SITENAME}} compagn "$1".',
-'nosuchuser'              => "A gh'è nissün druvat cun 'l nom ''$1''. <br>
-I suranomm i henn sensibil a i leter majùscul.<br>
+'nosuchuser'              => "A gh'è nissün druvat cun 'l nom ''$1''. <br />
+I suranomm i henn sensibil a i leter majùscul.<br />
 Cuntrola 'l nom che t'hee metüü denter o [[Special:UserLogin/signup|crea un cünt növ]].",
 'nosuchusershort'         => "Ghe n'è mia d'ütent cun el nom de \"<nowiki>\$1</nowiki>\". Ch'el cuntrola se l'ha scrivüü giüst.",
 'nouserspecified'         => "Te gh'heet da specificà un nom del druvatt.",

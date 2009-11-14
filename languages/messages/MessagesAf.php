@@ -1429,7 +1429,7 @@ die lêer is $2.',
 'fileexists'                 => "'n Lêer met die naam bestaan reeds, kyk na '''<tt>[[:$1]]</tt>''' as u nie seker is dat u dit wil wysig nie.
 [[$1|thumb]]",
 'file-exists-duplicate'      => "Die lêer is 'n duplikaat van die volgende {{PLURAL:$1|lêer|lêers}}:",
-'file-deleted-duplicate'     => "'n Lêer identies aan dié een ([[$1]]) was al voorheen geskrap. <br>
+'file-deleted-duplicate'     => "'n Lêer identies aan dié een ([[$1]]) was al voorheen geskrap. <br />
 Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om dit weer op te laai.",
 'successfulupload'           => 'Laai suksesvol',
 'uploadwarning'              => 'Laaiwaarskuwing',

@@ -874,7 +874,7 @@ class ImageHistoryList {
 			$canHide = $wgUser->isAllowed( 'deleterevision' );
 			if( $canHide || ($wgUser->isAllowed('deletedhistory') && $file->getVisibility()) ) {
 				if( $wgUser->isAllowed('delete') ) {
-					$row .= '<br/>';
+					$row .= '<br />';
 				}
 				// If file is top revision or locked from this user, don't link
 				if( $iscur || !$file->userCan(File::DELETED_RESTRICTED) ) {

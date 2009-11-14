@@ -1456,7 +1456,7 @@ class EditPage {
 
 			// No idea where this is closed.
 			$editsummary = Xml::openElement( 'div', array( 'class' => 'editOptions' ) )
-							. $editsummary . '<br/>';
+							. $editsummary . '<br />';
 
 			$summarypreview = '';
 			if ( $summarytext && ( $this->preview || $this->diff ) ) {

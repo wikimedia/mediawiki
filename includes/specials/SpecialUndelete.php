@@ -745,7 +745,7 @@ class UndeleteForm {
 				return;
 			} else {
 				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
-				$wgOut->addHTML( '<br/>' );
+				$wgOut->addHTML( '<br />' );
 				// and we are allowed to see...
 			}
 		}
@@ -932,10 +932,10 @@ class UndeleteForm {
 				) .
 			'</strong></div>' .
 			'<div id="mw-diff-'.$prefix.'title2">' .
-				$sk->revUserTools( $rev ) . '<br/>' .
+				$sk->revUserTools( $rev ) . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-'.$prefix.'title3">' .
-				$sk->revComment( $rev ) . $del . '<br/>' .
+				$sk->revComment( $rev ) . $del . '<br />' .
 			'</div>';
 	}
 
