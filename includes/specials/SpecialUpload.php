@@ -70,7 +70,7 @@ class SpecialUpload extends SpecialPage {
 
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' )
 			|| $request->getCheck( 'wpUploadIgnoreWarning' );
-		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
+		$this->mWatchthis         = $request->getBool( 'wpWatchthis' ) && $wgUser->isLoggedIn();
 		$this->mCopyrightStatus   = $request->getText( 'wpUploadCopyStatus' );
 		$this->mCopyrightSource   = $request->getText( 'wpUploadSource' );
 
@@ -857,17 +857,19 @@ class UploadForm extends HTMLForm {
 	 * @return array Descriptor array
 	 */
 	protected function getOptionsSection() {
-		global $wgOut;
+		global $wgUser, $wgOut;
 
-		$descriptor = array(
-			'Watchthis' => array(
-				'type' => 'check',
-				'id' => 'wpWatchthis',
-				'label-message' => 'watchthisupload',
-				'section' => 'options',
-			)
-		);
-		if ( !$this->mHideIgnoreWarning ) {
+		if( $wgUser->isLoggedIn() ) {
+			$descriptor = array(
+				'Watchthis' => array(
+					'type' => 'check',
+					'id' => 'wpWatchthis',
+					'label-message' => 'watchthisupload',
+					'section' => 'options',
+				)
+			);
+		}
+		if( !$this->mHideIgnoreWarning ) {
 			$descriptor['IgnoreWarning'] = array(
 				'type' => 'check',
 				'id' => 'wpIgnoreWarning',

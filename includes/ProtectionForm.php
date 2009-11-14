@@ -295,7 +295,7 @@ class ProtectionForm {
 			return false;
 		}
 
-		if( $wgRequest->getCheck( 'mwProtectWatch' ) ) {
+		if( $wgRequest->getCheck( 'mwProtectWatch' ) && $wgUser->isLoggedIn() ) {
 			$this->mArticle->doWatch();
 		} elseif( $this->mTitle->userIsWatching() ) {
 			$this->mArticle->doUnwatch();
@@ -451,7 +451,10 @@ class ProtectionForm {
 						Xml::input( 'mwProtect-reason', 60, $this->mReason, array( 'type' => 'text',
 							'id' => 'mwProtect-reason', 'maxlength' => 255 ) ) .
 					"</td>
-				</tr>
+				</tr>";
+			# Disallow watching is user is not logged in
+			if( $wgUser->isLoggedIn() ) {
+				$out .= "
 				<tr>
 					<td></td>
 					<td class='mw-input'>" .
@@ -459,7 +462,9 @@ class ProtectionForm {
 							'mwProtectWatch', 'mwProtectWatch',
 							$this->mTitle->userIsWatching() || $wgUser->getOption( 'watchdefault' ) ) .
 					"</td>
-				</tr>
+				</tr>";
+			}
+			$out .= "
 				<tr>
 					<td></td>
 					<td class='mw-submit'>" .

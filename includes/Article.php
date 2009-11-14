@@ -2587,7 +2587,7 @@ class Article {
 
 		if( $confirm ) {
 			$this->doDelete( $reason, $suppress );
-			if( $wgRequest->getCheck( 'wpWatch' ) ) {
+			if( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
 				$this->doWatch();
 			} elseif( $this->mTitle->userIsWatching() ) {
 				$this->doUnwatch();
@@ -2751,14 +2751,19 @@ class Article {
 					'autofocus'
 				) ) .
 				"</td>
-			</tr>
+			</tr>";
+		# Dissalow watching is user is not logged in
+		if( $wgUser->isLoggedIn() ) {
+			$form .= "
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
 					Xml::checkLabel( wfMsg( 'watchthis' ),
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
-			</tr>
+			</tr>";
+		}
+		$form .= "
 			$suppress
 			<tr>
 				<td></td>
