@@ -656,6 +656,7 @@ $2',
 'lineno'                  => '第$1行:',
 'compareselectedversions' => '比较拣正𠮶版本',
 'editundo'                => '还原',
+'diff-multi'              => '（$1回半中间𠮶改动伓会显示。）',
 
 # Search results
 'searchresults'         => '寻到𠮶结果',

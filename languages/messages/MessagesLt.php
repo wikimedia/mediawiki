@@ -1046,6 +1046,7 @@ Prašome patikrinti sąrašus.',
 'compareselectedversions'  => 'Palyginti pasirinktas versijas',
 'showhideselectedversions' => 'Rodyti/slėpti pasirinktas versijas',
 'editundo'                 => 'atšaukti',
+'diff-multi'               => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
 
 # Search results
 'searchresults'                    => 'Paieškos rezultatai',

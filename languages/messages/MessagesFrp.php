@@ -1131,11 +1131,11 @@ Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cach
 'revdelete-hide-image'        => 'Cachiér lo contegnu du fichiér',
 'revdelete-unsuppress'        => 'Enlevar les rèstriccions sur les vèrsions refêtes',
 'revdelete-log'               => 'Rêson de la suprèssion :',
-'revdelete-submit'            => 'Aplicar a la vèrsion chouèsia',
+'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la vèrsion chouèsia|les vèrsions chouèsies}}',
 'revdelete-logentry'          => 'at changiê la visibilitât de la vèrsion de [[$1]]',
 'logdelete-logentry'          => 'at changiê la visibilitât de l’entrâ de [[$1]]',
-'revdelete-success'           => "'''Visibilitât de la vèrsion dèfenia avouéc reusséta.'''",
-'revdelete-failure'           => "'''La visibilitât de la vèrsion at pas possu étre dèfenia :'''
+'revdelete-success'           => "'''Visibilitât de la vèrsion betâ a jorn avouéc reusséta.'''",
+'revdelete-failure'           => "'''La visibilitât de la vèrsion at pas possu étre betâ a jorn :'''
 $1",
 'logdelete-success'           => "'''Visibilitât du jornal dèfenia avouéc reusséta.'''",
 'logdelete-failure'           => "'''La visibilitât du jornal at pas possu étre dèfenia :'''
@@ -1214,6 +1214,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'compareselectedversions'  => 'Comparar les vèrsions chouèsies',
 'showhideselectedversions' => 'Fâre vêre / cachiér les vèrsions chouèsies',
 'editundo'                 => 'dèfâre',
+'diff-multi'               => '({{PLURAL:$1|Yona vèrsion entèrmèdièra cachiê|$1 vèrsions entèrmèdières cachiês}}.)',
 
 # Search results
 'searchresults'                    => 'Rèsultats de la rechèrche',
@@ -2183,7 +2184,7 @@ Retôrn et assistance :
 'exblank'                => 'la pâge ére voueda',
 'delete-confirm'         => 'Suprimar « $1 »',
 'delete-legend'          => 'Suprimar',
-'historywarning'         => 'Atencion : la pâge que vos éte prèst a suprimar at un historico :',
+'historywarning'         => "'''Atencion :''' la pâge que vos éte prèst a suprimar at un historico que contint $1 {{PLURAL:$1|vèrsion|vèrsions}} :",
 'confirmdeletetext'      => 'Vos éte prèst a suprimar una pâge ou ben un fichiér et pués tot son historico.
 Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'actioncomplete'         => 'Accion fêta',
@@ -2901,7 +2902,8 @@ $1',
 'nextdiff'     => 'Changement aprés →',
 
 # Media information
-'mediawarning'         => "'''Atencion :''' ceti fichiér porrêt contegnir de code mâlvelyent, voutron sistèmo porrêt étre betâ en dangiér pendent son ègzécucion.<hr />",
+'mediawarning'         => "'''Atencion :''' ceti tipo de fichiér pôt contegnir de code mâlvelyent.
+Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.<hr />",
 'imagemaxsize'         => "Format lo ples grant de les émâges :<br />''(por les pâges de dèscripcion d’émâges)''",
 'thumbsize'            => 'Talye de la figura :',
 'widthheightpage'      => '$1 × $2, $3 pâge{{PLURAL:$3||s}}',

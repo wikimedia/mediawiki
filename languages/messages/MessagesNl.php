@@ -1151,8 +1151,8 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'revdelete-submit'            => 'Toepassen op de geselecteerde {{PLURAL:$1|bewerking|bewerkingen}}',
 'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
-'revdelete-success'           => "'''Zichtbaarheid van de wijziging succesvol ingesteld.'''",
-'revdelete-failure'           => "'''De zichtbaarheid voor de versie kon niet ingesteld worden:'''
+'revdelete-success'           => "'''De zichtbaarheid van de wijziging is bijgewerkt.'''",
+'revdelete-failure'           => "'''De zichtbaarheid van de wijziging kon niet bijgewerkt worden:'''
 $1",
 'logdelete-success'           => "'''Zichtbaarheid van de gebeurtenis succesvol ingesteld.'''",
 'logdelete-failure'           => "'''De zichtbaarheid van de logboekregel kon niet ingesteld worden:'''
@@ -1231,6 +1231,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'compareselectedversions'  => 'Aangevinkte versies vergelijken',
 'showhideselectedversions' => 'Geselecteerde versies weergeven/verbergen',
 'editundo'                 => 'ongedaan maken',
+'diff-multi'               => '({{PLURAL:$1|Eén tussenliggende versie wordt|$1 tussenliggende versies worden}} niet weergegeven)',
 
 # Search results
 'searchresults'                    => 'Zoekresultaten',

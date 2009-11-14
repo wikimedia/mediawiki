@@ -929,8 +929,8 @@ Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'revdelete-submit'            => 'Na {{PLURAL:$1|wubranu wersiju|wubranej wersiji|wubrane wersije|wubrane wersije}} nałožyś',
 'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
 'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
-'revdelete-success'           => "'''Wiźobnosć wersije jo se z wuspěchom změniła.'''",
-'revdelete-failure'           => "'''Wersijowa widobnosć njedajo se nastajiś:'''
+'revdelete-success'           => "'''Widobnosć wersije jo se z wuspěchom zaktualizěrowała.'''",
+'revdelete-failure'           => "'''Wersijowa widobnosć njedajo se aktualizěrowaś:'''
 $1",
 'logdelete-success'           => "'''Wiźobnosć log-lisćiny z wuspěchom změnjona.'''",
 'logdelete-failure'           => "'''Protokolowa wiźobnosć njejo se dała nastajiś:'''
@@ -1006,6 +1006,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'compareselectedversions'  => 'Wuzwólonej wersiji pśirownaś',
 'showhideselectedversions' => 'Wubrane wersije pokazaś/schowaś',
 'editundo'                 => 'wótwrośiś',
+'diff-multi'               => '(Pśirownanje wersijow(u) wopśimjejo teke {{PLURAL:$1|mjaz tutyma lažecu wersiju|$1 mjaz tutyma lažecej wersiji|$1 mjaz tutyma lažece wersije}}.)',
 
 # Search results
 'searchresults'                    => 'Wuslědki pytanja',

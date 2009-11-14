@@ -826,6 +826,7 @@ $2',
 'lineno'                  => 'Радок $1:',
 'compareselectedversions' => 'Параўнаць азначаныя версіі',
 'editundo'                => 'адкат',
+'diff-multi'              => '(Не паказан{{PLURAL:$1|а адна прамежкавая версія|ы $1 прамежкавых версій}}.)',
 
 # Search results
 'searchresults'                    => 'Вынікі пошуку',

@@ -891,6 +891,7 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 'lineno'                  => 'Rëdd $1 :',
 'compareselectedversions' => 'Méngale sumb yi nga fal',
 'editundo'                => 'neenal',
+'diff-multi'              => '({{PLURAL:$1|am sumb mu diggu feeñul|$1 sumb yu diggu feeñuñu}}.)',
 
 # Search results
 'searchresults'                    => 'Ngértey ceet gi',

@@ -753,6 +753,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'lineno'                  => 'Lińja $1:',
 'compareselectedversions' => 'porůwnej wybrane wersyje',
 'editundo'                => 'cofej',
+'diff-multi'              => '(Ńy pokozano {{PLURAL:$1|jydnyj wersyji postředńij|$1 wersyji postředńich}}.)',
 
 # Search results
 'searchresults'                    => 'Wyńiki šnupańo',

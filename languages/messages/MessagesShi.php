@@ -15,16 +15,18 @@ $fallback = 'ar';
 
 $messages = array(
 # User preference toggles
-'tog-underline'      => 'krrj du izdayn:',
-'tog-justify'        => 'skr lɛrd n-stor ɣ togzimin aygiddi',
-'tog-hidepatrolled'  => 'Hide patrolled edits in recent changes',
-'tog-numberheadings' => 'nmra n nsmiat wahdot',
-'tog-showtoolbar'    => 'sbaynd tizikrt n tbddil(JavaScript)',
-'tog-editwidth'      => 'tasnduqt n tbddil arttamz sfha kollot',
-'tog-watchcreations' => 'zaydn tiwriqin lli origh i tochwafin-ino',
-'tog-watchdefault'   => 'zaydn tiwriqin lli bdlgh i tochwafin-ino',
-'tog-watchmoves'     => 'zaydn tiwriqin lli smattigh i tochwafin-ino',
-'tog-watchdeletion'  => 'zaydn tiwriqin lli msḥgh i tochwafin-ino',
+'tog-underline'        => 'krrj du izdayn:',
+'tog-justify'          => 'skr lɛrd n-stor ɣ togzimin aygiddi',
+'tog-hidepatrolled'    => 'Hide patrolled edits in recent changes',
+'tog-numberheadings'   => 'nmra n nsmiat wahdot',
+'tog-showtoolbar'      => 'sbaynd tizikrt n tbddil(JavaScript)',
+'tog-rememberpassword' => 'Sektid akccum inu ɣu-amsuddas ad',
+'tog-editwidth'        => 'Simɣur tanaka n-umẓṛag ard tamu amiẓar',
+'tog-watchcreations'   => 'Zaydn tasniwin lli skrɣ i umuɣ n tilli ssuġiɣ.',
+'tog-watchdefault'     => 'Zaydn tasniwin lli tżrigɣ i umuɣ n tilli tsaggaɣ',
+'tog-watchmoves'       => 'Zayd tisniwin lli smattayɣ i tilli tsggaɣ.',
+'tog-watchdeletion'    => 'Zaydn tasniwin lli kkesɣ i tilli tsaggaɣ',
+'tog-minordefault'     => 'Rcm kullu iẓṛign li fssusni sɣiklli gan.',
 
 'underline-always' => 'dima',
 'underline-never'  => 'ḥtta manak',
@@ -192,9 +194,13 @@ $messages = array(
 'privacy'              => 'Tasrtit n imzlayn',
 'privacypage'          => 'Project:Tasirtit ni imzlayn',
 
-'badaccess'        => 'Tar ajjatn',
+'badaccess'        => 'Anezri (uras tufit)',
 'badaccess-group0' => 'Ur ak ittuyskar at sbadelt ma trit',
-'badaccess-groups' => 'Mara tskrt ittuyzlay ɣir imsxdamn ɣ tamsmunt{{PLURAL:$2|tamsmunt|yat ɣ timsmuna}}: $1.',
+'badaccess-groups' => 'Ɣaylli trit at tskrt ɣid ittuyzlay ɣir imsxdamn ɣ tamsmunt{{PLURAL:$2|tamsmunt|yat ɣ timsmuna}}: $1.',
+
+'versionrequired'     => 'Txxṣṣa $1 n MediaWiki',
+'versionrequiredtext' => 'Ixxṣṣa w-ayyaw $1 n MediaWiki bac at tskrert tasna yad.
+Ẓr [[Special:Version|ayyaw tasna]].',
 
 'ok'                      => 'Waxxa',
 'pagetitle'               => '(MediaWiki)$1 - {{SITENAME}}',
@@ -211,8 +217,11 @@ $messages = array(
 'editlink'                => 'Ẓreg (bddel)',
 'viewsourcelink'          => 'Mel aɣbalu',
 'editsectionhint'         => 'Ẓreg ayyaw: $1',
-'showtoc'                 => 'sbaynd',
-'hidetoc'                 => 'ḥbou',
+'toc'                     => 'Mayllan',
+'showtoc'                 => 'Mel',
+'hidetoc'                 => 'ḥbu',
+'thisisdeleted'           => 'Mel niɣd rard $1?',
+'viewdeleted'             => 'Mel $1?',
 'site-rss-feed'           => "$1 lqm n' RSS",
 'site-atom-feed'          => "$1 lqm n' atom",
 'page-rss-feed'           => '"$1" tlqim RSS',
@@ -281,6 +290,9 @@ iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br 
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 '''ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!'''",
 
+# History pages
+'histlast' => 'Amggaru',
+
 # Diffs
 'editundo'   => 'Urri',
 'diff-multi' => '({{PLURAL:$1|Gr yan usurri|$1 gr isuritn}} ura tuyfsar)',
@@ -335,6 +347,9 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'localtime'     => 'loqt n ɣilli ɣtllit',
 'servertime'    => 'loqt n serveur',
 'yourlanguage'  => 'tutlayt:',
+
+# Recent changes
+'diff' => 'Gar',
 
 # Upload
 'upload' => 'sΥlid afaylu',
@@ -428,10 +443,19 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'tooltip-t-recentchangeslinked'  => 'Imbddln imaynutn n tisnatin li ittylkamn s tasna yad',
 'tooltip-t-upload'               => 'sɣlid ifaylutn',
 'tooltip-t-specialpages'         => 'kolchi tiwriqin tesbtarin',
+'tooltip-ca-nstab-image'         => 'Źr tasna nu-sdaw',
+'tooltip-ca-nstab-mediawiki'     => 'Żr tabrat nu-nagraw.',
+'tooltip-ca-nstab-template'      => 'Żr tamudemt',
+'tooltip-ca-nstab-help'          => 'Źr tasna nu-saws',
+'tooltip-ca-nstab-category'      => 'Źr tasna nu-stay',
+'tooltip-minoredit'              => 'Kerj ażřigad mas ifssus',
 
 'exif-gaincontrol-0' => 'walo',
 
 'exif-subjectdistancerange-0' => 'orityawssan',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'kullu',
 
 # Multipage image navigation
 'imgmultigo' => 'ballak !',

@@ -742,6 +742,7 @@ $1",
 'compareselectedversions'  => 'छानिएका संस्करणहरू दाँज्नुहोस्',
 'showhideselectedversions' => 'छानिएका पुनरावलोकनहरु देखाउने/लुकाउने',
 'editundo'                 => 'रद्द गर्ने',
+'diff-multi'               => '({{PLURAL:$1|एक मध्य पुनरावलोकन|$1 मध्य पुनरावलोकनहरू}} नदेखाइएको)',
 
 # Search results
 'searchresults'                    => 'खोज नतिजाहरू',

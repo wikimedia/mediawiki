@@ -1129,8 +1129,8 @@ Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt
 'revdelete-submit'            => 'Auf ausgewählte {{PLURAL:$1|Version|Versionen}} anwenden',
 'revdelete-logentry'          => 'hat die Versionsansicht für „[[$1]]“ geändert',
 'logdelete-logentry'          => 'hat die Sichtbarkeit für „[[$1]]“ geändert',
-'revdelete-success'           => "'''Versionsansicht erfolgreich geändert.'''",
-'revdelete-failure'           => "'''Versionssichtbarkeit kann nicht geändert werden:'''
+'revdelete-success'           => "'''Die Versionsansicht wurde aktualisiert.'''",
+'revdelete-failure'           => "'''Die Versionssichtbarkeit konnte nicht aktualisiert werden:'''
 $1",
 'logdelete-success'           => "'''Logbuchansicht erfolgreich geändert.'''",
 'logdelete-failure'           => "'''Logbuchsichtbarkeit kann nicht geändert werden:'''

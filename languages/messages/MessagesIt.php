@@ -1011,8 +1011,8 @@ Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti
 'revdelete-submit'            => 'Applica {{PLURAL:$1|alla revisione selezionata|alle revisioni selezionate}}',
 'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
-'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
-'revdelete-failure'           => "'''La visibilità della versione non può essere impostata:'''
+'revdelete-success'           => "'''Visibilità della revisione aggiornata correttamente.'''",
+'revdelete-failure'           => "'''La visibilità della versione non può essere aggiornata:'''
 $1",
 'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
 'logdelete-failure'           => "'''La visibilità dell'evento non può essere impostata:'''

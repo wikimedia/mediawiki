@@ -1009,6 +1009,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'compareselectedversions'  => 'Ünnerscheed twischen den utwählten Versionen wiesen',
 'showhideselectedversions' => 'Utwählt Versionen wiesen/versteken',
 'editundo'                 => 'rutnehmen',
+'diff-multi'               => '(Twischen de beiden Versionen {{PLURAL:$1|liggt noch ene Twischenversion|doot noch $1 Twischenversionen liggen}}.)',
 
 # Search results
 'searchresults'                    => 'Söökresultaten',

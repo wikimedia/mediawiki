@@ -1084,6 +1084,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'compareselectedversions'  => 'Sammenlign valgte versjoner',
 'showhideselectedversions' => 'Vis/skjul valgte versjoner',
 'editundo'                 => 'omgjør',
+'diff-multi'               => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} ikke vist.)',
 
 # Search results
 'searchresults'                    => 'Søkeresultater',

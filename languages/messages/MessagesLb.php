@@ -937,8 +937,8 @@ Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläs
 'revdelete-submit'            => 'Op déi gewielte {{PLURAL:$1|Versioun|Versiounen}} uwenden',
 'revdelete-logentry'          => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
 'logdelete-logentry'          => "huet d'Sichtbarkeet vun [[$1]] geännert",
-'revdelete-success'           => "'''Sichtbarkeet vun de Versioune geännert.''''",
-'revdelete-failure'           => "'''Sichtbarkeet vun der Versioun konnt net agestallt ginn:'''
+'revdelete-success'           => "'''Sichtbarkeet vun de Versioune gouf aktualiséiert.''''",
+'revdelete-failure'           => "'''Sichtbarkeet vun der Versioun konnt net aktualiséiert ginn:'''
 $1",
 'logdelete-success'           => "'''Sichbarkeet vum Logbuch geännert.'''",
 'logdelete-failure'           => "'''D'Sichtbarkeet vum Logbuch konnt net agestllt ginn:'''
@@ -1019,6 +1019,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'compareselectedversions'  => 'Ausgewielte Versioune vergläichen',
 'showhideselectedversions' => 'Erausgesichte Versioune weisen/verstoppen',
 'editundo'                 => 'zréck',
+'diff-multi'               => '({{PLURAL:$1|Eng Tëscheversioun gëtt net|$1 Tëscheversioune ginn net}} gewisen)',
 
 # Search results
 'searchresults'                    => 'Resultat vun der Sich',

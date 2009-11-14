@@ -935,6 +935,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'compareselectedversions'  => 'Bandingkeun vérsi nu dipilih',
 'showhideselectedversions' => 'Témbongkeun/sumputkeun révisi nu dipilih',
 'editundo'                 => 'bolaykeun',
+'diff-multi'               => '({{PLURAL:$1|Hiji|$1}} révisi antara teu ditembongkeun.)',
 
 # Search results
 'searchresults'                    => 'Hasil néangan',

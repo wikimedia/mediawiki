@@ -1177,6 +1177,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'compareselectedversions'  => 'Jämför angivna versioner',
 'showhideselectedversions' => 'Visa/dölj valda versioner',
 'editundo'                 => 'gör ogjord',
+'diff-multi'               => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
 
 # Search results
 'searchresults'                    => 'Sökresultat',

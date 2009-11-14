@@ -973,6 +973,7 @@ $1",
 'compareselectedversions'  => 'არჩეული ვერსიების შედარება',
 'showhideselectedversions' => 'ჩვენება/დამალვა არჩეული ვერსიებისა',
 'editundo'                 => 'გაუქმება',
+'diff-multi'               => '({{PLURAL:$1|ერთი|$1}} შუა ვერსია არ არის ნაჩვენები.)',
 
 # Search results
 'searchresults'                    => 'ძიების შედეგები',

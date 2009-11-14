@@ -3042,6 +3042,7 @@ See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography 
 'exif-subjectdistance-value' => '$1 is a distance measured in metres. The value can, and usually does, include decimal places.',
 
 'exif-meteringmode-0'   => '{{Identical|Unknown}}',
+'exif-meteringmode-1'   => '{{Identical|Average}}',
 'exif-meteringmode-255' => '{{Identical|Other}}',
 
 'exif-lightsource-0'  => '{{Identical|Unknown}}',

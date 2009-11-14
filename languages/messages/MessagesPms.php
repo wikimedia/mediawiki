@@ -845,8 +845,8 @@ J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé �
 'revdelete-submit'            => 'Bùtejlo a {{PLURAL:$1|la version|le version}} selessionà',
 'revdelete-logentry'          => 'visibilità dla revision cangià për [[$1]]',
 'logdelete-logentry'          => "a l'ha cangiaje visibilità a l'event [[$1]]",
-'revdelete-success'           => "'''Visibilità dla revision butà coma ch'as dev.'''",
-'revdelete-failure'           => "'''La visibilità dla vërsion a peul pa esse ampostà:'''
+'revdelete-success'           => "'''Visibilità dla revision modificà com ch'as dev.'''",
+'revdelete-failure'           => "'''La visibilità dla vërsion a peul pa esse modificà:'''
 $1",
 'logdelete-success'           => "'''Visibilità dla revision butà coma ch'as dev.'''",
 'logdelete-failure'           => "'''La visibilità dël registr a peul pa esse ampostà:'''

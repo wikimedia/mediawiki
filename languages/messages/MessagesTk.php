@@ -933,6 +933,7 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'compareselectedversions'  => 'Saýlanan wersiýalary deňeşdir',
 'showhideselectedversions' => 'Saýlanan wersiýalary görkez/gizle',
 'editundo'                 => 'yzyna al',
+'diff-multi'               => '(Görkezilmeýän {{PLURAL:$1|$1 sany aralyk wersiýa|$1 sany aralyk wersiýa}} bar.)',
 
 # Search results
 'searchresults'                    => 'Gözleg netijeleri',

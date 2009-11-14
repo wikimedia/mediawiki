@@ -1058,8 +1058,8 @@ Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilote
 'revdelete-submit'            => 'Toteuta {{PLURAL:$1|valittuun versioon|valittuihin versioihin}}',
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
 'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
-'revdelete-success'           => 'Version näkyvyys asetettu.',
-'revdelete-failure'           => "'''Version näkyvyyttä ei voitu asettaa:'''
+'revdelete-success'           => "'''Version näkyvyys päivitetty.'''",
+'revdelete-failure'           => "'''Version näkyvyyttä ei voitu päivittää:'''
 $1",
 'logdelete-success'           => 'Tapahtuman näkyvyys asetettu.',
 'logdelete-failure'           => "'''Lokin näkyvyyttä ei voitu asettaa:'''

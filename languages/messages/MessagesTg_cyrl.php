@@ -777,6 +777,7 @@ $messages = array(
 'lineno'                  => 'Сатри $1:',
 'compareselectedversions' => 'Нусхаҳои интихобшударо муқоиса кунед',
 'editundo'                => 'ботил',
+'diff-multi'              => '({{PLURAL:$1|вироиши миёнӣ|$1 вироишоти миёнӣ}} нишон дода нашудааст.)',
 
 # Search results
 'searchresults'                    => 'Натиҷаҳои ҷустуҷӯ',

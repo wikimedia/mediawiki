@@ -1024,8 +1024,8 @@ $3による理由は以下の通りです: ''$2''",
 'revdelete-submit'            => '選択した{{PLURAL:$1|版}}に適用',
 'revdelete-logentry'          => '[[$1]]の版の閲覧レベルを変更しました',
 'logdelete-logentry'          => '[[$1]]の操作の閲覧レベルを変更しました',
-'revdelete-success'           => "'''版の閲覧レベルを変更しました。'''",
-'revdelete-failure'           => "'''版の閲覧レベルを設定できませんでした。'''
+'revdelete-success'           => "'''版の閲覧レベルを更新しました。'''",
+'revdelete-failure'           => "'''版の閲覧レベルを更新できませんでした。'''
 $1",
 'logdelete-success'           => "'''ログの閲覧レベルを変更しました。'''",
 'logdelete-failure'           => "'''ログの閲覧レベルを設定できませんでした。'''

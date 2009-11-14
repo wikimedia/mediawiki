@@ -946,6 +946,7 @@ $1",
 'compareselectedversions'  => 'च़यन किये हुए अवतरणोंमें फर्क देखियें',
 'showhideselectedversions' => 'चयनित संस्करण दिखाएँ/छिपाएँ',
 'editundo'                 => 'पूर्ववत करें',
+'diff-multi'               => '({{PLURAL:$1|बीच वाला एक अवतरण|बीचवाले $1 अवतरण}} दर्शाये नहीं हैं ।)',
 
 # Search results
 'searchresults'                    => 'खोज परिणाम',

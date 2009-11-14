@@ -1049,8 +1049,8 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-submit'            => 'Zaakceptuj dla {{PLURAL:$1|wybranej|wybranych}} wersji',
 'revdelete-logentry'          => 'zmienił widoczność wersji w [[$1]]',
 'logdelete-logentry'          => 'zmienił widoczność zdarzenia dla [[$1]]',
-'revdelete-success'           => "'''Zmieniono widoczność wersji.'''",
-'revdelete-failure'           => "'''Widoczność wersji nie może zostać ustawiona – '''
+'revdelete-success'           => "'''Uaktualniono widoczność wersji.'''",
+'revdelete-failure'           => "'''Widoczność wersji nie może zostać uaktualniona – '''
 $1",
 'logdelete-success'           => "'''Zmieniono widoczność zdarzeń.'''",
 'logdelete-failure'           => "'''Widoczność rejestru nie może zostać ustawiona – '''

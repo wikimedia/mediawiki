@@ -1157,6 +1157,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'compareselectedversions'  => 'Usporedi odabrane inačice',
 'showhideselectedversions' => 'Otkrij/sakrij odabrane izmjene',
 'editundo'                 => 'ukloni ovu izmjenu',
+'diff-multi'               => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
 
 # Search results
 'searchresults'                    => 'Rezultati pretrage',

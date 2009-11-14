@@ -411,13 +411,13 @@ $messages = array(
 'noindex-category'               => 'Páginas não indexadas',
 
 'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
-'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações acerca de como utilizar o software wiki.
+'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.
 
-== Começando ==
+== Onde começar ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Perguntas e respostas frequentes]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correio de anúncios de novas versões do MediaWiki]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Perguntas e respostas frequentes sobre o MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]',
 
 'about'         => 'Sobre',
 'article'       => 'Página de conteúdo',
@@ -556,7 +556,8 @@ $1',
 'badaccess-groups' => 'A acção que solicitou está limitada a utilizadores {{PLURAL:$2|do grupo|de um dos seguintes grupos}}: $1.',
 
 'versionrequired'     => 'É necessária a versão $1 do MediaWiki',
-'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para poder ser utilizada. Consulte [[Special:Version|a página sobre a versão do sistema]]',
+'versionrequiredtext' => 'É necessária a versão $1 do MediaWiki para usar esta página.
+Consulte a página da [[Special:Version|versão do sistema]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Obtido em "$1"',
@@ -803,7 +804,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'headline_tip'    => 'Secção de nível 2',
 'math_sample'     => 'Inserir fórmula aqui',
 'math_tip'        => 'Fórmula matemática (LaTeX)',
-'nowiki_sample'   => 'Inserir texto sem formatos aqui',
+'nowiki_sample'   => 'Inserir texto não-formatado aqui',
 'nowiki_tip'      => 'Ignorar formatação wiki',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Ficheiro embutido',
@@ -1110,8 +1111,8 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à edição seleccionada|às edições seleccionadas}}',
 'revdelete-logentry'          => 'modificou visibilidade de edições de [[$1]]',
 'logdelete-logentry'          => 'alterou a visibilidade de eventos para [[$1]]',
-'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
-'revdelete-failure'           => "'''A visibilidade da revisão não pôde ser estabelecida:'''
+'revdelete-success'           => "'''A visibilidade da revisão foi actualizada com sucesso.'''",
+'revdelete-failure'           => "'''A visibilidade da revisão não foi actualizada:'''
 $1",
 'logdelete-success'           => "'''Visibilidade de evento definida com sucesso.'''",
 'logdelete-failure'           => "'''A visibilidade do registo não pôde ser estabelecida:'''
@@ -1543,7 +1544,7 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'recentchanges-label-unpatrolled'   => 'Esta edição ainda não foi patrulhada',
 'rcnote'                            => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom'                        => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
-'rclistfrom'                        => 'Mostrar as novas alterações a partir de $1',
+'rclistfrom'                        => 'Mostrar as novas mudanças a partir das $1',
 'rcshowhideminor'                   => '$1 edições menores',
 'rcshowhidebots'                    => '$1 robôs',
 'rcshowhideliu'                     => '$1 utilizadores registados',
@@ -2315,7 +2316,7 @@ $1',
 'contributions-title' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1',
 'mycontris'           => 'Minhas contribuições',
 'contribsub2'         => 'Para $1 ($2)',
-'nocontribs'          => 'Não foram encontradas mudanças com este critério.',
+'nocontribs'          => 'Não foram encontradas alterações com este critério.',
 'uctop'               => ' (edição actual)',
 'month'               => 'Mês (inclusive anteriores):',
 'year'                => 'Ano (inclusive anteriores):',

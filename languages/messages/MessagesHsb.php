@@ -904,8 +904,8 @@ Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na sch
 'revdelete-submit'            => 'Na {{PLURAL:$1|wubranu wersiju|wubranej wersiji|wubrane wersije|wubrane wersije}} nałožować',
 'revdelete-logentry'          => 'Widźomnosć wersije změnjena za [[$1]]',
 'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
-'revdelete-success'           => "'''Widźomnosć wersije bu wuspěšnje změnjena.'''",
-'revdelete-failure'           => "'''Wersijowa widźomnosć njeda so nastajić:'''
+'revdelete-success'           => "'''Widźomnosć wersije bu wuspěšnje zaktualizowana.'''",
+'revdelete-failure'           => "'''Wersijowa widźomnosć njeda so aktualizować:'''
 $1",
 'logdelete-success'           => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
 'logdelete-failure'           => "'''Protokolowa widźomnosć njeda so nastajić:'''
@@ -981,6 +981,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'compareselectedversions'  => 'Wubranej wersiji přirunać',
 'showhideselectedversions' => 'Wubrane wersije pokazać/schować',
 'editundo'                 => 'cofnyć',
+'diff-multi'               => '<small>(Přirunanje wersijow zapřija {{PLURAL:$1|jednu mjez nimaj ležacu wersiju|dwě mjez nimaj ležacej wersiji|$1 mjez nimaj ležace wersije|$1 mjez nimaj ležacych wersijow}}.)</small>',
 
 # Search results
 'searchresults'                    => 'Pytanske wuslědki',

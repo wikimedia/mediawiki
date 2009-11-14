@@ -910,6 +910,7 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'compareselectedversions'  => 'Chuna gae version ke compare karo',
 'showhideselectedversions' => 'Chuna gae versions ke dekhao/lukao',
 'editundo'                 => 'badlao ke pahile jaise kar do',
+'diff-multi'               => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} nai dekhawa jae hai.)',
 
 # Search results
 'searchresults'                    => 'Khoj ke natija',

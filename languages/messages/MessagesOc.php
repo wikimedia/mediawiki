@@ -1159,6 +1159,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'compareselectedversions'  => 'Comparar las versions seleccionadas',
 'showhideselectedversions' => 'Afichar/amagar las versions seleccionadas',
 'editundo'                 => 'desfar',
+'diff-multi'               => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
 
 # Search results
 'searchresults'                    => 'Resultats de la recèrca',

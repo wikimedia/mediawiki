@@ -1082,6 +1082,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'lineno'                  => 'Linja $1:',
 'compareselectedversions' => 'Qabbel il-verżjonijiet magħżula',
 'editundo'                => 'ħassar',
+'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 reviżjonijiet intermedji}} mhux qegħdin jidhru.)',
 
 # Search results
 'searchresults'                    => 'Riżultat tat-tfittxija',
