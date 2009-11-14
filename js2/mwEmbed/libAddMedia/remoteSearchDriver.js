@@ -274,7 +274,7 @@ remoteSearchDriver.prototype = {
 				// end the for loop (no need to idorate if enabled_cps == 'all'
 				break;
 			} else {
-				if ( $j.inArray( i, _this.enabled_cps ) != - 1 ) {
+				if ( $j.inArray( i, _this.enabled_cps ) != -1 ) {
 					// if no default display set to first enabled cp: 
 					if ( !this.disp_item )
 						this.disp_item = i;
@@ -422,7 +422,7 @@ remoteSearchDriver.prototype = {
 			} else {
 				var keyCheck = jL;
 			}
-			if ( mw.parseUri( license_url ).path.indexOf( '/' + keyCheck + '/' ) != - 1 ) {
+			if ( mw.parseUri( license_url ).path.indexOf( '/' + keyCheck + '/' ) != -1 ) {
 				return this.getLicenceFromKey( jL , license_url );
 			}
 		};
@@ -1099,11 +1099,11 @@ remoteSearchDriver.prototype = {
 		// Remove any existing resource edit interface:
 		$j( '#rsd_resource_edit' ).remove();
 		// set the media type:
-		if ( rObj.mime.indexOf( 'image' ) != - 1 ) {
+		if ( rObj.mime.indexOf( 'image' ) != -1 ) {
 			// Set width to default image_edit_width
 			var maxWidth = _this.image_edit_width;
 			var mediaType = 'image';
-		} else if ( rObj.mime.indexOf( 'audio' ) != - 1 ) {
+		} else if ( rObj.mime.indexOf( 'audio' ) != -1 ) {
 			var maxWidth = _this.video_edit_width;
 			var mediaType = 'audio';
 		} else {
@@ -1314,7 +1314,7 @@ remoteSearchDriver.prototype = {
 			if ( cp.local_domains ) {
 				for ( var i = 0; i < cp.local_domains.length; i++ ) {
 					var ld = cp.local_domains[i];
-					 if ( local_host.indexOf( ld ) != - 1 )
+					 if ( local_host.indexOf( ld ) != -1 )
 						 return true;
 				}
 			}
@@ -1464,7 +1464,7 @@ remoteSearchDriver.prototype = {
 		// add hover:
 
 		// update video tag (if a video) 
-		if ( rObj.mime.indexOf( 'video/' ) !== - 1 )
+		if ( rObj.mime.indexOf( 'video/' ) !== -1 )
 			rewrite_by_id( $j( _this.target_container ).attr( 'id' ) + '_rsd_pv_vid' );
 		
 		// load the preview text:
@@ -1684,7 +1684,7 @@ remoteSearchDriver.prototype = {
 		   _this.preview_wtext =  $j( _this.target_textbox ).val() +  _this.cur_embed_code;
 		}
 		// check for missing </refrences>
-		if ( _this.preview_wtext.indexOf( '<references/>' ) == - 1 &&  _this.preview_wtext.indexOf( '<ref>' ) != - 1 )
+		if ( _this.preview_wtext.indexOf( '<references/>' ) == -1 &&  _this.preview_wtext.indexOf( '<ref>' ) != -1 )
 			 _this.preview_wtext =  _this.preview_wtext + '<references/>';
 	},
 	getParsedWikiText:function( wikitext, title,  callback ) {
@@ -1709,17 +1709,17 @@ remoteSearchDriver.prototype = {
 
 			// update the render area (if present)
 			if ( _this.target_render_area && _this.cur_embed_code ) {
-				 // output with some padding:
-				 $j( _this.target_render_area ).append( _this.cur_embed_code + '<div style="clear:both;height:10px">' )
-				 
-				 // update the player if video or audio:
-				 if ( rObj.mime.indexOf( 'audio' ) != - 1 ||
-				 	 rObj.mime.indexOf( 'video' ) != - 1 ||
-				 	 rObj.mime.indexOf( '/ogg' ) != - 1 ) {
-					 mvJsLoader.embedVideoCheck( function() {
-					 	mv_video_embed();
-					 } );
-				 }
+				// output with some padding:
+				$j( _this.target_render_area ).append( _this.cur_embed_code + '<div style="clear:both;height:10px">' )
+				
+				// update the player if video or audio:
+				if ( rObj.mime.indexOf( 'audio' ) != -1 ||
+					rObj.mime.indexOf( 'video' ) != -1 ||
+					rObj.mime.indexOf( '/ogg' ) != -1 ) {
+					mvJsLoader.embedVideoCheck( function() {
+						mv_video_embed();
+					} );
+				}
 			}
 			_this.closeAll();
 		} );
