@@ -325,10 +325,13 @@ class DeletedContributionsPage extends SpecialPage {
 
 	/**
 	 * Generates the subheading with links
-	 * @param $nt @see Title object for the target
+	 * @param Title $nt @see Title object for the target
+	 * @param integer $id User ID for the target
+	 * @return String: appropriately-escaped HTML to be output literally
+	 * @fixme Almost the same as contributionsSub in SpecialContributions.php. Could be combined.
 	 */
 	function getSubTitle( $nt, $id ) {
-		global $wgSysopUserBans, $wgLang, $wgUser;
+		global $wgSysopUserBans, $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 
@@ -337,17 +340,35 @@ class DeletedContributionsPage extends SpecialPage {
 		} else {
 			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
 		}
+		$userObj = User::newFromName( $nt->getText(), /* check for username validity not needed */ false );
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link
-			$tools[] = $sk->link( $talk, wfMsgHtml( 'talkpagelinktext' ) );
-			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
-				# Block link
-				if( $wgUser->isAllowed( 'block' ) )
-					$tools[] = $sk->linkKnown(
-						SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
-						wfMsgHtml( 'blocklink' )
-					);
+			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
+			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
+				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+					if ( $userObj->isBlocked() ) {
+						$tools[] = $sk->linkKnown( # Change block link
+							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
+							wfMsgHtml( 'change-blocklink' )
+						);
+						$tools[] = $sk->linkKnown( # Unblock link
+							SpecialPage::getTitleFor( 'BlockList' ),
+							wfMsgHtml( 'unblocklink' ),
+							array(),
+							array(
+								'action' => 'unblock',
+								'ip' => $nt->getDBkey() 
+							)
+						);
+					}
+					else { # User is not blocked
+						$tools[] = $sk->linkKnown( # Block link
+							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
+							wfMsgHtml( 'blocklink' )
+						);
+					}
+				}
 				# Block log link
 				$tools[] = $sk->linkKnown(
 					SpecialPage::getTitleFor( 'Log' ),
@@ -366,7 +387,7 @@ class DeletedContributionsPage extends SpecialPage {
 				array(),
 				array( 'user' => $nt->getText() )
 			);
-			# Link to undeleted contributions
+			# Link to contributions
 			$tools[] = $sk->linkKnown(
 				SpecialPage::getTitleFor( 'Contributions', $nt->getDBkey() ),
 				wfMsgHtml( 'sp-deletedcontributions-contribs' )
@@ -384,6 +405,25 @@ class DeletedContributionsPage extends SpecialPage {
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 
 			$links = $wgLang->pipeList( $tools );
+
+			// Show a note if the user is blocked and display the last block log entry.
+			if ( $userObj->isBlocked() ) {
+				LogEventsList::showLogExtract(
+					$wgOut,
+					'block',
+					$nt->getPrefixedText(),
+					'',
+					array(
+						'lim' => 1,
+						'showIfEmpty' => false,
+						'msgKey' => array(
+							'sp-contributions-blocked-notice',
+							$nt->getText() # Support GENDER in 'sp-contributions-blocked-notice'
+						),
+						'offset' => '' # don't use $wgRequest parameter offset
+					)
+				);
+			}
 		}
 
 		// Old message 'contribsub' had one parameter, but that doesn't work for

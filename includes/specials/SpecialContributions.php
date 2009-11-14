@@ -142,17 +142,18 @@ class SpecialContributions extends SpecialPage {
 	}
 
 	/**
-	* Generates the subheading with links
-	* @param Title $nt Title object for the target
-	* @param integer $id User ID for the target
-	* @return String: appropriately-escaped HTML to be output literally
-	*/
+	 * Generates the subheading with links
+	 * @param Title $nt @see Title object for the target
+	 * @param integer $id User ID for the target
+	 * @return String: appropriately-escaped HTML to be output literally
+	 * @fixme Almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
+	 */
 	protected function contributionsSub( $nt, $id ) {
 		global $wgSysopUserBans, $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 
-		if( 0 == $id ) {
+		if ( 0 == $id ) {
 			$user = htmlspecialchars( $nt->getText() );
 		} else {
 			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
@@ -223,7 +224,7 @@ class SpecialContributions extends SpecialPage {
 			}
 
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
-	
+
 			$links = $wgLang->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
