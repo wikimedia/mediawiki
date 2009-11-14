@@ -917,9 +917,8 @@ embedVideo.prototype = {
 		if ( this.roe && this.media_element.sources.length == 0 ) {
 			js_log( 'loading external data' );
 			this.loading_external_data = true;
-			var _this = this;
-			do_request( this.roe, function( data )
-			{
+			var _this = this;					 	
+			do_request( this.roe, function( data ){				
 				// Continue					   
 				_this.media_element.addROE( data );
 				js_log( 'added_roe::' + _this.media_element.sources.length );
@@ -2126,8 +2125,9 @@ embedVideo.prototype = {
 				}
 			}
 			// Check if we are "done"
-			if ( this.currentTime > ( parseInt( this.duration ) + 1 ) ) {
-				js_log( "should run clip done ct:: " + this.currentTime + ' > ' +  parseInt( this.duration + 1 ) );
+			var end_presentation_time = parseFloat( this.startOffset) + parseFloat( this.duration ) ;
+			if ( this.currentTime > end_presentation_time ) {
+				js_log( "should run clip done ct:: " + this.currentTime + ' > ' +  end_presentation_time  );
 				this.onClipDone();
 			}
 		} else {

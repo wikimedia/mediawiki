@@ -8,9 +8,10 @@ var metavidSearch = function( iObj ) {
 	return this.init( iObj );
 };
 metavidSearch.prototype = {
-	reqObj: {  // set up the default request paramaters
+	defaultReq: {  // set up the default request paramaters
 		'order':'recent',
-		'feed_format':'rss'
+		'feed_format':'json_rss',
+		'cb_inx': 1 // Not really used (we should update the metavid json retrun system) 
 	},
 	init:function( iObj ) {
 		// init base class and inherit:
@@ -29,24 +30,34 @@ metavidSearch.prototype = {
 		// set local ref:
 		var _this = this;
 		js_log( 'metavidSearch::getSearchResults()' );
-		// proccess all options
+		// Proccess all options
 		var url = this.cp.api_url;
-		// add on the req_param
-		for ( var i in this.reqObj ) {
-			url += '&' + i + '=' + this.reqObj[i];
-		}
-		url += '&f[0][t]=match&f[0][v]=' + $j( '#rsd_q' ).val();
+		var reqObj = $j.extend({}, this.defaultReq);
+		reqObj[ 'f[0][t]' ] = 'match';
+		reqObj[ 'f[0][v]' ] = $j( '#rsd_q' ).val();
+		
 		// add offset limit:
-		url += '&limit=' + this.cp.limit;
-		url += '&offset=' + this.cp.offset;
+		reqObj[ 'limit' ] = this.cp.limit;
+		reqObj[ 'offset' ] =  this.cp.offset;
 
-		do_request( url, function( data ) {
-
-			js_log( 'mvSearch: got data response' );
-			// should have an xml rss data object:
-			_this.addRSSData( data , url );
-
-			// do some metavid specific pos processing on the rObj data:
+		do_api_req({
+			'url' : url,
+			'jsonCB' : 'cb',			
+			'data' : reqObj
+		}, function( data ) {	
+			js_log( 'mvSearch: got data response::' );
+			var xmldata = ( data && data['pay_load'] ) ? mw.parseXML( data['pay_load'] ) : false;
+			if( !xmldata ){
+				// XML Error or No results: 
+				_this.resultsObj = {};
+				_this.loading = 0;
+				return ;				
+			}
+						
+			// Add the data xml payload with context url:
+			_this.addRSSData( xmldata , url );
+			
+			// Do some metavid specific pos processing on the rObj data:
 			for ( var i in _this.resultsObj ) {
 				var rObj = _this.resultsObj[i];
 				var proe = mw.parseUri( rObj['roe_url'] );
@@ -54,25 +65,27 @@ metavidSearch.prototype = {
 				rObj['end_time'] = proe.queryKey['t'].split( '/' )[1];
 				rObj['stream_name'] = proe.queryKey['stream_name'];
 
-				// all metavid content is public domain:
+				// All metavid content is public domain:
 				rObj['license'] = _this.rsd.getLicenceFromKey( 'pd' );
 
-				// transform the title into a wiki_safe title:
-				// rObj['titleKey'] = proe.queryKey['stream_name'] + '_' + rObj['start_time'].replace(/:/g,'.') + '_' + rObj['end_time'].replace(/:/g,'.') + '.ogg';
+				// Transform the title into a wiki_safe title:				
 				rObj['titleKey'] =	 _this.getTitleKey( rObj );
 
-				// default width of metavid clips:
+				// Default width of metavid clips:
 				rObj['target_width'] = 400;
 			}
 			// done loading:
 			_this.loading = 0;
 		} );
 	},
+	/** 
+	* Get a Title key for the assset name inside the mediaWiki system
+	*/
 	getTitleKey:function( rObj ) {
-		return rObj['stream_name'] + '_part_' + rObj['start_time'].replace(/:/ g, '.' ) + '_to_' + rObj['end_time'].replace(/:/g, '.' ) + '.ogv';
+		return rObj['stream_name'] + '_part_' + rObj['start_time'].replace(/:/g, '.' ) + '_to_' + rObj['end_time'].replace(/:/g, '.' ) + '.ogv';
 	},
 	getTitle:function( rObj ) {
-		var sn = rObj['stream_name'].replace( /_/ g, ' ' );
+		var sn = rObj['stream_name'].replace( /_/g, ' ' );
 		sn = sn.charAt( 0 ).toUpperCase() + sn.substr( 1 );
 		return gM( 'mwe-stream_title', [ sn, rObj.start_time, rObj.end_time ] );
 	},

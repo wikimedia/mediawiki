@@ -816,7 +816,34 @@ var global_req_cb = new Array(); // The global request callback array
 			strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
 			loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
 		}
-	};			
+	};	
+	/**
+	* Takes in a string returns an xml dom object 
+	*/
+	$.parseXML = function ( str ){
+		if ( $j.browser.msie ) {
+			// Attempt to parse as XML for IE
+			var xmldata = new ActiveXObject( "Microsoft.XMLDOM" );
+			xmldata.async = "false";
+			try{
+				xmldata.loadXML( str );
+				return xmldata;
+			} catch (e){
+				js_log( 'XML parse ERROR: ' + e.message );
+				return false;
+			}
+		}
+		
+		// For others (Firefox, Safari etc, older browsers 
+		// Some don't have native DOMParser either fallback defined bellow.
+		try {
+			var xmldata = ( new DOMParser() ).parseFromString( str, "text/xml" );
+		} catch ( e ) {
+			js_log( 'XML parse ERROR: ' + e.message );
+			return false;
+		}		
+		return xmldata;
+	}	
 } )( window.mw );
 
 // Get the mv_embed location if it has not been set
@@ -1630,7 +1657,7 @@ function mv_jqueryBindings() {
 					'$j.ui.dialog'
 				]
 			], function() {
-				$j( '#mwe_tmp_loader' ).dialog( 'close' );
+				$j( '#mwe_tmp_loader' ).dialog( 'destroy' ).remove();
 			} );
 		}
 	
@@ -1788,7 +1815,7 @@ function do_api_req( options, callback ) {
 	// js_log('do api req: ' + options.url +'?' + jQuery.param(options.data) );	
 	if ( options.url == 'proxy' && mw.proxy ) {
 		// assume the proxy is already "setup" since mw.proxy is defined.
-		// @@todo we probably integrate that setup into the api call
+		// @@todo should probably integrate that setup into the api call
 		mw.proxy.doRequest( options.data,  callback );
 	} else if ( mw.parseUri( document.URL ).host == mw.parseUri( options.url ).host ) {
 		// Local request: do API request directly
@@ -1824,13 +1851,15 @@ function do_api_req( options, callback ) {
 		loadExternalJs( req_url );
 	}
 }
-// Do a "normal" request
+// Do a request:
+// @@note this contains metavid specific local vs remote api remapping.
+// this should be depreciated and we should use "$j.get" or an explicate api call 
+// (we should not mix the two request types) 
 function do_request( req_url, callback ) {
-	js_log( 'do_request::req_url:' + req_url + ' != ' +  mw.parseUri( req_url ).host );
+	js_log( 'do_request::req_url:' + mw.parseUri( document.URL ) + ' != ' +  mw.parseUri( req_url ).host );
 	// If we are doing a request to the same domain or relative link, do a normal GET
 	if ( mw.parseUri( document.URL ).host == mw.parseUri( req_url ).host ||
-		req_url.indexOf( '://' ) == - 1 ) // Relative url
-	{
+		req_url.indexOf( '://' ) == -1 ){ // if its a relative url go directly as well
 		// Do a direct request
 		$j.ajax( {
 			type: "GET",
@@ -1843,10 +1872,9 @@ function do_request( req_url, callback ) {
 	} else {
 		// Get data via DOM injection with callback
 		global_req_cb.push( callback );
-		// Prepend json_ to feed_format if not already requesting json format (metavid specific)
+		// Prepend json_ to feed_format if not already requesting json format (metavid specific) 
 		if ( req_url.indexOf( "feed_format=" ) != - 1 && req_url.indexOf( "feed_format=json" ) == - 1 )
-			req_url = req_url.replace( / feed_format = / , 'feed_format=json_' );
-		
+			req_url = req_url.replace( /feed_format=/, 'feed_format=json_' );		
 		loadExternalJs( req_url + '&cb=mv_jsdata_cb&cb_inx=' + ( global_req_cb.length - 1 ) );
 	}
 }
@@ -1867,23 +1895,7 @@ function mv_jsdata_cb( response ) {
 		break;
 		case 'text/xml':
 			if ( typeof response['pay_load'] == 'string' ) {
-				// js_log('load string:'+"\n"+ response['pay_load']);
-				// Debugger;
-				if ( $j.browser.msie ) {
-					// Attempt to parse as XML for IE
-					var xmldata = new ActiveXObject( "Microsoft.XMLDOM" );
-					xmldata.async = "false";
-					xmldata.loadXML( response['pay_load'] );
-				} else {
-					// For others (Firefox, Safari etc.)
-					try {
-						var xmldata = ( new DOMParser() ).parseFromString( response['pay_load'], "text/xml" );
-					} catch ( e ) {
-						js_log( 'XML parse ERROR: ' + e.message );
-					}
-				}
-				// @@todo handle XML parser errors
-				if ( xmldata )response['pay_load'] = xmldata;
+				 response['pay_load'] = mw.parseXML( response['pay_load'] );
 			}
 		break
 		default:

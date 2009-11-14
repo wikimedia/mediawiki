@@ -7,8 +7,9 @@ loadGM( {
 // @value is where to find the value in the item xml
 //
 // *format:*
-// . indicates multiple tags @ seperates the tag from attribute list
+// . indicates multiple tags @ separates the tag from attribute list
 // {.}tag_name@{attribute1|attribute12}
+
 // @@todo should probably switch this over to something like Xpath if we end up parsing a lot of rss formats
 var rsd_default_rss_item_mapping = {
 	'poster'	: 'media:thumbnail@url',
@@ -73,57 +74,11 @@ baseRemoteSearch.prototype = {
 		}
 		var items = data.getElementsByTagName( 'item' );
 		// js_log('found ' + items.length );
-		$j.each( items, function( inx, item ) {
+		$j.each( items, function( inx, item ) {		
 			var rObj = { };
-			for ( var i in rsd_default_rss_item_mapping ) {
-				var selector = rsd_default_rss_item_mapping[i].split( '@' );
-
-				var flag_multiple = (  selector[0].substr( 0, 1 ) == '.' ) ? true : false;
-				if ( flag_multiple ) {
-					rObj[i] = new Array();
-					var tag_name = selector[0].substr( 1 );
-				} else {
-					var tag_name = selector[0];
-				}
-
-				var attr_name = null;
-				if ( typeof selector[1] != 'undefined' ) {
-					attr_name = selector[1];
-					if ( attr_name.indexOf( '|' ) != - 1 )
-						attr_name = attr_name.split( '|' );
-				}
-
-				$j.each( item.getElementsByTagName( tag_name ), function ( inx, node ) {
-					var tag_val = '';
-					if ( node != null && attr_name == null ) {
-						if ( node.childNodes[0] != null ) {
-							// trim and strip html:
-							tag_val = $j.trim( node.firstChild.nodeValue ).replace(/(<([^>]+)>)/ig,"");
-						}
-					}
-					if ( node != null && attr_name != null ) {
-						if ( typeof attr_name == 'string' ) {
-							tag_val = $j.trim( $j( node ).attr( attr_name ) );
-						} else {
-							var attr_vals = { };
-							for ( var j in attr_name ) {
-								if ( $j( node ).attr( attr_name[j] ).length != 0 )
-									attr_vals[ attr_name[j] ] = $j.trim( $j(node).attr( attr_name[j]) ).replace(/(<([^>]+)>)/ig,"");
-							}
-							tag_val = attr_vals ;
-						}
-					}
-					if ( flag_multiple ) {
-						rObj[i].push( tag_val )
-					} else {
-						rObj[i] = tag_val;
-					}
-				} );
-
-
-			} // done with property loop
-
-
+			for ( var attr in rsd_default_rss_item_mapping ) {				
+				_this.mapAttributeToResource( rObj, item, attr );
+			}
 			// make relative urls absolute:
 			var url_param = new Array( 'src', 'poster' );
 			for ( var j = 0; j < url_param.length; j++ ) {
@@ -147,6 +102,51 @@ baseRemoteSearch.prototype = {
 			_this.num_results++;
 		} );
 	},
+	mapAttributeToResource: function(rObj, item, attr){		
+		var selector = rsd_default_rss_item_mapping[ attr ].split( '@' );
+		var flag_multiple = (  selector[0].substr( 0, 1 ) == '.' ) ? true : false;
+		if ( flag_multiple ) {
+			rObj[ attr ] = new Array();
+			var tag_name = selector[0].substr( 1 );
+		} else {
+			var tag_name = selector[0];
+		}
+
+		var attr_name = null;
+		if ( typeof selector[1] != 'undefined' ) {
+			attr_name = selector[1];
+			if ( attr_name.indexOf( '|' ) != - 1 )
+				attr_name = attr_name.split( '|' );
+		}
+
+		$j.each( item.getElementsByTagName( tag_name ), function ( inx, node ) {
+			var tag_val = '';
+			if ( node != null && attr_name == null ) {
+				if ( node.childNodes[0] != null ) {
+					// trim and strip html:
+					tag_val = $j.trim( node.firstChild.nodeValue ).replace(/(<([^>]+)>)/ig,"");
+				}
+			}
+			if ( node != null && attr_name != null ) {
+				if ( typeof attr_name == 'string' ) {
+					tag_val = $j.trim( $j( node ).attr( attr_name ) );
+				} else {
+					var attr_vals = { };
+					for ( var j in attr_name ) {
+						if ( $j( node ).attr( attr_name[j] ).length != 0 )
+							attr_vals[ attr_name[j] ] = $j.trim( $j(node).attr( attr_name[j]) ).replace(/(<([^>]+)>)/ig,"");
+					}
+					tag_val = attr_vals ;
+				}
+			}
+			if ( flag_multiple ) {
+				rObj[ attr ].push( tag_val )
+			} else {
+				rObj[ attr ] = tag_val;
+			}
+		} );
+		// Nothing to return we update the "rObj" directly
+	}, 
 	getEmbedHTML: function( rObj , options ) {
 		if ( !options )
 			options = { };
@@ -203,13 +203,13 @@ baseRemoteSearch.prototype = {
 
 	},
 	getImportResourceDescWiki:function( rObj ) {
-		return gM( 'mwe-imported_from', [rObj.title,  this.cp.homepage, this.cp.title, rObj.link] );
+		return gM( 'mwe-imported_from', [rObj.title,  this.cp.homepage, gM('rsd-' + this.cp.id + '-title'), rObj.link] );
 	},
 	// for thigns like categories and the like
 	getExtraResourceDescWiki:function( rObj ) {
 		return '';
 	},
-	// by default just return the poster (clients can overide)
+	// by default just return the poster (clients can override)
 	getImageTransform:function( rObj, opt ) {
 		return rObj.poster;
 	},

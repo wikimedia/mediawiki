@@ -456,7 +456,9 @@ mvTextInterface.prototype = {
 		if ( this.autoscroll ) {
 			// start the timer if its not already running
 			if ( !this.scrollTimerId ) {
-				this.scrollTimerId = setInterval( '$j(\'#' + _this.pe.id + '\').get(0).textInterface.monitor()', 500 );
+				var mvElm = $j('#' + _this.id ).get(0);
+				if( mvElm )
+					this.scrollTimerId = setInterval( mvElm.textInterface.monitor(), 500 );
 			}
 			// jump to the current position:
 			var cur_time = parseInt ( this.pe.currentTime );

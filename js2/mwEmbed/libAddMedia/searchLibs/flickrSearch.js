@@ -3,7 +3,7 @@
 * http://www.flickr.com/services/api/
 * 
 * uses the "example api_key" 519b66e3fd8d8080e27a64fe51101e2c
-* should update with a difrent "public" key sometime soon
+* should update with a different "public" key sometime soon
 http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=519b66e3fd8d8080e27a64fe51101e2c
 *
 * we look for licenses from method=flickr.photos.licenses.getInfo

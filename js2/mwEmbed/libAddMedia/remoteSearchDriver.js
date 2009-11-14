@@ -39,7 +39,7 @@ loadGM( {
 	"mwe-local_resource_title" : "Local resource title:",
 	"mwe-watch_this_page" : "Watch this page",
 	"mwe-do_import_resource" : "Import resource",
-	"mwe-update_preview" : "Update preview",
+	"mwe-update_preview" : "Update resource page preview",
 	"mwe-cancel_import" : "Cancel import",
 	"mwe-importing_asset" : "Importing asset",
 	"mwe-preview_insert_resource" : "Preview insert of resource: $1",
@@ -209,8 +209,8 @@ remoteSearchDriver.prototype = {
 			'api_url':'http://www.flickr.com/services/rest/',
 			'lib'	: 'flickr',
 			'local'	: false,
-			// resources from fliker don't have a human parsable identifier/title
-			'resource_prefix': '',
+			// Just prefix with Flickr_ for now. 
+			'resource_prefix': 'Flickr_',
 			'tab_img':true
 		},
 		'metavid': {
@@ -254,6 +254,10 @@ remoteSearchDriver.prototype = {
 	init: function( options ) {
 		var _this = this;
 		js_log( 'remoteSearchDriver:init' );
+		//add in a local "id" refrence top each cp: 
+		for(var cp_id in this.content_providers){
+			this.content_providers[ cp_id ].id = cp_id; 
+		}
 		
 		// merge in the options:  
 		// @@todo for cleaner config we should set _this.opt to the provided options) 
@@ -1082,7 +1086,6 @@ remoteSearchDriver.prototype = {
 			'style="position:absolute;top:0px;left:0px;bottom:0px;right:4px;background-color:#FFF;">' +
 				'<div id="clip_edit_ctrl" class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;' +
 					'left:2px;top:5px;bottom:10px;width:' + ( maxWidth + 5 ) + 'px;overflow:auto;padding:5px;">' +
-						mv_get_loading_img() +
 				'</div>' +
 				'<div id="clip_edit_disp" class="ui-widget ui-widget-content ui-corner-all"' +
 					'style="position:absolute;' + overflow_style + ';left:' + ( maxWidth + 20 ) + 'px;right:0px;top:5px;bottom:10px;padding:5px;>' +
@@ -1422,7 +1425,7 @@ remoteSearchDriver.prototype = {
 
 		// @@ show user dialog to import the resource
 		$j( _this.target_container ).append( '<div id="rsd_resource_import" ' +
-		'class="ui-state-highlight ui-widget-content ui-state-error" ' +
+		'class="ui-widget-content" ' +
 		'style="position:absolute;top:0px;left:0px;right:0px;bottom:0px;z-index:5">' +
 			'<h3 style="color:red;padding:5px;">' + gM( 'mwe-resource-needs-import', [rObj.title, _this.upload_api_name] ) + '</h3>' +
 				'<div id="rsd_preview_import_container" style="position:absolute;width:50%;bottom:0px;left:5px;overflow:auto;top:30px;">' +
@@ -1447,6 +1450,7 @@ remoteSearchDriver.prototype = {
 					'</textarea><br>' +
 					'<input type="checkbox" value="true" id="wpWatchthis" name="wpWatchthis" tabindex="7"/>' +
 					'<label for="wpWatchthis">' + gM( 'mwe-watch_this_page' ) + '</label><br><br><br>' +
+					$j.btnHtml( gM( 'mwe-update_preview' ), 'rsd_import_apreview', 'refresh' ) + ' ' +
 				'</div>' +
 				// output the rendered and non-rendered version of description for easy switching:
 		'</div>' );
@@ -1454,11 +1458,8 @@ remoteSearchDriver.prototype = {
 		$j( bPlaneTarget ).html (
 			// add the btns to the bottom: 
 			$j.btnHtml( gM( 'mwe-do_import_resource' ), 'rsd_import_doimport', 'check' ) + ' ' +
-	
-			$j.btnHtml( gM( 'mwe-update_preview' ), 'rsd_import_apreview', 'refresh' ) + ' ' +
-	
 			$j.btnHtml( gM( 'mwe-cancel_import' ), 'rsd_import_acancel', 'close' ) + ' '
-		).addClass( 'ui-state-error' );
+		);
 		
 		// add hover:
 
@@ -1471,8 +1472,8 @@ remoteSearchDriver.prototype = {
 			$j( '#rsd_import_desc' ).html( o );
 		} );
 		// add bindings:
-		$j( bPlaneTarget + ' .rsd_import_apreview' ).btnBind().click( function() {
-			js_log( "do preview asset" );
+		$j( _this.target_container + ' .rsd_import_apreview' ).btnBind().click( function() {
+			js_log( " Do preview asset update" );
 			$j( '#rsd_import_desc' ).html( mv_get_loading_img() );
 			// load the preview text:
 			_this.getParsedWikiText( $j( '#rsd_import_ta' ).val(), _this.cFileNS + ':' + rObj.target_resource_title, function( o ) {
@@ -1505,7 +1506,7 @@ remoteSearchDriver.prototype = {
 		} );
 	},
 	/** 
-	 * sets up the proxy for the remote inserts
+	 * Sets up the proxy for the remote inserts
 	 */
 	setupProxy:function( callback ) {
 		var _this = this;
@@ -1515,7 +1516,7 @@ remoteSearchDriver.prototype = {
 				callback();
 			return ;
 		}
-		// setup the the proxy via mv_embed  $j.apiProxy loader:
+		// setup the the proxy via  $j.apiProxy loader:
 		if ( ! _this.upload_api_proxy_frame ) {
 			js_log( "Error:: remote api but no proxy frame target" );
 			return false;
