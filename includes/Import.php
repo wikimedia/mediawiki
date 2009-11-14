@@ -400,21 +400,21 @@ class WikiImporter {
 	}
 
 	function handleXmlNamespace ( $parser, $data, $prefix=false, $uri=false ) {
-    		 if( preg_match( '/www.mediawiki.org/',$prefix ) ) {
-	                $prefix = str_replace( '/','\/',$prefix );
+		if( preg_match( '/www.mediawiki.org/',$prefix ) ) {
+			$prefix = str_replace( '/','\/',$prefix );
 			$this->mXmlNamespace='/^'.$prefix.':/';
 		 }
 	}
 
 	function stripXmlNamespace($name) {
 		if( $this->mXmlNamespace ) {
-	               return(preg_replace($this->mXmlNamespace,'',$name,1));
+			return(preg_replace($this->mXmlNamespace,'',$name,1));
 		}
 		else {
-		       return($name);
-                }
+			return($name);
+		}
 	}
-   
+
 	# --------------
 
 	function doImport() {
@@ -621,7 +621,7 @@ class WikiImporter {
 	}
 
 	function in_start( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_start $name" );
 		if( $name != "mediawiki" ) {
 			return $this->throwXMLerror( "Expected <mediawiki>, got <$name>" );
@@ -630,7 +630,7 @@ class WikiImporter {
 	}
 
 	function in_mediawiki( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_mediawiki $name" );
 		if( $name == 'siteinfo' ) {
 			xml_set_element_handler( $parser, "in_siteinfo", "out_siteinfo" );
@@ -650,7 +650,7 @@ class WikiImporter {
 		}
 	}
 	function out_mediawiki( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "out_mediawiki $name" );
 		if( $name != "mediawiki" ) {
 			return $this->throwXMLerror( "Expected </mediawiki>, got </$name>" );
@@ -661,7 +661,7 @@ class WikiImporter {
 
 	function in_siteinfo( $parser, $name, $attribs ) {
 		// no-ops for now
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_siteinfo $name" );
 		switch( $name ) {
 		case "sitename":
@@ -677,7 +677,7 @@ class WikiImporter {
 	}
 
 	function out_siteinfo( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		if( $name == "siteinfo" ) {
 			xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
 		}
@@ -685,7 +685,7 @@ class WikiImporter {
 
 
 	function in_page( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_page $name" );
 		switch( $name ) {
 		case "id":
@@ -727,7 +727,7 @@ class WikiImporter {
 	}
 
 	function out_page( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "out_page $name" );
 		$this->pop();
 		if( $name != "page" ) {
@@ -747,7 +747,7 @@ class WikiImporter {
 	}
 
 	function in_nothing( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_nothing $name" );
 		return $this->throwXMLerror( "No child elements allowed here; got <$name>" );
 	}
@@ -758,7 +758,7 @@ class WikiImporter {
 	}
 
 	function out_append( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "out_append $name" );
 		if( $name != $this->appendfield ) {
 			return $this->throwXMLerror( "Expected </{$this->appendfield}>, got </$name>" );
@@ -854,7 +854,7 @@ class WikiImporter {
 	}
 
 	function in_revision( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_revision $name" );
 		switch( $name ) {
 		case "id":
@@ -876,7 +876,7 @@ class WikiImporter {
 	}
 
 	function out_revision( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "out_revision $name" );
 		$this->pop();
 		if( $name != "revision" ) {
@@ -892,9 +892,9 @@ class WikiImporter {
 			}
 		}
 	}
-	
+
 	function in_logitem( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_logitem $name" );
 		switch( $name ) {
 		case "id":
@@ -918,7 +918,7 @@ class WikiImporter {
 	}
 
 	function out_logitem( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "out_logitem $name" );
 		$this->pop();
 		if( $name != "logitem" ) {
@@ -936,7 +936,7 @@ class WikiImporter {
 	}
 
 	function in_upload( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_upload $name" );
 		switch( $name ) {
 		case "timestamp":
@@ -959,7 +959,7 @@ class WikiImporter {
 	}
 
 	function out_upload( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "out_revision $name" );
 		$this->pop();
 		if( $name != "upload" ) {
@@ -977,7 +977,7 @@ class WikiImporter {
 	}
 
 	function in_contributor( $parser, $name, $attribs ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "in_contributor $name" );
 		switch( $name ) {
 		case "username":
@@ -993,7 +993,7 @@ class WikiImporter {
 	}
 
 	function out_contributor( $parser, $name ) {
-	        $name = $this->stripXmlNamespace($name);
+		$name = $this->stripXmlNamespace($name);
 		$this->debug( "out_contributor $name" );
 		$this->pop();
 		if( $name != "contributor" ) {
@@ -1085,9 +1085,9 @@ class ImportStreamSource {
 					return new WikiErrorMsg( 'importuploaderrorsize' );
 				case 3: # The uploaded file was only partially uploaded
 					return new WikiErrorMsg( 'importuploaderrorpartial' );
-			    case 6: #Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.
-			    	return new WikiErrorMsg( 'importuploaderrortemp' );
-			    # case else: # Currently impossible
+				case 6: #Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.
+					return new WikiErrorMsg( 'importuploaderrortemp' );
+				# case else: # Currently impossible
 			}
 
 		}

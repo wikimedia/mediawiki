@@ -162,12 +162,12 @@ class Xml {
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
 		global $wgLang;
 		$options = array();
-	    if( is_null( $selected ) )
+		if( is_null( $selected ) )
 			$selected = '';
-	    if( !is_null( $allmonths ) )
+		if( !is_null( $allmonths ) )
 			$options[] = self::option( wfMsg( 'monthsall' ), $allmonths, $selected === $allmonths );
 		for( $i = 1; $i < 13; $i++ )
-				$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
+			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
 		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );

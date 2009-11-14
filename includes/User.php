@@ -44,7 +44,7 @@ class User {
 
 	/**
 	 * \type{\arrayof{\string}} A list of default user toggles, i.e., boolean user
-         * preferences that are displayed by Special:Preferences as checkboxes.
+	 * preferences that are displayed by Special:Preferences as checkboxes.
 	 * This list can be extended via the UserToggles hook or by
 	 * $wgContLang::getExtraUserToggles().
 	 * @showinitializer

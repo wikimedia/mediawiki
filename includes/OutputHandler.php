@@ -5,8 +5,8 @@
  */
 function wfOutputHandler( $s ) {
 	global $wgDisableOutputCompression, $wgValidateAllHtml;
-    $s = wfMangleFlashPolicy( $s );
-    if ( $wgValidateAllHtml ) {
+	$s = wfMangleFlashPolicy( $s );
+	if ( $wgValidateAllHtml ) {
 		$headers = apache_response_headers();
 		$isHTML = true;
 		foreach ( $headers as $name => $value ) {
