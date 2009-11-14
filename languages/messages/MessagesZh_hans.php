@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -974,8 +974,8 @@ $2',
 'revdelete-submit'            => '应用于选中的{{PLURAL:$1|修订}}',
 'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
-'revdelete-success'           => "'''修订的可见性已经成功设置。'''",
-'revdelete-failure'           => "'''修订的可见性无法设置：'''
+'revdelete-success'           => "'''修订的可见性已经成功更新。'''",
+'revdelete-failure'           => "'''修订的可见性无法更新：'''
 $1",
 'logdelete-success'           => "'''事件的可见性已经成功设置。'''",
 'logdelete-failure'           => "'''事件的可见性无法设置：'''

@@ -954,8 +954,8 @@ $2',
 'revdelete-submit'            => '應用於選取的{{PLURAL:$1|修訂}}',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
-'revdelete-success'           => "'''修訂的可見性已經成功設定。'''",
-'revdelete-failure'           => "'''修訂的可見性無法設定：'''
+'revdelete-success'           => "'''修訂的可見性已經成功更新。'''",
+'revdelete-failure'           => "'''修訂的可見性無法更新：'''
 $1",
 'logdelete-success'           => "'''事件的可見性已經成功設定。'''",
 'logdelete-failure'           => "'''事件的可見性無法設定：'''
@@ -1028,6 +1028,7 @@ $1",
 'compareselectedversions'  => '比較選定的修訂版本',
 'showhideselectedversions' => '顯示／隱藏選定的修訂版本',
 'editundo'                 => '撤銷',
+'diff-multi'               => '（$1個中途的修訂版本沒有顯示）',
 
 # Search results
 'searchresults'                    => '搜索結果',

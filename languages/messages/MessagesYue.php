@@ -936,8 +936,8 @@ $1',
 'revdelete-success'           => "'''修訂可見性已經成功噉設定。'''",
 'revdelete-failure'           => "'''修訂可見性唔能夠設定：'''
 $1",
-'logdelete-success'           => "'''事件可見性已經成功噉設定。'''",
-'logdelete-failure'           => "'''事件可見性唔能夠設定：'''
+'logdelete-success'           => "'''事件可見性已經成功噉更新。'''",
+'logdelete-failure'           => "'''事件可見性唔能夠更新：'''
 $1",
 'revdel-restore'              => '改可見性',
 'pagehist'                    => '頁面歷史',
@@ -1007,6 +1007,7 @@ $1",
 'compareselectedversions'  => '比較被選嘅修訂',
 'showhideselectedversions' => '顯示／隱藏揀咗嘅修訂',
 'editundo'                 => '復原',
+'diff-multi'               => '（$1個中途嘅修訂冇顯示到）',
 
 # Search results
 'searchresults'                    => '搵嘢結果',

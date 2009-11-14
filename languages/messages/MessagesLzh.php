@@ -778,8 +778,8 @@ $2',
 'revdelete-submit'            => '擇{{PLURAL:$1|審}}使之',
 'revdelete-logentry'          => '[[$1]]之見審動矣',
 'logdelete-logentry'          => '[[$1]]之事見動矣',
-'revdelete-success'           => "'''見審已設也。'''",
-'revdelete-failure'           => "'''見審無設也：'''
+'revdelete-success'           => "'''見審已更也。'''",
+'revdelete-failure'           => "'''見審無更也：'''
 $1",
 'logdelete-success'           => "'''見事已設也。'''",
 'logdelete-failure'           => "'''見事無設也：'''
@@ -854,6 +854,7 @@ $1",
 'compareselectedversions'  => '辨二擇',
 'showhideselectedversions' => '示／藏之擇',
 'editundo'                 => '悔',
+'diff-multi'               => '（未示之審有$1）',
 
 # Search results
 'searchresults'                    => '得尋',
