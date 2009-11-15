@@ -56,7 +56,7 @@ class SearchEngine {
 	}
 	
 	/**
-	 * If an exact title match can be find, or a very slightly close match,
+	 * If an exact title match can be found, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
 	 *
 	 * @param $searchterm String
