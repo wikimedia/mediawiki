@@ -232,7 +232,7 @@ var global_req_cb = new Array(); // The global request callback array
 		for ( var i in msgSet ) {
 			gMsg[ i ] = msgSet[i];
 		}
-	},
+	}
 
 	/**
 	* loadRS function
@@ -1227,6 +1227,10 @@ function mwdomReady( force ) {
 			for ( var k in e[j] ) {
 				if ( e[j][k] && typeof( e[j][k] ) == 'object' ) {
 					var	sn = e[j][k].getAttribute( 'class' );
+					// Try "className" for good ol IE				
+					if(!sn){
+						var	sn = e[j][k].getAttribute( 'className' );
+					}					
 					if ( sn && sn != '' ) {
 						for ( var n = 0; n < mw.valid_skins.length; n++ ) {
 							if ( sn.indexOf( mw.valid_skins[n] ) !== -1 ) {
@@ -1526,6 +1530,7 @@ function mv_jqueryBindings() {
 		$.fn.firefoggRender = function( iObj, callback ) {
 			// Check if we already have render loaded then just pass on updates/actions
 			var sElm = $j( this.selector ).get( 0 );
+			//add a special attribute to the selector: 
 			if ( sElm['fogg_render'] ) {
 				if ( sElm['fogg_render'] == 'loading' ) {
 					js_log( "Error: called firefoggRender while loading" );
@@ -1540,6 +1545,7 @@ function mv_jqueryBindings() {
 				'mvFirefogg',
 				'mvFirefoggRender'
 			], function() {
+				// Attach the firefoggRender obj to the selected elm: 
 				sElm['fogg_render'] = new mvFirefoggRender( iObj );
 				if ( callback && typeof callback == 'function' )
 					callback( sElm['fogg_render'] );
@@ -1602,7 +1608,7 @@ function mv_jqueryBindings() {
 				'position':'absolute',
 				'left':'0px',
 				'right':'0px',
-				'bottom':'0px',
+				'bottom':'0px'
 			} );
 		}
 		
@@ -1733,8 +1739,8 @@ function npt2seconds( npt_str ) {
 		// js_log('npt2seconds:not valid ntp:'+ntp);
 		return false;
 	}
-	// Strip "npt:" time definition if present
-	npt_str = npt_str.replace( 'npt:', '' );
+	// Strip {npt:}01:02:20 or 32{s} from time  if present
+	npt_str = npt_str.replace( /npt:|s/g, '' );
 
 	var hour = 0;
 	var min = 0;

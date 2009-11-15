@@ -54,14 +54,15 @@ ctrlBuilder.prototype = {
 		js_log( 'f:controlsBuilder:: opt:' + this.options );
 		this.id = ( embedObj.pc ) ? embedObj.pc.pp.id:embedObj.id;
 		this.available_width = embedObj.playerPixelWidth();
-		// make pointer to the embedObj
+		
+		// Make pointer to the embedObj
 		this.embedObj = embedObj;
 		var _this = this;
 		for ( var i in embedObj.supports ) {
 			_this.supports[i] = embedObj.supports[i];
 		};
 
-		// special case vars:
+		// Special case vars:
 		if ( ( embedObj.roe ||
 			  embedObj.wikiTitleKey ||
 				( embedObj.media_element.timedTextSources &&
@@ -70,7 +71,7 @@ ctrlBuilder.prototype = {
 			this.supports['closed_captions'] = true;
 
 
-		// append options to body (if not already there)
+		// Append options to body (if not already there)
 		if ( _this.body_options && $j( '#mv_vid_options_' + this.id ).length == 0 )
 			$j( 'body' ).append( this.components['mv_embedded_options'].o( this ) );
 
@@ -78,7 +79,7 @@ ctrlBuilder.prototype = {
 		for ( var i in this.components ) {
 			if ( this.supports[i] ) {
 				if ( this.available_width > this.components[i].w ) {
-					// special case with playhead don't add unless we have 60px
+					// Special case with playhead don't add unless we have 60px
 					if ( i == 'play_head' && this.available_width < 60 )
 						continue;
 					o += this.components[i].o( this  );
@@ -105,13 +106,8 @@ ctrlBuilder.prototype = {
 		
 		
 		// add play hook:
-		$tp.find( '.play-btn' ).unbind().btnBind().click( function() {
-			$j( '#' + embedObj.id ).get( 0 ).play();
-		} )
-
-		// do play-btn-large binding:
-		$tp.find( '.play-btn-large' ).unbind().btnBind().click( function() {
-			$j( '#' + embedObj.id ).get( 0 ).play();
+		$tp.find( '.play-btn,.play-btn-large' ).unbind().btnBind().click( function() {
+			embedObj.play();
 		} );
 
 		// add recommend firefox if we have non-native playback:
@@ -158,17 +154,17 @@ ctrlBuilder.prototype = {
 
 		// captions binding:
 		$tp.find( '.timed-text' ).unbind().btnBind().click( function() {
-			$j( '#' + embedObj.id ).get( 0 ).showTextInterface();
+			embedObj.showTextInterface();
 		} );
 
 		// options binding:
 		$tp.find( '.options-btn' ).unbind().btnBind().click( function() {
-			$j( '#' + embedObj.id ).get( 0 ).doOptionsHTML();
+			embedObj.doOptionsHTML();
 		} );
 
 		// fullscreen binding:
 		$tp.find( '.fullscreen-btn' ).unbind().btnBind().click( function() {
-			$j( '#' + embedObj.id ).get( 0 ).fullscreen();
+			embedObj.fullscreen();
 		} );
 
 		js_log( " should add slider binding: " + $tp.find( '.play_head' ).length );
@@ -181,7 +177,7 @@ ctrlBuilder.prototype = {
 				var id = ( embedObj.pc != null ) ? embedObj.pc.pp.id:embedObj.id;
 				embedObj.userSlide = true;
 				$j( id + ' .play-btn-large' ).fadeOut( 'fast' );
-				// if playlist always start at 0
+				// If playlist always start at 0
 				embedObj.start_time_sec = ( embedObj.instanceOf == 'mvPlayList' ) ? 0:
 								npt2seconds( embedObj.getTimeReq().split( '/' )[0] );
 			},
@@ -194,13 +190,14 @@ ctrlBuilder.prototype = {
 				} else {
 					embedObj.setStatus( embedObj.jump_time );
 				}
-				// update the thumbnail / frame
+				// Update the thumbnail / frame
 				if ( embedObj.isPlaying == false ) {
 					embedObj.updateThumbPerc( perc );
 				}
 			},
 			change:function( event, ui ) {
-				// only run the onChange event if done by a user slide:
+				// only run the onChange event if done by a user slide 
+				// (otherwise it runs times it should not)
 				if ( embedObj.userSlide ) {
 					embedObj.userSlide = false;
 					embedObj.seeking = true;

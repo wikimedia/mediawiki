@@ -31,7 +31,7 @@ var htmlEmbed = {
 		var ct = new Date();
 		this.clockStartTime = ct.getTime();
 
-		// start up monitor:
+		// Start up monitor:
 		this.monitor();
 	},
 	stop:function() {
@@ -44,32 +44,36 @@ var htmlEmbed = {
 		var ct = new Date();
 		this.pauseTime = this.currentTime;
 		js_log( 'pause time: ' + this.pauseTime );
-
+		
 		window.clearInterval( this.monitorTimerId );
 	},
-	// monitor just needs to keep track of time (do it at frame rate time) .
+	doSeek:function( perc ){
+		this.pauseTime = perc * this.getDuration();
+		this.play();
+	},
+	setCurrentTime:function( perc, callback ){
+		this.pauseTime = perc * this.getDuration();
+		if( callback )
+			callback();
+	},
+	// Monitor just needs to keep track of time 
 	monitor:function() {
-		// js_log('html:monitor: '+ this.currentTime);
+		//js_log('html:monitor: '+ this.currentTime);		
 		var ct = new Date();
 		this.currentTime = ( ( ct.getTime() - this.clockStartTime ) / 1000 ) + this.pauseTime;
 		var ct = new Date();
 		// js_log('mvPlayList:monitor trueTime: '+ this.currentTime);
-
-		if ( ! this.monitorTimerId ) {
-			if ( document.getElementById( this.id ) ) {
-				if ( !MV_ANIMATION_CB_RATE )
-					var MV_ANIMATION_CB_RATE = 33;
-				this.monitorTimerId = window.setInterval( '$j(\'#' + this.id + '\').get(0).monitor()', 250 );
-			}
-		}
+		
+		// Once currentTime is updated call parent_monitor
+		this.parent_monitor();
 	},
-	// set up minimal media_element emulation:
+	// set up minimal media_element emulation:	 
 	media_element: {
 		autoSelectSource:function() {
 			return true;
 		},
 		selectedPlayer: {
-			library:"html"
+			library : "html"
 		},
 		selected_source: {
 			URLTimeEncoding:false
@@ -96,47 +100,48 @@ var htmlEmbed = {
 			var font_perc  = ( Math.round( scale_perc * 100 ) < 80 ) ? 80 : Math.round( scale_perc * 100 );
 			var thumb_class = ( typeof options['thumb_class'] != 'undefined' ) ? options['thumb_class'] : '';
 			$j( 'body' ).append( '<div id="' + thumb_render_id + '" style="display:none">' +
-				'<div class="' + thumb_class + '" ' +
-				'style="width:' + options.width + 'px;height:' + options.height + 'px;" >' +
-				this.getThumbnailHTML( {
-					'width':  options.width,
-					'height': options.height
-				} ) +
-				'</div>' +
-				'</div>'
-			);
+									'<div class="' + thumb_class + '" ' +
+									'style="width:' + options.width + 'px;height:' + options.height + 'px;" >' +
+											this.getThumbnailHTML( {
+												'width':  options.width,
+												'height': options.height
+											} ) +
+									'</div>' +
+								'</div>'
+							  );
 			// scale down the fonts:
 			$j( '#' + thumb_render_id + ' *' ).filter( 'span,div,p,h,h1,h2,h3,h4,h5,h6' ).css( 'font-size', font_perc + '%' )
-
+			
 			// replace out links:
 			$j( '#' + thumb_render_id + ' a' ).each( function() {
 				$j( this ).replaceWith( "<span>" + $j( this ).html() + "</span>" );
 			} );
-
+			
 			// scale images that have width or height:
 			$j( '#' + thumb_render_id + ' img' ).filter( '[width]' ).each( function() {
 				$j( this ).attr( {
-					'width': Math.round( $j( this ).attr( 'width' ) * scale_perc ),
-					'height': Math.round( $j( this ).attr( 'height' ) * scale_perc )
-				} );
+						'width': Math.round( $j( this ).attr( 'width' ) * scale_perc ),
+						'height': Math.round( $j( this ).attr( 'height' ) * scale_perc )
+					 }
+				);
 			} );
 		}
 		return $j( '#' + thumb_render_id ).html();
 	},
-	// nothing to update in static html display: (return a static representation)
+	// nothing to update in static html display: (return a static representation) 
 	// @@todo render out a mini text "preview"
 	updateThumbTime:function( float_time ) {
 		return ;
 	},
 	getEmbedHTML:function() {
 		js_log( 'f:html:getEmbedHTML: ' + this.id );
-		// set up the css for our parent div:
+		// set up the css for our parent div:		 
 		$j( this ).css( {
 			'width':this.pc.pp.width,
 			'height':this.pc.pp.height,
 			'overflow':"hidden"
 		} );
-		// @@todo support more smil animation layout stuff:
+		// @@todo support more smil animation layout stuff: 
 
 		// wrap output in videoPlayer_ div:
 		$j( this ).html( '<div id="videoPlayer_' + this.id + '">' + this.getThumbnailHTML() + '</div>' );
@@ -167,10 +172,14 @@ var htmlEmbed = {
 		this.getEmbedHTML();
 	},
 	getDuration:function() {
-		if ( this.pc.dur )
-			return this.pc.dur;
-		// return default value:
-		return pcHtmlEmbedDefaults.dur;
+		if( !this.duration ){
+		 	if( this.pc.dur ){
+				this.duration = this.pc.dur;
+			}else if( pcHtmlEmbedDefaults.dur ){
+				this.duration =pcHtmlEmbedDefaults.dur ;
+			} 
+		}  
+		return this.parent_getDuration(); 
 	},
 	updateVideoTime:function( start_ntp, end_ntp ) {
 		// since we don't really have timeline for html elements just take the delta and set it as the duration
