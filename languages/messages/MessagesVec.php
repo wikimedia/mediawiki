@@ -930,8 +930,8 @@ I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti scont
 'revdelete-submit'            => 'Àplica a {{PLURAL:$1|la|le}} revision selezionà',
 'revdelete-logentry'          => 'gà modificà la visibilità par una revision de [[$1]]',
 'logdelete-logentry'          => "gà modificà la visibilità de l'evento [[$1]]",
-'revdelete-success'           => "'''Visibilità de la revision inpostà coretamente.'''",
-'revdelete-failure'           => "'''No se riesse a inpostar la visibilità de la version:'''
+'revdelete-success'           => "'''Visibilità de la revision ajornà coretamente.'''",
+'revdelete-failure'           => "'''No se riesse a ajornar la visibilità de la version:'''
 $1",
 'logdelete-success'           => "'''Visibilità de l'evento inpostà coretamente.'''",
 'logdelete-failure'           => "'''No se riesse a inpostar la visibilità 'ntel registro:'''

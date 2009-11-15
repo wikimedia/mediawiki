@@ -897,6 +897,7 @@ Die rede verskaf deur $3 is ''$2''",
 'histlegend'             => 'Byskrif: (huidige) = verskil van huidige weergawe,
 (vorige) = verskil van vorige weergawe, M = klein wysiging',
 'history-fieldset-title' => 'Blaai deur geskiedenis',
+'history-show-deleted'   => 'Slegs geskrapte',
 'histfirst'              => 'Oudste',
 'histlast'               => 'Nuutste',
 'historysize'            => '({{PLURAL:$1|1 greep|$1 grepe}})',
@@ -938,7 +939,7 @@ Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{F
 'revdelete-hide-image'        => 'Steek lêer inhoud weg',
 'revdelete-unsuppress'        => 'Verwyder beperkinge op herstelde weergawes',
 'revdelete-log'               => 'Rede vir skrapping:',
-'revdelete-submit'            => 'Pas op gekose weergawe toe',
+'revdelete-submit'            => 'Pas op gekose {{PLURAL:$1|weergawe|weergawes}} toe',
 'revdelete-logentry'          => 'sigbaarheid van weergawe is gewysig vir [[$1]]',
 'logdelete-logentry'          => 'verander sigbaarheid van gebeurtenis [[$1]]',
 'revdelete-success'           => "'''Die sigbaarheid van die wysiging is suksesvol opgedateer.'''",
@@ -1256,10 +1257,13 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-block'                 => 'Ontneem ander gebruikers die reg om te wysig',
 'right-blockemail'            => "Ontneem 'n gebruiker die reg om E-pos te stuur",
 'right-hideuser'              => "Blokkeer 'n gebruiker, versteek dit van die publiek",
+'right-ipblock-exempt'        => 'Omseil IP-blokkades',
+'right-proxyunbannable'       => "Blokkades vir instaanbedieners (proxy's) geld nie",
 'right-editinterface'         => 'Wysig die gebruikerskoppelvlak',
 'right-editusercssjs'         => 'Wysig ander gebruikers se CSS- en JS-lêers',
 'right-editusercss'           => 'Wysig ander gebruikers se CSS-lêers',
 'right-edituserjs'            => 'Wysig ander gebruikers se JS-lêers',
+'right-markbotedits'          => 'Merk teruggerolde wysigings as botbywerkings',
 'right-noratelimit'           => 'Negeer tydsafhanklike beperkings',
 'right-import'                => "Importeer bladsye vanaf ander wiki's",
 'right-importupload'          => "Importeer bladsye vanaf 'n lêer",
@@ -1440,6 +1444,7 @@ Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om d
 'uploaddisabledtext'         => 'Die oplaai van lêers is afgeskakel.',
 'php-uploaddisabledtext'     => 'Die oplaai van lêers is in PHP afgeskakel.
 Kyk na die "file_uploads"-instelling.',
+'uploadscripted'             => "Hierdie lêer bevat HTML- en scriptkode wat verkeerdelik deur 'n webblaaier geïnterpreteer kan word.",
 'uploadcorrupt'              => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
 'uploadvirus'                => "Hierdie lêer bevat 'n virus! Inligting: $1",
 'upload-source'              => 'Bronlêer',
@@ -1450,15 +1455,24 @@ Kyk na die "file_uploads"-instelling.',
 'upload-description'         => 'Lêerbeskrywing',
 'upload-options'             => 'Oplaai-opsies',
 'watchthisupload'            => 'Hou die lêer dop',
+'filewasdeleted'             => "'n Lêer met hierdie naam is al voorheen opgelaai en daarna geskrap.
+Kyk asseblief na die $1 voor u aangaan om dit weer op te laai.",
 'upload-wasdeleted'          => "'''Waarskuwing: U is besig om 'n lêer op te laai wat voorheen verwyder is.'''
 
 Dink twee keer na of dit wel gepas is om die lêer hier op te laai. 
 Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
+'filename-bad-prefix'        => "Die naam van die lêer wat u besig is om op te laai begin met '''\"\$1\"''', wat 'n nie-beskrywende term is, gewoonlik outomaties toegedien deur digitale kameras.
+Kies asseblief 'n meer beskrywende naam vir die lêer.",
 
 'upload-proto-error'        => 'Verkeerde protokol',
 'upload-proto-error-text'   => 'Oplaaie via hierdie metode vereis dat die URL met <code>http://</code> of <code>ftp://</code> begin.',
 'upload-file-error'         => 'Interne fout',
+'upload-file-error-text'    => "'n Interne fout het plaasgevind in die poging om 'n tydelike lêer op die bediener te skep.
+Kontak asseblief 'n [[Special:ListUsers/sysop|administrateur]].",
 'upload-misc-error'         => 'Onbekende laai fout',
+'upload-misc-error-text'    => "'n Onbekende fout het tydens die oplaaiproses voorgekom.
+Maak asseblief seker dat die adres (URL) geldig en toeganklik is en probeer dan weer.
+As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]].",
 'upload-too-many-redirects' => 'Die URL bevat te veel aansture',
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
@@ -1523,6 +1537,9 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'filehist-missing'          => 'Die lêer kon nie gevind word nie',
 'imagelinks'                => 'Lêerskakels',
 'linkstoimage'              => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} gebruik hierdie prent:',
+'linkstoimage-more'         => "Daar is meer as $1 {{PLURAL:$1|skakel|skakels}} na hierdie lêer.
+Die volgende lys vertoon slegs die eerste {{PLURAL:$1|skakel|$1 skakels}} wat na die lêer verwys.
+'n [[Special:WhatLinksHere/$2|Volledige lys]] is ook beskikbaar.",
 'nolinkstoimage'            => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
 'morelinkstoimage'          => 'Wys [[Special:WhatLinksHere/$1|meer skakels]] na die lêer.',
 'redirectstofile'           => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
@@ -1534,7 +1551,7 @@ Sien die [$2 lêer se beskrywingsblad] vir meer inligting.',
 Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 'filepage-nofile'           => "Daar bestaan nie 'n lêer met die naam nie.",
 'filepage-nofile-link'      => "Daar bestaan nie 'n lêer met die naam nie, maar u kan een [$1 oplaai].",
-'uploadnewversion-linktext' => 'Laai een nuwe weergawe van hierdie lêer',
+'uploadnewversion-linktext' => "Laai 'n nuwe weergawe van hierdie lêer",
 'shared-repo-from'          => 'vanaf $1',
 'shared-repo'               => "'n gedeelde lêerbank",
 
@@ -1899,7 +1916,7 @@ Terugvoer en verdere bystand:
 'exblank'                => 'bladsy was leeg',
 'delete-confirm'         => 'Skrap "$1"',
 'delete-legend'          => 'Skrap',
-'historywarning'         => "Waarskuwing: Die bladsy het 'n geskiedenis:",
+'historywarning'         => "Waarskuwing: Die bladsy wat u wil verwyder het 'n geskiedenis met $1 {{PLURAL:$1|weergawe|weergawes}}:",
 'confirmdeletetext'      => "U staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat u dit wil doen, dat u die gevolge verstaan en dat u dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Aksie uitgevoer',
@@ -1952,6 +1969,8 @@ Tree asseblief versigtig op.",
 'protect-text'                => "U kan die veiligheidsvlak vir blad '''<nowiki>$1</nowiki>''' hier bekyk of verander.",
 'protect-locked-blocked'      => "U kan nie beskermingsvlakke verander terwyl u geblok is nie.
 Hier volg die huidige oprigtings vir die bladsy '''$1''':",
+'protect-locked-dblock'       => "Die beskermingsvlak kan nie tans gewysig word nie omdat die databasis gesluit is.
+Hier volg die huidige instellings vir bladsy '''$1''':",
 'protect-locked-access'       => "U rekening het nie regte om 'n bladsy se veiligheidsvlakke te verander nie.
 Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-cascadeon'           => 'Die bladsy word beskerm want dit is ingesluit by die volgende {{PLURAL:$1|blad|blaaie}} wat kaskade-beskerming geniet. U kan die veiligheidsvlak van die bladsy verander, maar dit sal nie die ander kaskade blaaie beïnvloed nie.',
@@ -2083,17 +2102,17 @@ $1',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
-'blockip'                      => 'Blok gebruiker',
-'blockip-legend'               => 'Blok gebruiker of IP-adres',
-'blockiptext'                  => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
+'blockip'                         => 'Blokkeer gebruiker',
+'blockip-legend'                  => 'Blokkeer gebruiker of IP-adres',
+'blockiptext'                     => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
 Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}}-beleid]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
-'ipaddress'                    => 'IP-adres:',
-'ipadressorusername'           => 'IP-adres of gebruikernaam:',
-'ipbexpiry'                    => 'Duur:',
-'ipbreason'                    => 'Rede:',
-'ipbreasonotherlist'           => 'Ander rede',
-'ipbreason-dropdown'           => '*Algemene redes vir versperring
+'ipaddress'                       => 'IP-adres:',
+'ipadressorusername'              => 'IP-adres of gebruikernaam:',
+'ipbexpiry'                       => 'Duur:',
+'ipbreason'                       => 'Rede:',
+'ipbreasonotherlist'              => 'Ander rede',
+'ipbreason-dropdown'              => '*Algemene redes vir versperring
 ** Invoeg van valse inligting
 ** Skrap van bladsyinhoud
 ** "Spam" van skakels na eksterne webwerwe
@@ -2101,79 +2120,87 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 ** Intimiderende gedrag (teistering)
 ** Misbruik van veelvuldige rekeninge
 ** Onaanvaarbare gebruikersnaam',
-'ipbanononly'                  => 'Blokkeer slegs anonieme gebruikers',
-'ipbcreateaccount'             => 'Blokkeer registrasie van gebruikers',
-'ipbemailban'                  => 'Verbied gebruiker om e-pos te stuur',
-'ipbenableautoblock'           => 'Outomaties die IP-adresse van die gebruiker blokkeer',
-'ipbsubmit'                    => 'Versper hierdie gebruiker',
-'ipbother'                     => 'Ander tydperk:',
-'ipboptions'                   => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
-'ipbotheroption'               => 'ander',
-'ipbotherreason'               => 'Ander/ekstra rede:',
-'ipbhidename'                  => 'Verberg gebruiker van wysigings en lyste',
-'ipbwatchuser'                 => 'Hou die gebruiker se bladsy en besprekingsbladsy dop.',
-'ipballowusertalk'             => 'Laat gebruiker toe om sy eie besprekingsblad tydens die blokkade te wysig',
-'ipb-change-block'             => 'Herblokkeer die gebruiker met hierdie instellings',
-'badipaddress'                 => 'Die IP-adres is nie in die regte formaat nie.',
-'blockipsuccesssub'            => 'Blokkering het geslaag',
-'blockipsuccesstext'           => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
+'ipbanononly'                     => 'Blokkeer slegs anonieme gebruikers',
+'ipbcreateaccount'                => 'Blokkeer registrasie van gebruikers',
+'ipbemailban'                     => 'Verbied gebruiker om e-pos te stuur',
+'ipbenableautoblock'              => 'Outomaties die IP-adresse van die gebruiker blokkeer',
+'ipbsubmit'                       => 'Versper hierdie gebruiker',
+'ipbother'                        => 'Ander tydperk:',
+'ipboptions'                      => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
+'ipbotheroption'                  => 'ander',
+'ipbotherreason'                  => 'Ander/ekstra rede:',
+'ipbhidename'                     => 'Verberg gebruiker van wysigings en lyste',
+'ipbwatchuser'                    => 'Hou die gebruiker se bladsy en besprekingsbladsy dop.',
+'ipballowusertalk'                => 'Laat gebruiker toe om sy eie besprekingsblad tydens die blokkade te wysig',
+'ipb-change-block'                => 'Herblokkeer die gebruiker met hierdie instellings',
+'badipaddress'                    => 'Die IP-adres is nie in die regte formaat nie.',
+'blockipsuccesssub'               => 'Blokkering het geslaag',
+'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
 Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
-'ipb-edit-dropdown'            => 'Werk lys van redes by',
-'ipb-unblock-addr'             => 'Deblokkeer $1',
-'ipb-unblock'                  => "Deblokkeer 'n gebruiker of IP-adres",
-'ipb-blocklist-addr'           => 'Bestaande blokkades vir $1',
-'ipb-blocklist'                => 'Wys bestaande blokkades',
-'ipb-blocklist-contribs'       => 'Bydraes van $1',
-'unblockip'                    => 'Maak IP-adres oop',
-'unblockiptext'                => "Gebruik die vorm hier onder om skryftoegang te herstel vir 'n voorheen geblokkeerde IP-adres.",
-'ipusubmit'                    => 'Hef blokkade op',
-'unblocked'                    => 'Blokkade van [[User:$1|$1]] is opgehef',
-'unblocked-id'                 => 'Blokkade $1 is opgehef',
-'ipblocklist'                  => 'Geblokkeerde IP-adresse en gebruikers',
-'ipblocklist-legend'           => "Soek 'n geblokkeerde gebruiker",
-'ipblocklist-username'         => 'Gebruikersnaam of IP adres:',
-'ipblocklist-sh-userblocks'    => 'gebruikersblokkades $1',
-'ipblocklist-sh-tempblocks'    => 'tydelike blokkades $1',
-'ipblocklist-sh-addressblocks' => 'enkel IP-blokkades $1',
-'ipblocklist-submit'           => 'Soek',
-'blocklistline'                => '$1, $2 het $3 geblok ($4)',
-'infiniteblock'                => 'is onbeperk',
-'expiringblock'                => 'verval op $1 om $2',
-'anononlyblock'                => 'anoniem-alleen',
-'noautoblockblock'             => 'autoblok afgeskakel',
-'createaccountblock'           => 'skep van gebruikersrekeninge is geblokkeer',
-'emailblock'                   => 'e-pos versper',
-'blocklist-nousertalk'         => 'kan nie eie besprekingsblad wysig nie',
-'ipblocklist-empty'            => 'Die blokkeerlys is leeg.',
-'ipblocklist-no-results'       => 'Die IP-adres of gebruikersnaam is nie geblokkeer nie.',
-'blocklink'                    => 'blok',
-'unblocklink'                  => 'maak oop',
-'change-blocklink'             => 'versperring wysig',
-'contribslink'                 => 'bydraes',
-'blocklogpage'                 => 'Blokkeer-logboek',
-'blocklogentry'                => '"[[$1]]" is vir \'n periode van $2 $3 geblok',
-'blocklogtext'                 => "Hier is 'n lys van onlangse blokkeer en deblokkeer aksies. Outomaties geblokkeerde IP-adresse word nie vertoon nie. 
+'ipb-edit-dropdown'               => 'Werk lys van redes by',
+'ipb-unblock-addr'                => 'Deblokkeer $1',
+'ipb-unblock'                     => "Deblokkeer 'n gebruiker of IP-adres",
+'ipb-blocklist-addr'              => 'Bestaande blokkades vir $1',
+'ipb-blocklist'                   => 'Wys bestaande blokkades',
+'ipb-blocklist-contribs'          => 'Bydraes van $1',
+'unblockip'                       => 'Maak IP-adres oop',
+'unblockiptext'                   => "Gebruik die vorm hier onder om skryftoegang te herstel vir 'n voorheen geblokkeerde IP-adres.",
+'ipusubmit'                       => 'Hef blokkade op',
+'unblocked'                       => 'Blokkade van [[User:$1|$1]] is opgehef',
+'unblocked-id'                    => 'Blokkade $1 is opgehef',
+'ipblocklist'                     => 'Geblokkeerde IP-adresse en gebruikers',
+'ipblocklist-legend'              => "Soek 'n geblokkeerde gebruiker",
+'ipblocklist-username'            => 'Gebruikersnaam of IP adres:',
+'ipblocklist-sh-userblocks'       => 'gebruikersblokkades $1',
+'ipblocklist-sh-tempblocks'       => 'tydelike blokkades $1',
+'ipblocklist-sh-addressblocks'    => 'enkel IP-blokkades $1',
+'ipblocklist-submit'              => 'Soek',
+'ipblocklist-localblock'          => 'Lokale blokkade',
+'ipblocklist-otherblocks'         => 'Ander {{PLURAL:$1|blokkade|blokkades}}',
+'blocklistline'                   => '$1, $2 het $3 geblok ($4)',
+'infiniteblock'                   => 'is onbeperk',
+'expiringblock'                   => 'verval op $1 om $2',
+'anononlyblock'                   => 'anoniem-alleen',
+'noautoblockblock'                => 'autoblok afgeskakel',
+'createaccountblock'              => 'skep van gebruikersrekeninge is geblokkeer',
+'emailblock'                      => 'e-pos versper',
+'blocklist-nousertalk'            => 'kan nie eie besprekingsblad wysig nie',
+'ipblocklist-empty'               => 'Die blokkeerlys is leeg.',
+'ipblocklist-no-results'          => 'Die IP-adres of gebruikersnaam is nie geblokkeer nie.',
+'blocklink'                       => 'blok',
+'unblocklink'                     => 'maak oop',
+'change-blocklink'                => 'versperring wysig',
+'contribslink'                    => 'bydraes',
+'autoblocker'                     => "Outomaties geblokkeer omdat u IP-adres ooreenkom met die van [[User:\$1|\$1]], wat om die volgende rede geblokkeer is: \"'''\$2'''\"",
+'blocklogpage'                    => 'Blokkeer-logboek',
+'blocklog-showlog'                => 'Hierdie gebruiker is al vantevore geblokkeer.
+Die blokkeerlogboek word hieronder ter verwysing weergegee:',
+'blocklogentry'                   => '"[[$1]]" is vir \'n periode van $2 $3 geblok',
+'reblock-logentry'                => 'het die instellings vir die blokkade vir [[$1]] gewysig. Dit verval nou op $2 om $3',
+'blocklogtext'                    => "Hier is 'n lys van onlangse blokkeer en deblokkeer aksies. Outomaties geblokkeerde IP-adresse word nie vertoon nie. 
 Sien die [[Special:IPBlockList|IP-bloklys]] vir geblokkeerde adresse.",
-'unblocklogentry'              => 'blokkade van $1 is opgehef:',
-'block-log-flags-anononly'     => 'anonieme gebruikers alleenlik',
-'block-log-flags-nocreate'     => 'Registrasie van gebruikers buite werking',
-'block-log-flags-noautoblock'  => 'outoblokkering is afgeskakel',
-'block-log-flags-noemail'      => 'e-pos versper',
-'block-log-flags-nousertalk'   => 'kan nie eie besprekingsblad wysig nie',
-'block-log-flags-hiddenname'   => 'gebruikernaam versteek',
-'ipb_expiry_invalid'           => 'Ongeldige duur.',
-'ipb_already_blocked'          => '"$1" is reeds geblok',
-'ipb-needreblock'              => '== Hierdie gebruiker is reeds geblokkeer ==
+'unblocklogentry'                 => 'blokkade van $1 is opgehef:',
+'block-log-flags-anononly'        => 'anonieme gebruikers alleenlik',
+'block-log-flags-nocreate'        => 'Registrasie van gebruikers buite werking',
+'block-log-flags-noautoblock'     => 'outoblokkering is afgeskakel',
+'block-log-flags-noemail'         => 'e-pos versper',
+'block-log-flags-nousertalk'      => 'kan nie eie besprekingsblad wysig nie',
+'block-log-flags-angry-autoblock' => 'uitgebreide outomatiese blokkade aangeskakel',
+'block-log-flags-hiddenname'      => 'gebruikernaam versteek',
+'ipb_expiry_invalid'              => 'Ongeldige duur.',
+'ipb_expiry_temp'                 => 'Blokkades vir versteekte gebruikers moet permanent wees.',
+'ipb_already_blocked'             => '"$1" is reeds geblok',
+'ipb-needreblock'                 => '== Hierdie gebruiker is reeds geblokkeer ==
 $1 is al geblokkeer.
 Wil u die instellings wysig?',
-'ipb_cant_unblock'             => 'Fout: Blokkade-ID $1 kan nie gevind word nie.
+'ipb_cant_unblock'                => 'Fout: Blokkade-ID $1 kan nie gevind word nie.
 Die blokkade is moontlik reeds opgehef.',
-'ip_range_invalid'             => 'Ongeldige IP waardegebied.',
-'blockme'                      => 'Versper my',
-'proxyblocker'                 => 'Proxyblokker',
-'proxyblocker-disabled'        => 'Die funksie is gedeaktiveer.',
-'proxyblocksuccess'            => 'Voltooi.',
-'cant-block-while-blocked'     => 'U kan nie ander gebruikers blokkeer terwyl u self geblokkeer is nie.',
+'ip_range_invalid'                => 'Ongeldige IP waardegebied.',
+'blockme'                         => 'Versper my',
+'proxyblocker'                    => 'Proxyblokker',
+'proxyblocker-disabled'           => 'Die funksie is gedeaktiveer.',
+'proxyblocksuccess'               => 'Voltooi.',
+'cant-block-while-blocked'        => 'U kan nie ander gebruikers blokkeer terwyl u self geblokkeer is nie.',
 
 # Developer tools
 'lockdb'              => 'Sluit databasis',
@@ -2267,6 +2294,11 @@ Die teikenartikel "[[:$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir d
 'move-leave-redirect'          => "Los 'n aanstuur agter",
 'protectedpagemovewarning'     => "'''Waarskuwing:''' Hierdie bladsy kan slegs deur administrateurs geskuif word.",
 'semiprotectedpagemovewarning' => "'''Let op:''' Hierdie bladsy kan slegs deur geregistreerde gebruikers geskuif word.",
+'move-over-sharedrepo'         => "== Die lêer bestaan reeds ==
+[[:$1]] bestaan al reeds in 'n gedeelde mediabank.
+As u 'n lêer na die naam skuif, sal die lêer in die gedeelde mediabank nie meer gebruik word nie.",
+'file-exists-sharedrepo'       => "Hierdie lêernaam bestaan reeds in 'n gedeelde mediabank.
+Kies asseblief 'n andere lêernaam.",
 
 # Export
 'export'            => 'Eksporteer bladsye',
@@ -2423,6 +2455,9 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 # Stylesheets
 'common.css' => '/** Gemeenskaplike CSS vir alle omslae */',
 
+# Metadata
+'notacceptable' => "Die wikibediener kan nie data in 'n formaat wat jou kliënt kan lees verskaf nie.",
+
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} gebruiker $1',
@@ -2440,6 +2475,7 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 'spamprotectiontext'  => "Die bladsy wat u wou stoor was geblok deur die gemorspos-filter.
 Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons swartlys veroorsaak.",
 'spamprotectionmatch' => 'Die volgende teks is wat ons gemorspos-filter geaktiveer het: $1',
+'spam_reverting'      => 'Besig met terugrol na die laaste weergawe wat nie skakels na $1 bevat nie',
 
 # Info page
 'infosubtitle'   => 'Inligting vir bladsy',
@@ -2470,6 +2506,8 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'math_syntax_error'     => 'sintaksfout',
 'math_image_error'      => 'PNG-omskakeling het gefaal.
 Kontroleer of latex, dvips en gs korrek geïnstalleer is en skakel om',
+'math_notexvc'          => 'Kan nie die texvc program vind nie;
+stel asseblief op volgens die beskrywing in math/README.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merk as gekontroleerd',
@@ -2497,6 +2535,7 @@ Kontroleer of latex, dvips en gs korrek geïnstalleer is en skakel om',
 
 $1',
 'filedelete-missing'              => 'Die lêer "$1" kan nie geskrap word nie, want dit bestaan nie.',
+'filedelete-old-unregistered'     => 'Die gespesifiseerde lêerweergawe "$1" is nie in die databasis nie.',
 'filedelete-current-unregistered' => 'Die gespesifiseerde lêer "$1" is nie in die databasis nie.',
 
 # Browsing diffs
@@ -2504,7 +2543,7 @@ $1',
 'nextdiff'     => 'Nuwer wysiging →',
 
 # Media information
-'mediawarning'         => "'''Waarskuwing''': hierdie lêer bevat moontlik programkode wat u stelsel skade kan berokken.<hr />",
+'mediawarning'         => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.<hr />",
 'imagemaxsize'         => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
 'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
@@ -2567,9 +2606,12 @@ Ander velde sal versteek wees.
 'exif-resolutionunit'              => 'Eenheid X en Y resolusie',
 'exif-rowsperstrip'                => 'Rye per strook',
 'exif-stripbytecounts'             => 'Grepe per gekompakteerde strook',
+'exif-jpeginterchangeformat'       => 'Afstand na JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Grepe van JPEG-gegewens',
 'exif-transferfunction'            => 'Oordragfunksie',
+'exif-whitepoint'                  => 'Witpuntchromasiteit',
 'exif-primarychromaticities'       => 'Chromasiteit van primêre kleure',
+'exif-ycbcrcoefficients'           => 'Transformasiematriks-koëffisiënte vir die kleurruimte',
 'exif-referenceblackwhite'         => 'Paar swart en wit verwysingswaardes',
 'exif-datetime'                    => 'Tydstip laaste lêerwysiging',
 'exif-imagedescription'            => 'Beeldtitel',
@@ -2632,6 +2674,7 @@ Ander velde sal versteek wees.
 'exif-contrast'                    => 'Kontras',
 'exif-saturation'                  => 'Versadiging',
 'exif-sharpness'                   => 'Skerpte',
+'exif-devicesettingdescription'    => 'Omskrywing van apparaatinstellings',
 'exif-subjectdistancerange'        => 'Bereik objekafstand',
 'exif-imageuniqueid'               => 'Unieke beeld ID',
 'exif-gpsversionid'                => 'GPS-merkerweergawe',
@@ -2659,6 +2702,7 @@ Ander velde sal versteek wees.
 'exif-gpsdestlongitude'            => 'Lengtegraad bestemming',
 'exif-gpsdestbearingref'           => 'Verwysing na ligging van die bestemming',
 'exif-gpsdestbearing'              => 'Rigting na bestemming',
+'exif-gpsdestdistanceref'          => 'Verwysing vir afstand tot bestemming',
 'exif-gpsdestdistance'             => 'Afstand na bestemming',
 'exif-gpsprocessingmethod'         => 'GPS-verwerkingsmetode',
 'exif-gpsareainformation'          => 'Naam van GPS-gebied',
@@ -2674,8 +2718,13 @@ Ander velde sal versteek wees.
 'exif-orientation-2' => 'Horisontaal gespieël',
 'exif-orientation-3' => '180° gedraai',
 'exif-orientation-4' => 'Vertikaal gespieël',
+'exif-orientation-5' => 'Spieëlbeeld van linksbo-regsonder',
 'exif-orientation-6' => '90° regs gedraai',
+'exif-orientation-7' => 'Spieëlbeeld van linksonder-regsbo',
 'exif-orientation-8' => '90° links gedraai',
+
+'exif-planarconfiguration-1' => 'chunky dataformaat',
+'exif-planarconfiguration-2' => 'planar dataformat',
 
 'exif-componentsconfiguration-0' => 'bestaan nie',
 
@@ -2684,6 +2733,10 @@ Ander velde sal versteek wees.
 'exif-exposureprogram-2' => 'Normale program',
 'exif-exposureprogram-3' => 'Diafragma-prioriteit',
 'exif-exposureprogram-4' => 'Sluiterprioriteit',
+'exif-exposureprogram-5' => 'Kreatief (voorkeur vir diepte)',
+'exif-exposureprogram-6' => 'Aksie (voorkeur vir hoër sluitersnelheid)',
+'exif-exposureprogram-7' => 'Portret (nabyskoot met agtergrond uit fokus)',
+'exif-exposureprogram-8' => 'Landskap (skerp agtergrond)',
 
 'exif-subjectdistance-value' => '$1 meter',
 
@@ -2698,13 +2751,19 @@ Ander velde sal versteek wees.
 'exif-lightsource-0'   => 'Onbekend',
 'exif-lightsource-1'   => 'Sonlig',
 'exif-lightsource-2'   => 'Fluoresserend',
+'exif-lightsource-3'   => 'Tungsten (lamplig)',
 'exif-lightsource-4'   => 'Flits',
 'exif-lightsource-9'   => 'Mooi weer',
 'exif-lightsource-10'  => 'Bewolkte weer',
 'exif-lightsource-11'  => 'Skaduwee',
+'exif-lightsource-12'  => 'Daglig fluoresserend (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Dagwit fluoresserend (N 4600 - 5400K)',
+'exif-lightsource-14'  => 'Koel wit fluoresserend (W 3900 - 4500K)',
+'exif-lightsource-15'  => 'Wit fluoresserend (WW 3200 - 3700K)',
 'exif-lightsource-17'  => 'Standaard lig A',
 'exif-lightsource-18'  => 'Standaard lig B',
 'exif-lightsource-19'  => 'Standaard lig C',
+'exif-lightsource-24'  => 'ISO-studiotungsten',
 'exif-lightsource-255' => 'Ander ligbron',
 
 # Flash modes
@@ -2712,10 +2771,15 @@ Ander velde sal versteek wees.
 'exif-flash-fired-1'    => 'Flits het afgegaan',
 'exif-flash-mode-3'     => 'outomatiese modus',
 'exif-flash-function-1' => 'Geen flitserfunksie',
+'exif-flash-redeye-1'   => 'filter rooi oë vermindering',
 
 'exif-focalplaneresolutionunit-2' => 'duim',
 
 'exif-sensingmethod-1' => 'Ongedefineer',
+'exif-sensingmethod-2' => 'Eén-chip-kleursensor',
+'exif-sensingmethod-3' => 'Twee-chip-kleursensor',
+'exif-sensingmethod-4' => 'Drie-chip-kleursensor',
+'exif-sensingmethod-5' => 'Kleurvolgende gebiedssensor',
 'exif-sensingmethod-7' => 'Drielynige sensor',
 'exif-sensingmethod-8' => 'Kleurvolgende lynsensor',
 
@@ -2726,6 +2790,7 @@ Ander velde sal versteek wees.
 
 'exif-exposuremode-0' => 'Outomatiese beligting',
 'exif-exposuremode-1' => 'Handmatige beligting',
+'exif-exposuremode-2' => 'Auto-Bracket',
 
 'exif-whitebalance-0' => 'Outomatiese witbalans',
 'exif-whitebalance-1' => 'Handmatige witbalans',
@@ -2736,6 +2801,10 @@ Ander velde sal versteek wees.
 'exif-scenecapturetype-3' => 'Nagtoneel',
 
 'exif-gaincontrol-0' => 'Geen',
+'exif-gaincontrol-1' => 'Lae pieke omhoog',
+'exif-gaincontrol-2' => 'Hoë pieke omhoog',
+'exif-gaincontrol-3' => 'Lae pieke omlaag',
+'exif-gaincontrol-4' => 'Hoë pieke omlaag',
 
 'exif-contrast-0' => 'Normaal',
 'exif-contrast-1' => 'Sag',
@@ -2763,6 +2832,7 @@ Ander velde sal versteek wees.
 'exif-gpslongitude-w' => 'Westerlengte',
 
 'exif-gpsstatus-a' => 'Besig met meting',
+'exif-gpsstatus-v' => 'Meetinteroperabiliteit',
 
 'exif-gpsmeasuremode-2' => '2-dimensionele meting',
 'exif-gpsmeasuremode-3' => '3-dimensionele meting',

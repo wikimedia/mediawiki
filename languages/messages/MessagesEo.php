@@ -982,8 +982,8 @@ Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj re
 'revdelete-submit'            => 'Apliki al {{PLURAL:$1|elektita revizio|elektitaj revizioj}}',
 'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
-'revdelete-success'           => "'''Revizia videbleco estas sukcese farita.'''",
-'revdelete-failure'           => "'''Videblecon de revizio ne eblis agordi:'''
+'revdelete-success'           => "'''Revizia videbleco estas sukcese ĝisdatigita.'''",
+'revdelete-failure'           => "'''Videblecon de revizio ne eblis ĝisdatigi:'''
 $1",
 'logdelete-success'           => "'''Videbleco de evento sukcese farita.'''",
 'logdelete-failure'           => "'''Protokola videbleco ne estis akordebla:'''

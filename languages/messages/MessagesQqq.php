@@ -23,6 +23,7 @@
  * @author Codex Sinaiticus
  * @author Dalibor Bosits
  * @author Darth Kule
+ * @author Deadelf
  * @author Dsvyas
  * @author Erwin
  * @author Erwin85
@@ -1618,75 +1619,76 @@ Extensions making use of it:
 'listfiles_count'       => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.',
 
 # File description page
-'file-anchor-link'        => '{{Identical|File}}',
-'filehist'                => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
-'filehist-help'           => 'In file description page',
-'filehist-deleteall'      => 'Link in image description page for admins.',
-'filehist-deleteone'      => 'Link description on file description page to delete an earlier version of a file.
+'file-anchor-link'          => '{{Identical|File}}',
+'filehist'                  => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
+'filehist-help'             => 'In file description page',
+'filehist-deleteall'        => 'Link in image description page for admins.',
+'filehist-deleteone'        => 'Link description on file description page to delete an earlier version of a file.
 
 {{Identical|Delete}}',
-'filehist-revert'         => 'Link in image description page.
+'filehist-revert'           => 'Link in image description page.
 
 {{Identical|Revert}}',
-'filehist-current'        => 'Link in file description page.
+'filehist-current'          => 'Link in file description page.
 
 {{Identical|Current}}',
-'filehist-datetime'       => 'Used on image descriptions, see for example [[:File:Yes.png#filehistory]].
+'filehist-datetime'         => 'Used on image descriptions, see for example [[:File:Yes.png#filehistory]].
 {{Identical|Date}}',
-'filehist-thumb'          => 'Shown in the file history list of a file desription page.
+'filehist-thumb'            => 'Shown in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
-'filehist-thumbtext'      => "Shown in the file history list of a file description page.
+'filehist-thumbtext'        => "Shown in the file history list of a file description page.
 * '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
 * '''$2''' is the date,
 * '''$3''' is the time.
 
 Example: [[wikipedia:Image:Madeleine close2.jpg]]",
-'filehist-nothumb'        => 'Shown if no thumbnail is available in the file history list of a file desription page.
+'filehist-nothumb'          => 'Shown if no thumbnail is available in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
-'filehist-user'           => 'In image description page.
+'filehist-user'             => 'In image description page.
 
 {{Identical|User}}',
-'filehist-dimensions'     => 'In file description page',
-'filehist-filesize'       => 'In image description page',
-'filehist-comment'        => 'In file description page
+'filehist-dimensions'       => 'In file description page',
+'filehist-filesize'         => 'In image description page',
+'filehist-comment'          => 'In file description page
 
 {{Identical|Comment}}',
-'imagelinks'              => 'In top header of the image description page, see for example [[:Image:Yes.png]].',
-'linkstoimage'            => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
+'imagelinks'                => 'In top header of the image description page, see for example [[:Image:Yes.png]].',
+'linkstoimage'              => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
 * Parameter $1 is the number of pages that link to the file/image.',
-'linkstoimage-more'       => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
+'linkstoimage-more'         => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
 
 * $1: limit. At the moment hardcoded at 100
 * $2: filename',
-'nolinkstoimage'          => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
-'redirectstofile'         => 'Used on file description pages after the list of pages which used this file',
-'duplicatesoffile'        => 'Shown on file description pages when a file is duplicated
+'nolinkstoimage'            => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
+'redirectstofile'           => 'Used on file description pages after the list of pages which used this file',
+'duplicatesoffile'          => 'Shown on file description pages when a file is duplicated
 
 * $1: Number of identical files
 * $2: Name of the shown file to link to the special page "FileDuplicateSearch"',
-'sharedupload'            => 'Shown on an image description page when it is used in a central repository (i.e. [http://commons.wikimedia.org/ Commons] for Wikimedia wikis).
+'sharedupload'              => 'Shown on an image description page when it is used in a central repository (i.e. [http://commons.wikimedia.org/ Commons] for Wikimedia wikis).
 
 * $1 is the name of the shared repository. On Wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.
 
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
-'sharedupload-desc-there' => ':See also: {{msg-mw|Sharedupload}}',
-'sharedupload-desc-here'  => ':See also: {{msg-mw|Sharedupload}}',
-'filepage-nofile'         => "This message appears when visiting a File page for which there's no file, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})
+'sharedupload-desc-there'   => ':See also: {{msg-mw|Sharedupload}}',
+'sharedupload-desc-here'    => ':See also: {{msg-mw|Sharedupload}}',
+'filepage-nofile'           => "This message appears when visiting a File page for which there's no file, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})
 
 Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
-'filepage-nofile-link'    => "This message appears when visiting a File page for which there's no file, if the user can upload files, and file uploads are enabled. (Otherwise, see {{msg-mw|Filepage-nofile}})
+'filepage-nofile-link'      => "This message appears when visiting a File page for which there's no file, if the user can upload files, and file uploads are enabled. (Otherwise, see {{msg-mw|Filepage-nofile}})
 
 $1 - URL of upload page for this file.
 
 Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
-'shared-repo-from'        => 'This message is shown on an image description page when a duplicate of the image exists on a shared repository such as Wikimedia Commons.
+'uploadnewversion-linktext' => 'Used on pages in the "File" namespace to update the file version.',
+'shared-repo-from'          => 'This message is shown on an image description page when a duplicate of the image exists on a shared repository such as Wikimedia Commons.
 
 Example: http://test.wikipedia.org/wiki/File:Wiki.png#filelinks
 
 $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.',
-'shared-repo'             => 'This message can be used as parameter $1 in the following messages:
+'shared-repo'               => 'This message can be used as parameter $1 in the following messages:
 * {{msg-mw|shared-repo-from}}
 * {{msg-mw|sharedupload}}, {{msg-mw|sharedupload-desc-here}}, {{msg-mw|sharedupload-desc-there}}',
 

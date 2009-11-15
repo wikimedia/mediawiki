@@ -613,30 +613,30 @@ Uma lista das páginas especiais válidas pode ser encontrada em [[Special:Speci
 'databaseerror'        => 'Erro na base de dados',
 'dberrortext'          => 'Ocorreu um erro sintáctico na pesquisa à base de dados.
 Isto pode indicar um defeito neste programa.
-A última tentativa de busca na base de dados foi:
+A última tentativa de consulta à base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
 A base de dados devolveu o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu um erro sintáctico na pesquisa à base de dados.
-A última tentativa de busca na base de dados foi:
+A última tentativa de consulta à base de dados foi:
 "$1"
 na função "$2".
 A base de dados devolveu o erro "$3: $4"',
 'laggedslavemode'      => "'''Aviso:''' A página pode não conter as actualizações mais recentes.",
-'readonly'             => 'Base de dados no modo "somente leitura"',
+'readonly'             => 'Base de dados trancada (limitada a leituras)',
 'enterlockreason'      => 'Introduza um motivo para trancar, incluindo uma estimativa de quando poderá ser destrancada',
-'readonlytext'         => 'A base de dados está actualmente trancada para novas entradas e outras modificações, provavelmente por uma manutenção de rotina; a situação deverá ser normalizada dentro de algum tempo.
+'readonlytext'         => 'A base de dados está trancada para impedir a inserção e modificação de dados, provavelmente para uma manutenção de rotina, após a qual a situação será normalizada.
 
-Quem fez o bloqueio oferece a seguinte explicação: $1',
+O administrador que a trancou deu a seguinte explicação: $1',
 'missing-article'      => 'A base de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome "$1" $2.
 
-Geralmente, esta situação deve ocorrer ao clicar numa ligação de diferenças desactualizada ou numa ligação para o histórico de uma página que tenha sido removida.
+Geralmente, esta situação ocorre ao clicar numa ligação para diferenças desactualizada ou numa ligação para o histórico de uma página que foi removida.
 
-Se nenhuma destas situações for o caso, pode ter encontrado um defeito no programa.
+Se nenhuma destas situações se verifica, pode ter encontrado um defeito no programa.
 Por favor, anote a URL e reporte este incidente a um [[Special:ListUsers/sysop|administrador]].',
 'missingarticle-rev'   => '(revisão#: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
-'readonly_lag'         => 'A base de dados foi automaticamente bloqueada enquanto os servidores secundários se sincronizam com o principal',
+'readonly_lag'         => 'A base de dados foi automaticamente trancada enquanto os servidores secundários se sincronizam com o primário',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
 'fileappenderror'      => 'Não foi possível adicionar "$1" a "$2".',
@@ -893,7 +893,8 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission'       => 'Ainda não existe texto nesta página.
 Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} procurar registos relacionados]</span>.',
-'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
+'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada.
+Por favor, verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' num Macintosh);
@@ -1136,12 +1137,12 @@ Você não tem acesso a ele.',
 'revdelete-modify-no-access'  => 'Erro ao modificar o item datado de $2, $1: este item foi marcado como "restrito".
 Você não tem acesso a ele.',
 'revdelete-modify-missing'    => 'Erro ao modificar o item ID $1: está em falta na base de dados!',
-'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visualização requeridas.",
+'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visualização solicitadas.",
 'revdelete-concurrent-change' => 'Erro ao modificar o item com data/hora $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registos.',
 'revdelete-only-restricted'   => 'Não pode suprimir itens de serem visualizados por administradores sem também escolher uma das outras opções de supressão.',
 'revdelete-reason-dropdown'   => '*Razões comuns para eliminação
-** Violação dos direitos autorais
+** Violação de direitos de autor
 ** Informações pessoais inapropriadas
 ** Informações potencialmente difamatórias',
 'revdelete-otherreason'       => 'Outro/motivo adicional:',
@@ -1156,20 +1157,20 @@ Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
-'mergehistory-header'              => 'A partir desta página é possível fundir históricos de edições de uma página em outra.
-Certifique-se de que tal alteração manterá a continuidade das ações.',
+'mergehistory-header'              => 'Esta página permite fundir o histórico de revisões de uma página no de outra.
+Certifique-se de que esta alteração manterá a continuidade histórica da página.',
 'mergehistory-box'                 => 'Fundir edições de duas páginas:',
 'mergehistory-from'                => 'Página de origem:',
 'mergehistory-into'                => 'Página de destino:',
-'mergehistory-list'                => 'Histórico de edições habilitadas para fusão',
+'mergehistory-list'                => 'Histórico de edições fundíveis',
 'mergehistory-merge'               => 'As seguintes revisões de [[:$1]] podem fundir-se em [[:$2]].
-Usando os botões de opção, pode escolher fundir apenas as revisões até à que marcar.
+Usando os botões de opção, pode escolher fundir apenas as revisões até àquela que marcar.
 Note que, se usar as ligações de navegação, os botões de opção voltarão aos valores originais.',
 'mergehistory-go'                  => 'Mostrar edições que podem ser fundidas',
 'mergehistory-submit'              => 'Fundir edições',
-'mergehistory-empty'               => 'Não existem edições habilitadas a serem fundidas.',
+'mergehistory-empty'               => 'Não existem revisões fundíveis.',
 'mergehistory-success'             => 'Foram fundidas $3 {{PLURAL:$3|edição|edições}} de [[:$1]] em [[:$2]].',
-'mergehistory-fail'                => 'Não foi possível fundir os históricos; por gentileza, verifique a página e os parâmetros de tempo.',
+'mergehistory-fail'                => 'Não foi possível fundir os históricos; por favor, verifique a página e os parâmetros de tempo.',
 'mergehistory-no-source'           => 'A página de origem ($1) não existe.',
 'mergehistory-no-destination'      => 'A página de destino ($1) não existe.',
 'mergehistory-invalid-source'      => 'A página de origem precisa ser um título válido.',
@@ -1212,7 +1213,7 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
-'searchmenu-exists'                => "*Página '''[[$1]]'''",
+'searchmenu-exists'                => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
 'searchmenu-new'                   => "'''Crie a página \"[[:\$1]]\" nesta wiki!'''",
 'searchhelp-url'                   => 'Help:Conteúdos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue por páginas com este prefixo]]',
@@ -1531,8 +1532,8 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges'                     => 'Mudanças recentes',
 'recentchanges-legend'              => 'Opções das mudanças recentes',
-'recentchangestext'                 => 'Acompanhe nesta página as mudanças mais recentes da {{SITENAME}}.',
-'recentchanges-feed-description'    => "Acompanhe as mudanças mais recentes na wiki através deste ''feed''.",
+'recentchangestext'                 => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
+'recentchanges-feed-description'    => "Acompanhe neste ''feed'' as mudanças mais recentes da wiki.",
 'recentchanges-label-legend'        => 'Legenda: $1.',
 'recentchanges-legend-newpage'      => '$1 - página nova',
 'recentchanges-label-newpage'       => 'Esta edição criou uma página nova',
@@ -1572,7 +1573,8 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'recentchangeslinked-toolbox'  => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas para as quais a página fornecida contém ligações, no intervalo de tempo escolhido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as mudanças recentes em todas as páginas para as quais a página fornecida contém ligações (ou em todas as que pertencem à categoria fornecida). Páginas nas suas [[Special:Watchlist|{{lc:{{MediaWiki:watchlist/pt}}}}]] aparecem a '''negrito'''.",
+'recentchangeslinked-summary'  => "Lista das mudanças recentes de todas as páginas para as quais a página fornecida contém ligações (ou de todas as que pertencem à categoria fornecida).
+As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
 'recentchangeslinked-to'       => 'Inversamente, mostrar mudanças recentes nas páginas que contêm ligações para esta página',
 
@@ -1630,21 +1632,23 @@ Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja 
 O sumário que introduzir não aparecerá na página de descrição.
 Para o fazer aparecer, terá que o editar manualmente.
 [[$1|thumb]]",
-'fileexists-extension'        => "Já existe um ficheiro de nome similar: [[$2|thumb]]
-* Nome do ficheiro que está sendo enviado: '''<tt>[[:$1]]</tt>'''
+'fileexists-extension'        => "Já existe um ficheiro de nome semelhante: [[$2|thumb]]
+* Nome do ficheiro que está sendo carregado: '''<tt>[[:$1]]</tt>'''
 * Nome do ficheiro existente: '''<tt>[[:$2]]</tt>'''
-Por gentileza, escolha um nome diferente.",
+Por favor, escolha um nome diferente.",
 'fileexists-thumbnail-yes'    => "O ficheiro aparenta ser uma imagem de tamanho reduzido (''miniatura'', ou ''thumbnail)''. [[$1|thumb]]
-Por gentileza, verifique o ficheiro '''<tt>[[:$1]]</tt>'''.
-Se o ficheiro enviado é o mesmo do de tamanho original, não é necessário enviar uma versão de miniatura adicional.",
-'file-thumbnail-no'           => "O nome do ficheiro começa por '''<tt>$1</tt>''', o que parece indicar uma imagem de tamanho reduzido (uma ''miniatura'' ou ''thumbnail)''.
-Se tem a imagem de maior resolução, envie-a em vez desta. Se não, por favor altere o nome do ficheiro.",
+Por favor, verifique o ficheiro '''<tt>[[:$1]]</tt>'''.
+Se este ficheiro é a mesma imagem mas no tamanho original, não é necessário carregar uma miniatura.",
+'file-thumbnail-no'           => "O nome do ficheiro começa por '''<tt>$1</tt>'''.
+Parece ser uma imagem de tamanho reduzido (uma ''miniatura'' ou ''thumbnail)''.
+Se tiver a imagem original de maior dimensão, envie-a em vez desta. Se não, por favor altere o nome do ficheiro.",
 'fileexists-forbidden'        => 'Já existe um ficheiro com este nome, e não pode ser reescrito.
 Se ainda pretende carregar o seu ficheiro, por favor, volte atrás e use um novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Já existe um ficheiro com este nome no repositório de ficheiros partilhados. 
-Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um novo nome. [[File:$1|thumb|center|$1]]',
-'file-exists-duplicate'       => 'Esta imagem é uma duplicata do seguinte {{PLURAL:$1|ficheiro|ficheiros}}:',
-'file-deleted-duplicate'      => 'Um ficheiro idêntico a este ([[$1]]) foi eliminado anteriormente. Verifique o motivo da eliminação de tal ficheiro antes de prosseguir com o re-envio.',
+Caso deseje, mesmo assim, carregar o seu ficheiro, volte atrás e envie-o com um novo nome. [[File:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Este ficheiro é um duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
+'file-deleted-duplicate'      => 'Um ficheiro idêntico a este ([[$1]]) foi eliminado anteriormente.
+Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envio.',
 'successfulupload'            => 'Envio efectuado com sucesso',
 'uploadwarning'               => 'Aviso de envio',
 'uploadwarning-text'          => 'Por favor modifique a descrição do ficheiro abaixo e tente novamente.',
@@ -1655,11 +1659,11 @@ Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um no
 'uploaddisabledtext'          => 'O carregamento de ficheiros está impossibilitado.',
 'php-uploaddisabledtext'      => 'O carregamento de ficheiros está impossibilitado no PHP.
 Por favor, verifique a configuração file_uploads.',
-'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um navegador web.',
+'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um navegador.',
 'uploadcorrupt'               => 'O ficheiro está corrompido ou a extensão indicada no nome não corresponde ao tipo de ficheiro.
 Por favor, verifique o ficheiro e a extensão e tente carregá-lo novamente.',
-'uploadvirus'                 => 'O ficheiro contém vírus! Detalhes: $1',
-'upload-source'               => 'Ficheiro fonte',
+'uploadvirus'                 => 'O ficheiro contém um vírus! Detalhes: $1',
+'upload-source'               => 'Ficheiro de origem',
 'sourcefilename'              => 'Nome do ficheiro de origem:',
 'sourceurl'                   => 'URL fonte:',
 'destfilename'                => 'Nome do ficheiro de destino:',
@@ -1725,7 +1729,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'upload-curl-error6-text'  => 'Não foi possível aceder à URL.
 Por favor, verifique se o endereço está correcto e o sítio disponível.',
 'upload-curl-error28'      => 'Tempo limite para o envio do ficheiro excedido',
-'upload-curl-error28-text' => 'O sítio demorou muito tempo a responder. Por gentileza, verifique se o sítio está acessível, aguarde alguns momentos e tente novamente. Talvez você deseje fazer nova tentativa em um horário menos congestionado.',
+'upload-curl-error28-text' => 'O sítio demorou muito tempo a responder. Por favor, verifique se o sítio está acessível, aguarde alguns momentos e tente novamente. Talvez possa tentar num horário menos congestionado.',
 
 'license'            => 'Licença:',
 'license-header'     => 'Licenciamento',
@@ -3191,7 +3195,8 @@ Verifique se o seu endereço de e-mail possui caracteres inválidos.
 O sistema de correio devolveu o erro: $1',
 'confirmemail_invalid'     => 'Código de confirmação inválido. O código poderá ter expirado.',
 'confirmemail_needlogin'   => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
-'confirmemail_success'     => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
+'confirmemail_success'     => 'O seu endereço de e-mail foi confirmado.
+Pode agora [[Special:UserLogin|autenticar-se]] e disfrutar da wiki.',
 'confirmemail_loggedin'    => 'O seu endereço de e-mail foi agora confirmado.',
 'confirmemail_error'       => 'Alguma coisa correu mal ao guardar a sua confirmação.',
 'confirmemail_subject'     => '{{SITENAME}} confirmação de endereço de e-mail',

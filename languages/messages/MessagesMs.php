@@ -939,8 +939,8 @@ Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya se
 'revdelete-submit'            => 'Kenakan ke atas {{PLURAL:$1|versi|versi}} yang dipilih',
 'revdelete-logentry'          => 'menukar kebolehnampakan semakan [[$1]]',
 'logdelete-logentry'          => 'menukar kebolehnampakan peristiwa bagi [[$1]]',
-'revdelete-success'           => 'Kebolehnampakan semakan ditetapkan.',
-'revdelete-failure'           => "'''Keterlihatan semakan tidak dapat ditetapkan:'''
+'revdelete-success'           => "'''Kebolehnampakan semakan berjaya ditetapkan.'''",
+'revdelete-failure'           => "'''Keterlihatan semakan tidak dapat dikemaskini:'''
 $1",
 'logdelete-success'           => 'Kebolehnampakan peristiwa ditetapkan.',
 'revdel-restore'              => 'Tukar kebolehnampakan',
