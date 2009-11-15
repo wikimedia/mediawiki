@@ -1011,7 +1011,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'recentchangeslinked-to'       => 'Тень таркас невтить те лопанть марто сюлмазь лопатнесэ полавтнематнень',
 
 # Upload
-'upload'                => 'Ёкстамонзо файланть',
+'upload'                => 'Ёкстамс файла',
 'uploadbtn'             => 'Йовксамс файланть',
 'reupload'              => 'Тонгомс одов',
 'uploadnologin'         => 'Эзить сова',
@@ -1743,6 +1743,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-xresolution'         => 'Горизонтальсэ сеедезэ',
 'exif-yresolution'         => 'Вертикальсэ сеедезэ',
 'exif-transferfunction'    => 'Печтевтемань функция',
+'exif-referenceblackwhite' => 'Раужот-ашот кавто корямо точкат',
 'exif-imagedescription'    => 'Артовксонть коняксозо',
 'exif-software'            => 'Тевс нолдазь программатне',
 'exif-artist'              => 'Теицязо',
@@ -1766,11 +1767,18 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-gpslatitude'         => 'Келезэ',
 'exif-gpslongituderef'     => 'Чилисемань эли чивалгомань кувалмо',
 'exif-gpslongitude'        => 'Кувалмозо',
+'exif-gpsaltituderef'      => 'Сэрень корямо',
 'exif-gpsaltitude'         => 'Сэрь',
 'exif-gpsspeedref'         => 'Курокксчинь единица',
+'exif-gpstrackref'         => 'Ютамонь нерь йонксонь корямо тарка',
+'exif-gpstrack'            => 'Ютамонь нерь йонкс',
+'exif-gpsdestlatituderef'  => 'Норовамо таркань келелмань корямо тарка',
 'exif-gpsdestlatitude'     => 'Норовамо тарканть келелмазо',
 'exif-gpsdestlongitude'    => 'Норовамо тарканть кувалмозо',
 'exif-gpsdatestamp'        => 'GPS чи',
+
+# EXIF attributes
+'exif-compression-1' => 'Апак сювордо',
 
 'exif-unknowndate' => 'Апак содань чи',
 
@@ -1925,6 +1933,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'watchlistedit-raw-titles'    => 'Конякст:',
 'watchlistedit-raw-submit'    => 'Мезе мельга ванстнят, спискаст одкстомтомс',
 'watchlistedit-raw-added'     => 'Поладозь {{PLURAL:$1|1 конякс|$1 конякст}}:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 конякс нардазь|$1 конякст нардазь}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Лиякстоматьне лопатнесэ потмоксстонть',

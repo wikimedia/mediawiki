@@ -2439,7 +2439,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier kann e béiswëllege Programmcode enthalen.
 Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.<hr />",
-'imagemaxsize'         => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
+'imagemaxsize'         => 'Biller op de Billerbeschreiwungssäite limitéieren op:',
 'thumbsize'            => 'Gréisst vun der Miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',
 'file-info'            => '(Dateigréisst: $1, MIME-Typ: $2)',

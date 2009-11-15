@@ -2349,7 +2349,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Accura''': Stu file pò cuntèniri còdici malignu, esiquènnulu lu vostru sistema putisi vèniri cumprumissu. <hr />",
-'imagemaxsize'         => "Diminzioni màssima dî mmàggini:<br />''(pi li pàggini di discrizzioni dô file)''",
+'imagemaxsize'         => 'Diminzioni màssima dî mmàggini supra li rilativi pàggini di o:',
 'thumbsize'            => 'Grannizza dî miniaturi:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàggina|pàggini}}',
 'file-info'            => '(Diminzioni: $1, tipu MIME: $2)',

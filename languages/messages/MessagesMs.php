@@ -2431,7 +2431,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Amaran''': Fail jenis ini mungkin mengandungi kod berbahaya.
 Dengan menjalankannya, komputer anda mungkin akan terjejas.<hr />",
-'imagemaxsize'         => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
+'imagemaxsize'         => 'Had saiz imej di laman keterangannya:',
 'thumbsize'            => 'Saiz imej ringkas:',
 'widthheightpage'      => '$1×$2, $3 halaman',
 'file-info'            => '(saiz file: $1, jenis MIME: $2)',

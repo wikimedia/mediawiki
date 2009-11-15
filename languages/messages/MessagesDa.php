@@ -2416,7 +2416,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udfører den.<hr />",
-'imagemaxsize'         => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
+'imagemaxsize'         => 'Begræns størrelsen af billeder på billedsiderne til:',
 'thumbsize'            => 'Thumbnailstørrelse :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'            => '(Filstørrelse: $1, MIME-Type: $2)',

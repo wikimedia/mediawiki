@@ -2360,7 +2360,7 @@ $1",
 # Media information
 'mediawarning'         => "'''Paqtataq''': Kay willañiqiqa millay wakichi qillqayuqchá.
 Payta rurachiyqa antañiqiqniykita llikaykitapas waqllinqachá.<hr />",
-'imagemaxsize'         => "Rikchap chhikan kayninta kaykama saywachay:<br />''(willañiqi ch'uyanchana p'anqakunapaq)''",
+'imagemaxsize'         => "Willana p'anqakunapi rikchakunata kaykama saywachay:",
 'thumbsize'            => "Ch'iñicha rikchachap chhikan kaynin:",
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|p'anqa|p'anqakuna}}",
 'file-info'            => '(willañiqip chhikan kaynin: $1; MIME laya: $2)',

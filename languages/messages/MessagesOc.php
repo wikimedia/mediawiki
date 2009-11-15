@@ -2528,7 +2528,7 @@ $1",
 # Media information
 'mediawarning'         => "'''Atencion :''' Aqueste fichièr pòt conténer de còde malvolent.
 Se l'executatz, vòstre sistèma pòt èsser compromés.<hr />",
-'imagemaxsize'         => "Format maximal dels imatges :<br />''(per las paginas de descripcion d’imatges)''",
+'imagemaxsize'         => 'Format maximal pels imatges dins las paginas de descripcion d’imatges :',
 'thumbsize'            => 'Talha de la miniatura :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => 'Talha del fichièr: $1, tipe MIME: $2',

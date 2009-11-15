@@ -2302,7 +2302,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden of Eepenjen fon dissen Doatäi kon dän Computer Schoade toubroacht wäide.<hr />",
-'imagemaxsize'         => "Maximoale Bieldegrööte:<br />''(foar Doatäibeschrieuwengssieden)''",
+'imagemaxsize'         => 'Maximoale Bieldegrööte ap Bieldebeschrieuwengssieden:',
 'thumbsize'            => 'Grööte fon do Foarschaubielden (thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',
 'file-info'            => '(Doatäigrööte: $1, MIME-Typ: $2)',

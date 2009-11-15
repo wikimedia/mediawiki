@@ -2437,7 +2437,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.
 Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
-'imagemaxsize'         => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
+'imagemaxsize'         => 'Resim açıklamalar sayfalarındaki resmin en büyük boyutu:',
 'thumbsize'            => 'Küçük boyut:',
 'widthheight'          => '$1×$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',

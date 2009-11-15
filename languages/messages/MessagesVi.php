@@ -2509,7 +2509,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Cảnh báo''': Kiểu tập tin này có thể chứa mã hiểm độc.
 Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.<hr />",
-'imagemaxsize'         => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
+'imagemaxsize'         => 'Giới hạn độ phân giải trên trang miêu tả tập tin:',
 'thumbsize'            => 'Cỡ hình thu nhỏ:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|trang|trang}}',
 'file-info'            => '(kích thước tập tin: $1, định dạng MIME: $2)',

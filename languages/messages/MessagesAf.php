@@ -2307,7 +2307,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.<hr />",
-'imagemaxsize'         => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
+'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
 'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
 'file-info'            => '(lêergrootte: $1, MIME-tipe: $2)',

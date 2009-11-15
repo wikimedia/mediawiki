@@ -2399,7 +2399,7 @@ $1",
 # Media information
 'mediawarning'         => "'''Rhybudd''': Gallasai'r math hwn o ffeil gynnwys côd maleisus. 
 Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil.<hr />",
-'imagemaxsize'         => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
+'imagemaxsize'         => 'Tocio maint y delweddau ar y tudalennau disgrifiad i:',
 'thumbsize'            => 'Maint mân-lun :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
 'file-info'            => '(maint y ffeil: $1, ffurf MIME: $2)',

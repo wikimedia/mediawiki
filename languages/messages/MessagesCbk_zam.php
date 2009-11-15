@@ -14,8 +14,17 @@ $fallback = "es";
 
 $messages = array(
 # Dates
+'january'      => 'Enero',
+'february'     => 'Febrero',
+'march'        => 'Marzo',
 'april'        => 'Abril',
+'may_long'     => 'Mayo',
+'june'         => 'Junio',
+'july'         => 'Julio',
 'august'       => 'Agosto',
+'september'    => 'Septiembre',
+'october'      => 'Octubre',
+'november'     => 'Noviembre',
 'december'     => 'Diciembre',
 'april-gen'    => 'Abril',
 'august-gen'   => 'Agosto',
@@ -30,15 +39,22 @@ $messages = array(
 'about'   => 'Acerca de',
 'article' => 'El laman del pagina',
 
-'help'           => 'Ayuda',
-'search'         => 'Busqueda',
-'history_short'  => 'Historia',
-'edit'           => 'revisa',
-'delete'         => 'Bora',
-'articlepage'    => 'Mira con el laman del pagina',
-'categorypage'   => 'Mira con el pagina de categoria',
-'otherlanguages' => 'na otro maga lenguaje',
-'lastmodifiedat' => 'Ya modifica con este pagina por ultimo vez en hora $2 del $1.', # $1 date, $2 time
+'tagline'          => 'Estava na {{SITENAME}}',
+'help'             => 'Ayuda',
+'search'           => 'Busqueda',
+'searchbutton'     => 'Busca',
+'searcharticle'    => 'Anda',
+'history_short'    => 'Historia',
+'printableversion' => 'El version que puede imprenta',
+'edit'             => 'Revisa',
+'delete'           => 'Bora',
+'talkpagelinktext' => 'Cuento',
+'personaltools'    => 'Maga herramientas personal',
+'articlepage'      => 'Mira con el laman del pagina',
+'views'            => 'Maga vista',
+'categorypage'     => 'Mira con el pagina de categoria',
+'otherlanguages'   => 'na otro maga lenguaje',
+'lastmodifiedat'   => 'Ya modifica con este pagina por ultimo vez en hora $2 del $1.', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
@@ -47,9 +63,19 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Maga derecho del autor',
 'currentevents'        => 'Maga sucesos actual',
 'currentevents-url'    => 'Project:Maga sucesos actual',
+'disclaimers'          => 'Maga aviso legal',
+'disclaimerpage'       => 'Project:El maga limitacion general de maga responsabilidad',
 'mainpage'             => 'El Primero Pagina',
 'mainpage-description' => 'El Primero Pagina',
 'portal'               => 'Portal del Comunidad',
+'privacy'              => 'Policia na proteccion del maga informacion',
+'privacypage'          => 'Project:Policia na proteccion del maga informacion',
+
+'retrievedfrom'   => 'Obtenido de "$1"',
+'editsectionhint' => 'Revisa el seccion: $1',
+'site-rss-feed'   => '$1 Informacion de RSS',
+'site-atom-feed'  => '$1 Informacion de Atom',
+'red-link-title'  => '$1 (jendeh ta existi el pagina)',
 
 # Login and logout pages
 'acct_creation_throttle_hit' => 'Ya crea ya {{PLURAL:$1|un cuenta registro|$1 maga cuenta registro}} el maga visita de este wiki usando el de uste direccion de IP  en el ultimo dia. Entonces, ya sobra ya na maximo numero que ta puede permiti el sistema para crea cuenta. Por causa de este razon, no puede mas crea nuevo cuenta usando el de uste direccion de IP este maga tiempo.',
@@ -60,6 +86,11 @@ $messages = array(
 'blockedtitle' => 'El usuario es prohibido o bloqueado',
 'accmailtitle' => 'Enviao ya el contraseña.',
 'accmailtext'  => 'El contraseña por "$1" ya imbia ya para con $2.',
+
+# Search results
+'search-result-size'        => '$1 ({{PLURAL:$2|1 palabra|$2 maga palabra}})',
+'search-mwsuggest-enabled'  => 'con sugestiones',
+'search-mwsuggest-disabled' => 'sin sugestion',
 
 # Preferences page
 'changepassword' => 'Cambia con el contraseña',
@@ -91,9 +122,14 @@ $messages = array(
 # Block/unblock
 'blockip'           => 'Usuario prohibido',
 'blockipsuccesssub' => 'El prohibicion es confirmado con exito',
+'contribslink'      => 'Maga contribuciones',
 
 # Move page
 '1movedto2'       => 'Ya move con el articulo de nombre [[$1]] y ahora cambiado ya na nombre [[$2]]',
 '1movedto2_redir' => 'Ya move con el articulo de nombre [[$1]] sobre un redireccion y ahora cambiado ya na nombre [[$2]]',
+
+# Tooltip help for the actions
+'tooltip-search'     => 'Busca na {{SITENAME}}',
+'tooltip-n-mainpage' => 'Visita na Primero Pagina',
 
 );

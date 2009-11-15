@@ -2597,7 +2597,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Uwaga!''' Plik w tym formacie może zawierać złośliwy kod.
 Jeśli go otworzysz, możesz zarazić swój system.<hr />",
-'imagemaxsize'         => "Ograniczenie wielkości obrazków<br />''(na stronach opisu plików)''",
+'imagemaxsize'         => 'Na stronach opisu plików ogranicz rozmiar obrazków do:',
 'thumbsize'            => 'Rozmiar miniaturki',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',
 'file-info'            => '(rozmiar pliku: $1, typ MIME: $2)',

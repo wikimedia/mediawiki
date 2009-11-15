@@ -2188,7 +2188,6 @@ $1',
 # Media information
 'mediawarning'         => "''Hişyari!''': Na dosya de belka kodê niyetxırabi estî.
 Beno ke zerar bıdo sistemê şuxulnayişê şıma.<hr />",
-'imagemaxsize'         => "Limitê ebat ê resimi:<br />''(qe pela deskripsiyonê dosyayan)''",
 'thumbsize'            => 'Ebadê Thumbnaili',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pele|peleyi}}',
 'file-info'            => '(ebatê dosyayi: $1, MIME tip: $2)',

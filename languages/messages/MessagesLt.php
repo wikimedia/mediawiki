@@ -2454,7 +2454,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą, jį paleidus jūsų sistema gali būti pažeista.<hr />",
-'imagemaxsize'         => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
+'imagemaxsize'         => 'Riboti paveikslėlių dydį jų aprašymo puslapyje iki:',
 'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
 'file-info'            => '(failo dydis: $1, MIME tipas: $2)',

@@ -1760,7 +1760,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 # Media information
 'mediawarning'         => "'''Aire''': Tá seans ann go bhfuil cód mailíseach sa comhad seo - b'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.
 <hr />",
-'imagemaxsize'         => "Teorainn mhéid íomhá:<br />''(leathanaigh thuarascáil chomhaid)''",
+'imagemaxsize'         => 'Cuir an teorann seo ar na íomhánna atá le fáil ar leathanaigh cuir síos íomhánna:',
 'thumbsize'            => 'Méid mionsamhlacha:',
 'file-info'            => '(méid comhad : $1, saghas MIME: $2)',
 'file-info-size'       => '($1 × $2 picteilín, méid comhaid: $3, cineál MIME: $4)',

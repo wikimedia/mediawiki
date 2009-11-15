@@ -2433,7 +2433,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.<hr />",
-'imagemaxsize'         => "Dimensione massima delle immagini:<br />''(per le pagine di descrizione del file)''",
+'imagemaxsize'         => 'Dimensione massima delle immagini sulle relative pagine di discussione:',
 'thumbsize'            => 'Grandezza delle miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => '(dimensione del file: $1, tipo MIME: $2)',

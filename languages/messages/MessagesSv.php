@@ -2596,7 +2596,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Varning''': Den här filen kan innehålla elak kod.
 Om du kör den kan din dator skadas.<hr />",
-'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
+'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',

@@ -2594,7 +2594,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ova datoteka sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.<hr />",
-'imagemaxsize'         => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
+'imagemaxsize'         => 'Ograniči slike na stranicama opisa datoteke na:',
 'thumbsize'            => 'Veličina umanjenog prikaza:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
 'file-info'            => '(veličina datoteke: $1, MIME tip: $2)',

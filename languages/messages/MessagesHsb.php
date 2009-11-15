@@ -2367,7 +2367,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnowanje''': Tutón datajowy typ móhł złowólny kod wobsahować. Hdyž so wuwjedźe,  móhło so twój system wobškodźić.<hr />",
-'imagemaxsize'         => "Maksimalna wobrazowa wulkosć:<br />''(za strony datajoweho wopisanja)''",
+'imagemaxsize'         => 'Wobrazy na stronach wobrazoweho wopisanja wobmjezować na:',
 'thumbsize'            => 'Wulkosć miniaturkow (thumbnails):',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|stronje|strony|stronow}}',

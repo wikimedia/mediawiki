@@ -2336,7 +2336,6 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Duýduryş''': Bu faýlda zyýanly kod bar bolmagy ahmal we ol iş ulgamyňyza zeper ýetirip biler.<hr />",
-'imagemaxsize'         => "Surat ölçeginiň çägi:<br />''(faýl düşündiriş sahypalary üçin)''",
 'thumbsize'            => 'Miniatýura ölçegi:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahypa|sahypa}}',
 'file-info'            => '(faýl ölçegi: $1, MIME tipi: $2)',
