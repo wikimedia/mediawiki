@@ -331,6 +331,7 @@ img_sha1          varbinary(32)  TEXT
 job_cmd           varbinary(60)  TEXT # Should we limit to 60 as well?
 keyname           varbinary(255) TEXT # No tablename prefix (objectcache)
 ll_lang           varbinary(20)  TEXT # Language code
+lc_value          mediumblob     TEXT
 log_params        blob           TEXT # LF separated list of args
 log_type          varbinary(10)  TEXT
 ls_field          varbinary(32)  TEXT
