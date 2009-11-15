@@ -636,6 +636,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 19391) Fix caching for Recent ChangesFeed.
 * (bug 21455) Fixed "Watch this page" checkbox appearing on some special pages
   even to non-logged in users
+* (bug 21196) Allow $wgMaxCredits to work for Postgres (and possible other 
+  non-MySQL) backends.
 
 == API changes in 1.16 ==
 

@@ -710,12 +710,19 @@ class Article {
 
 		$deletedBit = $dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ); // username hidden?
 
-		$sql = "SELECT {$userTable}.*, rev_user_text as user_name, MAX(rev_timestamp) as timestamp
-			FROM $revTable LEFT JOIN $userTable ON rev_user = user_id
+		$groupby = 'rev_user, rev_user_text';
+		if (! $dbr->implicitGroupby()) {
+			$groupby .= ', user_id, user_name, user_real_name, user_email, user_editcount';
+		}
+
+		$sql = "SELECT user_id, user_name, user_real_name, user_email, user_editcount,
+            rev_user_text AS user_name, MAX(rev_timestamp) AS timestamp
+			FROM $revTable
+            LEFT JOIN $userTable ON rev_user = user_id
 			WHERE rev_page = $pageId
 			$excludeCond
 			AND $deletedBit = 0
-			GROUP BY rev_user, rev_user_text
+			GROUP BY $groupby
 			ORDER BY timestamp DESC";
 
 		if ( $limit > 0 )
