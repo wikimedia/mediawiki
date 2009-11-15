@@ -727,7 +727,7 @@ class UploadForm extends HTMLForm {
 				'section' => 'source',
 				'id' => 'wpUploadFileURL',
 				'label-message' => 'sourceurl',
-				'upload-type' => 'Url',
+				'upload-type' => 'URL',
 				'radio' => &$radio,
 				'help' => wfMsgExt( 'upload-maxfilesize',
 						array( 'parseinline', 'escapenoentities' ),
