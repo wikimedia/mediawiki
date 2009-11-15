@@ -263,10 +263,10 @@ $1',
 'userlogin'               => 'اویدن به سیستم / درست کردن حساب کاربری',
 'logout'                  => 'رهدن زه سیستم',
 'userlogout'              => 'رهدن زه سیستم',
-'nologin'                 => 'آیا ایسا حساب کاربری ندارین? $1.',
+'nologin'                 => "آیا ایسا حساب کاربری ندارین? '''$1'''.",
 'nologinlink'             => 'درست کردن یه حساب کاربری',
 'createaccount'           => 'درست کردن حساب کاربری',
-'gotaccount'              => 'آیا تقریبا یه حساب کاربری دارین? $1.',
+'gotaccount'              => "آیا تقریبا یه حساب کاربری دارین? '''$1'''.",
 'gotaccountlink'          => 'اویدن به',
 'yourrealname'            => 'نام واقعی:',
 'prefs-help-realname'     => 'ذکر نام واقعی اختیاریه ایر تصمیم به گدن بگیرین هنگام ارجاع به آثارتو و انتساب هونو به ایسا زه نام واقعیتو استفاده ابوه',
@@ -404,7 +404,7 @@ $1',
 ایسا ترین [[:\$1| ای صفحه را ایجاد کنین]].",
 'prevn'          => 'قبلی $1',
 'nextn'          => 'بعدی $1',
-'viewprevnext'   => 'مشاهده ($1) ($2) ($3)',
+'viewprevnext'   => 'مشاهده ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:محتوا',
 'powersearch'    => 'جستجوی کاملتر',
 
@@ -802,6 +802,7 @@ $2',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

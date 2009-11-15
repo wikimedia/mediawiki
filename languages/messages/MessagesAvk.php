@@ -10,6 +10,7 @@
  * @author Nkosi ya Cabinda
  * @author Sab
  * @author Wikimistusik
+ * @author Zetud
  */
 
 $namespaceNames = array(
@@ -446,10 +447,10 @@ Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'logout'                     => 'Dimgluyá',
 'userlogout'                 => 'Dimgluyara',
 'notloggedin'                => 'Dogluyariskaf',
-'nologin'                    => 'Kas va pata me digil ? $1.',
+'nologin'                    => "Kas va pata me digil ? '''$1'''.",
 'nologinlink'                => 'Pataredura',
 'createaccount'              => 'Warzon pataredú',
-'gotaccount'                 => 'Kas va pata ixam digil ? $1.',
+'gotaccount'                 => "Kas va pata ixam digil ? '''$1'''.",
 'gotaccountlink'             => 'Dogluyara',
 'createaccountmail'          => 'kan e-mail',
 'badretype'                  => 'Toloy suteyen remravlem tid menuxaf.',
@@ -593,7 +594,7 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d'un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'adresse IP numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion.''",
 'noarticletext'                    => 'Moe batu bu mek krent dure tir.
 Vanmiae yonaru bu [[Special:Search/{{PAGENAME}}|va man buvergumvelt rotaneyal]],
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} va gluyan log robetal],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} va gluyan log robetal],
 oke [{{fullurl:{{FULLPAGENAME}}|action=edit}} va batu bu robetal]</span>.',
 'userpage-userdoesnotexist'        => '"$1" favesikpata me tir vuesteyena. Vay stujel ede va batu bu roredul ike robetal.',
 'clearyourcache'                   => "'''Note :''' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : '''Mozilla / Konqueror / Firefox''' : ''ctrl-shift-r'', '''IE''' : ''ctrl-f5'', '''Safari''' : ''cmd-shift-r''; '''Konqueror''' : ''f5''.",
@@ -1075,14 +1076,17 @@ Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 'large-file'                  => 'Lokiewafa da lum ke man iyeltak tir lepinaf dam $1; bat iyeltak tir $2.',
 'largefileserver'             => 'Bat iyeltak tir pwertarsaf gu gotune ke zanisiko.',
 'emptyfile'                   => 'Kalvajan iyeltak nuvelar vlardaf. Lanon golde sutejen iyeltakyolt. Vay ageltal ede va bat iyeltak en djukalvajal !',
-'fileexists'                  => "Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va '''<tt>$1</tt>'''. Til lanaf da va bat iyeltak djubetal ?",
-'filepageexists'              => "Pimtarabu ke bat iyeltak ixam al zo redur ko '''<tt>$1</tt>''', vexe mek iyeltak dem man yolt ixam tir. Vildeks rinon suten moe pimtarabu me awitir. Ede djumel da in batlize co-awir, nubedon co-gobetal.",
-'fileexists-extension'        => "Iyeltak dem nuxaf yolt tir :<br />
-Yolt ke kalvajayan iyeltak : '''<tt>$1</tt>'''<br />
-Yolt ke tis iyeltak : '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Iyeltak dem man bat yolt ixam krulder.
+Vay, ageltal va '''<tt>[[:$1]]</tt>'''.
+Til lanaf da va bat iyeltak djubetal ? [[$1|thumb]]",
+'filepageexists'              => "Pimtarabu ke bat iyeltak ixam al zo redur ko '''<tt>[[:$1]]</tt>''', vexe mek iyeltak dem man yolt ixam tir. Vildeks rinon suten moe pimtarabu me awitir. Ede djumel da in batlize co-awir, nubedon co-gobetal.",
+'fileexists-extension'        => "Iyeltak dem nuxaf yolt tir : [[$2|thumb]]
+* Yolt ke kalvajayan iyeltak : '''<tt>[[:$1]]</tt>'''
+* Yolt ke tis iyeltak : '''<tt>[[:$2]]</tt>'''
 Va amidaf yolt vay kiblal !",
 'fileexists-thumb'            => "<center>'''Kruldes iyeltak'''</center>",
-'fileexists-thumbnail-yes'    => "Iyeltak nuvelar da tir lumamafa ewava ''(aluk)''. Vay va '''<tt>$1</tt>''' iyeltak stujel.<br />
+'fileexists-thumbnail-yes'    => "Iyeltak nuvelar da tir lumamafa ewava ''(aluk)''. [[$1|thumb]]
+Vay va '''<tt>[[:$1]]</tt>''' iyeltak stujel.
 Ede stujen iyeltak tir mila lumanhafa ewava, va aptaf aluk me kalvajal !",
 'fileexists-forbidden'        => 'Milyoltaf iyeltak ixam krulder nume me zo robetar.
 Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel.
@@ -1541,7 +1545,7 @@ Noeltaf plekukseem ke '''$1''' bu batlize tid :",
 'protect-expiring'            => 'edjatena ba $1 (UTC)',
 'protect-cascade'             => 'Nendan bueem dene batu bu (stoyakorafa nendara)',
 'protect-cantedit'            => 'Va nendarekeem va batu bu me robetal kire va betararoka me deraykal.',
-'protect-expiry-options'      => '2 bartiv:2 hours,1 viel:1 day,3 viel:3 days,1 perka:1 week,2 perka:2 weeks,1 aksat:1 month,3 aksat:3 months,6 aksat:6 months,1 tanda:1 year,kotabon:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 bartiv:1 hour,1 viel:1 day,1 perka:1 week,2 perka:2 weeks,1 aksat:1 month,3 aksat:3 months,6 aksat:6 months,1 tanda:1 year,kotabon:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Rictara :',
 'restriction-level'           => 'Irutareka :',
 'minimum-size'                => 'Volcugaf lum',
@@ -1568,7 +1572,7 @@ Badona rekolon zo gotuvlardar.',
 'undeleterevisions'         => '$1 fardudjayana betara',
 'undeletehistory'           => "Ede rin va bu co-dimplekul, kota betara ko izvot zo co-dimplekur.
 
-Si une nouvelle page avec le même nom a été crée depuis la suppression, les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
+Si une nouvelle page avec le même nom a été créée depuis la suppression, les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
 'undelete-revision'         => 'Sulayana betara va $1 (ba $4 ke $5) gan $3 :',
 'undelete-nodiff'           => 'Mek abdif betaks trasin.',
 'undeletebtn'               => 'Skura va dimplekura !',
@@ -2009,6 +2013,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

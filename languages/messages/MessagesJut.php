@@ -326,10 +326,10 @@ Førespørgsel: $2',
 'userlogin'               => 'Åpret æ konto æller loĝ på',
 'logout'                  => 'Loĝ åf',
 'userlogout'              => 'Loĝ åf',
-'nologin'                 => 'Du har engen brugerkonto? $1.',
+'nologin'                 => "Du har engen brugerkonto? '''$1'''.",
 'nologinlink'             => 'Åpret ny brugerkonto',
 'createaccount'           => 'Åpret en ny konto',
-'gotaccount'              => 'Du har ålerede en brugerkonto? $1.',
+'gotaccount'              => "Du har ålerede en brugerkonto? '''$1'''.",
 'gotaccountlink'          => 'Loĝ på',
 'youremail'               => 'E-mail:',
 'yourrealname'            => 'Dit rigtege navn*',
@@ -461,7 +461,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'noexactmatch'   => "'''{{SITENAME}} har engen ertikel ve dette nav.''' Du ken [[:$1|åprette en ertikel ve dette nav]].",
 'prevn'          => 'førge $1',
 'nextn'          => 'nægste $1',
-'viewprevnext'   => 'Ves ($1) ($2) ($3)',
+'viewprevnext'   => 'Ves ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:Hjælpførside',
 'searchall'      => 'ål',
 'powersearch'    => 'Søĝ',
@@ -686,7 +686,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'protect-expiring'            => 'til $1 (UTC)',
 'protect-cascade'             => 'Nedarvende spærrenge – ål skabelåner, søm er endbundet i denne side spærres også.',
 'protect-cantedit'            => 'Du kenst ekke ændre beskyttelsesnivå før denne side, da du ekke kenst redigære føden.',
-'protect-expiry-options'      => '1 tême:1 hour,2 têmer:2 hours,6 têmer:6 hours,1 dåĝ:1 day,3 dåĝ:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,1 år:1 year,ubegrænset:indefinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 tême:1 hour,1 dåĝ:1 day,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,ubegrænset:indefinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Beskyttelsesståt',
 'restriction-level'           => 'Beskyttelseshøjde',
 
@@ -849,6 +849,7 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

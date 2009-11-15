@@ -210,10 +210,10 @@ $messages = array(
 'userlogin'               => 'Logge sïjse / skaepede nuhtjien',
 'logout'                  => 'Logge olkese',
 'userlogout'              => 'Logge ålkone',
-'nologin'                 => 'Lea dov ijje registreered? $1.',
+'nologin'                 => "Lea dov ijje registreered? '''$1'''.",
 'nologinlink'             => 'Skaepede nuhtjien',
 'createaccount'           => 'Skaepede nuhtjien',
-'gotaccount'              => 'Åtna dov joe nuhtjiennomme? $1.',
+'gotaccount'              => "Åtna dov joe nuhtjiennomme? '''$1'''.",
 'gotaccountlink'          => 'Logge sïjse',
 'createaccountmail'       => 'meatan e-påaste',
 'youremail'               => 'E-påaste:',
@@ -343,7 +343,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'noexactmatch'     => "'''Dïhte gååvnese ijje bielie meatan nommej \"\$1\".''' Dov dorje [[:\$1|skaepede dïhte bielie]].",
 'prevn'            => 'övtebe $1',
 'nextn'            => 'minngeben $1',
-'viewprevnext'     => 'Vuesehth ($1) ($2) ($3)',
+'viewprevnext'     => 'Vuesehth ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'   => 'Help:Sisvege',
 'powersearch'      => 'Ohtsedh',
 
@@ -801,6 +801,7 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

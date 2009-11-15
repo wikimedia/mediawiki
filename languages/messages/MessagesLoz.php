@@ -292,10 +292,10 @@ Query: $2",
 'logout'                    => 'Ile',
 'userlogout'                => 'Ile',
 'notloggedin'               => 'Ile sa akwezi',
-'nologin'                   => 'Ni menuhile? $1.',
+'nologin'                   => "Ni menuhile? '''$1'''.",
 'nologinlink'               => 'Ipupezi sebelu',
 'createaccount'             => 'Ipupezi sebelu',
-'gotaccount'                => 'Xete a sa sebelu? $1.',
+'gotaccount'                => "Xete a sa sebelu? '''$1'''.",
 'gotaccountlink'            => 'Menuhile',
 'createaccountmail'         => 'dimeli',
 'badretype'                 => 'Sebu dafi ni sa identikali.',
@@ -483,7 +483,7 @@ Informasi: (bye) = petuho a nca selt,
 'notextmatches'         => 'Ni selt di petulo ekali',
 'prevn'                 => 'kona $1',
 'nextn'                 => 'lila $1',
-'viewprevnext'          => 'Kamukile ($1) ($2) ($3)',
+'viewprevnext'          => 'Kamukile ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'        => 'Help:Buinaneli di petulo',
 'searchall'             => 'xete',
 'showingresults'        => "Kamukile opi {{PLURAL:$1|'''1''' ekali|'''$1''' ekalina}} di #'''$2'''.",
@@ -1042,6 +1042,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

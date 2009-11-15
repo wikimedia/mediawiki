@@ -116,9 +116,14 @@ $messages = array(
 'edithelp'             => 'संपादन सहयोग',
 'edithelppage'         => 'Help:संपादन',
 'mainpage'             => 'सम्मुख पन्ना',
-'mainpage-description' => 'सम्मुख पन्ना',
+'mainpage-description' => 'सम्मुख पृष्ठ',
+'policy-url'           => 'कार्य-भार :निअम',
+'portal'               => 'सामाजिक कोण',
+'portal-url'           => 'कार्य-भार : समूह कोण',
 'privacy'              => 'गोपनीयताक नियम',
 'privacypage'          => 'Project:गोपनीयता नियम',
+
+'badaccess' => 'आज्ञा गल्ती',
 
 'retrievedfrom'   => 'प्राप्ति स्थल "$1"',
 'editsection'     => 'संपादन करू',
@@ -128,6 +133,11 @@ $messages = array(
 'hidetoc'         => 'नुकाऊ',
 'site-rss-feed'   => '$1 आरएसएस फीड',
 'site-atom-feed'  => '$1 अणु फीड',
+'red-link-title'  => 'पृष्ठ उपलब्ध नहि अछि',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main' => 'पृष्ठ',
+'nstab-user' => 'उपयोगकर्ताक पृष्ठ',
 
 # Login and logout pages
 'nav-login-createaccount' => 'सदस्य लॉग इन',

@@ -168,7 +168,7 @@ $messages = array(
 'logout'                  => 'Tripan',
 'userlogout'              => 'Tripan',
 'notloggedin'             => 'Petu konlaymi.',
-'nologin'                 => 'Nielaymi kiñe lludüwe? $1.',
+'nologin'                 => "Nielaymi kiñe lludüwe? '''$1'''.",
 'nologinlink'             => 'Dewmafinge',
 'gotaccountlink'          => 'Konün',
 'username'                => 'Üy kellufe:',
@@ -214,7 +214,7 @@ $messages = array(
 'diff-del'     => "'''Ñamümün'''",
 
 # Search results
-'viewprevnext'                   => 'Pen ($1) ($2) ($3).',
+'viewprevnext'                   => 'Pen ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists'              => "'''Ngey kiñe pakina pingey «[[$1]]» tüfachi wiki mew'''",
 'searchmenu-new'                 => "'''¡Llitun pakina «[[:$1]]» tüfachi wiki mew!'''",
 'searchhelp-url'                 => 'Help:Kellu',
@@ -490,7 +490,7 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kom',
 'imagelistall'     => 'kom',
-'watchlistall2'    => 'Fill',
+'watchlistall2'    => 'kom',
 'namespacesall'    => 'kom',
 'monthsall'        => '(kom)',
 

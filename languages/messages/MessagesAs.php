@@ -341,9 +341,9 @@ $messages = array(
 'nosuchaction'      => 'এনে কাৰ্য্য নাই',
 'nosuchactiontext'  => 'এই URL-ৰ নির্দেশিত কাৰ্য্য {{SITENAME}} -অত উপলব্ধ নহয়',
 'nosuchspecialpage' => 'এনেকুৱা কোনো বিশেষ পৃষ্ঠা নাই',
-'nospecialpagetext' => "<big>'''আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে '''</big>
+'nospecialpagetext' => '<strong>আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে </strong>
 
-   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:SpecialPages|{{int:specialpages}}]].",
+   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'ভুল',
@@ -410,10 +410,10 @@ $1',
 'logout'                     => 'প্রস্থান',
 'userlogout'                 => 'প্রস্থান',
 'notloggedin'                => 'প্রৱেশ কৰা নাই',
-'nologin'                    => 'আপুনি সদস্য নহয়? $1।',
+'nologin'                    => "আপুনি সদস্য নহয়? '''$1'''।",
 'nologinlink'                => 'নতুন সদস্যভুক্তি কৰক',
 'createaccount'              => 'সভ্যভুক্ত হবলৈ',
-'gotaccount'                 => 'আপুনি সদস্য হয়নে? $1',
+'gotaccount'                 => "আপুনি সদস্য হয়নে? '''$1'''",
 'gotaccountlink'             => 'প্রবেশ',
 'createaccountmail'          => 'ই-মেইলেৰে',
 'badretype'                  => 'আপুনি দিয়া গুপ্ত শব্দ দুটা মিলা নাই।',
@@ -666,7 +666,7 @@ $1',
 'notextmatches'         => 'এটাও লিখনীৰ পাঠ্য মিলা নাই',
 'prevn'                 => 'পুর্ববর্তি $1',
 'nextn'                 => 'পৰৱর্তি $1',
-'viewprevnext'          => 'চাওক ($1) ($2) ($3)',
+'viewprevnext'          => 'চাওক ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'        => 'Help:সুচী',
 'search-interwiki-more' => '(আৰু)',
 'showingresults'        => "তলত #'''$2'''ৰ পৰা {{PLURAL:$1|'''1''' ফলাফল|'''$1''' ফলাফল}} দেখুওৱা হৈছে।",
@@ -916,7 +916,7 @@ $1',
 'protect-expiring'            => ' $1 (UTC) ত সময় শেষ হব',
 'protect-cascade'             => 'এই পৃষ্ঠাটোৰ লগত জৰিত সকলো পৃষ্ঠা সুৰক্ষিত কৰক (সুৰক্ষা জখলা)',
 'protect-cantedit'            => 'আপুনি এই পৃষ্ঠাটোৰ সুৰক্ষা-স্তৰ সলনি কৰিব নোৱৰে, কাৰণ আপোনাক সেই অনুমতি দিয়া হোৱা নাই।',
-'protect-expiry-options'      => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'সুৰক্ষা-স্তৰ:',
 
@@ -1071,6 +1071,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

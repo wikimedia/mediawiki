@@ -132,7 +132,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'userlogin'          => 'akunnapuq / pirqaapaa kiinaijakkuvingmi tuqkuqsivik',
 'logout'             => 'anivvik',
 'userlogout'         => 'anivvik',
-'nologin'            => 'ajuinnaaq inuquti? $1.',
+'nologin'            => "ajuinnaaq inuquti? '''$1'''.",
 'nologinlink'        => 'pirqaapaa kiinaujakkuvingmi tuqkuqsivik',
 'youremail'          => 'kigutiup sitiniqpaanga:',
 'username'           => 'uikipitia atiq:',

@@ -130,8 +130,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Afiche <a href="" class="new">nan koulè wouj</a> lyen yo ki ap mene nan paj ki pa egziste (oubyen : tankou <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Aliyen paragraf yo',
 'tog-hideminor'               => 'Kache tout modifikasyon resan yo ki pa enpòtan',
-'tog-extendwatchlist'         => 'Itilize lis swivi ki miyò a',
-'tog-usenewrc'                => 'Itilize lis swivi ki miyò a (JavaScript)',
+'tog-extendwatchlist'         => 'Etann lis swivi pou ou kapab wè tout chanjman yo, pa sèlman sa ki fèk fèt yo',
+'tog-usenewrc'                => 'Itilize vèsyon modifikasyon ki fèk fèt yo ki miyò a (li bezwen ou aktive JavaScript)',
 'tog-numberheadings'          => 'Nimewote otomatiman tit yo',
 'tog-showtoolbar'             => 'Montre panèl meni modifikasyon an',
 'tog-editondblclick'          => 'Klike de fwa pou modifye yon paj (JavaScript)',
@@ -139,7 +139,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Pemèt edite yon seksyon pa klike a dwat tit seksyon an (JavaScrip)',
 'tog-showtoc'                 => 'Montre tab de matyè yo (pou tout paj ki gen plis ke twa tit)',
 'tog-rememberpassword'        => 'Sonje login mwen nan òdinatè sa',
-'tog-editwidth'               => 'Lajè bwat edite-a plen',
+'tog-editwidth'               => 'Montre fenèt pou modifikasyon yo nan mitan paj lan',
 'tog-watchcreations'          => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
 'tog-watchdefault'            => 'Mete paj mwen edite yo nan lis veye m',
 'tog-watchmoves'              => 'Mete paj mwen deplase nan lis veye m',
@@ -153,7 +153,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'E-mèl mwen tou pou edit minè paj yo',
 'tog-enotifrevealaddr'        => 'Montre adrès e-mèl mwen nan kominikasyon notifikasyon yo',
 'tog-shownumberswatching'     => 'Montre kantite itlizatè k’ap swiv',
-'tog-fancysig'                => 'Signati kri (san lyen otomatik)',
+'tog-fancysig'                => 'Konsidere siyati sa tankou yon wikitèks (san lyen ki ta otomatik)',
 'tog-externaleditor'          => 'Itilize editè ki pa nan sistèm wikimedya pa defo',
 'tog-externaldiff'            => 'Itilize yon konparatè ki pa nan sitsèm wikimedya pa defo',
 'tog-showjumplinks'           => 'Demare « jonpe a » asesabilite lyen',
@@ -162,9 +162,12 @@ $messages = array(
 'tog-watchlisthideown'        => 'Kache edisyon m yo nan lis siveye-a',
 'tog-watchlisthidebots'       => 'Kache edisyon bot nan lis siveye-a',
 'tog-watchlisthideminor'      => 'Kache edisyon minè yo nan lis siveye-a',
+'tog-watchlisthideliu'        => 'Kache modifikasyon yo ki fèt ba itilizatè yo ki enskri nan lis swivi',
+'tog-watchlisthideanons'      => 'Kache modifikasyon anonim nan lis swivi an',
 'tog-ccmeonemails'            => 'Voye yon kopi e-mèl mwen voye ba lòt ban mwen',
 'tog-diffonly'                => 'Piga moutre enfòmsyon yon paj piba diffs',
 'tog-showhiddencats'          => 'Moutre kategori kache yo',
+'tog-norollbackdiff'          => 'Pa montre diferans lè li genyen yon revokasyon',
 
 'underline-always'  => 'Toujou',
 'underline-never'   => 'Jamè',
@@ -396,9 +399,9 @@ $messages = array(
 'nosuchaction'      => 'Pa gen bagay konsa',
 'nosuchactiontext'  => 'Wiki-a pa rekonèt Aksyon ki espesifye pa URL la',
 'nosuchspecialpage' => 'Pa gen paj especial konsa',
-'nospecialpagetext' => "<big>'''Paj espesial ou demande-a envalid.'''</big>
+'nospecialpagetext' => '<strong>Paj espesial ou demande-a envalid.</strong>
 
-Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:SpecialPages|{{int:specialpages}}]].",
+Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Erè',
@@ -496,10 +499,10 @@ Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou
 'logout'                     => 'Dekonekte ou',
 'userlogout'                 => 'Dekoneksyon',
 'notloggedin'                => 'Ou pa konekte',
-'nologin'                    => 'Ou pa genyen yon kont ? $1.',
+'nologin'                    => "Ou pa genyen yon kont ? '''$1'''.",
 'nologinlink'                => 'Kreye yon kont',
 'createaccount'              => 'Kreye yon kont',
-'gotaccount'                 => 'Ou ja genyen yon kont ? $1.',
+'gotaccount'                 => "Ou ja genyen yon kont ? '''$1'''.",
 'gotaccountlink'             => 'Idantifye ou',
 'createaccountmail'          => 'pa imèl',
 'badretype'                  => 'Mopas ou bay yo pa parèy ditou.',
@@ -799,7 +802,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'notextmatches'             => 'Pa genyen pyès tèks nan paj yo ki ap koresponn ak rechèch ou fè a',
 'prevn'                     => '$1 anvan yo',
 'nextn'                     => '$1 swivan yo',
-'viewprevnext'              => 'Wè ($1) ($2) ($3).',
+'viewprevnext'              => 'Wè ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'            => 'Help:Èd',
 'search-result-size'        => '$1 ({{PLURAL:$2| mo|$2 mo yo}})',
 'search-redirect'           => '(redireksyon depi $1)',
@@ -1045,7 +1048,7 @@ Gade $2 pou wè yon lis efasman resan.',
 'modifiedarticleprotection'   => 'modifye nivo pwoteksyon « [[$1]] »',
 'prot_1movedto2'              => '[[$1]] renonmen, li kounye a [[$2]]',
 'protect-legend'              => 'Konfime pwoteksyon an',
-'protectcomment'              => 'Poukisa ou pwoteje li:',
+'protectcomment'              => 'Poukisa:',
 'protectexpiry'               => 'Ekspirasyon(Paj an pe ke ekspire si ou pa mete anyen)',
 'protect_expiry_invalid'      => 'Dat ou mete a pou li ekspire pa bon',
 'protect_expiry_old'          => 'dat ekspirasyon an ja pase;',
@@ -1062,7 +1065,7 @@ Men reglaj pou paj '''$1''' an kounye a:",
 'protect-expiring'            => 'ap ekspire $1',
 'protect-cascade'             => 'Pwoteksyon enbrike - ap pwoteje tout paj ki andidan paj sa a.',
 'protect-cantedit'            => 'Ou pa kapab modifye nivo pwoteksyon paj sa a paske ou pa gen dwa pou edite li.',
-'protect-expiry-options'      => '2 zè:2 hours,1 jou:1 day,3 jou:3 days,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 zè:1 hour,1 jou:1 day,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Pèmisyon:',
 'restriction-level'           => 'Nivo kontrent, restriksyon:',
 
@@ -1255,6 +1258,7 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

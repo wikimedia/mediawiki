@@ -9,6 +9,7 @@
  *
  * @author Maartenvdbent
  * @author Pyt
+ * @author SK-luuut
  * @author Snakesteuben
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -146,8 +147,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Keppelings nei lege siden ta <a href="" class="new">read</a> (oars mei in fraachteken<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafen útfolje',
 'tog-hideminor'               => "Tekstwizigings wei litte út 'Koartlyn feroare'",
-'tog-extendwatchlist'         => 'Wreidzje folchlist út om alle wizigings sjen te litten',
-'tog-usenewrc'                => "Utwreide ferzje fan 'Koartlyn feroare' brûke (net mei alle blêdzjers mooglik)",
+'tog-extendwatchlist'         => 'Wreidzje folchlist út om alle wizigings sjen te litten, net allinnich de lêste wizigings',
+'tog-usenewrc'                => "Utwreide ferzje fan 'Koartlyn feroare' brûke (JavaScript fereaske)",
 'tog-numberheadings'          => 'Koppen fansels nûmerje',
 'tog-showtoolbar'             => 'Brûk arkbalke by bewurkjen',
 'tog-editondblclick'          => 'Dûbelklik jout bewurkingsside (freget JavaScript)',
@@ -155,7 +156,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Rjochtsklik op sekjsetitels jout seksjebewurking (freget JavaScript)',
 'tog-showtoc'                 => 'Ynhâldsopjefte, foar siden mei mear as twa koppen',
 'tog-rememberpassword'        => 'Oare kear fansels oanmelde',
-'tog-editwidth'               => 'Bewurkingsfjild sa breed as de side',
+'tog-editwidth'               => 'Bewurkingsfjild oer folsleine breedte fan it skerm sjen litte',
 'tog-watchcreations'          => "Set siden dy't jo begjinne yn jo folchlist",
 'tog-watchdefault'            => "Sides dy't jo feroare hawwe folgje",
 'tog-watchmoves'              => "Siden dy't jo werneamd hawwe folgje",
@@ -169,7 +170,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'E-mail my ek by lytse feroarings fan siden op myn folchlist',
 'tog-enotifrevealaddr'        => 'Myn e-mailadres sjen litte yn e-mailberjochten',
 'tog-shownumberswatching'     => 'It tal brûkers sjen litte dat dizze side folget',
-'tog-fancysig'                => 'Sinjatuer sûnder automatyske ferwizing nei dyn Meidoggerside',
+'tog-fancysig'                => 'Sinjatuer as wikitekst behannelje (sûnder automatyske keppeling)',
 'tog-externaleditor'          => 'Standert in eksterne tekstbewurker brûke (allinne foar experts - foar dizze funksje binne spesjale ynstellings nedich)',
 'tog-externaldiff'            => 'Standert in ekstern ferlikingsprogramma brûke (allinne foar experts - foar dizze funksje binne spesjale ynstellings nedich)',
 'tog-showjumplinks'           => '"gean nei"-tapaslikens-links ynskeakelje',
@@ -270,7 +271,7 @@ $messages = array(
 'about'          => 'Ynfo',
 'article'        => 'Ynhâld side',
 'newwindow'      => '(nij finster)',
-'cancel'         => 'Ferlitte',
+'cancel'         => 'Ofbrekke',
 'qbfind'         => 'Sykje',
 'qbbrowse'       => 'Blêdzje',
 'qbedit'         => 'Bewurkje',
@@ -327,7 +328,7 @@ $messages = array(
 'toolbox'           => 'Arkkiste',
 'userpage'          => 'Meidoggerside',
 'projectpage'       => 'Metaside',
-'imagepage'         => 'Ofbyldside',
+'imagepage'         => 'Besjoch triemside',
 'mediawikipage'     => 'Berjochtside sjen litte',
 'templatepage'      => 'Berjochtside lêze',
 'viewhelppage'      => 'Helpside sjen litte',
@@ -398,13 +399,13 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
-'red-link-title'          => '$1 (noch net skreaun)',
+'red-link-title'          => '$1 (de side bestiet net)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Side',
 'nstab-user'      => 'Meidogger',
 'nstab-media'     => 'Mediaside',
-'nstab-special'   => 'Spesjaal',
+'nstab-special'   => 'Bysûndere side',
 'nstab-project'   => 'Projektside',
 'nstab-image'     => 'Triem',
 'nstab-mediawiki' => 'Berjocht',
@@ -426,11 +427,11 @@ De lêst besochte databankfraach wie:
 <blockquote><tt>$1</tt></blockquote>
 fan funksje "<tt>$2</tt>" út.
 MySQL joech fout "<tt>$3: $4</tt>" werom.',
-'dberrortextcl'        => 'Sinboufout in databankfraach.
+'dberrortextcl'        => 'Sinboufout yn databankfraach.
 De lêst besochte databankfraach wie:
 "$1"
-fan funksje "$2" út.
-MySQL joech fout "<tt>$3: $4</tt>" werom.',
+fanút funksje "$2" .
+MySQL joech fout "$3: $4"',
 'noconnect'            => 'Troch in fout yn de technyk, kin de Wiki gjin ferbining meitsje mei de databanktsjinner. <br />
 $1',
 'nodb'                 => 'Kin databank "$1" net berikke.',
@@ -515,15 +516,15 @@ Ferjit net se oan jo foarkar oan te passen.',
 'logout'                     => 'Ofmelde',
 'userlogout'                 => 'Ofmelde',
 'notloggedin'                => 'Net oanmelde',
-'nologin'                    => 'Noch net oanmelden as meidogger? $1.',
+'nologin'                    => "Noch net oanmelden as meidogger? '''$1'''.",
 'nologinlink'                => 'Meitsje in brûker oan',
 'createaccount'              => 'Nije ynstellings oanmeitsje',
-'gotaccount'                 => 'Hawwe jo jo al as meidogger oanmelde? $1.',
+'gotaccount'                 => "Hawwe jo jo al as meidogger oanmelde? '''$1'''.",
 'gotaccountlink'             => 'Oanmelde',
 'createaccountmail'          => 'troch e-mail',
 'badretype'                  => 'De ynfierde wachtwurden binne net lyk.',
 'userexists'                 => 'Dy meidochnamme wurdt al brûkt. Besykje in oarenien.',
-'youremail'                  => 'Jo e-postadres (*).',
+'youremail'                  => 'Jo netpostadres:',
 'username'                   => 'Meidochnamme:',
 'uid'                        => 'Wikinûmer:',
 'prefs-memberingroups'       => 'Lid fan {{PLURAL:$1|groep|groepen}}:',
@@ -533,7 +534,7 @@ Ferjit net se oan jo foarkar oan te passen.',
 'badsig'                     => 'Unjildige ûndertekening; kontrolearje de HTML-tags.',
 'badsiglength'               => 'Bynamme is te lang; dy moat koarter as $1 {{PLURAL:$1|teken|tekens}} wêze.',
 'email'                      => 'E-post',
-'prefs-help-realname'        => 'Echte namme is opsjoneel; as jo dy opjouwe kin dy namme brûkt wurde om jo erkenning te jaan foar jo wurk.',
+'prefs-help-realname'        => 'Echte namme is net ferplicht; as jo dy opjouwe kin dy namme brûkt wurde om jo erkenning te jaan foar jo wurk.',
 'loginerror'                 => 'Oanmeldflater',
 'prefs-help-email'           => 'E-post is opsjoneel, mar makket it mûglik jo wachtwurd te stjoeren as jo it fergetten hawwe.
 Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwizing op jo brûkers- en oerlisside, sûnder dat jo jo identiteit oer hoege te jaan.',
@@ -986,7 +987,7 @@ Prebearje in oare sykopdracht.',
 'notextmatches'                    => 'Gjin siden',
 'prevn'                            => 'foarige $1',
 'nextn'                            => 'folgende $1',
-'viewprevnext'                     => '($1) ($2) ($3) besjen.',
+'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) besjen.',
 'searchmenu-legend'                => 'Sykopsjes',
 'searchmenu-exists'                => "'''Der is in side mei namme \"[[:\$1]]\" yn dizze wiki'''",
 'searchmenu-new'                   => "'''Meitsje de side \"[[:\$1]]\" yn dizze wiki!'''",
@@ -1031,7 +1032,7 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'powersearch-ns'                   => 'Sykje op nammeromten:',
 'powersearch-redir'                => 'Trochferwizings werjaan',
 'powersearch-field'                => 'Sykje op',
-'search-external'                  => 'Ekstern sykjen',
+'search-external'                  => 'Utwindich sykje',
 'searchdisabled'                   => '<p>Op it stuit stiet it trochsykjen fan tekst út omdat dizze funksje tefolle kompjûterkapasiteit ferget. As we nije apparatuer krije, en dy is ûnderweis, dan wurdt dizze funksje wer aktyf. Oant salang kinne jo sykje fia Google:</p>',
 
 # Preferences page
@@ -1097,8 +1098,8 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'timezoneoffset'            => 'Tiidsferskil¹:',
 'servertime'                => 'Servertiid:',
 'guesstimezone'             => 'Freegje de blêder',
-'allowemail'                => 'Lêt my ek e-mail fan oare meidoggers ûntfange',
-'prefs-searchoptions'       => 'Sykje-ynstellings',
+'allowemail'                => 'Lit my ek netpost fan oare meidoggers krije',
+'prefs-searchoptions'       => 'Sykynstellings',
 'prefs-namespaces'          => 'Nammeromten',
 'defaultns'                 => "Nammeromten dy't normaal trochsocht wurde:",
 'default'                   => 'standert',
@@ -1332,17 +1333,18 @@ Jou de triem in oare namme en besykje him dan op\'e nij heech te laden.',
 Dat soe komme kinne fan in typflater yn 'e triemnamme.
 Gean nei oft jo dizze triem wier bedoelden heech te laden.",
 'fileexists'                  => "Der bestiet al in triem mei dizze namme.
-Kontrolearje '''<tt>$1</tt>''' as jo net wis binne oft jo de besteande triem oerskriuwe wolle.",
-'filepageexists'              => "De beskriuwingsside foar dizze triem bestiet al op '''<tt>$1</tt>''', mar der bestiet gjin triem mei dizze namme.
+Kontrolearje '''<tt>[[:$1]]</tt>''' as jo net wis binne oft jo de besteande triem oerskriuwe wolle.
+[[$1|thumb]]",
+'filepageexists'              => "De beskriuwingsside foar dizze triem bestiet al op '''<tt>[[:$1]]</tt>''', mar der bestiet gjin triem mei dizze namme.
 De gearfetting dy't jo opjûn hawwe sil net op 'e beskriuwingsside ferskine.
 Bewurkje de side mei de hân om de beskriuwing dêr wer te jaan.",
-'fileexists-extension'        => "In triem mei deselde namme bestiet al:<br />
-Namme fan 'e heechladene triem: '''<tt>$1</tt>'''<br />
-Namme fan 'e besteande triem: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "In triem mei deselde namme bestiet al: [[$2|thumb]]
+* Namme fan 'e heechladene triem: '''<tt>[[:$1]]</tt>'''
+* Namme fan 'e besteande triem: '''<tt>[[:$2]]</tt>'''
 Kies in oare namme.",
 'fileexists-thumb'            => "<center>'''Besteande ôfbylding'''</center>",
-'fileexists-thumbnail-yes'    => "De triem liket in ferlytse ferzje te wêzen ''(miniatuerôfbylding)''.
-Kontrolearje de triem '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "De triem liket in ferlytse ferzje te wêzen ''(miniatuerôfbylding)''. [[$1|thumb]]
+Kontrolearje de triem '''<tt>[[:$1]]</tt>'''.
 As de kontrolearre triem deselde ôfbylding fan deselde grutte is, dan hoecht net in ekstra miniatuerôfbylding oanbean te wurden.",
 'file-thumbnail-no'           => "De triemnamme begjint mei '''<tt>$1</tt>'''.
 It liket in ferlytse ôfbylding te wêzen ''(miniatuerôfbylding)''.
@@ -1695,7 +1697,7 @@ Stipe protokollen: <tt>$1</tt>',
 'newuserlogpagetext'          => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
 'newuserlog-byemail'          => 'wachtwurd is ferstjoerd oer e-mail',
 'newuserlog-create-entry'     => 'Nije meidogger',
-'newuserlog-create2-entry'    => 'hat brûker $1 ynskreaun',
+'newuserlog-create2-entry'    => 'hat meidogger "$1" oanmakke',
 'newuserlog-autocreate-entry' => 'Brûker automatysk oanmakke',
 
 # Special:ListGroupRights
@@ -1901,7 +1903,7 @@ Dit binne de rinnende ynstellings foar de side '''$1''':",
 'undelete-revision'       => 'Wiske ferzje fan $1 (op $2) fan $3:',
 'undelete-nodiff'         => 'Gjin eardere ferzje fûn.',
 'undeletebtn'             => 'Weromsette',
-'undeletelink'            => 'werom sette',
+'undeletelink'            => 'besjen/tebeksette',
 'undeletereset'           => 'Leechmeitsje',
 'undeleteinvert'          => 'Omkearde seleksje',
 'undeletecomment'         => 'Utlis foar weromsetten:',
@@ -1998,11 +2000,13 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'infiniteblock'        => 'trochgeand',
 'blocklink'            => 'slút út',
 'unblocklink'          => 'lit yn',
+'change-blocklink'     => 'blokkade feroarje',
 'contribslink'         => 'bydragen',
 'autoblocker'          => 'Jo wiene útsletten om\'t jo ynternet-adres oerienkomt mei dat fan "[[User:$1|$1]]". Foar it útsluten fan dy meidogger waard dizze reden jûn: "$2".',
 'blocklogpage'         => 'Utslútloch',
 'blocklogentry'        => '"[[$1]]" útsletten foar $2 $3',
 'blocklogtext'         => 'Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten net-adressen binne net opnaam. Sjoch de [[Special:IPBlockList|útsletlist]] foar de no jildende utslettings.',
+'unblocklogentry'      => 'hat de blokkade fan $1 fuorthelle',
 'ipb_expiry_invalid'   => 'Tiid fan ferrinnen is net goed.',
 'ipb_already_blocked'  => '"$1" is al útsluten',
 'ipb_cant_unblock'     => 'Flater: It útsluten fan ID $1 kin net fûn wurde. It is miskien al net mear útsluten.',
@@ -2119,10 +2123,10 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Myn brûkersside',
-'tooltip-pt-mytalk'               => 'Myn oerlisside',
+'tooltip-pt-mytalk'               => 'Jo oerlisside',
 'tooltip-pt-preferences'          => 'Myn foarkarynstellings',
 'tooltip-pt-watchlist'            => "List fan siden dy'sto besjochst op feroarings",
-'tooltip-pt-mycontris'            => 'Myn bydragen',
+'tooltip-pt-mycontris'            => 'Oersjocht fan jo bydragen',
 'tooltip-pt-login'                => 'Jo wurde fan herten útnoege jo oan te melden, mar it hoecht net.',
 'tooltip-pt-logout'               => 'Ofmelde',
 'tooltip-ca-talk'                 => 'Oerlis oer dizze side',
@@ -2154,6 +2158,7 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'tooltip-t-upload'                => 'Triemmen oplade',
 'tooltip-t-specialpages'          => 'List fan alle spesjale siden',
 'tooltip-ca-nstab-user'           => 'Brûkersside sjen litte',
+'tooltip-ca-nstab-special'        => 'Dit is in spesjale side; jo kinne de side sels net feroarje',
 'tooltip-ca-nstab-project'        => 'Projektside sjen litte',
 'tooltip-ca-nstab-image'          => 'De triemside sjen litte',
 'tooltip-ca-nstab-mediawiki'      => 'Systeemberjocht sjen litte',
@@ -2245,6 +2250,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

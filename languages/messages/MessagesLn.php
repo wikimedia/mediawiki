@@ -156,9 +156,9 @@ $messages = array(
 'userlogin'               => 'Komíkomisa tǒ kokɔtɔ',
 'logout'                  => 'kolongwa',
 'userlogout'              => 'kolongwa (log out)',
-'nologin'                 => 'Omíkomísí naíno tɛ̂? $1.',
+'nologin'                 => "Omíkomísí naíno tɛ̂? '''$1'''.",
 'nologinlink'             => 'Míkomísá yɔ̌-mɛ́i',
-'gotaccount'              => 'Omíkomísí naíno ? $1.',
+'gotaccount'              => "Omíkomísí naíno ? '''$1'''.",
 'createaccountmail'       => 'na mokánda',
 'youremail'               => 'Mokandá (e-mail) *',
 'username'                => 'Nkómbó ya ekitoli :',
@@ -213,7 +213,7 @@ $messages = array(
 # Search results
 'prevn'        => '$1 ya libosó',
 'nextn'        => 'bolɛngɛli $1',
-'viewprevnext' => 'Komɔ́na ($1) ($2) ($3)',
+'viewprevnext' => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
 'powersearch'  => 'Boluki',
 
 # Preferences page

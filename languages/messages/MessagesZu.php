@@ -115,7 +115,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'logout'             => 'Phuma',
 'userlogout'         => 'Phuma',
 'notloggedin'        => 'Awungenile',
-'nologin'            => 'Awunekhawundi? $1.',
+'nologin'            => "Awunekhawundi? '''$1'''.",
 'nologinlink'        => 'Dala ikhawundi',
 'createaccount'      => 'Dala ikhawundi',
 'gotaccountlink'     => 'Ngena',

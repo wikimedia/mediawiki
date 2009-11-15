@@ -227,16 +227,16 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => 'Isticmaalaha ka bax',
-'logouttext'                 => "'''Hada waa aad ka baxday.'''
+'logouttext'                 => "'''Hada waad ka baxday.'''
 
-Waad sii isticmaali kartaa {{SITENAME}}han adoonlagu aqoon, ama gudaha ayaad gali kartaa markale adiga oo isticmaalaya gudagalkaagii hore ama mid kaduwan. OGEYSIIS waxaa lagayabaa beyjajka qaarkood in ay yiraahdaa wali gudaha ayaad kujirtaa, ilaa aad internet barowsarkaaaga aad nadiifiso.",
+Waad sii isticmaali kartaa {{SITENAME}}-han adoon lagu aqoon, ama gudaha ayaad [[Special:UserLogin|gali kartaa markale]] adiga oo isticmaalaya gudagalkaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogagga qaarkood in ay yiraahdaa wali gudaha ayaad ku jirtaa, ilaa aad Internet barowsarkaaaga ka nadiifiso.",
 'welcomecreation'            => "== Soo dhawoow, $1! ==
-
-Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} dooqaaga.",
+Gudagalahaaga waa la sameeyey.
+Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]].",
 'loginpagetitle'             => 'Gudagalka isticmaalaha',
-'yourname'                   => 'Ereyga Gudagalka',
-'yourpassword'               => 'Ereysir ah',
-'yourpasswordagain'          => 'Markale ereysirkaaga',
+'yourname'                   => 'Erayga Gudagalka:',
+'yourpassword'               => 'Eraysir:',
+'yourpasswordagain'          => 'Markale qor eraysirkaaga:',
 'remembermypassword'         => 'Kumbuyuutarkaan ku xasuusnaaw gudagalkeyga',
 'yourdomainname'             => 'Magacaga shabakada',
 'login'                      => 'Gudaha gal',
@@ -244,10 +244,10 @@ Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} 
 'logout'                     => 'Ka bax',
 'userlogout'                 => 'Ka bax',
 'notloggedin'                => 'Gudaha kuma jirtid',
-'nologin'                    => 'Maheysatid gudagale? $1.',
+'nologin'                    => "Maheysatid gudagale? '''$1'''.",
 'nologinlink'                => 'Sameyso gudagale',
 'createaccount'              => 'Sameey gudagale',
-'gotaccount'                 => 'Waan heystaa gudagale? $1.',
+'gotaccount'                 => "Waan heystaa gudagale? '''$1'''.",
 'gotaccountlink'             => 'Gudaha gal',
 'badretype'                  => 'Ereysiryada aad gelisay ismalaha.',
 'userexists'                 => 'Magaca isticmaalaha aad gelisay waa jiraa. Fadlan dooro magac ka bedelan.',
@@ -352,7 +352,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'searchsubtitleinvalid' => "Waxaad raadisay '''$1'''",
 'prevn'                 => 'Ka horeeya $1',
 'nextn'                 => 'Ku xiga $1',
-'viewprevnext'          => 'Fiiri ($1) ($2) ($3).',
+'viewprevnext'          => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:Caawinaad',
 'powersearch'           => 'Raadi',
 

@@ -243,6 +243,7 @@ $messages = array(
 'editsection'             => 'baliwan',
 'editold'                 => 'baliwan',
 'viewsourceold'           => 'kitaen ti taudan',
+'editlink'                => 'baliwan',
 'editsectionhint'         => 'Baliwan ti benneg: $1',
 'toc'                     => 'Linaon',
 'showtoc'                 => 'ipakita',
@@ -257,7 +258,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => 'Atom Feed ti "$1"',
-'red-link-title'          => '$1 (di pay naisurat)',
+'red-link-title'          => '$1 (awan ti panid)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articulo',
@@ -275,9 +276,9 @@ $messages = array(
 'nosuchaction'      => 'Awan ti kasta a naaramid',
 'nosuchactiontext'  => 'Saan a bigbigen ti wiki ti aksion a naibaga iti URL',
 'nosuchspecialpage' => 'Awan ti kasta a naiduma a panid',
-'nospecialpagetext' => "<big>'''Saan a mabalin ti kiniddawmo a naiduma a panid.'''</big>
+'nospecialpagetext' => '<strong>Saan a mabalin ti kiniddawmo a naiduma a panid.</strong>
 
-Masarakan ti listaan dagiti mabalin a a naiduma a pampanid iti [[Special:SpecialPages|{{int:specialpages}}]].",
+Masarakan ti listaan dagiti mabalin a a naiduma a pampanid iti [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Biddut',
@@ -329,6 +330,9 @@ Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatew
 'titleprotected'       => "Sinaluadan daytoy a titulo manipud iti pannakaparnuay ni [[User:$1|$1]].
 Ti naited a rason ket ''$2''.",
 
+# Virus scanner
+'virus-unknownscanner' => 'di am-ammo a pagpaksiat iti virus:',
+
 # Login and logout pages
 'logouttitle'                => 'Rummuar ti agar-aramat',
 'logouttext'                 => "'''Nakaruarkan.'''
@@ -351,10 +355,10 @@ Dimo liplipatan a sukatan dagiti preferenciam iti [[Special:Preferences|{{SITENA
 'logout'                     => 'Rummuar',
 'userlogout'                 => 'Rummuar',
 'notloggedin'                => 'Saan a naka-logged in',
-'nologin'                    => "Awan kad' pay accountmo? $1.",
+'nologin'                    => "Awan kad' pay accountmo? '''$1'''.",
 'nologinlink'                => 'Mangaramid iti account',
 'createaccount'              => 'Mangaramid iti baro nga account',
-'gotaccount'                 => 'Addaanka kadin iti account? $1.',
+'gotaccount'                 => "Addaanka kadin iti account? '''$1'''.",
 'gotaccountlink'             => 'Sumrek',
 'createaccountmail'          => 'babaen ti e-mail',
 'badretype'                  => 'Saan nga agparis dagiti impanmo a pasesbalikas.',
@@ -414,7 +418,7 @@ Saankan a makaaramid pay.',
 
 # Password reset dialog
 'resetpass'           => 'Sukatan ti pasesbalikas ti account',
-'resetpass_header'    => 'Sukatan ti pasesbalikas',
+'resetpass_header'    => 'Sukatan ti pasesbalikas ti account',
 'oldpassword'         => 'Daan a pasesbalikas:',
 'newpassword'         => 'Baro a pasesbalikas:',
 'retypenew'           => 'Isurat manen ti baro a pasesbalikas:',
@@ -647,7 +651,7 @@ Mabalinmo a [[:\$1|partuaten daytoy a panid]].",
 'notextmatches'             => 'Awan ti page text matches',
 'prevn'                     => 'napalabas $1',
 'nextn'                     => 'sumaruno $1',
-'viewprevnext'              => 'Kitaen ($1) ($2) ($3)',
+'viewprevnext'              => 'Kitaen ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'            => 'Help:Dagiti Linaon',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 a balikas|$2 a balbalikas}})',
 'search-result-score'       => 'Relevance: $1%',
@@ -1173,7 +1177,7 @@ Mabalinmo a sukatan ti level ti saluad daytoy a panid, ngem saanna nga apektaran
 'protect-expiring'            => 'agpaso inton $1 (UTC)',
 'protect-cascade'             => 'Saluadan dagiti pampanid a nairaman iti daytoy a panid (babaen ti cascading a saluad)',
 'protect-cantedit'            => 'Saanmo a masuktan ti level ti saluad daytoy a panid, ta awananka iti pammalubos a mangbalbaliw..',
-'protect-expiry-options'      => '2 nga oras:2 hours,1 nga aldaw:1 day,3 nga aldaw:3 days,1 a lawas:1 week,2 a lawas:2 weeks,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year,awan inggana:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 nga oras:1 hour,1 nga aldaw:1 day,1 a lawas:1 week,2 a lawas:2 weeks,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year,awan inggana:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Pammalubos:',
 'restriction-level'           => 'Level ti pannakaiparit:',
 'minimum-size'                => 'Min a size',
@@ -1534,6 +1538,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

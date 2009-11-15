@@ -178,7 +178,7 @@ $messages = array(
 'userlogout'              => '𐌻𐌴𐌹𐌸𐌰𐌽',
 'nologinlink'             => 'Gaskapjan þein niutandis',
 'createaccount'           => 'Galagjan niutandis',
-'gotaccount'              => 'Habiþ þu niutandis? $1',
+'gotaccount'              => "Habiþ þu niutandis? '''$1'''",
 'gotaccountlink'          => 'Atgaggan',
 'loginlanguagelabel'      => 'Razda: $1',
 
@@ -243,7 +243,7 @@ $messages = array(
 # Search results
 'prevn'          => 'aftuma $1',
 'nextn'          => 'iftuma $1',
-'viewprevnext'   => 'Siuneis ($1) ($2) ($3)',
+'viewprevnext'   => 'Siuneis ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Hilpa:Háubidaseido',
 'powersearch'    => 'Sokeiþ',
 

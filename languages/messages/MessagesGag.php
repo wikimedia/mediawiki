@@ -308,10 +308,10 @@ Kullanıcı adınız '''var nicä içersin'''gagauzça nışan, boşluk . Savaş
 'logout'                     => 'Sessiyanı kapat',
 'userlogout'                 => 'Oturmaa kapat',
 'notloggedin'                => 'Sessiya diil açık',
-'nologin'                    => 'Henez aza olmadınız? $1.',
+'nologin'                    => "Henez aza olmadınız? '''$1'''.",
 'nologinlink'                => 'Esap yarat',
 'createaccount'              => 'Eni esap aç',
-'gotaccount'                 => 'Taa ilerdä esap açtınızmı? $1.',
+'gotaccount'                 => "Taa ilerdä esap açtınızmı? '''$1'''.",
 'gotaccountlink'             => 'Herliim ilerdän esap açtıysanız girin bu baalantıdan.',
 'createaccountmail'          => 'e-maillan',
 'badretype'                  => 'Parollar angılarını girdiniz uymêêr.',
@@ -497,7 +497,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'noexactmatch'   => " Başlaa bu olan bir yazı bulunamadı. Bu yazını var nicä [[:$1|'''siz çeketmää''']].",
 'prevn'          => 'ilerki $1',
 'nextn'          => 'geeriki $1',
-'viewprevnext'   => '($1) ($2) ($3).',
+'viewprevnext'   => '($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url' => 'Help:İçindekilär',
 'powersearch'    => 'Ara',
 
@@ -713,7 +713,7 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 'protect-expiring'            => 'bitmää datası $1 (UTC)',
 'protect-cascade'             => 'Bu sayfaya girän sayfaları koru (kaskad korunmaa)',
 'protect-cantedit'            => 'Siz bu yazının korunmak düzeyin bilmärsiniz diiştirmää, neçin ki sizin onu düzmää izniniz yok.',
-'protect-expiry-options'      => '15 minut:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 afta:1 week,1 ay:1 month,zamansız:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 saat:1 hour,1 day:1 day,1 afta:1 week,1 ay:1 month,3 months:3 months,6 months,6 months,zamansız:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Yasaklama düzeyi:',
 
@@ -879,6 +879,7 @@ Sadä listadaki êlementlarä (* nışannan çekedän liniyalar) bakılacêk. Li
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

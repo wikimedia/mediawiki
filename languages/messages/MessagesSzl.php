@@ -25,8 +25,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Uoznocz <a href="" class="new">tak</a> linki do zajtůw kere ńy trefjům (abo: dołůncz pytajńik<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrůwnowej tekst we akapitach (justowańy)',
 'tog-hideminor'               => 'Schow drobne pomjyńańa we "Pomjyńanych na uostatku"',
-'tog-extendwatchlist'         => 'Poszyrzůno lista artikli, na kere dowom pozůr',
-'tog-usenewrc'                => 'Poszyrzyńy půmjyńanych na uostatku (JavaScript)',
+'tog-extendwatchlist'         => 'Pokoż na mjij pozorliśće wszyjske, a ńy yno uostatńe půmjyńańa',
+'tog-usenewrc'                => 'Używej poszyrzyńo ńydowno pomjyńanych (JavaScript)',
 'tog-numberheadings'          => 'Automatyczno numeracyjo titlůw',
 'tog-showtoolbar'             => 'Pokoż pasek przirzůndůw (JavaScript)',
 'tog-editondblclick'          => 'Przyńdź do sprowjańo po podwůjnym klikńyńću (JavaScript)',
@@ -34,7 +34,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Klikńyńće prawym kneflym myszy na titlu tajli<br />napoczyno jigo sprowjańy(JavaScript)',
 'tog-showtoc'                 => 'Pokoż spis treśći (na zajtach, kere majům wjyncyj jak trzi tajle)',
 'tog-rememberpassword'        => 'Pamjyntej můj ausdruk na tym komputrze',
-'tog-editwidth'               => 'Połna szerokość placu sprowjańo',
+'tog-editwidth'               => 'Poszyrz plac sprowjyń na cołki ekran',
 'tog-watchcreations'          => 'Dowom pozůr na zajty, kere żech naszkryfloł',
 'tog-watchdefault'            => 'Dowom pozůr na zajty, kere żech sprowjoł',
 'tog-watchmoves'              => 'Dowom pozůr na zajty, kere żech przećepnył',
@@ -48,7 +48,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Wyślij e-brifa tyž w takim raźe, kej by chodźiuo uo drobne pomjyńańa',
 'tog-enotifrevealaddr'        => 'Ńy chow mojigo e-brifa w powjadomjyńach',
 'tog-shownumberswatching'     => 'Pokoż, wjela sprowjorzy dowo pozůr',
-'tog-fancysig'                => 'Szrajbńij bez automatycznygo linka',
+'tog-fancysig'                => 'Szrajbńij s kodůma wiki (bez autůmatycznygo linka)',
 'tog-externaleditor'          => 'Sztandardowo używej zewnyntrznygo edytora (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
 'tog-externaldiff'            => 'Sztandardowo używej zewnyntrzny program do filowańo w pomjyńańach (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
 'tog-showjumplinks'           => 'Zapńij cajchnůndzki "przyńdź do"',
@@ -204,7 +204,7 @@ $messages = array(
 'toolbox'           => 'Werkcojg',
 'userpage'          => 'Zajta sprowjorza',
 'projectpage'       => 'Zajta projekta',
-'imagepage'         => 'Zajta grafiki',
+'imagepage'         => 'Zobejrz zajte pliku',
 'mediawikipage'     => 'Zajta komuńikata',
 'templatepage'      => 'Zajta šablůna',
 'viewhelppage'      => 'Zajta pomocy',
@@ -293,9 +293,9 @@ $messages = array(
 'nosuchaction'      => 'Ńy mo takij uoperacyji',
 'nosuchactiontext'  => 'Uoprogramowańy ńy rozpoznowo uoperacyji takij kej podano w URL',
 'nosuchspecialpage' => 'Ńy mo takij špecyjalnyj zajty',
-'nospecialpagetext' => "<big>'''Uoprogramowańy ńy rozpoznowo takij špecyjalnyj zajty.'''</big>
+'nospecialpagetext' => '<strong>Uoprogramowańy ńy rozpoznowo takij špecyjalnyj zajty.</strong>
 
-Lista špecyjalnych zajtůw znejdźeš na [[Special:SpecialPages|{{int:specialpages}}]].",
+Lista špecyjalnych zajtůw znejdźeš na [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Feler',
@@ -388,10 +388,10 @@ Uotwarli my sam lo Ćebje kůnto.
 'logout'                     => 'Wyloguj',
 'userlogout'                 => 'Wylogowańy',
 'notloggedin'                => 'Ńy ježeś zalůgowany',
-'nologin'                    => 'Ńy moš kůnta? $1.',
+'nologin'                    => "Ńy moš kůnta? '''$1'''.",
 'nologinlink'                => 'Twůř kůnto',
 'createaccount'              => 'Zouůž nowe kůnto',
-'gotaccount'                 => 'Moš juž kůnto? $1.',
+'gotaccount'                 => "Moš juž kůnto? '''$1'''.",
 'gotaccountlink'             => 'Zalůguj śe',
 'createaccountmail'          => 'e-brifym',
 'badretype'                  => 'Hasua kere žeś naškryflou ńy zgodzajům śe jydne s drugim.',
@@ -829,9 +829,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'searchresults'                    => 'Wyńiki šnupańo',
 'searchresults-title'              => 'Wyniki sznupańo za „$1”',
 'searchresulttext'                 => 'Coby dowjydźeć śe wjyncyj uo šnupańu w {{GRAMMAR:D.lp|{{SITENAME}}}}, uobezdřij [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Wyńiki šnupańo za "[[:$1]]"
-([[Special:Prefixindex/$1|zajty kere začynajům śe uod „$1”]] |
-[[Special:WhatLinksHere/$1|zajty kere sům adresowane do „$1”]])',
+'searchsubtitle'                   => 'Wyńiki šnupańo za "[[:$1]]" ([[Special:Prefixindex/$1|zajty kere začynajům śe uod „$1”]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|zajty kere sům adresowane do „$1”]])',
 'searchsubtitleinvalid'            => 'Lo zapytańo "$1"',
 'noexactmatch'                     => "'''Ńy mo sam zajtůw nazwanych \"\$1\".'''
 Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
@@ -843,7 +841,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'notextmatches'                    => 'Ńy znejdźono we tekście zajtůw',
 'prevn'                            => 'popředńe $1',
 'nextn'                            => 'nastympne $1',
-'viewprevnext'                     => 'Uobezdřij ($1) ($2) ($3)',
+'viewprevnext'                     => 'Uobezdřij ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Uopcyje sznupańo',
 'searchmenu-exists'                => "'''Ńy ma zajty uo mjańy \"[[:\$1]]\" na tyj wiki'''",
 'searchmenu-new'                   => "'''Stwůrz zajta „[[:$1|$1]]” na tyj wiki!'''",
@@ -1181,14 +1179,16 @@ Přelyź na zajta [[Special:NewFiles|galeryje nowych plikůw]], coby uobejzdře�
 'large-file'                  => 'Zaleco śe coby rozmjar plika ńy bůu wjynkšy jak $1 bajtůw. Tyn plik mo rozmjar $2 bajtůw.',
 'largefileserver'             => 'Plik je wjynkšy ńiž maksymalny dozwolůny rozmjar.',
 'emptyfile'                   => 'Wćepywany plik cheba je pusty. Može to być bez tůž, co žeś wklepou zuo buchštaba w jygo mjańe. Sprowdź, čy mjano kere žeś wklepou je poprawne.',
-'fileexists'                  => "Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano ('''<tt>$1</tt>''')! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.",
-'filepageexists'              => "Je juž sam zajta uopisu tygo plika utwořůno '''<tt>$1</tt>''', ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.",
-'fileexists-extension'        => "Plik uo podobnym mjańe juž sam je:<br />
-Mjano wćepywanygo plika: '''<tt>$1</tt>'''<br />
-Mjano plika kery juž sam je: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano ('''<tt>[[:$1]]</tt>''')! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.
+[[$1|thumb]]",
+'filepageexists'              => "Je juž sam zajta uopisu tygo plika utwořůno '''<tt>[[:$1]]</tt>''', ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.",
+'fileexists-extension'        => "Plik uo podobnym mjańe juž sam je: [[$2|thumb]]
+* Mjano wćepywanygo plika: '''<tt>[[:$1]]</tt>'''
+* Mjano plika kery juž sam je: '''<tt>[[:$2]]</tt>'''
 Wybjer proša inkše mjano.",
 'fileexists-thumb'            => "<center>'''Istniejůnco grafika'''</center>",
-'fileexists-thumbnail-yes'    => "Zdowo śe co tyn plik je půmńijšůnům wersyjom grafiki ''(mińjaturkom)''. Uobejřij plik: '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Zdowo śe co tyn plik je půmńijšůnům wersyjom grafiki ''(mińjaturkom)''. [[$1|thumb]]
+Uobejřij plik: '''<tt>[[:$1]]</tt>'''.
 Jak to je ta sama grafika, ino wjelgo, ńy muśiš juž jei sam zaś wćepywać.",
 'file-thumbnail-no'           => "Mjano plika začyno śe uod '''<tt>$1</tt>'''. Zdowo śe, co to je půmńijšůna grafika ''(mińaturka)''.
 Jak moš ta grafika we peunym rozmjaře - wćepej ja sam.
@@ -2100,7 +2100,7 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'tooltip-pt-anontalk'             => 'Godka užytkowńika do adresu IP spod kerygo sprowjoš',
 'tooltip-pt-preferences'          => 'Moje preferéncyje',
 'tooltip-pt-watchlist'            => 'Lista artiklůw na kere daješ pozor',
-'tooltip-pt-mycontris'            => 'Lista bezy mje sprowjônych',
+'tooltip-pt-mycontris'            => 'Lista uody mje sprowjonych',
 'tooltip-pt-login'                => 'My by chćeli cobyś śe zalůgowou, ale to ńy je uobowjůnzek.',
 'tooltip-pt-anonlogin'            => 'Zachyncůmy do zalůgowańo śe, nale to ńy je uobowjůnzek',
 'tooltip-pt-logout'               => 'Wyloguj sie z wiki',
@@ -2275,6 +2275,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -115,7 +115,7 @@ $messages = array(
 
 'about'          => '关于',
 'article'        => '文章',
-'newwindow'      => '(在新窗口中打开)',
+'newwindow'      => '（在新窗口中打开）',
 'cancel'         => '取消',
 'qbfind'         => '查找',
 'qbedit'         => '编辑',
@@ -215,7 +215,7 @@ $messages = array(
 'restorelink'             => '个被删除个版本',
 'site-rss-feed'           => '$1的RSS订阅',
 'site-atom-feed'          => '$1的Atom订阅',
-'red-link-title'          => '$1 (网页不存在)',
+'red-link-title'          => '$1 （网页不存在）',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文章',
@@ -255,15 +255,15 @@ $messages = array(
 'yourpasswordagain'          => '再打一遍密码:',
 'remembermypassword'         => '登该台电脑浪记牢我个登录',
 'login'                      => '登录',
-'loginprompt'                => '定规要启用仔缓存(cookies)倷再好登录到{{SITENAME}}。',
+'loginprompt'                => '定规要启用仔缓存（cookies）倷再好登录到{{SITENAME}}。',
 'userlogin'                  => '登录 / 新开户头',
 'logout'                     => '登出',
 'userlogout'                 => '登出',
 'notloggedin'                => '朆登录',
-'nologin'                    => '您还没有账户吗？$1。',
+'nologin'                    => "您还没有账户吗？'''$1'''。",
 'nologinlink'                => '新开户头',
 'createaccount'              => '新开户头',
-'gotaccount'                 => '已经有仔帐号哉？ $1。',
+'gotaccount'                 => "已经有仔帐号哉？ '''$1'''。",
 'gotaccountlink'             => '登录',
 'badretype'                  => '倷输入个密码搭倪个档案弗配。',
 'userexists'                 => '输入个用户名已经拨人注脱哉。请再选个两样个用户名。',
@@ -321,7 +321,7 @@ $messages = array(
 'loginreqlink'       => '登录',
 'accmailtitle'       => '密码已发送哉。',
 'accmailtext'        => '"$1"个密码已经发送到 $2 哉。',
-'newarticle'         => '(新)',
+'newarticle'         => '（新）',
 'newarticletext'     => "倷跟仔链接来着一个还弗勒里个页面。
 要创建该页面呢，就勒下底个框框里向开始写（[[{{MediaWiki:Helppage}}|帮助页面]]浪有更加多个信息）。
 要是倷是弗用心到该搭个说话，只要点击倷浏览器个'''返回'''揿钮。",
@@ -334,7 +334,7 @@ $messages = array(
 'editconflict'       => '编辑冲突: $1',
 'yourtext'           => '侬个文字',
 'editingold'         => "''' 注意：倷勒里改动一只已经过期个页面修改。 如果倷保存俚个说话，勒拉该个修改之后个亨白浪当个修改侪会呒拨个。'''",
-'template-protected' => '(保护)',
+'template-protected' => '（保护）',
 
 # Account creation failure
 'cantcreateaccounttitle' => '呒处建立帐户',
@@ -345,7 +345,7 @@ $messages = array(
 'nextrevision' => '新点个版本→',
 'cur'          => '当前',
 'last'         => '上个',
-'histlegend'   => '选择比较版本：标记要比较个两只版本，回车或者揿页面底里个揿钮。<br /> 图例：(当前) = 搭当前版本有啥两样， (上个) = 搭上个版本有啥两样，小 = 小改动。',
+'histlegend'   => '选择比较版本：标记要比较个两只版本，回车或者揿页面底里个揿钮。<br /> 图例：（当前） = 搭当前版本有啥两样， （上个） = 搭上个版本有啥两样，小 = 小改动。',
 'deletedrev'   => '[已删]',
 'histfirst'    => '顶早',
 'histlast'     => '顶晏',
@@ -360,7 +360,7 @@ $messages = array(
 # Diffs
 'compareselectedversions' => '比较选中个版本',
 'editundo'                => '撤销',
-'diff-multi'              => '($1个中途个修订版本无没显示。)',
+'diff-multi'              => '（$1个中途个修订版本无没显示。）',
 
 # Search results
 'searchresults'             => '搜索结果',
@@ -370,7 +370,7 @@ $messages = array(
 'noexactmatch'              => "''呒拨叫\"\$1\"个页面啘。''' 倷可以[[:\$1|建立俚]]。",
 'prevn'                     => '上个 $1',
 'nextn'                     => '下个 $1',
-'viewprevnext'              => '查看 ($1) ($2) ($3)',
+'viewprevnext'              => '查看 （$1） （$2） （$3）',
 'searchhelp-url'            => 'Help:目录',
 'search-result-size'        => '$1（$2字）',
 'search-mwsuggest-enabled'  => '与建议',
@@ -486,7 +486,7 @@ $messages = array(
 'listfiles_date'        => '日脚',
 'listfiles_name'        => '名字',
 'listfiles_user'        => '用户',
-'listfiles_size'        => '尺寸 (bytes)',
+'listfiles_size'        => '尺寸 （bytes）',
 'listfiles_description' => '描述',
 
 # File description page
@@ -524,6 +524,7 @@ $messages = array(
 # Statistics
 'statistics'              => '统计',
 'statistics-header-users' => '用户资料',
+'statistics-users-active' => '活跃用户',
 
 'brokenredirects'        => '坏脱个重定向',
 'brokenredirectstext'    => '下底个重定向链到弗存在个页面:',
@@ -560,12 +561,12 @@ $messages = array(
 # Special:AllPages
 'allpages'          => '全部页面',
 'alphaindexline'    => '$1到$2',
-'nextpage'          => '下页 ($1)',
+'nextpage'          => '下页 （$1）',
 'prevpage'          => '上一页（$1）',
 'allpagesfrom'      => '显示个页面开始于:',
 'allarticles'       => '所有页面',
-'allinnamespace'    => '所有页面 ($1 名字空间)',
-'allnotinnamespace' => '全部页面 (弗勒 $1 名字空间里向)',
+'allinnamespace'    => '所有页面 （$1 名字空间）',
+'allnotinnamespace' => '全部页面 （弗勒 $1 名字空间里向）',
 'allpagesprev'      => '前头',
 'allpagesnext'      => '下底',
 'allpagesprefix'    => '显示个页面有下底个前缀:',
@@ -628,13 +629,13 @@ $messages = array(
 'rollback_short' => '恢复',
 'rollbacklink'   => '恢复',
 'rollbackfailed' => '恢复失败',
-'revertpage'     => '恢复[[Special:Contributions/$2|$2]] ([[User talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => '恢复[[Special:Contributions/$2|$2]] （[[User talk:$2|讲张]]）个改动；恢复到[[User:$1|$1]]个上一版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'  => '保护日志',
 'prot_1movedto2'  => '[[$1]]捅到[[$2]]',
 'protectcomment'  => '保护理由:',
-'protect-default' => '(默认)',
+'protect-default' => '（默认）',
 
 # Restrictions (nouns)
 'restriction-edit' => '编辑',
@@ -653,7 +654,7 @@ $messages = array(
 'contributions' => '用户贡献',
 'mycontris'     => '我个贡献',
 'contribsub2'   => '$1个贡献（$2）',
-'uctop'         => '(顶浪)',
+'uctop'         => '（顶浪）',
 
 'sp-contributions-blocklog' => '查封记录',
 'sp-contributions-username' => 'IP地址或用户名：',
@@ -698,6 +699,7 @@ $messages = array(
 'movepagebtn'             => '页面捅荡',
 'pagemovedsub'            => '捅荡成功哉',
 'articleexists'           => '叫该个名字个页面已经勒浪哉，要么倷拣个名字是无效个。请重新拣个名字。',
+'cantmove-titleprotected' => '侬弗可以移动迭个页面到个个位置，因为迭个新标题已经拨保护拉许以防止创建。',
 'movedto'                 => '捅到',
 'movetalk'                => '捅搭界个讲张页面',
 '1movedto2'               => '[[$1]]捅到[[$2]]',
@@ -831,10 +833,13 @@ Variants for Chinese language
 'scarytranscludetoolong' => '[对呒起，URL太长了]',
 
 # Delete conflict
-'confirmrecreate' => "用户[[User:$1|$1]] ([[User talk:$1|讲张]])勒拉倷开始编辑该页面之后拿俚删脱，理由是： : ''$2'' 请拿定章程，倷阿是真个要重建该页面。",
+'confirmrecreate' => "用户[[User:$1|$1]] （[[User talk:$1|讲张]]）勒拉倷开始编辑该页面之后拿俚删脱，理由是： : ''$2'' 请拿定章程，倷阿是真个要重建该页面。",
 
 # action=purge
 'confirm_purge_button' => '确定',
+
+# Separators for various lists, etc.
+'comma-separator' => '、',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',

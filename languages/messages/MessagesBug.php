@@ -180,10 +180,10 @@ $messages = array(
 'logout'                  => 'Log essu',
 'userlogout'              => 'Log essu',
 'notloggedin'             => 'Déppa log attama',
-'nologin'                 => "Dé' gaga akaun? $1.",
+'nologin'                 => "Dé' gaga akaun? '''$1'''.",
 'nologinlink'             => 'Ebbu akun',
 'createaccount'           => 'Ebbu akun',
-'gotaccount'              => 'Purani eŋka akun? $1.',
+'gotaccount'              => "Purani eŋka akun? '''$1'''.",
 'gotaccountlink'          => 'Log attama',
 'youremail'               => 'E-mail:',
 'username'                => 'Aseŋ papaké:',
@@ -264,7 +264,7 @@ $messages = array(
 # Search results
 'searchsubtitle'        => "Masappa iko '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Massappa iko '''$1'''",
-'viewprevnext'          => 'Ita ($1) ($2) ($3)',
+'viewprevnext'          => 'Ita ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'        => 'Help:Lise',
 'search-redirect'       => '(redirect $1)',
 

@@ -312,9 +312,9 @@ $messages = array(
 'nosuchaction'      => 'Opeheven handelieng besti nie',
 'nosuchactiontext'  => 'Den opdracht in de URL wier nie herkend deur de wiki',
 'nosuchspecialpage' => 'Deêze speciaole pagina besti nie',
-'nospecialpagetext' => "<big>'''Je ei een onbestaende speciaole pagina opevrogen.'''</big>
+'nospecialpagetext' => '<strong>Je ei een onbestaende speciaole pagina opevrogen.</strong>
 
-Een lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagina’s]].",
+Een lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagina’s]].',
 
 # General errors
 'error'                => 'Fout',
@@ -402,10 +402,10 @@ Vergeet nie je [[Special:Preferences|vòkeuren voe {{SITENAME}}]] an te passen.'
 'logout'                     => 'Ofmelden',
 'userlogout'                 => 'Ofmelden',
 'notloggedin'                => 'Nie anemeld',
-'nologin'                    => 'Nog hin gebrukersnaem? $1.',
+'nologin'                    => "Nog hin gebrukersnaem? '''$1'''.",
 'nologinlink'                => 'Mik een gebruker an',
 'createaccount'              => 'Gebruker anmaeken',
-'gotaccount'                 => 'È je a een gebrukersnaem? $1.',
+'gotaccount'                 => "È je a een gebrukersnaem? '''$1'''.",
 'gotaccountlink'             => 'Anmelden',
 'createaccountmail'          => 'per e-mail',
 'badretype'                  => 'De wachtwoôrden die-a je ingegeven typ bin nie eênder.',
@@ -796,7 +796,7 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'notextmatches'         => "Hin pagina's evon'n",
 'prevn'                 => 'vorrege $1',
 'nextn'                 => 'volhende $1',
-'viewprevnext'          => 'Bekiek ($1) ($2) ($3).',
+'viewprevnext'          => 'Bekiek ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:Inoud',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 woôrd|$2 woôrn}})',
 'search-result-score'   => 'Rillevantie: $1%',

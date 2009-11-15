@@ -31,7 +31,7 @@ $messages = array(
 'thursday'      => 'Yawoɖagbe',
 'friday'        => 'Fiɖagbe',
 'saturday'      => 'Memleɖagbe',
-'sun'           => 'Dzo',
+'sun'           => 'Kɔs',
 'mon'           => 'Dzo',
 'tue'           => 'Brã',
 'wed'           => 'Kuɖ',
@@ -78,11 +78,13 @@ $messages = array(
 'about'          => 'Ŋutinya',
 'newwindow'      => '(eʋua fesre yeye)',
 'cancel'         => 'Dzudzɔ etɔtrɔ',
+'qbfind'         => 'Di',
 'qbedit'         => 'Trɔ asi le eŋu',
 'qbpageoptions'  => 'Axa sia',
 'qbmyoptions'    => 'Nyeƒe axawo',
 'qbspecialpages' => 'Axa tɔxewo',
 'mypage'         => 'Axa nye',
+'mytalk'         => 'Nyeƒe nyamedzroƒe',
 'navigation'     => 'Mɔtabiala',
 'and'            => '&#32;kpakple',
 
@@ -109,16 +111,18 @@ $messages = array(
 'talkpagelinktext' => 'Nyamedzroƒe',
 'specialpage'      => 'Axa Tɔxe',
 'personaltools'    => 'Wòƒe dɔwɔnuwo',
-'postcomment'      => 'Ŋlɔ wò susu ɖe afisia',
+'postcomment'      => 'Akpa yeye',
 'talk'             => 'Nyamedzroƒe',
 'toolbox'          => 'Dɔwɔnuɖaka',
 'otherlanguages'   => 'Le gbe bubuwo me',
+'redirectedfrom'   => '(Woɖo wò ɖe afii tso $1)',
+'lastmodifiedat'   => 'Wó ɖɔ axa sia ɖo susue le $2 le ŋkeke $1 dzi.', # $1 date, $2 time
 'jumpto'           => 'Dzo yi:',
 'jumptonavigation' => 'kuɖɔɖoɖo',
 'jumptosearch'     => 'dii',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Nusi {{SITENAME}} nye',
+'aboutsite'         => '{{SITENAME}} ŋutinya',
 'aboutpage'         => 'Project:Ŋutinya',
 'copyright'         => 'Nusiwo le afii le $1 mɔɖeɖea te.',
 'copyrightpagename' => '{{SITENAME}} mɔɖeɖewo',
@@ -139,11 +143,15 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Du yeyewo le asiwo le $1',
 'editsection'             => 'trɔ asi le eŋu',
 'editold'                 => 'trɔ asi le eŋu',
+'viewsourceold'           => 'kpɔ alesi wó ŋlɔe',
 'editlink'                => 'trɔ asi le eŋu',
 'viewsourcelink'          => 'kpɔ alesi woŋlɔe',
+'editsectionhint'         => 'Trɔ akpa: $1',
 'toc'                     => 'Emenyawo',
 'showtoc'                 => 'fia',
 'hidetoc'                 => 'ɣla',
+'thisisdeleted'           => 'Kpɔ $1 alo wòa gbugbɔe ve hã?',
+'viewdeleted'             => 'Wòa kpɔ $1 a?',
 'red-link-title'          => '$1 (womeŋlɔ axa sia haɖeke o)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -154,46 +162,53 @@ $messages = array(
 'nstab-mediawiki' => 'Du',
 
 # General errors
-'error'         => 'Vodada',
-'badtitle'      => 'Tanya gbegblẽ',
-'viewsource'    => 'Kpɔ alesi wowɔe',
-'viewsourcefor' => '$1 tɔwo',
+'error'           => 'Vodada',
+'badarticleerror' => 'Wòmateŋu awɔ nusia le axa sia dzi o.',
+'badtitle'        => 'Tanya gbegblẽ',
+'viewsource'      => 'Kpɔ alesi wowɔe',
+'viewsourcefor'   => '$1 tɔwo',
 
 # Login and logout pages
+'logouttitle'                => 'Do le eme',
 'login'                      => 'Ge ɖe eme',
 'nav-login-createaccount'    => 'Geɖe me / Ŋlɔ ŋkɔ',
 'userlogin'                  => 'Ge ɖe eme / ŋlɔ ŋkɔ daɖi',
 'logout'                     => 'Do le eme',
 'userlogout'                 => 'Do le eme',
-'nologin'                    => 'Wòmeŋlɔ ŋkɔ oa? $1.',
+'nologin'                    => "Wòmeŋlɔ ŋkɔ oa? '''$1'''.",
 'nologinlink'                => 'Ŋlɔ ŋkɔ daɖi',
 'createaccount'              => 'Ŋlɔ ŋkɔ daɖi',
-'gotaccount'                 => 'Wò ŋlɔ ŋkɔ xoxoa? $1.',
+'gotaccount'                 => "Wò ŋlɔ ŋkɔ xoxoa? '''$1'''.",
 'gotaccountlink'             => 'Ge ɖe eme',
 'yourlanguage'               => 'Gbe:',
 'loginsuccesstitle'          => 'Wò ge ɖe eme azɔ̃.',
 'loginsuccess'               => "'''Wò le {{SITENAME}} me fifia abe \"\$1\" ene.'''",
-'acct_creation_throttle_hit' => 'Taflatse, wòŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} xoxo.
-Wòmageteŋu agbugbɔ aŋlɔe o.',
+'nouserspecified'            => 'Elebe na ŋlɔ ŋkɔ si wò zãna',
+'acct_creation_throttle_hit' => "Wiki sia zãla aɖe tso wò ''IP address'' ŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} le ŋkeke si vayi me xoxo. Mɔɖeɖe le na ŋkɔ  ɖeka ko ŋɔŋlɔ le ŋkeke ɖeka me.<br />
+Le esiata la, ''IP address'' sia zãlawo mekpɔ mɔ aŋlɔ ŋkɔ bubuwo fifia o.",
 'loginlanguagelabel'         => 'Gbe: $1',
 
 # Edit page toolbar
 'sig_tip' => 'Dzesiwò kple gaƒoƒoa',
 
 # Edit pages
-'subject'          => 'Ta nya:',
-'minoredit'        => 'Esia nye tɔtrɔ sue aɖe ko',
-'watchthis'        => 'Le ŋku ɖe axa sia ŋu',
-'savearticle'      => 'Dzra axa sia ɖo',
-'preview'          => 'Kpɔe do ŋgɔ',
-'showpreview'      => 'Fiae do ŋgɔ',
-'showdiff'         => 'Fia tɔtrɔwo',
-'newarticle'       => '(Yeye)',
-'newarticletext'   => "Eva ɖo axa si gɔme womedze haɖeke o. Ne wòadi be yeadze egɔme la, dze nuŋlɔm ɖe go sia me le afi sia ɖome (kpɔ [[{{MediaWiki:Helppage}}|kpekpeɖeŋu nyawo]] na kpekpeɖeŋu bubuwo). Ne wòme ɖoe be yeava afii hafi o la, ekema tia '''megbe''' eye wòa gbugbɔ ayi afisi wòtso va.",
-'previewnote'      => "'''Wole afii fiam do ŋgɔ, wome dzrae ɖo haɖeke o!'''",
-'editing'          => '$1 na etɔtrɔ',
-'editingsection'   => 'Wòle $1 (ƒe akpa aɖe) trɔm',
-'copyrightwarning' => "Taflatse, mítsɔe be nusiwo katã netsɔ kpe ɖe {{SITENAME}} ŋu lii fãa le $2 la nu (kpɔ $1 me nyawo). Ne madze ŋuwò be amebubuwo natrɔ asi le nusiwo newɔ ŋuti o, eye woagbugbɔ dɔsiwo newɔ ama na amebubuwo fãa o la, mega dae ɖe afisia o.<br /> Wòle ŋugbe dom na mí bena wò ŋutɔe ŋlɔ nusiawo, alo etsɔe tso afisi mɔɖeɖe li fãa be amesiame na tsɔ nuwo tso afima fãa. '''MEGA DA NUSIWO ŊU MƆƉEƉE MELI NA O ƉE AFISIA O!'''",
+'subject'             => 'Ta nya:',
+'minoredit'           => 'Esia nye tɔtrɔ sue aɖe ko',
+'watchthis'           => 'Le ŋku ɖe axa sia ŋu',
+'savearticle'         => 'Dzra axa sia ɖo',
+'preview'             => 'Kpɔe do ŋgɔ',
+'showpreview'         => 'Fiae do ŋgɔ',
+'showdiff'            => 'Fia tɔtrɔwo',
+'newarticle'          => '(Yeye)',
+'newarticletext'      => "Eva ɖo axa si gɔme womedze haɖeke o. Ne wòadi be yeadze egɔme la, dze nuŋlɔm ɖe go sia me le afi sia ɖome (kpɔ [[{{MediaWiki:Helppage}}|kpekpeɖeŋu nyawo]] na kpekpeɖeŋu bubuwo). Ne wòme ɖoe be yeava afii hafi o la, ekema tia '''megbe''' eye wòa gbugbɔ ayi afisi wòtso va.",
+'previewnote'         => "'''Ɖo ŋku edzi be wole afii fiam do ŋgɔ, wome dzrae ɖo haɖeke o!'''",
+'editing'             => '$1 na etɔtrɔ',
+'editingsection'      => 'Wòle $1 (ƒe akpa aɖe) trɔm',
+'yourtext'            => 'Wò nuŋɔŋlɔ',
+'yourdiff'            => 'Vovototowo',
+'copyrightwarning'    => "Taflatse, mítsɔe be nusiwo katã netsɔ kpe ɖe {{SITENAME}} ŋu lii fãa le $2 la nu (kpɔ $1 me nyawo). Ne madze ŋuwò be amebubuwo natrɔ asi le nusiwo newɔ ŋuti o, eye woagbugbɔ dɔsiwo newɔ ama na amebubuwo fãa o la, mega dae ɖe afisia o.<br /> Wòle ŋugbe dom na mí bena wò ŋutɔe ŋlɔ nusiawo, alo etsɔe tso afisi mɔɖeɖe li fãa be amesiame na tsɔ nuwo tso afima fãa. '''Mega da nusiwo ŋu mɔɖeɖe meli na o la ɖe afisia o!'''",
+'edit-already-exists' => 'Wòmateŋu adze axa sia gɔme o.<br />
+Wo ŋlɔe xoxo.',
 
 # History pages
 'revisionasof'        => 'Tataa le $1',
@@ -214,6 +229,9 @@ Wòmageteŋu agbugbɔ aŋlɔe o.',
 Dewomahĩ, wotutui le wiki sia dzi alo wotrɔ eƒe ŋkɔ.
 Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 
+# Revision deletion
+'rev-delundel' => 'fia/ɣla',
+
 # Diffs
 'history-title' => '"$1" ƒe tata xoxoawo',
 'difference'    => '(Vovototowo le tata xoxoawo me)',
@@ -229,12 +247,12 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'notitlematches'        => 'Mesɔ axa aɖeke ƒe tanya o',
 'prevn'                 => '$1 do ŋgɔ',
 'nextn'                 => '$1 yometɔwo',
-'viewprevnext'          => 'Kpɔ ($1) ($2) ($3)',
+'viewprevnext'          => 'Kpɔ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'     => "'''Axa si ŋkɔ enye \"[[:\$1]]\" le wiki sia dzi'''",
 'searchmenu-new'        => "'''Dze axa \"[[:\$1]]\" sia ŋlɔm ɖe wiki la dzi!'''",
 'search-result-size'    => '$1 ({{PLURAL:$2|nya 1|nya $2}})',
 'showingresultstotal'   => "Wofia {{PLURAL:$4|wò didi '''$1''' tso '''$3''' me|wò didiwo  '''$1 - $2''' tso '''$3''' me}} le afii",
-'powersearch'           => 'Dii',
+'powersearch'           => 'Dii de eme',
 'powersearch-field'     => 'Di',
 
 # Preferences page
@@ -336,7 +354,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 # Special:Log/newusers
 'newuserlogpage'           => 'Ŋkɔŋlɔla yeyewo ƒe xexlẽme',
 'newuserlog-create-entry'  => 'Nuŋlɔla yeye',
-'newuserlog-create2-entry' => 'woŋlɔ ŋkɔ na $1',
+'newuserlog-create2-entry' => 'woŋlɔ ŋkɔ yeye na $1',
 
 # Watchlist
 'watchlistfor'  => "(na '''$1''')",
@@ -353,7 +371,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'prot_1movedto2'              => '[[$1]] wohee yi [[$2]]',
 'protect-default'             => 'Namɔ ezãlawo katã',
 'protect-level-autoconfirmed' => 'Xemɔ na ame yeyewo kple ŋkɔmaŋlɔlawo',
-'protect-expiry-options'      => 'gaƒoƒo 2:2 hours,ŋkeke 1:1 day,ŋkeke 3:3 days,kɔsiɖa 1:1 week,kɔsiɖa 2:2 weeks,ɣleti 1:1 month,ɣleti 3:3 months,ɣleti 6:6 months,ƒe 1:1 year,tegbe:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'gaƒoƒo 1:1 hour,ŋkeke 1:1 day,kɔsiɖa 1:1 week,kɔsiɖa 2:2 weeks,ɣleti 1:1 month,ɣleti 3:3 months,ɣleti 6:6 months,ƒe 1:1 year,tegbe:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Mɔɖeɖe:',
 
 # Undelete
@@ -411,6 +429,9 @@ Tia ŋkɔ alo tanya bubu.',
 # Namespace 8 related
 'allmessages' => 'Gbeƒãɖeɖewo',
 
+# Thumbnails
+'thumbnail-more' => 'Ne lolo ɖe edzi',
+
 # Tooltip help for the actions
 'tooltip-pt-preferences'        => 'Nyeƒe didiwo',
 'tooltip-pt-logout'             => 'Do le eme',
@@ -424,6 +445,7 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 'tooltip-ca-move'               => 'Ɖɔli axa sia ƒe nɔƒe',
 'tooltip-search'                => 'Dii {{SITENAME}}',
 'tooltip-search-go'             => 'Yi axa si ƒe ŋkɔ enye esia ne woŋlɔe xoxo',
+'tooltip-search-fulltext'       => 'Di nyasiawo le axawo me.',
 'tooltip-n-recentchanges'       => 'Tɔtrɔ yeyewo le wiki sia me.',
 'tooltip-n-randompage'          => 'Kpɔ axa ɖesiaɖe ko',
 'tooltip-n-help'                => 'Nuwo srɔ̃ƒe',
@@ -432,6 +454,7 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 'tooltip-t-contributions'       => 'Kpɔ nusiwo amesia ŋlɔ',
 'tooltip-t-upload'              => 'Ɖo nutatawo kple nuƒoƒowo ɖa',
 'tooltip-t-specialpages'        => 'Axa tɔxewo ƒe xexlẽme',
+'tooltip-ca-nstab-special'      => 'Axa sia nye axa tɔxe.  Wò mateŋu atrɔ nu aɖeke le edzi o.',
 'tooltip-minoredit'             => 'Esia nye tɔtrɔ sue aɖe ko',
 'tooltip-save'                  => 'Dzra wòƒe tɔtrɔwo ɖo',
 'tooltip-preview'               => 'Kpɔ wò ɖɔɖɔɖowo do ŋgɔ, mía ve nuwo bena na zãe hafi na dzrae ɖo!',
@@ -445,7 +468,7 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 'newimages' => 'Nutata yeyewo',
 
 # External editor support
-'edit-externally-help' => 'Kpɔ [http://www.mediawiki.org/wiki/Manual:External_editors gɔmedzedze sewo] na kpekpeɖeŋu bubuwo.',
+'edit-externally-help' => '(Kpɔ [http://www.mediawiki.org/wiki/Manual:External_editors gɔmedzedze sewo] na kpekpeɖeŋu bubuwo.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'katã',

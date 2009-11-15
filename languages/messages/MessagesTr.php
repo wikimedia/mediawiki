@@ -16,6 +16,7 @@
  * @author Karduelis
  * @author Katpatuka
  * @author Mach
+ * @author Metal Militia
  * @author Mskyrider
  * @author Myildirim2007
  * @author Runningfridgesrule
@@ -23,6 +24,7 @@
  * @author Suelnur
  * @author Urhixidur
  * @author Uğur Başak
+ * @author Vito Genovese
  * @author לערי ריינהארט
  */
 
@@ -275,7 +277,7 @@ $messages = array(
 'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Hata',
-'returnto'          => '$1.',
+'returnto'          => '$1 sayfasına dön.',
 'tagline'           => '{{SITENAME}} sitesinden',
 'help'              => 'Yardım',
 'search'            => 'ara',
@@ -409,17 +411,16 @@ Bu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 # General errors
 'error'                => 'Hata',
 'databaseerror'        => 'Veritabanı hatası',
-'dberrortext'          => 'Veritabanı hatası.
-Bu bir yazılım hatası olabilir.
+'dberrortext'          => 'Veritabanı sorgu sözdizimi hatası oluştu.
+Bu yazılımdaki bir hatadan kaynaklanabilir.
 "<tt>$2</tt>" işlevinden denenen son sorgulama:
 <blockquote><tt>$1</tt></blockquote>.
-
-MySQL\'in rapor ettiği hata "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Veritabanı komut hatası.
-Son yapılan veritabanı erişim komutu:
+Veritabanının rapor ettiği hata "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Veritabanı sorgu sözdizimi hatası oluştu.
+Son yapılan veritabanı sorgusu:
 "$1"
 Kullanılan fonksiyon "$2".
-MySQL\'in verdiği hata mesajı "$3: $4"',
+Veritabanının verdiği hata mesajı "$3: $4"',
 'noconnect'            => 'Özür dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı sunucusu ile iletişim kuramıyor.<br />
 $1',
 'nodb'                 => '$1 veri tabanı seçilemedi',
@@ -442,7 +443,7 @@ Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek ilet
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
-'filerenameerror'      => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
+'filerenameerror'      => '"$1" dosyasının ismi "$2" olarak değiştirilemedi.',
 'filedeleteerror'      => '"$1" dosyası silinemedi.',
 'directorycreateerror' => '"$1" dizini oluşturulamadı',
 'filenotfound'         => '"$1" dosyası bulunamadı.',
@@ -500,14 +501,14 @@ Hesabınız açıldı.
 'login'                      => 'Oturum aç',
 'nav-login-createaccount'    => 'Oturum aç ya da yeni hesap edin',
 'loginprompt'                => '{{SITENAME}} sitesinde oturum açabilmek için çerezleri etkinleştirmeniz gerekmektedir.',
-'userlogin'                  => 'Oturum aç ya da yeni hesap edin',
+'userlogin'                  => 'Oturum aç',
 'logout'                     => 'Oturumu kapat',
 'userlogout'                 => 'Oturumu kapat',
 'notloggedin'                => 'Oturum açık değil',
-'nologin'                    => 'Daha üye değil misiniz? $1',
+'nologin'                    => "Daha üye değil misiniz? '''$1'''",
 'nologinlink'                => 'Eğer şimdiye kadar kayıt olmadıysanız bu bağlantıyı takip edin.',
 'createaccount'              => 'Yeni hesap aç',
-'gotaccount'                 => 'Daha önceden kayıt oldunuz mu? $1.',
+'gotaccount'                 => "Daha önceden kayıt oldunuz mu? '''$1'''.",
 'gotaccountlink'             => 'Eğer önceden hesap açtırdıysanız bu bağlantıdan giriş yapınız.',
 'createaccountmail'          => 'e-posta ile',
 'badretype'                  => 'Girdiğiniz parolalar birbirini tutmuyor.',
@@ -576,7 +577,7 @@ Lütfen geçerli bir formatta e-posta adresi yazın veya bu bölümü boş bıra
 Siteye giriş yapmalı ve parolanızı değiştirmelisiniz.
 
 Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoksayabilirsiniz.',
-'login-throttled'            => 'Bu hesabın şifresi için yakın zamanda çok fazla denemede bulundunuz.
+'login-throttled'            => 'Yakın zamanda çok fazla oturum açma denemesinde bulundunuz.
 Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 
@@ -615,7 +616,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'nowiki_sample'   => 'Serbest format yazınızı buraya yazınız',
 'nowiki_tip'      => 'wiki formatlamasını devre dışı bırak',
 'image_sample'    => 'Örnek.jpg',
-'image_tip'       => 'Resim ekleme',
+'image_tip'       => 'Gömülü dosya',
 'media_sample'    => 'Örnek.ogg',
 'media_tip'       => 'Medya dosyasına bağlantı',
 'sig_tip'         => 'İmzanız ve tarih',
@@ -660,7 +661,7 @@ Belirtilen sebep şudur:
 * Engellemenin bitişi: $6
 * Bloke edilmesi istenen: $7
 
-Engelleme hakkında tartışmak için $1 ile veya diğer [[{{MediaWiki:Grouppage-sysop}}|yöneticilerden]] biriyle irtibata geçebilirsiniz.
+Engelleme hakkında tartışmak için $1 ile veya diğer [[{{MediaWiki:Grouppage-sysop}}|hizmetlilerden]] biriyle irtibata geçebilirsiniz.
 
 Not, [[Special:Preferences|kullanıcı tercihlerinize]] geçerli bir e-posta adresi kaydetmediyseniz  "kullanıcıya e-posta gönder" özelliğinden faydalanamayabilirsiniz ve bu özelliği kullanmaktan engellenmediniz. 
 
@@ -685,7 +686,7 @@ Lütfen yapacağınız herhangi bir sorguda yukarıdaki bütün detayları bulun
 'anontalkpagetext'                 => "----''Bu sayfa henüz bir kullanıcı hesabı oluşturmamış veya hesabını kullanmayan bir anonim kullanıcının mesaj sayfasıdır. Bu nedenle bu kişiyi belirtmek için rakamsal IP adresini kullanmak zorundayız. Bu gibi IP adresleri birçok kullanıcı tarafından paylaşılabilir. Eğer siz de bir anonim kullanıcıysanız ve size sizin ilginiz olmayan mesajlar geliyorsa, lütfen diğer anonim kullanıcılarla olabilecek olan karmaşayı önlemek için [[Special:UserLogin/signup|bir hesap oluşturun]] veya [[Special:UserLogin|oturum açın]].''",
 'noarticletext'                    => 'Bu sayfa şu anda boştur.
 Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]],
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} ilgili günlükleri arayabilir],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ilgili günlükleri arayabilir],
 ya da bu sayfayı [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilirsiniz]</span>.',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
@@ -732,10 +733,10 @@ Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalam
 Kaydedilmesi mümkün değildir.'''",
 'readonlywarning'                  => "'''DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz'''
 
-Kilitleyen yönetici şu açıklamayı eklemiştir: $1",
-'protectedpagewarning'             => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca yönetici olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
+Kilitleyen hizmetli şu açıklamayı eklemiştir: $1",
+'protectedpagewarning'             => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca hizmetli olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
 'semiprotectedpagewarning'         => "'''Uyarı''': Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.",
-'cascadeprotectedwarning'          => "'''UYARI:''' Bu sayfa sadece yöneticilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü  \"kademeli\" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:\$1|sayfada|sayfada}} kullanılmaktadır:",
+'cascadeprotectedwarning'          => "'''UYARI:''' Bu sayfa sadece hizmetlilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü  \"kademeli\" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:\$1|sayfada|sayfada}} kullanılmaktadır:",
 'titleprotectedwarning'            => "'''UYARI: Bu sayfa [[Special:ListGroupRights|özel hakları]] olanların oluşturabilmeleri için kilitlenmiştir.'''",
 'templatesused'                    => 'Bu sayfada kullanılan şablonlar:',
 'templatesusedpreview'             => 'Bu önizlemede kullanılan şablonlar:',
@@ -850,15 +851,15 @@ Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [
 'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
 'revdelete-hide-comment'      => 'Özeti gösterme',
 'revdelete-hide-user'         => "Değişikliği yapan kullanıcı adını/IP'i gizle",
-'revdelete-hide-restricted'   => 'Verileri yöneticilerle birlikte diğerlerinden de sakla',
-'revdelete-suppress'          => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
+'revdelete-hide-restricted'   => 'Verileri hizmetlilerle birlikte diğerlerinden de sakla',
+'revdelete-suppress'          => 'Verileri hem diğerlerinden hem de hizmetlilerden gizle',
 'revdelete-hide-image'        => 'Dosya içeriğini gizle',
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
-'revdelete-log'               => 'Log açıklama:',
+'revdelete-log'               => 'Silinme için sebep:',
 'revdelete-submit'            => 'Seçilen sürüme uygula',
 'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
 'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
-'revdelete-success'           => "'''Revizyon görünürlüğü başarıyla ayarlandı.'''",
+'revdelete-success'           => "'''Revizyon görünürlüğü başarıyla güncellendi.'''",
 'logdelete-success'           => "'''Günlük görünürlüğü başarıyla ayarlandı.'''",
 'revdel-restore'              => 'Görünürlüğü değiştir',
 'pagehist'                    => 'Sayfa geçmişi',
@@ -875,8 +876,8 @@ Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [
 
 # Suppression log
 'suppressionlog'     => 'Gizleme kayıtları',
-'suppressionlogtext' => 'Aşağıdaki, yöneticilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir. 
-Şuanda işlevsel olan yasak ve engellemelerin listesi için [[Special:IPBlockList|IP engelleme listesine]] bakın.',
+'suppressionlogtext' => 'Aşağıdaki, hizmetlilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir. 
+Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:IPBlockList|IP engelleme listesine]] bakın.',
 
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
@@ -915,7 +916,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
 'visualcomparison'        => 'Görsel karşılaştırma',
 'wikicodecomparison'      => 'Vikimetin karşılaştırması',
-'editundo'                => 'geriye al',
+'editundo'                => 'geri al',
 'diff-multi'              => '(Gösterilmeyen {{PLURAL:$1|$1 ara değişiklik|$1 ara değişiklik}} bulunmaktadır.)',
 'diff-movedto'            => '$1 sayfasına taşındı',
 'diff-styleadded'         => '$1 stili eklendi',
@@ -987,7 +988,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'notextmatches'                    => 'Hiçbir sayfada bulunamadı',
 'prevn'                            => 'önceki $1',
 'nextn'                            => 'sonraki $1',
-'viewprevnext'                     => '($1) ($2) ($3).',
+'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Arama seçenekleri',
 'searchmenu-exists'                => "'''Bu vikide \"[[:\$1]]\" adında bir sayfa mevcut'''",
 'searchmenu-new'                   => "'''Bu vikide \"[[:\$1]]\" sayfasını oluştur!'''",
@@ -997,7 +998,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'searchprofile-articles-and-proj'  => 'İçerik & proje sayfaları',
 'searchprofile-project'            => 'Proje sayfaları',
 'searchprofile-images'             => 'Dosyalar',
-'searchprofile-everything'         => 'Herşey',
+'searchprofile-everything'         => 'Her şey',
 'searchprofile-advanced'           => 'Gelişmiş',
 'searchprofile-articles-tooltip'   => '$1 içinde ara',
 'searchprofile-project-tooltip'    => '$1 içinde ara',
@@ -1088,7 +1089,7 @@ ayarlamak için math/README'ye bakın.",
 'recentchangesdays-max'     => '(maksimum $1 {{PLURAL:$1|gün|gün}})',
 'recentchangescount'        => 'Son değişiklikler, sayfa geçmişi ve günlüklerde varsayılan olarak gösterilecek değişiklik sayısı',
 'savedprefs'                => 'Ayarlar kaydedildi.',
-'timezonelegend'            => 'Saat dilimi',
+'timezonelegend'            => 'Saat dilimi:',
 'timezonetext'              => '¹Viki sunucusu (UTC/GMT) ile aranızdaki saat farkı. (Türkiye için +02:00)',
 'localtime'                 => 'Yerel saat:',
 'timezoneselect'            => 'Saat dilimi:',
@@ -1120,7 +1121,7 @@ ayarlamak için math/README'ye bakın.",
 'userrights-reason'           => 'Değiştirme nedeni:',
 'userrights-no-interwiki'     => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
 'userrights-nodatabase'       => '$1 veritabanı mevcut veya bölgesel değil',
-'userrights-nologin'          => 'Kullanıcı haklarını atamak için yönetici hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
+'userrights-nologin'          => 'Kullanıcı haklarını atamak için hizmetli hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
 'userrights-notallowed'       => 'Kullanıcı hesabınızın kullanıcı haklarını atamak için izni yok.',
 'userrights-changeable-col'   => 'Değiştirebildiğiniz gruplar',
 'userrights-unchangeable-col' => 'Değiştirebilmediğiniz gruplar',
@@ -1328,20 +1329,20 @@ Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini k
 bu dosyanın boyutu $2.',
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten tyüklemek isteyip istemediğinizden emin olun.',
-'fileexists'                  => "Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce '''<tt>$1</tt>''' dosyasına bir gözatın.",
-'filepageexists'              => "Bu dosya için açıklama sayfası '''<tt>$1</tt>''' adresinde zaten oluşturulmuş, fakat bu isimde bir dosya şu anda mevcut değil.
+'fileexists'                  => "Bu isimde bir dosya mevcut.
+Eğer değiştirmekten emin değilseniz ilk önce '''<tt>[[:$1]]</tt>''' dosyasına bir gözatın.
+[[$1|thumb]]",
+'filepageexists'              => "Bu dosya için açıklama sayfası '''<tt>[[:$1]]</tt>''' adresinde zaten oluşturulmuş, fakat bu isimde bir dosya şu anda mevcut değil.
 Gireceğiniz özet açıklama sayfasında görünmeyecektir.
-Özetinizin orada görünmesi için, bunu elle değiştirmelisiniz",
-'fileexists-extension'        => "Benzer isimle başka bir dosya mevcut:<br />
-Yüklenilen dosyanın adı: '''<tt>$1</tt>'''<br />
-Varolan dosyanın adı: '''<tt>$2</tt>'''<br />
+Özetinizin orada görünmesi için, bunu elle değiştirmelisiniz.
+[[$1|küçük resim]]",
+'fileexists-extension'        => "Benzer isimle başka bir dosya mevcut: [[$2|thumb]]
+* Yüklenilen dosyanın adı: '''<tt>[[:$1]]</tt>'''
+* Varolan dosyanın adı: '''<tt>[[:$2]]</tt>'''
 Lütfen başka bir isim seçin",
 'fileexists-thumb'            => "<center>'''Bu isimde zaten bir dosya var'''</center>",
-'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
-Please check the file '''<tt>$1</tt>'''.<br />
-If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.
-Bu dosya, bir resmi küçültülmüş vesiyonu gibi görünüyor ''(thumbnail)''
-Lütfen '''<tt>$1</tt>''' dosyasını kontrol edin .<br />
+'fileexists-thumbnail-yes'    => "Bu dosya, bir resmi küçültülmüş vesiyonu gibi görünüyor ''(thumbnail)''. [[$1|thumb]]
+Lütfen '''<tt>[[:$1]]</tt>''' dosyasını kontrol edin .
 Eğer kontrol edilen dosya ile orijinal boyutundaki aynı dosyaysa fazladan pul imge yüklemeye gerek yoktur.",
 'file-thumbnail-no'           => "Bu dosyanın adı '''<tt>$1</tt>''' ile başlıyor.
 Bu başka bir resim küçültülmüş versiyonuna benziyor ''(thumbnail)''
@@ -1366,7 +1367,7 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kul
 'destfilename'                => 'Hedef dosya adı:',
 'upload-maxfilesize'          => 'Maksimum dosya boyutu: $1',
 'watchthisupload'             => 'Bu dosyayı izle',
-'filewasdeleted'              => 'Bu isimde bir dosya yakın zamanda yüklendi ve ardından yöneticiler tarafından silindi. Dosyayı yüklemeden önce, $1 sayfasına bir göz atınız.',
+'filewasdeleted'              => 'Bu isimde bir dosya yakın zamanda yüklendi ve ardından hizmetliler tarafından silindi. Dosyayı yüklemeden önce, $1 sayfasına bir göz atınız.',
 'upload-wasdeleted'           => "'''Uyarı: Daha önce silinmiş olan bir dosyayı yüklüyorsunuz.'''
 
 Dosyanın yüklenmesinin uygun olup olmadığını dikkate almalısınız.
@@ -1396,7 +1397,7 @@ Lütfen bir [[Special:ListUsers/sysop|yonetici]]yle iletişime geçin.',
 'upload-misc-error'       => 'Bilinmeyen yükleme hatası',
 'upload-misc-error-text'  => 'Yükleme sırasında bilinmeyen bir hata meydana geldi.
 Lütfen bağlantının geçerli ve ulaşılabilir olduğunu doğrulayın ve yeniden deneyin.
-Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|yönetici]]yle temasa geçin',
+Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa geçin',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL'ye ulaşılamadı",
@@ -1414,12 +1415,12 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Bu özel sayfa yüklenilen tüm resimleri gösterir.
-Varsayılan olarak en son yüklenen resimler listenin başında gösterilir.
+'listfiles-summary'     => 'Bu özel sayfa yüklenilen tüm dosyaları gösterir.
+Varsayılan olarak en son yüklenen dosyalar listenin başında gösterilir.
 Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
 'listfiles_search_for'  => 'Medya adı ara:',
 'imgfile'               => 'dosya',
-'listfiles'             => 'Resim listesi',
+'listfiles'             => 'Dosya listesi',
 'listfiles_date'        => 'Tarih',
 'listfiles_name'        => 'Ad',
 'listfiles_user'        => 'Kullanıcı',
@@ -1542,7 +1543,9 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'disambiguations-text' => 'İlk satırda yer alan sayfalar bir anlam ayrım sayfasına iç bağlantı olduğunu gösterir. İkinci sırada yer alan sayfalar anlam ayrım sayfalarını gösterir. <br />Burada [[MediaWiki:Disambiguationspage]] tüm anlam ayrım şablonlarına bağlantılar verilmesi gerekmektedir.',
 
 'doubleredirects'            => 'Yönlendirmeye olan yönlendirmeler',
-'doubleredirectstext'        => 'Her satır, ikinci yönlendirme metninin ilk satırının (genellikle ikinci yönlendirmenin de işaret etmesi gereken "asıl" hedefin) yanısıra ilk ve ikinci yönlendirmeye bağlantılar içerir.',
+'doubleredirectstext'        => 'Bu sayfa diğer yönlendirme sayfalarına yönlendirme yapan sayfaları listeler.
+Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca ikinci yönlendirmenin hedefi, ki bu genelde birinci yönlendirmenin göstermesi gereken "gerçek" hedef sayfasıdır.
+<s>Üstü çizili</s> girdiler çözülmüştür.',
 'double-redirect-fixed-move' => '[[$1]] taşındı, artık [[$2]] sayfasına yönlendiriyor',
 'double-redirect-fixer'      => 'Yönlendirme tamircisi',
 
@@ -1568,12 +1571,12 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'specialpage-empty'       => 'Bu rapor için hiç sonuç yok.',
 'lonelypages'             => 'Kendisine hiç bağlantı olmayan sayfalar',
 'lonelypagestext'         => 'Aşağıdaki sayfalara {{SITENAME}} sitesindeki diğer sayfalardan bağlantı verilmemiş yada çapraz dahil edilmemişler.',
-'uncategorizedpages'      => 'Herhangi bir kategoride olmayan sayfalar',
-'uncategorizedcategories' => 'Herhangi bir kategoride olmayan kategoriler',
-'uncategorizedimages'     => 'Herhangi bir kategoride olmayan resimler',
-'uncategorizedtemplates'  => 'Kategorize edilmemiş şablonlar',
+'uncategorizedpages'      => 'Kategorisiz sayfalar',
+'uncategorizedcategories' => 'Kategorisiz kategoriler',
+'uncategorizedimages'     => 'Kategorisiz dosyalar',
+'uncategorizedtemplates'  => 'Kategorisiz şablonlar',
 'unusedcategories'        => 'Kullanılmayan kategoriler',
-'unusedimages'            => 'Kullanılmayan resimler',
+'unusedimages'            => 'Kullanılmayan dosyalar',
 'popularpages'            => 'Popüler sayfalar',
 'wantedcategories'        => 'İstenen kategoriler',
 'wantedpages'             => 'İstenen sayfalar',
@@ -1583,7 +1586,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'mostlinkedcategories'    => 'En çok maddeye sahip kategoriler',
 'mostlinkedtemplates'     => 'En çok kullanılan şablonlar',
 'mostcategories'          => 'En fazla kategoriye bağlanmış sayfalar',
-'mostimages'              => 'En çok kullanılan resimler',
+'mostimages'              => 'En çok bağlantı verilmiş dosyalar',
 'mostrevisions'           => 'En çok değişikliğe uğramış sayfalar',
 'prefixindex'             => 'Önek ile tüm sayfalar',
 'shortpages'              => 'Kısa sayfalar',
@@ -1627,7 +1630,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'specialloguserlabel'  => 'Kullanıcı:',
 'speciallogtitlelabel' => 'Başlık:',
 'log'                  => 'Kayıtlar',
-'all-logs-page'        => 'Tüm kayıtlar',
+'all-logs-page'        => 'Tüm umumi kayıtlar',
 'alllogstext'          => '{{SITENAME}} için mevcut tüm günlüklerin birleşik gösterimi.
 Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etkilenen sayfayı (yine büyük-küçük harf duyarlı) seçerek görünümü daraltabilirsiniz.',
 'logempty'             => 'Kayıtlarda eşleşen bilgi yok.',
@@ -1740,19 +1743,19 @@ Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler li
 
 Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
 'removedwatch'         => 'İzleme listenizden silindi',
-'removedwatchtext'     => '"<nowiki>$1</nowiki>" sayfası izleme listenizden silinmiştir.',
-'watch'                => 'izlemeye al',
+'removedwatchtext'     => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenizden]] silinmiştir.',
+'watch'                => 'İzlemeye al',
 'watchthispage'        => 'Sayfayı izle',
 'unwatch'              => 'Sayfa izlemeyi durdur',
 'unwatchthispage'      => 'Sayfa izlemeyi durdur',
 'notanarticle'         => 'İçerik sayfası değil',
 'notvisiblerev'        => 'Revizyon silinmiş',
-'watchnochange'        => 'Gösterilen zaman aralığında izleme listenizdeki sayfaların hiçbiri güncellenmemiş.',
+'watchnochange'        => 'İzleme listenizdeki sayfaların hiçbiri, gösterilen zaman aralığında güncellenmemiş.',
 'watchlist-details'    => 'Tartışma sayfaları hariç {{PLURAL:$1|$1 sayfa|$1 sayfa}} izleme listenizdedir.',
 'wlheader-enotif'      => '* E-mail ile haber verme açılmıştır.',
-'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişikleri '''kalın''' olarak gösterilmiştir.",
-'watchmethod-recent'   => 'son değişiklikler arasında izledğiniz sayfalar aranıyor',
-'watchmethod-list'     => 'izleme listenizdeki sayfalar kontrol ediliyor',
+'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişiklikleri '''kalın yazıyla''' gösterilmiştir.",
+'watchmethod-recent'   => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
+'watchmethod-list'     => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
 'watchlistcontains'    => 'İzleme listenizde $1 tane {{PLURAL:$1|sayfa|sayfa}} var.',
 'iteminvalidname'      => "'$1' öğesi ile sorun, geçersiz isim...",
 'wlnote'               => "Son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
@@ -1761,7 +1764,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'İzleniyor...',
-'unwatching' => 'Durduruluyor...',
+'unwatching' => 'İzlenmiyor...',
 
 'enotif_mailer'                => '{{SITENAME}} Bildirim Postası',
 'enotif_reset'                 => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
@@ -1772,7 +1775,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'enotif_subject'               => '{{SITENAME}} sayfası $PAGETITLE, $PAGEEDITOR tarafından $CHANGEDORCREATED',
 'enotif_lastvisited'           => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
 'enotif_lastdiff'              => 'Bu değişikliği görmek için, $1 sayfasına bakınız.',
-'enotif_anon_editor'           => 'anonim kullanıcılar $1',
+'enotif_anon_editor'           => 'anonim kullanıcı $1',
 'enotif_body'                  => 'Sayın $WATCHINGUSERNAME,
 
 {{SITENAME}} sitesindeki $PAGETITLE başlıklı sayfa $PAGEEDITDATE tarihinde $PAGEEDITOR tarafından $CHANGEDORCREATED. Sayfanın son haline $PAGETITLE_URL adresinden ulaşabilirsiniz.
@@ -1860,12 +1863,12 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
 'prot_1movedto2'              => '[[$1]] sayfasının yeni adı: [[$2]]',
 'protect-legend'              => 'Korumayı onayla',
-'protectcomment'              => 'Koruma altına alma nedeni',
+'protectcomment'              => 'Sebep:',
 'protectexpiry'               => 'Bitiş tarihi:',
 'protect_expiry_invalid'      => 'Geçersiz bitiş tarihi.',
 'protect_expiry_old'          => 'Geçmişteki son kullanma zamanı.',
 'protect-unchain'             => 'Taşıma kilidini kaldır',
-'protect-text'                => '[[$1]] sayfasının koruma durumunu buradan görebilir ve değiştirebilirsiniz. Lütfen [[Project:Koruma politikası|koruma politikasına]] uygun hareket ettiğinizden emin olunuz.',
+'protect-text'                => "'''<nowiki>$1</nowiki>''' sayfasının koruma durumunu buradan görebilir ve değiştirebilirsiniz.",
 'protect-locked-blocked'      => "Engellenmiş iken koruma seviyelerini değiştiremezsiniz.
 '''$1''' sayfasının şu anki ayarları:",
 'protect-locked-dblock'       => "Aktif veritabanı kilidinden dolayı koruma seviyeleri değiştirilemez.
@@ -1926,7 +1929,7 @@ Arşiv düzenli olarak temizlenebilir.',
 Silindikten sonra aynı isimle yeni bir sayfa oluşturulmuşsa, geri gelen revizyonlar varolan sayfanın geçmişinde görünecektir.',
 'undeleterevdel'               => 'Eğer üst sayfada sonuçlanacaksa ya da dosya revizyonu kısmen silinmiş ise, silmeyi geri alma uygulanamaz.
 Böyle durumlarda, en yeni silinen revizyonu seçmemeli ya da gizlemesini kaldırmalısınız.',
-'undeletehistorynoadmin'       => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
+'undeletehistorynoadmin'       => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece hizmetliler tarafından görülebilir.',
 'undelete-revision'            => '$3 tarafından $1 sayfasının silinmiş revizyonu ($4 tarihinden beri, $5 saatinde):',
 'undeleterevision-missing'     => 'Geçersiz veya kayıp revizyon.
 Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz bağlantı yanlıştır.',
@@ -2173,7 +2176,7 @@ Lütfen başka bir isim deneyiniz.',
 'movelogpage'                  => 'İsim değişikliği kayıtları',
 'movelogpagetext'              => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
 'movereason'                   => 'Neden:',
-'revertmove'                   => 'geriye al',
+'revertmove'                   => 'geri al',
 'delete_and_move'              => 'Sil ve taşı',
 'delete_and_move_text'         => '==Silinmesi gerekiyor==
 
@@ -2315,7 +2318,7 @@ Geçici dosya kayıp.',
 'tooltip-feed-atom'               => 'Bu sayfa için atom beslemesi',
 'tooltip-t-contributions'         => 'Kullanıcının katkı listesini gör',
 'tooltip-t-emailuser'             => 'Kullanıcıya e-posta gönder',
-'tooltip-t-upload'                => 'Sisteme resim ya da medya dosyaları yükleyin',
+'tooltip-t-upload'                => 'Dosya yükle',
 'tooltip-t-specialpages'          => 'Tüm özel sayfaların listesini göster',
 'tooltip-t-print'                 => 'Bu sayfanın basılmaya uygun görünümü',
 'tooltip-t-permalink'             => 'Sayfanın bu sürümüne kalıcı bağlantı',
@@ -2324,7 +2327,7 @@ Geçici dosya kayıp.',
 'tooltip-ca-nstab-media'          => 'Medya sayfasını göster',
 'tooltip-ca-nstab-special'        => 'Bu özel sayfa olduğu için değişiklik yapamazsınız.',
 'tooltip-ca-nstab-project'        => 'Proje sayfasını göster',
-'tooltip-ca-nstab-image'          => 'Resim sayfasını göster',
+'tooltip-ca-nstab-image'          => 'Dosya sayfasını göster',
 'tooltip-ca-nstab-mediawiki'      => 'Sistem mesajını göster',
 'tooltip-ca-nstab-template'       => 'Şablonu göster',
 'tooltip-ca-nstab-help'           => 'Yardım sayfasını görmek için tıklayın',
@@ -2355,11 +2358,11 @@ Geçici dosya kayıp.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} sitesinin anonim {{PLURAL:$1|kullanıcısı|kullanıcıları}}',
-'siteuser'         => '{{SITENAME}} kullanıcı $1',
+'siteuser'         => '{{SITENAME}} kullanıcısı $1',
 'lastmodifiedatby' => 'Sayfa en son $3 tarafından $2, $1 tarihinde değiştirildi.', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1 tarafından yapılan çalışma baz alınmıştır.',
 'others'           => 'diğerleri',
-'siteusers'        => '{{SITENAME}} {{PLURAL:$2|kullanıcı|kullanıcılar}} $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|kullanıcısı|kullanıcıları}} $1',
 'creditspage'      => 'Sayfa künyesi',
 'nocredits'        => 'Bu sayfa için künye bilgisi mevcut değil.',
 
@@ -2432,7 +2435,8 @@ $1',
 'visual-comparison' => 'Görsel karşılaştırma',
 
 # Media information
-'mediawarning'         => "'''Uyarı!''': Bu dosya kötü niyetli kodlar içerebilir ve işletim sisteminize zarar verebilir.<hr />",
+'mediawarning'         => "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.
+Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
 'imagemaxsize'         => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'            => 'Küçük boyut:',
 'widthheight'          => '$1×$2',
@@ -2445,7 +2449,7 @@ $1',
 'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
 
 # Special:NewFiles
-'newimages'             => 'Yeni resimler',
+'newimages'             => 'Yeni dosya galerisi',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş {{PLURAL:$1|adet dosyayı|adet dosyayı}} göstermektedir.",
 'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir.',
 'newimages-legend'      => 'Filtre',
@@ -2454,7 +2458,7 @@ $1',
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',
 'bydate'                => 'kronolojik sırayla',
-'sp-newimages-showfrom' => '$1, $2 tarihi itibarı ile yeni resimleri göster',
+'sp-newimages-showfrom' => '$1, $2 tarihi itibarı ile yeni dosyaları göster',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3',
@@ -2463,10 +2467,11 @@ $1',
 'hours-abbrev'   => 's',
 
 # Bad image list
-'bad_image_list' => 'Format şöyle:
+'bad_image_list' => 'Format şu şekildedir:
 
-Sadece liste nesneleri (* ile başlayanlar) dikkate alınmaktadır. Satırdaki ilk link kötü resmin linki olmalıdır.
-Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayfada satıriçinde görünebilir.',
+Sadece liste öğeleri (* ile başlayanlar) dikkate alınmaktadır. 
+Satırdaki ilk bağlantı, kötü dosyaya giden bir bağlantı olmalıdır.
+Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sayfada satır içinde görünebilir.',
 
 # Variants for Tajiki language
 'variantname-tg' => 'tg',
@@ -2483,6 +2488,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2880,8 +2886,8 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 Normal önizlemeyi deneyin.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => '$1 {{PLURAL:$1|dakikadan|dakikadan}} yeni değişiklikler bu listede görünmeyebilir.',
-'lag-warn-high'   => 'Veritabanı sunucusundaki aşırı gecikmeden dolayı, $1 {{PLURAL:$1|dakikadan|dakikadan}} yeni değişiklikler bu listede görünmeyebilir.',
+'lag-warn-normal' => '$1 {{PLURAL:$1|saniyeden|saniyeden}} yeni değişiklikler bu listede görünmeyebilir.',
+'lag-warn-high'   => 'Veritabanı sunucusundaki aşırı gecikmeden dolayı, $1 {{PLURAL:$1|saniyeden|saniyeden}} yeni değişiklikler bu listede görünmeyebilir.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'İzleme sayfanızda {{PLURAL:$1|1 başlık|$1 başlık}} var, tartışma sayfaları hariç.',

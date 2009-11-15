@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aputtu
  * @author Kaare
  * @author Piivaat
  * @author לערי ריינהארט
@@ -16,32 +17,32 @@ $fallback = 'da';
 
 $messages = array(
 # Dates
-'sunday'        => 'sapaat',
-'monday'        => 'ataasinngorneq',
-'tuesday'       => 'marlunngorneq',
-'wednesday'     => 'pingasunngorneq',
-'thursday'      => 'sisamanngorneq',
-'friday'        => 'tallimanngorneq',
-'saturday'      => 'arfininngorneq',
-'sun'           => 'sap',
-'mon'           => 'ata',
-'tue'           => 'mar',
-'wed'           => 'pin',
-'thu'           => 'sis',
-'fri'           => 'tal',
-'sat'           => 'arf',
-'january'       => 'januari',
-'february'      => 'februari',
-'march'         => 'martsi',
-'april'         => 'aprili',
-'may_long'      => 'maji',
-'june'          => 'juni',
-'july'          => 'juli',
-'august'        => 'augustusi',
-'september'     => 'septemberi',
-'october'       => 'oktoberi',
-'november'      => 'novemberi',
-'december'      => 'decemberi',
+'sunday'        => 'Sapaat',
+'monday'        => 'Ataasinngorneq',
+'tuesday'       => 'Marlunngorneq',
+'wednesday'     => 'Pingasunngorneq',
+'thursday'      => 'Sisamanngorneq',
+'friday'        => 'Tallimanngorneq',
+'saturday'      => 'Arfininngorneq',
+'sun'           => 'Sap',
+'mon'           => 'Ata',
+'tue'           => 'Mar',
+'wed'           => 'Pin',
+'thu'           => 'Sis',
+'fri'           => 'Tal',
+'sat'           => 'Arf',
+'january'       => 'Jannuaari',
+'february'      => 'Februaari',
+'march'         => 'Martsi',
+'april'         => 'Apriili',
+'may_long'      => 'Maaji',
+'june'          => 'Juuni',
+'july'          => 'Juuli',
+'august'        => 'Aggusti',
+'september'     => 'Septemberi',
+'october'       => 'Oktoberi',
+'november'      => 'Novemberi',
+'december'      => 'Decemberi',
 'january-gen'   => 'Januaari',
 'february-gen'  => 'Februaari',
 'march-gen'     => 'Marsi',
@@ -54,22 +55,24 @@ $messages = array(
 'october-gen'   => 'Oktobari',
 'november-gen'  => 'Novembari',
 'december-gen'  => 'Decembari',
-'jan'           => 'jan',
-'feb'           => 'feb',
-'mar'           => 'mar',
-'apr'           => 'apr',
-'may'           => 'mai',
-'jun'           => 'jun',
-'jul'           => 'jul',
-'aug'           => 'aug',
-'sep'           => 'sep',
-'oct'           => 'okt',
-'nov'           => 'nov',
-'dec'           => 'des',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mar',
+'apr'           => 'Apr',
+'may'           => 'Maa',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
+'aug'           => 'Aug',
+'sep'           => 'Sep',
+'oct'           => 'Okt',
+'nov'           => 'Nov',
+'dec'           => 'Dec',
 
-'about'  => 'Pillugu',
-'cancel' => 'Sussa',
-'qbedit' => 'Aaqqissuutiguk',
+'about'         => 'Pillugu',
+'cancel'        => 'Sussa',
+'qbfind'        => 'Naniuk',
+'qbedit'        => 'Aaqqissuutiguk',
+'moredotdotdot' => 'Suli...',
 
 'errorpagetitle'   => 'Kukkuneq',
 'tagline'          => 'Matumannga {{SITENAME}}',
@@ -80,12 +83,19 @@ $messages = array(
 'searcharticle'    => 'Tassunngarit',
 'history'          => 'Oqaluttuassartaa',
 'history_short'    => 'Oqaluttuassartaa',
+'info_short'       => 'Ilisimasat',
+'printableversion' => 'Naqikkuminartoq',
 'edit'             => 'Aaqqissuuguk',
+'create'           => 'pilersitsineq',
+'delete'           => 'Piiaruk',
+'deletethispage'   => 'Qupperneq piiaruk',
 'protect'          => 'Illersorpaa',
+'newpage'          => 'Qupperneq nutaaq',
 'talkpagelinktext' => 'Oqallinneq',
 'talk'             => 'Oqallinneq',
 'toolbox'          => 'Sannataasivik',
 'otherlanguages'   => 'Oqaatsit allat',
+'jumpto'           => 'Toqqaannarlugu:',
 'jumptonavigation' => 'navigationi',
 'jumptosearch'     => 'ujarlerit',
 
@@ -93,26 +103,46 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} pillugu',
 'aboutpage'            => 'Project:Pillugu',
 'currentevents'        => 'Maannakkut pisut',
+'edithelp'             => 'Ikiuutit',
+'edithelppage'         => 'Help:Aaqqissuussineq',
+'helppage'             => 'Help:Ikiuutit',
 'mainpage'             => 'Saqqaa',
 'mainpage-description' => 'Saqqaa',
 'portal'               => 'Allaatiginnittartup saqqai',
 
-'editsection'     => 'aaqqissuuguk',
-'editold'         => 'aaqqissuuguk',
-'editsectionhint' => 'Aaqqissuuguk immikkoortoq: $1',
-'site-rss-feed'   => '$1 RSS Feed',
-'site-atom-feed'  => '$1 Atom Feed',
-'page-rss-feed'   => '"$1" RSS Feed',
-'red-link-title'  => '$1 (Qupperneq suli allaffigineqanngilaq)',
+'youhavenewmessages'  => 'Peqarputit $1 ($2)',
+'newmessageslink'     => 'oqariartuutinik nutaanik',
+'newmessagesdifflink' => 'allannguutini kingullernili',
+'editsection'         => 'aaqqissuuguk',
+'editold'             => 'aaqqissuuguk',
+'editlink'            => 'aaqqissuuguk',
+'editsectionhint'     => 'Aaqqissuuguk immikkoortoq: $1',
+'toc'                 => 'Imarisai',
+'site-rss-feed'       => '$1 RSS Feed',
+'site-atom-feed'      => '$1 Atom Feed',
+'page-rss-feed'       => '"$1" RSS Feed',
+'red-link-title'      => '$1 (Qupperneq suli allaffigineqanngilaq)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'Qupperneq',
 'nstab-image'    => 'Assiliaq',
-'nstab-template' => 'Skabeloni',
-'nstab-category' => 'Suussuseq',
+'nstab-template' => 'Ilisserut',
+'nstab-help'     => 'Ikiuutit',
+'nstab-category' => 'Sumut atassuseq',
 
 # Login and logout pages
-'yourname'                   => 'Pineqartoqateq:',
-'acct_creation_throttle_hit' => 'Utoqqatserpunga, $1 kontonik pilersereersimavutit. Pilersitseqqissinnaanngilatit.',
+'yourname'                   => 'Atuisup aqqa:',
+'yourpassword'               => 'Isissutissaq:',
+'yourpasswordagain'          => 'Isissutissaq (aappassaat):',
+'login'                      => 'Iserfigiuk',
+'gotaccountlink'             => 'Iserfigiuk',
+'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
+Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
+
+# Password reset dialog
+'oldpassword' => 'Isissutissatoqaq:',
+'newpassword' => 'Isissutissaq nutaaq:',
+'retypenew'   => 'Isissutissaq nutaaq (aappassaat):',
 
 # Edit pages
 'summary'      => 'Qanoq issusersiuineq:',
@@ -139,7 +169,7 @@ $messages = array(
 'recentchangeslinked' => 'Allannguutit naleqqiussat',
 
 # Upload
-'upload' => 'Læg en fil op',
+'upload' => 'Fiili nassiuguk',
 
 # File description page
 'filehist-user' => 'Pineqartoq',
@@ -154,12 +184,14 @@ $messages = array(
 'statistics' => 'Kisitsisinngorlugit paasissutissat',
 
 # Miscellaneous special pages
-'move' => 'Nuunneq',
+'newpages' => 'Quppernerit nutaat',
+'move'     => 'Nuunneq',
 
 # Special:Log
 'specialloguserlabel' => 'Pineqartoq:',
 
 # Special:AllPages
+'allarticles'    => 'Quppernerit tamarmik',
 'allpagessubmit' => 'Tassunngarit',
 
 # Watchlist

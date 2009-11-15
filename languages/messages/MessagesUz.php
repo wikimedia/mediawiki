@@ -226,10 +226,10 @@ $messages = array(
 'userlogin'               => 'Kirish / Hisob yaratish',
 'logout'                  => 'Chiqish',
 'userlogout'              => 'Chiqish',
-'nologin'                 => 'Hisobingiz yoʻqmi? $1.',
+'nologin'                 => "Hisobingiz yoʻqmi? '''$1'''.",
 'nologinlink'             => 'Hisob yaratish',
 'createaccount'           => 'Hisob yaratish',
-'gotaccount'              => 'Hisobingiz bormi? $1.',
+'gotaccount'              => "Hisobingiz bormi? '''$1'''.",
 'gotaccountlink'          => 'Kirish',
 'yourrealname'            => 'Haqiqiy ism *:',
 'loginsuccesstitle'       => 'Kirish muvaffaqiyatli amalga oshdi',
@@ -277,7 +277,7 @@ Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bu
 'newarticletext'         => "Bu sahifa hali mavjud emas.
 Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qo'shimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] ko'ring).
 Agar bu sahifaga xatolik sabab kelgan bo'lsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
-'noarticletext'          => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tegishli loglarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
+'noarticletext'          => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tegishli loglarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
 'clearyourcache'         => "'''Etibor bering:''' O'zgartirishlaringiz ko'rish uchun, yangi moslamalaringizning saqlashdan keyin, brauser keshini tozalash kerak:<br />
 '''Mozilla / Firefox:''' ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari:''' ''Cmd+Shift+R'', '''Konqueror:''' ''F5'', '''Opera:''' ''Tools → Preferences'' orqali keshni tozalang.",
 'previewnote'            => "'''Bu shunchaki ko'rib chiqish. O'zgarishlar hali saqlangani yo'q!'''",
@@ -341,7 +341,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'notextmatches'            => 'Bunday matn topilmadi',
 'prevn'                    => 'oldingi $1',
 'nextn'                    => 'keyingi $1',
-'viewprevnext'             => "Ko'rish ($1) ($2) ($3).",
+'viewprevnext'             => "Ko'rish ($1 {{int:pipe-separator}} $2) ($3).",
 'searchhelp-url'           => 'Help:Mundarija',
 'search-result-size'       => '$1 ({{PLURAL:$2|1 soʻz|$2 soʻz}})',
 'search-redirect'          => '(yoʻnaltirish $1)',
@@ -515,7 +515,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # Protect
 'protectlogpage'         => 'Himoyalash qaydlari',
 'protect-level-sysop'    => 'Faqat administratorlar uchun',
-'protect-expiry-options' => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '2 soat:2 hours,1 kun:1 day,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite', # display1:time1,display2:time2,...
 
 # Restrictions (nouns)
 'restriction-edit' => 'Tahrirlash',

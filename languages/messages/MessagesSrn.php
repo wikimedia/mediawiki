@@ -379,9 +379,9 @@ $messages = array(
 'nosuchaction'      => 'A sani disi no man',
 'nosuchactiontext'  => 'A wiki no sabi a komanderi ini a URL',
 'nosuchspecialpage' => 'A spesrutu papira disi no de',
-'nospecialpagetext' => "<big>'''Yu aksi fu si wan spesrutu papira san no de.'''</big>
+'nospecialpagetext' => '<strong>Yu aksi fu si wan spesrutu papira san no de.</strong>
 
-Wan réy fu spesrutu papira de fu feni na [[Special:SpecialPages|{{int:specialpages}}]].",
+Wan réy fu spesrutu papira de fu feni na [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Fowtu',
@@ -433,10 +433,10 @@ No fergiti fu kenki den seti fu yu gi {{SITENAME}}.',
 'logout'                    => 'Psa gwe',
 'userlogout'                => 'Psa gwe',
 'notloggedin'               => 'No psa kon',
-'nologin'                   => 'No abi wan kebroikiman nen ete? $1.',
+'nologin'                   => "No abi wan kebroikiman nen ete? '''$1'''.",
 'nologinlink'               => 'Meki wan account',
 'createaccount'             => 'Meki wan account',
-'gotaccount'                => 'Abi wan kebroikiman nen kba? $1.',
+'gotaccount'                => "Abi wan kebroikiman nen kba? '''$1'''.",
 'gotaccountlink'            => 'Psa kon',
 'createaccountmail'         => 'via e-mail',
 'badretype'                 => 'Den tu psa wortu no de srefi.',
@@ -638,7 +638,7 @@ Yu kan [[:\$1|meki a papira disi]].",
 'noexactmatch-nocreate' => "'''Da ben no papira nanga a nen \"\$1\".'''",
 'prevn'                 => '$1 di psa',
 'nextn'                 => '$1 trawan',
-'viewprevnext'          => 'Luku ($1) ($2) ($3).',
+'viewprevnext'          => 'Luku ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:San de',
 'powersearch'           => 'Suku moro dipi',
 
@@ -1195,6 +1195,7 @@ Trawan o kibri.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

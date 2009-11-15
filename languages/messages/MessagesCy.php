@@ -229,7 +229,7 @@ $messages = array(
 'category-article-count-limited' => "Mae'r {{PLURAL:$1|tudalen|dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn.",
 'category-file-count'            => "{{PLURAL:$2|Nid oes dim ffeiliau|Dim ond y ffeil sy'n dilyn sydd|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2}} yn y categori hwn.",
 'category-file-count-limited'    => "Mae'r {{PLURAL:$1|dim ffeil|un ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn y categori hwn.",
-'listingcontinuesabbrev'         => ' parh.',
+'listingcontinuesabbrev'         => 'parh.',
 
 'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''</big>",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
@@ -241,7 +241,7 @@ $messages = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
 
 'about'          => 'Ynglŷn â',
-'article'        => 'Erthygl',
+'article'        => 'Tudalen bwnc (erthygl/ffeil)',
 'newwindow'      => '(yn agor mewn ffenest newydd)',
 'cancel'         => 'Diddymu',
 'qbfind'         => 'Canfod',
@@ -294,7 +294,7 @@ $messages = array(
 'specialpage'       => 'Tudalen Arbennig',
 'personaltools'     => 'Offer personol',
 'postcomment'       => 'Adran newydd',
-'articlepage'       => 'Dangos tudalen yn y prif barth',
+'articlepage'       => 'Dangos tudalen bwnc',
 'talk'              => 'Sgwrs',
 'views'             => 'Golygon',
 'toolbox'           => 'Blwch offer',
@@ -391,7 +391,7 @@ $messages = array(
 Efallai eich bod wedi camdeipio'r URL, neu eich bod wedi dilyn cyswllt gwallus.
 Neu efallai fod byg ar {{SITENAME}}.",
 'nosuchspecialpage' => 'Y dudalen arbennig ddim yn bod',
-'nospecialpagetext' => "<big>'''Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.'''</big>
+'nospecialpagetext' => "<strong>Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.</strong>
 
 Mae rhestr o'r tudalennau arbennig dilys i'w gael [[Special:SpecialPages|yma]].",
 
@@ -403,12 +403,12 @@ Efallai fod gwall yn y meddalwedd.
 Y gofyniad olaf y trïodd y databas oedd:
 <blockquote><tt>$1</tt></blockquote>
 o\'r ffwythiant "<tt>$2</tt>".
-Rhoddwyd y côd gwall "<tt>$3: $4</tt>" gan MySQL.',
+Rhoddwyd y côd gwall "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Mae gwall cystrawen wedi taro\'r databas.
 Y gofyniad olaf y trïodd y databas oedd:
 "$1"
 o\'r ffwythiant "$2".
-Rhoddwyd y côd gwall "$3: $4<" gan MySQL.',
+Rhoddwyd y côd gwall "$3: $4<".',
 'noconnect'            => "Mae'n ddrwg gennym ni! Oherwydd anawsterau technegol, nid yw'r wici yn gallu cysylltu â gweinydd y databas. <br />
 $1",
 'nodb'                 => 'Ddim yn gallu dewis y databas $1',
@@ -416,7 +416,7 @@ $1",
 'laggedslavemode'      => "Rhybudd: hwyrach nad yw'r dudalen yn cynnwys diwygiadau diweddar.",
 'readonly'             => 'Databas ar glo',
 'enterlockreason'      => "Rhowch eglurhad dros gloi'r databas, ac amcangyfrif hyd at pa bryd y bydd y databas dan glo",
-'readonlytext'         => "Mae databas Wicipedia ar glo; nid yw'n bosib cadw erthyglau newydd na gwneud unrhyw newid arall. Mae'n debygol fod hyn er mwyn cynnal a chadw'r databas -- fe fydd ar gael eto cyn bo hir.
+'readonlytext'         => "Mae'r databas ar glo; nid yw'n bosib cadw erthyglau newydd na gwneud unrhyw newid arall. Mae'n debygol fod hyn er mwyn cynnal a chadw'r databas -- fe fydd ar gael eto cyn bo hir.
 
 Rhoddwyd y rheswm canlynol gan y gweinyddwr a'i glodd: $1",
 'missing-article'      => 'Ni lwyddodd y databas i ddod o hyd i destun tudalen yr oedd disgwyl iddo ei gael, sef "$1" $2.
@@ -490,14 +490,14 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'login'                      => 'Mewngofnodi',
 'nav-login-createaccount'    => 'Mewngofnodi',
 'loginprompt'                => "Mae'n rhaid galluogi cwcis er mwyn mewngofnodi i {{SITENAME}}.",
-'userlogin'                  => 'Mewngofnodi',
+'userlogin'                  => 'Mewngofnodi / creu cyfrif',
 'logout'                     => 'Allgofnodi',
 'userlogout'                 => 'Allgofnodi',
 'notloggedin'                => 'Nid ydych wedi mewngofnodi',
-'nologin'                    => 'Dim cyfrif gennych? $1.',
+'nologin'                    => "Dim cyfrif gennych? '''$1'''.",
 'nologinlink'                => 'Crëwch gyfrif',
 'createaccount'              => 'Creu cyfrif newydd',
-'gotaccount'                 => 'Oes cyfrif gennych eisoes? $1.',
+'gotaccount'                 => "Oes cyfrif gennych eisoes? '''$1'''.",
 'gotaccountlink'             => 'Mewngofnodwch',
 'createaccountmail'          => 'trwy e-bost',
 'badretype'                  => "Nid yw'r cyfrineiriau'n union yr un fath.",
@@ -559,7 +559,7 @@ Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfri
 'createaccount-text'         => 'Creodd rhywun gyfrif o\'r enw $2 ar {{SITENAME}} ($4) ar gyfer y cyfeiriad e-bost hwn. "$3" yw\'r cyfrinair ar gyfer "$2". Dylech fewngofnodi a newid eich cyfrinair yn syth.
 
 Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
-'login-throttled'            => 'Rydych wedi ceisio defnyddio cyfrinair y cyfrif hwn gormod o weithiau ar unwaith.
+'login-throttled'            => 'Rydych wedi ceisio mewngofnodi gormod o weithiau ar unwaith.
 Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
 
@@ -670,7 +670,7 @@ I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Help
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext'                 => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:UserLogin/signup|crëwch gyfrif]] neu [[Special:UserLogin|mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys o hyn ymlaen.''",
 'noarticletext'                    => "Mae'r dudalen hon yn wag ar hyn o bryd. 
-Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, <span class=\"plainlinks\">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} chwilio drwy'r logiau perthnasol], neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen]</span>.",
+Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} chwilio drwy'r logiau perthnasol], neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen]</span>.",
 'userpage-userdoesnotexist'        => 'Nid oes defnyddiwr a\'r enw "$1" yn bod. Gwnewch yn siwr eich bod am greu/golygu\'r dudalen hon.',
 'clearyourcache'                   => "'''Sylwer - Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau.''' 
 '''Mozilla / Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-F5'' neu ''Ctrl-R'' (''Command-R'' ar Macintosh); '''Konqueror:''' cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; '''Opera:''' gwacewch y celc yn llwyr trwy ''Offer → Dewisiadau / Tools→Preferences''; '''Internet Explorer:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''.",
@@ -705,7 +705,7 @@ Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.
 Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
 '''Dim ond''' y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
 'yourtext'                         => 'Eich testun',
-'storedversion'                    => "Fersiwn o'r storfa",
+'storedversion'                    => 'Y golygiad diweddaraf yn y storfa',
 'nonunicodebrowser'                => "'''RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn rhan o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.'''",
 'editingold'                       => "'''RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon. Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli.'''",
 'yourdiff'                         => 'Gwahaniaethau',
@@ -747,6 +747,8 @@ Dyma lòg dileu'r dudalen, er gwybodaeth:",
 'deleted-notice'                   => "Dilëwyd y dudalen hon.
 Dangosir lòg dileu'r dudalen isod.",
 'deletelog-fulllog'                => 'Gweld y lòg cyfan',
+'edit-hook-aborted'                => 'Terfynwyd y golygiad cyn pryd gan fachyn.
+Ni roddodd eglurhad.',
 'edit-gone-missing'                => "Ni ellid diweddaru'r dudalen.
 Ymddengys iddi gael ei dileu.",
 'edit-conflict'                    => 'Cyd-ddigwyddiad golygu.',
@@ -755,12 +757,18 @@ Ymddengys iddi gael ei dileu.",
 Mae ar gael yn barod.',
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => "'''Rhybudd:''' Mae gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau yn y dudalen hon.
+
+Dylai fod llai na $2 {{PLURAL:$2|galwad|alwad|alwad|galwad|galwad|galwad}} yn y dudalen, ond ar hyn o bryd mae $1 {{PLURAL:$1|galwad|alwad|alwad|galwad|galwad|galwad}} ynddi.",
 'expensive-parserfunction-category'       => "Tudalennau a gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau",
 'post-expand-template-inclusion-warning'  => "Rhybudd: Mae'r maint cynnwys nodyn yn rhy fawr.
 Ni chaiff rhai nodiadau eu cynnwys.",
 'post-expand-template-inclusion-category' => "Tudalennau a phatrymlun ynddynt sy'n fwy na chyfyngiad y meddalwedd",
+'post-expand-template-argument-warning'   => "'''Rhybudd:''' Mae gan y dudalen hon o leiaf un arg nodyn sydd a maint ehangu rhy fawr.
+Cafodd yr argiau hyn eu hepgor.",
 'post-expand-template-argument-category'  => 'Tudalennau lle ceir argiau nodiadau coll',
 'parser-template-loop-warning'            => 'Daethpwyd o hyd i ddolen yn y nodyn: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Wedi mynd dros ben y terfyn ar ddyfnder dychweliad nodiadau ($1)',
 
 # "Undo" feature
 'undo-success' => "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
@@ -790,8 +798,8 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'page_first'             => 'cyntaf',
 'page_last'              => 'olaf',
 'histlegend'             => "Cymharu dau fersiwn: marciwch y cylchoedd ar y ddau fersiwn i'w cymharu, yna pwyswch ar 'return' neu'r botwm 'Cymharer y fersiynau dewisedig'.<br />
-Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
-(cynt) = gwahaniaethau rhyngddo a'r fersiwn cynt, B = golygiad bychan",
+Eglurhad: '''({{int:cur}})''' = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
+'''({{int:last}})''' = gwahaniaethau rhyngddo a'r fersiwn cynt, '''({{int:minoreditletter}})''' = golygiad bychan",
 'history-fieldset-title' => "Chwilio drwy'r hanes",
 'deletedrev'             => '[dilëwyd]',
 'histfirst'              => 'Cynharaf',
@@ -821,6 +829,7 @@ gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l�
 'rev-delundel'                => 'dangos/cuddio',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
 'revdelete-nooldid-title'     => 'Anelwyd at olygiad annilys',
+'revdelete-nooldid-text'      => "Naill ai; nid ydych wedi dynodi diwygiad yn darged y weithred, neu nid yw'r diwygiad penodedig yn bod, neu rydych wedi ceisio cuddio'r diwygiad presennol.",
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:'''",
 'revdelete-text'              => "'''Fe fydd y golygiadau a'r digwyddiadau sydd wedi eu diddymu i'w gweld o hyd yn hanes y dudalen ac yn y logiau, ond ni fydd y cyhoedd yn gallu gweld y cynnwys i gyd.'''
@@ -836,7 +845,7 @@ Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall y
 'revdelete-suppress'          => 'Atal data oddi wrth Weinyddwyr yn ogystal ag eraill',
 'revdelete-hide-image'        => 'Cuddio cynnwys y ffeil',
 'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
-'revdelete-log'               => 'Sylw ar gyfer y lòg:',
+'revdelete-log'               => 'Rheswm dros ddileu:',
 'revdelete-submit'            => 'Rhoi ar waith ar y golgiad dewisedig',
 'revdelete-logentry'          => 'wedi newid y gallu i weld golygiadau ar [[$1]]',
 'logdelete-logentry'          => 'wedi newid y gallu i weld y digwyddiad ar [[$1]]',
@@ -898,12 +907,17 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'editundo'                => 'dadwneud',
 'diff-multi'              => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol.)',
 'diff-movedto'            => 'wedi symud i $1',
+'diff-styleadded'         => 'ychwanegwyd yr arddull $1',
 'diff-added'              => 'wedi ychwanegu $1',
 'diff-changedto'          => 'newidiwyd i $1',
 'diff-movedoutof'         => "wedi'i symud oddi ar $1",
+'diff-styleremoved'       => 'tynnwyd yr arddull $1',
 'diff-removed'            => 'tynnwyd $1',
 'diff-changedfrom'        => 'wedi newid o $1',
 'diff-src'                => 'gwreiddiol',
+'diff-withdestination'    => "gyda'r cyrchfan $1",
+'diff-with'               => '&#32;a $1 $2',
+'diff-with-final'         => '&#32;a $1 $2',
 'diff-width'              => 'lled',
 'diff-height'             => 'uchder',
 'diff-p'                  => "'''paragraff'''",
@@ -913,20 +927,26 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-h3'                 => "'''pennawd (lefel 3)'''",
 'diff-h4'                 => "'''pennawd (lefel 4)'''",
 'diff-h5'                 => "'''pennawd (lefel 5)'''",
+'diff-pre'                => "'''bloc wedi ei ragfformatio'''",
 'diff-div'                => "'''rhaniad'''",
 'diff-ul'                 => "'''rhestr heb ei drefnu'''",
 'diff-ol'                 => "'''rhestr trefnedig'''",
+'diff-li'                 => "'''eitem ar y rhestr'''",
 'diff-table'              => "'''tabl'''",
 'diff-tbody'              => "'''cynnwys tabl'''",
 'diff-tr'                 => "'''rhes'''",
 'diff-td'                 => "'''cell'''",
 'diff-th'                 => "'''pennawd'''",
 'diff-br'                 => "'''toriad'''",
+'diff-hr'                 => "'''llinell fesur lorweddol'''",
+'diff-code'               => "'''bloc o gôd cyfrifiadurol'''",
 'diff-dl'                 => "'''rhestr diffiniadau'''",
+'diff-dt'                 => "'''term diffinio'''",
 'diff-dd'                 => "'''diffiniad'''",
 'diff-input'              => "'''mewnbwn'''",
 'diff-form'               => "'''ffurflen'''",
 'diff-img'                => "'''delwedd'''",
+'diff-span'               => "'''span'''",
 'diff-a'                  => "'''cyswllt'''",
 'diff-i'                  => "'''italig'''",
 'diff-b'                  => "'''print trwm'''",
@@ -938,6 +958,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-tt'                 => "'''lled penodol'''",
 'diff-sub'                => "'''isysgrif'''",
 'diff-sup'                => "'''uwchysgrif'''",
+'diff-strike'             => "'''llinell drwyddo'''",
 
 # Search results
 'searchresults'                    => "Canlyniadau'r chwiliad",
@@ -954,7 +975,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'notextmatches'                    => 'Does dim testun yn cyfateb',
 'prevn'                            => 'y $1 cynt',
 'nextn'                            => 'y $1 nesaf',
-'viewprevnext'                     => 'Dangos ($1) ($2) ($3).',
+'viewprevnext'                     => 'Dangos ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Dewisiadau chwilio',
 'searchmenu-exists'                => "'''Mae tudalen o'r enw \"[[\$1]]\" ar y wici hwn'''",
 'searchmenu-new'                   => "'''Creu'r dudalen \"[[:\$1]]\" ar y wici hwn!'''",
@@ -1055,7 +1076,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchangesdays-max'     => '(hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})',
 'recentchangescount'        => "Nifer y golygiadau i'w dangos yn ddiofyn ar dudalennau newidiadau diweddar, hanes, a logiau:",
 'savedprefs'                => 'Mae eich dewisiadau wedi cael eu cadw.',
-'timezonelegend'            => 'Ardal amser',
+'timezonelegend'            => 'Ardal amser:',
 'timezonetext'              => '¹Nifer yr oriau o wahaniaeth rhwng eich amser lleol ac amser y gweinydd (UTC).',
 'localtime'                 => 'Amser lleol:',
 'timezoneselect'            => 'Cylchfa amser:',
@@ -1065,7 +1086,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'servertime'                => 'Amser y gweinydd:',
 'guesstimezone'             => 'Llenwi oddi wrth y porwr',
 'allowemail'                => 'Galluogi e-bost oddi wrth ddefnyddwyr eraill',
-'prefs-searchoptions'       => 'Dewisiadau chwilio',
+'prefs-searchoptions'       => 'Chwilio',
 'prefs-namespaces'          => 'Parthau',
 'defaultns'                 => 'Chwiliwch y parthau rhagosodedig isod:',
 'default'                   => 'rhagosodyn',
@@ -1133,12 +1154,16 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-reupload-own'         => "Trosysgrifo ffeil sydd eisoes yn bod ac wedi ei uwchlwytho gennych chi'ch hunan",
 'right-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil ar y storfa cyfrannol",
 'right-upload_by_url'        => 'Uwchlwytho ffeil oddi ar gyfeiriad URL',
+'right-purge'                => 'Carthu celc y safle o ryw dudalen heb gadarnhau',
 'right-autoconfirmed'        => 'Golygu tudalennau sydd wedi eu lled-ddiogelu',
 'right-bot'                  => 'Cael ei drin fel proses awtomataidd',
+'right-nominornewtalk'       => "Gallu dewis peidio â derbyn hysbysiad bod gennych neges newydd pan ddigwydd mân newidiadau i'ch tudalen sgwrs",
+'right-apihighlimits'        => 'Defnyddio terfynau uwch mewn ymholiadau API',
 'right-writeapi'             => "Defnyddio'r API i ysgrifennu a thrin y tudalennau",
 'right-delete'               => 'Dileu tudalennau',
 'right-bigdelete'            => 'Dileu tudalennau a hanes llwythog iddynt',
 'right-deleterevision'       => 'Dileu a dad-ddileu golygiadau arbennig o dudalennau',
+'right-deletedhistory'       => 'Gweld cofnodion fersiynau sydd wedi eu dileu, heb y testun ynddynt',
 'right-browsearchive'        => 'Chwilio drwy tudalennau dilëedig',
 'right-undelete'             => 'Adfer tudalen dilëedig',
 'right-suppressrevision'     => 'Adolygu ac adfer diwygiadau sydd wedi eu cuddio rhag gweinyddwyr',
@@ -1154,9 +1179,14 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-editusercssjs'        => 'Golygu ffeiliau CSS a JS yn perthyn i ddefnyddwyr eraill',
 'right-rollback'             => 'Gwrthdroi golygiadau defnyddiwr diwethaf rhyw dudalen yn sydyn',
 'right-markbotedits'         => 'Marcio golygiadau wedi eu gwrthdroi yn olygiadau bot',
+'right-noratelimit'          => 'Bod heb gyfyngiad ar gyflymder eich gweithredoedd',
 'right-import'               => 'Mewnforio tudalennau o wicïau eraill',
 'right-importupload'         => 'Mewnforio tudalennau drwy uwchlwytho ffeil XML',
+'right-patrol'               => 'Gallu marcio golygiadau pobl eraill yn rhai sydd wedi derbyn ymweliad patrôl',
+'right-autopatrol'           => 'Gallu derbyn marc ymweliad patrôl yn awtomatig ar eich golygiadau eich hunan',
+'right-patrolmarks'          => 'Gweld marciau patrôl ar newidiadau diweddar',
 'right-unwatchedpages'       => 'Gweld rhestr y tudalennau heb neb yn eu gwylio',
+'right-trackback'            => "Gallu cael y wici i dderbyn 'trackback'",
 'right-mergehistory'         => 'Cyfuno hanes y tudalennau',
 'right-userrights'           => 'Golygu holl alluoedd defnyddwyr',
 'right-userrights-interwiki' => "Newid galluoedd defnyddwyr sy'n perthyn i ddefnyddwyr ar wicïau eraill",
@@ -1196,7 +1226,9 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'action-import'               => "mewnforio'r dudalen hon o wici arall",
 'action-importupload'         => "mewnforio'r dudalen hon drwy uwchlwytho ffeil XML",
 'action-patrol'               => 'marcio bod golygiad defnyddiwr arall wedi derbyn ymweliad patrôl',
+'action-autopatrol'           => 'cael derbyn marc ymweliad patrôl ar eich golygiad',
 'action-unwatchedpages'       => 'gweld rhestr y tudalennau heb neb yn eu gwylio',
+'action-trackback'            => "cael y wici i dderbyn 'trackback'",
 'action-mergehistory'         => 'cyfuno hanes y dudalen hon',
 'action-userrights'           => 'golygu holl alluoedd y defnyddwyr',
 'action-userrights-interwiki' => 'golygu galluoedd y defnyddwyr ar wicïau eraill',
@@ -1247,6 +1279,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'reuploaddesc'                => "Dileu'r uwchlwytho a dychwelyd i'r ffurflen uwchlwytho",
 'uploadnologin'               => 'Nid ydych wedi mewngofnodi',
 'uploadnologintext'           => "Mae'n rhaid i chi [[Special:UserLogin|fewngofnodi]] er mwyn uwchlwytho ffeiliau.",
+'upload_directory_missing'    => "Mae'r cyfeiriadur uwchlwytho ($1) yn eisiau, ac ni allai'r gweinydd gwe ei greu.",
 'upload_directory_read_only'  => "Ni all y gweinydd ysgrifennu i'r cyfeiriadur uwchlwytho ($1).",
 'uploaderror'                 => "Gwall tra'n uwchlwytho ffeil",
 'uploadtext'                  => "Defnyddiwch y ffurflen isod i uwchlwytho ffeiliau.
@@ -1282,16 +1315,19 @@ Gweler y [[Special:NewFiles|galeri o ffeiliau newydd]] i fwrw golwg drostynt.",
 'large-file'                  => "Argymhellir na ddylai ffeil fod yn fwy na $1. Mae'r ffeil hwn yn $2 o faint.",
 'largefileserver'             => "Mae'r ffeil yn fwy na'r hyn mae'r gweinydd yn ei ganiatau.",
 'emptyfile'                   => "Ymddengys fod y ffeil a uwchlwythwyd yn wag. Efallai bod gwall teipio yn enw'r ffeil. Sicrhewch eich bod wir am uwchlwytho'r ffeil.",
-'fileexists'                  => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; gwiriwch '''<tt>$1</tt>''' os nad ydych yn sicr bod angen ei newid.",
-'filepageexists'              => "Mae tudalen ddisgrifiad ar gyfer y ffeil hon eisoes ar gael ar '''<tt>$1</tt>''', ond nid oes ffeil o'r enw hwn ar gael ar hyn o bryd.
+'fileexists'                  => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; gwiriwch '''<tt>[[:$1]]</tt>''' os nad ydych yn sicr bod angen ei newid.
+[[$1|thumb]]",
+'filepageexists'              => "Mae tudalen ddisgrifiad ar gyfer y ffeil hon eisoes ar gael ar '''<tt>[[:$1]]</tt>''', ond nid oes ffeil o'r enw hwn ar gael ar hyn o bryd.
 Ni fydd crynodeb a osodir wrth uwchlwytho yn ymddangos ar y dudalen ddisgrifiad.
-Er mwyn gwneud i'r crynodeb ymddangos yno, bydd raid i chi olygu'r dudalen ddisgrifiad yn unswydd.",
-'fileexists-extension'        => "Mae ffeil ag enw tebyg eisoes yn bod:<br />
-Enw'r ffeil ar fin ei uwchlwytho: '''<tt>$1</tt>'''<br />
-Enw'r ffeil sydd eisoes yn bod: '''<tt>$2</tt>'''<br />
+Er mwyn gwneud i'r crynodeb ymddangos yno, bydd raid i chi olygu'r dudalen ddisgrifiad yn unswydd.
+[[$1|thumb]]",
+'fileexists-extension'        => "Mae ffeil ag enw tebyg eisoes yn bod: [[$2|thumb]]
+* Enw'r ffeil ar fin ei uwchlwytho: '''<tt>[[:$1]]</tt>'''
+* Enw'r ffeil sydd eisoes yn bod: '''<tt>[[:$2]]</tt>'''
 Dewiswch enw arall os gwelwch yn dda.",
 'fileexists-thumb'            => "<center>'''Y ddelwedd eisoes ar glawr'''</center>",
-'fileexists-thumbnail-yes'    => "Ymddengys bod delwedd wedi ei leihau ''(bawd)'' ar y ffeil. Cymharwch gyda'r ffeil '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Ymddengys bod delwedd wedi ei leihau ''(bawd)'' ar y ffeil. [[$1|thumb]]
+Cymharwch gyda'r ffeil '''<tt>[[:$1]]</tt>'''.
 Os mai'r un un llun ar ei lawn faint sydd ar yr ail ffeil yna does dim angen uwchlwytho llun ychwanegol o faint bawd.",
 'file-thumbnail-no'           => "Mae '''<tt>$1</tt>''' ar ddechrau enw'r ffeil. 
 Mae'n ymddangos felly bod y ddelwedd wedi ei leihau ''(maint bawd)''.
@@ -1303,7 +1339,8 @@ Os ydych am uwchlwytho'ch ffeil, ewch nôl ac uwchlwythwch hi ac enw newydd arni
 Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dyblgeb yw'r ffeil hwn o'r {{PLURAL:$1|ffeil|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} sy'n dilyn:",
-'file-deleted-duplicate'      => "Mae ffeil union debyg i hon ([$1]) eisoes wedi cael ei dileu. Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.",
+'file-deleted-duplicate'      => "Mae ffeil union debyg i hon ([[$1]]) eisoes wedi cael ei dileu.
+Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.",
 'successfulupload'            => 'Wedi llwyddo uwchlwytho',
 'uploadwarning'               => 'Rhybudd uwchlwytho',
 'savefile'                    => "Cadw'r ffeil",
@@ -1462,7 +1499,7 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'statistics-header-edits'      => 'Ystadegau golygiadau',
 'statistics-header-views'      => 'Ystadegau ymweliadau',
 'statistics-header-users'      => 'Ystadegau defnyddwyr',
-'statistics-articles'          => 'Tudalennau cynnwys',
+'statistics-articles'          => 'Tudalennau pwnc',
 'statistics-pages'             => 'Tudalennau',
 'statistics-pages-desc'        => 'Pob tudalen yn y wici, gan gynnwys tudalennau sgwrs, ailgyfeiriadau, ayb.',
 'statistics-files'             => 'Ffeiliau wedi eu huwchlwytho',
@@ -1481,7 +1518,8 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'disambiguations-text' => "Mae'r tudalennau canlynol yn cysylltu â thudalennau gwahaniaethu. Yn hytrach dylent gysylltu'n syth â'r erthygl briodol.<br />Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
 
 'doubleredirects'            => 'Ailgyfeiriadau dwbl',
-'doubleredirectstext'        => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.",
+'doubleredirectstext'        => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.
+Gosodwyd <s>llinell</s> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'double-redirect-fixed-move' => "Symudwyd [[$1]], a'i droi'n ailgyfeiriad at [[$2]]",
 'double-redirect-fixer'      => 'Redirect fixer',
 
@@ -1566,7 +1604,7 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'specialloguserlabel'  => 'Defnyddiwr:',
 'speciallogtitlelabel' => 'Teitl:',
 'log'                  => 'Logiau',
-'all-logs-page'        => 'Pob lòg',
+'all-logs-page'        => 'Pob lòg cyhoeddus',
 'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.
 Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, neu'r dudalen benodedig.
 Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
@@ -1603,10 +1641,14 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'deletedcontributions' => 'Cyfraniadau defnyddiwr i dudalennau dilëedig',
 
 # Special:LinkSearch
-'linksearch'     => 'Cysylltiadau allanol',
-'linksearch-pat' => 'Patrwm chwilio:',
-'linksearch-ns'  => 'Parth:',
-'linksearch-ok'  => 'Chwilio',
+'linksearch'       => 'Cysylltiadau allanol',
+'linksearch-pat'   => 'Patrwm chwilio:',
+'linksearch-ns'    => 'Parth:',
+'linksearch-ok'    => 'Chwilio',
+'linksearch-text'  => 'Gellir defnyddio cardiau gwyllt megis "*.wikipedia.org".<br />
+Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
+'linksearch-line'  => 'Mae cysylltiad i gael i $1 oddi wrth $2',
+'linksearch-error' => "Dim ond ar ddechrau enw'r gwesteiwr y gallwch osod cardiau gwyllt.",
 
 # Special:ListUsers
 'listusersfrom'      => 'Dangos y defnyddwyr gan ddechrau â:',
@@ -1686,7 +1728,7 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'wlheader-enotif'      => '* Galluogwyd hysbysiadau trwy e-bost.',
 'wlheader-showupdated' => "* Mae tudalennau sydd wedi newid ers i chi ymweld ddiwethaf wedi'u '''hamlygu'''.",
 'watchmethod-recent'   => "yn chwilio'r diwygiadau diweddar am dudalennau ar y rhestr gwylio",
-'watchmethod-list'     => "yn chwilio'r rhestr gwylio am ddiwygiadau diweddar",
+'watchmethod-list'     => "yn chwilio'r tudalennau ar y rhestr gwylio am ddiwygiadau diweddar",
 'watchlistcontains'    => '{{PLURAL:$1|Nid oes $1 tudalen|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr gwylio.',
 'iteminvalidname'      => "Problem gyda'r eitem '$1', enw annilys...",
 'wlnote'               => "{{PLURAL:$1|Ni fu unrhyw newid|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf}} yn ystod {{PLURAL:$2||yr awr|y ddwyawr|y teirawr|y <b>$2</b> awr|y(r) <b>$2</b> awr}} ddiwethaf.",
@@ -1791,7 +1833,7 @@ Mae'r tudalennau sydd wedi eu diogelu ar hyn o bryd wedi eu rhestri ar y [[Speci
 'protect-title'               => "Newid y lefel diogelu ar gyfer '$1'",
 'prot_1movedto2'              => 'wedi symud [[$1]] i [[$2]]',
 'protect-legend'              => "Cadarnháu'r diogelu",
-'protectcomment'              => 'Sylw:',
+'protectcomment'              => 'Rheswm:',
 'protectexpiry'               => 'Yn dod i ben:',
 'protect_expiry_invalid'      => 'Amser terfynu annilys.',
 'protect_expiry_old'          => "Mae'r amser darfod yn y gorffennol.",
@@ -1924,7 +1966,7 @@ $1',
 'nolinkshere-ns'           => "Nid oes cyswllt ar unrhyw dudalen yn y parth dewisedig yn arwain at '''[[:$1]]'''.",
 'isredirect'               => 'tudalen ail-gyfeirio',
 'istemplate'               => 'cynhwysiad',
-'isimage'                  => 'cyswllt at ddelwedd',
+'isimage'                  => 'cyswllt at y ddelwedd',
 'whatlinkshere-prev'       => '{{PLURAL:$1|cynt|cynt|$1 cynt|$1 cynt|$1 cynt|$1 cynt}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nesaf|nesaf|$1 nesaf|$1 nesaf|$1 nesaf|$1 nesaf}}',
 'whatlinkshere-links'      => '← cysylltiadau',
@@ -2053,9 +2095,9 @@ Er mwyn cloi'r databas neu ei ddatgloi, mae'n rhaid i'r gweinydd gwe allu ysgrif
 'databasenotlocked'   => "Nid yw'r databas ar glo.",
 
 # Move page
-'move-page'                 => 'Symud $1',
-'move-page-legend'          => 'Symud tudalen',
-'movepagetext'              => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
+'move-page'                    => 'Symud $1',
+'move-page-legend'             => 'Symud tudalen',
+'movepagetext'                 => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
 Bydd yr hen deitl yn troi'n dudalen ail-gyfeirio i'r teitl newydd.
 Gallwch ddewis bod y meddalwedd yn cywiro tudalennau ailgyfeirio oedd yn arwain at yr hen deitl yn awtomatig.
 Os nad ydych yn dewis hyn, yna byddwch gystal â thrwsio [[Special:DoubleRedirects|ail-gyfeiriadau dwbl]] ac [[Special:BrokenRedirects|ail-gyfeiriadau tor]] eich hunan.
@@ -2068,60 +2110,62 @@ Hefyd, mae'n amhosibl ysgrifennu dros ben tudalen sydd yn bodoli'n barod.
 '''DALIER SYLW!'''
 Gall hwn fod yn newid sydyn a llym i dudalen boblogaidd;
 gnewch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
-'movepagetalktext'          => "Bydd y dudalen sgwrs yn symud gyda'r dudalen hon '''onibai:'''
+'movepagetalktext'             => "Bydd y dudalen sgwrs yn symud gyda'r dudalen hon '''onibai:'''
 *bod tudalen sgwrs wrth yr enw newydd yn bodoli'n barod
 *bod y blwch isod heb ei farcio.
 
 Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei hun.",
-'movearticle'               => 'Symud y dudalen:',
-'movenologin'               => 'Nid ydych wedi mewngofnodi',
-'movenologintext'           => "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:UserLogin|mewngofnodi]] cyn medru symud tudalen.",
-'movenotallowed'            => 'Nid oes caniatâd gennych i symud tudalennau.',
-'movenotallowedfile'        => "Nid yw'r gallu ganddoch i symud ffeiliau.",
-'cant-move-user-page'       => "Nid yw'r gallu ganddoch i symud tudalennau defnyddwyr (heblaw am isdudalennau).",
-'cant-move-to-user-page'    => "Nid yw'r gallu ganddoch i symud tudalen i dudalen defnyddiwr (heblaw am i isdudalen defnyddiwr).",
-'newtitle'                  => "I'r teitl newydd:",
-'move-watch'                => 'Gwylier y dudalen hon',
-'movepagebtn'               => 'Symud y dudalen',
-'pagemovedsub'              => 'Y symud wedi llwyddo',
-'movepage-moved'            => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-redirect'   => 'Gosodwyd ail-gyfeiriad.',
-'movepage-moved-noredirect' => 'Ni osodwyd tudalen ailgyfeirio.',
-'articleexists'             => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
+'movearticle'                  => 'Symud y dudalen:',
+'movenologin'                  => 'Nid ydych wedi mewngofnodi',
+'movenologintext'              => "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:UserLogin|mewngofnodi]] cyn medru symud tudalen.",
+'movenotallowed'               => 'Nid oes caniatâd gennych i symud tudalennau.',
+'movenotallowedfile'           => "Nid yw'r gallu ganddoch i symud ffeiliau.",
+'cant-move-user-page'          => "Nid yw'r gallu ganddoch i symud tudalennau defnyddwyr (heblaw am isdudalennau).",
+'cant-move-to-user-page'       => "Nid yw'r gallu ganddoch i symud tudalen i dudalen defnyddiwr (heblaw am i isdudalen defnyddiwr).",
+'newtitle'                     => "I'r teitl newydd:",
+'move-watch'                   => 'Gwylier y dudalen hon',
+'movepagebtn'                  => 'Symud y dudalen',
+'pagemovedsub'                 => 'Y symud wedi llwyddo',
+'movepage-moved'               => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Gosodwyd ail-gyfeiriad.',
+'movepage-moved-noredirect'    => 'Ni osodwyd tudalen ailgyfeirio.',
+'articleexists'                => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
 Dewiswch enw arall os gwelwch yn dda.",
-'cantmove-titleprotected'   => "Ni allwch symud tudalen i'r lleoliad hwn, oherwydd bod y teitl arfaethedig wedi ei ddiogelu rhag cael ei ddefnyddio.",
-'talkexists'                => "'''Mae'r dudalen wedi'i symud yn llwyddiannus, ond nid oedd hi'n bosibl symud y dudalen sgwrs oherwydd bod yna dudalen sgwrs gyda'r enw newydd yn bodoli'n barod. Cyfunwch y ddwy dudalen, os gwelwch yn dda.'''",
-'movedto'                   => 'symud i',
-'movetalk'                  => 'Symud y dudalen sgwrs hefyd',
-'move-subpages'             => 'Symud unrhyw is-dudalennau',
-'move-talk-subpages'        => "Symud unrhyw is-dudalennau i'r dudalen sgwrs",
-'movepage-page-exists'      => "Mae'r dudalen $1 eisoes ar gael ac ni ellir ysgrifennu drosto yn awtomatig.",
-'movepage-page-moved'       => 'Symudwyd y dudalen $1 i $2.',
-'movepage-page-unmoved'     => 'Ni ellid symud y dudalen $1 i $2.',
-'movepage-max-pages'        => 'Symudwyd yr uchafswm o $1 {{PLURAL:$1|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}} y gellir eu symud yn awtomatig.',
-'1movedto2'                 => 'wedi symud [[$1]] i [[$2]]',
-'1movedto2_redir'           => 'Wedi symud [[$1]] i [[$2]] trwy ailgyfeiriad.',
-'move-redirect-suppressed'  => 'ataliwyd ailgyfeirio',
-'movelogpage'               => 'Lòg symud tudalennau',
-'movelogpagetext'           => "Isod mae rhestr y tudalennau sydd wedi'u symud",
-'movereason'                => 'Rheswm:',
-'revertmove'                => 'symud nôl',
-'delete_and_move'           => 'Dileu a symud',
-'delete_and_move_text'      => "==Angen dileu==
+'cantmove-titleprotected'      => "Ni allwch symud tudalen i'r lleoliad hwn, oherwydd bod y teitl arfaethedig wedi ei ddiogelu rhag cael ei ddefnyddio.",
+'talkexists'                   => "'''Mae'r dudalen wedi'i symud yn llwyddiannus, ond nid oedd hi'n bosibl symud y dudalen sgwrs oherwydd bod yna dudalen sgwrs gyda'r enw newydd yn bodoli'n barod. Cyfunwch y ddwy dudalen, os gwelwch yn dda.'''",
+'movedto'                      => 'symud i',
+'movetalk'                     => 'Symud y dudalen sgwrs hefyd',
+'move-subpages'                => 'Symud unrhyw is-dudalennau',
+'move-talk-subpages'           => "Symud unrhyw is-dudalennau i'r dudalen sgwrs",
+'movepage-page-exists'         => "Mae'r dudalen $1 eisoes ar gael ac ni ellir ysgrifennu drosto yn awtomatig.",
+'movepage-page-moved'          => 'Symudwyd y dudalen $1 i $2.',
+'movepage-page-unmoved'        => 'Ni ellid symud y dudalen $1 i $2.',
+'movepage-max-pages'           => 'Symudwyd yr uchafswm o $1 {{PLURAL:$1|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}} y gellir eu symud yn awtomatig.',
+'1movedto2'                    => 'wedi symud [[$1]] i [[$2]]',
+'1movedto2_redir'              => 'Wedi symud [[$1]] i [[$2]] trwy ailgyfeiriad.',
+'move-redirect-suppressed'     => 'ataliwyd ailgyfeirio',
+'movelogpage'                  => 'Lòg symud tudalennau',
+'movelogpagetext'              => "Isod mae rhestr y tudalennau sydd wedi'u symud",
+'movereason'                   => 'Rheswm:',
+'revertmove'                   => 'symud nôl',
+'delete_and_move'              => 'Dileu a symud',
+'delete_and_move_text'         => "==Angen dileu==
 
 Mae'r erthygl \"[[:\$1]]\" yn bodoli'n barod. Ydych chi am ddileu'r erthygl er mwyn cwblhau'r symudiad?",
-'delete_and_move_confirm'   => "Ie, dileu'r dudalen",
-'delete_and_move_reason'    => "Wedi'i dileu er mwyn symud tudalen arall yn ei lle.",
-'selfmove'                  => "Mae'r teitlau hen a newydd yn union yr un peth;
+'delete_and_move_confirm'      => "Ie, dileu'r dudalen",
+'delete_and_move_reason'       => "Wedi'i dileu er mwyn symud tudalen arall yn ei lle.",
+'selfmove'                     => "Mae'r teitlau hen a newydd yn union yr un peth;
 nid yw'n bosib cyflawnu'r symud.",
-'immobile-source-namespace' => 'Ni ellir symud tudalennau yn y parth "$1".',
-'immobile-target-namespace' => 'Ni ellir symud tudalennau i\'r parth "$1".',
-'immobile-source-page'      => 'Ni ellir symud y dudalen hon.',
-'imagenocrossnamespace'     => 'Ni ellir symud ffeil i barth arall',
-'imagetypemismatch'         => "Nid yw'r estyniad ffeil newydd yn cyfateb i'r math o ffeil",
-'imageinvalidfilename'      => "Mae enw'r ffeil darged yn annilys",
-'fix-double-redirects'      => "Yn diwygio unrhyw ailgyfeiriadau sy'n cysylltu i'r teitl gwreiddiol",
-'move-leave-redirect'       => 'Gadael ailgyfeiriad ar ôl',
+'immobile-source-namespace'    => 'Ni ellir symud tudalennau yn y parth "$1".',
+'immobile-target-namespace'    => 'Ni ellir symud tudalennau i\'r parth "$1".',
+'immobile-target-namespace-iw' => 'Nid yw cyswllt rhyngwici yn nod dilys wrth symud tudalen.',
+'immobile-source-page'         => 'Ni ellir symud y dudalen hon.',
+'immobile-target-page'         => "Ddim yn gallu symud i'r teitl newydd hwn.",
+'imagenocrossnamespace'        => 'Ni ellir symud ffeil i barth arall',
+'imagetypemismatch'            => "Nid yw'r estyniad ffeil newydd yn cyfateb i'r math o ffeil",
+'imageinvalidfilename'         => "Mae enw'r ffeil darged yn annilys",
+'fix-double-redirects'         => "Yn diwygio unrhyw ailgyfeiriadau sy'n cysylltu i'r teitl gwreiddiol",
+'move-leave-redirect'          => 'Gadael ailgyfeiriad ar ôl',
 
 # Export
 'export'            => 'Allforio tudalennau',
@@ -2164,7 +2208,7 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki 
 'importinterwiki'            => 'Mewnforiad traws-wici',
 'import-interwiki-text'      => "Dewiswch wici a thudalen i'w mewnforio.
 Fe gedwir dyddiadau ac enwau'r golygwyr ar gyfer y diwygiadau i'r dudalen.
-Mae cofnod o bob weithred o fewnforio i'w gweld ar y [[Special:Log/inport|lòg mewnforio]].",
+Mae cofnod o bob weithred o fewnforio i'w gweld ar y [[Special:Log/import|lòg mewnforio]].",
 'import-interwiki-source'    => 'Wici/tudalen y gwreiddiol:',
 'import-interwiki-history'   => 'Copïer yr holl fersiynau yn hanes y dudalen hon',
 'import-interwiki-submit'    => 'Mewnforio',
@@ -2226,8 +2270,8 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-ca-delete'               => "Dileu'r dudalen hon",
 'tooltip-ca-undelete'             => "Adfer y golygiadau i'r dudalen hon a wnaethpwyd cyn ei dileu",
 'tooltip-ca-move'                 => 'Symud y dudalen hon',
-'tooltip-ca-watch'                => "Ychwanegu'r dudalen hon at eich rhestr gwylio",
-'tooltip-ca-unwatch'              => "Tynnu'r dudalen oddi ar eich rhestr gwylio",
+'tooltip-ca-watch'                => "Ychwanegu'r dudalen hon at eich rhestr wylio",
+'tooltip-ca-unwatch'              => "Tynnu'r dudalen oddi ar eich rhestr wylio",
 'tooltip-search'                  => 'Chwilio {{SITENAME}}',
 'tooltip-search-go'               => "Mynd i'r dudalen â'r union deitl hwn, os oes un",
 'tooltip-search-fulltext'         => 'Chwilio am y testun hwn',
@@ -2248,7 +2292,7 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-t-specialpages'          => "Rhestr o'r holl dudalennau arbennig",
 'tooltip-t-print'                 => "Cynhyrchwch fersiwn o'r dudalen yn barod at ei hargraffu",
 'tooltip-t-permalink'             => "Ail-lwytho'r dudalen fel bod modd gweld y cyfeiriad URL llawn a chreu cyswllt parhaol i'r fersiwn hwn o'r dudalen",
-'tooltip-ca-nstab-main'           => 'Gweld tudalen yn y prif barth',
+'tooltip-ca-nstab-main'           => 'Gweld y dudalen bwnc',
 'tooltip-ca-nstab-user'           => 'Gweld tudalen y defnyddiwr',
 'tooltip-ca-nstab-media'          => 'Gweld y dudalen gyfrwng',
 'tooltip-ca-nstab-special'        => "Mae hwn yn dudalen arbennig; ni allwch olygu'r dudalen ei hun",
@@ -2263,7 +2307,7 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-preview'                 => "Dangos rhagolwg o'r newidiadau; defnyddiwch cyn cadw.",
 'tooltip-diff'                    => "Dangos y newidiadau rydych chi wedi gwneud i'r testun.",
 'tooltip-compareselectedversions' => 'Cymharwch y fersiynau detholedig.',
-'tooltip-watch'                   => "Ychwanegu'r dudalen hon at eich rhestr gwylio",
+'tooltip-watch'                   => "Ychwanegu'r dudalen hon at eich rhestr wylio",
 'tooltip-recreate'                => "Ail-greu'r dudalen serch iddi gael ei dileu",
 'tooltip-upload'                  => 'Dechrau uwchlwytho',
 'tooltip-rollback'                => "Yn troi golygiad(au) y defnyddiwr diwethaf i'r dudalen hon yn ôl gydag un clic.",
@@ -2353,8 +2397,8 @@ $1",
 'visual-comparison' => "Cymharu â'r llygad",
 
 # Media information
-'mediawarning'         => "'''Rhybudd''': Gallasai'r ffeil hon gynnwys côd maleisus; os ydyw mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth lwytho'r ffeil.
-<hr />",
+'mediawarning'         => "'''Rhybudd''': Gallasai'r math hwn o ffeil gynnwys côd maleisus. 
+Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil.<hr />",
 'imagemaxsize'         => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
 'thumbsize'            => 'Maint mân-lun :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
@@ -2401,6 +2445,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags
@@ -2583,10 +2628,16 @@ Ymateb yr amledd gofodol',
 'exif-lightsource-255' => "Tarddiad arall i'r goleuni",
 
 # Flash modes
-'exif-flash-fired-0'  => 'Ni daniodd y fflach',
-'exif-flash-fired-1'  => 'Taniodd y fflach',
-'exif-flash-mode-3'   => 'modd awtomatig',
-'exif-flash-redeye-1' => 'modd lleddfu llygaid cochion',
+'exif-flash-fired-0'    => 'Ni daniodd y fflach',
+'exif-flash-fired-1'    => 'Taniodd y fflach',
+'exif-flash-return-0'   => "hepgor synhwyro golau'r fflach wedi ei daflu yn ôl",
+'exif-flash-return-2'   => "ni synhwyrwyd golau'r fflach wedi ei daflu yn ôl",
+'exif-flash-return-3'   => "synhwyrwyd golau'r fflach wedi ei daflu yn ôl",
+'exif-flash-mode-1'     => 'gosod y fflach i danio',
+'exif-flash-mode-2'     => 'hepgorwyd y fflach',
+'exif-flash-mode-3'     => 'modd awtomatig',
+'exif-flash-function-1' => 'Dim fflach',
+'exif-flash-redeye-1'   => 'modd lleddfu llygaid cochion',
 
 'exif-focalplaneresolutionunit-2' => 'modfeddi',
 
@@ -2718,7 +2769,7 @@ $1
 </div>',
 'trackbackremove'   => ' ([$1 Dileu])',
 'trackbacklink'     => "Cyswllt 'trackback'",
-'trackbackdeleteok' => "Dilewyd y cyswllt 'trackback' yn lwyddiannus.",
+'trackbackdeleteok' => "Dilewyd y cyswllt 'trackback' yn llwyddiannus.",
 
 # Delete conflict
 'deletedwhileediting' => "'''Rhybudd''': Dilëwyd y dudalen wedi i chi ddechrau ei golygu!",
@@ -2766,27 +2817,27 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'lag-warn-high'   => 'Mae gweinydd y data-bas ar ei hôl hi: efallai nad ymddengys newidiadau o fewn y $1 {{PLURAL:$1|eiliad|eiliad|eiliad|eiliad|eiliad|eiliad}} ddiwethaf ar y rhestr.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Mae {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 o dudalennau}} ar eich rhestr gwylio, heb gynnwys tudalennau sgwrs.',
-'watchlistedit-noitems'        => "Mae'ch rhestr gwylio'n wag.",
-'watchlistedit-normal-title'   => "Golygu'r rhestr gwylio",
-'watchlistedit-normal-legend'  => 'Tynnu tudalennau oddi ar y rhestr gwylio',
-'watchlistedit-normal-explain' => "Rhestrir y teitlau ar eich rhestr gwylio isod. I dynnu teitl oddi ar y rhestr, ticiwch y blwch ar ei gyfer, yna cliciwch 'Tynnu'r tudalennau'. Gallwch hefyd ddewis golygu'r rhestr gwylio ar ei [[Special:Watchlist/raw|ffurf syml]].",
+'watchlistedit-numitems'       => 'Mae {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 o dudalennau}} ar eich rhestr wylio, heb gynnwys tudalennau sgwrs.',
+'watchlistedit-noitems'        => "Mae'ch rhestr wylio'n wag.",
+'watchlistedit-normal-title'   => "Golygu'r rhestr wylio",
+'watchlistedit-normal-legend'  => 'Tynnu tudalennau oddi ar y rhestr wylio',
+'watchlistedit-normal-explain' => "Rhestrir y teitlau ar eich rhestr wylio isod. I dynnu teitl oddi ar y rhestr, ticiwch y blwch ar ei gyfer, yna cliciwch 'Tynnu'r tudalennau'. Gallwch hefyd ddewis golygu'r rhestr wylio ar ei [[Special:Watchlist/raw|ffurf syml]].",
 'watchlistedit-normal-submit'  => "Tynnu'r tudalennau",
-'watchlistedit-normal-done'    => 'Tynnwyd {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} oddi ar eich rhestr gwylio:',
-'watchlistedit-raw-title'      => 'Golygu ffeil y rhestr gwylio',
-'watchlistedit-raw-legend'     => 'Golygu ffeil y rhestr gwylio',
-'watchlistedit-raw-explain'    => "Rhestrir y teitlau ar eich rhestr gwylio isod. Gellir newid y rhestr drwy ychwanegu neu dynnu teitlau; gyda llinell yr un i bob teitl. Pan yn barod, pwyswch ar Diweddaru'r rhestr gwylio.
+'watchlistedit-normal-done'    => 'Tynnwyd {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} oddi ar eich rhestr wylio:',
+'watchlistedit-raw-title'      => 'Golygu ffeil y rhestr wylio',
+'watchlistedit-raw-legend'     => 'Golygu ffeil y rhestr wylio',
+'watchlistedit-raw-explain'    => "Rhestrir y teitlau ar eich rhestr wylio isod. Gellir newid y rhestr drwy ychwanegu neu dynnu teitlau; gyda llinell yr un i bob teitl. Pan yn barod, pwyswch ar Diweddaru'r rhestr wylio.
 Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'watchlistedit-raw-titles'     => 'Teitlau:',
-'watchlistedit-raw-submit'     => "Diweddaru'r rhestr gwylio",
-'watchlistedit-raw-done'       => 'Diweddarwyd eich rhestr gwylio.',
+'watchlistedit-raw-submit'     => "Diweddaru'r rhestr wylio",
+'watchlistedit-raw-done'       => 'Diweddarwyd eich rhestr wylio.',
 'watchlistedit-raw-added'      => 'Ychwanegwyd {{PLURAL:$1|1 teitl|$1 teitl|$1 deitl|$1 theitl|$1 theitl|$1 o deitlau}}:',
 'watchlistedit-raw-removed'    => 'Tynnwyd {{PLURAL:$1|1 teitl|$1 teitl|$1 deitl|$1 theitl|$1 theitl|$1 o deitlau}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Gweld newidiadau perthnasol',
-'watchlisttools-edit' => "Gweld a golygu'r rhestr gwylio",
-'watchlisttools-raw'  => "Golygu'r rhestr gwylio syml",
+'watchlisttools-edit' => "Gweld a golygu'r rhestr wylio",
+'watchlisttools-raw'  => "Golygu'r rhestr wylio syml",
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estyniad anhysbys "$1"',

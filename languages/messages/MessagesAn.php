@@ -8,6 +8,7 @@
  * @file
  *
  * @author Juanpabl
+ * @author Malafaya
  * @author Remember the dot
  * @author Urhixidur
  * @author Willtron
@@ -397,20 +398,24 @@ $messages = array(
 Talment s'aya entibocau en escribir a URL, u aya seguiu un binclo incorreuto. 
 Tamién podría endicar un bug en o software emplegato por {{SITENAME}}.",
 'nosuchspecialpage' => 'No esiste ixa pachina espezial',
-'nospecialpagetext' => "<big>'''A pachina espezial que ha demandato no esiste.'''</big>
+'nospecialpagetext' => '<strong>A pachina espezial que ha demandato no esiste.</strong>
 
-Puede trobar una lista de pachinas espezials en [[Special:SpecialPages|{{int:specialpages}}]].",
+Puede trobar una lista de pachinas espezials en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Error',
 'databaseerror'        => "Error d'a base de datos",
-'dberrortext'          => 'Ha escaizito una error de sintacsis en una consulta á la base de datos.
+'dberrortext'          => 'Ha suzedito una error de sintaxis en una consulta á la base de datos.
 Isto podría endicar una error en o programa.
-A zaguera consulta que se miró de fer estió: <blockquote><tt>$1</tt></blockquote> aintro d\'a funzión "<tt>$2</tt>". A error tornata por a base de datos estió "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ha escaizito una error de sintacsis en una consulta á la base de datos. A zaguera consulta que se miró de fer estió:
+A zaguera consulta estió: 
+<blockquote><tt>$1</tt></blockquote> 
+dende adintro d\'a funzión "<tt>$2</tt>". 
+A error retornata por a base de datos estió "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'S\'ha produzito una error de sintaxis en una consulta á la base de datos. 
+A zaguera consulta estió:
 "$1"
-aintro d\'a funzión "$2".
-A base de datos retornó a error "<tt>$3: $4</tt>".',
+dende adintro d\'a funzión "$2".
+A base de datos retornó a error "$3: $4"',
 'noconnect'            => "Agora mesmo, a wiki ye tenendo bellas dificultaz tecnicas, y no se puede contautar con o serbidor d'a base de datos. <br />
 $1",
 'nodb'                 => 'No se podió trigar a base de datos $1',
@@ -492,10 +497,10 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'logout'                     => "Salir d'a sesión",
 'userlogout'                 => 'Salir',
 'notloggedin'                => 'No ha dentrato en o sistema',
-'nologin'                    => 'No tiene garra cuenta? $1.',
+'nologin'                    => "No tiene garra cuenta? '''$1'''.",
 'nologinlink'                => 'Creyar una nueba cuenta',
 'createaccount'              => 'Creyar una nueba cuenta',
-'gotaccount'                 => 'Tiene ya una cuenta? $1.',
+'gotaccount'                 => "Tiene ya una cuenta? '''$1'''.",
 'gotaccountlink'             => 'Identificar-se y enzetar sesión',
 'createaccountmail'          => 'por correu electronico',
 'badretype'                  => 'As palabras de paso que ha escrito no son iguals.',
@@ -556,7 +561,7 @@ Por ixo, no se pueden creyar más cuentas por agora dende ixa adreza IP.',
 'createaccount-text'         => 'Belún ha creyato una cuenta con o nombre "$2" en {{SITENAME}} ($4), con a palabra de paso "$3" y endicando a suya adreza de correu. Abría de dentrar-ie agora y cambiar a suya palabra de paso.
 
 Si a cuenta s\'ha creyato por error, simplament innore iste mensache.',
-'login-throttled'            => "Ha feito masiadas prebatinas ta enzertar a palabra de paso d'ista cuenta. Por fabor, aspere antes de mirar de fer-lo atra begada.",
+'login-throttled'            => 'Ha feito masiaus intentos ta enzetar una sesión. Por fabor, aspere antes de prebar de fer-lo unatra begada.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -665,7 +670,7 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 'anontalkpagetext'                 => "----''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito serbir. Por ixo, emos d'emplegar a suya adreza IP ta identificar-lo/a. 
 Barios usuarios pueden compartir una mesma adreza IP. 
 Si busté ye un usuario anonimo y creye que l'han escrito comentarios no relebants, [[Special:UserLogin/signup|creye una cuenta]] u [[Special:UserLogin/signup|identifique-se]] ta pribar confusions futuras con atros usuarios anonimos.''",
-'noarticletext'                    => 'Por agora no bi ha garra testo en ista pachina. Puet [[Special:Search/{{PAGENAME}}|mirar o títol d\'ista pachina]] en atras pachinas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} mirar os rechistros relazionatos] u [{{fullurl:{{FULLPAGENAME}}|action=edit}} escribir ista pachina].',
+'noarticletext'                    => 'Por agora no bi ha garra testo en ista pachina. Puet [[Special:Search/{{PAGENAME}}|mirar o títol d\'ista pachina]] en atras pachinas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} mirar os rechistros relazionatos] u [{{fullurl:{{FULLPAGENAME}}|action=edit}} escribir ista pachina].',
 'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
 'clearyourcache'                   => "'''Pare cuenta: Si quiere beyer os cambeos dimpués d'alzar l'archibo, puede estar que tienga que refrescar a caché d'o suyo nabegador ta beyer os cambeos.''' 
 
@@ -760,10 +765,10 @@ Bellas plantillas no se bi encluyen.",
 'parser-template-recursion-depth-warning' => "S'ha brincato o limite de recursión de plantillas ($1)",
 
 # "Undo" feature
-'undo-success' => "A edizión puede esfer-se. Antis d'esfer a edizión, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer reyalment. Alabez, puede alzar os cambeos ta esfer a edizión.",
-'undo-failure' => 'No se puede esfer a edizión pues un atro usuario ha feito una edizión intermeya.',
-'undo-norev'   => "No s'ha puesto esfer a edizión porque no esistiba u ya s'eba borrato.",
-'undo-summary' => 'Esfeita a edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
+'undo-success' => 'A edizión puet desfer-se. Antes de desfer a edizión, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer reyalment. Alabez, puede alzar os cambeos ta esfer a edizión.',
+'undo-failure' => 'No se puet desfer a edizión pues un atro usuario ha feito una edizión intermeya.',
+'undo-norev'   => "No s'ha puesto desfer a edizión porque no esistiba u ya s'eba borrato.",
+'undo-summary' => 'Desfeita a edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No se puede creyar a cuenta',
@@ -828,11 +833,11 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 'revdelete-hide-name'         => 'Amagar aizión y obchetibo',
 'revdelete-hide-comment'      => "Amagar comentario d'edizión",
 'revdelete-hide-user'         => "Amagar o nombre/l'adreza IP d'o editor",
-'revdelete-hide-restricted'   => 'Aplicar istas restrizions á os almenistradors y bloqueyar ista interfaz',
+'revdelete-hide-restricted'   => "Suprimir os datos d'os almenistradors igual como os d'a resta",
 'revdelete-suppress'          => "Sacar os datos d'os almenistradors igual como os d'a resta d'usuarios",
 'revdelete-hide-image'        => "Amagar o conteniu de l'archibo",
 'revdelete-unsuppress'        => "Sacar restrizions d'as bersions restauradas",
-'revdelete-log'               => "Comentario d'o rechistro:",
+'revdelete-log'               => 'Razón ta o borrau:',
 'revdelete-submit'            => 'Aplicar á la bersión trigata',
 'revdelete-logentry'          => "S'ha cambiato a bisibilidat d'a bersión de [[$1]]",
 'logdelete-logentry'          => "S'ha cambiato a bisibilidat d'escaizimientos de [[$1]]",
@@ -890,7 +895,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'compareselectedversions' => 'Confrontar as bersions trigatas',
 'visualcomparison'        => 'Comparanza bisual',
 'wikicodecomparison'      => 'Comparanza de testo wiki',
-'editundo'                => 'esfer',
+'editundo'                => 'desfer',
 'diff-multi'              => "(S'ha amagato {{PLURAL:$1|una edizión entremeya|$1 edizions entremeyas}}.)",
 'diff-movedto'            => 'tresladato ta $1',
 'diff-styleadded'         => 'estilo $1 adibito',
@@ -961,10 +966,10 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'notextmatches'                    => "No bi ha garra consonanzia en os testos d'as pachinas",
 'prevn'                            => 'anteriors $1',
 'nextn'                            => 'siguiens $1',
-'viewprevnext'                     => 'Beyer ($1) ($2) ($3)',
+'viewprevnext'                     => 'Beyer ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Opzions de busca',
 'searchmenu-exists'                => "'''Bi ha una pachina clamada \"[[\$1]]\" en ista wiki'''",
-'searchmenu-new'                   => "'''[[:\$1|Creyar]] a pachina \"[:\$1]\" en ista wiki!'''",
+'searchmenu-new'                   => "'''Creyar a pachina \"[[:\$1]]\" en ista wiki!'''",
 'searchhelp-url'                   => 'Help:Aduya',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Beyer pachinas con iste prefixo]]',
 'searchprofile-articles'           => 'Articlos',
@@ -1060,7 +1065,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'recentchangesdays-max'     => '(masimo $1 {{PLURAL:$1|día|días}})',
 'recentchangescount'        => "Numero d'edizions que s'amostrarán, por defeuto, en as pachinas de zaguers cambeos, istorials y rechistros:",
 'savedprefs'                => "S'han alzato as suyas preferenzias.",
-'timezonelegend'            => 'Fuso orario',
+'timezonelegend'            => 'Fuso orario:',
 'timezonetext'              => "¹Escriba a esferenzia (en oras) entre a suya ora local y a d'o serbidor (UTC).",
 'localtime'                 => 'Ora local:',
 'timezoneselect'            => 'Zona oraria:',
@@ -1298,14 +1303,19 @@ Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'ista
 'large-file'                  => 'Se consella que os archibos no sigan mayors de $1; iste archibo ocupa $2.',
 'largefileserver'             => "A grandaria d'iste archibo ye mayor d'a que a confegurazión d'iste serbidor premite.",
 'emptyfile'                   => "Parixe que l'archibo que se miraba de cargar ye buedo; por fabor, comprebe que ixe ye reyalment l'archibo que quereba cargar.",
-'fileexists'                  => "Ya bi ha un archibo con ixe nombre. Por fabor, Por favor mire-se l'archibo esistent '''<tt>$1</tt>''' si no ye seguro de querer sustituyir-lo.",
-'filepageexists'              => "A pachina de descripzión ta iste archibo ya ye creyata en '''<tt>$1</tt>''', pero no esiste garra archibo con iste nombre. O resumen que escriba no amaneixerá en a pachina de descripzión. Si quiere que o suyo resumen amaneixca aquí, abrá d'editar-lo manualment",
-'fileexists-extension'        => "Ya bi ha un archibo con un nombre parexiu:<br />
-Nombre de l'archibo que ye cargando: '''<tt>$1</tt>'''<br />
-Nombre de l'archibo ya esistent: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Ya bi ha un archibo con ixe nombre.
+Por fabor, Por favor mire-se l'archibo esistent '''<tt>[[:$1]]</tt>''' si no ye seguro de querer sustituyir-lo.
+[[$1|thumb]]",
+'filepageexists'              => "A pachina de descripzión d'iste fichero ya s'ha creyau en '''<tt>[[:$1]]</tt>''', pero no i hai garra fichero con iste nombre. O resumen que escriba no amaneixerá en a pachina de descripzión. 
+Si quiere que o suyo resumen amaneixca aquí, abrá d'editar-lo manualment.
+[[$1|thumb]]",
+'fileexists-extension'        => "Ya bi ha un archibo con un nombre parexiu: [[$2|thumb]]
+* Nombre de l'archibo que ye cargando: '''<tt>[[:$1]]</tt>'''
+* Nombre de l'archibo ya esistent: '''<tt>[[:$2]]</tt>'''
 Por fabor, trigue un nombre diferent.",
 'fileexists-thumb'            => "<center>'''Archibo esistent'''</center>",
-'fileexists-thumbnail-yes'    => "Parixe que l'archibo ye una imachen prou chicota ''(miniatura)''. Comprebe por fabor l'archibo '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Parixe que l'archibo ye una imachen prou chicota ''(miniatura)''. [[$1|thumb]]
+Comprebe por fabor l'archibo '''<tt>[[:$1]]</tt>'''.
 Si l'archibo comprebato ye a mesma imachen en tamaño orichinal no cal cargar una nueba miniatura.",
 'file-thumbnail-no'           => "O nombre de l'archibo prenzipia con '''<tt>$1</tt>'''. 
 Pareix que estase una imachen achiquida ''(thumbnail)''.
@@ -1328,7 +1338,7 @@ Si encara quiere cargar ixe archibo, torne y faiga serbir un nuebo nombre. [[Fil
 'sourcefilename'              => "Nombre de l'archibo d'orichen:",
 'destfilename'                => "Nombre de l'archibo de destín:",
 'upload-maxfilesize'          => "Masima grandaria de l'archibo: $1",
-'watchthisupload'             => 'Cosirar ista pachina',
+'watchthisupload'             => 'Cosirar iste fichero',
 'filewasdeleted'              => 'Una archibo con iste mesmo nombre ya se cargó denantes y estió borrato dimpués. Abría de comprebar $1 antes de tornar á cargar-lo una atra begada.',
 'upload-wasdeleted'           => "'''Pare cuenta: Ye cargando un archibo que ya estió borrato d'antes más.'''
 
@@ -1409,7 +1419,7 @@ Tamién puez consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'duplicatesoffile'               => "{{PLURAL:$1|O siguient archibo ye un duplicato|Os siguients $1 archibos son duplicatos}} d'iste archibo ([[Special:FileDuplicateSearch/$2|más detalles]]):",
 'sharedupload'                   => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos.',
 'shareduploadwiki'               => 'Ta más informazión, consulte $1.',
-'shareduploadwiki-desc'          => "A descripzión d'a $1 en o reposte compartito s'amuestra en o cobaxo.",
+'shareduploadwiki-desc'          => "Contino s'amuestra a descripzión d'a suya $1 en o reposte compartiu.",
 'shareduploadwiki-linktext'      => "pachina de descripzión de l'archibo",
 'shareduploadduplicate'          => "Este archibo ye un duplicato de l'archibo $1 d'o reposte compartito.",
 'shareduploadduplicate-linktext' => 'atro archibo',
@@ -1500,7 +1510,8 @@ Ixos binclos abrían de ir millor t'a pachina espezifica apropiada.<br />
 Una pachina se considera pachina de desambigazión si fa serbir una plantilla probenient de  [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Reendrezeras dobles',
-'doubleredirectstext'        => "En ista pachina s'amuestran as pachinas que son reendrezatas enta atras reendrezeras.  Cada ringlera contiene o binclo t'a primer y segunda reendrezeras, y tamién o destino d'a segunda reendrezera, que ye á sobent a pachina \"reyal\" á la que a primer pachina abría d'endrezar.",
+'doubleredirectstext'        => "En ista pachina s'amuestran as pachinas que son reendrezeras enta atras pachinas reendrezatas. 
+Cada ringlera contién o binclo t'a primer y segunda reendrezeras, y tamién o destino d'a segunda reendrezera, que ye á ormino a pachina obchetibo \"reyal\" á la que a primer pachina abría d'endrezar.",
 'double-redirect-fixed-move' => "S'ha tresladau [[$1]], agora ye una endrezera ta [[$2]]",
 'double-redirect-fixer'      => 'Apañador de reendrezeras',
 
@@ -1585,7 +1596,7 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'specialloguserlabel'  => 'Usuario:',
 'speciallogtitlelabel' => 'Títol:',
 'log'                  => 'Rechistros',
-'all-logs-page'        => 'Toz os rechistros',
+'all-logs-page'        => 'Toz os rechistros publicos',
 'alllogstext'          => "Presentazión conchunta de toz os rechistros de  {{SITENAME}}.
 Puede reduzir o listau trigando un tipo de rechistro, o nombre de l'usuario (sensible á mayusclas), u a pachina afeutata (tamién sensible a mayusclas).",
 'logempty'             => 'No bi ha garra elemento en o rechistro con ixas carauteristicas.',
@@ -1691,7 +1702,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 'addedwatch'           => 'Adibiu á la suya lista de seguimiento',
 'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:RecentChanges|lista de cambeos rezients]] ta que se beiga millor. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de cosirar\" en o menú.",
 'removedwatch'         => "Borrata d'a lista de seguimiento",
-'removedwatchtext'     => 'A pachina "[[:$1]]" ha estato borrata d\'a suya lista de seguimiento.',
+'removedwatchtext'     => 'A pachina "[[:$1]]" s\'ha sacau d\'a suya [[Special:Watchlist|lista de seguimiento]].',
 'watch'                => 'Cosirar',
 'watchthispage'        => 'Cosirar ista pachina',
 'unwatch'              => 'Deixar de cosirar',
@@ -1840,7 +1851,7 @@ Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 **Guerra d'edizions
 **Pachina muit besitada",
 'protect-edit-reasonlist'     => 'Editar as razons ta protecher',
-'protect-expiry-options'      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Premiso:',
 'restriction-level'           => 'Libel de restrizión:',
 'minimum-size'                => 'Grandaria menima',
@@ -1976,7 +1987,7 @@ as pachinas que s'han bandalizato).",
 'ipboptions'                      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'atro',
 'ipbotherreason'                  => 'Razons diferens u adizionals',
-'ipbhidename'                     => "Amagar usuario en o rechistro de bloqueyos, a lista de bloqueyos autibos y a lista d'usuarios",
+'ipbhidename'                     => "Amagar o nombre d'usuario en edizions y listas",
 'ipbwatchuser'                    => "Cosirar as pachinas d'usuario y de descusión d'iste usuario",
 'ipballowusertalk'                => 'Premitir que iste usuario edite a suya pachina de descusión en o tiempo que ye bloqueyato',
 'ipb-change-block'                => "Rebloquyear á l'usuario con istas condizions",
@@ -2276,7 +2287,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-recreate'                => 'Recreya una pachina mesmo si ya ha estato borrata dinantes',
 'tooltip-upload'                  => 'Prenzipia a carga',
 'tooltip-rollback'                => '"Rebertir" rebierte todas as zagueras edizions d\'un mesmo usuario nomás con un clic.',
-'tooltip-undo'                    => '"Esfer" rebierte a edizión trigata y ubre a pachina d\'edizión en o modo de prebisualizazión. Premite escribir una razón en o resumen d\'edizión.',
+'tooltip-undo'                    => '"Desfer" rebierte a edizión trigata y ubre a pachina d\'edizión en o modo de prebisualizazión. Premite escribir una razón en o resumen d\'edizión.',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF desautibatos en iste serbidor.',
@@ -2362,7 +2373,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Pare cuenta''': Iste archibo puede contener codigo endino; si l'executa, podría meter en un contornillo a seguridat d'o suyo sistema.<hr />",
-'imagemaxsize'         => "Limitar as imachens en as pachinas de descripzión d'archibos á:",
+'imagemaxsize'         => "Limite de grandaria d'as imáchens:<br />''(ta pachinas de descripzión de fichers)''",
 'thumbsize'            => "Midas d'a miniatura:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pachina|pachinas}}',
 'file-info'            => "(grandaria de l'archibo: $1; tipo MIME: $2)",
@@ -2400,6 +2411,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags
@@ -2864,12 +2876,13 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 'intentionallyblankpage' => "Esta pachina s'ha deixato en blanco aldredes y se fa serbir ta fer prebatinas, ezt.",
 
 # External image whitelist
-'external_image_whitelist' => " #No faiga cambeos en ista linia<pre>
+'external_image_whitelist' => "  #Deixe ista linia sin cambiar-la<pre>
 #Meta debaixo fragmentos d'esprisions regulars (nomás a parte que be entre //)
 #Se mirará si istas concuerdan con os URLs d'imáchens esternas (hotlinked)
-#As que concuerden s'amostrarán como imáchens, en as que no, nomás s'amostrará un binclo t'a imachen
+#As que concorden s'amostrarán como imáchens, en as que no, nomás s'amostrará un binclo t'a imachen
 #As ringleras que prenzipian por «#» se consideran comentarios
+#Tot isto ye insensible á las mayusclas/minusclas
 
-#Meta toz os fragmentos de regex por denzima d'ista ringlera. No faiga cambeos en ista linia</pre>",
+#Meta toz os fragmentos de regex denzima d'ista ringlera. No faiga cambeos en ista linia</pre>",
 
 );

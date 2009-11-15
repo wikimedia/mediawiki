@@ -1,5 +1,5 @@
 <?php
-/** Chuvash (Чăвашла)
+/** Chuvash (Чӑвашла)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -400,10 +400,10 @@ $1',
 'logout'                     => 'Сайтран тухас',
 'userlogout'                 => 'сайтран тух',
 'notloggedin'                => 'Эсир сайта кĕмен',
-'nologin'                    => 'Эсир халĕ те регистрациленмен-и? $1.',
+'nologin'                    => "Эсир халĕ те регистрациленмен-и? '''$1'''.",
 'nologinlink'                => 'Çĕнĕ хутшăнакана регистрацилесси',
 'createaccount'              => 'Çĕнĕ хутшăнакана регистрацилесси',
-'gotaccount'                 => 'Эсир регистрациленсе-и? $1.',
+'gotaccount'                 => "Эсир регистрациленсе-и? '''$1'''.",
 'gotaccountlink'             => 'Сайта кĕр',
 'createaccountmail'          => 'эл. почта тăрăх',
 'badretype'                  => 'Эсир кăтартнă парольсем пĕр пек мар.',

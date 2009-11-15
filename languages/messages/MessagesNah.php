@@ -319,9 +319,9 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Ahmo ia tlachīhualiztli',
 'nosuchspecialpage' => 'Ahmelāhuac nōncuahquīzqui zāzanilli',
-'nospecialpagetext' => "<big>'''Ahmo ia nōncuahquīzqui āmatl ticnequi.'''</big>
+'nospecialpagetext' => '<strong>Ahmo ia nōncuahquīzqui āmatl ticnequi.</strong>
 
-Tihuelīti tiquitta mochi nōncuahquīzqui āmatl īpan [[Special:SpecialPages|{{int:specialpages}}]].",
+Tihuelīti tiquitta mochi nōncuahquīzqui āmatl īpan [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'               => 'Ahcuallōtl',
@@ -374,10 +374,10 @@ Ye tihuelīti titēchihtoa [[Special:Preferences|motlaēlēhuiliz]].',
 'logout'                    => 'Tiquīzāz',
 'userlogout'                => 'Tiquīzāz',
 'notloggedin'               => 'Ahmo ōtimocalac',
-'nologin'                   => '¿Ahmo ticpiya cuentah? $1.',
+'nologin'                   => "¿Ahmo ticpiya cuentah? '''$1'''.",
 'nologinlink'               => 'Ticchīhuāz cē cuentah',
 'createaccount'             => 'Ticchīhuāz cē cuentah',
-'gotaccount'                => '¿Ye ticpiya cē cuentah? $1.',
+'gotaccount'                => "¿Ye ticpiya cē cuentah? '''$1'''.",
 'gotaccountlink'            => 'Ximocalaqui',
 'createaccountmail'         => 'e-mailcopa',
 'badretype'                 => 'Ahneneuhqui motlahtōlichtacāyo.',
@@ -609,7 +609,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'noexactmatch-nocreate'            => "'''Ahmo ia \"\$1\" zāzanilli.'''",
 'prevn'                            => '$1 achtopa',
 'nextn'                            => 'niman $1',
-'viewprevnext'                     => 'Xiquintta ($1) ($2) ($3).',
+'viewprevnext'                     => 'Xiquintta ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists'                => "'''Ye ia zāzanilli ītōca \"[[\$1]]\" inīn huiquipan'''",
 'searchmenu-new'                   => "'''Tihuelīti ticchīhuāz zāzanilli ītōca \"[[:\$1]]\" inīn huiquipan'''",
 'searchhelp-url'                   => 'Help:Tlapiyaliztli',
@@ -795,9 +795,9 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.",
 'filetype-missing'       => 'Tlahcuilōlli ahmo quipiya huēiyaquiliztli (quemeh ".jpg").',
 'large-file'             => 'Mā tlahcuilōlli ahmo achi huēiyac $1; inīn cah $2.',
-'fileexists-extension'   => "Tlahcuilōlli zan iuh tōcātica ia:<br />
-Tlahcuilōlli moquetzacah: '''<tt>$1</tt>'''<br />
-Tlahcuilōlli tlein ia ītōca: '''<tt>$2</tt>'''<br />
+'fileexists-extension'   => "Tlahcuilōlli zan iuh tōcātica ia: [[$2|thumb]]
+* Tlahcuilōlli moquetzacah: '''<tt>[[:$1]]</tt>'''
+* Tlahcuilōlli tlein ia ītōca: '''<tt>[[:$2]]</tt>'''
 Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'fileexists-thumb'       => "<center>'''Tlahcuilōlli ia'''</center>",
 'successfulupload'       => 'Cualli quetzaliztli',
