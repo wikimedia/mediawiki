@@ -448,6 +448,7 @@ mvPlayList.prototype = {
 						
 		// update the title and status bar
 		this.updateBaseStatus();
+		this.doSmilActions( true );
 	},
 	setupClipDisplay:function() {
 		js_log( 'mvPlaylist:setupClipDisplay:: clip len:' + this.default_track.clips.length );
@@ -516,7 +517,7 @@ mvPlayList.prototype = {
 		this.cur_clip.embed.seek_time_sec = ( float_sec - pl_sum_time );
 		
 		// render effects ontop: (handled by doSmilActions)		
-		this.doSmilActions( single_line = true );
+		this.doSmilActions( true );
 	},
 	updateBaseStatus:function() {
 		var _this = this;
@@ -547,10 +548,10 @@ mvPlayList.prototype = {
 	setStatus:function( value ) {
 		$j( '#' + this.id + ' .time-disp' ).text( value );
 	},
-	setSliderValue:function( value ) {
+	setSliderValue:function( value ) {		
 		// slider is on 1000 scale: 
 		var val = parseInt( value * 1000 );
-		js_log( 'update slider: #' + this.id + ' .play_head to ' + val );
+		//js_log( 'update slider: #' + this.id + ' .play_head to ' + val );
 		$j( '#' + this.id + ' .play_head' ).slider( 'value', val );
 	},
 	getPlayHeadPos: function( prec_done ) {
@@ -645,36 +646,47 @@ mvPlayList.prototype = {
 		this.cur_clip.embed.stop();
 		
 		this.updateCurrentClip( next_clip );
-				
+		//if part of a transition should continue playing where it left off	
 		this.cur_clip.embed.play();
 	},
 	onClipDone:function() {
 		js_log( "pl onClipDone" );
 		this.cur_clip.embed.stop();
 	},
-	updateCurrentClip:function( new_clip ) {
+	updateCurrentClip : function( new_clip , into_perc) {
 		js_log( 'f:updateCurrentClip:' + new_clip.id );
-		// make sure we are not switching to the current
-		if ( this.cur_clip.id == new_clip.id ) {
-			js_log( 'trying to updateCurrentClip to same clip' );
-			return false;
-		}
 			
 		// keep the active play clip in sync (stop the other clip) 
 		if ( this.cur_clip ) {
+			// make sure we are not switching to the current
+			if ( this.cur_clip.id == new_clip.id ) {
+				js_log( 'trying to updateCurrentClip to same clip' );
+				return false;
+			}
+			
 			if ( !this.cur_clip.embed.isStoped() )
 				 this.cur_clip.embed.stop();
 			this.activeClipList.remove( this.cur_clip )
-		}
-						
-		this.activeClipList.add( new_clip );
-				
+			
+			//hide the current clip
+			$j( '#clipDesc_' + this.cur_clip.id ).hide();
+		}						
+		this.activeClipList.add( new_clip );				
 		// do swap:		
-		$j( '#clipDesc_' + this.cur_clip.id ).hide();
 		this.cur_clip = new_clip;
 		$j( '#clipDesc_' + this.cur_clip.id ).show();
-		// update the playhead: 
-		this.setSliderValue( this.cur_clip.dur_offset / this.getDuration() );
+		
+		// Update the playhead:
+		if( this.controls ){
+			// Check if we have into_perc 
+			if( into_perc ){
+				var clip_time =  this.cur_clip.dur_offset + ( into_perc * this.cur_clip.getDuration() );
+			}else{
+				var clip_time =  this.cur_clip.dur_offset;
+			}
+				
+			this.setSliderValue( clip_time / this.getDuration() );
+		}
 	},
 	playPrev: function() {
 		// advance the playhead to the previous clip			
@@ -754,6 +766,7 @@ mvPlayList.prototype = {
 	 */
 	load:function() {
 		// do nothing right now)
+		alert('load pl');		
 	},
 	toggleMute:function() {
 		this.cur_clip.embed.toggleMute();
@@ -846,8 +859,43 @@ mvPlayList.prototype = {
 	doSeek:function( v ) {
 		js_log( 'pl:doSeek:' + v + ' sts:' + this.seek_time_sec );
 		var _this = this;
-		var prevClip = null;
 		
+		var time = v * this.getDuration()
+		_this.currentTime = time;
+		var relative_perc = _this.updateClipByTime();
+		
+		// Update the clip relative seek_time_sec
+		_this.cur_clip.embed.doSeek( relative_perc );
+		_this.monitor();
+		
+		return '';
+	},
+	setCurrentTime: function( time, callback ) {
+		js_log( 'pl:setCurrentTime:' + time );
+		var _this = this;
+		_this.currentTime = time;
+		
+		var pl_perc =  time / this.getDuration();
+		var relative_perc = _this.updateClipByTime();	
+		var clip_time = relative_perc * _this.cur_clip.embed.getDuration();		
+		_this.cur_clip.embed.setCurrentTime( clip_time, function() {
+			//update the smil actions: 
+			_this.doSmilActions( true );
+			//say we are "ready"
+			if ( callback )
+				callback();
+		} );					
+	},
+	/*
+	* updateClipByTime::
+	*
+	* @returns the relative offsets of the current clip (given the playlist time) 
+ 	*/
+	updateClipByTime: function(){
+		var _this = this;
+		var prevClip = null;
+		//set the current percent done: 
+		var pt = this.currentTime / _this.getDuration();
 		// jump to the clip in the current percent. 
 		var perc_offset = 0;
 		var next_perc_offset = 0;
@@ -855,47 +903,16 @@ mvPlayList.prototype = {
 			var clip = _this.default_track.clips[i];
 			next_perc_offset += ( clip.getDuration() /  _this.getDuration() ) ;
 			// js_log('on ' + clip.getDuration() +' next_perc_offset:'+ next_perc_offset);
-			if ( next_perc_offset > v ) {
-				// pass along the relative percentage to embed object:				 
-				// js_log('seek:'+ v +' - '+perc_offset + ') /  (' + next_perc_offset +' - '+ perc_offset);
-				var relative_perc =  ( v - perc_offset ) /  ( next_perc_offset - perc_offset );
+			if ( next_perc_offset > pt ) {		 
+				// js_log('seek:'+ pt +' - '+perc_offset + ') /  (' + next_perc_offset +' - '+ perc_offset);
+				var relative_perc =  ( pt - perc_offset ) /  ( next_perc_offset - perc_offset );
 				// update the current clip:								 
-				_this.updateCurrentClip( clip );
-				
-				// update the clip relative seek_time_sec
-				_this.cur_clip.embed.doSeek( relative_perc );
-				this.play();
-				return '';
+				_this.updateCurrentClip( clip, relative_perc );
+				return relative_perc;
 			}
 			perc_offset = next_perc_offset;
 		}
-	},
-	setCurrentTime: function( pos, callback ) {
-		js_log( 'pl:setCurrentTime:' + pos + ' sts:' + this.seek_time_sec );
-		var _this = this;
-		var prevClip = null;
-		
-		// jump to the clip at pos 
-		var currentOffset = 0;
-		var nextTime = 0;
-		for ( var i in _this.default_track.clips ) {
-			var clip = _this.default_track.clips[i];
-			nextTime = clip.getDuration();
-			if ( currentOffset + nextTime > pos ) {
-				// update the clip relative seek_time_sec
-				clipTime = pos - currentOffset;
-				if ( _this.cur_clip.id != clip.id ) {
-					_this.updateCurrentClip( clip );
-				}
-				_this.cur_clip.embed.setCurrentTime( clipTime, function() {
-					if ( callback )
-						callback();
-				} );
-				_this.currentTime = pos;
-				_this.doSmilActions();
-			}
-			currentOffset += nextTime;
-		}
+		return 0;
 	},
 	// gets playlist controls large control height for sporting 
 	// next prev button and more status display
@@ -1106,8 +1123,6 @@ mvClip.prototype = {
 	// setup the embed object:
 	setUpEmbedObj:function() {
 		js_log( 'mvClip:setUpEmbedObj()' );
-		// init:		
-
 		
 		this.embed = null;
 		// js_log('setup embed for clip '+ this.id + ':id is a function?'); 
@@ -1126,7 +1141,9 @@ mvClip.prototype = {
 		// if(this.pp.sequencer=='true'){
 		init_pl_embed.embed_link = null;
 		init_pl_embed.linkback = null;
-			
+		
+		if( this.durationHint )
+			init_pl_embed.durationHint =  this.durationHint;
 		
 		if ( this.poster )init_pl_embed['thumbnail'] = this.poster;
 		
@@ -1345,8 +1362,8 @@ PlMvEmbed.prototype = {
 		// status updates handled by playlist obj
 	},
 	setSliderValue:function( value ) {
-		js_log( 'PlMvEmbed:setSliderValue:' + value );
-		// setSlider value handled by playlist obj	
+		//js_log( 'PlMvEmbed:setSliderValue:' + value );
+		// setSlider value handled by playlist obj		
 	}
 }
 
@@ -1550,7 +1567,10 @@ mvPlayList.prototype.doSmilActions = function( single_frame ) {
 	// update/setup all transitions (will render current transition state)	
 	var in_range = false;
 	// pretty similar actions per transition types so group into a loop:
-	var tran_types = { 'transIn':true, 'transOut':true };
+	var tran_types = { 
+		'transIn' : true, 
+		'transOut':true 
+	};
 	for ( var tid in tran_types ) {
 		eval( 'var tObj =  _clip.' + tid );
 		if ( !tObj )
@@ -1675,11 +1695,11 @@ var mvTransLib = {
 		return overlay_selector_id;
 	},
 	doUpdate:function( tObj, percent ) {
-		// init the transition if nessesary:
+		// init the transition if necessary:
 		if ( !tObj.overlay_selector_id )
 			this.doInitTransition( tObj );
 		
-		// @@todo we should ensure visability outside of doUpate loop			
+		// @@todo we should ensure viability outside of doUpate loop			
 		if ( !$j( '#' + tObj.overlay_selector_id ).is( ':visible' ) )
 			$j( '#' + tObj.overlay_selector_id ).show();
 			
@@ -1946,16 +1966,16 @@ var smilPlaylist = {
 	},
 	tryAddMedia:function( mediaElement, order, track_id ) {
 		js_log( 'SMIL:tryAddMedia:' + mediaElement );
+
 		var _this = this;
 		// set up basic mvSMILClip send it the mediaElemnt & mvClip init: 
 		var clipObj = { };
 		var cConfig = {
-						"id":'p_' + _this.id + '_c_' + order,
-						"pp":this, // set the parent playlist object pointer
-						"order": order
+						"id" : 'p_' + _this.id + '_c_' + order,
+						"pp" : this, // set the parent playlist object pointer
+						"order" : order
 					};
 		var clipObj = new mvSMILClip( mediaElement, cConfig );
-			
 		// set optional params track										 
 		if ( typeof track_id != 'undefined' )
 			clipObj["track_id"]	= track_id;
@@ -2049,6 +2069,7 @@ mvSMILClip.prototype = {
 		// parse duration / begin times: 
 		if ( this.dur )
 			this.dur = smilParseTime( this.dur );
+			
 		// parse the media duration hint ( the source media length) 
 		if ( this.durationHint )
 			this.durationHint = smilParseTime( this.durationHint );

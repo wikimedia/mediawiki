@@ -1,14 +1,12 @@
 /*
- * handles driving the firefogg render system 
+ * Handles driving the firefogg render system 
 */
 var mvFirefoggRender = function( iObj ) {
 	return this.init( iObj );
 };
 var default_render_options = {
 	"videoQuality" : 10,
-	"framerate"	: 30,
-	"width"		: 400,
-	"height"	: 300
+	"framerate"	: 30
 }
 var default_FirefoggRender_options = {
 	start_time:0,
@@ -43,14 +41,17 @@ mvFirefoggRender.prototype = {
 		this.player = $j( iObj.player_target ).get( 0 );
 		this.player_target = iObj.player_target;
 		
-		// setup the render options (with defaults) 
-		for ( var i in default_render_options ) {
-			if ( iObj['render_options'][i] ) {
-				this.renderOptions[ i ] = iObj['render_options'][i];
-			} else {
-				this.renderOptions[ i ] = default_render_options[i];
-			}
+		// Extend the render options with any provided details
+		if( iObj['render_options'] )
+			$j.extend(this.renderOptions, iObj['render_options']);
+		
+		// If no height width provided use target DOM width/height
+		if( !this.renderOptions.width && !this.renderOptions.height ){
+			this.renderOptions.width = $j(this.player_target).width();
+			this.renderOptions.height = $j(this.player_target).height();	
 		}
+		
+		
 		// Setup the application options (with defaults) 
 		for ( var i in default_FirefoggRender_options ) {
 			if ( iObj[ i ] ) {
@@ -59,7 +60,7 @@ mvFirefoggRender.prototype = {
 				this[ i ] = default_FirefoggRender_options[i];
 			}
 		}
-		// Set up targets and local vars		
+		// Should be exteranlly controlled		
 		if ( iObj.target_startRender ) {
 			$j( iObj.target_startRender ).click( function() {
 				js_log( "Start render" );
@@ -84,7 +85,7 @@ mvFirefoggRender.prototype = {
 		var interval =  1 / this.renderOptions.framerate
 		
 		// issue a load request on the player:
-		this.player.load();
+		//this.player.load();
 		
 		// init the Render
 		this.fogg.initRender(  JSON.stringify( _this.renderOptions ), 'foggRender' );
@@ -92,7 +93,7 @@ mvFirefoggRender.prototype = {
 		// add audio if we had any:
 
 		// request a target (should support rendering to temp location too) 
-		this.fogg.saveVideoAs();
+		//this.fogg.saveVideoAs();
 		
 		// set the continue rendering flag to true:
 		this.continue_rendering = true;
@@ -101,17 +102,18 @@ mvFirefoggRender.prototype = {
 		var doNextFrame = function() {
 			$j( _this.target_timeStatus ).val( " on " + ( Math.round( t * 10 ) / 10 ) + " of " +
 				( Math.round( _this.player.getDuration() * 10 ) / 10 ) );
-			_this.player.setCurrentTime( t, function() {
-				_this.fogg.addFrame( $j( _this.player_target ).attr( 'id' ) );
-				t += interval;
+			_this.player.setCurrentTime( t, function() {								
+				//_this.fogg.addFrame( $j( _this.player_target ).attr( 'id' ) );
+				t += interval;				
 				if ( t >= _this.player.getDuration() ) {
 					_this.doFinalRender();
 				} else {
 					if ( _this.continue_rendering ) {
 						doNextFrame();
 					} else {
+						js_log('done with render');
 						// else quit:
-						_this.doFinalRender();
+						//_this.doFinalRender();
 					}
 				}
 			} );

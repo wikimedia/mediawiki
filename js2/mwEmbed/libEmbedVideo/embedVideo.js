@@ -74,7 +74,8 @@ var default_video_attributes = {
 	
 	// roe url (for xml based metadata)
 	"roe" : null,
-	// if roe includes metadata tracks we can expose a link to metadata
+	
+	// If roe includes metadata tracks we can expose a link to metadata
 	"show_meta_link" : true,
 
 	// default state attributes per html5 spec:
@@ -93,7 +94,7 @@ var default_video_attributes = {
 	"linkback" : null,
 	"embed_link" : true,
 	"download_link" : true,
-	"type" :null,	 // the content type of the media 
+	"type" :null	 // the content type of the media 
 };
 /*
  * the base source attribute checks
@@ -169,6 +170,7 @@ mvEmbed = {
 			$j( element ).attr( "id", 'v' + mw.player_list.length );
 		}
 		js_log( "mvEmbed::rewrite:: " + $j( element ).attr( "id" ) + ' tag: ' + element.tagName.toLowerCase() );
+		
 		// Store a global reference to the id	
 		mw.player_list.push( $j( element ).attr( "id" ) );
 			
@@ -534,16 +536,11 @@ mediaElement.prototype = {
 		
 		if ( $j( video_element ).attr( 'wikiTitleKey' ) )
 			this.wikiTitleKey = $j( video_element ).attr( 'wikiTitleKey' );
-	
+		
 		if ( $j( video_element ).attr( 'durationHint' ) ) {
 			this.durationHint = $j( video_element ).attr( 'durationHint' );
 			// convert duration hint if needed:
-			var sc = this.durationHint.split( ':' );
-			if ( sc.length >= 1 ) {
-				this.duration = npt2seconds( this.durationHint );
-			} else {
-				this.duration = parseFloat( this.durationHint );
-			}
+			this.duration = npt2seconds(  this.durationHint );
 		}
 		
 		// Process the video_element as a source element:
@@ -856,7 +853,7 @@ embedVideo.prototype = {
 		}
 		
 		// Set the skin name from the class  
-		var	sn = element.getAttribute( 'class' );
+		var	sn = $j(element).attr( 'class' );
 		if ( sn && sn != '' ) {
 			for ( var n = 0; n < mw.valid_skins.length; n++ ) {
 				if ( sn.indexOf( mw.valid_skins[n] ) !== -1 ) {
@@ -1022,29 +1019,29 @@ embedVideo.prototype = {
 	doNativeWarningCheck:function() {
 		if ( $j.cookie( 'dismissNativeWarn' ) && $j.cookie( 'dismissNativeWarn' ) === true ) {
 			return false;
-		} else {
-			// see if we have native support for ogg: 
-			var supporting_players = embedTypes.players.getMIMETypePlayers( 'video/ogg' );
-			for ( var i = 0; i < supporting_players.length; i++ ) {
-				if ( supporting_players[i].id == 'videoElement' ) {
-					return false;
+		}
+		
+		// See if we have native support for ogg: 
+		var supporting_players = embedTypes.players.getMIMETypePlayers( 'video/ogg' );
+		for ( var i = 0; i < supporting_players.length; i++ ) {
+			if ( supporting_players[i].id == 'videoElement' ) {
+				return false;
+			}
+		}
+		// See if we are using mv_embed without a ogg source in which case no point in promoting firefox :P			
+		if ( this.media_element && this.media_element.sources ) {
+			var foundOgg = false;
+			var playable_sources = this.media_element.getPlayableSources();
+			for ( var sInx = 0; sInx < playable_sources.length; sInx++ ) {
+				var mime_type = playable_sources[sInx].mime_type;
+				if ( mime_type == 'video/ogg' ) {
+					foundOgg = true;
 				}
 			}
-			// see if we are using mv_embed without a ogg source in which case no point in promoting firefox :P			
-			if ( this.media_element && this.media_element.sources ) {
-				var foundOgg = false;
-				var playable_sources = this.media_element.getPlayableSources();
-				for ( var sInx = 0; sInx < playable_sources.length; sInx++ ) {
-					var mime_type = playable_sources[sInx].mime_type;
-					if ( mime_type == 'video/ogg' ) {
-						foundOgg = true;
-					}
-				}
-				// no ogg src... no point in download firefox link
-				if ( !foundOgg )
-					return false;
-										
-			}
+			// no ogg src... no point in download firefox link
+			if ( !foundOgg )
+				return false;
+									
 		}
 		return true;
 	},
@@ -1061,19 +1058,19 @@ embedVideo.prototype = {
 		return this.media_element.selected_source.start_ntp + et;
 	},
 	getDuration:function() {
-		// update some local pointers for the selected source:	
+		// Update some local pointers for the selected source:	
 		if ( this.media_element && this.media_element.selected_source && this.media_element.selected_source.duration ) {
 			this.duration = this.media_element.selected_source.duration;
 			this.start_offset = this.media_element.selected_source.start_offset;
 			this.start_ntp = this.media_element.selected_source.start_ntp;
 			this.end_ntp = this.media_element.selected_source.end_ntp;
 		}
-		// update start end_ntp if duration !=0 (set from plugin) 
+		// Update start end_ntp if duration !=0 (set from plugin) 
 		if ( !this.start_ntp )
 			this.start_ntp = '0:0:0';
 		if ( !this.end_ntp && this.duration )
 			this.end_ntp = seconds2npt( this.duration );
-		// return the duration
+		// Return the duration
 		return this.duration;
 	},
 	/*
@@ -1096,6 +1093,7 @@ embedVideo.prototype = {
 	// Do seek function (should be overwritten by implementing embedLibs)
 	// to check if seek can be done on locally downloaded content. 
 	doSeek : function( perc ) {
+		var _this = this;
 		if ( this.supportsURLTimeEncoding() ) {
 			// make sure this.seek_time_sec is up-to-date:
 			this.seek_time_sec = npt2seconds( this.start_ntp ) + parseFloat( perc * this.getDuration() );
@@ -1106,7 +1104,9 @@ embedVideo.prototype = {
 			this.setSliderValue( perc );
 		}
 		// do play in 100ms (give things time to clear) 
-		setTimeout( '$j(\'#' + this.id + '\').get(0).play()', 100 );
+		setTimeout( function(){
+			_this.play()
+		}, 100 );
 	},
 	/*
 	 * seeks to the requested time and issues a callback when ready 
@@ -1730,16 +1730,19 @@ embedVideo.prototype = {
 		var _this = this;
         // @todo: hook events to two a's for swapping in and out code for link vs. embed;
         //       hook events for changing active class of li based on a.
+        var o = '';             			
 		o += '<h2>' + gM( 'mwe-share_this_video' ) + '</h2>' +
 			'<ul>' +
-			'<li><a href="#" class="active">' + gM( 'mwe-embed_site_or_blog' ) + '</a></li>';
-		if ( this.linkback ) {
-			o += '<li><a href="#" id="k-share-link">' + this.linkback + '</a></li>';
-        }
-		o +=	'</ul>' +
-			'<div class="source_wrap"><textarea>' + embed_code + '</textarea></div>' +
-				'<button class="ui-state-default ui-corner-all copycode">' + gM( 'mwe-copy-code' ) + '</button>' +
-				'<div class="ui-state-highlight ui-corner-all">' + gM( 'mwe-read_before_embed' ) + '</div>' +
+				'<li><a href="#" class="active">' + gM( 'mwe-embed_site_or_blog' ) + '</a></li>';
+				if ( this.linkback )
+					o += '<li><a href="#" id="k-share-link">' + this.linkback + '</a></li>';
+		o +='</ul>' +
+			'<div class="source_wrap">'+
+				'<textarea>' + embed_code + '</textarea>'+
+			'</div>' +
+			'<button class="ui-state-default ui-corner-all copycode">' + gM( 'mwe-copy-code' ) + '</button>' +
+			'<div class="ui-state-highlight ui-corner-all">' + 
+				gM( 'mwe-read_before_embed' ) + 
 			'</div>';
 		$target.html( o );
 		$cpBtn = $j( '#' + this.id + ' .copycode' );
@@ -2110,7 +2113,7 @@ embedVideo.prototype = {
 	* underling plugin objects are responsible for updating currentTime
 	*/
 	monitor:function() {
-		// js_log(' ct: ' + this.currentTime + ' dur: ' + ( parseInt( this.duration ) + 1 )  + ' is seek: ' + this.seeking );
+		//js_log(' ct: ' + this.currentTime + ' dur: ' + ( parseInt( this.duration ) + 1 )  + ' is seek: ' + this.seeking );
 		if ( this.currentTime && this.currentTime > 0 && this.duration ) {
 			if ( !this.userSlide && !this.seeking ) {
 				if ( this.start_offset  ) {
@@ -2562,7 +2565,7 @@ var embedTypes = {
 			}
 			 // VLC
 			 if ( this.testActiveX( 'VideoLAN.VLCPlugin.2' ) )
-				 this.players.addPlayer( vlcActiveXPlayer );
+				 this.players.addPlayer( vlcPlayer );
 				 
 			 // Java ActiveX
 			 if ( this.testActiveX( 'JavaWebStart.isInstalled' ) )

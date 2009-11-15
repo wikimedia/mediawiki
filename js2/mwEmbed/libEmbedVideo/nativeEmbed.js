@@ -4,6 +4,7 @@ var nativeEmbed = {
 	canPlayThrough:false,
 	grab_try_count:0,
 	onlyLoadFlag:false,
+	onLoadedCallback : new Array(),
 	urlAppend:'',
 	prevCurrentTime: -1,
 	supports: {
@@ -65,9 +66,11 @@ var nativeEmbed = {
 			js_log( 'could not grab vid obj trying again:' + typeof this.vid );
 			this.grab_try_count++;
 			if (	this.grab_count == 20 ) {
-				js_log( ' could not get vid object after 10 tries re-run: getEmbedObj()' ) ;
+				js_log( ' could not get vid object after 20 tries re-run: getEmbedObj() ?' ) ;
 			} else {
-				setTimeout( '$j(\'#' + this.id + '\').get(0).postEmbedJS()', 200 );
+				setTimeout( function(){
+					_this.postEmbedJS();
+				}, 200 );
 			}
 		}
 	},
@@ -77,6 +80,7 @@ var nativeEmbed = {
 		this.setStatus( gM( 'mwe-seeking' ) );
 	},
 	onseeked: function() {
+		js_log("onseeked");
 		this.seeking = false;
 	},
 	doSeek:function( perc ) {
@@ -130,31 +134,29 @@ var nativeEmbed = {
 		}
 		readyForSeek();
 	},
-	setCurrentTime: function( pos, callback ) {
+	setCurrentTime: function( pos, callback ) {	
 		var _this = this;
+		js_log( 'native:setCurrentTime::: ' + pos + ' :  dur: ' + _this.getDuration() );
 		this.getVID();
 		if ( !this.vid ) {
-			this.load();
-			var loaded = function( event ) {
-				js_log( 'native:setCurrentTime (after load): ' + pos + ' :  dur: ' + this.getDuration() );
-				_this.vid.currentTime = pos;
-				var once = function( event ) {
-					callback();
-					_this.vid.removeEventListener( 'seeked', once, false )
-				};
-				_this.vid.addEventListener( 'seeked', once, false );
-				_this.removeEventListener( 'loadedmetadata', loaded, false );
-			};
-			_this.addEventListener( 'loadedmetadata', loaded, false );
+			this.load( function() {				
+				_this.doSeekedCb( pos, callback );		
+			} );
 		} else {
-			// js_log('native:setCurrentTime: ' + pos + ' : '  + this.supportsURLTimeEncoding() + ' dur: ' + this.getDuration() + ' sts:' + this.seek_time_sec );
-			_this.vid.currentTime = pos;
-			var once = function( event ) {
-				callback();
-				_this.vid.removeEventListener( 'seeked', once, false )
-			};
-			_this.vid.addEventListener( 'seeked', once, false );
+			_this.doSeekedCb( pos, callback );		
 		}
+	},
+	doSeekedCb : function( pos, cb ){
+		var _this = this;			
+		this.getVID();		
+		var once = function( event ) {
+			js_log("did seek cb");
+			cb();
+			_this.vid.removeEventListener( 'seeked', once, false );
+		};		
+		// Assume we will get to add the Listener before the seek is done
+		_this.vid.currentTime = pos;
+		_this.vid.addEventListener( 'seeked', once, false );						
 	},
 	monitor : function() {
 		this.getVID(); // make sure we have .vid obj
@@ -170,7 +172,7 @@ var nativeEmbed = {
 				return true;
 		}
 		
-		// do a seek check (on seeked does not seem fire consistantly) 	
+		// Do a seek check (on seeked does not seem fire consistently) 	
 		if ( this.prevCurrentTime != -1 && this.prevCurrentTime != 0
 			&& this.prevCurrentTime < this.currentTime && this.seeking )
 			this.seeking = false;
@@ -196,10 +198,10 @@ var nativeEmbed = {
 	 * native callbacks for the video tag: 
 	 */
 	oncanplaythrough : function() {
-		// js_log('f:oncanplaythrough');
+		js_log('f:oncanplaythrough');
 		this.getVID();
 		if ( ! this.paused )
-			this.vid.play();
+			this.vid.play();		
 	},
 	onloadedmetadata: function() {
 		this.getVID();
@@ -208,6 +210,10 @@ var nativeEmbed = {
 		if ( this.getDuration() == 0  &&  ! isNaN( this.vid.duration ) ) {
 			js_log( 'updaed duration via native video duration: ' + this.vid.duration )
 			this.duration = this.vid.duration;
+		}
+		//fire "onLoaded" flags if set
+		while( this.onLoadedCallback.length ){
+			this.onLoadedCallback.pop()();
 		}
 	},
 	onprogress: function( e ) {
@@ -270,24 +276,23 @@ var nativeEmbed = {
 		if ( this.vid )
 			return this.vid.duration;
 	},
-	load:function() {
-		this.getVID();
+	load:function( callback ) {
+		this.getVID();		
 		if ( !this.vid ) {
 			// no vid loaded
 			js_log( 'native::load() ... doEmbed' );
 			this.onlyLoadFlag = true;
 			this.doEmbedHTML();
+			this.onLoadedCallback.push( callback );
 		} else {
-			// won't happen offten
+			// should not happen offten
 			this.vid.load();
+			if( callback)
+				callback();
 		}
 	},
 	// get the embed vlc object 
 	getVID : function () {
 		this.vid = $j( '#' + this.pid ).get( 0 );
-	},
-	/* 
-	 * playlist driver	  
-	 * mannages native playlist calls		  
-	 */
+	}
 };

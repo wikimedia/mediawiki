@@ -1135,7 +1135,7 @@ remoteSearchDriver.prototype = {
 		// Try and keep aspect ratio for the thumbnail that we clicked:		
 		var tRatio = $j( rsdElement ).height() / $j( rsdElement ).width();
 
-		if (	! tRatio )
+		if (! tRatio )
 			var tRatio = 1; // set ratio to 1 if tRatio did not work. 
 
 		js_log( 'Set from ' +  tRatio + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth ) );
@@ -1146,7 +1146,7 @@ remoteSearchDriver.prototype = {
 			'left':'5px',
 			'width': maxWidth + 'px',
 			'height': parseInt( tRatio * maxWidth )  + 'px'
-		}, "slow" ); // do it slow to give it a chance to finish loading the HQ version
+		}, "slow" ); // Do it slow to give it a chance to finish loading the HQ version
 
 		if ( mediaType == 'image' ) {
 			_this.loadHQImg( rObj, { 'width':maxWidth }, 'rsd_edit_img', function() {
@@ -1215,8 +1215,7 @@ remoteSearchDriver.prototype = {
 			.btnBind()
 			.click( function() {
 				$j( _this.target_container ).dialog( 'close' );
-			} )
-
+			} );
 	},
 	/* getClipEditControlActions
 	* Set-up the control actions for clipEdit with relevant callbacks 
@@ -1727,8 +1726,14 @@ remoteSearchDriver.prototype = {
 	closeAll:function() {
 		 var _this = this;
 		 js_log( "close all:: "  + _this.target_container );
-		 _this.cancelClipEditCB();
-		 $j( _this.target_container ).dialog( 'close' );
+		 _this.cancelClipEditCB();		 
+		 // Give a chance for the events to complete
+		 // (somehow at least in firefox a rare condition occurs where
+		 // the modal of the edit-box stick around even after the 
+		 // close request has been issued. )
+		 setTimeout(function(){
+		 	$j( _this.target_container ).dialog( 'close' );
+		 },10);		 
 	},
 	setResultBarControl:function( ) {
 		var _this = this;
@@ -1738,10 +1743,10 @@ remoteSearchDriver.prototype = {
 		var list_light_url	 = mv_skin_img_path + 'list_layout_icon.png';
 
 		var about_desc = '';
-		if ( this.content_providers[this.disp_item] ) {
+		if ( this.content_providers[ this.disp_item ] ) {
 			var cp = this.content_providers[this.disp_item];
 			about_desc = '<span style="position:relative;top:0px;font-style:italic;">' +
-					'<i>' + gM( 'mwe-results_from', [cp.homepage, gM( 'rsd-' + this.disp_item + '-title' ) ] ) + '</i></span>';
+					'<i>' + gM( 'mwe-results_from', [ cp.homepage, gM( 'rsd-' + this.disp_item + '-title' ) ] ) + '</i></span>';
 			$j( '#tab-' + this.disp_item ).append( '<div id="rds_results_bar">' +
 				'<span style="float:left;top:0px;font-style:italic;">' +
 					gM( 'rsd_layout' ) + ' ' +
@@ -1758,7 +1763,7 @@ remoteSearchDriver.prototype = {
 				'<span id="rsd_paging_ctrl" style="float:right;"></span>' +
 				'</div>'
 			);
-			// get paging with bindings:
+			// Get paging with bindings:
 			this.getPaging( '#rsd_paging_ctrl' );
 
 			$j( '#msc_box_layout' ).hover( function() {
