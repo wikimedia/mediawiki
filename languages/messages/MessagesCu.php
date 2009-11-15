@@ -227,7 +227,7 @@ $messages = array(
 
 # General errors
 'viewsource'    => 'страни́цѧ исто́чьнъ о́браꙁъ',
-'viewsourcefor' => 'бо $1',
+'viewsourcefor' => '$1 дѣлꙗ',
 
 # Login and logout pages
 'logouttitle'             => 'ис̾хо́дъ',
@@ -241,7 +241,7 @@ $messages = array(
 'logout'                  => 'ис̾хо́дъ',
 'userlogout'              => 'ис̾хо́дъ',
 'createaccount'           => 'Cъзижди си мѣсто',
-'gotaccount'              => 'Мѣсто ти ѥстъ ли? $1.',
+'gotaccount'              => "Мѣсто ти ѥстъ ли? '''$1'''.",
 'gotaccountlink'          => 'Въниди',
 'userexists'              => 'сѫщє по́льꙃєватєлꙗ и́мѧ пьса ⁙ ино иꙁобрѧщи',
 'username'                => 'по́льꙃєватєлꙗ и́мѧ :',
@@ -249,6 +249,8 @@ $messages = array(
 'yourrealname'            => 'и́стиньно и́мѧ :',
 'yourlanguage'            => 'ѩꙁꙑ́къ :',
 'yournick'                => 'аѵто́графъ :',
+'gender-male'             => 'мѫжъ',
+'gender-female'           => 'жєна',
 'loginerror'              => 'Въхода блазна',
 'accountcreated'          => 'мѣ́сто сътворєно́ ѥ́стъ',
 'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
@@ -277,6 +279,7 @@ $messages = array(
 'last'         => 'пс҃лд',
 'page_first'   => 'прь́ва страни́ца',
 'page_last'    => 'послѣ́дьнꙗ страни́ца',
+'deletedrev'   => '[поничьжєно ѥ́стъ]',
 'histlast'     => 'послѣ́дьнꙗ',
 'historyempty' => '(поу́сто)',
 
@@ -295,6 +298,7 @@ $messages = array(
 'searchresults'            => 'иска́ниꙗ ито́гъ',
 'searchprofile-images'     => 'дѣ́ла',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
+'search-redirect'          => '(прѣнаправлє́ниѥ $1)',
 'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
 'searchall'                => 'вьсꙗ́',
 'powersearch'              => 'ищи́',
@@ -312,7 +316,7 @@ $messages = array(
 'group-user'       => 'по́льꙃєватєлє',
 'group-bot'        => 'аѵтома́ти',
 'group-sysop'      => 'съмотри́тєлє',
-'group-bureaucrat' => 'Чинода́тєлє',
+'group-bureaucrat' => 'чинода́тєлє',
 
 'group-user-member'       => 'по́льꙃєватєл҄ь',
 'group-bot-member'        => 'аѵтома́тъ',
@@ -359,7 +363,7 @@ $messages = array(
 'fileuploadsummary' => 'опьса́ниѥ:',
 'successfulupload'  => 'дѣ́ло положєно ѥ́стъ',
 'uploadedimage'     => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
-'watchthisupload'   => 'си страни́цѧ блюдє́ниѥ',
+'watchthisupload'   => 'си дѣ́ла блюдє́ниѥ',
 
 # Special:ListFiles
 'imgfile'        => 'дѣ́ло',
@@ -389,6 +393,8 @@ $messages = array(
 
 # Statistics
 'statistics'              => 'Статїстїка',
+'statistics-header-pages' => 'страни́цѧ статїстїка',
+'statistics-header-edits' => 'мѣ́нъ статїстїка',
 'statistics-header-users' => 'по́льꙃєватєлъ статїстїка',
 'statistics-articles'     => 'истиньнꙑ члѣ́ни',
 'statistics-pages'        => 'страни́цѧ',
@@ -492,10 +498,11 @@ $messages = array(
 'blanknamespace' => '(гла́вьно)',
 
 # Contributions
-'contributions' => 'по́льꙃєватєлꙗ добродѣꙗ́ниꙗ',
-'mycontris'     => 'моꙗ́ добродѣꙗ́ниꙗ',
-'contribsub2'   => 'по́льꙃєватєлꙗ и́мѧ ⁖ $1 ⁖ ѥ́стъ ($2)',
-'uctop'         => '(послѣ́дьнꙗ мѣ́на)',
+'contributions'       => 'по́льꙃєватєлꙗ добродѣꙗ́ниꙗ',
+'contributions-title' => 'по́льꙃєватєлꙗ ⁖ $1 ⁖ добродѣꙗ́ниꙗ',
+'mycontris'           => 'моꙗ́ добродѣꙗ́ниꙗ',
+'contribsub2'         => 'по́льꙃєватєлꙗ и́мѧ ⁖ $1 ⁖ ѥ́стъ ($2)',
+'uctop'               => '(послѣ́дьнꙗ мѣ́на)',
 
 'sp-contributions-blocklog' => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
 'sp-contributions-submit'   => 'ищи́',

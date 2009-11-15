@@ -224,6 +224,8 @@ $messages = array(
 'privacy'              => 'Хибардзинады политикæ',
 'privacypage'          => 'Project:Хибардзинады политикæ',
 
+'badaccess-group0' => 'Ацы архайд ракæныны бар дæм нæй.',
+
 'versionrequired' => 'Хъæуы MediaWiki-йы версии $1',
 
 'ok'                  => 'Афтæ уæд!',
@@ -262,9 +264,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchspecialpage' => 'Ахæм сæрмагонд фарс нæй',
-'nospecialpagetext' => "<big>'''Нæй ахæм сæрмагонд фарс.'''</big>
+'nospecialpagetext' => '<strong>Нæй ахæм сæрмагонд фарс.</strong>
 
-Кæс [[Special:SpecialPages|æппæт сæрмагонд фæрсты номхыгъд]].",
+Кæс [[Special:SpecialPages|æппæт сæрмагонд фæрсты номхыгъд]].',
 
 # General errors
 'error'                => 'Рæдыд',
@@ -280,6 +282,7 @@ $messages = array(
 'directorycreateerror' => 'Нæй саразæн файлдон «$1».',
 'filenotfound'         => 'Нæй ссарæн файл «$1».',
 'unexpected'           => 'Æнæмбæлон æмиасад: «$1»=«$2».',
+'formerror'            => 'Рæдыд: формæ арвитæн нæй',
 'cannotdelete'         => 'Нæй аппарæн амынд файл кæнæ фарс.
 Æндæр исчи йæ аппæрста мыййаг.',
 'badtitle'             => 'Æнæмбæлон сæргонд',
@@ -307,6 +310,8 @@ $messages = array(
 'logout'                    => 'Номсусæг суын',
 'userlogout'                => 'Номсусæг су',
 'notloggedin'               => 'Системæйæн дæхи нæ бацамыдтай',
+'nologin'                   => "Регистрацигонд нæма дæ? '''$1'''.",
+'nologinlink'               => 'Регистраци',
 'createaccountmail'         => 'адрисмæ гæсгæ',
 'badretype'                 => 'Дыууæ хатты иу пароль хъуамæ ныффыстаис',
 'youremail'                 => 'Дæ электронон посты адрис',
@@ -347,44 +352,52 @@ $messages = array(
 'italic_tip'      => 'Курсив',
 'link_sample'     => 'Æрвитæны текст',
 'link_tip'        => 'Мидæг æрвитæн (æндæр статьямæ)',
+'extlink_sample'  => 'http://www.example.com æрвитæны текст',
 'extlink_tip'     => 'Æддаг æрвитæн (префикс http:// ма рох кæн)',
 'headline_sample' => 'Ам сæргонды текст уæд',
 'math_sample'     => 'Ныффысс формулæ',
 'math_tip'        => 'Математикон формулæ (формат LaTeX)',
+'media_tip'       => 'Файлмæ æрвитæн',
 
 # Edit pages
-'summary'            => 'Ивддзинæдты мидис:',
-'subject'            => 'Темæ/сæргонд:',
-'minoredit'          => 'Ай чысыл ивддзинад у.',
-'watchthis'          => 'Ацы фарсмæ дæ цæст æрдар',
-'savearticle'        => 'Афтæ уæд!',
-'preview'            => 'Разæркаст',
-'showpreview'        => 'Фен уал æй',
-'showlivepreview'    => 'Тагъд разæркаст',
-'showdiff'           => 'Цы баивтай ацы тексты, уый фен',
-'summary-preview'    => 'Ивддзинады афыст уыдзæн:',
-'blockedtitle'       => 'Архайæг хъодыгонд æрцыд',
-'blockednoreason'    => 'аххос амынд не ’рцыд',
-'accmailtitle'       => 'Пароль рарвыст у.',
-'newarticle'         => '(Ног)',
-'note'               => "'''Бафиппай:'''",
-'editing'            => 'Ивыс: $1',
-'editingsection'     => 'Ивыс $1 (фарсы хай)',
-'editconflict'       => 'Ивыны конфликт: $1',
-'yourtext'           => 'Дæхи текст',
-'longpagewarning'    => "'''РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
+'summary'                => 'Ивддзинæдты мидис:',
+'subject'                => 'Темæ/сæргонд:',
+'minoredit'              => 'Ай чысыл ивддзинад у.',
+'watchthis'              => 'Ацы фарсмæ дæ цæст æрдар',
+'savearticle'            => 'Афтæ уæд!',
+'preview'                => 'Разæркаст',
+'showpreview'            => 'Фен уал æй',
+'showlivepreview'        => 'Тагъд разæркаст',
+'showdiff'               => 'Цы баивтай ацы тексты, уый фен',
+'summary-preview'        => 'Ивддзинады афыст уыдзæн:',
+'blockedtitle'           => 'Архайæг хъодыгонд æрцыд',
+'blockednoreason'        => 'аххос амынд не ’рцыд',
+'accmailtitle'           => 'Пароль рарвыст у.',
+'newarticle'             => '(Ног)',
+'note'                   => "'''Бафиппай:'''",
+'editing'                => 'Ивыс: $1',
+'editingsection'         => 'Ивыс $1 (фарсы хай)',
+'editconflict'           => 'Ивыны конфликт: $1',
+'yourtext'               => 'Дæхи текст',
+'longpagewarning'        => "'''РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
 Сæ бæрцуат 32 килобайтæй фылдæр кæмæн у, ахæм фæрстæ иуæй-иу браузерты раст нæ зынынц.
 Кæд ахæм вариант и, уæд ацы фарсæй цалдæр фарсы скæн.'''",
-'templatesused'      => 'Ацы фарсы шаблонтæ:',
-'template-protected' => '(æхгæд)',
-'edit-conflict'      => 'Иввдзинæдты конфликт.',
+'templatesused'          => 'Ацы фарсы шаблонтæ:',
+'template-protected'     => '(æхгæд)',
+'template-semiprotected' => '(æрдæг-æхгæд)',
+'deletelog-fulllog'      => 'Æппæт лог фен',
+'edit-conflict'          => 'Иввдзинæдты конфликт.',
+'edit-already-exists'    => 'Ног фарс скæнæн нæй. Ахæм фарс ис.',
 
 # History pages
 'viewpagelogs'           => 'Ацы фарсæн йæ логтæ равдис',
+'nohistory'              => 'Ацы фарсæн иввдзинæдты истори нæй.',
 'currentrev'             => 'Нырыккон верси',
 'previousrevision'       => '← Раздæры',
+'nextrevision'           => 'Ногдæр верси →',
 'currentrevisionlink'    => 'Нырыккон верси',
 'cur'                    => 'ныр.',
+'next'                   => 'фæдылдзог',
 'last'                   => 'раздæры',
 'page_first'             => 'фыццаг',
 'page_last'              => 'фæстаг',
@@ -393,6 +406,7 @@ $messages = array(
 'deletedrev'             => '[аппæрст]',
 'histfirst'              => 'раздæр',
 'histlast'               => 'фæстæдæр',
+'historysize'            => '({{PLURAL:$1|1 байт|$1 байты}})',
 'historyempty'           => '(афтид)',
 
 # Revision feed
@@ -428,7 +442,7 @@ $messages = array(
 'textmatches'               => 'Статьяты æмцаутæ',
 'prevn'                     => '$1 фæстæмæ',
 'nextn'                     => '$1 размæ',
-'viewprevnext'              => 'Фен ($1) ($2) ($3)',
+'viewprevnext'              => 'Фен ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|$2 дзырд|$2 дзырды}})',
 'search-redirect'           => '(рарвыст ардыгæй: $1)',
 'search-section'            => '(хай $1)',
@@ -453,15 +467,19 @@ $messages = array(
 'qbsettings-floatingleft'   => 'Рахизырдыгæй ленккæнгæ',
 'changepassword'            => 'Пароль баив',
 'skin-preview'              => 'Разæркаст',
+'dateformat'                => 'Датæйы формат',
 'datetime'                  => 'Датæ æмæ рæстæг',
+'math_unknown_function'     => 'нæзонгæ функци',
+'math_syntax_error'         => 'синтаксисы рæдыд',
 'prefs-watchlist'           => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъд',
 'prefs-watchlist-days'      => 'Цал боны ивддзинæдтæ æвдисын:',
 'saveprefs'                 => 'Афтæ уæд',
 'rows'                      => 'Рæнхътæ:',
-'timezonelegend'            => 'Сахаты таг',
+'timezonelegend'            => 'Сахаты таг:',
 'localtime'                 => 'Бынæттон рæстæг:',
 'timezoneselect'            => 'Сахатон таг:',
 'timezoneoffset'            => 'Хъауджыдæрдзинад',
+'servertime'                => 'Серверы рæстæг:',
 'timezoneregion-africa'     => 'Африкæ',
 'timezoneregion-america'    => 'Америкæ',
 'timezoneregion-antarctica' => 'Антарктикæ',
@@ -469,6 +487,7 @@ $messages = array(
 'timezoneregion-asia'       => 'Ази',
 'timezoneregion-australia'  => 'Австрали',
 'timezoneregion-europe'     => 'Европæ',
+'timezoneregion-indian'     => 'Индийы фурд',
 
 # User rights
 'userrights-nodatabase' => 'Бæрæггæнæнты базæ $1 нæй кæнæ уый у бынæттон базæ.',
@@ -506,13 +525,15 @@ $messages = array(
 'rightsnone' => '(нæй)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'     => 'ацы фарс кæсын',
-'action-edit'     => 'ацы фарс ивын',
-'action-move'     => 'ацы фарсы ном ивын',
-'action-movefile' => 'ацы файлы ном ивын',
-'action-delete'   => 'ацы фарс аппарын',
+'action-read'       => 'ацы фарс кæсын',
+'action-edit'       => 'ацы фарс ивын',
+'action-createpage' => 'фæрстæ скæн',
+'action-move'       => 'ацы фарсы ном ивын',
+'action-movefile'   => 'ацы файлы ном ивын',
+'action-delete'     => 'ацы фарс аппарын',
 
 # Recent changes
+'nchanges'           => '$1 {{PLURAL:$1|ивдзинад|ивддзинады}}',
 'recentchanges'      => 'Фæстаг ивддзинæдтæ',
 'recentchangestext'  => 'Ацы фарсыл ирон Википедийы фæстаг ивддзинæдтæ фенæн ис.',
 'rcnote'             => 'Дæлдæр нымад сты афæстаг <strong>$2</strong> боны дæргъы конд <strong>{{PLURAL:$1|иу ивддзинад|$1 ивддзинады}}</strong>, $5, $4 уавæрмæ гæсгæ.',
@@ -532,7 +553,8 @@ $3',
 'rc-enhanced-hide'   => 'Лыстæгдзинæдтæ бамбæхс',
 
 # Recent changes linked
-'recentchangeslinked' => 'Баст ивддзинæдтæ',
+'recentchangeslinked'      => 'Баст ивддзинæдтæ',
+'recentchangeslinked-page' => 'Фарсы ном:',
 
 # Upload
 'upload'           => 'Ног файл сæвæр',
@@ -596,6 +618,7 @@ $3',
 'uncategorizedpages'     => 'Æнæкатегори фæрстæ',
 'uncategorizedimages'    => 'Æнæкатегори файлтæ',
 'uncategorizedtemplates' => 'Æнæкатегори шаблонтæ',
+'popularpages'           => 'Популярон фæрстæ',
 'wantedcategories'       => 'Хъæугæ категоритæ',
 'wantedpages'            => 'Хъæугæ фæрстæ',
 'mostlinked'             => 'Фылдæр æрвитæнтæ кæмæ и, ахæм фæрстæ',
@@ -637,16 +660,19 @@ $3',
 'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
 # Special:LinkSearch
+'linksearch'    => 'Æддаг æрвитæнтæ',
 'linksearch-ok' => 'Агур',
 
 # Special:ListUsers
 'listusers-submit' => 'Равдис',
 
 # Special:ListGroupRights
-'listgrouprights-group' => 'Къорд',
+'listgrouprights-group'   => 'Къорд',
+'listgrouprights-members' => '(уæнгты номхыгъд)',
 
 # E-mail user
 'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:UserLogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',
+'emailuser'       => 'Ацы архайæгæн электронон фыстæг рарвитт',
 'emailpage'       => 'Электронон фыстæг йæм барвит',
 
 # Watchlist
@@ -681,7 +707,7 @@ $3',
 
 # Protect
 'protectedarticle'       => '«[[$1]]» — фарс æхгæд æрцыд',
-'protectcomment'         => 'Сæхкæнынæн аххос:',
+'protectcomment'         => 'Аххос:',
 'protectexpiry'          => 'Кæдмæ æхгæд у:',
 'protect-level-sysop'    => 'Æрмæст админтæ',
 'protect-othertime'      => 'Æндæр рæстæг:',
@@ -698,9 +724,10 @@ $3',
 'blanknamespace' => '(Сæйраг)',
 
 # Contributions
-'contributions' => 'Йæ бавæрд',
-'mycontris'     => 'Дæ бавæрд',
-'uctop'         => '(уæле баззад)',
+'contributions'       => 'Йæ бавæрд',
+'contributions-title' => 'Архайæджы бавæрд: $1',
+'mycontris'           => 'Дæ бавæрд',
+'uctop'               => '(уæле баззад)',
 
 'sp-contributions-blocklog' => 'Хъодыты лог',
 
@@ -791,6 +818,7 @@ $3',
 'tooltip-ca-nstab-image'        => 'Нывы фарс',
 'tooltip-ca-nstab-category'     => 'Категорийы фарс',
 'tooltip-minoredit'             => 'Чысыл ивддзинад у',
+'tooltip-save'                  => 'Цы ивддзинæдтæ бахастай, уыдон бавæр',
 'tooltip-diff'                  => 'Раздæры версимæ абаргæйæ цы ивддзинæдтæ хæссыс текстмæ, уый фен',
 'tooltip-watch'                 => 'Ацы фарс, дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъдмæ бафтау',
 
@@ -848,8 +876,10 @@ $3',
 'imgmultigo'       => 'Афтæ бакæн!',
 
 # Table pager
-'table_pager_next' => 'Фæдылдзог фарс',
-'table_pager_prev' => 'Раздæры фарс',
+'table_pager_next'  => 'Фæдылдзог фарс',
+'table_pager_prev'  => 'Раздæры фарс',
+'table_pager_first' => 'Фыццаг фарс',
+'table_pager_last'  => 'Фæстаг фарс',
 
 # Size units
 'size-bytes'     => '$1 байт(ы)',

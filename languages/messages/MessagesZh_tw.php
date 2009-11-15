@@ -9,6 +9,7 @@
  *
  * @author Alexsh
  * @author BobChao
+ * @author Jidanni
  * @author Roc michael
  * @author Urhixidur
  * @author Wong128hk
@@ -421,7 +422,7 @@ $2',
 'accmailtext'               => "'$1'的密碼已經寄到$2。",
 'newarticle'                => '(新)',
 'newarticletext'            => '您進入了一個尚未建立的頁面。
-要建立該頁面，請在下面的編輯框中輸入內容(詳情參見[[Help:說明|說明]])。
+要建立該頁面，請在下面的編輯框中輸入內容(詳情參見[[{{MediaWiki:Helppage}}|說明]])。
 如果您是不小心來到此頁面，直接點擊您瀏覽器中的"返回"按鈕返回。',
 'anontalkpagetext'          => "---- ''這是一個還未建立帳號的匿名使用者的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名使用者共享。如果您是一名匿名使用者並認為本頁上的評語與您無關，請[[Special:UserLogin|建立新帳號或登入]]以避免在未來於其他匿名使用者混淆。''",
 'noarticletext'             => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
@@ -485,6 +486,9 @@ $2',
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
 'edit-hook-aborted'         => '編輯被鉤取消。
 它並無給出解釋。',
+
+# Parser/template warnings
+'post-expand-template-argument-category' => '包含著略過模板參數的頁面',
 
 # "Undo" feature
 'undo-success' => '該編輯可以被撤銷。請檢查以下對比以核實這正是您想做的，然後儲存以下更改以完成撤銷編輯。',
@@ -780,7 +784,8 @@ $2',
 現有檔案的檔名: '''<tt>$2</tt>'''<br />
 請選擇一個不同的名字。",
 'fileexists-thumb'            => "<center>'''已經存在的圖片'''</center>",
-'fileexists-thumbnail-yes'    => "這個檔案好像是一幅圖片的縮圖版本''(縮圖)''。請檢查清楚該檔案'''<tt>$1</tt>'''。<br />
+'fileexists-thumbnail-yes'    => "這個檔案好像是一幅圖片的縮圖版本''(縮圖)''。 [[$1|thumb]]
+請檢查清楚該檔案'''<tt>[[:$1]]</tt>'''。
 如果檢查後的檔案是同原本圖片的大小是一樣的話，就不用再上載多一幅縮圖。",
 'file-thumbnail-no'           => "該檔名是以'''<tt>$1</tt>'''開始。它好像一幅圖片的縮圖版本''(縮圖)''。
 如果你有該圖片的完整大小，如不是請再修改檔名。",
@@ -1183,7 +1188,7 @@ $NEWPAGE
 'protect-summary-cascade'     => '連鎖',
 'protect-expiring'            => '終止於 $1 (UTC)',
 'protect-cascade'             => '保護本頁中包含的頁面 (連鎖保護)',
-'protect-expiry-options'      => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2小時:2 hours,1天:1 day,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '權限:',
 'restriction-level'           => '限制級別:',
 'minimum-size'                => '最小大小',
@@ -1281,8 +1286,7 @@ $1',
 'ipbexpiry'                   => '期限:',
 'ipbreason'                   => '原因:',
 'ipbreasonotherlist'          => '其它原因',
-'ipbreason-dropdown'          => '
-*一般的封鎖理由
+'ipbreason-dropdown'          => '*一般的封鎖理由
 ** 屢次增加不實資料
 ** 刪除頁面內容
 ** 外部連結廣告

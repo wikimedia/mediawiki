@@ -338,9 +338,9 @@ $messages = array(
 'nosuchactiontext'  => 'Gerðin, ið tilskilað er í url, er ikki
 afturkend av wiki',
 'nosuchspecialpage' => 'Ongin slík serlig síða',
-'nospecialpagetext' => "<big>'''Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.'''</big>
+'nospecialpagetext' => '<strong>Tú hevur biðið um eina serliga síðu, sum wiki ikki kennir aftur.</strong>
 
-<!-- A list of valid special pages can be found at [[Special:SpecialPages]]. -->",
+<!-- A list of valid special pages can be found at [[Special:SpecialPages]]. -->',
 
 # General errors
 'error'             => 'Villa',
@@ -382,10 +382,10 @@ Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstilling
 'logout'                     => 'Útrita',
 'userlogout'                 => 'Rita út',
 'notloggedin'                => 'Ikki ritað inn',
-'nologin'                    => 'Hevur tú ikki eina kontu? $1.',
+'nologin'                    => "Hevur tú ikki eina kontu? '''$1'''.",
 'nologinlink'                => 'Stovna eina kontu',
 'createaccount'              => 'Stovna nýggja kontu',
-'gotaccount'                 => 'Hevur tú longu eina kontu? $1.',
+'gotaccount'                 => "Hevur tú longu eina kontu? '''$1'''.",
 'gotaccountlink'             => 'Rita inn',
 'createaccountmail'          => 'eftur t-posti',
 'badretype'                  => 'Loyniorðið tú hevur skriva er ikki rætt.',
@@ -535,7 +535,7 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.'''",
 'notextmatches'         => 'Ongin síðutekstur samsvarar',
 'prevn'                 => 'undanfarnu $1',
 'nextn'                 => 'næstu $1',
-'viewprevnext'          => 'Vís ($1) ($2) ($3).',
+'viewprevnext'          => 'Vís ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:Innihald',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 orð|$2 orð}})',
 'showingresults'        => "Niðanfyri standa upp til {{PLURAL:$1|'''$1''' úrslit, sum byrjar|'''$1''' úrslit, sum byrja}} við #<b>$2</b>.",

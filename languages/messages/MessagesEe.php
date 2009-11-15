@@ -175,10 +175,10 @@ $messages = array(
 'userlogin'                  => 'Ge ɖe eme / ŋlɔ ŋkɔ daɖi',
 'logout'                     => 'Do le eme',
 'userlogout'                 => 'Do le eme',
-'nologin'                    => 'Wòmeŋlɔ ŋkɔ oa? $1.',
+'nologin'                    => "Wòmeŋlɔ ŋkɔ oa? '''$1'''.",
 'nologinlink'                => 'Ŋlɔ ŋkɔ daɖi',
 'createaccount'              => 'Ŋlɔ ŋkɔ daɖi',
-'gotaccount'                 => 'Wò ŋlɔ ŋkɔ xoxoa? $1.',
+'gotaccount'                 => "Wò ŋlɔ ŋkɔ xoxoa? '''$1'''.",
 'gotaccountlink'             => 'Ge ɖe eme',
 'yourlanguage'               => 'Gbe:',
 'yournick'                   => 'Dzesi',
@@ -187,7 +187,7 @@ $messages = array(
 'loginsuccesstitle'          => 'Wò ge ɖe eme azɔ̃.',
 'loginsuccess'               => "'''Wò le {{SITENAME}} me fifia abe \"\$1\" ene.'''",
 'nouserspecified'            => 'Elebe na ŋlɔ ŋkɔ si wò zãna',
-'acct_creation_throttle_hit' => "Wiki sia zãla aɖe tso wò ''IP address'' ŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} le ŋkeke si vayi me xoxo. Mɔɖeɖe le na ŋkɔ  ɖeka ko ŋɔŋlɔ le ŋkeke ɖeka me.<br/>
+'acct_creation_throttle_hit' => "Wiki sia zãla aɖe tso wò ''IP address'' ŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} le ŋkeke si vayi me xoxo. Mɔɖeɖe le na ŋkɔ  ɖeka ko ŋɔŋlɔ le ŋkeke ɖeka me.<br />
 Le esiata la, ''IP address'' sia zãlawo mekpɔ mɔ aŋlɔ ŋkɔ bubuwo fifia o.",
 'loginlanguagelabel'         => 'Gbe: $1',
 
@@ -210,7 +210,7 @@ Le esiata la, ''IP address'' sia zãlawo mekpɔ mɔ aŋlɔ ŋkɔ bubuwo fifia o.
 'yourtext'            => 'Wò nuŋɔŋlɔ',
 'yourdiff'            => 'Vovototowo',
 'copyrightwarning'    => "Taflatse, mítsɔe be nusiwo katã netsɔ kpe ɖe {{SITENAME}} ŋu lii fãa le $2 la nu (kpɔ $1 me nyawo). Ne madze ŋuwò be amebubuwo natrɔ asi le nusiwo newɔ ŋuti o, eye woagbugbɔ dɔsiwo newɔ ama na amebubuwo fãa o la, mega dae ɖe afisia o.<br /> Wòle ŋugbe dom na mí bena wò ŋutɔe ŋlɔ nusiawo, alo etsɔe tso afisi mɔɖeɖe li fãa be amesiame na tsɔ nuwo tso afima fãa. '''Mega da nusiwo ŋu mɔɖeɖe meli na o la ɖe afisia o!'''",
-'edit-already-exists' => 'Wòmateŋu adze axa sia gɔme o.<br/>
+'edit-already-exists' => 'Wòmateŋu adze axa sia gɔme o.<br />
 Wo ŋlɔe xoxo.',
 
 # History pages
@@ -250,7 +250,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'notitlematches'        => 'Mesɔ axa aɖeke ƒe tanya o',
 'prevn'                 => '$1 do ŋgɔ',
 'nextn'                 => '$1 yometɔwo',
-'viewprevnext'          => 'Kpɔ ($1) ($2) ($3)',
+'viewprevnext'          => 'Kpɔ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'     => "'''Axa si ŋkɔ enye \"[[:\$1]]\" le wiki sia dzi'''",
 'searchmenu-new'        => "'''Dze axa \"[[:\$1]]\" sia ŋlɔm ɖe wiki la dzi!'''",
 'search-result-size'    => '$1 ({{PLURAL:$2|nya 1|nya $2}})',
@@ -326,6 +326,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'longpages'      => 'Axa didiwo',
 'protectedpages' => 'Axawo siwo ŋu wole dzɔdzɔm',
 'listusers'      => 'Ezãlawo ƒe xexlẽme',
+'usercreated'    => 'Wodze egɔme le ŋkeke $1 dzi le gaƒoƒo $2 me.',
 'newpages'       => 'Axa yeyewo',
 'ancientpages'   => 'Axawo si wo do xoxo wu',
 'move'           => 'Ɖɔli eƒe nɔƒe',

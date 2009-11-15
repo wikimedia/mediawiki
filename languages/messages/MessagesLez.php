@@ -129,7 +129,7 @@ $messages = array(
 'lineno' => 'ЦIар $1:',
 
 # Search results
-'viewprevnext' => 'Къаларун ($1) ($2) ($3)',
+'viewprevnext' => 'Къаларун ($1 {{int:pipe-separator}} $2) ($3)',
 'powersearch'  => 'Ахтармишун',
 
 # Recent changes

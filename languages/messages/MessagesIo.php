@@ -48,6 +48,7 @@ $messages = array(
 'tog-hideminor'               => 'Celez mikra redaktaji de recenta chanji',
 'tog-hidepatrolled'           => 'Celez patroliita redakti en recenta chanji',
 'tog-newpageshidepatrolled'   => 'Celez patroliita pagini en la listo di nova pagino',
+'tog-extendwatchlist'         => 'Expansez surveyo-listo por montrar omna chanji, vice nur la maxim recenta',
 'tog-usenewrc'                => 'Usez augmentita Recenta chanji (JavaScript bezonesas)',
 'tog-numberheadings'          => 'Autonumerez tituli',
 'tog-showtoolbar'             => 'Montrez redaktilo (JavaScript bezonesas)',
@@ -71,11 +72,14 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Montrez mea e-posto adreso en notifiko e-posti',
 'tog-shownumberswatching'     => 'Montrez nombro di surveyanta uzanti',
 'tog-fancysig'                => 'Traktez signaturo kom wikikodo (sen automata ligilo)',
+'tog-externaleditor'          => 'Uzez extera redaktanto nespecigite (nur por experti, bezonas specala moderi ye vua komputoro)',
+'tog-forceeditsummary'        => 'Notifikez me kande skribanta vakua redakto-rezumo',
 'tog-watchlisthideown'        => 'Celez mea redaktaji de la surveyaji',
 'tog-watchlisthidebots'       => 'Celez redaktaji da roboti de la surveyaji',
 'tog-watchlisthideminor'      => 'Celez mikra redaktaji de la surveyaji',
 'tog-watchlisthidepatrolled'  => 'Celez patroliita chanji en la surveyo-listo',
 'tog-ccmeonemails'            => 'Sendez a me exemplero di e-posti quin me sendos ad altra uzanti',
+'tog-diffonly'                => 'Ne montrez pagino kontenajo sub diferi',
 'tog-showhiddencats'          => 'Montrar celita kategorii',
 'tog-norollbackdiff'          => 'Omisar difero-komparo pos retrorulo',
 
@@ -149,7 +153,13 @@ $messages = array(
 'category-file-count-limited'    => 'La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.',
 'listingcontinuesabbrev'         => 'seq.',
 
-'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki instalesis sucese.'''</big>",
+'mainpagedocfooter' => "Videz la [http://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzanti] por informo pri uzar la wiki programo.
+
+== Komencar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo di ''Configuration setting'']
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki OQQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki nova versioni posto-listo]",
 
 'about'          => 'Pri',
 'article'        => 'artiklo',
@@ -283,7 +293,7 @@ Videz [[Special:Version|versiono-pagino]].',
 'nstab-user'      => 'Uzanto-pagino',
 'nstab-special'   => 'Specala pagino',
 'nstab-project'   => 'Projeto pagino',
-'nstab-image'     => 'Arkivo',
+'nstab-image'     => 'Failo',
 'nstab-mediawiki' => 'Mesajo',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Helpo',
@@ -292,9 +302,9 @@ Videz [[Special:Version|versiono-pagino]].',
 # Main script and global functions
 'nosuchaction'      => 'Ne esas tala ago',
 'nosuchspecialpage' => 'Ne existas tala specala pagino',
-'nospecialpagetext' => "<big>'''Vu demandis specala pagino qua ne existas.'''</big>
+'nospecialpagetext' => '<strong>Vu demandis specala pagino qua ne existas.</strong>
 
-On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:specialpages}}]].",
+On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'               => 'Eroro',
@@ -349,10 +359,10 @@ Voluntez, ne obliviez chanjor vua preferaji.',
 'logout'                     => 'Ekirar',
 'userlogout'                 => 'Ekirar',
 'notloggedin'                => 'Sesiono ne esas iniciata',
-'nologin'                    => 'Ka vu ne havas konto? $1.',
+'nologin'                    => "Ka vu ne havas konto? '''$1'''.",
 'nologinlink'                => 'Kreez konto',
 'createaccount'              => 'Krear nova konto',
-'gotaccount'                 => 'Ka vu ja havas konto? $1.',
+'gotaccount'                 => "Ka vu ja havas konto? '''$1'''.",
 'gotaccountlink'             => 'Enirar',
 'createaccountmail'          => 'per e-posto',
 'badretype'                  => 'La pasovorti vu donis ne esas sama.',
@@ -470,7 +480,7 @@ Por krear ica pagino, voluntez startar skribar en la infra buxo.
 Se vu esas hike erore, kliktez sur la butono por retrovenar en vua navigilo.',
 'noarticletext'                    => 'Prezente, ne esas texto en ica pagino.
 Vu povas [[Special:Search/{{PAGENAME}}|serchar ica titulo]] en altra pagini,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} serchar en la relata registri],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} serchar en la relata registri],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino]</span>.',
 'clearyourcache'                   => "'''Atencez: Pos registragar, vu probable mustas renovigar la tempala-magazino di vua navigilo por vidar la chanji.'''
 '''Mozilla / Firefox / Safari:''' tenez ''Shift'' kliktante ''Reload'', o presez sive  ''Ctrl-F5'' sive ''Ctrl-R'' (''Command-R'' ye Macintosh);
@@ -575,6 +585,7 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'visualcomparison'        => 'Vidala komparado',
 'wikicodecomparison'      => 'Wikitextala komparado',
 'editundo'                => 'des-facez',
+'diff-src'                => 'fonto',
 'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
@@ -591,7 +602,8 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'notextmatches'             => 'Nula paginala texto fitas',
 'prevn'                     => 'antea $1',
 'nextn'                     => 'sequanta $1',
-'viewprevnext'              => 'Vidar ($1) ($2) ($3).',
+'viewprevnext'              => 'Vidar ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-new'            => "'''Kreez la pagino \"[[:\$1]]\" in ca wiki!'''",
 'searchhelp-url'            => 'Help:Helpo',
 'searchprofile-images'      => 'Arkivi',
 'searchprofile-everything'  => 'Omno',
@@ -656,7 +668,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'contextchars'              => 'Tipi di kuntexto ye singla lineo:',
 'recentchangescount'        => 'Quanto de redakti montrota kustume en la recenta chanji, pagino-versionari e registri:',
 'savedprefs'                => 'Vua preferaji registragesis.',
-'timezonelegend'            => 'Tempala zono',
+'timezonelegend'            => 'Tempala zono:',
 'timezonetext'              => 'Vua lokala tempo diferas de tempo dil servanto (UTC).',
 'localtime'                 => 'Lokala tempo:',
 'timezoneselect'            => 'Tempala zono:',
@@ -750,6 +762,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'recentchangeslinked-summary' => "Co esas listo di recenta chanji ad pagini ligita da specigita pagino, od pagini en specigita kategorio.
 Pagini en [[Special:Watchlist|vua surveryo-listo]] esas '''dika'''.",
 'recentchangeslinked-page'    => 'Nomo dil pagino:',
+'recentchangeslinked-to'      => 'Montrez chanji a pagini ligita a la specigita pagino vice',
 
 # Upload
 'upload'            => 'Adkargar arkivo',
@@ -771,7 +784,9 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'uploadedfiles'     => 'Adkargita arkivi',
 'ignorewarning'     => 'Ignorar la averto e gardar la arkivo irgakaze.',
 'badfilename'       => 'La imajo-nomo chanjesis a "$1".',
-'fileexists'        => "Arkivo kun ica nomo ja existas. Volutez kontrolar '''<tt>$1</tt>''' se vu ne esas certa pri chanjar olu.",
+'fileexists'        => "Arkivo kun ica nomo ja existas.
+Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
+[[$1|thumb]]",
 'successfulupload'  => 'Adcharjo sucesoza',
 'uploadwarning'     => 'Averto pri la adkargo di arkivo',
 'savefile'          => 'Registragar arkivo',

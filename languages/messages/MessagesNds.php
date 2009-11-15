@@ -586,10 +586,10 @@ Vergeet nich, de Sied för di persönlich [[Special:Preferences|intostellen]].',
 'logout'                     => 'Afmellen',
 'userlogout'                 => 'Afmellen',
 'notloggedin'                => 'Nich anmellt',
-'nologin'                    => 'Wenn du noch keen Brukerkonto hest, denn kannst di anmellen: $1.',
+'nologin'                    => "Wenn du noch keen Brukerkonto hest, denn kannst di anmellen: '''$1'''.",
 'nologinlink'                => 'Brukerkonto inrichten',
 'createaccount'              => 'Nieg Brukerkonto anleggen',
-'gotaccount'                 => 'Hest Du al en Brukerkonto? $1.',
+'gotaccount'                 => "Hest Du al en Brukerkonto? '''$1'''.",
 'gotaccountlink'             => 'Anmellen',
 'createaccountmail'          => 'över E-Mail',
 'badretype'                  => 'De beiden Passwöör stimmt nich övereen.',
@@ -765,7 +765,7 @@ Dat Passwoord för dit Brukerkonto kann na dat Anmellen ünner ''[[Special:Chang
 Wi mööt hier de numerische IP-Adress verwennen, üm den Bruker to identifizeern.
 So en Adress kann vun verscheden Brukern bruukt warrn.
 Wenn du en anonymen Bruker büst un meenst, dat disse Kommentaren nich an di richt sünd, denn [[Special:UserLogin/signup|legg di en Brukerkonto an]] oder [[Special:UserLogin|mell di an]], dat dat Problem nich mehr dor is.''",
-'noarticletext'                    => 'Dor is opstunns keen Text op disse Sied. Du kannst [[Special:Search/{{PAGENAME}}|na dissen Utdruck in annere Sieden söken]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} in de Logböker söken],
+'noarticletext'                    => 'Dor is opstunns keen Text op disse Sied. Du kannst [[Special:Search/{{PAGENAME}}|na dissen Utdruck in annere Sieden söken]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} in de Logböker söken],
 oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Sied ännern]</span>.',
 'userpage-userdoesnotexist'        => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
 'clearyourcache'                   => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -1086,7 +1086,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'prevn-title'                      => '{{PLURAL:$1|Vörig Resultat|Vörige $1 Resultaten}}',
 'nextn-title'                      => 'Tokamen {{PLURAL:$1|Resultat|$1 Resultaten}}',
 'shown-title'                      => 'Wies $1 {{PLURAL:$1|Resultat|Resultaten}} per Sied',
-'viewprevnext'                     => 'Wies ($1) ($2) ($3).',
+'viewprevnext'                     => 'Wies ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Söökoptionen',
 'searchmenu-exists'                => "* Sied '''[[$1]]'''",
 'searchmenu-new'                   => "'''Stell de Sied „[[:$1]]“ in dit Wiki nee op!'''",
@@ -1188,7 +1188,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'recentchangesdays-max'     => '(Maximal $1 {{PLURAL:$1|Dag|Daag}})',
 'recentchangescount'        => 'Antall Ännern, de bi Letzte Ännern, in Versionsgeschichten un in Logböker wiest warrt:',
 'savedprefs'                => 'Allens spiekert.',
-'timezonelegend'            => 'Tietrebeet',
+'timezonelegend'            => 'Tiedrebeed:',
 'timezonetext'              => 'Giff de Antall vun de Stünnen an, de twüschen dien Tiedrebeet un UTC liggen.',
 'localtime'                 => 'Oortstied:',
 'timezoneselect'            => 'Tiedzoon:',
@@ -1441,14 +1441,16 @@ Kiek bi de [[Special:NewFiles|Galerie vun ne’e Datein]] för en Översicht mit
 'large-file'                  => 'Datein schöölt opbest nich grötter wesen as $1. Disse Datei is $2 groot.',
 'largefileserver'             => 'De Datei is grötter as de vun’n Server verlöövte Bövergrenz för de Grött.',
 'emptyfile'                   => 'De hoochladene Datei is leddig. De Grund kann en Tippfehler in de Dateinaam ween. Kontrolleer, of du de Datei redig hoochladen wullst.',
-'fileexists'                  => "En Datei mit dissen Naam existeert al, prööv '''<tt>$1</tt>''', wenn du di nich seker büst of du dat ännern wullst.",
-'filepageexists'              => "En Sied, de dat Bild beschrifft, gifft dat al as '''<tt>$1</tt>''', dat gifft aver keen Datei mit dissen Naam. De Text, den du hier ingiffst, warrt nich op de Sied övernahmen. Du musst de Sied na dat Hoochladen noch wedder extra ännern.",
-'fileexists-extension'        => "Dat gifft al en Datei mit en ähnlichen Naam:<br />
-Naam vun diene Datei: '''<tt>$1</tt>'''<br />
-Naam vun de Datei, de al dor is: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "En Datei mit dissen Naam existeert al, prööv '''<tt>[[:$1]]</tt>''', wenn du di nich seker büst of du dat ännern wullst.
+[[$1|thumb]]",
+'filepageexists'              => "En Sied, de dat Bild beschrifft, gifft dat al as '''<tt>[[:$1]]</tt>''', dat gifft aver keen Datei mit dissen Naam. De Text, den du hier ingiffst, warrt nich op de Sied övernahmen. Du musst de Sied na dat Hoochladen noch wedder extra ännern.",
+'fileexists-extension'        => "Dat gifft al en Datei mit en ähnlichen Naam: [[$2|thumb]]
+* Naam vun diene Datei: '''<tt>[[:$1]]</tt>'''
+* Naam vun de Datei, de al dor is: '''<tt>[[:$2]]</tt>'''
 Blot dat Ennen vun de Datei is bi dat Groot-/Lütt-Schrieven anners. Kiek na, wat de Datein villicht desülven sünd.",
 'fileexists-thumb'            => "<center>'''Vörhannene Datei'''</center>",
-'fileexists-thumbnail-yes'    => "De Datei schient en Bild to wesen, dat lütter maakt is ''(thumbnail)''. Kiek di de Datei '''<tt>$1</tt>''' an.<br />
+'fileexists-thumbnail-yes'    => "De Datei schient en Bild to wesen, dat lütter maakt is ''(thumbnail)''. [[$1|thumb]]
+Kiek di de Datei '''<tt>[[:$1]]</tt>''' an.
 Wenn dat dat Bild in vulle Grött is, denn bruukst du keen extra Vörschaubild hoochladen.",
 'file-thumbnail-no'           => "De Dateinaam fangt an mit '''<tt>$1</tt>'''. Dat düüdt dor op hen, dat dat en lütter maakt Bild ''(thumbnail, Duumnagel-Bild)'' is.
 Kiek na, wat du dat Bild nich ok in vulle Grött hest un laad dat ünner’n Originalnaam hooch oder änner den Dateinaam.",
@@ -2151,7 +2153,7 @@ Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.
 'reblock-logentry'                => 'hett de Sperr för „[[$1]]“ op de Tied $2 $3 ännert',
 'blocklogtext'                    => 'Dit is en Logbook över Blocks un Freegaven vun Brukern. Automatisch blockte IP-Adressen sünd nich opföhrt.
 Kiek [[Special:IPBlockList|IP-Blocklist]] för en List vun den blockten Brukern.',
-'unblocklogentry'                 => 'Block vun [[$1]] ophoven',
+'unblocklogentry'                 => 'Block vun $1 ophoven',
 'block-log-flags-anononly'        => 'blots anonyme Brukers',
 'block-log-flags-nocreate'        => 'Brukerkonten opstellen sperrt',
 'block-log-flags-noautoblock'     => 'Autoblock utschalt',
@@ -2357,7 +2359,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'importlogpagetext'                => 'Administrativen Import vun Sieden mit Versionsgeschicht vun annere Wikis.',
 'import-logentry-upload'           => 'hett „[[$1]]“ ut Datei importeert',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|ene Version|$1 Versionen}}',
-'import-logentry-interwiki'        => 'hett „[[$1]]“ importeert (Transwiki)',
+'import-logentry-interwiki'        => 'hett „$1“ importeert (Transwiki)',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|ene Version|$1 Versionen}} vun $2',
 
 # Tooltip help for the actions

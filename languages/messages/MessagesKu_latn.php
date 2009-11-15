@@ -309,9 +309,9 @@ $messages = array(
 'nosuchaction'      => 'Çalakiyek bi vê rengê tune',
 'nosuchactiontext'  => "Ew tişta yê di wê URL'ê da tê gotin ji MediaWiki netê çêkirin.",
 'nosuchspecialpage' => 'Rûpeleke taybet bi vê rengê tune',
-'nospecialpagetext' => "<big>'''Rûpelê taybetî yê te xwastîyê tune ye.'''</big>
+'nospecialpagetext' => '<strong>Rûpelê taybetî yê te xwastîyê tune ye.</strong>
 
-Hemû rûpelên taybetî di [[Special:SpecialPages|lîsteya rûpelên taybetî]] da werin dîtin.",
+Hemû rûpelên taybetî di [[Special:SpecialPages|lîsteya rûpelên taybetî]] da werin dîtin.',
 
 # General errors
 'error'                => 'Çewtî (Error)',
@@ -393,10 +393,10 @@ Hesaba te hat afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di
 'logout'                     => 'Derkeve (log out)',
 'userlogout'                 => 'Derkeve',
 'notloggedin'                => 'Xwe qeyd nekir (not logged in)',
-'nologin'                    => 'Tu hêj ne endamî? $1.',
+'nologin'                    => "Tu hêj ne endamî? '''$1'''.",
 'nologinlink'                => 'Bibe endam',
 'createaccount'              => 'Hesabê nû çêke',
-'gotaccount'                 => 'Hesabê te heye? $1.',
+'gotaccount'                 => "Hesabê te heye? '''$1'''.",
 'gotaccountlink'             => 'Têkeve (login)',
 'createaccountmail'          => 'bi e-name',
 'badretype'                  => 'Herdu şîfreyên ku te nivîsîn hevûdin nagirin.',
@@ -690,7 +690,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'notextmatches'                  => 'Di nivîsarê de nehat dîtin.',
 'prevn'                          => '$1 paş',
 'nextn'                          => '$1 pêş',
-'viewprevnext'                   => '($1) ($2) ($3).',
+'viewprevnext'                   => '($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'                 => 'Help:Alîkarî',
 'searchprofile-articles-tooltip' => 'Di $1 da lêbigere',
 'searchprofile-project-tooltip'  => 'Di $1 da lêbigere',
@@ -869,10 +869,14 @@ Format {{PLURAL:$3|yê tê|yên tên}} xastin {{PLURAL:$3|ev e|ev in}}: $2.',
 'filetype-missing'       => 'Piştnavî datayê tune (wek ".jpg").',
 'large-file'             => "Mezinbûna data'yan bila ne ji $1 mezintir bin; ev data'ya $2 mezin e.",
 'emptyfile'              => "Data'ya barkirî vala ye. Sedemê valabûnê belkî şaşnivîsek di navê data'yê da ye. Xêra xwe seke, ku tu rast dixazê vê data'yê barbikê.",
-'fileexists'             => "Datayek bi vê navê berê heye. Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê. Di bin '''<tt>$1</tt>''' du dikarî sekê, ku di dixwazê wê wêneyê biguherînê. Eger tu naxazê, xêra xwe li „Betal“ xe.",
-'fileexists-extension'   => "Datayek wek vê navê berê heye:<br />
-Navî datayê yê tê barkirin: '''<tt>$1</tt>'''<br />
-Navî datayê yê berê heyê: '''<tt>$2</tt>'''<br />
+'fileexists'             => "Datayek bi vê navê berê heye.
+Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê.
+Di bin '''<tt>[[:$1]]</tt>''' du dikarî sekê, ku di dixwazê wê wêneyê biguherînê.
+Eger tu naxazê, xêra xwe li „Betal“ xe.
+[[$1|thumb]]",
+'fileexists-extension'   => "Datayek wek vê navê berê heye: [[$2|thumb]]
+* Navî datayê yê tê barkirin: '''<tt>[[:$1]]</tt>'''
+* Navî datayê yê berê heyê: '''<tt>[[:$2]]</tt>'''
 Xêra xwe navekî din bibîne.",
 'fileexists-thumb'       => "<center>'''Wêne yê berê heye'''</center>",
 'file-thumbnail-no'      => "Navî vê datayê bi '''<tt>$1</tt>''' destpêdike. Ev dibêje ku ev wêneyekî çûçik e ''(thumbnail)''. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.",
@@ -1175,12 +1179,10 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 'deletecomment'          => 'Sedema jêbirinê',
 'deleteotherreason'      => 'Sedemekî din:',
 'deletereasonotherlist'  => 'Sedemekî din',
-'deletereason-dropdown'  => "*Sedemên jêbirinê
-** vandalîzm
+'deletereason-dropdown'  => '*Sedemên jêbirinê
 ** vala
 ** ne girek e
-** ne gotarek e
-** ceribandina IP'yekê",
+** vandalîzm',
 'delete-edit-reasonlist' => 'Sedemên jêbirinê biguherîne',
 'delete-toobig'          => 'Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan hatîye sînorkirin, ji bo pir şaşbûn (error) di {{SITENAME}} da çênebin.',
 'delete-warning-toobig'  => "Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan dikarin şaşbûnan di database'ê {{SITENAME}} da çêkin; zandibe tu çi dikê!",
@@ -1213,7 +1215,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'protect-level-autoconfirmed' => 'Bikarhênerên neqeydkirî astengbike',
 'protect-level-sysop'         => 'Bes koordînatoran (admînan)',
 'protect-expiring'            => 'heta rojê $1 (UTC)',
-'protect-expiry-options'      => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 seet:1 hour,1 roj:1 day,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,6 mihe:6 months,1 sal:1 year,ji her demê ra:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Destûr:',
 
 # Restrictions (nouns)

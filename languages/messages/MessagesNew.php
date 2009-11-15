@@ -8,6 +8,7 @@
  * @file
  *
  * @author Eukesh
+ * @author आलोक
  */
 
 $namespaceNames = array(
@@ -254,9 +255,9 @@ $messages = array(
 'nosuchaction'      => 'थन्यागु ज्या मदु',
 'nosuchactiontext'  => 'URLनं या धाःगु ज्या विकिं मस्यु',
 'nosuchspecialpage' => 'थन्यागु विशेष पौ मदु',
-'nospecialpagetext' => "<big>'''छिं मदुगु विशेष पौया माग तयादिल।'''</big>
+'nospecialpagetext' => '<strong>छिं मदुगु विशेष पौया माग तयादिल।</strong>
 
-अस्थित्वय् दुगु विशेष पौया धलः [[विशेष:विशेषपौ|{{int:specialpages}}]]य् दु।",
+अस्थित्वय् दुगु विशेष पौया धलः [[विशेष:विशेषपौ|{{int:specialpages}}]]य् दु।',
 
 # General errors
 'databaseerror'   => 'डेटाबेस इरर',
@@ -353,7 +354,7 @@ $1',
 'show'          => 'क्यनादिसँ',
 
 # Upload
-'upload' => 'फाइल अपलोड',
+'upload' => 'संचिका चढ़ाएँ',
 
 # File description page
 'filehist-user' => 'छ्य्‌लामि',
@@ -410,7 +411,7 @@ $1',
 'tooltip-feed-atom'               => 'थ्व पौया Atom फीड',
 'tooltip-t-contributions'         => 'थ्व छ्य्‌लामिया योगदानया धलः क्यनादिसँ',
 'tooltip-t-emailuser'             => 'थ्व छ्य्‌लामियात इ-मेल छ्वयादिसँ',
-'tooltip-t-upload'                => 'फाइल अपलोड',
+'tooltip-t-upload'                => 'संचिकाएँ चढ़ाएँ',
 'tooltip-t-specialpages'          => 'सकल विशेष पौस धलः',
 'tooltip-t-print'                 => 'थ्व पौस ध्वायेज्युगु संस्करण',
 'tooltip-t-permalink'             => 'थ्व पौस थ्व संस्करणया पर्मानेन्ट लिङ्क',

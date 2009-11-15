@@ -410,9 +410,9 @@ $messages = array(
 Maaaring nagkamali ka sa pagmamakinilya ng URL, o sumunod sa isang maling kawing.
 Maaari rin itong magpahiwatig ng isang depektong nasa loob ng {{SITENAME}}.',
 'nosuchspecialpage' => 'Walang ganyang natatanging pahina',
-'nospecialpagetext' => "<big>'''Humiling ka ng isang maling natatanging pahina.'''</big>
+'nospecialpagetext' => '<strong>Humiling ka ng isang maling natatanging pahina.</strong>
 
-Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:SpecialPages|{{int:specialpages}}]].",
+Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Kamalian',
@@ -519,10 +519,10 @@ Huwag kalimutang baguhin ang [[Special:Preferences|mga kagustuhan mo sa {{SITENA
 'logout'                     => 'Umalis sa pagkakalagda',
 'userlogout'                 => 'Umalis sa pagkakalagda',
 'notloggedin'                => 'Hindi nakalagda',
-'nologin'                    => 'Wala ka pang patnugutan? $1.',
+'nologin'                    => "Wala ka pang patnugutan? '''$1'''.",
 'nologinlink'                => 'Lumikha ng kuwenta',
 'createaccount'              => 'Lumikha ng kuwenta',
-'gotaccount'                 => 'May kuwenta/patnugutan ka na ba? $1.',
+'gotaccount'                 => "May kuwenta/patnugutan ka na ba? '''$1'''.",
 'gotaccountlink'             => 'Lumagda',
 'createaccountmail'          => 'sa pamamagitan ng e-liham',
 'badretype'                  => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
@@ -733,7 +733,7 @@ Maaaring pagsaluhan ng ilang mga tagagamit ang ganyang adres ng IP.
 Kung isa kang hindi nagpapakilalang tagagamit at nakadaramang may mga walang saysay na puna/kumentong patungkol sa iyo, [[Special:UserLogin/signup|pakilikha ng isang kuwenta]] o [[Special:UserLogin|lumagda]] para maiwasan ang kalituhan o mapagkamalan ka bilang ibang hindi nakikilalang mga tagagamit sa hinaharap.",
 'noarticletext'                    => 'Kasalukuyang walang teksto sa loob ng pahinang ito.
 Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa loob iba pang mga pahina, 
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} maghanap sa kaugnay na mga talaan],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} maghanap sa kaugnay na mga talaan],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
 'userpage-userdoesnotexist'        => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
@@ -1059,7 +1059,7 @@ Maaari mong [[:\$1|likhain ang pahinang ito]].",
 'prevn-title'                      => 'Nakaraang $1 {{PLURAL:$1|resulta|mga resulta}}',
 'nextn-title'                      => 'Susunod na $1 {{PLURAL:$1|resulta|mga resulta}}',
 'shown-title'                      => 'Ipakita ang $1 {{PLURAL:$1|resulta|mga resulta}} na para sa bawat isang pahina',
-'viewprevnext'                     => 'Tingnan ($1) ($2) ($3)',
+'viewprevnext'                     => 'Tingnan ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Mga pagpipilian para sa paghahanap',
 'searchmenu-exists'                => "'''Mayroong pahinang may pangalang \"[[:\$1]]\" dito sa wiking ito'''",
 'searchmenu-new'                   => "'''Likhain ang pahinang \"[[:\$1]]\" sa wiking ito!'''",
@@ -1420,16 +1420,18 @@ Ang pinapahintulutang {{PLURAL:\$3|uri ng talaksan ay ang|mga uri ng talaksan ay
 ang talaksang ito ay $2.',
 'largefileserver'             => 'Mas malaki ang talaksan kaysa nakatakdang papahintulutan ng serbidor.',
 'emptyfile'                   => 'Mukhang walang laman ang talaksan (file) na ikinarga mo. Maaaring dahil ito sa maling pagkapasok ng pangalan ng talaksan.  Paki tingin kung gusto mo talagang ikarga ang talaksan na ito.',
-'fileexists'                  => "Mayroon ng talaksan na ganitong pangalan, paki tingin ang '''<tt>$1</tt>''' kung tiyak ka na babaguhin ito.",
-'filepageexists'              => "Ang pahina ng paglalarawan para sa talaksan na ito ay nalikha na sa '''<tt>$1</tt>''', ngunit walang talaksan na may ganitong pangalan.
+'fileexists'                  => "Mayroon ng talaksan na ganitong pangalan, paki tingin ang '''<tt>[[:$1]]</tt>''' kung tiyak ka na babaguhin ito.
+[[$1|thumb]]",
+'filepageexists'              => "Ang pahina ng paglalarawan para sa talaksan na ito ay nalikha na sa '''<tt>[[:$1]]</tt>''', ngunit walang talaksan na may ganitong pangalan.
 Lilitaw ang buod na ipapasok mo sa pahina ng paglalarawan.
 Para lumitaw ang buod mo doon, kailangan mong baguhin ito ng manwal.",
-'fileexists-extension'        => "Mayroon talaksan na ganitong pangalan:<br />
-Pangalan ng ikakargang talaksan: '''<tt>$1</tt>'''<br />
-Pangalan ng mayroon nang talaksan: '''<tt>$2</tt>'''<br />
+'fileexists-extension'        => "Mayroon talaksan na ganitong pangalan: [[$2|thumb]]
+* Pangalan ng ikakargang talaksan: '''<tt>[[:$1]]</tt>'''
+* Pangalan ng mayroon nang talaksan: '''<tt>[[:$2]]</tt>'''
 Pumili ng ibang pangalan.",
 'fileexists-thumb'            => "<center>'''Umiiral na talaksan'''</center>",
-'fileexists-thumbnail-yes'    => "Mukhang pinaliit ''(thumbnail)'' na larawan ang talaksan. Paki tingin ang talaksan '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Mukhang pinaliit ''(thumbnail)'' na larawan ang talaksan. [[$1|thumb]]
+Paki tingin ang talaksan '''<tt>[[:$1]]</tt>'''.
 Kung ang tinignan na talaksan ay ang kaparehong larawan ng orihinal na laki, hindi na kailangang magkarga ng panibagong ''thumbnail''.",
 'file-thumbnail-no'           => "Nagsisimula ang pangalan ng talaksan sa '''<tt>$1</tt>'''.  Tila ito'y isang larawan na may pinaliit na sukat''(thumbnail)''.
 Kung mayroon ang larawang ito ng pinakamataas na resolution, ikarga ito, kung hindi paki palitan ang pangalan ng talaksan.",

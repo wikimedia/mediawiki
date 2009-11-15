@@ -10,7 +10,6 @@
  * @author Kaszeba
  * @author Leinad
  * @author MinuteElectron
- * @author RobertL
  * @author Warszk
  * @author לערי ריינהארט
  */
@@ -319,10 +318,10 @@ Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=c
 'logout'                     => 'Wëlogùjë mie',
 'userlogout'                 => 'Wëlogòwanié',
 'notloggedin'                => 'Felëje logòwóniô',
-'nologin'                    => 'Ni môsz kònta? $1.',
+'nologin'                    => "Ni môsz kònta? '''$1'''.",
 'nologinlink'                => 'Ùsôdzë kònto',
 'createaccount'              => 'Założë nowé kònto',
-'gotaccount'                 => 'Masz ju kònto? $1.',
+'gotaccount'                 => "Masz ju kònto? '''$1'''.",
 'gotaccountlink'             => 'Wlogùjë',
 'createaccountmail'          => 'òb e-mail',
 'badretype'                  => 'Wprowadzone parole jinaczą sã midze sobą.',
@@ -507,7 +506,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'notitlematches'            => 'Ni nalazłé w titlach',
 'prevn'                     => 'wczasniészé $1',
 'nextn'                     => 'nôslédné $1',
-'viewprevnext'              => 'Òbaczë ($1) ($2) ($3).',
+'viewprevnext'              => 'Òbaczë ($1 {{int:pipe-separator}} $2) ($3).',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 słowò|$2 słowa|$2 słów}})',
 'search-section'            => '(dzél $1)',
 'search-interwiki-caption'  => 'Sosterné ùdbë',
@@ -621,7 +620,8 @@ Abë dodac lopk do starnë, ùżëjë ùniższegò lënka wedle nôslédnëch m�
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Lopk.ogg]]</nowiki></tt>''' òtemknie prosti lënk do lopka bez wëskrzënianiô sómegò lopka",
 'uploadlog'         => 'Lësta wladënków',
 'uploadlogpage'     => 'Dołączoné',
-'uploadlogpagetext' => 'Hewò je lësta slédno wladowónëch lopków.\\nWszëtczé gòdzënë tikają conë ùniwersalnégò czasë.',
+'uploadlogpagetext' => 'Hewò je lësta slédno wladowónëch lopków.
+Wszëtczé gòdzënë tikają conë ùniwersalnégò czasë.',
 'filename'          => 'Miono lopka',
 'filedesc'          => 'Òpisënk',
 'fileuploadsummary' => 'Pòdrechòwanié:',

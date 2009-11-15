@@ -282,10 +282,10 @@ Du geavaheaddjidovddaldat lea dál anus.
 'logout'                     => 'Čálligoađe olggos',
 'userlogout'                 => 'Čálligoađe olggos',
 'notloggedin'                => 'It leat čálligoahttan sisa',
-'nologin'                    => 'Jus dus ii vel leat geavaheaddjidovddaldat, sáhtat $1 dakkára.',
+'nologin'                    => "Jus dus ii vel leat geavaheaddjidovddaldat, sáhtat '''$1''' dakkára.",
 'nologinlink'                => 'ráhkadit',
 'createaccount'              => 'Ráhkat ođđa geavaheaddjidovddaldaga',
-'gotaccount'                 => 'Jus dus lea jo geavaheaddjidovddaldat, sáhtat $1.',
+'gotaccount'                 => "Jus dus lea jo geavaheaddjidovddaldat, sáhtat '''$1'''.",
 'gotaccountlink'             => 'čálligoahtit sisa',
 'createaccountmail'          => 'e-poasttain',
 'badretype'                  => 'Suollemassánit, maid čállet, eai leat seammalaganat.',
@@ -450,7 +450,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'rev-delundel'            => 'čájet dahje čiega',
 'revisiondelete'          => 'Sihko dahje máhcat veršuvnnaid',
 'revdelete-nooldid-title' => 'Ii veršuvdna',
-'revdelete-selected'      => "'''{{PLURAL:$2|Válljejuvvon veršuvdna|Válljejuvvon veršuvnnat}} siiddus '''$1:''''''",
+'revdelete-selected'      => "'''{{PLURAL:$2|Válljejuvvon veršuvdna|Válljejuvvon veršuvnnat}} siiddus [[:$1]]'''",
 'logdelete-selected'      => "'''{{PLURAL:$1|Válljejuvvon logmearkkastat|Válljejuvvon logmearkkastagat}}:'''",
 'revdelete-text'          => "'''Sihkojuvvon veršuvnnat oidnojit siiddu siidohistorjjás, muhto daid sisdoallu ii leat álmmolaš.'''
 
@@ -485,7 +485,7 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'nextn'                 => '$1 čuovvovaš →',
 'viewprevnext'          => 'Čájet [$3] oktanaga.
 
-$1 | $2',
+$1 {{int:pipe-separator}} $2',
 'searchhelp-url'        => 'Help:Rávvagat',
 'showingresults'        => "{{PLURAL:$1|'''Okta''' boađus|'''$1''' bohtosa}} bohtosa'''$2''' rájes.",
 'showingresultsnum'     => "Vuolábealde {{PLURAL:$3|lea '''okta''' ohcanboađus|leat '''$3''' ohcanbohtosa}} '''$2.''' bohtosa rájes.",
@@ -567,7 +567,7 @@ $1 | $2',
 # User rights log
 'rightslog'      => 'Logga geavaheaddjirievttiin',
 'rightslogtext'  => 'Vuolábealde lea logga geavaheaddjirivttiid rievdadusain.',
-'rightslogentry' => 'Geavaheaddji [[$1]] rievttit rievdaduvvoi joavkkuin $2 joavkkuide $3',
+'rightslogentry' => 'Geavaheaddji $1 rievttit rievdaduvvoi joavkkuin $2 joavkkuide $3',
 'rightsnone'     => '(eai rievttit)',
 
 # Recent changes

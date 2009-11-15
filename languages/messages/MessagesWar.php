@@ -57,6 +57,7 @@ $messages = array(
 'tog-minordefault'            => 'Tigamni an ngatanan nga mga pagliwat nga gudti hin default',
 'tog-previewontop'            => 'Igpakita in prevista o pan-ugsa-nga-lantaw ugsa hiton pagliwat nga kahon',
 'tog-previewonfirst'          => 'Igpakita in prevista o pan-ugsa-nga-lantaw ha syahan nga pagliwat',
+'tog-enotifrevealaddr'        => 'Igpakita an akon e-mail nga adres ha mga e-mail hin pagsumat',
 'tog-shownumberswatching'     => 'Igpakita an ihap han mga nangingita nga mga nagamit',
 'tog-watchlisthideown'        => 'Tago-a an akon mga ginliwat tikang han angay timan-an',
 'tog-watchlisthidebots'       => 'Tago-a an ginliwat hin bot tikang han angay timan-an',
@@ -270,9 +271,12 @@ $messages = array(
 'thisisdeleted'           => '¿Kitaa o balika in $1?',
 'viewdeleted'             => '¿Kitaa in $1?',
 'restorelink'             => '{{PLURAL:$1|usa nga ginpara nga pagliwat|$1 ka ginpara nga mga pagliwat}}',
+'red-link-title'          => '$1 (waray dida ini nga pakli)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikulo',
+'nstab-main'      => 'Pakli',
+'nstab-user'      => 'Pakli hin nágámit',
+'nstab-media'     => 'Pakli hin medya',
 'nstab-special'   => 'Ispisyal nga pakli',
 'nstab-project'   => 'Pakli han proyekto',
 'nstab-image'     => 'Fayl',
@@ -287,27 +291,29 @@ $messages = array(
 Bangin la, nagsayop ka pagmakinilya han URL, o sinmunod hin sayop nga sumpay.
 Bangin liwat ini usa nga bug dida han software nga ginagamit han {{SITENAME}}.',
 'nosuchspecialpage' => 'Waray sugad nga ispisyal nga pakli',
-'nospecialpagetext' => "<big>'''Naghangyo ka hin diri-puyde nga ispisyal nga pakli.'''</big>
+'nospecialpagetext' => '<strong>Naghangyo ka hin diri-puyde nga ispisyal nga pakli.</strong>
 
-In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].",
+In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'           => 'Sayop',
 'databaseerror'   => 'Sayop hin database',
-'dberrortext'     => 'Mayda nahinabo nga database nga kwery nga syntax nga sayop.
+'dberrortext'     => 'Mayda nahinabo nga sayop hin syntax ha database nga kwery.
 Bangin ini nagpapakita hin bug dida han softweyr.
 An kataposan nga ginsari nga database nga kweri amo in:
 <blockquote><tt>$1</tt></blockquote>
 tikang ha sakob han funsyon nga "<tt>$2</tt>".
-MySQL nagbalik hin sayop nga "<tt>$3: $4</tt>".',
-'dberrortextcl'   => 'Mayda nahinabo nga database nga kwery nga syntax nga sayop. 
-An kataposan nga ginsari nga database nga kweri amo in:
+Nagbalik an database hin sayop nga "<tt>$3: $4</tt>".',
+'dberrortextcl'   => 'Mayda nahitabo nga sayop hin syntax ha database nga kwery. 
+An kataposan nga ginsari nga kweri han database amo an:
 "$1"
 tikang ha sakob han funsyon nga "$2". 
-MySQL nagbalik hin sayop nga "$3: $4".',
+Nagbalik hin sayop an database nga "$3: $4"',
 'laggedslavemode' => 'Bantay: It pakli bangin waray mga kabag-ohan nga bag-o.',
 'readonly'        => 'Gintrankahan an database',
 'enterlockreason' => 'Pagbutang hin rason para han pagtrangka. upod hin banabana kon san-o kukuha-on an pagtrangka',
+'viewsource'      => 'Kitaa an ginkuhaan',
+'viewsourcefor'   => 'para han $1',
 
 # Login and logout pages
 'login'                   => 'Sakob',
@@ -330,7 +336,7 @@ MySQL nagbalik hin sayop nga "$3: $4".',
 # Search results
 'prevn'          => 'naha-una nga $1',
 'nextn'          => 'sunod nga $1',
-'viewprevnext'   => 'Kitaa an ($1) ($2) ($3)',
+'viewprevnext'   => 'Kitaa an ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:Sulod',
 'powersearch'    => 'Bilnga',
 
@@ -410,6 +416,9 @@ MySQL nagbalik hin sayop nga "$3: $4".',
 # Delete
 'deletedtext' => 'Ginpara an "<nowiki>$1</nowiki>".
 Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
+
+# Protect
+'restriction-type' => 'Pagtugot:',
 
 # Contributions
 'mycontris' => 'Akon mga ámot',

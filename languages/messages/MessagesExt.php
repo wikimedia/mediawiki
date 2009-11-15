@@ -284,9 +284,9 @@ $messages = array(
 'nosuchactiontext'  => "Nu se puei realizal l'ación
 especificá ena URL",
 'nosuchspecialpage' => 'Nu desisti tal páhina especial',
-'nospecialpagetext' => "<big>'''Nu desisti esa páhina especial.'''</big>
+'nospecialpagetext' => '<strong>Nu desisti esa páhina especial.</strong>
 
-Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:SpecialPages]].",
+Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:SpecialPages]].',
 
 # General errors
 'error'                => 'Marru',
@@ -372,10 +372,10 @@ Ya está criá la tu cuenta. Alcuerdati de chambal las tus preferéncias al tent
 'logout'                     => 'Salil',
 'userlogout'                 => 'Salil',
 'notloggedin'                => "Nu t'alcuentras rustriu",
-'nologin'                    => 'Entovia nu tiinis una cuenta? $1.',
+'nologin'                    => "Entovia nu tiinis una cuenta? '''$1'''.",
 'nologinlink'                => 'Cria una',
 'createaccount'              => 'Crial cuenta',
-'gotaccount'                 => 'Ya tiinis una cuenta? $1.',
+'gotaccount'                 => "Ya tiinis una cuenta? '''$1'''.",
 'gotaccountlink'             => 'Entral',
 'createaccountmail'          => 'pol e-mail',
 'badretype'                  => 'Las consínias nu conciin.',
@@ -536,7 +536,7 @@ Si nu quieis crial esti artículu, solu tiinis que pursal nel botón \"'''atrás
 'anontalkpagetext'                 => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á criau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'án derihiu a tí con cosas que nu vinin a cuentu, pol favol [[Special:UserLogin|cria una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
 'noarticletext'                    => 'Entovia nu ai dengún testu escrebiu nesta páhina.
 Pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu del artículu]] en otras páhinas,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
 u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuáriu "$1" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.',
 'clearyourcache'                   => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la páhina pa vel los chambus. *'''Mozilla:''' Pursa ''ctrl-shift-r'' *'''Internet Explorer:''' Pursa ''ctrl-f5'' *'''Safari:''' Pursa ''cmd-shift-r'' *'''Konqueror:''' Pursa ''f5'' *'''Opera:''' Los usuárius d'Opera nesezitarás esborral totalmenti el caché en ''Herramientas→Preferéncias''.",
@@ -742,7 +742,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'notextmatches'             => 'Nu desistin conciéncias con el testu el artículu',
 'prevn'                     => '$1 anterioris',
 'nextn'                     => '$1 siguientis',
-'viewprevnext'              => 'Vel ($1) ($2) ($3).',
+'viewprevnext'              => 'Vel ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'            => 'Help:Continius',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 letra|$2 letras}})',
 'search-result-score'       => 'Emportáncia: $1%',
@@ -974,14 +974,17 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 'large-file'                  => 'Es recomendabri que los archivus nu seyan mayoris de $1; esti archivu ocupa $2.',
 'largefileserver'             => 'Esti archivu es mas grandi que lo premitiu pol el sirviol.',
 'emptyfile'                   => "El archivu qu'as ententau empuntal paci estal vaciu; pol favol, compreba que realmenti se trata el archivu que querias empuntal.",
-'fileexists'                  => "Ya desisti un archivu con esi nombri. Pol favol, compreba que realmenti quieis chambal el archivu '''<tt>$1</tt>'''.",
-'filepageexists'              => "Ya desisti un artículu con esi nombri, pol favol, compreba '''<tt>$1</tt>''' si nu estás siguru e querel chambalu.",
-'fileexists-extension'        => "Ya desisti un archivu con un nombri paiciu:<br />
-Nombri el archivu empuntau: '''<tt>$1</tt>'''<br />
-Nombri el archivu ya desistenti: '''<tt>$2</tt>'''<br />
+'fileexists'                  => "Ya desisti un archivu con esi nombri.
+Pol favol, compreba que realmenti quieis chambal el archivu '''<tt>[[:$1]]</tt>'''.
+[[$1|thumb]]",
+'filepageexists'              => "Ya desisti un artículu con esi nombri, pol favol, compreba '''<tt>[[:$1]]</tt>''' si nu estás siguru e querel chambalu.",
+'fileexists-extension'        => "Ya desisti un archivu con un nombri paiciu: [[$2|thumb]]
+* Nombri el archivu empuntau: '''<tt>[[:$1]]</tt>'''
+* Nombri el archivu ya desistenti: '''<tt>[[:$2]]</tt>'''
 Pol favol, lihi un nombri deferenti.",
 'fileexists-thumb'            => "<center>'''Esta imáhin ya desisti'''</center>",
-'fileexists-thumbnail-yes'    => "El archivu paci sel una imahin chiquenina ''(cuairu)''. Pol favol, compreba qu'el archivu '''<tt>$1</tt>''' nu es la mesma imahin.<br />
+'fileexists-thumbnail-yes'    => "El archivu paci sel una imahin chiquenina ''(cuairu)''. [[$1|thumb]]
+Pol favol, compreba qu'el archivu '''<tt>[[:$1]]</tt>''' nu es la mesma imahin.
 Nel chascu en que huera la mesm imahin (inque seya en grandi) nu es mestel qu'empuntis el tu archivu.",
 'file-thumbnail-no'           => "El nombri el archivu esmiença pol '''<tt>$1</tt>'''. Paci sel una imahin pequeña ''(cuairu)''.
 Si tiinis la imahin cola resolución orihinal, empúntala, si nu, pol favol, chamba el nombri del archivu.",
@@ -1420,7 +1423,7 @@ Velaquí las ocionis atualis la páhina '''$1''':",
 'protect-expiring'            => 'acabiha el $1 (UTC)',
 'protect-cascade'             => 'Protehel las páhinas encluias nesta páhina (proteción en "cascá")',
 'protect-cantedit'            => "Nu t'es posibri chambal el nivel de proteción desta páhina ebiu a que nu tienis los premisus nesezárius pa eitala.",
-'protect-expiry-options'      => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Premisus:',
 'restriction-level'           => 'Nivel de restrición:',
 'minimum-size'                => 'Grandol mén',
