@@ -2816,7 +2816,7 @@ $1',
 'sp-contributions-blocked-notice' => 'This user is currently blocked.
 The latest block log entry is provided below for reference:',
 'sp-contributions-search'         => 'Search for contributions',
-'sp-contributions-username'       => 'IP Address or username:',
+'sp-contributions-username'       => 'IP address or username:',
 'sp-contributions-submit'         => 'Search',
 'sp-contributions-explain'        => '', # only translate this message to other languages if you have to change it
 'sp-contributions-footer'         => '-', # do not translate or duplicate this message to other languages
