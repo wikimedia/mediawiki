@@ -2487,7 +2487,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Twissija''': Dan il-fajl jista' jkun fih kodiċi malinja, jekk tagħżel li tiftħu jista' jagħmel ħsara fis-sistema informatika tiegħek.<hr />",
-'imagemaxsize'         => "Daqs massimu tal-istampa:<br />''(għall-paġni ta' deskrizzjoni tal-fajl)''",
+'imagemaxsize'         => 'Daqs massimu tas-stampi fuq il-paġni relativi tad-diskussjoni:',
 'thumbsize'            => "Daqs ta' ''thumbnail'':",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paġna|paġni}}',
 'file-info'            => "(Dimensjoni: $1, tip ta' MIME: $2)",

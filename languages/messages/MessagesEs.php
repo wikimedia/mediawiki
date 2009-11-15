@@ -2586,7 +2586,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso.
 Ejecutarlo podría comprometer la seguridad de su equipo.<hr />",
-'imagemaxsize'         => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
+'imagemaxsize'         => 'Limitar imágenes en las páginas de descripción a:',
 'thumbsize'            => 'Tamaño de las vistas en miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:|página|páginas}}',
 'file-info'            => '(tamaño de archivo: $1; tipo MIME: $2)',

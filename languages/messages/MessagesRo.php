@@ -2559,7 +2559,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Atenţie''': Acest fişier poate conţine cod maliţios, executându-l, sistemul dvs. poate fi compromis.<hr />",
-'imagemaxsize'         => "Limita mărimii imaginilor:<br />''(pentru paginile de descriere)''",
+'imagemaxsize'         => 'Limitează imaginile pe paginile de descriere la:',
 'thumbsize'            => 'Mărime thumbnail:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagină|pagini}}',

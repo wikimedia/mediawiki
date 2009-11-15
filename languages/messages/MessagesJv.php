@@ -2328,7 +2328,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.<hr />",
-'imagemaxsize'         => "Wates ukuran gambar:<br />''(kanggo kaca dhèskripsi berkas)''",
+'imagemaxsize'         => 'Watesana ukuran gambar ing kaca dèskripsi berkas dadi:',
 'thumbsize'            => 'Ukuran gambar cilik (thumbnail):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
 'file-info'            => '(ukuran berkas: $1, tipe MIME: $2)',

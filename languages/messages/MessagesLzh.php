@@ -2199,7 +2199,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警'''：此檔型疑惡。行之恐諜也。<hr />",
-'imagemaxsize'         => "述檔頁惟列：<br />''（用於檔）''",
+'imagemaxsize'         => '述檔頁惟列：',
 'thumbsize'            => '縮圖幅',
 'widthheight'          => '$1矩$2',
 'widthheightpage'      => '$1矩$2，共$3頁',

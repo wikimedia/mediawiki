@@ -2665,7 +2665,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájltípus kártékony kódot tartalmazhat.
 A futtatása során kárt tehet a számítógépedben.<hr />",
-'imagemaxsize'         => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
+'imagemaxsize'         => 'A kép leírólapján mutatott legnagyobb képméret:',
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
 'file-info'            => '(fájlméret: $1, MIME-típus: $2)',

@@ -1045,7 +1045,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'revdelete-submit'               => 'De esillecteren versie toepassen',
 'revdelete-logentry'             => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'             => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
-'revdelete-success'              => 'Zichbaorheid van de wieziging succesvol in-esteld.',
+'revdelete-success'              => "'''De zichbaorheid van de wieziging is bie-ewörken.'''",
 'logdelete-success'              => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
 'revdel-restore'                 => 'Zichbaorheid wiezigen',
 'pagehist'                       => 'Paginageschiedenisse',
@@ -2619,7 +2619,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Waorschuwing:''' dit bestaand bevat meschien codering dee slich is veur 't systeem. <hr />",
-'imagemaxsize'         => 'Grootte van ofbeeldingen beteunen:',
+'imagemaxsize'         => 'Maximumgrootte van ofbeeldingen op de beschrievingspagina:',
 'thumbsize'            => "Grootte van 't ofbeeldingsoverzichte (thumbnail):",
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'            => 'Bestaansgrootte: $1, MIME-type: $2',

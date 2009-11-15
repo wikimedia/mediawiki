@@ -2425,7 +2425,7 @@ $1",
 # Media information
 'mediawarning'         => "'''Atension!''': st'archivi-sì a podrìa avèj andrinta dël còdes butà-lì da cheidun për fé ëd darmagi.
 An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a sò sistema.<hr />",
-'imagemaxsize'         => "Lìmit ëd la dimension ëd la figura:<br /> ''(për pàgine ëd descrission dij file)''",
+'imagemaxsize'         => 'Ten le figure andrinta a le pàgine ëd descrission dle figure ant ël lìmit ëd:',
 'thumbsize'            => 'Amzura dle figurin-e:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgine}}',
 'file-info'            => "(amzura dl'archivi: $1, sòrt MIME: $2)",

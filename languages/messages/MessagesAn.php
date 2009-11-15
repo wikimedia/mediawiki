@@ -2400,7 +2400,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Pare cuenta''': Iste archibo puede contener codigo endino; si l'executa, podría meter en un contornillo a seguridat d'o suyo sistema.<hr />",
-'imagemaxsize'         => "Limite de grandaria d'as imáchens:<br />''(ta pachinas de descripzión de fichers)''",
+'imagemaxsize'         => "Limitar as imachens en as pachinas de descripzión d'archibos á:",
 'thumbsize'            => "Midas d'a miniatura:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pachina|pachinas}}',
 'file-info'            => "(grandaria de l'archibo: $1; tipo MIME: $2)",

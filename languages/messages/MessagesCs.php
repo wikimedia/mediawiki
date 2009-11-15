@@ -2560,7 +2560,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 
 # Metadata
 'nodublincore'      => 'Na tomto serveru je vypnuto generování metadat Dublin Core RDF.',
-'nocreativecommons' => 'Na tomto server je vypnuto generování metadat Creative Commons RDF.',
+'nocreativecommons' => 'Na tomto serveru je vypnuto generování metadat Creative Commons RDF.',
 'notacceptable'     => 'Tento wiki server není schopen poskytnout data ve formátu, který by váš klient byl schopen přečíst.',
 
 # Attribution
@@ -2646,8 +2646,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Upozornění''': Tento typ souboru může obsahovat škodlivý kód.
 Otevřením souboru můžete ohrozit svůj počítač.<hr />",
-'imagemaxsize'         => "Maximální velikost obrázku:<br />
-''(na stránce s popisem souboru)''",
+'imagemaxsize'         => 'Omezit obrázky na stránkách s popiskem na:',
 'thumbsize'            => 'Velikost náhledu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
 'file-info'            => '(velikost souboru: $1, MIME typ: $2)',

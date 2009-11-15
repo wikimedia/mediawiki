@@ -2472,7 +2472,7 @@ $1',
 # Media information
 'mediawarning'         => "'''警告'''：呢個檔案類型可能有一啲惡意嘅程式編碼。
 如果執行佢嘅話，你嘅系統可能會被波及。<hr />",
-'imagemaxsize'         => "圖像大細限制:<br />''(用響檔案描述頁)''",
+'imagemaxsize'         => '限制檔案述頁中嘅圖像細到：',
 'thumbsize'            => '縮圖大細：',
 'widthheightpage'      => '$1×$2, $3版',
 'file-info'            => '(檔案大細：$1 ，MIME類型：$2)',

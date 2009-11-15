@@ -2559,7 +2559,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Varoitus''': Tämä tiedostomuoto saattaa sisältää vahingollista koodia.
 Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",
-'imagemaxsize'         => 'Kuvien enimmäiskoko kuvaussivuilla',
+'imagemaxsize'         => 'Kuvien enimmäiskoko kuvaussivuilla:',
 'thumbsize'            => 'Pikkukuvien koko',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',
 'file-info'            => '$1, MIME-tyyppi: $2',

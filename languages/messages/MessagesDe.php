@@ -2697,7 +2697,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Warnung:''' Dieser Dateityp kann böswilligen Programmcode enthalten.
 Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.<hr />",
-'imagemaxsize'         => "Maximale Bildgröße:<br />''(für Dateibeschreibungsseiten)''",
+'imagemaxsize'         => 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
 'thumbsize'            => 'Standardgröße der Vorschaubilder (Thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
 'file-info'            => '(Dateigröße: $1, MIME-Typ: $2)',

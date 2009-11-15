@@ -2632,7 +2632,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ova datoteka možda sadrži zlonamjerni program čije bi izvršavanje moglo ugroziti vaš računalni sustav.
 <hr />",
-'imagemaxsize'         => "Ograniči veličinu slike:<br />''(za stranicu s opisom datoteke)''",
+'imagemaxsize'         => 'Ograniči veličinu slike na stranici s opisom:',
 'thumbsize'            => 'Veličina sličice (umanjene inačice slike):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice}}',
 'file-info'            => '(veličina datoteke: $1, MIME tip: $2)',

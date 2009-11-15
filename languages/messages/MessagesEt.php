@@ -2340,7 +2340,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Hoiatus''': See failitüüp võib sisaldada pahatahtlikku koodi.
 Selle avamine võib su arvutit kahjustada.<hr />",
-'imagemaxsize'         => "Maksimaalne pildi suurus:<br />''(faili kirjeldusleheküljel)''",
+'imagemaxsize'         => 'Maksimaalne faili suurus kirjelduslehekülgedel:',
 'thumbsize'            => 'Pisipildi suurus:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',
 'file-info'            => '(faili suurus: $1, MIME tüüp: $2)',

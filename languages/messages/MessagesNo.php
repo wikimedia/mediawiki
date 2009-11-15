@@ -2506,7 +2506,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne fila kan inneholde farlig kode.
 Ved å åpne den kan systemet ditt kompromitteres.<hr />",
-'imagemaxsize'         => "Bildestørrelsesgrense:<br />''(for filbeskrivelsessider)''",
+'imagemaxsize'         => 'Begrens bilder på filbeskrivelsessider til:',
 'thumbsize'            => 'Miniatyrbildestørrelse:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|én side|$3 sider}}',
 'file-info'            => '(filstørrelse: $1, MIME-type: $2)',

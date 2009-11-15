@@ -1776,7 +1776,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 # Media information
 'mediawarning'         => "'''İhtar''': Bu fayl türüniñ içinde yaman niyetli kod ola bile.
 Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.<hr />",
-'imagemaxsize'         => "Resim ölçüsi sıñırı:<br />''(fayl malümat saifeleri içün)''",
+'imagemaxsize'         => 'Resimlerniñ malümat saifelerindeki resimniñ azamiy (maksimal) ölçüsi:',
 'thumbsize'            => 'Kiçik ölçü:',
 'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1|$3}} saife',
 'file-info'            => '(fayl büyükligi: $1, MIME çeşiti: $2)',

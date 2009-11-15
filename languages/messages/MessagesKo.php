@@ -2603,7 +2603,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''경고''': 이 파일에 악성 코드가 포함되어 있을 수 있습니다. 파일을 실행하면 컴퓨터에 문제가 생길 가능성이 있습니다.<hr />",
-'imagemaxsize'         => "그림 최대 크기:<br />''(파일 문서에 적용되는 기능)''",
+'imagemaxsize'         => '파일 설명 문서의 그림 크기를 제한하기:',
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
 'file-info'            => '(파일 크기: $1, MIME 종류: $2)',

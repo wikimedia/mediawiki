@@ -2461,7 +2461,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnowanje''': Toś ten datajowy typ móžo wopśimjeś złosny programowy kod. Gaž toś ten kod se wuwjeźo, twój system móžo se wobškóźeś.<hr />",
-'imagemaxsize'         => "Maksimalna wobrazowa wjelikosć:<br />'' (za boki datajowego wopisanja)''",
+'imagemaxsize'         => 'Wobgranicuj wjelikosć wobrazow na bokach z wopisowanim wobrazow na:',
 'thumbsize'            => 'Rozměra miniaturow:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
 'file-info'            => '(wjelikosć dataje: $1, MIME-Typ: $2)',

@@ -2446,7 +2446,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Oharra''': Fitxategi honek kode mingarria izan lezake.
 Zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
-'imagemaxsize'         => "Irudiaren tamainaren muga:<br />''(fitxategi deskribapen-orrietarako)''",
+'imagemaxsize'         => 'Irudiak deskribapen-orrialdetan hurrengo tamainara txikitu:',
 'thumbsize'            => 'Irudi txikiaren tamaina:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|orrialde|orrialde}}',
 'file-info'            => '(fitxategiaren tamaina: $1, MIME mota: $2)',

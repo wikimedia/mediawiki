@@ -1279,7 +1279,7 @@ Ti pos vesair il code-fundamental.',
 'nextdiff'     => 'versiun pli nova →',
 
 # Media information
-'imagemaxsize'         => "Grondezza maximala da maletgs:<br />''(per paginas da descripziun da datotecas)''",
+'imagemaxsize'         => 'Grondezza maximala per maletgs sin paginas da descripziun',
 'thumbsize'            => 'grondezza dals maletgs da prevista:',
 'file-info-size'       => '($1 × $2 pixels, grondezza da datoteca: $3, tip da MIME: $4)',
 'file-nohires'         => '<small>Nagina resuluziun pli auta disponibla.</small>',
