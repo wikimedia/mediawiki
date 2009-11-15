@@ -93,6 +93,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'আরতারে দিয়াপেঠাউরি ইমেইল মরাঙউ কপি আহান যাকগা',
 'tog-diffonly'                => 'ফারাকর তলে পাতাহানর বিষয়বস্তু নাদেখাদি',
 'tog-showhiddencats'          => 'আরুমে আসে থাকহানি ফংকর',
+'tog-norollbackdiff'          => 'রোলব্যাকর পিসে ফারাক না দেখাদি',
 
 'underline-always'  => 'হারি সময়',
 'underline-never'   => 'সুপৌনা',
@@ -158,18 +159,22 @@ $messages = array(
 'dec'           => 'ডিসে',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|থাক|থাকহানি}}',
-'category_header'          => '"$1" বিষয়রথাকে আসে নিবন্ধহানি',
-'subcategories'            => 'উপথাক',
-'category-media-header'    => '"$1" থাকর মিডিয়া',
-'category-empty'           => "''এরে থাক এহাত এবাকা কোন পাতা বা মিডিয়া নেই''",
-'hidden-categories'        => '{{PLURAL:$1|গুরিসি থাকহান|গুরিসি থাকহানি}}',
-'hidden-category-category' => 'আরুম করিসি থাকহানি',
-'category-subcat-count'    => '{{PLURAL:$2|এরে বিষয়থাকে হুদ্দা তলর উপবিষয়থাকহানি আসে।|এরে বিষয় থাকে তিলসে মোট $2হান উপবিষয়থাকর মা  {{PLURAL:$1|হান উপবিষয়থাক|$1হান উপবিষয়থাক}} তলে দেহানি ইল।}}',
-'category-article-count'   => '{{PLURAL:$2|এরে বিষয়থাকে হুদ্দা তলর পাতাহান আসে।|এরে বিষয়থাকে তিলসে মোট $2হান পাতার মা {{PLURAL:$1|হান পাতা|$1হান পাতা}} তলে দেখাদেনা ইল।}}',
-'listingcontinuesabbrev'   => 'চলতই',
-'index-category'           => 'ইনডেক্স করিসি পাতাহানি',
-'noindex-category'         => 'ইনডেক্স নাকরিসি পাতাহানি',
+'pagecategories'                 => '{{PLURAL:$1|থাক|থাকহানি}}',
+'category_header'                => '"$1" বিষয়রথাকে আসে নিবন্ধহানি',
+'subcategories'                  => 'উপথাক',
+'category-media-header'          => '"$1" থাকর মিডিয়া',
+'category-empty'                 => "''এরে থাক এহাত এবাকা কোন পাতা বা মিডিয়া নেই''",
+'hidden-categories'              => '{{PLURAL:$1|গুরিসি থাকহান|গুরিসি থাকহানি}}',
+'hidden-category-category'       => 'আরুম করিসি থাকহানি',
+'category-subcat-count'          => '{{PLURAL:$2|এরে বিষয়থাকে হুদ্দা তলর উপবিষয়থাকহানি আসে।|এরে বিষয় থাকে তিলসে মোট $2হান উপবিষয়থাকর মা  {{PLURAL:$1|হান উপবিষয়থাক|$1হান উপবিষয়থাক}} তলে দেহানি ইল।}}',
+'category-subcat-count-limited'  => 'এরে বিষয়থাকে তলর {{PLURAL:$1|হান উপবিষয়থাক|$1হান উপবিষয়থাক আসে}}',
+'category-article-count'         => '{{PLURAL:$2|এরে বিষয়থাকে হুদ্দা তলর পাতাহান আসে।|এরে বিষয়থাকে তিলসে মোট $2হান পাতার মা {{PLURAL:$1|হান পাতা|$1হান পাতা}} তলে দেখাদেনা ইল।}}',
+'category-article-count-limited' => 'এরে {{PLURAL:$1|পাতাহান|$1 পাতাহানি}} এরে বিষয়থাকে আসে।',
+'category-file-count'            => '{{PLURAL:$2|এরে বিষয়থাকে হুদ্দা তলর ফাইলগ আসে।|এরে বিষয়থাকে তলে {{PLURAL:$1|গ ফাইল|$1 গি ফাইল}} আসে, হাবিয়ে $2 গর মা।}}',
+'category-file-count-limited'    => 'তলে {{PLURAL:$1|গ ফাইল|$1 গি ফাইল}} এরে বিষয়থাকে আসে।',
+'listingcontinuesabbrev'         => 'চলতই',
+'index-category'                 => 'ইনডেক্স করিসি পাতাহানি',
+'noindex-category'               => 'ইনডেক্স নাকরিসি পাতাহানি',
 
 'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল.'''</big>",
 'mainpagedocfooter' => 'উইকি সফটৱ্যার এহান আতানির বারে দরকার ইলে [http://meta.wikimedia.org/wiki/Help:Contents আতাকুরার গাইড]হানর পাঙলাক নেগা।
@@ -286,6 +291,11 @@ $messages = array(
 'jumpto'            => 'চঙদে:',
 'jumptonavigation'  => 'দিশা ধরানি',
 'jumptosearch'      => 'বিসারা',
+'view-pool-error'   => 'ঙাক্করবাং, সার্ভারগ এপাগা ওভারলোড অসে।
+আবকচা চাকুরাই আকপাকে চেইতারা।
+ডান্ড আহান বাসা পাতা এহান মেলানির কা।
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}র বারে',
@@ -311,6 +321,9 @@ $messages = array(
 'badaccess-group0' => 'তি যে কামহানর হেইচা করিসত, তরতা অহান করানির য়্যাথাং নেই।',
 'badaccess-groups' => 'তি যে কামহানর হেইচা করিসত, অহান হুদ্দা {{PLURAL:$2|দল এহানর|দলহানির যেকোন আহারতা}} করানির য়্যাথাং গ্রুপরতা আসে: $1।',
 
+'versionrequired'     => 'মিডিয়াউইকির $1 সংস্করণহান দরকার',
+'versionrequiredtext' => 'এরে পাতা এহান ব্যবহারর কা মিডিয়াউইকির $1 নং সংস্করণহান দরকার। [[Special:Version|সংস্করণ পাতা]] চা।',
+
 'ok'                      => 'চুমিসে',
 'retrievedfrom'           => "'$1' -ত্ত আনানি অসে",
 'youhavenewmessages'      => 'তরতা $1 ($2) আসে।',
@@ -328,7 +341,10 @@ $messages = array(
 'hidetoc'                 => 'মেথেল আরুম কর',
 'thisisdeleted'           => '$1 দেহাদে নাইলে বারো হঙকর?',
 'viewdeleted'             => '$1 দেহাদে?',
+'restorelink'             => '{{PLURAL:$1|পতা আহান পুসিসি|$1হান পতা পুসিসি}}',
 'feedlinks'               => 'ফিড:',
+'feed-invalid'            => 'গ্রাহক ফিডর অংতাহান চুম নাইসে।',
+'feed-unavailable'        => 'সিন্ডিকেশন ফিড পানা নাইব',
 'site-rss-feed'           => '$1 আরএসএস ফিড',
 'site-atom-feed'          => '$1 এটম ফিড',
 'page-rss-feed'           => '"$1" আরএসএস ফিড',
@@ -349,11 +365,18 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'এসাদে কোন কাম নেই',
+'nosuchactiontext'  => 'এরে ইউআরএল-র লেপকরা কামহান লালুইসে।
+তি হয়ত চুমনাইসে লিঙ্ক দিয়াসত নাইলে ইউআরএল লিখানিত লাল করিসত।
+এহান এসাদেউ মাতের যে {{SITENAME}}-ত ব্যবহার অসে সফটওয়্যারহানাত লালুইসে।',
 'nosuchspecialpage' => 'এসাদে কোন বিশেষ পাতা নেই',
+'nospecialpagetext' => '<strong>তি অবৈধ পাতা আহানর কা হেইচা করিসত।</strong>
+
+[[Special:SpecialPages|{{int:specialpages}}]]-এহানাত বৈধ পাতার লাতঙগ পেইতেই।',
 
 # General errors
 'error'                => 'লালুইসে',
 'databaseerror'        => 'ডাটাবেসর লাল',
+'laggedslavemode'      => "'''সিঙুইস:''' পাতা এহানাত হাদি এহানার পতানি নেই।",
 'readonly'             => 'ডাটাবেস গাথি লাগিসে',
 'missing-article'      => '"$1" $2 লেখাহান ডাটাবেজর কোন পাতাত বিসারিয়া নাপেইলাঙ।
 
@@ -384,6 +407,9 @@ $messages = array(
 'actionthrottled'      => 'কামর গতিহান তাপকরানি',
 'viewsourcetext'       => 'পাতা এহানর উত্স চা বারো কপি করে পারর:',
 'protectedinterface'   => 'পাতা এহানর মেথেল উইকি সফটওয়্যারর ইন্টারফেসর পৌহান দের, অহানে এহানরে ইতু করিয়া থনা অসে এবিউসেত্ত ঙাক্করানির কাজে।',
+'namespaceprotected'   => "'''$1''' নাঙর থাকে কোন পাতা পতানিরকা তরতা য়্যাথাং নেই।",
+'customcssjsprotected' => 'এর পাতা এহান পতানিরকা তরতা য়্যাথাং নেই, কিদিয়া বুল্লে আরাক আতাকুরা আগর ব্যক্তিগত বিষয়ররবস্তু আসে।',
+'ns-specialprotected'  => '{{ns:special}} নাঙর থাকে কোন পাতা পতানি নাইব।',
 
 # Login and logout pages
 'welcomecreation'            => '==সম্ভাষা, $1! ==
@@ -436,9 +462,15 @@ $messages = array(
 'acct_creation_throttle_hit' => 'ঙাক্করেদিবাং, তি এবাকাপেয়া $1হান অ্যাকাউন্ট হংকরেবেলাসত৷ অতাত্ত বপ হঙকরানির য়্যাথাং নেই।৷',
 'accountcreated'             => 'একাউন্টহান হঙকরানি ইল',
 'accountcreatedtext'         => 'আতাকুরা $1 -র কা একাউন্টহান হঙকরানি ইল।',
+'createaccount-title'        => '{{SITENAME}}-র কা অ্যাকাউন্ট হঙকরানি',
+'loginlanguagelabel'         => 'ঠার: $1',
 
 # Password reset dialog
-'retypenew' => 'নুৱা খন্তাচাবি বারো টাইপ কর:',
+'resetpass'        => 'খন্তাচাবি সিলকরানি',
+'resetpass_header' => 'খন্তাচাবি সিলকর',
+'oldpassword'      => 'পুরানা খন্তাচাবি:',
+'newpassword'      => 'নুৱা খন্তাচাবি:',
+'retypenew'        => 'নুৱা খন্তাচাবি বারো টাইপ কর:',
 
 # Edit page toolbar
 'bold_sample'     => 'গাঢ়পা ৱাহি',
@@ -543,10 +575,22 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 খেন্তাম $2 ত',
 
 # Revision deletion
-'rev-delundel'   => 'ফঙ/আরুম কর',
-'revdel-restore' => 'দৃষ্টিপাত সিলকর',
+'rev-delundel'               => 'ফঙ/আরুম কর',
+'rev-showdeleted'            => 'দেহাদে',
+'revdelete-show-file-submit' => 'হায়',
+'revdel-restore'             => 'দৃষ্টিপাত সিলকর',
+'pagehist'                   => 'পাতার ইতিহাসহান',
+'deletedhist'                => 'ইতিহাসহান পুস',
+'revdelete-content'          => 'বিষয়বস্তু',
+'revdelete-summary'          => 'সারাংশ পতানি',
+'revdelete-uname'            => 'আতাকুরা',
+'revdelete-reasonotherlist'  => 'আরাক কারণ',
+
+# History merging
+'mergehistory-reason' => 'কারণ:',
 
 # Merge log
+'mergelog'    => 'সুপকরানির লগ',
 'revertmerge' => 'মিলাপ নাকরি',
 
 # Diffs
@@ -558,49 +602,72 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|হমবুকর রিভিসন আহান|$1 হমবুকর রিভিসন হানি}} দেহাদেনা এহাত না মিহিসে।)',
 
 # Search results
-'searchresults'             => 'বিসারলে অতার ফলাফল',
-'searchresults-title'       => '"$1" বিসারলে অতার ফলাফল',
-'searchresulttext'          => '{{SITENAME}} এ বিসারানিরকা আরাকউ পৌরকা [[{{MediaWiki:Helppage}}|{{int:help}}]] চা।',
-'searchsubtitle'            => 'তি বিসারলে \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" হান্ন অকরা হাব্বি পাতাহানি]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" র লগে তিলসে পাতাহানি]])',
-'searchsubtitleinvalid'     => "তি বিসারলেতা '''$1'''",
-'notitlematches'            => 'কোন পাতার চিঙনাঙর মিল নাপেইলাঙ',
-'notextmatches'             => 'পাতাহার লেখার লগে মিল নেই',
-'prevn'                     => 'পিসেদে {{PLURAL:$1|$1}}',
-'nextn'                     => 'থাংনাত {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'চা ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url'            => 'Help:পাংলাক',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 ৱাহি|$2 ৱাহিহানি}})',
-'search-redirect'           => '(বারোআলথক $1)',
-'search-section'            => '(অনুচ্ছেদ $1)',
-'search-suggest'            => 'তি হয়ত মাতানি চারতা: $1',
-'search-interwiki-caption'  => 'বনক প্রকল্পহানি',
-'search-interwiki-default'  => '$1 ফলাফলহানি:',
-'search-interwiki-more'     => '(আরাকউ)',
-'search-mwsuggest-enabled'  => 'পরামর্শল',
-'search-mwsuggest-disabled' => 'পরামর্শ নেই',
-'nonefound'                 => "'''নোট''': অকরাতই হুদ্দা কতহান নাঙরফাম বিসারানি অসিল।
+'searchresults'                  => 'বিসারলে অতার ফলাফল',
+'searchresults-title'            => '"$1" বিসারলে অতার ফলাফল',
+'searchresulttext'               => '{{SITENAME}} এ বিসারানিরকা আরাকউ পৌরকা [[{{MediaWiki:Helppage}}|{{int:help}}]] চা।',
+'searchsubtitle'                 => 'তি বিসারলে \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" হান্ন অকরা হাব্বি পাতাহানি]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" র লগে তিলসে পাতাহানি]])',
+'searchsubtitleinvalid'          => "তি বিসারলেতা '''$1'''",
+'notitlematches'                 => 'কোন পাতার চিঙনাঙর মিল নাপেইলাঙ',
+'notextmatches'                  => 'পাতাহার লেখার লগে মিল নেই',
+'prevn'                          => 'পিসেদে {{PLURAL:$1|$1}}',
+'nextn'                          => 'থাংনাত {{PLURAL:$1|$1}}',
+'viewprevnext'                   => 'চা ($1 {{int:pipe-separator}} $2) ($3)',
+'searchhelp-url'                 => 'Help:পাংলাক',
+'searchprofile-images'           => 'মাল্টিমিডিয়া',
+'searchprofile-everything'       => 'হাব্বি',
+'searchprofile-advanced'         => 'উচ্চতর',
+'searchprofile-articles-tooltip' => '$1 এহাত বিসারা',
+'searchprofile-project-tooltip'  => '$1 এহাত বিসারা',
+'searchprofile-images-tooltip'   => 'ফাইল বিসারা',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 ৱাহি|$2 ৱাহিহানি}})',
+'search-redirect'                => '(বারোআলথক $1)',
+'search-section'                 => '(অনুচ্ছেদ $1)',
+'search-suggest'                 => 'তি হয়ত মাতানি চারতা: $1',
+'search-interwiki-caption'       => 'বনক প্রকল্পহানি',
+'search-interwiki-default'       => '$1 ফলাফলহানি:',
+'search-interwiki-more'          => '(আরাকউ)',
+'search-mwsuggest-enabled'       => 'পরামর্শল',
+'search-mwsuggest-disabled'      => 'পরামর্শ নেই',
+'searchall'                      => 'হাব্বি',
+'nonefound'                      => "'''নোট''': অকরাতই হুদ্দা কতহান নাঙরফাম বিসারানি অসিল।
 তর বিসারানিহান ''all:'' ব্যবহার করিয়া হারি কন্টেন্টর মা বিসারানিরকা লেপকর (য়্যারির পাতা, মডেল আদি), নাইলে প্রিফিক্স হিসেবে তর হাদাপাসত নাঙলাম ব্যবহার কর।",
-'powersearch'               => 'এডভান্স বিসারানি',
-'powersearch-legend'        => 'উন্নত বিসারানি',
-'powersearch-ns'            => 'নেমস্পেসর মা বিসারা:',
-'powersearch-redir'         => 'বারোআলথকর লাতঙগ',
-'powersearch-field'         => 'কা বিসারা',
+'powersearch'                    => 'এডভান্স বিসারানি',
+'powersearch-legend'             => 'উন্নত বিসারানি',
+'powersearch-ns'                 => 'নেমস্পেসর মা বিসারা:',
+'powersearch-redir'              => 'বারোআলথকর লাতঙগ',
+'powersearch-field'              => 'কা বিসারা',
+'powersearch-togglenone'         => 'কিত্তাউ নেই',
+
+# Quickbar
+'qbsettings-none' => 'কিত্তাউ নেই',
 
 # Preferences page
-'preferences'         => 'পছনহানি',
-'mypreferences'       => 'মর পছন',
-'changepassword'      => 'খন্তাচাবি(password) পতা',
-'skin-preview'        => 'আগচা',
-'saveprefs'           => 'ইতু',
-'columns'             => 'দুরগিঃ',
-'allowemail'          => 'আরতা(ব্যবহার করেকুরা)ই ইমেইল করানির য়্যাথাং দে।',
-'youremail'           => 'ই-মেইল *:',
-'yourrealname'        => 'আৱৈপা নাংহান *:',
-'yourlanguage'        => 'ঠারহান:',
-'yournick'            => 'দাহানির নাংহান:',
-'email'               => 'ইমেইল',
-'prefs-help-realname' => 'আয়ৌপা নাংহান নাদলেউ চলের।
+'preferences'             => 'পছনহানি',
+'mypreferences'           => 'মর পছন',
+'changepassword'          => 'খন্তাচাবি(password) পতা',
+'skin-preview'            => 'আগচা',
+'saveprefs'               => 'ইতু',
+'columns'                 => 'দুরগিঃ',
+'timezoneregion-america'  => 'আমেরিকা',
+'timezoneregion-asia'     => 'এশিয়া',
+'timezoneregion-atlantic' => 'আটলান্টিক মহাসাগর',
+'allowemail'              => 'আরতা(ব্যবহার করেকুরা)ই ইমেইল করানির য়্যাথাং দে।',
+'prefs-files'             => 'ফাইল',
+'youremail'               => 'ই-মেইল *:',
+'yourrealname'            => 'আৱৈপা নাংহান *:',
+'yourlanguage'            => 'ঠারহান:',
+'yournick'                => 'দাহানির নাংহান:',
+'gender-male'             => 'মুনি',
+'gender-female'           => 'জেলা',
+'email'                   => 'ইমেইল',
+'prefs-help-realname'     => 'আয়ৌপা নাংহান নাদলেউ চলের।
 যদি তি দের অতাইলে তর কামর থাকাত দেনাত সুবিধা অইতই।',
+'prefs-advancedediting'   => 'উচ্চতর অপশন',
+'prefs-advancedrc'        => 'উচ্চতর অপশন',
+'prefs-advancedrendering' => 'উচ্চতর অপশন',
+'prefs-advancedwatchlist' => 'উচ্চতর অপশন',
+'prefs-display'           => 'দেহাদেনার অপশন',
+'prefs-diffs'             => 'ফারাক',
 
 # Groups
 'group-sysop' => 'ডান্ডিকরেকুরাগি',
@@ -669,6 +736,7 @@ $messages = array(
 'uploaderror'         => 'আপলোড করানিত লালুইসে',
 'uploadlog'           => 'আপলোডর লগ',
 'uploadlogpage'       => 'আপলোড করিসি লগ',
+'filename'            => 'ফাইলর নাঙ',
 'filedesc'            => 'সারাংশ',
 'fileuploadsummary'   => 'সারাংশ:',
 'filereuploadsummary' => 'ফাইল সিলপাহানি:',
@@ -1170,14 +1238,20 @@ $messages = array(
 * isospeedratings
 * focallength',
 
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-n' => 'গাথিগি',
+
 # External editor support
 'edit-externally'      => 'এর ফাইল এগ পতানির কা বারেদের এপ্লিকেশন আতা',
 'edit-externally-help' => 'আরাকউ হারপানির কা [http://www.mediawiki.org/wiki/Manual:External_editors সেটাপর নির্দেশহানি] চা।',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'হাব্বি',
-'namespacesall' => 'হাব্বি',
-'monthsall'     => 'হাব্বি',
+'recentchangesall' => 'হাব্বি',
+'imagelistall'     => 'হাব্বি',
+'watchlistall2'    => 'হাব্বি',
+'namespacesall'    => 'হাব্বি',
+'monthsall'        => 'হাব্বি',
+'limitall'         => 'হাব্বি',
 
 # E-mail address confirmation
 'confirmemail'            => 'ই-মেইল ঠিকানাহান লেপকর',
@@ -1192,6 +1266,21 @@ $messages = array(
 'confirm_purge_button' => 'চুমিসে',
 'confirm-purge-top'    => 'পাতা এহানর ক্যাশহান ঙক্ষি করানি মনারতা?',
 
+# Multipage image navigation
+'imgmultipageprev' => '← আগেকার পাতাহান',
+'imgmultipagenext' => 'থাঙনার পাতাহান →',
+'imgmultigo'       => 'হাত!',
+'imgmultigoto'     => '$1 পাতাহাত যাগা',
+
+# Table pager
+'ascending_abbrev'         => 'কাহানি',
+'descending_abbrev'        => 'লামানি',
+'table_pager_next'         => 'থাঙনার পাতাহান',
+'table_pager_prev'         => 'আগাকার পাতাহান',
+'table_pager_first'        => 'পয়লাকর পাতাহান',
+'table_pager_last'         => 'খামতলর পাতাহান',
+'table_pager_limit_submit' => 'হাত',
+
 # Auto-summaries
 'autoredircomment' => '[[$1]]-ত যানার বারো-র্নিদেশ করানি ইল',
 
@@ -1201,7 +1290,20 @@ $messages = array(
 'watchlisttools-raw'  => 'পেরকা তালাবির পাতা পতা',
 
 # Special:Version
-'version' => 'সংস্করন',
+'version'                  => 'সংস্করন',
+'version-specialpages'     => 'বিশেষ পাতাহানি',
+'version-other'            => 'হের',
+'version-hooks'            => 'কসিগি',
+'version-version'          => '(সংস্করণ $1)',
+'version-license'          => 'লাইসেন্স',
+'version-software'         => 'ইনস্টলঅসে সফটওয়্যার',
+'version-software-product' => 'পণ্য',
+'version-software-version' => 'সংস্করণ',
+
+# Special:FilePath
+'filepath'        => 'ফাইলর পথহান:',
+'filepath-page'   => 'ফাইল:',
+'filepath-submit' => 'পথ',
 
 # Special:SpecialPages
 'specialpages'             => 'বিশেষ পাতাহানি',
@@ -1210,10 +1312,51 @@ $messages = array(
 # Special:BlankPage
 'blankpage' => 'খালি পাতাহান',
 
+# Special:Tags
+'tag-filter'              => '[[Special:Tags|ট্যাগ]] সাকানি:',
+'tag-filter-submit'       => 'সাকানি',
+'tags-title'              => 'ট্যাগগি',
+'tags-intro'              => 'পাতা এহানাত পতানির টেগর পারেংহানি বারো অহার অর্থ দেনা অইল।',
+'tags-tag'                => 'ট্যাগর নাঙ',
+'tags-display-header'     => 'সিলকারির লাতঙে যেসারে আসে',
+'tags-description-header' => 'পুরা বর্ননা বারো অর্থ',
+'tags-hitcount-header'    => 'ট্যাগর সিলকরানি',
+'tags-edit'               => 'পতা',
+'tags-hitcount'           => '$1 {{PLURAL:$1|ফারাক|ফারাকহানি}}',
+
+# Database error messages
+'dberr-header'      => 'উইকি এহানাত সমস্যা ইসে',
+'dberr-problems'    => 'ঙাক্করে দিবাঙ! সাইট এহানাত টেকনিক্যাল সমস্যা ইসে।',
+'dberr-again'       => 'রিলোড আনার কা ডান্ড আহান বাসা।',
+'dberr-info'        => '(ডাটা সার্ভারর লগে যোগাযোগ নেয়সে: $1)',
+'dberr-usegoogle'   => 'হের অহাত তি গুগুলসে বিসারা পারর।',
+'dberr-outofdate'   => 'সুচীক্রম অহান আপটুডেট নাইসে।',
+'dberr-cachederror' => 'এহান ক্যাস পাতাহানে, অহানে আপটুডেট না থাইব।',
+
+# HTML forms
+'htmlform-invalid-input'       => 'তি বরিলে লেখা অতার মা লালুইসে',
+'htmlform-select-badoption'    => 'তি দিলে সংখ্যা অহান লেপকরিসি অপসনহান নাবে।',
+'htmlform-int-invalid'         => 'তি দিলে সংখ্যা অহান নম্বরগ নাবে।',
+'htmlform-float-invalid'       => 'তি দিলে সংখ্যা অহান সংখ্যাহান নাবে।',
+'htmlform-int-toolow'          => 'তি দিলে সংখ্যা অহান লেপকরিসি সংখ্যা $1ত্ত হুরকা ইসে',
+'htmlform-int-toohigh'         => 'তি দিলে সংখ্যা অহান লেপকরিসি সংখ্যা $1ত্ত ডাঙর ইসে',
+'htmlform-submit'              => 'জমাদে',
+'htmlform-reset'               => 'পতানিহান আলকর',
+'htmlform-selectorother-other' => 'আরাক',
+
 # Add categories per AJAX
-'ajax-add-category-submit' => 'তিলকর',
-'ajax-confirm-save'        => 'ইতুকর',
-'ajax-error-title'         => 'লালুইসে',
-'ajax-error-dismiss'       => 'চুমিল',
+'ajax-add-category'            => 'বিষয়রথাক তিলকর',
+'ajax-add-category-submit'     => 'তিলকর',
+'ajax-confirm-title'           => 'কামহান লেপকর',
+'ajax-confirm-prompt'          => 'তি পতাসি অতার সারসংক্ষেপ তলে দেনা পারর।
+"ইতু" খুথামগত যাতা ইতু করানির কা।',
+'ajax-confirm-save'            => 'ইতুকর',
+'ajax-add-category-summary'    => 'বিষয়থাক  "$1" থাক',
+'ajax-remove-category-summary' => 'বিষয়থাক "$1" পুস',
+'ajax-confirm-actionsummary'   => 'থকিসে কাম:',
+'ajax-error-title'             => 'লালুইসে',
+'ajax-error-dismiss'           => 'চুমিল',
+'ajax-remove-category-error'   => 'বিষয়রথাক এহান পুসানি নাইব।
+এহান অরতা সাধারণত বিষয়রথাকহান পাতাহানর মডেলর মা মিহিলে।',
 
 );

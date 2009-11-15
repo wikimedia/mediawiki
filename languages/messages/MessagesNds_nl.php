@@ -1080,8 +1080,8 @@ Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummep
 'revdelete-submit'            => 'Toepassen op de ekeuzen {{PLURAL:$1|bewarking|bewarkingen}}',
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
-'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
-'revdelete-failure'           => "'''De zichbaorheid veur de versie kon neet in-esteld wonnen:'''
+'revdelete-success'           => "'''De zichbaorheid van de wieziging is bie-ewörken.'''",
+'revdelete-failure'           => "'''De zichbaorheid veur de wieziging kon neet bie-ewörken wönnen:'''
 $1",
 'logdelete-success'           => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
 'logdelete-failure'           => "'''De zichbaorheid van de logboekregel kon neet in-esteld wonnen:'''

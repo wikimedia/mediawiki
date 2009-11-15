@@ -896,8 +896,8 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 'revdelete-submit'            => 'Lakaat da dalvezout evit an {{PLURAL:$1|adweladenn|adweladennoù}} diuzet',
 'revdelete-logentry'          => 'Cheñchet eo bet gweluster ar stumm evit [[$1]]',
 'logdelete-logentry'          => 'kemmet eo bet gweluster an darvoud evit [[$1]]',
-'revdelete-success'           => "'''Gweluster ar stummoù kaset da benn vat.'''",
-'revdelete-failure'           => "'''Dibosupl termeniñ gweluster ar stumm-mañ :'''
+'revdelete-success'           => "''Gweluster ar stummoù hizivaet mat.'''",
+'revdelete-failure'           => "''Dibosupl hizivaat gweluster ar stumm :'''
 $1",
 'logdelete-success'           => "'''Gweluster ar marilh arventennet evel m'eo dleet.'''",
 'logdelete-failure'           => "'''N'eus ket bet gallet termeniñ gweluster ar marilh :'''

@@ -320,8 +320,8 @@ $2',
 
 # Login and logout pages
 'welcomecreation'         => '== E komo mai, $1! ==
-Hoʻokumu ʻia i kou waihona.
-Mai poina e loli kāu makemake ma {{SITENAME}}.',
+Ua hoʻokumu ʻia kāu moʻokāki.
+Mai poina e hoʻololi i [[Special:Preferences|kāu makemake ma {{SITENAME}}]].',
 'yourname'                => "Inoa mea ho'ohana",
 'yourpassword'            => 'ʻŌlelo hūnā:',
 'yourpasswordagain'       => "Hua'ōlelo huna hou",
@@ -333,10 +333,10 @@ Mai poina e loli kāu makemake ma {{SITENAME}}.',
 'logout'                  => 'E haʻalele',
 'userlogout'              => 'E haʻalele',
 'notloggedin'             => 'Mai ‘e‘e',
-'nologin'                 => "ʻAʻohe āu waihona? '''$1'''.",
+'nologin'                 => "ʻAʻohe āu moʻokāki? '''$1'''.",
 'nologinlink'             => 'E kāinoa',
 'createaccount'           => 'E hana',
-'gotaccount'              => "He waihona kou ʻē? '''$1'''.",
+'gotaccount'              => "He moʻokāki kāu? '''$1'''.",
 'gotaccountlink'          => 'ʻEʻe',
 'createaccountmail'       => 'no ka leka uila',
 'userexists'              => 'Lilo ka inoa mea ho‘ohana.
@@ -391,14 +391,16 @@ hō‘ike ‘ia i lalo:",
 'loginreqlink'                     => 'ʻeʻe',
 'accmailtitle'                     => 'Ua ho‘ouna ‘ia ka hua‘ōlelo huna',
 'newarticle'                       => '(Hou)',
-'anontalkpagetext'                 => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:UserLogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
+'anontalkpagetext'                 => "----''‘O kēia ka ʻaoʻao kūkākūkā no kekahi mea ho‘ohana me ka moʻokāki ʻole. No laila, pono mākou e ho‘ohana i ka wahi noho IP no ka hōʻoia ʻana iā ia.
+Hiki i kekahi mau mea hoʻohana ke hoʻokaʻana i kēia wahi noho IP.
+Inā he mea ho‘ohana ʻoe a ua haʻi ʻia kekahi manaʻo iā ʻoe, [[Special:UserLogin/signup|e hoʻokumu ʻia kekahi moʻokāki]] a i ʻole [[Special:UserLogin|e ʻeʻe]].''",
 'noarticletext'                    => 'ʻAʻohe kikokikona a kēia ʻaoʻao.
-Hiki iā ʻoe ke [[Special:Search/{{PAGENAME}}|huli no kēia poʻo ʻaoʻao]] i nā ʻaoʻao ʻē aʻe, <span class="plainlinks">[{{fullurl:SpecialLog|page={{urlencode:{{FULLPAGENAME}}}}}} huli i nā moʻolelo pili], a i ʻole [{{fullurl:{{FULLPAGENAME}}|action=edit}} hoʻololi i kēia ʻaoʻao]</span>.',
+Hiki iā ʻoe ke [[Special:Search/{{PAGENAME}}|huli no kēia inoa ʻaoʻao]] i nā ʻaoʻao ʻē aʻe, <span class="plainlinks">[{{fullurl:SpecialLog|page={{urlencode:{{FULLPAGENAME}}}}}} huli i nā moʻolelo pili], a i ʻole [{{fullurl:{{FULLPAGENAME}}|action=edit}} hoʻololi i kēia ʻaoʻao]</span>.',
 'previewnote'                      => "'''‘O keia ka nāmua;
 ‘a‘ole i mālama ‘ia ka ho‘ololi!'''",
 'editing'                          => 'Ke ho‘ololi nei iā $1',
 'editingsection'                   => 'Ke ho‘opololei nei iā $1 (mahele)',
-'editingcomment'                   => 'Ke ho‘ololi nei iā $1 (mana‘o)',
+'editingcomment'                   => 'Ke ho‘ololi nei iā $1 (paukū hou)',
 'yourtext'                         => 'Ko‘u ‘ōlelo',
 'yourdiff'                         => 'Nā mea ‘oko‘a',
 'copyrightwarning'                 => "Hoʻokuʻu ʻia nā mea lūlū iā {{SITENAME}} ma lalo o ka $2 (no nā mea kikoʻī, kele iā $1).
@@ -477,6 +479,9 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'yourrealname'              => 'Inoa maoli:',
 'yourlanguage'              => 'Kou ʻōlelo:',
 'yournick'                  => 'Inoa kapakapa:',
+'yourgender'                => 'Keka:',
+'gender-male'               => 'Kāne',
+'gender-female'             => 'Wahine',
 'email'                     => 'Leka uila',
 'prefs-help-email-required' => 'Koina ka leka uila.',
 
@@ -795,7 +800,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 # Auto-summaries
 'autosumm-replace' => "Ke pani nei i ka ‘ao‘ao me '$1'",
 'autoredircomment' => 'Ke alaka‘i nei hou i [[$1]]',
-'autosumm-new'     => 'He ‘ao‘ao hou: $1',
+'autosumm-new'     => "Ua hoʻokumu ʻia kekahi ʻaoʻao me '$1'",
 
 # Live preview
 'livepreview-loading' => 'Ke ho‘ouka nei…',
