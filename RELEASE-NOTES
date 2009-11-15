@@ -19,11 +19,11 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.16 ===
-* $wgScriptModifiedMsgCheck Checks the mediawiki namespace recent changes to 
+* $wgScriptModifiedMsgCheck Checks the mediawiki namespace recent changes to
 ensure a updated urid for script-loader
 * $wgScriptModifiedCheck Checks script file modified time for unique request id)
-* $wgEnableAsyncDownload (lets you disable Async download for windows. 
-Hopefully we will remove this configuration var soon) 
+* $wgEnableAsyncDownload (lets you disable Async download for windows.
+Hopefully we will remove this configuration var soon)
 * $wgEnableFirefogg enable support for firefogg extension, firefogg supports
   in-browser transcoding, chunk uploads and client side hash checking.
 * $wgEnableTemporalOggUrls enable oggz_chop support a server side ogg seeking
@@ -140,8 +140,8 @@ Hopefully we will remove this configuration var soon)
   items)
 * Special:Search now could search terms in all variant-forms. ONLY apply on
   wikis enabled LanguageConverter.
-* Add autopromote condition APCOND_BLOCKED to autopromote blocked users to various
-  user groups.
+* Add autopromote condition APCOND_BLOCKED to autopromote blocked users to
+  various user groups.
 * Add $wgRevokePermissions as a means of restricting a group's rights. The
   syntax is identical to $wgGroupPermissions, but users in these groups will
   have these rights stripped from them.
@@ -248,16 +248,17 @@ Hopefully we will remove this configuration var soon)
 * (bug 16979) Tracking categories for __INDEX__ and __NOINDEX__
 * Two new hooks, ConfirmEmailComplete and InvalidateEmailComplete, which are
   called after a user's email has been successfully confirmed or invalidated.
-* (bug 19741) Moved the XCF files out of the main MediaWiki distribution, for 
+* (bug 19741) Moved the XCF files out of the main MediaWiki distribution, for
   a smaller subversion checkout.
 * (bug 13750) First letter capitalization can now be a per-namespace setting
 * (bug 21073) "User does not exist" message no longer displayed on sub-sub-pages
   of existing users
-* (bug 21095) Tracking categories produced by the parser (expensive parser function
-  limit exceeded, __NOINDEX__ tracking, etc) can now be disabled by setting the 
-  system message ([[MediaWiki:expensive-parserfunction-category]] etc) to "-".
+* (bug 21095) Tracking categories produced by the parser (expensive parser
+  function limit exceeded, __NOINDEX__ tracking, etc) can now be disabled by
+  setting the  system message ([[MediaWiki:expensive-parserfunction-category]]
+   etc) to "-".
 * Added maintenance script sqlite.php for SQLite-specific maintenance tasks.
-* Rewrote Special:Upload to allow easier extension. 
+* Rewrote Special:Upload to allow easier extension.
 * Upload errors that can be solved by changing the filename now do not require
   reuploading.
 * Added $wgRateLimitsExcludedIPs, to allow specific IPs to be whitelisted from
@@ -278,7 +279,7 @@ Hopefully we will remove this configuration var soon)
 * rebuildtextindex.php maintenance script now supports databases other than
   MySQL
 * upgrade1_5.php now requires to be run --update option to prevent confusion
-* (bug 17662) Customizable default preload/editintro in add-new-section link 
+* (bug 17662) Customizable default preload/editintro in add-new-section link
   for Talk page
 * Added checks for common coding mistakes to syntaxChecker.php
 * Updated Unicode normalization tables
@@ -332,8 +333,8 @@ Hopefully we will remove this configuration var soon)
 ** (bug 5363) Changes to default preferences now impact registered users.
 ** (bug 14806) Hook to enable putting preferences in existing tabs.
 ** (bug 17191) Registration date now listed on preferences page.
-** The user_properties table (now used for storing preferences) has been added to
-   $wgSharedTables.
+** The user_properties table (now used for storing preferences) has been added
+   to $wgSharedTables.
 ** Note that this change will break some extensions which have not been adapted
    for it.
 * (bug 17020) Adding fallback encodings for Traditional and Simplified Chinese
@@ -583,7 +584,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 20885) Search box no longer suggests unavailable special pages
 * (bug 20948) "Create this page" on Special:Search is no longer displayed when
   searching for special pages
-* (bug 20524) Hideuser: Show nice error when trying to block hidden user without 
+* (bug 20524) Hideuser: Show nice error when trying to block hidden user without
   hideuser right
 * (bug 21026) Fixed file redirects on shared repos on non-English client wikis
 * (bug 21030) Fixed schema choices from being overwritten by defining unique
@@ -618,13 +619,13 @@ Hopefully we will remove this configuration var soon)
   shared repository and only users with the 'reupload-shared' permission can
   complete the move.
 * (bug 18909) Add missing Postgres INSERT SELECT wrapper
-* User::isValidPassword now only returns boolean results, User::getPasswordValidity
-  can be used to get an error message string
+* User::isValidPassword now only returns boolean results,
+  User::getPasswordValidity can be used to get an error message string
 * The error message shown in Special:ChangePassword now parses wiki markup
 * (bug 19859) Removed experimental HTMLDiff feature
 * Removed section edit links in edit conflict form
 * Allow SpecialActiveusers to work on non-MySQL databases
-* (bug 6579) Fixed protecting images from uploading only 
+* (bug 6579) Fixed protecting images from uploading only
 * (bug 18609) Search index was empty for some pages
 * (bug 13453) rebuildrecentchanges maintenance script works on PG again
 * (bug 16583) Reduce false positives when checking for PHP (on upload, etc.)
@@ -707,9 +708,10 @@ MediaWiki supports over 300 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of MediaZilla reports.
 
-* North Frisian (frr) (new) 
+* North Frisian (frr) (new)
 * Kirmanjki (kiu) (new)
 * Karachay-Balkar (krc) (new)
+* Romagnol (rgn) (new)
 * Lower Silesian (sli) (new)
 * Picard (pcd) (new)
 * Uyghur (Arabic script) (ug-arab) (new)

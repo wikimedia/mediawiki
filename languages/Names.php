@@ -255,6 +255,7 @@
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
 	'qu' => 'Runa Simi',	# Quechua
+	'rgn' => 'Romagnolo',	# Romagnol
 	'rif' => 'Tarifit',	# Tarifit
 	'rm' => 'Rumantsch',	# Raeto-Romance
 	'rmy' => 'Romani',	# Vlax Romany
