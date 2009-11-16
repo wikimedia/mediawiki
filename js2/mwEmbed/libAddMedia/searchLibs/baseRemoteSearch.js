@@ -150,25 +150,44 @@ baseRemoteSearch.prototype = {
 	getEmbedHTML: function( rObj , options ) {
 		if ( !options )
 			options = { };
-		// set up the output var with the default values: 
-		var outOpt = { 'width': rObj.width, 'height': rObj.height };
+		// Set up the output var with the default values: 
+		var eWidth = rObj.width;
+		var eHeight = rObj.height;
 		if ( options['max_height'] ) {
-			outOpt.height = ( options.max_height > rObj.height ) ? rObj.height : options.max_height;
-			outOpt.width = ( rObj.width / rObj.height ) * outOpt.height;
+			eHeight = ( options.max_height > rObj.height ) ? rObj.height : options.max_height;
+			eWidth = ( rObj.width / rObj.height ) * outOpt.height;
 		}
-		options.style_attr = 'style="width:' + outOpt.width + 'px;height:' + outOpt.height + 'px"';
-		options.id_attr = ( options['id'] ) ? ' id = "' + options['id'] + '" ': '';
+		var style_attr = 'style="';
+		if( eWidth )
+			style_attr += 'width:' + eWidth + 'px;';
+			
+		if( eHeight )
+			style_attr += 'height:' + eHeight + 'px;';			
 		
-		if ( rObj.mime.indexOf( 'image' ) != -1 ) {
+		var id_attr = ( options['id'] ) ? ' id = "' + options['id'] + '" ': '';
+		
+		if ( rObj.mime.indexOf( 'image' ) != -1 )
 			return this.getImageEmbedHTML( rObj, options );
-		} else {
-			js_log( "ERROR:: no embed code for mime type: " + rObj.mime );
-			return ' Error missing embed code ';
+			
+		if ( rObj.mime == 'application/ogg' || rObj.mime == 'video/ogg' || rObj.mime == 'audio/ogg' ) {
+			var ahtml = id_attr +
+					' src="' + rObj.src + '" ' +
+					style_attr +
+					' poster="' +  rObj.poster + '" ';
+			if (  rObj.mime == 'application/ogg' || rObj.mime == 'video/ogg'  ) {
+				return '<video ' + ahtml + '></video>';
+			}
+					
+			if ( rObj.mime.indexOf( 'audio/ogg' ) != -1 ) {
+				return '<audio ' + ahtml + '></audio>';
+			}
 		}
+		js_log( "ERROR:: no embed code for mime type: " + rObj.mime );	
+		return 'Error missing embed code for: ' + escape( rObj.mime );
 	},
 	getImageEmbedHTML:function( rObj, options ) {
 		// if crop is null do base output: 
-		var imgHtml = '<img ' + options.id_attr + ' src="' + rObj.edit_url  + '"' + options.style_attr + ' >';
+		var imgHtml = '<img ' + options.id_attr + ' src="' + rObj.edit_url  + '"' + options.style_attr + ' ></img>';
 		if ( rObj.crop == null )
 			return imgHtml
 		// else do crop output:	
@@ -180,7 +199,9 @@ baseRemoteSearch.prototype = {
 	},
 	// by default just return the existing image with callback
 	getImageObj:function( rObj, size, callback ) {
-		callback( { 'url':rObj.poster } );
+		callback( { 
+			'url' : rObj.poster 
+		} );
 	},
 	// by default just return the rObj.desc
 	getInlineDescWiki:function( rObj ) {

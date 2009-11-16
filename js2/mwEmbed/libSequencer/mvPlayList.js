@@ -24,14 +24,14 @@ var mv_default_playlist_attributes = {
 	// enable sequencer? (only display top frame no navigation or accompanying text
 	"sequencer":false
 }
-// the call back rate for animations and internal timers in ms: 33 is about 30 frames a second: 
+// The call back rate for animations and internal timers in ms: 33 is about 30 frames a second: 
 var MV_ANIMATION_CB_RATE = 33;
 
 // globals:
 // 10 possible colors for clips: (can be in hexadecimal)
 var mv_clip_colors = new Array( 'aqua', 'blue', 'fuchsia', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red' );
 
-// the base url for requesting stream metadata 
+// The base url for requesting stream metadata 
 if ( typeof wgServer == 'undefined' ) {
 	var defaultMetaDataProvider = 'http://metavid.org/overlay/archive_browser/export_cmml?stream_name=';
 } else {
@@ -57,6 +57,8 @@ mvPlayList.prototype = {
 	userSlide:false,
 	loading:true,
 	loading_external_data:true, // if we are loading external data (set to loading by default)
+	//set initial state to "paused"
+	paused:true,
 
 	activeClipList:null,
 	playlist_buffer_time: 20, // how many seconds of future clips we should buffer
@@ -179,7 +181,7 @@ mvPlayList.prototype = {
 							embed_code += 'src=&quot;' + this.src + '&quot; /&gt;';
 						} else {
 							embed_code += '&gt;' + "\n";
-							embed_code += this.data.htmlEntities();
+							embed_code += escape( this.data );
 							embed_code += '&lt;playlist/&gt;';
 						}
 		this.cur_clip.embed.showShare( embed_code );
@@ -448,7 +450,7 @@ mvPlayList.prototype = {
 						
 		// update the title and status bar
 		this.updateBaseStatus();
-		this.doSmilActions( true );
+		this.doSmilActions();
 	},
 	setupClipDisplay:function() {
 		js_log( 'mvPlaylist:setupClipDisplay:: clip len:' + this.default_track.clips.length );
@@ -517,7 +519,7 @@ mvPlayList.prototype = {
 		this.cur_clip.embed.seek_time_sec = ( float_sec - pl_sum_time );
 		
 		// render effects ontop: (handled by doSmilActions)		
-		this.doSmilActions( true );
+		this.doSmilActions();
 	},
 	updateBaseStatus:function() {
 		var _this = this;
@@ -879,8 +881,8 @@ mvPlayList.prototype = {
 		var relative_perc = _this.updateClipByTime();	
 		var clip_time = relative_perc * _this.cur_clip.embed.getDuration();		
 		_this.cur_clip.embed.setCurrentTime( clip_time, function() {
-			//update the smil actions: 
-			_this.doSmilActions( true );
+			//update the smil actions now that the seek is done 
+			_this.doSmilActions();
 			//say we are "ready"
 			if ( callback )
 				callback();
@@ -1541,9 +1543,11 @@ mvPlayList.prototype.monitor = function() {
 		}
 	}
 }
+
 // handles the rendering of overlays load of future clips (if necessary)
 // @@todo could be lazy loaded if necessary 
-mvPlayList.prototype.doSmilActions = function( single_frame ) {
+mvPlayList.prototype.doSmilActions = function( callback ) {
+	var _this = this;
 	// js_log('f:doSmilActions: ' + this.cur_clip.id + ' tid: ' + this.cur_clip.transOut );
 	var offSetTime = 0; // offset time should let us start a transition later on if we have to. 
 	var _clip = this.cur_clip;	// setup a local pointer to cur_clip
@@ -1551,9 +1555,9 @@ mvPlayList.prototype.doSmilActions = function( single_frame ) {
 	
 	// do any smil time actions that may change the current clip
 	if ( this.userSlide ) {
-		// current clip set is set via updateThumbTime function			 
+		// current clip set is updated mannually outside the scope of smil Actions 
 	} else {
-		// assume playing and go to next: 
+		// Assume playing and go to next: 
 		if ( _clip.dur <= _clip.embed.currentTime
 			 && _clip.order != _clip.pp.getClipCount() - 1 ) {
 			// force next clip
@@ -1565,46 +1569,58 @@ mvPlayList.prototype.doSmilActions = function( single_frame ) {
 	}
 	// @@todo could maybe generalize transIn with trasOut into one "flow" with a few scattered if statements	
 	// update/setup all transitions (will render current transition state)	
-	var in_range = false;
-	// pretty similar actions per transition types so group into a loop:
-	var tran_types = { 
-		'transIn' : true, 
-		'transOut':true 
-	};
-	for ( var tid in tran_types ) {
-		eval( 'var tObj =  _clip.' + tid );
-		if ( !tObj )
-			continue;
-		// js_log('f:doSmilActions: ' + _clip.id + ' tid:'+tObj.id + ' tclip_id:'+ tObj.pClip.id);					
-		// make sue we are in range: 
-		if ( tid == 'transIn' )
-			in_range = ( _clip.embed.currentTime <= tObj.dur ) ? true:false;
-		
-		if ( tid == 'transOut' )
-			in_range = ( _clip.embed.currentTime >= ( _clip.dur - tObj.dur ) ) ? true:false;
-		
-		if ( in_range ) {
-			if ( this.userSlide || single_frame ) {
-				if ( tid == 'transIn' )
-					mvTransLib.doUpdate( tObj, ( _clip.embed.currentTime / tObj.dur ) );
-					
-				if ( tid == 'transOut' )
-					mvTransLib.doUpdate( tObj, ( _clip.embed.currentTime - ( _clip.dur - tObj.dur ) ) / tObj.dur );
-					
-			} else {
-				if ( tObj.animation_state == 0 ) {
-					js_log( 'init/run_transition ' );
-					tObj.run_transition();
-				}
+
+	// process actions per transition types:
+	_this.procTranType( 'transIn', callback);
+	_this.procTranType( 'transOut', callback);
+}
+
+/*
+* procTranType
+* @param {string} tid the transition type [transIn|transOut]
+* @param {function} callback the callback function passed onto doUPdate
+*/
+mvPlayList.prototype.procTranType = function( tid, callback){
+	// Setup local clip pointer:
+	var _clip = this.cur_clip;	
+	
+	eval( 'var tObj =  _clip.' + tid );
+	if ( !tObj )
+		return;
+	// js_log('f:doSmilActions: ' + _clip.id + ' tid:'+tObj.id + ' tclip_id:'+ tObj.pClip.id);					
+	// Check if we are in range: 
+	if ( tid == 'transIn' )
+		in_range = ( _clip.embed.currentTime <= tObj.dur ) ? true : false;
+	
+	if ( tid == 'transOut' )
+		in_range = ( _clip.embed.currentTime >= ( _clip.dur - tObj.dur ) ) ? true : false;
+	
+	if ( in_range ) {
+		if ( this.userSlide || this.paused ) {
+			if ( tid == 'transIn' ){
+				mvTransLib.doUpdate( tObj, 
+					( _clip.embed.currentTime / tObj.dur ), 
+					callback );	
+			}		
+			if ( tid == 'transOut' ){
+				mvTransLib.doUpdate( tObj, 
+					( ( _clip.embed.currentTime - ( _clip.dur - tObj.dur ) ) / tObj.dur ), 
+					callback );
 			}
-		} else {
-			// close up transition if done & still onDispaly
-			if ( tObj.overlay_selector_id ) {
-				js_log( 'close up transition :' + tObj.overlay_selector_id );
-				mvTransLib.doCloseTransition( tObj );
-			}
+		} else if ( tObj.animation_state == 0 ) {
+			js_log( 'init/run_transition ' );
+			tObj.run_transition();
+		}
+	} else {
+		// Close up transition if done & still onDispaly
+		if ( tObj.overlay_selector_id ) {
+			js_log( 'close up transition :' + tObj.overlay_selector_id );
+			mvTransLib.doCloseTransition( tObj );
 		}
 	}
+	// Run the callback:: 
+	if( callback ) 
+		callback();
 }
 
 /*
@@ -1624,7 +1640,7 @@ var mvTransLib = {
 	 * @param offSetTime default value 0 if we need to start rendering from a given time 
 	 */
 	doInitTransition:function( tObj ) {
-		js_log( 'mvTransLib:f:doInitTransition' );
+		js_log( 'mvTransLib:f:doInitTransition' );		
 		if ( !tObj.type ) {
 			js_log( 'transition is missing type attribute' );
 			return false;
@@ -1655,11 +1671,14 @@ var mvTransLib = {
 			if ( typeof( other_pClip ) == 'undefined' || other_pClip === false || other_pClip.id == tObj.pClip.pp.cur_clip.id )
 				js_log( 'Error: crossfade without target media asset' );
 			// if not sliding start playback: 
-			if ( !tObj.pClip.pp.userSlide ) {
-				other_pClip.embed.play();
-				// manualy ad the extra layer to the activeClipList
-				tObj.pClip.pp.activeClipList.add( other_pClip );
+			if ( !tObj.pClip.pp.userSlide && !tObj.pClip.pp.paused) {
+				other_pClip.embed.play();			
+			}else{
+				//issue a load request: 
+				other_pClip.embed.load(); 
 			}
+			// manualy ad the extra layer to the activeClipList
+			tObj.pClip.pp.activeClipList.add( other_pClip );
 			tObj.overlay_selector_id = 'clipDesc_' + other_pClip.id;
 		} else {
 			tObj.overlay_selector_id = this.getOverlaySelector( tObj );
@@ -1694,7 +1713,7 @@ var mvTransLib = {
 		}
 		return overlay_selector_id;
 	},
-	doUpdate:function( tObj, percent ) {
+	doUpdate:function( tObj, percent, callback ) {
 		// init the transition if necessary:
 		if ( !tObj.overlay_selector_id )
 			this.doInitTransition( tObj );
@@ -1702,15 +1721,15 @@ var mvTransLib = {
 		// @@todo we should ensure viability outside of doUpate loop			
 		if ( !$j( '#' + tObj.overlay_selector_id ).is( ':visible' ) )
 			$j( '#' + tObj.overlay_selector_id ).show();
-			
+		
 		// do update:
-		/*js_log('doing update for: '+ tObj.pClip.id + 
+		/*	js_log('doing update for: '+ tObj.pClip.id + 
 			' type:' + tObj.transAttrType +
 			' t_type:'+ tObj.type +
 			' subypte:'+ tObj.subtype  + 
 			' percent:' + percent);*/
 			
-		this['type'][tObj.type][tObj.subtype].u( tObj, percent );
+		this[ 'type' ][ tObj.type ][ tObj.subtype ].u( tObj, percent, callback);
 	},
 	getTransitionIcon:function( type, subtype ) {
 		return mv_embed_path + '/skins/common/transition_images/' + type + '_' + subtype + '.png';
@@ -1719,11 +1738,11 @@ var mvTransLib = {
 	 * mvTransLib: functional library mapping:
 	 */
 	type: {
-		// types:
+		// Types:
 		fade: {
 			fadeFromColor: {
-				'attr':['fadeColor'],
-				'init':function( tObj ) {
+				'attr' : ['fadeColor'],
+				'init' : function( tObj ) {
 					// js_log('f:fadeFromColor: '+tObj.overlay_selector_id +' to color: '+ tObj.fadeColor);
 					if ( !tObj.fadeColor )
 						js_log( 'missing fadeColor' );
@@ -1736,7 +1755,7 @@ var mvTransLib = {
 						'opacity':"1"
 					} );
 				},
-				'u':function( tObj, percent ) {
+				'u' : function( tObj, percent ) {
 					// js_log(':fadeFromColor:update: '+ percent);
 					// fade from color (invert the percent)
 					var percent = 1 - percent;
@@ -1747,8 +1766,8 @@ var mvTransLib = {
 			},
 			// corssFade
 			crossfade: {
-				"attr":[],
-				"init":function( tObj ) {
+				"attr" : [],
+				"init" : function( tObj ) {
 					js_log( 'f:crossfade: ' + tObj.overlay_selector_id );
 					if ( $j( '#' + tObj.overlay_selector_id ).length == 0 )
 						js_log( "ERROR overlay selector not found: " + tObj.overlay_selector_id );
@@ -1757,6 +1776,7 @@ var mvTransLib = {
 					$j( '#' + tObj.overlay_selector_id ).css( { 'opacity':0 } ).show();
 				},
 				'u':function( tObj, percent ) {
+					// Do the relative seek:
 					$j( '#' + tObj.overlay_selector_id ).css( {
 						"opacity" : percent
 					} );
@@ -1814,8 +1834,8 @@ transitionObj.prototype = {
 		var elmObj = { };
 		for ( var i in this.supported_attributes ) {
 			var attr = this.supported_attributes[i];
-			if ( this[attr] )
-				elmObj[ attr ] = this[attr];
+			if ( this[ attr ] )
+				elmObj[ attr ] = this[ attr ];
 		}
 		return elmObj;
 	},
@@ -1838,14 +1858,15 @@ transitionObj.prototype = {
 		//		this.interValCount=0;
 		//	}
 		// }		
-		// start_time =asigned by doSmilActions
+		
+		// start_time =assigned by doSmilActions
 		// base_cur_time = pClip.embed.currentTime;
-		// dur = asigned by attribute		
+		// dur = assigned by attribute		
 		if ( this.animation_state == 0 ) {
 			mvTransLib.doInitTransition( this );
 			this.animation_state = 1;
 		}
-		// set percentage include difrence of currentTime to prev_curTime 
+		// set percentage include diffrence of currentTime to prev_curTime 
 		// ie updated in-between currentTime updates) 
 
 		if ( this.transAttrType == 'transIn' )
@@ -2267,37 +2288,3 @@ function getAbsolutePos( objectId ) {
 	}
 	return { x:oLeft, y:oTop };
 }
-String.prototype.htmlEntities = function() {
-  var chars = new Array ( '&', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é',
-						 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô',
-						 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ', 'ÿ', 'À',
-						 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë',
-						 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö',
-						 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', '€', '\"', 'ß', '<',
-						 '>', '¢', '£', '¤', '¥', '¦', '§', '¨', '©', 'ª', '«',
-						 '¬', '­', '®', '¯', '°', '±', '²', '³', '´', 'µ', '¶',
-						 '·', '¸', '¹', 'º', '»', '¼', '½', '¾' );
-
-  var entities = new Array ( 'amp', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring',
-							'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave',
-							'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute',
-							'ocirc', 'otilde', 'ouml', 'oslash', 'ugrave', 'uacute', 'ucirc',
-							'uuml', 'yacute', 'thorn', 'yuml', 'Agrave', 'Aacute', 'Acirc',
-							'Atilde', 'Auml', 'Aring', 'AElig', 'Ccedil', 'Egrave', 'Eacute',
-							'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde',
-							'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'Oslash', 'Ugrave',
-							'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'euro', 'quot', 'szlig',
-							'lt', 'gt', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml',
-							'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn',
-							'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1',
-							'ordm', 'raquo', 'frac14', 'frac12', 'frac34' );
-
-  newString = this;
-  for ( var i = 0; i < chars.length; i++ )
-  {
-	myRegExp = new RegExp();
-	myRegExp.compile( chars[i], 'g' )
-	newString = newString.replace ( myRegExp, '&' + entities[i] + ';' );
-  }
-  return newString;
-};

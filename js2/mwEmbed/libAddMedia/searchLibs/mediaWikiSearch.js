@@ -66,14 +66,14 @@ mediaWikiSearch.prototype = {
 	getUserRecentUploads:function( wgUser, callback ) {
 		var _this = this;
 		do_api_req( {
+			'url':this.cp.api_url,
 			'data': {
 				'action':'query',
 				'list':'recentchanges',
 				'rcnamespace':6, // only files
 				'rcuser': wgUser,
-				'rclimit':15, // get last 15 uploaded files 				
-			},
-			'url':this.cp.api_url
+				'rclimit':15 // get last 15 uploaded files 				
+			}			
 		}, function( data ) {
 			var titleSet = { };
 			var titleStr = ''
@@ -306,37 +306,12 @@ mediaWikiSearch.prototype = {
 	insertImage:function( cEdit ) {
 		if ( !cEdit )
 			var cEdit = _this.cEdit;
-	},
-	getEmbedHTML: function( rObj , options ) {
-		if ( !options )
-			options = { };
-		this.parent_getEmbedHTML( rObj, options );
-		// check for image output:
-		if ( rObj.mime.indexOf( 'image' ) != -1 ) {
-			return this.getImageEmbedHTML( rObj, options );
-		}
-		// for video and audio output: 		
-		var ahtml = '';
-		if ( rObj.mime == 'application/ogg' || rObj.mime == 'audio/ogg' ) {
-			ahtml = options.id_attr +
-						' src="' + rObj.src + '" ' +
-						options.style_attr +
-						' poster="' +  rObj.poster + '" '
-			if ( rObj.mime.indexOf( 'application/ogg' ) != -1 ) {
-				return '<video ' + ahtml + '></video>';
-			}
-					
-			if ( rObj.mime.indexOf( 'audio/ogg' ) != -1 ) {
-				return '<audio ' + ahtml + '></audio>';
-			}
-		}
-		js_log( 'ERROR:unsupored mime type: ' + rObj.mime );
-	},
+	},	
 	getInlineDescWiki:function( rObj ) {
 		var desc = this.parent_getInlineDescWiki( rObj );
 		
 		// strip categories for inline Desc: (should strip license tags too but not as easy)
-		desc = desc.replace( /\[\[Category\:[^\]]*\]\]/, '' );
+		desc = desc.replace( /\[\[Category\:[^\]]*\]\]/gi, '' );
 		
 		// just grab the description tag for inline desc:
 		var descMatch = new RegExp( /Description=(\{\{en\|)?([^|]*|)/ );
@@ -347,6 +322,13 @@ mediaWikiSearch.prototype = {
 			desc = ( desc.substr( 0, 2 ) == '1=' ) ? desc.substr( 2 ): desc;
 			return desc;
 		}
+		// Hackish attempt to strip templates
+		desc = desc.replace( /\{\{[^\}]*\}\}/gi, '' );
+		// strip any nexted template closures
+		desc = desc.replace( /\}\}/gi, '' );
+		// strip titles
+		desc = desc.replace( /\=\=[^\=]*\=\=/gi, '' );
+				
 		// else return the title since we could not find the desc:
 		js_log( 'Error: No Description Tag, Using::' + desc );
 		return desc;

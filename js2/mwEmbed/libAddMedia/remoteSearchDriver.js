@@ -564,16 +564,15 @@ remoteSearchDriver.prototype = {
 		var o = '<div class="rsd_control_container" style="width:100%">' +
 					'<form id="rsd_form" action="javascript:return false;" method="GET">' +
 						'<input class="ui-widget-content ui-corner-all" type="text" tabindex="1" value="' + dq + '" maxlength="512" id="rsd_q" name="rsd_q" ' +
-							'size="20" autocomplete="off"/> ' +
-						$j.btnHtml( gM( 'mwe-media_search' ), 'rms_search_button', 'search' ) +
+							'size="20" autocomplete="off" />' +
+							$j.btnHtml( gM( 'mwe-media_search' ), 'rms_search_button', 'search' ) +
 					'</form>';
 		// close up the control container:
 		o += '</div>';
-
+		
 		// search provider tabs based on "checked" and "enabled" and "combined tab"
 		o += '<div id="rsd_results_container" style="top:0px;bottom:0px;left:0px;right:0px;"></div>';
 		$j( this.target_container ).html( o );
-
 		// add simple styles:
 		$j( this.target_container + ' .rms_search_button' ).btnBind().click( function() {
 			_this.runSearch();
@@ -1081,17 +1080,22 @@ remoteSearchDriver.prototype = {
 		if ( !overflow_style )overflow_style = 'overflow:auto;';
 		// Remove any old instance:
 		$j( _this.target_container ).find( '#rsd_resource_edit' ).remove();
+		
+		// Hide the results container
+		$j( '#rsd_results_container' ).hide();
+		
+		var pt = $j( _this.target_container ).html();
 		// Add the edit layout window with loading place holders
 		$j( _this.target_container ).append( '<div id="rsd_resource_edit" ' +
-			'style="position:absolute;top:0px;left:0px;bottom:0px;right:4px;background-color:#FFF;">' +
+			'style="position:absolute;top:0px;left:0px;bottom:0px;right:4px;background-color:#FFF;"> ' +
 				'<div id="clip_edit_ctrl" class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;' +
-					'left:2px;top:5px;bottom:10px;width:' + ( maxWidth + 5 ) + 'px;overflow:auto;padding:5px;">' +
-				'</div>' +
+					'left:2px;top:5px;bottom:10px;width:' + ( maxWidth + 5 ) + 'px;overflow:auto;padding:5px;" >' +
+				'</div>' +	
 				'<div id="clip_edit_disp" class="ui-widget ui-widget-content ui-corner-all"' +
-					'style="position:absolute;' + overflow_style + ';left:' + ( maxWidth + 20 ) + 'px;right:0px;top:5px;bottom:10px;padding:5px;>' +
+					'style="position:absolute;' + overflow_style + ';left:' + ( maxWidth + 20 ) + 'px;right:0px;top:5px;bottom:10px;padding:5px;" >' +
 						mv_get_loading_img( 'position:absolute;top:30px;left:30px' ) +
-				'</div>' +
-		'</div>' );
+				'</div>' +			
+		'</div>' );		
 	},
 	resourceEdit:function( rObj, rsdElement ) {
 		js_log( 'f:resourceEdit:' + rObj.title );
@@ -1287,7 +1291,7 @@ remoteSearchDriver.prototype = {
 					);
 					js_log( "about to call rewrite_by_id::embed_vid" );
 					// Rewrite by id
-					rewrite_by_id( 'embed_vid', function() {
+					rewrite_by_id( 'embed_vid', function() {						
 						// Grab any information that we got from the ROE xml or parsed from the media file
 						rObj.pSobj.getEmbedObjParsedInfo( rObj, 'embed_vid' );
 						// Add the re-sizable to the doLoad request:
@@ -1424,8 +1428,7 @@ remoteSearchDriver.prototype = {
 
 		// @@ show user dialog to import the resource
 		$j( _this.target_container ).append( '<div id="rsd_resource_import" ' +
-		'class="ui-widget-content" ' +
-		'style="position:absolute;top:0px;left:0px;right:0px;bottom:0px;z-index:5">' +
+		'class="ui-widget-content" style="position:absolute;top:0px;left:0px;right:0px;bottom:0px;z-index:5">' +
 			'<h3 style="color:red;padding:5px;">' + gM( 'mwe-resource-needs-import', [rObj.title, _this.upload_api_name] ) + '</h3>' +
 				'<div id="rsd_preview_import_container" style="position:absolute;width:50%;bottom:0px;left:5px;overflow:auto;top:30px;">' +
 					rObj.pSobj.getEmbedHTML( rObj, {
@@ -1433,7 +1436,7 @@ remoteSearchDriver.prototype = {
 						'max_height':'220',
 						'only_poster':true
 					} ) + // get embedHTML with small thumb:
-					'<br style="clear both">' +
+					'<br style="clear both"/>' +
 					'<strong>' + gM( 'mwe-resource_page_desc' ) + '</strong>' +
 					'<div id="rsd_import_desc" style="display:inline;">' +
 						mv_get_loading_img( 'position:absolute;top:5px;left:5px' ) +
@@ -1442,13 +1445,13 @@ remoteSearchDriver.prototype = {
 				'<div id="rds_edit_import_container" style="position:absolute;left:50%;' +
 					'bottom:0px;top:30px;right:0px;overflow:auto;">' +
 					'<strong>' + gM( 'mwe-local_resource_title' ) + '</strong><br>' +
-					'<input type="text" size="30" value="' + rObj.target_resource_title + '" /><br>' +
+					'<input type="text" size="30" value="' + rObj.target_resource_title + '" /></br>' +
 					'<strong>' + gM( 'mwe-edit_resource_desc' ) + '</strong>' +
 					'<textarea id="rsd_import_ta" id="mv_img_desc" style="width:90%;" rows="8" cols="50">' +
 						wt +
-					'</textarea><br>' +
-					'<input type="checkbox" value="true" id="wpWatchthis" name="wpWatchthis" tabindex="7"/>' +
-					'<label for="wpWatchthis">' + gM( 'mwe-watch_this_page' ) + '</label><br><br><br>' +
+					'</textarea></br>' +
+					'<input type="checkbox" value="true" id="wpWatchthis" name="wpWatchthis" tabindex="7" />' +
+					'<label for="wpWatchthis">' + gM( 'mwe-watch_this_page' ) + '</label></br></br></br>' +
 					$j.btnHtml( gM( 'mwe-update_preview' ), 'rsd_import_apreview', 'refresh' ) + ' ' +
 				'</div>' +
 				// output the rendered and non-rendered version of description for easy switching:

@@ -1227,8 +1227,8 @@ function mwdomReady( force ) {
 			for ( var k in e[j] ) {
 				if ( e[j][k] && typeof( e[j][k] ) == 'object' ) {
 					var	sn = e[j][k].getAttribute( 'class' );
-					// Try "className" for good ol IE				
-					if(!sn){
+					// Try "className" for good old IE				
+					if( !sn ){
 						var	sn = e[j][k].getAttribute( 'className' );
 					}					
 					if ( sn && sn != '' ) {
@@ -1577,8 +1577,8 @@ function mv_jqueryBindings() {
 			var style_attr = ( opt.style ) ? ' style="' + opt.style + '" ' : '';
 			return '<a href="' + href + '" ' + target_attr + style_attr +
 				' class="ui-state-default ui-corner-all ui-icon_link ' +
-				className + '"><span class="ui-icon ui-icon-' + iconId + '" />' +
-				'<span class="btnText">' + msg + '<span></a>';
+				className + '"><span class="ui-icon ui-icon-' + iconId + '" ></span>' +
+				'<span class="btnText">' + msg + '</span></a>';
 		}
 		// Shortcut to bind hover state
 		$.fn.btnBind = function() {

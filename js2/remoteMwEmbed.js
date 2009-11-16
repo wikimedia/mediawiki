@@ -5,7 +5,7 @@
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = '1.08';
+var mwRemoteVersion = '1.09';
 var mwUseScriptLoader = true;
 
 // setup up request Params: 
@@ -24,27 +24,30 @@ addOnloadHook( function() {
 	}
 } );
 
-function doPageSpecificRewrite() {
+function doPageSpecificRewrite() {		
 	// Add media wizard
-	if ( wgAction == 'edit' || wgAction == 'submit' ) {
-		load_mv_embed( function() {
+	if ( wgAction == 'edit' || wgAction == 'submit' ) {	
+		var jsSetEdit = [ 'remoteSearchDriver', '$j.fn.textSelection', '$j.ui', '$j.ui.sortable' ]
+		mwr_load_mv_embed( jsSetEdit, function() {
 			loadExternalJs( mwEmbedHostPath + '/editPage.js?' + mwGetReqArgs() );
 		} );
 	}
 	
 	// Timed text display:
 	if ( wgPageName.indexOf( "TimedText" ) === 0 ) {
-		load_mv_embed( function() {
+		mwr_load_mv_embed( function() {
 			// Load with mw loader to get localized interface:
 			mw.load( ['mvTimeTextEdit'], function() {
-				// could run init here (but mvTimeTextEdit included onLoad actions)
+				// could run init here (but mvTimeTextEdit already included onLoad actions)
 			} );
 		} );
 	}
 	
 	// Firefogg integration
-	if ( wgPageName == "Special:Upload" ) {
-		load_mv_embed( function() {
+	if ( wgPageName == "Special:Upload" ) {	
+		var jsSetUpload = [ 'mvBaseUploadInterface', 'mvFirefogg' , '$j.ui',
+							'$j.ui.progressbar', '$j.ui.dialog', '$j.ui.draggable' ]; 
+		mwr_load_mv_embed( jsSetUpload, function() {
 			loadExternalJs( mwEmbedHostPath + '/uploadPage.js?' + mwGetReqArgs() );
 		} );
 	}
@@ -52,8 +55,7 @@ function doPageSpecificRewrite() {
 	// Special api proxy page
 	if ( wgPageName == 'MediaWiki:ApiProxy' ) {
 		var wgEnableIframeApiProxy = true;
-		load_mv_embed( function() {
-			js_log( "Wiki:ApiProxy::" );
+		mwr_load_mv_embed( [ 'mw.proxy' ], function() {			
 			loadExternalJs( mwEmbedHostPath + '/apiProxyPage.js?' + mwGetReqArgs() );
 		} );
 	}
@@ -67,7 +69,18 @@ function doPageSpecificRewrite() {
 		}
 	}
 	if ( vidIdList.length > 0 ) {
-		load_mv_embed( function() {
+	
+		var jsSetVideo = [ 'embedVideo', '$j.ui', 'ctrlBuilder', '$j.cookie', '$j.ui.slider' ];
+		
+		// Quick sniff use java if IE and native if firefox 
+		// ( other browsers will run detect and get on-demand ) 	
+		if (navigator.userAgent.indexOf("MSIE") != -1)
+			jsSetVideo.push( 'javaEmbed' );
+			
+		if ( navigator.userAgent &&  navigator.userAgent.indexOf("Firefox") != -1 )
+			jsSetVideo.push( 'nativeEmbed' );
+	
+		mwr_load_mv_embed( jsSetVideo, function() {
 			mvJsLoader.embedVideoCheck( function() {
 				// Do utility rewrite of OggHandler content:
 				rewrite_for_OggHandler( vidIdList );
@@ -87,8 +100,10 @@ function rewrite_for_OggHandler( vidIdList ) {
 		var pimg = $j( '#' + vidId + ' img' );
 		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
 		var pwidth = $j( '#' + vidId ).width();
-		var pheight = $j( '#' + vidId + ' img' ).height();
-		var tag_type = 'video';
+		var pheight = $j( '#' + vidId + ' img :first' ).attr( 'height' );
+		if(!pheight)
+			pheight = parseInt( pwidth * .75 );
+		var tag_type = 'video';		
 				
 		// Check for audio
 		if ( pheight == '22' || pheight == '52' ) {
@@ -182,31 +197,68 @@ function mwGetReqArgs() {
 	}
 	return rurl;
 }
-function load_mv_embed( callback ) {
+/**
+* @param {mixed} function or classSet to preload
+* classSet saves round trips to the server by grabbing things we will likely need in the first request. 
+* ( this is essentially a shortcut to mv_jqueryBindings in mv_embed.js )   
+* @param {callback} function callback to be called once mv_embed is ready
+*/
+function mwr_load_mv_embed( classSet, callback ) {
+	if( typeof classSet == 'function')
+		callback = classSet;
 	// Inject mv_embed if needed
 	if ( typeof mw == 'undefined' ) {
 		if ( ( mwReqParam['uselang'] || mwReqParam['useloader'] ) && mwUseScriptLoader ) {
 			var rurl = mwEmbedHostPath + '/mwEmbed/jsScriptLoader.php?class=mv_embed';
+			
 			// Add jQuery too if we need it: 
 			if ( typeof window.jQuery == 'undefined' ) {
 				rurl += ',window.jQuery';
+			}	
+								
+			// Add requested classSet
+			for( var i=0; i < classSet.length; i++ ){
+				var cName =  classSet[i];
+				if( !mwr_check_obj_path( cName ) ){
+					rurl +=  ',' + cName;
+				}
 			}
+			
+			// Add the remaining arguments
 			rurl += '&' + mwGetReqArgs();
 							
 			importScriptURI( rurl );
-		} else {
+		} else { 
+			// Ingore classSet (will be loaded onDemand )
 			importScriptURI( mwEmbedHostPath + '/mwEmbed/mv_embed.js?' + mwGetReqArgs() );
 		}
 	}
-	check_for_mv_embed( callback );
+	mwr_check_for_mv_embed( callback );
 }
 
-function check_for_mv_embed( callback ) {
+function mwr_check_for_mv_embed( callback ) {
 	if ( typeof mw == 'undefined' ) {
 		setTimeout( function() {
-			check_for_mv_embed( callback );
+			mwr_check_for_mv_embed( callback );
 		}, 25 );
 	} else {
 		callback();
 	}
 }
+
+function mwr_check_obj_path ( libVar ) {
+	if ( !libVar )
+		return false;
+	var objPath = libVar.split( '.' )
+	var cur_path = '';
+	for ( var p = 0; p < objPath.length; p++ ) {
+		cur_path = ( cur_path == '' ) ? cur_path + objPath[p] : cur_path + '.' + objPath[p];
+		eval( 'var ptest = typeof ( ' + cur_path + ' ); ' );
+		if ( ptest == 'undefined' ) {
+			this.missing_path = cur_path;
+			return false;
+		}
+	}
+	this.cur_path = cur_path;
+	return true;
+};
