@@ -277,6 +277,7 @@ $magicWords = array(
 	'ns'                    => array( '0', 'NR:', 'NS:' ),
 	'localurl'              => array( '0', 'LOKALE_URL:', 'LOCALURL:' ),
 	'scriptpath'            => array( '0', 'SKRIPTPFAD', 'SCRIPTPATH' ),
+	'stylepath'             => array( '0', 'STYLEPFAD', 'STYLEPATH' ),
 	'grammar'               => array( '0', 'GRAMMATIK:', 'GRAMMAR:' ),
 	'gender'                => array( '0', 'GESCHLECHT:', 'GENDER:' ),
 	'currentweek'           => array( '1', 'JETZIGE_KALENDERWOCHE', 'CURRENTWEEK' ),

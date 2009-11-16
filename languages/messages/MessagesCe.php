@@ -34,7 +34,7 @@ $namespaceNames = array(
 );
 
 $magicWords = array(
-	'notoc'                 => array( '0', '__СДЖдац__', '__БЕЗ_ОГЛ__', '__NOTOC__' ),
+	'notoc'                 => array( '0', '__СДЖдац__', '__БЕЗ_ОГЛ__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__ГалерйЯц__', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ),
 	'language'              => array( '0', '#МОТТ', '#ЯЗЫК:', '#LANGUAGE:' ),
 	'special'               => array( '0', 'башхо', 'служебная', 'special' ),
