@@ -124,12 +124,15 @@ $defaultUserOptionOverrides = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#ווייטערפירן', '#הפניה', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__קיין_אינהאלט_טאבעלע__', '__ללא_תוכן_עניינים__', '__ללא_תוכן__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__קיין_גאלעריע__', '__ללא_גלריה__', '__NOGALLERY__' ),
 	'toc'                   => array( '0', '__אינהאלט__', '__תוכן_עניינים__', '__תוכן__', '__TOC__' ),
+	'noeditsection'         => array( '0', '__נישט_רעדאקטירן__', '__ללא_עריכה__', '__NOEDITSECTION__' ),
 	'pagename'              => array( '1', 'בלאטנאמען', 'שם הדף', 'PAGENAME' ),
 	'namespace'             => array( '1', 'נאמענטייל', 'מרחב השם', 'NAMESPACE' ),
 	'fullpagename'          => array( '1', 'פולבלאטנאמען', 'שם הדף המלא', 'FULLPAGENAME' ),
 	'subpagename'           => array( '1', 'אונטערבלאטנאמען', 'שם דף המשנה', 'SUBPAGENAME' ),
+	'talkpagename'          => array( '1', 'רעדנבלאטנאמען', 'שם דף השיחה', 'TALKPAGENAME' ),
 	'subst'                 => array( '0', 'ס:', 'SUBST:' ),
 	'img_thumbnail'         => array( '1', 'קליין', 'ממוזער', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'קליין=$1', 'ממוזער=$1', 'thumbnail=$1', 'thumb=$1' ),

@@ -184,6 +184,7 @@ $magicWords = array(
 	'server'                => array( '0', 'SERVEUR', 'SERVER' ),
 	'servername'            => array( '0', 'NOMSERVEUR', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'CHEMINSCRIPT', 'SCRIPTPATH' ),
+	'stylepath'             => array( '0', 'CHEMINSTYLE', 'STYLEPATH' ),
 	'grammar'               => array( '0', 'GRAMMAIRE:', 'GRAMMAR:' ),
 	'gender'                => array( '0', 'GENRE:', 'GENDER:' ),
 	'notitleconvert'        => array( '0', '__SANSCONVERSIONTITRE__', '__SANSCT__', '__NOTITLECONVERT__', '__NOTC__' ),

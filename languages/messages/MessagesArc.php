@@ -40,6 +40,20 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#ܨܘܝܒܐ', '#REDIRECT' ),
+	'numberofpages'         => array( '1', 'ܡܢܝܢܐ_ܕܦܐܬܬ̈ܐ', 'NUMBEROFPAGES' ),
+	'numberofarticles'      => array( '1', 'ܡܢܝܢܐ_ܕܡܠܘܐ̈ܐ', 'NUMBEROFARTICLES' ),
+	'numberoffiles'         => array( '1', 'ܡܢܝܢܐ_ܕܠܦܦ̈ܐ', 'NUMBEROFFILES' ),
+	'pagename'              => array( '1', 'ܫܡܐ_ܕܦܐܬܐ', 'PAGENAME' ),
+	'msg'                   => array( '0', 'ܐܓܪܬܐ:', 'MSG:' ),
+	'img_thumbnail'         => array( '1', 'ܙܥܘܪܬܐ', 'thumbnail', 'thumb' ),
+	'img_manualthumb'       => array( '1', 'ܙܥܘܪܬܐ=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'             => array( '1', 'ܝܡܝܢܐ', 'right' ),
+	'img_left'              => array( '1', 'ܣܡܠܐ', 'left' ),
+	'img_none'              => array( '1', 'ܠܐ ܡܕܡ', 'none' ),
+	'img_center'            => array( '1', 'ܡܨܥܐ', 'center', 'centre' ),
+	'grammar'               => array( '0', 'ܬܘܪܨ_ܡܡܠܠܐ', 'GRAMMAR:' ),
+	'language'              => array( '0', '#ܠܫܢܐ:', '#LANGUAGE:' ),
+	'special'               => array( '0', 'ܕܝܠܢܝܐ', 'special' ),
 );
 
 $rtl = true;
