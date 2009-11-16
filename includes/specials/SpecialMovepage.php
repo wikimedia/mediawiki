@@ -63,7 +63,7 @@ class MovePageForm {
 	private $watch = false;
 
 	function __construct( $oldTitle, $newTitle ) {
-		global $wgRequest;
+		global $wgRequest, $wgUser;
 		$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
