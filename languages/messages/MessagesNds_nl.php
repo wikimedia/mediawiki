@@ -277,6 +277,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Lege_pagina' ),
 	'LinkSearch'                => array( 'Verwiezingen_zeuken' ),
 	'DeletedContributions'      => array( 'Vort-ehaolen_gebrukersbiedragen' ),
+	'Activeusers'               => array( 'Actieve_gebrukers' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

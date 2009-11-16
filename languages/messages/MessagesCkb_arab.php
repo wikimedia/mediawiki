@@ -63,16 +63,33 @@ $namespaceNames = array(
 
 $specialPageAliases = array(
 	'CreateAccount'             => array( 'ھەژماردروستکردن' ),
+	'Preferences'               => array( 'ھەڵبژاردەکان' ),
+	'Recentchanges'             => array( 'دوایین‌گۆڕانکارییەکان' ),
 	'Upload'                    => array( 'بارکردن' ),
+	'Listfiles'                 => array( 'لیستی‌پەڕگەکان' ),
+	'Newimages'                 => array( 'پەڕگەنوێکان' ),
+	'Listusers'                 => array( 'لیستی‌بەکارھێنەران' ),
 	'Statistics'                => array( 'ئامارەکان' ),
+	'Randompage'                => array( 'بەھەڵکەوت' ),
+	'Shortpages'                => array( 'پەڕە‌کورتەکان' ),
 	'Newpages'                  => array( 'پەڕەنوێکان' ),
 	'Ancientpages'              => array( 'پەڕەکۆنەکان' ),
 	'Protectedpages'            => array( 'پەڕەپارێزراوەکان' ),
+	'Allpages'                  => array( 'ھەمووپەڕەکان' ),
 	'Specialpages'              => array( 'پەڕەتایبەتەکان' ),
 	'Contributions'             => array( 'بەشدارییەکان' ),
+	'Movepage'                  => array( 'پەڕەگواستنەوە' ),
+	'Categories'                => array( 'پۆلەکان' ),
 	'Export'                    => array( 'ھەناردن' ),
 	'Version'                   => array( 'وەشان' ),
+	'Allmessages'               => array( 'ھەمووپەیامەکان' ),
+	'Log'                       => array( 'لۆگ' ),
+	'Mypage'                    => array( 'پەڕەکەم' ),
+	'Mycontributions'           => array( 'بەشدارییەکانم' ),
+	'Listadmins'                => array( 'لیستی‌بەڕێوبەران' ),
 	'Search'                    => array( 'گەڕان' ),
+	'Resetpass'                 => array( 'تێپەڕوشەگۆڕان' ),
+	'Activeusers'               => array( 'بەکارھێنەرەچالاکەکان' ),
 );
 
 $magicWords = array(
