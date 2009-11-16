@@ -1092,8 +1092,8 @@ Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakriven
 'revdelete-submit'            => 'Primijeni na odabrane {{PLURAL:$1|reviziju|revizije}}',
 'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
-'revdelete-success'           => "'''Vidljivost revizije uspješno postavljena.'''",
-'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti postavljena:'''
+'revdelete-success'           => "'''Vidljivost revizije uspješno ažurirana.'''",
+'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti ažurirana:'''
 $1",
 'logdelete-success'           => "'''Vidljivost evidencije uspješno postavljena.'''",
 'logdelete-failure'           => "'''Zapisnik vidljivosti nije mogao biti postavljen:'''

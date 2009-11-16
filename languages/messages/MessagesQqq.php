@@ -1634,7 +1634,7 @@ Extensions making use of it:
 {{Identical|Current}}',
 'filehist-datetime'         => 'Used on image descriptions, see for example [[:File:Yes.png#filehistory]].
 {{Identical|Date}}',
-'filehist-thumb'            => 'Shown in the file history list of a file desription page.
+'filehist-thumb'            => 'Shown in the file history list of a file description page.
 
 Example: [[:Image:Addon-icn.png]]',
 'filehist-thumbtext'        => "Shown in the file history list of a file description page.

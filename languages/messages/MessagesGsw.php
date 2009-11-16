@@ -912,8 +912,8 @@ As Ammann (Administrator) chasch dää Unterschid bschaue; villicht het s Detail
 'revdelete-submit'            => 'Uf {{PLURAL:$1|di uusgwehlt Version|usgwehlti Versione}} aawände',
 'revdelete-logentry'          => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
 'logdelete-logentry'          => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
-'revdelete-success'           => "'''Versionsaasicht erfolgryych gänderet.'''",
-'revdelete-failure'           => "'''Versionssichtbarkeit het nit chenne gsetzt wäre.'''
+'revdelete-success'           => "'''Versionsaasicht erfolgryych aktualisiert.'''",
+'revdelete-failure'           => "'''Versionssichtbarkeit het nit chenne aktualisiert wäre.'''
 $1",
 'logdelete-success'           => "'''Logbuechaasicht erfolgryych gänderet.'''",
 'logdelete-failure'           => "'''Logbuchsichtbarkeit cha nit gänderet wäre:'''

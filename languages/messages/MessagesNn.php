@@ -1032,8 +1032,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-submit'            => 'Bruk på {{PLURAL:$1|den valde versjonen|dei valde versjonane}}',
 'revdelete-logentry'          => 'endra versjonsvisinga til [[$1]]',
 'logdelete-logentry'          => 'endra visinga av loggoppføringane til [[$1]]',
-'revdelete-success'           => "'''Versjonsvisinga er endra.'''",
-'revdelete-failure'           => "'''Kunne ikkje endra korleis versjonen vert synt:'''
+'revdelete-success'           => "'''Endringa av versjonsvisinga var vellukka.'''",
+'revdelete-failure'           => "'''Kunne ikkje oppatera korleis versjonen vert synt:'''
 $1",
 'logdelete-success'           => "'''Visinga av loggoppføringar er endra.'''",
 'logdelete-failure'           => "'''Korleis loggen skal vera synleg kunne ikkje verta stilt inn:'''
