@@ -14,9 +14,28 @@
  */
 
 $specialPageAliases = array(
+	'CreateAccount'             => array( 'ܒܪܝ_ܚܘܫܒܢܐ' ),
 	'Preferences'               => array( 'ܓܒܝܬ̈ܐ' ),
 	'Watchlist'                 => array( 'ܪ̈ܗܝܬܐ' ),
 	'Recentchanges'             => array( 'ܫܘܚܠܦ̈ܐ_ܚܕܬ̈ܐ' ),
+	'Upload'                    => array( 'ܐܣܩ' ),
+	'Shortpages'                => array( 'ܦܐܬܬ̈ܐ_ܟܪ̈ܝܬܐ' ),
+	'Longpages'                 => array( 'ܦܐܬܬ̈ܐ_ܐܪ̈ܝܟܬܐ' ),
+	'Newpages'                  => array( 'ܦܐܬܬ̈ܐ_ܚܕܬܬ̈ܐ' ),
+	'Protectedpages'            => array( 'ܦܐܬܬ̈ܐ_ܢܛܝܪ̈ܬܐ' ),
+	'Allpages'                  => array( 'ܟܠ_ܦܐܬܬ̈ܐ' ),
+	'Specialpages'              => array( 'ܦܐܬܬ̈ܐ_ܕܝܠܢܝܬ̈ܐ' ),
+	'Contributions'             => array( 'ܫܘܬܦܘܝܬ̈ܐ' ),
+	'Whatlinkshere'             => array( 'ܡܐ_ܐܣܪ_ܠܟܐ' ),
+	'Movepage'                  => array( 'ܫܢܝ_ܦܐܬܐ' ),
+	'Categories'                => array( 'ܣܕܪ̈ܐ' ),
+	'Allmessages'               => array( 'ܟܠ_ܐܓܪ̈ܬܐ' ),
+	'Log'                       => array( 'ܣܓܠ̈ܐ' ),
+	'Mycontributions'           => array( 'ܫܘܬܦܘܝܬ̈ܝ' ),
+	'Search'                    => array( 'ܒܨܝܐ' ),
+	'Filepath'                  => array( 'ܫܒܝܠܐ_ܕܦܐܬܐ' ),
+	'Blankpage'                 => array( 'ܦܐܬܐ_ܣܦܝܩܬܐ' ),
+	'DeletedContributions'      => array( 'ܫܘܬܦܘܝܬ̈ܐ_ܫܝܦܬ̈ܐ' ),
 );
 
 $magicWords = array(

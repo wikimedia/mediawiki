@@ -72,7 +72,7 @@ $specialPageAliases = array(
 	'Wantedfiles'               => array( 'ไฟล์ที่ต้องการ' ),
 	'Wantedtemplates'           => array( 'แม่แบบที่ต้องการ' ),
 	'Mostlinked'                => array( 'หน้าที่มีการโยงไปหามาก' ),
-	'Mostlinkedcategories'      => array( 'หมวดหมู่ที่มีการโยงไปหามาก', 'หมวดหมู่ที่ใ้ช้มากที่สุด' ),
+	'Mostlinkedcategories'      => array( 'หมวดหมู่ที่มีการโยงไปหามาก', 'หมวดหมู่ที่ใช้มากที่สุด' ),
 	'Mostlinkedtemplates'       => array( 'แม่แบบที่มีการโยงไปหามาก', 'แม่แบบที่ใช้มากที่สุด' ),
 	'Mostimages'                => array( 'ไฟล์ที่มีการโยงไปหามาก', 'ไฟล์ทีใช้มากที่สุด', 'ภาพที่ใช้มากที่สุด' ),
 	'Mostcategories'            => array( 'หมวดหมู่ที่มีการโยงไปหามากที่สุด' ),
@@ -129,7 +129,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'หน้าว่าง' ),
 	'LinkSearch'                => array( 'ค้นหาเว็บลิงก์' ),
 	'DeletedContributions'      => array( 'การแก้ไขที่ถูกลบ' ),
-	'Tags'                      => array( 'ป้ายกำักับ' ),
+	'Tags'                      => array( 'ป้ายกำกับ' ),
 );
 
 $magicWords = array(

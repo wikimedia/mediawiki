@@ -314,7 +314,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'Liste des bots', 'ListedesBots' ),
 	'Popularpages'              => array( 'Pages les plus visitées', 'Pages les plus visitees', 'Pageslesplusvisitées', 'Pageslesplusvisitees' ),
 	'Search'                    => array( 'Recherche', 'Rechercher', 'Chercher' ),
-	'Resetpass'                 => array( 'Réinitialisation du mot de passe', 'Reinitialisation du mot de passe', 'Réinitialisationdumotdepasse', 'Reinitialisationdumotdepasse' ),
+	'Resetpass'                 => array( 'Changement du mot de passe', 'ChangementDuMotDePasse' ),
 	'Withoutinterwiki'          => array( 'Sans interwiki', 'Sansinterwiki', 'Sans interwikis', 'Sansinterwikis' ),
 	'MergeHistory'              => array( 'Fusionner les historiques', 'FusionnerHistoriques', 'Fusionner l\'historique', 'Fusionnerlhistorique' ),
 	'Filepath'                  => array( 'Chemin du fichier', 'CheminDuFichier', 'CheminFichier' ),
@@ -323,6 +323,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Recherche de lien', 'Recherche de liens' ),
 	'DeletedContributions'      => array( 'Contributions supprimées', 'ContributionsSupprimées', 'ContributionSupprimees' ),
 	'Tags'                      => array( 'Balises' ),
+	'Activeusers'               => array( 'Utilisateurs actifs', 'UtilisateursActifs' ),
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );

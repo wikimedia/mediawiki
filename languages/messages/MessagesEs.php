@@ -168,6 +168,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'BlanquearPágina', 'Blanquear página' ),
 	'LinkSearch'                => array( 'BúsquedaDeEnlaces', 'Búsqueda de enlaces' ),
 	'DeletedContributions'      => array( 'ContribucionesBorradas', 'Contribuciones Borradas' ),
+	'Tags'                      => array( 'Etiquetas' ),
+	'Activeusers'               => array( 'UsuariosActivos' ),
 );
 
 $magicWords = array(
