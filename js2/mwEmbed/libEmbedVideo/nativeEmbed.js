@@ -213,7 +213,9 @@ var nativeEmbed = {
 		}
 		//fire "onLoaded" flags if set
 		while( this.onLoadedCallback.length ){
-			this.onLoadedCallback.pop()();
+			func = this.onLoadedCallback.pop()
+			if( typeof func == 'function' )
+				func();
 		}
 	},
 	onprogress: function( e ) {
@@ -279,13 +281,13 @@ var nativeEmbed = {
 	load:function( callback ) {
 		this.getVID();		
 		if ( !this.vid ) {
-			// no vid loaded
+			// No vid loaded
 			js_log( 'native::load() ... doEmbed' );
 			this.onlyLoadFlag = true;
 			this.doEmbedHTML();
 			this.onLoadedCallback.push( callback );
 		} else {
-			// should not happen offten
+			// Should not happen offten
 			this.vid.load();
 			if( callback)
 				callback();

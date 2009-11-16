@@ -532,9 +532,11 @@ mvClipEdit.prototype = {
 			case 'layout':
 				$target.append(	'' +
 					'<span style="float:left;">Layout:</span>' +
-						'<input type="radio" name="mv_layout" id="mv_layout_left" style="float:left"><div id="mv_layout_left_img" title="' + gM( 'mwe-layout_left' ) + '"/>' +
-						'<input type="radio" name="mv_layout" id="mv_layout_right" style="float:left"><div id="mv_layout_right_img" title="' + gM( 'mwe-layout_left' ) + '"/>' +
-					'<hr style="clear:both" /><br>'
+						'<input type="radio" name="mv_layout" id="mv_layout_left" style="float:left"></input>'+
+							'<div id="mv_layout_left_img" title="' + gM( 'mwe-layout_left' ) + '"></div>' +
+						'<input type="radio" name="mv_layout" id="mv_layout_right" style="float:left"></input>'+
+							'<div id="mv_layout_right_img" title="' + gM( 'mwe-layout_left' ) + '"></div>' +
+					'<hr style="clear:both" /><br/>'
 				);
 				// make sure the default is reflected:
 				if ( ! _this.rObj.layout )
