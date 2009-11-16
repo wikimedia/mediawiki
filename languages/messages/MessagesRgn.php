@@ -81,6 +81,7 @@ $messages = array(
 'protect'          => 'Metti-j una pruteziòn',
 'protect_change'   => 'chèmbia',
 'newpage'          => 'Pàgina nova',
+'talkpage'         => 'Cunversaziòn',
 'talkpagelinktext' => 'Cunversaziòn',
 'personaltools'    => 'Strumént persunèl',
 'talk'             => 'Cunversaziòn',
@@ -88,6 +89,7 @@ $messages = array(
 'toolbox'          => 'Strumént',
 'otherlanguages'   => 'Ètri lènguv',
 'redirectedfrom'   => '(Ri-direziòn da <b>$1</b>)',
+'redirectpagesub'  => "Pàgina d're-indirezzament",
 'lastmodifiedat'   => "L'ultum c'l'à lavurè atoran a 'sta pàgina da $2, a $1.",
 'jumpto'           => 'Sbèlza a què:',
 'jumptonavigation' => 'navgaziòn',
@@ -105,6 +107,8 @@ $messages = array(
 'mainpage'       => 'Prèma Pagina',
 'privacy'        => 'Léz sora agli infurmaziòn persunèli',
 'privacypage'    => 'Project: Léz sora agli infurmaziòn persunèli',
+
+'badaccess' => 'Parméss non sufizént',
 
 'retrievedfrom'       => 'Tiré fora da "$1"',
 'youhavenewmessages'  => "A j ò fët ch't'epa $1 ($2).",
@@ -130,18 +134,24 @@ $messages = array(
 'nstab-special'  => 'Pàgina particulèra',
 'nstab-project'  => "Pàgina dagl'infurmaziòn",
 'nstab-image'    => 'File',
+'nstab-template' => 'Mudel',
 'nstab-category' => 'Categurèja',
 
 # General errors
-'missing-article' => "E' database u n'à brisa truvé e'scret d'una pàgina ch'la avrebb duvu truvè sot e' nom di \"\$1\" \$2.
+'missing-article'    => "E' database u n'à brisa truvé e'scret d'una pàgina ch'la avrebb duvu truvè sot e' nom di \"\$1\" \$2.
 
 Quest é suzed d'solit in te méntr d'un cuntrol d'do version vèci intla storia d'una pàgina. E' pò esar suzest parchè l'è stè cjamé un culegamént a una pàgina scanzleda o parchè l'è stè cjamé un cunfront d'dò versiòn ch'j n'esést piò.
 
 S' u n'è brisa acsè, t'é scvert par chès un bug int'é software.
 Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota de l'indirezzi dla pàgina.",
-'viewsource'      => "Guèrda e' codiz surgént",
+'missingarticle-rev' => '(revision n°: $1)',
+'badtitletext'       => "La pàgina ch' t'ê cmandè, l'è vuda, sbaglieda o ta l'ê scrètta cun dal lettar particulèri. Oppure, ê pò dès ch'u j sèja un eror inter-lèngua o inter-wiki. Guèrda ben cus t'e scrètt: êt druvè dal lettar cu n' s pò druvè in t'j nom dal pàgin?",
+'viewsource'         => "Guèrda e' codiz surgént",
 
 # Login and logout pages
+'yourname'                => 'Soranòm:',
+'yourpassword'            => 'Paróla segreta:',
+'remembermypassword'      => "Regèstra la mi parola d'ordin sora ste computer",
 'login'                   => 'Va dentar',
 'nav-login-createaccount' => 'Va dentar / Èla la prèma volta?',
 'userlogin'               => 'Vèn dentar/A sit nov?',
@@ -168,32 +178,34 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 'hr_tip'          => "Riga urizuntèla (t'an fèga e' patàca: t'an esègera)",
 
 # Edit pages
-'summary'                => "Mutiv d'e' cambiamént:",
-'subject'                => 'Argumént (intestaziòn):',
-'minoredit'              => "Quèsta l'è una mudèfiga znina (z)",
-'watchthis'              => "Tèn d'öcc 'sta pàgina què",
-'savearticle'            => "Regèstra e' tu scrètt",
-'preview'                => 'Guèrda prèma',
-'showpreview'            => 'Fam avdé prèma',
-'showdiff'               => 'Fam avdé i cambiamént',
-'anoneditwarning'        => "'''Oci!''' T'an sì miga intrè! T'an fèga e' patàca: a t'registrèn cun e' tu indirèzzi IP e a l' mitèn int la storia d'sta pàgina.",
-'newarticle'             => '(Növ)',
-'newarticletext'         => "T'cì arìv int'una una pàgina ch'la n'esèst incora.
+'summary'                          => "Mutiv d'e' cambiamént:",
+'subject'                          => 'Argumént (intestaziòn):',
+'minoredit'                        => "Quèsta l'è una mudèfiga znina (z)",
+'watchthis'                        => "Tèn d'öcc 'sta pàgina què",
+'savearticle'                      => "Regèstra e' tu scrètt",
+'preview'                          => 'Guèrda prèma',
+'showpreview'                      => 'Fam avdé prèma',
+'showdiff'                         => 'Fam avdé i cambiamént',
+'anoneditwarning'                  => "'''Oci!''' T'an sì miga intrè! T'an fèga e' patàca: a t'registrèn cun e' tu indirèzzi IP e a l' mitèn int la storia d'sta pàgina.",
+'newarticle'                       => '(Növ)',
+'newarticletext'                   => "T'cì arìv int'una una pàgina ch'la n'esèst incora.
 S't'vu fèla te, tàca scrivar int'e' spazi a què sotta (guèrda la [[{{MediaWiki:Helppage}}|pàgina d'servezi]] s't'vu saven piò).
 S'cì arìv a que par sbaj, sciàza e butòn \"Indrì\" e t'ci a post.",
-'noarticletext'          => "In 'ste mumént un gn'è gnito in sta pàgina: l'è vuta.
+'noarticletext'                    => "In 'ste mumént un gn'è gnito in sta pàgina: l'è vuta.
 Magari t'pù provè a [[Special:Search/{{PAGENAME}}|zirchè ste nòm]] in t'j ètar pàgin, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} zirchè i regèstr relativ], o [{{fullurl:{{FULLPAGENAME}}|action=edit}} scrivj indentar adès].",
-'previewnote'            => "'''Òci! Lezz prèma cus t'e' fat; e' tu scrètt U N' è stè ancora registrè!'''",
-'editing'                => 'Cambiamént de $1',
-'editingsection'         => 'Mudèfiga $1 (seziòn)',
-'copyrightwarning'       => "Avìs: tot al contribuziòn sora {{SITENAME}} j è stimé coma sòta la \$2 (guèrda \$1 par i particulé).
+'previewnote'                      => "'''Òci! Lezz prèma cus t'e' fat; e' tu scrètt U N' è stè ancora registrè!'''",
+'editing'                          => 'Cambiamént de $1',
+'editingsection'                   => 'Mudèfiga $1 (seziòn)',
+'copyrightwarning'                 => "Avìs: tot al contribuziòn sora {{SITENAME}} j è stimé coma sòta la \$2 (guèrda \$1 par i particulé).
 S't'an vu che i tu scrètt j pòsa èsar cambié a piasé da ch'jetar, t'an perda témp a scrivar sora a què.
 A e' stes mod, s't'vu carghé ste scrètt, ta t'e' da tü la respunsabilitè che l'è e' tü, uriginél, o ch'ta l'e' cupié d'un sit indov tot j po lezar, o t'l'è truvè da un'ètra font lèbra.
 \"T'AN PRUVA GNÂNC A CARGHÈ DI SCRÈTT BREVÉTÉ, SÂNZA CMANDÉ E' PARMESS!\"",
-'templatesused'          => '{{PLURAL:$1|Mudel|Mudell}} druvé sora sta pàgina:',
-'template-protected'     => '(prutèt)',
-'template-semiprotected' => '(mèz-prutet)',
-'hiddencategories'       => "Sta pàgina què la fa pèrt d'{{PLURAL:$1|una categureja nascosta|$1 categurej nascosti}}.",
+'templatesused'                    => '{{PLURAL:$1|Mudel|Mudell}} druvé sora sta pàgina:',
+'templatesusedpreview'             => '{{PLURAL:$1|Mudel|Mudell}} druvè in sta prova què',
+'template-protected'               => '(prutèt)',
+'template-semiprotected'           => '(mèz-prutet)',
+'hiddencategories'                 => "Sta pàgina què la fa pèrt d'{{PLURAL:$1|una categureja nascosta|$1 categurej nascosti}}.",
+'permissionserrorstext-withaction' => "Tan' ê e' parmess par $2, par {{PLURAL:$1|e' mutiv|i mutiv}} adqvè sotta:",
 
 # History pages
 'viewpagelogs'           => "Guèrda i regestar d'sta pàgina",
@@ -250,12 +262,19 @@ Lezenda: '''({{int:cur}})''' = difarenzi cun la versiòn d'adès; '''({{int:last
 'powersearch-field'         => 'Zerca par',
 
 # Preferences page
+'preferences'   => 'I mì gost',
 'mypreferences' => 'I mi gòst',
 
 # Groups
 'group-sysop' => 'Aministradór',
 
 'grouppage-sysop' => '{{ns:project}}:Aministradór',
+
+# User rights log
+'rightslog' => "Dirètt d'j navigador",
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'Mudèfica sta pàgina',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|mudèfica|mudèfich}}',
@@ -289,6 +308,7 @@ Al pàgin int'la lèsta dal [[Special:Watchlist|pàgin tnudi sot occ]] l' è scr
 
 # Upload
 'upload'        => 'Carga so un file',
+'uploadlogpage' => "Regèstar d'j file carghé",
 'uploadedimage' => 'l\'à carghé "[[$1]]"',
 
 # File description page
@@ -310,7 +330,9 @@ Al pàgin int'la lèsta dal [[Special:Watchlist|pàgin tnudi sot occ]] l' è scr
 'nmembers'      => 'Lumbaart (lmo)
 $1 {{PLURAL:$1|elemént|elemént}}',
 'prefixindex'   => "Tòti al pàgin cun e' prefess",
+'newpages'      => 'Pàgin növi',
 'move'          => 'Chèmbia nòm',
+'movethispage'  => 'Sposta sta pàgina',
 'pager-newer-n' => '{{PLURAL:$1|é piò rezent|i $1 piò rezent}}',
 'pager-older-n' => '{{PLURAL:$1|é piò vëc|i $1 piò vècc}}',
 
@@ -334,6 +356,9 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'newuserlogpage'          => "Regèstar d'j nov",
 'newuserlog-create-entry' => "L'è arivé un patàca nov",
 
+# Special:ListGroupRights
+'listgrouprights-members' => "(Lèsta d'j mèmbar)",
+
 # E-mail user
 'emailuser' => 'Manda un scrètt a ste patàca',
 
@@ -342,6 +367,7 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'mywatchlist'       => "Pàgin ch'a ten d'öcc",
 'watchlistfor'      => "(da '''$1''')",
 'watch'             => "Tèn d'öcc",
+'watchthispage'     => "Ten d'öcc sta pagina",
 'unwatch'           => "T'an stèga piò a t'nì d'öcc",
 'watchlist-details' => "J è, int la lèsta dal pàgin da tnì d'öcc, {{PLURAL:$1|$1 pàgina|$1 pàgin}}, senza cuntê al pàgin d'cunversaziòn.",
 'wlshowlast'        => "Fam avdé agl'ultum $1 ör $2 dè $3",
@@ -365,7 +391,8 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'modifiedarticleprotection' => 'l\'à cambié e\' livèl d\'pruteziòn par "[[$1]]"',
 
 # Undelete
-'undeletelink' => 'Guèrda/Torna indrì',
+'undeletelink'     => 'Guèrda/Torna indrì',
+'undeletedarticle' => 'l\'à artruvè "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => "Spàzi d'é nom:",
@@ -403,14 +430,16 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'whatlinkshere-filters'    => 'Filtar',
 
 # Block/unblock
-'ipboptions'       => '2 ór:2 hours,2 dè:1 day,3 dè:3 days,1 smana:1 week,2 smani:2 weeks,1 mês:1 month,3 mis:3 months,6 mîs:6 months,1 àn:1 year,par sempar:infinite',
-'ipblocklist'      => 'Soranom e indirezz IP bluché',
-'blocklink'        => 'Met-j é carnaz',
-'unblocklink'      => "chèva e' carnàz",
-'change-blocklink' => 'Chèmbia carnàz',
-'contribslink'     => "Ch'l'un ch'l'à scrét",
-'blocklogpage'     => "Regèstar d'j blocch",
-'blocklogentry'    => '"[[$1]]" l\'è sté bluché par $2 $3',
+'blockip'                  => 'Indirèzz IP bluché',
+'ipboptions'               => '2 ór:2 hours,2 dè:1 day,3 dè:3 days,1 smana:1 week,2 smani:2 weeks,1 mês:1 month,3 mis:3 months,6 mîs:6 months,1 àn:1 year,par sempar:infinite',
+'ipblocklist'              => 'Soranom e indirezz IP bluché',
+'blocklink'                => 'Met-j é carnaz',
+'unblocklink'              => "chèva e' carnàz",
+'change-blocklink'         => 'Chèmbia carnàz',
+'contribslink'             => "Ch'l'un ch'l'à scrét",
+'blocklogpage'             => "Regèstar d'j blocch",
+'blocklogentry'            => '"[[$1]]" l\'è sté bluché par $2 $3',
+'block-log-flags-nocreate' => "Un' s'pò brisa registrès un'étra volta",
 
 # Move page
 '1movedto2'   => "[[$1]] l'è stê mòs a [[$2]]",

@@ -418,6 +418,7 @@ $messages['qqq'] = array(
 	'mwe-ok' => '{{Identical|OK}}',
 	'mwe-cancel' => '{{Identical|Cancel}}',
 	'fogg-help-sticky' => 'This is the tooltip message for the help icon. Mousing over this icon displays the help message. This tooltip tells the user that when they click the icon the help message will remain displayed.',
+	'fogg-videoBitrate-help' => 'This is an explanation of what the term "video bitrate" means (i.e. the speed of video encoding in kilobits per second).',
 	'fogg-title-title' => '{{Identical|Title}}',
 	'fogg-date-title' => '{{Identical|Date}}',
 	'fogg-copyright-title' => '{{Identical|Copyright}}',
@@ -5120,6 +5121,17 @@ $messages['id'] = array(
 	'mwe-copy-code' => 'Salin kode',
 );
 
+/** Ido (Ido)
+ * @author Malafaya
+ */
+$messages['io'] = array(
+	'fogg-title-title' => 'Titulo',
+	'fogg-date-title' => 'Dato',
+	'rsd-this_wiki-title' => 'Ca wiki',
+	'mwe-upload' => 'Adkargar arkivo',
+	'mwe-upload-stats-fileprogres' => '$1 ek $2',
+);
+
 /** Italian (Italiano)
  * @author Darth Kule
  * @author Gianfranco
@@ -5629,7 +5641,7 @@ $messages['ksh'] = array(
 	'fogg-height-title' => 'Dämm Viddejo sing Hühde',
 	'fogg-height-help' => 'Der Viddejo op de aanjejovve Hühde bränge.',
 	'fogg-videoBitrate-title' => 'Dämm Viddejo sing Bitraat',
-	'fogg-videoBitrate-help' => 'Dämm Viddejo sing Bitraat säz de Bitraat för et Koddeere för dä Viddejo en Killibits pro Sekund',
+	'fogg-videoBitrate-help' => 'Dämm Viddejo sing Bitraat säz de Bitraat för et Koddeere för dä Viddejo en Killobits pro Sekund.',
 	'mwe-add_media_wizard' => 'Der Hexemeister för Meedije dobeidonn',
 	'mwe-media_search' => 'Meedijje Söhke',
 	'rsd_box_layout' => 'Als ene Kaßte',
@@ -7767,6 +7779,7 @@ $messages['sv'] = array(
 $messages['te'] = array(
 	'mwe-sc_duration' => 'నిడివి',
 	'mwe-template_properties' => 'మూస లక్షణాలు',
+	'mwe-edit_properties' => 'లక్షణాలని మార్చు',
 	'mwe-other_properties' => 'ఇతర లక్షణాలు',
 	'mwe-start_time' => 'ప్రారంభ సమయం',
 	'mwe-end_time' => 'ముగింపు సమయం',
@@ -7775,6 +7788,7 @@ $messages['te'] = array(
 	'mwe-menu_options' => 'ఎంపికలు',
 	'mwe-saving_wait' => 'భద్రపరడం జరుగుతూంది (దయచేసి వేచివుండండి)',
 	'mwe-save_done' => 'భద్రపరచడం పూర్తయ్యింది',
+	'mwe-edit_cancel_confirm' => 'మీరు నిజంగానే మీ మార్పుని రద్దుచేయాలనుకుంటున్నారా? మార్పులు పోతాయి.',
 	'mwe-editor_options' => 'కూర్పరి ఎంపికలు',
 	'mwe-other_options' => 'ఇతర ఎంపికలు',
 	'mwe-ok' => 'సరే',
@@ -7802,6 +7816,7 @@ $messages['te'] = array(
 	'mwe-your_recent_uploads' => '$1 లోనికి ఇటీవలి మీ ఎక్కింపులు',
 	'mwe-upload_a_file' => 'కొత్త ఫైలుని ఎక్కించండి',
 	'mwe-resource_page_desc' => 'వనరు పేజీ వివరణ:',
+	'rsd-this_wiki-title' => 'ఈ వికీ',
 	'mwe-select_file' => 'ఫైలుని ఎంచుకోండి',
 	'mwe-destfilename' => 'గమ్యస్థాన ఫైలుపేరు:',
 	'mwe-summary' => 'సారాశం',

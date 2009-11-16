@@ -401,11 +401,12 @@ Spetga per plaschair avant ch'empruvar anc ina giada.",
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
-'resetpass'        => 'Midar il pled-clav',
-'resetpass_header' => 'Midar il pled-clav dal conto',
-'oldpassword'      => 'pled-clav vegl:',
-'newpassword'      => 'pled-clav nov:',
-'retypenew'        => 'repeter pled-clav nov:',
+'resetpass'               => 'Midar il pled-clav',
+'resetpass_header'        => 'Midar il pled-clav dal conto',
+'oldpassword'             => 'pled-clav vegl:',
+'newpassword'             => 'pled-clav nov:',
+'retypenew'               => 'repeter pled-clav nov:',
+'resetpass-temp-password' => 'Pled-clav temporar:',
 
 # Edit page toolbar
 'bold_sample'     => 'Text grass',
@@ -439,6 +440,7 @@ Spetga per plaschair avant ch'empruvar anc ina giada.",
 'showlivepreview'                  => 'prevista directa',
 'showdiff'                         => 'mussar midadas',
 'anoneditwarning'                  => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
+'missingcommenttext'               => 'Endatescha per plaschair ina resumaziun.',
 'summary-preview'                  => 'prevista da la resumaziun:',
 'blockedtitle'                     => 'Utilisader è bloccà',
 'blockedtext'                      => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
@@ -455,6 +457,7 @@ Ti na pos betg utilisar la funcziun 'Trametter in email a quest utilisader' senz
 Ti'adressa d'IP actuala è $3, ed la block ID è #$5.
 
 Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insatgi.",
+'blockednoreason'                  => 'inditgà nagina raschun',
 'whitelistedittitle'               => "t'annunzia per editar",
 'confirmedittext'                  => 'Ti stos confermar tia adressa dad email avant che editar paginas. Inditgescha e conferma per plaschair tia adressa dad email en tias [[Special:Preferences|preferenzas]].',
 'loginreqtitle'                    => 'Annunzia necessari',
@@ -549,10 +552,14 @@ Quests arguments vegnan ignorads.",
 'history-feed-item-nocomment' => '$1 las $2',
 
 # Revision deletion
-'rev-deleted-comment' => '(eliminà commentari)',
-'rev-delundel'        => 'mussar/zuppar',
-'revdel-restore'      => 'midar la visibilitad',
-'revdelete-uname'     => "num d'utilisader",
+'rev-deleted-comment'        => '(eliminà commentari)',
+'rev-delundel'               => 'mussar/zuppar',
+'rev-showdeleted'            => 'mussar',
+'revdelete-show-file-submit' => 'Gea',
+'revdel-restore'             => 'midar la visibilitad',
+'revdelete-content'          => 'Cuntegn',
+'revdelete-summary'          => 'resumaziun da la midada',
+'revdelete-uname'            => "num d'utilisader",
 
 # Merge log
 'revertmerge' => 'Revocar la fusiun',
@@ -728,10 +735,22 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 'grouppage-sysop' => '{{ns:project}}:Administraturs',
 
 # Rights
+'right-read'             => 'Leger paginas',
+'right-edit'             => 'Modifitgar paginas',
+'right-createpage'       => 'Crear paginas (danor paginas da discussiun)',
+'right-createtalk'       => 'Crear paginas da discussiun',
+'right-createaccount'    => "Crear novs contos d'utilisader",
+'right-minoredit'        => 'Marcar modificaziuns sco pitschnas',
+'right-move'             => 'Spustar paginas',
+'right-move-subpages'    => 'Spustar paginas cun las subpaginas',
+'right-movefile'         => 'Spustar datotecas',
 'right-suppressredirect' => 'Impedir da crear renviaments cun spustar paginas',
+'right-upload'           => 'Chargiar si datotecas',
+'right-delete'           => 'Stizzar paginas',
 
 # User rights log
-'rightslog' => "Log dals dretgs d'utilisader",
+'rightslog'  => "Log dals dretgs d'utilisader",
+'rightsnone' => '(nagins)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit'               => 'editar questa pagina',
@@ -844,12 +863,22 @@ Controllescha sche ti has era il maletg en grondezza originala e chargia si quel
 'img-auth-nologinnWL' => 'Ti n\'ès betg t\'annunzia ed "$1" n\'è betg sin la glista alva.',
 
 # Special:ListFiles
-'listfiles' => 'Glista dals maletgs',
+'imgfile'               => 'datoteca',
+'listfiles'             => 'Glista dals maletgs',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Num',
+'listfiles_user'        => 'Utilisader',
+'listfiles_size'        => 'Grondezza',
+'listfiles_description' => 'Descripziun',
+'listfiles_count'       => 'Versiuns',
 
 # File description page
 'file-anchor-link'          => 'Datoteca',
 'filehist'                  => 'Istorgia da las versiuns',
 'filehist-help'             => 'Clicca sin ina data/temps per vesair la versiun da lura.',
+'filehist-deleteall'        => 'Stidar tut las versiuns',
+'filehist-deleteone'        => 'Stidar questa versiun',
+'filehist-revert'           => 'reinizialisar',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'data/temp',
 'filehist-thumb'            => 'Maletg da prevista',
@@ -1101,11 +1130,12 @@ Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant bet
 'restriction-move' => 'spustar',
 
 # Undelete
-'viewdeletedpage'        => 'guardar las paginas stizzadas',
-'undeletebtn'            => 'restituir',
-'undeletelink'           => 'mussar/restituir',
-'undeletedarticle'       => 'restituì "[[$1]]"',
-'undelete-search-submit' => 'Tschertga',
+'viewdeletedpage'           => 'guardar las paginas stizzadas',
+'undeletebtn'               => 'restituir',
+'undeletelink'              => 'mussar/restituir',
+'undeletedarticle'          => 'restituì "[[$1]]"',
+'undelete-search-submit'    => 'Tschertga',
+'undelete-show-file-submit' => 'Gea',
 
 # Namespace form on various pages
 'namespace'      => 'Tip da pagina:',
@@ -1149,6 +1179,9 @@ Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant bet
 
 # Block/unblock
 'blockip'                  => 'Bloccar utilisader',
+'ipaddress'                => "Adressa d'IP:",
+'ipadressorusername'       => "Adressa d'IP u num d'utilisader:",
+'ipbexpiry'                => 'Temp da bloccaziun:',
 'ipboptions'               => '2 uras:2 hours,1 di:1 day,3 dis:3 days,1 emna:1 week,2 emnas:2 weeks,1 mais:1 month,3 mais:3 months,6 mais:6 months,1 onn:1 year,infinit:infinite',
 'badipaddress'             => "l'adressa-IP è nunvalida",
 'ipblocklist'              => "Glista da las adressas da'IP e dals nums d'utilisader bloccads",

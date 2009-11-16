@@ -882,7 +882,7 @@ Fe fydd gweinyddwyr eraill {{SITENAME}} o hyd yn gallu gweld yr hyn a guddiwyd. 
 'revdelete-submit'            => 'Rhoi ar waith ar y {{PLURAL:$1|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig',
 'revdelete-logentry'          => 'wedi newid y gallu i weld golygiadau ar [[$1]]',
 'logdelete-logentry'          => 'wedi newid y gallu i weld y digwyddiad ar [[$1]]',
-'revdelete-success'           => "'''Llwyddodd y newid i'r gallu i weld golygiadau.'''",
+'revdelete-success'           => "'''Diweddarwyd y gallu i weld golygiadau.'''",
 'logdelete-success'           => "'''Llwyddwyd i guddio neu i ddatguddio'r digwyddiad rhag y lòg.'''",
 'revdel-restore'              => 'Newid gwelededd',
 'pagehist'                    => 'Hanes y dudalen',

@@ -350,6 +350,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'italic_tip'    => 'ܟܬܒܬܐ ܦܠܝܡܬܐ',
 'link_tip'      => 'ܐܣܘܪܐ ܓܘܝܐ',
 'extlink_tip'   => 'ܐܣܘܪܐ ܒܪܝܐ (ܕܟܘܪ http:// ܩܕܡܝܬܐ)',
+'media_tip'     => 'ܐܣܘܪܐ ܕܠܦܦܐ',
 'sig_tip'       => 'ܪܡܝ ܐܝܕܟ ܥܡ ܙܒܢܐ ܘܣܝܩܘܡܐ',
 
 # Edit pages
@@ -849,6 +850,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'activeusers-from'  => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܐ ܥܡ:',
 
 # Special:Log/newusers
+'newuserlogpage'           => 'ܣܓܠܐ ܕܒܪܝܬܐ ܕܡܦܠܚܢܐ',
 'newuserlog-create-entry'  => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ ܚܕܬܐ',
 'newuserlog-create2-entry' => 'ܒܪܐ ܚܘܫܒܢܐ ܚܕܬܐ $1',
 
@@ -1145,6 +1147,9 @@ Do you want to change the settings?',
 'ilsubmit'        => 'ܒܨܝ',
 'bydate'          => 'ܒܣܝܩܘܡܐ',
 
+# Metadata
+'metadata' => 'ܓܠܝܬ̈ܐ ܕܡܝܛܐ',
+
 # EXIF tags
 'exif-imagewidth'          => 'ܦܬܘܐ',
 'exif-imagelength'         => 'ܐܘܪܟܐ',
@@ -1228,6 +1233,8 @@ Do you want to change the settings?',
 # Table pager
 'ascending_abbrev'         => 'ܡܣܩܐܝܬ',
 'descending_abbrev'        => 'ܡܚܬܐܝܬ',
+'table_pager_next'         => 'ܦܐܬܐ ܐܚܪܬܐ',
+'table_pager_prev'         => 'ܦܐܬܐ ܩܕܝܡܬܐ',
 'table_pager_first'        => 'ܦܐܬܐ ܩܕܡܝܬܐ',
 'table_pager_last'         => 'ܦܐܬܐ ܐܚܪܝܬܐ',
 'table_pager_limit_submit' => 'ܙܠ',

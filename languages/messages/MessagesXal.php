@@ -38,8 +38,8 @@ $fallback8bitEncoding = "windows-1251";
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Заалһиг татас татх:',
-'tog-hideminor'             => 'Шидрә хүврлһнә сеткүлд баһ хүврлһиг бултулх',
-'tog-hidepatrolled'         => 'Шидрә хүврлһнә сеткүлд шүүсн хүврлһиг бултулх',
+'tog-hideminor'             => 'Шидрә сольлһна сеткүлд баһ хүврлһиг бултулх',
+'tog-hidepatrolled'         => 'Шидрә сольлһна сеткүлд шүүсн хүврлһиг бултулх',
 'tog-newpageshidepatrolled' => 'Шин халхна сеткүләс шүүсн хүврлһиг бултулх',
 'tog-rememberpassword'      => 'Намаг эн тоолдврд тодлх',
 'tog-oldsig'                => 'Бәәдг тәвсн һарна хәләвр:',
@@ -373,7 +373,7 @@ $messages = array(
 'currentrevisionlink'    => 'Ода цагин янз',
 'cur'                    => 'ода',
 'last'                   => 'урдк',
-'histlegend'             => "Тәәлвр: (ода) — одачн янзас йилһән; (урдк) — урдк янзас йилһән; '''б''' — баһ хүврлһн",
+'histlegend'             => "Тәәлвр: (ода) — одачн янзас йилһән; (урдк) — урдк янзас йилһән; '''б''' — баһ сольлһн",
 'history-fieldset-title' => 'Тууҗиг хәләх',
 'histfirst'              => 'Эрт',
 'histlast'               => 'Шидрә',
@@ -389,7 +389,7 @@ $messages = array(
 'revertmerge' => 'Хувах',
 
 # Diffs
-'history-title'           => '$1 — хүврлһнә тууҗ',
+'history-title'           => '$1 — сольлһна тууҗ',
 'difference'              => '(Йилһән)',
 'lineno'                  => '$1 мөр:',
 'compareselectedversions' => 'Суңһсн янзс әдлцүлх',
@@ -433,7 +433,7 @@ $messages = array(
 'prefs-skin'           => 'Хувцнь',
 'prefs-datetime'       => 'Цаг хуһцан',
 'prefs-personal'       => 'Демнчна көгүд',
-'prefs-rc'             => 'Шидрә хүврлһн',
+'prefs-rc'             => 'Шидрә сольлһн',
 'prefs-watchlist'      => 'Шинҗллһнә сеткүл',
 'prefs-misc'           => 'Талдан',
 'prefs-resetpass'      => 'Нууц угиг сольҗ',
@@ -492,19 +492,19 @@ $messages = array(
 'action-edit' => 'эн халхиг чиклх',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|хүврлһн|хүврлһн}}',
-'recentchanges'                  => 'Шидрә хүврлһн',
-'recentchanges-legend'           => 'Шидрә хүврлһнә көгүд',
-'recentchangestext'              => 'Эн цагин дараһар бичсн шидрә хүврлһн',
+'nchanges'                       => '$1 {{PLURAL:$1|сольлһн|сольлһн}}',
+'recentchanges'                  => 'Шидрә сольлһн',
+'recentchanges-legend'           => 'Шидрә сольлһна көгүд',
+'recentchangestext'              => 'Эн цагин дараһар бичсн шидрә сольлһн',
 'recentchanges-feed-description' => 'Эн зәңгллһд шидрә хүврһд шинҗлх.',
 'recentchanges-label-legend'     => 'Тәәлвр: $1.',
 'recentchanges-legend-newpage'   => '$1 — шин халх',
 'recentchanges-label-newpage'    => 'Эн үүлдәр шин халх бүтәв',
-'recentchanges-legend-minor'     => '$1 — баһ хүврлһн',
+'recentchanges-legend-minor'     => '$1 — баһ сольлһн',
 'recentchanges-label-minor'      => 'Эн баһ чинртә хуврлһн',
-'recentchanges-legend-bot'       => '$1 — көдлврә хүврлһн',
+'recentchanges-legend-bot'       => '$1 — көдлврә сольлһн',
 'recentchanges-label-bot'        => 'Эн хүврһн көдлвр (робот) кехв',
-'rcnote'                         => "{{PLURAL:$1|'''$1''' шидрә хүврлһн|'''$1''' шидрә хүврлһн|'''$1''' шидрә хүврлһн}}, '''$2''' өдрә,  $5 $4 цагин.",
+'rcnote'                         => "{{PLURAL:$1|'''$1''' шидрә сольлһн|'''$1''' шидрә сольлһн|'''$1''' шидрә сольлһн}}, '''$2''' өдрә,  $5 $4 цагин.",
 'rclistfrom'                     => 'Тер цагас хүврлһүдиг үзүлх: $1.',
 'rcshowhideminor'                => 'баһ чикллһиг $1',
 'rcshowhidebots'                 => 'көдлврүдиг $1',
@@ -525,8 +525,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'         => 'Садн чикллһн',
-'recentchangeslinked-title'   => '$1 садта хүврлһн',
-'recentchangeslinked-summary' => "Эн тер халх заалдг халхсин (аль тер янзин халхсин) шидрә хүврлһн.
+'recentchangeslinked-title'   => '$1 садта сольлһн',
+'recentchangeslinked-summary' => "Эн тер халх заалдг халхсин (аль тер янзин халхсин) шидрә сольлһн.
 Тана [[Special:Watchlist|шинҗллһнә сеткүлин]] халхс '''тарһн''' бичәтә.",
 'recentchangeslinked-page'    => 'Халхна нернь:',
 'recentchangeslinked-to'      => 'Зөрүһәр, эн халхд заалдг халхсин хүврлһиг үзүлх',
@@ -614,7 +614,7 @@ $messages = array(
 'watchlistfor'      => "('''$1''' төлә)",
 'addedwatch'        => 'Шинҗллһнә сеткүлд немв.',
 'addedwatchtext'    => "«[[:$1]]» гидг нерәдлһтә халх тана [[Special:Watchlist|шинҗллһнә сеткүлд]] немв.
-Тегәд тер халхна болн терүнә ухалврин хүврлһн энд шиҗлсн болх. Эн халх '''тарһн'' үзгәр [[Special:RecentChanges|шидрә хүврлһнә]] халхд бичсн (амр умшхар) болх.",
+Тегәд тер халхна болн терүнә ухалврин сольлһн энд шиҗлсн болх. Эн халх '''тарһн'' үзгәр [[Special:RecentChanges|шидрә сольлһна]] халхд бичсн (амр умшхар) болх.",
 'removedwatch'      => 'Шинҗллһнә сеткүләс һарһв.',
 'removedwatchtext'  => '«[[:$1]]» гидг нерәдлһтә халх тана [[Special:Watchlist|шинҗллһнә сеткүләс]] һарһв.',
 'watch'             => 'Шинҗлх',
@@ -632,13 +632,13 @@ $messages = array(
 'created'     => 'бүтәв',
 'enotif_body' => 'Мендвт, күндтә $WATCHINGUSERNAME,
 
-$PAGEEDITDATE өдрт «{{SITENAME}}» төсвин $PAGETITLE гидг нерәдлһтә халхиг $PAGEEDITOR $CHANGEDORCREATED. Ода болсн халхна янз үзҗ седхлә, $PAGETITLE_URL хәләтн.
+$PAGEEDITDATE цагт «{{SITENAME}}» төсвин $PAGETITLE гидг нерәдлһтә халхиг $PAGEEDITOR $CHANGEDORCREATED. Ода болсн халхна янз үзҗ седхлә, $PAGETITLE_URL хәләтн.
 
 $NEWPAGE
 
-Хүврлһнә учр-утх: $PAGESUMMARY $PAGEMINOREDIT
+Сольлһнә учр-утх: $PAGESUMMARY $PAGEMINOREDIT
 
-Хүврлчт бичг йовуллһн:
+Сольлчд бичг йовуллһн:
 e-mail\'ар $PAGEEDITOR_EMAIL
 бикиһәр $PAGEEDITOR_WIKI
 
@@ -748,7 +748,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'block-log-flags-nocreate' => 'бичгдлһиг бүтәҗ болшго',
 
 # Move page
-'movepagetext'     => "Та дораһар цаасар, халхин хүврлһнә тууҗ көндәд, терүнә нериг сольх. 
+'movepagetext'     => "Та дораһар цаасар, халхин сольлһна тууҗ көндәд, терүнә нериг сольх. 
 Хуучн нерн шин нерд авч оддг болх. 
 Та хуучн нерд эврәр авч одлһн шинрүлҗ чаднат. 
 Эн кехлә уга, буйн болтха, [[Special:DoubleRedirects|давхр]] болн [[Special:BrokenRedirects|татасн]] авч одлһн шүүтн. 
@@ -778,7 +778,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'movetalk'         => 'Өөр ухалвр халхиг көндәх.',
 '1movedto2'        => '«[[$1]]» «[[$2]]» халхд көндв',
 '1movedto2_redir'  => '«[[$1]]»  «[[$2]]» халхд көндв (авч одлһн уга).',
-'movelogpage'      => 'Нернә хүврлһнә сеткүл',
+'movelogpage'      => 'Нернә сольлһна сеткүл',
 'movereason'       => 'Учр:',
 'revertmove'       => 'хәрүлһн',
 
@@ -815,11 +815,11 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'tooltip-n-mainpage-description'  => 'Нүр халхд орх',
 'tooltip-n-portal'                => 'Проектин туск; та ю кеҗ чаднат; орм медлһн',
 'tooltip-n-currentevents'         => 'Ода болсн зәңгсин бурткл',
-'tooltip-n-recentchanges'         => 'Шидрә хүврлһнә бүрткл',
+'tooltip-n-recentchanges'         => 'Шидрә сольлһна бүрткл',
 'tooltip-n-randompage'            => 'Болв чигн халхиг үзүлх',
 'tooltip-n-help'                  => 'Дөң өггдг һазр',
 'tooltip-t-whatlinkshere'         => 'Цуг вики халхс эн халхд заадг',
-'tooltip-t-recentchangeslinked'   => 'Шидрә хүврлһн халхсд эн халх заадг',
+'tooltip-t-recentchangeslinked'   => 'Шидрә сольлһн халхсд эн халх заадг',
 'tooltip-feed-rss'                => 'Эн халхна RSS зәңһллһн',
 'tooltip-feed-atom'               => 'Эн халхна Atom зәңгллһн',
 'tooltip-t-contributions'         => 'Эн демнчна өгүллһнә бүрткл үзүлх',
@@ -841,12 +841,12 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'tooltip-diff'                    => 'Эн бичгәс хүврлһиг үзүлх',
 'tooltip-compareselectedversions' => 'Тер халхин хойр янзин йилһән үзулх',
 'tooltip-watch'                   => 'Эн халхиг тана шинҗллһнә сеткүлд немх',
-'tooltip-rollback'                => 'Шидрә демнчна хүврлһн нег дарцар хәрү кех',
+'tooltip-rollback'                => 'Шидрә демнчна сольлһн нег дарцар хәрү кех',
 'tooltip-undo'                    => 'Эн хүврлһиг уга келһн, хәләвртә болн  учрта.',
 
 # Browsing diffs
-'previousdiff' => '← Урдк хүврлһн',
-'nextdiff'     => 'Дарук хүврлһн →',
+'previousdiff' => '← Урдк сольлһн',
+'nextdiff'     => 'Дарук сольлһн →',
 
 # Media information
 'file-info-size'       => '($1 × $2 цегтә, боомгин кемҗән: $3, MIME янз: $4)',
@@ -893,7 +893,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'autosumm-new'   => 'Шин халх: «$1»',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Бүртклин халхна хүврлһн',
+'watchlisttools-view' => 'Бүртклин халхна сольлһн',
 'watchlisttools-edit' => 'Сеткүлиг хәләх аль чиклх',
 'watchlisttools-raw'  => 'Бичг мет чиклх',
 

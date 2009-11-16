@@ -613,7 +613,7 @@ Maliari meng i-\"cut-n-paste\" ing sinulat mu king metung a text file, at i-save
 'cascadeprotectedwarning'          => "'''Babala:''' Misara ya ing bulung a ini. Deta mung talagamit a maki upayang sysop ing makapag-edit kaniti, uling kayabe ya kareng makatuking bulung a maki proteksiun a mituki-tuki (cascade protected) {{PLURAL:$1|bulung|bulung}}:",
 'titleprotectedwarning'            => "'''BABALA:  Misara ya ing bulung a ini, ania den mung aliwang talagamit ing makapaglalang kaniti.'''",
 'templatesused'                    => '{{PLURAL:$1|Template|Deng template}} a magagamit king bulung a ini:',
-'templatesusedpreview'             => 'Deng modelung (template) megamit kening preview:',
+'templatesusedpreview'             => '{{PLURAL:$1|Ing template|Deng template}} a megamit kening pasinag/preview:',
 'templatesusedsection'             => 'Deng modelung (template) magagamit king seksiyon a ini:',
 'template-protected'               => '(protektadu)',
 'template-semiprotected'           => '(maki dakeng protektadu)',
