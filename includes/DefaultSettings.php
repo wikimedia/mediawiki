@@ -1769,6 +1769,11 @@ $wgSquidServers = array();
  */
 $wgSquidServersNoPurge = array();
 
+/**
+ * Default character limit for squid purge responses
+ */
+$wgSquidResponseLimit = 250;
+
 /** Maximum number of titles to purge in any one client operation */
 $wgMaxSquidPurgeTitles = 400;
 
