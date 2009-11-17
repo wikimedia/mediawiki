@@ -11,58 +11,119 @@ var kplayerEmbed = {
 	},
 	getEmbedHTML : function () {
 		var embed_code =  this.getEmbedObj();
-		// setTimeout('$j(\'#' + this.id + '\').get(0).postEmbedJS()', 2000);
+		var _this = this;
+		setTimeout(function(){
+			_this.postEmbedJS();
+		}, 50);
 		js_log( "return embed html" );
 		return this.wrapEmebedContainer( embed_code );
 	},
-	getEmbedObj:function() {
-		var player_path = mv_embed_path + 'binPlayers/kaltura-player/player.swf';
-		return '<object id="' + this.pid + '" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ' +
-				'width="' + this.width + '" height="' + this.height + '">' +
-					'<param name="movie" value="' + player_path + '" />' +
-					'<param name="allowfullscreen" value="true" />' +
-					'<param name="allowscriptaccess" value="always" />' +
-					'<param name="flashvars" value="file=video.flv&image=preview.jpg" />' +
-				'<embed ' +
-					'type="application/x-shockwave-flash" ' +
-					'id="' + this.pid + '" ' +
-					'src="' + player_path + '" ' +
-					'width="' + this.width + '" ' +
-					'height="' + this.height + '" ' +
-					'allowscriptaccess="always" ' +
-					'allowfullscreen="true" ' +
-					'flashvars="autostart=true&file=' + escape(  this.getSrc() ) + '" ' +
-				'/>' +
-			'</object>';
-		/*return  '<object id="'+this.pid+'" type="application/x-shockwave-flash"'+ 
-				'allowScriptAccess="always" allowNetworking="all" allowFullScreen="true" '+
-				'height="'+  parseInt(this.height) + '" ' +
-				'width="' + parseInt(this.width) + '" ' +
-				'data="http://www.kaltura.com/index.php/kwidget/wid/_309/uiconf_id/1000106">'+
-					'<param name="allowScriptAccess" value="always"/>'+
-					'<param name="allowNetworking" value="all"/>'+
-					'<param name="allowFullScreen" value="true"/>'+
-					'<param name="bgcolor" value="#000000"/>'+
-					'<param name="movie" value="http://www.kaltura.com/index.php/kwidget/wid/_0/uiconf_id/1000106"/>'+
-					'<param name="flashVars" value="emptyF=onKdpEmpty&readyF=onKdpReady&'+
-						//set the url: 
-						'entryId=' + escape(  this.getSrc() ) + '"/>'+
-					'<param name="wmode" value="opaque"/>'+
-				'</object>';	*/
+	getEmbedObj:function() {	
+		var player_path = mv_embed_path + 'binPlayers/kaltura-player';
+		return '<object width="' + this.width + '" height="' + this.height + '" '+ 
+			 'data="' + player_path + '/wrapper.swf" allowfullscreen="true" '+ 
+			 'allownetworking="all" allowscriptaccess="always" '+
+			 'type="application/x-shockwave-flash" '+ 
+			 'id="' + this.pid + '" name="' + this.pid + '">'+
+				'<param value="always" name="allowScriptAccess"/>'+
+				'<param value="all" name="allowNetworking"/>'+
+			  	'<param value="true" name="allowFullScreen"/>'+
+			  	'<param value="#000000" name="bgcolor"/>'+
+			  	'<param value="wrapper.swf" name="movie"/>'+
+			  	'<param value="' + 
+			  		'kdpUrl=' + player_path + '/kdp.swf' +
+			  		'&ks=dummy&partner_id=0&subp_id=0' +
+			  		'&uid=0&emptyF=onKdpEmpty&readyF=onKdpReady' +
+			  		'" ' + 
+			  		'name="flashVars"/>'+
+			  '<param value="opaque" name="wmode"/>'+
+			 '</object>';		
 	},
 	postEmbedJS:function() {
-		this.monitor();
+		var _this = this;
+		this.getKDP();		
+		if( this.kdp && this.kdp.insertMedia){
+		
+			// Add KDP listeners
+			
+			//this.kdp.addJsListener("doPlay","kdpDoOnPlay");
+			//this.kdp.addJsListener("doStop","kdpDoOnStop");
+			//myKdp.addJsListener("fastForward","kdpDoOnFF");
+						
+			_this.bindKdpFunc( 'doPause', 'kdpPause' );
+			_this.bindKdpFunc( 'doPlay', 'play' );
+			_this.bindKdpFunc( 'playerPlayEnd', 'onClipDone' );									
+		
+			// Insert the src:
+			this.kdp.insertMedia("-1",'http://192.168.192.90/kskin/kplayer-examples/media/bbb.flv','true');			
+			this.kdp.dispatchKdpEvent('doPlay');
+			
+			// Start the monitor
+			this.monitor();
+		}else{
+			setTimeout( function(){
+				_this.postEmbedJS();
+			}, 25);
+		}		
+	},
+	/**
+	* bindKdpFunc
+	* 
+	* @param {String} flash binding name
+	* @param {String} function callback name
+	*/
+	bindKdpFunc:function( bName, fName ){
+		var cbid = fName + '_cb_' + this.id.replace(' ', '_');
+		eval( 'window[ \'' + cbid +'\' ] = function(){$j(\'#' + this.id + '\').get(0).'+ fName +'();}' );
+		this.kdp.addJsListener( bName , cbid);
+	},
+	kdpPause:function(){		
+		this.parent_pause();
+	},
+	play:function() {
+		if( this.kdp && this.kdp.dispatchKdpEvent )
+			this.kdp.dispatchKdpEvent('doPlay');
+		this.parent_play();
 	},
 	pause:function() {
-		this.stop();
+		this.kdp.dispatchKdpEvent('doPause');
+		this.parent_pause();
 	},
-	monitor:function() {
-		// this.parent_monitor();	
+	doSeek:function( prec ){
+		var _this = this;
+		if( this.kdp ){
+			var seek_time = prec * this.getDuration(); 
+			this.kdp.dispatchKdpEvent('doSeek',  seek_time);
+			// Kdp is missing seek done callback
+			setTimeout(function(){
+				_this.seeking= false;
+			},500);
+		}
+		this.monitor();
+	},
+	updateVolumen:function( perc ) {
+		if( this.kdp && this.kdp.dispatchKdpEvent )
+			this.kdp.dispatchKdpEvent('volumeChange', perc);
+	},
+	monitor:function() {	
+		if( this.kdp && this.kdp.getMediaSeekTime ){
+			this.currentTime = this.kdp.getMediaSeekTime();
+		}
+		this.parent_monitor();
+	},
+	// get the embed fla object
+	getKDP: function () {
+		this.kdp = document.getElementById( this.pid );
 	}
 }
 
+function kdpDoOnPause( player ){
+	var cat = player
+	debugger;
+}
+
 function onKdpReady( playerId ) {
- 	 js_log( "IN THEORY PLAYER IS READY" );
+ 	 js_log( "IN THEORY PLAYER IS READY:" + playerId);
  	 /*
 	 window.myKdp=get(playerId);
 	 get("Player_State").innerHTML="<br>&nbsp; READY (Id=" + playerId + ")";
