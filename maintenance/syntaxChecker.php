@@ -25,7 +25,7 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class SyntaxChecker extends Maintenance {
 
 	// List of files we're going to check
-	private $mFiles, $mFailures = array(), $mWarnings = array();
+	private $mFiles = array(), $mFailures = array(), $mWarnings = array();
 
 	public function __construct() {
 		parent::__construct();
@@ -33,6 +33,7 @@ class SyntaxChecker extends Maintenance {
 		$this->addOption( 'with-extensions', 'Also recurse the extensions folder' );
 		$this->addOption( 'file', 'Specific file to check, either with absolute path or relative to the root of this MediaWiki installation',
 			false, true);
+		$this->addOption( 'modified', 'Check only files that were modified (requires SVN command-line client)' );
 	}
 
 	protected function getDbType() {
@@ -77,6 +78,19 @@ class SyntaxChecker extends Maintenance {
 			$this->mFiles[] = $file;
 			$this->output( "Checking file $file.\n" );
 			return; // process only this file
+		} elseif ( $this->hasOption( 'modified' ) ) {
+			$this->output( "Retrieving list from Subversion... " );
+			$parentDir = wfEscapeShellArg( dirname( __FILE__ ) . '/..' );
+			$output = wfShellExec( "svn status --ignore-externals $parentDir", $retval );
+			if ( $retval ) {
+				$this->error( "Error retrieving list from Subversion!\n", true );
+			} else {
+				$this->output( "done\n" );
+			}
+
+			preg_match_all( '/^\s*[AM]\s+(.*?)\r?$/m', $output, $matches );
+			$this->mFiles = array_merge( $this->mFiles, $matches[1] );
+			return;
 		}
 
 		$this->output( "Building file list..." );
