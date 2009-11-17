@@ -178,6 +178,8 @@ class DatabaseOracle extends DatabaseBase {
 	var $ignore_DUP_VAL_ON_INDEX = false;
 	var $sequenceData = null;
 
+	var $defaultCharset = 'AL32UTF8';
+
 	function DatabaseOracle($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
@@ -222,7 +224,7 @@ class DatabaseOracle extends DatabaseBase {
 			throw new DBConnectionError( $this, "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
 		
-		putenv("NLS_LANG=AMERICAN_AMERICA.AL32UTF8");
+		//putenv("NLS_LANG=AMERICAN_AMERICA.AL32UTF8");
 
 		$this->close();
 		$this->mServer = $server;
@@ -234,12 +236,11 @@ class DatabaseOracle extends DatabaseBase {
 		return;
 		}
 
-		//error_reporting( E_ALL ); //whoever had this bright idea
 		$session_mode = $this->mFlags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
 		if ( $this->mFlags & DBO_DEFAULT )
-			$this->mConn = oci_new_connect($user, $password, $dbName, null, $session_mode);
+			$this->mConn = oci_new_connect($user, $password, $dbName, $this->defaultCharset, $session_mode);
 		else
-			$this->mConn = oci_connect($user, $password, $dbName, null, $session_mode);
+			$this->mConn = oci_connect($user, $password, $dbName, $this->defaultCharset, $session_mode);
 
 		if ($this->mConn == false) {
 			wfDebug("DB connection error\n");
@@ -253,7 +254,6 @@ class DatabaseOracle extends DatabaseBase {
 		#removed putenv calls because they interfere with the system globaly
 		$this->doQuery('ALTER SESSION SET NLS_TIMESTAMP_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'');
 		$this->doQuery('ALTER SESSION SET NLS_TIMESTAMP_TZ_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'');
-		
 		return $this->mConn;
 	}
 
@@ -292,8 +292,11 @@ class DatabaseOracle extends DatabaseBase {
 		$olderr = error_reporting(E_ERROR);
 		$explain_id = date('dmYHis');
 		error_reporting($olderr);
+
 		$sql = preg_replace('/^EXPLAIN /', 'EXPLAIN PLAN SET STATEMENT_ID = \''.$explain_id.'\' FOR', $sql, 1, $explain_count);
 			
+		
+		$olderr = error_reporting(E_ERROR);
 		
 		if (($this->mLastResult = $stmt = oci_parse($this->mConn, $sql)) === false) {
 			$e = oci_error($this->mConn);
@@ -772,12 +775,10 @@ class DatabaseOracle extends DatabaseBase {
 		++$this->mErrorCount;
 
 		if ($ignore || $tempIgnore) {
-//echo "error ignored! query = [$sql]\n";
 			wfDebug("SQL ERROR (ignored): $error\n");
 			$this->ignoreErrors( $ignore );
 		}
 		else {
-//echo "error!\n";
 			$message = "A database error has occurred\n" .
 				"Query: $sql\n" .
 				"Function: $fname\n" .
