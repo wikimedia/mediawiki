@@ -60,9 +60,10 @@ var vlcEmbed = {
 			this.vlc.style.width = this.width;
 			this.vlc.style.height = this.height;
 			this.vlc.playlist.items.clear();
+			var src = mw.absoluteUrl( this.getSrc() ) ;
 			// @@todo if client supports seeking no need to send seek_offset to URI
-			js_log( 'vlc play::' + this.getSrc() );
-			var itemId = this.vlc.playlist.add( this.getSrc() );
+			js_log( 'vlc play::' + src );
+			var itemId = this.vlc.playlist.add( src );
 			if ( itemId != -1 ) {
 				// play
 				this.vlc.playlist.playItem( itemId );

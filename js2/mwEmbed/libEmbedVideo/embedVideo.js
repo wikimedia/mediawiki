@@ -1844,15 +1844,12 @@ embedVideo.prototype = {
 		// fade in a black bg div ontop of everything
 		 var div_code = '<div id="blackbg_' + sel_id + '" class="videoComplete" ' +
 			 'style="height:' + parseInt( height ) + 'px;width:' + parseInt( width ) + 'px;">' +
-			  '<div class="videoOptionsComplete">' +
-			// @@TODO: this style should go to .css
-			'<span style="float:right;margin-right:10px">' +
-					'<a href="#" style="color:white;" onClick="$j(\'#' + sel_id + '\').get(0).closeDisplayedHTML();return false;">close</a>' +
+			 	'<span style="float:right;margin-right:10px">' +
+				'<a href="#" style="color:white;" onClick="$j(\'#' + sel_id + '\').get(0).closeDisplayedHTML();return false;">close</a>' +
 			'</span>' +
-			'<div id="mv_disp_inner_' + sel_id + '" style="padding-top:10px;">' +
-				 html_code
-			   + '</div>' +
-			   '</div></div>';
+			  '<div class="videoOptionsComplete">' +					
+			   '</div>'+
+			 '</div>';		
 		$j( '#' + sel_id ).prepend( div_code );
 		if ( fade_in )
 			$j( '#blackbg_' + sel_id ).fadeIn( "slow" );
