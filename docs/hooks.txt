@@ -519,7 +519,7 @@ rendered inline in wiki pages or galleries in category pages.
 &$output: OutputPage object
 &$user: User
 $request: WebRequest object
-$this: Mediawiki object
+$mediaWiki: Mediawiki object
 
 'BeforePageDisplay': Prior to outputting a page
 &$out: OutputPage object
@@ -556,13 +556,13 @@ $output: OutputPage object in use
 'CacheHeadersAfterSet': after cache headers have been set in 
 OutputPage::sendCacheControl, so they can be overridden without 
 disabling output method
-$this: OutputPage instance
+$out: OutputPage instance
  
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
 'ChangesListInsertArticleLink': Override or augment link to article in RC list.
-&$this:        ChangesList instance.
+&$changesList: ChangesList instance.
 &$articlelink: HTML of link to article (already filled-in).
 &$s:           HTML of row that is being constructed.
 &$rc:          RecentChange instance.
@@ -790,7 +790,7 @@ $query: query options passed to Title::getLocalURL()
 'getOtherBlockLogLink': Get links to the block log from extensions which blocks
 	users and/or IP addresses too
 $otherBlockLink: An array with links to other block logs
-$$this->ip: The requested IP address or username
+$ip: The requested IP address or username
 
 'GetPreferences': modify user preferences
 $user: User whose preferences are being modified.
@@ -818,7 +818,7 @@ $title: Title object, pages linked to this title are purged.
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 	image insertion.  You can skip the default logic entirely by returning
 	false, or just modify a	few things using call-by-reference.
-&$this: Skin object
+&$skin: Skin object
 &$title: Title object of the image
 &$file: File object, or false if it doesn't exist
 &$frameParams: Various parameters with special meanings; see documentation in
@@ -876,9 +876,9 @@ $article: Article object
 
 'InternalParseBeforeLinks': during Parser's internalParse method before links
 but after noinclude/includeonly/onlyinclude and other processing.
-&$this: Parser object
+&$parser: Parser object
 &$text: string containing partially parsed text
-&$this->mStripState: Parser's internal StripState object
+&$stripState: Parser's internal StripState object
 
 'InvalidateEmailComplete': Called after a user's email has been invalidated successfully
 $user: user (object) whose email is being invalidated
@@ -1055,12 +1055,12 @@ $errmsg: error message, in HTML (string). Nonempty indicates failure
 'MediaWikiPerformAction': Override MediaWiki::performAction().
 Use this to do something completely different, after the basic
 globals have been set up, but before ordinary actions take place.
-$output:  $wgOut
+$output: $wgOut
 $article: $wgArticle
-$title:   $wgTitle
-$user:    $wgUser
+$title: $wgTitle
+$user: $wgUser
 $request: $wgRequest
-$this:    The $mediawiki object
+$mediaWiki: The $mediawiki object
 
 'MessagesPreLoad': When loading a message from the database
 $title: title of the message (string)
@@ -1377,15 +1377,15 @@ $out: Css to return
 'SkinTemplateTabAction': Override SkinTemplate::tabAction().
 You can either create your own array, or alter the parameters for
 the normal one.
-&$this:     The SkinTemplate instance.
-$title:     Title instance for the page.
-$message:   Visible label of tab.
-$selected:  Whether this is a selected tab.
+&$sktemplate: The SkinTemplate instance.
+$title: Title instance for the page.
+$message: Visible label of tab.
+$selected: Whether this is a selected tab.
 $checkEdit: Whether or not the action=edit query should be added if appropriate.
-&$classes:  Array of CSS classes to apply.
-&$query:    Query string to add to link.
-&$text:     Link text.
-&$result:   Complete assoc. array if you want to return true.
+&$classes: Array of CSS classes to apply.
+&$query: Query string to add to link.
+&$text: Link text.
+&$result: Complete assoc. array if you want to return true.
 
 'SkinTemplateTabs': called when finished to build the actions tabs
 $sktemplate: SkinTemplate object
@@ -1532,19 +1532,19 @@ $user: user that watched
 $article: article object that was watched
 
 'UploadCreateFromRequest': when UploadBase::createFromRequest has been called
-string $type: the requested upload type
+$type: (string) the requested upload type
 &$className: the class name of the Upload instance to be created
 
 'UploadComplete': when Upload completes an upload
 &$upload: an UploadBase child instance
 
 'UploadFormInitDescriptor': after the descriptor for the upload form as been 
-assembled
-array $descriptor: the HTMLForm descriptor
+	assembled
+$descriptor: (array) the HTMLForm descriptor
 
 'UploadFormSourceDescriptors': after the standard source inputs have been 
 added to the descriptor
-array $descriptor: the HTMLForm descriptor
+$descriptor: (array) the HTMLForm descriptor
 
 'UploadVerification': additional chances to reject an uploaded file
 string $saveName: destination file name
