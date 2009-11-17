@@ -637,6 +637,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 19391) Fix caching for Recent ChangesFeed.
 * (bug 21455) Fixed "Watch this page" checkbox appearing on some special pages
   even to non-logged in users
+* (bug 21551) Make Squid reponse limit configurable
 
 == API changes in 1.16 ==
 

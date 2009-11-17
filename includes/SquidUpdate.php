@@ -81,7 +81,7 @@ class SquidUpdate {
 	XXX report broken Squids per mail or log */
 
 	static function purge( $urlArr ) {
-		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
+		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort, $wgSquidResponseLimit;
 
 		/*if ( (@$wgSquidServers[0]) == 'echo' ) {
 			echo implode("<br />\n", $urlArr) . "<br />\n";
@@ -140,7 +140,7 @@ class SquidUpdate {
 						#$this->debug("\n");
 						/* Squid only returns http headers with 200 or 404 status,
 						if there's more returned something's wrong */
-						if (strlen($res) > 250) {
+						if (strlen($res) > $wgSquidResponseLimit) {
 							fclose($socket);
 							$failed = true;
 							$totalsockets -= $sockspersq;
