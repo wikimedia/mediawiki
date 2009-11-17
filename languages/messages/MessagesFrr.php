@@ -14,6 +14,9 @@
 $fallback = 'de';
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'Linke unerstrike:',
+
 # Dates
 'january'       => 'januar',
 'february'      => 'februar',

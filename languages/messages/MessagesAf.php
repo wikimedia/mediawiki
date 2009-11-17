@@ -2495,6 +2495,7 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons swartlys veroorsaak.",
 'spamprotectionmatch' => 'Die volgende teks is wat ons gemorspos-filter geaktiveer het: $1',
 'spam_reverting'      => 'Besig met terugrol na die laaste weergawe wat nie skakels na $1 bevat nie',
+'spam_blanking'       => "Alle weergawes met 'n skakel na $1 word verwyder",
 
 # Info page
 'infosubtitle'   => 'Inligting vir bladsy',
@@ -2525,6 +2526,8 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'math_syntax_error'     => 'sintaksfout',
 'math_image_error'      => 'PNG-omskakeling het gefaal.
 Kontroleer of latex, dvips en gs korrek geïnstalleer is en skakel om',
+'math_bad_tmpdir'       => 'Die gids vir tydelike lêers vir wiskundige formules bestaan nie of kan nie geskep word nie',
+'math_bad_output'       => 'Die gids vir lêers met wiskundige formules bestaan nie of kan nie geskep word nie',
 'math_notexvc'          => 'Kan nie die texvc program vind nie;
 stel asseblief op volgens die beskrywing in math/README.',
 
@@ -2556,6 +2559,7 @@ $1',
 'filedelete-missing'              => 'Die lêer "$1" kan nie geskrap word nie, want dit bestaan nie.',
 'filedelete-old-unregistered'     => 'Die gespesifiseerde lêerweergawe "$1" is nie in die databasis nie.',
 'filedelete-current-unregistered' => 'Die gespesifiseerde lêer "$1" is nie in die databasis nie.',
+'filedelete-archive-read-only'    => 'Die webbediener kan nie na die argief-gids "$1" skryf nie.',
 
 # Browsing diffs
 'previousdiff' => '← Ouer wysiging',
@@ -2788,6 +2792,8 @@ Ander velde sal versteek wees.
 # Flash modes
 'exif-flash-fired-0'    => 'Flits het nie afgegaan',
 'exif-flash-fired-1'    => 'Flits het afgegaan',
+'exif-flash-mode-1'     => 'verpligte vuur van flitser',
+'exif-flash-mode-2'     => 'flitser verplig onderdruk',
 'exif-flash-mode-3'     => 'outomatiese modus',
 'exif-flash-function-1' => 'Geen flitserfunksie',
 'exif-flash-redeye-1'   => 'filter rooi oë vermindering',

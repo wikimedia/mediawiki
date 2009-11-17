@@ -298,6 +298,15 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'diff-multi' => '({{PLURAL:$1|Gr yan usurri|$1 gr isuritn}} ura tuyfsar)',
 
 # Search results
+'searchresults'                    => 'Ma akkan icnubcn',
+'searchresults-title'              => 'Mad akkan icnubcn f "$1"',
+'searchresulttext'                 => 'Inɣmisn yaḍnin f {{SITENAME}},  ẓr  [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'                   => 'Ar tsiggilt f \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tisniwin li kullu ttiswirnin s "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tisniwin li kullu ttiswirnin s "$1"]])',
+'searchsubtitleinvalid'            => "Tsiggelt f '''$1'''",
+'toomanymatches'                   => 'Illa bzzaf maygan zund maya. sbadl taguri yad skra yaḍn',
+'titlematches'                     => 'Assaɣ n tasna iga zund',
+'notitlematches'                   => 'Ur ityuffa kra ntansa zund ɣwad',
+'textmatches'                      => 'Aṭṛiṣ n tasna iga zund',
 'searchprofile-everything-tooltip' => 'Cabba ɣ kullu may ityran ɣid (d ḥtta ɣ tisna nu umsgdal)',
 'searchprofile-advanced-tooltip'   => 'Cabba ɣ igmmaḍn li tuyzlaynin',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 taguri|$2 tiguriwin}})',

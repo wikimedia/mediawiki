@@ -1403,6 +1403,10 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'deletecomment'         => 'Sababu ya kufuta',
 'deleteotherreason'     => 'Sababu nyingine:',
 'deletereasonotherlist' => 'Sababu nyingine',
+'deletereason-dropdown' => '*Sababu za kawaida za ufutaji
+** Ombi la mmiliki
+** Ukiukaji wa hakimiliki
+** Uharabu',
 
 # Rollback
 'rollback'         => 'Rejesha masahihisho',
