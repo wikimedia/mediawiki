@@ -1082,8 +1082,8 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|a la version seleccionada|a las versions seleccionadas}}',
 'revdelete-logentry'          => 'La visibilitat de la version es estada modificada per [[$1]]',
 'logdelete-logentry'          => 'La visibilitat de l’eveniment es estada modificada per [[$1]]',
-'revdelete-success'           => "'''Visibilitat de las versions cambiadas amb succès.'''",
-'revdelete-failure'           => "'''La visibilitat de la revision a pas pogut èsser definida :'''
+'revdelete-success'           => "'''Visibilitat de las versions mesas a jorn amb succès.'''",
+'revdelete-failure'           => "'''La visibilitat de la revision a pas pogut èsser mesa a jorn :'''
 $1",
 'logdelete-success'           => "'''Jornal de las visibilitat parametrat amb succès.'''",
 'logdelete-failure'           => "'''La visibilitat del jornal a pas pogut èsser definida :'''

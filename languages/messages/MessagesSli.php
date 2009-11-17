@@ -489,6 +489,8 @@ Du koast diesen Tittel uffa andern Seyta [[Special:Search/{{PAGENAME}}|sucha]],
 'editingsection'                   => 'Beoarbeeta vo $1 (Oabsatz)',
 'editingcomment'                   => 'Beoarbeeta vo $1 (Kommentar)',
 'yourtext'                         => 'Deen Text',
+'storedversion'                    => 'Gespeicherte Version',
+'yourdiff'                         => 'Underschiede',
 'copyrightwarning'                 => "'''Bite <big>kopiere kenne Webseita</big>, de nee denne eegena sein, benutze <big>kenne urheberrechtlich geschietzta Werke</big> ohne Erlaubnis des Urhebers!'''<br />
 Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, dass dar Text Allgemeengutt '''(public domain)''' ies, oder dass dar '''Urheber''' senne '''Zustimmung''' gegeben hoot. Foalls dieser Text bereits woanders vereeffentlicht wurde, weise bite uff dar Diskussionsseite darauf hin.
 <i>Bite beachte, dass olle {{SITENAME}}-Beiträge automatisch under dar „$2“ stieha (siehe $1 für Details). Foalls du nee meechtest, dass deine Arbeit hier voo andern verändert on verbreitet wird, doann dricke nee uff „Seite speichern“.</i>",
@@ -645,6 +647,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'gender-male'              => 'männlich',
 'gender-female'            => 'weiblich',
 'email'                    => 'E-mail',
+'prefs-dateformat'         => 'Datumsfurmat',
 
 # User rights
 'userrights-groupsmember' => 'Mitglied vun:',
@@ -681,6 +684,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'action-read'       => 'de Seyte zu lasa',
 'action-edit'       => 'de Seite zu beoarbeeta',
 'action-createpage' => 'Seyta zu erschtella',
+'action-delete'     => 'Seyta zu läscha',
 'action-undelete'   => 'de Seyte wiederherzustella',
 
 # Recent changes
@@ -747,6 +751,10 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'upload-proto-error' => 'Foalsches Protokoll',
 'upload-file-error'  => 'Interner Fehler',
 
+# img_auth script messages
+'img-auth-nofile'    => 'Datei „$1“ existiert ne.',
+'img-auth-streaming' => 'Loade „$1“.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL ies nee erreichbar',
 
@@ -755,6 +763,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'upload_source_file' => '  (anne Datei uff dennem Computer)',
 
 # Special:ListFiles
+'listfiles_search_for'  => 'Siche nooch Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateiliste',
 'listfiles_date'        => 'Datum',
@@ -768,6 +777,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'filehist'                  => 'Dateiversiona',
 'filehist-help'             => 'Klicke uff eenen Zeitpunkt, im diese Version zu loada.',
 'filehist-deleteall'        => 'Olle Versiona läscha',
+'filehist-deleteone'        => 'Diese Version läscha',
 'filehist-revert'           => 'zerricke scherga',
 'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Version vum',
@@ -782,6 +792,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'linkstoimage'              => 'De {{PLURAL:$1|folgende Seyte verwendet|folgenden $1 Seyta verwenda}} diese Datei:',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weitere Links]] fier diese Datei.',
 'sharedupload'              => 'Diese Datei stommt ous $1 on dorf voo andern Projekta verwendet waan.',
+'filepage-nofile-link'      => 'Is existiert kenne Datei mit diesem Noama, oaber du koast [$1 diese Datei huchloada].',
 'uploadnewversion-linktext' => 'Eene neue Version dieser Datei huchloada',
 'shared-repo-from'          => 'oaus $1',
 
@@ -802,6 +813,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 # MIME search
 'mimesearch' => 'Suche noach MIME-Typ',
 'mimetype'   => 'MIME-Typ:',
+'download'   => 'Herunderloada',
 
 # Unused templates
 'unusedtemplateswlh' => 'Ondere Links',
@@ -811,8 +823,12 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 
 # Statistics
 'statistics'              => 'Statistik',
+'statistics-header-pages' => 'Seytastatistik',
+'statistics-header-views' => 'Seytauffrufstatistik',
 'statistics-header-users' => 'Benutzerstatistik',
+'statistics-header-hooks' => 'Andere Statistika',
 'statistics-pages'        => 'Seyta',
+'statistics-users-active' => 'Aktive Benutzer',
 
 'doubleredirects'       => 'Doppelte Weiterleitunga',
 'double-redirect-fixer' => 'RedirectBot',
@@ -828,8 +844,12 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'ncategories'       => '$1 {{PLURAL:$1|Kategorie|Kategoria}}',
 'nlinks'            => '{{PLURAL:$1|1 Link|$1 Links}}',
 'nmembers'          => '{{PLURAL:$1|1 Eentrag|$1 Eenträge}}',
+'popularpages'      => 'Beliebteste Seyta',
+'wantedfiles'       => 'Fahlende Dateien',
+'mostlinked'        => 'Häufig verlinkte Seyta',
 'prefixindex'       => 'Olle Seita (mit Präfix)',
 'shortpages'        => 'Korze Seyta',
+'longpages'         => 'Lange Seyta',
 'newpages'          => 'Neue Seyta',
 'newpages-username' => 'Benutzernoame:',
 'move'              => 'Verschieba',
@@ -860,9 +880,13 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'allpagesprev'   => 'Vurherige',
 'allpagesnext'   => 'Nächste',
 'allpagessubmit' => 'Oawenda',
+'allpagesprefix' => 'Seyta oazeiga mit Präfix:',
 
 # Special:Categories
 'categories' => 'Kategoria',
+
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => 'Benutzerbeiträge',
 
 # Special:LinkSearch
 'linksearch'      => 'Weblink-Suche',
@@ -872,7 +896,13 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'linksearch-line' => '$1 ies verlinkt vun $2',
 
 # Special:ListUsers
-'listusers-submit' => 'Zeige',
+'listusersfrom'     => 'Zeige Benutzer ob:',
+'listusers-submit'  => 'Zeige',
+'listusers-blocked' => '(gesperrt)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Liste aktiver Benutzer',
+'activeusers-noresult' => 'Kenne Benutzer gefunda.',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Neuoameldungs-Logbuch',
@@ -888,6 +918,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'mailnologin'      => 'Fahler beim E-Mail-Versand',
 'emailuser'        => 'E-Mail oa diesa Benutzer',
 'emailpage'        => 'E-Mail oa Benutzer',
+'defemailsubject'  => '{{SITENAME}}-E-Mail',
 'nowikiemailtitle' => 'E-Mail-Versand nee meegliech',
 'emailfrom'        => 'Vun:',
 'emailto'          => 'Oa:',
@@ -901,6 +932,7 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'watchlist'         => 'Beobachtungsliste',
 'mywatchlist'       => 'Beobachtungsliste',
 'watchlistfor'      => "(fier '''$1''')",
+'watchnologin'      => 'Du best ne oagemeldet',
 'addedwatch'        => 'Zerr Beobachtungsliste hinzugefiegt',
 'addedwatchtext'    => 'De Seyte „<nowiki>$1</nowiki>“ wurde zu denner [[Special:Watchlist|Beobachtungsliste]] hinzugefiegt.
 
@@ -951,6 +983,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'protectlogpage'              => 'Seytaschutz-Logbuch',
 'protectedarticle'            => 'schietzte „[[$1]]“',
 'modifiedarticleprotection'   => 'änderte dan Schutz voo „[[$1]]“',
+'prot_1movedto2'              => 'hoot „[[$1]]“ nooch „[[$2]]“ verschoba',
 'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Sperrdauer:',
 'protect_expiry_invalid'      => 'De eengegebene Lengde ies ungieltig.',
@@ -981,7 +1014,9 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'restriction-level-all' => 'olle',
 
 # Undelete
+'undelete'                  => 'Geläschte Seyta oazeiga',
 'undeletelink'              => 'oasahn/wiederherstella',
+'undeleteviewlink'          => 'oasahn',
 'undeletedarticle'          => 'hoot „[[$1]]“ wiederhergestellt',
 'undelete-search-submit'    => 'Sucha',
 'undelete-show-file-submit' => 'Ju',
@@ -1000,13 +1035,14 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'month'               => 'on Moonat:',
 'year'                => 'bis Joahr:',
 
-'sp-contributions-newbies'  => 'Zeige oack Beiträge neuer Benutzer',
-'sp-contributions-blocklog' => 'Sperr-Logbuch',
-'sp-contributions-logs'     => 'Logbicher',
-'sp-contributions-talk'     => 'Dischkur',
-'sp-contributions-search'   => 'Suche noach Benutzerbeiträga',
-'sp-contributions-username' => 'IP-Atresse oder Benutzernoame:',
-'sp-contributions-submit'   => 'Sucha',
+'sp-contributions-newbies'     => 'Zeige oack Beiträge neuer Benutzer',
+'sp-contributions-newbies-sub' => 'Fier Neulinge',
+'sp-contributions-blocklog'    => 'Sperr-Logbuch',
+'sp-contributions-logs'        => 'Logbicher',
+'sp-contributions-talk'        => 'Dischkur',
+'sp-contributions-search'      => 'Suche noach Benutzerbeiträga',
+'sp-contributions-username'    => 'IP-Atresse oder Benutzernoame:',
+'sp-contributions-submit'      => 'Sucha',
 
 # What links here
 'whatlinkshere'            => 'Links uff de Seyte',
@@ -1032,6 +1068,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'ipadressorusername'        => 'IP-Atresse oder Benutzernoame:',
 'ipbexpiry'                 => 'Sperrdauer:',
 'ipbreason'                 => 'Begriendung:',
+'ipbsubmit'                 => 'IP-Atresse/Benutzer sperra',
 'ipbother'                  => 'Ondere Dauer (englsch):',
 'ipboptions'                => '2 Stonda:2 hours,1 Taag:1 day,3 Taage:3 days,1 Wuche:1 week,2 Wucha:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joahr:1 year,Unbeschränkt:infinite',
 'ipbotheroption'            => 'Oandere Dauer',
@@ -1040,6 +1077,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'ipblocklist'               => 'Gesperrte IP-Atressa on Benutzernoama',
 'ipblocklist-sh-userblocks' => 'Benutzersperra $1',
 'ipblocklist-submit'        => 'Sucha',
+'ipblocklist-localblock'    => 'Lokale Sperre',
 'blocklistline'             => '$1, $2 sperrte $3 (bis $4)',
 'expiringblock'             => 'endet oam $1 im $2 Seeger',
 'anononlyblock'             => 'ocke Anonyme',
@@ -1097,24 +1135,32 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 '1movedto2'        => 'hoot „[[$1]]“ noach „[[$2]]“ verschoba',
 '1movedto2_redir'  => 'hoot „[[$1]]“ noach „[[$2]]“ verschoba on dabei eene Weiterleitung ieberschrieba',
 'movelogpage'      => 'Verschiebungs-Logbuch',
+'movesubpage'      => '{{PLURAL:$1|Underseyte|Underseyta}}',
 'movereason'       => 'Begriendung:',
 'revertmove'       => 'zerricke scherga',
 
 # Export
-'export'        => 'Seyta exportiera',
-'export-submit' => 'Seyta exportiera',
+'export'          => 'Seyta exportiera',
+'export-submit'   => 'Seyta exportiera',
+'export-download' => 'Ols XML-Datei speichern',
 
 # Namespace 8 related
 'allmessagesname'           => 'Noame',
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter-all'    => 'Olle',
+'allmessages-language'      => 'Sproache:',
+'allmessages-filter-submit' => 'Lus',
 
 # Thumbnails
-'thumbnail-more' => 'vergrießern',
+'thumbnail-more'       => 'vergrießern',
+'filemissing'          => 'Datei fahlt',
+'thumbnail_image-type' => 'Bildtyp ne understützt',
 
 # Special:Import
 'importinterwiki'         => 'Transwiki-Import',
+'import-interwiki-source' => 'Quell-Wiki/-Seyte:',
 'import-interwiki-submit' => 'Import',
+'import-upload-filename'  => 'Dateinoame:',
 'import-comment'          => 'Grund:',
 'importnotext'            => 'Laar oder kee Text',
 'xml-error-string'        => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
@@ -1146,6 +1192,7 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'tooltip-search-fulltext'         => 'Suche noach Seyta, de diesen Text enthalta',
 'tooltip-p-logo'                  => 'Heetseyte',
 'tooltip-n-mainpage'              => 'Heetseyte oanzeiga',
+'tooltip-n-mainpage-description'  => 'Heetseyte besicha',
 'tooltip-n-portal'                => 'Iebers Portal: woas du tun koast, wo woas zu finda ies',
 'tooltip-n-currentevents'         => 'Hintergrundinformationen zu aktuellen Ereignissen',
 'tooltip-n-recentchanges'         => 'Liste der letzten Änderungen in {{SITENAME}}',
@@ -1178,11 +1225,15 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'tooltip-undo'                    => 'Moacht lediglich diese eene Änderung rieckgängig on zeigt doas Resultat ei dar Vorschau oa, damit ei dar Zusommafassungszeile eene Begründung angegeba waan koan.',
 
 # Attribution
-'others' => 'oandera',
+'siteuser'  => '{{SITENAME}}-Benutzer $1',
+'anonuser'  => 'Anonymer {{SITENAME}}-Benutzer $1',
+'others'    => 'oandera',
+'nocredits' => 'Fier diese Seyte sein kenne Informationa vorhanda.',
 
 # Patrol log
 'patrol-log-page'      => 'Kontroll-Logbichl',
 'patrol-log-auto'      => '(automatisch)',
+'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => 'Kontroll-Logbichl $1',
 
 # Browsing diffs
@@ -1224,26 +1275,37 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 * focallength',
 
 # EXIF tags
-'exif-artist'              => 'Fotogroaf',
-'exif-exifversion'         => 'Exif-Version',
-'exif-exposuretime-format' => '$1 Sekunda ($2)',
-'exif-flash'               => 'Blitz',
-'exif-cfapattern'          => 'CFA-Muster',
-'exif-digitalzoomratio'    => 'Digitalzoom',
-'exif-contrast'            => 'Kontrast',
-'exif-saturation'          => 'Sättigung',
-'exif-gpsaltitude'         => 'Hiehe',
-'exif-gpsimgdirection'     => 'Bildrichtung',
-'exif-gpsdatestamp'        => 'GPS-Datum',
+'exif-imagelength'           => 'Länge',
+'exif-jpeginterchangeformat' => 'Offset zu JPEG SOI',
+'exif-imagedescription'      => 'Bildtittel',
+'exif-artist'                => 'Fotogroaf',
+'exif-exifversion'           => 'Exif-Version',
+'exif-exposuretime-format'   => '$1 Sekunda ($2)',
+'exif-lightsource'           => 'Lichtquelle',
+'exif-flash'                 => 'Blitz',
+'exif-scenetype'             => 'Szenatyp',
+'exif-cfapattern'            => 'CFA-Muster',
+'exif-digitalzoomratio'      => 'Digitalzoom',
+'exif-contrast'              => 'Kontrast',
+'exif-saturation'            => 'Sättigung',
+'exif-imageuniqueid'         => 'Bild-ID',
+'exif-gpsaltitude'           => 'Hiehe',
+'exif-gpsimgdirection'       => 'Bildrichtung',
+'exif-gpsareainformation'    => 'Noame des GPS-Gebietes',
+'exif-gpsdatestamp'          => 'GPS-Datum',
 
 'exif-orientation-1' => 'Normal',
 
 'exif-exposureprogram-1' => 'Manuell',
 'exif-exposureprogram-2' => 'Standardprogramm',
 
+'exif-subjectdistance-value' => '$1 Meter',
+
 'exif-meteringmode-3' => 'Spotmessung',
 
+'exif-lightsource-1'  => 'Taageslicht',
 'exif-lightsource-4'  => 'Blitz',
+'exif-lightsource-11' => 'Schoatta',
 'exif-lightsource-17' => 'Standardlicht A',
 'exif-lightsource-18' => 'Standardlicht B',
 'exif-lightsource-19' => 'Standardlicht C',
@@ -1254,9 +1316,12 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 
 'exif-focalplaneresolutionunit-2' => 'Zoll',
 
+'exif-whitebalance-0' => 'Automatisch',
+
 'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landschoft',
 'exif-scenecapturetype-2' => 'Portrait',
+'exif-scenecapturetype-3' => 'Noachtszene',
 
 'exif-gaincontrol-0' => 'Keene',
 'exif-gaincontrol-3' => 'Low gain down',
@@ -1275,6 +1340,10 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 
 'exif-subjectdistancerange-1' => 'Makro',
 
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'östl. Länge',
+'exif-gpslongitude-w' => 'westl. Länge',
+
 'exif-gpsmeasuremode-2' => '2-dimensionale Messung',
 'exif-gpsmeasuremode-3' => '3-dimensionale Messung',
 
@@ -1290,7 +1359,8 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'monthsall'        => 'olle',
 
 # Trackbacks
-'trackbacklink' => 'Trackback',
+'trackbackremove' => '([$1 läscha])',
+'trackbacklink'   => 'Trackback',
 
 # action=purge
 'confirm_purge_button' => 'OK',
@@ -1312,6 +1382,9 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 # Live preview
 'livepreview-loading' => 'Loada…',
 
+# Watchlist editor
+'watchlistedit-noitems' => 'Denne Beobachtungsliste ies laar.',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Beobachtungsliste: Änneronga',
 'watchlisttools-edit' => 'normal beoarbeeta',
@@ -1320,6 +1393,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 # Special:Version
 'version'                  => 'Version',
 'version-specialpages'     => 'Spezialseyta',
+'version-parserhooks'      => 'Parser-Hooks',
 'version-other'            => 'Oanderes',
 'version-version'          => '(Version $1)',
 'version-license'          => 'Lizenz',
@@ -1357,5 +1431,8 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 
 # HTML forms
 'htmlform-selectorother-other' => 'Ondere',
+
+# Add categories per AJAX
+'ajax-error-dismiss' => 'OK',
 
 );
