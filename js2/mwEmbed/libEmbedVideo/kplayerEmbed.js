@@ -1,5 +1,5 @@
 var kplayerEmbed = {
-	instanceOf:'kflashEmbed',
+	instanceOf:'kplayerEmbed',
 	supports: {
 		'play_head':true,
 		'pause':true,
@@ -11,6 +11,7 @@ var kplayerEmbed = {
 	},
 	getEmbedHTML : function () {
 		var embed_code =  this.getEmbedObj();
+		alert
 		var _this = this;
 		setTimeout(function(){
 			_this.postEmbedJS();
@@ -41,9 +42,9 @@ var kplayerEmbed = {
 	},
 	postEmbedJS:function() {
 		var _this = this;
-		this.getKDP();		
+		this.getKDP();	
+		//alert( 	this.kdp );
 		if( this.kdp && this.kdp.insertMedia){
-		
 			// Add KDP listeners
 			
 			//this.kdp.addJsListener("doPlay","kdpDoOnPlay");
@@ -52,20 +53,24 @@ var kplayerEmbed = {
 						
 			_this.bindKdpFunc( 'doPause', 'kdpPause' );
 			_this.bindKdpFunc( 'doPlay', 'play' );
-			_this.bindKdpFunc( 'playerPlayEnd', 'onClipDone' );									
-		
-			// Insert the src:
-			this.kdp.insertMedia("-1",'http://192.168.192.90/kskin/kplayer-examples/media/bbb.flv','true');			
+			_this.bindKdpFunc( 'playerPlayEnd', 'onClipDone' );
+						
+			// KDP player likes an absolute url for the src:
+			var src = mw.absoluteUrl( _this.getSrc() );
+			js_log('play src: ' + src);
+			// Insert the src:	
+			this.kdp.insertMedia("-1", src, 'true' );			
 			this.kdp.dispatchKdpEvent('doPlay');
 			
 			// Start the monitor
 			this.monitor();
 		}else{
+			js_log('insert media: not defiend' + typeof this.kdp.insertMedia );
 			setTimeout( function(){
 				_this.postEmbedJS();
 			}, 25);
 		}		
-	},
+	},	
 	/**
 	* bindKdpFunc
 	* 

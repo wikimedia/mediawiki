@@ -785,11 +785,14 @@ var global_req_cb = new Array(); // The global request callback array
 	
 	/**
 	* Utility Functions
-	* 
+	*/
+		
+	
+	/**
 	* parseUri 1.2.2
 	* (c) Steven Levithan <stevenlevithan.com>
 	*  MIT License
-	*/	
+	*/		
 	$.parseUri = function (str) {
 		var	o   = $.parseUri.options,
 			m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
@@ -817,6 +820,25 @@ var global_req_cb = new Array(); // The global request callback array
 			loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
 		}
 	};	
+	
+	/*
+	* getAbsoluteUrl takes a src and returns the aboluste location given the document.URL
+	* @param {String} src path or url
+	*/
+	$.absoluteUrl = function( src ){
+		var pSrc =  mw.parseUri( src );
+		if( pSrc.protocol != '')
+			return src;				
+		
+		// Get  the document path		
+		var pDoc = mw.parseUri( document.URL );
+		// If a leading slash:  
+		if( src.indexOf( '/' ) == 1 ){
+			return pDoc.protocol + '://' + pDoc.authority + src;
+		}else{
+			return pDoc.protocol + '://' + pDoc.authority + pDoc.directory + src;
+		}
+	};
 	/**
 	* Takes in a string returns an xml dom object 
 	*/

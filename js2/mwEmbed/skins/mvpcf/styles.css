@@ -280,64 +280,8 @@ div.floatleft, table.floatleft {
 	margin: 0 0 6px 0;
 }
 
-.videoComplete {
-/*	width: 100%;
-	height: 100%;*/
-	background: url(images/transparent_bg.png) 0 0 repeat;
-	position: absolute;
-	top:0px;
-	left:0px;
-	z-index: 10;
-	font-size:16px;
-	overflow: hidden;
-}
 
-/*	margin: -305px 0 0 0; */
-.videoComplete .videoOptionsComplete {
-	background:transparent url('images/player_video_options_bg.png') no-repeat scroll 0pt;
-	color:#7A7A7A;
-	font-size:10pt;
-	height:158px;
-	left:10%;
-	overflow:auto;
-	padding:19px;
-	position:relative;
-	top:16%;
-	width:283px;
-}
-.videoComplete .videoOptionsComplete p { text-align: center; margin: 3px 0; padding: 0; }
-.videoComplete .videoOptionsComplete a {
-	color: white;
-/*	font-size: 22px;*/
-	font-size:12px;
-	text-decoration: underline;
-}
 
-.videoComplete .videoOptionsComplete a.email {
-	font-size:16px;
-	background: url(images/ico_mail.png) right 0px no-repeat; 
-	padding: 0 50px 0 0;
-}
-
-.videoComplete div.embed_code textarea {
-	margin: 8px 0 8px 0;
-	padding: 3px;
-	width: 258px;
-	height: 54px;
-	border: 1px solid #dadada;
-	font-family: Arial;
-	color: #777;
-	font-size: 11px;
-}
-.videoComplete div.embed_code button.copy_to_clipboard {
-	background: #dddddd url(images/button_to_clipboard.png) 0 0 repeat-x;
-	border: 1px solid #3b4552;
-	text-align: center;
-	padding: 2px 4px;
-	margin: 0 0 6px 0;
-	float: right;
-	display: inline;
-}
 .cl_status{
 	position:absolute; 
 	bottom:0px;
