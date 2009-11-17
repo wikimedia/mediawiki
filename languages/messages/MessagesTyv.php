@@ -39,8 +39,8 @@ $namespaceAliases = array(
 	'Чурук_чугаа'     => NS_FILE_TALK,
 	'МедиаВики_чугаа' => NS_MEDIAWIKI_TALK,
 	'Хээ_чугаа'       => NS_TEMPLATE_TALK,
-	'Дуза_чугаа'      => NS__TALK,
-	'Бөлүк_чугаа'     => NS__TALK,
+	'Дуза_чугаа'      => NS_HELP_TALK,
+	'Бөлүк_чугаа'     => NS_CATEGORY_TALK,
 );
 
 $bookstoreList = array(
