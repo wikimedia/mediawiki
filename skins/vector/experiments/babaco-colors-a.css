@@ -46,7 +46,7 @@ h5,
 h6 {
 	border-color:#999999;
 	font-family:georgia, times, serif;
-	font-weight:normal;
+	font-weight:bold;
 }
 #firstHeading {
 	font-size:1.5em;
@@ -54,10 +54,12 @@ h6 {
 h2 .editsection,
 .portal h5{
 	font-family:sans-serif;
+	font-weight:normal;
 
 }
 #toc h2, .toc h2 {
 	font-family:sans-serif;
+	font-weight:normal;
 }
 body #panel div.portal div.body {
 	background-image:url(images/new-portal-break-ltr.png);
@@ -69,7 +71,7 @@ body div.vectorTabs li.selected a,
 body div.vectorTabs li.selected a span,
 body div.vectorTabs li.selected a:visited
 body div.vectorTabs li.selected a:visited span {
-	color: #ff6600 !important;
+	color: #ff9900 !important;
 	font-weight:bold;
 }
 div.vectorTabs li.new a, 
