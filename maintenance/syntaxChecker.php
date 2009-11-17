@@ -31,8 +31,9 @@ class SyntaxChecker extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Check syntax for all PHP files in MediaWiki";
 		$this->addOption( 'with-extensions', 'Also recurse the extensions folder' );
-		$this->addOption( 'file', 'Specific file to check, either with absolute path or relative to the root of this MediaWiki installation',
+		$this->addOption( 'path', 'Specific path (file or directory) to check, either with absolute path or relative to the root of this MediaWiki installation',
 			false, true);
+		$this->addOption( 'list-file', 'Text file containing list of files or directories to check', false, true);
 		$this->addOption( 'modified', 'Check only files that were modified (requires SVN command-line client)' );
 	}
 
@@ -66,18 +67,23 @@ class SyntaxChecker extends Maintenance {
 	private function buildFileList() {
 		global $IP;
 
-		if ( $this->hasOption( 'file' ) ) {
-			$file = $this->getOption( 'file' );
-			if ( !file_exists( $file ) ) {
-				if ( file_exists( "$IP/$file" ) ) {
-					$file = "$IP/$file";
-				} else {
-					$this->error( "Error: couldn't open file $file.\n", true );
-				}
+		if ( $this->hasOption( 'path' ) ) {
+			$path = $this->getOption( 'path' );
+			if ( !$this->addPath( $path ) ) {
+				$this->error( "Error: can't find file or directory $path\n", true );
 			}
-			$this->mFiles[] = $file;
-			$this->output( "Checking file $file.\n" );
-			return; // process only this file
+			return; // process only this path
+		} elseif ( $this->hasOption( 'list-file' ) ) {
+			$file = $this->getOption( 'list-file' );
+			$f = @fopen( $file, 'r' );
+			if ( !$f ) {
+				$this->error( "Can't open file $file\n", true );
+			}
+			while( $path = trim( fgets( $f ) ) ) {
+				$this->addPath( $path );
+			}
+			fclose( $f );
+			return;
 		} elseif ( $this->hasOption( 'modified' ) ) {
 			$this->output( "Retrieving list from Subversion... " );
 			$parentDir = wfEscapeShellArg( dirname( __FILE__ ) . '/..' );
@@ -109,16 +115,7 @@ class SyntaxChecker extends Maintenance {
 		}
 
 		foreach( $dirs as $d ) {
-			$iterator = new RecursiveIteratorIterator(
-				new RecursiveDirectoryIterator( $d ), 
-				RecursiveIteratorIterator::SELF_FIRST
-			);
-			foreach ( $iterator as $file ) {
-				$ext = pathinfo( $file->getFilename(), PATHINFO_EXTENSION );
-				if ( $ext == 'php' || $ext == 'inc' || $ext == 'php5' ) {
-					$this->mFiles[] = $file->getRealPath();
-				}
-			}
+			$this->addDirectoryContent( $d );
 		}
 
 		// Manually add two user-editable files that are usually sources of problems
@@ -130,6 +127,46 @@ class SyntaxChecker extends Maintenance {
 		}
 
 		$this->output( "done.\n" );
+	}
+
+	/**
+	 * Add given path to file list, searching it in include path if needed
+	 */
+	private function addPath( $path ) {
+		global $IP;
+		return $this->addFileOrDir( $path ) || $this->addFileOrDir( "$IP/$path" );
+	}
+
+	/**
+	* Add given file to file list, or, if it's a directory, add its content
+	*/
+	private function addFileOrDir( $path ) {
+		if ( is_dir( $path ) ) {
+			$this->addDirectoryContent( $path );
+		} elseif ( file_exists( $path ) ) {
+			$this->mFiles[] = $path;
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Add all suitable files in given directory or its subdirectories to the file list
+	 *
+	 * @param $dir String: directory to process
+	 */
+	private function addDirectoryContent( $dir ) {
+		$iterator = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator( $dir ), 
+			RecursiveIteratorIterator::SELF_FIRST
+		);
+		foreach ( $iterator as $file ) {
+			$ext = pathinfo( $file->getFilename(), PATHINFO_EXTENSION );
+			if ( $ext == 'php' || $ext == 'inc' || $ext == 'php5' ) {
+				$this->mFiles[] = $file->getRealPath();
+			}
+		}
 	}
 
 	/**
