@@ -41,20 +41,29 @@ $dateFormats = array(
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Махсус',
-	NS_TALK             => 'Фикер алышу',
+	NS_TALK             => 'Бәхәс',
 	NS_USER             => 'Кулланучы',
-	NS_USER_TALK        => 'Кулланучы бәхәсе',
-	NS_PROJECT_TALK     => '$1 бәхәсе',
-	NS_FILE             => 'Рәсем',
-	NS_FILE_TALK        => 'Рәсем бәхәсе',
-	NS_MEDIAWIKI        => 'Медиа_Вики',
-	NS_MEDIAWIKI_TALK   => 'Медиа_Вики бәхәсе',
+	NS_USER_TALK        => 'Кулланучы_бәхәсе',
+	NS_PROJECT_TALK     => '$1_бәхәсе',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файл_бәхәсе',
+	NS_MEDIAWIKI        => 'МедиаВики',
+	NS_MEDIAWIKI_TALK   => 'МедиаВики_бәхәсе',
 	NS_TEMPLATE         => 'Үрнәк',
-	NS_TEMPLATE_TALK    => 'Шаблон бәхәсе',
+	NS_TEMPLATE_TALK    => 'Үрнәк_бәхәсе',
 	NS_HELP             => 'Ярдәм',
-	NS_HELP_TALK        => 'Ярдәм бәхәсе',
+	NS_HELP_TALK        => 'Ярдәм_бәхәсе',
 	NS_CATEGORY         => 'Төркем',
-	NS_CATEGORY_TALK    => 'Төркем бәхәсе',
+	NS_CATEGORY_TALK    => 'Төркем_бәхәсе',
+);
+
+$namespaceAliases = array(
+	'Фикер алышу'       => NS_TALK,
+	'Рәсем'             => NS_FILE,
+	'Рәсем_бәхәсе'      => NS_FILE_TALK,
+	'Медиа_Вики'        => NS_MEDIAWIKI,
+	'Медиа_Вики_бәхәсе' => NS_MEDIAWIKI_TALK,
+	'Шаблон_бәхәсе''    => NS_TEMPLATE_TALK,
 );
 
 $namespaceAliases = array(

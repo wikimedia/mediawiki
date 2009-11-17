@@ -21,16 +21,25 @@ $namespaceNames = array(
 	NS_TALK             => 'Majadiliano',
 	NS_USER             => 'Mtumiaji',
 	NS_USER_TALK        => 'Majadiliano_ya_mtumiaji',
-	NS_PROJECT_TALK     => '$1_majadiliano',
+	NS_PROJECT_TALK     => 'Majadiliano_ya_$1',
 	NS_FILE             => 'Picha',
-	NS_FILE_TALK        => 'Majadiliano_faili',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_majadiliano',
+	NS_FILE_TALK        => 'Majadiliano_ya_faili',
+	NS_MEDIAWIKI_TALK   => 'Majadiliano_ya_MediaWiki',
 	NS_TEMPLATE         => 'Kigezo',
-	NS_TEMPLATE_TALK    => 'Kigezo_majadiliano',
+	NS_TEMPLATE_TALK    => 'Majadiliano_ya_kigezo',
 	NS_HELP             => 'Msaada',
-	NS_HELP_TALK        => 'Msaada_majadiliano',
+	NS_HELP_TALK        => 'Majadiliano_ya_msaada',
 	NS_CATEGORY         => 'Jamii',
-	NS_CATEGORY_TALK    => 'Jamii_majadiliano',
+	NS_CATEGORY_TALK    => 'Majadiliano_ya_jamii',
+);
+
+$namespaceAliases = array(
+	'$1_majadiliano'        => NS_PROJECT_TALK,
+	'Majadiliano_faili'     => NS_FILE_TALK,
+	'MediaWiki_majadiliano' => NS_MEDIAWIKI_TALK,
+	'Kigezo_majadiliano'    => NS_TEMPLATE_TALK,
+	'Msaada_majadiliano'    => NS_HELP_TALK,
+	'Jamii_majadiliano'     => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
