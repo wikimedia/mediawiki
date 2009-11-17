@@ -41,6 +41,7 @@ loadGM( {
 	"mwe-ogg-player-quicktime-activex" : "QuickTime ActiveX",
 	"mwe-ogg-player-cortado" : "Java Cortado",
 	"mwe-ogg-player-flowplayer" : "Flowplayer",
+	"mwe-ogg-player-kplayer" : "Kaltura player",
 	"mwe-ogg-player-selected" : "(selected)",
 	"mwe-ogg-player-omtkplayer" : "OMTK Flash Vorbis",
 	"mwe-generic_missing_plugin" : "You browser does not appear to support the following playback type: <b>$1<\/b><br \/>Visit the <a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Media_help\">Playback Methods<\/a> page to download a player.<br \/>",
@@ -877,14 +878,9 @@ embedVideo.prototype = {
 		this.duration = parseFloat( this.duration );
 		js_log( "duration is: " +  this.duration );
 		
-		// Get defaults		
-		var dwh = mw.conf['video_size'].split( 'x' );
-		this.width = element.style.width ? element.style.width : dwh[0];
-		if ( element.tagName == 'AUDIO' ) {
-			this.height = element.style.height ? element.style.height : 0;
-		} else {
-			this.height = element.style.height ? element.style.height : dwh[1];
-		}
+						
+		this.setDimSize( element, 'width' );
+		this.setDimSize( element, 'height' ); 				 			 	
 		
 		// Set the plugin id
 		this.pid = 'pid_' + this.id;
@@ -907,6 +903,17 @@ embedVideo.prototype = {
 		}
 		// Load skin:
 		loadExternalCss(  mv_embed_path +  'skins/' + this.skin_name + '/playerSkin.css' );
+	},
+	// Function for set width height from attributes or by default value
+	setDimSize:function( element, dim ){				
+		var dcss = parseInt( $j(element).css( dim ).replace( 'px' , '' ) );
+		var dattr = parseInt( $j(element).attr( dim ) );
+		this[ dim ] = ( dcss )? dcss : dattr;		
+		if(!this[ dim ]){
+			// Grab width/height from default value
+			var dwh = mw.conf['video_size'].split( 'x' );
+		 	this[ dim ] = ( dim == 'width' )? dwh[0] : dwh[1];
+		 }
 	},
 	on_dom_swap: function() {
 		js_log( 'f:on_dom_swap' );
@@ -2010,14 +2017,16 @@ embedVideo.prototype = {
 	 *  must be overwritten by embed object to support this functionality.
 	 */
 	pause: function() {
+		var _this = this;
 		var eid = ( this.pc != null ) ? this.pc.pp.id:this.id;
 		// js_log('mv_embed:do pause');		
 		// (playing) do pause		
 		this.paused = true;
+		var $pt = $j( '#' + eid);
 		// update the ctrl "paused state"				
-		$j( '#' + eid + ' .play-btn span' ).removeClass( 'ui-icon-pause' ).addClass( 'ui-icon-play' );
-		 $j( '#' + eid + ' .play-btn' ).unbind().btnBind().click( function() {
-				$j( '#' + eid ).get( 0 ).play();
+		$pt.find('.play-btn span' ).removeClass( 'ui-icon-pause' ).addClass( 'ui-icon-play' );
+		 $pt.find('.play-btn' ).unbind().btnBind().click( function() {
+				_this.play();
 		} ).attr( 'title', gM( 'mwe-play_clip' ) );
 	},
 	/**
@@ -2337,8 +2346,8 @@ mediaPlayer.prototype =
 /* players and supported mime types 
 @@note ideally we query the plugin to get what mime types it supports in practice not always reliable/avaliable
 */
-var flowPlayer = new mediaPlayer( 'flowplayer', ['video/x-flv', 'video/h264'], 'flowplayer' );
-// var kplayer = new mediaPlayer('kplayer', ['video/x-flv', 'video/h264'], 'kplayer');
+//var flowPlayer = new mediaPlayer( 'flowplayer', ['video/x-flv', 'video/h264'], 'flowplayer' );
+var kplayer = new mediaPlayer('kplayer', ['video/x-flv', 'video/h264'], 'kplayer');
 
 var omtkPlayer = new mediaPlayer( 'omtkplayer', ['audio/ogg'], 'omtk' );
 
@@ -2377,8 +2386,8 @@ mediaPlayers.prototype =
 		this.loadPreferences();
 		
 		// set up default players order for each library type		
-		this.default_players['video/x-flv'] = ['flowplayer', 'vlc'];
-		this.default_players['video/h264'] = ['flowplayer', 'vlc'];
+		this.default_players['video/x-flv'] = ['kplayer', 'vlc'];
+		this.default_players['video/h264'] = ['kplayer', 'vlc'];
 		
 		this.default_players['video/ogg'] = ['native', 'vlc', 'java', 'generic'];
 		this.default_players['application/ogg'] = ['native', 'vlc', 'java', 'generic'];
@@ -2560,8 +2569,8 @@ var embedTypes = {
 				// flowplayer has pretty good compatiablity 
 				// (but if we wanted to be fancy we would check for version of flash and update the mp4/h.264 support
 
-				// this.players.addPlayer( kplayer );
-				this.players.addPlayer( flowPlayer );
+				this.players.addPlayer( kplayer );
+				//this.players.addPlayer( flowPlayer );
 			}
 			 // VLC
 			 if ( this.testActiveX( 'VideoLAN.VLCPlugin.2' ) )
@@ -2649,8 +2658,8 @@ var embedTypes = {
 				}*/
 				if ( type == 'application/x-shockwave-flash' ) {
 				
-					// this.players.addPlayer( kplayer );
-					this.players.addPlayer( flowPlayer );
+					this.players.addPlayer( kplayer );
+					//this.players.addPlayer( flowPlayer );
 					
 					// check version to add omtk:
 					var flashDescription = navigator.plugins["Shockwave Flash"].description;

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <title>Seeking Render Example</title>
+ 	  <script type="text/javascript" src="../mv_embed.js?debug=true"></script> 	
+  <style>
+    #render_box {
+      position:absolute;
+      width:320px;
+      height:240px;
+    }    
+
+  </style>
+  <script>  
+mwAddOnloadHook(function(){
+
+	$j('#render_player').firefoggRender({
+		'render_options':{
+			"framerate" : 30 
+		},
+		'target_startRender':'#buttonStart',
+		'target_stopRender': '#buttonStop',
+		'target_timeStatus': '#time_status'
+		
+	},function( foggRender ){
+		$j('#loading_text').hide();
+		if( foggRender.enabled ){
+			$j('#info_control').show();
+		}else{
+			$j('#info_control').html( 
+				foggRender.myFogg.getTargetHtml('target_please_install')
+			);
+			if(!($j.browser.mozilla && $j.browser.version >= '1.9.1')) {
+				$j('#info_control').html(
+					foggRender.myFogg.getTargetHtml('target_use_latest_fox')
+				);					
+			}
+		}
+	});
+	
+});
+  </script>
+</head>
+<body>
+<playlist id="render_player" src="media/sample_smil.xml" controls="false" width="320" height="240"></playlist>
+
+<!-- <video id="render_player"
+ durationHint="27" 
+ src="http://upload.wikimedia.org/wikipedia/commons/4/41/Panthera_tigris8.ogg" 
+ style="width:320px;height:240px;" 
+ controls="false"
+ poster="http://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Panthera_tigris8.ogg/mid-Panthera_tigris8.ogg.jpg">
+</video>
+-->
+
+
+<span id="loading_text" style="position:absolute; top:320px;">
+loading render system <blink>...</blink>
+</span>
+<div id="info_control" style="display:none;">
+	<button id="buttonStart">Do Render</button>
+   	<button id="buttonStop">Stop</button>
+   	Current Time: <input type="text" id="time_status" value="0.0" />
+   	<span id="status"></span><br>
+</div>
+
+</body>
+</html>

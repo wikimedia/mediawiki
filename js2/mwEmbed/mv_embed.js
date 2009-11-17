@@ -526,8 +526,8 @@ var global_req_cb = new Array(); // The global request callback array
 	* This is not feature complete but we need a way to get at template properties
 	*
 	*
-	* @param wikiText the wikitext to be parsed
-	* @return parserObj returns a parser object that has methods for getting at
+	* @param {String} wikiText the wikitext to be parsed
+	* @return {Object} parserObj returns a parser object that has methods for getting at
 	* things you would want
 	*/
 	$.parser = { };
