@@ -18,18 +18,29 @@ $namespaceNames = array(
 	NS_SPECIAL          => 'Тускай',
 	NS_TALK             => 'Чугаа',
 	NS_USER             => 'Aжыглакчы',
-	NS_USER_TALK        => 'Aжыглакчы_чугаа',
-	NS_PROJECT_TALK     => '$1_чугаа',
-	NS_FILE             => 'Чурук',
-	NS_FILE_TALK        => 'Чурук_чугаа',
+	NS_USER_TALK        => 'Aжыглакчы_чугаазу',
+	NS_PROJECT_TALK     => '$1_чугаазу',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файл_чугаазу',
 	NS_MEDIAWIKI        => 'МедиаВики',
-	NS_MEDIAWIKI_TALK   => 'МедиаВики_чугаа',
+	NS_MEDIAWIKI_TALK   => 'МедиаВики_чугаазу',
 	NS_TEMPLATE         => 'Хээ',
-	NS_TEMPLATE_TALK    => 'Хээ_чугаа',
+	NS_TEMPLATE_TALK    => 'Хээ_чугаазу',
 	NS_HELP             => 'Дуза',
-	NS_HELP_TALK        => 'Дуза_чугаа',
+	NS_HELP_TALK        => 'Дуза_чугаазу',
 	NS_CATEGORY         => 'Бөлүк',
-	NS_CATEGORY_TALK    => 'Бөлүк_чугаа',
+	NS_CATEGORY_TALK    => 'Бөлүк_чугаазу',
+);
+
+$namespaceAliases = array(
+	'Aжыглакчы_чугаа' => NS_USER_TALK,
+	'$1_чугаа'        => NS_PROJECT_TALK,
+	'Чурук'           => NS_FILE,
+	'Чурук_чугаа'     => NS_FILE_TALK,
+	'МедиаВики_чугаа' => NS_MEDIAWIKI_TALK,
+	'Хээ_чугаа'       => NS_TEMPLATE_TALK,
+	'Дуза_чугаа'      => NS__TALK,
+	'Бөлүк_чугаа'     => NS__TALK,
 );
 
 $bookstoreList = array(

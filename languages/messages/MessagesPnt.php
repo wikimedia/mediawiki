@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_USER             => 'Χρήστες',
 	NS_USER_TALK        => 'Καλάτσεμαν_χρήστε',
 	NS_PROJECT_TALK     => '$1_καλάτσεμαν',
-	NS_FILE             => 'Εικόναν',
-	NS_FILE_TALK        => 'Καλάτσεμαν_εικόνας',
+	NS_FILE             => 'Αρχείον',
+	NS_FILE_TALK        => 'Καλάτσεμαν_αρχείονος',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
 	NS_TEMPLATE         => 'Πρότυπον',
@@ -32,6 +32,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Καλάτσεμαν_βοήθειας',
 	NS_CATEGORY         => 'Κατηγορίαν',
 	NS_CATEGORY_TALK    => 'Καλάτσεμαν_κατηγορίας',
+);
+
+$namespaceAliases = array(
+	'Εικόναν' => NS_FILE,
+	'Καλάτσεμαν_εικόνας' => NS_FILE_TALK,
 );
 
 $datePreferences = array(

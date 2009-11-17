@@ -18,11 +18,11 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Maxsus',
 	NS_TALK             => 'Bäxäs',
-	NS_USER             => 'Äğzä',
-	NS_USER_TALK        => 'Äğzä_bäxäse',
+	NS_USER             => 'Qullanuçı',
+	NS_USER_TALK        => 'Qullanuçı_bäxäse',
 	NS_PROJECT_TALK     => '$1_bäxäse',
-	NS_FILE             => 'Räsem',
-	NS_FILE_TALK        => 'Räsem_bäxäse',
+	NS_FILE             => 'Fayl',
+	NS_FILE_TALK        => 'Fayl_bäxäse',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_bäxäse',
 	NS_TEMPLATE         => 'Ürnäk',
@@ -31,6 +31,13 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Yärdäm_bäxäse',
 	NS_CATEGORY         => 'Törkem',
 	NS_CATEGORY_TALK    => 'Törkem_bäxäse',
+);
+
+$namespaceAliases = array(
+	'Äğzä'             => NS_USER,
+	'Äğzä_bäxäse'      => NS_FILE_USER_TALK,
+	'Räsem'            => NS_FILE,
+	'Räsem_bäxäse'     => NS_FILE_TALK,
 );
 
 $datePreferences = false;
