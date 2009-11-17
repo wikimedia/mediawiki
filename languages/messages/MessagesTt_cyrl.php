@@ -58,17 +58,9 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Фикер алышу'       => NS_TALK,
-	'Рәсем'             => NS_FILE,
-	'Рәсем_бәхәсе'      => NS_FILE_TALK,
-	'Медиа_Вики'        => NS_MEDIAWIKI,
-	'Медиа_Вики_бәхәсе' => NS_MEDIAWIKI_TALK,
-	'Шаблон_бәхәсе''    => NS_TEMPLATE_TALK,
-);
-
-$namespaceAliases = array(
 	'Служебная'                          => NS_SPECIAL,
 	'Обсуждение'                         => NS_TALK,
+	'Фикер алышу'                        => NS_TALK,
 	'Участница'                          => NS_USER,
 	'Обсуждение участницы'               => NS_USER_TALK,
 	'Участник'                           => NS_USER,
@@ -76,11 +68,15 @@ $namespaceAliases = array(
 	'Обсуждение_{{GRAMMAR:genitive|$1}}' => NS_PROJECT_TALK,
 	'Изображение'                        => NS_FILE,
 	'Обсуждение_изображения'             => NS_FILE_TALK,
-	'Файл'                               => NS_FILE,
 	'Обсуждение_файла'                   => NS_FILE_TALK,
+	'Рәсем'                              => NS_FILE,
+	'Рәсем_бәхәсе'                       => NS_FILE_TALK,
 	'Обсуждение_MediaWiki'               => NS_MEDIAWIKI_TALK,
+	'Медиа_Вики'                         => NS_MEDIAWIKI,
+	'Медиа_Вики_бәхәсе'                  => NS_MEDIAWIKI_TALK,
 	'Шаблон'                             => NS_TEMPLATE,
 	'Обсуждение_шаблона'                 => NS_TEMPLATE_TALK,
+	'Шаблон_бәхәсе'                      => NS_TEMPLATE_TALK,
 	'Справка'                            => NS_HELP,
 	'Обсуждение_справки'                 => NS_HELP_TALK,
 	'Категория'                          => NS_CATEGORY,
