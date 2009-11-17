@@ -35,7 +35,7 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Äğzä'             => NS_USER,
-	'Äğzä_bäxäse'      => NS_FILE_USER_TALK,
+	'Äğzä_bäxäse'      => NS_USER_TALK,
 	'Räsem'            => NS_FILE,
 	'Räsem_bäxäse'     => NS_FILE_TALK,
 );
