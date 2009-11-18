@@ -1427,7 +1427,7 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 'rev-deleted-comment'         => '(comment removed)',
 'rev-deleted-user'            => '(username removed)',
 'rev-deleted-event'           => '(log action removed)',
-'rev-deleted-user-contribs'   => '[username or IP removed - edit hidden from contributions]',
+'rev-deleted-user-contribs'   => '[username or IP address removed - edit hidden from contributions]',
 'rev-deleted-text-permission' => "This page revision has been '''deleted'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
@@ -2850,8 +2850,8 @@ The latest block log entry is provided below for reference:',
 'blockiptext'                     => 'Use the form below to block write access from a specific IP address or username.
 This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular pages that were vandalized).',
-'ipaddress'                       => 'IP Address:',
-'ipadressorusername'              => 'IP Address or username:',
+'ipaddress'                       => 'IP address:',
+'ipadressorusername'              => 'IP address or username:',
 'ipbexpiry'                       => 'Expiry:',
 'ipbreason'                       => 'Reason:',
 'ipbreasonotherlist'              => 'Other reason',
@@ -2946,7 +2946,7 @@ Do you want to change the settings?',
 'ipb-otherblocks-header'          => 'Other {{PLURAL:$1|block|blocks}}',
 'ipb_cant_unblock'                => 'Error: Block ID $1 not found.
 It may have been unblocked already.',
-'ipb_blocked_as_range'            => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
+'ipb_blocked_as_range'            => 'Error: The IP address $1 is not blocked directly and cannot be unblocked.
 It is, however, blocked as part of the range $2, which can be unblocked.',
 'ip_range_invalid'                => 'Invalid IP range.',
 'blockme'                         => 'Block me',
@@ -3229,7 +3229,7 @@ Please try again.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Your user page',
-'tooltip-pt-anonuserpage'         => "The user page for the ip you're editing as",
+'tooltip-pt-anonuserpage'         => 'The user page for the IP address you are editing as',
 'tooltip-pt-mytalk'               => 'Your talk page',
 'tooltip-pt-anontalk'             => 'Discussion about edits from this IP address',
 'tooltip-pt-preferences'          => 'Your preferences',
