@@ -2044,7 +2044,22 @@ END;
 		}
 
 		$bar = array();
-		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
+		$this->addToSidebar( &$bar, 'sidebar' );
+
+		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
+		if ( $wgEnableSidebarCache ) $parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
+		wfProfileOut( __METHOD__ );
+		return $bar;
+	}
+	/**
+	 * Add content from a sidebar system message
+	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
+	 * 
+	 * @param &$bar array
+	 * @param $message String
+	 */
+	function addToSidebar( &$bar, $message ) {
+		$lines = explode( "\n", wfMsgForContent( $message ) );
 		$heading = '';
 		foreach( $lines as $line ) {
 			if( strpos( $line, '*' ) !== 0 )
@@ -2086,10 +2101,6 @@ END;
 				} else { continue; }
 			}
 		}
-		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
-		if ( $wgEnableSidebarCache ) $parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
-		wfProfileOut( __METHOD__ );
-		return $bar;
 	}
 
 	/**
