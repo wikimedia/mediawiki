@@ -95,7 +95,11 @@ class SyntaxChecker extends Maintenance {
 			}
 
 			preg_match_all( '/^\s*[AM]\s+(.*?)\r?$/m', $output, $matches );
-			$this->mFiles = array_merge( $this->mFiles, $matches[1] );
+			foreach ( $matches[1] as $file ) {
+				if ( self::isSuitableFile( $file ) && !is_dir( $file ) ) {
+					$this->mFiles[] = $file;
+				}
+			}
 			return;
 		}
 
@@ -127,6 +131,14 @@ class SyntaxChecker extends Maintenance {
 		}
 
 		$this->output( "done.\n" );
+	}
+	
+	/**
+	 * Returns true if $file is of a type we can check
+	 */
+	private static function isSuitableFile( $file ) {
+		$ext = pathinfo( $file, PATHINFO_EXTENSION );
+		return $ext == 'php' || $ext == 'inc' || $ext == 'php5';
 	}
 
 	/**
@@ -162,8 +174,7 @@ class SyntaxChecker extends Maintenance {
 			RecursiveIteratorIterator::SELF_FIRST
 		);
 		foreach ( $iterator as $file ) {
-			$ext = pathinfo( $file->getFilename(), PATHINFO_EXTENSION );
-			if ( $ext == 'php' || $ext == 'inc' || $ext == 'php5' ) {
+			if ( self::isSuitableFile( $file->getRealPath() ) ) {
 				$this->mFiles[] = $file->getRealPath();
 			}
 		}
