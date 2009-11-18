@@ -123,7 +123,7 @@ class DeletedContribsPager extends IndexPager {
 				'user_text'  => $row->ar_user_text,
 				'timestamp'  => $row->ar_timestamp,
 				'minor_edit' => $row->ar_minor_edit,
-				'deleted' => $row->ar_deleted,
+				'deleted'    => $row->ar_deleted,
 				) );
 
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
@@ -212,12 +212,15 @@ class DeletedContribsPager extends IndexPager {
 			array( 'class' => 'mw-deletedcontribs-tools' ),
 			wfMsg( 'parentheses', $wgLang->pipeList( array( $last, $dellog, $reviewlink ) ) )
 		);
+		
+		$ret = "{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}";
+		
+		# Denote if username is redacted for this edit
+		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
+			$ret .= " <strong>" . wfMsgHtml('rev-deleted-user-contribs') . "</strong>";
+		}
 
-		$ret = Html::rawElement(
-			'li',
-			array(),
-			"{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}"
-		) . "\n";
+		$ret = Html::rawElement( 'li', array(), $ret ) . "\n";
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
