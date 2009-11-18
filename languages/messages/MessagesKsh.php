@@ -374,7 +374,7 @@ Dat es och all op Änglesch:
 'vector-namespace-media'     => 'Medijesigg',
 'vector-namespace-mediawiki' => 'Täx/Nohreesch',
 'vector-namespace-project'   => 'Projäksigg',
-'vector-namespace-special'   => 'Söndersigg',
+'vector-namespace-special'   => '{{int:nstab-special}}',
 'vector-namespace-talk'      => 'Klaafsigg',
 'vector-namespace-template'  => 'Schablohn',
 'vector-namespace-user'      => 'Metmaachersigg',
@@ -420,7 +420,7 @@ Dat es och all op Änglesch:
 'newpage'           => 'Neu Sigg',
 'talkpage'          => 'Üvver die Sigg hee schwaade',
 'talkpagelinktext'  => 'Klaaf',
-'specialpage'       => 'Sondersigg',
+'specialpage'       => '{{int:nstab-special}}',
 'personaltools'     => 'Metmaacher Werkzüch',
 'postcomment'       => 'Neu Avschnedd op de Klaafsigg donn',
 'articlepage'       => 'Aanluure wat op dä Sigg drop steiht',
@@ -512,7 +512,7 @@ $1',
 'nstab-main'      => 'Atikkel',
 'nstab-user'      => 'Metmaachersigg',
 'nstab-media'     => 'Medijesigg',
-'nstab-special'   => 'Söndersigg',
+'nstab-special'   => 'Extrasigg',
 'nstab-project'   => 'Projeksigg',
 'nstab-image'     => 'Datei',
 'nstab-mediawiki' => 'Tex/Nohreesch',
@@ -525,8 +525,8 @@ $1',
 'nosuchactiontext'  => '<strong>Na su jet:</strong> De Aufgab us dä URL, die do hinger „<code>action=</code>“ dren steiht, jo die kennt hee dat Wiki jar nit.
 Do künns Desch vertipp han, udder ene verkeehte Lengk hät Desch noh hee jebraat.
 Et künnt sesch och öm ene Fäähler en dä Sofware fum Wiki handelle.',
-'nosuchspecialpage' => "Esu en Sondersigg ha'mer nit",
-'nospecialpagetext' => 'De aanjefrochte Sondersigg jitt et nit, de [[Special:SpecialPages|Liss met de Sondersigge]] helf Der wigger.',
+'nosuchspecialpage' => "Esu en {{int:nstab-special}} ha'mer nit",
+'nospecialpagetext' => 'De aanjefrochte {{int:nstab-special}} jitt et nit, de [[Special:SpecialPages|Leß met de {{int:nstab-special}}e]] helf Der wigger.',
 
 # General errors
 'error'                => 'Fähler',
@@ -608,7 +608,7 @@ http://translatewiki.net/wiki/MediaWiki:{{BASEPAGENAMEE}}/qqq?setlang=ksh',
 $2',
 'namespaceprotected'   => 'Do darfs Sigge em Appachtemang „$1“ nit ändere.',
 'customcssjsprotected' => 'Do darfs di Sigg hee nit ändere. Se jehööt enem andere Metmacher un es e Stöck funn dämm sing eije Enstellunge.',
-'ns-specialprotected'  => 'Söndersigge künne mer nit ändere.',
+'ns-specialprotected'  => '{{int:nstab-special}}e künne mer nit ändere.',
 'titleprotected'       => "Dä Tittel för en Sigg eß verbodde, fum [[User:$1]], un dr Jrond wohr: ''„$2“''",
 
 # Virus scanner
@@ -1579,7 +1579,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'recentchangeslinked-title'    => 'Änderunge aan Sigge, die vun „$1“ uß verlink sin',
 'recentchangeslinked-backlink' => '←&nbsp;$1',
 'recentchangeslinked-noresult' => 'Et woodte kein Änderunge aan verlinkte Sigge jemaat en dä Zick.',
-'recentchangeslinked-summary'  => "Hee die Sondersigg hät en Liß met Änderunge aan Sigge, di vun de aanjejovve Sigg uß verlink sin.
+'recentchangeslinked-summary'  => "Hee die {{int:nstab-special}} hät en Liß met Änderunge aan Sigge, di vun de aanjejovve Sigg uß verlink sin.
 Bei Saachjruppe sen et de Sigge en dä Saachjrupp.
 Sigge uß Dinge [[Special:Watchlist|Oppaßliß]] sin '''fett''' jeschrevve.",
 'recentchangeslinked-page'     => 'Dä Sigg iere Tittel:',
@@ -1859,7 +1859,7 @@ Dat sellve shteiht hee dronger.',
 
 # MIME search
 'mimesearch'         => 'Dateie üvver dänne ehre <span lang="en">MIME</span>-Typ söke',
-'mimesearch-summary' => 'Op hee dä Sondersigg könne de Dateie noh em <i lang="en">MIME</i>-Tüpp ußjesöök wäde.
+'mimesearch-summary' => 'Op hee dä {{int:nstab-special}} könne de Dateie noh em <i lang="en">MIME</i>-Tüpp ußjesöök wäde.
 Mer moß immer der Medietüp un der Ongertüp aanjevve.
 Zem Beispell: <code lang="en">image/jpeg</code>
 — kannß donoh op dä Beschrievungssigge von de Dateie loore.',
@@ -2067,7 +2067,7 @@ eins vun all däm op eimol.',
 'linksearch-pat'   => 'Sök noh:',
 'linksearch-ns'    => 'Appachtemang:',
 'linksearch-ok'    => 'Sööke',
-'linksearch-text'  => 'Di Sondersigg hee mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
+'linksearch-text'  => 'Di {{int:nstab-special}} heh mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
 
 Beim Söke künnd_Er Shternshe aanjevve för e Shtöckshe fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <tt>http://*.example.com</tt>
 
@@ -2574,7 +2574,7 @@ De Sigg weed '''nit''' ömjenannt, wann et met däm neue Name ald en Sigg jitt, 
 Esu ka'mer en Sigg jlich widder zeröck ömnenne, wa'mer sich mem Ömnenne verdonn hät, un mer kann och kein Sigge kapottmaache, wo ald jet drop steiht.
 
 '''Oppjepass!'''
-Wat beim Ömnenne erus kütt, künnt en opfällije un villeich stürende Änderung am Wiki sin, besonders bei off jebruchte Sigge.
+Wat beim Ömnenne erus kütt, künnt en opfällije un villeich stürende Änderung am Wiki sin, besönders bei off jebruchte Sigge.
 Alsu bes secher, datte versteihs, watte hee am maache bes, ih dattet mähs!",
 'movepagetalktext'             => "Dä Sigg ehr Klaafsigg, wann se ein hät, weed automatisch met  ömjenannt, '''usser''' wann:
 * de Sigg en en ander Appachtemeng kütt,
@@ -2781,13 +2781,13 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-t-contributions'         => 'Donn de Liß met Bedträch vun däm Metmaacher beloore',
 'tooltip-t-emailuser'             => 'Scheck en E-Mail aan dä Metmaacher',
 'tooltip-t-upload'                => 'Dateie huhlade',
-'tooltip-t-specialpages'          => 'Liss met Sondersigge',
+'tooltip-t-specialpages'          => 'Liss met de {{int:nstab-special}}e',
 'tooltip-t-print'                 => 'De Drock-Aansich för hee die Sigg',
 'tooltip-t-permalink'             => 'Ene iewich haltbare Lenk (Permalink) op jenou die Version vun hee dä Sigg, die de jrad süühß un am beloore bes',
 'tooltip-ca-nstab-main'           => 'Don dä Enhallt vun dä Sigg aanzeije',
 'tooltip-ca-nstab-user'           => 'Dun die Metmaachersig aanzeije',
 'tooltip-ca-nstab-media'          => 'Don de Sigg övver en Mediendatei aanzeije',
-'tooltip-ca-nstab-special'        => "Dat is en Sondersigg. Do kam'mer nix draan verändere.",
+'tooltip-ca-nstab-special'        => "Dat is en {{int:nstab-special}}. Do kam'mer nix draan verändere.",
 'tooltip-ca-nstab-project'        => 'Dun die Projeksigg aanzeije',
 'tooltip-ca-nstab-image'          => 'Dun die Sigg üvver hee die Datei aanzeije',
 'tooltip-ca-nstab-mediawiki'      => 'En Täx vum MediaWiki-System aanzeije',
@@ -3439,7 +3439,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 # Special:Version
 'version'                          => 'Version vun de Wiki Soffwär zeije',
 'version-extensions'               => 'Installeete Erjänzunge un Zohsätz',
-'version-specialpages'             => 'Sondersigge',
+'version-specialpages'             => '{{int:nstab-special}}e',
 'version-parserhooks'              => 'De Parser-Hooke',
 'version-variables'                => 'Variable',
 'version-other'                    => 'Söns',
@@ -3461,7 +3461,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'filepath'         => 'Medije-Dateie med ier URL zëije',
 'filepath-page'    => 'Dattëij_Name:',
 'filepath-submit'  => 'Zëĳsh dä Pahdt',
-'filepath-summary' => "Med dä Söndersigg hee künnd'Er dä kompläte Paad vun de neuste Version vun ene Datei direk erusfenge. Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.
+'filepath-summary' => "Med dä {{int:nstab-special}} hee künnd'Er dä kompläte Paad vun de neuste Version vun ene Datei direk erusfenge. Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.
 
 Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 
@@ -3478,12 +3478,12 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'fileduplicatesearch-result-n' => "Vun dä Datei „$1“ ham'mer '''{{PLURAL:$2|ein|$2|kein}}''' dubbelte mem selve Enhalt jefonge.",
 
 # Special:SpecialPages
-'specialpages'                   => 'Sondersigge',
-'specialpages-note'              => "<h4 class='mw-specialpagesgroup'>Lejänd (Äklierong):</h4><table style='width:100%;' class='mw-specialpages-table'><tr><td valign='top'><ul><li> Sondersigge för jede Metmaacher
-</li><li class='mw-specialpages-page mw-specialpagerestricted'>Sondersigge för Metmaacher met besönder Räächte
+'specialpages'                   => '{{int:nstab-special}}e',
+'specialpages-note'              => "<h4 class='mw-specialpagesgroup'>Lejänd (Äklierong):</h4><table style='width:100%;' class='mw-specialpages-table'><tr><td valign='top'><ul><li> {{int:nstab-special}}e för jede Metmaacher
+</li><li class='mw-specialpages-page mw-specialpagerestricted'>{{int:nstab-special}}e för Metmaacher met besönder Räächte
 </li></ul></td></tr></table>",
 'specialpages-group-maintenance' => 'Waadungsleste',
-'specialpages-group-other'       => 'Ander Sondersigge',
+'specialpages-group-other'       => 'Ander {{int:nstab-special}}e',
 'specialpages-group-login'       => 'Aamelde',
 'specialpages-group-changes'     => 'Letzte Änderunge un Logböcher',
 'specialpages-group-media'       => 'Dateie — Huhlaade un Opliste',
@@ -3492,7 +3492,7 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'specialpages-group-pages'       => 'Siggeliste',
 'specialpages-group-pagetools'   => 'Werrekzüch för Sigge',
 'specialpages-group-wiki'        => 'Werrekzüch un Date vum Systeem',
-'specialpages-group-redirects'   => 'Sondersigge, die ömleite, söke, un finge',
+'specialpages-group-redirects'   => '{{int:nstab-special}}e, die ömleite, söke, un finge',
 'specialpages-group-spam'        => 'Werrekzüch jäje SPÄM',
 
 # Special:BlankPage

@@ -2263,7 +2263,7 @@ El motiu del bloqueig de $1 és: ''$2''.",
 Per més detalls, a sota es mostra el registre de bloquejos:',
 'blocklog-showsuppresslog'        => 'Aquest usuari ha estat blocat i amagat prèviament.
 Per més detalls, a sota es mostra el registre de supressions:',
-'blocklogentry'                   => "ha blocat l'{{GENDER:$1|usuari|usuària}} [[$1]] per un període de: $2; $3",
+'blocklogentry'                   => "ha blocat l'{{GENDER:$1|usuari|usuària}} [[$1]] per un període de: $2 $3",
 'reblock-logentry'                => 'canviades les opcions del blocatge a [[$1]] amb caducitat a $2, $3',
 'blocklogtext'                    => "Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:IPBlockList|llista d'usuaris actualment bloquejats]].",
 'unblocklogentry'                 => 'desbloquejat $1',
