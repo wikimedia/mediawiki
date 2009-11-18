@@ -217,7 +217,6 @@ body {
 		background-repeat: no-repeat;
 		padding-left: 1px;
 		margin-left: -1px;
-		font-size:100% !important;
 	}
 	/* IGNORED BY IE6 */
 	#head div.vectorMenu > h5 {
