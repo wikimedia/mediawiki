@@ -8,13 +8,61 @@
  * @file
  *
  * @author Don Alessandro
+ * @author GerardM
  * @author Iltever
  */
 
 $fallback = 'ru';
 
 $messages = array(
+# User preference toggles
+'tog-underline'               => 'Джибериулени тюблерин сызыу',
+'tog-highlightbroken'         => 'Болмагъан джибериулени <a href="" class="new">былай</a> (альтернатив: <a href="" class="internal">?</a>) кёгюз.',
+'tog-justify'                 => 'Текстни бетни кенглигине кёре тиз',
+'tog-hideminor'               => 'Джангы тюрлениулени списогунда гитче тюрлениулени кёгюзме',
+'tog-hidepatrolled'           => 'Джангы тюрлениулени списогунда тинтилген тюрлениулени кёргюзме',
+'tog-newpageshidepatrolled'   => 'Джангы бетлени списогунда тинтилген бетлени кёгюзме',
+'tog-extendwatchlist'         => 'Кенг сынчыкълау список, болгъа тюрлениулени кёргюзген, къуру ахыргъыланы тюйюл',
+'tog-usenewrc'                => 'Джангы тюрлениулени игиленнген списогун хайырландыр (JavaScript керекди)',
+'tog-numberheadings'          => 'Башлыкъланы (бёлюмлени атлары) автомат номерленсинле',
+'tog-showtoolbar'             => 'Тюрлендирген сагъатда, башындагъы инструмент панелни кёргюз (JavaScript)',
+'tog-editondblclick'          => 'Эки басыу бла тюрлендириу бет ачылсын (JavaScript)',
+'tog-editsection'             => 'Хар бёлюмге «тюзет» джибериуню кёргюз',
+'tog-editsectiononrightclick' => 'Бёлюмлени бёлюм башлыкъгъа басханлай тюрлендириу бетин ач',
+'tog-showtoc'                 => 'Башларын кёргюз (3-ден кёб бёлюм башлыгъы болгъан бетлеге)',
+'tog-rememberpassword'        => 'Паролюму унутма бу компьютерде',
+'tog-editwidth'               => 'Тюрлендириу бетни экранны саулай кенглигине кёргюз',
+'tog-watchcreations'          => 'Мен къурагъан (башлагъан) бетлени сынчыкълау списогума къош',
+'tog-watchdefault'            => 'Мен тюрлендирген бетлени сынчыкълау списогума къош',
+'tog-watchmoves'              => 'Мен атларын ауушдургъан бетлени сынчыкълау списогуму къош',
+'tog-watchdeletion'           => 'Мен кетерген бетлени сынчыкълау списогума къош',
+'tog-minordefault'            => 'Тынгылау бла бары тюрлениулени "аз магъаналы" белгиле',
+'tog-previewontop'            => 'Ал къарауну тюрлендириу бетни башы бла кёргюз',
+'tog-previewonfirst'          => 'Тюрледириу бетге кёчгенде ал къарауну кёргюз',
+'tog-nocache'                 => 'Бетлени кэш этерге къойма',
+'tog-enotifwatchlistpages'    => 'E-mail бла билдир сынчыкълау списокдагъы бетлени тюрлениулерин',
+'tog-enotifusertalkpages'     => 'E-mail бла билдир энчи бетими тюрлениулерин',
+'tog-enotifminoredits'        => 'E-mail бла гитче тюрлениуле огъуна болсалада бирдир',
+'tog-enotifrevealaddr'        => 'E-mail адресими билдириу письмолада кёргюз',
+'tog-shownumberswatching'     => 'Бетни сынчыкълау списокларына къошханланы санын кёргюз',
+'tog-externaleditor'          => 'Тыш редакторну хайырландырыу',
+'tog-externaldiff'            => 'Версияланы тенглешдириучу тыш программа хайырландыр',
+
 # Dates
+'sunday'        => 'Ыйых кюн',
+'monday'        => 'Баш кюн',
+'tuesday'       => 'Геурге кюн',
+'wednesday'     => 'Барас кюн',
+'thursday'      => 'Орта кюн',
+'friday'        => 'Байрым кюн',
+'saturday'      => 'Шабат кюн',
+'sun'           => 'Ыйых кюн',
+'mon'           => 'Баш кюн',
+'tue'           => 'Геурге кюн',
+'wed'           => 'Барас кюн',
+'thu'           => 'Орта кюн',
+'fri'           => 'Байрым кюн',
+'sat'           => 'Шабат кюн',
 'january'       => 'январь',
 'february'      => 'февраль',
 'march'         => 'март',
@@ -53,21 +101,52 @@ $messages = array(
 'dec'           => 'дек',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Категориясы|Категориялары}}',
-'category_header'        => '«$1» категориядагъы бетле',
-'subcategories'          => 'Тюбкатегорияла',
-'hidden-categories'      => '{{PLURAL:$1|Джашырылгъан категория|Джашырылгъан категорияла}}',
-'category-subcat-count'  => '{{PLURAL:$2|Бу категориягъа къуру баргъан тюбкатегория киреди.|$2 тюбкатегориядан $1 киреди бу категориягъа.}}',
-'category-article-count' => '{{PLURAL:$2|Бу категорияда къуру бир бет барды.|Бу категориядагъы $2 бетден $1 кёргюзюлюннгенди.}}',
-'listingcontinuesabbrev' => '(баргъаны)',
+'pagecategories'                 => '{{PLURAL:$1|Категориясы|Категориялары}}',
+'category_header'                => '«$1» категориядагъы бетле',
+'subcategories'                  => 'Тюбкатегорияла',
+'category-media-header'          => '«$1» категориядагъы файлла',
+'category-empty'                 => "''Бу категория бусагъатда бошду.''",
+'hidden-categories'              => '{{PLURAL:$1|Джашырылгъан категория|Джашырылгъан категорияла}}',
+'hidden-category-category'       => 'Джашыртын категорияла',
+'category-subcat-count'          => '{{PLURAL:$2|Бу категориягъа къуру баргъан тюбкатегория киреди.|$2 тюбкатегориядан $1 киреди бу категориягъа.}}',
+'category-subcat-count-limited'  => 'Бу категорияда {{PLURAL:$1|$1 тюбкатегория}} барды.',
+'category-article-count'         => '{{PLURAL:$2|Бу категорияда къуру бир бет барды.|Бу категориядагъы $2 бетден $1 кёргюзюлюннгенди.}}',
+'category-article-count-limited' => 'Бу категорияда {{PLURAL:$1|$1 бет}} барды.',
+'category-file-count'            => '{{PLURAL:$2|Бу категорияда къуру бир файл барды.|Категориядагъы $2 файлдан {{PLURAL:$1|$1 файлы кёргюзюлгенди}}.}}',
+'category-file-count-limited'    => 'Бу категория да {{PLURAL:$1|$1 файл}} барды.',
+'listingcontinuesabbrev'         => '(баргъаны)',
+'index-category'                 => 'Индексленнген бетле',
+'noindex-category'               => 'Индексленмеген бетле',
 
-'newwindow'  => '(джангы терезеде ачылады)',
-'cancel'     => 'Ызына алыу',
-'mytalk'     => 'Мени сюзюу бетим',
-'navigation' => 'Навигация',
+'mainpagetext'      => "<big>'''«MediaWiki» тыйынчлы салынды.'''</big>",
+'mainpagedocfooter' => "Бу вики бла къалай ишлерге ангылатхан информацияны [http://meta.wikimedia.org/wiki/Help:Contents_User's_Guide къошулуучугъа юретиуде] табаргъа боллукъду.
+
+== Файдалы ресурсла ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings тюзетиулени списогу (ингил.)];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-ни юсюнден кёб берилген соруула];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола].",
+
+'about'         => 'Ачыкълау',
+'article'       => 'Статья',
+'newwindow'     => '(джангы терезеде ачылады)',
+'cancel'        => 'Ызына алыу',
+'moredotdotdot' => 'Баргъаны…',
+'mypage'        => 'Энчи бетим',
+'mytalk'        => 'Мени сюзюу бетим',
+'anontalk'      => 'Бу IP-адресге сюзюу бет',
+'navigation'    => 'Навигация',
+'and'           => '&#32;эм',
 
 # Cologne Blue skin
-'qbfind' => 'Излеу',
+'qbfind'         => 'Излеу',
+'qbbrowse'       => 'Къарау',
+'qbedit'         => 'Тюзет',
+'qbpageoptions'  => 'Бу бет',
+'qbpageinfo'     => 'Бетни юсюнден',
+'qbmyoptions'    => 'Бетлерим',
+'qbspecialpages' => 'Специал бетле',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 'errorpagetitle'   => 'Хата',
 'returnto'         => '$1 бетге къайт',

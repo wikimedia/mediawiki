@@ -65,8 +65,13 @@ $messages = array(
 'mytalk'     => 'Al mi cunversaziòn',
 'navigation' => 'Navgaziòn',
 
+# Cologne Blue skin
+'qbfind' => 'Tróva',
+
+'errorpagetitle'   => "Oci! T'ê fat una capèla",
 'returnto'         => 'Torna indrì a $1.',
 'tagline'          => 'Da {{SITENAME}}',
+'help'             => "Êt absogn d'una man?",
 'search'           => 'Zerca',
 'searchbutton'     => 'Zerca',
 'searcharticle'    => 'Và pù',
@@ -104,6 +109,7 @@ $messages = array(
 'disclaimerpage' => 'Project: Avìs generèl',
 'edithelp'       => 'Livar dal spiegaziòn',
 'edithelppage'   => 'Help: Scrivar un artècul',
+'helppage'       => 'Help:Tòt j argumént',
 'mainpage'       => 'Prèma Pagina',
 'privacy'        => 'Léz sora agli infurmaziòn persunèli',
 'privacypage'    => 'Project: Léz sora agli infurmaziòn persunèli',
@@ -155,7 +161,10 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 'login'                   => 'Va dentar',
 'nav-login-createaccount' => 'Va dentar / Èla la prèma volta?',
 'userlogin'               => 'Vèn dentar/A sit nov?',
+'logout'                  => 'Va fora',
 'userlogout'              => 'Và fora',
+'nologinlink'             => 'Iscrivat adès',
+'mailmypassword'          => "Mènda una nova parola d'ordin cun l'e-mail",
 
 # Edit page toolbar
 'bold_sample'     => "Pàroli in '''gros'''",
@@ -187,6 +196,7 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 'showpreview'                      => 'Fam avdé prèma',
 'showdiff'                         => 'Fam avdé i cambiamént',
 'anoneditwarning'                  => "'''Oci!''' T'an sì miga intrè! T'an fèga e' patàca: a t'registrèn cun e' tu indirèzzi IP e a l' mitèn int la storia d'sta pàgina.",
+'summary-preview'                  => "Prova a vdé l'uget:",
 'newarticle'                       => '(Növ)',
 'newarticletext'                   => "T'cì arìv int'una una pàgina ch'la n'esèst incora.
 S't'vu fèla te, tàca scrivar int'e' spazi a què sotta (guèrda la [[{{MediaWiki:Helppage}}|pàgina d'servezi]] s't'vu saven piò).
@@ -212,6 +222,8 @@ A e' stes mod, s't'vu carghé ste scrètt, ta t'e' da tü la respunsabilitè che
 'currentrev-asof'        => 'Versiòn agiurnèda de $1',
 'revisionasof'           => 'Revisiòn dal $1',
 'previousrevision'       => '← Versiòn prèma ed questa',
+'nextrevision'           => 'Versiòn piò nova →',
+'currentrevisionlink'    => "Guèrda la versiòn d'adès",
 'cur'                    => 'att',
 'last'                   => 'prez',
 'histlegend'             => "Cunfront tra'l versiòn d'un artècul: strésa cun e' maus sora al versiòn ch't'vu te e pu sciàza e' butòn \"Partès\" o e' butòn in bas.<br />
@@ -312,18 +324,22 @@ Al pàgin int'la lèsta dal [[Special:Watchlist|pàgin tnudi sot occ]] l' è scr
 'uploadedimage' => 'l\'à carghé "[[$1]]"',
 
 # File description page
-'filehist'            => "Stória d'e' file",
-'filehist-help'       => "Fà clic sora un gròp dèda/ora par avdé cun cl'éra e' file in ch'ë mumént.",
-'filehist-current'    => "d'adès",
-'filehist-datetime'   => 'Dèda/Ora',
-'filehist-thumb'      => 'Visiòn znina',
-'filehist-thumbtext'  => 'Visiòn znina dla versiòn dal $1',
-'filehist-user'       => 'Utent',
-'filehist-dimensions' => 'Amsür',
-'filehist-comment'    => "Ch'roba è'l",
-'imagelinks'          => 'I culegamént a ste file',
-'linkstoimage'        => "{{PLURAL:$1|La pàgina a què sòta l'è tachéda|Al $1 pàgin a què sòta j è tachédi}} a 'ste file:",
-'sharedupload'        => "Ste file e' ven da $1 e u s' pò druvè neca sora d'j ètri prugèt wiki.",
+'filehist'                  => "Stória d'e' file",
+'filehist-help'             => "Fà clic sora un gròp dèda/ora par avdé cun cl'éra e' file in ch'ë mumént.",
+'filehist-current'          => "d'adès",
+'filehist-datetime'         => 'Dèda/Ora',
+'filehist-thumb'            => 'Visiòn znina',
+'filehist-thumbtext'        => 'Visiòn znina dla versiòn dal $1',
+'filehist-user'             => 'Utent',
+'filehist-dimensions'       => 'Amsür',
+'filehist-comment'          => "Ch'roba è'l",
+'imagelinks'                => 'I culegamént a ste file',
+'linkstoimage'              => "{{PLURAL:$1|La pàgina a què sòta l'è tachéda|Al $1 pàgin a què sòta j è tachédi}} a 'ste file:",
+'sharedupload'              => "Ste file e' ven da $1 e u s' pò druvè neca sora d'j ètri prugèt wiki.",
+'uploadnewversion-linktext' => "Chèrga so una versiòn nova d'ste file",
+
+# Statistics
+'statistics' => 'Statistich',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|byte|byte}}',
@@ -347,10 +363,14 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 # Special:AllPages
 'allpages'       => 'Tot al pàgin',
 'alphaindexline' => 'Da $1 a $2',
+'prevpage'       => "Pàgina prèma d'questa ($1)",
 'allpagesfrom'   => 'Fam avdè al pàgin cminzipiènd da:',
 'allpagesto'     => 'Fam avdé al pàgin infèn a:',
 'allarticles'    => 'Toti al pàgin',
 'allpagessubmit' => 'Va mò',
+
+# Special:LinkSearch
+'linksearch' => 'Ghènz int ê web',
 
 # Special:Log/newusers
 'newuserlogpage'          => "Regèstar d'j nov",
@@ -378,9 +398,13 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'unwatching' => "Scanzèla dal pàgin da t'nì d'öcc...",
 
 # Delete
-'actioncomplete' => 'Lavor fät e finì',
-'deletedarticle' => 'l\'à scanzlé "[[$1]]"',
-'dellogpage'     => 'Regèstar dal scanzladùr',
+'confirmdeletetext' => "Oci! T'ste par scanzlè una pàgina cun tòta la storia d'j su cambiamént.
+Par piasé, cunferma ch't'ê propri l'intenziòn d'fël, ch'at capèss al su conseguenzi e quel ch't fë adès l'è in regola cun al [[{{MediaWiki:Policy-url}}]].",
+'actioncomplete'    => 'Lavor fät e finì',
+'deletedtext'       => 'La pàgina "<nowiki>$1</nowiki>" l\'è stëda scanzlèda.
+Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
+'deletedarticle'    => 'l\'à scanzlé "[[$1]]"',
+'dellogpage'        => 'Regèstar dal scanzladùr',
 
 # Rollback
 'rollbacklink' => "armèt sta pàgina cun cl'era prèma",
@@ -439,12 +463,14 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'contribslink'             => "Ch'l'un ch'l'à scrét",
 'blocklogpage'             => "Regèstar d'j blocch",
 'blocklogentry'            => '"[[$1]]" l\'è sté bluché par $2 $3',
+'unblocklogentry'          => "l'à sbluchè $1",
 'block-log-flags-nocreate' => "Un' s'pò brisa registrès un'étra volta",
 
 # Move page
-'1movedto2'   => "[[$1]] l'è stê mòs a [[$2]]",
-'movelogpage' => "Regéstar d'j muvimént",
-'revertmove'  => 'Métla cum era prèma',
+'1movedto2'       => "[[$1]] l'è stê mòs a [[$2]]",
+'1movedto2_redir' => "[[$1]] l'è stè moss in [[$2]] par redireziòn",
+'movelogpage'     => "Regéstar d'j muvimént",
+'revertmove'      => 'Métla cum era prèma',
 
 # Export
 'export' => 'Espórta dal pàgin',
@@ -495,6 +521,7 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'tooltip-ca-nstab-special'        => "Csa fet ? Questa l'è una pàgina particulèra; t'an pu brisa scrivar sora",
 'tooltip-ca-nstab-project'        => "Guèrda la pàgina dagl'infurmaziòn",
 'tooltip-ca-nstab-image'          => "Guèrda la pàgina d'e' file",
+'tooltip-ca-nstab-template'       => "Guèrda e' mudel",
 'tooltip-ca-nstab-category'       => 'Guèrda la pàgina dla categurèja',
 'tooltip-minoredit'               => "Segna sta mudèfga ch'l'è znina",
 'tooltip-save'                    => 'Regèstra i tü cambiamént',

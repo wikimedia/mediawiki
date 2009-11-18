@@ -434,9 +434,9 @@ Arcesta: $2',
 Coma rason a l'ha butà: ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Configurassion falà: antivirus nen conossù: ''$1''",
+'virus-badscanner'     => "Configurassion falà: antivìrus nen conossù: ''$1''",
 'virus-scanfailed'     => 'scansion falìa (còdes $1)',
-'virus-unknownscanner' => 'antivirus nen conossù:',
+'virus-unknownscanner' => 'antivìrus nen conossù:',
 
 # Login and logout pages
 'logouttext'                 => "A l'é sortù da 'nt ël sistema.

@@ -336,9 +336,10 @@ El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
 'logouttext'                 => "'''Sortì cun success.'''
 
 Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes browser.",
-'welcomecreation'            => '==Chau, $1! ==
+'welcomecreation'            => '==Bainvegni, $1! ==
 
-Tes conto è vegni creà. Betg emblida da midar tias preferenzas da {{SITENAME}}.',
+Tes conto è vegni creà. 
+Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].',
 'yourname'                   => "Num d'utilisader",
 'yourpassword'               => 'pled-clav',
 'yourpasswordagain'          => 'repeter pled-clav',
@@ -469,11 +470,17 @@ Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insa
 Il pled-clav per quest nov conto po vegnir midà sin la pagina ''[[Special:ChangePassword|midar pled-clav]]'' suenter che ti t'es annunzià.",
 'newarticle'                       => '(Nov)',
 'newarticletext'                   => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
-'anontalkpagetext'                 => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
+'anontalkpagetext'                 => "----''Quai è la pagina da discussiun per in utilisader anomim che n'ha anc betg creà in conto d'utilisader u che n'al utilisescha betg. 
+Perquai avain nus d'utilisar l'adressa d'IP per l'identifitgar. 
+Ina tala adressa d'IP po vegnir utilisada da differents utilisaders. 
+Sche ti es in utilisaders anonim e pensas che commentaris che na pertutgan betg tai vegnan adressads a tai, lura [[Special:UserLogin/signup|creescha in conto]] u [[Special:UserLogin|s'annunzia]] per evitar en futur che ti vegns sbaglià cun auters utilisaders.''",
 'noarticletext'                    => 'Quest artitgel cuntegna actualmain nagin text. 
 Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in\'autra pagina, 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tschertgar en ils logs],
 u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina]</span>.',
+'userpage-userdoesnotexist'        => 'Il conto d\'utilisader "$1" n\'èxista betg. 
+Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
+'userpage-userdoesnotexist-view'   => 'Il conto d\'utilisader "$1" n\'exista betg.',
 'clearyourcache'                   => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
 '''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Macintosh);
 '''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
@@ -553,6 +560,8 @@ Quests arguments vegnan ignorads.",
 
 # Revision deletion
 'rev-deleted-comment'        => '(eliminà commentari)',
+'rev-deleted-user'           => "(stidà num d'utilisader)",
+'rev-deleted-event'          => '(stidà acziun dal log)',
 'rev-delundel'               => 'mussar/zuppar',
 'rev-showdeleted'            => 'mussar',
 'revdelete-show-file-submit' => 'Gea',
@@ -560,6 +569,8 @@ Quests arguments vegnan ignorads.",
 'revdelete-content'          => 'Cuntegn',
 'revdelete-summary'          => 'resumaziun da la midada',
 'revdelete-uname'            => "num d'utilisader",
+'revdelete-otherreason'      => 'Auter/ulteriur motiv:',
+'revdelete-reasonotherlist'  => 'Auter motiv',
 
 # Merge log
 'revertmerge' => 'Revocar la fusiun',
@@ -623,6 +634,16 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 'powersearch-ns'                   => 'Tschertgar en tips da pagina:',
 'powersearch-redir'                => 'Mussar sviaments',
 'powersearch-field'                => 'Tschertgar',
+'powersearch-toggleall'            => 'tuts',
+'powersearch-togglenone'           => 'Nagins',
+
+# Quickbar
+'qbsettings'               => 'Glista laterala',
+'qbsettings-none'          => 'Nagins',
+'qbsettings-fixedleft'     => 'Sanester, fixà',
+'qbsettings-fixedright'    => 'Dretg, fixà',
+'qbsettings-floatingleft'  => 'Sanester, flottand',
+'qbsettings-floatingright' => 'Dretg, flottand',
 
 # Preferences page
 'preferences'                 => 'Preferenzas',
@@ -631,13 +652,16 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 'prefsnologin'                => "Betg t'annunzià",
 'prefsnologintext'            => 'Ti stos esser <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} t\'annunzià]</span> per midar tias preferenzas.',
 'changepassword'              => 'Midar pled-clav',
+'prefs-skin'                  => 'Skin',
 'skin-preview'                => 'Prevista',
+'prefs-math'                  => 'TeX',
 'datedefault'                 => 'Nagina preferenza',
 'prefs-datetime'              => 'Data e temp',
 'prefs-personal'              => 'datas dal utilisader',
 'prefs-rc'                    => 'Mussar ultimas midadas',
 'prefs-watchlist'             => "glista d'observaziun",
 'prefs-watchlist-days'        => "Dumber dals dis che vegnan inditgads sin la glista d'observaziun:",
+'prefs-watchlist-days-max'    => 'Maximalmain 7 dis',
 'prefs-watchlist-edits'       => 'Dumber da las midadas mussadas en la glista dad observaziun extendida:',
 'prefs-misc'                  => 'Different',
 'prefs-resetpass'             => 'Midar il pled clav',
@@ -854,13 +878,20 @@ Sche la datoteca menziunada survart è il medem maletg en grondezza originala n'
 'file-thumbnail-no'        => "Il num da la datoteca cumenza cun '''<tt>$1</tt>''', perquai para quai dad esser in maletg da grondezza reducida ''(Maletg da prevista)''.
 Controllescha sche ti has era il maletg en grondezza originala e chargia si quel sut il num original.",
 'uploadedimage'            => '"[[$1]]" è vengì chargià si',
+'uploadvirus'              => 'La datoteca cuntegna in virus! Detagls: $1',
+'upload-source'            => 'Datoteca da funtauna',
 'sourcefilename'           => 'file sin tes computer:',
+'sourceurl'                => 'URL da funtauna:',
 'destfilename'             => 'num dal file sin il server:',
+'upload-maxfilesize'       => 'Grondezza da datoteca maximala: $1',
 
 'upload-too-many-redirects' => 'La URL ha cuntegnì memia blers renviaments',
+'upload-unknown-size'       => 'Grondezza nunenconuschenta',
+'upload-http-error'         => 'In sbagl da HTTP è capità: $1',
 
 # img_auth script messages
 'img-auth-nologinnWL' => 'Ti n\'ès betg t\'annunzia ed "$1" n\'è betg sin la glista alva.',
+'img-auth-nofile'     => 'Datoteca "$1" n\'exista betg.',
 
 # Special:ListFiles
 'imgfile'               => 'datoteca',
@@ -918,6 +949,8 @@ Betg emblida da controllar sche autras colliaziuns mainan als models avant ch'al
 
 # Statistics
 'statistics'              => 'Statisticas',
+'statistics-header-pages' => 'Statistica da paginas',
+'statistics-header-edits' => 'Statistica da modificaziuns',
 'statistics-header-users' => 'Statisticas davart ils utilisaders',
 'statistics-pages-desc'   => 'Tut las paginas en la vichi, inclusivamain paginas da discussiun, renviaments, etc.',
 
@@ -929,7 +962,7 @@ Betg emblida da controllar sche autras colliaziuns mainan als models avant ch'al
 Mintga colonna cuntegna colliaziuns a l'emprim ed al segund renviaments, sco era la pagina finala dal segund renviament che è probablamain la pagina a la quala duess vegnir renvià. 
 Elements <s>stritgads</s> èn gia eliminads.",
 'double-redirect-fixed-move' => '[[$1]] è vegnì spustà. 
-I renviescha uss a [[$1]].',
+I renviescha uss a [[$2]].',
 'double-redirect-fixer'      => 'Bot da renviaments',
 
 'brokenredirects'        => 'Renviaments defects',
@@ -1416,6 +1449,19 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * isospeedratings
 * focallength',
 
+# EXIF tags
+'exif-imagewidth'  => 'Ladezza',
+'exif-imagelength' => 'Autezza',
+
+'exif-lightsource-0'  => 'Betg enconuschent',
+'exif-lightsource-1'  => 'Glisch dal di',
+'exif-lightsource-2'  => 'Fluorescent',
+'exif-lightsource-3'  => 'Pair electric',
+'exif-lightsource-4'  => 'Chametg/straglisch',
+'exif-lightsource-9'  => "Bel'aura",
+'exif-lightsource-10' => 'Nivels',
+'exif-lightsource-11' => 'Sumbriva',
+
 # External editor support
 'edit-externally'      => 'Editar questa datoteca cun in program extern',
 'edit-externally-help' => '(See the [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
@@ -1466,6 +1512,15 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 'confirm_purge_button' => 'ok',
 'confirm-purge-top'    => 'Stizzar il cache da questa pagina?',
 
+# Table pager
+'table_pager_next'         => 'Proxima pagina',
+'table_pager_prev'         => 'Ultima pagina',
+'table_pager_first'        => 'Emprima pagina',
+'table_pager_last'         => 'Ultima pagina',
+'table_pager_limit'        => 'Mussar $1 elements per pagina',
+'table_pager_limit_submit' => 'Dai',
+'table_pager_empty'        => 'Nagins resultats',
+
 # Auto-summaries
 'autoredircomment' => 'Creà renviament a [[$1]]',
 
@@ -1475,7 +1530,14 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 'watchlisttools-raw'  => 'Editar il format da la glista (import/export)',
 
 # Special:Version
-'version' => 'Versiun',
+'version'              => 'Versiun',
+'version-extensions'   => 'Extensiuns installadas',
+'version-specialpages' => 'Paginas spezialas',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Num da datoteca:',
+'fileduplicatesearch-submit'   => 'Tschertgar',
+'fileduplicatesearch-info'     => '$1 x $2 pixels<br />Grondezza da datoteca: $3<br />Tip da MIME: $4',
 
 # Special:SpecialPages
 'specialpages'                 => 'Paginas spezialas',
@@ -1484,7 +1546,18 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 'specialpages-group-pages'     => 'Glistas da paginas',
 'specialpages-group-redirects' => 'Paginas specialas che renvieschan',
 
+# HTML forms
+'htmlform-submit'              => 'Trametter',
+'htmlform-selectorother-other' => 'Auters',
+
 # Add categories per AJAX
+'ajax-add-category'          => 'Agiuntar categoria',
+'ajax-add-category-submit'   => 'Agiuntar',
+'ajax-confirm-prompt'        => 'Ti pos inditgar sutvart ina resumaziun da la midada. 
+Clicca sin "memorisar" per memorisar tias modificaziuns.',
+'ajax-confirm-save'          => 'Memorisar',
+'ajax-error-title'           => 'Errur',
+'ajax-error-dismiss'         => 'OK',
 'ajax-remove-category-error' => "I n'era betg pussaivel da stizzar questa categoria. 
 Quai capita normalmain sche la categoria è vegnida integrada en in model.",
 

@@ -1056,30 +1056,30 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'         => '(comentário removido)',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
-'rev-deleted-text-permission' => "Esta edição desta página foi '''eliminada'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
-'rev-deleted-text-unhide'     => "Esta edição desta página foi '''eliminada'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
-Por ser um administrador, você pode mesmo assim [$1 ver esta edição] se desejar prosseguir.",
-'rev-suppressed-text-unhide'  => "Esta edição de página foi '''suprimida'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
-Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
-'rev-deleted-text-view'       => "Esta edição desta página foi '''eliminada'''.
-Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
-'rev-suppressed-text-view'    => "Esta edição desta página foi '''suprimida'''.
-Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
+'rev-deleted-text-permission' => "Esta revisão de página foi '''eliminada'''.
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+'rev-deleted-text-unhide'     => "Esta revisão de página foi '''eliminada'''.
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Como administrador, pode mesmo assim [$1 ver esta edição] se deseja prosseguir.",
+'rev-suppressed-text-unhide'  => "Esta revisão de página foi '''suprimida'''.
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
+Como administrador, pode mesmo assim [$1 ver esta revisão] se deseja prosseguir.",
+'rev-deleted-text-view'       => "Esta revisão de página foi '''eliminada'''.
+Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+'rev-suppressed-text-view'    => "Esta revisão de página foi '''suprimida'''.
+Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
 'rev-deleted-no-diff'         => "Não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
-Podem haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
-'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
-Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
-'rev-suppressed-unhide-diff'  => "Uma das revisões destas diferenças foi '''suprimida'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
-Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
-'rev-deleted-diff-view'       => "Uma das revisões nesta listagem de diferenças foi '''eliminada'''.
-Como administrador, pode visualizar a listagem de diferenças; poderão existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
-'rev-suppressed-diff-view'    => "Uma das revisões nesta listagem de diferenças foi '''suprimida'''.
-Como administrador, pode visualizar a listagem de diferenças; poderão existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+'rev-deleted-unhide-diff'     => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Como administrador, pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
+'rev-suppressed-unhide-diff'  => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
+Como administrador, pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
+'rev-deleted-diff-view'       => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
+Como administrador, pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+'rev-suppressed-diff-view'    => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
+Como administrador, pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
 'rev-delundel'                => 'mostrar/esconder',
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Eliminar/restaurar edições',
@@ -1220,15 +1220,15 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'searchhelp-url'                   => 'Help:Conteúdos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue por páginas com este prefixo]]',
 'searchprofile-articles'           => 'Páginas de conteúdo',
-'searchprofile-project'            => 'Ajuda e páginas de Projecto',
+'searchprofile-project'            => 'Páginas de Ajuda e de Projecto',
 'searchprofile-images'             => 'Multimédia',
-'searchprofile-everything'         => 'Tudo',
-'searchprofile-advanced'           => 'Avançado',
+'searchprofile-everything'         => 'Todas',
+'searchprofile-advanced'           => 'Personalizar',
 'searchprofile-articles-tooltip'   => 'Pesquisar em $1',
 'searchprofile-project-tooltip'    => 'Pesquisar em $1',
-'searchprofile-images-tooltip'     => 'Pesquisar ficheiros',
+'searchprofile-images-tooltip'     => 'Pesquisar em ficheiros',
 'searchprofile-everything-tooltip' => 'Pesquisar em todo o conteúdo (incluindo páginas de discussão)',
-'searchprofile-advanced-tooltip'   => 'Pesquisar nos espaços nominais personalizados',
+'searchprofile-advanced-tooltip'   => 'Personalizar os espaços nominais onde pesquisar',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 palavra|$2 palavras}})',
 'search-result-score'              => 'Relevancia: $1%',
 'search-redirect'                  => '(redirecionamento de $1)',
@@ -1255,7 +1255,7 @@ Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (inclusive página
 'powersearch-ns'                   => 'Pesquisar nos espaços nominais:',
 'powersearch-redir'                => 'Listar redireccionamentos',
 'powersearch-field'                => 'Pesquisar',
-'powersearch-togglelabel'          => 'Selecionar:',
+'powersearch-togglelabel'          => 'Marcar:',
 'powersearch-toggleall'            => 'Todos',
 'powersearch-togglenone'           => 'Nenhum',
 'search-external'                  => 'Pesquisa externa',
@@ -1594,7 +1594,7 @@ As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 Para ver ou pesquisar ficheiros anteriormente carregados, consulte a [[Special:FileList|lista de ficheiros]].
 Os recarregamentos de um ficheiro são também registados no [[Special:Log/upload|registo de carregamentos]] e as eliminações no [[Special:Log/delete|registo de eliminações]].
 
-Para utilizar um ficheiro numa página, insira uma ligação com um dos seguintes formatos:
+Para utilizar um ficheiro numa página, depois de carregado, insira uma ligação com um dos seguintes formatos:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para mostrar uma imagem nas suas dimensões originais;
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></tt>''' para mostrar uma imagem com a dimensão horizontal de 200 pixels, dentro de uma caixa, na margem esquerda, contendo 'texto' como descrição (pode usar subconjuntos destas características);
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></tt>''' para apresentar uma ligação directa para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
@@ -1919,7 +1919,7 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'mostcategories'          => 'Páginas com mais categorias',
 'mostimages'              => 'Ficheiros com mais afluentes',
 'mostrevisions'           => 'Páginas com mais revisões',
-'prefixindex'             => 'Todas as páginas com prefixo',
+'prefixindex'             => 'Todas as páginas iniciadas por',
 'shortpages'              => 'Páginas curtas',
 'longpages'               => 'Páginas longas',
 'deadendpages'            => 'Páginas sem saída',
@@ -1982,7 +1982,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Próximo',
 'allpagessubmit'    => 'Ir',
-'allpagesprefix'    => 'Apresentar páginas com o prefixo:',
+'allpagesprefix'    => 'Apresentar páginas iniciadas por:',
 'allpagesbadtitle'  => 'O título de página fornecido era inválido ou tinha um prefixo de ligação interlínguas ou interwikis.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'allpages-bad-ns'   => 'A {{SITENAME}} não possui o espaço nominal "$1".',
@@ -2163,9 +2163,9 @@ Por favor, confirme que é realmente esta a sua intenção, que compreende as co
 Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'         => 'eliminou "[[$1]]"',
 'suppressedarticle'      => 'suprimiu "[[$1]]"',
-'dellogpage'             => 'Registo de eliminação',
+'dellogpage'             => 'Registo de eliminações',
 'dellogpagetext'         => 'Abaixo uma lista das eliminações mais recentes.',
-'deletionlog'            => 'registo de eliminação',
+'deletionlog'            => 'registo de eliminações',
 'reverted'               => 'Revertido para versão anterior',
 'deletecomment'          => 'Motivo de eliminação',
 'deleteotherreason'      => 'Outro/motivo adicional:',
@@ -2422,7 +2422,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'noautoblockblock'                => 'bloqueio automático impossibilitado',
 'createaccountblock'              => 'criação de conta de utilizador bloqueada',
 'emailblock'                      => 'impedido de enviar e-mail',
-'blocklist-nousertalk'            => 'impossibilitado de editar a própria página de discussão',
+'blocklist-nousertalk'            => 'impedido de editar a própria página de discussão',
 'ipblocklist-empty'               => 'A lista de bloqueios encontra-se vazia.',
 'ipblocklist-no-results'          => 'O endereço IP ou nome de utilizador procurado não se encontra bloqueado.',
 'blocklink'                       => 'bloquear',

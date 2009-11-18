@@ -930,7 +930,9 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'last'                   => 'forrige',
 'page_first'             => 'første',
 'page_last'              => 'siste',
-'histlegend'             => "Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, '''m''' = mindre endring.",
+'histlegend'             => "<div id=\"histlegend\"><span style=\"white-space:nowrap;\">For alle versjoner listet under, trykk på datoen for å se versjonen.</span> <span style=\"white-space:nowrap;\">For mer hjelp, se [[Hjelp:Revisjonshistorikk]] og [[Hjelp:Redigeringsforklaring]].</span><br /><span style=\"white-space:nowrap;\">Eksterne verktøy: [http://toolserver.org/~daniel/WikiSense/Contributors.php?wikilang=no&wikifam=.wikipedia.org&grouped=on&page={{urlencode:{{FULLPAGENAME}}}} Statistikk over revisjonshistorikk] '''·'''</span> <span style=\"white-space:nowrap;\">[http://wikipedia.ramselehof.de/wikiblame.php?user_lang=no&article={{urlencode:{{FULLPAGENAME}}}} Søk i revisjonshistorikk] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~mzmcbride/cgi-bin/watcher.py?db=nowiki_p&titles={{FULLPAGENAMEE}} Antall overvåkere] '''·'''</span> <span style=\"white-space:nowrap;\">[http://stats.grok.se/no/{{#time:Ym}}/{{FULLPAGENAMEE}} Sidevisningsstatistikk]</span>
+----
+<span style=\"white-space:nowrap;\">Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, m = mindre endring.</span></div>",
 'history-fieldset-title' => 'Søk i historikken',
 'history-show-deleted'   => 'Kun slettede',
 'histfirst'              => 'Første',
