@@ -638,6 +638,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 21455) Fixed "Watch this page" checkbox appearing on some special pages
   even to non-logged in users
 * (bug 21551) Make Squid reponse limit configurable
+* Fixed corruption of long UDP debug log messages by using socket_sendto() 
+  instead of fsockopen() with fwrite().
 
 == API changes in 1.16 ==
 

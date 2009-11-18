@@ -411,13 +411,18 @@ function wfErrorLog( $text, $file ) {
 			// IPv6 bracketed host
 			$protocol = $m[1];
 			$host = $m[2];
-			$port = $m[3];
+			$port = intval( $m[3] );
 			$prefix = isset( $m[4] ) ? $m[4] : false;
+			$domain = AF_INET6;
 		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
 			$protocol = $m[1];
 			$host = $m[2];
-			$port = $m[3];
+			if ( !IP::isIPv4( $host ) ) {
+				$host = gethostbyname( $host );
+			}
+			$port = intval( $m[3] );
 			$prefix = isset( $m[4] ) ? $m[4] : false;
+			$domain = AF_INET;
 		} else {
 			throw new MWException( __METHOD__.": Invalid UDP specification" );
 		}
@@ -429,12 +434,12 @@ function wfErrorLog( $text, $file ) {
 			}
 		}
 
-		$sock = fsockopen( "$protocol://$host", $port );
+		$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
 		if ( !$sock ) {
 			return;
 		}
-		fwrite( $sock, $text );
-		fclose( $sock );
+		socket_sendto( $sock, $text, strlen( $text ), 0, $host, $port );
+		socket_close( $sock );
 	} else {
 		wfSuppressWarnings();
 		$exists = file_exists( $file );
