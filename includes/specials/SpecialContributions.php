@@ -645,7 +645,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			$ret .= " <strong>" . wfMsgHtml('rev-deleted-user') . "</strong>";
+			$ret .= " <strong>" . wfMsgHtml('rev-deleted-user-contribs') . "</strong>";
 		}
 
 		# Tags, if any.

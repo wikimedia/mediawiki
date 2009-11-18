@@ -1427,6 +1427,7 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 'rev-deleted-comment'         => '(comment removed)',
 'rev-deleted-user'            => '(username removed)',
 'rev-deleted-event'           => '(log action removed)',
+'rev-deleted-user-contribs'   => '[username or IP removed - edit hidden from contributions]',
 'rev-deleted-text-permission' => "This page revision has been '''deleted'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
