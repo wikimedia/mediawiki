@@ -215,14 +215,13 @@ body {
 		background-image: url(images/tab-break.png);
 		background-position: bottom left;
 		background-repeat: no-repeat;
-		padding-left: 1px;
 		margin-left: -1px;
 	}
-	/* IGNORED BY IE6 */
-	#head div.vectorMenu > h5 {
-		background-image: none;
+	#head div.vectorMenu h5 {
+		margin-left: -1px;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	/* @noflip */
 	div.vectorMenu h5 a {
 		display: inline-block;
 		width: 24px;
