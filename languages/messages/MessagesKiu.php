@@ -507,50 +507,51 @@ Kerem ke, oncia bıcerrebne.',
 'hr_tip'          => 'Xeta ufqiye (zaf megurene)',
 
 # Edit pages
-'summary'                        => 'Xulasa:',
-'subject'                        => 'Mewzu/serrêze:',
-'minoredit'                      => 'No jü vurnaiso qızkeko',
-'watchthis'                      => 'Na pele de şêr ke',
-'savearticle'                    => 'Pele qeyd ke',
-'preview'                        => 'Verqayt',
-'showpreview'                    => 'Verqayti bıasne',
-'showlivepreview'                => 'Verqayto cınde',
-'showdiff'                       => 'Vurnaisun bıasne',
-'anoneditwarning'                => "'''Diqet:''' Tı cınêkota.
+'summary'                          => 'Xulasa:',
+'subject'                          => 'Mewzu/serrêze:',
+'minoredit'                        => 'No jü vurnaiso qızkeko',
+'watchthis'                        => 'Na pele de şêr ke',
+'savearticle'                      => 'Pele qeyd ke',
+'preview'                          => 'Verqayt',
+'showpreview'                      => 'Verqayti bıasne',
+'showlivepreview'                  => 'Verqayto cınde',
+'showdiff'                         => 'Vurnaisun bıasne',
+'anoneditwarning'                  => "'''Diqet:''' Tı cınêkota.
 Tarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
-'missingcommenttext'             => 'Cêr de jü xulasa bınuse.',
-'summary-preview'                => 'Verqaytê xulasa:',
-'subject-preview'                => 'Verqaytê mewzuy/serrêze:',
-'blockedtitle'                   => 'Karber kilıt bi',
-'blockednoreason'                => 'sebeb nêdiyo',
-'blockedoriginalsource'          => "Çımê pela '''$1'''i is cêr dero:",
-'blockededitsource'              => "Meqalê '''vurnaisunê to''' be pela '''$1'''i cêr dero:",
-'nosuchsectiontitle'             => 'Qısımo de nianên çino',
-'nosuchsectiontext'              => 'To waşt ke jü qısım kuyê, uyo ke çino.
+'missingcommenttext'               => 'Cêr de jü xulasa bınuse.',
+'summary-preview'                  => 'Verqaytê xulasa:',
+'subject-preview'                  => 'Verqaytê mewzuy/serrêze:',
+'blockedtitle'                     => 'Karber kilıt bi',
+'blockednoreason'                  => 'sebeb nêdiyo',
+'blockedoriginalsource'            => "Çımê pela '''$1'''i is cêr dero:",
+'blockededitsource'                => "Meqalê '''vurnaisunê to''' be pela '''$1'''i cêr dero:",
+'nosuchsectiontitle'               => 'Qısımo de nianên çino',
+'nosuchsectiontext'                => 'To waşt ke jü qısım kuyê, uyo ke çino.
 Hata ke werte de qısım $1 çino, ca çino ke tı rastkerdena ho qeyd bıkerê.',
-'loginreqlink'                   => 'cı kuye',
-'accmailtitle'                   => 'Parola rusniye.',
-'newarticle'                     => '(Newe)',
-'noarticletext'                  => 'Na pele de hona thowa çino.
+'loginreqlink'                     => 'cı kuye',
+'accmailtitle'                     => 'Parola rusniye.',
+'newarticle'                       => '(Newe)',
+'noarticletext'                    => 'Na pele de hona thowa çino.
 Tı şikina zerrê pelunê binu de [[Special:Search/{{PAGENAME}}|seba sernamê na pele cıfeteliyê]], 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cıkotena aide rê cıfeteliyê],
 ya ki [{{fullurl:{{FULLPAGENAME}}|action=edit}} na pele bıvurnê]</span>.',
-'userpage-userdoesnotexist'      => 'Hesabê karberi "$1" qeyd nêbiyo.
+'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" qeyd nêbiyo.
 Kerem ke, tı ke wazena na pele vırazê/bıvurnê, qontrol ke.',
-'userpage-userdoesnotexist-view' => 'Hesabê karberi "$1" qeyd nêbiyo.',
-'updated'                        => '(Bi rozane)',
-'note'                           => "'''Not:'''",
-'previewnote'                    => "'''Bıfıkıriye ke no teyna jü verqayto.'''
+'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nêbiyo.',
+'updated'                          => '(Bi rozane)',
+'note'                             => "'''Not:'''",
+'previewnote'                      => "'''Bıfıkıriye ke no teyna jü verqayto.'''
 Vurnaişê to hona qeyd nêbiyê!",
-'editing'                        => 'Tıya $1 vurnena',
-'editingsection'                 => 'Vurnaena $1 (qısım)',
-'yourtext'                       => 'Metnê to',
-'yourdiff'                       => 'Ferqi',
-'templatesused'                  => '{{PLURAL:$1|Şablono ke na pele de gurenino|Şablonê ke na pele de gureninê}}:',
-'templatesusedpreview'           => '{{PLURAL:$1|Şablono ke na verqayt de gureno|Şablonê ke na verqayt de gurenê}}:',
-'template-protected'             => '(sevekna)',
-'template-semiprotected'         => '(nêm-seveknais)',
-'hiddencategories'               => 'Na pele mensuba {{PLURAL:$1|1 kategoriya nımıtiya|$1 kategoriunê nımıtuna}}:',
+'editing'                          => 'Tıya $1 vurnena',
+'editingsection'                   => 'Vurnaena $1 (qısım)',
+'yourtext'                         => 'Metnê to',
+'yourdiff'                         => 'Ferqi',
+'templatesused'                    => '{{PLURAL:$1|Şablono ke na pele de gurenino|Şablonê ke na pele de gureninê}}:',
+'templatesusedpreview'             => '{{PLURAL:$1|Şablono ke na verqayt de gureno|Şablonê ke na verqayt de gurenê}}:',
+'template-protected'               => '(sevekna)',
+'template-semiprotected'           => '(nêm-seveknais)',
+'hiddencategories'                 => 'Na pele mensuba {{PLURAL:$1|1 kategoriya nımıtiya|$1 kategoriunê nımıtuna}}:',
+'permissionserrorstext-withaction' => 'Desturê to be $2 çino, serba {{PLURAL:$1|na sebebi|nê sebebu}} ra:',
 
 # History pages
 'viewpagelogs'           => 'Qeydê ke na pele ra alaqedarê, inu bıasne',
@@ -582,15 +583,51 @@ Beno ke na esteriya, ya ki namê cı vuriyo.
 Serba pelunê muhimunê newun [[Special:Cıcêre|cıcêraişê wiki de]] bıcerebne.',
 
 # Revision deletion
-'rev-deleted-comment'        => '(tefşir esteriyo)',
-'rev-deleted-user'           => '(namê karberi esteriyo)',
-'rev-deleted-event'          => '(faeliyetê cıkotene esteriyo)',
-'rev-delundel'               => 'bıasne/wedare',
-'revdelete-show-file-submit' => 'Heya',
-'revdel-restore'             => 'asaişi bıvurne',
-'revdelete-content'          => 'zerrek',
-'revdelete-uname'            => 'namê karberi',
-'revdelete-reasonotherlist'  => 'Sebebo bin',
+'rev-deleted-comment'         => '(tefşir esteriyo)',
+'rev-deleted-user'            => '(namê karberi esteriyo)',
+'rev-deleted-event'           => '(faeliyetê cıkotene esteriyo)',
+'rev-deleted-text-permission' => "Çımraviarnaena na pele '''esteriya'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
+'rev-deleted-text-unhide'     => "Çımraviarnaena na pele '''esteriya'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.
+Sıma be idarekerênia ho ra şikinê hona [$1 na çımraviarnaene bıvênê], eke wazenê dewam kerê.",
+'rev-suppressed-text-unhide'  => "Çımraviarnaena na pele '''dowoşiya'''.
+Beno ke [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] de teferruat esto. Sıma be idarekerênia ho ra şikinê hona [$1 na çımraviarnaene bıvênê], eke wazenê dewam kerê.",
+'rev-deleted-text-view'       => "Çımraviarnaena na pele '''esteriya'''.
+Sıma be idarekerênia ho ra şikinê ae bıvênê; beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
+'rev-suppressed-text-view'    => "Çımraviarnaena na pele '''dowoşiya'''.
+Sıma be idarekerênia ho ra şikinê ae bıvênê; beno ke [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] de teferruat esto.",
+'rev-deleted-no-diff'         => "Sıma nêşikinê nê ferqi bıvênê, çıke çımraviarnaisu ra  jü '''esteriyo'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
+'rev-deleted-unhide-diff'     => "Çımraviarnaisunê na ferqi ra  jü '''esteriyo'''.
+Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.
+Sıma be idarekerênia ho ra şikinê hona [$1 nê ferqi bıvênê], eke wazenê dewam kerê.",
+'rev-deleted-user-contribs'   => '[namê karberi ya ki adresa IPy dariya we - vurnaene iştıraku ra nımniya]',
+'rev-delundel'                => 'bıasne/wedare',
+'rev-showdeleted'             => 'bıasne',
+'revisiondelete'              => 'Çımraviarnaisu bıestere/peyser bia',
+'revdelete-nooldid-title'     => 'Çımraviarnaena waştiye nêvêrena',
+'revdelete-nooldid-text'      => 'Sıma vırastena nê fonksiyoni rê ya jü çımraviarnaena waştiye diyar nêkerdo, çımraviarnaena diyarkerdiye çına, ya ki sıma wazenê ke çımraviarnaena nıkaêne bınımnê.',
+'revdelete-nologtype-title'   => 'Qet qeydê cı nêdiya',
+'revdelete-nologtype-text'    => 'Qeydê sımao diyar çino ke nê fealiyet kuyê.',
+'revdelete-nologid-title'     => 'Cıkotene qebul nêbiye',
+'revdelete-nologid-text'      => 'Sıma vırastena nê fonksiyoni rê ya jü cıkotena waştiye diyar nêkerda, ya ki çıkotena diyarkerdiye çina.',
+'revdelete-no-file'           => 'Dosya diyarkerdiye çina.',
+'revdelete-show-file-confirm' => 'Sıma eminê ke wazenê çımraviarnaena esterıtiya na dosya "<nowiki>$1</nowiki>" $2 ra $3 de bıvênê?',
+'revdelete-show-file-submit'  => 'Heya',
+'revdelete-selected'          => "'''[[:$1]]: ra {{PLURAL:$2|Çımraviarnaiso weçinıte|Çımraviarnaisê weçinıtey}}'''",
+'revdelete-text'              => "Çımraviarnaişê esterıtey u kerdişi hewna tarixê pele u qeydan de asenê, hama parçê zerrekê dine areze nêbenê.''' 
+Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê hona bıresê zerrekê nımıtey u şikinê ey oncia na eyni mianpele ra peyser biarê.",
+'revdelete-suppress-text'     => "Wedardene gunê '''teyna''' nê halunê cêrênu de bıguriyo:
+* Melumatê kıfırio mıhtemel
+* Melumatê şexsio bêmınasıb
+*: ''adresa çêi u numrê têlefoni, numrê siğorta sosyale, uêb.''",
+'revdelete-legend'            => 'Şertunê vênaişi rone',
+'revdelete-hide-text'         => 'Nustê çımraviarnaene bınımne',
+'revdel-restore'              => 'asaişi bıvurne',
+'revdelete-content'           => 'zerrek',
+'revdelete-uname'             => 'namê karberi',
+'revdelete-reasonotherlist'   => 'Sebebo bin',
 
 # History merging
 'mergehistory-from'   => 'Pela çımey:',
@@ -830,6 +867,8 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'allpages'       => 'Peli pêro',
 'alphaindexline' => '$1 bere $2',
 'prevpage'       => 'Pela verêne ($1)',
+'allpagesfrom'   => 'Pelê ke be na herfe dest niyo pıra bıasne:',
+'allpagesto'     => 'Pelunê ke be na herfe qedinê bıasne:',
 'allarticles'    => 'Peli pêro',
 'allpagessubmit' => 'So',
 

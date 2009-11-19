@@ -48,6 +48,9 @@ $messages = array(
 'tog-externaleditor'          => 'Тыш редакторну хайырландырыу',
 'tog-externaldiff'            => 'Версияланы тенглешдириучу тыш программа хайырландыр',
 
+'underline-always' => 'Хаманда',
+'underline-never'  => 'Бирзаманда да',
+
 # Dates
 'sunday'        => 'Ыйых кюн',
 'monday'        => 'Баш кюн',
@@ -169,9 +172,11 @@ $messages = array(
 'talkpage'         => 'Бу бетни сюз',
 'talkpagelinktext' => 'сюзюу',
 'personaltools'    => 'Энчи инструментле',
+'articlepage'      => 'Статьягъа къарау',
 'talk'             => 'Сюзюу',
 'views'            => 'Къараула',
 'toolbox'          => 'Инструментле',
+'userpage'         => 'Къошулуучуну энчи бетине къарау',
 'otherlanguages'   => 'Башха тилледе',
 'redirectedfrom'   => '($1 бетден джиберилгенди)',
 'redirectpagesub'  => 'Башха бетге джибериучю бет',

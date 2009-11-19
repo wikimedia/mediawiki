@@ -1325,7 +1325,7 @@ $1",
 'lineno'                   => 'سطر $1:',
 'compareselectedversions'  => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'أظهر/أخفِ المراجعات المختارة',
-'editundo'                 => 'ارجع',
+'editundo'                 => 'تراجَع',
 'diff-multi'               => '({{PLURAL:$1|مراجعة واحدة متوسطة|$1 مراجعة متوسطة}} غير معروضة.)',
 
 # Search results

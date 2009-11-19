@@ -907,6 +907,7 @@ Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerscheed kucke
 Als Administrateur kënnt Dir dësen Ënnerscheed gesinn; et ka sinn datt Dir méi Detailer am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läsche] fannt.",
 'rev-suppressed-diff-view'    => "Eng vun de Versioune vun dësem Ënnerscheeed gouf '''ënnerdréckt'''.
 Als Administrateur kënnt Dir dësen Ënnerscheed gesinn; et ka sinn datt Dir Detailer am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuch vun den Ënnerdréckunge] fannt.",
+'rev-deleted-user-contribs'   => '[Benotzernumm oder IP-Adress ewechgeholl - Ännerung an der Lescht vun de Kontributioune verstoppt]',
 'rev-delundel'                => 'weisen/verstoppen',
 'rev-showdeleted'             => 'Weisen',
 'revisiondelete'              => 'Versioune läschen/restauréieren',

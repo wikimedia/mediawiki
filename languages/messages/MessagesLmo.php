@@ -931,6 +931,7 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'deletepage'             => 'Scancela la pagina',
 'excontent'              => "'l cuntegnüü l'era: '$1'",
 'excontentauthor'        => "'l cuntegnüü l'era: '$1' (e l'ünich cuntribüdur l'era staa '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "Inanz da vess svujaa 'l cuntegnüü l'eva: '$1'",
 'historywarning'         => "'''Ocio!''' La pagina che a sii adree a scancelà la gh'a una stòria cun $1 {{PLURAL:$1|revisión|revisionn}}:",
 'confirmdeletetext'      => "A te see lì per scancelà una pagina cun tüta la sua crunulugìa.
 Per piasè, dà la cunferma che te gh'hee intenzión de andà inanz cun 'l scancelament, che te see al curent di cunseguenz, e che te see adree a fàl segónd i regulament de [[{{MediaWiki:Policy-url}}]].",

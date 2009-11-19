@@ -1427,7 +1427,6 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 'rev-deleted-comment'         => '(comment removed)',
 'rev-deleted-user'            => '(username removed)',
 'rev-deleted-event'           => '(log action removed)',
-'rev-deleted-user-contribs'   => '[username or IP address removed - edit hidden from contributions]',
 'rev-deleted-text-permission' => "This page revision has been '''deleted'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
@@ -1452,6 +1451,7 @@ As an administrator you can still [$1 view this diff] if you wish to proceed.",
 As an administrator you can view this diff; there may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-diff-view'    => "One of the revisions of this diff has been '''suppressed'''.
 As an administrator you can view this diff; there may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+'rev-deleted-user-contribs'   => '[username or IP address removed - edit hidden from contributions]',
 'rev-delundel'                => 'show/hide',
 'rev-showdeleted'             => 'show',
 'revisiondelete'              => 'Delete/undelete revisions',
