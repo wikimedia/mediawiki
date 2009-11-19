@@ -333,6 +333,7 @@ Change notes from older releases. For current info see RELEASE-NOTES.
 * (bug 18617) Add xml:space="preserve" attribute to relevant tags in XML output
 * (bug 17611) Provide a sensible error message on install when the SQLite data
   directory is wrong.
+* (bug 19523) prop=info&inprop=watched
 
 === Languages updated in 1.15 ===
 
