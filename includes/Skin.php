@@ -2045,7 +2045,7 @@ END;
 		}
 
 		$bar = array();
-		$this->addToSidebar( &$bar, 'sidebar' );
+		$this->addToSidebar( $bar, 'sidebar' );
 
 		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) $parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
