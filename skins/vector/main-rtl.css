@@ -213,11 +213,14 @@ body {
 	#head div.vectorMenu h5 {
 		float: left;
 		background-image: url(images/tab-break.png);
-		background-position: bottom left;
 		background-repeat: no-repeat;
-		margin-left: -1px;
+	}
+	/* IGNORED BY IE6 */
+	#head div.vectorMenu > h5 {
+		background-image: none;
 	}
 	#head div.vectorMenu h5 {
+		background-position: bottom right;
 		margin-right: -1px;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
@@ -228,8 +231,10 @@ body {
 		height: 2.5em;
 		text-decoration: none;
 		background-image: url(images/tab-break.png);
-		background-position: bottom right;
 		background-repeat: no-repeat;
+	}
+	div.vectorMenu h5 a{
+		background-position: bottom left;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorMenu h5 > a {
