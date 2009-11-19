@@ -1059,6 +1059,7 @@ $2',
 'rev-deleted-comment'         => '(תקציר העריכה הוסר)',
 'rev-deleted-user'            => '(שם המשתמש הוסר)',
 'rev-deleted-event'           => '(פעולת היומן הוסרה)',
+'rev-deleted-user-contribs'   => '[שם המשתמש או כתובת ה־IP הוסרו - העריכה הוסתרה מדף התרומות]',
 'rev-deleted-text-permission' => "גרסת הדף הזו '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
 'rev-deleted-text-unhide'     => "גרסת הדף הזו '''נמחקה'''.
