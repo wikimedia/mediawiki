@@ -874,7 +874,6 @@ class HTMLTextField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
-		global $wgHtml5;
 		$attribs = array(
 			'id' => $this->mID,
 			'name' => $this->mName,
@@ -890,20 +889,18 @@ class HTMLTextField extends HTMLFormField {
 			$attribs['disabled'] = 'disabled';
 		}
 
-		if ( $wgHtml5 ) {
-			# TODO: Enforce pattern, step, required, readonly on the server
-			# side as well
-			foreach ( array( 'min', 'max', 'pattern', 'title', 'step',
-			'placeholder' ) as $param ) {
-				if ( isset( $this->mParams[$param] ) ) {
-					$attribs[$param] = $this->mParams[$param];
-				}
+		# TODO: Enforce pattern, step, required, readonly on the server side as
+		# well
+		foreach ( array( 'min', 'max', 'pattern', 'title', 'step',
+		'placeholder' ) as $param ) {
+			if ( isset( $this->mParams[$param] ) ) {
+				$attribs[$param] = $this->mParams[$param];
 			}
-			foreach ( array( 'required', 'autofocus', 'multiple', 'readonly' )
-			as $param ) {
-				if ( isset( $this->mParams[$param] ) ) {
-					$attribs[$param] = '';
-				}
+		}
+		foreach ( array( 'required', 'autofocus', 'multiple', 'readonly' ) as
+		$param ) {
+			if ( isset( $this->mParams[$param] ) ) {
+				$attribs[$param] = '';
 			}
 		}
 			
@@ -911,23 +908,17 @@ class HTMLTextField extends HTMLFormField {
 		# here, rather than creating a new class for each one which
 		# is essentially just a clone of this one.
 		if ( isset( $this->mParams['type'] ) ) {
-			# Options that apply only to HTML5
-			if( $wgHtml5 ){
-				switch ( $this->mParams['type'] ) {
-					case 'email':
-						$attribs['type'] = 'email';
-						break;
-					case 'int':
-						$attribs['type'] = 'number';
-						break;
-					case 'float':
-						$attribs['type'] = 'number';
-						$attribs['step'] = 'any';
-						break;
-				}
-			}
-			# Options that apply to HTML4 as well
-			switch( $this->mParams['type'] ) {
+			switch ( $this->mParams['type'] ) {
+				case 'email':
+					$attribs['type'] = 'email';
+					break;
+				case 'int':
+					$attribs['type'] = 'number';
+					break;
+				case 'float':
+					$attribs['type'] = 'number';
+					$attribs['step'] = 'any';
+					break;
 				# Pass through
 				case 'password':
 				case 'file':
@@ -953,7 +944,6 @@ class HTMLTextAreaField extends HTMLFormField {
 	}
 	
 	function getInputHTML( $value ) {
-		global $wgHtml5;
 		$attribs = array(
 			'id' => $this->mID,
 			'name' => $this->mName,
@@ -969,14 +959,11 @@ class HTMLTextAreaField extends HTMLFormField {
 			$attribs['readonly'] = 'readonly';
 		}
 		
-		if ( $wgHtml5 ) {
-			foreach ( array( 'required', 'autofocus' ) as $param ) {
-				if ( isset( $this->mParams[$param] ) ) {
-					$attribs[$param] = '';
-				}
+		foreach ( array( 'required', 'autofocus' ) as $param ) {
+			if ( isset( $this->mParams[$param] ) ) {
+				$attribs[$param] = '';
 			}
 		}
-			
 
 		return Html::element( 'textarea', $attribs, $value );
 	}
