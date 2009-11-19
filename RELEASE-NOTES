@@ -707,6 +707,7 @@ Hopefully we will remove this configuration var soon)
   without registration date
 * (bug 20554) Expose average slave lag (avglag) as well as maxlag
 * (bug 20967) action=edit allows creation of invalid titles
+* (bug 19523) Add inprop=watched to prop=info
 
 === Languages updated in 1.16 ===
 
