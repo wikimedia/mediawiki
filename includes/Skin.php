@@ -416,6 +416,7 @@ class Skin extends Linker {
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
 			'wgSiteName' => $wgSitename,
+			'wgCategories' => $wgOut->getCategories(),
 		);
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
