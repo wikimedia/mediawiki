@@ -1118,6 +1118,7 @@ Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
 Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
 'rev-suppressed-diff-view'    => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''onderdrukt'''.
 Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].",
+'rev-deleted-user-contribs'   => '[gebruikersnaam of IP-adres verwijderd - bewerking verborgen in bijdragen]',
 'rev-delundel'                => 'weergeven/verbergen',
 'rev-showdeleted'             => 'weergeven',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',

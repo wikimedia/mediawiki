@@ -980,6 +980,7 @@ Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-suppressed-diff-view'    => "Unha das revisións desta diferenza foi '''suprimida'''.
 Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+'rev-deleted-user-contribs'   => '[nome de usuario ou enderezo IP eliminado; edición agochada das contribucións]',
 'rev-delundel'                => 'mostrar/agochar',
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Borrar/restaurar revisións',

@@ -1086,6 +1086,7 @@ Als ene Wiki_Köbes kanns De de Ungerscheide ävver aankike wann De wells.",
 'rev-suppressed-diff-view'    => "Ein vun de Versione heh es '''verschtoche'''.
 Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:suppressionlog}}}}].
 Als ene Wiki_Köbes kanns De de Ungerscheide ävver aankike wann De wells.",
+'rev-deleted-user-contribs'   => '[Däm Metmaacher singe Name udder sing <i lang="en">IP</i>-Addräß wood veschtoche, un heh di Änderung douch nit mieh en de Leß met de Beidrääsch op]',
 'rev-delundel'                => 'zeije/usblende',
 'rev-showdeleted'             => 'zeije',
 'revisiondelete'              => 'Versione fottschmieße un widder zeröck holle',

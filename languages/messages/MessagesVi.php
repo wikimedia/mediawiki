@@ -1264,7 +1264,7 @@ Bất cứ ai biết được khóa trong ô này cũng có thể đọc đượ
 'timezoneregion-indian'         => 'Ấn Độ Dương',
 'timezoneregion-pacific'        => 'Thái Bình Dương',
 'allowemail'                    => 'Nhận thư điện tử từ các thành viên khác',
-'prefs-searchoptions'           => 'Lựa chọn tìm kiếm',
+'prefs-searchoptions'           => 'Tìm kiếm',
 'prefs-namespaces'              => 'Không gian tên',
 'defaultns'                     => 'Nếu không thì tìm trong không gian sau:',
 'default'                       => 'mặc định',

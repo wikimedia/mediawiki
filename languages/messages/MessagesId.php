@@ -1039,6 +1039,7 @@ Sebagai pengurus anda masih dapat [$1 melihat perbedaan ini] jika anda ingin mel
 Sebagai seorang pengurus, Anda dapat melihat perbedaan ini; detail mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-suppressed-diff-view'    => "Salah satu revisi perbedaan ini telah '''disembunyikan'''.
 Sebagai seorang pengurus, Anda dapat melihat perbedaan ini; detail mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penyembunyian].",
+'rev-deleted-user-contribs'   => '[nama pengguna atau alamat IP dihapus - suntingan disembunyikan pada daftar kontribusi]',
 'rev-delundel'                => 'tampilkan/sembunyikan',
 'rev-showdeleted'             => 'tampilkan',
 'revisiondelete'              => 'Hapus/batal hapus revisi',

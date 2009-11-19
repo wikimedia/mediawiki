@@ -1098,6 +1098,7 @@ En tant qu'administrateur, vous pouvez toujours [$1 voir ce diff] si vous souhai
 En tant qu'administrateur vous pouvez voir ce diff ; il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'rev-suppressed-diff-view'    => "Une des révisions de ce diff a été '''effacée'''.
 En tant qu'administrateur vous pouvez voir ce diff ; il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des effacements].",
+'rev-deleted-user-contribs'   => "[nom d'utilisateur ou adresse IP supprimée - modification cachée sur les contributions]",
 'rev-delundel'                => 'afficher/masquer',
 'rev-showdeleted'             => 'afficher',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Derbeth
  * @author Dunak
  * @author Dundak
  * @author Michawiki
@@ -896,6 +897,7 @@ Ako administrator móžoš hyšći [$1 se toś ten rozdźěl woglědaś], jolic 
 Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-suppressed-diff-view'    => "Jadna z wersijow toś togo rozdźěla jo se '''pódtłocyła'''.
 Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
+'rev-deleted-user-contribs'   => '[wužywarske mě wótpórane abo IP-adresa wótpórana - změna mjez pśinoskami schowana]',
 'rev-delundel'                => 'pokazaś/schowaś',
 'rev-showdeleted'             => 'pokazaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
@@ -1903,15 +1905,15 @@ Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowě
 'enotif_reset'                 => 'Wšykne boki ako woglědane markěrowaś',
 'enotif_newpagetext'           => 'To jo nowy bok.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-wužywaŕ',
-'changed'                      => 'změnjone',
-'created'                      => 'wutwórjone',
-'enotif_subject'               => '[{{SITENAME}}] Bok "$PAGETITLE" jo se wót $PAGEEDITOR $CHANGEDORCREATED',
+'changed'                      => 'změnił',
+'created'                      => 'wutwórił',
+'enotif_subject'               => '[{{SITENAME}}] $PAGEEDITOR jo bok "$PAGETITLE" $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Wšykne změny na jadno póglědnjenje: $1',
 'enotif_lastdiff'              => 'Za toś tu změnu glědaj w $1.',
 'enotif_anon_editor'           => 'anonymny wužywaŕ $1',
 'enotif_body'                  => 'Luby/a $WATCHINGUSERNAME,
 
-{{SITENAME}} bok "$PAGETITLE" jo se wót $PAGEEDITOR $PAGEEDITDATE $CHANGEDORCREATED.
+PAGEEDITOR jo bok {{SITENAME}} "$PAGETITLE" $PAGEEDITDATE $CHANGEDORCREATED.
 Aktualna wersija: $PAGETITLE_URL
 
 $NEWPAGE
@@ -1928,7 +1930,7 @@ Dalšne e-mailowe powěsći se tak dłujko njepósćelu, až njejsy bok zasej wo
 --
 Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:Watchlist/edit}}
 
-Pčašanja a dalšna pomoc:
+Pšašanja a dalšna pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

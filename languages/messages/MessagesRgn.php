@@ -1,5 +1,5 @@
 <?php
-/** Romagnol (Romagnolo)
+/** Romagnol (Rumagnôl)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -398,13 +398,17 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'unwatching' => "Scanzèla dal pàgin da t'nì d'öcc...",
 
 # Delete
-'confirmdeletetext' => "Oci! T'ste par scanzlè una pàgina cun tòta la storia d'j su cambiamént.
+'deletepage'            => 'Scanzela la pàgina',
+'confirmdeletetext'     => "Oci! T'ste par scanzlè una pàgina cun tòta la storia d'j su cambiamént.
 Par piasé, cunferma ch't'ê propri l'intenziòn d'fël, ch'at capèss al su conseguenzi e quel ch't fë adès l'è in regola cun al [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'    => 'Lavor fät e finì',
-'deletedtext'       => 'La pàgina "<nowiki>$1</nowiki>" l\'è stëda scanzlèda.
+'actioncomplete'        => 'Lavor fät e finì',
+'deletedtext'           => 'La pàgina "<nowiki>$1</nowiki>" l\'è stëda scanzlèda.
 Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
-'deletedarticle'    => 'l\'à scanzlé "[[$1]]"',
-'dellogpage'        => 'Regèstar dal scanzladùr',
+'deletedarticle'        => 'l\'à scanzlé "[[$1]]"',
+'dellogpage'            => 'Regèstar dal scanzladùr',
+'deletecomment'         => "Mutiv d'e' scanzelamént",
+'deleteotherreason'     => 'Ètar mutiv:',
+'deletereasonotherlist' => 'Ètar mutiv',
 
 # Rollback
 'rollbacklink' => "armèt sta pàgina cun cl'era prèma",
@@ -467,6 +471,17 @@ Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
 'block-log-flags-nocreate' => "Un' s'pò brisa registrès un'étra volta",
 
 # Move page
+'movepagetext'    => "Cun st'uperaziòn t'pù cambiè e' nom a una pàgina. Tòti al versiòn prezedenti j và drì a la pàgina nova.
+E' nom vec, nec quel, u t' pórta a la pàgina nova.
+E adès, a l' set cus ch't' pù fè? T'pù andé a zarchè i nom vec e meti-j a post tot cun e' nom nov. S't'a n'e' brisa voja, l'è listéss, parò va a cuntrulè prèma s'j è di [[Special:DoubleRedirects|doppii]] ó [[Special:BrokenRedirects|ghènz scuvert]].
+T'ci responsabil d'cuntrulé che tot i ghenz j seja a post.
+
+Oci! La pàgina la '''n'srà''' mòsa s'u j è za una pàgina cun e' stès nom. T'an pù scrivar sora una pàgina ch'la j è za.
+Parò, se la pàgina l'è vuta o l'è sol un reindirizament.
+
+'''STA ATENTI!'''
+Questa l'è un'uperaziòn delichèta. A sit sicur? Mo propri? T'an féga de casèn.
+Un cunsej? Pensa al conseguenzi de tu att prèma d's-cjazè e' butòn.",
 '1movedto2'       => "[[$1]] l'è stê mòs a [[$2]]",
 '1movedto2_redir' => "[[$1]] l'è stè moss in [[$2]] par redireziòn",
 'movelogpage'     => "Regéstar d'j muvimént",

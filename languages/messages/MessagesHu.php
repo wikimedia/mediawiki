@@ -981,10 +981,10 @@ Nem lett magyarázat csatolva.',
 Már létezik.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok erőforrásigényes értelmes sablon-hívás található.
+'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok erőforrásigényes elemzőfüggvény-hívás található.
 
 Kevesebb, mint {{PLURAL:$2|egy|$2}} kellene, jelenleg {{PLURAL:$1|egy|$1}} van.',
-'expensive-parserfunction-category'       => 'Túl sok bonyolult értelmes sablon-hívással rendelkező lapok',
+'expensive-parserfunction-category'       => 'Túl sok költséges elemzőfüggvény-hívást tartalmazó lapok',
 'post-expand-template-inclusion-warning'  => 'Figyelem: a beillesztett sablonok mérete túl nagy.
 Néhány sablon nem fog megjelenni.',
 'post-expand-template-inclusion-category' => 'Lapok, melyeken a beillesztett sablon mérete meghaladja a megengedett méretet',
@@ -1066,6 +1066,7 @@ Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közöt
 Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti eltérést; további részleteket pedig a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-suppressed-diff-view'    => "A változatok közötti eltéréshez kiválasztott változatok egyike '''el lett rejtve'''.
 Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti eltérést; további részleteket pedig az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].",
+'rev-deleted-user-contribs'   => '[felhasználónév vagy IP-cím eltávolítva – szerkesztés elrejtve a közreműködések közül]',
 'rev-delundel'                => 'megjelenítés/elrejtés',
 'rev-showdeleted'             => 'megjelenítés',
 'revisiondelete'              => 'Változatok törlése vagy helyreállítása',
@@ -2567,7 +2568,7 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'allmessagesname'               => 'Név',
 'allmessagesdefault'            => 'Alapértelmezett szöveg',
 'allmessagescurrent'            => 'Jelenlegi szöveg',
-'allmessagestext'               => 'Ezen a lapon a MediaWiki-névtérben elérhető összes rendszerüzenet listája található.
+'allmessagestext'               => 'Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.
 Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [http://translatewiki.net translatewiki.net] oldalra.',
 'allmessagesnotsupportedDB'     => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessages-filter-legend'     => 'Elemek szűrése',

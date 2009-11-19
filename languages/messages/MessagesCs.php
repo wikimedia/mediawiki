@@ -1082,6 +1082,7 @@ Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 Jako správce si můžete tento rozdíl prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-suppressed-diff-view'    => "Jedna z revizí k tomuto porovnání byla '''utajena'''.
 Jako správce si můžete tento rozdíl prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+'rev-deleted-user-contribs'   => '[uživatelské jméno nebo IP adresa odstraněny – editace v příspěvcích skryta]',
 'rev-delundel'                => 'skrýt/zobrazit',
 'rev-showdeleted'             => 'zobrazit',
 'revisiondelete'              => 'Smazat/obnovit revize',
