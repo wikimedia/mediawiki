@@ -12,7 +12,7 @@ class OutputPage {
 	var $mHTMLtitle = '', $mIsarticle = true, $mPrintable = false;
 	var $mSubtitle = '', $mRedirect = '', $mStatusCode;
 	var $mLastModified = '', $mETag = false;
-	var $mCategoryLinks = array(), $mLanguageLinks = array();
+	var $mCategoryLinks = array(), $mCategories = array(), $mLanguageLinks = array();
 
 	var $mScriptLoaderClassList = array();
 
@@ -664,6 +664,10 @@ class OutputPage {
 		return $this->mCategoryLinks;
 	}
 
+	public function getCategories() {
+		return $this->mCategories;
+	}
+
 	/**
 	 * Add an array of categories, with names in the keys
 	 */
@@ -713,6 +717,7 @@ class OutputPage {
 					if ( array_key_exists( $category, $categories ) )
 						continue;
 				$text = $wgContLang->convertHtml( $title->getText() );
+				$this->mCategories[] = $title->getText();
 				$this->mCategoryLinks[$type][] = $sk->link( $title, $text );
 			}
 		}
