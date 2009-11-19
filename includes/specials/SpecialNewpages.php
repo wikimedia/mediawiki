@@ -232,12 +232,8 @@ class SpecialNewpages extends SpecialPage {
 
 	protected function setSyndicated() {
 		global $wgOut;
-		$queryParams = array(
-			'namespace' => $this->opts->getValue( 'namespace' ),
-			'username' => $this->opts->getValue( 'username' )
-		);
 		$wgOut->setSyndicated( true );
-		$wgOut->setFeedAppendQuery( wfArrayToCGI( $queryParams ) );
+		$wgOut->setFeedAppendQuery( wfArrayToCGI( $this->opts->getAllValues() ) );
 	}
 
 	/**

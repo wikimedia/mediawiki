@@ -133,12 +133,8 @@ class SpecialContributions extends SpecialPage {
 	
 	protected function setSyndicated() {
 		global $wgOut;
-		$queryParams = array(
-			'namespace' => $this->opts['namespace'],
-			'target'  => $this->opts['target']
-		);
 		$wgOut->setSyndicated( true );
-		$wgOut->setFeedAppendQuery( wfArrayToCGI( $queryParams ) );
+		$wgOut->setFeedAppendQuery( wfArrayToCGI( $this->opts ) );
 	}
 
 	/**
