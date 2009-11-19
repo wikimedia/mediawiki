@@ -34,10 +34,10 @@ if (!defined('MEDIAWIKI')) {
  * @ingroup API
  */
 class ApiQueryInfo extends ApiQueryBase {
-	
+
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
-		$fld_readable = false;
+		$fld_readable = false, $fld_watched = false;
 
 	public function __construct($query, $moduleName) {
 		parent :: __construct($query, $moduleName, 'in');
@@ -90,7 +90,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		global $wgUser;
 		if(!$wgUser->isAllowed('edit'))
 			return false;
-		
+
 		// The edit token is always the same, let's exploit that
 		static $cachedEditToken = null;
 		if(!is_null($cachedEditToken))
@@ -99,12 +99,12 @@ class ApiQueryInfo extends ApiQueryBase {
 		$cachedEditToken = $wgUser->editToken();
 		return $cachedEditToken;
 	}
-	
+
 	public static function getDeleteToken($pageid, $title)
 	{
 		global $wgUser;
 		if(!$wgUser->isAllowed('delete'))
-			return false;			
+			return false;
 
 		static $cachedDeleteToken = null;
 		if(!is_null($cachedDeleteToken))
@@ -175,7 +175,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$cachedEmailToken = $wgUser->editToken();
 		return $cachedEmailToken;
 	}
-	
+
 	public static function getImportToken($pageid, $title)
 	{
 		global $wgUser;
@@ -195,6 +195,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if(!is_null($this->params['prop'])) {
 			$prop = array_flip($this->params['prop']);
 			$this->fld_protection = isset($prop['protection']);
+			$this->fld_watched = isset($prop['watched']);
 			$this->fld_talkid = isset($prop['talkid']);
 			$this->fld_subjectid = isset($prop['subjectid']);
 			$this->fld_url = isset($prop['url']);
@@ -239,6 +240,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		// Get protection info if requested
 		if ($this->fld_protection)
 			$this->getProtectionInfo();
+
+		if ($this->fld_watched)
+			$this->getWatchedInfo();
 
 		// Run the talkid/subjectid query if requested
 		if($this->fld_talkid || $this->fld_subjectid)
@@ -296,11 +300,13 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if($this->fld_protection) {
 			$pageInfo['protection'] = array();
-			if (isset($this->protections[$title->getNamespace()][$title->getDBkey()])) 
+			if (isset($this->protections[$title->getNamespace()][$title->getDBkey()]))
 				$pageInfo['protection'] =
 					$this->protections[$title->getNamespace()][$title->getDBkey()];
 			$this->getResult()->setIndexedTagName($pageInfo['protection'], 'pr');
 		}
+		if($this->fld_watched && isset($this->watched[$title->getNamespace()][$title->getDBkey()]))
+			$pageInfo['watched'] = '';
 		if($this->fld_talkid && isset($this->talkids[$title->getNamespace()][$title->getDBkey()]))
 			$pageInfo['talkid'] = $this->talkids[$title->getNamespace()][$title->getDBkey()];
 		if($this->fld_subjectid && isset($this->subjectids[$title->getNamespace()][$title->getDBkey()]))
@@ -309,9 +315,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['fullurl'] = $title->getFullURL();
 			$pageInfo['editurl'] = $title->getFullURL('action=edit');
 		}
-		if($this->fld_readable)
-			if($title->userCanRead())
-				$pageInfo['readable'] = '';
+		if($this->fld_readable && $title->userCanRead())
+			$pageInfo['readable'] = '';
 		return $pageInfo;
 	}
 
@@ -444,7 +449,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addWhere('pr_page = il_from');
 			$this->addWhereFld('pr_cascade', 1);
 			$this->addWhereFld('il_to', $images);
-			
+
 			$res = $this->select(__METHOD__);
 			while($row = $db->fetchObject($res)) {
 				$source = Title::makeTitle($row->page_namespace, $row->page_title);
@@ -479,7 +484,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 		if(!count($getTitles))
 			return;
-		
+
 		// Construct a custom WHERE clause that matches
 		// all titles in $getTitles
 		$lb = new LinkBatch($getTitles);
@@ -499,6 +504,35 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
+	/**
+	* Get information about watched status and put it in $watched
+	*/
+	private function getWatchedInfo()
+	{
+		global $wgUser;
+
+		if($wgUser->isAnon() || count($this->titles) == 0)
+			return;
+
+		$this->watched = array();
+		$db = $this->getDB();
+
+		$lb = new LinkBatch($this->titles);
+
+		$this->addTables(array('page', 'watchlist'));
+		$this->addFields(array('page_title', 'page_namespace'));
+		$this->addWhere($lb->constructSet('page', $db));
+		$this->addWhere('wl_title=page_title');
+		$this->addWhere('wl_namespace=page_namespace');
+		$this->addWhereFld('wl_user',  $wgUser->getID());
+
+		$res = $this->select(__METHOD__);
+
+		while($row = $db->fetchObject($res)) {
+			$this->watched[$row->page_namespace][$row->page_title] = true;
+		}
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'prop' => array (
@@ -507,6 +541,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'protection',
 					'talkid',
+					'watched',
 					'subjectid',
 					'url',
 					'readable',
@@ -526,6 +561,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				'Which additional properties to get:',
 				' protection   - List the protection level of each page',
 				' talkid       - The page ID of the talk page for each non-talk page',
+				' watched	   - List the watched status of each page',
 				' subjectid    - The page ID of the parent page for each talk page'
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
