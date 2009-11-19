@@ -640,6 +640,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 21551) Make Squid reponse limit configurable
 * Fixed corruption of long UDP debug log messages by using socket_sendto() 
   instead of fsockopen() with fwrite().
+* (bug 16884) Fixed feed links in sidebar not complying with URL parameters
+  of the displayed page
 
 == API changes in 1.16 ==
 
