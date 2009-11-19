@@ -561,7 +561,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				'Which additional properties to get:',
 				' protection   - List the protection level of each page',
 				' talkid       - The page ID of the talk page for each non-talk page',
-				' watched	   - List the watched status of each page',
+				' watched      - List the watched status of each page',
 				' subjectid    - The page ID of the parent page for each talk page'
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
