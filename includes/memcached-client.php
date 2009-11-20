@@ -44,7 +44,7 @@
  *
  * require_once 'memcached.php';
  *
- * $mc = new memcached(array(
+ * $mc = new MWMemcached(array(
  *              'servers' => array('127.0.0.1:10000',
  *                                 array('192.0.0.1:10010', 2),
  *                                 '127.0.0.1:10020'),
@@ -63,14 +63,14 @@
 // {{{ requirements
 // }}}
 
-// {{{ class memcached
+// {{{ class MWMemcached
 /**
  * memcached client class implemented using (p)fsockopen()
  *
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
  * @ingroup Cache
  */
-class memcached
+class MWMemcached
 {
    // {{{ properties
    // {{{ public
@@ -1082,3 +1082,9 @@ class memcached
 // vim: sts=3 sw=3 et
 
 // }}}
+
+class MemCachedClientforWiki extends MWMemcached {
+	function _debugprint( $text ) {
+		wfDebug( "memcached: $text" );
+	}
+}
