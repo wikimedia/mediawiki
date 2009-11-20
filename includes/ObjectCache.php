@@ -52,13 +52,6 @@ function &wfGetCache( $inputType ) {
 
 	if ( $type == CACHE_MEMCACHED ) {
 		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ) {
-			if ( !class_exists( 'MemCachedClientforWiki' ) ) {
-				class MemCachedClientforWiki extends memcached {
-					function _debugprint( $text ) {
-						wfDebug( "memcached: $text" );
-					}
-				}
-			}
 			$wgCaches[CACHE_MEMCACHED] = new MemCachedClientforWiki(
 				array('persistant' => $wgMemCachedPersistent, 'compress_threshold' => 1500 ) );
 			$wgCaches[CACHE_MEMCACHED]->set_servers( $wgMemCachedServers );

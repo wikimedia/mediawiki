@@ -642,6 +642,8 @@ Hopefully we will remove this configuration var soon)
   instead of fsockopen() with fwrite().
 * (bug 16884) Fixed feed links in sidebar not complying with URL parameters
   of the displayed page
+* (bug 21403) memcached class renamed to MWMemecached to avoid conflict with
+  PHP's memcached extension
 
 == API changes in 1.16 ==
 
