@@ -3,7 +3,7 @@
  * It controls the invocation of the mvUploader class based on local config.
  */
 
-var mwUploadFormTarget = '#mw-upload-form';
+var mwUploadFormSelector = '#mw-upload-form';
 // Set up the upload form bindings once all DOM manipulation is done
 var mwUploadHelper = {
 	init: function() {
@@ -18,7 +18,7 @@ var mwUploadHelper = {
 				// An API URL (we won't submit directly to action of the form)
 				'api_url': wgServer + wgScriptPath + '/api.php',
 				'form_rewrite': true,
-				'target_edit_from': mwUploadFormTarget,
+				'edit_form_selector': mwUploadFormSelector,
 				'new_source_cb': function( orgFilename, oggName ) {
 					$j( '#wpDestFile' ).val( oggName );
 					$j( '#wpDestFile' ).doDestCheck( {
@@ -32,7 +32,7 @@ var mwUploadHelper = {
 			if ( $j( '#wpUploadFileURL' ).length != 0 ) {
 				$j( '#wpUploadFileURL' ).baseUploadInterface( {
 					'api_url': wgServer + wgScriptPath + '/api.php',
-					'target_edit_from': mwUploadFormTarget
+					'edit_form_selector': mwUploadFormSelector
 				} );
 			}
 		}
