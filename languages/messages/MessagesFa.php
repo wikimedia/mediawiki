@@ -1151,6 +1151,7 @@ $2',
 'rev-deleted-comment'         => '(توضیحات پاک شد)',
 'rev-deleted-user'            => '(نام کاربری حذف شده‌است)',
 'rev-deleted-event'           => '(مورد پاک شد)',
+'rev-deleted-user-contribs'   => '[نام کاربری یا نشانی آی‌پی حذف شده - ویرایش مخفی شده در مشارکت‌ها]',
 'rev-deleted-text-permission' => "این ویرایش از این صفحه '''حذف شده‌است'''.
 ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
 'rev-deleted-text-unhide'     => "این ویرایش از این صفحه '''حذف شده‌است'''.
@@ -1175,7 +1176,6 @@ $2',
 شما به عنوان یک مدیر کماکان می‌توانید این تفاوت را ببینید؛ ممکن است جزئیاتی در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
 'rev-suppressed-diff-view'    => "یکی از نسخه‌های این تفاوت '''فرونشانی شده‌است'''.
 شما به عنوان یک مدیر کماکان می‌توانید این تفاوت را ببینید؛ ممکن است جزئیاتی در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ فرونشانی] موجود باشد.",
-'rev-deleted-user-contribs'   => '[نام کاربری یا نشانی آی‌پی حذف شده - ویرایش مخفی شده در مشارکت‌ها]',
 'rev-delundel'                => 'نمایش/نهفتن',
 'rev-showdeleted'             => 'نمایش',
 'revisiondelete'              => 'حذف/احیای نسخه‌ها',

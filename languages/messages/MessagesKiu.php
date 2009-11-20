@@ -586,6 +586,7 @@ Serba pelunê muhimunê newun [[Special:Cıcêre|cıcêraişê wiki de]] bıcere
 'rev-deleted-comment'         => '(tefşir esteriyo)',
 'rev-deleted-user'            => '(namê karberi esteriyo)',
 'rev-deleted-event'           => '(faeliyetê cıkotene esteriyo)',
+'rev-deleted-user-contribs'   => '[namê karberi ya ki adresa IPy dariya we - vurnaene iştıraku ra nımniya]',
 'rev-deleted-text-permission' => "Çımraviarnaena na pele '''esteriya'''.
 Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
 'rev-deleted-text-unhide'     => "Çımraviarnaena na pele '''esteriya'''.
@@ -602,7 +603,6 @@ Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log
 'rev-deleted-unhide-diff'     => "Çımraviarnaisunê na ferqi ra  jü '''esteriyo'''.
 Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.
 Sıma be idarekerênia ho ra şikinê hona [$1 nê ferqi bıvênê], eke wazenê dewam kerê.",
-'rev-deleted-user-contribs'   => '[namê karberi ya ki adresa IPy dariya we - vurnaene iştıraku ra nımniya]',
 'rev-delundel'                => 'bıasne/wedare',
 'rev-showdeleted'             => 'bıasne',
 'revisiondelete'              => 'Çımraviarnaisu bıestere/peyser bia',

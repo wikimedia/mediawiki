@@ -24,6 +24,7 @@
  * @author Luckas Blade
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
+ * @author Vuln
  * @author Waldir
  * @author Yves Marques Junqueira
  * @author לערי ריינהארט
@@ -639,7 +640,8 @@ Por favor, reporte este fato a um administrador, fazendo notar a URL.',
 'unexpected'           => 'Valor não esperado: "$1"="$2".',
 'formerror'            => 'Erro: Não foi possível enviar o formulário',
 'badarticleerror'      => 'Esta ação não pode ser realizada nesta página.',
-'cannotdelete'         => 'Não foi possível eliminar a página ou arquivo especificado (provavelmente por já ter sido eliminada por outra pessoa.)',
+'cannotdelete'         => 'Não foi possível remover a página ou arquivo especificado.
+Provavelmente pode já ter sido removido por outra pessoa.',
 'badtitle'             => 'Título inválido',
 'badtitletext'         => 'O título de página requisitado é inválido, vazio, ou uma ligação incorreta de inter-linguagem ou título inter-wiki. Pode ser que ele contenha um ou mais caracteres que não podem ser utilizados em títulos.',
 'perfcached'           => 'Os dados seguintes encontram-se na cache e podem não estar atualizados.',
@@ -701,6 +703,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'userexists'                 => 'O nome de usuário que você digitou já existe.
 Por favor, escolha um nome diferente.',
 'loginerror'                 => 'Erro de autenticação',
+'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => "A conta do usuário foi criada, mas você não foi autenticado.
 {{SITENAME}} utiliza ''cookies'' para autenticar os usuários.
 Você tem os ''cookies'' desativados no seu navegador.

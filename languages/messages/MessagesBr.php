@@ -838,6 +838,7 @@ Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe
 'rev-deleted-comment'         => '(evezhiadenn diverket)',
 'rev-deleted-user'            => '(anv implijer diverket)',
 'rev-deleted-event'           => '(elfenn dilamet)',
+'rev-deleted-user-contribs'   => "[anv implijer pe chomlec'h IP diverket - kemm kuzhet diouzh an degasadennoù]",
 'rev-deleted-text-permission' => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
 'rev-deleted-text-unhide'     => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.

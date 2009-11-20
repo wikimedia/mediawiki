@@ -13,6 +13,7 @@
  * @author Moilleadóir
  * @author Spacebirdy
  * @author Stifle
+ * @author Tameamseo
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -363,9 +364,9 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 
 # Main script and global functions
 'nosuchaction'      => 'Níl a leithéid de ghníomh ann',
-'nosuchactiontext'  => "Níl aithníonn an vicí an gníomh atá ann sa líonsheoladh.
-B'fhéidir go bhfuil botún san URL, no gliogadh ar nasc míchearta.
-B'fhéidir go bhfuil fabht sa bogearraí atá in usáid ar {{SITENAME}}.",
+'nosuchactiontext'  => 'Níl aithníonn an vicí an gníomh atá ann san URL.
+An ndearna tú botún san URL, no ar lean tú nasc mícheart?
+An bhfuil fadhb sna bogearraí atá in usáid ar {{SITENAME}}?',
 'nosuchspecialpage' => 'Níl a leithéid de leathanach speisialta ann',
 'nospecialpagetext' => "Níl aithníonn an vicí an leathanach speisialta a d'iarr tú ar.",
 
@@ -724,6 +725,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'lineno'                  => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
 'editundo'                => 'cealaigh',
+'diff-multi'              => '({{PLURAL:$1|Leasú idirmheánach amháin|$1 leasú idirmheánach}} nach thaispeántar.)',
 
 # Search results
 'searchresults'                  => 'Torthaí an chuardaigh',
@@ -1160,7 +1162,7 @@ Is féidir leat an méid ar taispeáint a chúngú trí roghnú an saghas loga, 
 'allpagesnext'      => 'Ar aghaidh',
 'allpagessubmit'    => 'Gabh',
 'allpagesprefix'    => 'Taispeáin leathanaigh leis an réimír:',
-'allpages-bad-ns'   => 'Níl an ainmspás "$1" ar {{SITENAME}}',
+'allpages-bad-ns'   => 'Níl an t-ainmspás "$1" ar {{SITENAME}}',
 
 # Special:Categories
 'categories'         => 'Catagóirí',
@@ -1319,7 +1321,7 @@ Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 
 [[User:$3|$3]] ([[User talk:$3|Plé]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) an té a rinne an athrú is déanaí.",
 'editcomment'    => "Seo a raibh an achoimre eagarthóireacht: \"''\$1''\".",
-'revertpage'     => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]",
+'revertpage'     => 'Cealaíodh athruithe [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); ar ais chuig leagan le [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'Log cosanta',
@@ -1399,7 +1401,7 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'contributions-title' => 'Dréachtaí úsáideora do $1',
 'mycontris'           => 'Mo chuid dréachtaí',
 'contribsub2'         => 'Do $1 ($2)',
-'nocontribs'          => 'Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.',
+'nocontribs'          => 'Ní bhfuarthas aon athrú a bhí cosúil le na crítéir seo.',
 'uctop'               => ' (barr)',
 'month'               => 'Ón mhí seo (agus níos luaithe):',
 'year'                => 'Ón bhliain seo (agus níos luaithe):',
@@ -1416,7 +1418,7 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'sp-contributions-submit'        => 'Cuardaigh',
 
 # What links here
-'whatlinkshere'            => 'Naisc don lch seo',
+'whatlinkshere'            => 'Naisc go dtí an lch seo',
 'whatlinkshere-title'      => 'Naisc chuig $1',
 'whatlinkshere-page'       => 'Leathanach:',
 'linkshere'                => "Tá nasc chuig '''[[:$1]]''' ar na leathanaigh seo a leanas:",

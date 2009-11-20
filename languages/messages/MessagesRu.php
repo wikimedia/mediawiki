@@ -1003,6 +1003,7 @@ $3 указал следующую причину: ''$2''",
 'rev-deleted-comment'         => '(комментарий удалён)',
 'rev-deleted-user'            => '(имя автора стёрто)',
 'rev-deleted-event'           => '(запись удалена)',
+'rev-deleted-user-contribs'   => '[имя участника или IP-адрес удалёны — правка скрыта со страницы вклада]',
 'rev-deleted-text-permission' => "Эта версия страницы была '''удалена'''.
 Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
 'rev-deleted-text-unhide'     => "Эта версия страницы была '''удалена'''.

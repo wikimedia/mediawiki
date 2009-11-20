@@ -1074,6 +1074,7 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-comment'         => '(commentaire supprimé)',
 'rev-deleted-user'            => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'           => '(entrée supprimée)',
+'rev-deleted-user-contribs'   => "[nom d'utilisateur ou adresse IP supprimée - modification cachée sur les contributions]",
 'rev-deleted-text-permission' => "Cette version de la page a été '''effacée'''.
 Il peut y avoir des détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-deleted-text-unhide'     => "Cette version de la page a été '''effacée'''.
@@ -1098,7 +1099,6 @@ En tant qu'administrateur, vous pouvez toujours [$1 voir ce diff] si vous souhai
 En tant qu'administrateur vous pouvez voir ce diff ; il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'rev-suppressed-diff-view'    => "Une des révisions de ce diff a été '''effacée'''.
 En tant qu'administrateur vous pouvez voir ce diff ; il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des effacements].",
-'rev-deleted-user-contribs'   => "[nom d'utilisateur ou adresse IP supprimée - modification cachée sur les contributions]",
 'rev-delundel'                => 'afficher/masquer',
 'rev-showdeleted'             => 'afficher',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',

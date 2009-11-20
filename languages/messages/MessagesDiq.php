@@ -749,6 +749,7 @@ Seba pelanê muhimanê newan [[Special:Search|cıgeyrayışê wiki de]] bıcereb
 'rev-deleted-comment'         => '(tefşir esteriyo)',
 'rev-deleted-user'            => '(namey karberi esteriyo)',
 'rev-deleted-event'           => '(fealiyetê cıkewtışi esteriyo)',
+'rev-deleted-user-contribs'   => '[namey karberi ya zi adresa IPy esteriya - vurnayış iştırakan ra nımniyo]',
 'rev-deleted-text-permission' => "Çımraviyarnayışê ena pele '''esteriyo'''.
 Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
 'rev-deleted-text-unhide'     => "Çımraviyarnayışê ena pele '''esteriyo'''.
@@ -773,7 +774,6 @@ Eke şıma serkari u devam bıkeri [$1 no vurnayiş şıma eşkeni bıvini].",
 Îdarekarî eşkeno ena dif bivîne; belki tiya de [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logê wedarnayişî].de detayan esto.",
 'rev-suppressed-diff-view'    => "Yew revizyonê ena diff '''suppress'' biyo. 
 Îdarekarî eşkeno ena dif bivîne; belki tiya de [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logê wedarnayişî] de detayan esto.",
-'rev-deleted-user-contribs'   => '[namey karberi ya zi adresa IPy esteriya - vurnayış iştırakan ra nımniyo]',
 'rev-delundel'                => 'bımocne/bınımne',
 'rev-showdeleted'             => 'bımocne',
 'revisiondelete'              => 'Bıestere/çımraviyarnayışan peyser bia',

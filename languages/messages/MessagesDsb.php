@@ -874,6 +874,7 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-deleted-comment'         => '(Komentar wulašowany)',
 'rev-deleted-user'            => '(Wužywarske mě wulašowane)',
 'rev-deleted-event'           => '(protokolowa akcija wulašowana)',
+'rev-deleted-user-contribs'   => '[wužywarske mě wótpórane abo IP-adresa wótpórana - změna mjez pśinoskami schowana]',
 'rev-deleted-text-permission' => "Toś ta wersija boka jo se '''wulašowała'''. Ewentuelne su drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-deleted-text-unhide'     => "Toś ta wersija boka jo se '''wulašowała'''.
 Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
@@ -897,7 +898,6 @@ Ako administrator móžoš hyšći [$1 se toś ten rozdźěl woglědaś], jolic 
 Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-suppressed-diff-view'    => "Jadna z wersijow toś togo rozdźěla jo se '''pódtłocyła'''.
 Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
-'rev-deleted-user-contribs'   => '[wužywarske mě wótpórane abo IP-adresa wótpórana - změna mjez pśinoskami schowana]',
 'rev-delundel'                => 'pokazaś/schowaś',
 'rev-showdeleted'             => 'pokazaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
