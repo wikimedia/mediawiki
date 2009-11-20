@@ -398,22 +398,21 @@ class MWMemcached
 	 */
 	function get ($key)
 	{
-		$fname = 'memcached::get';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		if ( $this->_debug ) {
 			$this->_debugprint( "get($key)\n" );
 		}
 
 		if (!$this->_active) {
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		$sock = $this->get_sock($key);
 
 		if (!is_resource($sock)) {
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -423,7 +422,7 @@ class MWMemcached
 		if (!$this->_safe_fwrite($sock, $cmd, strlen($cmd)))
 		{
 			$this->_dead_sock($sock);
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -434,7 +433,7 @@ class MWMemcached
 			foreach ($val as $k => $v)
 				$this->_debugprint(sprintf("MemCache: sock %s got %s\n", serialize($sock), $k));
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return @$val[$key];
 	}
 
@@ -621,7 +620,7 @@ class MWMemcached
 	 *
 	 * @access  public
 	 *
-	 * @see     memcahced::memcached
+	 * @see     MWMemcached::__construct
 	 */
 	function set_debug ($dbg)
 	{
@@ -638,7 +637,7 @@ class MWMemcached
 	 *
 	 * @access  public
 	 *
-	 * @see     memcached::memcached()
+	 * @see     MWMemcached::__construct()
 	 */
 	function set_servers ($list)
 	{
@@ -903,12 +902,12 @@ class MWMemcached
 					return false;
 				}
 
-				if ($this->_have_zlib && $flags & memcached::COMPRESSED)
+				if ($this->_have_zlib && $flags & self::COMPRESSED)
 					$ret[$rkey] = gzuncompress($ret[$rkey]);
 
 				$ret[$rkey] = rtrim($ret[$rkey]);
 
-				if ($flags & memcached::SERIALIZED)
+				if ($flags & self::SERIALIZED)
 					$ret[$rkey] = unserialize($ret[$rkey]);
 
 			} else
@@ -949,7 +948,7 @@ class MWMemcached
 		if (!is_scalar($val))
 		{
 			$val = serialize($val);
-			$flags |= memcached::SERIALIZED;
+			$flags |= self::SERIALIZED;
 			if ($this->_debug)
 				$this->_debugprint(sprintf("client: serializing data as it is not scalar\n"));
 		}
@@ -962,13 +961,13 @@ class MWMemcached
 			$c_val = gzcompress($val, 9);
 			$c_len = strlen($c_val);
 
-			if ($c_len < $len*(1 - memcached::COMPRESSION_SAVINGS))
+			if ($c_len < $len*(1 - self::COMPRESSION_SAVINGS))
 			{
 				if ($this->_debug)
 					$this->_debugprint(sprintf("client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len));
 				$val = $c_val;
 				$len = $c_len;
-				$flags |= memcached::COMPRESSED;
+				$flags |= self::COMPRESSED;
 			}
 		}
 		if (!$this->_safe_fwrite($sock, "$cmd $key $flags $exp $len\r\n$val\r\n"))
