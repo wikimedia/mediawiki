@@ -847,6 +847,7 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'rev-deleted-comment'         => '(komentar wotstronjeny)',
 'rev-deleted-user'            => '(wužiwarske mjeno wotstronjene)',
 'rev-deleted-event'           => '(Protokolowa akcija bu wotstronjena)',
+'rev-deleted-user-contribs'   => '[wužiwarske mjeno wotstronjene abo IP-adresa wotstronjena - změna mjez přinoškami schowana]',
 'rev-deleted-text-permission' => "Tuta wersija strony bu '''wušmórnjena'''.
 Hlej podrobnosće w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
 'rev-deleted-text-unhide'     => "Tuta wersija strony bu '''wušmórnjena'''.
@@ -871,7 +872,6 @@ Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli c
 Jako administrator móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
 'rev-suppressed-diff-view'    => "Jedna z wersijiw tutoho rozdźěla je so '''potłóčiła'''.
 Jako administrator móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].",
-'rev-deleted-user-contribs'   => '[wužiwarske mjeno wotstronjene abo IP-adresa wotstronjena - změna mjez přinoškami schowana]',
 'rev-delundel'                => 'pokazać/schować',
 'rev-showdeleted'             => 'pokazać',
 'revisiondelete'              => 'Wersije wušmórnyć/wobnowić',

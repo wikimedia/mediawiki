@@ -291,6 +291,7 @@ Lezenda: '''({{int:cur}})''' = difarenzi cun la versiòn d'adès; '''({{int:last
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|mudèfica|mudèfich}}',
 'recentchanges'                  => 'I ultum cambiamént',
+'recentchanges-legend'           => "Upziòn d'j ultum cambiamént",
 'recentchanges-feed-description' => "Ste canël e' fa avdè i cambiamént piò rezent aj artècul d'sta wiki.",
 'rcnote'                         => "A què sota t'pù truvé {{PLURAL:$1|l'ultum cambiamént|j ultum '''$1''' cambiamént in st'artècul}} int j ultum {{PLURAL:$2|dè|'''$2''' dè}}; agl'infurmaziòn j è agiurnèdi a e' $4 al $5.",
 'rclistfrom'                     => 'Fam avdè i cambiamént növ a cminzipiè da $1',
@@ -386,6 +387,11 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'watchlist'         => "Pàgin ch'a ten d'öcc",
 'mywatchlist'       => "Pàgin ch'a ten d'öcc",
 'watchlistfor'      => "(da '''$1''')",
+'addedwatch'        => "Mett insem a la lèsta d'pàgin sot öcc",
+'addedwatchtext'    => "La pàgina \"[[:\$1]]\" adès l'è int la lèsta dal [[Special:Watchlist|pàgin da tnì d'öcc]]. D'ôra inenz t'pù avdé tòt al mudèfic a sta pàgina e a la pàgina d'cunversaziòn int la [[Special:RecentChanges|lèsta d'j cambiamént rezent]], in '''gros''', acsè j 's'pò guardè mej.
+Se in un sgond temp t'vu cavé la pàgina dala lèsta da tnì d'öcc, s-cjaza un'ètra volta sora e' butòn \"ten d'öcc\".",
+'removedwatch'      => 'Cavé dala lèsta dal pàgin da tnì sot öcc',
+'removedwatchtext'  => 'La pàgina "[[:$1]]" l\'è stëda scanzlèda dala lèsta dal [[Special:Watchlist|pàgin da tnì sot öcc]].',
 'watch'             => "Tèn d'öcc",
 'watchthispage'     => "Ten d'öcc sta pagina",
 'unwatch'           => "T'an stèga piò a t'nì d'öcc",
@@ -414,9 +420,28 @@ Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
 'rollbacklink' => "armèt sta pàgina cun cl'era prèma",
 
 # Protect
-'protectlogpage'            => 'Pruteziòn',
-'protectedarticle'          => '"[[$1]]" l\'è prutèt',
-'modifiedarticleprotection' => 'l\'à cambié e\' livèl d\'pruteziòn par "[[$1]]"',
+'protectlogpage'              => 'Pruteziòn',
+'protectedarticle'            => '"[[$1]]" l\'è prutèt',
+'modifiedarticleprotection'   => 'l\'à cambié e\' livèl d\'pruteziòn par "[[$1]]"',
+'protectcomment'              => 'Mutiv dla pruteziòn:',
+'protectexpiry'               => 'Scadenza:',
+'protect_expiry_invalid'      => "La scadenza la n'è piò bona.",
+'protect_expiry_old'          => "T'cì ariv tèrd! La dèda d'scadenza l'è zà pasëda.",
+'protect-text'                => "Cun ste mudèl u s'pò guardè e u s'pò cambié ê livèl d'pruteziòn dla pàgina '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Oci! Ta n'ê miga i parmess par cambié i livel d'pruteziòn dla pàgina.
+S't'vù vdë in dô ch'j è i parmess, guèrda '''$1''':",
+'protect-cascadeon'           => "Sta pàgina pr'adès l'è bluchëda parchè l'è stra l'{{PLURAL:$1|la pàgina aquè sota, ch'l'à|al pàgin aquè sota, ch'j'à}} la pruteziòn ricursiva. 
+T'pù cambié ê livel d'pruteziòn d'sta pàgina, mo la pruteziòn ricursiva la resta a lè.",
+'protect-default'             => 'Dà ê parmess a tòt j navigadur',
+'protect-fallback'            => 'A què u j vô ê parmess "$1"',
+'protect-level-autoconfirmed' => "Bloca i navigador nov e quij ch'j n' s'è miga registrè",
+'protect-level-sysop'         => 'Sol par j aministradôr',
+'protect-summary-cascade'     => 'ricursiv',
+'protect-expiring'            => 'ê schëd: $1 (UTC)',
+'protect-cascade'             => "Prutezz al pàgin ch'j fa pèrt d'questa (pruteziòn ricursiva)",
+'protect-cantedit'            => "Oci! T'an pù miga cambié i livel d'pruteziòn dla pàgina, parchè t'an ê incora i parmess par cambié la pàgina.",
+'restriction-type'            => 'Parmess:',
+'restriction-level'           => "Livel d'restriziòn:",
 
 # Undelete
 'undeletelink'     => 'Guèrda/Torna indrì',
@@ -424,6 +449,7 @@ Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
 
 # Namespace form on various pages
 'namespace'      => "Spàzi d'é nom:",
+'invert'         => 'Torna indrì cun la seleziòn',
 'blanknamespace' => '(Prèma)',
 
 # Contributions
@@ -471,7 +497,7 @@ Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
 'block-log-flags-nocreate' => "Un' s'pò brisa registrès un'étra volta",
 
 # Move page
-'movepagetext'    => "Cun st'uperaziòn t'pù cambiè e' nom a una pàgina. Tòti al versiòn prezedenti j và drì a la pàgina nova.
+'movepagetext'     => "Cun st'uperaziòn t'pù cambiè e' nom a una pàgina. Tòti al versiòn prezedenti j và drì a la pàgina nova.
 E' nom vec, nec quel, u t' pórta a la pàgina nova.
 E adès, a l' set cus ch't' pù fè? T'pù andé a zarchè i nom vec e meti-j a post tot cun e' nom nov. S't'a n'e' brisa voja, l'è listéss, parò va a cuntrulè prèma s'j è di [[Special:DoubleRedirects|doppii]] ó [[Special:BrokenRedirects|ghènz scuvert]].
 T'ci responsabil d'cuntrulé che tot i ghenz j seja a post.
@@ -482,10 +508,29 @@ Parò, se la pàgina l'è vuta o l'è sol un reindirizament.
 '''STA ATENTI!'''
 Questa l'è un'uperaziòn delichèta. A sit sicur? Mo propri? T'an féga de casèn.
 Un cunsej? Pensa al conseguenzi de tu att prèma d's-cjazè e' butòn.",
-'1movedto2'       => "[[$1]] l'è stê mòs a [[$2]]",
-'1movedto2_redir' => "[[$1]] l'è stè moss in [[$2]] par redireziòn",
-'movelogpage'     => "Regéstar d'j muvimént",
-'revertmove'      => 'Métla cum era prèma',
+'movepagetalktext' => "La pàgina d'cunversaziòn atachèda a st'artècul la sta insèm a l'artècul, '''fòra ch'in 'sti chès''':
+*quènd ch'u s' sposta la pàgina tra spazi d'e' nom difarent;
+*quènd una pàgina d'cunversaziòn la j è za cun e stes nom (e la n'è vuta)
+*e' quadret d'cunferma aquè sota un è piò spuntè.
+
+In tot sti chès, s'et pazienzia, t'pù spustè a man tot quel c'u j è scrètt intla pàgina d'cunversaziòn.",
+'movearticle'      => 'Chèmbia nom a la pàgina:',
+'newtitle'         => 'Titul nóv:',
+'move-watch'       => "Ten sot'öcc sta pàgina",
+'movepagebtn'      => 'Sposta la pàgina',
+'pagemovedsub'     => "T'cì ste brev! T'a j é fata.",
+'movepage-moved'   => "<big>'''\"\$1\" l'à cambié post a \"\$2\"'''</big>",
+'articleexists'    => "La j è za una pàgina ch'la s-cjama acsè. O e nom ch'ta j e dë un va brisa ben.
+Par piaser, daij un ètar nom.",
+'talkexists'       => "'''La pàgina l'è stëda spusteda ben, invezi la pàgina d'cunversaziòn l'è andëda a cuzè cun òna ch'l'à ê stes nom. Csa fasègna?
+Par piasé, met insem al du pàgin te, fasend copia e incola.",
+'movedto'          => 'Spusté vers:',
+'movetalk'         => "Sposta ènca la pàgina d'cunversaziòn",
+'1movedto2'        => "[[$1]] l'è stê mòs a [[$2]]",
+'1movedto2_redir'  => "[[$1]] l'è stè moss in [[$2]] par redireziòn",
+'movelogpage'      => "Regéstar d'j muvimént",
+'movereason'       => 'Rasòn:',
+'revertmove'       => 'Métla cum era prèma',
 
 # Export
 'export' => 'Espórta dal pàgin',

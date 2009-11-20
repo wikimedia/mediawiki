@@ -442,17 +442,17 @@ Coma rason a l'ha butà: ''$2''.",
 'logouttext'                 => "A l'é sortù da 'nt ël sistema.
 A peul tiré anans a dovré {{SITENAME}} coma Utent anonim, ò pura a peul rintré torna ant ël sistema con l'istess stranòm che a dovrava prima, ò con un diferent.",
 'welcomecreation'            => '==Bin ëvnù, $1!==
-Sò cont a l\'è stait creà.
-Che as dësmentia pa ëd cambié ij [[Special:Preferences|{{SITENAME}} "sò gust"]].',
+Sò cont a l\'é stàit creà.
+Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
 'yourname'                   => 'Sò stranòm',
 'yourpassword'               => 'Soa ciav',
 'yourpasswordagain'          => 'Che a bata torna soa ciav',
-'remembermypassword'         => "Vis-te mia ciav për vàire session (për podej felo a fa da manca che un a l'abia ij ''cookies'' abilità).",
+'remembermypassword'         => "Vis-te mia ciav për vàire session (për podèj felo a fa da manca che un a l'abia ij ''cookies'' abilità).",
 'yourdomainname'             => 'Sò domini',
 'externaldberror'            => "Ò che a l'é rivaje n'eror d'autenticassion esterna, ò pura a l'é chiel (chila) che a l'é nen autorisà a agiornesse sò cont estern.",
 'login'                      => 'Rintré ant ël sistema',
 'nav-login-createaccount'    => 'rintré ant ël sistema',
-'loginprompt'                => 'Che a varda mach che a venta avej ij cookies abilità për podej rintré an {{SITENAME}}.',
+'loginprompt'                => 'Che a varda mach che a venta avèj ij cookies abilità për podèj rintré an {{SITENAME}}.',
 'userlogin'                  => 'rintré ant ël sistema',
 'logout'                     => "Seurte da 'nt ël sistema",
 'userlogout'                 => 'seurte dal sistema',
@@ -789,6 +789,7 @@ Che a verìfica con la [[Special:Search|pàgina d'arserca]] se a-i fusso mai dj'
 'rev-deleted-comment'         => '(coment gavà)',
 'rev-deleted-user'            => '(stranòm gavà)',
 'rev-deleted-event'           => '(assion dël registr gavà)',
+'rev-deleted-user-contribs'   => '[nòm utent o adrëssa IP gavà - modìfica stërmà ai contributor]',
 'rev-deleted-text-permission' => "Sta revision-sì dla pàgina a l'é staita '''scanselà''.
 A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-deleted-text-unhide'     => "Sta vërsion-sì dla pàgina a l'é stàita '''scanselà'''.
@@ -812,7 +813,6 @@ Com  aministrador it peule ancò [$1 vëdde sta diferensa-sì] s'it veule.",
 Com aministrator it peule ancó vëdde sta diferensa-sì; a peulo ess-ie dij detaj ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].",
 'rev-suppressed-diff-view'    => "Un-a dle revision ëd costa diferensa-sì a l'é stàita '''eliminà'''.
 Tanme aministrator, a peul ancora s-ciairé costa diferensa; a peulo esse pì 'd detaj ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd j'eliminassion].",
-'rev-deleted-user-contribs'   => '[nòm utent o adrëssa IP gavà - modìfica stërmà ai contributor]',
 'rev-delundel'                => 'mostra/stërma',
 'rev-showdeleted'             => 'Mostra',
 'revisiondelete'              => 'Scancela/disdëscancela revision',

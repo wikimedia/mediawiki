@@ -17,7 +17,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Escribil atihus eschangaus <a href="" class="new">asina</a> (u desta otra horma<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Encahal párrafus',
 'tog-hideminor'               => 'Açonchal eicionis chiqueninas en "úrtimus chambus"',
-'tog-extendwatchlist'         => 'Umental la lista e seguimientu pa muestral tolos chambus apricabris',
+'tog-hidepatrolled'           => 'Açonchal eicionis vegilás en úrtimus chambus',
+'tog-extendwatchlist'         => 'Aumental la lista de seguimientu pa muestral tolos chambus apricabris, nu solu los úrtimus',
 'tog-usenewrc'                => 'Resartal úrtimus chambus (JavaScript)',
 'tog-numberheadings'          => 'Autu-numeral entítulus',
 'tog-showtoolbar'             => "Muestral la barra d'eición (JavaScript)",
@@ -26,7 +27,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Premitil eital secionis pulsandu el botón de la derecha<br /> enus entítulus de secionis (JavaScript)',
 'tog-showtoc'                 => 'Muestral cuairu e continius (pa páhinas con mas de 3 entítulus)',
 'tog-rememberpassword'        => 'Recordal la mi cuenta nesti ordinaol',
-'tog-editwidth'               => "La caha d'eición tiini el anchón máisimu",
+'tog-editwidth'               => "Encajal el cuairu d'eición al anchu la pantalla",
 'tog-watchcreations'          => 'Vehilal las páhinas que yo crei',
 'tog-watchdefault'            => "Vehilal las páhinas qu'eiti",
 'tog-watchmoves'              => 'Vehilal las páhinas que rellami',
@@ -40,7 +41,8 @@ $messages = array(
 'tog-enotifminoredits'        => 'Envialmi un correu cuandu se haga una eición chiquenina duna páhina',
 'tog-enotifrevealaddr'        => "Muestral la mi direción d'email enus correus",
 'tog-shownumberswatching'     => "Muestral el númeru d'usuárius que la vehilan",
-'tog-fancysig'                => 'Firma sin atihu autumáticu',
+'tog-oldsig'                  => 'Firma dessistenti:',
+'tog-fancysig'                => 'Tratal la firma cumu testu wiki (sin atiju automáticu)',
 'tog-externaleditor'          => 'Gastal eitol esternu pol defeutu (solu pa sabihondus, es mestel una configuración especial nel ordinaol)',
 'tog-externaldiff'            => 'Gastal def esternu pol defeutu (solu pa sabihondus, es mestel una configuración especial nel ordinaol)',
 'tog-showjumplinks'           => 'Premitil los atihus d\'acesibiliá "sartal a"',
@@ -49,6 +51,9 @@ $messages = array(
 'tog-watchlisthideown'        => 'Açonchal las mis eicionis ena lista e seguimientu',
 'tog-watchlisthidebots'       => 'Açonchal las eicionis de bots ena lista e seguimientu',
 'tog-watchlisthideminor'      => 'Açonchal las eicionis chiqueninas ena lista e seguimientu',
+'tog-watchlisthideliu'        => "Açonchal eicionis d'usuárius rustrius ena lista de seguimientu",
+'tog-watchlisthideanons'      => "Açonchal eicionis d'usuárius anónimus ena lista de seguimientu",
+'tog-watchlisthidepatrolled'  => 'Açonchal eicionis vegilás ena lista de seguimientu',
 'tog-nolangconversion'        => 'Desatival conversionis de luenguahis',
 'tog-ccmeonemails'            => 'Envialmi copias de los emails que enviu a otrus usuárius',
 'tog-diffonly'                => 'Nu muestral el continiu la páhina embahu las defs',
@@ -154,7 +159,29 @@ $messages = array(
 'qbpageinfo'     => 'Contestu',
 'qbmyoptions'    => 'Las mis páhinas',
 'qbspecialpages' => 'Páhinas especialis',
+'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
+
+# Vector skin
+'vector-action-addsection'  => 'Añiil tema',
+'vector-action-delete'      => 'Esborral',
+'vector-action-move'        => 'Mual',
+'vector-action-protect'     => 'Protegel',
+'vector-action-undelete'    => 'Esborral',
+'vector-action-unprotect'   => 'Esprotegel',
+'vector-namespace-category' => 'Categoria',
+'vector-namespace-help'     => "Página d'ayua",
+'vector-namespace-project'  => 'Protegel página',
+'vector-namespace-special'  => 'Página especial',
+'vector-namespace-talk'     => 'Caraba',
+'vector-namespace-template' => 'Cuairu',
+'vector-namespace-user'     => "Página d'usuáriu",
+'vector-view-create'        => 'Crial',
+'vector-view-edit'          => 'Eital',
+'vector-view-history'       => 'Guipal estorial',
+'vector-view-view'          => 'Leyel',
+'vector-view-viewsource'    => 'Guipal cóigu',
+'actions'                   => 'Acionis',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatus:',
@@ -261,7 +288,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|una eición esborrá|$1 eicionis esborrás}}',
 'feedlinks'               => 'Sindicación:',
 'feed-invalid'            => 'Suscrición nu vália.',
-'feed-unavailable'        => 'Los canalis de sindicación nu están disponibris en {{SITENAME}}',
+'feed-unavailable'        => 'Los canalis de sindicación nu están disponibris',
 'site-rss-feed'           => 'Canal RSS $1',
 'site-atom-feed'          => 'Canal Atom $1',
 'page-rss-feed'           => 'Canal RSS "$1"',
@@ -282,8 +309,10 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Nu desisti tal ación',
-'nosuchactiontext'  => "Nu se puei realizal l'ación
-especificá ena URL",
+'nosuchactiontext'  => 'La URL nu es vália.
+Es possibri que aigas marrau escribiendu la direción, u aigas siguiu un atiju encorretu.
+Tamién es possibri que se trati dun marru entelnu de {{SITENAME}}.
+especificá ena URL',
 'nosuchspecialpage' => 'Nu desisti tal páhina especial',
 'nospecialpagetext' => '<strong>Nu desisti esa páhina especial.</strong>
 
@@ -292,17 +321,17 @@ Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:Sp
 # General errors
 'error'                => 'Marru',
 'databaseerror'        => 'Marru ena basi e datus',
-'dberrortext'          => 'Marru e sintasis nuna consurta a la basi e datus:
-estu puei sel ebiu a un marru nel software.
-La úrtima consurta que s\'ententó hue:
+'dberrortext'          => 'Marru sintáticu ena consurta a la bassi de datus:
+Estu puei sel ebiu a un marru nel software.
+La úrtima consurta jue:
 <blockquote><tt>$1</tt></blockquote>
-endrentu la hunción "<tt>$2</tt>".
-MySQL degorvió el marru "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Marru e sintasis nuna consurta a la basi e datus.
-La úrtima consurta que s\'ententó hue:
+endrentu la junción "<tt>$2</tt>".
+La bassi de datus degorvió el marru "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Marru sintáticu ena consurta a la bassi de datus.
+La úrtima consurta jue:
 "$1"
-endrentu la hunción "$2".
-MySQL degorvió el marru "$3: $4"',
+endrentu la junción "$2".
+La bassi de datus degorvió el marru "$3: $4"',
 'laggedslavemode'      => 'Avisu: Es posibri que la páhina nu esté atualizá.',
 'readonly'             => 'Basi e datus atarugá',
 'enterlockreason'      => 'Escrebi una razón pal tarugu, i cuandu esti

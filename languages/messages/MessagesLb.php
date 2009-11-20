@@ -883,6 +883,7 @@ Vläicht gouf se geläscht oder geréckelt.
 'rev-deleted-comment'         => '(Bemierkung geläscht)',
 'rev-deleted-user'            => '(Benotzernumm ewechgeholl)',
 'rev-deleted-event'           => '(Aktioun aus dem Logbuch erausgeholl)',
+'rev-deleted-user-contribs'   => '[Benotzernumm oder IP-Adress ewechgeholl - Ännerung an der Lescht vun de Kontributioune verstoppt]',
 'rev-deleted-text-permission' => "Dës Versioun vun der Säit gouf '''geläscht'''.
 Dir fannt eventuell méi Informatiounen an der [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-text-unhide'     => "Dës Versioun vun der Säit gouf '''geläscht'''.
@@ -907,7 +908,6 @@ Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerscheed kucke
 Als Administrateur kënnt Dir dësen Ënnerscheed gesinn; et ka sinn datt Dir méi Detailer am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läsche] fannt.",
 'rev-suppressed-diff-view'    => "Eng vun de Versioune vun dësem Ënnerscheeed gouf '''ënnerdréckt'''.
 Als Administrateur kënnt Dir dësen Ënnerscheed gesinn; et ka sinn datt Dir Detailer am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuch vun den Ënnerdréckunge] fannt.",
-'rev-deleted-user-contribs'   => '[Benotzernumm oder IP-Adress ewechgeholl - Ännerung an der Lescht vun de Kontributioune verstoppt]',
 'rev-delundel'                => 'weisen/verstoppen',
 'rev-showdeleted'             => 'Weisen',
 'revisiondelete'              => 'Versioune läschen/restauréieren',

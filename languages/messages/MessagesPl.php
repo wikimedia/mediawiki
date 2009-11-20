@@ -991,6 +991,7 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 'rev-deleted-comment'         => '(komentarz usunięty)',
 'rev-deleted-user'            => '(nazwa użytkownika usunięta)',
 'rev-deleted-event'           => '(wpis usunięty)',
+'rev-deleted-user-contribs'   => '[nazwa użytkownika lub adres IP usunięty – edycja ukryta we wkładzie]',
 'rev-deleted-text-permission' => "Ta wersja strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-deleted-text-unhide'     => "Ta wersja strony została '''usunięta'''.

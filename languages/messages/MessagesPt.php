@@ -1056,6 +1056,7 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'         => '(comentário removido)',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
+'rev-deleted-user-contribs'   => '[nome de utilizador ou IP removido - edição ocultada das contribuições]',
 'rev-deleted-text-permission' => "Esta revisão de página foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-deleted-text-unhide'     => "Esta revisão de página foi '''eliminada'''.
@@ -1080,7 +1081,6 @@ Como administrador, pode mesmo assim [$1 ver estas diferenças] se deseja prosse
 Como administrador, pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-suppressed-diff-view'    => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
 Como administrador, pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
-'rev-deleted-user-contribs'   => '[nome de utilizador ou IP removido - edição ocultada das contribuições]',
 'rev-delundel'                => 'mostrar/esconder',
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Eliminar/restaurar edições',

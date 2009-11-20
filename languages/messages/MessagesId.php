@@ -1015,6 +1015,7 @@ Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang releva
 'rev-deleted-comment'         => '(komentar dihapus)',
 'rev-deleted-user'            => '(nama pengguna dihapus)',
 'rev-deleted-event'           => '(isi dihapus)',
+'rev-deleted-user-contribs'   => '[nama pengguna atau alamat IP dihapus - suntingan disembunyikan pada daftar kontribusi]',
 'rev-deleted-text-permission' => "Revisi halaman ini telah '''dihapus'''.
 Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan]",
 'rev-deleted-text-unhide'     => "Revisi ini telah '''dihapus'''.
@@ -1039,7 +1040,6 @@ Sebagai pengurus anda masih dapat [$1 melihat perbedaan ini] jika anda ingin mel
 Sebagai seorang pengurus, Anda dapat melihat perbedaan ini; detail mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-suppressed-diff-view'    => "Salah satu revisi perbedaan ini telah '''disembunyikan'''.
 Sebagai seorang pengurus, Anda dapat melihat perbedaan ini; detail mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penyembunyian].",
-'rev-deleted-user-contribs'   => '[nama pengguna atau alamat IP dihapus - suntingan disembunyikan pada daftar kontribusi]',
 'rev-delundel'                => 'tampilkan/sembunyikan',
 'rev-showdeleted'             => 'tampilkan',
 'revisiondelete'              => 'Hapus/batal hapus revisi',

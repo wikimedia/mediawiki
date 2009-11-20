@@ -855,6 +855,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-comment'         => '(Bearbeitigskommentar uusegnuh)',
 'rev-deleted-user'            => '(Benutzername uusegnuh)',
 'rev-deleted-event'           => '(Logbuechaktion uusegnuh)',
+'rev-deleted-user-contribs'   => '[Benutzername oder IP-Adräss uusegnuu - Bearbeitig in dr Byytragslischt versteckt]',
 'rev-deleted-text-permission' => "Die Version isch '''glescht''' wore.
 Information zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
 'rev-deleted-text-unhide'     => "Die Version isch '''glescht''' wore.

@@ -1092,6 +1092,7 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-comment'         => '(opmerking verwijderd)',
 'rev-deleted-user'            => '(gebruiker verwijderd)',
 'rev-deleted-event'           => '(logboekregel verwijderd)',
+'rev-deleted-user-contribs'   => '[gebruikersnaam of IP-adres verwijderd - bewerking verborgen in bijdragen]',
 'rev-deleted-text-permission' => "Deze bewerking is '''verwijderd'''.
 Er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 'rev-deleted-text-unhide'     => "Deze versie van de pagina is '''verwijderd'''.
@@ -1118,7 +1119,6 @@ Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
 Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
 'rev-suppressed-diff-view'    => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''onderdrukt'''.
 Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].",
-'rev-deleted-user-contribs'   => '[gebruikersnaam of IP-adres verwijderd - bewerking verborgen in bijdragen]',
 'rev-delundel'                => 'weergeven/verbergen',
 'rev-showdeleted'             => 'weergeven',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',

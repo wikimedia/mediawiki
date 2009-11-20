@@ -163,6 +163,7 @@ $messages = array(
 'category-empty'                 => "''ܗܢܐ ܣܕܪܐ ܗܫܐ ܠܝܬ ܒܗ ܦܐܬܬ̈ܐ ܐܘ ܡܝܕܝܐ.''",
 'hidden-categories'              => '{{PLURAL:$1|ܣܕܪܐ ܛܘܫܝܐ|ܣܕܪ̈ܐ ܛܘܫܝܐ}}',
 'hidden-category-category'       => 'ܣܕܪ̈ܐ ܛܘܫܝ̈ܐ',
+'category-subcat-count-limited'  => 'ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ {{PLURAL:$1|ܣܕܪܐ ܦܪܥܝܐ ܗܢܐ|$1 ܣܕܪ̈ܐ ܦܪ̈ܥܝܐ ܗܠܝܢ}}.',
 'category-article-count'         => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܦܐܬܐ ܗܕܐ ܒܠܚܘܕ.|ܐܝܬ {{PLURAL:$1|ܦܐܬܐ|$1 ܦܐܬܬ̈ܐ}} ܒܣܕܪܐ ܗܢܐ، ܡܢ $2 ܟܠܢܐܝܬ.}}',
 'category-article-count-limited' => '{{PLURAL:$1|ܦܐܬܐ ܗܕܐ|$1 ܦܐܬܬ̈ܐ ܗܠܝܢ}} ܒܣܕܪܐ ܗܢܐ.',
 'listingcontinuesabbrev'         => '(ܫܘܠܡܐ)',

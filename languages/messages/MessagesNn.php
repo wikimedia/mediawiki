@@ -975,6 +975,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'rev-deleted-comment'         => '(samandraget er fjerna)',
 'rev-deleted-user'            => '(brukarnamnet er fjerna)',
 'rev-deleted-event'           => '(fjerna loggoppføring)',
+'rev-deleted-user-contribs'   => 'brukarnamn eller IP-adresse er fjerna - endringa er skjult i bidraga',
 'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''.  
 Det kan vere detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er vorten '''sletta'''.

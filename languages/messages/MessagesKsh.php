@@ -1062,6 +1062,7 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 'rev-deleted-comment'         => '(„Koot Zosammejefass, Quell“ usjeblendt)',
 'rev-deleted-user'            => '(Metmaacher Name usjeblendt)',
 'rev-deleted-event'           => '(Logboch-Enndraach fottjenomme)',
+'rev-deleted-user-contribs'   => '[Däm Metmaacher singe Name udder sing <i lang="en">IP</i>-Addräß wood veschtoche, un heh di Änderung douch nit mieh en de Leß met de Beidrääsch op]',
 'rev-deleted-text-permission' => "Die Version fun dä Sigg es '''fottjeschmeße'''. 
 Wann Ehr en [{{FULLURL:{{#spezial:Log}}/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.",
 'rev-deleted-text-unhide'     => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De [$1 se ävver doch bekike], wann De wells.',
@@ -1086,7 +1087,6 @@ Als ene Wiki_Köbes kanns De de Ungerscheide ävver aankike wann De wells.",
 'rev-suppressed-diff-view'    => "Ein vun de Versione heh es '''verschtoche'''.
 Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:suppressionlog}}}}].
 Als ene Wiki_Köbes kanns De de Ungerscheide ävver aankike wann De wells.",
-'rev-deleted-user-contribs'   => '[Däm Metmaacher singe Name udder sing <i lang="en">IP</i>-Addräß wood veschtoche, un heh di Änderung douch nit mieh en de Leß met de Beidrääsch op]',
 'rev-delundel'                => 'zeije/usblende',
 'rev-showdeleted'             => 'zeije',
 'revisiondelete'              => 'Versione fottschmieße un widder zeröck holle',

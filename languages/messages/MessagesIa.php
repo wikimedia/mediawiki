@@ -911,6 +911,7 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-comment'         => '(commento eliminate)',
 'rev-deleted-user'            => '(nomine de usator eliminate)',
 'rev-deleted-event'           => '(entrata eliminate)',
+'rev-deleted-user-contribs'   => '[nomine de usator o adresse IP removite - modification celate ab contributiones]',
 'rev-deleted-text-permission' => "Iste version del pagina ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-deleted-text-unhide'     => "Iste version del pagina ha essite '''delite'''.
@@ -936,7 +937,6 @@ Tu, qua administrator, pote totevia [$1 vider iste diff] si tu vole proceder.",
 Como administrator tu pote vider iste diff; il pote haber detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-suppressed-diff-view'    => "Un del versiones de iste diff ha essite '''supprimite'''.
 Como administrator tu pote vider iste diff; il pote haber detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
-'rev-deleted-user-contribs'   => '[nomine de usator o adresse IP removite - modification celate ab contributiones]',
 'rev-delundel'                => 'revelar/celar',
 'rev-showdeleted'             => 'monstrar',
 'revisiondelete'              => 'Deler/restaurar versiones',
