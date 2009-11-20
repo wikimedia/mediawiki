@@ -231,7 +231,7 @@ class ApiUpload extends ApiBase {
 								'allowed' => $wgFileExtensions
 							) );
 					break;
-				case UploadBase::MIN_LENGHT_PARTNAME:
+				case UploadBase::MIN_LENGTH_PARTNAME:
 					$this->dieUsage( 'The filename is too short', 'filename-tooshort' );
 					break;
 				case UploadBase::ILLEGAL_FILENAME:

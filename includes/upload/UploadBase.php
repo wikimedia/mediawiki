@@ -31,7 +31,6 @@ abstract class UploadBase {
 	const VERIFICATION_ERROR = 10;
 	const UPLOAD_VERIFICATION_ERROR = 11;
 	const HOOK_ABORTED = 11;
-	const MIN_LENGHT_PARTNAME = 14;
 
 	const SESSION_VERSION = 2;
 
