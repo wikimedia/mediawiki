@@ -713,6 +713,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'lineno'                  => '$1. rindiņa:',
 'compareselectedversions' => 'Salīdzināt izvēlētās versijas',
 'editundo'                => 'atcelt',
+'diff-multi'              => '({{PLURAL:$1|Viena starpversija nav parādīta|$1 starpversijas nav parādītas}}.)',
 
 # Search results
 'searchresults'                    => 'Meklēšanas rezultāti',

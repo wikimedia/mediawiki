@@ -583,6 +583,7 @@ Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfri
 'createaccount-text'         => 'Creodd rhywun gyfrif o\'r enw $2 ar {{SITENAME}} ($4) ar gyfer y cyfeiriad e-bost hwn. "$3" yw\'r cyfrinair ar gyfer "$2". Dylech fewngofnodi a newid eich cyfrinair yn syth.
 
 Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
+'usernamehasherror'          => 'Ni all enw defnyddiwr gynnwys symbolau stwnsh',
 'login-throttled'            => 'Rydych wedi ceisio mewngofnodi gormod o weithiau ar unwaith.
 Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
@@ -860,6 +861,7 @@ Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#
 'revdelete-nologid-title'     => 'Cofnod lòg annilys',
 'revdelete-nologid-text'      => "Ni enwyd y lòg yr ydych am weithio arno ynteu nid yw'r lòg a enwyd yn bod.",
 'revdelete-no-file'           => "Nid yw'r ffeil a nodwyd yn bod.",
+'revdelete-show-file-confirm' => 'Ydych chi\'n sicr eich bod am weld y diwygiad dilëedig o\'r ffeil "<nowiki>$1</nowiki>" a roddwyd ar gadw am $3 ar $2?',
 'revdelete-show-file-submit'  => 'Ydw',
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:'''",
@@ -1736,7 +1738,7 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Rhestr defnyddwyr gweithgar',
-'activeusers-intro'    => 'Dyma restr y defnyddwyr a fuont yn weithgar o fewn y {{PLURAL:$1|diwrnod|diwrnod|deuddydd|tridiau|$1 niwrnod|$1 diwrnod}} diwethaf.',
+'activeusers-intro'    => 'Dyma restr y defnyddwyr a fuont yn weithgar o fewn y {{PLURAL:$1|diwrnod|diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}} diwethaf.',
 'activeusers-count'    => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}} yn ystod y {{PLURAL:$3|diwrnod|diwrnod|deuddydd|tridiau|$3 diwrnod|$3 diwrnod}} diwethaf',
 'activeusers-from'     => "Rhestru'r defnyddwyr gan ddechrau gyda:",
 'activeusers-noresult' => "Dim defnyddwyr i'w cael.",

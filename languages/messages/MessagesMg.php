@@ -803,7 +803,12 @@ Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'log-fulllog'                      => "Hijery ny tantaran'asa (log)",
 'edit-hook-aborted'                => 'Tsy nety ny fanovàna
 Tsy nanome antony',
+'edit-gone-missing'                => 'Tsy afaka natao update ilay pejy.
+Mety voafafa angamba izy.',
 'edit-conflict'                    => 'Adi-panovàna.',
+'edit-no-change'                   => "Tsy norarahian'ny rindrankajy ny fanovanao satria tsy nanova ny lahatsoratra ianao.",
+'edit-already-exists'              => 'Tsy afaka amboarina ilay pejy vaovao.
+Efa misy izy.',
 
 # Parser/template warnings
 'post-expand-template-inclusion-category' => 'Pejy be be endrika',

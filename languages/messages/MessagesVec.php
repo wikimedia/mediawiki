@@ -877,6 +877,7 @@ Legenda: '''({{int:cur}})''' = difarense con la versión corente,
 'rev-deleted-comment'         => '(comento cavà)',
 'rev-deleted-user'            => '(nome utente cavà)',
 'rev-deleted-event'           => '(elemento cavà)',
+'rev-deleted-user-contribs'   => '[nome utente o indirisso IP cavà - modifica sconta dai contributi]',
 'rev-deleted-text-permission' => "Sta version de la pagina la xe stà '''scancelà'''.
 Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
 'rev-deleted-text-unhide'     => "Sta version de la pàxena la xe sta '''scancelà'''.

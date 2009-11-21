@@ -625,6 +625,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'lineno'                  => 'Linia $1:',
 'compareselectedversions' => 'Paggidiaten dagiti pinili a version',
 'editundo'                => 'ibabawi',
+'diff-multi'              => '({{PLURAL:$1|Maysa nga intermediate a panangbalbaliw|$1 intermediate a panangbalbaliw}} ti saan a naipakita.)',
 
 # Search results
 'searchresults'             => 'Dagiti resulta ti panagbirok',

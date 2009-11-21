@@ -638,7 +638,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 21455) Fixed "Watch this page" checkbox appearing on some special pages
   even to non-logged in users
 * (bug 21551) Make Squid reponse limit configurable
-* Fixed corruption of long UDP debug log messages by using socket_sendto() 
+* Fixed corruption of long UDP debug log messages by using socket_sendto()
   instead of fsockopen() with fwrite().
 * (bug 16884) Fixed feed links in sidebar not complying with URL parameters
   of the displayed page
@@ -720,10 +720,13 @@ changes to languages because of MediaZilla reports.
 * North Frisian (frr) (new)
 * Kirmanjki (kiu) (new)
 * Karachay-Balkar (krc) (new)
+* Hill Mari (mrj) (new)
+* Prussian (prg) (new)
 * Romagnol (rgn) (new)
 * Lower Silesian (sli) (new)
 * Picard (pcd) (new)
 * Uyghur (Arabic script) (ug-arab) (new)
+* Votic (vot) (new)
 * Eastern Yiddish (ydd) (removed)
 * Iriga Bicolano (bto) (removed)
 * Ladin (lld) (removed)

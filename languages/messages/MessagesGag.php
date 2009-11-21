@@ -477,6 +477,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'lineno'                  => '$1. liniya:',
 'compareselectedversions' => 'Karşılaştır versiyaları ani seçildi',
 'editundo'                => 'geeri al',
+'diff-multi'              => '({{PLURAL:$1|Ara versiya|$1 ara versiyalar}} gösterilmedi.)',
 
 # Search results
 'prevn'          => 'ilerki {{PLURAL:$1|$1}}',

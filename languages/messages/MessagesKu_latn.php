@@ -640,6 +640,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'lineno'                  => 'Dêrra $1:',
 'compareselectedversions' => 'Guhartoyan bide ber hev',
 'editundo'                => 'Betalbike',
+'diff-multi'              => '({{PLURAL:$1|Verzyonekî navberê netê|$1 verzyonên navberê netên}} dîtin.)',
 
 # Search results
 'searchresults'                  => 'Encamên lêgerînê',

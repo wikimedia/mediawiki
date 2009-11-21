@@ -1034,6 +1034,7 @@ De deur $3 op-egeven reden is ''$2''",
 'rev-deleted-comment'         => '(opmarking vort-edaon)',
 'rev-deleted-user'            => '(gebrukersnaam vort-edaon)',
 'rev-deleted-event'           => '(antekening vort-edaon)',
+'rev-deleted-user-contribs'   => '[gebrukersnaam of IP-adres vort-edaon - bewarking verbörgen in biedragen]',
 'rev-deleted-text-permission' => "Disse bewarking is '''vort-edaon'''.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
 'rev-deleted-text-unhide'     => "Disse bewarking is '''vort-edaon'''.

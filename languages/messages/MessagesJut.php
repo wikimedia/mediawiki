@@ -450,6 +450,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'lineno'                  => 'Lenje $1:',
 'compareselectedversions' => 'Sammenlign valgte hersenenger',
 'editundo'                => 'baĝgøt',
+'diff-multi'              => '(Æ hersenengssammenlegnenge vetåger {{PLURAL:$1|en mellemleggende hersenenge|$1 mellemleggende hersenenger}}.)',
 
 # Search results
 'prevn'          => 'førge {{PLURAL:$1|$1}}',

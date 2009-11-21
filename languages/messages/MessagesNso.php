@@ -494,6 +494,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'lineno'                  => 'Mothalo $1:',
 'compareselectedversions' => 'Bapetša diphapang tšeo di kgethilwego',
 'editundo'                => 'dirolla',
+'diff-multi'              => '({{PLURAL:$1|Phetogo ye kgolo|Diphetogo tše $1 tše kgolo}} gadi laetšwe.)',
 
 # Search results
 'searchresults'         => 'Sephetho sa go fetleka',

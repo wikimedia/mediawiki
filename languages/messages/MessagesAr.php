@@ -2472,7 +2472,7 @@ $1',
 'sp-contributions-logs'           => 'سجلات',
 'sp-contributions-talk'           => 'نقاش',
 'sp-contributions-userrights'     => 'إدارة صلاحيات المستخدم',
-'sp-contributions-blocked-notice' => 'هذا المستخدم ممنوع حاليًا.
+'sp-contributions-blocked-notice' => '{{GENDER:$1|هذا المستخدم ممنوع|هذه المستخدمة ممنوعة}} حاليًا.
 إن آخر مدخلة في سجل المنع موجودة أدناه كمرجع:',
 'sp-contributions-search'         => 'بحث عن مساهمات',
 'sp-contributions-username'       => 'عنوان أيبي أو اسم مستخدم:',
@@ -2571,7 +2571,7 @@ $1',
 'autoblocker'                     => 'تم منعك تلقائيا لأن الأيبي الخاص بك تم استخدامه مؤخرا بواسطة "[[User:$1|$1]]". 
 السبب المعطى لمنع $1 هو: "$2"',
 'blocklogpage'                    => 'سجل المنع',
-'blocklog-showlog'                => 'سبق منع المستخدم.
+'blocklog-showlog'                => 'سبق منع {{GENDER:$1|هذا المستخدم|هذه المستخدمة}}.
 سجل المنع معروض بالأسفل كمرجع:',
 'blocklog-showsuppresslog'        => 'سبق منع وإخفاء {{GENDER:$1|هذا المستخدم|هذه المستخدمة}}.
 سجل الإخفاء معروض بالأسفل كمرجع:',
@@ -2912,7 +2912,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'anonymous'        => '{{PLURAL:$1|مستخدم مجهول|مستخدمون مجهولون}} ل{{SITENAME}}',
 'siteuser'         => 'مستخدم {{SITENAME}} $1',
 'anonuser'         => 'مستخدم {{SITENAME}}  المجهول $1',
-'lastmodifiedatby' => 'أجرى آخر تعديل لهذه الصفحة $3 في $2، $1.',
+'lastmodifiedatby' => '{{GENDER:$4|أجرى|أجرت}} آخر تعديل لهذه الصفحة $3 في $2، $1.',
 'othercontribs'    => 'بناء على عمل $1.',
 'others'           => 'أخرون',
 'siteusers'        => '{{PLURAL:$2||مستخدم|مستخدمي}} {{SITENAME}} $1',

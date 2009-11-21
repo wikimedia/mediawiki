@@ -670,6 +670,9 @@ Is féidir leat dul ar ais chun leathanach láithreach a athrú, nó [[Special:U
 An bhfuil tú cinnte go bhfuil sé oiriúnach an leathanach seo a cur in eagar?
 Cuirtear an loga scriosta ar fáil anseo mar áis:",
 
+# "Undo" feature
+'undo-summary' => 'Cealaíodh athrú $1 le [[Special:Contributions/$2|$2]] ([[User talk:$2|plé]])',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Ní féidir cuntas a chruthú',
 
