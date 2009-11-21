@@ -805,6 +805,7 @@ Pruève a [[Special:Search|cercò sus a Uicchi]] 'mbrà le vosce cchiù rilevand
 'rev-deleted-comment'         => '(commende scangillete)',
 'rev-deleted-user'            => '(nome utende scangillete)',
 'rev-deleted-event'           => "(azione de l'archivie scangillete)",
+'rev-deleted-user-contribs'   => '[nome utende o indirizze IP luate - cangiamende scunnute da le condrebbute]',
 'rev-deleted-text-permission' => "Sta revisione d'a pàgene ha state '''scangellate'''.
 Puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} l'archivije de le scangellaminde].",
 'rev-deleted-text-unhide'     => "Sta revisione d'a pàgene ha state '''scangellate'''.
@@ -862,8 +863,8 @@ Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute s
 'revdelete-submit'            => "Applichesce a {{PLURAL:$1|'a revisione|le revisiune}} selezionate",
 'revdelete-logentry'          => "ha state cangete 'a visibbilità d'a revisione de [[$1]]",
 'logdelete-logentry'          => "ha state cangete 'a visibbilità de l'evende de [[$1]]",
-'revdelete-success'           => "'''Visibbilità de le revisiune 'mbostate correttamende.'''",
-'revdelete-failure'           => "''' 'A visibbilità de le revisiune pò essere ca non g'è 'mbostate:'''
+'revdelete-success'           => "'''Visibbilità de le revisiune aggiornate correttamende.'''",
+'revdelete-failure'           => "''' 'A visibbilità de le revisiune non ge pò essere aggiornate:'''
 $1",
 'logdelete-success'           => "'''Log visibility successfully set.'''
 '''Visibbilità de l'archivije 'mbostate correttamende.'''",

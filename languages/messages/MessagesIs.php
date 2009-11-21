@@ -949,6 +949,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'lineno'                  => 'Lína $1:',
 'compareselectedversions' => 'Bera saman valdar útgáfur',
 'editundo'                => 'Taka aftur þessa breytingu',
+'diff-multi'              => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}}.)',
 
 # Search results
 'searchresults'                    => 'Leitarniðurstöður',

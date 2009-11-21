@@ -973,6 +973,7 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-comment'         => '(comentario eliminado)',
 'rev-deleted-user'            => '(nombre de usuario eliminado)',
 'rev-deleted-event'           => '(entrada borrada)',
+'rev-deleted-user-contribs'   => '[nombre de usuario o dirección IP eliminada - edición ocultada de las contribuciones]',
 'rev-deleted-text-permission' => "Esta revisión de la página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-deleted-text-unhide'     => "Esta revisión de página ha sido '''borrada'''.
@@ -1031,8 +1032,8 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la revisión seleccionada|las revisiones seleccionadas}}',
 'revdelete-logentry'          => 'cambió la visibilidad de revisiones de [[$1]]',
 'logdelete-logentry'          => 'cambió la visibilidad de eventos de [[$1]]',
-'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
-'revdelete-failure'           => "'''La visibilidad de la revisión no se ha podido establecer:'''
+'revdelete-success'           => "'''La visibilidad de revisiones ha sido cambiada correctamente.'''",
+'revdelete-failure'           => "'''La visibilidad de la revisión no pudo ser establecida:'''
 $1",
 'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
 'logdelete-failure'           => "'''La visibilidad del registro no pudo ser ajustada:'''

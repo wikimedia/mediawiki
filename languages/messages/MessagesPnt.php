@@ -582,6 +582,7 @@ $messages = array(
 'lineno'                  => 'Γραμμή $1:',
 'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo'                => 'αναίρεση',
+'diff-multi'              => "({{PLURAL:$1|Μίαν αλλαγήν|$1 αλλαγάς}} 'κ δεκνίζκουνταν.)",
 
 # Search results
 'searchresults'             => 'Εύρον αποτελέσματα',

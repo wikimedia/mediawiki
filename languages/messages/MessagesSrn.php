@@ -654,6 +654,7 @@ A kan ben trowe efu dribi.
 'lineno'                  => 'Lini $1:',
 'compareselectedversions' => 'Luku den difrenti fu den versi di teki',
 'editundo'                => "drai pot' baka",
+'diff-multi'              => '(No e sori {{PLURAL:$1|wan versi|$1 versi}} na mindrisey.)',
 
 # Search results
 'searchresults'         => 'Sukuleysi',

@@ -458,6 +458,7 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'lineno'                  => 'Gurgadas $1:',
 'compareselectedversions' => 'Veardde válljejuvvon veršuvnnaid',
 'editundo'                => 'šluhtte',
+'diff-multi'              => '(Veršuvnnaid gaskas {{PLURAL:$1|okta rievdadus|$1 eará rievdadusa}}.)',
 
 # Search results
 'searchresults'         => 'Ohcama bohtosat',

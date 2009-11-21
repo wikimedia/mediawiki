@@ -10,7 +10,6 @@
  * @author Kaszeba
  * @author Leinad
  * @author MinuteElectron
- * @author RobertL
  * @author Warszk
  * @author לערי ריינהארט
  */

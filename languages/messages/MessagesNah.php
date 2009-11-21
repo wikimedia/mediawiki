@@ -563,6 +563,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'difference'    => '(Ahneneuhquiliztli tlapatlaliznepantlah)',
 'lineno'        => 'Pāntli $1:',
 'editundo'      => 'ahticchīhuāz',
+'diff-multi'    => '({{PLURAL:$1|Cē tlapatlaliztli nepantlah ahmo motta|$1 tlapatlaliztli nepantlah ahmo mottah}}.)',
 
 # Search results
 'searchresults'                    => 'Tlatēmoliztli',

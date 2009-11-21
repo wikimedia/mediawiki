@@ -529,6 +529,7 @@ Legenda: (atu) = defrénças de la berson atual,
 'lineno'                  => 'Lhinha $1:',
 'compareselectedversions' => 'Cumparar las bersones marcadas',
 'editundo'                => 'çfazer',
+'diff-multi'              => '({{PLURAL:$1|ua eidiçon antermédia nun stá a ser amostrada|$1 eidiçones antermédias nun stan a ser amostradas}}.)',
 
 # Search results
 'searchresults'             => 'Resultados de la percura',

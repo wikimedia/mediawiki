@@ -207,6 +207,7 @@
 	'mn' => 'Монгол',	# Halh Mongolian (Cyrillic) (ISO 639-3: khk)
 	'mo' => 'Молдовеняскэ',	# Moldovan
 	'mr' => 'मराठी',	# Marathi
+	'mrj' => 'Кырык мары',	# Hill Mari
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'Malti',	# Maltese
 	'mus' => 'Mvskoke',	# Muskogee/Creek
@@ -251,6 +252,7 @@
 	'pms' => 'Piemontèis',	# Piedmontese
 	'pnb' => 'پنجابی',	# Western Punjabi
 	'pnt' => 'Ποντιακά',	# Pontic/Pontic Greek
+	'prg' => 'Prūsiskan',	# Prussian
 	'ps' => 'پښتو',	# Pashto, Northern/Paktu/Pakhtu/Pakhtoo/Afghan/Pakhto/Pashtu/Pushto/Yusufzai Pashto
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
@@ -340,6 +342,7 @@
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vls' => 'West-Vlams', # West Flemish
 	'vo' => 'Volapük',	# Volapük
+	'vot' => 'Vaďďa',	# Vod/Votian
 	'vro' => 'Võro',    # Võro
 	'wa' => 'Walon',		# Walloon
 	'war' => 'Winaray', # Waray-Waray

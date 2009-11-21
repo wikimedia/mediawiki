@@ -397,6 +397,7 @@ $1',
 'lineno'                  => 'سطر $1:',
 'compareselectedversions' => 'مقایسه نسخه‌های انتخاب‌ وابیده',
 'editundo'                => 'لغو اصلاح آخر',
+'diff-multi'              => '({{PLURAL:$1|یه اصلاح میانی|$1 اصلاحات میانی}} نشو داده نوابیده.)',
 
 # Search results
 'prevn'          => 'قبلی {{PLURAL:$1|$1}}',

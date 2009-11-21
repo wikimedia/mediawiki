@@ -457,6 +457,7 @@ Informasi: (bye) = petuho a nca selt,
 'lineno'                  => 'Lani $1:',
 'compareselectedversions' => 'Bapisize',
 'editundo'                => "afi hloli ye ng'i",
+'diff-multi'              => '({{PLURAL:$1|1 selt amebusilize|$1 selt amebusilize}} ni kamukile.)',
 
 # Search results
 'searchresults'         => 'Fatukile kamukile',

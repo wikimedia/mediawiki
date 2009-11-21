@@ -945,6 +945,7 @@ $1",
 'compareselectedversions'  => 'Primerjaj izbrani redakciji',
 'showhideselectedversions' => 'Prikaži/skrij izbrane revizije',
 'editundo'                 => 'razveljavi',
+'diff-multi'               => '({{PLURAL:$1|$1 vmesna redakcija ni prikazana|$1 vmesni redakciji nista prikazani|$1 vmesne redakcije niso prikazane|$1 vmesnih redakcij ni prikazanih}})',
 
 # Search results
 'searchresults'                    => 'Izid iskanja',

@@ -528,6 +528,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'lineno'                  => 'Linnia $1:',
 'compareselectedversions' => 'Confronta e verscioîn selessionæ',
 'editundo'                => 'Annûllâ',
+'diff-multi'              => '({{PLURAL:$1|Ûnn-a revixon intermedia no vista|$1 reviscioîn intermedie no viste}}.)',
 
 # Search results
 'searchresults'         => 'Resultati da reçerca',
