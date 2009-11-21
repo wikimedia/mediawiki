@@ -259,11 +259,11 @@ mvPlayList.prototype = {
 			this.doWhenClipLoadDone();
 		} else {
 			js_log( "only " + _this.clip_ready_count + " clips done, scheduling callback:" );
-			var doParseDoneCheck = function() {
-				_this.doWhenParseDone();
-			}
 			if ( !mvJsLoader.load_error )	// re-issue request if no load error:
-				setTimeout( doParseDoneCheck, 100 );
+				setTimeout( function(){
+					_this.doWhenParseDone();
+					//debugger;
+				}, 100 );
 		}
 	},
 	doWhenClipLoadDone:function() {

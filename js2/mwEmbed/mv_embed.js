@@ -172,6 +172,23 @@ if ( !window['mw'] ) {
 	window['mw'] = { }
 }
 
+
+// Inherit the default global config
+var mwDefaultConf = {
+	'skin_name' : 'mvpcf',
+	'jui_skin' : 'redmond',
+	'video_size' : '400x300',
+	'k_attribution' : true		
+}
+if( !mw.conf )
+	mw.conf = { }
+	
+for(var i in mwDefaultConf){
+	if( typeof mw.conf[ i ] == 'undefined' )
+		mw.conf[ i ] = mwDefaultConf[ i ];
+}
+
+
 // @@todo move these into mw
 var global_req_cb = new Array(); // The global request callback array
 
@@ -181,15 +198,7 @@ var global_req_cb = new Array(); // The global request callback array
 * Any global functions/classes that are not jQuery plugins should make
 * there way into the mw namespace
 */
-( function( $ ) {
-	/*
-	 * global config
-	 */
-	$.conf = {
-		'skin_name' : 'mvpcf',
-		'jui_skin' : 'redmond',
-		'video_size' : '400x300'
-	}
+( function( $ ) {	
 	// list valid skins here:
 	$.valid_skins = ['mvpcf', 'kskin'];
 	// the version of mwEmbed
@@ -343,8 +352,7 @@ var global_req_cb = new Array(); // The global request callback array
 		 * Plural matchRuleTest
 		 */
 		function matchRuleTest( cRule, val ) {
-			// js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
-
+			js_log("matchRuleTest:: " + typeof cRule + ' ' + cRule + ' == ' + val );
 			function checkValue( compare, val ) {
 				if ( typeof compare == 'string' ) {
 					range = compare.split( '-' );
@@ -412,12 +420,13 @@ var global_req_cb = new Array(); // The global request callback array
 		for ( var ruleInx in rs ) {
 			cRule = rs[ruleInx];
 			if ( matchRuleTest( cRule, tObj.arg ) ) {
-				// js_log("matched rule: " + ruleInx );
+				js_log("matched rule: " + ruleInx );
 				return getTempParamFromRuleInx( tObj, rCount );
 			}
 			rCount ++;
 		}
-		// js_log('no match found for: ' + tObj.arg + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
+		js_log('no match found for: ' + tObj.arg + ' using last/other : ' +  tObj.param [ tObj.param.length -1 ] );
+		//debugger;
 		// return the last /"other" template param
 		return tObj.param [ tObj.param.length - 1 ];
 	}
@@ -691,34 +700,7 @@ var global_req_cb = new Array(); // The global request callback array
 				// do the recursive magic swap text:
 				this.pOut = recurse_magic_swap( this.pNode );
 
-			},
-			/**
-			* getTemplateVars special function to grab template paramaters 
-			* from template text
-			* 
-			* @returns {Array} template vars names
-			*/
-			getTemplateVars:function() {
-				// do a regular ex to get the ~likely~ template values
-				// (of course this sucks)
-				// but maybe this will make its way into the api sometime soon to support wysiwyg type editors
-				// ideally it would expose a good deal of info about the template params
-				js_log( 'matching against: ' + this.wikiText );
-				var tempVars = this.wikiText.match( /\{\{\{([^\}]*)\}\}\}/gi );
-				// clean up results:
-				var tVars = new Array();
-				for ( var i = 0; i < tempVars.length; i++ ) {
-					var tvar = tempVars[i].replace( '{{{', '' ).replace( '}}}', '' );
-					// Strip anything after a |
-					if ( tvar.indexOf( '|' ) != -1 ) {
-						tvar = tvar.substr( 0, tvar.indexOf( '|' ) );
-					}
-					// Add if not already there
-					if ( $j.inArray( tvar, tVars ) == -1 )
-						 tVars.push( tvar );
-				}
-				return tVars;
-			},
+			},			
 			/*
 			 * parsed template api ~loosely based off of ~POM~
 			 * http://www.mediawiki.org/wiki/Extension:Page_Object_Model
@@ -953,6 +935,7 @@ var mvJsLoader = {
 				callback();
 				return;
 			}
+			
 			// Do a check for any CSS we may need and get it
 			for ( var i = 0; i < loadLibs.length; i++ ) {
 				if ( typeof mvCssPaths[ loadLibs[i] ] != 'undefined' ) {
@@ -961,6 +944,7 @@ var mvJsLoader = {
 			}
 
 			// Check if we should use the script loader to combine all the requests into one
+			// ( the scriptloader defines the mwSlScript global )
 			if ( typeof mwSlScript != 'undefined' ) {
 				var class_set = '';
 				var last_class = '';
@@ -1100,13 +1084,8 @@ var mvJsLoader = {
 	jQueryCheck: function( callback ) {
 		// js_log( 'jQueryCheck::' + this.jQuerySetupFlag);
 		var _this = this;
-		// Skip stuff if $j is already loaded:
-		if ( _global['$j'] ) {
-			callback(); // call the callback now
-			callback = null;
-			// This is tricky because js2stopgap registers $j without doing the "setup" 
-			if ( _this.jQuerySetupFlag )
-				return ;
+		if ( _global['$j'] && _this.jQuerySetupFlag ) {			
+			callback(); // call the callback now			
 		}
 		// Load jQuery
 		_this.doLoad( [

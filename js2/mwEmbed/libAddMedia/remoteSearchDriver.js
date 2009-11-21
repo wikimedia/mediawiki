@@ -1271,7 +1271,7 @@ remoteSearchDriver.prototype = {
 			js_log( 'media type:: ' + mediaType );
 			// Get any additional embedding helper meta data prior to doing the actual embed
 			// normally this meta should be provided in the search result (but archive.org has another query for more media meta)
-			rObj.pSobj.getEmbedTimeMeta( rObj, function() {
+			rObj.pSobj.addResourceInfoCallback( rObj, function() {
 				// Make sure we have the embedVideo libs:
 				var runFlag = false;
 				mvJsLoader.embedVideoCheck( function() {
@@ -1292,13 +1292,14 @@ remoteSearchDriver.prototype = {
 					js_log( "about to call rewrite_by_id::embed_vid" );
 					// Rewrite by id
 					rewrite_by_id( 'embed_vid', function() {						
-						// Grab any information that we got from the ROE xml or parsed from the media file
-						rObj.pSobj.getEmbedObjParsedInfo( rObj, 'embed_vid' );
+						// Grab information avaliable from the embed instance
+						rObj.pSobj.addResourceInfoFromEmbedInstance( rObj, 'embed_vid' );
+						
 						// Add the re-sizable to the doLoad request:
 						clibs.push( '$j.ui.resizable' );
-						clibs.push( '$j.fn.hoverIntent' );
+						clibs.push( '$j.fn.hoverIntent' );						
 						mvJsLoader.doLoad( clibs, function() {
-							// Make sure the rsd_edit_img is hidden:
+							// Make sure the rsd_edit_img is removed:
 							$j( '#rsd_edit_img' ).remove();
 							// Run the image clip tools
 							_this.cEdit = new mvClipEdit( mvClipInit );
@@ -1390,9 +1391,7 @@ remoteSearchDriver.prototype = {
 	},
 	doImportInterface : function( rObj, callback ) {
 		var _this = this;
-		js_log( "doImportInterface:: update:" + _this.cFileNS + ':' + rObj.target_resource_title );
-		// update the rObj with import info
-		rObj.pSobj.updateDataForImport( rObj );
+		js_log( "doImportInterface:: update:" + _this.cFileNS + ':' + rObj.target_resource_title );		
 
 		// setup the resource description from resource description:
 		var wt = '{{Information ' + "\n";

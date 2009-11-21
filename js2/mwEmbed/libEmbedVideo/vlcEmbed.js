@@ -4,8 +4,9 @@
 *  assume version > 0.8.5.1
 */
 var vlcEmbed = {
-	instanceOf:'vlcEmbed',
-	supports: { 'play_head':true,
+	instanceOf : 'vlcEmbed',
+	supports : { 
+		'play_head':true,
 		'pause':true,
 		'stop':true,
 		'fullscreen':true,
@@ -260,7 +261,7 @@ var vlcEmbed = {
 		this.parent_stop();
 	},
 	pause : function() {
-		this.parent_pause(); // update the inteface if paused via native control
+		this.parent_pause(); // update the interface if paused via native control
 		if ( this.vlc ) {
 			this.vlc.playlist.togglePause();
 		}
@@ -271,13 +272,13 @@ var vlcEmbed = {
 		if ( this.vlc )
 			this.vlc.audio.toggleMute();
 	},
-	// @@ Suport UpDateVolumen 
+	// @@ Support UpDateVolumen 
 	updateVolumen:function( perc ) {
 		this.getVLC();
 		if ( this.vlc )
 			this.vlc.audio.volume = perc * 100;
 	},
-	// @@ Get Volumen
+	// @@ Get Volumen 
 	getVolumen:function() {
 		this.getVLC();
 		if ( this.vlc )
@@ -288,19 +289,7 @@ var vlcEmbed = {
 			if ( this.vlc.video )
 				this.vlc.video.toggleFullscreen();
 		}
-	},
-	/* returns current time in float seconds 
-	 * as per html5 we should just have an attribute by name of CurrentTime
-	 * http://www.whatwg.org/specs/web-apps/current-work/#currenttime
-	currentTime : function(){
-		if(typeof this.vlc != 'undefined' ){
-			if(typeof this.vlc.input != 'undefined' ){
-				return this.vlc.input.time/1000;	
-			}
-		}
-		return '0';
-	},
-	*/
+	},	
 	// get the embed vlc object 
 	getVLC : function() {
 		this.vlc = this.getPluginEmbed();

@@ -76,53 +76,61 @@ var sequencerDefaultValues = {
 	plObj_id:'seq_pl',
 	plObj:'null',
 
-	timeline_scale:.06, // in pixel to second ratio ie 100pixles for every ~30seconds
-	timeline_duration:500, // default timeline length in seconds
+	// In pixel to second ratio ie 100pixles for every ~30seconds
+	timeline_scale:.06, 
+	
+	// Default timeline duration in seconds
+	timeline_duration:500, 
+	
 	playline_time:0,
 	track_thumb_height:60,
 	track_text_height:20,
 
-	// default timeline mode: "story" (i-movie like) or "time" (finalCut like)
+	// Default timeline mode: "story" (i-movie like) or "time" (finalCut like)
 	timeline_mode:'storyboard',
 
-	track_clipThumb_height:80, // how large are the i-movie type clips
+	// How large are the i-movie type clips
+	track_clipThumb_height:80, 
 
-	base_adj_duration:.5, // default time to subtract or add when adjusting clips.
+	// Default time to subtract or add when adjusting clips.
+	base_adj_duration:.5, 
 
-	// default clipboard is empty:
+	// Default clipboard is empty:
 	clipboard:new Array(),
-	// stores the clipboard edit token (if user has rights to edit their User page)
+	
+	// Stores the clipboard edit token (if user has rights to edit their User page)
 	clipboardEditToken:null,
-	// stores the sequence edit token (if user has rights to edit the current sequence)
+	
+	// Stores the sequence edit token (if user has rights to edit the current sequence)
 	sequenceEditToken:null,
-	// the time the sequence was last touched (grabbed at time of startup)
+	
+	// The time the sequence was last touched (grabbed at time of startup)
 	sequenceTouchedTime:null,
 	
 	// the default config for the add media wizard
 	amw_conf: { },
 
-
-	// Msg are all the language specific values ...
-	// (@@todo overwrite by msg values preloaded in the page)
-	// tack/clips can be pushed via json or inline playlist format
-	inline_playlist:'null', // text value so its a valid property
+	
+	inline_playlist:'null',
 	inline_playlist_id:'null',
 	mv_pl_src:'null',
-	// the edit stack:
+	
+	// The edit stack (so that you can "undo" edits)
 	edit_stack:new Array(),
 	disp_menu_item:null,
-	// trackObj used to payload playlist Track Object (when inline not present)
+	
+	// Track Object 
 	tracks: { }
 }
 var mvSequencer = function( iObj ) {
 	return this.init( iObj );
 };
-// set up the mvSequencer object
+// Set up the mvSequencer object
 mvSequencer.prototype = {
-	// the menu_items Object contains: default html, js setup/loader functions
+	// The menu_items Object contains: default html, js setup/loader functions
 	menu_items : {
 		'clipedit': {
-			'd':0,
+			'default':0,
 			'html':'',
 			'js': function( this_seq ) {
 				this_seq.doEditSelectedClip();
@@ -132,21 +140,21 @@ mvSequencer.prototype = {
 			}
 		},
 		'transition': {
-			'd':0,
+			'default':0,
 			'html' : '<h3>' + gM( 'mwe-menu_transition' ) + '</h3>',
 			'js':function( this_seq ) {
 				this_seq.doEditTransitionSelectedClip();
 			},
 			'click_js':function( this_seq ) {
-				// highlight the transition of the selected clip:
+				// Highlight the transition of the selected clip:
 				this_seq.doEditTransitionSelectedClip();
 			}
 		},
 		'cliplib': {
-			'd':0,
+			'default':0,
 			'html': gM( 'mwe-loading_txt' ),
 			'js':function( this_seq ) {
-				// load the search interface with sequence tool targets
+				// Load the search interface with sequence tool targets
 				mvJsLoader.doLoad( [
 					'remoteSearchDriver',
 					'seqRemoteSearchDriver'
@@ -157,7 +165,7 @@ mvSequencer.prototype = {
 			}
 		},
 		'options': {
-			'd':0,
+			'default':0,
 			'html' : '<h3>' + gM( 'mwe-menu_options' ) + '</h3>' +
 				gM( 'mwe-editor_mode' ) + '<br> ' +
 				'<blockquote><input type="radio" value="simple_editor" name="opt_editor">' +
@@ -351,7 +359,7 @@ mvSequencer.prototype = {
 			if ( !dispCall )
 				$j( "#seq_menu" ).tabs( 'select', this.menu_items[item].inx );
 
-			this.menu_items[item].d = 1;
+			this.menu_items[item].default = 1;
 			// do any click_js actions:getInsertControl
 			if ( this.menu_items[item].click_js )
 				this.menu_items[item].click_js( this );
@@ -541,7 +549,7 @@ mvSequencer.prototype = {
 		}
 
 
-		// render the menu tabs::
+		// Render the menu tabs::
 		var item_containers = '';
 		var inx = 0;
 		var selected_tab = 0;
@@ -551,14 +559,14 @@ mvSequencer.prototype = {
 		for ( var tab_id in this.menu_items ) {
 			menu_item = this.menu_items[tab_id];
 			menu_item.inx = inx;
-			if ( menu_item.d ) {
+			if ( menu_item.default ) {
 				selected_tab = inx;
 				_this.disp_menu_item = tab_id;
 			}
 
 			o += '<li>' +
-				'<a id="mv_menu_item_' + tab_id + '" href="#' + tab_id + '_ic">' + gM( 'mwe-menu_' + tab_id ) + '</a>' +
-			'</li>';
+					'<a id="mv_menu_item_' + tab_id + '" href="#' + tab_id + '_ic">' + gM( 'mwe-menu_' + tab_id ) + '</a>' +
+				'</li>';
 
 			tabc += '<div id="' + tab_id + '_ic" style="overflow:auto;height:268px;" >';
 				tabc += ( menu_item.html ) ? menu_item.html : '<h3>' + gM( 'mwe-menu_' + tab_id ) + '</h3>';
@@ -575,20 +583,20 @@ mvSequencer.prototype = {
 			select: function( event, ui ) {
 				_this.disp( $j( ui.tab ).attr( 'id' ).replace( 'mv_menu_item_', '' ), true );
 			}
-		// add sorting
+		// Add sorting
 		} ).find( ".ui-tabs-nav" ).sortable( { axis : 'x' } );
 
 
-		// render the timeline
+		// Render the timeline
 		this.renderTimeLine();
 		this.do_refresh_timeline();
 
-		// load init content into containers
+		// Load initial content into containers
 		this.setupMenuItems();
 
 		this.doFocusBindings();
 
-		// set up key bidnings
+		// Set up key bidnings
 		$j( window ).keydown( function( e ) {
 			js_log( 'pushed down on:' + e.which );
 			if ( e.which == 16 )
@@ -603,32 +611,33 @@ mvSequencer.prototype = {
 			if ( ( e.which == 88 && _this.key_ctrl_down ) && !_this.inputFocus )
 				_this.cutSelectedClips();
 
-			// paste cips on v + ctrl while not focused on a text area:
+			// Paste cips on v + ctrl while not focused on a text area:
 			if ( ( e.which == 86 && _this.key_ctrl_down ) && !_this.inputFocus )
 				_this.pasteClipBoardClips();
 
 		} );
 		$j( window ).keyup( function( e ) {
 			js_log( 'key up on ' + e.which );
-			// user let go of "shift" turn off multi-select
+			// User let go of "shift" turn off multi-select
 			if ( e.which == 16 )
 				_this.key_shift_down = false;
 
 			if ( e.which == 17 )
 				_this.key_ctrl_down = false;
 
-			// escape key (for now deselect)
+			// Escape key ( deselect )
 			if ( e.which == 27 )
 				_this.deselectClip();
 
 
-			// backspace or delete key while not focused on a text area:
+			// Backspace or Delete key while not focused on a text area:
 			if ( ( e.which == 8 || e.which == 46 ) && !_this.inputFocus )
 				_this.removeSelectedClips();
 		} );
 	},
-	// check all nodes for focus
-	// @@todo it would probably be faster to search a given subnode instead of all text
+	/**
+	* Check all text nodes for focus
+	*/
 	doFocusBindings:function() {
 		var _this = this;
 		// if an input or text area has focus disable delete key binding
@@ -641,22 +650,34 @@ mvSequencer.prototype = {
 			_this.inputFocus = false;
 		} )
 	},
+	/*
+	* Update the timeline hook
+	*/
 	update_tl_hook:function( jh_time_ms ) {
-		// put into seconds scale:
+		// Put into seconds scale:
 		var jh_time_sec_float = jh_time_ms / 1000;
-		// render playline at given time
-		// js_log('tl scale: '+this.timeline_scale);
-		$j( '#' + this.timeline_id + '_playline' ).css( 'left', Math.round( jh_time_sec_float / this.timeline_scale ) + 'px' );
+		// Render playline at given time
+		$j( '#' + this.timeline_id + '_playline' )
+			.css( 
+				'left', 
+				Math.round( jh_time_sec_float / this.timeline_scale ) + 'px' 
+			);
 		// js_log('at time:'+ jh_time_sec + ' px:'+ Math.round(jh_time_sec_float/this.timeline_scale));
 	},
-	/*returns a xml or json representation of the current sequence */
+	/*
+	* Returns a xml or json representation of the current sequence 
+	*/
 	getSeqOutputJSON:function() {
 		js_log( 'json output:' );
 	},
+	/*
+	* Gets the Sequence as a formated high level resource description xml string
+	* @returns {xml} 
+	*/
 	getSeqOutputHLRDXML:function() {
 		var o = '<sequence_hlrd>' + "\n";
 		o += "\t<head>\n";
-		// get transitions
+		// Get transitions
 		for ( var i in this.plObj.transitions ) {
 			if ( this.plObj.transitions[i] ) {
 				var tObj = this.plObj.transitions[i].getAttributeObj();
@@ -669,9 +690,9 @@ mvSequencer.prototype = {
 		}
 		o += "\t</head>\n";
 
-		// get clips
+		// Get clips
 		o += "\t<body>\n";
-		// output each track:
+		// Output each track:
 		for ( var i in this.plObj.tracks ) {
 			var curTrack = this.plObj.tracks[i];
 			o += "\t<seq";
@@ -700,15 +721,39 @@ mvSequencer.prototype = {
 			o += "\n</seq>\n";
 		}
 		o += "\t</body>\n";
-		// close the tag
+		// Close the tag
 		o += '</sequence_hlrd>';
 
 		return o;
 	},
+	/**
+	* Takes a track index and a clip index, to get a clip Object.
+	* It then calls doEditClip with that clip Object. 
+	*/
 	editClip:function( track_inx, clip_inx ) {
 		var cObj = this.plObj.tracks[ track_inx ].clips[ clip_inx ];
 		this.doEditClip( cObj );
 	},
+	/**
+	* Calls the doEditClip interface on the selected clip
+	* Handles cases where no clips are selected or multiple clips are selected.  
+	*/
+	doEditSelectedClip:function() {
+		js_log( "f:doEditSelectedClip:" );
+		// And only one clip selected
+		if ( $j( '.mv_selected_clip' ).length == 1 ) {
+			this.doEditClip( this.getClipFromSeqID( $j( '.mv_selected_clip' ).parent().attr( 'id' ) ) );
+		} else if ( $j( '.mv_selected_clip' ).length === 0 ) {
+			// No clip selected warning:
+			$j( '#clipedit_ic' ).html( gM( 'mwe-no_selected_resource' ) );
+		} else {
+			// Multiple clip selected warning:
+			$j( '#clipedit_ic' ).html( gM( 'mwe-error_edit_multiple' ) );
+		}
+	},
+	/**
+	* Pulls up the edit transition interface for the selected clip
+	*/
 	doEditTransitionSelectedClip:function() {
 		var _this = this;
 		js_log( "f:doEditTransitionSelectedClip:" + $j( '.mv_selected_clip' ).length );
@@ -722,28 +767,21 @@ mvSequencer.prototype = {
 			$j( '#transition_ic' ).html( gM( 'mwe-error_edit_multiple' ) );
 		}
 	},
-	doEditSelectedClip:function() {
-		js_log( "f:doEditSelectedClip:" );
-		// and only one clip selected
-		if ( $j( '.mv_selected_clip' ).length == 1 ) {
-			this.doEditClip( this.getClipFromSeqID( $j( '.mv_selected_clip' ).parent().attr( 'id' ) ) );
-		} else if ( $j( '.mv_selected_clip' ).length === 0 ) {
-			// no clip selected warning:
-			$j( '#clipedit_ic' ).html( gM( 'mwe-no_selected_resource' ) );
-		} else {
-			// multiple clip selected warning:
-			$j( '#clipedit_ic' ).html( gM( 'mwe-error_edit_multiple' ) );
-		}
-	},
+	/**
+	* Loads the transition edit javascript libs and 
+	* displays the transition edit interface. 
+	*/
 	doEditTransition:function( cObj ) {
 		js_log( "sequence:doEditTransition" );
 		var _this = this;
+		// Add a loading image
 		mv_get_loading_img( '#transitions_ic' );
 		mvJsLoader.doLoad( [
 			'$j.fn.ColorPicker',
 			'mvTimedEffectsEdit'
 		], function() {
-			// no idea why this works / is needed.
+			// For some reason we lose scope in the options passed to mvTimedEffectsEdit
+			// so we re refrence the sequence here: 
 			var localSeqRef = _this;
 			_this.myEffectEdit = new mvTimedEffectsEdit( {
 				'rObj' 		 : cObj,
@@ -752,22 +790,25 @@ mvSequencer.prototype = {
 			} );
 		} )
 	},
-	// updates the clip details div if edit resource is set
+	/*
+	* Updates the clip details div if edit resource is set
+	*/
 	doEditClip:function( cObj ) {
 		js_log( 'seq:doEditClip' );
 		var _this = this;
 
-		// set default edit action (maybe edit_action can be sent via by context click)
+		// Set default edit action
 		var edit_action = 'fileopts';
 
 		mv_get_loading_img( '#clipedit_ic' );
-		// load the clipEdit library if not already loaded:
+		
+		// Load the clipEdit library if not already loaded:
 		mvJsLoader.doLoad( [
 			'mvClipEdit'
 		], function() {
-			// zero out the current editor: 
+			// Zero out the current editor: 			
 			_this.myClipEditor = { };
-			// setup the cliploader
+			// Setup the cliploader options
 			_this.myClipEditor = new mvClipEdit( {
 				'rObj'			: cObj,
 				'control_ct'	: 'clipedit_ic',
@@ -778,46 +819,58 @@ mvSequencer.prototype = {
 			} );
 		} );
 	},
-	// save new clip segment
+	
+	/*
+	* Save new clip segment
+	* FIXME this is just a stub
+	*/
 	saveClipEdit:function() {
 		// saves the clip updates
 	},
+	
+	/**
+	* Closes the sequence and dereferences the global instance. 
+	*/ 
 	closeModEditor:function() {
 		// unset the sequencer
 		_global['mvSeq'] = null;
 		$j( this.target_sequence_container + ',.ui-widget-overlay' ).remove();
 	},
-	pasteClipBoardClips:function() {
-		js_log( 'f:pasteClipBoardClips' );
-		// @@todo query the server for updated clipboard
-		// paste before the "current clip"
-		this.addClips( this.clipboard, this.plObj.cur_clip.order );
-	},
+	
+	/**
+	* Copies the selected clips to the server hosted "clipboard"
+	* 
+	* FIXME need to support local clipboard for stand alone editing.  
+	* FIXME this does not really work at all right now
+	*/
 	copySelectedClips:function() {
 		var this_seq = this;
 		// set all the selected clips
 		this.clipboard = new Array();
 		$j( '.mv_selected_clip' ).each( function() {
-			// add each clip to the clip board:
+
+			// Add each clip to the clip board:
 			var cur_clip = this_seq.getClipFromSeqID( $j( this ).parent().attr( 'id' ) );
 			this_seq.clipboard.push( cur_clip.getAttributeObj() );
+			
 		} );
-		// upload clipboard to the server (if possible)
+		
+		// Upload clipboard to the server (if possible)
 		if ( mw.parseUri(  document.URL ).host != mw.parseUri( this_seq.plObj.interface_url ).host ) {
 			js_log( 'error: presently we can\'t copy clips across domains' );
 		} else {
-			// @@we need a api entry point to store a "clipboard"
+			// FIXME we need to add an api entry point to store a "clipboard"
+			// right now this is dependent on a custom hook:			
 			if ( this_seq.clipboardEditToken && this_seq.plObj.interface_url ) {
 				var req_url = this_seq.plObj.interface_url.replace( /api.php/, 'index.php' ) + '?action=ajax&rs=mv_seqtool_clipboard&rsargs[]=copy';
 				$j.ajax( {
 					type: "POST",
-					url:req_url,
+					url : req_url,
 					data: $j.param( {
 						"clipboard_data": $j.toJSON( this_seq.clipboard ),
 						"clipboardEditToken": this_seq.clipboardEditToken
 					} ),
 					success:function( data ) {
-						// callback( data );
 						js_log( 'did clipboard push ' + $j.toJSON( this_seq.clipboard ) );
 					}
 				} );
@@ -826,13 +879,30 @@ mvSequencer.prototype = {
 			}
 		}
 	},
+	/*
+	* Paste the clipboard clips into the sequence
+	*/
+	pasteClipBoardClips:function() {
+		js_log( 'f:pasteClipBoardClips' );
+		// @@todo query the server for updated clipboard
+		// paste before the "current clip"
+		this.addClips( this.clipboard, this.plObj.cur_clip.order );
+	},
+	
+	/** 
+	* Cut selected clips from the timeline
+	*/
 	cutSelectedClips:function() {
 		this.copySelectedClips();
 		this.removeSelectedClips();
 	},
+	
+	/**
+	* Remove selected clips from the timeline
+	*/ 
 	removeSelectedClips:function() {
 		var remove_clip_ary = new Array();
-		// remove selected clips from display
+		// Remove selected clips from display
 		$j( '.container_track .mv_selected_clip' ).each( function() {
 			// grab the track index from the id (assumes track_#_clip_#
 			remove_clip_ary.push ( $j( this ).parent().attr( 'id' ).replace( 'track_', '' ).replace( 'clip_', '' ).split( '_' ) );
@@ -844,11 +914,16 @@ mvSequencer.prototype = {
 		// @@todo refresh menu of current
 		this.doEditSelectedClip();
 	},
+	/*
+	* Add a clip to the timeline
+	*/	
 	addClip:function( clip, before_clip_pos, track_inx ) {
 		this.addClips( [clip],  before_clip_pos, track_inx )
 	},
-	// add a single or set of clips
-	// to a given position and track_inx
+	/** 
+	* add a single or set of clips
+	* to a given position and track_inx
+	*/
 	addClips:function( clipSet, before_clip_pos, track_inx ) {
 		this_seq = this;
 
@@ -874,6 +949,10 @@ mvSequencer.prototype = {
 		// debugger;
 		this.do_refresh_timeline();
 	},
+	
+	/**
+	* Removes Clips listed in the remove_clip_ary paramater
+	*/
 	removeClips:function( remove_clip_ary ) {
 		var this_seq = this;
 		var jselect = coma = '';

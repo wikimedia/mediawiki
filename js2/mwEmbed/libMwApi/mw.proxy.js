@@ -2,11 +2,10 @@
 * 
 * Api proxy system
 *
-* Built to support cross domain uploading, and api actions for a approved set of domains.
-* mwProxy enables a system for fluid contributions across wikis domains for which your logged in.
+* Supports cross domain uploading, and api actions for a approved set of domains.
 *
-* The framework support a request approval system for per-user domain approval
-* and a central blacklisting of domains controlled by site or system administrators. 
+* The framework /will/ support a request approval system for per-user domain approval
+* and a central blacklisting of domains controlled by the site 
 *
 *  Flow outline below:  
 * 
@@ -56,34 +55,38 @@ loadGM( {
 	 */
 	$.proxy.client = function( pConf, conf ) {
 		var _this = this;
-		// do setup: 
+		// Do client setup: 
 		if ( pConf.server_frame )
 			$.proxy.server_frame = pConf.server_frame;
 		
 		if ( pConf.client_frame_path ) {
 			$.proxy.client_frame_path = pConf.client_frame_path;
 		} else {
-			// guess the client frame path:
+			// Set to default mwEmbed iframe path:
 			$.proxy.client_frame_path =  wgScriptPath + '/js2/mwEmbed/libMwApi/NestedCallbackIframe.html';
 		}
 				
 		if ( mw.parseUri( $.proxy.server_frame ).host ==  mw.parseUri( document.URL ).host ) {
-			js_log( "Error: why are you trying to proxy yourself? " );
+			js_log( "Error: trying to proxy local domain? " );
 			return false;
 		}
 		return true;
 	}
-	// set the frameProxy Flag: 
+	// Set the frameProxy Flag: 
 	var frameProxyOk = false;
-	/* setup a iframe request hash */
-	$.proxy.doFrameProxy = function( reqObj ) {
+	
+	/** 
+	* doFrameProxy
+	* 	Writes an iframe with a hashed value of the requestQuery
+	*/
+	$.proxy.doFrameProxy = function( requestQuery ) {
 		var hashPack = {
 			'cd': mw.parseUri( document.URL ).host,
 			'cfp': $.proxy.client_frame_path,
-			'req': reqObj
+			'req': requestQuery
 		}
 		js_log( "Do frame proxy request on src: \n" + $.proxy.server_frame + "\n" +
-					JSON.stringify(  reqObj ) );
+					JSON.stringify(  requestQuery ) );
 		// we can't update src's so we have to remove and add all the time :(
 		// @@todo we should support frame msg system 
 		$j( '#frame_proxy' ).remove();
@@ -106,57 +109,70 @@ loadGM( {
 	}
 	var lastApiReq = { };
 	$.proxy.proxyNotReadyDialog = function() {
-		var btn = { };
-		btn[ gM( 'mwe-re-try' ) ] = function() {
+		var buttons = { };
+		buttons[ gM( 'mwe-re-try' ) ] = function() {
 			$j.addLoaderDialog( gM( 'mwe-re-trying' ) );
 			$.proxy.doFrameProxy( lastApiReq );
 		}
-		btn[ gM( 'mwe-cancel' ) ] = function() {
+		buttons[ gM( 'mwe-cancel' ) ] = function() {
 			$j.closeLoaderDialog();
 		}
 		var pUri =  mw.parseUri( $.proxy.server_frame );
-		// this is sort of a temporary hack if we change the MediaWiki:ApiProxy key
-		// we will have to deal with that here as well: 
-		var login_url = pUri.protocol + '://' + pUri.host +
-				pUri.path.replace( 'MediaWiki:ApiProxy', 'Special:UserLogin' );
-		$j.addDialog( gM( 'mwe-proxy-not-ready' ), gM( 'mwe-please-login', [ login_url, pUri.host] ) +
-						'<p style="font-size:small">' + gM( 'mwe-remember-loging' ) + '</p>',
-			btn
+		
+		// FIXME we should have a Hosted iframe once we deploy mwEmbed on the servers.
+		// A hosted iframe would be much faster since than a normal page view 
+		
+		var login_url = pUri.protocol + '://' + pUri.host;
+		login_url += pUri.path.replace( 'MediaWiki:ApiProxy', 'Special:UserLogin' );
+		
+		$j.addDialog( 
+			gM( 'mwe-proxy-not-ready' ), 
+			gM( 'mwe-please-login', [ login_url, pUri.host] ) +
+				'<p style="font-size:small">' + 
+					gM( 'mwe-remember-loging' ) + 
+				'</p>',
+			buttons
 		)
 	}
-	/* the do_api_request with callback: */
-	$.proxy.doRequest = function( reqObj, callback ) {
+	/* 
+	* doRequest 
+	* Takes a requestQuery, executes the query and then calls the callback
+	*/
+	$.proxy.doRequest = function( requestQuery, callback ) {
 		js_log( "doRequest:: " + JSON.stringify( reqObj ) );
 		lastApiReq = reqObj;
 		// setup the callback:
 		$.proxy.callback = callback;
 		// do the proxy req:
-		$.proxy.doFrameProxy( reqObj );
+		$.proxy.doFrameProxy( requestQuery );
 	}
 	/**
-	 * The nested iframe action that passes its msg back up to the top instance	 
+	 * The nested iframe action that passes its result back up to the top frame instance	 
 	 */
 	$.proxy.nested = function( hashResult ) {
-		// close the loader if present: 
+		// Close the loader if present: 
 		$j.closeLoaderDialog();
 		js_log( '$.proxy.nested callback :: ' + unescape( hashResult ) );
 		frameProxyOk = true;
-		// try to parse the hash result: 
+		
+		// Try to parse the hash result: 
 		try {
 			var rObj = JSON.parse( unescape( hashResult ) );
 		} catch ( e ) {
 			js_log( "Error could not parse hashResult" );
 		}
-		// special callback to frameProxyOk flag (not an api result, don't call callback)   
+		
+		// Special callback to frameProxyOk flag 
+		// (only used to test the proxy connection)   
 		if ( rObj.state == 'ok' )
 			return ;
 		
-		// if all good pass it to the callback:
+		// Pass the callback:
 		$.proxy.callback( rObj );
 	}
 	/**
-	 * The serverApiProxy handles the actual proxy 
-	 * and child frames pointing to the parent "blank" frames
+	 * The server handles the actual proxy 
+	 * it adds child frames pointing to the parent "blank" frames
 	 * 
 	 * This is (Domain B) in the above described setup
 	 */
@@ -180,30 +196,30 @@ loadGM( {
 			' client from: ' + aObj.cd +
 			' to nested target: ' + aObj.cfp );
 		
-		// make sure we are logged in 
+		// Make sure we are logged in 
 		// (its a normal mediaWiki page so all site vars should be defined)		
 		if ( !wgUserName ) {
-			js_log( 'error Not logged in' );
+			js_log( 'Error Not logged in' );
 			return false;
 		}
 			
 		var domain =  aObj.cd;
 		var nested_frame_src = 'http://' + aObj.cd + aObj.cfp;
-		// check the master whitelist
+		// Check the master whitelist
 		for ( var i in pConf.master_whitelist ) {
 			if ( domain ==  pConf.master_whitelist[ i ] ) {
-				// do the request: 			
+				// Do the request: 			
 				return doNestedProxy( aObj.req );
 			}
 		}
-		// check master blacklist
+		// Check master blacklist
 		for ( var i in pConf.master_blacklist ) {
 			if ( domain == pConf.master_blacklist ) {
 				js_log( 'domain: ' + domain + ' is blacklisted' );
 				return false;
 			}
 		}
-		// @@todo grab the users whitelist for our current domain				
+		// FIXME grab the users whitelist for our current domain				
 		/*var local_api = wgScriptPath + '/index' + wgScriptExtension + '?title=' +
 				'User:' + wgUserName + '/apiProxyDomainList.js' +
 				'&action=raw&smaxage=0&gen=js';
@@ -214,31 +230,34 @@ loadGM( {
 		// if still not found: 
 		js_log( "domain " + domain + " not approved" );
 		
-		// offer the user the ability to "approve" requested domain save to their user page		
+		// FIXME :: offer the user the ability to "approve" requested domain save to
+		// their user/ apiProxyDomainList.js page
 
 		function doNestedProxy( reqObj ) {
 			js_log( "doNestedProxy to: " + nested_frame_src );
-			// output iframe prior to running api request 
-			// (so we can fail faster / cache the nested page / simotaniusly load things) 
+
+			// Do a quick response to establish the proxy is working
+			// ( before we actually run the api-request )  
 			doNestedFrame ( 'nested_ok' , { 'state':'ok' } );
 			
 			var outputhash = escape( JSON.stringify( reqObj ) );
-			// add some api stuff: 
-			reqObj['format'] = 'json';
-			// process the api request
+
+			// Add some api stuff: 
+			reqObj[ 'format' ] = 'json';
+
+			// Process the api request
 			$j.post( wgScriptPath + '/api' + wgScriptExtension,
 				reqObj,
-				function( data ) {
-					// js_log("Proxy GOT Res: " +  data );
-					// put it into the nested frame hash string: 
+				function( data ) {					
+					// Put it into the nested frame hash string: 
 					doNestedFrame( 'nested_push', JSON.parse( data ) );
 				}
 			);
 		}
-		// add the doNestedFrame iframe: 
+		// Add the doNestedFrame iframe: 
 		function doNestedFrame( nestname, resultObj ) {
 			$j( '#nested_push' ).remove();
-			// setup the nested proxy that points back to top domain:			
+			// Setup the nested proxy that points back to top domain:			
 			$j( 'body' ).append( '<iframe id="nested_push" name="nested_push" ' +
 				'src="' + nested_frame_src +
 				'#' + escape( JSON.stringify( resultObj ) ) +

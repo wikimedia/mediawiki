@@ -1,16 +1,26 @@
-// base remote search obj
-
+/*
+* Base remote search Object. 
+* provies the base class for the other search system to extend. 
+*/
 loadGM( {
 	"mwe-imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more information."
 } )
-// @key is name of rObj variable
-// @value is where to find the value in the item xml
-//
-// *format:*
-// . indicates multiple tags @ separates the tag from attribute list
-// {.}tag_name@{attribute1|attribute12}
 
-// @@todo should probably switch this over to something like Xpath if we end up parsing a lot of rss formats
+/*
+* rsd_default_rss_item_mapping
+* 
+*  @key is name of rObj variable
+*  @value is where to find the value in the item xml
+* 
+*  *value format:*
+*  . indicates multiple tags 
+*  @ separates the tag from attribute list
+*  {.}tag_name@{attribute1|attribute2}
+*
+* Also see mapAttributeToResource function bellow 
+*
+* FIXME should switch this over to something like Xpath if we end up parsing a lot of rss formats
+*/
 var rsd_default_rss_item_mapping = {
 	'poster'	: 'media:thumbnail@url',
 	'roe_url'	: 'media:roe_embed@url',
@@ -31,36 +41,41 @@ baseRemoteSearch.prototype = {
 
 	completed_req:0,
 	num_req:0,
-
+	
+	// ResultsObj holds the array of results
 	resultsObj: { },
 
-	// default search result values for paging:
+	// Default search result values for paging:
 	offset			 :0,
 	limit			: 30,
 	more_results	: false,
 	num_results		: 0,
 
-	// init the object:
-	init: function( iObj ) {
+	/**
+	* Initialise the baseRemoteSearch 
+	*/
+	init: function( options ) {
 		js_log( 'mvBaseRemoteSearch:init' );
-		for ( var i in iObj ) {
-			this[i] = iObj[i];
+		for ( var i in options ) {
+			this[i] = options[i];
 		}
 		return this;
 	},
 	getSearchResults:function() {
-		// empty out the current results before issuing a request
+		// Empty out the current results before issuing a request
 		this.resultsObj = { };
-		// do global getSearchResults bindings
+		
+		// Do global getSearchResults bindings
 		this.last_query = $j( '#rsd_q' ).val();
 		this.last_offset = this.cp.offset;
-		// set the loading flag:		
+		
+		// Set the loading flag:		
 		this.loading = true;
 	},
 	/*
 	* Parses and adds video rss based input format
-	* @param $data XML data to parse
-	* @param provider_url	 the source url (used to generate absolute links)
+	* @param {XML Nodes} data the data to be parsed
+	* @param {String} provider_url the source url (used to generate absolute links)
 	*/
 	addRSSData:function( data , provider_url ) {
 		js_log( 'f:addRSSData' );
@@ -102,7 +117,15 @@ baseRemoteSearch.prototype = {
 			_this.num_results++;
 		} );
 	},
-	mapAttributeToResource: function(rObj, item, attr){		
+	/*
+	* Maps a given attribute to a resource object per mapping defined in 
+	* rsd_default_rss_item_mapping
+	*
+	* @param {Object} rObj the resource object
+	* @param {XML Node} the xml result node
+	* @param {attr} the name attribute we are maping to the resource object 
+	*/
+	mapAttributeToResource: function( rObj, item, attr ){		
 		var selector = rsd_default_rss_item_mapping[ attr ].split( '@' );
 		var flag_multiple = (  selector[0].substr( 0, 1 ) == '.' ) ? true : false;
 		if ( flag_multiple ) {
@@ -147,6 +170,10 @@ baseRemoteSearch.prototype = {
 		} );
 		// Nothing to return we update the "rObj" directly
 	}, 
+	
+	/**
+	* Get the html representation of the resource Object paramater
+	*/
 	getEmbedHTML: function( rObj , options ) {
 		if ( !options )
 			options = { };
@@ -185,6 +212,9 @@ baseRemoteSearch.prototype = {
 		js_log( "ERROR:: no embed code for mime type: " + rObj.mime );	
 		return 'Error missing embed code for: ' + escape( rObj.mime );
 	},
+	/**
+	* Get the embed html specificaly for an image type resource Object. 
+	*/
 	getImageEmbedHTML:function( rObj, options ) {
 		// if crop is null do base output: 
 		var imgHtml = '<img ' + options.id_attr + ' src="' + rObj.edit_url  + '"' + options.style_attr + ' ></img>';
@@ -197,13 +227,22 @@ baseRemoteSearch.prototype = {
 						'</div>' +
 					'</div>';
 	},
-	// by default just return the existing image with callback
+	/**
+	* Gets an image object from a requested transformation via callback
+	* ( letting api search implementations query the remote server for a 
+	*  given transformation )  
+	* 
+	* By default just return the existing image.
+	*/
 	getImageObj:function( rObj, size, callback ) {
 		callback( { 
 			'url' : rObj.poster 
 		} );
 	},
-	// by default just return the rObj.desc
+	/*
+	* Gets the inline wikiText description of the resource Object
+	* By default just return the rObj description value 
+	*/
 	getInlineDescWiki:function( rObj ) {
 		// return striped html  & trim white space
 		if ( rObj.desc )
@@ -211,11 +250,21 @@ baseRemoteSearch.prototype = {
 		// no desc avaliable:
 		return '';
 	},
-	// default license permission wiki text is cc based template mapping (does not confirm the templates actually exist)
+	/**
+	* Get the licence wikiText tag for a given resource Object.
+	*
+	* By default license permission wiki text is cc based template mapping 
+	* (does not confirm the templates actually exist)
+	*/
 	getPermissionWikiTag: function( rObj ) {
 		if ( !rObj.license )
 			return '';// no license info
-		// check that its a defined creative commons licnese key:
+			
+		// First check if we have a special license template tag already set: 
+		if( rObj.license_template_tag )
+			return '{{' + rObj.license_template_tag + '}}';
+			
+		// Check that its a defined creative commons license key:
 		if (  this.rsd.licenses.cc.licenses[ rObj.license.key ] != 'undefined' ) {
 			return '{{Cc-' + rObj.license.key + '}}';
 		} else if ( rObj.license.lurl ) {
@@ -223,23 +272,51 @@ baseRemoteSearch.prototype = {
 		}
 
 	},
+	/**
+	* Gets the resource import description text
+	*/
 	getImportResourceDescWiki:function( rObj ) {
 		return gM( 'mwe-imported_from', [rObj.title,  this.cp.homepage, gM('rsd-' + this.cp.id + '-title'), rObj.link] );
 	},
-	// for thigns like categories and the like
+	/**
+	* Get any extra wikitext description for the given resource object. 
+	* For content outside of the main template description, 
+	* like categories or additional wikitext notes. 
+	*
+	* By default its an empty string. 
+	*/
 	getExtraResourceDescWiki:function( rObj ) {
 		return '';
 	},
-	// by default just return the poster (clients can override)
+	
+	/** 
+	* Gets a image transformation 
+	* by default it just return the poster
+	*/
 	getImageTransform:function( rObj, opt ) {
 		return rObj.poster;
 	},
-	getEmbedObjParsedInfo:function( rObj, eb_id ) {
+	
+	/**
+	* Adds additional resource information post clip embedding. 
+	*/
+	addResourceInfoFromEmbedInstance : function( rObj, eb_id ) {
 		return rObj;
 	},
-	getEmbedTimeMeta:function( rObj, callback ) {
+	
+	/**
+	* Adds resource info with a callback function
+	*
+	* Usefull for grabbing extra info that is not avaliable in the innitial
+	* search results api request.
+	*/
+	addResourceInfoCallback:function( rObj, callback ) {
 		callback();
 	},
+	
+	/**
+	* Get the wiki embed code for a given resource object
+	*/
 	getEmbedWikiCode:function( rObj ) {
 		var layout = ( rObj.layout ) ? rObj.layout:"right"
 		var o = '[[' + this.rsd.cFileNS + ':' + rObj.target_resource_title + '|thumb|' + layout;
@@ -257,11 +334,11 @@ baseRemoteSearch.prototype = {
 		o += ']]';
 		return o;
 	},
+	/**
+	* Updates / normalizes the target_resource_title
+	*/
 	updateTargetResourceTitle:function( rObj ) {
 		rObj.target_resource_title = rObj.titleKey.replace( / File: | Image: / , '' );
 		rObj.target_resource_title = this.cp.resource_prefix + rObj.target_resource_title;
-	},
-	updateDataForImport:function( rObj ) {
-		return rObj;
 	}
 }

@@ -1,8 +1,8 @@
 /*
  * Handles driving the firefogg render system 
 */
-var mvFirefoggRender = function( iObj ) {
-	return this.init( iObj );
+var mvFirefoggRender = function( options ) {
+	return this.init( options );
 };
 var default_render_options = {
 	"videoQuality" : 10,
@@ -18,7 +18,7 @@ mvFirefoggRender.prototype = {
 	// default empty render options: 
 	renderOptions: { },
 	continue_rendering:false,
-	init:function( iObj ) {
+	init:function( options ) {
 		var _this = this;
 		
 		// grab the mvFirefogg object to do basic tests
@@ -38,12 +38,12 @@ mvFirefoggRender.prototype = {
 		this.fogg = this.myFogg.fogg;
 		
 		// setup player instance
-		this.player = $j( iObj.player_target ).get( 0 );
-		this.player_target = iObj.player_target;
+		this.player = $j( options.player_target ).get( 0 );
+		this.player_target = options.player_target;
 		
 		// Extend the render options with any provided details
-		if( iObj['render_options'] )
-			$j.extend(this.renderOptions, iObj['render_options']);
+		if( options['render_options'] )
+			$j.extend(this.renderOptions, options['render_options']);
 		
 		// If no height width provided use target DOM width/height
 		if( !this.renderOptions.width && !this.renderOptions.height ){
@@ -54,28 +54,28 @@ mvFirefoggRender.prototype = {
 		
 		// Setup the application options (with defaults) 
 		for ( var i in default_FirefoggRender_options ) {
-			if ( iObj[ i ] ) {
-				this[ i ] = iObj[ i ];
+			if ( options[ i ] ) {
+				this[ i ] = options[ i ];
 			} else {
 				this[ i ] = default_FirefoggRender_options[i];
 			}
 		}
-		// Should be exteranlly controlled		
-		if ( iObj.target_startRender ) {
-			$j( iObj.target_startRender ).click( function() {
+		// Should be externally controlled		
+		if ( options.target_startRender ) {
+			$j( options.target_startRender ).click( function() {
 				js_log( "Start render" );
 				_this.startRender();
 			} )
-			this.target_startRender = iObj.target_startRender;
+			this.target_startRender = options.target_startRender;
 		}
-		if ( iObj.target_stopRender ) {
-			$j( iObj.target_stopRender ).click( function() {
+		if ( options.target_stopRender ) {
+			$j( options.target_stopRender ).click( function() {
 				_this.stopRender();
 			} )
-			this.target_stopRender = iObj.target_stopRender;
+			this.target_stopRender = options.target_stopRender;
 		}
-		if ( iObj.target_timeStatus ) {
-			this.target_timeStatus = iObj.target_timeStatus;
+		if ( options.target_timeStatus ) {
+			this.target_timeStatus = options.target_timeStatus;
 		}
 	},
 	startRender:function() {

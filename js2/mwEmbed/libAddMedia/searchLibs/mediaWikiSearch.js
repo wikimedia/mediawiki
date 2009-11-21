@@ -110,15 +110,15 @@ mediaWikiSearch.prototype = {
 		} );
 	},
 	getSearchResults:function() {
-		// call parent: 
+		// Call parent: 
 		this.parent_getSearchResults();
-		// set local ref:
+		// Set local ref:
 		var _this = this;
 				
 		js_log( 'f:getSearchResults for:' + $j( '#rsd_q' ).val() );
-		// do two queries against the Image / File / MVD namespace:
+		// Do two queries against the Image / File / MVD namespace:
 
-		// build the image request object: 
+		// Build the image request object: 
 		var reqObj = {
 			'action':'query',
 			'generator':'search',
@@ -132,11 +132,11 @@ mediaWikiSearch.prototype = {
 			'iiurlwidth': parseInt( this.rsd.thumb_width ),
 			'rvprop':'content'
 		};
-		// set up the number of request: 
+		// Set up the number of request: 
 		this.completed_req = 0;
 		this.num_req = 1;
-		// setup the number of requests result flag:											 
-		// also do a request for page titles (would be nice if api could query both at the same time) 
+		// Setup the number of requests result flag:											 
+		// Also do a request for page titles (would be nice if api could query both at the same time) 
 		reqObj['gsrwhat'] = 'text';
 		do_api_req( {
 			'data':reqObj,
@@ -161,24 +161,24 @@ mediaWikiSearch.prototype = {
 			if ( typeof data['query-continue'].search != 'undefined' )
 				this.more_results = true;
 		}
-		// make sure we have pages to idorate: 	
+		// Make sure we have pages to idorate: 	
 		if ( data.query && data.query.pages ) {
 			for ( var page_id in  data.query.pages ) {
 				var page =  data.query.pages[ page_id ];
 				
-				// make sure the reop is shared (don't show for now it confusing things)
+				// Make sure the reop is shared (don't show for now it confusing things)
 				// @@todo support remote repository better
 				if ( page.imagerepository == 'shared' ) {
 					continue;
 				}
 				
-				// make sure the page is not a redirect
+				// Make sure the page is not a redirect
 				if ( page.revisions && page.revisions[0] &&
 					page.revisions[0]['*'] && page.revisions[0]['*'].indexOf( '#REDIRECT' ) === 0 ) {
 					// skip page is redirect 
 					continue;
 				}
-				// skip if its an empty or missing imageinfo: 
+				// Skip if its an empty or missing imageinfo: 
 				if ( !page.imageinfo )
 					continue;
 				var rObj = 	{
@@ -204,10 +204,11 @@ mediaWikiSearch.prototype = {
 				 //to use once we get the wiki-text parser in shape
 				var pObj = mw.parser.pNew( rObj.desc );
 				//structured data on commons is based on the "information" template: 
-				var tmplInfo = pObj.templates( 'information' );				
+				var tmplInfo = pObj.templates( 'information' );		
+				rObj.desc = tmplInfo.description		
 				*/
 				
-				// attempt to parse out the description current user desc from the commons template: 
+				// Attempt to parse out the description current user desc from the commons template: 
 				// @@todo these could be combined to a single regEx
 				// or better improve the wiki-text parsing and use above 
 				var desc = rObj.desc.match( /\|\s*description\s*=\s*(([^\n]*\n)*)\|\s*source=/i );
@@ -231,15 +232,15 @@ mediaWikiSearch.prototype = {
 					}
 				}
 										
-				// likely a audio clip if no poster and type application/ogg 
+				// Likely a audio clip if no poster and type application/ogg 
 				// @@todo we should return audio/ogg for the mime type or some other way to specify its "audio" 
 				if ( ! rObj.poster && rObj.mime == 'application/ogg' ) {
 					rObj.mime = 'audio/ogg';
 				}
-				// add to the resultObj
+				// Add to the resultObj
 				this.resultsObj[page_id] = rObj;
 				
-				// if returnFirst flag:
+				// If returnFirst flag:
 				if ( returnFirst )
 					return this.resultsObj[page_id];
 				
@@ -253,9 +254,9 @@ mediaWikiSearch.prototype = {
 			js_log( 'no results:' + data );
 		}
 	},
-	// check request done used for when we have multiple requests to check before formating results. 
+	// Check request done used for when we have multiple requests to check before formating results. 
 	checkRequestDone:function() {
-		// display output if done: 
+		// Display output if done: 
 		this.completed_req++;
 		if ( this.completed_req == this.num_req ) {
 			this.loading = 0;
@@ -265,7 +266,7 @@ mediaWikiSearch.prototype = {
 		if ( rObj.mime == 'application/ogg' )
 			return callback( { 'url':rObj.src, 'poster' : rObj.url } );
 		
-		// his could be depreciated if thumb.php improves
+		// This could be depreciated if thumb.php support is standard
 		var reqObj = {
 			'action':'query',
 			'format':'json',
@@ -273,7 +274,7 @@ mediaWikiSearch.prototype = {
 			'prop':'imageinfo',
 			'iiprop':'url|size|mime'
 		}
-		// set the width: 
+		// Set the width: 
 		if ( size.width )
 			reqObj['iiurlwidth'] = size.width;
 		 js_log( 'going to do req: ' + this.cp.api_url + ' ' + reqObj );
@@ -310,10 +311,10 @@ mediaWikiSearch.prototype = {
 	getInlineDescWiki:function( rObj ) {
 		var desc = this.parent_getInlineDescWiki( rObj );
 		
-		// strip categories for inline Desc: (should strip license tags too but not as easy)
+		// Strip categories for inline Desc: (should strip license tags too but not as easy)
 		desc = desc.replace( /\[\[Category\:[^\]]*\]\]/gi, '' );
 		
-		// just grab the description tag for inline desc:
+		// Just grab the description tag for inline desc:
 		var descMatch = new RegExp( /Description=(\{\{en\|)?([^|]*|)/ );
 		var dparts = desc.match( descMatch );
 				
@@ -333,14 +334,14 @@ mediaWikiSearch.prototype = {
 		js_log( 'Error: No Description Tag, Using::' + desc );
 		return desc;
 	},
-	// returns the inline wikitext for insertion (template based crops for now) 
+	// Returns the inline wikitext for insertion (template based crops for now) 
 	getEmbedWikiCode: function( rObj ) {
-			// set default layout to right justified
+			// Set default layout to right justified
 			var layout = ( rObj.layout ) ? rObj.layout:"right"
 			// if crop is null do base output: 
 			if ( rObj.crop == null )
 				return this.parent_getEmbedWikiCode( rObj );
-			// using the preview crop template: http://en.wikipedia.org/wiki/Template:Preview_Crop
+			// Using the preview crop template: http://en.wikipedia.org/wiki/Template:Preview_Crop
 			// @@todo should be replaced with server side cropping 
 			return '{{Preview Crop ' + "\n" +
 						'|Image   = ' + rObj.target_resource_title + "\n" +

@@ -73,6 +73,15 @@ metavidSearch.prototype = {
 
 				// Default width of metavid clips:
 				rObj['target_width'] = 400;
+								
+				rObj['author'] = 'US Government';
+				
+				// Add in the date as UTC "toDateString" : 
+				var d = _this.getDateFromLink( rObj.link );
+				rObj['date'] =	 d.toDateString();
+				
+				// Set the license_template_tag ( all metavid content is PD-USGov )
+				rObj['license_template_tag'] = 'PD-USGov';
 			}
 			// done loading:
 			_this.loading = 0;
@@ -88,10 +97,6 @@ metavidSearch.prototype = {
 		var sn = rObj['stream_name'].replace( /_/g, ' ' );
 		sn = sn.charAt( 0 ).toUpperCase() + sn.substr( 1 );
 		return gM( 'mwe-stream_title', [ sn, rObj.start_time, rObj.end_time ] );
-	},
-	// metavid descption tied to public domain license key (government produced content)
-	getPermissionWikiTag:function( rObj ) {
-		return '{{PD-USGov}}';
 	},
 	getExtraResourceDescWiki:function( rObj ) {
 		var o = "\n";
@@ -180,8 +185,8 @@ metavidSearch.prototype = {
 			return getURLParamReplace( rObj.poster, { 'size' : 'full' } )
 		}
 	},
-	getEmbedObjParsedInfo:function( rObj, eb_id ) {
-		var sources = $j( '#' + eb_id ).get( 0 ).media_element.getSources();
+	addResourceInfoFromEmbedInstance : function( rObj, embed_id ) {
+		var sources = $j( '#' + embed_id ).get( 0 ).media_element.getSources();
 		rObj.other_versions = '*[' + rObj['roe_url'] + ' XML of all Video Formats and Timed Text]' + "\n";
 		for ( var i in sources ) {
 			var cur_source = sources[i];
@@ -190,18 +195,6 @@ metavidSearch.prototype = {
 				rObj['url'] = cur_source.getURI();
 		}
 		// js_log('set url to: ' + rObj['url']);
-		return rObj;
-	},
-	// update rObj for import:
-	updateDataForImport:function( rObj ) {
-		rObj['author'] = 'US Government';
-		// convert data to UTC type date:
-		var d = this.getDateFromLink( rObj.link );
-		rObj['date'] =	 d.toDateString();
-		rObj['license_template_tag'] = 'PD-USGov';
-		// update based on new start time:
-		js_log( 'url is: ' + rObj.src + ' ns: ' + rObj.start_time + ' ne:' + rObj.end_time );
-
 		return rObj;
 	},
 	getDateFromLink:function( link ) {
