@@ -1,17 +1,24 @@
-// archive.org uses solr engine: 
-// more about solr here:  
-// http://lucene.apache.org/solr/
+/*
+* Archive.org Search
+* 
+* archive.org uses the solr engine: 
+* more about solr here:  
+* http://lucene.apache.org/solr/
+*/
 
 var archiveOrgSearch = function ( iObj ) {
 	return this.init( iObj );
 }
 archiveOrgSearch.prototype = {
 	// Archive.org constants: 
-	dnUrl:'http://www.archive.org/download/',
-	dtUrl:'http://www.archive.org/details/',
-	init:function( iObj ) {
-		// Init base class and inherit: 
-		var baseSearch = new baseRemoteSearch( iObj );
+	downloadUrl : 'http://www.archive.org/download/',
+	detailsUrl : 'http://www.archive.org/details/',
+	/*
+	* Inititalize the archiveOrgSearch class.
+	* archiveOrgSearch inherits the baseSearch class 
+	*/
+	init:function( options ) {		
+		var baseSearch = new baseRemoteSearch( options );
 		for ( var i in baseSearch ) {
 			if ( typeof this[i] == 'undefined' ) {
 				this[i] = baseSearch[i];
@@ -19,8 +26,10 @@ archiveOrgSearch.prototype = {
 				this['parent_' + i] =  baseSearch[i];
 			}
 		}
-		// Inherit the cp settings for 
 	},
+	/**
+	* Gets the search results from the api query
+	*/
 	getSearchResults:function() {
 		// call parent: 
 		this.parent_getSearchResults();
@@ -49,10 +58,13 @@ archiveOrgSearch.prototype = {
 			}
 		);
 	},
+	/**
+	* Adds the search results to the local resultsObj
+	*/
 	addResults:function( data ) {
 		var _this = this;
 		if ( data.response && data.response.docs ) {
-			// set result info: 
+			// Set result info: 
 			this.num_results = data.response.numFound;
 		
 			for ( var resource_id in data.response.docs ) {
@@ -61,17 +73,17 @@ archiveOrgSearch.prototype = {
 					// @@todo we should add .ogv or oga if video or audio:
 					'titleKey'	 :  resource.identifier + '.ogg',
 					'resourceKey':  resource.identifier,
-					'link'		 : _this.dtUrl + resource.identifier,
+					'link'		 : _this.detailsUrl + resource.identifier,
 					'title'		 : resource.title,
-					'poster'	 : _this.dnUrl + resource.identifier + '/format=thumbnail',
-					'poster_ani' : _this.dnUrl + resource.identifier + '/format=Animated+Gif',
+					'poster'	 : _this.downloadUrl + resource.identifier + '/format=thumbnail',
+					'poster_ani' : _this.downloadUrl + resource.identifier + '/format=Animated+Gif',
 					'thumbwidth' : 160,
 					'thumbheight': 110,
 					'desc'		 : resource.description,
-					'src'		  : _this.dnUrl + resource.identifier + '/format=Ogg+video',
-					'mime'		  : 'application/ogg',
-					// set the license: (rsd is a pointer to the parent remoteSearchDriver )		 
-					'license'	  : this.rsd.getLicenceFromUrl( resource.licenseurl ),
+					'src'		 : _this.downloadUrl + resource.identifier + '/format=Ogg+video',
+					'mime'		 : 'application/ogg',
+					// Set the license: (rsd is a pointer to the parent remoteSearchDriver )		 
+					'license'	 : this.rsd.getLicenceFromUrl( resource.licenseurl ),
 					'pSobj'		 :_this
 					
 				};
@@ -79,14 +91,14 @@ archiveOrgSearch.prototype = {
 			}
 		}
 	},
-	// getTitleKey:function(rObj){
-	//	return rObj['stream_name'] + '__' + rObj['start_time'].replace(/:/g,'.') + '_to_' + rObj['end_time'].replace(/:/g,'.') + '.ogg';;
-	// }
-	getEmbedTimeMeta:function( rObj, callback ) {
+	/**
+	* Gets some media metadata via a archive.org special entry point "avinfo"
+	*/ 
+	addResourceInfoCallback:function( rObj, callback ) {
 		var _this = this;
 		do_api_req( {
-			'data': { 'avinfo':1 },
-			'url':_this.dnUrl + rObj.resourceKey + '/format=Ogg+video'
+			'data': { 'avinfo' : 1 },
+			'url':_this.downloadUrl + rObj.resourceKey + '/format=Ogg+video'
 		}, function( data ) {
 			if ( data['length'] )
 				rObj.duration = data['length'];
@@ -98,6 +110,9 @@ archiveOrgSearch.prototype = {
 			callback();
 		} );
 	},
+	/*
+	* Returns html to embed a given result Object ( rObj ) 
+	*/	
 	getEmbedHTML: function( rObj , options ) {
 		js_log( 'getEmbedHTML:: ' + rObj.poster );
 		if ( !options )

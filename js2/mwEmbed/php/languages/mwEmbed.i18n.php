@@ -388,6 +388,11 @@ $messages['en'] = array(
 	'mwe-related_videos' => 'Related videos',
 	'mwe-seeking' => 'seeking',
 	'mwe-copy-code' => 'Copy code',
+
+	/*
+	 * File: /skins/kskin/kskin.js
+	 */
+	'mwe-credit-title' => 'Title: $1',
 );
 
 /** Message documentation (Message documentation)

@@ -734,7 +734,7 @@ mvBaseUploadInterface.prototype = {
 				}
 			};
 			// Create the "return to form" button
-			bObj[ gM( 'mwe-return-to-form' ) ] = function() {
+			buttons[ gM( 'mwe-return-to-form' ) ] = function() {
 				$j( this ).dialog( 'close' );
 				_this.form_post_override = false;
 			}
@@ -742,7 +742,7 @@ mvBaseUploadInterface.prototype = {
 			_this.updateProgressWin(
 				gM( 'mwe-uploadwarning' ),
 				'<h3>' + gM( 'mwe-uploadwarning' ) + '</h3>' + wmsg + '<p>',
-				bObj );
+				buttons );
 			return false;
 		}
 		// No error!
@@ -783,21 +783,21 @@ mvBaseUploadInterface.prototype = {
 				return false;
 			}
 
-			var bObj = {};
+			var buttons = {};
 			// "Return" button
-			bObj[ gM( 'mwe-return-to-form' ) ] = function() {
+			buttons[ gM( 'mwe-return-to-form' ) ] = function() {
 				$j( this ).dialog( 'close' );
 				_this.form_post_override = false;
 			}
 			// "Go to resource" button
-			bObj[ gM('mwe-go-to-resource') ] = function() {
+			buttons[ gM('mwe-go-to-resource') ] = function() {
 				window.location = url;
 			};
 			_this.action_done = true;
 			_this.updateProgressWin(
 					gM( 'mwe-successfulupload' ),
 					gM( 'mwe-upload_done', url),
-					bObj );
+					buttons );
 			js_log( 'apiRes.upload.imageinfo::' + url );
 			return true;
 		}

@@ -36,6 +36,14 @@
 	background-position: -16px -48px;
 }
 
+/* cc icon */
+.k-player .ui-state-default .ui-icon-comment {
+	background-position: 0px -65px;
+}
+.k-player .ui-state-hover .ui-icon-comment {
+	background-position: -17px -65px;
+}
+
 .k-player .ui-state-default .ui-icon-play {
 	background: url(images/ksprite.png) no-repeat 0 0;
 }
@@ -337,7 +345,7 @@
 	border: 1px solid #000000;
 	color: #000000;
 	float: right;
-	height: 24px;
+	height: 34px;
 	padding: 0 5px 3px;
 	width: 84px;
 	font-size: 1em;
@@ -385,4 +393,24 @@
 	margin: -3px 5px 0 -1px;
 	position: absolute;
 	width: 8px;
+}
+
+.k-player .credits_box { 
+	background-attachment:scroll;
+	background-color:white;
+	background-image:none;
+	background-position:0 0;
+	bottom:30px;
+	left:15px;
+	position:absolute;
+	right:61px;
+	top:48px;		
+}
+.k-player .credits_box a{
+	color:#666;
+}
+.k-player .creditline img {
+	float: left;
+	width: 90px;
+	margin: 4px;
 }

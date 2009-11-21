@@ -5,7 +5,7 @@
  
 var urlparts = getRemoteEmbedPath();
 var mwEmbedHostPath = urlparts[0];
-var mwRemoteVersion = '1.09';
+var mwRemoteVersion = '1.10';
 var mwUseScriptLoader = true;
 
 // setup up request Params: 
@@ -68,10 +68,8 @@ function doPageSpecificRewrite() {
 			vidIdList.push( divs[i].getAttribute( "id" ) );
 		}
 	}
-	if ( vidIdList.length > 0 ) {
-	
-		var jsSetVideo = [ 'embedVideo', '$j.ui', 'ctrlBuilder', '$j.cookie', '$j.ui.slider' ];
-		
+	if ( vidIdList.length > 0 ) {	
+		var jsSetVideo = [ 'embedVideo', '$j.ui', 'ctrlBuilder', '$j.cookie', '$j.ui.slider', 'kskinConfig' ];		
 		// Quick sniff use java if IE and native if firefox 
 		// ( other browsers will run detect and get on-demand ) 	
 		if (navigator.userAgent.indexOf("MSIE") != -1)
@@ -96,21 +94,19 @@ function rewrite_for_OggHandler( vidIdList ) {
 			return ;
 		js_log( 'vidIdList on: ' + vidId + ' length: ' + vidIdList.length + ' left in the set: ' + vidIdList );
 		
-		// Grab the thumbnail and src of the video
-		var pimg = $j( '#' + vidId + ' img' );
-		var poster_attr = 'poster = "' + pimg.attr( 'src' ) + '" ';
+		tag_type = 'video';
+		// Check type:
 		var pwidth = $j( '#' + vidId ).width();
-		var pheight = $j( '#' + vidId + ' img :first' ).attr( 'height' );
-		if(!pheight)
-			pheight = parseInt( pwidth * .75 );
-		var tag_type = 'video';		
-				
-		// Check for audio
-		if ( pheight == '22' || pheight == '52' ) {
-			// set width to parent width:			
+		var $pimg = $j( '#' + vidId + ' img:first' );		
+		if( $pimg.attr('src').split('/').pop() == 'play.png'){
 			tag_type = 'audio';
-			poster_attr = '';
+			poster_attr = '';		
+			pheight = 0;
+		}else{
+			var poster_attr = 'poster = "' + $pimg.attr( 'src' ) + '" ';			
+			var pheight = $pimg.attr( 'height' );				
 		}
+
 
 		// Parsed values:
 		var src = '';
@@ -137,8 +133,9 @@ function rewrite_for_OggHandler( vidIdList ) {
 					'wikiTitleKey="' + wikiTitleKey + '" ' +
 					'src="' + src + '" ' +
 					duration_attr +
-					offset_attr + ' ';
-					
+					offset_attr + ' ' +
+					'class="kskin" ';
+								
 			if ( tag_type == 'audio' ) {
 				html_out = '<audio' + common_attr + ' style="width:' + pwidth + 'px;"></audio>';
 			} else {
@@ -147,18 +144,20 @@ function rewrite_for_OggHandler( vidIdList ) {
 				'style="width:' + pwidth + 'px;height:' + pheight + 'px;">' +
 				'</video>';
 			}
-			// set the video tag inner html and update the height
+			// Set the video tag inner html and update the height
 			$j( '#' + vidId ).html( html_out )
 				.css( 'height', pheight + 30 );
 
-		}
-		rewrite_by_id( 'mwe_' + vidId, function() {
-			if ( vidIdList.length != 0 ) {
-				setTimeout( function() {
-					procVidId( vidIdList.pop() )
-				}, 10 );
-			}
-		} );
+			// Do the actual rewrite 				
+			rewrite_by_id( 'mwe_' + vidId, function() {
+				if ( vidIdList.length != 0 ) {
+					setTimeout( function() {
+						procVidId( vidIdList.pop() )
+					}, 10 );
+				}
+			} );
+
+		}		
 	};
 	// process each item in the vidIdList (with setTimeout to avoid locking)
 	procVidId( vidIdList.pop() );

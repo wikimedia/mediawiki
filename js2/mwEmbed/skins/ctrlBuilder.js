@@ -39,12 +39,6 @@ ctrlBuilder.prototype = {
 		  'options':true,
 		  'borders':true
 	},
-	menu_items:[
-		'playerselect',
-		'download',
-		'share',
-		'credits',
-	],
 	getControls:function() {
 		// set up local pointer to the embedObj
 		var embedObj = this.embedObj;
@@ -432,7 +426,7 @@ ctrlBuilder.prototype = {
 		'play_head': {
 			'w':0, // special case (takes up remaining space)
 			'o':function( ctrlObj ) {
-				return '<div class="play_head" style="width: ' + ( ctrlObj.available_width - 30 ) + 'px;"></div>';
+				return '<div class="play_head" style="width: ' + ( ctrlObj.available_width - 34 ) + 'px;"></div>';
 			}
 		}
 	}

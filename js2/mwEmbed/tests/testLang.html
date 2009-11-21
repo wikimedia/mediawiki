@@ -8,7 +8,7 @@ td{
 }
 </style>
 <script type="text/javascript" >
-var scriptLoaderURID = 't14';
+var scriptLoaderURID = 't15';
 //for just setting one or two to test at a time for debug
 //var langKeyDebug = ['sl']; //pl
 var langKeyDebug = [ 'az', 'da', 'pt', 'fr', 'lv', 'en'];
@@ -195,7 +195,7 @@ js2AddOnloadHook( function(){
 					
 		//do a manual call to the script-lodaer:
 		function doProcLangKey(langKey){			
-			$j.getScript('../../../mwScriptLoader.php?class=$mw.testLang&urid='+ scriptLoaderURID +'&uselang='+langKey, function(){			
+			$j.getScript('../../../mwScriptLoader.php?class=mw.testLang&urid='+ scriptLoaderURID +'&uselang='+langKey, function(){			
 				var o='';
 				o+='<tr><td colspan="6" height="20" style="font-size:large"><b>Lang:' + langKey + '</b></td></tr>';		
 				//now for each langage msg: 
@@ -217,8 +217,8 @@ js2AddOnloadHook( function(){
 						o+='<tr>'+
 								'<td>' + numVal + '</td>' + 
 								'<td>' + mKey + '</td>' + 
-								'<td>' + $mw.lang.gMsgNoTrans( mKey ) + '</td>' + 
-								'<td id="' + tkey + '_js">' + $mw.lang.gM( mKey, numVal ) + '</td>';
+								'<td>' + mw.lang.gMsgNoTrans( mKey ) + '</td>' + 
+								'<td id="' + tkey + '_js">' + mw.lang.gM( mKey, numVal ) + '</td>';
 						//show mw col:						
 						if( mKey.substr(0, 5) == 'test_' ){
 							o+='<td> (test msg) </td>';

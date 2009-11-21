@@ -909,8 +909,11 @@ embedVideo.prototype = {
 		var dcss = parseInt( $j(element).css( dim ).replace( 'px' , '' ) );
 		var dattr = parseInt( $j(element).attr( dim ) );
 		this[ dim ] = ( dcss )? dcss : dattr;		
-		if(!this[ dim ]){
-			// Grab width/height from default value
+		if( !this[ dim ] ){
+			//special height default for audio tag:  
+			if( element.tagName.toLowerCase() == 'audio' &&  dim == 'height' )
+				return this[ dim ] = 0;
+			// Grab width/height from default value (for video) 
 			var dwh = mw.conf['video_size'].split( 'x' );
 		 	this[ dim ] = ( dim == 'width' )? dwh[0] : dwh[1];
 		 }
@@ -1868,7 +1871,7 @@ embedVideo.prototype = {
 		 } );
 		 return false; // onclick action return false
 	},
-	showPlayerselect:function( $target ) {
+	showPlayerselect:function( $target ) {	
 		// Get id (in case where we have a parent container)
 		var this_id = ( this.pc != null ) ? this.pc.pp.id:this.id;
 		var _this = this;
@@ -1949,9 +1952,9 @@ embedVideo.prototype = {
 			} );
 			
 			if ( dl_list != '' )
-				out += gM( 'mwe-download_full' ) + '<blockquote style="background:#000">' + dl_list + '</blockquote>';
+				out += '<h2>' + gM( 'mwe-download_full' ) + '</h2><ul>' + dl_list + '</ul>';
 			if ( dl_txt_list != '' )
-				out += gM( 'mwe-download_text' ) + '<blockquote style="background:#000">' + dl_txt_list + '</blockquote>';
+				out += '<h2>' +gM( 'mwe-download_text' ) + '</h2><ul>' + dl_txt_list + '</ul>';
 			out += '</div>';
 			return out;
 		}
@@ -1966,9 +1969,6 @@ embedVideo.prototype = {
 		} else {
 			$target.html( getShowVideoDownload() );
 		}
-	},
-	showCredits:function( $target ) {
-		$target.html( '<h2>' + gM( 'mwe-credits' ) + '</h2>' );
 	},
 	/*
 	*  Base embed controls
@@ -2332,10 +2332,11 @@ mediaPlayer.prototype =
 	{
 		return gM( 'mwe-ogg-player-' + this.id );
 	},
-	load : function( callback ) {
+	load : function( callback ) {	
 		mvJsLoader.doLoad( [
 			this.library + 'Embed'
-		], function() {
+		], function() {			
+			js_log("wtf: " + typeof( vlcEmbed ) );
 			callback();
 		} );
 	}

@@ -282,13 +282,15 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 				return;
 			}
 
-			// Otherwise show the "install Firefogg" message
-			// FIXME: getFirefoggInstallUrl() may return false, this is not handled
+			// Otherwise show the "install Firefogg" message			
 			var upMsg = ( _this.form_type == 'upload' ) ? gM( 'fogg-for_improved_uploads' ) : '';
-			$j( _this.target_please_install )
-				.html( upMsg + gM( 'fogg-please_install', _this.getFirefoggInstallUrl() ) )
-				.css( 'padding', '10px' )
-				.show();
+			var firefoggUrl = _this.getFirefoggInstallUrl();
+			if( firefoggUrl ){
+				$j( _this.target_please_install )
+					.html( upMsg + gM( 'fogg-please_install', firefoggUrl ) )
+					.css( 'padding', '10px' )
+					.show();
+			}
 		}
 
 		// Set up the click handler for the "save local file" button
