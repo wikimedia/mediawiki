@@ -359,6 +359,7 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 # Recent changes
 'diff' => 'Gar',
+'hist' => 'Amzruy',
 
 # Upload
 'upload' => 'sΥlid afaylu',

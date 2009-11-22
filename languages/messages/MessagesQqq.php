@@ -59,6 +59,7 @@
  * @author Nike
  * @author Node ue
  * @author Octahedron80
+ * @author OsamaK
  * @author PhiLiP
  * @author Platonides
  * @author Prima klasy4na
@@ -597,6 +598,7 @@ HTML markup cannot be used.",
 'protectedinterface'   => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.',
 'editinginterface'     => "A message shown when editing pages in the namespace MediaWiki:. In the [http://translatewiki.net/wiki/Main_Page?setlang=en URL], '''change \"setlang=en\" to your own language code.'''",
 'ns-specialprotected'  => 'Error message displayed when trying to edit a page in the Special namespace',
+'titleprotected'       => 'Use $1 for GENDER.',
 
 # Login and logout pages
 'logouttext'                 => 'Log out message',
@@ -771,7 +773,7 @@ Parameters:
 * <tt>$1</tt> is the blocking sysop (with a link to his/her userpage)
 * <tt>$2</tt> is the reason for the block
 * <tt>$3</tt> is the current IP address of the blocked user
-* <tt>$4</tt> is the blocking sysop’s username (plain text, without the link)
+* <tt>$4</tt> is the blocking sysop’s username (plain text, without the link). Use it for GENDER.
 * <tt>$5</tt> is the unique numeric identifier of the applied autoblock
 * <tt>$6</tt> is the expiry of the block
 * <tt>$7</tt> is the intended target of the block (what the blocking user specified in the blocking form)
@@ -1461,7 +1463,8 @@ This action allows editing of all of the "user rights", not just the rights of t
 * $4 is a date alone,
 * $5 is a time alone.
 
- Example: "\'\'Below are the last 50 changes in the last 7 days, as of 14:48, 24 January 2008.\'\'"',
+ <!--Example: "\'\'Below are the last 50 changes in the last 7 days, as of 14:48, 24 January 2008.\'\'"-->
+ Example: "\'\'{{int:rcnote/en|50|7||24 January 2008|14:48}}\'\'"',
 'rcnotefrom'                       => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time. The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
 
 Parameter $1 is the maximum number of changes that are displayed.
@@ -2581,7 +2584,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 {{Identical|Log out}}',
 'tooltip-ca-talk'                 => "Tooltip shown when hovering over the \"[[MediaWiki:Talk/{{SUBPAGENAME}}|{{int:talk}}]]\" tab.
 
-A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [http://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki]. 
+A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For a technical definition of 'content namespaces' see [http://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki]. 
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 

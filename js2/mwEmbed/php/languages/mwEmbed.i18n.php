@@ -336,6 +336,11 @@ $messages['en'] = array(
 	'mwe-review-upload' => 'Review file {{PLURAL:$1|upload|uploads}}',
 
 	/*
+	 * js file: /skins/kskin/kskin.js
+	 */
+	'mwe-credit-title' => 'Title: $1',
+
+	/*
 	 * js file: /libEmbedVideo/embedVideo.js
 	 */
 	'mwe-loading_plugin' => 'loading plugin ...',
@@ -388,11 +393,6 @@ $messages['en'] = array(
 	'mwe-related_videos' => 'Related videos',
 	'mwe-seeking' => 'seeking',
 	'mwe-copy-code' => 'Copy code',
-
-	/*
-	 * File: /skins/kskin/kskin.js
-	 */
-	'mwe-credit-title' => 'Title: $1',
 );
 
 /** Message documentation (Message documentation)
@@ -803,7 +803,7 @@ $messages['be-tarask'] = array(
 	'fogg-cg-advAudio' => 'Палепшанае кіраваньне аўдыя-кадыроўкі',
 	'fogg-preset-custom' => 'Нестандартныя ўстаноўкі',
 	'fogg-webvideo-desc' => 'Ўэб-відэа Theora, Vorbis 400 кбіт/с з максымальнай шырынёй 400 пкс',
-	'fogg-savebandwith-desc' => 'Нізкаякаснае ўэб-відэа Theora, Vorbis 164 кбіт/с з максымальнай шырынёй 200 пкс',
+	'fogg-savebandwidth-desc' => 'Нізкаякаснае ўэб-відэа Theora, Vorbis 164 кбіт/с з максымальнай шырынёй 200 пкс',
 	'fogg-highquality-desc' => 'Высакаякаснае ўэб-відэа Theora, Vorbis з максымальнай шырынёй 1080 пкс',
 	'fogg-videoQuality-title' => 'Якасьць відэа',
 	'fogg-videoQuality-help' => 'Выкарыстоўваюцца для ўстаноўкі <i>візуальнай якасьці</i> кадаванага відэа (не выкарыстоўваецца, калі Вы ўстанавілі хуткасьць перадачы ніжэй у пашыраных ўстаноўках).',
@@ -922,7 +922,7 @@ $messages['be-tarask'] = array(
 	'mwe-upload-in-progress' => 'Працягваецца загрузка (не зачыняйце гэта акно)',
 	'mwe-upload-transcoded-status' => 'Перакадыраваны',
 	'mwe-uploaded-status' => 'Загружаны',
-	'mwe-upload-stats-fileprogres' => '$1 з $2',
+	'mwe-upload-stats-fileprogress' => '$1 з $2',
 	'mwe-upload_completed' => 'Вашая загрузка скончаная',
 	'mwe-upload_done' => '<a href="$1">Ваша загрузка <i>павінна быць</i> даступнай</a>.',
 	'mwe-upload-unknown-size' => 'Невядомы памер',
@@ -980,6 +980,7 @@ $messages['be-tarask'] = array(
 	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
 	'mwe-ogg-player-cortado' => 'Java Cortado',
 	'mwe-ogg-player-flowplayer' => 'Flowplayer',
+	'mwe-ogg-player-kplayer' => 'Прайгравальнік Kaltura',
 	'mwe-ogg-player-selected' => '(выбраны)',
 	'mwe-ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mwe-generic_missing_plugin' => 'Ваш браўзэр, хутчэй за ўсё, не падтрымлівае наступны тып прайграваньня: <b>$1</b><br />Наведайце старонку <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Мэтады прайграваньня</a> для загрузкі прайгравальніка.<br />',
@@ -2264,6 +2265,7 @@ $messages['dsb'] = array(
 	'mwe-related_videos' => 'Pśiwuzne wideo',
 	'mwe-seeking' => 'pyta se',
 	'mwe-copy-code' => 'Kod kopěrowaś',
+	'mwe-credit-title' => 'Titel: $1',
 );
 
 /** Greek (Ελληνικά)
@@ -3191,6 +3193,7 @@ $messages['fr'] = array(
 	'mwe-related_videos' => 'Vidéos associées',
 	'mwe-seeking' => 'recherche',
 	'mwe-copy-code' => 'Copier le code',
+	'mwe-credit-title' => 'Titre : $1',
 );
 
 /** Galician (Galego)
@@ -3638,7 +3641,7 @@ $messages['gsw'] = array(
 	'fogg-cg-advAudio' => 'Fortgschritteni Yystellige fir d Audio-Umwandlig',
 	'fogg-preset-custom' => 'Aapassti Yystellige',
 	'fogg-webvideo-desc' => 'Webvideo Theora, Vorbis 400 kbit/s un 400px maximali Greßi',
-	'fogg-savebandwith-desc' => 'Nideri Bandbreiti Theora, Vorbis 164 kbit/s un 200px maximali Greßi',
+	'fogg-savebandwidth-desc' => 'Nideri Bandbreiti Theora, Vorbis 164 kbit/s un 200px maximali Greßi',
 	'fogg-highquality-desc' => 'Hochi Qualitet Theora, Vorbis 1080px maximali Greßi',
 	'fogg-videoQuality-title' => 'Videoqualitet',
 	'fogg-videoQuality-help' => 'Wird brucht go d <i>visuälli Qualitet</i> vum verschlisslete Video yystele (wird nit brucht, wänn d Bit-Rot in dr fortgschrittene Yystellige unten yygstellt wird).',
@@ -3757,7 +3760,7 @@ $messages['gsw'] = array(
 	'mwe-upload-in-progress' => 'Am Uffelade (des Fänschter nit zuemache)',
 	'mwe-upload-transcoded-status' => 'Umgwandlet',
 	'mwe-uploaded-status' => 'Uffeglade',
-	'mwe-upload-stats-fileprogres' => '$1 vu $2',
+	'mwe-upload-stats-fileprogress' => '$1 vu $2',
 	'mwe-upload_completed' => 'Dyy Uffelade isch fertig',
 	'mwe-upload_done' => '<a href="$1">Dyy uffegladeni Datei <i>sott</i> z Verfiegig stoh</a>.',
 	'mwe-upload-unknown-size' => 'Dateigreßi nit bekannt',
@@ -3815,6 +3818,7 @@ $messages['gsw'] = array(
 	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
 	'mwe-ogg-player-cortado' => 'Java Cortado',
 	'mwe-ogg-player-flowplayer' => 'Flowplayer',
+	'mwe-ogg-player-kplayer' => 'Kaltura-Player',
 	'mwe-ogg-player-selected' => '(uusgwehlt)',
 	'mwe-ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mwe-generic_missing_plugin' => 'Dyy Browser unterstitzt schyns dää Abspiltyp nit: <b>$1</b><br />Gang uf d <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Abspil-Methode</a>-Syte go ne Abpilprogramm abelede.<br />',
@@ -3826,6 +3830,7 @@ $messages['gsw'] = array(
 	'mwe-related_videos' => 'Verwandti Video',
 	'mwe-seeking' => 'Am Sueche',
 	'mwe-copy-code' => 'Code kopiere',
+	'mwe-credit-title' => 'Titel: $1',
 );
 
 /** Hebrew (עברית)
@@ -4303,6 +4308,7 @@ $messages['hsb'] = array(
 	'mwe-related_videos' => 'Přiwuzne wideja',
 	'mwe-seeking' => 'pyta so',
 	'mwe-copy-code' => 'Kod kopěrować',
+	'mwe-credit-title' => 'Titul: $1',
 );
 
 /** Hungarian (Magyar)
@@ -4617,6 +4623,7 @@ További információkat <a href="http://en.wikipedia.org/wiki/I-frame">itt</a> 
 	'mwe-related_videos' => 'Kapcsolódó videók',
 	'mwe-seeking' => 'keresés',
 	'mwe-copy-code' => 'Kód másolása',
+	'mwe-credit-title' => 'Cím: $1',
 );
 
 /** Interlingua (Interlingua)
@@ -4928,6 +4935,7 @@ $messages['ia'] = array(
 	'mwe-related_videos' => 'Videos connexe',
 	'mwe-seeking' => 'cercante',
 	'mwe-copy-code' => 'Copiar codice',
+	'mwe-credit-title' => 'Titulo: $1',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -5241,6 +5249,7 @@ $messages['id'] = array(
 	'mwe-related_videos' => 'Video yang berhubungan',
 	'mwe-seeking' => 'mencari',
 	'mwe-copy-code' => 'Salin kode',
+	'mwe-credit-title' => 'Judul: $1',
 );
 
 /** Ido (Ido)
@@ -5628,10 +5637,18 @@ $messages['ka'] = array(
  */
 $messages['ko'] = array(
 	'mwe-crop' => '그림을 잘라내기',
+	'mwe-start_time' => '시작 시간',
+	'mwe-end_time' => '종료 시간',
+	'mwe-duration' => '시간:',
+	'mwe-watch-video' => '비디오 보기',
+	'mwe-select-other-language' => '다른 언어 선택하기',
 	'mwe-close' => '닫기',
+	'mwe-menu_options' => '설정',
 	'mwe-zoom_in' => '확대',
 	'mwe-zoom_out' => '축소',
+	'mwe-editor_options' => '에디터 설정',
 	'mwe-other_options' => '다른 설정',
+	'mwe-loading_txt' => '불러오는 중...',
 	'mwe-cancel' => '취소',
 	'fogg-installed' => 'Firefogg가 설치되었습니다',
 	'fogg-transcoding' => '비디오를 Ogg로 인코딩하는 중...',
@@ -5657,7 +5674,13 @@ $messages['ko'] = array(
 	'mwe-loading_plugin' => '플러그인을 불러오는 중...',
 	'mwe-player_options' => '플레이어 설정',
 	'mwe-player_fullscreen' => '전체 화면',
+	'mwe-download' => '다운로드',
+	'mwe-share' => '공유하기',
 	'mwe-menu_btn' => '메뉴',
+	'mwe-close_btn' => '닫기',
+	'mwe-ogg-player-selected' => '(선택됨)',
+	'mwe-for_best_experience' => '더 나은 비디오 재생을 위해서는<br /><b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed">파이어폭스 3.5</a></b>를 권장합니다.',
+	'mwe-copy-code' => '코드 복사하기',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -5966,6 +5989,7 @@ $messages['lb'] = array(
 	'mwe-transition_in' => 'Iwwergang fir eran',
 	'mwe-transition_out' => 'Iwwergang fir eraus',
 	'mwe-remove_transition' => 'Iwwergang ewechhuelen',
+	'mwe-add-transition' => 'En Iwwergang derbäisetzen',
 	'mwe-menu_transition' => 'Iwwergäng an Effekter',
 	'mwe-menu_cliplib' => 'E Medium derbäi setzen',
 	'mwe-menu_resource_overview' => "Iwwersiicht iwwer d'Ressourcen",
@@ -6074,7 +6098,7 @@ $messages['lb'] = array(
 	'mwe-ignore-any-warnings' => 'All Warnungen ignoréieren',
 	'mwe-upload-in-progress' => "Eroplueden amgaang (maacht d'Fënster net zou)",
 	'mwe-uploaded-status' => 'Eropgelueden',
-	'mwe-upload-stats-fileprogres' => '$1 vu(n) $2',
+	'mwe-upload-stats-fileprogress' => '$1 vu(n) $2',
 	'mwe-upload_completed' => "D'Eroplueden ass ofgeschloss",
 	'mwe-upload_done' => '<a href="$1">De Fichier deen Dir eropgelueden hutt <i>misst</i> elo disponibel sinn</a>.',
 	'mwe-upload-unknown-size' => 'Onbekannte Gréisst',
@@ -6230,7 +6254,7 @@ $messages['ml'] = array(
 	'fogg-cg-advAudio' => 'വിപുലമായ ശബ്ദ എൻകോഡിങ് നിയന്ത്രണങ്ങൾ',
 	'fogg-preset-custom' => 'സ്വന്തം സജ്ജീകരണങ്ങൾ',
 	'fogg-webvideo-desc' => 'വെബ് ചലച്ചിത്രം തിയോറ, വോർബിസ് 400 കിലോബിറ്റ്/സെക്കന്റ് 400 ബിന്ദു പരമാവധി വീതി',
-	'fogg-savebandwith-desc' => 'കുറഞ്ഞ ബാൻഡ്‌‌വിഡ്ത് തിയോറ, വോർബിസ് 164 കിലോബിറ്റ്/സെക്കന്റ് 200ബിന്ദു പരമാവധി വീതി',
+	'fogg-savebandwidth-desc' => 'കുറഞ്ഞ ബാൻഡ്‌‌വിഡ്ത് തിയോറ, വോർബിസ് 164 കിലോബിറ്റ്/സെക്കന്റ് 200ബിന്ദു പരമാവധി വീതി',
 	'fogg-highquality-desc' => 'ഉന്നത നിലവാരത്തിലുള്ള തിയോറ, വോർബിസ്; പരമാവധി വീതി 1080 ബിന്ദു',
 	'fogg-videoQuality-title' => 'ചലച്ചിത്ര ഗുണനിലവാരം',
 	'fogg-starttime-title' => 'തുടങ്ങുന്ന സെക്കന്റ്',
@@ -6322,7 +6346,7 @@ $messages['ml'] = array(
 	'mwe-ignore-any-warnings' => 'അറിയിപ്പുകൾ അവഗണിക്കുക',
 	'mwe-upload-in-progress' => 'അപ്‌‌ലോഡിങ് ചെയ്തുകൊണ്ടിരിക്കുന്നു (ഈ ജാലകം അടയ്ക്കരുത്)',
 	'mwe-uploaded-status' => 'അപ്‌‌ലോഡ് ചെയ്തിരിക്കുന്നു',
-	'mwe-upload-stats-fileprogres' => '$2 എന്നതിൽ $1',
+	'mwe-upload-stats-fileprogress' => '$2 എന്നതിൽ $1',
 	'mwe-upload_completed' => 'താങ്കളുടെ അപ്‌‌ലോഡ് പൂർണ്ണമായിരിക്കുന്നു',
 	'mwe-upload_done' => '<a href="$1">താങ്കളുടെ അപ്‌‌ലോഡ് <i>ലഭ്യമായിരിക്കണം</i></a>.',
 	'mwe-upload-unknown-size' => 'വലിപ്പം അറിയില്ല',
@@ -6371,10 +6395,12 @@ $messages['ml'] = array(
 	'mwe-close_btn' => 'അടയ്ക്കുക',
 	'mwe-ogg-player-vlc-player' => 'വി.എൽ.സി. പ്ലേയർ',
 	'mwe-ogg-player-videoElement' => 'സ്വതവേയുള്ള ഓഗ് ചലച്ചിത്രം',
+	'mwe-ogg-player-oggPlugin' => 'ജെനറിക് ഓഗ് പ്ലഗിൻ',
 	'mwe-ogg-player-quicktime-mozilla' => 'ക്വിക്ക്റ്റൈം പ്ലഗിൻ',
 	'mwe-ogg-player-quicktime-activex' => 'ക്വിക്ക്റ്റൈം ആക്റ്റീവ്‌‌എക്സ്',
 	'mwe-ogg-player-cortado' => 'ജാവ കോർറ്റാഡോ',
 	'mwe-ogg-player-flowplayer' => 'ഫ്ലോപ്ലേയർ',
+	'mwe-ogg-player-kplayer' => 'കൽറ്റ്യൂറ പ്ലേയർ',
 	'mwe-ogg-player-selected' => '(തിരഞ്ഞെടുത്തവ)',
 	'mwe-ogg-player-omtkplayer' => 'ഓ‌‌എംറ്റികെ ഫ്ലാഷ് വോർബിസ്',
 	'mwe-generic_missing_plugin' => 'താങ്കളുടെ ബ്രൗസറിനു താഴെ പറയുന്നവ പ്രവർത്തിപ്പിക്കാനുള്ള പിന്തുണയുണ്ടെന്നു തോന്നുന്നില്ല: <b>$1</b><br /><a href="http://commons.wikimedia.org/wiki/Commons:Media_help">പ്ലേബാക്ക് സൗകര്യങ്ങൾ</a> എന്ന താൾ സന്ദർശിച്ച് ഒരു പ്ലേയർ ഡൗൺലോഡ് ചെയ്യുക.<br />',
@@ -6386,6 +6412,7 @@ $messages['ml'] = array(
 	'mwe-related_videos' => 'ബന്ധപ്പെട്ട ചലച്ചിത്രങ്ങൾ',
 	'mwe-seeking' => 'നോക്കുന്നു',
 	'mwe-copy-code' => 'കോഡ് പകർത്തുക',
+	'mwe-credit-title' => 'തലക്കെട്ട്: $1',
 );
 
 /** Dutch (Nederlands)
@@ -6705,6 +6732,7 @@ Via <a href="http://commons.wikimedia.org/wiki/Commons:Hulp_voor_mediabestanden"
 	'mwe-related_videos' => "Gerelateerde video's",
 	'mwe-seeking' => 'bezig met zoeken',
 	'mwe-copy-code' => 'Code kopiëren',
+	'mwe-credit-title' => 'Naam: $1',
 );
 
 /** Occitan (Occitan)
@@ -7224,6 +7252,7 @@ $messages['pt'] = array(
 	'mwe-select-other-language' => 'Seleccionar outra língua',
 	'mwe-saving' => 'a gravar...',
 	'mwe-select_transcript_set' => 'Seleccionar legendas',
+	'mwe-auto_scroll' => 'deslocamento automático',
 	'mwe-close' => 'fechar',
 	'mwe-improve_transcript' => 'Melhorar',
 	'mwe-no_text_tracks_found' => 'Não foram encontradas legendas',
@@ -7258,7 +7287,7 @@ $messages['pt'] = array(
 	'mwe-pixle2sec' => 'pixels para segundos',
 	'mwe-rmclip' => 'Remover clipe',
 	'mwe-clip_in' => 'entrada do clipe',
-	'mwe-clip_out' => 'saída do clip',
+	'mwe-clip_out' => 'saída do clipe',
 	'mwe-no_selected_resource' => '<h3>Nenhum recurso seleccionado</h3> Seleccione um clip para possibilitar edição.',
 	'mwe-error_edit_multiple' => '<h3>Vários recursos seleccionados</h3> Seleccione um único clipe para editá-lo.',
 	'mwe-editor_options' => 'Opções do editor',
@@ -7285,6 +7314,7 @@ $messages['pt'] = array(
 	'fogg-select_new_file' => 'Seleccione novo ficheiro',
 	'fogg-select_url' => 'Seleccione endereço (URL)',
 	'fogg-save_local_file' => 'Gravar Ogg',
+	'fogg-check_for_firefogg' => 'A procurar o Firefogg...',
 	'fogg-installed' => 'Firefogg está instalado',
 	'fogg-for_improved_uploads' => 'Para optimizar os carregamentos:',
 	'fogg-please_install' => '<a href="$1">Instalar o Firefogg</a>. Mais <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">informações sobre o Firefogg</a>.',
@@ -7292,6 +7322,7 @@ $messages['pt'] = array(
 	'fogg-passthrough_mode' => 'O ficheiro seleccionado já é de formato Ogg ou não é um ficheiro de vídeo',
 	'fogg-transcoding' => 'Codificar vídeo para Ogg',
 	'fogg-encoding-done' => 'Codificação finalizada',
+	'fogg-badtoken' => "''Token'' inválido",
 	'fogg-preview' => 'Antever vídeo',
 	'fogg-hidepreview' => 'Esconder a antevisão',
 	'mwe-imported_from' => '$1 importado de [$2 $3]. Consulte a [$4 página do recurso] original para mais informações.',
@@ -7360,12 +7391,15 @@ $messages['pt'] = array(
 	'fogg-contact-help' => 'Ligação de contacto',
 	'mwe-add_media_wizard' => "''Wizard'' de carregamentos multimédia",
 	'mwe-media_search' => 'Pesquisa de multimédia',
+	'rsd_box_layout' => 'Disposição em caixa',
+	'rsd_list_layout' => 'Disposição em lista',
 	'rsd_results_desc' => 'Resultados de $1 a $2',
 	'rsd_results_desc_total' => 'Resultados $1 a $2 de $3',
 	'rsd_results_next' => 'próximo',
 	'rsd_results_prev' => 'anterior',
 	'rsd_no_results' => 'A busca não produziu resultados para <b>$1</b>',
 	'mwe-upload_tab' => 'Carregar',
+	'rsd_layout' => 'Disposição:',
 	'rsd_resource_edit' => 'Editar recurso: $1',
 	'mwe-resource_description_page' => 'Página de descrição do recurso',
 	'mwe-link' => 'ligação',
@@ -7401,10 +7435,12 @@ $messages['pt'] = array(
 	'mwe-ftype-ogg' => 'Ficheiro de vídeo Ogg',
 	'mwe-ftype-unk' => 'Formato de ficheiro desconhecido',
 	'rsd-wiki_commons-title' => 'Wikimedia Commons',
+	'rsd-wiki_commons' => 'Wikimedia Commons, um arquivo de conteúdos multimédia educativos, de licenciamento gratuito (imagens, som e clipes de vídeo)',
 	'rsd-this_wiki-title' => 'Esta wiki',
 	'rsd-this_wiki-desc' => 'A instalação local da wiki',
 	'rsd-archive_org-desc' => 'A Internet Archive, uma biblioteca digital de artefactos culturais',
 	'rsd-flickr-desc' => "Flickr.com, um sítio de partilha de fotos ''online''",
+	'rsd-metavid-desc' => 'Metavid.org, um arquivo comunitário dos trabalhos da Câmara e Senado dos Estados Unidos',
 	'mwe-select_file' => 'Seleccione o ficheiro',
 	'mwe-more_licence_options' => 'Para mais opções de licenciamento, consulte a <a href="$1">página de carregamento normal</a>',
 	'mwe-select_ownwork' => 'Carrego uma obra de minha completa autoria que publico nos termos da:',
@@ -7441,7 +7477,10 @@ $messages['pt'] = array(
 	'mwe-review-upload' => 'Rever o carregamento {{PLURAL:$1|do ficheiro|dos ficheiros}}',
 	'mwe-loading_plugin' => "a carregar o ''plugin'' ...",
 	'mwe-select_playback' => 'Definir a preferência de reprodução',
+	'mwe-link_back' => 'Ligar atrás',
+	'mwe-error_swap_vid' => "Erro: o mv_embed não conseguiu trocar a marca ''(tag)'' vídeo pela interface mv_embed",
 	'mwe-add_to_end_of_sequence' => 'Adicionar ao fim da sequência',
+	'mwe-missing_video_stream' => "Ficheiro vídeo para esta ''stream'' em falta",
 	'mwe-play_clip' => 'Reproduzir clipe',
 	'mwe-pause_clip' => 'Pausar clipe',
 	'mwe-volume_control' => 'Controlo de volume',
@@ -7486,6 +7525,7 @@ $messages['pt'] = array(
 	'mwe-related_videos' => 'Vídeos relacionados',
 	'mwe-seeking' => 'a procurar',
 	'mwe-copy-code' => 'Copiar código',
+	'mwe-credit-title' => 'Título: $1',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -8308,7 +8348,7 @@ $messages['tr'] = array(
 	'fogg-cg-advAudio' => 'Gelişmiş ses kodlama denetimleri',
 	'fogg-preset-custom' => 'Özel ayarlar',
 	'fogg-webvideo-desc' => 'Web videosu Theora, Vorbis 400 kbit/s ve 400px azami genişlik',
-	'fogg-savebandwith-desc' => 'Düşük bant genişliği Theora, Vorbis 164 kbit/s ve 200px azami genişlik',
+	'fogg-savebandwidth-desc' => 'Düşük bant genişliği Theora, Vorbis 164 kbit/s ve 200px azami genişlik',
 	'fogg-highquality-desc' => 'Yüksek kalite Theora, Vorbis 1080px azami genişlik',
 	'fogg-videoQuality-title' => 'Video kalitesi',
 	'fogg-videoQuality-help' => 'Kodlanan videonun <i>görsel kalitesini</i> ayarlamak için kullanılır (aşağıdaki gelişmiş kontrollerde bit oranını ayarlarsanız kullanılmaz).',
@@ -8427,7 +8467,7 @@ $messages['tr'] = array(
 	'mwe-upload-in-progress' => 'Yükleme sürüyor (bu pencereyi kapatmayın)',
 	'mwe-upload-transcoded-status' => 'Yeniden kodlandı',
 	'mwe-uploaded-status' => 'Yüklendi',
-	'mwe-upload-stats-fileprogres' => '$2 de $1',
+	'mwe-upload-stats-fileprogress' => '$2 de $1',
 	'mwe-upload_completed' => 'Yüklemeniz tamamlandı',
 	'mwe-upload_done' => '<a href="$1">Yüklemeniz erişilebilir <i>olmalıdır</i></a>.',
 	'mwe-upload-unknown-size' => 'Bilinmeyen boyut',
@@ -8485,6 +8525,7 @@ $messages['tr'] = array(
 	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
 	'mwe-ogg-player-cortado' => 'Java Cortado',
 	'mwe-ogg-player-flowplayer' => 'Flowplayer',
+	'mwe-ogg-player-kplayer' => 'Kaltura oynatıcısı',
 	'mwe-ogg-player-selected' => '(seçili)',
 	'mwe-ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mwe-generic_missing_plugin' => 'Tarayıcınız şu oynatma tiplerini desteklemiyor gibi görünüyor: <b>$1</b><br />Bir oynatıcı indirmek için <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Oynatma metodları</a> sayfasını ziyaret edin.<br />',
@@ -8555,9 +8596,11 @@ $messages['vec'] = array(
 	'fogg-installed' => 'El Firefogg el xe instalà',
 	'fogg-transcoding' => "So' drio codificar el video in formato Ogg",
 	'fogg-encoding-done' => 'Codifica conpletà',
+	'fogg-badtoken' => 'Token mia valido',
 	'fogg-preview' => 'Anteprima del video',
 	'fogg-hidepreview' => 'Scondi anteprima',
 	'mwe-stream_title' => '$1 $2 a $3',
+	'fogg-help-sticky' => 'Ajuto (struca par fissarlo)',
 	'fogg-preset-custom' => 'Inpostassion personalizà',
 	'fogg-videoQuality-title' => 'Qualità video',
 	'fogg-starttime-title' => 'Secondo de scuminsio',
@@ -8567,6 +8610,8 @@ $messages['vec'] = array(
 	'fogg-width-help' => 'Ridimensiona a la larghessa indicà.',
 	'fogg-height-title' => 'Altessa video',
 	'fogg-height-help' => "Ridimensiona a l'altessa indicà.",
+	'fogg-framerate-title' => 'Frequensa dei fotogrami',
+	'fogg-aspect-title' => 'Proporsion larghessa/altessa',
 	'fogg-novideo-title' => 'No ghe xe el video',
 	'fogg-noaudio-title' => "No ghe xe l'audio",
 	'fogg-title-title' => 'Titolo',
@@ -8582,6 +8627,7 @@ $messages['vec'] = array(
 	'rsd_results_prev' => 'quel prima',
 	'rsd_no_results' => 'No gò catà gnente che corisponde a <b>$1</b>',
 	'mwe-upload_tab' => 'Cargar',
+	'rsd_resource_edit' => 'Modifica la risorsa: $1',
 	'mwe-resource_description_page' => 'Pagina de descrission de la risorsa',
 	'mwe-link' => 'colegamento',
 	'rsd_local_resource_title' => 'Titolo de la risorsa locale',
@@ -8589,6 +8635,7 @@ $messages['vec'] = array(
 	'mwe-unknown_license' => 'Licensa sconossùa',
 	'mwe-your_recent_uploads' => 'I to ultimi caricamenti su $1',
 	'mwe-upload_a_file' => 'Carga un file novo su $1',
+	'mwe-local_resource_title' => 'Titolo local de la risorsa:',
 	'mwe-watch_this_page' => "Tien d'ocio sta pagina",
 	'mwe-do_import_resource' => 'Inporta risorsa',
 	'mwe-update_preview' => 'Ajorna anteprima',
@@ -8612,9 +8659,10 @@ $messages['vec'] = array(
 	'mwe-destfilename' => 'Nome del file de destinassion:',
 	'mwe-summary' => 'Riassunto',
 	'mwe-watch-this-file' => "Tien d'ocio sto file",
+	'mwe-ignore-any-warnings' => 'Ignora i avertimenti',
 	'mwe-upload-in-progress' => "So' drio cargar (no stà sarar sta finestra)",
 	'mwe-uploaded-status' => 'Cargà',
-	'mwe-upload-stats-fileprogres' => '$1 de $2',
+	'mwe-upload-stats-fileprogress' => '$1 de $2',
 	'mwe-upload_completed' => 'El to caricamento el xe stà conpletà',
 	'mwe-upload_done' => '<a href="$1">El to caricamento <i>el dovarìa</i> èssar acessìbile</a>.',
 	'mwe-upload-unknown-size' => 'Dimension sconossùa',
@@ -8631,8 +8679,10 @@ $messages['vec'] = array(
 	'mwe-go-to-resource' => 'Và a la pagina de la risorsa',
 	'mwe-upload-misc-error' => 'Eror de caricamento sconossiùo',
 	'mwe-upload-multi' => 'Carga {{PLURAL:$1|file|file}}',
+	'mwe-review-upload' => 'Contròla el caricamento {{PLURAL:$1|del file|dei file}}',
 	'mwe-loading_plugin' => "so' drio cargar el plugin...",
 	'mwe-link_back' => 'Colèga indrìo',
+	'mwe-add_to_end_of_sequence' => 'Taca in fondo a la sequensa',
 	'mwe-play_clip' => 'Riprodusi',
 	'mwe-pause_clip' => 'Meti in pausa',
 	'mwe-volume_control' => 'Controlo volume',
@@ -8658,6 +8708,7 @@ $messages['vec'] = array(
 	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
 	'mwe-ogg-player-cortado' => 'Java Cortado',
 	'mwe-ogg-player-flowplayer' => 'Flowplayer',
+	'mwe-ogg-player-kplayer' => 'Letor Kaltura',
 	'mwe-ogg-player-selected' => '(selessionà)',
 	'mwe-ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mwe-playerselect' => 'Letori',

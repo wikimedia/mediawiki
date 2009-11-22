@@ -106,9 +106,14 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dec',
 
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|Sumut atassuseq|Sunut atasut}}',
+
 'about'         => 'Pillugu',
 'cancel'        => 'Sussa',
 'moredotdotdot' => 'Suli...',
+'mytalk'        => 'Oqalliffikka',
+'navigation'    => 'Sumiissusersuutit',
 
 # Cologne Blue skin
 'qbfind' => 'Naniuk',
@@ -128,14 +133,18 @@ $messages = array(
 'history_short'    => 'Oqaluttuassartaa',
 'info_short'       => 'Ilisimasat',
 'printableversion' => 'Naqikkuminartoq',
+'permalink'        => 'Innersuut',
 'edit'             => 'Aaqqissuuguk',
 'create'           => 'pilersitsineq',
 'delete'           => 'Piiaruk',
 'deletethispage'   => 'Qupperneq piiaruk',
 'protect'          => 'Illersorpaa',
+'protect_change'   => 'allannguutit',
 'newpage'          => 'Qupperneq nutaaq',
 'talkpagelinktext' => 'Oqallinneq',
+'personaltools'    => 'Namminermut sannatit',
 'talk'             => 'Oqallinneq',
+'views'            => 'Takutitat',
 'toolbox'          => 'Sannataasivik',
 'otherlanguages'   => 'Oqaatsit allat',
 'jumpto'           => 'Toqqaannarlugu:',
@@ -146,13 +155,16 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} pillugu',
 'aboutpage'            => 'Project:Pillugu',
 'currentevents'        => 'Maannakkut pisut',
+'disclaimers'          => 'Aalajangersagaq',
 'edithelp'             => 'Ikiuutit',
 'edithelppage'         => 'Help:Aaqqissuussineq',
 'helppage'             => 'Help:Ikiuutit',
 'mainpage'             => 'Saqqaa',
 'mainpage-description' => 'Saqqaa',
 'portal'               => 'Allaatiginnittartup saqqai',
+'privacy'              => 'Namminermut paasissutissat',
 
+'retrievedfrom'       => 'Uannga aaneqartoq "$1"',
 'youhavenewmessages'  => 'Peqarputit $1 ($2)',
 'newmessageslink'     => 'oqariartuutinik nutaanik',
 'newmessagesdifflink' => 'allannguutini kingullernili',
@@ -168,6 +180,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Qupperneq',
+'nstab-special'  => 'Immikkut',
 'nstab-image'    => 'Assiliaq',
 'nstab-template' => 'Ilisserut',
 'nstab-help'     => 'Ikiuutit',
@@ -178,6 +191,8 @@ $messages = array(
 'yourpassword'               => 'Isissutissaq:',
 'yourpasswordagain'          => 'Isissutissaq (aappassaat):',
 'login'                      => 'Iserfigiuk',
+'nav-login-createaccount'    => 'Konto-mik pilersitsigit imalt. iserit',
+'userlogout'                 => 'Anigit',
 'gotaccountlink'             => 'Iserfigiuk',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
@@ -198,8 +213,19 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'newarticle'   => '(Nuutaq)',
 'previewnote'  => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
 
+# Diffs
+'editundo' => 'peeruk',
+
 # Search results
-'powersearch' => 'Ujarlerit',
+'searchresults'             => 'Ujaasinermi inernerit',
+'searchresults-title'       => 'Uuma ujarnera "$1"',
+'search-result-size'        => '$1 ({{PLURAL:$2|oqaaseq|$2 oqaatsit}})',
+'search-mwsuggest-enabled'  => 'siunnersuuserlugu',
+'search-mwsuggest-disabled' => 'siunnersuusernagu',
+'powersearch'               => 'Ujarlerit',
+
+# Groups
+'group-sysop' => 'Administratorit',
 
 # Recent changes
 'recentchanges'   => 'Allannguutit kingulliit',
@@ -217,8 +243,9 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'upload' => 'Fiili nassiuguk',
 
 # File description page
-'file-anchor-link' => 'Assiliaq',
-'filehist-user'    => 'Pineqartoq',
+'file-anchor-link'  => 'Assiliaq',
+'filehist-datetime' => 'Ulloq/Piffissaq',
+'filehist-user'     => 'Pineqartoq',
 
 # MIME search
 'mimesearch' => 'MIME ujaarlerit',
@@ -248,11 +275,18 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'watch'          => 'Ersippoq',
 'unwatch'        => 'Ersitsinnagu',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Saqqumitiguk',
+'unwatching' => 'Saqquminera peeruk',
+
 # Delete
 'actioncomplete' => 'Naammassineqareersimavoq',
 
 # Protect
 'prot_1movedto2' => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
+
+# Namespace form on various pages
+'namespace' => 'Quppernerup ilusia:',
 
 # Contributions
 'uctop' => '(kaarfa)',
@@ -263,14 +297,30 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'whatlinkshere' => 'Suna maangamut innersuussisoq',
 
 # Block/unblock
-'blocklink' => 'aporfeqarneq',
+'blocklink'    => 'aporfeqarneq',
+'contribslink' => 'tapikkat',
 
 # Move page
 '1movedto2'       => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
 '1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
 
 # Tooltip help for the actions
-'tooltip-search' => 'Ujaarlerit {{SITENAME}}',
+'tooltip-pt-login'               => 'Iseqquneqaraluarputit, pitsaanerussagaluarpoq',
+'tooltip-ca-talk'                => 'Quppernerup imaanik oqallinneq',
+'tooltip-ca-edit'                => 'Allanngortiterisinnaavutit. Isikkua takulaariuk',
+'tooltip-ca-history'             => 'Quppernerup siulii',
+'tooltip-search'                 => 'Ujaarlerit {{SITENAME}}',
+'tooltip-search-go'              => 'Tassunngarit nassaassappat',
+'tooltip-search-fulltext'        => 'Taanna ujaruk',
+'tooltip-n-mainpage'             => 'Saqqaa iseruk',
+'tooltip-n-mainpage-description' => 'Saqqaa iseruk',
+'tooltip-n-portal'               => 'Suliaq, ilitsersuut, nassaassaasinnaasullu',
+'tooltip-n-recentchanges'        => 'Wikimi allannguutit kingulliit',
+'tooltip-n-randompage'           => 'Allaaserisamukarit',
+'tooltip-n-help'                 => 'Qanoq iliussaanga ...',
+'tooltip-t-whatlinkshere'        => 'Innersuussami saqqummiussat',
+'tooltip-t-specialpages'         => 'Quppernerit immikkut ittut nassaassaasinnaasut',
+'tooltip-ca-nstab-main'          => 'Imarisaa takuuk',
 
 # Special:SpecialPages
 'specialpages' => 'Quppernerit immikkut ittut',
