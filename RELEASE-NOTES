@@ -751,6 +751,7 @@ changes to languages because of MediaZilla reports.
 * (bug 19809) Korean (North Korea) (ko-kp) (new)
 * (bug 19968) Fixed "Project talk" namespace name for Maltese (mt)
 * (bug 21168) Added áâãàéêçíóôõúü to Portuguese (pt) linktrail
+* (bug 21596) Change interwiki link for Kurdish (ku)
 
 == Compatibility ==
 
