@@ -28,7 +28,7 @@ Hopefully we will remove this configuration var soon)
   in-browser transcoding, chunk uploads and client side hash checking.
 * $wgEnableTemporalOggUrls enable oggz_chop support a server side ogg seeking
   helper
-* $wgEnableScriptLoader if the script-loader shoudl be enabled
+* $wgEnableScriptLoader if the script-loader should be enabled
 * $wgJSAutoloadClasses array of javascript classes to file paths used by
   script-loader to load javascript by class name.
 * $wgEnableJS2system  if we should include js2 stuff like jquery, mv_embed.js
