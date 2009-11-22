@@ -291,9 +291,13 @@ class ApiUpload extends ApiBase {
 			}
 		}
 
+		// Use comment as initial page text by default
+		if (is_null($this->mParams['text']))
+			$this->mParams['text'] = $this->mParams['comment'];
+		
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
-			$this->mParams['comment'], $this->mParams['watch'], $wgUser );
+			$this->mParams['text'], $this->mParams['watch'], $wgUser );
 
 		if( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
@@ -329,6 +333,7 @@ class ApiUpload extends ApiBase {
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''
 			),
+			'text' => null,
 			'token' => null,
 			'watch' => false,
 			'ignorewarnings' => false,
@@ -355,7 +360,8 @@ class ApiUpload extends ApiBase {
 		return array(
 			'filename' => 'Target filename',
 			'token' => 'Edit token. You can get one of these through prop=info',
-			'comment' => 'Upload comment. Also used as the initial page text for new files',
+			'comment' => 'Upload comment. Also used as the initial page text for new files if "text" is not specified',
+			'text' => 'Initial page text for new files',
 			'watch' => 'Watch the page',
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
