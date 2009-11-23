@@ -1425,7 +1425,8 @@ class EditPage {
 									array(
 										'id' => 'wpSummary',
 										'maxlength' => '200',
-										'tabindex' => '1'
+										'tabindex' => '1',
+										'spellcheck' => 'yes'
 									) );
 			} else {
 				$summaryhiddens .= Xml::hidden( 'wpIgnoreBlankSummary', true ); # bug 18699
@@ -1452,7 +1453,8 @@ class EditPage {
 				array(
 					'id' => 'wpSummary',
 					'maxlength' => '200',
-					'tabindex' => '1'
+					'tabindex' => '1',
+					'spellcheck' => 'yes'
 				) );
 
 			// No idea where this is closed.
