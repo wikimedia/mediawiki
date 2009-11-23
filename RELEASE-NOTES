@@ -284,6 +284,7 @@ Hopefully we will remove this configuration var soon)
 * Added maintenance script syntaxChecker.php that checks for PHP syntax errors
   and common coding mistakes
 * Updated Unicode normalization tables
+* (bug 21604) Spellcheck attribute for editsummary
 
 === Bug fixes in 1.16 ===
 
