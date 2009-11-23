@@ -1,5 +1,5 @@
 <?php
-/** Prussian (Prūsiskan)
+/** Prūsiskan (Prūsiskan)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -10,8 +10,6 @@
  * @author Nertiks
  * @author Peteris
  */
-
-$fallback = 'pl';
 
 $messages = array(
 # User preference toggles

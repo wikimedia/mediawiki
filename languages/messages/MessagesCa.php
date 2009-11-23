@@ -1073,7 +1073,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'shown-title'                      => 'Mostra $1 {{PLURAL:$1|resultat|resultats}} per pàgina',
 'viewprevnext'                     => 'Vés a ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opcions de cerca',
-'searchmenu-exists'                => "'''Hi ha una pàgina anomenada «[[$1]]» en aquest wiki'''",
+'searchmenu-exists'                => "'''Hi ha una pàgina anomenada «[[:$1]]» en aquest wiki'''",
 'searchmenu-new'                   => "'''Creeu la pàgina «[[:$1]]» en aquest wiki!'''",
 'searchhelp-url'                   => 'Help:Ajuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Mostra pàgines amb aquest prefix]]',
@@ -1845,7 +1845,7 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 # Special:ActiveUsers
 'activeusers'          => "Llista d'usuaris actius",
 'activeusers-intro'    => "Aquí hi ha una llista d'usuaris que han tingut algun tipus d'activitat en {{PLURAL:$1|el darrer dia|els darrers $1 dies}}.",
-'activeusers-count'    => '{{PLURAL:$1|edició|edicions}} de $1 en els darrers {{PLURAL:$3|dia|$3 dies}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|edició|edicions}} en {{PLURAL:$3|el darrer dia|els $3 darrers dies}}',
 'activeusers-from'     => 'Mostra els usuaris començant per:',
 'activeusers-noresult' => "No s'han trobat usuaris.",
 

@@ -1399,7 +1399,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-userrights-interwiki'  => 'Endre rettar for brukarar på andre wikiar',
 'right-siteadmin'             => 'Låse og låse opp databasen',
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
-'right-override-export-depth' => 'Eksportér sider inkludert lenka sider til ei djupn på 5',
+'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 'right-versiondetail'         => 'Syn utvida informasjon om versjonen av programvara',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
 

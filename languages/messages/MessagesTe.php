@@ -870,6 +870,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'rev-deleted-comment'         => '(వ్యాఖ్యను తొలగించాం)',
 'rev-deleted-user'            => '(సభ్యనామాన్ని తొలగించాం)',
 'rev-deleted-event'           => '(దినచర్యని తొలగించాం)',
+'rev-deleted-user-contribs'   => '[వాడుకరిపేరు లేదా ఐపీ చిరునామాని తొలగించారు  - మార్పుచేర్పుల నుండి మార్పుని దాచారు]',
 'rev-deleted-text-permission' => "ఈ పేజీ కూర్పుని '''తొలగించారు'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో పూర్తి వివరాలు ఉండవచ్చు.",
 'rev-deleted-text-unhide'     => "ఈ పేజీ కూర్పుని '''తొలగించారు'''.

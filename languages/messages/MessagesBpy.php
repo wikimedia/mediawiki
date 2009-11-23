@@ -734,13 +734,32 @@ $1',
 'uploadbtn'           => 'আপলোড',
 'uploadnologin'       => 'লগইন নাকরিসত',
 'uploaderror'         => 'আপলোড করানিত লালুইসে',
-'uploadlog'           => 'আপলোডর লগ',
+'uploadtext'          => "তলর ফরমহান ফাইল কাকরানির (আপলোডর)কা আতা।
+আগেদে কাকরিসি ফাইল বিসারা [[Special:FileList|কাকরিসি ফাইলর লাতঙগ]], [[Special:Log/upload|আরাকমু কাকরিসি]] ফাইলর ইতিহাসহান, [[Special:Log/delete|পুসিসি]] ফাইলর ইতিহাসহান।
+
+পাতাহাত ছবি আগ বরানি মনেইলে, তলর উদাহরণর অসারে ইকর:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' ফাইলর আস্তা ভার্সনহান ব্যবহারর কা
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|সারুক ৱাহি]]</nowiki></tt>''' ২০০ পিক্সল চেপ্টা বাক্সগর বিঙেদে বদাগ দেনা বারো থাকরানির নিঙে 'সারুকে ৱাহি' বরানির কা
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' ফাইল নাদেখাদিয়া চুমেসত মিলাপর কা",
+'upload-permitted'    => 'যে জাতর ফাইল কাকরানি(আপলোড) করানি থা: $1।',
+'upload-preferred'    => 'যে জাতর ফাইল থা: $1।',
+'upload-prohibited'   => 'যে জাতর ফাইল থা নেই: $1।',
+'uploadlog'           => 'কাকরানির (আপলোডর) ইতিহাসহান',
 'uploadlogpage'       => 'আপলোড করিসি লগ',
+'uploadlogpagetext'   => 'তলে হাদি এহাত কাকরিসি ফাইলর লাতঙ।
+[[Special:NewFiles|নুৱা ফাইলর গ্যালারিগ]] চা, আহির ফঙে থাকরানির কা।',
 'filename'            => 'ফাইলর নাঙ',
 'filedesc'            => 'সারাংশ',
 'fileuploadsummary'   => 'সারাংশ:',
 'filereuploadsummary' => 'ফাইল সিলপাহানি:',
+'filestatus'          => 'কপিরাইটর অংতা:',
 'filesource'          => 'উৎস:',
+'uploadedfiles'       => 'কাকরিসি ফাইলগি',
+'ignorewarning'       => 'সিঙকরানির কা দিয়াসি পৌহান লিতুইয়া ফাইলগ ইতু কর',
+'ignorewarnings'      => 'হাবি সিঙকরানির পৌ লিত',
+'minlength1'          => 'ফাইলগর নাঙহাত মেয়েকগ আকগতে থানা লাগতই।',
+'illegalfilename'     => '"$1" ফাইলর নাঙহাত থকনেই মেয়েক মিহিসে যেতা  পাতাহার চিঙনাঙে বরানি নাকরব।
+আরাক নুৱা নাঙ আহান দিয়া কাকর।',
 'badfilename'         => 'ফাইলগর নাঙহান পতিয়া $1" করানি ইল।',
 'savefile'            => 'ফাইল ইতু',
 'uploadedimage'       => 'আপলোডকরানি অইল "[[$1]]"',
@@ -1071,7 +1090,34 @@ $1',
 
 # Block/unblock
 'blockip'                  => 'আতাকুরাগরে থেপকর',
+'blockip-legend'           => 'আতাকুরাগরে থেপ কর',
+'blockiptext'              => 'লেপকরিসত আইপি ঠিকানাহানরে নাইলে আতাকুরাগরে ইকরানিত্ত থেপকরানি থকিলে তলর ফর্মহান ব্যবহার কর।
+এহান হুদ্দা ধ্বংসর খৌরাঙ থেপকরানি বারো [[{{MediaWiki:Policy-url}}|নীতিমালা]] একরিয়া পতানি থক।
+তলে লেপ্পা কারণ আহান মাত (উদাহরনে মাতানি একরের, যে  যে পাতাহানি ধ্বংস করানি অসে অতা মাতে পারর)।',
+'ipaddress'                => 'আইপি ঠিকানাহান:',
+'ipadressorusername'       => 'আইপি ঠিকানাহান বারো আতাকুরার নাঙহান:',
+'ipbexpiry'                => 'মেয়াদহান লালুইতইতা:',
+'ipbreason'                => 'কারণ:',
+'ipbreasonotherlist'       => 'আর কারণ:',
+'ipbreason-dropdown'       => '*থেপ করানির সাধারণ কারণহানি
+** মিস্সা পৌ বরাসে
+** পাতাহাত্ত বিষয়বস্তু পুসে বেলাসে
+** বারেতের কোন সাইটর মিলাপে স্প্যাম করিসে
+** পাতাহানিত অর্থনেই মেথেল বরাসে
+** দরপানির অসারে আচরণ/হিনকরানি
+** আবকচা অ্যাকাউন্টর অপব্যবহার
+** আতাকুরার নাঙহান চিঙথি ইসে',
+'ipbanononly'              => 'বেনাঙর আতাকুরারে থেপ কর',
+'ipbcreateaccount'         => 'অ্যাকাউন্ট হঙকরানি নাদি',
+'ipbemailban'              => 'আতাকুরাগরে ই-মেইল দিয়াপেঠানি নাদি',
+'ipbenableautoblock'       => 'এরে আতাকুরা এগই ব্যবহার করিসিল লমিলগা আইপি ঠিকানাহান, বারো পিসেদে যে যে আইপি ঠিকানাত্ত পতানির হৎনা করতই অতারে আপ্পানে নাদি।',
+'ipbsubmit'                => 'আতাকুরা এগরে থেপ কর',
+'ipbother'                 => 'আর সময়:',
 'ipboptions'               => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,হাপ্তা আহান:1 week,হাপ্তা দুহান:2 weeks,মাহা আহান:1 month,৩ মাহা:3 months,৬ মাহা:6 months,বসর আহান:1 year,লম নেই সময়:infinite',
+'ipbotheroption'           => 'আর আর',
+'ipbotherreason'           => 'আরাক/আরাকউ কারণ:',
+'ipbhidename'              => 'আতাকুরার নাঙ পতানি বারো লাতঙেত্ত গুর',
+'ipbwatchuser'             => 'আতাকুরা এগর আতাকুরার বারো য়্যারীর পাতা খিয়ালে থ',
 'badipaddress'             => 'আইপি ঠিকানাহান গ্রহনযোগ্যনাইসে',
 'blockipsuccesssub'        => 'থেপকরানিহান চুমিল',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] রে থেপকরিয়া থসি <br />থেপকরানিহান খাল করানি থকিলে,[[Special:IPBlockList| থেপকরিয়া থসি আইপি ঠিকানার তালিকাহান]] চা।',
@@ -1102,11 +1148,18 @@ $1',
 
 এতার বারে তি চেইলে নিজর আতহানল পাতা অহান গুসানি বা পুলকরানি পারর।",
 'movearticle'             => 'পাতাহান থেইকর:',
+'movenologin'             => 'তি একাউন্টে না হমাসত',
+'movenologintext'         => 'পাতা এহান থেইকরানির কা তি মিহিসত আতাকুরাগ বারো একাউন্টে [[Special:UserLogin|হমানি]] লাগতই।',
+'movenotallowed'          => 'তরতা পাতা থেইকরানির য়্যাথাং নেই।',
+'movenotallowedfile'      => 'তরতা ফাইল থেইকরানির য়্যাথাং নেই।',
+'cant-move-user-page'     => 'তরতা আতাকুরার পাতা (তলর পাতা) থেইকরানির য়্যাথাং নেই।',
+'cant-move-to-user-page'  => 'তরতা আতাকুরার পাতা থেইকরানির য়্যাথাং নেই (আরাক আতাকুরার তলর পাতাত বাদে)।',
 'newtitle'                => 'নুৱা চিঙনার কা:',
 'move-watch'              => 'পাতা এহান খিয়াল কর',
 'movepagebtn'             => 'পাতা থেইকর',
 'pagemovedsub'            => 'গুসানিহান হবা বালাই লমিল',
 'movepage-moved'          => '<big>\'\'\'"$1" থেইককরানি ইল "$2"\'\'\'</big>',
+'movepage-moved-redirect' => 'কুইকরা পাতা হঙিল।',
 'articleexists'           => 'ইতে পারে এরে শিরোনাঙর নিবন্ধহান হঙপরসেগা, নাইলে তি দিয়াসত শিরোনাং এহান দেনার য়্যাথাং নেই। কৃপা করিয়া আরাক শিরোনাং আহান দেনার হৎনা কর।',
 'talkexists'              => "'''পাতাহান হবা বালাই গুসিল কিন্তু অরে নাঙর য়্যারির পাতা আহান আগেত্তর থানাই না গুসিল।
 দয়া করিয়া তি নিজর আতহান্ন তিলকরগা।'''",
@@ -1124,15 +1177,27 @@ $1',
 'export' => 'পাতাহান দিয়াপেঠা',
 
 # Namespace 8 related
-'allmessages'               => 'সিস্টেমর পৌহানি',
-'allmessagesname'           => 'নাং',
-'allmessagescurrent'        => 'হাদি এহানর ৱাহি',
-'allmessagestext'           => 'তলে মিডিয়াউইকি: নাঙরজাগাত পানা একরের সিস্টেম পৌহানির তালিকাহান দেনা ইল।',
-'allmessages-filter-submit' => 'হাত',
+'allmessages'                   => 'সিস্টেমর পৌহানি',
+'allmessagesname'               => 'নাং',
+'allmessagescurrent'            => 'হাদি এহানর ৱাহি',
+'allmessagestext'               => 'তলে মিডিয়াউইকির নাঙরথাকে পানা একরের সিস্টেম পৌহানির তালিকাহান দেনা ইল।
+কৃপা করিয়া [http://www.mediawiki.org/wiki/Localisation মিডিয়াউইকি অনুবাদর হেইচা পাতাত] বারো [http://translatewiki.net translatewiki.net] মিডিয়াউইকি অনুবাদ করানির কা যানা পারর।',
+'allmessages-filter-legend'     => 'সাক',
+'allmessages-filter-unmodified' => 'নাসিলথাইতে',
+'allmessages-filter-all'        => 'হাব্বি',
+'allmessages-language'          => 'ঠার:',
+'allmessages-filter-submit'     => 'হাত',
 
 # Thumbnails
 'thumbnail-more'  => 'ডাঙরকর',
+'filemissing'     => 'ফাইল মাঙুইসে',
 'thumbnail_error' => 'থাম্বনেইল হংকরানিত লেইলেক অসে: $1',
+
+# Special:Import
+'import'                  => 'পাতা আনগা',
+'importinterwiki'         => 'টান্সউইকিত্ত আনানি',
+'import-interwiki-submit' => 'আনানি',
+'import-upload-filename'  => 'ফাইলগর নাঙ:',
 
 # Import log
 'importlogpage' => 'লগ আন',
@@ -1198,8 +1263,12 @@ $1',
 
 # Attribution
 'anonymous' => '{{SITENAME}}র বেনাঙর {{PLURAL:$1|আতাকুরা|আতাকুরাগি}}',
+'others'    => 'আরতা',
 'siteusers' => '{{SITENAME}}র {{PLURAL:$2|আতাকুরা|আতাকুরাগি}} $1',
 'anonusers' => '{{SITENAME}}র বেনাঙর {{PLURAL:$2|আতাকুরা|আতাকুরাগি}} $1',
+
+# Info page
+'infosubtitle' => 'পাতার বারে',
 
 # Browsing diffs
 'previousdiff' => '← পুরানা পতা',
@@ -1213,9 +1282,12 @@ $1',
 'show-big-image-thumb' => '<small>আগচা হানর সাইজহান: $1 × $2 পিক্সেলস</small>',
 
 # Special:NewFiles
-'newimages' => 'নুৱা ফাইলর গ্যালারিগ',
-'ilsubmit'  => 'বিসারা',
-'bydate'    => 'তারিখর সিজিলন',
+'newimages'        => 'নুৱা ফাইলর গ্যালারিগ',
+'newimages-legend' => 'সাক',
+'showhidebots'     => '($1 বট)',
+'noimages'         => 'চানার কা কিত্তাউ নেই।',
+'ilsubmit'         => 'বিসারা',
+'bydate'           => 'তারিখর সিজিলন',
 
 # Bad image list
 'bad_image_list' => 'ফরমেটহান তলর সাদে:
@@ -1254,13 +1326,18 @@ $1',
 'limitall'         => 'হাব্বি',
 
 # E-mail address confirmation
-'confirmemail'            => 'ই-মেইল ঠিকানাহান লেপকর',
-'confirmemail_send'       => 'লেপকরেকুরা কোডগ দিয়াপেঠাদে',
-'confirmemail_sent'       => 'লেপকরেকুরা ই-মেইলহান দিয়াপেঠা দিলাং।',
-'confirmemail_sendfailed' => 'লেপকরেকুরা ই-মেইলহান দিয়াপেঠাদে নুৱাররাং। ইমেইল ঠিকানাহান চুমকরে ইকরিসত্তানাকিতা আরাক আকমু খিয়াল করিয়া চা। আলথকে আহিলঃ $1',
-'confirmemail_invalid'    => 'লেপকরেকুরা কোডগ চুম নাইসে। সম্ভবতঃ এগ পুরানা ইয়া পরসেগা।',
-'confirmemail_success'    => 'তর ই-মেইল ঠিকানাহার লেপ্পাহান চুমিল। তি এবাকা হমানি(log in) পারর।',
-'confirmemail_loggedin'   => 'তর ই-মেইল ঠিকানাহার লেপকরানিহান চুমিল।',
+'confirmemail'             => 'ই-মেইল ঠিকানাহান লেপকর',
+'confirmemail_send'        => 'লেপকরেকুরা কোডগ দিয়াপেঠাদে',
+'confirmemail_sent'        => 'লেপকরেকুরা ই-মেইলহান দিয়াপেঠা দিলাং।',
+'confirmemail_sendfailed'  => '{{SITENAME}} এহানে তর ই-মেইলহান দিয়াপেঠাদে নুৱারল।
+ইমেইল ঠিকানাহান চুমকরে ইকরিসত্তানা কিতা নাইলে কোন নাকরের মেয়েক থাথাইব আরাক আকমু খিয়াল করিয়া চা। 
+
+আলথকে আহিলঃ $1',
+'confirmemail_invalid'     => 'লেপকরেকুরা কোডগ চুম নাইসে। সম্ভবতঃ এগ পুরানা ইয়া পরসেগা।',
+'confirmemail_success'     => 'তর ই-মেইল ঠিকানাহার লেপ্পাহান চুমিল। তি এবাকা হমানি(log in) পারর।',
+'confirmemail_loggedin'    => 'তর ই-মেইল ঠিকানাহার লেপকরানিহান চুমিল।',
+'confirmemail_subject'     => '{{SITENAME}} ই-মেইল ঠিকানাহান লেপকর',
+'confirmemail_invalidated' => 'ই-মেইল ঠিকানাহান লেপকরানিহান বাতিল ইল',
 
 # action=purge
 'confirm_purge_button' => 'চুমিসে',
@@ -1306,11 +1383,13 @@ $1',
 'filepath-submit' => 'পথ',
 
 # Special:SpecialPages
-'specialpages'             => 'বিশেষ পাতাহানি',
-'specialpages-group-users' => 'আতাকুরাগি বারো অধিকারহানি',
+'specialpages'                 => 'বিশেষ পাতাহানি',
+'specialpages-group-login'     => 'একাউন্টহাত হমানি/মিহানি',
+'specialpages-group-users'     => 'আতাকুরাগি বারো অধিকারহানি',
+'specialpages-group-pagetools' => 'পাতাহানর আতিয়ার',
 
 # Special:BlankPage
-'blankpage' => 'খালি পাতাহান',
+'blankpage' => 'হুদালা পাতাহান',
 
 # Special:Tags
 'tag-filter'              => '[[Special:Tags|ট্যাগ]] সাকানি:',

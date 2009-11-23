@@ -1193,7 +1193,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'mergehistory-autocomment'         => '„[[:$1]]“ vereinigt nach „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ vereinigt nach „[[:$2]]“: $3',
 'mergehistory-same-destination'    => 'Ausgangs- und Zielseite dürfen nicht identisch sein',
-'mergehistory-reason'              => 'Begründung:',
+'mergehistory-reason'              => 'Grund:',
 
 # Merge log
 'mergelog'           => 'Vereinigungs-Logbuch',
@@ -2359,7 +2359,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipaddress'                       => 'IP-Adresse:',
 'ipadressorusername'              => 'IP-Adresse oder Benutzername:',
 'ipbexpiry'                       => 'Sperrdauer:',
-'ipbreason'                       => 'Begründung:',
+'ipbreason'                       => 'Grund:',
 'ipbreasonotherlist'              => 'Andere Begründung',
 'ipbreason-dropdown'              => '* Allgemeine Sperrgründe
 ** Einfügen falscher Informationen
@@ -2530,7 +2530,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movesubpage'                  => '{{PLURAL:$1|Unterseite|Unterseiten}}',
 'movesubpagetext'              => 'Diese Seite hat $1 {{PLURAL:$1|Unterseite|Unterseiten}}.',
 'movenosubpage'                => 'Diese Seite hat keine Unterseiten.',
-'movereason'                   => 'Begründung:',
+'movereason'                   => 'Grund:',
 'revertmove'                   => 'zurück verschieben',
 'delete_and_move'              => 'Löschen und Verschieben',
 'delete_and_move_text'         => '== Löschung erforderlich ==
