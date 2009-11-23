@@ -1426,7 +1426,7 @@ class EditPage {
 										'id' => 'wpSummary',
 										'maxlength' => '200',
 										'tabindex' => '1',
-										'spellcheck' => 'yes'
+										'spellcheck' => 'true'
 									) );
 			} else {
 				$summaryhiddens .= Xml::hidden( 'wpIgnoreBlankSummary', true ); # bug 18699
@@ -1454,7 +1454,7 @@ class EditPage {
 					'id' => 'wpSummary',
 					'maxlength' => '200',
 					'tabindex' => '1',
-					'spellcheck' => 'yes'
+					'spellcheck' => 'true'
 				) );
 
 			// No idea where this is closed.
