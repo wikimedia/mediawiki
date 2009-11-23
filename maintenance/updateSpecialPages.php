@@ -65,18 +65,18 @@ class UpdateSpecialPages extends Maintenance {
 
 		foreach( $wgQueryPages as $page ) {
 			@list( $class, $special, $limit ) = $page;
-	
+
 			# --list : just show the name of pages
 			if( $this->hasOption('list') ) {
 				$this->output( "$special\n" );
 				continue;
 			}
-	
+
 			if ( !$this->hasOption('override') && $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate ) ) {
 				$this->output( sprintf( "%-30s disabled\n", $special ) );
 				continue;
 			}
-	
+
 			$specialObj = SpecialPage::getPage( $special );
 			if ( !$specialObj ) {
 				$this->output( "No such special page: $special\n" );
@@ -87,7 +87,7 @@ class UpdateSpecialPages extends Maintenance {
 				require_once( $file );
 			}
 			$queryPage = new $class;
-	
+
 			if( !$this->hasOption('only') || $this->getOption('only') == $queryPage->getName() ) {
 				$this->output( sprintf( '%-30s ',  $special ) );
 				if ( $queryPage->isExpensive() ) {
@@ -99,7 +99,7 @@ class UpdateSpecialPages extends Maintenance {
 						$this->output( "FAILED: database error\n" );
 					} else {
 						$this->output( "got $num rows in " );
-	
+
 						$elapsed = ($t2[0] - $t1[0]) + ($t2[1] - $t1[1]);
 						$hours = intval( $elapsed / 3600 );
 						$minutes = intval( $elapsed % 3600 / 60 );

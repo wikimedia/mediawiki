@@ -29,6 +29,7 @@ class nextJobDB extends Maintenance {
 		$this->mDescription = "Pick a database that has pending jobs";
 		$this->addOption( 'type', "The type of job to search for", false, true );
 	}
+
 	public function execute() {
 		global $wgMemc;
 		$type = $this->getOption( 'type', false );
@@ -36,18 +37,18 @@ class nextJobDB extends Maintenance {
 					? "jobqueue:dbs"
 					: "jobqueue:dbs:$type";
 		$pendingDBs = $wgMemc->get( $mckey );
-		
+
 		# If we didn't get it from the cache
 		if( !$pendingDBs ) {
 			$pendingDBs = $this->getPendingDbs( $type );
 			$wgMemc->get( $mckey, $pendingDBs, 300 );
 		}
-		# If we've got a pending job in a db, display it. 
+		# If we've got a pending job in a db, display it.
 		if ( $pendingDBs ) {
 			$this->output( $pendingDBs[mt_rand(0, count( $pendingDBs ) - 1)] );
 		}
 	}
-	
+
 	/**
 	 * Get all databases that have a pending job
 	 * @param $type String Job type
@@ -62,12 +63,11 @@ class nextJobDB extends Maintenance {
 			$lb = wfGetLB( $db );
 			$dbsByMaster[$lb->getServerName(0)][] = $db;
 		}
-	
+
 		foreach ( $dbsByMaster as $master => $dbs ) {
 			$dbConn = wfGetDB( DB_MASTER, array(), $dbs[0] );
-			$stype = $dbConn->addQuotes($type);
-			
-	
+			$stype = $dbConn->addQuotes( $type );
+
 			# Padding row for MySQL bug
 			$sql = "(SELECT '-------------------------------------------' as db)";
 			foreach ( $dbs as $wikiId ) {
