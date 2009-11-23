@@ -465,13 +465,13 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'createaccountmail'          => 'për pòsta eletrònica',
 'badretype'                  => "Le doe ciav che a l'ha scrivù a resto diferente antra lor, e a venta che a sio mideme.",
 'userexists'                 => "Lë stranòm anserì a l'é già dovrà.
-Për piasì, sërn në stranòm diferent.",
+Për piasì, sern në stranòm diferent.",
 'loginerror'                 => 'Eror ën rintrand ant ël sistema',
 'createaccounterror'         => 'As peul pa creesse ël cont: $1',
-'nocookiesnew'               => "Sò cont a l'é doèrt, ma chiel (ò chila) a l'ha nen podù rintré ant ël sistema.
-{{SITENAME}} a dòvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità.
+'nocookiesnew'               => "Sò cont a l'é duvèrt, ma chiel (ò chila) a l'ha nen podù rintré ant ël sistema.
+{{SITENAME}} a deuvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità.
 Për piasì, che as j'abìlita e peuj che a preuva torna a rintré con sò stranòm e soa ciav.",
-'nocookieslogin'             => "{{SITENAME}} a dòvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità. Pëër piasì, che a j'abìlita e peuj che a preuva torna.",
+'nocookieslogin'             => "{{SITENAME}} a deuvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità. Për piasì, che a j'abìlita e peuj che a preuva torna.",
 'noname'                     => "Lë stranòm che a l'ha batù as peul pa dovresse, as peul nen creésse un cont Utent con ës nòm-sì.",
 'loginsuccesstitle'          => "Compliment! A l'é pen-a rintrà ant ël sistema. A-i é pa staje gnun eror.",
 'loginsuccess'               => 'A l\'ha avù ël përmess ëd conession al server ëd {{SITENAME}} con lë stranòm utent ëd "$1".',

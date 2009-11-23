@@ -2268,7 +2268,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipaddress'                       => 'Enderezo IP:',
 'ipadressorusername'              => 'Enderezo IP ou nome de usuario:',
 'ipbexpiry'                       => 'Duración:',
-'ipbreason'                       => 'Razón:',
+'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Outro motivo',
 'ipbreason-dropdown'              => '*Mensaxes de bloqueo comúns
 ** Inserir información falsa

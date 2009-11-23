@@ -1148,8 +1148,8 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'KISARA (URL) haikupatikana',
 
-'license'        => 'Hakimiliki:',
-'license-header' => 'Hakimiliki',
+'license'        => 'Hatimiliki:',
+'license-header' => 'Hatimiliki',
 'nolicense'      => 'Haikuchaguliwa',
 
 # Special:ListFiles

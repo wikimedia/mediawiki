@@ -1137,7 +1137,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'recentchangescount'            => 'Zuel vun den Ännerungen déi als Standard gewise ginn:',
 'prefs-help-recentchangescount' => 'Inklusiv Rezent Ännerungen, Versiounshistoriquen a Logbicher.',
 'prefs-help-watchlist-token'    => 'Wann dir dëst Feld mat engem Geheimcode ausfëllt gëtt en RSS-Feed fir Är Iwwerwaachungslëscht generéiert.
-Jidfereen deen de Geheimcode aus de¨sem Feld kennt kann Är Iwwerwaachungslëscht liesen, wielt dofir e séchere Wert.
+Jidfereen deen de Geheimcode aus dësem Feld kennt kann Är Iwwerwaachungslëscht liesen, wielt dofir e séchere Wert.
 Hei ass een zoufälleg generéierte Wert deen Dir benotze kënnt: $1',
 'savedprefs'                    => 'Är Astellunge goufe gespäichert.',
 'timezonelegend'                => 'Zäitzon:',

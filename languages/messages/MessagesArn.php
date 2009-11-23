@@ -8,6 +8,7 @@
  * @file
  *
  * @author Clerc
+ * @author Kaniw
  * @author Lin linao
  * @author Poquil
  * @author Remember the dot
@@ -223,7 +224,7 @@ $messages = array(
 
 # Search results
 'viewprevnext'                   => 'Pen ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-exists'              => "'''Ngey kiñe pakina pingey «[[$1]]» tüfachi wiki mew'''",
+'searchmenu-exists'              => "'''Mvley kiñe cijka «[[:$1]]» pigelu faci wiki mew'''",
 'searchmenu-new'                 => "'''¡Llitun pakina «[[:$1]]» tüfachi wiki mew!'''",
 'searchhelp-url'                 => 'Help:Kellu',
 'searchprofile-articles-tooltip' => 'kintu $1 mew',
