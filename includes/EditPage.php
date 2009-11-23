@@ -67,6 +67,7 @@ class EditPage {
 	#var $mPreviewTemplates;
 	var $mParserOutput;
 	var $mBaseRevision = false;
+	var $mShowSummaryField = true;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -1455,8 +1456,9 @@ class EditPage {
 				) );
 
 			// No idea where this is closed.
+			$editsummary .= '<br/>';
 			$editsummary = Xml::openElement( 'div', array( 'class' => 'editOptions' ) )
-							. $editsummary . '<br />';
+					. ($this->mShowSummaryField ? $editsummary : '');
 
 			$summarypreview = '';
 			if ( $summarytext && ( $this->preview || $this->diff ) ) {
