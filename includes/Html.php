@@ -81,6 +81,7 @@ class Html {
 		'reversed',
 		'scoped',
 		'seamless',
+		'spellcheck',
 	);
 
 	/**
@@ -147,6 +148,7 @@ class Html {
 					'placeholder',
 					'required',
 					'step',
+					'spellcheck',
 				);
 				foreach ( $html5attribs as $badAttr ) {
 					unset( $attribs[$badAttr] );

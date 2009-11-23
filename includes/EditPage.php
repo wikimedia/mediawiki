@@ -1419,7 +1419,7 @@ class EditPage {
 					Xml::tags( 'span', array( 'class' => $summaryClass, 'id' => "wpSummaryLabel" ),
 						$commentsubject );
 				$commentsubject .= '&nbsp;';
-				$commentsubject .= Xml::input( 'wpSummary',
+				$commentsubject .= Html::input( 'wpSummary',
 									60,
 									$summarytext,
 									array(
@@ -1447,7 +1447,7 @@ class EditPage {
 			$editsummary = Xml::tags( 'span',  array( 'class' => $summaryClass, 'id' => "wpSummaryLabel" ),
 					$editsummary ) . ' ';
 
-			$editsummary .= Xml::input( 'wpSummary',
+			$editsummary .= Html::input( 'wpSummary',
 				60,
 				$summarytext,
 				array(
