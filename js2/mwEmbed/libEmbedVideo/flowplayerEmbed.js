@@ -1472,7 +1472,7 @@ var flowplayerEmbed = {
 	postEmbedJS: function()
 	{
 		var _this = this;
-		js_log( 'embedFlow: uri:' + this.getSrc() + "\n" + mv_embed_path + 'binPlayers/flowplayer/flowplayer-3.0.1.swf' ) ;
+		js_log( 'embedFlow: uri:' + this.getSrc() + "\n" + mv_embed_path + 'libEmbedVideo/binPlayers/flowplayer/flowplayer-3.0.1.swf' ) ;
 		var flowConfig = {
 			clip: {
 				url: this.getSrc(),

@@ -20,7 +20,7 @@ var kplayerEmbed = {
 		return this.wrapEmebedContainer( embed_code );
 	},
 	getEmbedObj:function() {	
-		var player_path = mv_embed_path + 'binPlayers/kaltura-player';
+		var player_path = mv_embed_path + 'libEmbedVideo/binPlayers/kaltura-player';
 		return '<object width="' + this.width + '" height="' + this.height + '" '+ 
 			 'data="' + player_path + '/wrapper.swf" allowfullscreen="true" '+ 
 			 'allownetworking="all" allowscriptaccess="always" '+
