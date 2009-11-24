@@ -1,4 +1,6 @@
 /* firefox 3.6 drag-drop uploading
+*
+* Note: this file is still under development
 */
 loadGM( {
 	"mwe-upload-multi" : "Upload {{PLURAL:$1|file|files}}",
@@ -50,11 +52,11 @@ loadGM( {
 			);
 
 
-			var cBtn = { };
-			cBtn[ gM( 'mwe-cancel' ) ] = function() {
+			var buttons = { };
+			buttons[ gM( 'mwe-cancel' ) ] = function() {
 				$j( this ).dialog( 'close' );
 			}
-			cBtn[ gM( 'mwe-upload-multi', fileCount ) ] = function() {
+			buttons[ gM( 'mwe-upload-multi', fileCount ) ] = function() {
 				alert( 'do multiple file upload' );
 			}
 			// open up the dialog
@@ -64,7 +66,7 @@ loadGM( {
 				modal: true,
 				draggable:false,
 				resizable:false,
-				buttons:cBtn
+				buttons : buttons
 			} );
 			$j( '#multiple_file_input' ).dialogFitWindow();
 			$j( window ).resize( function() {

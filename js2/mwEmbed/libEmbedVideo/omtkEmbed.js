@@ -6,7 +6,7 @@ var omtkEmbed = {
 	},
 	getEmbedHTML : function () {
 		var embed_code =  this.getEmbedObj();
-		// need omtk to fire an onReady event.
+		// Need omtk to fire an onReady event.
 		setTimeout( '$j(\'#' + this.id + '\').get(0).postEmbedJS()', 2000 );
 		return this.wrapEmebedContainer( embed_code );
 	},

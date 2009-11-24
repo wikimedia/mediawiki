@@ -1,10 +1,7 @@
 /*
- * basic flickr search uses flickr jsonp api  
+ * Basic flickr search uses flickr jsonp api  
  * http://www.flickr.com/services/api/
  * 
- * uses the "example api_key" 519b66e3fd8d8080e27a64fe51101e2c
- * should update with a different "public" key sometime soon
- * http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=519b66e3fd8d8080e27a64fe51101e2c
  *
  * we look for licenses from method=flickr.photos.licenses.getInfo
  * per http://commons.wikimedia.org/wiki/Special:Upload?uselang=fromflickr
@@ -22,7 +19,7 @@ flickrSearch.prototype = {
 	dtUrl : 'http://www.flickr.com/photos/',
 	// @@todo probably would be good to read the api-key from configuration
 	apikey : '2867787a545cc66c0bce6f2e57aca1d1',
-	// what licence we are interested in
+	// What licence we are interested in
 	_licence_keys: '4,5,7,8',
 	_srctypes: ['t', 'sq', 's', 'm', 'o'],
 	licenceMap: {
@@ -31,9 +28,11 @@ flickrSearch.prototype = {
 		'7'	: 'http://www.flickr.com/commons/usage/',
 		'8' : 'http://www.usa.gov/copyright.shtml'
 	},
-	init:function( iObj ) {
-		// init base class and inherit: 
-		var baseSearch = new baseRemoteSearch( iObj );
+	/**
+	* Initialize the flickr Search with provided options
+	*/
+	init:function( options ) {		
+		var baseSearch = new baseRemoteSearch( options );
 		for ( var i in baseSearch ) {
 			if ( typeof this[i] == 'undefined' ) {
 				this[i] = baseSearch[i];
@@ -41,8 +40,10 @@ flickrSearch.prototype = {
 				this['parent_' + i] =  baseSearch[i];
 			}
 		}
-		// inherit the cp settings for 
 	},
+	/**
+	* Gets the Search results setting _loading flag to false once results have been added 
+	*/
 	getSearchResults:function() {
 		var _this = this;
 		js_log( "flickr::getSearchResults" );
@@ -68,6 +69,9 @@ flickrSearch.prototype = {
 			_this.loading = false;
 		} );
 	},
+	/**
+	* Adds Results for a given data response from api query
+	*/
 	addResults:function( data ) {
 		var _this = this;
 		if ( data.photos && data.photos.photo ) {
@@ -77,43 +81,51 @@ flickrSearch.prototype = {
 				this.more_results = true;
 			}
 			for ( var resource_id in data.photos.photo ) {
-				var resource = data.photos.photo[resource_id];
-			
-				var rObj = {
-					'titleKey'	 : resource.title + '.jpg',
-					'resourceKey': resource.id,
-					'link'		 : _this.dtUrl + resource.pathalias + '/' + resource.id,
-					'title'		 : resource.title,
-					'thumbwidth' : resource.width_t,
-					'thumbheight': resource.height_t,
-					'desc'		 : resource.title,
-					// set the license: (rsd is a pointer to the parent remoteSearchDriver )		 
-					'license'	 : this.rsd.getLicenceFromUrl( _this.licenceMap[ resource.license ] ),
-					'pSobj'		 : _this,
-					// assume image/jpeg for "photos"
-					'mime'		 : 'image/jpeg'
-				};
-				// set all the provided srcs:
-				rObj['srcSet'] = { };
-				for ( var i in _this._srctypes ) {
-					var st = _this._srctypes[i];
-					// if resource has a url add it to the srcSet:	
-					if ( resource['url_' + st] ) {
-						rObj['srcSet'][st] = {
-							'h': resource['height_' + st],
-							'w': resource['width_' + st],
-							'src': resource['url_' + st]
-						}
-						// set src to the largest 
-						rObj['src'] = resource['url_' + st];
-					}
-				}
-																															
+				var sourceResource = data.photos.photo[ resource_id ];
+				var rObj = _this.getResourceObjet( sourceResource );
 				_this.resultsObj[ resource_id ] = rObj;
 			}
 		}
 	},
-	// return image transform via callback 
+	/**
+	* Gets an individual resource object from a given source Resource
+	*/
+	getResourceObjet: function( resource ){			
+		var _this = this;		
+		var rObj = {
+			'titleKey'	 : resource.title + '.jpg',
+			'resourceKey': resource.id,
+			'link'		 : _this.dtUrl + resource.pathalias + '/' + resource.id,
+			'title'		 : resource.title,
+			'thumbwidth' : resource.width_t,
+			'thumbheight': resource.height_t,
+			'desc'		 : resource.title,
+			// Set the license
+			'license'	 : this.rsd.getLicenceFromUrl( _this.licenceMap[ resource.license ] ),
+			'pSobj'		 : _this,
+			// Assume image/jpeg for flickr response
+			'mime'		 : 'image/jpeg'
+		};
+		// Add all the provided src types that are avaliable 
+		rObj['srcSet'] = { };
+		for ( var i in _this._srctypes ) {
+			var st = _this._srctypes[i];
+			// if resource has a url add it to the srcSet:	
+			if ( resource['url_' + st] ) {
+				rObj['srcSet'][st] = {
+					'h': resource['height_' + st],
+					'w': resource['width_' + st],
+					'src': resource['url_' + st]
+				}
+				// Set src to the largest
+				rObj['src'] = resource['url_' + st];
+			}
+		}
+		return rObj;
+	},
+	/**
+	* return image transform via callback
+	*/ 
 	getImageObj:function( rObj, size, callback ) {
 		if ( size.width ) {
 			var skey = this.getSrcTypeKey( rObj, size.width )
@@ -124,10 +136,14 @@ flickrSearch.prototype = {
 			} );
 		}
 	},
-	getImageTransform:function( rObj, opt ) {
-		if ( opt.width ) {
-			return rObj.srcSet[ this.getSrcTypeKey( rObj, opt.width ) ].src;
+	/**
+	* Gets an image transformation based a SrcTypeKey gennerated by the requested options
+	*/
+	getImageTransform:function( rObj, options ) {
+		if ( options.width ) {
+			return rObj.srcSet[ this.getSrcTypeKey( rObj, options.width ) ].src;
 		}
+		return rObj.srcSet[ _srctypes[_srctypes.length-1] ];
 	},
 	getSrcTypeKey:function( rObj, width ) {
 		if ( width <= 75 ) {
