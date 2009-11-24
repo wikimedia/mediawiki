@@ -2605,8 +2605,8 @@ class Article {
 			$skin = $wgUser->getSkin();
 			$revisions = $this->estimateRevisionCount();
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
-				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .' ' .
-				$skin->historyLink() .
+				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
+				wfMsgHtml( 'word-separator' ) . $skin->historyLink() .
 				'</strong>'
 			);
 			if( $bigHistory ) {
