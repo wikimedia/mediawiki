@@ -2,8 +2,6 @@
  * Advanced Firefogg support. Lets you control many aspects of video encoding.
  */
 
-//@@todo put all msg text into loadGM json
-
 loadGM({
 	"fogg-help-sticky" : "Help (click to stick)",
 	"fogg-cg-preset" : "Preset: <strong>$1<\/strong>",

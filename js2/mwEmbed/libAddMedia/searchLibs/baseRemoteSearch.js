@@ -272,7 +272,7 @@ baseRemoteSearch.prototype = {
 			'url' : rObj.poster 
 		} );
 	},
-	/*
+	/**
 	* Gets the inline wikiText description of the resource Object
 	*/
 	getInlineDescWiki:function( rObj ) {
