@@ -1,9 +1,10 @@
 /*
 * Base remote search Object. 
-* provies the base class for the other search system to extend. 
+* provides the base class for the other search system to extend. 
 */
 loadGM( {
-	"mwe-imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more information."
+	"mwe-imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more information.",
+	"mwe-import-description" : "$1, imported from $2"
 } )
 
 /*
@@ -53,6 +54,7 @@ baseRemoteSearch.prototype = {
 
 	/**
 	* Initialise the baseRemoteSearch 
+	* @param {Object} options The set of options for the remote search class
 	*/
 	init: function( options ) {
 		js_log( 'mvBaseRemoteSearch:init' );
@@ -107,9 +109,9 @@ baseRemoteSearch.prototype = {
 					}
 				}
 			}
-			// force a mime type for now.. in the future generalize for other RSS feeds and conversions
+			// Force a mime type. In the future generalize for other RSS feeds
 			rObj['mime'] = 'video/ogg';
-			// add pointer to parent search obj:( this.cp.limit )? this.cp.limit : this.limit,
+			// Add pointer to parent search obj:( this.cp.limit )? this.cp.limit : this.limit,
 
 			rObj['pSobj'] = _this;
 			// add the result to the result set:
@@ -172,60 +174,91 @@ baseRemoteSearch.prototype = {
 	}, 
 	
 	/**
-	* Get the html representation of the resource Object paramater
+	* Get the html representation of the resource Object parameter
 	*/
 	getEmbedHTML: function( rObj , options ) {
 		if ( !options )
-			options = { };
+			options = { };			
 		// Set up the output var with the default values: 
-		var eWidth = rObj.width;
-		var eHeight = rObj.height;
-		if ( options['max_height'] ) {
-			eHeight = ( options.max_height > rObj.height ) ? rObj.height : options.max_height;
-			eWidth = ( rObj.width / rObj.height ) * outOpt.height;
-		}
-		var style_attr = 'style="';
-		if( eWidth )
-			style_attr += 'width:' + eWidth + 'px;';
+		if(! options.width )
+			options.width = rObj.width;
+		if(! options.height )
+			options.height = rObj.height
 			
-		if( eHeight )
-			style_attr += 'height:' + eHeight + 'px;';			
-		
-		var id_attr = ( options['id'] ) ? ' id = "' + options['id'] + '" ': '';
+		var outHtml  = '';
+		if ( options['max_height'] ) {
+			options.height = ( options.max_height > rObj.height ) ? rObj.height : options.max_height;
+			options.width = ( rObj.width / rObj.height ) * options.height;
+		}
+		options.style = '';
+		if( options.height )
+			options.style += 'height:' + options.height + 'px;';
+			
+		if( options.width )
+			options.style += 'width:' + options.width + 'px;';							
 		
 		if ( rObj.mime.indexOf( 'image' ) != -1 )
-			return this.getImageEmbedHTML( rObj, options );
+			outHtml = this.getImageEmbedHTML( rObj, options );
 			
 		if ( rObj.mime == 'application/ogg' || rObj.mime == 'video/ogg' || rObj.mime == 'audio/ogg' ) {
-			var ahtml = id_attr +
-					' src="' + rObj.src + '" ' +
-					style_attr +
-					' poster="' +  rObj.poster + '" ';
+			// Setup the attribute html:
+			var ahtml = ( options['id'] ) ? ' id = "' + options['id'] + '" ': '';
+			ahtml+=	'src="' + rObj.src + '" ' +
+					'style="' + options.style + '" ' +
+					'poster="' +  rObj.poster + '" ';
+					
 			if (  rObj.mime == 'application/ogg' || rObj.mime == 'video/ogg'  ) {
-				return '<video ' + ahtml + '></video>';
+				outHtml = '<video ' + ahtml + '></video>';
 			}
 					
-			if ( rObj.mime.indexOf( 'audio/ogg' ) != -1 ) {
-				return '<audio ' + ahtml + '></audio>';
+			if ( rObj.mime == 'audio/ogg' ) {
+				outHtml = '<audio ' + ahtml + '></audio>';
 			}
 		}
+		
+		// Return the output. Wrap with a description div if remote_insert_description is on.		
+		if( outHtml != '')
+			return ( this.rsd['remote_insert_description'] ) ?
+					this.wrapHtmlDesc(rObj, options, outHtml) :
+					outHtml;
+			
+		// No output give error: 
 		js_log( "ERROR:: no embed code for mime type: " + rObj.mime );	
 		return 'Error missing embed code for: ' + escape( rObj.mime );
 	},
+	wrapHtmlDesc: function( rObj, options, outHtml ) {
+		var stripedTitle =  rObj.title.replace( /File:|Image:|.jpg|.png|.ogg|.ogv|.oga|.svg/ig, '');
+		
+		var titleLink = '<a href="' + rObj.link + '" title="' + stripedTitle + '">' +
+							 stripedTitle + '</a>';
+		var cpTitle = gM('rsd-' + this.cp.id + '-title');
+		var remoteProviderLink = '<a href="' + this.cp.homepage + '" '+
+									'title="' + cpTitle + '">' +
+									cpTitle + '</a>'; 									
+		return '<div class="mw-imported-resource" '+ 
+				'style="width:' + options.width + 'px;' + 
+					'height:' + ( options.height + 20 ) + 'px;">' +
+					outHtml +
+					gM( 'mwe-import-description',  [titleLink, remoteProviderLink]) + 
+		 		'</div>';
+	},
 	/**
-	* Get the embed html specificaly for an image type resource Object. 
+	* Get the embed html specifically for an image type resource Object. 
 	*/
 	getImageEmbedHTML:function( rObj, options ) {
 		// if crop is null do base output: 
-		var imgHtml = '<img ' + options.id_attr + ' src="' + rObj.edit_url  + '"' + options.style_attr + ' ></img>';
+		var imgHtml = '<img ';
+		imgHtml += ( options['id'] ) ? ' id = "' + options['id'] + '" ': '';
+		imgHtml += ' src="' + rObj.edit_url  + '" '+
+					'style="' + options.style + '" />';
 		if ( rObj.crop == null )
-			return imgHtml
-		// else do crop output:	
-			return '<div style="width:' + rObj.crop.w + 'px;height: ' + rObj.crop.h + 'px;overflow:hidden;position:relative">' +
-						'<div style="position:relative;top:-' + rObj.crop.y + 'px;left:-' + rObj.crop.x + 'px">' +
-							imgHtml +
-						'</div>' +
-					'</div>';
+			return imgHtml;
+		// Else do crop output:	
+		return '<div style="width:' + rObj.crop.w + 'px;height: ' + rObj.crop.h + 'px;overflow:hidden;position:relative">' +
+					'<div style="position:relative;top:-' + rObj.crop.y + 'px;left:-' + rObj.crop.x + 'px">' +
+						imgHtml +
+					'</div>' +
+				'</div>';
 	},
 	/**
 	* Gets an image object from a requested transformation via callback
@@ -241,13 +274,12 @@ baseRemoteSearch.prototype = {
 	},
 	/*
 	* Gets the inline wikiText description of the resource Object
-	* By default just return the rObj description value 
 	*/
 	getInlineDescWiki:function( rObj ) {
 		// return striped html  & trim white space
 		if ( rObj.desc )
 			return $j.trim( rObj.desc.replace(/(<([^>]+)>)/ig,"") );
-		// no desc avaliable:
+		// No Description available:  
 		return '';
 	},
 	/**
@@ -307,7 +339,7 @@ baseRemoteSearch.prototype = {
 	/**
 	* Adds resource info with a callback function
 	*
-	* Usefull for grabbing extra info that is not avaliable in the innitial
+	* Use full for grabbing extra info that is not available in the initial 
 	* search results api request.
 	*/
 	addResourceInfoCallback:function( rObj, callback ) {
@@ -319,7 +351,7 @@ baseRemoteSearch.prototype = {
 	*/
 	getEmbedWikiCode:function( rObj ) {
 		var layout = ( rObj.layout ) ? rObj.layout:"right"
-		var o = '[[' + this.rsd.cFileNS + ':' + rObj.target_resource_title + '|thumb|' + layout;
+		var o = '[[' + this.rsd.fileNS + ':' + rObj.target_resource_title + '|thumb|' + layout;
 
 		if ( !rObj.target_width && rObj.width ) {
 			rObj.target_width = ( rObj.width < 640 ) ? rObj.width: '640';

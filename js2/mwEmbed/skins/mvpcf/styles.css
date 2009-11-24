@@ -543,3 +543,7 @@ ui-widget-overlay{
 	border-bottom:3px solid #36393D;
 	border-top:3px solid #36393D;
 }
+
+.mw-imported-resource{
+	border: thin solid black;
+}

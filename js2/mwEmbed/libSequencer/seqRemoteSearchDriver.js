@@ -108,23 +108,24 @@ seqRemoteSearchDriver.prototype = {
 
 			var clipConfig = {
 				'type' 	 : rObj.mime,
-				'uri' 	 : _this.cFileNS + ':' + rObj.target_resource_title,
+				'uri' 	 : _this.fileNS + ':' + rObj.target_resource_title,
 				'title'	 : rObj.title
 			};
-			// set via local properites if avaliable
+			// Set via local properties if available 
 			clipConfig['src'] = ( rObj.local_src ) ? rObj.local_src : rObj.src;
 			clipConfig['poster'] = ( rObj.local_poster ) ? rObj.local_poster : rObj.poster;
 
 			if ( rObj.start_time && rObj.end_time ) {
 				clipConfig['dur'] = npt2seconds( rObj.end_time ) - npt2seconds( rObj.start_time );
 			} else {
-				// provide a default duration if none set
+				// Provide a default duration if none set
 				clipConfig['dur'] = 4;
 			}
 
-			// create the media element (target order+1 (since we insert (after)
+			// Create the media element (target order+1 (since we insert (after)
 			_this.pSeq.plObj.tryAddMediaObj( clipConfig, ( parseInt( target_order ) + 1 ) );
-			// refresh the timeline:
+			
+			// Refresh the timeline:
 			_this.pSeq.do_refresh_timeline();
 			js_log( "run close all: " );
 			_this.closeAll();

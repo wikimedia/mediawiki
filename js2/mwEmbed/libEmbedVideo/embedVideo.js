@@ -52,7 +52,11 @@ loadGM( {
 	"mwe-embed_site_or_blog" : "Embed on a page",
 	"mwe-related_videos" : "Related videos",
 	"mwe-seeking" : "seeking",
-	"mwe-copy-code" : "Copy code"
+	"mwe-copy-code" : "Copy code",	
+	"mwe-video-h264" : "H.264 video",
+	"mwe-video-flv" : "Flash video",
+	"mwe-video-ogg" : "Ogg video",
+	"mwe-video-audio" : "Ogg audio"
 } );
 
 var default_video_attributes = {
@@ -345,11 +349,7 @@ mediaSource.prototype = {
 		else if ( $j( element ).attr( 'content-type' ) )
 			this.mime_type = $j( element ).attr( 'content-type' );
 		else
-			this.mime_type = this.detectType( this.src );
-		
-		// Set the title if unset:
-		if ( !this.title )
-			this.title = this.mime_type;
+			this.mime_type = this.detectType( this.src );				
 
 		this.parseURLDuration();
 	},
@@ -427,8 +427,27 @@ mediaSource.prototype = {
 		@return the title of the source.
 		@type String
 	*/
-	getTitle : function() {
-		return this.title;
+	getTitle : function() {	
+		if( this.title )
+			return this.title;
+			
+		// Return a title based on mime type: 
+		switch( this.mime_type ){
+			case 'video/h264' :
+				return gM( 'mwe-video-h264' );
+			break;
+			case 'video/x-flv' :
+				return gM( 'mwe-video-flv' );
+			break;
+			case 'video/ogg' :
+				return gM( 'mwe-video-ogg' );
+			break;
+			case 'audio/ogg' :
+				return gM( 'mwe-video-audio' );
+			break;
+		} 
+		// Return the mime type string if not known type.
+		return this.mime_type;
 	},
 	/** Index accessor function.
 		@return the source's index within the enclosing mediaElement container.
@@ -1879,12 +1898,14 @@ embedVideo.prototype = {
 		o += '<h2>' + gM( 'mwe-chose_player' ) + '</h2>';
 		var _this = this;
 		$j.each( this.media_element.getPlayableSources(), function( source_id, source ) {
-			var default_player = embedTypes.players.defaultPlayer( source.getMIMEType() );
+			var playable = embedTypes.players.defaultPlayer( source.getMIMEType() );
 
 			var is_selected = ( source == _this.media_element.selected_source );
 			var image_src =  mv_skin_img_path ;
-
-			if ( default_player ) {
+			
+			o += '<h2>' + source.getTitle() + '</h2>';
+			
+			if ( playable ) {
 				o += '<ul>';
 				// output the player select code:
 				var supporting_players = embedTypes.players.getMIMETypePlayers( source.getMIMEType() );
