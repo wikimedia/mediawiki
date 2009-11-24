@@ -1420,12 +1420,13 @@ class EditPage {
 						$commentsubject );
 				$commentsubject .= '&nbsp;';
 				$commentsubject .= Html::input( 'wpSummary',
-									60,
 									$summarytext,
+									'text',
 									array(
 										'id' => 'wpSummary',
 										'maxlength' => '200',
 										'tabindex' => '1',
+										'size' => '60',
 										'spellcheck' => 'true'
 									) );
 			} else {
@@ -1448,12 +1449,13 @@ class EditPage {
 					$editsummary ) . ' ';
 
 			$editsummary .= Html::input( 'wpSummary',
-				60,
 				$summarytext,
+				'text',
 				array(
 					'id' => 'wpSummary',
 					'maxlength' => '200',
 					'tabindex' => '1',
+					'size' => '60',
 					'spellcheck' => 'true'
 				) );
 
