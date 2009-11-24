@@ -1639,6 +1639,10 @@ PICT # misc.
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
+'img-auth-nopathinfo'   => 'Falta PATH_INFO
+Seu servidor não está configurado para passar essa informação.
+Pode ser baseado em CGI e não suportar img_auth.
+Veja http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
 'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na lista branca.',
 'img-auth-nofile'       => 'Arquivo "$1" não existe.',

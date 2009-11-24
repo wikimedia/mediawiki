@@ -992,6 +992,7 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'rev-deleted-comment'         => '(bàn luận đã bị xóa)',
 'rev-deleted-user'            => '(tên người dùng đã bị xóa)',
 'rev-deleted-event'           => '(tác vụ nhật trình đã bị xóa)',
+'rev-deleted-user-contribs'   => '[tên người dùng hay địa chỉ IP bị ẩn – sửa đổi được ẩn khỏi danh sách đóng góp]',
 'rev-deleted-text-permission' => "Phiên bản này đã bị '''xóa'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.

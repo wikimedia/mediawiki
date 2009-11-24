@@ -295,7 +295,7 @@ $messages = array(
 'tog-editondblclick'          => 'Editar páginas quando houver um clique duplo (JavaScript)',
 'tog-editsection'             => 'Possibilitar a edição de secções através de uma ligação [editar]',
 'tog-editsectiononrightclick' => 'Possibilitar a edição de secções por clique com o botão direito no título da secção (JavaScript)',
-'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três secções)',
+'tog-showtoc'                 => 'Mostrar índice (para páginas com mais de três secções)',
 'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
 'tog-editwidth'               => 'Aumentar a largura da caixa de edição para preencher todo o ecrã',
 'tog-watchcreations'          => 'Adicionar as páginas que eu criar às minhas páginas vigiadas',
@@ -456,7 +456,7 @@ $messages = array(
 'vector-namespace-main'      => 'Página',
 'vector-namespace-media'     => 'Página de multimédia',
 'vector-namespace-mediawiki' => 'Mensagem',
-'vector-namespace-project'   => 'Página de projeto',
+'vector-namespace-project'   => 'Página de projecto',
 'vector-namespace-special'   => 'Página especial',
 'vector-namespace-talk'      => 'Discussão',
 'vector-namespace-template'  => 'Predefinição',
@@ -466,7 +466,7 @@ $messages = array(
 'vector-view-history'        => 'Ver histórico',
 'vector-view-view'           => 'Ler',
 'vector-view-viewsource'     => 'Ver fonte',
-'actions'                    => 'Ações',
+'actions'                    => 'Acções',
 'namespaces'                 => 'Espaços nominais',
 'variants'                   => 'Variantes',
 
@@ -538,8 +538,8 @@ $1',
 'aboutpage'            => 'Project:Sobre',
 'copyright'            => 'Conteúdo disponibilizado sob $1.',
 'copyrightpage'        => '{{ns:project}}:Direitos_de_autor',
-'currentevents'        => 'Eventos actuais',
-'currentevents-url'    => 'Project:Eventos actuais',
+'currentevents'        => 'Notícias',
+'currentevents-url'    => 'Project:Notícias',
 'disclaimers'          => 'Alerta de Conteúdo',
 'disclaimerpage'       => 'Project:Aviso_geral',
 'edithelp'             => 'Ajuda de edição',
@@ -573,7 +573,7 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'editlink'                => 'editar',
 'viewsourcelink'          => 'ver fonte',
 'editsectionhint'         => 'Editar secção: $1',
-'toc'                     => 'Tabela de conteúdo',
+'toc'                     => 'Índice',
 'showtoc'                 => 'mostrar',
 'hidetoc'                 => 'esconder',
 'thisisdeleted'           => 'Ver ou restaurar $1?',
@@ -1085,16 +1085,16 @@ Como administrador, pode ver a diferença entre revisões; podem existir mais de
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'     => 'Edição de destino inválida',
-'revdelete-nooldid-text'      => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
+'revdelete-nooldid-text'      => 'Ocorreu uma das seguintes: não especificou a revisão (ou revisões) de destino para realizar esta função, a revisão que especificou não existe, ou está tentando ocultar a revisão actual.',
 'revdelete-nologtype-title'   => 'Tipo de registo não especificado',
-'revdelete-nologtype-text'    => 'Você não especificou um tipo de registo sobre o qual executar esta ação.',
+'revdelete-nologtype-text'    => 'Não especificou um tipo de registo sobre o qual executar esta acção.',
 'revdelete-nologid-title'     => 'Entrada de registo inválida',
-'revdelete-nologid-text'      => 'Você não especificou um evento de registo alvo para executar esta função ou a entrada especificada não existe.',
+'revdelete-nologid-text'      => 'Ou não especificou um evento do registo sobre o qual executar esta função, ou a entrada que especificou não existe.',
 'revdelete-no-file'           => 'O ficheiro especificado não existe.',
-'revdelete-show-file-confirm' => 'Tem a certeza de que quer visualizar uma revisão eliminada do ficheiro "<nowiki>$1</nowiki>" de $2 em $3?',
+'revdelete-show-file-confirm' => 'Tem a certeza de que quer ver uma revisão eliminada do ficheiro "<nowiki>$1</nowiki>" de $2 às $3?',
 'revdelete-show-file-submit'  => 'Sim',
 'revdelete-selected'          => "'''{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} de [[:$1]]:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento do registo seleccionado|Eventos do registo seleccionados}}:'''",
 'revdelete-text'              => "'''Edições e eventos eliminados continuarão a aparecer no histórico e registos da página, mas partes do seu conteúdo estarão inacessíveis ao público.'''
 Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.",
 'revdelete-confirm'           => 'Por favor confirme que pretende executar esta acção, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
@@ -1105,16 +1105,16 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-legend'            => 'Definir restrições de visualização',
 'revdelete-hide-text'         => 'Ocultar texto da edição',
 'revdelete-hide-name'         => 'Ocultar acção e alvo',
-'revdelete-hide-comment'      => 'Esconder comentário de edição',
+'revdelete-hide-comment'      => 'Ocultar sumário de edição',
 'revdelete-hide-user'         => 'Ocultar nome de utilizador/IP',
-'revdelete-hide-restricted'   => 'Suprimir dados a administradores bem como a outros',
-'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
-'revdelete-hide-image'        => 'Ocultar conteúdos do ficheiro',
-'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
+'revdelete-hide-restricted'   => 'Ocultar dados dos administradores e de todos os outros',
+'revdelete-suppress'          => 'Ocultar dados dos administradores e de todos os outros',
+'revdelete-hide-image'        => 'Ocultar conteúdo do ficheiro',
+'revdelete-unsuppress'        => 'Remover restrições das revisões restauradas',
 'revdelete-log'               => 'Motivo da eliminação:',
-'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à edição seleccionada|às edições seleccionadas}}',
-'revdelete-logentry'          => 'modificou visibilidade de edições de [[$1]]',
-'logdelete-logentry'          => 'alterou a visibilidade de eventos para [[$1]]',
+'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à revisão seleccionada|às revisões seleccionadas}}',
+'revdelete-logentry'          => 'modificou visibilidade das revisões de [[$1]]',
+'logdelete-logentry'          => 'alterou visibilidade de eventos do [[$1]]',
 'revdelete-success'           => "'''A visibilidade da revisão foi actualizada com sucesso.'''",
 'revdelete-failure'           => "'''A visibilidade da revisão não foi actualizada:'''
 $1",
@@ -1131,7 +1131,7 @@ $1",
 'revdelete-unrestricted'      => 'restrições a administradores removidas',
 'revdelete-hid'               => 'ocultou $1',
 'revdelete-unhid'             => 'desocultou $1',
-'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|edição|edições}}',
+'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisão|revisões}}',
 'logdelete-log-message'       => '$1 para $2 {{PLURAL:$2|evento|eventos}}',
 'revdelete-hide-current'      => 'Erro ao ocultar o item datado de $2, $1: esta é a revisão actual.
 Não pode ser ocultada.',
@@ -1298,9 +1298,9 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-rendering'               => 'Aparência',
 'saveprefs'                     => 'Gravar',
 'resetprefs'                    => 'Eliminar as alterações que não foram gravadas',
-'restoreprefs'                  => 'Restaurar todas as configurações padrão',
+'restoreprefs'                  => 'Repor todas as configurações padrão',
 'prefs-editing'                 => 'Edição',
-'prefs-edit-boxsize'            => 'Tamanho da janela de edição.',
+'prefs-edit-boxsize'            => 'Dimensões da janela de edição.',
 'rows'                          => 'Linhas:',
 'columns'                       => 'Colunas:',
 'searchresultshead'             => 'Pesquisa',
@@ -1341,7 +1341,8 @@ Eis um valor gerado aleatoriamente, que pode usar: $1",
 'prefs-files'                   => 'Ficheiros',
 'prefs-custom-css'              => 'CSS personalizada',
 'prefs-custom-js'               => 'JS personalizado',
-'prefs-reset-intro'             => 'Pode usar esta página para repôr as configurações-padrão das preferências. As suas preferências serão modificadas para os valores predefinidos do sítio.
+'prefs-reset-intro'             => 'Pode usar esta página para repor as configurações padrão das preferências.
+As suas preferências serão modificadas para os valores predefinidos do sítio.
 Esta acção não pode ser desfeita.',
 'prefs-emailconfirm-label'      => 'Confirmação do email:',
 'prefs-textboxsize'             => 'Tamanho da janela de edição',
@@ -1386,10 +1387,10 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'userrights'                  => 'Privilégios dos utilizadores',
 'userrights-lookup-user'      => 'Gerir grupos do utilizador',
 'userrights-user-editname'    => 'Introduza um nome de utilizador:',
-'editusergroup'               => 'Editar Grupos do Utilizador',
-'editinguser'                 => "Modificando privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editusergroup'               => 'Editar grupos do utilizador',
+'editinguser'                 => "A modificar os privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Editar grupos do utilizador',
-'saveusergroups'              => 'Gravar Grupos do Utilizador',
+'saveusergroups'              => 'Gravar grupos do utilizador',
 'userrights-groupsmember'     => 'Membro de:',
 'userrights-groups-help'      => 'É possível alterar os grupos a que este utilizador pertence:
 * Uma caixa de selecção marcada significa que o utilizador se encontra no grupo.
@@ -1410,7 +1411,7 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'group-bot'           => 'Robôs',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burocratas',
-'group-suppress'      => 'Oversights',
+'group-suppress'      => 'Supervisores',
 'group-all'           => '(todos)',
 
 'group-user-member'          => 'Utilizador',
@@ -1418,14 +1419,14 @@ Também pode permitir que outros entrem em contacto consigo através das suas p�
 'group-bot-member'           => 'Robô',
 'group-sysop-member'         => 'Administrador',
 'group-bureaucrat-member'    => 'Burocrata',
-'group-suppress-member'      => 'Oversight',
+'group-suppress-member'      => 'Supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Utilizadores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',
 'grouppage-bot'           => '{{ns:project}}:Robôs',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocratas',
-'grouppage-suppress'      => '{{ns:project}}:Oversight',
+'grouppage-suppress'      => '{{ns:project}}:Supervisores',
 
 # Rights
 'right-read'                  => 'Ler páginas',
@@ -1618,22 +1619,23 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualizaç�
 'minlength1'                  => 'Os nomes de ficheiros devem de ter pelo menos uma letra.',
 'illegalfilename'             => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor, altere o nome do ficheiro e tente carregar novamente.',
 'badfilename'                 => 'O nome do ficheiro foi alterado para "$1".',
-'filetype-badmime'            => 'Ficheiros de tipo MIME "$1" não são permitidos de serem enviados.',
+'filetype-badmime'            => 'Não é permitido carregar ficheiros do tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'Este ficheiro não pôde ser carregado porque o Internet Explorer o iria detectar como "$1", que é um tipo de ficheiro não permitido e potencialmente perigoso.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' é um tipo de ficheiro não desejado.
-{{PLURAL:\$3|O tipo preferível é|Os tipos preferíveis são}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' é um tipo proibido de ficheiro.
+'filetype-unwanted-type'      => "'''\".\$1\"''' não é um tipo de ficheiro desejado.
+{{PLURAL:\$3|O tipo preferido é|Os tipos preferidos são}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' não é um tipo de ficheiro permitido.
 {{PLURAL:\$3|O tipo permitido é|Os tipos permitidos são}} \$2.",
 'filetype-missing'            => 'O ficheiro não possui uma extensão (como, por exemplo, ".jpg").',
-'large-file'                  => 'É recomendável que os ficheiros não sejam maiores que $1; este possui $2.',
+'large-file'                  => 'É recomendável que os ficheiros não sejam maiores que $1;
+este tem $2.',
 'largefileserver'             => 'O tamanho deste ficheiro é superior ao permitido pela configuração do servidor.',
 'emptyfile'                   => 'O ficheiro que está a tentar carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do ficheiro. Por favor verifique se realmente deseja carregar este ficheiro.',
 'fileexists'                  => "Já existe um ficheiro com este nome.
 Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja alterar o ficheiro actual.
 [[$1|thumb]]",
-'filepageexists'              => "A página de descrição deste ficheiro já foi criada em '''<tt>[[:$1]]</tt>''', mas atualmente não existe nenhum ficheiro com este nome.
+'filepageexists'              => "A página de descrição deste ficheiro já foi criada em '''<tt>[[:$1]]</tt>''', mas neste momento não existe nenhum ficheiro com este nome.
 O sumário que introduzir não aparecerá na página de descrição.
-Para o fazer aparecer, terá que o editar manualmente.
+Para fazê-lo aparecer, terá de editar a página manualmente.
 [[$1|thumb]]",
 'fileexists-extension'        => "Já existe um ficheiro de nome semelhante: [[$2|thumb]]
 * Nome do ficheiro que está sendo carregado: '''<tt>[[:$1]]</tt>'''
@@ -1705,16 +1707,16 @@ Por favor, contacte um [[Special:ListUsers/sysop|administrador]].',
 'upload-misc-error-text'    => 'Ocorreu um erro desconhecido durante o envio.
 Verifique se o endereço (URL) é válido e acessível e tente novamente.
 Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].',
-'upload-too-many-redirects' => 'O URL continha muitos redirecionamentos',
+'upload-too-many-redirects' => 'A URL continha demasiados redireccionamentos',
 'upload-unknown-size'       => 'Tamanho desconhecido',
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO
-Seu servidor não está configurado para passar essa informação.
-Pode ser baseado em CGI e não suportar img_auth.
-Veja http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+O seu servidor não está configurado para passar esta informação.
+Pode ser baseado em CGI e não consegue suportar img_auth.
+Consulte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
 'img-auth-badtitle'     => 'Não é possível construir um título válido a partir de "$1".',
 'img-auth-nologinnWL'   => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',
@@ -1738,7 +1740,7 @@ Por favor, verifique se o endereço está correcto e o sítio disponível.',
 'license-header'     => 'Licenciamento',
 'nolicense'          => 'Nenhuma seleccionada',
 'license-nopreview'  => '(Antevisão não disponível)',
-'upload_source_url'  => ' (um URL válido, publicamente acessível)',
+'upload_source_url'  => ' (uma URL válida, publicamente acessível)',
 'upload_source_file' => ' (um ficheiro no seu computador)',
 
 # Special:ListFiles
@@ -1951,7 +1953,7 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'nopagetext'              => 'A página alvo especificada não existe.',
 'pager-newer-n'           => '{{PLURAL:$1|1 posterior|$1 posteriores}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
-'suppress'                => 'Oversight',
+'suppress'                => 'Supervisor',
 
 # Book sources
 'booksources'               => 'Fontes de livros',
@@ -2310,7 +2312,7 @@ Consulte o [[Special:Log/delete|registo de eliminações]] para um registo das e
 'undelete-error-long'          => 'Foram encontrados erros ao tentar restaurar o ficheiro:
 
 $1',
-'undelete-show-file-confirm'   => 'Você tem certeza de que deseja visualizar a versão eliminada de "<nowiki>$1</nowiki>" das $3 de $2?',
+'undelete-show-file-confirm'   => 'Tem a certeza de que quer ver a revisão eliminada do ficheiro "<nowiki>$1</nowiki>" de $2 às $3?',
 'undelete-show-file-submit'    => 'Sim',
 
 # Namespace form on various pages
@@ -2698,7 +2700,7 @@ Por favor, utilize o botão "Antever resultado" antes de gravar.',
 'tooltip-n-mainpage'              => 'Visitar a página principal',
 'tooltip-n-mainpage-description'  => 'Visitar a página principal',
 'tooltip-n-portal'                => 'Sobre o projecto',
-'tooltip-n-currentevents'         => 'Informação temática sobre eventos actuais',
+'tooltip-n-currentevents'         => 'Informação temática sobre acontecimentos actuais',
 'tooltip-n-recentchanges'         => 'A lista de mudanças recentes nesta wiki.',
 'tooltip-n-randompage'            => 'Carregar página aleatória',
 'tooltip-n-help'                  => 'Um local reservado para auxílio.',

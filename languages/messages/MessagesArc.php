@@ -457,6 +457,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # Revision deletion
 'rev-delundel'               => 'ܚܘܝ/ܛܫܝ',
+'rev-showdeleted'            => 'ܚܘܝ',
 'revisiondelete'             => 'ܫܘܦ/ܠܐ ܫܘܦ ܬܢܝܬ̈ܐ',
 'revdelete-show-file-submit' => 'ܐܝܢ',
 'revdelete-selected'         => "'''{{PLURAL:$2|ܬܢܝܬܐ ܓܒܝܬܐ|ܬܢܝܬ̈ܐ ܓܒܝܬܐ}} ܕ [[:$1]]:'''",
@@ -470,6 +471,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'revdelete-uname'            => 'ܫܡܐ ܕܡܦܠܚܢܐ',
 'revdelete-log-message'      => '$1 ܠ $2 {{PLURAL:$2|ܬܢܝܬܐ|ܬܢܝܬ̈ܐ}}',
 'logdelete-log-message'      => '$1 ܠ $2 {{PLURAL:$2|ܓܕܫܐ|ܓܕ̈ܫܐ}}',
+'revdelete-reasonotherlist'  => 'ܥܠܬܐ ܐܚܪܬܐ',
 'revdelete-edit-reasonlist'  => 'ܫܚܠܦ ܥܠܠܬ̈ܐ ܕܫܝܦܐ',
 
 # History merging
@@ -774,6 +776,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'listredirects' => 'ܒܪܒܝܢ ܕܨܘܝܒ̈ܐ',
 
 # Unused templates
+'unusedtemplates'    => 'ܩܠܒ̈ܐ ܠܐ ܦܠܝܚ̈ܐ',
 'unusedtemplateswlh' => 'ܐܣܘܪ̈ܐ ܐܚܪ̈ܢܐ',
 
 # Random page
@@ -814,6 +817,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'uncategorizedcategories' => 'ܣܕܪ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
 'uncategorizedimages'     => 'ܠܦܦ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
 'uncategorizedtemplates'  => 'ܩܠܒ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
+'unusedcategories'        => 'ܣܕܪ̈ܐ ܠܐ ܦܠܝܚ̈ܐ',
+'unusedimages'            => 'ܠܦܦ̈ܐ ܠܐ ܦܠܝܚ̈ܐ',
+'popularpages'            => 'ܦܐܬܬ̈ܐ ܡܫܡܗܬ̈ܐ',
 'wantedcategories'        => 'ܣܕܪ̈ܐ ܒܥܝ̈ܐ',
 'wantedpages'             => 'ܦܐܬܬ̈ܐ ܒܥܝܬ̈ܐ',
 'wantedfiles'             => 'ܠܦܦ̈ܐ ܒܥܝ̈ܐ',
@@ -833,6 +839,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'move'                    => 'ܫܢܝ',
 'movethispage'            => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
 'notargettitle'           => 'ܠܐ ܢܘܦܐ',
+'nopagetitle'             => 'ܠܝܬ ܗܟܘܬ ܦܐܬܐ ܕܢܘܦܐ',
 'pager-newer-n'           => '{{PLURAL:$1|1 1 ܚܕܬܐ|$1 ܚܕ̈ܬܐ}}',
 'pager-older-n'           => '{{PLURAL:$1|1 ܥܬܝܩ̈ܐ 1|$1 ܥܬܝܩ̈ܐ}}',
 'suppress'                => 'ܚܝܘܪܐ',
@@ -850,6 +857,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Special:AllPages
 'allpages'          => 'ܟܠ ܦܐܬܬ̈ܐ',
 'alphaindexline'    => '$1 ܠ $2',
+'nextpage'          => 'ܦܐܬܐ ܐܚܪܬܐ ($1)',
 'prevpage'          => 'ܦܐܬܐ ܩܕܝܡܬܐ ($1)',
 'allpagesfrom'      => 'ܚܘܝ ܦܐܬܬ̈ܐ ܕܫܪܐ ܥܡ:',
 'allpagesto'        => 'ܚܘܝ ܦܐܬܬ̈ܐ ܕܫܠܡ ܥܡ:',
@@ -859,10 +867,12 @@ Note that some pages may continue to be displayed as if you were still logged in
 'allpagesprev'      => 'ܩܕܡ',
 'allpagesnext'      => 'ܒܬܪ',
 'allpagessubmit'    => 'ܙܠ',
+'allpagesprefix'    => 'ܚܘܝ ܦܐܬܬ̈ܐ ܕܫܪܝܢ ܒ:',
 'allpages-bad-ns'   => '{{SITENAME}} ܠܝܬ ܠܗ ܚܩܠܐ "$1".',
 
 # Special:Categories
 'categories'                    => 'ܣܕܪ̈ܐ',
+'categoriesfrom'                => 'ܚܘܝ ܣܕܪ̈ܐ ܕܫܪܝܢ ܒ:',
 'special-categories-sort-count' => 'ܛܟܣ ܒܡܢܝܢܐ',
 'special-categories-sort-abc'   => 'ܛܟܣ ܗܓܝܢܐܝܬ',
 
@@ -877,7 +887,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'linksearch-ok' => 'ܒܨܝ',
 
 # Special:ListUsers
-'listusers-submit' => 'ܚܘܝ',
+'listusersfrom'     => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܝܢ ܒ:',
+'listusers-submit'  => 'ܚܘܝ',
+'listusers-blocked' => '(ܚܪܝܡܐ)',
 
 # Special:ActiveUsers
 'activeusers-count' => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ ܚܕܬܐ|ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ}} ܒ {{PLURAL:$3|ܝܘܡܐ ܐܚܪܝܐ|$3 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܬܐ}}',
