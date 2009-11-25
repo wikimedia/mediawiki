@@ -482,18 +482,18 @@ Controla ël nòm che it l\'has batù, o [[Special:UserLogin/signup|fà un neuv 
 'nouserspecified'            => 'A venta che a specìfica në stranòm utent',
 'wrongpassword'              => "La ciav batùa a l'é pa giusta.<br /><br />Che a preuva torna, për piasì.",
 'wrongpasswordempty'         => "A l'ha butà na ciav veujda. Për piasì, che a preuva torna.",
-'passwordtooshort'           => 'Le ciav a deuvo avej almanch {{PLURAL:$1|1 caràter|$1 caràter}}.',
+'passwordtooshort'           => 'Le ciav a devo avèj almanch {{PLURAL:$1|1 caràter|$1 caràter}}.',
 'password-name-match'        => 'Toa ciav a deuv esse diferenta da tò stranòm.',
-'mailmypassword'             => 'Mandme na neuva ciav via email',
+'mailmypassword'             => 'Mandme na neuva ciav për pòsta eletrònica',
 'passwordremindertitle'      => 'Servissi për visé la paròla ciav ëd {{SITENAME}}',
-'passwordremindertext'       => 'Cheidun (a l\'é belfé che a sia stait pròpe chiel, da \'nt l\'adrëssa IP $1) a l\'ha ciamà che i-j mandèisso 
-na neuva paròla ciav për rintré ant ël sistema ëd {{SITENAME}} ($4).
-Na ciav a temp për l\'utent "$2" a l\'é stàita fàita e adess a resta "$3". Se cost a l\'era sò intent,
-che a la dòvra për rintré e che a serna na neuva ciav adess.
-Soa ciav a temp a scad an {{PLURAL:$5|un di|$5 di}}.
+'passwordremindertext'       => "Cheidun (a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP \$1) a l'ha ciamà che i-j mandèisso 
+na neuva paròla ciav për rintré ant ël sistema ëd {{SITENAME}} (\$4).
+Na ciav a temp për l'utent \"\$2\" a l'é stàita fàita e adess a resta \"\$3\". Se cost a l'era sò intent,
+che a la deuvra për rintré e che a serna na neuva ciav adess.
+Soa ciav a temp a scad an {{PLURAL:\$5|un di|\$5 di}}.
 
-Se cheidun àutri a l\'ha fàit costa arcesta, o se chiel a l\'é arcordasse dla ciav,
-e a veul pì nen cambiela, che a fasa finta ëd gnente e ch\'a continua a dovré soa ciav veja.',
+Se cheidun d'àutr a l'ha fàit costa arcesta, o se chiel a l'é arcordasse dla ciav,
+e a veul pì nen cambiela, che a fasa finta ëd gnente e ch'a continua a dovré soa ciav veja.",
 'noemail'                    => 'An arsulta pa gnun-a casela ëd pòsta eletrònica për l\'Utent "$1".',
 'noemailcreate'              => "It deuve dé n'adrëssa e-mail bon-a",
 'passwordsent'               => "Na neuva paròla ciav a l'é staita mandà a l'adrëssa eletrònica registrà për l'Utent \"\$1\".

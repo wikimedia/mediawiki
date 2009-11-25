@@ -28,6 +28,7 @@
  * @author Rafael Vargas
  * @author Rei-artur
  * @author Remember the dot
+ * @author RmSilva
  * @author Rodrigo Calanca Nishino
  * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
@@ -357,18 +358,18 @@ $messages = array(
 'thu'           => 'qui',
 'fri'           => 'sex',
 'sat'           => 'sáb',
-'january'       => 'Janeiro',
-'february'      => 'Fevereiro',
-'march'         => 'Março',
-'april'         => 'Abril',
+'january'       => 'janeiro',
+'february'      => 'fevereiro',
+'march'         => 'março',
+'april'         => 'abril',
 'may_long'      => 'Maio',
-'june'          => 'Junho',
-'july'          => 'Julho',
-'august'        => 'Agosto',
-'september'     => 'Setembro',
-'october'       => 'Outubro',
-'november'      => 'Novembro',
-'december'      => 'Dezembro',
+'june'          => 'junho',
+'july'          => 'julho',
+'august'        => 'agosto',
+'september'     => 'setembro',
+'october'       => 'outubro',
+'november'      => 'novembro',
+'december'      => 'dezembro',
 'january-gen'   => 'Janeiro',
 'february-gen'  => 'Fevereiro',
 'march-gen'     => 'Março',
@@ -385,7 +386,7 @@ $messages = array(
 'feb'           => 'Fev.',
 'mar'           => 'Mar.',
 'apr'           => 'Abr.',
-'may'           => 'Mai.',
+'may'           => 'maio',
 'jun'           => 'Jun.',
 'jul'           => 'Jul.',
 'aug'           => 'Ago.',

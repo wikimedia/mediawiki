@@ -983,6 +983,7 @@ $3 зазначив таку причину: ''$2''",
 'rev-deleted-comment'         => '(коментар вилучено)',
 'rev-deleted-user'            => "(ім'я автора стерто)",
 'rev-deleted-event'           => '(запис журналу вилучений)',
+'rev-deleted-user-contribs'   => "[ім'я користувача або IP-адреса вилучені — редагування приховане у внеску]",
 'rev-deleted-text-permission' => "Ця версія сторінки '''вилучена'''.
 Можливо є пояснення в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-text-unhide'     => "Ця версія сторінки '''вилучена'''.
