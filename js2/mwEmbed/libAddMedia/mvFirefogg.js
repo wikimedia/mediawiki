@@ -819,6 +819,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 					//_this.formData[ 'wpIgnoreWarning' ]='true';
 					_this.formData['wpSourceType'] = 'upload';
 					_this.formData['action'] = 'submit';
+					
 					// wpUploadFile is set by firefogg
 					delete _this.formData['file'];
 
