@@ -312,6 +312,9 @@ mvPlayList.prototype = {
 			} );
 		}
 	},
+	getSrc: function(){
+		return this.src;
+	},
 	getSourceType:function() {
 		js_log( 'data type of: ' + this.src + ' = ' + typeof ( this.data ) + "\n" + this.data );
 		this.srcType = null;
@@ -1926,7 +1929,7 @@ var smilPlaylist = {
 	doParse:function() {
 		var _this = this;
 		js_log( 'f:doParse smilPlaylist' );
-		// @@todo get/parse meta that we are intersted in: 
+		// @@todo get/parse meta that we are interested in: 
 		var meta_tags = this.data.getElementsByTagName( 'meta' );
 		var metaNames = {
 			'title':'',
@@ -1941,13 +1944,13 @@ var smilPlaylist = {
 			if ( $j( meta_elm ).attr( 'name' ) in metaNames ) {
 				_this[ $j( meta_elm ).attr( 'name' ) ] = $j( meta_elm ).attr( 'content' );
 			}
-			// special check for wikiDesc
+			// Special check for wikiDesc
 			if (  $j( meta_elm ).attr( 'name' ) == 'wikiDesc' ) {
 				if ( meta_elm.firstChild )
 					_this.wikiDesc  = meta_elm.firstChild.nodeValue;
 			}
 		} );
-		// add transition objects: 
+		// Add transition objects: 
 		var transition_tags = this.data.getElementsByTagName( 'transition' );
 		$j.each( transition_tags, function( i, trans_elm ) {
 			if ( $j( trans_elm ).attr( "id" ) ) {
@@ -1957,13 +1960,14 @@ var smilPlaylist = {
 			}
 		} );
 		js_log( 'loaded transitions:' + _this.transitions.length );
-		// add seq (latter we will have support more than one seq tag) / more than one "track" 
+		
+		// Add seq (latter we will have support more than one seq tag) / more than one "track" 
 		var seq_tags = this.data.getElementsByTagName( 'seq' );
 		$j.each( seq_tags, function( i, seq_elm ) {
 			var inx = 0;
 			// get all the clips for the given seq:
 			$j.each( seq_elm.childNodes, function( i, mediaElement ) {
-				// ~complex~ @@todo to handlde a lot like "switch" "region" etc
+				// ~complex~ @@todo to handle a lot like "switch" "region" etc
 				// js_log('process: ' + mediaElemnt.tagName); 
 				if ( typeof mediaElement.tagName != 'undefined' ) {
 					if ( _this.tryAddMedia( mediaElement, inx ) ) {
@@ -1989,14 +1993,15 @@ var smilPlaylist = {
 		js_log( 'SMIL:tryAddMedia:' + mediaElement );
 
 		var _this = this;
-		// set up basic mvSMILClip send it the mediaElemnt & mvClip init: 
+		// Set up basic mvSMILClip send it the mediaElemnt & mvClip init: 
 		var clipObj = { };
 		var cConfig = {
-						"id" : 'p_' + _this.id + '_c_' + order,
-						"pp" : this, // set the parent playlist object pointer
-						"order" : order
-					};
+			"id" : 'p_' + _this.id + '_c_' + order,
+			"pp" : this, // set the parent playlist object pointer
+			"order" : order
+		};
 		var clipObj = new mvSMILClip( mediaElement, cConfig );
+		
 		// set optional params track										 
 		if ( typeof track_id != 'undefined' )
 			clipObj["track_id"]	= track_id;
@@ -2012,7 +2017,6 @@ var smilPlaylist = {
 			
 			return true;
 		}
-		// @@todo we could throw error details here once we integrate try catches everywhere :P
 		return false;
 	}
 }
@@ -2059,11 +2063,15 @@ mvSMILClip.prototype = {
 		// get supported media attr init non-set		
 		for ( var i = 0; i < mv_smil_ref_supported_attributes.length; i++ ) {
 			var attr = 	mv_smil_ref_supported_attributes[i];
-			if ( $j( sClipElm ).attr( attr ) ) {
+			if ( $j( sClipElm ).attr( attr ) ) {				
 				_this[attr] = $j( sClipElm ).attr( attr );
 			}
 		}
 		this['tagName'] = sClipElm.tagName;
+		
+		// Fix url paths (if needed) 
+		if( _this['src'] && _this.src.indexOf('/') != 0 && _this.src.indexOf('://') === -1)
+		 	_this['src'] = mw.absoluteUrl(  _this['src'], mvClipInit.pp.getSrc() );				
 		
 		if ( sClipElm.firstChild ) {
 			this['wholeText'] = sClipElm.firstChild.nodeValue;
@@ -2103,7 +2111,7 @@ mvSMILClip.prototype = {
 		if ( !this.type  && this.wholeText ) {
 			this.type = 'text/html';
 		}
-		// also grab andy child param elements if present: 
+		// Also grab any child param elements if present: 
 		if ( sClipElm.getElementsByTagName( 'param' )[0] ) {
 			for ( var i = 0; i < sClipElm.getElementsByTagName( 'param' ).length; i++ ) {
 				this.params[ sClipElm.getElementsByTagName( 'param' )[i].getAttribute( "name" ) ] =
@@ -2112,7 +2120,9 @@ mvSMILClip.prototype = {
 		}
 		return this;
 	},
-	// returns the values of supported_attributes: 
+	/**
+	* Returns the values of supported_attributes:
+	*/ 
 	getAttributeObj:function() {
 		var elmObj = { };
 		for ( var i = 0; i < mv_smil_ref_supported_attributes.length; i++ ) {

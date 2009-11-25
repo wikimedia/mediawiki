@@ -27,7 +27,7 @@ mvFirefoggRender.prototype = {
 		} );
 		
 		// check for firefogg:
-		if ( this.myFogg.firefoggCheck() ) {
+		if ( this.myFogg.getFirefogg() ) {
 			this.enabled = true;
 		} else {
 			this.enabled = false;

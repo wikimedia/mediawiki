@@ -90,21 +90,20 @@ ctrlBuilder.prototype = {
 	 * to be run once controls are attached to the dom
 	 */
 	addControlHooks:function( $tp ) {
-		// set up local pointer to the embedObj
+		// Set up local pointer to the embedObj
 		var embedObj = this.embedObj;
-		var _this = this;
-		// var embed_id = (embedObj.pc!=null)?embedObj.pc.pp.id:embedObj.id;		
+		var _this = this;				
 
 		if ( !$tp )
 			$tp = $j( '#' + embedObj.id );
 		
 		
-		// add play hook:
+		// Add play hook:
 		$tp.find( '.play-btn,.play-btn-large' ).unbind().btnBind().click( function() {
 			embedObj.play();
 		} );
 
-		// add recommend firefox if we have non-native playback:
+		// Add recommend firefox if we have non-native playback:
 		if ( embedObj.doNativeWarningCheck() ) {
 			$j( '#dc_' + embedObj.id ).hover(
 				function() {
@@ -146,17 +145,17 @@ ctrlBuilder.prototype = {
 		}
 
 
-		// captions binding:
+		// Captions binding:
 		$tp.find( '.timed-text' ).unbind().btnBind().click( function() {
 			embedObj.showTextInterface();
 		} );
 
-		// options binding:
+		// Options binding:
 		$tp.find( '.options-btn' ).unbind().btnBind().click( function() {
 			embedObj.doOptionsHTML();
 		} );
 
-		// fullscreen binding:
+		// Fullscreen binding:
 		$tp.find( '.fullscreen-btn' ).unbind().btnBind().click( function() {
 			embedObj.fullscreen();
 		} );
@@ -208,11 +207,13 @@ ctrlBuilder.prototype = {
 				}
 			}
 		} );
-		// up the z-index of the default status indicator:
+		// Up the z-index of the default status indicator:
 		$tp.find( '.play_head .ui-slider-handle' ).css( 'z-index', 4 );
 		$tp.find( '.play_head .ui-slider-range' ).addClass( 'ui-corner-all' ).css( 'z-index', 2 );
-		// extended class list for jQuery ui themeing (we can probably refactor this with custom buffering highlighter)
-		$tp.find( '.play_head' ).append( this.getMvBufferHtml() );
+		
+		// Extended class list for jQuery ui themeing 
+		//(we can probably refactor this with custom buffering highlighter)
+		$tp.find( '.play_head' ).append( this.getBufferHtml() );
 			
 		$opt = $j( '#mv_vid_options_' + embedObj.id );
 		// videoOptions ... @@todo should be merged with something more like kskin.js:
@@ -236,9 +237,9 @@ ctrlBuilder.prototype = {
 		} );
 		this.doVolumeBinding();
 		
-		// check if we have any custom skin hooks to run (only one per skin) 
-		if ( this.addSkinControlHooks && typeof( this.addSkinControlHooks ) == 'function' )
-			this.addSkinControlHooks();
+		// Check if we have any custom skin Bindings to run
+		if ( this.addSkinControlBindings && typeof( this.addSkinControlBindings ) == 'function' )
+			this.addSkinControlBindings();
 	},
 	doVolumeBinding:function() {
 		var embedObj = this.embedObj;
@@ -248,7 +249,8 @@ ctrlBuilder.prototype = {
 			js_log( 'clicked volume control' );
 			$j( '#' + embedObj.id ).get( 0 ).toggleMute();
 		} );
-		// add vertical volume display hover
+		
+		// Add vertical volume display hover
 		if ( this.volume_layout == 'vertical' ) {
 			// default volume binding:
 			var hoverOverDelay = false;
@@ -274,7 +276,7 @@ ctrlBuilder.prototype = {
 			);
 		}
 		
-		// setup slider:
+		// Setup play-head slider:
 		var sliderConf = {
 			range: "min",
 			value: 80,
@@ -302,7 +304,10 @@ ctrlBuilder.prototype = {
 		
 		$tp.find( '.volume-slider' ).slider( sliderConf );
 	},
-	getMvBufferHtml:function() {
+	/*
+	* Gets the Buffer Html that overlays the playhead
+	*/
+	getBufferHtml:function() {
 		return '<div class="ui-slider-range ui-slider-range-min ui-widget-header ' +
 				'ui-state-highlight ui-corner-all ' +
 				'mv_buffer" style="width:0px;height:100%;z-index:1;top:0px" />';

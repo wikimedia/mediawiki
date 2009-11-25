@@ -803,22 +803,26 @@ var global_req_cb = new Array(); // The global request callback array
 		}
 	};	
 	
-	/*
-	* getAbsoluteUrl takes a src and returns the aboluste location given the document.URL
+	/**
+	* getAbsoluteUrl takes a src and returns the absolute location given the document.URL
 	* @param {String} src path or url
 	*/
-	$.absoluteUrl = function( src ){
+	$.absoluteUrl = function( src, contextUrl ){
 		var pSrc =  mw.parseUri( src );
 		if( pSrc.protocol != '')
 			return src;				
 		
-		// Get  the document path		
-		var pDoc = mw.parseUri( document.URL );
+		// Get parent Url location the context URL	
+		if( contextUrl){	
+			var pUrl = mw.parseUri( contextUrl );			
+		} else {
+			var pUrl = mw.parseUri( document.URL );
+		}
 		// If a leading slash:  
 		if( src.indexOf( '/' ) == 1 ){
-			return pDoc.protocol + '://' + pDoc.authority + src;
+			return pUrl.protocol + '://' + pUrl.authority + src;
 		}else{
-			return pDoc.protocol + '://' + pDoc.authority + pDoc.directory + src;
+			return pUrl.protocol + '://' + pUrl.authority + pUrl.directory + src;
 		}
 	};
 	/**
@@ -1543,6 +1547,7 @@ function mv_jqueryBindings() {
 			// Add the selector
 			iObj['player_target'] = this.selector;
 			mvJsLoader.doLoad( [
+				'mvBaseUploadInterface',
 				'mvFirefogg',
 				'mvFirefoggRender'
 			], function() {
