@@ -28,10 +28,7 @@ var firefogg_install_links = {
 
 var default_firefogg_options = {
 	// Callback for upload completion
-	'done_upload_cb': false,
-
-	// True if Firefogg is enabled in the client
-	'have_firefogg': false,
+	'done_upload_cb': false,	
 
 	// The API URL to upload to
 	'api_url': null,
@@ -86,7 +83,10 @@ var default_firefogg_options = {
 	'firefogg_form_action': true,
 
 	// True if we should show a preview of the encoding progress
-	'show_preview': false
+	'show_preview': true,
+	
+	//If we should enable chunk uploads ( mediaWiki api supports chunk uploads) 
+	'enable_chunks' : false
 };
 
 
@@ -242,7 +242,6 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 
 		// Now show the form
 		$j( _this.selector ).show();
-
 		if ( _this.getFirefogg() ) {
 			// Firefogg enabled
 			// If we're in upload mode, show the input filename
@@ -395,10 +394,11 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 	 * Display an upload progress overlay. Overrides the function in mvBaseUploadInterface.
 	 */
 	displayProgressOverlay: function() {
-		this.pe_displayProgressOverlay();
+		this.pe_displayProgressOverlay();		
 		// If we are uploading video (not in passthrough mode), show preview button
-		if( this.getFirefogg() && !this.getEncoderSettings()['passthrough']  
-			&& !this.isCopyUpload() ) 
+		if( this.getFirefogg() 
+			&& !this.isCopyUpload() 
+			&& !this.getEncoderSettings()['passthrough']  ) 
 		{
 			this.createPreviewControls();
 		}
@@ -409,10 +409,19 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 	 */
 	createPreviewControls: function() {
 		var _this = this;
+		
+		// Set the initial button html: 
+		var buttonHtml = '';
+		if( _this.show_preview == true ){
+			buttonHtml = $j.btnHtml( gM( 'fogg-hidepreview' ), 'fogg_preview', 'triangle-1-s' ); 			
+		} else {
+			buttonHtml = $j.btnHtml( gM( 'fogg-preview' ), 'fogg_preview', 'triangle-1-e' );
+		}
+		
 		// Add the preview button and canvas
 		$j( '#upProgressDialog' ).append(
 			'<div style="clear:both;height:3em"/>' +
-			$j.btnHtml( gM( 'fogg-preview' ), 'fogg_preview', 'triangle-1-e' ) +
+			buttonHtml +
 			'<div style="padding:10px;">' +
 				'<canvas style="margin:auto;" id="fogg_preview_canvas" />' +
 			'</div>'
@@ -421,14 +430,6 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 		// Set the initial state
 		if ( _this.show_preview == true ) {
 			$j( '#fogg_preview_canvas' ).show();
-		} else {
-			// Fix the icon class
-			$j( this ).children( '.ui-icon' )
-				.removeClass( 'ui-icon-triangle-1-s' )
-				.addClass( 'ui-icon-triangle-1-e' );
-			// Set the button text
-			$j( this ).children( '.btnText' ).text( gM( 'fogg-preview' ) );
-			$j( '#fogg_preview_canvas' ).hide();
 		}
 
 		// Bind the preview button
@@ -556,7 +557,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 	 */
 	updateSourceFileUI: function() {
 		js_log( 'videoSelectReady' );
-
+		var _this = this;
 		if ( !_this.fogg.sourceInfo || !_this.fogg.sourceFilename ) {
 			// Something wrong with the source file?
 			js_log( 'selectSourceFile: sourceInfo/sourceFilename missing' );
@@ -620,7 +621,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 				return false;
 			}
 			try {
-				this.sourceFileInfo = JSON.parse( firefogg.sourceInfo );
+				this.sourceFileInfo = JSON.parse( this.fogg.sourceInfo );
 			} catch ( e ) {
 				js_error( 'error could not parse fogg sourceInfo' );
 				return false;
@@ -797,21 +798,23 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 		js_log( "firefogg: doUpload:: " + 
 			( this.getFirefogg() ? 'on' : 'off' ) + 
 			' up mode:' + _this.upload_mode );
-
-		// If Firefogg is disabled, just invoke the parent method
-		if( !this.getFirefogg() || !this.firefogg_form_action ) {
+					
+		// If Firefogg is disabled or doing an copyByUrl upload, just invoke the parent method
+		if( !this.getFirefogg() || this.isCopyUpload() ) {
 			_this.pe_doUpload();
 			return;
 		}
-
-		if ( _this.upload_mode == 'post' ) {
+		// We can do a chunk upload
+		if(  _this.upload_mode == 'post'  && _this.enable_chunks ){
+			_this.doChunkUpload();
+		} else if ( _this.upload_mode == 'post' ) {		
 			// Encode and then do a post upload
 			_this.doEncode(
 				function /* onProgress */ ( progress ) {
 					_this.updateProgress( progress );
 				},
 				function /* onDone */ () {
-					js_log( 'done with encoding do POST upload:' + _this.editForm.action );
+					js_log( 'done with encoding do POST upload:' + _this.form.action );
 					// ignore warnings & set source type
 					//_this.formData[ 'wpIgnoreWarning' ]='true';
 					_this.formData['wpSourceType'] = 'upload';
@@ -824,9 +827,6 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 					_this.doUploadStatus();
 				}
 			);
-		} else if ( _this.upload_mode == 'api' ) {
-			// We have the API so we can do a chunk upload
-			_this.doChunkUpload();
 		} else {
 			js_error( 'Error: unrecongized upload mode: ' + _this.upload_mode );
 		}
@@ -1027,34 +1027,30 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 				js_log( 'Error:firefogg upload error: ' + _this.fogg.state );
 				return;
 			}
-
-			if ( _this.upload_mode == 'api' ) {
-				if ( apiResult && apiResult.resultUrl ) {
-					var buttons = {};
-					buttons[ gM( 'mwe-go-to-resource' ) ] =  function() {
-						window.location = apiResult.resultUrl;
-					}
-					var go_to_url_txt = gM( 'mwe-go-to-resource' );
-					var showMessage = true;
-					if ( typeof _this.done_upload_cb == 'function' ) {
-						// Call the callback
-						// It will return false if it doesn't want us to show our own "done" message
-						showMessage = _this.done_upload_cb( _this.formData );
-					}
-					if ( showMessage ) {
-						_this.updateProgressWin( gM( 'mwe-successfulupload' ), 
-							gM( 'mwe-upload_done', apiResult.resultUrl ), buttons );
-					} else {
-						this.action_done = true;
-						$j( '#upProgressDialog' ).empty().dialog( 'close' );
-					}
+			if ( apiResult && apiResult.resultUrl ) {
+				var buttons = {};
+				buttons[ gM( 'mwe-go-to-resource' ) ] =  function() {
+					window.location = apiResult.resultUrl;
+				}
+				var go_to_url_txt = gM( 'mwe-go-to-resource' );
+				var showMessage = true;
+				if ( typeof _this.done_upload_cb == 'function' ) {
+					// Call the callback
+					// It will return false if it doesn't want us to show our own "done" message
+					showMessage = _this.done_upload_cb( _this.formData );
+				}
+				if ( showMessage ) {
+					_this.updateProgressWin( gM( 'mwe-successfulupload' ), 
+						gM( 'mwe-upload_done', apiResult.resultUrl ), buttons );
 				} else {
-					// Done state with error? Not really possible given how firefogg works...
-					js_log( " Upload done in chunks mode, but no resultUrl!" );
+					this.action_done = true;
+					$j( '#upProgressDialog' ).empty().dialog( 'close' );
 				}
 			} else {
-				js_log( "Error:: not supported upload mode" +  _this.upload_mode );
+				// Done state with error? Not really possible given how firefogg works...
+				js_log( " Upload done in chunks mode, but no resultUrl!" );
 			}
+			
 		}
 		uploadStatus();
 	},
@@ -1068,7 +1064,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 		}
 		js_log( 'firefogg:cancel' )
 		if ( confirm( gM( 'mwe-cancel-confim' ) ) ) {
-			// FIXME: sillyness
+			// FIXME: sillyness ( upstream firefogg cancel fix needed ) 
 			if ( navigator.oscpu && navigator.oscpu.search( 'Win' ) >= 0 ) {
 				alert( 'sorry we do not yet support cancel on windows' );
 			} else {
