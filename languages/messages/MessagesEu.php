@@ -1433,6 +1433,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'img-auth-accessdenied' => 'Sarbide ukatua',
 'img-auth-nofile'       => 'Ez dago "$1" fitxategirik.',
 'img-auth-streaming'    => '"$1" sekuentziatzen.',
+'img-auth-noread'       => 'Erabiltzaileak ez du "$1" irakurtzeko sarbiderik.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',

@@ -525,7 +525,7 @@ $messages['af'] = array(
 	'mwe-upload-in-progress' => 'Besig om op te laai (moenie hierdie venster toemaak nie)',
 	'mwe-upload-transcoded-status' => 'Getranskodeer',
 	'mwe-uploaded-status' => 'Opgelaai',
-	'mwe-upload-stats-fileprogres' => '$1 van $2',
+	'mwe-upload-stats-fileprogress' => '$1 van $2',
 	'mwe-upload_completed' => 'Jou oplaai is voltooi',
 	'mwe-upload_done' => '<a href="$1">Jou oplaai <i>behoort</i> nou beskikbaar te wees</a>.',
 	'mwe-upload-unknown-size' => 'Onbekend grootte',
@@ -537,6 +537,7 @@ $messages['af'] = array(
 	'mwe-file-exists-duplicate' => "Hierdie lêer is 'n duplikaat van die volgende lêer:",
 	'mwe-fileexists-thumb' => '<center><b>Bestaande lêer</b></center>',
 	'mwe-upload-multi' => "Laai {{PLURAL:$1|'n lêer|lêers}}",
+	'mwe-credit-title' => 'Naam: $1',
 	'mwe-loading_plugin' => 'laai uitbreiding ...',
 	'mwe-add_to_end_of_sequence' => 'Voeg by aan die einde van die reeks',
 	'mwe-volume_control' => 'Volumebeheer',
@@ -998,6 +999,10 @@ $messages['be-tarask'] = array(
 	'mwe-related_videos' => 'Зьвязаныя відэа',
 	'mwe-seeking' => 'пошук',
 	'mwe-copy-code' => 'Капіяваць код',
+	'mwe-video-h264' => 'H.264 відэа',
+	'mwe-video-flv' => 'Flash-відэа',
+	'mwe-video-ogg' => 'Ogg-відэа',
+	'mwe-video-audio' => 'Ogg-аўдыё',
 );
 
 /** Bulgarian (Български)
@@ -1373,6 +1378,7 @@ $messages['cy'] = array(
 );
 
 /** German (Deutsch)
+ * @author Als-Holder
  * @author Jan Luca
  * @author Lukas9950
  * @author MF-Warburg
@@ -1659,6 +1665,10 @@ $messages['de'] = array(
 	'mwe-related_videos' => 'Ähnliche Videos',
 	'mwe-seeking' => 'suchen',
 	'mwe-copy-code' => 'Code kopieren',
+	'mwe-video-h264' => 'H.264-Video',
+	'mwe-video-flv' => 'Flash-Video',
+	'mwe-video-ogg' => 'Ogg-Video',
+	'mwe-video-audio' => 'Ogg-Audiodatei',
 );
 
 /** Zazaki (Zazaki)
@@ -2235,6 +2245,7 @@ $messages['dsb'] = array(
 	'mwe-wgfogg_warning_bad_extension' => 'Sy wubrał dataju z njepódpěranym rozšyrjenim (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">dalšne informacije</a>).',
 	'mwe-upload-multi' => '{{PLURAL:$1|Dataju|Dataji|Dataje|Dataje}} nagraś',
 	'mwe-review-upload' => '{{PLURAL:$1|Datajowe nagraśe|Datajowej nagraśi|Datajowe nagraśa|Datajowe nagraśa}} pśeglědaś',
+	'mwe-credit-title' => 'Titel: $1',
 	'mwe-loading_plugin' => 'Tykac se zacytujo ...',
 	'mwe-select_playback' => 'Nastajenje za playback stajiś',
 	'mwe-link_back' => 'Wótkaz slědk',
@@ -2285,7 +2296,10 @@ $messages['dsb'] = array(
 	'mwe-related_videos' => 'Pśiwuzne wideo',
 	'mwe-seeking' => 'pyta se',
 	'mwe-copy-code' => 'Kod kopěrowaś',
-	'mwe-credit-title' => 'Titel: $1',
+	'mwe-video-h264' => 'Wideo H.264',
+	'mwe-video-flv' => 'Wideo Flash',
+	'mwe-video-ogg' => 'Ogg-wideo',
+	'mwe-video-audio' => 'Ogg-awdio',
 );
 
 /** Greek (Ελληνικά)
@@ -3214,6 +3228,10 @@ $messages['fr'] = array(
 	'mwe-related_videos' => 'Vidéos associées',
 	'mwe-seeking' => 'recherche',
 	'mwe-copy-code' => 'Copier le code',
+	'mwe-video-h264' => 'vidéo H.264',
+	'mwe-video-flv' => 'vidéo Flash',
+	'mwe-video-ogg' => 'vidéo Ogg',
+	'mwe-video-audio' => 'Audio Ogg',
 );
 
 /** Galician (Galego)
@@ -3527,6 +3545,10 @@ $messages['gl'] = array(
 	'mwe-related_videos' => 'Vídeos relacionados',
 	'mwe-seeking' => 'procurando',
 	'mwe-copy-code' => 'Copiar o código',
+	'mwe-video-h264' => 'Vídeo H.264',
+	'mwe-video-flv' => 'Vídeo Flash',
+	'mwe-video-ogg' => 'Vídeo Ogg',
+	'mwe-video-audio' => 'Audio Ogg',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
@@ -3852,6 +3874,10 @@ $messages['gsw'] = array(
 	'mwe-related_videos' => 'Verwandti Video',
 	'mwe-seeking' => 'Am Sueche',
 	'mwe-copy-code' => 'Code kopiere',
+	'mwe-video-h264' => 'H.264-Video',
+	'mwe-video-flv' => 'Flash-Video',
+	'mwe-video-ogg' => 'Ogg-Video',
+	'mwe-video-audio' => 'Ogg-Audiodatei',
 );
 
 /** Hebrew (עברית)
@@ -4279,6 +4305,7 @@ $messages['hsb'] = array(
 	'mwe-wgfogg_warning_bad_extension' => 'Sy dataju z njepodpěrowanym sufiksom wubrał (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">dalše informacije</a>).',
 	'mwe-upload-multi' => '{{PLURAL:$1|Dataju|Dataji|Dataje|Dataje}} nahrać',
 	'mwe-review-upload' => '{{PLURAL:$1|Datajowe nahraće|Datajowej nahraći|Datajowe nahraća|Datajowe nahraća}} přepruwować',
+	'mwe-credit-title' => 'Titul: $1',
 	'mwe-loading_plugin' => 'tykač so začituje ...',
 	'mwe-select_playback' => 'Nastajenje za playback stajić',
 	'mwe-link_back' => 'Wotkaz wróćo',
@@ -4329,7 +4356,10 @@ $messages['hsb'] = array(
 	'mwe-related_videos' => 'Přiwuzne wideja',
 	'mwe-seeking' => 'pyta so',
 	'mwe-copy-code' => 'Kod kopěrować',
-	'mwe-credit-title' => 'Titul: $1',
+	'mwe-video-h264' => 'Wideo H.264',
+	'mwe-video-flv' => 'Widejo Flash',
+	'mwe-video-ogg' => 'Ogg-widejo',
+	'mwe-video-audio' => 'Ogg-awdio',
 );
 
 /** Hungarian (Magyar)
@@ -4906,6 +4936,7 @@ $messages['ia'] = array(
 	'mwe-wgfogg_warning_bad_extension' => 'Tu ha seligite un file con un extension non supportate (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">plus informationes</a>).',
 	'mwe-upload-multi' => 'Cargar {{PLURAL:$1|file|files}}',
 	'mwe-review-upload' => 'Revider le {{PLURAL:$1|cargamento del file|cargamentos del files}}',
+	'mwe-credit-title' => 'Titulo: $1',
 	'mwe-loading_plugin' => 'cargamento del plug-in ...',
 	'mwe-select_playback' => 'Definir preferentia de reproduction',
 	'mwe-link_back' => 'Retroligamine',
@@ -4956,7 +4987,10 @@ $messages['ia'] = array(
 	'mwe-related_videos' => 'Videos connexe',
 	'mwe-seeking' => 'cercante',
 	'mwe-copy-code' => 'Copiar codice',
-	'mwe-credit-title' => 'Titulo: $1',
+	'mwe-video-h264' => 'Video H.264',
+	'mwe-video-flv' => 'Video Flash',
+	'mwe-video-ogg' => 'Video Ogg',
+	'mwe-video-audio' => 'Audio Ogg',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -5271,6 +5305,10 @@ $messages['id'] = array(
 	'mwe-related_videos' => 'Video yang berhubungan',
 	'mwe-seeking' => 'mencari',
 	'mwe-copy-code' => 'Salin kode',
+	'mwe-video-h264' => 'Video H.264',
+	'mwe-video-flv' => 'Video flash',
+	'mwe-video-ogg' => 'Video ogg',
+	'mwe-video-audio' => 'Audio ogg',
 );
 
 /** Ido (Ido)
@@ -5635,6 +5673,10 @@ $messages['ja'] = array(
 	'mwe-related_videos' => '関連する動画',
 	'mwe-seeking' => 'シーク中',
 	'mwe-copy-code' => 'コピーコード',
+	'mwe-video-h264' => 'H.264 ビデオ',
+	'mwe-video-flv' => 'Flash ビデオ',
+	'mwe-video-ogg' => 'Ogg ビデオ',
+	'mwe-video-audio' => 'Ogg オーディオ',
 );
 
 /** Georgian (ქართული)
@@ -6020,6 +6062,7 @@ $messages['lb'] = array(
 	'mwe-select-other-language' => 'Aner Sprooch eraussichen',
 	'mwe-saving' => 'späicheren...',
 	'mwe-select_transcript_set' => 'Ënnertitelen eraussichen',
+	'mwe-auto_scroll' => 'automatesch scrollen',
 	'mwe-close' => 'zoumaachen',
 	'mwe-improve_transcript' => 'Verbesseren',
 	'mwe-no_text_tracks_found' => 'Keng Text-Ënnertitele fonnt',
@@ -6156,6 +6199,7 @@ $messages['lb'] = array(
 	'mwe-wgfogg_warning_bad_extension' => 'Dir hutt e Fichier mat enger Erweiderung déi net ënnerstetzt gëtt (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">méi Informatiounen</a>) erausgesicht.',
 	'mwe-upload-multi' => '{{PLURAL:$1|Fichier|Fichieren}} eroplueden',
 	'mwe-review-upload' => '{{PLURAL:$1|Eropgeluedene Fichier|Eropgeluede Fichieren}} nokucken',
+	'mwe-credit-title' => 'Titel: $1',
 	'mwe-loading_plugin' => 'Plugin lueden ...',
 	'mwe-select_playback' => 'Astellunge vum Ofspillen festleeën',
 	'mwe-link_back' => 'Link zréck',
@@ -6405,6 +6449,7 @@ $messages['ml'] = array(
 	'mwe-wgfogg_warning_bad_extension' => 'താങ്കൾ പിന്തുണയില്ലാത്ത തരത്തിലുള്ള പ്രമാണമാണ് തിരഞ്ഞെടുത്തിരിക്കുന്നത് (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">കൂടുതൽ വിവരങ്ങൾ</a>).',
 	'mwe-upload-multi' => '{{PLURAL:$1|പ്രമാണം|പ്രമാണങ്ങൾ}} അപ്‌‌ലോഡ് ചെയ്യുക',
 	'mwe-review-upload' => 'പ്രമാണ {{PLURAL:$1|അപ്‌‌ലോഡ്|അപ്‌‌ലോഡുകൾ}} സംശോധനം ചെയ്യുക',
+	'mwe-credit-title' => 'തലക്കെട്ട്: $1',
 	'mwe-loading_plugin' => 'പ്ലഗ്ഗിൻ ശേഖരിക്കുന്നു...',
 	'mwe-link_back' => 'പിന്നിലേയ്ക്ക് കണ്ണി സൃഷ്ടിക്കുക',
 	'mwe-add_to_end_of_sequence' => 'അനുവർത്തനത്തിന്  ഒടുവിൽ ചേർക്കുക',
@@ -6451,7 +6496,10 @@ $messages['ml'] = array(
 	'mwe-related_videos' => 'ബന്ധപ്പെട്ട ചലച്ചിത്രങ്ങൾ',
 	'mwe-seeking' => 'നോക്കുന്നു',
 	'mwe-copy-code' => 'കോഡ് പകർത്തുക',
-	'mwe-credit-title' => 'തലക്കെട്ട്: $1',
+	'mwe-video-h264' => 'എച്ച്.264 ചലച്ചിത്രം',
+	'mwe-video-flv' => 'ഫ്ലാഷ് ചലച്ചിത്രം',
+	'mwe-video-ogg' => 'ഓഗ് ചലച്ചിത്രം',
+	'mwe-video-audio' => 'ഓഗ് ശബ്ദപ്രമാണം',
 );
 
 /** Dutch (Nederlands)
@@ -7536,6 +7584,7 @@ $messages['pt'] = array(
 	'mwe-wgfogg_warning_bad_extension' => 'Seleccionou um ficheiro com uma extensão não suportada (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">mais informações</a>).',
 	'mwe-upload-multi' => 'Carregar {{PLURAL:$1|ficheiro|ficheiros}}',
 	'mwe-review-upload' => 'Rever o carregamento {{PLURAL:$1|do ficheiro|dos ficheiros}}',
+	'mwe-credit-title' => 'Título: $1',
 	'mwe-loading_plugin' => "a carregar o ''plugin'' ...",
 	'mwe-select_playback' => 'Definir a preferência de reprodução',
 	'mwe-link_back' => 'Ligar atrás',
@@ -7586,7 +7635,10 @@ $messages['pt'] = array(
 	'mwe-related_videos' => 'Vídeos relacionados',
 	'mwe-seeking' => 'a procurar',
 	'mwe-copy-code' => 'Copiar código',
-	'mwe-credit-title' => 'Título: $1',
+	'mwe-video-h264' => 'Vídeo H.264',
+	'mwe-video-flv' => 'Vídeo Flash',
+	'mwe-video-ogg' => 'Vídeo Ogg',
+	'mwe-video-audio' => 'Áudio Ogg',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -7932,6 +7984,10 @@ $messages['ru'] = array(
 	'mwe-related_videos' => 'Связанные видео',
 	'mwe-seeking' => 'поиск',
 	'mwe-copy-code' => 'Копировать код',
+	'mwe-video-h264' => 'Видео H.264',
+	'mwe-video-flv' => 'Flash-видео',
+	'mwe-video-ogg' => 'Ogg-видео',
+	'mwe-video-audio' => 'Ogg-аудио',
 );
 
 /** Yakut (Саха тыла)

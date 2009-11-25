@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author BobChao
  * @author Jidanni
+ * @author Mark85296341
  * @author Roc michael
  * @author Urhixidur
  * @author Wong128hk
@@ -128,6 +129,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'copyright'  => '本站的文字內容除另有聲明外，全部以 $1 條款授權使用。',
 'edithelp'   => '編輯說明',
+'mainpage'   => '首頁',
 'portal'     => '社群入口',
 'portal-url' => 'Project:社群入口',
 

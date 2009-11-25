@@ -13,6 +13,7 @@
  * @author Jidanni
  * @author KaiesTse
  * @author Liangent
+ * @author Mark85296341
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
@@ -1102,8 +1103,8 @@ $1",
 'qbsettings-floatingright' => '右側漂移',
 
 # Preferences page
-'preferences'                   => '參數設置',
-'mypreferences'                 => '我的參數設置',
+'preferences'                   => '參數設定',
+'mypreferences'                 => '我的參數設定',
 'prefs-edits'                   => '編輯數量:',
 'prefsnologin'                  => '還未登入',
 'prefsnologintext'              => '您必須先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登入]</span>才能設置個人參數。',
