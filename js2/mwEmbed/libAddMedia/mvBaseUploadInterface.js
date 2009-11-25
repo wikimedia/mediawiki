@@ -93,7 +93,7 @@ mvBaseUploadInterface.prototype = {
 
 		// Set up the submit action:
 		$j( this.form ).submit( function() {
-			_this.onSubmit();
+			return _this.onSubmit();
 		} );
 	},
 
@@ -101,8 +101,8 @@ mvBaseUploadInterface.prototype = {
 	 * onsubmit handler for the upload form
 	 */
 	onSubmit: function() {
+		var _this = this;
 		js_log( 'Base::onSubmit:' );
-
 		// Run the original onsubmit (if not run yet set flag to avoid excessive chaining)
 		if ( typeof( this.orig_onsubmit ) == 'function' ) {
 			if ( ! this.orig_onsubmit() ) {
@@ -123,18 +123,19 @@ mvBaseUploadInterface.prototype = {
 		for ( var i = 0; i < data.length; i++ ) {
 			if ( data[i]['name'] )
 				this.formData[ data[i]['name'] ] = data[i]['value'];
-		}
+		}		
 		// Put into a try catch so we are sure to return false:
 		try {
-			// Get a clean loader:
-			// FIXME: this function does not exist in this class
-			this.displayProgressOverlay();
+			
+			// Display a progress dialog
+			_this.displayProgressOverlay();
 
 			// For some unknown reason we have to drop down the #p-search z-index:
 			$j( '#p-search' ).css( 'z-index', 1 );
 
 			var _this = this;
-			this.detectUploadMode( function( mode ) {
+			_this.detectUploadMode( function( mode ) {
+				_this.upload_mode = mode;
 				_this.doUpload();
 			} );
 		} catch( e ) {
@@ -143,7 +144,7 @@ mvBaseUploadInterface.prototype = {
 
 		// Don't submit the form we will do the post in ajax
 		return false;
-	}
+	},
 
 	/**
 	 * Determine the correct upload mode.
@@ -218,13 +219,13 @@ mvBaseUploadInterface.prototype = {
 	 */
 	doUpload: function() {
 		if ( this.upload_mode == 'api' ) {
-			_this.doApiCopyUpload();
+			this.doApiCopyUpload();
 		} else if ( this.upload_mode == 'post' ) {
-			_this.doPostUpload();
+			this.doPostUpload();
 		} else {
 			js_error( 'Error: unrecongized upload mode: ' + this.upload_mode );
 		}
-	}
+	},
 
 	/**
 	 * Change the upload form so that when submitted, it sends a request to
@@ -235,6 +236,7 @@ mvBaseUploadInterface.prototype = {
 	 * selected a file in them, which they may well do before DOM ready.
 	 */
 	remapFormToApi: function() {
+		var _this = this;
 		if ( !this.api_url )
 			return false;
 
@@ -263,15 +265,13 @@ mvBaseUploadInterface.prototype = {
 	/**
 	 * Returns true if the current form has copy upload selected, false otherwise.
 	 */
-	isCopyUpload: function() {
-		if ( this.http_copy_upload == null ) {
-			if ( $j( '#wpSourceTypeFile' ).length ==  0
-				|| $j( '#wpSourceTypeFile' ).get( 0 ).checked )
-			{
-				this.http_copy_upload = false;
-			} else if ( $j('#wpSourceTypeURL').get( 0 ).checked ) {
-				this.http_copy_upload = true;
-			}
+	isCopyUpload: function() {	
+		if ( $j( '#wpSourceTypeFile' ).length ==  0
+			|| $j( '#wpSourceTypeFile' ).get( 0 ).checked )
+		{
+			this.http_copy_upload = false;
+		} else if ( $j('#wpSourceTypeURL').get( 0 ).checked ) {
+			this.http_copy_upload = true;
 		}
 		return this.http_copy_upload;
 	},
@@ -358,7 +358,7 @@ mvBaseUploadInterface.prototype = {
 		} else if ( doc.body ) {
 			// Get the json string
 			json = $j( doc.body ).find( 'pre' ).text();
-			js_log( 'iframe:json::' + json_str + "\nbody:" + $j( doc.body ).html() );
+			//js_log( 'iframe:json::' + json_str + "\nbody:" + $j( doc.body ).html() );
 			if ( json ) {
 				response = window["eval"]( "(" + json + ")" );
 			} else {
@@ -436,7 +436,7 @@ mvBaseUploadInterface.prototype = {
 
 		// Trigger an initial request (subsequent ones will be done by a timer)
 		this.onAjaxUploadStatusTimer();
-	}
+	},
 
 	/**
 	 * This is called when the timer which separates XHR requests elapses.
@@ -778,7 +778,7 @@ mvBaseUploadInterface.prototype = {
 				js_log( "call done_upload_cb" );
 				// This overrides our normal completion handling so we close the
 				// dialog immediately.
-				$j( '#upProgressDialog' ).dialog( 'close' );
+				$j( '#upProgressDialog' ).dialog( 'destroy' ).remove();
 				_this.done_upload_cb( apiRes.upload );
 				return false;
 			}
@@ -786,7 +786,7 @@ mvBaseUploadInterface.prototype = {
 			var buttons = {};
 			// "Return" button
 			buttons[ gM( 'mwe-return-to-form' ) ] = function() {
-				$j( this ).dialog( 'close' );
+				$j( this ).dialog( 'destroy' ).remove();
 				_this.form_post_override = false;
 			}
 			// "Go to resource" button
@@ -866,7 +866,6 @@ mvBaseUploadInterface.prototype = {
 	 */
 	displayProgressOverlay: function() {
 		var _this = this;
-
 		// Remove the old instance if present
 		if( $j( '#upProgressDialog' ).length != 0 ) {
 			$j( '#upProgressDialog' ).dialog( 'destroy' ).remove();
