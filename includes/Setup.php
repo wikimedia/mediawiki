@@ -133,6 +133,7 @@ if( $wgUseInstantCommons ) {
 		'class'                   => 'ForeignAPIRepo',
 		'name'                    => 'wikimediacommons',
 		'apibase'                 => 'http://commons.wikimedia.org/w/api.php',
+		'hashLevels'              => 2,
 		'fetchDescription'        => true,
 		'descriptionCacheExpiry'  => 43200,
 		'apiThumbCacheExpiry'     => 86400,
