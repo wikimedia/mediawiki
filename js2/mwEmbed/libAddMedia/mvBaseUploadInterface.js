@@ -492,8 +492,8 @@ mvBaseUploadInterface.prototype = {
 			$j( '#up-status-container' ).html(
 				gM( 'mwe-upload-stats-fileprogress',
 					[
-						$mw.lang.formatSize( data.upload['loaded'] ),
-						$mw.lang.formatSize( data.upload['content_length'] )
+						mw.lang.formatSize( data.upload['loaded'] ),
+						mw.lang.formatSize( data.upload['content_length'] )
 					]
 				)
 			);
@@ -504,7 +504,7 @@ mvBaseUploadInterface.prototype = {
 			$j( '#up-status-container' ).html(
 				gM( 'mwe-upload-stats-fileprogress',
 					[
-						$mw.lang.formatSize( data.upload['loaded'] ),
+						mw.lang.formatSize( data.upload['loaded'] ),
 						gM( 'mwe-upload-unknown-size' )
 					]
 				)
