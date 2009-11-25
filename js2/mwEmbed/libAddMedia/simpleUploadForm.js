@@ -133,9 +133,15 @@ var default_form_options = {
 			// set up the binding per the config
 			if ( opt.enable_fogg ) {
 				$j( "#wpUploadFile" ).firefogg( {
-					// an api url (we won't submit directly to action of the form)
+					// An api url (we won't submit directly to action of the form)
 					'api_url' : opt.api_target,
+					
+					// If we should do a form rewrite
 					'form_rewrite': true,
+										
+					// MediaWiki API supports chunk uploads: 
+					'enable_chunks' : true,
+										
 					'edit_form_selector' : '#suf-upload',
 					'new_source_cb' : function( orgFilename, oggName ) {
 						$j( "#wpDestFile" ).val( oggName ).doDestCheck( {

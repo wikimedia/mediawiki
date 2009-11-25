@@ -10,7 +10,7 @@ var mwUploadHelper = {
 		var _this = this;
 		// If wgEnableFirefogg is not boolean false, set to true
 		if ( typeof wgEnableFirefogg == 'undefined' )
-		wgEnableFirefogg = true;
+			wgEnableFirefogg = true;
 
 		if ( wgEnableFirefogg ) {
 			// Set up the upload handler to Firefogg. Should work with the HTTP uploads too.
@@ -18,6 +18,8 @@ var mwUploadHelper = {
 				// An API URL (we won't submit directly to action of the form)
 				'api_url': wgServer + wgScriptPath + '/api.php',
 				'form_rewrite': true,
+				// MediaWiki API supports chunk uploads: 
+				'enable_chunks' : true, 
 				'edit_form_selector': mwUploadFormSelector,
 				'new_source_cb': function( orgFilename, oggName ) {
 					$j( '#wpDestFile' ).val( oggName );
