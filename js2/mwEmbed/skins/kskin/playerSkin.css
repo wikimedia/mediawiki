@@ -414,3 +414,13 @@
 	width: 90px;
 	margin: 4px;
 }
+
+.k-player .k-attribution{
+	position:absolute;
+	bottom: 15px;
+	right : 62px;
+	background: url("images/kaltura_open_source_video_platform.png");
+	width : 51px;
+	height : 12px;
+	cursor: pointer;
+}

@@ -3,7 +3,8 @@
 */
 
 loadGM( {
-	"mwe-credit-title" : "Title: $1"
+	"mwe-credit-title" : "Title: $1",
+	"mwe-kaltura-platform-title" : "Kaltura open source video platform"
 } );
 
 var kskinConfig = {
@@ -62,7 +63,10 @@ var kskinConfig = {
 			}
 		}
 	},
-	addSkinControlHooks: function() {
+	/**
+	* Adds the skin Control Bindings
+	*/
+	addSkinControlBindings: function() {
 		var embedObj = this.embedObj;
 		var _this = this;
 		var $tp = $j( '#' + embedObj.id );
@@ -141,15 +145,22 @@ var kskinConfig = {
 		embedObj = this.embedObj;
 		var _this = this;	
 		$target = $j( '#' + embedObj.id + ' .menu-credits' );
+
 		$target.html( '<h2>' + gM( 'mwe-credits' ) + '</h2>'  +
 			'<div class="credits_box ui-corner-all">' +
 				mv_get_loading_img() + 
 			'</div>'								
 		);
-		
+
 		if( mw.conf.k_attribution == true ){
 			$target.append( 
-				$j('<div/>').addClass( 'k-attribution')
+				$j('<div/>').addClass( 'k-attribution' )
+				.attr({
+					'title': gM('mwe-kaltura-platform-title')
+				})
+				.click( function(){
+					window.location = 'http://kaltura.com';
+				})
 			);
 		}
 		
