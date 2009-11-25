@@ -19,7 +19,7 @@ loadGM( {
 
 var default_form_options = {
 	'enable_fogg'	 : true,
-	'licence_options':['cc-by-sa'],
+	'licence_options' : ['cc-by-sa'],
 	'api_target' : false,
 	'ondone_cb' : null
 };
@@ -53,7 +53,7 @@ var default_form_options = {
 						// hidden input:
 						'<input type="hidden" name="action" value="upload">' +
 						'<input type="hidden" name="format" value="jsonfm">' +
-						'<input type="hidden" name="token" value="' + eToken + '">' +
+						'<input type="hidden" id="wpEditToken" name="wpEditToken" value="' + eToken + '">' +
 			
 						// form name set:
 						'<label for="wpUploadFile">' + gM( 'mwe-select_file' ) + '</label><br>' +
@@ -121,7 +121,7 @@ var default_form_options = {
 
 
 			// do destination check:
-			$j( "#wpDestFile" ).change( function() {
+			$j( "#wpDestFile" ).change( function() {			
 				$j( "#wpDestFile" ).doDestCheck( {
 					'warn_target':'#wpDestFile-warning'
 				} );
@@ -136,7 +136,7 @@ var default_form_options = {
 					// an api url (we won't submit directly to action of the form)
 					'api_url' : opt.api_target,
 					'form_rewrite': true,
-					'target_edit_from' : '#suf-upload',
+					'edit_form_selector' : '#suf-upload',
 					'new_source_cb' : function( orgFilename, oggName ) {
 						$j( "#wpDestFile" ).val( oggName ).doDestCheck( {
 							warn_target: "#wpDestFile-warning"

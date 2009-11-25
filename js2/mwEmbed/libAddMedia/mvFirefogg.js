@@ -243,7 +243,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 		// Now show the form
 		$j( _this.selector ).show();
 
-		if ( _this.firefoggCheck() ) {
+		if ( _this.getFirefogg() ) {
 			// Firefogg enabled
 			// If we're in upload mode, show the input filename
 			if ( _this.form_type == 'upload' )
@@ -294,11 +294,13 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 		}
 
 		// Set up the click handler for the "save local file" button
-		$j( _this.target_btn_save_local_file )
+		if( _this.target_btn_save_local_file ){
+			$j( _this.target_btn_save_local_file )
 			.unbind()
 			.click( function() {
 				_this.doLocalEncodeAndSave();
 			} );
+		}
 	},
 
 	/*
@@ -347,7 +349,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 		}
 
 		// If Firefogg is not available, just show a "please install" message
-		if ( !this.firefoggCheck() ) {
+		if ( !this.getFirefogg() ) {
 			if ( !this.target_please_install ) {
 				$j( this.selector ).after( this.getControlHtml( 'target_please_install' ) );
 				this.target_please_install = this.selector + ' ~ .target_please_install';
@@ -393,7 +395,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 	 * Display an upload progress overlay. Overrides the function in mvBaseUploadInterface.
 	 */
 	displayProgressOverlay: function() {
-		this.pe_dispProgressOverlay();
+		this.pe_displayProgressOverlay();
 		// If we are uploading video (not in passthrough mode), show preview button
 		if( this.getFirefogg() && !this.getEncoderSettings()['passthrough']  
 			&& !this.isCopyUpload() ) 
@@ -666,7 +668,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 				_this.updateProgress( 1 );
 				setTimeout( function() {
 					_this.onLocalEncodeDone();
-				}
+				});
 			}
 		);
 	},
@@ -674,7 +676,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 	/**
 	 * This is called when a local encode operation has completed. It updates the UI.
 	 */
-	onLocalEncodeDone() {
+	onLocalEncodeDone: function() {
 		var _this = this;
 		_this.updateProgressWin( gM( 'fogg-encoding-done' ),
 			gM( 'fogg-encoding-done' ) + '<br>' +
@@ -717,11 +719,11 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 	 * Get the appropriate encoder settings for the current Firefogg object, 
 	 * into which a video has already been selected.
 	 */
-	getEncoderSettings function() {
+	getEncoderSettings: function() {
 		if ( this.current_encoder_settings == null ) {
 			// Clone the default settings
-			var defaults = function () {};
-			var defaults.prototype = this.default_encoder_settings;
+			var defaults = function () { };
+			defaults.prototype = this.default_encoder_settings;
 			var settings = new defaults();
 
 			// Grab the extension
@@ -848,11 +850,7 @@ mvFirefogg.prototype = { // extends mvBaseUploadInterface
 			if ( dotPos != -1 ) {
 				ext = fileName.substring( dotPos ).toLowerCase();
 			}
-			if ( $j.inArray( ext.substr( 1 ), _this.ogg_extensions ) == -1  ) {
-				_this.formData['filename'] = fileName.substr(
-					0, 
-
-
+			if ( $j.inArray( ext.substr( 1 ), _this.ogg_extensions ) == -1  ) {			
 				var extreg = new RegExp( ext + '$', 'i' );
 				_this.formData['filename'] = fileName.replace( extreg, '.ogg' );
 			}
