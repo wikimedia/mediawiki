@@ -574,6 +574,7 @@ class SpecialPage {
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
 		$wgOut = new OutputPage;
+		$wgOut->setTitle( $title );
 
 		$ret = SpecialPage::executePath( $title, true );
 		if ( $ret === true ) {
