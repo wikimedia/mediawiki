@@ -1,0 +1,90 @@
+***********************************************
+*
+* mwEmbed version 1.2
+* for details see: http://www.mediawiki.org/wiki/MwEmbed
+* For an overview of all mwEmbed files see: 
+* http://www.mediawiki.org/wiki/MwEmbed
+*
+* All Metavid Wiki code is Released under the GPL2
+*
+* @author Michael Dale, 
+* @email mdale@wikimedia.org
+*
+*********************************************
+
+v.1.1
+Major refactoring lots of new interfaces (full release info to follow shortly)
+
+v.6
+* added msg system for compatibility with translations
+* add support for relative file or path names for media files for cortado.
+* added support for safari
+** will force load javascript instead of DOM injection
+** slower on pages without video clips
+* added "experimental" support for "sequences" and editing. (see http://metavid.ucsc.edu/blog/
+* improved playlists usage
+
+v.5
+* add support for playlists, basic usage: <playlist id="plid" src="playlist.xml"/>
+	* see sample_page.php for example usage of playlist
+* better support for different resolutions.
+* inline playlist:
+
+
+
+
+v.4
+* adds support for oggplay with playhead: http://www.annodex.net/software/plugin/index.html
+* adds linkback support (for adding a link back to a particular page)
+* adds config value for selecting cortado in an iframe or loaded in the page
+
+v.3 an intermediary release: supports vlc, basic cortado, basic mplayer/totem
+well tested browsers are firefox & IE 6 (more testing needed for more browsers)
+
+
+the goal of mv_embed is to create a complete/wrapper fall back system for
+the liboggplay API:
+
+http://wiki.xiph.org/index.php/OggPlayJavascriptAPI
+
+& integrate the video element as close as possible with the html5 spec:
+http://www.whatwg.org/specs/web-apps/current-work/#video
+
+it attempts to wrap these calls for the following players:
+I try to include a link to their Javascript apis if I can find one:
+
+(initially just cortado and vlc)
+cortado applet: a custom build of the fluendos java based applet
+(included with the mv_embed package in the future we should get a signed applet hosted
+so that cross domain video playing does not require a copy of cortado+iframe on that server)
+    http://www.flumotion.net/cortado/
+
+vlc plugin: video lan client plugin
+    http://www.videolan.org/doc/play-howto/en/ch04.html#id293992
+
+mplayer plugin: the mplayer plugin
+    http://mplayerplug-in.cvs.sourceforge.net/mplayerplug-in/mplayerplug-in/DOCS/tech/javascript.txt?view=markup
+
+totem:
+    http://www.gnome.org/projects/totem/
+
+
+Sample Usage:
+<script type="text/javascript" src="mv_embed.js" />
+<video id="video_id" src="video_url"></video>
+
+once the page loads the video_id object is rewritten as an mv_embed object
+
+
+Supported Attributes for <video> tag:
+type 	name  		[default] 	description
+bool    autoplay    [false]  	if the clip should play on page load
+bool    controls   	[true]  	if the default interface should be displayed (see interface)
+string  id          null    	the id of the html element useful for grabbing the video object
+string  src			null		the url src for the video file
+string  thumbnail   logo    	the thumbnail to be displayed a frame grab is ideal.
+string  linkback    link    	a info link back for more info about this stream
+								(useful for when the clip is embed externally)
+int     width       [320]   	the video display width
+int     height      [240]   	the video display height
+bool    embed_link  [ture] 	 	if the html to embed this clip on an external page should be displayed

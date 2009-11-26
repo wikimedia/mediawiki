@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Firefogg - Make Ogg Video in your Browser</title>
+	<script type="text/javascript" src="../jsScriptLoader.php?urid=r58125&class=mv_embed,window.jQuery,mvBaseUploadInterface,mvFirefogg,mvAdvFirefogg,$j.ui,$j.ui.progressbar,$j.ui.dialog,$j.cookie,$j.ui.accordion,$j.ui.slider,$j.ui.datepicker,$j.ui.draggable"></script>	
+	<!--  <script type="text/javascript" src="../mv_embed.js"></script> -->
+<style type="text/css" media="all">body {
+  margin: 0;
+  padding: 0;
+  font-family: Vera Sans, sans-serif;
+  font-size: 12px;
+  color: #000;
+  background: #fff;
+}
+
+a {
+  color: #000;
+}
+img {
+  border: 0;
+}
+h1, h2 {
+  text-align: center;
+}
+h1 {
+  font-size: 48px;
+  letter-spacing: 0.25em;
+  margin-bottom: 0;
+  line-height: 0.8em;
+}
+h2 {
+  margin-left: -11px;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+}
+
+#main {
+  margin-top: 10px;
+}
+
+.install {
+  margin-left: auto;
+  margin-right: auto;
+  width: 180px;
+  padding: 8px;
+  background-color: #fe0000;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.install a {
+  color: #000;
+}
+
+#nav {
+  margin-left: -11px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+</style>
+<style type="text/css" media="all">
+.install{
+display:none;
+}
+</style>
+<script type="text/javascript">
+mwAddOnloadHook(function(){
+	$j('#firefogg_app').firefogg({
+			'encoder_interface'	: true,
+			'encode_local' 		: true
+	},function(){
+		$j('#loadFogg').hide();
+	});
+});
+</script>
+</head><body>
+<div id="main">
+  <h1>
+<a href="http://firefogg.org/index.html">
+	<img alt="Firefogg" src="../skins/mvpcf/images/firefogg_logo.png"/>
+</a><br>
+Make Ogg Video</h1>
+<br>	
+	<br>
+	<div style="margin-right:auto;margin-left:auto;width:500px;" id="loadFogg">Loading firefogg...</div>	
+	<div style="margin-right:auto;margin-left:auto;width:500px;height:230px"  id="firefogg_app"></div>
+	
+	<div style="height:295px"></div>
+	<center><span style="font:size:80%">Built using <a href="http://firefogg.org">firefogg</a>, <a href="http://www.mediawiki.org/wiki/Media_Projects_Overview#MwEmbed">MwEmbed</a> and <a href="http://jqueryui.com/">jquery.ui</a>. Supports  
+		custom themes via the <a href="http://jqueryui.com/themeroller/developertool/">ThemeRoller Dev Tool</a>
+	</span>
+	</center>
+</body></html>
+
