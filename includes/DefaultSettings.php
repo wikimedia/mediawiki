@@ -456,7 +456,7 @@ $wgSharedUploadDBprefix = '';
 $wgCacheSharedUploads = true;
 /**
 * Allow for upload to be copied from an URL. Requires Special:Upload?source=web
-* timeout for Copy Uploads is set by wgAsyncHTTPTimeout & wgSyncHTTPTimeout
+* The timeout for copy uploads is set by $wgHTTPTimeout.
 */
 $wgAllowCopyUploads = false;
 
@@ -466,15 +466,6 @@ $wgAllowCopyUploads = false;
  * normal uploads is currently to edit php.ini.
  */
 $wgMaxUploadSize = 1024*1024*100; # 100MB
-
-
-/**
- * Enable Firefogg support. Adds support for in-browser transcoding to Ogg
- * Theora, chunked uploads for large image files and client side hash checks.
- *
- * Ignored unless $wgEnableJS2system is true.
- */
-$wgEnableFirefogg = true;
 
 /**
  * Point the upload navigation link to an external URL
@@ -2795,69 +2786,6 @@ $wgSpecialPages = array();
  */
 $wgAutoloadClasses = array();
 
-/*
- * Array mapping JavaScript class to web path for use by the script loader.
- * This is populated in AutoLoader.php.
- */
-$wgJSAutoloadClasses = array();
-
-/*
- * boolean; if the script loader should be used to group all javascript requests.
- * more about the script loader: http://www.mediawiki.org/wiki/ScriptLoader
- *
- * (its recommended you DO NOT enable the script loader without also enabling $wgUseFileCache
- * (or have mediaWiki behind a proxy) otherwise all new js requests will result in script server js processing.
- */
-$wgEnableScriptLoader = false;
-
-/*
- * $wgScriptModifiedCheck should run a file modified check on javascript files when
- * generating unique request ids for javascript include using the script-loader
- *
- * note this will only check core scripts that are directly included on the page.
- * (not scripts loaded after the initial page display since after initial page
- * display scripts inherit the unique request id)
- *
- * and or you can update $wgStyleVersion
- */
-$wgScriptModifiedFileCheck = true;
-
-/*
- * $wgScriptModifiedMsgCheck Checks MediaWiki NS for latest
- * Revision for generating the request id.
- *
- */
-$wgScriptModifiedMsgCheck = false;
-
-/*
- * enable js2 Script System
- * if enabled we include jquery, mv_embed and js2 versions of editPage.js
- */
-$wgEnableJS2system = false;
-
-/*
- * enable api iframe proxy
- */
-$wgEnableIframeApiProxy = false;
-
-/*
- * boolean; if we should enable javascript localization (it loads loadGM json
- * call with mediaWiki msgs)
- */
-$wgEnableScriptLocalization = true;
-
-/*
- * path for mwEmbed normally js2/mwEmbed/
- */
-$wgMwEmbedDirectory = "js2/mwEmbed/";
-
-/*
- * Turn on debugging for the javascript script-loader & forces fresh copies
- * of javascript
- */
-$wgDebugJavaScript = false;
-
-
 /**
  * An array of extension types and inside that their names, versions, authors,
  * urls, descriptions and pointers to localized description msgs. Note that
@@ -3399,15 +3327,6 @@ $wgSpecialPageGroups = array(
 );
 
 /**
- * Experimental preview feature to fetch rendered text
- * over an XMLHttpRequest from JavaScript instead of
- * forcing a submit and reload of the whole page.
- * Leave disabled unless you're testing it.
- * Needs JS2 ($wgEnableJS2) to be activated.
- */
-$wgLivePreview = false;
-
-/**
  * Disable the internal MySQL-based search, to allow it to be
  * implemented by an extension instead.
  */
@@ -3687,22 +3606,9 @@ $wgTrustedMediaFormats= array(
 $wgAllowSpecialInclusion = true;
 
 /**
- * Timeout for HTTP requests done at script execution time
- * default is (default php.ini script time 30s - 5s for everything else)
+ * Timeout for HTTP requests done via CURL
  */
-$wgSyncHTTPTimeout = 25;
-
-/**
-* Timeout for asynchronous HTTP requests that run in a background PHP process
-* default set to 20 min
-*/
-$wgAsyncHTTPTimeout = 60*20;
-
-/*
- * if AsyncDownload is enabled (works on unix platforms)
- * fix for windows is pending.
- */
-$wgEnableAsyncDownload = false;
+$wgHTTPTimeout = 25;
 
 /**
  * Proxy to use for CURL requests.
@@ -3771,12 +3677,6 @@ $wgAjaxWatch = true;
 $wgAjaxUploadDestCheck = true;
 
 /**
- * Enable the AJAX upload interface (needed for large http uploads & to display
- * progress on uploads for browsers that support it)
- */
-$wgAjaxUploadInterface = true;
-
-/**
  * Enable previewing licences via AJAX
  */
 $wgAjaxLicensePreview = true;
@@ -3835,11 +3735,6 @@ $wgMaxShellFileSize = 102400;
  * Maximum CPU time in seconds for shell processes under linux
  */
 $wgMaxShellTime = 180;
-
-/**
-* Executable path of the PHP cli binary (php/php5). Should be set up on install.
-*/
-$wgPhpCli = '/usr/bin/php';
 
 /**
  * DJVU settings
@@ -4312,20 +4207,6 @@ $wgCrossSiteAJAXdomainExceptions = array();
  * The minimum amount of memory that MediaWiki "needs"; MediaWiki will try to raise PHP's memory limit if it's below this amount.
  */
 $wgMemoryLimit = "50M";
-
-/**
- * Whether or not to use the AJAX categories system.
- * Note that this requires JS2 and the script loader.
- */
-$wgUseAJAXCategories = false;
-
-/**
- * Only enable AJAXCategories on configured namespaces. Default is all.
- *
- * Example:
- *   $wgAJAXCategoriesNamespaces = array( NS_MAIN, NS_PROJECT );
- */
-$wgAJAXCategoriesNamespaces = array();
 
 /**
  * To disable file delete/restore temporarily

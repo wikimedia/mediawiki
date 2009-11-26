@@ -553,7 +553,6 @@ Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek.
 'readonly_lag'         => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
-'fileappenderror'      => 'Kon nie "$1" agteraan "$2" voeg nie.',
 'filecopyerror'        => 'Kon nie lêer van "$1" na "$2" kopieer nie.',
 'filerenameerror'      => 'Kon nie lêernaam van "$1" na "$2" wysig nie.',
 'filedeleteerror'      => 'Kon nie lêer "$1" skrap nie.',

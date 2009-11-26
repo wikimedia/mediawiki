@@ -2362,45 +2362,6 @@ function wfShellExec( $cmd, &$retval=null ) {
 }
 
 /**
- * Executes a shell command in the background. Returns true if successful.
- *
- * @param $cmd String
- */
-function wfShellBackgroundExec( $cmd ) {
-	wfDebug( "wfShellBackgroundExec: $cmd\n" );
-
-	if ( !wfShellExecEnabled() ) {
-		return false;
-	}
-
-	if ( wfIsWindows() ) {
-		shell_exec( "start /b $cmd >nul" );
-		return true;
-	} else {
-		$pid = shell_exec( "nohup $cmd > /dev/null & echo $!" );
-		return (bool)$pid;
-	}
-}
-
-/**
- * Return true if we can execute a shell command (i.e. not safe mode, etc.)
- */
-function wfShellExecEnabled() {
-	if( wfIniGetBool( 'safe_mode' ) ) {
-		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
-		return false;
-	}
-	$functions = explode( ',', ini_get( 'disable_functions' ) );
-	$functions = array_map( 'trim', $functions );
-	$functions = array_map( 'strtolower', $functions );
-	if ( in_array( 'passthru', $functions ) ) {
-		wfDebug( "passthru is in disabled_functions\n" );
-		return false;
-	}
-	return true;
-}
-
-/**
  * Workaround for http://bugs.php.net/bug.php?id=45132
  * escapeshellarg() destroys non-ASCII characters if LANG is not a UTF-8 locale
  */

@@ -14,8 +14,6 @@ class OutputPage {
 	var $mLastModified = '', $mETag = false;
 	var $mCategoryLinks = array(), $mCategories = array(), $mLanguageLinks = array();
 
-	var $mScriptLoaderClassList = array();
-
 	var $mScripts = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
 	var $mInlineMsg = array();
 
@@ -41,7 +39,6 @@ class OutputPage {
 	var $mParseWarnings = array();
 	var $mSquidMaxage = 0;
 	var $mRevisionId = null;
-	var $mScriptLoader = null;
 	protected $mTitle = null;
 
 	/**
@@ -119,240 +116,21 @@ class OutputPage {
 	 * @param string $file filename in skins/common or complete on-server path (/foo/bar.js)
 	 */
 	function addScriptFile( $file ) {
-		global $wgStylePath, $wgScript, $wgUser;
-		global $wgEnableScriptLoader, $wgScriptPath;
-
+		global $wgStylePath, $wgStyleVersion, $wgJsMimeType;
 		if( substr( $file, 0, 1 ) == '/' ) {
 			$path = $file;
 		} else {
-			$path = "{$wgStylePath}/common/{$file}";
+			$path =  "{$wgStylePath}/common/{$file}";
 		}
-
-		// If the class can be determined, use the addScriptClass method
-		$js_class = $this->getJsClassFromPath( $path );
-		if( $js_class ) {
-			$this->addScriptClass( $js_class );
-			return true;
-		}
-
-		//do checks for wiki-titles
-		if( strpos( $path, $wgScript ) !== false ) {
-			$reqPath = str_replace( $wgScript . '?', '', $path );
-			$reqArgs = explode( '&', $reqPath );
-			$reqSet = array();
-
-			foreach( $reqArgs as $arg ) {
-				list( $key, $var ) = explode( '=', $arg );
-				$reqSet[$key] = $var;
-			}
-
-			if( isset( $reqSet['title'] ) && $reqSet != '' ) {
-				$jsTitleClass = 'WT:' . $reqSet['title'];
-				if( $wgEnableScriptLoader ) {
-					// Extract any extra parameters (for now just skin)
-					$ext_param = ( isset( $reqSet['useskin'] ) && $reqSet['useskin'] != '' )
-						? '|useskin=' . ucfirst( $reqSet['useskin'] ) : '';
-					$this->mScriptLoaderClassList[] = $jsTitleClass . $ext_param ;
-					return true;
-				}else{
-					$this->addScript( Html::linkedScript(
-								wfAppendQuery( $path, $this->getURIDparam( $jsTitleClass ) )
-							)
-						);
-					return true;
-				}
-			}
-		}
-		// If the script loader could not be used, just add the script to the header
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $this->getURIDparam() ) ) );
-	}
-
-	/**
-	 * Add the core scripts that are included on every page, for later output into the header
-	 *
-	 * this includes the conditional sitejs
-	 */
-	function addCoreScripts2Top(){
-		global $wgEnableScriptLoader, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgEnableJS2system;
-		global $wgUser, $wgJsMimeType;
-		// @todo We should deprecate wikibits in favor of some mv_embed pieces and jQuery
-
-		if( $wgEnableJS2system ){
-			$core_classes = array( 'window.jQuery', 'mv_embed', 'wikibits' );
-		} else {
-			$core_classes = array( 'wikibits' );
-		}
-
-		//make sure scripts are on top:
-		$postScripts = $this->mScripts;
-		$this->mScripts = '';
-
-		if( $wgEnableScriptLoader ){
-			//directly add script_loader call for addCoreScripts2Top
-			$this->mScripts = $this->getScriptLoaderJs( $core_classes );
-		} else {
-			$so = '';
-			foreach( $core_classes as $js_class ){
-				$this->addScriptClass( $js_class );
-			}
-		}
-		//now re-append any scripts that got added prior to the addCoreScripts2Top call
-		$this->mScripts = $this->mScripts . $postScripts;
-	}
-
-	/**
-	 * @param string $js_class Name of the JavaScript class
-	 * @return boolean False if the class wasn't found, true on success
-	 */
-	function addScriptClass( $js_class ){
-		global $wgDebugJavaScript, $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses,
-				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath, $wgStylePath, $wgEnableJS2system;
-
-		$path = jsScriptLoader::getJsPathFromClass( $js_class );
-		if( $path !== false ){
-			if( $wgEnableScriptLoader ) {
-				// Register it with the script loader
-				if( !in_array( $js_class, $this->mScriptLoaderClassList ) ) {
-					$this->mScriptLoaderClassList[] = $js_class;
-				}
-			} else {
-				// Source the script directly
-				$prefix = "skins/common/";
-				if( substr( $path, 0, 1 ) == '/' ) {
-					// straight path
-				} elseif( substr( $path, 0, strlen( $prefix ) ) == $prefix ) {
-					// Respect $wgStypePath
-					$path = "{$wgStylePath}/common/" . substr( $path, strlen( $prefix ) );
-				} else {
-					$path = $wgScriptPath . '/' . $path;
-				}
-				$this->addScript( Html::linkedScript( $path . "?" . $this->getURIDparam( $js_class ) ) );
-
-				// Merge in language text (if js2 is on and we have loadGM function &  scriptLoader is "off")
-				if( $wgEnableJS2system ){
-					if( !$this->mScriptLoader )
-						$this->mScriptLoader = new jsScriptLoader();
-
-					$inlineMsg = $this->mScriptLoader->getInlineLoadGMFromClass( $js_class );
-					if( $inlineMsg != '' )
-						$this->addScript( Html::inlineScript( $inlineMsg ));
-				}
-			}
-			return true;
-		}
-		//print "could not find: $js_class\n";
-		wfDebug( __METHOD__ . ' could not find js_class: ' . $js_class );
-		return false; // could not find the class
-	}
-
-	/**
-	 * Get the <script> tag which will invoke the script loader
-	 * @param $classAry A class array which, if given, overrides $this->mScriptLoaderClassList
-	 */
-	function getScriptLoaderJs( $classAry = array() ) {
-		global $wgRequest, $wgDebugJavaScript;
-		// If no class array was provided, use mScriptLoaderClassList
-		if( !count( $classAry ) ) {
-			$classAry = $this->mScriptLoaderClassList;
-		}
-		$class_list = implode( ',', $classAry );
-
-		$debug_param = ( $wgDebugJavaScript ||
-						 $wgRequest->getVal( 'debug' ) == 'true' ||
-						 $wgRequest->getVal( 'debug' ) == '1' )
-			 		 ? '&debug=true' : '';
-
-		return Html::linkedScript( wfScript( 'mwScriptLoader' ) .
-			"?class={$class_list}{$debug_param}&" . $this->getURIDparam( $classAry) ) . "\n";
-	}
-
-	/**
-	 * Get the unique request ID parameter for the script-loader request
-	 */
-	function getURIDparam( $classAry = array() ) {
-		global $wgDebugJavaScript, $wgStyleVersion, $IP, $wgScriptModifiedFileCheck;
-		global $wgLang,  $wgScriptModifiedMsgCheck;
-
-		//Always the language key param to keep urls distinct per language
-		$uriParam = 'uselang=' . $wgLang->getCode();
-
-		if( $wgDebugJavaScript ) {
-			return $uriParam . '&urid=' . time();
-		} else {
-			//support single class_name attr
-			if( gettype( $classAry) == 'string'  ){
-				$classAry = array( $classAry );
-			}
-			$ftime =  $frev = 0;
-			foreach( $classAry as $class ) {
-				// Add the latest revision ID if the class set includes a WT (wiki title)
-				if( substr($class, 0, 3) == 'WT:'){
-					$title_str = substr($class, 3);
-					$t = Title::newFromText( $title_str );
-					if( $t && $t->exists() ) {
-						if( $t->getLatestRevID() > $frev  )
-							$frev = $t->getLatestRevID();
-					}
-				}else{
-					//check for file modified time:
-					if( $wgScriptModifiedFileCheck ) {
-						$js_path =  jsScriptLoader::getJsPathFromClass( $class );
-						if( $js_path ) {
-							$cur_ftime = filemtime ( $IP ."/". $js_path );
-							if( $cur_ftime > $ftime )
-								$ftime = $cur_ftime;
-						}
-					}
-				}
-			}
-			//build the actual unique request id:
-			$uriParam .= "&urid={$wgStyleVersion}";
-
-			// Add the file modification time if set
-			if( $ftime != 0 )
-				$uriParam .= "_" . $ftime;
-
-			//add the wiki rev id if set
-			if( $frev != 0 )
-				$uriParam.= "_" . $frev;
-
-			//add the latest msg rev id if $wgScriptModifiedMsgCheck is enabled:
-			if( $wgScriptModifiedMsgCheck ){
-				$dbr = wfGetDB( DB_SLAVE );
-				// Grab the latest mediaWiki msg rev id:
-				$res = $dbr->select( 'recentchanges',
-						'rc_id',
-						array( 'rc_namespace'=> NS_MEDIAWIKI ),
-						__METHOD__,
-						array( 	'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => 1 ,
-								'USE INDEX' => array('recentchanges' => 'rc_timestamp' )
-						)
-					);
-				if( $dbr->numRows($res) != 0){
-					$rc = $dbr->fetchObject( $res );
-					if( $rc->rc_id ){
-						$uriParam.= '_' . $rc->rc_id;
-					}
-				}
-				//@@todo we could otherwise use the the SVN version if not already covered by $wgStyleVersion above
-			}
-			return $uriParam;
-		}
-	}
-	/**
-	 * Given a script path, get the JS class name, or false if no such path is registered.
-	 * @param $path string
-	 */
-	function getJsClassFromPath( $path ) {
-		global $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgScriptPath;
-
-		$scriptLoaderPaths = array_merge( $wgJSAutoloadClasses,  $wgJSAutoloadLocalClasses );
-		foreach( $scriptLoaderPaths as $js_class => $js_path ) {
-			$js_path = "{$wgScriptPath}/{$js_path}";
-			if( $path == $js_path )
-				return $js_class;
-		}
-		return false;
+		$this->addScript( 
+			Xml::element( 'script', 
+				array(
+					'type' => $wgJsMimeType,
+					'src' => "$path?$wgStyleVersion",
+				),
+				'', false
+			)
+		);
 	}
 
 	/**
@@ -367,12 +145,7 @@ class OutputPage {
 	 * Get all registered JS and CSS tags for the header.
 	 */
 	function getScript() {
-		global $wgEnableScriptLoader;
-		if( $wgEnableScriptLoader ){
-			return $this->mScripts . "\n" . $this->getScriptLoaderJs() . $this->getHeadItems();
-		} else {
-			return $this->mScripts . $this->getHeadItems();
-		}
+		return $this->mScripts . $this->getHeadItems();
 	}
 
 	function getHeadItems() {
@@ -1204,9 +977,6 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 
-		// Add our core scripts to output
-		$this->addCoreScripts2Top();
-
 		if ( $wgUseAjax ) {
 			$this->addScriptFile( 'ajax.js' );
 
@@ -1223,17 +993,6 @@ class OutputPage {
 
 		if( $wgUser->getBoolOption( 'editsectiononrightclick' ) ) {
 			$this->addScriptFile( 'rightclickedit.js' );
-		}
-
-		global $wgUseAJAXCategories, $wgEnableJS2system;
-		if ($wgUseAJAXCategories && $wgEnableJS2system) {
-			global $wgAJAXCategoriesNamespaces;
-
-			$title = $this->getTitle();
-
-			if( empty( $wgAJAXCategoriesNamespaces ) || in_array( $title->getNamespace(), $wgAJAXCategoriesNamespaces ) ) {
-				$this->addScriptClass( 'ajaxCategories' );
-			}
 		}
 
 		if( $wgUniversalEditButton ) {
@@ -1775,7 +1534,7 @@ class OutputPage {
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
-		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgEnableScriptLoader, $wgHtml5;
+		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5;
 
 		$this->addMeta( "http:Content-Type", "$wgMimeType; charset={$wgOutputEncoding}" );
 		if ( $sk->commonPrintStylesheet() ) {
@@ -1821,9 +1580,6 @@ class OutputPage {
 			$ret .= Html::inlineStyle( $sk->usercss );
 		}
 
-		if( $wgEnableScriptLoader )
-			$ret .= $this->getScriptLoaderJs();
-
 		if ($wgUseTrackbacks && $this->isArticleRelated())
 			$ret .= $this->getTitle()->trackbackRDF();
 
@@ -1838,8 +1594,10 @@ class OutputPage {
 	*/
 	function getHeadScripts( Skin $sk ) {
 		global $wgUser, $wgRequest, $wgJsMimeType, $wgUseSiteJs;
+		global $wgStylePath, $wgStyleVersion;
 
-		$vars = Skin::makeGlobalVariablesScript( $sk->getSkinName() );
+		$scripts = Skin::makeGlobalVariablesScript( $sk->getSkinName() );
+		$scripts .= Html::linkedScript( "{$wgStylePath}/common/wikibits.js?$wgStyleVersion" );
 
 		//add site JS if enabled:
 		if( $wgUseSiteJs ) {
@@ -1866,7 +1624,8 @@ class OutputPage {
 			}
 		}
 
-		return $vars . "\n" . $this->mScripts;
+		$scripts .= "\n" . $this->mScripts;
+		return $scripts;
 	}
 
 	protected function addDefaultMeta() {

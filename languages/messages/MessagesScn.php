@@ -485,7 +485,6 @@ V\'arringrazziamu si signaliati zoccu succidìu a nu [[Special:ListUsers/sysop|a
 'readonly_lag'         => 'Lu database hà statu bluccatu automaticamenti, mentri li server cu li database slave si sincrunìzzanu cu lu master',
 'internalerror'        => 'Erruri nternu',
 'internalerror_info'   => 'Erruri nternu: $1',
-'fileappenderror'      => 'Nun è possibi junciri "$1" a "$2".',
 'filecopyerror'        => 'Mpussìbbili cupiari lu file "$1" n "$2".',
 'filerenameerror'      => 'Mpussìbbili rinuminari lu file "$1" \'n "$2".',
 'filedeleteerror'      => 'Mpussìbbili cancillari lu file "$1".',

@@ -651,7 +651,6 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'readonly_lag'         => 'De databanke is autematisch beveilig, zodat de onder-eschikken servers zich kunnen synchroniseren mit de centrale server.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
-'fileappenderror'      => 'Kon "$1" neet bie "$2" doon.',
 'filecopyerror'        => 'Kon bestaand "$1" neet naor "$2" kopiëren.',
 'filerenameerror'      => 'Bestaansnaamwieziging "$1" naor "$2" neet meugelijk.',
 'filedeleteerror'      => 'Kon bestaand "$1" neet vortdoon.',

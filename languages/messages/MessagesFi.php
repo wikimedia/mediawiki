@@ -646,7 +646,6 @@ Ilmoita tämän sivun osoite wikin [[Special:ListUsers/sysop|ylläpitäjälle]].
 'readonly_lag'         => 'Tietokanta on automaattisesti lukittu, jotta kaikki tietokantapalvelimet saisivat kaikki tuoreet muutokset',
 'internalerror'        => 'Sisäinen virhe',
 'internalerror_info'   => 'Sisäinen virhe: $1',
-'fileappenderror'      => 'Tiedostoa ”$1” ei voitu lisätä tiedostoon ”$2”.',
 'filecopyerror'        => 'Tiedostoa <b>$1</b> ei voitu kopioida tiedostoksi <b>$2</b>.',
 'filerenameerror'      => 'Tiedostoa <b>$1</b> ei voitu nimetä uudelleen nimellä <b>$2</b>.',
 'filedeleteerror'      => 'Tiedostoa <b>$1</b> ei voitu poistaa.',

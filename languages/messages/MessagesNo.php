@@ -581,7 +581,6 @@ Rapporter gjerne problemet til en [[Special:ListUsers/sysop|administrator]], ang
 'readonly_lag'         => 'Databasen er automatisk skrivebeskyttet så slavetjenerne kan ta igjen mestertjeneren',
 'internalerror'        => 'Intern feil',
 'internalerror_info'   => 'Intern feil: $1',
-'fileappenderror'      => 'Kunne ikke legge "$1" til "$2".',
 'filecopyerror'        => 'Klarte ikke å kopiere filen «$1» til «$2».',
 'filerenameerror'      => 'Klarte ikke å døpe om filen «$1» til «$2».',
 'filedeleteerror'      => 'Klarte ikke å slette filen «$1».',

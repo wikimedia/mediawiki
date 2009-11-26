@@ -492,7 +492,6 @@ Prosimo, da o tem obvestite [[Special:ListUsers/sysop|administratorja]] (ne poza
 'readonly_lag'         => 'Podatkovna zbirka se je samodejno zaklenila, dokler se podrejeni strežniki ne uskladijo z glavnim.',
 'internalerror'        => 'Notranja napaka',
 'internalerror_info'   => 'Notranja napaka: $1',
-'fileappenderror'      => 'Ne morem pripeti »$1« v »$2«.',
 'filecopyerror'        => 'Datoteke »$1« ni mogoče prepisati v »$2«.',
 'filerenameerror'      => 'Datoteke »$1« ni mogoče preimenovati v »$2«.',
 'filedeleteerror'      => 'Datoteke »$1« ni mogoče izbrisati.',

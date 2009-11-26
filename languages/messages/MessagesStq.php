@@ -385,7 +385,6 @@ Mäld dit n [[Special:ListUsers/sysop|Administrator]] unner Naamenge fon ju URL.
 'readonly_lag'         => 'Ju Doatenboank wuud automatisk foar Schrieuwtougriepe speerd, deermäd sik do ferdeelde Doatenboankservere (slaves) mäd dän Hauddoatenboankserver (master) ouglieke konnen.',
 'internalerror'        => 'Interne Failer',
 'internalerror_info'   => 'Interne Failer: $1',
-'fileappenderror'      => 'Kuud „$1“ nit an „$2“ anhongje.',
 'filecopyerror'        => 'Kuude Doatäi "$1" nit ätter "$2" kopierje.',
 'filerenameerror'      => 'Kuude Doatäi "$1" nit ätter "$2" uumenaame.',
 'filedeleteerror'      => 'Kuude Doatäi "$1" nit läskje.',

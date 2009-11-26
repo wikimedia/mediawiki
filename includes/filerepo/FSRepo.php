@@ -227,33 +227,6 @@ class FSRepo extends FileRepo {
 		return $status;
 	}
 
-	function append( $srcPath, $toAppendPath ) {
-		$status = $this->newGood();
-
-		// Resolve the virtual URL
-		if ( self::isVirtualUrl( $srcPath ) ) {
-			$srcPath = $this->resolveVirtualUrl( $srcPath );
-		}
-		// Make sure the files are there
-		if ( !is_file( $srcPath ) )
-			$status->fatal( 'append-src-filenotfound', $srcPath );
-
-		if ( !is_file( $toAppendPath ) )
-			$status->fatal( 'append-toappend-filenotfound', $toAppendPath );
-
-		// Do the append
-		if( file_put_contents( $srcPath, file_get_contents( $toAppendPath ), FILE_APPEND ) ) {
-			$status->value = $srcPath;
-		} else {
-			$status->fatal( 'fileappenderror', $toAppendPath,  $srcPath);
-		}
-
-		// Remove the source file
-		unlink( $toAppendPath );
-
-		return $status;
-	}
-
 	/**
 	 * Checks existence of specified array of files.
 	 *

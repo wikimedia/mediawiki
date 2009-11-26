@@ -467,7 +467,6 @@ A fyddech gystal â gwneud adroddiad ar hwn at [[Special:ListUsers/sysop|weinydd
 'readonly_lag'         => "Mae'r databas wedi'i gloi'n awtomatig tra bod y gwas-weinyddion yn asio gyda'r prif weinydd",
 'internalerror'        => 'Gwall mewnol',
 'internalerror_info'   => 'Gwall mewnol: $1',
-'fileappenderror'      => 'Ni ellid atodi "$1" wrth "$2".',
 'filecopyerror'        => 'Wedi methu copïo\'r ffeil "$1" i "$2".',
 'filerenameerror'      => "Wedi methu ail-enwi'r ffeil '$1' yn '$2'.",
 'filedeleteerror'      => 'Wedi methu dileu\'r ffeil "$1".',

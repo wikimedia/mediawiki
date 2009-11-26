@@ -433,7 +433,6 @@ Di la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan
 'readonly_lag'         => 'Dàttub njoxe bi daa caabi boppam ngir may ñaareelu joxekaay yi dap joxekaay bu njëkk bi.',
 'internalerror'        => 'Njuumte gu biir',
 'internalerror_info'   => 'Njuumte gu biir : $1',
-'fileappenderror'      => 'Maneesul a yokk "$1" ci "$2".',
 'filecopyerror'        => 'Duppig dencukaay bii di « $1 » jëm « $2 » antuwul.',
 'filerenameerror'      => 'Tuddewaatug « $1 » niki « $2 » antuwul.',
 'filedeleteerror'      => 'Farug dencukaay bii di « $1 » antuwul.',

@@ -497,7 +497,6 @@ Mellt dëst w.e.g. bei engem [[Special:ListUsers/sysop|Administrateur]] a vergie
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
 'internalerror'        => 'Interne Feeler',
 'internalerror_info'   => 'Interne Feeler: $1',
-'fileappenderror'      => '"$1" konnt net bäi "$2" derbäigesat ginn.',
 'filecopyerror'        => 'De Fichier "$1" konnt net op "$2" kopéiert ginn.',
 'filerenameerror'      => 'De Fichier "$1" konnt net op "$2" ëmbenannt ginn.',
 'filedeleteerror'      => 'De Fichier "$1" konnt net geläscht ginn.',

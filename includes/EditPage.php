@@ -368,7 +368,7 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgRequest, $wgEnableJS2system;
+		global $wgOut, $wgRequest;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !wfRunHooks( 'AlternateEdit', array( $this ) ) ) {
 			return;
@@ -396,9 +396,6 @@ class EditPage {
 		}
 
 		$wgOut->addScriptFile( 'edit.js' );
-
-		if( $wgEnableJS2system )
-		    $wgOut->addScriptClass( 'editPage' );
 
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
@@ -1718,22 +1715,6 @@ END
 		}
 	}
 
-	/**
-	 * Live Preview lets us fetch rendered preview page content and
-	 * add it to the page without refreshing the whole page.
-	 * If not supported by the browser it will fall through to the normal form
-	 * submission method.
-	 *
-	 * This function outputs a script tag to support live preview, and
-	 * returns an onclick handler which should be added to the attributes
-	 * of the preview button
-	 */
-	function doLivePreviewScript() {
-		global $wgOut, $wgTitle;
-		$wgOut->addScriptFile( 'preview.js' );
-		return "";
-	}
-
 	protected function showTosSummary() {
 		$msg = 'editpage-tos-summary';
 		// Give a chance for site and per-namespace customizations of
@@ -2285,45 +2266,17 @@ END
 		$buttons['save'] = Xml::element('input', $temp, '');
 
 		++$tabindex; // use the same for preview and live preview
-		if ( $this->useLivePreview() ) {
-			$this->doLivePreviewScript(); // Add to output
-
-			$temp = array(
-				'id'        => 'wpPreview',
-				'name'      => 'wpPreview',
-				'type'      => 'submit',
-				'tabindex'  => $tabindex,
-				'value'     => wfMsg( 'showpreview' ),
-				'accesskey' => '',
-				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
-			);
-			$buttons['preview'] = Xml::element('input', $temp, '');
-
-			$temp = array(
-				'id'        => 'wpLivePreview',
-				'name'      => 'wpLivePreview',
-				'type'      => 'submit',
-				'tabindex'  => $tabindex,
-				'value'     => wfMsg( 'showlivepreview' ),
-				'accesskey' => wfMsg( 'accesskey-preview' ),
-				'title'     => '',
-				'style'     => 'display: none;',
-			);
-
-			$buttons['live'] = Xml::element( 'input', $temp, '' );
-		} else {
-			$temp = array(
-				'id'        => 'wpPreview',
-				'name'      => 'wpPreview',
-				'type'      => 'submit',
-				'tabindex'  => $tabindex,
-				'value'     => wfMsg( 'showpreview' ),
-				'accesskey' => wfMsg( 'accesskey-preview' ),
-				'title'     => wfMsg( 'tooltip-preview' ) . ' [' . wfMsg( 'accesskey-preview' ) . ']',
-			);
-			$buttons['preview'] = Xml::element( 'input', $temp, '' );
-			$buttons['live'] = '';
-		}
+		$temp = array(
+			'id'        => 'wpPreview',
+			'name'      => 'wpPreview',
+			'type'      => 'submit',
+			'tabindex'  => $tabindex,
+			'value'     => wfMsg( 'showpreview' ),
+			'accesskey' => wfMsg( 'accesskey-preview' ),
+			'title'     => wfMsg( 'tooltip-preview' ) . ' [' . wfMsg( 'accesskey-preview' ) . ']',
+		);
+		$buttons['preview'] = Xml::element( 'input', $temp, '' );
+		$buttons['live'] = '';
 
 		$temp = array(
 			'id'        => 'wpDiff',
@@ -2338,21 +2291,6 @@ END
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
-	}
-
-	/**
-	 * Whether to use live preview for this page
-	 * This disables live preview when editing css/js user subpages so that the
-	 * user can preview them (bug 3421)
-	 *
-	 * @return Boolean
-	 */
-	public function useLivePreview() {
-		global $wgLivePreview, $wgUser;
-
-		return $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) &&
-			!( ( $this->mTitle->isCssSubpage() && $this->mTitle->userCanEditCssSubpage() ) ||
-			( $this->mTitle->isJsSubpage() && $this->mTitle->userCanEditCssSubpage() ) );
 	}
 
 	/**

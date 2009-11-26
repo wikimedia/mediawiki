@@ -647,7 +647,6 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 'readonly_lag'         => 'La banca de donadas es estada automaticament clavada pendent que los servidors segondaris ratrapan lor retard sul servidor principal.',
 'internalerror'        => 'Error intèrna',
 'internalerror_info'   => 'Error intèrna: $1',
-'fileappenderror'      => "Impossible d'apondre « $1 » a « $2 ».",
 'filecopyerror'        => 'Impossible de copiar lo fichièr « $1 » cap a « $2 ».',
 'filerenameerror'      => 'Impossible de tornar nomenar lo fichièr « $1 » en « $2 ».',
 'filedeleteerror'      => 'Impossible de suprimir lo fichièr « $1 ».',

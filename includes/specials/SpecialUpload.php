@@ -727,7 +727,7 @@ class UploadForm extends HTMLForm {
 				'section' => 'source',
 				'id' => 'wpUploadFileURL',
 				'label-message' => 'sourceurl',
-				'upload-type' => 'URL',
+				'upload-type' => 'url',
 				'radio' => &$radio,
 				'help' => wfMsgExt( 'upload-maxfilesize',
 						array( 'parseinline', 'escapenoentities' ),
@@ -898,7 +898,6 @@ class UploadForm extends HTMLForm {
 	 */
 	protected function addUploadJS( ) {
 		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
-		global $wgEnableFirefogg, $wgEnableJS2system;
 		global $wgOut;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
@@ -907,23 +906,15 @@ class UploadForm extends HTMLForm {
 		$scriptVars = array(
 			'wgAjaxUploadDestCheck' => $wgUseAjax && $wgAjaxUploadDestCheck,
 			'wgAjaxLicensePreview' => $wgUseAjax && $wgAjaxLicensePreview,
-			'wgEnableFirefogg' => (bool)$wgEnableFirefogg,
 			'wgUploadAutoFill' => !$this->mForReUpload,
 			'wgUploadSourceIds' => $this->mSourceIds,
 		);
 
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
 		
-		// For <charinsert> support; not provided by js2 yet
+		// For <charinsert> support
 		$wgOut->addScriptFile( 'edit.js' );
-		
-		if ( $wgEnableJS2system ) {
-			// JS2 upload scripts
-			$wgOut->addScriptClass( 'uploadPage' );
-		} else {
-			// Legacy upload javascript
-			$wgOut->addScriptFile( 'upload.js' );
-		}
+		$wgOut->addScriptFile( 'upload.js' );
 	}
 
 	/**

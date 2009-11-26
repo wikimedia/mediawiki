@@ -537,7 +537,6 @@ Aviseu-ho llavors a un [[Special:ListUsers/sysop|administrador]], deixant-li cla
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
 'internalerror'        => 'Error intern',
 'internalerror_info'   => 'Error intern: $1',
-'fileappenderror'      => 'No he pogut afegir "$1" a "$2".',
 'filecopyerror'        => "No s'ha pogut copiar el fitxer «$1» com «$2».",
 'filerenameerror'      => "No s'ha pogut reanomenar el fitxer «$1» com «$2».",
 'filedeleteerror'      => "No s'ha pogut eliminar el fitxer «$1».",

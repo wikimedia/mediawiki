@@ -486,7 +486,6 @@ Andana teneno ny [[Special:ListUsers/sysop|mpandrindra]]n-ity wiki ity. Aza adin
 Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tompony",
 'internalerror'        => "Tsy fetezana anatin'ny rindrankajy",
 'internalerror_info'   => 'Tsy fetezana ety anatiny : $1',
-'fileappenderror'      => "Tsy afaka ampiana amin'ny « $2 »  « $1 ».",
 'filecopyerror'        => 'Tsy voadika ho "$2" ilay rakitra"$1".',
 'filerenameerror'      => 'Tsy voaova ho "$2" ny anaran\'ilay rakitra "$1".',
 'filedeleteerror'      => 'Tsy voafafa ilay rakitra "$1".',

@@ -533,24 +533,6 @@ if( !( $conf->turck || $conf->eaccel || $conf->apc || $conf->xcache ) ) {
 		cannot use these for object caching.</li>' );
 }
 
-$conf->phpCliPath = false;
-$phpClilocations = array_merge(
-	array(
-		"/usr/bin",
-		"/usr/local/bin",
-		"/opt/csw/bin",
-		"/usr/gnu/bin",
-		"/usr/sfw/bin" ),
-	explode( PATH_SEPARATOR, getenv( "PATH" ) ) );
-$phpClinames = array( "php", "php.exe" );
-foreach ($phpClilocations as $loc) {
-	$exe = locate_executable($loc, $phpClinames);
-	if ($exe !== false) {
-		$conf->phpCliPath= $exe;
-		break;
-	}
-}
-
 $conf->diff3 = false;
 $diff3locations = array_merge(
 	array(
@@ -2042,8 +2024,6 @@ if ( \$wgCommandLineMode ) {
 # \$wgRightsCode = \"{$slconf['RightsCode']}\"; # Not yet used
 
 \$wgDiff3 = \"{$slconf['diff3']}\";
-
-\$wgPhpCliPath = \"{$slconf['phpCliPath']}\";
 
 # When you make changes to this configuration file, this will make
 # sure that cached pages are cleared.

@@ -529,7 +529,6 @@ Prašome apie tai pranešti [[Special:ListUsers/sysop|administratoriui]], nepami
 'readonly_lag'         => 'Duomenų bazė buvo automatiškai užrakinta, kol pagalbinės duomenų bazės prisivys pagrindinę',
 'internalerror'        => 'Vidinė klaida',
 'internalerror_info'   => 'Vidinė klaida: $1',
-'fileappenderror'      => 'Nepavyko pridėti „$1“ prie „$2“.',
 'filecopyerror'        => 'Nepavyksta kopijuoti failo iš „$1“ į „$2“.',
 'filerenameerror'      => 'Nepavyksta pervardinti failo iš „$1“ į „$2“.',
 'filedeleteerror'      => 'Nepavyksta ištrinti failo „$1“.',

@@ -131,9 +131,6 @@ $wgAutoloadLocalClasses = array(
 	'IndexPager' => 'includes/Pager.php',
 	'Interwiki' => 'includes/Interwiki.php',
 	'IP' => 'includes/IP.php',
-	'JSMin' => 'js2/mwEmbed/php/minify/JSMin.php',
-	'JSMinException' => 'js2/mwEmbed/php/minify/JSMin.php',
-	'jsScriptLoader' => 'js2/mwEmbed/jsScriptLoader.php',
 	'Job' => 'includes/JobQueue.php',
 	'LCStore_DB' => 'includes/LocalisationCache.php',
 	'LCStore_CDB' => 'includes/LocalisationCache.php',
@@ -200,7 +197,6 @@ $wgAutoloadLocalClasses = array(
 	'ReverseChronologicalPager' => 'includes/Pager.php',
 	'Revision' => 'includes/Revision.php',
 	'RSSFeed' => 'includes/Feed.php',
-	'simpleFileCache' => 'js2/mwEmbed/jsScriptLoader.php',
 	'Sanitizer' => 'includes/Sanitizer.php',
 	'SiteConfiguration' => 'includes/SiteConfiguration.php',
 	'SiteStats' => 'includes/SiteStats.php',
@@ -232,7 +228,6 @@ $wgAutoloadLocalClasses = array(
 	'UploadFromStash' => 'includes/upload/UploadFromStash.php',
 	'UploadFromFile' => 'includes/upload/UploadFromFile.php',
 	'UploadFromUrl' => 'includes/upload/UploadFromUrl.php',
-	'UploadFromChunks' => 'includes/upload/UploadFromChunks.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArray.php',
@@ -606,37 +601,6 @@ $wgAutoloadLocalClasses = array(
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'SevenZipStream' => 'maintenance/7zip.inc',
 
-);
-
-// Autoloader for JavaScript files (path is from the MediaWiki folder)
-global $wgJSAutoloadLocalClasses;
-$wgJSAutoloadLocalClasses = array(
-	'ajax' => 'skins/common/ajax.js',
-	'ajaxwatch' => 'skins/common/ajaxwatch.js',
-	'allmessages' => 'skins/common/allmessages.js',
-	'block' => 'skins/common/block.js',
-	'changepassword' => 'skins/common/changepassword.js',
-	'diff' => 'skins/common/diff.js',
-	'edit' => 'skins/common/edit.js',
-	'enhancedchanges.js' => 'skins/common/enhancedchanges.js',
-	'history' => 'skins/common/history.js',
-	'htmlform' => 'skins/common/htmlform.js',
-	'IEFixes' => 'skins/common/IEFixes.js',
-	'metadata' => 'skins/common/metadata.js',
-	'mwsuggest' => 'skins/common/mwsuggest.js',
-	'prefs' => 'skins/common/prefs.js',
-	'preview' => 'skins/common/preview.js',
-	'protect' => 'skins/common/protect.js',
-	'rightclickedit' => 'skins/common/rightclickedit.js',
-	'sticky' => 'skins/common/sticky.js',
-	'upload' => 'skins/common/upload.js',
-	'wikibits' => 'skins/common/wikibits.js',
-
-	// phase 2 javascript:
-	'uploadPage' => 'js2/uploadPage.js',
-	'editPage' => 'js2/editPage.js',
-	'ajaxCategories' => 'js2/ajaxcategories.js',
-	'apiProxyPage'	=> 'js2/apiProxyPage.js'
 );
 
 class AutoLoader {

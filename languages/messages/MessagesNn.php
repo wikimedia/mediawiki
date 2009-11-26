@@ -616,7 +616,6 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'readonly_lag'         => 'Databasen er mellombels skriveverna for at databasetenarane skal kunna synkronisere seg mot kvarandre',
 'internalerror'        => 'Intern feil',
 'internalerror_info'   => 'Intern feil: $1',
-'fileappenderror'      => 'Kunne ikkje leggja "$1" til "$2".',
 'filecopyerror'        => 'Kunne ikkje kopiere fila frå «$1» til «$2».',
 'filerenameerror'      => 'Kunne ikkje døype om fila frå «$1» til «$2».',
 'filedeleteerror'      => 'Kunne ikkje slette fila «$1».',
