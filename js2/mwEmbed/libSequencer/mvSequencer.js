@@ -160,7 +160,7 @@ mvSequencer.prototype = {
 					'seqRemoteSearchDriver'
 				], function() {
 					 this_seq.mySearch = new seqRemoteSearchDriver( this_seq );
-					 this_seq.mySearch.doInitDisplay();
+					 this_seq.mySearch.createUI();
 				} );
 			}
 		},

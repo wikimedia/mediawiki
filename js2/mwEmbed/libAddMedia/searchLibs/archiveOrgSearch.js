@@ -83,7 +83,7 @@ archiveOrgSearch.prototype = {
 					'src'		 : _this.downloadUrl + resource.identifier + '/format=Ogg+video',
 					'mime'		 : 'application/ogg',
 					// Set the license: (rsd is a pointer to the parent remoteSearchDriver )		 
-					'license'	 : this.rsd.getLicenceFromUrl( resource.licenseurl ),
+					'license'	 : this.rsd.getLicenseFromUrl( resource.licenseurl ),
 					'pSobj'		 :_this
 					
 				};

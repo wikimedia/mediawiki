@@ -6,9 +6,9 @@
 
 loadGM( {
 	"mwe-select_file" : "Select file",
-	"mwe-more_licence_options" : "For more licence options, view the <a href=\"$1\">normal upload page<\/a>",
+	"mwe-more_license_options" : "For more license options, view the <a href=\"$1\">normal upload page<\/a>",
 	"mwe-select_ownwork" : "I am uploading entirely my own work, and licencing it under:",
-	"mwe-licence_cc-by-sa" : "Creative Commons Share Alike (3.0)",
+	"mwe-license_cc-by-sa" : "Creative Commons Share Alike (3.0)",
 	"mwe-upload" : "Upload file",
 	"mwe-destfilename" : "Destination filename:",
 	"mwe-summary" : "Summary",
@@ -19,7 +19,7 @@ loadGM( {
 
 var default_form_options = {
 	'enable_fogg'	 : true,
-	'licence_options' : ['cc-by-sa'],
+	'license_options': ['cc-by-sa'],
 	'api_target' : false,
 	'ondone_cb' : null
 };
@@ -75,7 +75,7 @@ var default_form_options = {
 						'<div style="clear:both;"></div>' + '<p>' +
 			
 						gM( 'mwe-select_ownwork' ) + '<br>' +
-						'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM( 'mwe-licence_cc-by-sa' ) + '</p>' +
+						'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM( 'mwe-license_cc-by-sa' ) + '</p>' +
 			
 						'<input type="submit" accesskey="s" value="' + gM( 'mwe-upload' ) + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
 						// close the form and div
@@ -87,7 +87,7 @@ var default_form_options = {
 			// by default dissable:
 			$j( '#wpUploadBtn' ).attr( 'disabled', 'disabled' );
 
-			// set up basic licence binding:
+			// set up basic license binding:
 			$j( '#wpLicence' ).click( function() {
 				if ( $j( this ).is( ':checked' ) ) {
 					$j( '#wpUploadBtn' ).removeAttr( 'disabled' );
