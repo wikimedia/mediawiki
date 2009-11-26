@@ -859,7 +859,7 @@ class SkinTemplate extends Skin {
 			}
 
 
-			wfRunHooks( 'SkinTemplateTabs', array( &$this, &$content_actions ) );
+			wfRunHooks( 'SkinTemplateTabs', array( $this, &$content_actions ) );
 		} else {
 			/* show special page tab */
 
