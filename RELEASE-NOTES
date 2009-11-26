@@ -646,6 +646,7 @@ Hopefully we will remove this configuration var soon)
   of the displayed page
 * (bug 21403) memcached class renamed to MWMemecached to avoid conflict with
   PHP's memcached extension
+* (bug 21650) Both calls to SkinTemplateTabs hook are now compatible
 
 == API changes in 1.16 ==
 
