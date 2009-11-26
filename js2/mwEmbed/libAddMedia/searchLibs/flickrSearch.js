@@ -19,10 +19,10 @@ flickrSearch.prototype = {
 	dtUrl : 'http://www.flickr.com/photos/',
 	// @@todo probably would be good to read the api-key from configuration
 	apikey : '2867787a545cc66c0bce6f2e57aca1d1',
-	// What licence we are interested in
-	_licence_keys: '4,5,7,8',
+	// What license we are interested in
+	_license_keys: '4,5,7,8',
 	_srctypes: ['t', 'sq', 's', 'm', 'o'],
-	licenceMap: {
+	licenseMap: {
 		'4' : 'http://creativecommons.org/licenses/by/3.0/',
 		'5'	: 'http://creativecommons.org/licenses/by-sa/3.0/',
 		'7'	: 'http://www.flickr.com/commons/usage/',
@@ -53,7 +53,7 @@ flickrSearch.prototype = {
 		var reqObj = {
 			'method':'flickr.photos.search',
 			'format':'json',
-			'license':this._licence_keys,
+			'license':this._license_keys,
 			'api_key':this.apikey,
 			'per_page': this.cp.limit,
 			'page' : this.cp.offset,
@@ -82,7 +82,7 @@ flickrSearch.prototype = {
 			}
 			for ( var resource_id in data.photos.photo ) {
 				var sourceResource = data.photos.photo[ resource_id ];
-				var rObj = _this.getResourceObjet( sourceResource );
+				var rObj = _this.getResourceObject( sourceResource );
 				_this.resultsObj[ resource_id ] = rObj;
 			}
 		}
@@ -90,7 +90,7 @@ flickrSearch.prototype = {
 	/**
 	* Gets an individual resource object from a given source Resource
 	*/
-	getResourceObjet: function( resource ){			
+	getResourceObject: function( resource ){			
 		var _this = this;		
 		var rObj = {
 			'titleKey'	 : resource.title + '.jpg',
@@ -101,7 +101,7 @@ flickrSearch.prototype = {
 			'thumbheight': resource.height_t,
 			'desc'		 : resource.title,
 			// Set the license
-			'license'	 : this.rsd.getLicenceFromUrl( _this.licenceMap[ resource.license ] ),
+			'license'	 : this.rsd.getLicenceFromUrl( _this.licenseMap[ resource.license ] ),
 			'pSobj'		 : _this,
 			// Assume image/jpeg for flickr response
 			'mime'		 : 'image/jpeg'

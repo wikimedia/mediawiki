@@ -5,7 +5,7 @@
 loadGM( {
 	"mwe-imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more information.",
 	"mwe-import-description" : "$1, imported from $2"
-} )
+} );
 
 /*
 * rsd_default_rss_item_mapping
@@ -33,7 +33,7 @@ var rsd_default_rss_item_mapping = {
 	'desc'		: 'description',
 	// multiple items
 	'category'  : '.media:category@label|url'
-}
+};
 
 var baseRemoteSearch = function( iObj ) {
 	return this.init( iObj );
@@ -114,6 +114,10 @@ baseRemoteSearch.prototype = {
 			// Add pointer to parent search obj:( this.cp.limit )? this.cp.limit : this.limit,
 
 			rObj['pSobj'] = _this;
+
+			// Set target_resource_title
+			_this.updateTargetResourceTitle( rObj );
+
 			// add the result to the result set:
 			_this.resultsObj[ inx ] = rObj;
 			_this.num_results++;
@@ -283,7 +287,7 @@ baseRemoteSearch.prototype = {
 		return '';
 	},
 	/**
-	* Get the licence wikiText tag for a given resource Object.
+	* Get the license wikiText tag for a given resource Object.
 	*
 	* By default license permission wiki text is cc based template mapping 
 	* (does not confirm the templates actually exist)
@@ -370,7 +374,7 @@ baseRemoteSearch.prototype = {
 	* Updates / normalizes the target_resource_title
 	*/
 	updateTargetResourceTitle:function( rObj ) {
-		rObj.target_resource_title = rObj.titleKey.replace( / File: | Image: / , '' );
+		rObj.target_resource_title = rObj.titleKey.replace( /^(File:|Image:)/ , '' );
 		rObj.target_resource_title = this.cp.resource_prefix + rObj.target_resource_title;
 	}
 }

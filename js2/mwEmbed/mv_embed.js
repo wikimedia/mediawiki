@@ -1355,7 +1355,7 @@ function mv_jqueryBindings() {
 			js_log( ".addMediaWiz call" );
 			// check if already loaded:
 			if ( _global['rsdMVRS'] ) {
-				_global['rsdMVRS'].doReDisplay();
+				_global['rsdMVRS'].showDialog();
 				if ( callback )
 					callback( _global['rsdMVRS'] );
 				return ;
@@ -1367,7 +1367,7 @@ function mv_jqueryBindings() {
 				// close the dialog
 				$.closeLoaderDialog();
 				// do the add-media-wizard display
-				amwObj.doInitDisplay();
+				amwObj.createUI();
 				// call the parent callback:
 				if ( callback )
 					callback( _global['rsdMVRS'] );
@@ -1378,7 +1378,7 @@ function mv_jqueryBindings() {
 				// First set the cursor for the button to "loading"
 				$j( this.selector ).css( 'cursor', 'wait' ).attr( 'title', gM( 'mwe-loading_txt' ) );
 				// set the target: 
-				iObj['target_invocation'] = this.selector;
+				iObj['target_invoke_button'] = this.selector;
 			}
 
 			// Load the mv_embed_base skin:

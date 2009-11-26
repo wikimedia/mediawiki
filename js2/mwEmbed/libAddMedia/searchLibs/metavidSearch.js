@@ -66,7 +66,7 @@ metavidSearch.prototype = {
 				rObj['stream_name'] = proe.queryKey['stream_name'];
 
 				// All metavid content is public domain:
-				rObj['license'] = _this.rsd.getLicenceFromKey( 'pd' );
+				rObj['license'] = _this.rsd.getLicenseFromKey( 'pd' );
 
 				// Transform the title into a wiki_safe title:				
 				rObj['titleKey'] =	 _this.getTitleKey( rObj );
