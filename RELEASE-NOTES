@@ -285,6 +285,7 @@ Hopefully we will remove this configuration var soon)
   and common coding mistakes
 * Updated Unicode normalization tables
 * (bug 21604) Spellcheck attribute for editsummary
+* New wgCategories JavaScript global variable for userscripts.
 
 === Bug fixes in 1.16 ===
 
