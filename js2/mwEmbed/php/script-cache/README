@@ -1,6 +1,0 @@
-This folder holds cached versions of grouped script requests
-
-Be sure to enable write access by your web-server to this directory. 
-
-You can empty this directory at any time and should not be a problem.
-

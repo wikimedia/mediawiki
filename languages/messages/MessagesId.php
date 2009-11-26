@@ -645,7 +645,6 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
 'internalerror'        => 'Kesalahan internal',
 'internalerror_info'   => 'Kesalahan internal: $1',
-'fileappenderror'      => 'Tidak dapat memasukkan "$1" ke "$2".',
 'filecopyerror'        => 'Tidak dapat menyalin berkas "$1" ke "$2".',
 'filerenameerror'      => 'Tidak dapat mengubah nama berkas "$1" menjadi "$2".',
 'filedeleteerror'      => 'Tidak dapat menghapus berkas "$1".',

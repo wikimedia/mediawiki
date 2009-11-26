@@ -363,7 +363,6 @@ $wgMessageStructure = array(
 		'readonly_lag',
 		'internalerror',
 		'internalerror_info',
-		'fileappenderror',
 		'filecopyerror',
 		'filerenameerror',
 		'filedeleteerror',

@@ -466,7 +466,6 @@ Wänn s des nit isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'readonly_lag'         => 'D Datebank isch automatisch gperrt wore, wil di verteilte Datebankserver (Sklave) mien mit em Hauptdatebankserver (Meischter) abgliche wäre.',
 'internalerror'        => 'Interner Fähler',
 'internalerror_info'   => 'Interne Fähler: $1',
-'fileappenderror'      => 'Het „$1“ nit an „$2“ chenne anhänke.',
 'filecopyerror'        => 'Datei "$1" het nit noch "$2" kopiert werre kinne.',
 'filerenameerror'      => 'D Datei "$1" het nit in "$2" umgnennt werre kinne.',
 'filedeleteerror'      => 'Datei "$1" het nit glöscht werre kinne.',

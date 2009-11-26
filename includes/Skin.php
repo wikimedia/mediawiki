@@ -361,9 +361,9 @@ class Skin extends Linker {
 		global $wgBreakFrames, $wgRequest, $wgVariantArticlePath, $wgActionPaths;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
-		global $wgRestrictionTypes, $wgLivePreview;
+		global $wgRestrictionTypes;
 		global $wgMWSuggestTemplate, $wgDBname, $wgEnableMWSuggest;
-		global $wgSitename, $wgEnableIframeApiProxy, $wgEnableJS2system;
+		global $wgSitename;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
@@ -426,7 +426,6 @@ class Skin extends Linker {
 		if( SpecialPage::resolveAlias( $wgTitle->getDBkey() ) ==  "Upload" ) {
 			global $wgFileExtensions, $wgAjaxUploadInterface;
 			$vars['wgFileExtensions'] = $wgFileExtensions;
-			$vars['wgAjaxUploadInterface'] = $wgAjaxUploadInterface;
 		}
 
 		if( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ){
@@ -438,24 +437,6 @@ class Skin extends Linker {
 
 		foreach( $wgRestrictionTypes as $type )
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
-
-		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
-			$vars['wgLivepreviewMessageLoading'] = wfMsg( 'livepreview-loading' );
-			$vars['wgLivepreviewMessageReady']   = wfMsg( 'livepreview-ready' );
-			$vars['wgLivepreviewMessageFailed']  = wfMsg( 'livepreview-failed' );
-			$vars['wgLivepreviewMessageError']   = wfMsg( 'livepreview-error' );
-		}
-
-		//add api proxy var and script link if on the special proxy page:
-		if( $wgEnableJS2system &&
-			$wgTitle->getNamespace() == NS_MEDIAWIKI &&
-			$wgTitle->getDBKey() == 'ApiProxy' )
-		{
-			$vars['wgEnableIframeApiProxy'] = $wgEnableIframeApiProxy;			
-			//also add the apiProxy Page script if we are on that page
-			if( $wgEnableIframeApiProxy )
-				$wgOut->addScriptClass( 'apiProxyPage' );
-		}
 
 		if ( $wgOut->isArticleRelated() && $wgUseAjax && $wgAjaxWatch && $wgUser->isLoggedIn() ) {
 			$msgs = (object)array();

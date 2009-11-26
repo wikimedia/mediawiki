@@ -415,7 +415,6 @@ Palihog ireport kini sa usa ka [[Special:ListUsers/sysop|administrador]], hinumd
 'readonly_lag'         => 'Ang database awtomatikong na-lock samtang ang mga slave database server mo-catch up sa master',
 'internalerror'        => 'Internal nga sayop',
 'internalerror_info'   => 'Internal nga sayop: $1',
-'fileappenderror'      => 'Dili ma-append ang "$1" ngadto sa "$2".',
 'filecopyerror'        => 'Dili makopya ang payl nga "$1" ngadto sa "$2".',
 'filerenameerror'      => 'Dili mailisag ngalan ang payl "$1" ngadto sa "$2".',
 'filedeleteerror'      => 'Dili mapapas ang payl "$1".',

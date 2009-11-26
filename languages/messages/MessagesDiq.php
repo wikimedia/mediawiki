@@ -374,7 +374,6 @@ Kerem kerê, naye be namey ''URL''i yew [[Special:ListUsers/sysop|karber]]i ra v
 'readonly_lag'         => 'Pêşkeşwanê caygeri u pêşkeşwane esıli wextaki xebityeyi database kılit bı.',
 'internalerror'        => 'Xeta zerreki',
 'internalerror_info'   => 'Xeta zerreki: $1',
-'fileappenderror'      => 'Dosyayê "$1" têyor nêbeno dosyayê "$2" ri.',
 'filecopyerror'        => '"$1" qaydê na "$2" dosya nêbeno.',
 'filerenameerror'      => 'nameyê "$1" dosya nêvuriya no name "$2" ri.',
 'filedeleteerror'      => 'Na "$1" dosya hewn a nêşi .',

@@ -652,7 +652,6 @@ Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom sluč
 'readonly_lag'         => 'Baza podataka je automatski zaključana dok se sekundarni bazni poslužitelji ne usklade s glavnim',
 'internalerror'        => 'Pogreška sustava',
 'internalerror_info'   => 'Interna pogreška: $1',
-'fileappenderror'      => 'Nije bilo moguće dodati "$1" u "$2".',
 'filecopyerror'        => 'Ne mogu kopirati datoteku "$1" u "$2".',
 'filerenameerror'      => 'Ne mogu preimenovati datoteku "$1" u "$2".',
 'filedeleteerror'      => 'Ne mogu obrisati datoteku "$1".',

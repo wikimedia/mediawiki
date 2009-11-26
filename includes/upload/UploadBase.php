@@ -471,19 +471,6 @@ abstract class UploadBase {
 		return $status;
 	}
 
-	/** 
-	 * Append a file to a stashed file.
-	 * 
-	 * @param string $srcPath Path to file to append from
-	 * @param string $toAppendPath Path to file to append to
-	 * @return Status Status
-	 */
-	public function appendToUploadFile( $srcPath, $toAppendPath ){
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$status = $repo->append( $srcPath, $toAppendPath );
-		return $status;
-	}
-
 	/**
 	 * Stash a file in a temporary directory for later processing,
 	 * and save the necessary descriptive info into the session.

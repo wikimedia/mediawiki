@@ -489,7 +489,6 @@ Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente 
 'readonly_lag'         => 'Le base de datos ha essite automaticamente blocate durante que le servitores de base de datos secundari se synchronisa con le servitor principal.',
 'internalerror'        => 'Error interne',
 'internalerror_info'   => 'Error interne: $1',
-'fileappenderror'      => 'Non poteva adjunger "$1" a "$2".',
 'filecopyerror'        => 'Impossibile copiar file "$1" a "$2".',
 'filerenameerror'      => 'Impossibile renominar file "$1" a "$2".',
 'filedeleteerror'      => 'Impossibile deler file "$1".',

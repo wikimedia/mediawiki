@@ -456,7 +456,6 @@ Kasit keloù d'ur [[Special:ListUsers/sysop|merer]], en ur verkañ dezhañ choml
 'readonly_lag'         => "Stanket eo bet ar bank roadennoù ent emgefre p'emañ an eilservijerioù oc'h adpakañ o dale e-keñver ar pennservijer",
 'internalerror'        => 'Fazi diabarzh',
 'internalerror_info'   => 'Fazi diabarzh : $1',
-'fileappenderror'      => 'Dibosupl ouzhpennañ « $1 » da « $2 ».',
 'filecopyerror'        => 'Dibosupl eilañ « $1 » war-du « $2 ».',
 'filerenameerror'      => 'Dibosupl da adenvel « $1 » e « $2 ».',
 'filedeleteerror'      => 'Dibosupl da ziverkañ « $1 ».',

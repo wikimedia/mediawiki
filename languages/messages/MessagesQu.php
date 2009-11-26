@@ -615,7 +615,6 @@ Ama hina kaspa, huk [[Special:ListUsers/sysop|kamachiqman]] willariy, URL nisqa 
 'readonly_lag'         => "Willañiqintinqa mit'alla hark'asqam, sirwiqkuna kikinpachachastin.",
 'internalerror'        => 'Ukhu pantasqa',
 'internalerror_info'   => 'Ukhu pantasqa: $1',
-'fileappenderror'      => 'Manam atinichu "$1"-ta "$2"-man yapayta.',
 'filecopyerror'        => 'Manam atinichu willañiqita "$1"-manta "$2"-man iskaychayta.',
 'filerenameerror'      => 'Manam atinichu willañiqip sutinta "$1"-manta "$2"-man hukchayta.',
 'filedeleteerror'      => 'Manam atinichu "$1" sutiyuq willañiqita qulluyta.',

@@ -393,7 +393,6 @@ Yèn dudu iki panyebabé, panjenengan manawa bisa nemokaké kasalahan (''bug'') 
 'readonly_lag'         => 'Database wis dikunci mawa otomatis sawetara database sékundhèr lagi nglakoni sinkronisasi mawa database utama',
 'internalerror'        => 'Kasalahan internal',
 'internalerror_info'   => 'Kaluputan internal: $1',
-'fileappenderror'      => 'Ora bisa nglebokaké "$1" menyang "$2".',
 'filecopyerror'        => 'Ora bisa nulad berkas "$1" menyang "$2".',
 'filerenameerror'      => 'Ora bisa ngowahi saka "$1" dadi "$2".',
 'filedeleteerror'      => 'Ora bisa mbusak berkas "$1".',

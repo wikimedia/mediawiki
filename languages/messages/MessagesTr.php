@@ -506,7 +506,6 @@ Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek ilet
 'readonly_lag'         => 'Yedek sunucular ana sunucu ile güncellemeye çalışırken veritabanı otomatik olarak kilitlendi.',
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
-'fileappenderror'      => '"$1" dosyası "$2" dosyasına eklenemiyor.',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
 'filerenameerror'      => '"$1" dosyasının ismi "$2" olarak değiştirilemedi.',
 'filedeleteerror'      => '"$1" dosyası silinemedi.',

@@ -642,7 +642,6 @@ Por favor, anote a URL e reporte este incidente a um [[Special:ListUsers/sysop|a
 'readonly_lag'         => 'A base de dados foi automaticamente trancada enquanto os servidores secundários se sincronizam com o primário',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
-'fileappenderror'      => 'Não foi possível adicionar "$1" a "$2".',
 'filecopyerror'        => 'Não foi possível copiar o ficheiro "$1" para "$2".',
 'filerenameerror'      => 'Não foi possível renomear o ficheiro "$1" para "$2".',
 'filedeleteerror'      => 'Não foi possível eliminar o ficheiro "$1".',

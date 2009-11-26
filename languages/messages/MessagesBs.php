@@ -623,7 +623,6 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'readonly_lag'         => 'Baza podataka je zaključana dok se sekundarne baze podataka na serveru ne sastave sa glavnom.',
 'internalerror'        => 'Unutrašnja greška',
 'internalerror_info'   => 'Interna greška: $1',
-'fileappenderror'      => 'Ne može se primijeniti "$1" na "$2".',
 'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
 'filerenameerror'      => 'Ne može se promjeniti ime datoteke "$1" u "$2".',
 'filedeleteerror'      => 'Ne može se izbrisati datoteka "$1".',

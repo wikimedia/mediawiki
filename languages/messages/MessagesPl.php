@@ -581,7 +581,6 @@ Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając
 'readonly_lag'         => 'Baza danych została automatycznie zablokowana na czas potrzebny do wykonania synchronizacji zmian między serwerem głównym i serwerami pośredniczącymi.',
 'internalerror'        => 'Błąd wewnętrzny',
 'internalerror_info'   => 'Błąd wewnętrzny – $1',
-'fileappenderror'      => 'Nie udało się dołączyć „$1” do „$2”.',
 'filecopyerror'        => 'Nie można skopiować pliku „$1” do „$2”.',
 'filerenameerror'      => 'Nie można zmienić nazwy pliku „$1” na „$2”.',
 'filedeleteerror'      => 'Nie można usunąć pliku „$1”.',

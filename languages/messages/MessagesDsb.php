@@ -510,7 +510,6 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 'readonly_lag'         => 'Datowa banka jo awtomatiski se zacyniła, aby wótwisne serwery se mógli z głownym serwerom wurownowaś.',
 'internalerror'        => 'Interna zmólka',
 'internalerror_info'   => 'Interna zmólka: $1',
-'fileappenderror'      => 'Njejo móžno było "$1" k "$2" pśipowjesyś.',
 'filecopyerror'        => 'Njejo było móžno dataju „$1” k „$2” kopěrowaś.',
 'filerenameerror'      => 'Njejo było móžno dataju „$1” do „$2” pśemjenjowaś.',
 'filedeleteerror'      => 'Njejo było móžno dataju „$1” wulašowaś.',

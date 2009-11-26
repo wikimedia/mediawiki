@@ -382,7 +382,6 @@ Pe piacere manne 'na comunicazzione a 'n'[[Special:ListUsers/sysop|amministrator
 'readonly_lag'         => "'U database ha state automaticamende blocchete purcè le server de le database ca depennene da 'u master onne sciute in eccezzione",
 'internalerror'        => 'Errore inderne',
 'internalerror_info'   => 'Errore inderne: $1',
-'fileappenderror'      => 'Non ge se pò \'nzeccà "$1" a "$2".',
 'filecopyerror'        => 'Non ge pozze cupià \'u fail "$1" jndr\'à "$2".',
 'filerenameerror'      => 'Non ge pozze cangià \'u nome d\'u fail "$1" jndr\'à "$2".',
 'filedeleteerror'      => 'Non ge pozze scangillà \'u fail "$1".',

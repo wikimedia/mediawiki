@@ -688,7 +688,6 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'readonly_lag'         => 'La base de données a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror'        => 'Erreur interne',
 'internalerror_info'   => 'Erreur interne : $1',
-'fileappenderror'      => 'Impossible d’ajouter « $1 » à « $2 ».',
 'filecopyerror'        => 'Impossible de copier le fichier « $1 » vers « $2 ».',
 'filerenameerror'      => 'Impossible de renommer le fichier « $1 » en « $2 ».',
 'filedeleteerror'      => 'Impossible de supprimer le fichier « $1 ».',

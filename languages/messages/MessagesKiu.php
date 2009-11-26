@@ -376,7 +376,6 @@ Kerem kerê, nae be namê ''URL''i jü [[Special:ListUsers/sysop|karber]]i ra va
 'readonly_lag'         => "Panga daeyu otomatikman qapan biye ''slave-database-servers''i ra be hata ''master''i",
 'internalerror'        => 'Xeta zerrey',
 'internalerror_info'   => 'Xeta zerrey: $1',
-'fileappenderror'      => 'Dosya "$1"ine dosya "$2"ine ser nêbena.',
 'filecopyerror'        => 'Dosya "$1"i kopya nêbiye be dosya "$2".',
 'filerenameerror'      => 'Namê dosya "$1"i nêvuriya be dosya "$2".',
 'filedeleteerror'      => 'Dosya "$1"i nêesteriye.',

@@ -636,7 +636,6 @@ Te rog anunţă acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'readonly_lag'         => 'Baza de date a fost închisă automatic în timp ce serverele secundare ale bazei de date îl urmează pe cel principal.',
 'internalerror'        => 'Eroare internă',
 'internalerror_info'   => 'Eroare internă: $1',
-'fileappenderror'      => 'Nu se poate adăuga "$1" în "$2".',
 'filecopyerror'        => 'Fişierul "$1" nu a putut fi copiat la "$2".',
 'filerenameerror'      => 'Fişierul "$1" nu a putut fi mutat la "$2".',
 'filedeleteerror'      => 'Fişierul "$1" nu a putut fi şters.',

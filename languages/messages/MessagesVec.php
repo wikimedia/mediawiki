@@ -492,7 +492,6 @@ Se prega de segnalar l\'acaduto a un [[Special:ListUsers/sysop|aministrador]] sp
 'readonly_lag'         => 'El database el xe stà blocà automaticamente par consentirghe ai server coi database slave de sincronizarse col master',
 'internalerror'        => 'Eròr interno',
 'internalerror_info'   => 'Eror interno: $1',
-'fileappenderror'      => 'No se pode zontar "$1" con "$2".',
 'filecopyerror'        => 'No xè stà possibiłe copiare el file "$1" come "$2".',
 'filerenameerror'      => 'No xè stà possibile rinominare el file "$1" in "$2".',
 'filedeleteerror'      => 'No xè stà possibiłe scancełare el file "$1".',

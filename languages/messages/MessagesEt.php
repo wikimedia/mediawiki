@@ -622,7 +622,6 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], ed
 'missingarticle-diff'  => '(redaktsioonid: $1, $2)',
 'internalerror'        => 'Sisemine viga',
 'internalerror_info'   => 'Sisemine viga: $1',
-'fileappenderror'      => 'Faili "$1" ei saanud lisada failile "$2".',
 'filecopyerror'        => 'Ei saanud faili "$1" kopeerida nimega "$2".',
 'filerenameerror'      => 'Ei saanud faili "$1" failiks "$2" ümber nimetada.',
 'filedeleteerror'      => 'Faili nimega "$1" ei ole võimalik kustutada.',

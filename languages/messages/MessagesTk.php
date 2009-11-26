@@ -391,7 +391,6 @@ Muny bir [[Special:ListUsers/sysop|administratora]] URL-ni belläp alyp ýetirme
 'readonly_lag'         => 'Ätiýaçlyk serwerler esasy serwere boýunça täzelenýärkä, maglumat bazasy awtomatik usulda gulplandy.',
 'internalerror'        => 'Içerki säwlik',
 'internalerror_info'   => 'Içerki säwlik: $1',
-'fileappenderror'      => '"$1" faýlyny "$2" faýlyna goşup bolmady.',
 'filecopyerror'        => '"$1" faýlyny  "$2" faýlyna göçürip bolmady.',
 'filerenameerror'      => '"$1" faýlynyň adyny "$2" diýip üýtgedip bolmady.',
 'filedeleteerror'      => '"$1" faýlyny öçürip bolmady.',

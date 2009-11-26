@@ -646,7 +646,6 @@ Jelezd ezt egy [[Special:ListUsers/sysop|adminiszttrátornak]] az URL megadásá
 'readonly_lag'         => 'Az adatbázis automatikusan zárolásra került, amíg a mellékkiszolgálók utolérik a főkiszolgálót.',
 'internalerror'        => 'Belső hiba',
 'internalerror_info'   => 'Belső hiba: $1',
-'fileappenderror'      => 'Nem sikerült hozzáfűzni a(z) „$1” fájlt a(z) „$2” fájlhoz.',
 'filecopyerror'        => 'Nem tudtam átmásolni a(z) „$1” fájlt „$2” névre.',
 'filerenameerror'      => 'Nem tudtam átnevezni a(z) „$1” fájlt „$2” névre.',
 'filedeleteerror'      => 'Nem tudtam törölni a(z) „$1” fájlt.',

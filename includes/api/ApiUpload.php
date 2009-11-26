@@ -60,58 +60,9 @@ class ApiUpload extends ApiBase {
 
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
-			'sessionkey', 'file', 'url', 'enablechunks' );
+			'sessionkey', 'file', 'url' );
 
-		if ( $this->mParams['enablechunks'] ) {
-			/**
-			 * Chunked upload mode
-			 */
-
-			$this->mUpload = new UploadFromChunks();
-			$status = $this->mUpload->initializeFromParams( $this->mParams, $request );
-
-			if( isset( $status['error'] ) )
-				$this->dieUsageMsg( $status['error'] );
-
-		} elseif ( !empty( $this->mParams['internalhttpsession'] )  ) {
-			/**
-			 * Internal http mode
-			 */
-			
-			$sd = & $_SESSION['wsDownload'][ $this->mParams['internalhttpsession'] ];
-
-			$this->mUpload = new UploadFromFile();
-
-			$this->mUpload->initialize( $this->mParams['filename'],
-				$sd['target_file_path'],
-				filesize( $sd['target_file_path'] )
-			);
-		} elseif ( $this->mParams['httpstatus'] && $this->mParams['sessionkey'] ) {
-			/**
-			 * Return the status of the given background upload session_key:
-			 */
-			// Check the session key
-			if( !isset( $_SESSION['wsDownload'][$this->mParams['sessionkey']] ) )
-					return $this->dieUsageMsg( array( 'invalid-session-key' ) );
-
-			$sd =& $_SESSION['wsDownload'][$this->mParams['sessionkey']];
-			// Keep passing down the upload sessionkey
-			$statusResult = array(
-				'upload_session_key' => $this->mParams['sessionkey']
-			);
-
-			// put values into the final apiResult if available
-			if( isset( $sd['apiUploadResult'] ) )
-				$statusResult['apiUploadResult'] = $sd['apiUploadResult'];
-			if( isset( $sd['loaded'] ) )
-				$statusResult['loaded'] = $sd['loaded'];
-			if( isset( $sd['content_length'] ) )
-				$statusResult['content_length'] = $sd['content_length'];
-
-			return $this->getResult()->addValue( null,
-					$this->getModuleName(), $statusResult );
-
-		} elseif( $this->mParams['sessionkey'] ) {
+		if( $this->mParams['sessionkey'] ) {
 			/**
 			 * Upload stashed in a previous request
 			 */
@@ -150,28 +101,11 @@ class ApiUpload extends ApiBase {
 				
 				$this->mUpload = new UploadFromUrl();
 				$this->mUpload->initialize( $this->mParams['filename'],
-						$this->mParams['url'], $this->mParams['asyncdownload'] );
+						$this->mParams['url'] );
 
 				$status = $this->mUpload->fetchFile();
 				if( !$status->isOK() ) {
 					return $this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
-				}
-
-				// check if we doing a async request set session info and return the upload_session_key)
-				if( $this->mUpload->isAsync() ){
-					$upload_session_key = $status->value;
-					// update the session with anything with the params we will need to finish up the upload later on:
-					if( !isset( $_SESSION['wsDownload'][$upload_session_key] ) )
-						$_SESSION['wsDownload'][$upload_session_key] = array();
-
-					$sd =& $_SESSION['wsDownload'][$upload_session_key];
-
-					// copy mParams for finishing up after:
-					$sd['mParams'] = $this->mParams;
-
-					return $this->getResult()->addValue( null, $this->getModuleName(),
-									array( 'upload_session_key' => $upload_session_key ) 
-					);
 				}
 			}
 		}
@@ -327,7 +261,6 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgEnableAsyncDownload;
 		$params = array(
 			'filename' => null,
 			'comment' => array(
@@ -338,20 +271,12 @@ class ApiUpload extends ApiBase {
 			'watch' => false,
 			'ignorewarnings' => false,
 			'file' => null,
-			'enablechunks' => null,
-			'chunksessionkey' => null,
-			'chunk' => null,
-			'done' => false,
 			'url' => null,
-			'httpstatus' => false,
 			'sessionkey' => null,
 		);
 
 		if ( $this->getMain()->isInternalMode() )
 			$params['internalhttpsession'] = null;
-		if($wgEnableAsyncDownload){
-			$params['asyncdownload'] = false;
-		}
 		return $params;
 
 	}
@@ -365,18 +290,10 @@ class ApiUpload extends ApiBase {
 			'watch' => 'Watch the page',
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
-			'enablechunks' => 'Set to use chunk mode; see http://firefogg.org/dev/chunk_post.html for protocol',
-			'chunksessionkey' => 'Used to sync uploading of chunks',
-			'chunk' => 'Chunk contents',
-			'done' => 'Set when the last chunk is being uploaded',
 			'url' => 'Url to fetch the file from',
-			'asyncdownload' => 'Set to download the url asynchronously. Useful for large files that will take more than php max_execution_time to download',
-			'httpstatus' => 'Set to return the status of an asynchronous upload (specify the key in sessionkey)',
 			'sessionkey' => array(
-				'Session key returned by a previous upload that failed due to warnings, or',
-				'(with httpstatus) The upload_session_key of an asynchronous upload',
+				'Session key returned by a previous upload that failed due to warnings',
 			),
-			'internalhttpsession' => 'Used internally',
 		);
 	}
 
@@ -384,12 +301,9 @@ class ApiUpload extends ApiBase {
 		return array(
 			'Upload a file, or get the status of pending uploads. Several methods are available:',
 			' * Upload file contents directly, using the "file" parameter',
-			' * Upload a file in chunks, using the "enablechunks", "chunk", and "chunksessionkey", and "done" parameters',
-			' * Have the MediaWiki server fetch a file from a URL, using the "url" and "asyncdownload" parameters',
-			' * Retrieve the status of an asynchronous upload, using the "httpstatus" and "sessionkey" parameters',
 			' * Complete an earlier upload that failed due to warnings, using the "sessionkey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file" or "chunk" parameters. Note also that queries using session keys must be',
+			'sending the "file" parameter. Note also that queries using session keys must be',
 			'done in the same login session as the query that originally returned the key (i.e. do not',
 			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff.'
 		);
@@ -399,12 +313,8 @@ class ApiUpload extends ApiBase {
 		return array(
 			'Upload from a URL:',
 			'    api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png',
-			'Get the status of an asynchronous upload:',
-			'    api.php?action=upload&filename=Wiki.png&httpstatus=1&sessionkey=upload_session_key',
 			'Complete an upload that failed due to warnings:',
 			'    api.php?action=upload&filename=Wiki.png&sessionkey=sessionkey&ignorewarnings=1',
-			'Begin a chunked upload:',
-			'    api.php?action=upload&filename=Wiki.png&enablechunks=1'
 		);
 	}
 

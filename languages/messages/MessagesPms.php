@@ -397,7 +397,6 @@ Për piasì, fa rapòrt a n'[[Special:ListUsers/sysop|aministrator]], pijand nò
 'readonly_lag'         => "La base dat a l'é staita blocà n'automàtich antramentr che le màchine dël sircùit secondari (slave) as buto an pari con cole dël prinsipal (master)",
 'internalerror'        => 'Eror intern',
 'internalerror_info'   => 'Eror antern: $1',
-'fileappenderror'      => 'As peul pa pendse "$1" a "$2".',
 'filecopyerror'        => 'A l\'é pa stàit possibil copié l\'archivi "$1" coma "$2".',
 'filerenameerror'      => 'A l\'é pa podusse cangeje nòm a l\'archivi "$1" an "$2".',
 'filedeleteerror'      => 'A l\'é pa podusse scancelé l\'archivi "$1".',

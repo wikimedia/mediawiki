@@ -659,7 +659,6 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'readonly_lag'         => 'La bâsa de balyês at étâ vèrrolyê ôtomaticament pendent que los sèrvors secondèros ratrapont lor retârd sur lo sèrvor principâl.',
 'internalerror'        => 'Èrror de dedens',
 'internalerror_info'   => 'Èrror de dedens : $1',
-'fileappenderror'      => 'Empossiblo d’apondre « $1 » a « $2 ».',
 'filecopyerror'        => 'Empossiblo de copiyér lo fichiér « $1 » vers « $2 ».',
 'filerenameerror'      => 'Empossiblo de renomar lo fichiér « $1 » en « $2 ».',
 'filedeleteerror'      => 'Empossiblo de suprimar lo fichiér « $1 ».',

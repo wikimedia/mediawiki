@@ -479,7 +479,6 @@ Tafadhali ripoti hili kwa [[Special:ListUsers/sysop|msimamizi]], na uache jina l
 'readonly_lag'         => 'Kihifadhidata kimejifunga chenyewe wakati seva za kifadhidata joli imedakwa na seva ya utawala',
 'internalerror'        => 'Hitilafu ya ndani',
 'internalerror_info'   => 'Hitilafu ya ndani: $1',
-'fileappenderror'      => 'Haikuweza kuongeza "$1" hadi "$2".',
 'filecopyerror'        => 'Haikuweza kunakili faili "$1" kwa "$2".',
 'filerenameerror'      => 'Haikuweza kubadilisha jina la faili "$1" kwa "$2".',
 'filedeleteerror'      => 'Haikuweza kufuta faili "$1".',
