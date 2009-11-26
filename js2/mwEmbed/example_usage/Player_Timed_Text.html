@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>sample mv embed</title>
+ 	<script type="text/javascript" src="../mv_embed.js?debug=true"></script> 	 	 
+</head>
+<body>
+<h3> Mv_Embed Timed Text Examples:</h3>
+Click on the little lower right "CC" icon to expose the timed text
+ <table border="1" cellpadding="6" width="950">
+ 	<tr> 		
+ 		<td valign="top" width="410">
+
+ 			<video roe="http://metavid.org/w/index.php?title=Special:MvExportStream&stream_name=House_proceeding_07-18-06_00&t=1:23:16/1:23:44&feed_format=roe" ></video> 		</td>
+ 		<td valign="top">
+ 			Metavid based ROE file using CMML<br> <pre>&lt;video roe=&quot;http://metavid.org/w/index.php?title=Special:MvExportStream&amp;stream_name=House_proceeding_07-18-06_00&amp;t=1:23:16/1:23:44&amp;feed_format=roe&quot; &gt;&lt;/video&gt;</pre><iframe width="600" height="250" src="http://metavid.org/w/index.php?title=Special:MvExportStream&stream_name=House_proceeding_07-18-06_00&t=1:23:16/1:23:44&feed_format=roe" ></iframe> 		</td>
+
+ 	</tr>
+ 	<tr> 		
+ 		<td valign="top" width="410">
+ 		<video poster="http://ia340929.us.archive.org/0/items/princess_iron_fan/princess_iron_fan.thumbs/princess_iron_fan_000360.jpg"
+ 		duration="1:13:0" linkback="http://www.archive.org/details/princess_iron_fan" >
+ 			<source type="video/ogg" src="http://www.archive.org/download/princess_iron_fan/princess_iron_fan.ogv" ></source>
+ 			<source type="video/h264" src="http://www.archive.org/download/princess_iron_fan/princess_iron_fan_512kb.mp4"></source>
+		 	<text category="SUB" lang="en" type="text/x-srt" default="true"
+		 		title="English subtitles" src="media/princess_archive_org/princess_iron_fan.srt">
+		 	</text>
+		 	<text category="SUB" lang="cs" type="text/x-srt"
+		 	 	title="Czech subtitles" src="media/princess_archive_org/princess_iron_fan-cs.srt">
+		 	</text>
+		 	<text category="SUB" lang="ru" type="text/x-srt"
+		 	 	title="Russian subtitles" src="media/princess_archive_org/princess_iron_fan-ru.srt">
+		 	</text>
+		</video> 		
+		</td>
+
+ 		<td valign="top">
+ 			<h4>Archive.org video with local SRTs (copied locally until we get srt over json for archive.org ;)</h4> 
+ 			<textarea cols="120" rows="12">
+<video poster="http://www.archive.org/download/princess_iron_fan/format=thumbnail"  URLTimeEncoding="true"
+	durationHint="1:13:0" linkback="http://www.archive.org/details/princess_iron_fan">
+		<source type="video/ogg" src="http://www.archive.org/download/princess_iron_fan/princess_iron_fan.ogv"></source>
+		<source type="video/h264" src="http://www.archive.org/download/princess_iron_fan/princess_iron_fan_512kb.mp4"></source>
+ 	<text category="SUB" lang="en" type="text/x-srt" default="true"
+ 		title="English subtitles" src="media/princess_archive_org/princess_iron_fan.srt">
+ 	</text>
+ 	<text category="SUB" lang="cs" type="text/x-srt"
+ 	 	title="Czech subtitles" src="media/princess_archive_org/princess_iron_fan-cs.srt">
+ 	</text>
+ 	<text category="SUB" lang="ru" type="text/x-srt"
+ 	 	title="Russian subtitles" src="media/princess_archive_org/princess_iron_fan-ru.srt">
+ 	</text>
+</video> 
+ 			</textarea>		</td>
+ 	</tr>
+ </table>
+
+</body>
+</html>
+

@@ -1,0 +1,2 @@
+This folder contains stand alone tests of js2/mwEmbed components. 
+The tests folder does not need to be included or exposed in a production environment. 
