@@ -91,6 +91,7 @@ class FileDeleteForm {
 	}
 
 	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress ) {
+		global $wgUser;
 		$article = null;
 		if( $oldimage ) {
 			$status = $file->deleteOld( $oldimage, $reason, $suppress );
