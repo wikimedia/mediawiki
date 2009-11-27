@@ -307,12 +307,25 @@ class LanguageConverter {
 		
 		// enable convertsion of '<img alt="xxxx" ... ' or '<span title="xxxx" ... '
 		$captionpattern  = '/\s(title|alt)\s*=\s*"([\s\S]*?)"/';
+		
+		$trtext = '';
+		$trtextmark = "\0";
+		$notrtext = array();
 		foreach($matches as $m) {
 			$mark = substr($text, $mstart, $m[1]-$mstart);
 			$mark = preg_replace_callback($captionpattern, array(&$this, 'captionConvert'), $mark);
-			$ret .= $mark;
-			$ret .= $this->translate($m[0], $toVariant);
+			// Let's convert the trtext only once,
+			// it would give us more performance improvement
+			$notrtext[] = $mark;
+			$trtext .= $m[0] . $trtextmark;
 			$mstart = $m[1] + strlen($m[0]);
+		}
+		$notrtext[] = '';
+		$trtext = $this->translate( $trtext, $toVariant );
+		$trtext = StringUtils::explode( $trtextmark, $trtext );
+		foreach( $trtext as $t ) {
+			$ret .= array_shift($notrtext);
+			$ret .= $t;
 		}
 		wfProfileOut( $fname );
 		return $ret;
@@ -329,9 +342,13 @@ class LanguageConverter {
 	 */
 	function translate( $text, $variant ) {
 		wfProfileIn( __METHOD__ );
-		if( !$this->mTablesLoaded )
-			$this->loadTables();
-		$text = $this->mTables[$variant]->replace( $text );
+		// If $text is empty or only includes spaces, do nothing
+		// Otherwise translate it
+		if( trim($text) ) {
+			if( !$this->mTablesLoaded )
+				$this->loadTables();
+				$text = $this->mTables[$variant]->replace( $text );
+		}
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -407,7 +424,7 @@ class LanguageConverter {
 		$action = $convRule->getRulesAction();
 		foreach( $convTable as $variant => $pair ) {
 			if( !in_array( $variant, $this->mVariants ) )continue;
-			if( $action=="add" ) {
+			if( $action == 'add' ) {
 				foreach( $pair as $from => $to ) {
 					// to ensure that $from and $to not be left blank
 					// so $this->translate() could always return a string
@@ -416,7 +433,7 @@ class LanguageConverter {
 						$this->mTables[$variant]->setPair( $from, $to );
 				}
 			}
-			elseif ( $action == "remove" ) {
+			elseif ( $action == 'remove' ) {
 				$this->mTables[$variant]->removeArray( $pair );
 			}
 		}
@@ -877,8 +894,9 @@ class LanguageConverter {
 class ConverterRule {
 	var $mText; // original text in -{text}-
 	var $mConverter; // LanguageConverter object 
-	var $mManualCodeError='<strong class="error">code error!</strong>';
-	var $mRuleDisplay = '',$mRuleTitle=false;
+	var $mManualCodeError = '<strong class="error">code error!</strong>';
+	var $mRuleDisplay = '';
+	var $mRuleTitle = false;
 	var $mRules = '';// string : the text of the rules
 	var $mRulesAction = 'none';
 	var $mFlags = array();
@@ -893,11 +911,11 @@ class ConverterRule {
 	 * @param object $converter a  LanguageConverter object 
 	 * @access public
 	 */
-	function __construct($text,$converter){
+	function __construct( $text, $converter ){
 		$this->mText = $text;
-		$this->mConverter=$converter;
-		foreach($converter->mVariants as $v){
-			$this->mConvTable[$v]=array();
+		$this->mConverter = $converter;
+		foreach( $converter->mVariants as $v ){
+			$this->mConvTable[$v] = array();
 		}
 	}
 
@@ -908,11 +926,11 @@ class ConverterRule {
 	 * @return string Translated text
 	 * @public
 	 */
-	function getTextInBidtable($variants){
-		if(is_string($variants)){ $variants=array($variants); }
-		if(!is_array($variants)) return false;
-		foreach ($variants as $variant){
-			if(array_key_exists($variant, $this->mBidtable)){
+	function getTextInBidtable( $variants ){
+		if( is_string( $variants ) ){ $variants = array( $variants ); }
+		if( !is_array( $variants ) ) return false;
+		foreach( $variants as $variant ){
+			if( array_key_exists( $variant, $this->mBidtable ) ){
 				return $this->mBidtable[$variant];
 			}
 		}
@@ -1026,7 +1044,7 @@ class ConverterRule {
 				continue;// syntax error, skip
 			$to = trim($v[1]);
 			$v  = trim($v[0]);
-			$u  = explode($markup['unidsep'], $v);
+			$u  = explode($markup['unidsep'], $v, 2);
 			// if $to is empty, strtr() could return a wrong result
 			if( count($u) == 1 && $to && in_array( $v, $variants ) ) {
 				$bidtable[$v] = $to;
@@ -1069,13 +1087,13 @@ class ConverterRule {
 	 *  Parse rules conversion
 	 * @private
 	 */
-	function getRuleConvertedStr($variant,$doConvert){
+	function getRuleConvertedStr( $variant, $doConvert ){
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
 
 		if( count($bidtable) + count($unidtable) == 0 ){
 			return $this->mRules;
-		} elseif ($doConvert){// the text converted 
+		} elseif ( $doConvert ){// the text converted 
 			// display current variant in bidirectional array
 			$disp = $this->getTextInBidtable($variant);
 			// or display current variant in fallbacks
@@ -1144,9 +1162,9 @@ class ConverterRule {
 				fill to convert tables */
 			$allow_unid = $manLevel[$v]=='bidirectional' 
 					|| $manLevel[$v]=='unidirectional';
-			if($allow_unid && array_key_exists($v,$unidtable)){
-				$ct=$this->mConvTable[$v];
-				$this->mConvTable[$v] = array_merge($ct,$unidtable[$v]);
+			if( $allow_unid && array_key_exists( $v, $unidtable ) ){
+				$ct = $this->mConvTable[$v];
+				$this->mConvTable[$v] = array_merge($ct, $unidtable[$v]);
 			}
 		}
 	}
