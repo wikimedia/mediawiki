@@ -2488,7 +2488,7 @@ Supported protocols: <tt>$1</tt>',
 'activeusers-count'      => '$1 {{PLURAL:$1|edit|edits}} in the last {{PLURAL:$3|day|$3 days}}',
 'activeusers-from'       => 'Display users starting at:',
 'activeusers-hidebots'   => 'Hide bots',
-'activeusers-hidesysops' => 'Hide sysops',
+'activeusers-hidesysops' => 'Hide administrators',
 'activeusers-noresult'   => 'No users found.',
 
 # Special:Log/newusers
