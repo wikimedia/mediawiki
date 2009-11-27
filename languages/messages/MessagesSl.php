@@ -1704,10 +1704,12 @@ Glej tudi [[Special:WantedCategories|želena kategorije]].',
 'listusers-blocked'  => '(blokiran)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Seznam aktivnih uporabnikov',
-'activeusers-count'    => '$1 {{PLURAL:$1|nedavno urejanje|nedavni urejanji|nedavna urejanja|nedavnih urejanj}}',
-'activeusers-from'     => 'Prikaži uporabnike začenši z:',
-'activeusers-noresult' => 'Noben uporabnik ni bil najden.',
+'activeusers'            => 'Seznam aktivnih uporabnikov',
+'activeusers-count'      => '$1 {{PLURAL:$1|nedavno urejanje|nedavni urejanji|nedavna urejanja|nedavnih urejanj}}',
+'activeusers-from'       => 'Prikaži uporabnike začenši z:',
+'activeusers-hidebots'   => 'Skrij bote',
+'activeusers-hidesysops' => 'Skrij administratorje',
+'activeusers-noresult'   => 'Noben uporabnik ni bil najden.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Dnevnik registracij uporabnikov',
