@@ -1058,7 +1058,13 @@ class DatabaseOracle extends DatabaseBase {
 				if ($col_type == 'CLOB')
 					$conds2['TO_CHAR('.$col.')'] = $wgLang->checkTitleEncoding($val);
 				else
-					$conds2[$col] = $wgLang->checkTitleEncoding($val);
+					if (is_array($val)) {
+						$conds2[$col] = $val;
+						foreach($conds2[$col] as &$val2)
+							$val2 = $wgLang->checkTitleEncoding($val2);
+					} else {
+						$conds2[$col] = $wgLang->checkTitleEncoding($val);
+					}
 			}
 		
 			return parent::delete( $table, $conds2, $fname );
