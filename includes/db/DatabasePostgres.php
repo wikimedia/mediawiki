@@ -973,7 +973,7 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	/**
-	 * Return the current value of a sequence. Assumes it has ben nextval'ed in this session.
+	 * Return the current value of a sequence. Assumes it has been nextval'ed in this session.
 	 */
 	function currentSequenceValue( $seqName ) {
 		$safeseq = preg_replace( "/'/", "''", $seqName );
