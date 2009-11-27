@@ -136,6 +136,7 @@ $messages = array(
 'permalink'        => 'Innersuut',
 'edit'             => 'Aaqqissuuguk',
 'create'           => 'pilersitsineq',
+'editthispage'     => 'Qupperneq aaqqissuuguk',
 'delete'           => 'Piiaruk',
 'deletethispage'   => 'Qupperneq piiaruk',
 'protect'          => 'Illersorpaa',
@@ -147,6 +148,7 @@ $messages = array(
 'views'            => 'Takutitat',
 'toolbox'          => 'Sannataasivik',
 'otherlanguages'   => 'Oqaatsit allat',
+'redirectedfrom'   => '($1-mit nuunneq)',
 'jumpto'           => 'Toqqaannarlugu:',
 'jumptonavigation' => 'navigationi',
 'jumptosearch'     => 'ujarlerit',
@@ -180,6 +182,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Qupperneq',
+'nstab-user'     => 'Atuisup quppernera',
 'nstab-special'  => 'Immikkut',
 'nstab-image'    => 'Assiliaq',
 'nstab-template' => 'Ilisserut',
@@ -190,9 +193,13 @@ $messages = array(
 'yourname'                   => 'Atuisup aqqa:',
 'yourpassword'               => 'Isissutissaq:',
 'yourpasswordagain'          => 'Isissutissaq (aappassaat):',
+'remembermypassword'         => 'Iserfiga tullissaanut eqqaamalara',
 'login'                      => 'Iserfigiuk',
 'nav-login-createaccount'    => 'Konto-mik pilersitsigit imalt. iserit',
+'userlogin'                  => 'Kontomik pilersitsigit / iserit',
+'logout'                     => 'Anigit',
 'userlogout'                 => 'Anigit',
+'nologinlink'                => 'Kontomik pilersitsigit',
 'gotaccountlink'             => 'Iserfigiuk',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
@@ -213,6 +220,10 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'newarticle'   => '(Nuutaq)',
 'previewnote'  => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
 
+# History pages
+'histfirst' => 'Pisoqaaneq',
+'histlast'  => 'Nutaaneq',
+
 # Diffs
 'editundo' => 'peeruk',
 
@@ -220,9 +231,13 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'searchresults'             => 'Ujaasinermi inernerit',
 'searchresults-title'       => 'Uuma ujarnera "$1"',
 'search-result-size'        => '$1 ({{PLURAL:$2|oqaaseq|$2 oqaatsit}})',
+'search-redirect'           => '(nuunneq $1)',
 'search-mwsuggest-enabled'  => 'siunnersuuserlugu',
 'search-mwsuggest-disabled' => 'siunnersuusernagu',
 'powersearch'               => 'Ujarlerit',
+
+# Preferences page
+'mypreferences' => 'Inissiffissat',
 
 # Groups
 'group-sysop' => 'Administratorit',
@@ -246,6 +261,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'file-anchor-link'  => 'Assiliaq',
 'filehist-datetime' => 'Ulloq/Piffissaq',
 'filehist-user'     => 'Pineqartoq',
+'imagelinks'        => 'Innersuutit',
 
 # MIME search
 'mimesearch' => 'MIME ujaarlerit',
@@ -268,11 +284,12 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'allpagessubmit' => 'Tassunngarit',
 
 # Watchlist
+'mywatchlist'    => 'Nuisatiffikka',
 'addedwatch'     => 'Nakkutilliinermi allattorsimaffimmut ilanngunneqarsimavoq',
 'addedwatchtext' => "Qupperneq \"[[:\$1]]\" ilanngunneqarsimavoq [[Special:Watchlist|nakkutilliinermut allattorsimaffimmut]] ilanngunneqarsimavoq. Matumani quppernermi siunissami allannguutit, aammalu oqallinnermi qupperneq, maani saqqummersinneqassapput, quppernerlu '''erseqqissagaasoq''' inisseqqassalluni [[Special:RecentChanges|allattorsimaffik kingullermi allannguutinik imalik]] ajornannginnerussammat nassaariniarnissaanut.
 
 Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taava quppernerup sinaatungaani \"Nakkutilliinermi allattorsimaffik peeruk\" tooruk.",
-'watch'          => 'Ersippoq',
+'watch'          => 'Ersilli',
 'unwatch'        => 'Ersitsinnagu',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -289,9 +306,11 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'namespace' => 'Quppernerup ilusia:',
 
 # Contributions
-'uctop' => '(kaarfa)',
+'mycontris' => 'Tapikka',
+'uctop'     => '(kaarfa)',
 
-'sp-contributions-talk' => 'Oqallinneq',
+'sp-contributions-talk'     => 'Oqallinneq',
+'sp-contributions-username' => 'IP adresse imalt. atuisoq:',
 
 # What links here
 'whatlinkshere' => 'Suna maangamut innersuussisoq',
@@ -304,11 +323,21 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 '1movedto2'       => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
 '1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
 
+# Thumbnails
+'thumbnail-more' => 'Allisiguk',
+
 # Tooltip help for the actions
+'tooltip-pt-userpage'            => 'Atuisutut quppernerit',
+'tooltip-pt-mytalk'              => 'Oqalliffiit',
+'tooltip-pt-preferences'         => 'Inissiinikka',
+'tooltip-pt-mycontris'           => 'Tapikkatit',
 'tooltip-pt-login'               => 'Iseqquneqaraluarputit, pitsaanerussagaluarpoq',
+'tooltip-pt-logout'              => 'Aniffik',
 'tooltip-ca-talk'                => 'Quppernerup imaanik oqallinneq',
 'tooltip-ca-edit'                => 'Allanngortiterisinnaavutit. Isikkua takulaariuk',
 'tooltip-ca-history'             => 'Quppernerup siulii',
+'tooltip-ca-move'                => 'Qupperneq nuuguk',
+'tooltip-ca-watch'               => 'Saqqumitiguk',
 'tooltip-search'                 => 'Ujaarlerit {{SITENAME}}',
 'tooltip-search-go'              => 'Tassunngarit nassaassappat',
 'tooltip-search-fulltext'        => 'Taanna ujaruk',
@@ -321,6 +350,8 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'tooltip-t-whatlinkshere'        => 'Innersuussami saqqummiussat',
 'tooltip-t-specialpages'         => 'Quppernerit immikkut ittut nassaassaasinnaasut',
 'tooltip-ca-nstab-main'          => 'Imarisaa takuuk',
+'tooltip-save'                   => 'Allannguutitit toqqukkit',
+'tooltip-preview'                => 'Isikkua takuuk, toqqortinnaguk atortaruk!',
 
 # Special:SpecialPages
 'specialpages' => 'Quppernerit immikkut ittut',

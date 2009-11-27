@@ -1996,11 +1996,13 @@ Podporované protokoly: <tt>$1</tt>',
 'listusers-blocked'  => '({{GENDER:$1|zablokován|zablokována|zablokován}})',
 
 # Special:ActiveUsers
-'activeusers'          => 'Seznam aktivních uživatelů',
-'activeusers-intro'    => 'Toto je seznam uživatelů, kteří byli nějak aktivní v {{plural:$1|posledním dni|posledních $1 dnech}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|editace|editace|editací}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
-'activeusers-from'     => 'Zobrazit uživatele počínaje od:',
-'activeusers-noresult' => 'Nenalezen žádný uživatel.',
+'activeusers'            => 'Seznam aktivních uživatelů',
+'activeusers-intro'      => 'Toto je seznam uživatelů, kteří byli nějak aktivní v {{plural:$1|posledním dni|posledních $1 dnech}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|editace|editace|editací}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
+'activeusers-from'       => 'Zobrazit uživatele počínaje od:',
+'activeusers-hidebots'   => 'Skrýt roboty',
+'activeusers-hidesysops' => 'Skrýt správce',
+'activeusers-noresult'   => 'Nenalezen žádný uživatel.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Kniha nových uživatelů',

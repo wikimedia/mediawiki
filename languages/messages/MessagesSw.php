@@ -1441,9 +1441,15 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-cantedit'            => 'Huwezi kubadilisha kiwango cha ulindaji wa ukurasa huu, kwa sababu huruhusiwi kuuhariri.',
 'protect-othertime'           => 'Kipindi kingine:',
 'protect-othertime-op'        => 'kipindi kingine',
+'protect-dropdown'            => '*Sababu za kawaida za ulindaji
+** Uharabu kupindukia
+** Upuuzi kupindukia
+** Onyo-la-kuzuia kuhariri
+** Kurasa inatembelewa sana',
+'protect-edit-reasonlist'     => 'Hariri sababu za kulinda',
 'protect-expiry-options'      => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
 'restriction-type'            => 'Ruhusa:',
-'restriction-level'           => 'Kiwango cha kizuio:',
+'restriction-level'           => 'Kiwango cha kizuia:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Kuhariri',

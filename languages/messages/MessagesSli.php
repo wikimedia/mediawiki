@@ -1615,9 +1615,9 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'databasenotlocked'   => 'De Datenbank ies ne gesperrt.',
 
 # Move page
-'move-page'                => 'Verschieba $1',
-'move-page-legend'         => 'Seyte verschieba',
-'movepagetext'             => "Miet diesem Formular koast du eene Seyte umbenenna (mitsamt olla Versiona).
+'move-page'                    => 'Verschieba $1',
+'move-page-legend'             => 'Seyte verschieba',
+'movepagetext'                 => "Miet diesem Formular koast du eene Seyte umbenenna (mitsamt olla Versiona).
 Dar aale Tittel wird zim neua weiterleita.
 Du koast Weiterleitunga, de uffa Originaltittel verlinka, automatisch korrigiera lassa.
 Falls du dies nee tust, priefe uff [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|kaputte Weiterleitunga]].
@@ -1628,54 +1628,67 @@ De Seyte wird '''nee''' verschoba, wenn is bereits eene Seyte miet demselba Noam
 '''Warnung'''
 De Verschiebung koan weitreichende on unerwartete Folga fier beliebte Seyta hoan.
 Du sulltest daher de Konsequenzen verstanda hoan, bevur du furtfährst.",
-'movepagetalktext'         => "De dazugeheerige Dischkursseyte wird, sufern vorhanda, mitverschoba, '''is sei denn:'''
+'movepagetalktext'             => "De dazugeheerige Dischkursseyte wird, sufern vorhanda, mitverschoba, '''is sei denn:'''
 *Is existiert bereits eene Dischkursseyte miet diesem Noama, oder
 *du wählst de onda stiehende Option ob.
 
 Ei diesa Fäll muußt du, foalls gewinscht, dan Inhalt dar Seyte voo Hond verschieben oder zusommafiehra.
 
 Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bite '''begrienda.'''",
-'movearticle'              => 'Seyte verschieba:',
-'movenologin'              => 'Nä oangemeldet',
-'movenotallowed'           => 'Du host kenne Berechtigung, Seyta zu verschieba.',
-'cant-move-user-page'      => 'Du host kenne Berechtigung, Nutzerhauptseyta zu verschieba.',
-'cant-move-to-user-page'   => 'Du host ne de Berechtigung, Seyta uff anne Nutzerseyte zu verschieba (miet Ausnahme vu Nutzerunderseyta).',
-'newtitle'                 => 'Ziel:',
-'move-watch'               => 'Diese Seyte beobachta',
-'movepagebtn'              => 'Seite verschieba',
-'pagemovedsub'             => 'Verschiebung erfolgreich',
-'movepage-moved'           => "<big>'''De Seyte „$1“ wurde noach „$2“ verschoba.'''</big>",
-'articleexists'            => 'Under diesem Noama existiert bereits eene Seyte. Bite wähle eena andern Noama.',
-'talkexists'               => 'De Seyte selbst wurde erfolgreich verschoba, oaber de zugeheerige Dischkursseite nee, doo bereits eene miet dam neua Tittel existiert. Bite gleiche de Inhalte voo Hond ob.',
-'movedto'                  => 'verschoba noach',
-'movetalk'                 => 'De Dischkurseyte mitverschieba, wenn meegliech',
-'move-subpages'            => 'Underseyta verschieba (bis zu $1)',
-'movepage-page-exists'     => 'De Seyte „$1“ ies bereits vurhanda und koan ne automatisch ieberschrieba waan.',
-'movepage-max-pages'       => 'De Maximalanzoahl vu $1 {{PLURAL:$1|Seyte|Seyta}} wurde verschoba, Olle wettera Seyta kinna ne automatisch verschoba waan.',
-'1movedto2'                => 'hoot „[[$1]]“ noach „[[$2]]“ verschoba',
-'1movedto2_redir'          => 'hoot „[[$1]]“ noach „[[$2]]“ verschoba on dabei eene Weiterleitung ieberschrieba',
-'move-redirect-suppressed' => 'Weiterleitung underdrickt',
-'movelogpage'              => 'Verschiebungs-Logbuch',
-'movesubpage'              => '{{PLURAL:$1|Underseyte|Underseyta}}',
-'movenosubpage'            => 'Diese Seyte hoot kenne Underseyta.',
-'movereason'               => 'Begriendung:',
-'revertmove'               => 'zerricke scherga',
-'delete_and_move'          => 'Läscha und Verschieba',
-'delete_and_move_confirm'  => 'Zielseyte fier de Verschiebung läscha',
-'delete_and_move_reason'   => 'geläscht, im Ploatz fier Verschiebung zu macha',
-'immobile-source-page'     => 'Diese Seyte ies ne verschiebbar.',
-'imagenocrossnamespace'    => 'Dateien kinna ne aus damm {{ns:file}}-Noamasraum heraus verschoba waan',
-'fix-double-redirects'     => 'Noach damm Verschieba doppelte Weiterleitunga ufflesa',
-'move-leave-redirect'      => 'Weiterleitung erstalla',
+'movearticle'                  => 'Seyte verschieba:',
+'movenologin'                  => 'Nä oangemeldet',
+'movenotallowed'               => 'Du host kenne Berechtigung, Seyta zu verschieba.',
+'cant-move-user-page'          => 'Du host kenne Berechtigung, Nutzerhauptseyta zu verschieba.',
+'cant-move-to-user-page'       => 'Du host ne de Berechtigung, Seyta uff anne Nutzerseyte zu verschieba (miet Ausnahme vu Nutzerunderseyta).',
+'newtitle'                     => 'Ziel:',
+'move-watch'                   => 'Diese Seyte beobachta',
+'movepagebtn'                  => 'Seite verschieba',
+'pagemovedsub'                 => 'Verschiebung erfolgreich',
+'movepage-moved'               => "<big>'''De Seyte „$1“ wurde noach „$2“ verschoba.'''</big>",
+'articleexists'                => 'Under diesem Noama existiert bereits eene Seyte. Bite wähle eena andern Noama.',
+'talkexists'                   => 'De Seyte selbst wurde erfolgreich verschoba, oaber de zugeheerige Dischkursseite nee, doo bereits eene miet dam neua Tittel existiert. Bite gleiche de Inhalte voo Hond ob.',
+'movedto'                      => 'verschoba noach',
+'movetalk'                     => 'De Dischkurseyte mitverschieba, wenn meegliech',
+'move-subpages'                => 'Underseyta verschieba (bis zu $1)',
+'movepage-page-exists'         => 'De Seyte „$1“ ies bereits vurhanda und koan ne automatisch ieberschrieba waan.',
+'movepage-max-pages'           => 'De Maximalanzoahl vu $1 {{PLURAL:$1|Seyte|Seyta}} wurde verschoba, Olle wettera Seyta kinna ne automatisch verschoba waan.',
+'1movedto2'                    => 'hoot „[[$1]]“ noach „[[$2]]“ verschoba',
+'1movedto2_redir'              => 'hoot „[[$1]]“ noach „[[$2]]“ verschoba on dabei eene Weiterleitung ieberschrieba',
+'move-redirect-suppressed'     => 'Weiterleitung underdrickt',
+'movelogpage'                  => 'Verschiebungs-Logbuch',
+'movesubpage'                  => '{{PLURAL:$1|Underseyte|Underseyta}}',
+'movenosubpage'                => 'Diese Seyte hoot kenne Underseyta.',
+'movereason'                   => 'Begriendung:',
+'revertmove'                   => 'zerricke scherga',
+'delete_and_move'              => 'Läscha und Verschieba',
+'delete_and_move_confirm'      => 'Zielseyte fier de Verschiebung läscha',
+'delete_and_move_reason'       => 'geläscht, im Ploatz fier Verschiebung zu macha',
+'immobile-target-namespace-iw' => 'Interwiki-Link ies kee giltiges Ziel fier Seytaverschiebunga.',
+'immobile-source-page'         => 'Diese Seyte ies ne verschiebbar.',
+'immobile-target-page'         => 'Is koan ne uff diese Zielseyte verschoba waan.',
+'imagenocrossnamespace'        => 'Dateien kinna ne aus damm {{ns:file}}-Noamasraum heraus verschoba waan',
+'imagetypemismatch'            => 'De neue Dateierweiterung ies ne miet dar aaln identisch',
+'imageinvalidfilename'         => 'Dar Ziel-Dateinoame ies ungiltig',
+'fix-double-redirects'         => 'Noach damm Verschieba doppelte Weiterleitunga ufflesa',
+'move-leave-redirect'          => 'Weiterleitung erstalla',
 
 # Export
-'export'           => 'Seyta exportiera',
-'export-submit'    => 'Seyta exportiera',
-'export-addcat'    => 'Hinzufiega',
-'export-addns'     => 'Hinzufügen',
-'export-download'  => 'Ols XML-Datei speichern',
-'export-templates' => 'Inklusive Vorlagen',
-'export-pagelinks' => 'Verlinkte Seyta automatisch miet exportiera, bis zer Rekursionstiefe vu:',
+'export'            => 'Seyta exportiera',
+'exporttext'        => 'Miet dieser Spezialseyte koast du dann Text inklusive der Versionsgeschichte einzelner Seyta ei anne XML-Datei exportieren.
+De Datei koan ei a anderes MediaWiki-Wiki ieber de [[Special:Import|Importfunksjonn]] eingespielt waan.
+
+Trage dann oder de entsprechenden Seytatittel ei doas fulgende Textfeld a (pro Zeile jeweils ock fier anne Seyte).
+
+Alternativ ies dar Export au miet dar Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] meeglich, beispielsweise fier de [[{{MediaWiki:Mainpage}}]].',
+'exportcuronly'     => 'Ock de aktuelle Version dar Seyte exportieren',
+'exportnohistory'   => "'''Hinweis:''' Dar Export kompletter Versionsgeschichta ies aus Performancegrinda bis uff wetteres ne meeglich.",
+'export-submit'     => 'Seyta exportiera',
+'export-addcattext' => 'Seyta aus Kategorie hinzufiega:',
+'export-addcat'     => 'Hinzufiega',
+'export-addns'      => 'Hinzufügen',
+'export-download'   => 'Ols XML-Datei speichern',
+'export-templates'  => 'Inklusive Vorlagen',
+'export-pagelinks'  => 'Verlinkte Seyta automatisch miet exportiera, bis zer Rekursionstiefe vu:',
 
 # Namespace 8 related
 'allmessages'                   => 'MediaWiki-Systemtexte',
@@ -1816,6 +1829,7 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'math_unknown_function' => 'Unbekennte Funksjonn',
 'math_lexing_error'     => '„Lexing“-Fahler',
 'math_syntax_error'     => 'Syntaxfahler',
+'math_image_error'      => 'de PNG-Konvertierung schlug fehl',
 'math_bad_tmpdir'       => 'Doas temporäre Verzeichnis fier mathematische Formeln koan ne oagelagt oder beschrieba waan.',
 
 # Patrolling
@@ -1823,10 +1837,12 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'markaspatrolledtext'        => 'Diese Seyte ols kontrolliert markiernn',
 'markedaspatrolled'          => 'Ols kontrolliert markiert',
 'markedaspatrolledtext'      => 'De ausgewählte Seyta änderung wurde ols kontrolliert markiert.',
+'markedaspatrollederror'     => 'Markierung ols „kontrolliert“ ne meeglich.',
 'markedaspatrollederrortext' => 'Du mußt anne Seyta änderung auswähla.',
 
 # Patrol log
 'patrol-log-page'      => 'Kontroll-Logbichl',
+'patrol-log-header'    => 'Dies ies doas Kontroll-Logbuch.',
 'patrol-log-auto'      => '(automatisch)',
 'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => 'Kontroll-Logbichl $1',
@@ -1902,6 +1918,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'exif-whitepoint'                  => 'Manuell miet Messung',
 'exif-datetime'                    => 'Speicherzeitpunkt',
 'exif-imagedescription'            => 'Bildtittel',
+'exif-make'                        => 'Hersteller',
 'exif-model'                       => 'Modell',
 'exif-software'                    => 'Software',
 'exif-artist'                      => 'Fotogroaf',
@@ -1912,6 +1929,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'exif-compressedbitsperpixel'      => 'Komprimierte Bits pro Pixel',
 'exif-pixelxdimension'             => 'Giltige Bildhiehe',
 'exif-makernote'                   => 'Herstallernotiz',
+'exif-datetimeoriginal'            => 'Erfassungszeitpunkt',
 'exif-exposuretime'                => 'Belichtungsdauer',
 'exif-exposuretime-format'         => '$1 Sekunda ($2)',
 'exif-fnumber'                     => 'Blende',
@@ -1921,6 +1939,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'exif-aperturevalue'               => 'Blendenwert',
 'exif-brightnessvalue'             => 'Helligkeitswert',
 'exif-exposurebiasvalue'           => 'Belichtungsvorgabe',
+'exif-maxaperturevalue'            => 'Grießte Blende',
 'exif-subjectdistance'             => 'Entfernung',
 'exif-meteringmode'                => 'Messverfoahrn',
 'exif-lightsource'                 => 'Lichtquelle',
@@ -1935,6 +1954,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'exif-filesource'                  => 'Quelle dar Datei',
 'exif-scenetype'                   => 'Szenatyp',
 'exif-cfapattern'                  => 'CFA-Muster',
+'exif-exposuremode'                => 'Belichtungsmodus',
 'exif-whitebalance'                => 'Weeßabgleich',
 'exif-digitalzoomratio'            => 'Digitalzoom',
 'exif-focallengthin35mmfilm'       => 'Brennweite (Kleenbildäquivalent)',
@@ -1943,6 +1963,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'exif-contrast'                    => 'Kontrast',
 'exif-saturation'                  => 'Sättigung',
 'exif-sharpness'                   => 'Schärfe',
+'exif-devicesettingdescription'    => 'Geräteeinstallung',
 'exif-imageuniqueid'               => 'Bild-ID',
 'exif-gpsversionid'                => 'GPS-Tag-Version',
 'exif-gpslatituderef'              => 'nördl. oder südl. Breite',

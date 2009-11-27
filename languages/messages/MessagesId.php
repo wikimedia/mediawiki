@@ -1944,11 +1944,13 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'listusers-blocked'  => '(diblokir)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Daftar pengguna aktif',
-'activeusers-intro'    => 'Berikut adalah daftar pengguna yang memiliki suatu bentuk aktivitas selama paling tidak $1 {{PLURAL:$1|hari|hari}} terakhir.',
-'activeusers-count'    => '$1 {{PLURAL:$1||}}suntingan selama {{PLURAL:$3||}}$3 hari terakhir',
-'activeusers-from'     => 'Tampilkan pengguna mulai dari:',
-'activeusers-noresult' => 'Pengguna tidak ditemukan.',
+'activeusers'            => 'Daftar pengguna aktif',
+'activeusers-intro'      => 'Berikut adalah daftar pengguna yang memiliki suatu bentuk aktivitas selama paling tidak $1 {{PLURAL:$1|hari|hari}} terakhir.',
+'activeusers-count'      => '$1 {{PLURAL:$1||}}suntingan selama {{PLURAL:$3||}}$3 hari terakhir',
+'activeusers-from'       => 'Tampilkan pengguna mulai dari:',
+'activeusers-hidebots'   => 'Sembunyikan bot',
+'activeusers-hidesysops' => 'Sembunyikan pengurus',
+'activeusers-noresult'   => 'Pengguna tidak ditemukan.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Log pengguna baru',

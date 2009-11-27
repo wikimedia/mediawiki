@@ -926,6 +926,29 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'enotif_newpagetext' => "Chesta-chí l'è una pàgina növa.",
 'changed'            => 'cambiaa',
 'enotif_subject'     => 'La pagina $PAGETITLE de {{SITENAME}} l\'è stada $CHANGEDORCREATED da $PAGEEDITOR',
+'enotif_body'        => 'Cara $WATCHINGUSERNAME,
+
+La pàgina $PAGETITLE del sit {{SITENAME}} a l\'è stada $CHANGEDORCREATED del $PAGEEDITDATE da $PAGEEDITOR, varda $PAGETITLE_URL per la version curenta.
+
+$NEWPAGE
+
+Sumari de la mudifega, metüü denter da l\'autur: $PAGESUMMARY $PAGEMINOREDIT
+
+Per cuntatà l\'autur:
+per e-mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+Ghe sarà pü mía de nutificazion in cas d\'una quaj oltra mudifega, a manch che te veet nò a visità la pàgina in questión.
+De surapü, te pö mudifegà l\'impustazion de l\'avis de nutifega per quij paginn che i henn ins la lista di paginn che te tegn d\'ögg.
+
+             \'L to sistema de nutifega da {{SITENAME}}
+
+--
+Per mudifegà l\'impustazión de la lista di paginn che te tegn d\'ögg, varda
+{{fullurl:Special:Watchlist/edit}}
+
+Per fà di cumünicazion de servizzi e per cercà jüt:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Scancela la pagina',

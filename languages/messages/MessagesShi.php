@@ -361,8 +361,24 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'diff' => 'Gar',
 'hist' => 'Amzruy',
 
+# Recent changes linked
+'recentchangeslinked'          => 'Imbddel zun ɣwid',
+'recentchangeslinked-feed'     => 'Imbddeln zund ɣwid',
+'recentchangeslinked-toolbox'  => 'Imbddeln zund ɣwid',
+'recentchangeslinked-title'    => 'Imbddeln li izdin "$1"',
+'recentchangeslinked-backlink' => '← $1',
+'recentchangeslinked-noresult' => 'Ur illi may budeln ɣ tisniwin li dar izdayn s ɣid',
+'recentchangeslinked-summary'  => 'Ɣid umuɣ iymbddeln li ittyskarnin tigira yad ɣ tisniwin li ittuyzdayn d kra n tasna (ulla i igmamn n kra taggayt ittuyzlayn). Tisniwin  ɣ [[Special:Watchlist|Umuɣ n tisniwin li ttsaggat]].',
+'recentchangeslinked-page'     => 'Assaɣ n tasna',
+'recentchangeslinked-to'       => 'Afficher les changements vers les pages liées au lieu de la page donnée
+Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
+
 # Upload
-'upload' => 'sΥlid afaylu',
+'upload'            => 'Srbu asddaw',
+'uploadbtn'         => 'Srbu asddaw',
+'reuploaddesc'      => 'Sbidd asrbu d turrit',
+'uploadnologin'     => 'Ur tmlit mat git',
+'uploadnologintext' => 'Mel zwar mat git [[Special:UserLogin|Mel mat git]] iɣ trit ad tsrbut isddawn.',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byt|byt}}',

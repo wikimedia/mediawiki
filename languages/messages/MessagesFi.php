@@ -1917,11 +1917,13 @@ Tuetut protokollat: <tt>$1</tt>.',
 'listusers-blocked'  => '(estetty)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Aktiivisten käyttäjien lista',
-'activeusers-intro'    => 'Tämä on luettelo käyttäjistä, jotka ovat tehneet jotain viimeisen $1 {{PLURAL:$1|päivän}} sisällä.',
-'activeusers-count'    => '$1 {{PLURAL:$1|muokkaus|muokkausta}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
-'activeusers-from'     => 'Näytä käyttäjät alkaen',
-'activeusers-noresult' => 'Käyttäjiä ei löytynyt.',
+'activeusers'            => 'Aktiivisten käyttäjien lista',
+'activeusers-intro'      => 'Tämä on luettelo käyttäjistä, jotka ovat tehneet jotain viimeisen $1 {{PLURAL:$1|päivän}} sisällä.',
+'activeusers-count'      => '$1 {{PLURAL:$1|muokkaus|muokkausta}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
+'activeusers-from'       => 'Näytä käyttäjät alkaen',
+'activeusers-hidebots'   => 'Piilota botit',
+'activeusers-hidesysops' => 'Piilota ylläpitäjät',
+'activeusers-noresult'   => 'Käyttäjiä ei löytynyt.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Uudet käyttäjät',

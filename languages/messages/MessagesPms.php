@@ -493,33 +493,33 @@ Soa ciav a temp a scad an {{PLURAL:\$5|un di|\$5 di}}.
 
 Se cheidun d'àutr a l'ha fàit costa arcesta, o se chiel a l'é arcordasse dla ciav,
 e a veul pì nen cambiela, che a fasa finta ëd gnente e ch'a continua a dovré soa ciav veja.",
-'noemail'                    => 'An arsulta pa gnun-a casela ëd pòsta eletrònica për l\'Utent "$1".',
-'noemailcreate'              => "It deuve dé n'adrëssa e-mail bon-a",
-'passwordsent'               => "Na neuva paròla ciav a l'é staita mandà a l'adrëssa eletrònica registrà për l'Utent \"\$1\".
-Për piasì, che a la dòvra sùbit për rintré ant ël sistema pen-a che a l'arsèiv.",
+'noemail'                    => 'An arzulta pa gnun-a casela ëd pòsta eletrònica për l\'Utent "$1".',
+'noemailcreate'              => "It deve dé n'adrëssa ëd pòsta eletrònica bon-a",
+'passwordsent'               => "Na neuva paròla ciav a l'é stàita mandà a l'adrëssa eletrònica registrà për l'Utent \"\$1\".
+Për piasì, che a la deuvra sùbit për rintré ant ël sistema pen-a che a l'arsèiv.",
 'blocked-mailpassword'       => "Për evité dj'assion nen corete as peul pa dovresse la funsion \"Mand-me na ciav neuva\" da 'nt n'adrëssa IP ëd cole blocà.",
 'eauthentsent'               => "A l'adrëssa che a l'ha dane i l'oma mandaje un messagi ëd pòsta eletrònica për conferma.
 Anans che qualsëssìa àutr messagi ëd pòsta a ven-a mandà a 's cont-sì, a venta che a a fasa coma che a-j diso dë fé ant ël messagi, për confermé che ës cont a l'é da bon sò.",
 'throttled-mailpassword'     => 'Na ciav neuva a l\'é gia stàita mandà da manch che {{PLURAL:$1|n\'ora|$1 ore}}. Për evité dij dovré nen regolar, la funsion "Mand-me na ciav neuva" as peul dovresse mach vira {{PLURAL:$1|n\'ora|$1 ore}}.',
-'mailerror'                  => 'Eror ën mandand via un messagi ëd pòsta eletrònica: $1',
+'mailerror'                  => 'Eror ën mandand via un mëssagi ëd pòsta eletrònica: $1',
 'acct_creation_throttle_hit' => "I visitador ëd costa wiki, an dovrand toa adrëssa IP a l'han fàit {{PLURAL:$1|1 cont|$1 cont}} ant l'ùltim di, che a l'é tut lòn che as peul fesse ant cost temp.
-Com arzultà, i visitador che a dòvro costa adrëssa IPa peulo pì nen fé dij cont al moment.",
-'emailauthenticated'         => "Soa adrëssa ëd pòsta eletrònica a l'é staita autenticà ël $2 a le $3.",
-'emailnotauthenticated'      => "Soa adrëssa ëd pòsta eletrònica a l'é ancó pa staita autenticà.
+Com arzultà, ij visitador che a deuvro costa adrëssa IP a peulo pì nen fé dij cont al moment.",
+'emailauthenticated'         => "Soa adrëssa ëd pòsta eletrònica a l'é stàita autenticà ël $2 a $3.",
+'emailnotauthenticated'      => "Soa adrëssa ëd pòsta eletrònica a l'é ancó pa stàita autenticà.
 Da qualsëssìa ëd coste funsion a sarà mandà gnun messagi fin che chiel (chila) a s'auténtica nen.",
 'noemailprefs'               => "Che a specìfica n'adrëssa ëd pòsta eletrònica se a veul dovré coste funsion-sì.",
-'emailconfirmlink'           => 'Che an conferma sa adrëssa ëd pòsta eletrònica',
+'emailconfirmlink'           => 'Che an conferma soa adrëssa ëd pòsta eletrònica',
 'invalidemailaddress'        => "Costa adrëssa ëd pòsta eletrònica-sì as peul nen pijesse përchè a l'ha na forma nen bon-a.
 Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
 'accountcreated'             => 'Cont creà',
-'accountcreatedtext'         => "Ël cont Utent për $1 a l'é stait creà.",
+'accountcreatedtext'         => "Ël cont Utent për $1 a l'é stàit creà.",
 'createaccount-title'        => 'Creassion ëd cont për {{SITENAME}}',
 'createaccount-text'         => 'Cheidun a l\'ha dorbù un cont për st\'adrëssa ëd pòsta eletrònica-sì ansima a {{SITENAME}} ($4) butand da stranòm "$2" e da ciav "$3". A dovrìa rintré ant ël sistema e cambiesse soa ciav pì ampressa ch\'a peul.
 
 Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.',
 'usernamehasherror'          => "Un nòm utent a peul pa conten-e caràter ciapulà (''hash'')",
-'login-throttled'            => "It l'has fàit tròpi tentativ ressent d'intré.
-Për piasì speta prima ëd torna prové.",
+'login-throttled'            => "It l'has fàit tròpi tentativ recent d'intré.
+Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel'         => 'Lenga: $1',
 
 # Password reset dialog
@@ -1739,11 +1739,13 @@ Varda ëdcò [[Special:WantedCategories|Categorìe ciamà]].",
 'listusers-blocked'  => '(blocà)',
 
 # Special:ActiveUsers
-'activeusers'          => "Lista dj'utent ativ",
-'activeusers-intro'    => "Costa a l'é na lista d'utent ch'a l'han avù n'atività qualsëssìa ant j'ùltim $1 {{PLURAL:$1|di|di}}.",
-'activeusers-count'    => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
-'activeusers-from'     => "Mosta j'utent a parte da:",
-'activeusers-noresult' => 'Pa gnun utent trovà.',
+'activeusers'            => "Lista dj'utent ativ",
+'activeusers-intro'      => "Costa a l'é na lista d'utent ch'a l'han avù n'atività qualsëssìa ant j'ùltim $1 {{PLURAL:$1|di|di}}.",
+'activeusers-count'      => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
+'activeusers-from'       => "Mosta j'utent a parte da:",
+'activeusers-hidebots'   => 'Stërma trigomiro',
+'activeusers-hidesysops' => "Stërma j'aministrador",
+'activeusers-noresult'   => 'Pa gnun utent trovà.',
 
 # Special:Log/newusers
 'newuserlogpage'              => "Registr dla creassion dj'utent",

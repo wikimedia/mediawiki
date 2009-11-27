@@ -1784,11 +1784,13 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'listusers-blocked'  => '(blokowany)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lisćina aktiwnych wužiwarjow',
-'activeusers-intro'    => 'To je lisćina wužiwarjow, kotřiž běchu aktiwni za {{PLURAL:$1|posledni dźeń|poslednjej $1 dnjej|poslednje $1 dny|poslednich $1 dnjow}}:',
-'activeusers-count'    => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|zańdźenej dnju|zańdźenymaj $3 dnjomaj|zańdźenych $3 dnjach|zańdźenych $3 dnjach}}',
-'activeusers-from'     => 'Wužiwarjow zwobraznić, započinajo z:',
-'activeusers-noresult' => 'Žani wužiwarjo namakani.',
+'activeusers'            => 'Lisćina aktiwnych wužiwarjow',
+'activeusers-intro'      => 'To je lisćina wužiwarjow, kotřiž běchu aktiwni za {{PLURAL:$1|posledni dźeń|poslednjej $1 dnjej|poslednje $1 dny|poslednich $1 dnjow}}:',
+'activeusers-count'      => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|zańdźenej dnju|zańdźenymaj $3 dnjomaj|zańdźenych $3 dnjach|zańdźenych $3 dnjach}}',
+'activeusers-from'       => 'Wužiwarjow zwobraznić, započinajo z:',
+'activeusers-hidebots'   => 'Boćiki schowa´c',
+'activeusers-hidesysops' => 'Administratorow schować',
+'activeusers-noresult'   => 'Žani wužiwarjo namakani.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Protokol nowych wužiwarjow',
