@@ -40,7 +40,27 @@ class ActiveUsersPager extends UsersPager {
 				$this->requestedUser = $username->getText();
 			}
 		}
+		
+		$this->setupOptions();
+		
 		parent::__construct();
+	}
+
+	public function setupOptions() {
+		global $wgRequest;
+		
+		$this->opts = new FormOptions();
+
+		$this->opts->add( 'hidebots', false, FormOptions::BOOL );
+		$this->opts->add( 'hidesysops', false, FormOptions::BOOL );
+
+		$this->opts->fetchValuesFromRequest( $wgRequest );
+
+		$this->groups = array();
+		if ($this->opts->getValue('hidebots') == 1)
+			$this->groups['bot'] = true;
+		if ($this->opts->getValue('hidesysops') == 1)
+			$this->groups['sysop'] = true;
 	}
 
 	function getIndexField() {
@@ -54,6 +74,7 @@ class ActiveUsersPager extends UsersPager {
 		$conds = array( 'rc_user > 0' ); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
 		$conds[] = "rc_log_type IS NULL OR rc_log_type != 'newusers'";
+		
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
@@ -88,6 +109,8 @@ class ActiveUsersPager extends UsersPager {
 
 		$list = array();
 		foreach( self::getGroups( $row->user_id ) as $group ) {
+			if (isset($this->groups[$group]))
+				return;
 			$list[] = self::buildGroupLink( $group );
 		}
 		$groups = $wgLang->commaList( $list );
@@ -106,17 +129,25 @@ class ActiveUsersPager extends UsersPager {
 
 	function getPageHeader() {
 		global $wgScript, $wgRequest;
+
 		$self = $this->getTitle();
 		$limit = $this->mLimit ? Xml::hidden( 'limit', $this->mLimit ) : '';
 
-		return  Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . # Form tag
-			Xml::fieldset( wfMsg( 'activeusers' ) ) . "\n" .
-			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
-			$limit . "\n" .
-			Xml::inputLabel( wfMsg( 'activeusers-from' ), 'username', 'offset', 20, $this->requestedUser ) . ' ' . # Username field
-			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .  "\n" .# Submit button and form bottom
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ); # Form tag
+		$out .= Xml::fieldset( wfMsg( 'activeusers' ) ) . "\n";
+		$out .= Xml::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
+
+		$out .= Xml::inputLabel( wfMsg( 'activeusers-from' ), 'username', 'offset', 20, $this->requestedUser ) . '<br />';# Username field
+
+		$out .= Xml::checkLabel( wfMsg('activeusers-hidebots'), 'hidebots', 'hidebots', $this->opts->getValue( 'hidebots' ) );
+
+		$out .= Xml::checkLabel( wfMsg('activeusers-hidesysops'), 'hidesysops', 'hidesysops', $this->opts->getValue( 'hidesysops' ) ) . '<br />';
+
+		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .  "\n";# Submit button and form bottom
+		$out .= Xml::closeElement( 'fieldset' );
+		$out .= Xml::closeElement( 'form' );
+		
+		return $out;
 	}
 }
 
