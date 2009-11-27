@@ -302,7 +302,7 @@ CREATE TABLE &mw_prefix.filearchive (
   fa_media_type         VARCHAR2(32) DEFAULT NULL,
   fa_major_mime         VARCHAR2(32) DEFAULT 'unknown',
   fa_minor_mime         VARCHAR2(32) DEFAULT 'unknown',
-  fa_description        VARCHAR2(255)         NOT NULL,
+  fa_description        VARCHAR2(255),
   fa_user               NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
   fa_user_text          VARCHAR2(255)         NOT NULL,
   fa_timestamp          TIMESTAMP(6) WITH TIME ZONE,
