@@ -1595,6 +1595,8 @@ $wgMessageStructure = array(
 		'activeusers-intro',
 		'activeusers-count',
 		'activeusers-from',
+		'activeusers-hidebots',
+		'activeusers-hidesysops',
 		'activeusers-submit',
 		'activeusers-noresult',
 	),
