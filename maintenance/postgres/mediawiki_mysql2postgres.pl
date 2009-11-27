@@ -416,7 +416,7 @@ SELECT setval('page_page_id_seq',      1+coalesce(max(page_id),0),false) FROM pa
 SELECT setval('pr_id_val',             1+coalesce(max(pr_id)  ,0),false) FROM page_restrictions;
 SELECT setval('rc_rc_id_seq',          1+coalesce(max(rc_id)  ,0),false) FROM recentchanges;
 SELECT setval('rev_rev_id_val',        1+coalesce(max(rev_id) ,0),false) FROM revision;
-SELECT setval('text_old_id_val',       1+coalesce(max(old_id) ,0),false) FROM pagecontent;
+SELECT setval('text_old_id_seq',       1+coalesce(max(old_id) ,0),false) FROM pagecontent;
 SELECT setval('trackbacks_tb_id_seq',  1+coalesce(max(tb_id)  ,0),false) FROM trackbacks;
 SELECT setval('user_user_id_seq',      1+coalesce(max(user_id),0),false) FROM mwuser;
 };
