@@ -1167,7 +1167,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'recentchangescount'            => 'Numero de modificationes a monstrar per predefinition:',
 'prefs-help-recentchangescount' => 'Isto include modificationes recente, historias de paginas, e registros.',
 'prefs-help-watchlist-token'    => 'Le insertion de un clave secrete in iste campo generara un syndication RSS de tu observatorio.
-Omnes persona cognoscente le clave in iste campo potera leger tu observatorio, selige ergo un valor secur.
+Omnes persona cognoscente le clave in iste campo potera leger tu observatorio. Selige ergo un valor secur!
 Ecce un valor aleatorimente generate que tu pote usar: $1',
 'savedprefs'                    => 'Tu preferentias ha essite confirmate.',
 'timezonelegend'                => 'Fuso horari:',

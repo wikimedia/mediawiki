@@ -1934,11 +1934,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'listusers-blocked'  => '(തടയപ്പെട്ടത്)',
 
 # Special:ActiveUsers
-'activeusers'          => 'സജീവ ഉപയോക്താക്കളുടെ പട്ടിക',
-'activeusers-intro'    => 'ഇത് കഴിഞ്ഞ {{PLURAL:$1|ദിവസം|$1 ദിവസങ്ങളിൽ}} ഏതെങ്കിലും വിധത്തിലുള്ള പ്രവർത്തനങ്ങൾ ചെയ്ത ഉപയോക്താക്കളുടെ പട്ടികയാണ്.',
-'activeusers-count'    => 'അവസാനത്തെ {{PLURAL:$3|ദിവസം|$3 ദിവസങ്ങളിൽ}} നടത്തിയ {{PLURAL:$1|തിരുത്തൽ|$1 തിരുത്തലുകൾ}}',
-'activeusers-from'     => 'ഇങ്ങിനെ തുടങ്ങുന്ന ഉപയോക്താക്കളെ കാട്ടുക:',
-'activeusers-noresult' => 'ഉപയോക്താക്കളില്ല',
+'activeusers'            => 'സജീവ ഉപയോക്താക്കളുടെ പട്ടിക',
+'activeusers-intro'      => 'ഇത് കഴിഞ്ഞ {{PLURAL:$1|ദിവസം|$1 ദിവസങ്ങളിൽ}} ഏതെങ്കിലും വിധത്തിലുള്ള പ്രവർത്തനങ്ങൾ ചെയ്ത ഉപയോക്താക്കളുടെ പട്ടികയാണ്.',
+'activeusers-count'      => 'അവസാനത്തെ {{PLURAL:$3|ദിവസം|$3 ദിവസങ്ങളിൽ}} നടത്തിയ {{PLURAL:$1|തിരുത്തൽ|$1 തിരുത്തലുകൾ}}',
+'activeusers-from'       => 'ഇങ്ങിനെ തുടങ്ങുന്ന ഉപയോക്താക്കളെ കാട്ടുക:',
+'activeusers-hidebots'   => 'ബോട്ടുകളെ മറയ്ക്കുക',
+'activeusers-hidesysops' => 'കാര്യനിർവാഹകരെ മറയ്ക്കുക',
+'activeusers-noresult'   => 'ഉപയോക്താക്കളില്ല',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'ഉപയോക്തൃ സൃഷ്ടിയുടെ രേഖ',
@@ -2922,6 +2924,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-flash-fired-0'    => 'ഫ്ലാഷ് ഉപയോഗിച്ചില്ല',
 'exif-flash-fired-1'    => 'ഫ്ലാഷ് ഉപയോഗിച്ചു',
 'exif-flash-mode-1'     => 'നിർബന്ധിത ഫ്ലാഷ് അടിയ്ക്കൽ',
+'exif-flash-mode-2'     => 'നിർബന്ധിത ഫ്ലാഷ് ഒഴിവാക്കൽ',
 'exif-flash-mode-3'     => 'സ്വയം പ്രവർത്തന രീതി',
 'exif-flash-function-1' => 'ഫ്ലാഷ് സൗകര്യം ഇല്ല',
 

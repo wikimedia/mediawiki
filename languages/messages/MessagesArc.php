@@ -299,7 +299,7 @@ $messages = array(
 'toc'                     => 'ܚܒܝܫܬ̈ܐ',
 'showtoc'                 => 'ܚܘܝ',
 'hidetoc'                 => 'ܛܫܝ',
-'viewdeleted'             => 'ܚܙܝ $1?',
+'viewdeleted'             => 'ܚܙܝ $1؟',
 'restorelink'             => '{{PLURAL:$1|ܚܕ ܫܘܚܠܦܐ ܫܝܦܐ|$1 ܫܘܚܠܦ̈ܐ ܫܝܦ̈ܐ}}',
 'red-link-title'          => '$1 (ܦܐܬܐ ܗܕܐ ܠܝܬ)',
 
@@ -333,6 +333,7 @@ $messages = array(
 'logouttext'              => "'''ܗܫܐ ܦܠܛܠܟ ܡܢ ܚܘܫܒܢܟ.'''
 
 ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܬܚܫܚܢܐ ܠܐ ܝܕܝܥܐ. ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܬܚܫܚܢܐ ܐܚܪܢܐ.
+
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation'         => '== ܒܫܝܢܐ, $1! ==
 ܐܬܒܪܝ ܚܘܫܒܢܟ.
@@ -358,7 +359,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
 'loginerror'              => 'ܦܘܕܐ ܒܥܠܠܐ',
 'loginsuccesstitle'       => 'ܥܠܠܐ ܓܡܪ',
-'loginsuccess'            => "'''ܗܫܐ ܥܠܝܠܐ ܐܢܬ ܒ {{SITENAME}} ܐܝܟ \"\$1\".'''",
+'loginsuccess'            => "'''ܗܫܐ ܥܠܝܠܐ ܐܢܬ ܒ{{SITENAME}} ܒܫܡ \"\$1\".'''",
 'mailmypassword'          => 'ܫܕܪ ܠܝ ܡܠܬܐ ܚܕܬܐ ܕܥܠܠܐ',
 'passwordremindertitle'   => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ ܚܕܬܐ ܠ{{SITENAME}}',
 'noemail'                 => 'ܠܝܬ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ "$1".',
@@ -534,12 +535,13 @@ Note that some pages may continue to be displayed as if you were still logged in
 'searchall'                      => 'ܟܠ',
 'showingresults'                 => "ܚܘܘܝܐ ܠܬܚܬ {{PLURAL:$1|'''1''' ܦܠܛܐ|'''$1''' ܦܠܛ̈ܐ}} ܫܪܐ ܡܢ ܡܢܝܢܐ '''$2'''.",
 'showingresultsheader'           => "{{PLURAL:$5|ܦܠܛܐ '''$1''' ܡܢ '''$3'''|ܦܠܛ̈ܐ '''$1 - $2''' ܡܢ '''$3'''}} ܠ'''$4'''",
-'search-nonefound'               => 'ܠܝܬ ܦܠܛ̈ܐ ܐܘܝ ܠܗܢܐ ܫܘܐܠܐ.',
+'search-nonefound'               => 'ܠܝܬ ܦܠܛ̈ܐ ܐܘܝ ܠܗܢܐ ܒܨܝܐ.',
 'powersearch'                    => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
 'powersearch-legend'             => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
 'powersearch-ns'                 => 'ܒܨܝ ܒܚܩܠܬ̈ܐ:',
 'powersearch-redir'              => 'ܚܘܝ ܨܘܝܒ̈ܐ',
 'powersearch-field'              => 'ܒܨܝ ܥܠ',
+'powersearch-togglelabel'        => 'ܓܒܝ:',
 'powersearch-toggleall'          => 'ܟܠ',
 'powersearch-togglenone'         => 'ܠܐ ܡܕܡ',
 'search-external'                => 'ܒܘܨܝܐ ܒܪܝܐ',

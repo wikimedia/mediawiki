@@ -635,7 +635,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'mostcategories'          => 'Pajes con la plu categorias',
 'mostimages'              => 'Fixes a ce es la plu lias',
 'mostrevisions'           => 'Pajes con la plu revisas',
-'prefixindex'             => 'Catalogo de prefises',
+'prefixindex'             => 'Tota pajes con prefisa',
 'shortpages'              => 'Pajes corta',
 'longpages'               => 'Pajes longa',
 'deadendpages'            => 'Pajes sin sorti',

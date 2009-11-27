@@ -25,6 +25,9 @@ $messages = array(
 'november'  => 'Nuwamba',
 'december'  => 'Disamba',
 
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|Rukuni|Rukunoni}}',
+
 'navigation' => 'Shawagi',
 
 'tagline'          => 'Daga {{SITENAME}}',
@@ -40,6 +43,8 @@ $messages = array(
 'talk'             => 'Mahawara',
 'views'            => 'Hange',
 'toolbox'          => 'Akwatin kayan aiki',
+'otherlanguages'   => 'A wasu harsuna',
+'lastmodifiedat'   => 'Sauyin baya na wannan shafi ran $1, a $2.',
 'jumpto'           => 'A tsallaka zuwa:',
 'jumptonavigation' => 'Shawagi',
 'jumptosearch'     => 'Nema',
@@ -47,6 +52,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'Game da {{SITENAME}}',
 'aboutpage'      => 'Project:Game da',
+'copyright'      => 'Bayannai sun samu a ƙarƙashin $1.',
 'disclaimers'    => 'Gargaɗi',
 'disclaimerpage' => 'Project:Babban gargaɗi',
 'mainpage'       => 'Marhabin',
@@ -61,29 +67,51 @@ $messages = array(
 'red-link-title'  => '$1 (babu wannan shafi)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Shafi',
+'nstab-main'    => 'Shafi',
+'nstab-special' => 'Shafi na musamman',
+
+# General errors
+'missing-article' => 'Taskar bayannai ba ta samo matanin wani shafin da ya kamata ta samo ba, mai suna "$1" $2.
+
+Mafarin haka yawanci shi ne zare mai zuwa ga shafin da aka shafe ko gusar.
+
+In ba haka ba ne, to kun takalo wata tangarɗa a furogiram kin.
+Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare da nuna URL kin.',
 
 # Login and logout pages
 'nav-login-createaccount' => 'login ko buɗa akwanti',
 
 # Diffs
+'lineno'   => 'Layi $1:',
 'editundo' => 'Janyewa',
 
 # Search results
 'searchresults'             => 'Sakamakon bincike',
 'searchresults-title'       => 'Sakamakon bincike na "$1"',
 'searchsubtitle'            => 'Kun nemi \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|duka shafuna masu farawa da "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|duka shafuna masu zare zuwa "$1"]])',
+'viewprevnext'              => 'A duba ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 kalma|$2 kalmomi}})',
 'search-mwsuggest-enabled'  => 'Tare da shawarwari',
 'search-mwsuggest-disabled' => 'Banda shawarwari',
 
+# Recent changes
+'hist'            => 'Tarihi',
+'minoreditletter' => 'm',
+
 # Recent changes linked
 'recentchangeslinked' => 'Sauye-sauye masu dangantaka',
+
+# Upload
+'upload' => 'Girke fayil',
+
+# Namespace form on various pages
+'blanknamespace' => '(Babba)',
 
 # What links here
 'whatlinkshere' => 'Zaruruwan wannan shafi',
 
 # Block/unblock
+'blocklink'    => '',
 'contribslink' => 'Gudummuwa',
 
 # Tooltip help for the actions
@@ -91,6 +119,7 @@ $messages = array(
 'tooltip-ca-talk'                => 'Mahawara kan shafin bayannai',
 'tooltip-ca-edit'                => 'Ana iya gyara wannan shafi
 A yi amfani da maɓallin tantancewa kafin a adina',
+'tooltip-ca-history'             => 'Tsoffin sufofin wannan shafi',
 'tooltip-search'                 => 'Binciko {{SITENAME}}',
 'tooltip-search-go'              => 'A je ga shafi mai wannan suna idan akwai shi',
 'tooltip-search-fulltext'        => 'Binciko shafuka masu wannan matani',
@@ -101,9 +130,20 @@ A yi amfani da maɓallin tantancewa kafin a adina',
 'tooltip-n-randompage'           => 'A nuno wani shafi da ka',
 'tooltip-n-help'                 => 'A nuno taimako',
 'tooltip-t-whatlinkshere'        => 'Jerin duk shafunan Wiki da ke da zare a nan',
+'tooltip-t-recentchangeslinked'  => 'Sauye-sauyen baya-bayan nan a shafuna masu zare daga wannan shafi',
+'tooltip-t-upload'               => 'Girke fayiloli',
 'tooltip-t-specialpages'         => 'Jerin duk shafuka na musamman',
 'tooltip-t-print'                => 'Wannan shafi a sufar bugawa',
+'tooltip-t-permalink'            => 'Zaren dindindin zuwa ga sufar baya ta wannan shafi',
 'tooltip-ca-nstab-main'          => 'Duba shafin bayannai',
+'tooltip-ca-nstab-special'       => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
+
+# Bad image list
+'bad_image_list' => 'Fasalin yana kamar haka:
+
+Za a lura da layukan jeri kawai (masu farawa da *).
+Zaren farko a kan layi ya kamata ya nuna fayil maras kyau.
+Sauran zaruruwa a kan layin keɓaɓɓu ne, wato zuwa ga shafuna inda fayil kin zai iya kasancewa.',
 
 # Special:SpecialPages
 'specialpages' => 'Shafuka na musamman',

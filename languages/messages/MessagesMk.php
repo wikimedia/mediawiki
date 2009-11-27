@@ -2000,11 +2000,13 @@ PICT # misc.
 'listusers-blocked'  => '(блокиран)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Листа на активни корисници',
-'activeusers-intro'    => 'Ова е листа на корисници кои биле на некој начин активни во последните $1 {{PLURAL:$1|ден|дена}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|уредување|уредувања}} {{PLURAL:$3|денес|во последните $3 дена}}',
-'activeusers-from'     => 'Прикажува корисници кои почнуваат на:',
-'activeusers-noresult' => 'Нема пронајдено корисници.',
+'activeusers'            => 'Листа на активни корисници',
+'activeusers-intro'      => 'Ова е листа на корисници кои биле на некој начин активни во последните $1 {{PLURAL:$1|ден|дена}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|уредување|уредувања}} {{PLURAL:$3|денес|во последните $3 дена}}',
+'activeusers-from'       => 'Прикажува корисници кои почнуваат на:',
+'activeusers-hidebots'   => 'Сокриј ботови',
+'activeusers-hidesysops' => 'Сокриј систем-оператори',
+'activeusers-noresult'   => 'Нема пронајдено корисници.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Дневник на регистрирања на корисници',

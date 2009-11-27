@@ -98,12 +98,13 @@ $messages = array(
 'dec'           => 'Бар',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Янз|Янзс}}',
-'category_header'        => '«$1» гидг нерәдлһтә халхс',
-'subcategories'          => 'Баһар янзс',
-'hidden-categories'      => '{{PLURAL:$1|Бултулсн янз|Бултулсн янзс}}',
-'category-subcat-count'  => '{{PLURAL:$2|Тер янз эн һанцхн баһар янзта.|{{PLURAL:$1|$1 баһар янз үзүлв|$1 баһар янзс үзүлв|$1баһар янзс}} $2 ут туршдан үзүлв.}}',
-'category-article-count' => '{{PLURAL:$2|Тер янз һанцхн халхта.|{{PLURAL:$1|$1 халхиг үзүлв|$1 халхсиг үзүлв|$1 халхсиг үзүлв}}, $2 ут туршдан.}}',
+'pagecategories'         => '{{PLURAL:$1|Әәшл|Әәшлүд}}',
+'category_header'        => '«$1» әәшлд бәәдг халхс',
+'subcategories'          => 'Баһар әәшлүд',
+'category-media-header'  => '«$1» әәшлд бәәдг боомгуд',
+'hidden-categories'      => '{{PLURAL:$1|Бултулсн әәшл|Бултулсн әәшлүд}}',
+'category-subcat-count'  => '{{PLURAL:$2|Тер әәшл эн һанцхн баһар әәшлтә.|{{PLURAL:$1|$1 баһар әәшл үзүлв|$1 баһар әәшлүд үзүлв|$1 баһар әәшлүд}} $2 ут туршдан үзүлв.}}',
+'category-article-count' => '{{PLURAL:$2|Тер әәшл һанцхн халхта.|{{PLURAL:$1|$1 халхиг үзүлв|$1 халхсиг үзүлв|$1 халхсиг үзүлв}}, $2 ут туршдан.}}',
 'listingcontinuesabbrev' => '(цааранднь)',
 
 'about'         => 'Тодлҗ бичлһн',
@@ -121,8 +122,8 @@ $messages = array(
 'qbfind'         => 'Хәәлһн',
 'qbbrowse'       => 'Гүүһәд хәләх',
 'qbspecialpages' => 'Көдлхнә халхс',
-'faq'            => 'Хатяр биш сурсн сурвруд',
-'faqpage'        => 'Project:Хатяр биш сурсн сурвруд',
+'faq'            => 'Юм би',
+'faqpage'        => 'Project:Юм би',
 
 # Vector skin
 'vector-action-addsection'   => 'Төриг немх',
@@ -131,7 +132,7 @@ $messages = array(
 'vector-action-protect'      => 'Харсх',
 'vector-action-undelete'     => 'Һарһх биш',
 'vector-action-unprotect'    => 'Харсх биш',
-'vector-namespace-category'  => 'Янз',
+'vector-namespace-category'  => 'Әәшл',
 'vector-namespace-help'      => 'Цәәлһлһнә халх',
 'vector-namespace-image'     => 'Боомг',
 'vector-namespace-main'      => 'Халх',
@@ -220,7 +221,7 @@ $messages = array(
 'editsection'         => 'чиклх',
 'editold'             => 'чиклх',
 'editlink'            => 'чиклх',
-'viewsourcelink'      => 'ишиг үзүлх',
+'viewsourcelink'      => 'ишиг хәләх',
 'editsectionhint'     => '«$1» гидг хүвиг чиклх',
 'toc'                 => 'Һарг',
 'showtoc'             => 'үзүлх',
@@ -239,7 +240,7 @@ $messages = array(
 'nstab-image'    => 'Боомг',
 'nstab-template' => 'Зура',
 'nstab-help'     => 'Цәәлһлһн',
-'nstab-category' => 'Янз',
+'nstab-category' => 'Әәшл',
 
 # General errors
 'error'               => 'Эндү',
@@ -253,7 +254,7 @@ $messages = array(
 'missingarticle-diff' => '(йилһән: $1, $2)',
 'badtitle'            => 'Буру нернь',
 'badtitletext'        => 'Сурсн нерн буру, хоосн, аль му бичсн келн хоорнд нертә. Тиим чигн биз, нерн зөв уга үзгтә.',
-'viewsource'          => 'Ишиг үзүлх',
+'viewsource'          => 'Ишиг хәләх',
 
 # Login and logout pages
 'logouttext'              => "'''Та һарад бәәнәт.'''
@@ -360,7 +361,7 @@ $messages = array(
 'templatesusedpreview'             => '{{PLURAL:$1|Зура|Зурас}} эн хәләврт олзлсн:',
 'template-protected'               => '(харссн)',
 'template-semiprotected'           => '(зәрм харссн)',
-'hiddencategories'                 => 'Эн халх тер $1 {{PLURAL:$1|бултулсн янзас|бултулсн янздас|бултулсн янздас}}:',
+'hiddencategories'                 => 'Эн халх тер $1 {{PLURAL:$1|бултулсн әәшләс|бултулсн әәшлүдәс|бултулсн әәшлүдәс}}:',
 'permissionserrorstext-withaction' => 'Та $2 кеҗ болшго. Юнгад гихлә, эн {{PLURAL:$1|учрар|учрар}}:',
 'edit-conflict'                    => 'Чикллһнә керүл.',
 
@@ -469,8 +470,7 @@ $messages = array(
 'group-autoconfirmed' => 'Эврә батлсн демнчнр',
 'group-bot'           => 'Көдлврүд',
 'group-sysop'         => 'Закрачуд',
-'group-bureaucrat'    => '
-Нойнчуд',
+'group-bureaucrat'    => 'Нойнчуд',
 'group-all'           => '(цуг)',
 
 'group-user-member'          => 'Демнч',
@@ -834,7 +834,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'tooltip-ca-nstab-project'        => 'Проектин халх',
 'tooltip-ca-nstab-image'          => 'Боомгин халхиг',
 'tooltip-ca-nstab-template'       => 'Зуран халх',
-'tooltip-ca-nstab-category'       => 'Янзин халхиг үзүлх',
+'tooltip-ca-nstab-category'       => 'Әәшлин халхиг үзүлх',
 'tooltip-minoredit'               => 'Эн хүврлһиг баһ чинртә темдглх',
 'tooltip-save'                    => 'Тана сольлһиг хадһлтн',
 'tooltip-preview'                 => 'Урдаснь хәләвр. Буйн болтха, энгиг олзлад, тегәд хадһлтн!',

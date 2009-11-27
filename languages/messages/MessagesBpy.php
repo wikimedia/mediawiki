@@ -478,6 +478,7 @@ $2',
 {{SITENAME}} এহানে কুকিল আতাকুরারে লগইন করের।
 তি কুকিহানি আতুর করিয়া থসত।
 কৃপা করিয়া কুকি চালা, বারো তর নুৱা আতাকুরার নাঙ অহাত্ত খন্তা চাবিল হমা।',
+'nocookieslogin'             => '{{SITENAME}} ত কুকি (cookies) ল আতাকুরা লগ-ইন করতারাগ। তর ব্রাঊজারর কুকি বন্ধ ইসে। কুকি চালিয়া আরাকমু হৎনা কর।',
 'noname'                     => 'তি চুম্পা আতাকুরার নাঙহান না লেপ করিসত।',
 'loginsuccesstitle'          => 'লগইনহান চুমিল',
 'loginsuccess'               => "'''এরে {{SITENAME}}ত তি \"\$1\" হিসাবে না হমাসত।'''",
@@ -514,6 +515,10 @@ $2',
 'mailerror'                  => 'ইমেইল দিয়া পেথানিত বেসেপ ইসে: $1',
 'acct_creation_throttle_hit' => 'ঙাক্করেদিবাং, এরে উইকির চাকুরা হিসাবে তর আইপিত্ত এবাকাপেয়া  {{PLURAL:$1|আহান একাউন্ট|$1 হান একাউন্ট}} হংকরেবেলাসত৷ অতাত্ত বপ হঙকরানির য়্যাথাং নেই লেপ্পা সময়র ভিতরে।
 অহানে এরে আইপিত্ত হাদিএহান তি আরতা একাউন্ট খুলে নুৱারবে।',
+'emailauthenticated'         => 'তর ই-মেইল ঠিকানাহান $2 তারিখর $3 ত লেপকরানি অসে।',
+'emailnotauthenticated'      => 'তর ইমেইল ঠিকানাহান এপাগাউ যাচাই করানি নাইসে।
+তলর বৈশিষ্ঠ্য অতার কা ই-মেইল দিয়া পেঠানি নাইব।',
+'noemailprefs'               => 'এর বৈশিষ্ঠ্য এহান কাম করুয়ানি মনেইলে তরতা ই-মেইণ টিকানা আহান লেপকরানি লাগতই।',
 'emailconfirmlink'           => 'ইমেইল ঠিকানাহান লেপকর',
 'accountcreated'             => 'একাউন্টহান হঙকরানি ইল',
 'accountcreatedtext'         => 'আতাকুরা $1 -র কা একাউন্টহান হঙকরানি ইল।',
@@ -528,6 +533,7 @@ $2',
 'newpassword'               => 'নুৱা খন্তাচাবি:',
 'retypenew'                 => 'নুৱা খন্তাচাবি বারো টাইপ কর:',
 'resetpass_submit'          => 'খন্তাচাবি লেপকর বারো লগ-ইন কর',
+'resetpass_success'         => 'তর খন্তা চাবি হবাই বালাই পতিল। তি এপাগা ভিতরে হমারগা...',
 'resetpass_forbidden'       => 'খন্তাচাবিগ সিলকরানি নুৱারলাঙ',
 'resetpass-no-info'         => 'পাতা এহানাত হমিতে গেলেগা তি যেসারেউ লগইন করানি লাগতই।',
 'resetpass-submit-loggedin' => 'খন্তাচাবি সিলকর',
@@ -651,6 +657,13 @@ $2',
 'edit-already-exists'              => 'নুৱা পাতাহান হঙকরানি নাইল।
 পাতাএহান আগেত্তর আসে।',
 
+# Parser/template warnings
+'post-expand-template-argument-category' => 'পতাহাত পুসিসি মডেলর জর থা পরসেগা',
+'parser-template-loop-warning'           => 'মডেলর তরিগ দেখরাং: [[$1]]',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'একাউন্টহান হঙকরানি নাইব',
+
 # History pages
 'viewpagelogs'           => 'পাতাহানর লগ চা',
 'nohistory'              => 'পাতা এহান পতানির কোন ইতিহাস নেই।',
@@ -689,8 +702,16 @@ $2',
 'revdelete-nooldid-title'    => 'টার্গেট চুমকরানি লালুইসে',
 'revdelete-nologtype-title'  => 'লগ টাইপ না দিয়াসি',
 'revdelete-nologtype-text'   => 'কাম এহান করানির কা কি জাতর লগ লেপ নাকরিসত।',
+'revdelete-nologid-title'    => 'লগর পারেঙহানি চুম নাইসে',
 'revdelete-no-file'          => 'মাতিসত ফাইলগ নেই।',
 'revdelete-show-file-submit' => 'হায়',
+'revdelete-legend'           => 'আহির ফঙে থনা হান সিতকর',
+'revdelete-hide-text'        => 'চুমকরিসত ইকা গুর',
+'revdelete-hide-name'        => 'কাম বারা লক্ষ্যহান গুর',
+'revdelete-hide-comment'     => 'পতানির বারে মন্তব্য গুর',
+'revdelete-hide-user'        => 'পতাকুরার নাঙহান/আইপি ঠিকানাহান গুর',
+'revdelete-hide-image'       => 'ফাইলর বিষয়বস্তু গুর',
+'revdelete-unsuppress'       => 'সীমাবদ্ধতাহানি নেইকরেদে',
 'revdelete-log'              => 'পুসানির কারণহান:',
 'revdel-restore'             => 'দৃষ্টিপাত সিলকর',
 'pagehist'                   => 'পাতার ইতিহাসহান',
@@ -698,9 +719,23 @@ $2',
 'revdelete-content'          => 'বিষয়বস্তু',
 'revdelete-summary'          => 'সারাংশ পতানি',
 'revdelete-uname'            => 'আতাকুরা',
+'revdelete-restricted'       => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি ফলা',
+'revdelete-unrestricted'     => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি নেইকর',
+'revdelete-hid'              => '$1 গুর',
+'revdelete-unhid'            => '$1 নাগুরি',
+'revdelete-otherreason'      => 'আর আর কারণ:',
 'revdelete-reasonotherlist'  => 'আরাক কারণ',
+'revdelete-edit-reasonlist'  => 'থেইকরানির কারণহান পতা',
+'revdelete-offender'         => 'রিভিশন দিয়াসেগ ইলতাই:',
+
+# Suppression log
+'suppressionlog' => 'লগ নিকালা',
 
 # History merging
+'mergehistory'        => 'পাতার ইতিহাসহানি পুলকর',
+'mergehistory-box'    => 'পাতা দুহান মিহানির সংশোধনহানি:',
+'mergehistory-from'   => 'উৎসর পাতা:',
+'mergehistory-into'   => 'থুঙনির পাতা:',
 'mergehistory-reason' => 'কারণ:',
 
 # Merge log

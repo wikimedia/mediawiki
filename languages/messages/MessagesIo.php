@@ -996,8 +996,9 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'pager-older-n'           => '{{PLURAL:$1|plu anciena 1|plu anciena $1}}',
 
 # Book sources
-'booksources'    => 'Fonti di libri',
-'booksources-go' => 'Irar',
+'booksources'               => 'Fonti di libri',
+'booksources-search-legend' => 'Serchez librala fonti',
+'booksources-go'            => 'Irar',
 
 # Special:Log
 'specialloguserlabel'  => 'Uzero:',
