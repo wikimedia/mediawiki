@@ -286,6 +286,8 @@ Hopefully we will remove this configuration var soon)
 * Updated Unicode normalization tables
 * (bug 21604) Spellcheck attribute for editsummary
 * New wgCategories JavaScript global variable for userscripts.
+* (bug 20717) Added checkboxes to hide users with bot and/or sysop group
+  membership in SpecialActiveusers
 
 === Bug fixes in 1.16 ===
 
