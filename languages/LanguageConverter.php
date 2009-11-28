@@ -243,13 +243,7 @@ class LanguageConverter {
 					global $wgOut, $wgUseXVO;
 					$wgOut->addVaryHeader( 'Accept-Language' );
 					if( $wgUseXVO ) {
-						$aloption = array();
-						foreach( $this->mVariants as $variant ) {
-							if($variant === $this->mMainLanguageCode)
-								continue;
-							$aloption[] = 'string-contains=' . $variant;
-						}
-						$wgOut->addXVOHeader( 'Accept-Language', $aloption );
+						$wgOut->addXVOHeader( 'Accept-Language', array($ret_language) );
 					}
 				}
 				return $ret_language;
