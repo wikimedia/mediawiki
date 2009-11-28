@@ -185,15 +185,8 @@ class LanguageConverter {
 			// variable in case this is called before the user's
 			// preference is loaded
 			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
-				// bug 21672: Add Accept-Language to Vary and XVO headers
-				// to help Squid to determine user's perferred local language
-				// thanks to Liangent's help
-				global $wgOut, $wgUseXVO;
-				$wgOut->addVaryHeader( 'Accept-Language' );
-				if( $wgUseXVO )
-					$wgOut->addXVOHeader( 'Accept-Language' );
-				$acceptLanguage = strtolower( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 				
+				$acceptLanguage = strtolower( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 				// explode by comma
 				$result = explode(',', $acceptLanguage);
 				
@@ -211,11 +204,13 @@ class LanguageConverter {
 				}
 
 				$fallback_languages = array();
+				$ret_language = null;
 				foreach( $languages as $language ) {
 					// strip whitespace
 					$language = trim( $language );
 					if( in_array( $language, $this->mVariants ) ) {
-						return $language;
+						$ret_language = $language;
+						break;
 					}
 					else {
 						// To see if there are fallbacks of current language.
@@ -228,14 +223,30 @@ class LanguageConverter {
 							$fallback_languages = array_merge( $fallback_languages, $fallbacks );
 					}
 				}
-
+				
 				// process fallback languages now
-				$fallback_languages = array_unique( $fallback_languages );
-				foreach( $fallback_languages as $language ) {
-					if( in_array( $language, $this->mVariants ) ) {
-						return $language;
+				if( $ret_language === null ) {
+					$fallback_languages = array_unique( $fallback_languages );
+					foreach( $fallback_languages as $language ) {
+						if( in_array( $language, $this->mVariants ) ) {
+							$ret_language = $language;
+							break;
+						}
 					}
 				}
+				
+				// bug 21672: Add Accept-Language to Vary and XVO headers
+				// to help Squid to determine user's perferred local language
+				// ONLY add Accept-Language when a variant has been found out
+				// thanks to Liangent's help
+				if( $ret_language !== $this->mMainLanguageCode ) {
+					global $wgOut, $wgUseXVO;
+					$wgOut->addVaryHeader( 'Accept-Language' );
+					if( $wgUseXVO )
+						$wgOut->addXVOHeader( 'Accept-Language' );
+					
+				}
+				return $ret_language;
 			}
 		}
 
