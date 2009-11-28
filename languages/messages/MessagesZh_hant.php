@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -896,6 +896,7 @@ $2',
 'rev-deleted-comment'         => '（註釋已移除）',
 'rev-deleted-user'            => '（用戶名已移除）',
 'rev-deleted-event'           => '（日誌動作已移除）',
+'rev-deleted-user-contribs'   => '[用戶名或IP地址已移除 - 從貢獻中隱藏編輯]',
 'rev-deleted-text-permission' => "該頁面修訂已經被'''刪除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。",
 'rev-deleted-text-unhide'     => "該頁面修訂已經被'''刪除'''。
@@ -1823,11 +1824,13 @@ Template:消除歧義',
 'listusers-blocked'  => '（已封鎖）',
 
 # Special:ActiveUsers
-'activeusers'          => '活躍用戶列表',
-'activeusers-intro'    => '這個是在最近$1天之內有一些動作的用戶列表。',
-'activeusers-count'    => '於$3天內的$1次編輯',
-'activeusers-from'     => '顯示用戶開始於：',
-'activeusers-noresult' => '找不到用戶。',
+'activeusers'            => '活躍用戶列表',
+'activeusers-intro'      => '這個是在最近$1天之內有一些動作的用戶列表。',
+'activeusers-count'      => '於$3天內的$1次編輯',
+'activeusers-from'       => '顯示用戶開始於：',
+'activeusers-hidebots'   => '隱藏機器人',
+'activeusers-hidesysops' => '隱藏管理員',
+'activeusers-noresult'   => '找不到用戶。',
 
 # Special:Log/newusers
 'newuserlogpage'              => '新進用戶名冊',

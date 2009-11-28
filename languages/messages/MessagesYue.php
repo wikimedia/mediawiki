@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -872,6 +872,7 @@ $1',
 'rev-deleted-comment'         => '(評論已經移除咗)',
 'rev-deleted-user'            => '(用戶名已經移除咗)',
 'rev-deleted-event'           => '(日誌動作已經移除咗)',
+'rev-deleted-user-contribs'   => '[用戶名或IP地址拎走咗 - 響貢獻度隱藏咗編輯]',
 'rev-deleted-text-permission' => "呢頁嘅修訂已經被'''洗咗'''。
 喺[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
 'rev-deleted-text-unhide'     => "呢頁嘅修訂已經被'''洗咗'''。
@@ -1791,11 +1792,13 @@ Template:搞清楚',
 'listusers-blocked'  => '(封鎖咗)',
 
 # Special:ActiveUsers
-'activeusers'          => '活躍用戶名單',
-'activeusers-intro'    => '呢個係響最近$1日之內有一啲動作嘅用戶名單。',
-'activeusers-count'    => '響$3日之內嘅$1次編輯',
-'activeusers-from'     => '顯示用戶開始於:',
-'activeusers-noresult' => '搵唔到用戶。',
+'activeusers'            => '活躍用戶名單',
+'activeusers-intro'      => '呢個係響最近$1日之內有一啲動作嘅用戶名單。',
+'activeusers-count'      => '響$3日之內嘅$1次編輯',
+'activeusers-from'       => '顯示用戶開始於:',
+'activeusers-hidebots'   => '隱藏機械人',
+'activeusers-hidesysops' => '隱藏管理員',
+'activeusers-noresult'   => '搵唔到用戶。',
 
 # Special:Log/newusers
 'newuserlogpage'              => '使用者開戶記錄',
