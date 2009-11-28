@@ -185,6 +185,12 @@ class LanguageConverter {
 			// variable in case this is called before the user's
 			// preference is loaded
 			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
+				// bug 21672: Add Accept-Language to Vary and XVO headers
+				// to help Squid to determine user's perferred local language
+				global $wgOut, $wgUseXVO;
+				$wgOut->addVaryHeader( 'Accept-Language' );
+				if( $wgUseXVO )
+					$wgOut->addXVOHeader( 'Accept-Language' );
 				$acceptLanguage = strtolower( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 				
 				// explode by comma
