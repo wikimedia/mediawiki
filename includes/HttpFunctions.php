@@ -1,13 +1,7 @@
 <?php
-
-/**
- * @defgroup HTTP HTTP
- * @file
- * @ingroup HTTP
- */
-
 /**
  * Various HTTP related functions
+ * @defgroup HTTP HTTP
  * @ingroup HTTP
  */
 class Http {
