@@ -1910,11 +1910,13 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'listusers-blocked'  => '(konto blokkert)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Liste over aktive brukarar',
-'activeusers-intro'    => 'Dette er ei liste over brukarar som har hatt ei eller anna form for aktivitet innanfor {{PLURAL:$1|den siste dagen|dei siste dagane}}.',
-'activeusers-count'    => '{{PLURAL:$1|Éi endring|$1 endringer}} {{PLURAL:$3|det siste dygnet|dei siste $3 dygna}}',
-'activeusers-from'     => 'Vis brukarar frå og med:',
-'activeusers-noresult' => 'Ingen brukarar funne.',
+'activeusers'            => 'Liste over aktive brukarar',
+'activeusers-intro'      => 'Dette er ei liste over brukarar som har hatt ei eller anna form for aktivitet innanfor {{PLURAL:$1|den siste dagen|dei siste dagane}}.',
+'activeusers-count'      => '{{PLURAL:$1|Éi endring|$1 endringer}} {{PLURAL:$3|det siste dygnet|dei siste $3 dygna}}',
+'activeusers-from'       => 'Vis brukarar frå og med:',
+'activeusers-hidebots'   => 'Skjul botar',
+'activeusers-hidesysops' => 'Skjul administratorar',
+'activeusers-noresult'   => 'Ingen brukarar funne.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Brukaropprettingslogg',

@@ -1787,11 +1787,13 @@ Protocòli suportè: <tt>$1</tt>',
 'listusers-blocked'  => '(blocà)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista dei utenti ativi',
-'activeusers-intro'    => 'Sta qua xe la lista dei utenti che ga fato calcossa {{PLURAL:$1|sto ultimo zorno|sti ultimi $1 zorni}}.',
-'activeusers-count'    => "$1 {{PLURAL:$1|canbiamento|canbiamenti}} {{PLURAL:$3|ne l'ultimo zorno|in tei ultimi $3 zorni}}",
-'activeusers-from'     => 'Fà védar i utenti a partir da:',
-'activeusers-noresult' => 'Nissun utente catà.',
+'activeusers'            => 'Lista dei utenti ativi',
+'activeusers-intro'      => 'Sta qua xe la lista dei utenti che ga fato calcossa {{PLURAL:$1|sto ultimo zorno|sti ultimi $1 zorni}}.',
+'activeusers-count'      => "$1 {{PLURAL:$1|canbiamento|canbiamenti}} {{PLURAL:$3|ne l'ultimo zorno|in tei ultimi $3 zorni}}",
+'activeusers-from'       => 'Fà védar i utenti a partir da:',
+'activeusers-hidebots'   => 'Scondi i bot',
+'activeusers-hidesysops' => 'Scondi i aministradori',
+'activeusers-noresult'   => 'Nissun utente catà.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro utenti novi',

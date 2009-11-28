@@ -1947,11 +1947,13 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'listusers-blocked'  => '({{GENDER:$1|zablokowany|zablokowana|zablokowany}})',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista aktywnych użytkowników',
-'activeusers-intro'    => 'Poniżej znajduje się lista użytkowników, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}.',
-'activeusers-count'    => 'w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
-'activeusers-from'     => 'Pokaż użytkowników zaczynając od',
-'activeusers-noresult' => 'Nie odnaleziono żadnego użytkownika.',
+'activeusers'            => 'Lista aktywnych użytkowników',
+'activeusers-intro'      => 'Poniżej znajduje się lista użytkowników, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}.',
+'activeusers-count'      => 'w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
+'activeusers-from'       => 'Pokaż użytkowników zaczynając od',
+'activeusers-hidebots'   => 'Ukryj boty',
+'activeusers-hidesysops' => 'Ukryj administratorów',
+'activeusers-noresult'   => 'Nie odnaleziono żadnego użytkownika.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nowi użytkownicy',

@@ -2075,11 +2075,13 @@ Ondersteunde protocollen: <tt>$1</tt>',
 'listusers-blocked'  => '(geblokkeerd)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Aanwezige gebruikers',
-'activeusers-intro'    => 'Dit is een lijst met gebruikers die enige activiteit hebben laten zien in de afgelopen {{PLURAL:$1|dag|$1 dagen}}.',
-'activeusers-count'    => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
-'activeusers-from'     => 'Gebruikers worden weergegeven vanaf:',
-'activeusers-noresult' => 'Geen actieve gebruikers gevonden.',
+'activeusers'            => 'Aanwezige gebruikers',
+'activeusers-intro'      => 'Dit is een lijst met gebruikers die enige activiteit hebben laten zien in de afgelopen {{PLURAL:$1|dag|$1 dagen}}.',
+'activeusers-count'      => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
+'activeusers-from'       => 'Gebruikers worden weergegeven vanaf:',
+'activeusers-hidebots'   => 'Bots verbergen',
+'activeusers-hidesysops' => 'Beheerders verbergen',
+'activeusers-noresult'   => 'Geen actieve gebruikers gevonden.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieuwe gebruikers',

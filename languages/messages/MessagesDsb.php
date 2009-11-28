@@ -1805,11 +1805,13 @@ Pódpěrane protokole: <tt>$1</tt>',
 'listusers-blocked'  => '(blokěrowany)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lisćina aktiwnych wužywarjow',
-'activeusers-intro'    => 'To jo lisćina wužywarjow, kotrež su byli aktiwne za {{PLURAL:$1|slědny źeń|slědnej $1 dnja|slědne $1 dny|slědnych $1 dnjow}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach|slědnych $3 dnjach}}',
-'activeusers-from'     => 'Wužywarjow zwobrazniś, zachopinajucy z:',
-'activeusers-noresult' => 'Žedne wužywarje namakane.',
+'activeusers'            => 'Lisćina aktiwnych wužywarjow',
+'activeusers-intro'      => 'To jo lisćina wužywarjow, kotrež su byli aktiwne za {{PLURAL:$1|slědny źeń|slědnej $1 dnja|slědne $1 dny|slědnych $1 dnjow}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach|slědnych $3 dnjach}}',
+'activeusers-from'       => 'Wužywarjow zwobrazniś, zachopinajucy z:',
+'activeusers-hidebots'   => 'Boty schowaś',
+'activeusers-hidesysops' => 'Administratorow schowaś',
+'activeusers-noresult'   => 'Žedne wužywarje namakane.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Protokol nowych wužywarjow',

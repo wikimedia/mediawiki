@@ -1931,11 +1931,13 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-blocked'  => '(차단됨)',
 
 # Special:ActiveUsers
-'activeusers'          => '활동 중인 사용자 목록',
-'activeusers-intro'    => '다음은 최근 $1일 동안 활동한 사용자의 목록입니다.',
-'activeusers-count'    => '최근 $3일 사이의 편집 $1개',
-'activeusers-from'     => '다음으로 시작하는 사용자를 보기:',
-'activeusers-noresult' => '사용자가 없습니다.',
+'activeusers'            => '활동 중인 사용자 목록',
+'activeusers-intro'      => '다음은 최근 $1일 동안 활동한 사용자의 목록입니다.',
+'activeusers-count'      => '최근 $3일 사이의 편집 $1개',
+'activeusers-from'       => '다음으로 시작하는 사용자를 보기:',
+'activeusers-hidebots'   => '봇을 숨기기',
+'activeusers-hidesysops' => '관리자를 숨기기',
+'activeusers-noresult'   => '사용자가 없습니다.',
 
 # Special:Log/newusers
 'newuserlogpage'              => '사용자 등록 기록',

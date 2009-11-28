@@ -1662,7 +1662,7 @@ Si vous voulez toujours téléverser votre fichier, veuillez revenir en arrière
 'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de le téléverser à nouveau.',
 'successfulupload'            => 'Téléversement effectué avec succès',
 'uploadwarning'               => 'Attention !',
-'uploadwarning-text'          => 'Modifiez la description du fichier est essayez de nouveau.',
+'uploadwarning-text'          => 'Modifiez la description du fichier et essayez de nouveau.',
 'savefile'                    => 'Sauvegarder le fichier',
 'uploadedimage'               => 'a téléversé « [[$1]] »',
 'overwroteimage'              => 'a téléversé une nouvelle version de « [[$1]] »',
