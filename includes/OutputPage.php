@@ -50,6 +50,8 @@ class OutputPage {
 
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
+	private $mVaryHeader = array( 'Accept-Encoding', 'Cookie' );
+	private $mXVOHeader = array( 'Accept-Encoding' => array('list-contains=gzip') );
 
 	/**
 	 * Constructor
@@ -805,19 +807,45 @@ class OutputPage {
 		return false;
 	}
 
+	public function addXVOHeader( $header, $option = null ) {
+		if ( !array_key_exists( $header, $this->mXVOHeader ) ) {
+			$this->mXVOHeader[$header] = $option;
+		}
+		elseif( is_array( $option ) ) {
+			if( is_array( $this->mXVOHeader[$header] ) ) {
+				$this->mXVOHeader[$header] = array_merge( $this->mXVOHeader[$header], $option );
+			}
+			else {
+				$this->mXVOHeader[$header] = $option;
+			}
+		}
+	}
+
+	public function addVaryHeader( $header ) {
+		if ( !in_array( $header, $this->mVaryHeader ) ) {
+			$this->mVaryHeader[] = $header;
+		}
+	}
+
 	/** Get a complete X-Vary-Options header */
 	public function getXVO() {
 		$cvCookies = $this->getCacheVaryCookies();
-		$xvo = 'X-Vary-Options: Accept-Encoding;list-contains=gzip,Cookie;';
-		$first = true;
+		
+		$cookiesOption = array();
 		foreach ( $cvCookies as $cookieName ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				$xvo .= ';';
-			}
-			$xvo .= 'string-contains=' . $cookieName;
+			$cookiesOption[] = 'string-contains=' . $cookieName;
 		}
+		$this->addXVOHeader( 'Cookie', $cookiesOption );
+		
+		$headers = array();
+		foreach( $this->mXVOHeader as $header => $option ) {
+			$newheader = $header;
+			if( is_array( $option ) )
+				$newheader .= ';' . implode( ';', $option );
+			$headers[] = $newheader;
+		}
+		$xvo = 'X-Vary-Options: ' . implode( ',', $headers );
+		
 		return $xvo;
 	}
 
@@ -830,7 +858,7 @@ class OutputPage {
 
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
-		$response->header( 'Vary: Accept-Encoding, Cookie' );
+		$response->header( 'Vary: ' . join( ', ', $this->mVaryHeader ) );
 
 		if ( $wgUseXVO ) {
 			# Add an X-Vary-Options header for Squid with Wikimedia patches
