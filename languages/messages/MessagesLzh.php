@@ -729,6 +729,7 @@ $2',
 'rev-deleted-comment'         => '（此註刪矣）',
 'rev-deleted-user'            => '（此簿刪矣）',
 'rev-deleted-event'           => '（此誌刪矣）',
+'rev-deleted-user-contribs'   => '[簿名或IP地址已除 - 從貢藏纂]',
 'rev-deleted-text-permission' => "此審'''刪'''矣，詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。",
 'rev-deleted-text-unhide'     => "此審'''刪'''矣，詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。
 有秩仍看者，[$1 看此審]也。",
@@ -1579,11 +1580,13 @@ $1",
 'listusers-blocked'  => '（已禁）',
 
 # Special:ActiveUsers
-'activeusers'          => '躍簿',
-'activeusers-intro'    => '此乃為近$1天內之躍簿也。',
-'activeusers-count'    => '$3天內之$1易',
-'activeusers-from'     => '示簿始於：',
-'activeusers-noresult' => '無簿矣。',
+'activeusers'            => '躍簿',
+'activeusers-intro'      => '此乃為近$1天內之躍簿也。',
+'activeusers-count'      => '$3天內之$1易',
+'activeusers-from'       => '示簿始於：',
+'activeusers-hidebots'   => '藏僕',
+'activeusers-hidesysops' => '藏有秩',
+'activeusers-noresult'   => '無簿矣。',
 
 # Special:Log/newusers
 'newuserlogpage'              => '誌簿',

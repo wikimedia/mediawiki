@@ -38,6 +38,9 @@ $messages = array(
 'recentchanges-label-bot'  => '這次編輯是由機械人進行',
 'rcshowhidebots'           => '$1機械人的編輯',
 
+# Special:ActiveUsers
+'activeusers-hidebots' => '隱藏機械人',
+
 # Tooltip help for the actions
 'tooltip-t-print' => '這個頁面的可打印版本',
 
