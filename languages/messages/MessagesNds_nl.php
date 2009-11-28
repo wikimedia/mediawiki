@@ -1966,11 +1966,13 @@ Ondersteunde protecollen: <tt>$1</tt>',
 'listusers-blocked'  => '(eblokkeerd)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Actieve gebrukers',
-'activeusers-intro'    => 'Dit is een lieste van gebrukers dee de of-eleupen $1 {{PLURAL:$1|dag|dagen}} enigszins actief ewes bin.',
-'activeusers-count'    => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de of-eleupen {{PLURAL:$3|dag|$3 dagen}}',
-'activeusers-from'     => 'Gebrukers weergeven vanof:',
-'activeusers-noresult' => 'Gien actieve gebrukers evunnen.',
+'activeusers'            => 'Actieve gebrukers',
+'activeusers-intro'      => 'Dit is een lieste van gebrukers dee de of-eleupen $1 {{PLURAL:$1|dag|dagen}} enigszins actief ewes bin.',
+'activeusers-count'      => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de of-eleupen {{PLURAL:$3|dag|$3 dagen}}',
+'activeusers-from'       => 'Gebrukers weergeven vanof:',
+'activeusers-hidebots'   => 'Bots verbargen',
+'activeusers-hidesysops' => 'Beheerders verbargen',
+'activeusers-noresult'   => 'Gien actieve gebrukers evunnen.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek mit anwas',

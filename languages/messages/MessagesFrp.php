@@ -761,7 +761,7 @@ Volyéd tornar èprovar.',
 'passwordremindertitle'      => 'Voutron novél mot de pâssa temporèro dessus {{SITENAME}}',
 'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un novél mot de
 pâssa por {{SITENAME}} ($4). Un mot de pâssa temporèro at étâ fêt por
-l’utilisator « $2 » et est « $3 ». Se cen ére voutra entencion, vos vos devréd
+l’utilisator « $2 » et est « $3 ». S’o ére voutra entencion, vos vos devréd
 branchiér et pués chouèsir un novél mot de pâssa.
 Voutron mot de pâssa temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
 
@@ -1102,6 +1102,7 @@ Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'rev-delundel'                => 'fâre vêre / cachiér',
+'rev-showdeleted'             => 'fâre vêre',
 'revisiondelete'              => 'Suprimar / refâre des vèrsions',
 'revdelete-nooldid-title'     => 'Vèrsion ciba envalida',
 'revdelete-nooldid-text'      => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes de cela fonccion,
@@ -1603,6 +1604,7 @@ Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs
 'upload'                      => 'Tèlèchargiér un fichiér',
 'uploadbtn'                   => 'Tèlèchargiér lo fichiér',
 'reuploaddesc'                => 'Anular lo tèlèchargement et tornar u formulèro de tèlèchargement.',
+'upload-tryagain'             => 'Mandar la dèscripcion du fichiér changiê',
 'uploadnologin'               => 'Pas branchiê',
 'uploadnologintext'           => 'Vos dête étre [[Special:UserLogin|branchiê]] por tèlèchargiér des fichiérs sur lo sèrvor.',
 'upload_directory_missing'    => 'Lo rèpèrtouèro de tèlèchargement ($1) est entrovâblo et pués at pas possu étre fêt per lo sèrvor vouèbe.',
@@ -1676,6 +1678,7 @@ Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et 
 Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que lo tornar tèlèchargiér.',
 'successfulupload'            => 'Tèlèchargement fêt avouéc reusséta',
 'uploadwarning'               => 'Atencion !',
+'uploadwarning-text'          => 'Changiéd la dèscripcion du fichiér et pués tornâd èprovar.',
 'savefile'                    => 'Sôvar lo fichiér',
 'uploadedimage'               => 'at tèlèchargiê « [[$1]] »',
 'overwroteimage'              => 'at tèlèchargiê una novèla vèrsion de « [[$1]] »',
@@ -2047,14 +2050,16 @@ Controlâd asse-ben les variantes de câssa.',
 'listusers-blocked'  => '(blocâ)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista des utilisators actifs',
-'activeusers-count'    => '$1 {{PLURAL:$1|novél changement|novéls changements}} dens {{PLURAL:$3|lo jorn passâ|los $3 jorns passâs}}',
-'activeusers-from'     => 'Fâre vêre los utilisators dês :',
-'activeusers-noresult' => 'Gins d’utilisator trovâ.',
+'activeusers'            => 'Lista des utilisators actifs',
+'activeusers-count'      => '$1 {{PLURAL:$1|novél changement|novéls changements}} dens {{PLURAL:$3|lo jorn passâ|los $3 jorns passâs}}',
+'activeusers-from'       => 'Fâre vêre los utilisators dês :',
+'activeusers-hidebots'   => 'Cachiér los bots',
+'activeusers-hidesysops' => 'Cachiér los administrators',
+'activeusers-noresult'   => 'Gins d’utilisator trovâ.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Jornal de les crèacions de comptos utilisator',
-'newuserlogpagetext'          => 'Cen est un jornal de les crèacions de comptos utilisator.',
+'newuserlogpagetext'          => 'O est un jornal de les crèacions de comptos utilisator.',
 'newuserlog-byemail'          => 'mot de pâssa mandâ per mèssageria èlèctronica',
 'newuserlog-create-entry'     => 'Novél compto utilisator',
 'newuserlog-create2-entry'    => 'at fêt lo novél compto $1',
@@ -2141,7 +2146,7 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 
 'enotif_mailer'                => 'Sistèmo de notificacion per mèssageria èlèctronica de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar totes les pâges coment visitâs',
-'enotif_newpagetext'           => 'Cen est una novèla pâge.',
+'enotif_newpagetext'           => 'O est una novèla pâge.',
 'enotif_impersonal_salutation' => 'Utilisator de {{SITENAME}}',
 'changed'                      => 'changiê',
 'created'                      => 'fêta',
@@ -2245,6 +2250,7 @@ Vêde la [[Special:ProtectedPages|lista de les pâges protègiês]] por vêre le
 'protectexpiry'               => 'Dâta d’èxpiracion :',
 'protect_expiry_invalid'      => 'La dâta d’èxpiracion est envalida.',
 'protect_expiry_old'          => 'La dâta d’èxpiracion est ja passâ.',
+'protect-unchain-permissions' => 'Dèvèrrolyér adés més de chouèx de protèccion',
 'protect-text'                => "Vos pouede vêre et changiér lo nivél de protèccion de la pâge '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Vos pouede pas changiér los nivéls de protèccion tant que vos éte blocâ.
 Vê-que la configuracion d’ora de la pâge '''$1''' :",
@@ -2449,6 +2455,8 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipblocklist-sh-tempblocks'       => '$1 los blocâjos temporèros',
 'ipblocklist-sh-addressblocks'    => '$1 los blocâjos d’adrèces IP solètes',
 'ipblocklist-submit'              => 'Rechèrchiér',
+'ipblocklist-localblock'          => 'Blocâjo local',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
 'blocklistline'                   => '$1 : $2 at blocâ $3 ; $4',
 'infiniteblock'                   => 'sen fin',
 'expiringblock'                   => 'èxpire lo $1 a $2',
@@ -2472,7 +2480,7 @@ Lo jornal des blocâjos est disponiblo ce-desot :',
 Lo jornal de les suprèssions est disponiblo ce-desot :',
 'blocklogentry'                   => 'at blocâ [[$1]] ; èxpiracion : $2 $3',
 'reblock-logentry'                => 'at changiê los paramètres du blocâjo a [[$1]] avouéc una èxpiracion u $2 $3',
-'blocklogtext'                    => 'Cen est lo jornal des blocâjos et des dèblocâjos ux utilisators.
+'blocklogtext'                    => 'O est lo jornal des blocâjos et des dèblocâjos ux utilisators.
 Les adrèces IP blocâs ôtomaticament sont pas listâs.
 Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 'unblocklogentry'                 => 'at dèblocâ $1',
@@ -2491,6 +2499,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipb-needreblock'                 => '== Ja blocâ ==
 $1 est ja blocâ.
 Voléd-vos changiér los paramètres ?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
 'ipb_cant_unblock'                => 'Èrror : identifiant de blocâjo $1 pas trovâ.
 O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ipb_blocked_as_range'            => 'Èrror : l’adrèce IP $1 est pas blocâ tot drêt et pôt vêr pas étre dèblocâ.
@@ -2632,7 +2641,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Speci
 'allmessagesname'               => 'Nom du mèssâjo',
 'allmessagesdefault'            => 'Tèxto per dèfôt',
 'allmessagescurrent'            => 'Tèxto d’ora',
-'allmessagestext'               => 'Cen est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
+'allmessagestext'               => 'O est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
 Volyéd visitar la [http://www.mediawiki.org/wiki/Localisation Localisacion de MediaWiki] et pués [http://translatewiki.net translatewiki.net] se vos dèsirâd contribuar a la localisacion g·ènèrica de MediaWiki.',
 'allmessagesnotsupportedDB'     => "Ceta pâge '''{{ns:special}}:Allmessages''' est inutilisâbla perce que '''\$wgUseDatabaseMessages''' at étâ dèsactivâ.",
 'allmessages-filter-legend'     => 'Filtro',
@@ -2755,7 +2764,7 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-ca-nstab-main'           => 'Vêre la pâge de contegnu',
 'tooltip-ca-nstab-user'           => 'Vêre la pâge utilisator',
 'tooltip-ca-nstab-media'          => 'Vêre la pâge du mèdia',
-'tooltip-ca-nstab-special'        => 'Cen est una pâge spèciâla, vos la pouede pas changiér.',
+'tooltip-ca-nstab-special'        => 'O est una pâge spèciâla, vos la pouede pas changiér.',
 'tooltip-ca-nstab-project'        => 'Vêre la pâge du projèt',
 'tooltip-ca-nstab-image'          => 'Vêre la pâge du fichiér',
 'tooltip-ca-nstab-mediawiki'      => 'Vêre lo mèssâjo sistèmo',
@@ -3530,7 +3539,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'dberr-info'        => '(Branchement u sèrvor de bâsa de balyês empossiblo : $1)',
 'dberr-usegoogle'   => 'Vos pouede tâchiér de chèrchiér avouéc Google pendent cél temps.',
 'dberr-outofdate'   => 'Notâd que lors endèxos de noutron contegnu pôvont étre dèpassâs.',
-'dberr-cachederror' => 'Cen est una copia cachiê de la pâge demandâ et pôt étre dèpassâ.',
+'dberr-cachederror' => 'O est una copia cachiê de la pâge demandâ et pôt étre dèpassâ.',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Des problèmos sont arrevâs avouéc quârques valors',

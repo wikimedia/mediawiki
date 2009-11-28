@@ -1872,11 +1872,13 @@ PICT # その他
 'listusers-blocked'  => '(ブロック中)',
 
 # Special:ActiveUsers
-'activeusers'          => '活動中の利用者一覧',
-'activeusers-intro'    => 'これは過去$1{{PLURAL:$1|日|日間}}になんらかの活動をした利用者の一覧です。',
-'activeusers-count'    => '過去{{PLURAL:$3|$3日}}に$1件の{{PLURAL:$1|編集}}',
-'activeusers-from'     => '最初に表示する利用者:',
-'activeusers-noresult' => '利用者が見つかりませんでした。',
+'activeusers'            => '活動中の利用者一覧',
+'activeusers-intro'      => 'これは過去$1{{PLURAL:$1|日|日間}}になんらかの活動をした利用者の一覧です。',
+'activeusers-count'      => '過去{{PLURAL:$3|$3日}}に$1件の{{PLURAL:$1|編集}}',
+'activeusers-from'       => '最初に表示する利用者:',
+'activeusers-hidebots'   => 'ボットを隠す',
+'activeusers-hidesysops' => '管理者を隠す',
+'activeusers-noresult'   => '利用者が見つかりませんでした。',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'アカウント作成記録',

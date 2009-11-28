@@ -1438,6 +1438,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' ֆայլի $3, $2 պահով տարբերակը ջնջված է։",
 'filedelete-nofile'           => "'''$1''' գոյություն չունի։",
 'filedelete-nofile-old'       => "'''$1''' ֆայլի նշված հատկանիշներով արխիվային տարբերակ չկա։",
+'filedelete-otherreason'      => 'Այլ/հավելյալ պատճառ․',
 'filedelete-reason-otherlist' => 'Ուրիշ պատճառ',
 'filedelete-edit-reasonlist'  => 'Խմբագրել ջնջման պատճառների ցանկը',
 
@@ -1780,6 +1781,7 @@ $NEWPAGE
 'protect-expiring'            => 'մարում՝ $1 (UTC)',
 'protect-cascade'             => 'Պաշտպանել այս էջում ընդգրկված էջերը (կասկադային պաշտպանում)',
 'protect-cantedit'            => 'Դուք չեք կարող փոխել այս էջի պաշտպանության մակարդակը, քանի որ ձեզ չի թույլատրվում խմբագրել այն։',
+'protect-edit-reasonlist'     => 'Խմբագրել պաշտպանման պատճառների ցանկը',
 'protect-expiry-options'      => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,առհավետ:infinite',
 'restriction-type'            => 'Իրավունքներ.',
 'restriction-level'           => 'Սահմանափակման մակարդակ.',
@@ -2475,5 +2477,20 @@ $1',
 'dberr-header'   => 'Այս վիքիում խնդիրներ են առաջացել',
 'dberr-problems' => 'Այս կայքում առաջացել են տեխնիկական խնդիրներ։ Հայցում ենք ձեր ներողությունը։',
 'dberr-again'    => 'Փորձեք մի քանի րոպե սպասել և վերաբեռնել էջը։',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Ավելացնել կատեգորիա',
+'ajax-add-category-submit'     => 'Ավելացնել',
+'ajax-confirm-title'           => 'Հաստատել գործողությունը',
+'ajax-confirm-prompt'          => 'Դուք կարող եք նշել խմբագրման ամփոփումը, ստորև։
+Սղմեք «Հիշել» ձեր փոփոխությունները հիշելու համար։',
+'ajax-confirm-save'            => 'Հիշել',
+'ajax-add-category-summary'    => 'Ավելացնել «$1» կատեգորիան',
+'ajax-remove-category-summary' => 'Հեռացնել «$1» կատեգորիան',
+'ajax-confirm-actionsummary'   => 'Կատարվող գործողությունը․',
+'ajax-error-title'             => 'Սխալ',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Չհաջողվեց հեռացնել այս կատեգորիան։
+Դա սովորաբար պատահում է, երբ կատեգորիան ավելացվում է կաղապարի միջից։',
 
 );

@@ -932,8 +932,23 @@ Dit was moontlik geskrap of geskuif.
 'rev-deleted-comment'         => '(opsomming geskrap)',
 'rev-deleted-user'            => '(gebruikersnaam geskrap)',
 'rev-deleted-event'           => '(stawingsaksie verwyder)',
+'rev-deleted-user-contribs'   => '[gebruikersnaam of IP-adres is verwyder - wysiging versteek in bydraes]',
 'rev-deleted-text-permission' => "Die weergawe van die bladsy is '''verwyder'''. 
 Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skrapingslogboek].",
+'rev-deleted-text-unhide'     => "Hierdie weergawe van die bladsy is '''verwyder'''.
+Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.
+As administrateur kan u, as u wil, na [$1 die weergawe kyk].",
+'rev-suppressed-text-unhide'  => "Hierdie weergawe van die blad word '''onderdruk'''.
+Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.
+As administrateur kan u, as u wil, na [$1 die verskille kyk].",
+'rev-deleted-text-view'       => "Hierdie weergawe is '''verwyder'''.
+As administrateur kan u dit wel sien.
+Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
+'rev-suppressed-text-view'    => "Hierdie weergawe van die bladsy word '''onderdruk'''.
+As administrateur kan u dit sien.
+Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.",
+'rev-deleted-no-diff'         => "U kan nie die verskille sien nie omdat een van die weergawes '''verwyder''' is.
+Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
 'rev-delundel'                => 'wys/versteek',
 'rev-showdeleted'             => 'wys',
 'revisiondelete'              => 'Verwyder/herstel weergawes',
@@ -941,6 +956,7 @@ Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{F
 'revdelete-nologtype-title'   => 'Geen logboektipe verskaf nie',
 'revdelete-nologtype-text'    => "U het nie 'n logboektipe verskaf om hierdie handeling op uit te voer nie.",
 'revdelete-nologid-title'     => 'Ongeldige logboekreël',
+'revdelete-nologid-text'      => 'U het óf geen logboeke gespesifiseer nie óf die gevraagde lyn bestaan nie in die logboek nie.',
 'revdelete-no-file'           => 'Die gespesifiseerde lêer bestaan nie.',
 'revdelete-show-file-confirm' => 'Is u seker u wil die geskrapte weergawe van die lêer "<nowiki>$1</nowiki>" van $2 om $3 sien?',
 'revdelete-show-file-submit'  => 'Ja',
@@ -977,6 +993,10 @@ $1",
 'revdelete-unhid'             => '$1 onverskuil',
 'revdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|weergawe|weergawes}}',
 'logdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|gebeurtenis|gebeurtenisse}}',
+'revdelete-hide-current'      => 'Fout met die wegsteek van die item gedateer $2 om $1 uur: hierdie is die huidige weergawe. Dit kan nie versteek word nie.',
+'revdelete-show-no-access'    => 'Fout met die vertoon van die item gedateer $2 om $1 uur: hierdie item is as "beskermd" gemerk.
+U het nie toegang tot die item nie.',
+'revdelete-modify-no-access'  => 'Fout met die wysiging van die item gedateer $2 om $1 uur: hierdie item is as "beskermd" gemerk. U het nie toegang tot die item nie.',
 'revdelete-modify-missing'    => 'Fout met die wysiging van item ID $1: dit is nie in die databasis nie!',
 'revdelete-no-change'         => "'''Waarskuwing:''' die item van $1 om $2 uur het reeds die gevraagde sigbaarheidsinstellings.",
 'revdelete-reason-dropdown'   => '* Algemene redes vir skrapping
@@ -1013,6 +1033,7 @@ $1",
 'mergelog'           => 'Versmeltingslogboek',
 'pagemerge-logentry' => 'versmelt [[$1]] met [[$2]] (weergawes tot en met $3)',
 'revertmerge'        => 'Samesmelting ongedaan maak',
+'mergelogpagetext'   => "Hieronder is 'n lys van die mees onlangse versmeltings van een bladsy se geskiedenis na 'n ander.",
 
 # Diffs
 'history-title'            => 'Weergawegeskiedenis van "$1"',
@@ -1392,6 +1413,7 @@ Bladsye op [[Special:Watchlist|u dophoulys]] word in '''vetdruk''' uitgewys.",
 'upload'                     => 'Laai lêer',
 'uploadbtn'                  => 'Laai lêer',
 'reuploaddesc'               => 'Keer terug na die laaivorm.',
+'upload-tryagain'            => 'Stuur gewysigde lêerbeskrywing',
 'uploadnologin'              => 'Nie ingeteken nie',
 'uploadnologintext'          => 'Teken eers in [[Special:UserLogin|logged in]]
 om lêers te laai.',
@@ -1449,11 +1471,19 @@ die lêer is $2.',
 'emptyfile'                  => "Die lêer wat u probeer oplaai het blyk leeg te wees. Dit mag wees omdat u 'n tikfout in die lêernaam gemaak het. Gaan asseblief na en probeer weer.",
 'fileexists'                 => "'n Lêer met die naam bestaan reeds, kyk na '''<tt>[[:$1]]</tt>''' as u nie seker is dat u dit wil wysig nie.
 [[$1|thumb]]",
+'fileexists-extension'       => "'n Lêer met hierdie naam bestaan al reeds: [[$2|thumb]]
+* Naam van die opgelaaide lêer: '''<tt>[[:$1]]</tt>'''
+* Naam van die bestaande lêer: '''<tt>[[:$2]]</tt>'''
+Kies asseblief 'n ander naam.",
+'fileexists-forbidden'       => "Daar bestaan reeds 'n lêer met hierdie naam, en dit kan nie oorskryf word nie.
+As u steeds die lêer wil oplaai, gebruik asseblief 'n ander naam.
+[[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'      => "Die lêer is 'n duplikaat van die volgende {{PLURAL:$1|lêer|lêers}}:",
 'file-deleted-duplicate'     => "'n Lêer identies aan dié een ([[$1]]) was al voorheen geskrap. <br />
 Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om dit weer op te laai.",
 'successfulupload'           => 'Laai suksesvol',
 'uploadwarning'              => 'Laaiwaarskuwing',
+'uploadwarning-text'         => 'Verander die onderstaande lêerbeskrywing en probeer dan weer.',
 'savefile'                   => 'Stoor lêer',
 'uploadedimage'              => 'het "[[$1]]" gelaai',
 'overwroteimage'             => 'het een nuwe weergawe van "[[$1]]" gelaai',
@@ -1654,8 +1684,9 @@ Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.
 'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Dubbele aansture',
-'doubleredirectstext'        => '<b>Let op:</b> Hierdie lys bevat moontlik vals positiewes. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT/#AANSTUUR is.<br />
-Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuur se teks, wat gewoonlik die "regte" teiken bladsy gee waarna die eerste aanstuur behoort te wys.',
+'doubleredirectstext'        => 'Hierdie lys bevat bladsye wat aansture na ander aanstuurblaaie is.
+Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuur se teks, wat gewoonlik die "regte" teiken-bladsy gee waarna die eerste aanstuur behoort te wys.
+<s>Doodgekrapte reëls</s> dui aan dat die probleem reeds opgelos is.',
 'double-redirect-fixed-move' => "[[$1]] was geskuif en is nou 'n deurverwysing na [[$2]].",
 'double-redirect-fixer'      => 'Aanstuur hersteller',
 
@@ -1796,11 +1827,13 @@ Ondersteunde protokolle: <tt>$1</tt>',
 'listusers-blocked'  => '(geblokkeer)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Aktiewe gebruikers',
-'activeusers-intro'    => "Hierdie is 'n lys van gebruikers wat die laaste {{PLURAL:$1|dag|$1 dae}} enige aktiwiteit getoon het.",
-'activeusers-count'    => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laatste $3 dae}}',
-'activeusers-from'     => 'Wys gebruikers, beginnende by:',
-'activeusers-noresult' => 'Geen gebruikers gevind nie.',
+'activeusers'            => 'Aktiewe gebruikers',
+'activeusers-intro'      => "Hierdie is 'n lys van gebruikers wat die laaste {{PLURAL:$1|dag|$1 dae}} enige aktiwiteit getoon het.",
+'activeusers-count'      => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laatste $3 dae}}',
+'activeusers-from'       => 'Wys gebruikers, beginnende by:',
+'activeusers-hidebots'   => 'Versteek bots',
+'activeusers-hidesysops' => 'Versteek administrateurs',
+'activeusers-noresult'   => 'Geen gebruikers gevind nie.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek van nuwe gebruikers',
@@ -2204,12 +2237,15 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir geblokkeerde adresse.",
 'block-log-flags-nousertalk'      => 'kan nie eie besprekingsblad wysig nie',
 'block-log-flags-angry-autoblock' => 'uitgebreide outomatiese blokkade aangeskakel',
 'block-log-flags-hiddenname'      => 'gebruikernaam versteek',
+'range_block_disabled'            => "Die administrateur se vermoë om 'n groep IP-adresse te blokkeer is gedeaktiveer.",
 'ipb_expiry_invalid'              => 'Ongeldige duur.',
 'ipb_expiry_temp'                 => 'Blokkades vir versteekte gebruikers moet permanent wees.',
+'ipb_hide_invalid'                => 'Dit is nie moontlik om hierdie gebruiker te verberg nie; miskien het hy al te veel wysigings gemaak.',
 'ipb_already_blocked'             => '"$1" is reeds geblok',
 'ipb-needreblock'                 => '== Hierdie gebruiker is reeds geblokkeer ==
 $1 is al geblokkeer.
 Wil u die instellings wysig?',
+'ipb-otherblocks-header'          => 'Ander {{PLURAL:$1|blokkade|blokkades}}',
 'ipb_cant_unblock'                => 'Fout: Blokkade-ID $1 kan nie gevind word nie.
 Die blokkade is moontlik reeds opgehef.',
 'ip_range_invalid'                => 'Ongeldige IP waardegebied.',
@@ -2236,6 +2272,8 @@ Bevestig asseblief dat dit is wat u wil doen.',
 'lockdbsuccesstext'   => 'Die {{SITENAME}} databasis is gesluit.
 <br />Onthou om dit te ontsluit wanneer u onderhoud afgehandel is.',
 'unlockdbsuccesstext' => 'Die {{SITENAME}}-databasis is ontsluit.',
+'lockfilenotwritable' => 'Kan nie na die databasis se sperlêer (lock file) skryf nie.
+Om die databasis te ontsluit moet u skyfregte aan die lêer op die webbediener toeken.',
 'databasenotlocked'   => 'Die databasis is nie gesluit nie.',
 
 # Move page
@@ -2391,6 +2429,7 @@ Die lêer is groter as die toelaatbare limiet.',
 Die lêer is slegs gedeeltelik opgelaai.',
 'importuploaderrortemp'      => "Oplaai van invoer-lêer het misluk.
 'n Tydelike gids bestaan nie.",
+'import-parse-failure'       => 'Fout met die verwerking van die XML-invoer',
 'import-noarticle'           => 'Geen bladsye om te importeer nie!',
 'import-nonewrevisions'      => 'Alle weergawes was voorheen ingevoer.',
 'xml-error-string'           => '$1 op reël $2, kolom $3 (greep $4): $5',
@@ -2627,6 +2666,7 @@ Ander velde sal versteek wees.
 'exif-xresolution'                 => 'Horisontale resolusie',
 'exif-yresolution'                 => 'Vertikale resolusie',
 'exif-resolutionunit'              => 'Eenheid X en Y resolusie',
+'exif-stripoffsets'                => 'Ligging van beeldgegewens',
 'exif-rowsperstrip'                => 'Rye per strook',
 'exif-stripbytecounts'             => 'Grepe per gekompakteerde strook',
 'exif-jpeginterchangeformat'       => 'Afstand na JPEG SOI',

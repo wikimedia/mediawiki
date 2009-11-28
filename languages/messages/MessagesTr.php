@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bekiroflaz
+ * @author Bombola
  * @author Dbl2010
  * @author Erkan Yilmaz
  * @author Fryed-peach
@@ -1833,11 +1834,13 @@ Desteklenen iletişim kuralları: <tt>$1</tt>',
 'listusers-blocked'  => '(engellenmiş)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Aktif kullanıcı listesi',
-'activeusers-intro'    => 'Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.',
-'activeusers-count'    => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|değişiklik|değişiklik}}',
-'activeusers-from'     => 'Şununla başlayan kullanıcıları görüntüle:',
-'activeusers-noresult' => 'Kullanıcı bulunamadı.',
+'activeusers'            => 'Aktif kullanıcı listesi',
+'activeusers-intro'      => 'Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.',
+'activeusers-count'      => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|değişiklik|değişiklik}}',
+'activeusers-from'       => 'Şununla başlayan kullanıcıları görüntüle:',
+'activeusers-hidebots'   => 'Botları gizle',
+'activeusers-hidesysops' => 'Yöneticileri gizle',
+'activeusers-noresult'   => 'Kullanıcı bulunamadı.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Yeni kullanıcı kayıtları',

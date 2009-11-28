@@ -1818,11 +1818,13 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'listusers-blocked'  => '(gespaart)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lëscht vun den aktive Benotzer',
-'activeusers-intro'    => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
-'activeusers-count'    => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLUAL:$3|gëschter|an de leschten $3 Deeg}}',
-'activeusers-from'     => 'Benotzer weisen, ugefaang bäi:',
-'activeusers-noresult' => 'Keng Benotzer fonnt.',
+'activeusers'            => 'Lëscht vun den aktive Benotzer',
+'activeusers-intro'      => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
+'activeusers-count'      => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLUAL:$3|gëschter|an de leschten $3 Deeg}}',
+'activeusers-from'       => 'Benotzer weisen, ugefaang bäi:',
+'activeusers-hidebots'   => 'Botte verstoppen',
+'activeusers-hidesysops' => 'Administrateure verstoppen',
+'activeusers-noresult'   => 'Keng Benotzer fonnt.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logbuch vun den neien Umeldungen',

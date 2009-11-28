@@ -1879,11 +1879,13 @@ Protocollos supportate: <tt>$1</tt>',
 'listusers-blocked'  => '(blocate)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista de usatores active',
-'activeusers-intro'    => 'Isto es un lista de usatores que habeva alcun typo de activitate intra le ultime $1 {{PLURAL:$1|die|dies}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|modification|modificationes}} in le ultime {{PLURAL:$3|die|$3 dies}}',
-'activeusers-from'     => 'Presentar usatores a partir de:',
-'activeusers-noresult' => 'Nulle usator trovate.',
+'activeusers'            => 'Lista de usatores active',
+'activeusers-intro'      => 'Isto es un lista de usatores que habeva alcun typo de activitate intra le ultime $1 {{PLURAL:$1|die|dies}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|modification|modificationes}} in le ultime {{PLURAL:$3|die|$3 dies}}',
+'activeusers-from'       => 'Presentar usatores a partir de:',
+'activeusers-hidebots'   => 'Celar bots',
+'activeusers-hidesysops' => 'Celar administratores',
+'activeusers-noresult'   => 'Nulle usator trovate.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro de creation de usatores',

@@ -1425,9 +1425,11 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'listusers-blocked'  => '(obstructus)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Index usorum activorum',
-'activeusers-count'    => '{{PLURAL:$1|una recensio recens|$1 recensiones recentes}} {{PLURAL:$3|die proximo|in diebus $3 proximis}}',
-'activeusers-noresult' => 'Nullus usor inventus.',
+'activeusers'            => 'Index usorum activorum',
+'activeusers-count'      => '{{PLURAL:$1|una recensio recens|$1 recensiones recentes}} {{PLURAL:$3|die proximo|in diebus $3 proximis}}',
+'activeusers-hidebots'   => 'Celare automata',
+'activeusers-hidesysops' => 'Celare magistratus',
+'activeusers-noresult'   => 'Nullus usor inventus.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Index rationum novarum creatarum',
