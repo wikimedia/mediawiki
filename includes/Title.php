@@ -733,7 +733,7 @@ class Title {
 
 		$interwiki = Interwiki::fetch( $this->mInterwiki );
 		if ( !$interwiki ) {
-			$url = $this->getLocalUrl( $query, $variant );
+			$url = $this->getLocalURL( $query, $variant );
 
 			// Ugly quick hack to avoid duplicate prefixes (bug 4571 etc)
 			// Correct fix would be to move the prepending elsewhere.

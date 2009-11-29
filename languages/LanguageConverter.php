@@ -240,11 +240,8 @@ class LanguageConverter {
 				// ONLY add Accept-Language when a variant has been found out
 				// thanks to Liangent's help
 				if( $ret_language !== $this->mMainLanguageCode ) {
-					global $wgOut, $wgUseXVO;
-					$wgOut->addVaryHeader( 'Accept-Language' );
-					if( $wgUseXVO ) {
-						$wgOut->addXVOHeader( 'Accept-Language', array($ret_language) );
-					}
+					global $wgOut;
+					$wgOut->addVaryHeader( 'Accept-Language', array('string-contains=' .$ret_language) );
 				}
 				return $ret_language;
 			}
