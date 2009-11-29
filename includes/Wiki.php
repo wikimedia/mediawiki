@@ -225,6 +225,8 @@ class MediaWiki {
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs
 		} else if( $action == 'view' && !$request->wasPosted() &&
 			( ( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) ||
+			  // No valid variant in URL (if the main-language has multi-variants), to ensure
+			  // the Accept-Language would only be added to XVO when a 301 redirection happened
 			  ( !isset($this->GET['variant']) && $perferred != $wgContLang->getCode() &&
 			    $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
