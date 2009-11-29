@@ -165,8 +165,9 @@ $messages = array(
 'viewsource' => 'Vider fonte',
 
 # Login and logout pages
-'logouttext'                 => 'Vu ha terminat vor session.
-Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session denov quam li sam usator o quam un diferent usator.',
+'logouttext'                 => "'''Vu ha terminat vor session.'''
+
+Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session denov quam li sam usator o quam un diferent usator.",
 'yourname'                   => 'Vor nómine usatori:',
 'yourpassword'               => 'Vor passa-parol:',
 'yourpasswordagain'          => 'Tippa denov vor passa-parol',

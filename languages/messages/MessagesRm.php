@@ -476,7 +476,7 @@ Ina tala adressa d'IP po vegnir utilisada da differents utilisaders.
 Sche ti es in utilisaders anonim e pensas che commentaris che na pertutgan betg tai vegnan adressads a tai, lura [[Special:UserLogin/signup|creescha in conto]] u [[Special:UserLogin|s'annunzia]] per evitar en futur che ti vegns sbaglià cun auters utilisaders.''",
 'noarticletext'                    => 'Quest artitgel cuntegna actualmain nagin text. 
 Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in\'autra pagina, 
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tschertgar en ils logs],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tschertgar en ils logs],
 u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina]</span>.',
 'userpage-userdoesnotexist'        => 'Il conto d\'utilisader "$1" n\'èxista betg. 
 Controllescha sch ti vuls propi crear/modiftgar questa pagina.',

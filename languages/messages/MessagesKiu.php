@@ -423,6 +423,7 @@ Sebebê ho ''$2'' dero.",
 
 # Login and logout pages
 'logouttext'              => "'''Sıma nıka cı ra veciyê.'''
+
 Sıma şikinê dızdêni {{SITENAME}} de dewam kerê, ya jê eyni karberi ya ki jê jüyê de bini [[Special:UserLogin|oncia cıkuyê]].
 Beno ke taê peli sıma hona cıkote asnenê, hata ke sıma ''browser cache''ê ho kerd pak.",
 'welcomecreation'         => '== Xêr amê, $1! ==
@@ -532,7 +533,7 @@ Hata ke werte de qısım $1 çino, ca çino ke tı rastkerdena ho qeyd bıkerê.
 'newarticle'                       => '(Newe)',
 'noarticletext'                    => 'Na pele de hona thowa çino.
 Tı şikina zerrê pelunê binu de [[Special:Search/{{PAGENAME}}|seba sernamê na pele cıfeteliyê]], 
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cıkotena aide rê cıfeteliyê],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cıkotena aide rê cıfeteliyê],
 ya ki [{{fullurl:{{FULLPAGENAME}}|action=edit}} na pele bıvurnê]</span>.',
 'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" qeyd nêbiyo.
 Kerem ke, tı ke wazena na pele vırazê/bıvurnê, qontrol ke.',

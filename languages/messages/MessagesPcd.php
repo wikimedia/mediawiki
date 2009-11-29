@@ -369,7 +369,10 @@ Vote adrèche IP, ale sro inrégistrée din l'historique éd chol pache.",
 'newarticletext'                   => "Os avez sui un loïen vers eune pache qui n’essiste poin coère ou qu' o té [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} défacée].
 Pou créer chol pache, intrez vote teske din l'boéte édsou (vir [[{{MediaWiki:Helppage}}|l'pache d’aïude]] ). <br />
 Si vos ètes ichi par bérlure, bukez su l'bouton '''értour''' du navigateu.",
-'noarticletext'                    => 'Achteure i n’y o nu teske su l\'pache-lo.<br /> Os povez [[Special:Search/{{PAGENAME}}|foaire eune érchérche du tite del pache]] din chés eutes paches, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} érchércher din chés érliées opéracions ] <br /> ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer chol pache]</span>.',
+'noarticletext'                    => 'Achteure i n’y o nu teske su l\'pache-lo.
+Os povez [[Special:Search/{{PAGENAME}}|foaire eune érchérche du tite del pache]] din chés eutes paches,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} érchércher din chés érliées opéracions]
+ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer chol pache]</span>.',
 'previewnote'                      => "'''Afute! ch'teske-lo ch'est seulemint eune prévue.'''
 
 Vos cangemints, is sont poin coèr inrégistrés!",

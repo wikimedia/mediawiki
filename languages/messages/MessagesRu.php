@@ -851,11 +851,11 @@ $2',
 Если вы анонимный участник и полагаете, что получили сообщения, адресованные не вам, пожалуйста, [[Special:UserLogin/signup|создайте учётную запись]] или [[Special:UserLogin|представьтесь системе]], чтобы впредь избежать возможной путаницы с другими анонимными участниками.''",
 'noarticletext'                    => "В настоящий момент текст на данной странице отсутствует.
 Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] в других статьях,
-<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} найти соответствующие записи журналов],
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов],
 или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 'noarticletext-nopermission'       => 'В настоящее время на этой странице нет текста.
 Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] в других статьях,
-или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} найти соответствующие записи журналов].',
+или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].',
 'userpage-userdoesnotexist'        => 'Учётной записи «$1» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
 'userpage-userdoesnotexist-view'   => 'Не зарегистрировано учётной записи участника «$1».',
 'clearyourcache'                   => "'''Замечание:''' Чтобы после сохранения сделанные изменения вступили в силу, очистите кеш своего браузера: '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari''': ''Cmd+Shift+R'', '''Konqueror''': ''F5'', '''Opera''': через меню ''Tools→Preferences''.",
@@ -1953,11 +1953,13 @@ PICT # различные
 'listusers-blocked'  => '(заблокирован)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Список активных участников',
-'activeusers-intro'    => 'Это список участников, совершавших какие-либо действия за {{PLURAL:$1|последний $1 день|последние $1 дня|последние $1 дней}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|правка|правки|правок}} за {{PLURAL:$3|последний $3 день|последние $3 дня|последние $3 дней}}',
-'activeusers-from'     => 'Отображение участников, начиная с:',
-'activeusers-noresult' => 'Не найдено участников.',
+'activeusers'            => 'Список активных участников',
+'activeusers-intro'      => 'Это список участников, совершавших какие-либо действия за {{PLURAL:$1|последний $1 день|последние $1 дня|последние $1 дней}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|правка|правки|правок}} за {{PLURAL:$3|последний $3 день|последние $3 дня|последние $3 дней}}',
+'activeusers-from'       => 'Отображение участников, начиная с:',
+'activeusers-hidebots'   => 'Скрыть ботов',
+'activeusers-hidesysops' => 'Скрыть администраторов',
+'activeusers-noresult'   => 'Не найдено участников.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Журнал регистрации участников',

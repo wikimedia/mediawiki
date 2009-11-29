@@ -8,6 +8,7 @@
  * @file
  *
  * @author Amikeco
+ * @author Bouron
  * @author HalanTul
  * @author לערי ריינהארט
  */
@@ -742,7 +743,7 @@ $3',
 'uctop'               => '(уæле баззад)',
 
 'sp-contributions-blocklog' => 'Хъодыты лог',
-'sp-contributions-talk'     => 'Дискусси',
+'sp-contributions-talk'     => 'Ныхас',
 
 # What links here
 'whatlinkshere'            => 'Цавæр æрвитæнтæ цæуынц ардæм',

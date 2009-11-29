@@ -392,7 +392,7 @@ Per crea la paje, comensa scrive en la caxa a su
 Si tu es asi par era, clica a la boton '''retro''' de tu surfador.",
 'noarticletext'              => 'Es aora no testo a esta paje.
 Tu pote [[Special:Search/{{PAGENAME}}|xerca per la titulo de esta paje]] en otra pajes,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} xerca la arcivos relatada],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} xerca la arcivos relatada],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje].',
 'previewnote'                => "'''Esta sola un previde; cambias no es fisada ja'''",
 'editing'                    => 'En la prosede de edita $1',

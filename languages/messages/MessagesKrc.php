@@ -595,10 +595,10 @@ $2',
 Талай башха къошулуучуланы да болургъа боллукъ быллай адреслери.
 Сиз аноним къошулуучу эсегиз эмда сизге джиберилмеген билдириуле алама деб суна эсегиз, ангылашылмаула болмаз ючюн [[Special:UserLogin|аккоунт къурагъыз]] неда [[Special:UserLogin/signup|системагъ киригиз]].''",
 'noarticletext'                    => "Бусагъатда бу бетде текст джокъду.
-Сиз [[Special:Search/{{PAGENAME}}|бу атны башха статьялада]] излерге , <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} журналлагъа къараргъа], неда '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} быллай атлы джангы бет къураргъа боллукъсуз]'''</span>.",
+Сиз [[Special:Search/{{PAGENAME}}|бу атны башха статьялада]] излерге , <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналлагъа къараргъа], неда '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} быллай атлы джангы бет къураргъа боллукъсуз]'''</span>.",
 'noarticletext-nopermission'       => 'Бусагъатда бу бетде текст джокъду.
 Сиз [[Special:Search/{{PAGENAME}}|бу атны таныгъан]] башха статьяланы,  
-неда <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} журналлада джазылгъанланы]</span> табаргъа боллукъсуз.',
+неда <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналлада джазылгъанланы]</span> табаргъа боллукъсуз.',
 'userpage-userdoesnotexist'        => '«$1» аккоунт джокъду. Къураргъа/тюрлендирирге излеймисиз бу бетни?',
 'userpage-userdoesnotexist-view'   => '«$1» аккоунт джокъду.',
 'clearyourcache'                   => "'''Эслегиз:''' Бетде сакъланнгандан сора тюзетиуле кёрюнюрча браузеригизни кэшин ариулатыгъыз:

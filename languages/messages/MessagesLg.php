@@ -173,12 +173,10 @@ $messages = array(
 'editinginterface' => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo. Enkyukakyuka z'okola wano zigyakubaako engeri gye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
 
 # Login and logout pages
-'logouttext'                 => "'''Kati ovuddemu.'''<br />
-Osobola okusigala nga okozesa {{SITENAME}} nga atamanyise, ate osobola
-n'okuddamu okuyingira nga bw'obadde oba nga okozesezza ery'obwa memba
-eddala. Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe
-zibadde nga oyingidde - okutuusa lw'okunkumula eggwanika ezzibizi erya
-kalambula-neti yo.",
+'logouttext'                 => "'''Kati ovuddemu.'''
+
+Osobola okusigala nga okozesa {{SITENAME}} nga atamanyise, ate osobola n'okuddamu okuyingira nga bw'obadde oba nga okozesezza ery'obwa memba eddala.
+Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde - okutuusa lw'okunkumula eggwanika ezzibizi erya kalambula-neti yo.",
 'yourname'                   => "Ery'obwa memba",
 'yourpassword'               => 'Ekigambo ekikuumi',
 'yourpasswordagain'          => 'Ddamu ekigambo ekikuumi',

@@ -704,11 +704,11 @@ $1 საათში.',
 თუ თქვენ ანონიმური მომხმარებელი ხართ და თვლით, რომ სხვისთვის გამიზნული მითითება მიიღეთ, გთხოვთ [[Special:UserLogin/signup|შექმენით ანგარიში ან დარეგისტრირდით]] მომავალში გაუგებრობის თავიდან ასაცილებლად.''",
 'noarticletext'                    => 'ამჟამად ამ გვერდზე ტექსტი არ არსებობს.
 თქვენ შეგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ამ გვერდის სათაური]] სხვა გვერდებზე,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} მოძებნოთ შესაბამისი ჟურნალები],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} მოძებნოთ შესაბამისი ჟურნალები],
 ან [{{fullurl:{{FULLPAGENAME}}|action=edit}} დაიწყოთ ამ გვერდის რედაქტირება]</span>.',
 'noarticletext-nopermission'       => 'ამ დროისთვის ეს გვერდი ცარიელია.
 ქვენ შეგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ეს სიტყვა]] სხვა გვერდებზე, 
-ან <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} შესაბამის ჟურნალებში]</span>',
+ან <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} შესაბამის ჟურნალებში]</span>',
 'userpage-userdoesnotexist'        => 'ანგარიში «$1» არ არსებობს. დარწმუნდით, რომ მართლაც გსურთ ამ ანგარიშის შექმნა ან შესწორება.Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
 'userpage-userdoesnotexist-view'   => 'მომხმარებელი "$1" არ არის დარეგისტრირებული.',
 'clearyourcache'                   => "'''შენიშვნა:''' შენახვის შემდეგ შესაძლოა დაგჭირდეთ ბრაუზერის ქეშის გაწმენდა ცვლილებების სანახავად. '''Mozilla / Firefox / Safari:''' დააჭირეთ ''Shift'' ''Reload''-ზე დაწკაპებისას, ან დააჭირეთ ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Apple Mac-ზე); '''IE:''' დააჭირეთ ''Ctrl'' ''Refresh''-ზე დაწკაპებისას, ან დააჭირეთ ''Ctrl-F5''; '''Konqueror:''': მხოლოდ დააწკაპეთ ''Reload'' ღილაკს, ან დააჭირეთ ''F5''; '''Opera''' შესაძლოა საჭირო გახდეს ქეშის სრულიად გაწმენდა ''Tools→Preferences''-დან.",

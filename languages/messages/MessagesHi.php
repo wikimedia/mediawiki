@@ -655,11 +655,11 @@ $2',
 यदि आप एक बेनामी प्रयोक्ता हैं और आपको लगता है कि आपके बारे में अप्रासंगिक टीका टिप्पणी की गई है तो कृपया [[Special:UserLogin/signup|सदस्यता लें]] या [[Special:UserLogin|सत्रारंभ करें]] ताकि अन्य बेनामी प्रयोक्ताओं में से आपको अलग से पहचाना जा सके।''",
 'noarticletext'                    => 'फ़िलहाल इस पन्ने पर कोई सामग्री नहीं है।
 आप अन्यों पन्नों में [[Special:Search/{{PAGENAME}}|इस सामग्री की खोज]] कर सकते हैं,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} संबंधित चिट्ठों में खोज कर सकते हैं],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} संबंधित चिट्ठों में खोज कर सकते हैं],
 या [{{fullurl:{{FULLPAGENAME}}|action=edit}} इस पन्ने को संपादित कर सकते हैं]</span>।',
 'noarticletext-nopermission'       => 'फ़िलहाल इस पन्ने पर कोई सामग्री नहीं है।
 आप अन्य पन्नों में [[Special:Search/{{PAGENAME}}|इस पन्ना शीर्षक की खोज]] कर सकते हैं,
-या <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} संबंधित चिट्ठों में खोज कर सकते हैं] </span>।',
+या <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} संबंधित चिट्ठों में खोज कर सकते हैं] </span>।',
 'userpage-userdoesnotexist'        => 'सदस्य खाता "$1" पंजिकृत नहीं हैं । कृपया यह लेख आप संपादित अथवा निर्मित करना चाहते हैं इसकी जाँच करें ।',
 'userpage-userdoesnotexist-view'   => 'सदस्य "$1" पंजीकृत नहीं है',
 'clearyourcache'                   => "'''ध्यान दें - सँजोने के बाद बदलाव देखने के लिए आपको अपने विचरक की संचिका खाली करने पड़ सकती है।'''

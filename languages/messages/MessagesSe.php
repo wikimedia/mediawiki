@@ -266,7 +266,9 @@ $messages = array(
 'sqlhidden'            => '(SQL-jierahallan lea čihkojuvvon)',
 
 # Login and logout pages
-'logouttext'                 => 'Leat dál čálligoahtán olggos {{GRAMMAR:elative|{{SITENAME}}}}. Sáhtat joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman, dahje čálligoahtit ođđasit sisa.',
+'logouttext'                 => "'''Leat dál čálligoahtán olggos {{GRAMMAR:elative|{{SITENAME}}}}.'''
+
+Sáhtat joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman, dahje čálligoahtit ođđasit sisa.",
 'welcomecreation'            => '== Bures boahtin, $1! ==
 Du geavaheaddjidovddaldat lea dál anus.
 Ále vajáldahte rievdadit {{GRAMMAR:genitive|{{SITENAME}}}} iežat ásahusaid.',

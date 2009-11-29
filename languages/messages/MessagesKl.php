@@ -307,7 +307,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 
 # Contributions
 'mycontris' => 'Tapikka',
-'uctop'     => '(kaarfa)',
+'uctop'     => '(kingulleq)',
 
 'sp-contributions-talk'     => 'Oqallinneq',
 'sp-contributions-username' => 'IP adresse imalt. atuisoq:',

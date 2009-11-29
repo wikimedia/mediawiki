@@ -257,7 +257,7 @@ Para maghimo sang sina na pahina, sugod ka lang sa pagtayp sa sulod sang kahon n
 Pero kung nakasulod nga aksidente lamang, palihog lang i-klik sa imo internet nga may ngalan ukon simbolo nga '''back''' button.",
 'noarticletext'                    => 'Wala subong sang teksto ang ini nga pahina.
 Pwede ka [[Special:Search/{{PAGENAME}}|mangita para sa titulo sang ini nga pahina]] sa iban man nga pahina,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} mangita ka sang kaparehas nga logs],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mangita ka sang kaparehas nga logs],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} islan ini nga pahina]</span>.',
 'previewnote'                      => "'''Tandaan nga prebyu lamang ini.'''
 Wala pa nabutang ang imo nga ginbag-o!",
