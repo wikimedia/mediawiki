@@ -790,10 +790,13 @@ class LogPager extends ReverseChronologicalPager {
 		$types = ($types === '') ? array() : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
 		foreach ( $types as $type ) {
-			if( isset( $wgLogRestrictions[$type] ) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
+			if( isset( $wgLogRestrictions[$type] )
+				&& !$wgUser->isAllowed($wgLogRestrictions[$type])
+			) {
 				$types = array_diff( $types, array( $type ) );
 			}
 		}
+		$this->types = $types;
 		// Don't show private logs to unprivileged users.
 		// Also, only show them upon specific request to avoid suprises.
 		$audience = $types ? 'user' : 'public';
@@ -802,7 +805,6 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $hideLogs;
 		}
 		if( count($types) ) {
-			$this->types = $types;
 			$this->mConds['log_type'] = $types;
 			// Set typeCGI; used in url param for paging
 			if( count($types) == 1 ) $this->typeCGI = $types[0];
@@ -890,18 +892,25 @@ class LogPager extends ReverseChronologicalPager {
 		$tables = array( 'logging', 'user' );
 		$this->mConds[] = 'user_id = log_user';
 		$groupBy = false;
+		$index = array();
 		# Add log_search table if there are conditions on it
 		if( array_key_exists('ls_field',$this->mConds) ) {
 			$tables[] = 'log_search';
-			$index = array( 'log_search' => 'ls_field_val', 'logging' => 'PRIMARY' );
+			$index['log_search'] = 'ls_field_val';
+			$index['logging'] = 'PRIMARY';
 			$groupBy = 'ls_log_id';
-		# Don't use the wrong logging index
+		# Avoid usage of the wrong index by limiting
+		# the choices of available indexes. This mainly
+		# avoids site-breaking filesorts.
 		} else if( $this->title || $this->pattern || $this->user ) {
-			$index = array( 'logging' => array('page_time','user_time') );
-		} else if( $this->types ) {
-			$index = array( 'logging' => 'type_time' );
+			$index['logging'] = array( 'page_time', 'user_time' );
+			if( count($this->types) == 1 ) {
+				$index['logging'][] = 'log_user_type_time';
+			}
+		} else if( count($this->types) == 1 ) {
+			$index['logging'] = 'type_time';
 		} else {
-			$index = array( 'logging' => 'times' );
+			$index['logging'] = 'times';
 		}
 		$options = array( 'USE INDEX' => $index );
 		# Don't show duplicate rows when using log_search
