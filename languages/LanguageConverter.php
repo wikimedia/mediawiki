@@ -130,7 +130,7 @@ class LanguageConverter {
 	 * @public
 	 */
 	function getPreferredVariant( $fromUser = true ) {
-		global $wgUser, $wgRequest, $wgVariantArticlePath, $wgDefaultLanguageVariant;
+		global $wgUser, $wgRequest, $wgVariantArticlePath, $wgDefaultLanguageVariant, $wgOut;
 
 		if($this->mPreferredVariant)
 			return $this->mPreferredVariant;
@@ -185,7 +185,19 @@ class LanguageConverter {
 			// variable in case this is called before the user's
 			// preference is loaded
 			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
-				
+
+				// bug 21672: Add Accept-Language to Vary and XVO headers
+				// to help Squid to determine user's perferred local language
+				// ONLY add Accept-Language when a variant has been found out
+				// patched by Liangent
+				$aloption = array();
+				foreach ( $this->mVariants as $variant ) {
+					if( $variant === $this->mMainLanguageCode )
+						continue;
+					$aloption[] = "string-contains=$variant";
+				}
+				$wgOut->addVaryHeader( 'Accept-Language', $aloption );
+
 				$acceptLanguage = strtolower( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 				// explode by comma
 				$result = explode(',', $acceptLanguage);
@@ -204,13 +216,11 @@ class LanguageConverter {
 				}
 
 				$fallback_languages = array();
-				$ret_language = null;
 				foreach( $languages as $language ) {
 					// strip whitespace
 					$language = trim( $language );
 					if( in_array( $language, $this->mVariants ) ) {
-						$ret_language = $language;
-						break;
+						return $language;
 					}
 					else {
 						// To see if there are fallbacks of current language.
@@ -223,27 +233,14 @@ class LanguageConverter {
 							$fallback_languages = array_merge( $fallback_languages, $fallbacks );
 					}
 				}
-				
+
 				// process fallback languages now
-				if( $ret_language === null ) {
-					$fallback_languages = array_unique( $fallback_languages );
-					foreach( $fallback_languages as $language ) {
-						if( in_array( $language, $this->mVariants ) ) {
-							$ret_language = $language;
-							break;
-						}
+				$fallback_languages = array_unique( $fallback_languages );
+				foreach( $fallback_languages as $language ) {
+					if( in_array( $language, $this->mVariants ) ) {
+						return $language;
 					}
 				}
-				
-				// bug 21672: Add Accept-Language to Vary and XVO headers
-				// to help Squid to determine user's perferred local language
-				// ONLY add Accept-Language when a variant has been found out
-				// thanks to Liangent's help
-				if( $ret_language !== $this->mMainLanguageCode ) {
-					global $wgOut;
-					$wgOut->addVaryHeader( 'Accept-Language', array('string-contains=' .$ret_language) );
-				}
-				return $ret_language;
 			}
 		}
 
