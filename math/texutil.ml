@@ -733,4 +733,6 @@ let find = function
     | "\\vbox"             -> raise (Failure "malformatted \\vbox")
     | "\\hbox"             -> raise (Failure "malformatted \\hbox")
     | "\\color"            -> (tex_use_color (); LITERAL (TEX_ONLY "\\color"))
+    | "\\pagecolor"        -> (tex_use_color (); LITERAL (TEX_ONLY "\\pagecolor"))
+    | "\\definecolor"      -> (tex_use_color (); LITERAL (TEX_ONLY "\\definecolor"))
     | s                    -> raise (Illegal_tex_function s)
