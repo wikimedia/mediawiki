@@ -1,5 +1,5 @@
 <?php
-/** Prūsiskan (Prūsiskan)
+/** Prussian (Prūsiskan)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -572,7 +572,7 @@ Adder IP adressi mazzi būtwei dallautan pra tūlin tērpautajans.
 Ik tu assei anōnims tērpautajs be tu mīri, kāi kumentārai stwi ni ast wartīntan prei tin, [[Special:UserLogin/signup|teīkeis rekkenan]] anga [[Special:UserLogin|enēis]] kāi aulānktun perejīngiskans kurtīsenins sen kittans anōnimans tērpautajs.''",
 'noarticletext'                    => 'Tēnti šin pāusan ni turri ēn sen tekstan.
 Tu mazzi [[Special:Search/{{PAGENAME}}|laukītun šisse pāusas tītelin]] en kitēimans pāusans,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pralaukītun registerin],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pralaukītun registerin],
 anga [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigītun šin pāusan]</span>.',
 'userpage-userdoesnotexist'        => 'Tērpautajs "$1" ni ast registrītan.
 Izbāndais, anga tū perarwi kwaitīwuns teīktun/redigītun šin pāusan.',

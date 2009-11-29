@@ -449,8 +449,10 @@ $2',
 'virus-unknownscanner' => '不明之反毒：',
 
 # Login and logout pages
-'logouttext'                 => "'''子去簿矣'''<br />
-子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。未清謄本，覽器文舊，且慎之。",
+'logouttext'                 => "'''子去簿矣'''
+
+子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。
+未清謄本，覽器文舊，且慎之。",
 'welcomecreation'            => '== $1大駕光臨! ==
 子簿增矣，敬更[[Special:Preferences|簿註]]。',
 'yourname'                   => '名',
@@ -599,9 +601,9 @@ $2',
 誤入者，返前即可。',
 'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
 'noarticletext'                    => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
-'noarticletext-nopermission'       => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]</span>。',
+'noarticletext-nopermission'       => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]</span>。',
 'userpage-userdoesnotexist'        => '「$1」之簿未增也。請建纂本頁前查之。',
 'userpage-userdoesnotexist-view'   => '「$1」之簿未增也。',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。

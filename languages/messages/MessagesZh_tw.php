@@ -163,6 +163,7 @@ $messages = array(
 
 # Login and logout pages
 'logouttext'                 => '您現在已經退出。
+
 您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同使用者身份登入。',
 'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置{{SITENAME}}個人參數。</p>',
 'yourname'                   => '您的使用者名:',

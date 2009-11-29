@@ -530,12 +530,10 @@ Ny antony napetraka dia : « ''$2'' ».",
 'virus-unknownscanner' => 'Tsy fantatra io Antivirus io :',
 
 # Login and logout pages
-'logouttext'                 => "
-'''Tafavoaka ianao ankehitriny.'''<br />
-Afaka manohy ny fampiasana ny {{SITENAME}} ianao ka tsy mitonona anarana, ary afaka
-miditra amin'ny alalan'ilay solonanarana teo na solonanarana hafa koa. 
-Mariho fa misy pejy sasantsasany mety mbola hiseho foana mandra-pamafanao ny 
-cache.",
+'logouttext'                 => "'''Tafavoaka ianao ankehitriny.'''
+
+Afaka manohy ny fampiasana ny {{SITENAME}} ianao ka tsy mitonona anarana, ary afaka miditra amin'ny alalan'ilay solonanarana teo na solonanarana hafa koa. 
+Mariho fa misy pejy sasantsasany mety mbola hiseho foana mandra-pamafanao ny cache.",
 'welcomecreation'            => "== Tongasoa, $1! ==
 
 Voaforona ny kaontinao. Aza adinoina ny manova ny mombamomba anao ao amin'ny {{SITENAME}}.",
@@ -727,7 +725,7 @@ Azonao atao ny [[Special:Search/{{PAGENAME}}||Tadiavo ny momba ny {{PAGENAME}}]]
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Na forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.",
 'noarticletext-nopermission'       => "Mbola tsy misy lahatsoratra ao amin'io pejy io. 
 
-Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy io]] ao amin'ny pejy hafa, mitady <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} anatin'ny tantaran'asa mikasika azy]</span>",
+Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy io]] ao amin'ny pejy hafa, mitady <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} anatin'ny tantaran'asa mikasika azy]</span>",
 'userpage-userdoesnotexist'        => 'Mbola tsy nanoratra anarana ato i « $1 ». Marino raha tena hamorona ity pejy ity ianao.',
 'userpage-userdoesnotexist-view'   => 'Tsy nanoratra anarana ato i « $1 ».',
 'clearyourcache'                   => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.

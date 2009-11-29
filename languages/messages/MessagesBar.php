@@ -328,7 +328,7 @@ Wennst mit de Kommentare auf dera Seitn nix ofanga kåst, is vermutlich da friar
 Wennst a anonymer Benutzer bist und dengst, daß irrelevante Kommentare an di grichtet worn san, [[Special:UserLogin|meld di bitte o]], um zukünftig Verwirrung zum vermeiden. ''",
 'noarticletext'                    => 'De Seitn enthåit zua Zeid kan Text ned.
 Du kãnnst in Titl vu dea Seitn auf de ãndan Seitn [[Special:Search/{{PAGENAME}}|suacha]],
-<span class="plainlinks"> in de dazuaghearadn [{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} Logbiache suachn] oda de Seitn [{{fullurl:{{FULLPAGENAME}}|action=edit}} beåabeitn]</span>.',
+<span class="plainlinks"> in de dazuaghearadn [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbiache suachn] oda de Seitn [{{fullurl:{{FULLPAGENAME}}|action=edit}} beåabeitn]</span>.',
 'updated'                          => '(Gändat)',
 'note'                             => "'''Hinweis:'''",
 'previewnote'                      => "'''Des is netta a Voaschau, d'Seitn is nu ned gspeichat woan!'''",

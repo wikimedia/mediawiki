@@ -494,7 +494,7 @@ Ona görə bu istifadəçini rəqəmlərdən ibarət IP ünvanı ilə müəyyən
 Belə IP ünvan bir neçə fərd tərəfindən istifadədə ola bilər.
 Əgər siz anonim istifadəçisinizsə və bu mesajın sizə aid olmadığını düşünürsünüzsə, onda  [[Special:UserLogin/signup|qeydiyyatdan keçin]] və ya [[Special:UserLogin|daxi olun]].''",
 'noarticletext'              => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə 
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} baxa],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
 'note'                       => "'''Qeyd:'''",
 'previewnote'                => "'''Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilmemişdir!'''",

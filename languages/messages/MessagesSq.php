@@ -528,7 +528,9 @@ Arsyeja e dhënë është ''$2''.",
 'virus-unknownscanner' => 'antivirus i pa njohur:',
 
 # Login and logout pages
-'logouttext'                 => 'Keni dalë jashtë {{SITENAME}}-s. Mund të vazhdoni të përdorni {{SITENAME}}-n anonimisht, ose mund të hyni brënda përsëri.',
+'logouttext'                 => "'''Keni dalë jashtë {{SITENAME}}-s.'''
+
+Mund të vazhdoni të përdorni {{SITENAME}}-n anonimisht, ose mund të hyni brënda përsëri.",
 'welcomecreation'            => '== Mirëserdhët, $1! ==
 Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAME}}-s suaj.',
 'yourname'                   => 'Fusni nofkën tuaj',

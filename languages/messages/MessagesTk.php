@@ -436,7 +436,9 @@ Görkezilen sebäp: ''$2''.",
 
 # Login and logout pages
 'logouttext'                 => "'''Sessiýany ýapdyňyz.'''
-Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz. Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
+
+Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz.
+Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
 'welcomecreation'            => '== Hoş geldiňiz, $1! ==
 
 Hasabyňyz açyldy.  
@@ -626,11 +628,11 @@ Bu paroly sessiýa açanyňyzdan soňra ''[[Special:ChangePassword|paroly üýtg
 Eger-de sizem anonim ulanyjy bolsaňyz we size siziň bilen dahyly ýok habarlaşyklar gelýän bolsa, onda mundan beýläk başga anonim ulanyjylar bilen garjaşmazlygyňyz üçin [[Special:UserLogin/signup|özüňize hasap ediniň]] ýa-da [[Special:UserLogin|sessiýa açyň]].''",
 'noarticletext'                    => 'Bu sahypa häzirki wagtda boş dur.
 Bu ady başga sahypalarda [[Special:Search/{{PAGENAME}}|gözläp bilersiňiz]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} degişli gündeliklerde gözleg geçirip bilersiňiz],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} degişli gündeliklerde gözleg geçirip bilersiňiz],
 ýa-da bu sahypany [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktirläp bilersiňiz]</span>.',
 'noarticletext-nopermission'       => 'Häzirki wagtda bu sahypada tekst ýok.
 Bu sahypa adyny [[Special:Search/{{PAGENAME}}|başga sahypalarda gözläp]]
-ýa-da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} degişli gündeliklerde gözleg geçirip bilersiňiz].</span>',
+ýa-da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} degişli gündeliklerde gözleg geçirip bilersiňiz].</span>',
 'userpage-userdoesnotexist'        => '"$1" ulanyjy hasaby hasaba alynmandyr. 
 Bu sahypany döretmek/redaktirlemek isleýän bolsaňyz, onda esewan boluň.',
 'userpage-userdoesnotexist-view'   => '"$1" ulanyjy hasaby hasaba alynmandyr.',

@@ -645,7 +645,7 @@ Miše säta lehtpol', kirjutaškakat alemba sijatud iknas (kc. [[{{MediaWiki:Hel
 Ku tö olet petnus tänna tuldes, pingat teiden kaclimen '''tagaze'''-kingitimele.",
 'noarticletext'                    => 'Necil lehtpolel ei ole nügüd\' tekstad.
 Tö voit [[Special:Search/{{PAGENAME}}|ectä nece nimi]] toižil lehtpolil, 
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ectä pojavid aigkirjoiden kirjutesid],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ectä pojavid aigkirjoiden kirjutesid],
 vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span>.',
 'userpage-userdoesnotexist'        => "Kävutajan nimed «$1» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
 'userpage-userdoesnotexist-view'   => '"$1"-kävutai ei ole registriruidud.',

@@ -395,7 +395,7 @@ hō‘ike ‘ia i lalo:",
 Hiki i kekahi mau mea hoʻohana ke hoʻokaʻana i kēia wahi noho IP.
 Inā he mea ho‘ohana ʻoe a ua haʻi ʻia kekahi manaʻo iā ʻoe, [[Special:UserLogin/signup|e hoʻokumu ʻia kekahi moʻokāki]] a i ʻole [[Special:UserLogin|e ʻeʻe]].''",
 'noarticletext'                    => 'ʻAʻohe kikokikona a kēia ʻaoʻao.
-Hiki iā ʻoe ke [[Special:Search/{{PAGENAME}}|huli no kēia inoa ʻaoʻao]] i nā ʻaoʻao ʻē aʻe, <span class="plainlinks">[{{fullurl:SpecialLog|page={{urlencode:{{FULLPAGENAME}}}}}} huli i nā moʻolelo pili], a i ʻole [{{fullurl:{{FULLPAGENAME}}|action=edit}} hoʻololi i kēia ʻaoʻao]</span>.',
+Hiki iā ʻoe ke [[Special:Search/{{PAGENAME}}|huli no kēia inoa ʻaoʻao]] i nā ʻaoʻao ʻē aʻe, <span class="plainlinks">[{{fullurl:SpecialLog|page={{FULLPAGENAMEE}}}} huli i nā moʻolelo pili], a i ʻole [{{fullurl:{{FULLPAGENAME}}|action=edit}} hoʻololi i kēia ʻaoʻao]</span>.',
 'previewnote'                      => "'''‘O keia ka nāmua;
 ‘a‘ole i mālama ‘ia ka ho‘ololi!'''",
 'editing'                          => 'Ke ho‘ololi nei iā $1',

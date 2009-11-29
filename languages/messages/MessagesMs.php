@@ -626,6 +626,7 @@ alamat e-mel anda di {{SITENAME}} ($4) dengan nama "$2" dan kata laluan "$3".
 Anda boleh log masuk dan tukar kata laluan anda sekarang.
 
 Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
+'usernamehasherror'          => 'Nama pengguna tidak boleh memiliki aksara cincangan',
 'login-throttled'            => 'Anda telah mencuba log masuk berulang kali.
 Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
@@ -737,10 +738,10 @@ Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pel
 'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk.
 Oleh itu kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna.
 Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujukan kepada anda, sila [[Special:UserLogin/signup|buka akaun baru]] atau [[Special:UserLogin|log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
-'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} menggelintar log-log yang berkaitan], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
+'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} menggelintar log-log yang berkaitan], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
 'noarticletext-nopermission'       => 'Tiada teks dalam laman ini ketika ini.
 Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
-atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} menggelintar log yang berkaitan]</span>.',
+atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} menggelintar log yang berkaitan]</span>.',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
 'userpage-userdoesnotexist-view'   => 'Akaun pengguna "$1" tidak berdaftar.',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
@@ -875,6 +876,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 Petunjuk: (kini) = perbezaan dengan versi terkini,
 (akhir) = perbezaan dengan versi sebelumnya, K = suntingan kecil.",
 'history-fieldset-title' => 'Lihat sejarah',
+'history-show-deleted'   => 'Dihapuskan sahaja',
 'histfirst'              => 'Terawal',
 'histlast'               => 'Terkini',
 'historysize'            => '($1 bait)',
@@ -892,6 +894,7 @@ Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 'rev-deleted-comment'         => '(komen dibuang)',
 'rev-deleted-user'            => '(nama pengguna dibuang)',
 'rev-deleted-event'           => '(entri dibuang)',
+'rev-deleted-user-contribs'   => '[nama pengguna atau alamat IP dibuang - suntingan disembunyikan daripada sumbangan]',
 'rev-deleted-text-permission' => "Semakan laman ini telah '''dihapuskan'''.
 Perinciannya mungkin ada di dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-text-unhide'     => "Semakan laman ini telah '''dihapuskan'''.

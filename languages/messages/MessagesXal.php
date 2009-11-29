@@ -348,7 +348,7 @@ $messages = array(
 'newarticletext'                   => "Та заалһиг дахад бәәдг уга халхд ирв. 
 Терүг бүтәҗ болхла, дораһар терзд бичтн (дәкәд өггцнә төлә [[{{MediaWiki:Helppage}}|тәәлвр]] хәләтн). 
 Та эн һазрт эндүһәр бәәхлә, '''Хәрү''' дарциг дартн.",
-'noarticletext'                    => "Эн халх хоосн. Та [[Special:Search/{{PAGENAME}}|эн нернә сананд орулһна хәәх]] , <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} бүртклин бичгт хәәх], аль '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бүтәх]'''</span>.",
+'noarticletext'                    => "Эн халх хоосн. Та [[Special:Search/{{PAGENAME}}|эн нернә сананд орулһна хәәх]] , <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} бүртклин бичгт хәәх], аль '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бүтәх]'''</span>.",
 'previewnote'                      => "'''Эн мел хәләвр бәәдг тускар тодлтн.'''
 Тана сольлһн ода чигн хадһлсн уга!",
 'editing'                          => '«$1» гидг халхиг чикллһн',
@@ -783,7 +783,9 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'revertmove'       => 'хәрүлһн',
 
 # Export
-'export' => 'Халхин экспорт',
+'export'        => 'Халхин экспорт',
+'export-addcat' => 'Немх',
+'export-addns'  => 'Немх',
 
 # Thumbnails
 'thumbnail-more' => 'Икдүлх',
@@ -881,26 +883,65 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'edit-externally-help' => '([http://www.mediawiki.org/wiki/Manual:External_editors Тәвллһнә заалт]  икәр өггцнә төлә хәләтн)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'цуг',
-'namespacesall' => 'цуг',
-'monthsall'     => 'цуг',
+'recentchangesall' => 'цуг',
+'imagelistall'     => 'цуг',
+'watchlistall2'    => 'цуг',
+'namespacesall'    => 'цуг',
+'monthsall'        => 'цуг',
+'limitall'         => 'цуг',
 
 # action=purge
 'confirm_purge_button' => 'Чик',
 
+# Multipage image navigation
+'imgmultipageprev' => '← урдк халх',
+'imgmultipagenext' => 'дарук халх →',
+'imgmultigo'       => 'Орх!',
+'imgmultigoto'     => '$1 халхд орх',
+
+# Table pager
+'table_pager_next'         => 'Дарук халх',
+'table_pager_prev'         => 'Урдк халх',
+'table_pager_first'        => 'Түрүн халх',
+'table_pager_last'         => 'Кенз халх',
+'table_pager_limit_submit' => 'Кех',
+'table_pager_empty'        => 'Ашнь уга',
+
 # Auto-summaries
 'autosumm-blank' => 'Халх цеврүлв',
 'autosumm-new'   => 'Шин халх: «$1»',
+
+# Live preview
+'livepreview-loading' => 'Белднә...',
+'livepreview-ready'   => 'Белднә... Болһсн!',
+
+# Watchlist editor
+'watchlistedit-numitems'     => 'Тана шинҗллһнә сеткүл {{PLURAL:$1|1 гешүтә|$1 гешүдтә}}, меткән халхста.',
+'watchlistedit-noitems'      => 'Тана шинҗллһнә сеткүл хоосн бәәнә.',
+'watchlistedit-normal-title' => 'Шинҗллһнә сеткүлиг чиклх',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Бүртклин халхна сольлһн',
 'watchlisttools-edit' => 'Сеткүлиг хәләх аль чиклх',
 'watchlisttools-raw'  => 'Бичг мет чиклх',
 
+# Special:FilePath
+'filepath-page' => 'Боомг:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Боомгин нерн:',
+
 # Special:SpecialPages
 'specialpages' => 'Көдлхнә халхс',
 
 # HTML forms
 'htmlform-reset' => 'Сольлһиг уга кех',
+
+# Add categories per AJAX
+'ajax-add-category'        => 'Әәшлиг немх',
+'ajax-add-category-submit' => 'Немх',
+'ajax-confirm-save'        => 'Хадһлх',
+'ajax-error-title'         => 'Эндү',
+'ajax-error-dismiss'       => 'Чик',
 
 );

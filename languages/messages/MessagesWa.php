@@ -348,11 +348,10 @@ Cweraedje: $2',
 'editinginterface'     => "'''Asteme:''' Vos candjîz ene pådje k' est eployeye po dner on tecse d' eterface pol programe. Les candjmints a cisse pådje ci vont-st aveur èn efet so l' eterface d' uzeu des ôtes uzeus.",
 
 # Login and logout pages
-'logouttext'                 => "'''Vos vs avoz dislodjî.'''<br />
-Vos ploz continouwer a naivyî so {{SITENAME}} anonimmint, oudonbén
-vos relodjî dizo l' minme uzeu ou dizo èn uzeu diferin. Notez ki des
-pådjes k' i gn a si pôrént continowuer a vey come si vos estîz elodjî,
-disk' a tant ki vos vudrîz l' muchete di vosse betchteu waibe.",
+'logouttext'                 => "'''Vos vs avoz dislodjî.'''
+
+Vos ploz continouwer a naivyî so {{SITENAME}} anonimmint, oudonbén vos relodjî dizo l' minme uzeu ou dizo èn uzeu diferin.
+Notez ki des pådjes k' i gn a si pôrént continowuer a vey come si vos estîz elodjî, disk' a tant ki vos vudrîz l' muchete di vosse betchteu waibe.",
 'welcomecreation'            => '== Bénvnowe, $1! ==
 
 Vosse conte a stî ahivé.

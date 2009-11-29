@@ -841,11 +841,11 @@ Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để x
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
 Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:UserLogin/signup|tạo tài khoản]] hoặc [[Special:UserLogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
 'noarticletext'                    => 'Trang này hiện chưa có nội dung.
-Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tìm trong các nhật trình liên quan],
+Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm trong các nhật trình liên quan],
 hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
 'noarticletext-nopermission'       => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác,
-hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tìm kiếm các nhật trình liên quan]</span>.',
+hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>.',
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'userpage-userdoesnotexist-view'   => 'Tài khoản “$1” chưa được đăng ký.',
 'clearyourcache'                   => "'''Ghi chú&nbsp;– Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (<span title=\"Command\">⌘</span>''R'' trên Macintosh); '''Konqueror:''' nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
@@ -1941,11 +1941,13 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'listusers-blocked'  => '(bị cấm)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Danh sách thành viên tích cực',
-'activeusers-intro'    => 'Dánh sách này liệt kê các thành viên đã hoạt động cách nào đó trong $1 ngày qua.',
-'activeusers-count'    => '$1 {{PLURAL:$1|sửa đổi|sửa đổi}} trong {{PLURAL:$3|ngày|$3 ngày}} gần đây',
-'activeusers-from'     => 'Hiển thị thành viên bắt đầu từ:',
-'activeusers-noresult' => 'Không thấy thành viên.',
+'activeusers'            => 'Danh sách thành viên tích cực',
+'activeusers-intro'      => 'Dánh sách này liệt kê các thành viên đã hoạt động cách nào đó trong $1 ngày qua.',
+'activeusers-count'      => '$1 {{PLURAL:$1|sửa đổi|sửa đổi}} trong {{PLURAL:$3|ngày|$3 ngày}} gần đây',
+'activeusers-from'       => 'Hiển thị thành viên bắt đầu từ:',
+'activeusers-hidebots'   => 'Ẩn robot',
+'activeusers-hidesysops' => 'Ẩn quản lý viên',
+'activeusers-noresult'   => 'Không thấy thành viên.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nhật trình mở tài khoản',

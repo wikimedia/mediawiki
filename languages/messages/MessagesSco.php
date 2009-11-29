@@ -382,7 +382,10 @@ $2',
 The grunds for this are: ''$2''.",
 
 # Login and logout pages
-'logouttext'                 => "Ye'r nou loggit oot. Ye can continue to uise {{SITENAME}} namelessly, or ye can log in again as the same or as a different uiser. Mynd that some pages micht continue tae be displayed as if ye war aye loggit in, till ye clear yer brouser cache.",
+'logouttext'                 => "'''Ye'r nou loggit oot.'''
+
+Ye can continue to uise {{SITENAME}} namelessly, or ye can log in again as the same or as a different uiser.
+Mynd that some pages micht continue tae be displayed as if ye war aye loggit in, till ye clear yer brouser cache.",
 'welcomecreation'            => '== Guid tae see ye, $1! ==
 
 Yer accoont haes been creatit. 

@@ -356,8 +356,9 @@ Pro praxeri signala s\'acuntèssidu a unu [[Special:ListUsers/sysop|aministrador
 'ns-specialprotected' => 'Is pàginas ispetziales non podent èssere acontzadas.',
 
 # Login and logout pages
-'logouttext'              => 'Logout effettuato.
-Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.',
+'logouttext'              => "'''Logout effettuato.'''
+
+Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.",
 'welcomecreation'         => '<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.',
 'yourname'                => 'Nòmene usuàriu',
 'yourpassword'            => 'Password:',
@@ -465,7 +466,7 @@ Pro pregheri ispetzìfica totu is particolares in antis in carchi siat pregunta 
 Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro àteras informatziones).
 Chi ses intrau inoghe pro isballiu, clicca in su browser tuo su butoni '''back/indietro'''.",
 'noarticletext'                    => 'In custu momentu sa pàgina est bùida.
-Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} chircare in is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
+Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chircare in is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
 'updated'                          => '(Agiornau)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Arregodadia  ca custa est isceti una ANTIPRIMA. Sa versione tua no est istada ancora allogada!'''",

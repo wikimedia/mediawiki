@@ -455,9 +455,9 @@ $2',
 La rasgioni frunidda è ''$2''.",
 
 # Login and logout pages
-'logouttext'                 => "'''Iscidda effettuadda.'''<br />
-Si pò sighì a usà {{SITENAME}} cumenti utenti anònimu oppuru eseguì una noba intradda, cu' lu matessi innòmu utenti o un'innòmu dibessu.
+'logouttext'                 => "'''Iscidda effettuadda.'''
 
+Si pò sighì a usà {{SITENAME}} cumenti utenti anònimu oppuru eseguì una noba intradda, cu' lu matessi innòmu utenti o un'innòmu dibessu.
 Zerthuni pàgini pudìani continuà a apparì cumenti si la iscidda nò fùssia avvinudda finaghì nò vèni puridda la mimória cache di lu propriu nabiggadori.",
 'welcomecreation'            => '== Binvinuddu, $1! ==
 
@@ -629,7 +629,7 @@ Si vói crià la pàgina abà, pói sùbidu ischribì in giossu (abbaidda li [[{
 
 S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni '''Indareddu''' i' lu propriu nabiggadori.",
 'anontalkpagetext'                 => "----''Chistha è la pàgina di dischussioni di un'utenti anònimu, chi no ha ancora criaddu una registhrazioni o, in dugna modu, no la usa. Pa identifiggallu è dunca nezzessàriu usà lu sóiu nùmaru di l'indirizzu IP. L'indirizzi IP, parò, poni assé cundibisi da più utenti. Si sei un'utenti anònimu e vói chi li cummenti prisenti in chistha pàgina no si rifèrini a te, [[Special:UserLogin|crea una noba registhrazion o intra]] cu' chidda ch'hai già pa evità d'assé confusu cu' althri utenti anònimi in futuru.''",
-'noarticletext'                    => "Abà chistha pàgina è biodda. È pussìbiri [[Special:Search/{{PAGENAME}}|zirchà chistu tituru]] i' l'althri pàgini di lu situ, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} zirchà i' li rigisthri curriraddi] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifiggà la pagina abà]</span>.",
+'noarticletext'                    => "Abà chistha pàgina è biodda. È pussìbiri [[Special:Search/{{PAGENAME}}|zirchà chistu tituru]] i' l'althri pàgini di lu situ, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} zirchà i' li rigisthri curriraddi] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifiggà la pagina abà]</span>.",
 'userpage-userdoesnotexist'        => 'La registhrazioni "$1" nò curripundi a un\'utenti rigisthraddu. Verifiggà chi s\'aggia avveru gana di crià o mudìfiggà chistha pàgina.',
 'clearyourcache'                   => "'''Nota:''' daboi abé saivaddu è nezzessàriu pulì la mimória cache di lu propriu nabiggadori pà vidé li ciambamenti. Pa '''Mozilla / Firefox / Safari''': fà clic i Ricàrrigga incalchendi lu buttoni di li maiuschuri, oppuru incalchà ''Ctrl-Maiusc-R'' (''Cmd-Maiusc-R'' i Mac); pa '''Internet Explorer:''' mantinì incalchaddu lu tasthu ''Ctrl'' mentri s'incalcha lu buttoni ''Aggiorna'' o incalchà ''Ctrl-F5''; pa '''Konqueror''': incalchà lu buttoni ''Ricarica'' o lu tasthu ''F5''; pa '''Opera''' pò assé nezzessàriu ibbuiddà cumpretamenti la mimória cache da lu menù ''Strumenti → Preferenze''.",
 'usercssyoucanpreview'             => "'''Suggerimentu:''' Usa lu buttoni '''Visuarizza antiprimma''' pa prubà li nobi CSS primma di sàivvaddi.",

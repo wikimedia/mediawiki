@@ -326,8 +326,10 @@ Query: $2',
 'cascadeprotected'     => 'Asebter-agi yettwaḥrez seg ubeddil, axaṭer yettusekcem deg isebtar i ttwaḥerzen ula d nutni (acercur), ahaten:',
 
 # Login and logout pages
-'logouttext'                 => "'''Tura teffɣeḍ.'''<br />
-Tzemreḍ ad tesseqdceḍ {{SITENAME}} d udrig, neɣ tzemreḍ ad tkecmeḍ daɣen s yisem n wemseqdac inek (neɣ nniḍen). Kra n isebtar zemren ad sskanen belli mazal-ik s yisem n wemseqdac inek armi temḥuḍ lkac.",
+'logouttext'                 => "'''Tura teffɣeḍ.'''
+
+Tzemreḍ ad tesseqdceḍ {{SITENAME}} d udrig, neɣ tzemreḍ ad tkecmeḍ daɣen s yisem n wemseqdac inek (neɣ nniḍen).
+Kra n isebtar zemren ad sskanen belli mazal-ik s yisem n wemseqdac inek armi temḥuḍ lkac.",
 'welcomecreation'            => '== Anṣuf yis-k, $1! ==
 
 Isem n wemseqdac inek yettwaxleq. Ur tettuḍ ara ad tbeddleḍ Isemyifiyen n {{SITENAME}} inek.',

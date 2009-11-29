@@ -724,11 +724,11 @@ $2',
 మీరూ ఓ అజ్ఞాత వాడుకరి అయితే మరియు సంబంధంలేని వ్యాఖ్యలు మిమ్మల్ని ఉద్దేశించినట్టుగా అనిపిస్తే, భవిష్యత్తులో ఇతర అజ్ఞాత వాడుకర్లతో అయోమయం లేకుండా ఉండటానికి, దయచేసి [[Special:UserLogin/signup|ఖాతా సృష్టించుకోండి]] లేదా [[Special:UserLogin|లోనికి ప్రవేశించండి]].''",
 'noarticletext'                    => 'ప్రస్తుతం ఈ పేజీలో పాఠ్యమేమీ లేదు.
 వేరే పేజీలలో [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక కోసం వెతకవచ్చు]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} సంబంధిత చిట్టాలు చూడవచ్చు],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలు చూడవచ్చు],
 లేదా [{{fullurl:{{FULLPAGENAME}}|action=edit}} ఈ పేజీని మార్చవచ్చు]</span>.',
 'noarticletext-nopermission'       => 'ప్రస్తుతం ఈ పేజీలో పాఠ్యమేమీ లేదు.
 మీరు ఇతర పేజీలలో [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక కోసం వెతకవచ్చు]],
-లేదా <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} సంబంధిత చిట్టాలలో వెతకండి]</span>.',
+లేదా <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలలో వెతకండి]</span>.',
 'userpage-userdoesnotexist'        => '"$1" అనే వాడుకరి ఖాతా నమోదయిలేదు. మీరు ఈ పేజీని సృష్టించ/సరిదిద్దాలనుకుంటే, సరిచూసుకోండి.',
 'userpage-userdoesnotexist-view'   => 'వాడుకరి ఖాతా "$1" నమోదుకాలేదు.',
 'clearyourcache'                   => "'''గమనిక - భద్రపరచిన తర్వాత, మార్పులను చూడడానికి మీ విహారిణి యొక్క కోశాన్ని తీసేయాల్సిరావచ్చు.''' '''మొజిల్లా/ ఫైర్‌ఫాక్స్‌ / సఫారి:''' ''Shift'' మీటని నొక్కిపట్టి ''రీలోడ్''ని నొక్కండి లేదా ''Ctrl-F5'' అనే మీటల్ని లేదా ''Ctrl-R'' (మాకింటోషులో ''Command-R'') అనే మీటల్ని కలిపి నొక్కండి; '''కాంకరర్: '''''రీలోడ్''ని నొక్కండి లేదా ''F5'' మీటని నొక్కండి; '''ఒపెరా:''' ''Tools → Preferences'' ద్వారా కోశాన్ని శుభ్రపరచండి; '''ఇంటర్నెట్ ఎక్ప్లోరర్:'''''Ctrl'' మీటని నొక్కిపట్టి ''రీఫ్రెష్''ని నొక్కండి లేదా ''Ctrl-F5'' మీటల్ని కలిపి నొక్కండి.",
@@ -1794,11 +1794,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'listusers-blocked'  => '(నిరోధించారు)',
 
 # Special:ActiveUsers
-'activeusers'          => 'క్రియాశీల వాడుకరుల జాబితా',
-'activeusers-intro'    => 'ఇది గత $1 {{PLURAL:$1|రోజులో|రోజులలో}} ఏదైనా కార్యకలాపం చేసిన వాడుకరుల జాబితా.',
-'activeusers-count'    => 'గడచిన {{PLURAL:$3|ఒక రోజు|$3 రోజుల}}లో $1 {{PLURAL:$1|మార్పు|మార్పులు}}',
-'activeusers-from'     => 'వాడుకరులను ఇక్కడ నుండి చూపించు:',
-'activeusers-noresult' => 'వాడుకరులెవరూ లేరు.',
+'activeusers'            => 'క్రియాశీల వాడుకరుల జాబితా',
+'activeusers-intro'      => 'ఇది గత $1 {{PLURAL:$1|రోజులో|రోజులలో}} ఏదైనా కార్యకలాపం చేసిన వాడుకరుల జాబితా.',
+'activeusers-count'      => 'గడచిన {{PLURAL:$3|ఒక రోజు|$3 రోజుల}}లో $1 {{PLURAL:$1|మార్పు|మార్పులు}}',
+'activeusers-from'       => 'వాడుకరులను ఇక్కడ నుండి చూపించు:',
+'activeusers-hidebots'   => 'బాట్లను దాచు',
+'activeusers-hidesysops' => 'నిర్వాహకులను దాచు',
+'activeusers-noresult'   => 'వాడుకరులెవరూ లేరు.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'కొత్త వాడుకరుల చిట్టా',

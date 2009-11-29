@@ -413,7 +413,7 @@ Son dy chroo y duillag, gow toshiaght screeuyn ‘sy chishtey çheu heese jeh sh
 My haink oo dys shoh trooid marranys, crig er cramman ‘erash’ yn jeeagheyder ayd.',
 'noarticletext'                    => "Cha nel teks 'sy duillag shoh ec y traa t'ayn.
 Foddee oo [[Special:Search/{{PAGENAME}}|ronsaghey enmys ny duillag shoh]] ayns duillagyn elley,
-<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} jean ronsaght 'sy lioaryn cooishyn ta bentyn rish],
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} jean ronsaght 'sy lioaryn cooishyn ta bentyn rish],
 ny [{{fullurl:{{FULLPAGENAME}}|action=edit}} reaghey yn duillag shoh]</span>.",
 'note'                             => "'''Note:'''",
 'previewnote'                      => "'''Cooinnee nagh vel eh shoh agh ny roie-haishbynys;

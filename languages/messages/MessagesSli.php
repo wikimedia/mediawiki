@@ -596,7 +596,7 @@ Bitte fiege olle Informationa jeder Oafroage hinzu, de du stallt.",
 'anontalkpagetext'                 => "----''Diese Seyte dient dazu, a'm ne oagemeldeta Benutzer Noachrichta zu hinterlassa. Is werd senne IP-Atresse zur Identifizierung verwendet. IP-Atressen kinna vu mehrera Nutzern gemeensam verwendet waan. Wenn du miet dann Kommentarn uff dieser Seyte nischt oafanga koast, richta se siech vermutlich oa an'n friehera Inhaber denner IP-Atresse und du koast se ignorieren. Du koast dir au a [[Special:UserLogin/signup|Nutzerkonto erstalla]] oder dich [[Special:UserLogin|oamelda]], im kinftig Verwechslunga miet andern anonyma Nutzern zu vermeida.''",
 'noarticletext'                    => 'Diese Seyte enthält momentan noo kenn Text.
 Du koast diesen Tittel uffa andern Seyta [[Special:Search/{{PAGENAME}}|sucha]],
-<span class="plainlinks"> ei dan zugeheeriga [{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} Logbichern sucha] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} beorbeeta]</span>.',
+<span class="plainlinks"> ei dan zugeheeriga [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbichern sucha] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} beorbeeta]</span>.',
 'noarticletext-nopermission'       => 'Diese Seyte enthält momentan noo kenn Text.
 Du koast diesen Tittel uff dann andern Seyta [[Special:Search/{{PAGENAME}}|sicha]]
 oder ei dann zugehieriga <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbichern sicha].</span>',

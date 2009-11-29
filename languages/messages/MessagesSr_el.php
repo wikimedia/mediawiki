@@ -603,8 +603,10 @@ Blokirao ga je [[User:$1|$1]] a dati razlog je ''$2''.",
 'virus-unknownscanner' => 'nepoznati antivirus:',
 
 # Login and logout pages
-'logouttext'                 => "'''Sada ste odjavljeni.'''<br />
-Možete da nastavite da koristite projekat {{SITENAME}} anonimno, ili se ponovo prijaviti kao drugi korisnik. Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvek prijavljeni, dok ne očistite keš svog brauzera.",
+'logouttext'                 => "'''Sada ste odjavljeni.'''
+
+Možete da nastavite da koristite projekat {{SITENAME}} anonimno, ili se ponovo prijaviti kao drugi korisnik.
+Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvek prijavljeni, dok ne očistite keš svog brauzera.",
 'welcomecreation'            => '== Dobrodošli, $1! ==
 
 Vaš nalog je napravljen.
@@ -789,7 +791,7 @@ Takvu adresu može deliti više korisnika.
 Ako ste anonimni korisnik i mislite da su vam upućene nebitne primedbe, molimo vas da [[Special:UserLogin|napravite nalog ili se prijavite]] da biste izbegli buduću zabunu sa ostalim anonimnim korisnicima.''",
 'noarticletext'                    => 'Trenutno ne postoji članak pod tim imenom.
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovu stranicu]] u drugim člancima,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti srodne istorije zapisa], ili je [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti].',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne istorije zapisa], ili je [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti].',
 'userpage-userdoesnotexist'        => 'Nalog "$1" nije registrovan. Proverite da li želite da pravite/uređujete ovu stranicu.',
 'userpage-userdoesnotexist-view'   => 'Korisnički nalog "$1" nije registrovan.',
 'clearyourcache'                   => "'''Zapamtite:''' Nakon snimanja, možda morate očistiti keš vašeg brauzera da biste videli promene. '''Mozilla / Firefox / Safari:''' držite ''Shift'' dok klikćete ''Reload'' ili pritisnite  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' na ''Apple Mac'' mašini); '''IE:''' držite ''Ctrl'' dok klikćete ''Refresh'' ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo kliknite ''Reload'' dugme ili pritisnite ''F5''; korisnici '''Opera''' brauzera možda moraju da u potpunosti očiste svoj keš preko ''Tools→Preferences''.",

@@ -280,11 +280,11 @@ lcont nek  tuyskar .
 
 # Edit pages
 'noarticletext'              => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 ulla cabba  [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 'noarticletext-nopermission' => 'Ur illa may itt yuran ɣ tasna tad.
 Ẓr [[Special:Search/{{PAGENAME}}|search for this page title]] ɣ tisnatin yaḍnin,
-ulla <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}}search the related logs]</span>.',
+ulla <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}search the related logs]</span>.',
 'copyrightwarning'           => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
 iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br />
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
