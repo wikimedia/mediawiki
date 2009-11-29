@@ -650,6 +650,8 @@ Hopefully we will remove this configuration var soon)
   PHP's memcached extension
 * (bug 21650) Both calls to SkinTemplateTabs hook are now compatible
 * (bug 21672) Add missing Accept-Language to both Vary and XVO headers
+* (bug 21679) "Edit block reasons" link at the bottom of Special:Blockip is now
+  only displayed to the users that have "editinterface" right
 
 == API changes in 1.16 ==
 
