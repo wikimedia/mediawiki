@@ -98,6 +98,7 @@ Hopefully we will remove this configuration var soon)
   CIDR ranges for blocking
 * $wgUseInstantCommons added for quick and easy enabling of Commons as a remote
   file repository
+* $wgWikiId added to override default output of wfWikiId()
 
 === New features in 1.16 ===
 

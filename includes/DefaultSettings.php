@@ -713,6 +713,12 @@ $wgDBservers		= false;
  */
 $wgLBFactoryConf    = array( 'class' => 'LBFactory_Simple' );
 
+/** 
+ * Unique identifier if you're paranoid and don't want $wgDBname as part of 
+ * wfWikiId(). See bug 21086
+ */
+$wgWikiId = false;
+
 /** How long to wait for a slave to catch up to the master */
 $wgMasterWaitTimeout = 10;
 

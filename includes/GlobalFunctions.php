@@ -2896,7 +2896,9 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
  * This is used as a prefix in memcached keys
  */
 function wfWikiID() {
-	global $wgDBprefix, $wgDBname;
+	global $wgDBprefix, $wgDBname, $wgWikiId;
+	if( $wgWikiId )
+		return $wgWikiId;
 	if ( $wgDBprefix ) {
 		return "$wgDBname-$wgDBprefix";
 	} else {
