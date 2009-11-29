@@ -197,7 +197,9 @@ class MediaWiki {
 	 */
 	function handleSpecialCases( &$title, &$output, $request ) {
 		wfProfileIn( __METHOD__ );
+		global $wgContLang, $wgUser;
 		$action = $this->getVal( 'Action' );
+		$perferred = $wgContLang->getPreferredVariant( false );
 		// Invalid titles
 		if( is_null($title) || $title->getDBkey() == '' ) {
 			$title = SpecialPage::getTitleFor( 'Badtitle' );
@@ -222,7 +224,9 @@ class MediaWiki {
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs
 		} else if( $action == 'view' && !$request->wasPosted() &&
-			( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
+			( ( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) ||
+			  ( !isset($this->GET['variant']) && $perferred != $wgContLang->getCode() &&
+			    $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{
 			$targetUrl = $title->getFullURL();

@@ -50,8 +50,8 @@ class OutputPage {
 
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
-	private $mVaryHeader = array( 'Accept-Encoding', 'Cookie' );
-	private $mXVOHeader = array( 'Accept-Encoding' => array('list-contains=gzip') );
+	private $mVaryHeader = array( 'Accept-Encoding' => array('list-contains=gzip'),
+								  'Cookie' => null );
 
 	/**
 	 * Constructor
@@ -807,24 +807,19 @@ class OutputPage {
 		return false;
 	}
 
-	public function addXVOHeader( $header, $option = null ) {
-		if ( !array_key_exists( $header, $this->mXVOHeader ) ) {
-			$this->mXVOHeader[$header] = $option;
+	public function addVaryHeader( $header, $option = null ) {
+		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
+			$this->mVaryHeader[$header] = $option;
 		}
 		elseif( is_array( $option ) ) {
-			if( is_array( $this->mXVOHeader[$header] ) ) {
-				$this->mXVOHeader[$header] = array_merge( $this->mXVOHeader[$header], $option );
+			if( is_array( $this->mVaryHeader[$header] ) ) {
+				$this->mVaryHeader[$header] = array_merge( $this->mVaryHeader[$header], $option );
 			}
 			else {
-				$this->mXVOHeader[$header] = $option;
+				$this->mVaryHeader[$header] = $option;
 			}
 		}
-	}
-
-	public function addVaryHeader( $header ) {
-		if ( !in_array( $header, $this->mVaryHeader ) ) {
-			$this->mVaryHeader[] = $header;
-		}
+		$this->mVaryHeader[$header] = array_unique( $this->mVaryHeader[$header] );
 	}
 
 	/** Get a complete X-Vary-Options header */
@@ -835,10 +830,10 @@ class OutputPage {
 		foreach ( $cvCookies as $cookieName ) {
 			$cookiesOption[] = 'string-contains=' . $cookieName;
 		}
-		$this->addXVOHeader( 'Cookie', $cookiesOption );
+		$this->addVaryHeader( 'Cookie', $cookiesOption );
 		
 		$headers = array();
-		foreach( $this->mXVOHeader as $header => $option ) {
+		foreach( $this->mVaryHeader as $header => $option ) {
 			$newheader = $header;
 			if( is_array( $option ) )
 				$newheader .= ';' . implode( ';', $option );
@@ -858,7 +853,7 @@ class OutputPage {
 
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
-		$response->header( 'Vary: ' . join( ', ', $this->mVaryHeader ) );
+		$response->header( 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) ) );
 
 		if ( $wgUseXVO ) {
 			# Add an X-Vary-Options header for Squid with Wikimedia patches
