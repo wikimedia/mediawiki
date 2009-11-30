@@ -29,6 +29,10 @@ function mwInsertEditButton(parent, item) {
 	image.style.cursor = "pointer";
 	image.onclick = function() {
 		insertTags(item.tagOpen, item.tagClose, item.sampleText);
+		//click tracking
+		if ( ( $j != undefined )  &&  ( $j.trackAction != undefined ) ) {
+			$j.trackAction("oldedit." + item.speedTip.replace(/ /g, "-"));
+		}
 		return false;
 	};
 
