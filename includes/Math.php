@@ -33,7 +33,7 @@ class MathRenderer {
 
 	function render() {
 		global $wgTmpDirectory, $wgInputEncoding;
-		global $wgTexvc, $wgMathCheckFiles;
+		global $wgTexvc, $wgMathCheckFiles, $wgTexvcBackgroundColor;
 		$fname = 'MathRenderer::render';
 
 		if( $this->mode == MW_MATH_SOURCE ) {
@@ -63,7 +63,8 @@ class MathRenderer {
 					escapeshellarg( $wgTmpDirectory ).' '.
 					escapeshellarg( $wgTmpDirectory ).' '.
 					escapeshellarg( $this->tex ).' '.
-					escapeshellarg( $wgInputEncoding );
+					escapeshellarg( $wgInputEncoding ).' '.
+					escapeshellarg(	$wgTexvcBackgroundColor );
 
 			if ( wfIsWindows() ) {
 				# Invoke it within cygwin sh, because texvc expects sh features in its default shell

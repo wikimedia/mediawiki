@@ -1895,6 +1895,13 @@ $wgSpecialPageCacheUpdates = array(
 $wgUseTeX = false;
 /** Location of the texvc binary */
 $wgTexvc = './math/texvc';
+/** 
+  * Texvc background color 
+  * use LaTeX color format as used in \special function
+  * for transparent background use value 'Transparent' for alpha transparency or
+  * 'transparent' for binary transparency.
+  */
+$wgTexvcBackgroundColor = 'rgb 1.0 1.0 1.0';
 
 /**
  * Normally when generating math images, we double-check that the
