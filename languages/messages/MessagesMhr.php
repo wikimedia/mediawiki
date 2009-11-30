@@ -541,6 +541,8 @@ $messages = array(
 'yourrealname'              => 'Чын лӱмжӧ:',
 'yourlanguage'              => 'Йылме:',
 'yournick'                  => 'Кидпале:',
+'gender-male'               => 'Пӧръеҥ',
+'gender-female'             => 'Ӱдырамаш',
 'email'                     => 'Электрон почто',
 'prefs-help-email'          => 'Электрон почтын адресшым ончыктыде кертат, адакшым тудо моло ушнышо-влаклан тыйын лаштык гоч тый денет кылым кучаш йӧным ышта, тыгодымак нунылан палыдыме кодеш.',
 
@@ -569,6 +571,7 @@ $messages = array(
 'recentchanges-label-legend'       => 'Умылтарымаш: $1.',
 'recentchanges-legend-newpage'     => '$1 - у лаштык',
 'recentchanges-label-newpage'      => 'Тиде тӧрлатымаш дене у лаштыкым ыштеныт',
+'recentchanges-legend-minor'       => '$1 - изирак тӧрлатымаш',
 'recentchanges-label-minor'        => 'Тиде изирак тӧрлатымаш',
 'recentchanges-legend-bot'         => '$1 - бот тӧрлатымаш',
 'recentchanges-label-bot'          => 'Тиде тӧрлатымашым бот ыштен',
@@ -610,7 +613,7 @@ $messages = array(
 'filedesc'          => 'Файл нерген кӱчыкын увертараш',
 'fileuploadsummary' => 'Тидын нерген кӱчыкын:',
 'uploadedimage'     => '«[[$1]]» пуртыш',
-'watchthisupload'   => 'Тиде лаштыкым эскераш',
+'watchthisupload'   => 'Тиде файлым эскераш',
 
 # Special:ListFiles
 'imgfile'        => 'файл',
@@ -674,6 +677,8 @@ $messages = array(
 'nmembers'          => '$1 {{PLURAL:$1|лаштык|лаштык-влак}}',
 'nviews'            => '$1 {{PLURAL:$1|ончымо|ончымо-влак}}',
 'prefixindex'       => 'Чыла лаштык-влак префикс дене',
+'shortpages'        => 'Кӱчык лаштык-влак',
+'longpages'         => 'Кужу лаштык-влак',
 'newpages'          => 'У лаштык-влак',
 'newpages-username' => 'Пайдаланышын лӱмжӧ:',
 'move'              => 'Кусараш',
@@ -698,6 +703,9 @@ $messages = array(
 'allpagesto'     => 'кудыжо пытат:',
 'allarticles'    => 'Чыла лаштык-влак',
 'allpagessubmit' => 'Кай',
+
+# Special:Categories
+'categories' => 'Категорий-влак',
 
 # Special:LinkSearch
 'linksearch'    => 'Ӧрдыж кылвер-влак',

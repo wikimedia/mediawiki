@@ -1998,11 +1998,13 @@ Podržani protokoli: <tt>$1</tt>',
 'listusers-blocked'  => '(blokiran)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Spisak aktivnih korisnika',
-'activeusers-intro'    => 'Ovo je spisak korisnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
-'activeusers-count'    => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
-'activeusers-from'     => 'Prikaži korisnike koji počinju sa:',
-'activeusers-noresult' => 'Nije pronađen korisnik.',
+'activeusers'            => 'Spisak aktivnih korisnika',
+'activeusers-intro'      => 'Ovo je spisak korisnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
+'activeusers-count'      => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
+'activeusers-from'       => 'Prikaži korisnike koji počinju sa:',
+'activeusers-hidebots'   => 'Sakrij botove',
+'activeusers-hidesysops' => 'Sakrij administratore',
+'activeusers-noresult'   => 'Nije pronađen korisnik.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Zapis novih korisnika',

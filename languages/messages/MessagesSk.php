@@ -1030,6 +1030,7 @@ Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 'rev-deleted-comment'         => '(komentár odstránený)',
 'rev-deleted-user'            => '(používateľské meno odstránené)',
 'rev-deleted-event'           => '(činnosť odstránená zo záznamu)',
+'rev-deleted-user-contribs'   => '[používateľské meno alebo IP adresa odstránená - úprava skrytá pred prispievateľmi]',
 'rev-deleted-text-permission' => "Táto revízia stránky bola '''zmazaná'''.
 Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
 'rev-deleted-text-unhide'     => "Táto revízia stránky bola '''zmazaná'''.
@@ -1090,8 +1091,8 @@ Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupov
 'revdelete-submit'            => 'Použiť na {{PLURAL:$1|zvolenú revíziu|zvolené revízie}}',
 'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
-'revdelete-success'           => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
-'revdelete-failure'           => "'''Viditeľnosť revízie nebolo možné nastaviť:'''
+'revdelete-success'           => "'''Viditeľnosť revízie bola úspešne aktualizovaná.'''",
+'revdelete-failure'           => "'''Viditeľnosť revízie nebolo možné aktualizovať:'''
 $1",
 'logdelete-success'           => "'''Viditeľnosť záznamu bola úspešne nastavená.'''",
 'logdelete-failure'           => "'''Viditeľnosť záznamu nebolo možné nastaviť:'''
@@ -1976,11 +1977,13 @@ Podporované protokoly: <tt>$1</tt>',
 'listusers-blocked'  => '(zablokovaný)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Zoznam aktívnych používateľov',
-'activeusers-intro'    => 'Toto je zoznam používateľov, ktorí $1 {{PLURAL:$1|za posledný 1 deň|za posledné $1 dni|za posledných $1 dní}} vykonali nejakú aktivitu.',
-'activeusers-count'    => '$1 {{PLURAL:$1|úprava|úpravy|úprav}} za {{PLURAL:$3|posledný deň|posledné $3 dni|posledných $3 dní}}',
-'activeusers-from'     => 'Zobraziť používateľov počínajúc:',
-'activeusers-noresult' => 'Neboli nájdení žiadni používatelia.',
+'activeusers'            => 'Zoznam aktívnych používateľov',
+'activeusers-intro'      => 'Toto je zoznam používateľov, ktorí $1 {{PLURAL:$1|za posledný 1 deň|za posledné $1 dni|za posledných $1 dní}} vykonali nejakú aktivitu.',
+'activeusers-count'      => '$1 {{PLURAL:$1|úprava|úpravy|úprav}} za {{PLURAL:$3|posledný deň|posledné $3 dni|posledných $3 dní}}',
+'activeusers-from'       => 'Zobraziť používateľov počínajúc:',
+'activeusers-hidebots'   => 'Skryť robotov',
+'activeusers-hidesysops' => 'Skryť správcov',
+'activeusers-noresult'   => 'Neboli nájdení žiadni používatelia.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Záznam vytvorených používateľov',
@@ -2366,7 +2369,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipblocklist-sh-tempblocks'       => '$1 dočasných zablokovaní',
 'ipblocklist-sh-addressblocks'    => '$1 zablokovaní jednotlivej IP adresy',
 'ipblocklist-submit'              => 'Hľadať',
-'ipblocklist-localblock'          => 'Lokálny blok',
+'ipblocklist-localblock'          => 'Lokálne blokovanie',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Iný blok|Iné blokovania}}',
 'blocklistline'                   => '$1, $2 zablokoval $3 (ukončenie $4)',
 'infiniteblock'                   => 'na neurčito',
@@ -2819,7 +2822,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód.
-Po spustení môže byť váš systém kompromitovaný.<hr />",
+Jeho spustením môžete kompromitovať svoj systém.<hr />",
 'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',

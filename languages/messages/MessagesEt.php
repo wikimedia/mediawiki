@@ -665,9 +665,10 @@ $2',
 'virus-unknownscanner' => 'tundmatu viirusetõrje:',
 
 # Login and logout pages
-'logouttext'                 => "'''Te olete nüüd välja loginud.'''
+'logouttext'                 => "'''Oled nüüd välja loginud.'''
 
-Te võite jätkata {{SITENAME}} kasutamist anonüümselt, aga ka sama või mõne teise kasutajana uuesti [[Special:UserLogin|sisse logida]].",
+Võid jätkata {{GRAMMAR:genitive|{{SITENAME}}}} kasutamist anonüümselt, aga ka sama või mõne teise kasutajana uuesti [[Special:UserLogin|sisse logida]].
+Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võidakse mõni lehekülg endiselt nii kuvada nagu oleksid ikka sisse logitud.",
 'welcomecreation'            => '== Tere tulemast, $1! ==
 
 Sinu konto on loodud.
@@ -1029,7 +1030,7 @@ Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
 'revdelete-logentry'          => 'muutis lehekülje [[$1]] redaktsiooni nähtavust',
 'logdelete-logentry'          => 'muutis lehekülje [[$1]] nähtavust',
 'revdelete-success'           => "Redaktsiooni nähtavus edukalt värskendatud.'''",
-'revdelete-failure'           => "'''Redaktsiooni nähtavust ei saanud paika:'''
+'revdelete-failure'           => "'''Redaktsiooni nähtavust ei saanud värskendada:'''
 $1",
 'logdelete-success'           => "'''Logi nähtavus edukalt paigas.'''",
 'logdelete-failure'           => "'''Logi nähtavust ei saanud paika:'''
@@ -2557,7 +2558,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'siteuser'         => 'viki kasutaja $1',
 'lastmodifiedatby' => 'Viimati muutis lehekülge $3 $2 kell $1.',
 'othercontribs'    => 'Põhineb kasutajate $1 tööl.',
-'others'           => 'teised',
+'others'           => 'teiste',
 'siteusers'        => 'võrgukoha {{SITENAME}} {{PLURAL:$2|kasutaja|kasutajate}} $1',
 'creditspage'      => 'Lehekülje toimetajate loend',
 'nocredits'        => 'Selle lehekülje toimetajate loend ei ole kättesaadav.',
