@@ -440,8 +440,8 @@ Coma rason a l'ha butà: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''A l'é sortù da 'nt ël sistema.'''
 
-A peul tiré anans a dovré {{SITENAME}} coma Utent anonim, ò pura a peul [[Special:UserLogin|rintré torna ant ël sistema]]rintré torna ant ël sistema con l'istess stranòm che a dovrava prima, ò con un diferent.
-Ch'a nòta che cheich pàgine a peulo continué a esse visualisà com s'a fussa ancó ant ël sistema, fin ch'a scansela pa la cache ëd sò browser.",
+A peul tiré anans a dovré {{SITENAME}} coma Utent anonim, ò pura a peul [[Special:UserLogin|rintré torna ant ël sistema]] con l'istess stranòm che a dovrava prima, ò con un diferent.
+Ch'a nòta che chèich pàgine a peulo continué a esse visualisà com s'a fussa ancó ant ël sistema, fin ch'a scancela pa la cache ëd sò navigador.",
 'welcomecreation'            => '==Bin ëvnù, $1!==
 Sò cont a l\'é stàit creà.
 Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
@@ -533,9 +533,9 @@ Për piasì speta prima ëd prové torna.",
 'newpassword'               => 'Neuva ciav',
 'retypenew'                 => 'Che a scriva torna soa neuva ciav',
 'resetpass_submit'          => 'Registra la ciav e rintra ant ël sistema',
-'resetpass_success'         => "Soa ciav a l'é staita registrà sensa problema. I soma dapress a rintré ant ël sistema...",
+'resetpass_success'         => "Soa ciav a l'é stàita registrà sensa problema. I soma dapress a rintré ant ël sistema...",
 'resetpass_forbidden'       => 'Le ciav as peulo pa cambiesse',
-'resetpass-no-info'         => 'It deuve esse intrà për andé diretament a sta pàgina',
+'resetpass-no-info'         => 'It deve esse intrà për andé diretament a sta pàgina.',
 'resetpass-submit-loggedin' => 'Cambia ciav',
 'resetpass-wrong-oldpass'   => "Ciav a temp o corenta nen bon-a.
 Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
@@ -564,9 +564,9 @@ Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
 'hr_tip'          => 'Riga orisontal (da dovresse nen tròp soèns)',
 
 # Edit pages
-'summary'                          => 'Somari:',
+'summary'                          => 'Resumé:',
 'subject'                          => 'Sogèt:',
-'minoredit'                        => "Costa-sì a l'è na modìfica cita",
+'minoredit'                        => "Costa-sì a l'é na modìfica cita",
 'watchthis'                        => "Ten sot euj st'artìcol-sì",
 'savearticle'                      => 'Salva sta pàgina',
 'preview'                          => 'Preuva',
@@ -1746,7 +1746,7 @@ Varda ëdcò [[Special:WantedCategories|Categorìe ciamà]].",
 'activeusers-count'      => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
 'activeusers-from'       => "Mosta j'utent a parte da:",
 'activeusers-hidebots'   => 'Stërma trigomiro',
-'activeusers-hidesysops' => "Stërma j'aministrador",
+'activeusers-hidesysops' => "Stërma j'aministrator",
 'activeusers-noresult'   => 'Pa gnun utent trovà.',
 
 # Special:Log/newusers

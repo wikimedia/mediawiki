@@ -121,8 +121,8 @@ $messages = array(
 'returnto'         => 'Zerick zum Blatt $1.',
 'tagline'          => 'Vun {{SITENAME}}',
 'help'             => 'Hilf',
-'search'           => 'Guuck uff',
-'searchbutton'     => 'Guuck uff',
+'search'           => 'Guck uff',
+'searchbutton'     => 'Guck uff',
 'go'               => 'Geh',
 'searcharticle'    => 'Blatt',
 'history'          => 'Gschicht',
@@ -154,7 +154,7 @@ $messages = array(
 'lastmodifiedat'   => 'Des Blatt iss letscht gennert am $1 um $2 Uhr.',
 'protectedpage'    => 'Blatt mit Schutz',
 'jumptonavigation' => 'Faahre-Gnepp',
-'jumptosearch'     => 'guuck uff',
+'jumptosearch'     => 'guck uff',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Iwwer {{SITENAME}}',
@@ -172,7 +172,7 @@ $messages = array(
 
 'versionrequired'     => 'Muss Version $1 vun MediaWiki sei',
 'versionrequiredtext' => 'Muss Version $1 vun MediaWiki sei, fer es Blatt zu yuuse.
-Guuck aach [[Special:Version|Versionsblatt]]',
+Guck aach [[Special:Version|Versionsblatt]]',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Vun „$1“',
@@ -301,7 +301,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'powersearch-field'        => 'Such fer',
 'powersearch-toggleall'    => 'All',
 'powersearch-togglenone'   => 'Ken',
-'search-external'          => 'Guuck im Gewebb',
+'search-external'          => 'Guck im Gewebb',
 
 # Quickbar
 'qbsettings-none' => 'Ken',
@@ -315,7 +315,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'prefs-watchlist-days'     => 'Daage in de Watsch-Lischt:',
 'prefs-resetpass'          => 'Paesswatt ennere',
 'prefs-editing'            => 'Ennere',
-'searchresultshead'        => 'Guuck uff',
+'searchresultshead'        => 'Guck uff',
 'timezoneregion-africa'    => 'Afrikaa',
 'timezoneregion-america'   => 'Amerikaa',
 'timezoneregion-asia'      => 'Asie',
@@ -358,7 +358,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'right-edit'     => 'Bledder ennere',
 'right-move'     => 'Bledder ziehe',
 'right-movefile' => 'Feils ziehe',
-'right-upload'   => 'Feils ufflade',
+'right-upload'   => 'Feils ufflaade',
 'right-writeapi' => 'Yuus vun write API',
 'right-delete'   => 'Bledder lösche',
 
@@ -370,7 +370,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'action-edit'     => 'des Blatt zu ennere',
 'action-move'     => 'des Blatt zu ziehe',
 'action-movefile' => 'Des Feil ziehe',
-'action-upload'   => 'Des Feil ufflade',
+'action-upload'   => 'Des Feil ufflaade',
 'action-delete'   => 'des Blatt zu lösche',
 
 # Recent changes
@@ -400,8 +400,8 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'recentchangeslinked-page' => 'Blatt:',
 
 # Upload
-'upload'          => 'Ufflade',
-'uploadbtn'       => 'Feil ufflade',
+'upload'          => 'Ufflaade',
+'uploadbtn'       => 'Feil ufflaade',
 'filename'        => 'Feilnaame',
 'badfilename'     => 'Daer Feilnaame iss gennert warre nooch „$1“.',
 'watchthisupload' => 'Watsch des Blatt',
@@ -490,6 +490,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # Special:LinkSearch
 'linksearch'    => 'Gewebbgleecher',
 'linksearch-ns' => 'Blatznaame:',
+'linksearch-ok' => 'Uffgucke',
 
 # Special:ListUsers
 'listusers-submit'   => 'Zeig',
@@ -549,7 +550,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Undelete
 'undeletecomment'           => 'Grund:',
-'undelete-search-submit'    => 'Guuck uff',
+'undelete-search-submit'    => 'Guck uff',
 'undelete-show-file-submit' => 'Ya',
 
 # Namespace form on various pages
@@ -566,9 +567,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'year'                => 'bis Yaahr:',
 
 'sp-contributions-talk'     => 'Gschwetz',
-'sp-contributions-search'   => 'Guuck fer Ardickel',
+'sp-contributions-search'   => 'Guck fer Ardickel',
 'sp-contributions-username' => 'IP-Adress odder Yuusernaame',
-'sp-contributions-submit'   => 'Guuck uff',
+'sp-contributions-submit'   => 'Guck uff',
 
 # What links here
 'whatlinkshere'           => 'Was doher zeigt',
@@ -583,7 +584,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'ipbreasonotherlist' => 'Annerer Grund',
 'ipboptions'         => '2 Schtund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Monate:6 months,1 Yaar:1 year,Fer immer:infinite',
 'ipbotheroption'     => 'Anneres',
-'ipblocklist-submit' => 'Guuck uff',
+'ipblocklist-submit' => 'Guck uff',
 'infiniteblock'      => 'fer immer',
 'blocklink'          => 'Aabinne',
 'contribslink'       => 'Ardickele',
@@ -625,7 +626,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'tooltip-ca-talk'                => 'Gschetz iwwers Blatt',
 'tooltip-ca-delete'              => 'Des Blatt lösche',
 'tooltip-ca-move'                => 'Des Blatt ziehe',
-'tooltip-search'                 => 'Guuck uff {{SITENAME}}',
+'tooltip-search'                 => 'Guck uff {{SITENAME}}',
 'tooltip-p-logo'                 => 'Haaptblatt',
 'tooltip-n-mainpage'             => 'Zum Haaptblatt geh',
 'tooltip-n-mainpage-description' => 'Haaptblatt bsuche',
@@ -633,7 +634,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'tooltip-feed-rss'               => 'RSS-Feed fer des Blatt',
 'tooltip-feed-atom'              => 'Atom-Feed fer des Blatt',
 'tooltip-t-contributions'        => 'Lischt von Ardickele vun dem Yuuser zeige',
-'tooltip-t-upload'               => 'Feils ufflade',
+'tooltip-t-upload'               => 'Feils ufflaade',
 'tooltip-t-specialpages'         => 'Lischt vun alle besunnere Bledder',
 'tooltip-t-print'                => 'Des Blatt fer zum Drucke',
 'tooltip-ca-nstab-user'          => 'Yuuserblatt zeige',
@@ -652,7 +653,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # Special:NewFiles
 'showhidebots' => '(Bots $1)',
 'noimages'     => 'Keene Feils gfunne.',
-'ilsubmit'     => 'Guuck uff',
+'ilsubmit'     => 'Guck uff',
 
 # Metadata
 'metadata' => 'Metadaade',
@@ -718,6 +719,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Special:FilePath
 'filepath-submit' => 'Paad',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Uffgucke',
 
 # Special:SpecialPages
 'specialpages'                 => 'Besunnere Bledder',
