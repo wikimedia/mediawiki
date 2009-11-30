@@ -3,7 +3,7 @@ let lexer_token_safe lexbuf =
     try Lexer.token lexbuf
     with Failure s -> raise (LexerException s)
 
-let render tmppath finalpath tree =
+let render tmppath finalpath tree backcolor =
     let outtex = Util.mapjoin Texutil.render_tex tree in
     let md5 = Digest.to_hex (Digest.string outtex) in
     begin
@@ -19,11 +19,11 @@ let render tmppath finalpath tree =
 	  | Some h,Html.LIBERAL,Some m -> "L" ^ md5 ^ h ^ "\000" ^ m
 	  | None,_,Some m -> "X" ^ md5   ^ m
 	);
-	Render.render tmppath finalpath outtex md5
+	Render.render tmppath finalpath outtex md5 backcolor
     end
 let _ =
     Texutil.set_encoding (try Sys.argv.(4) with _ -> "UTF-8");
-    try render Sys.argv.(1) Sys.argv.(2) (Parser.tex_expr lexer_token_safe (Lexing.from_string Sys.argv.(3)))
+    try render Sys.argv.(1) Sys.argv.(2) (Parser.tex_expr lexer_token_safe (Lexing.from_string Sys.argv.(3))) (try Sys.argv.(5) with _ -> "rgb 1.0 1.0 1.0")
     with Parsing.Parse_error -> print_string "S"
        | LexerException _ -> print_string "E"
        | Texutil.Illegal_tex_function s -> print_string ("F" ^ s)

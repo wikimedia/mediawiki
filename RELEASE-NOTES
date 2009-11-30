@@ -290,6 +290,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 20717) Added checkboxes to hide users with bot and/or sysop group
   membership in SpecialActiveusers
 * Allow \pagecolor and \definecolor in texvc
+* $wgTexvcBackgroundColor contains background color for texvc call
 
 === Bug fixes in 1.16 ===
 

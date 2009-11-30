@@ -48,13 +48,13 @@ Just Works. It can be run manually for testing or for use in another app.
 
 === Command-line parameters ===
 
-    texvc <temp directory> <output directory> <TeX code> <encoding>
+    texvc <temp directory> <output directory> <TeX code> <encoding> <color>
 
 Be sure to properly quote the TeX code!
 
 Example:
 
-    texvc /home/wiki/tmp /home/wiki/math "y=x+2" iso-8859-1
+    texvc /home/wiki/tmp /home/wiki/math "y=x+2" iso-8859-1 "rgb 1.0 1.0 1.0"
 
 === Output format ===
 
