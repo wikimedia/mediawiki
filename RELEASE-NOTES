@@ -291,6 +291,7 @@ Hopefully we will remove this configuration var soon)
   membership in SpecialActiveusers
 * Allow \pagecolor and \definecolor in texvc
 * $wgTexvcBackgroundColor contains background color for texvc call
+* (bug 21574) Redirects can now have "303 See Other" HTTP status
 
 === Bug fixes in 1.16 ===
 
