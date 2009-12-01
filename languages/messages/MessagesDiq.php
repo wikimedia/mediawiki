@@ -1676,11 +1676,13 @@ qaydeyê destek biyayeyi: <tt>$1</tt>',
 'listusers-blocked'  => '(blok biy)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Listeyê karberî ke aktiv o.',
-'activeusers-intro'    => 'Ena yew listeye ke karberanê ke $1 {{PLURAL:$1|roc|rocan}} de îştiraq kerdo înan mocneno.',
-'activeusers-count'    => 'ney {{PLURAL:$3|rocê peyin de|$3 rocê peyin de}} $1 {{PLURAL:$1|vuriyayiş|vuriyayiş}}',
-'activeusers-from'     => 'karber ê ke pê ney destpêkeni ramocın:',
-'activeusers-noresult' => 'Karberî çini yo.',
+'activeusers'            => 'Listeyê karberî ke aktiv o.',
+'activeusers-intro'      => 'Ena yew listeye ke karberanê ke $1 {{PLURAL:$1|roc|rocan}} de îştiraq kerdo înan mocneno.',
+'activeusers-count'      => 'ney {{PLURAL:$3|rocê peyin de|$3 rocê peyin de}} $1 {{PLURAL:$1|vuriyayiş|vuriyayiş}}',
+'activeusers-from'       => 'karber ê ke pê ney destpêkeni ramocın:',
+'activeusers-hidebots'   => 'Botan binumne',
+'activeusers-hidesysops' => 'Idare kerdoğan binumne',
+'activeusers-noresult'   => 'Karberî çini yo.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Cıkewtışê hesab-vıraştışi',

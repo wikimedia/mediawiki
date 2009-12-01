@@ -401,6 +401,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o arquivo a seguir.|Há, nesta categoria, {{PLURAL:$1|o arquivo a seguir|os $1 seguintes arquivos}} (dentre um total de $2.)}}',
 'category-file-count-limited'    => 'Nesta categoria há {{PLURAL:$1|um arquivo|$1 arquivos}}.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Páginas indexadas',
+'noindex-category'               => 'Páginas não indexadas',
 
 'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.
@@ -639,8 +641,8 @@ Por favor, reporte este fato a um administrador, fazendo notar a URL.',
 'unexpected'           => 'Valor não esperado: "$1"="$2".',
 'formerror'            => 'Erro: Não foi possível enviar o formulário',
 'badarticleerror'      => 'Esta ação não pode ser realizada nesta página.',
-'cannotdelete'         => 'Não foi possível remover a página ou arquivo especificado.
-Provavelmente pode já ter sido removido por outra pessoa.',
+'cannotdelete'         => 'Não foi possível eliminar a página ou arquivo $1.
+É possível que ele já tenha sido eliminado por outra pessoa.',
 'badtitle'             => 'Título inválido',
 'badtitletext'         => 'O título de página requisitado é inválido, vazio, ou uma ligação incorreta de inter-linguagem ou título inter-wiki. Pode ser que ele contenha um ou mais caracteres que não podem ser utilizados em títulos.',
 'perfcached'           => 'Os dados seguintes encontram-se na cache e podem não estar atualizados.',
@@ -928,9 +930,9 @@ Quem bloqueou o banco de dados forneceu a seguinte justificativa: $1",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.",
 'cascadeprotectedwarning'          => "'''Atenção:''' Esta página se encontra protegida; apenas {{int:group-sysop}} podem editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
 'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida, [[Special:ListGroupRights|privilégios específicos]] são necessários para criá-la",
-'templatesused'                    => 'Predefinições utilizadas nesta página:',
-'templatesusedpreview'             => 'Predefinições utilizadas nesta previsão:',
-'templatesusedsection'             => 'Predefinições utilizadas nesta seção:',
+'templatesused'                    => '{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta página:',
+'templatesusedpreview'             => '{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta previsão:',
+'templatesusedsection'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta seção:',
 'template-protected'               => '(protegida)',
 'template-semiprotected'           => '(semi-protegida)',
 'hiddencategories'                 => 'Esta página integra {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
@@ -1067,11 +1069,12 @@ Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo
 'revdelete-hide-image'        => 'Ocultar conteúdos do arquivo',
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
 'revdelete-log'               => 'Motivo para a eliminação:',
-'revdelete-submit'            => 'Aplicar à edição selecionada',
+'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à revisão selecionada|à revisões selecionadas}}',
 'revdelete-logentry'          => 'modificou visibilidade de revisão para [[$1]]',
 'logdelete-logentry'          => 'alterada visibilidade de eventos para [[$1]]',
-'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
-'revdelete-failure'           => "'''Visibilidade da revisão não poderia ser configurada:'''$1",
+'revdelete-success'           => "'''A visibilidade da revisão foi definida com sucesso.'''",
+'revdelete-failure'           => "'''A visibilidade da revisão não foi atualizada:'''
+$1",
 'logdelete-success'           => "'''Visibilidade de evento definida com sucesso.'''",
 'logdelete-failure'           => "'''A visibilidade do registro não pôde ser estabelecida:'''
 $1",
@@ -1574,7 +1577,10 @@ Para incluir a imagem numa página, utilize uma ligação em um dos seguintes fo
 'fileexists'                  => "Já existe um arquivo com este nome.
 Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja alterar o arquivo atual.
 [[$1|thumb]]",
-'filepageexists'              => "A página de descrição deste arquivo já foi criada em '''<tt>[[:$1]]</tt>''', mas atualmente não existe nenhum arquivo com este nome. O sumário que introduziu não aparecerá na página de descrição. Para o fazer aparecer, terá que o editar manualmente",
+'filepageexists'              => "A página de descrição deste arquivo já foi criada em '''<tt>[[:$1]]</tt>''', mas atualmente não existe nenhum arquivo com este nome.
+O sumário que você introduziu não aparecerá na página de descrição.
+Para fazer com que ele apareça lá, você precisará que editá-lo manualmente.
+[[$1|thumb]]",
 'fileexists-extension'        => "Já existe um arquivo de nome similar: [[$2|thumb]]
 * Nome do arquivo que está sendo enviado: '''<tt>[[:$1]]</tt>'''
 * Nome do arquivo existente: '''<tt>[[:$2]]</tt>'''
@@ -1629,7 +1635,8 @@ PICT # misc.
 'upload-proto-error'        => 'Protocolo incorreto',
 'upload-proto-error-text'   => 'O envio de arquivos remotos requer endereços (URLs) que iniciem com <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error'         => 'Erro interno',
-'upload-file-error-text'    => 'Ocorreu um erro interno ao se tentar criar um arquivo temporário no servidor. Por gentileza, contate um administrador de sistema.',
+'upload-file-error-text'    => 'Ocorreu um erro interno ao tentar criar um arquivo temporário no servidor.
+Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]].',
 'upload-misc-error'         => 'Erro desconhecido de envio',
 'upload-misc-error-text'    => 'Ocorreu um erro desconhecido durante o envio. Por gentileza, verifique se o endereço (URL) é válido e acessível e tente novamente. Caso o problema persista, contacte um administrador de sistema.',
 'upload-too-many-redirects' => 'A URL contém redirecionamentos demais',
@@ -1939,7 +1946,7 @@ Protocolos suportados: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista de usuários ativos',
-'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}}',
+'activeusers-count'    => '$1 {{PLURAL:$1|edição|edições}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
 'activeusers-from'     => 'Mostrar usuários começando em:',
 'activeusers-noresult' => 'Nenhum usuário encontrado.',
 
@@ -2007,7 +2014,7 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
 'removedwatch'         => 'Removida da lista de páginas vigiadas',
-'removedwatchtext'     => 'A página "<nowiki>$1</nowiki>" foi removida de sua lista de páginas vigiadas.',
+'removedwatchtext'     => 'A página "[[:$1]]" foi removida de sua [[Special:Watchlist|lista de páginas vigiadas]].',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
 'unwatch'              => 'Desinteressar-se',
@@ -2073,7 +2080,7 @@ Contato e assistência:
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
 'delete-legend'          => 'Eliminar',
-'historywarning'         => 'Aviso: A página que está prestes a eliminar possui um histórico:',
+'historywarning'         => "'''Aviso:''' A página que você está prestes a eliminar possui um histórico com $1 {{PLURAL:$1|revisão|revisões}}:",
 'confirmdeletetext'      => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projeto.',
 'actioncomplete'         => 'Ação completada',
@@ -2740,7 +2747,8 @@ $1',
 'nextdiff'     => 'Edição posterior →',
 
 # Media information
-'mediawarning'         => "'''Aviso''': Este arquivo pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",
+'mediawarning'         => "'''Aviso''': Este tipo de arquivo pode conter código malicioso.
+Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
 'imagemaxsize'         => "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',

@@ -2464,7 +2464,7 @@ $1',
 'month'               => 'من شهر (وأقدم):',
 'year'                => 'من سنة (وأقدم):',
 
-'sp-contributions-newbies'        => 'عرض مساهمات الحسابات الجديدة فقط',
+'sp-contributions-newbies'        => 'اعرض مساهمات الحسابات الجديدة فقط',
 'sp-contributions-newbies-sub'    => 'للحسابات الجديدة',
 'sp-contributions-newbies-title'  => 'مساهمات المستخدم للحسابات الجديدة',
 'sp-contributions-blocklog'       => 'سجل المنع',
