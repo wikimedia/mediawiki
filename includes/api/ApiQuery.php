@@ -548,10 +548,6 @@ class ApiQuery extends ApiBase {
 	public function shouldCheckMaxlag() {
 		return true;
 	}
-	
-	public function shouldCheckAvglag() {
-		return true;
-	}
 
 	public function getParamDescription() {
 		return array (

@@ -49,10 +49,6 @@ class ApiHelp extends ApiBase {
 	public function shouldCheckMaxlag() {
 		return false;
 	}
-	
-	public function shouldCheckAvglag() {
-		return false;
-	}
 
 	public function isReadMode() {
 		return false;
