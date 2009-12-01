@@ -53,11 +53,6 @@ if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
 	exit;
 }
 
-$avgLag = $wgRequest->getVal( 'avglag' );
-if( !is_null( $avgLag ) && !$mediaWiki->checkAvgLag( $avgLag ) ) {
-	exit;
-}
-
 # Query string fields
 $action = $wgRequest->getVal( 'action', 'view' );
 $title = $wgRequest->getVal( 'title' );

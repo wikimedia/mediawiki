@@ -295,7 +295,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			);
 		}
 
-		$data['avglag'] = wfGetLB()->getAvgLag();
 		$result = $this->getResult();
 		$result->setIndexedTagName( $data, 'db' );
 		return $this->getResult()->addValue( 'query', $property, $data );

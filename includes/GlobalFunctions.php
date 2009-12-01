@@ -3082,21 +3082,6 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
 }
 
 /**
- * Displays a avglag error
- *
- * @param $lag Integer: avglag (actual)
- * @param $avgLag Integer: avglag (requested)
- */
-function wfAvglagError( $lag, $avgLag ) {
-	header( 'HTTP/1.1 503 Service Unavailable' );
-	header( 'Retry-After: ' . max( intval( $avgLag ), 5 ) );
-	header( 'X-Database-Lag: ' . intval( $lag ) );
-	header( 'Content-Type: text/plain' );
-
-	echo "Lagged: $lag seconds average\n";
-}
-
-/**
  * Throws a warning that $function is deprecated
  * @param $function String
  * @return null

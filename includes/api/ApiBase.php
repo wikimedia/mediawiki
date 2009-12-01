@@ -935,14 +935,6 @@ abstract class ApiBase {
 	public function shouldCheckMaxlag() {
 		return true;
 	}
-	
-	/**
-	 * Indicates if this module needs avglag to be checked
-	 * @return bool
-	 */
-	public function shouldCheckAvglag() {
-		return true;
-	}
 
 	/**
 	 * Indicates whether this module requires read rights
