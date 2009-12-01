@@ -525,9 +525,12 @@ Tarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
 'blockednoreason'                  => 'sebeb nêdiyo',
 'blockedoriginalsource'            => "Çımê pela '''$1'''i is cêr dero:",
 'blockededitsource'                => "Meqalê '''vurnaisunê to''' be pela '''$1'''i cêr dero:",
+'whitelistedittitle'               => 'Serba vurnaene gunê cı kuyê',
+'whitelistedittext'                => 'Serba vurnaene $1.',
 'nosuchsectiontitle'               => 'Qısımo de nianên çino',
 'nosuchsectiontext'                => 'To waşt ke jü qısım kuyê, uyo ke çino.
 Hata ke werte de qısım $1 çino, ca çino ke tı rastkerdena ho qeyd bıkerê.',
+'loginreqtitle'                    => 'Gunê cı kuyê',
 'loginreqlink'                     => 'cı kuye',
 'accmailtitle'                     => 'Parola rusniye.',
 'newarticle'                       => '(Newe)',
@@ -624,6 +627,11 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 *: ''adresa çêi u numrê têlefoni, numrê siğorta sosyale, uêb.''",
 'revdelete-legend'            => 'Şertunê vênaişi rone',
 'revdelete-hide-text'         => 'Nustê çımraviarnaene bınımne',
+'revdelete-hide-name'         => 'Biyaen u hedefi bınımne',
+'revdelete-hide-comment'      => 'Xulasa measne',
+'revdelete-hide-user'         => 'Namê karberiê/Adresa IPya vurnaoği bınımne',
+'revdelete-hide-image'        => 'Zerrekê dosya bınımne',
+'revdelete-log'               => 'Serba esteriyaene sebeb:',
 'revdel-restore'              => 'asaişi bıvurne',
 'revdelete-content'           => 'zerrek',
 'revdelete-uname'             => 'namê karberi',
@@ -665,6 +673,8 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'search-interwiki-more'     => '(zafêr)',
 'search-mwsuggest-enabled'  => 'ebe teklifu',
 'search-mwsuggest-disabled' => 'teklifi çinê',
+'nonefound'                 => "'''Not''': Teyna taê namê cau jê saybiyau cı fetelino.
+Verê cıfeteliyaene de be ilawekerdena verbendê '''all:'''i ra (ebe pelunê hurênaişi, şablonu uêb.) bıcerebnê ya ki namê cayo ke wajino jê verbendi bıgurênê.",
 'powersearch'               => 'Cıcêraiso hira',
 'powersearch-legend'        => 'Cıcêraiso hira',
 'powersearch-ns'            => 'Caunê namun de cıcêre:',
@@ -1182,6 +1192,7 @@ Variants for Chinese language
 * focallength",
 
 # External editor support
+'edit-externally'      => 'Na dosya be mırecaetê de teberi bıvurne',
 'edit-externally-help' => '(Serba daêna melumati qaytê pelga [http://www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
 
 # 'all' in various places, this might be different for inflected languages

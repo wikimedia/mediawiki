@@ -159,7 +159,7 @@ $messages = array(
 'tog-hideminor'               => 'Małe změny schowaś',
 'tog-hidepatrolled'           => 'Doglědowane změny w aktualnych změnach schowaś',
 'tog-newpageshidepatrolled'   => 'Doglědowane boki z lisćiny nowych bokow schowaś',
-'tog-extendwatchlist'         => 'Lisćinu wobglědowańkow wócyniś, aby wšě změny pokazał, nic jano nejnowše',
+'tog-extendwatchlist'         => 'Wobglědowańku wócyniś, aby wšě změny pokazał, nic jano nejnowše',
 'tog-usenewrc'                => 'Rozšyrjonu lisćinu aktualnych změnow (JavaScript trěbny) wužywaś',
 'tog-numberheadings'          => 'Nadpisma awtomatiski numerěrowaś',
 'tog-showtoolbar'             => 'Wobźěłańsku lejstwu pokazaś (JavaScript)',
@@ -194,7 +194,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Małe změny na wobglědowańskej lisćinje schowaś',
 'tog-watchlisthideliu'        => 'Změny pśizjawjonych wužywarjow z wobglědowańki schowaś',
 'tog-watchlisthideanons'      => 'Změny anonymnych wužywarjow z wobglědowańki schowaś',
-'tog-watchlisthidepatrolled'  => 'Doglědowane změny we wobglědowańkach schowaś',
+'tog-watchlisthidepatrolled'  => 'Doglědowane změny we wobglědowańce schowaś',
 'tog-nolangconversion'        => 'Konwertěrowanje rěcnych wariantow znjemóžniś',
 'tog-ccmeonemails'            => 'Kopije e-mailow dostaś, kótarež drugim wužywarjam pósćelom',
 'tog-diffonly'                => 'Pśi pśirownowanju wersijow jano rozdźěle pokazaś',
@@ -1096,11 +1096,11 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'prefs-personal'                => 'Wužywarski profil',
 'prefs-rc'                      => 'Aktualne změny',
 'prefs-watchlist'               => 'Wobglědowańka',
-'prefs-watchlist-days'          => 'Licba dnjow, kenž maju se we wobglědowańkach pokazaś:',
+'prefs-watchlist-days'          => 'Licba dnjow, kenž maju se we wobglědowańce pokazaś:',
 'prefs-watchlist-days-max'      => '(maksimalnje 7 dnjow)',
-'prefs-watchlist-edits'         => 'Maksimalna licba změnow, kenž maju w rozšyrjonej lisćinje wobglědowańkow se pokazaś:',
+'prefs-watchlist-edits'         => 'Maksimalna licba změnow, kótarež maju se w rozšyrjonej wobglědowańce pokazaś:',
 'prefs-watchlist-edits-max'     => '(maksimalna licba: 1000)',
-'prefs-watchlist-token'         => 'Marka wobglědowańkow:',
+'prefs-watchlist-token'         => 'Marka wobglědowańki:',
 'prefs-misc'                    => 'Wšake nastajenja',
 'prefs-resetpass'               => 'Gronidło změniś',
 'prefs-email'                   => 'E-mailowe opcije',
@@ -1121,8 +1121,8 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'recentchangesdays-max'         => '(maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
 'recentchangescount'            => 'Licba změnow, kótaraž ma se pó standarźe pokazaś:',
 'prefs-help-recentchangescount' => 'To wopśimujo aktualne změny, stawizny bokow a protokole.',
-'prefs-help-watchlist-token'    => 'Wupołnjenje toś togo póla z pótajmnym klucom buźo RSS-kanal za twóje wobglědowańki napóraś.
-Něchten, kenž znajo kluc w toś tom pólu, móžo twóje wobglědowańki cytaś, wubjeŕ togodla wěstu gódnotu.
+'prefs-help-watchlist-token'    => 'Wupołnjenje toś togo póla z pótajmnym klucom buźo RSS-kanal za twóju wobglědowańku napóraś.
+Něchten, kenž znajo kluc w toś tom pólu, móžo twóju wobglědowańku cytaś, wubjeŕ togodla wěstu gódnotu.
 How jo pśipadnje napórana gódnota, kótaruž móžoš wužywaś: $1',
 'savedprefs'                    => 'Twóje nastajenja su se składowali.',
 'timezonelegend'                => 'Casowa cona:',
@@ -1869,18 +1869,15 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 'watchlist'            => 'Wobglědowańka',
 'mywatchlist'          => 'mója wobglědowańka',
 'watchlistfor'         => "(za wužywarja '''$1''')",
-'nowatchlist'          => 'Žedne zapise w Twójich wobglědowańkach.',
-'watchlistanontext'    => 'Dejš $1, aby mógał swóje wobglědowańka wiźeś abo zapise w nich wobźěłaś.',
+'nowatchlist'          => 'Žedne zapise w twójej wobglědowańce.',
+'watchlistanontext'    => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
 'watchnologin'         => 'Njepśizjawjony(a)',
-'watchnologintext'     => 'Musyš byś [[Special:UserLogin|pśizjawjony]], aby mógał swóje wobglědowańka wobźěłaś.',
-'addedwatch'           => 'Jo k wobglědowańkam se dodało',
-'addedwatchtext'       => 'Bok „<nowiki>$1</nowiki>“ jo k twójim [[Special:Watchlist|wobglědowańkam]] se dodał.
-
-Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju a w pśeglěźe [[Special:RecentChanges|slědnych změnow]] tucnje wóznamjeniju.
-
-Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowědujucem boce na "dalej njewobglědowaś".',
-'removedwatch'         => 'Jo se z wobglědowańkow wulašowało',
-'removedwatchtext'     => 'Bok "[[:$1]]" jo se z [[Special:Watchlist|twójich wobglědowańkow]] wulašowany.',
+'watchnologintext'     => 'Musyš [[Special:UserLogin|pśizjawjony]] byś, aby mógał swóju wobglědowańku wobźěłaś.',
+'addedwatch'           => 'Jo se k wobglědowańce dodało',
+'addedwatchtext'       => "Bok \"[[:\$1]]\" jo se k twójej [[Special:Watchlist|wobglědowańce]] dodał.
+Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju, a bok buźo se w [[Special:RecentChanges|lisćinje aktualnych změnow]] '''tucnje''' pokazaś, aby daju se lažčej namakaś.",
+'removedwatch'         => 'Jo se z wobglědowańki wulašowało',
+'removedwatchtext'     => 'Bok "[[:$1]]" jo se z [[Special:Watchlist|twójeje wobglědowańki]] wulašowany.',
 'watch'                => 'Wobglědowaś',
 'watchthispage'        => 'Bok wobglědowaś',
 'unwatch'              => 'Dalej njewobglědowaś',
@@ -1891,9 +1888,9 @@ Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowě
 'watchlist-details'    => 'Wobglědujoš {{PLURAL:$1|$1 bok|$1 boka|$1 boki|$1 bokow}}, bźez diskusijnych bokow.',
 'wlheader-enotif'      => '* E-mailowe powěsće su aktiwizěrowane.',
 'wlheader-showupdated' => "* Boki, kótarež su wót twójogo slědnego woglěda se změnili, pokazuju se '''tucnje'''.",
-'watchmethod-recent'   => 'Kontrolěrowanje slědnych wobźěłanjow we wobglědowańkach',
-'watchmethod-list'     => 'Pśepytanje wobglědowańkow za slědnymi wobźěłanjami',
-'watchlistcontains'    => 'Twóje wobglědowańka wopśimjeju $1 {{PLURAL:$1|bok|boka|boki}}.',
+'watchmethod-recent'   => 'Kontrolěrowanje aktualnych změnow we wobglědowańce',
+'watchmethod-list'     => 'Pśepytanje wobglědowanych bokow za aktualnymi změnami',
+'watchlistcontains'    => 'Twója wobglědowańka wopśimujo $1 {{PLURAL:$1|bok|boka|boki|bokow}}.',
 'iteminvalidname'      => 'Problem ze zapisom „$1“, njepłaśece mě.',
 'wlnote'               => "{{PLURAL:$1|Slědujo slědna změna|slědujotej '''$1''' slědnej změnje|slěduju slědne '''$1''' změny}} {{PLURAL:$2|slědneje góźiny|slědneju '''$2''' góźinowu|slědnych '''$2''' góźinow}}.",
 'wlshowlast'           => 'Pokaž změny slědnych $1 góźinow, $2 dnjow abo $3 (w slědnych 30 dnjach).',
@@ -1926,11 +1923,11 @@ Kontakt z wobźěłarjom:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Dalšne e-mailowe powěsći se tak dłujko njepósćelu, až njejsy bok zasej woglědał. W swójich wobglědowańkach móžoš wšykne powěsćowe markery zasej slědk stajiś.
+Dalšne e-mailowe powěsći se tak dłujko njepósćelu, až njejsy bok zasej woglědał. W swójej wobglědowańce móžoš wšykne powěsćowe markery zasej slědk stajiś.
 
              Twój pśijaśelny {{SITENAME}} powěsćowy system
 --
-Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:Watchlist/edit}}
+Aby nastajenja twójeje wobglědowańki změnił, woglědaj: {{fullurl:Special:Watchlist/edit}}
 
 Pšašanja a dalšna pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2248,8 +2245,8 @@ $1 jo južo zablokěrowany. Coš nastajenja změniś?',
 # Developer tools
 'lockdb'              => 'Datowu banku zamknuś',
 'unlockdb'            => 'Datowu banku zasej spśistupniś',
-'lockdbtext'          => 'Zamknjenje datoweje banki znjemóžnijo wšyknym wužywarjam boki wobźěłaś, swóje nastajenja změnjaś, swóje wobglědowańka wobźěłaś a druge źěła wugbaś, kótarež pominaju změnu w datowej bance. Pšosym wobkšuś, až coš něnto datowu banku zamknuś a zasej dopušćiś, gaž sy swóje změny pśewjadł.',
-'unlockdbtext'        => 'Spśistupnjenje datoweje banki zmóžnijo wšyknym wužywarjam boki wobźěłaś, swóje nastajenja změnjaś, swóje wobglědowańka wobźěłaś a druge źěła wugbaś, kótarež pominaju změnu w datowej bance. Pšosym wobkšuś, až coš datowu banku zasej spśistupniś.',
+'lockdbtext'          => 'Zamknjenje datoweje banki znjemóžnijo wšyknym wužywarjam boki wobźěłaś, swóje nastajenja změnjaś, swóju wobglědowańku wobźěłaś a druge źěła wugbaś, kótarež pominaju změnu w datowej bance. Pšosym wobkšuś, až coš něnto datowu banku zamknuś a zasej dopušćiś, gaž sy swóje změny pśewjadł.',
+'unlockdbtext'        => 'Spśistupnjenje datoweje banki zmóžnijo wšyknym wužywarjam boki wobźěłaś, swóje nastajenja změnjaś, swóju wobglědowańku wobźěłaś a druge źěła wugbaś, kótarež pominaju změnu w datowej bance. Pšosym wobkšuś, až coš datowu banku zasej spśistupniś.',
 'lockconfirm'         => 'Jo, datowu banku com napšawdu zamknuś.',
 'unlockconfirm'       => 'Jo, datowu banku com napšawdu zasej spśistupniś.',
 'lockbtn'             => 'Datowu banku zamknuś',
@@ -2440,7 +2437,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-pt-mytalk'               => 'Twój diskusijny bok',
 'tooltip-pt-anontalk'             => 'Diskusija wó změnach z tuteje IP-adresy.',
 'tooltip-pt-preferences'          => 'Móje pśistajenja',
-'tooltip-pt-watchlist'            => 'Lisćina wobglědowańkow',
+'tooltip-pt-watchlist'            => 'Lisćina bokow, kótarež se wobglěduju',
 'tooltip-pt-mycontris'            => 'Lisćina twójich pśinoskow',
 'tooltip-pt-login'                => 'Pśizjawjenje njejo obligatoriske, ale lubje witane.',
 'tooltip-pt-anonlogin'            => 'Pśizjawjenje njejo obligatoriske, ale lubje witane.',
@@ -2493,7 +2490,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-preview'                 => "Pšosym '''pśeglěd změnow''' wužywaś, nježlic až składujoš!",
 'tooltip-diff'                    => 'Pokazujo změny teksta w tabelariskej formje.',
 'tooltip-compareselectedversions' => 'Wuzwólonej wersiji boka pśirownowaś',
-'tooltip-watch'                   => 'Toś ten bok wobglědowańkam dodaś',
+'tooltip-watch'                   => 'Toś ten bok wobglědowańce dodaś',
 'tooltip-recreate'                => 'Bok nawrośiś, lěcrowno jo był wulašowany',
 'tooltip-upload'                  => 'Z uploadowanim zachopiś',
 'tooltip-rollback'                => '"Roolback" anulěrujo změny slědnego wužywarja na toś tom boku z jadnym kliknjenim.',
@@ -3017,28 +3014,27 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'lag-warn-high'   => 'Dla wusokego wuśěženja serwera datoweje banki jo móžno, až pśinoski, kótarež su nowše ako {{PLURAL:$1|$1 sekunda|sekunźe|sekundy|sekundow}} se snaź na toś tej liśćinje njepokazuju.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Twóje wobglědowańka wopśimjeju {{PLURAL:$1|$1 zapisk|$1 zapiska|$1 zapiski}}, bźez diskusijnych bokow.',
-'watchlistedit-noitems'        => 'Twóje wobglědowańka su prozne.',
+'watchlistedit-numitems'       => 'Twója wobglědowańka wopśimuju {{PLURAL:$1|$1 zapisk|$1 zapiska|$1 zapiski|$1 zapiskow}}, bźez diskusijnych bokow.',
+'watchlistedit-noitems'        => 'Twója wobglědowańka jo prozna.',
 'watchlistedit-normal-title'   => 'Zapise wobźěłaś',
-'watchlistedit-normal-legend'  => 'Zapiski z wobglědowańkow wulašowaś',
-'watchlistedit-normal-explain' => 'To su zapise w twójich wobglědowańkach. Coš-lic zapise wulašowaś, markěruj kašćik pódla zapisow a tłoc na "zapise wulašowaś". Móžoš swóje wobglědowańka teke w [[Special:Watchlist/raw|lisćinowem formaśe]] wobźěłaś.',
+'watchlistedit-normal-legend'  => 'Zapiski z wobglědowańki wulašowaś',
+'watchlistedit-normal-explain' => 'To su zapiski w twójej wobglědowańce. Coš-lic zapisk wulašowaś, markěruj kašćik pódla zapiska a tłoc na "zapiski wulašowaś". Móžoš swóju wobglědowańku teke w [[Special:Watchlist/raw|lisćinowem formaśe]] wobźěłaś.',
 'watchlistedit-normal-submit'  => 'Zapise wulašowaś',
-'watchlistedit-normal-done'    => '{{PLURAL:$1 zapis jo|$1 zapisa stej|$1 zapise su}} z twójich wobglědowańkow se {{PLURAL:wulašował|wulašowałej|wulašowali}}.',
-'watchlistedit-raw-title'      => 'Same wobglědowańka wobźěłaś',
-'watchlistedit-raw-legend'     => 'Same wobglědowańka wobźěłaś',
-'watchlistedit-raw-explain'    => 'Zapise, kótarež namakaju se w twójich wobglědowańkach pokazuju se dołojce. Wóni mógu se wobźěłaś pśez to, až do lisćiny se dodawaju resp. z njeje se wulašuju (stawnje jaden zapis na smužku). Gaž sy gótowy, tłoc "Lisćinu aktualizěrowaś".
-
+'watchlistedit-normal-done'    => '{{PLURAL:$1 zapisk jo|$1 zapiska stej|$1 zapiski su|$1 zapiskow jo}} se z twójeje wobglědowańki {{PLURAL:wulašował|wulašowałej|wulašowali|wulašowało}}.',
+'watchlistedit-raw-title'      => 'Samu wobglědowańku wobźěłaś',
+'watchlistedit-raw-legend'     => 'Samu wobglědowańku wobźěłaś',
+'watchlistedit-raw-explain'    => 'Zapiski, kótarež namakaju se w twójej wobglědowańce pokazuju se dołojce. Wóni mógu se wobźěłaś pśez to, až do lisćiny se dodawaju resp. z njeje se wulašuju (stawnje jaden zapisk na smužku). Gaž sy gótowy, tłoc "Lisćinu aktualizěrowaś".
 Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'watchlistedit-raw-titles'     => 'Zapise:',
 'watchlistedit-raw-submit'     => 'Lisćinu aktualizěrowaś',
-'watchlistedit-raw-done'       => 'Twóje wobglědowańka su se zaktualizěrowali.',
+'watchlistedit-raw-done'       => 'Twója wobglědowańka jo se zaktualizěrowała.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 zapis jo se dodał|$1 zapisa stej se dodałej|$1 zapise su se dodali}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 zapis jo se wulašował|$1 zapisa stej se wulašowałej|$1 zapise su se wulašowali}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Změny wobglědaś',
-'watchlisttools-edit' => 'Woblědowańka pokazaś a wobźěłaś',
-'watchlisttools-raw'  => 'Wobglědowańka wobźěłaś',
+'watchlisttools-edit' => 'Wobglědowańku pokazaś a wobźěłaś',
+'watchlisttools-raw'  => 'Wobglědowańku wobźěłaś',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'Farwardin',
