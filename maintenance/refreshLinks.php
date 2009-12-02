@@ -122,10 +122,10 @@ class RefreshLinks extends Maintenance {
 					$this->fixLinksFromArticle( $row->page_id );
 			}
 		} else {
-			$this->output( "Refreshing $what table.\n" );
 			if ( !$end ) {
 				$end = $dbr->selectField( 'page', 'max(page_id)', false );
 			}
+			$this->output( "Refreshing redirects table.\n" );
 			$this->output( "Starting from page_id $start of $end.\n" );
 	
 			for ($id = $start; $id <= $end; $id++) {
@@ -134,10 +134,21 @@ class RefreshLinks extends Maintenance {
 					$this->output( "$id\n" );
 					wfWaitForSlaves( $maxLag );
 				}
-				if($redirectsOnly)
-					$this->fixRedirect( $id );
-				else
+				$this->fixRedirect( $id );
+			}
+
+			if(!$redirectsOnly) {
+				$this->output( "Refreshing links table.\n" );
+				$this->output( "Starting from page_id $start of $end.\n" );
+
+				for ($id = $start; $id <= $end; $id++) {
+	
+					if ( !($id % $reportingInterval) ) {
+						$this->output( "$id\n" );
+						wfWaitForSlaves( $maxLag );
+					}
 					$this->fixLinksFromArticle( $id );
+				}
 			}
 		}
 	}
