@@ -446,6 +446,9 @@ Tāns turri turītun ukamazzais {{PLURAL:$1|zentlin|zentlai}}.',
 'noemail'                    => 'Ni ast e-mail adressi enpeisātan per tērpautajan "$1".',
 'passwordsent'               => 'Nāuns kliptaswīrds pastāi tengīntan  en e-mail adressin stesse tērpautajan" $1".
 Panzdau gaūsenin, enjaīs etkūmps.',
+'blocked-mailpassword'       => 'Twajā IP adressi ast blōkitan ezze redigīsnai be stesse paggan ni assei enwarīntan tērpautun kliptaswīrdas etgaūsnas funkciōnin, kāi pakūnlai ezze wargaitērpausnai.',
+'throttled-mailpassword'     => 'Kliptaswīrdas preiminīsenis ast jāu tengīntan en {{PLURAL:$1|panzdauman stūndin|panzdaumans $1 stūndins}}.
+Kāi pakūnlai ezze wargaitērpausnai, tēr aīns kliptaswīrdas preiminīsenis ast tengīntan en {{PLURAL:$1|stūndin|$1 stūndins}}.',
 'mailerror'                  => 'Prei e-mail pustis tengīnsnan, tikka blānda $1',
 'acct_creation_throttle_hit' => 'Iz IP adressin, kawīdan tū tērpaui teīkē di jāu šandēinan {{PLURAL:$1|rekkenan|rekkenans}},  ka ast maksimāls preiwērpts gīrbis en šin kērdan.
 Stesse paggan, tērpawintei šan adressin ni mazīngi teinū segītun ripīntin rekkenan.',
@@ -654,6 +657,7 @@ Prawerru būtwei mazzan nikāi $2 {{PLURAL:$2|izwakīsenis|izwakīsenei}}, adder
 Ainuntas šablōnis ni wīrst pastāwuns tērpautan.',
 'post-expand-template-inclusion-category' => 'Pāusai, kwei tērpautas šablōnis debban ast kīrsa pratreptan',
 'parser-template-loop-warning'            => 'Serrīpē di kalpenin en šablōnei: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Šablōnis rekursiōni arāikinsenis kīrsa pratreptan ($1)',
 
 # "Undo" feature
 'undo-success' => 'Redigīsenis mazzi būtwei etwartīntan. Palīginais waidīntans šlaitīntans sirzdau wersiōnins be enpeisāis kitawīdisnans.',
@@ -1016,6 +1020,7 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'right-userrights'            => 'Redigīs enwarīnsenins wisēisan tērpautajan',
 'right-userrights-interwiki'  => 'Redigīs enwarīnsenins stēisan tērpautajan en kitēimans wiki',
 'right-siteadmin'             => 'Dātanbazin auklaūsna be etklaūsna',
+'right-reset-passwords'       => 'Etkraūneis kliptaswīrdans kitēisan tērpautajan',
 'right-override-export-depth' => 'Ekspōrtis pāusans ēmpiri sen pāusans prei kawīdans tenēi autenginna, ērgi gilluwan stēisan 5 autengīnsenin',
 
 # User rights log
@@ -1157,6 +1162,8 @@ Ik tū kwaitēi enkraūtun zūrbrukin, ettreppais be enkraūneis tennan etkūmps
 Ik tū ainatīngi kwaitēi enkraūtun šin zūrbrukin, ettreppais be tērpaus nāunan emnin.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Šis zūrbrukis ast kōpija {{PLURAL:$1|šisse zūrbrukin|šēisan zūrbrukin}}:',
+'file-deleted-duplicate'      => 'Zūrbrukis idēntiskas sen šin zūrbrukin ([[$1]]) pastāi ankstāis āupausintan.
+Pirzdau tālis ēisnan, tebbei prawerru izbandātun šisse zūrbrukes āupausinsenin istōrijan.',
 'successfulupload'            => 'Zūrbrukes enkraūsenis izpalla',
 'uploadwarning'               => 'Ēmpirssergīsenis ezze enkraūsnan',
 'savefile'                    => 'Enpeisāis zūrbrukin',
@@ -1417,6 +1424,7 @@ Teinū tennan prawedda prei [[$2]].',
 'all-logs-page'        => 'Wisāi perōniskai preiēiminai registerei',
 'alllogstext'          => 'Drāugan registerin per wissans dīlasenins en {{SITENAME}}.
 Tu mazzi anzitun rezultātans etrīnkantei registeres tīpan, tērpautajas pabilīsnan anga pāusas tītelin.',
+'logempty'             => 'Ni ast passauwintai registeres elāmentai.',
 'log-title-wildcard'   => 'Laukīs tītelins pagauwīntins sen šin tekstan',
 
 # Special:AllPages
@@ -2199,7 +2207,9 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-imagewidth'                  => 'Plattu',
 'exif-imagelength'                 => 'Aūktan',
 'exif-bitspersample'               => 'Bittai per izimlin',
+'exif-compression'                 => 'Kōmpresiōnis wīds',
 'exif-photometricinterpretation'   => 'Pikselas struktūri',
+'exif-orientation'                 => 'Ōrientaciōni',
 'exif-samplesperpixel'             => 'Izimlis per pikselin',
 'exif-ycbcrsubsampling'            => 'Y en C pōizimlinsnā',
 'exif-ycbcrpositioning'            => 'Y be C poziciōni',
@@ -2224,6 +2234,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-flashpixversion'             => 'Ebšlūzita Flashpix wersiōni',
 'exif-colorspace'                  => 'Bārwis plattibi',
 'exif-componentsconfiguration'     => 'Kōmpunēntin zentlisnā',
+'exif-compressedbitsperpixel'      => 'Bildes kōmpresiōnis wīds',
 'exif-pixelydimension'             => 'Tikrōmiskan bildes plattu',
 'exif-pixelxdimension'             => 'Tikrōmiskan bildes aūktan',
 'exif-usercomment'                 => 'Tērpautajas kumentārai',
@@ -2250,6 +2261,8 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-digitalzoomratio'            => 'Digitālas mūisesinsenes kōeficiēnts',
 'exif-scenecapturetype'            => 'Widāklis gabsnas tīps',
 'exif-gaincontrol'                 => 'Widāklis kontrōli',
+'exif-contrast'                    => 'Kōntrasts',
+'exif-saturation'                  => 'Sātwinisku',
 'exif-sharpness'                   => 'Astran',
 'exif-devicesettingdescription'    => 'Ēnrankis ensadīnsnan ebpeisāsenis',
 'exif-subjectdistancerange'        => 'Ōbjaktas tāliskwas ebīmtan',
@@ -2318,6 +2331,8 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-flash-mode-3'     => 'autōmatiskas wīds',
 'exif-flash-function-1' => 'Ni ast blicces funkciōni',
 
+'exif-focalplaneresolutionunit-2' => 'cullai',
+
 'exif-sensingmethod-1' => 'Nidefinītan',
 
 'exif-scenecapturetype-0' => 'Jāukus',
@@ -2332,6 +2347,8 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-contrast-2' => 'Debīks',
 
 'exif-saturation-0' => 'Nōrmals',
+'exif-saturation-1' => 'Zemā sātwinisku',
+'exif-saturation-2' => 'Auktā sātwinisku',
 
 'exif-sharpness-0' => 'Nōrmals',
 'exif-sharpness-1' => 'Līkuts',
