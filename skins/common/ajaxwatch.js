@@ -12,7 +12,9 @@ if(typeof wgAjaxWatch === "undefined" || !wgAjaxWatch) {
 		watchMsg: "Watch",
 		unwatchMsg: "Unwatch",
 		watchingMsg: "Watching...",
-		unwatchingMsg: "Unwatching..."
+		unwatchingMsg: "Unwatching...",
+		'tooltip-ca-watchMsg': "Add this page to your watchlist",
+		'tooltip-ca-unwatchMsg': "Remove this page from your watchlist"
 	};
 }
 
@@ -31,7 +33,14 @@ wgAjaxWatch.setLinkText = function( newText ) {
 			if ( newText == wgAjaxWatch.watchingMsg || newText == wgAjaxWatch.unwatchingMsg ) {
 				wgAjaxWatch.watchLinks[i].className += ' loading';
 			} else if ( newText == wgAjaxWatch.watchMsg || newText == wgAjaxWatch.unwatchMsg ) {
-				wgAjaxWatch.watchLinks[i].className = wgAjaxWatch.watchLinks[i].className.replace( /loading/i, '' );
+				wgAjaxWatch.watchLinks[i].className = 
+					wgAjaxWatch.watchLinks[i].className.replace( /loading/i, '' );
+				// update the title text on the link
+				var keyCommand = wgAjaxWatch.watchLinks[i].title.match( /\[.*\]/ ) ? 
+					wgAjaxWatch.watchLinks[i].title.match( /\[.*\]/ )[0] : "";
+				wgAjaxWatch.watchLinks[i].title = ( newText == wgAjaxWatch.watchMsg ? 
+					wgAjaxWatch['tooltip-ca-watchMsg'] : wgAjaxWatch['tooltip-ca-unwatchMsg'] )
+					+ " " + keyCommand;
 			}
 		}
 	} else {
