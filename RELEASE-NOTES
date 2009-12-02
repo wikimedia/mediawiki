@@ -658,6 +658,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 21679) "Edit block reasons" link at the bottom of Special:Blockip is now
   only displayed to the users that have "editinterface" right
 * (bug 21740) Attempting to protect a page that doesn't exist (salting) returns "unknown error"
+* (bug 18762) both redirects and links get fixed one after another if 
+  redirects-only switch is not present
 
 == API changes in 1.16 ==
 
