@@ -36,8 +36,8 @@ wgAjaxWatch.setLinkText = function( newText ) {
 				wgAjaxWatch.watchLinks[i].className = 
 					wgAjaxWatch.watchLinks[i].className.replace( /loading/i, '' );
 				// update the title text on the link
-				var keyCommand = wgAjaxWatch.watchLinks[i].title.match( /\[.*\]/ ) ? 
-					wgAjaxWatch.watchLinks[i].title.match( /\[.*\]/ )[0] : "";
+				var keyCommand = wgAjaxWatch.watchLinks[i].title.match( /\[.*?\]$/ ) ? 
+					wgAjaxWatch.watchLinks[i].title.match( /\[.*?\]$/ )[0] : "";
 				wgAjaxWatch.watchLinks[i].title = ( newText == wgAjaxWatch.watchMsg ? 
 					wgAjaxWatch['tooltip-ca-watchMsg'] : wgAjaxWatch['tooltip-ca-unwatchMsg'] )
 					+ " " + keyCommand;
