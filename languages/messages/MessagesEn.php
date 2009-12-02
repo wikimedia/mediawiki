@@ -1338,6 +1338,8 @@ The administrator who locked it offered this explanation: $1",
 'nocreatetext'                     => '{{SITENAME}} has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:UserLogin|log in or create an account]].',
 'nocreate-loggedin'                => 'You do not have permission to create new pages.',
+'sectioneditnotsupported-title'    => 'Section editing not supported',
+'sectioneditnotsupported-text'     => 'Section editing is not supported in this edit page.',
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
 'permissionserrorstext-withaction' => 'You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:',

@@ -486,4 +486,29 @@ class Html {
 	public static function hidden( $name, $value, $attribs = array() ) {
 		return self::input( $name, $value, 'hidden', $attribs );
 	}
+
+	/**
+	 * Convenience function to produce an <input> element.  This supports leaving
+	 * out the cols= and rows= which Xml requires and are required by HTML4/XHTML
+	 * but not required by HTML5 and will silently set cols="" and rows="" if
+	 * $wgHtml5 is false and cols and rows are omitted (HTML4 validates present
+	 * but empty cols="" and rows="" as valid).
+	 *
+	 * @param $name    string name attribute
+	 * @param $value   string value attribute
+	 * @param $attribs array  Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element()
+	 * @return string Raw HTML
+	 */
+	public static function textarea( $name, $value = '', $attribs = array() ) {
+		global $wgHtml5;
+		$attribs['name'] = $name;
+		if ( !$wgHtml5 ) {
+			if ( !array_key_exists('cols', $attribs) )
+				$attribs['cols'] = "";
+			if ( !array_key_exists('rows', $attribs) )
+				$attribs['rows'] = "";
+		}
+		return self::element( 'textarea', $attribs, $value );
+	}
 }
