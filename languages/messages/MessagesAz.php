@@ -461,6 +461,7 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'image_sample'    => 'Misal.jpg',
 'image_tip'       => 'Şəkil əlavə etmə',
 'media_sample'    => 'Misal.ogg',
+'media_tip'       => 'Media-fayla keçid',
 'sig_tip'         => 'İmza və vaxt',
 'hr_tip'          => 'Horizontal cizgi',
 
@@ -617,6 +618,9 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'mergehistory-no-destination' => 'Mənbə səhifəsi $1 mövcud deyil.',
 'mergehistory-reason'         => 'Səbəb:',
 
+# Merge log
+'revertmerge' => 'Ayır',
+
 # Diffs
 'difference'              => '(Versiyalar arasındakı fərq)',
 'lineno'                  => 'Sətir $1:',
@@ -628,6 +632,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'searchresults'             => 'Axtarış nəticələri',
 'searchresults-title'       => "''$1'' üçün axtarış nəticələri",
 'searchresulttext'          => '{{SITENAME}}-nı axtarmaqla bağlı ətraflı məlumat üçün [[{{MediaWiki:Helppage}}|{{int:kömək}}]] səhifəsinə baş çək.',
+'searchsubtitle'            => '"[[:$1]]" üçün axtarış ([[Special:Prefixindex/$1|"$1" ilə başlayan bütün səhifələr]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" səhifəsi ilə əlaqəli olan bütün səhifələr]])',
 'notextmatches'             => 'Məqalələrdə uyğun məzmun tapılmadı',
 'prevn'                     => 'əvvəlki {{PLURAL:$1|$1}}',
 'nextn'                     => 'sonrakı {{PLURAL:$1|$1}}',
@@ -636,13 +641,19 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'searchhelp-url'            => 'Help:Mündəricət',
 'searchprofile-images'      => 'Multimedia',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 söz|$2 sözlər}})',
+'search-redirect'           => '(yönləndirmə $1)',
+'search-section'            => '(bölmə $1)',
+'search-interwiki-caption'  => 'Qardaş layihələr',
 'search-interwiki-default'  => '$1 nəticə:',
+'search-interwiki-more'     => '(yenə)',
 'search-mwsuggest-enabled'  => 'təkliflərlə',
 'search-mwsuggest-disabled' => 'təklif yoxdur',
 'searchall'                 => 'bütün',
 'nonefound'                 => "'''Qeyd''': Əksər uğursuz axtarışlara səbəb indeksləşdirilməyən, geniş işlənən \"var\", \"və\" tipli sözlər və ya axtarışa bir sözdən artıq ifadələrin verilməsidir. Çalışıb axtardığınız ifadənin qarşısında ''all:'' (bütün) yazın. Bu halda axtarışınız istifadəçi səhifələrini, şablonları və s. da əhatə edəcək.",
 'powersearch'               => 'Axtar',
 'powersearch-legend'        => 'Təkmil axtarış',
+'powersearch-redir'         => 'Yönləndirmələri göstər',
+'powersearch-field'         => 'Axtar:',
 'powersearch-togglelabel'   => 'Yoxla:',
 
 # Preferences page
@@ -862,10 +873,13 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
 # File description page
 'file-anchor-link'          => 'Fayl',
+'filehist'                  => 'Faylın tarixçəsi',
 'filehist-deleteone'        => 'sil',
+'filehist-current'          => 'indiki',
 'filehist-datetime'         => 'Tarix/Vaxt',
 'filehist-user'             => 'İstifadəçi',
 'filehist-dimensions'       => 'Ölçülər',
+'filehist-comment'          => 'Şərh',
 'imagelinks'                => 'Fayl keçidləri',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 
@@ -1135,6 +1149,8 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'protect-expiring'            => '$1 (UTC)- tarixində vaxtı bitir',
 'protect-cascade'             => 'Kaskad mühafizəsi - bu səhifəyə daxil bütün səhifələri qoru',
 'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,sonsuz:infinite',
+'restriction-type'            => 'Hüquqlar:',
+'restriction-level'           => 'Məhdudiyyət dərəcəsi:',
 'pagesize'                    => '(baytlar)',
 
 # Restrictions (nouns)
@@ -1148,6 +1164,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'undeletepage'           => 'Silinmiş səhifələri göstər və ya bərpa et',
 'viewdeletedpage'        => 'Silinmiş səhifələri göstər',
 'undeletebtn'            => 'Bərpa et',
+'undeletelink'           => 'bax/bərpa et',
 'undeletecomment'        => 'Səbəb:',
 'undeletedarticle'       => '"[[$1]]" məqaləsi bərpa edilmişdir',
 'cannotundelete'         => 'Silməni ləğv etmə yetinə yetirilə bilmir; başqa birisi daha əvvəl səhifənin silinməsini ləğv etmiş ola bilər.',
@@ -1215,6 +1232,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'createaccountblock'          => 'Yeni hesab yaratma bloklanıb',
 'blocklink'                   => 'blokla',
 'unblocklink'                 => 'bloklamanı kənarlaşdır',
+'change-blocklink'            => 'bloklamanı dəyişdir',
 'contribslink'                => 'Köməklər',
 'blocklogpage'                => 'Blok qeydı',
 'block-log-flags-anononly'    => 'yalnız qeydiyyatsız istifadəçilər',
@@ -1267,6 +1285,7 @@ Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bil�
 'allmessagestext'    => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsənsə, lütfən [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [http://translatewiki.net translatewiki.net]-ə baş çək.',
 
 # Thumbnails
+'thumbnail-more'  => 'Böyüt',
 'djvu_page_error' => 'DjVu səhifəsi əlçatmazdır',
 'djvu_no_xml'     => 'DjVu üçün XML faylı almaq mümkün deyil.',
 
@@ -1315,10 +1334,14 @@ Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bil�
 'tooltip-t-print'                => 'Səhifənin çap versiyası',
 'tooltip-t-permalink'            => 'Səhifənin bu versiyasına daimi keçid',
 'tooltip-ca-nstab-main'          => 'Məqalənin məzmununu göstər',
+'tooltip-ca-nstab-special'       => 'Bu xüsusi səhifə olduğu üçün redaktə edilə bilməz',
+'tooltip-ca-nstab-image'         => 'Faylın səhifəsinə bax',
+'tooltip-ca-nstab-template'      => 'Şablona bax',
 'tooltip-ca-nstab-help'          => 'Kömək səhifəsi',
 'tooltip-ca-nstab-category'      => 'Kateqoriya səhifəsini göstər',
 'tooltip-save'                   => 'Dəyişiklikləri qeyd et [alt-s]',
 'tooltip-watch'                  => 'Bu səhifəni izlədiyiniz səhifələrə əlavə et [alt-w]',
+'tooltip-rollback'               => 'Sonuncu istifadəçi tərəfindən edilmiş bütün dəyişiklikləri bir dəfəyə geri qaytarmaq',
 
 # Attribution
 'siteuser'    => '{{SITENAME}} istifadəçi $1',
@@ -1359,12 +1382,20 @@ $1',
 'thumbsize'      => 'Kiçik ölçü:',
 'file-info-size' => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
 'file-nohires'   => '<small>Daha dəqiq versiyası yoxdur.</small>',
+'show-big-image' => 'Daha yüksək keyfiyyətli şəkil',
 
 # Special:NewFiles
 'newimages'    => 'Yeni faylların siyahısı',
 'showhidebots' => '($1 bot redaktə)',
 'ilsubmit'     => 'Axtar',
 'bydate'       => 'tarixe görə',
+
+# Bad image list
+'bad_image_list' => 'Formatı bu şəkildə olmalıdır:
+
+Yalnız siyahı bəndləri (* işarəsi ilə başlayan sətirlər) nəzərə alınır.
+Sətirdəki ilk keçid əlavə olunması qadağan olunmuş şəkilə keçid olmalıdır.
+Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şəklin əlavə oluna biləcəyi məqalələr. Məsələn, fayl məqalədə sətrin içində görünə bilər.',
 
 # EXIF tags
 'exif-artist'              => 'Müəllif',
@@ -1384,6 +1415,7 @@ $1',
 'imagelistall'     => 'bütün',
 'watchlistall2'    => 'hamısını',
 'namespacesall'    => 'bütün',
+'monthsall'        => 'hamısı',
 
 # E-mail address confirmation
 'confirmemail'           => 'E-məktubunu təsdiq et',

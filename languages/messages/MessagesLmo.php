@@ -532,7 +532,7 @@ Se te seet chì per erur, schiscia "indree" in sül tò browser.',
 'previewnote'                      => "''''''Atenziun'''! Questa pagina la serviss dumà de vardà. I cambiament hinn minga staa salvaa.'''",
 'editing'                          => 'Mudifega de $1',
 'editingsection'                   => 'Mudifega de $1 (sezión)',
-'editingcomment'                   => 'Redataant $1 (cumentari)',
+'editingcomment'                   => 'Adree a mudifegà $1 (sezión növa)',
 'yourtext'                         => 'El tò test',
 'yourdiff'                         => 'Diferenz',
 'copyrightwarning'                 => "Ten per piasè present che tüt i cuntribüzión a {{SITENAME}} se cunsideren daa sota una licenza $2 (varda $1 per savèn püssee).
@@ -730,6 +730,7 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'minoreditletter'                  => 'm',
 'newpageletter'                    => 'N',
 'boteditletter'                    => 'b',
+'newsectionsummary'                => '/* $1 */ sezión növa',
 'rc-enhanced-expand'               => 'Varda i detali (al vör el JavaScript)',
 'rc-enhanced-hide'                 => 'Scund i detali',
 
