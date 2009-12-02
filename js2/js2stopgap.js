@@ -30,7 +30,7 @@ var
 	// (both of which we optimize for)
 	quickExpr = /^[^<]*(<(.|\s)+>)[^>]*$|^#([\w-]+)$/,
 	// Is it a simple selector
-	isSimple = / ^ .[ ^ :# \[\.,]*$/;
+	isSimple = /^.[^:# \[\.,]*$/;
 
 jQuery.fn = jQuery.prototype = {
 	init: function( selector, context ) {
@@ -460,7 +460,7 @@ jQuery.fn = jQuery.prototype = {
 			if ( this.nodeType != 1 )
 				return;
 
-			if ( jQuery.isArray( value ) && / radio | checkbox / .test( this.type ) )
+			if ( jQuery.isArray( value ) && /radio|checkbox/ .test( this.type ) )
 				this.checked = ( jQuery.inArray( this.value, value ) >= 0 ||
 					jQuery.inArray( this.name, value ) >= 0 );
 
@@ -791,7 +791,7 @@ jQuery.extend( {
 		}
 
 		// Make sure we're using the right name for getting the float value
-		if ( name.match( / float /i ) )
+		if ( name.match( /float/i ) )
 			name = styleFloat;
 
 		if ( !force && style && style[ name ] )
@@ -800,10 +800,10 @@ jQuery.extend( {
 		else if ( defaultView.getComputedStyle ) {
 
 			// Only "float" is needed here
-			if ( name.match( / float /i ) )
+			if ( name.match( /float/i ) )
 				name = "float";
 
-			name = name.replace( / ( [A - Z] ) /g, "-$1" ).toLowerCase();
+			name = name.replace( /([A-Z])/g, "-$1" ).toLowerCase();
 
 			var computedStyle = defaultView.getComputedStyle( elem, null );
 
