@@ -5,13 +5,13 @@ var currentFocused;
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText, imageId) {
 	// Don't generate buttons for browsers which don't fully
 	// support it.
-	mwEditButtons[mwEditButtons.length] =
+	mwEditButtons.push(
 		{"imageId": imageId,
 		 "imageFile": imageFile,
 		 "speedTip": speedTip,
 		 "tagOpen": tagOpen,
 		 "tagClose": tagClose,
-		 "sampleText": sampleText};
+		 "sampleText": sampleText});
 }
 
 // this function generates the actual toolbar buttons with localized text
@@ -44,11 +44,9 @@ function mwSetupToolbar() {
 	var toolbar = document.getElementById('toolbar');
 	if (!toolbar) { return false; }
 
-	var textbox = document.getElementById('wpTextbox1');
-	if (!textbox) { return false; }
-
 	// Don't generate buttons for browsers which don't fully
 	// support it.
+	var textbox = document.createElement('textarea'); // abstract, don't assume wpTextbox1 is always there
 	if (!(document.selection && document.selection.createRange)
 		&& textbox.selectionStart === null) {
 		return false;
@@ -154,17 +152,13 @@ function scrollEditBox() {
 		if( scrollTop.value )
 			editBox.scrollTop = scrollTop.value;
 		addHandler( editForm, 'submit', function() {
-			document.getElementById( 'wpScrolltop' ).value = document.getElementById( 'wpTextbox1' ).scrollTop;
+			scrollTop.value = editBox.scrollTop;
 		} );
 	}
 }
 hookEvent( 'load', scrollEditBox );
 hookEvent( 'load', mwSetupToolbar );
 hookEvent( 'load', function() {
-	if ( document.editform ) {
-		currentFocused = document.editform.wpTextbox1;
-		document.editform.wpTextbox1.onfocus = function() { currentFocused = document.editform.wpTextbox1; };
-		document.editform.wpSummary.onfocus = function() { currentFocused = document.editform.wpSummary; };
-	}
+	currentFocused = document.getElementById( 'wpTextbox1' );
 } );
 
