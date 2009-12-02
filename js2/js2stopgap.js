@@ -610,7 +610,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 };
 
 // exclude the following css properties to add px
-var exclude = / z - ? index | font - ? weight | opacity | zoom | line - ? height /i,
+var exclude = /z-?index|font-?weight|opacity|zoom|line-?height/i,
 	// cache defaultView
 	defaultView = document.defaultView || { },
 	toString = Object.prototype.toString;
