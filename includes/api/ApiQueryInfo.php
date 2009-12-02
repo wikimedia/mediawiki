@@ -331,6 +331,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		// Get normal protections for existing titles
 		if(count($this->titles))
 		{
+			$this->resetQueryParams();
 			$this->addTables(array('page_restrictions', 'page'));
 			$this->addWhere('page_id=pr_page');
 			$this->addFields(array('pr_page', 'pr_type', 'pr_level',
@@ -505,8 +506,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	/**
-	* Get information about watched status and put it in $watched
-	*/
+	 * Get information about watched status and put it in $watched
+	 */
 	private function getWatchedInfo()
 	{
 		global $wgUser;
@@ -519,12 +520,15 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$lb = new LinkBatch($this->titles);
 
+		$this->resetQueryParams();
 		$this->addTables(array('page', 'watchlist'));
 		$this->addFields(array('page_title', 'page_namespace'));
-		$this->addWhere($lb->constructSet('page', $db));
-		$this->addWhere('wl_title=page_title');
-		$this->addWhere('wl_namespace=page_namespace');
-		$this->addWhereFld('wl_user',  $wgUser->getID());
+		$this->addWhere(array(
+			$lb->constructSet('page', $db),
+			'wl_namespace=page_namespace',
+			'wl_title=page_title',
+			'wl_user' => $wgUser->getID()
+		));
 
 		$res = $this->select(__METHOD__);
 
