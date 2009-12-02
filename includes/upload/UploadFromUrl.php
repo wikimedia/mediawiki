@@ -32,7 +32,7 @@ class UploadFromUrl extends UploadBase {
 	/** 
 	 * Entry point for API upload 
 	 */
-	public function initialize( $name, $url, $na = false, $nb = false ) {
+	public function initialize( $name, $url, $na, $nb = false ) {
 		global $wgTmpDirectory;
 
 		$localFile = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
