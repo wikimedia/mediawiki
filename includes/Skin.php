@@ -440,7 +440,8 @@ class Skin extends Linker {
 
 		if ( $wgOut->isArticleRelated() && $wgUseAjax && $wgAjaxWatch && $wgUser->isLoggedIn() ) {
 			$msgs = (object)array();
-			foreach ( array( 'watch', 'unwatch', 'watching', 'unwatching' ) as $msgName ) {
+			foreach ( array( 'watch', 'unwatch', 'watching', 'unwatching', 
+				'tooltip-ca-watch', 'tooltip-ca-unwatch' ) as $msgName ) {
 				$msgs->{$msgName . 'Msg'} = wfMsg( $msgName );
 			}
 			$vars['wgAjaxWatch'] = $msgs;
