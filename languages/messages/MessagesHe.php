@@ -979,6 +979,8 @@ $2',
 'nocreatetitle'                    => 'יצירת הדפים הוגבלה',
 'nocreatetext'                     => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[Special:UserLogin|להיכנס לחשבון]].',
 'nocreate-loggedin'                => 'אינכם מורשים ליצור דפים חדשים.',
+'sectioneditnotsupported-title'    => 'עריכת פסקאות אינה נתמכת',
+'sectioneditnotsupported-text'     => 'עריכת פסקאות אינה נתמכת בדף עריכה זה.',
 'permissionserrors'                => 'שגיאות הרשאה',
 'permissionserrorstext'            => 'אינכם מורשים לבצע פעולה זו, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
 'permissionserrorstext-withaction' => 'אינכם מורשים $2, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
@@ -2011,11 +2013,13 @@ PICT # שונות
 'listusers-blocked'  => '(חסום)',
 
 # Special:ActiveUsers
-'activeusers'          => 'רשימת משתמשים פעילים',
-'activeusers-intro'    => 'זוהי רשימת המשתמשים שביצעו פעולה כלשהי ב{{PLURAL:$1|יום האחרון|־$1 הימים האחרונים}}.',
-'activeusers-count'    => '{{PLURAL:$1|עריכה אחת|$1 עריכות}} ב{{PLURAL:$3|יום האחרון|־$3 הימים האחרונים|יומיים האחרונים}}',
-'activeusers-from'     => 'הצגת משתמשים החל מ:',
-'activeusers-noresult' => 'לא נמצאו משתמשים.',
+'activeusers'            => 'רשימת משתמשים פעילים',
+'activeusers-intro'      => 'זוהי רשימת המשתמשים שביצעו פעולה כלשהי ב{{PLURAL:$1|יום האחרון|־$1 הימים האחרונים}}.',
+'activeusers-count'      => '{{PLURAL:$1|עריכה אחת|$1 עריכות}} ב{{PLURAL:$3|יום האחרון|־$3 הימים האחרונים|יומיים האחרונים}}',
+'activeusers-from'       => 'הצגת משתמשים החל מ:',
+'activeusers-hidebots'   => 'הסתרת בוטים',
+'activeusers-hidesysops' => 'הסתרת מפעילי מערכת',
+'activeusers-noresult'   => 'לא נמצאו משתמשים.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'יומן רישום משתמשים',
