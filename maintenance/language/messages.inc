@@ -588,6 +588,8 @@ $wgMessageStructure = array(
 		'nocreatetitle',
 		'nocreatetext',
 		'nocreate-loggedin',
+		'sectioneditnotsupported-title',
+		'sectioneditnotsupported-text',
 		'permissionserrors',
 		'permissionserrorstext',
 		'permissionserrorstext-withaction',
