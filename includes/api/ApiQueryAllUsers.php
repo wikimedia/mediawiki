@@ -158,7 +158,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				if ($fld_editcount)
 					$lastUserData['editcount'] = intval($row->user_editcount);
 				if ($fld_registration)
-					$lastUserData['registration'] = wfTimestampOrNull(TS_ISO_8601, $row->user_registration);
+					$lastUserData['registration'] = $row->user_registration ?
+						wfTimestamp(TS_ISO_8601, $row->user_registration) : '';
 
 			}
 
