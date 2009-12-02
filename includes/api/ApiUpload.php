@@ -68,7 +68,7 @@ class ApiUpload extends ApiBase {
 			 */
 			// Check the session key
 			if( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) )
-					return $this->dieUsageMsg( array( 'invalid-session-key' ) );
+				return $this->dieUsageMsg( array( 'invalid-session-key' ) );
 			
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
@@ -246,7 +246,7 @@ class ApiUpload extends ApiBase {
 
 		// Append imageinfo to the result
 		$imParam = ApiQueryImageInfo::getPropertyNames();
-        $result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
+		$result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
 				array_flip( $imParam ), $this->getResult() );
 
 		return $result;
@@ -322,5 +322,3 @@ class ApiUpload extends ApiBase {
 		return __CLASS__ . ': $Id: ApiUpload.php 51812 2009-06-12 23:45:20Z dale $';
 	}
 }
-
-
