@@ -1541,7 +1541,7 @@ END
 		if ( $userInputAttrs )
 			$inputAttrs += $userInputAttrs;
 		$spanLabelAttrs = array(
-			'class' => @$summaryClass,
+			'class' => $summaryClass,
 			'id' => "wpSummaryLabel"
 		);
 		if ( is_array($userSpanLabelAttrs) )
