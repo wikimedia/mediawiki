@@ -656,6 +656,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 21672) Add missing Accept-Language to both Vary and XVO headers
 * (bug 21679) "Edit block reasons" link at the bottom of Special:Blockip is now
   only displayed to the users that have "editinterface" right
+* (bug 21740) Attempting to protect a page that doesn't exist (salting) returns "unknown error"
 
 == API changes in 1.16 ==
 
