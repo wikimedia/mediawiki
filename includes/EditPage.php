@@ -1536,7 +1536,7 @@ END
 			'tabindex' => '1',
 			'size' => 60,
 			'spellcheck' => 'true',
-			'onfocus' => "currentFocused = this;",
+			'onfocus' => "currentFocused = this;", // Make wpSummary insertable for editbuttons
 		);
 		if ( $userInputAttrs )
 			$inputAttrs += $userInputAttrs;
@@ -1710,8 +1710,8 @@ INPUTS
 			'id'   => $name,
 			'cols' => $wgUser->getIntOption( 'cols' ), 
 			'rows' => $wgUser->getIntOption( 'rows' ),
-			'onfocus' => "currentFocused = this;",
-			'style' => '' // for php notices
+			'onfocus' => "currentFocused = this;", // Make textareas insertable for editbuttons
+			'style' => '' // avoid php notices when appending for editwidth preference (appending allows customAttribs['style'] to still work
 		);
 
 		if ( $wgUser->getOption( 'editwidth' ) )
