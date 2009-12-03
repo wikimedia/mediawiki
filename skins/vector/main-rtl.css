@@ -257,7 +257,7 @@ body {
 	/* Fixes old versions of FireFox */
 	body.rtl div.vectorMenu > div.menu,
 	x:-moz-any-link {
-		margin-left: 24px;
+		margin-left: 23px;
 	}
 	div.vectorMenu:hover div.menu {
 		display: block;
