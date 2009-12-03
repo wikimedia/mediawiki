@@ -911,6 +911,8 @@ Người quản lý khi khóa dữ liệu đã đưa ra lý do: $1",
 'nocreatetext'                     => '{{SITENAME}} đã hạn chế khả năng tạo trang mới.
 Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[Special:UserLogin|đăng nhập hoặc tạo tài khoản]].',
 'nocreate-loggedin'                => 'Bạn không có quyền tạo trang mới.',
+'sectioneditnotsupported-title'    => 'Không hỗ trợ sửa đổi đề mục',
+'sectioneditnotsupported-text'     => 'Trang sửa đổi này không hỗ trợ sửa đổi đề mục.',
 'permissionserrors'                => 'Không có quyền thực hiện',
 'permissionserrorstext'            => 'Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|lý do}}:',
 'permissionserrorstext-withaction' => 'Bạn không quyền $2, với {{PLURAL:$1|lý do|lý do}} sau:',

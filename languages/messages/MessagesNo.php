@@ -872,6 +872,8 @@ Systemadministratoren som låste databasen oppga følgende årsak: $1",
 'nocreatetitle'                    => 'Sideoppretting er begrenset',
 'nocreatetext'                     => '{{SITENAME}} har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:UserLogin|logge inn eller opprette en ny konto]].',
 'nocreate-loggedin'                => 'Du har ikke tillatelse til å opprette sider.',
+'sectioneditnotsupported-title'    => 'Seksjonsredigering støttes ikke',
+'sectioneditnotsupported-text'     => 'Seksjonsredigering støttes ikke på denne siden.',
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikke tillatelse til å utføre dette, av følgende {{PLURAL:$1|grunn|grunner}}:',
 'permissionserrorstext-withaction' => 'Du har ikke tillatelse til å $2 {{PLURAL:$1|på grunn av|av følgende grunner}}:',
@@ -929,9 +931,8 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'last'                   => 'forrige',
 'page_first'             => 'første',
 'page_last'              => 'siste',
-'histlegend'             => "<div id=\"histlegend\"><span style=\"white-space:nowrap;\">For alle versjoner listet under, trykk på datoen for å se versjonen.</span> <span style=\"white-space:nowrap;\">For mer hjelp, se [[Hjelp:Revisjonshistorikk]] og [[Hjelp:Redigeringsforklaring]].</span><br /><span style=\"white-space:nowrap;\">Eksterne verktøy: [http://toolserver.org/~daniel/WikiSense/Contributors.php?wikilang=no&wikifam=.wikipedia.org&grouped=on&page={{urlencode:{{FULLPAGENAME}}}} Statistikk over revisjonshistorikk] '''·'''</span> <span style=\"white-space:nowrap;\">[http://wikipedia.ramselehof.de/wikiblame.php?user_lang=no&article={{urlencode:{{FULLPAGENAME}}}} Søk i revisjonshistorikk] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~mzmcbride/cgi-bin/watcher.py?db=nowiki_p&titles={{FULLPAGENAMEE}} Antall overvåkere] '''·'''</span> <span style=\"white-space:nowrap;\">[http://stats.grok.se/no/{{#time:Ym}}/{{FULLPAGENAMEE}} Sidevisningsstatistikk]</span>
-----
-<span style=\"white-space:nowrap;\">Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, m = mindre endring.</span></div>",
+'histlegend'             => "Merk de revisjonen du ønsker å sammenligne og trykk [Enter] eller knappen nederst på siden.<br />
+Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:last}})''' = forskjell fra foregånde revisjon, '''{{int:minoreditletter}}''' = mindre redigering.",
 'history-fieldset-title' => 'Søk i historikken',
 'history-show-deleted'   => 'Kun slettede',
 'histfirst'              => 'Første',
@@ -949,6 +950,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-comment'         => '(kommentar fjernet)',
 'rev-deleted-user'            => '(brukernavn fjernet)',
 'rev-deleted-event'           => '(fjernet loggoppføring)',
+'rev-deleted-user-contribs'   => '[brukernavn eller IP-adresse fjernet – redigeringen vises ikke blant bidragene]',
 'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen har blitt '''slettet'''.
@@ -1891,11 +1893,13 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'listusers-blocked'  => '(konto blokkert)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Liste over aktive brukere',
-'activeusers-intro'    => 'Dette er en liste over brukere som har hatt en eller annen form for aktivitet innenfor {{PLURAL:$1|den siste dagen|de siste dagene}}.',
-'activeusers-count'    => '{{PLURAL:$1|Én endring|$1 endringer}} {{PLURAL:$3|det siste døgnet|de siste $3 dagene}}',
-'activeusers-from'     => 'Vis brukere fra og med:',
-'activeusers-noresult' => 'Ingen brukere funnet.',
+'activeusers'            => 'Liste over aktive brukere',
+'activeusers-intro'      => 'Dette er en liste over brukere som har hatt en eller annen form for aktivitet innenfor {{PLURAL:$1|den siste dagen|de siste dagene}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|endring|endringer}} {{PLURAL:$3|det siste døgnet|de siste $3 dagene}}',
+'activeusers-from'       => 'Vis brukere fra og med:',
+'activeusers-hidebots'   => 'Skjul roboter',
+'activeusers-hidesysops' => 'Skjul administratorer',
+'activeusers-noresult'   => 'Ingen brukere funnet.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Brukeropprettelseslogg',

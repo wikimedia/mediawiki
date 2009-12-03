@@ -722,6 +722,8 @@ L'amministratore ca ha bloccate 'u database ha scritte stu mutive: $1",
 'nocreatetext'                     => "{{SITENAME}} ha restritte l'abilità de ccrejà pàggene nuéve.
 Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special:UserLogin|trasè o ccrejà n'utende nuéve]].",
 'nocreate-loggedin'                => 'Non ge tine le permesse pe ccreja pàggene nuève.',
+'sectioneditnotsupported-title'    => 'Sezione de le cangiaminde none supportate',
+'sectioneditnotsupported-text'     => "Sezione de le cangiaminde non g'è supportate sus a sta pàgene de cangiaminde.",
 'permissionserrors'                => 'Errore de permesse',
 'permissionserrorstext'            => "Tu non ge tine 'u permesse pe fà ste cose, pe {{PLURAL:$1|stu mutive|ste mutive}}:",
 'permissionserrorstext-withaction' => "Tu non ge tine 'u permesse pe $2, pe {{PLURAL:$1|stu mutive|ste mutive}}:",
@@ -1766,11 +1768,13 @@ Protocolle supportate: <tt>$1</tt>',
 'listusers-blocked'  => '(bloccate)',
 
 # Special:ActiveUsers
-'activeusers'          => "Liste de l'utinde attive",
-'activeusers-intro'    => "Queste jè 'n'elenghe de utinde ca avene fatte certe tipe de attività fine a l'urteme $1 {{PLURAL:$1|sciurne|sciurne}}.",
-'activeusers-count'    => "$1 {{PLURAL:$1|cangiamende|cangiaminde}} jndr'à l'urteme {{PLURAL:$3|sciurne|$3 sciurne}}",
-'activeusers-from'     => "Fà vedè l'utinde partenne da:",
-'activeusers-noresult' => 'Nisciune utende acchiate.',
+'activeusers'            => "Liste de l'utinde attive",
+'activeusers-intro'      => "Queste jè 'n'elenghe de utinde ca avene fatte certe tipe de attività fine a l'urteme $1 {{PLURAL:$1|sciurne|sciurne}}.",
+'activeusers-count'      => "$1 {{PLURAL:$1|cangiamende|cangiaminde}} jndr'à l'urteme {{PLURAL:$3|sciurne|$3 sciurne}}",
+'activeusers-from'       => "Fà vedè l'utinde partenne da:",
+'activeusers-hidebots'   => 'Scunne le bot',
+'activeusers-hidesysops' => 'Scunne le amministrature',
+'activeusers-noresult'   => 'Nisciune utende acchiate.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Archivije de ccreazione de le utinde',
