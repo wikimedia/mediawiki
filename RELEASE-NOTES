@@ -660,6 +660,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 21740) Attempting to protect a page that doesn't exist (salting) returns "unknown error"
 * (bug 18762) both redirects and links get fixed one after another if 
   redirects-only switch is not present
+* (bug 20159) thumbnails rerendered if older that $wgThumbnailEpoch
 
 == API changes in 1.16 ==
 
