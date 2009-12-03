@@ -893,12 +893,13 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mConds[] = 'user_id = log_user';
 		$groupBy = false;
 		$index = array();
+		$options = array();
 		# Add log_search table if there are conditions on it
 		if( array_key_exists('ls_field',$this->mConds) ) {
 			$tables[] = 'log_search';
 			$index['log_search'] = 'ls_field_val';
 			$index['logging'] = 'PRIMARY';
-			$groupBy = 'ls_log_id';
+			$options[] = 'DISTINCT';
 		# Avoid usage of the wrong index by limiting
 		# the choices of available indexes. This mainly
 		# avoids site-breaking filesorts.
@@ -912,7 +913,7 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$index['logging'] = 'times';
 		}
-		$options = array( 'USE INDEX' => $index );
+		$options['USE INDEX'] = $index;
 		# Don't show duplicate rows when using log_search
 		if( $groupBy ) $options['GROUP BY'] = $groupBy;
 		$info = array(
