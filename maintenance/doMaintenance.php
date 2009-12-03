@@ -87,9 +87,11 @@ $wgTitle = null;
 // Do the work
 try {
 	$maintenance->execute();
+
+	// Potentially debug globals
+	$maintenance->globals();
 } catch( MWException $mwe ) {
 	echo( $mwe->getText() );
+	exit( 1 );
 }
 
-// Potentially debug globals
-$maintenance->globals();
