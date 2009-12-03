@@ -529,7 +529,7 @@ abstract class File {
 	 * @return MediaTransformOutput
 	 */
 	function transform( $params, $flags = 0 ) {
-		global $wgUseSquid, $wgIgnoreImageErrors;
+		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch;
 
 		wfProfileIn( __METHOD__ );
 		do {
@@ -561,7 +561,7 @@ abstract class File {
 
 			wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
 			$this->migrateThumbFile( $thumbName );
-			if ( file_exists( $thumbPath ) ) {
+			if ( ( $thumbTime = filemtime( $thumbPath ) ) !== FALSE && gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch ) {
 				$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 				break;
 			}
