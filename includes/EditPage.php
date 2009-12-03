@@ -1566,7 +1566,7 @@ END
 	 * @return string
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
-		global $wgOut, $wgContLang;
+		global $wgOut, $wgContLang, $wgRequest;
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
