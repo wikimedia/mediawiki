@@ -1711,6 +1711,7 @@ INPUTS
 			'cols' => $wgUser->getIntOption( 'cols' ), 
 			'rows' => $wgUser->getIntOption( 'rows' ),
 			'onfocus' => "currentFocused = this;",
+			'style' => '' // for php notices
 		);
 
 		if ( $wgUser->getOption( 'editwidth' ) )
