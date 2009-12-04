@@ -35,7 +35,7 @@ class SyntaxChecker extends Maintenance {
 			false, true);
 		$this->addOption( 'list-file', 'Text file containing list of files or directories to check', false, true);
 		$this->addOption( 'modified', 'Check only files that were modified (requires SVN command-line client)' );
-		$this->addOption( 'code-style', 'Check for code style fixes too, not just syntax validity' );
+		$this->addOption( 'syntax-only', 'Check for syntax validity only, skip code style warnings' );
 	}
 
 	protected function getDbType() {
@@ -55,7 +55,7 @@ class SyntaxChecker extends Maintenance {
 			} else {
 				$this->checkFileWithCli( $f );
 			}
-			if( $this->hasOption( 'code-style' ) ) {
+			if( !$this->hasOption( 'syntax-only' ) ) {
 				$this->checkForMistakes( $f );
 			}
 		}
