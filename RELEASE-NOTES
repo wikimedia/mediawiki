@@ -661,6 +661,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 18762) both redirects and links get fixed one after another if 
   redirects-only switch is not present
 * (bug 20159) thumbnails rerendered if older that $wgThumbnailEpoch
+* Fixed a bug which in some situations causes the job queue to grow forever, 
+  due to an infinite loop of job requeues.
 
 == API changes in 1.16 ==
 

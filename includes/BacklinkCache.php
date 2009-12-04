@@ -53,13 +53,13 @@ class BacklinkCache {
 	public function getLinks( $table, $startId = false, $endId = false ) {
 		wfProfileIn( __METHOD__ );
 
+		$fromField = $this->getPrefix( $table ) . '_from';
 		if ( $startId || $endId ) {
 			// Partial range, not cached
 			wfDebug( __METHOD__.": from DB (uncacheable range)\n" );
 			$conds = $this->getConditions( $table );
 			// Use the from field in the condition rather than the joined page_id,
 			// because databases are stupid and don't necessarily propagate indexes.
-			$fromField = $this->getPrefix( $table ) . '_from';
 			if ( $startId ) {
 				$conds[] = "$fromField >= " . intval( $startId );
 			}
@@ -71,7 +71,10 @@ class BacklinkCache {
 				array( 'page_namespace', 'page_title', 'page_id'),
 				$conds,
 				__METHOD__,
-				array('STRAIGHT_JOIN') );
+				array(
+					'STRAIGHT_JOIN',
+					'ORDER BY' => $fromField
+				) );
 			$ta = TitleArray::newFromResult( $res );
 			wfProfileOut( __METHOD__ );
 			return $ta;
@@ -84,7 +87,10 @@ class BacklinkCache {
 				array( 'page_namespace', 'page_title', 'page_id' ),
 				$this->getConditions( $table ),
 				__METHOD__,
-				array('STRAIGHT_JOIN') );
+				array(
+					'STRAIGHT_JOIN',
+					'ORDER BY' => $fromField,
+				) );
 			$this->fullResultCache[$table] = $res;
 		}
 		$ta = TitleArray::newFromResult( $this->fullResultCache[$table] );
@@ -225,6 +231,12 @@ class BacklinkCache {
 				$row = $res->fetchObject();
 				$end = $row->page_id - 1;
 			}
+
+			# Sanity check order
+			if ( $start && $end && $start > $end ) {
+				throw new MWException( __METHOD__.': Internal error: query result out of order' );
+			}
+
 			$batches[] = array( $start, $end );
 		}
 		return array( 'numRows' => $numRows, 'batches' => $batches );
