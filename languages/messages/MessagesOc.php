@@ -295,7 +295,7 @@ $messages = array(
 'tog-hideminor'               => 'Amagar los darrièrs cambiaments menors',
 'tog-hidepatrolled'           => 'Amagar las modificacions susvelhadas dels darrièrs cambiaments',
 'tog-newpageshidepatrolled'   => 'Amagar las paginas susvelhadas de la lista de las paginas novèlas',
-'tog-extendwatchlist'         => 'Espandir la lista de seguit per afichar totas las modificacions e non pas solament las mai recentas',
+'tog-extendwatchlist'         => 'Espandir la lista de seguiment per afichar totas las modificacions e non pas solament las mai recentas',
 'tog-usenewrc'                => 'Utilizar los darrièrs cambiaments melhorats (necessita JavaScript)',
 'tog-numberheadings'          => 'Numerotar automaticament los títols',
 'tog-showtoolbar'             => 'Far veire la barra de menut de modificacion (JavaScript)',
@@ -305,15 +305,15 @@ $messages = array(
 'tog-showtoc'                 => "Afichar l'ensenhador (per las paginas de mai de 3 seccions)",
 'tog-rememberpassword'        => 'Se remembrar de mon senhal sus aqueste ordenador (cookie)',
 'tog-editwidth'               => 'Afichar la fenèstra de modificacion en largor plena',
-'tog-watchcreations'          => 'Apondre las paginas que creï a ma lista de seguit',
-'tog-watchdefault'            => 'Apondre las paginas que modifiqui a ma lista de seguit',
-'tog-watchmoves'              => 'Apondre las paginas que tòrni nomenar a ma lista de seguit',
-'tog-watchdeletion'           => 'Apondre las paginas que suprimissi de ma lista de seguit',
+'tog-watchcreations'          => 'Apondre las paginas que creï a ma lista de seguiment',
+'tog-watchdefault'            => 'Apondre las paginas que modifiqui a ma lista de seguiment',
+'tog-watchmoves'              => 'Apondre las paginas que tòrni nomenar a ma lista de seguiment',
+'tog-watchdeletion'           => 'Apondre las paginas que suprimissi de ma lista de seguiment',
 'tog-minordefault'            => 'Considerar mas modificacions coma menoras per defaut',
 'tog-previewontop'            => 'Far veire la previsualizacion al dessús de la zòna de modificacion',
 'tog-previewonfirst'          => 'Far veire la previsualizacion al moment de la primièra edicion',
 'tog-nocache'                 => "Desactivar l'amagatal de paginas",
-'tog-enotifwatchlistpages'    => 'M’avertir per corrièr electronic quand una pagina de ma lista de seguit es modificada',
+'tog-enotifwatchlistpages'    => 'M’avertir per corrièr electronic quand una pagina de ma lista de seguiment es modificada',
 'tog-enotifusertalkpages'     => 'M’avertir per corrièr electronic en cas de modificacion de ma pagina de discussion',
 'tog-enotifminoredits'        => 'M’avertir per corrièr electronic quitament en cas de modificacions menoras',
 'tog-enotifrevealaddr'        => 'Afichar mon adreça electronica dins la los corrièrs electronics d’avertiment',
@@ -325,12 +325,12 @@ $messages = array(
 'tog-showjumplinks'           => 'Activar los ligams « navigacion » e « recèrca » en naut de pagina (aparéncias Myskin e autres)',
 'tog-uselivepreview'          => 'Utilizar l’apercebut rapid (JavaScript) (experimental)',
 'tog-forceeditsummary'        => "M'avertir quand ai pas completat lo contengut de la bóstia de comentaris",
-'tog-watchlisthideown'        => 'Amagar mas pròprias modificacions dins la lista de seguit',
-'tog-watchlisthidebots'       => 'Amagar los cambiaments faches pels bòts dins la lista de seguit',
-'tog-watchlisthideminor'      => 'Amagar las modificacions menoras dins la lista de seguit',
+'tog-watchlisthideown'        => 'Amagar mas pròprias modificacions dins la lista de seguiment',
+'tog-watchlisthidebots'       => 'Amagar los cambiaments faches pels bòts dins la lista de seguiment',
+'tog-watchlisthideminor'      => 'Amagar las modificacions menoras dins la lista de seguiment',
 'tog-watchlisthideliu'        => 'Amaga, de la tièra, las modificacions pels utilizaires connectats',
 'tog-watchlisthideanons'      => 'Amaga, de la tièra, las modificacions anonimas',
-'tog-watchlisthidepatrolled'  => 'Amagar las modificacions susvelhadas de la lista de seguit',
+'tog-watchlisthidepatrolled'  => 'Amagar las modificacions susvelhadas de la lista de seguiment',
 'tog-nolangconversion'        => 'Desactivar la conversion de las variantas de lenga',
 'tog-ccmeonemails'            => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly'                => 'Far pas veire lo contengut de las paginas jos las difs',
@@ -1251,12 +1251,12 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-datetime'                => 'Data e ora',
 'prefs-personal'                => 'Entresenhas personalas',
 'prefs-rc'                      => 'Darrièrs cambiaments',
-'prefs-watchlist'               => 'Lista de seguit',
-'prefs-watchlist-days'          => "Nombre de jorns d'afichar dins la lista de seguit :",
+'prefs-watchlist'               => 'Lista de seguiment',
+'prefs-watchlist-days'          => "Nombre de jorns d'afichar dins la lista de seguiment :",
 'prefs-watchlist-days-max'      => '(maximum 7 jorns)',
-'prefs-watchlist-edits'         => "Nombre de modificacions d'afichar dins la lista de seguit espandida :",
+'prefs-watchlist-edits'         => "Nombre de modificacions d'afichar dins la lista de seguiment espandida :",
 'prefs-watchlist-edits-max'     => '(nombre maximum : 1000)',
-'prefs-watchlist-token'         => 'Geton per la lista de seguit :',
+'prefs-watchlist-token'         => 'Geton per la lista de seguiment :',
 'prefs-misc'                    => 'Preferéncias divèrsas',
 'prefs-resetpass'               => 'Modificar lo senhal',
 'prefs-email'                   => 'Opcions del corrièr electronic',
@@ -1277,8 +1277,8 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchangesdays-max'         => '(maximum $1 {{PLURAL:$1|jorn|jorns}})',
 'recentchangescount'            => "Nombre de modificacions d'afichar per defaut :",
 'prefs-help-recentchangescount' => 'Aquò inclutz las modificacions recentas, las paginas d’istorics e los jornals.',
-'prefs-help-watchlist-token'    => 'En emplenant aquò amb una valor secreta generarà un flus RSS per vòstra lista de seguit.
-Tota persona que coneis aqueste geton poirà legir vòstra lista de seguit, causissètz doncas una valor securizada.
+'prefs-help-watchlist-token'    => 'Emplenar aquò amb una valor secreta generarà un flus RSS per vòstra lista de seguiment.
+Tota persona que coneis aqueste geton poirà legir vòstra lista de seguiment, causissètz doncas una valor securizada.
 Vaquí una valor generada aleatòriament que podètz utilizar : $1',
 'savedprefs'                    => 'Las preferéncias son estadas salvadas.',
 'timezonelegend'                => 'Fus orari :',
@@ -2032,19 +2032,19 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'emailuserfooter'  => 'Aqueste corrièr electronic es estat mandat per « $1 » a « $2 » per la foncion « Mandar un corrièr electronic a l’utilizaire » sus {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => 'Ma lista de seguit',
-'mywatchlist'          => 'Lista de seguit',
+'watchlist'            => 'Ma lista de seguiment',
+'mywatchlist'          => 'Lista de seguiment',
 'watchlistfor'         => "(per l’utilizaire '''$1''')",
-'nowatchlist'          => "Vòstra lista de seguit conten pas cap d'article.",
-'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguit, vos cal vos $1.',
+'nowatchlist'          => "Vòstra lista de seguiment conten pas cap d'article.",
+'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguiment, vos cal vos $1.',
 'watchnologin'         => 'Vos sètz pas identificat(ada)',
 'watchnologintext'     => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
-per modificar vòstra lista de seguit.',
+per modificar vòstra lista de seguiment.',
 'addedwatch'           => 'Apondut a la tièra',
-'addedwatchtext'       => 'La pagina "[[:$1]]" es estada aponduda a vòstra [[Special:Watchlist|lista de seguit]].
+'addedwatchtext'       => 'La pagina "[[:$1]]" es estada aponduda a vòstra [[Special:Watchlist|lista de seguiment]].
 Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associada seràn repertoriadas aicí, e la pagina apareisserà <b>en gras</b> dins la [[Special:RecentChanges|tièra dels darrièrs cambiaments]] per èsser localizada mai aisidament.',
-'removedwatch'         => 'Suprimida de la lista de seguit',
-'removedwatchtext'     => 'La pagina « [[:$1]] » es estada levada de vòstra [[Special:Watchlist|lista de seguit]].',
+'removedwatch'         => 'Suprimida de la lista de seguiment',
+'removedwatchtext'     => 'La pagina « [[:$1]] » es estada levada de vòstra [[Special:Watchlist|lista de seguiment]].',
 'watch'                => 'Seguir',
 'watchthispage'        => 'Seguir aquesta pagina',
 'unwatch'              => 'Arrestar de seguir',
@@ -2052,16 +2052,16 @@ Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associ
 'notanarticle'         => "Pas cap d'article",
 'notvisiblerev'        => 'Version suprimida',
 'watchnochange'        => 'Cap de las paginas que seguissètz son pas estadas modificadas pendent lo periòde afichat.',
-'watchlist-details'    => 'I a {{PLURAL:$1|pagina|paginas}} dins vòstra lista de seguit, sens comptar las paginas de discussion.',
+'watchlist-details'    => 'I a {{PLURAL:$1|pagina|paginas}} dins vòstra lista de seguiment, sens comptar las paginas de discussion.',
 'wlheader-enotif'      => '* La notificacion per corrièr electronic es activada.',
 'wlheader-showupdated' => '* Las paginas que son estadas modificadas dempuèi vòstra darrièra visita son mostradas en <b>gras</b>',
 'watchmethod-recent'   => 'verificacion dels darrièrs cambiaments de las paginas seguidas',
 'watchmethod-list'     => 'verificacion de las paginas seguidas per de modificacions recentas',
-'watchlistcontains'    => 'Vòstra lista de seguit conten $1 {{PLURAL:$1|pagina|paginas}}.',
+'watchlistcontains'    => 'Vòstra lista de seguiment conten $1 {{PLURAL:$1|pagina|paginas}}.',
 'iteminvalidname'      => "Problèma amb l'article « $1 » : lo nom es invalid...",
 'wlnote'               => 'Çaijós se {{PLURAL:$1|tròba la darrièra modificacion|tròban las $1 darrièras modificacions}} dempuèi {{PLURAL:$2|la darrièra ora|las <b>$2</b> darrièras oras}}.',
 'wlshowlast'           => 'Far veire las darrièras $1 oras, los darrièrs $2 jorns, o $3.',
-'watchlist-options'    => 'Opcions de la lista de seguit',
+'watchlist-options'    => 'Opcions de la lista de seguiment',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Seguit...',
@@ -2090,11 +2090,11 @@ corrièr electronic : $PAGEEDITOR_EMAIL
 wiki : $PAGEEDITOR_WIKI
 
 I aurà pas de notificacions mai en cas de cambiaments ulteriors, levat se visitatz aquesta pagina.
-Tanben podètz reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguit.
+Tanben podètz reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguiment.
 
              Vòstre sistèma de notificacion de {{SITENAME}}
 --
-Per modificar los paramètres de vòstra lista de seguit, visitatz
+Per modificar los paramètres de vòstra lista de seguiment, visitatz
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Retorn e assisténcia :
@@ -2422,9 +2422,9 @@ Podètz pas crear un compte',
 # Developer tools
 'lockdb'              => 'Varrolhar la banca',
 'unlockdb'            => 'Desvarrolhar la banca',
-'lockdbtext'          => "Lo clavatge de la banca de donadas empacharà totes los utilizaires de modificar las paginas, de salvar lors preferéncias, de modificar lor lista de seguit e d'efectuar totas las autras operacions necessitant de modificacions dins la banca de donadas.
+'lockdbtext'          => "Lo clavatge de la banca de donadas empacharà totes los utilizaires de modificar las paginas, de salvar lors preferéncias, de modificar lor lista de seguiment e d'efectuar totas las autras operacions necessitant de modificacions dins la banca de donadas.
 Confirmatz qu'es plan çò que volètz far e que desblocaretz la banca tre que vòstra operacion de mantenença serà acabada.",
-'unlockdbtext'        => "Lo desclavatge de la banca de donadas permetrà a totes los utilizaires de modificar tornarmai de paginas, de metre a jorn lors preferéncias e lor lista de seguit, e mai d'efectuar las autras operacions necessitant de modificacions dins la banca de donadas.
+'unlockdbtext'        => "Lo desclavatge de la banca de donadas permetrà a totes los utilizaires de modificar tornarmai de paginas, de metre a jorn lors preferéncias e lor lista de seguiment, e mai d'efectuar las autras operacions que necessitan de modificacions dins la banca de donadas.
 Confirmatz qu'es plan çò que volètz far.",
 'lockconfirm'         => 'Òc, confirmi que desiri varrolhar la banca de donadas.',
 'unlockconfirm'       => 'Òc, confirmi que desiri desvarrolhar la banca de donadas.',
@@ -2631,8 +2631,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-ca-delete'               => 'Suprimir aquesta pagina',
 'tooltip-ca-undelete'             => 'Restablir aquesta pagina',
 'tooltip-ca-move'                 => 'Tornar nomenar aquesta pagina',
-'tooltip-ca-watch'                => 'Apondètz aquesta pagina a vòstra lista de seguit',
-'tooltip-ca-unwatch'              => 'Levatz aquesta pagina de vòstra lista de seguit',
+'tooltip-ca-watch'                => 'Apondètz aquesta pagina a vòstra lista de seguiment',
+'tooltip-ca-unwatch'              => 'Levatz aquesta pagina de vòstra lista de seguiment',
 'tooltip-search'                  => 'Cercar dins {{SITENAME}}',
 'tooltip-search-go'               => 'Anar cap a una pagina que pòrta exactament aqueste nom se existís.',
 'tooltip-search-fulltext'         => 'Recercar las paginas que compòrtan aqueste tèxte.',
@@ -2669,7 +2669,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-preview'                 => 'Mercé de previsualizar vòstras modificacions abans de salvar!',
 'tooltip-diff'                    => "Permet de visualizar los cambiaments qu'avètz efectuats",
 'tooltip-compareselectedversions' => "Afichar las diferéncias entre doas versions d'aquesta pagina",
-'tooltip-watch'                   => 'Apondre aquesta pagina a vòstra lista de seguit',
+'tooltip-watch'                   => 'Apondre aquesta pagina a vòstra lista de seguiment',
 'tooltip-recreate'                => 'Tornar crear la pagina, quitament se es estada escafada',
 'tooltip-upload'                  => 'Amodar lo mandadís',
 'tooltip-rollback'                => '"Revocar" anulla en un clic la o las edicion(s) sus aquesta pagina del darrièr contributor.',
@@ -2731,7 +2731,7 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'infosubtitle'   => 'Entresenhas per la pagina',
 'numedits'       => 'Nombre de modificacions : $1',
 'numtalkedits'   => 'Nombre de modificacions (pagina de discussion) : $1',
-'numwatchers'    => "Nombre de contributors qu'an la pagina dins lor lista de seguit : $1",
+'numwatchers'    => "Nombre de contributors qu'an la pagina dins lor lista de seguiment : $1",
 'numauthors'     => 'Nombre d’autors distints : $1',
 'numtalkauthors' => 'Nombre d’autors distints (pagina de discussion) : $1',
 
@@ -3235,25 +3235,25 @@ Ensajatz la previsualizacion normala.',
 'lag-warn-high'   => 'En rason d’una fòrta carga de las bancas de donadas, los cambiaments que datan de mens de $1 {{PLURAL:$1|segonda|segondas}} pòdon aparéisser pas dins aquesta tièra.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Vòstra lista de seguit conten {{PLURAL:$1|una pagina|$1 paginas}}, sens comptar las paginas de discussion',
-'watchlistedit-noitems'        => 'Vòstra lista de seguit conten pas cap de pagina.',
-'watchlistedit-normal-title'   => 'Modificacion de la lista de seguit',
-'watchlistedit-normal-legend'  => 'Levar de paginas de la lista de seguit',
-'watchlistedit-normal-explain' => 'Las paginas de vòstra lista de seguit son visiblas çaijós, classadas per espaci de noms. Per levar una pagina (e sa pagina de discussion) de la lista, seleccionatz la casa al costat puèi clicatz sul boton en bas. Tanben podètz [[Special:Watchlist/raw|la modificar en mòde brut]].',
+'watchlistedit-numitems'       => 'Vòstra lista de seguiment conten {{PLURAL:$1|una pagina|$1 paginas}}, sens comptar las paginas de discussion',
+'watchlistedit-noitems'        => 'Vòstra lista de seguiment conten pas cap de pagina.',
+'watchlistedit-normal-title'   => 'Modificacion de la lista de seguiment',
+'watchlistedit-normal-legend'  => 'Levar de paginas de la lista de seguiment',
+'watchlistedit-normal-explain' => 'Las paginas de vòstra lista de seguiment son visiblas çaijós, classadas per espaci de noms. Per levar una pagina (e sa pagina de discussion) de la lista, seleccionatz la casa al costat puèi clicatz sul boton en bas. Tanben, la podètz [[Special:Watchlist/raw|modificar en mòde brut]].',
 'watchlistedit-normal-submit'  => 'Levar las paginas seleccionadas',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} de vòstra lista de seguit :',
-'watchlistedit-raw-title'      => 'Modificacion de la lista de seguit (mòde brut)',
-'watchlistedit-raw-legend'     => 'Modificacion de la lista de seguit en mòde brut',
-'watchlistedit-raw-explain'    => 'La lista de las paginas de vòstra lista de seguit es mostrada çaijós, sens las paginas de discussion (enclusas automaticament) e destriadas per espaci de noms. Podètz modificar la lista : apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Quand avètz acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editador normal]].',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} de vòstra lista de seguiment :',
+'watchlistedit-raw-title'      => 'Modificacion de la lista de seguiment (mòde brut)',
+'watchlistedit-raw-legend'     => 'Modificacion de la lista de seguiment en mòde brut',
+'watchlistedit-raw-explain'    => 'La lista de las paginas de vòstra lista de seguiment es afichada çaijós, sens las paginas de discussion (enclusas automaticament) e destriadas per espaci de noms. Podètz modificar la lista : apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Quand avètz acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editador normal]].',
 'watchlistedit-raw-titles'     => 'Títols :',
 'watchlistedit-raw-submit'     => 'Metre la lista a jorn',
-'watchlistedit-raw-done'       => 'Vòstra lista de seguit es estada mesa a jorn.',
+'watchlistedit-raw-done'       => 'Vòstra lista de seguiment es estada mesa a jorn.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Una pagina es estada aponduda|$1 paginas son estadas apondudas}} :',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} :',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Lista de seguit',
-'watchlisttools-edit' => 'Veire e modificar la lista de seguit',
+'watchlisttools-view' => 'Lista de seguiment',
+'watchlisttools-edit' => 'Veire e modificar la lista de seguiment',
 'watchlisttools-raw'  => 'Modificar la lista (mòde brut)',
 
 # Core parser functions

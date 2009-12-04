@@ -980,6 +980,7 @@ Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1
 'nocreatetitle'                    => 'Neu Sigge Aanläje eß nit einfach esu müjjelesch.',
 'nocreatetext'                     => 'Sigge neu aanläje es nor müjjelich, wann de [[Special:UserLogin|enjelogg]] bes. Der ohne kanns De ävver Sigge ändere, die ald do sin.',
 'nocreate-loggedin'                => 'Do häs nit dat Rääch, neu Sigge aanzelääje.',
+'sectioneditnotsupported-title'    => 'Afschnedde Ändere is nit zohjelohße',
 'permissionserrors'                => 'Dat jeit nit, dat darfs de nit.',
 'permissionserrorstext'            => 'Do häs nit dat Rääch, dat ze maache, {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}',
 'permissionserrorstext-withaction' => 'Do häs nit dat Rääch $2, {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}',

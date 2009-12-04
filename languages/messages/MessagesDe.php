@@ -737,7 +737,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 # Login and logout pages
 'logouttext'                 => "'''Du bist nun abgemeldet.'''
 
-Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].",
+Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
+Beachte, das einige Seiten noch anzeigen können, das du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomecreation'            => '== Willkommen, $1! ==
 
 Dein Benutzerkonto wurde eingerichtet.
@@ -995,6 +996,8 @@ Grund für die Sperre: $1",
 'nocreatetitle'                    => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'                     => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].',
 'nocreate-loggedin'                => 'Du hast keine Berechtigung, neue Seiten zu erstellen.',
+'sectioneditnotsupported-title'    => 'Die Bearbeitung von Abschnitten wird nicht unterstützt',
+'sectioneditnotsupported-text'     => 'Die Bearbeitung von Abschnitten wird auf dieser Bearbeitungsseite nicht unterstützt.',
 'permissionserrors'                => 'Berechtigungsfehler',
 'permissionserrorstext'            => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, $2.
