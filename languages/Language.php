@@ -2369,8 +2369,8 @@ class Language {
 	}
 
 
-	function getPreferredVariant( $fromUser = true ) {
-		return $this->mConverter->getPreferredVariant( $fromUser );
+	function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
+		return $this->mConverter->getPreferredVariant( $fromUser, $fromHeader );
 	}
 
 	/**
