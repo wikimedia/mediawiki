@@ -1895,6 +1895,7 @@ $wgMessageStructure = array(
 	),
 	'block' => array(
 		'blockip',
+		'blockip-title',
 		'blockip-legend',
 		'blockiptext',
 		'ipaddress',

@@ -2849,6 +2849,7 @@ The latest block log entry is provided below for reference:',
 
 # Block/unblock
 'blockip'                         => 'Block user',
+'blockip-title'                   => 'Block user',
 'blockip-legend'                  => 'Block user',
 'blockiptext'                     => 'Use the form below to block write access from a specific IP address or username.
 This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].

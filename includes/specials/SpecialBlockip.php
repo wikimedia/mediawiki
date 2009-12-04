@@ -82,7 +82,7 @@ class IPBlockForm {
 	public function showForm( $err ) {
 		global $wgOut, $wgUser, $wgSysopUserBans;
 
-		$wgOut->setPageTitle( wfMsg( 'blockip' ) );
+		$wgOut->setPageTitle( wfMsg( 'blockip-title' ) );
 		$wgOut->addWikiMsg( 'blockiptext' );
 
 		if( $wgSysopUserBans ) {
@@ -609,7 +609,7 @@ class IPBlockForm {
 	public function showSuccess() {
 		global $wgOut;
 
-		$wgOut->setPageTitle( wfMsg( 'blockip' ) );
+		$wgOut->setPageTitle( wfMsg( 'blockip-title' ) );
 		$wgOut->setSubtitle( wfMsg( 'blockipsuccesssub' ) );
 		$text = wfMsgExt( 'blockipsuccesstext', array( 'parse' ), $this->BlockAddress );
 		$wgOut->addHTML( $text );
