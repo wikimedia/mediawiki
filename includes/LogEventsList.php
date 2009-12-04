@@ -658,7 +658,8 @@ class LogEventsList {
 				 $loglist->endLogEventsList();
 		} else {
 			if ( $showIfEmpty )
-				$s = wfMsgExt( 'logempty', array('parse') );
+				$s = Html::rawElement( 'div', array( 'class' => 'mw-warning-logempty' ),
+					wfMsgExt( 'logempty', array( 'parseinline' ) ) );
 		}
 		if( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = array();
