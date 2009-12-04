@@ -665,8 +665,6 @@ Hopefully we will remove this configuration var soon)
   due to an infinite loop of job requeues.
 * (bug 21523) File that can have multiple pages (djvu, pdf, ...) no longer have
   the page selector when they have only one page
-* (bug 15853) Feeds for non-existing pages returned a feed of all pages where 
-  rev_page = 0
 
 == API changes in 1.16 ==
 
