@@ -329,7 +329,7 @@ class ImagePage extends Article {
 			$linkAttribs = array( 'href' => $full_url );
 			$longDesc = $this->displayImg->getLongDesc();
 
-			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this , &$wgOut ) )	;
+			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this, &$wgOut ) );
 
 			if( $this->displayImg->allowInlineDisplay() ) {
 				# image
@@ -374,7 +374,8 @@ class ImagePage extends Article {
 						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . "$dirmark " . $longDesc;
 				}
 
-				if( $this->displayImg->isMultipage() ) {
+				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
+				if( $isMulti ) {
 					$wgOut->addHTML( '<table class="multipageimage"><tr><td>' );
 				}
 
@@ -388,7 +389,7 @@ class ImagePage extends Article {
 						$anchorclose . "</div>\n" );
 				}
 
-				if( $this->displayImg->isMultipage() ) {
+				if( $isMulti ) {
 					$count = $this->displayImg->pageCount();
 
 					if( $page > 1 ) {

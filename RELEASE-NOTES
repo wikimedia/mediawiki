@@ -663,6 +663,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 20159) thumbnails rerendered if older that $wgThumbnailEpoch
 * Fixed a bug which in some situations causes the job queue to grow forever, 
   due to an infinite loop of job requeues.
+* (bug 21523) File that can have multiple pages (djvu, pdf, ...) no longer have
+  the page selector when they have only one page
 
 == API changes in 1.16 ==
 
