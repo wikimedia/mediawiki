@@ -209,11 +209,11 @@ class MediaWiki {
 			( ( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) ||
 			  // No valid variant in URL (if the main-language has multi-variants), to ensure
 			  // the Accept-Language would only be added to XVO when a 301 redirection happened
-			  ( !isset($this->GET['variant']) && $perferred != $wgContLang->getCode() &&
-			    $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
+			  ( !isset($this->GET['variant']) && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{
-			$targetUrl = $title->getFullURL();
+			$pref = $wgContLang->getPreferredVariant( $fromUser = false, $fromHeader = true );
+			$targetUrl = $title->getFullURL( $variant = $pref );
 			// Redirect to canonical url, make it a 301 to allow caching
 			if( $targetUrl == $request->getFullRequestURL() ) {
 				$message = "Redirect loop detected!\n\n" .

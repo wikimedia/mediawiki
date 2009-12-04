@@ -126,10 +126,11 @@ class LanguageConverter {
 	/**
 	 * get preferred language variants.
 	 * @param boolean $fromUser Get it from $wgUser's preferences
+	 * @param boolean $fromHeader Get it from Accept-Language
 	 * @return string the preferred language code
 	 * @public
 	 */
-	function getPreferredVariant( $fromUser = true ) {
+	function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
 		global $wgUser, $wgRequest, $wgVariantArticlePath, $wgDefaultLanguageVariant, $wgOut;
 
 		if($this->mPreferredVariant)
@@ -184,7 +185,7 @@ class LanguageConverter {
 			// http header, but we don't set the mPreferredVariant
 			// variable in case this is called before the user's
 			// preference is loaded
-			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
+			if( $fromHeader && array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
 
 				// bug 21672: Add Accept-Language to Vary and XVO headers
 				// to help Squid to determine user's perferred local language
