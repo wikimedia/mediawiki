@@ -182,6 +182,12 @@ class HistoryPage {
 	 * used by the main UI but that's now handled by the pager.
 	 */
 	function fetchRevisions($limit, $offset, $direction) {
+		
+		// Fail if article doesn't exist.
+		if( !$this->mTitle || !$this->mTitle->exists() ) {
+			return array();
+		}
+		
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if( $direction == HistoryPage::DIR_PREV )
