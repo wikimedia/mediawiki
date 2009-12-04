@@ -1,9 +1,9 @@
-
 -- Jobs performed by parallel apache threads or a command-line daemon
-CREATE TABLE /*$wgDBprefix*/job (
-  job_id int unsigned NOT NULL auto_increment,
+CREATE TABLE /*_*/job (
+  job_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   
-  -- Command name, currently only refreshLinks is defined
+  -- Command name
+  -- Limited to 60 to prevent key length overflow
   job_cmd varbinary(60) NOT NULL default '',
 
   -- Namespace and title to act on
@@ -12,9 +12,9 @@ CREATE TABLE /*$wgDBprefix*/job (
   job_title varchar(255) binary NOT NULL,
 
   -- Any other parameters to the command
-  -- Presently unused, format undefined
-  job_params blob NOT NULL,
-
-  PRIMARY KEY job_id (job_id),
-  KEY (job_cmd, job_namespace, job_title)
+  -- Stored as a PHP serialized array, or an empty string if there are no parameters
+  job_params blob NOT NULL
 ) /*$wgDBTableOptions*/;
+
+CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
+
