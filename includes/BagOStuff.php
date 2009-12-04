@@ -619,7 +619,8 @@ class XCacheBagOStuff extends BagOStuff {
 class DBABagOStuff extends BagOStuff {
 	var $mHandler, $mFile, $mReader, $mWriter, $mDisabled;
 
-	public function __construct( $handler = 'db3', $dir = false ) {
+	public function __construct( $dir = false ) {
+		global $wgDBAhandler;
 		if ( $dir === false ) {
 			global $wgTmpDirectory;
 			$dir = $wgTmpDirectory;
@@ -627,7 +628,7 @@ class DBABagOStuff extends BagOStuff {
 		$this->mFile = "$dir/mw-cache-" . wfWikiID();
 		$this->mFile .= '.db';
 		wfDebug( __CLASS__ . ": using cache file {$this->mFile}\n" );
-		$this->mHandler = $handler;
+		$this->mHandler = $wgDBAhandler;
 	}
 
 	/**
