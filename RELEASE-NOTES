@@ -99,6 +99,7 @@ Hopefully we will remove this configuration var soon)
 * $wgUseInstantCommons added for quick and easy enabling of Commons as a remote
   file repository
 * $wgWikiId added to override default output of wfWikiId()
+* $wgDBAhandler added to choose a DBA handler when using CACHE_DBA
 
 === New features in 1.16 ===
 

@@ -776,6 +776,8 @@ $wgParserCacheType = CACHE_ANYTHING;
 
 $wgParserCacheExpireTime = 86400;
 
+$wgDBAhandler = 'db3';
+
 $wgSessionsInMemcached = false;
 
 /** This is used for setting php's session.save_handler. In practice, you will
