@@ -1567,7 +1567,7 @@ class OutputPage {
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
-		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5;
+		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5, $wgWellFormedXml;
 
 		$this->addMeta( "http:Content-Type", "$wgMimeType; charset={$wgOutputEncoding}" );
 		if ( $sk->commonPrintStylesheet() ) {
@@ -1588,9 +1588,21 @@ class OutputPage {
 		$dir = $wgContLang->getDir();
 
 		if ( $wgHtml5 ) {
-			$ret .= "<!DOCTYPE html>\n";
+			if ( $wgWellFormedXml ) {
+				# Unknown elements and attributes are okay in XML, but unknown
+				# named entities are well-formedness errors and will break XML
+				# parsers.  Thus we need a doctype that gives us appropriate
+				# entity definitions.  The HTML5 spec permits four legacy
+				# doctypes as obsolete but conforming, so let's pick one of
+				# those, although it makes our pages look like XHTML1 Strict.
+				# Isn't compatibility great?
+				$ret .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
+			} else {
+				# Much saner.
+				$ret .= "<!doctype html>\n";
+			}
 			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\" ";
-			if ($wgHtml5Version) $ret .= " version=\"$wgHtml5Version\" ";
+			if ( $wgHtml5Version ) $ret .= " version=\"$wgHtml5Version\" ";
 			$ret .= ">\n";
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
