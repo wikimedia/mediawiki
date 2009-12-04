@@ -17,30 +17,30 @@
  * usually the same, but they are now allowed to be different.
  */
 class EditPage {
-	const AS_SUCCESS_UPDATE			= 200;
-	const AS_SUCCESS_NEW_ARTICLE		= 201;
-	const AS_HOOK_ERROR			= 210;
-	const AS_FILTERING			= 211;
-	const AS_HOOK_ERROR_EXPECTED		= 212;
-	const AS_BLOCKED_PAGE_FOR_USER		= 215;
-	const AS_CONTENT_TOO_BIG		= 216;
-	const AS_USER_CANNOT_EDIT		= 217;
-	const AS_READ_ONLY_PAGE_ANON		= 218;
-	const AS_READ_ONLY_PAGE_LOGGED		= 219;
-	const AS_READ_ONLY_PAGE			= 220;
-	const AS_RATE_LIMITED			= 221;
-	const AS_ARTICLE_WAS_DELETED		= 222;
-	const AS_NO_CREATE_PERMISSION		= 223;
-	const AS_BLANK_ARTICLE			= 224;
-	const AS_CONFLICT_DETECTED		= 225;
-	const AS_SUMMARY_NEEDED			= 226;
-	const AS_TEXTBOX_EMPTY			= 228;
-	const AS_MAX_ARTICLE_SIZE_EXCEEDED	= 229;
-	const AS_OK				= 230;
-	const AS_END				= 231;
-	const AS_SPAM_ERROR			= 232;
-	const AS_IMAGE_REDIRECT_ANON		= 233;
-	const AS_IMAGE_REDIRECT_LOGGED		= 234;
+	const AS_SUCCESS_UPDATE            = 200;
+	const AS_SUCCESS_NEW_ARTICLE       = 201;
+	const AS_HOOK_ERROR                = 210;
+	const AS_FILTERING                 = 211;
+	const AS_HOOK_ERROR_EXPECTED       = 212;
+	const AS_BLOCKED_PAGE_FOR_USER     = 215;
+	const AS_CONTENT_TOO_BIG           = 216;
+	const AS_USER_CANNOT_EDIT          = 217;
+	const AS_READ_ONLY_PAGE_ANON       = 218;
+	const AS_READ_ONLY_PAGE_LOGGED     = 219;
+	const AS_READ_ONLY_PAGE            = 220;
+	const AS_RATE_LIMITED              = 221;
+	const AS_ARTICLE_WAS_DELETED       = 222;
+	const AS_NO_CREATE_PERMISSION      = 223;
+	const AS_BLANK_ARTICLE             = 224;
+	const AS_CONFLICT_DETECTED         = 225;
+	const AS_SUMMARY_NEEDED            = 226;
+	const AS_TEXTBOX_EMPTY             = 228;
+	const AS_MAX_ARTICLE_SIZE_EXCEEDED = 229;
+	const AS_OK                        = 230;
+	const AS_END                       = 231;
+	const AS_SPAM_ERROR                = 232;
+	const AS_IMAGE_REDIRECT_ANON       = 233;
+	const AS_IMAGE_REDIRECT_LOGGED     = 234;
 
 	var $mArticle;
 	var $mTitle;
