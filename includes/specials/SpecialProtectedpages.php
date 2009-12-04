@@ -134,7 +134,7 @@ class ProtectedPagesForm {
 	 */
 	protected function showOptions( $namespace, $type='edit', $level, $sizetype, $size, $indefOnly, $cascadeOnly ) {
 		global $wgScript;
-		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
+		$title = SpecialPage::getTitleFor( 'Protectedpages' );
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'protectedpages' ) ) .
