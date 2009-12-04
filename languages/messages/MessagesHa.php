@@ -32,8 +32,8 @@ $messages = array(
 
 'tagline'          => 'Daga {{SITENAME}}',
 'search'           => 'Nema',
-'searchbutton'     => 'Mu je',
-'searcharticle'    => 'Binciko',
+'searchbutton'     => 'Binciko',
+'searcharticle'    => 'Mu je',
 'history_short'    => 'Tarihi',
 'printableversion' => 'Sigar bugawa',
 'permalink'        => 'Dawwamammen zare',

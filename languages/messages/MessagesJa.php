@@ -906,6 +906,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'nocreatetitle'                    => 'ページの作成が制限されています',
 'nocreatetext'                     => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウントを作成]]してください。',
 'nocreate-loggedin'                => 'あなたには新しいページを作成する権限がありません。',
+'sectioneditnotsupported-title'    => 'セクション単位編集はサポートされていません',
+'sectioneditnotsupported-text'     => 'この編集画面ではセクション単位編集はサポートされません。',
 'permissionserrors'                => '認証エラー',
 'permissionserrorstext'            => 'あなたにはこのページの編集権限がありません。{{PLURAL:$1|理由}}は以下の通りです:',
 'permissionserrorstext-withaction' => '以下に示された{{PLURAL:$1|理由}}により、$2を行うことができません:',

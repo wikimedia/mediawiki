@@ -641,9 +641,9 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 *'''IE:''' che a ten-a sgnacà ''Ctrl'' antramentr che a sgnaca col rat ansima a ''Refresh'', ò pura che a sgnaca tut ansema ''Ctrl-F5'';
 *'''Konqueror:''': a basta mach sgnaché ël boton ''Reload'', ò pura sgnaché ''F5'';
 *'''Opera''' j'utent a peulo avèj da manca dë vujdé 'd continuo soa memorisassion (cache) andrinta a ''Tools&rarr;Preferences''.",
-'usercssyoucanpreview'             => "'''Drita:''' che a dòvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes CSS anans che salvelo.",
-'userjsyoucanpreview'              => "'''Drita:''' che a dòvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes JS anans che salvelo.",
-'usercsspreview'                   => "'''Che a varda che a lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS.'''
+'usercssyoucanpreview'             => "'''Drita:''' che a deuvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes CSS anans che salvelo.",
+'userjsyoucanpreview'              => "'''Drita:''' che a deuvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes JS anans che salvelo.",
+'usercsspreview'                   => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS.'''
 '''A l'é ancó nen stàit salvà!'''",
 'userjspreview'                    => "'''Che as visa che a l'é mach antramentr che as fa na preuva ëd sò Javascript, che a l'é ancó pa stait salvà!'''",
 'userinvalidcssjstitle'            => "'''Avis:''' A-i é pa gnun-a facia \"\$1\". Che as visa che le pàgine .css e .js che un as fa daspërchiel a dòvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/monobook.css nopà che {{ns:user}}:Scaramacaj/Monobook.css.",
@@ -708,6 +708,8 @@ L'aministrador che a l'ha fàit ël blòch a l'ha dàit costa spiegassion: $1",
 'nocreatetext'                     => "Cost sit-sì a l'ha limità la possibilità ëd creé dle pàgine neuve.
 A peul torné andaré e modifiché na pàgine che a-i é già, ò pura [[Special:UserLogin|rintré ant ël sistema ò deurb-se un cont]].",
 'nocreate-loggedin'                => "A l'ha pa ij përmess për creé dle pàgine neuve.",
+'sectioneditnotsupported-title'    => "La modìfica dla session a l'é nen prevëdùa",
+'sectioneditnotsupported-text'     => "La modìfica dla session a l'é nen prevëdùa an costa pàgina ëd modìfica.",
 'permissionserrors'                => 'Eror ant ij përmess',
 'permissionserrorstext'            => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che|via che}}:",
 'permissionserrorstext-withaction' => "It l'has nen ij përmess për $2, për {{PLURAL:$1|cost motiv|costi motiv}}:",

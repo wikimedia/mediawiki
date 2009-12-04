@@ -2138,6 +2138,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => "Stankañ ur chomlec'h IP",
+'blockip-title'                   => 'Stankañ an implijer',
 'blockip-legend'                  => 'Stankañ an implijer',
 'blockiptext'                     => "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP pe un implijer bennak.
 Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:Policy-url}}|erbedadennoù ha reolennoù da heuliañ]].

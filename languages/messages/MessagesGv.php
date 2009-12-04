@@ -983,7 +983,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 
 # Namespace form on various pages
 'namespace'      => 'Boayl-ennym:',
-'invert'         => 'Teiy y chur bun ry-skyn',
+'invert'         => 'Cur y teiy bun ry-skyn',
 'blanknamespace' => '(Cadjin)',
 
 # Contributions
