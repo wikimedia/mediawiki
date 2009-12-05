@@ -1,7 +1,10 @@
 <?php
 /**
- * Various HTTP related functions
  * @defgroup HTTP HTTP
+ */
+
+/**
+ * Various HTTP related functions
  * @ingroup HTTP
  */
 class Http {
