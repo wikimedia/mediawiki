@@ -5756,7 +5756,7 @@ User accounts:
   groups. Note that this does *not* allow you to make pages which are only
   accessible to certain groups.
   
-  For details see: http://meta.wikimedia.org/wiki/Help:User_rights
+  For details see: http://www.mediawiki.org/wiki/Manual:User_rights
 
 E-mail:
   User-to-user e-mail can now be restricted to require a mail-back confirmation
@@ -6006,8 +6006,8 @@ Various bugfixes, small features, and a few experimental things:
 
 * 'live preview' reduces preview reload burden on supported browsers
 * support for external editors for files and wiki pages:
-  http://meta.wikimedia.org/wiki/Help:External_editors
-* Schema reworking: http://meta.wikimedia.org/wiki/Proposed_Database_Schema_Changes/October_2004
+  http://www.mediawiki.org/wiki/Manual:External_editors
+* Schema reworking: http://www.mediawiki.org/wiki/Proposed_Database_Schema_Changes/October_2004
 * (bug 15) Allow editors to view diff of their change before actually submitting an edit
 * (bug 190) Hide your own edits on the watchlist
 * (bug 510): Special:Randompage now works for other namespaces than NS_MAIN.
@@ -6690,7 +6690,7 @@ release for relevant bug fixes; see the changelog later in this file.
 If you have trouble, remember to read this whole file and the online FAQ page
 before asking for help:
 
-http://meta.wikimedia.org/wiki/MediaWiki_FAQ
+http://www.mediawiki.org/wiki/Manual:FAQ
 
 
 === READ THIS FIRST: Upgrading ===

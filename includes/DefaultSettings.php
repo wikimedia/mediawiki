@@ -1263,7 +1263,7 @@ $wgSidebarCacheExpiry = 86400;
  * as a valid article? If $wgUseCommaCount is set to true, it will be
  * counted if it contains at least one comma. If it is set to false
  * (default), it will only be counted if it contains at least one [[wiki
- * link]]. See http://meta.wikimedia.org/wiki/Help:Article_count
+ * link]]. See http://www.mediawiki.org/wiki/Manual:Article_count
  *
  * Retroactively changing this variable will not affect
  * the existing count (cf. maintenance/recount.sql).
@@ -3449,7 +3449,7 @@ $wgMinimalPasswordLength = 1;
 
 /**
  * Activate external editor interface for files and pages
- * See http://meta.wikimedia.org/wiki/Help:External_editors
+ * See http://www.mediawiki.org/wiki/Manual:External_editors
  */
 $wgUseExternalEditor = true;
 
