@@ -212,8 +212,12 @@ class MediaWiki {
 			  ( !isset($this->GET['variant']) && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{
-			$pref = $wgContLang->getPreferredVariant( $fromUser = false, $fromHeader = true );
-			$targetUrl = $title->getFullURL( $variant = $pref );
+			if( !$wgUser->isLoggedIn() ) {
+				$pref = $wgContLang->getPreferredVariant( false, $fromHeader = true );
+				$targetUrl = $title->getFullURL( '', $variant = $pref );
+			}
+			else
+				$targetUrl = $title->getFullURL();
 			// Redirect to canonical url, make it a 301 to allow caching
 			if( $targetUrl == $request->getFullRequestURL() ) {
 				$message = "Redirect loop detected!\n\n" .
