@@ -272,7 +272,7 @@ class LoginForm {
 			return false;
 		}
 
-		if ( is_null( $u ) ) {
+		if ( is_null( $u ) || $u === false ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}
