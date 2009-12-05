@@ -26,6 +26,7 @@ class SyntaxChecker extends Maintenance {
 
 	// List of files we're going to check
 	private $mFiles = array(), $mFailures = array(), $mWarnings = array();
+	private $mIgnorePaths = array(), $mNoStyleCheckPaths = array();
 
 	public function __construct() {
 		parent::__construct();
@@ -69,6 +70,25 @@ class SyntaxChecker extends Maintenance {
 	 */
 	private function buildFileList() {
 		global $IP;
+
+		$this->mIgnorePaths = array(
+			// Compat stuff, explodes on PHP 5.3
+			"includes/NamespaceCompat.php$",
+			"DiscussionThreading/REV",
+			);
+	
+		$this->mNoStyleCheckPaths = array(
+			// Third-party code we don't care about
+			"/activemq_stomp/",
+			"EmailPage/phpMailer",
+			"FCKeditor/fckeditor/",
+			'\bphplot-',
+			"/svggraph/",
+			"\bjsmin.php$",
+			"OggHandler/PEAR/",
+			"QPoll/Excel/",
+			"/smarty/",
+			);
 
 		if ( $this->hasOption( 'path' ) ) {
 			$path = $this->getOption( 'path' );

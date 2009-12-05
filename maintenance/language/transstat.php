@@ -9,7 +9,7 @@
  * @author Ashar Voultoiz <thoane@altern.org>
  *
  * Output is posted from time to time on:
- * http://meta.wikimedia.org/wiki/Localization_statistics
+ * http://www.mediawiki.org/wiki/Localisation_statistics
  */
 $optionsWithArgs = array( 'output' );
 

@@ -47,7 +47,7 @@ These can also be customised on a per-user basis, by editing
 This feature has led to a wide variety of "user styles" becoming available,
 which change the appearance of Monobook or MySkin:
 
-http://meta.wikimedia.org/wiki/Gallery_of_user_styles
+http://www.mediawiki.org/wiki/Manual:Gallery_of_user_styles
 
 If you want a different look for your wiki, that gallery is a good place to start.
 
