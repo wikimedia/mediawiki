@@ -521,7 +521,10 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseSqlite::duplicateTableStructure' ) {
-		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName AS SELECT * FROM $oldName LIMIT 0", $fname );
+		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name='$oldName' AND type='table'", $fname );
+		$sql = $this->fetchObject( $res )->sql;
+		$sql = preg_replace( '/\b' . preg_quote( $oldName ) . '\b/', $newName, $sql, 1 );
+		return $this->query( $sql, $fname );
 	}
 
 } // end DatabaseSqlite class

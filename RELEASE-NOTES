@@ -668,6 +668,7 @@ Hopefully we will remove this configuration var soon)
   the page selector when they have only one page
 * (bug 21559) "logempty" message is now wrapped in a div with class
   "mw-warning-logempty" when used in log extract
+* (bug 20549) Parser tests were broken on SQLite backend
 
 == API changes in 1.16 ==
 
