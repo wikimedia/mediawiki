@@ -12,6 +12,11 @@
  * @author Spacebirdy
  */
 
+$magicWords = array(
+	'redirect'              => array( '0', '#بور', '#تغییرمسیر', '#REDIRECT' ),
+	'numberofpages'         => array( '1', 'تعدادصفحه‌ها', 'تعداد_صفحه‌ها', 'ولگ‌ئون نمره', 'وألگ‌ئون نومره', 'NUMBEROFPAGES' ),
+);
+
 $fallback = 'fa';
 
 $linkPrefixExtension = true;
