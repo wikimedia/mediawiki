@@ -127,6 +127,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Recerca de ligamines' ),
 	'DeletedContributions'      => array( 'Contributiones delite' ),
 	'Tags'                      => array( 'Etiquettas' ),
+	'Activeusers'               => array( 'Usatores active' ),
 );
 
 $messages = array(
