@@ -20,10 +20,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.16 ===
 * $wgScriptModifiedMsgCheck Checks the mediawiki namespace recent changes to
-ensure a updated urid for script-loader
+  ensure a updated urid for script-loader
 * $wgScriptModifiedCheck Checks script file modified time for unique request id)
 * $wgEnableAsyncDownload (lets you disable Async download for windows.
-Hopefully we will remove this configuration var soon)
+  Hopefully we will remove this configuration var soon)
 * $wgEnableFirefogg enable support for firefogg extension, firefogg supports
   in-browser transcoding, chunk uploads and client side hash checking.
 * $wgEnableTemporalOggUrls enable oggz_chop support a server side ogg seeking
@@ -658,7 +658,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 21672) Add missing Accept-Language to both Vary and XVO headers
 * (bug 21679) "Edit block reasons" link at the bottom of Special:Blockip is now
   only displayed to the users that have "editinterface" right
-* (bug 21740) Attempting to protect a page that doesn't exist (salting) returns "unknown error"
+* (bug 21740) Attempting to protect a page that doesn't exist (salting) returns
+  "unknown error"
 * (bug 18762) both redirects and links get fixed one after another if 
   redirects-only switch is not present
 * (bug 20159) thumbnails rerendered if older that $wgThumbnailEpoch
@@ -669,7 +670,8 @@ Hopefully we will remove this configuration var soon)
 * (bug 21559) "logempty" message is now wrapped in a div with class
   "mw-warning-logempty" when used in log extract
 * (bug 20549) Parser tests were broken on SQLite backend
-* (bug 21776) Interwiki urls like http://en.wikibooks.org/wiki/cs: should give a redirect instead of a baderror.
+* (bug 21776) Interwiki urls like http://en.wikibooks.org/wiki/cs: should give
+  a redirect instead of a baderror.
 
 == API changes in 1.16 ==
 
