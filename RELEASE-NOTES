@@ -669,6 +669,7 @@ Hopefully we will remove this configuration var soon)
 * (bug 21559) "logempty" message is now wrapped in a div with class
   "mw-warning-logempty" when used in log extract
 * (bug 20549) Parser tests were broken on SQLite backend
+* (bug 21776) Interwiki urls like http://en.wikibooks.org/wiki/cs: should give a redirect instead of a baderror.
 
 == API changes in 1.16 ==
 
