@@ -205,6 +205,7 @@ body {
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
+	/* @noflip */
 	body.rtl div.vectorMenu {
 		direction: rtl;
 	}
@@ -247,17 +248,20 @@ body {
 		text-align: left;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	/* @noflip */
 	body.rtl div.vectorMenu div.menu {
-		margin-right: 24px;
+		margin-left: 24px;
 	}
 	/* IGNORED BY IE6 */
+	/* @noflip */
 	body.rtl div.vectorMenu > div.menu {
-		margin-right: auto;
+		margin-left: auto;
 	}
 	/* Fixes old versions of FireFox */
+	/* @noflip */
 	body.rtl div.vectorMenu > div.menu,
 	x:-moz-any-link {
-		margin-right: 23px;
+		margin-left: 23px;
 	}
 	div.vectorMenu:hover div.menu {
 		display: block;
