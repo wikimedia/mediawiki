@@ -182,11 +182,13 @@ class MediaWiki {
 		global $wgContLang, $wgUser;
 		$action = $this->getVal( 'Action' );
 		$perferred = $wgContLang->getPreferredVariant( false );
-		// Invalid titles
-		if( is_null($title) || $title->getDBkey() == '' ) {
+
+		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
+		if( is_null($title) || ( ($title->getDBkey() == '') && ($title->getInterwiki() == '') ) ) {
 			$title = SpecialPage::getTitleFor( 'Badtitle' );
 			# Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
+
 		// Interwiki redirects
 		} else if( $title->getInterwiki() != '' ) {
 			if( $rdfrom = $request->getVal( 'rdfrom' ) ) {
