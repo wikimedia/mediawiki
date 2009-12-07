@@ -9,6 +9,7 @@
  *
  * @author Bennylin
  * @author Borgx
+ * @author Farras
  * @author Irwangatot
  * @author IvanLanin
  * @author Meursault2004
@@ -938,6 +939,8 @@ Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
 'nocreatetext'                     => '{{SITENAME}} telah membatasi pembuatan halaman-halaman baru.
 Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special:UserLogin|masuk log atau membuat akun]].',
 'nocreate-loggedin'                => 'Anda tak memiliki hak akses untuk membuat halaman baru.',
+'sectioneditnotsupported-title'    => 'Penyuntingan bagian tidak didukung',
+'sectioneditnotsupported-text'     => 'Penyuntingan bagian tidak didukung di halaman sunting ini.',
 'permissionserrors'                => 'Kesalahan Hak Akses',
 'permissionserrorstext'            => 'Anda tak memiliki hak untuk melakukan hal itu karena {{PLURAL:$1|alasan|alasan-alasan}} berikut:',
 'permissionserrorstext-withaction' => 'Anda tidak memiliki hak akses untuk $2, karena {{PLURAL:$1|alasan|alasan}} berikut:',
@@ -2279,6 +2282,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blokir pengguna',
+'blockip-title'                   => 'Blokir pengguna',
 'blockip-legend'                  => 'Blokir pengguna',
 'blockiptext'                     => 'Gunakan formulir di bawah untuk memblokir akses penulisan dari sebuah alamat IP atau pengguna tertentu.
 Ini hanya boleh dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan]].

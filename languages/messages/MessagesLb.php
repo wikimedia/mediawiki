@@ -142,7 +142,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Linken ënnersträichen:',
 'tog-highlightbroken'         => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
-'tog-justify'                 => "Ränner vum Text riten (''justify'')",
+'tog-justify'                 => "Ränner vum Text riichten (''justify'')",
 'tog-hideminor'               => 'Verstopp kleng Ännerungen an de rezenten Ännerungen',
 'tog-hidepatrolled'           => 'Iwwerkuckten Ännerungen an de "Rezenten Ännerungen" verstoppen',
 'tog-newpageshidepatrolled'   => 'Iwwerkuckte Säiten op der Lëscht vun den "Neie Säite" verstoppen',
@@ -151,22 +151,22 @@ $messages = array(
 'tog-numberheadings'          => 'Iwwerschrëften automatesch numeréieren',
 'tog-showtoolbar'             => 'Ännerungstoolbar weisen (JavaScript)',
 'tog-editondblclick'          => 'Säite mat Duebelklick veränneren (JavaScript)',
-'tog-editsection'             => "Linke fir d'Ännere vun eenzelnen Abschnitte weisen",
-'tog-editsectiononrightclick' => 'Eenzel Abschnitte per Rietsklick änneren (JavaScript)',
+'tog-editsection'             => "Linke fir d'Ännere vun eenzelnen Abschnitter weisen",
+'tog-editsectiononrightclick' => 'Eenzel Abschnitter mat Rietsklick änneren (JavaScript)',
 'tog-showtoc'                 => 'Inhaltsverzeechnes weise bei Säite mat méi wéi dräi Iwwerschrëften',
 'tog-rememberpassword'        => 'Mäi Passwuert op dësem Computer verhalen',
-'tog-editwidth'               => 'Verännerungskëscht iwwert déi ganz Breed vum Ecran weisen',
+'tog-editwidth'               => 'Verännerungskëscht iwwer déi ganz Breet vum Ecran weisen',
 'tog-watchcreations'          => 'Säiten déi ech nei uleeën automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdefault'            => 'Säiten déi ech änneren op meng Iwwerwaachungslëscht setzen',
 'tog-watchmoves'              => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdeletion'           => 'Säiten déi ech läschen op meng Iwwerwaachungslëscht setzen',
 'tog-minordefault'            => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
-'tog-previewontop'            => "Déi ''nach-net gespäichert Versioun'' uewen un der Ännerungsfënster weisen",
+'tog-previewontop'            => "Déi ''nach-net gespäichert Versioun'' iwwer der Ännerungsfënster weisen",
 'tog-previewonfirst'          => "Beim éischten Änneren déi  ''nach net gespäichert Versioun'' weisen.",
 'tog-nocache'                 => 'Säitecache deaktivéieren',
 'tog-enotifwatchlistpages'    => 'Schéckt mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungslëscht geännert gëtt',
 'tog-enotifusertalkpages'     => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
-'tog-enotifminoredits'        => 'Schéckt mir och bei kléngen Ännerungen op vu mir iwwerwaachte Säiten eng E-Mail.',
+'tog-enotifminoredits'        => 'Schéckt mir och bei klengen Ännerungen op vu mir iwwerwaachte Säiten eng E-Mail.',
 'tog-enotifrevealaddr'        => 'Meng E-Mailadress an de Benoriichtigungsmaile weisen.',
 'tog-shownumberswatching'     => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-oldsig'                  => 'Ausgesi vun der aktueller Ënnerschrëft:',
@@ -189,7 +189,7 @@ $messages = array(
 'tog-noconvertlink'           => 'Ëmwandlung vum Titel desaktivéieren',
 'tog-norollbackdiff'          => 'Ënnerscheed nom Zrécksetzen ënnerdrécken',
 
-'underline-always'  => 'ëmmer',
+'underline-always'  => 'Ëmmer',
 'underline-never'   => 'Ni',
 'underline-default' => 'vun der Browserastellung ofhängeg',
 
@@ -258,8 +258,8 @@ $messages = array(
 'subcategories'                  => 'Ënnerkategorien',
 'category-media-header'          => 'Medien an der Kategorie "$1"',
 'category-empty'                 => "''Dës Kategorie ass fir den Ament eidel''",
-'hidden-categories'              => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
-'hidden-category-category'       => 'Verstoppte Kategorien',
+'hidden-categories'              => '{{PLURAL:$1|Verstoppt Kategorie|Verstoppt Kategorien}}',
+'hidden-category-category'       => 'Verstoppt Kategorien',
 'category-subcat-count'          => 'Dës Kategorie huet {{PLURAL:$2|nëmmen dës Ënnerkategorie.|dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}, vu(n) $2 am Ganzen.}}',
 'category-subcat-count-limited'  => 'Dës Kategorie huet dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}.',
 'category-article-count'         => 'An dëser Kategorie {{PLURAL:$2|ass just dës Säit.|{{PLURAL:$1|ass just dës Säit|si(nn) $1 Säiten}}, vu(n) $2 am Ganzen.}}',
@@ -283,7 +283,7 @@ $messages = array(
 'newwindow'     => '(geet an enger neier Fënster op)',
 'cancel'        => 'Zréck',
 'moredotdotdot' => 'Méi …',
-'mypage'        => 'meng Säit',
+'mypage'        => 'Meng Säit',
 'mytalk'        => 'Meng Diskussioun',
 'anontalk'      => 'Diskussioun fir dës IP Adress',
 'navigation'    => 'Navigatioun',
@@ -308,7 +308,7 @@ $messages = array(
 'vector-action-undelete'     => 'Restauréieren',
 'vector-action-unprotect'    => 'Spär ophiewen',
 'vector-namespace-category'  => 'Kategorie',
-'vector-namespace-help'      => 'Hellëfsäit',
+'vector-namespace-help'      => 'Hëllefssäit',
 'vector-namespace-image'     => 'Fichier',
 'vector-namespace-main'      => 'Säit',
 'vector-namespace-media'     => 'Mediesäit',
@@ -340,7 +340,7 @@ $messages = array(
 'searcharticle'     => 'Säit',
 'history'           => 'Historique vun der Säit',
 'history_short'     => 'Versiounen',
-'updatedmarker'     => "geännert zënter dat ech d'Säit fir d'lescht gekuckt hunn",
+'updatedmarker'     => "geännert zënter ech d'Säit fir d'lescht gekuckt hunn",
 'info_short'        => 'Informatioun',
 'printableversion'  => 'Printversioun',
 'permalink'         => 'Zitéierfäege Link',
@@ -365,7 +365,7 @@ $messages = array(
 'postcomment'       => 'Neien Abschnitt',
 'articlepage'       => 'Säit',
 'talk'              => 'Diskussioun',
-'views'             => 'Offroen',
+'views'             => 'Affichagen',
 'toolbox'           => 'Geschirkëscht',
 'userpage'          => 'Benotzersäit',
 'projectpage'       => 'Meta-Text',
@@ -384,7 +384,7 @@ $messages = array(
 'jumpto'            => 'Wiesselen op:',
 'jumptonavigation'  => 'Navigatioun',
 'jumptosearch'      => 'Sich',
-'view-pool-error'   => "Pardon, d'Serveren si fir de Moment iwwerlaascht.
+'view-pool-error'   => "Pardon, d'Servere si fir de Moment iwwerlaascht.
 Zevill Benotzer versichen dës Säit ze gesinn.
 Waart w.e.g. e bëssen ier Dir versicht dës Säit nach emol opzeruffen.
 
@@ -392,7 +392,7 @@ $1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Iwwer {{SITENAME}}',
-'aboutpage'            => 'Project: Iwwer {{SITENAME}}',
+'aboutpage'            => 'Project:Iwwer',
 'copyright'            => 'Inhalt ass zur Verfügung gestallt ënnert der $1.<br />',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Aktualitéit',
@@ -415,7 +415,7 @@ $1",
 'badaccess-groups' => "D'Aktioun déi dir gewielt hutt, kann nëmme vu Benotzer aus {{PLURAL:$2|der Grupp|enger vun de Gruppen}} $1 duerchgefouert ginn.",
 
 'versionrequired'     => 'Versioun $1 vu MediaWiki gëtt gebraucht',
-'versionrequiredtext' => "D'Versioun $1 vu MediaWiki ass néideg, fir dës Säit ze notzen. Kuckt d'[[Special:Version|Versiounssäit]]",
+'versionrequiredtext' => "D'Versioun $1 vu MediaWiki ass néideg, fir dës Säit ze benotzen. Kuckt d'[[Special:Version|Versiounssäit]]",
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Vun „$1“',
@@ -434,7 +434,7 @@ $1",
 'hidetoc'                 => 'verstoppen',
 'thisisdeleted'           => '$1 kucken oder zrécksetzen?',
 'viewdeleted'             => 'Weis $1?',
-'restorelink'             => '$1 geläschte {{PLURAL:$1|Versioun|Versiounen}}',
+'restorelink'             => '$1 geläscht {{PLURAL:$1|Versioun|Versiounen}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Net valabelen Typ vun Abonnements-Feed',
 'feed-unavailable'        => "''Syndication Feeds'' stinn net zur Verfügung.",
@@ -458,13 +458,13 @@ $1",
 
 # Main script and global functions
 'nosuchaction'      => 'Dës Aktioun gëtt et net',
-'nosuchactiontext'  => 'Déi Aktioun, déi an der URL ugi war ass net valabel.
-Méiglecherweis hutt dir Iech bei der URL vertippt oder Dir hutt op en net korrekte Link geklickt.
+'nosuchactiontext'  => 'Déi Aktioun, déi an der URL ugi war, ass net valabel.
+Méiglecherweis hutt dir Iech bei der URL vertippt, oder Dir hutt op en net korrekte Link geklickt.
 Et kann awer och sinn datt et e Bug a(n) {{SITENAME}} gëtt.',
 'nosuchspecialpage' => 'Spezialsäit gëtt et net',
 'nospecialpagetext' => '<strong>Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.</strong>
 
-All Spezialsäiten déi et gëtt sinn op der [[Special:SpecialPages|Lescht vun de Spezialsäiten]] ze fannen.',
+All Spezialsäiten déi et gëtt, sinn op der [[Special:SpecialPages|Lëscht vun de Spezialsäiten]] ze fannen.',
 
 # General errors
 'error'                => 'Feeler',
@@ -480,20 +480,20 @@ De läschten Datebank Query war:
 "$1" 
 vun der Funktioun "$2".
 D\'Datebank huet de Feeler "$3: $4" gemellt.',
-'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
+'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedéngt um neiste Stand.',
 'readonly'             => "D'Datebank ass gespaart",
 'enterlockreason'      => "Gitt w.e.g. e Grond u firwat d'Datebak gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
-'readonlytext'         => 'Datebank ass elo fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
+'readonlytext'         => "D'Datebank ass elo fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
 
-Den Administrateur huet dës Erklärung uginn: $1',
+Den Administrateur huet dës Erklärung uginn: $1",
 'missing-article'      => "Den Text „$1“ $2 gouf net an der Datebank fonnt.
 
-Dës geschitt normalerweis duerch e Link op eng Säit déi geläscht oder geréckelt gouf.
+Dat geschitt normalerweis duerch e Link op eng Säit déi geläscht oder geréckelt gouf.
 
 Wann dat net de Fall ass, hutt Dir eventuell e Feeler an der Software fonnt.
 Mellt dëst w.e.g. bei engem [[Special:ListUsers/sysop|Administrateur]] a vergiesst net d'URL unzeginn.",
 'missingarticle-rev'   => '(Versiounsnummer: $1)',
-'missingarticle-diff'  => '(Ënnerscheed tësche Versiounen: $1, $2)',
+'missingarticle-diff'  => '(Ënnerscheed tëscht Versiounen: $1, $2)',
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
 'internalerror'        => 'Interne Feeler',
 'internalerror_info'   => 'Interne Feeler: $1',
@@ -804,6 +804,8 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'nocreatetitle'                    => "D'Uleeë vun neie Säiten ass limitéiert.",
 'nocreatetext'                     => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
 'nocreate-loggedin'                => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
+'sectioneditnotsupported-title'    => 'Ännere vum Abschnitt gëtt net ënnerstetzt',
+'sectioneditnotsupported-text'     => "D'Ännere vun Abschnitten gëtt op dëser Ännerungssäit net ënnertstetzt.",
 'permissionserrors'                => 'Berechtigungs-Feeler',
 'permissionserrorstext'            => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
 'permissionserrorstext-withaction' => 'Dir sidd, aus {{PLURAL:$1|dësem Grond|dëse Grënn}}, net berechtegt $2 :',
@@ -2162,6 +2164,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Benotzer spären',
+'blockip-title'                   => 'Benotzer spären',
 'blockip-legend'                  => 'Benotzer spären',
 'blockiptext'                     => 'Benotzt dëse Formulaire fir eng spezifesch IP-Adress oder e Benotzernumm ze spären. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat den [[{{MediaWiki:Policy-url}}|interne Richlinen]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
 'ipaddress'                       => 'IP-Adress oder Benotzernamm:',

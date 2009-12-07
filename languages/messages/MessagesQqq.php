@@ -2324,6 +2324,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'blockip'                      => 'The title of the special page [[Special:BlockIP]].
 
 {{Identical|Block user}}',
+'blockip-title'                => '{{Identical|Block user}}',
 'blockip-legend'               => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
 
 {{Identical|Block user}}',

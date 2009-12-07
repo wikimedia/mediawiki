@@ -2242,6 +2242,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Aseta muokkausesto',
+'blockip-title'                   => 'Estä käyttäjä',
 'blockip-legend'                  => 'Estä käyttäjä',
 'blockiptext'                     => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen [[{{MediaWiki:Policy-url}}|pitää olla syy]], esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vapaamuotoisen vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_node/Date-input-formats.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, ”2014-08-29”.',
 'ipaddress'                       => 'IP-osoite',

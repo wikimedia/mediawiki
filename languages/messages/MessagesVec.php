@@ -795,6 +795,8 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 'nocreatetitle'                    => 'Creazion de le pagine limitada',
 'nocreatetext'                     => 'La possibilità de crear pagine nóve su {{SITENAME}} la xe stà limità ai soli utenti registrà. Se pol tornar indrìo e modificar na pagina esistente, opure [[Special:UserLogin|entrar o crear un nóvo acesso]].',
 'nocreate-loggedin'                => 'No te ghè i permessi necessari a crear pagine nove.',
+'sectioneditnotsupported-title'    => 'Modifica de sezion mia suportà',
+'sectioneditnotsupported-text'     => 'La modifica de singole sezion no le xe mia suportà su sta pagina.',
 'permissionserrors'                => 'Eror nei permessi',
 'permissionserrorstext'            => "No te ghè i permessi necessari ad eseguir l'azion richiesta, par {{PLURAL:$1|el seguente motivo|i seguenti motivi}}:",
 'permissionserrorstext-withaction' => 'No ti gà el parmesso de $2, par {{PLURAL:$1|el seguente motivo|i seguenti motivi}}:',
@@ -2122,6 +2124,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Bloca indirisso IP',
+'blockip-title'                   => "Bloca l'utente",
 'blockip-legend'                  => "Bloca l'utente",
 'blockiptext'                     => "Dòpara el moduło qua soto par blocar l'accesso in scritura a un speçifico utente o indirizo IP. El bloco el gà de èssar operà par prevegner ati de vandalismo e in streta osservansa de ła [[{{MediaWiki:Policy-url}}|policy de {{SITENAME}}]]. Speçifica in detałio el motivo del bloco nel canpo seguente (ad es. indicando i titołi de łe pàxene ogeto de vandalismo).",
 'ipaddress'                       => 'Indirisso IP (IP Address)',

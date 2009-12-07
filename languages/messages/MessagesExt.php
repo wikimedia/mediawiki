@@ -376,7 +376,8 @@ Pol favol, contauta con un [[Special:ListUsers/sysop|çajoril]], mentandu la URL
 'protectedpagetext'    => "Esta páhina s'alcuentra atarugá a nuevas eicionis.",
 'viewsourcetext'       => 'Pueis vel i copial el cóigu huenti desta páhina:',
 'protectedinterface'   => "Esta páhina proporciona el testu la entrihazi el software, razón pola que s'alcuentra atarugá.",
-'editinginterface'     => "'''Cudiau:''' Estás eitandu una páhina que proporciona el testu la entrihazi el software. Los chambus hechus aquí afetarán al entrihazi d'otrus usuárius.",
+'editinginterface'     => "'''Cudiau:''' Estás eitandu una página que propolciona el testu la entrijazi el software. Los chambus hechus aquina afeutarán a la entrijazi d'otrus ussuárius.
+Pa traucil, consiera gastal [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyeutu de traución de MediaWiki.",
 'sqlhidden'            => '(Consurta SQL açonchá)',
 'cascadeprotected'     => 'Esta páhina s\'alcuentra protehia ebiu a que horma parti e {{PLURAL:$1|la siguienti páhina|las siguientis páhinas}}, qu\'están protehias cola oción "proteción en cascá" ativá:
 $2',
@@ -523,26 +524,26 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'blockedtitle'                     => 'Esti usuáriu está atarugau',
 'blockedtext'                      => "<big>'''El tu nombri d'usuáriu/direción IP está atarugau/á.'''</big>
 
-\$1 jue quien jidu el tarugu, pola siguienti radón: ''\$2''.
+\$1 jue quien jidu el tarugu, pola siguienti razón: ''\$2''.
 
 * Fecha en qu'el tarugu prencipió: \$8
 * Fecha en qu'el tarugu acabijará: \$6
 * Tarugu: \$7
 
 Pueis contatal con \$1 u con otru [[{{MediaWiki:Grouppage-sysop}}|çahoril]] pa chalral al tentu el tarugu.
-Si nu as especificau ena tu cuenta d'usuáriu una direción d'email, nu te sedrá possibri gastal el botón \"Envial un email a esti usuáriu\" (amás, tendrás que asperal a qu'el tarugu acabiji).
-\$3 es la tu direción IP atual, i el ID del tarugu es #\$5. Pol favol, escrebi dambus los dos datus en cualisquiel consurta que jagas.",
-'autoblockedtext'                  => 'La tu direción IP á siu atarugá automáticamenti ebiu a qu\'estaba siendu gastá pol otru usuáriu, que á siu atarugau pol $1 cola siguienti radón:
+Si nu as escrebiu enas tus [[Special:Preferences|preferéncias]] una direción d'email, u si t'á siu atarugau el correu, nu te sedrá possibri gastal el botón \"Envial un email a esti ussuáriu\".
+\$3 es la tu direción IP atual, i el ID del tarugu es #\$5. Pol favol, escrebi dambus los dos datus en cualisquiel consurta que hagas.",
+'autoblockedtext'                  => 'La tu direción IP á siu atarugá automáticamenti ebiu a qu\'estaba siendu gastá pol otru ussuáriu, quién á siu atarugau pol $1 cola siguienti razón:
 
 :\'\'$2\'\'
 
-* Fecha en qu\'el tarugu prencipia: $8
-* Fecha en qu\'el tarugu acabija: $6
+* Fecha en qu\'el tarugu prencipió: $8
+* Fecha en qu\'el tarugu acabijará: $6
 # Tarugu: $7
 
-Pueis contatal con $1 u con otru [[{{MediaWiki:Grouppage-sysop}}|çahoril]] pa chalral al tentu el tarugu.
-Si nu as especificau ena tu cuenta d\'usuáriu una direción d\'email, nu te sedrá possibri gastal el botón "Envial un email a esti usuáriu" (amás, tendrás que asperal a qu\'el tarugu acabiji).
-$3 es la tu direción IP atual, i el ID del tarugu es #$5. Pol favol, escrebi dambus los dos datus en cualisquiel consurta que jagas.',
+Pueis contautal con $1 u con otru [[{{MediaWiki:Grouppage-sysop}}|çahoril]] pa chalral al tentu el tarugu.
+Si nu as escrebiu enas tus [[Special:Preferences|preferéncias]] una direción d\'email, u si t\'á siu atarugau el correu, nu te sedrá possibri gastal el botón "Envial un email a esti ussuáriu".
+$3 es la tu direción IP atual, i el ID del tarugu es #$5. Pol favol, escrebi dambus los dos datus en cualisquiel consurta que hagas.',
 'blockednoreason'                  => "nu s'an dau razonis",
 'blockedoriginalsource'            => "El cóigu huenti e '''$1''' se muestra embahu:",
 'blockededitsource'                => "Embahu se muestra el testu '''las tus eicionis''' en '''$1''':",
@@ -555,7 +556,9 @@ $3 es la tu direción IP atual, i el ID del tarugu es #$5. Pol favol, escrebi da
 'loginreqlink'                     => 'entral',
 'loginreqpagetext'                 => 'Ebis $1 pa vel otras páhinas.',
 'accmailtitle'                     => 'Consínia enviá.',
-'accmailtext'                      => 'La consínia pa "$1" á siu enviá a $2.',
+'accmailtext'                      => 'Se t\'á enviau una consínia aleatória pa [[User talk:$1|$1]] a La consínia pa "$1" a $2.
+
+Es possibri escambial la consínia de la cuenta entrandu ena tu cuenta, ena página d\'\'\'[[Special:ChangePassword|escambial consínia]]\'\'.',
 'newarticle'                       => '(Nuevu)',
 'newarticletext'                   => "Esti artículu entovia nu desisti.
 Si quieis crial esti artículu, escribi nel cuairu d'embahu
@@ -627,7 +630,7 @@ razón pola que nu pueis emburacal los tus chambus agora. Pa nu perdel los chamb
 'nocreatetitle'                    => 'Criaeru e páhinas enlimitau',
 'nocreatetext'                     => 'Nu se premiti crial páhinas nuevas a usuárius anónimus.
 Pueis gorvel i eital anguna páhina ya desistenti, u [[Special:UserLogin|rustrilti]].',
-'nocreate-loggedin'                => 'Nu tienis premisu pa crial nuevas páhinas nesti güiqui.',
+'nocreate-loggedin'                => 'Nu tiés premissu pa crial nuevas páginas.',
 'permissionserrors'                => 'Marrus colos premisus',
 'permissionserrorstext'            => 'Nu t´está premitiu hazel esu, {{PLURAL:$1|pola siguienti razón|polas siguientis razonis}}:',
 'permissionserrorstext-withaction' => 'Nu tiinis premisu pa $2, {{PLURAL:$1|pola siguienti razón|polas siguientis razonis}}:',
@@ -707,7 +710,7 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'revdelete-suppress'          => 'Esborral tamién los datus los çahorilis',
 'revdelete-hide-image'        => 'Açonchal el continiu el archivu',
 'revdelete-unsuppress'        => 'Esborral restricionis enas revisionis arrecuperás',
-'revdelete-log'               => 'Comentáriu e rustrihu:',
+'revdelete-log'               => 'Razón pal esborrau:',
 'revdelete-submit'            => 'Aprical a la revisión aseñalá',
 'revdelete-logentry'          => 'chambá la visibiliá la revisión pa [[$1]]',
 'logdelete-logentry'          => "chambá la visibiliá d'eventus de [[$1]]",
@@ -767,50 +770,52 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'diff-multi'              => '(Nu se {{PLURAL:$1|muestra una revisión entelmeya|muestran $1 revisionis entelmeyas}}.)',
 
 # Search results
-'searchresults'                  => 'Landeal resurtaus',
-'searchresults-title'            => 'Landeal resurtaus pa "$1"',
-'searchresulttext'               => 'Pa mas enhormación al tentu landeal en {{SITENAME}}, vaiti a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                 => 'As landeau \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tolos artículus que prencipian pol "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tolos artículus que atihan a "$1"]])',
-'searchsubtitleinvalid'          => "Landeasti '''$1'''",
-'titlematches'                   => 'Conciéncias con el entítulu el artículu',
-'notitlematches'                 => 'Nu ai artículus llamaus asina',
-'textmatches'                    => 'Conciéncias con el testu el artículu',
-'notextmatches'                  => 'Nu desistin conciéncias con el testu el artículu',
-'prevn'                          => '{{PLURAL:$1|$1 anterioris}}',
-'nextn'                          => '{{PLURAL:$1|$1 siguientis}}',
-'prevn-title'                    => 'Anterioris $1 {{PLURAL:$1|resurtau|resurtaus}}',
-'nextn-title'                    => 'Siguientis $1 {{PLURAL:$1|resurtau|resurtaus}}',
-'shown-title'                    => 'Muestral $1 {{PLURAL:$1|resurtau|resurtaus}} pol página',
-'viewprevnext'                   => 'Vel ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-legend'              => 'Ocionis de landeu',
-'searchmenu-new'                 => "'''Crial el artículu \"[[:\$1]]\"'''",
-'searchhelp-url'                 => 'Help:Continius',
-'searchprofile-images'           => 'Murtimeya',
-'searchprofile-articles-tooltip' => 'Landeal en $1',
-'searchprofile-project-tooltip'  => 'Landeal en $1',
-'searchprofile-images-tooltip'   => 'Landeal archivus',
-'search-result-size'             => '$1 ({{PLURAL:$2|1 letra|$2 letras}})',
-'search-result-score'            => 'Emportáncia: $1%',
-'search-redirect'                => '(rederihil $1)',
-'search-section'                 => '(seción $1)',
-'search-suggest'                 => 'Quieis izil: $1',
-'search-interwiki-caption'       => 'Proyeutus helmanus',
-'search-interwiki-default'       => '$1 resurtaus:',
-'search-interwiki-more'          => '(más)',
-'search-mwsuggest-enabled'       => 'muestral sugeréncias',
-'search-mwsuggest-disabled'      => 'nu muestral sugeréncias',
-'searchrelated'                  => 'relacionau',
-'searchall'                      => 'tó',
-'showingresults'                 => "Embahu se {{PLURAL:$1|muestra '''1''' resurtau qu'esmiença|muestran hata '''$1''' resurtaus qu'esmiençan}} pol #'''$2'''.",
-'showingresultsnum'              => "Embahu se {{PLURAL:$3|muestra '''1''' resurtau qu'esmiença|muestran'''$3''' resurtaus qu'esmiençan}} pol #'''$2'''.",
-'nonefound'                      => "'''Nota''': Solu se busca en angunus espacius de nombris pol defetu. Preba a escrebil el prefihu ''all:'' nel tu landeu pa landeal tol conteniu (encruyendu carabas, prantillas...), u gasta el espaciu de nombri deseau cumu prefihu.",
-'powersearch'                    => 'Landeal',
-'powersearch-legend'             => 'Landeu avançau',
-'powersearch-ns'                 => 'Landeal en espaciu e nombris:',
-'powersearch-redir'              => 'Listal redirecionis',
-'powersearch-field'              => 'Landeal',
-'search-external'                => 'Landeu estelnu',
-'searchdisabled'                 => 'Los landeus en {{SITENAME}} están temporalmenti desativaus. Mentris tantu, pueis landeal meyanti landerus esternus, inque ten en cuenta que los sus éndicis concernientis a {{SITENAME}} puein nu estal atualizaus.',
+'searchresults'                    => 'Landeal resurtaus',
+'searchresults-title'              => 'Landeal resurtaus pa "$1"',
+'searchresulttext'                 => 'Pa mas enhormación al tentu landeal en {{SITENAME}}, vaiti a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'                   => 'As landeau \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tolos artículus que prencipian pol "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tolos artículus que atihan a "$1"]])',
+'searchsubtitleinvalid'            => "Landeasti '''$1'''",
+'titlematches'                     => 'Conciéncias con el entítulu el artículu',
+'notitlematches'                   => 'Nu ai artículus llamaus asina',
+'textmatches'                      => 'Conciéncias con el testu el artículu',
+'notextmatches'                    => 'Nu desistin conciéncias con el testu el artículu',
+'prevn'                            => '{{PLURAL:$1|$1 anterioris}}',
+'nextn'                            => '{{PLURAL:$1|$1 siguientis}}',
+'prevn-title'                      => 'Anterioris $1 {{PLURAL:$1|resurtau|resurtaus}}',
+'nextn-title'                      => 'Siguientis $1 {{PLURAL:$1|resurtau|resurtaus}}',
+'shown-title'                      => 'Muestral $1 {{PLURAL:$1|resurtau|resurtaus}} pol página',
+'viewprevnext'                     => 'Vel ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-legend'                => 'Ocionis de landeu',
+'searchmenu-new'                   => "'''Crial el artículu \"[[:\$1]]\"'''",
+'searchhelp-url'                   => 'Help:Continius',
+'searchprofile-images'             => 'Murtimeya',
+'searchprofile-everything'         => 'Tó',
+'searchprofile-articles-tooltip'   => 'Landeal en $1',
+'searchprofile-project-tooltip'    => 'Landeal en $1',
+'searchprofile-images-tooltip'     => 'Landeal archivus',
+'searchprofile-everything-tooltip' => 'Landeal tol conteniu (encruyendu carabas)',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 letra|$2 letras}})',
+'search-result-score'              => 'Emportáncia: $1%',
+'search-redirect'                  => '(rederihil $1)',
+'search-section'                   => '(seción $1)',
+'search-suggest'                   => 'Quieis izil: $1',
+'search-interwiki-caption'         => 'Proyeutus helmanus',
+'search-interwiki-default'         => '$1 resurtaus:',
+'search-interwiki-more'            => '(más)',
+'search-mwsuggest-enabled'         => 'muestral sugeréncias',
+'search-mwsuggest-disabled'        => 'nu muestral sugeréncias',
+'searchrelated'                    => 'relacionau',
+'searchall'                        => 'tó',
+'showingresults'                   => "Embahu se {{PLURAL:$1|muestra '''1''' resurtau qu'esmiença|muestran hata '''$1''' resurtaus qu'esmiençan}} pol #'''$2'''.",
+'showingresultsnum'                => "Embahu se {{PLURAL:$3|muestra '''1''' resurtau qu'esmiença|muestran'''$3''' resurtaus qu'esmiençan}} pol #'''$2'''.",
+'nonefound'                        => "'''Nota''': Solu se busca en angunus espacius de nombris pol defetu. Preba a escrebil el prefihu ''all:'' nel tu landeu pa landeal tol conteniu (encruyendu carabas, prantillas...), u gasta el espaciu de nombri deseau cumu prefihu.",
+'powersearch'                      => 'Landeal',
+'powersearch-legend'               => 'Landeu avançau',
+'powersearch-ns'                   => 'Landeal en espaciu e nombris:',
+'powersearch-redir'                => 'Listal redirecionis',
+'powersearch-field'                => 'Landeal',
+'search-external'                  => 'Landeu estelnu',
+'searchdisabled'                   => 'Los landeus en {{SITENAME}} están temporalmenti desativaus. Mentris tantu, pueis landeal meyanti landerus esternus, inque ten en cuenta que los sus éndicis concernientis a {{SITENAME}} puein nu estal atualizaus.',
 
 # Quickbar
 'qbsettings'               => 'Preferéncias la "Quickbar"',
@@ -859,10 +864,23 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'timezoneoffset'            => 'Deferéncia oraria¹:',
 'servertime'                => 'Ora del sirviol:',
 'guesstimezone'             => 'Estrael la ora el escrucaol',
+'timezoneregion-africa'     => 'África',
+'timezoneregion-america'    => 'América',
+'timezoneregion-antarctica' => 'Antáltia',
+'timezoneregion-arctic'     => 'Álticu',
+'timezoneregion-asia'       => 'Ásia',
+'timezoneregion-atlantic'   => 'Océanu Alánticu',
+'timezoneregion-australia'  => 'Austrália',
+'timezoneregion-indian'     => 'Océanu Índicu',
+'timezoneregion-pacific'    => 'Océanu Pacíficu',
 'allowemail'                => 'Premitil que m´envíin emails otrus usuárius',
+'prefs-searchoptions'       => 'Ocionis de landeu',
+'prefs-namespaces'          => 'Espáciu nombris',
 'defaultns'                 => 'Landeal nestus "espacius de nombris" pol defeutu:',
 'default'                   => 'defeutu',
 'prefs-files'               => 'Archivus',
+'prefs-custom-css'          => 'CSS pressonalizau',
+'prefs-custom-js'           => 'JS pressonalizau',
 'youremail'                 => 'Email:',
 'username'                  => "Nombri d'usuáriu:",
 'uid'                       => "ID d'usuáriu:",
@@ -1519,6 +1537,7 @@ Velaquí las ocionis atualis la páhina '''$1''':",
 'protect-level-sysop'         => 'Solu çahorilis',
 'protect-summary-cascade'     => 'proteción en "cascá"',
 'protect-expiring'            => 'acabiha el $1 (UTC)',
+'protect-expiry-indefinite'   => 'endefiniu',
 'protect-cascade'             => 'Protehel las páhinas encluias nesta páhina (proteción en "cascá")',
 'protect-cantedit'            => "Nu t'es posibri chambal el nivel de proteción desta páhina ebiu a que nu tienis los premisus nesezárius pa eitala.",
 'protect-edit-reasonlist'     => 'Eital radonis de proteción',
@@ -1822,8 +1841,9 @@ Pol favol, vesita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisa
 Las fechas las revisionis i los nombris los eitoris se mantendrán.
 Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu d'emporteau]].",
 'import-interwiki-history'   => "Copial tolas velsionis estóricas d'esta páhina",
+'import-interwiki-templates' => 'Encruil tolos cuairus',
 'import-interwiki-submit'    => 'Emporteal',
-'import-interwiki-namespace' => 'Movel páhinas al espaciu e nombris:',
+'import-interwiki-namespace' => 'Movel páginas al espáciu nombris:',
 'import-upload-filename'     => 'Nombri del archivu:',
 'import-comment'             => 'Comentáriu:',
 'importstart'                => 'Emporteandu páhinas...',

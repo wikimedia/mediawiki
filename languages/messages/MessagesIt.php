@@ -2211,6 +2211,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blocco utente',
+'blockip-title'                   => 'Blocca utente',
 'blockip-legend'                  => "Blocca l'utente",
 'blockiptext'                     => "Usare il modulo sottostante per bloccare l'accesso in scrittura a uno specifico indirizzo IP o un utente registrato. 
 Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]].

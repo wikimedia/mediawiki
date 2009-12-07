@@ -211,6 +211,7 @@ süi titul dai sezziún (JavaScript)',
 'category-subcat-count'         => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà una sota-categuria, missa chì de sota.|Quela categuria chì la gh'ha {{PLURAL:$1|una sota-categuria|$1 sota-categurij}} chì de sota, sü un tutal de $2.}}",
 'category-subcat-count-limited' => "Quela categuria chì la gh'ha denter {{PLURAL:$1|la sut-categuria| i $1 sut-categurij}} chì abass.",
 'category-article-count'        => "{{PLURAL:$2|Quela categuria chì la gh'ha dumà quela pagina chì.|In quela categuria chì gh'è {{PLURAL:$1|la pagina indicada|i $1 paginn indicaa}} de $2 che gh'hinn in tutal.}}",
+'category-file-count'           => "{{PLURAL:$2|Quela categuria chì la gh'ha denter dumà el file chì suta|Quela categuria chì la gh'ha denter {{PLURAL:$1|'l file|$1 i file}} ripurtaa chì suta, sü un tutal de $2.}}",
 'listingcontinuesabbrev'        => 'cont.',
 'index-category'                => 'Paginn indicizaa',
 
@@ -424,7 +425,7 @@ Per piasè, fa raport a 'n'[[Special:ListUsers/sysop|aministradur]], cun la nota
 'viewsourcefor'       => 'de $1',
 'protectedpagetext'   => "Cula pagina chi l'è stata blucà per impedinn la mudifica.",
 'viewsourcetext'      => "L'è pussibil vèd e cupià el codes surgent de cula pagina chí:",
-'editinginterface'    => "'''Attenzion''': el testo de quella pagina chì el fà part de l'interfacia utent del sitt. Tutt i modifigh che te fet se vedaran subit su i messagg visualizzaa per tutt i utent.",
+'editinginterface'    => "'''Ocio''': Te see adree a mudifegà una pàgina che la se dröva per generà 'l test de l'interfacia del prugrama. Qualsìa mudìfega fada la cambierà l'interfacia de tüt i druvadur. Se te gh'hee intenzión de fà una tradüzión, per piasì cunsiderà la pussibilità de druvà [http://translatewiki.net/wiki/Main_Page?setlang=lmo translatewiki.net], 'l pruget de lucalizazión de MediaWiki.",
 'ns-specialprotected' => 'I paginn special i pören mía vess mudifegaa',
 
 # Login and logout pages
@@ -470,11 +471,12 @@ Cuntrola 'l nom che t'hee metüü denter o [[Special:UserLogin/signup|crea un c�
 'wrongpassword'           => "La ciav che t'hee metüü dreent l'è no giüsta. Pröva turna per piasè.",
 'wrongpasswordempty'      => "T'hee no metüü drent la parola ciav. Pröva turna per piasè.",
 'mailmypassword'          => 'Spedissem una password növa per e-mail',
-'passwordremindertext'    => "Un Quajdün (prubabilment ti, cun l'indiriz IP \$1) l'ha ciamaa da mandagh 'na ciav növa per andà dreent int el sistema de {{SITENAME}} (\$4).
-La ciav per l'ütent \"\$2\" adess l'è \"\$3\".
-Sariss mej andà drent int el sit almanch una völta prima de cambià la ciav.
+'passwordremindertext'    => "Un quajdün (prubabilment ti, cun l'indiriz IP \$1) l'ha ciamaa da mandagh 'na ciav növa per andà denter int 'l sistema de {{SITENAME}} (\$4).
+La ciav per 'l druvadur \"\$2\" adess l'è \"\$3\".
+Sariss mej andà denter int 'l sit almanch una völta prima de cambià la ciav.
+La to ciav tempuranea la scaderà da chì a {{PLURAL:\$5|un dì|\$5 dì}}.
 
-Se te no staa ti a ciamà 'sta ciav chì, o magara t'hee truaa la ciav vegia e te vör pü cambiala, te pör ignurà 'stu messag chì e 'ndà inanz a druà la ciav vegia.",
+Se te nò staa ti a ciamà 'sta ciav chì, o magara t'hee truaa la ciav vegia e te vör pü cambiala, te pör ignurà 'stu messagg chì e 'ndà inanz a druà la ciav vegia.",
 'passwordsent'            => "Una parola ciav bele növa l'è staa spedii a l'indiriz e-mail registra da l'ütent \"\$1\".
 Per piasè, ve drent anmò dop che te l'ricevüü.",
 'blocked-mailpassword'    => "'L to indirizz IP l'è blucaa, e per quela resón lì te pö mía druvà la funzion de recüper de la password.",
@@ -575,7 +577,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version curenta, (ültima) = di
 'history-title'           => 'Cronolugia di mudifegh de "$1"',
 'difference'              => '(Diferenz intra i revisión)',
 'lineno'                  => 'Riga $1:',
-'compareselectedversions' => 'Compara i version catad fœu',
+'compareselectedversions' => 'Compara i versión seleziunaa',
 'editundo'                => "turna a 'me che l'era",
 
 # Search results
@@ -591,6 +593,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version curenta, (ültima) = di
 'prevn'                            => 'precedent {{PLURAL:$1|$1}}',
 'nextn'                            => 'pròssim {{PLURAL:$1|$1}}',
 'viewprevnext'                     => 'Vidé ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-legend'                => 'Upzión de ricerca',
 'searchmenu-new'                   => "'''Trà in pee la pagina \"[[:\$1]]\" ins quel sit chì!'''",
 'searchhelp-url'                   => 'Help:Contegnüü',
 'searchprofile-articles'           => 'Paginn de cuntegnüü',
@@ -641,7 +644,7 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'resultsperpage'       => 'Resültaa pər pagina:',
 'contextlines'         => 'Riich pər resültaa:',
 'contextchars'         => 'Cuntèst pər riga:',
-'recentchangescount'   => 'Titui in di "cambiameent reçeent":',
+'recentchangescount'   => "Nümer de mudifegh da mustrà per ''default'':",
 'savedprefs'           => 'I preferenz hinn stai salvaa.',
 'timezonelegend'       => 'Lucalitaa',
 'localtime'            => 'Urari lucaal',
@@ -649,6 +652,7 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'servertime'           => 'Urari dal sèrver',
 'guesstimezone'        => 'Catá l urari dal sèrver',
 'allowemail'           => 'Permètt ai altar üteent də cuntatamm par email',
+'prefs-searchoptions'  => 'Upzión de ricerca',
 'defaultns'            => 'Tröva sempar in di caamp:',
 'prefs-files'          => 'Archivi',
 'youremail'            => 'E-mail',
@@ -722,7 +726,7 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'rcshowhideliu'                    => '$1 i dupradur cunetüü',
 'rcshowhideanons'                  => '$1 i dupradur anònim',
 'rcshowhidemine'                   => '$1 i mè mudifich',
-'rclinks'                          => 'Fá vidé i ültim $1 cambiameent indi ültim $2 dí<br />$3',
+'rclinks'                          => 'Fà vedé i ültim $1 cambiament in di ültim $2 dì<br />$3',
 'diff'                             => 'dif',
 'hist'                             => 'stòria',
 'hide'                             => 'Scund',
@@ -767,6 +771,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 # File description page
 'filehist'                  => "Storia de l'archivi",
 'filehist-help'             => "Schiscia in sü un grüp data/ura per vidè el file cumè che'l se presentava in quel mument là",
+'filehist-deleteall'        => 'scancela tüt',
 'filehist-deleteone'        => 'Scancèla',
 'filehist-revert'           => "Butar torna 'me ch'al era",
 'filehist-current'          => 'curent',
@@ -916,7 +921,7 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'watch'             => "Tegn d'öcc",
 'watchthispage'     => "Tegn d'öcc questa pagina",
 'unwatch'           => "Tegn pü d'ögg",
-'watchnochange'     => "Nissün cambiameent l è stai faa süi articui/págin che ti tegnat d'öcc indal períut da teemp selezziunaa.",
+'watchnochange'     => "Nissün cambiament l'è stai faa ins i pàginn che te tegn d'ögg ind 'l períud de temp indicaa.",
 'watchlist-details' => '{{PLURAL:$1|$1 pagina|$1 paginnn}} tegnüü sot ögg, fö che i paginn de discüssión.',
 'wlshowlast'        => 'Fa vidé i ültim $1 ur $2 dì $3',
 'watchlist-options' => "Upzión lista d'ussevazión",
@@ -1246,7 +1251,7 @@ I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezi�
 
 # Metadata
 'metadata'          => 'Metadat',
-'metadata-help'     => "Quel file chì al gh'ha dent di infurmazión adiziunaj, che l'è prubabil che ja giuntaa la fotocamera o'l scanner dupraa per fàl o digitalizàl. Se el file a l'è staa mudifegaa, di detali i pudarien curespund pü ai mudifegh faa.",
+'metadata-help'     => "Quel file chì al gh'ha dent di infurmazión adiziunaj, che l'è prubabil che j'ha giuntaa la fotocamera o 'l scanner dupraa per fàl o digitalizàl. Se el file a l'è staa mudifegaa, un quajvün di detali i pudarien curespund pü ai mudifegh faa.",
 'metadata-expand'   => 'Fà vidè i detali',
 'metadata-collapse' => 'Scund i detali',
 'metadata-fields'   => 'I camp di metadat EXIF listaa in quel messagg chì i saran mustraa in de la pagina de la figüra quand che la tabela di metadat la sarà presentada furma cürta. Per impustazión i alter camp i saran scundüü.

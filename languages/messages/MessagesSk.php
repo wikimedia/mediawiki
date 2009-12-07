@@ -948,6 +948,8 @@ Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1",
 'nocreatetext'                     => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} je tvorba nových stránok obmedzená.
 Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:UserLogin|sa prihlásiť alebo vytvoriť účet]].',
 'nocreate-loggedin'                => 'Nemáte povolenie vytvárať nové stránky.',
+'sectioneditnotsupported-title'    => 'Úprava sekcie nie je podporovaná',
+'sectioneditnotsupported-text'     => 'Táto stránka úprav nepodporuje úpravu sekcie.',
 'permissionserrors'                => 'Chyba povolení',
 'permissionserrorstext'            => 'Na to nemáte povolenie z {{PLURAL:$1|nasledujúceho dôvodu|nasledujúcich dôvodov}}:',
 'permissionserrorstext-withaction' => 'Nemáte oprávnenie $2 z {{PLURAL:$1|nasledovného dôvodu|nasledovných dôvodov}}:',
@@ -2316,6 +2318,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Zablokovať používateľa',
+'blockip-title'                   => 'Zablokovať používateľa',
 'blockip-legend'                  => 'Zablokovať používateľa',
 'blockiptext'                     => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
 Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].

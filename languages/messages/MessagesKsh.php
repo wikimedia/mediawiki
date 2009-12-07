@@ -981,6 +981,7 @@ Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1
 'nocreatetext'                     => 'Sigge neu aanläje es nor müjjelich, wann de [[Special:UserLogin|enjelogg]] bes. Der ohne kanns De ävver Sigge ändere, die ald do sin.',
 'nocreate-loggedin'                => 'Do häs nit dat Rääch, neu Sigge aanzelääje.',
 'sectioneditnotsupported-title'    => 'Afschnedde Ändere is nit zohjelohße',
+'sectioneditnotsupported-text'     => 'Afschnedde Ändere is en heh dä Sigg nit zohjelohße.',
 'permissionserrors'                => 'Dat jeit nit, dat darfs de nit.',
 'permissionserrorstext'            => 'Do häs nit dat Rääch, dat ze maache, {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}',
 'permissionserrorstext-withaction' => 'Do häs nit dat Rääch $2, {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}',
@@ -2431,6 +2432,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Metmaacher sperre',
+'blockip-title'                   => 'Metmaacher Schpärre',
 'blockip-legend'                  => 'Metmaacher ov IP-Adresse Sperre',
 'blockiptext'                     => 'Hee kanns De bestemmte Metmaacher oder IP-Adresse sperre, su dat se hee em Wiki nit mieh schrieve und Sigge ändere künne.
 Dat sollt nor jedon wääde om sujenannte Vandaale ze bremse. Un mer müsse uns dobei natörlich aan uns [[{{MediaWiki:Policy-url}}|Rejelle]] för esu en Fäll halde.

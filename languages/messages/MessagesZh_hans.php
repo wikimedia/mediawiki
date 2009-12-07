@@ -15,6 +15,7 @@
  * @author KaiesTse
  * @author Liangent
  * @author O
+ * @author Onecountry
  * @author PhiLiP
  * @author Shinjiman
  * @author Wmr89502270
@@ -197,7 +198,7 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '链接下划线：',
-'tog-highlightbroken'         => '<a href="" class="new">像这样</a>显示无效链接（否则：像这样<a href="" class="internal">?</a>）',
+'tog-highlightbroken'         => '无效链接显示为<a href="" class="new">这样</a>（否则：显示为<a href="" class="internal">?</a>）',
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '在最近更改中隐藏小修改',
 'tog-hidepatrolled'           => '在最近更改中隐藏已巡查编辑',

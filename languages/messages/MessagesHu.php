@@ -960,6 +960,7 @@ Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1",
 'nocreatetext'                     => 'A(z) {{SITENAME}} wikin korlátozták az új oldalak létrehozásának lehetőségét.
 Visszamehetsz és szerkeszthetsz egy létező lapot, valamint [[Special:UserLogin|bejelentkezhetsz vagy készíthetsz egy felhasználói fiókot]].',
 'nocreate-loggedin'                => 'Nincs jogosultságod új lapokat létrehozni.',
+'sectioneditnotsupported-title'    => 'A szakaszszerkesztés nem támogatott',
 'permissionserrors'                => 'Engedélyezési hiba',
 'permissionserrorstext'            => 'A művelet elvégzése nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
 'permissionserrorstext-withaction' => 'Nincs jogosultságod a következő művelet elvégzéséhez: $2, a következő {{PLURAL:$1|ok|okok}} miatt:',
@@ -2331,6 +2332,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blokkolás',
+'blockip-title'                   => 'Felhasználó blokkolása',
 'blockip-legend'                  => 'Felhasználó blokkolása',
 'blockiptext'                     => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait.
 Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó [[{{MediaWiki:Policy-url}}|irányelvekre]].

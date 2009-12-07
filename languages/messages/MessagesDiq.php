@@ -2023,6 +2023,7 @@ qê referansi qeydê vernigrewtışi cêr de eşkera biyo:',
 
 # Block/unblock
 'blockip'                         => 'Karberi kılit ke',
+'blockip-title'                   => 'Karberi kılit ke',
 'blockip-legend'                  => 'Karber blok bike',
 'blockiptext'                     => 'pê şuxulnayişê formê cêrıni, şıma eşkeni verniyê vurnayişkerdışê yew karberi ya zi yew IPyi bıgêrî. No têna qey verni-gırewtışê vandalizmiyo u gani şıma [[{{MediaWiki:Policy-url}}|qaydeyan]] re diqqet bıkeri. cêr de muheqqeq sebebê verni-grewtışi bınusi. (mesela: -nê- pelani de vandalizm kerdo).',
 'ipaddress'                       => 'Adresê IPi',
