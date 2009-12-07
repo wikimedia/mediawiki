@@ -46,9 +46,7 @@ function mwSetupToolbar() {
 
 	// Don't generate buttons for browsers which don't fully
 	// support it.
-	var textbox = document.getElementById('wpTextbox1');
-	if (!textbox) { return false; }
-	//var textbox = document.createElement('textarea'); // abstract, don't assume wpTextbox1 is always there
+	var textbox = document.createElement('textarea'); // abstract, don't assume wpTextbox1 is always there
 	if (!(document.selection && document.selection.createRange)
 		&& textbox.selectionStart === null) {
 		return false;
