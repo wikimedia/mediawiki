@@ -547,7 +547,7 @@ class Skin extends Linker {
 		if( $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
 		} else {
-			$s .= <<<END
+			$s .= <<<CSS
 a.new, #quickbar a.new,
 a.stub, #quickbar a.stub {
 	color: inherit;
@@ -560,7 +560,7 @@ a.stub:after, #quickbar a.stub:after {
 	content: "!";
 	color: #772233;
 }
-END;
+CSS;
 		}
 		if( $wgUser->getOption( 'justify' ) ) {
 			$s .= "#article, #bodyContent, #mw_content { text-align: justify; }\n";

@@ -27,7 +27,7 @@ if ( isset( $options['lang'] ) && isset( $options['clang'] )) {
 	}
 	$runTest = true;
 } else {
-	echo <<<END
+	echo <<<TEXT
 Run this script to print out the duplicates against a message array.
 Parameters:
 	* lang:  Language code to be checked.
@@ -38,7 +38,7 @@ Options:
 		* wiki:   Wiki format, with * at beginning of each line
 		* php:    Output text as PHP syntax in a array $dupeMessages
 		* raw:    Raw output for duplicates
-END;
+TEXT;
 }
 
 // Check file exists

@@ -7,7 +7,7 @@ class SearchEngineTest extends MediaWiki_TestCase {
 	var $db, $search;
 
 	function insertSearchData() {
-		$this->db->safeQuery( <<<END
+		$this->db->safeQuery( <<<SQL
 		INSERT INTO ! (page_id,page_namespace,page_title,page_latest)
 		VALUES (1, 0, 'Main_Page', 1),
 			   (2, 1, 'Main_Page', 2),
@@ -19,9 +19,9 @@ class SearchEngineTest extends MediaWiki_TestCase {
 			   (8, 0, 'Thppt', 8),
 			   (9, 0, 'Alan_Smithee', 9),
 			   (10, 0, 'Pages', 10)
-END
+SQL
 			, $this->db->tableName( 'page' ) );
-		$this->db->safeQuery( <<<END
+		$this->db->safeQuery( <<<SQL
 		INSERT INTO ! (rev_id,rev_page)
 		VALUES (1, 1),
 		       (2, 2),
@@ -33,9 +33,9 @@ END
 		       (8, 8),
 		       (9, 9),
 		       (10, 10)
-END
+SQL
 			, $this->db->tableName( 'revision' ) );
-		$this->db->safeQuery( <<<END
+		$this->db->safeQuery( <<<SQL
 		INSERT INTO ! (old_id,old_text)
 		VALUES (1, 'This is a main page'),
 			   (2, 'This is a talk page to the main page, see [[smithee]]'),
@@ -47,9 +47,9 @@ END
 			   (8, 'Blah blah'),
 			   (9, 'yum'),
 			   (10,'are food')
-END
+SQL
 			, $this->db->tableName( 'text' ) );
-		$this->db->safeQuery( <<<END
+		$this->db->safeQuery( <<<SQL
 		INSERT INTO ! (si_page,si_title,si_text)
 		VALUES (1, 'main page', 'this is a main page'),
 			   (2, 'main page', 'this is a talk page to the main page, see smithee'),
@@ -61,7 +61,7 @@ END
 			   (8, 'thppt', 'blah blah'),
 			   (9, 'alan smithee', 'yum'),
 			   (10, 'pages', 'are food')
-END
+SQL
 			, $this->db->tableName( 'searchindex' ) );
 	}
 

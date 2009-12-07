@@ -1299,10 +1299,10 @@ class EditPage {
 			$toolbar = '';
 			// @todo move this to a cleaner conditional instead of blanking a variable
 		}
-		$wgOut->addHTML( <<<END
+		$wgOut->addHTML( <<<HTML
 {$toolbar}
 <form id="editform" name="editform" method="post" action="$action" enctype="multipart/form-data">
-END
+HTML
 );
 
 		if ( is_callable( $formCallback ) ) {
@@ -1372,7 +1372,7 @@ END
 		$this->showTosSummary();
 		$this->showEditTools();
 
-		$wgOut->addHTML( <<<END
+		$wgOut->addHTML( <<<HTML
 {$this->editFormTextAfterTools}
 <div class='templatesUsed'>
 {$formattedtemplates}
@@ -1380,7 +1380,7 @@ END
 <div class='hiddencats'>
 {$formattedhiddencats}
 </div>
-END
+HTML
 );
 
 		if ( $this->isConflict )

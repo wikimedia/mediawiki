@@ -60,7 +60,7 @@ function removeDupes( $oldMsgArray, $dupeMsgSource ) {
 
 # Show help
 if ( isset( $options['help'] ) ) {
-	echo <<<END
+	echo <<<TEXT
 Run this script to rewrite the messages array in the files languages/messages/MessagesXX.php.
 Parameters:
 	* lang: Language code (default: the installation default language). You can also specify "all" to check all the languages.
@@ -71,7 +71,7 @@ Options:
 	* remove-unknown: Remove unknown messages.
 	* remove-duplicates: Remove duplicated messages based on a PHP source file.
 
-END;
+TEXT;
 	exit(1);
 }
 

@@ -29,7 +29,7 @@ if ( !isset( $options['output'] ) ) {
 
 /** Print a usage message*/
 function showUsage() {
-	print <<<END
+	print <<<TEXT
 Usage: php transstat.php [--help] [--output=csv|text|wiki]
 	--help : this helpful message
 	--output : select an output engine one of:
@@ -39,7 +39,7 @@ Usage: php transstat.php [--help] [--output=csv|text|wiki]
 		* 'text'     : Text with tabs.
 Example: php maintenance/transstat.php --output=text
 
-END;
+TEXT;
 	exit(1);
 }
 

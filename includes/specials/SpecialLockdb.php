@@ -65,7 +65,7 @@ class DBLockForm {
 		$reason = htmlspecialchars( $this->reason );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
-		$wgOut->addHTML( <<<END
+		$wgOut->addHTML( <<<HTML
 <form id="lockdb" method="post" action="{$action}">
 {$elr}:
 <textarea name="wpLockReason" rows="10" cols="60" wrap="virtual">{$reason}</textarea>
@@ -85,7 +85,7 @@ class DBLockForm {
 </table>
 <input type="hidden" name="wpEditToken" value="{$token}" />
 </form>
-END
+HTML
 );
 
 	}

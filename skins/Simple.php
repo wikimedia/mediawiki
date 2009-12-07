@@ -36,7 +36,7 @@ class SkinSimple extends SkinTemplate {
 		if( $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { text-decoration: line-through; }\n";
 		} else {
-			$s .= <<<END
+			$s .= <<<CSS
 a.new, #quickbar a.new,
 a.stub, #quickbar a.stub {
 	color: inherit;
@@ -52,7 +52,7 @@ a.stub:after, #quickbar a.stub:after {
 	color: #772233;
 	text-decoration: $underline;
 }
-END;
+CSS;
 		}
 		if( $wgUser->getOption( 'justify' ) ) {
 			$s .= "#article, #bodyContent { text-align: justify; }\n";

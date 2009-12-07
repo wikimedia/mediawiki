@@ -11,7 +11,7 @@ class PostgresField {
 	static function fromText($db, $table, $field) {
 	global $wgDBmwschema;
 
-		$q = <<<END
+		$q = <<<SQL
 SELECT
 CASE WHEN typname = 'int2' THEN 'smallint'
 WHEN typname = 'int4' THEN 'integer'
@@ -27,7 +27,7 @@ AND atttypid=pg_type.oid
 AND nspname=%s
 AND relname=%s
 AND attname=%s;
-END;
+SQL;
 		$res = $db->query(sprintf($q,
 				$db->addQuotes($wgDBmwschema),
 				$db->addQuotes($table),
@@ -1181,12 +1181,12 @@ class DatabasePostgres extends DatabaseBase {
 	function triggerExists( $table, $trigger ) {
 		global $wgDBmwschema;
 
-		$q = <<<END
+		$q = <<<SQL
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
 		WHERE relnamespace=pg_namespace.oid AND relkind='r'
 		      AND tgrelid=pg_class.oid
 		      AND nspname=%s AND relname=%s AND tgname=%s
-END;
+SQL;
 		$res = $this->query(sprintf($q,
 				$this->addQuotes($wgDBmwschema),
 				$this->addQuotes($table),
