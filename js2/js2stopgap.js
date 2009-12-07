@@ -9467,7 +9467,7 @@ $j = jQuery.noConflict();
 /**
  * Provides js2 compatible mw functions
  */
-if( !mw ){
+if( typeof mw == 'undefined' || !mw ){
    mw = { };
    /**
     * Provides js2 compatible onload hook
@@ -9477,7 +9477,7 @@ if( !mw ){
        $j(document).ready( func );
    }
    // Define a dummy mw.load function:
-   mw.load = function( callback) { callbcak() };
+   mw.load = function( deps, callback ) { callback(); };
    
    // Creates global message object if not already in existence
 	if ( !gMsg ) var gMsg = {};
