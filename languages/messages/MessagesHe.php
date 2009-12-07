@@ -980,7 +980,7 @@ $2',
 'nocreatetext'                     => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[Special:UserLogin|להיכנס לחשבון]].',
 'nocreate-loggedin'                => 'אינכם מורשים ליצור דפים חדשים.',
 'sectioneditnotsupported-title'    => 'עריכת פסקאות אינה נתמכת',
-'sectioneditnotsupported-text'     => 'עריכת פסקאות אינה נתמכת בדף עריכה זה.',
+'sectioneditnotsupported-text'     => 'עריכת פסקאות אינה נתמכת בדף זה.',
 'permissionserrors'                => 'שגיאות הרשאה',
 'permissionserrorstext'            => 'אינכם מורשים לבצע פעולה זו, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
 'permissionserrorstext-withaction' => 'אינכם מורשים $2, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
@@ -2352,6 +2352,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'חסימת משתמש',
+'blockip-title'                   => 'חסימת משתמש',
 'blockip-legend'                  => 'חסימת משתמש',
 'blockiptext'                     => 'השתמשו בטופס שלהלן כדי לחסום את הרשאות הכתיבה ממשתמש או כתובת IP ספציפיים.
 
