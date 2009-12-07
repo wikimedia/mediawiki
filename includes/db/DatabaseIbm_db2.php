@@ -29,13 +29,13 @@ class IBM_DB2Field {
 	static function fromText($db, $table, $field) {
 		global $wgDBmwschema;
 
-		$q = <<<END
+		$q = <<<SQL
 SELECT
 lcase(coltype) AS typname,
 nulls AS attnotnull, length AS attlen
 FROM sysibm.syscolumns
 WHERE tbcreator=%s AND tbname=%s AND name=%s;
-END;
+SQL;
 		$res = $db->query(sprintf($q,
 				$db->addQuotes($wgDBmwschema),
 				$db->addQuotes($table),

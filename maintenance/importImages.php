@@ -254,7 +254,7 @@ function showUsage( $reason = false ) {
 		echo( $reason . "\n" );
 	}
 
-	echo <<<END
+	echo <<<TEXT
 Imports images and other media files into the wiki
 USAGE: php importImages.php [options] <dir>
 
@@ -279,6 +279,6 @@ Options:
 --protect=<protect>     Specify the protect value (autoconfirmed,sysop)
 --unprotect             Unprotects all uploaded images
 
-END;
+TEXT;
 	exit(1);
 }
