@@ -205,6 +205,7 @@ body {
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
+	/* @noflip */
 	body.rtl div.vectorMenu {
 		direction: rtl;
 	}
@@ -247,14 +248,17 @@ body {
 		text-align: right;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	/* @noflip */
 	body.rtl div.vectorMenu div.menu {
 		margin-left: 24px;
 	}
 	/* IGNORED BY IE6 */
+	/* @noflip */
 	body.rtl div.vectorMenu > div.menu {
 		margin-left: auto;
 	}
 	/* Fixes old versions of FireFox */
+	/* @noflip */
 	body.rtl div.vectorMenu > div.menu,
 	x:-moz-any-link {
 		margin-left: 23px;
