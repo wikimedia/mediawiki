@@ -259,6 +259,7 @@ class Profiler {
 		wfProfileOut( '-overhead-total' );
 
 		# First, subtract the overhead!
+		$overheadTotal = $overheadMemory = $overheadInternal = array();
 		foreach( $this->mStack as $entry ){
 			$fname = $entry[0];
 			$start = $entry[2];
