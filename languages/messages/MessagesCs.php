@@ -2331,6 +2331,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Zablokovat uživatele',
+'blockip-title'                   => 'Blokovat uživatele',
 'blockip-legend'                  => 'Zablokovat uživatele',
 'blockiptext'                     => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.
 Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].
@@ -3259,6 +3260,20 @@ Opravdu si přejete znovu tuto stránku založit?',
 'iranian-calendar-m9'  => 'Ázár',
 'iranian-calendar-m10' => 'Dej',
 'iranian-calendar-m11' => 'Bahmán',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'muharram',
+'hijri-calendar-m2'  => 'safar',
+'hijri-calendar-m3'  => "rabí' al-avval",
+'hijri-calendar-m4'  => "rabí'ath-thání",
+'hijri-calendar-m5'  => 'džumádá l-úlá',
+'hijri-calendar-m6'  => 'džumádá l-áchira',
+'hijri-calendar-m7'  => 'radžab',
+'hijri-calendar-m8'  => "ša'bán",
+'hijri-calendar-m9'  => 'ramadán',
+'hijri-calendar-m10' => 'šauvál',
+'hijri-calendar-m11' => "dhú l-ka'da",
+'hijri-calendar-m12' => 'dhú l-hidždža',
 
 # Hebrew month names
 'hebrew-calendar-m1'      => 'tišri',

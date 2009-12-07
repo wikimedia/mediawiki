@@ -890,6 +890,8 @@ El administrador que la bloqueó dio esta explicación: $1",
 'nocreatetext'                     => '{{SITENAME}} ha restringido la posibilidad de crear nuevas páginas.
 Puede volver atrás y editar una página existente, [[Special:UserLogin|identificarse o crear una cuenta]].',
 'nocreate-loggedin'                => 'No tienes permiso para crear páginas nuevas.',
+'sectioneditnotsupported-title'    => 'Edición de sección no soportada',
+'sectioneditnotsupported-text'     => 'Edición de sección no está soportada en esta página.',
 'permissionserrors'                => 'Errores de permisos',
 'permissionserrorstext'            => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'permissionserrorstext-withaction' => 'No tienes permiso para $2, por las siguientes {{PLURAL:$1|razón|razones}}:',
@@ -1911,11 +1913,13 @@ Protocolos soportados: <tt>$1</tt>',
 'listusers-blocked'  => '(bloqueado)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista de usuarios activos',
-'activeusers-intro'    => 'Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|edición|ediciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
-'activeusers-from'     => 'Mostrando a los usuarios empezando por:',
-'activeusers-noresult' => 'No se encontraron usuarios.',
+'activeusers'            => 'Lista de usuarios activos',
+'activeusers-intro'      => 'Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|edición|ediciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
+'activeusers-from'       => 'Mostrando a los usuarios empezando por:',
+'activeusers-hidebots'   => 'Ocultar robots',
+'activeusers-hidesysops' => 'Ocultar administradores',
+'activeusers-noresult'   => 'No se encontraron usuarios.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro de creación de usuarios',
@@ -2254,6 +2258,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Bloquear usuario',
+'blockip-title'                   => 'Bloquear usuario',
 'blockip-legend'                  => 'Bloquear usuario',
 'blockiptext'                     => 'Usa el siguiente formulario para bloquear el acceso de escritura desde una dirección IP específica o nombre de usuario.
 Esto debería hacerse sólo para prevenir vandalismos, y de acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].

@@ -297,7 +297,7 @@ $messages = array(
 'tog-editsection'             => 'Possibilitar a edição de secções através de uma ligação [editar]',
 'tog-editsectiononrightclick' => 'Possibilitar a edição de secções por clique com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar índice (para páginas com mais de três secções)',
-'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
+'tog-rememberpassword'        => 'Recordar a minha palavra-chave entre sessões',
 'tog-editwidth'               => 'Aumentar a largura da caixa de edição para preencher todo o ecrã',
 'tog-watchcreations'          => 'Adicionar as páginas que eu criar às minhas páginas vigiadas',
 'tog-watchdefault'            => 'Adicionar as páginas que eu editar às minhas páginas vigiadas',
@@ -633,7 +633,7 @@ A base de dados devolveu o erro "$3: $4"',
 O administrador que a trancou deu a seguinte explicação: $1',
 'missing-article'      => 'A base de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome "$1" $2.
 
-Geralmente, esta situação ocorre ao clicar numa ligação para diferenças desactualizada ou numa ligação para o histórico de uma página que foi removida.
+Geralmente, esta situação ocorre ao clicar uma ligação para diferenças desactualizada ou para o histórico de uma página que tenha sido removida.
 
 Se nenhuma destas situações se verifica, pode ter encontrado um defeito no programa.
 Por favor, anote a URL e reporte este incidente a um [[Special:ListUsers/sysop|administrador]].',
@@ -672,7 +672,7 @@ Consulta: $2',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
 'editinginterface'     => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afectarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
-'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "protecção progressiva" activada):
+'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de protecção "em cascata" activada):
 $2',
 'namespaceprotected'   => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssjsprotected' => 'Não possui permissão para editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
@@ -695,9 +695,9 @@ A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
 'yourname'                   => 'Nome de utilizador:',
 'yourpassword'               => 'Palavra-chave:',
-'yourpasswordagain'          => 'Repita a sua palavra-chave',
-'remembermypassword'         => 'Lembrar a minha palavra-chave entre sessões.',
-'yourdomainname'             => 'Seu domínio',
+'yourpasswordagain'          => 'Repita a palavra-chave:',
+'remembermypassword'         => 'Recordar a minha palavra-chave entre sessões',
+'yourdomainname'             => 'O seu domínio:',
 'externaldberror'            => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
 'login'                      => 'Autenticação',
 'nav-login-createaccount'    => 'Entrar / criar conta',
@@ -708,7 +708,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'notloggedin'                => 'Não autenticado',
 'nologin'                    => "Não possui uma conta? '''$1'''.",
 'nologinlink'                => 'Criar uma conta',
-'createaccount'              => 'Criar nova conta',
+'createaccount'              => 'Criar conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
 'gotaccountlink'             => 'Autentique-se',
 'createaccountmail'          => 'por correio electrónico',
@@ -780,9 +780,9 @@ Por favor, aguarde antes de tentar novamente.',
 Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass_text'            => '<!-- Adicionar texto aqui -->',
 'resetpass_header'          => 'Alterar palavra-chave da conta',
-'oldpassword'               => 'Palavra-chave antiga',
-'newpassword'               => 'Nova palavra-chave',
-'retypenew'                 => 'Reintroduza a nova palavra-chave',
+'oldpassword'               => 'Palavra-chave anterior:',
+'newpassword'               => 'Palavra-chave nova:',
+'retypenew'                 => 'Repita a palavra-chave nova:',
 'resetpass_submit'          => 'Definir palavra-chave e entrar',
 'resetpass_success'         => 'Sua palavra-chave foi alterada com sucesso! Autenticando-se...',
 'resetpass_forbidden'       => 'Não é possível alterar palavras-chave',
@@ -956,9 +956,9 @@ A página não pode ser gravada.'''",
 Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
 
 O administrador que bloqueou a base de dados forneceu a seguinte explicação: $1",
-'protectedpagewarning'             => "'''AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).'''",
+'protectedpagewarning'             => "'''Aviso: Esta página foi protegida para só poder ser editada por administradores.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
-'cascadeprotectedwarning'          => "'''Atenção:''' Esta página se encontra protegida de forma que apenas {{int:group-sysop}} possam editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
+'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida de forma que apenas os administradores possam editá-la, porque se encontra incluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} em cascata:",
 'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida por forma a que [[Special:ListGroupRights|privilégios específicos]] sejam necessários para criá-la.'''",
 'templatesused'                    => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta antevisão:',
@@ -1200,8 +1200,8 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'diff-multi'               => '({{PLURAL:$1|uma edição intermédia não apresentada|$1 edições intermédias não apresentadas}})',
 
 # Search results
-'searchresults'                    => 'Resultados de pesquisa',
-'searchresults-title'              => 'Resultados da pesquisa por "$1"',
+'searchresults'                    => 'Resultados da pesquisa',
+'searchresults-title'              => 'Resultados da pesquisa de "$1"',
 'searchresulttext'                 => 'Para mais informações sobre pesquisas na {{SITENAME}}, consulte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Pesquisou \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|páginas iniciadas por "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|páginas que apontam para "$1"]])',
 'searchsubtitleinvalid'            => 'Pesquisou "$1"',
@@ -1249,8 +1249,8 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'showingresults'                   => "{{PLURAL:$1|É apresentado '''um''' resultado|São apresentados até '''$1''' resultados}} abaixo{{PLURAL:$1||, começando pelo '''$2'''º}}.",
 'showingresultsnum'                => "{{PLURAL:$3|É apresentado '''um''' resultado|São apresentados '''$3''' resultados}} abaixo{{PLURAL:$3||, começando pelo '''$2'''º}}.",
 'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1–$2''' de '''$3'''}} para '''$4'''",
-'nonefound'                        => "'''Nota''': Por omissão, apenas alguns dos espaços nominais são pesquisados.
-Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (inclusive páginas de discussão, predefinições, etc.), ou use como prefixo o espaço nominal desejado.",
+'nonefound'                        => "'''Nota''': Por omissão, só alguns dos espaços nominais são pesquisados.
+Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (incluindo páginas de discussão, predefinições, etc.), ou use como prefixo o espaço nominal desejado.",
 'search-nonefound'                 => 'Não houve resultados para a pesquisa.',
 'powersearch'                      => 'Pesquisa avançada',
 'powersearch-legend'               => 'Pesquisa avançada',
@@ -1578,10 +1578,10 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'recentchangeslinked-toolbox'  => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas para as quais a página fornecida contém ligações, no intervalo de tempo escolhido.',
-'recentchangeslinked-summary'  => "Lista das mudanças recentes de todas as páginas para as quais a página fornecida contém ligações (ou de todas as que pertencem à categoria fornecida).
+'recentchangeslinked-summary'  => "Lista das mudanças recentes a todas as páginas para as quais a página fornecida contém ligações (ou de todas as que pertencem à categoria fornecida).
 As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
-'recentchangeslinked-to'       => 'Inversamente, mostrar mudanças recentes nas páginas que contêm ligações para esta página',
+'recentchangeslinked-to'       => 'Inversamente, mostrar mudanças às páginas que contêm ligações para esta',
 
 # Upload
 'upload'                      => 'Carregar ficheiro',
@@ -1930,12 +1930,12 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'deadendpagestext'        => 'As seguintes páginas não contêm ligações para outras páginas nesta wiki.',
 'protectedpages'          => 'Páginas protegidas',
 'protectedpages-indef'    => 'Apenas protecções infinitas',
-'protectedpages-cascade'  => 'Apenas protecções progressivas',
+'protectedpages-cascade'  => 'Apenas protecções em cascata',
 'protectedpagestext'      => 'As seguintes páginas encontram-se protegidas contra edições ou movimentações',
-'protectedpagesempty'     => 'Não existem páginas, neste momento, protegidas com tais parâmetros.',
+'protectedpagesempty'     => 'Neste momento, nenhuma página está protegida com estes parâmetros.',
 'protectedtitles'         => 'Títulos protegidos',
 'protectedtitlestext'     => 'Os títulos a seguir encontram-se protegidos contra criação',
-'protectedtitlesempty'    => 'Não há títulos protegidos com os parâmetros fornecidos.',
+'protectedtitlesempty'    => 'Neste momento, nenhum título está protegido com estes parâmetros.',
 'listusers'               => 'Utilizadores',
 'listusers-editsonly'     => 'Mostrar apenas utilizadores com edições',
 'listusers-creationsort'  => 'Ordenar por data de criação',
@@ -1952,7 +1952,7 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'notargettext'            => 'Especifique sobre que página alvo ou utilizador pretende executar esta função.',
 'nopagetitle'             => 'Página alvo não existe',
 'nopagetext'              => 'A página alvo especificada não existe.',
-'pager-newer-n'           => '{{PLURAL:$1|1 posterior|$1 posteriores}}',
+'pager-newer-n'           => '{{PLURAL:$1|1 seguinte|$1 seguintes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 'suppress'                => 'Supervisor',
 
@@ -1976,7 +1976,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 # Special:AllPages
 'allpages'          => 'Todas as páginas',
 'alphaindexline'    => '$1 até $2',
-'nextpage'          => 'Próxima página ($1)',
+'nextpage'          => 'Página seguinte ($1)',
 'prevpage'          => 'Página anterior ($1)',
 'allpagesfrom'      => 'Apresentar páginas desde:',
 'allpagesto'        => 'Apresentar páginas até:',
@@ -1985,7 +1985,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allnotinnamespace' => 'Todas as páginas (excepto as do espaço nominal $1)',
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Próximo',
-'allpagessubmit'    => 'Ir',
+'allpagessubmit'    => 'Prosseguir',
 'allpagesprefix'    => 'Apresentar páginas iniciadas por:',
 'allpagesbadtitle'  => 'O título de página fornecido era inválido ou tinha um prefixo de ligação interlínguas ou interwikis.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
@@ -2114,7 +2114,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'watchlist-options'    => 'Opções da lista de páginas vigiadas',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Vigiando...',
+'watching'   => 'A vigiar...',
 'unwatching' => 'Deixando de vigiar...',
 
 'enotif_mailer'                => 'Gerador de Notificações da {{SITENAME}}',
@@ -2217,27 +2217,27 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'prot_1movedto2'              => 'moveu [[$1]] para [[$2]]',
 'protect-legend'              => 'Confirmar protecção',
 'protectcomment'              => 'Motivo:',
-'protectexpiry'               => 'Expiração',
+'protectexpiry'               => 'Expiração:',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
-'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
+'protect_expiry_old'          => 'O tempo de expiração fornecido situa-se no passado.',
 'protect-unchain-permissions' => 'Desbloquear outras opções de protecção',
-'protect-text'                => "Pode visualizar e alterar aqui o nível de protecção da página '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Pode ver e alterar aqui o nível de protecção da página '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Não pode alterar níveis de protecção enquanto estiver bloqueado.
 Esta é a configuração presente para a página '''$1''':",
 'protect-locked-dblock'       => "Não é possível alterar os níveis de proteção, uma vez que a base de dados se encontra trancada.
 Esta é a configuração atual para a página '''$1''':",
-'protect-locked-access'       => "Sua conta não possui permissões para alterar os níveis de proteção de uma página.
-Esta é a configuração atual para a página '''$1''':",
-'protect-cascadeon'           => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "protecção progressiva" activada.
-Pode alterar o nível de protecção desta página, mas isso não afectará a "protecção progressiva".',
+'protect-locked-access'       => "A sua conta não possui permissões para alterar os níveis de protecção de uma página.
+Esta é a configuração actual da página '''$1''':",
+'protect-cascadeon'           => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com protecção em cascata.
+Pode alterar o nível de protecção desta página, mas isso não afectará a protecção em cascata.',
 'protect-default'             => 'Permitir todos os utilizadores',
 'protect-fallback'            => 'É necessário o privilégio de "$1"',
 'protect-level-autoconfirmed' => 'Bloquear utilizadores novos e não registados',
 'protect-level-sysop'         => 'Apenas administradores',
-'protect-summary-cascade'     => 'p. progressiva',
+'protect-summary-cascade'     => 'em cascata',
 'protect-expiring'            => 'expira em $1 (UTC)',
 'protect-expiry-indefinite'   => 'infinito',
-'protect-cascade'             => 'Proteja quaisquer páginas que estejam incluídas nesta (proteção progressiva)',
+'protect-cascade'             => 'Proteja quaisquer páginas que estejam incluídas nesta (protecção em cascata)',
 'protect-cantedit'            => 'Não pode alterar o nível de protecção desta página, porque não tem permissão para editá-la.',
 'protect-othertime'           => 'Outra duração:',
 'protect-othertime-op'        => 'outra duração',
@@ -2249,12 +2249,12 @@ Pode alterar o nível de protecção desta página, mas isso não afectará a "p
 ** ''Spam'' excessivo
 ** Guerra de edições improdutiva
 ** Página muito visitada",
-'protect-edit-reasonlist'     => 'Editar motivos de proteções',
+'protect-edit-reasonlist'     => 'Editar motivos de protecção',
 'protect-expiry-options'      => '1 hora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite',
 'restriction-type'            => 'Permissão:',
 'restriction-level'           => 'Nível de restrição:',
-'minimum-size'                => 'Tam. mínimo',
-'maximum-size'                => 'Tam. máximo:',
+'minimum-size'                => 'Tamanho mín.',
+'maximum-size'                => 'Tamanho máx.:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
@@ -2368,6 +2368,7 @@ Para referência, o último registo de bloqueio é apresentado abaixo:',
 
 # Block/unblock
 'blockip'                         => 'Bloquear utilizador',
+'blockip-title'                   => 'Bloquear utilizador',
 'blockip-legend'                  => 'Bloquear utilizador',
 'blockiptext'                     => 'Utilize o formulário abaixo para bloquear o acesso de escrita a um endereço IP específico ou a um nome de utilizador.
 Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki:Policy-url}}|política]]. Indique a seguir um motivo de bloqueio específico (por exemplo, indicando as páginas que foram alvo de vandalismo).',
@@ -2377,15 +2378,15 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Outro motivo',
 'ipbreason-dropdown'              => '*Razões comuns para um bloqueio
-** Inserindo informações falsas
-** Removendo o conteúdo de páginas
-** Fazendo "spam" de sítios externos
-** Inserindo conteúdo sem sentido/incompreensível nas páginas
+** Inserção de informações falsas
+** Remoção de conteúdos de páginas
+** Inserção de "spam" para sítios externos
+** Inserção de conteúdo sem sentido/incompreensível nas páginas
 ** Comportamento intimidador/inoportuno
 ** Uso abusivo de contas múltiplas
 ** Nome de utilizador inaceitável',
 'ipbanononly'                     => 'Bloquear apenas utilizadores anónimos',
-'ipbcreateaccount'                => 'Prevenir criação de conta de utilizador',
+'ipbcreateaccount'                => 'Impedir criação de contas de utilizador',
 'ipbemailban'                     => 'Impedir utilizador de enviar correio electrónico',
 'ipbenableautoblock'              => 'Bloquear automaticamente o endereço IP mais recente deste utilizador e todos os endereços IP subsequentes a partir dos quais ele tente editar',
 'ipbsubmit'                       => 'Bloquear este utilizador',
@@ -2395,7 +2396,7 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
 'ipbhidename'                     => 'Ocultar nome de utilizador em edições e listas',
 'ipbwatchuser'                    => 'Vigiar as páginas de utilizador e de discussão deste utilizador',
-'ipballowusertalk'                => 'Permitir que este utilizador edite sua própria página de discussão mesmo estando bloqueado',
+'ipballowusertalk'                => 'Permitir que este utilizador edite a sua própria página de discussão mesmo estando bloqueado',
 'ipb-change-block'                => 'Voltar a bloquear o utilizador com estes parâmetros',
 'badipaddress'                    => 'Endereço IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
@@ -2441,7 +2442,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 O registo de bloqueios é fornecido abaixo para referência:',
 'blocklog-showsuppresslog'        => 'Este utilizador foi bloqueado e ocultado anteriomente.
 O registo de supressão é fornecido abaixo para referência:',
-'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
+'blocklogentry'                   => 'bloqueou "[[$1]]" com expiração em $2 $3',
 'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2 $3',
 'blocklogtext'                    => 'Este é um registo de acções de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não são listados.
@@ -2454,7 +2455,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'autobloqueio melhorado activado',
 'block-log-flags-hiddenname'      => 'nome de utilizador ocultado',
-'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
+'range_block_disabled'            => 'A funcionalidade de administrador para o bloqueio de gamas de IPs está desactivada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'                 => 'Bloqueios com nome de utilizador ocultado devem ser permanentes.',
 'ipb_hide_invalid'                => 'Não foi possível suprimir esta conta; ela poderá ter demasiadas edições.',
@@ -2532,7 +2533,8 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'articleexists'                => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
 'cantmove-titleprotected'      => 'Não pode mover uma página para esse destino, porque o novo título foi protegido para evitar a sua criação',
-'talkexists'                   => "'''A página em si foi movida com sucesso. No entanto, a página de discussão não foi movida, uma vez que já existia uma com este título. Por favor, mescle-as manualmente.'''",
+'talkexists'                   => "'''A página em si foi movida com sucesso, mas a página de discussão não foi movida porque já existia uma com o mesmo título.
+Por favor, faça a fusão manual das páginas de discussão.'''",
 'movedto'                      => 'movido para',
 'movetalk'                     => 'Mover também a página de discussão associada.',
 'move-subpages'                => 'Mover subpáginas (até $1)',
@@ -2604,10 +2606,10 @@ Por favor visite [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'allmessagesnotsupportedDB'     => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estado de personalização:',
-'allmessages-filter-unmodified' => 'Não modificado',
+'allmessages-filter-unmodified' => 'Não modificadas',
 'allmessages-filter-all'        => 'Todas',
-'allmessages-filter-modified'   => 'Modificado',
-'allmessages-prefix'            => 'Filtrar por prefixo:',
+'allmessages-filter-modified'   => 'Modificadas',
+'allmessages-prefix'            => 'Filtrar pelos caracteres iniciais:',
 'allmessages-language'          => 'Língua:',
 'allmessages-filter-submit'     => 'Filtrar',
 
@@ -2677,7 +2679,7 @@ Não há um directório temporário.',
 'tooltip-pt-anonuserpage'         => 'A página de utilizador para o ip que está a utilizar para editar',
 'tooltip-pt-mytalk'               => 'A sua página de discussão',
 'tooltip-pt-anontalk'             => 'Discussão sobre edições feitas a partir deste endereço IP',
-'tooltip-pt-preferences'          => 'Configuração dos comportamentos da wiki preferidos por si',
+'tooltip-pt-preferences'          => 'Configuração dos comportamentos da wiki que prefere',
 'tooltip-pt-watchlist'            => 'Lista das páginas cujas alterações está a vigiar',
 'tooltip-pt-mycontris'            => 'Lista das suas edições de páginas',
 'tooltip-pt-login'                => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
@@ -3185,7 +3187,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'watchlistall2'    => 'todas',
 'namespacesall'    => 'todos',
 'monthsall'        => 'todos',
-'limitall'         => 'todas',
+'limitall'         => 'tudo',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar endereço de correio electrónico',
@@ -3255,18 +3257,18 @@ Por favor, confirme que deseja realmente recriar esta página.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
-'imgmultipagenext' => 'próxima página →',
+'imgmultipagenext' => 'página seguinte →',
 'imgmultigo'       => 'Ir!',
 'imgmultigoto'     => 'Ir para a página $1',
 
 # Table pager
 'ascending_abbrev'         => 'asc',
 'descending_abbrev'        => 'desc',
-'table_pager_next'         => 'Próxima página',
+'table_pager_next'         => 'Página seguinte',
 'table_pager_prev'         => 'Página anterior',
 'table_pager_first'        => 'Primeira página',
 'table_pager_last'         => 'Última página',
-'table_pager_limit'        => 'Mostrar $1 items por página',
+'table_pager_limit'        => 'Mostrar $1 por página',
 'table_pager_limit_submit' => 'Ir',
 'table_pager_empty'        => 'Sem resultados',
 

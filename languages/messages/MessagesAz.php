@@ -549,9 +549,9 @@ Bəzi şablonlar əlavə olunmayacaq.",
 'last'                   => 'son',
 'page_first'             => 'birinci',
 'page_last'              => 'sonuncu',
-'histlegend'             => 'Fərqləri seçmə və göstərmə: müqaisə etmək istədiyiniz versiyaların yanındakı radio qutularına işarə qoyun və daxil etmə düyməsinə(enter-a) və ya "müqaisə et" düyməsinə vurun.<br />
-Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
-(son) = əvvəlki versiya ilə olan fərqlər, K = kiçik redaktə.',
+'histlegend'             => 'Fərqə bax: müqayisə etmək istədiyiniz versiyaların yanındakı dairələri işarələyin və "Enter"ə və ya "müqayisə et" düyməsinə basın.<br />
+Açıqlama: (hh) = hal-hazırkı versiya ilə aradakı fərq,
+(son) = əvvəlki versiya ilə aradakı fərq, K = kiçik redaktə.',
 'history-fieldset-title' => 'Tarixçəni nəzərdən keçir',
 'histfirst'              => 'Ən əvvəlki',
 'histlast'               => 'Ən sonuncu',
@@ -633,6 +633,8 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'searchresults-title'       => "''$1'' üçün axtarış nəticələri",
 'searchresulttext'          => '{{SITENAME}}-nı axtarmaqla bağlı ətraflı məlumat üçün [[{{MediaWiki:Helppage}}|{{int:kömək}}]] səhifəsinə baş çək.',
 'searchsubtitle'            => '"[[:$1]]" üçün axtarış ([[Special:Prefixindex/$1|"$1" ilə başlayan bütün səhifələr]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" səhifəsi ilə əlaqəli olan bütün səhifələr]])',
+'searchsubtitleinvalid'     => 'Axtarılan: "$1"',
+'notitlematches'            => 'Uyğun gələn səhifə adı tapılmadı',
 'notextmatches'             => 'Məqalələrdə uyğun məzmun tapılmadı',
 'prevn'                     => 'əvvəlki {{PLURAL:$1|$1}}',
 'nextn'                     => 'sonrakı {{PLURAL:$1|$1}}',
@@ -643,6 +645,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'search-result-size'        => '$1 ({{PLURAL:$2|1 söz|$2 sözlər}})',
 'search-redirect'           => '(yönləndirmə $1)',
 'search-section'            => '(bölmə $1)',
+'search-suggest'            => 'Bəlkə, bunu nəzərdə tuturdunuz: $1',
 'search-interwiki-caption'  => 'Qardaş layihələr',
 'search-interwiki-default'  => '$1 nəticə:',
 'search-interwiki-more'     => '(yenə)',
@@ -652,6 +655,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'nonefound'                 => "'''Qeyd''': Əksər uğursuz axtarışlara səbəb indeksləşdirilməyən, geniş işlənən \"var\", \"və\" tipli sözlər və ya axtarışa bir sözdən artıq ifadələrin verilməsidir. Çalışıb axtardığınız ifadənin qarşısında ''all:'' (bütün) yazın. Bu halda axtarışınız istifadəçi səhifələrini, şablonları və s. da əhatə edəcək.",
 'powersearch'               => 'Axtar',
 'powersearch-legend'        => 'Təkmil axtarış',
+'powersearch-ns'            => 'Ad aralığında axtar:',
 'powersearch-redir'         => 'Yönləndirmələri göstər',
 'powersearch-field'         => 'Axtar:',
 'powersearch-togglelabel'   => 'Yoxla:',
@@ -819,6 +823,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[İzləmə siyahısında $1 istifadəçi]',
 'newsectionsummary'                 => '/* $1 */ yeni bölmə',
+'rc-enhanced-expand'                => 'Detalları göstər (JavaScript istifadə edir)',
 'rc-enhanced-hide'                  => 'Redaktələri gizlət',
 
 # Recent changes linked
@@ -877,6 +882,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'filehist-deleteone'        => 'sil',
 'filehist-current'          => 'indiki',
 'filehist-datetime'         => 'Tarix/Vaxt',
+'filehist-thumb'            => 'Kiçik şəkil',
 'filehist-user'             => 'İstifadəçi',
 'filehist-dimensions'       => 'Ölçülər',
 'filehist-comment'          => 'Şərh',
@@ -980,7 +986,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'newpages'                => 'Yeni səhifələr',
 'newpages-username'       => 'İstifadəçi adı:',
 'ancientpages'            => 'Ən köhnə səhifələr',
-'move'                    => 'Adı dəyiş',
+'move'                    => 'Adını dəyiş',
 'movethispage'            => 'Bu səhifənin adını dəyiş',
 
 # Book sources
@@ -1081,6 +1087,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'watchlistcontains'    => 'İzləmə siyahınızda $1 {{PLURAL:$1|səhifə|səhifə}} var.',
 'wlnote'               => "Aşağıdakı {{PLURAL:$1|'''$1''' dəyişiklik|'''$1''' dəyişiklik}} son {{PLURAL:$2|saatda|'''$2''' saatda}} edilmişdir.",
 'wlshowlast'           => 'Bunları göstər: son $1 saatı $2 günü $3',
+'watchlist-options'    => 'İzlədiyim səhifələrin nizamlamaları',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'İzlənilir...',
@@ -1102,7 +1109,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'historywarning'         => 'Xəbərdarlıq: Silinəcək səhifənin tarixçəsində qeyd olunmuş $1 {{PLURAL:$1|redaktə|redaktə}} var:',
 'confirmdeletetext'      => 'Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunun [[{{MediaWiki:Policy-url}}|rəsmi qaydalarla]] üzləşdiyini və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.',
 'actioncomplete'         => 'Fəaliyyət tamamlandı',
-'deletedarticle'         => 'silindi "[[$1]]"',
+'deletedarticle'         => '"[[$1]]" silindi',
 'dellogpage'             => 'Silmə qeydləri',
 'dellogpagetext'         => 'Ən son silinmiş səhifələrin siyahısı.',
 'deletionlog'            => 'Silmə jurnal qeydləri',
@@ -1198,12 +1205,16 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'sp-contributions-submit'      => 'Axtar',
 
 # What links here
-'whatlinkshere'       => 'Bu səhifəyə bağlantılar',
-'isredirect'          => 'İstiqamətləndirmə səhifəsi',
-'istemplate'          => 'daxil olmuş',
-'whatlinkshere-prev'  => '{{PLURAL:$1|əvvəlki|əvvəlki $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|növbəti|növbəti $1}}',
-'whatlinkshere-links' => '← keçidlər',
+'whatlinkshere'           => 'Bu səhifəyə bağlantılar',
+'whatlinkshere-title'     => '"$1" məqaləsinə keçid verən səhifələr',
+'whatlinkshere-page'      => 'Səhifə:',
+'isredirect'              => 'İstiqamətləndirmə səhifəsi',
+'istemplate'              => 'daxil olmuş',
+'whatlinkshere-prev'      => '{{PLURAL:$1|əvvəlki|əvvəlki $1}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|növbəti|növbəti $1}}',
+'whatlinkshere-links'     => '← keçidlər',
+'whatlinkshere-hidetrans' => 'Əlavələri $1',
+'whatlinkshere-hidelinks' => 'keçidləri $1',
 
 # Block/unblock
 'blockip'                     => 'İstifadəçiyi blokla',
@@ -1297,12 +1308,12 @@ Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bil�
 'tooltip-pt-anonuserpage'        => 'The user page for the ip you',
 'tooltip-pt-mytalk'              => 'Danışıq səhifəm',
 'tooltip-pt-anontalk'            => 'Bu IP ünvanindan redaktə olunmuş danışıqlar',
-'tooltip-pt-preferences'         => 'Mənim Tərcihlərim',
-'tooltip-pt-watchlist'           => 'İzləməyə aldığım məqalələr.',
+'tooltip-pt-preferences'         => 'Mənim nizamlamalarım',
+'tooltip-pt-watchlist'           => 'İzləməyə götürdüyüm səhifələr',
 'tooltip-pt-mycontris'           => 'Etdiyim dəyişikliklərin siyahısı',
 'tooltip-pt-login'               => 'Daxil olmanız tövsiyə olunur, amma tələb olunmur.',
 'tooltip-pt-anonlogin'           => 'Daxil olmanız tövsiyə olunur, amma tələb olunmur.',
-'tooltip-pt-logout'              => 'Çixiş',
+'tooltip-pt-logout'              => 'Sistemdən çıx',
 'tooltip-ca-talk'                => 'Məqalə həqqində müzakirə edib, nəzərivi bildir',
 'tooltip-ca-edit'                => 'Bu səhifəni redaktə edə bilərsiniz. Lütfən əvvəlcə sınaq gostərişi edin.',
 'tooltip-ca-addsection'          => 'Yeni bölmə yarat',
@@ -1311,7 +1322,7 @@ Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bil�
 'tooltip-ca-protect'             => 'Bu səhifəni qoru',
 'tooltip-ca-delete'              => 'Bu səhifəni sil',
 'tooltip-ca-undelete'            => 'Bu səhifəni silinmədən oncəki halına qaytarın',
-'tooltip-ca-move'                => 'Bu məqalənin adını dəyışin',
+'tooltip-ca-move'                => 'Bu səhifənin adını dəyiş',
 'tooltip-ca-watch'               => 'Bu səhifəni izlə',
 'tooltip-ca-unwatch'             => 'Bu səhifənin izlənmasini bitir',
 'tooltip-search'                 => '{{SITENAME}} səhifəsində axtar',
@@ -1339,9 +1350,12 @@ Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bil�
 'tooltip-ca-nstab-template'      => 'Şablona bax',
 'tooltip-ca-nstab-help'          => 'Kömək səhifəsi',
 'tooltip-ca-nstab-category'      => 'Kateqoriya səhifəsini göstər',
+'tooltip-minoredit'              => 'Bu dəyişikliyi kiçik redaktə kimi qeyd et',
 'tooltip-save'                   => 'Dəyişiklikləri qeyd et [alt-s]',
+'tooltip-preview'                => 'Səhifəni qeyd etməzdən əvvəl bunu istifadə edib dəyişikliklərinizə baxın!',
+'tooltip-diff'                   => 'Məqalədə etdiyiniz dəyişikliklərə baxın',
 'tooltip-watch'                  => 'Bu səhifəni izlədiyiniz səhifələrə əlavə et [alt-w]',
-'tooltip-rollback'               => 'Sonuncu istifadəçi tərəfindən edilmiş bütün dəyişiklikləri bir dəfəyə geri qaytarmaq',
+'tooltip-rollback'               => 'Sonuncu istifadəçi tərəfindən edilmiş bütün dəyişiklikləri bir dəfəyə geri qaytar',
 
 # Attribution
 'siteuser'    => '{{SITENAME}} istifadəçi $1',
@@ -1396,6 +1410,9 @@ $1',
 Yalnız siyahı bəndləri (* işarəsi ilə başlayan sətirlər) nəzərə alınır.
 Sətirdəki ilk keçid əlavə olunması qadağan olunmuş şəkilə keçid olmalıdır.
 Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şəklin əlavə oluna biləcəyi məqalələr. Məsələn, fayl məqalədə sətrin içində görünə bilər.',
+
+# Metadata
+'metadata-expand' => 'Ətraflı məlumatları göstər',
 
 # EXIF tags
 'exif-artist'              => 'Müəllif',

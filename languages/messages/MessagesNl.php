@@ -2429,6 +2429,7 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 
 # Block/unblock
 'blockip'                         => 'Gebruiker blokkeren',
+'blockip-title'                   => 'Gebruiker blokkeren',
 'blockip-legend'                  => 'Een gebruiker of IP-adres blokkeren',
 'blockiptext'                     => "Gebruik het onderstaande formulier om schrijftoegang voor een gebruiker of IP-adres in te trekken.
 Doe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[{{MediaWiki:Policy-url}}|beleid]].

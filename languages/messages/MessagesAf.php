@@ -2121,7 +2121,7 @@ $1',
 'month'               => 'Vanaf maand (en vroeër):',
 'year'                => 'Vanaf jaar (en vroeër):',
 
-'sp-contributions-newbies'        => 'Wys slegs bydraes deur nuwe rekenings',
+'sp-contributions-newbies'        => 'Wys slegs bydraes van nuwe gebruikers',
 'sp-contributions-newbies-sub'    => 'Vir nuwe gebruikers',
 'sp-contributions-newbies-title'  => 'Bydraes van nuwe gebruikers',
 'sp-contributions-blocklog'       => 'Blokkeer-logboek',
@@ -2155,12 +2155,13 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blokkeer gebruiker',
+'blockip-title'                   => 'Blokkeer gebruiker',
 'blockip-legend'                  => 'Blokkeer gebruiker of IP-adres',
 'blockiptext'                     => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
 Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}}-beleid]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 'ipaddress'                       => 'IP-adres:',
-'ipadressorusername'              => 'IP-adres of gebruikernaam:',
+'ipadressorusername'              => 'IP-adres of gebruikersnaam:',
 'ipbexpiry'                       => 'Duur:',
 'ipbreason'                       => 'Rede:',
 'ipbreasonotherlist'              => 'Ander rede',

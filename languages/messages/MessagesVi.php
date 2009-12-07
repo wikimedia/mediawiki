@@ -2288,6 +2288,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Cấm thành viên',
+'blockip-title'                   => 'Cấm thành viên',
 'blockip-legend'                  => 'Cấm thành viên',
 'blockiptext'                     => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang.
 Điều này chỉ nên làm để tránh phá hoại, và phải theo [[{{MediaWiki:Policy-url}}|quy định]].

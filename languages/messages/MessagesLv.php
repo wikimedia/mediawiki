@@ -8,6 +8,7 @@
  * @file
  *
  * @author Dark Eagle
+ * @author FnTmLV
  * @author Knakts
  * @author Marozols
  * @author Papuass
@@ -47,6 +48,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Saites uz neesošām lapām rādīt <a href="" class="new">šādi</a> (alternatīva: šādi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Izlīdzināt rindkopām abas malas',
 'tog-hideminor'               => 'Paslēpt maznozīmīgus labojumus pēdējo izmaiņu lapā',
+'tog-hidepatrolled'           => 'Slēpt apstiprinātās izmaņas pēdējo izmaiņu sarakstā',
 'tog-extendwatchlist'         => 'Izvērst uzraugāmo lapu sarakstu, lai parādītu visas veiktās izmaiņas (ne tikai pašas svaigākās)',
 'tog-usenewrc'                => "Lietot uzlaboto pēdējo izmaiņu lapu (izmanto ''JavaScript'')",
 'tog-numberheadings'          => 'Automātiski numurēt virsrakstus',
@@ -379,6 +381,7 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 'badarticleerror'      => 'Šo darbību nevar veikt šajā lapā.',
 'cannotdelete'         => 'Nevar izdzēst lapu vai failu $1. Iespējams, to jau ir izdzēsis kāds cits.',
 'badtitle'             => 'Nepiemērots nosaukums',
+'badtitletext'         => 'Pieprasītā lapa ir kļūdaina, tukša, vai nepareizi saistīts starpvalodu vai starp-vikiju virsrakstas. Tas var saturēt vienu vai vairākus simbolus, ko nedrīkst izmantot nosaukumos.',
 'perfcached'           => 'Šie dati ir no servera kešatmiņas un var būt novecojuši:',
 'perfcachedts'         => "Šie dati ir no servera kešatmiņas (''cache''), kas pēdējo reizi bija atjaunota $1.",
 'querypage-no-updates' => 'Šīs lapas atjaunošana pagaidām ir atslēgta. Te esošie dati tuvākajā laikā netiks atjaunoti.',
@@ -639,6 +642,7 @@ Tev vajadzētu pārliecināties, vai ir lietderīgi turpināt izmainīt šo lapu
 Te var apskatīties dzēšanas un pārvietošanas reģistrus, kuros jābūt datiem par to kas, kad un kāpēc šo lapu izdzēsa.",
 'moveddeleted-notice'        => 'Šī lapa ir tikusi izdzēsta.
 Te var apskatīties dzēšanas un pārvietošanas reģistru fragmentus, lai noskaidrotu kurš, kāpēc un kad to izdzēsa.',
+'log-fulllog'                => 'Paskatīties pilnu reģistru',
 'edit-conflict'              => 'Labošanas konflikts.',
 'edit-already-exists'        => 'Nevar izveidot jaunu lapu.
 Tā jau eksistē.',
@@ -707,6 +711,9 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 # History merging
 'mergehistory-reason' => 'Iemesls:',
 
+# Merge log
+'revertmerge' => 'Atsaukt apvienošanu',
+
 # Diffs
 'history-title'           => '"$1" versiju hronoloģija',
 'difference'              => '(Atšķirības starp versijām)',
@@ -743,10 +750,13 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'searchprofile-everything-tooltip' => 'Meklēt visur (ieskaitot diskusiju lapas)',
 'searchprofile-advanced-tooltip'   => 'Izvēlēties nosaukumvietas, kurās meklēt',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 vārds|$2 vārdi}})',
+'search-section'                   => '(sadaļa $1)',
 'search-suggest'                   => 'Vai jūs domājāt: $1',
 'search-interwiki-caption'         => 'Citi projekti',
 'search-interwiki-default'         => 'Rezultāti no $1:',
 'search-interwiki-more'            => '(vairāk)',
+'search-mwsuggest-enabled'         => 'ar ieteikumiem',
+'search-mwsuggest-disabled'        => 'bez ieteikumiem',
 'mwsuggest-disable'                => 'Atslēgt AJAX ieteikumus',
 'searcheverything-enable'          => 'Meklēt visās nosaukumvietās',
 'showingresults'                   => "Šobrīd ir {{PLURAL:$1|redzama|redzamas}} '''$1''' {{PLURAL:$1|lapa|lapas}}, sākot ar #'''$2'''.",
@@ -949,6 +959,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'recentchanges'                     => 'Pēdējās izmaiņas',
 'recentchanges-legend'              => 'Pēdējo izmaiņu opcijas',
 'recentchangestext'                 => 'Šajā lapā ir šitajā viki izdarītās pēdējās izmaiņas.',
+'recentchanges-feed-description'    => 'Sekojiet līdzi jaunākajām izmaiņām vikijā izmantojot šo barotni.',
 'recentchanges-label-legend'        => 'Apzīmējumu skaidrojums: $1.',
 'recentchanges-legend-newpage'      => '$1 - jauna lapa',
 'recentchanges-label-newpage'       => 'Šī ir jaunizveidota lapa',
@@ -976,6 +987,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'rc_categories_any'                 => 'Jebkas',
 'newsectionsummary'                 => '/* $1 */ jauna sadaļa',
 'rc-enhanced-expand'                => 'Rādīt informāciju (nepieciešams JavaScript)',
+'rc-enhanced-hide'                  => 'Paslēpt detaļas',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Saistītās izmaiņas',
@@ -1381,7 +1393,8 @@ Papildus informācija:
 'exblank'                => 'lapa bija tukša',
 'delete-confirm'         => 'Dzēst "$1"',
 'delete-legend'          => 'Dzēšana',
-'historywarning'         => 'Brīdinājums: Tu dzēsīsi lapu, kurai ir saglabātas iepriekšējas versijas.',
+'historywarning'         => "'''Brīdinājums:'' Tu grasies dzēst lapu, kurai ir saglabātas izmaiņu vēsture ar $1 {{PLURAL:versiju|versijām}}
+iepriekšējas versijas.",
 'confirmdeletetext'      => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[{{MediaWiki:Policy-url}}|vadlīnijām]].',
 'actioncomplete'         => 'Darbība pabeigta',
 'deletedtext'            => 'Lapa "<nowiki>$1</nowiki>" ir izdzēsta.
@@ -1543,7 +1556,7 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 # Block/unblock
 'blockip'                      => 'Bloķēt lietotāju',
 'blockip-legend'               => 'Bloķēt lietotāju',
-'blockiptext'                  => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[Project:Vadlīnijas|noteikumiem]].
+'blockiptext'                  => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[{{MediaWiki:Policy-url}}|noteikumiem]].
 Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'ipaddress'                    => 'IP adrese/lietotājvārds',
 'ipadressorusername'           => 'IP adrese vai lietotājvārds',
@@ -1795,6 +1808,8 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'tooltip-watch'                   => 'Pievienot šo lapu uzraugāmo lapu sarakstam',
 'tooltip-recreate'                => 'Atjaunot lapu, lai arī tā ir bijusi izdzēsta',
 'tooltip-upload'                  => 'Sākt augšuplādi',
+'tooltip-undo'                    => '"Atgriezt" atgriež šīs izmaiņas un atver labošanas formu priekšskatījuma veidā.
+Tas atļauj pievienot iemeslu kopsavilkumā.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonīmais {{grammar:ģenitīvs|{{SITENAME}}}} lietotājs|Anonīmie {{grammar:ģenitīvs|{{SITENAME}}}} lietotāji}}',

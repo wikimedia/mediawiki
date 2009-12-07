@@ -2242,6 +2242,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blocar usator',
+'blockip-title'                   => 'Blocar usator',
 'blockip-legend'                  => 'Blocar usator',
 'blockiptext'                     => 'Usa le formulario infra pro blocar le accesso de scriptura
 a partir de un adresse IP specific.

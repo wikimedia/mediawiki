@@ -1001,6 +1001,8 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''
 'nocreatetext'                     => '{{SITENAME}} a restreint la possibilité de créer de nouvelles pages.
 Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Special:UserLogin|vous connecter ou créer un compte]].',
 'nocreate-loggedin'                => 'Vous n’avez pas la permission de créer de nouvelles pages.',
+'sectioneditnotsupported-title'    => 'Modification de section non prise en charge',
+'sectioneditnotsupported-text'     => "La modification d'une section n'est pas supportée dans cette page de modification.",
 'permissionserrors'                => 'Erreur de permissions',
 'permissionserrorstext'            => 'Vous n’avez pas la permission d’effectuer l’opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
 'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
@@ -2377,6 +2379,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Bloquer l’utilisateur',
+'blockip-title'                   => 'Bloquer l’utilisateur',
 'blockip-legend'                  => 'Bloquer l’utilisateur',
 'blockiptext'                     => 'Utilisez le formulaire ci-dessous pour bloquer l’accès aux modifications faites à partir d’une adresse IP spécifique ou d’un nom d’utilisateur.
 Une telle mesure ne devrait être prise que pour prévenir le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].

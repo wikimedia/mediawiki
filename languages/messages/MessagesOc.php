@@ -689,9 +689,10 @@ Lo motiu avançat es « ''$2'' ».",
 'virus-unknownscanner' => 'antivirús desconegut :',
 
 # Login and logout pages
-'logouttext'                 => "'''Ara, sètz desconnectat(ada).'''
+'logouttext'                 => "'''Ara, sètz desconnect{{GENDER:||at|ada}}..'''
 
-Podètz contunhar d'utilizar {{SITENAME}} anonimament, o vos podètz [[Special:UserLogin|tornar connectar]] jol meteis nom o amb un autre nom.",
+Podètz contunhar d'utilizar {{SITENAME}} anonimament, o vos podètz [[Special:UserLogin|tornar connectar]] jol meteis nom o amb un autre nom.
+Notatz que d'unas paginas pòdon èsser encara afichadas coma s'eratz encara connect{{GENDER:||at|ada}}, fins al moment qu'escafaretz l'amagatal de vòstre navigador.",
 'welcomecreation'            => "== Benvenguda, $1 ! ==
 Vòstre compte d'utilizaire es estat creat.
 Doblidetz pas de personalizar vòstras [[Special:Preferences|{{SITENAME}} preferéncias]].",
@@ -947,6 +948,8 @@ Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins {{PLURA
 'nocreatetext'                     => '{{SITENAME}} a restrencha la possibilitat de crear de paginas novèlas.
 Podètz tonar en rèire e modificar una pagina existenta, [[Special:UserLogin|vos connectar o crear un compte]].',
 'nocreate-loggedin'                => 'Avètz pas la permission de crear de paginas novèlas.',
+'sectioneditnotsupported-title'    => 'Modificacion de seccion pas presa en carga',
+'sectioneditnotsupported-text'     => "La modificacion d'una seccion es pas suportada dins aquesta pagina de modificacion.",
 'permissionserrors'                => 'Error de permissions',
 'permissionserrorstext'            => 'Avètz pas la permission d’efectuar l’operacion demandada per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
 'permissionserrorstext-withaction' => 'Sètz pas autorizat(ada) a $2, per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
@@ -1027,6 +1030,7 @@ Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòr
 'rev-deleted-comment'         => '(comentari suprimit)',
 'rev-deleted-user'            => '(nom d’utilizaire suprimit)',
 'rev-deleted-event'           => '(entrada suprimida)',
+'rev-deleted-user-contribs'   => "[nom d'utilizaire o adreça IP suprimida - modificacion amagada sus las contribucions]",
 'rev-deleted-text-permission' => "Aquesta version de la pagina es estada '''escafada'''.
 I pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
 'rev-deleted-text-unhide'     => "Aquesta version de la pagina es estada '''escafada'''.
@@ -1971,11 +1975,13 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'listusers-blocked'  => '(blocat)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista dels utilizaires actius',
-'activeusers-intro'    => "Aquò es una lista dels utilizaires qu'an exerçat una activitat quina que siá al cors {{PLURAL:$1|de la darrièra jornada|dels $1 darrièrs jorns}}.",
-'activeusers-count'    => '$1 {{PLURAL:$1|modificacion recenta|modificacions recentas}} dins {{PLURAL:$3|lo darrièr jorn|los $3 darrièrs jorns}}',
-'activeusers-from'     => 'Afichar los utilizaires dempuèi :',
-'activeusers-noresult' => "Cap d'utilizaire pas trobat.",
+'activeusers'            => 'Lista dels utilizaires actius',
+'activeusers-intro'      => "Aquò es una lista dels utilizaires qu'an exerçat una activitat quina que siá al cors {{PLURAL:$1|de la darrièra jornada|dels $1 darrièrs jorns}}.",
+'activeusers-count'      => '$1 {{PLURAL:$1|modificacion recenta|modificacions recentas}} dins {{PLURAL:$3|lo darrièr jorn|los $3 darrièrs jorns}}',
+'activeusers-from'       => 'Afichar los utilizaires dempuèi :',
+'activeusers-hidebots'   => 'Amagar los robòts',
+'activeusers-hidesysops' => 'Amagar los administrators',
+'activeusers-noresult'   => "Cap d'utilizaire pas trobat.",
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Istoric de las creacions de comptes',
@@ -2311,6 +2317,7 @@ $1",
 
 # Block/unblock
 'blockip'                         => 'Blocar en escritura',
+'blockip-title'                   => 'Blocar l’utilizaire',
 'blockip-legend'                  => 'Blocar en escritura',
 'blockiptext'                     => "Utilizatz lo formulari çaijós per blocar l'accès a las modificacions a partir d'una adreça IP especifica o d'un nom d'utilizaire.
 Una tala mesura deu pas èsser presa pas que per empachar lo vandalisme e en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].
