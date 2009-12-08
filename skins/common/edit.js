@@ -46,9 +46,14 @@ function mwSetupToolbar() {
 
 	// Don't generate buttons for browsers which don't fully
 	// support it.
-	var textbox = document.createElement('textarea'); // abstract, don't assume wpTextbox1 is always there
+	// but don't assume wpTextbox1 is always here
+	var textboxes = document.getElementsByTagName('textarea');
+	if ( !textboxes.length ) {
+		// No toolbar if we can't find any textarea
+		return false;
+	}
 	if (!(document.selection && document.selection.createRange)
-		&& textbox.selectionStart === null) {
+		&& textboxes[0].selectionStart === null) {
 		return false;
 	}
 
@@ -160,5 +165,35 @@ hookEvent( 'load', scrollEditBox );
 hookEvent( 'load', mwSetupToolbar );
 hookEvent( 'load', function() {
 	currentFocused = document.getElementById( 'wpTextbox1' );
+	// http://www.quirksmode.org/blog/archives/2008/04/delegating_the.html
+	// focus does not bubble normally, but using a trick we can do event delegation
+	// on the focus event on all text inputs to make the toolbox usable on all of them
+	var editForm = document.getElementById( 'editform' );
+	if ( !editForm )
+		return;
+	
+	function onfocus(e) {
+		var elm = e.target;
+		if ( !elm )
+			return;
+		var tagName = elm.tagName.toLowerCase();
+		var type = elm.type.toLowerCase();
+		if ( tagName !== "textarea" && tagName !== "input" )
+			return;
+		if ( tagName === "input" && type && type !== "text" )
+			return;
+		
+		currentFocused = elm;
+	}
+	
+	if ( editForm.addEventListener ) {
+		// Gecko, WebKit, Opera, etc... (all standards compliant browsers)
+		editForm.addEventListener('focus', onfocus, true); // This MUST be true to work
+	} else if ( editForm.attachEvent ) {
+		// IE needs a specific trick here since it doesn't support the standard
+		editForm.attachEvent( 'onfocusin', function() { onfocus(event); }, handler );
+	}
+	
+	editForm
 } );
 

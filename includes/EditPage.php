@@ -72,9 +72,9 @@ class EditPage {
 	# Form values
 	var $save = false, $preview = false, $diff = false;
 	var $minoredit = false, $watchthis = false, $recreate = false;
-	var $textbox1 = '', $textbox2 = '', $summary = '';
+	var $textbox1 = '', $textbox2 = '', $summary = '', $nosummary = false;
 	var $edittime = '', $section = '', $starttime = '';
-	var $oldid = 0, $editintro = '', $scrolltop = null;
+	var $oldid = 0, $editintro = '', $scrolltop = null, $bot = true;
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
@@ -534,7 +534,7 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgPreviewOnOpenNamespaces;
 		if ( $wgRequest->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
 			return true;
@@ -547,7 +547,10 @@ class EditPage {
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
 			// Standard preference behaviour
 			return true;
-		} elseif ( !$this->mTitle->exists() && $this->mTitle->getNamespace() == NS_CATEGORY ) {
+		} elseif ( !$this->mTitle->exists() &&
+		  isset($wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()]) &&
+		  $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
+		{
 			// Categories are special
 			return true;
 		} else {
@@ -684,7 +687,7 @@ class EditPage {
 			$this->save      = false;
 			$this->diff      = false;
 			$this->minoredit = false;
-			$this->watchthis = false;
+			$this->watchthis = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
 			$this->recreate  = false;
 
 			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
@@ -698,6 +701,9 @@ class EditPage {
 				$this->minoredit = true;
 			}
 		}
+
+		$this->bot = $request->getBool( 'bot', true );
+		$this->nosummary = $request->getBool( 'nosummary' );
 
 		// FIXME: unused variable?
 		$this->oldid = $request->getInt( 'oldid' );
@@ -1174,8 +1180,22 @@ class EditPage {
 	 * Called on the first invocation, e.g. when a user clicks an edit link
 	 */
 	function initialiseForm() {
+		global $wgUser;
 		$this->edittime = $this->mArticle->getTimestamp();
 		$this->textbox1 = $this->getContent( false );
+		// activate checkboxes if user wants them to be always active
+		# Sort out the "watch" checkbox
+		if ( $wgUser->getOption( 'watchdefault' ) ) {
+			# Watch all edits
+			$this->watchthis = true;
+		} elseif ( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
+			# Watch creations
+			$this->watchthis = true;
+		} elseif ( $this->mTitle->userIsWatching() ) {
+			# Already watched
+			$this->watchthis = true;
+		}
+		if ( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
 		if ( $this->textbox1 === false ) return false;
 		wfProxyCheck();
 		return true;
@@ -1211,7 +1231,7 @@ class EditPage {
 	 *                      near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback=null ) {
-		global $wgOut, $wgUser, $wgTitle, $wgRequest;
+		global $wgOut, $wgUser, $wgTitle;
 
 		# If $wgTitle is null, that means we're in API mode.
 		# Some hook probably called this function  without checking
@@ -1240,7 +1260,7 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
-		if ( $this->editFormHeadInit() === false )
+		if ( $this->showHeader() === false )
 			return;
 
 		$action = htmlspecialchars($this->getActionURL($wgTitle));
@@ -1252,28 +1272,6 @@ class EditPage {
 			$toolbar = '';
 		}
 
-
-		// activate checkboxes if user wants them to be always active
-		if ( !$this->preview && !$this->diff ) {
-			# Sort out the "watch" checkbox
-			if ( $wgUser->getOption( 'watchdefault' ) ) {
-				# Watch all edits
-				$this->watchthis = true;
-			} elseif ( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
-				# Watch creations
-				$this->watchthis = true;
-			} elseif ( $this->mTitle->userIsWatching() ) {
-				# Already watched
-				$this->watchthis = true;
-			}
-
-			# May be overriden by request parameters
-			if( $wgRequest->getBool( 'watchthis' ) ) {
-				$this->watchthis = true;
-			}
-
-			if ( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
-		}
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
@@ -1333,7 +1331,7 @@ HTML
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		if ( $this->missingSummary ||
-			( $this->section == 'new' && $wgRequest->getBool( 'nosummary' ) ) )
+			( $this->section == 'new' && $this->nosummary ) )
 				$wgOut->addHTML( Xml::hidden( 'wpIgnoreBlankSummary', true ) );
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Xml::hidden( 'wpAutoSummary', $autosumm ) );
@@ -1395,7 +1393,7 @@ HTML
 		wfProfileOut( __METHOD__ );
 	}
 	
-	protected function editFormHeadInit() {
+	protected function showHeader() {
 		global $wgOut, $wgParser, $wgUser, $wgMaxArticleSize, $wgLang;
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1</div>", 'explainconflict' );
@@ -1422,20 +1420,25 @@ HTML
 				}
 			}
 
-			if ( $this->missingComment )
+			if ( $this->missingComment ) {
 				$wgOut->wrapWikiMsg( '<div id="mw-missingcommenttext">$1</div>', 'missingcommenttext' );
+			}
 
-			if ( $this->missingSummary && $this->section != 'new' )
+			if ( $this->missingSummary && $this->section != 'new' ) {
 				$wgOut->wrapWikiMsg( '<div id="mw-missingsummary">$1</div>', 'missingsummary' );
+			}
 
-			if ( $this->missingSummary && $this->section == 'new' )
+			if ( $this->missingSummary && $this->section == 'new' ) {
 				$wgOut->wrapWikiMsg( '<div id="mw-missingcommentheader">$1</div>', 'missingcommentheader' );
+			}
 
-			if ( $this->hookError !== '' )
+			if ( $this->hookError !== '' ) {
 				$wgOut->addWikiText( $this->hookError );
+			}
 
-			if ( !$this->checkUnicodeCompliantBrowser() )
+			if ( !$this->checkUnicodeCompliantBrowser() ) {
 				$wgOut->addWikiMsg( 'nonunicodebrowser' );
+			}
 
 			if ( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
 			// Let sysop know that this will make private content public if saved
@@ -1501,8 +1504,9 @@ HTML
 			$wgOut->wrapWikiMsg( '<div class="mw-titleprotectedwarning">$1</div>', 'titleprotectedwarning' );
 		}
 
-		if ( $this->kblength === false )
+		if ( $this->kblength === false ) {
 			$this->kblength = (int)( strlen( $this->textbox1 ) / 1024 );
+		}
 
 		if ( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
 			$wgOut->addHTML( "<div class='error' id='mw-edit-longpageerror'>\n" );
@@ -1529,23 +1533,19 @@ HTML
 	 * 
 	 * @return array An array in the format array( $label, $input )
 	 */
-	function getSummaryInput($summary = "", $labelText = null, $userInputAttrs = null, $userSpanLabelAttrs = null) {
-		$inputAttrs = array(
+	function getSummaryInput($summary = "", $labelText = null, $inputAttrs = null, $spanLabelAttrs = null) {
+		$inputAttrs = ( is_array($inputAttrs) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
 			'maxlength' => '200',
 			'tabindex' => '1',
 			'size' => 60,
 			'spellcheck' => 'true',
-			'onfocus' => "currentFocused = this;", // Make wpSummary insertable for editbuttons
 		);
-		if ( $userInputAttrs )
-			$inputAttrs += $userInputAttrs;
-		$spanLabelAttrs = array(
+		
+		$spanLabelAttrs = ( is_array($spanLabelAttrs) ? $spanLabelAttrs : array() ) + array(
 			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
 			'id' => "wpSummaryLabel"
 		);
-		if ( is_array($userSpanLabelAttrs) )
-			$spanLabelAttrs += $userSpanLabelAttrs;
 
 		$label = null;
 		if ( $labelText ) {
@@ -1566,11 +1566,11 @@ HTML
 	 * @return string
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
-		global $wgOut, $wgContLang, $wgRequest;
+		global $wgOut, $wgContLang;
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
-			if ( $wgRequest->getBool( 'nosummary' ) )
+			if ( $this->nosummary )
 				return;
 		} else {
 			if ( !$this->mShowSummaryField )
@@ -1710,7 +1710,6 @@ INPUTS
 			'id'   => $name,
 			'cols' => $wgUser->getIntOption( 'cols' ), 
 			'rows' => $wgUser->getIntOption( 'rows' ),
-			'onfocus' => "currentFocused = this;", // Make textareas insertable for editbuttons
 			'style' => '' // avoid php notices when appending for editwidth preference (appending allows customAttribs['style'] to still work
 		);
 
@@ -1999,7 +1998,7 @@ INPUTS
 	 * Call the stock "user is blocked" page
 	 */
 	function blockedPage() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		$wgOut->blockedPage( false ); # Standard block notice on the top, don't 'return'
 
 		# If the user made changes, preserve them when showing the markup
@@ -2013,14 +2012,9 @@ INPUTS
 
 		# Spit out the source or the user's modified version
 		if ( $source !== false ) {
-			$rows = $wgUser->getIntOption( 'rows' );
-			$cols = $wgUser->getIntOption( 'cols' );
-			$attribs = array( 'id' => 'wpTextbox1', 'name' => 'wpTextbox1', 'cols' => $cols, 'rows' => $rows, 'readonly' => 'readonly' );
 			$wgOut->addHTML( '<hr />' );
 			$wgOut->addWikiMsg( $first ? 'blockedoriginalsource' : 'blockededitsource', $this->mTitle->getPrefixedText() );
-			# Why we don't use Xml::element here?
-			# Is it because if $source is '', it returns <textarea />?
-			$wgOut->addHTML( Xml::openElement( 'textarea', $attribs ) . htmlspecialchars( $source ) . Xml::closeElement( 'textarea' ) );
+			$this->showTextbox1( array( 'readonly' ), $source );
 		}
 	}
 
@@ -2616,11 +2610,11 @@ INPUTS
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
 	function attemptSave() {
-		global $wgUser, $wgOut, $wgTitle, $wgRequest;
+		global $wgUser, $wgOut, $wgTitle;
 
 		$resultDetails = false;
 		# Allow bots to exempt some edits from bot flagging
-		$bot = $wgUser->isAllowed( 'bot' ) && $wgRequest->getBool( 'bot', true );
+		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$value = $this->internalAttemptSave( $resultDetails, $bot );
 
 		if ( $value == self::AS_SUCCESS_UPDATE || $value == self::AS_SUCCESS_NEW_ARTICLE ) {

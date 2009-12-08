@@ -2162,6 +2162,15 @@ $wgNamespacesWithSubpages = array(
 	NS_CATEGORY_TALK  => true
 );
 
+/**
+ * Which namespaces have special treatment where they should be preview-on-open
+ * Internaly only Category: pages apply, but using this extensions (e.g. Semantic MediaWiki)
+ * can specify namespaces of pages they have special treatment for
+ */
+$wgPreviewOnOpenNamespaces = array(
+	NS_CATEGORY       => true
+);
+
 $wgNamespacesToBeSearchedDefault = array(
 	NS_MAIN           => true,
 );

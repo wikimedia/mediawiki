@@ -100,6 +100,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   file repository
 * $wgWikiId added to override default output of wfWikiId()
 * $wgDBAhandler added to choose a DBA handler when using CACHE_DBA
+* $wgPreviewOnOpenNamespaces for extensions that create namespaces that behave
+  similarly to the category namespace.
 
 === New features in 1.16 ===
 
