@@ -105,7 +105,7 @@ abstract class ExternalUser {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'external_user', 'eu_external_id',
-			array( 'eu_wiki_id' => $user->getId() ), __METHOD__ );
+			array( 'eu_local_id' => $user->getId() ), __METHOD__ );
 		if ( $id === false ) {
 			return false;
 		}
@@ -242,7 +242,7 @@ abstract class ExternalUser {
 	 * @param $pref string
 	 * @return mixed String or false
 	 */
-	public static function prefMessage( $pref ) {
+	public static function getPrefMessage( $pref ) {
 		return false;
 	}
 
@@ -277,11 +277,11 @@ abstract class ExternalUser {
 	 *
 	 * @param $id int user_id
 	 */
-	public final function link( $id ) {
+	public final function linkToLocal( $id ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'external_user',
-			array( 'eu_wiki_id', 'eu_external_id' ),
-			array( 'eu_wiki_id' => $id,
+			array( 'eu_local_id', 'eu_external_id' ),
+			array( 'eu_local_id' => $id,
 				   'eu_external_id' => $this->getId() ),
 			__METHOD__ );
 	}
@@ -299,7 +299,7 @@ abstract class ExternalUser {
 			array( 'eu_external_id' => $this->getId() )
 		);
 		return $row
-			? User::newFromId( $row->eu_wiki_id )
+			? User::newFromId( $row->eu_local_id )
 			: null;
 	}
 	

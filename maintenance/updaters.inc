@@ -165,6 +165,9 @@ $wgUpdates = array(
 		array( 'add_index', 'log_search',    'ls_field_val',     'patch-log_search-rename-index.sql' ),
 		array( 'add_index', 'change_tag',    'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
 		array( 'add_field', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
+		// A field changed name mid-release cycle, so fix it for anyone using
+		// trunk
+		array( 'rename_eu_wiki_id' ),
 	),
 
 	'sqlite' => array(
@@ -1326,6 +1329,17 @@ function do_log_search_population() {
 "maintenance/populateLogSearch.php.\n" );
 	migrate_log_params( $wgDatabase );
 	wfOut( "Done populating log_search table.\n" );
+}
+
+function rename_eu_wiki_id() {
+	global $wgDatabase;
+	wfOut( "Renaming eu_wiki_id -> eu_local_id... " );
+	if ( $wgDatabase->fieldExists( 'external_user', 'eu_local_id' ) ) {
+		wfOut( "already done.\n" );
+		return;
+	}
+	$wgDatabase->sourceFile( archive( 'patch-eu_local_id.sql' ) );
+	wfOut( "ok\n" );
 }
 
 /***********************************************************************

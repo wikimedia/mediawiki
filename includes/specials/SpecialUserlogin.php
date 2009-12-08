@@ -371,7 +371,7 @@ class LoginForm {
 		$wgAuth->initUser( $u, $autocreate );
 
 		if ( $this->mExtUser ) {
-			$this->mExtUser->link( $u->getId() );
+			$this->mExtUser->linkToLocal( $u->getId() );
 			$email = $this->mExtUser->getPref( 'emailaddress' );
 			if ( $email && !$this->mEmail ) {
 				$u->setEmail( $email );
