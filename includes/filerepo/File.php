@@ -561,13 +561,14 @@ abstract class File {
 
 			wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
 			$this->migrateThumbFile( $thumbName );
-			if ( file_exists( $thumbPath ) 
-				&& ( $thumbTime = filemtime( $thumbPath ) ) !== FALSE 
-				&& gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch )
-			{
-				$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-				break;
-			}
+			if ( file_exists( $thumbPath ))
+				$thumbTime = filemtime( $thumbPath );
+				if ( $thumbTime !== FALSE &&
+				     gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch ) { 
+	
+					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+					break;
+				}
 			$thumb = $this->handler->doTransform( $this, $thumbPath, $thumbUrl, $params );
 
 			// Ignore errors if requested
