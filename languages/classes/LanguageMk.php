@@ -12,7 +12,7 @@ class LanguageMk extends Language {
 		if ( !count($forms) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 2 );
 
-		if ( $count % 10 === 1 ) {
+		if ( $count % 10 === 1 && $count % 100 !== 11 ) {
 			return $forms[0];
 		} else {
 			return $forms[1];
