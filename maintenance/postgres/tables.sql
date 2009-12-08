@@ -201,7 +201,7 @@ CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
 CREATE INDEX externallinks_index   ON externallinks (el_index);
 
 CREATE TABLE external_user (
-  eu_wiki_id     INTEGER  NOT NULL  PRIMARY KEY,
+  eu_local_id     INTEGER  NOT NULL  PRIMARY KEY,
   eu_external_id TEXT
 );
 

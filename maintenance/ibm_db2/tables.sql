@@ -248,16 +248,16 @@ CREATE INDEX externallinks_index   ON externallinks (el_index);
 --
 CREATE TABLE external_user (
   -- Foreign key to user_id
-  eu_wiki_id			BIGINT NOT NULL PRIMARY KEY,
+  eu_local_id			BIGINT NOT NULL PRIMARY KEY,
 
   -- Some opaque identifier provided by the external database
   eu_external_id		VARCHAR(255) NOT NULL
 );
 CREATE UNIQUE INDEX eu_external_id_idx
 	ON external_user (eu_external_id)
-	INCLUDE (eu_wiki_id);
-CREATE UNIQUE INDEX eu_wiki_id_idx
-	ON external_user (eu_wiki_id)
+	INCLUDE (eu_local_id);
+CREATE UNIQUE INDEX eu_local_id_idx
+	ON external_user (eu_local_id)
 	INCLUDE (eu_external_id);
 
 
