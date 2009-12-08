@@ -3189,7 +3189,7 @@ class Parser
 		$dbw = wfGetDB(DB_MASTER);
 		$dbw->replace('transcache', array('tc_url'), array(
 			'tc_url' => $url,
-			'tc_time' => time(),
+			'tc_time' => $dbw->timestamp( time() ),
 			'tc_contents' => $text));
 		return $text;
 	}
