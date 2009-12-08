@@ -1013,8 +1013,9 @@ abstract class File {
 	}
 
 	/**
-	 * Returns 'true' if this image is a multipage document, e.g. a DJVU
-	 * document.
+	 * Returns 'true' if this file is a type which supports multiple pages, 
+	 * e.g. DJVU or PDF. Note that this may be true even if the file in 
+	 * question only has a single page.
 	 *
 	 * @return Bool
 	 */
