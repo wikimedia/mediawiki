@@ -753,6 +753,7 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'rev-deleted-comment'         => '(komentar uklonjen)',
 'rev-deleted-user'            => '(korisničko ime uklonjeno)',
 'rev-deleted-event'           => '(stavka registra obrisana)',
+'rev-deleted-user-contribs'   => '[korisničko ime ili IP adresa uklonjeni - izmjena sakrivena u spisku doprinosa]',
 'rev-deleted-text-permission' => "Revizija ove stranice je '''obrisana'''.
 Detalje možete vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru brisanja].",
 'rev-deleted-text-unhide'     => "Revizija ove stranice je '''obrisana'''.
@@ -778,6 +779,7 @@ Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{full
 'rev-suppressed-diff-view'    => "Jedna od revizija u ovoj razlici je '''sakrivena'''.
 Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru sakrivanja].",
 'rev-delundel'                => 'pokaži/sakrij',
+'rev-showdeleted'             => 'Pokaži',
 'revisiondelete'              => 'Obriši/vrati revizije',
 'revdelete-nooldid-title'     => 'Nije unesena tačna revizija',
 'revdelete-nooldid-text'      => 'Niste precizno odredili odredišnu reviziju/revizije da se izvrši ova funkcija, 
@@ -811,9 +813,46 @@ Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakriven
 'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
 'revdelete-success'           => "'''Vidljivost revizije uspješno postavljena.'''",
-'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti postavljena:'''
+'revdelete-failure'           => "'''Zapisnik vidljivosti nije mogao biti postavljen:'''
+$1",
+'logdelete-success'           => "'''Vidljivost evidencije uspješno postavljena.'''",
+'logdelete-failure'           => "'''Registar vidljivosti nije mogao biti postavljen:'''
 $1",
 'revdel-restore'              => 'promijeni dostupnost',
+'pagehist'                    => 'Historija stranice',
+'deletedhist'                 => 'Izbrisana historija',
+'revdelete-content'           => 'sadržaj',
+'revdelete-summary'           => 'sažetak izmjene',
+'revdelete-uname'             => 'korisničko ime',
+'revdelete-restricted'        => 'primijenjena ograničenja za administratore',
+'revdelete-unrestricted'      => 'uklonjena ograničenja za administratore',
+'revdelete-hid'               => 'sakrij $1',
+'revdelete-unhid'             => 'otkrij $1',
+'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|izmjenu|izmjene|izmjena}}',
+'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|događaj|događaja}}',
+'revdelete-hide-current'      => 'Greška pri sakrivanju stavke od $2, $1: ovo je trenutna revizija.
+Ne može biti sakrivena.',
+'revdelete-show-no-access'    => 'Greška pri prikazivanju stavke od $2, $1: ova stavka je označena kao "zaštićena".
+Nemate pristup do ove stavke.',
+'revdelete-modify-no-access'  => 'Greška pri izmjeni stavke od $2, $1: ova stavka je označena kao "zaštićena".
+Nemate pristup ovoj stavci.',
+'revdelete-modify-missing'    => 'Greška pri mijenjanju stavke ID $1: nedostaje u bazi podataka!',
+'revdelete-no-change'         => "'''Upozorenje:''' stavka od $2, $1 već posjeduje zatražene postavke vidljivosti.",
+'revdelete-concurrent-change' => 'Greška pri mijenjanju stavke od $2, $1: njen status je izmijenjen od strane nekog drugog dok ste je pokušavali mijenjati.
+Molimo provjerite zapise.',
+'revdelete-only-restricted'   => 'Ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih opcija za uklanjanje.',
+'revdelete-reason-dropdown'   => '*Uobičajeni razlozi brisanja
+** Kršenje autorskih prava
+** Neadekvatni lični podaci
+** Potencijalno klevetničke informacije',
+'revdelete-otherreason'       => 'Ostali/dodatni razlog:',
+'revdelete-reasonotherlist'   => 'Ostali razlozi',
+'revdelete-edit-reasonlist'   => 'Uredi razloge brisanja',
+'revdelete-offender'          => 'Autor revizije:',
+
+# Suppression log
+'suppressionlog'     => 'Registri sakrivanja',
+'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
 
 # Merge log
 'revertmerge' => 'Ukini spajanje',

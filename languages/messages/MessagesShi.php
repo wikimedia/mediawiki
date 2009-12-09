@@ -307,6 +307,7 @@ lcont nek  tuyskar .
 'minoredit'                  => 'Imbddel ad fssusn',
 'watchthis'                  => 'Sagg tasna yad',
 'savearticle'                => 'Ḥbu tasna',
+'showpreview'                => 'Iẓṛi amzwaru',
 'showdiff'                   => 'Mel imbddeln',
 'noarticletext'              => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
@@ -321,10 +322,19 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'template-protected'         => 'Agdal',
 
 # History pages
-'cur'       => 'Ɣilad',
-'last'      => 'Amzwaru',
-'histfirst' => 'Amzwaru',
-'histlast'  => 'Amggaru',
+'revisionasof'     => 'Askttay yaḍn f $1',
+'previousrevision' => 'Iẓṛi daɣ aqbur',
+'cur'              => 'Ɣilad',
+'last'             => 'Amzwaru',
+'histfirst'        => 'Amzwaru',
+'histlast'         => 'Amggaru',
+
+# Revision deletion
+'rev-delundel'   => 'Mel/ĥbu',
+'revdel-restore' => 'sbadl tannayt',
+
+# Merge log
+'revertmerge' => 'ḥiyyd tazdayt',
 
 # Diffs
 'lineno'     => 'Izriri $1:',
@@ -344,6 +354,8 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'notextmatches'                    => 'Ur ittyufa kra nu uṭṛiṣ igan zund ɣwad',
 'prevn'                            => 'Tamzwarut {{PLURAL:$1|$1}}',
 'nextn'                            => 'Tallid yuckan {{PLURAL:$1|$1}}',
+'viewprevnext'                     => 'Mel ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-legend'                => 'Istayn ucnubc',
 'searchprofile-everything-tooltip' => 'Cabba ɣ kullu may ityran ɣid (d ḥtta ɣ tisna nu umsgdal)',
 'searchprofile-advanced-tooltip'   => 'Cabba ɣ igmmaḍn li tuyzlaynin',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 taguri|$2 tiguriwin}})',
@@ -395,11 +407,12 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'yourlanguage'  => 'tutlayt:',
 
 # Recent changes
-'recentchanges' => 'Imbddeln imggura',
-'diff'          => 'Gar',
-'hist'          => 'Amzruy',
-'hide'          => 'Ḥbu',
-'show'          => 'Mel',
+'recentchanges'   => 'Imbddeln imggura',
+'diff'            => 'Gar',
+'hist'            => 'Amzruy',
+'hide'            => 'Ḥbu',
+'show'            => 'Mel',
+'minoreditletter' => 'm',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Imbddel zun ɣwid',
@@ -503,6 +516,9 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 # Protect
 'protect-default' => 'Immurzm i kullu imsxdamn',
 
+# Undelete
+'undeletelink' => 'mel/rard',
+
 # Namespace form on various pages
 'namespace'      => 'Taɣult',
 'blanknamespace' => '(Amuqran)',
@@ -533,6 +549,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Block/unblock
 'blocklink'    => 'Adur tajt',
+'unblocklink'  => 'kkis agdal',
 'contribslink' => 'tikkin',
 
 # Move page

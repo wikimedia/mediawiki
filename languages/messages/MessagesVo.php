@@ -1043,6 +1043,8 @@ Muton labön {{PLURAL:$1|malati|malatis}} läs $1.',
 Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sävilupol dientifi olik.',
 'prefs-help-email-required' => 'Ladet leäktronik paflagon.',
 'prefs-signature'           => 'Dispenäd',
+'prefs-dateformat'          => 'Dätafomam',
+'prefs-diffs'               => 'Difs',
 
 # User rights
 'userrights'                  => 'Guvam gebanagitätas',
@@ -1603,6 +1605,11 @@ Protoks pestütöl: <tt>$1</tt>',
 'listusersfrom'      => 'Jonolöd gebanis primölo me:',
 'listusers-submit'   => 'Jonolöd',
 'listusers-noresult' => 'Geban nonik petuvon.',
+'listusers-blocked'  => '(pebloköl)',
+
+# Special:ActiveUsers
+'activeusers-hidebots'   => 'Klänedolöd elis bot',
+'activeusers-hidesysops' => 'Klänedolöd guvanis',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Lised gebanijafamas',

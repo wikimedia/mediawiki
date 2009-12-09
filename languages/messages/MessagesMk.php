@@ -400,8 +400,8 @@ $messages = array(
 
 ==Од каде да почнете==
 * [http://meta.wikimedia.org/wiki/Manual:Configuration_settings Листа на нагодувања]
-* [http://meta.wikimedia.org/wiki/Manual:FAQ MediaWiki ЧПП (често поставувани прашања)].
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki мејлинг листа за нови верзии]',
+* [http://meta.wikimedia.org/wiki/Manual:FAQ MediaWiki ЧПП (Често поставувани прашања)].
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki поштенска листа за нови верзии]',
 
 'about'         => 'Информации за',
 'article'       => 'Статија',
