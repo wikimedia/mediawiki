@@ -192,7 +192,8 @@ $wgUpdates = array(
 		array( 'add_index', 'log_search',    'ls_field_val',     'patch-log_search-rename-index.sql' ),
 		array( 'add_index', 'change_tag',    'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
 		array( 'add_field', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
-		
+		array( 'do_update_transcache_field' ),
+
 		// version-independent searchindex setup, added in 1.16
 		array( 'sqlite_setup_searchindex' ),
 	),
@@ -1340,6 +1341,18 @@ function rename_eu_wiki_id() {
 	}
 	$wgDatabase->sourceFile( archive( 'patch-eu_local_id.sql' ) );
 	wfOut( "ok\n" );
+}
+
+function do_update_transcache_field() {
+	global $wgDatabase;
+	if( update_row_exists( 'convert transcache field' ) ) {
+		wfOut( "...transcache tc_time already converted.\n" );
+		return;
+	} else {
+		wfOut( "Converting tc_time from int(11) to varchar(13)... " );
+		$wgDatabase->sourceFile( archive( 'patch-tc-timestamp.sql' ) );
+		wfOut( "ok\n" );
+	}
 }
 
 /***********************************************************************
