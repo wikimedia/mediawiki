@@ -191,7 +191,7 @@ hookEvent( 'load', function() {
 		editForm.addEventListener('focus', onfocus, true); // This MUST be true to work
 	} else if ( editForm.attachEvent ) {
 		// IE needs a specific trick here since it doesn't support the standard
-		editForm.attachEvent( 'onfocusin', function() { onfocus(event); }, handler );
+		editForm.attachEvent( 'onfocusin', function() { onfocus(event); } );
 	}
 	
 	editForm
