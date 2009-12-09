@@ -3172,14 +3172,11 @@ class Parser
 	function fetchScaryTemplateMaybeFromCache($url) {
 		global $wgTranscludeCacheExpiry;
 		$dbr = wfGetDB(DB_SLAVE);
+		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
 		$obj = $dbr->selectRow('transcache', array('tc_time', 'tc_contents'),
-				array('tc_url' => $url));
+				array('tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ) );
 		if ($obj) {
-			$time = $obj->tc_time;
-			$text = $obj->tc_contents;
-			if ($time && time() < $time + $wgTranscludeCacheExpiry ) {
-				return $text;
-			}
+			return $obj->tc_contents;
 		}
 
 		$text = Http::get($url);
