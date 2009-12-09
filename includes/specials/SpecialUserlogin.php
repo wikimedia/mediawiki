@@ -272,7 +272,7 @@ class LoginForm {
 			return false;
 		}
 
-		if ( !$u instanceof User ) {
+		if ( !is_object( $u ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}
