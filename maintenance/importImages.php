@@ -65,7 +65,7 @@ if (isset($options['protect']) && $options['protect'] == 1)
 	if ( $limit ) $limit = (int)$limit; 
 
 	# Get the upload comment
-	$comment = 'Importing image file';
+	$comment = NULL;
 
 	if ( isset( $options['comment-file'] ) ) {
 		$comment =  file_get_contents( $options['comment-file'] );
@@ -107,7 +107,7 @@ if (isset($options['protect']) && $options['protect'] == 1)
 			if ( $checkUserBlock && ( ( $processed % $checkUserBlock ) == 0 ) ) {
 				$user->clearInstanceCache( 'name' ); //reload from DB!
 				if ( $user->isBlocked() ) {
-					echo( $user->getName() . " was blocked! Aborting." );
+					echo( $user->getName() . " was blocked! Aborting.\n" );
 					break;
 				}
 			}
@@ -147,21 +147,25 @@ if (isset($options['protect']) && $options['protect'] == 1)
 			if ( $commentExt ) {
 				$f = findAuxFile( $file, $commentExt );
 				if ( !$f ) {
-					echo( " No comment file with extension {$commentExt} found for {$file}, using default comment. " );
+					echo( " No comment file with extension {$commentExt} found for {$file}. " );
+					$commentText = $comment;
 				} else {
 					$commentText = file_get_contents( $f );
 					if ( !$f ) {
-						echo( " Failed to load comment file {$f}, using default comment. " );
+						echo( " Failed to load comment file {$f}. " );
+						$commentText = $comment;
+					} else if ( $comment ) {
+						$commentText = trim( $commentText ) . "\n\n" . trim( $comment );
 					}
-				}
-
-				if ( $commentText && $comment ) {
-					$commentText = trim( $commentText ) . "\n\n" . trim( $comment );
 				}
 			}
 
 			if ( !$commentText ) {
 				$commentText = $comment;
+			}
+
+			if ( !$commentText ) {
+				$commentText = 'Importing image file';
 			}
 
 			# Import the file	
