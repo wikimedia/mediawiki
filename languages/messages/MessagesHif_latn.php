@@ -694,6 +694,8 @@ Administrator jon ki iske lock karis hai ii kaaran diis hai: $1",
 'nocreatetext'                     => '{{SITENAME}} me nawaa panna banae ke rukawat hai.
 Aap pichhe jaae ke, ek panna jon hai, ke sampadan kare sakta hai, nai to [[Special:UserLogin|log in or create an account]].',
 'nocreate-loggedin'                => 'Aap ke nawaa panna banaae ke ijaajat nai hai.',
+'sectioneditnotsupported-title'    => 'Aap khaali vibhag ke badle nai sakta hae',
+'sectioneditnotsupported-text'     => 'Ii panna pe aap khaali vibhag ke badle nai sakta hae',
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'Aap ke uu chij kare ke ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} khatir:',
 'permissionserrorstext-withaction' => 'Aap ke lage $2 kare khatir ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} se:',
@@ -800,6 +802,7 @@ Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGEN
 Ek administrator hoe ke kaaran aap [$1 view this diff] ke dekehe saktaa hae',
 'rev-deleted-diff-view'       => "Ii antar ke ek badlao ke '''mitae''' dwa gais hae.
 Ek administrator hoe ke kaaran aap ii antar ke dekhe sakta hae; saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait aur jaankari hoe.",
+'rev-suppressed-diff-view'    => "Ii antar ke ek badlao ke '''lukae''' dewa gais hae.",
 'rev-delundel'                => 'dekhao/lukao',
 'rev-showdeleted'             => 'dekhao',
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
@@ -816,6 +819,7 @@ Ek administrator hoe ke kaaran aap ii antar ke dekhe sakta hae; saait [{{fullurl
 'logdelete-selected'          => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
 'revdelete-text'              => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
 Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae bhi sake hai interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.",
+'revdelete-confirm'           => 'Meharbani kar ke aap ii confirm karo ki aap ii kare mangta hae, aap iske asar ke samajhta hae, aur iske aap [[{{MediaWiki:Policy-url}}|the policy]] ke anusar karta hae.',
 'revdelete-suppress-text'     => "Suppression ke '''khaali''' ii chij ke khatir kaam me lawa jaae sake hai:
 * Aapan baare me jaankari thik nai hai
 *: ''ghar ke address aur telephone number, social security number, etc.''",
@@ -940,7 +944,7 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'searchprofile-project'            => 'Madat aur Project panna',
 'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Sab chij',
-'searchprofile-advanced'           => 'Advanced',
+'searchprofile-advanced'           => 'Anbhawi',
 'searchprofile-articles-tooltip'   => '$1 me khojo',
 'searchprofile-project-tooltip'    => '$1 me khojo',
 'searchprofile-images-tooltip'     => 'File ke khojo',
@@ -985,8 +989,8 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'qbsettings-none'          => 'Koi nai',
 'qbsettings-fixedleft'     => 'Left me fixed hai',
 'qbsettings-fixedright'    => 'Right me fixed hai',
-'qbsettings-floatingleft'  => 'Floating left',
-'qbsettings-floatingright' => 'Floating right',
+'qbsettings-floatingleft'  => 'Baaen or baho',
+'qbsettings-floatingright' => 'Daaen or baho',
 
 # Preferences page
 'preferences'                   => 'Pasand',

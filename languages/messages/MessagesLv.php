@@ -9,6 +9,7 @@
  *
  * @author Dark Eagle
  * @author FnTmLV
+ * @author Kikos
  * @author Knakts
  * @author Marozols
  * @author Papuass
@@ -93,8 +94,10 @@ $messages = array(
 'underline-default' => 'kā pārlūkā',
 
 # Font style option in Special:Preferences
-'editfont-style'   => 'Fonta veids rediģēšanas laukā:',
-'editfont-default' => 'kā pārlūkā',
+'editfont-style'     => 'Fonta veids rediģēšanas laukā:',
+'editfont-default'   => 'kā pārlūkā',
+'editfont-sansserif' => 'Bezserifa fonts',
+'editfont-serif'     => 'Serifa fonts',
 
 # Dates
 'sunday'        => 'svētdiena',
@@ -163,6 +166,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Šī kategorija satur tikai šo vienu failu.|Šajā kategorijā ir $2 faili, no kuriem {{PLURAL:$1|redzams ir viens|ir redzami $1}}.}}',
 'category-file-count-limited'    => 'Šajā kategorijā atrodas {{PLURAL:$1|tikai šis fails|šie $1 faili}}.',
 'listingcontinuesabbrev'         => ' (turpinājums)',
+'index-category'                 => 'Indeksētās lapas',
+'noindex-category'               => 'Neindeksētās lapas',
 
 'mainpagetext'      => "<big>'''MediaWiki veiksmīgi ieinstalēts'''</big>",
 'mainpagedocfooter' => 'Izlasi [http://meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.

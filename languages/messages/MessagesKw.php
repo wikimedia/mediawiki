@@ -603,7 +603,7 @@ $messages = array(
 'deletepage'            => 'Dilea an folen',
 'delete-confirm'        => 'Dilea "$1"',
 'delete-legend'         => 'Dilea',
-'deletedarticle'        => '"[[$1]]" dileys',
+'deletedarticle'        => 'a dhileys "[[$1]]"',
 'deletereasonotherlist' => 'Acheson aral',
 
 # Protect

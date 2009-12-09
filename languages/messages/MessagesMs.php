@@ -957,6 +957,11 @@ $1",
 'revdelete-unhid'             => 'memunculkan $1',
 'revdelete-log-message'       => '$1 bagi {{PLURAL:$2|sebuah|$2 buah}} semakan',
 'logdelete-log-message'       => '$1 bagi $2 peristiwa',
+'revdelete-reason-dropdown'   => '*Sebab penghapusan biasa
+** Pencabulan hak cipta
+** Maklumat peribadi tidak sesuai
+** Maklumat berpotensi fitnah',
+'revdelete-otherreason'       => 'Sebab lain/tambahan:',
 'revdelete-edit-reasonlist'   => 'Ubah sebab-sebab hapus',
 
 # Suppression log
