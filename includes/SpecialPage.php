@@ -858,7 +858,7 @@ Perhaps no page aliases are defined for it?" );
 		global $wgRequest;
 		$params = array();
 		foreach( $this->mAllowedRedirectParams as $arg ) {
-			if( $val = $wgRequest->getVal( $arg, false ) )
+			if( ( $val = $wgRequest->getVal( $arg, null ) ) !== null )
 				$params[] = $arg . '=' . $val;
 		}
 
@@ -965,6 +965,8 @@ class SpecialMytalk extends UnlistedSpecialPage {
 class SpecialMycontributions extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct(  'Mycontributions' );
+		$this->mAllowedRedirectParams = array( 'limit', 'namespace', 'tagfilter',
+			'offset', 'dir', 'year', 'month', 'feed' );
 	}
 
 	function getRedirect( $subpage ) {

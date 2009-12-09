@@ -674,6 +674,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20549) Parser tests were broken on SQLite backend
 * (bug 21776) Interwiki urls like http://en.wikibooks.org/wiki/cs: should give
   a redirect instead of a baderror.
+* (bug 21803) Special:MyContributions now keeps the query string parameters
+* Redirecting special pages now keep query string paramters set to "0" (e.g.
+  for namespace)
 
 == API changes in 1.16 ==
 
