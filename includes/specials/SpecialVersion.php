@@ -20,7 +20,7 @@ class SpecialVersion extends SpecialPage {
 	);
 
 	function __construct(){
-		parent::__construct( 'Version' );	
+		parent::__construct( 'Version' );
 	}
 
 	/**
@@ -126,7 +126,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return mixed
 	 */
-	public static function getVersion( $flags = ''  ) {
+	public static function getVersion( $flags = '' ) {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
 
@@ -136,7 +136,7 @@ class SpecialVersion extends SpecialPage {
 		} elseif( $flags === 'nodb' ) {
 			$version = "$wgVersion (r{$info['checkout-rev']})";
 		} else {
-			$version = $wgVersion . 
+			$version = $wgVersion . ' ' .
 				wfMsg( 
 					'version-svn-revision', 
 					isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
