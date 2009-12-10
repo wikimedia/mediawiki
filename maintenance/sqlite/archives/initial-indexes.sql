@@ -352,7 +352,7 @@ DROP TABLE IF EXISTS /*_*/transcache;
 CREATE TABLE /*_*/transcache (
   tc_url varbinary(255) NOT NULL,
   tc_contents text,
-  tc_time int NOT NULL
+  tc_time binary(14) NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/tc_url_idx ON /*_*/transcache (tc_url);
 

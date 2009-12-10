@@ -1350,7 +1350,7 @@ function do_update_transcache_field() {
 		wfOut( "...transcache tc_time already converted.\n" );
 		return;
 	} else {
-		wfOut( "Converting tc_time from int(11) to varchar(13)... " );
+		wfOut( "Converting tc_time from int(11) to binary(14)... " );
 		$wgDatabase->sourceFile( archive( 'patch-tc-timestamp.sql' ) );
 		wfOut( "ok\n" );
 	}
