@@ -638,7 +638,6 @@ class UndeleteForm {
 		}
 		if( $this->mFile !== null ) {
 			$file = new ArchivedFile( $this->mTargetObj, '', $this->mFile );
-			$file->load();
 			// Check if user is allowed to see this file
 			if ( !$file->exists() ) {
 				$wgOut->addWikiMsg( 'filedelete-nofile', $this->mFile );
