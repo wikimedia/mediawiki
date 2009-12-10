@@ -11,6 +11,28 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-underline'               => 'A shaya zaruruwa',
+'tog-highlightbroken'         => 'A haskaka katsattsin zaruruwa <a href="" class="new">kamar haka</a> (koko: kamar haka<a href="" class="internal">?</a>)',
+'tog-justify'                 => 'A daidaita sakin layuka',
+'tog-hideminor'               => 'A ɓoye ƙananan gyare-gyare na baya-bayan nan',
+'tog-hidepatrolled'           => 'A ɓoye gyare-gyaren kan ido a cikin gyare-gyare bayan-bayan nan',
+'tog-newpageshidepatrolled'   => 'A ɓoye shafuna kan ido a cikin sabbin shafuna',
+'tog-extendwatchlist'         => 'A faɗaɗa jerin kan ido ya nuna duka gyare-gyare, ba na baya-bayan nan kawai ba',
+'tog-usenewrc'                => 'A yi amfani da kyautattun gyare-gyare na baya-bayan nan (ana buƙatar Javascript)',
+'tog-numberheadings'          => 'A lambace kanun matani kai tsaye',
+'tog-showtoolbar'             => 'A nuna sandar kayan aiki ta gyarawa (ana buƙatar JavaScript)',
+'tog-editondblclick'          => 'A gyara shafuna da dabar-kiliki (ana buƙatar JavaScript)',
+'tog-editsection'             => 'A lamunta gyara sashe ta hanyar zaruruwan [gyarawa]',
+'tog-editsectiononrightclick' => 'A lamunta gyara shashe da kilikin dama a kan kanun shashe (ana buƙatar JavaScript)',
+'tog-showtoc'                 => 'A nuna jadawalin kanu (cikin shafuna masu fiye da kanu 3)',
+'tog-rememberpassword'        => 'A adana bayanan loginkina a wannan kwamfyuta',
+'tog-editwidth'               => 'A faɗaɗa sararin gyarawa ya cika duka bangon',
+'tog-watchcreations'          => 'A daɗa shafunan da na ƙirƙira a cikin jerina na kan ido',
+'tog-watchdefault'            => 'A daɗa shafunan da na gyara a cikin jerina na kan ido',
+'tog-watchmoves'              => 'A daɗa shafunan da na gusar a cikin jerina na kan ido',
+'tog-watchdeletion'           => 'A daɗa shafunan da na shafe a cikin jerina na kan ido',
+
 # Dates
 'january'   => 'Janairu',
 'february'  => 'Faburairu',
@@ -111,7 +133,7 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 'whatlinkshere' => 'Zaruruwan wannan shafi',
 
 # Block/unblock
-'blocklink'    => '',
+'blocklink'    => 'Hanawa',
 'contribslink' => 'Gudummuwa',
 
 # Tooltip help for the actions

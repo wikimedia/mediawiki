@@ -893,6 +893,8 @@ Hark'aq kamachiqqa kaytam nirqan: $1, kayraykum nispa.",
 'nocreatetitle'                    => "P'anqa kamariyqa saywachasqam",
 'nocreatetext'                     => "{{SITENAME}}piqa saywachasqam musuq p'anqakunata kamariy. Ñawpaqman kutiytam atinkiman kachkaqña p'anqata llamk'apuspa. Astawantaq, [[Special:UserLogin|yaykuy icha musuq rakiqunata kichariy]].",
 'nocreate-loggedin'                => "Manam saqillasunkichu musuq p'anqakunata kamariyta.",
+'sectioneditnotsupported-title'    => "Raki allichayqa manam q'imisqachu",
+'sectioneditnotsupported-text'     => "Raki allichayqa kay p'anqapi manam q'imisqachu.",
 'permissionserrors'                => 'Saqillay pantasqakuna',
 'permissionserrorstext'            => 'Manam saqillasunkichu, {{PLURAL:$1|kayraykum|kayraykum}}:',
 'permissionserrorstext-withaction' => 'Manam saqillasunkichu $2-ta, {{PLURAL:$1|kayraykum|kayraykum}}:',
@@ -974,6 +976,7 @@ Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 'rev-deleted-comment'         => '(qullusqa rimapuy)',
 'rev-deleted-user'            => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'           => "(qullusqa hallch'a)",
+'rev-deleted-user-contribs'   => "[ruraqpa sutinqa icha IP tiyayqa qichusqam - musuqchasqaqa llamk'apusqakunamanta pakasqam]",
 'rev-deleted-text-permission' => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
 Astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
 'rev-deleted-text-unhide'     => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
@@ -1033,8 +1036,8 @@ Kamachiq kaspayki kay wakin kayta qhawayta atinkim; astawanchá rikunkiman [{{fu
 'revdelete-submit'            => "Akllasqa {{PLURAL:$1|llamk'apusqapaq|llamk'apusqakunapaq}} llamk'achiy",
 'revdelete-logentry'          => "hukchasqa [[$1]]-paq llamk'apusqap rikunalla kaynin",
 'logdelete-logentry'          => 'hukchasqa [[$1]]-paq tukusqap rikunalla kaynin',
-'revdelete-success'           => "'''Llamk'apusqap rikunalla kayninqa aypalla hukchasqañam.'''",
-'revdelete-failure'           => "'''Manam atinichu musuqchasqakunap rikunalla kayninta churayta:'''
+'revdelete-success'           => "'''Llamk'apusqap rikunalla kayninqa aypalla musuqchasqañam.'''",
+'revdelete-failure'           => "'''Manam atinichu musuqchasqakunap rikunalla kayninta musuqchayta:'''
 $1",
 'logdelete-success'           => "'''Tukusqap rikunalla kayninqa aypalla hukchasqañam.'''",
 'logdelete-failure'           => "'''Manam atinichu hallch'ap rikunalla kayninta churayta:'''
@@ -1892,11 +1895,13 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'listusers-blocked'  => "(hark'asqa)",
 
 # Special:ActiveUsers
-'activeusers'          => "Llamk'achkaq ruraqkuna",
-'activeusers-intro'    => "Kay qatiqpiqa ruraqkunatam rikunki, qhipaq $1 {{PLURAL:$1|p'unchawpi|p'unchawkunapi}} kay wikipi imatapas ruraq.",
-'activeusers-count'    => "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}} ñaqha {{PLURAL:$3|p'unchawpi|$3 p'unchawkunapi}}",
-'activeusers-from'     => 'Ruraqkunata rikuchiy, kaywan qallarispa:',
-'activeusers-noresult' => 'Ruraqkunataqa manam tarinichu.',
+'activeusers'            => "Llamk'achkaq ruraqkuna",
+'activeusers-intro'      => "Kay qatiqpiqa ruraqkunatam rikunki, qhipaq $1 {{PLURAL:$1|p'unchawpi|p'unchawkunapi}} kay wikipi imatapas ruraq.",
+'activeusers-count'      => "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}} ñaqha {{PLURAL:$3|p'unchawpi|$3 p'unchawkunapi}}",
+'activeusers-from'       => 'Ruraqkunata rikuchiy, kaywan qallarispa:',
+'activeusers-hidebots'   => 'Rurana antachakunata pakay',
+'activeusers-hidesysops' => 'Kamachiqkunata pakay',
+'activeusers-noresult'   => 'Ruraqkunataqa manam tarinichu.',
 
 # Special:Log/newusers
 'newuserlogpage'              => "Rakiquna kamariy hallch'a",
@@ -2223,6 +2228,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => "Ruraqta hark'ay",
+'blockip-title'                   => "Ruraqta hark'ay",
 'blockip-legend'                  => "Ruraqta hark'ay",
 'blockiptext'                     => "Kay qatiq hunt'ana p'anqata llamk'achiy huk sapaq IP huchhamanta icha ruraqpa rakiqunanmanta qillqay atiyta hark'anapaq.
 Kayqa rurasqa kachun wandalismullatam hark'anapaq, [[{{MediaWiki:Policy-url}}|{{SITENAME}}pa kawpayninkamallam]].

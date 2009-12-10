@@ -110,6 +110,7 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|Sumut atassuseq|Sunut atasut}}',
 
 'about'         => 'Pillugu',
+'newwindow'     => '(nutaamut ammassaaq)',
 'cancel'        => 'Sussa',
 'moredotdotdot' => 'Suli...',
 'mytalk'        => 'Oqalliffikka',
@@ -211,6 +212,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
 # Edit pages
 'summary'      => 'Qanoq issusersiuineq:',
+'watchthis'    => 'Allaaserisaq ersersimatiguk',
 'savearticle'  => 'Toqqoruk',
 'preview'      => 'Isikkua',
 'showpreview'  => 'Isikkua takuuk',
@@ -284,12 +286,14 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'allpagessubmit' => 'Tassunngarit',
 
 # Watchlist
+'watchlist'      => 'Ersersimasut',
 'mywatchlist'    => 'Nuisatiffikka',
 'addedwatch'     => 'Nakkutilliinermi allattorsimaffimmut ilanngunneqarsimavoq',
 'addedwatchtext' => "Qupperneq \"[[:\$1]]\" ilanngunneqarsimavoq [[Special:Watchlist|nakkutilliinermut allattorsimaffimmut]] ilanngunneqarsimavoq. Matumani quppernermi siunissami allannguutit, aammalu oqallinnermi qupperneq, maani saqqummersinneqassapput, quppernerlu '''erseqqissagaasoq''' inisseqqassalluni [[Special:RecentChanges|allattorsimaffik kingullermi allannguutinik imalik]] ajornannginnerussammat nassaariniarnissaanut.
 
 Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taava quppernerup sinaatungaani \"Nakkutilliinermi allattorsimaffik peeruk\" tooruk.",
 'watch'          => 'Ersilli',
+'watchthispage'  => 'Qupperneq ersersimatiguk',
 'unwatch'        => 'Ersitsinnagu',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -303,11 +307,13 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'prot_1movedto2' => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
 
 # Namespace form on various pages
-'namespace' => 'Quppernerup ilusia:',
+'namespace'      => 'Quppernerup ilusia:',
+'blanknamespace' => '(Pingaarneq)',
 
 # Contributions
-'mycontris' => 'Tapikka',
-'uctop'     => '(kingulleq)',
+'contributions' => 'Atuisup tapii',
+'mycontris'     => 'Tapikka',
+'uctop'         => '(kingulleq)',
 
 'sp-contributions-talk'     => 'Oqallinneq',
 'sp-contributions-username' => 'IP adresse imalt. atuisoq:',
@@ -320,6 +326,11 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'contribslink' => 'tapikkat',
 
 # Move page
+'movearticle'     => 'Qupperneq nuuguk',
+'move-watch'      => 'Qupperneq ersersimatiguk',
+'movepagebtn'     => 'Qupperneq nuuguk',
+'pagemovedsub'    => 'Nuunnera iluatsippoq',
+'movepage-moved'  => '<big>Qupperneq \'\'\'"$1" uunga nuuppoq "$2"\'\'\'</big>',
 '1movedto2'       => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
 '1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
 
