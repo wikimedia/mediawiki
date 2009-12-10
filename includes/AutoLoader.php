@@ -76,6 +76,7 @@ $wgAutoloadLocalClasses = array(
 	'ExternalStore' => 'includes/ExternalStore.php',
 	'ExternalUser' => 'includes/ExternalUser.php',
 	'ExternalUser_Hardcoded' => 'includes/extauth/Hardcoded.php',
+	'ExternalUser_MediaWiki' => 'includes/extauth/MediaWiki.php',
 	'ExternalUser_vB' => 'includes/extauth/vB.php',
 	'FatalError' => 'includes/Exception.php',
 	'FakeTitle' => 'includes/FakeTitle.php',
