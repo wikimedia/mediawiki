@@ -272,8 +272,8 @@ $1',
 'copyrightpage'        => '{{ns:project}}:Авторлыкъ хакълары',
 'currentevents'        => 'Бусагъатда бола тургъанла',
 'currentevents-url'    => 'Project:Бусагъатда бола тургъанла',
-'disclaimers'          => 'Джууаплылыкъны унамау',
-'disclaimerpage'       => 'Project:Джууаплылыкъны унамау',
+'disclaimers'          => 'Джууаблылыкъны унамау',
+'disclaimerpage'       => 'Project:Джууаблылыкъны унамау',
 'edithelp'             => 'Тюзетиуню юсюнден болушлукъ',
 'edithelppage'         => 'Help:Тюзетиу',
 'helppage'             => 'Help:Болушлукъ',
@@ -303,7 +303,7 @@ $1',
 'viewsourceold'           => 'Башланнган кодха къара',
 'editlink'                => 'тюзетиу',
 'viewsourcelink'          => 'башланнган кодха къара',
-'editsectionhint'         => 'Тюзетирге секцияны: $1',
+'editsectionhint'         => '$1 бёлюмню тюзетиу',
 'toc'                     => 'Башлары',
 'showtoc'                 => 'кёгюз',
 'hidetoc'                 => 'джашыр',
@@ -1534,87 +1534,374 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'listredirects' => 'Джибериулени списогу',
 
 # Unused templates
-'unusedtemplates' => 'Хайырландырылмагъан шаблонла',
+'unusedtemplates'     => 'Хайырландырылмагъан шаблонла',
+'unusedtemplatestext' => 'Бу бет {{ns:template}} алан атында тургъан эмда башха бетлеге къошулгмаъан бетлени списогу барды. Кетериуню аллы бла, шаблоннга башха джибериулени джокоълагъыз.',
+'unusedtemplateswlh'  => 'башха джибериуле',
+
+# Random page
+'randompage'         => 'Сакъланмагъан бет',
+'randompage-nopages' => '{{PLURAL:$2|Ат аланында|Ат аланында}} чырт бир бет джокъду: $1.',
+
+# Random redirect
+'randomredirect'         => 'Сакъланмагъан джибериу',
+'randomredirect-nopages' => '"$1" ат аланда чырт бир джибериу джокъду.',
 
 # Statistics
-'statistics'       => 'Статистика',
-'statistics-pages' => 'Бетле',
+'statistics'                   => 'Статистика',
+'statistics-header-pages'      => 'Бетлени статистикалары',
+'statistics-header-edits'      => 'Тюзетиулени статистикасы',
+'statistics-header-views'      => 'Къарауланы статистикалары',
+'statistics-header-users'      => 'Къошулуучуланы статистикалары',
+'statistics-header-hooks'      => 'Башха статистика',
+'statistics-articles'          => 'Статьяла',
+'statistics-pages'             => 'Бетле',
+'statistics-pages-desc'        => 'Википедиягъы бютеу бетле, сюзюу бетле, джибериуле эмда башхала.',
+'statistics-files'             => 'Джюкленнген файлла',
+'statistics-edits'             => '{{SITENAME}} къуралгъанындан бери этилген тюзетиуле.',
+'statistics-edits-average'     => 'Хар бетдеги тюзетиулени орта саны',
+'statistics-views-total'       => 'Къараула бютеулей',
+'statistics-views-peredit'     => 'Тюзетиуге къарауну саны',
+'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Иш кёзюуню] узунлугъу',
+'statistics-users'             => 'Регистрация этилген [[Special:ListUsers|къошулуучула]]',
+'statistics-users-active'      => 'Актив къошулуучула',
+'statistics-users-active-desc' => 'Ахыр {{PLURAL:$1|1 кюнде|$1 кюнде}} ишлеме этген къошулуучула',
+'statistics-mostpopular'       => 'Эм кёб къаралгъан бетле',
+
+'disambiguations'      => 'Кёб магъаналы ангыламланы бетлери',
+'disambiguationspage'  => 'Template:кёб магъаналылыкъ',
+'disambiguations-text' => "Бу бетле '''кёб магъаналы бетлеге''' джибериу этедиле. Аны орнуна ала белгили бир статьягъа джибериу этерге керек болурла.<br />
+[[MediaWiki:Disambiguationspage]] бетде аты салынган шаблон бетде болса, ол бет кёб магъаналы бетге саналады.",
+
+'doubleredirects'            => 'Джибериу болгъан джибериуле',
+'doubleredirectstext'        => 'Бу бетде башхы джибериулеге этилген джибериулени списогу барды.
+Хар тизгин биринчи неда экинчи джибериуню эмда асламысында бетни аты джазылгъан, биринчи джибериу кёргюзген, экинчи джибериуню нюзюр бети джазылады.
+<s>Юсю сызылгъан</s джазыула тюзетилген этгендиле.',
+'double-redirect-fixed-move' => '[[$1]] бет атын тюрлендиргенди, энди ол [[$2]] бетге джибериу этеди',
+'double-redirect-fixer'      => 'Джибериулени тюзетиуючю',
+
+'brokenredirects'        => 'Халатлы джибериуле',
+'brokenredirectstext'    => 'Бу джибериуле болмагъан бетлеге байлам бередиле:',
+'brokenredirects-edit'   => 'тюзет',
+'brokenredirects-delete' => 'кетер',
+
+'withoutinterwiki'         => 'Башха тиллеге байламы болмагъан бетле',
+'withoutinterwiki-summary' => 'Бу бетлени интернет-джибериулериулери джокъду:',
+'withoutinterwiki-legend'  => 'Префикс',
+'withoutinterwiki-submit'  => 'Кёргюз',
+
+'fewestrevisions' => 'Эм аз версиясы болгъан бетле',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|байт}}',
-'nmembers'      => '$1 {{PLURAL:$1|объект}}',
-'prefixindex'   => 'Бетлени атлары башланнганына кёре кёргюзюу',
-'newpages'      => 'Джангы бетле',
-'move'          => 'Атын тюрлендириу',
-'movethispage'  => 'Бу бетни атын тюрлендир',
-'pager-newer-n' => '{{PLURAL:$1|1 джангыракъ|$1 джангыракъ}}',
-'pager-older-n' => '{{PLURAL:$1|1 эскирек|$1 эскирек}}',
+'nbytes'                  => '$1 {{PLURAL:$1|байт}}',
+'ncategories'             => '$1 {{PLURAL:$1|категория|категорияла}}',
+'nlinks'                  => '$1 {{PLURAL:$1|джибериу|джибериу}}',
+'nmembers'                => '$1 {{PLURAL:$1|объект}}',
+'nrevisions'              => '$1 {{PLURAL:$1|версия|версия}}',
+'nviews'                  => '$1 {{PLURAL:$1|къарау|къарау}}',
+'specialpage-empty'       => 'Сорма эсеб келтирмеди.',
+'lonelypages'             => 'Ёксюз бетле',
+'lonelypagestext'         => 'Тюбюндеги бетлеге {{SITENAME}} сайтдагъы башха бетледен джибериу берилмегенди неда ала башха бетлеге къошулмагъандыла.',
+'uncategorizedpages'      => 'Категориясыз бетле',
+'uncategorizedcategories' => 'Категория салынмагъан категорияла',
+'uncategorizedimages'     => 'Категория салынмагъан файлла',
+'uncategorizedtemplates'  => 'Категория салынмагъан шаблонла',
+'unusedcategories'        => 'Хайырланылынмагъан категорияла',
+'unusedimages'            => 'Хайырланмагъан файлла',
+'popularpages'            => 'Популяр бетле',
+'wantedcategories'        => 'Керекли категорияла',
+'wantedpages'             => 'Керекли бетле',
+'wantedpages-badtitle'    => 'Сорманы эсеблеринде халатлы башлыкъ: $1',
+'wantedfiles'             => 'Керекли файлла',
+'wantedtemplates'         => 'Керекли шаблонла',
+'mostlinked'              => 'Кесине кёб джибериу болгъан бетле',
+'mostlinkedcategories'    => 'Эм кёб статьясы болгъан категорияла',
+'mostlinkedtemplates'     => 'Эм кёб хайырланнган шаблонла',
+'mostcategories'          => 'Эм кёб категориягъа кирген бетле',
+'mostimages'              => 'Эм кёб джибериу берилген файлла',
+'mostrevisions'           => 'Эм кёб тюзетилген бетле',
+'prefixindex'             => 'Бетлени атлары башланнганына кёре кёргюзюу',
+'shortpages'              => 'Къысха бетле',
+'longpages'               => 'Узун бетле',
+'deadendpages'            => 'Тупик бетле',
+'deadendpagestext'        => 'Бу бетле,{{SITENAME}} сайтда башха бетлеге джибериу бермейдиле.',
+'protectedpages'          => 'Къоруугъа алыннган бетле',
+'protectedpages-indef'    => 'Къуру болджалсыз къоруу',
+'protectedpages-cascade'  => 'Джангыз секиртме къоруу',
+'protectedpagestext'      => 'Эндиги бетле атын тюрлендириу бла тюзетиуден джакъланнганыбдыла.',
+'protectedpagesempty'     => 'Бусагъатда бу параметрле бла джакъланнган бет джекъду.',
+'protectedtitles'         => 'Джакъланнган башлыкъла',
+'protectedtitlestext'     => 'Бу атланы хайырланыргъа эркинлик джокъду',
+'protectedtitlesempty'    => 'Бусагъатда, бу параметрле бла джакъланнган башлыкъ джокъду.',
+'listusers'               => 'Къошулуучуланы списогу',
+'listusers-editsonly'     => 'Къуру тюзетиу этген къошлуучуланы кёргюз',
+'listusers-creationsort'  => 'Къуралгъан заманына кёре сафла',
+'usereditcount'           => '$1 {{PLURAL:$1|тюзетиу|тюзетиу}}',
+'usercreated'             => '$1 $2-де къуралгъанды',
+'newpages'                => 'Джангы бетле',
+'newpages-username'       => 'Къошулуучуну аты:',
+'ancientpages'            => 'Ахыр тюзетиуге кёре эм эски болгъан статьяла',
+'move'                    => 'Атын тюрлендириу',
+'movethispage'            => 'Бу бетни атын тюрлендир',
+'unusedimagestext'        => 'Унутмагъыз, башха веб сайтланы бу файлгъа ачыкъдан URL бла джибериу берирге боллукъларын, эмда аны ючюн бу списокга киргенине къарамай актив халда хайырланыргъа боллукъду.',
+'unusedcategoriestext'    => 'Бу категорияла болгъанлыкъгъа, чырт бир статья неда категория джанындан хайырланмыайдыла.',
+'notargettitle'           => 'Нюзюр белгиленмегенди',
+'notargettext'            => 'Бу функцияны ишлетир ючюн нюзюр бетни неда къошулуучуну белгилемегенсиз.',
+'nopagetitle'             => 'Быллай нюзюр бет джокъду',
+'nopagetext'              => 'Белгиленнген нюзюр бет джокъду.',
+'pager-newer-n'           => '{{PLURAL:$1|1 джангыракъ|$1 джангыракъ}}',
+'pager-older-n'           => '{{PLURAL:$1|1 эскирек|$1 эскирек}}',
+'suppress'                => 'Джашырыу',
 
 # Book sources
 'booksources'               => 'Китабланы чыкъгъан джерлери',
 'booksources-search-legend' => 'Китабны юсюнден информация излеу',
+'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Таб',
+'booksources-text'          => 'Бу бетде джангы эмда эски китаб сатхан башха сайтлагъа джибериулени списогу барды, эм излеген китабларыгъызны юсюнден кёбюрек билги билирге боллукъсуз.',
+'booksources-invalid-isbn'  => 'Берилген ISBN джараусуз кибик кёрюнеди; оригинал къайнакъдан кёчюрюлген заманда халатланы контроль этигиз.',
 
 # Special:Log
-'log' => 'Журналла',
+'specialloguserlabel'  => 'Къошулуучу:',
+'speciallogtitlelabel' => 'Башлыкъ:',
+'log'                  => 'Журналла',
+'all-logs-page'        => 'Бютеу ачыкъ журналла',
+'alllogstext'          => '{{SITENAME}} ючюн бютеу бар болгъан журналланы бирлешген списогу.
+Журнал типини, къошулуучу атны (уллу-гитче харифге кёре) неда тийилген бетни (олда уллу-гитче харифге кёре) элерге боллукъсуз.',
+'logempty'             => 'Журналлагъа келишген билги джокъду.',
+'log-title-wildcard'   => 'Бу символладан башланнган башлыкъланы изле',
 
 # Special:AllPages
-'allpages'       => 'Бютёу бетле',
-'alphaindexline' => '$1 бетден $2 бетге дери',
-'prevpage'       => 'Алдагъы бет ($1)',
-'allpagesfrom'   => 'Мунга башланнган бетлени чыгъар:',
-'allpagesto'     => 'Мында чыгъарыуну тохтат:',
-'allarticles'    => 'Бютёу бары бетле',
-'allpagessubmit' => 'Кёгюз',
+'allpages'          => 'Бютёу бетле',
+'alphaindexline'    => '$1 бетден $2 бетге дери',
+'nextpage'          => 'Эндиги бет ($1)',
+'prevpage'          => 'Алдагъы бет ($1)',
+'allpagesfrom'      => 'Мунга башланнган бетлени чыгъар:',
+'allpagesto'        => 'Мында чыгъарыуну тохтат:',
+'allarticles'       => 'Бютёу бары бетле',
+'allinnamespace'    => '«$1» атла аламдагъы бютёу бары бетле',
+'allnotinnamespace' => 'Бютеу бетле ($1 аламда болмагъанла)',
+'allpagesprev'      => 'Аллындагъы',
+'allpagesnext'      => 'Эндиги',
+'allpagessubmit'    => 'Кёгюз',
+'allpagesprefix'    => 'Былайда джазгъан харифледен башланнган бетлени список эт:',
+'allpagesbadtitle'  => 'Кирилген бет аты тиллени арасы байлм неда викилени арасында байлам болгъаны себебли джараусузду. Башлыкълада хайырланыуу джасакъ болгъан бир неда андан аслам символ тутаргъа болур.',
+'allpages-bad-ns'   => '{{SITENAME}} сайтда "$1" ат аламы джокъду.',
+
+# Special:Categories
+'categories'                    => 'Категорияла',
+'categoriespagetext'            => 'Ызындан келген {{PLURAL:$1|категория|категорияла}} бет неда медия-файл тутадыла.
+[[Special:UnusedCategories|Хайырланмагъан категорияла]] былайда кёргюзюлмегендиле.
+Дагъыда [[Special:WantedCategories|изленнген категорияла]] гъакъарагъыз.',
+'categoriesfrom'                => 'Бу бла башланнган категорияланы кёргюз:',
+'special-categories-sort-count' => 'санына кёре сафла',
+'special-categories-sort-abc'   => 'алфавит халда тиз',
+
+# Special:DeletedContributions
+'deletedcontributions'             => 'Кетерилген къошулучуну къошхан юлюшю',
+'deletedcontributions-title'       => 'Кетерилген къошулучуну къошхан юлюшю',
+'sp-deletedcontributions-contribs' => 'къошхан юлюш',
 
 # Special:LinkSearch
-'linksearch' => 'Тыш джибериуле',
+'linksearch'       => 'Тыш джибериуле',
+'linksearch-pat'   => 'Излеуге шаблон:',
+'linksearch-ns'    => 'Ат алам:',
+'linksearch-ok'    => 'Таб',
+'linksearch-text'  => '"*.wikipedia.org"  кибик джокерле хайырландырыргъа боллукъду.<br />
+Дагъан болгъан протоколла: <tt>$1</tt>',
+'linksearch-line'  => '$1-ге  $2-ден джибериу берилгенди',
+'linksearch-error' => 'Джокерле къуру адреслени аллында хайырланыргъа боллукъдула.',
+
+# Special:ListUsers
+'listusersfrom'      => 'Бу бла башланнган къошулуучуланы кёргюз:',
+'listusers-submit'   => 'Кёргюз',
+'listusers-noresult' => 'Къошулуучула табылмадыла.',
+'listusers-blocked'  => '(блокга салыныбды)',
+
+# Special:ActiveUsers
+'activeusers'            => 'Актив къошулуучуланы списогу',
+'activeusers-intro'      => 'Бу, ахыр $1 {{PLURAL:$1|кюнде|кюнде}} къаллайда болсун ишлетме кёргюзген къошлуучуланы списогуду.',
+'activeusers-count'      => 'Ахыр {{PLURAL:$3|günde|$3 кюнде}} $1 {{PLURAL:$1|тюзетиу|тюзетиу}}',
+'activeusers-from'       => 'Бу бла башланнган къошлуучуланы кёргюз:',
+'activeusers-hidebots'   => 'Ботланы джашыр',
+'activeusers-hidesysops' => 'Администраторланы джашыр',
+'activeusers-noresult'   => 'Къошлуучу табылмады.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Къошулуучуланы регистрацияларыны журналы',
-'newuserlog-create-entry' => 'Джангы къошулуучу',
+'newuserlogpage'              => 'Къошулуучуланы регистрацияларыны журналы',
+'newuserlogpagetext'          => 'Кёб болмай регистрация этген къошулуучуланы списогу.',
+'newuserlog-byemail'          => 'пароль электрон почта бла джиберилгенди',
+'newuserlog-create-entry'     => 'Джангы къошулуучу
+Джангы къошулуучу',
+'newuserlog-create2-entry'    => '$1 джангы аккуантны къурады',
+'newuserlog-autocreate-entry' => 'Аккуант автомат халда къуралды',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(группаны списогу)',
+'listgrouprights'                      => 'Къошулуучуланы къауумуну хакълары',
+'listgrouprights-summary'              => 'Тюбюндеги бу викиде танылгъан къошулуучу къауумланы эмда аланы хакъларыны списогу.
+Энчи хакъла бла байламлы [[{{MediaWiki:Listgrouprights-helppage}}|асламыракъ билги]] болургъа болур.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Берилген хакъла</span>
+* <span class="listgrouprights-revoked">Сыйырылгъан хакъла</span>',
+'listgrouprights-group'                => 'Къауум',
+'listgrouprights-rights'               => 'Хакъла',
+'listgrouprights-helppage'             => 'Help:Къауумланы хакълары',
+'listgrouprights-members'              => '(группаны списогу)',
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-addgroup'             => '{{PLURAL:$2|Къауум|Къауум}} къошаргъа боллукъду: $1',
+'listgrouprights-removegroup'          => '{{PLURAL:$2|Къауумну|Къауумланы}} къоратыргъа боллукъду: $1',
+'listgrouprights-addgroup-all'         => 'Бютеу къауумлагъа къошаргъа боллукъду',
+'listgrouprights-removegroup-all'      => 'Бютеу къауумланы къоратыргъа боллукъду',
+'listgrouprights-addgroup-self'        => 'Кесини аккуантына {{PLURAL:$2|къауум|къауумла}} къошаллыкъды: $1',
+'listgrouprights-removegroup-self'     => 'Кесини аккуантындан {{PLURAL:$2|къауум|къауумланы}} къораталлыкъды: $1',
+'listgrouprights-addgroup-self-all'    => 'Бютеу къауумланы кесини аккуантына къошаллыкъды',
+'listgrouprights-removegroup-self-all' => 'Кесини аккуантындан бютёу къауумланы къораталлыкъды',
 
 # E-mail user
-'emailuser' => 'Къошулуучугъа письмо',
+'mailnologin'      => 'Джиберирге адрес джокъду',
+'mailnologintext'  => 'Башха къошулуучулагъа эл. почта джиберелир ючюн [[Special:UserLogin|системагъа кирирге]] керексиз эм [[Special:Preferences|джарашдырыуланы]] бетинде джараулу эл. почта адрес болургъа керекди.',
+'emailuser'        => 'Къошулуучугъа письмо',
+'emailpage'        => 'Къошулуучугъа письмо джибер',
+'emailpagetext'    => 'Бу къошулуучуну почтасына письмо джиберир ючюн бу форманы толтурургъа боллукъсуз.
+Ызына адрес болуб сиз [[Special:Preferences|джарашдырыуларыгъызда]] кёргюзген адрес белгиленникди, ол себеден алыучу сизге тюз джууаб берирге мадарлы боллукъду.',
+'usermailererror'  => 'Халат ючюн элетктрон письмо ызына къайтды:',
+'defemailsubject'  => '{{SITENAME}} письмо',
+'noemailtitle'     => 'Электрон почтаны адреси джокъду',
+'noemailtext'      => 'Бу къошулуучу керти электрон адресин бермегенди.',
+'nowikiemailtitle' => 'Электрон письмо джиберирге эркинлик джокъду',
+'nowikiemailtext'  => 'Бу къошулуучу, башха къошулуучуладан электрон писмо алыргъа излемегенин билдиргенди.',
+'email-legend'     => 'Башха {{SITENAME}} къошулуучугъа электрон письмо джибер',
+'emailfrom'        => 'Кимден:',
+'emailto'          => 'Кимге:',
+'emailsubject'     => 'Тема:',
+'emailmessage'     => 'Билдириу:',
+'emailsend'        => 'Джибер',
+'emailccme'        => 'Письмону копиясын меннге джибер',
+'emailccsubject'   => '$1-ге джиберилген письмону копиясы: $2',
+'emailsent'        => 'Письмо джиберилди',
+'emailsenttext'    => 'Сизни электрон билдириуюгюз джиберилгенди.',
+'emailuserfooter'  => 'Бу письмо $1 джанындан $2 къошулуучугъа, {{SITENAME}} сайтдагъы "Къошулуучугъу письмо джибер" функциясы бла джиберилгенди.',
 
 # Watchlist
-'watchlist'         => 'Сынчыкълау списогум',
-'mywatchlist'       => 'Сынчыкълау списогум',
-'watchlistfor'      => "('''$1''' ючюн)",
-'addedwatch'        => 'Сынчыкълау бетге къош',
-'addedwatchtext'    => '«[[:$1]]» бет [[Special:Watchlist|сынчыкълау бетигизге]] къошулду.
+'watchlist'            => 'Сынчыкълау списогум',
+'mywatchlist'          => 'Сынчыкълау списогум',
+'watchlistfor'         => "('''$1''' ючюн)",
+'nowatchlist'          => 'Сынчыкълау списогугъуз бошду.',
+'watchlistanontext'    => 'Сынчыкълау списогугъуздагъы статьяланы кёрюр неда тюзетир ючюн $1.',
+'watchnologin'         => 'Системагъа кирирге керекди.',
+'watchnologintext'     => 'Сынчыкълама списогугъузну тюрлендирир ючюн [[Special:UserLogin|системагъа кирирге керексиз]].',
+'addedwatch'           => 'Сынчыкълау бетге къош',
+'addedwatchtext'       => '«[[:$1]]» бет [[Special:Watchlist|сынчыкълау бетигизге]] къошулду.
 Бу бетни эмда муну бла байламлы сюзюу бетни тюрлениулери ол списокда белгиленникдиле, [[Special:RecentChanges|джангы тюрлениулени списогуну]] бетинде уа къалын шрифт бла чертилинникдиле, кёрюрге тынчыракъ болурча.',
-'removedwatch'      => 'Сынчыкълау бетден кетерилди',
-'removedwatchtext'  => '«[[:$1]]» бет сизни [[Special:Watchlist|сынчыкълау списогугъуздан]] кетерилгенди.',
-'watch'             => 'Сынчыкъла',
-'watchthispage'     => 'Бу бетни сынчыкъла',
-'unwatch'           => 'Сынчыкълама',
-'watchlist-details' => 'Сынчыкълау списогугъузда, сюзюу бетлени санамай, {{PLURAL:$1|$1 бет|$1 бет}}  барды.',
-'wlshowlast'        => 'Арт $1 сагъат $2 кюннге $3 кёгюз',
-'watchlist-options' => 'Сынчыкълау списокну джарашдырыулары',
+'removedwatch'         => 'Сынчыкълау бетден кетерилди',
+'removedwatchtext'     => '«[[:$1]]» бет сизни [[Special:Watchlist|сынчыкълау списогугъуздан]] кетерилгенди.',
+'watch'                => 'Сынчыкъла',
+'watchthispage'        => 'Бу бетни сынчыкъла',
+'unwatch'              => 'Сынчыкълама',
+'unwatchthispage'      => 'Сынчыкълауну тохтат',
+'notanarticle'         => 'Статья тюлдю',
+'notvisiblerev'        => 'Версия кетерилгенди',
+'watchnochange'        => 'Къаралгъан кёзюуде, сынчыкълау списокдан чырт бир тюрленмегенди.',
+'watchlist-details'    => 'Сынчыкълау списогугъузда, сюзюу бетлени санамай, {{PLURAL:$1|$1 бет|$1 бет}}  барды.',
+'wlheader-enotif'      => '* Эл. почта бла хапар бериу джандырылыбды.',
+'wlheader-showupdated' => "* Ахыр кириуюгюзден сора бетни тюрлениулери '''къалын''' джазыу бла кёргюзюлгенди.",
+'watchmethod-recent'   => 'сынчыкъланнган бетледе этилген ахыр тюрлениуле контроль этиледиле',
+'watchmethod-list'     => 'сынчыкъланнган бетледе этилген ахыр тюрлениуле контроль этиледиле',
+'watchlistcontains'    => 'Сынчыкълау списогугъузда $1 {{PLURAL:$1|бет|бет}} барды.',
+'iteminvalidname'      => "'$1' элемент бла проблемала, джараусуз ат...",
+'wlnote'               => "Ахыр {{PLURAL:$2|бир сагъатха|'''$2''' сагъатха}} этилген {{PLURAL:$1|ахыр тюрлениу|ахыр '''$1''' тюрлениу}} тюбюндеди.",
+'wlshowlast'           => 'Арт $1 сагъат $2 кюннге $3 кёгюз',
+'watchlist-options'    => 'Сынчыкълау списокну джарашдырыулары',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Сынчыкълау списокга къошуу...',
 'unwatching' => 'Сынчыкълау списокдан къоратыу...',
 
+'enotif_mailer'                => '{{SITENAME}} Билдириу Почта',
+'enotif_reset'                 => 'Бютеу бетлени къаралгъанча белгиле',
+'enotif_newpagetext'           => 'Бу джангы бетди',
+'enotif_impersonal_salutation' => '{{SITENAME}} къошулуучу',
+'changed'                      => 'тюрленди',
+'created'                      => 'къуралды',
+'enotif_subject'               => '{{SITENAME}} бет $PAGETITLE, $PAGEEDITOR джанындан $CHANGEDORCREATED этилгенди.',
+'enotif_lastvisited'           => 'Ахыр кириуюгюзден бу кереге дери болгъан бютеу тюрлениулени кёрюр ючюн $1-ге къара.',
+'enotif_lastdiff'              => 'Бу тюрлениуню кёрюр ючюн, $1 бетге къарагъыз.',
+'enotif_anon_editor'           => 'аноним къошулуучу $1',
+'enotif_body'                  => 'Багъалы $WATCHINGUSERNAME,
+
+{{SITENAME}} сайтдагъы $PAGETITLE башлыкълы бет $PAGEEDITDATE заманда $PAGEEDITOR джанындан $CHANGEDORCREATED тюзетилгенди неда тюрледирилгенди. Бетни ахыр халына $PAGETITLE_URL адресден кирирге боллукъсуз.
+
+$NEWPAGE
+
+Тюзюетиуню этген къошлуучуну ангылатыуу: $PAGESUMMARY $PAGEMINOREDIT
+
+Бетни тюзетген къошулуучуну билгилери:
+эл. почта: $PAGEEDITOR_EMAIL
+вики: $PAGEEDITOR_WIKI
+
+Бу бетге киргинчигизге дери бу бет бла байламлы башха тюзетиулени юсюнден хапар джибериллик тюлдю. Санчыкълау списогугъуздагъу бютёу бетлени билдириу джибериу опцияларын джукълаталлыкъсыз.
+
+{{SITENAME}} сайтны билдириу системасы.
+
+--
+
+Джарашдырыуланы тюрлендирир ючюн:
+{{fullurl:Special:Watchlist/edit}}
+
+Болушлукъ эм теджеуле ючюн:
+{{fullurl:{{MediaWiki:Helppage}}}}',
+
 # Delete
-'deletepage'            => 'Бетни къурут',
-'confirmdeletetext'     => 'Сиз бетни (неда суратны) бютёу тюрлениу тарихи бла толу къурутууун соргъансыз.
+'deletepage'             => 'Бетни къурут',
+'confirm'                => 'Къабыл эт',
+'excontent'              => 'ичиндеги: $1',
+'excontentauthor'        => "ичиндеги: '$1' ('[[Special:Contributions/$2|$2]] юлюш къошхан джангыз къошулуучу болгъанды)",
+'exbeforeblank'          => "Кетериуню алындагъы ичи: '$1'",
+'exblank'                => 'бет бош эди',
+'delete-confirm'         => '"$1" кетер',
+'delete-backlink'        => '← $1',
+'delete-legend'          => 'Кетер',
+'historywarning'         => "'''Эсгериу:''' кетер тургъан бетни $1 {{PLURAL:$1|версиялы|версиялы}} тарихи барды:",
+'confirmdeletetext'      => 'Сиз бетни (неда суратны) бютёу тюрлениу тарихи бла толу къурутууун соргъансыз.
 Алай этерге керти излегенигизни эм  [[{{MediaWiki:Policy-url}}къурутуу политика]] бёлюмде ачыкъланнган джорукъла бла этгенигизни, бегитигиз.',
-'actioncomplete'        => 'Этим толтурулду',
-'deletedtext'           => '«<nowiki>$1</nowiki>» къурутулуннган бетди.
+'actioncomplete'         => 'Этим толтурулду',
+'actionfailed'           => 'Этим джетишимсиз болду',
+'deletedtext'            => '«<nowiki>$1</nowiki>» къурутулуннган бетди.
 Ахыр къурутууланы списогун кёрюр ючюн $2 къарагъыз.',
-'deletedarticle'        => '«[[$1]]» къурутулунду',
-'dellogpage'            => 'Кетерилгенлени журналы',
-'deletecomment'         => 'Къурутулууну чуруму:',
-'deleteotherreason'     => 'башха чурум / дагъыда:',
-'deletereasonotherlist' => 'Башха чурум',
+'deletedarticle'         => '«[[$1]]» къурутулунду',
+'suppressedarticle'      => '"[[$1]]" джашырылды',
+'dellogpage'             => 'Кетерилгенлени журналы',
+'dellogpagetext'         => 'Тюбюндеги список ахыр кетериулени журналыды.',
+'deletionlog'            => 'кетериулени журналы',
+'reverted'               => 'Алгъынгы версиясына къайтарылгъанды',
+'deletecomment'          => 'Къурутулууну чуруму:',
+'deleteotherreason'      => 'башха чурум / дагъыда:',
+'deletereasonotherlist'  => 'Башха чурум',
+'deletereason-dropdown'  => '* Кетериуню баш чурумлары
+** Авторну тилеги
+** Автор хакъланы бузуу
+** Вандализм',
+'delete-edit-reasonlist' => 'Чурумланы списогут тюзет',
+'delete-toobig'          => 'Бу бетни, $1 {{PLURAL:$1|версияла|версияла}} бла бек узун тарихи барды.
+Быллай бетлени кетерилиую, {{SITENAME}} сайтны бузмаз ючюн чекленгенди.',
+'delete-warning-toobig'  => 'Бу бетни уллу тюзетиу тарихи барды, $1 {{PLURAL:$1|версиядан|версиядан}} артыкъ.
+Буну кетериу {{SITENAME}} ишлеулени асхатыргъа боллукъду;
+эсгере андан ары ишлегиз.',
 
 # Rollback
-'rollbacklink' => 'ызына къайтарыу',
+'rollback'          => 'Тюзетиулени ызына ал',
+'rollback_short'    => 'Ызына ал',
+'rollbacklink'      => 'ызына къайтарыу',
+'rollbackfailed'    => 'Ызына алыу джетишимсизди',
+'cantrollback'      => 'Бетге ахыр юлюш къошхан къошулуучу, бетге юлюшюн къошхан джангыз адам болгъаны себебли, тюзетилиуле ызына алыналмайдыла.',
+'alreadyrolled'     => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) джанындан [[:$1]] бетде этилген ахыр тюзетиу ызына алыналмайды;
+башха бири бетде тюзетиу этди неда бетни ызына алды. 
+
+Ахыр тюзетиуюню этген: Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+'editcomment'       => "Тюрлениу былай ангылатылгъанды: \"''\$1''\"",
+'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) джанындан этилген тюзетиуле ызына алыныб, [[User:$1|$1]] джанындан тюзетилген алгъыннгы версиясына ызына алынды.',
+'revertpage-nouser' => '(аты къоратылгъан къошулуучу) этген тюзетиулени [[User:$1|$1]] ахыр версиягъа къайтарды',
+'rollback-success'  => '$1 этген тюзетиуле ызына алыныб;
+$2 тюрлендирген алгъаракъ версиясына къайтылды.',
 
 # Protect
 'protectlogpage'              => 'Джакъланыуну журналы',
@@ -1750,9 +2037,9 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'tooltip-ca-move'                 => 'Бу бетни атын тюрлендириу',
 'tooltip-ca-watch'                => 'Бу бетни сынчыкълау списогугъузгъа къошугъуз',
 'tooltip-ca-unwatch'              => 'Сынчыкълау списокдан кетер бу бетни',
-'tooltip-search'                  => 'Бу сёзню излерге',
-'tooltip-search-go'               => 'Тамам быллай аты болгъан бетге кёчерге',
-'tooltip-search-fulltext'         => 'Быллай текст болгъан бетлени табаргъа',
+'tooltip-search'                  => 'Бу сёзню изле',
+'tooltip-search-go'               => 'Тамам быллай аты болгъан бетге кёч',
+'tooltip-search-fulltext'         => 'Бу текст болгъан бетлени таб',
 'tooltip-n-mainpage'              => 'Баш бетге кёчюу',
 'tooltip-n-mainpage-description'  => 'Баш бетге кёчюу',
 'tooltip-n-portal'                => 'Проектни юсюнден, сизни не этерге боллугъугъузню юсюнден, хар не къайда болгъаныны юсюнден',

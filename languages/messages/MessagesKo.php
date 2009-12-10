@@ -988,6 +988,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'rev-deleted-comment'         => '(편집 요약 삭제됨)',
 'rev-deleted-user'            => '(계정 이름 삭제됨)',
 'rev-deleted-event'           => '(로그 삭제됨)',
+'rev-deleted-user-contribs'   => '[계정 이름/IP 주소 삭제됨 -  기여 목록에서 숨겨짐]',
 'rev-deleted-text-permission' => "해당 편집이 문서 역사에서 '''삭제'''되었습니다.
 자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 볼 수 있습니다.",
 'rev-deleted-text-unhide'     => "해당 편집이 문서 역사에서 '''삭제'''되었습니다.

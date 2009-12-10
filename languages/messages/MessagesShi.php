@@ -301,6 +301,12 @@ lcont nek  tuyskar .
 'userlogout'              => 'Fuɣ',
 'loginlanguagelabel'      => 'tutlayt: $1',
 
+# Edit page toolbar
+'bold_tip'    => 'Aţŗş aťťuz',
+'italic_tip'  => 'Aţŗiş italik',
+'link_sample' => 'Azwl n uzday',
+'link_tip'    => 'Azday uwgens',
+
 # Edit pages
 'summary'                    => 'Tadusi',
 'subject'                    => 'Subject/tansa',
@@ -406,13 +412,20 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'servertime'    => 'loqt n serveur',
 'yourlanguage'  => 'tutlayt:',
 
+# Groups
+'group-sysop' => 'Anedbalen n unagraw',
+
+'grouppage-sysop' => '{{ns:project}}: Inedbalen',
+
 # Recent changes
-'recentchanges'   => 'Imbddeln imggura',
-'diff'            => 'Gar',
-'hist'            => 'Amzruy',
-'hide'            => 'Ḥbu',
-'show'            => 'Mel',
-'minoreditletter' => 'm',
+'recentchanges'      => 'Imbddeln imggura',
+'diff'               => 'Gar',
+'hist'               => 'Amzruy',
+'hide'               => 'Ḥbu',
+'show'               => 'Mel',
+'minoreditletter'    => 'm',
+'rc-enhanced-expand' => 'Tir n ifruriyn ira JavaScript',
+'rc-enhanced-hide'   => 'Ĥbu ifruriyn',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Imbddel zun ɣwid',
@@ -548,9 +561,10 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'whatlinkshere-hideimages' => '$1 izdayn awlaf',
 
 # Block/unblock
-'blocklink'    => 'Adur tajt',
-'unblocklink'  => 'kkis agdal',
-'contribslink' => 'tikkin',
+'blocklink'        => 'Adur tajt',
+'unblocklink'      => 'kkis agdal',
+'change-blocklink' => 'Sbadl agdal',
+'contribslink'     => 'tikkin',
 
 # Move page
 'revertmove' => 'Rard',
@@ -616,6 +630,9 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'tooltip-recreate'                => 'Als askr n tasna yad waxxa ttuwḥiyyad',
 'tooltip-upload'                  => 'Izwir siɣ tullt.',
 'tooltip-rollback'                => '"Rard" s yan klik ażrig (iżrign) s ɣiklli sttin kkan tiklit li igguran',
+
+# Media information
+'file-info-size' => '($1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4)',
 
 'exif-gaincontrol-0' => 'walo',
 
