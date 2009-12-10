@@ -1,4 +1,3 @@
-ALTER TABLE /*_*/transcache MODIFY tc_time binary(14);
-UPDATE /*_*/transcache SET tc_time = DATE_FORMAT(FROM_UNIXTIME(tc_time), "%Y%c%d%H%i%s");
+UPDATE /*_*/transcache SET tc_time = strftime('%Y%m%d%H%M%S', datetime(1260465428, 'unixepoch'));
 
 INSERT INTO /*_*/updatelog VALUES ('convert transcache field');
