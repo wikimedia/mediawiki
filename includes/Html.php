@@ -81,7 +81,6 @@ class Html {
 		'reversed',
 		'scoped',
 		'seamless',
-		'spellcheck',
 	);
 
 	/**
@@ -113,13 +112,10 @@ class Html {
 		# consistency and better compression.
 		$element = strtolower( $element );
 
-		# Element-specific hacks to slim down output and ensure validity
-		if ( $element == 'input' ) {
-			if ( !$wgHtml5 ) {
-				# With $wgHtml5 off we want to validate as XHTML 1, so we
-				# strip out any fancy HTML 5-only input types for now.
-				#
-				# Whitelist of valid types:
+		# Remove HTML5-only attributes if we aren't doing HTML5
+		if ( !$wgHtml5 ) {
+			if ( $element == 'input' ) {
+				# Whitelist of valid XHTML1 types
 				$validTypes = array(
 					'hidden',
 					'text',
@@ -137,22 +133,22 @@ class Html {
 					# Fall back to type=text, the default
 					unset( $attribs['type'] );
 				}
-				# Here we're blacklisting some HTML5-only attributes...
-				$html5attribs = array(
-					'autocomplete',
-					'autofocus',
-					'max',
-					'min',
-					'multiple',
-					'pattern',
-					'placeholder',
-					'required',
-					'step',
-					'spellcheck',
-				);
-				foreach ( $html5attribs as $badAttr ) {
-					unset( $attribs[$badAttr] );
-				}
+			}
+			# Here we're blacklisting some HTML5-only attributes...
+			$html5attribs = array(
+				'autocomplete',
+				'autofocus',
+				'max',
+				'min',
+				'multiple',
+				'pattern',
+				'placeholder',
+				'required',
+				'step',
+				'spellcheck',
+			);
+			foreach ( $html5attribs as $badAttr ) {
+				unset( $attribs[$badAttr] );
 			}
 		}
 
