@@ -475,7 +475,7 @@ class Sanitizer {
 							$brace = '/>';
 						} else if( isset( $htmlsingle[$t] ) ) {
 							# Hack to not close $htmlsingle tags
-							$brace = NULL;
+							$brace = null;
 						} else if( isset( $tabletags[$t] )
 						&&  in_array($t ,$tagstack) ) {
 							// New table tag but forgot to close the previous one

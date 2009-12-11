@@ -2327,7 +2327,7 @@ class User {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 					array( /* SET */
-						'wl_notificationtimestamp' => NULL
+						'wl_notificationtimestamp' => null
 					), array( /* WHERE */
 						'wl_title' => $title->getDBkey(),
 						'wl_namespace' => $title->getNamespace(),
@@ -2354,7 +2354,7 @@ class User {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 				array( /* SET */
-					'wl_notificationtimestamp' => NULL
+					'wl_notificationtimestamp' => null
 				), array( /* WHERE */
 					'wl_user' => $currentUser
 				), __METHOD__

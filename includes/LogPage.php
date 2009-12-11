@@ -166,7 +166,7 @@ class LogPage {
 	 * @static
 	 * @return HTML string
 	 */
-	public static function actionText( $type, $action, $title = NULL, $skin = NULL, 
+	public static function actionText( $type, $action, $title = null, $skin = null, 
 		$params = array(), $filterWikilinks = false ) 
 	{
 		global $wgLang, $wgContLang, $wgLogActions, $wgMessageCache;
@@ -385,7 +385,7 @@ class LogPage {
 		
 		$this->doer = $doer;
 
-		$this->actionText = LogPage::actionText( $this->type, $action, $target, NULL, $params );
+		$this->actionText = LogPage::actionText( $this->type, $action, $target, null, $params );
 
 		return $this->saveContent();
 	}

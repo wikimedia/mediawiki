@@ -248,7 +248,7 @@ class WebRequest {
 	 * @param $default string: optional default (or NULL)
 	 * @return string
 	 */
-	public function getVal( $name, $default = NULL ) {
+	public function getVal( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
 		if( is_array( $val ) ) {
 			$val = $default;
@@ -281,7 +281,7 @@ class WebRequest {
 	 * @param $default array: optional default (or NULL)
 	 * @return array
 	 */
-	public function getArray( $name, $default = NULL ) {
+	public function getArray( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
 		if( is_null( $val ) ) {
 			return null;
@@ -300,7 +300,7 @@ class WebRequest {
 	 * @param $default array: option default (or NULL)
 	 * @return array of ints
 	 */
-	public function getIntArray( $name, $default = NULL ) {
+	public function getIntArray( $name, $default = null ) {
 		$val = $this->getArray( $name, $default );
 		if( is_array( $val ) ) {
 			$val = array_map( 'intval', $val );
@@ -356,7 +356,7 @@ class WebRequest {
 	public function getCheck( $name ) {
 		# Checkboxes and buttons are only present when clicked
 		# Presence connotes truth, abscense false
-		$val = $this->getVal( $name, NULL );
+		$val = $this->getVal( $name, null );
 		return isset( $val );
 	}
 
@@ -559,7 +559,7 @@ class WebRequest {
 	 */
 	public function getFileTempname( $key ) {
 		if( !isset( $_FILES[$key] ) ) {
-			return NULL;
+			return null;
 		}
 		return $_FILES[$key]['tmp_name'];
 	}
@@ -601,7 +601,7 @@ class WebRequest {
 	 */
 	public function getFileName( $key ) {
 		if( !isset( $_FILES[$key] ) ) {
-			return NULL;
+			return null;
 		}
 		$name = $_FILES[$key]['name'];
 

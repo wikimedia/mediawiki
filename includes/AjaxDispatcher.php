@@ -101,7 +101,7 @@ class AjaxDispatcher {
 			try {
 				$result = call_user_func_array($func, $this->args);
 
-				if ( $result === false || $result === NULL ) {
+				if ( $result === false || $result === null ) {
 					wfDebug( __METHOD__ . ' ERROR while dispatching ' 
 							. $this->func_name . "(" . var_export( $this->args, true ) . "): " 
 							. "no data returned\n" );

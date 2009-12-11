@@ -129,7 +129,7 @@ class LoginForm {
 
 		$u = $this->addNewaccountInternal();
 
-		if ($u == NULL) {
+		if ($u == null) {
 			return;
 		}
 
@@ -163,7 +163,7 @@ class LoginForm {
 
 		# Create the account and abort if there's a problem doing so
 		$u = $this->addNewAccountInternal();
-		if( $u == NULL )
+		if( $u == null )
 			return;
 
 		# If we showed up language selection links, and one was in use, be

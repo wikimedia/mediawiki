@@ -831,7 +831,7 @@ class LoadBalancer {
 		}
 	}
 
-	function waitTimeout( $value = NULL ) {
+	function waitTimeout( $value = null ) {
 		return wfSetVar( $this->mWaitTimeout, $value );
 	}
 

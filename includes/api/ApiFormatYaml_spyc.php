@@ -114,7 +114,7 @@ class Spyc {
 		if (is_array($value)) {
 			// It has children.  What to do?
 			// Make it the right kind of item
-			$string = $this->_dumpNode($key,NULL,$indent);
+			$string = $this->_dumpNode($key,null,$indent);
 			// Add the indent
 			$indent += $this->_dumpIndent;
 			// Yamlize the array

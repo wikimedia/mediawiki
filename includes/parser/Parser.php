@@ -1628,7 +1628,7 @@ class Parser
 			wfProfileOut( __METHOD__."-misc" );
 			wfProfileIn( __METHOD__."-title" );
 			$nt = Title::newFromText( $this->mStripState->unstripNoWiki( $link ) );
-			if ( $nt === NULL ) {
+			if ( $nt === null ) {
 				$s .= $prefix . '[[' . $line;
 				wfProfileOut( __METHOD__."-title" );
 				continue;
@@ -2758,7 +2758,7 @@ class Parser
 		$isLocalObj = false;        # $text is a DOM node needing expansion in the current frame
 
 		# Title object, where $text came from
-		$title = NULL;
+		$title = null;
 
 		# $part1 is the bit before the first |, and must contain only title characters.
 		# Various prefixes will be stripped from it later.
@@ -4730,9 +4730,9 @@ class Parser
 	/**#@+
 	 * Accessor/mutator
 	 */
-	function Title( $x = NULL ) { return wfSetVar( $this->mTitle, $x ); }
-	function Options( $x = NULL ) { return wfSetVar( $this->mOptions, $x ); }
-	function OutputType( $x = NULL ) { return wfSetVar( $this->mOutputType, $x ); }
+	function Title( $x = null ) { return wfSetVar( $this->mTitle, $x ); }
+	function Options( $x = null ) { return wfSetVar( $this->mOptions, $x ); }
+	function OutputType( $x = null ) { return wfSetVar( $this->mOutputType, $x ); }
 	/**#@-*/
 
 	/**#@+

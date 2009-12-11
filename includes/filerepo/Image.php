@@ -44,7 +44,7 @@ class Image extends LocalFile {
 			}
 			return $img;
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 

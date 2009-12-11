@@ -10,7 +10,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 	function testAddQuotesNull() {
 		$this->assertEquals(
 			'NULL',
-			$this->db->addQuotes( NULL ) );
+			$this->db->addQuotes( null ) );
 	}
 
 	function testAddQuotesInt() {

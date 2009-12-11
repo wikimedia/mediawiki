@@ -499,7 +499,7 @@ class Article {
 	 *
 	 * @param $x Mixed: FIXME
 	 */
-	public function forUpdate( $x = NULL ) {
+	public function forUpdate( $x = null ) {
 		return wfSetVar( $this->mForUpdate, $x );
 	}
 
@@ -614,7 +614,7 @@ class Article {
 		} else {
 			$titleObj = Title::newFromRedirect( $text );
 		}
-		return $titleObj !== NULL;
+		return $titleObj !== null;
 	}
 
 	/**
@@ -1596,7 +1596,7 @@ class Article {
 				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
 				'page_is_new'      => ($lastRevision === 0) ? 1 : 0,
-				'page_is_redirect' => $rt !== NULL ? 1 : 0,
+				'page_is_redirect' => $rt !== null ? 1 : 0,
 				'page_len'         => strlen( $text ),
 			),
 			$conditions,
@@ -1688,7 +1688,7 @@ class Article {
 	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...)
 	 * @return string Complete article text, or null if error
 	 */
-	public function replaceSection( $section, $text, $summary = '', $edittime = NULL ) {
+	public function replaceSection( $section, $text, $summary = '', $edittime = null ) {
 		wfProfileIn( __METHOD__ );
 		if( strval( $section ) == '' ) {
 			// Whole-page edit; let the whole text through

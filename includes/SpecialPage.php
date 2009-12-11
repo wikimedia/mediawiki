@@ -277,7 +277,7 @@ class SpecialPage {
 		$bits = explode( '/', $alias, 2 );
 		$name = self::resolveAlias( $bits[0] );
 		if( !isset( $bits[1] ) ) { // bug 2087
-			$par = NULL;
+			$par = null;
 		} else {
 			$par = $bits[1];
 		}
@@ -394,7 +394,7 @@ class SpecialPage {
 			}
 			return self::$mList[$name];
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 
@@ -407,7 +407,7 @@ class SpecialPage {
 		if ( $realName ) {
 			return self::getPage( $realName );
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 
@@ -500,7 +500,7 @@ class SpecialPage {
 		$bits = explode( '/', $title->getDBkey(), 2 );
 		$name = $bits[0];
 		if( !isset( $bits[1] ) ) { // bug 2087
-			$par = NULL;
+			$par = null;
 		} else {
 			$par = $bits[1];
 		}
@@ -703,18 +703,18 @@ Perhaps no page aliases are defined for it?" );
 	/**#@+
 	  * Accessor and mutator
 	  */
-	function name( $x = NULL ) { return wfSetVar( $this->mName, $x ); }
-	function restrictions( $x = NULL) {
+	function name( $x = null ) { return wfSetVar( $this->mName, $x ); }
+	function restrictions( $x = null) {
 		# Use the one below this
 		wfDeprecated( __METHOD__ );
 		return wfSetVar( $this->mRestriction, $x );
 	}
-	function restriction( $x = NULL) { return wfSetVar( $this->mRestriction, $x ); }
-	function listed( $x = NULL) { return wfSetVar( $this->mListed, $x ); }
-	function func( $x = NULL) { return wfSetVar( $this->mFunction, $x ); }
-	function file( $x = NULL) { return wfSetVar( $this->mFile, $x ); }
-	function includable( $x = NULL ) { return wfSetVar( $this->mIncludable, $x ); }
-	function including( $x = NULL ) { return wfSetVar( $this->mIncluding, $x ); }
+	function restriction( $x = null) { return wfSetVar( $this->mRestriction, $x ); }
+	function listed( $x = null) { return wfSetVar( $this->mListed, $x ); }
+	function func( $x = null) { return wfSetVar( $this->mFunction, $x ); }
+	function file( $x = null) { return wfSetVar( $this->mFile, $x ); }
+	function includable( $x = null ) { return wfSetVar( $this->mIncludable, $x ); }
+	function including( $x = null ) { return wfSetVar( $this->mIncluding, $x ); }
 	/**#@-*/
 
 	/**

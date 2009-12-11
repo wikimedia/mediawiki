@@ -25,7 +25,7 @@ class DatabaseMssql extends DatabaseBase {
 			$failFunction = false, $flags = 0, $tablePrefix = 'get from global') {
 
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
-		if (!isset($wgOut)) $wgOut = NULL; # Can't get a reference if it hasn't been set yet
+		if (!isset($wgOut)) $wgOut = null; # Can't get a reference if it hasn't been set yet
 		$this->mOut =& $wgOut;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
@@ -474,13 +474,13 @@ class DatabaseMssql extends DatabaseBase {
 	function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
 
 		throw new DBUnexpectedError( $this, 'Database::indexInfo called which is not supported yet' );
-		return NULL;
+		return null;
 
 		$table = $this->tableName( $table );
 		$sql = 'SHOW INDEX FROM '.$table;
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
-			return NULL;
+			return null;
 		}
 
 		$result = array();

@@ -69,10 +69,10 @@ SQL;
  * @ingroup Database
  */
 class DatabasePostgres extends DatabaseBase {
-	var $mInsertId = NULL;
-	var $mLastResult = NULL;
-	var $numeric_version = NULL;
-	var $mAffectedRows = NULL;
+	var $mInsertId = null;
+	var $mLastResult = null;
+	var $numeric_version = null;
+	var $mAffectedRows = null;
 
 	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
@@ -578,7 +578,7 @@ class DatabasePostgres extends DatabaseBase {
 			$sql = mb_convert_encoding($sql,'UTF-8');
 		}
 		$this->mLastResult = pg_query( $this->mConn, $sql);
-		$this->mAffectedRows = NULL; // use pg_affected_rows(mLastResult)
+		$this->mAffectedRows = null; // use pg_affected_rows(mLastResult)
 		return $this->mLastResult;
 	}
 
@@ -713,7 +713,7 @@ class DatabasePostgres extends DatabaseBase {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
-			return NULL;
+			return null;
 		}
 		while ( $row = $this->fetchObject( $res ) ) {
 			if ( $row->indexname == $this->indexName( $index ) ) {
@@ -730,7 +730,7 @@ class DatabasePostgres extends DatabaseBase {
 			")'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res )
-			return NULL;
+			return null;
 		while ($row = $this->fetchObject( $res ))
 			return true;
 		return false;
@@ -1192,7 +1192,7 @@ SQL;
 				$this->addQuotes($table),
 				$this->addQuotes($trigger)));
 		if (!$res)
-			return NULL;
+			return null;
 		$rows = $res->numRows();
 		$this->freeResult( $res );
 		return $rows;
@@ -1216,7 +1216,7 @@ SQL;
 			$this->addQuotes($constraint));
 		$res = $this->query($SQL);
 		if (!$res)
-			return NULL;
+			return null;
 		$rows = $res->numRows();
 		$this->freeResult($res);
 		return $rows;

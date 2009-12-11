@@ -51,7 +51,7 @@ class SpecialExport extends SpecialPage {
 			$page = $wgRequest->getText( 'pages' );
 			$catname = $wgRequest->getText( 'catname' );
 			
-			if ( $catname !== '' && $catname !== NULL && $catname !== false ) {
+			if ( $catname !== '' && $catname !== null && $catname !== false ) {
 				$t = Title::makeTitleSafe( NS_MAIN, $catname );
 				if ( $t ) {
 					/**

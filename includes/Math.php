@@ -104,14 +104,14 @@ class MathRenderer {
 				} else {
 					$this->conservativeness = 0;
 				}
-				$this->mathml = NULL;
+				$this->mathml = null;
 			} else if ($retval == 'X') {
-				$this->html = NULL;
+				$this->html = null;
 				$this->mathml = substr ($contents, 33);
 				$this->conservativeness = 0;
 			} else if ($retval == '+') {
-				$this->html = NULL;
-				$this->mathml = NULL;
+				$this->html = null;
+				$this->mathml = null;
 				$this->conservativeness = 0;
 			} else {
 				$errbit = htmlspecialchars( substr($contents, 1) );

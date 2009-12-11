@@ -77,7 +77,7 @@ class RecentChange
 			$dbr->freeResult( $res );
 			return self::newFromRow( $row );
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 
@@ -451,8 +451,8 @@ class RecentChange
 			'rc_ip'		=> $ip,
 			'rc_new'	=> 0, # obsolete
 			'rc_patrolled'	=> 1,
-			'rc_old_len'	=> NULL,
-			'rc_new_len'	=> NULL,
+			'rc_old_len'	=> null,
+			'rc_new_len'	=> null,
 			'rc_deleted'	=> 0,
 			'rc_logid'		=> 0, # notifyMove not used anymore
 			'rc_log_type'	=> null,
@@ -519,8 +519,8 @@ class RecentChange
 			'rc_ip'	=> $ip,
 			'rc_patrolled' => 1,
 			'rc_new'	=> 0, # obsolete
-			'rc_old_len'	=> NULL,
-			'rc_new_len'	=> NULL,
+			'rc_old_len'	=> null,
+			'rc_new_len'	=> null,
 			'rc_deleted'	=> 0,
 			'rc_logid'		=> $newId,
 			'rc_log_type'	=> $type,
@@ -581,7 +581,7 @@ class RecentChange
 	 * @return mixed
 	 */
 	public function getAttribute( $name ) {
-		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : NULL;
+		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
 	}
 
 	public function getAttributes() {
@@ -700,7 +700,7 @@ class RecentChange
 		if( $new === 0 ) {
 			$new = $this->mAttribs['rc_new_len'];
 		}
-		if( $old === NULL || $new === NULL ) {
+		if( $old === null || $new === null ) {
 			return '';
 		}
 		return ChangesList::showCharacterDifference( $old, $new );

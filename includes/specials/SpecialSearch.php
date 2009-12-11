@@ -168,7 +168,7 @@ class SpecialSearch {
 			# mirror Go/Search behaviour of original request ..
 			$didYouMeanParams = array( 'search' => $textMatches->getSuggestionQuery() );
 
-			if($this->fulltext != NULL)
+			if($this->fulltext != null)
 				$didYouMeanParams['fulltext'] = $this->fulltext;
 
 			$stParams = array_merge(

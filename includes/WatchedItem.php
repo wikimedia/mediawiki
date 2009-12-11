@@ -62,7 +62,7 @@ class WatchedItem {
 			'wl_user' => $this->id,
 			'wl_namespace' => MWNamespace::getSubject($this->ns),
 			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => NULL
+			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
 		// Every single watched page needs now to be listed in watchlist;
@@ -72,7 +72,7 @@ class WatchedItem {
 			'wl_user' => $this->id,
 			'wl_namespace' => MWNamespace::getTalk($this->ns),
 			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => NULL
+			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
 		wfProfileOut( __METHOD__ );

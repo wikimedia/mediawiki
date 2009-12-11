@@ -558,7 +558,7 @@ class Exif {
 	 * @param $fname String:
 	 * @param $action Mixed: , default NULL.
 	 */
-	function debug( $in, $fname, $action = NULL ) {
+	function debug( $in, $fname, $action = null ) {
 		if ( !$this->log ) {
 			return;
 		}

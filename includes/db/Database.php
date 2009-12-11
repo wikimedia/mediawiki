@@ -50,7 +50,7 @@ abstract class DatabaseBase {
 	 * Fail function, takes a Database as a parameter
 	 * Set to false for default, 1 for ignore errors
 	 */
-	function failFunction( $function = NULL ) {
+	function failFunction( $function = null ) {
 		return wfSetVar( $this->mFailFunction, $function );
 	}
 
@@ -65,7 +65,7 @@ abstract class DatabaseBase {
 	/**
 	 * Boolean, controls output of large amounts of debug information
 	 */
-	function debug( $debug = NULL ) {
+	function debug( $debug = null ) {
 		return wfSetBit( $this->mFlags, DBO_DEBUG, $debug );
 	}
 
@@ -73,7 +73,7 @@ abstract class DatabaseBase {
 	 * Turns buffering of SQL result sets on (true) or off (false).
 	 * Default is "on" and it should not be changed without good reasons.
 	 */
-	function bufferResults( $buffer = NULL ) {
+	function bufferResults( $buffer = null ) {
 		if ( is_null( $buffer ) ) {
 			return !(bool)( $this->mFlags & DBO_NOBUFFER );
 		} else {
@@ -88,7 +88,7 @@ abstract class DatabaseBase {
 	 * code should use lastErrno() and lastError() to handle the
 	 * situation as appropriate.
 	 */
-	function ignoreErrors( $ignoreErrors = NULL ) {
+	function ignoreErrors( $ignoreErrors = null ) {
 		return wfSetBit( $this->mFlags, DBO_IGNORE, $ignoreErrors );
 	}
 
@@ -96,14 +96,14 @@ abstract class DatabaseBase {
 	 * The current depth of nested transactions
 	 * @param $level Integer: , default NULL.
 	 */
-	function trxLevel( $level = NULL ) {
+	function trxLevel( $level = null ) {
 		return wfSetVar( $this->mTrxLevel, $level );
 	}
 
 	/**
 	 * Number of errors logged, only useful when errors are ignored
 	 */
-	function errorCount( $count = NULL ) {
+	function errorCount( $count = null ) {
 		return wfSetVar( $this->mErrorCount, $count );
 	}
 
@@ -114,19 +114,19 @@ abstract class DatabaseBase {
 	/**
 	 * Properties passed down from the server info array of the load balancer
 	 */
-	function getLBInfo( $name = NULL ) {
+	function getLBInfo( $name = null ) {
 		if ( is_null( $name ) ) {
 			return $this->mLBInfo;
 		} else {
 			if ( array_key_exists( $name, $this->mLBInfo ) ) {
 				return $this->mLBInfo[$name];
 			} else {
-				return NULL;
+				return null;
 			}
 		}
 	}
 
-	function setLBInfo( $name, $value = NULL ) {
+	function setLBInfo( $name, $value = null ) {
 		if ( is_null( $value ) ) {
 			$this->mLBInfo = $name;
 		} else {
@@ -304,7 +304,7 @@ abstract class DatabaseBase {
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 		# Can't get a reference if it hasn't been set yet
 		if ( !isset( $wgOut ) ) {
-			$wgOut = NULL;
+			$wgOut = null;
 		}
 
 		$this->mFailFunction = $failFunction;
@@ -1018,7 +1018,7 @@ abstract class DatabaseBase {
 		$table = $this->tableName( $table );
 		$res = $this->query( 'DESCRIBE '.$table, $fname );
 		if ( !$res ) {
-			return NULL;
+			return null;
 		}
 
 		$found = false;
@@ -1040,7 +1040,7 @@ abstract class DatabaseBase {
 	function indexExists( $table, $index, $fname = 'Database::indexExists' ) {
 		$info = $this->indexInfo( $table, $index, $fname );
 		if ( is_null( $info ) ) {
-			return NULL;
+			return null;
 		} else {
 			return $info !== false;
 		}
@@ -1060,7 +1060,7 @@ abstract class DatabaseBase {
 		$sql = 'SHOW INDEX FROM '.$table;
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
-			return NULL;
+			return null;
 		}
 
 		$result = array();
@@ -1115,7 +1115,7 @@ abstract class DatabaseBase {
 	function indexUnique( $table, $index ) {
 		$indexInfo = $this->indexInfo( $table, $index );
 		if ( !$indexInfo ) {
-			return NULL;
+			return null;
 		}
 		return !$indexInfo[0]->Non_unique;
 	}
@@ -1549,7 +1549,7 @@ abstract class DatabaseBase {
 	 * subclass will return an integer, and save the value for insertId()
 	 */
 	function nextSequenceValue( $seqName ) {
-		return NULL;
+		return null;
 	}
 
 	/**

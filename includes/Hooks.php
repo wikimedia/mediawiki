@@ -49,10 +49,10 @@ function wfRunHooks($event, $args = array()) {
 
 	foreach ($wgHooks[$event] as $index => $hook) {
 
-		$object = NULL;
-		$method = NULL;
-		$func = NULL;
-		$data = NULL;
+		$object = null;
+		$method = null;
+		$func = null;
+		$data = null;
 		$have_data = false;
 		$closure = false;
 

@@ -81,7 +81,7 @@ $longTests = array(
 # These tests are not in proper subsections
 $sectionTests = array( '3.4' );
 
-$section = NULL;
+$section = null;
 $test = '';
 $failed = 0;
 $success = 0;

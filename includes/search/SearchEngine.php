@@ -76,7 +76,7 @@ class SearchEngine {
 			# Exact match? No need to look further.
 			$title = Title::newFromText( $term );
 			if (is_null($title))
-				return NULL;
+				return null;
 
 			if ( $title->getNamespace() == NS_SPECIAL || $title->isExternal() || $title->exists() ) {
 				return $title;
@@ -158,7 +158,7 @@ class SearchEngine {
 			return SearchEngine::getNearMatch( $matches[1] );
 		}
 
-		return NULL;
+		return null;
 	}
 
 	public static function legalSearchChars() {

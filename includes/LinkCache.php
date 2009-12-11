@@ -33,7 +33,7 @@ class LinkCache {
 	/**
 	 * General accessor to get/set whether SELECT FOR UPDATE should be used
 	 */
-	public function forUpdate( $update = NULL ) {
+	public function forUpdate( $update = null ) {
 		return wfSetVar( $this->mForUpdate, $update );
 	}
 
@@ -57,7 +57,7 @@ class LinkCache {
 		if ( array_key_exists( $dbkey, $this->mGoodLinkFields ) ) {
 			return $this->mGoodLinkFields[$dbkey][$field];
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 
@@ -72,7 +72,7 @@ class LinkCache {
 	 * @param int $len
 	 * @param int $redir
 	 */
-	public function addGoodLinkObj( $id, $title, $len = -1, $redir = NULL ) {
+	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null ) {
 		$dbkey = $title->getPrefixedDbKey();
 		$this->mGoodLinks[$dbkey] = intval( $id );
 		$this->mGoodLinkFields[$dbkey] = array(
@@ -114,7 +114,7 @@ class LinkCache {
 	 * @param $redir bool, is redirect?
 	 * @return integer
 	 */
-	public function addLink( $title, $len = -1, $redir = NULL ) {
+	public function addLink( $title, $len = -1, $redir = null ) {
 		$nt = Title::newFromDBkey( $title );
 		if( $nt ) {
 			return $this->addLinkObj( $nt, $len, $redir );
@@ -130,7 +130,7 @@ class LinkCache {
 	 * @param $redir bool, is redirect?
 	 * @return integer
 	 */
-	public function addLinkObj( &$nt, $len = -1, $redirect = NULL ) {
+	public function addLinkObj( &$nt, $len = -1, $redirect = null ) {
 		global $wgAntiLockFlags, $wgProfiler;
 		wfProfileIn( __METHOD__ );
 

@@ -58,7 +58,7 @@ function wfIgnoreSQLErrors( $newstate, $dbi = DB_LAST ) {
 	if ( $db !== false ) {
 		return $db->ignoreErrors( $newstate );
 	} else {
-		return NULL;
+		return null;
 	}
 }
 

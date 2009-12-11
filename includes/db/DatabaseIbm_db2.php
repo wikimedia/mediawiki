@@ -123,19 +123,19 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	
 	/// Server port for uncataloged connections
-	protected $mPort = NULL;
+	protected $mPort = null;
 	/// Whether connection is cataloged
-	protected $mCataloged = NULL;
+	protected $mCataloged = null;
 	/// Schema for tables, stored procedures, triggers
-	protected $mSchema = NULL;
+	protected $mSchema = null;
 	/// Whether the schema has been applied in this session
 	protected $mSchemaSet = false;
 	/// Result of last query
-	protected $mLastResult = NULL;
+	protected $mLastResult = null;
 	/// Number of rows affected by last INSERT/UPDATE/DELETE
-	protected $mAffectedRows = NULL;
+	protected $mAffectedRows = null;
 	/// Number of rows returned by last SELECT
-	protected $mNumRows = NULL;
+	protected $mNumRows = null;
 	
 	/// Connection config options - see constructor
 	public $mConnOptions = array();
@@ -158,7 +158,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected $mMode = self::REGULAR_MODE;
 	
 	/// Last sequence value used for a primary key
-	protected $mInsertId = NULL;
+	protected $mInsertId = null;
 	
 	/*
 	 * These can be safely inherited
@@ -415,7 +415,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		global $wgOut, $wgDBmwschema;
 		# Can't get a reference if it hasn't been set yet
 		if ( !isset( $wgOut ) ) {
-			$wgOut = NULL;
+			$wgOut = null;
 		}
 		$this->mOut =& $wgOut;
 		$this->mFailFunction = $failFunction;
@@ -646,7 +646,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( $error ) );
 		}
 		$this->mLastResult = $ret;
-		$this->mAffectedRows = NULL;	// Not calculated until asked for
+		$this->mAffectedRows = null;	// Not calculated until asked for
 		return $ret;
 	}
 	
@@ -1004,7 +1004,7 @@ EOF;
 		$this->freeResult( $res );
 		return $this->mInsertId;
 		*/
-		return NULL;
+		return null;
 	}
 	
 	/**
@@ -1162,7 +1162,7 @@ EOF;
 		// remove primary keys
 		foreach ($args as $ai => $row) {
 			foreach ($keys as $ki => $key) {
-				if ($row[$key] == NULL) {
+				if ($row[$key] == null) {
 					unset($row[$key]);
 				}
 			}
@@ -1476,7 +1476,7 @@ EOF;
 		// db2_ping() doesn't exist
 		// Emulate
 		$this->close();
-		if ($this->mCataloged == NULL) {
+		if ($this->mCataloged == null) {
 			return false;
 		}
 		else if ($this->mCataloged) {
@@ -1569,10 +1569,10 @@ WHERE si.name='$index' AND si.tbname='$table' AND sc.tbcreator='$this->mSchema'
 SQL;
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
-			return NULL;
+			return null;
 		}
 		$row = $this->fetchObject( $res );
-		if ($row != NULL) return $row;
+		if ($row != null) return $row;
 		else return false;
 	}
 	

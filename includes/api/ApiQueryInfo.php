@@ -540,7 +540,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array (
 			'prop' => array (
-				ApiBase :: PARAM_DFLT => NULL,
+				ApiBase :: PARAM_DFLT => null,
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
 					'protection',
@@ -551,7 +551,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'readable',
 				)),
 			'token' => array (
-				ApiBase :: PARAM_DFLT => NULL,
+				ApiBase :: PARAM_DFLT => null,
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array_keys($this->getTokenFunctions())
 			),
