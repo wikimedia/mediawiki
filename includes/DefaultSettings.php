@@ -4056,8 +4056,9 @@ $wgUniversalEditButton = true;
 
 /**
  * Allow id's that don't conform to HTML4 backward compatibility requirements.
- * This is currently for testing; if all goes well, this option will be removed
- * and the functionality will be enabled universally.
+ * This is purely experimental, has multiple known flaws, and will likely be
+ * renamed and reconcepted based on HTML5 in the future, so should not be used
+ * except for testing.
  */
 $wgEnforceHtmlIds = true;
 
