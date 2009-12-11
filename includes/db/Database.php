@@ -2002,7 +2002,7 @@ abstract class DatabaseBase {
 	 * @return Boolean: true if operation was successful
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'Database::duplicateTableStructure' ) {
-		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName)", $fname );
+		throw new MWException( 'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
 
 	/**
