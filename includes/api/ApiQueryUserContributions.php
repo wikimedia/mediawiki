@@ -45,7 +45,6 @@ class ApiQueryContributions extends ApiQueryBase {
 			$fld_patrolled = false, $fld_tags = false;
 
 	public function execute() {
-
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
@@ -74,6 +73,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->usernames = array();
 			if(!is_array($this->params['user']))
 				$this->params['user'] = array($this->params['user']);
+			if(!count($this->params['user']))
+				$this->dieUsage('User parameter may not be empty.', 'param_user');
 			foreach($this->params['user'] as $u)
 				$this->prepareUsername($u);
 			$this->prefixMode = false;

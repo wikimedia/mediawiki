@@ -743,6 +743,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20967) action=edit allows creation of invalid titles
 * (bug 19523) Add inprop=watched to prop=info
 * (bug 21589) API: Separate summary and initial page text for uploads
+* (bug 21817) list=usercontribs returns empty result for empty ucuser
 
 === Languages updated in 1.16 ===
 
