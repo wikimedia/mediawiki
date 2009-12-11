@@ -124,7 +124,7 @@ function wfGetIP() {
  * Checks if an IP is a trusted proxy providor
  * Useful to tell if X-Fowarded-For data is possibly bogus
  * Squid cache servers for the site and AOL are whitelisted
- * @param string $ip
+ * @param $ip String
  * @return bool
  */
 function wfIsTrustedProxy( $ip ) {
