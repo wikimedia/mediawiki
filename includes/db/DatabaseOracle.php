@@ -779,11 +779,7 @@ class DatabaseOracle extends DatabaseBase {
 			$this->ignoreErrors( $ignore );
 		}
 		else {
-			$message = "A database error has occurred\n" .
-				"Query: $sql\n" .
-				"Function: $fname\n" .
-				"Error: $errno $error\n";
-			throw new DBUnexpectedError( $this, $message );
+			throw new DBQueryError($this, $error, $errno, $sql, $fname);
 		}
 	}
 
