@@ -203,7 +203,12 @@ class ApiMain extends ApiBase {
 	 * Only kept for backwards compatibility
 	 * @deprecated Use isWriteMode() instead
 	 */
-	public function requestWriteMode() {}
+	public function requestWriteMode() {
+		if (!$this->mEnableWrite)
+			$this->dieUsageMsg(array('writedisabled'));
+		if (wfReadOnly())
+			$this->dieUsageMsg(array('readonlytext'));		
+	}
 
 	/**
 	 * Set how long the response should be cached.
