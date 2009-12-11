@@ -1477,12 +1477,15 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 *: ''home addresses and telephone numbers, social security numbers, etc.''",
 'revdelete-legend'            => 'Set visibility restrictions',
 'revdelete-hide-text'         => 'Hide revision text',
+'revdelete-hide-image'        => 'Hide file content',
 'revdelete-hide-name'         => 'Hide action and target',
 'revdelete-hide-comment'      => 'Hide edit comment',
 'revdelete-hide-user'         => "Hide editor's username/IP address",
 'revdelete-hide-restricted'   => 'Suppress data from administrators as well as others',
+'revdelete-radio-same'        => '(leave)',
+'revdelete-radio-set'         => 'Yes',
+'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suppress data from administrators as well as others',
-'revdelete-hide-image'        => 'Hide file content',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
 'revdelete-log'               => 'Reason for deletion:',
 'revdelete-submit'            => 'Apply to selected {{PLURAL:$1|revision|revisions}}',
@@ -1516,7 +1519,7 @@ You do not have access to it.',
 'revdelete-no-change'         => "'''Warning:''' the item dated $2, $1 already had the requested visibility settings.",
 'revdelete-concurrent-change' => 'Error modifying the item dated $2, $1: its status appears to have been changed by someone else while you attempted to modify it.
 Please check the logs.',
-'revdelete-only-restricted'   => 'You cannot suppress items from view by administrators without also selecting one of the other suppression options.',
+'revdelete-only-restricted'   => 'Error hiding the item dated $2, $1: you cannot suppress items from view by administrators without also selecting one of the other visibility options.',
 'revdelete-reason-dropdown'   => '*Common delete reasons
 ** Copyright violation
 ** Inappropriate personal information
