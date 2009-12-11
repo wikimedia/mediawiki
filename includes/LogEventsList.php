@@ -892,7 +892,6 @@ class LogPager extends ReverseChronologicalPager {
 	public function getQueryInfo() {
 		$tables = array( 'logging', 'user' );
 		$this->mConds[] = 'user_id = log_user';
-		$groupBy = false;
 		$index = array();
 		$options = array();
 		# Add log_search table if there are conditions on it
@@ -916,7 +915,6 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		$options['USE INDEX'] = $index;
 		# Don't show duplicate rows when using log_search
-		if( $groupBy ) $options['GROUP BY'] = $groupBy;
 		$info = array(
 			'tables'     => $tables,
 			'fields'     => array( 'log_type', 'log_action', 'log_user', 'log_namespace',
