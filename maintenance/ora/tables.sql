@@ -185,6 +185,13 @@ CREATE INDEX &mw_prefix.externallinks_i01 ON &mw_prefix.externallinks (el_from, 
 CREATE INDEX &mw_prefix.externallinks_i02 ON &mw_prefix.externallinks (el_to, el_from);
 CREATE INDEX &mw_prefix.externallinks_i03 ON &mw_prefix.externallinks (el_index);
 
+CREATE TABLE &mw_prefix.external_user (
+  eu_local_id NUMBER NOT NULL,
+  eu_external_id varchar2(255) NOT NULL
+);
+ALTER TABLE &mw_prefix.external_user ADD CONSTRAINT &mw_prefix.external_user_pk PRIMARY KEY (eu_local_id);
+CREATE UNIQUE INDEX &mw_prefix.external_user_u01 ON &mw_prefix.external_user (eu_external_id);
+
 CREATE TABLE &mw_prefix.langlinks (
   ll_from    NUMBER  NOT NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE,
   ll_lang    VARCHAR2(20),
