@@ -12,7 +12,7 @@ $wgProfiling = true;
 
 /**
  * Begin profiling of a function
- * @param $functioname name of the function we will profile
+ * @param $functionname name of the function we will profile
  */
 function wfProfileIn( $functionname ) {
 	global $wgProfiler;
@@ -21,7 +21,7 @@ function wfProfileIn( $functionname ) {
 
 /**
  * Stop profiling of a function
- * @param $functioname name of the function we have profiled
+ * @param $functionname name of the function we have profiled
  */
 function wfProfileOut( $functionname = 'missing' ) {
 	global $wgProfiler;
@@ -31,8 +31,8 @@ function wfProfileOut( $functionname = 'missing' ) {
 /**
  * Returns a profiling output to be stored in debug file
  *
- * @param float $start
- * @param float $elapsed time elapsed since the beginning of the request
+ * @param $start Float
+ * @param $elapsed Float: time elapsed since the beginning of the request
  */
 function wfGetProfilingOutput( $start, $elapsed ) {
 	global $wgProfiler;
