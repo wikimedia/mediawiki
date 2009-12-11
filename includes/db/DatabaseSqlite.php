@@ -126,9 +126,9 @@ class DatabaseSqlite extends DatabaseBase {
 
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper )
-			$res->result = NULL;
+			$res->result = null;
 		else
-			$res = NULL;
+			$res = null;
 	}
 
 	function fetchObject($res) {

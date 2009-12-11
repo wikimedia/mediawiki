@@ -29,7 +29,7 @@ class SearchSqlite extends SearchEngine {
 	var $strictMatching = true;
 
 	// Cached because SearchUpdate keeps recreating our class
-	private static $fulltextSupported = NULL;
+	private static $fulltextSupported = null;
 
 	/**
 	 * Creates an instance of this class
@@ -44,7 +44,7 @@ class SearchSqlite extends SearchEngine {
 	 * @return Boolean
 	 */
 	function fulltextSearchSupported() {
-		if ( self::$fulltextSupported === NULL ) {
+		if ( self::$fulltextSupported === null ) {
 			$res = $this->db->selectField( 'updatelog', 'ul_key', array( 'ul_key' => 'fts3' ), __METHOD__ );
 			self::$fulltextSupported = $res && $this->db->numRows( $res ) > 0;
 		}

@@ -546,7 +546,7 @@ class MovePageForm {
 	}
 
 	function showLogFragment( $title, &$out ) {
-		$out->addHTML( Xml::element( 'h2', NULL, LogPage::logName( 'move' ) ) );
+		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'move' ) ) );
 		LogEventsList::showLogExtract( $out, 'move', $title->getPrefixedText() );
 	}
 

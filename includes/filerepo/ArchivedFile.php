@@ -45,7 +45,7 @@ class ArchivedFile
 		$this->description = '';
 		$this->user = 0;
 		$this->user_text = '';
-		$this->timestamp = NULL;
+		$this->timestamp = null;
 		$this->deleted = 0;
 		$this->dataLoaded = false;
 		$this->exists = false;

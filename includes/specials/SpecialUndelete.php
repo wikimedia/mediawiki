@@ -285,7 +285,7 @@ class PageArchive {
 		if( $row ) {
 			return $this->getTextFromRow( $row );
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 
@@ -590,7 +590,7 @@ class UndeleteForm {
 		if ( $this->mTarget !== "" ) {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
 		} else {
-			$this->mTargetObj = NULL;
+			$this->mTargetObj = null;
 		}
 		if( $this->mRestore || $this->mInvert ) {
 			$timestamps = array();

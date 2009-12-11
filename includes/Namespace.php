@@ -151,7 +151,7 @@ class MWNamespace {
 		if ( array_key_exists( $name, $xNamespaces ) ) {
 			return $xNamespaces[$name];
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 

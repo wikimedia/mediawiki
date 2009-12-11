@@ -589,7 +589,7 @@ abstract class UploadBase {
 
 		$match = $magic->isMatchingExtension( $extension, $mime );
 
-		if ( $match === NULL ) {
+		if ( $match === null ) {
 			wfDebug( __METHOD__ . ": no file extension known for mime type $mime, passing file\n" );
 			return true;
 		} elseif( $match === true ) {
@@ -639,7 +639,7 @@ abstract class UploadBase {
 		elseif( substr( $chunk, 0, 2 ) == "\xff\xfe" )
 			$enc = "UTF-16LE";
 		else
-			$enc = NULL;
+			$enc = null;
 
 		if( $enc )
 			$chunk = iconv( $enc, "ASCII//IGNORE", $chunk );
@@ -762,7 +762,7 @@ abstract class UploadBase {
 
 		if ( !$wgAntivirus ) {
 			wfDebug( __METHOD__ . ": virus scanner disabled\n" );
-			return NULL;
+			return null;
 		}
 
 		if ( !$wgAntivirusSetup[$wgAntivirus] ) {
@@ -817,12 +817,12 @@ abstract class UploadBase {
 			if ( $wgAntivirusRequired ) {
 				return wfMsg( 'virus-scanfailed', array( $exitCode ) );
 			} else {
-				return NULL;
+				return null;
 			}
 		} else if ( $mappedCode === AV_SCAN_ABORTED ) {
 			# scan failed because filetype is unknown (probably imune)
 			wfDebug( __METHOD__ . ": unsupported file type $file (code $exitCode).\n" );
-			return NULL;
+			return null;
 		} else if ( $mappedCode === AV_NO_VIRUS ) {
 			# no virus found
 			wfDebug( __METHOD__ . ": file passed virus scan.\n" );

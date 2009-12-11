@@ -313,7 +313,7 @@ $wgUrlProtocols = array(
 /** internal name of virus scanner. This servers as a key to the $wgAntivirusSetup array.
  * Set this to NULL to disable virus scanning. If not null, every file uploaded will be scanned for viruses.
  */
-$wgAntivirus= NULL;
+$wgAntivirus= null;
 
 /** Configuration for different virus scanners. This an associative array of associative arrays:
  * it contains on setup array per known scanner type. The entry is selected by $wgAntivirus, i.e.
@@ -380,11 +380,11 @@ $wgVerifyMimeType= true;
 /** Sets the mime type definition file to use by MimeMagic.php. */
 $wgMimeTypeFile= "includes/mime.types";
 #$wgMimeTypeFile= "/etc/mime.types";
-#$wgMimeTypeFile= NULL; #use built-in defaults only.
+#$wgMimeTypeFile= null; #use built-in defaults only.
 
 /** Sets the mime type info file to use by MimeMagic.php. */
 $wgMimeInfoFile= "includes/mime.info";
-#$wgMimeInfoFile= NULL; #use built-in defaults only.
+#$wgMimeInfoFile= null; #use built-in defaults only.
 
 /** Switch for loading the FileInfo extension by PECL at runtime.
  * This should be used only if fileinfo is installed as a shared object
@@ -397,7 +397,7 @@ $wgLoadFileinfoExtension= false;
  * The name of the file to process will be appended to the command given here.
  * If not set or NULL, mime_content_type will be used if available.
  */
-$wgMimeDetectorCommand= NULL; # use internal mime_content_type function, available since php 4.3.0
+$wgMimeDetectorCommand= null; # use internal mime_content_type function, available since php 4.3.0
 #$wgMimeDetectorCommand= "file -bi"; #use external mime detector (Linux)
 
 /** Switch for trivial mime detection. Used by thumb.php to disable all fance
@@ -2443,13 +2443,13 @@ $wgEnableCreativeCommonsRdf = false;
 /** Override for copyright metadata.
  * TODO: these options need documentation
  */
-$wgRightsPage = NULL;
-$wgRightsUrl = NULL;
-$wgRightsText = NULL;
-$wgRightsIcon = NULL;
+$wgRightsPage = null;
+$wgRightsUrl = null;
+$wgRightsText = null;
+$wgRightsIcon = null;
 
 /** Set this to some HTML to override the rights icon with an arbitrary logo */
-$wgCopyrightIcon = NULL;
+$wgCopyrightIcon = null;
 
 /** Set this to true if you want detailed copyright information forms on Upload. */
 $wgUseCopyrightUpload = false;
@@ -2924,7 +2924,7 @@ $wgOverrideSiteFeed = array();
 #	      102 => "Aide",
 #	      103 => "Discussion_Aide"
 #	      );
-$wgExtraNamespaces = NULL;
+$wgExtraNamespaces = null;
 
 /**
  * Namespace aliases
@@ -3533,7 +3533,7 @@ $wgRateLimits = array(
 		'subnet' => null,
 		),
 	'mailpassword' => array(
-		'anon' => NULL,
+		'anon' => null,
 		),
 	'emailuser' => array(
 		'user' => null,

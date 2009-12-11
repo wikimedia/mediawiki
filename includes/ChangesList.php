@@ -45,7 +45,7 @@ class ChangesList {
 	 */
 	public static function newFromUser( &$user ) {
 		$sk = $user->getSkin();
-		$list = NULL;
+		$list = null;
 		if( wfRunHooks( 'FetchChangesList', array( &$user, &$sk, &$list ) ) ) {
 			return $user->getOption( 'usenewrc' ) ?
 				new EnhancedChangesList( $sk ) : new OldChangesList( $sk );
@@ -504,7 +504,7 @@ class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 */
-	public function recentChangesLine( &$rc, $watched = false, $linenumber = NULL ) {
+	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		global $wgLang, $wgRCShowChangedSize, $wgUser;
 		wfProfileIn( __METHOD__ );
 		# Should patrol-related stuff be shown?
@@ -915,10 +915,10 @@ class EnhancedChangesList extends ChangesList {
 			$last = 0;
 			$first = count($block) - 1;
 			# Some events (like logs) have an "empty" size, so we need to skip those...
-			while( $last < $first && $block[$last]->mAttribs['rc_new_len'] === NULL ) {
+			while( $last < $first && $block[$last]->mAttribs['rc_new_len'] === null ) {
 				$last++;
 			}
-			while( $first > $last && $block[$first]->mAttribs['rc_old_len'] === NULL ) {
+			while( $first > $last && $block[$first]->mAttribs['rc_old_len'] === null ) {
 				$first--;
 			}
 			# Get net change

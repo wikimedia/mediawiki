@@ -59,7 +59,7 @@ $title = $wgRequest->getVal( 'title' );
 
 # Set title from request parameters
 $wgTitle = $mediaWiki->checkInitialQueries( $title, $action );
-if( $wgTitle === NULL ) {
+if( $wgTitle === null ) {
 	unset( $wgTitle );
 }
 

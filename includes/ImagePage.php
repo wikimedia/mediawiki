@@ -1021,7 +1021,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mImagePage = $imagePage;
 		$this->mTitle = clone( $imagePage->getTitle() );
 		$this->mTitle->setFragment( '#filehistory' );
-		$this->mImg = NULL;
+		$this->mImg = null;
 		$this->mHist = array();
 		$this->mRange = array( 0, 0 ); // display range
 	}

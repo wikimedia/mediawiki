@@ -400,7 +400,7 @@ class SpecialContributions extends SpecialPage {
 				$comments
 			);
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 

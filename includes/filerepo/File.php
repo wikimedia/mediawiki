@@ -1195,7 +1195,7 @@ abstract class File {
 
 			wfDebug(__METHOD__.": $path loaded, {$info['size']} bytes, {$info['mime']}.\n");
 		} else {
-			$info['mime'] = NULL;
+			$info['mime'] = null;
 			$info['media_type'] = MEDIATYPE_UNKNOWN;
 			$info['metadata'] = '';
 			$info['sha1'] = '';

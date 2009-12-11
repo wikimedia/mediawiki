@@ -37,9 +37,9 @@ class AjaxResponse {
 	/** Content of our HTTP response */
 	private $mText;
 
-	function __construct( $text = NULL ) {
-		$this->mCacheDuration = NULL;
-		$this->mVary = NULL;
+	function __construct( $text = null ) {
+		$this->mCacheDuration = null;
+		$this->mVary = null;
 
 		$this->mDisabled = false;
 		$this->mText = '';

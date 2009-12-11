@@ -450,7 +450,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		if ( $t && $t->isLocal() ) {
 			return array( $t->getNamespace(), $t->getDBkey(), $t->getText() );
 		} else if ( $t ) {
-			return NULL;
+			return null;
 		}
 
 		# try again, in case the problem was an empty pagename
@@ -459,7 +459,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		if ( $t && $t->isLocal() ) {
 			return array( $t->getNamespace(), '', '' );
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 }

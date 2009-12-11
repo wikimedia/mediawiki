@@ -14,7 +14,7 @@ plan( 9 );
 
 $db = new DatabaseMysql( $wgDBserver, $wgDBuser, $wgDBpassword );
 
-cmp_ok( $db->addQuotes( NULL ), '==',
+cmp_ok( $db->addQuotes( null ), '==',
 	'NULL', 'Add quotes to NULL' );
 
 cmp_ok( $db->addQuotes( 1234 ), '==',

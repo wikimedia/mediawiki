@@ -92,7 +92,7 @@ class Title {
 		if( $t->secureAndSplit() )
 			return $t;
 		else
-			return NULL;
+			return null;
 	}
 
 	/**
@@ -146,7 +146,7 @@ class Title {
 			}
 			return $t;
 		} else {
-			$ret = NULL;
+			$ret = null;
 			return $ret;
 		}
 	}
@@ -180,7 +180,7 @@ class Title {
 		if( $t->secureAndSplit() ) {
 			return $t;
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 
@@ -197,7 +197,7 @@ class Title {
 		if( $row !== false ) {
 			$title = Title::newFromRow( $row );
 		} else {
-			$title = NULL;
+			$title = null;
 		}
 		return $title;
 	}
@@ -232,7 +232,7 @@ class Title {
 
 		$t->mArticleID = isset($row->page_id) ? intval($row->page_id) : -1;
 		$t->mLength = isset($row->page_len) ? intval($row->page_len) : -1;
-		$t->mRedirect = isset($row->page_is_redirect) ? (bool)$row->page_is_redirect : NULL;
+		$t->mRedirect = isset($row->page_is_redirect) ? (bool)$row->page_is_redirect : null;
 		$t->mLatestID = isset($row->page_latest) ? $row->page_latest : false;
 
 		return $t;
@@ -278,7 +278,7 @@ class Title {
 		if( $t->secureAndSplit() ) {
 			return $t;
 		} else {
-			return NULL;
+			return null;
 		}
  	}
 
@@ -413,7 +413,7 @@ class Title {
 			array( 'page_namespace','page_title' ),
 			array( 'page_id' => $id ), 
 			__METHOD__ );
-		if ( $s === false ) { return NULL; }
+		if ( $s === false ) { return null; }
 
 		$n = self::makeName( $s->page_namespace, $s->page_title );
 		return $n;
@@ -1871,7 +1871,7 @@ class Title {
 	 * Loads a string into mRestrictions array
 	 * @param $res \type{Resource} restrictions as an SQL result.
 	 */
-	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = NULL ) {
+	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
 		$rows = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		
@@ -1882,7 +1882,7 @@ class Title {
 		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
 	}
 	
-	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = NULL ) {
+	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		
 		$restrictionTypes = $this->getRestrictionTypes();
@@ -1896,7 +1896,7 @@ class Title {
 
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
-		if ( $oldFashionedRestrictions === NULL ) {
+		if ( $oldFashionedRestrictions === null ) {
 			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions', 
 				array( 'page_id' => $this->getArticleId() ), __METHOD__ );
 		}
@@ -1958,7 +1958,7 @@ class Title {
 	/**
 	 * Load restrictions from the page_restrictions table
 	 */
-	public function loadRestrictions( $oldFashionedRestrictions = NULL ) {
+	public function loadRestrictions( $oldFashionedRestrictions = null ) {
 		if( !$this->mRestrictionsLoaded ) {
 			if ($this->exists()) {
 				$dbr = wfGetDB( DB_SLAVE );
@@ -3353,14 +3353,14 @@ class Title {
 	public function getFirstRevision( $flags=0 ) {
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$pageId = $this->getArticleId($flags);
-		if( !$pageId ) return NULL;
+		if( !$pageId ) return null;
 		$row = $db->selectRow( 'revision', '*',
 			array( 'rev_page' => $pageId ),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 )
 		);
 		if( !$row ) {
-			return NULL;
+			return null;
 		} else {
 			return new Revision( $row );
 		}
@@ -3539,7 +3539,7 @@ class Title {
 	 * @param Database $db, optional db
 	 * @return \type{\string} Last touched timestamp
 	 */
-	public function getTouched( $db = NULL ) {
+	public function getTouched( $db = null ) {
 		$db = isset($db) ? $db : wfGetDB( DB_SLAVE );
 		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
 		return $touched;
@@ -3550,7 +3550,7 @@ class Title {
 	 * @param User $user
 	 * @return mixed string/NULL
 	 */
-	public function getNotificationTimestamp( $user = NULL ) {
+	public function getNotificationTimestamp( $user = null ) {
 		global $wgUser, $wgShowUpdatedMarker;
 		// Assume current user if none given
 		if( !$user ) $user = $wgUser;

@@ -40,7 +40,7 @@ class ApiUndelete extends ApiBase {
 		global $wgUser;
 		$params = $this->extractRequestParams();
 
-		$titleObj = NULL;
+		$titleObj = null;
 		if(!isset($params['title']))
 			$this->dieUsageMsg(array('missingparam', 'title'));
 		if(!isset($params['token']))

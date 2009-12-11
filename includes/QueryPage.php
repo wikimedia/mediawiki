@@ -490,7 +490,7 @@ class QueryPage {
 	 */
 	function feedResult( $row ) {
 		if( !isset( $row->title ) ) {
-			return NULL;
+			return null;
 		}
 		$title = Title::MakeTitle( intval( $row->namespace ), $row->title );
 		if( $title ) {
@@ -509,7 +509,7 @@ class QueryPage {
 				$this->feedItemAuthor( $row ),
 				$comments);
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 

@@ -136,14 +136,14 @@ class Services_JSON
 		$this->use = $use;
 	}
 	
-	private static $mHavePear = NULL;
+	private static $mHavePear = null;
 	/**
 	 * Returns cached result of class_exists('pear'), to avoid calling AutoLoader numerous times
 	 * in cases when PEAR is not present.
 	 * @return boolean
 	 */
 	private static function pearInstalled() {
-		if ( self::$mHavePear === NULL ) {
+		if ( self::$mHavePear === null ) {
 			self::$mHavePear = class_exists( 'pear' );
 		}
 		return self::$mHavePear;

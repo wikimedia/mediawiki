@@ -357,7 +357,7 @@ class SpecialNewpages extends SpecialPage {
 				$this->feedItemAuthor( $row ),
 				$comments);
 		} else {
-			return NULL;
+			return null;
 		}
 	}
 

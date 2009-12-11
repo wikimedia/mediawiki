@@ -25,13 +25,13 @@
 require_once dirname(__FILE__).'/UtfNormalUtil.php';
 
 global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
-$utfCombiningClass = NULL;
-$utfCanonicalComp = NULL;
-$utfCanonicalDecomp = NULL;
+$utfCombiningClass = null;
+$utfCanonicalComp = null;
+$utfCanonicalDecomp = null;
 
 # Load compatibility decompositions on demand if they are needed.
 global $utfCompatibilityDecomp;
-$utfCompatibilityDecomp = NULL;
+$utfCompatibilityDecomp = null;
 
 /**
  * For using the ICU wrapper

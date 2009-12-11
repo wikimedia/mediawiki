@@ -40,7 +40,7 @@ class ApiProtect extends ApiBase {
 		global $wgUser, $wgRestrictionTypes, $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
-		$titleObj = NULL;
+		$titleObj = null;
 		if(!isset($params['title']))
 			$this->dieUsageMsg(array('missingparam', 'title'));
 		if(!isset($params['token']))
