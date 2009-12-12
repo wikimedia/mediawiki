@@ -901,12 +901,12 @@ $3 هۆکاری "$2" خستوەتەڕوو',
 *: '' ناونیشانی ماڵ و ژمارە تەلەفۆنەکان و وەک ئەوانە.''",
 'revdelete-legend'            => 'دانانی سنوورەکانی بیندران',
 'revdelete-hide-text'         => 'داشاردنی دەقی پێداچوونەوە',
+'revdelete-hide-image'        => 'ناوەڕۆکی پەڕگە بشارەوە',
 'revdelete-hide-name'         => 'داشاردنی مەبەست و کردەوە',
 'revdelete-hide-comment'      => 'داشاردنی دەستکاری بۆچوون',
 'revdelete-hide-user'         => 'داشاردنی ناوی بەکارهێنەری\\ئای‌پی دەستکاریکەر',
 'revdelete-hide-restricted'   => 'بەرگری دراوە لە بەڕێوبەران هەر وەک ئەوانی دیکە',
 'revdelete-suppress'          => 'بەرگری دراوە لە بەڕێوبەران هەر وەک ئەوانی دیکە',
-'revdelete-hide-image'        => 'ناوەڕۆکی پەڕگە بشارەوە',
 'revdelete-unsuppress'        => 'لابردنی سنوورەکانی لە سەر پێداچوونە گەڕاندراوەکان',
 'revdelete-log'               => 'ھۆکاری سڕینەوە:',
 'revdelete-submit'            => 'خستنەکار بۆ سەر پێداچوونەوەی هەڵبژێردراو',
@@ -2833,7 +2833,9 @@ $5
 'table_pager_empty'        => 'هیچ ئەنجامێک نییە',
 
 # Auto-summaries
-'autosumm-new' => "پەڕەیەک دروست کرا بە '$1'",
+'autosumm-blank'   => 'پەڕەکەی واڵا کردەوە',
+'autoredircomment' => 'ڕەوانە کرا بۆ [[$1]]',
+'autosumm-new'     => "پەڕەیەک دروست کرا بە '$1'",
 
 # Live preview
 'livepreview-loading' => 'له‌باركردنایه‌ ...',

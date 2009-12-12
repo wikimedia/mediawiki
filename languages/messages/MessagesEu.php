@@ -524,7 +524,7 @@ Emandako arrazoia ''$2'' izan zen.",
 # Login and logout pages
 'logouttext'                 => "'''Saioa itxi egin duzu.'''
 
-Erabiltzaile anonimo bezala jarraitu dezakezu {{SITENAME}} erabiltzen, edo saioa has dezakezu berriz erabiltzaile berdinarekin edo ezberdin batekin.
+Erabiltzaile anonimo bezala jarrai dezakezu {{SITENAME}} erabiltzen, edo [[Special:UserLogin|saioa has dezakezu berriz]] erabiltzaile berdinarekin edo ezberdin batekin.
 Kontuan izan orrialde batzuk saioa hasita bazenu bezala ikus ditzakezula nabigatzailearen katxea garbitu arte.",
 'welcomecreation'            => '== Ongi etorri, $1! ==
 
@@ -881,12 +881,15 @@ Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaket
 *: ''etxeko helbideak eta telefono zenbakiak, segurtasun sozial zenbakiak, etab.''",
 'revdelete-legend'            => 'Berrikuspen mugapenak ezarri:',
 'revdelete-hide-text'         => 'Berrikuspenaren testua ezkutatu',
+'revdelete-hide-image'        => 'Fitxategiaren edukia ezkutatu',
 'revdelete-hide-name'         => 'Helburua eta ekintza izkutatu',
 'revdelete-hide-comment'      => 'Aldaketaren iruzkina ezkutatu',
 'revdelete-hide-user'         => 'Egilearen erabiltzaile izena/IPa ezkutatu',
 'revdelete-hide-restricted'   => 'Mugapen hauek administratzaileei zein besteei aplikatu',
+'revdelete-radio-same'        => '(utzi)',
+'revdelete-radio-set'         => 'Bai',
+'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Administratzaileen eta bestelakoen datuak kendu',
-'revdelete-hide-image'        => 'Fitxategiaren edukia ezkutatu',
 'revdelete-unsuppress'        => 'Berrezarritako aldaketen mugak kendu',
 'revdelete-log'               => 'Ezabatzeko arrazoia:',
 'revdelete-submit'            => 'Hautatutako {{PLURAL:$1|berrikuspenari|berrikuspenei}} aplikatu',
@@ -1719,10 +1722,12 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'listusers-blocked'  => '(blokeatua)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lankide aktiboen zerrenda',
-'activeusers-count'    => '{{PLURAL:$1|Aldaketa berri bat|$1 aldaketa berri}} azken {{PLURAL:$3|egunean|$3 egunetan}}',
-'activeusers-from'     => 'Bilatu honela hasten diren lankideak:',
-'activeusers-noresult' => 'Ez da lankiderik aurkitu.',
+'activeusers'            => 'Lankide aktiboen zerrenda',
+'activeusers-count'      => '{{PLURAL:$1|Aldaketa berri bat|$1 aldaketa berri}} azken {{PLURAL:$3|egunean|$3 egunetan}}',
+'activeusers-from'       => 'Bilatu honela hasten diren lankideak:',
+'activeusers-hidebots'   => 'Ezkutatu bot-ak',
+'activeusers-hidesysops' => 'Ezkutatu administratzaileak',
+'activeusers-noresult'   => 'Ez da lankiderik aurkitu.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Erabiltzaile erregistroa',
@@ -2052,6 +2057,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Erabiltzailea blokeatu',
+'blockip-title'                   => 'Lankidea blokeatu',
 'blockip-legend'                  => 'Erabiltzailea blokeatu',
 'blockiptext'                     => 'IP helbide edo erabiltzaile izen bati idazketa baimenak kentzeko beheko formularioa erabil dezakezu. Ekintza hau bandalismoa saihesteko baino ez da burutu behar, eta beti ere [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz. Blokeoaren arrazoi bat ere zehaztu ezazu (adibidez, orrialde batzuk zehaztuz).',
 'ipaddress'                       => 'IP Helbidea',
@@ -2239,6 +2245,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'imageinvalidfilename'         => 'Xede-artxiboaren izenak ez du balio',
 'fix-double-redirects'         => 'Hasierako izenburura zuzentzen duten birzuzenketa guztiak aldatu',
 'move-leave-redirect'          => 'Atzean birzuzenketa bat utzi',
+'protectedpagemovewarning'     => "'''Oharra:''' Orrialde hau babestua izan da, beraz administratzaile eskumenak dituztenek alda dezakete bakarrik.",
 'semiprotectedpagemovewarning' => "'''Oharra:''' Orrialde hau blokeatu dute, izena emanda duten erabiltzaileek soilik mugitu ahal dezaten.",
 
 # Export

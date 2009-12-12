@@ -438,8 +438,8 @@ $messages = array(
 # Revision deletion
 'rev-delundel'              => 'ончыкташ/шылташ',
 'rev-showdeleted'           => 'ончыкташ',
-'revdelete-hide-user'       => 'Тӧрлатышын лӱмжым шылташ',
 'revdelete-hide-image'      => 'Файл кӧргым шылташ',
+'revdelete-hide-user'       => 'Тӧрлатышын лӱмжым шылташ',
 'revdel-restore'            => 'Койымашым вашталташ',
 'pagehist'                  => 'Лаштыкын эртымгорно',
 'revdelete-content'         => 'кӧргӧ',

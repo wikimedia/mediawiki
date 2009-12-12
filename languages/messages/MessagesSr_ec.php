@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bjankuloski06
  * @author Kale
  * @author Meno25
  * @author Millosh
@@ -981,12 +982,12 @@ $2',
 *: ''кућне адресе и телефонске бројеве, бројеве социјалних услуга, итд.''",
 'revdelete-legend'            => 'Постави видне рестрикције',
 'revdelete-hide-text'         => 'Сакриј текст ревизије',
+'revdelete-hide-image'        => 'Сакриј садржај фајла',
 'revdelete-hide-name'         => 'Сакриј акцију и циљ.',
 'revdelete-hide-comment'      => 'Сакриј опис измене',
 'revdelete-hide-user'         => 'Сакриј корисничко име/ИП адресу корисника који је уређивао страницу',
 'revdelete-hide-restricted'   => 'Склони податке како од администратора, тако и од свих осталих',
 'revdelete-suppress'          => 'Сакриј податке од сисопа и осталих.',
-'revdelete-hide-image'        => 'Сакриј садржај фајла',
 'revdelete-unsuppress'        => 'Уклони забране над опорављеним верзијама.',
 'revdelete-log'               => 'Разлог за брисање:',
 'revdelete-submit'            => 'Примени на {{PLURAL:$1|изабрану ревизију|изабране ревизије}}',
@@ -1156,7 +1157,7 @@ $2',
 'recentchangesdays-max'       => '(mмаксимум $1 {{PLURAL:$1|дан|дана}})',
 'recentchangescount'          => 'Подразумевани број измена, који ће бити приказан:',
 'savedprefs'                  => 'Ваша подешавања су сачувана.',
-'timezonelegend'              => 'Временска зона:',
+'timezonelegend'              => 'Часовна зона:',
 'localtime'                   => 'Локално време:',
 'timezoneuseserverdefault'    => 'Користи основна подешавања',
 'timezoneuseoffset'           => 'Друго (одреди одступање)',

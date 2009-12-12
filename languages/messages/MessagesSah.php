@@ -705,6 +705,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'nocreatetext'                     => '{{SITENAME}} саайтыгар саҥа сирэйи оҥорор хааччахтанар.
 Баар сирэйи уларытыаххын сөп, эбэтэр [[Special:UserLogin|манна  бэлиэтэниэххин эбэтэр атын аатынан киириэххин сөп]].',
 'nocreate-loggedin'                => 'Эн саҥа сирэйи оҥорор кыаҕыҥ өссө суох.',
+'sectioneditnotsupported-title'    => 'Салаалары уларытыы манна сатаммат',
+'sectioneditnotsupported-text'     => 'Бу сирэйгэ салаалары уларытар кыаллыбат',
 'permissionserrors'                => 'Көҥүллээһин моһуогурда',
 'permissionserrorstext'            => 'Маны оҥорор кыаҕыҥ суох, {{PLURAL:$1|төрүтэ|төрүттэрэ}}:',
 'permissionserrorstext-withaction' => 'Бу дьайыыны ($2) оҥорор кыаҕыҥ суох.  {{PLURAL:$1|Биричиинэтэ|Биричиинэлэрэ}}:',
@@ -837,12 +839,15 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 *: ''дьиэтин аадырыһа, төлөппүөннэрин нүөмэрэ, пааспарын нүөмэрэ уо.д.а.''",
 'revdelete-legend'            => 'Хааччахтары туруоруу:',
 'revdelete-hide-text'         => 'Сирэй бу торумун кистээ',
+'revdelete-hide-image'        => 'Билэ иһин кистээ',
 'revdelete-hide-name'         => 'Дьайыыны уонна дьайыы сыалын кистээ.',
 'revdelete-hide-comment'      => 'Ырытыыны кистээ',
 'revdelete-hide-user'         => 'Ааппын/IP-бын көрдөрүмэ',
 'revdelete-hide-restricted'   => 'Маны дьаһабыллартан эмиэ кистииргэ',
+'revdelete-radio-same'        => '(хаалларарга)',
+'revdelete-radio-set'         => 'Сөп',
+'revdelete-radio-unset'       => 'Суох',
 'revdelete-suppress'          => 'Бу суругу администратордартан эмиэ кистээ',
-'revdelete-hide-image'        => 'Билэ иһин кистээ',
 'revdelete-unsuppress'        => 'Төннөрүллүбүт торумнартан хааччахтааһыны ылан кэбиһэргэ',
 'revdelete-log'               => 'Сотуу төрүөтэ:',
 'revdelete-submit'            => 'Маны талбыт {{PLURAL:$1|барылбар|барылларбар}} тутун',
@@ -876,7 +881,7 @@ $1",
 'revdelete-no-change'         => "'''Болҕой:''' баччатааҕы $2, $1 сурукка көрдүүр туруорууларгын хайыы-үйэ ким эрэ туруорбут.",
 'revdelete-concurrent-change' => 'Баччаҕа оҥоһуллубут суругу $2, $1 уларытарга алҕас таҕыста: бу сурук туругун ким эрэ хайыы үйэ эн иннигинэ уларыта охсубут.
 Бука диэн сурунааллары көр эрэ.',
-'revdelete-only-restricted'   => 'Бу суругу дьаһабыллар көрбөттөрүн курдук оҥорорго кистээһин ханнык эмэ туруоруутун талыахха наада.',
+'revdelete-only-restricted'   => 'Алҕас таҕыста ($2 $1): Бу суругу дьаһабыллар көрбөттөрүн курдук оҥорорго кистээһин ханнык эмэ туруоруутун талыахха наада.',
 'revdelete-reason-dropdown'   => '*Сотуу төрүөттэрэ сүнньүнэн
 ** Ааптар быраабын күөмчүлээһин
 ** Тустаах киһи туһунан киэҥ эйгэҕэ тахсыбат билии',
@@ -1737,11 +1742,13 @@ PICT # misc.
 'listusers-blocked'  => '(хааччахтаммыт)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Көхтөөх кыттааччылар тиһиктэрэ',
-'activeusers-intro'    => 'Бу кэлиҥҥи $1 {{PLURAL:$1|күҥҥэ|күннэргэ}} тугу эмэ гыммыт кыттааччылар тиһиктэрэ.',
-'activeusers-count'    => '$1 бүтэһик $3 күҥҥэ саҥа {{PLURAL:$1|көннөрүүлээх|көннөрүүлээх эбит}}',
-'activeusers-from'     => 'Мантан саҕалаан кыттааччылары көрүү:',
-'activeusers-noresult' => 'Кыттааччылар көстүбэтилэр.',
+'activeusers'            => 'Көхтөөх кыттааччылар тиһиктэрэ',
+'activeusers-intro'      => 'Бу кэлиҥҥи $1 {{PLURAL:$1|күҥҥэ|күннэргэ}} тугу эмэ гыммыт кыттааччылар тиһиктэрэ.',
+'activeusers-count'      => '$1 бүтэһик $3 күҥҥэ саҥа {{PLURAL:$1|көннөрүүлээх|көннөрүүлээх эбит}}',
+'activeusers-from'       => 'Мантан саҕалаан кыттааччылары көрүү:',
+'activeusers-hidebots'   => 'Руобаттары көрдөрүмэ',
+'activeusers-hidesysops' => 'Дьаһабыллары көрдөрүмэ',
+'activeusers-noresult'   => 'Кыттааччылар көстүбэтилэр.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Кыттааччылары бэлиэтиир сурунаал',
@@ -2079,6 +2086,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'IP аадырыстан киириини бобуу',
+'blockip-title'                   => 'Кыттааччыны бобуу',
 'blockip-legend'                  => 'Кыттааччыны хааччахтааһын',
 'blockiptext'                     => 'Ханнык эмит IP-ттан суруйары манна баар форманы туһанан боп.
 Вандализмы утаран уонна [[{{MediaWiki:Policy-url}}]]
