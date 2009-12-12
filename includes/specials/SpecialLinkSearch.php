@@ -9,9 +9,7 @@
 
 /**
  * Special:LinkSearch to search the external-links table.
- * @ingroup SpecialPage
  */
-
 function wfSpecialLinkSearch( $par ) {
 
 	list( $limit, $offset ) = wfCheckLimits();
