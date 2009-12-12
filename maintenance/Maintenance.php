@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ * @defgroup Maintenance Maintenance
+ */
+
 // Define this so scripts can easily find doMaintenance.php
 define( 'DO_MAINTENANCE', dirname( __FILE__ ) . '/doMaintenance.php' );
 $maintClass = false;
