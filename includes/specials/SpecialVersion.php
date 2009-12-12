@@ -197,7 +197,7 @@ class SpecialVersion extends SpecialPage {
 
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( isset ( $wgExtensionCredits[$type] ) && count ( $wgExtensionCredits[$type] ) ) {
-				$out .= $this->openExtType( $text );
+				$out .= $this->openExtType( $text, 'credits-' . $type );
 
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
 
@@ -208,24 +208,24 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		if ( count( $wgExtensionFunctions ) ) {
-			$out .= $this->openExtType( wfMsg( 'version-extension-functions' ) );
+			$out .= $this->openExtType( wfMsg( 'version-extension-functions' ), 'extension-functions' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i )
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
-			$out .= $this->openExtType( wfMsg( 'version-parser-extensiontags' ) );
+			$out .= $this->openExtType( wfMsg( 'version-parser-extensiontags' ), 'parser-tags' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
 		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
-			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ) );
+			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ), 'parser-function-hooks' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
 		if ( count( $wgSkinExtensionFunctions ) ) {
-			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ) );
+			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ), 'skin-extension-functions' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
 		}
 		$out .= Xml::closeElement( 'table' );
@@ -341,19 +341,20 @@ class SpecialVersion extends SpecialPage {
 			return '';
 	}
 
-	private function openExtType($text, $name = null) {
+	private function openExtType( $text, $name = null ) {
 		$opt = array( 'colspan' => 4 );
 		$out = '';
 
-		if(!$this->firstExtOpened) {
+		if( !$this->firstExtOpened ) {
 			// Insert a spacing line
 			$out .= '<tr class="sv-space">' . Xml::element( 'td', $opt ) . "</tr>\n";
 		}
 		$this->firstExtOpened = false;
 
-		if($name) { $opt['id'] = "sv-$name"; }
+		if( $name )
+			$opt['id'] = "sv-$name";
 
-		$out .= "<tr>" . Xml::element( 'th', $opt, $text) . "</tr>\n";
+		$out .= "<tr>" . Xml::element( 'th', $opt, $text ) . "</tr>\n";
 		return $out;
 	}
 
