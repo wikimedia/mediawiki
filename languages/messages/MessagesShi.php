@@ -285,6 +285,7 @@ S ussiglad "<tt>$2</tt>".
 laffut d yurrin ɣ database "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Ḥan tasnayad ur gis graygan ambddel amaynu.',
 'readonly'        => 'Tqqn tabase',
+'viewsource'      => 'Mel iɣbula',
 
 # Login and logout pages
 'welcomecreation'         => '== Brrkat,  $1! ==
@@ -302,10 +303,11 @@ lcont nek  tuyskar .
 'loginlanguagelabel'      => 'tutlayt: $1',
 
 # Edit page toolbar
-'bold_tip'    => 'Aţŗş aťťuz',
-'italic_tip'  => 'Aţŗiş italik',
-'link_sample' => 'Azwl n uzday',
-'link_tip'    => 'Azday uwgens',
+'bold_tip'       => 'Aţŗş aťťuz',
+'italic_tip'     => 'Aţŗiş italik',
+'link_sample'    => 'Azwl n uzday',
+'link_tip'       => 'Azday uwgens',
+'extlink_sample' => 'http://www.example.com azwl n uzday',
 
 # Edit pages
 'summary'                    => 'Tadusi',

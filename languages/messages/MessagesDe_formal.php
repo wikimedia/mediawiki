@@ -257,7 +257,7 @@ Sie haben darauf keinen Zugriff.',
 Sie haben darauf keinen Zugriff.',
 'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Es scheint, als ob der Status von jemandem geändert wurde, bevor Sie vorhatten, ihn zu bearbeiten.
 Bitte prüfen Sie die Logbücher.',
-'revdelete-only-restricted'   => 'Sie können keine Einträge vor Administratoren unterdrücken, ohne dass Sie auch eine der anderen Unterdrückungsoptionen ausgewählt haben.',
+'revdelete-only-restricted'   => 'Fehler beim Verstecken des Eintrags vom $1, $2 Uhr: Sie können keinen Eintrag vor Administratoren verstecken, ohne eine der anderen Ansichtsoptionen gewählt zu haben.',
 
 # History merging
 'mergehistory-header' => 'Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.

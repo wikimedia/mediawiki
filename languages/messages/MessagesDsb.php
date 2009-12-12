@@ -922,12 +922,15 @@ Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 *: ''bydleńske adrese a telefonowe numery, numery socialnego zawěsćenja atd.''",
 'revdelete-legend'            => 'wobgranicowanja widobnosći póstajiś',
 'revdelete-hide-text'         => 'Tekst wersije schowaś',
+'revdelete-hide-image'        => 'Wopśimjeśe dataje schowaś',
 'revdelete-hide-name'         => 'Akciju log-lisćiny schowaś',
 'revdelete-hide-comment'      => 'Komentar wobźěłanja schowaś',
 'revdelete-hide-user'         => 'mě/IP-adresu wobźěłarja schowaś',
 'revdelete-hide-restricted'   => 'Daty wót administratorow ako teke te drugich wužywarjow pódtłocyś',
+'revdelete-radio-same'        => '(wóstajiś)',
+'revdelete-radio-set'         => 'Jo',
+'revdelete-radio-unset'       => 'Ně',
 'revdelete-suppress'          => 'Pśicynu wulašowanja teke za administratorow schowaś',
-'revdelete-hide-image'        => 'Wopśimjeśe dataje schowaś',
 'revdelete-unsuppress'        => 'Wobgranicowanja za wótnowjone wersije zasej zwignuś.',
 'revdelete-log'               => 'Pśicyna za wulašowanje:',
 'revdelete-submit'            => 'Na {{PLURAL:$1|wubranu wersiju|wubranej wersiji|wubrane wersije|wubrane wersije}} nałožyś',
@@ -961,7 +964,7 @@ Njamaš pśistup na njen.',
 'revdelete-no-change'         => "'''Warnowanje:''' zapisk wót $2, $1 jo južo měł pominane nastajenja wiźobnosći.",
 'revdelete-concurrent-change' => 'Zmólka pśi změnjanju zapiska wót $2, $1: zda se, až jogo status jo se změnił wót někogo drugego, mjaztym až sy wopytał jen změniś.
 Pšosym pśeglědaj protokole.',
-'revdelete-only-restricted'   => 'Njamóžoš zapiski pśed wócami administratorow  pódtłocyś, mimo až teke wuběraš jadnu z drugich pódtłócwańskich opcijow.',
+'revdelete-only-restricted'   => 'Zmólka pśi chowanju zapiska wót $2, $1; njamóžoš zapiski pśed wócami administratorow  pódtłocyś, mimo až teke wuběraš jadnu z drugich wiźobnosćowych opcijow.',
 'revdelete-reason-dropdown'   => '*Zwucone pśicyny za wulašowanje
 ** Pśestupjenje awtorskego pšawa
 ** Njegóźece se wósobinske informacije',
@@ -2140,6 +2143,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Wužywarja blokěrowaś',
+'blockip-title'                   => 'Wužywarja blokěrowaś',
 'blockip-legend'                  => 'Wužywarja blokěrowaś',
 'blockiptext'                     => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:Policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
 'ipaddress'                       => 'IP-adresa',

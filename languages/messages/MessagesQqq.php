@@ -915,12 +915,14 @@ It is the page title of [[Special:RevisionDelete]].',
 This is the introduction explaining the feature.',
 'revdelete-legend'            => '{{RevisionDelete}}',
 'revdelete-hide-text'         => 'Option for oversight',
+'revdelete-hide-image'        => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
 'revdelete-hide-name'         => 'Option for oversight',
 'revdelete-hide-comment'      => 'Option for oversight',
 'revdelete-hide-user'         => 'Option for oversight',
 'revdelete-hide-restricted'   => 'Option for oversight.',
+'revdelete-radio-set'         => '{{Identical|Yes}}',
+'revdelete-radio-unset'       => '{{Identical|No}}',
 'revdelete-suppress'          => 'Option for oversight',
-'revdelete-hide-image'        => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
 'revdelete-unsuppress'        => '{{RevisionDelete}}',
 'revdelete-log'               => '{{Identical|Reason for deletion}}
 Log comment text for oversight',
@@ -984,6 +986,9 @@ Please note that the parameters in a log entry will appear in the log only in th
 'revdelete-concurrent-change' => 'Parameters:
 * $1 is a date
 * $2 is a time',
+'revdelete-only-restricted'   => 'Parameters:
+*$1 - date
+*$2 - time',
 'revdelete-otherreason'       => '{{Identical|Other/additional reason}}',
 'revdelete-reasonotherlist'   => '{{Identical|Other reason}}',
 'revdelete-edit-reasonlist'   => '{{Identical|Edit delete reasons}}',
@@ -1069,6 +1074,7 @@ $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
 'search-redirect'                => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
+'search-section'                 => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.',
 'search-interwiki-default'       => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
 'search-relatedarticle'          => '{{Identical|Related}}',
 'searcheverything-enable'        => 'Used in [[Special:Preferences]], tab “Search”.',
@@ -2151,6 +2157,7 @@ Additionally available:
 'protectedarticle'          => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
 'modifiedarticleprotection' => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
 'protect-title'             => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
+'prot_1movedto2'            => 'Message description: [[mw:Manual:Interface/1movedto2]]',
 'protect-backlink'          => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
 
 Shown as subtitle of the protection form. $1 is the title of the page to be (un)protected.',

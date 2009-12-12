@@ -779,6 +779,8 @@ Grund fir d Sperri: $1",
 'nocreatetext'                     => "Uf {{SITENAME}} isch d Erstellig vo nöue Syten ygschränkt.
 Du chasch nur Syten ändere, wo's scho git, oder muesch di [[Special:UserLogin|amälde]].",
 'nocreate-loggedin'                => 'Du bisch nid berächtigt, neji Syte aazlege.',
+'sectioneditnotsupported-title'    => 'Abschnitt bearbeite wird nit unterstitzt',
+'sectioneditnotsupported-text'     => 'Abschnitt bearbeite wird uf däre Syte nit unterstitzt.',
 'permissionserrors'                => 'Berächtigungsfähler',
 'permissionserrorstext'            => 'Du bisch nid berächtigt, die Aktion uszfiere. {{PLURAL:$1|Grund|Grind}}:',
 'permissionserrorstext-withaction' => 'Du bisch nit berächtigt, $2.
@@ -902,12 +904,15 @@ As Ammann (Administrator) chasch dää Unterschid bschaue; villicht het s Detail
 *: ''Adrässe, Telifonnummere, Sozialversicherigsnummere usw.''",
 'revdelete-legend'            => 'Setze vu dr Sichtbarkeits-Yyschränkige',
 'revdelete-hide-text'         => 'Täxt vu dr Version versteckle',
+'revdelete-hide-image'        => 'Bildinhalt versteckle',
 'revdelete-hide-name'         => 'Logbuech-Aktion versteckle',
 'revdelete-hide-comment'      => 'Bearbeitigskommentar versteckle',
 'revdelete-hide-user'         => 'Benutzername/d IP vum Bearbeiter versteckle',
 'revdelete-hide-restricted'   => 'Date vu Ammanne glyych unterdrucke wie vu andere',
+'revdelete-radio-same'        => '(uusegoh)',
+'revdelete-radio-set'         => 'Jo',
+'revdelete-radio-unset'       => 'Nei',
 'revdelete-suppress'          => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
-'revdelete-hide-image'        => 'Bildinhalt versteckle',
 'revdelete-unsuppress'        => 'Yyhscränkige fir di widerhergstellte Versione ufhebe',
 'revdelete-log'               => 'Leschgrund:',
 'revdelete-submit'            => 'Uf {{PLURAL:$1|di uusgwehlt Version|usgwehlti Versione}} aawände',
@@ -941,7 +946,7 @@ Du hesch kei Zuegriff druf.',
 'revdelete-no-change'         => "'''Warnig:''' dr Yytrag mit em Datum $2, $1 het scho di gwinscht Sichtbarkeitsyystellige.",
 'revdelete-concurrent-change' => 'Fähler bim Bearbeite vum yytrag mit em Datum $2, $1: schyns isch dr Status vu eberem gänderet wore, voreb Du vorghaa hesch, e z bearbeite.
 Bitte prief d Logbiecher.',
-'revdelete-only-restricted'   => 'Du chasch kei Yyträg vor Adminischtratore unterdrucke, ohni ass Du au eini vu dr andere Unterdruckigsoptione uusgwehlt hesch.',
+'revdelete-only-restricted'   => 'Fähler bim Uusblände vum Byytrag vum $2, $1: Du chasch kei Yyträg vor Adminischtratore unterdrucke, ohni ass Du au eini vu dr andere Unterdruckigsoptione uusgwehlt hesch.',
 'revdelete-reason-dropdown'   => '*Gängigi Leschgrind
 **Urheberrächtsverletzig
 **Falschi Information iber Persone',
@@ -2115,6 +2120,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Benutzer bzw. IP blockyre',
+'blockip-title'                   => 'Benutzer sperre',
 'blockip-legend'                  => 'IP-Adräss/Benutzer sperre',
 'blockiptext'                     => 'Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.
 Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).',

@@ -1061,12 +1061,12 @@ Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend'            => 'Definir restrições de visualização',
 'revdelete-hide-text'         => 'Ocultar texto da edição',
+'revdelete-hide-image'        => 'Ocultar conteúdos do arquivo',
 'revdelete-hide-name'         => 'Ocultar acção e alvo',
 'revdelete-hide-comment'      => 'Esconder comentário de edição',
 'revdelete-hide-user'         => 'Esconder nome de usuário/IP do editor',
 'revdelete-hide-restricted'   => 'Suprimir dados de administradores assim como de outros',
 'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
-'revdelete-hide-image'        => 'Ocultar conteúdos do arquivo',
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
 'revdelete-log'               => 'Motivo para a eliminação:',
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à revisão selecionada|à revisões selecionadas}}',
@@ -1100,7 +1100,7 @@ Você não tem acesso a ele.',
 'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visualização requeridas.",
 'revdelete-concurrent-change' => 'Erro ao modificar o item datado de $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registos.',
-'revdelete-only-restricted'   => 'Não pode suprimir itens de serem visualizados por administradores sem também selecionar uma das outras opções de supressão.',
+'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2, 1$: você não pode impedir que itens sejam visualizados por administradores sem também selecionar uma das outras opções de visibilidade',
 'revdelete-reason-dropdown'   => '*Motivos comuns para eliminação
 ** Violação de direitos autorais
 ** Informação pessoal inapropriada

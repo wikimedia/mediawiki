@@ -564,6 +564,7 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'viewdeleted'             => 'Vaata lehekülge $1?',
 'restorelink'             => '{{PLURAL:$1|üks kustutatud versioon|$1 kustutatud versiooni}}',
 'feedlinks'               => 'Sööde:',
+'feed-unavailable'        => 'Uudisvood ei ole saadaval.',
 'site-rss-feed'           => '$1 RSS-toide',
 'site-atom-feed'          => '$1 Atom-toide',
 'page-rss-feed'           => '"$1" RSS-toide',
@@ -620,6 +621,7 @@ Kui tegemist ei ole nimetatud olukorraga, võib tegu olla ka süsteemi veaga.
 Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], edastades talle ka käesoleva lehe internetiaadressi.',
 'missingarticle-rev'   => '(redaktsioon: $1)',
 'missingarticle-diff'  => '(redaktsioonid: $1, $2)',
+'readonly_lag'         => "Andmebaas on automaatselt lukustatud, seniks kuni ''slave''-andmebaasid on uuendatud.",
 'internalerror'        => 'Sisemine viga',
 'internalerror_info'   => 'Sisemine viga: $1',
 'filecopyerror'        => 'Ei saanud faili "$1" kopeerida nimega "$2".',
@@ -742,6 +744,7 @@ Ole hea ja anna õige e-aadress või jäta lahter tühjaks.',
 'createaccount-text'         => 'Keegi on loonud {{GRAMMAR:illative|{{SITENAME}}}} ($4) sinu meiliaadressile vastava kasutajatunnuse "$2". Parooliks seati "$3". Logi sisse ja muuda oma parool.
 
 Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt ignoreerida.',
+'usernamehasherror'          => 'Kasutajanimi ei või sisaldada trellimärke ("#").',
 'login-throttled'            => 'Oled lühikese aja jooksul liiga palju äpardunud logimiskatseid sooritanud.
 Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
@@ -856,6 +859,9 @@ Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''tagasi''-nupule.",
 'noarticletext'                    => 'Käesoleval leheküljel hetkel teksti ei ole.
 Võid [[Special:Search/{{PAGENAME}}|otsida pealkirjaks olevat fraasi]] teistelt lehtedelt,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uurida asjassepuutuvaid logisid] või [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduva lehekülje ise luua]</span>.',
+'noarticletext-nopermission'       => 'Sellel leheküljel ei ole teksti.
+Sa võid [[Special:Search/{{PAGENAME}}|otsida lehekülje nime]] teistelt lehekülgedelt
+või <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} otsida lehekülje nime logidest]</span>.',
 'userpage-userdoesnotexist'        => 'Kasutajakontot "$1" pole olemas.
 Palun mõtle järele, kas soovid seda lehte luua või muuta.',
 'userpage-userdoesnotexist-view'   => 'Kasutajakonto "$1" pole registreeritud.',
@@ -941,11 +947,16 @@ Tundub, et see on kustutatud.',
 See on juba olemas.',
 
 # Parser/template warnings
-'post-expand-template-argument-category' => 'Malli vahele jäetud argumente sisaldavad leheküljed',
-'parser-template-loop-warning'           => 'Mallid moodustavad tsükli: [[$1]]',
+'post-expand-template-inclusion-warning'  => "'''Hoiatus:''' Väljakutsutavate mallide hulk on liiga suur.
+Mistõttu osasid malle ei näidata.",
+'post-expand-template-inclusion-category' => 'Leheküljed, milledel on mallide väljakutsumise limiit ületatud',
+'post-expand-template-argument-category'  => 'Malli vahele jäetud argumente sisaldavad leheküljed',
+'parser-template-loop-warning'            => 'Mallid moodustavad tsükli: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Malli rekursiivse kasutamise limiit on ületatud ($1)',
 
 # "Undo" feature
 'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',
+'undo-failure' => 'Muudatust ei saa vahapeal tehtud redigeerimiste tõttu tühistada.',
 'undo-norev'   => 'Muudatust ei saanud tühistada, kuna seda ei ole või see kustutati.',
 'undo-summary' => 'Tühistati muudatus $1, mille tegi [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]])',
 
@@ -1012,6 +1023,7 @@ Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
 'rev-delundel'                => 'näita/peida',
 'rev-showdeleted'             => 'näita',
 'revisiondelete'              => 'Kustuta/taasta redaktsioone',
+'revdelete-nooldid-text'      => 'Sa pole valinud redaktsiooni, valitud redaktsioon puudub või Sa püüad peita viimast redaktsiooni.',
 'revdelete-nologtype-title'   => 'Logi tüüpi ei antud',
 'revdelete-nologtype-text'    => 'Sa ei ole selle toimingu sooritamiseks logi tüüpi täpsustanud.',
 'revdelete-nologid-title'     => 'Vigane logikirje',
@@ -1020,17 +1032,21 @@ Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
 'revdelete-show-file-submit'  => 'Jah',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valitud versioon|Valitud versioonid}} artiklist [[:$1]]:'''",
 'logdelete-selected'          => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
+'revdelete-confirm'           => 'Kinnita, et Sa tõesti soovid seda teha ning et Sa saad aru tagajärgedest ja et tegevus on kooskõlas [[{{MediaWiki:Policy-url}}|siinse sisekorraga]].',
 'revdelete-suppress-text'     => "Andmed tuleks varjata '''ainult''' järgnevatel juhtudel:
 * Sobimatu isiklik teave
 *: ''kodune aadress ja telefoninumber, sotsiaalhoolekandenumber jne''",
 'revdelete-legend'            => 'Sea nähtavusele piirangud',
 'revdelete-hide-text'         => 'Peida redigeerimise tekst',
+'revdelete-hide-image'        => 'Peida faili sisu',
 'revdelete-hide-name'         => 'Peida toiming ja sihtmärk',
 'revdelete-hide-comment'      => 'Peida muudatuse kommentaar',
 'revdelete-hide-user'         => 'Peida toimetaja kasutajanimi/IP',
 'revdelete-hide-restricted'   => 'Varja andmeid nii administraatorite kui ka teiste eest.',
+'revdelete-radio-same'        => '(lahku)',
+'revdelete-radio-set'         => 'Jah',
+'revdelete-radio-unset'       => 'Ei',
 'revdelete-suppress'          => 'Varja andmed nii ülemate kui ka teiste eest.',
-'revdelete-hide-image'        => 'Peida faili sisu',
 'revdelete-unsuppress'        => 'Eemalda taastatud redaktsioonidelt piirangud',
 'revdelete-log'               => 'Kustutamise põhjus:',
 'revdelete-submit'            => 'Rakenda valitud {{PLURAL:$1|redaktsiooni|redaktsioonide}} suhtes',
@@ -1064,7 +1080,7 @@ Sul ei ole sellele ligipääsu.',
 'revdelete-no-change'         => "'''Hoiatus:''' Üksusel kuupäevaga $2, kell $1 olid juba soovitud nähtavussätted.",
 'revdelete-concurrent-change' => 'Tõrge üksuse kuupäevaga $2, kell $1 muutmisel: paistab, et keegi teine on selle olekut sel ajal muutnud, kui sina seda muuta üritasid.
 Palun vaata logisid.',
-'revdelete-only-restricted'   => 'Sa ei saa ilma veel ühte varjamissätet valimata üksuski ülemate eest varjata.',
+'revdelete-only-restricted'   => 'Ei õnnestu varjata elementi $2, $1 kuupäevaga: Sa ei saa seda elementi administraatorite eest peita, kui Sa ei märgi ka ühte muudest nähtavussätetest.',
 'revdelete-reason-dropdown'   => '*Tavalised kustutamise põhjused
 ** Autoriõiguste rikkumine
 ** Kohatud eraelulised andmed',
@@ -1084,6 +1100,9 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'mergehistory-from'                => 'Lehekülje allikas:',
 'mergehistory-into'                => 'Lehekülje sihtpunkt:',
 'mergehistory-list'                => 'Ühendatav redigeerimise ajalugu',
+'mergehistory-merge'               => 'Järgmised [[:$1]] redaktsioonid võib liita lehe [[:$2]] muudatuste ajalooga.
+Kasuta raadionuppe valimaks kindlat redaktsioonide vahemikku.
+Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'mergehistory-go'                  => 'Näita ühendatavaid muudatusi',
 'mergehistory-submit'              => 'Ühenda redaktsioonid',
 'mergehistory-empty'               => 'Ühendatavaid redaktsioone ei ole.',
@@ -1497,6 +1516,7 @@ Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on es
 'upload'                      => 'Faili üleslaadimine',
 'uploadbtn'                   => 'Laadi fail üles',
 'reuploaddesc'                => 'Tagasi üleslaadimise vormi juurde.',
+'upload-tryagain'             => 'Salvesta muudetud faili kirjeldus',
 'uploadnologin'               => 'Sisse logimata',
 'uploadnologintext'           => 'Kui Te soovite faile üles laadida, peate [[Special:UserLogin|sisse logima]].',
 'upload_directory_missing'    => 'Üleslaadimiskaust $1 puudub ja veebiserver ei saa seda luua.',
@@ -1610,12 +1630,16 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Juurdepääs keelatud',
+'img-auth-notindir'     => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'     => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'   => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
 'img-auth-nofile'       => 'Faili "$1" pole.',
 'img-auth-isdir'        => 'Sa üritad kausta "$1" juurde pääseda.
 Lubatud on ainult juurdepääs failidele.',
 'img-auth-streaming'    => 'Faili "$1" voogedastus.',
+'img-auth-public'       => 'img_auth.php on ette nähtud failide väljastamiseks privaatses vikis.
+See viki on seadistatud kui avalik viki.
+Turvakaalutlustel on img_auth.php kasutus keelatud.',
 'img-auth-noread'       => 'Faili "$1" lugemiseks vajalik juurdepääs puudub.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1703,12 +1727,14 @@ Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esime
 'filedelete-success'          => "'''$1''' on kustutatud.",
 'filedelete-success-old'      => "Faili '''[[Media:$1|$1]]''' seisuga $3, $2 kasutusel olnud versioon on kustutatud.",
 'filedelete-nofile'           => "Faili '''$1''' ei ole.",
+'filedelete-nofile-old'       => "Failist '''$1''' ei ole soovitud versiooni.",
 'filedelete-otherreason'      => 'Muu/täiendav põhjus',
 'filedelete-reason-otherlist' => 'Muu põhjus',
 'filedelete-reason-dropdown'  => '*Harilikud kustutamise põhjused
 ** Autoriõiguste rikkumine
 ** Duplikaat',
 'filedelete-edit-reasonlist'  => 'Redigeeri kustutamise põhjuseid',
+'filedelete-maintenance'      => 'Failide kustutamine ja taastamine on hoolduse ajaks keelatud.',
 
 # MIME search
 'mimesearch'         => 'MIME otsing',
@@ -2057,6 +2083,9 @@ Ettevaatust, selle kustutamine võib esile kutsuda häireid võrgukoha {{SITENAM
 'rollbacklink'     => 'tühista',
 'rollbackfailed'   => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'     => 'Ei saa muudatusi eemaldada, sest viimane kaastööline on artikli ainus autor.',
+'alreadyrolled'    => 'Kasutaja [[User:$2|$2]]([[User talk:$2|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) poolt lehele [[:$1]] tehtud muudatust ei saa tühistada, kuna keegi teine on seda lehte vahepeal muutnud.
+
+Lehte muutis viimasena [[User:$3|$3]] ([[User talk:$3|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Redaktsiooni kokkuvõte: \"''\$1''\".",
 'revertpage'       => 'Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ning pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]]',
 'rollback-success' => 'Tühistati $1 muudatus; 
@@ -2322,9 +2351,13 @@ Blokeering võib juba eemaldatud olla.',
 See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
 'ip_range_invalid'             => 'Vigane IP-vahemik.',
 'blockme'                      => 'Blokeeri mind',
+'proxyblocker'                 => 'Proxy-blokeerija',
 'proxyblocker-disabled'        => 'See funktsioon ei toimi.',
 'proxyblockreason'             => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
 'proxyblocksuccess'            => 'Tehtud.',
+'sorbsreason'                  => 'Sinu IP-aadress on selle saidi poolt kasutatavas DNSBL mustas nimekirjas kui avatud proxy-server.',
+'sorbs_create_account_reason'  => 'Sinu IP-aadress on selle saidi poolt kasutatavas DNSBL mustas nimekirjas kui avatud proxy-server. 
+Sa ei saa kasutajakontot luua.',
 'cant-block-while-blocked'     => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
 
 # Developer tools
@@ -2424,6 +2457,8 @@ Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud sel viisil, et ainult registreeritud kasutajad saavad seda teisaldada.",
 'move-over-sharedrepo'         => '== Fail on olemas ==
 [[:$1]] on olemas jagatud failivaramus. Faili teisaldamisel selle nime alla varjatakse jagatud failivarmus olev samanimeline fail.',
+'file-exists-sharedrepo'       => 'Valitud failinimi on juba kasutusel jagatud failivaramus.
+Palun kasuta mõnda teist nime.',
 
 # Export
 'export'            => 'Lehekülgede eksport',
@@ -2464,6 +2499,8 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'thumbnail-more'           => 'Suurenda',
 'filemissing'              => 'Fail puudub',
 'thumbnail_error'          => 'Viga pisipildi loomisel: $1',
+'djvu_page_error'          => 'DjVu-failis ei ole sellist lehekülge',
+'djvu_no_xml'              => 'DjVu failist XML-i lugemine ebaõnnestus.',
 'thumbnail_invalid_params' => 'Vigased pisipildi parameetrid',
 'thumbnail_dest_directory' => 'Sihtkataloogi loomine ebaõnnestus.',
 'thumbnail_image-type'     => 'Selline pildi tüüp ei ole toetatav',
@@ -2504,6 +2541,8 @@ Fail oli vaid osaliselt üleslaaditud.',
 Puudub ajutine kataloog.',
 'import-noarticle'           => 'Ühtki lehekülge polnud importida!',
 'import-nonewrevisions'      => 'Kõik versioonid on eelnevalt imporditud.',
+'xml-error-string'           => '$1 real $2, tulbas $3 (bait $4): $5',
+'import-upload'              => 'Laadi üles XML-andmed',
 'import-token-mismatch'      => 'Seansiandmed läksid kaduma.
 Palun ürita uuesti.',
 'import-invalid-interwiki'   => 'Määratud vikist ei saa importida.',
@@ -2604,6 +2643,8 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'spamprotectiontext'  => 'Rämpspostifilter oli lehekülje, mida sa salvestada tahtsid, blokeerinud.
 See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrgukohta.',
 'spamprotectionmatch' => 'Järgnev tekst vallandas meie rämpspostifiltri: $1',
+'spambot_username'    => 'MediaWiki spämmieemaldus',
+'spam_reverting'      => 'Taastan viimase versiooni, mis ei sisalda linke aadressile $1.',
 'spam_blanking'       => 'Kõik versioonid sisaldasid linke veebilehele $1. Lehekülg tühjendatud.',
 
 # Info page
@@ -2670,6 +2711,7 @@ $1',
 'filedelete-missing'              => 'Faili "$1" ei saa kustutada, sest seda ei ole.',
 'filedelete-old-unregistered'     => 'Etteantud failiversiooni "$1" pole andmebaasis.',
 'filedelete-current-unregistered' => 'Fail "$1" ei ole andmebaasis.',
+'filedelete-archive-read-only'    => 'Arhiivikataloogi "$1" kirjutamine ebaõnnestus.',
 
 # Browsing diffs
 'previousdiff' => '← Eelmised erinevused',
@@ -2687,6 +2729,7 @@ Selle avamine võib su arvutit kahjustada.<hr />",
 'svg-long-desc'        => '(SVG fail, algsuurus $1 × $2 pikslit, faili suurus: $3)',
 'show-big-image'       => 'Originaalsuurus',
 'show-big-image-thumb' => '<small>Selle eelvaate suurus on: $1 × $2 pikselit</small>',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|kaader|kaadrit}}',
 
 # Special:NewFiles
 'newimages'             => 'Uute meediafailide galerii',
@@ -2763,6 +2806,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-subsectimedigitized'         => 'Digiteerimise sekundi murdosad',
 'exif-exposuretime'                => 'Säriaeg',
 'exif-exposuretime-format'         => '$1 sek ($2)',
+'exif-fnumber'                     => 'F-arv',
 'exif-exposureprogram'             => 'Säriprogramm',
 'exif-spectralsensitivity'         => 'Spektraalne tundlikkus',
 'exif-isospeedratings'             => 'Kiirus (ISO)',
@@ -2771,6 +2815,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-brightnessvalue'             => 'Heledus',
 'exif-exposurebiasvalue'           => 'Särituse mõju',
 'exif-subjectdistance'             => 'Subjekti kaugus',
+'exif-meteringmode'                => 'Mõõtmisviis',
 'exif-lightsource'                 => 'Valgusallikas',
 'exif-flash'                       => 'Välk',
 'exif-focallength'                 => 'Fookuskaugus',
@@ -2782,6 +2827,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposuremode'                => 'Särituse meetod',
 'exif-whitebalance'                => 'Valge tasakaal',
 'exif-digitalzoomratio'            => 'Digisuumi tegur',
+'exif-focallengthin35mmfilm'       => '35 mm-se filmi fookuskaugus',
 'exif-contrast'                    => 'Kontrastsus',
 'exif-saturation'                  => 'Küllastus',
 'exif-sharpness'                   => 'Teravus',
@@ -2804,6 +2850,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gpstrack'                    => 'Liikumise suund',
 'exif-gpsimgdirection'             => 'Pildi suund',
 'exif-gpsdestdistance'             => 'Sihtmärgi kaugus',
+'exif-gpsareainformation'          => 'GPS-ala nimi',
 'exif-gpsdatestamp'                => 'GPS kuupäev',
 
 # EXIF attributes

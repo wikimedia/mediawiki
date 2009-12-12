@@ -23,6 +23,7 @@
  * @author Merlissimo
  * @author Metalhead64
  * @author MichaelFrey
+ * @author MtaÄ
  * @author Omnipaedista
  * @author Pill
  * @author Purodha
@@ -1122,12 +1123,15 @@ Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt
 *: ''Adressen, Telefonnummern, Sozialversicherungsnummern etc.''",
 'revdelete-legend'            => 'Setzen der Sichtbarkeits-Einschränkungen',
 'revdelete-hide-text'         => 'Text der Version verstecken',
+'revdelete-hide-image'        => 'Bildinhalt verstecken',
 'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
 'revdelete-hide-comment'      => 'Bearbeitungskommentar verstecken',
 'revdelete-hide-user'         => 'Benutzername/IP-Adresse des Bearbeiters verstecken',
 'revdelete-hide-restricted'   => 'Daten auch vor Administratoren und anderen unterdrücken',
+'revdelete-radio-same'        => '(nicht ändern)',
+'revdelete-radio-set'         => 'Ja',
+'revdelete-radio-unset'       => 'Nein',
 'revdelete-suppress'          => 'Grund der Löschung auch vor Administratoren verstecken',
-'revdelete-hide-image'        => 'Bildinhalt verstecken',
 'revdelete-unsuppress'        => 'Einschränkungen für wiederhergestellte Versionen aufheben',
 'revdelete-log'               => 'Grund der Löschung:',
 'revdelete-submit'            => 'Auf ausgewählte {{PLURAL:$1|Version|Versionen}} anwenden',
@@ -1161,7 +1165,7 @@ Du hast darauf keinen Zugriff.',
 'revdelete-no-change'         => "'''Warnung:''' Der Eintrag vom $1, $2 Uhr besitzt bereits die gewünschten Sichtbarkeitseinstellungen.",
 'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Es scheint, als ob der Status von jemandem geändert wurde, bevor du vorhattest, ihn zu bearbeiten.
 Bitte prüfe die Logbücher.',
-'revdelete-only-restricted'   => 'Du kannst keine Einträge vor Administratoren unterdrücken, ohne dass du auch eine der anderen Unterdrückungsoptionen ausgewählt hast.',
+'revdelete-only-restricted'   => 'Fehler beim Verstecken des Eintrags vom $1, $2 Uhr: Du kannst keinen Eintrag vor Administratoren verstecken, ohne eine der anderen Ansichtsoptionen gewählt zu haben.',
 'revdelete-reason-dropdown'   => '*Allgemeine Löschgründe
 ** Urheberrechtsverletzung
 ** Unangebrachte persönliche Informationen',

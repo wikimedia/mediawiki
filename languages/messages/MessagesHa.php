@@ -46,6 +46,18 @@ $messages = array(
 'october'   => 'Oktoba',
 'november'  => 'Nuwamba',
 'december'  => 'Disamba',
+'jan'       => 'Jan',
+'feb'       => 'Fab',
+'mar'       => 'Mar',
+'apr'       => 'Afi',
+'may'       => 'May',
+'jun'       => 'Yun',
+'jul'       => 'Yul',
+'aug'       => 'Agu',
+'sep'       => 'Sat',
+'oct'       => 'Okt',
+'nov'       => 'Nuw',
+'dec'       => 'Dic',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Rukuni|Rukunoni}}',
@@ -57,16 +69,18 @@ $messages = array(
 'searchbutton'     => 'Binciko',
 'searcharticle'    => 'Mu je',
 'history_short'    => 'Tarihi',
-'printableversion' => 'Sigar bugawa',
+'printableversion' => 'Sufar bugawa',
 'permalink'        => 'Dawwamammen zare',
 'edit'             => 'Gyarawa',
+'create'           => 'Ƙirƙira',
+'protect_change'   => 'sauyawa',
 'talkpagelinktext' => 'Hira',
 'personaltools'    => 'Zaɓaɓɓin kayan aiki',
 'talk'             => 'Mahawara',
 'views'            => 'Hange',
 'toolbox'          => 'Akwatin kayan aiki',
 'otherlanguages'   => 'A wasu harsuna',
-'lastmodifiedat'   => 'Sauyin baya na wannan shafi ran $1, a $2.',
+'lastmodifiedat'   => 'Gyaran baya na wannan shafi ran $1, a $2.',
 'jumpto'           => 'A tsallaka zuwa:',
 'jumptonavigation' => 'Shawagi',
 'jumptosearch'     => 'Nema',
@@ -75,7 +89,7 @@ $messages = array(
 'aboutsite'      => 'Game da {{SITENAME}}',
 'aboutpage'      => 'Project:Game da',
 'copyright'      => 'Bayannai sun samu a ƙarƙashin $1.',
-'disclaimers'    => 'Gargaɗi',
+'disclaimers'    => 'Hattara',
 'disclaimerpage' => 'Project:Babban gargaɗi',
 'mainpage'       => 'Marhabin',
 'privacy'        => 'Manufar kare sirri',
@@ -95,13 +109,27 @@ $messages = array(
 # General errors
 'missing-article' => 'Taskar bayannai ba ta samo matanin wani shafin da ya kamata ta samo ba, mai suna "$1" $2.
 
-Mafarin haka yawanci shi ne zare mai zuwa ga shafin da aka shafe ko gusar.
+Mafarin haka yawanci shi ne zare mai zuwa ga shafin da aka shafe ko aka gusar.
 
-In ba haka ba ne, to kun takalo wata tangarɗa a furogiram kin.
+In ba haka ba ne, to kun takalo wata tangarɗa a furogaram kin.
 Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare da nuna URL kin.',
 
 # Login and logout pages
-'nav-login-createaccount' => 'login ko buɗa akwanti',
+'nav-login-createaccount' => 'login / sabon akwanti',
+
+# Edit pages
+'savearticle' => 'Adana shafi',
+
+# History pages
+'revisionasof'     => 'Zubi na $1',
+'previousrevision' => '← Tsohon zubi',
+
+# Revision deletion
+'rev-delundel'   => 'nuna/ɓoye',
+'revdel-restore' => 'sauya haske',
+
+# Merge log
+'revertmerge' => 'Ware',
 
 # Diffs
 'lineno'   => 'Layi $1:',
@@ -110,31 +138,57 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 # Search results
 'searchresults'             => 'Sakamakon bincike',
 'searchresults-title'       => 'Sakamakon bincike na "$1"',
+'searchresulttext'          => 'Don ƙarin bayani kan binciken {{SITENAME}}, duba [[{{MediaWiki:Helppage}}|{{int:help}}]]',
 'searchsubtitle'            => 'Kun nemi \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|duka shafuna masu farawa da "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|duka shafuna masu zare zuwa "$1"]])',
-'viewprevnext'              => 'A duba ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'              => 'Duba ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 kalma|$2 kalmomi}})',
+'search-section'            => '(sashe $1)',
 'search-mwsuggest-enabled'  => 'Tare da shawarwari',
 'search-mwsuggest-disabled' => 'Banda shawarwari',
+'powersearch'               => 'Sahihin nema',
+'powersearch-legend'        => 'Sahihin nema',
+'powersearch-ns'            => 'Binciki sararen sunaye:',
+'powersearch-redir'         => 'Nuna turawa gaba',
+'powersearch-field'         => 'Neemo',
 
 # Recent changes
 'hist'            => 'Tarihi',
 'minoreditletter' => 'm',
 
 # Recent changes linked
-'recentchangeslinked' => 'Sauye-sauye masu dangantaka',
+'recentchangeslinked'         => 'Sauye-sauye masu dangantaka',
+'recentchangeslinked-summary' => "Wannan jerin sauye-sauye ne da aka yi kan shafuna masu zare. Shafunan da ke cikin [[Special:Watchlist|jerin kan idonku]] an haɓaka su da '''gwaɓi'''",
 
 # Upload
 'upload' => 'Girke fayil',
 
+# Miscellaneous special pages
+'nbytes' => '{{PLURAL:$1|bayit|bayit}} $1',
+
+# Special:AllPages
+'allpagessubmit' => 'Mu je',
+
+# Delete
+'deletedarticle' => 'an shafe "[[$1]]"',
+
+# Undelete
+'undeletelink' => 'duba/maido da',
+
 # Namespace form on various pages
+'namespace'      => 'Sararin suna:',
 'blanknamespace' => '(Babba)',
 
 # What links here
 'whatlinkshere' => 'Zaruruwan wannan shafi',
 
 # Block/unblock
-'blocklink'    => 'Hanawa',
-'contribslink' => 'Gudummuwa',
+'blocklink'        => 'Hanawa',
+'unblocklink'      => 'karɓa',
+'change-blocklink' => 'Canza hanawa',
+'contribslink'     => 'Gudummuwa',
+
+# Move page
+'revertmove' => 'koma',
 
 # Tooltip help for the actions
 'tooltip-pt-login'               => 'Ana shawarar ku shiga akwantinku, amma ba dole ba ne',
@@ -144,19 +198,20 @@ A yi amfani da maɓallin tantancewa kafin a adina',
 'tooltip-ca-history'             => 'Tsoffin sufofin wannan shafi',
 'tooltip-search'                 => 'Binciko {{SITENAME}}',
 'tooltip-search-go'              => 'A je ga shafi mai wannan suna idan akwai shi',
-'tooltip-search-fulltext'        => 'Binciko shafuka masu wannan matani',
+'tooltip-search-fulltext'        => 'Binciki shafuna masu wannan matani',
 'tooltip-n-mainpage'             => 'Duba shafin Marhabin',
 'tooltip-n-mainpage-description' => 'Duba shafin marhabin',
 'tooltip-n-portal'               => 'A game da wannan shiri, abinda za a iya yi, ina za a samu abubuwa',
-'tooltip-n-recentchanges'        => 'Jerin sabin sauye-sauye a wannan wiki',
-'tooltip-n-randompage'           => 'A nuno wani shafi da ka',
-'tooltip-n-help'                 => 'A nuno taimako',
+'tooltip-n-currentevents'        => 'Nemo bayannai kan yanayin labarun yau',
+'tooltip-n-recentchanges'        => 'Jerin sabin sauye-sauye a wannan Wiki',
+'tooltip-n-randompage'           => 'Nuno wani shafi da ka',
+'tooltip-n-help'                 => 'Nuno taimako',
 'tooltip-t-whatlinkshere'        => 'Jerin duk shafunan Wiki da ke da zare a nan',
 'tooltip-t-recentchangeslinked'  => 'Sauye-sauyen baya-bayan nan a shafuna masu zare daga wannan shafi',
 'tooltip-t-upload'               => 'Girke fayiloli',
-'tooltip-t-specialpages'         => 'Jerin duk shafuka na musamman',
+'tooltip-t-specialpages'         => 'Jerin duk shafuna na musamman',
 'tooltip-t-print'                => 'Wannan shafi a sufar bugawa',
-'tooltip-t-permalink'            => 'Zaren dindindin zuwa ga sufar baya ta wannan shafi',
+'tooltip-t-permalink'            => 'Zaren dindindin zuwa ga zubin baya na wannan shafi',
 'tooltip-ca-nstab-main'          => 'Duba shafin bayannai',
 'tooltip-ca-nstab-special'       => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
 
@@ -168,6 +223,6 @@ Zaren farko a kan layi ya kamata ya nuna fayil maras kyau.
 Sauran zaruruwa a kan layin keɓaɓɓu ne, wato zuwa ga shafuna inda fayil kin zai iya kasancewa.',
 
 # Special:SpecialPages
-'specialpages' => 'Shafuka na musamman',
+'specialpages' => 'Shafuna na musamman',
 
 );

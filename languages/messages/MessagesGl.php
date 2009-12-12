@@ -873,6 +873,8 @@ O administrador que a fechou deu esta explicación: $1",
 'nocreatetext'                     => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
 Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
 'nocreate-loggedin'                => 'Non dispón dos permisos necesarios para crear páxinas novas.',
+'sectioneditnotsupported-title'    => 'A edición de seccións non está soportada',
+'sectioneditnotsupported-text'     => 'A edición de seccións non está soportada nesta páxina.',
 'permissionserrors'                => 'Erros de permisos',
 'permissionserrorstext'            => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
 'permissionserrorstext-withaction' => 'Non ten os permisos necesarios para $2, {{PLURAL:$1|pola seguinte razón|polas seguintes razóns}}:',
@@ -1003,12 +1005,15 @@ Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e
 *: ''domicilios e números de teléfono, números da seguridade social, etc.''",
 'revdelete-legend'            => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text'         => 'Agochar texto da revisión',
+'revdelete-hide-image'        => 'Agochar o contido do ficheiro',
 'revdelete-hide-name'         => 'Agochar acción e destino',
 'revdelete-hide-comment'      => 'Agochar comentario da edición',
 'revdelete-hide-user'         => 'Agochar nome de usuario/IP do editor',
 'revdelete-hide-restricted'   => 'Eliminar os datos da vista dos administradores así coma da doutros',
+'revdelete-radio-same'        => '(deixar)',
+'revdelete-radio-set'         => 'Si',
+'revdelete-radio-unset'       => 'Non',
 'revdelete-suppress'          => 'Eliminar os datos tanto dos administradores como dos demais',
-'revdelete-hide-image'        => 'Agochar o contido do ficheiro',
 'revdelete-unsuppress'        => 'Retirar as restricións sobre as revisións restauradas',
 'revdelete-log'               => 'Motivo para o borrado:',
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|á revisión seleccionada|ás revisións seleccionadas}}',
@@ -1042,7 +1047,7 @@ Non ten acceso a el.',
 'revdelete-no-change'         => "'''Aviso:''' o elemento con data de $1 ás $2 xa ten solicitado as configuracións de visibilidade.",
 'revdelete-concurrent-change' => 'Produciuse un erro ao modificar o elemento con data de $1 ás $2: o seu estado parece ter sido cambiado por alguén mentres intentaba modificalo.
 Por favor, comprobe o rexistros.',
-'revdelete-only-restricted'   => 'Non pode eliminar os elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de eliminación.',
+'revdelete-only-restricted'   => 'Erro ao agochar o elemento con data de $1 ás $2: non pode eliminar elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de visibilidade.',
 'revdelete-reason-dropdown'   => '* Motivos frecuentes para borrar
 ** Violación dos dereitos de autor
 ** Información persoal inapropiada',
@@ -2262,6 +2267,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Bloquear un usuario',
+'blockip-title'                   => 'Bloquear un usuario',
 'blockip-legend'                  => 'Bloquear un usuario',
 'blockiptext'                     => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
