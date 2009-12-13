@@ -1110,7 +1110,8 @@ Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'blocklogpage'             => 'Log di blocch',
 'blocklogentry'            => "l'ha blucaa [[$1]] per un temp de $2 $3",
 'unblocklogentry'          => "l'ha desblucaa $1",
-'block-log-flags-nocreate' => 'creazión de növ cünt blucada',
+'block-log-flags-anononly' => 'dumà druvadur anònim',
+'block-log-flags-nocreate' => 'blucada la creazión de cünt növ',
 
 # Move page
 'movepagetext'            => "Duvraant la büeta chí-da-sota al re-numinerà una pàgina, muveent tüta la suva stòria al nomm nööf. Ul vecc títul al deventarà una pàgina da redirezziun al nööf títul. I liamm a la vegja pàgina i sarà mia cambiaa: assürévas da cuntrulá par redirezziun dopi u rumpüüt.

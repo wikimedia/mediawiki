@@ -713,12 +713,12 @@ A peul torné andaré e modifiché na pàgina che a-i é già, ò pura [[Special
 'permissionserrors'                => 'Eror ant ij përmess',
 'permissionserrorstext'            => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che|via che}}:",
 'permissionserrorstext-withaction' => "It l'has nen ij përmess për $2, për {{PLURAL:$1|cost motiv|costi motiv}}:",
-'recreate-moveddeleted-warn'       => "A l'é an broa d'arcreé na pàgina ch'a l'era stàita scanselà.'''
+'recreate-moveddeleted-warn'       => "A l'é an camin ch'a crea torna na pàgina ch'a l'era stàita scancelà.'''
 
-Ch'a varda d'esse sigur ch'a vala la pen-a ëd travajé ans na pàgina parèj.
+Ch'a varda d'esse sigur ch'a vala la pen-a ëd travajé an sna pàgina parèj.
 Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina-sì:",
-'moveddeleted-notice'              => "Sta pàgina-sì a l'é stàita scanselà.
-Ël registr ëd la scanselassion e dij spostament a l'é arportà sota për arferiment.",
+'moveddeleted-notice'              => "Sta pàgina-sì a l'é stàita scancelà.
+Ël registr ëd le scancelassion e dij tramud a l'é arportà sota për arferiment.",
 'log-fulllog'                      => 'Varda tut ël registr',
 'edit-hook-aborted'                => "Mod'fica anulà da l'hook.
 A-i é pa gnun-e spiegassion.",
