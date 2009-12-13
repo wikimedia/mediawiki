@@ -1958,6 +1958,16 @@ class User {
 	}
 
 	/**
+	 * Get all user's options
+	 *
+	 * @return array
+	 */
+	public function getOptions() {
+		$this->loadOptions();
+		return $this->mOptions;
+	}
+
+	/**
 	 * Get the user's current setting for a given option, as a boolean value.
 	 *
 	 * @param $oname \string The option to check
