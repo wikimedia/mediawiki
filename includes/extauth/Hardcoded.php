@@ -21,7 +21,7 @@
  * This class supports external authentication from a literal array dumped in
  * LocalSettings.php.  It's mostly useful for testing.  Example configuration:
  *
- *   $wgExternalAuthType = 'Hardcoded';
+ *   $wgExternalAuthType = 'ExternalUser_Hardcoded';
  *   $wgExternalAuthConf = array(
  *       'Bob Smith' => array(
  *           'password' => 'literal string',

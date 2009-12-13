@@ -4148,8 +4148,8 @@ $wgPoolCounterConf = null;
  * be specified.
  *
  * null indicates no external authentication is to be used.  Otherwise,
- * "ExternalUser_$wgExternalAuthType" must be the name of a non-abstract class
- * that extends ExternalUser.
+ * $wgExternalAuthType must be the name of a non-abstract class that extends
+ * ExternalUser.
  *
  * Core authentication modules can be found in includes/extauth/.
  */
