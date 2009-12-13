@@ -21,7 +21,7 @@
  * This class supports authentication against an external MediaWiki database,
  * probably any version back to 1.5 or something.  Example configuration:
  *
- *   $wgExternalAuthType = 'MediaWiki';
+ *   $wgExternalAuthType = 'ExternalUser_MediaWiki';
  *   $wgExternalAuthConf = array(
  *       'DBtype' => 'mysql',
  *       'DBserver' => 'localhost',

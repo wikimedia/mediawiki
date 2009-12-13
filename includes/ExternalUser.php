@@ -43,8 +43,7 @@ abstract class ExternalUser {
 		if ( is_null( $wgExternalAuthType ) ) {
 			return false;
 		}
-		$class = "ExternalUser_$wgExternalAuthType";
-		$obj = new $class;
+		$obj = new $wgExternalAuthType;
 		if ( !$obj->initFromName( $name ) ) {
 			return false;
 		}
@@ -60,8 +59,7 @@ abstract class ExternalUser {
 		if ( is_null( $wgExternalAuthType ) ) {
 			return false;
 		}
-		$class = "ExternalUser_$wgExternalAuthType";
-		$obj = new $class;
+		$obj = new $wgExternalAuthType;
 		if ( !$obj->initFromId( $id ) ) {
 			return false;
 		}
@@ -77,8 +75,7 @@ abstract class ExternalUser {
 		if ( is_null( $wgExternalAuthType ) ) {
 			return false;
 		}
-		$class = "ExternalUser_$wgExternalAuthType";
-		$obj = new $class;
+		$obj = new $wgExternalAuthType;
 		if ( !$obj->initFromCookie( $cookie ) ) {
 			return false;
 		}

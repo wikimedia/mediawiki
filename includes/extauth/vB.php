@@ -23,7 +23,7 @@
  * code, only reads from the database.  Example lines to put in
  * LocalSettings.php:
  *
- *   $wgExternalAuthType = 'vB';
+ *   $wgExternalAuthType = 'ExternalUser_vB';
  *   $wgExternalAuthConf = array(
  *       'server' => 'localhost',
  *       'username' => 'forum',
