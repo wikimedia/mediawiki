@@ -16,4 +16,11 @@ class LanguageEt extends Language {
 			return $_;
 		}
 	}
+
+	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset( $wgGrammarForms['et'][$case][$word] ) ) {
+			return $wgGrammarForms['et'][$case][$word];
+		}
+	}
 }
