@@ -1082,6 +1082,9 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'revdelete-hide-comment'      => 'Amagar lo comentari de modificacion',
 'revdelete-hide-user'         => 'Amagar lo pseudonim o l’adreça IP del contributor.',
 'revdelete-hide-restricted'   => 'Suprimir aquestas donadas als administrators e mai als autres',
+'revdelete-radio-same'        => '(cambiar pas)',
+'revdelete-radio-set'         => 'Òc',
+'revdelete-radio-unset'       => 'Non',
 'revdelete-suppress'          => 'Suprimir las donadas dels administrators e tanben dels autres utilizaires',
 'revdelete-unsuppress'        => 'Levar las restriccions sus las versions restablidas',
 'revdelete-log'               => 'Rason de la supression :',
@@ -1116,7 +1119,7 @@ I avètz pas accès.",
 'revdelete-no-change'         => "'''Atencion :''' l'element datat del $1 a $2 ja a los paramètres de visibilitat demandats.",
 'revdelete-concurrent-change' => "Error al moment de la modificacion de l'element datat del $1 a $2 : son estatut es estat cambiat per qualqu'un mai pendent qu'o modificatz.
 Verificatz los jornals.",
-'revdelete-only-restricted'   => "Podètz pas suprimir aquestes elements als administrators sens seleccionar tanben d'autras opcions de supression.",
+'revdelete-only-restricted'   => "Error al moment de la supression de l'entrada datada del $1 a $2 : podètz pas suprimir aqueles elements als administrators sens seleccionar tanben d'opcions de supression mai.",
 'revdelete-reason-dropdown'   => "* Rasons correntas de supression 
 ** Violacion dels dreches d'autors
 ** Entresenhas personalas inapropriadas",

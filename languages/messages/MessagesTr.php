@@ -552,7 +552,7 @@ Verilen sebep: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''Oturumu kapattınız.'''
 
-Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz, ya da yeniden oturum açabilirsiniz (ister aynı kullanıcı adıyla, ister başka bir kullanıcı adıyla).
+Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz, ya da [[Special:UserLogin|yeniden oturum açabilirsiniz]] (ister aynı kullanıcı adıyla, ister başka bir kullanıcı adıyla).
 Web tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hala oturumunuz açıkmış gibi görünebilir.",
 'welcomecreation'            => '== Hoşgeldiniz, $1! ==
 
@@ -806,6 +806,8 @@ Kilitleyen hizmetli şu açıklamayı eklemiştir: $1",
 'nocreatetext'                     => '{{SITENAME}}, yeni sayfa oluşturulabilmesini engelledi.
 Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Special:UserLogin|oturum açabilir]], değilseniz [[Special:UserLogin|kayıt olabilirsiniz]].',
 'nocreate-loggedin'                => 'Yeni sayfalar oluşturmaya yetkiniz yok.',
+'sectioneditnotsupported-title'    => 'Bölüm değiştirmesi desteklenmiyor',
+'sectioneditnotsupported-text'     => 'Bölüm değiştirmesi bu sayfada desteklenmiyor.',
 'permissionserrors'                => 'İzin hataları',
 'permissionserrorstext'            => 'Aşağıdaki {{PLURAL:$1|sebep|sebepler}}den dolayı, bunu yapmaya yetkiniz yok:',
 'permissionserrorstext-withaction' => 'Aşağıdaki {{PLURAL:$1|neden|nedenler}}den dolayı $2 yetkiniz yok:',
@@ -940,6 +942,9 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-hide-comment'      => 'Özeti gösterme',
 'revdelete-hide-user'         => "Değişikliği yapan kullanıcı adını/IP'i gizle",
 'revdelete-hide-restricted'   => 'Verileri hizmetlilerle birlikte diğerlerinden de sakla',
+'revdelete-radio-same'        => '(çık)',
+'revdelete-radio-set'         => 'Evet',
+'revdelete-radio-unset'       => 'Hayır',
 'revdelete-suppress'          => 'Verileri hem diğerlerinden hem de hizmetlilerden gizle',
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
 'revdelete-log'               => 'Silinme için sebep:',
@@ -974,7 +979,7 @@ Erişiminiz yok.',
 'revdelete-no-change'         => "'''Uyarı:'''  $2 $1 tarihli öğe için zaten görünürlük ayarı istenmiş.",
 'revdelete-concurrent-change' => '$2 $1 tarihli öğe değiştirilirken hata: öğenin durumu siz değiştirmeye çalışırken bir başkası tarafından değiştirilmiş görünüyor.
 Lütfen günlükleri kontrol edin.',
-'revdelete-only-restricted'   => 'Öğeleri, diğer bastırma seçeneklerinden birini seçmeden, hizmetli görünümden bastıramazsınız.',
+'revdelete-only-restricted'   => '$2 $1 tarihli öğe gizlenirken hata: Öğeleri, diğer gizleme seçeneklerinden birini seçmeden, hizmetli görünümden bastıramazsınız.',
 'revdelete-reason-dropdown'   => '*Genel silme sebepleri
 ** Telif ihlali
 ** Uygunsuz kişisel bilgi',
@@ -2186,6 +2191,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Kullanıcıyı engelle',
+'blockip-title'                   => 'Kullanıcıyı engelle',
 'blockip-legend'                  => 'Kullanıcıyı engelle',
 'blockiptext'                     => "Aşağıdaki formu kullanarak belli bir IP'nin veya kayıtlı kullanıcının değişiklik yapmasını engelleyebilirsiniz. Bu sadece vandalizmi engellemek için ve [[{{MediaWiki:Policy-url}}|kurallara]] uygun olarak yapılmalı. Aşağıya mutlaka engelleme ile ilgili bir açıklama yazınız. (örnek: -Şu- sayfalarda vandalizm yapmıştır).",
 'ipaddress'                       => 'IP Adresi',

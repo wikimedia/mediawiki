@@ -858,6 +858,9 @@ Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute s
 'revdelete-hide-comment'      => 'Scunne le commende de le cangiaminde',
 'revdelete-hide-user'         => "Scunne 'u nome utende/IP de quidde ca ha fatte 'u cangiamende",
 'revdelete-hide-restricted'   => "Live le date da l'amministratore cumme pe l'otre utinde",
+'revdelete-radio-same'        => '(lasse)',
+'revdelete-radio-set'         => 'Sine',
+'revdelete-radio-unset'       => 'None',
 'revdelete-suppress'          => "Live le date da l'amministrature cumme pe l'otre",
 'revdelete-unsuppress'        => 'Live le restriziune sus a le revisiune repristinate',
 'revdelete-log'               => 'Mutive pu scangellamende:',
@@ -893,7 +896,7 @@ Tu non ge tìne l\'accesse.',
 'revdelete-no-change'         => "'''Attenziò:''' l'artchele datate $2, $1 già tenève l'imbostaziune de visibbilità richieste.",
 'revdelete-concurrent-change' => "Errore cangianne le artichele datate $2, $1: 'u state ca combare ha state cangiate da quacchedune otre mendre ca tu stè pruvave a cangiarle.
 Pe piacere condrolle l'archivije.",
-'revdelete-only-restricted'   => "Tu non ge puè sopprimere l'artichele da 'a viste de le amministrature senze ca scacchie pure une de le otre opzione de soppressione.",
+'revdelete-only-restricted'   => "Errore scunnènne l'artichele datate $2, $1: tu non ge puè sopprimere l'artichele da 'a viste de le amministrature senze ca scacchie pure une de le otre opziune de soppressione.",
 'revdelete-reason-dropdown'   => "*Mutive comune pa scangellazzione
 ** Violazione d'u copyright
 ** 'Mbormaziune personale inappropriate",
@@ -2125,6 +2128,7 @@ $1",
 
 # Block/unblock
 'blockip'                         => "Blocche l'utende",
+'blockip-title'                   => "Bluecche l'utende",
 'blockip-legend'                  => "Bluecche l'utende",
 'blockiptext'                     => "Ause 'a schermata de sotte pe bloccà l'accesse in scritture de 'nu specifiche indirizze IP o utende.
 Quiste avessa essere fatte sulamende pe prevenìe 'u vandalisme e in accorde cu [[{{MediaWiki:Policy-url}}|le reghele]].
