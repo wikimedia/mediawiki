@@ -70,10 +70,9 @@
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
  * @ingroup Cache
  */
-class MWMemcached
-{
-   // {{{ properties
-   // {{{ public
+class MWMemcached {
+	// {{{ properties
+	// {{{ public
 
 	// {{{ constants
 	// {{{ flags
@@ -243,17 +242,15 @@ class MWMemcached
 	 * @param   array    $args    Associative array of settings
 	 *
 	 * @return  mixed
-	 * @access  public
 	 */
-	function __construct ($args)
-	{
-		$this->set_servers(@$args['servers']);
+	public function __construct( $args ) {
+		$this->set_servers( @$args['servers'] );
 		$this->_debug = @$args['debug'];
 		$this->stats = array();
 		$this->_compress_threshold = @$args['compress_threshold'];
-		$this->_persistant = array_key_exists('persistant', $args) ? (@$args['persistant']) : false;
+		$this->_persistant = array_key_exists( 'persistant', $args ) ? ( @$args['persistant'] ) : false;
 		$this->_compress_enable = true;
-		$this->_have_zlib = function_exists("gzcompress");
+		$this->_have_zlib = function_exists( 'gzcompress' );
 
 		$this->_cache_sock = array();
 		$this->_host_dead = array();
@@ -277,11 +274,9 @@ class MWMemcached
 	 * @param   integer $exp     (optional) Time to expire data at
 	 *
 	 * @return  boolean
-	 * @access  public
 	 */
-	function add ($key, $val, $exp = 0)
-	{
-		return $this->_set('add', $key, $val, $exp);
+	public function add( $key, $val, $exp = 0 ) {
+		return $this->_set( 'add', $key, $val, $exp );
 	}
 
 	// }}}
@@ -294,11 +289,9 @@ class MWMemcached
 	 * @param   integer  $amt     (optional) Amount to decriment
 	 *
 	 * @return  mixed    FALSE on failure, value on success
-	 * @access  public
 	 */
-	function decr ($key, $amt=1)
-	{
-		return $this->_incrdecr('decr', $key, $amt);
+	public function decr( $key, $amt = 1 ) {
+		return $this->_incrdecr( 'decr', $key, $amt );
 	}
 
 	// }}}
@@ -311,33 +304,34 @@ class MWMemcached
 	 * @param   integer  $time    (optional) How long to wait before deleting
 	 *
 	 * @return  boolean  TRUE on success, FALSE on failure
-	 * @access  public
 	 */
-	function delete ($key, $time = 0)
-	{
-		if (!$this->_active)
+	public function delete( $key, $time = 0 ) {
+		if ( !$this->_active ) {
 			return false;
+		}
 
-		$sock = $this->get_sock($key);
-		if (!is_resource($sock))
+		$sock = $this->get_sock( $key );
+		if ( !is_resource( $sock ) ) {
 			return false;
+		}
 
-		$key = is_array($key) ? $key[1] : $key;
+		$key = is_array( $key ) ? $key[1] : $key;
 
 		@$this->stats['delete']++;
 		$cmd = "delete $key $time\r\n";
-		if(!$this->_safe_fwrite($sock, $cmd, strlen($cmd)))
-		{
-			$this->_dead_sock($sock);
+		if( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
+			$this->_dead_sock( $sock );
 			return false;
 		}
-		$res = trim(fgets($sock));
+		$res = trim( fgets( $sock ) );
 
-		if ($this->_debug)
-			$this->_debugprint(sprintf("MemCache: delete %s (%s)\n", $key, $res));
+		if ( $this->_debug ) {
+			$this->_debugprint( sprintf( "MemCache: delete %s (%s)\n", $key, $res ) );
+		}
 
-		if ($res == "DELETED")
+		if ( $res == "DELETED" ) {
 			return true;
+		}
 		return false;
 	}
 
@@ -346,13 +340,11 @@ class MWMemcached
 
 	/**
 	 * Disconnects all connected sockets
-	 *
-	 * @access  public
 	 */
-	function disconnect_all ()
-	{
-		foreach ($this->_cache_sock as $sock)
-			fclose($sock);
+	public function disconnect_all() {
+		foreach ( $this->_cache_sock as $sock ) {
+			fclose( $sock );
+		}
 
 		$this->_cache_sock = array();
 	}
@@ -364,11 +356,8 @@ class MWMemcached
 	 * Enable / Disable compression
 	 *
 	 * @param   boolean  $enable  TRUE to enable, FALSE to disable
-	 *
-	 * @access  public
 	 */
-	function enable_compress ($enable)
-	{
+	public function enable_compress( $enable ) {
 		$this->_compress_enable = $enable;
 	}
 
@@ -377,11 +366,8 @@ class MWMemcached
 
 	/**
 	 * Forget about all of the dead hosts
-	 *
-	 * @access  public
 	 */
-	function forget_dead_hosts ()
-	{
+	public function forget_dead_hosts() {
 		$this->_host_dead = array();
 	}
 
@@ -394,24 +380,22 @@ class MWMemcached
 	 * @param  string   $key     Key to retrieve
 	 *
 	 * @return  mixed
-	 * @access  public
 	 */
-	function get ($key)
-	{
+	public function get( $key ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->_debug ) {
 			$this->_debugprint( "get($key)\n" );
 		}
 
-		if (!$this->_active) {
+		if ( !$this->_active ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
-		$sock = $this->get_sock($key);
+		$sock = $this->get_sock( $key );
 
-		if (!is_resource($sock)) {
+		if ( !is_resource( $sock ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -419,19 +403,20 @@ class MWMemcached
 		@$this->stats['get']++;
 
 		$cmd = "get $key\r\n";
-		if (!$this->_safe_fwrite($sock, $cmd, strlen($cmd)))
-		{
-			$this->_dead_sock($sock);
+		if ( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
+			$this->_dead_sock( $sock );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		$val = array();
-		$this->_load_items($sock, $val);
+		$this->_load_items( $sock, $val );
 
-		if ($this->_debug)
-			foreach ($val as $k => $v)
-				$this->_debugprint(sprintf("MemCache: sock %s got %s\n", serialize($sock), $k));
+		if ( $this->_debug ) {
+			foreach ( $val as $k => $v ) {
+				$this->_debugprint( sprintf( "MemCache: sock %s got %s\n", serialize( $sock ), $k ) );
+			}
+		}
 
 		wfProfileOut( __METHOD__ );
 		return @$val[$key];
@@ -446,23 +431,22 @@ class MWMemcached
 	 * @param   array    $keys    Keys to retrieve
 	 *
 	 * @return  array
-	 * @access  public
 	 */
-	function get_multi ($keys)
-	{
-		if (!$this->_active)
+	public function get_multi( $keys ) {
+		if ( !$this->_active ) {
 			return false;
+		}
 
 		@$this->stats['get_multi']++;
 		$sock_keys = array();
 
-		foreach ($keys as $key)
-		{
-			$sock = $this->get_sock($key);
-			if (!is_resource($sock)) continue;
-			$key = is_array($key) ? $key[1] : $key;
-			if (!isset($sock_keys[$sock]))
-			{
+		foreach ( $keys as $key ) {
+			$sock = $this->get_sock( $key );
+			if ( !is_resource( $sock ) ) {
+				continue;
+			}
+			$key = is_array( $key ) ? $key[1] : $key;
+			if ( !isset( $sock_keys[$sock] ) ) {
 				$sock_keys[$sock] = array();
 				$socks[] = $sock;
 			}
@@ -470,34 +454,31 @@ class MWMemcached
 		}
 
 		// Send out the requests
-		foreach ($socks as $sock)
-		{
-			$cmd = "get";
-			foreach ($sock_keys[$sock] as $key)
-			{
-				$cmd .= " ". $key;
+		foreach ( $socks as $sock ) {
+			$cmd = 'get';
+			foreach ( $sock_keys[$sock] as $key ) {
+				$cmd .= ' ' . $key;
 			}
 			$cmd .= "\r\n";
 
-			if ($this->_safe_fwrite($sock, $cmd, strlen($cmd)))
-			{
+			if ( $this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
 				$gather[] = $sock;
-			} else
-			{
-				$this->_dead_sock($sock);
+			} else {
+				$this->_dead_sock( $sock );
 			}
 		}
 
 		// Parse responses
 		$val = array();
-		foreach ($gather as $sock)
-		{
-			$this->_load_items($sock, $val);
+		foreach ( $gather as $sock ) {
+			$this->_load_items( $sock, $val );
 		}
 
-		if ($this->_debug)
-			foreach ($val as $k => $v)
-				$this->_debugprint(sprintf("MemCache: got %s\n", $k));
+		if ( $this->_debug ) {
+			foreach ( $val as $k => $v ) {
+				$this->_debugprint( sprintf( "MemCache: got %s\n", $k ) );
+			}
+		}
 
 		return $val;
 	}
@@ -512,11 +493,9 @@ class MWMemcached
 	 * @param   integer  $amt     (optional) amount to increment
 	 *
 	 * @return  integer  New key value?
-	 * @access  public
 	 */
-	function incr ($key, $amt=1)
-	{
-		return $this->_incrdecr('incr', $key, $amt);
+	public function incr( $key, $amt = 1 ) {
+		return $this->_incrdecr( 'incr', $key, $amt );
 	}
 
 	// }}}
@@ -530,11 +509,9 @@ class MWMemcached
 	 * @param   integer  $exp     (optional) Experiation time
 	 *
 	 * @return  boolean
-	 * @access  public
 	 */
-	function replace ($key, $value, $exp=0)
-	{
-		return $this->_set('replace', $key, $value, $exp);
+	public function replace( $key, $value, $exp = 0 ) {
+		return $this->_set( 'replace', $key, $value, $exp );
 	}
 
 	// }}}
@@ -556,22 +533,24 @@ class MWMemcached
 	 * @return  array    Output array
 	 * @access  public
 	 */
-	function run_command ($sock, $cmd)
-	{
-		if (!is_resource($sock))
+	function run_command( $sock, $cmd ) {
+		if ( !is_resource( $sock ) ) {
 			return array();
+		}
 
-		if (!$this->_safe_fwrite($sock, $cmd, strlen($cmd)))
+		if ( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
 			return array();
+		}
 
-		while (true)
-		{
-			$res = fgets($sock);
+		while ( true ) {
+			$res = fgets( $sock );
 			$ret[] = $res;
-			if (preg_match('/^END/', $res))
+			if ( preg_match( '/^END/', $res ) ) {
 				break;
-			if (strlen($res) == 0)
+			}
+			if ( strlen( $res ) == 0 ) {
 				break;
+			}
 		}
 		return $ret;
 	}
@@ -588,11 +567,9 @@ class MWMemcached
 	 * @param   integer  $exp     (optional) Experiation time
 	 *
 	 * @return  boolean  TRUE on success
-	 * @access  public
 	 */
-	function set ($key, $value, $exp=0)
-	{
-		return $this->_set('set', $key, $value, $exp);
+	public function set( $key, $value, $exp = 0 ) {
+		return $this->_set( 'set', $key, $value, $exp );
 	}
 
 	// }}}
@@ -602,11 +579,8 @@ class MWMemcached
 	 * Sets the compression threshold
 	 *
 	 * @param   integer  $thresh  Threshold to compress if larger than
-	 *
-	 * @access  public
 	 */
-	function set_compress_threshold ($thresh)
-	{
+	public function set_compress_threshold( $thresh ) {
 		$this->_compress_threshold = $thresh;
 	}
 
@@ -618,12 +592,9 @@ class MWMemcached
 	 *
 	 * @param   boolean  $dbg     TRUE for debugging, FALSE otherwise
 	 *
-	 * @access  public
-	 *
 	 * @see     MWMemcached::__construct
 	 */
-	function set_debug ($dbg)
-	{
+	public function set_debug( $dbg ) {
 		$this->_debug = $dbg;
 	}
 
@@ -635,20 +606,18 @@ class MWMemcached
 	 *
 	 * @param   array    $list    Array of servers to connect to
 	 *
-	 * @access  public
-	 *
 	 * @see     MWMemcached::__construct()
 	 */
-	function set_servers ($list)
-	{
+	public function set_servers( $list ) {
 		$this->_servers = $list;
-		$this->_active = count($list);
+		$this->_active = count( $list );
 		$this->_buckets = null;
 		$this->_bucketcount = 0;
 
 		$this->_single_sock = null;
-		if ($this->_active == 1)
+		if ( $this->_active == 1 ) {
 			$this->_single_sock = $this->_servers[0];
+		}
 	}
 
 	/**
@@ -656,11 +625,8 @@ class MWMemcached
 	 *
 	 * @param   integer  $seconds Number of seconds
 	 * @param   integer  $microseconds  Number of microseconds
-	 *
-	 * @access  public
 	 */
-	function set_timeout ($seconds, $microseconds)
-	{
+	public function set_timeout( $seconds, $microseconds ) {
 		$this->_timeout_seconds = $seconds;
 		$this->_timeout_microseconds = $microseconds;
 	}
@@ -677,11 +643,10 @@ class MWMemcached
 	 *
 	 * @access  private
 	 */
-	function _close_sock ($sock)
-	{
-		$host = array_search($sock, $this->_cache_sock);
-		fclose($this->_cache_sock[$host]);
-		unset($this->_cache_sock[$host]);
+	function _close_sock( $sock ) {
+		$host = array_search( $sock, $this->_cache_sock );
+		fclose( $this->_cache_sock[$host] );
+		unset( $this->_cache_sock[$host] );
 	}
 
 	// }}}
@@ -696,29 +661,27 @@ class MWMemcached
 	 * @return  boolean
 	 * @access  private
 	 */
-	function _connect_sock (&$sock, $host)
-	{
-		list ($ip, $port) = explode(":", $host);
+	function _connect_sock( &$sock, $host ) {
+		list( $ip, $port ) = explode( ':', $host );
 		$sock = false;
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
-		for ($i = 0; !$sock && $i < $this->_connect_attempts; $i++) {
-			if ($this->_persistant == 1)
-			{
-				$sock = @pfsockopen($ip, $port, $errno, $errstr, $timeout);
-			} else
-			{
-				$sock = @fsockopen($ip, $port, $errno, $errstr, $timeout);
+		for( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
+			if ( $this->_persistant == 1 ) {
+				$sock = @pfsockopen( $ip, $port, $errno, $errstr, $timeout );
+			} else {
+				$sock = @fsockopen( $ip, $port, $errno, $errstr, $timeout );
 			}
 		}
-		if (!$sock) {
-			if ($this->_debug)
+		if ( !$sock ) {
+			if ( $this->_debug ) {
 				$this->_debugprint( "Error connecting to $host: $errstr\n" );
+			}
 			return false;
 		}
 
 		// Initialise timeout
-		stream_set_timeout($sock, $this->_timeout_seconds, $this->_timeout_microseconds);
+		stream_set_timeout( $sock, $this->_timeout_seconds, $this->_timeout_microseconds );
 
 		return true;
 	}
@@ -733,18 +696,16 @@ class MWMemcached
 	 *
 	 * @access  private
 	 */
-	function _dead_sock ($sock)
-	{
-		$host = array_search($sock, $this->_cache_sock);
-		$this->_dead_host($host);
+	function _dead_sock( $sock ) {
+		$host = array_search( $sock, $this->_cache_sock );
+		$this->_dead_host( $host );
 	}
 
-	function _dead_host ($host)
-	{
-		@list ($ip, /* $port */) = explode(":", $host);
-		$this->_host_dead[$ip] = time() + 30 + intval(rand(0, 10));
+	function _dead_host( $host ) {
+		@list( $ip, /* $port */) = explode( ':', $host );
+		$this->_host_dead[$ip] = time() + 30 + intval( rand( 0, 10 ) );
 		$this->_host_dead[$host] = $this->_host_dead[$ip];
-		unset($this->_cache_sock[$host]);
+		unset( $this->_cache_sock[$host] );
 	}
 
 	// }}}
@@ -758,44 +719,40 @@ class MWMemcached
 	 * @return  mixed    resource on success, false on failure
 	 * @access  private
 	 */
-	function get_sock ($key)
-	{
-		if (!$this->_active)
+	function get_sock( $key ) {
+		if ( !$this->_active ) {
 			return false;
-
-		if ($this->_single_sock !== null) {
-			$this->_flush_read_buffer($this->_single_sock);
-			return $this->sock_to_host($this->_single_sock);
 		}
 
-		$hv = is_array($key) ? intval($key[0]) : $this->_hashfunc($key);
+		if ( $this->_single_sock !== null ) {
+			$this->_flush_read_buffer( $this->_single_sock );
+			return $this->sock_to_host( $this->_single_sock );
+		}
 
-		if ($this->_buckets === null)
-		{
-			foreach ($this->_servers as $v)
-			{
-				if (is_array($v))
-				{
-					for ($i=0; $i<$v[1]; $i++)
+		$hv = is_array( $key ) ? intval( $key[0] ) : $this->_hashfunc( $key );
+
+		if ( $this->_buckets === null ) {
+			foreach ( $this->_servers as $v ) {
+				if ( is_array( $v ) ) {
+					for( $i = 0; $i < $v[1]; $i++ ) {
 						$bu[] = $v[0];
-				} else
-				{
+					}
+				} else {
 					$bu[] = $v;
 				}
 			}
 			$this->_buckets = $bu;
-			$this->_bucketcount = count($bu);
+			$this->_bucketcount = count( $bu );
 		}
 
-		$realkey = is_array($key) ? $key[1] : $key;
-		for ($tries = 0; $tries<20; $tries++)
-		{
+		$realkey = is_array( $key ) ? $key[1] : $key;
+		for( $tries = 0; $tries < 20; $tries++ ) {
 			$host = $this->_buckets[$hv % $this->_bucketcount];
-			$sock = $this->sock_to_host($host);
-			if (is_resource($sock)) {
-				$this->_flush_read_buffer($sock);
+			$sock = $this->sock_to_host( $host );
+			if ( is_resource( $sock ) ) {
+				$this->_flush_read_buffer( $sock );
 				return $sock;
-		 }
+			}
 			$hv = $this->_hashfunc( $hv . $realkey );
 		}
 
@@ -813,12 +770,11 @@ class MWMemcached
 	 * @return  integer  Hash value
 	 * @access  private
 	 */
-	function _hashfunc ($key)
-	{
+	function _hashfunc( $key ) {
 		# Hash function must on [0,0x7ffffff]
 		# We take the first 31 bits of the MD5 hash, which unlike the hash
 		# function used in a previous version of this client, works
-		return hexdec(substr(md5($key),0,8)) & 0x7fffffff;
+		return hexdec( substr( md5( $key ), 0, 8 ) ) & 0x7fffffff;
 	}
 
 	// }}}
@@ -834,24 +790,27 @@ class MWMemcached
 	 * @return  integer     New value of $key
 	 * @access  private
 	 */
-	function _incrdecr ($cmd, $key, $amt=1)
-	{
-		if (!$this->_active)
+	function _incrdecr( $cmd, $key, $amt = 1 ) {
+		if ( !$this->_active ) {
 			return null;
+		}
 
-		$sock = $this->get_sock($key);
-		if (!is_resource($sock))
+		$sock = $this->get_sock( $key );
+		if ( !is_resource( $sock ) ) {
 			return null;
+		}
 
-		$key = is_array($key) ? $key[1] : $key;
+		$key = is_array( $key ) ? $key[1] : $key;
 		@$this->stats[$cmd]++;
-		if (!$this->_safe_fwrite($sock, "$cmd $key $amt\r\n"))
-			return $this->_dead_sock($sock);
+		if ( !$this->_safe_fwrite( $sock, "$cmd $key $amt\r\n" ) ) {
+			return $this->_dead_sock( $sock );
+		}
 
-		$line = fgets($sock);
+		$line = fgets( $sock );
 		$match = array();
-		if (!preg_match('/^(\d+)/', $line, $match))
+		if ( !preg_match( '/^(\d+)/', $line, $match ) ) {
 			return null;
+		}
 		return $match[1];
 	}
 
@@ -866,53 +825,50 @@ class MWMemcached
 	 *
 	 * @access  private
 	 */
-	function _load_items ($sock, &$ret)
-	{
-		while (1)
-		{
-			$decl = fgets($sock);
-			if ($decl == "END\r\n")
-			{
+	function _load_items( $sock, &$ret ) {
+		while ( 1 ) {
+			$decl = fgets( $sock );
+			if ( $decl == "END\r\n" ) {
 				return true;
-			} elseif (preg_match('/^VALUE (\S+) (\d+) (\d+)\r\n$/', $decl, $match))
-			{
-				list($rkey, $flags, $len) = array($match[1], $match[2], $match[3]);
-				$bneed = $len+2;
+			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)\r\n$/', $decl, $match ) ) {
+				list( $rkey, $flags, $len ) = array( $match[1], $match[2], $match[3] );
+				$bneed = $len + 2;
 				$offset = 0;
 
-				while ($bneed > 0)
-				{
-					$data = fread($sock, $bneed);
-					$n = strlen($data);
-					if ($n == 0)
+				while ( $bneed > 0 ) {
+					$data = fread( $sock, $bneed );
+					$n = strlen( $data );
+					if ( $n == 0 ) {
 						break;
+					}
 					$offset += $n;
 					$bneed -= $n;
 					@$ret[$rkey] .= $data;
 				}
 
-				if ($offset != $len+2)
-				{
+				if ( $offset != $len + 2 ) {
 					// Something is borked!
-					if ($this->_debug)
-						$this->_debugprint(sprintf("Something is borked!  key %s expecting %d got %d length\n", $rkey, $len+2, $offset));
+					if ( $this->_debug ) {
+						$this->_debugprint( sprintf( "Something is borked!  key %s expecting %d got %d length\n", $rkey, $len + 2, $offset ) );
+					}
 
-					unset($ret[$rkey]);
-					$this->_close_sock($sock);
+					unset( $ret[$rkey] );
+					$this->_close_sock( $sock );
 					return false;
 				}
 
-				if ($this->_have_zlib && $flags & self::COMPRESSED)
-					$ret[$rkey] = gzuncompress($ret[$rkey]);
+				if ( $this->_have_zlib && $flags & self::COMPRESSED ) {
+					$ret[$rkey] = gzuncompress( $ret[$rkey] );
+				}
 
-				$ret[$rkey] = rtrim($ret[$rkey]);
+				$ret[$rkey] = rtrim( $ret[$rkey] );
 
-				if ($flags & self::SERIALIZED)
-					$ret[$rkey] = unserialize($ret[$rkey]);
+				if ( $flags & self::SERIALIZED ) {
+					$ret[$rkey] = unserialize( $ret[$rkey] );
+				}
 
-			} else
-			{
-				$this->_debugprint("Error parsing memcached response\n");
+			} else {
+				$this->_debugprint( "Error parsing memcached response\n" );
 				return 0;
 			}
 		}
@@ -932,55 +888,57 @@ class MWMemcached
 	 * @return  boolean
 	 * @access  private
 	 */
-	function _set ($cmd, $key, $val, $exp)
-	{
-		if (!$this->_active)
+	function _set( $cmd, $key, $val, $exp ) {
+		if ( !$this->_active ) {
 			return false;
+		}
 
-		$sock = $this->get_sock($key);
-		if (!is_resource($sock))
+		$sock = $this->get_sock( $key );
+		if ( !is_resource( $sock ) ) {
 			return false;
+		}
 
 		@$this->stats[$cmd]++;
 
 		$flags = 0;
 
-		if (!is_scalar($val))
-		{
-			$val = serialize($val);
+		if ( !is_scalar( $val ) ) {
+			$val = serialize( $val );
 			$flags |= self::SERIALIZED;
-			if ($this->_debug)
-				$this->_debugprint(sprintf("client: serializing data as it is not scalar\n"));
+			if ( $this->_debug ) {
+				$this->_debugprint( sprintf( "client: serializing data as it is not scalar\n" ) );
+			}
 		}
 
-		$len = strlen($val);
+		$len = strlen( $val );
 
-		if ($this->_have_zlib && $this->_compress_enable &&
-			 $this->_compress_threshold && $len >= $this->_compress_threshold)
+		if ( $this->_have_zlib && $this->_compress_enable &&
+			 $this->_compress_threshold && $len >= $this->_compress_threshold )
 		{
-			$c_val = gzcompress($val, 9);
-			$c_len = strlen($c_val);
+			$c_val = gzcompress( $val, 9 );
+			$c_len = strlen( $c_val );
 
-			if ($c_len < $len*(1 - self::COMPRESSION_SAVINGS))
-			{
-				if ($this->_debug)
-					$this->_debugprint(sprintf("client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len));
+			if ( $c_len < $len * ( 1 - self::COMPRESSION_SAVINGS ) ) {
+				if ( $this->_debug ) {
+					$this->_debugprint( sprintf( "client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len ) );
+				}
 				$val = $c_val;
 				$len = $c_len;
 				$flags |= self::COMPRESSED;
 			}
 		}
-		if (!$this->_safe_fwrite($sock, "$cmd $key $flags $exp $len\r\n$val\r\n"))
-			return $this->_dead_sock($sock);
-
-		$line = trim(fgets($sock));
-
-		if ($this->_debug)
-		{
-			$this->_debugprint(sprintf("%s %s (%s)\n", $cmd, $key, $line));
+		if ( !$this->_safe_fwrite( $sock, "$cmd $key $flags $exp $len\r\n$val\r\n" ) ) {
+			return $this->_dead_sock( $sock );
 		}
-		if ($line == "STORED")
+
+		$line = trim( fgets( $sock ) );
+
+		if ( $this->_debug ) {
+			$this->_debugprint( sprintf( "%s %s (%s)\n", $cmd, $key, $line ) );
+		}
+		if ( $line == "STORED" ) {
 			return true;
+		}
 		return false;
 	}
 
@@ -995,31 +953,34 @@ class MWMemcached
 	 * @return  mixed    IO Stream or false
 	 * @access  private
 	 */
-	function sock_to_host ($host)
-	{
-		if (isset($this->_cache_sock[$host]))
+	function sock_to_host( $host ) {
+		if ( isset( $this->_cache_sock[$host] ) ) {
 			return $this->_cache_sock[$host];
+		}
 
 		$sock = null;
 		$now = time();
-		list ($ip, /* $port */) = explode (":", $host);
-		if (isset($this->_host_dead[$host]) && $this->_host_dead[$host] > $now ||
-			isset($this->_host_dead[$ip]) && $this->_host_dead[$ip] > $now)
+		list( $ip, /* $port */) = explode( ':', $host );
+		if ( isset( $this->_host_dead[$host] ) && $this->_host_dead[$host] > $now ||
+			isset( $this->_host_dead[$ip] ) && $this->_host_dead[$ip] > $now
+		) {
 			return null;
+		}
 
-		if (!$this->_connect_sock($sock, $host))
-			return $this->_dead_host($host);
+		if ( !$this->_connect_sock( $sock, $host ) ) {
+			return $this->_dead_host( $host );
+		}
 
 		// Do not buffer writes
-		stream_set_write_buffer($sock, 0);
+		stream_set_write_buffer( $sock, 0 );
 
 		$this->_cache_sock[$host] = $sock;
 
 		return $this->_cache_sock[$host];
 	}
 
-	function _debugprint($str){
-		print($str);
+	function _debugprint( $str ) {
+		print( $str );
 	}
 
 	/**
@@ -1028,21 +989,21 @@ class MWMemcached
 	 * @return bool false on failure, true on success
 	 */
 	/*
-	function _safe_fwrite($f, $buf, $len = false) {
-		stream_set_blocking($f, 0);
+	function _safe_fwrite( $f, $buf, $len = false ) {
+		stream_set_blocking( $f, 0 );
 
-		if ($len === false) {
-			wfDebug("Writing " . strlen( $buf ) . " bytes\n");
-			$bytesWritten = fwrite($f, $buf);
+		if ( $len === false ) {
+			wfDebug( "Writing " . strlen( $buf ) . " bytes\n" );
+			$bytesWritten = fwrite( $f, $buf );
 		} else {
-			wfDebug("Writing $len bytes\n");
-			$bytesWritten = fwrite($f, $buf, $len);
+			wfDebug( "Writing $len bytes\n" );
+			$bytesWritten = fwrite( $f, $buf, $len );
 		}
-		$n = stream_select($r=NULL, $w = array($f), $e = NULL, 10, 0);
-		#   $this->_timeout_seconds, $this->_timeout_microseconds);
+		$n = stream_select( $r = null, $w = array( $f ), $e = null, 10, 0 );
+		#   $this->_timeout_seconds, $this->_timeout_microseconds );
 
-		wfDebug("stream_select returned $n\n");
-		stream_set_blocking($f, 1);
+		wfDebug( "stream_select returned $n\n" );
+		stream_set_blocking( $f, 1 );
 		return $n == 1;
 		return $bytesWritten;
 	}*/
@@ -1050,11 +1011,11 @@ class MWMemcached
 	/**
 	 * Original behaviour
 	 */
-	function _safe_fwrite($f, $buf, $len = false) {
-		if ($len === false) {
-			$bytesWritten = fwrite($f, $buf);
+	function _safe_fwrite( $f, $buf, $len = false ) {
+		if ( $len === false ) {
+			$bytesWritten = fwrite( $f, $buf );
 		} else {
-			$bytesWritten = fwrite($f, $buf, $len);
+			$bytesWritten = fwrite( $f, $buf, $len );
 		}
 		return $bytesWritten;
 	}
@@ -1062,14 +1023,14 @@ class MWMemcached
 	/**
 	 * Flush the read buffer of a stream
 	 */
-	function _flush_read_buffer($f) {
-		if (!is_resource($f)) {
+	function _flush_read_buffer( $f ) {
+		if ( !is_resource( $f ) ) {
 			return;
 		}
-		$n = stream_select($r=array($f), $w = null, $e = null, 0, 0);
-		while ($n == 1 && !feof($f)) {
-			fread($f, 1024);
-			$n = stream_select($r=array($f), $w = null, $e = null, 0, 0);
+		$n = stream_select( $r = array( $f ), $w = null, $e = null, 0, 0 );
+		while ( $n == 1 && !feof( $f ) ) {
+			fread( $f, 1024 );
+			$n = stream_select( $r = array( $f ), $w = null, $e = null, 0, 0 );
 		}
 	}
 
