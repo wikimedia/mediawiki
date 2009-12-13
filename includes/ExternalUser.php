@@ -180,8 +180,7 @@ abstract class ExternalUser {
 
 	/**
 	 * Is the given password valid for the external user?  The password is
-	 * provided in plaintext, with whitespace stripped but not otherwise
-	 * modified.
+	 * provided in plaintext.
 	 *
 	 * @param $password string
 	 * @return bool
