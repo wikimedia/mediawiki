@@ -394,10 +394,8 @@ class LoginForm {
 	 * This may create a local account as a side effect if the
 	 * authentication plugin allows transparent local account
 	 * creation.
-	 *
-	 * @public
 	 */
-	function authenticateUserData() {
+	public function authenticateUserData() {
 		global $wgUser, $wgAuth;
 		if ( '' == $this->mName ) {
 			return self::NO_NAME;
@@ -451,6 +449,15 @@ class LoginForm {
 				$isAutoCreated = true;
 			}
 		} else {
+			global $wgExternalAuthType, $wgAutocreatePolicy;
+			if ( $wgExternalAuthType && $wgAutocreatePolicy != 'never'
+			&& is_object( $this->mExtUser )
+			&& $this->mExtUser->authenticate( $this->mPassword ) ) {
+				# The external user and local user have the same name and
+				# password, so we assume they're the same.
+				$this->mExtUser->linkToLocal( $u->getID() );
+			}
+
 			$u->load();
 		}
 
