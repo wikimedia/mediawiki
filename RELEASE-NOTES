@@ -678,6 +678,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21803) Special:MyContributions now keeps the query string parameters
 * Redirecting special pages now keep query string paramters set to "0" (e.g.
   for namespace)
+* (bug 20765) Special:ListGroupRights no longer misses addables and removables
+  groups if there are duplicate entries
 
 == API changes in 1.16 ==
 
