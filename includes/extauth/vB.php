@@ -76,6 +76,8 @@ class ExternalUser_vB extends ExternalUser {
 	public function getName() { return $this->mRow->username; }
 
 	public function authenticate( $password ) {
+		# vBulletin seemingly strips whitespace from passwords
+		$password = trim( $password );
 		return $this->mRow->password == md5( md5( $password )
 			. $this->mRow->salt );
 	}
