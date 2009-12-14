@@ -96,7 +96,7 @@
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body div.vectorTabs a span {
 		display: inline-block;
-		padding-top: 0.5em;
+		padding-top: 0.55em;
 	}
 	/* IGNORED BY IE6 */
 	/* @noflip */
@@ -300,4 +300,17 @@
 #ca-watch.icon a,
 #ca-unwatch.icon a {
 	background-repeat:no-repeat;
+}
+.wikiEditor-ui-tabs {
+	border: none;
+}
+.wikiEditor-ui-tabs div {
+	border: 1px solid silver;
+	margin-right: 1px;
+}
+.wikiEditor-ui-tabs div a {
+	background: #FFFFFF url(images/tab-fade.png) repeat-x  0 100%;
+}
+.wikiEditor-ui-tabs div.current a {
+	background: #FFFFFF;
 }
