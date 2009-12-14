@@ -2744,7 +2744,7 @@ class Title {
 			return $err;
 		}
 
-		// If it is a file, more it first. It is done before all other moving stuff is done because it's hard to revert
+		// If it is a file, move it first. It is done before all other moving stuff is done because it's hard to revert
 		$dbw = wfGetDB( DB_MASTER );
 		if( $this->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this );
