@@ -93,7 +93,7 @@ class DeleteBatch extends Maintenance {
 				$art = new Article( $page );
 			}
 			$success = $art->doDeleteArticle( $reason );
-			$dbw->immediateCommit();
+			$dbw->commit();
 			if ( $success ) {
 				$this->output( "\n" );
 			} else {

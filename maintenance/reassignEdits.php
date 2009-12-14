@@ -67,7 +67,7 @@ class ReassignEdits extends Maintenance {
 	 */
 	private function doReassignEdits( &$from, &$to, $rc = false, $report = false ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->immediateBegin();
+		$dbw->begin();
 
 		# Count things
 		$this->output( "Checking current edits..." );
@@ -113,7 +113,7 @@ class ReassignEdits extends Maintenance {
 			}	
 		}
 	
-		$dbw->immediateCommit();
+		$dbw->commit();
 		return (int)$total;	
 	}
 	

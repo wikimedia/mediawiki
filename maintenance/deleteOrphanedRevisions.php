@@ -39,7 +39,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$report = $this->hasOption('report');
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->immediateBegin();
+		$dbw->begin();
 		list( $page, $revision ) = $dbw->tableNamesN( 'page', 'revision' );
 
 		# Find all the orphaned revisions
@@ -57,7 +57,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 	
 		# Nothing to do?
 		if( $report || $count == 0 ) {
-			$dbw->immediateCommit();
+			$dbw->commit();
 			exit(0);
 		}
 	
@@ -67,7 +67,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$this->output( "done.\n" );
 	
 		# Close the transaction and call the script to purge unused text records
-		$dbw->immediateCommit();
+		$dbw->commit();
 		$this->purgeRedundantText( true );
 	}
 	

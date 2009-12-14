@@ -122,7 +122,7 @@ class UpdateSpecialPages extends Maintenance {
 						$this->output( "Reconnected\n\n" );
 					} else {
 						# Commit the results
-						$dbw->immediateCommit();
+						$dbw->commit();
 					}
 					# Wait for the slave to catch up
 					wfWaitForSlaves( 5 );

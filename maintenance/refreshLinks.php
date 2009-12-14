@@ -203,7 +203,7 @@ class RefreshLinks extends Maintenance {
 		$parserOutput = $wgParser->parse( $revision->getText(), $wgTitle, $options, true, true, $revision->getId() );
 		$update = new LinksUpdate( $wgTitle, $parserOutput, false );
 		$update->doUpdate();
-		$dbw->immediateCommit();
+		$dbw->commit();
 	}
 
 	/*

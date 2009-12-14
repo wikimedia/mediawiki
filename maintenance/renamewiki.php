@@ -78,7 +78,7 @@ class RenameWiki extends Maintenance {
 				$extdb->query( "ALTER TABLE {$from}.blobs RENAME TO {$to}.blobs" );
 				$extdb->selectDB( $from );
 				$extdb->sourceFile( $this->getDir() . '/storage/blobs.sql' );
-				$extdb->immediateCommit();
+				$extdb->commit();
 			}
 		}
 		$this->output( "done.\n" );
