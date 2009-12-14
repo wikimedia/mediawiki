@@ -1878,7 +1878,7 @@ abstract class DatabaseBase {
 
 		# Commit any open transactions
 		if ( $this->mTrxLevel ) {
-			$this->immediateCommit();
+			$this->commit();
 		}
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {

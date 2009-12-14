@@ -140,7 +140,7 @@ class ExternalStoreDB {
 			throw new MWException( __METHOD__.': no insert ID' );
 		}
 		if ( $dbw->getFlag( DBO_TRX ) ) {
-			$dbw->immediateCommit();
+			$dbw->commit();
 		}
 		return "DB://$cluster/$id";
 	}

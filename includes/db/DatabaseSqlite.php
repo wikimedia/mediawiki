@@ -79,7 +79,7 @@ class DatabaseSqlite extends DatabaseBase {
 	function close() {
 		$this->mOpened = false;
 		if ( is_object( $this->mConn ) ) {
-			if ( $this->trxLevel() ) $this->immediateCommit();
+			if ( $this->trxLevel() ) $this->commit();
 			$this->mConn = null;
 		}
 		return true;
