@@ -70,13 +70,13 @@ abstract class ExternalUser {
 	 * @param $cookie string
 	 * @return mixed ExternalUser, or false on failure
 	 */
-	public static function newFromCookie( $cookie ) {
+	public static function newFromCookie() {
 		global $wgExternalAuthType;
 		if ( is_null( $wgExternalAuthType ) ) {
 			return false;
 		}
 		$obj = new $wgExternalAuthType;
-		if ( !$obj->initFromCookie( $cookie ) ) {
+		if ( !$obj->initFromCookie() ) {
 			return false;
 		}
 		return $obj;
@@ -131,18 +131,15 @@ abstract class ExternalUser {
 	protected abstract function initFromId( $id );
 
 	/**
-	 * Given the user's cookie, initialize this object to the correct user if
-	 * the cookie indicates that the user is logged into the external database.
-	 * If successful, return true.  If the external database doesn't support
-	 * cookie-based authentication, or if the cookies don't belong to a
-	 * logged-in user, return false.
+	 * Try to magically initialize the user from cookies or similar information
+	 * so he or she can be logged in on just viewing the wiki.  If this is
+	 * impossible to do, just return false.
 	 *
 	 * TODO: Actually use this.
 	 *
-	 * @param $cookie string
 	 * @return bool Success?
 	 */
-	protected function initFromCookie( $cookie ) {
+	protected function initFromCookie() {
 		return false;
 	}
 

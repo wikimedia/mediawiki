@@ -850,12 +850,20 @@ class User {
 	 * @return \bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
-		global $wgMemc, $wgCookiePrefix;
+		global $wgMemc, $wgCookiePrefix, $wgExternalAuthType, $wgAutocreatePolicy;
 
 		$result = null;
 		wfRunHooks( 'UserLoadFromSession', array( $this, &$result ) );
 		if ( $result !== null ) {
 			return $result;
+		}
+
+		if ( $wgExternalAuthType && $wgAutocreatePolicy == 'view' ) {
+			$extUser = ExternalUser::newFromCookie();
+			if ( $extUser ) {
+				# TODO: Automatically create the user here (or probably a bit
+				# lower down, in fact)
+			}
 		}
 
 		if ( isset( $_COOKIE["{$wgCookiePrefix}UserID"] ) ) {
@@ -1115,7 +1123,7 @@ class User {
 
 		# Check if we are looking at an IP or a logged-in user
 		if ( $this->isIP( $this->getName() ) ) {
-			$ip = $this->getName(); 
+			$ip = $this->getName();
 		} else {
 			# Check if we are looking at the current user
 			# If we don't, and the user is logged in, we don't know about
@@ -1773,7 +1781,7 @@ class User {
 			if( !$wgAuth->allowPasswordChange() ) {
 				throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
 			}
- 
+
 			if( !$this->isValidPassword( $str ) ) {
  				global $wgMinimalPasswordLength;
 				$valid = $this->getPasswordValidity( $str );
@@ -3555,8 +3563,8 @@ class User {
 			$message = '';
 		} else {
 			$action = 'create2';
-			$message = $byEmail 
-				? wfMsgForContent( 'newuserlog-byemail' ) 
+			$message = $byEmail
+				? wfMsgForContent( 'newuserlog-byemail' )
 				: '';
 		}
 		$log = new LogPage( 'newusers' );
@@ -3593,7 +3601,7 @@ class User {
 
 		// Maybe load from the object
 		if ( !is_null( $this->mOptionOverrides ) ) {
-			wfDebug( "Loading options for user " . $this->getId() . " from override cache.\n" ); 
+			wfDebug( "Loading options for user " . $this->getId() . " from override cache.\n" );
 			foreach( $this->mOptionOverrides as $key => $value ) {
 				$this->mOptions[$key] = $value;
 			}
