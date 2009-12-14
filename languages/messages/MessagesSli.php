@@ -52,7 +52,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Denne E-mail Oaschrift wart ei Benoachrichtigungs-E-mails oagezäat',
 'tog-shownumberswatching'     => 'Oazoahl derr beobachtenden Nutzer oazäan',
 'tog-oldsig'                  => 'Vorschau der aktuella Signatur:',
-'tog-fancysig'                => 'Underschrift ohne automatische Verknipfung zur Nutzerseete',
+'tog-fancysig'                => 'Signatur ols Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => "Extern'n Editor als Standard benutza (nur fier Experta, is missa spezielle Einstellungen uff dam eegenen Rechner vurgenumma warn)",
 'tog-externaldiff'            => 'Externes Diff-Programm als Standard benutza (nur fier Experta, is missa spezielle Einstellungen uff dam eegenen Rechner vurgenumma warn)',
 'tog-showjumplinks'           => '„Wechseln zu“-Verknipfunga aktiviern',
@@ -351,9 +351,12 @@ Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spez
 # General errors
 'error'                => 'Fehler',
 'databaseerror'        => 'Fehler ei der Datenbank',
-'dberrortext'          => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
-Die letzte Datenbankabfrage lautete: <blockquote><tt>$1</tt></blockquote> aus der Funktion „<tt>$2</tt>“.
-MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
+'dberrortext'          => 'Is ies a Datenbankfahler uffgetreten.
+Dar Grund koan a Programmierfahler sei.
+De letzte Datenbankoabfroage lautete:
+<blockquote><tt>$1</tt></blockquote>
+aus dar Funksjonn „<tt>$2</tt>“.
+De Datenbank meldete dann Fahler „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
@@ -655,6 +658,7 @@ Du bestätigst hiermit au, doß du diese Texte selbst geschrieba host oder diese
 (siehe $1 fier wettere Details). '''IEBERTRAGE OHNE GENEHMIGUNG KENNE URHEBERRECHTLICH GESCHIETZTEN INHALTE!'''",
 'longpagewarning'                  => "'''WARNUNG: Diese Seyte ies $1 KB gruß; einige Browser kinnta Probleme hoan, Seyta zu beoarbeeta, de grießer ols 32 KB sein.
 Ieberlege bitte, ob anne Uffteilung dar Seyte ei klennere Obschnitte meeglich ies.'''",
+'longpageerror'                    => "'''FAHLER: Dar Text, dann du zu speichern versuchst, ies $1 KB gruß. Doas ies grießer ols doas erlaubte Maximum vu $2 KB – Speicherung ne meeglich.'''",
 'protectedpagewarning'             => "'''OCHTICHE: Diese Seyte wurde gesperrt. Ock Nutzer miet Administratorrechta kinna de Seyte beoarbeeta.'''",
 'semiprotectedpagewarning'         => "'''Holbsperrung:''' De Seyte wurde su gesperrt, doaß ock registrierte Nutzer diese ändern kinna.",
 'titleprotectedwarning'            => "'''OCHTICHE: De Seyta erstellung wurde gesperrt. Ock Nutzer miet [[Special:ListGroupRights|speziellen Rechta]] kinna de Seyte erstella.'''",
@@ -681,9 +685,10 @@ Se wurde anscheinend geläscht.',
 'edit-already-exists'              => 'De neue Seyte konnte ne erstellt waan, do se bereits vorhanden ies.',
 
 # Parser/template warnings
-'expensive-parserfunction-category'      => 'Seyta, de uffwändige Parserfunksjonna zu uffte uffrufa',
-'post-expand-template-argument-category' => 'Seyta, de ignorierte Vurlagaargumente enthalta',
-'parser-template-loop-warning'           => 'Vurloagaschleife entdeckt: [[$1]]',
+'expensive-parserfunction-category'       => 'Seyta, de uffwändige Parserfunksjonna zu uffte uffrufa',
+'post-expand-template-inclusion-category' => 'Seyta, ei denen de maximale Griße eingebundener Vurloaga ieberschritta ies',
+'post-expand-template-argument-category'  => 'Seyta, de ignorierte Vurlagaargumente enthalta',
+'parser-template-loop-warning'            => 'Vurloagaschleife entdeckt: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'Im de Änderung rickgängig zu macha, bitte de Beoarbeetung ei der Vergleichsansicht kontrolliera und dann uff „Seyte speichern“ klicka.',
@@ -727,6 +732,9 @@ Se wurde anscheinend geläscht.',
 'rev-deleted-comment'        => '(Beorbeetungskommentar entfernt)',
 'rev-deleted-user'           => '(Benutzernoame entfernt)',
 'rev-deleted-event'          => '(Logbuchaksjonn entfernt)',
+'rev-deleted-text-view'      => "Diese Version wurde '''geläscht'''.
+Ols Administrator koast du se weiterhin einsahn.
+Nähere Oagaba zum Läschvorgang suwie anne Begrindung fenda siech eim [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-suppressed-text-view'   => "Diese Version wurde '''underdrickt'''.
 Administratorn kinna se eensahn; Details stiehn eim [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Underdrickungs-Logbuch].",
 'rev-delundel'               => 'zeege/verstecke',

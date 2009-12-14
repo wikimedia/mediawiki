@@ -721,7 +721,7 @@ Kui see oligi Teie soov, peaksite sisse logima ja uue parooli valima. Ajutine pa
 
 Kui parooli vahetamise palve lähetas Teie nimel keegi teine või kui Teile meenus vana parool ja Te ei soovi seda enam muuta, võite käesolevat teadet lihtsalt ignoreerida ning jätkata endise parooli kasutamist.',
 'noemail'                    => 'Kasutaja "$1" meiliaadressi meil kahjuks pole.',
-'noemailcreate'              => 'Sa pead sisestama korrektse e-posti aadressi',
+'noemailcreate'              => 'Pead sisestama korrektse e-postiaadressi',
 'passwordsent'               => 'Uus parool on saadetud kasutaja "$1" registreeritud meiliaadressil.
 Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword'       => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
@@ -1992,7 +1992,7 @@ Toetatud protokollid: <tt>$1</tt>',
 'emailccsubject'   => 'Koopia sinu sõnumist kasutajale $1: $2',
 'emailsent'        => 'E-post saadetud',
 'emailsenttext'    => 'Teie sõnum on saadetud.',
-'emailuserfooter'  => 'See e-kiri saadeti $1 poolt kasutajale $2 "Saada sellele kasutajale e-kiri" -funktsiooni abil {{GRAMMAR:inessive|{{SITENAME}}}}.',
+'emailuserfooter'  => 'Selle e-kirja saatis $1 {{GRAMMAR:elative|{{SITENAME}}}} kasutajale $2 toimingu "Saada sellele kasutajale e-kiri" abil.',
 
 # Watchlist
 'watchlist'            => 'Jälgimisloend',
@@ -2032,7 +2032,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"
 'watching'   => 'jälgin...',
 'unwatching' => 'Jälgimise lõpetamine...',
 
-'enotif_mailer'                => '{{GRAMMAR:genitive|{{SITENAME}}}} lehekülge on muudetud -teavitaja',
+'enotif_mailer'                => '{{GRAMMAR:genitive|{{SITENAME}}}} lehekülje muutmise teavitaja',
 'enotif_reset'                 => 'Märgi kõik lehed loetuks',
 'enotif_newpagetext'           => 'See on uus lehekülg.',
 'enotif_impersonal_salutation' => '{{SITENAME}} kasutaja',
@@ -2083,7 +2083,7 @@ Ettevaatust, selle kustutamine võib esile kutsuda häireid võrgukoha {{SITENAM
 'rollbacklink'     => 'tühista',
 'rollbackfailed'   => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'     => 'Ei saa muudatusi eemaldada, sest viimane kaastööline on artikli ainus autor.',
-'alreadyrolled'    => 'Kasutaja [[User:$2|$2]]([[User talk:$2|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) poolt lehele [[:$1]] tehtud muudatust ei saa tühistada, kuna keegi teine on seda lehte vahepeal muutnud.
+'alreadyrolled'    => 'Muudatust, mille tegi lehele [[:$1]] kasutaja [[User:$2|$2]] ([[User talk:$2|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), ei saa tühistada, sest keegi teine on seda lehte vahepeal muutnud.
 
 Lehte muutis viimasena [[User:$3|$3]] ([[User talk:$3|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Redaktsiooni kokkuvõte: \"''\$1''\".",
@@ -2351,12 +2351,12 @@ Blokeering võib juba eemaldatud olla.',
 See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
 'ip_range_invalid'             => 'Vigane IP-vahemik.',
 'blockme'                      => 'Blokeeri mind',
-'proxyblocker'                 => 'Proxy-blokeerija',
+'proxyblocker'                 => 'Proksiblokeerija',
 'proxyblocker-disabled'        => 'See funktsioon ei toimi.',
 'proxyblockreason'             => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
 'proxyblocksuccess'            => 'Tehtud.',
-'sorbsreason'                  => 'Sinu IP-aadress on selle saidi poolt kasutatavas DNSBL mustas nimekirjas kui avatud proxy-server.',
-'sorbs_create_account_reason'  => 'Sinu IP-aadress on selle saidi poolt kasutatavas DNSBL mustas nimekirjas kui avatud proxy-server. 
+'sorbsreason'                  => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi.',
+'sorbs_create_account_reason'  => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi. 
 Sa ei saa kasutajakontot luua.',
 'cant-block-while-blocked'     => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
 

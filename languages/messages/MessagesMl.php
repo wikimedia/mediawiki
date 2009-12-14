@@ -279,7 +279,7 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'കണ്ണികള്‍ക്ക് അടിവരയിടുക:',
-'tog-highlightbroken'         => 'നിലവിലില്ലാത്ത കണ്ണികകള്‍ <a href="" class="new">ഇങ്ങനെ</a> അടയാളപ്പെടുത്തുക (അഥവാ: ഇങ്ങനെ <a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'നിലവിലില്ലാത്ത കണ്ണികള്‍ <a href="" class="new">ഇങ്ങനെ</a> അടയാളപ്പെടുത്തുക (അഥവാ: ഇങ്ങനെ <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'ഖണ്ഡികകളുടെ അരികുകള്‍ നേരെയാക്കുക',
 'tog-hideminor'               => 'പുതിയ മാറ്റങ്ങളുടെ പട്ടികയില്‍ ചെറിയ തിരുത്തലുകള്‍ പ്രദര്‍ശിപ്പിക്കാതിരിക്കുക',
 'tog-hidepatrolled'           => 'റോന്തുചുറ്റിയ തിരുത്തുകള്‍ പുതിയമാറ്റങ്ങളില്‍ പ്രദര്‍ശിപ്പിക്കാതിരിക്കുക',
