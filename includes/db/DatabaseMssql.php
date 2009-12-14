@@ -131,7 +131,7 @@ class DatabaseMssql extends DatabaseBase {
 	function close() {
 		$this->mOpened = false;
 		if ($this->mConn) {
-			if ($this->trxLevel()) $this->immediateCommit();
+			if ($this->trxLevel()) $this->commit();
 			return mssql_close($this->mConn);
 		} else return true;
 	}

@@ -1509,7 +1509,7 @@ class Article {
 		if( $wgUseSquid ) {
 			// Commit the transaction before the purge is sent
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->immediateCommit();
+			$dbw->commit();
 
 			// Send purge
 			$update = SquidUpdate::newSimplePurge( $this->mTitle );

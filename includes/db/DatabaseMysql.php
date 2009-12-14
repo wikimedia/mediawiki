@@ -129,7 +129,7 @@ class DatabaseMysql extends DatabaseBase {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
-				$this->immediateCommit();
+				$this->commit();
 			}
 			return mysql_close( $this->mConn );
 		} else {
