@@ -1087,6 +1087,9 @@ Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupov
 'revdelete-hide-comment'      => 'Skryť zhrnutie úprav',
 'revdelete-hide-user'         => 'Skryť používateľské meno/IP',
 'revdelete-hide-restricted'   => 'Zatajiť údaje pred všetkými, aj pred správcami',
+'revdelete-radio-same'        => '(ponechať)',
+'revdelete-radio-set'         => 'Áno',
+'revdelete-radio-unset'       => 'Nie',
 'revdelete-suppress'          => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
 'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
 'revdelete-log'               => 'Dôvod zmazania:',
@@ -1121,7 +1124,7 @@ Nemáte k nej prístup.',
 'revdelete-no-change'         => "'''Upozornenie:''' položka s dátumom $2, $1 už mala požadované parametre viditeľnosti.",
 'revdelete-concurrent-change' => 'Chyba pri zmene položky s dátumom $2, $1: zdá sa, že kým ste ju menili vykonal zmenu niekto iný.
 Pozrite sa prosím do záznamov.',
-'revdelete-only-restricted'   => 'Nemôžete skryť položku pred správcami bez toho, aby ste vybrali aj jednu z ďalších možností skrytia.',
+'revdelete-only-restricted'   => 'Chyba pri skrývaní položky s dátumom $2, $1: nemôžete skryť položku pred správcami bez toho, aby ste vybrali aj jednu z ďalších možností viditeľnosti.',
 'revdelete-reason-dropdown'   => '*Bežné dôvody zmazania
 ** Porušenie autorských práv
 ** Nevhodné osobné informácie',

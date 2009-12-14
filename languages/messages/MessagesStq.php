@@ -394,7 +394,8 @@ Mäld dit n [[Special:ListUsers/sysop|Administrator]] unner Naamenge fon ju URL.
 'unexpected'           => 'Uunferwachteden Wäid: „$1“=„$2“.',
 'formerror'            => '<b style="color: #cc0000;">Failer: Do Iengoawen konne nit feroarbaided wäide.</b>',
 'badarticleerror'      => 'Disse Honnelenge kon ap disse Siede nit moaked wäide.',
-'cannotdelete'         => 'Kon spezifizierde Siede of Artikkel nit läskje. Fielicht is ju al läsked wuuden.',
+'cannotdelete'         => 'Ju Siede od Doatäi "$1" kon nit läsked wäide.
+Fielicht is ju al fon uurswál läsked wuuden.',
 'badtitle'             => 'Uungultige Tittel.',
 'badtitletext'         => 'Die anfräigede Tittel waas uungultich, loos, of n uungultigen Sproaklink fon n uur Wiki.',
 'perfcached'           => 'Do foulgjende Doaten stamme uut dän Cache un sunt muugelkerwiese nit aktuäl:',
@@ -430,7 +431,8 @@ Ju Speere wuude truch [[User:$1|$1]] mäd ju Begruundenge ''$2'' ienroat.",
 # Login and logout pages
 'logouttext'                 => "'''Du bäst nu oumälded.'''
 
-Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dän sälwe of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].",
+Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dänsälge of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].
+Beoachtje, dät eenige Sieden noch anwiese konnen, dät du oumälded bäst, soloange du nit din Browsercache loosmoaked hääst.",
 'welcomecreation'            => '== Wäilkuumen, $1 ==
 
 Dien Benutserkonto wuude iengjucht. 
@@ -501,6 +503,7 @@ Mail-Fersoand un Ämpfang foar do foulgjende Funktionen muugelk.',
 'createaccount-text'         => 'Wäl häd foar die n Benutserkonto "$2" ap {{SITENAME}} ($4) moaked. Dät Paaswoud foar "$2" is "$3". Du schuust die nu anmäldje un dien Paaswoud annerje.
 
 In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ättergjucht ignorierje.',
+'usernamehasherror'          => 'Benutsernoomen duuren neen Ruuten-Teekene änthoolde',
 'login-throttled'            => 'Du hääst tou oafte fersoacht, die antoumäldjen.
 Täif, eer du fon näien fersäkst.',
 'loginlanguagelabel'         => 'Sproake: $1',
@@ -689,7 +692,7 @@ Gruund foar ju Speere: $1",
 'titleprotectedwarning'            => "'''WOARSCHAUENGE: Dät Moakjen fon Sieden wuude speerd. Bloot Benutsere mäd  [[Special:ListGroupRights|spezielle Gjuchte]] konnen ju Siede moakje.'''",
 'templatesused'                    => '{{PLURAL:$1|Ju foulgjende Foarloage wäd|Do foulgjende Foarloagen wäide}} fon disse Siede ferwoand:',
 'templatesusedpreview'             => '{{PLURAL:$1|Ju foulgjende Foarloage wäd|Do foulgjende Foarloagen wäide}} fon dissen Siedefoarschau ferwoand:',
-'templatesusedsection'             => 'Foulgjende Foarloagen wuuden fon disse Oudeelenge ferwoand:',
+'templatesusedsection'             => '{{PLURAL:$1|Ju foulgjende Foarloage wäd|Do foulgjende Foarloagen wäide}} fon disse Oudeelenge ferwoand:',
 'template-protected'               => '(schutsed)',
 'template-semiprotected'           => '(Siedenschuts foar nit anmäldede un näie Benutsere)',
 'hiddencategories'                 => 'Disse Siede is Meeglid fon {{PLURAL:$1|1 ferstatte Kategorie|$1 ferstatte Kategorien}}:',
@@ -697,6 +700,8 @@ Gruund foar ju Speere: $1",
 'nocreatetitle'                    => 'Dät Moakjen fon näie Sieden is begränsed',
 'nocreatetext'                     => 'Ap {{SITENAME}} wuude dät Moakjen fon näie Sieden begränsed. Du koast al bestoundene Sieden beoarbaidje of die [[Special:UserLogin|anmäldje]].',
 'nocreate-loggedin'                => 'Du hääst neen Begjuchtigenge, näie Sieden antoulääsen.',
+'sectioneditnotsupported-title'    => 'Ju Beoarbaidenge fon Ousnitte wäd nit unnerstutsed',
+'sectioneditnotsupported-text'     => 'Ju Beoarbaidenge fon Ousnitte wäd ap disse Beoarbaidengssiede nit unnerstutsed.',
 'permissionserrors'                => 'Begjuchtigengs-Failere',
 'permissionserrorstext'            => 'Du bäst nit begjuchtiged, ju Aktion uuttoufieren. {{PLURAL:$1|Gruund|Gruunde}}:',
 'permissionserrorstext-withaction' => 'Du bäst nit begjuchtiged, ju Aktion „$2“ uuttoufieren, {{PLURAL:$1|Gruund|Gruunde}}:',
@@ -756,6 +761,7 @@ Gruund fon ju Speere: ''$2''",
 Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 (Lääste) = Unnerscheed tou ju foarige Version, L = Litje Annerenge",
 'history-fieldset-title' => 'Säik in ju Versionsgeschichte',
+'history-show-deleted'   => 'bloot läskede Versione',
 'histfirst'              => 'Ooldste',
 'histlast'               => 'Näiste',
 'historysize'            => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
@@ -771,6 +777,7 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'rev-deleted-comment'         => '(Beoarbaidengskommentoar wächhoald)',
 'rev-deleted-user'            => '(Benutsernoome wächhoald)',
 'rev-deleted-event'           => '(Logbouk-Aktion wächhoald)',
+'rev-deleted-user-contribs'   => '[Benutsernoome of IP-Adrässe wächhoald - Beoarbaidenge uut Biedreege ferstat.]',
 'rev-deleted-text-permission' => "Disse Version wuude '''läsked'''.
 Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-deleted-text-unhide'     => "Disse Version wuud '''läsked'''.
@@ -792,7 +799,12 @@ As Adminstrator koast du noch [$1 dissen Versionsunnerscheed bekiekje] wan du f�
 'rev-suppressed-unhide-diff'  => "Een fon do Versione fon dissen Unnerscheed wuud '''unnerdrukt'''. 
 Details stounde in dät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].
 As Adminstrator koast du noch [$1 dissen Versionsunnerscheed bekiekje] wan du fääregunge wolt.",
+'rev-deleted-diff-view'       => "Ne Version fon dissen Versionsunnerscheed wuud '''läsked'''.
+As Administrator koast du dissen Versionsunnerscheed sjo. Details fiende sik in dät [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+'rev-suppressed-diff-view'    => "Een fon do Versione fon dissen Versionsunnerscheed wuud '''unnerdrukt'''.
+As Administrator koast du dissen Versionsunnerscheed sjo. Details fiende sik in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].",
 'rev-delundel'                => 'wiese/ferbierge',
+'rev-showdeleted'             => 'wies',
 'revisiondelete'              => 'Versione läskje/wier häärstaale',
 'revdelete-nooldid-title'     => 'Uunjäildige Siel-Beoarbaidenge',
 'revdelete-nooldid-text'      => 'Du hääst neen Version ounroat, wierap disse Aktion uutfierd wäide schäl, ju wäälde Version is nit deer of du fersäkst, ju aktuelle Version wächtouhoaljen.',
@@ -807,6 +819,7 @@ As Adminstrator koast du noch [$1 dissen Versionsunnerscheed bekiekje] wan du f�
 'logdelete-selected'          => "'''{{PLURAL:$1|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}}:'''",
 'revdelete-text'              => "'''Läskede Versione un Aktione ferblieuwe in ju Versionsgeschichte un do Logbouke, man Deele deerfon sunt nit eepentelk ientoukiekjen.'''
 Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un konnen him mäd ju glieke Siede wier moakje, insowied uurhoop neen Ientuunengen bestounde.",
+'revdelete-confirm'           => 'Bestäätigje, dät du dit wuddelk dwo wolt, dät du do Konsequenze ferstoanst un dät in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlienjen]] dääst.',
 'revdelete-suppress-text'     => "Unnerdrukkengen schuulen '''bloot''' in do foulgjende Fälle foarnuumen waide:
 * Uunpaasende persöönelke Informatione
 *: ''Adressen, Telefonnummere, Sozialversicherungsnummere usw.''",
@@ -817,14 +830,17 @@ Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un
 'revdelete-hide-comment'      => 'Beoarbaidengskommentoar ferstopje',
 'revdelete-hide-user'         => 'Benutsernoome/ju IP fon dän Beoarbaider ferstopje',
 'revdelete-hide-restricted'   => 'Doaten uk foar Administratore un uurswäkke unnerdrukke',
+'revdelete-radio-same'        => '(nit annerje)',
+'revdelete-radio-set'         => 'Jee',
+'revdelete-radio-unset'       => 'Noa',
 'revdelete-suppress'          => 'Gruund fon ju Läskenge uk foar Administratore ferstopped',
 'revdelete-unsuppress'        => 'Ienschränkengen foar wier häärstoalde Versione aphieuwje',
 'revdelete-log'               => 'Gruund foar läskjen:',
-'revdelete-submit'            => 'Ap uutwäälde Version anweende',
+'revdelete-submit'            => 'Ap uutwäälde  {{PLURAL:$1|Version|Versione}} anweende',
 'revdelete-logentry'          => 'Versionsansicht annerd foar [[$1]]',
 'logdelete-logentry'          => 'annerde ju Sichtboarkaid foar [[$1]]',
-'revdelete-success'           => "'''Versionsansicht mäd Ärfoulch annerd.'''",
-'revdelete-failure'           => "'''Versionssichtboarkaid kon nit annerd wäide:'''
+'revdelete-success'           => "'''Ju Versionsansicht wuud aktualisierd.'''",
+'revdelete-failure'           => "Ju Versionssichtboarkaid kon nit aktualisierd wäide:'''
 $1",
 'logdelete-success'           => "'''Logbouk-Aktion mäd Ärfoulch sät.'''",
 'logdelete-failure'           => "'''Logbouksichtboarkaid kon nit annerd wäide:'''
@@ -841,6 +857,12 @@ $1",
 'revdelete-unhid'             => 'moakede $1 wier eepentelk',
 'revdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|Version|Versione}}',
 'logdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|Logboukiendraach|Logboukiendraage}}',
+'revdelete-hide-current'      => 'Failer bie dät Fersteeten fon dän Iendraach fon $1, $2 Uure: Dit is ju aktuelle Version.
+Ju kon nit ferstat wäide.',
+'revdelete-show-no-access'    => 'Failer bie dät Anwiesen fon dän Iendraach fon $1, $2 Uure: Dissen Iendraach wuud as "betüümt" markierd.
+Du hääst deer naan Tougriep ap.',
+'revdelete-modify-no-access'  => 'Failer bie dät Beoarbaidjen fon dän Iendraach fon $1, $2 Uure: Dissen Iendraach wuud as "betüümt" markierd.
+Du hääst deer naan Tougriep ap.',
 'revdelete-modify-missing'    => 'Failer bie dät Beoarbaidjen fon ID $1: Dät failt in ju Doatenboank!',
 'revdelete-no-change'         => "'''Woarschauenge:''' Die Iendraach fon $1, $2 Uure häd al do wonskede Sichtboarkaids-Ienstaalengen.",
 'revdelete-otherreason'       => 'Uur/bietoukuumende Begründenge:',
@@ -2391,7 +2413,7 @@ $1',
 'nextdiff'     => 'Tou ne näiere Version →',
 
 # Media information
-'mediawarning'         => "'''Warnung:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden of Eepenjen fon dissen Doatäi kon dän Computer Schoade toubroacht wäide.<hr />",
+'mediawarning'         => "'''Woarschauenge:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Schoade toubroacht wäide.<hr />",
 'imagemaxsize'         => "Maximoale Bieldegrööte:<br />''(foar Doatäibeschrieuwengssieden)''",
 'thumbsize'            => 'Grööte fon do Foarschaubielden (thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',

@@ -62,6 +62,7 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Rukuni|Rukunoni}}',
 
+'mytalk'     => 'Mahawarata',
 'navigation' => 'Shawagi',
 
 'tagline'          => 'Daga {{SITENAME}}',
@@ -80,6 +81,7 @@ $messages = array(
 'views'            => 'Hange',
 'toolbox'          => 'Akwatin kayan aiki',
 'otherlanguages'   => 'A wasu harsuna',
+'redirectedfrom'   => '(an turo daga $1)',
 'lastmodifiedat'   => 'Gyaran baya na wannan shafi ran $1, a $2.',
 'jumpto'           => 'A tsallaka zuwa:',
 'jumptonavigation' => 'Shawagi',
@@ -116,9 +118,14 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 
 # Login and logout pages
 'nav-login-createaccount' => 'login / sabon akwanti',
+'userlogout'              => "Logi'auti",
 
 # Edit pages
-'savearticle' => 'Adana shafi',
+'savearticle'   => 'Adana shafi',
+'noarticletext' => 'A halin yanzu babu matani a kan wannan shafi.
+Kuna iya [[Special:Search/{{PAGENAME}}|nemo kan wannan shafi]] cikin wasu shafuna,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bincika rajistan ayyukan],
+ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
 
 # History pages
 'revisionasof'     => 'Zubi na $1',
@@ -140,9 +147,14 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 'searchresults-title'       => 'Sakamakon bincike na "$1"',
 'searchresulttext'          => 'Don ƙarin bayani kan binciken {{SITENAME}}, duba [[{{MediaWiki:Helppage}}|{{int:help}}]]',
 'searchsubtitle'            => 'Kun nemi \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|duka shafuna masu farawa da "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|duka shafuna masu zare zuwa "$1"]])',
+'notitlematches'            => 'Babu kan shafin da ya dace',
+'prevn'                     => 'baya {{PLURAL:$1|$1}}',
+'nextn'                     => 'gaba {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Duba ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 kalma|$2 kalmomi}})',
+'search-redirect'           => '(turawa daga $1)',
 'search-section'            => '(sashe $1)',
+'search-suggest'            => 'Kuna nufin: $1',
 'search-mwsuggest-enabled'  => 'Tare da shawarwari',
 'search-mwsuggest-disabled' => 'Banda shawarwari',
 'powersearch'               => 'Sahihin nema',
@@ -150,6 +162,9 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 'powersearch-ns'            => 'Binciki sararen sunaye:',
 'powersearch-redir'         => 'Nuna turawa gaba',
 'powersearch-field'         => 'Neemo',
+
+# Preferences page
+'mypreferences' => 'Saituttukana',
 
 # Recent changes
 'hist'            => 'Tarihi',
@@ -162,14 +177,31 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 # Upload
 'upload' => 'Girke fayil',
 
+# File description page
+'filehist'   => 'Tarihin fayil',
+'imagelinks' => 'Amfani da fayil',
+
 # Miscellaneous special pages
 'nbytes' => '{{PLURAL:$1|bayit|bayit}} $1',
+'move'   => 'Gusarwa',
 
 # Special:AllPages
 'allpagessubmit' => 'Mu je',
 
+# Watchlist
+'mywatchlist' => 'Jerina na kan ido',
+'watch'       => 'Sa ido',
+'unwatch'     => 'Fit da ido',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Sa ido kan...',
+'unwatching' => 'Fit da ido daga...',
+
 # Delete
 'deletedarticle' => 'an shafe "[[$1]]"',
+
+# Rollback
+'rollbacklink' => 'banyewa',
 
 # Undelete
 'undeletelink' => 'duba/maido da',
@@ -177,6 +209,9 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 # Namespace form on various pages
 'namespace'      => 'Sararin suna:',
 'blanknamespace' => '(Babba)',
+
+# Contributions
+'mycontris' => 'Gudummawata',
 
 # What links here
 'whatlinkshere' => 'Zaruruwan wannan shafi',
@@ -190,12 +225,23 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 # Move page
 'revertmove' => 'koma',
 
+# Thumbnails
+'thumbnail-more' => 'Faɗaɗa',
+
 # Tooltip help for the actions
+'tooltip-pt-userpage'            => 'Shafinku na marhabin',
+'tooltip-pt-mytalk'              => 'Shafinku na mahawara',
+'tooltip-pt-preferences'         => 'Saituttukanku',
+'tooltip-pt-watchlist'           => 'Jerin shafunan da kuka sa wa ido',
+'tooltip-pt-mycontris'           => 'Jerin gudummawarku',
 'tooltip-pt-login'               => 'Ana shawarar ku shiga akwantinku, amma ba dole ba ne',
+'tooltip-pt-logout'              => "Logi'auti",
 'tooltip-ca-talk'                => 'Mahawara kan shafin bayannai',
 'tooltip-ca-edit'                => 'Ana iya gyara wannan shafi
 A yi amfani da maɓallin tantancewa kafin a adina',
 'tooltip-ca-history'             => 'Tsoffin sufofin wannan shafi',
+'tooltip-ca-move'                => 'Gusar da wannan shafi',
+'tooltip-ca-watch'               => 'A daɗa wannan shafi cikin jerina na kan ido',
 'tooltip-search'                 => 'Binciko {{SITENAME}}',
 'tooltip-search-go'              => 'A je ga shafi mai wannan suna idan akwai shi',
 'tooltip-search-fulltext'        => 'Binciki shafuna masu wannan matani',
@@ -214,6 +260,7 @@ A yi amfani da maɓallin tantancewa kafin a adina',
 'tooltip-t-permalink'            => 'Zaren dindindin zuwa ga zubin baya na wannan shafi',
 'tooltip-ca-nstab-main'          => 'Duba shafin bayannai',
 'tooltip-ca-nstab-special'       => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
+'tooltip-rollback'               => '"Banyewa" tana soke sauye-sauyen da mutunen baya ya yi da kiliki guda',
 
 # Bad image list
 'bad_image_list' => 'Fasalin yana kamar haka:

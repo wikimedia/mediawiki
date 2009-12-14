@@ -37,13 +37,19 @@ $fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # User preference toggles
-'tog-underline'             => 'Заалһиг татас татх:',
-'tog-hideminor'             => 'Шидрә сольлһна сеткүлд баһ хүврлһиг бултулх',
-'tog-hidepatrolled'         => 'Шидрә сольлһна сеткүлд шүүсн хүврлһиг бултулх',
-'tog-newpageshidepatrolled' => 'Шин халхна сеткүләс шүүсн хүврлһиг бултулх',
-'tog-rememberpassword'      => 'Намаг эн тоолдврд тодлх',
-'tog-oldsig'                => 'Бәәдг тәвсн һарна хәләвр:',
-'tog-fancysig'              => 'Эврән тәвсн һарна бики темдлһн (авто заалһта уга)',
+'tog-underline'              => 'Заалһиг татас татх:',
+'tog-hideminor'              => 'Шидрә сольлһна сеткүлд баһ хүврлһиг бултулх',
+'tog-hidepatrolled'          => 'Шидрә сольлһна сеткүлд шүүсн хүврлһиг бултулх',
+'tog-newpageshidepatrolled'  => 'Шин халхна сеткүләс шүүсн хүврлһиг бултулх',
+'tog-rememberpassword'       => 'Намаг эн тоолдврд тодлх',
+'tog-oldsig'                 => 'Бәәдг тәвсн һарна хәләвр:',
+'tog-fancysig'               => 'Эврән тәвсн һарна бики темдлһн (авто заалһта уга)',
+'tog-watchlisthideown'       => 'Шинҗллһнә сеткүлд мини сольлһиг бултулх',
+'tog-watchlisthidebots'      => 'Шинҗллһнә сеткүлд көдлврин сольлһиг бултулх',
+'tog-watchlisthideminor'     => 'Шинҗллһнә сеткүлд баһ сольлһиг бултулх',
+'tog-watchlisthideliu'       => 'Шинҗллһнә сеткүлд демнчнрин сольлһиг бултулх',
+'tog-watchlisthideanons'     => 'Шинҗллһнә сеткүлд далдурин сольлһиг бултулх',
+'tog-watchlisthidepatrolled' => 'Шинҗллһнә сеткүлд шүүсн сольлһиг бултулх',
 
 # Dates
 'sunday'        => 'Нарн',
@@ -121,6 +127,10 @@ $messages = array(
 # Cologne Blue skin
 'qbfind'         => 'Хәәлһн',
 'qbbrowse'       => 'Гүүһәд хәләх',
+'qbedit'         => 'Чиклх',
+'qbpageoptions'  => 'Тер халх',
+'qbpageinfo'     => 'Халхин туск',
+'qbmyoptions'    => 'Тана халхс',
 'qbspecialpages' => 'Көдлхнә халхс',
 'faq'            => 'Юм би',
 'faqpage'        => 'Project:Юм би',
@@ -167,12 +177,14 @@ $messages = array(
 'history_short'     => 'Тууҗ',
 'printableversion'  => 'Барин бәәдл',
 'permalink'         => 'Даңгин заалһ',
+'print'             => 'Барлх',
 'edit'              => 'Чиклх',
 'create'            => 'Бүтәх',
 'editthispage'      => 'Эн халхиг чиклх',
 'create-this-page'  => 'Эн халхиг бүтәх',
 'delete'            => 'Һарһх',
 'deletethispage'    => 'Эн халхиг һарһх',
+'undelete_short'    => '$1 {{PLURAL:$1|сольлһиг|сольлһиг|сольлһиг}} босхҗ тохрар',
 'protect'           => 'Харсх',
 'protect_change'    => 'сольх',
 'protectthispage'   => 'Эн халхиг харсх',
@@ -181,11 +193,17 @@ $messages = array(
 'newpage'           => 'Шин халх',
 'talkpage'          => 'Ухалвр',
 'talkpagelinktext'  => 'Ухалвр',
+'specialpage'       => 'Көдлхнә халх',
 'personaltools'     => 'Эврән зер-зев',
 'postcomment'       => 'Шин хүв',
+'articlepage'       => 'Зүүл үзх',
 'talk'              => 'Ухалвр',
 'views'             => 'Хәләврүд',
 'toolbox'           => 'Зер-зев',
+'userpage'          => 'Демнчна халх үзх',
+'projectpage'       => 'Төсвин халх үзх',
+'imagepage'         => 'Боомгин халх үзх',
+'mediawikipage'     => 'Зәңгин халх үзх',
 'otherlanguages'    => 'Талдан келнд',
 'redirectedfrom'    => '($1 гидг һазрас авч одсмн)',
 'redirectpagesub'   => 'Авч оддг халх',
@@ -200,6 +218,7 @@ $messages = array(
 'copyright'            => 'Өггцн $1 йоста орҗ болм',
 'copyrightpage'        => '{{ns:project}}:Бичсн күүнә зөв',
 'currentevents'        => 'Ода болсн йовдл',
+'currentevents-url'    => 'Project:Ода болсн йовдл',
 'disclaimers'          => 'Дааврас эс зөвшәрлһн',
 'disclaimerpage'       => 'Project:Даарас эс зөвшәрлһн',
 'edithelp'             => 'Чикллһнә дөң',
@@ -220,6 +239,7 @@ $messages = array(
 'newmessagesdifflink' => 'шидрә сольлһн',
 'editsection'         => 'чиклх',
 'editold'             => 'чиклх',
+'viewsourceold'       => 'ишиг үзх',
 'editlink'            => 'чиклх',
 'viewsourcelink'      => 'ишиг хәләх',
 'editsectionhint'     => '«$1» гидг хүвиг чиклх',
@@ -380,8 +400,11 @@ $messages = array(
 'histlast'               => 'Шидрә',
 
 # Revision deletion
-'rev-delundel'   => 'үзүлх/бултулх',
-'revdel-restore' => 'Үзгдллһиг сольх',
+'rev-delundel'          => 'үзүлх/бултулх',
+'revdelete-radio-set'   => 'Ээ',
+'revdelete-radio-unset' => 'Уга',
+'revdel-restore'        => 'Үзгдллһиг сольх',
+'revdelete-otherreason' => 'Талдан/дәкәд учр:',
 
 # History merging
 'mergehistory-reason' => 'Учр:',
@@ -416,6 +439,7 @@ $messages = array(
 'search-interwiki-more'     => '(дәкәд)',
 'search-mwsuggest-enabled'  => 'селвгтә',
 'search-mwsuggest-disabled' => 'селвг уга',
+'searchall'                 => 'цуг',
 'nonefound'                 => "'''Нүдлтн''': Мел зәрм нернә у талд урдаснь хәәсмн.
 ''all:'' гидг эклц немтн та һазр болһнд хәәх.",
 'powersearch'               => 'Күчн хәәлһн',
@@ -547,9 +571,22 @@ $messages = array(
 'license'        => 'Закан:',
 'license-header' => 'Закан:',
 
+# Special:ListFiles
+'imgfile'               => 'боомг',
+'listfiles'             => 'Боомгин буулһавр',
+'listfiles_date'        => 'Өдр',
+'listfiles_name'        => 'Нернь',
+'listfiles_user'        => 'Демнч',
+'listfiles_size'        => 'Кемҗән',
+'listfiles_description' => 'Тодлҗ бичлһн',
+'listfiles_count'       => 'Янзс',
+
 # File description page
+'file-anchor-link'          => 'Боомг',
 'filehist'                  => 'Боомгин тууҗ',
 'filehist-help'             => 'Боомгин өңгрсн  цагин янз хәләх, цагиг дартн.',
+'filehist-deleteall'        => 'цуг һарһх',
+'filehist-deleteone'        => 'һарһх',
 'filehist-current'          => 'ода цагин',
 'filehist-datetime'         => 'Өдр/цаг',
 'filehist-thumb'            => 'Зураллһн',
@@ -736,6 +773,10 @@ $2 шидрә һарһлһна төлә хәләтн.',
 
 # Block/unblock
 'blockip'                  => 'Демнчиг бүслх',
+'ipaddress'                => 'IP хайг:',
+'ipadressorusername'       => 'IP хайг аль демнчна нернь:',
+'ipbreason'                => 'Учр:',
+'ipbreasonotherlist'       => 'Талдан учр',
 'ipboptions'               => '2 часуд:2 hours,1 өдр:1 day,3 өдрмүд:3 days,1 долан хонг:1 week,2 долан хонгуд:2 weeks,1 сар:1 month,3 сармуд:3 months,6 сармуд:6 months,1 җил:1 year,мөнк:infinite',
 'ipblocklist'              => 'Бүслсн IP хайгуд болн демнчнр',
 'blocklink'                => 'бүслх',
@@ -786,6 +827,10 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'export'        => 'Халхин экспорт',
 'export-addcat' => 'Немх',
 'export-addns'  => 'Немх',
+
+# Namespace 8 related
+'allmessages-filter-all' => 'Цуг',
+'allmessages-language'   => 'Келн:',
 
 # Thumbnails
 'thumbnail-more' => 'Икдүлх',
