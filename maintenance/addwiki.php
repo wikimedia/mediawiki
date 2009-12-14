@@ -118,7 +118,7 @@ class AddWiki extends Maintenance {
 				$blobsFile = popen( $sedCmd, 'r' );
 				$extdb->sourceStream( $blobsFile );
 				pclose( $blobsFile );
-				$extdb->immediateCommit();
+				$extdb->commit();
 			}
 		}
 

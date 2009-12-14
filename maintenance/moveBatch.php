@@ -94,7 +94,7 @@ class MoveBatch extends Maintenance {
 			if( $err !== true ) {
 				$this->output( "\nFAILED: $err" );
 			}
-			$dbw->immediateCommit();
+			$dbw->commit();
 			$this->output( "\n" );
 	
 			if ( $interval ) {

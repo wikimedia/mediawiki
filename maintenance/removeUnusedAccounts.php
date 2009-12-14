@@ -95,12 +95,12 @@ class RemoveUnusedAccounts extends Maintenance {
 						 'image' => 'img', 'oldimage' => 'oi' );
 		$count = 0;
 	
-		$dbo->immediateBegin();
+		$dbo->begin();
 		foreach( $checks as $table => $fprefix ) {
 			$conds = array( $fprefix . '_user' => $id );
 			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
 		}
-		$dbo->immediateCommit();
+		$dbo->commit();
 	
 		return $count == 0;
 	}

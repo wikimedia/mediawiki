@@ -843,22 +843,6 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * Begin a transaction, committing any previously open transaction
-	 * @deprecated use begin()
-	 */
-	function immediateBegin( $fname = 'Database::immediateBegin' ) {
-		$this->begin();
-	}
-
-	/**
-	 * Commit transaction, if one is open
-	 * @deprecated use commit()
-	 */
-	function immediateCommit( $fname = 'Database::immediateCommit' ) {
-		$this->commit();
-	}
-
-	/**
 	 * Return MW-style timestamp used for MySQL schema
 	 */
 	function timestamp( $ts=0 ) {

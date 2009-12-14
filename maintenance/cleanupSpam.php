@@ -109,7 +109,7 @@ class CleanupSpam extends Maintenance {
 			$this->output( "False match\n" );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->immediateBegin();
+			$dbw->begin();
 			if ( !$rev ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "blanking\n" );
@@ -123,7 +123,7 @@ class CleanupSpam extends Maintenance {
 				$article = new Article( $title );
 				$article->updateArticle( $rev->getText(), wfMsg( 'spam_reverting', $domain ), false, false );
 			}
-			$dbw->immediateCommit();
+			$dbw->commit();
 			wfDoUpdates();
 		}
 	}
