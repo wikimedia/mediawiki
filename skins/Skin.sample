@@ -1,5 +1,5 @@
 <?php
-# Your class extension is defined there.
+
 #
 # Do NOT use PHPTal with this sample, if you want PHPTal support have a look at
 # the other sample : SkinPHPTal.sample.
@@ -16,4 +16,3 @@ class SkinSkin extends Skin {
 }
 
 }
-?>
