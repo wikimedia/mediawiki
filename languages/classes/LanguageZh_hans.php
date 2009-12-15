@@ -15,7 +15,7 @@ class LanguageZh_hans extends Language {
 		// Note we put a space on both sides to cover cases
 		// where a number or Latin char follows a Han char.
 		//
-		// @fixme only do this for Han characters...
+		// @todo Fixme: only do this for Han characters...
 		$t = preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
 				" $1 ", $string);

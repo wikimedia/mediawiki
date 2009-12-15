@@ -47,7 +47,7 @@ class WebRequest {
 	private $_response;
 
 	public function __construct() {
-		/// @fixme This preemptive de-quoting can interfere with other web libraries
+		/// @todo Fixme: this preemptive de-quoting can interfere with other web libraries
 		///        and increases our memory footprint. It would be cleaner to do on
 		///        demand; but currently we have no wrapper for $_SERVER etc.
 		$this->checkMagicQuotes();

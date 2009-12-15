@@ -142,7 +142,7 @@ class LanguageGan extends LanguageZh {
 
 		// eventually this should be a word segmentation
 		// for now just treat each character as a word
-		// @fixme only do this for Han characters...
+		// @todo Fixme: only do this for Han characters...
 		$t = preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
 				" $1", $string);

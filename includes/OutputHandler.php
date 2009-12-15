@@ -37,7 +37,7 @@ function wfOutputHandler( $s ) {
  * @private
  */
 function wfRequestExtension() {
-	/// @fixme -- this sort of dupes some code in WebRequest::getRequestUrl()
+	/// @todo Fixme: this sort of dupes some code in WebRequest::getRequestUrl()
 	if( isset( $_SERVER['REQUEST_URI'] ) ) {
 		// Strip the query string...
 		list( $path ) = explode( '?', $_SERVER['REQUEST_URI'], 2 );

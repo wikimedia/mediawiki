@@ -142,7 +142,7 @@ class SpecialContributions extends SpecialPage {
 	 * @param Title $nt @see Title object for the target
 	 * @param integer $id User ID for the target
 	 * @return String: appropriately-escaped HTML to be output literally
-	 * @fixme Almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
+	 * @todo Fixme: almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
 	 */
 	protected function contributionsSub( $nt, $id ) {
 		global $wgSysopUserBans, $wgLang, $wgUser, $wgOut;
