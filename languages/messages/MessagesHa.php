@@ -99,7 +99,11 @@ $messages = array(
 
 'retrievedfrom'   => 'Daga "$1"',
 'editsection'     => 'gyarawa',
+'editold'         => 'gyarawa',
 'editsectionhint' => 'Gyara sashe: $1',
+'toc'             => 'Kanun bayannai',
+'showtoc'         => 'nuna',
+'hidetoc'         => 'ɓoye',
 'site-rss-feed'   => 'Kwararen RSS na $1',
 'site-atom-feed'  => 'Kwararen Atom na $1',
 'red-link-title'  => '$1 (babu wannan shafi)',
@@ -107,6 +111,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'    => 'Shafi',
 'nstab-special' => 'Shafi na musamman',
+'nstab-image'   => 'Fayil',
 
 # General errors
 'missing-article' => 'Taskar bayannai ba ta samo matanin wani shafin da ya kamata ta samo ba, mai suna "$1" $2.
@@ -130,6 +135,8 @@ ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
 # History pages
 'revisionasof'     => 'Zubi na $1',
 'previousrevision' => '← Tsohon zubi',
+'histfirst'        => 'Na gaba',
+'histlast'         => 'Na baya',
 
 # Revision deletion
 'rev-delundel'   => 'nuna/ɓoye',
@@ -148,6 +155,7 @@ ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
 'searchresulttext'          => 'Don ƙarin bayani kan binciken {{SITENAME}}, duba [[{{MediaWiki:Helppage}}|{{int:help}}]]',
 'searchsubtitle'            => 'Kun nemi \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|duka shafuna masu farawa da "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|duka shafuna masu zare zuwa "$1"]])',
 'notitlematches'            => 'Babu kan shafin da ya dace',
+'notextmatches'             => 'Babu wani matanin da ya dace',
 'prevn'                     => 'baya {{PLURAL:$1|$1}}',
 'nextn'                     => 'gaba {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Duba ($1 {{int:pipe-separator}} $2) ($3)',
@@ -157,6 +165,8 @@ ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
 'search-suggest'            => 'Kuna nufin: $1',
 'search-mwsuggest-enabled'  => 'Tare da shawarwari',
 'search-mwsuggest-disabled' => 'Banda shawarwari',
+'nonefound'                 => "'''Hattara''': Galibi wasu sararen suna ƙalilan kawai ake nemowa.
+Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan muhawara, mulaye, d.s.), ko kuma ku yi amfani da sararin sunan da kuke so.",
 'powersearch'               => 'Sahihin nema',
 'powersearch-legend'        => 'Sahihin nema',
 'powersearch-ns'            => 'Binciki sararen sunaye:',
@@ -167,7 +177,10 @@ ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
 'mypreferences' => 'Saituttukana',
 
 # Recent changes
+'diff'            => 'bamban',
 'hist'            => 'Tarihi',
+'hide'            => 'Ɓoye',
+'show'            => 'Nuna',
 'minoreditletter' => 'm',
 
 # Recent changes linked
@@ -178,12 +191,15 @@ ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
 'upload' => 'Girke fayil',
 
 # File description page
-'filehist'   => 'Tarihin fayil',
-'imagelinks' => 'Amfani da fayil',
+'filehist'           => 'Tarihin fayil',
+'filehist-thumbtext' => 'Wadar sufa ta zubin $1',
+'imagelinks'         => 'Amfani da fayil',
 
 # Miscellaneous special pages
-'nbytes' => '{{PLURAL:$1|bayit|bayit}} $1',
-'move'   => 'Gusarwa',
+'nbytes'        => '{{PLURAL:$1|bayit|bayit}} $1',
+'move'          => 'Gusarwa',
+'pager-newer-n' => '{{PLURAL:$1|sabo 1|sabbi $1}}',
+'pager-older-n' => '{{PLURAL:$1|tsoho 1|tsoffi $1}}',
 
 # Special:AllPages
 'allpagessubmit' => 'Mu je',
@@ -261,6 +277,8 @@ A yi amfani da maɓallin tantancewa kafin a adina',
 'tooltip-ca-nstab-main'          => 'Duba shafin bayannai',
 'tooltip-ca-nstab-special'       => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
 'tooltip-rollback'               => '"Banyewa" tana soke sauye-sauyen da mutunen baya ya yi da kiliki guda',
+'tooltip-undo'                   => '"Janyewa" tana soke wannan gyaran ta kuma buɗa fom kin gyara mai rigya gani.
+Tana ba da damar bayyana dalilin soke gyaran.',
 
 # Bad image list
 'bad_image_list' => 'Fasalin yana kamar haka:

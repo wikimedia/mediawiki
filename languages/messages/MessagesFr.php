@@ -2844,14 +2844,14 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'math_notexvc'          => 'L’exécutable « texvc » est introuvable. Lisez math/README pour le configurer.',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Marquer comme n’étant pas un vandalisme',
+'markaspatrolleddiff'                 => 'Marquer comme patrouillée',
 'markaspatrolledtext'                 => 'Marquer cette page comme non vandalisée',
-'markedaspatrolled'                   => 'Marqué comme non vandalisé',
-'markedaspatrolledtext'               => 'La version sélectionnée a été marquée comme non vandalisée.',
+'markedaspatrolled'                   => 'Marqué comme patrouillé',
+'markedaspatrolledtext'               => 'La version sélectionnée a été marquée comme patrouillée.',
 'rcpatroldisabled'                    => 'La fonction de patrouille des modifications récentes n’est pas activée.',
 'rcpatroldisabledtext'                => 'La fonctionnalité de patrouille des modifications récentes est actuellement désactivée.',
-'markedaspatrollederror'              => 'Ne peut être marqué comme non vandalisé',
-'markedaspatrollederrortext'          => 'Vous devez sélectionner une version pour pouvoir la marquer comme non vandalisée.',
+'markedaspatrollederror'              => 'Ne peut être marquée comme patrouillée',
+'markedaspatrollederrortext'          => 'Vous devez sélectionner une version pour pouvoir la marquer comme patrouillée.',
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme patrouillées.',
 
 # Patrol log

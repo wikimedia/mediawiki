@@ -1739,7 +1739,8 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'ancientpages'            => 'Nejstarše boki',
 'move'                    => 'Pśesunuś',
 'movethispage'            => 'Bok pśesunuś',
-'unusedimagestext'        => 'Pšosym glědaj na to, až ewtl. druge websedła móžu k drugej dataji z direktnym URL wótkazaś a móžo togodla how nalicona byś, lěcrownož se rowno wužywa.',
+'unusedimagestext'        => 'Slědujuce dataje eksistěruju, ale njejsu do boka zasajźone.
+Pšosym glědaj na to, až druge websedła móžu k drugej dataji z direktnym URL wótkazowaś a móžo togodla how hyšće nalicona byś, lěcrownož se rowno wužywaju.',
 'unusedcategoriestext'    => 'Toś ten specialny bok pokazujo wšykne njekategorizěrowane kategorije.',
 'notargettitle'           => 'Žeden celowy bok njejo zapódany.',
 'notargettext'            => 'Njejsy zapódał celowy bok, źož dejała funkcija se wugbaś.',

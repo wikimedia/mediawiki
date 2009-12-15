@@ -564,6 +564,7 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'viewdeleted'             => 'Vaata lehekülge $1?',
 'restorelink'             => '{{PLURAL:$1|üks kustutatud versioon|$1 kustutatud versiooni}}',
 'feedlinks'               => 'Sööde:',
+'feed-invalid'            => 'Vigane vootüüp.',
 'feed-unavailable'        => 'Uudisvood ei ole saadaval.',
 'site-rss-feed'           => '$1 RSS-toide',
 'site-atom-feed'          => '$1 Atom-toide',
@@ -1032,6 +1033,8 @@ Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
 'revdelete-show-file-submit'  => 'Jah',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valitud versioon|Valitud versioonid}} artiklist [[:$1]]:'''",
 'logdelete-selected'          => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
+'revdelete-text'              => "'''Kustutatud redaktsioonid kajastuvad endiselt lehe ajaloos ja logides, kuid osa nende sisust pole tavakasutajatele nähtav.'''
+{{GRAMMAR:genitive|{{SITENAME}}}} administraatorid saavad varjatud sisu siiski vaadata ning seda vajadusel taastada, kui see pole just täiendavalt ära keelatud.",
 'revdelete-confirm'           => 'Kinnita, et Sa tõesti soovid seda teha ning et Sa saad aru tagajärgedest ja et tegevus on kooskõlas [[{{MediaWiki:Policy-url}}|siinse sisekorraga]].',
 'revdelete-suppress-text'     => "Andmed tuleks varjata '''ainult''' järgnevatel juhtudel:
 * Sobimatu isiklik teave
@@ -2042,6 +2045,28 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"
 'enotif_lastvisited'           => 'Kõigi sinu viimase külastuse järel tehtud muudatuste nägemiseks vaata: $1.',
 'enotif_lastdiff'              => 'Muudatus on leheküljel $1.',
 'enotif_anon_editor'           => 'anonüümne kasutaja $1',
+'enotif_body'                  => 'Kasutaja $WATCHINGUSERNAME,
+
+{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Lehe praegust versiooni näed siit: $PAGETITLE_URL .
+
+$NEWPAGE
+
+Redigeerija lühikommentaar: $PAGESUMMARY $PAGEMINOREDIT
+
+Võta redigeerijaga ühendust:
+e-post: $PAGEEDITOR_EMAIL
+viki: $PAGEEDITOR_WIKI
+
+Seni kuni Sa seda lehte ei külasta, selle lehe uute muudatuste kohta sulle uusi teavitus e-kirju ei saadeta.
+
+             {{GRAMMAR:genitive|{{SITENAME}}}} teavitussüsteem
+
+--
+Oma jälgimisloendi seadete muutmiseks mine lehele:
+{{fullurl:Special:Watchlist/edit}}
+
+Tagasiside ja abiinfo leht:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Kustuta lehekülg',

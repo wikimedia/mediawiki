@@ -897,7 +897,7 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Rrgister di druvat növ',
-'newuserlog-create-entry' => 'Növ druvat',
+'newuserlog-create-entry' => 'Druvadur növ',
 
 # Special:ListGroupRights
 'listgrouprights'         => 'Dirit del grüp di druvat',
