@@ -50,7 +50,7 @@ class MWNamespace {
 	 * forevermore. Historically, they could've probably been lowercased too, 
 	 * but some things are just too ingrained now. :)
 	 */
-	private static $alwaysCapitalizedNamespaces = array( NS_SPECIAL, NS_MEDIAWIKI );
+	private static $alwaysCapitalizedNamespaces = array( NS_SPECIAL, NS_USER, NS_MEDIAWIKI );
 
 	/**
 	 * Can pages in the given namespace be moved?
