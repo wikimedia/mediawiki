@@ -1221,7 +1221,8 @@ function do_populate_parent_id() {
 
 function sqlite_initial_indexes() {
 	global $wgDatabase;
-	if ( update_row_exists( 'initial_indexes' ) ) {
+	// initial-indexes.sql fails if the indexes are already present, so we perform a quick check if our database is newer.
+	if ( update_row_exists( 'initial_indexes' ) || $wgDatabase->indexExists( 'user', 'user_name' ) ) {
 		wfOut( "...have initial indexes\n" );
 		return;
 	}
