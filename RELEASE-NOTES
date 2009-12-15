@@ -218,6 +218,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** Unnecessary type="" attribute removed for CSS and JS.
 ** If $wgWellFormedXml is set to false, some bytes will be shaved off of HTML
    output by omitting some things like quotation marks where HTML 5 allows.
+** (bug 16921) maxlength enabled for page move comments
 * The description message in $wgExtensionCredits can be an array with parameters
 * New hook SpecialRandomGetRandomTitle allows extensions to modify the selection
   criteria used by Special:Random and subclasses, or substitute a custom result,

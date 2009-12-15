@@ -218,7 +218,8 @@ class MovePageForm {
 					Xml::label( wfMsg( 'movereason' ), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::tags( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2 ), htmlspecialchars( $this->reason ) ) .
+					Html::element( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2,
+					'maxlength' => 200 ), $this->reason ) .
 				"</td>
 			</tr>"
 		);

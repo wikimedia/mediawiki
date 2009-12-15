@@ -134,6 +134,9 @@ class Html {
 					unset( $attribs['type'] );
 				}
 			}
+			if ( $element == 'textarea' && isset( $attribs['maxlength'] ) ) {
+				unset( $attribs['maxlength'] );
+			}
 			# Here we're blacklisting some HTML5-only attributes...
 			$html5attribs = array(
 				'autocomplete',
