@@ -1718,7 +1718,8 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'ancientpages'            => 'Najstarše nastawki',
 'move'                    => 'přesunyć',
 'movethispage'            => 'Stronu přesunyć',
-'unusedimagestext'        => 'Prošu wobkedźbuj, zo druhe websydła móža k dataji z direktnym URL wotkazować a su hišće tu naspomnjene, hačrunjež so hižo aktiwnje wužiwaja.',
+'unusedimagestext'        => 'Slědowace dataje eksistuja, njejsu wšak do strony zasadźene.
+Prošu wobkedźbuj, zo druhe websydła móža na dataju z direktnym URL wotkazować a móža so tu hišće jewić, byrnjež w altiwnym wužiwanju byli.',
 'unusedcategoriestext'    => 'Slědowace kategorije eksistuja, hačrunjež žana druha strona abo kategorija je njewužiwa.',
 'notargettitle'           => 'Žadyn cil',
 'notargettext'            => 'Njejsy cilowu stronu abo wužiwarja podał, zo by funkciju wuwjesć móhł.',

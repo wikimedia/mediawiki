@@ -1808,7 +1808,8 @@ Le entratas <s>cancellate</s> ha essite resolvite.',
 'ancientpages'            => 'Paginas le plus ancian',
 'move'                    => 'Renominar',
 'movethispage'            => 'Renominar iste pagina',
-'unusedimagestext'        => 'Per favor nota que altere sitos web pote ligar se a un file con un adresse URL directe. Ergo, tal files pote figurar hic malgrado esser in uso active.',
+'unusedimagestext'        => 'Le sequente files existe ma non ha essite inserite in alcun pagina.
+Per favor nota que altere sitos web pote ligar se a un file con un adresse URL directe. Ergo, tal files pote figurar hic malgrado esser in uso active.',
 'unusedcategoriestext'    => 'Le sequente paginas de categoria existe ben que nulle altere pagina o categoria los utilisa.',
 'notargettitle'           => 'Sin scopo',
 'notargettext'            => 'Tu non ha specificate un pagina o usator super le qual

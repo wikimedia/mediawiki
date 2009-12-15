@@ -1923,10 +1923,8 @@ Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju tekst
 'ancientpages'            => 'Najstarije stranice',
 'move'                    => 'Preusmjeri',
 'movethispage'            => 'Premjesti ovu stranicu',
-'unusedimagestext'        => '<p>Obratite pažnju da se drugi veb sajtovi, kao što su drugi
-međunarodni Vikiji, mogu povezati na sliku direktnom
-URL-om, i tako mogu još uvijek biti prikazani ovdje uprkos
-aktivnoj upotrebi.</p>',
+'unusedimagestext'        => 'Slijedeće datoteke postoje ali nisu uključene ni u jednu stranicu.
+Molimo obratite pažnju da druge web stranice mogu biti povezane s datotekom putem direktnog URLa, tako da i pored toga mogu biti prikazane ovdje pored aktivne upotrebe.',
 'unusedcategoriestext'    => 'Slijedeće stranice kategorija postoje iako ih ni jedan drugi članak ili kategorija ne koriste.',
 'notargettitle'           => 'Nema cilja',
 'notargettext'            => 'Niste naveli ciljnu stranicu ili korisnika

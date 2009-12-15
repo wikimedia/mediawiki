@@ -1289,6 +1289,7 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-upload'                => 'Laai lêers op',
 'right-reupload'              => "Oorskryf 'n bestaande lêer",
 'right-reupload-own'          => "Oorskryf 'n lêer wat u self opgelaai het",
+'right-reupload-shared'       => 'Oorskryf lêers op die gedeelde mediabank plaaslik',
 'right-upload_by_url'         => "Laai lêer van 'n URL",
 'right-autoconfirmed'         => 'Wysig half beskermde bladsye',
 'right-bot'                   => "Behandel as 'n geoutomatiseerde proses",
@@ -1299,12 +1300,14 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-deleterevision'        => 'Skrap en ontskrap spesifieke hersienings van bladsye',
 'right-browsearchive'         => 'Soek uigeveede bladsye',
 'right-undelete'              => "Ontskrap 'n bladsy",
+'right-suppressrevision'      => 'Hersien en herstel weergawes verborge van administrateurs',
 'right-suppressionlog'        => 'Besigtig privaat logboeke',
 'right-block'                 => 'Ontneem ander gebruikers die reg om te wysig',
 'right-blockemail'            => "Ontneem 'n gebruiker die reg om E-pos te stuur",
 'right-hideuser'              => "Blokkeer 'n gebruiker, versteek dit van die publiek",
 'right-ipblock-exempt'        => 'Omseil IP-blokkades',
 'right-proxyunbannable'       => "Blokkades vir instaanbedieners (proxy's) geld nie",
+'right-protect'               => 'Verander beskermingsvlakke en wysig beskermde bladsye',
 'right-editinterface'         => 'Wysig die gebruikerskoppelvlak',
 'right-editusercssjs'         => 'Wysig ander gebruikers se CSS- en JS-lêers',
 'right-editusercss'           => 'Wysig ander gebruikers se CSS-lêers',
@@ -1534,6 +1537,10 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Toegang geweier',
+'img-auth-nopathinfo'   => 'PATH_INFO word vermis.
+U bediener is nie ingestel om hierdie inligting deur te stuur nie.
+Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
+Sien http://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
 'img-auth-notindir'     => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle'     => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL'   => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
