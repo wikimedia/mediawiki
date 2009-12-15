@@ -303,12 +303,18 @@
 }
 .wikiEditor-ui-tabs {
 	border: none;
+	height: 2.15em;
+}
+.wikiEditor-ui-buttons {
+	height: 2.15em;
 }
 .wikiEditor-ui-tabs div {
 	border: 1px solid silver;
 	margin-right: 1px;
+	height: 2.15em;
 }
 .wikiEditor-ui-tabs div a {
+	line-height: 2.15em;
 	background: #FFFFFF url(images/tab-fade.png) repeat-x  0 100%;
 }
 .wikiEditor-ui-tabs div.current a {
