@@ -1796,7 +1796,7 @@ You can also choose to let others contact you through your user or talk page wit
 * A checked box means the user is in that group.
 * An unchecked box means the user is not in that group.
 * A * indicates that you cannot remove the group once you have added it, or vice versa.',
-'userrights-reason'              => 'Reason for change:',
+'userrights-reason'              => 'Reason:',
 'userrights-no-interwiki'        => 'You do not have permission to edit user rights on other wikis.',
 'userrights-nodatabase'          => 'Database $1 does not exist or is not local.',
 'userrights-nologin'             => 'You must [[Special:UserLogin|log in]] with an administrator account to assign user rights.',
