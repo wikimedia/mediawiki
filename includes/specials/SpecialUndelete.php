@@ -887,14 +887,14 @@ class UndeleteForm {
 		$sk = $wgUser->getSkin();
 		$isDeleted = !( $rev->getId() && $rev->getTitle() );
 		if( $isDeleted ) {
-			/// @fixme $rev->getTitle() is null for deleted revs...?
+			/// @todo Fixme: $rev->getTitle() is null for deleted revs...?
 			$targetPage = SpecialPage::getTitleFor( 'Undelete' );
 			$targetQuery = array(
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => wfTimestamp( TS_MW, $rev->getTimestamp() )
 			);
 		} else {
-			/// @fixme getId() may return non-zero for deleted revs...
+			/// @todo Fixme getId() may return non-zero for deleted revs...
 			$targetPage = $rev->getTitle();
 			$targetQuery = array( 'oldid' => $rev->getId() );
 		}

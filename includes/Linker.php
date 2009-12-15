@@ -751,7 +751,7 @@ class Linker {
 	 * @param String $linktype Type of external link. Gets added to the classes
 	 * @param array $attribs Array of extra attributes to <a>
 	 * 
-	 * @TODO! @FIXME! This is a really crappy implementation. $linktype and 
+	 * @todo FIXME: This is a really crappy implementation. $linktype and 
 	 * 'external' are mashed into the class attrib for the link (which is made
 	 * into a string). Then, if we've got additional params in $attribs, we 
 	 * add to it. People using this might want to change the classes (or other
@@ -1027,7 +1027,7 @@ class Linker {
 	 * Formats wiki links and media links in text; all other wiki formatting
 	 * is ignored
 	 *
-	 * @fixme doesn't handle sub-links as in image thumb texts like the main parser
+	 * @todo Fixme: doesn't handle sub-links as in image thumb texts like the main parser
 	 * @param string $comment Text to format links in
 	 * @return string
 	 */

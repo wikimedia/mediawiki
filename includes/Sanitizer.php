@@ -1439,7 +1439,7 @@ class Sanitizer {
 
 			$host = preg_replace( $strip, '', $host );
 
-			// @fixme: validate hostnames here
+			// @todo Fixme: validate hostnames here
 
 			return $protocol . $host . $rest;
 		} else {

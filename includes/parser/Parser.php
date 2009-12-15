@@ -275,7 +275,7 @@ class Parser
 	 */
 	function uniqPrefix() {
 		if( !isset( $this->mUniqPrefix ) ) {
-			// @fixme this is probably *horribly wrong*
+			// @todo Fixme: this is probably *horribly wrong*
 			// LanguageConverter seems to want $wgParser's uniqPrefix, however
 			// if this is called for a parser cache hit, the parser may not
 			// have ever been initialized in the first place.
@@ -4570,7 +4570,7 @@ class Parser
 						switch( $paramName ) {
 						case 'manualthumb':
 						case 'alt':
-							// @fixme - possibly check validity here for
+							// @todo Fixme: possibly check validity here for
 							// manualthumb? downstream behavior seems odd with
 							// missing manual thumbs.
 							$validated = true;

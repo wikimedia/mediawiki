@@ -304,7 +304,7 @@ class WikiRevision {
 				$resultDetails = array( 'internal' => $status->getWikiText() );
 		*/
 
-		// @fixme upload() uses $wgUser, which is wrong here
+		// @todo Fixme: upload() uses $wgUser, which is wrong here
 		// it may also create a page without our desire, also wrong potentially.
 		// and, it will record a *current* upload, but we might want an archive version here
 
@@ -352,7 +352,7 @@ class WikiRevision {
 			return false;
 		}
 
-		// @fixme!
+		// @todo Fixme!
 		$src = $this->getSrc();
 		$data = Http::get( $src );
 		if( !$data ) {
