@@ -3197,8 +3197,12 @@ class Article {
 		$newId = $details['newid'];
 		$wgOut->setPageTitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$old = $wgUser->getSkin()->userLink( $current->getUser(), $current->getUserText() )
-			. $wgUser->getSkin()->userToolLinks( $current->getUser(), $current->getUserText() );
+		if ( $current->getUserText() === '' ) {
+			$old = wfMsg( 'rev-deleted-user' );
+		} else {
+			$old = $wgUser->getSkin()->userLink( $current->getUser(), $current->getUserText() )
+				. $wgUser->getSkin()->userToolLinks( $current->getUser(), $current->getUserText() );
+		}
 		$new = $wgUser->getSkin()->userLink( $target->getUser(), $target->getUserText() )
 			. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
 		$wgOut->addHTML( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );

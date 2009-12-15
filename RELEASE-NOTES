@@ -681,6 +681,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for namespace)
 * (bug 20765) Special:ListGroupRights no longer misses addables and removables
   groups if there are duplicate entries
+* (bug 21814) Message shown when rolling back an edit with a deleted username
+  now shows '(username deleted)' instead of broken user tool links
 
 == API changes in 1.16 ==
 
