@@ -2577,6 +2577,8 @@ class Parser
 				return $wgServerName;
 			case 'scriptpath':
 				return $wgScriptPath;
+			case 'stylepath':
+				return $wgStylePath;
 			case 'directionmark':
 				return $wgContLang->getDirMark();
 			case 'contentlanguage':
