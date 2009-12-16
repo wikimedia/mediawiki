@@ -811,9 +811,10 @@ class SpecialSearch {
 	}
 
 	protected function searchFocus() {
+		$id = $this->searchAdvanced ? 'powerSearchText' : 'searchText';
 		return Html::inlineScript(
 			"hookEvent(\"load\", function() {" .
-				"document.getElementById('searchText').focus();" .
+				"document.getElementById('$id').focus();" .
 			"});" );
 	}
 	
@@ -943,7 +944,7 @@ class SpecialSearch {
 		$out .= Html::hidden( "redirs", (int)$this->searchRedirects ) . "\n";
 		// Term box
 		$out .= Html::input( 'search', $term, 'search', array(
-			'id' => 'searchText',
+			'id' => $this->searchAdvanced ? 'powerSearchText' : 'searchText',
 			'size' => '50',
 			'autofocus'
 		) ) . "\n";
