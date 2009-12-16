@@ -1439,7 +1439,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 * Een aangekruist vakje betekent dat de gebruiker lid is van de groep.
 * Een niet aangekruist vakje betekent dat de gebruiker geen lid is van de groep.
 * Een "*" betekent dat u een gebruiker niet uit een groep kunt verwijderen nadat u die hebt toegevoegd, of vice versa.',
-'userrights-reason'           => 'Reden voor het veranderen:',
+'userrights-reason'           => 'Reden:',
 'userrights-no-interwiki'     => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'          => 'U moet zich [[Special:UserLogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
@@ -2002,7 +2002,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'ancientpages'            => "Oudste pagina's",
 'move'                    => 'Hernoemen',
 'movethispage'            => 'Deze pagina hernoemen',
-'unusedimagestext'        => 'Let op!
+'unusedimagestext'        => 'De volgende bestanden zijn aanwezig maar worden nergens gebruikt.
 Het is mogelijk dat er direct verwezen wordt naar een bestand.
 Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'unusedcategoriestext'    => 'Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.',

@@ -956,6 +956,8 @@ Administratören som låste databasen gav följande förklaring: $1",
 'nocreatetext'                     => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
 Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skapa ett användarkonto]].',
 'nocreate-loggedin'                => 'Du har inte behörighet att skapa nya sidor.',
+'sectioneditnotsupported-title'    => 'Sektionsredigering stöds inte',
+'sectioneditnotsupported-text'     => 'Sektionsredigering stöds inte på denna sida.',
 'permissionserrors'                => 'Behörighetsfel',
 'permissionserrorstext'            => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
 'permissionserrorstext-withaction' => 'Du har inte behörighet att $2, av följande {{PLURAL:$1|anledning|anledningar}}:',
@@ -1092,6 +1094,9 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-hide-comment'      => 'Dölj redigeringskommentar',
 'revdelete-hide-user'         => 'Dölj skribentens användarnamn/IP-adress',
 'revdelete-hide-restricted'   => 'Undanhåll data från administratörer så väl som från övriga',
+'revdelete-radio-same'        => '(lämna)',
+'revdelete-radio-set'         => 'Ja',
+'revdelete-radio-unset'       => 'Nej',
 'revdelete-suppress'          => 'Undanhåll data även från administratörer',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
 'revdelete-log'               => 'Orsak till radering:',
@@ -1126,7 +1131,7 @@ Du har inte behörighet till det.',
 'revdelete-no-change'         => "'''Varning:''' objektet daterat $2, $1 hade redan de begärda synlighetsinställningarna.",
 'revdelete-concurrent-change' => 'Fel vid förändring av objektet daterat $2, $1: dess status verkar ha ändrats av någon annan medan du försökte förändra det.
 Vänligen kontrollera loggarna.',
-'revdelete-only-restricted'   => 'Du kan inte hindra visning av objekt av administratörer utan att också välja en av de övriga visningshindrande alternativen.',
+'revdelete-only-restricted'   => 'Fel vid döljning av objekt daterat $2, $1: du kan inte undanhålla objekt från att visas för administratörer utan att också välja en av de övriga visningsalternativen.',
 'revdelete-reason-dropdown'   => '*Vanliga orsaker till radering
 ** Brott mot copyright 
 ** Opassande personupplysningar
@@ -1374,7 +1379,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 * En ikryssad ruta betyder användaren är medlem i den gruppen.
 * En okryssad ruta betyder att användaren inte är medlem i den gruppen.
 * En asterisk (*) markerar att du inte kan ta bort gruppen när du har lagt till den, eller vice versa.',
-'userrights-reason'           => 'Anledning till ändringen:',
+'userrights-reason'           => 'Anledning:',
 'userrights-no-interwiki'     => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'       => 'Databasen $1 finns inte eller så är den inte lokal.',
 'userrights-nologin'          => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
@@ -1917,7 +1922,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'ancientpages'            => 'Äldsta sidorna',
 'move'                    => 'Flytta',
 'movethispage'            => 'Flytta denna sida',
-'unusedimagestext'        => 'Lägg märke till att andra webbplatser kan länka till filer med en direkt URL. Filer kan därför  användas trots att de finns i den här listan.',
+'unusedimagestext'        => 'Följande filer existerar men är inte inlagda i någon sida.
+Lägg märke till att andra webbplatser kan länka till en fil med en direkt URL. Filer kan därför  användas aktivt trots att de listas här.',
 'unusedcategoriestext'    => 'Följande kategorier finns men innehåller inga sidor eller underkategorier.',
 'notargettitle'           => 'Inget mål',
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
@@ -1992,11 +1998,13 @@ Stödda protokoll: <tt>$1</tt>',
 'listusers-blocked'  => '(blockerad)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista över aktiva användare',
-'activeusers-intro'    => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dagen|dagarna}}.',
-'activeusers-count'    => '$1 {{PLURAL:$1|redigering|redigeringar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
-'activeusers-from'     => 'Visa användare från och med:',
-'activeusers-noresult' => 'Inga användare funna.',
+'activeusers'            => 'Lista över aktiva användare',
+'activeusers-intro'      => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dagen|dagarna}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|redigering|redigeringar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
+'activeusers-from'       => 'Visa användare från och med:',
+'activeusers-hidebots'   => 'Göm botar',
+'activeusers-hidesysops' => 'Dölj administratörer',
+'activeusers-noresult'   => 'Inga användare funna.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logg över nya användare',
@@ -2330,6 +2338,7 @@ Orsaken till senaste blockeringen kan ses nedan:',
 
 # Block/unblock
 'blockip'                         => 'Blockera användare',
+'blockip-title'                   => 'Blockera användare',
 'blockip-legend'                  => 'Blockera användare',
 'blockiptext'                     => 'Använd formuläret nedan för att blockera möjligheten att redigera sidor från en specifik IP-adress eller ett användarnamn.
 Detta bör endast göras för att förhindra vandalisering, och i överensstämmelse med gällande [[{{MediaWiki:Policy-url}}|policy]].

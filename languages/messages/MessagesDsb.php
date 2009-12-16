@@ -1206,7 +1206,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 * Markěrowany kašćik wóznamjenijo, až wužywaŕ jo w toś tej kupce.
 * Njemarkěrowany kašćik woznamjenijo, až wužywaŕ njejo w toś tej kupce.
 * * pódawa, až njamóžoš kupku wótwónoźeś, gaž sy ju pśidał abo nawopak.',
-'userrights-reason'           => 'Pśicyna změny:',
+'userrights-reason'           => 'Pśicyna:',
 'userrights-no-interwiki'     => 'Njamaš pšawo wužywarske pšawa w drugich wikijach změniś.',
 'userrights-nodatabase'       => 'Datowa banka $1 njeeksistěrujo abo njejo lokalna.',
 'userrights-nologin'          => 'Musyš se z administratorowym kontom [[Special:UserLogin|pśizjawiś]], aby wužywarske pšawa změnił.',

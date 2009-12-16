@@ -150,6 +150,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Ku $1 bakuweerezza obubaka',
 'editsection'             => 'kyuusa',
 'editold'                 => 'kyuusa',
+'editlink'                => 'Lukolemu enkyukakyuka',
 'editsectionhint'         => 'Nyiga wano okukyusaamu ekitundu: $1',
 'toc'                     => 'Ebirimu',
 'showtoc'                 => 'ndaga endagiriro',
@@ -267,7 +268,7 @@ Tukwesiga nti by'owandiika muno bibyo oba wabigya mu kya bonna oba awalala gye b
 'copyrightwarning2'          => "Genderera nti buli kyowandiika muno mu {{SITENAME}} abalala bayinza okubikyusa oba n'okubigiramu ddala. Obanga tewetegese okulaba by'owandiise nga babikyusakyusa n'okubisaasaanya nga bwe balaba, tobiwandiika muno.<br />
 Tukwesiga nti by'owandiika muno bibyo oba wabigya mu kya bonna oba awalala gye batalina bikugizo eby'obwa nannyini. (okuyiga ebisingawo, laba $1).
 '''TOTEEKAMU EBIRIKO EBIKUGIZO EBY'OBWA NANNYINI NGA BA NYINI BYO TEBAKUWADDE LUKUSA!'''",
-'templatesused'              => 'Olupapula luno entiba ze lukozesa ze:',
+'templatesused'              => 'Olupapula luno lukozesa {{PLURAL:$1|olutiba luno|entiba zino}} :',
 'template-protected'         => '(luno lusibidwa)',
 'template-semiprotected'     => '(ebimu ku lupapula luno bisibidwa)',
 'nocreatetext'               => "Ku {{SITENAME}} tosobola okukolawo empapula mpya nga tokozesa buyinza obw'obwamemba. Kati oyinza kugenda n'okyusamu olupapula olulala olwakolebwa dda, oba oyinza [[Special:UserLogin|okufuna obuyinza obw'obwamemba]].",
@@ -308,6 +309,7 @@ oba ku gano agali ku lupapula luno.<br />
 'viewprevnext'        => 'Laga ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'      => 'Help:Endagiriro',
 'search-result-size'  => '$1 ({{PLURAL:$2|kigambo 1 | bigambo $2}})',
+'search-suggest'      => 'Obadde onoonya $1 ?',
 'powersearch'         => 'Noonya mu ngeri esunsula',
 
 # Preferences page
@@ -330,7 +332,7 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 # Recent changes
 'recentchanges'     => 'Ebyakakyuusibwa',
 'recentchangestext' => "Goberera enkyuukakyuuka empya ez'oku muko guno",
-'rcnote'            => "{{PLURAL:$1|Enkyukakyuka '''1''' yakakolebwa|Zino z'enkyukakyuka '''$1''' ezaakakolebwa}} mu {{PLURAL:$2|lunaku olwakayita|naku '''$2''' ezaakayita}} okuva ku $3.",
+'rcnote'            => "Wano olaba {{PLURAL:$1|olukyukakyuka '''1''' olukoledwawo|enkyukakyuka '''$1''' ezikoledwawo}} mu {{PLURAL:$2|lunaku olwakayita|naku '''$2''' ezaakayita}}. Bino byategeerese ku ssaawa $5 nga $4.",
 'rclistfrom'        => 'Laga enkyukakyuka empya ezikoledwa okuva $1',
 'rcshowhideminor'   => 'Enkyukakyuka ntono $1',
 'rcshowhidebots'    => '$1 ebya boti',
@@ -506,6 +508,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-ca-edit'                 => "Nyiga wano ob'oyagala okukyusakyusaamu lupapula luno. Bw'omala okuwandiika enkyukakyuka zo, nyiga ku kapeesa aka 'Sooka ondageko' ozikebere nga tonnazikariza ddala kulabibwa bonna.",
 'tooltip-ca-addsection'           => 'Nyiga wano oba oyagala okuwayo ekirowozo ku kintu kipya mu kuwanyisigana ebirowozo kuno.',
 'tooltip-ca-viewsource'           => "Olupapula luno lusibidwa - tosobola okulukyusa, naye okkirizibwa okulaba obulambike obw'ennono bwalwo.",
+'tooltip-ca-history'              => "Bw'onyiga wano, olaba empandika z'olupapula luno ezaasookawo",
 'tooltip-ca-protect'              => 'Siba olupapula luno',
 'tooltip-ca-delete'               => "Nyiga wano ob'oyagala okugyawo olupapula luno",
 'tooltip-ca-move'                 => "Kyusa erinnya ly'olupapula luno",
@@ -525,6 +528,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-t-emailuser'             => "Nyiga wano ob'oyagala memba ono okumusindikira e-mail",
 'tooltip-t-upload'                => "Nyiga wano ob'oyagala okuteekayo fayiro ku wiki eno",
 'tooltip-t-specialpages'          => "Nyiga wano okulaba olukalala olw'empapula ez'enjawulo zonna",
+'tooltip-t-print'                 => "Bw'onyiga wano olupapula luno lwetereeza mu ngeri erulabisa obulungi nga lukubisidwa ku kyapa (pulinta)",
 'tooltip-ca-nstab-user'           => "Nyiga wano ob'oyagala okulaba enfo ya memba",
 'tooltip-ca-nstab-project'        => "Nyiga wano ob'oyagala okukebera ekkuŋaanizo erya kawefube ono",
 'tooltip-ca-nstab-image'          => 'Nyiga wano okugenda ku lupapula oluliko ekifaananyi',
@@ -542,7 +546,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 
 # Browsing diffs
 'previousdiff' => '← Laba enjawulo ezaakulembera zino',
-'nextdiff'     => 'Enjawulo eziddako →',
+'nextdiff'     => 'Enkyukakyuka ezaddako okukolebwa→',
 
 # Media information
 'file-info-size'       => '(pikseli $1 ku $2 , bunene bwa fayiro: $3, kika kya MIME: $4)',

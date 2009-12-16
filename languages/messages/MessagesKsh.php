@@ -1995,10 +1995,11 @@ Tipp: Merk Der dä Tittel vun dä Sigg dovör.',
 'ancientpages'            => 'Atikele zoteet vun Ahl noh Neu',
 'move'                    => 'Ömnenne',
 'movethispage'            => 'De Sigg ömnenne',
-'unusedimagestext'        => '<p><strong>Opjepass:</strong> Ander Websigge künnte immer noch de Dateie hee tirek 
+'unusedimagestext'        => 'Di Dateije hee dronger jidd_et, äver se sin en keine Sigg em Wiki enjebonge.
+<br /><strong>Opjepass:</strong> Ander Websigge künnte immer noch de Dateie hee tirek 
 per URL aanspreche. Su künnt et sin, dat en 
 Datei hee en de Liss steiht, ävver doch jebruch weed. Usserdäm, winnichstens bei neue Dateie, künnt sin, 
-dat se noch nit en enem Atikkel enjebaut sin, weil noch Einer dran am brasselle es.</p>',
+dat se noch nit en enem Atikkel enjebaut sin, weil noch Einer dran am brasselle es.',
 'unusedcategoriestext'    => 'De Saachjruppe hee sin enjerich, ävver jetz em Momang, es keine Atikkel un 
 kein Saachjrupp dren ze finge.',
 'notargettitle'           => 'Keine Bezoch op e Ziel',

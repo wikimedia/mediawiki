@@ -1373,7 +1373,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 * Označeni kvadratić znači da je korisnik u toj grupi.
 * Neoznačen kvadratić znači da korisnik nije u toj grupi.
 * Oznaka * (zvjezdica) označava da Vi ne možete izbrisati ovu grupu ako je dodate i obrnutno.',
-'userrights-reason'           => 'Razlog promjene:',
+'userrights-reason'           => 'Razlog:',
 'userrights-no-interwiki'     => 'Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.',
 'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalna baza.',
 'userrights-nologin'          => 'Morate se [[Special:UserLogin|prijaviti]] sa administratorskim računom da bi ste mogli postavljati korisnička prava.',

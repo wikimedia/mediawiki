@@ -1395,7 +1395,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 * Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
 * Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
 * Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
-'userrights-reason'           => 'Zdůvodnění změny:',
+'userrights-reason'           => 'Důvod:',
 'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin'          => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',

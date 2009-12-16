@@ -1400,7 +1400,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 * Uma caixa de selecção marcada significa que o utilizador se encontra no grupo.
 * Uma caixa de selecção desmarcada significa que o utilizador não se encontra no grupo.
 * Um asterisco (*) indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
-'userrights-reason'           => 'Motivo de alterações:',
+'userrights-reason'           => 'Motivo:',
 'userrights-no-interwiki'     => 'Não possui permissão de alterar os privilégios de utilizadores noutras wikis.',
 'userrights-nodatabase'       => 'A base de dados $1 não existe ou não é uma base de dados local.',
 'userrights-nologin'          => 'Precisa [[Special:UserLogin|autenticar-se]] com uma conta de administrador para atribuir privilégios aos utilizadores.',
@@ -1949,7 +1949,8 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta página',
-'unusedimagestext'        => 'Por favor, note que estes ficheiros não são utilizados internamente na wiki. No entanto, outros sítios na internet podem conter ligações para um ficheiro através de uma URL directa e, por isso, podem estar a ser listados aqui ficheiros que estejam a ser usados externamente.',
+'unusedimagestext'        => 'Os seguintes ficheiros existem mas não são usados na wiki.
+No entanto, outros sítios na internet podem fazer ligações para um ficheiro através de uma URL directa e, por isso, podem estar listados ficheiros que estão a ser activamente usados por entidades externas.',
 'unusedcategoriestext'    => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
 'notargettitle'           => 'Sem alvo',
 'notargettext'            => 'Especifique sobre que página alvo ou utilizador pretende executar esta função.',
