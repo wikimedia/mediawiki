@@ -96,7 +96,7 @@
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body div.vectorTabs a span {
 		display: inline-block;
-		padding-top: 0.55em;
+		padding-top: 0.5em;
 	}
 	/* IGNORED BY IE6 */
 	/* @noflip */
