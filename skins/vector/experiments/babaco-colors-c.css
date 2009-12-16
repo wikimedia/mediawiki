@@ -38,27 +38,14 @@ a.new:visited, #p-personal a.new:visited {
 	color: #a31205;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	border-color:#999999;
-	font-family:georgia, times, serif;
-	font-weight:bold;
-}
 #firstHeading {
 	font-size:1.5em;
 }
 h2 .editsection,
 .portal h5{
-	font-family:sans-serif;
 	font-weight:normal;
-
 }
 #toc h2, .toc h2 {
-	font-family:sans-serif;
 	font-weight:normal;
 }
 body #panel div.portal div.body {
