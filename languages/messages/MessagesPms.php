@@ -720,22 +720,22 @@ Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina
 'moveddeleted-notice'              => "Sta pàgina-sì a l'é stàita scancelà.
 Ël registr ëd le scancelassion e dij tramud a l'é arportà sota për arferiment.",
 'log-fulllog'                      => 'Varda tut ël registr',
-'edit-hook-aborted'                => "Mod'fica anulà da l'hook.
+'edit-hook-aborted'                => "Modìfica anulà da n'estension.
 A-i é pa gnun-e spiegassion.",
 'edit-gone-missing'                => 'As peul nen modifiché la pàgina.
-A smija che a sia stàita scanselà.',
+A smija che a sia stàita scancelà.',
 'edit-conflict'                    => "Conflit d'edission.",
 'edit-no-change'                   => "Toa modìfica a l'é stàita ignorà, përchè a l'é pa stàit fàit gnun cambiament al test.",
 'edit-already-exists'              => 'As peul nen creesse la pàgina.
 A esist già.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le parser functions.
+'expensive-parserfunction-warning'        => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions ëd parser.
 
-A dovrìa ess-ie men che $2 {{PLURAL:$2|ciamà|ciamà}}, a-i {{PLURAL:$1|é adess $1 ciamà|son adess $1 ciamà}}.",
-'expensive-parserfunction-category'       => 'Pàgine con trope ciamà costose a le parser functions',
+A dovrìa essnie men che {{PLURAL:$2|$2|$2}}, adess a-i na j'é {{PLURAL:$1|$1|$1}}.",
+'expensive-parserfunction-category'       => 'Pàgine con tròpe ciamà costose a le fonsion parser',
 'post-expand-template-inclusion-warning'  => "'''Atension:''' La dimension djë stamp anserì a l'é tròp gròssa.
-Cheich stamp a saran nen ansërì.",
+Chèich stamp a saran nen anserì.",
 'post-expand-template-inclusion-category' => "Pàgine an dova la dimension djë stamp ansërì a l'é tròpa",
 'post-expand-template-argument-warning'   => "'''Atension:''' Costa pàgina a conten almanch n'argoment dë stamp che a l'ha n'espansion tròp gròssa.
 Cost argoment a son stàit lassà fòra.",
@@ -1125,7 +1125,7 @@ Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o 
 * Na casela signà a veul dì che l'utent a l'é an col grup.
 * Na casela pa signà a veul dì che l'utent a l'é pa an col grup.
 * Un * a veul dì che it peule pa scanselé ël grup na vira ch'it l'abie giontalo, o viceversa.",
-'userrights-reason'           => 'Rason dla modìfica:',
+'userrights-reason'           => 'Rason:',
 'userrights-no-interwiki'     => "A l'ha pa ij përmess dont a fa da manca për podej cambieje ij drit a dj'utent ansima a dj'àutre wiki.",
 'userrights-nodatabase'       => "La base dat $1 a-i é pa, ò pura a l'é nen local.",
 'userrights-nologin'          => "A l'ha da [[Special:UserLogin|rintré ant ël sistema]] con un cont da aministrator për podej-je dé dij drit a j'utent.",
@@ -1672,8 +1672,8 @@ Adess a l'é na rediression a [[$2]].",
 'ancientpages'            => 'Le pàgine pì veje',
 'move'                    => 'Tramuda',
 'movethispage'            => 'Tramuda costa pàgina-sì',
-'unusedimagestext'        => "Ij file sota a esisto ma a son pa an drinta a gnun-e pàgine.
-Për piasì nòta che àutri sit web a peulo coleghesse a un file con n'anliura drita, e parèj a peulo ancó esse listà sì com s'a fuss an usagi ativ.",
+'unusedimagestext'        => "J'archivi sì-sota a esisto ma a son pa andrinta a gnun-e pàgine.
+Për piasì nòta che àutri sit an sl'aragnà a peulo coleghesse a n'archivi con n'anliura direta, e parèj a peulo ancó esse listà sì bele s'a son dovrà an coj sit.",
 'unusedcategoriestext'    => "Le pàgine ëd coste categorìe-sì a son fasse ma peuj a l'han andrinta nì d'artìcoj, nì ëd sotacategorìe.",
 'notargettitle'           => 'A manco ij dat',
 'notargettext'            => "A l'ha pa dit a che pàgina ò Utent apliché l'operassion ciamà.",

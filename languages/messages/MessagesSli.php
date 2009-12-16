@@ -1171,6 +1171,7 @@ Siehe de [[Special:IPBlockList|Liste dar gesperrta IP-Atressa und Nutzernoama]] 
 'filetype-badmime'           => "Dateien mi'm MIME-Typ „$1“ dirfa ne huchgeloada waan.",
 'filetype-bad-ie-mime'       => 'Diese Datei koan ne huchgeloada waan, do dar Internet Explorer se ols „$1“ erkennt, welcher a ne erlaubter potentiell gefährlicher Dateityp ies.',
 'filetype-unwanted-type'     => "'''„.$1“''' ies a unerwünschtes Dateifurmat. Erlaubt {{PLURAL:$3|ies doas Dateifurmat|sein de Dateifurmate}}: $2.",
+'filetype-banned-type'       => "'''„.$1“''' ies a ne erlaubtes Dateifurmat. Erlaubt {{PLURAL:$3|ies doas Dateifurmat|sein de Dateifurmate}}: $2.",
 'filetype-missing'           => 'Due hochzuloadende Datei hoot kenne Erweiterung (z. B. „.jpg“).',
 'large-file'                 => 'De Dateigriße sullte noach Meeglichkeet $1 ne ieberschreita. Diese Datei ies $2 gruß.',
 'largefileserver'            => 'De Datei ies grißer ols de vum Server eengestallte Maximalgriße.',
@@ -1181,6 +1182,7 @@ Bitte priefe '''<tt>[[:$1]]</tt>''', wenn du dir ne secher biest, ob du se ände
 'file-thumbnail-no'          => "Dar Dateinoame beginnt miet '''<tt>$1</tt>'''. Dies deutet uff a Bild verringerter Griße ''(thumbnail)'' hin.
 Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade dieses under damm Originalnoama huch.",
 'file-exists-duplicate'      => 'Diese Datei ies a Duplikat dar fulgenda {{PLURAL:$1|Datei|$1 Dateien}}:',
+'file-deleted-duplicate'     => 'Anne identische Datei dieser Datei ([[$1]]) wurde frieher geläscht. Ieberpriefe doas Läsch-Logbuch, bevor du se huchlädst.',
 'successfulupload'           => 'Erfolgreich huchgeloada',
 'uploadwarning'              => 'Warnung',
 'savefile'                   => 'Datei speichern',
@@ -1189,6 +1191,7 @@ Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade diese
 'uploaddisabled'             => 'Huchlada deaktiviert',
 'uploaddisabledtext'         => 'Doas Huchloada vu Dateien ies deaktiviert.',
 'uploadscripted'             => "Diese Datei enthält HTML- oder Scriptcode, dar irrtiemlich vu a'm Webbrowser ausgefiehrt waan kennte.",
+'uploadcorrupt'              => 'De Datei ies beschädigt oder hoot anne foalsche Datei-Erweiterung. Bitte ieberpriefe de Datei und wiederhole dann Huchloade-Vurgang.',
 'uploadvirus'                => "Diese Datei enthält an'n Virus! Details: $1",
 'upload-source'              => 'Quelldatei',
 'sourcefilename'             => 'Quelldatei:',
@@ -1198,10 +1201,19 @@ Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade diese
 'upload-description'         => 'Dateibeschreibung',
 'upload-options'             => 'Huchloade-Optionen',
 'watchthisupload'            => 'Diese Datei beobachta',
+'filewasdeleted'             => 'Anne Datei miet diesem Noama wurde schunnt eemoll huchgeloada und zwischenzeitlich wieder geläscht. Bitte priefe zuerst dann Eintrag eim $1, bevor du de Datei wirklich speicherst.',
+'upload-wasdeleted'          => "'''Ochtiche: Du lädst anne Datei huch, de bereits frieher geläscht wurde.'''
+
+Bitte priefe sorgfältig, ob doas erneute Huchloada dann Richtlinien entspricht.
+Zu denner Information folgt doas Läsch-Logbuch miet dar Begrindung fier de vorhergehende Läschung:",
+'filename-bad-prefix'        => "Dar Dateinoame beginnt miet '''„$1“'''. Dies ies eim allgemeena dar vu a'r Digitalkamera vorgegebene Dateinoame und daher ne sehr aussagekräftig.
+Bitte gitt dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
 
 'upload-proto-error'        => 'Foalsches Protokoll',
 'upload-proto-error-text'   => 'De URL muuß miet <code>http://</code> oder <code>ftp://</code> beginna.',
 'upload-file-error'         => 'Interner Fehler',
+'upload-file-error-text'    => "Bei dar Erstellung a'r temporären Datei uff'd Server ies a interner Fahler uffgetreta.
+Bitte informiere an'n [[Special:ListUsers/sysop|System-Administrator]].",
 'upload-misc-error'         => 'Unbekennter Fahler beim Huchloada',
 'upload-misc-error-text'    => "Beim Huchloada ies a unbekennter Fahler uffgetreta.
 Priefe de URL uff Fahler, dann Online-Status dar Seyte und versuche is erneut.
@@ -1257,6 +1269,7 @@ Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|Sys
 'filehist-missing'          => 'Datei fahlt',
 'imagelinks'                => 'Woas fiehrt bies zum hier',
 'linkstoimage'              => 'De {{PLURAL:$1|folgende Seyte verwendet|folgenden $1 Seyta verwenda}} diese Datei:',
+'nolinkstoimage'            => 'Kenne Seyte nutzt diese Datei.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weitere Links]] fier diese Datei.',
 'sharedupload'              => 'Diese Datei stommt ous $1 on dorf voo andern Projekta verwendet waan.',
 'filepage-nofile-link'      => 'Is existiert kenne Datei mit diesem Noama, oaber du koast [$1 diese Datei huchloada].',
@@ -1291,9 +1304,10 @@ Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|Sys
 'filedelete-edit-reasonlist'  => 'Läschgrinde beoarbeeta',
 
 # MIME search
-'mimesearch' => 'Suche noach MIME-Typ',
-'mimetype'   => 'MIME-Typ:',
-'download'   => 'Herunderloada',
+'mimesearch'         => 'Suche noach MIME-Typ',
+'mimesearch-summary' => 'Uff dieser Spezialseyte kinna de Dateien noach damm MIME-Typ gefiltert waan. Die Eingabe muuß emmer dann Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Dateibeschreibungsseyte).',
+'mimetype'           => 'MIME-Typ:',
+'download'           => 'Herunderloada',
 
 # Unwatched pages
 'unwatchedpages' => 'Ne beobachtete Seyta',
@@ -1306,7 +1320,8 @@ Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|Sys
 'unusedtemplateswlh' => 'Ondere Links',
 
 # Random page
-'randompage' => 'Zufoallige Seyte',
+'randompage'         => 'Zufoallige Seyte',
+'randompage-nopages' => 'Is sein kenne Seyta {{PLURAL:$2|eim folgenda Noamasraum|ei dann folgenden Noamasräumen}} enthaala: „$1“',
 
 # Random redirect
 'randomredirect'         => 'Zufällige Weiterleitung',

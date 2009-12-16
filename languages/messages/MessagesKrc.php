@@ -2329,7 +2329,7 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 # Special:Import
 'import'                     => 'Бетлени импорт эт',
 'importinterwiki'            => 'Викиле арасы импорт',
-'import-interwiki-text'      => 'Импорт этер ючюн вики неда бет башлыкъны сайлагъыз.
+'import-interwiki-text'      => 'Импорт этер ючюн викини эм импорт этилген бетни атын сайлагъыз.
 Тюрлениулени тарихи бла джазыучуланы атлары сакъланныкъды.
 Бютеу викиле арасы импорт операцияла [[Special:Log/import|импортну журналына]] кёчюрюллюкдю.',
 'import-interwiki-source'    => 'Къайнакъ вики/бет:',
@@ -2359,6 +2359,21 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 Файлны къуру бир кесеги джюкленди.',
 'importuploaderrortemp'      => 'Импорт этилген файлны джюклеую джетишимсиз болду.
 Кёзюулю файл тасды.',
+'import-parse-failure'       => 'XML-ну ичине импорт этиу джетишимсиз',
+'import-noarticle'           => 'Импорт этиллик бет джокъду!',
+'import-nonewrevisions'      => 'Бютеу версияла алгъаракъ импорт этилгендиле.',
+'xml-error-string'           => '$1 тизгинде $2, позицияда $3 (байт $4): $5',
+'import-upload'              => 'XML-билгилени джюкле',
+'import-token-mismatch'      => 'Сеансы билгилери тас болду. Тилейбиз, джангыдан сынагъыз.',
+'import-invalid-interwiki'   => 'Белгиленнген викиден импорт этелирча тюлдю.',
+
+# Import log
+'importlogpage'                    => 'Импортну журналы',
+'importlogpagetext'                => 'Башха викиледен бетлени тюрлендириу тарихин администраторланы импорт этиую.',
+'import-logentry-upload'           => '[[$1]] файл джюклениую бла импорт этилди',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|версия|версия}}',
+'import-logentry-interwiki'        => '$1 трансвикиленди',
+'import-logentry-interwiki-detail' => '$2 бетден  $1 {{PLURAL:$1|весрия|версия}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Къошулуучу бетигиз',
@@ -2381,6 +2396,7 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'tooltip-search'                  => 'Бу сёзню изле',
 'tooltip-search-go'               => 'Тамам быллай аты болгъан бетге кёч',
 'tooltip-search-fulltext'         => 'Бу текст болгъан бетлени таб',
+'tooltip-p-logo'                  => 'Баш бет',
 'tooltip-n-mainpage'              => 'Баш бетге кёчюу',
 'tooltip-n-mainpage-description'  => 'Баш бетге кёчюу',
 'tooltip-n-portal'                => 'Проектни юсюнден, сизни не этерге боллугъугъузню юсюнден, хар не къайда болгъаныны юсюнден',
@@ -2400,10 +2416,13 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'tooltip-t-permalink'             => 'Бетни бу версиясына дайым джибериу',
 'tooltip-ca-nstab-main'           => 'Статьяны ичиндеги',
 'tooltip-ca-nstab-user'           => 'Къошулуучуну бетине къарау',
+'tooltip-ca-nstab-media'          => 'Медиа-файл',
 'tooltip-ca-nstab-special'        => 'Бу специал бетди, тюрлендирилмейди',
 'tooltip-ca-nstab-project'        => 'Проектни бетине къара',
 'tooltip-ca-nstab-image'          => 'Файлны бетине къара',
+'tooltip-ca-nstab-mediawiki'      => 'Система билдириуге къара',
 'tooltip-ca-nstab-template'       => 'Шаблоннга къара',
+'tooltip-ca-nstab-help'           => 'Болушлукъ бетге къара',
 'tooltip-ca-nstab-category'       => 'Категорияны бетине къара',
 'tooltip-minoredit'               => 'Асыры гитчеди деб ызына алыу бу тюрлендириуню',
 'tooltip-save'                    => 'Тюрлендириулеринги сакъла',
@@ -2411,8 +2430,21 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'tooltip-diff'                    => 'Тюрлендириулеригизни кёрюгюз',
 'tooltip-compareselectedversions' => 'Бу бетни сайланнган эки версиясыны араларында башхалыкъларын кёр',
 'tooltip-watch'                   => 'Сынчыкълау списокга къош бу бетни',
+'tooltip-upload'                  => 'Джюклеуню башла',
 'tooltip-rollback'                => 'Бир басхан бла ахыр къошулуучуну тюрлендиргенин кетер',
 'tooltip-undo'                    => 'Этилиннген тюзетиуню ызына ал эмда ал къарауну кёгюз, ызына нек алыннгын чертирча',
+
+# Attribution
+'others'    => 'башхала',
+'siteusers' => '{{SITENAME}} {{PLURAL:$2|къошулуучу|къошулуучула}} $1',
+'anonusers' => '{{SITENAME}} аноним {{PLURAL:$2|къошулуучу|къошулуучула}} $1',
+
+# Info page
+'infosubtitle' => 'Бетни юсюнде билги',
+
+# Patrol log
+'patrol-log-page' => 'Патруль этиуню журналы',
+'patrol-log-diff' => 'версия $1',
 
 # Browsing diffs
 'previousdiff' => '← Алдагъы тюзетиу',
@@ -2424,6 +2456,10 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'svg-long-desc'        => '(SVG файл, шартлы $1 × $2 пиксель, файлны ёлчеми: $3)',
 'show-big-image'       => 'Толу ачыкълау',
 'show-big-image-thumb' => '<small>Ал къарауда ёлчеми: $1 × $2 пиксель</small>',
+
+# Special:NewFiles
+'showhidebots' => '($1 бот)',
+'ilsubmit'     => 'Таб',
 
 # Bad image list
 'bad_image_list' => 'Формат былай болургъа керекди:
@@ -2445,6 +2481,10 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 * fnumber
 * isospeedratings
 * focallength',
+
+# EXIF tags
+'exif-imagewidth'  => 'Кенглик',
+'exif-imagelength' => 'Мийиклик',
 
 # External editor support
 'edit-externally'      => 'Бу файлны тыш программа бла тюзетигиз',

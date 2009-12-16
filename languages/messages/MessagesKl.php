@@ -114,14 +114,14 @@ $messages = array(
 'cancel'        => 'Sussa',
 'moredotdotdot' => 'Suli...',
 'mytalk'        => 'Oqalliffikka',
-'navigation'    => 'Sumiissusersuutit',
+'navigation'    => 'Sumiissusersiuut',
 
 # Cologne Blue skin
 'qbfind' => 'Naniuk',
 'qbedit' => 'Aaqqissuutiguk',
 
 # Vector skin
-'vector-view-edit' => 'Aaqqissuutiguk',
+'vector-view-edit' => 'Aaqqissuuguk',
 
 'errorpagetitle'   => 'Kukkuneq',
 'tagline'          => 'Matumannga {{SITENAME}}',
@@ -132,25 +132,26 @@ $messages = array(
 'searcharticle'    => 'Tassunngarit',
 'history'          => 'Oqaluttuassartaa',
 'history_short'    => 'Oqaluttuassartaa',
-'info_short'       => 'Ilisimasat',
+'info_short'       => 'Paasissutissat',
 'printableversion' => 'Naqikkuminartoq',
 'permalink'        => 'Innersuut',
 'edit'             => 'Aaqqissuuguk',
-'create'           => 'pilersitsineq',
+'create'           => 'Pilersiguk',
 'editthispage'     => 'Qupperneq aaqqissuuguk',
-'delete'           => 'Piiaruk',
+'delete'           => 'Peeruk',
 'deletethispage'   => 'Qupperneq piiaruk',
-'protect'          => 'Illersorpaa',
+'protect'          => 'Illersoruk',
 'protect_change'   => 'allannguutit',
+'unprotect'        => 'Illersorunnaaruk',
 'newpage'          => 'Qupperneq nutaaq',
 'talkpagelinktext' => 'Oqallinneq',
 'personaltools'    => 'Namminermut sannatit',
 'talk'             => 'Oqallinneq',
 'views'            => 'Takutitat',
-'toolbox'          => 'Sannataasivik',
+'toolbox'          => 'Atortut',
 'otherlanguages'   => 'Oqaatsit allat',
 'redirectedfrom'   => '($1-mit nuunneq)',
-'jumpto'           => 'Toqqaannarlugu:',
+'jumpto'           => 'Uunngarit:',
 'jumptonavigation' => 'navigationi',
 'jumptosearch'     => 'ujarlerit',
 
@@ -191,24 +192,24 @@ $messages = array(
 'nstab-category' => 'Sumut atassuseq',
 
 # Login and logout pages
-'yourname'                   => 'Atuisup aqqa:',
+'yourname'                   => 'Atuisutut atit',
 'yourpassword'               => 'Isissutissaq:',
-'yourpasswordagain'          => 'Isissutissaq (aappassaat):',
+'yourpasswordagain'          => 'Isissutissaq allaqqiguk',
 'remembermypassword'         => 'Iserfiga tullissaanut eqqaamalara',
-'login'                      => 'Iserfigiuk',
+'login'                      => 'Iserit',
 'nav-login-createaccount'    => 'Konto-mik pilersitsigit imalt. iserit',
 'userlogin'                  => 'Kontomik pilersitsigit / iserit',
 'logout'                     => 'Anigit',
 'userlogout'                 => 'Anigit',
 'nologinlink'                => 'Kontomik pilersitsigit',
-'gotaccountlink'             => 'Iserfigiuk',
+'gotaccountlink'             => 'Iserit',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
 # Password reset dialog
 'oldpassword' => 'Isissutissatoqaq:',
 'newpassword' => 'Isissutissaq nutaaq:',
-'retypenew'   => 'Isissutissaq nutaaq (aappassaat):',
+'retypenew'   => 'Isissutissaq nutaaq allaqqiuk',
 
 # Edit pages
 'summary'      => 'Qanoq issusersiuineq:',
@@ -257,7 +258,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'recentchangeslinked-toolbox' => 'Allannguutit naleqqiussat',
 
 # Upload
-'upload' => 'Fiili nassiuguk',
+'upload' => 'Fiilimik ilisigit',
 
 # File description page
 'file-anchor-link'  => 'Assiliaq',
@@ -276,7 +277,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
 # Miscellaneous special pages
 'newpages' => 'Quppernerit nutaat',
-'move'     => 'Nuunneq',
+'move'     => 'Nuuguk',
 
 # Special:Log
 'specialloguserlabel' => 'Pineqartoq:',

@@ -343,6 +343,8 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 {{Identical|Help}}',
 'search'            => 'Noun. Text of menu section shown on every page of the wiki above the search form.
 
+Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
+
 {{Identical|Search}}',
 'searchbutton'      => 'The button you can see in the sidebar, below the search input box. The "Go" button is [[MediaWiki:Searcharticle/{{SUBPAGENAME}}]].
 
@@ -1239,7 +1241,9 @@ Used in [[Special:Preferences]], tab "Recent changes".',
 'saveusergroups'                 => 'Button text when editing user groups',
 'userrights-groupsmember'        => 'When editing user groups',
 'userrights-groups-help'         => 'Instructions displayed on [[Special:UserRights]].',
-'userrights-reason'              => 'Text beside log field when editing user groups',
+'userrights-reason'              => 'Text beside log field when editing user groups
+
+{{Identical|Reason}}',
 'userrights-no-interwiki'        => 'Error message when editing user groups',
 'userrights-nodatabase'          => 'Error message when editing user groups',
 'userrights-nologin'             => "Error displayed on [[Special:UserRights]] when you aren't logged in. If you are logged in, but don't have the correct permission, you see {{msg|userrights-notallowed|pl=yes}}.",

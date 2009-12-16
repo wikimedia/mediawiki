@@ -898,6 +898,13 @@ Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de
 'rev-deleted-unhide-diff'     => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
 Consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
 I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
+'rev-suppressed-unhide-diff'  => "Una dele revision de sta difarensa la xe stà '''sopressa'''.
+Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de sopression] par ulteriori detagli.
+I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
+'rev-deleted-diff-view'       => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
+Come aministrador, te pol vardar el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.",
+'rev-suppressed-diff-view'    => "Una dele revision de sta difarensa la xe stà '''sopressa'''.
+Come aminitrador, te pol vardar el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de sopression] par ulteriori detagli.",
 'rev-delundel'                => 'mostra/scondi',
 'rev-showdeleted'             => 'mostra',
 'revisiondelete'              => 'Scanceła o ripristina version',
@@ -1203,7 +1210,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 * Na casela de spunta selezionà la indica l'apartenenza de l'utente al grupo.
 * Na casela de spunta deselezionà la indica la so mancata apartenenza al grupo.
 * N'asterisco (*) l'indica che no te pol cavar un utente da un grupo na olta che te l'è zontà, o viceversa.",
-'userrights-reason'           => 'Motivo de la modifica:',
+'userrights-reason'           => 'Motivassion:',
 'userrights-no-interwiki'     => 'No te ghè i parmessi necessari par modificar i diriti dei utenti su altri siti.',
 'userrights-nodatabase'       => "El database $1 no l'esiste mìa o no l'è un database local.",
 'userrights-nologin'          => "Par assegnarghe diriti ai utenti te ghè da [[Special:UserLogin|efetuar l'acesso]] come aministrador.",
@@ -1497,10 +1504,20 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negà',
+'img-auth-nopathinfo'   => "Manca el PATH_INFO.
+El to server no'l xe mia configurà par passar sta informassion.
+Magari el xe basà su CGI e no'l suporta img_auth.
+Varda http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'     => "El percorso richiesto no'l se cata in te la cartèla de caricamento configurà.",
 'img-auth-badtitle'     => 'No se riesse a costruir un titolo valido da "$1".',
+'img-auth-nologinnWL'   => 'No te sì autenticà e "$1" no\'l xe mia in te la lista bianca.',
 'img-auth-nofile'       => 'El file "$1" no l\'esiste mia.',
+'img-auth-isdir'        => 'Te sì drio sercar de entrar in te la cartèla "$1".
+Xe parmesso entrar solo in tei file, no in te le cartèle.',
 'img-auth-streaming'    => 'Streaming de "$1".',
+'img-auth-public'       => 'img_auth.php el serve par butar in output dei file da na wiki privata.
+Sta wiki la xe configurà come pùblica.
+Par na major sicuressa, img_auth.php el xe disabilità.',
 'img-auth-noread'       => 'L\'utente no\'l gà mia dirito de lèzar "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1717,7 +1734,8 @@ Le righe <s>sbarà</s> le xe xà stà sistemà.',
 'ancientpages'            => 'Pàxene pì vece',
 'move'                    => 'Sposta',
 'movethispage'            => 'Sposta sta pagina',
-'unusedimagestext'        => "Par piaser tien conto che altri siti web i podarìa realizar colegamenti ai file doparando diretamente l'URL; quindi sti file i podarìa essar in uso, anca se no i se cata ne l'elenco.",
+'unusedimagestext'        => "Sti file qua i esiste ma no i xe riciamà in nissuna pagina.
+Par piaser tien conto che altri siti web i podarìa realizar colegamenti ai file doparando diretamente l'URL; quindi sti file i podarìa essar in uso, anca se no i se cata ne l'elenco.",
 'unusedcategoriestext'    => 'Le pàxene de łe categorie indicàe de seguito łe xè stà creàe ma no le contien nissuna pàxena né sotocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => 'No te ghè indicà na pagina o un utente su cui eseguir sta operazion.',
@@ -2196,6 +2214,10 @@ Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
 'contribslink'                    => 'contributi',
 'autoblocker'                     => 'Bloccà automaticamente parché el to indirisso IP el xè stà doparà de recente da "[[User:$1|$1]]". La motivassion del bloco de $1 la xe: "$2"',
 'blocklogpage'                    => 'Registro dei blochi',
+'blocklog-showlog'                => 'Sto utente el xe stà zà blocà tenpo fa.
+Qua soto ghe xe el registro dei blochi:',
+'blocklog-showsuppresslog'        => 'Sto utente el xe stà zà blocà e sconto tenpo fa.
+Qua soto ghe xe el registro de le sopression:',
 'blocklogentry'                   => 'gà blocà [[$1]] par un periodo de $2 $3',
 'reblock-logentry'                => "gà canbià le inpostassion del bloco par [[$1]] co' na scadensa de $2 $3",
 'blocklogtext'                    => "Sto qua xè un elenco de azioni de bloco e sbloco dei indirizi IP. I indirizi blocai in automatico no i xè mìa elencai. Varda l'[[Special:IPBlockList|elenco dei IP blocà]] par la lista dei indirizi el cui bloco el xè operativo.",
@@ -2226,6 +2248,7 @@ $1 xe xà blocà. Vuto canbiar le inpostassion?',
 'sorbsreason'                     => 'Sto indirizo IP el xe elencà come proxy verto ne la lista nera DNSBL doparà da {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'No se pol crear acessi novi da sto indirizo IP parché el xe elencà come proxy verto ne la lista nera DNSBL doparà da {{SITENAME}}.',
 'cant-block-while-blocked'        => 'No se pode blocar altri utenti finché se xe blocài.',
+'cant-see-hidden-user'            => "L'utente che te vol blocar el xe zà stà blocà e sconto. Sicome a no te ghè mia i diriti de hideuser, no te pol mia védar o canbiar el bloco de l'utente.",
 
 # Developer tools
 'lockdb'              => 'Blocca el database',
