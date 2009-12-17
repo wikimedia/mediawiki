@@ -1029,6 +1029,7 @@ Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppr
 'rev-delundel'                => 'näita/peida',
 'rev-showdeleted'             => 'näita',
 'revisiondelete'              => 'Kustuta/taasta redaktsioone',
+'revdelete-nooldid-title'     => 'Sellist redaktsiooni pole.',
 'revdelete-nooldid-text'      => 'Sa pole valinud redaktsiooni, valitud redaktsioon puudub või Sa püüad peita viimast redaktsiooni.',
 'revdelete-nologtype-title'   => 'Logi tüüpi ei antud',
 'revdelete-nologtype-text'    => 'Sa ei ole selle toimingu sooritamiseks logi tüüpi täpsustanud.',
@@ -1104,6 +1105,8 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 
 # History merging
 'mergehistory'                     => 'Ühenda lehtede ajalood',
+'mergehistory-header'              => 'Siin leheküljel saad ühe lehekülje ajaloo redaktsioonid uuema leheküljega liita.
+Veendu, et selle muudatusega jääb lehekülje redigeerimislugu ajaliselt katkematuks.',
 'mergehistory-box'                 => 'Ühenda kahe lehekülje muudatuste ajalugu:',
 'mergehistory-from'                => 'Lehekülje allikas:',
 'mergehistory-into'                => 'Lehekülje sihtpunkt:',
@@ -1638,6 +1641,10 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Juurdepääs keelatud',
+'img-auth-nopathinfo'   => "PATH_INFO puudub.
+Sinu veebiserver ei ole seadistatud seda teavet edastama.
+See võib olla CGI-põhine ning ei toeta img_auth'i.
+Vaata http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'     => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'     => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'   => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
@@ -1986,6 +1993,7 @@ Toetatud protokollid: <tt>$1</tt>',
 'emailuser'        => 'Saada sellele kasutajale e-kiri',
 'emailpage'        => 'Saada kasutajale e-kiri',
 'emailpagetext'    => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, siis saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud [[Special:Preferences|oma eelistuste lehel]].',
+'usermailererror'  => 'Saatmise viga:',
 'defemailsubject'  => 'E-kiri {{GRAMMAR:elative|{{SITENAME}}}}',
 'noemailtitle'     => 'E-posti aadressi ei ole',
 'noemailtext'      => 'See kasutaja ei ole määranud kehtivat e-posti aadressi.',
@@ -2110,19 +2118,20 @@ Selle kustutamine on keelatud, et ära hoida ekslikku {{GRAMMAR:genitive|{{SITEN
 Ettevaatust, selle kustutamine võib esile kutsuda häireid {{GRAMMAR:genitive|{{SITENAME}}}} andmebaasi töös.',
 
 # Rollback
-'rollback'         => 'Tühista muudatused',
-'rollback_short'   => 'Tühista',
-'rollbacklink'     => 'tühista',
-'rollbackfailed'   => 'Muudatuste tühistamine ebaõnnestus',
-'cantrollback'     => 'Ei saa muudatusi eemaldada, sest viimane kaastööline on artikli ainus autor.',
-'alreadyrolled'    => 'Muudatust, mille tegi lehele [[:$1]] kasutaja [[User:$2|$2]] ([[User talk:$2|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), ei saa tühistada, sest keegi teine on seda lehte vahepeal muutnud.
+'rollback'          => 'Tühista muudatused',
+'rollback_short'    => 'Tühista',
+'rollbacklink'      => 'tühista',
+'rollbackfailed'    => 'Muudatuste tühistamine ebaõnnestus',
+'cantrollback'      => 'Ei saa muudatusi eemaldada, sest viimane kaastööline on artikli ainus autor.',
+'alreadyrolled'     => 'Muudatust, mille tegi lehele [[:$1]] kasutaja [[User:$2|$2]] ([[User talk:$2|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), ei saa tühistada, sest keegi teine on seda lehte vahepeal muutnud.
 
 Lehte muutis viimasena [[User:$3|$3]] ([[User talk:$3|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Redaktsiooni kokkuvõte: \"''\$1''\".",
-'revertpage'       => 'Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ning pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]]',
-'rollback-success' => 'Tühistati $1 muudatus; 
+'editcomment'       => "Redaktsiooni kokkuvõte: \"''\$1''\".",
+'revertpage'        => 'Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ning pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].',
+'revertpage-nouser' => 'Tühistati eemaldatud nimega kasutaja tehtud muudatused ja pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].',
+'rollback-success'  => 'Tühistati $1 muudatus; 
 pöörduti tagasi viimasele muudatusele, mille tegi $2.',
-'sessionfailure'   => 'Sinu sisselogimisseansiga näib probleem olevat.
+'sessionfailure'    => 'Sinu sisselogimisseansiga näib probleem olevat.
 See toiming on seansiärandamise vastase ettevaatusabinõuna tühistatud.
 Mine tagasi eelmisele leheküljele ja taaslaadi see, seejärel proovi uuesti.',
 
@@ -2372,6 +2381,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'range_block_disabled'         => 'Administraatori õigus blokeerida IP-aadresside vahemik on ära võetud.',
 'ipb_expiry_invalid'           => 'Vigane aegumise tähtaeg.',
 'ipb_expiry_temp'              => 'Peidetud kasutajanime blokeeringud peavad olema alalised.',
+'ipb_hide_invalid'             => 'Selle konto varjamine ei õnnestunud. Sellelt võib olla tehtud liiga palju redigeerimisi.',
 'ipb_already_blocked'          => '"$1" on juba blokeeritud.',
 'ipb-needreblock'              => '==Juba blokeeritud==
 $1 on juba blokeeritud.
@@ -2391,6 +2401,7 @@ See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
 'sorbs_create_account_reason'  => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi. 
 Sa ei saa kasutajakontot luua.',
 'cant-block-while-blocked'     => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
+'cant-see-hidden-user'         => 'Kasutaja, keda blokeerida üritad, on juba blokeeritud ning peidetud. Kuna sul pole õigust blokeerida kasutajanimesid, peites need avalikkuse eest, ei saa sa selle kasutaja blokeeringut vaadata ega muuta.',
 
 # Developer tools
 'lockdb'              => 'Lukusta andmebaas',
@@ -2961,6 +2972,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposuremode-0' => 'Automaatne säritus',
 'exif-exposuremode-1' => 'Manuaalne säritus',
 
+'exif-whitebalance-0' => 'Automaatne valge tasakaal',
 'exif-whitebalance-1' => 'Manuaalne valgusbalanss',
 
 'exif-scenecapturetype-1' => 'Maastik',
@@ -3131,6 +3143,9 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'watchlisttools-view' => 'Näita vastavaid muudatusi',
 'watchlisttools-edit' => 'Vaata ja redigeeri jälgimisloendit',
 'watchlisttools-raw'  => 'Muuda lähteteksti',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Hoiatus:\'\'\' Järjestamisvõti "$2" tühistab eespool oleva järjestamisvõtme "$1".',
 
 # Special:Version
 'version'                       => 'Versioon',

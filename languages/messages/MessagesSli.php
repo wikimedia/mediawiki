@@ -1207,7 +1207,7 @@ Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade diese
 Bitte priefe sorgfältig, ob doas erneute Huchloada dann Richtlinien entspricht.
 Zu denner Information folgt doas Läsch-Logbuch miet dar Begrindung fier de vorhergehende Läschung:",
 'filename-bad-prefix'        => "Dar Dateinoame beginnt miet '''„$1“'''. Dies ies eim allgemeena dar vu a'r Digitalkamera vorgegebene Dateinoame und daher ne sehr aussagekräftig.
-Bitte gitt dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
+Bitte gieb dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
 
 'upload-proto-error'        => 'Foalsches Protokoll',
 'upload-proto-error-text'   => 'De URL muuß miet <code>http://</code> oder <code>ftp://</code> beginna.',
@@ -1316,8 +1316,10 @@ Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|Sys
 'listredirects' => 'Wetterleitungsliste',
 
 # Unused templates
-'unusedtemplates'    => 'Unbenutzte Vurloaga',
-'unusedtemplateswlh' => 'Ondere Links',
+'unusedtemplates'     => 'Unbenutzte Vurloaga',
+'unusedtemplatestext' => 'Diese Seyte listet olle Seyta eim {{ns:template}}-Noamasraum uff, de ne ei andern Seyta eingebunden sein.
+Ieberpriefe andere Links zu dann Vurloaga, bevor du diese läscht.',
+'unusedtemplateswlh'  => 'Ondere Links',
 
 # Random page
 'randompage'         => 'Zufoallige Seyte',
@@ -1348,10 +1350,14 @@ Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|Sys
 'statistics-users-active-desc' => 'Nutzer miet Beoarbeetunga {{PLURAL:$1|enn letzta 24 Stunden|enn vergangenen $1 Tagen}}',
 'statistics-mostpopular'       => 'Meistbesichte Seyta',
 
-'disambiguations'     => 'Begriffsklärungsseyta',
-'disambiguationspage' => 'Template:Begriffsklärung',
+'disambiguations'      => 'Begriffsklärungsseyta',
+'disambiguationspage'  => 'Template:Begriffsklärung',
+'disambiguations-text' => 'De folgenda Seyta verlinka uff anne Seyte zur Begriffsklärung. Se sullten statt dessen uff de eigentlich gemeente Seyte verlinka.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] uff se verlinkt.<br />Links aus Noamasräumen waan hier ne uffgelistet.',
 
 'doubleredirects'            => 'Doppelte Weiterleitunga',
+'doubleredirectstext'        => 'Diese Liste enthält Weiterleitunga, de uff wettere Wetterleitunga verlinka.
+Jede Zeile enthält Links zu dar erschta und zweeta Wetterleitung suwie doas Ziel dar zweeta Wetterleitung, welches fier gewehnlich die gewünschte Zielseyte ies, uff de bereits de erschte Wetterleitung zeiga sullte.
+<s>Durchgestrichene</s> Einträge wurden bereits erledigt.',
 'double-redirect-fixed-move' => 'doppelte Wetterleitung uffgelest: [[$1]] → [[$2]]',
 'double-redirect-fixer'      => 'RedirectBot',
 
@@ -1501,21 +1507,28 @@ De Ausgabe koan durch de Auswoahl des Logbuchtyps, des Nutzers oder des Seytatit
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Nutzergruppen-Rechte',
+'listgrouprights-summary'         => 'Dies ies anne Liste dar ei diesem Wiki definierten Nutzergruppen und dar damit verbundenen Rechte.
+Zusätzliche Informationen ieber einzelne Rechte kinna [[{{MediaWiki:Listgrouprights-helppage}}|hier]] gefunda waan.',
 'listgrouprights-group'           => 'Gruppe',
 'listgrouprights-rights'          => 'Rechte',
 'listgrouprights-helppage'        => 'Help:Grupparechte',
 'listgrouprights-members'         => '(Mitgliederliste)',
 'listgrouprights-addgroup'        => 'Nutzer zu {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} hinzufiega: $1',
+'listgrouprights-removegroup'     => 'Nutzer aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entferna: $1',
 'listgrouprights-addgroup-all'    => 'Nutzer zu olla Gruppa hinzufiega',
 'listgrouprights-removegroup-all' => 'Nutzer aus olla Gruppa entferna',
 
 # E-mail user
 'mailnologin'      => 'Fahler beim E-Mail-Versand',
+'mailnologintext'  => 'Du mußt [[Special:UserLogin|oagemeldet sei]] und anne bestätigte E-Mail-Atresse ei denn [[Special:Preferences|Einstellunga]] eingetraga hoan, im andern Nutzern E-Mails schicka zu kinna.',
 'emailuser'        => 'E-Mail oa diesa Benutzer',
 'emailpage'        => 'E-Mail oa Benutzer',
+'emailpagetext'    => 'Du koast damm Nutzer miet damm onda stiehenda Formular anne E-Mail senda.
+Ols Obsender werd de E-Mail-Adtresse aus denn [[Special:Preferences|Einstellunga]] eingetraga, damit dar Nutzer dir antwurta koan.',
 'usermailererror'  => "Doas E-Mail-Objekt gab an'n Fahler zerricke:",
 'defemailsubject'  => '{{SITENAME}}-E-Mail',
 'noemailtitle'     => 'Kenne E-Mail-Atresse',
+'noemailtext'      => 'Dieser Nutzer hoot kenne giltige E-Mail-Atresse oagegahn.',
 'nowikiemailtitle' => 'E-Mail-Versand nee meegliech',
 'email-legend'     => "E-Mail oa an'n andern {{SITENAME}}-Nutzer senda",
 'emailfrom'        => 'Vun:',
@@ -1558,6 +1571,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'wlheader-showupdated' => "* Seyta miet noo ne gesehenen Änderunga waan '''fett''' dargestellt.",
 'watchmethod-recent'   => 'Ieberprifa dar letzta Beoarbeetunga fier de Beobachtungsliste',
 'watchmethod-list'     => 'Ieberpriefa dar Beobachtungsliste noach letzta Beoarbeetunga',
+'watchlistcontains'    => 'Denne Beobachtungsliste enthält $1 {{PLURAL:$1|Seyte|Seyta}}.',
 'iteminvalidname'      => "Problem mi'm Eintrag „$1“, ungiltiger Noame.",
 'wlnote'               => "Is {{PLURAL:$1|folgt de letzte Änderung|folga de letzta '''$1''' Änderunga}} dar letzta {{PLURAL:$2|Stunde|'''$2''' Stunda}}.",
 'wlshowlast'           => 'Zeige de Änneronga dar letzta $1 Stonda, $2 Taage oder $3.',
@@ -1577,6 +1591,28 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'enotif_lastvisited'           => "Olle Änderunga uff a'n Blick: $1",
 'enotif_lastdiff'              => 'Siehe $1 noach dieser Änderung.',
 'enotif_anon_editor'           => 'Anonymer Nutzer $1',
+'enotif_body'                  => 'Hallo $WATCHINGUSERNAME,
+
+de {{SITENAME}}-Seyte „$PAGETITLE“ wurde vu $PAGEEDITOR oam $PAGEEDITDATE im $PAGEEDITTIME Seeger $CHANGEDORCREATED.
+
+Aktuelle Version: $PAGETITLE_URL
+
+$NEWPAGE
+
+Zusommafassung des Beoarbeeters: $PAGESUMMARY $PAGEMINOREDIT
+
+Kontakt zum Beoarbeeter:
+E-Mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seyte wieder besicht host. Uff denner Beobachtungsliste koast du olle Benachrichtigungsmarker zusomma zerrickesetza.
+
+             Dei freindliches {{SITENAME}}-Benoachrichtigungssystem
+
+--
+Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{fullurl:{{#special:Watchlist}}/edit}}
+
+Rickmeldungen und wettere Helfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Seyte läscha',
@@ -1595,6 +1631,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'deletedarticle'         => 'hoot „[[$1]]“ geläscht',
 'suppressedarticle'      => 'veränderte de Sechtbarkeet vu „[[$1]]“',
 'dellogpage'             => 'Läsch-Logbuch',
+'dellogpagetext'         => 'Dies ies doas Logbuch dar geläschta Seyta und Dateien.',
 'deletionlog'            => 'Läsch-Logbuch',
 'reverted'               => 'Uff anne aale Version zerrickegesetzt',
 'deletecomment'          => 'Grund dar Läschung:',
@@ -1606,6 +1643,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 ** Vandalismus',
 'delete-edit-reasonlist' => 'Läschgrinde beoarbeeta',
 'delete-toobig'          => 'Diese Seyte hoot miet meh ols $1 {{PLURAL:$1|Version|Versionen}} anne siehr lange Versionsgeschichte. Doas Läscha sulcher Seyta wurde eingeschränkt, im anne versehentliche Ieberlastung dar Server zu verhindern.',
+'delete-warning-toobig'  => 'Diese Seyte hoot miet meh ols $1 {{PLURAL:$1|Version|Versionen}} anne sehr lange Versionsgeschichte. Doas Läscha koan zu Sterunga eim Datenbankbetrieb fiehrn.',
 
 # Rollback
 'rollback'         => 'Zerrickesetza dar Änderunga',

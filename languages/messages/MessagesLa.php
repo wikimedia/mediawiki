@@ -976,7 +976,7 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 'userrights-editusergroup'    => 'Greges usorum recensere',
 'saveusergroups'              => 'Greges usorum servare',
 'userrights-groupsmember'     => 'In grege aut in gregibus:',
-'userrights-reason'           => 'Causa modificationis:',
+'userrights-reason'           => 'Causa:',
 'userrights-changeable-col'   => 'Greges quos tibi oportet mutare',
 'userrights-unchangeable-col' => 'Greges quos tibi non oportet mutare',
 

@@ -2108,7 +2108,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'watchnochange'        => 'Nenhuma das páginas vigiadas foi editada no período apresentado.',
 'watchlist-details'    => '{{PLURAL:$1|Existe $1 página|Existem $1 páginas}} na sua lista de páginas vigiadas, excluindo páginas de discussão.',
 'wlheader-enotif'      => '* A notificação por correio electrónico está activada.',
-'wlheader-showupdated' => "* As páginas modificadas desde a sua última visita são mostradas a '''negrito'''.",
+'wlheader-showupdated' => "* As páginas modificadas desde a última vez que as visitou, aparecem destacadas a '''negrito'''",
 'watchmethod-recent'   => 'verificando as mudanças recentes em busca de páginas vigiadas',
 'watchmethod-list'     => 'verificando as páginas vigiadas em busca de mudanças recentes',
 'watchlistcontains'    => 'A sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',

@@ -1168,7 +1168,7 @@ $1",
 # Diffs
 'history-title'            => 'Историја на ревизии за „$1“',
 'difference'               => '(Разлика меѓу ревизија)',
-'lineno'                   => 'Линија $1:',
+'lineno'                   => 'Ред $1:',
 'compareselectedversions'  => 'Споредба на избрани ревизии',
 'showhideselectedversions' => 'Прикажи/сокриј избрани ревизии',
 'editundo'                 => 'откажи',

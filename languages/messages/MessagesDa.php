@@ -23,6 +23,7 @@
  * @author Morten LJ
  * @author Najami
  * @author Peter Andersen
+ * @author Piivaat
  * @author Purodha
  * @author Remember the dot
  * @author Sir48
@@ -1925,7 +1926,7 @@ Tilbagemelding og yderligere hjælp:
 # Delete
 'deletepage'             => 'Slet side',
 'confirm'                => 'Bekræft',
-'excontent'              => "indholdet var: '$1'",
+'excontent'              => "imarivaa: '$1'",
 'excontentauthor'        => "indholdet var: '$1' (og den eneste forfatter var '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "indholdet før siden blev tømt var: '$1'",
 'exblank'                => 'siden var tom',
