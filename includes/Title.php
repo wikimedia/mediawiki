@@ -3119,7 +3119,7 @@ class Title {
 				continue;
 			$newPageName = preg_replace(
 					'#^'.preg_quote( $this->getDBkey(), '#' ).'#',
-					str_replace( '\\', '\\\\', $nt->getDBkey() ), # bug 21234
+					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
 					$oldSubpage->getDBkey() );
 			if( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();
