@@ -67,8 +67,8 @@ class SpecialRecentChanges extends SpecialPage {
 	public function feedSetup() {
 		global $wgFeedLimit, $wgRequest;
 		$opts = $this->getDefaultOptions();
-		# Feed is cached on limit,hideminor; other params would randomly not work
-		$opts->fetchValuesFromRequest( $wgRequest, array( 'limit', 'hideminor' ) );
+		# Feed is cached on limit,hideminor,namespace; other params would randomly not work
+		$opts->fetchValuesFromRequest( $wgRequest, array( 'limit', 'hideminor', 'namespace' ) );
 		$opts->validateIntBounds( 'limit', 0, $wgFeedLimit );
 		return $opts;
 	}
@@ -117,7 +117,7 @@ class SpecialRecentChanges extends SpecialPage {
 		$target = isset($opts['target']) ? $opts['target'] : ''; // RCL has targets
 		if( $feedFormat ) {
 			list( $feed, $feedObj ) = $this->getFeedObject( $feedFormat );
-			$feed->execute( $feedObj, $rows, $opts['limit'], $opts['hideminor'], $lastmod, $target );
+			$feed->execute( $feedObj, $rows, $opts['limit'], $opts['hideminor'], $opts['namespace'], $lastmod, $target );
 		} else {
 			$this->webOutput( $rows, $opts );
 		}
