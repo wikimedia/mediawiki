@@ -18,12 +18,12 @@ $fallback = 'ru';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Джибериулени тюблерин сызыу',
-'tog-highlightbroken'         => 'Болмагъан джибериулени <a href="" class="new">былай</a> (альтернатив: <a href="" class="internal">?</a>) кёгюз.',
+'tog-highlightbroken'         => 'Болмагъан джибериулени <a href="" class="new">былай</a> (альтернатив: <a href="" class="internal">?</a>) кёргюз.',
 'tog-justify'                 => 'Текстни бетни кенглигине кёре тиз',
-'tog-hideminor'               => 'Джангы тюрлениулени списогунда гитче тюрлениулени кёгюзме',
+'tog-hideminor'               => 'Джангы тюрлениулени списогунда гитче тюрлениулени кёргюзме',
 'tog-hidepatrolled'           => 'Джангы тюрлениулени списогунда тинтилген тюрлениулени кёргюзме',
 'tog-newpageshidepatrolled'   => 'Джангы бетлени списогунда тинтилген бетлени кёгюзме',
-'tog-extendwatchlist'         => 'Кенг сынчыкълау список, болгъа тюрлениулени кёргюзген, къуру ахыргъыланы тюйюл',
+'tog-extendwatchlist'         => 'Сынчыкълау списокну, къуру ахыр тюл, бютеу тюрлениулени кёрюр ючюн кенгерт',
 'tog-usenewrc'                => 'Джангы тюрлениулени игиленнген списогун хайырландыр (JavaScript керекди)',
 'tog-numberheadings'          => 'Башлыкъланы (бёлюмлени атлары) автомат номерленсинле',
 'tog-showtoolbar'             => 'Тюрлендирген сагъатда, башындагъы инструмент панелни кёргюз (JavaScript)',
@@ -2377,11 +2377,14 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Къошулуучу бетигиз',
+'tooltip-pt-anonuserpage'         => 'Сизни IP-адресигиз ючюн къошулуучу бет',
 'tooltip-pt-mytalk'               => 'Сизни сюзюу бетигиз',
+'tooltip-pt-anontalk'             => 'Бу IP-адресден этилген тюзетиулени сюз',
 'tooltip-pt-preferences'          => 'Джарашдырыуларыгъыз',
 'tooltip-pt-watchlist'            => 'Мен сынчыкълагъан бетлени списогу',
 'tooltip-pt-mycontris'            => 'Сизни тюзетиулеригизни списогу',
 'tooltip-pt-login'                => 'Былайда системада регистрация этерге боллукъду, алай а ол ажымсыз керекли тюйюлдю',
+'tooltip-pt-anonlogin'            => 'Былайда сисетмагъа регистрация этерге боллукъду, алай а бу зорунлу тюлдю.',
 'tooltip-pt-logout'               => 'Чыгъыу',
 'tooltip-ca-talk'                 => 'Бетни ичиндегин сюзюу',
 'tooltip-ca-edit'                 => 'Бу бетни тюзетирге болады. Сакълагъынчы ал къарауну хайырландырыгъыз.',
@@ -2389,7 +2392,9 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'tooltip-ca-viewsource'           => 'Бу бет тюрлендириуден джакъланыбды. Алай а сиз къараб, текстин копия этерге боллукъсуз',
 'tooltip-ca-history'              => 'Бетни алгъын версиялары',
 'tooltip-ca-protect'              => 'Бу бетни джакъла',
+'tooltip-ca-unprotect'            => 'Джакълауну кетер бу бетден',
 'tooltip-ca-delete'               => 'Бу бетни къурут',
+'tooltip-ca-undelete'             => 'Бетни кетериуню аллындагъа халына къайтар',
 'tooltip-ca-move'                 => 'Бу бетни атын тюрлендириу',
 'tooltip-ca-watch'                => 'Бу бетни сынчыкълау списогугъузгъа къошугъуз',
 'tooltip-ca-unwatch'              => 'Сынчыкълау списокдан кетер бу бетни',
@@ -2430,36 +2435,128 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'tooltip-diff'                    => 'Тюрлендириулеригизни кёрюгюз',
 'tooltip-compareselectedversions' => 'Бу бетни сайланнган эки версиясыны араларында башхалыкъларын кёр',
 'tooltip-watch'                   => 'Сынчыкълау списокга къош бу бетни',
+'tooltip-recreate'                => 'Кетерилгенина къарамай бетни ызына къайтар',
 'tooltip-upload'                  => 'Джюклеуню башла',
 'tooltip-rollback'                => 'Бир басхан бла ахыр къошулуучуну тюрлендиргенин кетер',
 'tooltip-undo'                    => 'Этилиннген тюзетиуню ызына ал эмда ал къарауну кёгюз, ызына нек алыннгын чертирча',
 
+# Metadata
+'nodublincore'      => 'Dublin Core RDF метабилгиле бу серверде джасакъдыла.',
+'nocreativecommons' => 'Creative Commons RDF метабилгиле бу сервер ючюн джасакъдыла.',
+'notacceptable'     => 'Бу вики-сервер сизни браузеригиз излеген форматда билгиле берелмейди.',
+
 # Attribution
-'others'    => 'башхала',
-'siteusers' => '{{SITENAME}} {{PLURAL:$2|къошулуучу|къошулуучула}} $1',
-'anonusers' => '{{SITENAME}} аноним {{PLURAL:$2|къошулуучу|къошулуучула}} $1',
+'anonymous'        => 'сайтны аноним {{PLURAL:$1|къошулуучулары|къошулуучулары}}',
+'siteuser'         => '{{SITENAME}} къошулуучу $1',
+'anonuser'         => '{{SITENAME}} аноним къошулуучу $1',
+'lastmodifiedatby' => 'Бет эм ахыр $3 джанындан $2, $1 заманда тюрлендирилгенди.',
+'othercontribs'    => '$1 джанындан этилген ишге тамалланады.',
+'others'           => 'башхала',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|къошулуучу|къошулуучула}} $1',
+'anonusers'        => '{{SITENAME}} аноним {{PLURAL:$2|къошулуучу|къошулуучула}} $1',
+'creditspage'      => 'Бетни кредитлери',
+'nocredits'        => 'Бу къошулуучу ючюн кредит билги джокъду.',
+
+# Spam protection
+'spamprotectiontitle' => 'Спамгъа къаршчы фильтр',
+'spamprotectiontext'  => 'Къошаргъа излеген бет спам фильтр бла блок этилгенди. Къара списокдагъы тыш джибериуле чурум болургъа боллукъдула.',
+'spamprotectionmatch' => 'Спам фильтр ишлетген текст: $1',
+'spambot_username'    => 'Спамны ариулау',
+'spam_reverting'      => '$1 бла джибериую болмагъан ахыр версиягъа къайтылады',
+'spam_blanking'       => 'Бютеу версияла $1 бетге джибериу тутадыла, ариуланадыла',
 
 # Info page
-'infosubtitle' => 'Бетни юсюнде билги',
+'infosubtitle'   => 'Бетни юсюнде билги',
+'numedits'       => 'Тюзетиулени саны (бет): $1',
+'numtalkedits'   => 'Тюзетиуню саны (сюзюу бет): $1',
+'numwatchers'    => 'Къараучуланы саны: $1',
+'numauthors'     => 'Башха-башха авторланы саны (бет): $1',
+'numtalkauthors' => 'Башха-башха авторланы саны (сюзюу бет): $1',
+
+# Skin names
+'skinname-standard'    => 'Стандарт',
+'skinname-nostalgia'   => 'Ностальгия',
+'skinname-cologneblue' => 'Кёльн такъылыкъ',
+'skinname-monobook'    => 'Моно-китаб',
+'skinname-myskin'      => 'Меники',
+'skinname-chick'       => 'Шик',
+'skinname-simple'      => 'Бош',
+'skinname-modern'      => 'Бусагъатдагъы',
+'skinname-vector'      => 'Вектор',
+
+# Math options
+'mw_math_png'    => 'PNG сурат форматха кёчюргенлей тур',
+'mw_math_simple' => 'Бек бош эсе HTML, тюл эсе PNG',
+'mw_math_html'   => 'Мадар бар эсе HTML, болмаса PNG',
+'mw_math_source' => 'Тюрлендирмей TeX болуб къой (текст браузерле ючюн)',
+'mw_math_modern' => 'Бусагъатдагъы браузерлеге ючюн теджеледи',
+'mw_math_mathml' => 'Мадар бар эсе "MathML" (сынау опция)',
+
+# Math errors
+'math_failure'          => 'Ангылашынамады',
+'math_unknown_error'    => 'билинмеген халат',
+'math_unknown_function' => 'билинмеген функция',
+'math_lexing_error'     => 'лексика халат',
+'math_syntax_error'     => 'синтаксис халат',
+'math_image_error'      => 'PNG конвертация джетишимсиз болду; latex, dvips, gs бла convert джарашдырыуларына къарагъыз',
+'math_bad_tmpdir'       => 'Математиканы кёзюулю каталогуна не джазаргъа, неда къураргъа мадар джокъду',
+'math_bad_output'       => 'Математиканы чыгъыш каталогуна не джазар, неда къурар мадар джокъду',
+'math_notexvc'          => 'texvc файл табылмайды; джарашдырыр ючюн math/README-ге къара.',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Контроль этилгенин белгиле',
+'markaspatrolledtext'                 => 'Сыналгъан статья кибик белгиле',
+'markedaspatrolled'                   => 'Сыналгъан кибик белгиленнгенди',
+'markedaspatrolledtext'               => 'Сайланнган версия сыналгъан кибик белгиленнгенди.',
+'rcpatroldisabled'                    => 'Ахыр тюрлениулени осмакъалауу джасакъды',
+'rcpatroldisabledtext'                => 'Ахыр тюрлениулени осмамкъалау амалы бусагъатда джукълатылыбды.',
+'markedaspatrollederror'              => 'Сыналмаганды',
+'markedaspatrollederrortext'          => 'Сыналгъан кибик белгилер ючюн версия белгилерге керексиз.',
+'markedaspatrollederror-noautopatrol' => 'Кесигизни тюзетиулеригизни, сыналгъан кибик белгилерге эркинлигигиз джокъду.',
 
 # Patrol log
-'patrol-log-page' => 'Патруль этиуню журналы',
-'patrol-log-diff' => 'версия $1',
+'patrol-log-page'      => 'Патруль этиуню журналы',
+'patrol-log-header'    => 'Бу осмакъланнган версияланы журналыды.',
+'patrol-log-line'      => '$3 сыналгъан кибик $2 $1 версия белгиленди',
+'patrol-log-auto'      => '(автомат халда)',
+'patrol-log-diff'      => 'версия $1',
+'log-show-hide-patrol' => 'Осмакълауну журналы $1',
+
+# Image deletion
+'deletedrevision'                 => '$1 эски версия кетерилгенди.',
+'filedeleteerror-short'           => 'Файл кетериуню хатасы: $1',
+'filedeleteerror-long'            => 'Файлны кетериуде халатлагъа тюбелди:
+
+$1',
+'filedelete-missing'              => 'Болмагъаны себебли, "$1" файл кетерилелмейди.',
+'filedelete-old-unregistered'     => 'Белгиленнген файлны "$1" вериясы билги базада джокъду.',
+'filedelete-current-unregistered' => 'Белгиленнген файл "$1" билги базада джокъду.',
+'filedelete-archive-read-only'    => '"$1" архив директория веб-сервер джанындан джазылырча тюлдю.',
 
 # Browsing diffs
 'previousdiff' => '← Алдагъы тюзетиу',
 'nextdiff'     => 'Эндиги тюзетиу →',
 
 # Media information
+'mediawarning'         => "'''Эсгертиу''': Бу файл типи аман иннетли кодла тутаргъа боллукъду. 
+Буну ишлетсегиз системагъызгъа заран келтирирге боллукъсуз.<hr />",
+'imagemaxsize'         => "Суратны ёлчемини чеги:<br />''(файлны ангылытыу бетле ючюн)''",
+'thumbsize'            => 'Гитче ёлчем:',
+'widthheight'          => '$1 × $2',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|бет|бет}}',
+'file-info'            => '(файлны ёлчеми: $1, MIME типи: $2)',
 'file-info-size'       => '($1 × $2 пиксель, файлны ёлчеми: $3, MIME тибы: $4)',
 'file-nohires'         => '<small>Мындан ары ачыкъланнган версиясы джокъду</small>',
 'svg-long-desc'        => '(SVG файл, шартлы $1 × $2 пиксель, файлны ёлчеми: $3)',
 'show-big-image'       => 'Толу ачыкълау',
 'show-big-image-thumb' => '<small>Ал къарауда ёлчеми: $1 × $2 пиксель</small>',
+'file-info-gif-looped' => 'тогъайланнганды',
 
 # Special:NewFiles
-'showhidebots' => '($1 бот)',
-'ilsubmit'     => 'Таб',
+'newimages-legend' => 'Фильтр',
+'newimages-label'  => 'Файлны аты (неда кесеги):',
+'showhidebots'     => '($1 бот)',
+'ilsubmit'         => 'Таб',
 
 # Bad image list
 'bad_image_list' => 'Формат былай болургъа керекди:
@@ -2483,8 +2580,16 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'  => 'Кенглик',
-'exif-imagelength' => 'Мийиклик',
+'exif-imagewidth'          => 'Кенглик',
+'exif-imagelength'         => 'Мийиклик',
+'exif-imagedescription'    => 'Суратны аты',
+'exif-usercomment'         => 'Къошакъ комментарий',
+'exif-exposuretime-format' => '$1 с ($2)',
+'exif-fnumber'             => 'Диафрагманы номери',
+'exif-brightnessvalue'     => 'Джарыкълыкъ',
+'exif-subjectdistance'     => 'Объектге дери узакълыкъ',
+'exif-flash'               => 'Флеш',
+'exif-gpsdatestamp'        => 'GPS заман',
 
 # External editor support
 'edit-externally'      => 'Бу файлны тыш программа бла тюзетигиз',

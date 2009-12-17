@@ -111,7 +111,7 @@ $messages = array(
 
 'about'         => 'Pillugu',
 'newwindow'     => '(nutaamut ammassaaq)',
-'cancel'        => 'Sussa',
+'cancel'        => 'Unitsiguk',
 'moredotdotdot' => 'Suli...',
 'mytalk'        => 'Oqalliffikka',
 'navigation'    => 'Sumiissusersiuut',
@@ -124,6 +124,7 @@ $messages = array(
 'vector-view-edit' => 'Aaqqissuuguk',
 
 'errorpagetitle'   => 'Kukkuneq',
+'returnto'         => '$1 -mut uterit',
 'tagline'          => 'Matumannga {{SITENAME}}',
 'help'             => 'Ikiortissamik',
 'search'           => 'Ujarlerit',
@@ -134,7 +135,7 @@ $messages = array(
 'history_short'    => 'Oqaluttuassartaa',
 'info_short'       => 'Paasissutissat',
 'printableversion' => 'Naqikkuminartoq',
-'permalink'        => 'Innersuut',
+'permalink'        => 'Ataavartumik innersuut',
 'edit'             => 'Aaqqissuuguk',
 'create'           => 'Pilersiguk',
 'editthispage'     => 'Qupperneq aaqqissuuguk',
@@ -177,6 +178,7 @@ $messages = array(
 'editlink'            => 'aaqqissuuguk',
 'editsectionhint'     => 'Aaqqissuuguk immikkoortoq: $1',
 'toc'                 => 'Imarisai',
+'showtoc'             => 'Ersiguk',
 'site-rss-feed'       => '$1 RSS Feed',
 'site-atom-feed'      => '$1 Atom Feed',
 'page-rss-feed'       => '"$1" RSS Feed',
@@ -192,6 +194,9 @@ $messages = array(
 'nstab-category' => 'Sumut atassuseq',
 
 # Login and logout pages
+'logouttext'                 => "'''Maanna anivutit.'''
+
+{{SITENAME}} atorlugu ingerlaqqissinnaavutit kinaanerit isertorlugu, iseqqissinnaavutilluunniit taamatut isissuteqarlutit imalt. allat iserfigisinnaanngorpaat.",
 'yourname'                   => 'Atuisutut atit',
 'yourpassword'               => 'Isissutissaq:',
 'yourpasswordagain'          => 'Isissutissaq allaqqiguk',
@@ -201,8 +206,14 @@ $messages = array(
 'userlogin'                  => 'Kontomik pilersitsigit / iserit',
 'logout'                     => 'Anigit',
 'userlogout'                 => 'Anigit',
+'nologin'                    => "Kontomik peqanngilatit? '''$1'''.",
 'nologinlink'                => 'Kontomik pilersitsigit',
+'createaccount'              => 'Kontomik nutaamik pilersitsigit',
+'gotaccount'                 => "Kontomik peqareerpit? '''$1'''.",
 'gotaccountlink'             => 'Iserit',
+'createaccountmail'          => 'e-mail-ikkut',
+'badretype'                  => 'Isissutissat allanneqartut assigiinngillat.',
+'userexists'                 => 'Atuisup atia atorneqareerpoq. Allamik qinersigit.',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
@@ -213,6 +224,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
 # Edit pages
 'summary'      => 'Qanoq issusersiuineq:',
+'minoredit'    => 'Annikitsumik allannguutaavoq',
 'watchthis'    => 'Allaaserisaq ersersimatiguk',
 'savearticle'  => 'Toqqoruk',
 'preview'      => 'Isikkua',
@@ -222,6 +234,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'accmailtext'  => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
 'newarticle'   => '(Nuutaq)',
 'previewnote'  => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
+'editing'      => 'Aaqqissorpaa $1',
 
 # History pages
 'histfirst' => 'Pisoqaaneq',
@@ -233,10 +246,13 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 # Search results
 'searchresults'             => 'Ujaasinermi inernerit',
 'searchresults-title'       => 'Uuma ujarnera "$1"',
+'searchmenu-new'            => "'''Qupperneq [[:$1]] pilersiguk maani wikimi'''",
 'search-result-size'        => '$1 ({{PLURAL:$2|oqaaseq|$2 oqaatsit}})',
 'search-redirect'           => '(nuunneq $1)',
+'search-suggest'            => 'Una piviuk: $1',
 'search-mwsuggest-enabled'  => 'siunnersuuserlugu',
 'search-mwsuggest-disabled' => 'siunnersuusernagu',
+'search-nonefound'          => 'Ujaasineq inerneqanngilaq',
 'powersearch'               => 'Ujarlerit',
 
 # Preferences page
@@ -303,6 +319,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 
 # Delete
 'actioncomplete' => 'Naammassineqareersimavoq',
+'deletedarticle' => 'peerpaa "[[$1]]"',
 
 # Protect
 'prot_1movedto2' => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
@@ -323,8 +340,9 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'whatlinkshere' => 'Suna maangamut innersuussisoq',
 
 # Block/unblock
-'blocklink'    => 'aporfeqarneq',
-'contribslink' => 'tapikkat',
+'blocklistline' => '$1, $2 asserpaa $3 ($4)',
+'blocklink'     => 'assersoruk',
+'contribslink'  => 'tapikkat',
 
 # Move page
 'movearticle'     => 'Qupperneq nuuguk',

@@ -43,6 +43,7 @@
  * @author Remember the dot
  * @author Seb35
  * @author Sherbrooke
+ * @author Skalman
  * @author Urhixidur
  * @author Verdy p
  * @author Zetud
@@ -2103,7 +2104,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:UserLogin|identifié]] pour modifier votre liste de suivi.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées. La page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour en faciliter le repérage. Pour supprimer cette page de votre liste de suivi, cliquez sur « {{MediaWiki:Unwatch}} ».",
+'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées. La page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour en faciliter le repérage.",
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',

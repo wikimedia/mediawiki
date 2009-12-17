@@ -804,6 +804,9 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşenê h
 'revdelete-hide-comment'      => 'kılmvatış memocne',
 'revdelete-hide-user'         => 'Karber u IP ê ke vurnayiş kerdo bınım.',
 'revdelete-hide-restricted'   => 'Malumatan pa serkaran u karberan ra bınım.',
+'revdelete-radio-same'        => '(veciye)',
+'revdelete-radio-set'         => 'Heya',
+'revdelete-radio-unset'       => 'Nê',
 'revdelete-suppress'          => 'Hem ê binan ra hem zi serkaran ra malumatan bınım',
 'revdelete-unsuppress'        => 'reizyonê ke tepiya anciye serbest ker',
 'revdelete-log'               => 'qey hewn a kerdışi sebeb:',
@@ -1082,7 +1085,7 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 * qutiyo ke nişane kerdeyo, mocneno ke karber daxilê ney grubi yo.
 * qutiyo ke nişane nêkerdeyo, mocneno ke karber no grub de niyo.
 * *, ıne zi mocneno ke vıraştışê yew grubi ra dıma xo tepiya antış çiniyo.',
-'userrights-reason'           => 'Sebebê vurnayîşî',
+'userrights-reason'           => 'Sebeb:',
 'userrights-no-interwiki'     => 'Wikipediyaya binî de ti nieşkenî heqqê karberî bivurne.',
 'userrights-nodatabase'       => 'Databasê $1î çini yo ya zi lokal ni yo.',
 'userrights-nologin'          => 'Eka ti wazene ki heqqa karberi bide, ti gani bi [[Special:UserLogin|cikewtiye]] pê yew hesabê idarekarî',

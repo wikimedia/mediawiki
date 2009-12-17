@@ -1286,7 +1286,7 @@ $1",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'خوێندنەوەی ئەم پەڕە',
-'action-edit'                 => 'دەستکاری ئەم پەڕەیە بکە',
+'action-edit'                 => 'دەستکاری ئەم پەڕە',
 'action-createpage'           => 'درووست‌کردنی لاپەڕە',
 'action-createtalk'           => 'درووست‌کردنی لەپەڕەکانی وتووێژ',
 'action-createaccount'        => 'درووست‌کردنی هەژمارەی ئەم بەکارهێنەرە',

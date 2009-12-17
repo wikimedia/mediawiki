@@ -787,9 +787,15 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'userrights-editusergroup' => 'Komunê karberun bıvurne',
 'saveusergroups'           => 'Komunê karberun qeyd ke',
 'userrights-groupsmember'  => 'Ezaê de:',
+'userrights-reason'        => 'Sebeb:',
 
 # Groups
+'group'       => 'Kom:',
+'group-user'  => 'Karberi',
 'group-sysop' => 'İdarekeri',
+
+'group-user-member'  => 'Karber',
+'group-sysop-member' => 'İdareker',
 
 'grouppage-sysop' => '{{ns:project}}:İdarekeri',
 
@@ -805,6 +811,8 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'action-createpage'    => 'pelu bıaferne',
 'action-createtalk'    => 'pelunê hurênaişi bıaferne',
 'action-createaccount' => 'na hesabê karberi bıaferne',
+'action-movefile'      => 'na dosya bere',
+'action-upload'        => 'na dosya bar ke',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|tedil|tedili}}',
@@ -848,11 +856,24 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'upload_directory_read_only' => "İndeksê bar-kerdena ($1)i terefê ''webserver''i nênuşino.",
 'uploaderror'                => 'Xeta bar-kerdene',
 'uploadlogpage'              => 'Qeydê dosya barkerdene',
+'filename'                   => 'Namê dosya',
+'filedesc'                   => 'Xulasa',
+'fileuploadsummary'          => 'Xulasa:',
+'filesource'                 => 'Çıme:',
 'uploadedimage'              => '"[[$1]]" bar bi',
 
+# Special:ListFiles
+'imgfile'        => 'dosya',
+'listfiles'      => 'Lista dosya',
+'listfiles_date' => 'Tarix',
+'listfiles_name' => 'Name',
+'listfiles_user' => 'Karber',
+
 # File description page
+'file-anchor-link'          => 'Dosya',
 'filehist'                  => 'Tarixê dosya',
 'filehist-help'             => "Serba diyaena viartê dosya tarixê ke qısımê tarix/zeman'i derê inu bıteqne.",
+'filehist-deleteone'        => 'bıestere',
 'filehist-current'          => 'nıkaên',
 'filehist-datetime'         => 'Tarix/Dem',
 'filehist-thumb'            => 'Resmo qızkek',
@@ -866,8 +887,16 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'sharedupload'              => 'Na dosya depoê $1 rawa u beno ke procunê binu de gurenina.',
 'uploadnewversion-linktext' => 'Dosya de newiye bar ke',
 
+# File deletion
+'filedelete-submit'           => 'Bıestere',
+'filedelete-reason-otherlist' => 'Sebebo bin',
+
+# MIME search
+'download' => 'bar ke',
+
 # Statistics
-'statistics' => 'İstatistiki',
+'statistics'       => 'İstatistiki',
+'statistics-pages' => 'Peli',
 
 # Miscellaneous special pages
 'nbytes'             => '$1 {{PLURAL:$1|bayt|bayti}}',
