@@ -529,7 +529,7 @@ abstract class File {
 	 * @return MediaTransformOutput
 	 */
 	function transform( $params, $flags = 0 ) {
-		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch;
+		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch, $wgServer;
 
 		wfProfileIn( __METHOD__ );
 		do {
@@ -537,6 +537,12 @@ abstract class File {
 				// not a bitmap or renderable image, don't try.
 				$thumb = $this->iconThumb();
 				break;
+			}
+
+			// Get the descriptionUrl to embed it as comment into the thumbnail. Bug 19791.
+			$descriptionUrl =  $this->getDescriptionUrl();
+			if ( $descriptionUrl ) {
+				$params['descriptionUrl'] = $wgServer . $descriptionUrl;
 			}
 
 			$script = $this->getTransformScript();

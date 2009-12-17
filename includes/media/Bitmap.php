@@ -60,6 +60,7 @@ class BitmapHandler extends ImageHandler {
 		$physicalHeight = $params['physicalHeight'];
 		$clientWidth = $params['width'];
 		$clientHeight = $params['height'];
+		$descriptionUrl = $params['descriptionUrl'];
 		$srcWidth = $image->getWidth();
 		$srcHeight = $image->getHeight();
 		$mimeType = $image->getMimeType();
@@ -154,6 +155,7 @@ class BitmapHandler extends ImageHandler {
 				// or ImageMagick may decide your ratio is wrong and slice off
 				// a pixel.
 				" -thumbnail " . wfEscapeShellArg( "{$physicalWidth}x{$physicalHeight}!" ) .
+				" -set comment " . wfEscapeShellArg( "File source: {$descriptionUrl}" ) .
 				" -depth 8 $sharpen " .
 				wfEscapeShellArg($dstPath) . " 2>&1";
 			wfDebug( __METHOD__.": running ImageMagick: $cmd\n");
