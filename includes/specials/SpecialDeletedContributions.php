@@ -338,7 +338,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$sk = $wgUser->getSkin();
 
-		if ( 0 == $id ) {
+		if ( $id === null ) {
 			$user = htmlspecialchars( $nt->getText() );
 		} else {
 			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
@@ -348,7 +348,7 @@ class DeletedContributionsPage extends SpecialPage {
 		if( $talk ) {
 			# Talk page link
 			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
-			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
+			if( ( $id !== null && $wgSysopUserBans ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
 				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 					if ( $userObj->isBlocked() ) {
 						$tools[] = $sk->linkKnown( # Change block link
@@ -398,7 +398,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 			# Add a link to change user rights for privileged users
 			$userrightsPage = new UserrightsPage();
-			if( 0 !== $id && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
+			if( $id !== null && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
 				$tools[] = $sk->linkKnown(
 					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
 					wfMsgHtml( 'sp-contributions-userrights' )
