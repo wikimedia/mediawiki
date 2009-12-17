@@ -117,7 +117,7 @@ class SpecialRecentChanges extends SpecialPage {
 		$target = isset($opts['target']) ? $opts['target'] : ''; // RCL has targets
 		if( $feedFormat ) {
 			list( $feed, $feedObj ) = $this->getFeedObject( $feedFormat );
-			$feed->execute( $feedObj, $rows, $opts['limit'], $opts['hideminor'], $opts['namespace'], $lastmod, $target );
+			$feed->execute( $feedObj, $rows, $opts['limit'], $opts['hideminor'], $lastmod, $target, $opts['namespace'] );
 		} else {
 			$this->webOutput( $rows, $opts );
 		}
