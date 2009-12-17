@@ -4,8 +4,7 @@
 -- the CREATE INDEX statement will fail if there are duplicate values.
 --
 -- Ignore duplicates, several tables will have them (e.g. bug 16966) but in 
--- most cases it's harmless to discard them. We'll keep the old tables with 
--- duplicates in so that the user can recover them in case of disaster.
+-- most cases it's harmless to discard them.
 
 --------------------------------------------------------------------------------
 -- Drop temporary tables from aborted runs
