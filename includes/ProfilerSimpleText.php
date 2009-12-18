@@ -21,6 +21,10 @@ class ProfilerSimpleText extends ProfilerSimple {
 	public $visible=false; /* Show as <PRE> or <!-- ? */
 
 	function getFunctionReport() {
+		global $wgRequest;
+		if ( $wgRequest->getVal( 'action' ) == 'raw' ) # bug 20388
+			return;
+
 		if ($this->visible) print "<pre>";
 			else print "<!--\n";
 		uasort($this->mCollated,array('self','sort'));
