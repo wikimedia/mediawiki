@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author PhiLiP
  * @author Wong128hk
  * @author Yuyu
  */
@@ -23,6 +24,7 @@ $messages = array(
 'print'            => '打印',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'portal'      => '社群入口',
 'privacy'     => '私隱政策',
 'privacypage' => 'Project:私隱政策',
 

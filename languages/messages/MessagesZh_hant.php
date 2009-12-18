@@ -14,6 +14,7 @@
  * @author KaiesTse
  * @author Liangent
  * @author Mark85296341
+ * @author PhiLiP
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
@@ -435,7 +436,7 @@ $1',
 'mainpage'             => '首頁',
 'mainpage-description' => '首頁',
 'policy-url'           => 'Project:方針',
-'portal'               => '社區',
+'portal'               => '社群入口',
 'portal-url'           => 'Project:社區',
 'privacy'              => '隱私政策',
 'privacypage'          => 'Project:隱私政策',

@@ -731,7 +731,7 @@ Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul a
 'mailerror'                  => 'Viga kirja saatmisel: $1',
 'acct_creation_throttle_hit' => 'Selle viki külastajad, kes kasutavad sinu IP-aadressi, on viimase ööpäeva jooksul loonud {{PLURAL:$1|ühe konto|$1 kontot}}, mis on selles ajavahemikus ülemmääraks.
 Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
-'emailauthenticated'         => 'Sinu e-posti aadress kinnitati: $2 kell $3.',
+'emailauthenticated'         => 'Sinu e-postiaadressi kinnitamisaeg: $2 kell $3.',
 'emailnotauthenticated'      => 'Sinu e-posti aadress <strong>pole veel kinnitatud</strong>. E-posti kinnitamata aadressile ei saadeta.',
 'noemailprefs'               => 'Järgnevate võimaluste toimimiseks on vaja sisestada e-posti aadress.',
 'emailconfirmlink'           => 'Kinnita oma e-posti aadress',
@@ -1179,7 +1179,7 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'search-result-score'              => 'Vastavus: $1%',
 'search-redirect'                  => '(ümbersuunamine $1)',
 'search-section'                   => '(alaosa $1)',
-'search-suggest'                   => 'Kas Sa mõtlesid: $1',
+'search-suggest'                   => 'Kas mõtlesid: $1',
 'search-interwiki-caption'         => 'Sõsarprojektid',
 'search-interwiki-default'         => '$1 tulemused:',
 'search-interwiki-more'            => '(veel)',
@@ -2796,8 +2796,8 @@ Samal real olevaid järgmiseid linke vaadeldakse kui erandeid, see tähendab art
 'metadata'          => 'Metaandmed',
 'metadata-help'     => 'See fail sisaldab lisateavet, mille on tõenäoliselt lisanud digikaamera või skanner.
 Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud või täielikult eemaldatud.',
-'metadata-expand'   => 'Näita täpsemaid detaile',
-'metadata-collapse' => 'Peida täpsemad detailid',
+'metadata-expand'   => 'Näita veel üksikasju',
+'metadata-collapse' => 'Peida laiendatud üksikasjad',
 'metadata-fields'   => 'Siin loetletud EXIF metaandmete välju näidatakse pildi kirjelduslehel vähemdetailse metaandmete vaate korral.
 Ülejäänud andmed on vaikimisi peidetud.
 * make
@@ -2832,7 +2832,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-software'                    => 'Kasutatud tarkvara',
 'exif-artist'                      => 'Autor',
 'exif-copyright'                   => 'Autoriõiguste omanik',
-'exif-exifversion'                 => 'Exif versioon',
+'exif-exifversion'                 => 'Exif-versioon',
 'exif-flashpixversion'             => 'Toetatud Flashpixi versioon',
 'exif-colorspace'                  => 'Värviruum',
 'exif-componentsconfiguration'     => 'Iga komponendi tähendus',
@@ -2843,7 +2843,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-usercomment'                 => 'Kasutaja kommentaarid',
 'exif-relatedsoundfile'            => 'Seotud helifail',
 'exif-datetimeoriginal'            => 'Andmete loomise kuupäev ja kellaaeg',
-'exif-datetimedigitized'           => 'Digitaliseerimise kuupäev ja kellaaeg',
+'exif-datetimedigitized'           => 'Digiteerimise kuupäev ja kellaaeg',
 'exif-subsectime'                  => 'Kuupäev/Kellaaeg sekundi murdosad',
 'exif-subsectimeoriginal'          => 'Loomisaja sekundi murdosad',
 'exif-subsectimedigitized'         => 'Digiteerimise sekundi murdosad',
@@ -2975,6 +2975,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-whitebalance-0' => 'Automaatne valge tasakaal',
 'exif-whitebalance-1' => 'Manuaalne valgusbalanss',
 
+'exif-scenecapturetype-0' => 'Standardne',
 'exif-scenecapturetype-1' => 'Maastik',
 'exif-scenecapturetype-2' => 'Portree',
 'exif-scenecapturetype-3' => 'Ööpilt',
