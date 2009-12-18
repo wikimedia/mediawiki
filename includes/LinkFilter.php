@@ -59,8 +59,13 @@ class LinkFilter {
 			return false;
 		}
 		$dbw = wfGetDB( DB_MASTER );
-
-		return $dbw->buildLike( $like );
+		$s = $dbw->buildLike( $like );
+		$m = false;
+		if ( preg_match( "/^ *LIKE '(.*)' *$/", $s, $m ) ) {
+			return $m[1];
+		} else {
+			throw new MWException( __METHOD__.': this DBMS is not supported by this function.' );
+		}
 	}
 
 	/**
