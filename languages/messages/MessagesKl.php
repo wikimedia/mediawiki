@@ -126,7 +126,7 @@ $messages = array(
 'errorpagetitle'   => 'Kukkuneq',
 'returnto'         => '$1 -mut uterit',
 'tagline'          => 'Matumannga {{SITENAME}}',
-'help'             => 'Ikiortissamik',
+'help'             => 'Ikiuutit',
 'search'           => 'Ujarlerit',
 'searchbutton'     => 'Ujarlerit',
 'go'               => 'Ikunnarit',
@@ -166,13 +166,13 @@ $messages = array(
 'helppage'             => 'Help:Ikiuutit',
 'mainpage'             => 'Saqqaa',
 'mainpage-description' => 'Saqqaa',
-'portal'               => 'Allaatiginnittartup saqqai',
+'portal'               => 'Allattartup saqqaa',
 'privacy'              => 'Namminermut paasissutissat',
 
 'retrievedfrom'       => 'Uannga aaneqartoq "$1"',
-'youhavenewmessages'  => 'Peqarputit $1 ($2)',
-'newmessageslink'     => 'oqariartuutinik nutaanik',
-'newmessagesdifflink' => 'allannguutini kingullernili',
+'youhavenewmessages'  => '<!-- This sentence shall be empty because of kl grammar. --> $1 ($2)',
+'newmessageslink'     => 'Allagarsivutit',
+'newmessagesdifflink' => 'allannguutini kingullerniit',
 'editsection'         => 'aaqqissuuguk',
 'editold'             => 'aaqqissuuguk',
 'editlink'            => 'aaqqissuuguk',
@@ -185,13 +185,16 @@ $messages = array(
 'red-link-title'      => '$1 (Qupperneq suli allaffigineqanngilaq)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Qupperneq',
+'nstab-main'     => 'Allaaserisaq',
 'nstab-user'     => 'Atuisup quppernera',
 'nstab-special'  => 'Immikkut',
 'nstab-image'    => 'Assiliaq',
 'nstab-template' => 'Ilisserut',
 'nstab-help'     => 'Ikiuutit',
 'nstab-category' => 'Sumut atassuseq',
+
+# General errors
+'viewsource' => 'Aallaavia takuuk',
 
 # Login and logout pages
 'logouttext'                 => "'''Maanna anivutit.'''
@@ -203,6 +206,7 @@ $messages = array(
 'remembermypassword'         => 'Iserfiga tullissaanut eqqaamalara',
 'login'                      => 'Iserit',
 'nav-login-createaccount'    => 'Konto-mik pilersitsigit imalt. iserit',
+'loginprompt'                => 'Pisariaqassaaq cookies-itit atussallugit {{SITENAME}} -mut isissaguit.',
 'userlogin'                  => 'Kontomik pilersitsigit / iserit',
 'logout'                     => 'Anigit',
 'userlogout'                 => 'Anigit',
@@ -214,6 +218,8 @@ $messages = array(
 'createaccountmail'          => 'e-mail-ikkut',
 'badretype'                  => 'Isissutissat allanneqartut assigiinngillat.',
 'userexists'                 => 'Atuisup atia atorneqareerpoq. Allamik qinersigit.',
+'loginsuccesstitle'          => 'Maanna isersimalerputit',
+'loginsuccess'               => 'Maanna {{SITENAME}} -mut isersimalerputit "$1" -itut taaguuserlutit.',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
@@ -223,7 +229,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'retypenew'   => 'Isissutissaq nutaaq allaqqiuk',
 
 # Edit pages
-'summary'      => 'Qanoq issusersiuineq:',
+'summary'      => 'Allaaserinera:',
 'minoredit'    => 'Annikitsumik allannguutaavoq',
 'watchthis'    => 'Allaaserisaq ersersimatiguk',
 'savearticle'  => 'Toqqoruk',
@@ -247,6 +253,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'searchresults'             => 'Ujaasinermi inernerit',
 'searchresults-title'       => 'Uuma ujarnera "$1"',
 'searchmenu-new'            => "'''Qupperneq [[:$1]] pilersiguk maani wikimi'''",
+'searchhelp-url'            => 'Help:Ikiuutit',
 'search-result-size'        => '$1 ({{PLURAL:$2|oqaaseq|$2 oqaatsit}})',
 'search-redirect'           => '(nuunneq $1)',
 'search-suggest'            => 'Una piviuk: $1',
@@ -257,16 +264,18 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
 # Preferences page
 'mypreferences' => 'Inissiffissat',
+'prefs-rc'      => 'Allannguutit kingulliit',
 
 # Groups
 'group-sysop' => 'Administratorit',
 
 # Recent changes
-'recentchanges'   => 'Allannguutit kingulliit',
-'hist'            => 'hist',
-'minoreditletter' => 'm',
-'newpageletter'   => 'N',
-'boteditletter'   => 'b',
+'recentchanges'     => 'Allannguutit kingulliit',
+'recentchangestext' => "Uani quppernermi '''{{SITENAME}}'''-mi allannguutit kingulliit malinnaavigisinnaavatit.",
+'hist'              => 'hist',
+'minoreditletter'   => 'm',
+'newpageletter'     => 'N',
+'boteditletter'     => 'b',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Allannguutit naleqqiussat',
@@ -286,7 +295,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'mimesearch' => 'MIME ujaarlerit',
 
 # Random page
-'randompage' => 'Nalaatsorluni atuagassianut ilanngutassiaq',
+'randompage' => 'Nalaatsornermi qupperneq',
 
 # Statistics
 'statistics' => 'Kisitsisinngorlugit paasissutissat',
@@ -333,7 +342,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'mycontris'     => 'Tapikka',
 'uctop'         => '(kingulleq)',
 
-'sp-contributions-talk'     => 'Oqallinneq',
+'sp-contributions-talk'     => 'oqallinneq',
 'sp-contributions-username' => 'IP adresse imalt. atuisoq:',
 
 # What links here
@@ -350,7 +359,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'movepagebtn'     => 'Qupperneq nuuguk',
 'pagemovedsub'    => 'Nuunnera iluatsippoq',
 'movepage-moved'  => '<big>Qupperneq \'\'\'"$1" uunga nuuppoq "$2"\'\'\'</big>',
-'1movedto2'       => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
+'1movedto2'       => '[[$1]] nuuppaa [[$2]]-mut',
 '1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
 
 # Thumbnails
