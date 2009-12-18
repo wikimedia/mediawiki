@@ -68,8 +68,8 @@ behaviour of MediaWiki.
 
 === Check installed extensions ===
 In MediaWiki 1.14 some extensions are migrated into the core. Please see the
-RELEASE-NOTES section "Migrated extensions" and disable these extensions in your
-localSettings.php
+HISTORY section "Migrated extensions" and disable these extensions in your
+LocalSettings.php
 
 === Test ===
 
