@@ -687,6 +687,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21536) Fixed JavaScript error on Special:Search caused by an incorrect ID
 * (bug 21535) RecentChanges RSS feed now always recognises the namespace filter,
   previously it sometimes didn't due to caching.
+* (bug 20388) ProfilerSimpleText no longer outputs comment on action=raw
 
 == API changes in 1.16 ==
 
