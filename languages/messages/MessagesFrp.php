@@ -1128,6 +1128,9 @@ Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cach
 'revdelete-hide-comment'      => 'Cachiér lo comentèro de changement',
 'revdelete-hide-user'         => 'Cachiér lo nom ou l’adrèce IP u contributor.',
 'revdelete-hide-restricted'   => 'Cachiér les balyês ux administrators et pués ux ôtros',
+'revdelete-radio-same'        => '(pas changiér)',
+'revdelete-radio-set'         => 'Ouè',
+'revdelete-radio-unset'       => 'Nan',
 'revdelete-suppress'          => 'Suprimar les balyês ux administrators et pués ux ôtros',
 'revdelete-unsuppress'        => 'Enlevar les rèstriccions sur les vèrsions refêtes',
 'revdelete-log'               => 'Rêson de la suprèssion :',
@@ -1162,7 +1165,7 @@ Vos y avéd pas accès.',
 'revdelete-no-change'         => "'''Atencion :''' l’èlèment datâ du $1 a $2 at ja los paramètres de visibilitât demandâs.",
 'revdelete-concurrent-change' => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : son statut at étâ changiê per quârqu’un d’ôtro pendent que vos lo changiéd.
 Volyéd controlar los jornals.',
-'revdelete-only-restricted'   => 'Vos pouede pas suprimar celos èlèments ux administrators sen chouèsir avouéc des ôtros chouèx de suprèssion.',
+'revdelete-only-restricted'   => 'Èrror pendent la suprèssion de l’entrâ datâ du $1 a $2 : vos pouede pas suprimar celos èlèments ux administrators sen chouèsir avouéc des ôtros chouèx de suprèssion.',
 'revdelete-reason-dropdown'   => '* Rêsons de suprèssion les ples corentes
 ** Violacion du drêt d’ôtor
 ** Enformacions a sè que vont pas avouéc',
@@ -1414,7 +1417,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 * Una câsa pouentâ vôt dére que l’utilisator sè trove dens cela tropa.
 * Una câsa pas pouentâ vôt dére qu’y sè trove pas.
 * Una ètêla (*) endique que vos porréd pas enlevar cela tropa setout que vos l’aréd apondua et l’un l’ôtro.',
-'userrights-reason'           => 'Rêson du changement :',
+'userrights-reason'           => 'Rêson :',
 'userrights-no-interwiki'     => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
 'userrights-nodatabase'       => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas locala.',
 'userrights-nologin'          => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’utilisator.',
@@ -1972,7 +1975,8 @@ Les entrâs <s>barrâs</s> ont étâ solucionâs.',
 'ancientpages'            => 'Pâges les muens dèrriérement changiês',
 'move'                    => 'Renomar',
 'movethispage'            => 'Renomar ceta pâge',
-'unusedimagestext'        => 'Volyéd notar que d’ôtros setos pôvont avêr un lim drêt de vers un fichiér, et donc qu’un fichiér pôt étre listâ coment inutilisâ ique pendent qu’il est en rèalitât utilisâ sur celos setos.',
+'unusedimagestext'        => 'Cetos fichiérs ègzistont, mas sont pas encllus dens niona pâge.
+Volyéd notar que d’ôtros setos pôvont avêr un lim drêt de vers un fichiér, et donc qu’un fichiér pôt étre listâ ique pendent qu’il est en rèalitât utilisâ sur celos setos.',
 'unusedcategoriestext'    => 'Cetes catègories ègzistont mas gins de pâge ou ben de catègorie les utilise.',
 'notargettitle'           => 'Gins de ciba',
 'notargettext'            => 'Vos éd pas spècefiâ una pâge ou ben un utilisator ciba sur laquinta/loquint vos souhètâd fâre cela accion.',
@@ -2403,6 +2407,7 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 
 # Block/unblock
 'blockip'                         => 'Blocar l’utilisator',
+'blockip-title'                   => 'Blocar l’utilisator',
 'blockip-legend'                  => 'Blocar l’utilisator',
 'blockiptext'                     => 'Utilisâd lo formulèro ce-desot por blocar l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’utilisator.
 Una tâla mesera devrêt étre prêsa ren que por empachiér lo vandalismo et en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].

@@ -122,8 +122,8 @@ $messages = array(
 'history'        => '修訂記錄',
 'protect_change' => '更改保護',
 'postcomment'    => '發表評論',
-'userpage'       => '查看使用者頁面',
-'projectpage'    => '查看計畫頁面',
+'userpage'       => '檢視使用者頁面',
+'projectpage'    => '檢視計畫頁面',
 'lastmodifiedat' => '本頁最後更動時間在 $1 $2。',
 'jumptosearch'   => '搜尋',
 
@@ -135,7 +135,7 @@ $messages = array(
 
 'badaccess-groups' => '您剛才的請求只有{{PLURAL:$2|這個|這些}}使用者組的使用者才能使用: $1',
 
-'thisisdeleted'  => '查看或復原$1?',
+'thisisdeleted'  => '檢視或復原$1?',
 'site-rss-feed'  => '訂閱 $1 的 RSS 資料來源',
 'site-atom-feed' => '訂閱 $1 的 Atom 資料來源',
 'page-rss-feed'  => '訂閱「$1」的 RSS 資料來源',
@@ -166,7 +166,7 @@ $messages = array(
 'logouttext'                 => '您現在已經退出。
 
 您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同使用者身份登入。',
-'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置{{SITENAME}}個人參數。</p>',
+'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設定{{SITENAME}}個人參數。</p>',
 'yourname'                   => '您的使用者名:',
 'nav-login-createaccount'    => '登入／建立新帳號',
 'userlogin'                  => '登入／建立新帳號',
@@ -194,7 +194,7 @@ $messages = array(
 'eauthentsent'               => '一封確認信已經發送到所示的地址。在發送其它郵件到此帳號前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
 'acct_creation_throttle_hit' => '對不起，您已經註冊了$1帳號。你不能再註冊了。',
 'emailauthenticated'         => '您的電子郵件地址已經於$1確認有效。',
-'emailnotauthenticated'      => '您的電子郵件地址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
+'emailnotauthenticated'      => '您的電子郵件地址<strong>還沒被認證</strong>。以下功能將不會發送任何郵件。',
 'noemailprefs'               => '指定一個電子郵件地址以使用此功能',
 'emailconfirmlink'           => '確認您的電子郵件地址',
 'invalidemailaddress'        => '電子郵件地址格式不正確，請輸入正確的電子郵件地址或清空該輸入框。',
@@ -203,7 +203,7 @@ $messages = array(
 'createaccount-title'        => '在{{SITENAME}}中建立新帳號',
 'createaccount-text'         => '有人在{{SITENAME}}中為 $2 建立了一個新帳號($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
 
-如果該帳號建立錯誤的話，您可以忽略此信息。',
+如果該帳號建立錯誤的話，您可以忽略此訊息。',
 
 # Password reset dialog
 'resetpass'           => '重設帳號密碼',
@@ -237,19 +237,19 @@ $messages = array(
 'session_fail_preview'       => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。'''",
 'session_fail_preview_html'  => "'''很抱歉！部份資料已遺失，我們無法處理您的編輯。''''''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。'''",
 'token_suffix_mismatch'      => "'''由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
-這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。'''",
+這種情況通常出現於使用含有很多臭蟲、以網路為主的匿名代理服務的時候。'''",
 'editingcomment'             => '正在編輯$1 (評論)',
 'storedversion'              => '已保存版本',
 'nonunicodebrowser'          => "'''警告: 您的瀏覽器不相容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。'''",
 'editingold'                 => "'''警告：你正在編輯的是本頁的舊版本。
-如果你保存它的話，在本版本之後的任何修改都會丟失。'''",
+如果你保存它的話，在本版本之後的任何修改都會遺失。'''",
 'longpagewarning'            => "'''警告: 本頁長度達$1 kB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。'''",
-'longpageerror'              => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。'''",
+'longpageerror'              => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文字不能被儲存。'''",
 'protectedpagewarning'       => "'''警告: 本頁已經被保護，只有擁有管理員許可權的使用者才可修改。'''",
 'semiprotectedpagewarning'   => "'''注意:''' 本頁面被鎖定，僅限註冊使用者編輯。",
 'cascadeprotectedwarning'    => '警告: 本頁已經被保護，只有擁有管理員權限的使用者才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
 'nocreatetitle'              => '建立頁面受限',
-'nocreatetext'               => '此網站限制了建立新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或建立新賬戶]]。',
+'nocreatetext'               => '此網站限制了建立新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或建立新帳號]]。',
 'nocreate-loggedin'          => '您在這個wiki中並無許可權去建立新頁面。',
 'recreate-moveddeleted-warn' => "'''警告: 你現在重新建立一個先前曾經刪除過的頁面。'''
 
@@ -269,7 +269,7 @@ $messages = array(
 
 # History pages
 'histlegend' => '差異選擇: 標記要比較版本的單選按鈕並點擊底部的按鈕進行比較。<br />
-說明: (當前) 指與當前版本比較，(先前) 指與前一個修訂版本比較，小 = 細微修改。',
+說明: (目前) 指與目前版本比較，(先前) 指與前一個修訂版本比較，小 = 細微修改。',
 
 # Revision feed
 'history-feed-title'       => '修訂沿革',
@@ -325,7 +325,7 @@ $messages = array(
 # Preferences page
 'preferences'          => '偏好設定',
 'mypreferences'        => '我的偏好設定',
-'prefsnologintext'     => '您必須先[[Special:UserLogin|登入]]才能設置個人參數。',
+'prefsnologintext'     => '您必須先[[Special:UserLogin|登入]]才能設定個人參數。',
 'prefs-personal'       => '使用者資料',
 'prefs-rc'             => '近期變動',
 'prefs-watchlist-days' => '監視列表中顯示記錄的最長天數:',
@@ -514,7 +514,7 @@ $messages = array(
 'enotif_anon_editor'           => '匿名使用者$1',
 'enotif_body'                  => '親愛的 $WATCHINGUSERNAME,
 
-$PAGEEDITOR 已經在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面，請到 $PAGETITLE_URL 檢視當前版本。
+$PAGEEDITOR 已經在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面，請到 $PAGETITLE_URL 檢視目前版本。
 
 $NEWPAGE
 
@@ -642,7 +642,7 @@ $NEWPAGE
 'ipblocklist-username'        => '使用者名稱或IP地址:',
 'anononlyblock'               => '僅限匿名使用者',
 'noautoblockblock'            => '禁用自動封鎖',
-'createaccountblock'          => '禁止建立賬戶',
+'createaccountblock'          => '禁止建立帳號',
 'ipblocklist-empty'           => '封鎖列表為空。',
 'ipblocklist-no-results'      => '所要求的IP地址/使用者名沒有被封鎖。',
 'blocklink'                   => '禁封',
@@ -687,11 +687,11 @@ $NEWPAGE
 'revertmove'      => '復原該移動',
 
 # Export
-'exporttext'      => '您可以將特定頁面或一組頁面的文本以及編輯歷史以 XML 格式匯出；這樣可以將有關頁面透過"[[Special:Import|匯入頁面]]"頁面匯入到另一個運行 MediaWiki 的網站。
+'exporttext'      => '您可以將特定頁面或一組頁面的文字以及編輯歷史以 XML 格式匯出；這樣可以將有關頁面透過"[[Special:Import|匯入頁面]]"頁面匯入到另一個運行 MediaWiki 的網站。
 
 要匯出頁面，請在下面的文字框中輸入頁面標題，每行一個標題，
 並選擇你是否需要匯出帶有修訂記錄的以前的版本，
-或是只選擇匯出帶有最後一次編輯訊息的當前版本。
+或是只選擇匯出帶有最後一次編輯訊息的目前版本。
 
 此外你還可以利用連結匯出檔案，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
 'export-download' => '提供一個檔案以供另存',
@@ -726,15 +726,15 @@ $NEWPAGE
 'tooltip-n-help'                  => '尋求說明',
 'tooltip-feed-rss'                => '訂閱本修訂記錄的RSS資訊',
 'tooltip-feed-atom'               => '訂閱本修訂記錄的Atom訊息',
-'tooltip-t-contributions'         => '查看該使用者的編修記錄',
+'tooltip-t-contributions'         => '檢視該使用者的編修記錄',
 'tooltip-t-emailuser'             => '向該使用者發送電子郵件',
 'tooltip-t-upload'                => '上傳圖片或多媒體檔',
 'tooltip-t-permalink'             => '這個頁面版本的永久連結',
-'tooltip-ca-nstab-user'           => '查看使用者頁',
+'tooltip-ca-nstab-user'           => '檢視使用者頁',
 'tooltip-ca-nstab-image'          => '查詢圖片頁面',
-'tooltip-ca-nstab-help'           => '查看說明頁面',
+'tooltip-ca-nstab-help'           => '檢視說明頁面',
 'tooltip-minoredit'               => '標記為細微修改',
-'tooltip-compareselectedversions' => '查看本頁被點選的兩個版本間的差異',
+'tooltip-compareselectedversions' => '檢視本頁被點選的兩個版本間的差異',
 'tooltip-rollback'                => '『{{int:rollbacklink}}』可以一按恢復上一位貢獻者對這個頁面的編輯',
 'tooltip-undo'                    => '『{{int:editundo}}』可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
 

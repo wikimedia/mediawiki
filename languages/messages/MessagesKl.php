@@ -175,6 +175,7 @@ $messages = array(
 'newmessagesdifflink' => 'allannguutini kingullerniit',
 'editsection'         => 'aaqqissuuguk',
 'editold'             => 'aaqqissuuguk',
+'viewsourceold'       => 'toqqavia takuuk',
 'editlink'            => 'aaqqissuuguk',
 'editsectionhint'     => 'Aaqqissuuguk immikkoortoq: $1',
 'toc'                 => 'Imarisai',
@@ -188,13 +189,14 @@ $messages = array(
 'nstab-main'     => 'Allaaserisaq',
 'nstab-user'     => 'Atuisup quppernera',
 'nstab-special'  => 'Immikkut',
+'nstab-project'  => 'Pillugu',
 'nstab-image'    => 'Assiliaq',
 'nstab-template' => 'Ilisserut',
 'nstab-help'     => 'Ikiuutit',
 'nstab-category' => 'Sumut atassuseq',
 
 # General errors
-'viewsource' => 'Aallaavia takuuk',
+'viewsource' => 'Toqqavia takuuk',
 
 # Login and logout pages
 'logouttext'                 => "'''Maanna anivutit.'''
@@ -229,18 +231,20 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'retypenew'   => 'Isissutissaq nutaaq allaqqiuk',
 
 # Edit pages
-'summary'      => 'Allaaserinera:',
-'minoredit'    => 'Annikitsumik allannguutaavoq',
-'watchthis'    => 'Allaaserisaq ersersimatiguk',
-'savearticle'  => 'Toqqoruk',
-'preview'      => 'Isikkua',
-'showpreview'  => 'Isikkua takuuk',
-'showdiff'     => 'Allannguutit',
-'accmailtitle' => 'Password-i nassiunneqarsimavoq.',
-'accmailtext'  => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
-'newarticle'   => '(Nuutaq)',
-'previewnote'  => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
-'editing'      => 'Aaqqissorpaa $1',
+'summary'       => 'Allaaserinera:',
+'minoredit'     => 'Annikitsumik allannguutaavoq',
+'watchthis'     => 'Allaaserisaq ersersimatiguk',
+'savearticle'   => 'Toqqoruk',
+'preview'       => 'Isikkua',
+'showpreview'   => 'Isikkua takuuk',
+'showdiff'      => 'Allannguutit',
+'accmailtitle'  => 'Password-i nassiunneqarsimavoq.',
+'accmailtext'   => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
+'newarticle'    => '(Nuutaq)',
+'noarticletext' => 'Maannamut una qupperneq allaffigineqanngilaq.
+Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisinnaavutit]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log-ini ujaasisinnavutillu] imaluunniit [{{fullurl:{{FULLPAGENAME}}|action=edit}} qupperneq pilersissinnaavat]</span>.',
+'previewnote'   => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
+'editing'       => 'Aaqqissorpaa $1',
 
 # History pages
 'histfirst' => 'Pisoqaaneq',
@@ -252,6 +256,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 # Search results
 'searchresults'             => 'Ujaasinermi inernerit',
 'searchresults-title'       => 'Uuma ujarnera "$1"',
+'searchmenu-exists'         => "'''Qupperneqarpoq \"[[:\$1]]\" -mik atilimmik maani wikimi'''",
 'searchmenu-new'            => "'''Qupperneq [[:$1]] pilersiguk maani wikimi'''",
 'searchhelp-url'            => 'Help:Ikiuutit',
 'search-result-size'        => '$1 ({{PLURAL:$2|oqaaseq|$2 oqaatsit}})',
@@ -265,17 +270,34 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 # Preferences page
 'mypreferences' => 'Inissiffissat',
 'prefs-rc'      => 'Allannguutit kingulliit',
+'yourlanguage'  => 'Oqaatsit:',
 
 # Groups
 'group-sysop' => 'Administratorit',
 
 # Recent changes
-'recentchanges'     => 'Allannguutit kingulliit',
-'recentchangestext' => "Uani quppernermi '''{{SITENAME}}'''-mi allannguutit kingulliit malinnaavigisinnaavatit.",
-'hist'              => 'hist',
-'minoreditletter'   => 'm',
-'newpageletter'     => 'N',
-'boteditletter'     => 'b',
+'recentchanges'                => 'Allannguutit kingulliit',
+'recentchanges-legend'         => 'Inissisimaffiit allannguutini kingullerni',
+'recentchangestext'            => "Uani quppernermi '''{{SITENAME}}'''-mi allannguutit kingulliit malinnaavigisinnaavatit.",
+'recentchanges-label-legend'   => 'Nassuiaatit: $1.',
+'recentchanges-legend-newpage' => '$1 - qupperneq nutaaq',
+'recentchanges-legend-minor'   => '$1 - allannguut annikitsoq',
+'recentchanges-legend-bot'     => '$1 - bot-ip allannguutaa',
+'rclistfrom'                   => 'Allannguutit kingulliit takukkit $1 -nngaanniit',
+'rcshowhideminor'              => '$1 allannguutit annikitsut',
+'rcshowhidebots'               => '$1 robottit',
+'rcshowhideliu'                => '$1 atuisut nalunaarsimasut',
+'rcshowhideanons'              => '$1 atuisut anonymejusut',
+'rcshowhidepatr'               => '$1 allannguutit misissorneqarsimasut',
+'rcshowhidemine'               => '$1 nammineq tapit',
+'rclinks'                      => 'Takutikkit $1 -it allannguutit kingulliit ulluni kingullerni $2 -ni<br />$3',
+'diff'                         => 'assigiinng',
+'hist'                         => 'oqalutt',
+'hide'                         => 'Assequt',
+'show'                         => 'Saqqummiuk',
+'minoreditletter'              => 'm',
+'newpageletter'                => 'N',
+'boteditletter'                => 'b',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Allannguutit naleqqiussat',
@@ -303,6 +325,9 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 # Miscellaneous special pages
 'newpages' => 'Quppernerit nutaat',
 'move'     => 'Nuuguk',
+
+# Book sources
+'booksources-go' => 'Ujaruk',
 
 # Special:Log
 'specialloguserlabel' => 'Pineqartoq:',
@@ -335,6 +360,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 
 # Namespace form on various pages
 'namespace'      => 'Quppernerup ilusia:',
+'invert'         => 'Quppernerup ilusia qinernagu',
 'blanknamespace' => '(Pingaarneq)',
 
 # Contributions
@@ -349,9 +375,11 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'whatlinkshere' => 'Suna maangamut innersuussisoq',
 
 # Block/unblock
-'blocklistline' => '$1, $2 asserpaa $3 ($4)',
-'blocklink'     => 'assersoruk',
-'contribslink'  => 'tapikkat',
+'blockip'        => 'Atuisoq asseruk',
+'blockip-legend' => 'Atuisoq asseruk',
+'blocklistline'  => '$1, $2 asserpaa $3 ($4)',
+'blocklink'      => 'assersoruk',
+'contribslink'   => 'tapikkat',
 
 # Move page
 'movearticle'     => 'Qupperneq nuuguk',
@@ -361,6 +389,10 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'movepage-moved'  => '<big>Qupperneq \'\'\'"$1" uunga nuuppoq "$2"\'\'\'</big>',
 '1movedto2'       => '[[$1]] nuuppaa [[$2]]-mut',
 '1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
+
+# Namespace 8 related
+'allmessages-language'      => 'Oqaatsit:',
+'allmessages-filter-submit' => 'Takuuk',
 
 # Thumbnails
 'thumbnail-more' => 'Allisiguk',
@@ -391,6 +423,10 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'tooltip-ca-nstab-main'          => 'Imarisaa takuuk',
 'tooltip-save'                   => 'Allannguutitit toqqukkit',
 'tooltip-preview'                => 'Isikkua takuuk, toqqortinnaguk atortaruk!',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'tamarmik',
+'namespacesall'    => 'tamarmik',
 
 # Special:SpecialPages
 'specialpages' => 'Quppernerit immikkut ittut',

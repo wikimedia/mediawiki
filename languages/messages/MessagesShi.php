@@ -303,11 +303,16 @@ lcont nek  tuyskar .
 'loginlanguagelabel'      => 'tutlayt: $1',
 
 # Edit page toolbar
-'bold_tip'       => 'Aţŗş aťťuz',
-'italic_tip'     => 'Aţŗiş italik',
-'link_sample'    => 'Azwl n uzday',
-'link_tip'       => 'Azday uwgens',
-'extlink_sample' => 'http://www.example.com azwl n uzday',
+'bold_tip'        => 'Aţŗş aťťuz',
+'italic_sample'   => 'Aţŗiş iknan',
+'italic_tip'      => 'Aţŗiş italik',
+'link_sample'     => 'Azwl n uzday',
+'link_tip'        => 'Azday uwgens',
+'extlink_sample'  => 'http://www.example.com azwl n uzday',
+'extlink_tip'     => 'Azday n berra (isktayn http://prefix)',
+'headline_sample' => 'Aţŗiş n uswer amuqran',
+'nowiki_sample'   => 'Kcm s uţŗiş li ur igddan ɣid',
+'nowiki_tip'      => 'Zri Taseddast nwiki',
 
 # Edit pages
 'summary'                    => 'Tadusi',

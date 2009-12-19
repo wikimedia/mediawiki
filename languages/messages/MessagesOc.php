@@ -1365,7 +1365,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 * Una casa marcada significa que l'utilizaire se tròba dins aqueste grop.
 * Una casa pas marcada significa, al contrari, que s’i tròba pas.
 * Una * indica que podretz pas levar aqueste grop un còp que l'auretz apondut e vice-versa.",
-'userrights-reason'           => 'Motiu del cambiament :',
+'userrights-reason'           => 'Motiu :',
 'userrights-no-interwiki'     => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
 'userrights-nodatabase'       => 'La banca de donadas « $1 » existís pas o es pas en local.',
 'userrights-nologin'          => "Vos cal [[Special:UserLogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
@@ -1903,7 +1903,8 @@ Las entradas <s>barradas</s> son estadas resolgudas.',
 'ancientpages'            => 'Articles mai ancians',
 'move'                    => 'Tornar nomenar',
 'movethispage'            => 'Tornar nomenar la pagina',
-'unusedimagestext'        => "Doblidetz pas que d'autres sites pòdon conténer un ligam dirècte cap a aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
+'unusedimagestext'        => 'Los fichièrs seguents existisson, mas son pas incluses dins cap de pagina.
+Notatz que d’autres sites pòdon aver un ligam dirècte cap a un fichièr, e doncas qu’un fichièr pòt èsser listat aicí alara qu’es en realitat utilisat sus aqueles sites.',
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
 'notargettitle'           => 'Pas de cibla',
 'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
