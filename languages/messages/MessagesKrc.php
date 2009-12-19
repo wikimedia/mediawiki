@@ -2551,12 +2551,16 @@ $1',
 'show-big-image'       => 'Толу ачыкълау',
 'show-big-image-thumb' => '<small>Ал къарауда ёлчеми: $1 × $2 пиксель</small>',
 'file-info-gif-looped' => 'тогъайланнганды',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|фрейм|фрейм}}',
 
 # Special:NewFiles
+'newimages'        => 'Джангы файлланы галереясы',
+'imagelisttext'    => "Тюбюрекде $2 кёре тизилген '''$1''' {{PLURAL:$1|файл|файл}} кёрюнеди.",
 'newimages-legend' => 'Фильтр',
 'newimages-label'  => 'Файлны аты (неда кесеги):',
 'showhidebots'     => '($1 бот)',
 'ilsubmit'         => 'Таб',
+'bydate'           => 'Хронологиягъа кёре',
 
 # Bad image list
 'bad_image_list' => 'Формат былай болургъа керекди:
@@ -2582,6 +2586,7 @@ $1',
 # EXIF tags
 'exif-imagewidth'          => 'Кенглик',
 'exif-imagelength'         => 'Мийиклик',
+'exif-orientation'         => 'Кадрны ориентациясы',
 'exif-imagedescription'    => 'Суратны аты',
 'exif-usercomment'         => 'Къошакъ комментарий',
 'exif-exposuretime-format' => '$1 с ($2)',
@@ -2591,14 +2596,34 @@ $1',
 'exif-flash'               => 'Флеш',
 'exif-gpsdatestamp'        => 'GPS заман',
 
+'exif-orientation-3' => '180° бурулгъанды',
+
+'exif-subjectdistance-value' => '$1 метр',
+
+'exif-meteringmode-3' => 'Нохталы',
+'exif-meteringmode-6' => 'Джартылы',
+
+'exif-lightsource-0'  => 'Билинмеген',
+'exif-lightsource-1'  => 'Кюн джарыкъ',
+'exif-lightsource-9'  => 'Ачыкъ хауа',
+'exif-lightsource-10' => 'Булутлу',
+'exif-lightsource-11' => 'Ауана',
+
+'exif-focalplaneresolutionunit-2' => 'дюйм',
+
+'exif-contrast-0' => 'Нормал',
+'exif-contrast-1' => 'Джумушакъ',
+
 # External editor support
 'edit-externally'      => 'Бу файлны тыш программа бла тюзетигиз',
 'edit-externally-help' => '(толу информациягъа мында къарагъыз: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'бютёу',
-'namespacesall' => 'бютёу',
-'monthsall'     => 'бютёу',
+'recentchangesall' => 'бютеу',
+'imagelistall'     => 'бютеу',
+'watchlistall2'    => 'бютёу',
+'namespacesall'    => 'бютёу',
+'monthsall'        => 'бютёу',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Списокдан бетледе тюрлениуле',

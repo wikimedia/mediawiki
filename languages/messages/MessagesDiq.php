@@ -840,7 +840,7 @@ resayişê şıma çino.',
 'revdelete-no-change'         => "'''Hişyari:'''  $2 $1 no çi re ca ra eyarê esayişi waziyayo.",
 'revdelete-concurrent-change' => '$2 $1 no çi wexta ke vuriya xeta da: wina aseno ke wexta şıma vurnayiş kerdene o enate de yewna te vurnayiş kerdo.
 rocaneyan kontrol bıkere.',
-'revdelete-only-restricted'   => 'şıma heta tercihê çabbiyayişi nêweçina şıma nêeşkeni ne unsuran çabbıkeri.',
+'revdelete-only-restricted'   => 'Item ke $2, $1 nimitiş de heta esta: şıma heta tercihê çabbiyayişi nêweçina şıma nêeşkeni ne unsuran çabbıkeri.',
 'revdelete-reason-dropdown'   => '*sebebê hewna kerdışi umumi
 ** ihlalê telifi
 ** malumatê şexsiyo ke munasib niye',
@@ -1606,7 +1606,8 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'ancientpages'            => 'Pelê kıhanêri',
 'move'                    => 'bere',
 'movethispage'            => 'Ena pele bere',
-'unusedimagestext'        => 'xo vir ra mekerê ke keyepeli bini eşkeni pê yew URLyi gıreyi bıde dosyayi.',
+'unusedimagestext'        => 'Ena dosyayan estê feqet embed nibiyê.
+Xo vir ra mekerê ke keyepeli bini eşkeni pê yew URLyi gıreyi bıde dosyayi.',
 'unusedcategoriestext'    => 'kategoriyê cêrıni bıbo zi çı nêşuxulyena.',
 'notargettitle'           => 'Hedef çini yo',
 'notargettext'            => 'qey xebıtnayişê ney fonksiyoni şıma yew hedef nişane nêkerd.',
