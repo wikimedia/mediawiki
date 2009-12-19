@@ -190,7 +190,7 @@ class SpecialUpload extends SpecialPage {
 		
 		# Initialize form
 		$form = new UploadForm( array(
-			'watch' => $this->watchCheck(), 
+			'watch' => $this->getWatchCheck(), 
 			'forreupload' => $this->mForReUpload, 
 			'sessionkey' => $sessionKey,
 			'hideignorewarning' => $hideIgnoreWarning,
@@ -199,8 +199,9 @@ class SpecialUpload extends SpecialPage {
 
 		# Check the token, but only if necessary
 		if( !$this->mTokenOk && !$this->mCancelUpload
-				&& ( $this->mUpload && $this->mUploadClicked ) )
+				&& ( $this->mUpload && $this->mUploadClicked ) ) {
 			$form->addPreText( wfMsgExt( 'session_fail_preview', 'parseinline' ) );
+		}
 
 		# Add text to form
 		$form->addPreText( '<div id="uploadtext">' . wfMsgExt( 'uploadtext', 'parse' ) . '</div>');
@@ -226,16 +227,19 @@ class SpecialUpload extends SpecialPage {
 
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		// Show a subtitle link to deleted revisions (to sysops et al only)
-		if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 && $wgUser->isAllowed( 'deletedhistory' ) ) {
-			$link = wfMsgExt(
-				$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
-				array( 'parse', 'replaceafter' ),
-				$wgUser->getSkin()->linkKnown(
-					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
-					wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
-				)
-			);
-			$wgOut->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
+		if( $title instanceof Title ) {
+			$count = $title->isDeleted();
+			if ( $count > 0 && $wgUser->isAllowed( 'deletedhistory' ) ) {
+				$link = wfMsgExt(
+					$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
+					array( 'parse', 'replaceafter' ),
+					$wgUser->getSkin()->linkKnown(
+						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
+						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
+					)
+				);
+				$wgOut->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
+			}
 		}
 
 		// Show the relevant lines from deletion log (for still deleted files only)
@@ -255,7 +259,7 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * @param string $message HTML message to be passed to mainUploadForm
 	 */
-	protected function recoverableUploadError( $message ) {
+	protected function showRecoverableUploadError( $message ) {
 		$sessionKey = $this->mUpload->stashSession();
 		$message = '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" .
 			'<div class="error">' . $message . "</div>\n";
@@ -269,7 +273,7 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * @param array $warnings
 	 */
-	protected function uploadWarning( $warnings ) {
+	protected function showUploadWarning( $warnings ) {
 		global $wgUser;
 
 		$sessionKey = $this->mUpload->stashSession();
@@ -313,7 +317,7 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * @param string $message
 	 */
-	protected function uploadError( $message ) {
+	protected function showUploadError( $message ) {
 		$message = '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" .
 			'<div class="error">' . $message . "</div>\n";
 		$this->showUploadForm( $this->getUploadForm( $message ) );
@@ -328,26 +332,34 @@ class SpecialUpload extends SpecialPage {
 
 		// Verify permissions
 		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
-		if( $permErrors !== true )
-			return $wgOut->showPermissionsErrorPage( $permErrors );
+		if( $permErrors !== true ) {
+			$wgOut->showPermissionsErrorPage( $permErrors );
+			return;
+		}
 
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
-		if( !$status->isOK() )
-			return $this->showUploadForm( $this->getUploadForm( $wgOut->parse( $status->getWikiText() ) ) );
+		if( !$status->isOK() ) {
+			$this->showUploadForm( $this->getUploadForm( $wgOut->parse( $status->getWikiText() ) ) );
+			return;
+		}
 
 		// Upload verification
 		$details = $this->mUpload->verifyUpload();
-		if ( $details['status'] != UploadBase::OK )
-			return $this->processVerificationError( $details );
+		if ( $details['status'] != UploadBase::OK ) {
+			$this->processVerificationError( $details );
+			return;
+		}
 
 		$this->mLocalFile = $this->mUpload->getLocalFile();
 
 		// Check warnings if necessary
 		if( !$this->mIgnoreWarning ) {
 			$warnings = $this->mUpload->checkWarnings();
-			if( count( $warnings ) )
-				return $this->uploadWarning( $warnings );
+			if( count( $warnings ) ) {
+				$this->showUploadWarning( $warnings );
+				return;
+			}
 		}
 
 		// Get the page text if this is not a reupload
@@ -358,8 +370,10 @@ class SpecialUpload extends SpecialPage {
 			$pageText = false;
 		}
 		$status = $this->mUpload->performUpload( $this->mComment, $pageText, $this->mWatchthis, $wgUser );
-		if ( !$status->isGood() )
-			return $this->uploadError( $wgOut->parse( $status->getWikiText() ) );
+		if ( !$status->isGood() ) {
+			$this->showUploadError( $wgOut->parse( $status->getWikiText() ) );
+			return;
+		}
 
 		// Success, redirect to description page
 		wfRunHooks( 'SpecialUploadComplete', array( &$this ) );
@@ -404,7 +418,7 @@ class SpecialUpload extends SpecialPage {
 	 * Note that the page target can be changed *on the form*, so our check
 	 * state can get out of sync.
 	 */
-	protected function watchCheck() {
+	protected function getWatchCheck() {
 		global $wgUser;
 		if( $wgUser->getOption( 'watchdefault' ) ) {
 			// Watch all edits!
@@ -435,18 +449,18 @@ class SpecialUpload extends SpecialPage {
 
 			/** Statuses that only require name changing **/
 			case UploadBase::MIN_LENGTH_PARTNAME:
-				$this->recoverableUploadError( wfMsgHtml( 'minlength1' ) );
+				$this->showRecoverableUploadError( wfMsgHtml( 'minlength1' ) );
 				break;
 			case UploadBase::ILLEGAL_FILENAME:
-				$this->recoverableUploadError( wfMsgExt( 'illegalfilename',
+				$this->showRecoverableUploadError( wfMsgExt( 'illegalfilename',
 					'parseinline', $details['filtered'] ) );
 				break;
 			case UploadBase::OVERWRITE_EXISTING_FILE:
-				$this->recoverableUploadError( wfMsgExt( $details['overwrite'],
+				$this->showRecoverableUploadError( wfMsgExt( $details['overwrite'],
 					'parseinline' ) );
 				break;
 			case UploadBase::FILETYPE_MISSING:
-				$this->recoverableUploadError( wfMsgExt( 'filetype-missing',
+				$this->showRecoverableUploadError( wfMsgExt( 'filetype-missing',
 					'parseinline' ) );
 				break;
 
@@ -456,7 +470,7 @@ class SpecialUpload extends SpecialPage {
 				break;
 			case UploadBase::FILETYPE_BADTYPE:
 				$finalExt = $details['finalExt'];
-				$this->uploadError(
+				$this->showUploadError(
 					wfMsgExt( 'filetype-banned-type',
 						array( 'parseinline' ),
 						htmlspecialchars( $finalExt ),
@@ -471,7 +485,7 @@ class SpecialUpload extends SpecialPage {
 			case UploadBase::VERIFICATION_ERROR:
 				unset( $details['status'] );
 				$code = array_shift( $details['details'] );
-				$this->uploadError( wfMsgExt( $code, 'parseinline', $details['details'] ) );
+				$this->showUploadError( wfMsgExt( $code, 'parseinline', $details['details'] ) );
 				break;
 			case UploadBase::HOOK_ABORTED:
 				if ( is_array( $details['error'] ) ) { # allow hooks to return error details in an array
@@ -482,7 +496,7 @@ class SpecialUpload extends SpecialPage {
 					$args = null;
 				}
 
-				$this->uploadError( wfMsgExt( $error, 'parseinline', $args ) );
+				$this->showUploadError( wfMsgExt( $error, 'parseinline', $args ) );
 				break;
 			default:
 				throw new MWException( __METHOD__ . ": Unknown value `{$details['status']}`" );
