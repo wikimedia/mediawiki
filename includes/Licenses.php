@@ -68,14 +68,11 @@ class Licenses extends HTMLFormField {
 		}
 	}
 
-	protected static function trimStars( $str ) {
+	protected function trimStars( $str ) {
 		$i = $count = 0;
 
-		$length = strlen( $str );
-		for ( $i = 0; $i < $length; $i++ ) {
-			if ( $str[$i] != '*' )
-				return array( $i, ltrim( $str, '* ' ) );
-		}
+		$numStars = strspn( $str, '*' );
+		return array( $numStars, ltrim( substr( $str, $numStars ), ' ' ) );
 	}
 
 	protected function stackItem( &$list, $path, $item ) {
