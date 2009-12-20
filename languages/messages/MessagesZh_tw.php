@@ -176,7 +176,7 @@ $messages = array(
 'gotaccount'                 => '已經擁有帳號？$1。',
 'badretype'                  => '你所輸入的密碼並不相同。',
 'userexists'                 => '您所輸入的使用者名稱已經存在，請另選一個。',
-'nocookiesnew'               => '已成功建立新帳戶！偵測到您已關閉 Cookies，請開啟它並登入。',
+'nocookiesnew'               => '已成功建立新帳號！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行使用者登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'noname'                     => '你沒有輸入一個有效的使用者帳號。',
 'loginsuccess'               => '你現在以 "$1"的身份登入{{SITENAME}}。',
@@ -766,7 +766,8 @@ $NEWPAGE
 'nextdiff'     => '下一個→',
 
 # Media information
-'imagemaxsize' => '在圖片描述頁對圖片大小限制為:',
+'imagemaxsize'   => '在圖片描述頁對圖片大小限制為:',
+'show-big-image' => '完整解析度',
 
 # Special:NewFiles
 'newimages'     => '新建圖片畫廊',

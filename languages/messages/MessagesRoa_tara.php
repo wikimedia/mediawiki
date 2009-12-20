@@ -1147,7 +1147,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 * 'Na spunde de verifiche significhe ca l'utende stè jndr'à stu gruppe.
 * 'A spunda de verifica luate significhe ca l'utende non ge stè jndr'à stu gruppe.
 * 'Nu * significhe ca tu non ge puè luà 'u gruppe 'na vote ca tu l'è aggiunde, o a smerse.",
-'userrights-reason'              => "Mutive d'u cangiamende:",
+'userrights-reason'              => 'Mutive:',
 'userrights-no-interwiki'        => "Tu non ge tìne le permesse pe cangià le deritte utende sus a l'otre uicchi.",
 'userrights-nodatabase'          => "'U Database $1 non g'esiste o non g'è lochele.",
 'userrights-nologin'             => "Tu à essere [[Special:UserLogin|colleghete]] cu 'nu cunde utende d'amministratore pe assignà le deritte utende.",

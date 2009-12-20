@@ -19,6 +19,7 @@
  * @author Jon Harald Søby
  * @author Jorunn
  * @author Najami
+ * @author Nghtwlkr
  * @author Olve Utne
  * @author Ranveig
  * @author Shauni
@@ -1026,6 +1027,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-hide-comment'      => 'Gøym endringssamandraga',
 'revdelete-hide-user'         => 'Gøym brukarnamn/IP-adresse',
 'revdelete-hide-restricted'   => 'Løyn data frå administratorar slik som med andre brukarar',
+'revdelete-radio-set'         => 'Ja',
+'revdelete-radio-unset'       => 'Nei',
 'revdelete-suppress'          => 'Fjern informasjon frå administratorar også',
 'revdelete-unsuppress'        => 'Fjern avgrensingane på dei attoppretta versjonane',
 'revdelete-log'               => 'Grunngjeving for sletting:',

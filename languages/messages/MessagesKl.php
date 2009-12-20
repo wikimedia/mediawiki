@@ -352,6 +352,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'unwatching' => 'Saqquminera peeruk',
 
 # Delete
+'delete-confirm' => 'Peeruk "$1"',
 'actioncomplete' => 'Naammassineqareersimavoq',
 'deletedarticle' => 'peerpaa "[[$1]]"',
 
