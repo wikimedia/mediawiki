@@ -1239,7 +1239,7 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'search-redirect'                  => '(redirecionamento de $1)',
 'search-section'                   => '(secção $1)',
 'search-suggest'                   => 'Será que queria dizer: $1',
-'search-interwiki-caption'         => 'Projectos irmanados',
+'search-interwiki-caption'         => 'Projectos associados',
 'search-interwiki-default'         => 'Resultados de $1:',
 'search-interwiki-more'            => '(mais)',
 'search-mwsuggest-enabled'         => 'com sugestões',
