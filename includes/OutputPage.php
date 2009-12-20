@@ -1514,8 +1514,8 @@ class OutputPage {
 	/**
 	 * Add a "return to" link pointing to a specified title
 	 *
-	 * @param Title $title Title to link
-	 * @param string $query Query string
+	 * @param $title Title to link
+	 * @param $query String: query string
 	 */
 	public function addReturnTo( $title, $query = array() ) {
 		global $wgUser;
@@ -1529,8 +1529,9 @@ class OutputPage {
 	 * Add a "return to" link pointing to a specified title,
 	 * or the title indicated in the request, or else the main page
 	 *
-	 * @param null $unused No longer used
-	 * @param Title $returnto Title to return to
+	 * @param $unused No longer used
+	 * @param $returnto Title or String to return to
+	 * @param $returntoquery String: query string for the return to link
 	 */
 	public function returnToMain( $unused = null, $returnto = null, $returntoquery = null ) {
 		global $wgRequest;
