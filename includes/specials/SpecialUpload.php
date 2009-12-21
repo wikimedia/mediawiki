@@ -45,6 +45,11 @@ class SpecialUpload extends SpecialPage {
 	protected $mForReUpload;		// The user followed an "overwrite this file" link
 	protected $mCancelUpload;		// The user clicked "Cancel and return to upload form" button
 	protected $mTokenOk;
+	
+	/** Text injection points for hooks not using HTMLForm **/
+	public $uploadFormTextTop;
+	public $uploadFormTextAfterSummary;
+	
 
 	/**
 	 * Initialize instance variables from request and create an Upload handler
@@ -91,6 +96,9 @@ class SpecialUpload extends SpecialPage {
 		} else {
 			$this->mTokenOk = $wgUser->matchEditToken( $token );
 		}
+		
+		$this->uploadFormTextTop = '';
+		$this->uploadFormTextAfterSummary = '';
 	}
 
 	/**
@@ -204,6 +212,9 @@ class SpecialUpload extends SpecialPage {
 			'sessionkey' => $sessionKey,
 			'hideignorewarning' => $hideIgnoreWarning,
 			'destwarningack' => (bool)$this->mDestWarningAck,
+			
+			'texttop' => $this->uploadFormTextTop,
+			'textaftersummary' => $this->uploadFormTextAfterSummary,
 		) );
 		$form->setTitle( $this->getTitle() );
 
@@ -687,6 +698,9 @@ class UploadForm extends HTMLForm {
 	protected $mHideIgnoreWarning;
 	protected $mDestWarningAck;
 	
+	protected $mTextTop;
+	protected $mTextAfterSummary;
+	
 	protected $mSourceIds;
 
 	public function __construct( $options = array() ) {
@@ -698,6 +712,9 @@ class UploadForm extends HTMLForm {
 				? $options['sessionkey'] : '';
 		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
 		$this->mDestWarningAck = !empty( $options['destwarningack'] );
+		
+		$this->mTextTop = $options['texttop'];
+		$this->mTextAfterSummary = $options['textaftersummary'];
 
 		$sourceDescriptor = $this->getSourceSection();
 		$descriptor = $sourceDescriptor
@@ -749,6 +766,15 @@ class UploadForm extends HTMLForm {
 		$selectedSourceType = strtolower( $wgRequest->getText( 'wpSourceType', 'File' ) );
 
 		$descriptor = array();
+		if ( $this->mTextTop ) {
+			$descriptor['UploadFormTextTop'] = array(
+				'type' => 'info',
+				'section' => 'source',
+				'default' => $this->mTextTop,
+				'raw' => true,
+			);
+		}
+		
 		$descriptor['UploadFile'] = array(
 				'class' => 'UploadSourceField',
 				'section' => 'source',
@@ -860,7 +886,18 @@ class UploadForm extends HTMLForm {
 					: 'fileuploadsummary',
 				'cols' => $cols,
 				'rows' => 8,
-			),
+			)
+		);
+		if ( $this->mTextAfterSummary ) {
+			$descriptor['UploadFormTextAfterSummary'] = array(
+				'type' => 'info',
+				'section' => 'description',
+				'default' => $this->mTextAfterSummary,
+				'raw' => true,
+			);
+		}
+		
+		$descriptor += array(
 			'EditTools' => array(
 				'type' => 'edittools',
 				'section' => 'description',
