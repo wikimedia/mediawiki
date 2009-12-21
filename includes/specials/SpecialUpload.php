@@ -41,6 +41,7 @@ class SpecialUpload extends SpecialPage {
 	protected $mCopyrightSource;
 
 	/** Hidden variables **/
+	protected $mDestWarningAck;
 	protected $mForReUpload;		// The user followed an "overwrite this file" link
 	protected $mCancelUpload;		// The user clicked "Cancel and return to upload form" button
 	protected $mTokenOk;
@@ -68,6 +69,7 @@ class SpecialUpload extends SpecialPage {
 		$this->mLicense           = $request->getText( 'wpLicense' );
 
 
+		$this->mDestWarningAck    = $request->getText( 'wpDestFileWarningAck' );
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' )
 			|| $request->getCheck( 'wpUploadIgnoreWarning' );
 		$this->mWatchthis         = $request->getBool( 'wpWatchthis' ) && $wgUser->isLoggedIn();
@@ -201,6 +203,7 @@ class SpecialUpload extends SpecialPage {
 			'forreupload' => $this->mForReUpload, 
 			'sessionkey' => $sessionKey,
 			'hideignorewarning' => $hideIgnoreWarning,
+			'destwarningack' => (bool)$this->mDestWarningAck,
 		) );
 		$form->setTitle( $this->getTitle() );
 
@@ -276,12 +279,21 @@ class SpecialUpload extends SpecialPage {
 		$this->showUploadForm( $form );
 	}
 	/**
-	 * Stashes the upload, shows the main form, but adds an "continue anyway button"
+	 * Stashes the upload, shows the main form, but adds an "continue anyway button".
+	 * Also checks whether there are actually warnings to display.
 	 *
 	 * @param array $warnings
+	 * @return boolean true if warnings were displayed, false if there are no 
+	 * 	warnings and the should continue processing like there was no warning
 	 */
 	protected function showUploadWarning( $warnings ) {
 		global $wgUser;
+
+		# If there are no warnings, or warnings we can ignore, return early
+		if ( !$warnings || ( count( $warnings ) == 1 && 
+				 isset( $warnings['exists']) && $this->mDestWarningAck ) ) {
+			return false;				 	
+		}
 
 		$sessionKey = $this->mUpload->stashSession();
 
@@ -317,6 +329,9 @@ class SpecialUpload extends SpecialPage {
 		$form->addButton( 'wpCancelUpload', wfMsg( 'reuploaddesc' ) );
 
 		$this->showUploadForm( $form );
+		
+		# Indicate that we showed a form
+		return true;
 	}
 
 	/**
@@ -371,8 +386,7 @@ class SpecialUpload extends SpecialPage {
 		// Check warnings if necessary
 		if( !$this->mIgnoreWarning ) {
 			$warnings = $this->mUpload->checkWarnings();
-			if( count( $warnings ) ) {
-				$this->showUploadWarning( $warnings );
+			if( $this->showUploadWarning( $warnings ) ) {
 				return;
 			}
 		}
@@ -671,6 +685,7 @@ class UploadForm extends HTMLForm {
 	protected $mForReUpload;
 	protected $mSessionKey;
 	protected $mHideIgnoreWarning;
+	protected $mDestWarningAck;
 	
 	protected $mSourceIds;
 
@@ -682,6 +697,7 @@ class UploadForm extends HTMLForm {
 		$this->mSessionKey = isset( $options['sessionkey'] ) 
 				? $options['sessionkey'] : '';
 		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
+		$this->mDestWarningAck = !empty( $options['destwarningack'] );
 
 		$sourceDescriptor = $this->getSourceSection();
 		$descriptor = $sourceDescriptor
@@ -906,6 +922,12 @@ class UploadForm extends HTMLForm {
 				'section' => 'options',
 			);
 		}
+
+		$descriptor['wpDestFileWarningAck'] = array(
+			'type' => 'hidden',
+			'id' => 'wpDestFileWarningAck',
+			'default' => $this->mDestWarningAck ? '1' : '',
+		);
 
 		return $descriptor;
 
