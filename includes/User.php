@@ -1340,11 +1340,11 @@ class User {
 				} else {
 					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
 				}
-				$wgMemc->incr( $key );
 			} else {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
-				$wgMemc->set( $key, 1, intval( $period ) ); // first ping
+				$wgMemc->add( $key, 0, intval( $period ) ); // first ping
 			}
+			$wgMemc->incr( $key );
 		}
 
 		wfProfileOut( __METHOD__ );
