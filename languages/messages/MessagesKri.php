@@ -226,7 +226,8 @@ Sohmtehm dehm dohn ires am.',
 'revertmerge' => 'Ònmaj',
 
 # Diffs
-'editundo' => 'chenj am bak tu wetin i bin bi bifo',
+'editundo'   => 'chenj am bak tu wetin i bin bi bifo',
+'diff-multi' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown)',
 
 # Search results
 'prevn'              => 'Go bak {{PLURAL:$1|$1}}',

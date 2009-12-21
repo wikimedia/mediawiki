@@ -830,7 +830,7 @@ Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae 
 'revdelete-hide-comment'      => 'Badlao ke baare me comment ke lukao',
 'revdelete-hide-user'         => "Editor's username/IP ke lukao",
 'revdelete-hide-restricted'   => 'Ii rukawat ke administrator aur duusra log se lukao.',
-'revdelete-radio-same'        => '(chhorr do)',
+'revdelete-radio-same'        => '(badlo nai)',
 'revdelete-radio-set'         => 'Haan',
 'revdelete-radio-unset'       => 'Nai',
 'revdelete-suppress'          => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
@@ -1093,14 +1093,14 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'prefs-help-email-required'     => 'E-mail address ke jaruri hai.',
 'prefs-info'                    => 'Basic jaankari',
 'prefs-i18n'                    => 'Internationalisation',
-'prefs-signature'               => 'Signature',
+'prefs-signature'               => 'Chinh',
 'prefs-dateformat'              => 'Tarik ke format',
 'prefs-timeoffset'              => 'Time ke offset',
-'prefs-advancedediting'         => 'Advanced options',
-'prefs-advancedrc'              => 'Advanced options',
-'prefs-advancedrendering'       => 'Advanced options',
-'prefs-advancedsearchoptions'   => 'Advanced options',
-'prefs-advancedwatchlist'       => 'Advanced options',
+'prefs-advancedediting'         => 'Uchchaa pasand',
+'prefs-advancedrc'              => 'Uchchaa pasand',
+'prefs-advancedrendering'       => 'Uchchaa pasand',
+'prefs-advancedsearchoptions'   => 'Uchchaa pasand',
+'prefs-advancedwatchlist'       => 'Uchchaa pasand',
 'prefs-display'                 => 'Dekhae waala option',
 'prefs-diffs'                   => 'Farka',
 
@@ -1376,7 +1376,7 @@ Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa na
 'file-exists-duplicate'       => 'Ii file following file ke duplicate hai {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => 'Yahii rakam ke ek aur file ([[$1]]) ke pahile delete karaa gais hai. Aap ke file ke deletion history ke check kare ke chaahi, upload kare se pahile.',
 'successfulupload'            => 'Upload safal bhais',
-'uploadwarning'               => 'Upload warning',
+'uploadwarning'               => 'Upload ke baare me chetauni',
 'savefile'                    => 'File ke save karo',
 'uploadedimage'               => '"[[$1]]" ke upload kar dewa gae',
 'overwroteimage'              => '"[[$1]]" ke nawaa version ke upload karaa gais hai',
@@ -2131,6 +2131,7 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]]
 'ipblocklist-sh-tempblocks'       => '$1 temporary rukawat',
 'ipblocklist-sh-addressblocks'    => '$1 ek IP rukawat',
 'ipblocklist-submit'              => 'Khojo',
+'ipblocklist-localblock'          => 'Sthaniye rukawat',
 'blocklistline'                   => '$1, $2 $3 ($4) ke rok diis hai',
 'infiniteblock'                   => 'sab din ke khatir',
 'expiringblock'                   => 'khalaas hoe hai $1 at $2',
@@ -2610,12 +2611,15 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-colorspace'                => 'Rang ke jagha',
 'exif-pixelydimension'           => 'Chapa ke thik chaurrai',
 'exif-pixelxdimension'           => 'Chapa ke thik uunchai',
+'exif-usercomment'               => 'Sadasysa ke bichar',
 'exif-shutterspeedvalue'         => 'Shutter ke raftaar',
 'exif-aperturevalue'             => 'Aperture',
 'exif-focallength'               => 'Lens ke focal length',
 'exif-gpsaltitude'               => 'Uunchai',
+'exif-gpsspeedref'               => 'Raftar ke unit',
 'exif-gpsdatestamp'              => 'GPS ke taarik',
 
+'exif-meteringmode-0'   => 'Nai maluum',
 'exif-meteringmode-6'   => 'Puura nai',
 'exif-meteringmode-255' => 'Duusra',
 
@@ -2625,6 +2629,10 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-lightsource-10' => 'Baadal ke mausam',
 'exif-lightsource-11' => 'Chhanhi',
 
+# Flash modes
+'exif-flash-fired-0'  => 'Flash nai chalaa',
+'exif-flash-redeye-1' => 'laal-aankhi ke kamti kare waala mode',
+
 'exif-contrast-1' => 'Naram',
 
 'exif-sharpness-1' => 'Naram',
@@ -2632,6 +2640,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 
 'exif-subjectdistancerange-2' => 'Najdik se dekho',
 'exif-subjectdistancerange-3' => 'Duur se dekho',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-n' => 'Knots',
 
 # External editor support
 'edit-externally'      => 'Ii file ke bahaari program me kaam me laae ke badlo',
@@ -2647,6 +2658,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 
 # E-mail address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',
+
+# action=purge
+'confirm_purge_button' => 'Thik hae',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pahile waala panna',
