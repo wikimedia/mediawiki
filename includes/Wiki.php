@@ -206,11 +206,11 @@ class MediaWiki {
 				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
-		// Redirect loops, no title in URL, $wgUsePathInfo URLs
+		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} else if( $action == 'view' && !$request->wasPosted() &&
 			( ( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) ||
 			  // No valid variant in URL (if the main-language has multi-variants), to ensure
-			  // the Accept-Language would only be added to XVO when a 301 redirection happened
+			  // anonymous access would always be redirect to a URL with 'variant' parameter
 			  ( !isset($this->GET['variant']) && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{

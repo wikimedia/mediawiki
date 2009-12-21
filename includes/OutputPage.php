@@ -844,12 +844,37 @@ class OutputPage {
 		return $xvo;
 	}
 
+	/** bug 21672: Add Accept-Language to Vary and XVO headers
+		if there's no 'variant' parameter existed in $_GET.
+		
+		For example:
+		 /w/index.php?title=Main_page should always be served; but
+		 /w/index.php?title=Main_page&variant=zh-cn should never be served.
+		
+		patched by Liangent and Philip */
+	function addAcceptLanguage() {
+		global $wgContLang;
+		if( !isset( $_GET['variant'] ) && $wgContLang->hasVariants() ) {
+			$variants = $wgContLang->getVariants();
+			$aloption = array();
+			foreach ( $variants as $variant ) {
+				if( $variant === $wgContLang->getCode() )
+					continue;
+				else
+					$aloption[] = "string-contains=$variant";
+			}
+			$this->addVaryHeader( 'Accept-Language', $aloption );
+		}
+	}
+
 	public function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest, $wgUseXVO;
 
 		$response = $wgRequest->response();
 		if ($wgUseETag && $this->mETag)
 			$response->header("ETag: $this->mETag");
+
+		$this->addAcceptLanguage();
 
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
