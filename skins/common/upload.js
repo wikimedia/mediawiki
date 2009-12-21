@@ -46,13 +46,14 @@ function wgUploadSetup() {
 		document.getElementById( 'wpDestFile' ).onchange = function ( e ) { 
 			wgUploadWarningObj.checkNow(this.value);
 		};
-		var optionsTable = document.getElementById( 'mw-htmlform-options' ).tBodies[0];
+		var optionsTable = document.getElementById( 'mw-htmlform-description' ).tBodies[0];
 		var row = document.createElement( 'tr' );
 		var td = document.createElement( 'td' );
 		td.id = 'wpDestFile-warning';
 		td.colSpan = 2;
+		
 		row.appendChild( td );
-		optionsTable.appendChild( row );
+		optionsTable.insertBefore( row, optionsTable.children[1] );
 	}
 	
 	if ( wgAjaxLicensePreview ) {
@@ -187,7 +188,18 @@ var wgUploadWarningObj = {
 
 	'setWarning' : function (warning) {
 		var warningElt = document.getElementById( 'wpDestFile-warning' );
+		var ackElt = document.getElementsByName( 'wpDestFileWarningAck' );
+
 		this.setInnerHTML(warningElt, warning);
+		
+		// Set a value in the form indicating that the warning is acknowledged and
+		// doesn't need to be redisplayed post-upload
+		if ( warning == '' || warning == '&nbsp;' ) {
+			ackElt[0].value = '';
+		} else {
+			ackElt[0].value = '1';
+		}
+
 	},
 	'setInnerHTML' : function (element, text) {
 		// Check for no change to avoid flicker in IE 7
