@@ -186,19 +186,6 @@ class LanguageConverter {
 			// variable in case this is called before the user's
 			// preference is loaded
 			if( $fromHeader && array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
-
-				// bug 21672: Add Accept-Language to Vary and XVO headers
-				// to help Squid to determine user's perferred local language
-				// ONLY add Accept-Language when a variant has been found out
-				// patched by Liangent
-				$aloption = array();
-				foreach ( $this->mVariants as $variant ) {
-					if( $variant === $this->mMainLanguageCode )
-						continue;
-					$aloption[] = "string-contains=$variant";
-				}
-				$wgOut->addVaryHeader( 'Accept-Language', $aloption );
-
 				$acceptLanguage = strtolower( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 				// explode by comma
 				$result = explode(',', $acceptLanguage);
@@ -243,9 +230,10 @@ class LanguageConverter {
 					}
 				}
 			}
+			return $this->mMainLanguageCode;
 		}
+		else return $this->mPreferredVariant;
 
-		return $this->mMainLanguageCode;
 	}
 	
 	/**
