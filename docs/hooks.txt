@@ -1531,6 +1531,17 @@ $article: article object removed
 $user: user that watched
 $article: article object that was watched
 
+'UploadForm:initial': before the upload form is generated
+$form: UploadForm object
+You might set the member-variables $uploadFormTextTop and
+$uploadFormTextAfterSummary to inject text (HTML) either before
+or after the editform.
+
+'UploadForm:BeforeProcessing': DEPRECATED! at the beginning of processUpload()
+$form: UploadForm object
+Lets you poke at member variables like $mUploadDescription before the
+file is saved.
+
 'UploadCreateFromRequest': when UploadBase::createFromRequest has been called
 $type: (string) the requested upload type
 &$className: the class name of the Upload instance to be created

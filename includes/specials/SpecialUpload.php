@@ -155,6 +155,13 @@ class SpecialUpload extends SpecialPage {
 				&& ( $this->mUpload && $this->mUploadClicked ) ) {
 			$this->processUpload();
 		} else {
+			# Backwards compatibility hook
+			if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) )
+			{
+				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
+				return;
+			}
+			
 			$this->showUploadForm( $this->getUploadForm() );
 		}
 
@@ -343,6 +350,14 @@ class SpecialUpload extends SpecialPage {
 			$this->showUploadForm( $this->getUploadForm( $wgOut->parse( $status->getWikiText() ) ) );
 			return;
 		}
+
+		// Deprecated backwards compatibility hook
+		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) )
+		{
+			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
+			return array( 'status' => UploadBase::BEFORE_PROCESSING );
+		}
+
 
 		// Upload verification
 		$details = $this->mUpload->verifyUpload();
