@@ -896,7 +896,7 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 'revdelete-hide-comment'      => "Kuzhat notenn ar c'hemm",
 'revdelete-hide-user'         => "Kuzhat anv implijer pe chomlec'h IP an aozer",
 'revdelete-hide-restricted'   => "Diverkañ ar roadennoù kement d'ar verourien ha d'ar re all",
-'revdelete-radio-same'        => '(laoskel)',
+'revdelete-radio-same'        => '(chom hep cheñch)',
 'revdelete-radio-set'         => 'Ya',
 'revdelete-radio-unset'       => 'Nann',
 'revdelete-suppress'          => 'Diverkañ roadennoù ar verourien hag ar re all',
@@ -932,7 +932,7 @@ N\'oc\'h ket aotreet da vont outi.',
 'revdelete-modify-missing'    => "Fazi ;en ur zegas kemmoù en elfenn gant ID $1: n'emañ ket er bank roadennoù !",
 'revdelete-no-change'         => "'''Evezh :''' emañ an arventennoù gweluster goulennet gant an elfenn deiziataet eus an $1 da $2 dija",
 'revdelete-concurrent-change' => "Fazi pa'z eus bet bet degaset kemmoù en elfenn deiziataet eus an $1 da $2 : cheñchet eo bet e statud gant unan bennak all dres pa oac'h-chwi o kemmañ anezhi. Gwiriit ar marilhoù.",
-'revdelete-only-restricted'   => "N'hallit ket tennañ an elfennoù-mañ digant ar verourien ma ne zibabit ket ivez an dibarzhioù diverkañ all.",
+'revdelete-only-restricted'   => "Ur fazi 'zo bet pa oac'h o tennañ an danvez eus an $1 da $2 : n'hallit ket tennañ an elfennoù-mañ digant ar verourien ma ne zibabit ket ivez an dibarzhioù diverkañ all.",
 'revdelete-reason-dropdown'   => '*Abegoù diverkañ boutin
 **Gaou ouzh ar gwirioù implijout
 ** Titouroù personel dizereat',

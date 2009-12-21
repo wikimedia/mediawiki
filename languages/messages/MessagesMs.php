@@ -912,6 +912,9 @@ Mungkin terdapat butiran lanjut di dalam [{{fullurl:{{#Special:Log}}/delete|page
 'rev-deleted-unhide-diff'     => "Salah satu semakan laman ini telah '''dihapuskan'''.
 Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin teruskan.",
+'rev-suppressed-unhide-diff'  => "Perubahan dilakukan '''tidak dikenal pasti'''
+Maklumat berkenaan dapat dijumpai dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log berikut].
+Sebagai admin, anda masih boleh [$1 melihat perubahan berkaitan] jika anda ingin teruskan.",
 'rev-delundel'                => 'tunjuk/sembunyi',
 'revisiondelete'              => 'Hapus/nyahhapus semakan',
 'revdelete-nooldid-title'     => 'Tiada semakan sasaran',

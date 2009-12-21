@@ -591,8 +591,9 @@ $1',
 Можеби има грешка во пишувањето на URL или сте следеле погрешна врска.
 Ова може исто така да биде и грешка во софтверот на {{SITENAME}}.',
 'nosuchspecialpage' => 'Не постои таква специјална страница',
-'nospecialpagetext' => 'Баравте невалидна [[Special:SpecialPages|специјална страница]].
-За листа на валидни специјални страници погледни: [[Special:SpecialPages|{{int:specialpages}}]].',
+'nospecialpagetext' => '<strong>Побаравте неважечка специјална страница.</strong>
+
+Листа на важечки специјални страници ќе најдете на [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Грешка',
@@ -1087,7 +1088,7 @@ $2',
 'revdelete-hide-comment'      => 'Сокриј опис на уредување',
 'revdelete-hide-user'         => 'Сокриј корисничко име/IP на уредувач',
 'revdelete-hide-restricted'   => 'Постави ограничувања и за администратори на ист начин како и за останатите',
-'revdelete-radio-same'        => '(остави)',
+'revdelete-radio-same'        => '(не менувај)',
 'revdelete-radio-set'         => 'Да',
 'revdelete-radio-unset'       => 'Не',
 'revdelete-suppress'          => 'Сокриј податоци од Систем оператори и други корисници',

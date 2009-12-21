@@ -740,7 +740,7 @@ Chèich stamp a saran nen anserì.",
 'post-expand-template-argument-warning'   => "'''Atension:''' Costa pàgina a conten almanch un paràmeter dë stamp che a l'ha n'espansion tròp gròssa.
 Costi paràmeter a son stàit lassà fòra.",
 'post-expand-template-argument-category'  => 'Pàgine contenente stamp con paràmeter mancant',
-'parser-template-loop-warning'            => 'Trovà un loop dlë stamp: [[$1]]',
+'parser-template-loop-warning'            => 'Trovà na liassa dlë stamp: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Passà ël lìmit ëd ricorsion dlë stamp ($1)',
 
 # "Undo" feature
@@ -751,14 +751,14 @@ Costi paràmeter a son stàit lassà fòra.",
 
 # Account creation failure
 'cantcreateaccounttitle' => "As peul pa registresse d'utent",
-'cantcreateaccount-text' => "La cression ëd cont neuv a parte da st'adrëssa IP-sì ('''$1''') a l'é staita blocà da [[User:$3|$3]].
+'cantcreateaccount-text' => "La cression ëd cont neuv a parte da st'adrëssa IP-sì ('''$1''') a l'é stàita blocà da [[User:$3|$3]].
 
-La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
+La rason butà da $3 për ël blocagi a l'é stàita: ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Smon ij registr dë sta pàgina-sì',
 'nohistory'              => "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",
-'currentrev'             => "Versione dël dì d'ancheuj",
+'currentrev'             => "Version dël dì d'ancheuj",
 'currentrev-asof'        => 'Vërsion corenta dle $1',
 'revisionasof'           => 'Revision $1',
 'revision-info'          => 'Revision al $1; $2',
@@ -843,7 +843,7 @@ J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé �
 'revdelete-hide-comment'      => 'Stërma ël coment a la modìfica',
 'revdelete-hide-user'         => "Stërma lë stranòm ò l'adrëssa IP dël contributor",
 'revdelete-hide-restricted'   => "Stërma le anformassion a j'aministrator tan-me a j'àutri",
-'revdelete-radio-same'        => '(lassa parèj)',
+'revdelete-radio-same'        => '(cambia pa)',
 'revdelete-radio-set'         => 'É!',
 'revdelete-radio-unset'       => 'Nò',
 'revdelete-suppress'          => "Smon-je pa ij dat gnanca a j'aministrator",

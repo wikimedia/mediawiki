@@ -936,7 +936,7 @@ Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläs
 'revdelete-hide-comment'      => 'Bemierkung verstoppen',
 'revdelete-hide-user'         => 'Dem Auteur säi Benotzernumm/IP verstoppen',
 'revdelete-hide-restricted'   => 'Donnéeën och fir Administrateuren suppriméieren geneesou wéi fir déi Aner',
-'revdelete-radio-same'        => '(esou loossen)',
+'revdelete-radio-same'        => '(net änneren)',
 'revdelete-radio-set'         => 'Jo',
 'revdelete-radio-unset'       => 'Neen',
 'revdelete-suppress'          => 'Grond vum Läschen och fir Administrateure verstoppt',
