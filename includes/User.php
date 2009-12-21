@@ -2282,6 +2282,7 @@ class User {
 	function addWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->addWatch();
+		$this->invalidateCache();
 	}
 
 	/**
@@ -2291,6 +2292,7 @@ class User {
 	function removeWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->removeWatch();
+		$this->invalidateCache();
 	}
 
 	/**
