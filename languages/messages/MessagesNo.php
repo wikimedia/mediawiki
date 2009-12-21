@@ -1002,7 +1002,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-hide-comment'      => 'Skjul redigeringsforklaring',
 'revdelete-hide-user'         => 'Skjul bidragsyters brukernavn eller IP',
 'revdelete-hide-restricted'   => 'La disse begrensningene gjelde for administratorer også, og steng dette grensesnittet',
-'revdelete-radio-same'        => '(forlat)',
+'revdelete-radio-same'        => '(ikke endre)',
 'revdelete-radio-set'         => 'Ja',
 'revdelete-radio-unset'       => 'Nei',
 'revdelete-suppress'          => 'Fjern informasjon også fra administratorer',

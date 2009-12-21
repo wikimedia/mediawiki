@@ -942,7 +942,7 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-hide-comment'      => 'Özeti gösterme',
 'revdelete-hide-user'         => "Değişikliği yapan kullanıcı adını/IP'i gizle",
 'revdelete-hide-restricted'   => 'Verileri hizmetlilerle birlikte diğerlerinden de sakla',
-'revdelete-radio-same'        => '(çık)',
+'revdelete-radio-same'        => '(değiştirme)',
 'revdelete-radio-set'         => 'Evet',
 'revdelete-radio-unset'       => 'Hayır',
 'revdelete-suppress'          => 'Verileri hem diğerlerinden hem de hizmetlilerden gizle',

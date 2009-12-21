@@ -502,7 +502,7 @@ Esabıñız açıldı.
 Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñiştirmege unutmañız.',
 'yourname'                   => 'Qullanıcı adıñız',
 'yourpassword'               => 'Paroliñiz',
-'yourpasswordagain'          => 'Parolni yañıdan yaz',
+'yourpasswordagain'          => 'Parolni bir daa yazıñız:',
 'remembermypassword'         => 'Bu kompyuterde meni hatırla',
 'yourdomainname'             => 'Domen adıñız',
 'externaldberror'            => 'Oturımıñız açılğanda bir hata oldı. Bu tış esabıñızğa deñişiklik yapmağa aqqıñız olmayuvından meydanğa kelip ola.',

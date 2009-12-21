@@ -844,7 +844,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'revdelete-hide-comment'      => 'Ырытыыны кистээ',
 'revdelete-hide-user'         => 'Ааппын/IP-бын көрдөрүмэ',
 'revdelete-hide-restricted'   => 'Маны дьаһабыллартан эмиэ кистииргэ',
-'revdelete-radio-same'        => '(хаалларарга)',
+'revdelete-radio-same'        => '(уларыппакка)',
 'revdelete-radio-set'         => 'Сөп',
 'revdelete-radio-unset'       => 'Суох',
 'revdelete-suppress'          => 'Бу суругу администратордартан эмиэ кистээ',

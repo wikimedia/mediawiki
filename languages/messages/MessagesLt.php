@@ -654,6 +654,7 @@ Prašome įvesti gerai suformuotą adresą arba palikite tą laukelį tuščią.
 Jūs turėtumėte prisijungti ir pasikeisti savo slaptažodį.
 
 Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per klaidą.',
+'usernamehasherror'          => 'Naudotojo vardas negali turėti grotelių simbolio',
 'login-throttled'            => 'Jūs pernelyg daug kartų bandėte prisijungti.
 Palaukite prieš bandant vėl.',
 'loginlanguagelabel'         => 'Kalba: $1',
@@ -935,6 +936,7 @@ Daugiau detalių gali būti [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 Daugiau detalių gali būti [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} trynimų istorijoje].
 Kaip administratorius, jūs vis tiek galite [$1 pamatyti šį skirtumą].",
 'rev-delundel'                => 'rodyti/slėpti',
+'rev-showdeleted'             => 'rodyti',
 'revisiondelete'              => 'Trinti/atkurti versijas',
 'revdelete-nooldid-title'     => 'Neleistina paskirties versija',
 'revdelete-nooldid-text'      => 'Jūs nenurodėte versijos (-ų), kurioms įvykdyti šią funkciją, nurodyta versija neegzistuoja arba jūs bandote paslėpti esamą versiją.',
@@ -959,13 +961,15 @@ Kiti administratoriai iš {{SITENAME}} vistiek galės pasiekti paslėptą turin�
 'revdelete-hide-comment'      => 'Slėpti redagavimo komentarą',
 'revdelete-hide-user'         => 'Slėpti redagavusiojo naudotojo vardą ar IP adresą',
 'revdelete-hide-restricted'   => 'Nuslėpti duomenis nuo adminstratorių kaip ir nuo kitų',
+'revdelete-radio-set'         => 'Taip',
+'revdelete-radio-unset'       => 'Ne',
 'revdelete-suppress'          => 'Slėpti duomenis nuo administratorių kaip ir nuo kitų',
 'revdelete-unsuppress'        => 'Šalinti apribojimus atkurtose versijose',
 'revdelete-log'               => 'Ištrynimo priežastis:',
 'revdelete-submit'            => 'Taikyti pasirinktai versijai',
 'revdelete-logentry'          => 'pakeistas [[$1]] versijos matomumas',
 'logdelete-logentry'          => 'pakeistas [[$1]] įvykio matomumas',
-'revdelete-success'           => "'''Versijos matomumas sėkmingai nustatytas.'''",
+'revdelete-success'           => "'''Versijos matomumas sėkmingai pakeistas.'''",
 'revdelete-failure'           => "'''Versijos rodomumas negali būti nustatytas:'''
 $1",
 'logdelete-success'           => "'''Įvykio matomumas sėkmingai nustatytas.'''",
@@ -1242,7 +1246,7 @@ teisės",
 * Pažymėtas langelis reiškia, kad šis naudotojas yra toje grupėje.
 * Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.
 * * parodo, kad jūs nebegalėsite pašalinti grupės, kai ją pridėsite, ir atvirkščiai.',
-'userrights-reason'           => 'Keitimo priežastis:',
+'userrights-reason'           => 'Priežastis:',
 'userrights-no-interwiki'     => 'Jūs neturite leidimo keisti naudotojų teises kituose projektuose.',
 'userrights-nodatabase'       => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
 'userrights-nologin'          => 'Jūs privalote [[Special:UserLogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.',
@@ -1432,6 +1436,7 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 'upload'                      => 'Įkelti failą',
 'uploadbtn'                   => 'Įkelti failą',
 'reuploaddesc'                => 'Atšaukti įkėlimą ir grįžti į įkėlimo formą.',
+'upload-tryagain'             => 'Siųsti pakeistą failo aprašymą',
 'uploadnologin'               => 'Neprisijungęs',
 'uploadnologintext'           => 'Norėdami įkelti failą, turite būti [[Special:UserLogin|prisijungęs]].',
 'upload_directory_missing'    => 'Nėra įkėlimo aplanko ($1) ir negali būti sukurtas tinklo serverio.',
@@ -1441,9 +1446,9 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai ir trynimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai - [[Special:Log/delete|trynimų istorijoje]].
 
 Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' arba
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' tiesioginei nuorodai į failą.",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></tt>''' arba
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></tt>''' tiesioginei nuorodai į failą.",
 'upload-permitted'            => 'Leidžiami failų tipai: $1.',
 'upload-preferred'            => 'Pageidautini failų tipai: $1.',
 'upload-prohibited'           => 'Uždrausti failų tipai: $1.',
@@ -1504,9 +1509,13 @@ Patikrinkite ''file_uploads'' nustatą.",
 'uploadscripted'              => 'Šis failas turi HTML arba programinį kodą, kuris gali būti klaidingai suprastas interneto naršyklės.',
 'uploadcorrupt'               => 'Failas yra pažeistas arba turi neteisingą galūnę. Prašome patikrinti failą ir įkeltį jį vėl.',
 'uploadvirus'                 => 'Šiame faile yra virusas! Smulkiau: $1',
+'upload-source'               => 'Failo šaltinis',
 'sourcefilename'              => 'Įkeliamas failas:',
+'sourceurl'                   => 'Šaltinio adresas:',
 'destfilename'                => 'Norimas failo vardas:',
 'upload-maxfilesize'          => 'Didžiausias failo dydis: $1',
+'upload-description'          => 'Failo aprašymas',
+'upload-options'              => 'Įkėlimo nustatymai',
 'watchthisupload'             => 'Stebėti šį failą',
 'filewasdeleted'              => 'Failas šiuo vardu anksčiau buvo įkeltas, o paskui ištrintas. Jums reikėtų patikrinti $1 prieš bandant įkelti jį vėl.',
 'upload-wasdeleted'           => "'''Įspėjimas: Jūs įkeliate failą, kuris anksčiau buvo ištrintas.'''
@@ -1528,6 +1537,10 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Prieiga uždrausta',
+'img-auth-nopathinfo'   => 'Trūksta PATH_INFO.
+Jūsų serveris nenustatytas perduoti šią informaciją.
+Tai gali būti CGI paremta ir negali palaikyti img_auth.
+Daugiau informacijos http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nofile'       => 'Failas "$1" neegzistuoja.',
 'img-auth-noread'       => 'Naudotojas neturi teisės peržiūrėti "$1".',
 
@@ -1745,7 +1758,8 @@ Kiekvienoje eilutėje yra nuorodos į pirmąjį ir antrąjį peradresavimą, tai
 'ancientpages'            => 'Seniausi puslapiai',
 'move'                    => 'Pervadinti',
 'movethispage'            => 'Pervadinti šį puslapį',
-'unusedimagestext'        => 'Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.',
+'unusedimagestext'        => 'Šie failai yra, bet jie neįtraukti į jokį kitą puslapį.
+Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.',
 'unusedcategoriestext'    => 'Šie kategorijų puslapiai sukurti, nors joks kitas puslapis ar kategorija jo nenaudoja.',
 'notargettitle'           => 'Nenurodytas objektas',
 'notargettext'            => 'Jūs nenurodėte norimo puslapio ar naudotojo, kuriam įvykdyti šią funkciją.',
@@ -1820,10 +1834,12 @@ Palaikomi protokolai: <tt>$1</tt>',
 'listusers-blocked'  => '(užblokuotas)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Aktyvių naudotojų sąrašas',
-'activeusers-count'    => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}} per $3 {{PLURAL:$3|paskutinę dieną|paskutines dienas|paskutinių dienų}}',
-'activeusers-from'     => 'Rodyti naudotojus, pradedant:',
-'activeusers-noresult' => 'Nerasta jokių naudotojų.',
+'activeusers'            => 'Aktyvių naudotojų sąrašas',
+'activeusers-count'      => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}} per $3 {{PLURAL:$3|paskutinę dieną|paskutines dienas|paskutinių dienų}}',
+'activeusers-from'       => 'Rodyti naudotojus, pradedant:',
+'activeusers-hidebots'   => 'Slėpti robotus',
+'activeusers-hidesysops' => 'Slėpti administratorius',
+'activeusers-noresult'   => 'Nerasta jokių naudotojų.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Prisiregistravę naudotojai',
@@ -2160,6 +2176,7 @@ Pateikiamas paskutinis blokavimo istorijos įrašas.',
 
 # Block/unblock
 'blockip'                         => 'Blokuoti naudotoją',
+'blockip-title'                   => 'Blokuoti naudotoją',
 'blockip-legend'                  => 'Blokuoti naudotoją',
 'blockiptext'                     => 'Naudokite šią formą norėdami uždrausti rašymo teises nurodytui IP adresui ar naudotojui. Tai turėtų būti atliekama tam, kad sustabdytumėte vandalizmą, ir pagal [[{{MediaWiki:Policy-url}}|politiką]].
 Žemiau nurodykite tikslią priežastį (pavyzdžiui, nurodydami sugadintus puslapius).',
@@ -2212,6 +2229,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'ipblocklist-sh-tempblocks'       => '$1 laikinus blokavimus',
 'ipblocklist-sh-addressblocks'    => '$1 pavienių IP blokavimus',
 'ipblocklist-submit'              => 'Ieškoti',
+'ipblocklist-localblock'          => 'Vietinis blokavimas',
 'blocklistline'                   => '$1, $2 blokavo $3 ($4)',
 'infiniteblock'                   => 'neribotai',
 'expiringblock'                   => 'baigia galioti $1 $2',
@@ -2371,6 +2389,10 @@ Paskirties puslapis „[[:$1]]“ jau yra. Ar norite jį ištrinti, kad galėtum
 'move-leave-redirect'          => 'Pervadinant palikti nukreipimą',
 'protectedpagemovewarning'     => "'''Dėmesio:''' Šis puslapis buvo užrakintas, tad tik naudotojai su administratoriaus teisėmis gali jį pervadinti.",
 'semiprotectedpagemovewarning' => "'''Pastaba''': Šis puslapis buvo užrakintas, tad tik registruoti naudotojai gali jį redaguoti.",
+'move-over-sharedrepo'         => '== Failas jau yra ==
+[[:$1]] egzistuoja bendrojoje saugykloje. Perkėlus failą į šį pavadinimą, jis pakeis bendrąjį failą.',
+'file-exists-sharedrepo'       => 'Pasirinktas failo pavadinimas jau yra naudojamas bendrojoje saugykloje.
+Prašome pasirinkti kitą pavadinimą.',
 
 # Export
 'export'            => 'Eksportuoti puslapius',
@@ -2636,7 +2658,8 @@ $1',
 'nextdiff'     => 'Vėlesnis pakeitimas →',
 
 # Media information
-'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą, jį paleidus jūsų sistema gali būti pažeista.<hr />",
+'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą.
+Jį paleidus jūsų sistema gali būti pažeista.<hr />",
 'imagemaxsize'         => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
 'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',

@@ -900,6 +900,8 @@ Systemadministratoren som låste databasen gav følgjande årsak: $1",
 'nocreatetext'                     => '{{SITENAME}} har avgrensa tilgang til å opprette nye sider.
 Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn eller opprette ein brukarkonto]].',
 'nocreate-loggedin'                => 'Du har ikkje tilgang til å opprette nye sider.',
+'sectioneditnotsupported-title'    => 'Endring av bolkar er ikkje støtta',
+'sectioneditnotsupported-text'     => 'Endring av bolkar er ikkje støtta på denne sida.',
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
 'permissionserrorstext-withaction' => 'Du har ikke løyve til å $2 {{PLURAL:$1|på grunn av|av desse grunnane}}:',
@@ -1027,6 +1029,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-hide-comment'      => 'Gøym endringssamandraga',
 'revdelete-hide-user'         => 'Gøym brukarnamn/IP-adresse',
 'revdelete-hide-restricted'   => 'Løyn data frå administratorar slik som med andre brukarar',
+'revdelete-radio-same'        => '(ikkje endra)',
 'revdelete-radio-set'         => 'Ja',
 'revdelete-radio-unset'       => 'Nei',
 'revdelete-suppress'          => 'Fjern informasjon frå administratorar også',
@@ -1063,7 +1066,7 @@ Du har ikkje tilgang til henne.',
 'revdelete-no-change'         => "'''Åtvaring:''' objektet datert $2, $1 hadde allereie etterspurt innstillingar for korleis eininga skal vera synleg.",
 'revdelete-concurrent-change' => 'Feil ved endring av eininga datert $2, $1: statusen ser ut til å ha vorte endra av einkvan annan medan du prøvde å endre ho.
 Sjekk gjerne loggføringa.',
-'revdelete-only-restricted'   => 'Du kan ikkje hindra vising av objekt av administratorar utan å òg velja eit av dei andre alternativa for hindring av vising.',
+'revdelete-only-restricted'   => 'Feil under gøyming av objektet datert $2 $1: du kan ikkje gøyma objekt for administratorar utan å i tillegg velja eit av dei andre visingsvala.',
 'revdelete-reason-dropdown'   => '*Vanlege grunnar til sletting
 ** Brot på opphavsrettar 
 ** Ikkje høveleg personleg informasjon
@@ -1311,7 +1314,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 * Ein krossa boks tyder at brukaren er medlem av denne gruppa.
 * Ein ikkjekrossa boks tyder at brukaren ikkje er medlem av denne gruppa.
 * Ein * tyder at du ikkje kan fjerna gruppemedlemskapen etter at du har lagt den til, eller omvendt.',
-'userrights-reason'           => 'Grunn til endring:',
+'userrights-reason'           => 'Årsak:',
 'userrights-no-interwiki'     => 'Du har ikkje tilgang til å endre brukartilgangar på andre wikiar.',
 'userrights-nodatabase'       => 'Databasen $1 finst ikkje eller er ikkje lokal.',
 'userrights-nologin'          => 'Du må [[Special:UserLogin|logge inn]] med ein administrator- og/eller byråkratkonto for å endre brukartilgangar.',
@@ -1840,7 +1843,8 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'ancientpages'            => 'Eldste sider',
 'move'                    => 'Flytt',
 'movethispage'            => 'Flytt denne sida',
-'unusedimagestext'        => '<p>Merk deg at andre internettsider kan ha lenkjer til filer som er lista her. Dei kan difor vera i aktiv bruk.</p>',
+'unusedimagestext'        => 'Dei fylgjande filene finst, men vert ikkje nytta på noka sida.
+Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan filene vera nytta aktivt trass i at dei er lista opp her.',
 'unusedcategoriestext'    => 'Dei følgjande kategorisidene er oppretta, sjølv om ingen artikkel eller kategori brukar dei.',
 'notargettitle'           => 'Inkje mål',
 'notargettext'            => 'Du har ikkje spesifisert noka målside eller nokon brukar å bruke denne funksjonen på.',
@@ -2020,11 +2024,11 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'enotif_anon_editor'           => 'anonym brukar $1',
 'enotif_body'                  => 'Hei $WATCHINGUSERNAME,
 
-{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
+{{SITENAME}}-sida $PAGETITLE er vorten $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
 
 $NEWPAGE
 
-Bidragytaren sitt endringssamandrag: $PAGESUMMARY $PAGEMINOREDIT
+Bidragsytaren sitt endringssamandrag: $PAGESUMMARY $PAGEMINOREDIT
 
 Du kan kontakte bidragsytaren gjennom:
 e-post: $PAGEEDITOR_EMAIL , eller
@@ -2032,7 +2036,7 @@ wiki: $PAGEEDITOR_WIKI
 
 Du får ikkje fleire endringsmeldingar om denne sida før du har vitja henne på nytt. Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvakingslista di.
 
-             Helsing din overvakande {{SITENAME}}-endringsmeldingssystemven
+             Helsing det venlege {{SITENAME}}-meldingssystemet ditt
 
 --
 For å endre innstillingane for overvakingslista di, gå til
@@ -2244,6 +2248,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blokker brukar',
+'blockip-title'                   => 'Blokker brukar',
 'blockip-legend'                  => 'Blokker brukar',
 'blockiptext'                     => 'Bruk skjemaet nedanfor for å blokkere skrivetilgangen frå ei spesifikk IP-adresse eller brukarnamn. Dette bør berre gjerast for å hindre hærverk, og i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].',
 'ipaddress'                       => 'IP-adresse',

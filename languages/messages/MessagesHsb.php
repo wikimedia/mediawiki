@@ -902,7 +902,7 @@ Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na sch
 'revdelete-hide-comment'      => 'Zjeće schować',
 'revdelete-hide-user'         => 'Wužiwarske mjeno/IP-adresu schować',
 'revdelete-hide-restricted'   => 'Daty wot administratorow kaž tež te druhich wužiwarjow potłóčić',
-'revdelete-radio-same'        => '(wostajić)',
+'revdelete-radio-same'        => '(njezměnić)',
 'revdelete-radio-set'         => 'Haj',
 'revdelete-radio-unset'       => 'Ně',
 'revdelete-suppress'          => 'Přičinu wušmórnjenja tež za administratorow schować',

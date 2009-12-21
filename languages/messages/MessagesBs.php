@@ -1088,7 +1088,7 @@ Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakriven
 'revdelete-hide-comment'      => 'Sakrij izmjene komentara',
 'revdelete-hide-user'         => 'Sakrij korisničko ime urednika/IP',
 'revdelete-hide-restricted'   => 'Ograniči podatke za administratore kao i za druge korisnike',
-'revdelete-radio-same'        => '(ostavi)',
+'revdelete-radio-same'        => '(ne mijenjaj)',
 'revdelete-radio-set'         => 'Da',
 'revdelete-radio-unset'       => 'Ne',
 'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
@@ -2262,7 +2262,7 @@ Klikom na '''''Očisti''''' ćete očistiti polje za komentar i sve kutijice.",
 'undeleterevisions'            => '{{PLURAL:$1|$1 revizija arhivirana|$1 revizije arhivirane|$1 revizija arhivirano}}',
 'undeletehistory'              => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj historiji.
 Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije će se pojaviti u njenoj ranijoj historiji.',
-'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelomično obrisano.
+'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelimično obrisano.
 U takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorije obrisane revizije.',
 'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio istorije brisanja i istorija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
 'undelete-revision'            => 'Obrisana revizija stranice $1 (dana $4, u $5) od strane $3:',

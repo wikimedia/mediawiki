@@ -830,6 +830,9 @@ Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae 
 'revdelete-hide-comment'      => 'Badlao ke baare me comment ke lukao',
 'revdelete-hide-user'         => "Editor's username/IP ke lukao",
 'revdelete-hide-restricted'   => 'Ii rukawat ke administrator aur duusra log se lukao.',
+'revdelete-radio-same'        => '(chhorr do)',
+'revdelete-radio-set'         => 'Haan',
+'revdelete-radio-unset'       => 'Nai',
 'revdelete-suppress'          => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
 'revdelete-unsuppress'        => 'Pahile jaise karaa gais badlao me se rukawat hatao',
 'revdelete-log'               => 'Mitae ke kaaran:',
@@ -863,7 +866,7 @@ Aap ke ispe adhikar nai hai.',
 'revdelete-no-change'         => "'''Chetauni:''' $2, $1 ke tarik ke item ke pahile se visibility settings maanga gais rahaa.",
 'revdelete-concurrent-change' => 'Item jiske date $2, $1 hai ke badle me error hoe gais hai: iske status ke saait aur koi badal diis hia jab aap iske badel ke kosis karta rahaa.
 Meharbani ka ke logs ke check karo.',
-'revdelete-only-restricted'   => 'Aap koi chij ke bhi administrators se lukae nai sakta hai bina duusra suppression option ke select kare.',
+'revdelete-only-restricted'   => 'Jon chij aap $2, $1 ke lukae mangta rahaa me galti hoe gais hae: aap administrator log se koi chij lukae nai saktaa hae bina duursa dekhe waala option ke chune.',
 'revdelete-reason-dropdown'   => '*Mitae ke jaada kar ke kaaran
 ** Bina chhape ke adikar se
 ** Aapan baare me fajuul jankari
@@ -1057,7 +1060,7 @@ Hian pe ek, apne se banaa sabd hae, jiske aap kaam me laae saktaa hae: $1',
 'prefs-searchoptions'           => 'Khoje ke option',
 'prefs-namespaces'              => 'Namespaces',
 'defaultns'                     => 'Default se ii namespaces me khojo:',
-'default'                       => 'default',
+'default'                       => 'baaki',
 'prefs-files'                   => 'Files',
 'prefs-custom-css'              => 'CSS ke aapan khatir badlo',
 'prefs-custom-js'               => 'Custom JS',
@@ -1073,7 +1076,7 @@ Iske pahile jaise nai karaa jaawe sake hai.',
 'yourrealname'                  => 'Asli naam:',
 'yourlanguage'                  => 'Bhasa:',
 'yourvariant'                   => 'Variant:',
-'yournick'                      => 'Signature:',
+'yournick'                      => 'Chinh:',
 'prefs-help-signature'          => 'Baat waala panna me aap ke bichar ke "<nowiki>~~~~</nowiki>" se sign kare ke chaahi jiske signature aur timestamp me badal dewa jaai.',
 'badsig'                        => 'Invalid raw signature; HTML tags ke check karo.',
 'badsiglength'                  => 'Signature bahut lambaa hai.
@@ -1114,7 +1117,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 * Ek checked box ke matlab hai ki sadasya ii group me hai.
 * Ek unchecked box ke matlab hai ki sadasya ii group me nai hai.
 * Ek * ke matlab hai ki aap group ke jorre ke baad hatae nai sakta hai, nai to hatae ke baad jorre nai sakta hai.',
-'userrights-reason'           => 'Badle ke kaaran:',
+'userrights-reason'           => 'Kaaran:',
 'userrights-no-interwiki'     => 'Aap ke duusra wiki me user rights ke badle ke adhikaar nai hai.',
 'userrights-nodatabase'       => 'Database $1 abhi hai nai, nai to local nai hai.',
 'userrights-nologin'          => 'Sadasya ke user rights de ke khatir, ap ke chaahi ki aap [[Special:UserLogin|log in]] karo ek administrator ke account se.',
@@ -1123,7 +1126,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'userrights-unchangeable-col' => 'Groups jiske aap badle nai sakta hai',
 
 # Groups
-'group'               => 'Group:',
+'group'               => 'Jhund:',
 'group-user'          => 'Sadasya',
 'group-autoconfirmed' => 'Autoconfirmed sadasya',
 'group-bot'           => 'Bots',
@@ -1166,7 +1169,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-purge'                 => 'Site cache se ek panna ke mina fir se puchhe mitae do',
 'right-autoconfirmed'         => 'Semi-protected panna ke badlo',
 'right-bot'                   => 'Automated process ke rakam treat karo',
-'right-nominornewtalk'        => 'Not have minor edits to discussion pages trigger the new messages prompt',
+'right-nominornewtalk'        => 'Salah waalaa panaa me chhota badlao ke kaaran nawaa sandes ke prompt nai dekhao',
 'right-apihighlimits'         => 'Use higher limits in API queries',
 'right-writeapi'              => 'Use of the write API',
 'right-delete'                => 'Panna ke mitao',
@@ -1304,6 +1307,7 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hae  '''mota''' kara gais 
 'upload'                      => 'File ke upload karo',
 'uploadbtn'                   => 'File upload karo',
 'reuploaddesc'                => 'Upload ke cancel kar ke upload form pe lauto',
+'upload-tryagain'             => 'Badla gais file ke description bhejo',
 'uploadnologin'               => 'Aap abhi loged in nai hai',
 'uploadnologintext'           => 'Aap ke [[Special:UserLogin|logged in]] kare ke chaahi, file upload kare ke khatir.',
 'upload_directory_missing'    => 'Upload directory ($1) nai hai aur webserver iske nai banae sakis hai.',
@@ -1383,7 +1387,7 @@ Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa na
 'uploadcorrupt'               => 'Ii file chaahe ke corrupt hai nai to isme wrong extension hai.
 Meharbani kar ke file ke check kar ke fir se upload karo.',
 'uploadvirus'                 => 'Ii file me virus hai! Details: $1',
-'sourcefilename'              => 'Source filename:',
+'sourcefilename'              => 'Suruu waala file ke naam:',
 'destfilename'                => 'Destination filename:',
 'upload-maxfilesize'          => 'jaada se jaada file size: $1',
 'watchthisupload'             => 'Ii panna pe dhyan rakhho',
@@ -1453,7 +1457,7 @@ Column header me click kare se sorting badal jaai.',
 'listfiles_name'        => 'Naam',
 'listfiles_user'        => 'Sadasya',
 'listfiles_size'        => 'Size',
-'listfiles_description' => 'Description',
+'listfiles_description' => 'Baare me',
 'listfiles_count'       => 'Versions',
 
 # File description page
@@ -1607,7 +1611,7 @@ Sab row me pahila aur duusra redirect ke jorr hae, aur isme duusra redirect ke n
 'lonelypagestext'         => 'Niche ke panna ke duusra paana jorre nai to  transclude nai kare hai {{SITENAME}} me.',
 'uncategorizedpages'      => 'Jon panna koi vibhag me nai hai',
 'uncategorizedcategories' => 'Uncategorized vibhag',
-'uncategorizedimages'     => 'Uncategorized files',
+'uncategorizedimages'     => 'Bina vibhag me kara gais file',
 'uncategorizedtemplates'  => 'Uncategorized templates',
 'unusedcategories'        => 'Bina use bhae category',
 'unusedimages'            => 'Bina use bhae files',
@@ -1693,9 +1697,9 @@ Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.
 
 # Special:Categories
 'categories'                    => 'Vibhag',
-'categoriespagetext'            => 'Niche ke {{PLURAL:$1|category contains|categories contain}}  me panna aur media hai.
-[[Special:UnusedCategories|Unused categories]] hian nai dekhawa jaae hai.
-[[Special:WantedCategories|wanted categories]] ke bhi dekho.',
+'categoriespagetext'            => 'Niche ke {{PLURAL:$1|vibhag me|vibhag me}}  panna aur media hae.
+[[Special:Bina kaam me lawa gais vibhag|bina kaam me lawa gais vibhag]] hian nai dekhawa jaawe hae.
+[[Special:Maange waala vibhag|maange waala vihag]] ke bhi dekho.',
 'categoriesfrom'                => 'Vibhag jon ki hian pe suruu hoe hai, ke dekhao:',
 'special-categories-sort-count' => 'ginti se sort karo',
 'special-categories-sort-abc'   => 'alphabetically sort karo',
@@ -1722,10 +1726,12 @@ Supported protocols: <tt>$1</tt>',
 'listusers-blocked'  => '(rok dewa gais hai)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Active sadasya ke list',
-'activeusers-count'    => '$1 haali ke {{PLURAL:$1|badlao|badlao}} pichhle {{PLURAL:$3|din|$3 din}} me',
-'activeusers-from'     => 'Sadasya jon ki hian se suruu hoe hai ke dekhao:',
-'activeusers-noresult' => 'koi sadasya ke pawa nai gais hai.',
+'activeusers'            => 'Active sadasya ke list',
+'activeusers-count'      => '$1 haali ke {{PLURAL:$1|badlao|badlao}} pichhle {{PLURAL:$3|din|$3 din}} me',
+'activeusers-from'       => 'Sadasya jon ki hian se suruu hoe hai ke dekhao:',
+'activeusers-hidebots'   => 'Bots ke lukao',
+'activeusers-hidesysops' => 'Administrator log ke lukao',
+'activeusers-noresult'   => 'koi sadasya ke pawa nai gais hai.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Sadasya ke banae waala log',
@@ -1741,7 +1747,7 @@ Supported protocols: <tt>$1</tt>',
 [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] individual rights ke baare me sait hoi.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Dewa gais adhikar</span>
 * <span class="listgrouprights-revoked">Hatawa gais adhikar</span>',
-'listgrouprights-group'                => 'Group',
+'listgrouprights-group'                => 'Jhund',
 'listgrouprights-rights'               => 'Adhikar',
 'listgrouprights-helppage'             => 'Help:Group waala adhikar',
 'listgrouprights-members'              => '(sadasya ke suchi)',
@@ -1867,7 +1873,7 @@ Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, au
 'suppressedarticle'      => 'suppressed "[[$1]]"',
 'dellogpage'             => 'Mitae ke suchi',
 'dellogpagetext'         => 'Niche nawaa mitawa gais panna ke suchi hai.',
-'deletionlog'            => 'deletion log',
+'deletionlog'            => 'Mitae waala suchi',
 'reverted'               => 'Pahile ke revision pe lautae dewa gais hai',
 'deletecomment'          => 'Delete kare ke kaaran:',
 'deleteotherreason'      => 'Aur/duusra kaaran:',
@@ -2072,6 +2078,7 @@ Pahile waala block log entry ke reference ke khatir niche dekhawa jaawe hae:',
 
 # Block/unblock
 'blockip'                         => 'Sadasya ke roko',
+'blockip-title'                   => 'Sadasya ke roko',
 'blockip-legend'                  => 'Sadasya ke roko',
 'blockiptext'                     => 'Niche ke form ke use kar ke koi khaas IP address nai to username ke write access ke roko.
 Iske khaali vandalism ke roke ke khatir use kare ke chaahi [[{{MediaWiki:Policy-url}}|policy]] ke niche.
@@ -2200,7 +2207,7 @@ Meharbani kar ke ii confirm karo ki aap yahi chij kae mangtaa hai.',
 Yaad kar ke [[Special:UnlockDB|lock ke hatae dena]] maintenance khalaas kare ke baad.',
 'unlockdbsuccesstext' => 'Database ke khol dewa gais hai.',
 'lockfilenotwritable' => 'Database lock file me likha nai jaawe sake hai.
-Database ke khole nai to band kare ke khatir, iske web server se likhe ke laayat hoe ke chaahi',
+Database ke khole nai to band kare ke khatir, iske web server se likhe ke laayek hoe ke chaahi',
 'databasenotlocked'   => 'Database band nai hai.',
 
 # Move page
@@ -2289,7 +2296,7 @@ Panna ke export kare ke khatir titles ke niche ke text box me likho, ek line pe 
 Duusra case me aap ek link ke bhi use kare saktaa hai, jaise ki [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] panna ke khatir "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Khaali abhi ke badlao ke export karo, puura itihass nai',
 'exportnohistory'   => "----
-'''Note:''' Ii form se panna ke puura itihass ke export kare pe rok lagae dewa gais hai due to performance reasons.",
+'''Dhyan rakhna:''' Ii form se panna ke puura itihass ke export kare pe rok lagae dewa gais hai due to performance reasons.",
 'export-submit'     => 'Export karo',
 'export-addcattext' => 'Ii vibhag me se panna jorro:',
 'export-addcat'     => 'Jorro',
@@ -2597,9 +2604,19 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-datetime'                  => 'Suchi ke badle waala tarik aur samay',
 'exif-imagedescription'          => 'Chapa ke padwi',
 'exif-make'                      => 'Camera ke banae waala',
+'exif-model'                     => 'Camera ke model',
+'exif-software'                  => 'Software jiske kaam me lawa gais hae',
 'exif-artist'                    => 'Likhe waala',
+'exif-colorspace'                => 'Rang ke jagha',
+'exif-pixelydimension'           => 'Chapa ke thik chaurrai',
+'exif-pixelxdimension'           => 'Chapa ke thik uunchai',
+'exif-shutterspeedvalue'         => 'Shutter ke raftaar',
 'exif-aperturevalue'             => 'Aperture',
+'exif-focallength'               => 'Lens ke focal length',
+'exif-gpsaltitude'               => 'Uunchai',
+'exif-gpsdatestamp'              => 'GPS ke taarik',
 
+'exif-meteringmode-6'   => 'Puura nai',
 'exif-meteringmode-255' => 'Duusra',
 
 'exif-lightsource-0'  => 'Nai maluum',
@@ -2609,6 +2626,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-lightsource-11' => 'Chhanhi',
 
 'exif-contrast-1' => 'Naram',
+
+'exif-sharpness-1' => 'Naram',
+'exif-sharpness-2' => 'Karraa',
 
 'exif-subjectdistancerange-2' => 'Najdik se dekho',
 'exif-subjectdistancerange-3' => 'Duur se dekho',
@@ -2656,6 +2676,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # Special:Version
 'version'              => 'Version',
 'version-specialpages' => 'Khaas panna',
+'version-other'        => 'Duusra',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Khojo',
@@ -2672,6 +2693,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'tags-edit' => 'badlo',
 
 # Add categories per AJAX
-'ajax-add-category-summary' => 'Vibhag "$1" ke jorro',
+'ajax-add-category-submit'     => 'Jorro',
+'ajax-add-category-summary'    => 'Vibhag "$1" ke jorro',
+'ajax-remove-category-summary' => 'Vibhag "$1" ke hatao',
+'ajax-confirm-actionsummary'   => 'Kon chij kare ke hae:',
 
 );
