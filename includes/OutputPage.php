@@ -854,7 +854,7 @@ class OutputPage {
 		patched by Liangent and Philip */
 	function addAcceptLanguage() {
 		global $wgRequest, $wgContLang;
-		if( $wgRequest->getText('variant') == false && $wgContLang->hasVariants() ) {
+		if( !$wgRequest->getCheck('variant') && $wgContLang->hasVariants() ) {
 			$variants = $wgContLang->getVariants();
 			$aloption = array();
 			foreach ( $variants as $variant ) {
