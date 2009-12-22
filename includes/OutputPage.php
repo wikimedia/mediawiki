@@ -845,7 +845,7 @@ class OutputPage {
 	}
 
 	/** bug 21672: Add Accept-Language to Vary and XVO headers
-		if there's no 'variant' parameter existed in $_GET.
+		if there's no 'variant' parameter existed in GET.
 		
 		For example:
 		 /w/index.php?title=Main_page should always be served; but
@@ -853,8 +853,8 @@ class OutputPage {
 		
 		patched by Liangent and Philip */
 	function addAcceptLanguage() {
-		global $wgContLang;
-		if( !isset( $_GET['variant'] ) && $wgContLang->hasVariants() ) {
+		global $wgRequest, $wgContLang;
+		if( $wgRequest->getText('variant') == false && $wgContLang->hasVariants() ) {
 			$variants = $wgContLang->getVariants();
 			$aloption = array();
 			foreach ( $variants as $variant ) {
