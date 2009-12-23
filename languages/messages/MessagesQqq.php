@@ -2106,7 +2106,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 $1 = the name of the page',
 'delete-backlink'        => '{{optional}}',
 'delete-legend'          => '{{Identical|Delete}}',
-'historywarning'         => 'Warning when about to delete a page that has history.',
+'historywarning'         => 'Warning when about to delete a page that has history.
+$1 is the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count.',
 'confirmdeletetext'      => 'Introduction shown when deleting a page.',
 'actioncomplete'         => 'Used in several situations, for example when a page has been deleted.',
 'deletedtext'            => 'Parameters:
