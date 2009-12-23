@@ -419,6 +419,7 @@ Per piasè, fa raport a 'n'[[Special:ListUsers/sysop|aministradur]], cun la nota
 'missingarticle-diff' => '(Diff: $1, $2)',
 'internalerror'       => 'Erur in del sistema',
 'internalerror_info'  => 'Erur intern: $1',
+'filecopyerror'       => 'L\'è mía staa pussibel cubià l\'archivi "$1" in "$2"',
 'badtitle'            => 'Títul mía bun',
 'badtitletext'        => "El titul de la pagina ciamada a l'è vöj, sbajaa o cun carater minga acetaa, opüra al vegn d'un erur in di ligam intra sit wiki diferent o versión in lenguv diferent de l'istess sit.",
 'viewsource'          => 'Còdas surgent',

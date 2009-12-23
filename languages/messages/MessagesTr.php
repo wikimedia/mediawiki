@@ -1984,7 +1984,7 @@ Yardım ve öneriler için:
 'exblank'                => 'sayfa içeriği boş',
 'delete-confirm'         => '"$1" sil',
 'delete-legend'          => 'sil',
-'historywarning'         => "'''Uyarı:''' Silmek üzere olduğunuz sayfanın $1 {{PLURAL:$1|revizyonlu|revizyonlu}} bir geçmişi var:",
+'historywarning'         => "'''Uyarı:''' Silmek üzere olduğunuz sayfanın yaklaşık olarak $1 {{PLURAL:$1|sürüme|sürüme}} sahip bir geçmişi var:",
 'confirmdeletetext'      => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
 Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[{{MediaWiki:Policy-url}}|Silme kurallarına]] uygun olduğuna eminseniz, işlemi onaylayın.',
 'actioncomplete'         => 'İşlem tamamlandı.',

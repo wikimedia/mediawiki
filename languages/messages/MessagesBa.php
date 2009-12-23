@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Haqmar
  * @author Timming
  * @author Рустам Нурыев
  */
@@ -132,6 +133,7 @@ $messages = array(
 'editthispage'     => 'Был мәҡәләне үҙгәртергә',
 'delete'           => 'Юҡ  итергә',
 'protect'          => 'Һаҡларға',
+'protect_change'   => 'үҙгәртергә',
 'talkpage'         => 'Фекер алышыу',
 'talkpagelinktext' => 'Фекер алышыу',
 'specialpage'      => 'Ярҙамсы бит',
@@ -220,6 +222,12 @@ $messages = array(
 'editingcomment' => 'Мөхәрирләү $1 (комментарий)',
 'yourtext'       => 'Һеҙҙең текст',
 'yourdiff'       => 'Айырмалыҡтар',
+
+# Revision deletion
+'rev-delundel' => 'күрһәт/йәшер',
+
+# Merge log
+'revertmerge' => 'Бүлергә',
 
 # Diffs
 'lineno'   => '$1 юл:',

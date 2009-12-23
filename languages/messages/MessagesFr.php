@@ -2172,7 +2172,7 @@ Retour et assistance :
 'exblank'                => 'la page était vide',
 'delete-confirm'         => 'Supprimer « $1 »',
 'delete-legend'          => 'Supprimer',
-'historywarning'         => "'''Attention :''' la page que vous êtes sur le point de supprimer a un historique qui contient $1 {{PLURAL:$1|révision|révisions}} :",
+'historywarning'         => "'''Attention :''' la page que vous êtes sur le point de supprimer a un historique qui contient approximativement $1 {{PLURAL:$1|révision|révisions}} :",
 'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'         => 'Action effectuée',
 'actionfailed'           => 'L’action a échoué',

@@ -1010,7 +1010,7 @@ Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e
 'revdelete-hide-comment'      => 'Agochar comentario da edición',
 'revdelete-hide-user'         => 'Agochar nome de usuario/IP do editor',
 'revdelete-hide-restricted'   => 'Eliminar os datos da vista dos administradores así coma da doutros',
-'revdelete-radio-same'        => '(deixar)',
+'revdelete-radio-same'        => '(non cambiar)',
 'revdelete-radio-set'         => 'Si',
 'revdelete-radio-unset'       => 'Non',
 'revdelete-suppress'          => 'Eliminar os datos tanto dos administradores como dos demais',

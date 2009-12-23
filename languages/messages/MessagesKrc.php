@@ -52,7 +52,7 @@ $messages = array(
 'tog-externaldiff'            => 'Версияланы тенглешдириучу тыш программа хайырландыр',
 'tog-showjumplinks'           => '«Бар» болушлукъ джибериуню джандыр',
 'tog-uselivepreview'          => 'Терк ал къарауну хайырландыр (JavaScript, экспериментал халда)',
-'tog-forceeditsummary'        => 'Тюзетиуню ачыкълау тизгин бош къалса, билдир',
+'tog-forceeditsummary'        => 'Тюзетиуню ачыкълау тизгини бош къалса, билдир',
 'tog-watchlisthideown'        => 'Сынчыкълау бетден мени тюзетиулерими джашыр',
 'tog-watchlisthidebots'       => 'Сынчыкълау бетден ботланы тюзетиулерин джашыр',
 'tog-watchlisthideminor'      => 'Гитче тюзетиулени сынчыкълау бетден джашыр',
@@ -2652,25 +2652,213 @@ $1',
 'exif-focallength-format'          => '$1 мм',
 'exif-subjectarea'                 => 'Субъект алам',
 'exif-flashenergy'                 => 'Флешни энергиясы',
+'exif-spatialfrequencyresponse'    => 'Аламлыкъ фреканс хал',
+'exif-focalplanexresolution'       => 'Фокал аламда Х резолюциясы',
+'exif-focalplaneyresolution'       => 'Фокал аламда Y резолюциясы',
+'exif-focalplaneresolutionunit'    => 'Фокал аламда резолюцияны ёлчем бирими',
+'exif-subjectlocation'             => 'Субъектни туруму',
+'exif-exposureindex'               => 'Экспозицияны индекси',
+'exif-sensingmethod'               => 'Сенсор амалы',
+'exif-filesource'                  => 'Файлны къайнагъы',
+'exif-scenetype'                   => 'Сахнаны типи',
+'exif-cfapattern'                  => 'CFA типи',
+'exif-customrendered'              => 'Айырма сурат ишлем',
+'exif-exposuremode'                => 'Экспозицияны сайлауну режими',
+'exif-whitebalance'                => 'Акъны балансы',
+'exif-digitalzoomratio'            => 'Цифра джууукълашдырыуну ёлчеми',
+'exif-focallengthin35mmfilm'       => '35 мм-лик плёнкада фокал узунлукъ',
+'exif-scenecapturetype'            => 'Алыуда сахнаны типи',
+'exif-gaincontrol'                 => 'Сахна контролу',
+'exif-contrast'                    => 'Контраст',
+'exif-saturation'                  => 'Бояуну толулугъу',
+'exif-sharpness'                   => 'Кескинлик',
+'exif-devicesettingdescription'    => 'Камераны джарашдырыуларыны ангылатыу',
+'exif-subjectdistancerange'        => 'Алыуну объектине дери узунлукъ',
+'exif-imageuniqueid'               => 'Суратны энчи номери (ID)',
+'exif-gpsversionid'                => 'GPS версиясы',
+'exif-gpslatituderef'              => 'Шимал неда Къыбыла кенглик',
+'exif-gpslatitude'                 => 'Кенглик',
+'exif-gpslongituderef'             => 'Кюнчыгъыш неда кюнбатыш узунлукъ',
+'exif-gpslongitude'                => 'Узунлукъ',
+'exif-gpsaltituderef'              => 'Мийикликни индекси',
+'exif-gpsaltitude'                 => 'Мийиклик',
+'exif-gpstimestamp'                => 'GPS заман (атом сагъат)',
+'exif-gpssatellites'               => 'Хайырланнган спутниклени ангылатыу',
+'exif-gpsstatus'                   => 'Ресиверни статусу',
+'exif-gpsmeasuremode'              => 'Ёлчелеуню амалы',
+'exif-gpsdop'                      => 'Ёлчемни тюзлюгю',
+'exif-gpsspeedref'                 => 'Теркликни ёлчем бирими',
+'exif-gpsspeed'                    => 'GPS алыучуну терклиги',
+'exif-gpstrackref'                 => 'GPS алыучуну азимутуну типи',
+'exif-gpstrack'                    => 'GPS алыучуну азимуту',
+'exif-gpsimgdirectionref'          => 'Суратны азимутуну типи',
+'exif-gpsimgdirection'             => 'Суратны азимуту',
+'exif-gpsmapdatum'                 => 'Координатланы геодезия системасын хайырландырыу',
+'exif-gpsdestlatituderef'          => 'Объектни узунлугъуну индекси',
+'exif-gpsdestlatitude'             => 'Объектни узунлугъу',
+'exif-gpsdestlongituderef'         => 'Объектни кенглигини индекси',
+'exif-gpsdestlongitude'            => 'Объектни кенглиги',
+'exif-gpsdestbearingref'           => 'Объектни пеленгини типи',
+'exif-gpsdestbearing'              => 'Объектни пеленги',
+'exif-gpsdestdistanceref'          => 'Аралыкъны ёлчелеуню бирими',
+'exif-gpsdestdistance'             => 'Аралыкъ',
+'exif-gpsprocessingmethod'         => 'GPS ёлчелеу амалны аты',
+'exif-gpsareainformation'          => 'GPS тёгерекни аты',
 'exif-gpsdatestamp'                => 'GPS заман',
+'exif-gpsdifferential'             => 'GPS дифференция тюзетиу',
 
+# EXIF attributes
+'exif-compression-1' => 'Къысдырылмагъан',
+
+'exif-unknowndate' => 'Билинмеген заман',
+
+'exif-orientation-1' => 'Нормал',
+'exif-orientation-2' => 'Горизонтал бла кёргюзюлгенди',
 'exif-orientation-3' => '180° бурулгъанды',
+'exif-orientation-4' => 'Вертикал бла кёргюзюлгенди',
+'exif-orientation-5' => '90° бурулгъан (солгъа) эмда вертикал бла кёргюзюлгенди',
+'exif-orientation-6' => '90° бурулгъаннды (сагъат стрелкагъа)',
+'exif-orientation-7' => '90° бурулгъанды (сагъат стрелкагъа) эмда вертикал бла кёргюзюлгенди',
+'exif-orientation-8' => '90° бурулгъанды (солгъа)',
+
+'exif-planarconfiguration-1' => '«chunky» формат',
+'exif-planarconfiguration-2' => '«planar» формат',
+
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1'      => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
+'exif-componentsconfiguration-0' => 'Джокъду',
+
+'exif-exposureprogram-0' => 'Танылмады',
+'exif-exposureprogram-1' => 'Къол режим',
+'exif-exposureprogram-2' => 'Нормал программа',
+'exif-exposureprogram-3' => 'Дифрагманы аллы',
+'exif-exposureprogram-4' => 'Декланшёр аллы',
+'exif-exposureprogram-5' => 'Суратлау программа (кескинликни керекли теренлигини тамалында)',
+'exif-exposureprogram-6' => 'Спорт режим',
+'exif-exposureprogram-7' => 'Портрет режим (фокуссуз фонда, джууукъ аралыкъдан сурат алыр ючюн)',
+'exif-exposureprogram-8' => 'Пейзаж режим (фокусда фону бла пейзаж суратла ючюн)',
 
 'exif-subjectdistance-value' => '$1 метр',
 
-'exif-meteringmode-3' => 'Нохталы',
-'exif-meteringmode-6' => 'Джартылы',
+'exif-meteringmode-0'   => 'Билинмейди',
+'exif-meteringmode-1'   => 'Орта',
+'exif-meteringmode-2'   => 'Ара аурлукълу',
+'exif-meteringmode-3'   => 'Нохталы',
+'exif-meteringmode-4'   => 'Кёб нохталы',
+'exif-meteringmode-5'   => 'Матрицалы',
+'exif-meteringmode-6'   => 'Джартылы',
+'exif-meteringmode-255' => 'Башха',
 
-'exif-lightsource-0'  => 'Билинмеген',
-'exif-lightsource-1'  => 'Кюн джарыкъ',
-'exif-lightsource-9'  => 'Ачыкъ хауа',
-'exif-lightsource-10' => 'Булутлу',
-'exif-lightsource-11' => 'Ауана',
+'exif-lightsource-0'   => 'Билинмеген',
+'exif-lightsource-1'   => 'Кюн джарыкъ',
+'exif-lightsource-2'   => 'Кюндюз джарыкъны лампасы',
+'exif-lightsource-3'   => 'Къызыуну лампасы',
+'exif-lightsource-4'   => 'Флэш',
+'exif-lightsource-9'   => 'Ачыкъ хауа',
+'exif-lightsource-10'  => 'Булутлу',
+'exif-lightsource-11'  => 'Ауана',
+'exif-lightsource-12'  => 'Кюн джарыкъны лампасы (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Кюндюз джарыкъны лампасы (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Кюндюз джарыкъны лампасы (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Кюндюз джарыкъны лампасы (W 3900 – 4500K)',
+'exif-lightsource-17'  => 'А типли стандарт джарыкъ',
+'exif-lightsource-18'  => 'B типли стандарт джарыкъ',
+'exif-lightsource-19'  => 'С типли стандарт джарыкъ',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-24'  => 'ISO стандартлы студиялыкъ лампа',
+'exif-lightsource-255' => 'Джарыкъны башха къайнакълары',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Флэши ишлемеди',
+'exif-flash-fired-1'    => 'Флэши ишледи',
+'exif-flash-return-0'   => 'алгъаракъ флэш джаныу режими джокъду',
+'exif-flash-return-2'   => 'алгъаракъ джаннган флэшни къайтхан импульсу джокъду',
+'exif-flash-return-3'   => 'алгъаракъ ишлеген флэшни къайтыу имиульсу ишледи',
+'exif-flash-mode-1'     => 'зорунлу флаш джанды',
+'exif-flash-mode-2'     => 'зорунлу флэш джабыкъды',
+'exif-flash-mode-3'     => 'автомат режим',
+'exif-flash-function-1' => 'Флэш джокъду',
+'exif-flash-redeye-1'   => 'къыз кёз эффекни къоратыу режим',
 
 'exif-focalplaneresolutionunit-2' => 'дюйм',
 
+'exif-sensingmethod-1' => 'Танымсыз',
+'exif-sensingmethod-2' => 'Бир кристаллы матрицалы бояулу сенсор',
+'exif-sensingmethod-3' => 'Эки матрицасы бла бояулу сенсор',
+'exif-sensingmethod-4' => 'Юч матрицасы бла бояулу сенсор',
+'exif-sensingmethod-5' => 'Боуну кёзюулю ёлчеу функциясы бла матрицалы сенсор',
+'exif-sensingmethod-7' => 'Юс бетли сызлы сенсор',
+'exif-sensingmethod-8' => 'Бетни кёюзюулю тюрлениую бла сызлы сенсор',
+
+'exif-filesource-3' => 'Цифра фотоаппарат',
+
+'exif-scenetype-1' => 'Сурат эрлай алыннганды',
+
+'exif-customrendered-0' => 'Нормал ишлеу',
+'exif-customrendered-1' => 'Стандарт тышында ишлеу',
+
+'exif-exposuremode-0' => 'Автомат экспозиция',
+'exif-exposuremode-1' => 'Экспозицияны къол бла джарашдырыу',
+'exif-exposuremode-2' => 'Автобрекет',
+
+'exif-whitebalance-0' => 'Автомат халда акъны балансы',
+'exif-whitebalance-1' => 'Акъны балансын къол бла джарашдырыу',
+
+'exif-scenecapturetype-0' => 'Стандарт',
+'exif-scenecapturetype-1' => 'Ландшафт',
+'exif-scenecapturetype-2' => 'Портрет',
+'exif-scenecapturetype-3' => 'Кече картха алыу',
+
+'exif-gaincontrol-0' => 'Джокъду',
+'exif-gaincontrol-1' => 'Аз уллайыу',
+'exif-gaincontrol-2' => 'Уллу уллайыу',
+'exif-gaincontrol-3' => 'Аз гитчелеу',
+'exif-gaincontrol-4' => 'Кючлю гитчелеу',
+
 'exif-contrast-0' => 'Нормал',
 'exif-contrast-1' => 'Джумушакъ',
+'exif-contrast-2' => 'Кючлю',
+
+'exif-saturation-0' => 'Нормал',
+'exif-saturation-1' => 'Аз тойгъанлыкъ',
+'exif-saturation-2' => 'Бек тойгъанлыкъ',
+
+'exif-sharpness-0' => 'Нормал',
+'exif-sharpness-1' => 'Джумушакъ',
+'exif-sharpness-2' => 'Кючлю',
+
+'exif-subjectdistancerange-0' => 'Билинмейди',
+'exif-subjectdistancerange-1' => 'Макро (джууукъдан картха алыу)',
+'exif-subjectdistancerange-2' => 'Джабыкъ кёрюнюу',
+'exif-subjectdistancerange-3' => 'Узакъ кёрюнюу',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Шимал кенглик',
+'exif-gpslatitude-s' => 'Къыбыла кенглик',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Кюнчыгъыш узунлукъ',
+'exif-gpslongitude-w' => 'Кюнбатыш узунлукъ',
+
+'exif-gpsstatus-a' => 'Ёлчелеу бошалмагъанды',
+'exif-gpsstatus-v' => 'Ёлчелеу бошалгъанды',
+
+'exif-gpsmeasuremode-2' => '2-ли координатланы ёлчелеу',
+'exif-gpsmeasuremode-3' => '3-лю коорданатланы ёлчелеу',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'км/с',
+'exif-gpsspeed-m' => 'Миль/сагъат',
+'exif-gpsspeed-n' => 'Тенгиз миля',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Керти',
+'exif-gpsdirection-m' => 'Мукъладис',
 
 # External editor support
 'edit-externally'      => 'Бу файлны тыш программа бла тюзетигиз',
@@ -2682,13 +2870,315 @@ $1',
 'watchlistall2'    => 'бютёу',
 'namespacesall'    => 'бютёу',
 'monthsall'        => 'бютёу',
+'limitall'         => 'бютеую',
+
+# E-mail address confirmation
+'confirmemail'             => 'Электорн адресни мюкюл эт',
+'confirmemail_noemail'     => '[[Special:Preferences|джарашдырыулада]] тамамланнган, джараулу электрон адресигиз джокоъду.',
+'confirmemail_text'        => 'Викини электрон почтасыны адреси бла хайырланыб башлауну аллы бла, аны мюкюл этериге керекди.
+Адресигизге мюкюл этиу письмо ийилир ючюн, тюбюндеги тиекден басыгъыз.
+Письмода адресигизни мюкюл этер ючюн джибериу боллукъду, аннга бассагъыз сиз энчи бир бетге чыгъарыкъсыз, андан башлаб сизни адресигиз мюкюл болгъаннга саналады.',
+'confirmemail_pending'     => 'Мюкюл этиуню коду бла письмо сизге алайсызда джиберилгенди;
+Аккуантыгъызны джангы къурагъан эсегиз, джангы бир код ишлеуню башланыууну аллы бла бир кесек сакъларыгъызны тилейбиз.',
+'confirmemail_send'        => 'Мюкюл кодну джибер',
+'confirmemail_sent'        => 'Мюкюл этиу письмо джиберилди.',
+'confirmemail_oncreate'    => 'Мюкюл этиу код электрон адресигизге джиберилди.
+Кирир ючюн бу код керек тюлдю, алай а бу викиде хайырландырыб башлар ючюн бу кодну белгилерге керексиз.',
+'confirmemail_sendfailed'  => '{{SITENAME}} Мюкюл письмо джиберилелмеди. Джараусуз харифле болургъа болур, адресни осмакълагъыз.
+
+Серверни джууабы: $1',
+'confirmemail_invalid'     => 'Джараусуз мюкюл код. Мюкюл кодну ахыр хайырланыу болджалы чыгъаргъа болур.',
+'confirmemail_needlogin'   => 'Электорн адресигизни мюкюл этер ючюн, алгъы бурун $1 этерге керексиз.',
+'confirmemail_success'     => 'Электрон почтагъызны адреси мюкюл этилди. Олтуруу [[Special:UserLogin|ачыб]] Викини татыуун чыгъарыгъыз.',
+'confirmemail_loggedin'    => 'Электорн почтагъызны адреси мюкюл этилди.',
+'confirmemail_error'       => 'Мюкюл этилиуде билинмеген халат болду.',
+'confirmemail_subject'     => '{{SITENAME}} электрон почта адресни мюкюл этилиую',
+'confirmemail_body'        => 'Ким эседа, биз сагъышдан, $1 IP адресден,
+{{SITENAME}} сайтда бу электрон адрес бла $2 аккуант къурады.   
+
+Бу аккуант кертида сизники болгъанын къабыл эмда {{SITENAME}} сайтдагъы
+электрон почта бла хайырланыуну актив халгъа келтирир ючюн, тюбюндеги джибериуню ачыгъыз.
+
+$3
+
+Аккуантны сиз *къурамагъан*  эсегиз, электорн почта адресни мюкюл этиуюню 
+тыяр ючюн тюбюндеги джибериуню басыгъыз:
+
+$5
+
+Бу мюкюл код $4 заманнга дери джарарыкъды.',
+'confirmemail_invalidated' => 'Электрон почтаны адресини мюкюл этилиую тыйылды',
+'invalidateemail'          => 'Электрон почтаны адресин мюкюл этиуюн тый',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[«Interwiki transcluding» джукъланыбды]',
+'scarytranscludefailed'   => '[$1 ючюн шаблон алымы тындырылмады]',
+'scarytranscludetoolong'  => '[URL асыры узунду]',
+
+# Trackbacks
+'trackbackbox'      => 'Бу бет ючюн trackback :<br />
+$1',
+'trackbackremove'   => '([$1 кетер])',
+'trackbacklink'     => 'Trackback',
+'trackbackdeleteok' => 'Trackback кетерилди',
+
+# Delete conflict
+'deletedwhileediting' => "'''Эсериу''': Бу бет сиз тюзетиб башлагъандан сора кетерилгенди!",
+'confirmrecreate'     => "Бу бетни [[User:$1|$1]] ([[User talk:$1|сюзюу]]) къошулуучу, сиз бетде тюзетиуле этген заманда кетергенди, чуруму:
+: ''$2''",
+'recreate'            => 'Джанландыр',
+
+'unit-pixel' => 'пикс.',
+
+# action=purge
+'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Бу бетни кеши кетерилсинми?',
+'confirm-purge-bottom' => 'Бетни кеши кетерилгенден сора, андан сора келген версиясы кёргюзюллюкдю.',
+
+# Separators for various lists, etc.
+'catseparator'        => '|',
+'semicolon-separator' => ';&#32;',
+'percent'             => '$1%',
+'parentheses'         => '($1)',
+
+# Multipage image navigation
+'imgmultipageprev' => '← аллындыгъы бет',
+'imgmultipagenext' => 'эндиги бет →',
+'imgmultigo'       => 'Кёч!',
+'imgmultigoto'     => '$1 бетге кёч',
+
+# Table pager
+'ascending_abbrev'         => 'гитчеден уллугъа',
+'descending_abbrev'        => 'азалгъан',
+'table_pager_next'         => 'Эндиги бет',
+'table_pager_prev'         => 'Аллындагъы бет',
+'table_pager_first'        => 'Биринчи бет',
+'table_pager_last'         => 'Ахыр бет',
+'table_pager_limit'        => 'Хар бетде $1 бет кёргюз',
+'table_pager_limit_submit' => 'Тындыр',
+'table_pager_empty'        => 'Табылмагъанды',
+
+# Auto-summaries
+'autosumm-blank'   => 'Бет бошалтылды',
+'autosumm-replace' => "Бетни ичи '$1' бла ауушдурулду",
+'autoredircomment' => '[[$1]] бетге джиберилди',
+'autosumm-new'     => "Бет къуралды: '$1'",
+
+# Size units
+'size-bytes'     => '$1 байт',
+'size-kilobytes' => '$1 КБ',
+'size-megabytes' => '$1 МБ',
+'size-gigabytes' => '$1 МБ',
+
+# Live preview
+'livepreview-loading' => 'Джюклениу...',
+'livepreview-ready'   => 'Джюклениу... Хазырды!',
+'livepreview-failed'  => 'Джанлы ал къарау джетишимсиз! Нормал ал къарауну сынагъыз.',
+'livepreview-error'   => 'Байланыу этиленмеди: $1 "$2".
+Нормал ал къарауну хайырланыгъыз.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 {{PLURAL:$1|секундан|секундан}} джангы тюзетиуле бу списокда кёрюнмезге боллукъдула.',
+'lag-warn-high'   => 'Билги базаны сервериндеги бек кечигиу себебли, $1 {{PLURAL:$1|секундан|секундан}} джангы тюзетиуле бу списокда кёрюнмей къалыргъа болур.',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'Сынчыкълау списокда {{PLURAL:$1|1 башлыкъ|$1 башлыкъ}} барды, сюзюу бетни тышында.',
+'watchlistedit-noitems'        => 'Сынчыкълау списогугъуз чырт бир башлыкъ тутмайды.',
+'watchlistedit-normal-title'   => 'Чынчыкълау спизокню тюрлендир',
+'watchlistedit-normal-legend'  => 'Сынчыкълау списогугъуздан башлыкъланы къорат',
+'watchlistedit-normal-explain' => "Сынчыкълау списокдагъы башлыкъла тюбюрек кёргюзюлгендиле.
+Башлыкъны кетерир ючюн, къатындагъы тёртгюлчюкде белгилеб, '''\"Башлыкъланы кетер\"''' тиекден бас.
+Сиз дагъыда [[Special:Watchlist/raw|списокну текст кибик тюзетирге]] боллукъсуз.",
+'watchlistedit-normal-submit'  => 'Башлыкъланы кетер',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 башлыкъ|$1 башлыкъ}} сынчыкълау списогундан къоратылды:',
+'watchlistedit-raw-title'      => '"Чий" сынчыкълау списокну тюзет',
+'watchlistedit-raw-legend'     => '"Чий" сынчыкълау списокну тюзет',
+'watchlistedit-raw-explain'    => "Сынчыкълау списогугъуздагъы башлыкъла тюбюнде кёрюнедиле. Хар тизгинде бир башлыкъ болады, башлыкъланы къошуб неда кетериб списокну тюзетирге боллукъсуз. Бошалса '''Сынчыкълау списокну сакъла''' деген тиекден басыгъыз. [[Special:Watchlist/edit|стандарт тюзетиу]] блада хайырланаллыкъсыз.",
+'watchlistedit-raw-titles'     => 'Башлыкъла:',
+'watchlistedit-raw-submit'     => 'Сынчыкълау списокну сакъла',
+'watchlistedit-raw-done'       => 'Сынчыкълау списогугъуз сакъланды.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 башлыкъ|$1 башлыкъ}} къошулду:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 башлыкъ|$1 башлыкъ}} кетерилди:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Списокдан бетледе тюрлениуле',
 'watchlisttools-edit' => 'Къара/тюзет списокну',
 'watchlisttools-raw'  => 'Текстча тюзетиу',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'Фарвардин',
+'iranian-calendar-m2'  => 'Ордибехешт',
+'iranian-calendar-m3'  => 'Хордад',
+'iranian-calendar-m4'  => 'Хордад',
+'iranian-calendar-m5'  => 'Мордад',
+'iranian-calendar-m6'  => 'Шахривар',
+'iranian-calendar-m7'  => 'Мехр',
+'iranian-calendar-m8'  => 'Абан',
+'iranian-calendar-m9'  => 'Азар',
+'iranian-calendar-m10' => 'Дей',
+'iranian-calendar-m11' => 'Бахман',
+'iranian-calendar-m12' => 'Эсфанд',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Мухаррам',
+'hijri-calendar-m2'  => 'Сафар',
+'hijri-calendar-m3'  => 'Раби-аль-аууаль',
+'hijri-calendar-m4'  => 'Раби-аль-тани',
+'hijri-calendar-m5'  => 'Джумада аль-аууаль',
+'hijri-calendar-m7'  => 'Раджаб',
+'hijri-calendar-m8'  => 'Шаабан',
+'hijri-calendar-m9'  => 'Рамадан',
+'hijri-calendar-m10' => 'Шаууаль',
+'hijri-calendar-m11' => 'Ду аль-Къидан',
+'hijri-calendar-m12' => 'Ду аль-Хиджджан',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Тишрей',
+'hebrew-calendar-m2'      => 'Хешван',
+'hebrew-calendar-m3'      => 'Кислев',
+'hebrew-calendar-m4'      => 'Тевет',
+'hebrew-calendar-m5'      => 'Шват',
+'hebrew-calendar-m6'      => 'Адар',
+'hebrew-calendar-m6a'     => 'Адар I',
+'hebrew-calendar-m6b'     => 'Адар II',
+'hebrew-calendar-m7'      => 'Нисан',
+'hebrew-calendar-m8'      => 'Ияр',
+'hebrew-calendar-m9'      => 'Сиван',
+'hebrew-calendar-m10'     => 'Таммуз',
+'hebrew-calendar-m11'     => 'Ав',
+'hebrew-calendar-m12'     => 'Элул',
+'hebrew-calendar-m1-gen'  => 'Тишрея',
+'hebrew-calendar-m2-gen'  => 'Хешвана',
+'hebrew-calendar-m3-gen'  => 'Кислева',
+'hebrew-calendar-m4-gen'  => 'Тевет',
+'hebrew-calendar-m5-gen'  => 'Шеват',
+'hebrew-calendar-m6-gen'  => 'Адар',
+'hebrew-calendar-m6a-gen' => 'Адар I',
+
+# Core parser functions
+'unknown_extension_tag' => 'Къошакъны билинмеген "$1" теги',
+'duplicate-defaultsort' => '\'\'\'Эсгериу:\'\'\' Бар саналгъан "$2" сыныфлама ачхыч, аллындагъы "$1" сыныфлама ачхычны джараусуз этеди.',
+
+# Special:Version
+'version'                          => 'Версия',
+'version-extensions'               => 'Салыннган кенгертиуле',
+'version-specialpages'             => 'Къуллукъчу бетле',
+'version-parserhooks'              => 'Синтаксис анализаторну тутуучула',
+'version-variables'                => 'Тюрленнгенле',
+'version-other'                    => 'Башха',
+'version-mediahandlers'            => 'Медияны джарашдырыучула',
+'version-hooks'                    => 'Тутуучула',
+'version-extension-functions'      => 'Кенгертиулени функциялары',
+'version-parser-extensiontags'     => 'Синтиаксис анализаторну кенгертиулерин теглери',
+'version-parser-function-hooks'    => 'Синтаксис анализаторну функцияларын тутуучула',
+'version-skin-extension-functions' => 'Джасау темаланы кенгертиулерини функциялары',
+'version-hook-name'                => 'Тутуучуну аты',
+'version-hook-subscribedby'        => 'Абонент болгъан',
+'version-version'                  => '(Версия $1)',
+'version-license'                  => 'Лицензия',
+'version-software'                 => 'Салыннган программа баджарыу',
+'version-software-product'         => 'Продукт',
+'version-software-version'         => 'Версия',
+
+# Special:FilePath
+'filepath'         => 'Файлгъа джол',
+'filepath-page'    => 'Файл:',
+'filepath-submit'  => 'Джол',
+'filepath-summary' => 'Бу къуллукъчу бет файл ючюн толу джолну береди.
+Суратла толу резолюциялары бла кёргюзюледиле, башха файл типле алагъа джараулу программала бла ачыладыла.
+
+Файлны атын, "{{ns:file}}:" префиксиз джазыгъыз.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Дубликат файлланы изле',
+'fileduplicatesearch-summary'  => 'Хэш-кодлары бла дубликат файланны изле.
+
+Файлны атын «{{ns:file}}:» префикссиз джазыгъыз.',
+'fileduplicatesearch-legend'   => 'Дубликатланы изле',
+'fileduplicatesearch-filename' => 'Файлны аты:',
+'fileduplicatesearch-submit'   => 'Таб',
+'fileduplicatesearch-info'     => '$1 × $2 пиксель<br />Файлны ёлчеми: $3<br />MIME-тип: $4',
+'fileduplicatesearch-result-1' => '"$1" файлны келишген дубликаты джокъду',
+'fileduplicatesearch-result-n' => '"$1" файлны {{PLURAL:$2|1 келишген дубликатыi|$2 келишген дубликаты}} барды.',
+
 # Special:SpecialPages
-'specialpages' => 'Специал бет',
+'specialpages'                   => 'Специал бет',
+'specialpages-note'              => '----
+* Нормаль къуллукъчу бетле.
+* <strong class="mw-specialpagerestricted">Къысыулу къуллукъчу бетле.</strong>',
+'specialpages-group-maintenance' => 'Техника баджарыуну отчетлары',
+'specialpages-group-other'       => 'Башха къуллукъчу бетле',
+'specialpages-group-login'       => 'Системагъа кир/регистрация эт',
+'specialpages-group-changes'     => 'Ахыр тюзетиуле бла журналла',
+'specialpages-group-media'       => 'Мелиа-материаланы юсюнден отчетла бла джюклеуле',
+'specialpages-group-users'       => 'Къошулуучула эм хакълары',
+'specialpages-group-highuse'     => 'Бек хайырландырылгъан бетле',
+'specialpages-group-pages'       => 'Бетлени списоклары',
+'specialpages-group-pagetools'   => 'Бетге инструментле',
+'specialpages-group-wiki'        => 'Вики-билгиле эм инструментле',
+'specialpages-group-redirects'   => 'Джиберген къуллукъчу бетле',
+'specialpages-group-spam'        => 'Спамгъа къаршчы инструментле',
+
+# Special:BlankPage
+'blankpage'              => 'Бош бет',
+'intentionallyblankpage' => 'Бу бет, иш этиб, бош къоюлгъанды.',
+
+# External image whitelist
+'external_image_whitelist' => '#Бу тизгинни болгъаныча къой<pre>
+#Хаманда айтылгъан айтыуланы кесеклерин (къуру // арасында къалгъан кесегин) тюбюнде джазыгъыз
+#Была тыш суратланы URL-лери бла келиширикди
+#Келишгенле сурат болуб кёрюннюкдюле, болмаса къуру суратха джибериу кёрюннюкдюле
+# # бла башланнган тизгинле сюзюуге саналлыкъдыла
+#Бу уллу-гитче харифге сезимлиди
+
+#Бютеу хаманда айтылгъан айтыуланы кесеклерин бу тизгинни башына къошугъуз. Бу тизгинни тургъаныча къоюгъуз</pre>',
+
+# Special:Tags
+'tags'                    => 'Джараулу тюзетиу белгиле',
+'tag-filter'              => '[[Special:Tags|Тег]] фильтр:',
+'tag-filter-submit'       => 'Фильтр эт',
+'tags-title'              => 'Тегле',
+'tags-intro'              => 'Бу бет, джазылыуну тюрлениуюню кёргюзюрге боллукъ теглени эм аланы ангыламларыны списогуду.',
+'tags-tag'                => 'Тегни аты',
+'tags-display-header'     => 'Тюзетиулени списокларында кёрюнюу',
+'tags-description-header' => 'Магъананы толу ангылтыуу',
+'tags-hitcount-header'    => 'Белгиленнген тюзетиуле',
+'tags-edit'               => 'тюзет',
+'tags-hitcount'           => '$1 {{PLURAL:$1|тюрлениу|тюрлениу}}',
+
+# Database error messages
+'dberr-header'      => 'Бу викини проблемасы барды',
+'dberr-problems'    => 'Кечериксиз! Бу сайтда техника проблемала чыкгъандыла.',
+'dberr-again'       => 'Талай минутну сакълаб, джангыдан джюклеб кёрюгюз.',
+'dberr-info'        => '(Билги базаны сервери бла байлам къурулалмайды:$1)',
+'dberr-usegoogle'   => 'Google болушулугъу бла излеб кёрюрге боллукъсуз.',
+'dberr-outofdate'   => 'Аны индекси эски болургъа боллугъун унутмагъыз.',
+'dberr-cachederror' => 'Тюбюндеги изленнген бетни кэш этилген версиясыды, эмда ахыр тюзетиулени кёргюзмезге болур.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Сиз къошхан билгилени къаууму проблемагъа чурум болдула',
+'htmlform-select-badoption'    => 'Сиз белгилеген багъа джараулу тюлдю',
+'htmlform-int-invalid'         => 'Сиз белгилеген багъа сан тюлдю',
+'htmlform-float-invalid'       => 'Сиз белгилеген багъа сан тюлдю.',
+'htmlform-int-toolow'          => 'Сиз белгилеген багъа минимумну -$1 тюбюндеди',
+'htmlform-int-toohigh'         => 'Сиз белгилеген багъа максимумдан - $1 башындады',
+'htmlform-submit'              => 'Джибер',
+'htmlform-reset'               => 'Тюзетиулени ызына ал',
+'htmlform-selectorother-other' => 'Башха',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Категория къош',
+'ajax-add-category-submit'     => 'Къош',
+'ajax-confirm-title'           => 'Ишлеуню мюкюл эт',
+'ajax-confirm-prompt'          => 'Тюбюнде тюзетиуню ангылатыуун джазаргъа боллукъсуз.
+Тюзетиуюгюзню сакълар ючюн "Сакъла" дегеннге басыгъыз.',
+'ajax-confirm-save'            => 'Сакълат',
+'ajax-add-category-summary'    => '«$1» категория къошулду',
+'ajax-remove-category-summary' => '«$1» категория кетерилди',
+'ajax-confirm-actionsummary'   => 'Этиллик ишлеу:',
+'ajax-error-title'             => 'Хата',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Категория кетерилелмейди.
+Бу асламысы бла категория шаблонну юсю бла бетге къошулса болады.',
 
 );

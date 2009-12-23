@@ -933,7 +933,7 @@ I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti scont
 'revdelete-hide-comment'      => "Scondi l'oggetto de ła modifega",
 'revdelete-hide-user'         => "Scondi el nome o l'indirisso IP dell'autore",
 'revdelete-hide-restricted'   => 'Scóndighe le informassion indicà anca ai aministradori',
-'revdelete-radio-same'        => "('assa star)",
+'revdelete-radio-same'        => '(no stà canbiar)',
 'revdelete-radio-set'         => 'Sì',
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Scondi le informazion anca ai aministradori',

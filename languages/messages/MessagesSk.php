@@ -1087,7 +1087,7 @@ Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupov
 'revdelete-hide-comment'      => 'Skryť zhrnutie úprav',
 'revdelete-hide-user'         => 'Skryť používateľské meno/IP',
 'revdelete-hide-restricted'   => 'Zatajiť údaje pred všetkými, aj pred správcami',
-'revdelete-radio-same'        => '(ponechať)',
+'revdelete-radio-same'        => '(nezmeniť)',
 'revdelete-radio-set'         => 'Áno',
 'revdelete-radio-unset'       => 'Nie',
 'revdelete-suppress'          => 'Skryť údaje pred správcami rovnako ako pred ostatnými',

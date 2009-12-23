@@ -1027,7 +1027,7 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 'revdelete-hide-comment'      => 'Ocultar el resumen de edición',
 'revdelete-hide-user'         => 'Ocultar el nombre/IP del editor',
 'revdelete-hide-restricted'   => 'Suprimir datos a los administradores así como al resto',
-'revdelete-radio-same'        => '(dejar)',
+'revdelete-radio-same'        => '(no cambiar)',
 'revdelete-radio-set'         => 'Sí',
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suprimir datos a los administradores así como al resto',
@@ -2057,7 +2057,7 @@ Retroalimentación y asistencia adicional:
 'exblank'                => 'página estaba vacía',
 'delete-confirm'         => 'Borrar "$1"',
 'delete-legend'          => 'Borrar',
-'historywarning'         => "'''¡Atención!:''' La página que está a punto de borrar tiene un historial de $1 {{PLURAL:$1|revisión|revisiones}}:",
+'historywarning'         => "'''Advertencia:''' La página que está a punto de borrar tiene un historial de aproximadamente $1 {{PLURAL:$1|revisión|revisiones}}:",
 'confirmdeletetext'      => 'Estás a punto de borrar una página
 en forma permanente,
 así como todo su historial, de la base de datos.

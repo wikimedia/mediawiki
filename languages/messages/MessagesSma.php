@@ -329,6 +329,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'lineno'                  => 'Sïeve $1:',
 'compareselectedversions' => 'Mohtedidh veeljeme låhkoeh',
 'editundo'                => 'ov-darjodh',
+'diff-multi'              => '({{PLURAL:$1|Akte gaskese gïehtjedamme|$1 gaskese gïehtjedammeh}} vuesehte ijje.)',
 
 # Search results
 'searchresults'    => 'Ohtsedh resultaateh',
