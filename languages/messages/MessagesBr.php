@@ -761,6 +761,8 @@ N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.''
 'nocreatetext'                     => 'Strishaet eo bet an tu da grouiñ pajennoù nevez war {{SITENAME}}.
 Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Special:UserLogin|en em enrollañ ha krouiñ ur gont]].',
 'nocreate-loggedin'                => "N'oc'h ket aotreet da grouiñ pajennoù nevez.",
+'sectioneditnotsupported-title'    => "N'eo ket skoret ar c'hemmañ rannoù",
+'sectioneditnotsupported-text'     => "N'eo ket skoret ar c'hemmañ rannoù evit ar bajenn-mañ",
 'permissionserrors'                => 'Fazioù Aotre',
 'permissionserrorstext'            => "N'oc'h ket aotreet d'ober kement-mañ evit {{PLURAL:$1|an abeg-mañ|an abegoù-mañ}} :",
 'permissionserrorstext-withaction' => "N'oc'h ket aotreet da $2, evit an {{PLURAL:$1|abeg-mañ|abeg-mañ}} :",
@@ -1720,7 +1722,8 @@ $1 {{PLURAL:$1|rummad|rummad}}',
 'ancientpages'            => 'Pennadoù koshañ',
 'move'                    => 'adenvel',
 'movethispage'            => 'Adenvel ar bajenn',
-'unusedimagestext'        => "Na zisoñjit ket e c'hall lec'hiennoù all kaout ul liamm eeun war-du ar skeudenn-mañ hag e c'hall neuze ar skeudenn-mañ bezañ rollet amañ c'hoazh daoust dezhi bezañ implijet e lec'h all.",
+'unusedimagestext'        => "Ar restroù da-heul zo anezho e gwirionez met n'int ket enframmet e pajenn ebet. 
+Na zisoñjit ket e c'hall lec'hiennoù all kaout ul liamm eeun war-du ur restr bennak hag e c'hall neuze ar restr-se bezañ rollet amañ c'hoazh daoust dezhi bezañ implijet e lec'hiennoù all.",
 'unusedcategoriestext'    => "Krouet eo bet ar rummadoù-mañ met n'int ket bet implijet e pennad pe rummad ebet.",
 'notargettitle'           => 'netra da gavout',
 'notargettext'            => 'Merkit anv ur bajenn da gavout pe hini un implijer.',

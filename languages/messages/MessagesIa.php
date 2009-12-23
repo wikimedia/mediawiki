@@ -967,7 +967,7 @@ Altere administratores in {{SITENAME}} continuara a poter acceder al contento ce
 'revdelete-hide-comment'      => 'Celar commento de modification',
 'revdelete-hide-user'         => 'Celar nomine de usator o adresse IP del modificator',
 'revdelete-hide-restricted'   => 'Supprimer le datos a administratores assi como a alteres',
-'revdelete-radio-same'        => '(lassar)',
+'revdelete-radio-same'        => '(non cambiar)',
 'revdelete-radio-set'         => 'Si',
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Supprimer le datos a administratores assi como a alteres',

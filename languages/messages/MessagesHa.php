@@ -60,8 +60,11 @@ $messages = array(
 'dec'       => 'Dic',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Rukuni|Rukunoni}}',
+'pagecategories'    => '{{PLURAL:$1|Rukuni|Rukunoni}}',
+'hidden-categories' => '{{PLURAL:$1|Ɓoyayyen rukuni|Ɓoyayyun rukunoni}}',
 
+'newwindow'  => '(buɗa cikin sabuwar taga)',
+'cancel'     => 'Soke',
 'mytalk'     => 'Mahawarata',
 'navigation' => 'Shawagi',
 
@@ -91,8 +94,11 @@ $messages = array(
 'aboutsite'      => 'Game da {{SITENAME}}',
 'aboutpage'      => 'Project:Game da',
 'copyright'      => 'Bayannai sun samu a ƙarƙashin $1.',
+'copyrightpage'  => '{{ns:project}}:Hakkin Mallaka',
 'disclaimers'    => 'Hattara',
 'disclaimerpage' => 'Project:Babban gargaɗi',
+'edithelp'       => 'Taimako kan gyara',
+'edithelppage'   => 'Help:Gyarawa',
 'mainpage'       => 'Marhabin',
 'privacy'        => 'Manufar kare sirri',
 'privacypage'    => 'Project:Manufar kare sirri',
@@ -100,6 +106,8 @@ $messages = array(
 'retrievedfrom'   => 'Daga "$1"',
 'editsection'     => 'gyarawa',
 'editold'         => 'gyarawa',
+'editlink'        => 'gyarawa',
+'viewsourcelink'  => 'duba tushe',
 'editsectionhint' => 'Gyara sashe: $1',
 'toc'             => 'Kanun bayannai',
 'showtoc'         => 'nuna',
@@ -120,21 +128,44 @@ Mafarin haka yawanci shi ne zare mai zuwa ga shafin da aka shafe ko aka gusar.
 
 In ba haka ba ne, to kun takalo wata tangarɗa a furogaram kin.
 Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare da nuna URL kin.',
+'viewsource'      => 'Duba tushe',
 
 # Login and logout pages
 'nav-login-createaccount' => 'login / sabon akwanti',
 'userlogout'              => "Logi'auti",
 
+# Edit page toolbar
+'bold_sample'    => 'Rubutu mai gwaɓi',
+'bold_tip'       => 'Rubutu mai gwaɓi',
+'italic_sample'  => 'Rubutun tsutsa',
+'italic_tip'     => 'Rubutun tsutsa',
+'extlink_sample' => 'http://www.example.com sunan mahaɗi',
+'extlink_tip'    => 'Mahaɗi mai zuwa waje (a tuna da zagin http://)',
+'math_tip'       => 'Haɗin lissafi (LaTeX)',
+'nowiki_tip'     => 'Kawar da sufantawar Wiki',
+'image_tip'      => 'Ƙumsashen fayil',
+
 # Edit pages
-'savearticle'   => 'Adana shafi',
-'noarticletext' => 'A halin yanzu babu matani a kan wannan shafi.
+'summary'            => 'Taƙaici',
+'subject'            => 'Jigo/Kai:',
+'minoredit'          => 'Ƙaramin gyara',
+'watchthis'          => 'Bi sawun wannan shafi',
+'savearticle'        => 'Adana shafi',
+'showpreview'        => 'Sufar rigya-gani',
+'showdiff'           => 'Nuna sauye-sauye',
+'noarticletext'      => 'A halin yanzu babu matani a kan wannan shafi.
 Kuna iya [[Special:Search/{{PAGENAME}}|nemo kan wannan shafi]] cikin wasu shafuna,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bincika rajistan ayyukan],
 ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
+'copyrightwarning'   => "Lura cewa ana wallafa duk gudummuwa ga {{SITENAME}} a kan ƙa'idojin \$2 (duba \$1 don ƙarin bayani). Idan ba kwa son a sauya ko a rarraba ayyukanku yadda aka ga dama, to kada ku ajiye su a nan.<br />
+Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga hajar kowan (wato \"public domain\"), ko kuma aikin hajar kyauta (wato \"free resource\") ne. '''Kada ku ajiye ayyuka masu hakkin mallaka ba tare da izini ba!'''",
+'template-protected' => '(mai kariya)',
 
 # History pages
 'revisionasof'     => 'Zubi na $1',
 'previousrevision' => '← Tsohon zubi',
+'cur'              => 'na yanzu',
+'last'             => 'baya',
 'histfirst'        => 'Na gaba',
 'histlast'         => 'Na baya',
 
@@ -176,12 +207,20 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 # Preferences page
 'mypreferences' => 'Saituttukana',
 
+# Groups
+'group-sysop' => 'Masu hukunci',
+
+'grouppage-sysop' => '{{ns:project}}:Masu hukunci',
+
 # Recent changes
-'diff'            => 'bamban',
-'hist'            => 'Tarihi',
-'hide'            => 'Ɓoye',
-'show'            => 'Nuna',
-'minoreditletter' => 'm',
+'recentchanges'      => 'Sauye-sauyen baya-bayan nan',
+'diff'               => 'bamban',
+'hist'               => 'Tarihi',
+'hide'               => 'Ɓoye',
+'show'               => 'Nuna',
+'minoreditletter'    => 'm',
+'rc-enhanced-expand' => 'Nuna ƙananan bayannai (ana buƙatar JavaScript)',
+'rc-enhanced-hide'   => 'Ɓoye ƙananan bayannai',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Sauye-sauye masu dangantaka',
@@ -191,9 +230,17 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'upload' => 'Girke fayil',
 
 # File description page
-'filehist'           => 'Tarihin fayil',
-'filehist-thumbtext' => 'Wadar sufa ta zubin $1',
-'imagelinks'         => 'Amfani da fayil',
+'filehist'            => 'Tarihin fayil',
+'filehist-help'       => 'ku Latsa rana/lokaci ku ga fayil yadda yake a wannan lokaci',
+'filehist-current'    => 'na yanzu',
+'filehist-datetime'   => 'Rana/Lokaci',
+'filehist-thumb'      => 'Wadar sufa',
+'filehist-thumbtext'  => 'Wadar sufa ta zubin $1',
+'filehist-user'       => "Ma'aikaci",
+'filehist-dimensions' => 'Kusurwowi',
+'filehist-comment'    => 'Bahasi',
+'imagelinks'          => 'Amfani da fayil',
+'linkstoimage'        => '{{PLURAL:$1|Wannan shafi yana|wanɗannan shafuna $1 suna}} amfani da wannan fayil:',
 
 # Miscellaneous special pages
 'nbytes'        => '{{PLURAL:$1|bayit|bayit}} $1',
@@ -202,6 +249,7 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'pager-older-n' => '{{PLURAL:$1|tsoho 1|tsoffi $1}}',
 
 # Special:AllPages
+'alphaindexline' => '$1 zuwa $2',
 'allpagessubmit' => 'Mu je',
 
 # Watchlist
@@ -255,6 +303,8 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'tooltip-ca-talk'                => 'Mahawara kan shafin bayannai',
 'tooltip-ca-edit'                => 'Ana iya gyara wannan shafi
 A yi amfani da maɓallin tantancewa kafin a adina',
+'tooltip-ca-viewsource'          => 'Wannan shafi yana da kariya.
+Kuna iya duba tushensa.',
 'tooltip-ca-history'             => 'Tsoffin sufofin wannan shafi',
 'tooltip-ca-move'                => 'Gusar da wannan shafi',
 'tooltip-ca-watch'               => 'A daɗa wannan shafi cikin jerina na kan ido',
@@ -276,9 +326,16 @@ A yi amfani da maɓallin tantancewa kafin a adina',
 'tooltip-t-permalink'            => 'Zaren dindindin zuwa ga zubin baya na wannan shafi',
 'tooltip-ca-nstab-main'          => 'Duba shafin bayannai',
 'tooltip-ca-nstab-special'       => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
+'tooltip-ca-nstab-image'         => 'Duba shafin fayil',
+'tooltip-save'                   => 'Ku adana sauye-sauyenku',
+'tooltip-preview'                => 'Ku tantance sauye-sauyenku, don Allah ku yi amfani da wannan kafin ku adana su:',
+'tooltip-diff'                   => 'Na nuna sauye-sauyen da kuka yi wa matanin',
 'tooltip-rollback'               => '"Banyewa" tana soke sauye-sauyen da mutunen baya ya yi da kiliki guda',
 'tooltip-undo'                   => '"Janyewa" tana soke wannan gyaran ta kuma buɗa fom kin gyara mai rigya gani.
 Tana ba da damar bayyana dalilin soke gyaran.',
+
+# Media information
+'file-info-size' => '(pikisal $1 × $2, girman fayil: $3, irin MIME: $4)',
 
 # Bad image list
 'bad_image_list' => 'Fasalin yana kamar haka:
@@ -286,6 +343,9 @@ Tana ba da damar bayyana dalilin soke gyaran.',
 Za a lura da layukan jeri kawai (masu farawa da *).
 Zaren farko a kan layi ya kamata ya nuna fayil maras kyau.
 Sauran zaruruwa a kan layin keɓaɓɓu ne, wato zuwa ga shafuna inda fayil kin zai iya kasancewa.',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'duka',
 
 # Special:SpecialPages
 'specialpages' => 'Shafuna na musamman',

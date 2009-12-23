@@ -1072,7 +1072,7 @@ Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini d
 'revdelete-hide-comment'      => 'Tampilkan/sembunyikan ringkasan suntingan',
 'revdelete-hide-user'         => 'Sembunyikan nama pengguna/IP penyunting',
 'revdelete-hide-restricted'   => 'Sembunyikan data dari opsis juga',
-'revdelete-radio-same'        => '(biarkan)',
+'revdelete-radio-same'        => '(jangan diubah)',
 'revdelete-radio-set'         => 'Ya',
 'revdelete-radio-unset'       => 'Tidak',
 'revdelete-suppress'          => 'Sembunyikan juga dari pengurus',

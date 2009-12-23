@@ -15,6 +15,7 @@
  * @author Meno25
  * @author Putera Luqman Tunku Andre
  * @author Urhixidur
+ * @author Yosri
  * @author Zamwan
  * @author לערי ריינהארט
  */
@@ -915,7 +916,12 @@ Sebagai seorang pentadbir anda masih boleh [$1 melihat semakan ini] jika anda in
 'rev-suppressed-unhide-diff'  => "Perubahan dilakukan '''tidak dikenal pasti'''
 Maklumat berkenaan dapat dijumpai dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log berikut].
 Sebagai admin, anda masih boleh [$1 melihat perubahan berkaitan] jika anda ingin teruskan.",
+'rev-deleted-diff-view'       => "Satu dari semakan diff ini telah '''dipadamkan'''
+Sebagai pentakbir anda boleh melihat diff ini; mungkin terdapat perincian pada [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pemadaman].",
+'rev-suppressed-diff-view'    => "Satu dari semakan diff ini telah '''dipendam'''
+Sebagai pentakbir anda boleh melihat diff ini; mungkin terdapat perincian pada [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pemendaman].",
 'rev-delundel'                => 'tunjuk/sembunyi',
+'rev-showdeleted'             => 'tunjuk',
 'revisiondelete'              => 'Hapus/nyahhapus semakan',
 'revdelete-nooldid-title'     => 'Tiada semakan sasaran',
 'revdelete-nooldid-text'      => 'Anda tidak menyatakan semakan sasaran.',
@@ -930,6 +936,7 @@ Sebagai admin, anda masih boleh [$1 melihat perubahan berkaitan] jika anda ingin
 'logdelete-selected'          => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
 'revdelete-text'              => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log, tetapi kandungannya tidak boleh diakses awam.'''
 Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya semula melalui laman ini melainkan mempunyai batasan.",
+'revdelete-confirm'           => 'Sila sahkan bahawa anda bertujuan melakukan ini, bahawa anda faham akibatnya, dan anda melakukannya menurut [[{{MediaWiki:Policy-url}}| polisi]].',
 'revdelete-suppress-text'     => "Pembatasan ini '''hanya''' untuk digunakan dalam kes-kes berikut:
 * Maklumat peribadi tidak sesuai
 *: ''alamat rumah dan nombor telefon, nombor keselamatan sosial, dsbg.''",
@@ -940,6 +947,9 @@ Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya se
 'revdelete-hide-comment'      => 'Sembunyikan komen suntingan',
 'revdelete-hide-user'         => 'Sembunyikan nama pengguna/IP penyunting',
 'revdelete-hide-restricted'   => 'Sekat data daripada penyelia dan pengguna lain',
+'revdelete-radio-same'        => '(jangan tukar)',
+'revdelete-radio-set'         => 'Ya',
+'revdelete-radio-unset'       => 'Tidak',
 'revdelete-suppress'          => 'Sekat data daripada semua pengguna, termasuk penyelia',
 'revdelete-unsuppress'        => 'Buang batasan pada semakan yang dipulihkan',
 'revdelete-log'               => 'Sebab penghapusan:',
@@ -950,6 +960,8 @@ Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya se
 'revdelete-failure'           => "'''Keterlihatan semakan tidak dapat dikemaskini:'''
 $1",
 'logdelete-success'           => 'Kebolehnampakan peristiwa ditetapkan.',
+'logdelete-failure'           => "'''Log nampak tidak dapat diset:'''
+$1",
 'revdel-restore'              => 'Tukar kebolehnampakan',
 'pagehist'                    => 'Sejarah laman',
 'deletedhist'                 => 'Sejarah yang dihapuskan',
@@ -962,6 +974,13 @@ $1",
 'revdelete-unhid'             => 'memunculkan $1',
 'revdelete-log-message'       => '$1 bagi {{PLURAL:$2|sebuah|$2 buah}} semakan',
 'logdelete-log-message'       => '$1 bagi $2 peristiwa',
+'revdelete-hide-current'      => 'Ralat menyembunyikan item bertarikh $2, $1: ini adalah versi semasa.
+Ia tidak dapat disembunyikan.',
+'revdelete-show-no-access'    => 'Ralat menunjukkan item bertarikh $2, $1: item ini telah ditanda "larangan".
+Anda tidak memiliki capaian padanya.',
+'revdelete-modify-no-access'  => 'Ralat menyunting item bertarikh $2, $1: item ini telah ditanda "larangan".
+Anda tidak memiliki capaian padanya.',
+'revdelete-modify-missing'    => 'Ralat menyunting item ID $1: ia tiada dalam pangkalan data!',
 'revdelete-reason-dropdown'   => '*Sebab penghapusan biasa
 ** Pencabulan hak cipta
 ** Maklumat peribadi tidak sesuai

@@ -16,6 +16,7 @@
  * @author Cryptex
  * @author Dakrismeno
  * @author Darth Kule
+ * @author F. Cosoleto
  * @author Felis
  * @author FollowTheMedia
  * @author Gianfranco
@@ -28,6 +29,7 @@
  * @author Nemo bis
  * @author Nick1915
  * @author Omnipaedista
+ * @author PaoloRomano
  * @author Pietrodn
  * @author Ramac
  * @author Remember the dot
@@ -875,6 +877,8 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 'nocreatetitle'                    => 'Creazione delle pagine limitata',
 'nocreatetext'                     => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:UserLogin|entrare o registrarsi]].',
 'nocreate-loggedin'                => 'Non si dispone dei permessi necessari a creare nuove pagine.',
+'sectioneditnotsupported-title'    => 'Modifica delle sezioni non supportata',
+'sectioneditnotsupported-text'     => 'La modifica delle sezioni non è supportata in questa pagina.',
 'permissionserrors'                => 'Errore nei permessi',
 'permissionserrorstext'            => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
 'permissionserrorstext-withaction' => 'Non si dispone dei permessi necessari per $2, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:',

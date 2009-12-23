@@ -245,13 +245,19 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisinnaavutit]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log-ini ujaasisinnavutillu] imaluunniit [{{fullurl:{{FULLPAGENAME}}|action=edit}} qupperneq pilersissinnaavat]</span>.',
 'previewnote'   => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
 'editing'       => 'Aaqqissorpaa $1',
+'templatesused' => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut',
 
 # History pages
-'histfirst' => 'Pisoqaaneq',
-'histlast'  => 'Nutaaneq',
+'currentrev'   => 'Maanna taamaannera',
+'revisionasof' => 'Taamaannera $1-meersoq',
+'cur'          => 'maanna',
+'last'         => 'siulia',
+'histfirst'    => 'Pisoqaaneq',
+'histlast'     => 'Nutaaneq',
 
 # Diffs
-'editundo' => 'peeruk',
+'history-title' => '"$1"-p oqaluttuassartaa',
+'editundo'      => 'peeruk',
 
 # Search results
 'searchresults'             => 'Ujaasinermi inernerit',
@@ -336,6 +342,9 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'allarticles'    => 'Quppernerit tamarmik',
 'allpagessubmit' => 'Tassunngarit',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Atuisoq nutaaq',
+
 # Watchlist
 'watchlist'      => 'Ersersimasut',
 'mywatchlist'    => 'Nuisatiffikka',
@@ -358,6 +367,9 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 
 # Protect
 'prot_1movedto2' => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
+
+# Undelete
+'undeletedarticle' => 'inisseqqippaa "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => 'Quppernerup ilusia:',
@@ -425,9 +437,15 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'tooltip-save'                   => 'Allannguutitit toqqukkit',
 'tooltip-preview'                => 'Isikkua takuuk, toqqortinnaguk atortaruk!',
 
+# Patrol log
+'patrol-log-line' => 'nalunaaqqutserpaa $1 $2 misissorneqarsimasutut $3',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tamarmik',
 'namespacesall'    => 'tamarmik',
+
+# Auto-summaries
+'autosumm-new' => "Qupperneq pilersippaa '$1'",
 
 # Special:SpecialPages
 'specialpages' => 'Quppernerit immikkut ittut',

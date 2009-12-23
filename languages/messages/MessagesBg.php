@@ -12,6 +12,7 @@
  * @author DCLXVI
  * @author Daggerstab
  * @author Spiritia
+ * @author Turin
  * @author Urhixidur
  * @author Петър Петров
  * @author לערי ריינהארט
@@ -278,6 +279,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Стил на шрифта в кутията за редактиране',
+'editfont-default'   => 'По подразбиране за браузъра',
 'editfont-monospace' => 'Равноширок шрифт',
 'editfont-sansserif' => 'Безсерифен шрифт',
 'editfont-serif'     => 'Серифен шрифт',
@@ -1013,6 +1015,7 @@ $2',
 'revdelete-hide-comment'      => 'Скриване на коментара',
 'revdelete-hide-user'         => 'Скриване на името/IP-адреса на автора',
 'revdelete-hide-restricted'   => 'Прилагане на тези ограничения и за администраторите',
+'revdelete-radio-same'        => '(да не се променя)',
 'revdelete-radio-set'         => 'Да',
 'revdelete-radio-unset'       => 'Не',
 'revdelete-suppress'          => 'Скриване на причината за изтриването и от администраторите',
@@ -1288,7 +1291,7 @@ $2',
 * Поставена отметка означава, че потребителят е член на групата.
 * Поле без отметка означава, че потребителят не е член на групата.
 * Знакът * показва, че не можете да премахнете групата, след като е вече добавена (или обратно).',
-'userrights-reason'           => 'Причина за промяната:',
+'userrights-reason'           => 'Причина:',
 'userrights-no-interwiki'     => 'Нямате права да редактирате потребителските групи на други уикита.',
 'userrights-nodatabase'       => 'Базата данни $1 не съществува или не е на локалния сървър.',
 'userrights-nologin'          => 'За управление на потребителските права е необходимо [[Special:UserLogin|влизане]] с администраторска сметка.',
@@ -1574,6 +1577,7 @@ $2',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Достъпът е отказан',
+'img-auth-notindir'     => 'Търсеният път не е в настроената директория за качвания.',
 'img-auth-nologinnWL'   => 'Не сте влезли в системата и „$1“ не е в белия списък.',
 'img-auth-nofile'       => 'Файлът „$1“ не съществува.',
 'img-auth-isdir'        => 'Опитвате се да осъществите достъп до директорията „$1“.

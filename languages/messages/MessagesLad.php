@@ -23,14 +23,21 @@ $messages = array(
 'tog-justify'              => 'Atacanar paragrafos',
 'tog-hideminor'            => 'Esconder ediciones chiquiticas de los «trocamientos frescos»',
 'tog-showtoolbar'          => 'Amostrár la barra de edision',
+'tog-editondblclick'       => 'Troca las hojas en klikando dos vezes. (JavaScript es menesteroso)',
 'tog-rememberpassword'     => 'Akodrár mis informasiones sobre ésta komputadóra',
-'tog-watchcreations'       => 'Vigilar las páginas que estó creando.',
+'tog-watchcreations'       => 'Vigilar las hojas que estó creando.',
 'tog-watchdefault'         => 'Vijilar las pajinas ke yo modifike',
 'tog-watchmoves'           => 'Vijilar las pajinas ke renombre',
 'tog-watchdeletion'        => 'Vigilar las pajinas ke efase',
+'tog-minordefault'         => 'Vate marcando todos los trocamientos como chiquiticos.',
+'tog-previewontop'         => 'Mostra la prevista arriba de la caxa del trocamiento.',
+'tog-previewonfirst'       => 'Mostra la prevista al primer trocamiento.',
 'tog-enotifwatchlistpages' => 'Émbiame una letra electrónica kuando ay trocamientos en una página vigilada',
 'tog-enotifusertalkpages'  => 'Embiame una pósta kuando troka mi pajina de diskusion de uzuario',
+'tog-enotifminoredits'     => 'Mándame también una letra electrónica por los trocamientos chiquiticos de las hojas.',
 'tog-shownumberswatching'  => 'Amostrár el número de uzuarios ke la vijilan',
+'tog-ccmeonemails'         => 'Las copias de las letras electrónicas que mandí a otros usuarios, ¡Mándamelas!',
+'tog-diffonly'             => 'No mostres el contenido de las hojas debaxo de las diferencias.',
 'tog-showhiddencats'       => 'Amostrár kategorías eskondidas',
 
 'underline-always' => 'Siempre',
@@ -89,11 +96,14 @@ $messages = array(
 'dec'           => 'Diz',
 
 # Categories related messages
+'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'          => 'Artikolos en la kategoría "$1"',
 'subcategories'            => 'Subkategorías',
 'category-media-header'    => 'Archivos multimedia en la kategoría "$1"',
 'category-empty'           => "''La kategoría no kontiene aktualmente ningún artikolo o archivo multimedia''",
+'hidden-categories'        => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
 'hidden-category-category' => 'Kategorías eskondidas',
+'category-subcat-count'    => '{{PLURAL:$2|Esta categoría contiene solamente la categoría venidera.|Esta categoría contiene {{PLURAL:$1|las categorías venideras|$1 subcategorías venideras}}, de un total de $2 subcategorías.}}',
 'listingcontinuesabbrev'   => 'kont.',
 
 'about'         => 'Encima de',
@@ -115,7 +125,20 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-action-delete'      => 'Efassar',
+'vector-namespace-category' => 'Categoría',
+'vector-namespace-main'     => 'Hoja',
+'vector-namespace-project'  => 'Hoja de proyecto',
+'vector-namespace-special'  => 'Hoja especial',
+'vector-namespace-user'     => 'Hoja de usuario',
+'vector-view-create'        => 'Crear',
+'vector-view-edit'          => 'Trocar',
+'vector-view-history'       => 'Ver la istoria',
+'vector-view-view'          => 'Meldar',
+
 'errorpagetitle'   => 'Yerro',
+'returnto'         => 'Tornar a $1.',
 'tagline'          => 'De {{SITENAME}}',
 'help'             => 'Ayudo',
 'search'           => 'Buscar',
@@ -141,6 +164,7 @@ $messages = array(
 'newpage'          => 'Pajina mueva',
 'talkpage'         => 'Diścutir esta página',
 'talkpagelinktext' => 'Diścutir',
+'specialpage'      => 'Hoja Especial',
 'personaltools'    => 'Aparatos personales',
 'postcomment'      => 'Meter un komentário',
 'articlepage'      => 'Ver artikolo',
@@ -148,6 +172,7 @@ $messages = array(
 'views'            => 'Vistas',
 'toolbox'          => 'Caxa de Aparatos',
 'userpage'         => 'Ver pajina de uzuario',
+'projectpage'      => 'Ver la hoja de proyecto',
 'viewhelppage'     => 'Ver pajina de ayúda',
 'categorypage'     => 'Ver pajina de kategoría',
 'viewtalkpage'     => 'Ver diskusion',
@@ -174,29 +199,36 @@ $messages = array(
 'mainpage-description' => 'Página de Entrada',
 'policy-url'           => 'Project:Politikas',
 'portal'               => 'Portal de la komunidád',
+'portal-url'           => 'Project:Portal de la comunidad',
 'privacy'              => 'Politika de protección confidencial',
 'privacypage'          => 'Project:Politika de protección confidencial',
 
 'badaccess' => 'Falta de permesos',
 
-'ok'              => 'OK',
-'retrievedfrom'   => 'Optenido de "$1"',
-'newmessageslink' => 'mesajes nuevos',
-'editsection'     => 'editar',
-'editold'         => 'editar',
-'editsectionhint' => 'Editar la columna: $1',
-'toc'             => 'Contenidos',
-'showtoc'         => 'Amostrar',
-'hidetoc'         => 'esconder',
-'thisisdeleted'   => 'Ver o restorar $1?',
-'viewdeleted'     => 'Desea ver $1?',
-'site-rss-feed'   => 'Fuente de RSS de $1',
-'site-atom-feed'  => 'Fuente de Atom de $1',
+'ok'                      => 'OK',
+'retrievedfrom'           => 'Optenido de "$1"',
+'youhavenewmessages'      => 'Tienes $1 ($2).',
+'newmessageslink'         => 'mesajes nuevos',
+'newmessagesdifflink'     => 'el trocamiento de alcabo',
+'youhavenewmessagesmulti' => 'Tienes messajes nuevos en $1',
+'editsection'             => 'editar',
+'editold'                 => 'editar',
+'editlink'                => 'trocar',
+'editsectionhint'         => 'Editar la columna: $1',
+'toc'                     => 'Contenidos',
+'showtoc'                 => 'Amostrar',
+'hidetoc'                 => 'esconder',
+'thisisdeleted'           => 'Ver o restorar $1?',
+'viewdeleted'             => 'Desea ver $1?',
+'site-rss-feed'           => 'Fuente de RSS de $1',
+'site-atom-feed'          => 'Fuente de Atom de $1',
+'red-link-title'          => '$1 (esta hoja no egziste)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
 'nstab-user'      => 'Página de usuario',
 'nstab-special'   => 'Espesial',
+'nstab-project'   => 'Hoja del proyecto',
 'nstab-image'     => 'Archivo',
 'nstab-mediawiki' => 'Mesaje',
 'nstab-help'      => 'Ayudo',
@@ -206,54 +238,121 @@ $messages = array(
 'nosuchspecialpage' => 'No egziste ésta pajina espesial',
 
 # General errors
-'error' => 'Yerro',
+'error'               => 'Yerro',
+'missingarticle-diff' => '(Dif.: $1, $2)',
+'filecopyerror'       => 'No se pudo copiar el arxiv "$1" a "$2".',
+'viewsourcefor'       => 'para $1',
 
 # Login and logout pages
 'yourname'                => 'Su nombre de usuario',
 'yourpassword'            => 'Parola',
+'login'                   => 'Entrar',
 'nav-login-createaccount' => 'Entrar / Registrarse',
 'userlogin'               => 'Entrar / Registrarse',
 'logout'                  => 'Salir',
 'userlogout'              => 'Salir',
+'nologin'                 => "¿No tienes un cuento? '''$1'''.",
+'nologinlink'             => 'Crea un cuento',
+'createaccount'           => 'Crea un nuevo cuento',
+'gotaccount'              => "¿Ya tienes un cuento? '''$1'''.",
+'createaccountmail'       => 'por una letra electrónica',
+'userexists'              => 'El nombre que entrates ya se usa.
+Si puede ser, escoge un otro nombre.',
+'createaccounterror'      => 'No se pudo crear el cuento: $1',
+'emailconfirmlink'        => 'Confirma su adderesso de letra electrónica',
 'accountcreated'          => 'Kuenta kreada',
 'accountcreatedtext'      => 'La kuenta de uzuario para $1 ha sido kreada.',
+'loginlanguagelabel'      => 'Lingua: $1',
 
 # Edit page toolbar
 'italic_tip'     => 'Texhto en cursiva',
 'extlink_sample' => 'http://www.example.com Título del link',
 'headline_tip'   => 'Titular de nivel 2',
+'math_tip'       => 'Fórmula matemática (LaTeX)',
 'image_tip'      => 'Imagen incorporada',
 'media_tip'      => 'Link al arxivo multimedia',
 
 # Edit pages
-'summary'          => 'Resumen:',
-'subject'          => 'Tema/título:',
-'minoredit'        => 'Esta es una edición chiquitica',
-'watchthis'        => 'Vigilar este artículo',
-'savearticle'      => 'Registrar la página',
-'showpreview'      => 'Mostrar la previsualización',
-'showdiff'         => 'Amostrar trocamientos',
-'accmailtitle'     => 'La kontrasenya ha sido embiada.',
-'accmailtext'      => 'La kontrasenya para "$1" se ha embiado a $2.',
-'copyrightwarning' => "Si puede ser, que observe que todas las contribuciones a {{SITENAME}} se consideran hechas públicas abaxo la $2 (ver detayes en $1). Si no quere que la gente endereche tus texhtos escritos sin piedad y los distribuya libbremente, alora no los meta aquí. También él/ella nos está asegurando ansí que escribió este texhto su mismo y es dueño de los derechos de autor, o lo copió desde el dominio público u otra fuente libbero.'''¡QUE N0 USE TEXHTOS ESCRITOS CON COPYRIGHT SIN PERMIŚIÓN!'''<br />",
+'summary'           => 'Resumen:',
+'subject'           => 'Tema/título:',
+'minoredit'         => 'Esta es una edición chiquitica',
+'watchthis'         => 'Vigilar este artículo',
+'savearticle'       => 'Registrar la página',
+'showpreview'       => 'Mostrar la previsualización',
+'showdiff'          => 'Amostrar trocamientos',
+'blockednoreason'   => 'La razόn no se diό',
+'whitelistedittext' => 'Tienes que $1 para pueder trocar artículos.',
+'loginreqpagetext'  => 'Tienes que $1 para pueder ver otras hojas.',
+'accmailtitle'      => 'La kontrasenya ha sido embiada.',
+'accmailtext'       => 'La kontrasenya para "$1" se ha embiado a $2.',
+'newarticle'        => '(Nuevo)',
+'note'              => "'''Nota:'''",
+'editing'           => 'Trocando $1',
+'yourtext'          => 'Tu teksto',
+'yourdiff'          => 'Diferencias',
+'copyrightwarning'  => "Si puede ser, que observe que todas las contribuciones a {{SITENAME}} se consideran hechas públicas abaxo la $2 (ver detayes en $1). Si no quere que la gente endereche tus texhtos escritos sin piedad y los distribuya libbremente, alora no los meta aquí. También él/ella nos está asegurando ansí que escribió este texhto su mismo y es dueño de los derechos de autor, o lo copió desde el dominio público u otra fuente libbero.'''¡QUE N0 USE TEXHTOS ESCRITOS CON COPYRIGHT SIN PERMIŚIÓN!'''<br />",
+'nocreate-loggedin' => 'No tienes el permisso de creas hojas nuevas.',
 
 # History pages
-'revisionasof'     => 'Rêvizión de $1',
-'previousrevision' => '← Rêvizión de antes',
-'cur'              => 'act',
-'last'             => 'dal cabo',
+'revisionasof'         => 'Rêvizión de $1',
+'previousrevision'     => '← Rêvizión de antes',
+'cur'                  => 'act',
+'last'                 => 'dal cabo',
+'page_first'           => 'primeras',
+'page_last'            => 'de alcabas',
+'history-show-deleted' => 'Sólamente efassado',
+'histfirst'            => 'Primeras',
+'histlast'             => 'De alcabas',
+'historyempty'         => '(vazío)',
+
+# Revision deletion
+'rev-delundel'               => 'mostra/esconde',
+'rev-showdeleted'            => 'mostra',
+'revdelete-show-file-submit' => 'Sí',
+'revdelete-radio-set'        => 'Sí',
+'revdelete-radio-unset'      => 'No',
+'revdelete-log'              => 'La razón para efassar:',
+'revdelete-content'          => 'contenido',
+'revdelete-reasonotherlist'  => 'Otra razón',
+
+# History merging
+'mergehistory-reason' => 'Razón:',
 
 # Diffs
 'lineno'   => 'Liña $1:',
 'editundo' => 'deshazer',
 
 # Search results
-'searchhelp-url' => 'Help:Ayudo',
-'powersearch'    => 'Búsqueda adelantado',
+'shown-title'              => 'Mostra $1 {{PLURAL:$1|resultado|resultados}} por hoja',
+'searchhelp-url'           => 'Help:Ayuda',
+'searchprofile-everything' => 'Todo',
+'searchprofile-advanced'   => 'Adelantado',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 biervo|$2 biervos}})',
+'search-suggest'           => 'Quisites dezir: $1',
+'search-interwiki-caption' => 'Proyectos hermanos',
+'search-interwiki-more'    => '(más)',
+'searchall'                => 'todos',
+'powersearch'              => 'Búsqueda adelantada',
+'powersearch-toggleall'    => 'Todos',
+'search-external'          => 'Búsqueda eksterna',
 
 # Preferences page
-'preferences'   => 'Preferensias',
-'mypreferences' => 'Mis preferencias',
+'preferences'               => 'Preferensias',
+'mypreferences'             => 'Mis preferencias',
+'prefs-math'                => 'Fórmulas',
+'timezoneregion-africa'     => 'África',
+'timezoneregion-america'    => 'América',
+'timezoneregion-antarctica' => 'Antárctica',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-australia'  => 'Ostralia',
+'timezoneregion-europe'     => 'Europa',
+'email'                     => 'Letra electrónica',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'       => 'meldar esta hoja',
+'action-edit'       => 'trocar esta hoja',
+'action-createpage' => 'crear hojas',
+'action-delete'     => 'efassar esta hoja',
 
 # Recent changes
 'recentchanges'   => 'Trocamientos frescos',
@@ -279,6 +378,10 @@ $messages = array(
 # Upload
 'upload' => 'Cargar un dosyé',
 
+# Special:ListFiles
+'listfiles_name' => 'Nombre',
+'listfiles_user' => 'Usuario',
+
 # File description page
 'file-anchor-link'  => 'Archivo',
 'filehist'          => 'Istoria del dosyé',
@@ -290,6 +393,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
+'newpages'     => 'Hojas nuevas',
 'ancientpages' => 'Artikolos mas viejos',
 'move'         => 'Trasladar',
 
@@ -306,6 +410,9 @@ $messages = array(
 'special-categories-sort-count' => 'ordenar por número',
 'special-categories-sort-abc'   => 'ordenar alefbeticamente',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Usuario nuevo',
+
 # Watchlist
 'watchlist'   => 'Mi lista de vigilancia',
 'mywatchlist' => 'Mi lista de vigilancia',
@@ -318,6 +425,7 @@ $messages = array(
 
 # Delete
 'actioncomplete' => 'Aksion kompleta',
+'deletedarticle' => 'efassó «[[$1]]»',
 
 # Protect
 'prot_1movedto2' => '[[$1]] trasladado a [[$2]]',
@@ -327,11 +435,14 @@ $messages = array(
 
 # Contributions
 'mycontris' => 'Mis contribuciones',
+'month'     => 'Desde el mes (i antes):',
+'year'      => 'Desde el año (i antes):',
 
 'sp-contributions-talk' => 'Diścutir',
 
 # What links here
 'whatlinkshere'       => 'Lo que se ata con aquí',
+'whatlinkshere-page'  => 'Hoja:',
 'whatlinkshere-links' => '← linkes',
 
 # Block/unblock
@@ -341,6 +452,7 @@ $messages = array(
 # Move page
 '1movedto2'       => '[[$1]] trasladado a [[$2]]',
 '1movedto2_redir' => '[[$1]] trasladado a [[$2]] sovre una redireksion',
+'movereason'      => 'Razόn',
 
 # Namespace 8 related
 'allmessages'        => 'Mesajes del sistema',
@@ -362,6 +474,7 @@ $messages = array(
 'tooltip-ca-talk'         => 'Diścuśión encima del artículo',
 'tooltip-ca-edit'         => 'Puede editar esta página. 
 Si puede ser, que use el botón de previsualización antes de registrarla.',
+'tooltip-ca-delete'       => 'Efassar esta hoja',
 'tooltip-search'          => 'Buscar en este viki',
 'tooltip-n-mainpage'      => 'Visitar la Página de Entrada',
 'tooltip-n-portal'        => 'Encima del proyecto, ¿qué se puede hazer y ánde topar todo?',
@@ -378,6 +491,9 @@ Si puede ser, que use el botón de previsualización antes de registrarla.',
 
 # Attribution
 'anonymous' => '{{PLURAL:$1|Uzuario anonimo|Uzuarios anonimos}} de {{SITENAME}}',
+
+# Browsing diffs
+'previousdiff' => '← Trocamiento más antiguo',
 
 # Bad image list
 'bad_image_list' => 'El formato es ansina:

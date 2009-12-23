@@ -810,6 +810,9 @@ Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLog
 ''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''
 
 '''As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, [[Special:UserLogout|teken dan af]] en weer aan.'''",
+'token_suffix_mismatch'            => "'''U wysiging is geweier omdat u webblaaier leestekens in die wysigingsveld verkeerdelik geïnterpreteer het.
+Die bewerking is geweier om verminking van die bladsy se teks te voorkom.
+Dit gebeur soms as 'n webgebaseerde instaandiens (proxy) gebruik word wat foute bevat.",
 'editing'                          => 'Besig om $1 te wysig',
 'editingsection'                   => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'                   => 'Besig om $1 te wysig (nuwe opskrif)',
@@ -883,6 +886,8 @@ Daar is {{PLURAL:$1|$1 funksie|$1 funksies}}, terwyl die bladsy minder as $2 moe
 'post-expand-template-inclusion-warning'  => "'''Waarskuwing:''' Die maksimum toelaatbare grootte vir die insluiting van sjablone is oorskry.
 Sommige van die sjablone sal nie ingesluit word nie.",
 'post-expand-template-inclusion-category' => 'Bladsye waar die maksimum sjabloon insluit grootte oorskry is',
+'post-expand-template-argument-warning'   => "Waarskuwing: hierdie bladsy bevat ten minste een sjabloonparameter met 'n te groot transklusiegrootte.
+Hierdie parameters is uitgelaat.",
 'post-expand-template-argument-category'  => 'Bladsye met weggelate sjabloonargumente',
 'parser-template-loop-warning'            => "Sjablone is in 'n oneindige lus: [[$1]]",
 'parser-template-recursion-depth-warning' => 'Die rekursiediepte vir sjablone is oorskry ($1)',
@@ -953,6 +958,16 @@ As administrateur kan u dit sien.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.",
 'rev-deleted-no-diff'         => "U kan nie die verskille sien nie omdat een van die weergawes '''verwyder''' is.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
+'rev-deleted-unhide-diff'     => "Een van die weergawes vir hierdie verskil wat u aangevra het is '''verwyder'''.
+Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] aanwesig wees.
+As administrateur kan u steeds [$1 die verskille sien] as u wil voortgaan.",
+'rev-suppressed-unhide-diff'  => "Een van die weergawes vir hierdie verskil wat u aangevra het is '''onderdruk'''.
+Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] aanwesig wees.
+As administrateur kan u steeds [$1 hierdie weergawe sien] as u wil voortgaan.",
+'rev-deleted-diff-view'       => "Een van die weergawes van die verskil wat u aangevra het is '''verwyder'''.
+As administrateur kan u hierdie verskil sien. Meer details mag moontlik is die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] beskikbaar wees.",
+'rev-suppressed-diff-view'    => "Een van die weergawes vir die verskil wat u aangevra het is '''onderdruk'''.
+As administrateur kan u hierdie verskil sien. Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] beskikbaar wees.",
 'rev-delundel'                => 'wys/versteek',
 'rev-showdeleted'             => 'wys',
 'revisiondelete'              => 'Verwyder/herstel weergawes',
@@ -1286,12 +1301,14 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-minoredit'             => "Merk as 'n klein verandering",
 'right-move'                  => 'Skuif bladsye',
 'right-move-subpages'         => 'skuif bladsye met hul subblaaie',
+'right-move-rootuserpages'    => 'Skuif gebruikersblaaie op hoogste vlak',
 'right-movefile'              => 'Skuif lêers',
 'right-upload'                => 'Laai lêers op',
 'right-reupload'              => "Oorskryf 'n bestaande lêer",
 'right-reupload-own'          => "Oorskryf 'n lêer wat u self opgelaai het",
 'right-reupload-shared'       => 'Oorskryf lêers op die gedeelde mediabank plaaslik',
 'right-upload_by_url'         => "Laai lêer van 'n URL",
+'right-purge'                 => "Maak kas vir 'n bladsy skoon sonder verdere bevestiging",
 'right-autoconfirmed'         => 'Wysig half beskermde bladsye',
 'right-bot'                   => "Behandel as 'n geoutomatiseerde proses",
 'right-apihighlimits'         => 'Gebruik hoër limiete in API-soekopgragte',
@@ -1299,6 +1316,8 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-delete'                => 'Vee bladsye uit',
 'right-bigdelete'             => 'Skrap bladsye met groot geskiedenisse',
 'right-deleterevision'        => 'Skrap en ontskrap spesifieke hersienings van bladsye',
+'right-deletedhistory'        => 'Wys geskrapte geskiedenis-inskrywings, sonder hul teks',
+'right-deletedtext'           => 'Wys verwyderde teks en veranderings tussen geskrapte weergawes',
 'right-browsearchive'         => 'Soek uigeveede bladsye',
 'right-undelete'              => "Ontskrap 'n bladsy",
 'right-suppressrevision'      => 'Hersien en herstel weergawes verborge van administrateurs',
@@ -1309,15 +1328,19 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-ipblock-exempt'        => 'Omseil IP-blokkades',
 'right-proxyunbannable'       => "Blokkades vir instaanbedieners (proxy's) geld nie",
 'right-protect'               => 'Verander beskermingsvlakke en wysig beskermde bladsye',
+'right-editprotected'         => 'Wysig beskermde bladsye (sonder kaskade-beskerming)',
 'right-editinterface'         => 'Wysig die gebruikerskoppelvlak',
 'right-editusercssjs'         => 'Wysig ander gebruikers se CSS- en JS-lêers',
 'right-editusercss'           => 'Wysig ander gebruikers se CSS-lêers',
 'right-edituserjs'            => 'Wysig ander gebruikers se JS-lêers',
+'right-rollback'              => "Rol wysigings van die laaste gebruiker wat 'n bladsy gewysig het vinnig terug",
 'right-markbotedits'          => 'Merk teruggerolde wysigings as botbywerkings',
 'right-noratelimit'           => 'Negeer tydsafhanklike beperkings',
 'right-import'                => "Importeer bladsye vanaf ander wiki's",
 'right-importupload'          => "Importeer bladsye vanaf 'n lêer",
 'right-patrol'                => 'Merk ander se wysigings as gekontroleer',
+'right-autopatrol'            => 'Laat eie wysigings outomaties as gekontroleerd merk',
+'right-patrolmarks'           => 'Wys kontroleermerke in onlangse wysigings',
 'right-unwatchedpages'        => 'Wys lys van bladsye wat nie dopgehou word nie',
 'right-trackback'             => "Verskaf 'n terugverwysende bladsy",
 'right-mergehistory'          => 'Versmelt die geskiedenis van bladsye',
@@ -1984,7 +2007,7 @@ Terugvoer en verdere bystand:
 'exblank'                => 'bladsy was leeg',
 'delete-confirm'         => 'Skrap "$1"',
 'delete-legend'          => 'Skrap',
-'historywarning'         => "Waarskuwing: Die bladsy wat u wil verwyder het 'n geskiedenis met $1 {{PLURAL:$1|weergawe|weergawes}}:",
+'historywarning'         => "'''Waarskuwing:''' Die bladsy wat u wil verwyder het 'n geskiedenis met ongeveer $1 {{PLURAL:$1|weergawe|weergawes}}:",
 'confirmdeletetext'      => "U staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat u dit wil doen, dat u die gevolge verstaan en dat u dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Aksie uitgevoer',
@@ -2534,7 +2557,9 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 'common.css' => '/** Gemeenskaplike CSS vir alle omslae */',
 
 # Metadata
-'notacceptable' => "Die wikibediener kan nie data in 'n formaat wat jou kliënt kan lees verskaf nie.",
+'nodublincore'      => 'Dublin Core RDF-metadata is afgeskakel op hierdie bediener.',
+'nocreativecommons' => 'Creative Commons RDF-metadata is afgeskakel op hierdie bediener.',
+'notacceptable'     => "Die wikibediener kan nie data in 'n formaat wat jou kliënt kan lees verskaf nie.",
 
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
@@ -2553,6 +2578,7 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 'spamprotectiontext'  => "Die bladsy wat u wou stoor was geblok deur die gemorspos-filter.
 Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons swartlys veroorsaak.",
 'spamprotectionmatch' => 'Die volgende teks is wat ons gemorspos-filter geaktiveer het: $1',
+'spambot_username'    => 'MediaWiki opruiming van spam',
 'spam_reverting'      => 'Besig met terugrol na die laaste weergawe wat nie skakels na $1 bevat nie',
 'spam_blanking'       => "Alle weergawes met 'n skakel na $1 word verwyder",
 
@@ -2852,6 +2878,9 @@ Ander velde sal versteek wees.
 # Flash modes
 'exif-flash-fired-0'    => 'Flits het nie afgegaan',
 'exif-flash-fired-1'    => 'Flits het afgegaan',
+'exif-flash-return-0'   => 'geen stroboskoop-ontvangs-funksie nie',
+'exif-flash-return-2'   => 'geen stroboskoop-ontvangs raakgesien nie',
+'exif-flash-return-3'   => 'stroboskoop-ontvangs raakgesien',
 'exif-flash-mode-1'     => 'verpligte vuur van flitser',
 'exif-flash-mode-2'     => 'flitser verplig onderdruk',
 'exif-flash-mode-3'     => 'outomatiese modus',

@@ -16,6 +16,7 @@
  * @author McDutchie
  * @author Pasqual (ca)
  * @author Paucabot
+ * @author PerroVerd
  * @author Pérez
  * @author Qllach
  * @author SMP
@@ -835,6 +836,8 @@ L'administrador que l'ha tancada n'ha donat aquesta justificació: $1",
 'nocreatetext'                     => "El projecte {{SITENAME}} ha restringit la possibilitat de crear noves pàgines.
 Podeu modificar les planes ja existents o bé [[Special:UserLogin|entrar en un compte d'usuari]].",
 'nocreate-loggedin'                => 'No teniu permisos per a crear pàgines noves.',
+'sectioneditnotsupported-title'    => 'Edició de la secció no suportada',
+'sectioneditnotsupported-text'     => "L'edició de la secció no està suportada en aquesta pàgina.",
 'permissionserrors'                => 'Error de permisos',
 'permissionserrorstext'            => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'permissionserrorstext-withaction' => 'No teniu permís per a $2, {{PLURAL:$1|pel motiu següent|pels motius següents}}:',
@@ -968,6 +971,9 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 'revdelete-hide-comment'      => "Amaga el comentari de l'edició",
 'revdelete-hide-user'         => "Amaga el nom d'usuari o la IP de l'editor",
 'revdelete-hide-restricted'   => 'Suprimir les dades als administradors així com a la resta.',
+'revdelete-radio-same'        => '(no modificar)',
+'revdelete-radio-set'         => 'Si',
+'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suprimeix també les dades dels administradors',
 'revdelete-unsuppress'        => 'Suprimir les restriccions de les revisions restaurades',
 'revdelete-log'               => "Motiu d'esborrat:",
@@ -1003,7 +1009,7 @@ No hi tens accés.",
 'revdelete-no-change'         => "'''Atenció:''' la revisió del $1 a les $2 ja té les restriccions de visibilitat sol·licitades.",
 'revdelete-concurrent-change' => "Error en modificar l'element del $1 a les $2: el seu estat sembla haver estat canviat per algú altre quan intentaves modificar-lo.
 Si us plau, verifica els registres.",
-'revdelete-only-restricted'   => 'No pots suprimir elements a la vista dels administradors sense seleccionar alhora una de les altres opcions de supressió.',
+'revdelete-only-restricted'   => 'Error amagant els ítems $2, $1: no pots suprimir elements a la vista dels administradors sense seleccionar alhora una de les altres opcions de supressió.',
 'revdelete-reason-dropdown'   => "*Raons d'esborrament comunes
 ** Violació del copyright
 ** Informació personal inapropiada
@@ -1248,7 +1254,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 * Els requadres marcats indiquen que l'usuari és dins del grup.
 * Els requadres sense marcar indiquen que l'usuari no hi pertany.
 * Un asterisc (*) indica que no el podreu treure del grup una vegada l'hàgiu afegit o viceversa.",
-'userrights-reason'           => 'Motiu del canvi:',
+'userrights-reason'           => 'Raó:',
 'userrights-no-interwiki'     => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
 'userrights-nodatabase'       => 'La base de dades $1 no existeix o no és local.',
 'userrights-nologin'          => "Heu [[Special:UserLogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
@@ -1769,7 +1775,8 @@ Les entrades <s>ratllades</s> s\'han resolt.',
 'ancientpages'            => 'Pàgines més antigues',
 'move'                    => 'Reanomena',
 'movethispage'            => 'Trasllada la pàgina',
-'unusedimagestext'        => 'Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL directe i estar llistat ací tot i estar en ús actiu.',
+'unusedimagestext'        => 'Els següents fitxers existeixen però estan incorporats en cap altra pàgina.
+Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL directe i estar llistat ací tot i estar en ús actiu.',
 'unusedcategoriestext'    => 'Les pàgines de categoria següents existeixen encara que cap altra pàgina o categoria les utilitza.',
 'notargettitle'           => 'No hi ha pàgina en blanc',
 'notargettext'            => 'No heu especificat a quina pàgina dur a terme aquesta funció.',
@@ -1843,11 +1850,13 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'listusers-blocked'  => '({{GENDER:$1|blocat|blocada}})',
 
 # Special:ActiveUsers
-'activeusers'          => "Llista d'usuaris actius",
-'activeusers-intro'    => "Aquí hi ha una llista d'usuaris que han tingut algun tipus d'activitat en {{PLURAL:$1|el darrer dia|els darrers $1 dies}}.",
-'activeusers-count'    => '$1 {{PLURAL:$1|modificació|modificacions}} en {{PLURAL:$3|el darrer dia|els $3 darrers dies}}',
-'activeusers-from'     => 'Mostra els usuaris començant per:',
-'activeusers-noresult' => "No s'han trobat usuaris.",
+'activeusers'            => "Llista d'usuaris actius",
+'activeusers-intro'      => "Aquí hi ha una llista d'usuaris que han tingut algun tipus d'activitat en {{PLURAL:$1|el darrer dia|els darrers $1 dies}}.",
+'activeusers-count'      => '$1 {{PLURAL:$1|modificació|modificacions}} en {{PLURAL:$3|el darrer dia|els $3 darrers dies}}',
+'activeusers-from'       => 'Mostra els usuaris començant per:',
+'activeusers-hidebots'   => 'Amaga bots',
+'activeusers-hidesysops' => 'Amaga administradors',
+'activeusers-noresult'   => "No s'han trobat usuaris.",
 
 # Special:Log/newusers
 'newuserlogpage'              => "Registre de creació de l'usuari",
@@ -2190,6 +2199,7 @@ Per més detalls, la última entrada del registre es mostra a continuació:",
 
 # Block/unblock
 'blockip'                         => "Bloqueig d'usuaris",
+'blockip-title'                   => "Bloquejar l'usuari",
 'blockip-legend'                  => "Bloca l'usuari",
 'blockiptext'                     => "Empreu el següent formulari per blocar l'accés
 d'escriptura des d'una adreça IP específica o des d'un usuari determinat.

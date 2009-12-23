@@ -927,7 +927,7 @@ Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'revdelete-hide-comment'      => 'Komentar wobźěłanja schowaś',
 'revdelete-hide-user'         => 'mě/IP-adresu wobźěłarja schowaś',
 'revdelete-hide-restricted'   => 'Daty wót administratorow ako teke te drugich wužywarjow pódtłocyś',
-'revdelete-radio-same'        => '(wóstajiś)',
+'revdelete-radio-same'        => '(njezměniś)',
 'revdelete-radio-set'         => 'Jo',
 'revdelete-radio-unset'       => 'Ně',
 'revdelete-suppress'          => 'Pśicynu wulašowanja teke za administratorow schowaś',

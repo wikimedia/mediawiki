@@ -15,6 +15,7 @@
  * @author Minisarm
  * @author SCriBu
  * @author Silviubogan
+ * @author Stelistcristi
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -645,7 +646,8 @@ Te rog anunţă acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'unexpected'           => 'Valoare neaşteptată: "$1"="$2".',
 'formerror'            => 'Eroare: datele nu au putut fi trimise',
 'badarticleerror'      => 'Această acţiune nu poate fi efectuată pe această pagină.',
-'cannotdelete'         => 'Comanda de ştergere nu s-a putut executa! Probabil că ştergerea a fost operată între timp.',
+'cannotdelete'         => 'Pagina sau fişierul „$1” nu a putut fi şters.
+S-ar putea ca acesta să fi fost deja şters de altcineva.',
 'badtitle'             => 'Titlu incorect',
 'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.
 
@@ -752,6 +754,7 @@ Prin urmare, vizitatorii care folosesc acelaşi IP nu mai pot crea alte conturi 
 Este de dorit să vă autentificaţi şi să schimbaţi parola cât mai repede.
 
 Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
+'usernamehasherror'          => 'Numele de utilizator nu poate conţine caractere diez',
 'login-throttled'            => 'Aţi avut prea multe încercări de a vă autentifica.
 Vă rugăm să aşteptaţi până să mai încercaţi.',
 'loginlanguagelabel'         => 'Limba: $1',
@@ -932,6 +935,8 @@ Administratorul care a efectuat blocarea a oferit următoarea explicaţie: $1",
 'nocreatetext'                     => '{{SITENAME}} a restricţionat abilitatea de a crea pagini noi.
 Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:UserLogin|autentificaţi/creaţi]] un cont de utilizator.',
 'nocreate-loggedin'                => 'Nu ai permisiunea să creezi pagini noi.',
+'sectioneditnotsupported-title'    => 'Modificarea secţiunilor nu este suportată',
+'sectioneditnotsupported-text'     => 'Modificarea secţiunilor nu este suportată în această pagină.',
 'permissionserrors'                => 'Erori de permisiune',
 'permissionserrorstext'            => 'Nu aveţi permisiune pentru a face acest lucru, din următoarele {{PLURAL:$1|motiv|motive}}:',
 'permissionserrorstext-withaction' => 'Nu aveţi permisiunea să $2, din {{PLURAL:$1|următorul motivul|următoarele motive}}:',
@@ -995,6 +1000,7 @@ Motivul invocat de $3 este ''$2''",
 'histlegend'             => 'Legendă: (actuală) = diferenţe faţă de versiunea curentă,
 (prec) = diferenţe faţă de versiunea precedentă, M = modificare minoră',
 'history-fieldset-title' => 'Răsfoieşte istoricul',
+'history-show-deleted'   => 'Doar şterse',
 'histfirst'              => 'Primele',
 'histlast'               => 'Ultimele',
 'historysize'            => '({{PLURAL:$1|1 octet|$1 octeţi}})',
@@ -1012,6 +1018,7 @@ E posibil să fi fost ştearsă sau redenumită.
 'rev-deleted-comment'         => '(comentariu şters)',
 'rev-deleted-user'            => '(nume de utilizator şters)',
 'rev-deleted-event'           => '(intrare ştearsă)',
+'rev-deleted-user-contribs'   => '[nume de utilizator sau adresă IP ştearsă - modificare ascunsă din contribuţii]',
 'rev-deleted-text-permission' => "Această revizie a paginii a fost '''ştearsă'''.
 Mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
 'rev-deleted-text-unhide'     => "Această revizie a paginii a fost '''ştearsă'''.
@@ -1029,7 +1036,15 @@ Pot exista mai multe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rev-deleted-unhide-diff'     => "Una din reviziile acestui istoric a fost '''ştearsă'''.
 Pot exista detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
 Ca administrator puteţi [$1 vedea diferenţa] în continuare, dacă doriţi acest lucru.",
+'rev-suppressed-unhide-diff'  => "Una dintre reviziile acestui diff a fost '''suprimată'''.
+Ar putea fi detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].
+Ca administrator puteţi [$1 vedea diferenţa] în continuare, dacă doriţi acest lucru.",
+'rev-deleted-diff-view'       => "Una dintre reviziile acestui diff a fost '''ştearsă'''.
+Ca administrator puteţi vedea în continuare acest diff; s-ar putea să existe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
+'rev-suppressed-diff-view'    => "Una dintre reviziile acestui diff a fost '''suprimată'''.
+Ca administrator puteţi vedea în continuare acest diff; s-ar putea să existe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-delundel'                => 'arată/ascunde',
+'rev-showdeleted'             => 'arată',
 'revisiondelete'              => 'Şterge/recuperează revizii',
 'revdelete-nooldid-title'     => 'Revizie invalidă',
 'revdelete-nooldid-text'      => 'Nu ai specificat revizie pentru a efectua această
@@ -1045,6 +1060,7 @@ funcţie, revizia specificată nu există, sau eşti pe cale să ascunzi revizia
 'logdelete-selected'          => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
 'revdelete-text'              => "'''Reviziile şterse vor apărea în istoricul paginii, dar conţinutul lor nu va fi accesibil publicului.'''
 Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă altă restricţie de către operatorii sitului.",
+'revdelete-confirm'           => 'Vă rugăm să confirmaţi că intenţionaţi să faceţi acest lucru, că înţelegeţi consecinţele şi că faceţi asta în conformitate cu [[{{MediaWiki:Policy-url}}|politica]].',
 'revdelete-suppress-text'     => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
 * Informaţii personale inadecvate
 *: ''adrese şi numere de telefon personale, CNP, numere de securitate socială, etc.''",
@@ -1055,6 +1071,9 @@ Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl po
 'revdelete-hide-comment'      => 'Ascunde descrierea modificării',
 'revdelete-hide-user'         => 'Ascunde numele de utilizator/IP-ul editorului',
 'revdelete-hide-restricted'   => 'Ascunde informaţiile faţă de administratori şi faţă de alţi utilizatori',
+'revdelete-radio-same'        => '(nu schimba)',
+'revdelete-radio-set'         => 'Da',
+'revdelete-radio-unset'       => 'Nu',
 'revdelete-suppress'          => 'Ascunde de asemenea reviziile faţă de administratori',
 'revdelete-unsuppress'        => 'Elimină restricţiile în reviziile restaurate',
 'revdelete-log'               => 'Motiv pentru ştergere:',
@@ -1062,7 +1081,7 @@ Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl po
 'revdelete-logentry'          => 'vizibilitatea reviziei pentru [[$1]] a fost modificată',
 'logdelete-logentry'          => 'a fost modificată vizibilitatea evenimentului [[$1]]',
 'revdelete-success'           => "'''Vizibilitatea reviziilor a fost schimbată cu succes.'''",
-'revdelete-failure'           => "'''Vizibilitatea reviziei nu poate fi definită:'''
+'revdelete-failure'           => "'''Vizibilitatea reviziei nu poate fi actualizată:'''
 $1",
 'logdelete-success'           => "'''Jurnalul vizibilităţii a fost configurat cu succes.'''",
 'logdelete-failure'           => "'''Vizibilitatea jurnalului nu poate fi definită:'''
@@ -1088,7 +1107,7 @@ Nu ai acces asupra lui.',
 'revdelete-modify-missing'    => 'Eroare la modificarea elementului ID $1: lipseşte din baza de date!',
 'revdelete-no-change'         => "'''Atenţie:''' elementul datat $2, $1 are deja aplicată vizibilitatea cerută.",
 'revdelete-concurrent-change' => 'Eroare la modificarea elementului datat $2, $1: statutul său a fost modificat de altcineva în timpul acestei modificări.',
-'revdelete-only-restricted'   => 'Nu poţi suprima aceste elemente la vizualizarea de către administratori fără a marca una din celelalte opţiuni de suprimare.',
+'revdelete-only-restricted'   => 'Eroare în timpul suprimării elementului datat $1, $2: nu puteţi suprima elemente la vizualizarea de către administratori fără a marca una din celelalte opţiuni de suprimare.',
 'revdelete-reason-dropdown'   => '*Motive de ştergere
 ** Violare drepturi de autor
 ** Informaţii personale inadecvate',
@@ -1427,6 +1446,7 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-reset-passwords'       => 'Resetarea parolelor altor utilizatori',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-versiondetail'         => 'Arată informaţii extise despre versiunea programului',
+'right-sendemail'             => 'Trimite e-mail altor utilizatori',
 
 # User rights log
 'rightslog'      => 'Jurnal permisiuni de utilizator',
@@ -1525,6 +1545,7 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 'upload'                      => 'Încarcă fişier',
 'uploadbtn'                   => 'Încarcă fişier',
 'reuploaddesc'                => 'Revocare încărcare şi întoarcere la formularul de trimitere.',
+'upload-tryagain'             => 'Trimiteţi descrierea fişierului modificată',
 'uploadnologin'               => 'Nu sunteţi autentificat',
 'uploadnologintext'           => 'Trebuie să fiţi [[Special:UserLogin|autentificat]] pentru a putea trimite fişiere.',
 'upload_directory_missing'    => 'Directorul în care sunt încărcate fişierele ($1) lipseşte şi nu poate fi creat de serverul web.',
@@ -1589,6 +1610,7 @@ Mergeţi înapoi şi încărcaţi acest fişier sub un nume nou. [[File:$1|thumb
 'file-deleted-duplicate'      => 'Un fişier identic cu acesta ([[$1]]) a fost şters anterior. Verificaţi istoricul ştergerilor fişierului înainte de a-l reîncărca.',
 'successfulupload'            => 'Fişierul a fost trimis',
 'uploadwarning'               => 'Avertizare la trimiterea fişierului',
+'uploadwarning-text'          => 'Vă rugăm să modificaţi descrierea fişierului mai jos şi să încercaţi din nou.',
 'savefile'                    => 'Salvează fişierul',
 'uploadedimage'               => 'a trimis [[$1]]',
 'overwroteimage'              => 'încărcat o versiune nouă a fişierului "[[$1]]"',
@@ -1599,9 +1621,13 @@ Vă rugăm să verificaţi setările din file_uploads.',
 'uploadscripted'              => 'Fişierul conţine HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
 'uploadcorrupt'               => 'Fişierul este corupt sau are o extensie incorectă. Verifică fişierul şi trimite-l din nou.',
 'uploadvirus'                 => 'Fişierul conţine un virus! Detalii: $1',
+'upload-source'               => 'Fişier sursă',
 'sourcefilename'              => 'Nume fişier sursă:',
+'sourceurl'                   => 'URL sursă:',
 'destfilename'                => 'Numele fişierului de destinaţie:',
 'upload-maxfilesize'          => 'Mărimea maximă a unui fişier: $1',
+'upload-description'          => 'Descrierea fişierului',
+'upload-options'              => 'Opţiuni de încărcare',
 'watchthisupload'             => 'Urmăreşte acest fişier',
 'filewasdeleted'              => 'Un fişier cu acest nume a fost anterior încărcat şi apoi şters. Ar trebui să verificaţi $1 înainte să îl încărcaţi din nou.',
 'upload-wasdeleted'           => "'''Atenţie: Sunteţi pe cale să încarcaţi un fişier şters anterior.'''
@@ -1630,7 +1656,17 @@ Dacă problema persistă, contactaţi un [[Special:ListUsers/sysop|administrator
 Serverul dumneavoastră nu a fost setat pentru a trece aceste informaţii.
 S-ar putea să fie bazat pe CGI şi să nu suporte img_auth.
 Vedeţi http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
+'img-auth-badtitle'     => 'Nu s-a putut construi un titlu valid din "$1".',
+'img-auth-nologinnWL'   => 'Nu sunteţi autentificat şi "$1" nu este pe lista albă.',
 'img-auth-nofile'       => 'Fişierul "$1" nu există.',
+'img-auth-isdir'        => 'Încercaţi să accesaţi directorul "$1".
+Numai accesul la fişiere este permis.',
+'img-auth-streaming'    => 'Derularea continuă a "$1".',
+'img-auth-public'       => 'Funcţia img_auth.php este pentru a exporta fişiere de pe un wiki privat.
+Acest wiki este configurat ca unul public.
+Pentru securitate optimă, img_auth.php este dezactivat.',
+'img-auth-noread'       => 'Acest utilizator nu are acces să citească "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nu pot găsi adresa URL',
@@ -1727,6 +1763,7 @@ Descrierea de mai jos poate fi consultată la [$2 pagina de descriere a fişieru
 ** Încălcare drepturi de autor
 ** Fişier duplicat',
 'filedelete-edit-reasonlist'  => 'Modifică motivele ştergerii',
+'filedelete-maintenance'      => 'Ştergerea sau restaurarea fişierelor este temporar dezactivată pe timpul lucrărilor de mentenanţă.',
 
 # MIME search
 'mimesearch'         => 'Căutare MIME',
@@ -1863,7 +1900,8 @@ Intrările <s>tăiate</s> au fost rezolvate.',
 'ancientpages'            => 'Cele mai vechi articole',
 'move'                    => 'Mută',
 'movethispage'            => 'Mută această pagină',
-'unusedimagestext'        => 'Te rugăm ţine cont de faptul că alte situri, inclusiv alte versiuni de limbă {{SITENAME}} pot să aibă legături aici fără ca aceste pagini să fie listate aici - această listă se referă strict la {{SITENAME}} în română.',
+'unusedimagestext'        => 'Următoarele fişiere există dar nu sunt incluse în nicio altă pagină.
+Vă rugăm să aveţi în vedere faptul că alte saituri web pot avea o legătură directă către acest URL şi s-ar putea afla aici chiar dacă nu sunt în utlizare activă.',
 'unusedcategoriestext'    => 'Următoarele categorii de pagini există şi totuşi nici un articol sau categorie nu le foloseşte.',
 'notargettitle'           => 'Lipsă ţintă',
 'notargettext'            => 'Nu ai specificat nici o pagină sau un utilizator ţintă pentru care să se efectueze această operaţiune.',
@@ -1938,10 +1976,13 @@ Protocoale suportate: <tt>$1</tt>',
 'listusers-blocked'  => '(blocat{{GENDER:$1||ă|}})',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista de utilizatori activi',
-'activeusers-count'    => '$1 {{PLURAL:$1|modificare recentă|modificări recente}} în {{PLURAL:$3|ultima zi|ultimele $3 zile}}',
-'activeusers-from'     => 'Afişează utilizatori începând cu:',
-'activeusers-noresult' => 'Niciun utilizator găsit.',
+'activeusers'            => 'Lista de utilizatori activi',
+'activeusers-intro'      => 'Aceasta este o listă cu utilizatorii care au avut un fel de activitate în {{PLURAL:$1|ultima zi|ultimele $1 zile}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|modificare recentă|modificări recente}} în {{PLURAL:$3|ultima zi|ultimele $3 zile}}',
+'activeusers-from'       => 'Afişează utilizatori începând cu:',
+'activeusers-hidebots'   => 'Ascunde roboţii',
+'activeusers-hidesysops' => 'Ascunde administratorii',
+'activeusers-noresult'   => 'Niciun utilizator găsit.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Jurnal utilizatori noi',
@@ -2099,19 +2140,20 @@ Asistenţă şi suport:
 continuă cu atenţie.',
 
 # Rollback
-'rollback'         => 'Editări de revenire',
-'rollback_short'   => 'Revenire',
-'rollbacklink'     => 'revenire',
-'rollbackfailed'   => 'Revenirea nu s-a putut face',
-'cantrollback'     => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
-'alreadyrolled'    => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
+'rollback'          => 'Editări de revenire',
+'rollback_short'    => 'Revenire',
+'rollbacklink'      => 'revenire',
+'rollbackfailed'    => 'Revenirea nu s-a putut face',
+'cantrollback'      => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
+'alreadyrolled'     => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
 
 Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Descrierea modificărilor a fost: „''$1''”.",
-'revertpage'       => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]',
-'rollback-success' => 'Anularea modificărilor făcute de $1;
+'editcomment'       => "Descrierea modificărilor a fost: „''$1''”.",
+'revertpage'        => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]',
+'revertpage-nouser' => 'Anularea modificărilor efectuate de (nume de utilizator şters) şi revenirea la ultima modificare de către [[User:$1|$1]]',
+'rollback-success'  => 'Anularea modificărilor făcute de $1;
 revenire la ultima versiune de $2.',
-'sessionfailure'   => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
+'sessionfailure'    => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
 
 # Protect
 'protectlogpage'              => 'Jurnal protecţii',
@@ -2127,6 +2169,7 @@ revenire la ultima versiune de $2.',
 'protectexpiry'               => 'Expiră:',
 'protect_expiry_invalid'      => 'Timpul de expirare este nevalid.',
 'protect_expiry_old'          => 'Timpul de expirare este în trecut.',
+'protect-unchain-permissions' => 'Deblochează mai multe opţiuni de protejare',
 'protect-text'                => "Poţi vizualiza sau modifica nivelul de protecţie pentru pagina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Nu poţi schimba nivelurile de protecţie fiind blocat.
 Iată configuraţia curentă a paginii '''$1''':",
@@ -2237,17 +2280,19 @@ $1',
 'month'               => 'Din luna (şi dinainte):',
 'year'                => 'Începând cu anul (şi precedenţii):',
 
-'sp-contributions-newbies'       => 'Arată doar contribuţiile conturilor noi',
-'sp-contributions-newbies-sub'   => 'Pentru începători',
-'sp-contributions-newbies-title' => 'Contribuţiile utilizatorului pentru conturile noi',
-'sp-contributions-blocklog'      => 'Jurnal blocări',
-'sp-contributions-deleted'       => 'contribuţiile şterse ale utilizatorului',
-'sp-contributions-logs'          => 'jurnale',
-'sp-contributions-talk'          => 'discuţie',
-'sp-contributions-userrights'    => 'administrarea permisiunilor de utilizator',
-'sp-contributions-search'        => 'Caută contribuţii',
-'sp-contributions-username'      => 'Adresă IP sau nume de utilizator:',
-'sp-contributions-submit'        => 'Caută',
+'sp-contributions-newbies'        => 'Arată doar contribuţiile conturilor noi',
+'sp-contributions-newbies-sub'    => 'Pentru începători',
+'sp-contributions-newbies-title'  => 'Contribuţiile utilizatorului pentru conturile noi',
+'sp-contributions-blocklog'       => 'Jurnal blocări',
+'sp-contributions-deleted'        => 'contribuţiile şterse ale utilizatorului',
+'sp-contributions-logs'           => 'jurnale',
+'sp-contributions-talk'           => 'discuţie',
+'sp-contributions-userrights'     => 'administrarea permisiunilor de utilizator',
+'sp-contributions-blocked-notice' => 'Acest utilizator este momentan blocat.
+Ultima blocare este indicată mai jos pentru informare:',
+'sp-contributions-search'         => 'Caută contribuţii',
+'sp-contributions-username'       => 'Adresă IP sau nume de utilizator:',
+'sp-contributions-submit'         => 'Caută',
 
 # What links here
 'whatlinkshere'            => 'Ce se leagă aici',
@@ -2270,6 +2315,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blochează utilizator / IP',
+'blockip-title'                   => 'Blochează utilizator',
 'blockip-legend'                  => 'Blochează utilizator / IP',
 'blockiptext'                     => "Pentru a bloca un utilizator completaţi rubricile de mai jos.<br />
 '''Respectaţi [[{{MediaWiki:Policy-url}}|politica de blocare]].'''<br />
@@ -2322,6 +2368,8 @@ Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a rev
 'ipblocklist-sh-tempblocks'       => '$1 blocări temporare',
 'ipblocklist-sh-addressblocks'    => '$1 blocări de adrese IP',
 'ipblocklist-submit'              => 'Caută',
+'ipblocklist-localblock'          => 'Blocare locală',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Altă blocare|Alte $1 blocări}}',
 'blocklistline'                   => '$1, $2 a blocat $3 ($4)',
 'infiniteblock'                   => 'termen nelimitat',
 'expiringblock'                   => 'expiră în $1 la $2',
@@ -2339,6 +2387,10 @@ Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a rev
 'autoblocker'                     => 'Autoblocat fiindcă folosiţi aceeaşi adresă IP ca şi „[[User:$1|$1]]”.
 Motivul blocării utilizatorului $1 este: „$2”',
 'blocklogpage'                    => 'Jurnal blocări',
+'blocklog-showlog'                => 'Acest utilizator a fost blocat în trecut.
+Jurnalul blocărilor este indicat mai jos:',
+'blocklog-showsuppresslog'        => 'Acest utilizator a fost blocat şi suprimat în trecut.
+Jurnalul suprimărilor este indicat mai jos:',
 'blocklogentry'                   => 'a blocat "[[$1]]" pe o perioadă de $2 $3',
 'reblock-logentry'                => 'a fost schimbată blocarea pentru [[$1]] cu data expirării la $2 $3',
 'blocklogtext'                    => 'Acest jurnal cuprinde acţiunile de blocare şi deblocare. Adresele IP blocate automat nu sunt afişate. Vizitaţi [[Special:IPBlockList|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
@@ -2357,6 +2409,7 @@ Motivul blocării utilizatorului $1 este: „$2”',
 'ipb_already_blocked'             => '"$1" este deja blocat',
 'ipb-needreblock'                 => '== Deja blocat ==
 $1 este deja blocat. Vrei să schimbi parametrii?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Altă blocare|Alte blocări}}',
 'ipb_cant_unblock'                => 'Eroare: nu găsesc identificatorul $1. Probabil a fost deja deblocat.',
 'ipb_blocked_as_range'            => 'Eroare: Adresa IP $1 nu este blocată direct deci nu poate fi deblocată.
 Face parte din area de blocare $2, care nu poate fi deblocată.',
@@ -2369,6 +2422,7 @@ Face parte din area de blocare $2, care nu poate fi deblocată.',
 'sorbsreason'                     => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
 'sorbs_create_account_reason'     => 'Adresa dvs. IP este listată la un proxy deschis în lista neagră DNS. Nu vă puteţi crea un cont',
 'cant-block-while-blocked'        => 'Nu poţi bloca alţi utilizatori cât timp şi tu eşti blocat.',
+'cant-see-hidden-user'            => 'Utilizatorul pe care încercaţi să îl blocaţi este deja blocat şi ascuns. Atata timp cât nu aveţi drept de hideuser, nu puteţi vedea sau modifica blocarea acestuia.',
 
 # Developer tools
 'lockdb'              => 'Blochează baza de date',
@@ -2473,6 +2527,10 @@ Articolul de destinaţie "[[:$1]]" există deja. Doriţi să îl ştergeţi pent
 'move-leave-redirect'          => 'Lasă în urmă o redirecţionare',
 'protectedpagemovewarning'     => "'''Atenţie:''' Această pagină a fost blocată şi poate fi mutată de utilizatorii cu drepturi de administrator.",
 'semiprotectedpagemovewarning' => "'''Notă:''' Această pagină a fost blocată şi poate fi mutată doar de utilizatorii înregistraţi.",
+'move-over-sharedrepo'         => '== Fişierul există ==
+[[:$1]] există deja într-un depozit împărţit. Mutând un fişier la acest titlu va suprapune fişierul împărţit şi îl va face inaccesibil.',
+'file-exists-sharedrepo'       => 'Numele ales al fişierului este deja în utilizare într-un depozit împărţit.
+Alegeţi un alt nume.',
 
 # Export
 'export'            => 'Exportă pagini',
@@ -2656,10 +2714,12 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizator anonim|Utilizatori anonimi}} ai {{SITENAME}}',
 'siteuser'         => 'Utilizator {{SITENAME}} $1',
+'anonuser'         => 'utlizator anonim $1 al {{SITENAME}}',
 'lastmodifiedatby' => 'Pagina a fost modificată în $1, la $2 de către $3.',
 'othercontribs'    => 'Bazat pe munca lui $1.',
 'others'           => 'alţii',
 'siteusers'        => '{{PLURAL:$2|Utilizator|Utilizatori}} {{SITENAME}} $1',
+'anonusers'        => '{{PLURAL:$2|utilizator anonim|utilizatori anonimi}} $1 {{PLURAL:$2|al|ai}} {{SITENAME}}',
 'creditspage'      => 'Credenţiale',
 'nocredits'        => 'Nu există credenţiale disponibile pentru această pagină.',
 
@@ -2744,7 +2804,8 @@ $1',
 'nextdiff'     => 'Diferenţa următoare →',
 
 # Media information
-'mediawarning'         => "'''Atenţie''': Acest fişier poate conţine cod maliţios, executându-l, sistemul dvs. poate fi compromis.<hr />",
+'mediawarning'         => "'''Atenţie''': Acest fişier poate conţine cod maliţios.
+Executându-l, sistemul dvs. poate fi compromis.<hr />",
 'imagemaxsize'         => "Limita mărimii imaginilor:<br />''(pentru paginile de descriere)''",
 'thumbsize'            => 'Mărime thumbnail:',
 'widthheight'          => '$1x$2',
@@ -3067,6 +3128,7 @@ Altele vor fi ascunse implicit.
 'watchlistall2'    => 'toate',
 'namespacesall'    => 'toate',
 'monthsall'        => 'toate',
+'limitall'         => 'toate',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmă adresa de email',
@@ -3301,8 +3363,15 @@ Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 'htmlform-selectorother-other' => 'Altul',
 
 # Add categories per AJAX
+'ajax-add-category'            => 'Adaugă categorie',
+'ajax-add-category-submit'     => 'Adaugă',
+'ajax-confirm-title'           => 'Confirmaţi acţiunea',
+'ajax-confirm-prompt'          => 'Puteţi trimite o descriere a modificărilor mai jos.
+Apăsaţi "Salvează pagina" pentru a salva modificarea.',
+'ajax-confirm-save'            => 'Salvare',
 'ajax-add-category-summary'    => 'Adaugă categoria "$1"',
 'ajax-remove-category-summary' => 'Elimină categoria "$1"',
+'ajax-confirm-actionsummary'   => 'Acţiune de făcut:',
 'ajax-error-title'             => 'Eroare',
 'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'Eliminarea categoriei nu a fost posibilă.
