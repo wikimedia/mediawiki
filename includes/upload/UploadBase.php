@@ -791,12 +791,7 @@ abstract class UploadBase {
 		#NOTE: there's a 50 line workaround to make stderr redirection work on windows, too.
 		#      that does not seem to be worth the pain.
 		#      Ask me (Duesentrieb) about it if it's ever needed.
-		$output = array();
-		if ( wfIsWindows() ) {
-			exec( "$command", $output, $exitCode );
-		} else {
-			exec( "$command 2>&1", $output, $exitCode );
-		}
+		$output = wfShellExec( "$command 2>&1", $exitCode );
 
 		# map exit code to AV_xxx constants.
 		$mappedCode = $exitCode;
@@ -826,7 +821,6 @@ abstract class UploadBase {
 			wfDebug( __METHOD__ . ": file passed virus scan.\n" );
 			return false;
 		} else {
-			$output = join( "\n", $output );
 			$output = trim( $output );
 
 			if ( !$output ) {
