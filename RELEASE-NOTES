@@ -299,6 +299,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * EditPage refactored to allow extensions to derive new edit modes much easier.
 * (bug 21826) Subsections of Special:Version now also have anchors
 * (bug 19791) Add URL of file source as comment to thumbs (for ImageMagick)
+* (bug 21946) Sorted wikitables do not properly handle minus signs
 
 === Bug fixes in 1.16 ===
 

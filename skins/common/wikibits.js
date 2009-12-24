@@ -593,8 +593,8 @@ function ts_resortTable(lnk) {
 		preprocessor = ts_dateToSortKey;
 	} else if (/^\d\d[\/.-]\d\d[\/.-]\d\d$/.test(itm)) {
 		preprocessor = ts_dateToSortKey;
-	// pound dollar euro yen currency cents
-	} else if (/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/.test(itm)) {
+		// (minus sign)([pound dollar euro yen currency]|cents)
+	} else if (/(^([-\u2212] *)?[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/.test(itm)) {
 		preprocessor = ts_currencyToSortKey;
 	} else if (ts_number_regex.test(itm)) {
 		preprocessor = ts_parseFloat;
@@ -705,9 +705,9 @@ function ts_initTransformTable() {
 	// if percents and regular numbers aren't being mixed.
 	ts_number_regex = new RegExp(
 		"^(" +
-			"[+-]?[0-9][0-9,]*(\\.[0-9,]*)?(E[+-]?[0-9][0-9,]*)?" + // Fortran-style scientific
+			"[+-\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[+-\u2212]?[0-9][0-9,]*)?" + // Fortran-style scientific
 			"|" +
-			"[+-]?" + digitClass + "+%?" + // Generic localised
+			"[+-\u2212]?" + digitClass + "+%?" + // Generic localised
 		")$", "i"
 	);
 }
@@ -774,13 +774,12 @@ function ts_parseFloat( s ) {
 		}
 		s = newNum;
 	}
-
-	num = parseFloat(s.replace(/,/g, ""));
-	return (isNaN(num) ? 0 : num);
+	num = parseFloat(s.replace(/[, ]/g, "").replace("\u2212", "-"));
+	return (isNaN(num) ? -Infinity : num);
 }
 
 function ts_currencyToSortKey( s ) {
-	return ts_parseFloat(s.replace(/[^0-9.,]/g,''));
+	return ts_parseFloat(s.replace(/[^-\u22120-9.,]/g,''));
 }
 
 function ts_sort_generic(a, b) {
