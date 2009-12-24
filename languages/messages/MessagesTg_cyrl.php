@@ -1897,6 +1897,7 @@ $1',
 'export-addcattext' => 'Илова кардани саҳифаҳо аз гурӯҳ:',
 'export-addcat'     => 'Илова кардан',
 'export-addnstext'  => 'Иловаи саҳифаҳои аз фазои номи:',
+'export-addns'      => 'Илова кардан',
 'export-download'   => 'Пешниҳоди захира кардан ба сурати парванда',
 'export-templates'  => 'Дар бар гирифтани шаблонҳо',
 
@@ -2627,9 +2628,36 @@ $1',
 # Special:Tags
 'tags-edit' => 'вироиш',
 
+# Database error messages
+'dberr-info'        => '(Имкони барқарори иртибот бо пойгоҳи дода вуҷуд надорад: $1)',
+'dberr-usegoogle'   => 'Дар ин муддат метавонед бо истифода аз Гугл ҷустуҷӯ кунед.',
+'dberr-outofdate'   => 'Таваҷҷӯҳ кунед, ки намояҳои онҳо аз мӯҳтавои мо мумкин аст барӯз набошад.',
+'dberr-cachederror' => 'Ин як нусхаи саҳифаи дархостшуда аст, ки дар кэш қарор дорад ва шояд барӯз нест.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Бахши аз вуруди шумо мушкили дорад',
+'htmlform-select-badoption'    => 'Миқдори воридшуда як гузинаи қобили қабул нест.',
+'htmlform-int-invalid'         => 'Миқдоре, ки ворид кардаед як адади саҳеҳ нест.',
+'htmlform-float-invalid'       => 'Миқдоре, ки ворид кардаед як адад нест.',
+'htmlform-int-toolow'          => 'Миқдоре, ки ворид кардаед камтар аз $1 аст',
+'htmlform-int-toohigh'         => 'Миқдоре, ки ворид кардаед бештар аз $1 аст',
+'htmlform-submit'              => 'Ирсол',
+'htmlform-reset'               => 'Ботили тағйирот',
+'htmlform-selectorother-other' => 'Дигар',
+
 # Add categories per AJAX
-'ajax-confirm-save'  => 'Захира',
-'ajax-error-title'   => 'Хато',
-'ajax-error-dismiss' => 'Таъйид',
+'ajax-add-category'            => 'Илова кардани гурӯҳ',
+'ajax-add-category-submit'     => 'Илова кардан',
+'ajax-confirm-title'           => 'Таъйиди амал',
+'ajax-confirm-prompt'          => 'Шумо метавонед хулосаи вироишро дар зер ворид кунед.
+Тугмаи "Захира"-ро пахш кунед то вироишатон захира шавад.',
+'ajax-confirm-save'            => 'Захира',
+'ajax-add-category-summary'    => 'Илова кардани гурӯҳи "$1"',
+'ajax-remove-category-summary' => 'Ҳазви гурӯҳӣ "$1"',
+'ajax-confirm-actionsummary'   => 'Амали пешрав:',
+'ajax-error-title'             => 'Хато',
+'ajax-error-dismiss'           => 'Таъйид',
+'ajax-remove-category-error'   => 'Имкони ҳазви ин гурӯҳ вуҷуд надошт.
+Ин иттифоқ маъмулан замоне меафтад, ки гурӯҳ аз тариқи як шаблон ба саҳифа изофа шуда бошад.',
 
 );

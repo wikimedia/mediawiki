@@ -1892,7 +1892,7 @@ Habarlaşmak we kömek soramak üçin:
 'exblank'                => 'sahypa boşdy',
 'delete-confirm'         => '"$1" sahypasyny öçür',
 'delete-legend'          => 'Öçür',
-'historywarning'         => "'''Duýduryş:''' Öçürjek bolup duran sahypaňyzyň $1 {{PLURAL:$1| wersiýaly|wersiýaly}} geçmişi bar:",
+'historywarning'         => "'''Duýduryş:''' Öçürjek bolup duran sahypaňyzyň takmynan $1 {{PLURAL:$1| wersiýaly|wersiýaly}} geçmişi bar:",
 'confirmdeletetext'      => 'Sahypany ýa-da faýly tutuş geçmişi bilen bilelikde öçürjek bolup dursuňyz.
 Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{{MediaWiki:Policy-url}}|Öçürme kadalaryna]] laýyklykdadygyny bilýän bolsaňyz, amaly tassyklaň.',
 'actioncomplete'         => 'Iş ýerine ýetirildi',

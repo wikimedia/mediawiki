@@ -72,6 +72,7 @@ $messages = array(
 'search'           => 'Nema',
 'searchbutton'     => 'Binciko',
 'searcharticle'    => 'Mu je',
+'history'          => 'Tarihin shafi',
 'history_short'    => 'Tarihi',
 'printableversion' => 'Sufar bugawa',
 'permalink'        => 'Dawwamammen zare',
@@ -114,6 +115,8 @@ $messages = array(
 'hidetoc'         => 'ɓoye',
 'site-rss-feed'   => 'Kwararen RSS na $1',
 'site-atom-feed'  => 'Kwararen Atom na $1',
+'page-rss-feed'   => 'Kwararen RSS na "$1"',
+'page-atom-feed'  => 'Kwararen Atom na "$1"',
 'red-link-title'  => '$1 (babu wannan shafi)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -135,15 +138,24 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 'userlogout'              => "Logi'auti",
 
 # Edit page toolbar
-'bold_sample'    => 'Rubutu mai gwaɓi',
-'bold_tip'       => 'Rubutu mai gwaɓi',
-'italic_sample'  => 'Rubutun tsutsa',
-'italic_tip'     => 'Rubutun tsutsa',
-'extlink_sample' => 'http://www.example.com sunan mahaɗi',
-'extlink_tip'    => 'Mahaɗi mai zuwa waje (a tuna da zagin http://)',
-'math_tip'       => 'Haɗin lissafi (LaTeX)',
-'nowiki_tip'     => 'Kawar da sufantawar Wiki',
-'image_tip'      => 'Ƙumsashen fayil',
+'bold_sample'     => 'Rubutu mai gwaɓi',
+'bold_tip'        => 'Rubutu mai gwaɓi',
+'italic_sample'   => 'Rubutun tsutsa',
+'italic_tip'      => 'Rubutun tsutsa',
+'link_sample'     => 'Sunan mahaɗi',
+'link_tip'        => 'Mahaɗin ciki',
+'extlink_sample'  => 'http://www.example.com sunan mahaɗi',
+'extlink_tip'     => 'Mahaɗi mai zuwa waje (a tuna da zagin http://)',
+'headline_sample' => 'Sunan kai',
+'headline_tip'    => 'Kan mataki na 2',
+'math_sample'     => 'Shigar da haɗi a nan',
+'math_tip'        => 'Haɗin lissafi (LaTeX)',
+'nowiki_sample'   => 'shigar da ɗanyen rubutu a nan',
+'nowiki_tip'      => 'Kawar da sufantawar Wiki',
+'image_tip'       => 'Ƙumsashen fayil',
+'media_tip'       => 'Mahaɗi zuwa fayil',
+'sig_tip'         => 'Sa-hannunku da dagin rana',
+'hr_tip'          => 'Layin kwance',
 
 # Edit pages
 'summary'            => 'Taƙaici',
@@ -157,6 +169,7 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 Kuna iya [[Special:Search/{{PAGENAME}}|nemo kan wannan shafi]] cikin wasu shafuna,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bincika rajistan ayyukan],
 ko [{{fullurl:{{FULLPAGENAME}}|action=edit}} gyara wannan shafi]</span>.',
+'editing'            => 'Gyaran $1',
 'copyrightwarning'   => "Lura cewa ana wallafa duk gudummuwa ga {{SITENAME}} a kan ƙa'idojin \$2 (duba \$1 don ƙarin bayani). Idan ba kwa son a sauya ko a rarraba ayyukanku yadda aka ga dama, to kada ku ajiye su a nan.<br />
 Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga hajar kowan (wato \"public domain\"), ko kuma aikin hajar kyauta (wato \"free resource\") ne. '''Kada ku ajiye ayyuka masu hakkin mallaka ba tare da izini ba!'''",
 'template-protected' => '(mai kariya)',
@@ -177,8 +190,9 @@ Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga haj
 'revertmerge' => 'Ware',
 
 # Diffs
-'lineno'   => 'Layi $1:',
-'editundo' => 'Janyewa',
+'difference' => '(Bambanci tsakanin zubi da zubi)',
+'lineno'     => 'Layi $1:',
+'editundo'   => 'Janyewa',
 
 # Search results
 'searchresults'             => 'Sakamakon bincike',
@@ -194,6 +208,8 @@ Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga haj
 'search-redirect'           => '(turawa daga $1)',
 'search-section'            => '(sashe $1)',
 'search-suggest'            => 'Kuna nufin: $1',
+'search-interwiki-default'  => 'Sakamakon $1:',
+'search-interwiki-more'     => '(ƙari)',
 'search-mwsuggest-enabled'  => 'Tare da shawarwari',
 'search-mwsuggest-disabled' => 'Banda shawarwari',
 'nonefound'                 => "'''Hattara''': Galibi wasu sararen suna ƙalilan kawai ake nemowa.
@@ -214,11 +230,13 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 
 # Recent changes
 'recentchanges'      => 'Sauye-sauyen baya-bayan nan',
+'rcshowhidebots'     => 'Rabuwat $1',
 'diff'               => 'bamban',
 'hist'               => 'Tarihi',
 'hide'               => 'Ɓoye',
 'show'               => 'Nuna',
 'minoreditletter'    => 'm',
+'newpageletter'      => 'N',
 'rc-enhanced-expand' => 'Nuna ƙananan bayannai (ana buƙatar JavaScript)',
 'rc-enhanced-hide'   => 'Ɓoye ƙananan bayannai',
 
@@ -241,6 +259,7 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'filehist-comment'    => 'Bahasi',
 'imagelinks'          => 'Amfani da fayil',
 'linkstoimage'        => '{{PLURAL:$1|Wannan shafi yana|wanɗannan shafuna $1 suna}} amfani da wannan fayil:',
+'sharedupload'        => 'Wannan fayil na da tushe daga $1 kuma wasu shire-shire suna iya amfani da shi.',
 
 # Miscellaneous special pages
 'nbytes'        => '{{PLURAL:$1|bayit|bayit}} $1',
@@ -263,6 +282,7 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 
 # Delete
 'deletedarticle' => 'an shafe "[[$1]]"',
+'dellogpage'     => 'Rajistan sauye-sauye',
 
 # Rollback
 'rollbacklink' => 'banyewa',
@@ -289,6 +309,9 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 # Move page
 'revertmove' => 'koma',
 
+# Export
+'export' => 'Tsamo shafuna',
+
 # Thumbnails
 'thumbnail-more' => 'Faɗaɗa',
 
@@ -303,11 +326,13 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'tooltip-ca-talk'                => 'Mahawara kan shafin bayannai',
 'tooltip-ca-edit'                => 'Ana iya gyara wannan shafi
 A yi amfani da maɓallin tantancewa kafin a adina',
+'tooltip-ca-addsection'          => 'Fara sabon sashe',
 'tooltip-ca-viewsource'          => 'Wannan shafi yana da kariya.
 Kuna iya duba tushensa.',
 'tooltip-ca-history'             => 'Tsoffin sufofin wannan shafi',
 'tooltip-ca-move'                => 'Gusar da wannan shafi',
 'tooltip-ca-watch'               => 'A daɗa wannan shafi cikin jerina na kan ido',
+'tooltip-ca-unwatch'             => 'Ku soke wannan shafi daga jerinku na bin sau',
 'tooltip-search'                 => 'Binciko {{SITENAME}}',
 'tooltip-search-go'              => 'A je ga shafi mai wannan suna idan akwai shi',
 'tooltip-search-fulltext'        => 'Binciki shafuna masu wannan matani',
@@ -320,6 +345,8 @@ Kuna iya duba tushensa.',
 'tooltip-n-help'                 => 'Nuno taimako',
 'tooltip-t-whatlinkshere'        => 'Jerin duk shafunan Wiki da ke da zare a nan',
 'tooltip-t-recentchangeslinked'  => 'Sauye-sauyen baya-bayan nan a shafuna masu zare daga wannan shafi',
+'tooltip-feed-rss'               => 'Kwararen RSS na wannan shafi',
+'tooltip-feed-atom'              => 'Kwararen Atom na wannan shafi',
 'tooltip-t-upload'               => 'Girke fayiloli',
 'tooltip-t-specialpages'         => 'Jerin duk shafuna na musamman',
 'tooltip-t-print'                => 'Wannan shafi a sufar bugawa',
@@ -327,12 +354,17 @@ Kuna iya duba tushensa.',
 'tooltip-ca-nstab-main'          => 'Duba shafin bayannai',
 'tooltip-ca-nstab-special'       => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
 'tooltip-ca-nstab-image'         => 'Duba shafin fayil',
+'tooltip-minoredit'              => 'Alamta wannan a matsayin ƙaramin gyara',
 'tooltip-save'                   => 'Ku adana sauye-sauyenku',
 'tooltip-preview'                => 'Ku tantance sauye-sauyenku, don Allah ku yi amfani da wannan kafin ku adana su:',
 'tooltip-diff'                   => 'Na nuna sauye-sauyen da kuka yi wa matanin',
+'tooltip-watch'                  => 'Ku daɗa wannan shafi cikin jerinku na bin sau',
 'tooltip-rollback'               => '"Banyewa" tana soke sauye-sauyen da mutunen baya ya yi da kiliki guda',
 'tooltip-undo'                   => '"Janyewa" tana soke wannan gyaran ta kuma buɗa fom kin gyara mai rigya gani.
 Tana ba da damar bayyana dalilin soke gyaran.',
+
+# Browsing diffs
+'previousdiff' => 'Sauyin baya',
 
 # Media information
 'file-info-size' => '(pikisal $1 × $2, girman fayil: $3, irin MIME: $4)',
@@ -343,6 +375,9 @@ Tana ba da damar bayyana dalilin soke gyaran.',
 Za a lura da layukan jeri kawai (masu farawa da *).
 Zaren farko a kan layi ya kamata ya nuna fayil maras kyau.
 Sauran zaruruwa a kan layin keɓaɓɓu ne, wato zuwa ga shafuna inda fayil kin zai iya kasancewa.',
+
+# Metadata
+'metadata' => 'bayannan meta',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'duka',

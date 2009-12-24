@@ -1550,7 +1550,7 @@ Feedback and further assistance:
 'exblank'                => 'pagina erat vacua',
 'delete-confirm'         => 'Delere "$1"',
 'delete-legend'          => 'Delere',
-'historywarning'         => "'''Monitio:''' Pagina quam delere vis historiam {{PLURAL:$1|unius emendationis|$1 emendationum}} habet:",
+'historywarning'         => "'''Monitio:''' Pagina quam delere vis historiam {{PLURAL:$1|unius fere emendationis|$1 fere emendationum}} habet:",
 'confirmdeletetext'      => 'Paginam cum tota historia eius delebis.
 Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:Policy-url}}|consilio]] congruere.',
 'actioncomplete'         => 'Actum perfectum',
