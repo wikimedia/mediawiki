@@ -2202,7 +2202,7 @@ Retôrn et assistance :
 'exblank'                => 'la pâge ére voueda',
 'delete-confirm'         => 'Suprimar « $1 »',
 'delete-legend'          => 'Suprimar',
-'historywarning'         => "'''Atencion :''' la pâge que vos éte prèst a suprimar at un historico que contint $1 {{PLURAL:$1|vèrsion|vèrsions}} :",
+'historywarning'         => "'''Atencion :''' la pâge que vos éte prèst a suprimar at un historico que contint a pou prés $1 {{PLURAL:$1|vèrsion|vèrsions}} :",
 'confirmdeletetext'      => 'Vos éte prèst a suprimar una pâge ou ben un fichiér et pués tot son historico.
 Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'actioncomplete'         => 'Accion fêta',
@@ -3530,7 +3530,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 
 # External image whitelist
 'external_image_whitelist' => '  #Lèssiéd ceta legne justo d’ense.<pre>
-#Endicâd los bocons d’èxprèssions racionèles (*RegEx*) (ren que la partia endicâ entre-mié los //) ce-desot.
+#Endicâd los bocons d’èxprèssions racionèles (ren que la partia endicâ entre-mié los //) ce-desot.
 #Corrèspondront avouéc los lims hipèrtèxtos de les émâges (ben liyês) de defôr.
 #Celos que corrèspondont sè montreront coment des émâges, ôtrament solament un lim de vers l’émâge serat montrâ.
 #Les legnes que començont per un # seront considèrâs coment des comentèros.

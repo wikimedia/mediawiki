@@ -1052,7 +1052,7 @@ Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppr
 'revdelete-hide-comment'      => 'Peida muudatuse kommentaar',
 'revdelete-hide-user'         => 'Peida toimetaja kasutajanimi/IP',
 'revdelete-hide-restricted'   => 'Varja andmeid nii administraatorite kui ka teiste eest.',
-'revdelete-radio-same'        => '(lahku)',
+'revdelete-radio-same'        => '(ära muuda)',
 'revdelete-radio-set'         => 'Jah',
 'revdelete-radio-unset'       => 'Ei',
 'revdelete-suppress'          => 'Varja andmed nii ülemate kui ka teiste eest.',

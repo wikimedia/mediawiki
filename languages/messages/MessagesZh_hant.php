@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Bencmq
  * @author FireJackey
+ * @author Gaoxuewei
  * @author Jidanni
  * @author KaiesTse
  * @author Liangent
@@ -1977,7 +1978,7 @@ $NEWPAGE
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
 'delete-legend'          => '刪除',
-'historywarning'         => '警告: 您將要刪除的頁內含有$1次修訂的歷史',
+'historywarning'         => "'''警告: '''您將要刪除的頁內含有$1次{{PLURAL:$1|修訂|修訂}}的歷史：",
 'confirmdeletetext'      => '您即將刪除一個頁面或圖像以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',

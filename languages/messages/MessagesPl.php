@@ -2091,7 +2091,7 @@ Pomoc
 'exblank'                => 'Strona była pusta',
 'delete-confirm'         => 'Usuwanie „$1”',
 'delete-legend'          => 'Usuń',
-'historywarning'         => "'''Uwaga!''' Strona, którą chcesz usunąć, ma {{PLURAL:$1|starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
+'historywarning'         => "'''Uwaga!''' Strona, którą chcesz usunąć, ma w przybliżeniu {{PLURAL:$1|starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
 'confirmdeletetext'      => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
 Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'         => 'Operacja wykonana',

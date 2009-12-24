@@ -1040,6 +1040,8 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'revdelete-hide-user'         => '편집자의 계정 이름/IP를 숨기기',
 'revdelete-hide-restricted'   => '관리자도 보지 못하게 숨기기',
 'revdelete-radio-same'        => '(바꾸지 않음)',
+'revdelete-radio-set'         => '예',
+'revdelete-radio-unset'       => '아니오',
 'revdelete-suppress'          => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-unsuppress'        => '복구된 판에 대한 제한을 해제',
 'revdelete-log'               => '삭제 이유:',
@@ -1074,7 +1076,7 @@ $1",
 'revdelete-no-change'         => "'''경고:''' $1 $2에 해당하는 항목은 이미 같은 보이기 설정이 설정되어 있습니다.",
 'revdelete-concurrent-change' => '$1 $2에 수정된 항목을 갱신하면서 오류 발생: 이런 현상은 당신이 문서를 편집하고 있을 때 다른 사람이 문서를 편집했기 때문에 발생합니다.
 관련 로그를 확인해 보세요.',
-'revdelete-only-restricted'   => '다른 숨기기 설정을 같이 설정하면서 관리자가 보지 못하도록 특정 판을 숨길 수 없습니다.',
+'revdelete-only-restricted'   => '$1 $2 버전 숨기기 오류: 다른 숨기기 설정을 같이 설정하지 않고 관리자가 보지 못하도록 특정 판을 숨길 수 없습니다.',
 'revdelete-reason-dropdown'   => '*일반적인 삭제 이유
 ** 저작권 침해
 ** 부적절한 개인 정보',

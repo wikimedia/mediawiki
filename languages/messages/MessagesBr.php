@@ -367,7 +367,7 @@ $1',
 'mainpage-description' => 'Degemer',
 'policy-url'           => 'Project:Reolennoù',
 'portal'               => 'Porched ar gumuniezh',
-'portal-url'           => 'Project:Degemer',
+'portal-url'           => 'Project:Porched ar gumuniezh',
 'privacy'              => 'Reolennoù prevezded',
 'privacypage'          => 'Project:Reolennoù prevezded',
 
@@ -1941,7 +1941,7 @@ Evezhiadennoù ha skoazell pelloc\'h :
 'exblank'                => "pajenn c'houllo",
 'delete-confirm'         => 'Diverkañ "$1"',
 'delete-legend'          => 'Diverkañ',
-'historywarning'         => "'''Diwallit :''' War-nes diverkañ ur bajenn dezhi un istor ha bet kemmet $1 {{PLURAL:$1|gwezh|gwezh}} emaoc'h :",
+'historywarning'         => "'''Diwallit :''' War-nes diverkañ ur bajenn dezhi un istor hag he deus tro {{PLURAL:$1|adweladenn|adweladenn}} emaoc'h :",
 'confirmdeletetext'      => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
 Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Diverkadenn kaset da benn',

@@ -1948,7 +1948,7 @@ Par riscontri e ulteriore assistensa:
 'exblank'                => "ła pàxena l'era voda",
 'delete-confirm'         => 'Scancela "$1"',
 'delete-legend'          => 'Scancela',
-'historywarning'         => "'''Ocio:''' La pàxena che te sì drio scancełar la gà na cronołogia con $1 {{PLURAL:$1|revision|revision}}:",
+'historywarning'         => "'''Ocio:''' La pàxena che te sì drio scancełar la gà na cronołogia con circa $1 {{PLURAL:$1|revision|revision}}:",
 'confirmdeletetext'      => "Te stè par scancełar permanentemente na pàxena, insieme a tuta la so cronołogia.
 Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, che te capissi łe conseguense de la to azion, e che la to azion l'è pienamente otenperante a łe regołe stabilíe in
 [[{{MediaWiki:Policy-url}}]].",
