@@ -19,28 +19,6 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.16 ===
-* $wgScriptModifiedMsgCheck Checks the mediawiki namespace recent changes to
-  ensure a updated urid for script-loader
-* $wgScriptModifiedCheck Checks script file modified time for unique request id)
-* $wgEnableAsyncDownload (lets you disable Async download for windows.
-  Hopefully we will remove this configuration var soon)
-* $wgEnableFirefogg enable support for firefogg extension, firefogg supports
-  in-browser transcoding, chunk uploads and client side hash checking.
-* $wgEnableTemporalOggUrls enable oggz_chop support a server side ogg seeking
-  helper
-* $wgEnableScriptLoader if the script-loader should be enabled
-* $wgJSAutoloadClasses array of javascript classes to file paths used by
-  script-loader to load javascript by class name.
-* $wgEnableJS2system  if we should include js2 stuff like jquery, mv_embed.js
-  (script-loader helper) and use new interfaces for upload
-* $wgEnableScriptLoaderJsFile if we support grabbing js files with the script
-  loader. By default we only grab classes in $wgJSAutoloadClasses
-* $wgEnableScriptMinify if you want the script loader to minify js
-* $wgEnableScriptLocalization if you want the script loader to do msg lookups
-* $wgMwEmbedDirectory the path to MwEmbed Directory (maybe we can depreciate
-  this. Was used when mwEmbed was going to be an extension.
-* $wgDebugJavaScript if we want to enable fresh debug javascript
-* $wgPhpCliPath Path to php-cli for spinning up background php processes
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
 * $wgLocalFileRepo/$wgForeignFileRepos now have a 'fileMode' parameter to
@@ -75,8 +53,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   interface will not appear in Special:AllMessages.
 * $wgRegisterInternalExternals can be used to record external links pointing
   to same server
-* $wgSpecialVersionExtended shows the extended version information besides
-  PHP and database version.
 * (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainExceptions added
   to control which external domains may access the API via cross-site AJAX.
 * $wgMaintenanceScripts for extensions to add their scripts to the default list
