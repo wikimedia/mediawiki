@@ -3762,6 +3762,11 @@ $wgMaxShellFileSize = 102400;
 $wgMaxShellTime = 180;
 
 /**
+ * Executable path of the PHP cli binary (php/php5). Should be set up on install.
+ */
+$wgPhpCli = '/usr/bin/php';
+
+/**
  * DJVU settings
  * Path of the djvudump executable
  * Enable this and $wgDjvuRenderer to enable djvu rendering
