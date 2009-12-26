@@ -207,7 +207,7 @@ class Article {
 	 * the shortcut in Article::followContent()
 	 *
 	 * @return Return the text of this revision
-	*/
+	 */
 	public function getContent() {
 		global $wgUser, $wgContLang, $wgOut, $wgMessageCache;
 		wfProfileIn( __METHOD__ );
@@ -237,7 +237,7 @@ class Article {
 	 * Get the text of the current revision. No side-effects...
 	 *
 	 * @return Return the text of the current revision
-	*/
+	 */
 	public function getRawText() {
 		// Check process cache for current revision
 		if( $this->mContentLoaded && $this->mOldId == 0 ) {
@@ -728,9 +728,9 @@ class Article {
 	}
 
 	/**
-	 * This is the default action of the index.php entry point: just view the 
+	 * This is the default action of the index.php entry point: just view the
 	 * page of the given title.
-	*/
+	 */
 	public function view() {
 		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgParser;
@@ -940,7 +940,7 @@ class Article {
 	 */
 	public function showDiffPage() {
 		global $wgOut, $wgRequest, $wgUser;
-		
+
 		$diff = $wgRequest->getVal( 'diff' );
 		$rcid = $wgRequest->getVal( 'rcid' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
@@ -962,10 +962,10 @@ class Article {
 	}
 
 	/**
-	 * Show a page view for a page formatted as CSS or JavaScript. To be called by 
+	 * Show a page view for a page formatted as CSS or JavaScript. To be called by
 	 * Article::view() only.
 	 *
-	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these 
+	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 */
 	public function showCssOrJsPage() {
@@ -993,7 +993,7 @@ class Article {
 		$policy = $this->getRobotPolicy( 'view' );
 		return $policy['index'] . ',' . $policy['follow'];
 	}
-	
+
 	/**
 	 * Get the robot policy to be used for the current view
 	 * @param $action String the action= GET parameter
@@ -1001,7 +1001,7 @@ class Article {
 	 * TODO: actions other than 'view'
 	 */
 	public function getRobotPolicy( $action ){
-		
+
 		global $wgOut, $wgArticleRobotPolicies, $wgNamespaceRobotPolicies;
 		global $wgDefaultRobotPolicy, $wgRequest;
 
@@ -1085,8 +1085,8 @@ class Article {
 	}
 
 	/**
-	 * If this request is a redirect view, send "redirected from" subtitle to 
-	 * $wgOut. Returns true if the header was needed, false if this is not a 
+	 * If this request is a redirect view, send "redirected from" subtitle to
+	 * $wgOut. Returns true if the header was needed, false if this is not a
 	 * redirect view. Handles both local and remote redirects.
 	 */
 	public function showRedirectedFromHeader() {
@@ -1134,7 +1134,7 @@ class Article {
 	}
 
 	/**
-	 * Show a header specific to the namespace currently being viewed, like 
+	 * Show a header specific to the namespace currently being viewed, like
 	 * [[MediaWiki:Talkpagetext]]. For Article::view().
 	 */
 	public function showNamespaceHeader() {
@@ -1168,8 +1168,8 @@ class Article {
 	}
 
 	/**
-	 * If patrol is possible, output a patrol UI box. This is called from the 
-	 * footer section of ordinary page views. If patrol is not possible or not 
+	 * If patrol is possible, output a patrol UI box. This is called from the
+	 * footer section of ordinary page views. If patrol is not possible or not
 	 * desired, does nothing.
 	 */
 	public function showPatrolFooter() {
@@ -1199,10 +1199,10 @@ class Article {
 				) .
 			'</div>'
 		);
-	}		
+	}
 
 	/**
-	 * Show the error text for a missing article. For articles in the MediaWiki 
+	 * Show the error text for a missing article. For articles in the MediaWiki
 	 * namespace, show the default message text. To be called from Article::view().
 	 */
 	public function showMissingArticle() {
@@ -1225,13 +1225,13 @@ class Article {
 			array(  'lim' => 10,
 				'conds' => array( "log_action != 'revision'" ),
 				'showIfEmpty' => false,
-				'msgKey' => array( 'moveddeleted-notice' ) ) 
+				'msgKey' => array( 'moveddeleted-notice' ) )
 		);
 
 		# Show error message
 		$oldid = $this->getOldID();
 		if( $oldid ) {
-			$text = wfMsgNoTrans( 'missing-article', 
+			$text = wfMsgNoTrans( 'missing-article',
 				$this->mTitle->getPrefixedText(),
 				wfMsgNoTrans( 'missingarticle-rev', $oldid ) );
 		} elseif ( $this->mTitle->getNamespace() === NS_MEDIAWIKI ) {
@@ -1241,7 +1241,7 @@ class Article {
 			$createErrors = $this->mTitle->getUserPermissionsErrors( 'create', $wgUser );
 			$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
 			$errors = array_merge( $createErrors, $editErrors );
-			
+
 			if ( !count($errors) )
 				$text = wfMsgNoTrans( 'noarticletext' );
 			else
@@ -1257,7 +1257,7 @@ class Article {
 	}
 
 	/**
-	 * If the revision requested for view is deleted, check permissions. 
+	 * If the revision requested for view is deleted, check permissions.
 	 * Send either an error message or a warning header to $wgOut.
 	 * Returns true if the view is allowed, false if not.
 	 */
@@ -1322,9 +1322,9 @@ class Article {
 	}
 
 	/**
-	 * Try to fetch an expired entry from the parser cache. If it is present, 
-	 * output it and return true. If it is not present, output nothing and 
-	 * return false. This is used as a callback function for 
+	 * Try to fetch an expired entry from the parser cache. If it is present,
+	 * output it and return true. If it is not present, output nothing and
+	 * return false. This is used as a callback function for
 	 * PoolCounter::executeProtected().
 	 */
 	public function tryDirtyCache() {
@@ -1358,7 +1358,7 @@ class Article {
 		$wgOut->enableClientCache( false );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiText(
-			'<div class="errorbox">' . 
+			'<div class="errorbox">' .
 			$status->getWikiText( false, 'view-pool-error' ) .
 			'</div>'
 		);
@@ -1575,7 +1575,7 @@ class Article {
 	 *                      Giving 0 indicates the new page flag should be set
 	 *                      on.
 	 * @param $lastRevIsRedirect Boolean: if given, will optimize adding and
-	 * 							 removing rows in redirect table.
+	 *                           removing rows in redirect table.
 	 * @return bool true on success, false on failure
 	 * @private
 	 */
@@ -1616,9 +1616,9 @@ class Article {
 	 *
 	 * @param $dbw Database
 	 * @param $redirectTitle a title object pointing to the redirect target,
-	 * 						 or NULL if this is not a redirect
+	 *                       or NULL if this is not a redirect
 	 * @param $lastRevIsRedirect If given, will optimize adding and
-	 * 							 removing rows in redirect table.
+	 *                           removing rows in redirect table.
 	 * @return bool true on success, false on failure
 	 * @private
 	 */
@@ -2159,7 +2159,6 @@ class Article {
 	/**
 	 * User-interface handler for the "watch" action
 	 */
-
 	public function watch() {
 		global $wgUser, $wgOut;
 		if( $wgUser->isAnon() ) {
@@ -2257,7 +2256,7 @@ class Article {
 	 */
 	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
 		global $wgUser, $wgContLang;
-		
+
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 
 		$id = $this->mTitle->getArticleID();
@@ -2640,7 +2639,7 @@ class Article {
 		//return $dbr->selectField( 'revision', 'COUNT(*)',
 		//	array( 'rev_page' => $this->getId() ), __METHOD__ );
 		return $dbr->estimateRowCount( 'revision', '*',
-		 	array( 'rev_page' => $this->getId() ), __METHOD__ );
+			array( 'rev_page' => $this->getId() ), __METHOD__ );
 	}
 
 	/**
@@ -2707,7 +2706,7 @@ class Article {
 		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
-		
+
 		wfRunHooks( 'ArticleConfirmDelete', array( $this, $wgOut, &$reason ) );
 
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
@@ -3060,10 +3059,10 @@ class Article {
 		$user_text = $dbw->addQuotes( $current->getRawUserText() );
 		$s = $dbw->selectRow( 'revision',
 			array( 'rev_id', 'rev_timestamp', 'rev_deleted' ),
-			array(	'rev_page' => $current->getPage(),
+			array( 'rev_page' => $current->getPage(),
 				"rev_user != {$user} OR rev_user_text != {$user_text}"
 			), __METHOD__,
-			array(	'USE INDEX' => 'page_timestamp',
+			array( 'USE INDEX' => 'page_timestamp',
 				'ORDER BY'  => 'rev_timestamp DESC' )
 			);
 		if( $s === false ) {
@@ -3495,7 +3494,7 @@ class Article {
 		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" .
 			wfMsgExt(
 				$infomsg,
-				array( 'parseinline', 'replaceafter' ), 
+				array( 'parseinline', 'replaceafter' ),
 				$td,
 				$userlinks,
 				$revision->getID(),
@@ -3698,7 +3697,6 @@ class Article {
 	 *
 	 * @param $title a title object
 	 */
-
 	public static function onArticleCreate( $title ) {
 		# Update existence markers on article/talk tabs...
 		if( $title->isTalkPage() ) {
@@ -3980,7 +3978,7 @@ class Article {
 		$this->mParserOutput = $this->getOutputFromWikitext( $text, $cache, $parserOptions );
 		$wgOut->addParserOutput( $this->mParserOutput );
 	}
-	
+
 	/**
 	 * This does all the heavy lifting for outputWikitext, except it returns the parser
 	 * output instead of sending it straight to $wgOut. Makes things nice and simple for,
@@ -4103,8 +4101,10 @@ class Article {
 		}
 		$insertRows = array();
 		foreach( $insertCats as $cat ) {
-			$insertRows[] = array( 	'cat_id' => $dbw->nextSequenceValue( 'category_cat_id_seq' ),
-															'cat_title' => $cat );
+			$insertRows[] = array(
+				'cat_id' => $dbw->nextSequenceValue( 'category_cat_id_seq' ),
+				'cat_title' => $cat
+			);
 		}
 		$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
 
@@ -4135,10 +4135,11 @@ class Article {
 			);
 		}
 	}
-	
+
 	/** Lightweight method to get the parser output for a page, checking the parser cache
-	  * and so on. Doesn't consider most of the stuff that Article::view is forced to
-	  * consider, so it's not appropriate to use there. */
+	 * and so on. Doesn't consider most of the stuff that Article::view is forced to
+	 * consider, so it's not appropriate to use there.
+	 */
 	function getParserOutput( $oldid = null ) {
 		global $wgEnableParserCache, $wgUser, $wgOut;
 
@@ -4146,8 +4147,8 @@ class Article {
 		$useParserCache = $wgEnableParserCache &&
 		          intval( $wgUser->getOption( 'stubthreshold' ) ) == 0 &&
 		          $this->exists() &&
-				  $oldid === null;
-				  
+		          $oldid === null;
+
 		wfDebug( __METHOD__.': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $wgUser->getOption( 'stubthreshold' ) ) {
 			wfIncrStats( 'pcache_miss_stub' );
@@ -4161,7 +4162,7 @@ class Article {
 		if ( $parserOutput === false ) {
 			// Cache miss; parse and output it.
 			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
-			
+
 			return $this->getOutputFromWikitext( $rev->getText(), $useParserCache );
 		} else {
 			return $parserOutput;
