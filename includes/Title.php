@@ -2686,7 +2686,10 @@ class Title {
 				if( !File::checkExtensionCompatibility( $file, $nt->getDBkey() ) ) {
 					$errors[] = array('imagetypemismatch');
 				}
+			} elseif( !$wgUser->isAllowed( 'reupload-shared' ) && wfFindFile( $nt ) ) {
+				$errors[] = array( 'file-exists-sharedrepo' );
 			}
+			
 		}
 
 		if ( $auth ) {
