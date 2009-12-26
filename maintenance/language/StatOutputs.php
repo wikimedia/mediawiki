@@ -72,18 +72,6 @@ class wikiStatsOutput extends statsOutput {
 	}
 }
 
-/** Outputs WikiText and appends category and text only used for Meta-Wiki */
-class metawikiStatsOutput extends wikiStatsOutput {
-	function heading() {
-		echo "See [[MediaWiki localisation]] to learn how you can help translating MediaWiki.\n\n";
-		parent::heading();
-	}
-	function footer() {
-		parent::footer();
-		echo "\n[[Category:Localisation|Statistics]]\n";
-	}
-}
-
 /** Output text. To be used on a terminal for example. */
 class textStatsOutput extends statsOutput {
 	function element( $in, $heading = false ) {
