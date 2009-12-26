@@ -373,6 +373,7 @@ $1',
 'restorelink'             => '{{PLURAL:$1|1 coppite lañ far |$1 ciy coppite lañ far}}',
 'feedlinks'               => 'Wal',
 'feed-invalid'            => 'Gii xeetu wal baaxul.',
+'feed-unavailable'        => 'juumtukaayu wone soppi yu yees yi jàppandiwul',
 'site-rss-feed'           => 'Walu RSS gu $1',
 'site-atom-feed'          => 'Walu Atom gu $1',
 'page-rss-feed'           => 'Walu RSS gu "$1"',
@@ -439,6 +440,7 @@ Di la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan
 'directorycreateerror' => 'Sosug wayndare bii di « $1 » antuwul.',
 'filenotfound'         => 'Gisug dencukaay bii di « $1 » antuwul.',
 'fileexistserror'      => 'Mbind mi ci wii wayndare « $1 » antuwul : dencukaay bi am na ba noppi',
+'formerror'            => 'Tolof-tolof:Maneesu la yonnee mbind mi',
 'badarticleerror'      => 'Jii jëf defuwul ci wii xët.',
 'cannotdelete'         => 'Farug xët walla dencukaay bi antuwul. (xayna  keneen def na ko ba noppi.)',
 'badtitle'             => 'Koj bu baaxul',
@@ -465,6 +467,10 @@ $2',
 'ns-specialprotected'  => 'Xët yi ne ci bii barabu tur « {{ns:special}} » kenn maneesu leen a soppi.',
 'titleprotected'       => "Koj bii [[User:$1|$1]] moo ko aar ngir bañ sosteefam.
 Ngirte li mu joxe mooy ne « ''$2'' ».",
+
+# Virus scanner
+'virus-badscanner' => "Tànnéef wu bon: saytukatu wiris bees xamul: ''$1''",
+'virus-scanfailed' => 'Saytu gi dog na (code $1)',
 
 # Login and logout pages
 'logouttext'                 => "Fi mu nekk nii génn nga.'''
@@ -724,6 +730,8 @@ Xoolal yéenekaayu far gi ci suuf.",
 'moveddeleted-notice'              => 'Xët wii dañu koo far.
 Jaar-jaaru far yeek tuddewaat yi moo ngi ci suuf ngir yeneen xibaar.',
 'log-fulllog'                      => 'Wone yéenekaay bu matale',
+'edit-hook-aborted'                => 'Dogug coppite gi ak xeet yi.
+Li ko waral xameesu ko',
 'edit-gone-missing'                => 'Yeesalug xët wi antuwul.
 Mel na ne dañu koo far.',
 'edit-conflict'                    => 'Jàppante cig coppite.',
@@ -1082,7 +1090,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 *Boyot bu ci falu day wone ne jëfandikukat bi bokk na ci
 *Boyot bu ci faluwul day wone ne jëfandikukat bi bokku ci
 *Ab * day wone ne manoo koo cee jëlee gannaaw boo ko ci boole, walla safaan wa.',
-'userrights-reason'              => 'Ngirtey coppite yi :',
+'userrights-reason'              => 'Xiirtey coppite gi :',
 'userrights-no-interwiki'        => 'Amoo sañ-sañu soppi sañ-sañi jëfandikukat yi ci yeneen wiki',
 'userrights-nodatabase'          => 'Dàttub njoxe bii « $1 » amul walla nekkul ci barab bi.',
 'userrights-nologin'             => 'Faaw nga  [[Special:UserLogin|dugg]] ak sàqum ab yorkat ngir man a soppi sañ-sañi ab jëfandukukat.',

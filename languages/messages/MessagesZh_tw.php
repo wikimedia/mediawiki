@@ -96,7 +96,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => '鏈結標注底線',
+'tog-underline'            => '連結標注底線',
 'tog-hideminor'            => '近期變動中隱藏細微修改',
 'tog-usenewrc'             => '增強版近期變動 (JavaScript)',
 'tog-minordefault'         => '預設將編輯設定為細微修改',
@@ -472,7 +472,7 @@ $messages = array(
 'deadendpagestext'    => '以下頁面沒有連結到這個wiki中的其它頁面。',
 'listusers'           => '使用者列表',
 'newpages-username'   => '使用者帳號:',
-'unusedimagestext'    => '<p>請注意其它網站可能直接透過 URL 鏈接此圖片，所以這裡列出的圖片有可能依然被使用。</p>',
+'unusedimagestext'    => '請注意其它網站可能直接透過 URL 連結此圖片，所以這裡列出的圖片有可能依然被使用。',
 'notargettext'        => '您還沒有指定一個目標頁面或使用者以進行此項操作。',
 
 # Special:Log
@@ -732,7 +732,9 @@ $NEWPAGE
 'tooltip-t-permalink'             => '這個頁面版本的永久連結',
 'tooltip-ca-nstab-user'           => '檢視使用者頁',
 'tooltip-ca-nstab-image'          => '查詢圖片頁面',
+'tooltip-ca-nstab-template'       => '檢視模板',
 'tooltip-ca-nstab-help'           => '檢視說明頁面',
+'tooltip-ca-nstab-category'       => '檢視分類頁面',
 'tooltip-minoredit'               => '標記為細微修改',
 'tooltip-compareselectedversions' => '檢視本頁被點選的兩個版本間的差異',
 'tooltip-rollback'                => '『{{int:rollbacklink}}』可以一按恢復上一位貢獻者對這個頁面的編輯',
@@ -746,7 +748,7 @@ $NEWPAGE
 'anonusers' => '{{SITENAME}}匿名{{PLURAL:$2|使用者|使用者}}$1',
 
 # Spam protection
-'spamprotectiontext' => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
+'spamprotectiontext' => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站連結所產生的問題。',
 'spam_reverting'     => '復原到不包含連結至$1的最近版本',
 
 # Math options
@@ -766,8 +768,10 @@ $NEWPAGE
 'nextdiff'     => '下一個→',
 
 # Media information
-'imagemaxsize'   => '在圖片描述頁對圖片大小限制為:',
-'show-big-image' => '完整解析度',
+'imagemaxsize'         => '在圖片描述頁對圖片大小限制為:',
+'file-nohires'         => '<small>無更高解析度可提供。</small>',
+'show-big-image'       => '完整解析度',
+'show-big-image-thumb' => '<small>這幅縮圖的解析度: $1 × $2 像素</small>',
 
 # Special:NewFiles
 'newimages'     => '新建圖片畫廊',
@@ -813,6 +817,12 @@ Variants for Chinese language
 'exif-imageuniqueid'             => '唯一圖片ID',
 'exif-gpsimgdirectionref'        => '圖片方位參照',
 'exif-gpsimgdirection'           => '圖片方位',
+
+'exif-lightsource-2'  => '螢光燈',
+'exif-lightsource-12' => '日光螢光燈（色溫 D 5700    7100K）',
+'exif-lightsource-13' => '日溫白色螢光燈（N 4600    5400K）',
+'exif-lightsource-14' => '冷白色螢光燈（W 3900    4500K）',
+'exif-lightsource-15' => '白色螢光 （WW 3200    3700K）',
 
 # External editor support
 'edit-externally-help' => '請參見[http://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊。',

@@ -1964,7 +1964,7 @@ Reaktiounen a méi Hëllef:
 'exblank'                => "D'Säit war eidel",
 'delete-confirm'         => 'Läsche vu(n) "$1"',
 'delete-legend'          => 'Läschen',
-'historywarning'         => "'''Opgepasst:''' Déi Säit déi Dir läsche wëllt huet en Historique mat  $1 {{PLURAL:$1|Versioun|Versiounen}}:",
+'historywarning'         => "'''Opgepasst:''' Déi Säit déi Dir läsche wëllt huet en Historique mat ongeféier $1 {{PLURAL:$1|Versioun|Versiounen}}:",
 'confirmdeletetext'      => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen.
 W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt am Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] geschitt.",
 'actioncomplete'         => 'Aktioun ofgeschloss',

@@ -306,7 +306,7 @@ $messages = array(
 'tog-justify'                 => 'Èxplicar los paragrafos',
 'tog-hideminor'               => 'Cachiér los petiôts changements des dèrriérs changements',
 'tog-hidepatrolled'           => 'Cachiér los changements survelyês des dèrriérs changements',
-'tog-newpageshidepatrolled'   => 'Cachiér les pâges survelyês de la lista de les novèles pâges',
+'tog-newpageshidepatrolled'   => 'Cachiér les pâges survelyês de la lista de les pâges novèles',
 'tog-extendwatchlist'         => 'Ètendre la lista de survelyence por fâre vêre tôs los changements et pas ren que los ples novéls',
 'tog-usenewrc'                => 'Utilisar los dèrriérs changements mèlyorâs (at fôta de JavaScript)',
 'tog-numberheadings'          => 'Numerotar ôtomaticament los titros de sèccion',
@@ -518,7 +518,7 @@ $messages = array(
 'protectthispage'   => 'Protègiér ceta pâge',
 'unprotect'         => 'Dèprotègiér',
 'unprotectthispage' => 'Dèprotègiér ceta pâge',
-'newpage'           => 'Novèla pâge',
+'newpage'           => 'Pâge novèla',
 'talkpage'          => 'Pâge de discussion',
 'talkpagelinktext'  => 'Discutar',
 'specialpage'       => 'Pâge spèciâla',
@@ -747,7 +747,7 @@ Los volyéd activar et pués vos tornar branchiér.",
 'loginsuccess'               => "'''Ora, vos éte branchiê a {{SITENAME}} coment « $1 ».'''",
 'nosuchuser'                 => 'L’utilisator « $1 » ègziste pas.
 Los noms d’utilisator sont sensiblos a la câssa.
-Controlâd l’ortografia, ou ben [[Special:UserLogin/signup|féte un novél compto]].',
+Controlâd l’ortografia, ou ben [[Special:UserLogin/signup|féte un compto novél]].',
 'nosuchusershort'            => 'Y at gins de contributor avouéc lo nom « <nowiki>$1</nowiki> ».
 Volyéd controlar l’ortografia.',
 'nouserspecified'            => 'Vos dête buchiér un nom d’utilisator.',
@@ -757,12 +757,12 @@ Volyéd tornar èprovar.',
 Volyéd tornar èprovar.',
 'passwordtooshort'           => 'Voutron mot de pâssa dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Voutron mot de pâssa dêt étre difèrent de voutron nom d’utilisator.',
-'mailmypassword'             => 'Recêvre un novél mot de pâssa per mèssageria èlèctronica',
-'passwordremindertitle'      => 'Voutron novél mot de pâssa temporèro dessus {{SITENAME}}',
-'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un novél mot de
-pâssa por {{SITENAME}} ($4). Un mot de pâssa temporèro at étâ fêt por
+'mailmypassword'             => 'Recêvre un mot de pâssa novél per mèssageria èlèctronica',
+'passwordremindertitle'      => 'Mot de pâssa temporèro novél por {{SITENAME}}',
+'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un mot de pâssa
+novél por {{SITENAME}} ($4). Un mot de pâssa temporèro at étâ fêt por
 l’utilisator « $2 » et est « $3 ». S’o ére voutra entencion, vos vos devréd
-branchiér et pués chouèsir un novél mot de pâssa.
+branchiér et pués chouèsir un mot de pâssa novél.
 Voutron mot de pâssa temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
 
 Se vos éte pas l’ôtor de cela demanda, ou ben se vos vos rapelâd ora
@@ -770,7 +770,7 @@ de voutron viely mot de pâssa et que vos souhètâd pas més nen changiér, vos
 pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
 'noemail'                    => 'Niona adrèce èlèctronica at étâ encartâ por l’utilisator « $1 ».',
 'noemailcreate'              => 'Vos dête balyér una adrèce èlèctronica valida',
-'passwordsent'               => 'Un novél mot de pâssa at étâ mandâ a l’adrèce èlèctronica a l’utilisator « $1 ».
+'passwordsent'               => 'Un mot de pâssa novél at étâ mandâ a l’adrèce èlèctronica a l’utilisator « $1 ».
 Vos volyéd tornar branchiér aprés l’avêr reçu.',
 'blocked-mailpassword'       => 'Voutra adrèce IP est blocâ en ècritura, la fonccion de rapèl du mot de pâssa est vêr dèsactivâ por èvitar los abus.',
 'eauthentsent'               => 'Un mèssâjo de confirmacion at étâ mandâ a l’adrèce endicâ.
@@ -802,19 +802,19 @@ Volyéd atendre devant que tornar èprovar.',
 # Password reset dialog
 'resetpass'                 => 'Changiér lo mot de pâssa',
 'resetpass_announce'        => 'Vos vos éte branchiê avouéc un mot de pâssa temporèro mandâ per mèssageria èlèctronica.
-Por chavonar lo branchement, vos dête buchiér un novél mot de pâssa ique :',
+Por chavonar lo branchement, vos dête buchiér un mot de pâssa novél ique :',
 'resetpass_text'            => '<!-- Apondéd lo tèxto ique -->',
 'resetpass_header'          => 'Changiér lo mot de pâssa du compto',
 'oldpassword'               => 'Viely mot de pâssa :',
-'newpassword'               => 'Novél mot de pâssa :',
-'retypenew'                 => 'Confirmar lo novél mot de pâssa :',
+'newpassword'               => 'Mot de pâssa novél :',
+'retypenew'                 => 'Confirmar lo mot de pâssa novél :',
 'resetpass_submit'          => 'Changiér lo mot de pâssa et sè branchiér',
 'resetpass_success'         => 'Voutron mot de pâssa at étâ changiê avouéc reusséta ! Branchement en cors...',
 'resetpass_forbidden'       => 'Los mots de pâssa pôvont pas étre changiês.',
 'resetpass-no-info'         => 'Vos dête étre branchiê por avêr accès a cela pâge.',
 'resetpass-submit-loggedin' => 'Changiér lo mot de pâssa',
-'resetpass-wrong-oldpass'   => 'Mot de pâssa d’ora ou temporèro envalido.
-Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben demandâ un novél mot de pâssa temporèro.',
+'resetpass-wrong-oldpass'   => 'Mot de pâssa d’ora ou ben temporèro envalido.
+Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben demandâ un mot de pâssa temporèro novél.',
 'resetpass-temp-password'   => 'Mot de pâssa temporèro :',
 
 # Edit page toolbar
@@ -903,7 +903,7 @@ Puésqu’y at gins de sèccion $1, y at gins d’endrêt yô que sôvar voutros
 'accmailtitle'                     => 'Mot de pâssa mandâ.',
 'accmailtext'                      => "Un mot de pâssa fêt per hasârd por [[User talk:$1|$1]] at étâ mandâ a $2.
 
-Lo mot de pâssa por cél novél compto pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de mot de pâssa]]'' aprés s’étre branchiê.",
+Lo mot de pâssa por cél compto novél pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de mot de pâssa]]'' aprés s’étre branchiê.",
 'newarticle'                       => '(Novél)',
 'newarticletext'                   => "Vos éd siuvu un lim de vers una pâge qu’ègziste p’oncor ou ben qu’at étâ [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} suprimâ].
 Por fâre cela pâge, buchiéd voutron tèxto dens la bouèta ce-desot (vos pouede vêre la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
@@ -925,8 +925,8 @@ Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
 'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ voutres prèferences, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
 '''Mozilla / Firefox / Konqueror / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Maj-Ctrl-R'' (''Maj-Cmd-R'' dessus Apple Mac) ;
 '''Internet Explorer / Opera :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Actualisar'' ou ben prèssâd ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye CSS / JS devant que la sôvar.",
-'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye CSS / JS devant que la sôvar.",
+'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra fôlye CSS / JS novèla devant que la sôvar.",
+'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra fôlye CSS / JS novèla devant que la sôvar.",
 'usercsspreview'                   => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS.'''
 '''El at p’oncor étâ sôvâ !'''",
 'userjspreview'                    => "'''Rapelâd-vos que vos éte aprés èprovar ou ben prèvisualisar voutron code JavaScript.'''
@@ -997,9 +997,9 @@ Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$
 'hiddencategories'                 => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
 'edittools'                        => '<!-- Tot tèxto buchiê ique serat montrâ desot les bouètes d’èdicion ou ben los formulèros de tèlèchargement de fichiér. -->',
 'nocreatetitle'                    => 'Crèacion de pâge limitâ',
-'nocreatetext'                     => '{{SITENAME}} at rètrent la possibilitât de fâre de novèles pâges.
-Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben [[Special:UserLogin|vos branchiér ou fâre un compto]].',
-'nocreate-loggedin'                => 'Vos avéd pas la pèrmission de fâre de novèles pâges.',
+'nocreatetext'                     => '{{SITENAME}} at rètrent la possibilitât de fâre de pâges novèles.
+Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben vos [[Special:UserLogin|branchiér ou fâre un compto]].',
+'nocreate-loggedin'                => 'Vos avéd pas la pèrmission de fâre de pâges novèles.',
 'sectioneditnotsupported-title'    => 'Changement de sèccion pas recognu',
 'sectioneditnotsupported-text'     => 'Lo changement d’una sèccion est pas recognu dens cela pâge.',
 'permissionserrors'                => 'Èrror de pèrmissions',
@@ -1007,7 +1007,7 @@ Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben [[Spe
 'permissionserrorstext-withaction' => 'Vos éte pas ôtorisâ a $2, por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
 'recreate-moveddeleted-warn'       => "'''Atencion : vos éte aprés refâre una pâge qu’at étâ suprimâ dês devant.'''
 
-Demandâd-vos s’il fôt franc continuar son changement.
+Demandâd-vos se fôt franc continuar son changement.
 Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
 'moveddeleted-notice'              => 'Ceta pâge at étâ suprimâ.
 Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot coment refèrence.',
@@ -1018,7 +1018,7 @@ Gins de rêson balyê.',
 Semble qu’el èye étâ suprimâ.',
 'edit-conflict'                    => 'Conflit de changement.',
 'edit-no-change'                   => 'Voutron changement at étâ ignorâ perce que nion changement at étâ fêt u tèxto.',
-'edit-already-exists'              => 'La novèla pâge at pas possu étre fêta.
+'edit-already-exists'              => 'La pâge novèla at pas possu étre fêta.
 Ègziste ja.',
 
 # Parser/template warnings
@@ -1078,7 +1078,7 @@ La rêson balyê per $3 ére ''$2''.",
 'history-feed-item-nocomment' => '$1 lo $2',
 'history-feed-empty'          => 'La pâge demandâ ègziste pas.
 El at pôt-étre étâ suprimâ ou ben renomâ.
-Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des novèles pâges que vont avouéc.',
+Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des pâges novèles que vont avouéc.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(comentèro suprimâ)',
@@ -1190,7 +1190,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 
 # History merging
 'mergehistory'                     => 'Fusionar los historicos de les pâges',
-'mergehistory-header'              => 'Ceta pâge vos pèrmèt de fusionar des vèrsions de l’historico d’una pâge d’origina vers una novèla pâge.
+'mergehistory-header'              => 'Ceta pâge vos pèrmèt de fusionar des vèrsions de l’historico d’una pâge d’origina vers una pâge novèla.
 Assurâd-vos que cela opèracion consèrverat la continuitât de l’historico de la pâge.',
 'mergehistory-box'                 => 'Fusionar les vèrsions de doves pâges :',
 'mergehistory-from'                => 'Pâge d’origina :',
@@ -1397,7 +1397,7 @@ Dêt pas dèpassar $1 caractèro{{PLURAL:$1||s}}.',
 Ceta enformacion serat publica.',
 'email'                         => 'Mèssageria èlèctronica',
 'prefs-help-realname'           => 'U chouèx : se vos lo spècefiâd, serat utilisâ por vos atribuar voutres contribucions.',
-'prefs-help-email'              => 'U chouèx : endicar voutra adrèce èlèctronica pèrmèt de vos mandar un novél mot de pâssa se vos oubliâd lo voutro.
+'prefs-help-email'              => 'U chouèx : endicar voutra adrèce èlèctronica pèrmèt de vos mandar un mot de pâssa novél se vos oubliâd lo voutro.
 Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avouéc voutra pâge de discussion, sen avêr fôta de dèvouèlar voutra identitât.',
 'prefs-help-email-required'     => 'Una adrèce èlèctronica est nècèssèra.',
 'prefs-info'                    => 'Enformacion de bâsa',
@@ -1463,7 +1463,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-edit'                  => 'Changiér les pâges',
 'right-createpage'            => 'Fâre des pâges (que sont pas des pâges de discussion)',
 'right-createtalk'            => 'Fâre des pâges de discussion',
-'right-createaccount'         => 'Fâre des novéls comptos utilisator',
+'right-createaccount'         => 'Fâre des comptos utilisator novéls',
 'right-minoredit'             => 'Marcar sos changements coment petiôts',
 'right-move'                  => 'Renomar des pâges',
 'right-move-subpages'         => 'Renomar des pâges avouéc lors sot-pâges',
@@ -1569,8 +1569,8 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'recentchangestext'                 => 'Siude los dèrriérs changements du vouiqui sur ceta pâge.',
 'recentchanges-feed-description'    => 'Siude los dèrriérs changements du vouiqui dens ceti flux.',
 'recentchanges-label-legend'        => 'Lègenda : $1.',
-'recentchanges-legend-newpage'      => '$1 - novèla pâge',
-'recentchanges-label-newpage'       => 'Ceti changement at fêt una novèla pâge.',
+'recentchanges-legend-newpage'      => '$1 - pâge novèla',
+'recentchanges-label-newpage'       => 'Ceti changement at fêt una pâge novèla.',
 'recentchanges-legend-minor'        => '$1 - petiôt changement',
 'recentchanges-label-minor'         => 'Ceti changement est petiôt.',
 'recentchanges-legend-bot'          => '$1 - changement fêt per un bot',
@@ -1636,7 +1636,7 @@ Por encllure un fichiér dens una pâge, utilisâd un lim de la fôrma :
 'uploadlog'                   => 'Jornal des tèlèchargements',
 'uploadlogpage'               => 'Jornal des tèlèchargements de fichiérs multimèdia',
 'uploadlogpagetext'           => 'Vê-que la lista des dèrriérs fichiérs tèlèchargiês sur lo sèrvor.
-Vêde la [[Special:NewFiles|galerie de les novèles émâges]] por una presentacion ples visuâla.',
+Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por una presentacion ples visuâla.',
 'filename'                    => 'Nom du fichiér',
 'filedesc'                    => 'Dèscripcion',
 'fileuploadsummary'           => 'Dèscripcion :',
@@ -1681,10 +1681,12 @@ Se lo fichiér controlâ est la méma émâge avouéc la talye originèla, y at 
 'file-thumbnail-no'           => "Lo nom du fichiér comence per '''<tt>$1</tt>'''.
 O est possiblo que seye una vèrsion rèduita ''(figura)''.
 Se vos avéd lo fichiér en rèsolucion ples hôta, tèlèchargiéd-lo, ôtrament volyéd changiér son nom.",
-'fileexists-forbidden'        => 'Un fichiér avouéc cél nom ègziste ja et pôt pas étre ècrasâ.
-Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un fichiér avouéc cél nom ègziste ja et pôt pas étre ècllafâ.
+Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom.
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichiér avouéc cél nom ègziste ja dens lo dèpôt de fichiérs partagiê.
-Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom. [[File:$1|thumb|center|$1]]',
+Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom.
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Cél fichiér est un doblo {{PLURAL:$1|de ceti fichiér|de cetos fichiérs}} :',
 'file-deleted-duplicate'      => 'Un fichiér pariér a ceti ([[$1]]) at ja étâ suprimâ.
 Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que lo tornar tèlèchargiér.',
@@ -1714,7 +1716,7 @@ Volyéd controlar lo fichiér devant que lo tornar tèlèchargiér.',
 Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',
 'upload-wasdeleted'           => "'''Atencion : vos éte aprés tèlèchargiér un fichiér qu’at étâ suprimâ dês devant.'''
 
-Demandâd-vos s’il fôt franc continuar son tèlèchargement.
+Demandâd-vos se fôt franc continuar son tèlèchargement.
 Lo jornal de les suprèssions de cél fichiér est montrâ ce-desot :",
 'filename-bad-prefix'         => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
 Volyéd chouèsir un nom de fichiér dèscriptif.",
@@ -1979,7 +1981,7 @@ Les entrâs <s>barrâs</s> ont étâ solucionâs.',
 'listusers-creationsort'  => 'Triyér per dâta de crèacion',
 'usereditcount'           => '$1 changement{{PLURAL:$1||s}}',
 'usercreated'             => 'Fêt lo $1 a $2',
-'newpages'                => 'Novèles pâges',
+'newpages'                => 'Pâges novèles',
 'newpages-username'       => 'Utilisator :',
 'ancientpages'            => 'Pâges les muens dèrriérement changiês',
 'move'                    => 'Renomar',
@@ -2075,8 +2077,8 @@ Controlâd asse-ben les variantes de câssa.',
 'newuserlogpage'              => 'Jornal de les crèacions de comptos utilisator',
 'newuserlogpagetext'          => 'O est un jornal de les crèacions de comptos utilisator.',
 'newuserlog-byemail'          => 'mot de pâssa mandâ per mèssageria èlèctronica',
-'newuserlog-create-entry'     => 'Novél compto utilisator',
-'newuserlog-create2-entry'    => 'at fêt lo novél compto $1',
+'newuserlog-create-entry'     => 'Compto utilisator novél',
+'newuserlog-create2-entry'    => 'at fêt lo compto novél $1',
 'newuserlog-autocreate-entry' => 'Compto fêt ôtomaticament',
 
 # Special:ListGroupRights
@@ -2160,7 +2162,7 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 
 'enotif_mailer'                => 'Sistèmo de notificacion per mèssageria èlèctronica de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar totes les pâges coment visitâs',
-'enotif_newpagetext'           => 'O est una novèla pâge.',
+'enotif_newpagetext'           => 'O est una pâge novèla.',
 'enotif_impersonal_salutation' => 'Utilisator de {{SITENAME}}',
 'changed'                      => 'changiê',
 'created'                      => 'fêta',
@@ -2325,7 +2327,7 @@ Por fâre una rèstoracion encomplèta, pouentâd les câses que corrèspondont 
 Clicar dessus '''''Tornar inicialisar''''' èfacierat la bouèta de rèsumâ et tornerat inicialisar totes les câses a pouentar.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|vèrsion arch·ivâ|vèrsions arch·ivâs}}',
 'undeletehistory'              => 'Se vos reféte la pâge, totes les vèrsions seront replaciês dens l’historico.
-S’una novèla pâge avouéc lo mémo nom at étâ fêta dês la suprèssion, les vèrsions refêtes aparètront dens l’historico devant et la vèrsion d’ora serat pas remplaciê ôtomaticament.',
+S’una pâge novèla avouéc lo mémo nom at étâ fêta dês la suprèssion, les vèrsions refêtes aparètront dens l’historico devant et la vèrsion d’ora serat pas remplaciê ôtomaticament.',
 'undeleterevdel'               => 'La rèstoracion serat pas fêta se, a la fin, la vèrsion la ples novèla de la pâge ou ben du fichiér réste suprimâ a mêtiêt.
 Dens celos câs, vos dête pas pouentar ou ben pas cachiér les vèrsions suprimâs les ples novèles (d’amont la lista).',
 'undeletehistorynoadmin'       => 'Ceta pâge at étâ suprimâ.
@@ -2383,8 +2385,8 @@ $1',
 'year'                => 'Dês l’an (et devant) :',
 
 'sp-contributions-newbies'        => 'Fâre vêre ren que les contribucions ux novéls utilisators',
-'sp-contributions-newbies-sub'    => 'Permié los novéls comptos',
-'sp-contributions-newbies-title'  => 'Contribucions d’utilisators permié los novéls comptos',
+'sp-contributions-newbies-sub'    => 'Permié los comptos novéls',
+'sp-contributions-newbies-title'  => 'Contribucions d’utilisators permié los comptos novéls',
 'sp-contributions-blocklog'       => 'jornal des blocâjos',
 'sp-contributions-deleted'        => 'contribucions suprimâs',
 'sp-contributions-logs'           => 'jornals',
@@ -2557,12 +2559,12 @@ Por vèrrolyér ou ben dèvèrrolyér la bâsa de balyês, dêt étre accèssibl
 'move-page'                    => 'Renomar $1',
 'move-page-legend'             => 'Renomar una pâge',
 'movepagetext'                 => "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient tot son historico vers lo novél nom.
-Lo viely titro vindrat una pâge de redirèccion de vers lo novél titro.
+Lo viely titro vindrat una pâge de redirèccion de vers lo titro novél.
 Vos pouede betar a jorn ôtomaticament les redirèccions d’ora que pouentont vers lo titro originâl.
-Se vos chouèsésséd de pas lo fâre, assurâd-vos de controlar tota [[Special:DoubleRedirects|redirèccion dobla]] ou [[Special:BrokenRedirects|câssa]].
+Se vos chouèsésséd de pas lo fâre, assurâd-vos de controlar tota [[Special:DoubleRedirects|redirèccion dobla]] ou ben [[Special:BrokenRedirects|câssa]].
 Vos avéd la rèsponsabilitât de vos assurar que los lims continuont de pouentar vers lor dèstinacion suposâ.
 
-Notâd que la pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo novél titro, a muens que cela dèrriére seye voueda ou ben seye ren qu’una redirèccion et que son historico des changements seye vouedo.
+Notâd que la pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo titro novél, a muens que cela dèrriére seye voueda ou ben seye ren qu’una redirèccion et que son historico des changements seye vouedo.
 Cen vôt dére que vos pouede renomar una pâge vers sa posicion d’origina se vos éd fêt una èrror, mas que vos pouede pas ècllafar una pâge ja ègzistenta.
 
 '''ATENCION !'''
@@ -2580,7 +2582,7 @@ Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo
 'movenotallowedfile'           => 'Vos avéd pas la pèrmission de renomar los fichiérs.',
 'cant-move-user-page'          => 'Vos avéd pas la pèrmission de renomar les pâges principâles d’utilisators (en defôr de lors sot-pâges).',
 'cant-move-to-user-page'       => 'Vos avéd pas la pèrmission de renomar una pâge vers una pâge utilisator (a l’èxcèpcion d’una sot-pâge).',
-'newtitle'                     => 'Vers lo novél titro :',
+'newtitle'                     => 'De vers lo titro novél :',
 'move-watch'                   => 'Siuvre ceta pâge',
 'movepagebtn'                  => 'Renomar la pâge',
 'pagemovedsub'                 => 'Changement de nom reussi',
@@ -2589,7 +2591,7 @@ Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo
 'movepage-moved-noredirect'    => 'La crèacion d’una redirèccion dês lo viely nom at étâ anulâ.',
 'articleexists'                => 'Ègziste ja una pâge que pôrte cél titro, ou ben lo titro que vos éd chouèsi est fôx.
 Nen volyéd chouèsir un ôtro.',
-'cantmove-titleprotected'      => 'Vos pouede pas dèplaciér una pâge vers cél emplacement perce que lo novél titro at étâ protègiê a la crèacion.',
+'cantmove-titleprotected'      => 'Vos pouede pas dèplaciér una pâge vers cél emplacement perce que lo titro novél at étâ protègiê a la crèacion.',
 'talkexists'                   => "'''La pâge lyé-méma at étâ dèplaciê avouéc reusséta, mas la pâge de discussion at pas possu étre dèplaciê perce que nen ègzistâve ja yona desot lo novél nom.'''
 '''Les volyéd fusionar a la man.'''",
 'movedto'                      => 'renomâ en',
@@ -2627,7 +2629,7 @@ empossiblo de renomar una pâge sur lyé-méma.',
 'imagetypemismatch'            => 'La novèla èxtension de cél fichiér corrèspond pas a son tipo.',
 'imageinvalidfilename'         => 'Lo nom du fichiér ciba est fôx',
 'fix-double-redirects'         => 'Betar a jorn les redirèccions que pouentont vers lo titro originâl',
-'move-leave-redirect'          => 'Lèssiér una redirèccion de vers lo novél titro',
+'move-leave-redirect'          => 'Lèssiér una redirèccion de vers lo titro novél',
 'protectedpagemovewarning'     => "'''ATENCION :''' ceta pâge at étâ protègiê de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont renomar.",
 'semiprotectedpagemovewarning' => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los utilisators encartâs la pouessont renomar.",
 'move-over-sharedrepo'         => '== Lo fichiér ègziste ==

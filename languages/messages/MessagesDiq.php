@@ -804,7 +804,7 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşenê h
 'revdelete-hide-comment'      => 'kılmvatış memocne',
 'revdelete-hide-user'         => 'Karber u IP ê ke vurnayiş kerdo bınım.',
 'revdelete-hide-restricted'   => 'Malumatan pa serkaran u karberan ra bınım.',
-'revdelete-radio-same'        => '(veciye)',
+'revdelete-radio-same'        => '(mevurne)',
 'revdelete-radio-set'         => 'Heya',
 'revdelete-radio-unset'       => 'Nê',
 'revdelete-suppress'          => 'Hem ê binan ra hem zi serkaran ra malumatan bınım',
@@ -1819,7 +1819,7 @@ qey hemkari u pêşniyazi:
 'exblank'                => 'zerreyê peli vengo',
 'delete-confirm'         => '"$1" bıestere',
 'delete-legend'          => 'Bıestere',
-'historywarning'         => 'Hişyari: no pel o ke şıma kenê hewn a, verê ey esto {{PLURAL:$1|revizyon|revizyonan}}::',
+'historywarning'         => "'''Teme:''' Pela ke şıma esterenê tede yew viyarte be teqriben $1 {{PLURAL:$1|versiyon esto|versiyoni estê}}:",
 'confirmdeletetext'      => 'Tı ho yew pele u tarixê pele wederneno. 
 Tı ra rica keno, tı zani tı ho sekeno, tı zani neticeyanê eno wedarnayışi u tı zani tı ser [[{{MediaWiki:Policy-url}}|poliçe]] kar keno.',
 'actioncomplete'         => 'Aksiyon temam biyo',

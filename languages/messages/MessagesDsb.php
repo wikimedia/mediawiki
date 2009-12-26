@@ -1947,7 +1947,7 @@ Pšašanja a dalšna pomoc:
 'exblank'                => 'bok jo był prozny',
 'delete-confirm'         => '„$1“ lašowaś',
 'delete-legend'          => 'Lašowaś',
-'historywarning'         => "'''Glědaj:''' Bok, kótaryž coš wulašowaś, ma historiju z $1 {{PLURAL:$1|wersiju|wersijoma|wersijami|wersijami}}:",
+'historywarning'         => "'''Glědaj:''' Bok, kótaryž coš wulašowaś, ma historiju z něźi $1 {{PLURAL:$1|wersiju|wersijoma|wersijami|wersijami}}:",
 'confirmdeletetext'      => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
 'actioncomplete'         => 'Akcija jo se wugbała.',
 'actionfailed'           => 'Akcija jo se njeraźiła',
