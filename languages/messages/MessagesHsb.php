@@ -1932,7 +1932,7 @@ Wospjetne prašenja a dalša pomoc:
 'exblank'                => 'strona běše prózdna',
 'delete-confirm'         => '„$1“ wušmórnyć',
 'delete-legend'          => 'Wušmórnyć',
-'historywarning'         => "'''KEDŹBU:''' Strona, kotruž chceš wušmórnyć, ma stawizny z $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}}:",
+'historywarning'         => "'''KEDŹBU:''' Strona, kotruž chceš wušmórnyć, ma stawizny z přibližnje $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}}:",
 'confirmdeletetext'      => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.
 Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
 'actioncomplete'         => 'Dokónčene',

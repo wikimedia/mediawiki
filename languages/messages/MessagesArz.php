@@ -344,6 +344,7 @@ $messages = array(
 'editfont-default'   => 'حسب إعدادات البراوزر',
 'editfont-monospace' => 'فونت  Monospaced',
 'editfont-sansserif' => 'فونت  Sans-serif',
+'editfont-serif'     => 'فونت Serif',
 
 # Dates
 'sunday'        => 'الحد',
@@ -412,6 +413,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2| التصنيف دا  فيه الملف الجاى دا بس.|تحت {{PLURAL:$1|ملف|$1 ملف}} فى  التصنيف دا، من إجمالى $2.}}',
 'category-file-count-limited'    => 'تحت {{PLURAL:$1|ملف|$1 ملف}} فى التصنيف الحالى.',
 'listingcontinuesabbrev'         => 'متابعه',
+'index-category'                 => 'صفحات متفهرسه',
+'noindex-category'               => 'صفحات مش متفهرسه',
 
 'mainpagetext'      => "<big>''' ميدياويكى اتنزلت بنجاح.'''</big>",
 'mainpagedocfooter' => 'اسال [http://meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكى.
@@ -619,12 +622,12 @@ $1',
 آخر محاولة استعلام اتطلبت من قاعدة البيانات كانت:
 blockquote><tt>$1</tt></blockquote>
 من جوه الداله"<tt>$2</tt>".
-MySQL رجعت الغلط"<tt>$3: $4</tt>".',
+قاعدة البيانات رجعت الغلط"<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'حصل غلط فى صيغة استعلام قاعدة البيانات.
 اخر محاوله للاستعلام من قاعجة البيانات كانت:
 "$1"
 من جوه الداله "$2".
-MySQL رجعت الغلط"$3: $4"',
+قاعده البيانات رجعت الغلط"$3: $4"',
 'laggedslavemode'      => 'تحذير: الصفحة يمكن ما فيهاش اخر التحديثات.',
 'readonly'             => 'قاعدة البيانات مقفولة',
 'enterlockreason'      => 'اكتب سبب القفل، وقول امتى تقريبا ح يتلغى القفل',
@@ -652,7 +655,8 @@ $1',
 'unexpected'           => 'قيمة مش متوقعة: "$1"="$2".',
 'formerror'            => 'غلط: مش ممكن تقديم الاستمارة',
 'badarticleerror'      => 'مش ممكن ننفذ العملية دى على الصفحة دي',
-'cannotdelete'         => 'ما قدرناش نمسح الصفحة أو الملف المطلوب. (ممكن يكون حد تانى مسحه. )',
+'cannotdelete'         => 'ما قدرناش نمسح الصفحة أو الملف "$1".
+ممكن يكون حد تانى مسحه.',
 'badtitle'             => 'عنوان غلط',
 'badtitletext'         => 'عنوان الصفحه المطلوب اما مش صحيح او فاضي، و ربما الوصلة بين اللغات أو بين المشاريع غلط. وممكن وجود رموز ماتصلحش للاستخدام فى العناوين.',
 'perfcached'           => 'البيانات دى متخبية و ممكن ما تكونش متحدثة.',
@@ -712,6 +716,7 @@ $2',
 'userexists'                 => 'اسم اليوزر اللى دخلته بيستعمله يوزر غيرك.
 دخل اسم تانى.',
 'loginerror'                 => 'غلط فى الدخول',
+'createaccounterror'         => 'مش قادر يعمل الحساب: $1',
 'nocookiesnew'               => 'اليوزر خلاص اتفتح له حساب، بس انت لسة ما سجلتش دخولك.
 بيستخدم {{SITENAME}} كوكيز عشان يسجل الدخول.
 الكوكيز عندك متعطلة.
@@ -731,8 +736,7 @@ $2',
 'wrongpassword'              => 'كلمة السر اللى كتبتها مش صحيحه. من فضلك حاول تانى.',
 'wrongpasswordempty'         => 'كلمة السر المدخله كانت فاضيه.
 من فضلك حاول تانى.',
-'passwordtooshort'           => 'الباسورد بتاعتك اقصر من اللازم.
-لازم تكون على الاقل{{PLURAL:$1|1 حرف|$1 حروف}}.',
+'passwordtooshort'           => 'لازم تكون على الاقل{{PLURAL:$1|1 حرف|$1 حروف}}.',
 'password-name-match'        => 'الباسورد بتاعتك لازم تكون مختلفه عن اسم اليوزر بتاعك.',
 'mailmypassword'             => 'ابعتلى كلمة سر جديدة',
 'passwordremindertitle'      => 'كلمة سر مؤقته جديده ل {{SITENAME}}',
@@ -743,6 +747,7 @@ $2',
 الباسورد المؤقته بتاعتك ح تنتهى صلاحيتها فى خلال {{PLURAL:$5|يوم واحد|$5 ايام}}.
 اما لو كان فى حد تانى هوه اللى عمل الطلب ده، أو انك افتكرت الباسورد بتاعتك، وخلاص مش عايز تغيرها، ممكن تتجاهل الرساله دى وتستمر فى استخدام الباسورد القديمة بتاعتك.',
 'noemail'                    => 'مافيش ايميل متسجل  لليوزر  "$1".',
+'noemailcreate'              => 'لازم تكتب عنوان إيميل صح',
 'passwordsent'               => 'تم إرسال كلمة سر جديدة لعنوان الايميل المتسجل لليوزر "$1".
 من فضلك حاول تسجيل الدخول مره تانيه بعد استلامها.',
 'blocked-mailpassword'       => 'عنوان الايبى بتاعك ممنوع من التحرير، و كمان مش ممكن تسعمل خاصية ترجيع الباسورد علشان نمنع التخريب.',
@@ -767,7 +772,8 @@ $2',
 'createaccount-text'         => 'فى واحد فتح حساب باسم الايمل بتاعك على {{SITENAME}} ($4) بالاسم "$2"، وبباسورد "$3". لازم تسجل دخولك دلوقتى و تغير الباسورد بتاعتك.
 
 لو سمحت تتجاهل الرسالة دى اذا الحساب دا اتفتحلك بالغلط.',
-'login-throttled'            => 'انت عملت  محاولات كتيره حديثة على كلمة سر الحساب ده.
+'usernamehasherror'          => 'اسم اليوزر مش ممكن يكون فيه حروف هاش',
+'login-throttled'            => 'انت عملت  محاولات لوجين كتيره حديثة على الحساب ده.
 من فضلك استنى قبل المحاولة مرة تانيه.',
 'loginlanguagelabel'         => 'اللغة: $1',
 
@@ -881,6 +887,7 @@ $2',
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات اللى ليها علاقه],
 او [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعدل الصفحه دى]</span>.',
 'userpage-userdoesnotexist'        => 'حساب اليوزر "$1" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
+'userpage-userdoesnotexist-view'   => 'حساب اليوزر "$1" مش متسجل',
 'clearyourcache'                   => "'''ملاحظة - بعد التسييف,  يمكن لازم تفرغ كاش متصفحك علشان تشوف التغييرات.''' '''موزيللا / فايرفوكس / سافارى:''' دوس على ''Shift'' فى نفس الوقت دوس على ''Reload,'' أو دوس على اما ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''دوس على ''Reload'' أو دوس على ''F5;'' '''أوبرا:''' فرغ الكاش فى ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' دوس على ''Ctrl'' فى نفس الوقت دوس على ''Refresh,'' أو دوس على ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
 'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
@@ -948,6 +955,8 @@ $2',
 'nocreatetext'                     => '{{SITENAME}} حدد القدره على انشاء صفحات جديده.
 ممكن ترجع وتحرر صفحه موجوده بالفعل، او [[Special:UserLogin|الدخول / فتح حساب]].',
 'nocreate-loggedin'                => 'انت ما عندك ش صلاحية تعمل صفحات جديدة.',
+'sectioneditnotsupported-title'    => 'تعديل الأقسام مش مدعوم',
+'sectioneditnotsupported-text'     => 'تعديل الاقسام مش مدعوم فى الصفحه دى',
 'permissionserrors'                => 'غلطات فى السماح',
 'permissionserrorstext'            => 'ما عندك ش صلاحية تعمل كدا،{{PLURAL:$1|علشان|علشان}}:',
 'permissionserrorstext-withaction' => 'أنت ما عندكش الصلاحيات علشان $2، لل{{PLURAL:$1|سبب|أسباب}} ده:',
@@ -1010,6 +1019,7 @@ $2',
 مفتاح: (دلوقتى) = الفرق مع النسخة دلوقتى
 (اللى قبل كده) = الفرق مع النسخة اللى قبل كده، ص = تعديل صغير',
 'history-fieldset-title' => 'تصفح التاريخ',
+'history-show-deleted'   => 'محذوف بس',
 'histfirst'              => 'اول',
 'histlast'               => 'آخر',
 'historysize'            => '({{PLURAL:$1|1 بايت|$1 بايت}})',
@@ -1037,6 +1047,7 @@ $2',
 'rev-deleted-unhide-diff'     => "واحده من مراجعات الفرق ده  '''اتمسحت'''. ممكن تلاقى تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الكبت].
 انتا لو ادارى ممكن [$1 تشوف الفرق دا] لو كانت عايز تستمر",
 'rev-delundel'                => 'عرض/إخفاء',
+'rev-showdeleted'             => 'اعرض',
 'revisiondelete'              => 'امسح/الغى المسح بتاع المراجعات',
 'revdelete-nooldid-title'     => 'مراجعة هدف مش صح',
 'revdelete-nooldid-text'      => 'أنت ياإما ما حددتش مراجعة (مراجعات) معينة كهدف للفعل دا، المراجعة المحددة مش موجودة، أو أنك بتحاول تخبى المراجعة الحالية.',
@@ -1062,14 +1073,17 @@ $2',
 'revdelete-hide-comment'      => 'خبى تعليق التعديل',
 'revdelete-hide-user'         => 'خبى اسم/عنوان الاى بى بتاع اليوزر',
 'revdelete-hide-restricted'   => 'طبق القواعد دى على السيسوبات زى الباقيين',
+'revdelete-radio-same'        => '(ماتغيرش)',
+'revdelete-radio-set'         => 'أيوه',
+'revdelete-radio-unset'       => 'لأ',
 'revdelete-suppress'          => 'تخبية البيانات عن السيسوبات و اليوزرز التانيين',
 'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
 'revdelete-log'               => 'سبب المسح:',
 'revdelete-submit'            => 'طبق على النسخه المختاره',
 'revdelete-logentry'          => 'غير رؤية المراجعة ل[[$1]]',
 'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
-'revdelete-success'           => "''' رؤية المراجعات اتظبطت بنجاح.'''",
-'revdelete-failure'           => "''' عرض المراجعه ما نفعش يتعاد ظبطه:'''
+'revdelete-success'           => "''' رؤية المراجعه اتظبطت بنجاح.'''",
+'revdelete-failure'           => "'''عرض المراجعه ما نفعش يتعاد ظبطه:'''
 $1",
 'logdelete-success'           => "'''رؤية السجلات اتظبطت بنجاح.'''",
 'logdelete-failure'           => "'''مانفعش اعادة ظبط عرض السجل:'''
@@ -1097,8 +1111,10 @@ $1",
 'revdelete-concurrent-change' => 'حصل غلط فى تعديل البند اللى بتاريخ $2,الساعه $1: حالته الظاهر فى حد تانى غيرها و انتا بتحاول تعدل فيها..
 لو سمحت بص على السجلات.',
 'revdelete-only-restricted'   => 'ماينفعش تمنع بنود من ان الاداريين يشوفوها من غير ما تختار كمان واحد من اختيارات الكبت التانيه.',
+'revdelete-otherreason'       => 'سبب تانى/اضافى:',
 'revdelete-reasonotherlist'   => 'سبب تانى',
 'revdelete-edit-reasonlist'   => 'عدل أسباب المسح',
+'revdelete-offender'          => 'صاحب المراجعة:',
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
@@ -1338,7 +1354,7 @@ $1",
 * صندوق متعلم يعنى اليوزر دا عضو فى المجموعة دي.
 * صندوق مش متعلم يعنى  اليوزر دا مش عضو فى المجموعة دي.
 * علامة * يعنى انك مش ممكن تشيل المجموعات بعد ما تضيفها و العكس بالعكس.',
-'userrights-reason'           => 'سبب التغيير:',
+'userrights-reason'           => 'السبب:',
 'userrights-no-interwiki'     => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
 'userrights-nodatabase'       => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
 'userrights-nologin'          => 'انت لازم [[Special:UserLogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
@@ -1397,6 +1413,7 @@ $1",
 'right-bigdelete'             => 'مسح الصفحات اللى ليها تواريخ كبيرة',
 'right-deleterevision'        => 'مسح وترجيع مراجعات معينة من الصفحات',
 'right-deletedhistory'        => 'شوف مدخلات التاريخ الممسوحة، من غير النصوص اللى معاها',
+'right-deletedtext'           => 'شوف النصوص الممسوحة والتغييرات بين المراجعات الممسوحة',
 'right-browsearchive'         => 'التدوير فى الصفحات الممسوحة',
 'right-undelete'              => 'استرجاع صفحة',
 'right-suppressrevision'      => 'مراجعة واسترجاع المراجعات المستخبية عن الإداريين',
@@ -1429,6 +1446,7 @@ $1",
 'right-reset-passwords'       => 'تغيير الباوسورد بتاعة اليوزرات التانيين',
 'right-override-export-depth' => 'تصدير الصفحات مع الصفحات الموصوله لحد عمق 5',
 'right-versiondetail'         => 'عرض معلومات نسخة السوفتوير المتوسعه',
+'right-sendemail'             => 'يبعت إيميل لليوزرز التانيين',
 
 # User rights log
 'rightslog'      => 'سجل صلاحيات اليوزرز',
@@ -1479,6 +1497,14 @@ $1",
 'recentchangestext'                 => 'تابع آخر التغييرات فى الويكى على الصفحة دى.',
 'recentchanges-feed-description'    => 'تابع اخر التعديلات للويكى ده عن طريق الفييد ده .',
 'recentchanges-label-legend'        => 'المفتاح: $1.',
+'recentchanges-legend-newpage'      => '$1 - صفحه جديده',
+'recentchanges-label-newpage'       => 'التعديل ده عمل صفحه جديده',
+'recentchanges-legend-minor'        => '$1 - تعديل صغير',
+'recentchanges-label-minor'         => 'ده تعديل صغير',
+'recentchanges-legend-bot'          => '$1 - تعديل بتاع بوت',
+'recentchanges-label-bot'           => 'التعديل ده عمله بوت',
+'recentchanges-legend-unpatrolled'  => '$1 - تعديل مش متراجع',
+'recentchanges-label-unpatrolled'   => 'التعديل ده مإتراجعش لسه',
 'rcnote'                            => "فيه تحت {{PLURAL:$1|'''1''' تغيير|آخر '''$1''' تغيير}} فى آخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدءا من $5، $4.",
 'rcnotefrom'                        => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
 'rclistfrom'                        => 'اظهر التعديلات بدايه من $1',
@@ -1519,6 +1545,7 @@ $1",
 'upload'                      => 'حمل',
 'uploadbtn'                   => 'حمل الملف',
 'reuploaddesc'                => 'إلغى التحميل وارجع لاستمارة التحميل',
+'upload-tryagain'             => 'نفذ وصف الملف المتعدل',
 'uploadnologin'               => 'ما سجلتش الدخول',
 'uploadnologintext'           => 'لازم تكون [[Special:UserLogin|مسجل الدخول]] علشان تقدر تحمل الملفات.',
 'upload_directory_missing'    => 'مجلد التحميل($1) ضايع السيرفير وماقدرش يعمل واحد تاني.',
@@ -1587,6 +1614,7 @@ $1",
 'file-deleted-duplicate'      => 'فى ملف مطابق للملف دا ([[$1]]) اتمسح قبل كدا. انتا لازم تشيك على تاريخ المسح بتاع الملف دا قبل ما تحمله مرة تانية',
 'successfulupload'            => 'التحميل ناجح',
 'uploadwarning'               => 'تحذير التحميل',
+'uploadwarning-text'          => 'لو سمحت عدل وصف الملف اللى تحت وحاول تانى.',
 'savefile'                    => 'حفظ الملف',
 'uploadedimage'               => 'اتحمل "[[$1]]"',
 'overwroteimage'              => 'اتحملت  نسخة جديدة من "[[$1]]"',
@@ -1597,9 +1625,13 @@ $1",
 'uploadcorrupt'               => 'الملف دا بايظ أو ليه امتداد غلط.
 لو سمحت ا تأكد من الملف و حمله مرة تانية.',
 'uploadvirus'                 => 'الملف فيه فيروس! التفاصيل: $1',
+'upload-source'               => 'الملف المصدر',
 'sourcefilename'              => 'اسم الملف  بتاع المصدر:',
+'sourceurl'                   => 'URL المصدر:',
 'destfilename'                => 'اسم الملف المستهدف:',
 'upload-maxfilesize'          => 'حجم الملف الأقصى: $1',
+'upload-description'          => 'وصف الملف',
+'upload-options'              => 'أوبشنات الرفع',
 'watchthisupload'             => 'حط الملف دا تحت المراقبه',
 'filewasdeleted'              => 'فى ملف بنفس الاسم دا تحمل قبل كدا و بعدين اتمسح.
 لو سمحت تراجع $1 قبل ما تحمله كمان مرة.',
@@ -1628,7 +1660,7 @@ PICT # misc.
 'upload-proto-error-text'   => 'االتحميل عن بعد لازمله يوأرإل بيبتدى بـ <code>http://</code> أو <code>ftp://</code>.',
 'upload-file-error'         => 'غلط داخلي',
 'upload-file-error-text'    => 'حصل غلط داخلى واحنا بنحاول نعمل ملف مؤقت على السيرفر.
-لو سمحت اتصل بإدارى نظام.',
+لو سمحت اتصل [[بسيسوب]].',
 'upload-misc-error'         => 'غلط مش معروف فى التحميل',
 'upload-misc-error-text'    => 'حصل غلط مش معروف وإنت بتحمل.
 لو سمحت تتاكد أن اليوأرإل صح و ممكن تدخل عليه و بعدين حاول تاني.
@@ -1636,6 +1668,12 @@ PICT # misc.
 'upload-too-many-redirects' => 'الـ URL فيه تحويلات اكتر من اللازم',
 'upload-unknown-size'       => 'حجم مش معروف',
 'upload-http-error'         => 'حصل غلط فى الـHTTB :$1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'الوصول مش مسموح بيه',
+'img-auth-nofile'       => 'الملف "$1" مش موجود',
+'img-auth-streaming'    => 'بيعرض "$1".',
+'img-auth-noread'       => 'اليوزر معندوش صلاحية قرايه "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'ما قدرناش نوصل لليو أر إل',
@@ -1934,10 +1972,12 @@ PICT # misc.
 'listusers-blocked'  => '(ممنوع)',
 
 # Special:ActiveUsers
-'activeusers'          => 'ليستة اليوزرات اللى ليهم نشاط',
-'activeusers-count'    => '$1 احدث {{PLURAL:$1|تعديل|تعديلات}}',
-'activeusers-from'     => 'عرض اليوزرات بداية من:',
-'activeusers-noresult' => 'مالقيناش اى يوزر',
+'activeusers'            => 'ليستة اليوزرات اللى ليهم نشاط',
+'activeusers-count'      => '$1 {{PLURAL:$1|تعديل|تعديل}} فى آخر {{PLURAL:$3|يوم|$3 يوم}}',
+'activeusers-from'       => 'عرض اليوزرات بداية من:',
+'activeusers-hidebots'   => 'خبى البوتات',
+'activeusers-hidesysops' => 'خبى السيسوبات',
+'activeusers-noresult'   => 'مالقيناش اى يوزر',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'سجل اليوزرز الجداد',
@@ -2128,6 +2168,7 @@ $NEWPAGE
 'protectexpiry'               => 'تنتهى فى:',
 'protect_expiry_invalid'      => 'وقت الانتهاء مش صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع قديم.',
+'protect-unchain-permissions' => 'شيل حماية أوبشنات الحمايه التانيه',
 'protect-text'                => "ممكن هنا تعرض و تغير مستوى الحمايه للصفحه '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "انت مش ممكن تغير مستويات الحماية وأنت ممنوع.
 الإعدادات بتاعة الصفحة '''$1''' دلوقتى هي:",
@@ -2279,6 +2320,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'منع يوزر',
+'blockip-title'                   => 'منع اليوزر',
 'blockip-legend'                  => 'منع اليوزر',
 'blockiptext'                     => 'استخدم الاستمارة اللى تحت لمنع عنوان أيبى أو يوزر معين من الكتابة.
 دا لازم يحصل بس علشان تمنع التخريب ،و على حسب 
@@ -2332,6 +2374,8 @@ $1',
 'ipblocklist-sh-tempblocks'       => '$1 عمليات المنع المؤقتة',
 'ipblocklist-sh-addressblocks'    => '$1 عمليات منع الأيبى المفردة',
 'ipblocklist-submit'              => 'تدوير',
+'ipblocklist-localblock'          => 'منع محلى',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|المنع|المنع}} التانى',
 'blocklistline'                   => '$1, $2 منع $3 ($4)',
 'infiniteblock'                   => 'دايم',
 'expiringblock'                   => 'بيخلص يوم $1 الساعه $2',

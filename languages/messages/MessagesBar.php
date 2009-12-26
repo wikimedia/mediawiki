@@ -261,11 +261,12 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'yourdomainname'             => 'Eanane Domain:',
 'login'                      => 'Oomeidn',
 'nav-login-createaccount'    => 'Ãnmöidn',
-'userlogin'                  => 'Oomeidn',
+'userlogin'                  => 'Oomeidn / Konto eastöön',
 'logout'                     => 'Obmeidn',
 'userlogout'                 => 'Obmeidn',
 'notloggedin'                => 'Net ogmeldt',
 'nologin'                    => "Du hast koa Benutzakonto? '''$1'''.",
+'nologinlink'                => 'A neichs Benutzakonto eastöin',
 'createaccount'              => 'Benutzerkonto oleng',
 'gotaccount'                 => "Du hast hast scho a Benutzerkonto? '''$1'''.",
 'gotaccountlink'             => 'Omeidn',
@@ -293,6 +294,11 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'italic_sample' => 'Kuasiva Text',
 'italic_tip'    => 'Kuasiva Text',
 'link_sample'   => 'Link-Text',
+'link_tip'      => 'Inteana Link',
+'extlink_tip'   => "Exteana Link (pass auf's http:// auf)",
+'headline_tip'  => 'Üwaschrift auf da 2. Emn',
+'math_sample'   => 'Foaml då eifüng',
+'math_tip'      => 'Mathematische Foaml (LaTeX)',
 'nowiki_sample' => 'Ned foamatiadn Text då eifüng',
 'nowiki_tip'    => 'Unfoamatiada Text',
 'image_tip'     => 'Dateilink',
@@ -351,8 +357,8 @@ Wenn S' speichern, wern alle neiern Versionen übaschriem.</strong>",
 Überlegen S' bitte, ob a Aufteilung vo da Seitn in kloanere Abschnitte möglich is.</strong>",
 'semiprotectedpagewarning'         => "'''Hoibsperrung:''' De Seitn is so gsperrt worn, daß nur registrierte Benutzer de ändern kinnan.",
 'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur bestimmte Benutzergruppen können die Seite erstellen.'''",
-'templatesused'                    => 'De foigendn Vorlagn wern von dera Seitn vawendt:',
-'templatesusedpreview'             => 'De foigendn Vorlagn wern von dera Seitnvorschau vawendt:',
+'templatesused'                    => "{{PLURAL:$1|D'foignde Voalåg wiad|D'foigndn Voalång wean}} auf dea Seitn vawendt:",
+'templatesusedpreview'             => "{{PLURAL:$1|D'foignde Voalåg wiad|De foigndn Voalång wean}} in dea Seitn-Voaschau vawendt:",
 'templatesusedsection'             => 'De foigendn Vorlagn wern von dem Abschnitt vawendt:',
 'template-protected'               => '(schreibgschützt)',
 'template-semiprotected'           => '(schreibgschützt fia ned ãngmöidte und neiche Benutza)',
@@ -368,17 +374,19 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'cantcreateaccounttitle' => 'Benutzerkonto konn net erstellt wern.',
 
 # History pages
-'viewpagelogs'     => 'Logbiacha fia de Seitn oozoang',
-'currentrev-asof'  => 'Aktuelle Veasion vum $1',
-'revisionasof'     => 'Veasion vum $2, $3.',
-'previousrevision' => '← Nextöidare Veasion',
-'nextrevision'     => 'Nextjingare Veasion →',
-'histlegend'       => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
+'viewpagelogs'        => 'Logbiacha fia de Seitn oozoang',
+'currentrev-asof'     => 'Aktuelle Veasion vum $2, $3.',
+'revisionasof'        => 'Veasion vum $2, $3.',
+'revision-info'       => 'Veasion vum $2 um $5 am $4.',
+'previousrevision'    => '← Nextöidare Veasion',
+'nextrevision'        => 'Nextjingare Veasion →',
+'currentrevisionlink' => 'Aktuelle Veasion',
+'histlegend'          => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Untaschied zur aktuellen Version, (Vorherige) = Untaschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dera Zeit, Benutzername/IP-Adresse vom Bearbeiter, K = Kloane Änderung',
-'histfirst'        => 'öidaste',
-'histlast'         => 'Neiste',
-'historyempty'     => '(laa)',
+'histfirst'           => 'öidaste',
+'histlast'            => 'Neiste',
+'historyempty'        => '(laa)',
 
 # Revision feed
 'history-feed-title' => 'Versionshistorie',
@@ -426,9 +434,11 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'search-suggest'            => 'Hädst „$1“ gmoant?',
 'search-interwiki-caption'  => 'Schwestaprojekte',
 'search-interwiki-default'  => '$1 Eagebnisse:',
+'search-interwiki-more'     => '(mea)',
 'search-mwsuggest-enabled'  => 'mid Voaschläg',
 'search-mwsuggest-disabled' => 'kane Voaschläg',
 'powersearch'               => 'Suach',
+'powersearch-legend'        => 'Eaweitate Suach',
 'powersearch-ns'            => 'Suach in Nãmensräume:',
 'powersearch-redir'         => 'Weidaleitungen ãnzoang',
 'powersearch-field'         => 'Suach nåch:',
@@ -498,11 +508,15 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'minoreditletter'      => 'K',
 'newpageletter'        => 'Nei',
 'boteditletter'        => 'B',
+'rc-enhanced-expand'   => 'Deteus ãnzoang (gehd netta mid JavaScript)',
+'rc-enhanced-hide'     => 'Deteus vastecka',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Valinkts prüfn',
 'recentchangeslinked-feed'    => 'Valinkts prüfn',
 'recentchangeslinked-toolbox' => 'Valinkts prüfn',
+'recentchangeslinked-title'   => 'Ändarungen auf Seitn, zu de vu da Seitn „$1“ valinkt is',
+'recentchangeslinked-summary' => "De Spezialseitn zagt de letztn Änderungen bei de Seitn, zu de vu ana gwissn Seitn valinkt wiad (bzw. de wås in ana gwissn Kategorie eisoatiad han). Seitn vu deina [[Special:Watchlist|Beobåchtungslistn]] wean '''fett''' ãnzoagt.",
 'recentchangeslinked-page'    => 'Seitn:',
 
 # Upload
@@ -536,6 +550,7 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 # File description page
 'file-anchor-link'          => 'Datei',
 'filehist'                  => 'Dateiveasionen',
+'filehist-help'             => 'Klick auf an Zeitpunkt, damid de Veasion glånd wiad.',
 'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Version vum',
 'filehist-thumb'            => 'Voaschaubüidl',
@@ -658,7 +673,7 @@ Links aus Namensräume wern da net aufglistet.',
 'watchlistanontext' => 'Sie miaßn si $1, um Eanane Beobachtungslistn zum seng oda Einträge auf ihr zum bearbatn.',
 'watchnologin'      => 'Sie san net ogmeidt',
 'addedwatch'        => 'Zua Beobachtungslistn dazuado',
-'addedwatchtext'    => 'De Seitn „$1“ is zua deina [[Special:Watchlist|Beobachtungslistn]] dazuado worn.
+'addedwatchtext'    => 'De Seitn „[[:$1]]“ is zua deina [[Special:Watchlist|Beobachtungslistn]] dazuado worn.
 Änderunga an dera Seitn und vo da Diskussionsseitn wern da glistet und
 in da Übasicht vo de [[Special:RecentChanges|letztn Änderungen]] in Fettschrift ozoagt. 
 Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da jeweiligen Seitn auf „nimma beobachten“.',
@@ -721,7 +736,10 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protect_expiry_invalid'      => "D'eigemne Daua is ungüitig.",
 'protect_expiry_old'          => "D'Sperrzeid liegt in da Vagãngnheid",
 'protect-text'                => "Då kãnnst nåchschau und ändan, wia d'Seitn „$1“ gschützt is.",
+'protect-default'             => 'Ålle Benutza',
+'protect-fallback'            => "D'„$1“-Berechtigung is notwendig.",
 'protect-level-autoconfirmed' => 'Sperrung fia net registrierte Benutzer',
+'protect-level-sysop'         => 'Netta Administratoan',
 'protect-summary-cascade'     => 'kaskadiarnd',
 
 # Restrictions (nouns)
@@ -810,6 +828,13 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 
 # Move page
 'move-page-legend'       => 'Seitn vaschiam',
+'movepagetalktext'       => "De dazuaghearade Dischgria-Seitn wiad, fåis's ane gibt, midvaschom, '''außa'''
+*unta'm neichn Nãm gibt's schãu an Eintråg oda
+*du tuast s'Hakal bei da unting Opzion außa.
+
+In de zwoa Fälle miaßadst, fåis des gwünscht is, de Seitn händisch vaschiam oda zsãmmfüng.
+
+Bittschee gib außadem druntn in '''neichn''' Nãm vu da Seitn ei und schreib kuaz '''wieso'''<nowiki>'st</nowiki> de Seitn vaschiam mechst.",
 'movearticle'            => 'Seitn vaschiam:',
 'movenologin'            => 'Du bist ned ãngmöidt',
 'movenologintext'        => 'Zum Vaschiam muaßt a registriada und [[Special:UserLogin|ãngmöideta Benutza]] sei.',
@@ -825,6 +850,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'articleexists'          => 'Unter dem Nam existiert bereits a Seitn.
 Bitte nehmans an andern Nam.',
 'movedto'                => 'vaschom nåch',
+'movetalk'               => "Wãun's gehd de Dischgria-Seitn midvaschiam",
 '1movedto2'              => 'håt [[$1]] nåch [[$2]] verschom',
 '1movedto2_redir'        => 'håt [[$1]] nåch [[$2]] verschom und dabei a Weiterleitung überschriem',
 'movelogpage'            => 'Vaschiabungs-Logbuach',
@@ -855,7 +881,9 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Dei Benutzaseitn',
+'tooltip-pt-mytalk'               => 'Dei Dischgria-Seitn',
 'tooltip-pt-preferences'          => 'Eigene Eistellunga',
+'tooltip-pt-watchlist'            => "Listn vu de Seitn, de'st beowåchst",
 'tooltip-pt-mycontris'            => 'Liste vo eigene Beiträg',
 'tooltip-pt-logout'               => 'Obmeidn',
 'tooltip-ca-addsection'           => 'An Kommentar zua dera Diskussion dazuagem.',
@@ -869,15 +897,18 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-search'                  => '{{SITENAME}} durchsuacha',
 'tooltip-p-logo'                  => 'Hauptseitn',
 'tooltip-n-mainpage'              => "d'Hauptseitn ãnzoang",
+'tooltip-n-mainpage-description'  => 'Zu da Hauptseitn geh',
 'tooltip-n-currentevents'         => 'Hintagrundinfoamazionen üwa aktuelle Ereignisse',
 'tooltip-n-randompage'            => 'Zufällige Seitn',
 'tooltip-t-whatlinkshere'         => 'Listn vu ålle Seitn, de då hea zoang',
+'tooltip-t-recentchangeslinked'   => "D'letztn Ändarungen auf de Seitn, de vu då valinkt san",
 'tooltip-t-contributions'         => "d'Listn vu de Beiträg vu dem Benutza ãschau",
 'tooltip-t-emailuser'             => 'Dem Benutza E-Post schicka',
 'tooltip-t-upload'                => 'Datein aufelådn',
 'tooltip-t-specialpages'          => 'Listn vu ålle Spezialseitn',
 'tooltip-ca-nstab-main'           => 'Seitninhalt ozoagn',
 'tooltip-ca-nstab-user'           => 'Benutzaseitn ãzoang',
+'tooltip-ca-nstab-project'        => 'Portalseitn ãnzoang',
 'tooltip-ca-nstab-image'          => "D'Dateiseitn ãnzoang",
 'tooltip-ca-nstab-template'       => "d'Vorlåg ãnzoang",
 'tooltip-ca-nstab-help'           => 'Huifseitn oozoang',

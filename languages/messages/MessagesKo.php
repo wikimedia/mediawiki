@@ -2076,7 +2076,7 @@ $NEWPAGE
 'exblank'                => '빈 문서',
 'delete-confirm'         => '‘$1’ 삭제',
 'delete-legend'          => '삭제',
-'historywarning'         => "'''주의''': 삭제하려는 문서에 $1개의 과거 편집 내역이 있습니다:",
+'historywarning'         => "'''주의''': 삭제하려는 문서에 약 $1개의 과거 편집 내역이 있습니다:",
 'confirmdeletetext'      => '문서와 문서 역사를 삭제하려고 합니다. 삭제하려는 문서가 맞는지, 이 문서를 삭제하는 것이 [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지를 확인해 주세요.',
 'actioncomplete'         => '명령 완료',
 'actionfailed'           => '명령 실패',

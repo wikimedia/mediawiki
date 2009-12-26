@@ -659,6 +659,10 @@ Du bestätigst hiermit au, doß du diese Texte selbst geschrieba host oder diese
 'longpagewarning'                  => "'''WARNUNG: Diese Seyte ies $1 KB gruß; einige Browser kinnta Probleme hoan, Seyta zu beoarbeeta, de grießer ols 32 KB sein.
 Ieberlege bitte, ob anne Uffteilung dar Seyte ei klennere Obschnitte meeglich ies.'''",
 'longpageerror'                    => "'''FAHLER: Dar Text, dann du zu speichern versuchst, ies $1 KB gruß. Doas ies grießer ols doas erlaubte Maximum vu $2 KB – Speicherung ne meeglich.'''",
+'readonlywarning'                  => "'''OCHTICHE: De Datenbank wurde fier Wartungsoarbeeta gesperrt, su doaß denne Änderunga derzeit ne gespeichert waan kinna.
+Sechere dann Text bitte lokal uff demm Computer und versiche zu a'm späteren Zeitpunkt, de Änderunga zu iebertraga.'''
+
+Grund fier de Sperre: $1",
 'protectedpagewarning'             => "'''OCHTICHE: Diese Seyte wurde gesperrt. Ock Nutzer miet Administratorrechta kinna de Seyte beoarbeeta.'''",
 'semiprotectedpagewarning'         => "'''Holbsperrung:''' De Seyte wurde su gesperrt, doaß ock registrierte Nutzer diese ändern kinna.",
 'cascadeprotectedwarning'          => "'''OCHTICHE: Diese Seyte wurde gesperrt, su doß se ock durch Nutzer miet Administratorrechten beoarbeetet waan koan. Se ies ei de {{PLURAL:$1|fulgende Seyte|fulgenda Seyta}} eingebunden, de mittels dar Kaskadensperroption geschitzt {{PLURAL:$1|ies|sein}}:'''",
@@ -676,6 +680,10 @@ Ieberlege bitte, ob anne Uffteilung dar Seyte ei klennere Obschnitte meeglich ie
 'permissionserrorstext'            => 'Du best ne berechtigt, de Aksjonn auszufiehra. {{PLURAL:$1|Grund|Grinde}}:',
 'permissionserrorstext-withaction' => 'Du best nee berechtigt, $2.
 {{PLURAL:$1|Grund|Griende}}:',
+'recreate-moveddeleted-warn'       => "'''Ochtiche: Du erstellst anne Seyte, de bereits frieher geläscht wurde.'''
+
+Bitte priefe sorgfältig, ob de erneute Seytaerstellung dann Richtlinien entspricht.
+Zu denner Information folgt doas Läsch- und Verschiebungs-Logbuch miet dar Begrindung fier de vorhergehende Läschung:",
 'moveddeleted-notice'              => 'Diese Seyte wurde geläscht. Is fulgt a Auszug aus damm Läsch- und Verschiebungs-Logbuch fier diese Seyte.',
 'log-fulllog'                      => 'Olle Logbucheinträge oasahn',
 'edit-hook-aborted'                => 'De Beoarbeetung wurde ohne Erklärung durch anne Schnittstalle obgebrocha.',
@@ -690,17 +698,24 @@ Se wurde anscheinend geläscht.',
 
 Is {{PLURAL:$2|darf ne meh ols 1 Uffruff|dirfa ne meh ols $1 Uffruffe}} sei.',
 'expensive-parserfunction-category'       => 'Seyta, de uffwändige Parserfunksjonna zu uffte uffrufa',
+'post-expand-template-inclusion-warning'  => 'Warnung: De Grieße eingebundener Vurloaga ies zu gruß, einige Vurloaga kinna ne eingebunden waan.',
 'post-expand-template-inclusion-category' => 'Seyta, ei denen de maximale Griße eingebundener Vurloaga ieberschritta ies',
+'post-expand-template-argument-warning'   => "Warnung: Diese Seyte enthält mindestens a Argument ei a'r Vurloage, doas expandiert zu gruß ies. Diese Argumente waan ignoriert.",
 'post-expand-template-argument-category'  => 'Seyta, de ignorierte Vurlagaargumente enthalta',
 'parser-template-loop-warning'            => 'Vurloagaschleife entdeckt: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Vurloagarekursionstiefengrenze ieberschritten ($1)',
 
 # "Undo" feature
 'undo-success' => 'Im de Änderung rickgängig zu macha, bitte de Beoarbeetung ei der Vergleichsansicht kontrolliera und dann uff „Seyte speichern“ klicka.',
 'undo-failure' => 'De Änderung konnte ne rickgängig gemacht waan, do dar betroffene Obschnitt zwischazeitlich verändert wurde.',
+'undo-norev'   => 'De Beoarbeetung konnte ne rickgängig gemacht waan, do se ne vorhanden ies oder geläscht wurde.',
 'undo-summary' => 'Änderung $1 vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischkur]]) wurde rickgängig gemacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nutzerkonto koan ne erstallt waan',
+'cantcreateaccount-text' => "De Erstellung annes Nutzerkontos vu dar IP-Atresse '''($1)''' aus wurde durch [[User:$3|$3]] gesperrt.
+
+Grund dar Sperre: ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Logbicher fier diese Seite oazeega',
@@ -731,64 +746,68 @@ Is {{PLURAL:$2|darf ne meh ols 1 Uffruff|dirfa ne meh ols $1 Uffruffe}} sei.',
 'history-feed-title'          => 'Versionsgeschichtla',
 'history-feed-description'    => 'Versionsgeschichte fier diese Seyte ei {{SITENAME}}',
 'history-feed-item-nocomment' => '$1 oam $3 im $4 Seeger',
+'history-feed-empty'          => 'De angeforderte Seyte existiert ne. Vielleicht wurde se geläscht oder verschoba. [[Special:Search|Durchsiche]] {{SITENAME}} fier poassende neue Seyta.',
 
 # Revision deletion
-'rev-deleted-comment'        => '(Beorbeetungskommentar entfernt)',
-'rev-deleted-user'           => '(Benutzernoame entfernt)',
-'rev-deleted-event'          => '(Logbuchaksjonn entfernt)',
-'rev-deleted-text-view'      => "Diese Version wurde '''geläscht'''.
+'rev-deleted-comment'         => '(Beorbeetungskommentar entfernt)',
+'rev-deleted-user'            => '(Benutzernoame entfernt)',
+'rev-deleted-event'           => '(Logbuchaksjonn entfernt)',
+'rev-deleted-text-permission' => "Diese Version wurde '''geläscht'''.
+Nähere Oagoaba zum Läschvorgang suwie anne Begrindung fenda siech eim [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+'rev-deleted-text-view'       => "Diese Version wurde '''geläscht'''.
 Ols Administrator koast du se weiterhin einsahn.
 Nähere Oagaba zum Läschvorgang suwie anne Begrindung fenda siech eim [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
-'rev-suppressed-text-view'   => "Diese Version wurde '''underdrickt'''.
+'rev-suppressed-text-view'    => "Diese Version wurde '''underdrickt'''.
 Administratorn kinna se eensahn; Details stiehn eim [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Underdrickungs-Logbuch].",
-'rev-delundel'               => 'zeege/verstecke',
-'rev-showdeleted'            => 'zeige',
-'revisiondelete'             => 'Versiona löscha/wiederherstella',
-'revdelete-nooldid-title'    => 'Keene Version oangegeba',
-'revdelete-nologtype-title'  => 'Kee Logtyp oagegahn',
-'revdelete-nologid-title'    => 'Ungiltiger Logeentrag',
-'revdelete-no-file'          => 'De oagegeahne Datei existiert ne.',
-'revdelete-show-file-submit' => 'Ju',
-'revdelete-selected'         => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} vu [[:$1]]:'''",
-'logdelete-selected'         => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
-'revdelete-text'             => "'''Geläschte Versionen und Aksjonna verbleiba ei dar Versionsgeschichte und dann Logbichern, jedoch sein Teele davon fier de Effentlichkeit unzugänglich.'''
+'rev-delundel'                => 'zeege/verstecke',
+'rev-showdeleted'             => 'zeige',
+'revisiondelete'              => 'Versiona löscha/wiederherstella',
+'revdelete-nooldid-title'     => 'Keene Version oangegeba',
+'revdelete-nooldid-text'      => 'Du host entweder kenne Version oagegahn, uff de diese Aksjonn ausgefiehrt waan sull, de gewählte Version ies ne vorhanden oder du versichst, de aktuelle Version zu entferna.',
+'revdelete-nologtype-title'   => 'Kee Logtyp oagegahn',
+'revdelete-nologid-title'     => 'Ungiltiger Logeentrag',
+'revdelete-no-file'           => 'De oagegeahne Datei existiert ne.',
+'revdelete-show-file-submit'  => 'Ju',
+'revdelete-selected'          => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} vu [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
+'revdelete-text'              => "'''Geläschte Versionen und Aksjonna verbleiba ei dar Versionsgeschichte und dann Logbichern, jedoch sein Teele davon fier de Effentlichkeit unzugänglich.'''
 Andere Administratoren uff {{SITENAME}} hoan Zugriff uff dann versteckta Inhalt und kinna ihn miet dar gleichen Seyte wiederherstella, sufern ne zusätzliche Einschränkungen bestieha.",
-'revdelete-legend'           => 'Setza der Sichtbarkeits-Einschränkunga',
-'revdelete-hide-text'        => 'Text dar Version verstecka',
-'revdelete-hide-image'       => 'Bildinhalt verstecka',
-'revdelete-hide-name'        => 'Logbichl-Aksjonn verstecka',
-'revdelete-hide-comment'     => 'Beorbeetungskommentar verstecka',
-'revdelete-hide-user'        => 'Benutzernoame/de IP des Beorbeeters verstecka',
-'revdelete-hide-restricted'  => 'Daten au vur Administratorn und andern underdricka',
-'revdelete-suppress'         => 'Grund der Läschung au vor Administratora verstecka',
-'revdelete-unsuppress'       => 'Einschränkungen fier wiederhergestallte Versionn uffhebn',
-'revdelete-log'              => 'Grund dar Läschung:',
-'revdelete-submit'           => 'Uff ausgewählte {{PLURAL:$1|Version|Versiona}} oawenda',
-'revdelete-logentry'         => 'hoot de Versionsansicht fier „[[$1]]“ geändert',
-'logdelete-logentry'         => 'hoot de Sichtbarkeit fier „[[$1]]“ geändert',
-'revdelete-success'          => "'''De Versionsoasicht wurde aktualisiert.'''",
-'revdelete-failure'          => "'''De Versionssichtbarkeit konnte ne aktualisiert waan:'''
+'revdelete-legend'            => 'Setza der Sichtbarkeits-Einschränkunga',
+'revdelete-hide-text'         => 'Text dar Version verstecka',
+'revdelete-hide-image'        => 'Bildinhalt verstecka',
+'revdelete-hide-name'         => 'Logbichl-Aksjonn verstecka',
+'revdelete-hide-comment'      => 'Beorbeetungskommentar verstecka',
+'revdelete-hide-user'         => 'Benutzernoame/de IP des Beorbeeters verstecka',
+'revdelete-hide-restricted'   => 'Daten au vur Administratorn und andern underdricka',
+'revdelete-suppress'          => 'Grund der Läschung au vor Administratora verstecka',
+'revdelete-unsuppress'        => 'Einschränkungen fier wiederhergestallte Versionn uffhebn',
+'revdelete-log'               => 'Grund dar Läschung:',
+'revdelete-submit'            => 'Uff ausgewählte {{PLURAL:$1|Version|Versiona}} oawenda',
+'revdelete-logentry'          => 'hoot de Versionsansicht fier „[[$1]]“ geändert',
+'logdelete-logentry'          => 'hoot de Sichtbarkeit fier „[[$1]]“ geändert',
+'revdelete-success'           => "'''De Versionsoasicht wurde aktualisiert.'''",
+'revdelete-failure'           => "'''De Versionssichtbarkeit konnte ne aktualisiert waan:'''
 $1",
-'logdelete-success'          => "'''Logbuchoasecht erfolgreich geändert.'''",
-'logdelete-failure'          => "'''Logbuchsichtbarkeit koan ne geändert waan:'''
+'logdelete-success'           => "'''Logbuchoasecht erfolgreich geändert.'''",
+'logdelete-failure'           => "'''Logbuchsichtbarkeit koan ne geändert waan:'''
 $1",
-'revdel-restore'             => 'Sichtbarkeit ändern',
-'pagehist'                   => 'Versionsgeschichte',
-'deletedhist'                => 'Geläschte Versiona',
-'revdelete-content'          => 'Seytainhoalt',
-'revdelete-summary'          => 'Zusommafoassungskommentar',
-'revdelete-uname'            => 'Benutzernoame',
-'revdelete-restricted'       => 'Einschränkungen gelten au fier Administratorn',
-'revdelete-unrestricted'     => 'Einschränkungen fier Administratorn uffgehobn',
-'revdelete-hid'              => 'versteckte $1',
-'revdelete-unhid'            => 'machte $1 wieder effentlich',
-'revdelete-log-message'      => '$1 fier $2 {{PLURAL:$2|Version|Versiona}}',
-'logdelete-log-message'      => '$1 fier $2 {{PLURAL:$2|Logbucheintrag|Logbucheinträge}}',
-'revdelete-modify-missing'   => 'Fahler beim Beoarbeeta vu ID $1: Is fahlt ei dar Datenbank!',
-'revdelete-no-change'        => "'''Warnung:''' Dar Eentrag vum $1, $2 Seeger besitzt bereits de gewüischta Sichtbarkeitseenstallunga.",
-'revdelete-otherreason'      => 'Andere/zusätzliche Begriendung:',
-'revdelete-edit-reasonlist'  => 'Läschgrinde beoarbeeta',
-'revdelete-offender'         => 'Autor dar Version:',
+'revdel-restore'              => 'Sichtbarkeit ändern',
+'pagehist'                    => 'Versionsgeschichte',
+'deletedhist'                 => 'Geläschte Versiona',
+'revdelete-content'           => 'Seytainhoalt',
+'revdelete-summary'           => 'Zusommafoassungskommentar',
+'revdelete-uname'             => 'Benutzernoame',
+'revdelete-restricted'        => 'Einschränkungen gelten au fier Administratorn',
+'revdelete-unrestricted'      => 'Einschränkungen fier Administratorn uffgehobn',
+'revdelete-hid'               => 'versteckte $1',
+'revdelete-unhid'             => 'machte $1 wieder effentlich',
+'revdelete-log-message'       => '$1 fier $2 {{PLURAL:$2|Version|Versiona}}',
+'logdelete-log-message'       => '$1 fier $2 {{PLURAL:$2|Logbucheintrag|Logbucheinträge}}',
+'revdelete-modify-missing'    => 'Fahler beim Beoarbeeta vu ID $1: Is fahlt ei dar Datenbank!',
+'revdelete-no-change'         => "'''Warnung:''' Dar Eentrag vum $1, $2 Seeger besitzt bereits de gewüischta Sichtbarkeitseenstallunga.",
+'revdelete-otherreason'       => 'Andere/zusätzliche Begriendung:',
+'revdelete-edit-reasonlist'   => 'Läschgrinde beoarbeeta',
+'revdelete-offender'          => 'Autor dar Version:',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbichl',

@@ -560,7 +560,7 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 'hr_tip'          => 'Gorizontal liniýa (ýygy-ýygydan ulanmaň)',
 
 # Edit pages
-'summary'                          => 'Gysgaça mazmuny:',
+'summary'                          => 'Gysgaça düşündiriş:',
 'subject'                          => 'Tema/at:',
 'minoredit'                        => 'Ujypsyzja özgerdiş',
 'watchthis'                        => 'Sahypany gözegçilikde sakla',

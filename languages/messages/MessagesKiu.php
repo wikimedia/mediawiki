@@ -532,6 +532,7 @@ Tarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
 Hata ke werte de qısım $1 çino, ca çino ke tı rastkerdena ho qeyd bıkerê.',
 'loginreqtitle'                    => 'Gunê cı kuyê',
 'loginreqlink'                     => 'cı kuye',
+'loginreqpagetext'                 => 'Serba diyaena pelunê binu tı gunê $1 bıbê.',
 'accmailtitle'                     => 'Parola rusniye.',
 'newarticle'                       => '(Newe)',
 'noarticletext'                    => 'Na pele de hona thowa çino.
@@ -552,6 +553,10 @@ Vurnaişê to hona qeyd nêbiyê!",
 'yourtext'                         => 'Metnê to',
 'storedversion'                    => 'Metıno qeydkerde',
 'yourdiff'                         => 'Ferqi',
+'copyrightwarning'                 => "Diqet ke, iştırakê ke benê be pela {{SITENAME}}i, pêro bınê $2 de rakerde vêrenê (serba daêna melumati qaytê $1 ke). 
+İştırakunê ho, eke nêwazena wa terefê binu ra bıvuriyê ya ki caunê binu ra vıla bê, o taw ita menuse.<br />
+Zobina ki ebe ita nustene ra sond wena ke nê iştıraki terefê to ra nuşiyê, ya çımê do rakerdey ra ya ki çımê do serbest ra kopya biyê.
+'''Gurêo ke ebe telifheqiye ra sevekiyo bê destur ita darde meke!'''",
 'templatesused'                    => '{{PLURAL:$1|Şablono ke na pele de gurenino|Şablonê ke na pele de gureninê}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Şablono ke na verqayt de gureno|Şablonê ke na verqayt de gurenê}}:',
 'template-protected'               => '(sevekna)',
@@ -638,7 +643,7 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'revdelete-hide-name'         => 'Biyaen u hedefi bınımne',
 'revdelete-hide-comment'      => 'Xulasa measne',
 'revdelete-hide-user'         => 'Namê karberiê/Adresa IPya vurnaoği bınımne',
-'revdelete-radio-same'        => '(vejiye)',
+'revdelete-radio-same'        => '(mevurne)',
 'revdelete-radio-set'         => 'Heya',
 'revdelete-radio-unset'       => 'Nê',
 'revdelete-log'               => 'Serba esteriyaene sebeb:',
@@ -989,6 +994,8 @@ Serba diyaena esterıteyunê peyênu $2 bıvêne.',
 'protect_expiry_invalid'      => 'Tarixê qediyaena nêvêreno.',
 'protect_expiry_old'          => 'Waxtê gurênaena peyêna vêrdiye.',
 'protect-text'                => "Tı şikina halê seveknaena pela '''<nowiki>$1</nowiki>'''i ita bıvênê u bıvurnê.",
+'protect-locked-access'       => "Hesabê karberê to vurnaisê sewiya seveknaena rê selahiyetdar niyo.
+Eyarê pela '''$1'''ina vêrdey nêyê:",
 'protect-default'             => 'Destur bıde be karberu pêrune',
 'protect-fallback'            => 'Desturê "$1"i lazımo',
 'protect-level-autoconfirmed' => 'Karberunê newun u qeydnêbiyaoğu kilıt ke',
@@ -1070,21 +1077,26 @@ Serba men- u kilıt-biyaene nıkaêne qaytê [[Special:IPBlockList|lista kilıt-
 'ipb_expiry_invalid'              => 'Xêlê zeman nêvêreno.',
 
 # Move page
-'movearticle'     => 'Pele bere:',
-'newtitle'        => 'Ebe nameo newe:',
-'move-watch'      => 'Na pele de şêr ke',
-'movepagebtn'     => 'Pele bere',
-'pagemovedsub'    => 'Vurnaena namey biye temam',
-'movepage-moved'  => '<big>\'\'\'"$1" berd be pela "$2"\'\'\'</big>',
-'articleexists'   => 'Pelê da ebe nê namey çina, ya ki nameo ke çiniyo we nêvêreno.
+'movepagetalktext' => "Na pela hurênaişia ke tedera otomatikmen kırışina be namê newey, hama nê halu ra '''qêri''':
+*Jü pela hurênaişia pırre bınê namê newey de hora esta, ya ki
+*Qutiya bınêne to nêçinıte we.
+
+Nê halu de, tı gunê pele ebe dest berê ya ki ser kerê eke wajiye.",
+'movearticle'      => 'Pele bere:',
+'newtitle'         => 'Ebe nameo newe:',
+'move-watch'       => 'Na pele de şêr ke',
+'movepagebtn'      => 'Pele bere',
+'pagemovedsub'     => 'Vurnaena namey biye temam',
+'movepage-moved'   => '<big>\'\'\'"$1" berd be pela "$2"\'\'\'</big>',
+'articleexists'    => 'Pelê da ebe nê namey çina, ya ki nameo ke çiniyo we nêvêreno.
 Kerem ke, nameo de bin bıcerrebne.',
-'movedto'         => 'berd be',
-'movetalk'        => 'Pela hurênaişiê alaqedare bere',
-'1movedto2'       => '[[$1]] berd be [[$2]]',
-'1movedto2_redir' => 'serrêza [[$1]]ine berde be pela [[$2]]ine',
-'movelogpage'     => 'Qeydê berdene',
-'movereason'      => 'Sebeb:',
-'revertmove'      => 'raçarnaene',
+'movedto'          => 'berd be',
+'movetalk'         => 'Pela hurênaişiê alaqedare bere',
+'1movedto2'        => '[[$1]] berd be [[$2]]',
+'1movedto2_redir'  => 'serrêza [[$1]]ine berde be pela [[$2]]ine',
+'movelogpage'      => 'Qeydê berdene',
+'movereason'       => 'Sebeb:',
+'revertmove'       => 'raçarnaene',
 
 # Export
 'export' => 'Pelu qeyd ke',
@@ -1235,6 +1247,8 @@ Variants for Chinese language
 
 # Metadata
 'metadata'          => 'Daê seri',
+'metadata-help'     => 'Na dosya de mıxtemelen melumatê ilawekerdeyê ke terefê kamera dicitale u cıfeteliyaoği ra darde biyê, estê. 
+Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê newey khan mendê.',
 'metadata-expand'   => 'Arezekerdu bıasne',
 'metadata-collapse' => 'Arezekerdu measne',
 'metadata-fields'   => "Meydanê EXIF metadataê ke na pele de benê lista, pela resımasnaene de ke tabloê metadata gına waro, gureninê. 
