@@ -35,7 +35,6 @@ Usage: php transstat.php [--help] [--output=csv|text|wiki]
 	--output : select an output engine one of:
 		* 'csv'      : Comma Separated Values.
 		* 'wiki'     : MediaWiki syntax (default).
-		* 'metawiki' : MediaWiki syntax used for Meta-Wiki.
 		* 'text'     : Text with tabs.
 Example: php maintenance/transstat.php --output=text
 
@@ -49,9 +48,6 @@ TEXT;
 switch ( $options['output'] ) {
 	case 'wiki':
 		$output = new wikiStatsOutput();
-		break;
-	case 'metawiki':
-		$output = new metawikiStatsOutput();
 		break;
 	case 'text':
 		$output = new textStatsOutput();
