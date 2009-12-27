@@ -298,7 +298,7 @@ ENDS;
 		foreach ( $this->checks as $check ) {
 			if ( isset( $checkBlacklist[$code] ) &&
 				in_array( $check, $checkBlacklist[$code] ) ) {
-				$result[$check] = array();
+				$results[$check] = array();
 				continue;
 			}
 
