@@ -2239,7 +2239,7 @@ Do kanns hee noh Hölp luure:
 'exblank'                => 'drop stundt nix',
 'delete-confirm'         => '„$1“ fottschmieße',
 'delete-legend'          => 'Fottschmieße',
-'historywarning'         => '<strong>Opjepass:</strong> Die Sigg, di De fott schmiiße wells, hät ene janze Püngel ällder Versione, nämmlesch {{PLURAL:$1|ein Stöck|Stöcker $1 Versione|jaa kein Version}}:',
+'historywarning'         => '<strong>Opjepass:</strong> Die Sigg, di De fott schmiiße wells, hät {{PLURAL:$1|ein ällder Version|ald Stöcker $1 ällder Versione|jaa kei ällder Versione}}.',
 'confirmdeletetext'      => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss heh jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
 <strong>Dun et nor, wann dat met de [[{{MediaWiki:Policy-url}}|Rejelle]] wirklich zosamme jeiht!</strong>',
 'actioncomplete'         => 'Erledich',

@@ -3225,14 +3225,14 @@ $1',
 'dberr-cachederror' => '這個是所要求出來的快取複本，可能不是最新的。',
 
 # HTML forms
-'htmlform-invalid-input'       => '在您的輸入中出現了一些問題',
-'htmlform-select-badoption'    => '您所指定的值不是一個有效的選項。',
+'htmlform-invalid-input'       => '您輸入的內容存在問題',
+'htmlform-select-badoption'    => '您所指定的值不是有效的選項。',
 'htmlform-int-invalid'         => '您所指定的值不是一個整數。',
 'htmlform-float-invalid'       => '您所指定的值不是一個數字。',
 'htmlform-int-toolow'          => '您所指定的值低於最小值$1',
 'htmlform-int-toohigh'         => '您所指定的值高於最大值$1',
 'htmlform-submit'              => '遞交',
-'htmlform-reset'               => '復原更改',
+'htmlform-reset'               => '撤銷更改',
 'htmlform-selectorother-other' => '其它',
 
 # Add categories per AJAX

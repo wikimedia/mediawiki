@@ -568,8 +568,10 @@ Spiegazzion di símbul: (cur) = diferenza cun la version curenta, (ültima) = di
 'histlast'               => 'Püssee növ',
 
 # Revision deletion
-'rev-delundel'   => 'fa vidè/scund',
-'revdel-restore' => 'Cambia la visibilità',
+'rev-deleted-text-permission' => "Questa version de la pagina l'è stada '''scancelada'''. 
+Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} register di scancelament].",
+'rev-delundel'                => 'fa vidè/scund',
+'revdel-restore'              => 'Cambia la visibilità',
 
 # Merge log
 'revertmerge' => 'Scancela i ünión',

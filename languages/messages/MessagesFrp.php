@@ -2719,7 +2719,7 @@ Sa talye est ples granta que cela ôtorisâ.',
 Son contegnu at étâ tèlèchargiê ren qu’a mêtiêt.',
 'importuploaderrortemp'      => 'Lo tèlèchargement du fichiér a importar at pas reussi.
 Un dossiér temporèro est manquent.',
-'import-parse-failure'       => 'Falyita pendent l’analisa du XML a importar',
+'import-parse-failure'       => 'Falyita pendent l’analise du XML a importar',
 'import-noarticle'           => 'Gins de pâge a importar !',
 'import-nonewrevisions'      => 'Totes les vèrsions ont étâ importâs dês devant.',
 'xml-error-string'           => '$1 a la legne $2, colona $3 (octèt $4) : $5',
@@ -2884,7 +2884,7 @@ Cen est probâblament côsâ per un lim dessus lista nêre que pouente vers un s
 'mw_math_mathml' => 'MathML se possiblo (èxpèrimentâl)',
 
 # Math errors
-'math_failure'          => 'Èrror d’analisa sintaxica',
+'math_failure'          => 'Èrror d’analise sintaxica',
 'math_unknown_error'    => 'èrror encognua',
 'math_unknown_function' => 'fonccion encognua',
 'math_lexing_error'     => 'èrror lèxicâla',
@@ -3050,7 +3050,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-focalplaneyresolution'       => 'Rèsolucion drêta de la vision focâla',
 'exif-focalplaneresolutionunit'    => 'Unitât de rèsolucion de la vision focâla',
 'exif-subjectlocation'             => 'Posicion du sujèt',
-'exif-exposureindex'               => 'Endèxo d’èxposicion',
+'exif-exposureindex'               => 'Endèxe d’èxposicion',
 'exif-sensingmethod'               => 'Tipo de captior',
 'exif-filesource'                  => 'Sôrsa du fichiér',
 'exif-scenetype'                   => 'Tipo de scèna',
@@ -3559,7 +3559,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'dberr-again'       => 'Tâchiéd d’atendre doux-três menutes et pués rechargiéd.',
 'dberr-info'        => '(Branchement u sèrvor de bâsa de balyês empossiblo : $1)',
 'dberr-usegoogle'   => 'Vos pouede tâchiér de chèrchiér avouéc Google pendent cél temps.',
-'dberr-outofdate'   => 'Notâd que lors endèxos de noutron contegnu pôvont étre dèpassâs.',
+'dberr-outofdate'   => 'Notâd que lors endèxes de noutron contegnu pôvont étre dèpassâs.',
 'dberr-cachederror' => 'O est una copia cachiê de la pâge demandâ et pôt étre dèpassâ.',
 
 # HTML forms

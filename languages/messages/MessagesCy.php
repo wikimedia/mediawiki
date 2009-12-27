@@ -727,10 +727,10 @@ Weithiau fe ddigwydd hyn wrth ddefnyddio dirprwy-wasanaeth anhysbys gwallus yn s
 'editingcomment'                   => 'Yn golygu $1 (adran newydd)',
 'editconflict'                     => 'Cyd-ddigwyddiad golygu: $1',
 'explainconflict'                  => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi.
-Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan.
-Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.
-Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
-'''Dim ond''' y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
+Mae'r blwch testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan.
+Mae eich newidiadau chi yn ymddangos yn y blwch testun isaf.
+Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisoes.
+'''Dim ond''' y testun yn y blwch testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
 'yourtext'                         => 'Eich testun',
 'storedversion'                    => 'Y golygiad diweddaraf yn y storfa',
 'nonunicodebrowser'                => "'''RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn rhan o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.'''",
@@ -877,6 +877,7 @@ Fe fydd gweinyddwyr eraill {{SITENAME}} o hyd yn gallu gweld yr hyn a guddiwyd. 
 'revdelete-hide-comment'      => 'Cuddio sylwad golygu',
 'revdelete-hide-user'         => 'Cuddio enw defnyddiwr/IP y golygydd',
 'revdelete-hide-restricted'   => 'Gosod y cyfyngiadau gweld data ar weinyddwyr yn ogystal ag eraill',
+'revdelete-radio-same'        => '(peidier â newid)',
 'revdelete-suppress'          => 'Atal data oddi wrth Weinyddwyr yn ogystal ag eraill',
 'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
 'revdelete-log'               => 'Rheswm dros ddileu:',
@@ -1660,7 +1661,8 @@ Gosodwyd <s>llinell</s> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'ancientpages'            => 'Erthyglau hynaf',
 'move'                    => 'Symud',
 'movethispage'            => 'Symud y dudalen hon',
-'unusedimagestext'        => "Sylwch y gall gwefannau eraill gysylltu a ffeil drwy URL uniongyrchol. Gan hynny mae'n bosibl fod ffeil wedi ei rhestru yma serch ei bod yn cael defnydd.",
+'unusedimagestext'        => "Mae'r ffeiliau canlynol ar gael, ond nid ydynt wedi eu mewnosod ar unrhyw dudalen. 
+Sylwch y gall gwefannau eraill gysylltu â ffeil drwy URL uniongyrchol. Gan hynny mae'n bosib fod ffeil wedi ei rhestru yma serch bod defnydd arni.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
 'notargettitle'           => 'Dim targed',
 'notargettext'            => 'Dydych chi ddim wedi dewis defnyddiwr neu dudalen i weithredu arno.',
@@ -1736,11 +1738,13 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 'listusers-blocked'  => '(wedi ei flocio)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Rhestr defnyddwyr gweithgar',
-'activeusers-intro'    => 'Dyma restr y defnyddwyr a fuont yn weithgar o fewn y {{PLURAL:$1|diwrnod|diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}} diwethaf.',
-'activeusers-count'    => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}} yn ystod y {{PLURAL:$3|diwrnod|diwrnod|deuddydd|tridiau|$3 diwrnod|$3 diwrnod}} diwethaf',
-'activeusers-from'     => "Rhestru'r defnyddwyr gan ddechrau gyda:",
-'activeusers-noresult' => "Dim defnyddwyr i'w cael.",
+'activeusers'            => 'Rhestr defnyddwyr gweithgar',
+'activeusers-intro'      => 'Dyma restr y defnyddwyr a fuont yn weithgar o fewn y {{PLURAL:$1|diwrnod|diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}} diwethaf.',
+'activeusers-count'      => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}} yn ystod y {{PLURAL:$3|diwrnod|diwrnod|deuddydd|tridiau|$3 diwrnod|$3 diwrnod}} diwethaf',
+'activeusers-from'       => "Rhestru'r defnyddwyr gan ddechrau gyda:",
+'activeusers-hidebots'   => 'Cuddio botiau',
+'activeusers-hidesysops' => 'Cuddio gweinyddwyr',
+'activeusers-noresult'   => "Dim defnyddwyr i'w cael.",
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Lòg creu cyfrifon defnyddwyr newydd',
@@ -1874,7 +1878,7 @@ Am fwy o gymorth ac adborth:
 'exblank'                => 'roedd y dudalen yn wag',
 'delete-confirm'         => 'Dileu "$1"',
 'delete-legend'          => 'Dileu',
-'historywarning'         => 'Rhybudd: bu $1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|o olygiadau}} yn hanes y dudalen rydych ar fin ei dileu:',
+'historywarning'         => "'''Rhybudd:''' bu tua $1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|o olygiadau}} yn hanes y dudalen rydych ar fin ei dileu:",
 'confirmdeletetext'      => "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.
 Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",
 'actioncomplete'         => "Wedi cwblhau'r weithred",
@@ -2078,6 +2082,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => "Blocio'r defnyddiwr",
+'blockip-title'                   => "Blocio'r defnyddiwr",
 'blockip-legend'                  => "Blocio'r defnyddiwr",
 'blockiptext'                     => "Defnyddiwch y ffurflen isod i flocio cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r databas. Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. Llenwch y rheswm am y bloc yn y blwch isod -- dywedwch pa dudalen sydd wedi cael ei fandaleiddio.",
 'ipaddress'                       => 'Cyfeiriad IP:',
