@@ -384,7 +384,7 @@ ENDS;
 	function outputWiki() {
 		global $wgContLang, $IP;
 		$detailText = '';
-		$rows[] = '! Language !! Code !! Total !! ' . implode( ' !! ', $this->checks );
+		$rows[] = '! Language !! Code !! Total !! ' . implode( ' !! ', array_diff( $this->checks, $this->nonMessageChecks() ) );
 		foreach ( $this->results as $code => $results ) {
 			$detailTextForLang = "==$code==\n";
 			$numbers = array();
