@@ -7,6 +7,7 @@ class CheckLanguageCLI {
 	protected $code  = null;
 	protected $level = 2;
 	protected $doLinks = false;
+	protected $linksPrefix = '';
 	protected $wikiCode = 'en';
 	protected $checkAll = false;
 	protected $output = 'plain';
@@ -41,6 +42,10 @@ class CheckLanguageCLI {
 		$this->doLinks = isset( $options['links'] );
 		$this->includeExif = !isset( $options['noexif'] );
 		$this->checkAll = isset( $options['all'] );
+
+		if ( isset( $options['prefix'] ) ) {
+			$this->linksPrefix = $options['prefix'];
+		}
 
 		if ( isset( $options['wikilang'] ) ) {
 			$this->wikiCode = $options['wikilang'];
@@ -190,6 +195,7 @@ Parameters:
 	* help: Show this help.
 	* level: Show the following display level (default: 2).
 	* links: Link the message values (default off).
+	* prefix: prefix to add to links.
 	* wikilang: For the links, what is the content language of the wiki to display the output in (default en).
 	* whitelist: Do only the following checks (form: code,code).
 	* blacklist: Don't do the following checks (form: code,code).
@@ -316,9 +322,9 @@ ENDS;
 		if ( $this->doLinks ) {
 			$displayKey = ucfirst( $key );
 			if ( $code == $this->wikiCode ) {
-				return "[[MediaWiki:$displayKey|$key]]";
+				return "[[{$this->linksPrefix}MediaWiki:$displayKey|$key]]";
 			} else {
-				return "[[MediaWiki:$displayKey/$code|$key]]";
+				return "[[{$this->linksPrefix}MediaWiki:$displayKey/$code|$key]]";
 			}
 		} else {
 			return $key;
