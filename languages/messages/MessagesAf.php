@@ -972,6 +972,7 @@ As administrateur kan u hierdie verskil sien. Meer details mag moontlik in die [
 'rev-showdeleted'             => 'wys',
 'revisiondelete'              => 'Verwyder/herstel weergawes',
 'revdelete-nooldid-title'     => 'Ongeldige teiken weergawe',
+'revdelete-nooldid-text'      => 'U het geen teikenweergawes vir hierdie aksie verskaf nie, die aangegewe weergawe bestaan nie, of u probeer om die laaste weergawe te verberg.',
 'revdelete-nologtype-title'   => 'Geen logboektipe verskaf nie',
 'revdelete-nologtype-text'    => "U het nie 'n logboektipe verskaf om hierdie handeling op uit te voer nie.",
 'revdelete-nologid-title'     => 'Ongeldige logboekreël',
@@ -981,6 +982,7 @@ As administrateur kan u hierdie verskil sien. Meer details mag moontlik in die [
 'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''Geselekteerde {{PLURAL:$2|wysiging|wysigings}} vir [[:$1]]:'''",
 'logdelete-selected'          => "'''Geselekteerde {{PLURAL:$1|logboek aksie|logboek aksies}}:'''",
+'revdelete-confirm'           => 'Bevestig asseblief dat u dit wil doen, dat u die nagevolge verstaan en dat u dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-legend'            => 'Stel sigbaarheid beperkinge',
 'revdelete-hide-text'         => 'Steek hersiening teks weg',
 'revdelete-hide-image'        => 'Steek lêer inhoud weg',
@@ -1021,6 +1023,9 @@ U het nie toegang tot die item nie.',
 'revdelete-modify-no-access'  => 'Fout met die wysiging van die item gedateer $2 om $1 uur: hierdie item is as "beskermd" gemerk. U het nie toegang tot die item nie.',
 'revdelete-modify-missing'    => 'Fout met die wysiging van item ID $1: dit is nie in die databasis nie!',
 'revdelete-no-change'         => "'''Waarskuwing:''' die item van $1 om $2 uur het reeds die gevraagde sigbaarheidsinstellings.",
+'revdelete-concurrent-change' => "'n Fout het voorgekom met die wysiging van die objek van $1 om $2 uur: die status is intussen deur iemand anders gewysig.
+Kontroleer asseblief die logboeke.",
+'revdelete-only-restricted'   => "'n Fout het voorgekom met die verberging van die item van $1, $2: u kan nie items onderdruk uit die sig van administrateurs sonder om ook een van die ander sigbaarheidsopsies te kies nie.",
 'revdelete-reason-dropdown'   => '* Algemene redes vir skrapping
 ** Skending van outeursreg
 ** Onbetaamlike persoonlike inligting',
@@ -1030,7 +1035,9 @@ U het nie toegang tot die item nie.',
 'revdelete-offender'          => 'Outeur van hersiening:',
 
 # Suppression log
-'suppressionlog' => 'Verbergingslogboek',
+'suppressionlog'     => 'Verbergingslogboek',
+'suppressionlogtext' => 'Die onderstaande lys bevat verwyderings en blokkades wat vir administrateurs verborge is.
+Kyk na die [[Special:IPBlockList|IP-blokkeerlys]] om die huidige blokkades te sien.',
 
 # History merging
 'mergehistory'                     => 'Geskiedenis van bladsy samesmeltings',
@@ -1445,105 +1452,107 @@ Bladsye op [[Special:Watchlist|u dophoulys]] word in '''vetdruk''' uitgewys.",
 'recentchangeslinked-to'       => 'Besigtig wysigings aan bladsye met skakels na die bladsy',
 
 # Upload
-'upload'                     => 'Laai lêer',
-'uploadbtn'                  => 'Laai lêer',
-'reuploaddesc'               => 'Keer terug na die laaivorm.',
-'upload-tryagain'            => 'Stuur gewysigde lêerbeskrywing',
-'uploadnologin'              => 'Nie ingeteken nie',
-'uploadnologintext'          => 'Teken eers in [[Special:UserLogin|logged in]]
+'upload'                      => 'Laai lêer',
+'uploadbtn'                   => 'Laai lêer',
+'reuploaddesc'                => 'Keer terug na die laaivorm.',
+'upload-tryagain'             => 'Stuur gewysigde lêerbeskrywing',
+'uploadnologin'               => 'Nie ingeteken nie',
+'uploadnologintext'           => 'Teken eers in [[Special:UserLogin|logged in]]
 om lêers te laai.',
-'upload_directory_missing'   => 'Die oplaaigids ($1) bestaan nie en kon nie deur die webbediener geskep word nie.',
-'upload_directory_read_only' => 'Die webbediener kan nie na die oplaai gids ($1) skryf nie.',
-'uploaderror'                => 'Laaifout',
-'uploadtext'                 => "'''STOP!''' Voor u iets hier oplaai, lees en volg {{SITENAME}} se
-[[{{MediaWiki:Copyrightpage}}|beleid oor prentgebruik]].
+'upload_directory_missing'    => 'Die oplaaigids ($1) bestaan nie en kon nie deur die webbediener geskep word nie.',
+'upload_directory_read_only'  => 'Die webbediener kan nie na die oplaai gids ($1) skryf nie.',
+'uploaderror'                 => 'Laaifout',
+'uploadtext'                  => "Gebruik die vorm hier onder om nuwe lêers te laai wat u in u artikels wil gebruik.
+Om lêers wat voorheen opgelaai is te sien of te deursoek, gaan na die [[Special:FileList|lêerlys]].
+Die laai van lêers word in die [[Special:Log/upload|laailog]] aangeteken.
+Verwyderde lêers word bygehou in die [[Special:Log/delete|skraplogboek]].
 
-Om prente wat voorheen gelaai is te sien of te soek, gaan na die
-[[Special:FileList|lys van gelaaide prente]].
-Laai van lêers en skrappings word aangeteken in die
-[[Special:Log/upload|laailog]].
-
-Gebruik die vorm hier onder om nuwe prente te laai wat u ter illustrasie in u artikels wil gebruik.
 In die meeste webblaaiers sal u 'n \"Browse...\" knop sien, wat u bedryfstelsel se standaard lêeroopmaakdialoogblokkie sal oopmaak.
-Deur 'n lêer in hierdie dialoogkassie te kies, vul u die teksboks naas die knop met die naam van die lêer.
-U moet ook die blokkie merk om te bevestig dat u geen kopieregte skend deur die lêer op te laai nie.
-Kliek die \"Laai\" knop om die laai af te handel.
+Deur 'n lêer in hierdie dialoogkassie te kies, word die lêer se naam in die teksboks naas die knop ingevul.
+Verskaf dan 'n opsomming van die lêer se inhoud en dui die bron en kopiereg duidelik aan.
+Kliek die \"Laai lêer\" knop om die oplaai te begin.
 Dit mag dalk 'n rukkie neem as u 'n stadige internetverbinding het.
 
-Die voorkeurformate is JPEG vir fotografiese prente, PNG vir tekeninge en ander ikoniese prente, en OGG vir klanklêers.
-Gebruik asseblief beskrywende lêername om verwarring te voorkom.
-Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki>''' of
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|alt text]]</nowiki>''' of
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>''' vir klanklêers.",
-'upload-permitted'           => 'Toegelate lêertipes: $1.',
-'upload-preferred'           => 'Aanbevole lêertipes: $1.',
-'upload-prohibited'          => 'Verbode lêertipes: $1.',
-'uploadlog'                  => 'laailog',
-'uploadlogpage'              => 'laai_log',
-'uploadlogpagetext'          => "Hier volg 'n lys van die mees onlangse lêers wat gelaai is.",
-'filename'                   => 'Lêernaam',
-'filedesc'                   => 'Opsomming',
-'fileuploadsummary'          => 'Opsomming:',
-'filereuploadsummary'        => 'Lêerwysigings:',
-'filestatus'                 => 'Outeursregsituasie:',
-'filesource'                 => 'Bron:',
-'uploadedfiles'              => 'Gelaaide lêers',
-'ignorewarning'              => 'Ignoreer waarskuwings en stoor die lêer',
-'ignorewarnings'             => 'Ignoreer enige waarskuwings',
-'minlength1'                 => 'Prentname moet ten minste een letter lank wees.',
-'illegalfilename'            => 'Die lêernaam "$1" bevat karakters wat nie toegelaat word in bladsytitels nie. Verander asseblief die naam en probeer die lêer weer laai.',
-'badfilename'                => 'Prentnaam is verander na "$1".',
-'filetype-badmime'           => 'Lêers met MIME-tipe "$1" word nie toegelaat nie.',
-'filetype-bad-ie-mime'       => 'Die lêer kan nie opgelaai word nie omdat Internet Explorer dit sal identifiseer as "$1", \'n nie toegelate lêertipe wat moontlik skadelik is.',
-'filetype-unwanted-type'     => "'''\".\$1\"''' is 'n ongewenste lêertipe. 
+Om die lêer in 'n artikel te gebruik, plaas 'n skakel in een van die volgende formate:
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lêer.jpg]]</nowiki>''' om die volledige weergawe te gebruik
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lêer.png|200px|thumb|left|alternatiewe teks]]</nowiki>''' skaal die lêer na 200 spikkels wyd in 'n boks aan die linkerkant van die blad met 'alternatiewe teks' as beskrywing
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Lêer.ogg]]</nowiki>''' om direk na 'n lêer te skakel sonder om dit te vertoon",
+'upload-permitted'            => 'Toegelate lêertipes: $1.',
+'upload-preferred'            => 'Aanbevole lêertipes: $1.',
+'upload-prohibited'           => 'Verbode lêertipes: $1.',
+'uploadlog'                   => 'laailog',
+'uploadlogpage'               => 'laai_log',
+'uploadlogpagetext'           => "Hier volg 'n lys van die mees onlangse lêers wat gelaai is.",
+'filename'                    => 'Lêernaam',
+'filedesc'                    => 'Opsomming',
+'fileuploadsummary'           => 'Opsomming:',
+'filereuploadsummary'         => 'Lêerwysigings:',
+'filestatus'                  => 'Outeursregsituasie:',
+'filesource'                  => 'Bron:',
+'uploadedfiles'               => 'Gelaaide lêers',
+'ignorewarning'               => 'Ignoreer waarskuwings en stoor die lêer',
+'ignorewarnings'              => 'Ignoreer enige waarskuwings',
+'minlength1'                  => 'Prentname moet ten minste een letter lank wees.',
+'illegalfilename'             => 'Die lêernaam "$1" bevat karakters wat nie toegelaat word in bladsytitels nie. Verander asseblief die naam en probeer die lêer weer laai.',
+'badfilename'                 => 'Prentnaam is verander na "$1".',
+'filetype-badmime'            => 'Lêers met MIME-tipe "$1" word nie toegelaat nie.',
+'filetype-bad-ie-mime'        => 'Die lêer kan nie opgelaai word nie omdat Internet Explorer dit sal identifiseer as "$1", \'n nie toegelate lêertipe wat moontlik skadelik is.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' is 'n ongewenste lêertipe. 
 Aanbevole {{PLURAL:\$3|lêertipe|lêertipes}} is \$2.",
-'filetype-banned-type'       => "'''\".\$1\"''' is nie 'n toegelate lêertipe nie.
+'filetype-banned-type'        => "'''\".\$1\"''' is nie 'n toegelate lêertipe nie.
 Toelaatbare {{PLURAL:\$3|lêertipes|lêertipes}} is \$2.",
-'filetype-missing'           => 'Die lêer het geen uitbreiding (soos ".jpg").',
-'large-file'                 => 'Aanbeveling: maak lêer kleiner as $1;
+'filetype-missing'            => 'Die lêer het geen uitbreiding (soos ".jpg").',
+'large-file'                  => 'Aanbeveling: maak lêer kleiner as $1;
 die lêer is $2.',
-'largefileserver'            => 'Hierdie lêer is groter as wat die bediener se opstelling toelaat.',
-'emptyfile'                  => "Die lêer wat u probeer oplaai het blyk leeg te wees. Dit mag wees omdat u 'n tikfout in die lêernaam gemaak het. Gaan asseblief na en probeer weer.",
-'fileexists'                 => "'n Lêer met die naam bestaan reeds, kyk na '''<tt>[[:$1]]</tt>''' as u nie seker is dat u dit wil wysig nie.
+'largefileserver'             => 'Hierdie lêer is groter as wat die bediener se opstelling toelaat.',
+'emptyfile'                   => "Die lêer wat u probeer oplaai het blyk leeg te wees. Dit mag wees omdat u 'n tikfout in die lêernaam gemaak het. Gaan asseblief na en probeer weer.",
+'fileexists'                  => "'n Lêer met die naam bestaan reeds, kyk na '''<tt>[[:$1]]</tt>''' as u nie seker is dat u dit wil wysig nie.
 [[$1|thumb]]",
-'fileexists-extension'       => "'n Lêer met hierdie naam bestaan al reeds: [[$2|thumb]]
+'fileexists-extension'        => "'n Lêer met hierdie naam bestaan al reeds: [[$2|thumb]]
 * Naam van die opgelaaide lêer: '''<tt>[[:$1]]</tt>'''
 * Naam van die bestaande lêer: '''<tt>[[:$2]]</tt>'''
 Kies asseblief 'n ander naam.",
-'fileexists-forbidden'       => "Daar bestaan reeds 'n lêer met hierdie naam, en dit kan nie oorskryf word nie.
+'fileexists-thumbnail-yes'    => "Die lêer lyk na 'n verkleinde weergwawe ''(miniatuurafbeelding)''. 
+[[$1|thumb]]
+Kontroleer asseblief die lêer '''<tt>[[:$1]]</tt>'''.
+As die gekontroleerde lêer dieselfde beeld van oorspronklike grootte is, is dit nie nodig om 'n ekstra miniatuurafbeelding daarvan op te laai nie.",
+'fileexists-forbidden'        => "Daar bestaan reeds 'n lêer met hierdie naam, en dit kan nie oorskryf word nie.
 As u steeds die lêer wil oplaai, gebruik asseblief 'n ander naam.
 [[File:$1|thumb|center|$1]]",
-'file-exists-duplicate'      => "Die lêer is 'n duplikaat van die volgende {{PLURAL:$1|lêer|lêers}}:",
-'file-deleted-duplicate'     => "'n Lêer identies aan dié een ([[$1]]) was al voorheen geskrap. <br />
+'fileexists-shared-forbidden' => "'n Lêer met die naam bestaan al reeds in die gedeelte lêerbank.
+Indien u die lêer nog wil oplaai, gaan asseblief terug en kies 'n ander naam.
+[[File:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => "Die lêer is 'n duplikaat van die volgende {{PLURAL:$1|lêer|lêers}}:",
+'file-deleted-duplicate'      => "'n Lêer identies aan dié een ([[$1]]) was al voorheen geskrap. <br />
 Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om dit weer op te laai.",
-'successfulupload'           => 'Laai suksesvol',
-'uploadwarning'              => 'Laaiwaarskuwing',
-'uploadwarning-text'         => 'Verander die onderstaande lêerbeskrywing en probeer dan weer.',
-'savefile'                   => 'Stoor lêer',
-'uploadedimage'              => 'het "[[$1]]" gelaai',
-'overwroteimage'             => 'het een nuwe weergawe van "[[$1]]" gelaai',
-'uploaddisabled'             => 'Laai is uitgeskakel',
-'uploaddisabledtext'         => 'Die oplaai van lêers is afgeskakel.',
-'php-uploaddisabledtext'     => 'Die oplaai van lêers is in PHP afgeskakel.
+'successfulupload'            => 'Laai suksesvol',
+'uploadwarning'               => 'Laaiwaarskuwing',
+'uploadwarning-text'          => 'Verander die onderstaande lêerbeskrywing en probeer dan weer.',
+'savefile'                    => 'Stoor lêer',
+'uploadedimage'               => 'het "[[$1]]" gelaai',
+'overwroteimage'              => 'het een nuwe weergawe van "[[$1]]" gelaai',
+'uploaddisabled'              => 'Laai is uitgeskakel',
+'uploaddisabledtext'          => 'Die oplaai van lêers is afgeskakel.',
+'php-uploaddisabledtext'      => 'Die oplaai van lêers is in PHP afgeskakel.
 Kyk na die "file_uploads"-instelling.',
-'uploadscripted'             => "Hierdie lêer bevat HTML- en scriptkode wat verkeerdelik deur 'n webblaaier geïnterpreteer kan word.",
-'uploadcorrupt'              => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
-'uploadvirus'                => "Hierdie lêer bevat 'n virus! Inligting: $1",
-'upload-source'              => 'Bronlêer',
-'sourcefilename'             => 'Bronlêernaam:',
-'sourceurl'                  => 'Bron-URL:',
-'destfilename'               => 'Teikenlêernaam:',
-'upload-maxfilesize'         => 'Maksimum lêer grootte: $1',
-'upload-description'         => 'Lêerbeskrywing',
-'upload-options'             => 'Oplaai-opsies',
-'watchthisupload'            => 'Hou die lêer dop',
-'filewasdeleted'             => "'n Lêer met hierdie naam is al voorheen opgelaai en daarna geskrap.
+'uploadscripted'              => "Hierdie lêer bevat HTML- en scriptkode wat verkeerdelik deur 'n webblaaier geïnterpreteer kan word.",
+'uploadcorrupt'               => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
+'uploadvirus'                 => "Hierdie lêer bevat 'n virus! Inligting: $1",
+'upload-source'               => 'Bronlêer',
+'sourcefilename'              => 'Bronlêernaam:',
+'sourceurl'                   => 'Bron-URL:',
+'destfilename'                => 'Teikenlêernaam:',
+'upload-maxfilesize'          => 'Maksimum lêer grootte: $1',
+'upload-description'          => 'Lêerbeskrywing',
+'upload-options'              => 'Oplaai-opsies',
+'watchthisupload'             => 'Hou die lêer dop',
+'filewasdeleted'              => "'n Lêer met hierdie naam is al voorheen opgelaai en daarna geskrap.
 Kyk asseblief na die $1 voor u aangaan om dit weer op te laai.",
-'upload-wasdeleted'          => "'''Waarskuwing: U is besig om 'n lêer op te laai wat voorheen verwyder is.'''
+'upload-wasdeleted'           => "'''Waarskuwing: U is besig om 'n lêer op te laai wat voorheen verwyder is.'''
 
 Dink twee keer na of dit wel gepas is om die lêer hier op te laai. 
 Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
-'filename-bad-prefix'        => "Die naam van die lêer wat u besig is om op te laai begin met '''\"\$1\"''', wat 'n nie-beskrywende term is, gewoonlik outomaties toegedien deur digitale kameras.
+'filename-bad-prefix'         => "Die naam van die lêer wat u besig is om op te laai begin met '''\"\$1\"''', wat 'n nie-beskrywende term is, gewoonlik outomaties toegedien deur digitale kameras.
 Kies asseblief 'n meer beskrywende naam vir die lêer.",
 
 'upload-proto-error'        => 'Verkeerde protokol',
@@ -2047,9 +2056,12 @@ Tree asseblief versigtig op.",
 
 # Protect
 'protectlogpage'              => 'Beskermlogboek',
+'protectlogtext'              => "Hieronder is 'n lys van bladsye wat onlangs beveilig is, of waarvan die beveiliging opgehef is.
+Sien die [[Special:ProtectedPages|lys van beveiligde bladsye]] vir alle bladsye wat tans operasioneel beveilig is.",
 'protectedarticle'            => 'het [[$1]] beskerm',
 'modifiedarticleprotection'   => 'Die beskermingsvlak vir "[[$1]]" is gewysig',
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
+'movedarticleprotection'      => 'het beskermings-instellings vanaf "[[$2]]" na "[[$1]]" geskuif',
 'protect-title'               => 'Beskerm "$1"',
 'prot_1movedto2'              => '[[$1]] geskuif na [[$2]]',
 'protect-legend'              => 'Bevestig beskerming',
@@ -2104,46 +2116,52 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'restriction-level-all'           => 'enige vlak',
 
 # Undelete
-'undelete'                   => 'Besigtig geskrapte bladsye',
-'undeletepage'               => 'Bekyk en herstel geskrapte bladsye',
-'undeletepagetitle'          => "'''Hier onder is die verwyderde bydraes van [[:$1]]'''.",
-'viewdeletedpage'            => 'Bekyk geskrapte bladsye',
-'undeletepagetext'           => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is geskrap, maar is nog in die argief en kan teruggeplaas word. Die argief van geskrapte blaaie kan periodiek skoongemaak word.',
-'undelete-fieldset-title'    => 'Weergawes terugplaas',
-'undeleterevisions'          => '$1 {{PLURAL:$1|weergawe|weergawes}} in argief',
-'undeletehistory'            => "As u die bladsy herstel, sal alle weergawes herstel word.
+'undelete'                     => 'Besigtig geskrapte bladsye',
+'undeletepage'                 => 'Bekyk en herstel geskrapte bladsye',
+'undeletepagetitle'            => "'''Hier onder is die verwyderde bydraes van [[:$1]]'''.",
+'viewdeletedpage'              => 'Bekyk geskrapte bladsye',
+'undeletepagetext'             => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is geskrap, maar is nog in die argief en kan teruggeplaas word. Die argief van geskrapte blaaie kan periodiek skoongemaak word.',
+'undelete-fieldset-title'      => 'Weergawes terugplaas',
+'undeleterevisions'            => '$1 {{PLURAL:$1|weergawe|weergawes}} in argief',
+'undeletehistory'              => "As u die bladsy herstel, sal alle weergawes herstel word.
 As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die herstelde weergawes in die nuwe bladsy se voorgeskiedenis verskyn en die huidige weergawe van die lewendige bladsy sal nie outomaties vervang word nie.",
-'undeletehistorynoadmin'     => 'Die bladsy is geskrap.
+'undeletehistorynoadmin'       => 'Die bladsy is geskrap.
 Die rede hiervoor word onder in die opsomming aangedui, saam met besonderhede van die gebruikers wat die bladsy gewysig het voordat dit verwyder is.
 Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
-'undelete-revision'          => 'Verwyder weergawe van $1 (per $4 om $5) deur $3:',
-'undelete-nodiff'            => 'Geen vorige wysigings gevind.',
-'undeletebtn'                => 'Herstel',
-'undeletelink'               => 'bekyk/herstel',
-'undeleteviewlink'           => 'bekyk',
-'undeletereset'              => 'Herstel',
-'undeleteinvert'             => 'Omgekeerde seleksie',
-'undeletecomment'            => 'Opmerking:',
-'undeletedarticle'           => 'het "$1" herstel',
-'undeletedrevisions'         => '{{PLURAL:$1|1 weergawe|$1 weergawes}} herstel',
-'undeletedrevisions-files'   => '{{PLURAL:$1|1 weergawe|$1 weergawes}} en {{PLURAL:$2|1 lêer|$2 lêers}} herstel',
-'undeletedfiles'             => '{{PLURAL:$1|1 lêer|$1 lêers}} herstel',
-'cannotundelete'             => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
-'undeletedpage'              => "<big>'''$1 is teruggeplaas'''</big>
+'undelete-revision'            => 'Verwyder weergawe van $1 (per $4 om $5) deur $3:',
+'undeleterevision-missing'     => "Ongeldige of vermiste weergawe.
+U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit die argief verwyder.",
+'undelete-nodiff'              => 'Geen vorige wysigings gevind.',
+'undeletebtn'                  => 'Herstel',
+'undeletelink'                 => 'bekyk/herstel',
+'undeleteviewlink'             => 'bekyk',
+'undeletereset'                => 'Herstel',
+'undeleteinvert'               => 'Omgekeerde seleksie',
+'undeletecomment'              => 'Opmerking:',
+'undeletedarticle'             => 'het "$1" herstel',
+'undeletedrevisions'           => '{{PLURAL:$1|1 weergawe|$1 weergawes}} herstel',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 weergawe|$1 weergawes}} en {{PLURAL:$2|1 lêer|$2 lêers}} herstel',
+'undeletedfiles'               => '{{PLURAL:$1|1 lêer|$1 lêers}} herstel',
+'cannotundelete'               => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
+'undeletedpage'                => "<big>'''$1 is teruggeplaas'''</big>
 
 Konsulteer die [[Special:Log/delete|verwyderingslogboek]] vir 'n rekord van onlangse verwyderings en terugplasings.",
-'undelete-header'            => 'Sien die [[Special:Log/delete|skraplogboek]] vir onlangs verwyderde bladsye.',
-'undelete-search-box'        => 'Soek verwyderde bladsye',
-'undelete-search-prefix'     => 'Wys bladsye wat begin met:',
-'undelete-search-submit'     => 'Soek',
-'undelete-no-results'        => 'Geen bladsye gevind in die argief van geskrapte bladsye.',
-'undelete-cleanup-error'     => 'Fout met die herstel van die ongebruikte argieflêer "$1".',
-'undelete-error-short'       => 'Fout met herstel van lêer: $1',
-'undelete-error-long'        => 'Foute het voorgekom tydens die herstel van die lêer:
+'undelete-header'              => 'Sien die [[Special:Log/delete|skraplogboek]] vir onlangs verwyderde bladsye.',
+'undelete-search-box'          => 'Soek verwyderde bladsye',
+'undelete-search-prefix'       => 'Wys bladsye wat begin met:',
+'undelete-search-submit'       => 'Soek',
+'undelete-no-results'          => 'Geen bladsye gevind in die argief van geskrapte bladsye.',
+'undelete-filename-mismatch'   => 'Lêerweergawe van tydstip $1 kon nie herstel word nie: lêernaam klop nie',
+'undelete-bad-store-key'       => 'Lêerweergawe van tydstip $1 kon nie herstel word nie: die lêer was al weg voordat dit geskrap is.',
+'undelete-cleanup-error'       => 'Fout met die herstel van die ongebruikte argieflêer "$1".',
+'undelete-missing-filearchive' => 'Nie in staat om ID $1 terug te plaas nie omdat dit nie in die databasis is nie.
+Miskien is dit reeds teruggeplaas.',
+'undelete-error-short'         => 'Fout met herstel van lêer: $1',
+'undelete-error-long'          => 'Foute het voorgekom tydens die herstel van die lêer:
 
 $1',
-'undelete-show-file-confirm' => 'Is u seker u wil na die verwyderde weergawe van die lêer "<nowiki>$1</nowiki>" van $2 om $3 kyk?',
-'undelete-show-file-submit'  => 'Ja',
+'undelete-show-file-confirm'   => 'Is u seker u wil na die verwyderde weergawe van die lêer "<nowiki>$1</nowiki>" van $2 om $3 kyk?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruimte:',
@@ -2267,6 +2285,8 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'blocklogpage'                    => 'Blokkeer-logboek',
 'blocklog-showlog'                => 'Hierdie gebruiker is al vantevore geblokkeer.
 Die blokkeerlogboek word hieronder ter verwysing weergegee:',
+'blocklog-showsuppresslog'        => 'Hierdie gebruiker was voorheen geblokkeer gewees en (dele van) wysigings van hierdie gebruiker is verborge.
+Die verbergingslogboek word hieronder ter verwysing weergegee:',
 'blocklogentry'                   => '"[[$1]]" is vir \'n periode van $2 $3 geblok',
 'reblock-logentry'                => 'het die instellings vir die blokkade vir [[$1]] gewysig. Dit verval nou op $2 om $3',
 'blocklogtext'                    => "Hier is 'n lys van onlangse blokkeer en deblokkeer aksies. Outomaties geblokkeerde IP-adresse word nie vertoon nie. 
@@ -2290,12 +2310,21 @@ Wil u die instellings wysig?',
 'ipb-otherblocks-header'          => 'Ander {{PLURAL:$1|blokkade|blokkades}}',
 'ipb_cant_unblock'                => 'Fout: Blokkade-ID $1 kan nie gevind word nie.
 Die blokkade is moontlik reeds opgehef.',
+'ipb_blocked_as_range'            => "Fout: die IP-adres $1 is nie direk geblokkeer nie en die blokkade kan nie opgehef word nie.
+Die blokkade is 'n onderdeel van die reeks $2, waarvan die blokkade wel opgehef kan word.",
 'ip_range_invalid'                => 'Ongeldige IP waardegebied.',
 'blockme'                         => 'Versper my',
 'proxyblocker'                    => 'Proxyblokker',
 'proxyblocker-disabled'           => 'Die funksie is gedeaktiveer.',
+'proxyblockreason'                => "U IP-adres is geblokkeer omdat dit van 'n oop instaanbediener (proxy) gebruik maak.
+Kontak asseblief u internet-diensverskaffer of tegniese ondersteuning en lig hulle van hierdie ernstige sekuriteitsprobleem in.",
 'proxyblocksuccess'               => 'Voltooi.',
+'sorbsreason'                     => "U IP-adres is gelys as 'n oop instaanbediener (proxy) in die DNS-swartlys wat op {{SITENAME}} gebruik word.",
+'sorbs_create_account_reason'     => "U IP-adres is gelys as 'n oop instaanbediener (proxy) in die DNS-swartlys wat op {{SITENAME}} gebruik word.
+U kan nie 'n rekening skep nie.",
 'cant-block-while-blocked'        => 'U kan nie ander gebruikers blokkeer terwyl u self geblokkeer is nie.',
+'cant-see-hidden-user'            => "Die gebruiker wat u probeer blokkeer is reeds geblokkeer en weggesteek.
+Aangesien u nie die 'hideuser'-reg het nie, kan u nie die blokkade van die gebruiker sien of wysig nie.",
 
 # Developer tools
 'lockdb'              => 'Sluit databasis',
@@ -2465,6 +2494,8 @@ Gaan na [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [h
 'importbadinterwiki'         => 'Verkeerde interwiki skakel',
 'importnotext'               => 'Leeg of geen teks',
 'importsuccess'              => 'Klaar met importering!',
+'importhistoryconflict'      => 'Daar is konflikte in die geskiedenis van die bladsy (is moontlik vroeër geïmporteer)',
+'importnosources'            => 'Daar is geen transwiki-invoerbronne gedefinieer nie en direkte geskiedenis-oplaaie is afgeskakel.',
 'importnofile'               => 'Geen importlêer was opgelaai nie.',
 'importuploaderrorsize'      => 'Oplaai van invoer-lêer het misluk. 
 Die lêer is groter as die toelaatbare limiet.',
@@ -2482,6 +2513,7 @@ Die lêer is slegs gedeeltelik opgelaai.',
 
 # Import log
 'importlogpage'                    => 'Invoer logboek',
+'importlogpagetext'                => "Administratiewe invoere van bladsye met geskiedenis van ander wiki's.",
 'import-logentry-upload'           => "[[$1]] ingevoer deur 'n lêer op te laai",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|weergawe|weergawes}}',
 'import-logentry-interwiki'        => 'importeer $1 via transwiki',
@@ -2708,6 +2740,7 @@ Ander velde sal versteek wees.
 'exif-orientation'                 => 'Oriëntasie',
 'exif-samplesperpixel'             => 'Aantal komponente',
 'exif-planarconfiguration'         => 'Datastruktuur',
+'exif-ycbcrsubsampling'            => 'Subsampleverhouding van Y tot C',
 'exif-ycbcrpositioning'            => 'Y- en C-posisionering',
 'exif-xresolution'                 => 'Horisontale resolusie',
 'exif-yresolution'                 => 'Vertikale resolusie',
@@ -3024,6 +3057,7 @@ Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Verwyder die kas van hierdie blad?',
+'confirm-purge-bottom' => "Die opruiming van die kas sorg daarvoor dat die mees onlangse weergawe van 'n bladsy vertoon word.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige bladsy',
