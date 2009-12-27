@@ -705,9 +705,9 @@ function ts_initTransformTable() {
 	// if percents and regular numbers aren't being mixed.
 	ts_number_regex = new RegExp(
 		"^(" +
-			"[+-\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[+-\u2212]?[0-9][0-9,]*)?" + // Fortran-style scientific
+			"[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?" + // Fortran-style scientific
 			"|" +
-			"[+-\u2212]?" + digitClass + "+%?" + // Generic localised
+			"[-+\u2212]?" + digitClass + "+%?" + // Generic localised
 		")$", "i"
 	);
 }
