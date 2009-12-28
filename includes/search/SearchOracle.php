@@ -40,7 +40,7 @@ class SearchOracle extends SearchEngine {
 	function searchText( $term ) {
 		if ($term == '')
 			return new OracleSearchResultSet(false, '');
-		
+
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), true)));
 		return new OracleSearchResultSet($resultSet, $this->searchTerms);
 	}
@@ -54,7 +54,7 @@ class SearchOracle extends SearchEngine {
 	function searchTitle($term) {
 		if ($term == '')
 			return new OracleSearchResultSet(false, '');
-		
+
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), false)));
 		return new MySQLSearchResultSet($resultSet, $this->searchTerms);
 	}
@@ -143,8 +143,8 @@ class SearchOracle extends SearchEngine {
 			'WHERE page_id=si_page AND ' . $match;
 	}
 
-	/** 
-	 * Parse a user input search string, and return an SQL fragment to be used 
+	/**
+	 * Parse a user input search string, and return an SQL fragment to be used
 	 * as part of a WHERE clause
 	 */
 	function parseQuery($filteredText, $fulltext) {
@@ -154,23 +154,23 @@ class SearchOracle extends SearchEngine {
 
 		# FIXME: This doesn't handle parenthetical expressions.
 		$m = array();
-		$q = array();
-
+		$searchon = '';
 		if (preg_match_all('/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			  $filteredText, $m, PREG_SET_ORDER)) {
 			foreach($m as $terms) {
-				
 				// Search terms in all variant forms, only
 				// apply on wiki with LanguageConverter
+				if(in_array($wgContLang->stripForSearch( $terms[2] ), $cc))
 				$temp_terms = $wgContLang->autoConvertToAllVariants( $terms[2] );
 				if( is_array( $temp_terms )) {
 					$temp_terms = array_unique( array_values( $temp_terms ));
-					foreach( $temp_terms as $t )
-						$q[] = $terms[1] . $wgContLang->stripForSearch( $t );
+					foreach( $temp_terms as $t ) {
+						$searchon .= ($terms[1] == '-' ? ' ~' : ' & ') . $this->escapeTerm( $t );
+					}
 				}
-				else
-					$q[] = $terms[1] . $wgContLang->stripForSearch( $terms[2] );
-
+				else {
+					$searchon .= ($terms[1] == '-' ? ' ~' : ' & ') . $this->escapeTerm( $terms[2] );
+				}
 				if (!empty($terms[3])) {
 					$regexp = preg_quote( $terms[3], '/' );
 					if ($terms[4])
@@ -182,11 +182,19 @@ class SearchOracle extends SearchEngine {
 			}
 		}
 
-		$searchon = $this->db->addQuotes(join(',', $q));
+
+		$searchon = $this->db->addQuotes(ltrim($searchon, ' &'));
 		$field = $this->getIndexField($fulltext);
 		return " CONTAINS($field, $searchon, 1) > 0 ";
 	}
 
+	private function escapeTerm($t) {
+		global $wgContLang;
+		$t = $wgContLang->stripForSearch($t);
+		$t = preg_replace('/^"(.*)"$/', '($1)', $t);
+		$t = preg_replace('/([-&|])/', '\\\\$1', $t);
+		return $t;
+	}
 	/**
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
@@ -223,6 +231,11 @@ class SearchOracle extends SearchEngine {
 			array('si_page'  => $id),
 			'SearchOracle::updateTitle',
 			array());
+	}
+
+
+	public static function legalSearchChars() {
+		return "\"" . parent::legalSearchChars();
 	}
 }
 
