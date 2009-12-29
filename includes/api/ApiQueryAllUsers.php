@@ -66,8 +66,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		if (!is_null($params['group'])) {
 			// Filter only users that belong to a given group
 			$this->addTables('user_groups', 'ug1');
-			$this->addWhere('ug1.ug_user=u1.user_id');
-			$this->addWhereFld('ug1.ug_group', $params['group']);
+			$ug1 = $this->getAliasedName('user_groups', 'ug1');
+			$this->addJoinConds(array($ug1 => array('INNER JOIN', array('ug1.ug_user=u1.user_id',
+					'ug1.ug_group' => $params['group']))));
 		}
 
 		if ($params['witheditsonly'])
@@ -103,6 +104,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addFieldsIf('u1.user_registration', $fld_registration);
 
 		$this->addOption('ORDER BY', 'u1.user_name');
+		$u1 = $this->getAliasedName('user', 'u1');
+		$this->addOption('USE INDEX', array($u1 => 'user_name'));
 
 		$res = $this->select(__METHOD__);
 
