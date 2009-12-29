@@ -884,30 +884,32 @@ $1",
 Ағымдағы блоклауҙарҙы күрер өсөн [[Special:IPBlockList|IP-блоклауҙар исемлеген]] ҡарағыҙ.',
 
 # History merging
-'mergehistory'                  => 'Үҙгәртеүҙәр тарихын берләштерергә',
-'mergehistory-header'           => 'Был бит, ике биттең үҙгәртеүҙәр тарихын берләштерергә мөмкинселек бирә.
+'mergehistory'                     => 'Үҙгәртеүҙәр тарихын берләштерергә',
+'mergehistory-header'              => 'Был бит, ике биттең үҙгәртеүҙәр тарихын берләштерергә мөмкинселек бирә.
 Был үҙгәртеүҙең, бит тарихын, боҙмайынса, дауам иттерәсәген тикшерегеҙ.',
-'mergehistory-box'              => 'Ике биттең үҙгәртеүҙәр тарихын берләштерергә',
-'mergehistory-from'             => 'Сығанаҡ бит:',
-'mergehistory-into'             => 'Маҡсат бит:',
-'mergehistory-list'             => 'Берләштереп булған үҙгәртеүҙәр тарихы',
-'mergehistory-merge'            => '[[:$1]] версияларын [[:$2]] менән берләштерерге була. Тик һайланған төҙәтеүҙәр аралығын берләштерер өсөн түңәрәк төймәләрҙе ҡулланығыҙ. Навигация һылтанмаларын ҡулланғанда мәғлүмәттәрҙең юғаласағын онотмағыҙ.',
-'mergehistory-go'               => 'Берләштереп булған үҙгәртеүҙәрҙе күрһәтергә',
-'mergehistory-submit'           => 'Версияларҙы берләштер',
-'mergehistory-empty'            => 'Һис бер версияны берләштереп булмай.',
-'mergehistory-success'          => '[[:$1]] битенең $3 {{PLURAL:$3|үҙгәртеүе}} уңышлы [[:$2]] менән берләштерелде.',
-'mergehistory-fail'             => 'Бит тарихтарын берләштереп булманы, зирһар, бит һәм ваҡыт параметрҙарын яңынан тикшерегеҙ.',
-'mergehistory-no-source'        => 'Сығанаҡ бит «$1» юҡ.',
-'mergehistory-no-destination'   => 'Маҡсат бит «$1» юҡ.',
-'mergehistory-invalid-source'   => 'Сығанаҡ биттең исеме дөрөҫ булырға тейеш.',
-'mergehistory-autocomment'      => '[[:$1]] [[:$2]] менән берләштерелде',
-'mergehistory-comment'          => '[[:$1]] [[:$2]] менән берләштерелде: $3',
-'mergehistory-same-destination' => 'Сығанаҡ һәм маҡсат бит бер иш булырға тейеш түгел',
-'mergehistory-reason'           => 'Сәбәп:',
+'mergehistory-box'                 => 'Ике биттең үҙгәртеүҙәр тарихын берләштерергә',
+'mergehistory-from'                => 'Сығанаҡ бит:',
+'mergehistory-into'                => 'Маҡсат бит:',
+'mergehistory-list'                => 'Берләштереп булған үҙгәртеүҙәр тарихы',
+'mergehistory-merge'               => '[[:$1]] версияларын [[:$2]] менән берләштерерге була. Тик һайланған төҙәтеүҙәр аралығын берләштерер өсөн түңәрәк төймәләрҙе ҡулланығыҙ. Навигация һылтанмаларын ҡулланғанда мәғлүмәттәрҙең юғаласағын онотмағыҙ.',
+'mergehistory-go'                  => 'Берләштереп булған үҙгәртеүҙәрҙе күрһәтергә',
+'mergehistory-submit'              => 'Версияларҙы берләштер',
+'mergehistory-empty'               => 'Һис бер версияны берләштереп булмай.',
+'mergehistory-success'             => '[[:$1]] битенең $3 {{PLURAL:$3|үҙгәртеүе}} уңышлы [[:$2]] менән берләштерелде.',
+'mergehistory-fail'                => 'Бит тарихтарын берләштереп булманы, зирһар, бит һәм ваҡыт параметрҙарын яңынан тикшерегеҙ.',
+'mergehistory-no-source'           => 'Сығанаҡ бит «$1» юҡ.',
+'mergehistory-no-destination'      => 'Маҡсат бит «$1» юҡ.',
+'mergehistory-invalid-source'      => 'Сығанаҡ биттең исеме дөрөҫ булырға тейеш.',
+'mergehistory-invalid-destination' => 'Маҡсат биттең исеме дөрөҫ булырға тейеш',
+'mergehistory-autocomment'         => '[[:$1]] [[:$2]] менән берләштерелде',
+'mergehistory-comment'             => '[[:$1]] [[:$2]] менән берләштерелде: $3',
+'mergehistory-same-destination'    => 'Сығанаҡ һәм маҡсат бит бер иш булырға тейеш түгел',
+'mergehistory-reason'              => 'Сәбәп:',
 
 # Merge log
-'mergelog'    => 'Берләштереүҙәр яҙмаһы',
-'revertmerge' => 'Бүлергә',
+'mergelog'           => 'Берләштереүҙәр яҙмаһы',
+'pagemerge-logentry' => '[[$1]] менән [[$2]] берлештерелде ($3 тиклемге версиялар)',
+'revertmerge'        => 'Бүлергә',
 
 # Diffs
 'history-title'           => '$1 битенең үҙгәртеү тарихы',
@@ -964,6 +966,9 @@ $1",
 'powersearch-toggleall'            => 'Барыһы',
 'powersearch-togglenone'           => 'Һис бере',
 'search-external'                  => 'Тышҡы эҙләү',
+'searchdisabled'                   => '{{SITENAME}} эҙләүе ябыҡ.
+Хәҙергә эҙләүҙе Google менән үтәй алаһығыҙ.
+Тик унда {{SITENAME}} өсөн индекслауҙың иҫке булыуы мөмкинлеген онотмағыҙ.',
 
 # Quickbar
 'qbsettings'               => 'Тиҙ күсеү',
@@ -1003,6 +1008,13 @@ $1",
 'prefs-help-watchlist-token'  => 'Юыл юлды серле асҡыс менән тултырыу, күҙәтеү исемлегегеҙ өсөн RSS-таҫма яһаясаҡ.
 Был юлдағы асҡысты белгән һәр кем, күҙәтеү исемлегегеҙҙе уҡый аласаҡ, шуның өсөн ышаныслы ҡиммәт һайлағыҙ.
 Осраҡлы рәүештә һайланған ҡиммәтте лә ҡуллана алаһығыҙ: $1',
+'timezonelegend'              => 'Ваҡыт бүлкәте:',
+'localtime'                   => 'Урындағы ваҡыт:',
+'timezoneuseserverdefault'    => 'Сервер көйләүҙәрен ҡулланырға:',
+'timezoneuseoffset'           => 'Башҡа (шылыуҙы керетегеҙ)',
+'timezoneoffset'              => 'Шылыу:',
+'servertime'                  => 'Сервер ваҡыты',
+'guesstimezone'               => 'Браузерҙан алырға',
 'timezoneregion-africa'       => 'Африка',
 'timezoneregion-america'      => 'Америка',
 'timezoneregion-antarctica'   => 'Антарктика',
@@ -1013,9 +1025,20 @@ $1",
 'timezoneregion-europe'       => 'Европа',
 'timezoneregion-indian'       => 'Һинд океаны',
 'timezoneregion-pacific'      => 'Тымыҡ океан',
+'allowemail'                  => 'Башҡа ҡулланыусыларҙан электрон хат алыуҙы рөхсәт итергә',
+'prefs-searchoptions'         => 'Эҙләү көйләүҙәре',
+'prefs-namespaces'            => 'Исем арауыҡтары',
+'defaultns'                   => 'Юғиһә киләһе исем арауыҡтарында эҙләргә:',
+'default'                     => 'гәҙәттәге',
+'prefs-files'                 => 'Файлдар',
+'prefs-custom-css'            => 'Үҙ CSS',
+'prefs-custom-js'             => 'Үҙ JS',
 'prefs-reset-intro'           => 'Был битте, көйләүҙәрегеҙҙе ғәҙәттәге көйләүҙәргә ташлатыу өсөн ҡулланып була.
 Раҫлағандан һуң ғәмәлде кире ҡайтарып булмаясаҡ.',
+'prefs-emailconfirm-label'    => 'Электрон почтаны раҫлау:',
+'prefs-textboxsize'           => 'Мөхәррирләү тәҙрәһе дәүмәле',
 'youremail'                   => 'Электрон почта *',
+'username'                    => 'Ҡулланыусы исеме:',
 'yourrealname'                => 'Һеҙҙең ысын исемегеҙ (*)',
 'yourlanguage'                => 'Тышҡы күренештә ҡулланылған тел:',
 'yourvariant'                 => 'Тел төрө',
@@ -1048,11 +1071,19 @@ $1",
 'prefs-diffs'                 => 'Айырмалар',
 
 # User rights
-'editinguser'            => "Мөхәрирләү  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-groups-help' => 'Был ҡулланыусы кергән төркөмдәрҙе үҙгәртә алаһығыҙ.
+'userrights'               => 'Ҡулланыусы хоҡуҡтарын идаралау',
+'userrights-lookup-user'   => 'Ҡулланыусы төркөмдәрен идаралау',
+'userrights-user-editname' => 'Ҡулланыусы исемен керетерегеҙ:',
+'editusergroup'            => 'Ҡулланыусы төркөмдәрен идараларға',
+'editinguser'              => "Мөхәрирләү  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Ҡулланыусы төркөмдәрен идараларға',
+'saveusergroups'           => 'Ҡулланыусы төркөмдәрен һаҡларға',
+'userrights-groupsmember'  => 'Ағза булған төркөмдәр:',
+'userrights-groups-help'   => 'Был ҡулланыусы кергән төркөмдәрҙе үҙгәртә алаһығыҙ.
 * Әгәр төркөм исеме эргәһендә билдә булһа, ҡулланыусы төркөмгә кергән була.
 * Әгәр билдә булмаһа, ҡулланыусы ул төркөмгә кермәй тимәк.
 * * билдәһе, әгәр төркөмдән ҡулланыусыны юйһағыҙ кире ҡуя алмаясағығыҙҙы аңлата һәм киреһенсә.',
+'userrights-reason'        => 'Сәбәп:',
 
 # Groups
 'group'               => 'Төркөм:',
@@ -1078,35 +1109,62 @@ $1",
 'grouppage-bureaucrat'    => '{{ns:project}}:Бюрократтар',
 'grouppage-suppress'      => '{{ns:project}}:Тикшереүселәр',
 
+# Rights
+'right-read' => 'Биттәрҙе ҡарау',
+'right-edit' => 'Биттәрҙә мөхәррирләү',
+
 # User rights log
-'rightslog' => 'Ҡулланыусының хоҡуҡтары көндәлеге',
+'rightslog'      => 'Ҡулланыусының хоҡуҡтары көндәлеге',
+'rightslogtext'  => 'Был ҡулланыусы хоҡуҡтары үҙгәрештәре яҙмаһы',
+'rightslogentry' => '$1 хоҡуҡтары $2 икән, $3 итеп үҙгертелде',
+'rightsnone'     => '(юҡ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'был битте үҙгәртергә',
+'action-read'               => 'был битте уҡыу',
+'action-edit'               => 'был битте үҙгәртергә',
+'action-createpage'         => 'яңы бит яһау',
+'action-createtalk'         => 'фекер алышыу бите яһай',
+'action-createaccount'      => 'был ҡулланыусы иҫәп яҙыуын яһау',
+'action-minoredit'          => 'был төҙәтеүҙе әҙ үҙгәреш тип билдәләү',
+'action-move'               => 'был биттең исемен үҙгәртеү',
+'action-move-subpages'      => 'был биттең һәм эске биттәренең исемен үҙгәртеү',
+'action-move-rootuserpages' => 'ҡулланыусыларҙың төп биттәренең исемен үҙгәртеү',
+'action-movefile'           => 'файлдың исемен үҙгәртеү',
+'action-upload'             => 'был файлды тейәү',
+'action-reupload'           => 'булған файлдың өҫтөнә яҙыу',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
-'recentchanges'                  => 'Һуңғы үҙгәртеүҙәр',
-'recentchanges-legend'           => 'Һуңғы үҙгәртеүҙәр көйләүҙәре',
-'recentchangestext'              => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
-'recentchanges-feed-description' => 'Был таҫмалағы һуңғы үҙгәртеүҙәрҙе күҙәтеп барырға',
-'rcnote'                         => 'Аҫта $4 $5 тиклем эшләнгән, һуңғы {{PLURAL:$2|1|$2}} көн эсендәге һуңғы {{PLURAL:$1|1|$1}} үҙгәртеү күрһәтелгән.',
-'rclistfrom'                     => '$1 башлап яңы үҙгәртеүҙәрҙе күрһәт.',
-'rcshowhideminor'                => 'бәләкәй төҙәтеүҙәрҙе $1',
-'rcshowhidebots'                 => 'боттарҙы $1',
-'rcshowhideliu'                  => 'танылған ҡулланыусыларҙы $1',
-'rcshowhideanons'                => 'танылмаған ҡулланыусыларҙы $1',
-'rcshowhidemine'                 => 'минең үҙгәртеүҙәремде $1',
-'rclinks'                        => 'Һуңғы $2 көн эсендәге һуңғы $1 үҙгәртеүҙе күрһәтергә<br />$3',
-'diff'                           => 'айыр.',
-'hist'                           => 'тарих',
-'hide'                           => 'йәшер',
-'show'                           => 'күрһәт',
-'minoreditletter'                => 'ә',
-'newpageletter'                  => 'Я',
-'boteditletter'                  => 'б',
-'rc-enhanced-expand'             => 'Ваҡлыҡтарҙы күрһәтергә (JavaScript кәрәкле)',
-'rc-enhanced-hide'               => 'Ваҡлыҡтарҙы йәшерергә',
+'nchanges'                         => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
+'recentchanges'                    => 'Һуңғы үҙгәртеүҙәр',
+'recentchanges-legend'             => 'Һуңғы үҙгәртеүҙәр көйләүҙәре',
+'recentchangestext'                => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
+'recentchanges-feed-description'   => 'Был таҫмалағы һуңғы үҙгәртеүҙәрҙе күҙәтеп барырға',
+'recentchanges-label-legend'       => 'Легенда: $1.',
+'recentchanges-legend-newpage'     => '$1 — яңы бит',
+'recentchanges-label-newpage'      => 'Был үҙгәртеү яңы бит яһаны',
+'recentchanges-legend-minor'       => '$1 — әҙ үҙгәреш',
+'recentchanges-label-minor'        => 'Был әҙ үҙгәреш',
+'recentchanges-legend-bot'         => '$1 — бот төҙәтеүе',
+'recentchanges-label-bot'          => 'Был төҙәтеү бот тарафынан башҡарылды',
+'recentchanges-legend-unpatrolled' => '$1 — ҡаралмаған төҙәтеү',
+'recentchanges-label-unpatrolled'  => 'Был төҙәтеү ҡаралмаған әле',
+'rcnote'                           => 'Аҫта $4 $5 тиклем эшләнгән, һуңғы {{PLURAL:$2|1|$2}} көн эсендәге һуңғы {{PLURAL:$1|1|$1}} үҙгәртеү күрһәтелгән.',
+'rclistfrom'                       => '$1 башлап яңы үҙгәртеүҙәрҙе күрһәт.',
+'rcshowhideminor'                  => 'бәләкәй төҙәтеүҙәрҙе $1',
+'rcshowhidebots'                   => 'боттарҙы $1',
+'rcshowhideliu'                    => 'танылған ҡулланыусыларҙы $1',
+'rcshowhideanons'                  => 'танылмаған ҡулланыусыларҙы $1',
+'rcshowhidemine'                   => 'минең үҙгәртеүҙәремде $1',
+'rclinks'                          => 'Һуңғы $2 көн эсендәге һуңғы $1 үҙгәртеүҙе күрһәтергә<br />$3',
+'diff'                             => 'айыр.',
+'hist'                             => 'тарих',
+'hide'                             => 'йәшер',
+'show'                             => 'күрһәт',
+'minoreditletter'                  => 'ә',
+'newpageletter'                    => 'Я',
+'boteditletter'                    => 'б',
+'rc-enhanced-expand'               => 'Ваҡлыҡтарҙы күрһәтергә (JavaScript кәрәкле)',
+'rc-enhanced-hide'                 => 'Ваҡлыҡтарҙы йәшерергә',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Бәйле үҙгәртеүҙәр',
@@ -1120,6 +1178,7 @@ $1",
 
 # Upload
 'upload'                 => 'Файл күсереү',
+'uploaderror'            => 'Тейәү хатаһы',
 'uploadtext'             => "Файл тейәү өсөн түбәндәге форманы ҡулланығыҙ.
 Элек тейәлгән файлдарҙы байҡар өсөн [[Special:FileList|тейәлгән файлдар исемлеген]] ҡарағыҙ. Файл тейәүҙәр шулай уҡ [[Special:Log/upload|тейәү яҙмаларына]], юйыуҙар иһә [[Special:Log/delete|юйыу яҙмаларына]] яҙылып баралар.
 
@@ -1127,9 +1186,20 @@ $1",
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' — файлдың тулы өлгөһөн ҡуйыр өсөн;
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|тасуирлама]]</nowiki></tt>''' — файлдың киңлек буйынса 200 нөктәгә тиклем бәләкәсәйтелгән, һулға тигеҙләнгән һәм аҫтында тасуирламаһы булған өлгөһөн ҡуйыр өсөн;
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' — эстәлеген биттә күрһәтмәйенсә файлға һылтанма ҡуйыу өсөн.",
+'upload-permitted'       => 'Рөхсәт ителгән файл типтары: $1.',
+'upload-preferred'       => 'Уңайлы файл типтары: $1.',
+'upload-prohibited'      => 'Тыйылған файл типтары: $1.',
+'uploadlog'              => 'тейәүҙәр яҙмаһы',
 'uploadlogpage'          => 'Тейәү яҙмалары',
 'uploadlogpagetext'      => 'Түбәндә, һуңғы файл тейәүҙәр исемлеге күрһәтелгән.
 Шулай уҡ [[Special:NewFiles|яңы файлдар галереяһын]] ҡарағыҙ; һуңғы тейәүҙәр ентекле рәүештә күрһәтелгән.',
+'filename'               => 'Файл исеме',
+'filedesc'               => 'Ҡыҫҡа аңлатма',
+'fileuploadsummary'      => 'Ҡыҫҡа аңлатма:',
+'filereuploadsummary'    => 'Файлдағы үҙгәртеүҙәр:',
+'filestatus'             => 'Копирайт торошо:',
+'filesource'             => 'Сығанаҡ:',
+'uploadedfiles'          => 'Тейәлгән файлдар',
 'illegalfilename'        => '«$1» файлы исемендә рөхсәт ителмәгән символдар бар.
 Зинһар файл исемен үҙгәртегеҙ һәм яңынан тейәп ҡарағыҙ.',
 'filetype-unwanted-type' => "'''\".\$1\"''' — теләнмәгән файл тибы.
@@ -1137,20 +1207,42 @@ $1",
 'filetype-banned-type'   => "'''\".\$1\"''' — тыйылған файл тибы.
 {{PLURAL:\$3|Рөхсәт ителгән файл тибы|Рөхсәт ителгән файл типтары:}} \$2.",
 'uploadedimage'          => '«[[$1]]» тейәлгән',
+'upload-source'          => 'Сығанаҡ файл',
+'sourcefilename'         => 'Файлдың сығанаҡ исеме:',
+'sourceurl'              => 'Сығанаҡ URL:',
+'destfilename'           => 'Файлдың яңы исеме:',
+'upload-maxfilesize'     => 'Файлдың максимум күләме: $1',
+'upload-description'     => 'Файл тасуирламаһы',
+'upload-options'         => 'Тейәү көйләүҙәре',
+'watchthisupload'        => 'Файлды күҙәтергә',
 
 # Special:ListFiles
-'listfiles_user' => 'Ҡатнашыусы',
+'imgfile'               => 'файл',
+'listfiles'             => 'Файлдар исемлеге',
+'listfiles_date'        => 'Дата',
+'listfiles_name'        => 'Исем',
+'listfiles_user'        => 'Ҡатнашыусы',
+'listfiles_size'        => 'Күләм',
+'listfiles_description' => 'Тасуирлау',
+'listfiles_count'       => 'Версиялар',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файл тарихы',
 'filehist-help'             => 'Файлдың ниндәй хәлдә булғанын ҡарар өсөн Көн/Сәғәткә баҫығыҙ',
+'filehist-deleteall'        => 'барыһын да юйырға',
+'filehist-deleteone'        => 'юйырға',
+'filehist-revert'           => 'кире алырға',
 'filehist-current'          => 'хәҙ.',
 'filehist-datetime'         => 'Көн/ваҡыт',
 'filehist-thumb'            => 'Бәләкәй рәсем',
 'filehist-thumbtext'        => '$1 көнөндәге версияның  бәләкәй хәле',
+'filehist-nothumb'          => 'Бәләкәй рәсем юҡ',
 'filehist-user'             => 'Ҡулланыусы',
 'filehist-dimensions'       => 'Дәүмәл',
+'filehist-filesize'         => 'Файл күләме',
 'filehist-comment'          => 'Иҫкәрмә',
+'filehist-missing'          => 'Файл юҡ',
 'imagelinks'                => 'Файлға һылтанмалар',
 'linkstoimage'              => 'Был файлға {{PLURAL:$1|бит|$1 бит}} һылтана:',
 'sharedupload'              => 'Был файл $1 базаһынан һәм башҡа проектарҙа ҡулланылырға мөмкин.',
@@ -1166,20 +1258,38 @@ $1",
 'randompage' => 'Осраҡлы мәҡәлә',
 
 # Statistics
-'statistics' => 'Статистика',
+'statistics'              => 'Статистика',
+'statistics-header-pages' => 'Бит статистикаһы',
+'statistics-header-edits' => 'Мөхәррирләү статистикаһы',
+'statistics-header-views' => 'Ҡарау статистикаһы',
+'statistics-header-users' => 'Ҡулланыусы статистикаһы',
+'statistics-header-hooks' => 'Башҡа статистика',
+'statistics-articles'     => 'Мәҡәләләр',
+'statistics-pages'        => 'Биттәр',
 
 # Miscellaneous special pages
-'nbytes'            => '$1 {{PLURAL:$1|байт}}',
-'nmembers'          => '$1 {{PLURAL:$1|объект}}',
-'prefixindex'       => 'Бит исемдәренә буйынса күрһәткес',
-'listusers'         => 'Ҡатнашыусылар исемлеге',
-'newpages'          => 'Яңы биттәр',
-'newpages-username' => 'Ҡатнашыусы:',
-'ancientpages'      => 'Иң иҫке мәҡәләләр',
-'move'              => 'Яңы исем биреү',
-'movethispage'      => 'Биттең исемен үҙгәртергә',
-'pager-newer-n'     => '{{PLURAL:$1|1 яңырак|$1 яңырак}}',
-'pager-older-n'     => '{{PLURAL:$1|1 иҫкерәк|$1 иҫкерәк}}',
+'nbytes'                  => '$1 {{PLURAL:$1|байт}}',
+'nmembers'                => '$1 {{PLURAL:$1|объект}}',
+'uncategorizedpages'      => 'Категорияланмаған биттәр',
+'uncategorizedcategories' => 'Категорияланмаған категориялар',
+'uncategorizedimages'     => 'Категорияланмаған файлдар',
+'uncategorizedtemplates'  => 'Категорияланмаған ҡалыптар',
+'unusedcategories'        => 'Ҡулланылмаған категориялар',
+'unusedimages'            => 'Ҡулланылмаған файлдар',
+'popularpages'            => 'Популяр биттәр',
+'wantedcategories'        => 'Кәрәкле категориялар',
+'wantedpages'             => 'Кәрәкле биттәр',
+'wantedfiles'             => 'Кәрәкле файлдар',
+'wantedtemplates'         => 'Кәрәкле ҡалыптар',
+'prefixindex'             => 'Бит исемдәренә буйынса күрһәткес',
+'listusers'               => 'Ҡатнашыусылар исемлеге',
+'newpages'                => 'Яңы биттәр',
+'newpages-username'       => 'Ҡатнашыусы:',
+'ancientpages'            => 'Иң иҫке мәҡәләләр',
+'move'                    => 'Яңы исем биреү',
+'movethispage'            => 'Биттең исемен үҙгәртергә',
+'pager-newer-n'           => '{{PLURAL:$1|1 яңырак|$1 яңырак}}',
+'pager-older-n'           => '{{PLURAL:$1|1 иҫкерәк|$1 иҫкерәк}}',
 
 # Book sources
 'booksources'               => 'Китап сығанаҡтары',
@@ -1247,6 +1357,29 @@ $1",
 
 'enotif_newpagetext' => 'Был яңы бит.',
 'changed'            => 'үҙгәртелгән',
+'enotif_body'        => 'Хөрмәтле $WATCHINGUSERNAME,
+
+«{{SITENAME}}» проектының $PAGETITLE бите $PAGEEDITDATE көнө $PAGEEDITOR тарафынан $CHANGEDORCREATED. Биттең ағымдағы версияһын $PAGETITLE_URL адресынан ҡарай алаһығыҙ.
+
+$NEWPAGE
+
+Мөхәррирләүҙең ҡыҫҡаса аңлатмаһы: $PAGESUMMARY $PAGEMINOREDIT
+
+Үҙгәртеүсе менән бәйләнеш өсөн:
+эл. почта: $PAGEEDITOR_EMAIL
+вики: $PAGEEDITOR_WIKI
+
+Әгәр һеҙ был битте ҡарамаһағыҙ, бынан һуң буласаҡ үҙгәртеүҙәр тураһында белдереү алмаясаҡһығыҙ. Һеҙ шулай уҡ күҙәтеү исемлегегеҙҙәге бар биттәр өсөн белдереү көйләүен һүндерә алаһығыҙ.
+
+             Белдереү системаһы {{grammar:genitive|{{SITENAME}}}}
+
+--
+
+Күҙәтеү исемлеге көйләүҙәрен үҙгәртергә:
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Кире бәйләнеш һәм ярҙам:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Битте юйырға',
@@ -1283,8 +1416,22 @@ $1",
 'protect-expiring'            => '$1 бөтә (UTC)',
 'protect-cascade'             => 'Был биткә кергән биттәрҙе һаҡларға (каскадлы һаҡлау)',
 'protect-cantedit'            => 'Һеҙ был биттең һаҡлау дәрәжәһен үҙгәртә алмайһығыҙ, сөнки уны үҙгәртеү хоҡуғығыҙ юҡ.',
+'protect-expiry-options'      => '1 сәғәт:1 hour,1 көн:1 day,1 аҙна:1 week,2 аҙна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 йыл:1 year,сикләүһеҙ:infinite',
 'restriction-type'            => 'Хоҡуҡ:',
 'restriction-level'           => 'Ирешеү дәрәжәһе:',
+'minimum-size'                => 'Минимум күләм',
+'maximum-size'                => 'Максимум күләм:',
+'pagesize'                    => '(байт)',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Мөхәррирләү',
+'restriction-move'   => 'Исемен үҙгәртеү',
+'restriction-create' => 'Яһау',
+'restriction-upload' => 'Тейәү',
+
+# Restriction levels
+'restriction-level-sysop'         => 'тулы һаҡлау',
+'restriction-level-autoconfirmed' => 'өлөшләтә һаҡлау',
 
 # Undelete
 'undeletelink'     => 'ҡарарға/тергеҙергә',

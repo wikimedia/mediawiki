@@ -1105,9 +1105,10 @@ Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohl
 pokud nebyla nastavena další omezení.",
 'revdelete-confirm'           => 'Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'revdelete-suppress-text'     => "Utajování by se mělo používat '''pouze''' v následujících případech:
+* Potenciálně pomlouvačné informace
 * Nevhodné osobní údaje
 *: ''adresy bydliště a telefonní čísla, rodná čísla apod.''",
-'revdelete-legend'            => 'Nastavit omezení k revizi:',
+'revdelete-legend'            => 'Nastavit omezení k revizi',
 'revdelete-hide-text'         => 'Skrýt text revize',
 'revdelete-hide-image'        => 'Skrýt obsah souboru',
 'revdelete-hide-name'         => 'Skrýt událost a cíl',
@@ -1154,7 +1155,8 @@ Prohlédněte si protokolovací záznamy.',
 'revdelete-only-restricted'   => 'Chyba skrývání položky z $2 $1: Nemůžete položky pouze skrýt před správci, aniž byste současně vybrali i některou z dalších možností utajení.',
 'revdelete-reason-dropdown'   => '*Obvyklé důvody smazání
 ** Porušení autorských práv
-** Nevhodné osobní údaje',
+** Nevhodné osobní údaje
+** Potenciálně pomlouvačné údaje',
 'revdelete-otherreason'       => 'Jiný/další důvod:',
 'revdelete-reasonotherlist'   => 'Jiný důvod',
 'revdelete-edit-reasonlist'   => 'Editovat důvody smazání',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Niklas Laxström
+ * @author Pikne
  * @author Sulev Iva (Võrok)
  * @author Võrok
  */

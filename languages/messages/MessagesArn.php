@@ -528,7 +528,7 @@ $messages = array(
 
 # Multipage image navigation
 'imgmultigo'   => 'Amun!',
-'imgmultigoto' => 'Amun pakina 1$ mew',
+'imgmultigoto' => 'Amun pakina $1 mew',
 
 # Table pager
 'table_pager_limit_submit' => 'Amun',

@@ -248,12 +248,13 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'templatesused' => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut',
 
 # History pages
-'currentrev'   => 'Maanna taamaannera',
-'revisionasof' => 'Taamaannera $1-meersoq',
-'cur'          => 'maanna',
-'last'         => 'siulia',
-'histfirst'    => 'Pisoqaaneq',
-'histlast'     => 'Nutaaneq',
+'currentrev'      => 'Maanna taamaannera',
+'currentrev-asof' => 'Maanna taamaannera $1-meersoq',
+'revisionasof'    => 'Taamaannera $1-meersoq',
+'cur'             => 'maanna',
+'last'            => 'siulia',
+'histfirst'       => 'Pisoqaaneq',
+'histlast'        => 'Nutaaneq',
 
 # Diffs
 'history-title' => '"$1"-p oqaluttuassartaa',
@@ -262,9 +263,14 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 # Search results
 'searchresults'             => 'Ujaasinermi inernerit',
 'searchresults-title'       => 'Uuma ujarnera "$1"',
+'viewprevnext'              => 'Takuuk ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'         => "'''Qupperneqarpoq \"[[:\$1]]\" -mik atilimmik maani wikimi'''",
 'searchmenu-new'            => "'''Qupperneq [[:$1]] pilersiguk maani wikimi'''",
 'searchhelp-url'            => 'Help:Ikiuutit',
+'searchprofile-articles'    => 'Imarisai',
+'searchprofile-project'     => 'Ikiuutit suliniutillu imaat',
+'searchprofile-everything'  => 'Tamarmik',
+'searchprofile-advanced'    => 'Ujaasiffik anneq',
 'search-result-size'        => '$1 ({{PLURAL:$2|oqaaseq|$2 oqaatsit}})',
 'search-redirect'           => '(nuunneq $1)',
 'search-suggest'            => 'Una piviuk: $1',
@@ -365,10 +371,15 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'actioncomplete' => 'Naammassineqareersimavoq',
 'deletedarticle' => 'peerpaa "[[$1]]"',
 
+# Rollback
+'revertpage' => 'Inisseqqiineq [[User:$1|$1]]-meersoq, peerneqarpoq [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])-meersoq',
+
 # Protect
-'prot_1movedto2' => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
+'prot_1movedto2'         => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
+'protect-expiry-options' => '1 tiimi:1 hour,ulloq 1:1 day,sap akunn 1:1 week,sap akunn 2:2 weeks,qaammat 1:1 month,qaammatit 3:3 months,qaammatit 6:6 months,ukioq 1:1 year,killeqanngitsoq:infinite',
 
 # Undelete
+'undeletebtn'      => 'Inisseqqiguk',
 'undeletedarticle' => 'inisseqqippaa "[[$1]]"',
 
 # Namespace form on various pages
@@ -390,9 +401,13 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 # Block/unblock
 'blockip'        => 'Atuisoq asseruk',
 'blockip-legend' => 'Atuisoq asseruk',
+'ipboptions'     => '2 tiimit:2 hours,ulloq 1:1 day,ullut 3:3 days,sap akunn 1:1 week,sap akunn 2:2 weeks,qaammat 1:1 month,qaammatit 3:3 months,qaammatit 6:6 months,ukioq 1:1 year,killeqanngitsoq:infinite',
 'blocklistline'  => '$1, $2 asserpaa $3 ($4)',
+'infiniteblock'  => 'killeqanngitsoq',
+'expiringblock'  => 'atorunnaassaaq $1 $2-nngoruni',
 'blocklink'      => 'assersoruk',
 'contribslink'   => 'tapikkat',
+'blocklogentry'  => 'asserpaa [[$1]] $2-mik sivissusilimmik $3',
 
 # Move page
 'movearticle'     => 'Qupperneq nuuguk',
@@ -439,6 +454,10 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 
 # Patrol log
 'patrol-log-line' => 'nalunaaqqutserpaa $1 $2 misissorneqarsimasutut $3',
+
+# Browsing diffs
+'previousdiff' => '← Assigiinngissut siulia',
+'nextdiff'     => 'Assigiinngissut tullia →',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tamarmik',

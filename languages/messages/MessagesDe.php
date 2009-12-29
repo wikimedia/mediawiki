@@ -10,6 +10,7 @@
  * @author Als-Holder
  * @author ChrisiPK
  * @author Church of emacs
+ * @author DaSch
  * @author Duesentrieb
  * @author Imre
  * @author Jan Luca
@@ -1930,7 +1931,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'shortpages'              => 'Kurze Seiten',
 'longpages'               => 'Lange Seiten',
 'deadendpages'            => 'Sackgassenseiten',
-'deadendpagestext'        => 'Aus den folgenden Seiten wird nicht aus {{SITENAME}} verwiesen.',
+'deadendpagestext'        => 'Die folgenden Seiten verweisen nicht auf anderen Seiten von {{SITENAME}}.',
 'protectedpages'          => 'Geschützte Seiten',
 'protectedpages-indef'    => 'Nur unbeschränkt geschützte Seiten zeigen',
 'protectedpages-cascade'  => 'Nur Seiten mit Kaskadenschutz',
@@ -2452,7 +2453,7 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'block-log-flags-hiddenname'      => 'Benutzername versteckt',
 'range_block_disabled'            => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'              => 'Die eingegebene Dauer ist ungültig.',
-'ipb_expiry_temp'                 => 'Versteckte Benutzernamens-Sperren sollen permanent sein.',
+'ipb_expiry_temp'                 => 'Benutzernamens-Sperren mit der Verstecken-Option müssen permanent sein.',
 'ipb_hide_invalid'                => 'Dieses Konto kann nicht unterdrückt werden, da es zu viele Bearbeitungen aufweist.',
 'ipb_already_blocked'             => '„$1“ wurde bereits gesperrt.',
 'ipb-needreblock'                 => '== Sperre vorhanden ==

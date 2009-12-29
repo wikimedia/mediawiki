@@ -604,7 +604,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'nologin'                    => "No teniu un compte? '''$1'''.",
 'nologinlink'                => 'Crea un compte',
 'createaccount'              => 'Crea un compte',
-'gotaccount'                 => "Ja teniu un compte? '''$1'''.",
+'gotaccount'                 => 'Ja teniu un compte? $1.',
 'gotaccountlink'             => 'Inicia una sessió',
 'createaccountmail'          => 'per correu electrònic',
 'badretype'                  => 'Les contrasenyes que heu introduït no coincideixen.',

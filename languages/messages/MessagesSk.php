@@ -2121,7 +2121,7 @@ Návrhy a ďalšia pomoc:
 'exblank'                => 'stránka bola prázdna',
 'delete-confirm'         => 'Zmazať „$1“',
 'delete-legend'          => 'Zmazať',
-'historywarning'         => "'''Upozornenie:''' Stránka, ktorú sa chystáte zmazať má históriu obsahujúcu $1 {{PLURAL:$1|revíziu|revízie|revízií}}:",
+'historywarning'         => "'''Upozornenie:''' Stránka, ktorú sa chystáte zmazať má históriu obsahujúcu približne $1 {{PLURAL:$1|revíziu|revízie|revízií}}:",
 'confirmdeletetext'      => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
 'actioncomplete'         => 'Úloha bola dokončená',
 'actionfailed'           => 'Operácia sa nepodarila',

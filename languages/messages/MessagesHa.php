@@ -60,8 +60,11 @@ $messages = array(
 'dec'       => 'Dic',
 
 # Categories related messages
-'pagecategories'    => '{{PLURAL:$1|Rukuni|Rukunoni}}',
-'hidden-categories' => '{{PLURAL:$1|Ɓoyayyen rukuni|Ɓoyayyun rukunoni}}',
+'pagecategories'         => '{{PLURAL:$1|Rukuni|Rukunoni}}',
+'category_header'        => 'Shafuna na cikin rukunin "$1"',
+'hidden-categories'      => '{{PLURAL:$1|Ɓoyayyen rukuni|Ɓoyayyun rukunoni}}',
+'category-subcat-count'  => '{{PLURAL:$2|Wannan rukuni ya ƙumshi wannan ƙaramin rukuni kawai.|Wannan rukuni ya ƙumshi {{PLURAL:$1|wannan ƙaramin rukuni|$1 wanɗannan ƙananan rukunoni}}, daga cikin jimlar $2.}}',
+'listingcontinuesabbrev' => 'ci-gaba',
 
 'newwindow'  => '(buɗa cikin sabuwar taga)',
 'cancel'     => 'Soke',
@@ -79,6 +82,7 @@ $messages = array(
 'edit'             => 'Gyarawa',
 'create'           => 'Ƙirƙira',
 'protect_change'   => 'sauyawa',
+'newpage'          => 'Sabon shafi',
 'talkpagelinktext' => 'Hira',
 'personaltools'    => 'Zaɓaɓɓin kayan aiki',
 'talk'             => 'Mahawara',
@@ -120,9 +124,12 @@ $messages = array(
 'red-link-title'  => '$1 (babu wannan shafi)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'    => 'Shafi',
-'nstab-special' => 'Shafi na musamman',
-'nstab-image'   => 'Fayil',
+'nstab-main'     => 'Shafi',
+'nstab-user'     => "Shafin ma'aikaci",
+'nstab-special'  => 'Shafi na musamman',
+'nstab-project'  => 'Shafin shiri',
+'nstab-image'    => 'Fayil',
+'nstab-category' => 'Rukuni',
 
 # General errors
 'missing-article' => 'Taskar bayannai ba ta samo matanin wani shafin da ya kamata ta samo ba, mai suna "$1" $2.
@@ -165,6 +172,8 @@ Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare 
 'savearticle'        => 'Adana shafi',
 'showpreview'        => 'Sufar rigya-gani',
 'showdiff'           => 'Nuna sauye-sauye',
+'anoneditwarning'    => "'''Hattara:''' Ba ku yi login ba.
+Za a rubuta adireshinku na IP a cikin tarihin sauye-sauyen wannan shafi.",
 'noarticletext'      => 'A halin yanzu babu matani a kan wannan shafi.
 Kuna iya [[Special:Search/{{PAGENAME}}|nemo kan wannan shafi]] cikin wasu shafuna,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bincika rajistan ayyukan],
@@ -175,6 +184,7 @@ Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga haj
 'template-protected' => '(mai kariya)',
 
 # History pages
+'currentrev-asof'  => 'Zubin ƙarshe ga $1',
 'revisionasof'     => 'Zubi na $1',
 'previousrevision' => '← Tsohon zubi',
 'cur'              => 'na yanzu',
@@ -190,9 +200,10 @@ Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga haj
 'revertmerge' => 'Ware',
 
 # Diffs
-'difference' => '(Bambanci tsakanin zubi da zubi)',
-'lineno'     => 'Layi $1:',
-'editundo'   => 'Janyewa',
+'difference'              => '(Bambanci tsakanin zubi da zubi)',
+'lineno'                  => 'Layi $1:',
+'compareselectedversions' => 'Kwatanta zaɓaɓɓun zubi',
+'editundo'                => 'Janyewa',
 
 # Search results
 'searchresults'             => 'Sakamakon bincike',
@@ -208,6 +219,7 @@ Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga haj
 'search-redirect'           => '(turawa daga $1)',
 'search-section'            => '(sashe $1)',
 'search-suggest'            => 'Kuna nufin: $1',
+'search-interwiki-caption'  => 'Shire-shire masu dangantaka',
 'search-interwiki-default'  => 'Sakamakon $1:',
 'search-interwiki-more'     => '(ƙari)',
 'search-mwsuggest-enabled'  => 'Tare da shawarwari',
@@ -229,20 +241,32 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'grouppage-sysop' => '{{ns:project}}:Masu hukunci',
 
 # Recent changes
-'recentchanges'      => 'Sauye-sauyen baya-bayan nan',
-'rcshowhidebots'     => 'Rabuwat $1',
-'diff'               => 'bamban',
-'hist'               => 'Tarihi',
-'hide'               => 'Ɓoye',
-'show'               => 'Nuna',
-'minoreditletter'    => 'm',
-'newpageletter'      => 'N',
-'rc-enhanced-expand' => 'Nuna ƙananan bayannai (ana buƙatar JavaScript)',
-'rc-enhanced-hide'   => 'Ɓoye ƙananan bayannai',
+'recentchanges'                  => 'Sauye-sauyen baya-bayan nan',
+'recentchanges-legend'           => 'Zaɓi na sauye-sauyen baya-bayan nan',
+'recentchanges-feed-description' => 'Bi sawun sauye-sauyen ƙarshe na wikin da ke cikin wannan kwarare',
+'rclistfrom'                     => 'Nuna sabbin sauye-sauye tun daga $1',
+'rcshowhideminor'                => '$1 ƙananen sauye-sauye',
+'rcshowhidebots'                 => 'Rabuwat $1',
+'rcshowhideliu'                  => "$1 Ma'aikata logaggi",
+'rcshowhideanons'                => "$1 ma'aikata da ɓoyayye suna",
+'rcshowhidemine'                 => '$1 sauye-sauyena',
+'rclinks'                        => 'Nuna sauye-sauye $1 na ƙarshe a cikin kwanaki $2 na baya<br />$3',
+'diff'                           => 'bamban',
+'hist'                           => 'Tarihi',
+'hide'                           => 'Ɓoye',
+'show'                           => 'Nuna',
+'minoreditletter'                => 'm',
+'newpageletter'                  => 'N',
+'boteditletter'                  => 'b',
+'rc-enhanced-expand'             => 'Nuna ƙananan bayannai (ana buƙatar JavaScript)',
+'rc-enhanced-hide'               => 'Ɓoye ƙananan bayannai',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Sauye-sauye masu dangantaka',
+'recentchangeslinked-title'   => 'Bin sawun shafuna masu dangantaka da "$1"',
 'recentchangeslinked-summary' => "Wannan jerin sauye-sauye ne da aka yi kan shafuna masu zare. Shafunan da ke cikin [[Special:Watchlist|jerin kan idonku]] an haɓaka su da '''gwaɓi'''",
+'recentchangeslinked-page'    => 'Sunan shafi:',
+'recentchangeslinked-to'      => 'Nuna sauye-sauyen shafunan da ke da mahaɗi da wannan shafin',
 
 # Upload
 'upload' => 'Girke fayil',
@@ -263,15 +287,20 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 
 # Miscellaneous special pages
 'nbytes'        => '{{PLURAL:$1|bayit|bayit}} $1',
+'nmembers'      => '{{PLURAL:$1|mamba|mambobi}} $1',
 'move'          => 'Gusarwa',
 'pager-newer-n' => '{{PLURAL:$1|sabo 1|sabbi $1}}',
 'pager-older-n' => '{{PLURAL:$1|tsoho 1|tsoffi $1}}',
+
+# Special:Log
+'log' => 'Rajistoci ayyuka',
 
 # Special:AllPages
 'alphaindexline' => '$1 zuwa $2',
 'allpagessubmit' => 'Mu je',
 
 # Watchlist
+'watchlist'   => 'Jerina na bin sawu',
 'mywatchlist' => 'Jerina na kan ido',
 'watch'       => 'Sa ido',
 'unwatch'     => 'Fit da ido',
@@ -287,18 +316,27 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 # Rollback
 'rollbacklink' => 'banyewa',
 
+# Protect
+'protectlogpage' => 'Rajistan ayyukan kariya',
+
 # Undelete
 'undeletelink' => 'duba/maido da',
 
 # Namespace form on various pages
 'namespace'      => 'Sararin suna:',
+'invert'         => 'Jirkita kamu',
 'blanknamespace' => '(Babba)',
 
 # Contributions
-'mycontris' => 'Gudummawata',
+'contributions' => "Gudummuwar ma'aikaci",
+'mycontris'     => 'Gudummawata',
+'month'         => 'Tun daga wata (da gabansa):',
+'year'          => 'Tun daga shekara (da gabanta):',
 
 # What links here
-'whatlinkshere' => 'Zaruruwan wannan shafi',
+'whatlinkshere'            => 'Zaruruwan wannan shafi',
+'whatlinkshere-page'       => 'Shafi:',
+'whatlinkshere-hideredirs' => '$1 turawa',
 
 # Block/unblock
 'blocklink'        => 'Hanawa',
@@ -316,58 +354,66 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'thumbnail-more' => 'Faɗaɗa',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'            => 'Shafinku na marhabin',
-'tooltip-pt-mytalk'              => 'Shafinku na mahawara',
-'tooltip-pt-preferences'         => 'Saituttukanku',
-'tooltip-pt-watchlist'           => 'Jerin shafunan da kuka sa wa ido',
-'tooltip-pt-mycontris'           => 'Jerin gudummawarku',
-'tooltip-pt-login'               => 'Ana shawarar ku shiga akwantinku, amma ba dole ba ne',
-'tooltip-pt-logout'              => "Logi'auti",
-'tooltip-ca-talk'                => 'Mahawara kan shafin bayannai',
-'tooltip-ca-edit'                => 'Ana iya gyara wannan shafi
+'tooltip-pt-userpage'             => 'Shafinku na marhabin',
+'tooltip-pt-mytalk'               => 'Shafinku na mahawara',
+'tooltip-pt-preferences'          => 'Saituttukanku',
+'tooltip-pt-watchlist'            => 'Jerin shafunan da kuka sa wa ido',
+'tooltip-pt-mycontris'            => 'Jerin gudummawarku',
+'tooltip-pt-login'                => 'Ana shawarar ku shiga akwantinku, amma ba dole ba ne',
+'tooltip-pt-logout'               => "Logi'auti",
+'tooltip-ca-talk'                 => 'Mahawara kan shafin bayannai',
+'tooltip-ca-edit'                 => 'Ana iya gyara wannan shafi
 A yi amfani da maɓallin tantancewa kafin a adina',
-'tooltip-ca-addsection'          => 'Fara sabon sashe',
-'tooltip-ca-viewsource'          => 'Wannan shafi yana da kariya.
+'tooltip-ca-addsection'           => 'Fara sabon sashe',
+'tooltip-ca-viewsource'           => 'Wannan shafi yana da kariya.
 Kuna iya duba tushensa.',
-'tooltip-ca-history'             => 'Tsoffin sufofin wannan shafi',
-'tooltip-ca-move'                => 'Gusar da wannan shafi',
-'tooltip-ca-watch'               => 'A daɗa wannan shafi cikin jerina na kan ido',
-'tooltip-ca-unwatch'             => 'Ku soke wannan shafi daga jerinku na bin sau',
-'tooltip-search'                 => 'Binciko {{SITENAME}}',
-'tooltip-search-go'              => 'A je ga shafi mai wannan suna idan akwai shi',
-'tooltip-search-fulltext'        => 'Binciki shafuna masu wannan matani',
-'tooltip-n-mainpage'             => 'Duba shafin Marhabin',
-'tooltip-n-mainpage-description' => 'Duba shafin marhabin',
-'tooltip-n-portal'               => 'A game da wannan shiri, abinda za a iya yi, ina za a samu abubuwa',
-'tooltip-n-currentevents'        => 'Nemo bayannai kan yanayin labarun yau',
-'tooltip-n-recentchanges'        => 'Jerin sabin sauye-sauye a wannan Wiki',
-'tooltip-n-randompage'           => 'Nuno wani shafi da ka',
-'tooltip-n-help'                 => 'Nuno taimako',
-'tooltip-t-whatlinkshere'        => 'Jerin duk shafunan Wiki da ke da zare a nan',
-'tooltip-t-recentchangeslinked'  => 'Sauye-sauyen baya-bayan nan a shafuna masu zare daga wannan shafi',
-'tooltip-feed-rss'               => 'Kwararen RSS na wannan shafi',
-'tooltip-feed-atom'              => 'Kwararen Atom na wannan shafi',
-'tooltip-t-upload'               => 'Girke fayiloli',
-'tooltip-t-specialpages'         => 'Jerin duk shafuna na musamman',
-'tooltip-t-print'                => 'Wannan shafi a sufar bugawa',
-'tooltip-t-permalink'            => 'Zaren dindindin zuwa ga zubin baya na wannan shafi',
-'tooltip-ca-nstab-main'          => 'Duba shafin bayannai',
-'tooltip-ca-nstab-special'       => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
-'tooltip-ca-nstab-image'         => 'Duba shafin fayil',
-'tooltip-minoredit'              => 'Alamta wannan a matsayin ƙaramin gyara',
-'tooltip-save'                   => 'Ku adana sauye-sauyenku',
-'tooltip-preview'                => 'Ku tantance sauye-sauyenku, don Allah ku yi amfani da wannan kafin ku adana su:',
-'tooltip-diff'                   => 'Na nuna sauye-sauyen da kuka yi wa matanin',
-'tooltip-watch'                  => 'Ku daɗa wannan shafi cikin jerinku na bin sau',
-'tooltip-rollback'               => '"Banyewa" tana soke sauye-sauyen da mutunen baya ya yi da kiliki guda',
-'tooltip-undo'                   => '"Janyewa" tana soke wannan gyaran ta kuma buɗa fom kin gyara mai rigya gani.
+'tooltip-ca-history'              => 'Tsoffin sufofin wannan shafi',
+'tooltip-ca-move'                 => 'Gusar da wannan shafi',
+'tooltip-ca-watch'                => 'A daɗa wannan shafi cikin jerina na kan ido',
+'tooltip-ca-unwatch'              => 'Ku soke wannan shafi daga jerinku na bin sau',
+'tooltip-search'                  => 'Binciko {{SITENAME}}',
+'tooltip-search-go'               => 'A je ga shafi mai wannan suna idan akwai shi',
+'tooltip-search-fulltext'         => 'Binciki shafuna masu wannan matani',
+'tooltip-n-mainpage'              => 'Duba shafin Marhabin',
+'tooltip-n-mainpage-description'  => 'Duba shafin marhabin',
+'tooltip-n-portal'                => 'A game da wannan shiri, abinda za a iya yi, ina za a samu abubuwa',
+'tooltip-n-currentevents'         => 'Nemo bayannai kan yanayin labarun yau',
+'tooltip-n-recentchanges'         => 'Jerin sabin sauye-sauye a wannan Wiki',
+'tooltip-n-randompage'            => 'Nuno wani shafi da ka',
+'tooltip-n-help'                  => 'Nuno taimako',
+'tooltip-t-whatlinkshere'         => 'Jerin duk shafunan Wiki da ke da zare a nan',
+'tooltip-t-recentchangeslinked'   => 'Sauye-sauyen baya-bayan nan a shafuna masu zare daga wannan shafi',
+'tooltip-feed-rss'                => 'Kwararen RSS na wannan shafi',
+'tooltip-feed-atom'               => 'Kwararen Atom na wannan shafi',
+'tooltip-t-contributions'         => "Duba jerin gudummuwar wannan ma'aikaci",
+'tooltip-t-upload'                => 'Girke fayiloli',
+'tooltip-t-specialpages'          => 'Jerin duk shafuna na musamman',
+'tooltip-t-print'                 => 'Wannan shafi a sufar bugawa',
+'tooltip-t-permalink'             => 'Zaren dindindin zuwa ga zubin baya na wannan shafi',
+'tooltip-ca-nstab-main'           => 'Duba shafin bayannai',
+'tooltip-ca-nstab-user'           => "Duba shafin ma'aikaci",
+'tooltip-ca-nstab-special'        => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
+'tooltip-ca-nstab-project'        => 'Duba shafin shirin',
+'tooltip-ca-nstab-image'          => 'Duba shafin fayil',
+'tooltip-ca-nstab-category'       => 'Duba shafin rukuni',
+'tooltip-minoredit'               => 'Alamta wannan a matsayin ƙaramin gyara',
+'tooltip-save'                    => 'Ku adana sauye-sauyenku',
+'tooltip-preview'                 => 'Ku tantance sauye-sauyenku, don Allah ku yi amfani da wannan kafin ku adana su:',
+'tooltip-diff'                    => 'Na nuna sauye-sauyen da kuka yi wa matanin',
+'tooltip-compareselectedversions' => 'Duba bambanci tsakanin zaɓaɓɓun zubi biyu na wannan shafi',
+'tooltip-watch'                   => 'Ku daɗa wannan shafi cikin jerinku na bin sau',
+'tooltip-rollback'                => '"Banyewa" tana soke sauye-sauyen da mutunen baya ya yi da kiliki guda',
+'tooltip-undo'                    => '"Janyewa" tana soke wannan gyaran ta kuma buɗa fom kin gyara mai rigya gani.
 Tana ba da damar bayyana dalilin soke gyaran.',
 
 # Browsing diffs
 'previousdiff' => 'Sauyin baya',
 
 # Media information
-'file-info-size' => '(pikisal $1 × $2, girman fayil: $3, irin MIME: $4)',
+'file-info-size'       => '(pikisal $1 × $2, girman fayil: $3, irin MIME: $4)',
+'file-nohires'         => '<small>Babu wata babbar saƙa.</small>',
+'show-big-image'       => 'Cikakkar saƙa',
+'show-big-image-thumb' => '<small>Girman wanna rigya-gani: pikisal $1 × $2</small>',
 
 # Bad image list
 'bad_image_list' => 'Fasalin yana kamar haka:
@@ -377,10 +423,24 @@ Zaren farko a kan layi ya kamata ya nuna fayil maras kyau.
 Sauran zaruruwa a kan layin keɓaɓɓu ne, wato zuwa ga shafuna inda fayil kin zai iya kasancewa.',
 
 # Metadata
-'metadata' => 'bayannan meta',
+'metadata'          => 'bayannan meta',
+'metadata-help'     => 'Wannan fayil ya ƙumshi ƙarin bayani daga kyamarar dijita ko sikanan da aka yi amfani da su.
+Idan an sauya fayil kin, to wasu bayannan na ainahi ba za su fito ba sosai a cikin sabon fayil kin.',
+'metadata-expand'   => 'Nuna ƙananan bayannai',
+'metadata-collapse' => 'Ɓoye ƙananan bayannai',
+'metadata-fields'   => 'Gurabun bayannan meta na EXIF da ke jere cikin wannan saƙo, za a saka su ne cikin shafin zayyana majigin, idan aka taƙaita jadawalin bayannan metan.
+ Wasu gurabun za a ɓoye su bisa manufa.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'duka',
+'monthsall'     => 'duka',
 
 # Special:SpecialPages
 'specialpages' => 'Shafuna na musamman',

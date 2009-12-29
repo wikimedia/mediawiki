@@ -878,6 +878,8 @@ Fe fydd gweinyddwyr eraill {{SITENAME}} o hyd yn gallu gweld yr hyn a guddiwyd. 
 'revdelete-hide-user'         => 'Cuddio enw defnyddiwr/IP y golygydd',
 'revdelete-hide-restricted'   => 'Gosod y cyfyngiadau gweld data ar weinyddwyr yn ogystal ag eraill',
 'revdelete-radio-same'        => '(peidier â newid)',
+'revdelete-radio-set'         => 'Cuddier',
+'revdelete-radio-unset'       => 'Na chuddier',
 'revdelete-suppress'          => 'Atal data oddi wrth Weinyddwyr yn ogystal ag eraill',
 'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
 'revdelete-log'               => 'Rheswm dros ddileu:',
@@ -904,7 +906,9 @@ Ni ellir ei guddio.",
 ** Torri hawlfraint
 ** Gwybodaeth bersonol anaddas',
 'revdelete-otherreason'       => 'Rheswm arall:',
-'revdelete-reasonotherlist'   => 'Rheswm arall',
+'revdelete-reasonotherlist'   => 'Rheswm arall
+{{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-edit-reasonlist'   => 'Rhowch reswm dros y dileu',
 'revdelete-offender'          => 'Awdur y golygiad:',
 

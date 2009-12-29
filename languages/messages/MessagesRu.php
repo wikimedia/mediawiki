@@ -1219,7 +1219,7 @@ $1",
 
 # Preferences page
 'preferences'                   => 'Настройки',
-'mypreferences'                 => 'Настройка',
+'mypreferences'                 => 'Настройки',
 'prefs-edits'                   => 'Количество правок:',
 'prefsnologin'                  => 'Вы не представились системе',
 'prefsnologintext'              => 'Вы должны <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} представиться системе]</span>, чтобы изменять настройки участника.',

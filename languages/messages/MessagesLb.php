@@ -2711,6 +2711,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-stripoffsets'                => 'Plaz wou de Fichier vum Bild gespäichert ass',
 'exif-rowsperstrip'                => 'Zuel vun den Zeile pro Strëpp',
 'exif-stripbytecounts'             => 'Byte pro kompriméiert Strëpp',
+'exif-jpeginterchangeformat'       => 'Offset zou JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Gréisst vun de JPEG-Daten a Byten',
 'exif-transferfunction'            => 'Transferfunktioun',
 'exif-whitepoint'                  => 'Manuell mat Miessung',
@@ -2842,6 +2843,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 
 'exif-meteringmode-0'   => 'Onbekannt',
 'exif-meteringmode-1'   => 'Duerchschnëttlech',
+'exif-meteringmode-2'   => 'An der Mëtt zentréiert',
 'exif-meteringmode-3'   => 'Spotmiessung',
 'exif-meteringmode-4'   => 'Méifachspotmiessung',
 'exif-meteringmode-5'   => 'Modell',

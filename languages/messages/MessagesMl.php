@@ -2803,7 +2803,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 # EXIF tags
 'exif-imagewidth'                  => 'വീതി',
 'exif-imagelength'                 => 'ഉയരം',
+'exif-bitspersample'               => 'ഓരോ ഘടകത്തിലുമുള്ള ബിറ്റുകൾ',
 'exif-compression'                 => 'കംപ്രഷന്‍ രീതി',
+'exif-photometricinterpretation'   => 'പിക്സൽ നിർമ്മിതി',
 'exif-orientation'                 => 'വിന്യാസം',
 'exif-samplesperpixel'             => 'ഘടകങ്ങളുടെ എണ്ണം',
 'exif-xresolution'                 => 'തിരശ്ചീന റെസലൂഷന്‍',
@@ -2846,6 +2848,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-sensingmethod'               => 'സം‌വേദന രീതി',
 'exif-filesource'                  => 'പ്രമാണത്തിന്റെ സ്രോതസ്സ്',
 'exif-scenetype'                   => 'ദൃശ്യ തരം',
+'exif-cfapattern'                  => 'സി.എഫ്.എ. ശ്രേണി',
 'exif-exposuremode'                => 'എക്സ്പോഷര്‍ മോഡ്',
 'exif-whitebalance'                => 'വൈറ്റ് ബാലന്‍സ്',
 'exif-digitalzoomratio'            => 'ഡിജിറ്റല്‍ സൂം അനുപാതം',
@@ -3132,6 +3135,7 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'അജ്ഞാതമായ അനുബന്ധ റ്റാഗ് "$1"',
+'duplicate-defaultsort' => '\'\'\'മുന്നറിയിപ്പ്:\'\'\' ക്രമപ്പെടുത്താനുള്ള ചാവിയായ "$2" മുമ്പ് ക്രമപ്പെടുത്താനുള്ള ചാവിയായിരുന്ന "$1" എന്നതിനെ അതിലംഘിക്കുന്നു.',
 
 # Special:Version
 'version'                   => 'പതിപ്പ്',
