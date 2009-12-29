@@ -123,7 +123,9 @@ class RefreshLinks extends Maintenance {
 			}
 		} else {
 			if ( !$end ) {
-				$end = $dbr->selectField( 'page', 'max(page_id)', false );
+				$maxPage = $dbr->selectField( 'page', 'max(page_id)', false );
+				$maxRD = $dbr->selectField( 'redirect', 'max(rd_from)', false );
+				$end = max( $maxPage, $maxRD );
 			}
 			$this->output( "Refreshing redirects table.\n" );
 			$this->output( "Starting from page_id $start of $end.\n" );
@@ -164,16 +166,24 @@ class RefreshLinks extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 	
 		if ( is_null( $wgTitle ) ) {
+			// This page doesn't exist (any more)
+			// Delete any redirect table entry for it
+			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
+				__METHOD__ );
 			return;
 		}
 		$wgArticle = new Article($wgTitle);
 	
 		$rt = $wgArticle->followRedirect();
 	
-		if($rt == false || !is_object($rt))
-			return;
-	
-		$wgArticle->updateRedirectOn($dbw,$rt);
+		if($rt == false || !is_object($rt)) {
+			// $wgTitle is not a redirect
+			// Delete any redirect table entry for it
+			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
+				__METHOD__ );
+		} else {
+			$wgArticle->updateRedirectOn($dbw,$rt);
+		}
 	}
 
 	/**
