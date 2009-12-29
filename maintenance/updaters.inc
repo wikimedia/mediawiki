@@ -15,7 +15,7 @@ require_once 'userDupes.inc';
 require_once( "$IP/includes/Hooks.php" );
 
 /**
- * List of update functions to call for each DB type, in sequence. First item 
+ * List of update functions to call for each DB type, in sequence. First item
  * is function name, rest are parameters to pass.
  */
 $wgUpdates = array(
@@ -29,7 +29,7 @@ $wgUpdates = array(
 		// do_linkscc_update obsolete
 		array( 'add_table', 'hitcounter',                        'patch-hitcounter.sql' ),
 		array( 'add_field', 'recentchanges', 'rc_type',          'patch-rc_type.sql' ),
-		
+
 		// 1.3
 		array( 'add_field', 'user',          'user_real_name',   'patch-user-realname.sql' ),
 		array( 'add_table', 'querycache',                        'patch-querycache.sql' ),
@@ -39,7 +39,7 @@ $wgUpdates = array(
 		array( 'do_old_links_update' ),
 		array( 'fix_ancient_imagelinks' ),
 		array( 'add_field', 'recentchanges', 'rc_ip',            'patch-rc_ip.sql' ),
-		
+
 		// 1.4
 		array( 'do_image_name_unique_update' ),
 		array( 'add_field', 'recentchanges', 'rc_id',            'patch-rc_id.sql' ),
@@ -53,7 +53,7 @@ $wgUpdates = array(
 		array( 'do_watchlist_update' ),
 		array( 'do_user_update' ),
 		// do_copy_newtalk_to_watchlist obsolete
-		
+
 		// 1.5
 		array( 'do_schema_restructuring' ),
 		array( 'add_field', 'logging',       'log_params',       'patch-log_params.sql' ),
@@ -78,7 +78,7 @@ $wgUpdates = array(
 		array( 'add_table', 'transcache',                        'patch-transcache.sql' ),
 		array( 'add_field', 'interwiki',     'iw_trans',         'patch-interwiki-trans.sql' ),
 		array( 'add_table', 'trackbacks',                        'patch-trackbacks.sql' ),
-		
+
 		// 1.6
 		array( 'do_watchlist_null' ),
 		// do_image_index_update obsolete
@@ -95,7 +95,7 @@ $wgUpdates = array(
 		array( 'add_table', 'filearchive',                         'patch-filearchive.sql' ),
 		array( 'add_field', 'ipblocks',        'ipb_anon_only',    'patch-ipb_anon_only.sql' ),
 		array( 'do_rc_indices_update' ),
-		
+
 		// 1.9
 		array( 'add_field', 'user',          'user_newpass_time', 'patch-user_newpass_time.sql' ),
 		array( 'add_table', 'redirect',                           'patch-redirect.sql' ),
@@ -104,7 +104,7 @@ $wgUpdates = array(
 		array( 'do_backlinking_indices_update' ),
 		array( 'add_field', 'recentchanges', 'rc_old_len',        'patch-rc_len.sql' ),
 		array( 'add_field', 'user',          'user_editcount',    'patch-user_editcount.sql' ),
-		
+
 		// 1.10
 		array( 'do_restrictions_update' ),
 		array( 'add_field', 'logging',       'log_id',           'patch-log_id.sql' ),
@@ -117,7 +117,7 @@ $wgUpdates = array(
 		array( 'add_field', 'ipblocks',      'ipb_deleted',      'patch-ipb_deleted.sql' ),
 		array( 'add_field', 'filearchive',   'fa_deleted',       'patch-fa_deleted.sql' ),
 		array( 'add_field', 'archive',       'ar_len',           'patch-ar_len.sql' ),
-		
+
 		// 1.11
 		array( 'add_field', 'ipblocks',      'ipb_block_email',  'patch-ipb_emailban.sql' ),
 		array( 'do_categorylinks_indices_update' ),
@@ -130,7 +130,7 @@ $wgUpdates = array(
 
 		// 1.12
 		array( 'add_table', 'protected_titles',                  'patch-protected_titles.sql' ),
-		
+
 		// 1.13
 		array( 'add_field', 'ipblocks',      'ipb_by_text',      'patch-ipb_by_text.sql' ),
 		array( 'add_table', 'page_props',                        'patch-page_props.sql' ),
@@ -143,7 +143,7 @@ $wgUpdates = array(
 		array( 'check_bin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
 		array( 'maybe_do_profiling_memory_update' ),
 		array( 'do_filearchive_indices_update' ),
-		
+
 		// 1.14
 		array( 'add_field', 'site_stats',    'ss_active_users',  'patch-ss_active_users.sql' ),
 		array( 'do_active_users_init' ),
@@ -423,7 +423,7 @@ function do_watchlist_update() {
 		wfOut( "Adding missing watchlist talk page rows... " );
 		flush();
 
-		$wgDatabase->insertSelect( 'watchlist', 'watchlist', 
+		$wgDatabase->insertSelect( 'watchlist', 'watchlist',
 			array(
 				'wl_user' => 'wl_user',
 				'wl_namespace' => 'wl_namespace | 1',
@@ -438,7 +438,7 @@ function do_watchlist_update() {
 
 function do_copy_newtalk_to_watchlist() {
 	global $wgDatabase;
-	global $wgCommandLineMode;	# this needs to be saved while getID() and getName() are called
+	global $wgCommandLineMode; # this needs to be saved while getID() and getName() are called
 
 	$res = $wgDatabase->safeQuery( 'SELECT user_id, user_ip FROM !',
 		$wgDatabase->tableName( 'user_newtalk' ) );
@@ -452,10 +452,10 @@ function do_copy_newtalk_to_watchlist() {
 			if ($user->isIP($wluser->user_ip)) { # do only if it really looks like an IP number (double checked)
 				$wgDatabase->replace( 'watchlist',
 					array(array('wl_user','wl_namespace', 'wl_title', 'wl_notificationtimestamp' )),
-					  array('wl_user' 			=> 0,
-						'wl_namespace' 			=> NS_USER_TALK,
-						'wl_title' 			=> $wluser->user_ip,
-						'wl_notificationtimestamp' 	=> '19700101000000'
+					array('wl_user' => 0,
+						'wl_namespace' => NS_USER_TALK,
+						'wl_title' => $wluser->user_ip,
+						'wl_notificationtimestamp' => '19700101000000'
 						), 'updaters.inc::do_watchlist_update2'
 					);
 			}
@@ -463,10 +463,10 @@ function do_copy_newtalk_to_watchlist() {
 			$user->setID($wluser->user_id);
 			$wgDatabase->replace( 'watchlist',
 				array(array('wl_user','wl_namespace', 'wl_title', 'wl_notificationtimestamp' )),
-				  array('wl_user' 			=> $user->getID(),
-					'wl_namespace' 			=> NS_USER_TALK,
-					'wl_title' 			=> $user->getName(),
-					'wl_notificationtimestamp' 	=> '19700101000000'
+				array('wl_user' => $user->getID(),
+					'wl_namespace' => NS_USER_TALK,
+					'wl_title' => $user->getName(),
+					'wl_notificationtimestamp' => '19700101000000'
 					), 'updaters.inc::do_watchlist_update3'
 				);
 		}
@@ -580,40 +580,40 @@ function do_schema_restructuring() {
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Creating tables.\n" );
 		$wgDatabase->query("CREATE TABLE $page (
-  			page_id int(8) unsigned NOT NULL auto_increment,
-  			page_namespace int NOT NULL,
-  			page_title varchar(255) binary NOT NULL,
-  			page_restrictions tinyblob NOT NULL,
-  			page_counter bigint(20) unsigned NOT NULL default '0',
-  			page_is_redirect tinyint(1) unsigned NOT NULL default '0',
-  			page_is_new tinyint(1) unsigned NOT NULL default '0',
-  			page_random real unsigned NOT NULL,
-  			page_touched char(14) binary NOT NULL default '',
-  			page_latest int(8) unsigned NOT NULL,
-  			page_len int(8) unsigned NOT NULL,
+			page_id int(8) unsigned NOT NULL auto_increment,
+			page_namespace int NOT NULL,
+			page_title varchar(255) binary NOT NULL,
+			page_restrictions tinyblob NOT NULL,
+			page_counter bigint(20) unsigned NOT NULL default '0',
+			page_is_redirect tinyint(1) unsigned NOT NULL default '0',
+			page_is_new tinyint(1) unsigned NOT NULL default '0',
+			page_random real unsigned NOT NULL,
+			page_touched char(14) binary NOT NULL default '',
+			page_latest int(8) unsigned NOT NULL,
+			page_len int(8) unsigned NOT NULL,
 
-  			PRIMARY KEY page_id (page_id),
-  			UNIQUE INDEX name_title (page_namespace,page_title),
-  			INDEX (page_random),
-  			INDEX (page_len)
+			PRIMARY KEY page_id (page_id),
+			UNIQUE INDEX name_title (page_namespace,page_title),
+			INDEX (page_random),
+			INDEX (page_len)
 			) ENGINE=InnoDB", $fname );
 		$wgDatabase->query("CREATE TABLE $revision (
-  			rev_id int(8) unsigned NOT NULL auto_increment,
-  			rev_page int(8) unsigned NOT NULL,
-  			rev_comment tinyblob NOT NULL,
-  			rev_user int(5) unsigned NOT NULL default '0',
-  			rev_user_text varchar(255) binary NOT NULL default '',
-  			rev_timestamp char(14) binary NOT NULL default '',
-  			rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
+			rev_id int(8) unsigned NOT NULL auto_increment,
+			rev_page int(8) unsigned NOT NULL,
+			rev_comment tinyblob NOT NULL,
+			rev_user int(5) unsigned NOT NULL default '0',
+			rev_user_text varchar(255) binary NOT NULL default '',
+			rev_timestamp char(14) binary NOT NULL default '',
+			rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
 			rev_deleted tinyint(1) unsigned NOT NULL default '0',
 			rev_len int(8) unsigned,
 			rev_parent_id int(8) unsigned default NULL,
-  			PRIMARY KEY rev_page_id (rev_page, rev_id),
-  			UNIQUE INDEX rev_id (rev_id),
-  			INDEX rev_timestamp (rev_timestamp),
-  			INDEX page_timestamp (rev_page,rev_timestamp),
-  			INDEX user_timestamp (rev_user,rev_timestamp),
-  			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
+			PRIMARY KEY rev_page_id (rev_page, rev_id),
+			UNIQUE INDEX rev_id (rev_id),
+			INDEX rev_timestamp (rev_timestamp),
+			INDEX page_timestamp (rev_page,rev_timestamp),
+			INDEX user_timestamp (rev_user,rev_timestamp),
+			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 			) ENGINE=InnoDB", $fname );
 
 		wfOut( wfTimestamp( TS_DB ) );
@@ -640,26 +640,26 @@ function do_schema_restructuring() {
 			$cur_flags = "''";
 		}
 		$wgDatabase->query( "INSERT INTO $old (old_namespace, old_title, old_text, old_comment, old_user, old_user_text,
-    				old_timestamp, old_minor_edit, old_flags)
-  			SELECT cur_namespace, cur_title, $cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags
-  			FROM $cur", $fname );
+					old_timestamp, old_minor_edit, old_flags)
+			SELECT cur_namespace, cur_title, $cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags
+			FROM $cur", $fname );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Setting up revision table.\n" );
 		$wgDatabase->query( "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text, rev_timestamp,
-    				rev_minor_edit)
+				rev_minor_edit)
 			SELECT old_id, cur_id, old_comment, old_user, old_user_text,
-    				old_timestamp, old_minor_edit
+				old_timestamp, old_minor_edit
 			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title", $fname );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Setting up page table.\n" );
 		$wgDatabase->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_restrictions, page_counter,
-    				page_is_redirect, page_is_new, page_random, page_touched, page_latest, page_len)
-  			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
-    				cur_random, cur_touched, rev_id, LENGTH(cur_text)
-  			FROM $cur,$revision
-  			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", $fname );
+			page_is_redirect, page_is_new, page_random, page_touched, page_latest, page_len)
+			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
+				cur_random, cur_touched, rev_id, LENGTH(cur_text)
+			FROM $cur,$revision
+			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", $fname );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Unlocking tables.\n" );
@@ -989,7 +989,7 @@ function do_rc_indices_update() {
 		'rc_ns_usertext' => 'patch-recentchanges-utindex.sql',
 		'rc_user_text' => 'patch-rc_user_text-index.sql',
 	);
-	
+
 	foreach( $indexes as $index => $patch ) {
 		$info = $wgDatabase->indexInfo( 'recentchanges', $index, __METHOD__ );
 		if( !$info ) {
@@ -1024,7 +1024,7 @@ function do_backlinking_indices_update() {
 	if (!index_has_field('pagelinks', 'pl_namespace', 'pl_from') ||
 		!index_has_field('templatelinks', 'tl_namespace', 'tl_from') ||
 		!index_has_field('imagelinks', 'il_to', 'il_from'))
-	{	
+	{
 		$wgDatabase->sourceFile( archive( 'patch-backlinkindexes.sql' ) );
 		wfOut( "...backlinking indices updated\n" );
 	}
@@ -1034,7 +1034,7 @@ function do_categorylinks_indices_update() {
 	global $wgDatabase;
 	wfOut( "Checking for categorylinks indices...\n" );
 	if (!index_has_field('categorylinks', 'cl_sortkey', 'cl_from'))
-	{	
+	{
 		$wgDatabase->sourceFile( archive( 'patch-categorylinksindex.sql' ) );
 		wfOut( "...categorylinks indices updated\n" );
 	}
@@ -1045,7 +1045,7 @@ function do_filearchive_indices_update() {
 	wfOut( "Checking filearchive indices...\n" );
 	$info = $wgDatabase->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
 	if ( !$info )
-	{	
+	{
 		$wgDatabase->sourceFile( archive( 'patch-filearchive-user-index.sql' ) );
 		wfOut( "...filearchive indices updated\n" );
 	}
@@ -1084,11 +1084,11 @@ function do_active_users_init() {
 	global $wgDatabase;
 	$activeUsers = $wgDatabase->selectField( 'site_stats', 'ss_active_users', false, __METHOD__ );
 	if( $activeUsers == -1 ) {
-		$activeUsers = $wgDatabase->selectField( 'recentchanges', 
+		$activeUsers = $wgDatabase->selectField( 'recentchanges',
 			'COUNT( DISTINCT rc_user_text )',
-			array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ), __METHOD__ 
+			array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ), __METHOD__
 		);
-		$wgDatabase->update( 'site_stats', 
+		$wgDatabase->update( 'site_stats',
 			array( 'ss_active_users' => intval($activeUsers) ),
 			array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
 		);
@@ -1116,7 +1116,7 @@ function do_all_updates( $shared = false, $purge = true ) {
 		do_postgres_updates();
 		return;
 	}
-	
+
 	# Run core updates in sequence...
 	global $wgUpdates;
 	if ( isset( $wgUpdates[$wgDBtype] ) ) {
@@ -1126,7 +1126,7 @@ function do_all_updates( $shared = false, $purge = true ) {
 			flush();
 		}
 	}
-	
+
 	/// @fixme clean up this mess too!
 	global $wgExtNewTables, $wgExtNewFields, $wgExtNewIndexes;
 	# Add missing extension tables
@@ -1153,16 +1153,16 @@ function do_all_updates( $shared = false, $purge = true ) {
 	}
 
 
-	wfOut( "Deleting old default messages (this may take a long time!)..." ); 
+	wfOut( "Deleting old default messages (this may take a long time!)..." );
 	if( !defined( 'MW_NO_SETUP' ) ) {
 		define( 'MW_NO_SETUP', true );
 	}
 	require_once 'deleteDefaultMessages.php';
 	DeleteDefaultMessages::reallyExecute();
 	wfOut( "Done\n" );
-	
+
 	do_stats_init();
-	
+
 	if( $purge ) {
 		purge_cache();
 	}
@@ -1238,7 +1238,7 @@ function do_restrictions_update() {
 			$wgDatabase->update( 'page', array ( 'page_restrictions' => ''), array( 'page_id' => $id ), __METHOD__ );
 
 			}
-			
+
 			foreach( $restrictions as $type => $level ) {
 				$wgDatabase->insert( 'page_restrictions', array ( 'pr_page' => $id,
 											'pr_type' => $type,
@@ -1272,7 +1272,7 @@ function do_populate_parent_id() {
 		return;
 	}
 	require_once( 'populateParentId.inc' );
-	
+
 	global $wgDatabase;
 	populate_rev_parent_id( $wgDatabase );
 }
@@ -1362,10 +1362,10 @@ function do_update_transcache_field() {
  ***********************************************************************/
 
 function pg_describe_table($table) {
-	global	$wgDatabase, $wgDBmwschema;
+	global $wgDatabase, $wgDBmwschema;
 	$q = <<<END
 SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
-	WHERE pg_class.relnamespace = pg_namespace.oid 
+	WHERE pg_class.relnamespace = pg_namespace.oid
 	  AND attrelid=pg_class.oid AND attnum > 0
 	  AND relname=%s AND nspname=%s
 END;
@@ -1377,7 +1377,7 @@ END;
 
 	$cols = array();
 	while ($r = $wgDatabase->fetchRow($res)) {
-		$cols[] = array(	
+		$cols[] = array(
 				"name" => $r[0],
 				"ord" => $r[1],
 			);
@@ -1386,7 +1386,7 @@ END;
 }
 
 function pg_describe_index($idx) {
-	global	$wgDatabase, $wgDBmwschema;
+	global $wgDatabase, $wgDBmwschema;
 
 	// first fetch the key (which is a list of columns ords) and
 	// the table the index applies to (an oid)
@@ -1435,7 +1435,7 @@ END;
 }
 
 function pg_index_exists($table, $index) {
-	global	$wgDatabase, $wgDBmwschema;
+	global $wgDatabase, $wgDBmwschema;
 	$exists = $wgDatabase->selectField("pg_indexes", "indexname",
 			array(	"indexname" => $index,
 				"tablename" => $table,
@@ -1444,7 +1444,7 @@ function pg_index_exists($table, $index) {
 }
 
 function pg_fkey_deltype($fkey) {
-	global	$wgDatabase, $wgDBmwschema;
+	global $wgDatabase, $wgDBmwschema;
 	$q = <<<END
 SELECT confdeltype FROM pg_constraint, pg_namespace
 	WHERE connamespace=pg_namespace.oid
@@ -1460,7 +1460,7 @@ END;
 }
 
 function pg_rule_def($table, $rule) {
-	global	$wgDatabase, $wgDBmwschema;
+	global $wgDatabase, $wgDBmwschema;
 	$q = <<<END
 SELECT definition FROM pg_rules
 	WHERE schemaname = %s
@@ -1596,8 +1596,8 @@ function do_postgres_updates() {
 		array("profiling",     "pf_memory",            "NUMERIC(18,10) NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_deleted",           "SMALLINT NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_log_action",        "TEXT"),
-        array("recentchanges", "rc_log_type",          "TEXT"),
-        array("recentchanges", "rc_logid",             "INTEGER NOT NULL DEFAULT 0"),
+		array("recentchanges", "rc_log_type",          "TEXT"),
+		array("recentchanges", "rc_logid",             "INTEGER NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_new_len",           "INTEGER"),
 		array("recentchanges", "rc_old_len",           "INTEGER"),
 		array("recentchanges", "rc_params",            "TEXT"),
