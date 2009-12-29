@@ -1047,7 +1047,7 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'revdelete-hide-comment'      => 'Ẩn tóm lược sửa đổi',
 'revdelete-hide-user'         => 'Ẩn tên người dùng hay địa chỉ IP của người viết trang',
 'revdelete-hide-restricted'   => 'Ẩn giấu thông tin khỏi các Quản lý lẫn thành viên khác',
-'revdelete-radio-same'        => '(để yên)',
+'revdelete-radio-same'        => '(không đổi)',
 'revdelete-radio-set'         => 'Có',
 'revdelete-radio-unset'       => 'Không',
 'revdelete-suppress'          => 'Che dữ liệu đối với người quản lý cũng như các thành viên khác',
@@ -2087,7 +2087,7 @@ Phản hồi và cần sự hỗ trợ:
 'exblank'                => 'trang trắng',
 'delete-confirm'         => 'Xóa “$1”',
 'delete-legend'          => 'Xóa',
-'historywarning'         => "'''Cảnh báo:''' Trang bạn sắp xóa đã có lịch sử kéo dài $1 phiên bản:",
+'historywarning'         => "'''Cảnh báo:''' Trang bạn sắp xóa đã có lịch sử khoảng $1 {{PLURAL:$1|phiên bản|phiên bản}}:",
 'confirmdeletetext'      => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó.
 Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].',
 'actioncomplete'         => 'Đã thực hiện xong',

@@ -1032,7 +1032,7 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suprimir datos a los administradores así como al resto',
 'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
-'revdelete-log'               => 'Razón para borrado:',
+'revdelete-log'               => 'Razón para el borrado:',
 'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la revisión seleccionada|las revisiones seleccionadas}}',
 'revdelete-logentry'          => 'cambió la visibilidad de revisiones de [[$1]]',
 'logdelete-logentry'          => 'cambió la visibilidad de eventos de [[$1]]',
@@ -1105,7 +1105,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',
-'pagemerge-logentry' => 'fusionado [[$1]] en [[$2]] (revisiones hasta $3)',
+'pagemerge-logentry' => 'fusionó [[$1]] en [[$2]] (revisiones hasta $3)',
 'revertmerge'        => 'Deshacer fusión',
 'mergelogpagetext'   => 'Debajo está una lista de las fusiones más recientes de historial de una página en otra.',
 
@@ -2346,7 +2346,7 @@ Consulte la [[Special:IPBlockList|lista de direcciones IP bloqueadas]] para ver 
 'block-log-flags-noautoblock'     => 'bloqueo automático desactivado',
 'block-log-flags-noemail'         => 'correo electrónico deshabilitado',
 'block-log-flags-nousertalk'      => 'no puede editar su propia página de discusión',
-'block-log-flags-angry-autoblock' => 'activado el autobloqueo avanzado',
+'block-log-flags-angry-autoblock' => 'autobloqueo avanzado habilitado',
 'block-log-flags-hiddenname'      => 'nombre de usuario oculto',
 'range_block_disabled'            => 'La facultad de administrador de crear bloqueos por rangos está deshabilitada.',
 'ipb_expiry_invalid'              => 'El tiempo de caducidad no es válido.',
@@ -2716,7 +2716,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 # Patrol log
 'patrol-log-page'      => 'Registro de revisiones',
 'patrol-log-header'    => 'Este es un registro de revisiones patrulladas.',
-'patrol-log-line'      => 'revisado $1 de $2 $3',
+'patrol-log-line'      => 'revisó la $1 de $2 $3',
 'patrol-log-auto'      => '(automático)',
 'patrol-log-diff'      => 'revisión $1',
 'log-show-hide-patrol' => '$1 registro de patrullaje',
@@ -3300,11 +3300,11 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 Haz click en "Grabar" para grabar tu edición.',
 'ajax-confirm-save'            => 'Grabar',
 'ajax-add-category-summary'    => 'Agregar categoría "$1"',
-'ajax-remove-category-summary' => 'Remover categoría "$1"',
+'ajax-remove-category-summary' => 'Eliminar categoría "$1"',
 'ajax-confirm-actionsummary'   => 'Acción a tomar:',
 'ajax-error-title'             => 'Error',
 'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'No fue posible remover esta categoría.
+'ajax-remove-category-error'   => 'No fue posible eliminar esta categoría.
 Esto usualmente ocurre cuando la categoría ha sido agregada a la página por una plantilla.',
 
 );

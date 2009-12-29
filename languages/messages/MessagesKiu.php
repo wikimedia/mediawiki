@@ -535,6 +535,9 @@ Hata ke werte de qısım $1 çino, ca çino ke tı rastkerdena ho qeyd bıkerê.
 'loginreqpagetext'                 => 'Serba diyaena pelunê binu tı gunê $1 bıbê.',
 'accmailtitle'                     => 'Parola rusniye.',
 'newarticle'                       => '(Newe)',
+'newarticletext'                   => "To jü girê teqna be jü pela ke hona çina. 
+Serba afernaena pele qutiya metnê cêrêni bıgurêne. Serba melumati qaytê [[{{MediaWiki:Helppage}}|pela phoşti]] ke. 
+Eke be ğeletêni ama ita, wa gozaga '''peyser'''i programê ho de bıteqne.",
 'noarticletext'                    => 'Na pele de hona thowa çino.
 Tı şikina zerrê pelunê binu de [[Special:Search/{{PAGENAME}}|seba sernamê na pele cıfeteliyê]], 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cıkotena aide rê cıfeteliyê],
@@ -781,6 +784,7 @@ Gunê $1 {{PLURAL:$1|herfe|herfun}} ra senık bo.',
 'email'                     => 'E-poste',
 'prefs-help-realname'       => 'Namo rastıkên serbesto.
 Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
+'prefs-help-email-required' => 'Adresa emaili lazıma.',
 'prefs-signature'           => 'İmza',
 
 # User rights
@@ -816,6 +820,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'action-createpage'    => 'pelu bıaferne',
 'action-createtalk'    => 'pelunê hurênaişi bıaferne',
 'action-createaccount' => 'na hesabê karberi bıaferne',
+'action-move'          => 'na pele bere',
 'action-movefile'      => 'na dosya bere',
 'action-upload'        => 'na dosya bar ke',
 
@@ -958,6 +963,8 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'mywatchlist'       => 'Lista mına şêrkerdışi',
 'watchlistfor'      => "(serba '''$1''')",
 'addedwatch'        => 'Kerd be lista şêrkerdişi ser',
+'addedwatchtext'    => "Pela \"[[:\$1]]\"i ilawe biye be [[Special:Watchlist|pela şêrkerdişi]].
+Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, u pele [[Special:RecentChanges|lista vurnaisunê peyênu]] de '''qolınd''' asena ke cı ra asan weçiniyo.",
 'removedwatch'      => 'Lista şêrkerdişi ra vet',
 'removedwatchtext'  => 'Na pele "[[:$1]]" [[Special:Watchlist|lista tuya şêrkerdişi]] ra esteriya.',
 'watch'             => 'Şêr ke',
@@ -973,6 +980,8 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 
 # Delete
 'deletepage'            => 'Pele bıestere',
+'confirmdeletetext'     => 'Tı hawo kena ke jü pele be tarixê dae pêro bıne ra bıesterê.
+Eke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url}}|qeydunê esterıtene]] beno, wa gurêy tesdiq ke.',
 'actioncomplete'        => 'Kar bi temam',
 'deletedtext'           => '"<nowiki>$1</nowiki>" esteriya.
 Serba diyaena esterıteyunê peyênu $2 bıvêne.',
@@ -996,6 +1005,8 @@ Serba diyaena esterıteyunê peyênu $2 bıvêne.',
 'protect-text'                => "Tı şikina halê seveknaena pela '''<nowiki>$1</nowiki>'''i ita bıvênê u bıvurnê.",
 'protect-locked-access'       => "Hesabê karberê to vurnaisê sewiya seveknaena rê selahiyetdar niyo.
 Eyarê pela '''$1'''ina vêrdey nêyê:",
+'protect-cascadeon'           => 'Na pele na sate sevekiya, çıke {{PLURAL:$1|na pele de|nê pelu de}} sevekiyaena qedemeine biya feal.
+Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedemeine rê tesirê ho nêbeno.',
 'protect-default'             => 'Destur bıde be karberu pêrune',
 'protect-fallback'            => 'Desturê "$1"i lazımo',
 'protect-level-autoconfirmed' => 'Karberunê newun u qeydnêbiyaoğu kilıt ke',
@@ -1077,6 +1088,17 @@ Serba men- u kilıt-biyaene nıkaêne qaytê [[Special:IPBlockList|lista kilıt-
 'ipb_expiry_invalid'              => 'Xêlê zeman nêvêreno.',
 
 # Move page
+'movepagetext'     => "Ebe gurênaena formê cêrêni namê jü pele vurino, qeydê cıyê verêni pêro tede sonê be namê newey ser. 
+Nameo khan jü pela de cihetiê be namê newey cêna. 
+Tı şikina ita de cihetu otomatikman hetê namê oricinali ser rocane kerê. 
+Eke tı nêwazena otomatikman bıkerê, gunê [[Special:DoubleRedirects|cihetunê çıftu]] ya ki [[Special:BrokenRedirects|cihetunê nêvêrdeyu]] pêroine be ho duz kerê.
+Ho vira meke ke be na vurnaiso ke tı kena, gurênaisê girêu be caunê rastu pêroine ra tı mesula. 
+
+Diqet ke, namê newey de hora ke jü madde esto, vurnaisê namey '''nêbeno''', wa no ke thalo ya ki jü cihetiserberdiso u vurnaisê huyo verên çino. No yeno na mana ke tı şikina namê jü pele peyser bıcêrê, koti ra ke namê ae vuriyo, beno ke to ğelet kerd u zobina ki qarısê pela de bine nêbena.
+
+'''Teme!'''
+No vurnais beno ke serba jü pela populere neticunê nêbiyau biaro meydan;
+kerem ke, verê vurnaişi neticunê biyau bia be çımu ver.",
 'movepagetalktext' => "Na pela hurênaişia ke tedera otomatikmen kırışina be namê newey, hama nê halu ra '''qêri''':
 *Jü pela hurênaişia pırre bınê namê newey de hora esta, ya ki
 *Qutiya bınêne to nêçinıte we.
@@ -1090,6 +1112,8 @@ Nê halu de, tı gunê pele ebe dest berê ya ki ser kerê eke wajiye.",
 'movepage-moved'   => '<big>\'\'\'"$1" berd be pela "$2"\'\'\'</big>',
 'articleexists'    => 'Pelê da ebe nê namey çina, ya ki nameo ke çiniyo we nêvêreno.
 Kerem ke, nameo de bin bıcerrebne.',
+'talkexists'       => "'''Pele be ho ebe mıweffeq kırışiye, hema pela hurênaişi nêşikiye ke bıkırışiyo, çıke bınê na namey de hora jüye esta.
+Kerem ke, zerreki ebe ho dest bere.'''",
 'movedto'          => 'berd be',
 'movetalk'         => 'Pela hurênaişiê alaqedare bere',
 '1movedto2'        => '[[$1]] berd be [[$2]]',

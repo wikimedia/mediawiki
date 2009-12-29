@@ -772,7 +772,7 @@ La rason butà da $3 për ël blocagi a l'é stàita: ''$2''",
 'page_last'              => 'ùltima',
 'histlegend'             => 'Confront antra version diferente: che as selession-a le casele dle version che a veul e peui che a sgnaca ël boton për anandié ël process.<br />
 Legenda: (cor) = diferense con la version corenta,
-(prim) = diferense con la version prima, M = modìfica cita',
+(prim) = diferense con la version prima, c = modìfica cita',
 'history-fieldset-title' => 'Varda la cronologìa',
 'history-show-deleted'   => 'Mach ëscancelà',
 'histfirst'              => 'Prima',
@@ -784,7 +784,7 @@ Legenda: (cor) = diferense con la version corenta,
 'history-feed-title'          => 'Stòria',
 'history-feed-description'    => 'Stòria dla pàgina ansima a sto sit-sì',
 'history-feed-item-nocomment' => '$1 al $2',
-'history-feed-empty'          => "La pàgina che a l'ha ciamà a-i é pa; a podrìa esse staita scancelà da 'nt ël sit, ò pura tramudà a n'àutr nòm.
+'history-feed-empty'          => "La pàgina che a l'ha ciamà a-i é pa; a podrìa esse stàita scancelà da 'nt ël sit, ò pura tramudà a n'àutr nòm.
 
 Che a verìfica con la [[Special:Search|pàgina d'arserca]] se a-i fusso mai dj'àutre pàgine che a podèisso andeje bin.",
 

@@ -2030,7 +2030,7 @@ Feedback e ulterior assistentia:
 'exblank'                => 'pagina esseva vacue',
 'delete-confirm'         => 'Deler "$1"',
 'delete-legend'          => 'Deler',
-'historywarning'         => "'''Attention:''' Le pagina que tu vole deler ha un historia con $1 {{PLURAL:$1|version|versiones}}:",
+'historywarning'         => "'''Attention:''' Le pagina que tu vole deler ha un historia de circa $1 {{PLURAL:$1|version|versiones}}:",
 'confirmdeletetext'      => 'Tu va deler un pagina con tote su historia.
 Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
 'actioncomplete'         => 'Action complete',

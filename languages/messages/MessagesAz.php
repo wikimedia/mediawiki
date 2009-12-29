@@ -76,22 +76,23 @@ $messages = array(
 'tog-editondblclick'          => 'İki kliklə redaktə səhifəsinə keç (JavaScript)',
 'tog-editsection'             => 'Hər bir bölmə üçün [redaktə]-ni mümkün et',
 'tog-editsectiononrightclick' => 'Bölmələrin redaktəsini başlıqların üzərində sağ klik etməklə mümkün et (JavaScript)',
-'tog-showtoc'                 => 'Mündəricat siyahısın göstər (3 başlıqdan artıq olan səhifələrdə)',
+'tog-showtoc'                 => 'Mündəricat siyahısını göstər (3 başlıqdan artıq olan səhifələrdə)',
 'tog-rememberpassword'        => 'Parolu xatırla',
 'tog-editwidth'               => 'Yazma yeri maksimal geniş olsun',
-'tog-watchcreations'          => 'Yaratdığım səhifələri izləmə səhifələrimə əlavə et',
-'tog-watchdefault'            => 'Redaktə etdiyim səhifələri izləmə səhifələrimə əlavə et',
-'tog-watchmoves'              => 'Adlarını dəyişdiyim səhifələri izləmə səhifələrimə əlavə et',
-'tog-watchdeletion'           => 'Sildiyim səhifələri izləmə səhifələrimə əlavə et',
+'tog-watchcreations'          => 'Yaratdığım səhifələri izlədiyim səhifələrə əlavə et',
+'tog-watchdefault'            => 'Redaktə etdiyim səhifələri izlədiyim səhifələrə əlavə et',
+'tog-watchmoves'              => 'Adlarını dəyişdiyim səhifələri izlədiyim səhifələrə əlavə et',
+'tog-watchdeletion'           => 'Sildiyim səhifələri izlədiyim səhifələrə əlavə et',
 'tog-minordefault'            => 'Default olaraq bütün redaktələri kiçik redaktə kimi nişanla',
 'tog-previewontop'            => 'Sınaq göstərişi yazma sahəsindən əvvəl göstər',
 'tog-previewonfirst'          => 'İlkin redaktədə sınaq göstərişi',
 'tog-nocache'                 => 'Səhifəni keşdə (cache) saxlama',
-'tog-enotifwatchlistpages'    => 'Izləmə siyahısında olan məqalə redaktə olunsa, mənə e-məktub göndər',
+'tog-enotifwatchlistpages'    => 'İzləmə siyahısında olan məqalə redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifusertalkpages'     => 'Müzakirə səhifəm redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifminoredits'        => 'Hətta səhifələrdə kiçik dəyişikliklər olsa belə, mənə e-məktub göndər',
 'tog-enotifrevealaddr'        => 'Elektron adresimi xəbərdarliq e-məktublarda göstər',
 'tog-shownumberswatching'     => 'İzləyən istifadəçilərin sayını göstər',
+'tog-oldsig'                  => 'Hazırkı imzanın sınaq göstərişi:',
 'tog-fancysig'                => 'Xam imza (daxili bağlantı yaratmaz)',
 'tog-externaleditor'          => 'Default olaraq xarici redaktə proqramlarından istifadə et (Ekspertlər üçün, kompyuterinizin parametrlərində xüsusi dəyişikliklər tələb olunur)',
 'tog-externaldiff'            => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
@@ -110,6 +111,12 @@ $messages = array(
 'underline-always'  => 'Həmişə',
 'underline-never'   => 'Heç zaman',
 'underline-default' => 'Susmaya görə brouzer',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Redaktə sahəsinin şrift növü:',
+'editfont-default'   => 'Brauzerin tənzimləmələrində təsdiq olunmuş şrift',
+'editfont-sansserif' => 'Sans-serif şrifti',
+'editfont-serif'     => 'Serif şrifti',
 
 # Dates
 'sunday'        => 'Bazar',
@@ -139,15 +146,15 @@ $messages = array(
 'november'      => 'Noyabr',
 'december'      => 'Dekabr',
 'january-gen'   => 'yanvar',
-'february-gen'  => 'Fevral',
-'march-gen'     => 'Mart',
-'april-gen'     => 'Aprel',
-'may-gen'       => 'May',
-'june-gen'      => 'İyun',
-'july-gen'      => 'İyul',
-'august-gen'    => 'Avqust',
-'september-gen' => 'Sentyabr',
-'october-gen'   => 'Oktyabr',
+'february-gen'  => 'fevral',
+'march-gen'     => 'mart',
+'april-gen'     => 'aprel',
+'may-gen'       => 'may',
+'june-gen'      => 'iyun',
+'july-gen'      => 'iyul',
+'august-gen'    => 'avqust',
+'september-gen' => 'sentyabr',
+'october-gen'   => 'oktyabr',
 'november-gen'  => 'noyabr',
 'december-gen'  => 'dekabr',
 'jan'           => 'Yanvar',
@@ -171,12 +178,23 @@ $messages = array(
 'category-empty'                 => "''Bu kateqoriyanın tərkibi hal-hazırda boşdur.''",
 'hidden-categories'              => '{{PLURAL:$1|Gizli kateqoriya|Gizli kateqoriyalar}}',
 'hidden-category-category'       => 'Gizli kateqoriyalar',
+'category-subcat-count'          => '{{PLURAL:$2|Bu kateqoriya yalnız aşağıdakı altkateqoriyadan ibarətdir.|Cəmi $2 kateqoriyadan {{PLURAL:$1|altkateqoriya|$1 altkateqoriya}} göstərilmişdir.}}',
 'category-subcat-count-limited'  => 'Bu kateqoriyada {{PLURAL:$1|$1 alt kateqoriya}} var.',
+'category-article-count'         => '{{PLURAL:$2|Bu kateqoriya yalnız aşağıdakı səhifədən ibarətdir.|Cəmi $2 səhifədən aşağıdakı {{PLURAL:$1|səhifə|$1 səhifə}} bu kateqoriyadadır.}}',
 'category-article-count-limited' => 'Bu kateqoriyada {{PLURAL:$1|$1 səhifə}} var.',
+'category-file-count'            => '{{PLURAL:$2|Bu kateqoriya yalnız aşağıdakı fayldan ibarətdir.|Cəmi $2 fayldan {{PLURAL:$1|fayl|$1 fayl}} bu kateqoriyadadır.}}',
 'category-file-count-limited'    => 'Bu kateqoriyada {{PLURAL:$1|$1 fayl}} var.',
 'listingcontinuesabbrev'         => '(davam)',
+'index-category'                 => 'İndeksləşdirilmiş səhifələr',
+'noindex-category'               => 'İndeksləşdirilməyən səhifələr',
 
-'mainpagetext' => "<big>'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''</big>",
+'mainpagedocfooter' => 'Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [http://meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.
+
+== Faydalı keçidlər ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Tənzimləmələrin siyahısı]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçt siyahısı]',
 
 'about'         => 'İzah',
 'article'       => 'Mündəricat Səhifəsi',
@@ -222,9 +240,13 @@ $messages = array(
 'vector-view-edit'           => 'Redaktə',
 'vector-view-history'        => 'Tarixçə',
 'vector-view-view'           => 'Oxu',
+'vector-view-viewsource'     => 'Mənbəyə bax',
 'actions'                    => 'Hərəkətlər',
 'namespaces'                 => 'Adlar fəzası',
 'variants'                   => 'Variantlar',
+
+# Metadata in edit box
+'metadata_help' => 'Metaməlumatlar:',
 
 'errorpagetitle'    => 'Xəta',
 'returnto'          => '$1 səhifəsinə qayıt.',
@@ -280,6 +302,11 @@ $messages = array(
 'jumpto'            => 'Keçid et:',
 'jumptonavigation'  => 'naviqasiya',
 'jumptosearch'      => 'axtar',
+'view-pool-error'   => 'Üzr istəyirik, hazırda serverlər artıq yüklənməyə məruz qalmışdır.
+Bu səhifəyə baxmaq üçün həddən artıq müraciət daxil olmuşdur.
+Zəhmət olmasa, bir müddət sonra yenidən cəhd edin.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} haqqında',
@@ -301,7 +328,13 @@ $messages = array(
 'privacy'              => 'Gizlilik prinsipi',
 'privacypage'          => 'Project:Gizlilik prinsipi',
 
-'versionrequired' => 'MediyaViki $1 versiyası lazımdır',
+'badaccess'        => 'İcazə xətası',
+'badaccess-group0' => 'Bu fəaliyyəti icra etmək səlahiyyətiniz yoxdur.',
+'badaccess-groups' => ' Bu fəaliyyəti, yalnız $1 {{PLURAL:$2|qrupundakı|qruplarındakı}} istifadəçilər icra edə bilərlər.',
+
+'versionrequired'     => 'MediyaViki $1 versiyası lazımdır',
+'versionrequiredtext' => 'Bu səhifəni istifadə etmək üçün MediaWikinin $1 versiyası tələb olunur.
+Bax: [[Special:Version|Versiyalar]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Mənbə — "$1"',
@@ -318,8 +351,10 @@ $messages = array(
 'toc'                     => 'Mündəricat',
 'showtoc'                 => 'göstər',
 'hidetoc'                 => 'gizlə',
-'thisisdeleted'           => '$1-yə bax və ya bərpa et?',
+'thisisdeleted'           => '$1 bax və ya bərpa et?',
 'viewdeleted'             => 'Göstər $1?',
+'restorelink'             => '{{PLURAL:$1|bir silinmiş redaktəyə|$1 silinmiş redaktəyə}}',
+'feed-unavailable'        => 'Sindikasiya xətləri etibarsızdır',
 'site-rss-feed'           => '$1 — RSS-lent',
 'site-atom-feed'          => '$1 — Atom-lent',
 'page-rss-feed'           => '"$1" — RSS-lent',
@@ -339,22 +374,35 @@ $messages = array(
 'nstab-category'  => 'Kateqoriya',
 
 # Main script and global functions
+'nosuchaction'      => 'Bu cür fəaliyyət mövcud deyil.',
+'nosuchactiontext'  => 'URL-də göstərilən əməliyyat düzgün deyil.
+Ola bilsin ki, URL-i səhv daxil etmisiniz və ya düzgün olmayan keçiddən istifadə etmisiniz.
+Bu həmçinin, {{SITENAME}} saytındakı xətanın göstəricisi ola bilər.',
 'nosuchspecialpage' => 'Bu adda xüsusi səhifə mövcud deyil',
+'nospecialpagetext' => '<strong>Axtardığınız xüsusi səhifə mövcud deyil.</strong>
+
+Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhifələr]].',
 
 # General errors
 'error'                => 'Xəta',
 'databaseerror'        => 'Verilənlər bazası xətası',
+'laggedslavemode'      => "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
 'readonly'             => 'Verilənlər bazası kilidli',
 'enterlockreason'      => 'Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin',
 'missingarticle-rev'   => '(təftiş#: $1)',
 'missingarticle-diff'  => '(fərq: $1, $2)',
+'readonly_lag'         => 'Məlumatlar bazasının ikinci dərəcəli serveri əsas serverlə əlaqə yaradanadək məlumatlar bazası avtomatik olaraq bloklanmışdır',
 'internalerror'        => 'Daxili xəta',
 'internalerror_info'   => 'Daxili xəta: $1',
+'filecopyerror'        => '"$1" faylı "$2" faylına kopiyalanmır.',
 'filerenameerror'      => '«$1» faylının adını «$2» dəyişmək mümkün deyil',
 'filedeleteerror'      => '"$1" fayılını silə bilmədi.',
 'directorycreateerror' => '"$1" direktoriyasını yaratmaq mümkün deyil',
 'filenotfound'         => '"$1" faylını tapa bilmədi.',
+'fileexistserror'      => '"$1" faylına yazmaq mümkün deyil: fayl artıq mövcuddur.',
+'unexpected'           => 'Uyğunsuzluq: "$1"="$2".',
 'formerror'            => 'Xəta: Formanın məlumatlarını əks etdirmək qeydi-mümkündür',
+'badarticleerror'      => 'Yerinə yetirmək istədiyiniz fəaliyyətin icrası bu səhifədə mümkün deyil.',
 'cannotdelete'         => 'İstədiyiniz "$1" səhifə və ya faylını silmək mümkün deyil. 
 Bu səhifə və ya fayl başqa bir istifadəçi tərəfindən silinmiş ola bilər.',
 'badtitle'             => 'Yanlış başlıq',
@@ -432,14 +480,22 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'accountcreated'             => 'Hesab yaradıldı',
 'accountcreatedtext'         => '$1 üçün istifadəçi hesabı yaradıldı.',
 'createaccount-title'        => '{{SITENAME}} hesabın yaradılması',
+'usernamehasherror'          => 'İstifadəçi adında "diyez" simvolunun istifadəsi mümkün deyil',
+'login-throttled'            => 'Sistemə daxil olmaq üçün həddən artıq cəhd etmisiniz.
+Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 
 # Password reset dialog
 'resetpass'                 => 'Parolu dəyiş',
 'resetpass_text'            => '<!-- Şərhinizi bura daxil edin -->',
+'resetpass_header'          => 'İstifadəçi parolunu dəyiş',
 'oldpassword'               => 'Köhnə parol:',
 'newpassword'               => 'Yeni parol:',
 'retypenew'                 => 'Yeni parolu təkrar yazın:',
+'resetpass_submit'          => 'Parol yaradın və sistemə daxil olun',
+'resetpass_success'         => 'Parolunuz dəyişdirldi! Hazırda sistemə daxil olursunuz...',
+'resetpass_forbidden'       => 'Parolu dəyişmək mümkün deyil',
+'resetpass-no-info'         => 'Bu səhifəni birbaşa açmaq üçün sistemə daxil olmalısınız.',
 'resetpass-submit-loggedin' => 'Parolu dəyiş',
 'resetpass-temp-password'   => 'Müvəqqəti parol:',
 
@@ -596,7 +652,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-log'               => 'Silinmə səbəbi:',
 'revdelete-submit'            => 'Seçilmiş {{PLURAL:$1|versiyaya|versiyayalara}} tətbiq et',
 'revdelete-logentry'          => '[[$1]] səhifəsinin versiyasının görünüşünü dəyişdirdi',
-'revdelete-success'           => 'Versiyanın görünüşü dəyişdirildi',
+'revdelete-success'           => "'''Versiyanın görünüşü yeniləndi.'''",
 'revdel-restore'              => 'Görünüşü dəyiş',
 'pagehist'                    => 'Səhifənin tarixçəsi',
 'deletedhist'                 => 'Silmə qeydləri',
@@ -746,7 +802,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'editinguser'              => "Redaktə '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'İstifadəçi qruplarını redaktə et',
 'saveusergroups'           => 'İstifadəçi qrupunu qeyd et',
-'userrights-reason'        => 'Dəyişmə səbəbi:',
+'userrights-reason'        => 'Səbəb:',
 
 # Groups
 'group'               => 'Qrup:',
@@ -1107,7 +1163,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'exbeforeblank'          => "Silinmədən əvvəlki məzmun: '$1'",
 'exblank'                => 'səhifə boş',
 'delete-confirm'         => 'Silinən səhifə: "$1"',
-'historywarning'         => 'Xəbərdarlıq: Silinəcək səhifənin tarixçəsində qeyd olunmuş $1 {{PLURAL:$1|redaktə|redaktə}} var:',
+'historywarning'         => "'''Xəbərdarlıq:''' Silinəcək səhifənin tarixçəsində qeyd olunmuş $1 {{PLURAL:$1|redaktə|redaktə}} var:",
 'confirmdeletetext'      => 'Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunun [[{{MediaWiki:Policy-url}}|rəsmi qaydalarla]] üzləşdiyini və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.',
 'actioncomplete'         => 'Fəaliyyət tamamlandı',
 'deletedarticle'         => '"[[$1]]" silindi',
@@ -1444,6 +1500,7 @@ Sətirdəki ilk keçid əlavə olunması qadağan olunmuş şəkilə keçid olma
 Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şəklin əlavə oluna biləcəyi məqalələr. Məsələn, fayl məqalədə sətrin içində görünə bilər.',
 
 # Metadata
+'metadata'        => 'Metaməlumatlar',
 'metadata-expand' => 'Ətraflı məlumatları göstər',
 
 # EXIF tags
