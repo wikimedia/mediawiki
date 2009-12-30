@@ -302,7 +302,7 @@ class IPUnblockForm {
 
 		// Check for other blocks, i.e. global/tor blocks
 		$otherBlockLink = array();
-		wfRunHooks( 'getOtherBlockLogLink', array( &$otherBlockLink, $this->ip ) );
+		wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockLink, $this->ip ) );
 
 		// Show additional header for the local block only when other blocks exists.
 		// Not necessary in a standard installation without such extensions enabled
