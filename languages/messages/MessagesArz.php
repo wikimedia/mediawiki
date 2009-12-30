@@ -890,6 +890,9 @@ $2',
 انتا ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه دى]] فى صفحات تانيه,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات اللى ليها علاقه],
 او [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعدل الصفحه دى]</span>.',
+'noarticletext-nopermission'       => 'مفيش اى نص دلوقتى فى الصفحه دى.
+ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه دى]] فى الصفحات التانيه,
+او <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات بتاعتها]</span>.',
 'userpage-userdoesnotexist'        => 'حساب اليوزر "$1" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
 'userpage-userdoesnotexist-view'   => 'حساب اليوزر "$1" مش متسجل',
 'clearyourcache'                   => "'''ملاحظة - بعد التسييف,  يمكن لازم تفرغ كاش متصفحك علشان تشوف التغييرات.''' '''موزيللا / فايرفوكس / سافارى:''' دوس على ''Shift'' فى نفس الوقت دوس على ''Reload,'' أو دوس على اما ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''دوس على ''Reload'' أو دوس على ''F5;'' '''أوبرا:''' فرغ الكاش فى ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' دوس على ''Ctrl'' فى نفس الوقت دوس على ''Refresh,'' أو دوس على ''Ctrl-F5.''",
@@ -1041,15 +1044,28 @@ $2',
 'rev-deleted-comment'         => '(التعليق اتشال)',
 'rev-deleted-user'            => '(اسم اليوزر اتشال)',
 'rev-deleted-event'           => '(السجل إتشال)',
+'rev-deleted-user-contribs'   => '[اسم اليوزر أو الآى بى اتشال - التعديل مخفى من المساهمات]',
 'rev-deleted-text-permission' => 'مراجعة الصفحه دى إتمسحت من الأرشيفات العامه.
 ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
 'rev-deleted-text-unhide'     => "مراجعة الصفحه دى '''اتمسحت'''. ممكن تلاقى تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].
 لو كنت انت ادارى ممكن[$1 تشوف المراجعه دى] لو كنت عايز تكمل..",
+'rev-suppressed-text-unhide'  => "نسخه الصفحه دى '''اتخبت'''.
+ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل التخبيه].
+كسيسوب إنت ممكن [$1 تشوف النسخه دى] لو إنت عايز تتابع.",
 'rev-deleted-text-view'       => 'التعديل ده اتمسح من الأرشيف العام. ممكن تشوف التعديل ده علشان إنت إدارى فى {{SITENAME}} .
 ممكن يكون فيه تفاصيل بخصوص ده فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
+'rev-suppressed-text-view'    => "نسخه الصفحه دى '''اتخبت'''.
+كسيسوب ممكن تشوفها؛ ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل التخبيه].",
 'rev-deleted-no-diff'         => "انت ماينفعش تشوف الفرق دا علشان واحده من المراجعات '''اتمسحت'''. ممكن يكون فيه تفاصيل فى[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].",
 'rev-deleted-unhide-diff'     => "واحده من مراجعات الفرق ده  '''اتمسحت'''. ممكن تلاقى تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الكبت].
 انتا لو ادارى ممكن [$1 تشوف الفرق دا] لو كانت عايز تستمر",
+'rev-suppressed-unhide-diff'  => "واحده من نسخ الفرق ده '''اتخبت'''.
+ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل التخبيه].
+كسيسوب ممكن [$1 تشوف الفرق ده] لو إنت عايز تكمل.",
+'rev-deleted-diff-view'       => "واحده من نسخ الفرق ده '''اتمسحت'''.
+كسيسوب ممكن تشوف الفرق ده؛ ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-suppressed-diff-view'    => "واحده من نسخ الفرق ده '''اتخبت'''.
+كسيسوب ممكن تشوف الفرق ده؛ ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل التخبيه].",
 'rev-delundel'                => 'عرض/إخفاء',
 'rev-showdeleted'             => 'اعرض',
 'revisiondelete'              => 'امسح/الغى المسح بتاع المراجعات',
@@ -1115,6 +1131,10 @@ $1",
 'revdelete-concurrent-change' => 'حصل غلط فى تعديل البند اللى بتاريخ $2,الساعه $1: حالته الظاهر فى حد تانى غيرها و انتا بتحاول تعدل فيها..
 لو سمحت بص على السجلات.',
 'revdelete-only-restricted'   => 'خطأ تخبيه العنصر اللى تاريخه $2, $1: ماينفعش تمنع بنود من ان الاداريين يشوفوها من غير ما تختار كمان واحد من اختيارات الكبت التانيه.',
+'revdelete-reason-dropdown'   => '*اسباب المسح المعتاده
+** خرق لحقوق النشر
+** معلومات شخصيه مش مناسبه
+** معلومات للتشهير',
 'revdelete-otherreason'       => 'سبب تانى/اضافى:',
 'revdelete-reasonotherlist'   => 'سبب تانى',
 'revdelete-edit-reasonlist'   => 'عدل أسباب المسح',
@@ -1279,6 +1299,9 @@ $1",
 'recentchangesdays-max'         => '(الحد الاقصى $1 {{PLURAL:$1|يوم|ايام}})',
 'recentchangescount'            => 'عدد التعديلات اللى بتظهر اوتوماتيكى فى اخر التغييرات, تواريخ الصفحه, و فى السجلات, :',
 'prefs-help-recentchangescount' => 'بيحتوى على احدث التغييرات ، تواريخ الصفحات و السجلات.',
+'prefs-help-watchlist-token'    => 'ملى الحقل ده بمفتاح سرى حيعمل تلقيم RSS لقايمه مراقبتك.
+اى واحد بعرف المفتاح فى الحقل ده ممكن يقرأ قايمه مراقبتك، علشان كده اختار قيمه متأمنه.
+دى قيمه متولده عشوائى وممكن تستخدمها: $1',
 'savedprefs'                    => 'التفضيلات بتاعتك اتحفظت.',
 'timezonelegend'                => 'منطقة التوقيت',
 'localtime'                     => 'التوقيت المحلى',
@@ -1318,6 +1341,7 @@ $1",
 'yourlanguage'                  => 'اللغة:',
 'yourvariant'                   => 'اللهجة:',
 'yournick'                      => 'الإمضا:',
+'prefs-help-signature'          => 'التعليقات فى صفحات النقاش لازم تتوقع ب"<nowiki>~~~~</nowiki>" واللى حتتحول لتوقيعك وتاريخ.',
 'badsig'                        => 'الامضا الخام بتاعتك مش صح.
 اتإكد من التاجز بتاعة الHTML.',
 'badsiglength'                  => 'الامضا بتاعتك اطول م اللازم.
@@ -1677,8 +1701,20 @@ PICT # misc.
 
 # img_auth script messages
 'img-auth-accessdenied' => 'الوصول مش مسموح بيه',
+'img-auth-nopathinfo'   => 'PATH_INFO مش موجود.
+الخادم بتاعك مش مضبوط علشان يدى المعلومه دى.
+ممكن يكون CGI-based ومايقدرش يدعم img_auth.
+بص على http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'المسار المطلوب مش فى مجلد الرفع المضبوط.',
+'img-auth-badtitle'     => 'مش قادر يعمل عنوان صحيح من "$1".',
+'img-auth-nologinnWL'   => 'إنت مش مسجل الدخول و"$1" مش فى القايمه البيضا.',
 'img-auth-nofile'       => 'الملف "$1" مش موجود',
+'img-auth-isdir'        => 'إنت بتحاول تدخل مجلد "$1".
+دخول الملفات بس مسموح بيه.',
 'img-auth-streaming'    => 'بيعرض "$1".',
+'img-auth-public'       => 'وظيفة img_auth.php هى إنها تخرج ملفات من ويكى سرى.
+الويكى ده مضبوط على إنه ويكى علني.
+علشان أمن افضل، img_auth.php متعطله.',
 'img-auth-noread'       => 'اليوزر معندوش صلاحية قرايه "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1776,6 +1812,7 @@ PICT # misc.
 ** مخالفة حقوق النشر
 ** ملف متكرر',
 'filedelete-edit-reasonlist'  => 'عدل أسباب المسح',
+'filedelete-maintenance'      => 'مسح و استرجاع الملفات متعطل مؤقتا خلال الصيانه.',
 
 # MIME search
 'mimesearch'         => 'تدوير MIME',
@@ -1980,6 +2017,7 @@ PICT # misc.
 
 # Special:ActiveUsers
 'activeusers'            => 'ليستة اليوزرات اللى ليهم نشاط',
+'activeusers-intro'      => 'دى قايمه اليوزرات اللى عملوا نشاط فى آخر $1 {{PLURAL:$1|يوم|يوم}}.',
 'activeusers-count'      => '$1 {{PLURAL:$1|تعديل|تعديل}} فى آخر {{PLURAL:$3|يوم|$3 يوم}}',
 'activeusers-from'       => 'عرض اليوزرات بداية من:',
 'activeusers-hidebots'   => 'خبى البوتات',
@@ -2144,20 +2182,21 @@ $NEWPAGE
 استمر بس خد بالك.',
 
 # Rollback
-'rollback'         => 'إرجع فى التعديلات',
-'rollback_short'   => 'إرجع لـ ورا',
-'rollbacklink'     => 'ترجيع',
-'rollbackfailed'   => 'الترجيع ما نفعش',
-'cantrollback'     => 'ماقدرناش نرجع فى التعديل؛ آخر مساهم هوه الوحيد اللى ساهم فى الصفحة دي.',
-'alreadyrolled'    => 'ماقدرناش نرجع التعديل الاخير لـ [[:$1]] بتاع [[User:$2|$2]] ([[User talk:$2|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'rollback'          => 'إرجع فى التعديلات',
+'rollback_short'    => 'إرجع لـ ورا',
+'rollbacklink'      => 'ترجيع',
+'rollbackfailed'    => 'الترجيع ما نفعش',
+'cantrollback'      => 'ماقدرناش نرجع فى التعديل؛ آخر مساهم هوه الوحيد اللى ساهم فى الصفحة دي.',
+'alreadyrolled'     => 'ماقدرناش نرجع التعديل الاخير لـ [[:$1]] بتاع [[User:$2|$2]] ([[User talk:$2|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 فى واحد تانى عدل الصفحه او عمل استرجاع قبل كده.
 
 اخر تعديل للصفحه دى عمله [[User:$3|$3]] ([[User talk:$3|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "ملخص التعديل كان: \"''\$1''\".",
-'revertpage'       => 'استرجع التعديلات بتاعة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بتاعة [[User:$1|$1]]',
-'rollback-success' => 'استرجع تعديلات $1؛
+'editcomment'       => "ملخص التعديل كان: \"''\$1''\".",
+'revertpage'        => 'استرجع التعديلات بتاعة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بتاعة [[User:$1|$1]]',
+'revertpage-nouser' => 'استرجع التعديلات بتاعه (اسم اليوزر اتمسح) لغايه آخر نسخه بتاعه [[User:$1|$1]]',
+'rollback-success'  => 'استرجع تعديلات $1؛
 استرجع لآخر نسخة بواسطة $2.',
-'sessionfailure'   => 'الظاهر انه فى مشكلة فى جلسة دخولك دى ؛
+'sessionfailure'    => 'الظاهر انه فى مشكلة فى جلسة دخولك دى ؛
 وعلشان كدا العملية دى اتلغت كإجراء احترازى ضد الاختراق.
 لو سمحت دوس على زرار"رجوع" علشان تحمل الصفحة اللى جيت منها مرة تانية، و بعدين حاول تاني.',
 
@@ -2295,17 +2334,19 @@ $1',
 'month'               => 'من شهر (واللى قبل كده):',
 'year'                => 'من سنة (واللى قبل كده):',
 
-'sp-contributions-newbies'       => 'عرض مساهمات الحسابات الجديدة بس',
-'sp-contributions-newbies-sub'   => 'للحسابات الجديده',
-'sp-contributions-newbies-title' => 'مساهمات  اليوزر للحسابات الجديدة',
-'sp-contributions-blocklog'      => 'سجل المنع',
-'sp-contributions-deleted'       => 'تعديلات اليوزر الممسوحه',
-'sp-contributions-logs'          => 'السجلات',
-'sp-contributions-talk'          => 'مناقشه',
-'sp-contributions-userrights'    => 'ادارة حقوق اليوزر',
-'sp-contributions-search'        => 'دور على مساهمات',
-'sp-contributions-username'      => 'عنوان أيبى أو اسم يوزر:',
-'sp-contributions-submit'        => 'تدوير',
+'sp-contributions-newbies'        => 'عرض مساهمات الحسابات الجديدة بس',
+'sp-contributions-newbies-sub'    => 'للحسابات الجديده',
+'sp-contributions-newbies-title'  => 'مساهمات  اليوزر للحسابات الجديدة',
+'sp-contributions-blocklog'       => 'سجل المنع',
+'sp-contributions-deleted'        => 'تعديلات اليوزر الممسوحه',
+'sp-contributions-logs'           => 'السجلات',
+'sp-contributions-talk'           => 'مناقشه',
+'sp-contributions-userrights'     => 'ادارة حقوق اليوزر',
+'sp-contributions-blocked-notice' => 'اليوزر ده ممنوع دلوقتى.
+آخر عمليه منع في السجل موجوده تحت كمرجع:',
+'sp-contributions-search'         => 'دور على مساهمات',
+'sp-contributions-username'       => 'عنوان أيبى أو اسم يوزر:',
+'sp-contributions-submit'         => 'تدوير',
 
 # What links here
 'whatlinkshere'            => 'ايه بيوصل هنا',
@@ -2401,6 +2442,10 @@ $1',
 'autoblocker'                     => 'انت اتمنعت اوتوماتيكى لأن الأيبى بتاعك استعمله "[[User:$1|$1]]" فى الفترة الاخيرة.
 السبب اللى خلا $1 يتمنع هو: "$2"',
 'blocklogpage'                    => 'سجل المنع',
+'blocklog-showlog'                => 'اليوزر ده اتمنع قبل كده.
+سجل المنع موجود هنا كمرجع:',
+'blocklog-showsuppresslog'        => 'المستخدم ده اتمنع واتخفى قبل كده.
+سجل التخبيه موجود تحت كمرجع:',
 'blocklogentry'                   => 'منع "[[$1]]" لفتره زمنيه مدتها $2 $3',
 'reblock-logentry'                => 'غير إعدادات المنع ل[[$1]] بتاريخ انتهاء $2 $3',
 'blocklogtext'                    => 'دا سجل بعمليات المنع ورفع المنع.
@@ -2714,6 +2759,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'chick.css'       => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة تشيك */',
 'simple.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة سيمبل */',
 'modern.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مودرن */',
+'vector.css'      => '/* CSS اللى هنا حتأثر على اليوزرز اللى بيستخدموا واجهة فكتور */',
 'print.css'       => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على ناتج الطباعة */',
 'handheld.css'    => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على الأجهزة المحمولة بالاعتماد على الواجهة المضبوطة فى $wgHandheldStyle */',
 
@@ -2727,6 +2773,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'chick.js'       => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة تشيك */',
 'simple.js'      => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة سيمبل */',
 'modern.js'      => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة مودرن */',
+'vector.js'      => '/* اى جافاسكريبت هنا حتتحمل لكل يوزر بيستخدم واجهة فكتور */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata متعطلة للسيرفر دا.',

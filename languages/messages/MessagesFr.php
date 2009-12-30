@@ -2825,6 +2825,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'skinname-chick'       => 'Poussin',
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Moderne',
+'skinname-vector'      => 'Vecteur',
 
 # Math options
 'mw_math_png'    => 'Toujours produire une image PNG',

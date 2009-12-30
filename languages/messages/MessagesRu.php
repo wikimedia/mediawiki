@@ -2541,7 +2541,7 @@ $1',
 'allmessagesdefault'            => 'Текст по умолчанию',
 'allmessagescurrent'            => 'Текущий текст',
 'allmessagestext'               => 'Это список системных сообщений, доступных в пространстве имён «MediaWiki».
-Пожалуйста, посетите на страницу [http://www.mediawiki.org/wiki/Localisation описания локализации] и проект [http://translatewiki.net translatewiki.net], если вы хотите внести вклад в общую локализацию MediaWiki.',
+Если вы хотите внести вклад в общую локализацию MediaWiki, пожалуйста, посетите страницу [http://www.mediawiki.org/wiki/Localisation описания локализации] и проект [http://translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => "Эта страница недоступна, так как отключена опция '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter'            => 'Фильтр по статусу изменения:',

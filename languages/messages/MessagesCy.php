@@ -887,7 +887,11 @@ Fe fydd gweinyddwyr eraill {{SITENAME}} o hyd yn gallu gweld yr hyn a guddiwyd. 
 'revdelete-logentry'          => 'wedi newid y gallu i weld golygiadau ar [[$1]]',
 'logdelete-logentry'          => 'wedi newid y gallu i weld y digwyddiad ar [[$1]]',
 'revdelete-success'           => "'''Diweddarwyd y gallu i weld golygiadau.'''",
+'revdelete-failure'           => "'''Ni ellid newid y cyfyngiadau ar y gallu i weld y golygiad:'''
+$1",
 'logdelete-success'           => "'''Llwyddwyd i guddio neu i ddatguddio'r digwyddiad rhag y lòg.'''",
+'logdelete-failure'           => "'''Ni ellid gosod cyfyngiadau ar y gallu i weld y cofnod lòg:'''
+$1",
 'revdel-restore'              => 'Newid gwelededd',
 'pagehist'                    => 'Hanes y dudalen',
 'deletedhist'                 => 'Hanes dilëedig',
@@ -906,9 +910,7 @@ Ni ellir ei guddio.",
 ** Torri hawlfraint
 ** Gwybodaeth bersonol anaddas',
 'revdelete-otherreason'       => 'Rheswm arall:',
-'revdelete-reasonotherlist'   => 'Rheswm arall
-{{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-reasonotherlist'   => 'Rheswm arall',
 'revdelete-edit-reasonlist'   => 'Rhowch reswm dros y dileu',
 'revdelete-offender'          => 'Awdur y golygiad:',
 
@@ -1338,6 +1340,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'upload'                      => 'Uwchlwytho ffeil',
 'uploadbtn'                   => 'Uwchlwytho ffeil',
 'reuploaddesc'                => "Dileu'r uwchlwytho a dychwelyd i'r ffurflen uwchlwytho",
+'upload-tryagain'             => "Uwchlwyther disgrifiad newydd o'r ffeil",
 'uploadnologin'               => 'Nid ydych wedi mewngofnodi',
 'uploadnologintext'           => "Mae'n rhaid i chi [[Special:UserLogin|fewngofnodi]] er mwyn uwchlwytho ffeiliau.",
 'upload_directory_missing'    => "Mae'r cyfeiriadur uwchlwytho ($1) yn eisiau, ac ni allai'r gweinydd gwe ei greu.",
@@ -1404,6 +1407,7 @@ Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.",
 'successfulupload'            => 'Wedi llwyddo uwchlwytho',
 'uploadwarning'               => 'Rhybudd uwchlwytho',
+'uploadwarning-text'          => 'Newidiwch ddisgrifiad y ffeil isod ac yna ceisiwch ei huwchlwytho eto, os gwelwch yn dda.',
 'savefile'                    => "Cadw'r ffeil",
 'uploadedimage'               => 'wedi llwytho "[[$1]]"',
 'overwroteimage'              => 'wedi uwchlwytho fersiwn newydd o "[[$1]]"',
@@ -1940,6 +1944,7 @@ Mae'r tudalennau sydd wedi eu diogelu ar hyn o bryd wedi eu rhestri ar y [[Speci
 'protectexpiry'               => 'Yn dod i ben:',
 'protect_expiry_invalid'      => 'Amser terfynu annilys.',
 'protect_expiry_old'          => "Mae'r amser darfod yn y gorffennol.",
+'protect-unchain-permissions' => 'Datgloi rhagor o opsiynau diogelu',
 'protect-text'                => "Yma, gallwch weld a newid y lefel diogelu ar gyfer y dudalen '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Ni allwch newid y lefel diogelu tra eich bod wedi eich blocio.
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",

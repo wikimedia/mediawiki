@@ -1378,7 +1378,7 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 # User rights log
 'rightslog'      => 'Gebruikersregtelogboek',
 'rightslogtext'  => 'Hier onder is die logboek van gebruikersregte wat verander is.',
-'rightslogentry' => 'groep lidmaatskap verander vir $1 van $2 na $3',
+'rightslogentry' => 'wysig gebruikersregte vir $1 van $2 na $3',
 'rightsnone'     => '(geen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2335,7 +2335,7 @@ Die verbergingslogboek word hieronder ter verwysing weergegee:',
 Sien die [[Special:IPBlockList|IP-bloklys]] vir geblokkeerde adresse.",
 'unblocklogentry'                 => 'blokkade van $1 is opgehef:',
 'block-log-flags-anononly'        => 'anonieme gebruikers alleenlik',
-'block-log-flags-nocreate'        => 'Registrasie van gebruikers buite werking',
+'block-log-flags-nocreate'        => 'registrasie van gebruikers geblokkeer',
 'block-log-flags-noautoblock'     => 'outoblokkering is afgeskakel',
 'block-log-flags-noemail'         => 'e-pos versper',
 'block-log-flags-nousertalk'      => 'kan nie eie besprekingsblad wysig nie',
@@ -3157,7 +3157,7 @@ Probeer normale voorskou.',
 'watchlistedit-normal-title'   => 'Wysig dophoulys',
 'watchlistedit-normal-legend'  => 'Verwyder titels van dophoulys',
 'watchlistedit-normal-explain' => "Die bladsye in u dophoulys word hier onder vertoon. 
-Selekteer die titels wat verwyder moet word en klik op 'Verwyder Titels' onder aan die bladsy.
+Selekteer die titels wat verwyder moet word en kliek op 'Verwyder Titels' onder aan die bladsy.
 Alternatiewelik kan u die [[Special:Watchlist/raw|bronkode wysig]].",
 'watchlistedit-normal-submit'  => 'Verwyder Titels',
 'watchlistedit-normal-done'    => 'Daar is {{PLURAL:$1|1 bladsy|$1 bladsye}} van u dophoulys verwyder:',
@@ -3165,10 +3165,10 @@ Alternatiewelik kan u die [[Special:Watchlist/raw|bronkode wysig]].",
 'watchlistedit-raw-legend'     => 'Wysig u dophoulys se bronkode',
 'watchlistedit-raw-explain'    => "Die bladsye in u dophoulys word hier onder vertoon.
 U kan die lys wysig deur titels by te sit of te verwyder (een bladsy per lyn).
-As u klaar is, klik op 'Opdateer Dophoulys' onder aan die bladsy.
+As u klaar is, klik op 'Opdateer dophoulys' onder aan die bladsy.
 U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].",
 'watchlistedit-raw-titles'     => 'Titels:',
-'watchlistedit-raw-submit'     => 'Opdateer Dophoulys',
+'watchlistedit-raw-submit'     => 'Opdateer dophoulys',
 'watchlistedit-raw-done'       => 'U dophoulys is opgedateer.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titel|$1 titels}} was bygevoeg:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titel|$1 titels}} verwyder:',
