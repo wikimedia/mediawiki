@@ -68,7 +68,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgUploadMaintenance added to disable file deletions and restorations during
   maintenance
 * $wgCapitalLinkOverrides added to configure per-namespace capitalization
-* (bug 21172) $wgSorbsUrl can now be an array with multiple DNSBL
+* (bug 21172) $wgSorbsUrl can now be an array with multiple DNSBL and renamed
+  to $wgDnsBlacklistUrls (backward compatibility kept)
 * $wgEnableHtmlDiff has been removed
 * (bug 3340) $wgBlockCIDRLimit added (default: 16) to configure the low end of
   CIDR ranges for blocking
@@ -78,6 +79,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgDBAhandler added to choose a DBA handler when using CACHE_DBA
 * $wgPreviewOnOpenNamespaces for extensions that create namespaces that behave
   similarly to the category namespace.
+* $wgEnableSorbs renamed to $wgDnsBlacklistUrls ($wgEnableSorbs kept for
+  backward compatibility)
 
 === New features in 1.16 ===
 

@@ -1100,7 +1100,7 @@ class User {
 	 *                    done against master.
 	 */
 	function getBlockedStatus( $bFromSlave = true ) {
-		global $wgEnableSorbs, $wgProxyWhitelist, $wgUser;
+		global $wgProxyWhitelist, $wgUser;
 
 		if ( -1 != $this->mBlockedby ) {
 			wfDebug( "User::getBlockedStatus: already loaded.\n" );
@@ -1168,8 +1168,8 @@ class User {
 			}
 
 			# DNSBL
-			if ( !$this->mBlockedby && $wgEnableSorbs && !$this->getID() ) {
-				if ( $this->inSorbsBlacklist( $ip ) ) {
+			if ( !$this->mBlockedby && !$this->getID() ) {
+				if ( $this->isDnsBlacklisted( $ip ) ) {
 					$this->mBlockedby = wfMsg( 'sorbs' );
 					$this->mBlockreason = wfMsg( 'sorbsreason' );
 				}
@@ -1183,16 +1183,24 @@ class User {
 	}
 
 	/**
-	 * Whether the given IP is in the SORBS blacklist.
+	 * Whether the given IP is in a DNS blacklist.
 	 *
 	 * @param $ip \string IP to check
+	 * @param $checkWhitelist Boolean: whether to check the whitelist first
 	 * @return \bool True if blacklisted.
 	 */
-	function inSorbsBlacklist( $ip ) {
-		global $wgEnableSorbs, $wgSorbsUrl;
+	function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
+		global $wgEnableSorbs, $wgEnableDnsBlacklist,
+			$wgSorbsUrl, $wgDnsBlacklistUrls, $wgProxyWhitelist;
 
-		return $wgEnableSorbs &&
-			$this->inDnsBlacklist( $ip, $wgSorbsUrl );
+		if ( !$wgEnableDnsBlacklist && !$wgEnableSorbs )
+			return false;
+
+		if ( $checkWhitelist && in_array( $ip, $wgProxyWhitelist ) )
+			return false;
+
+		$urls = array_merge( $wgDnsBlacklistUrls, (array)$wgSorbsUrl );
+		return $this->inDnsBlacklist( $ip, $urls );
 	}
 
 	/**
