@@ -3682,7 +3682,7 @@ class User {
 	}
 
 	/**
-	 * Provide an array of HTML 5 attributes to put on an input element
+	 * Provide an array of HTML5 attributes to put on an input element
 	 * intended for the user to enter a new password.  This may include
 	 * required, title, and/or pattern, depending on $wgMinimalPasswordLength.
 	 *

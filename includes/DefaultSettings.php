@@ -907,7 +907,7 @@ $wgDTD = 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 
 /**
- * Should we output an HTML 5 doctype?  This mode is still experimental, but
+ * Should we output an HTML5 doctype?  This mode is still experimental, but
  * all indications are that it should be usable, so it's enabled by default.
  * If all goes well, it will be removed and become always true before the 1.16
  * release.
@@ -927,7 +927,7 @@ $wgHtml5Version = null;
 $wgAllowRdfaAttributes = true;
 
 /**
- * Enabled HTML 5 microdata attributes for use in wikitext, if $wgHtml5 is also true.
+ * Enabled HTML5 microdata attributes for use in wikitext, if $wgHtml5 is also true.
  */
 $wgAllowMicrodataAttributes = true;
 
@@ -939,7 +939,7 @@ $wgAllowMicrodataAttributes = true;
  *
  * Setting this to false may omit quotation marks on some attributes, omit
  * slashes from some self-closing tags, omit some ending tags, etc., where
- * permitted by HTML 5.  Setting it to true will not guarantee that all pages
+ * permitted by HTML5.  Setting it to true will not guarantee that all pages
  * will be well-formed, although non-well-formed pages should be rare and it's
  * a bug if you find one.  Conversely, setting it to false doesn't mean that
  * all XML-y constructs will be omitted, just that they might be.
