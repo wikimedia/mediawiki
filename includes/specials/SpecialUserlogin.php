@@ -219,7 +219,6 @@ class LoginForm {
 	 */
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
-		global $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle;
 		global $wgAuth, $wgMinimalPasswordLength;
 		global $wgEmailConfirmToEdit;
@@ -257,9 +256,7 @@ class LoginForm {
 		}
 
 		$ip = wfGetIP();
-		if ( $wgEnableSorbs && !in_array( $ip, $wgProxyWhitelist ) &&
-		  $wgUser->inSorbsBlacklist( $ip ) )
-		{
+		if ( $wgUser->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
 			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $ip ) . ')' );
 			return;
 		}

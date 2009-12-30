@@ -3494,14 +3494,28 @@ $wgDisableHardRedirects = false;
 $wgEnableTooltipsAndAccesskeys = true;
 
 /**
- * Whether to use DNS blacklists in $wgSorbsUrl to check for open proxies
+ * Whether to use DNS blacklists in $wgDnsBlacklistUrls to check for open proxies
+ * @since 1.16
+ */
+$wgEnableDnsBlacklist = false;
+
+/**
+ * @deprecated Use $wgEnableDnsBlacklist instead, only kept for backward
+ *  compatibility
  */
 $wgEnableSorbs = false;
 
 /**
- * List of DNS blacklists to use, if $wgEnableSorbs is true
+ * List of DNS blacklists to use, if $wgEnableDnsBlacklist is true
+ * @since 1.16
  */
-$wgSorbsUrl = array( 'http.dnsbl.sorbs.net.' );
+$wgDnsBlacklistUrls = array( 'http.dnsbl.sorbs.net.' );
+
+/**
+ * @deprecated Use $wgDnsBlacklistUrls instead, only kept for backward
+ *  compatibility
+ */
+$wgSorbsUrl = array();
 
 /**
  * Proxy whitelist, list of addresses that are assumed to be non-proxy despite
