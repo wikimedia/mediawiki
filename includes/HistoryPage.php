@@ -319,7 +319,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		$queryInfo = array(
 			'tables'  => array('revision'),
-			'fields'  => array_merge( Revision::selectFields()),
+			'fields'  => Revision::selectFields(),
 			'conds'   => array_merge( array('rev_page' => $this->historyPage->title->getArticleID() ), $this->conds ),
 			'options' => array( 'USE INDEX' => array('revision' => 'page_timestamp') ),
 			'join_conds' => array( 'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
