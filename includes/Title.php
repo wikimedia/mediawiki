@@ -10,12 +10,6 @@ if ( !class_exists( 'UtfNormal' ) ) {
 
 define ( 'GAID_FOR_UPDATE', 1 );
 
-
-/**
- * Constants for pr_cascade bitfield
- */
-define( 'CASCADE', 1 );
-
 /**
  * Represents a title within MediaWiki.
  * Optionally may contain an interwiki designation or namespace.
