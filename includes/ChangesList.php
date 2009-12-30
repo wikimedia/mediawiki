@@ -307,7 +307,7 @@ class ChangesList {
 				array( 'known', 'noclasses' )
 			);
 		}
-		$s .= '('.$diffLink.') (';
+		$s .= '(' . $diffLink . $this->message['pipe-separator'];
 		# History link
 		$s .= $this->skin->link(
 			$rc->getTitle(),
