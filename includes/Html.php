@@ -20,7 +20,7 @@
 /**
  * This class is a collection of static functions that serve two purposes:
  *
- * 1) Implement any algorithms specified by HTML 5, or other HTML
+ * 1) Implement any algorithms specified by HTML5, or other HTML
  * specifications, in a convenient and self-contained way.
  *
  * 2) Allow HTML elements to be conveniently and safely generated, like the
@@ -40,7 +40,7 @@
  * <a> elements.
  */
 class Html {
-	# List of void elements from HTML 5, section 9.1.2 as of 2009-08-10
+	# List of void elements from HTML5, section 9.1.2 as of 2009-08-10
 	private static $voidElements = array(
 		'area',
 		'base',
@@ -59,7 +59,7 @@ class Html {
 	);
 
 	# Boolean attributes, which may have the value omitted entirely.  Manually
-	# collected from the HTML 5 spec as of 2009-08-10.
+	# collected from the HTML5 spec as of 2009-08-10.
 	private static $boolAttribs = array(
 		'async',
 		'autobuffer',
@@ -108,7 +108,7 @@ class Html {
 	public static function rawElement( $element, $attribs = array(), $contents = '' ) {
 		global $wgHtml5, $wgWellFormedXml;
 		$attribs = (array)$attribs;
-		# This is not required in HTML 5, but let's do it anyway, for
+		# This is not required in HTML5, but let's do it anyway, for
 		# consistency and better compression.
 		$element = strtolower( $element );
 
@@ -231,7 +231,7 @@ class Html {
 			'link' => array( 'media' => 'all' ),
 			'menu' => array( 'type' => 'list' ),
 			# Note: the use of text/javascript here instead of other JavaScript
-			# MIME types follows the HTML 5 spec.
+			# MIME types follows the HTML5 spec.
 			'script' => array( 'type' => 'text/javascript' ),
 			'style' => array(
 				'media' => 'all',
@@ -315,11 +315,11 @@ class Html {
 				$key = $value;
 			}
 
-			# Not technically required in HTML 5, but required in XHTML 1.0,
+			# Not technically required in HTML5, but required in XHTML 1.0,
 			# and we'd like consistency and better compression anyway.
 			$key = strtolower( $key );
 
-			# See the "Attributes" section in the HTML syntax part of HTML 5,
+			# See the "Attributes" section in the HTML syntax part of HTML5,
 			# 9.1.2.3 as of 2009-08-10.  Most attributes can have quotation
 			# marks omitted, but not all.  (Although a literal " is not
 			# permitted, we don't check for that, since it will be escaped
@@ -339,7 +339,7 @@ class Html {
 
 			if ( in_array( $key, self::$boolAttribs ) ) {
 				# In XHTML 1.0 Transitional, the value needs to be equal to the
-				# key.  In HTML 5, we can leave the value empty instead.  If we
+				# key.  In HTML5, we can leave the value empty instead.  If we
 				# don't need well-formed XML, we can omit the = entirely.
 				if ( !$wgWellFormedXml ) {
 					$ret .= " $key";
@@ -454,7 +454,7 @@ class Html {
 
 	/**
 	 * Convenience function to produce an <input> element.  This supports the
-	 * new HTML 5 input types and attributes, and will silently strip them if
+	 * new HTML5 input types and attributes, and will silently strip them if
 	 * $wgHtml5 is false.
 	 *
 	 * @param $name    string name attribute
