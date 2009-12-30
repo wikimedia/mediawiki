@@ -107,7 +107,7 @@ class IPBlockForm {
 			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
 		} elseif( $this->BlockAddress ) {
 			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
-			wfRunHooks( 'getOtherBlockLogLink', array( &$otherBlockedMsgs, $this->BlockAddress ) );
+			wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockedMsgs, $this->BlockAddress ) );
 
 			$userId = is_object( $user ) ? $user->getId() : 0;
 			$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
