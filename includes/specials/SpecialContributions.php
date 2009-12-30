@@ -434,7 +434,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$msgs = array( 'uctop', 'diff', 'newarticle', 'rollbacklink', 'diff', 'hist', 'rev-delundel', 'pipe-separator' );
 
 		foreach( $msgs as $msg ) {
-			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape' ) );
+			$this->messages[$msg] = wfMsgExt( $msg, array( 'escapenotentites' ) );
 		}
 
 		$this->target = $target;
