@@ -669,6 +669,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   previously it sometimes didn't due to caching.
 * (bug 20388) ProfilerSimpleText no longer outputs comment on action=raw
 * refreshLinks.php now purges orphaned redirect table rows
+* (bug 2971) Swap links of hist & diff location on Special:Contributions for
+  consistency with RC/WL
 
 == API changes in 1.16 ==
 

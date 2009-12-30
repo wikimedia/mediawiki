@@ -567,7 +567,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		# Is there a visible previous revision?
 		if( !$rev->isDeleted( Revision::DELETED_TEXT ) && $rev->getParentId() !== 0 ) {
-			$difftext = $this->messages['pipe-separator'] . $sk->linkKnown(
+			$difftext = $sk->linkKnown(
 				$page,
 				$this->messages['diff'],
 				array(),
@@ -575,11 +575,11 @@ class ContribsPager extends ReverseChronologicalPager {
 					'diff' => 'prev',
 					'oldid' => $row->rev_id
 				)
-			) . ')';
+			);
 		} else {
-			$difftext = $this->messages['pipe-separator'] . $this->messages['diff'] . ')';
+			$difftext = $this->messages['diff'];
 		}
-		$histlink = '('.$sk->linkKnown(
+		$histlink = $sk->linkKnown(
 			$page,
 			$this->messages['hist'],
 			array(),
@@ -637,7 +637,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			$del = '';
 		}
 
-		$ret = "{$del}{$d} {$histlink}{$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
+		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 		
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
