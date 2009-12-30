@@ -357,9 +357,9 @@ De letzte Datenbankoabfroage lautete:
 <blockquote><tt>$1</tt></blockquote>
 aus dar Funksjonn „<tt>$2</tt>“.
 De Datenbank meldete dann Fahler „<tt>$3: $4</tt>“.',
-'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
-Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
-MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
+'dberrortextcl'        => "Is goab an'n Syntaxfahler ei dar Datenbankobfroage.
+De letzte Datenbankobfroage lautete: „$1“ aus dar Funksjonn „<tt>$2</tt>“.
+De Datenbank meldete dann Fahler: „<tt>$3: $4</tt>“.",
 'laggedslavemode'      => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
 'readonly'             => 'Datenbanksperre',
 'enterlockreason'      => 'Bitte gib einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
@@ -1723,6 +1723,9 @@ Rickmeldungen und wettere Helfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 'rollbacklink'     => 'Zerrickesetza',
 'rollbackfailed'   => 'Zerrickesetza gescheitert',
 'cantrollback'     => 'De Änderung koan ne zerrickegesetzt waan, do is kenne friehera Autoren gibt.',
+'alreadyrolled'    => 'Doas Zerrickesetza dar Änderunga vu [[User:$2|$2]] ([[User talk:$2|Dischkur]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) oa [[:$1]] ies gescheitert, do ei dar Zwischenzeit a anderer Nutzer de Seyte geändert hoot.
+
+De letzte Änderung stommt vu [[User:$3|$3]] ([[User talk:$3|Dischkur]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "De Änderungszusommafassung lautet: ''„$1“''.",
 'revertpage'       => 'Änderunga vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischkur]]) rickgängig gemacht und letzte Version vu [[User:$1|$1]] wiederhergestellt',
 'rollback-success' => 'De Änderunga vu $1 wurden rickgängig gemacht und de letzte Version vu $2 wurde wiederhergestellt.',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Don Alessandro
+ * @author Haqmar
  * @author Himiq Dzyu
  * @author KhayR
  * @author Rinatus
@@ -977,8 +978,8 @@ $3 күрсәткән сәбәп: ''$2''",
 'yourlanguage'              => 'Тел:',
 'yournick'                  => 'Яңа имзагыз:',
 'badsig'                    => 'Имза дөрес түгел. HTML-теглар тикшерегез.',
-'badsiglength'              => 'Имза өчен тахалус бигрәк озын.
-Ул $1 {{PLURAL:$1|хәрефтән}} күбрәк түгел булырга тиеш.',
+'badsiglength'              => 'Имзагыз бигрәк озын.
+Ул $1 {{PLURAL:$1|хәрефтән}} күбрәк булырга тиеш түгел.',
 'email'                     => 'Электрон почта',
 'prefs-help-realname'       => 'Чын исемегез (кирәкми): аны күрсәтсәгез, ул битне үзгәртүче күрсәтү өчен файдалаячак.',
 'prefs-help-email-required' => 'Электрон почта адресы кирәк.',
@@ -1203,10 +1204,10 @@ $3 күрсәткән сәбәп: ''$2''",
 'emailpage'       => 'Кулланучыга хат җибәрү',
 'defemailsubject' => '{{SITENAME}}: хат',
 'noemailtitle'    => 'Электрон почта адресы юк',
-'emailfrom'       => 'Кемдән',
-'emailto'         => 'Кемгә',
-'emailsubject'    => 'Тема',
-'emailmessage'    => 'Хәбәр',
+'emailfrom'       => 'Кемдән:',
+'emailto'         => 'Кемгә:',
+'emailsubject'    => 'Тема:',
+'emailmessage'    => 'Хәбәр:',
 'emailsend'       => 'Җибәрү',
 'emailccme'       => 'Миңа хәбәрнең күчермәсене җибәрергә.',
 'emailccsubject'  => '$1 өчен хәбәрегезнең күчермәсе: $2',
@@ -1309,7 +1310,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'undeletecomment'           => 'Искәрмә:',
 'undeletedarticle'          => '«[[$1]]» торгызылды',
 'undelete-search-submit'    => 'Эзләргә',
-'undelete-error-long'       => 'Файлны торгызу вакытында хаталар чыкты:',
+'undelete-error-long'       => 'Файлны торгызу вакытында хаталар чыкты: $1',
 'undelete-show-file-submit' => 'Әйе',
 
 # Namespace form on various pages

@@ -1964,7 +1964,7 @@ PICT # متنوع
 ** خرق حقوق النشر
 ** ملف مكرر',
 'filedelete-edit-reasonlist'  => 'عدل أسباب الحذف',
-'filedelete-maintenance'      => 'حذف واسترجاع الملفات معطل مؤقتًا مرحلة الصيانة.',
+'filedelete-maintenance'      => 'حذف واسترجاع الملفات معطل مؤقتا خلال الصيانة.',
 
 # MIME search
 'mimesearch'         => 'بحث MIME',

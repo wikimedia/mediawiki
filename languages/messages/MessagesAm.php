@@ -9,6 +9,7 @@
  *
  * @author Codex Sinaiticus
  * @author Elfalem
+ * @author Solomon
  * @author Teferra
  */
 
@@ -740,6 +741,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'search-suggest'                   => 'ምናልባት $1 የፈለጉት ይሆን',
 'search-interwiki-default'         => '$1 ውጤቶች፦',
 'search-interwiki-more'            => '(ተጨማሪ)',
+'search-mwsuggest-enabled'         => 'ከ አማራጭ ጋር',
+'search-mwsuggest-disabled'        => 'ምንም አማራጭ የለም',
 'search-relatedarticle'            => 'የተዛመደ',
 'searchrelated'                    => 'የተዛመደ',
 'searchall'                        => 'ሁሉ',

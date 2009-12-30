@@ -1993,7 +1993,7 @@ Suggeriments i ajuda:
 'exblank'                => 'la pàgina estava en blanc',
 'delete-confirm'         => 'Elimina «$1»',
 'delete-legend'          => 'Elimina',
-'historywarning'         => "'''Avís:''' La pàgina que eliminareu té un historial amb {{PLURAL:$1|una modificació|$1 modificacions}}:",
+'historywarning'         => "'''Avís:''' La pàgina que eliminareu té un historial amb aproximadament {{PLURAL:$1|una modificació|$1 modificacions}}:",
 'confirmdeletetext'      => "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",

@@ -512,9 +512,10 @@ De gegaeve ree is ''$2''.",
 'virus-unknownscanner' => 'onbekeng antivirus:',
 
 # Login and logout pages
-'logouttext'                 => "'''De bis noe aafgemèld.'''
+'logouttext'                 => "'''De bis noe aafgemeld.'''
 
-De kins {{SITENAME}} noe anoniem (mit vermèlding van IP adres) gebroeke, of opnuui aanmèlde onger dezelfde of ein anger naam.",
+De kèns {{SITENAME}} noe anoniem (mit vermeljing van IP-adres) gebroeke, of [[Special:UserLogin|opnuuj aanmelde]] ónger dezelfde of 'ne angere naam.
+Mäögelik waere nog 'n deil pazjena's getuind esofs te nog aangemeld bis pès te de cache van diene browser laeg maaks.",
 'welcomecreation'            => '<h2>Wilkóm, $1!</h2><p>Dien gebroekersprofiel is vaerdig. De kins noe dien persuunlike veurkäöre insjtèlle.',
 'yourname'                   => 'Diene gebroekersnaam',
 'yourpassword'               => 'Die wachwaord',
@@ -523,7 +524,7 @@ De kins {{SITENAME}} noe anoniem (mit vermèlding van IP adres) gebroeke, of opn
 'yourdomainname'             => 'Die domein',
 'externaldberror'            => "d'r Is 'n fout opgetraoje biej 't aanmelje biej de database of doe höbs gén toesjtömming diene externe gebroeker biej te wèrke.",
 'login'                      => 'Aanmèlde',
-'nav-login-createaccount'    => 'Aanmèlje / registrere',
+'nav-login-createaccount'    => 'Aanmelje / registrere',
 'loginprompt'                => "Diene browser mót ''cookies'' acceptere óm in te logge op {{SITENAME}}.",
 'userlogin'                  => 'Aanmelde / registrere',
 'logout'                     => 'Aafmèlde',

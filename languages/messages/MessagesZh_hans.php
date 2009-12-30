@@ -14,6 +14,7 @@
  * @author Jimmy xu wrk
  * @author KaiesTse
  * @author Liangent
+ * @author Mark85296341
  * @author O
  * @author Onecountry
  * @author PhiLiP
@@ -1850,7 +1851,7 @@ Template:消除歧義',
 'activeusers-intro'      => '这个是在最近$1天之内有一些动作的用户列表。',
 'activeusers-count'      => '最近$3天内的$1次编辑',
 'activeusers-from'       => '显示用户开始于：',
-'activeusers-hidebots'   => '隐藏机器人',
+'activeusers-hidebots'   => '隱藏機器人',
 'activeusers-hidesysops' => '隐藏管理员',
 'activeusers-noresult'   => '找不到用户。',
 
@@ -2694,7 +2695,7 @@ $1',
 'newimages-summary'     => '这个特殊页面中显示最后已上传的文件。',
 'newimages-legend'      => '过滤',
 'newimages-label'       => '文件名（或它的一部份）：',
-'showhidebots'          => '（$1机器人）',
+'showhidebots'          => '(机器人$1)',
 'noimages'              => '无可查看图像。',
 'ilsubmit'              => '搜索',
 'bydate'                => '按日期',
