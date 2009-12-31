@@ -793,11 +793,11 @@ Che a verìfica con la [[Special:Search|pàgina d'arserca]] se a-i fusso mai dj'
 'rev-deleted-user'            => '(stranòm gavà)',
 'rev-deleted-event'           => '(assion dël registr gavà)',
 'rev-deleted-user-contribs'   => '[nòm utent o adrëssa IP gavà - modìfica stërmà ai contributor]',
-'rev-deleted-text-permission' => "Sta revision-sì dla pàgina a l'é staita '''scanselà''.
-A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
-'rev-deleted-text-unhide'     => "Sta vërsion-sì dla pàgina a l'é stàita '''scanselà'''.
-A peulo esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd la scanselassion].
-Com aministrador it peule ancó [$1 vardé sta vërsion-sì] se it veule.",
+'rev-deleted-text-permission' => "Sta revision-sì dla pàgina a l'é staita '''scancelà'''.
+A-i peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
+'rev-deleted-text-unhide'     => "Sta version-sì dla pàgina a l'é stàita '''scancelà'''.
+A peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd la scancelassion].
+Com aministrator a peul ancó [$1 vardé sta version-sì] se a veul.",
 'rev-suppressed-text-unhide'  => "Sta vërsion-sì dla pàgina a l'é stàita '''gavà via'''.
 A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion]. Com aministrador it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
 'rev-deleted-text-view'       => "Costa revision dla pàgina-sì a l'é staita '''scanselà'''.

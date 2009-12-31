@@ -3194,7 +3194,7 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Harilikud erileheküljed
 * <strong class="mw-specialpagerestricted">Piiranguga erileheküljed.</strong>',
-'specialpages-group-maintenance' => 'Hooldusraportid',
+'specialpages-group-maintenance' => 'Hooldusaruanded',
 'specialpages-group-other'       => 'Teised erileheküljed',
 'specialpages-group-login'       => 'Sisselogimine / registreerumine',
 'specialpages-group-changes'     => 'Viimased muudatused ja logid',

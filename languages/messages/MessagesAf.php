@@ -2040,7 +2040,7 @@ Terugvoer en verdere bystand:
 'deletepage'             => 'Skrap bladsy',
 'confirm'                => 'Bevestig',
 'excontent'              => "inhoud was: '$1'",
-'excontentauthor'        => "Inhoud was: '$1' (en '[[Special:Contributions/$2|$2]]' was die enigste bydraer)",
+'excontentauthor'        => "Inhoud was: '$1' ('[[Special:Contributions/$2|$2]]' was die enigste bydraer)",
 'exbeforeblank'          => "Inhoud voor uitwissing was: '$1'",
 'exblank'                => 'bladsy was leeg',
 'delete-confirm'         => 'Skrap "$1"',
