@@ -133,7 +133,8 @@ class LanguageConverter {
 	function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
 		global $wgUser, $wgRequest, $wgVariantArticlePath, $wgDefaultLanguageVariant, $wgOut;
 
-		if($this->mPreferredVariant)
+		// bug 21974, don't return $this->mPreferredVariant if $fromUser = false
+		if( $fromUser && $this->mPreferredVariant )
 			return $this->mPreferredVariant;
 
 		// figure out user lang without constructing wgLang to avoid infinite recursion
@@ -175,7 +176,7 @@ class LanguageConverter {
 		}
 
 		// see if default variant is globaly set
-		if($wgDefaultLanguageVariant != false  &&  in_array( $wgDefaultLanguageVariant, $this->mVariants )){
+		if($wgDefaultLanguageVariant != false && in_array( $wgDefaultLanguageVariant, $this->mVariants )){
 			$this->mPreferredVariant = $wgDefaultLanguageVariant;
 			return $this->mPreferredVariant;
 		}
@@ -230,10 +231,8 @@ class LanguageConverter {
 					}
 				}
 			}
-			return $this->mMainLanguageCode;
 		}
-		else return $this->mPreferredVariant;
-
+		return $this->mMainLanguageCode;
 	}
 	
 	/**
