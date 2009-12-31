@@ -245,7 +245,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisinnaavutit]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log-ini ujaasisinnavutillu] imaluunniit [{{fullurl:{{FULLPAGENAME}}|action=edit}} qupperneq pilersissinnaavat]</span>.',
 'previewnote'   => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
 'editing'       => 'Aaqqissorpaa $1',
-'templatesused' => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut',
+'templatesused' => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',
 
 # History pages
 'currentrev'      => 'Maanna taamaannera',

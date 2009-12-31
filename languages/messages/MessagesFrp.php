@@ -2615,7 +2615,7 @@ Nen volyéd chouèsir un ôtro.',
 'delete_and_move'              => 'Suprimar et renomar',
 'delete_and_move_text'         => '== Suprèssion nècèssèra ==
 La pâge de dèstinacion « [[:$1]] » ègziste ja.
-Voléd-vos franc la suprimar por pèrmetre lo changement de nom ?',
+La voléd-vos suprimar por pèrmetre lo changement de nom ?',
 'delete_and_move_confirm'      => 'Ouè, j’accèpto de suprimar la pâge de dèstinacion por pèrmetre lo changement de nom.',
 'delete_and_move_reason'       => 'Pâge suprimâ ôtomaticament por pèrmetre un changement de nom',
 'selfmove'                     => 'Los titros d’origina et de dèstinacion sont los mémos ;

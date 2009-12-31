@@ -20,6 +20,7 @@
  * @author HalanTul
  * @author Illusion
  * @author Innv
+ * @author Jl
  * @author Kaganer
  * @author Kalan
  * @author Kv75
@@ -703,7 +704,7 @@ $2',
 'wrongpasswordempty'         => 'Пожалуйста, введите непустой пароль.',
 'passwordtooshort'           => 'Пароль должен состоять не менее чем из $1 {{PLURAL:$1|символа|символов|символов}}.',
 'password-name-match'        => 'Введённый пароль должен отличаться от имени участника.',
-'mailmypassword'             => 'Выслать новый пароль',
+'mailmypassword'             => 'Получить новый пароль',
 'passwordremindertitle'      => 'Напоминание пароля участника {{grammar:genitive|{{SITENAME}}}}',
 'passwordremindertext'       => 'Кто-то (вероятно, вы, с IP-адреса $1) запросил создать
 новый пароль для {{grammar:genitive|{{SITENAME}}}} ($4). Для участника $2
