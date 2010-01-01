@@ -374,6 +374,7 @@ $messages = array(
 'recentchanges-feed-description'    => '跟蹤此訂閱在 wiki 上的近期變動。',
 'rcnotefrom'                        => '下面是自<b>$2</b>(最多顯示<b>$1</b>):',
 'rcshowhideminor'                   => '$1細微修改',
+'rcshowhidebots'                    => '$1機器人的編輯',
 'rcshowhideliu'                     => '$1具名使用者的編輯',
 'rcshowhideanons'                   => '$1匿名使用者的編輯',
 'rcshowhidepatr'                    => ' $1檢查過的編輯',
@@ -485,6 +486,9 @@ $messages = array(
 # Special:ListUsers
 'listusersfrom'      => '給定顯示使用者條件:',
 'listusers-noresult' => '找不到使用者。',
+
+# Special:ActiveUsers
+'activeusers-hidebots' => '隱藏機器人',
 
 # E-mail user
 'mailnologin'     => '無E-mail地址',
@@ -776,6 +780,7 @@ $NEWPAGE
 # Special:NewFiles
 'newimages'     => '新建圖片畫廊',
 'imagelisttext' => '以下是按$2排列的$1個檔案列表。',
+'showhidebots'  => '(機器人$1)',
 'noimages'      => '無可檢視圖片。',
 
 # Bad image list
