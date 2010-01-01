@@ -296,9 +296,9 @@ $messages = array(
 'tog-previewontop'            => 'Näita eelvaadet toimetamisakna ees, mitte järel',
 'tog-previewonfirst'          => 'Näita eelvaadet esimesel redigeerimisel',
 'tog-nocache'                 => 'Keela lehekülgede puhverdamine',
-'tog-enotifwatchlistpages'    => 'Teata meili teel, kui minu jälgitavat artiklit muudetakse',
-'tog-enotifusertalkpages'     => 'Teata meili teel, kui minu arutelu lehte muudetakse',
-'tog-enotifminoredits'        => 'Teata meili teel ka pisiparandustest',
+'tog-enotifwatchlistpages'    => 'Teata e-posti teel minu jälgitava lehekülje muutmisest',
+'tog-enotifusertalkpages'     => 'Teata e-posti teel minu arutelulehekülje muutmisest',
+'tog-enotifminoredits'        => 'Teata e-posti teel ka pisiparandustest',
 'tog-enotifrevealaddr'        => 'Näita minu e-postiaadressi teavitus-e-kirjades',
 'tog-shownumberswatching'     => 'Näita jälgivate kasutajate hulka',
 'tog-oldsig'                  => 'Praeguse allkirja eelvaade:',
@@ -314,7 +314,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Peida sisselogitud kasutajate muudatused jälgimisloendist',
 'tog-watchlisthideanons'      => 'Peida anonüümsete kasutajate muudatused jälgimisloendist',
 'tog-watchlisthidepatrolled'  => 'Peida kontrollitud muudatused jälgimisloendist',
-'tog-ccmeonemails'            => 'Saada mulle koopiad e-mailidest, mida ma teistele kasutajatele saadan',
+'tog-ccmeonemails'            => 'Saada mulle koopiad minu läkitatud e-kirjadest',
 'tog-diffonly'                => 'Ära näita erinevuste vaate all lehe sisu',
 'tog-showhiddencats'          => 'Näita peidetud kategooriaid',
 'tog-norollbackdiff'          => 'Ära näita erinevusi pärast tühistamist',
@@ -693,7 +693,7 @@ Sinu konto on loodud.
 'createaccount'              => 'Loo uus konto',
 'gotaccount'                 => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink'             => 'logi sisse',
-'createaccountmail'          => 'meili teel',
+'createaccountmail'          => 'e-posti teel',
 'badretype'                  => 'Sisestatud paroolid ei lange kokku.',
 'userexists'                 => 'Sisestatud kasutajanimi on juba kasutusel.
 Palun valige uus nimi.',
@@ -714,12 +714,12 @@ Kontrollige kirjapilti või [[Special:UserLogin/signup|looge uus kasutajakonto]]
 'passwordtooshort'           => 'Parool on liiga lühike.
 See peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.',
 'password-name-match'        => 'Parool peab kasutajanimest erinema.',
-'mailmypassword'             => 'Saada mulle meili teel uus parool',
+'mailmypassword'             => 'Saada e-posti teel uus parool',
 'passwordremindertitle'      => '{{SITENAME}} – ajutine parool',
 'passwordremindertext'       => 'Keegi IP-aadressiga $1, tõenäoliselt sa ise, palus, et talle saadetaks {{GRAMMAR:elative|{{SITENAME}}}} uus parool ($4). Kasutaja "$2" ajutiseks paroolis seati "$3". Kui soovid tõepoolest uut parooli, pead sisse logima ja uue parooli valima. Ajutine parool aegub {{PLURAL:$5|ühe päeva|$5 päeva}} pärast.
 
 Kui uut parooli palus keegi teine või sulle meenus vana parool ja sa ei soovi seda enam muuta, võid käesolevat teadet eirata ning jätkata endise parooli kasutamist.',
-'noemail'                    => 'Kasutaja "$1" meiliaadressi meil kahjuks pole.',
+'noemail'                    => 'Kasutaja $1 e-postiaadressi meil kahjuks pole.',
 'noemailcreate'              => 'Pead sisestama korrektse e-postiaadressi',
 'passwordsent'               => 'Uus parool on saadetud kasutaja "$1" registreeritud meiliaadressil.
 Pärast parooli saamist logige palun sisse.',
@@ -750,8 +750,8 @@ Palun pea nüüd pisut vahet.',
 
 # Password reset dialog
 'resetpass'                 => 'Muuda parooli',
-'resetpass_announce'        => 'Sa logisid sisse ajutise e-maili koodiga. 
-Et sisselogimine lõpetada, pead uue parooli siia trükkima:',
+'resetpass_announce'        => 'Logisid sisse e-posti teel saadud ajutise koodiga. 
+Sisselogimise lõpetamiseks pead siia uue parooli sisestama:',
 'resetpass_text'            => '<!-- Lisa tekst siia -->',
 'resetpass_header'          => 'Muuda konto parooli',
 'oldpassword'               => 'Vana parool:',
@@ -1277,7 +1277,7 @@ Siin on juhuslik väärtus, mida saad kasutada: $1',
 'timezoneregion-europe'         => 'Euroopa',
 'timezoneregion-indian'         => 'India ookean',
 'timezoneregion-pacific'        => 'Vaikne ookean',
-'allowemail'                    => 'Luba teistel kasutajatel mulle e-posti saata',
+'allowemail'                    => 'Luba teistel kasutajatel mulle e-kirju saata',
 'prefs-searchoptions'           => 'Otsimine',
 'prefs-namespaces'              => 'Nimeruumid',
 'defaultns'                     => 'Muul juhul otsi järgmistest nimeruumidest:',
@@ -2254,7 +2254,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Kasutaja kaastöö',
-'contributions-title' => 'Kasutaja $1 kaastööd',
+'contributions-title' => 'Kasutaja $1 kaastöö',
 'mycontris'           => 'Kaastöö',
 'contribsub2'         => 'Kasutaja $1 ($2) jaoks',
 'nocontribs'          => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
@@ -2375,7 +2375,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'block-log-flags-anononly'     => 'ainult anonüümsed kasutajad',
 'block-log-flags-nocreate'     => 'kontode loomine on blokeeritud',
 'block-log-flags-noautoblock'  => 'ei blokeerita automaatselt',
-'block-log-flags-noemail'      => 'e-mail blokeeritud',
+'block-log-flags-noemail'      => 'e-kirjade saatmine keelatud',
 'block-log-flags-nousertalk'   => 'ei saa muuta enda arutelulehte',
 'block-log-flags-hiddenname'   => 'kasutajanimi peidetud',
 'range_block_disabled'         => 'Administraatori õigus blokeerida IP-aadresside vahemik on ära võetud.',
@@ -3040,13 +3040,13 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'confirmemail_noemail'     => 'Sul ei ole e-aadress määratud [[Special:Preferences|eelistustes]].',
 'confirmemail_text'        => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead sa oma e-posti aadressi õigsust kinnitama. Allpool olevale nupule klikkides meilitakse sulle kinnituskood, koodi kinnitamiseks kliki meilis oleval lingil.',
 'confirmemail_pending'     => 'Kinnituskood on juba su meiliaadressile saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
-'confirmemail_send'        => 'Meili kinnituskood',
+'confirmemail_send'        => 'Saada kinnituskood',
 'confirmemail_sent'        => 'Kinnitusmeil saadetud.',
 'confirmemail_oncreate'    => 'Kinnituskood saadeti su meiliaadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-posti-põhiseid toiminguid.',
-'confirmemail_sendfailed'  => 'Kinnitusmeili ei õnnestunud saata. 
+'confirmemail_sendfailed'  => 'Kinnitus-e-kirja ei õnnestunud saata. 
 Kontrolli aadressi õigsust.
 
-Veateade meili saatmisel: $1',
+Veateade e-kirja saatmisel: $1',
 'confirmemail_invalid'     => 'Vigane kinnituskood, kinnituskood võib olla aegunud.',
 'confirmemail_needlogin'   => 'Oma e-posti aadressi kinnitamiseks pead sa $1.',
 'confirmemail_success'     => 'Sinu e-posti aadress on nüüd kinnitatud. Sa võid sisse logida ning viki imelisest maailma nautida.',

@@ -1835,7 +1835,9 @@ Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak delloowaat y
 'undelete-missing-filearchive' => 'Loppantig ŋaraw dencu wu xameekaayam doon $1 antuwul, ndax nekkul ci dáttub njoxe bi. 
 Xéj-na keeneen loppanti na ko ba noppi',
 'undelete-error-short'         => 'Njuumte ci loppantig ŋara wu: $1',
-'undelete-error-long'          => 'Njuumte ci jéem gee neenal farug dencukaay bi: $1',
+'undelete-error-long'          => 'Njuumte ci jéem gee neenal farug dencukaay bi:
+
+$1',
 'undelete-show-file-confirm'   => 'Ndax wóor na ne bëgg ngaa wone sumb bees far bu bii dencukaay "<nowiki>$1</nowiki>" bu $2 ci $3?',
 'undelete-show-file-submit'    => 'Waaw',
 

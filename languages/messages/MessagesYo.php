@@ -875,7 +875,8 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'right-delete'        => 'Pa àwọn ojúewé rẹ́',
 
 # User rights log
-'rightslog' => 'Àwọn ẹ̀tọ́ oníṣe',
+'rightslog'  => 'Àwọn ẹ̀tọ́ oníṣe',
+'rightsnone' => '(kósí)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'ṣàtúnṣe ojúewé yìí',

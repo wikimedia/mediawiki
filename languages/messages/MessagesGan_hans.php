@@ -1401,7 +1401,9 @@ $NEWPAGE
 'undelete-cleanup-error'       => '删卟冇用𠮶存盘文件 "$1" 时出错。',
 'undelete-missing-filearchive' => '数据库冇档案存盘 ID $1 ，故系佢也就到档案存盘恢复伓正。佢话伓定早反删除嘞。',
 'undelete-error-short'         => '反删除档案𠮶时间出错: $1',
-'undelete-error-long'          => '反删除档案当中出错: $1',
+'undelete-error-long'          => '反删除档案当中出错:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => '空间名:',

@@ -713,7 +713,7 @@ $1 is the minimum number of characters in the password.',
 'link_tip'        => '{{Identical|Internal link}}
 
 Tip for internal links',
-'extlink_sample'  => 'This message appears when clicking on the fourth button of the edit toolbar. You can translate "link title". Because many of the localisations had urls that went to domains reserved for advertising, it is recommended that the link is left as-is. All customised links were replaced with the standard one, that is reserved in the standard and will never have adds or something.',
+'extlink_sample'  => 'This message appears when clicking on the fourth button of the edit toolbar. You can translate "link title". Because many of the localisations had urls that went to domains reserved for advertising, it is recommended that the link is left as-is. All customised links were replaced with the standard one, that is reserved in the standard and will never have ads or something.',
 'extlink_tip'     => 'This is the tip that appears when you hover the mouse over the fourth button from the left on the edit toolbar.
 
 {{Identical|External link (remember http:// prefix)}}',
@@ -912,25 +912,45 @@ It is the page title of [[Special:RevisionDelete]].',
 'revdelete-show-file-submit'  => 'Reply to {{msg-mw|Revdelete-show-file-confirm}}.
 
 {{Identical|Yes}}',
-'revdelete-selected'          => '{{RevisionDelete}}',
+'revdelete-selected'          => '{{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'logdelete-selected'          => '{{RevisionDelete}}',
 'revdelete-text'              => '{{RevisionDelete}}
 This is the introduction explaining the feature.',
-'revdelete-legend'            => '{{RevisionDelete}}',
-'revdelete-hide-text'         => 'Option for oversight',
+'revdelete-confirm'           => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. 
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-legend'            => '{{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-hide-text'         => 'Option for oversight. This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. 
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-hide-image'        => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
 'revdelete-hide-name'         => 'Option for oversight',
-'revdelete-hide-comment'      => 'Option for oversight',
-'revdelete-hide-user'         => 'Option for oversight',
+'revdelete-hide-comment'      => 'Option for oversight. {{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-hide-user'         => 'Option for oversight. {{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-hide-restricted'   => 'Option for oversight.',
-'revdelete-radio-set'         => '{{Identical|Yes}}',
-'revdelete-radio-unset'       => '{{Identical|No}}',
+'revdelete-radio-same'        => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+There are three radio buttons in each row, and the captions above each column read {{msg-mw|Revdelete-radio-same}}, {{msg-mw|Revdelete-radio-set}}, and {{msg-mw|Revdelete-radio-unset}}.',
+'revdelete-radio-set'         => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+There are three radio buttons in each row, and the captions above each column read {{msg-mw|Revdelete-radio-same}}, {{msg-mw|Revdelete-radio-set}}, and {{msg-mw|Revdelete-radio-unset}}.
+
+{{Identical|Yes}}',
+'revdelete-radio-unset'       => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+There are three radio buttons in each row, and the captions above each column read {{msg-mw|Revdelete-radio-same}}, {{msg-mw|Revdelete-radio-set}}, and {{msg-mw|Revdelete-radio-unset}}.
+
+{{Identical|No}}',
 'revdelete-suppress'          => 'Option for oversight',
 'revdelete-unsuppress'        => '{{RevisionDelete}}',
 'revdelete-log'               => '{{Identical|Reason for deletion}}
-Log comment text for oversight',
+Log comment text for oversight. {{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-submit'            => '{{RevisionDelete}}
-This is the submit button on [[Special:RevisionDelete]].',
+This is the submit button on [[Special:RevisionDelete]].
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-logentry'          => '{{RevisionDelete}}
 This is the message for the log entry in [[Special:Log/delete]] when changing visibility restrictions for page revisions. It is followed by the message {{msg|revdelete-log-message}} in brackets.
 
@@ -944,7 +964,9 @@ The parameter $1 is the log name in brackets.
 
 The name of the user who did this task appears before this message.',
 'revdelete-success'           => '{{RevisionDelete}}',
+'revdelete-failure'           => '{{RevisionDelete}}',
 'logdelete-success'           => '{{RevisionDelete}}',
+'logdelete-failure'           => '{{RevisionDelete}}',
 'revdel-restore'              => '{{RevisionDelete}}',
 'pagehist'                    => 'Links to page history at Special:RevisionDelete header together with links to the logs and Special:Undelete.',
 'deletedhist'                 => 'Links to Special:Undelete at Special:RevisionDelete header together with links to the logs and page history.',
@@ -976,25 +998,37 @@ Please note that the parameters in a log entry will appear in the log only in th
 'revdelete-hide-current'      => 'Parameters:
 * $1 is a date
 * $2 is a time',
-'revdelete-show-no-access'    => 'Parameters:
+'revdelete-show-no-access'    => '{{RevisionDelete}}
+Parameters:
 * $1 is a date
 * $2 is a time',
-'revdelete-modify-no-access'  => 'Parameters:
+'revdelete-modify-no-access'  => '{{RevisionDelete}}
+Parameters:
 * $1 is a date
 * $2 is a time',
-'revdelete-modify-missing'    => '* $1 is a revision ID',
-'revdelete-no-change'         => 'Parameters:
+'revdelete-modify-missing'    => '{{RevisionDelete}}
+* $1 is a revision ID',
+'revdelete-no-change'         => '{{RevisionDelete}}
+Parameters:
 * $1 is a date
 * $2 is a time',
-'revdelete-concurrent-change' => 'Parameters:
+'revdelete-concurrent-change' => '{{RevisionDelete}}
+Parameters:
 * $1 is a date
 * $2 is a time',
-'revdelete-only-restricted'   => 'Parameters:
+'revdelete-only-restricted'   => '{{RevisionDelete}}
+Parameters:
 *$1 - date
 *$2 - time',
-'revdelete-otherreason'       => '{{Identical|Other/additional reason}}',
-'revdelete-reasonotherlist'   => '{{Identical|Other reason}}',
-'revdelete-edit-reasonlist'   => '{{Identical|Edit delete reasons}}',
+'revdelete-otherreason'       => '{{Identical|Other/additional reason}}
+{{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-reasonotherlist'   => '{{Identical|Other reason}}
+{{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-edit-reasonlist'   => '{{Identical|Edit delete reasons}}
+{{RevisionDelete}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
@@ -2292,7 +2326,9 @@ The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}
 'sp-contributions-userrights'     => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
 'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users. Parameters:
 * $1 is the blocked user. Can be used for GENDER (optional)',
-'sp-contributions-username'       => 'This message appears whenever someone requests [[Special:Contributions]].',
+'sp-contributions-username'       => 'This message appears whenever someone requests [[Special:Contributions]].
+
+{{Identical/IP address or username}}',
 'sp-contributions-submit'         => '{{Identical|Search}}',
 
 # What links here
@@ -2342,6 +2378,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 
 {{Identical|Block user}}',
 'ipaddress'                    => '{{Identical|IP Address}}',
+'ipadressorusername'           => '{{Identical/IP address or username}}',
 'ipbexpiry'                    => '{{Identical|Expiry}}',
 'ipbreason'                    => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
 
@@ -2447,7 +2484,7 @@ See also {{msg-mw|Blocklistline}}.',
 Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks',
 'blockme'                      => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'sorbs'                        => '{{optional}}',
-'cant-see-hidden-user'         => 'المستخدم الذي تحاول منعه تم منعه مسبقا وإخفائه. بما أنك لا تمتلك صلاحية إخفاء المستخدم ، لا يمكنك مشاهدة المنع أو تعديله.',
+'cant-see-hidden-user'         => 'Used as (red) error message on Special:Block when you try to change (as sysop w/o the hideuser right) the block of a hidden user.',
 
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].

@@ -1427,7 +1427,9 @@ $NEWPAGE
 'undelete-cleanup-error'       => '刪卟冇用嗰存檔文件 "$1" 時出錯。',
 'undelete-missing-filearchive' => '資料庫冇檔案存檔 ID $1 ，故係佢也就到檔案存檔恢復伓正。佢話伓定早反刪除嘞。',
 'undelete-error-short'         => '反刪除檔案嗰時間出錯: $1',
-'undelete-error-long'          => '反刪除檔案當中出錯: $1',
+'undelete-error-long'          => '反刪除檔案當中出錯:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => '空間名:',
