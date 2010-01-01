@@ -132,6 +132,7 @@ $specialPageAliases = array(
 	'FileDuplicateSearch'       => array( 'പ്രമാണത്തിന്റെ അപരനുള്ള തിരച്ചില്‍' ),
 	'Unwatchedpages'            => array( 'അനാവശ്യതാളുകള്‍' ),
 	'Listredirects'             => array( 'തിരിച്ചുവിടല്‍‌പട്ടിക' ),
+	'Revisiondelete'            => array( 'നാൾപ്പതിപ്പ് മായ്ക്കൽ' ),
 	'Unusedtemplates'           => array( 'ഉപയോഗിക്കാത്തഫലകങ്ങള്‍' ),
 	'Randomredirect'            => array( 'ക്രമരഹിതതിരിച്ചുവിടലുകള്‍' ),
 	'Mypage'                    => array( 'എന്റെ താള്‍' ),
