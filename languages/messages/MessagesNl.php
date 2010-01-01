@@ -157,6 +157,7 @@ $magicWords = array(
 	'localurle'             => array( '0', 'LOKALEURLE', 'LOCALURLE:' ),
 	'servername'            => array( '0', 'SERVERNAAM', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'SCRIPTPAD', 'SCRIPTPATH' ),
+	'stylepath'             => array( '0', 'STIJLPAD', 'STYLEPATH' ),
 	'grammar'               => array( '0', 'GRAMMATICA:', 'GRAMMAR:' ),
 	'gender'                => array( '0', 'GESLACHT:', 'GENDER:' ),
 	'notitleconvert'        => array( '0', '__GEENPAGINANAAMCONVERSIE__', '__GEENTITELCONVERSIE__', '__GEENTC__', '__NOTITLECONVERT__', '__NOTC__' ),
