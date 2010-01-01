@@ -616,7 +616,7 @@ Perhaps no page aliases are defined for it?" );
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";
 		}
-		return ucfirst( $name );
+		return $wgContLang->ucfirst( $name );
 	}
 
 	/**

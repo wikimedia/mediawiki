@@ -671,6 +671,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * refreshLinks.php now purges orphaned redirect table rows
 * (bug 2971) Swap links of hist & diff location on Special:Contributions for
   consistency with RC/WL
+* (bug 21986) Special page names were are now capitalized by content language
 
 == API changes in 1.16 ==
 
