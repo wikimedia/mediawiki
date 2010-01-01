@@ -73,8 +73,8 @@ $dateFormats = array(
 $separatorTransformTable = array(',' => ' ', '.' => ',' );
 
 $specialPageAliases = array(
-	'DoubleRedirects'           => array( 'Redirecionamentos duplos', 'Redireccionamentos duplos' ),
-	'BrokenRedirects'           => array( 'Redirecionamentos quebrados', 'Redireccionamentos quebrados' ),
+	'DoubleRedirects'           => array( 'Redirecionamentos duplos' ),
+	'BrokenRedirects'           => array( 'Redirecionamentos quebrados' ),
 	'Disambiguations'           => array( 'Páginas de desambiguação', 'Desambiguar', 'Desambiguações' ),
 	'Userlogin'                 => array( 'Autenticar-se', 'Entrar', 'Login' ),
 	'Userlogout'                => array( 'Sair', 'Logout' ),
@@ -140,10 +140,10 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'Busca MIME' ),
 	'FileDuplicateSearch'       => array( 'Busca de arquivos duplicados', 'Busca de ficheiros duplicados' ),
 	'Unwatchedpages'            => array( 'Páginas não-vigiadas', 'Páginas não vigiadas', 'Artigos não-vigiados', 'Artigos não vigiados' ),
-	'Listredirects'             => array( 'Lista de redirecionamentos', 'Redirecionamentos', 'Lista de redireccionamentos', 'Redireccionamentos' ),
+	'Listredirects'             => array( 'Lista de redirecionamentos', 'Redirecionamentos' ),
 	'Revisiondelete'            => array( 'Eliminar edição', 'Eliminar revisão', 'Apagar edição', 'Apagar revisão' ),
 	'Unusedtemplates'           => array( 'Predefinições sem uso', 'Predefinições não utilizadas' ),
-	'Randomredirect'            => array( 'Redirecionamento aleatório', 'Redireccionamento aleatório' ),
+	'Randomredirect'            => array( 'Redirecionamento aleatório' ),
 	'Mypage'                    => array( 'Minha página' ),
 	'Mytalk'                    => array( 'Minha discussão' ),
 	'Mycontributions'           => array( 'Minhas contribuições', 'Minhas edições' ),
@@ -159,6 +159,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Página em branco' ),
 	'LinkSearch'                => array( 'Pesquisar links' ),
 	'DeletedContributions'      => array( 'Contribuições eliminadas', 'Edições eliminadas' ),
+	'Activeusers'               => array( 'Usuários ativos' ),
 );
 
 $magicWords = array(

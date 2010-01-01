@@ -131,6 +131,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'PraznaStranica' ),
 	'LinkSearch'                => array( 'PotragaLinkova' ),
 	'DeletedContributions'      => array( 'ObrisaniDoprinosi' ),
+	'Tags'                      => array( 'Oznake' ),
+	'Activeusers'               => array( 'AktivniKorisnici' ),
 );
 
 $magicWords = array(
