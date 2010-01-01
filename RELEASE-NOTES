@@ -672,6 +672,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 2971) Swap links of hist & diff location on Special:Contributions for
   consistency with RC/WL
 * (bug 21986) Special page names were are now capitalized by content language
+* If two log type have the same description, they're now both displayed in the
+  type selector on Special:Log
 
 == API changes in 1.16 ==
 

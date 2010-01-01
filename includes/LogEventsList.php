@@ -190,16 +190,16 @@ class LogEventsList {
 		// First pass to load the log names
 		foreach( $validTypes as $type ) {
 			$text = LogPage::logName( $type );
-			$typesByName[$text] = $type;
+			$typesByName[$type] = $text;
 		}
 
 		// Second pass to sort by name
-		ksort($typesByName);
+		asort($typesByName);
 
 		// Note the query type
 		$queryType = count($queryTypes) == 1 ? $queryTypes[0] : '';
 		// Third pass generates sorted XHTML content
-		foreach( $typesByName as $text => $type ) {
+		foreach( $typesByName as $type => $text ) {
 			$selected = ($type == $queryType);
 			// Restricted types
 			if ( isset($wgLogRestrictions[$type]) ) {
