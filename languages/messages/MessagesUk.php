@@ -96,6 +96,7 @@ $magicWords = array(
 	'forcetoc'              => array( '0', '__ОБОВ_ЗМІСТ__', '__ОБЯЗ_ОГЛ__', '__ОБЯЗАТЕЛЬНОЕ_ОГЛАВЛЕНИЕ__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__ЗМІСТ__', '__ОГЛ__', '__ОГЛАВЛЕНИЕ__', '__TOC__' ),
 	'noeditsection'         => array( '0', '__БЕЗ_РЕДАГУВ_РОЗДІЛУ__', '__БЕЗ_РЕДАКТИРОВАНИЯ_РАЗДЕЛА__', '__NOEDITSECTION__' ),
+	'noheader'              => array( '0', '__БЕЗ_ЗАГОЛОВКУ__', '__БЕЗ_ЗАГОЛОВКА__', '__NOHEADER__' ),
 	'currentmonth'          => array( '1', 'ПОТОЧНИЙ_МІСЯЦЬ', 'ТЕКУЩИЙ_МЕСЯЦ', 'ТЕКУЩИЙ_МЕСЯЦ_2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'НАЗВА_ПОТОЧНОГО_МІСЯЦЯ', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'НАЗВА_ПОТОЧНОГО_МІСЯЦЯ_РОД', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА_РОД', 'CURRENTMONTHNAMEGEN' ),
