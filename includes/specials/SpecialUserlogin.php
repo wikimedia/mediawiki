@@ -947,7 +947,15 @@ class LoginForm {
 			wfRunHooks( 'UserLoginForm', array( &$template ) );
 		}
 
-		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
+		//Changes the title depending on permissions for creating account
+		if ($wgUser->isAllowed( 'createaccount' ))
+		{
+			$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
+		} else
+		{
+			$wgOut->setPageTitle( wfMsg( 'userloginnocreate' ) );
+		}
+
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->disallowUserJs();  // just in case...

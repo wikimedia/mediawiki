@@ -412,6 +412,7 @@ $wgMessageStructure = array(
 		'nav-login-createaccount',
 		'loginprompt',
 		'userlogin',
+		'userloginnocreate',
 		'logout',
 		'userlogout',
 		'notloggedin',
