@@ -1919,7 +1919,7 @@ Ondersteunde protokolle: <tt>$1</tt>',
 'newuserlogpagetext'          => "Dit is 'n logboek van gebruikers wat onlangs ingeteken het.",
 'newuserlog-byemail'          => 'wagwoord is per e-pos versend',
 'newuserlog-create-entry'     => 'Nuwe gebruiker',
-'newuserlog-create2-entry'    => 'rekening is geskep vir $1',
+'newuserlog-create2-entry'    => 'het gebruiker $1 geskep',
 'newuserlog-autocreate-entry' => 'Gebruiker outomaties geskep',
 
 # Special:ListGroupRights

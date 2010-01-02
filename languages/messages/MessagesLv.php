@@ -579,6 +579,9 @@ Ja tu šeit nonāci kļūdas pēc, vienkārši uzspied '''back''' pogu pārlūkp
 Šāda IP adrese var būt vairākiem lietotājiem.
 Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši komentāri, lūdzu, [[Special:UserLogin/signup|kļūsti par lietotāju]] vai arī [[Special:UserLogin|izmanto jau izveidotu lietotājvārdu]], lai izvairītos no turpmākām neskaidrībām un tu netiktu sajaukts ar citiem anonīmiem lietotājiem.''",
 'noarticletext'              => 'Šajā lapā šobrīd nav nekāda teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt citās lapās pēc šīs lapas nosaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītos reģistru ierakstos] vai arī [{{fullurl:{{FULLPAGENAME}}|action=edit}} sākt rediģēt šo lapu].',
+'noarticletext-nopermission' => 'Šajā lapā pašlaik nav nekāda teksta.
+Tu vari [[Special:Search/{{PAGENAME}}|meklēt šīs lapas nosaukumu]] citās lapās,
+vai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītus reģistru ierakstus]</span>.',
 'userpage-userdoesnotexist'  => 'Lietotājs "$1" nav reģistrēts.
 Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
 'clearyourcache'             => "'''Piezīme - Pēc saglabāšanas, lai būtu redzamas izmaiņas, var būt nepieciešamas iztīrīt pārlūka kešatmiņu.''' '''Mozilla / Firefox / Safari:''' turi nospiestu ''Shift'' un klikšķini ''Reload,'' vai arī spied ''Ctrl-F5'' vai ''Ctrl-R'' (''Command-R'' uz Macintosh); '''Konqueror: '''klikšķini ''Reload'' vai spied uz ''F5;'' '''Opera:''' kešu var iztīrīt ''Tools → Preferences;'' '''Internet Explorer:''' turi nospiestu ''Ctrl'' un klikšķini ''Refresh,'' vai spied ''Ctrl-F5.''",

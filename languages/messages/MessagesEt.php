@@ -527,7 +527,7 @@ $1',
 'disclaimerpage'       => 'Project:Hoiatused',
 'edithelp'             => 'Redigeerimisjuhend',
 'edithelppage'         => 'Help:Kuidas_lehte_redigeerida',
-'helppage'             => 'Help:Juhend',
+'helppage'             => 'Help:Sisukord',
 'mainpage'             => 'Esileht',
 'mainpage-description' => 'Esileht',
 'policy-url'           => 'Project:Reeglid',
@@ -721,7 +721,7 @@ See peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.',
 Kui uut parooli palus keegi teine või sulle meenus vana parool ja sa ei soovi seda enam muuta, võid käesolevat teadet eirata ning jätkata endise parooli kasutamist.',
 'noemail'                    => 'Kasutaja $1 e-postiaadressi meil kahjuks pole.',
 'noemailcreate'              => 'Pead sisestama korrektse e-postiaadressi',
-'passwordsent'               => 'Uus parool on saadetud kasutaja "$1" registreeritud meiliaadressil.
+'passwordsent'               => 'Uus parool on saadetud kasutaja $1 registreeritud e-postiaadressil.
 Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword'       => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
 'eauthentsent'               => 'Sisestatud e-posti aadressile on saadetud kinnituse e-kiri.
@@ -740,9 +740,9 @@ Ole hea ja anna õige e-aadress või jäta lahter tühjaks.',
 'accountcreated'             => 'Konto loodud',
 'accountcreatedtext'         => 'Kasutajakonto kasutajatunnusele $1 loodud.',
 'createaccount-title'        => '{{GRAMMAR:illative|{{SITENAME}}}} konto loomine',
-'createaccount-text'         => 'Keegi on loonud {{GRAMMAR:illative|{{SITENAME}}}} ($4) sinu meiliaadressile vastava kasutajatunnuse "$2". Parooliks seati "$3". Logi sisse ja muuda oma parool.
+'createaccount-text'         => 'Keegi on loonud {{GRAMMAR:illative|{{SITENAME}}}} ($4) sinu e-postiaadressile vastava kasutajatunnuse "$2". Parooliks seati "$3". Logi sisse ja muuda oma parool.
 
-Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt ignoreerida.',
+Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata.',
 'usernamehasherror'          => 'Kasutajanimi ei või sisaldada trellimärke ("#").',
 'login-throttled'            => 'Oled lühikese aja jooksul liiga palju äpardunud logimiskatseid sooritanud.
 Palun pea nüüd pisut vahet.',
@@ -3038,11 +3038,11 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # E-mail address confirmation
 'confirmemail'             => 'Kinnita e-posti aadress',
 'confirmemail_noemail'     => 'Sul ei ole e-aadress määratud [[Special:Preferences|eelistustes]].',
-'confirmemail_text'        => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead sa oma e-posti aadressi õigsust kinnitama. Allpool olevale nupule klikkides meilitakse sulle kinnituskood, koodi kinnitamiseks kliki meilis oleval lingil.',
-'confirmemail_pending'     => 'Kinnituskood on juba su meiliaadressile saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
+'confirmemail_text'        => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-postiaadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.',
+'confirmemail_pending'     => 'Kinnituskood on juba saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
 'confirmemail_send'        => 'Saada kinnituskood',
-'confirmemail_sent'        => 'Kinnitusmeil saadetud.',
-'confirmemail_oncreate'    => 'Kinnituskood saadeti su meiliaadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-posti-põhiseid toiminguid.',
+'confirmemail_sent'        => 'Kinnitus-e-kiri saadetud.',
+'confirmemail_oncreate'    => 'Kinnituskood saadeti e-postiaadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-postipõhiseid toiminguid.',
 'confirmemail_sendfailed'  => 'Kinnitus-e-kirja ei õnnestunud saata. 
 Kontrolli aadressi õigsust.
 

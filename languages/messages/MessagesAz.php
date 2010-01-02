@@ -1164,7 +1164,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'exblank'                => 'səhifə boş',
 'delete-confirm'         => 'Silinən səhifə: "$1"',
 'historywarning'         => "'''Xəbərdarlıq:''' Silinəcək səhifənin tarixçəsində qeyd olunmuş $1 {{PLURAL:$1|redaktə|redaktə}} var:",
-'confirmdeletetext'      => 'Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunun [[{{MediaWiki:Policy-url}}|rəsmi qaydalarla]] üzləşdiyini və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.',
+'confirmdeletetext'      => 'Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunu [[{{MediaWiki:Policy-url}}|qaydalara]] uyğun etdiyinizi və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.',
 'actioncomplete'         => 'Fəaliyyət tamamlandı',
 'deletedarticle'         => '"[[$1]]" silindi',
 'dellogpage'             => 'Silmə qeydləri',

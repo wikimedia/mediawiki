@@ -277,7 +277,7 @@ $messages = array(
 'october'       => 'outubro',
 'november'      => 'novembro',
 'december'      => 'decembro',
-'january-gen'   => 'Xaneiro',
+'january-gen'   => 'de xaneiro de',
 'february-gen'  => 'Febreiro',
 'march-gen'     => 'Marzo',
 'april-gen'     => 'Abril',
@@ -2267,7 +2267,7 @@ $1',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
-'blockip'                         => 'Bloquear un usuario',
+'blockip'                         => 'Bloquear este usuario',
 'blockip-title'                   => 'Bloquear un usuario',
 'blockip-legend'                  => 'Bloquear un usuario',
 'blockiptext'                     => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.

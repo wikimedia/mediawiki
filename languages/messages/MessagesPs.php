@@ -282,6 +282,7 @@ $messages = array(
 'faq'            => 'ډ-ځ-پ',
 
 # Vector skin
+'vector-action-addsection'   => 'سرليکونه ورګډول',
 'vector-action-delete'       => 'ړنګول',
 'vector-action-move'         => 'لېږدول',
 'vector-action-protect'      => 'پروژه',
@@ -436,6 +437,8 @@ $messages = array(
 # General errors
 'error'                => 'تېروتنه',
 'databaseerror'        => 'د ډاټابېز تېروتنه',
+'readonly'             => 'توکبنسټ تړل شوی',
+'missingarticle-rev'   => '(مخليدنه#: $1)',
 'missingarticle-diff'  => '(توپير: $1، $2)',
 'internalerror'        => 'کورنۍ تېروتنه',
 'internalerror_info'   => 'کورنۍ تېروتنه: $1',
@@ -633,9 +636,10 @@ $messages = array(
 'titleprotectedwarning'            => "'''ګواښنه: همدا مخ تړل شوی دی او د دې د جوړولو لپاره تاسې ته د [[Special:ListGroupRights|ځانګړو رښتو]] د ترلاسه کولو اړتيا ده.'''",
 'templatesused'                    => 'په دې مخ کارېدلې {{PLURAL:$1|کينډۍ|کينډۍ}}:',
 'templatesusedpreview'             => 'يه دې مخکتنه کارېدلې {{PLURAL:$1|کينډۍ|کينډۍ}}:',
-'templatesusedsection'             => 'په دې برخه کارېدلي کينډۍ:',
+'templatesusedsection'             => 'په دې برخه کې کارېدلي {{PLURAL:$1|کينډۍ|کينډۍ}}:',
 'template-protected'               => '(ژغورل شوی)',
 'template-semiprotected'           => '(نيم-ژغورلی)',
+'hiddencategories'                 => 'دا مخ د {{PLURAL:$1|1 پټې وېشنيزې|$1 پټو وېشنيزو}} يو غړی دی:',
 'nocreatetitle'                    => 'د مخ جوړول بريد ټاکلی دی',
 'nocreatetext'                     => '{{SITENAME}} د نوو مخونو د جوړولو وړتيا محدوده کړې.
 تاسو بېرته پر شا تللای شی او په شته مخونو کې سمونې ترسره کولای شی، او يا هم [[Special:UserLogin|غونډال ته ننوتلای او يو کارن-حساب جوړولای شی]].',
@@ -646,6 +650,7 @@ $messages = array(
 
 پکار ده چې تاسو په دې ځان پوه کړی چې ايا دا تاسو ته وړ ده چې د همدې مخ سمونه په پرله پسې توګه وکړی.
 ستاسو د اسانتياوو لپاره د همدې مخ د ړنګېدلو يادښت هم ورکړ شوی:",
+'log-fulllog'                      => 'بشپړ يادښت کتل',
 'edit-conflict'                    => 'د سمولو خنډ',
 'edit-already-exists'              => 'په دې نوم يو نوی مخ جوړ نه شو.
 پدې نوم د پخوا نه يو مخ شته.',
@@ -654,45 +659,59 @@ $messages = array(
 'cantcreateaccounttitle' => 'کارن-حساب نه شي جوړېدای',
 
 # History pages
-'viewpagelogs'        => 'د همدغه مخ يادښتونه کتل',
-'nohistory'           => 'ددې مخ لپاره د سمادېدنې هېڅ کوم پېښليک نه شته.',
-'currentrev'          => 'اوسنۍ بڼه',
-'revisionasof'        => 'د $1 پورې شته مخليدنه',
-'revision-info'       => 'د $1 پورې شته مخليدنه، د $2 لخوا ترسره شوې',
-'previousrevision'    => '← زړه بڼه',
-'nextrevision'        => '← نوې بڼه',
-'currentrevisionlink' => 'اوسنۍ بڼه',
-'cur'                 => 'اوسنی',
-'next'                => 'راتلونکي',
-'last'                => 'وروستنی',
-'page_first'          => 'لومړنی',
-'page_last'           => 'وروستنی',
-'histlegend'          => 'د توپير ټاکنه: د هرې هغې بڼې پرتلنه چې تاسو غواړۍ نو د هماغې بڼې چوکاټک په نښه کړی او بيا په لاندينۍ تڼۍ وټوکۍ.<br />
+'viewpagelogs'           => 'د همدغه مخ يادښتونه کتل',
+'nohistory'              => 'ددې مخ لپاره د سمادېدنې هېڅ کوم پېښليک نه شته.',
+'currentrev'             => 'اوسنۍ بڼه',
+'currentrev-asof'        => 'تر $1 پورې تازه مخليدنه',
+'revisionasof'           => 'د $1 پورې شته مخليدنه',
+'revision-info'          => 'د $1 پورې شته مخليدنه، د $2 لخوا ترسره شوې',
+'previousrevision'       => '← زړه بڼه',
+'nextrevision'           => '← نوې بڼه',
+'currentrevisionlink'    => 'اوسنۍ بڼه',
+'cur'                    => 'اوسنی',
+'next'                   => 'راتلونکي',
+'last'                   => 'وروستنی',
+'page_first'             => 'لومړنی',
+'page_last'              => 'وروستنی',
+'histlegend'             => 'د توپير ټاکنه: د هرې هغې بڼې پرتلنه چې تاسو غواړۍ نو د هماغې بڼې چوکاټک په نښه کړی او بيا په لاندينۍ تڼۍ وټوکۍ.<br />
 لنډيز: (اوس) = د اوسنۍ بڼې سره توپير،
 (وروست) = د وروستۍ بڼې سره توپير، و = وړه سمونه.',
-'histfirst'           => 'پخواني',
-'histlast'            => 'تازه',
-'historysize'         => '({{PLURAL:$1|1 بايټ|$1 بايټونه}})',
-'historyempty'        => '(تش)',
+'history-fieldset-title' => 'پېښليک سپړل',
+'history-show-deleted'   => 'يواځې ړنګ شوي',
+'histfirst'              => 'پخواني',
+'histlast'               => 'تازه',
+'historysize'            => '({{PLURAL:$1|1 بايټ|$1 بايټونه}})',
+'historyempty'           => '(تش)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 په $2',
 
 # Revision deletion
 'rev-delundel'               => 'ښکاره کول/ پټول',
+'rev-showdeleted'            => 'ښکاره کول',
 'revdelete-show-file-submit' => 'هو',
+'revdelete-radio-set'        => 'هو',
+'revdelete-radio-unset'      => 'نه',
 'revdelete-log'              => 'د ړنګولو سبب:',
+'revdel-restore'             => 'ښکارېدنه بدلول',
 'pagehist'                   => 'د مخ پېښليک',
 'deletedhist'                => 'د ړنګولو پېښليک',
 'revdelete-content'          => 'مېنځپانګه',
 'revdelete-summary'          => 'لنډيز سمول',
 'revdelete-uname'            => 'کارن-نوم',
+'revdelete-reason-dropdown'  => '*د ړنګولو ټولګړي سببونه
+** د خپرېدو د رښتو سرغړونه
+** ناسم شخصي مالومات
+** Potentially libelous information',
 'revdelete-otherreason'      => 'بل/اضافي سبب:',
 'revdelete-reasonotherlist'  => 'بل سبب',
 
 # History merging
 'mergehistory-from'   => 'د سرچينې مخ:',
 'mergehistory-reason' => 'سبب:',
+
+# Merge log
+'revertmerge' => 'بېلول',
 
 # Diffs
 'history-title'           => 'د "$1" د پېښليک مخليدنه',
@@ -705,6 +724,7 @@ $messages = array(
 # Search results
 'searchresults'                  => 'د لټون پايلې',
 'searchresults-title'            => 'د "$1" د پلټنې پايلې',
+'searchresulttext'               => 'په {{SITENAME}} کې د لټون د نورو مالوماتو لپاره، [[{{MediaWiki:Helppage}}|{{int:لارښود}}]] وګورۍ.',
 'searchsubtitle'                 => 'تاسو د \'\'\'[[:$1]]\'\'\' لپاره پلټنه کړې ([[Special:Prefixindex/$1|ټول هغه مخونه چې په "$1" پېلېږي]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ټول هغه مخونه چې "$1" سره تړنې لري]])',
 'searchsubtitleinvalid'          => "تاسو د '''$1''' لپاره لټون کړی",
 'notitlematches'                 => 'د هېڅ يوه مخ سرليک ورسره ورته نه دی',
@@ -714,7 +734,10 @@ $messages = array(
 'viewprevnext'                   => '($1 {{int:pipe-separator}} $2) ($3) ښکاره کول',
 'searchmenu-legend'              => 'د پلټلو خوښنې',
 'searchhelp-url'                 => 'Help:لړليک',
+'searchprofile-project'          => 'د لارښود او پروژې مخونه',
 'searchprofile-images'           => 'Multimedia',
+'searchprofile-everything'       => 'هرڅه',
+'searchprofile-advanced'         => 'پرمختللی',
 'searchprofile-articles-tooltip' => 'په $1 کې پلټل',
 'searchprofile-project-tooltip'  => 'په $1 کې پلټل',
 'searchprofile-images-tooltip'   => 'د دوتنو پلټنه',
@@ -822,7 +845,7 @@ $messages = array(
 'userrights-editusergroup' => 'د کاروونکو ډلې سمادول',
 'saveusergroups'           => 'د کارونکي ډلې خوندي کول',
 'userrights-groupsmember'  => 'غړی د:',
-'userrights-reason'        => 'د بدلون سبب:',
+'userrights-reason'        => 'سبب:',
 
 # Groups
 'group'       => 'ډله:',
@@ -883,6 +906,7 @@ $messages = array(
 'boteditletter'                  => 'باټ',
 'rc_categories_any'              => 'هر يو',
 'newsectionsummary'              => '/* $1 */ نوې برخه',
+'rc-enhanced-expand'             => 'تفصيل ښکاره کول (د دې لپاره د JavaScript اړتيا ده)',
 'rc-enhanced-hide'               => 'تفصيل پټول',
 
 # Recent changes linked
@@ -1170,7 +1194,7 @@ $messages = array(
 
 که چېرته تاسو بيا وروسته غواړۍ چې کوم مخ د خپل کتنلړليک نه ليرې کړۍ، نو په \"نه کتل\" تڼۍ باندې ټک ورکړۍ.",
 'removedwatch'         => 'د کتنلړليک نه لرې شو',
-'removedwatchtext'     => 'د "[[:$1]]" په نامه مخ ستاسو له کتنلړليک نه لرې شو.',
+'removedwatchtext'     => 'د "[[:$1]]" مخ [[Special:Watchlist|ستاسې کتنلړليک]] نه لرې شو.',
 'watch'                => 'کتل',
 'watchthispage'        => 'همدا مخ کتل',
 'unwatch'              => 'نه کتل',
@@ -1319,6 +1343,7 @@ $messages = array(
 'whatlinkshere-prev'      => '{{PLURAL:$1|پخوانی|پخواني $1}}',
 'whatlinkshere-next'      => '{{PLURAL:$1|راتلونکی|راتلونکي $1}}',
 'whatlinkshere-links'     => '← تړنې',
+'whatlinkshere-hidetrans' => '$1 پايلې',
 'whatlinkshere-hidelinks' => '$1 تړنې',
 'whatlinkshere-filters'   => 'چاڼګرونه',
 
@@ -1344,6 +1369,7 @@ $messages = array(
 'anononlyblock'            => 'يواځې ورکنومی',
 'blocklink'                => 'مخه نيول',
 'unblocklink'              => 'نامخنيول',
+'change-blocklink'         => 'د بنديز بدلون',
 'contribslink'             => 'ونډې',
 'autoblocker'              => 'په اتوماتيک ډول ستاسو مخنيوی شوی دا ځکه چې ستاسو IP پته وروستی ځل د "[[User:$1|$1]]" له خوا کارېدلې. او د $1 د مخنيوي سبب دا دی: "$2"',
 'blocklogpage'             => 'د مخنيوي يادښت',
@@ -1352,6 +1378,9 @@ $messages = array(
 'block-log-flags-nocreate' => 'د کارن-حساب جوړول ناچارن شوې',
 'block-log-flags-noemail'  => 'ددې برېښليک مخه نيول شوی',
 'proxyblocksuccess'        => 'ترسره شو.',
+
+# Developer tools
+'lockdb' => 'توکبنسټ تړل',
 
 # Move page
 'move-page-legend'        => 'مخ لېږدول',
@@ -1461,6 +1490,7 @@ $messages = array(
 'tooltip-n-randompage'            => 'يو ناټاکلی مخ ښکاره کوي',
 'tooltip-n-help'                  => 'هغه ځای چېرته چې راڅرګندولای شو.',
 'tooltip-t-whatlinkshere'         => 'د ويکي د ټولو هغو مخونو لړليک چې دلته تړنې لري',
+'tooltip-t-recentchangeslinked'   => 'له همدې مخ سره د تړل شويو مخونو وروستي بدلونونه',
 'tooltip-feed-rss'                => 'د همدې مخ د آر اس اس کتنه',
 'tooltip-feed-atom'               => 'د دې مخ د اټوم کتنې',
 'tooltip-t-contributions'         => 'د همدې کارونکي د ونډو لړليک کتل',
@@ -1485,6 +1515,8 @@ $messages = array(
 'tooltip-diff'                    => 'دا هغه بدلونونه چې تاسو په متن کې ترسره کړي، ښکاره کوي. [alt-v]',
 'tooltip-compareselectedversions' => 'د همدې مخ د دوو ټاکل شويو بڼو تر مېنځ توپيرونه وګورۍ.',
 'tooltip-watch'                   => 'همدا مخ ستاسو کتنلړليک کې ورګډوي [alt-w]',
+'tooltip-undo'                    => '"ناکړ" همدا سمون پر شا ګرځوي او د سمون کړکۍ د مخکتنې په بڼه پرانيزي.
+دا کړنه د لنډيز په برخه کې د سمونونو د سببونو د ورګډولو آسانتيا برابروي.',
 
 # Attribution
 'siteuser'         => 'د {{SITENAME}} کارن $1',

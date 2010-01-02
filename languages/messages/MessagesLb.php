@@ -540,9 +540,9 @@ $2',
 # Login and logout pages
 'logouttext'                 => "'''Dir sidd elo ofgemellt.'''
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|nach eemol umellen]].
+Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|erëm umellt]].
 
-Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemellt wiert, bis Dir ärem Browser seng Cache eidel maacht.",
+Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemellt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
 'welcomecreation'            => '== Wëllkomm, $1! ==
 Äre Kont gouf kreéiert. 
 Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
@@ -804,7 +804,7 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'nocreatetitle'                    => "D'Uleeë vun neie Säiten ass limitéiert.",
 'nocreatetext'                     => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
 'nocreate-loggedin'                => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
-'sectioneditnotsupported-title'    => 'Ännere vum Abschnitt gëtt net ënnerstetzt',
+'sectioneditnotsupported-title'    => 'Ännere vum Abschnitt gëtt net ënnerstëtzt',
 'sectioneditnotsupported-text'     => "D'Ännere vun Abschnitten gëtt op dëser Ännerungssäit net ënnertstetzt.",
 'permissionserrors'                => 'Berechtigungs-Feeler',
 'permissionserrorstext'            => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',

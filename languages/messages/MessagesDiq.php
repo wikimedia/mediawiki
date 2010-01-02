@@ -448,17 +448,19 @@ Hesabê şıma biyo a.
 'userexists'                 => 'No name ey yewna teno, yewna name bınuse.',
 'loginerror'                 => 'Xetayê hesab ekerdışi',
 'createaccounterror'         => 'Hesab nêvırazyeno: $1',
-'nocookiesnew'               => 'Hesab vıraziya la şıma nêeşke hesab akere.
-Qey hesab akerdış çerezê ney keyepel {{SITENAME}} lazımo.
-Çerez xebitnayiş wedar dayo.
-Çerezan akere u pê name u parolayo newe cıkewe.',
-'nocookieslogin'             => '{{SITENAME}} Na keyepel de hesab akerdış de gani çerezê şıma akerde bıbo, çerezê şıma qefelnayeyo. Akere u newe ra tesel (cereb) bıkere.',
+'nocookiesnew'               => 'Hesabê karberi vıraziya, labelê şıma nêşay cı kewê.
+Semedê akerdışê hesabi çerezê {{SITENAME}}i gurêniyenê. 
+Şıma çerezi qapan kerdi.
+Ravêri inan akerê, dıma be name u parola şımawa newiye cı kewê.',
+'nocookieslogin'             => 'Semedê akerdışê hesabi çerezê {{SITENAME}}i gurêniyenê. 
+Şıma çerezi qapan kerdi.
+Ravêri inan akerê u reyna bıcerrebnê.',
 'noname'                     => 'Yew nameyo maqbul bınuse.',
 'loginsuccesstitle'          => 'Hesab bıyo a.',
 'loginsuccess'               => '{{SITENAME}} Na keyepel de pê no "$1" name şıma hesab kerdo a.',
-'nosuchuser'                 => 'No"$1" name de yew hesab esto.
-Name nuştış de herfa pil u qice ri diqet bıkere.
-Nuştış konrol bıkere [[Special:UserLogin/signup|newe hesab akere]].',
+'nosuchuser'                 => 'Ebe namey "$1"i yew karber çıniyo. 
+Nuştışê namanê karberan de herfa pil u qıce rê diqet kerên.
+Nuştışê xo qonrol kerên, ya zi [[Special:UserLogin/signup|yew hesabo newe akerên]].',
 'nosuchusershort'            => 'No "<nowiki>$1</nowiki>" name de yew ten çino. Kontrolê nuştışi bıkere.',
 'nouserspecified'            => 'Şıma gani yew name bıde.',
 'wrongpassword'              => 'Parola ğeleta. Rêna / fına bıcerrebne .',
