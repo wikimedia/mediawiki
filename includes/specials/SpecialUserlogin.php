@@ -948,11 +948,9 @@ class LoginForm {
 		}
 
 		//Changes the title depending on permissions for creating account
-		if ($wgUser->isAllowed( 'createaccount' ))
-		{
+		if ( $wgUser->isAllowed( 'createaccount' ) ) {
 			$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
-		} else
-		{
+		} else {
 			$wgOut->setPageTitle( wfMsg( 'userloginnocreate' ) );
 		}
 
