@@ -742,8 +742,8 @@ class SkinTemplate extends Skin {
 				if ( ( $wgArticle && $wgArticle->isCurrent() && $istalk ) || $wgOut->showNewSectionLink() ) {
 					if ( !$wgOut->forceHideNewSectionLink() ) {
 						$urlArgs = 'action=edit&section=new';
-						$preloadMsg = wfMsg( 'talk-addsection-preload' );
-						$editintroMsg = wfMsg( 'talk-addsection-editintro' );
+						$preloadMsg = wfMsgForContent( 'talk-addsection-preload' );
+						$editintroMsg = wfMsgForContent( 'talk-addsection-editintro' );
 						if( '' != $preloadMsg  ) {
 							$urlArgs .= '&preload=' . urlencode( $preloadMsg );
 						}
