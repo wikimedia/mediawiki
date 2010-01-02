@@ -674,6 +674,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21986) Special page names were are now capitalized by content language
 * If two log type have the same description, they're now both displayed in the
   type selector on Special:Log
+* (bug 20115) Special:Userlogin title says "Log in / create account" even if the
+  user can't create an account
 
 == API changes in 1.16 ==
 
