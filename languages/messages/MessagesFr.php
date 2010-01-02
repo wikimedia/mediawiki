@@ -40,6 +40,7 @@
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
+ * @author Quentinv57
  * @author Remember the dot
  * @author Seb35
  * @author Sherbrooke
@@ -1059,7 +1060,7 @@ La raison donnée était ''$2''.",
 'next'                   => 'suivant',
 'last'                   => 'diff',
 'page_first'             => 'première',
-'page_last'              => 'dernier',
+'page_last'              => 'dernière',
 'histlegend'             => 'Légende : ({{MediaWiki:Cur}}) = différence avec la version actuelle, ({{MediaWiki:Last}}) = différence avec la version précédente, <b>m</b> = modification mineure',
 'history-fieldset-title' => 'Naviguer dans l’historique',
 'history-show-deleted'   => 'Supprimés seulement',
@@ -2786,7 +2787,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 # Metadata
 'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
 'nocreativecommons' => 'Les métadonnées « Creative Commons RDF » sont désactivées sur ce serveur.',
-'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
+'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client soit capable de lire.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',

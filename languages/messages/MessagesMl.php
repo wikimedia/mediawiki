@@ -2811,6 +2811,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-samplesperpixel'             => 'ഘടകങ്ങളുടെ എണ്ണം',
 'exif-xresolution'                 => 'തിരശ്ചീന റെസലൂഷന്‍',
 'exif-yresolution'                 => 'ലംബ റെസലൂഷന്‍',
+'exif-stripoffsets'                => 'ചിത്രത്തിന്റെ വിവര സ്ഥാനം',
 'exif-rowsperstrip'                => 'ഓരോ സ്‌ട്രിപ്പിലുമുള്ള വരികളുടെ എണ്ണം',
 'exif-jpeginterchangeformatlength' => 'JPEG ഡാറ്റയുടെ ബൈറ്റ്സുകള്‍',
 'exif-datetime'                    => 'പ്രമാണത്തിന് മാറ്റം വരുത്തിയ തീയതിയും സമയവും',

@@ -453,9 +453,19 @@ Vurnaena [[Special:Preferences|melumatanê {{SITENAME}}]] ho vira mekerê.',
 Kerem ke, namêna weçine.',
 'loginerror'              => 'Xeta cıkotene',
 'createaccounterror'      => 'Hesab nêvırajino: $1',
+'nocookiesnew'            => 'Hesabê karberi vıraziya, hama sıma nêşikiyay cı kuyê.
+Serba rakerdena hesabi çerezê {{SITENAME}}i gurêninê. 
+Sıma çerezi qapan kerdi.
+Ravêri ine rakerê, dıma be name u parola sımawa newiye cı kuyê.',
+'nocookieslogin'          => 'Serba rakerdena hesabi çerezê {{SITENAME}}i gurêninê. 
+Sıma çerezi qapan kerdi.
+Ravêri ine rakerê u reyna bıcerrebnê.',
 'noname'                  => 'Ebe namê do vêrdoği ra cınêkota.',
 'loginsuccesstitle'       => 'Cıkotene biye ra',
 'loginsuccess'            => "'''Sıta {{SITENAME}} de ebe namê karberi \"\$1\" kota cı.'''",
+'nosuchuser'              => 'Ebe namê "$1"i jü karber çino. 
+Nustena namunê karberu de herfa pil u qıze rê diqet kerê.
+Nustena ho qonrol kerê, ya ki [[Special:UserLogin/signup|jü hesabo newe rakerê]].',
 'nosuchusershort'         => 'Karberê do ebe namê "<nowiki>$1</nowiki>" çino. 
 Nustena cı qontrol ke.',
 'nouserspecified'         => 'Gunê namê jü karberi bıdekernê.',

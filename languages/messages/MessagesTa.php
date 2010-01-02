@@ -96,7 +96,8 @@ $messages = array(
 'underline-default' => 'உலாவி இயல்பிருப்பு',
 
 # Font style option in Special:Preferences
-'editfont-style' => 'தொகுத்தல் பெட்டி எழுத்துரு:',
+'editfont-style'   => 'தொகுத்தல் பெட்டி எழுத்துரு:',
+'editfont-default' => 'உலாவி இயல்பிருப்பு',
 
 # Dates
 'sunday'        => 'ஞாயிறு',
@@ -198,7 +199,26 @@ $messages = array(
 'faqpage'        => 'Project:அடிக்கடி கேட்கப்படும் கேள்விகள்',
 
 # Vector skin
-'vector-namespace-talk' => 'உரையாடல்',
+'vector-action-delete'       => 'நீக்கவும்',
+'vector-action-move'         => 'நகர்த்தவும்',
+'vector-action-protect'      => 'காக்கவும்',
+'vector-namespace-category'  => 'பகுப்பு',
+'vector-namespace-help'      => 'உதவிப் பக்கம்',
+'vector-namespace-image'     => 'கோப்பு',
+'vector-namespace-main'      => 'பக்கம்',
+'vector-namespace-mediawiki' => 'தகவல்',
+'vector-namespace-project'   => 'திட்டப் பக்கம்',
+'vector-namespace-special'   => 'சிறப்புப் பக்கம்',
+'vector-namespace-talk'      => 'உரையாடல்',
+'vector-namespace-template'  => 'வார்ப்புரு',
+'vector-namespace-user'      => 'பயனர் பக்கம்',
+'vector-view-create'         => 'உருவாக்கவும்',
+'vector-view-edit'           => 'தொகுக்கவும்',
+'vector-view-history'        => 'வரலாற்றைக் காட்டவும்',
+'vector-view-view'           => 'வாசிக்கவும்',
+'vector-view-viewsource'     => 'மூலத்தைக் காட்டவும்',
+'actions'                    => 'செயல்கள்',
+'namespaces'                 => 'பெயர்வெளிகள்',
 
 # Metadata in edit box
 'metadata_help' => 'மேல்நிலைத் தரவு:',
@@ -559,6 +579,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 நீங்கள் ஒரு முகவரியற்ற பயனராயிருந்து, தொடர்பற்ற கருத்துக்கள் உங்களைக் குறித்துச் சொல்லப்பட்டிருப்பதாக நீங்கள் உணர்ந்தால், முகவரியற்ற ஏனைய பயனர்களுடனான குழப்பங்களை எதிர்காலத்தில் தவிர்ப்பதற்கு, தயவுசெய்து [[Special:UserLogin/signup|புதிய கணக்கொன்றை ஏற்படுத்துங்கள்]] அல்லது [[Special:UserLogin|புகுபதிகை]] செய்யுங்கள்.''",
 'noarticletext'                    => 'இப் பக்கத்தில் தற்பொழுது உள்ளடக்கம் எதுவுமில்லை.நீங்கள் இப்பக்க [[Special:Search/{{PAGENAME}}|தலைப்பை வேறு பக்கங்களில் தேடவோ]] அல்லது [{{fullurl:{{FULLPAGENAME}}|action=edit}} இப்பக்கத்தை தொகுக்கவோ] முடியும்.',
 'userpage-userdoesnotexist'        => '"$1" என்றக் கணக்கு இன்னமும் பதிவுச் செய்யப்படவில்லை. இதை உருவாக்க/தொகுக்க வேண்டுமா என்பதை உறுதிப்படுத்தவும்.',
+'userpage-userdoesnotexist-view'   => 'பயனர் கணக்கு "$1" பதியப்படவில்லை',
 'clearyourcache'                   => "'''கவனிக்க - சேமித்த பின்னர், நீங்கள் செய்த மாற்றங்களைக் காண்பதற்கு உங்கள் உலவியின் இடைமாற்று அகற்றப்பட வேண்டும்.'''
 '''மொஸில்லா / பயர்பாக்ஸ் / சபாரி:''' ''Shift+Reload'', அல்லது ''Ctrl-F5'' அல்லது ''Ctrl-R''
 ( மசிண்டோஷில் ''Command-R'');
