@@ -15,6 +15,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'pt';
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Especial',
