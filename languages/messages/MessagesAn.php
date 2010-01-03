@@ -502,6 +502,7 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'nav-login-createaccount'    => 'Enzetar una sesión / creyar cuenta',
 'loginprompt'                => "Ta rechistrar-se en {{SITENAME}} ha d'autibar as cookies en o nabegador.",
 'userlogin'                  => 'Enzetar una sesión / creyar cuenta',
+'userloginnocreate'          => 'Enzetar una sesión',
 'logout'                     => "Salir d'a sesión",
 'userlogout'                 => 'Salir',
 'notloggedin'                => 'No ha dentrato en o sistema',

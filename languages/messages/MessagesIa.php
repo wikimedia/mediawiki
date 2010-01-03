@@ -553,6 +553,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'nav-login-createaccount'    => 'Aperir session / crear conto',
 'loginprompt'                => 'Tu debe haber activate le cookies pro poter identificar te a {{SITENAME}}.',
 'userlogin'                  => 'Aperir session / crear conto',
+'userloginnocreate'          => 'Aperir session',
 'logout'                     => 'Clauder session',
 'userlogout'                 => 'Clauder session',
 'notloggedin'                => 'Tu non ha aperite un session',

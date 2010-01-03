@@ -85,8 +85,13 @@ $messages = array(
 'mytalk'     => 'Mahawarata',
 'navigation' => 'Shawagi',
 
+# Cologne Blue skin
+'qbfind' => 'Nemo',
+
+'errorpagetitle'   => 'Tangarɗa',
 'returnto'         => 'Koma $1',
 'tagline'          => 'Daga {{SITENAME}}',
+'help'             => 'Taimako',
 'search'           => 'Nema',
 'searchbutton'     => 'Binciko',
 'searcharticle'    => 'Mu je',
@@ -124,9 +129,12 @@ $messages = array(
 'disclaimerpage' => 'Project:Babban gargaɗi',
 'edithelp'       => 'Taimako kan gyara',
 'edithelppage'   => 'Help:Gyarawa',
+'helppage'       => 'Help:Tsaraba',
 'mainpage'       => 'Marhabin',
 'privacy'        => 'Manufar kare sirri',
 'privacypage'    => 'Project:Manufar kare sirri',
+
+'badaccess' => 'Tangarɗar lamuncewa',
 
 'retrievedfrom'       => 'Daga "$1"',
 'youhavenewmessages'  => 'Kuna da $1 ($2).',
@@ -152,25 +160,32 @@ $messages = array(
 'nstab-special'  => 'Shafi na musamman',
 'nstab-project'  => 'Shafin shiri',
 'nstab-image'    => 'Fayil',
+'nstab-template' => 'Mulu',
 'nstab-category' => 'Rukuni',
 
 # General errors
-'missing-article' => 'Taskar bayannai ba ta samo matanin wani shafin da ya kamata ta samo ba, mai suna "$1" $2.
+'missing-article'    => 'Taskar bayannai ba ta samo matanin wani shafin da ya kamata ta samo ba, mai suna "$1" $2.
 
 Mafarin haka yawanci shi ne mahaɗi mai zuwa ga shafin da aka soke ko aka gusar.
 
 In ba haka ba ne, to kun takalo wata tangarɗa a safuwai kin.
 Don Allah a aika ruhoto zuwa ga [[Special:ListUsers/sysop|administrator]], tare da nuna URL kin.',
-'badtitletext'    => "Kan shafin da aka nema bai da ma'ana, ko kango ne, ko kuma wani kai ne na tsakanin harsuna ko shire-shire da bai da mahaɗi mai kyau.
+'missingarticle-rev' => '(lambar zubi: $1)',
+'badtitletext'       => "Kan shafin da aka nema bai da ma'ana, ko kango ne, ko kuma wani kai ne na tsakanin harsuna ko shire-shire da bai da mahaɗi mai kyau.
 Tana yiyuwa yana da harafi ko haruffa da ba su karɓuwa cikin kanu.",
-'viewsource'      => 'Duba tushe',
+'viewsource'         => 'Duba tushe',
 
 # Login and logout pages
+'yourname'                => "Sunan ma'aikaci:",
+'yourpassword'            => 'Kalmar sirri:',
 'remembermypassword'      => 'Adana bayannan logina a wannan kwafyuta',
 'login'                   => 'Logi',
 'nav-login-createaccount' => 'logi / sabon akwanti',
 'userlogin'               => 'Logi / sabon akwanti',
+'logout'                  => 'Ban kwana',
 'userlogout'              => 'Ban kwana',
+'nologinlink'             => 'Buɗa sabon akwanti',
+'mailmypassword'          => 'Aiken kalmar sirri ta Imel',
 
 # Edit page toolbar
 'bold_sample'     => 'Rubutu mai gwaɓi',
@@ -203,6 +218,7 @@ Tana yiyuwa yana da harafi ko haruffa da ba su karɓuwa cikin kanu.",
 'showdiff'                         => 'Nuna sauye-sauye',
 'anoneditwarning'                  => "'''Hattara:''' Ba ku yi logi ba.
 Za a rubuta adireshinku na IP a cikin tarihin sauye-sauyen wannan shafi.",
+'summary-preview'                  => 'Rigya-gani na taƙaici:',
 'newarticle'                       => '(Sabo)',
 'newarticletext'                   => "Kun latsa mahaɗi zuwa shafin da babu shi tukuna.
 Domin ƙirƙiro wannan shafin, ku fara rubutu a cikin fage na ƙasa (duba [[{{MediaWiki:Helppage}}|shafin taimako]] don ƙarin bayani).
@@ -218,6 +234,7 @@ Ba a adana sauye-sauyenku ba tukuna!",
 'copyrightwarning'                 => "Lura cewa ana wallafa duk gudummuwa ga {{SITENAME}} a kan ƙa'idojin \$2 (duba \$1 don ƙarin bayani). Idan ba kwa son a sauya ko a rarraba ayyukanku yadda aka ga dama, to kada ku ajiye su a nan.<br />
 Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga hajar kowa (wato \"public domain\"), ko kuma aikin hajar kyauta (wato \"free resource\") ne. '''Kada ku ajiye ayyuka masu hakkin mallaka ba tare da izini ba!'''",
 'templatesused'                    => '{{PLURAL:$1|Mulun da aka yi amfani da shi|Mulayen da aka yi amfani da su}} a wannan shafi:',
+'templatesusedpreview'             => '{{PLURAL:$1|Mulun da aka yi amfani da shi|Mulayen da aka yi amfani da su}} cikin wannan rigya-gani:',
 'template-protected'               => '(mai kariya)',
 'template-semiprotected'           => '(da kariya gwalgwado)',
 'hiddencategories'                 => 'Wannan shafi yana cikin {{PLURAL:$1|ɓoyayyen rukuni 1|ɓoyayyun rukunoni $1}}:',
@@ -228,6 +245,8 @@ Kuma kuna mana alƙawarin cewa ku ne kuka rubuta aikin, ko kun juyo shi daga haj
 'currentrev-asof'        => 'Zubin ƙarshe ga $1',
 'revisionasof'           => 'Zubi na $1',
 'previousrevision'       => '← Tsohon zubi',
+'nextrevision'           => 'Zubi na gaba →',
+'currentrevisionlink'    => 'Zubi na yanzu',
 'cur'                    => 'na yanzu',
 'last'                   => 'baya',
 'histlegend'             => "Don nuna bambanci: a shaida zube-zuben da ake so a kwatanta sannan a latsa maɓallin da ke ƙasa.<br />
@@ -279,12 +298,16 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'powersearch-field'         => 'Neemo',
 
 # Preferences page
+'preferences'   => 'Saituttuka',
 'mypreferences' => 'Saituttukana',
 
 # Groups
 'group-sysop' => 'Masu hukunci',
 
 'grouppage-sysop' => '{{ns:project}}:Masu hukunci',
+
+# User rights log
+'rightslog' => "Rajistan bayar da izini ga ma'aikata",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'gyara wannan shafi',
@@ -325,18 +348,22 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'uploadedimage' => 'an girke "[[$1]]"',
 
 # File description page
-'filehist'            => 'Tarihin fayil',
-'filehist-help'       => 'ku Latsa rana/lokaci ku ga fayil yadda yake a wannan lokaci',
-'filehist-current'    => 'na yanzu',
-'filehist-datetime'   => 'Rana/Lokaci',
-'filehist-thumb'      => 'Wadar sufa',
-'filehist-thumbtext'  => 'Wadar sufa ta zubin $1',
-'filehist-user'       => "Ma'aikaci",
-'filehist-dimensions' => 'Kusurwowi',
-'filehist-comment'    => 'Bahasi',
-'imagelinks'          => 'Amfani da fayil',
-'linkstoimage'        => '{{PLURAL:$1|Wannan shafi yana|wanɗannan shafuna $1 suna}} amfani da wannan fayil:',
-'sharedupload'        => 'Wannan fayil na da tushe daga $1 kuma wasu shire-shire suna iya amfani da shi.',
+'filehist'                  => 'Tarihin fayil',
+'filehist-help'             => 'ku Latsa rana/lokaci ku ga fayil yadda yake a wannan lokaci',
+'filehist-current'          => 'na yanzu',
+'filehist-datetime'         => 'Rana/Lokaci',
+'filehist-thumb'            => 'Wadar sufa',
+'filehist-thumbtext'        => 'Wadar sufa ta zubin $1',
+'filehist-user'             => "Ma'aikaci",
+'filehist-dimensions'       => 'Kusurwowi',
+'filehist-comment'          => 'Bahasi',
+'imagelinks'                => 'Amfani da fayil',
+'linkstoimage'              => '{{PLURAL:$1|Wannan shafi yana|wanɗannan shafuna $1 suna}} amfani da wannan fayil:',
+'sharedupload'              => 'Wannan fayil na da tushe daga $1 kuma wasu shire-shire suna iya amfani da shi.',
+'uploadnewversion-linktext' => 'Ɗauki sabon zubi na wannan fayil',
+
+# Statistics
+'statistics' => 'Alƙalumma',
 
 # Miscellaneous special pages
 'nbytes'        => '{{PLURAL:$1|bayit|bayit}} $1',
@@ -344,6 +371,7 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'prefixindex'   => 'Duka shafuna masu ɗafa-goshi',
 'newpages'      => 'Sabbin shafuna',
 'move'          => 'Gusarwa',
+'movethispage'  => 'Gusar da wannan shafi',
 'pager-newer-n' => '{{PLURAL:$1|sabo 1|sabbi $1}}',
 'pager-older-n' => '{{PLURAL:$1|tsoho 1|tsoffi $1}}',
 
@@ -358,10 +386,14 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 # Special:AllPages
 'allpages'       => 'Duka shafuna',
 'alphaindexline' => '$1 zuwa $2',
+'prevpage'       => 'Shafi na baya ($1)',
 'allpagesfrom'   => 'Nuna shafuna farawa daga:',
 'allpagesto'     => 'Nuna shafuna har:',
 'allarticles'    => 'Duka shafuna',
 'allpagessubmit' => 'Mu je',
+
+# Special:LinkSearch
+'linksearch' => 'Mahaɗan waje',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Rajistan sabbin akwantoci',
@@ -377,7 +409,13 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'watchlist'         => 'Jerina na bin sawu',
 'mywatchlist'       => 'Jerina na bin sawu',
 'watchlistfor'      => "(na '''$1''')",
+'addedwatch'        => 'An daɗa a cikin jerin bin sawu',
+'addedwatchtext'    => "An daɗa shafin \"[[:\$1]]\" a cikin [[Special:Watchlist|jerinku na bin sawu]].
+A nan ne kuma za a yi rajistan dukkan sauye-sauye ga shafin ko shafinsa na muhawara, kuma sunan shafin zai kasance '''mai gwaɓi''' a cikin [[Special:RecentChanges|jerin sauye-sauyen baya-bayan nan]] don sauƙin gani.",
+'removedwatch'      => 'An fitar daga cikin jerin bin sawu',
+'removedwatchtext'  => 'An fitar da shafin "[[:$1]]" daga [[Special:Watchlist|jerinku na bin sawu]].',
 'watch'             => 'Bin sawu',
+'watchthispage'     => 'Bin sawun wannan shafi',
 'unwatch'           => 'Daina bin sawu',
 'watchlist-details' => '{{PLURAL:$1|$1 shafi|$1 shafuna}} kan jerinku na bin sawu, banda shafunan mahawara.',
 'wlshowlast'        => 'Nuna awowi $1 kwanaki $2 na ƙarshe $3',
@@ -388,17 +426,43 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'unwatching' => 'Daina bin sawu...',
 
 # Delete
-'actioncomplete' => 'Aiki cikakke',
-'deletedarticle' => 'an soke "[[$1]]"',
-'dellogpage'     => 'Rajistan sauye-sauye',
+'deletepage'            => 'Soke shafin',
+'confirmdeletetext'     => "Kuna kan hanyar soke wani shafi tare da duk tarihinsa. Ku tabbatar lalle kuna son yin hakan, tare da cewa kun fahimci sakamakon yin haka, kuma kuna yi ne da la'akari da [[{{MediaWiki:Policy-url}}|manufofi]].",
+'actioncomplete'        => 'Aiki cikakke',
+'deletedtext'           => 'An soke "<nowiki>$1</nowiki>".
+Ku duba $2 ku ga rajistan soke-soke na baya-bayan nan.',
+'deletedarticle'        => 'an soke "[[$1]]"',
+'dellogpage'            => 'Rajistan sauye-sauye',
+'deletecomment'         => 'Dalilin sokewa:',
+'deleteotherreason'     => 'Wani dalilin:',
+'deletereasonotherlist' => 'Wani dalili',
 
 # Rollback
 'rollbacklink' => 'banyewa',
 
 # Protect
-'protectlogpage'            => 'Rajistan ayyukan kariya',
-'protectedarticle'          => 'an kare "[[$1]]"',
-'modifiedarticleprotection' => 'an sauya matakin kariya na "[[$1]]"',
+'protectlogpage'              => 'Rajistan ayyukan kariya',
+'protectedarticle'            => 'an kare "[[$1]]"',
+'modifiedarticleprotection'   => 'an sauya matakin kariya na "[[$1]]"',
+'protectcomment'              => 'Dalili:',
+'protectexpiry'               => "Wa'adi:",
+'protect_expiry_invalid'      => "Lokacin wa'adi bai da tasiri.",
+'protect_expiry_old'          => "Lokacin wa'adi ya wuce.",
+'protect-text'                => "Kuna iya duba tare da sauya matakin kariya na shafin '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Akwantinku bai da izinin sauya matakan kariya na shafuna.
+Ga dai matakan kariya na yanzu na shafin '''$1''':",
+'protect-cascadeon'           => 'A yanzu an kiyaye wannan shafi saboda yana cikin {{PLURAL:$1|wannan shafi mai|waɗannan shafuna masu}} kariya mai zuzzubowa.
+Kuna iya sake wa wannan shafi matakin kariya, amma hakan ba zai yi tasiri ga kariya mai zuzzubowa ba.',
+'protect-default'             => "Lamunce wa duka ma'aikata",
+'protect-fallback'            => 'Ana buƙatar izinin "$1"',
+'protect-level-autoconfirmed' => "Hana sabbin ma'aikata da ma'aikata maras akwanti",
+'protect-level-sysop'         => 'Mahukunta kawai',
+'protect-summary-cascade'     => 'zuzzubawa',
+'protect-expiring'            => "Wa'adi ran $1 (UTC)",
+'protect-cascade'             => 'A kiyaye shafunan da aka haɗa cikin wannan shafi (kariya mai zuzzubowa)',
+'protect-cantedit'            => 'Ba ku iya sauya matakan kariya na wannan shafi, saboda ba ku da izinin yi masa gyara.',
+'restriction-type'            => 'Izini:',
+'restriction-level'           => 'Matakin kangewa:',
 
 # Undelete
 'undeletelink'     => 'duba/maido da',
@@ -441,19 +505,53 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 'whatlinkshere-filters'    => 'Matatai',
 
 # Block/unblock
-'ipboptions'       => 'awa 2:2 hours,kwana 1:1 day,kwana 3:3 days,mako 1:1 week,mako 2:2 weeks,wata 1:1 month,wata 3:3 months,wata 6:6 months,shekara 1:1 year,illa masha allahu:infinite',
-'ipblocklist'      => "Adireshin IP da ma'aikatan da aka hana",
-'blocklink'        => 'Hanawa',
-'unblocklink'      => 'karɓa',
-'change-blocklink' => 'Canza hanawa',
-'contribslink'     => 'Gudummuwa',
-'blocklogpage'     => 'Rajistan hani',
-'blocklogentry'    => "an hana [[$1]] da wa'adin $2 $3",
+'blockip'                  => "Hana ma'aikaci",
+'ipboptions'               => 'awa 2:2 hours,kwana 1:1 day,kwana 3:3 days,mako 1:1 week,mako 2:2 weeks,wata 1:1 month,wata 3:3 months,wata 6:6 months,shekara 1:1 year,illa masha allahu:infinite',
+'ipblocklist'              => "Adireshin IP da ma'aikatan da aka hana",
+'blocklink'                => 'Hanawa',
+'unblocklink'              => 'karɓa',
+'change-blocklink'         => 'Canza hanawa',
+'contribslink'             => 'Gudummuwa',
+'blocklogpage'             => 'Rajistan hani',
+'blocklogentry'            => "an hana [[$1]] da wa'adin $2 $3",
+'unblocklogentry'          => 'an lamunce wa $1',
+'block-log-flags-nocreate' => 'babu damar buɗa sabon akwanti',
 
 # Move page
-'1movedto2'   => 'an gusar da [[$1]] zuwa [[$2]]',
-'movelogpage' => 'Rajistan gushe-gushe',
-'revertmove'  => 'koma',
+'movepagetext'     => "Ku yi amfani da fom na ƙasa don sake sunan shafin, tare da mayar da duka tarihinsa ga sabon sunan.
+Tsohon sunan zai nuna sabon sunan.
+Kuna iya sabunta dukan mahaɗai da ke nuna tsohon sunan otomatikali.
+Idan ba ku yi haka ba, ku duba [[Special:DoubleRedirects|rikitattun mahaɗai]] ko [[Special:BrokenRedirects|katsattsun mahaɗai]].
+Ku ke da nauyin tabbatar dukan mahaɗai suna nuna inda ya kamata.
+
+Wannan shafi '''ba''' za a sake masa suna ba idan akwai wani shafi mai sabon sunan, sai fa idan shafin kwango ne ko yana da mahaɗi kuma bai da tarihin sauye-sauye.
+Haka yana nufin za ku iya mayar wa wani shafi tsohon sunansa idan kuka yi kwata, kuma ba za ku iya kwatse wani tsayayyan shafi ba.
+
+'''Hattara!'''
+Yin haka na iya zama wani gagarumin sauyi ga shafi mai farin jini;
+Don Allah ku tabbatar kun fahimci sakamakon yin hakan.",
+'movepagetalktext' => "Za a gusar da dangantaccen shafin muhawara otomatikali tare da '''sai fa idan''' kinta.
+*Akwai wani shafin muhawara wanda ba kango ba a ƙarƙashin sabon sunan, ko
+*Kun soke zaɓen ɗan ɗaki na ƙasa.
+
+A waɗannan halaye, dole ku gusar ko ku game shafin da hannu, idan kuna so.",
+'movearticle'      => 'Gusar da shafin:',
+'newtitle'         => 'Zuwa sabon kai:',
+'move-watch'       => 'Bin sawun wannan shafi',
+'movepagebtn'      => 'Gusar da shafin',
+'pagemovedsub'     => 'Gusarwa ta cika',
+'movepage-moved'   => '<big>\'\'\'"$1" an gusar da shi zuwa "$2"\'\'\'</big>',
+'articleexists'    => 'Akwai wani shafi mai wannan suna, koko sunan da kuka zaɓa ba shi da tasiri.
+Don Allah ku zaɓi wani suna.',
+'talkexists'       => "'''An gusar da shafin shi kansa, amma an kasa gusar da dangantaccen shafin muhawarar, don akwai wani sahfin mai amfani da sunansa.
+Don Allah ku game su da hannu.'''",
+'movedto'          => 'an gusar zuwa',
+'movetalk'         => 'Gusar da shafin mahawara mai alaƙa',
+'1movedto2'        => 'an gusar da [[$1]] zuwa [[$2]]',
+'1movedto2_redir'  => 'an gusar da [[$1]] zuwa [[$2]] ta hanyar soke turawa',
+'movelogpage'      => 'Rajistan gushe-gushe',
+'movereason'       => 'Dalili:',
+'revertmove'       => 'koma',
 
 # Export
 'export' => 'Tsamo shafuna',
@@ -506,6 +604,7 @@ Kuna iya duba tushensa.',
 'tooltip-ca-nstab-special'        => 'Wannan shafi ne na musamman, ba za ku iya yi masa gyara ba',
 'tooltip-ca-nstab-project'        => 'Duba shafin shirin',
 'tooltip-ca-nstab-image'          => 'Duba shafin fayil',
+'tooltip-ca-nstab-template'       => 'Duba mulun',
 'tooltip-ca-nstab-category'       => 'Duba shafin rukuni',
 'tooltip-minoredit'               => 'Alamta wannan a matsayin ƙaramin gyara',
 'tooltip-save'                    => 'Ku adana sauye-sauyenku',
@@ -524,7 +623,7 @@ Tana ba da damar bayyana dalilin soke gyaran.',
 # Media information
 'file-info-size'       => '(pikisal $1 × $2, girman fayil: $3, irin MIME: $4)',
 'file-nohires'         => '<small>Babu wata babbar saƙa.</small>',
-'svg-long-desc'        => 'Fayil kin SVG, saƙar fikisal $1 x $2, girman fayil: $3)',
+'svg-long-desc'        => '(Fayil kin SVG, saƙar fikisal $1 x $2, girman fayil: $3)',
 'show-big-image'       => 'Cikakkar saƙa',
 'show-big-image-thumb' => '<small>Girman wanna rigya-gani: pikisal $1 × $2</small>',
 

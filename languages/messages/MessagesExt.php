@@ -394,7 +394,8 @@ La razón es la siguienti: ''$2''.",
 
 # Login and logout pages
 'logouttext'                 => "'''Cuenta afechá corretamenti.'''<br />
-Pueis acontinal en {{SITENAME}} de horma anónima, u entral ena tu cuenta otra vezi con el mesmu usuáriu, u con otru.",
+Pueis acontinal gastandu {{SITENAME}} de holma anónima, u [[Special:UserLogin|entral ena tu cuenta]] con el mesmu ussuáriu, u con otru.
+Dati cuenta que hata que nu esborris el caché del tu escrucaol pué paecel que la tu cuenta acontina abierta n'angunas páginas.",
 'welcomecreation'            => "== Bienviniu, $1! ==
 
 La tu cuenta d'ussuáriu á siu criá.
@@ -438,11 +439,11 @@ Compreba que lo aigas escritu bien, u [[Special:UserLogin/signup|cria una cuenta
 'mailmypassword'             => 'Envialmi pol correu una nueva consínia',
 'passwordremindertitle'      => 'Alcuerda-consínias de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (siguramenti tú, dendi la direción IP $1)
-mos á solicitau que l\'enviemus una nueva consínia pa {{SITENAME}} ($4).
-La nueva consínia el usuáriu "$2" es "$3".
-Eberias entral ena tu cuenta i chambal la consínia lo antis posibri.
+mos á solicitau una nueva consínia pa {{SITENAME}} ($4).
+La consínia temporal del ussuáriu "$2" es "$3".
+Eberias entral ena tu cuenta i chambal la consínia lo antis possibri, la consínia caducará {{PLURAL:$5|nun dia|en $5 dias}}.
 
-Si nu ás solicitau tú el chambu, u ya t\'as alcuerdau la tu consínia i nu quieis chambala, pueis acontinal gastandu la tú consínia antigua.',
+Si nu ás solicitau tú el chambu, u ya t\'as alcuerdau \'e la tu consínia i nu quieis chambala, pueis acontinal gastandu la consínia antígua.',
 'noemail'                    => 'Nu ai emburacau dengún e-mail el usuáriu "$1".',
 'passwordsent'               => 'S\'á enviau una nueva consínia a la direción d\'email
 rustria pol "$1".
@@ -910,7 +911,7 @@ Ebi tenel menus de $1 {{PLURAL:$1|caratel|carateris}}.',
 * Un cuairu aseñalau endica qu'el usuáriu está nesi grupu.
 * Un cuairu sin aseñalal endica qu'el usuáriu nu está nesi grupu.
 * Una * endica que nu pudrás esborralu del grupu una vezi lo aigas añiiu, u vice versa.",
-'userrights-reason'           => 'Razón el chambu:',
+'userrights-reason'           => 'Razón:',
 'userrights-no-interwiki'     => 'Nu tienis premisu pa eital los derechus los usuárius en otras güiquis.',
 'userrights-nodatabase'       => 'La basi e datus $1 nu desisti, u nu es local.',
 'userrights-nologin'          => "Ebis [[Special:UserLogin|rustrilti]] con una cuenta d'alministraol pa puel asinal derechus a los usuárius.",
@@ -1046,7 +1047,8 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 'upload-prohibited'           => "Crasis d'archivus atarugás: $1.",
 'uploadlog'                   => "rustrihu d'empuntu",
 'uploadlogpage'               => "Rustrihu d'empuntu",
-'uploadlogpagetext'           => 'Embahu ai una lista e los úrtimus empuntus d´archivus.',
+'uploadlogpagetext'           => 'Embaju se muestra una lista colos úrtimus archivus empuntaus.
+Vai al [[Special:NewFiles|correol de nuevus archivus]] pa echali una guipaina de holma mas estética.',
 'filename'                    => 'Nombri el archivu',
 'filedesc'                    => 'Síntesis',
 'fileuploadsummary'           => 'Síntesis:',
@@ -1060,7 +1062,7 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 'illegalfilename'             => 'El nombri "$1" tiini carateris que nu están premitius enus entítulus de páhinas. Pol favol, ponli otru nombri al archivu i preba a empuntalu e nuevu.',
 'badfilename'                 => 'S´á chambau el nombri el archivu a "$1".',
 'filetype-badmime'            => 'Nu está premitiu empuntal los archivus MIME type "$1".',
-'filetype-unwanted-type'      => "'''\".\$1\"''' es una crasi d'archivu nu deseá.  Las crasis d'archivus preferias son \$2.",
+'filetype-unwanted-type'      => "'''\".\$1\"''' es una crassi d'archivu nu deseá. {{PLURAL:\$3|La crassi d'archivu preferia es|Las crassis d'archivus preferias son}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' nu es una crassi d'archivu premitia.
 {{PLURAL:\$3|La crassi d'archivu premitia es|Las crassis d'archivus premitias son}} \$2.",
 'filetype-missing'            => 'El archivu nu tiini estensión (cumu ".jpg").',
@@ -1089,14 +1091,14 @@ Si entovia quieris empuntal el archivu, pol favol, güervi atrás i empuntalu co
 'uploadedimage'               => 'emputau "[[$1]]"',
 'overwroteimage'              => 'empuntá una nueva velsión de "[[$1]]"',
 'uploaddisabled'              => 'Empuntus desativaus',
-'uploaddisabledtext'          => "El empuntu d'archivus está desativau nesti güiqui.",
+'uploaddisabledtext'          => "El empuntu d'archivus está desativau.",
 'uploadscripted'              => 'Esti archivu contieni script u cóigu HTML que puei sel mal entelpretau pol un escrucaol.',
 'uploadcorrupt'               => 'Marru cola estensión el archivu. Pol favol, compreba el archivu i empúntalu otra vezi.',
 'uploadvirus'                 => 'El archivu tiini un virus! Detallis: $1',
 'sourcefilename'              => 'Nombri orihinal:',
 'destfilename'                => 'Nombri e destinu:',
 'upload-maxfilesize'          => 'Grandol máisimu el archivu: $1',
-'watchthisupload'             => 'Vehilal esta páhina',
+'watchthisupload'             => 'Vegilal esti archivu',
 'filewasdeleted'              => 'Un archivu con el mesmu nombri ya hue empuntau i alogu esborrau. Eberias comprebal el $1 enantis de gorvel a empuntalu.',
 'upload-wasdeleted'           => "'''Avisu: Estás tratandu d´empuntal un archivu que ya hue esborrau.'''
 
@@ -1178,13 +1180,13 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 # File deletion
 'filedelete'                  => 'Esborral $1',
 'filedelete-legend'           => 'Esborral archivu',
-'filedelete-intro'            => "Estás esborrandu '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Estás esborrandu '''[[Media:$1|$1]]''' untu al su estorial.",
 'filedelete-intro-old'        => "Estás esborrandu la velsón de '''[[Media:$1|$1]]''' del [$4 $3 a las $2].",
 'filedelete-comment'          => 'Comentáriu:',
 'filedelete-submit'           => 'Esborral',
 'filedelete-success'          => "S´á esborrau '''$1'''.",
-'filedelete-success-old'      => '<span class="plainlinks">Á siu esborrá la velsión de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a las $2.</span>',
-'filedelete-nofile'           => "Nu desisti '''$1''' nesti lugal.",
+'filedelete-success-old'      => "Á siu esborrá la velsión de '''[[Media:$1|$1]]''' del $2 a las $3.</span>",
+'filedelete-nofile'           => "'''$1''' nu dessisti.",
 'filedelete-nofile-old'       => "Nu desisti una velsión archivá e '''$1''' con esas caraterísticas.",
 'filedelete-otherreason'      => 'Razón adicional:',
 'filedelete-reason-otherlist' => 'Otra razón',
@@ -1216,7 +1218,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 
 # Random redirect
 'randomredirect'         => 'Cualisquiel redireción',
-'randomredirect-nopages' => 'Nu ai redirecionis nesti "espaciu e nombris".',
+'randomredirect-nopages' => 'Nu dessistin redirecionis nel espáciu nombris "$1".',
 
 # Statistics
 'statistics'                   => 'Estaísticas',
@@ -1258,7 +1260,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'nviews'                  => '$1 {{PLURAL:$1|vesita|vesitas}}',
 'specialpage-empty'       => 'Esta páhina está vacia.',
 'lonelypages'             => 'Páhinas güérfanas',
-'lonelypagestext'         => 'Las siguientis páhinas nu están atihás (dendi otras páhinas) nesti güiqui.',
+'lonelypagestext'         => 'Las siguientis páginas nu están atijás (dendi otras páginas) ena {{SITENAME}}.',
 'uncategorizedpages'      => 'Páhinas sin categorizal',
 'uncategorizedcategories' => 'Categorias sin categorizal',
 'uncategorizedimages'     => 'Imahin sin categoriçal',
@@ -2032,6 +2034,8 @@ $1',
 # Special:NewFiles
 'newimages'             => 'Correol d´archivus nuevus',
 'imagelisttext'         => "Embahu ai una lista con '''$1''' {{PLURAL:$1|archivu|archivus}} ordenaus $2.",
+'newimages-legend'      => 'Filtru',
+'newimages-label'       => 'Nombri el archivu (u parti):',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nu ai ná pa vel.',
 'ilsubmit'              => 'Landeal',
@@ -2330,7 +2334,7 @@ $1',
 'trackbackdeleteok' => "El trackback s'á esborrau corretamenti.",
 
 # Delete conflict
-'deletedwhileediting' => 'Cudiau: esta páhina á siu esborrá aluspués de tu prencipial a eitala!',
+'deletedwhileediting' => 'Avisu: esta página á siu esborrá endispués de tu encetal a eitala!',
 'confirmrecreate'     => "El usuáriu [[User:$1|$1]] ([[User talk:$1|caraba]]) á esborrau esta páhina aluspués de que prencipiaras a eitala, pola siguienti razón:
 : ''$2''
 Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",

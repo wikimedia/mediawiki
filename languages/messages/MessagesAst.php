@@ -423,6 +423,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'nav-login-createaccount'    => 'Entrar / Crear cuenta',
 'loginprompt'                => "Has tener les ''cookies'' activaes pa entrar en {{SITENAME}}.",
 'userlogin'                  => 'Entrar / Crear cuenta',
+'userloginnocreate'          => 'Entrar',
 'logout'                     => 'Salir',
 'userlogout'                 => 'Salir',
 'notloggedin'                => 'Non identificáu',

@@ -435,6 +435,7 @@ Hesabê şıma biyo a.
 'nav-login-createaccount'    => 'Cıkewe / hesab vıraze',
 'loginprompt'                => "Cıkewtena {{SITENAME}}i rê gani ''cookies'' akerdey bê.",
 'userlogin'                  => 'Cıkewe ya zi hesab vıraze',
+'userloginnocreate'          => 'Cıkewe',
 'logout'                     => 'Veciye',
 'userlogout'                 => 'Veciye',
 'notloggedin'                => 'Hesab akerde niyo',

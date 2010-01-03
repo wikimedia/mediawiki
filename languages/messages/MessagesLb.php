@@ -428,7 +428,7 @@ $1",
 'viewsourceold'           => 'Quellcode kucken',
 'editlink'                => 'änneren',
 'viewsourcelink'          => 'Quelltext weisen',
-'editsectionhint'         => 'Abschnitt: $1 änneren',
+'editsectionhint'         => 'Abschnitt änneren: $1',
 'toc'                     => 'Inhaltsverzeechnes',
 'showtoc'                 => 'weisen',
 'hidetoc'                 => 'verstoppen',
@@ -955,7 +955,7 @@ $1",
 'pagehist'                    => 'Versioune vun dëser Säit',
 'deletedhist'                 => 'Geläschte Versiounen',
 'revdelete-content'           => 'Inhalt',
-'revdelete-summary'           => 'Résumé änneren',
+'revdelete-summary'           => 'Resumé änneren',
 'revdelete-uname'             => 'Benotzernumm',
 'revdelete-restricted'        => 'Limitatioune fir Administrateuren ageschalt',
 'revdelete-unrestricted'      => 'Limitatioune fir Administrateuren opgehuewen',
@@ -1218,7 +1218,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 'userrights-editusergroup'    => 'Benotzergruppen änneren',
 'saveusergroups'              => 'Benotzergruppe späicheren',
 'userrights-groupsmember'     => 'Member vun:',
-'userrights-groups-help'      => "Dir kënnt d'Gruppen zu deenen dëse Benutzer gehéiert änneren. 
+'userrights-groups-help'      => "Dir kënnt d'Gruppen zu deenen dëse Benotzer gehéiert änneren. 
 * Een ugekräizt Haische bedeit, datt de Benotzer Member vun dëser Grupp ass.
 * Een net ugekräizt Haische bedeit, datt de Benotzer net Member vun dëser Grupp ass.
 * E Stäerchen (*) bedeit datt Dir d'Grupp net méi ewechhuele kënnt wann e bis eemol derbäigesat ass oder gouf.",
@@ -2274,7 +2274,7 @@ Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.
 'sorbsreason'                     => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
 'sorbs_create_account_reason'     => 'Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.',
 'cant-block-while-blocked'        => 'Dir däerft keng aner Benotzer spären, esou lang wéi dir selwer gespaart sidd.',
-'cant-see-hidden-user'            => "De Benotzer deen Dir versicht ze spären ass scho gespaart a v erstoppt. Well Dir d'Recht ''Hideuser'' net hutt kënnt Dir dëse Benotzer net gesinn an dem Benotzer seng Spär net änneren.",
+'cant-see-hidden-user'            => "De Benotzer deen Dir versicht ze spären ass scho gespaart a verstoppt. Well Dir d'Recht ''Hideuser'' net hutt kënnt Dir dëse Benotzer net gesinn an dem Benotzer seng Spär net änneren.",
 
 # Developer tools
 'lockdb'              => 'Datebank spären',
