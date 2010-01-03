@@ -81,7 +81,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   similarly to the category namespace.
 * $wgEnableSorbs renamed to $wgDnsBlacklistUrls ($wgEnableSorbs kept for
   backward compatibility)
-
+* $wgUploadNavigationUrl now also affects images inline images that do not 
+  exist. In that case the URL will get (?|&)wpDestFile=<filename> appended to 
+  it as appropriate.
+  
 === New features in 1.16 ===
 
 * Add CSS defintion of the 'wikitable' class to shared.css
@@ -279,6 +282,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21826) Subsections of Special:Version now also have anchors
 * (bug 19791) Add URL of file source as comment to thumbs (for ImageMagick)
 * (bug 21946) Sorted wikitables do not properly handle minus signs
+* (bug 18885) Red links for media files do not support shared repositories
 
 === Bug fixes in 1.16 ===
 
