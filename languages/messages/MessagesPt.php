@@ -71,11 +71,9 @@ $namespaceAliases = array(
 $defaultDateFormat = 'dmy';
 
 $dateFormats = array(
-
 	'dmy time' => 'H\hi\m\i\n',
 	'dmy date' => 'j \d\e F \d\e Y',
 	'dmy both' => 'H\hi\m\i\n \d\e j \d\e F \d\e Y',
-
 );
 
 $separatorTransformTable = array(',' => ' ', '.' => ',' );
