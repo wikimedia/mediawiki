@@ -87,6 +87,7 @@ class SyntaxChecker extends Maintenance {
 			"\bjsmin.php$",
 			"OggHandler/PEAR/",
 			"QPoll/Excel/",
+			"/geshi/",
 			"/smarty/",
 			);
 
