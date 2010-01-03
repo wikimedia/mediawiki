@@ -56,6 +56,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$limit = $params['limit'];
 		$this->addTables('user', 'u1');
+		$useIndex = true;
 
 		if (!is_null($params['from']))
 			$this->addWhere('u1.user_name >= ' . $db->addQuotes($this->keyToTitle($params['from'])));
@@ -75,6 +76,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere('user_editcount > 0');
 
 		if ($fld_groups) {
+			$useIndex = false;
 			// Show the groups the given users belong to
 			// request more than needed to avoid not getting all rows that belong to one user
 			$groupCount = count(User::getAllGroups());
@@ -104,8 +106,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addFieldsIf('u1.user_registration', $fld_registration);
 
 		$this->addOption('ORDER BY', 'u1.user_name');
-		$u1 = $this->getAliasedName('user', 'u1');
-		$this->addOption('USE INDEX', array($u1 => 'user_name'));
+		if ($useIndex) {
+			$u1 = $this->getAliasedName('user', 'u1');
+			$this->addOption('USE INDEX', array($u1 => 'user_name'));
+		}
 
 		$res = $this->select(__METHOD__);
 
