@@ -553,6 +553,7 @@ No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de 
 'nav-login-createaccount'    => 'Entra / Regìstrete',
 'loginprompt'                => 'Par acédere a {{SITENAME}} ti gà da abiłitare i cookie.',
 'userlogin'                  => 'Entra / Regìstrete',
+'userloginnocreate'          => 'Entra',
 'logout'                     => 'Và fora',
 'userlogout'                 => 'và fora',
 'notloggedin'                => 'Acesso mia efetuà',
