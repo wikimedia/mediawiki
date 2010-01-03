@@ -159,9 +159,16 @@ class SyntaxChecker extends Maintenance {
 	/**
 	 * Returns true if $file is of a type we can check
 	 */
-	private static function isSuitableFile( $file ) {
+	private function isSuitableFile( $file ) {
 		$ext = pathinfo( $file, PATHINFO_EXTENSION );
-		return $ext == 'php' || $ext == 'inc' || $ext == 'php5';
+		if ( $ext != 'php' && $ext != 'inc' && $ext != 'php5' )
+			return false;
+		foreach( $this->mIgnorePaths as $regex ) {
+			$m = array();
+			if ( preg_match( "~{$regex}~", $file, $m ) )
+				return false;
+		}
+		return true;
 	}
 
 	/**
@@ -197,7 +204,7 @@ class SyntaxChecker extends Maintenance {
 			RecursiveIteratorIterator::SELF_FIRST
 		);
 		foreach ( $iterator as $file ) {
-			if ( self::isSuitableFile( $file->getRealPath() ) ) {
+			if ( $this->isSuitableFile( $file->getRealPath() ) ) {
 				$this->mFiles[] = $file->getRealPath();
 			}
 		}
@@ -255,6 +262,12 @@ class SyntaxChecker extends Maintenance {
 	 * @return boolean
 	 */
 	private function checkForMistakes( $file ) {
+		foreach( $this->mNoStyleCheckPaths as $regex ) {
+			$m = array();
+			if ( preg_match( "~{$regex}~", $file, $m ) )
+				return;
+		}
+
 		$text = file_get_contents( $file );
 
 		$this->checkRegex( $file, $text, '/^[\s\r\n]+<\?/', 'leading whitespace' );
