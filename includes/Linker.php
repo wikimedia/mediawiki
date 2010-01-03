@@ -666,26 +666,39 @@ class Linker {
 	 * @return string
 	 */
 	public function makeBrokenImageLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '', $time = false ) {
-		global $wgEnableUploads;
+		global $wgEnableUploads, $wgUploadNavigationUrl;
 		if( $title instanceof Title ) {
 			wfProfileIn( __METHOD__ );
 			$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
-			if( $wgEnableUploads && !$currentExists ) {
-				$upload = SpecialPage::getTitleFor( 'Upload' );
+			if( ( $wgUploadNavigationUrl || $wgEnableUploads ) && !$currentExists ) {
 				if( $text == '' )
 					$text = htmlspecialchars( $title->getPrefixedText() );
+
 				$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 				if( $redir ) {
+					wfProfileOut( __METHOD__ );
 					return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
 				}
+
 				$q = 'wpDestFile=' . $title->getPartialUrl();
 				if( $query != '' )
 					$q .= '&' . $query;
+
+				if( $wgUploadNavigationUrl ) {
+					$href = wfAppendQuery( $wgUploadNavigationUrl, $q );
+				} else {
+					$upload = SpecialPage::getTitleFor( 'Upload' );
+					$href = $upload->getLocalUrl( $q );
+				}
+
 				list( $inside, $trail ) = self::splitTrail( $trail );
-				$style = $this->getInternalLinkAttributesObj( $title, $text, 'new' );
+				
 				wfProfileOut( __METHOD__ );
-				return '<a href="' . $upload->escapeLocalUrl( $q ) . '"'
-					. $style . '>' . $prefix . $text . $inside . '</a>' . $trail;
+				return Html::element( 'a', array(
+					'href' => $href,
+					'class' => 'new',
+					'title' => $title->getPrefixedText()
+				), $prefix . $text . $inside ) . $trail;
 			} else {
 				wfProfileOut( __METHOD__ );
 				return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
@@ -716,9 +729,7 @@ class Linker {
 				$url  = $img->getURL();
 				$class = 'internal';
 			} else {
-				$upload = SpecialPage::getTitleFor( 'Upload' );
-				$url = $upload->getLocalUrl( 'wpDestFile=' . urlencode( $title->getDBkey() ) );
-				$class = 'new';
+				return $this->makeBrokenImageLinkObj( $title, $text, '', '', '', '', $time==true );
 			}
 			$alt = htmlspecialchars( $title->getText() );
 			if( $text == '' ) {
