@@ -65,6 +65,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere('u1.user_name' . $db->buildLike($this->keyToTitle($params['prefix']), $db->anyString()));
 
 		if (!is_null($params['group'])) {
+			$useIndex = false;
 			// Filter only users that belong to a given group
 			$this->addTables('user_groups', 'ug1');
 			$ug1 = $this->getAliasedName('user_groups', 'ug1');
@@ -76,7 +77,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere('user_editcount > 0');
 
 		if ($fld_groups) {
-			$useIndex = false;
 			// Show the groups the given users belong to
 			// request more than needed to avoid not getting all rows that belong to one user
 			$groupCount = count(User::getAllGroups());
