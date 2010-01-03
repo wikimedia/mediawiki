@@ -40,8 +40,6 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-		global $wgSVGConverters, $wgSVGConverter, $wgSVGConverterPath;
-
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
