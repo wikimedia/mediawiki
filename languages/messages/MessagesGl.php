@@ -45,6 +45,14 @@ $namespaceAliases = array(
 	'Conversa_Categoría' => NS_CATEGORY_TALK,
 );
 
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j \d\e F \d\e Y',
+	'dmy both' => 'H:i \d\e j \d\e F \d\e Y',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Redireccións dobres' ),
 	'BrokenRedirects'           => array( 'Redireccións rotas' ),
