@@ -753,6 +753,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21441) meta=userinfo&uiprop=options no longer returns default options
   for logged-in users under certain circumstances
 * (bug 21945) Add chomp control in YAML
+* Expand the thumburl to an absolute url to make it consistent with url and 
+  descriptionurl 
 
 === Languages updated in 1.16 ===
 
