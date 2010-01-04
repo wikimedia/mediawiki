@@ -198,7 +198,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$mto = $file->transform( array( 'width' => $scale['width'], 'height' => $scale['height'] ) );
 				if( $mto && !$mto->isError() )
 				{
-					$vals['thumburl'] = $mto->getUrl();
+					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
 					$vals['thumbwidth'] = intval( $mto->getWidth() );
 					$vals['thumbheight'] = intval( $mto->getHeight() );
 				}
