@@ -52,9 +52,10 @@ class WatchlistCleanup extends TableCleanup {
 	}
 
 	protected function processRow( $row ) {
+		global $wgContLang;
 		$current = Title::makeTitle( $row->wl_namespace, $row->wl_title );
 		$display = $current->getPrefixedText();
-		$verified = UtfNormal::cleanUp( $display );
+		$verified = $wgContLang->normalize( $display );
 		$title = Title::newFromText( $verified );
 
 		if( $row->wl_user == 0 || is_null( $title ) || !$title->equals( $current ) ) {

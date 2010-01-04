@@ -203,7 +203,8 @@ class WebRequest {
 				$data[$key] = $this->normalizeUnicode( $val );
 			}
 		} else {
-			$data = UtfNormal::cleanUp( $data );
+			global $wgContLang;
+			$data = $wgContLang->normalize( $data );
 		}
 		return $data;
 	}
@@ -600,6 +601,7 @@ class WebRequest {
 	 * @return string or NULL if no such file.
 	 */
 	public function getFileName( $key ) {
+		global $wgContLang;
 		if( !isset( $_FILES[$key] ) ) {
 			return null;
 		}
@@ -608,7 +610,7 @@ class WebRequest {
 		# Safari sends filenames in HTML-encoded Unicode form D...
 		# Horrid and evil! Let's try to make some kind of sense of it.
 		$name = Sanitizer::decodeCharReferences( $name );
-		$name = UtfNormal::cleanUp( $name );
+		$name = $wgContLang->normalize( $name );
 		wfDebug( "WebRequest::getFileName() '" . $_FILES[$key]['name'] . "' normalized to '$name'\n" );
 		return $name;
 	}

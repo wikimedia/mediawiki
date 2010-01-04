@@ -236,6 +236,7 @@ class TextPassDumper extends BackupDumper {
 	 * May throw a database error if, say, the server dies during query.
 	 */
 	private function getTextDb( $id ) {
+		global $wgContLang;
 		$id = intval( $id );
 		$row = $this->db->selectRow( 'text',
 			array( 'old_text', 'old_flags' ),
@@ -246,7 +247,7 @@ class TextPassDumper extends BackupDumper {
 			return false;
 		}
 		$stripped = str_replace( "\r", "", $text );
-		$normalized = UtfNormal::cleanUp( $stripped );
+		$normalized = $wgContLang->normalize( $stripped );
 		return $normalized;
 	}
 	
@@ -321,6 +322,8 @@ class TextPassDumper extends BackupDumper {
 	}
 	
 	private function getTextSpawnedOnce( $id ) {
+		global $wgContLang;
+
 		$ok = fwrite( $this->spawnWrite, "$id\n" );
 		//$this->progress( ">> $id" );
 		if( !$ok ) return false;
@@ -351,7 +354,7 @@ class TextPassDumper extends BackupDumper {
 		
 		// Do normalization in the dump thread...
 		$stripped = str_replace( "\r", "", $text );
-		$normalized = UtfNormal::cleanUp( $stripped );
+		$normalized = $wgContLang->normalize( $stripped );
 		return $normalized;
 	}
 

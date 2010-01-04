@@ -65,7 +65,7 @@ class ImageCleanup extends TableCleanup {
 		$cleaned = $wgContLang->checkTitleEncoding( $cleaned );
 		
 		// Many of remainder look like non-normalized unicode
-		$cleaned = UtfNormal::cleanUp( $cleaned );
+		$cleaned = $wgContLang->normalize( $cleaned );
 		
 		$title = Title::makeTitleSafe( NS_FILE, $cleaned );
 		
