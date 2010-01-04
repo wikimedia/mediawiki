@@ -566,6 +566,7 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'nav-login-createaccount'    => 'Pśizjawiś se/Konto załožyś',
 'loginprompt'                => 'Za pśizjawjenje do boka {{SITENAME}} muse se cookije dopušćiś.',
 'userlogin'                  => 'Pśizjawiś se/Konto załožyś',
+'userloginnocreate'          => 'Pśizjawiś',
 'logout'                     => 'wótzjawiś se',
 'userlogout'                 => 'wótzjawiś se',
 'notloggedin'                => 'Njepśizjawjony(a)',

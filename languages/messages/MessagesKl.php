@@ -335,8 +335,10 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'statistics' => 'Kisitsisinngorlugit paasissutissat',
 
 # Miscellaneous special pages
-'newpages' => 'Quppernerit nutaat',
-'move'     => 'Nuuguk',
+'newpages'      => 'Quppernerit nutaat',
+'move'          => 'Nuuguk',
+'pager-newer-n' => '{{PLURAL:$1|nutaaneq 1|nutaanerit $1}}',
+'pager-older-n' => '{{PLURAL:$1|pisoqaaneq 1|pisoqaanerit $1}}',
 
 # Book sources
 'booksources-go' => 'Ujaruk',

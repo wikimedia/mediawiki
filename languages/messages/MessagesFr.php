@@ -2827,7 +2827,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'skinname-chick'       => 'Poussin',
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Moderne',
-'skinname-vector'      => 'Vecteur',
+'skinname-vector'      => 'Vector',
 
 # Math options
 'mw_math_png'    => 'Toujours produire une image PNG',
@@ -2850,7 +2850,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marquer comme patrouillée',
-'markaspatrolledtext'                 => 'Marquer cette page comme non vandalisée',
+'markaspatrolledtext'                 => 'Marquer cette page comme patrouillée',
 'markedaspatrolled'                   => 'Marqué comme patrouillé',
 'markedaspatrolledtext'               => 'La version sélectionnée a été marquée comme patrouillée.',
 'rcpatroldisabled'                    => 'La fonction de patrouille des modifications récentes n’est pas activée.',

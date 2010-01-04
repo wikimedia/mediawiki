@@ -455,6 +455,7 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'nav-login-createaccount'    => 'rintré ant ël sistema',
 'loginprompt'                => 'Che a varda mach che a venta avèj ij cookies abilità për podèj rintré an {{SITENAME}}.',
 'userlogin'                  => 'rintré ant ël sistema',
+'userloginnocreate'          => 'Intra',
 'logout'                     => "Seurte da 'nt ël sistema",
 'userlogout'                 => 'seurte dal sistema',
 'notloggedin'                => "a l'é pa ant ël sistema",
@@ -806,16 +807,16 @@ Coma aministrator chiel a peul ës-ciairela; a peulo essnie dle marche ant ël [
 Coma aministrator chiel a peul ës-ciairela; a peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-deleted-no-diff'         => "A peul pa vëdde coste diferense përchè un-a dle revision a l'é stàita '''scancelà'''.
 A peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
-'rev-deleted-unhide-diff'     => "Un-a dle revision ëd coste diferense a l'é stàita '''scanselà'''.
-A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion].
-Com aministrador it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
-'rev-suppressed-unhide-diff'  => "Un-a dle revision dë sta diferensa-sì a l'é stàita '''scanselà'''.
-A peul ess-je dij detaj ant ël  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion].
-Com  aministrador it peule ancò [$1 vëdde sta diferensa-sì] s'it veule.",
+'rev-deleted-unhide-diff'     => "Un-a dle revision ëd coste diferense a l'é stàita '''scancelà'''.
+A peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].
+Com aministrator it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
+'rev-suppressed-unhide-diff'  => "Un-a dle revision dë sta diferensa-sì a l'é stàita '''scancelà'''.
+A peulo essnje dij detaj ant ël  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].
+Com aministrator a peul ancò [$1 vëdde sta diferensa-sì] s'a veul.",
 'rev-deleted-diff-view'       => "Un-a dle revision dë sta diferensa-sì a l'é stàita '''scancelà'''.
 Com aministrator it peule ancó vëdde sta diferensa-sì; a peulo ess-ie dij detaj ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].",
 'rev-suppressed-diff-view'    => "Un-a dle revision ëd costa diferensa-sì a l'é stàita '''eliminà'''.
-Tanme aministrator, a peul ancora s-ciairé costa diferensa; a peulo esse pì 'd detaj ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd j'eliminassion].",
+Tanme aministrator, a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd j'eliminassion].",
 'rev-delundel'                => 'mostra/stërma',
 'rev-showdeleted'             => 'Mostra',
 'revisiondelete'              => 'Scancela/disdëscancela revision',
@@ -950,7 +951,7 @@ Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.",
 'viewprevnext'                     => 'Che a varda ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => "Opsion d'arserca",
 'searchmenu-exists'                => "'''A-i é na pàgina ciamà \"[[:\$1]]\" an dzora a sta wiki-sì'''",
-'searchmenu-new'                   => "'''Crea la pàgina \"[[:\$1]]\" an dzora a sta wiki-sì''",
+'searchmenu-new'                   => "'''Creé la pàgina «[[:$1]]» ansima a sta wiki-sì!'''",
 'searchhelp-url'                   => 'Help:Agiut',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Visualisa le pàgine con sto prefiss-sì]]',
 'searchprofile-articles'           => 'Pàgine ëd contnù',

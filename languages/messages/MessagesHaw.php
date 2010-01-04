@@ -291,7 +291,7 @@ $messages = array(
 'site-atom-feed'          => 'Hulu Atom o $1',
 'page-rss-feed'           => 'Hulu RSS o "$1"',
 'page-atom-feed'          => 'Hulu Atom o "$1"',
-'red-link-title'          => '$1 (‘a‘ole kākau ‘ia)',
+'red-link-title'          => '$1 (ʻaʻole i kākau ʻia)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ʻaoʻao',
@@ -752,7 +752,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'tooltip-p-logo'                 => 'Kele i ka papa kinohi',
 'tooltip-n-mainpage'             => 'Kele i ka papa kinohi',
 'tooltip-n-mainpage-description' => 'Kele i ka papa kinohi',
-'tooltip-n-portal'               => 'E pili ana i ka pāhana, he aha kāu hana, nā wahi no ka loaʻa ʻana',
+'tooltip-n-portal'               => 'E pili ana ka pāhana, nā hana hiki, nā wahi no ka loaʻa ʻana',
 'tooltip-n-currentevents'        => 'ʻIke i nā nū hou',
 'tooltip-n-recentchanges'        => 'Nā loli hou ma ka wiki',
 'tooltip-n-randompage'           => 'Hōʻike he ʻaoʻao kaulele',
