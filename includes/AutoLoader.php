@@ -594,6 +594,7 @@ $wgAutoloadLocalClasses = array(
 	# languages
 	'Language' => 'languages/Language.php',
 	'FakeConverter' => 'languages/Language.php',
+	'LanguageConverter' => 'languages/LanguageConverter.php',
 
 	# maintenance/language
 	'statsOutput' => 'maintenance/language/StatOutputs.php',
