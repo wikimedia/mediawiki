@@ -867,6 +867,19 @@ $wgInputEncoding  = 'UTF-8';
 $wgOutputEncoding = 'UTF-8';
 $wgEditEncoding   = '';
 
+/** 
+ * Set this to true to clean up archaic Unicode sequences in Arabic and 
+ * Malayalam text. Currently only works if $wgLanguageCode is set to Arabic
+ * or Malayalam.
+ *
+ * Enabling this is generally a good idea for new wikis, since it fixes a few 
+ * technical problems to do with editing these languages. However, if it's 
+ * enabled on an existing wiki, pages which contain the problematic characters 
+ * in their page titles may become inaccessible. Running maintenance/cleanupTitles.php
+ * after enabling it may fix this.
+ */
+$wgFixArchaicUnicode = false;
+
 /**
  * Locale for LC_CTYPE, to work around http://bugs.php.net/bug.php?id=45132
  * For Unix-like operating systems, set this to to a locale that has a UTF-8

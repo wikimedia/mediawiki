@@ -37,8 +37,9 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	protected function processRow( $row ) {
+		global $wgContLang;
 		$display = Title::makeName( $row->page_namespace, $row->page_title );
-		$verified = UtfNormal::cleanUp( $display );
+		$verified = $wgContLang->normalize( $display );
 		$title = Title::newFromText( $verified );
 
 		if( !is_null( $title ) 

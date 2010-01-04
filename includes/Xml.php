@@ -56,7 +56,7 @@ class Xml {
 
 	/**
 	 * Format an XML element as with self::element(), but run text through the
-	 * UtfNormal::cleanUp() validator first to ensure that no invalid UTF-8
+	 * $wgContLang->normalize() validator first to ensure that no invalid UTF-8
 	 * is passed.
 	 *
 	 * @param $element String:
@@ -65,12 +65,13 @@ class Xml {
 	 * @return string
 	 */
 	public static function elementClean( $element, $attribs = array(), $contents = '') {
+		global $wgContLang;
 		if( $attribs ) {
 			$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
 		}
 		if( $contents ) {
 			wfProfileIn( __METHOD__ . '-norm' );
-			$contents = UtfNormal::cleanUp( $contents );
+			$contents = $wgContLang->normalize( $contents );
 			wfProfileOut( __METHOD__ . '-norm' );
 		}
 		return self::element( $element, $attribs, $contents );

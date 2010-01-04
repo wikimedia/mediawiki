@@ -62,6 +62,11 @@ class Language {
 	var $minSearchLength;
 	var $mExtendedSpecialPageAliases;
 
+	/**
+	 * ReplacementArray object caches
+	 */
+	var $transformData = array();
+
 	static public $dataCache;
 	static public $mLangObjCache = array();
 
@@ -1863,6 +1868,36 @@ class Language {
 		} else {
 			return $this->iconv( $enc, 'UTF-8', $s );
 		}
+	}
+
+	/**
+	 * Convert a UTF-8 string to normal form C. In Malayalam and Arabic, this
+	 * also cleans up certain backwards-compatible sequences, converting them 
+	 * to the modern Unicode equivalent.
+	 *
+	 * This is language-specific for performance reasons only.
+	 */
+	function normalize( $s ) {
+		return UtfNormal::cleanUp( $s );
+	}
+
+	/**
+	 * Transform a string using serialized data stored in the given file (which
+	 * must be in the serialized subdirectory of $IP). The file contains pairs
+	 * mapping source characters to destination characters. 
+	 *
+	 * The data is cached in process memory. This will go faster if you have the 
+	 * FastStringSearch extension.
+	 */
+	function transformUsingPairFile( $file, $string ) {
+		if ( !isset( $this->transformData[$file] ) ) {
+			$data = wfGetPrecompiledData( $file );
+			if ( $data === false ) {
+				throw new MWException( __METHOD__.": The transformation file $file is missing" );
+			}
+			$this->transformData[$file] = new ReplacementArray( $data );
+		}
+		return $this->transformData[$file]->replace( $string );
 	}
 
 	/**

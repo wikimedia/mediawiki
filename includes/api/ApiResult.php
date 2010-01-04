@@ -304,7 +304,8 @@ class ApiResult extends ApiBase {
 	{
 		if(!is_string($s))
 			return;
-		$s = UtfNormal::cleanUp($s);
+		global $wgContLang;
+		$s = $wgContLang->normalize($s);
 	}
 
 	public function execute() {
