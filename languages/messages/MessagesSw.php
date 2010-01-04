@@ -540,6 +540,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'nav-login-createaccount'    => 'Ingia/ sajili akaunti',
 'loginprompt'                => 'Lazima kompyuta yako ipokee kuki ili uweze kuingia kwenye {{SITENAME}}.',
 'userlogin'                  => 'Ingia/ sajili akaunti',
+'userloginnocreate'          => 'Ingia',
 'logout'                     => 'Toka',
 'userlogout'                 => 'Toka',
 'notloggedin'                => 'Hujaingia',
@@ -843,6 +844,8 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'historyempty'           => '(tupu)',
 
 # Revision feed
+'history-feed-title'          => 'Kumbukumbu za mabadiliko',
+'history-feed-description'    => 'Kumbukumbu za mabadiliko ya ukurasa huu',
 'history-feed-item-nocomment' => '$1 kwenye $2',
 
 # Revision deletion
@@ -850,9 +853,12 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'rev-deleted-user'           => '(jina la mtumiaji lilifutwa)',
 'rev-deleted-event'          => '(ingizo lilifutwa)',
 'rev-delundel'               => 'onyesha/ficha',
+'rev-showdeleted'            => 'onyesha',
 'revisiondelete'             => 'Kufuta/kurudisha matoleo',
 'revdelete-nologtype-title'  => 'Aina ya kumbukumbu haikutajwa',
 'revdelete-show-file-submit' => 'Ndiyo',
+'revdelete-radio-same'       => '(isibadilishwe)',
+'revdelete-radio-set'        => 'Ndiyo',
 'revdelete-log'              => 'Sababu ya kufuta',
 'revdel-restore'             => 'badilisha mwonekano',
 'pagehist'                   => 'Historia ya ukurasa',
@@ -1035,7 +1041,7 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'userrights-user-editname' => 'Andika jina la mtumiaji:',
 'editusergroup'            => 'Kuhariri vikundi vya watumiaji',
 'userrights-groupsmember'  => 'Mwanachama wa:',
-'userrights-reason'        => 'Sababu ya kubadilisha:',
+'userrights-reason'        => 'Sababu:',
 
 # Groups
 'group'       => 'Kundi:',
@@ -1255,6 +1261,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 
 # Miscellaneous special pages
 'nbytes'                  => '{{PLURAL:$1|baiti|baiti}} $1',
+'ncategories'             => '{{PLURAL:$1|jamii|jamii}} $1',
 'nlinks'                  => '{{PLURAL:$1|kiungo|viungo}} $1',
 'nmembers'                => '{{PLURAL:$1|mtumiaji|watumiaji}} $1',
 'lonelypages'             => 'Kurasa ambazo haziungwi kutoka ukurasa mwingine wowote',
@@ -1386,7 +1393,35 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watching'   => 'Unafuatilia...',
 'unwatching' => 'Umeacha kufuatilia...',
 
+'enotif_newpagetext'           => 'Ukurasa huu ni mpya.',
 'enotif_impersonal_salutation' => 'Kwa mtumiaji wa {{SITENAME}}',
+'changed'                      => 'alibadilisha',
+'created'                      => 'alianzisha',
+'enotif_subject'               => '$PAGEEDITOR $CHANGEDORCREATED ukurasa wa $PAGETITLE kwenye {{SITENAME}}',
+'enotif_body'                  => 'Mpendwa $WATCHINGUSERNAME,
+
+
+$PAGEEDITOR $CHANGEDORCREATED ukurasa wa $PAGETITLE kwenye {{SITENAME}} saa $PAGEEDITDATE. Tazama $PAGETITLE_URL kuona ukurasa ulivyo sasa hivi.
+
+$NEWPAGE
+
+Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
+
+Contact the editor:
+mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+There will be no other notifications in case of further changes unless you visit this page.
+You could also reset the notification flags for all your watched pages on your watchlist.
+
+             Your friendly {{SITENAME}} notification system
+
+--
+To change your watchlist settings, visit
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Feedback and further assistance:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Futa ukurasa',

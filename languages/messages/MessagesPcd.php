@@ -378,6 +378,7 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer chol pache]</span>.',
 Vos cangemints, is sont poin coèr inrégistrés!",
 'editing'                          => 'Éditer $1',
 'editingsection'                   => '$1 éditée (sekchon)',
+'yourtext'                         => 'Vote teske',
 'copyrightwarning'                 => "Toutes chés contérbuchons su {{SITENAME}} ont érbéyées conme publiées dsou chés térmes del $2 (vir $1 pou pus d'détals). Si vos n'volez poin éq vos écrivures euchette canjés pi départis à volontè, mérci éd n'poin les soumétte ichi.<br />
 Os prométtez auchi éq vos avez écrit ch'teske vous-méme, ou éq vos l’avez ércopié d’eune source din ch'donmène public, ou d’eune libe érsource.<br /> '''N’IMPLOÉYEZ POIN D'TRAVAUX ÉDSOU DROÉ D’AUTEU SINS ACOR ÉSPRÉSSE !'''",
 'templatesused'                    => '{{PLURAL:$1|Modéle imploïé|Modéles imploïés}} pou chol pache:',
@@ -451,6 +452,7 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 # Preferences page
 'preferences'               => 'Préférinches',
 'mypreferences'             => 'Mes préférinches',
+'timezoneregion-europe'     => 'Urope',
 'youremail'                 => 'Imèle:',
 'username'                  => "Nom d'uzeu:",
 'uid'                       => 'ID dech uzeu:',
@@ -464,9 +466,15 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'email'                     => 'Imèle',
 'prefs-help-email-required' => 'I feut eune iméle adérche',
 
+# User rights
+'userrights-groupsmember' => 'Mimbe éd:',
+
 # Groups
 'group-sysop'      => 'Aménistrateus',
 'group-bureaucrat' => 'Buroécrates',
+
+'group-sysop-member'      => 'Aménistrateu',
+'group-bureaucrat-member' => 'Buroécrate',
 
 'grouppage-sysop' => '{{ns:project}}:Aménistrateus',
 
@@ -474,6 +482,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'rightslog' => "Jornal d'chés droés dechl uzeu",
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read' => "Vir l'pache-lo",
 'action-edit' => "édite l'pache-lo",
 
 # Recent changes
@@ -497,7 +506,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
 'rc-enhanced-expand'             => 'Montrer chés détals (i feut avoér JavaScript)',
-'rc-enhanced-hide'               => 'Mucher chés détails',
+'rc-enhanced-hide'               => 'Mucher chés détals',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Darins canjemints érliés',
@@ -525,6 +534,9 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'linkstoimage'              => "{{PLURAL:$1|L'pache d'apreu est liée|Chés $1 paches d'apreu sont liées}} à ch'fichié-lo :",
 'sharedupload'              => "Cht'fichié vient éd $1 pi i put ète imploïé par d'eutes proujés.",
 'uploadnewversion-linktext' => 'Quértcher eune novèle vérchion del pache-lo',
+
+# Random page
+'randompage' => "Pache à l'bérlure",
 
 # Statistics
 'statistics' => 'Éstatistikes',

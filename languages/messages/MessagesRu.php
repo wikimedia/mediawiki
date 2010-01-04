@@ -13,6 +13,7 @@
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Amikeco
+ * @author Chilin
  * @author Don Alessandro
  * @author EugeneZelenko
  * @author Ferrer
@@ -676,6 +677,7 @@ $2',
 'nav-login-createaccount'    => 'Представиться / зарегистрироваться',
 'loginprompt'                => 'Вы должны разрешить «cookies», чтобы представиться системе.',
 'userlogin'                  => 'Представиться или зарегистрироваться',
+'userloginnocreate'          => 'Представиться',
 'logout'                     => 'Завершение сеанса',
 'userlogout'                 => 'Завершение сеанса',
 'notloggedin'                => 'Вы не представились системе',
