@@ -275,8 +275,7 @@ class SpecialExport extends SpecialPage {
 			$lb->closeAll();
 		}
 	}
-	
-	
+
 	private function getPagesFromCategory( $title ) {
 		global $wgContLang;
 		
@@ -410,13 +409,6 @@ class SpecialExport extends SpecialPage {
 			}
 		}
 		return $pageSet;
-	}
-	
-	/**
-	 * Callback function to remove empty strings from the pages array.
-	 */
-	private function filterPage( $page ) {
-		return $page !== '' && $page !== null;
 	}
 }
 
