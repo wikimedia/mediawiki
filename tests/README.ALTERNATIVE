@@ -3,7 +3,7 @@ since the README method didn't work for me.
 
  - Put a LocalSettings.php in the parent directory.  If you checked
    out mediawiki/trunk/phase3 as a directory called mediawiki, then
-   this would go in your 
+   this is where your LocalSettings.php file would go.
  - Install PHPUnit.  I used version 3.3.16 from Ubuntu.
    ("aptitude install phpunit").
  - Invoke phpunit directly instead of using make.  This uses the
@@ -21,4 +21,4 @@ since the README method didn't work for me.
 
 NOTE: I haven't yet determined why but my PHP installation would
 sometimes segfault while linting the files.  PHPUnit uses "php -l" to
-check file syntax.
+check file syntax and this is where the segfaults were happening.
