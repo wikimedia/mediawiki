@@ -2958,6 +2958,7 @@ It may have been unblocked already.',
 'ipb_blocked_as_range'            => 'Error: The IP address $1 is not blocked directly and cannot be unblocked.
 It is, however, blocked as part of the range $2, which can be unblocked.',
 'ip_range_invalid'                => 'Invalid IP range.',
+'ip_range_toolarge'               => 'Range blocks larger than /$1 are not allowed.',
 'blockme'                         => 'Block me',
 'proxyblocker'                    => 'Proxy blocker',
 'proxyblocker-disabled'           => 'This function is disabled.',
