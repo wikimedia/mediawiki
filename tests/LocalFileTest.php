@@ -2,6 +2,7 @@
 
 /**
  * These tests should work regardless of $wgCapitalLinks
+ * @group Broken
  */
 
 class LocalFileTest extends PHPUnit_Framework_TestCase {

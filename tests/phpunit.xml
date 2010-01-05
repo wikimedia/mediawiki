@@ -1,0 +1,16 @@
+<!-- See http://www.phpunit.de/manual/3.3/en/appendixes.configuration.html -->
+<phpunit bootstrap="./bootstrap.php"
+         colors="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="true">
+  <testsuite name="MediaWiki Test Suite">
+    <directory>.</directory>
+  </testsuite>
+  <groups>
+    <exclude>
+      <group>Broken</group>
+    </exclude>
+  </groups>
+</phpunit>

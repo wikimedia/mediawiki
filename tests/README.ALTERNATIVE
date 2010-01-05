@@ -1,0 +1,24 @@
+This file describes an alternative way of testing from that in README
+since the README method didn't work for me.
+
+ - Put a LocalSettings.php in the parent directory.  If you checked
+   out mediawiki/trunk/phase3 as a directory called mediawiki, then
+   this would go in your 
+ - Install PHPUnit.  I used version 3.3.16 from Ubuntu.
+   ("aptitude install phpunit").
+ - Invoke phpunit directly instead of using make.  This uses the
+   phpunit.xml file to run the tests.
+ - Fix broken tests.
+ - Label currently broken tests in the group Broken and they will not
+   be run by phpunit.  You can add them to the group by putting the
+   following comment at the top of the file:
+
+    /**
+     * @group Broken
+     */
+
+
+
+NOTE: I haven't yet determined why but my PHP installation would
+sometimes segfault while linting the files.  PHPUnit uses "php -l" to
+check file syntax.
