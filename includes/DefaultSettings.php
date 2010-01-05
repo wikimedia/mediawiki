@@ -151,7 +151,6 @@ $wgStylePath   = false; ///< defaults to "{$wgScriptPath}/skins"
 $wgStyleDirectory = false; ///< defaults to "{$IP}/skins"
 $wgStyleSheetPath = &$wgStylePath;
 $wgArticlePath      = false; ///< default to "{$wgScript}/$1" or "{$wgScript}?title=$1", depending on $wgUsePathInfo
-$wgVariantArticlePath = false;
 $wgUploadPath       = false; ///< defaults to "{$wgScriptPath}/images"
 $wgUploadDirectory	= false; ///< defaults to "{$IP}/images"
 $wgHashedUploadDirectory	= true;
@@ -1036,6 +1035,22 @@ $wgDefaultLanguageVariant = false;
  *  $wgDisabledVariants = array('zh-mo', 'zh-my');
  */
 $wgDisabledVariants = array();
+
+/**
+ * Like $wgArticlePath, but on multi-variant wikis, this provides a
+ * path format that describes which parts of the URL contain the
+ * language variant.  For Example:
+ * 
+ *   $wgLanguageCode = 'sr';
+ *   $wgVariantArticlePath = '/$2/$1';
+ *   $wgArticlePath = '/wiki/$1';
+ * 
+ * A link to /wiki/ would be redirected to /sr/Главна_страна
+ *
+ * It is important that $wgArticlePath not overlap with possible values
+ * of $wgVariantArticlePath.
+ */
+$wgVariantArticlePath = false;///< defaults to false 
 
 /**
  * Show a bar of language selection links in the user login and user
