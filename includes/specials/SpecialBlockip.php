@@ -383,8 +383,10 @@ class IPBlockForm {
 		  	if( preg_match( "/^($rxIP4)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
 		  		# IPv4
 				if( $wgSysopRangeBans ) {
-					if( !IP::isIPv4( $this->BlockAddress ) || $matches[2] < $wgBlockCIDRLimit || $matches[2] > 32 ) {
+					if( !IP::isIPv4( $this->BlockAddress ) || $matches[2] > 32 ) {
 						return array( 'ip_range_invalid' );
+					} elseif ( $matches[2] < $wgBlockCIDRLimit['IPv4'] ) {
+						return array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
 					}
 					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
 				} else {
@@ -394,8 +396,10 @@ class IPBlockForm {
 			} elseif( preg_match( "/^($rxIP6)\\/(\\d{1,3})$/", $this->BlockAddress, $matches ) ) {
 		  		# IPv6
 				if( $wgSysopRangeBans ) {
-					if( !IP::isIPv6( $this->BlockAddress ) || $matches[2] < 64 || $matches[2] > 128 ) {
+					if( !IP::isIPv6( $this->BlockAddress ) || $matches[2] > 128 ) {
 						return array( 'ip_range_invalid' );
+					} elseif( $matches[2] < $wgBlockCIDRLimit['IPv6'] ) {
+						return array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
 					}
 					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
 				} else {

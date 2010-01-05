@@ -1302,7 +1302,10 @@ $wgSysopRangeBans       = true; # Allow sysops to ban IP ranges
 $wgAutoblockExpiry      = 86400; # Number of seconds before autoblock entries expire
 $wgBlockAllowsUTEdit    = false; # Default setting for option on block form to allow self talkpage editing whilst blocked
 $wgSysopEmailBans       = true; # Allow sysops to ban users from accessing Emailuser
-$wgBlockCIDRLimit       = 16; # Blocks larger than a /16 (64k addresses) will not be allowed
+$wgBlockCIDRLimit = array(
+	'IPv4' => 16, # Blocks larger than a /16 (64k addresses) will not be allowed
+	'IPv6' => 64, # 2^64 = ~1.8x10^19 addresses
+);
 
 # Pages anonymous user may see as an array, e.g.:
 # array ( "Main Page", "Wikipedia:Help");
