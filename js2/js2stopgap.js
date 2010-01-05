@@ -1057,7 +1057,7 @@ jQuery.extend({
 			return letter.toUpperCase();
 		});
 
-		if ( set )
+		if ( set && value != 'NaNpx' )
 			elem[ name ] = value;
 
 		return elem[ name ];
