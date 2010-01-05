@@ -47,7 +47,9 @@ class BacklinkCache {
 
 	/**
 	 * Get the backlinks for a given table. Cached in process memory only.
-	 * @param string $table
+	 * @param $table String
+	 * @param $startId Integer or false
+	 * @param $endId Integer or false
 	 * @return TitleArray
 	 */
 	public function getLinks( $table, $startId = false, $endId = false ) {
@@ -169,9 +171,9 @@ class BacklinkCache {
 	 * Returns an array giving the start and end of each range. The first batch has
 	 * a start of false, and the last batch has an end of false.
 	 *
-	 * @param string $table The links table name
-	 * @param integer $batchSize
-	 * @return array
+	 * @param $table String: the links table name
+	 * @param $batchSize Integer
+	 * @return Array
 	 */
 	public function partition( $table, $batchSize ) {
 		// Try cache
