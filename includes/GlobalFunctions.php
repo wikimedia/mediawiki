@@ -3146,7 +3146,7 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
 function wfWaitForSlaves( $maxLag, $wiki = false ) {
 	if( $maxLag ) {
 		$lb = wfGetLB( $wiki );
-		list( $host, $lag ) = $lb->getMaxLag();
+		list( $host, $lag ) = $lb->getMaxLag( $wiki );
 		while( $lag > $maxLag ) {
 			$name = @gethostbyaddr( $host );
 			if( $name !== false ) {

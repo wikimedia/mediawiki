@@ -878,14 +878,18 @@ class LoadBalancer {
 	 * Get the hostname and lag time of the most-lagged slave.
 	 * This is useful for maintenance scripts that need to throttle their updates.
 	 * May attempt to open connections to slaves on the default DB.
+	 * @param $wiki string Wiki ID, or false for the default database
 	 */
-	function getMaxLag() {
+	function getMaxLag( $wiki = false ) {
 		$maxLag = -1;
 		$host = '';
 		foreach ( $this->mServers as $i => $conn ) {
-			$conn = $this->getAnyOpenConnection( $i );
+			$conn = false;
+			if ( $wiki === false ) {
+				$conn = $this->getAnyOpenConnection( $i );
+			}
 			if ( !$conn ) {
-				$conn = $this->openConnection( $i );
+				$conn = $this->openConnection( $i, $wiki );
 			}
 			if ( !$conn ) {
 				continue;
