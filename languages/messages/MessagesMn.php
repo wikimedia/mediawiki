@@ -9,6 +9,7 @@
  *
  * @author Chinneeb
  * @author E.shijir
+ * @author Meno25
  * @author לערי ריינהארט
  */
 
@@ -1355,7 +1356,7 @@ $1 үсгээс богино байх ёстой.',
 'upload-misc-error'       => 'Мэдэгдэхгүй файл оруулалтын алдаа',
 'upload-misc-error-text'  => 'Файл оруулахад үл мэдэгдэх алдаа гарлаа.
 URL нь хүчинтэй, мөн түүн руу орж болж байгаа эсэхийг шалган, дахин оролдож үзнэ үү.
-Энэ асуудал үргэлжилсээр байвал [Special:ListUsers/sysop|администраторт]] хандана уу.',
+Энэ асуудал үргэлжилсээр байвал [[Special:ListUsers/sysop|администраторт]] хандана уу.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-д хүрч чадсангүй',

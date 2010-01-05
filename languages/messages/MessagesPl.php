@@ -2402,6 +2402,7 @@ $1 jest już zablokowany. Czy chcesz zmienić ustawienia blokady?',
 'ipb_blocked_as_range'            => 'Błąd – adres IP $1 nie został zablokowany bezpośrednio i nie może zostać odblokowany.
 Należy on do zablokowanego zakresu adresów $2. Odblokować można tylko cały zakres.',
 'ip_range_invalid'                => 'Niepoprawny zakres adresów IP.',
+'ip_range_toolarge'               => 'Zakresy IP większe niż /$1 są niedozwolone.',
 'blockme'                         => 'Zablokuj mnie',
 'proxyblocker'                    => 'Blokowanie proxy',
 'proxyblocker-disabled'           => 'Ta funkcja jest wyłączona.',
