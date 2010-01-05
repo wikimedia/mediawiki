@@ -173,7 +173,7 @@ class LanguageConverter {
 		}
 
 		// get language variant preference from logged in users
-		// Don't call this on stub objects because that causes infinite 
+		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
 		if ( $fromUser && $wgUser->isLoggedIn() )  {
 			$this->mPreferredVariant = $wgUser->getOption( 'variant' );
@@ -197,7 +197,7 @@ class LanguageConverter {
 			if ( $fromHeader && $acceptLanguage ) {
 				// explode by comma
 				$result = explode( ',', strtolower( $acceptLanguage ) );
-				
+
 				$languages = array();
 
 				foreach ( $result as $elem ) {
@@ -242,7 +242,7 @@ class LanguageConverter {
 		}
 		return $this->mMainLanguageCode;
 	}
-	
+
 	/**
 	 * Caption convert, base on preg_replace_callback.
 	 *
@@ -318,11 +318,11 @@ class LanguageConverter {
 
 		$ret = $this->translate( $m[0], $toVariant );
 		$mstart = $m[1] + strlen( $m[0] );
-		
+
 		// enable convertsion of '<img alt="xxxx" ... '
 		// or '<span title="xxxx" ... '
 		$captionpattern	 = '/\s(title|alt)\s*=\s*"([\s\S]*?)"/';
-		
+
 		$trtext = '';
 		$trtextmark = "\0";
 		$notrtext = array();
@@ -425,12 +425,12 @@ class LanguageConverter {
 					$ret[$variant] .= $this->translate( $marked[1], $variant );
 				}
 			}
-			
+
 		}
 
 		return $ret;
 	}
-	
+
 	/**
 	 * Prepare manual conversion table.
 	 * @private
@@ -491,7 +491,7 @@ class LanguageConverter {
 
 		return $text;
 	}
-	
+
 	/**
 	 * Convert namespace.
 	 * @param string $title the title included namespace
@@ -517,7 +517,7 @@ class LanguageConverter {
 	 */
 	function preConvertTitle( $text, $variant ) {
 		$this->mTitleOriginal = $text;
-		
+
 		$text = $this->convertNamespace( $text, $variant );
 		$this->mTitleDisplay = $this->convert( $text );
 	}
@@ -647,7 +647,7 @@ class LanguageConverter {
 		$ns = NS_MAIN;
 
 		if ( $disableLinkConversion ||
-			 ( !$ignoreOtherCond && 
+			 ( !$ignoreOtherCond &&
 			   ( $isredir == 'no'
 				 || $action == 'edit'
 				 || $action == 'submit'
@@ -750,7 +750,7 @@ class LanguageConverter {
 
 			$this->postLoadTables();
 			$this->mTables[self::CACHE_VERSION_KEY] = true;
-			
+
 			$wgMemc->set( $this->mCacheKey, $this->mTables, 43200 );
 			wfProfileOut( __METHOD__ . '-recache' );
 		}
@@ -851,7 +851,7 @@ class LanguageConverter {
 		$ret = array();
 		foreach ( $blocks as $block ) {
 			$mappings = explode( $this->mMarkup['end'], $block, 2 );
-			$stripped = str_replace( array( "'", '"', '*', '#' ), '', 
+			$stripped = str_replace( array( "'", '"', '*', '#' ), '',
 									 $mappings[0] );
 			$table = explode( ';', $stripped );
 			foreach ( $table as $t ) {
@@ -930,7 +930,7 @@ class LanguageConverter {
 		return true;
 	}
 
-	/** 
+	/**
 	 * Armour rendered math against conversion.
 	 * Wrap math into rawoutput -{R| math }- syntax.
 	 * @public
@@ -951,7 +951,7 @@ class LanguageConverter {
  */
 class ConverterRule {
 	var $mText; // original text in -{text}-
-	var $mConverter; // LanguageConverter object 
+	var $mConverter; // LanguageConverter object
 	var $mManualCodeError = '<strong class="error">code error!</strong>';
 	var $mRuleDisplay = '';
 	var $mRuleTitle = false;
@@ -966,7 +966,7 @@ class ConverterRule {
 	 * Constructor
 	 *
 	 * @param string $text the text between -{ and }-
-	 * @param object $converter a  LanguageConverter object 
+	 * @param object $converter a  LanguageConverter object
 	 * @access public
 	 */
 	function __construct( $text, $converter ) {
@@ -998,7 +998,7 @@ class ConverterRule {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Parse flags with syntax -{FLAG| ... }-
 	 * @private
@@ -1075,7 +1075,7 @@ class ConverterRule {
 		$this->mRules = $rules;
 		$this->mFlags = $flags;
 	}
-	
+
 	/**
 	 * Generate conversion table.
 	 * @private
@@ -1175,7 +1175,7 @@ class ConverterRule {
 
 		if ( count( $bidtable ) + count( $unidtable ) == 0 ) {
 			return $this->mRules;
-		} elseif ( $doConvert ) { // the text converted 
+		} elseif ( $doConvert ) { // the text converted
 			// display current variant in bidirectional array
 			$disp = $this->getTextInBidtable( $variant );
 			// or display current variant in fallbacks
@@ -1222,7 +1222,7 @@ class ConverterRule {
 				fill in the missing variants, if any,
 				with fallbacks */
 			if ( !array_key_exists( $v, $bidtable ) ) {
-				$variantFallbacks = 
+				$variantFallbacks =
 					$this->mConverter->getVariantFallbacks( $v );
 				$vf = $this->getTextInBidtable( $variantFallbacks );
 				if ( $vf ) {
@@ -1232,11 +1232,11 @@ class ConverterRule {
 
 			if ( array_key_exists( $v, $bidtable ) ) {
 				foreach ( $vmarked as $vo ) {
-					// use syntax: -{A|zh:WordZh;zh-tw:WordTw}- 
-					// or -{H|zh:WordZh;zh-tw:WordTw}- 
+					// use syntax: -{A|zh:WordZh;zh-tw:WordTw}-
+					// or -{H|zh:WordZh;zh-tw:WordTw}-
 					// or -{-|zh:WordZh;zh-tw:WordTw}-
 					// to introduce a custom mapping between
-					// words WordZh and WordTw in the whole text 
+					// words WordZh and WordTw in the whole text
 					if ( $manLevel[$v] == 'bidirectional' ) {
 						$this->mConvTable[$v][$bidtable[$vo]] = $bidtable[$v];
 					}
@@ -1271,7 +1271,7 @@ class ConverterRule {
 
 		// convert to specified variant
 		// syntax: -{zh-hans;zh-hant[;...]|<text to convert>}-
-		if ( count( array_diff( $flags, $variants ) ) == 0 
+		if ( count( array_diff( $flags, $variants ) ) == 0
 			 and count( $flags ) != 0 ) {
 			// check if current variant in flags
 			if ( in_array( $variant, $flags ) ) {
@@ -1297,7 +1297,7 @@ class ConverterRule {
 		}
 
 		if ( !in_array( 'R', $flags ) || !in_array( 'N', $flags ) ) {
-			// decode => HTML entities modified by Sanitizer::removeHTMLtags 
+			// decode => HTML entities modified by Sanitizer::removeHTMLtags
 			$this->mRules = str_replace( '=&gt;', '=>', $this->mRules );
 
 			$this->parseRules();
@@ -1321,7 +1321,7 @@ class ConverterRule {
 			$this->mRuleDisplay = $rules;
 		} elseif ( in_array( 'N', $flags ) ) {
 			// proces N flag: output current variant name
-			$this->mRuleDisplay = 
+			$this->mRuleDisplay =
 				$this->mConverter->mVariantNames[ trim( $rules ) ];
 		} elseif ( in_array( 'D', $flags ) ) {
 			// proces D flag: output rules description
@@ -1347,10 +1347,10 @@ class ConverterRule {
 		if ( in_array( '+', $flags ) ) {
 			$this->mRulesAction = 'add';
 		}
-		
+
 		$this->generateConvTable();
 	}
-	
+
 	/**
 	 * @public
 	 */
