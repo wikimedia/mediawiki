@@ -17,6 +17,7 @@
  * @author Giro720
  * @author Hamilton Abreu
  * @author Heldergeovane
+ * @author Jesielt
  * @author Jorge Morais
  * @author Leonardo.stabile
  * @author LeonardoG
@@ -685,7 +686,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'yourname'                   => 'Nome de usuário:',
 'yourpassword'               => 'Senha:',
 'yourpasswordagain'          => 'Redigite sua senha',
-'remembermypassword'         => 'Lembrar de minha senha em outras sessões.',
+'remembermypassword'         => 'Lembrar da minha senha em outras sessões.',
 'yourdomainname'             => 'Seu domínio:',
 'externaldberror'            => 'Ocorreu um erro externo ao banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login'                      => 'Autenticar-se',

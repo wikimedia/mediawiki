@@ -9,6 +9,7 @@
  *
  * @author Amikeco
  * @author ArnoLagrange
+ * @author Castelobranco
  * @author Jens Liebenau
  * @author Lucas
  * @author Malafaya
@@ -2303,6 +2304,7 @@ $1 estas jam forbarita. Ĉu vi volas ŝanĝi la opciojn?',
 'ipb_cant_unblock'                => 'Eraro: Forbar-identigo $1 ne estas trovita. Ĝi eble estis jam malforbarita.',
 'ipb_blocked_as_range'            => 'Eraro: La IP-adreso $1 ne estas forbarita rekte kaj ne povas esti malforbarita. Tamen ĝi estas forbarita kiel parto de la intervalo $2, kiu ne povas esti malforbarita.',
 'ip_range_invalid'                => 'Malvalida IP-adresa intervalo.',
+'ip_range_toolarge'               => 'IP-adresaj intervaloj pli grandaj ol /$1 estas malpermesataj.',
 'blockme'                         => 'Forbari min',
 'proxyblocker'                    => 'Forbarilo por prokuriloj.',
 'proxyblocker-disabled'           => 'Ĉi tiu funkcio estas malŝaltita.',

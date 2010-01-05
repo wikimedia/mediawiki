@@ -1038,7 +1038,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rcshowhidepatr'                    => 'тикшерергән үзгәртүләрне $1',
 'rcshowhidemine'                    => 'минем үзгәртүләремне $1',
 'rclinks'                           => 'Соңгы $2 көн эчендә соңгы $1 үзгәртүне күрсәт<br />$3',
-'diff'                              => 'аерма.',
+'diff'                              => 'аерма',
 'hist'                              => 'тарих',
 'hide'                              => 'яшер',
 'show'                              => 'күрсәт',
@@ -1241,6 +1241,29 @@ $3 күрсәткән сәбәп: ''$2''",
 'enotif_impersonal_salutation' => '{{SITENAME}} кулланучы',
 'changed'                      => 'үзгәртелде',
 'created'                      => 'төзергән',
+'enotif_subject'               => '{{SITENAME}} проектының $PAGETITLE бите $PAGEEDITOR тарафыннан $CHANGEDORCREATED',
+'enotif_body'                  => '$WATCHINGUSERNAME,
+
+«{{SITENAME}}» проектының {{SITENAME}} бите $PAGEEDITOR тарафыннан $PAGEEDITDATE көнне $CHANGEDORCREATED, битне карар өчен $PAGETITLE_URL буенча узыгыз.
+
+$NEWPAGE
+
+Үзгәртүнең кыска эчтәлеге: $PAGESUMMARY $PAGEMINOREDIT
+
+Үзгәртүчегә язу:
+эл. почта $PAGEEDITOR_EMAIL
+вики $PAGEEDITOR_WIKI
+
+Бу биткә кермәсәгез, аның башка үзгәртүләре турында хат җибәрелмәячәк. Шулай ук сез күзәтү исемлегегездә булган битләр өчен хәбәр бирү флагын алып куя аласыз.
+
+             {{SITENAME}} хәбәр бирү системасы
+
+--
+Күзәтү исемлеге көйләүләрен үзгәртү:
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Элемтә һәм ярдәм:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Битне бетерү',
@@ -1542,7 +1565,8 @@ $1',
 'table_pager_next' => 'Киләсе бит',
 
 # Auto-summaries
-'autosumm-new' => 'Яңа бит: «$1»',
+'autoredircomment' => '[[$1]] битенә юнәлтү',
+'autosumm-new'     => 'Яңа бит: «$1»',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Соңгы үзгәртүләрне күрсәтү',
