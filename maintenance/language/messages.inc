@@ -1984,7 +1984,7 @@ $wgMessageStructure = array(
 		'ipb_cant_unblock',
 		'ipb_blocked_as_range',
 		'ip_range_invalid',
-		'ip_range_toobig',
+		'ip_range_toolarge',
 		'blockme',
 		'proxyblocker',
 		'proxyblocker-disabled',
