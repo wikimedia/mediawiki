@@ -2,7 +2,10 @@
 
 require_once 'MediaWiki_TestCase.php';
 
-/** @todo document */
+/** @todo document
+ * @group Broken
+ */
+
 class SearchEngineTest extends MediaWiki_TestCase {
 	var $db, $search;
 
