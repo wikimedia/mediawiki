@@ -29,7 +29,7 @@ class ChangesList {
 
 	/**
 	* Changeslist contructor
-	* @param Skin $skin
+	* @param $skin Skin
 	*/
 	public function __construct( $skin ) {
 		$this->skin = $skin;
@@ -56,7 +56,7 @@ class ChangesList {
 	
 	/**
 	 * Sets the list to use a <li class="watchlist-(namespace)-(page)"> tag
-	 * @param bool $value
+	 * @param $value Boolean
 	 */
 	public function setWatchlistDivs( $value = true ) {
 		$this->watchlist = $value;
@@ -78,12 +78,12 @@ class ChangesList {
 
 	/**
 	 * Returns the appropriate flags for new page, minor change and patrolling
-	 * @param bool $new
-	 * @param bool $minor
-	 * @param bool $patrolled
-	 * @param string $nothing, string to use for empty space
-	 * @param bool $bot
-	 * @return string
+	 * @param $new Boolean
+	 * @param $minor Boolean
+	 * @param $patrolled Boolean
+	 * @param $nothing String to use for empty space
+	 * @param $bot Boolean
+	 * @return String
 	 */
 	protected function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
 		$f = $new ? self::flag( 'newpage' ) : $nothing;
@@ -99,8 +99,8 @@ class ChangesList {
 	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
 	 * "!" respectively, plus it will have an appropriate title and class.
 	 *
-	 * @param $key string 'newpage', 'unpatrolled', 'minor', or 'bot'
-	 * @return string Raw HTML
+	 * @param $key String: 'newpage', 'unpatrolled', 'minor', or 'bot'
+	 * @return String: Raw HTML
 	 */
 	public static function flag( $key ) {
 		static $messages = null;
@@ -128,8 +128,8 @@ class ChangesList {
 	 * explaining what the flags mean.  For instance, "N - new page".  See
 	 * also flag().
 	 *
-	 * @param $key string 'newpage', 'unpatrolled', 'minor', or 'bot'
-	 * @return string Raw HTML
+	 * @param $key String: 'newpage', 'unpatrolled', 'minor', or 'bot'
+	 * @return String: Raw HTML
 	 */
 	private static function flagLine( $key ) {
 		return wfMsgExt( "recentchanges-legend-$key", array( 'escapenoentities',
@@ -139,7 +139,7 @@ class ChangesList {
 	/**
 	 * A handy legend to tell users what the little "m", "b", and so on mean.
 	 *
-	 * @return string Raw HTML
+	 * @return String: Raw HTML
 	 */
 	public static function flagLegend() {
 		global $wgGroupPermissions, $wgLang;
@@ -166,7 +166,7 @@ class ChangesList {
 
 	/**
 	 * Returns text for the start of the tabular part of RC
-	 * @return string
+	 * @return String
 	 */
 	public function beginRecentChangesList() {
 		$this->rc_cache = array();
@@ -179,9 +179,9 @@ class ChangesList {
 	
 	/**
 	 * Show formatted char difference
-	 * @param int $old bytes
-	 * @param int $new bytes
-	 * @returns string
+	 * @param $old Integer: bytes
+	 * @param $new Integer: bytes
+	 * @returns String
 	 */
 	public static function showCharacterDifference( $old, $new ) {
 		global $wgRCChangedSizeThreshold, $wgLang, $wgMiserMode;
@@ -215,7 +215,7 @@ class ChangesList {
 
 	/**
  	 * Returns text for the end of RC
-	 * @return string
+	 * @return String
 	 */
 	public function endRecentChangesList() {
 		if( $this->rclistOpen ) {
@@ -404,7 +404,7 @@ class ChangesList {
 
 	/**
 	 * Check whether to enable recent changes patrol features
-	 * @return bool
+	 * @return Boolean
 	 */
 	public static function usePatrol() {
 		global $wgUser;
@@ -430,9 +430,9 @@ class ChangesList {
 
 	/**
 	 * Determine if said field of a revision is hidden
-	 * @param RCCacheEntry $rc
-	 * @param int $field one of DELETED_* bitfield constants
-	 * @return bool
+	 * @param $rc RCCacheEntry
+	 * @param $field Integer: one of DELETED_* bitfield constants
+	 * @return Boolean
 	 */
 	public static function isDeleted( $rc, $field ) {
 		return ( $rc->mAttribs['rc_deleted'] & $field ) == $field;
@@ -441,9 +441,9 @@ class ChangesList {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
-	 * @param RCCacheEntry $rc
-	 * @param int $field
-	 * @return bool
+	 * @param $rc RCCacheEntry
+	 * @param $field Integer
+	 * @return Boolean
 	 */
 	public static function userCan( $rc, $field ) {
 		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
@@ -591,9 +591,9 @@ class OldChangesList extends ChangesList {
  */
 class EnhancedChangesList extends ChangesList {
 	/**
-	*  Add the JavaScript file for enhanced changeslist
-	*  @ return string
-	*/
+	 * Add the JavaScript file for enhanced changeslist
+	 * @return String
+	 */
 	public function beginRecentChangesList() {
 		global $wgStylePath, $wgStyleVersion;
 		$this->rc_cache = array();
@@ -1021,10 +1021,10 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Generate HTML for an arrow or placeholder graphic
-	 * @param string $dir one of '', 'd', 'l', 'r'
-	 * @param string $alt text
-	 * @param string $title text
-	 * @return string HTML <img> tag
+	 * @param $dir String: one of '', 'd', 'l', 'r'
+	 * @param $alt String: text
+	 * @param $title String: text
+	 * @return String: HTML <img> tag
 	 */
 	protected function arrow( $dir, $alt='', $title='' ) {
 		global $wgStylePath;
@@ -1037,7 +1037,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generate HTML for a right- or left-facing arrow,
 	 * depending on language direction.
-	 * @return string HTML <img> tag
+	 * @return String: HTML <img> tag
 	 */
 	protected function sideArrow() {
 		global $wgContLang;
@@ -1048,7 +1048,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generate HTML for a down-facing arrow
 	 * depending on language direction.
-	 * @return string HTML <img> tag
+	 * @return String: HTML <img> tag
 	 */
 	protected function downArrow() {
 		return $this->arrow( 'd', '-', wfMsg( 'rc-enhanced-hide' ) );
@@ -1056,7 +1056,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Generate HTML for a spacer image
-	 * @return string HTML <img> tag
+	 * @return String: HTML <img> tag
 	 */
 	protected function spacerArrow() {
 		return $this->arrow( '', codepointToUtf8( 0xa0 ) ); // non-breaking space
@@ -1064,7 +1064,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Add a set of spaces
-	 * @return string HTML <td> tag
+	 * @return String: HTML <td> tag
 	 */
 	protected function spacerIndent() {
 		return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -1072,7 +1072,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Enhanced RC ungrouped line.
-	 * @return string a HTML formated line (generated using $r)
+	 * @return String: a HTML formated line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgRCShowChangedSize;
