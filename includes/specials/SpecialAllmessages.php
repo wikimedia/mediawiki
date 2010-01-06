@@ -126,8 +126,6 @@ class SpecialAllmessages extends SpecialPage {
  */
 class AllmessagesTablePager extends TablePager {
 
-	var $messages  = null;
-	var $talkPages = null;
 	public $mLimitsShown;
 
 	function __construct( $page, $conds, $langObj = null ) {
@@ -152,7 +150,7 @@ class AllmessagesTablePager extends TablePager {
 		if( $wgRequest->getVal( 'filter', 'all' ) === 'all' ){
 			$this->custom = null; // So won't match in either case
 		} else {
-			$this->custom = $wgRequest->getVal( 'filter' ) == 'unmodified' ? 1 : 0;
+			$this->custom = ($wgRequest->getVal( 'filter' ) == 'unmodified');
 		}
 
 		$prefix = $wgLang->ucfirst( $wgRequest->getVal( 'prefix', '' ) );
@@ -173,46 +171,29 @@ class AllmessagesTablePager extends TablePager {
 		}
 	}
 
-	function getAllMessages( $desc ){
-		wfProfileIn( __METHOD__ . '-cache' );
-
-		# Make sure all extension messages are available
-		global $wgMessageCache;
-		$wgMessageCache->loadAllMessages( 'en' );
-		$sortedArray = Language::getMessagesFor( 'en' );
-		if( $desc ){
-			krsort( $sortedArray );
+	function getAllMessages( $descending ) {
+		wfProfileIn( __METHOD__ );
+		$messageNames = Language::getLocalisationCache()->getSubitemList( 'en', 'messages' );
+		if( $descending ){
+			krsort( $messageNames );
 		} else {
-			ksort( $sortedArray );
+			ksort( $messageNames );
 		}
 
-		$this->messages = array();
-		foreach( $sortedArray as $key => $value ) {
-			// All messages start with lowercase, but wikis might have both
-			// upper and lowercase MediaWiki: pages if $wgCapitalLinks=false.
-			$ukey = $this->lang->ucfirst( $key );
+		// Normalise message names so they look like page titles
+		$messageNames = array_map( array( $this->lang, 'ucfirst' ), $messageNames );
+		wfProfileIn( __METHOD__ );
 
-			// The value without any overrides from the MediaWiki: namespace
-			$this->messages[$ukey]['default'] = wfMsgGetKey( $key, /*useDB*/false, $this->langcode, false );
-
-			// The message that's actually used by the site
-			$this->messages[$ukey]['actual'] = wfMsgGetKey( $key, /*useDB*/true, $this->langcode, false );
-
-			$this->messages[$ukey]['customised'] = 0; //for now
-
-			$sortedArray[$key] = null; // trade bytes from $sortedArray to this
-		}
-
-		wfProfileOut( __METHOD__ . '-cache' );
-
-		return true;
+		return $messageNames;
 	}
 
-	# We only need a list of which messages have *been* customised;
-	# their content is already in the message cache.
-	function markCustomisedMessages(){
-		$this->talkPages = array();
-
+	/**
+	 * Determine which of the MediaWiki and MediaWiki_talk namespace pages exist. 
+	 * Returns array( 'pages' => ..., 'talks' => ... ), where the subarrays have 
+	 * an entry for each existing page, with the key being the message name and 
+	 * value arbitrary.
+	 */
+	function getCustomisedStatuses( $messageNames ) {
 		wfProfileIn( __METHOD__ . '-db' );
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -222,56 +203,61 @@ class AllmessagesTablePager extends TablePager {
 			__METHOD__,
 			array( 'USE INDEX' => 'name_title' )
 		);
+		$xNames = array_flip( $messageNames );
 
+		$pageFlags = $talkFlags = array();
+		
 		while( $s = $dbr->fetchObject( $res ) ) {
-			if( $s->page_namespace == NS_MEDIAWIKI ){
-				if( $this->foreign ){
+			if( $s->page_namespace == NS_MEDIAWIKI ) {
+				if( $this->foreign ) {
 					$title = explode( '/', $s->page_title );
-					if( count( $title ) === 2 && $this->langcode == $title[1] && array_key_exists( $title[0], $this->messages ) ){
-						$this->messages["{$title[0]}"]['customised'] = 1;
+					if( count( $title ) === 2 && $this->langcode == $title[1] 
+						&& isset( $xNames[$title[0]] ) )
+					{
+						$pageFlags["{$title[0]}"] = true;
 					}
-				} else if( array_key_exists( $s->page_title, $this->messages ) ){
-					$this->messages[$s->page_title]['customised'] = 1;
+				} elseif( isset( $xNames[$s->page_title] ) ) {
+					$pageFlags[$s->page_title] = true;
 				}
 			} else if( $s->page_namespace == NS_MEDIAWIKI_TALK ){
-				$this->talkPages[$s->page_title] = 1;
+				$talkFlags[$s->page_title] = true;
 			}
 		}
 		$dbr->freeResult( $res );
 
 		wfProfileOut( __METHOD__ . '-db' );
 
-		return true;
+		return array( 'pages' => $pageFlags, 'talks' => $talkFlags );
 	}
 
 	/* This function normally does a database query to get the results; we need
 	 * to make a pretend result using a FakeResultWrapper.
 	 */
-	function reallyDoQuery( $offset, $limit, $descending ){
-		$mResult = new FakeResultWrapper( array() );
+	function reallyDoQuery( $offset, $limit, $descending ) {
+		$result = new FakeResultWrapper( array() );
 
-		if( !$this->messages ) $this->getAllMessages( $descending );
-		if( $this->talkPages === null ) $this->markCustomisedMessages();
+		$messageNames = $this->getAllMessages( $descending );
+		$statuses = $this->getCustomisedStatuses( $messageNames );
 
 		$count = 0;
-		foreach( $this->messages as $key => $value ){
-			if( $value['customised'] !== $this->custom &&
+		foreach( $messageNames as $key ) {
+			$customised = isset( $statuses['pages'][$key] );
+			if( $customised !== $this->custom &&
 				( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
 				( ( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
 			){
-				$mResult->result[] = array(
+				$result->result[] = array(
 					'am_title'      => $key,
-					'am_actual'     => $value['actual'],
-					'am_default'    => $value['default'],
-					'am_customised' => $value['customised'],
+					'am_actual'     => wfMsgGetKey( $key, /*useDB*/true, $this->langcode, false ),
+					'am_default'    => wfMsgGetKey( $key, /*useDB*/false, $this->langcode, false ),
+					'am_customised' => $customised,
+					'am_talk_exists' => isset( $statuses['talks'][$key] )
 				);
-				unset( $this->messages[$key] );	// save a few bytes
 				$count++;
 			}
 			if( $count == $limit ) break;
 		}
-		unset( $this->messages ); // no longer needed, free up some memory
-		return $mResult;
+		return $result;
 	}
 
 	function getStartBody() {
@@ -311,7 +297,7 @@ class AllmessagesTablePager extends TablePager {
 						array( 'broken' )
 					);
 				}
-				if( array_key_exists( $talk->getDBkey() , $this->talkPages ) ) {
+				if ( $this->mCurrentRow->am_talk_exists ) {
 					$talk = $this->mSkin->linkKnown( $talk , $this->talk );
 				} else {
 					$talk = $this->mSkin->link(
