@@ -1697,11 +1697,10 @@ class Language {
 	 * @return String
 	 */
 	function stripForSearch( $string ) {
-		global $wgDBtype;
-		if ( $wgDBtype != 'mysql' ) {
+		global $wgDBtype, $wgSearchType;
+		if ( $wgDBtype != 'mysql' or $wgSearchType == 'LuceneSearch' ) {
 			return $string;
 		}
-
 
 		wfProfileIn( __METHOD__ );
 		
