@@ -2118,34 +2118,13 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 }
 
 function getLanguageList() {
-	global $wgLanguageNames, $IP;
-	if( !isset( $wgLanguageNames ) ) {
-		require_once( "$IP/languages/Names.php" );
-	}
+	global $wgDummyLanguageCodes;
 
 	$codes = array();
-
-	// qqq is a dummy "language" for documenting messages, other language codes are legacy/fallback.
-	$blacklist = array( 'qqq', 'als', 'be-x-old', 'dk', 'fiu-vro', 'iu', 'nb', 'simple', 'tp' );
-
-	$d = opendir( "../languages/messages" );
-	/* In case we are called from the root directory */
-	if (!$d)
-		$d = opendir( "languages/messages");
-	while( false !== ($f = readdir( $d ) ) ) {
-		$m = array();
-		if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
-			$code = str_replace( '_', '-', strtolower( $m[1] ) );
-			if( in_array( $code, $blacklist ) ) continue;
-			if( isset( $wgLanguageNames[$code] ) ) {
-				$name = wfBCP47( $code ) . ' - ' . $wgLanguageNames[$code];
-			} else {
-				$name = $code;
-			}
-			$codes[$code] = $name;
-		}
+	foreach ( Language::getLanguageNames() as $code => $name ) {
+		if( in_array( $code, $wgDummyLanguageCodes ) ) continue;
+		$codes[$code] = $code . ' - ' . $name;
 	}
-	closedir( $d );
 	ksort( $codes );
 	return $codes;
 }
