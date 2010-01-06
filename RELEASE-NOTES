@@ -755,6 +755,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21945) Add chomp control in YAML
 * Expand the thumburl to an absolute url to make it consistent with url and 
   descriptionurl 
+* (bug 20233) ApiLogin::execute() doesn't handle LoginForm :: RESET_PASS
 
 === Languages updated in 1.16 ===
 
