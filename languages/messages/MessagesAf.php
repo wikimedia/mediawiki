@@ -2779,7 +2779,7 @@ Ander velde sal versteek wees.
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'                  => 'Wydte',
+'exif-imagewidth'                  => 'Breedte',
 'exif-imagelength'                 => 'Hoogte',
 'exif-bitspersample'               => 'Grepe per komponent',
 'exif-compression'                 => 'Kompressiemetode',

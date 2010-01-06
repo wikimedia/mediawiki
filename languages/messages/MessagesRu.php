@@ -18,6 +18,7 @@
  * @author EugeneZelenko
  * @author Ferrer
  * @author Flrn
+ * @author Grigol
  * @author HalanTul
  * @author Illusion
  * @author Innv
@@ -2403,6 +2404,7 @@ $1',
 'ipb_cant_unblock'                => 'Ошибка. Не найдена блокировка с ID $1. Возможно, она уже была снята.',
 'ipb_blocked_as_range'            => 'Ошибка: IP-адрес $1 был заблокирован не напрямую и не может быть разблокирован. Однако, он принадлежит к заблокированному диапазону $2, который можно разблокировать.',
 'ip_range_invalid'                => 'Недопустимый диапазон IP-адресов.',
+'ip_range_toolarge'               => 'Блокировки диапазонов свыше /$1 запрещены.',
 'blockme'                         => 'Заблокируй меня',
 'proxyblocker'                    => 'Блокировка прокси',
 'proxyblocker-disabled'           => 'Функция отключена.',

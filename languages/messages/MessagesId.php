@@ -933,7 +933,7 @@ Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
 'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan di bagian ini:',
 'template-protected'               => '(dilindungi)',
 'template-semiprotected'           => '(semi-perlindungan)',
-'hiddencategories'                 => 'Halaman ini adalah anggota dari {{PLURAL:$1|1 kategori tersebunyi|$1 kategori tersebunyi}}:',
+'hiddencategories'                 => 'Halaman ini adalah anggota dari {{PLURAL:$1|1 kategori tersembunyi|$1 kategori tersembunyi}}:',
 'edittools'                        => '<!-- Teks di sini akan dimunculkan di bawah isian suntingan dan pemuatan.-->',
 'nocreatetitle'                    => 'Pembuatan halaman baru dibatasi',
 'nocreatetext'                     => '{{SITENAME}} telah membatasi pembuatan halaman-halaman baru.

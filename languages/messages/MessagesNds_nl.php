@@ -710,6 +710,7 @@ Vergeet neet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] in te ste
 'nav-login-createaccount'    => 'Anmelden',
 'loginprompt'                => 'Je mutten cookies an hemmen staon um an te kunnen melden bie {{SITENAME}}.',
 'userlogin'                  => 'Anmelden / inschrieven',
+'userloginnocreate'          => 'Anmelden',
 'logout'                     => 'Ofmelden',
 'userlogout'                 => 'Ofmelden',
 'notloggedin'                => 'Neet an-emeld',
@@ -1087,6 +1088,9 @@ Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummep
 'revdelete-hide-comment'      => 'Verbarg bewarkingssamenvatting',
 'revdelete-hide-user'         => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
 'revdelete-hide-restricted'   => 'Gegevens veur beheerders en aander volk onderdrokken',
+'revdelete-radio-same'        => '(neet wiezigen)',
+'revdelete-radio-set'         => 'Ja',
+'revdelete-radio-unset'       => 'Nee',
 'revdelete-suppress'          => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-unsuppress'        => 'Beparkingen veur weerummezetten versies vortdoon',
 'revdelete-log'               => "Reden veur 't vortdoon:",
@@ -1121,7 +1125,7 @@ Je hemmen gien toegang tot dit objek.',
 'revdelete-no-change'         => "'''Waorschuwing:''' 't objek van $1 um $2 uur had al de an-egeven zichbaorheidsinstellingen.",
 'revdelete-concurrent-change' => "Fout bie 't wiezigen van 't objek van $1 um $2 uur: de staotus is inmiddels ewiezig deur een aander.
 Kiek de logboeken nao.",
-'revdelete-only-restricted'   => 'Je kunnen gien objekken veur beheerders onderdrokken zonder da-j oek de aandere opties veur onderdrokken sillecteren.',
+'revdelete-only-restricted'   => "Der is een fout op-etrejen bie 't verbargen van 't objek van $1, $2: je kunnen gien objekken onderdrokken uut 't zich van beheerders zonder oek een van de aandere zichbaorheidsopties te sillecteren.",
 'revdelete-reason-dropdown'   => "*Veulveurkoemde redens veur 't vortdoon 
 ** Schenden van de auteursrechen
 ** Ongeschikte persoonlijke infermasie
@@ -1893,7 +1897,11 @@ Meestentieds is leste pagina de gewunste doelpagina, waor oek de eerste pagina h
 'ancientpages'            => 'Artikels dee lange neet bewörk bin',
 'move'                    => 'Herneumen',
 'movethispage'            => 'Herneum',
-'unusedimagestext'        => "Vergeet neet dat aandere wiki's meschien oek enkele van disse ofbeeldingen gebruken.",
+'unusedimagestext'        => "Vergeet neet dat aandere wiki's meschien oek enkele van disse ofbeeldingen gebruken.
+
+De volgende bestanen bin toe-evoeg mar neet in gebruuk.
+'t Kan ween dat der drek verwezen wönnen naor een bestaand. 
+Een bestaand kan hier dus ten onrechte op-eneumen ween.",
 'unusedcategoriestext'    => 'De onderstaonde kattegerieën bin an-emaak mar bin neet in gebruuk.',
 'notargettitle'           => 'Gien pagina op-egeven',
 'notargettext'            => 'Je hemmen neet op-egeven veur welke pagina je disse functie bekieken willen.',
@@ -2406,6 +2414,7 @@ Wi-j de instellingen wiezigen?',
 'ipb_blocked_as_range'            => "Fout: 't IP-adres $1 is neet drek eblokkeerd en de blokkering kan neet op-eheven wönnen.
 De blokkering is onderdeel van de reeks $2, waorvan de blokkering wel op-eheven kan wönnen.",
 'ip_range_invalid'                => 'Ongeldige IP-reeks',
+'ip_range_toolarge'               => 'Groeps-IP-adressen dee groter bin as /$1, bin neet toe-estaon.',
 'blockme'                         => 'Mien blokkeren',
 'proxyblocker'                    => 'Proxyblokker',
 'proxyblocker-disabled'           => 'Disse functie is uut-eschakeld.',
