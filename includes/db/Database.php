@@ -2223,7 +2223,7 @@ abstract class DatabaseBase {
 				}
 			}
 
-			if ( '' != $cmd ) { $cmd .= ' '; }
+			if ( $cmd != '' ) { $cmd .= ' '; }
 			$cmd .= "$line\n";
 
 			if ( $done ) {

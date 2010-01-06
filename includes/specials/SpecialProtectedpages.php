@@ -16,7 +16,7 @@ class ProtectedPagesForm {
 	public function showList( $msg = '' ) {
 		global $wgOut, $wgRequest;
 
-		if( "" != $msg ) {
+		if( $msg != "" ) {
 			$wgOut->setSubtitle( $msg );
 		}
 

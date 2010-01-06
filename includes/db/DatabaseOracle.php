@@ -955,7 +955,7 @@ class DatabaseOracle extends DatabaseBase {
 				}
 			}
 
-			if ( '' != $cmd ) {
+			if ( $cmd != '' ) {
 				$cmd .= ' ';
 			}
 			$cmd .= "$line\n";

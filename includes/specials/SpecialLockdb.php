@@ -53,7 +53,7 @@ class DBLockForm {
 		$wgOut->setPagetitle( wfMsg( 'lockdb' ) );
 		$wgOut->addWikiMsg( 'lockdbtext' );
 
-		if ( "" != $err ) {
+		if ( $err != "" ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
 			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
 		}

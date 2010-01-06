@@ -537,7 +537,7 @@ class Parser
 		$taglist = implode( '|', $elements );
 		$start = "/<($taglist)(\\s+[^>]*?|\\s*?)(\/?" . ">)|<(!--)/i";
 
-		while ( '' != $text ) {
+		while ( $text != '' ) {
 			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
 			$stripped .= $p[0];
 			if( count( $p ) < 5 ) {
@@ -1683,7 +1683,7 @@ class Parser
 				wfProfileOut( __METHOD__."-might_be_img" );
 			}
 
-			$wasblank = ( '' == $text );
+			$wasblank = ( $text  == '' );
 			if ( $wasblank ) $text = $link;
 
 			# Link not escaped by : , create the various objects
@@ -1871,7 +1871,7 @@ class Parser
 	 */
 	/* private */ function closeParagraph() {
 		$result = '';
-		if ( '' != $this->mLastSection ) {
+		if ( $this->mLastSection != '' ) {
 			$result = '</' . $this->mLastSection  . ">\n";
 		}
 		$this->mInPre = false;
@@ -2081,7 +2081,7 @@ class Parser
 						$t = substr( $t, 1 );
 					} else {
 						// paragraph
-						if ( '' == trim($t) ) {
+						if ( trim($t) == '' ) {
 							if ( $paragraphStack ) {
 								$output .= $paragraphStack.'<br />';
 								$paragraphStack = false;
@@ -2121,7 +2121,7 @@ class Parser
 			$output .= $this->closeList( $prefix2[$prefixLength-1] );
 			--$prefixLength;
 		}
-		if ( '' != $this->mLastSection ) {
+		if ( $this->mLastSection != '' ) {
 			$output .= '</' . $this->mLastSection . '>';
 			$this->mLastSection = '';
 		}
@@ -3989,7 +3989,7 @@ class Parser
 		$m = array();
 		if ( preg_match( "/^($nc+:|)$tc+?( \\($tc+\\))$/", $t, $m ) ) {
 			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
-		} elseif ( preg_match( "/^($nc+:|)$tc+?(, $tc+|)$/", $t, $m ) && '' != "$m[1]$m[2]" ) {
+		} elseif ( preg_match( "/^($nc+:|)$tc+?(, $tc+|)$/", $t, $m ) && "$m[1]$m[2]" != '' ) {
 			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
 		} else {
 			# if there's no context, don't bother duplicating the title

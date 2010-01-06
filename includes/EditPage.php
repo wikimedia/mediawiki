@@ -934,7 +934,7 @@ class EditPage {
 			}
 
 			# Don't save a new article if it's blank.
-			if ( '' == $this->textbox1 ) {
+			if ( $this->textbox1 == '' ) {
 				wfProfileOut( __METHOD__ );
 				return self::AS_BLANK_ARTICLE;
 			}

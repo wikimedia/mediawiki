@@ -228,13 +228,13 @@ class SkinCologneBlue extends Skin {
 			}
 			if ( $wgUser->isAllowed( 'delete' ) ) {
 				$dtp = $this->deleteThisPage();
-				if ( '' != $dtp ) {
+				if ( $dtp != '' ) {
 					$s .= $sep . $dtp;
 				}
 			}
 			if ( $wgUser->isAllowed( 'protect' ) ) {
 				$ptp = $this->protectThisPage();
-				if ( '' != $ptp ) {
+				if ( $ptp != '' ) {
 					$s .= $sep . $ptp;
 				}
 			}
@@ -341,7 +341,7 @@ class SkinCologneBlue extends Skin {
 		$search = $wgRequest->getText( 'search' );
 		$action = $this->escapeSearchLink();
 		$s = "<form id=\"searchform{$this->searchboxes}\" method=\"get\" class=\"inline\" action=\"$action\">";
-		if( '' != $label ) {
+		if( $label != '' ) {
 			$s .= "{$label}: ";
 		}
 

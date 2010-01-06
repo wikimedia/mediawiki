@@ -45,7 +45,7 @@ class DBUnlockForm {
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
 		$wgOut->addWikiMsg( "unlockdbtext" );
 
-		if ( "" != $err ) {
+		if ( $err != "" ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
 			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
 		}

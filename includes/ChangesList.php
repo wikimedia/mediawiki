@@ -262,7 +262,7 @@ class ChangesList {
 		# Make date header if necessary
 		$date = $wgLang->date( $rc_timestamp, true, true );
 		if( $date != $this->lastdate ) {
-			if( '' != $this->lastdate ) {
+			if( $this->lastdate != '' ) {
 				$s .= "</ul>\n";
 			}
 			$s .= Xml::element( 'h4', null, $date ) . "\n<ul class=\"special\">";

@@ -262,7 +262,7 @@ class EmailUserForm {
 		
 	}
 	static function validateEmailTarget ( $target ) {
-		if ( "" == $target ) {
+		if ( $target == "" ) {
 			wfDebug( "Target is empty.\n" );
 			return "notarget";
 		}

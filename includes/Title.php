@@ -542,7 +542,7 @@ class Title {
 	public function getNsText() {
 		global $wgContLang;
 
-		if ( '' != $this->mInterwiki ) {
+		if ( $this->mInterwiki != '' ) {
 			// This probably shouldn't even happen. ohh man, oh yuck.
 			// But for interwiki transclusion it sometimes does.
 			// Shit. Shit shit shit.
@@ -654,7 +654,7 @@ class Title {
 	 */
 	public function getFullText() {
 		$text = $this->getPrefixedText();
-		if( '' != $this->mFragment ) {
+		if( $this->mFragment != '' ) {
 			$text .= '#' . $this->mFragment;
 		}
 		return $text;
@@ -738,7 +738,7 @@ class Title {
 			$baseUrl = $interwiki->getURL( );
 
 			$namespace = wfUrlencode( $this->getNsText() );
-			if ( '' != $namespace ) {
+			if ( $namespace != '' ) {
 				# Can this actually happen? Interwikis shouldn't be parsed.
 				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
 				$namespace .= ':';
@@ -910,7 +910,7 @@ class Title {
 	 *  interwiki link
 	 */
 	public function getEditURL() {
-		if ( '' != $this->mInterwiki ) { return ''; }
+		if ( $this->mInterwiki != '' ) { return ''; }
 		$s = $this->getLocalURL( 'action=edit' );
 
 		return $s;
@@ -929,7 +929,7 @@ class Title {
 	 * Is this Title interwiki?
 	 * @return \type{\bool}
 	 */
-	public function isExternal() { return ( '' != $this->mInterwiki ); }
+	public function isExternal() { return ( $this->mInterwiki != '' ); }
 
 	/**
 	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
@@ -1305,7 +1305,7 @@ class Title {
 			if( $right == 'sysop' ) {
 				$right = 'protect';
 			}
-			if( '' != $right && !$user->isAllowed( $right ) ) {
+			if( $right != '' && !$user->isAllowed( $right ) ) {
 				// Users with 'editprotected' permission can edit protected pages
 				if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
 					// Users with 'editprotected' permission cannot edit protected pages
@@ -1337,7 +1337,7 @@ class Title {
 			if( $cascadingSources > 0 && isset($restrictions[$action]) ) {
 				foreach( $restrictions[$action] as $right ) {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
-					if( '' != $right && !$user->isAllowed( $right ) ) {
+					if( $right != '' && !$user->isAllowed( $right ) ) {
 						$pages = '';
 						foreach( $cascadingSources as $page )
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
@@ -2196,7 +2196,7 @@ class Title {
 	 */
 	/* private */ function prefix( $name ) {
 		$p = '';
-		if ( '' != $this->mInterwiki ) {
+		if ( $this->mInterwiki != '' ) {
 			$p = $this->mInterwiki . ':';
 		}
 		if ( 0 != $this->mNamespace ) {
@@ -2274,7 +2274,7 @@ class Title {
 		$dbkey = preg_replace( '/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u', '_', $dbkey );
 		$dbkey = trim( $dbkey, '_' );
 
-		if ( '' == $dbkey ) {
+		if ( $dbkey == '' ) {
 			return false;
 		}
 
@@ -2349,7 +2349,7 @@ class Title {
 
 		# We already know that some pages won't be in the database!
 		#
-		if ( '' != $this->mInterwiki || NS_SPECIAL == $this->mNamespace ) {
+		if ( $this->mInterwiki != '' || NS_SPECIAL == $this->mNamespace ) {
 			$this->mArticleID = 0;
 		}
 		$fragment = strstr( $dbkey, '#' );
@@ -2661,9 +2661,9 @@ class Title {
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
 			$errors[] = array('articleexists');
 		}
-		if ( ( '' == $this->getDBkey() ) ||
+		if ( ( $this->getDBkey() == '' ) ||
 			 ( !$oldid ) ||
-		     ( '' == $nt->getDBkey() ) ) {
+		     ( $nt->getDBkey() == '' ) ) {
 			$errors[] = array('badarticleerror');
 		}
 

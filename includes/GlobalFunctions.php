@@ -337,7 +337,7 @@ function wfDebug( $text, $logonly = false ) {
 		array_map( array( $wgOut, 'debug' ), $cache );
 		$cache = array();
 	}
-	if ( '' != $wgDebugLogFile && !$wgProfileOnly ) {
+	if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
 		# Strip unprintables; they can switch terminal modes when binary data
 		# gets dumped, which is pretty annoying.
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
@@ -480,7 +480,7 @@ function wfLogProfilingData() {
 	$log = sprintf( "%s\t%04.3f\t%s\n",
 	  gmdate( 'YmdHis' ), $elapsed,
 	  urldecode( $wgRequest->getRequestURL() . $forward ) );
-	if ( '' != $wgDebugLogFile && ( $wgRequest->getVal('action') != 'raw' || $wgDebugRawPage ) ) {
+	if ( $wgDebugLogFile != '' && ( $wgRequest->getVal('action') != 'raw' || $wgDebugRawPage ) ) {
 		wfErrorLog( $log . $prof, $wgDebugLogFile );
 	}
 }
@@ -497,7 +497,7 @@ function wfReadOnly() {
 	if ( !is_null( $wgReadOnly ) ) {
 		return (bool)$wgReadOnly;
 	}
-	if ( '' == $wgReadOnlyFile ) {
+	if ( $wgReadOnlyFile == '' ) {
 		return false;
 	}
 	// Set $wgReadOnly for faster access next time
@@ -1285,8 +1285,8 @@ function wfArrayToCGI( $array1, $array2 = null )
 
 	$cgi = '';
 	foreach ( $array1 as $key => $value ) {
-		if ( '' !== $value ) {
-			if ( '' != $cgi ) {
+		if ( $value != '' ) {
+			if ( $cgi != '' ) {
 				$cgi .= '&';
 			}
 			if ( is_array( $value ) ) {
