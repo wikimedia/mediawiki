@@ -16,7 +16,7 @@
  * @maintainers fdcn <fdcn64@gmail.com>, shinjiman <shinjiman@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 class LanguageConverter {
-	var $mPreferredVariant = '';
+	var $mPreferredVariant = ''; // The User's preferred variant
 	var $mMainLanguageCode;
 	var $mVariants, $mVariantFallbacks, $mVariantNames;
 	var $mTablesLoaded = false;
@@ -34,6 +34,7 @@ class LanguageConverter {
 	var $mUcfirst = false;
 	var $mTitleOriginal = '';
 	var $mTitleDisplay = '';
+	var $mHeaderVariant = null;
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -142,29 +143,6 @@ class LanguageConverter {
 		global $wgUser, $wgRequest, $wgVariantArticlePath,
 			$wgDefaultLanguageVariant, $wgOut;
 
-		// bug 21974, don't return $this->mPreferredVariant if $fromUser = false
-		if ( $fromUser && $this->mPreferredVariant ) {
-			return $this->mPreferredVariant;
-		}
-
-		// figure out user lang without constructing wgLang to avoid
-        // infinite recursion
-		if ( $fromUser ) {
-			$defaultUserLang = $wgUser->getOption( 'language' );
-		} else {
-			$defaultUserLang = $this->mMainLanguageCode;
-		}
-
-		$userLang = $wgRequest->getVal( 'uselang', $defaultUserLang );
-		// see if interface language is same as content, if not, prevent
-		// conversion
-
-		if ( ! in_array( $userLang, $this->mVariants ) ) {
-			// no conversion
-			$this->mPreferredVariant = $this->mMainLanguageCode;
-			return $this->mPreferredVariant;
-		}
-
 		// see if the preference is set in the request
 		$req = $wgRequest->getText( 'variant' );
 		if ( in_array( $req, $this->mVariants ) ) {
@@ -172,11 +150,38 @@ class LanguageConverter {
 			return $this->mPreferredVariant;
 		}
 
-		// get language variant preference from logged in users
-		// Don't call this on stub objects because that causes infinite
-		// recursion during initialisation
-		if ( $fromUser && $wgUser->isLoggedIn() )  {
-			$this->mPreferredVariant = $wgUser->getOption( 'variant' );
+        if ( $fromUser ) {
+			// bug 21974, don't return $this->mPreferredVariant if
+			// $fromUser = false
+			if ( $this->mPreferredVariant ) {
+				return $this->mPreferredVariant;
+			}
+
+            // figure out user lang without constructing wgLang to avoid
+			// infinite recursion
+			$defaultUserLang = $wgUser->getOption( 'language' );
+
+			// get language variant preference from logged in users
+			// Don't call this on stub objects because that causes infinite
+			// recursion during initialisation
+			if ( $wgUser->isLoggedIn() )  {
+				$this->mPreferredVariant = $wgUser->getOption( 'variant' );
+			}
+
+		} else {
+			$defaultUserLang = $this->mMainLanguageCode;
+		}
+		$userLang = $wgRequest->getVal( 'uselang', $defaultUserLang );
+
+		// see if interface language is same as content, if not, prevent
+		// conversion
+		if ( ! in_array( $userLang, $this->mVariants ) ) {
+			// no conversion
+			$this->mPreferredVariant = $this->mMainLanguageCode;
+			return $this->mPreferredVariant;
+		} elseif ( $this->mPreferredVariant ) {
+			// if the variant was set above and it iss a variant of
+			// the content language
 			return $this->mPreferredVariant;
 		}
 
@@ -187,60 +192,81 @@ class LanguageConverter {
 			return $this->mPreferredVariant;
 		}
 
-		if ( !$this->mPreferredVariant ) {
-			// see if some supported language variant is set in the
-			// http header, but we don't set the mPreferredVariant
-			// variable in case this is called before the user's
-			// preference is loaded
+		$headerVariant = $this->getHeaderVariant();
+		if ( $fromHeader && $headerVariant ) {
+			return $headerVariant;
+		}
 
-			$acceptLanguage = $wgRequest->getHeader( 'Accept-Language' );
-			if ( $fromHeader && $acceptLanguage ) {
-				// explode by comma
-				$result = explode( ',', strtolower( $acceptLanguage ) );
+		return $this->mMainLanguageCode;
+	}
 
-				$languages = array();
+	/**
+	 * Determine the language variant from the Accept-Language header.
+	 *
+	 * @returns mixed variant if one found, false otherwise.
+	 */
+	function getHeaderVariant() {
+		global $wgRequest;
 
-				foreach ( $result as $elem ) {
-					// if $elem likes 'zh-cn;q=0.9'
-					if ( ( $posi = strpos( $elem, ';' ) ) !== false ) {
-						// get the real language code likes 'zh-cn'
-						$languages[] = substr( $elem, 0, $posi );
-					} else {
-						$languages[] = $elem;
-					}
-				}
+		if ( $this->mHeaderVariant ) {
+			return $this->mHeaderVariant;
+		}
 
-				$fallback_languages = array();
-				foreach ( $languages as $language ) {
-					// strip whitespace
-					$language = trim( $language );
-					if ( in_array( $language, $this->mVariants ) ) {
-						return $language;
-					} else {
-						// To see if there are fallbacks of current language.
-						// We record these fallback variants, and process
-						// them later.
-						$fallbacks = $this->getVariantFallbacks( $language );
-						if ( is_string( $fallbacks ) ) {
-							$fallback_languages[] = $fallbacks;
-						} elseif ( is_array( $fallbacks ) ) {
-							$fallback_languages =
-								array_merge( $fallback_languages,
-											 $fallbacks );
-						}
-					}
-				}
+		// see if some supported language variant is set in the
+		// http header, but we don't set the mPreferredVariant
+		// variable in case this is called before the user's
+		// preference is loaded
 
-				// process fallback languages now
-				$fallback_languages = array_unique( $fallback_languages );
-				foreach ( $fallback_languages as $language ) {
-					if ( in_array( $language, $this->mVariants ) ) {
-						return $language;
-					}
+		$acceptLanguage = $wgRequest->getHeader( 'Accept-Language' );
+		if ( !$acceptLanguage ) {
+			return false;
+		}
+
+		// explode by comma
+		$result = explode( ',', strtolower( $acceptLanguage ) );
+
+		$languages = array();
+
+		foreach ( $result as $elem ) {
+			// if $elem likes 'zh-cn;q=0.9'
+			if ( ( $posi = strpos( $elem, ';' ) ) !== false ) {
+				// get the real language code likes 'zh-cn'
+				$languages[] = substr( $elem, 0, $posi );
+			} else {
+				$languages[] = $elem;
+			}
+		}
+
+		$fallback_languages = array();
+		foreach ( $languages as $language ) {
+			// strip whitespace
+			$language = trim( $language );
+			if ( in_array( $language, $this->mVariants ) ) {
+				$this->mHeaderVariant = $language;
+				return $language;
+			} else {
+				// To see if there are fallbacks of current language.
+				// We record these fallback variants, and process
+				// them later.
+				$fallbacks = $this->getVariantFallbacks( $language );
+				if ( is_string( $fallbacks ) ) {
+					$fallback_languages[] = $fallbacks;
+				} elseif ( is_array( $fallbacks ) ) {
+					$fallback_languages =
+						array_merge( $fallback_languages,
+									 $fallbacks );
 				}
 			}
 		}
-		return $this->mMainLanguageCode;
+
+		// process fallback languages now
+		$fallback_languages = array_unique( $fallback_languages );
+		foreach ( $fallback_languages as $language ) {
+			if ( in_array( $language, $this->mVariants ) ) {
+				$this->mHeaderVariant = $language;
+				return $language;
+			}
+		}
 	}
 
 	/**
