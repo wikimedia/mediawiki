@@ -350,7 +350,7 @@ class Linker {
 	 * despite $query not being used.
 	 */
 	function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		if ( '' == $text ) {
+		if ( $text == '' ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
@@ -388,7 +388,7 @@ class Linker {
 	 * via Parser::maybeMakeExternalImage().
 	 */
 	function makeExternalImage( $url, $alt = '' ) {
-		if ( '' == $alt ) {
+		if ( $alt == '' ) {
 			$alt = $this->fnamePart( $url );
 		}
 		$img = '';
@@ -541,7 +541,7 @@ class Linker {
 
 			$s = $thumb->toHtml( $params );
 		}
-		if ( '' != $fp['align'] ) {
+		if ( $fp['align'] != '' ) {
 			$s = "<div class=\"float{$fp['align']}\">{$s}</div>";
 		}
 		return str_replace("\n", ' ',$prefix.$s.$postfix);
@@ -748,7 +748,7 @@ class Linker {
 	function specialLink( $name, $key = '' ) {
 		global $wgContLang;
 
-		if ( '' == $key ) { $key = strtolower( $name ); }
+		if ( $key == '' ) { $key = strtolower( $name ); }
 		$pn = $wgContLang->ucfirst( $name );
 		return $this->makeKnownLink( $wgContLang->specialPage( $pn ),
 		  wfMsg( $key ) );
@@ -1068,7 +1068,7 @@ class Linker {
 		}
 
 		# Handle link renaming [[foo|text]] will show link as "text"
-		if( "" != $match[3] ) {
+		if( $match[3] != "" ) {
 			$text = $match[3];
 		} else {
 			$text = $match[1];
@@ -1153,7 +1153,7 @@ class Linker {
 				}
 
 				$ret = $contextTitle->getPrefixedText(). '/' . trim($noslash) . $suffix;
-				if( '' === $text ) {
+				if( $text === '' ) {
 					$text = $target . $suffix;
 				} # this might be changed for ugliness reasons
 			} else {
@@ -1171,7 +1171,7 @@ class Linker {
 						# / at the end means don't show full path
 						if( substr( $nodotdot, -1, 1 ) === '/' ) {
 							$nodotdot = substr( $nodotdot, 0, -1 );
-							if( '' === $text ) {
+							if( $text === '' ) {
 								$text = $nodotdot . $suffix;
 							}
 						}
@@ -1422,7 +1422,7 @@ class Linker {
 			$regex = $wgContLang->linkTrail();
 		}
 		$inside = '';
-		if ( '' != $trail ) {
+		if ( $trail != '' ) {
 			$m = array();
 			if ( preg_match( $regex, $trail, $m ) ) {
 				$inside = $m[1];

@@ -122,7 +122,7 @@ class LoginForm {
 	function addNewAccountMailPassword() {
 		global $wgOut;
 
-		if ('' == $this->mEmail) {
+		if ( $this->mEmail == '' ) {
 			$this->mainLoginForm( wfMsg( 'noemail', htmlspecialchars( $this->mName ) ) );
 			return;
 		}
@@ -234,7 +234,7 @@ class LoginForm {
 		// cation server before they create an account (otherwise, they can
 		// create a local account and login as any domain user). We only need
 		// to check this for domains that aren't local.
-		if( 'local' != $this->mDomain && '' != $this->mDomain ) {
+		if( 'local' != $this->mDomain && $this->mDomain != '' ) {
 			if( !$wgAuth->canCreateAccounts() && ( !$wgAuth->userExists( $this->mName ) || !$wgAuth->authenticate( $this->mName, $this->mPassword ) ) ) {
 				$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
 				return false;
@@ -394,7 +394,7 @@ class LoginForm {
 	 */
 	public function authenticateUserData() {
 		global $wgUser, $wgAuth;
-		if ( '' == $this->mName ) {
+		if ( $this->mName == '' ) {
 			return self::NO_NAME;
 		}
 		
@@ -492,7 +492,7 @@ class LoginForm {
 				// faces etc will probably just fail cleanly here.
 				$retval = self::RESET_PASS;
 			} else {
-				$retval = '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
+				$retval = ($this->mPassword  == '') ? self::EMPTY_PASS : self::WRONG_PASS;
 			}
 		} else {
 			$wgAuth->updateUser( $u );
@@ -670,7 +670,7 @@ class LoginForm {
 			return;
 		}
 
-		if ( '' == $this->mName ) {
+		if ( $this->mName == '' ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
@@ -714,7 +714,7 @@ class LoginForm {
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
 		global $wgServer, $wgScript, $wgUser, $wgNewPasswordExpiry;
 
-		if ( '' == $u->getEmail() ) {
+		if ( $u->getEmail() == '' ) {
 			return new WikiError( wfMsg( 'noemail', $u->getName() ) );
 		}
 		$ip = wfGetIP();
@@ -868,7 +868,7 @@ class LoginForm {
 			}
 		}
 
-		if ( '' == $this->mName ) {
+		if ( $this->mName == '' ) {
 			if ( $wgUser->isLoggedIn() ) {
 				$this->mName = $wgUser->getName();
 			} else {

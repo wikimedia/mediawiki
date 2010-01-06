@@ -95,7 +95,7 @@ class IPUnblockForm {
 		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
 		$action = $titleObj->getLocalURL( "action=submit" );
 
-		if ( "" != $err ) {
+		if ( $err != "" ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
 			$wgOut->addWikiText( Xml::tags( 'span', array( 'class' => 'error' ), $err ) . "\n" );
 		}
@@ -236,7 +236,7 @@ class IPUnblockForm {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "ipblocklist" ) );
-		if ( "" != $msg ) {
+		if ( $msg != "" ) {
 			$wgOut->setSubtitle( $msg );
 		}
 

@@ -1004,7 +1004,7 @@ class OutputPage {
 			return;
 		}
 		wfProfileIn( __METHOD__ );
-		if ( '' != $this->mRedirect ) {
+		if ( $this->mRedirect != '' ) {
 			# Standards require redirect URLs to be absolute
 			$this->mRedirect = wfExpandUrl( $this->mRedirect );
 			if( $this->mRedirectCode == '301' || $this->mRedirectCode == '303' ) {
@@ -1569,7 +1569,7 @@ class OutputPage {
 			$returntoquery = $wgRequest->getText( 'returntoquery' );
 		}
 
-		if ( '' === $returnto ) {
+		if ( $returnto === '' ) {
 			$returnto = Title::newMainPage();
 		}
 
@@ -1607,7 +1607,7 @@ class OutputPage {
 			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
 		}
 
-		if ( '' == $this->getHTMLTitle() ) {
+		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
 		}
 

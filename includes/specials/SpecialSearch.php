@@ -219,7 +219,7 @@ class SpecialSearch {
 		}
 
 		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
-		if( '' === trim( $term ) || $filePrefix === trim( $term ) ) {
+		if( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			$wgOut->addHTML( $this->searchFocus() );
 			$wgOut->addHTML( $this->formHeader($term, 0, 0));
 			if( $this->searchAdvanced ) {

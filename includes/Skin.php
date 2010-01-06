@@ -1127,7 +1127,7 @@ CSS;
 		global $wgOut;
 
 		$sub = $wgOut->getSubtitle();
-		if ( '' == $sub ) {
+		if ( $sub == '' ) {
 			global $wgExtraSubtitle;
 			$sub = wfMsgExt( 'tagline', 'parsemag' ) . $wgExtraSubtitle;
 		}
@@ -1530,7 +1530,7 @@ CSS;
 	}
 
 	function logoText( $align = '' ) {
-		if ( '' != $align ) {
+		if ( $align != '' ) {
 			$a = " align='{$align}'";
 		} else {
 			$a = '';
@@ -1839,7 +1839,7 @@ CSS;
 			$url = $nt->escapeFullURL();
 			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
 
-			if ( '' == $text ) { $text = $l; }
+			if ( $text == '' ) { $text = $l; }
 			$style = $this->getExternalLinkAttributes();
 			$s .= "<a href=\"{$url}\"{$style}>{$text}</a>";
 		}

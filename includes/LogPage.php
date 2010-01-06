@@ -104,7 +104,7 @@ class LogPage {
 	 */
 	public function getRcComment() {
 		$rcComment = $this->actionText;
-		if( '' != $this->comment ) {
+		if( $this->comment != '' ) {
 			if ($rcComment == '')
 				$rcComment = $this->comment;
 			else

@@ -449,7 +449,7 @@ class XmlDumpWriter {
 		if( $row->page_is_redirect ) {
 			$out .= '    ' . Xml::element( 'redirect', array() ) . "\n";
 		}
-		if( '' != $row->page_restrictions ) {
+		if( $row->page_restrictions != '' ) {
 			$out .= '    ' . Xml::element( 'restrictions', array(),
 				strval( $row->page_restrictions ) ) . "\n";
 		}

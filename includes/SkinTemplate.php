@@ -744,10 +744,10 @@ class SkinTemplate extends Skin {
 						$urlArgs = 'action=edit&section=new';
 						$preloadMsg = wfMsgForContent( 'talk-addsection-preload' );
 						$editintroMsg = wfMsgForContent( 'talk-addsection-editintro' );
-						if( '' != $preloadMsg  ) {
+						if( $preloadMsg != ''  ) {
 							$urlArgs .= '&preload=' . urlencode( $preloadMsg );
 						}
-						if( '' != $editintroMsg ) {
+						if( $editintroMsg != '' ) {
 							$urlArgs .= '&editintro=' . urlencode( $editintroMsg );
 						}
 						$content_actions['addsection'] = array(
