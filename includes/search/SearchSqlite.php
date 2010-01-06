@@ -49,7 +49,7 @@ class SearchSqlite extends SearchEngine {
 				'updatelog', 
 				'ul_key', 
 				array( 'ul_key' => 'fts3' ), 
-				__METHOD__ ) !== FALSE;
+				__METHOD__ ) !== false;
 		}
 		return self::$fulltextSupported;
 	}
