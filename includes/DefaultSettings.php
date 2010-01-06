@@ -861,6 +861,13 @@ $wgHideInterlanguageLinks = false;
 /** List of language names or overrides for default names in Names.php */
 $wgExtraLanguageNames = array();
 
+/**
+ * List of language codes that don't correspond to an actual language.
+ * These codes are leftoffs from renames, or other legacy things.
+ * Also, qqq is a dummy "language" for documenting messages.
+ */
+$wgDummyLanguageCodes = array( 'qqq', 'als', 'be-x-old', 'dk', 'fiu-vro', 'iu', 'nb', 'simple', 'tp' );
+
 /** We speak UTF-8 all the time now, unless some oddities happen */
 $wgInputEncoding  = 'UTF-8';
 $wgOutputEncoding = 'UTF-8';
