@@ -18,7 +18,8 @@ class DatabaseSqlite extends DatabaseBase {
 	var $mName;
 
 	/**
-	 * Constructor
+	 * Constructor.
+	 * Parameters $server, $user and $password are not used.
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0 ) {
 		global $wgSQLiteDataDir;
