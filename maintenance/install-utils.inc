@@ -23,7 +23,7 @@ function install_version_checks() {
    "to continue installation. ABORTING.\n";
 		die( -1 );
 	}
-	
+
 	// Test for PHP bug which breaks PHP 5.0.x on 64-bit...
 	// As of 1.8 this breaks lots of common operations instead
 	// of just some rare ones like export.
@@ -33,7 +33,7 @@ function install_version_checks() {
 			"or higher. ABORTING. (http://bugs.php.net/bug.php?id=34879 for details)\n";
 		die( -1 );
 	}
-	
+
 	$test = new PhpXmlBugTester();
 	if( !$test->ok ) {
 		echo "Your system has a combination of PHP and libxml2 versions which is buggy\n" .
@@ -42,7 +42,7 @@ function install_version_checks() {
 			"ABORTING (http://bugs.php.net/bug.php?id=45996 for details).\n";
 		die( -1 );
 	}
-	
+
 
 	global $wgCommandLineMode;
 	$wgCommandLineMode = true;
@@ -61,7 +61,7 @@ class PhpXmlBugTester {
 	public function __construct() {
 		$charData = '<b>c</b>';
 		$xml = '<a>' . htmlspecialchars( $charData ) . '</a>';
-		
+
 		$parser = xml_parser_create();
 		xml_set_character_data_handler( $parser, array( $this, 'chardata' ) );
 		$parsedOk = xml_parse($parser, $xml, true);
@@ -121,7 +121,7 @@ function readlineEmulation( $prompt ) {
 		$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
 		$encCommand = wfEscapeShellArg( $command );
 		$line = wfShellExec( "$bash -c $encCommand", $retval );
-		
+
 		if( $retval == 0 ) {
 			return $line;
 		} elseif( $retval == 127 ) {
@@ -133,7 +133,7 @@ function readlineEmulation( $prompt ) {
 			return false;
 		}
 	}
-	
+
 	// Fallback... we'll have no editing controls, EWWW
 	if ( feof( STDIN ) ) {
 		return false;

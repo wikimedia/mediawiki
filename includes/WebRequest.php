@@ -39,7 +39,7 @@ if ( !function_exists( '__autoload' ) ) {
  * not create a second WebRequest object; make a FauxRequest object if
  * you want to pass arbitrary data to some function in place of the web
  * input.
- * 
+ *
  * @ingroup HTTP
  */
 class WebRequest {
@@ -66,11 +66,13 @@ class WebRequest {
 	 */
 	public function interpolateTitle() {
 		global $wgUsePathInfo;
+
 		if ( $wgUsePathInfo ) {
 			// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
 			// And also by Apache 2.x, double slashes are converted to single slashes.
 			// So we will use REQUEST_URI if possible.
 			$matches = array();
+
 			if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
 				// Slurp out the path portion to examine...
 				$url = $_SERVER['REQUEST_URI'];
@@ -180,7 +182,7 @@ class WebRequest {
 	 */
 	private function checkMagicQuotes() {
 		$mustFixQuotes = function_exists( 'get_magic_quotes_gpc' )
-			&& get_magic_quotes_gpc();		
+			&& get_magic_quotes_gpc();
 		if( $mustFixQuotes ) {
 			$this->fix_magic_quotes( $_COOKIE );
 			$this->fix_magic_quotes( $_ENV );
@@ -260,7 +262,7 @@ class WebRequest {
 			return (string)$val;
 		}
 	}
-	
+
 	/**
 	 * Set an aribtrary value into our get/post data.
 	 * @param $key string Key name to use
@@ -653,7 +655,7 @@ class WebRequest {
 			}
 		}
 	}
-	
+
 	/*
 	 * Get data from $_SESSION
 	 * @param $key String Name of key in $_SESSION
@@ -664,7 +666,7 @@ class WebRequest {
 			return null;
 		return $_SESSION[$key];
 	}
-	
+
 	/**
 	 * Set session data
 	 * @param $key String Name of key in $_SESSION
@@ -675,20 +677,20 @@ class WebRequest {
 	}
 
 	/**
-	 * Returns true if the PATH_INFO ends with an extension other than a script 
+	 * Returns true if the PATH_INFO ends with an extension other than a script
 	 * extension. This could confuse IE for scripts that send arbitrary data which
 	 * is not HTML but may be detected as such.
 	 *
-	 * Various past attempts to use the URL to make this check have generally 
-	 * run up against the fact that CGI does not provide a standard method to 
-	 * determine the URL. PATH_INFO may be mangled (e.g. if cgi.fix_pathinfo=0), 
-	 * but only by prefixing it with the script name and maybe some other stuff, 
-	 * the extension is not mangled. So this should be a reasonably portable 
+	 * Various past attempts to use the URL to make this check have generally
+	 * run up against the fact that CGI does not provide a standard method to
+	 * determine the URL. PATH_INFO may be mangled (e.g. if cgi.fix_pathinfo=0),
+	 * but only by prefixing it with the script name and maybe some other stuff,
+	 * the extension is not mangled. So this should be a reasonably portable
 	 * way to perform this security check.
 	 */
 	public function isPathInfoBad() {
 		global $wgScriptExtension;
-		
+
 		if ( !isset( $_SERVER['PATH_INFO'] ) ) {
 			return false;
 		}
