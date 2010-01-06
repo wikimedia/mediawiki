@@ -422,7 +422,7 @@ abstract class DatabaseBase {
 	 * Should return true if unsure.
 	 */
 	function isWriteQuery( $sql ) {
-		return !preg_match( '/^(?:SELECT|BEGIN|COMMIT|SET|SHOW)\b/i', $sql );
+		return !preg_match( '/^(?:SELECT|BEGIN|COMMIT|SET|SHOW|\(SELECT)\b/i', $sql );
 	}
 
 	/**
