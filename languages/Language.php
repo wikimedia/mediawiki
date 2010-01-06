@@ -465,12 +465,9 @@ class Language {
 		$names = array();
 		$dir = opendir( "$IP/languages/messages" );
 		while( false !== ( $file = readdir( $dir ) ) ) {
-			$m = array();
-			if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $file, $m ) ) {
-				$code = str_replace( '_', '-', strtolower( $m[1] ) );
-				if ( isset( $allNames[$code] ) ) {
-					$names[$code] = $allNames[$code];
-				}
+			$code = self::getCodeFromFileName( $file, 'Messages' );
+			if ( $code && isset( $allNames[$code] ) ) {
+				$names[$code] = $allNames[$code];
 			}
 		}
 		closedir( $dir );
@@ -2492,8 +2489,32 @@ class Language {
 		$this->mCode = $code;
 	}
 
+	/**
+	 * Get the name of a file for a certain language code
+	 * @param $prefix string Prepend this to the filename
+	 * @param $code string Language code
+	 * @param $suffix string Append this to the filename
+	 * @return string $prefix . $mangledCode . $suffix
+	 */
 	static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
 		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
+	}
+	
+	/**
+	 * Get the language code from a file name. Inverse of getFileName()
+	 * @param $filename string $prefix . $languageCode . $suffix
+	 * @param $prefix string Prefix before the language code
+	 * @param $suffix string Suffix after the language code
+	 * @return Language code, or false if $prefix or $suffix isn't found
+	 */
+	static function getCodeFromFileName( $filename, $prefix = 'Language', $suffix = '.php' ) {
+		$m = null;
+		preg_match( '/' . preg_quote( $prefix ) . '([A-Z][a-z_])' .
+			preg_quote( $suffix ) . '/', $filename, $m );
+		if ( !count( $m ) ) {
+			return false;
+		}
+		return str_replace( '_', '-', strtolower( $m[1] ) );
 	}
 
 	static function getMessagesFileName( $code ) {
