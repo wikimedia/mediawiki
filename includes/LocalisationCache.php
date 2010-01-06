@@ -233,6 +233,28 @@ class LocalisationCache {
 	}
 
 	/**
+	 * Get the list of subitem keys for a given item.
+	 *
+	 * This is faster than array_keys($lc->getItem(...)) for the items listed in 
+	 * self::$splitKeys.
+	 *
+	 * Will return null if the item is not found, or false if the item is not an 
+	 * array.
+	 */
+	public function getSubitemList( $code, $key ) {
+		if ( in_array( $key, self::$splitKeys ) ) {
+			return $this->getSubitem( $code, 'list', $key );
+		} else {
+			$item = $this->getItem( $code, $key );
+			if ( is_array( $item ) ) {
+				return array_keys( $item );
+			} else {
+				return false;
+			}
+		}
+	}
+
+	/**
 	 * Load an item into the cache.
 	 */
 	protected function loadItem( $code, $key ) {
