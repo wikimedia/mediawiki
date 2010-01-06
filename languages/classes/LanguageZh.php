@@ -176,15 +176,14 @@ class LanguageZh extends LanguageZh_hans {
 	function stripForSearch( $string ) {
 		wfProfileIn( __METHOD__ );
 
-        //always convert to zh-hans before indexing. it should be
-		//better to use zh-hans for search, since conversion from
-		//Traditional to Simplified is less ambiguous than the
-		//other way around
-
-		$t = $this->mConverter->autoConvert( $string, 'zh-hans' );
-		$t = parent::stripForSearch( $t );
+		// always convert to zh-hans before indexing. it should be
+		// better to use zh-hans for search, since conversion from
+		// Traditional to Simplified is less ambiguous than the
+		// other way around
+		$s = $this->mConverter->autoConvert( $string, 'zh-hans' );
+		$s = parent::stripForSearch( $s );
 		wfProfileOut( __METHOD__ );
-		return $t;
+		return $s;
 
 	}
 
