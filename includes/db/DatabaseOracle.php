@@ -182,7 +182,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	var $defaultCharset = 'AL32UTF8';
 
-	var $mFileInfoCache = array();
+	var $mFieldInfoCache = array();
 
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
