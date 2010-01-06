@@ -45,8 +45,11 @@ class SearchSqlite extends SearchEngine {
 	 */
 	function fulltextSearchSupported() {
 		if ( self::$fulltextSupported === null ) {
-			$res = $this->db->selectField( 'updatelog', 'ul_key', array( 'ul_key' => 'fts3' ), __METHOD__ );
-			self::$fulltextSupported = $res && $this->db->numRows( $res ) > 0;
+			self::$fulltextSupported = $this->db->selectField( 
+				'updatelog', 
+				'ul_key', 
+				array( 'ul_key' => 'fts3' ), 
+				__METHOD__ ) !== FALSE;
 		}
 		return self::$fulltextSupported;
 	}
