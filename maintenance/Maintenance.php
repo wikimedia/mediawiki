@@ -373,7 +373,7 @@ abstract class Maintenance {
 		$this->maybeHelp();
 		$this->validateParamsAndArgs();
 	}
-	
+
 	/**
 	 * Normally we disable the memory_limit when running admin scripts.
 	 * Some scripts may wish to actually set a limit, however, to avoid

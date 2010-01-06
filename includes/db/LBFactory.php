@@ -25,7 +25,7 @@ abstract class LBFactory {
 
 	/**
 	 * Shut down, close connections and destroy the cached instance.
-	 * 
+	 *
 	 */
 	static function destroyInstance() {
 		if ( self::$instance ) {
@@ -41,7 +41,7 @@ abstract class LBFactory {
 	abstract function __construct( $conf );
 
 	/**
-	 * Create a new load balancer object. The resulting object will be untracked, 
+	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
 	 * @param string $wiki Wiki ID, or false for the current wiki
@@ -58,8 +58,8 @@ abstract class LBFactory {
 	abstract function getMainLB( $wiki = false );
 
 	/*
-	 * Create a new load balancer for external storage. The resulting object will be 
-	 * untracked, not chronology-protected, and the caller is responsible for 
+	 * Create a new load balancer for external storage. The resulting object will be
+	 * untracked, not chronology-protected, and the caller is responsible for
 	 * cleaning it up.
 	 *
 	 * @param string $cluster External storage cluster, or false for core
@@ -142,8 +142,8 @@ class LBFactory_Simple extends LBFactory {
 		}
 
 		return new LoadBalancer( array(
-			'servers' => $servers, 
-			'masterWaitTimeout' => $wgMasterWaitTimeout 
+			'servers' => $servers,
+			'masterWaitTimeout' => $wgMasterWaitTimeout
 		));
 	}
 
@@ -162,7 +162,7 @@ class LBFactory_Simple extends LBFactory {
 			throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
 		}
 		return new LoadBalancer( array(
-			'servers' => $wgExternalServers[$cluster] 
+			'servers' => $wgExternalServers[$cluster]
 		));
 	}
 

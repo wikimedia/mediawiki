@@ -216,7 +216,7 @@ class User {
 		$mBlockreason, $mBlock, $mEffectiveGroups, $mBlockedGlobally,
 		$mLocked, $mHideName, $mOptions;
 	//@}
-	
+
 	static $idCacheByName = array();
 
 	/**
@@ -636,12 +636,12 @@ class User {
 	 */
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
-		
+
 		$result = false; //init $result to false for the internal checks
-		
+
 		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
 			return $result;
-		
+
 		if ( $result === false ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
@@ -1055,7 +1055,7 @@ class User {
 			$defOpt['searchNs'.$nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
 		$defOpt['skin'] = $wgDefaultSkin;
-		
+
 		return $defOpt;
 	}
 
@@ -1392,9 +1392,9 @@ class User {
 			$blocked = false;
 			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
 		}
-		
+
 		wfRunHooks( 'UserIsBlockedFrom', array( $this, $title, &$blocked, &$allowUsertalk ) );
-		
+
 		wfProfileOut( __METHOD__ );
 		return $blocked;
 	}
@@ -2525,9 +2525,9 @@ class User {
 				'user_id' => $this->mId
 			), __METHOD__
 		);
-		
+
 		$this->saveOptions();
-		
+
 		wfRunHooks( 'UserSaveSettings', array( $this ) );
 		$this->clearSharedCache();
 		$this->getUserPage()->invalidateCache();
@@ -2626,7 +2626,7 @@ class User {
 
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
-		
+
 		$this->saveOptions();
 	}
 
@@ -3563,11 +3563,11 @@ class User {
 	 * @param $byEmail Boolean: account made by email?
 	 */
 	public function addNewUserLogEntry( $byEmail = false ) {
-		global $wgUser, $wgContLang, $wgNewUserLog;
+		global $wgUser, $wgNewUserLog;
 		if( empty( $wgNewUserLog ) ) {
 			return true; // disabled
 		}
-		$talk = $wgContLang->getFormattedNsText( NS_TALK );
+
 		if( $this->getName() == $wgUser->getName() ) {
 			$action = 'create';
 			$message = '';
@@ -3650,11 +3650,11 @@ class User {
 
 		$this->loadOptions();
 		$dbw = wfGetDB( DB_MASTER );
-		
+
 		$insert_rows = array();
-		
+
 		$saveOptions = $this->mOptions;
-		
+
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
 		if( !wfRunHooks( 'UserSaveOptions', array( $this, &$saveOptions ) ) )

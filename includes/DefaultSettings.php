@@ -471,7 +471,7 @@ $wgMaxUploadSize = 1024*1024*100; # 100MB
  * Useful if you want to use a shared repository by default
  * without disabling local uploads (use $wgEnableUploads = false for that)
  * e.g. $wgUploadNavigationUrl = 'http://commons.wikimedia.org/wiki/Special:Upload';
- * 
+ *
  * This also affects images inline images that do not exist. In that case the URL will get
  * (?|&)wpDestFile=<filename> appended to it as appropriate.
  */
@@ -715,8 +715,8 @@ $wgDBservers		= false;
  */
 $wgLBFactoryConf    = array( 'class' => 'LBFactory_Simple' );
 
-/** 
- * Unique identifier if you're paranoid and don't want $wgDBname as part of 
+/**
+ * Unique identifier if you're paranoid and don't want $wgDBname as part of
  * wfWikiId(). See bug 21086
  */
 $wgWikiId = false;
@@ -866,14 +866,14 @@ $wgInputEncoding  = 'UTF-8';
 $wgOutputEncoding = 'UTF-8';
 $wgEditEncoding   = '';
 
-/** 
- * Set this to true to clean up archaic Unicode sequences in Arabic and 
+/**
+ * Set this to true to clean up archaic Unicode sequences in Arabic and
  * Malayalam text. Currently only works if $wgLanguageCode is set to Arabic
  * or Malayalam.
  *
- * Enabling this is generally a good idea for new wikis, since it fixes a few 
- * technical problems to do with editing these languages. However, if it's 
- * enabled on an existing wiki, pages which contain the problematic characters 
+ * Enabling this is generally a good idea for new wikis, since it fixes a few
+ * technical problems to do with editing these languages. However, if it's
+ * enabled on an existing wiki, pages which contain the problematic characters
  * in their page titles may become inaccessible. Running maintenance/cleanupTitles.php
  * after enabling it may fix this.
  */
@@ -936,7 +936,7 @@ $wgHtml5 = true;
 $wgHtml5Version = null;
 
 /**
- * Enabled RDFa attributes for use in wikitext. 
+ * Enabled RDFa attributes for use in wikitext.
  * NOTE: Interaction with HTML5 is somewhat underspecified.
  */
 $wgAllowRdfaAttributes = true;
@@ -1040,17 +1040,17 @@ $wgDisabledVariants = array();
  * Like $wgArticlePath, but on multi-variant wikis, this provides a
  * path format that describes which parts of the URL contain the
  * language variant.  For Example:
- * 
+ *
  *   $wgLanguageCode = 'sr';
  *   $wgVariantArticlePath = '/$2/$1';
  *   $wgArticlePath = '/wiki/$1';
- * 
+ *
  * A link to /wiki/ would be redirected to /sr/Главна_страна
  *
  * It is important that $wgArticlePath not overlap with possible values
  * of $wgVariantArticlePath.
  */
-$wgVariantArticlePath = false;///< defaults to false 
+$wgVariantArticlePath = false;///< defaults to false
 
 /**
  * Show a bar of language selection links in the user login and user
@@ -1932,8 +1932,8 @@ $wgSpecialPageCacheUpdates = array(
 $wgUseTeX = false;
 /** Location of the texvc binary */
 $wgTexvc = './math/texvc';
-/** 
-  * Texvc background color 
+/**
+  * Texvc background color
   * use LaTeX color format as used in \special function
   * for transparent background use value 'Transparent' for alpha transparency or
   * 'transparent' for binary transparency.
