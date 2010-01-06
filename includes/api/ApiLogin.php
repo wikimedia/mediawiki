@@ -92,30 +92,39 @@ class ApiLogin extends ApiBase {
 			case LoginForm :: NO_NAME :
 				$result['result'] = 'NoName';
 				break;
+
 			case LoginForm :: ILLEGAL :
 				$result['result'] = 'Illegal';
 				break;
+
 			case LoginForm :: WRONG_PLUGIN_PASS :
 				$result['result'] = 'WrongPluginPass';
 				break;
+
 			case LoginForm :: NOT_EXISTS :
 				$result['result'] = 'NotExists';
 				break;
+	
+			case LoginForm :: RESET_PASS : //bug 20223 - Treat a temporary password as wrong. Per SpecialUserLogin - "The e-mailed temporary password should not be used for actual logins;"
 			case LoginForm :: WRONG_PASS :
 				$result['result'] = 'WrongPass';
 				break;
+
 			case LoginForm :: EMPTY_PASS :
 				$result['result'] = 'EmptyPass';
 				break;
+
 			case LoginForm :: CREATE_BLOCKED :
 				$result['result'] = 'CreateBlocked';
 				$result['details'] = 'Your IP address is blocked from account creation';
 				break;
+
 			case LoginForm :: THROTTLED :
 				global $wgPasswordAttemptThrottle;
 				$result['result'] = 'Throttled';
 				$result['wait'] = intval($wgPasswordAttemptThrottle['seconds']);
 				break;
+
 			default :
 				ApiBase :: dieDebug(__METHOD__, "Unhandled case value: {$authRes}");
 		}
