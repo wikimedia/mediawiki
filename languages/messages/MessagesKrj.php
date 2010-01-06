@@ -10,6 +10,7 @@
  * @author Harvzsf
  * @author Joebertj
  * @author Jose77
+ * @author Oxyzen
  * @author RonaldPanaligan
  */
 
@@ -147,7 +148,7 @@ $messages = array(
 'specialpage'       => 'Espesyal nga Pahina',
 'postcomment'       => 'Togro Komento',
 'articlepage'       => 'Turukun ang pahina kasudlan',
-'talk'              => 'Sogdanunay',
+'talk'              => 'Sugilanon',
 'views'             => 'Manga paglantaw',
 'toolbox'           => 'Pangbolig',
 'otherlanguages'    => 'Sa iban nga lingwahe',
