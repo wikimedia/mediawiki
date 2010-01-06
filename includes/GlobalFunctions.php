@@ -1285,7 +1285,7 @@ function wfArrayToCGI( $array1, $array2 = null )
 
 	$cgi = '';
 	foreach ( $array1 as $key => $value ) {
-		if ( $value != '' ) {
+		if ( $value !== '' ) {
 			if ( $cgi != '' ) {
 				$cgi .= '&';
 			}
