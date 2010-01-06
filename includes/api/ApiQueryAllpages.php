@@ -101,7 +101,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 				$this->addWhereFld('pr_level', $prlevel);
 			if ($params['prfiltercascade'] == 'cascading')
 				$this->addWhereFld('pr_cascade', 1);
-			if ($params['prfiltercascade'] == 'noncascading')
+			else if ($params['prfiltercascade'] == 'noncascading')
 				$this->addWhereFld('pr_cascade', 0);
 
 			$this->addOption('DISTINCT');
