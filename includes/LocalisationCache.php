@@ -218,20 +218,18 @@ class LocalisationCache {
 		if ( isset( $this->legacyData[$code][$key][$subkey] ) ) {
 			return $this->legacyData[$code][$key][$subkey];
 		}
-		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) ) {
-			if ( isset( $this->loadedItems[$code][$key] ) ) {
-				if ( isset( $this->data[$code][$key][$subkey] ) ) {
-					return $this->data[$code][$key][$subkey];
-				} else {
-					return null;
-				}
-			} else {
-				wfProfileIn( __METHOD__.'-load' );
-				$this->loadSubitem( $code, $key, $subkey );
-				wfProfileOut( __METHOD__.'-load' );
-			}
+		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) 
+			&& !isset( $this->loadedItems[$code][$key] ) ) 
+		{
+			wfProfileIn( __METHOD__.'-load' );
+			$this->loadSubitem( $code, $key, $subkey );
+			wfProfileOut( __METHOD__.'-load' );
 		}
-		return $this->data[$code][$key][$subkey];
+		if ( isset( $this->data[$code][$key][$subkey] ) ) {
+			return $this->data[$code][$key][$subkey];
+		} else {
+			return null;
+		}
 	}
 
 	/**
