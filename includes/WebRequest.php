@@ -762,6 +762,10 @@ class FauxRequest extends WebRequest {
 		return isset( $this->headers[$name] ) ? $this->headers[$name] : false;
 	}
 
+	public function setHeader( $name, $val ) {
+		$this->headers[$name] = $val;
+	}
+
 	public function getSessionData( $key ) {
 		if( !isset( $this->session[$key] ) )
 			return null;

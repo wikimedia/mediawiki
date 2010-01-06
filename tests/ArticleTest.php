@@ -4,6 +4,8 @@ class ArticleTest extends PHPUnit_Framework_TestCase {
 	var $saveGlobals = array();
 
 	function setUp() {
+		global $wgContLang;
+		$wgContLang = Language::factory( 'en' );
 		$globalSet = array(
 			'wgLegacyEncoding' => false,
 			'wgCompressRevisions' => false,

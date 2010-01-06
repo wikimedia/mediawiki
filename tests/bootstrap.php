@@ -1,8 +1,18 @@
 <?php
 
-$IP = realpath(dirname( __FILE__ ) . '/..');
+global $wgCommandLineMode, $IP, $wgMemc;
+$wgCommandLineMode = true;
 define('MEDIAWIKI', 1);
-global $optionsWithArgs;
-$optionsWithArgs = array();
 
-require_once( '../maintenance/commandLine.inc' );
+require dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR."LocalSettings.php";
+
+require "Defines.php";
+require "ProfilerStub.php";
+require 'GlobalFunctions.php';
+require 'Hooks.php';
+require "AutoLoader.php";
+require 'ProxyTools.php';
+require 'ObjectCache.php';
+require 'ImageFunctions.php';
+
+$wgMemc =& wfGetMainCache();
