@@ -2509,8 +2509,8 @@ class Language {
 	 */
 	static function getCodeFromFileName( $filename, $prefix = 'Language', $suffix = '.php' ) {
 		$m = null;
-		preg_match( '/' . preg_quote( $prefix ) . '([A-Z][a-z_]+)' .
-			preg_quote( $suffix ) . '/', $filename, $m );
+		preg_match( '/' . preg_quote( $prefix, '/' ) . '([A-Z][a-z_]+)' .
+			preg_quote( $suffix, '/' ) . '/', $filename, $m );
 		if ( !count( $m ) ) {
 			return false;
 		}
