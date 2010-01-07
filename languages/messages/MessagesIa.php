@@ -2350,6 +2350,7 @@ $1 es ja blocate. Esque tu vole cambiar le configurationes?',
 'ipb_blocked_as_range'            => 'Error: Le IP $1 non es blocate directemente e non pote esser disblocate.
 Illo es, nonobstante, blocate como parte del intervallo $2, le qual pote esser disblocate.',
 'ip_range_invalid'                => 'Intervallo de adresses IP invalide.',
+'ip_range_toolarge'               => 'Non es permittite blocar un gamma de adresses IP plus grande que /$1.',
 'blockme'                         => 'Blocar me',
 'proxyblocker'                    => 'Blocator de proxy',
 'proxyblocker-disabled'           => 'Iste function is disactivate.',

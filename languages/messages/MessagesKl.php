@@ -248,6 +248,7 @@ IP adressit nuisassaaq massuma quppernerup oqaluttuassartaani.",
 Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisinnaavutit]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log-ini ujaasisinnavutillu] imaluunniit [{{fullurl:{{FULLPAGENAME}}|action=edit}} qupperneq pilersissinnaavat]</span>.',
 'previewnote'     => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
 'editing'         => 'Aaqqissorpaa $1',
+'yourtext'        => 'Allatat',
 'templatesused'   => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',
 
 # History pages
@@ -362,6 +363,13 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 # Special:AllPages
 'allarticles'    => 'Quppernerit tamarmik',
 'allpagessubmit' => 'Tassunngarit',
+
+# Special:Categories
+'categories'         => 'Sunut atasut',
+'categoriespagetext' => 'Uku {{PLURAL:$1|sumut atassuseq|sunut atasut}} imarivai quppernerit media-lluunniit.
+[[Special:UnusedCategories|Sunut atasut]] atorneqanngitsut maani ilaanngillat.
+Aamma takuuk [[Special:WantedCategories|sunut atasunut kissaatigineqartut]].',
+'categoriesfrom'     => 'Takuuk qanoq aallartiffianeersumiit:',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Ujaruk',

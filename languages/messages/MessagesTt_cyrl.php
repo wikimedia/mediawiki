@@ -1176,7 +1176,7 @@ $3 күрсәткән сәбәп: ''$2''",
 # Special:AllPages
 'allpages'       => 'Барлык битләр',
 'alphaindexline' => '$1 битеннән $2 битенә кадәр',
-'nextpage'       => 'Чираттагы бит ($1)',
+'nextpage'       => 'Алдагы бит ($1)',
 'prevpage'       => 'Алдагы бит ($1)',
 'allpagesfrom'   => 'Моңа башланучы битләрне чыгарырга:',
 'allpagesto'     => 'Монда чыгаруны туктатырга:',
@@ -1567,6 +1567,9 @@ $1',
 'watchlistall2' => 'барлык',
 'namespacesall' => 'барлык',
 'monthsall'     => 'барлык',
+
+# Multipage image navigation
+'imgmultipagenext' => 'алдагы бит →',
 
 # Table pager
 'table_pager_next' => 'Киләсе бит',
