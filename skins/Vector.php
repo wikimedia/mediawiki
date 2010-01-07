@@ -463,9 +463,9 @@ class VectorTemplate extends QuickTemplate {
 		<div id="page-base" class="noprint"></div>
 		<div id="head-base" class="noprint"></div>
 		<!-- content -->
-		<div id="content">
+		<div id="content" <?php $this->html('specialpageattributes') ?>>
 			<a id="top"></a>
-			<div id="mw-js-message" style="display:none;"></div>
+			<div id="mw-js-message" style="display:none;" <?php $this->html('userlangattributes') ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
 			<!-- sitenotice -->
 			<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
@@ -480,7 +480,7 @@ class VectorTemplate extends QuickTemplate {
 				<h3 id="siteSub"><?php $this->msg( 'tagline' ) ?></h3>
 				<!-- /tagline -->
 				<!-- subtitle -->
-				<div id="contentSub"><?php $this->html( 'subtitle' ) ?></div>
+				<div id="contentSub" <?php $this->html('userlangattributes') ?>><?php $this->html( 'subtitle' ) ?></div>
 				<!-- /subtitle -->
 				<?php if ( $this->data['undelete'] ): ?>
 				<!-- undelete -->
@@ -538,7 +538,7 @@ class VectorTemplate extends QuickTemplate {
 			</div>
 		<!-- /panel -->
 		<!-- footer -->
-		<div id="footer">
+		<div id="footer" <?php $this->html('userlangattributes') ?>>
 			<?php foreach( $validFooterLinks as $category => $links ): ?>
 				<?php if ( count( $links ) > 0 ): ?>
 				<ul id="footer-<?php echo $category ?>">

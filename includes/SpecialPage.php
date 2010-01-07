@@ -89,30 +89,30 @@ class SpecialPage {
 		'Fewestrevisions'           => array( 'SpecialPage', 'Fewestrevisions' ),
 		'Withoutinterwiki'          => array( 'SpecialPage', 'Withoutinterwiki' ),
 		'Protectedpages'            => array( 'SpecialPage', 'Protectedpages' ),
-		'Protectedtitles'           => array( 'SpecialPage', 'Protectedtitles' ),	
-		'Shortpages'                => array( 'SpecialPage', 'Shortpages' ),	
-		'Uncategorizedcategories'   => array( 'SpecialPage', 'Uncategorizedcategories' ),	
-		'Uncategorizedimages'       => array( 'SpecialPage', 'Uncategorizedimages' ),	
-		'Uncategorizedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),	
+		'Protectedtitles'           => array( 'SpecialPage', 'Protectedtitles' ),
+		'Shortpages'                => array( 'SpecialPage', 'Shortpages' ),
+		'Uncategorizedcategories'   => array( 'SpecialPage', 'Uncategorizedcategories' ),
+		'Uncategorizedimages'       => array( 'SpecialPage', 'Uncategorizedimages' ),
+		'Uncategorizedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),
 		'Uncategorizedtemplates'    => array( 'SpecialPage', 'Uncategorizedtemplates' ),
 		'Unusedcategories'          => array( 'SpecialPage', 'Unusedcategories' ),
-		'Unusedimages'              => array( 'SpecialPage', 'Unusedimages' ),		
+		'Unusedimages'              => array( 'SpecialPage', 'Unusedimages' ),
 		'Unusedtemplates'           => array( 'SpecialPage', 'Unusedtemplates' ),
-		'Unwatchedpages'            => array( 'SpecialPage', 'Unwatchedpages', 'unwatchedpages' ),	
+		'Unwatchedpages'            => array( 'SpecialPage', 'Unwatchedpages', 'unwatchedpages' ),
 		'Wantedcategories'          => array( 'SpecialPage', 'Wantedcategories' ),
 		'Wantedfiles'               => array( 'SpecialPage', 'Wantedfiles' ),
 		'Wantedpages'               => array( 'IncludableSpecialPage', 'Wantedpages' ),
 		'Wantedtemplates'           => array( 'SpecialPage', 'Wantedtemplates' ),
 
 		# List of pages
-		'Allpages'                  => 'SpecialAllpages',		
-		'Prefixindex'               => 'SpecialPrefixindex',		
+		'Allpages'                  => 'SpecialAllpages',
+		'Prefixindex'               => 'SpecialPrefixindex',
 		'Categories'                => array( 'SpecialPage', 'Categories' ),
 		'Disambiguations'           => array( 'SpecialPage', 'Disambiguations' ),
-		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),	
+		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
 
 		# Login/create account
-		'Userlogin'                 => array( 'SpecialPage', 'Userlogin' ),		
+		'Userlogin'                 => array( 'SpecialPage', 'Userlogin' ),
 		'CreateAccount'             => array( 'SpecialRedirectToSpecial', 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) ),
 
 		# Users and rights
@@ -120,15 +120,15 @@ class SpecialPage {
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
 		'Resetpass'                 => 'SpecialResetpass',
 		'DeletedContributions'      => 'DeletedContributionsPage',
-		'Preferences'               => 'SpecialPreferences',	
-		'Contributions'             => 'SpecialContributions',	
+		'Preferences'               => 'SpecialPreferences',
+		'Contributions'             => 'SpecialContributions',
 		'Listgrouprights'           => 'SpecialListGroupRights',
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
 		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 
 		# Recent changes and logs
-		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),	
+		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
 		'Log'                       => array( 'SpecialPage', 'Log' ),
 		'Watchlist'                 => array( 'SpecialPage', 'Watchlist' ),
 		'Newpages'                  => 'SpecialNewpages',
@@ -168,14 +168,14 @@ class SpecialPage {
 		'Import'                    => 'SpecialImport',
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
 		'Whatlinkshere'             => 'SpecialWhatlinkshere',
-		'MergeHistory'              => array( 'SpecialPage', 'MergeHistory', 'mergehistory' ),	
-		
+		'MergeHistory'              => array( 'SpecialPage', 'MergeHistory', 'mergehistory' ),
+
 		# Other
 		'Booksources'               => 'SpecialBookSources',
-		
+
 		# Unlisted / redirects
 		'Blankpage'                 => 'SpecialBlankpage',
-		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),	
+		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
 		'Emailuser'                 => array( 'UnlistedSpecialPage', 'Emailuser' ),
 		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
 		'Listbots'                  => array( 'SpecialRedirectToSpecial', 'Listbots', 'Listusers', 'bot' ),
@@ -798,7 +798,7 @@ Perhaps no page aliases are defined for it?" );
 	 * Outputs a summary message on top of special pages
 	 * Per default the message key is the canonical name of the special page
 	 * May be overriden, i.e. by extensions to stick with the naming conventions
-	 * for message keys: 'extensionname-xxx' 
+	 * for message keys: 'extensionname-xxx'
 	 *
 	 * @param string message key of the summary
 	 */

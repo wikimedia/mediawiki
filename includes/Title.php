@@ -2693,12 +2693,12 @@ class Title {
 				if( !File::checkExtensionCompatibility( $file, $nt->getDBkey() ) ) {
 					$errors[] = array('imagetypemismatch');
 				}
-			} 
+			}
 			$destfile = wfLocalFile( $nt );
 			if( !$wgUser->isAllowed( 'reupload-shared' ) && !$destfile->exists() && wfFindFile( $nt ) ) {
 				$errors[] = array( 'file-exists-sharedrepo' );
 			}
-			
+
 		}
 
 		if ( $auth ) {
@@ -3655,6 +3655,13 @@ class Title {
 			$namespaceKey = 'image';
 		}
 		return $prepend . $namespaceKey;
+	}
+
+	/**
+	 * Returns true if this is a special page.
+	 */
+	public function isSpecialPage( ) {
+		return $this->getNamespace() == NS_SPECIAL;
 	}
 
 	/**

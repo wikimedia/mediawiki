@@ -20,7 +20,7 @@ class SkinModern extends SkinTemplate {
 		$template = 'ModernTemplate', $useHeadElement = true;
 
 	/*
-	 * We don't like the default getPoweredBy, the icon clashes with the 
+	 * We don't like the default getPoweredBy, the icon clashes with the
 	 * skin L&F.
 	 */
 	function getPoweredBy() {
@@ -113,9 +113,9 @@ class ModernTemplate extends QuickTemplate {
 	<!-- contentholder does nothing by default, but it allows users to style the text inside
 	     the content area without affecting the meaning of 'em' in #mw_content, which is used
 	     for the margins -->
-	<div id="mw_contentholder">
+	<div id="mw_contentholder" <?php $this->html("specialpageattributes") ?>>
 		<div class='mw-topboxes'>
-			<div id="mw-js-message" style="display:none;"></div>
+			<div id="mw-js-message" style="display:none;" <?php $this->html('userlangattributes')?>></div>
 			<div class="mw-topbox" id="siteSub"><?php $this->msg('tagline') ?></div>
 			<?php if($this->data['newtalk'] ) {
 				?><div class="usermessage mw-topbox"><?php $this->html('newtalk')  ?></div>
@@ -125,7 +125,7 @@ class ModernTemplate extends QuickTemplate {
 			<?php } ?>
 		</div>
 
-		<div id="contentSub"><?php $this->html('subtitle') ?></div>
+		<div id="contentSub" <?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
 
 		<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
 		<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#mw_portlets"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
@@ -138,11 +138,11 @@ class ModernTemplate extends QuickTemplate {
 	</div><!-- mw_content -->
 	</div><!-- mw_contentwrapper -->
 
-	<div id="mw_portlets">
+	<div id="mw_portlets" <?php $this->html("userlangattributes") ?>>
 
 	<!-- portlets -->
-	<?php 
-		$sidebar = $this->data['sidebar'];		
+	<?php
+		$sidebar = $this->data['sidebar'];
 		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
 		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
 		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
@@ -185,8 +185,8 @@ class ModernTemplate extends QuickTemplate {
 	</div>
 
 
-	<!-- footer --> 
-	<div id="footer">
+	<!-- footer -->
+	<div id="footer" <?php $this->html('userlangattributes') ?>>
 			<ul id="f-list">
 <?php
 		$footerlinks = array(
@@ -335,7 +335,7 @@ class ModernTemplate extends QuickTemplate {
 <?php   } else {
 			# allow raw HTML block to be defined by extensions
 			print $cont;
-		} 
+		}
 ?>
 		</div>
 	</div>
