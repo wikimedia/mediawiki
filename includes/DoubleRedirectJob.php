@@ -1,13 +1,19 @@
 <?php
 
+/**
+ * Job to fix double redirects after moving a page
+ *
+ * @ingroup JobQueue
+ */
 class DoubleRedirectJob extends Job {
 	var $reason, $redirTitle, $destTitleText;
 	static $user;
 
 	/** 
 	 * Insert jobs into the job queue to fix redirects to the given title
-	 * @param string $type The reason for the fix, see message double-redirect-fixed-<reason>
-	 * @param Title $redirTitle The title which has changed, redirects pointing to this title are fixed
+	 * @param $reason String: the reason for the fix, see message double-redirect-fixed-<reason>
+	 * @param $redirTitle Title: the title which has changed, redirects pointing to this title are fixed
+	 * @param $destTitle Not used
 	 */
 	public static function fixRedirects( $reason, $redirTitle, $destTitle = false ) {
 		# Need to use the master to get the redirect table updated in the same transaction
@@ -116,7 +122,7 @@ class DoubleRedirectJob extends Job {
 
 	/**
 	 * Get the final destination of a redirect
-	 * Returns false if the specified title is not a redirect, or if it is a circular redirect
+	 * @return false if the specified title is not a redirect, or if it is a circular redirect
 	 */
 	public static function getFinalDestination( $title ) {
 		$dbw = wfGetDB( DB_MASTER );

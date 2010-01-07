@@ -214,9 +214,9 @@ class HTMLCacheUpdateJob extends Job {
 
 	/**
 	 * Construct a job
-	 * @param Title $title The title linked to
-	 * @param array $params Job parameters (table, start and end page_ids)
-	 * @param integer $id job_id
+	 * @param $title Title: the title linked to
+	 * @param $params Array: job parameters (table, start and end page_ids)
+	 * @param $job_id Integer
 	 */
 	function __construct( $title, $params, $id = 0 ) {
 		parent::__construct( 'htmlCacheUpdate', $title, $params, $id );
