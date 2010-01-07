@@ -4,7 +4,6 @@
   * @ingroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  * @bug 1638, 2135
   * @link http://be.wikipedia.org/wiki/Talk:LanguageBe.php
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
   * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
