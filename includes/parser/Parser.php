@@ -331,7 +331,11 @@ class Parser
 		$text = $this->internalParse( $text );
 		// internalParse took care of the notitleconvert bit, so title conversion is here.
 		if ( $this->mDoTitleConvert && !$this->mTitle->isConversionTable()) {
-			$this->setTitle( Title::newFromText( $wgContLang->convert( $title ) ) );
+			$converted = $wgContLang->convert( $title );
+			if ( !$converted instanceOf Title ) {
+				$converted = Title::newFromText( $converted );
+			}
+			$this->setTitle( $converted );
 		}
 
 		$text = $this->mStripState->unstripGeneral( $text );

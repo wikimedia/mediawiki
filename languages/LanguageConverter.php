@@ -514,13 +514,7 @@ class LanguageConverter {
 		$marked = explode( $this->mMarkup['begin'], $text, 2 );
 		$converted = '';
 
-		if ( $this->mDoContentConvert ) {
-			// Bug 19620: should convert a string immediately after a
-			// new rule added.
-			$converted .= $this->autoConvert( $marked[0], $plang );
-		} else {
-			$converted .= $marked[0];
-		}
+		$converted .= $this->autoConvert( $marked[0], $plang );
 
 		if ( array_key_exists( 1, $marked ) ) {
 			$crule = new ConverterRule( $marked[1], $this );

@@ -56,7 +56,7 @@ class FewestrevisionsPage extends QueryPage {
 		if( !$nt ) {
 			return '<!-- bad title -->';
 		}
-		
+
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
 		$plink = $skin->linkKnown(
