@@ -22,19 +22,14 @@ class LanguageConverter {
 	var $mTablesLoaded = false;
 	var $mTables;
 	var $mNamespaceTables;
-	var $mDoTitleConvert = true, $mDoContentConvert = true;
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
 	var $mManualLevel;
-	var $mTitleFromFlag = false;
 	var $mCacheKey;
 	var $mLangObj;
 	var $mMarkup;
 	var $mFlags;
 	var $mDescCodeSep = ':', $mDescVarSep = ';';
 	var $mUcfirst = false;
-	var $mTitleOriginal = '';
-	var $mTitleDisplay = '';
-	var $mHeaderVariant = null;
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -465,10 +460,6 @@ class LanguageConverter {
 		// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom
         // conversion in title
 		$title = $convRule->getTitle();
-		if ( $title ) {
-			$this->mTitleFromFlag = true;
-			$this->mTitleDisplay =	$title;
-		}
 
 		// apply manual conversion table to global table
 		$convTable = $convRule->getConvTable();
@@ -494,31 +485,6 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Convert text using a parser object for context.
-	 * @public
-	 */
-	function parserConvert( $text, &$parser ) {
-		global $wgDisableLangConversion;
-		/* don't do anything if this is the conversion table */
-		if ( $parser->getTitle()->getNamespace() == NS_MEDIAWIKI
-			 && strpos( $parser->mTitle->getText(),
-						'Conversiontable' ) !== false ) {
-			return $text;
-		}
-
-		if ( $wgDisableLangConversion ) {
-			return $text;
-		}
-
-		$text = $this->convert( $text );
-
-		$this->convertTitle();
-		$parser->mOutput->setTitleText( $this->mTitleDisplay );
-
-		return $text;
-	}
-
-	/**
 	 * Convert namespace.
 	 * @param string $title the title included namespace
 	 * @return array of string
@@ -537,37 +503,35 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Pre convert title. Store the original title $this->mTitleOrginal;
-	 * store the default converted title to $this->mTitleDisplay.
+	 * Convert a text fragment.
+	 *
+	 * @param string $text text to be converted
+	 * @param string $plang preferred variant
+	 * @return string converted text
 	 * @private
 	 */
-	function preConvertTitle( $text, $variant ) {
-		$this->mTitleOriginal = $text;
+	function convertFragment( $text, $plang ) {
+		$marked = explode( $this->mMarkup['begin'], $text, 2 );
+		$converted = '';
 
-		$text = $this->convertNamespace( $text, $variant );
-		$this->mTitleDisplay = $this->convert( $text );
-	}
-
-	/**
-	 * Convert title.
-	 * @private
-	 */
-	function convertTitle() {
-		global $wgDisableTitleConversion, $wgUser, $wgRequest;
-		$isredir = $wgRequest->getText( 'redirect', 'yes' );
-		$action = $wgRequest->getText( 'action' );
-		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
-
-		// check for the global variable, __NOTC__ magic word, and user setting
-		if ( $wgDisableTitleConversion || !$this->mDoTitleConvert ||
-		    $wgUser->getOption( 'noconvertlink' ) == 1 ) {
-			$this->mTitleDisplay = $this->mTitleOriginal;
-		} elseif ( $isredir == 'no'
-				   || $action == 'edit'
-				   || $linkconvert == 'no' ) {
-			// check for GET params
-			$this->mTitleDisplay = $this->mTitleOriginal;
+		if ( $this->mDoContentConvert ) {
+			// Bug 19620: should convert a string immediately after a
+			// new rule added.
+			$converted .= $this->autoConvert( $marked[0], $plang );
+		} else {
+			$converted .= $marked[0];
 		}
+
+		if ( array_key_exists( 1, $marked ) ) {
+			$crule = new ConverterRule( $marked[1], $this );
+			$crule->parse( $plang );
+			$converted .= $crule->getDisplay();
+			$this->applyManualConv( $crule );
+		} else {
+			$converted .= $this->mMarkup['end'];
+		}
+
+		return $converted;
 	}
 
 	/**
@@ -582,63 +546,27 @@ class LanguageConverter {
 	 * -{text}- in which case no conversion should take place for text
 	 *
 	 * @param string $text text to be converted
-	 * @param bool $isTitle whether this conversion is for the article title
 	 * @return string converted text
 	 * @public
 	 */
-	function convert( $text, $isTitle = false ) {
-
-		$mw =& MagicWord::get( 'notitleconvert' );
-		if ( $mw->matchAndRemove( $text ) ) {
-			$this->mDoTitleConvert = false;
-		}
-		$mw =& MagicWord::get( 'nocontentconvert' );
-		if ( $mw->matchAndRemove( $text ) ) {
-			$this->mDoContentConvert = false;
-		}
-
-		// no conversion if redirecting
-		$mw =& MagicWord::get( 'redirect' );
-		if ( $mw->matchStart( $text ) ) {
-			return $text;
-		}
+	function convert( $text ) {
+		if ( $wgDisableLangConversion ) return $text;
 
 		$plang = $this->getPreferredVariant();
-
-		// for title convertion
-		if ( $isTitle ) {
-			$this->preConvertTitle( $text, $plang );
-			return $text;
-		}
-
 		$tarray = StringUtils::explode( $this->mMarkup['end'], $text );
-		$text = '';
+		$converted = '';
 
 		foreach ( $tarray as $txt ) {
-
-			$marked = explode( $this->mMarkup['begin'], $txt, 2 );
-
-			if ( $this->mDoContentConvert ) {
-				// Bug 19620: should convert a string immediately after a
-                // new rule added.
-				$text .= $this->autoConvert( $marked[0], $plang );
-			} else {
-				$text .= $marked[0];
-			}
-
-			if ( array_key_exists( 1, $marked ) ) {
-				$crule = new ConverterRule( $marked[1], $this );
-				$crule->parse( $plang );
-				$text .= $crule->getDisplay();
-				$this->applyManualConv( $crule );
-			} else {
-				$text .= $this->mMarkup['end'];
-			}
+			$converted .= $this->convertFragment( $txt, $plang );
 		}
 
 		// Remove the last delimiter (wasn't real)
-		$text = substr( $text, 0, - strlen( $this->mMarkup['end'] ) );
-		return $text;
+	    $converted = substr( $converted, 0, - strlen( $this->mMarkup['end'] ) );
+		if ( $isTitle ) {
+			error_log("title2: $converted\n");
+			$this->mConvertedTitle = $converted;
+		}
+		return $converted;
 	}
 
 	/**
@@ -723,15 +651,6 @@ class LanguageConverter {
 	function getExtraHashOptions() {
 		$variant = $this->getPreferredVariant();
 		return '!' . $variant ;
-	}
-
-    /**
-	 * Get title text as defined in the body of the article text.
-	 *
-	 * @public
-	 */
-	function getParsedTitle() {
-		return $this->mTitleDisplay;
 	}
 
 	/**
@@ -1356,15 +1275,15 @@ class ConverterRule {
 			// proces H,- flag or T only: output nothing
 			$this->mRuleDisplay = '';
 		} elseif ( in_array( 'S', $flags ) ) {
-			$this->mRuleDisplay = $this->getRuleConvertedStr( $variant,
-							$this->mConverter->mDoContentConvert );
+			// true hard-coded now since we shouldn't be called if we're not converting
+			$this->mRuleDisplay = $this->getRuleConvertedStr( $variant, true );
 		} else {
 			$this->mRuleDisplay = $this->mManualCodeError;
 		}
-		// proces T flag
+		// process T flag
 		if ( in_array( 'T', $flags ) ) {
-			$this->mRuleTitle = $this->getRuleConvertedStr( $variant,
-							$this->mConverter->mDoTitleConvert );
+			// true hard-coded now since we shouldn't be called if we're not converting
+			$this->mRuleTitle = $this->getRuleConvertedStr( $variant, true );
 		}
 
 		if ( in_array( '-', $flags ) ) {

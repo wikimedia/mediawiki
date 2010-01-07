@@ -209,16 +209,6 @@ class KkConverter extends LanguageConverter {
 		return $carray;
 	}
 
-	// Do not convert content on talk pages
-	function parserConvert( $text, &$parser ){
-		if(is_object($parser->getTitle() ) && $parser->getTitle()->isTalkPage())
-			$this->mDoContentConvert=false;
-		else
-			$this->mDoContentConvert=true;
-
-		return parent::parserConvert($text, $parser );
-	}
-
 	/*
 	 * A function wrapper:
 	 *  - if there is no selected variant, leave the link

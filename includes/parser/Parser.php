@@ -93,7 +93,7 @@ class Parser
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
 		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex, $mPreprocessor,
 		$mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList, $mVarCache, $mConf,
-		$mFunctionTagHooks;
+		$mFunctionTagHooks, $mDoTitleConvert, $mDoContentConvert;
 
 
 	# Cleared with clearState():
@@ -147,6 +147,8 @@ class Parser
 		}
 		$this->mMarkerIndex = 0;
 		$this->mFirstCall = true;
+		$this->mDoTitleConvert = true;
+		$this->mDoContentConvert = true;
 	}
 
 	/**
@@ -314,7 +316,8 @@ class Parser
 		}
 
 		$this->mOptions = $options;
-		$this->setTitle( $title );
+		$this->setTitle( $title ); // Page title has to be set for the pre-processor
+
 		$oldRevisionId = $this->mRevisionId;
 		$oldRevisionTimestamp = $this->mRevisionTimestamp;
 		if( $revid !== null ) {
@@ -326,6 +329,11 @@ class Parser
 		# No more strip!
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text );
+		// internalParse took care of the notitleconvert bit, so title conversion is here.
+		if ( $this->mDoTitleConvert && !$this->mTitle->isConversionTable()) {
+			$this->setTitle( Title::newFromText( $wgContLang->convert( $title ) ) );
+		}
+
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
@@ -343,11 +351,12 @@ class Parser
 
 		$this->replaceLinkHolders( $text );
 
-		# the position of the parserConvert() call should not be changed. it
+		# the position of the convert() call should not be changed. it
 		# assumes that the links are all replaced and the only thing left
 		# is the <nowiki> mark.
-		# Side-effects: this calls $this->mOutput->setTitleText()
-		$text = $wgContLang->parserConvert( $text, $this );
+		if ( $this->mDoContentConvert && !$this->mTitle->isConversionTable()) {
+			$text = $wgContLang->convert( $text );
+		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
 
@@ -654,14 +663,14 @@ class Parser
 		$this->mStripState->general->setPair( $rnd, $text );
 		return $rnd;
 	}
-	
+
 	/**
 	 * Interface with html tidy
 	 * @deprecated Use MWTidy::tidy()
 	 */
 	public static function tidy( $text ) {
 		wfDeprecated( __METHOD__ );
-		return MWTidy::tidy( $text );	
+		return MWTidy::tidy( $text );
 	}
 
 	/**
@@ -870,7 +879,7 @@ class Parser
 	 */
 	function internalParse( $text, $isMain = true, $frame=false ) {
 		wfProfileIn( __METHOD__ );
-		
+
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
@@ -883,7 +892,7 @@ class Parser
 		if ($frame) {
 			// use frame depth to infer how include/noinclude tags should be handled
 			// depth=0 means this is the top-level document; otherwise it's an included document
-			if( !$frame->depth ) 
+			if( !$frame->depth )
 				$flag = 0;
 			else
 				$flag = Parser::PTD_FOR_INCLUSION;
@@ -907,6 +916,7 @@ class Parser
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
 		$text = $this->doDoubleUnderscore( $text );
+
 		$text = $this->doHeadings( $text );
 		if( $this->mOptions->getUseDynamicDates() ) {
 			$df = DateFormatter::getInstance();
@@ -930,7 +940,7 @@ class Parser
 	/**
 	 * Replace special strings like "ISBN xxx" and "RFC xxx" with
 	 * magic external links.
-	 * 
+	 *
 	 * DML
 	 * @private
 	 */
@@ -940,7 +950,7 @@ class Parser
 		$urlChar = self::EXT_LINK_URL_CLASS;
 		$text = preg_replace_callback(
 			'!(?:                           # Start cases
-				(<a.*?</a>) |               # m[1]: Skip link text 
+				(<a.*?</a>) |               # m[1]: Skip link text
 				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
 				(\\b(?:$prots)$urlChar+) |  # m[3]: Free external links" . '
 				(?:RFC|PMID)\s+([0-9]+) |   # m[4]: RFC or PMID, capture number
@@ -1042,7 +1052,7 @@ class Parser
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free', 
+			$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
@@ -1482,7 +1492,7 @@ class Parser
 		wfProfileIn( __METHOD__.'-setup' );
 		static $tc = FALSE, $e1, $e1_img;
 		# the % is needed to support urlencoded titles as well
-		if ( !$tc ) { 
+		if ( !$tc ) {
 			$tc = Title::legalChars() . '#%';
 			# Match a link having the form [[namespace:link|alternate]]trail
 			$e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD";
@@ -2016,7 +2026,7 @@ class Parser
 				}
 			} elseif( $prefixLength || $lastPrefixLength ) {
 				// We need to open or close prefixes, or both.
-				
+
 				# Either open or close a level...
 				$commonPrefixLength = $this->getCommon( $prefix, $lastPrefix );
 				$paragraphStack = false;
@@ -2026,12 +2036,12 @@ class Parser
 					$output .= $this->closeList( $lastPrefix[$lastPrefixLength-1] );
 					--$lastPrefixLength;
 				}
-				
+
 				// Continue the current prefix if appropriate.
 				if ( $prefixLength <= $commonPrefixLength && $commonPrefixLength > 0 ) {
 					$output .= $this->nextItem( $prefix[$commonPrefixLength-1] );
 				}
-				
+
 				// Open prefixes where appropriate.
 				while ( $prefixLength > $commonPrefixLength ) {
 					$char = substr( $prefix, $commonPrefixLength, 1 );
@@ -2048,7 +2058,7 @@ class Parser
 				}
 				$lastPrefix = $prefix2;
 			}
-			
+
 			// If we have no prefixes, go to paragraph mode.
 			if( 0 == $prefixLength ) {
 				wfProfileIn( __METHOD__."-paragraph" );
@@ -2592,7 +2602,7 @@ class Parser
 					return null;
 		}
 
-		if ( $index ) 
+		if ( $index )
 			$this->mVarCache[$index] = $value;
 
 		return $value;
@@ -2665,7 +2675,7 @@ class Parser
 	 *  self::OT_HTML: all templates and extension tags
 	 *
 	 * @param string $tex The text to transform
-	 * @param PPFrame $frame Object describing the arguments passed to the template. 
+	 * @param PPFrame $frame Object describing the arguments passed to the template.
 	 *        Arguments may also be provided as an associative array, as was the usual case before MW1.12.
 	 *        Providing arguments this way may be useful for extensions wishing to perform variable replacement explicitly.
 	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not double-brace expansion
@@ -2729,7 +2739,7 @@ class Parser
 	 */
 	function limitationWarn( $limitationType, $current=null, $max=null) {
 		//does no harm if $current and $max are present but are unnecessary for the message
-		$warning = wfMsgExt( "$limitationType-warning", array( 'parsemag', 'escape' ), $current, $max ); 
+		$warning = wfMsgExt( "$limitationType-warning", array( 'parsemag', 'escape' ), $current, $max );
 		$this->mOutput->addWarning( $warning );
 		$this->addTrackingCategory( "$limitationType-category" );
 	}
@@ -2870,7 +2880,7 @@ class Parser
 					$found = true;
 					$noparse = true;
 					$preprocessFlags = 0;
-					
+
 					if ( is_array( $result ) ) {
 						if ( isset( $result[0] ) ) {
 							$text = $result[0];
@@ -3376,7 +3386,9 @@ class Parser
 	 * Fills $this->mDoubleUnderscores, returns the modified text
 	 */
 	function doDoubleUnderscore( $text ) {
+		global $wgDisableLangConversion;
 		wfProfileIn( __METHOD__ );
+
 		// The position of __TOC__ needs to be recorded
 		$mw = MagicWord::get( 'toc' );
 		if( $mw->match( $text ) ) {
@@ -3416,10 +3428,23 @@ class Parser
 			$this->mOutput->setIndexPolicy( 'index' );
 			$this->addTrackingCategory( 'index-category' );
 		}
+
+		if ( !$wgDisableLangConversion ) {
+			if( isset( $this->mDoubleUnderscores['notitleconvert'] ) ){
+				$this->mDoTitleConvert = false;
+			}
+
+			// Don't convert talk pages
+			if( isset( $this->mDoubleUnderscores['nocontentconvert'] )
+				&& !$this->mTitle->isTalkPage() ){
+				$this->mDoContentConvert = false;
+			}
+		}
+
 		wfProfileOut( __METHOD__ );
 		return $text;
-	} 	
-	
+	}
+
 	/**
 	 * Add a tracking category, getting the title from a system message,
 	 * or print a debug message if the title is invalid.
@@ -3428,10 +3453,10 @@ class Parser
 	 */
 	protected function addTrackingCategory( $msg ){
 		$cat = wfMsgForContent( $msg );
-		
+
 		# Allow tracking categories to be disabled by setting them to "-"
 		if( $cat === '-' ) return false;
-		
+
 		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		if ( $containerCategory ) {
 			$this->mOutput->addCategory( $containerCategory->getDBkey(), $this->getDefaultSort() );
@@ -3707,7 +3732,7 @@ class Parser
 				$toc .= $sk->tocLine($anchor, $tocline,
 					$numbering, $toclevel, ($isTemplate ? false : $sectionIndex));
 			}
-			
+
 			# Add the section to the section tree
 			# Find the DOM node for this header
 			while ( $node && !$isTemplate ) {
@@ -3716,11 +3741,11 @@ class Parser
 					if ( $bits['i'] == $sectionIndex )
 						break;
 				}
-				$byteOffset += mb_strlen( $this->mStripState->unstripBoth( 
+				$byteOffset += mb_strlen( $this->mStripState->unstripBoth(
 					$frame->expand( $node, PPFrame::RECOVER_ORIG ) ) );
 				$node = $node->getNextSibling();
 			}
-			$tocraw[] = array( 
+			$tocraw[] = array(
 				'toclevel' => $toclevel,
 				'level' => $level,
 				'line' => $tocline,
@@ -3730,7 +3755,7 @@ class Parser
 				'byteoffset' => ( $isTemplate ? null : $byteOffset ),
 				'anchor' => $anchor,
 			);
-			
+
 			# give headline the correct <h#> tag
 			if( $showEditLink && $sectionIndex !== false ) {
 				if( $isTemplate ) {
@@ -3764,7 +3789,7 @@ class Parser
 			$toc = $sk->tocList( $toc );
 			$this->mOutput->setTOCHTML( $toc );
 		}
-		
+
 		if ( $isMain ) {
 			$this->mOutput->setSections( $tocraw );
 		}
@@ -3773,7 +3798,7 @@ class Parser
 
 		$blocks = preg_split( '/<H[1-6].*?' . '>.*?<\/H[1-6]>/i', $text );
 		$i = 0;
-		
+
 		foreach( $blocks as $block ) {
 			if( $showEditLink && $headlineCount > 0 && $i == 0 && $block !== "\n" ) {
 				# This is the [edit] link that appears for the top block of text when
@@ -3800,7 +3825,7 @@ class Parser
 			return $full;
 		}
 	}
-	
+
 	/**
 	 * Merge $tree2 into $tree1 by replacing the section with index
 	 * $section in $tree1 and its descendants with the sections in $tree2.
@@ -3823,7 +3848,7 @@ class Parser
 		$numbering = array( 0 );
 		$titletext = $title->getPrefixedDBkey();
 		foreach ( $tree1 as $s ) {
-			if ( $targetLevel !== false ) { 
+			if ( $targetLevel !== false ) {
 				if ( $s['level'] <= $targetLevel )
 					// We've skipped enough
 					$targetLevel = false;
@@ -3834,7 +3859,7 @@ class Parser
 					$s['fromtitle'] != $titletext ) {
 				self::incrementNumbering( $numbering,
 					$s['toclevel'], $lastLevel );
-				
+
 				// Rewrite index, byteoffset and number
 				if ( $s['fromtitle'] == $titletext ) {
 					$s['index'] = $nextIndex++;
@@ -3856,7 +3881,7 @@ class Parser
 					$s2['level'] += $s['level'] - 1;
 					$s2['index'] = $nextIndex++;
 					$s2['byteoffset'] += $s['byteoffset'];
-					
+
 					self::incrementNumbering( $numbering,
 						$s2['toclevel'], $lastLevel );
 					$s2['number']  = implode( '.', array_map(
@@ -3872,7 +3897,7 @@ class Parser
 		}
 		return $newTree;
 	}
-	
+
 	/**
 	 * Increment a section number. Helper function for mergeSectionTrees()
 	 * @param $number array Array representing a section number
@@ -3890,7 +3915,7 @@ class Parser
 		} else
 			$number[$level - 1]++;
 	}
-	
+
 	/**
 	 * Transform wiki markup when saving a page by doing \r\n -> \n
 	 * conversion, substitting signatures, {{subst:}} templates, etc.
@@ -4015,14 +4040,14 @@ class Parser
 		global $wgMaxSigChars;
 
 		$username = $user->getName();
-		
+
 		// If not given, retrieve from the user object.
 		if ( $nickname === false )
 			$nickname = $user->getOption( 'nickname' );
-		
+
 		if ( is_null( $fancySig ) )
 			$fancySig = $user->getBoolOption( 'fancysig' );
-			
+
 		$nickname = $nickname == null ? $username : $nickname;
 
 		if( mb_strlen( $nickname ) > $wgMaxSigChars ) {
@@ -4221,23 +4246,23 @@ class Parser
 	 * @param integer $flags a combination of the following flags:
 	 *     SFH_NO_HASH   No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
 	 *
-	 *     SFH_OBJECT_ARGS   Pass the template arguments as PPNode objects instead of text. This 
+	 *     SFH_OBJECT_ARGS   Pass the template arguments as PPNode objects instead of text. This
 	 *     allows for conditional expansion of the parse tree, allowing you to eliminate dead
-	 *     branches and thus speed up parsing. It is also possible to analyse the parse tree of 
+	 *     branches and thus speed up parsing. It is also possible to analyse the parse tree of
 	 *     the arguments, and to control the way they are expanded.
 	 *
 	 *     The $frame parameter is a PPFrame. This can be used to produce expanded text from the
 	 *     arguments, for instance:
 	 *         $text = isset( $args[0] ) ? $frame->expand( $args[0] ) : '';
 	 *
-	 *     For technical reasons, $args[0] is pre-expanded and will be a string. This may change in 
+	 *     For technical reasons, $args[0] is pre-expanded and will be a string. This may change in
 	 *     future versions. Please call $frame->expand() on it anyway so that your code keeps
 	 *     working if/when this is changed.
 	 *
 	 *     If you want whitespace to be trimmed from $args, you need to do it yourself, post-
 	 *     expansion.
 	 *
-	 *     Please read the documentation in includes/parser/Preprocessor.php for more information 
+	 *     Please read the documentation in includes/parser/Preprocessor.php for more information
 	 *     about the methods available in PPFrame and PPNode.
 	 *
 	 * @return The old callback function for this name, if any
@@ -4354,7 +4379,7 @@ class Parser
 			unset( $params[ 'href' ] );
 		} else {
 			# Non-link <a> tag
-			return Xml::openElement( 'a', $params ) . $content . Xml::closeElement( 'a' ); 
+			return Xml::openElement( 'a', $params ) . $content . Xml::closeElement( 'a' );
 		}
 
 		$sk = $this->mOptions->getSkin();
@@ -4411,7 +4436,7 @@ class Parser
 			if ( count( $matches ) == 0 ) {
 				continue;
 			}
-			
+
 			if ( strpos( $matches[0], '%' ) !== false )
 				$matches[1] = urldecode( $matches[1] );
 			$tp = Title::newFromText( $matches[1]/*, NS_FILE*/ );
@@ -4499,7 +4524,7 @@ class Parser
 		#  * upright    reduce width for upright images, rounded to full __0 px
 		#  * border     draw a 1px border around the image
 		#  * alt        Text for HTML alt attribute (defaults to empty)
-		#  * link       Set the target of the image link. Can be external, interwiki, or local 
+		#  * link       Set the target of the image link. Can be external, interwiki, or local
 		# vertical-align values (no % or length right now):
 		#  * baseline
 		#  * sub
@@ -4684,7 +4709,7 @@ class Parser
 
 		return $ret;
 	}
-	
+
 	protected function stripAltText( $caption, $holders ) {
 		# Strip bad stuff out of the title (tooltip).  We can't just use
 		# replaceLinkHoldersText() here, because if this function is called
@@ -4700,7 +4725,7 @@ class Parser
 		# remove the tags
 		$tooltip = $this->mStripState->unstripBoth( $tooltip );
 		$tooltip = Sanitizer::stripAllTags( $tooltip );
-		
+
 		return $tooltip;
 	}
 
@@ -5136,7 +5161,7 @@ class Parser
 			$links['interwiki'][] = $this->mLinkHolders->interwiki[$key];
 			$pos = $start_pos + strlen( "<!--IWLINK $key-->" );
 		}
-		
+
 		$data['linkholder'] = $links;
 
 		return $data;
@@ -5145,7 +5170,7 @@ class Parser
 	function unserialiseHalfParsedText( $data, $intPrefix = null /* Unique identifying prefix */ ) {
 		if (!$intPrefix)
 			$intPrefix = $this->getRandomString();
-		
+
 		// First, extract the strip state.
 		$stripState = $data['stripstate'];
 		$this->mStripState->general->merge( $stripState->general );
