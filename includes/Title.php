@@ -987,6 +987,19 @@ class Title {
 	}
 
 	/**
+	 * Is this a conversion table for the LanguageConverter?
+	 * @return \type{\bool}
+	 */
+	public function isConversionTable() {
+		if($this->getNamespace() == NS_MEDIAWIKI
+		   && strpos( $this->getText(), 'Conversiontable' ) !== false ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Is $wgUser watching this page?
 	 * @return \type{\bool}
 	 */

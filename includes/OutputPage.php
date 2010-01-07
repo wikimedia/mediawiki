@@ -349,7 +349,7 @@ class OutputPage {
 	 */
 	public function setPageTitle( $name ) {
 		global $wgContLang;
-		$name = $wgContLang->convert( $name, true );
+
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
 		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $name ) );
@@ -611,10 +611,14 @@ class OutputPage {
 			}
 		}
 		// Page title
-		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
+		$dt = $parserOutput->getDisplayTitle();
+		$title = $parserOutput->getTitleText();
+		if ( $dt !== false ) {
 			$this->setPageTitle( $dt );
-		else if ( ( $title = $parserOutput->getTitleText() ) != '' )
+		}
+		else if ( $title != '' ) {
 			$this->setPageTitle( $title );
+		}
 
 		// Hooks registered in the object
 		global $wgParserOutputHooks;
