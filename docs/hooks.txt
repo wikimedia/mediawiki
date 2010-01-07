@@ -1141,6 +1141,7 @@ $article: the article that the history is loading for
 'PageHistoryLineEnding' : right before the end <li> is added to a history line
 $row: the revision row for this line
 $s: the string representing this parsed line
+$classes: array containing the <li> element classes
 
 'PageHistoryPager::getQueryInfo': when a history pager query parameter set
 is constructed

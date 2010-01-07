@@ -557,7 +557,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$classes = array_merge( $classes, $newClasses );
 		$s .= " $tagSummary";
 
-		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s ) );
+		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s, &$classes ) );
 
 		$attribs = array();
 		if ( $classes ) {
