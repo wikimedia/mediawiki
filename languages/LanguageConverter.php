@@ -30,6 +30,7 @@ class LanguageConverter {
 	var $mFlags;
 	var $mDescCodeSep = ':', $mDescVarSep = ';';
 	var $mUcfirst = false;
+	var $mHeaderVariant;
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -543,7 +544,8 @@ class LanguageConverter {
 	 * @return string converted text
 	 * @public
 	 */
-	function convert( $text ) {
+	function convert( $text, $isTitle ) {
+		global $wgDisableLangConversion;
 		if ( $wgDisableLangConversion ) return $text;
 
 		$plang = $this->getPreferredVariant();
