@@ -746,7 +746,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 O seu enderezo IP quedará rexistrado no historial das revisións desta páxina.",
 'missingsummary'                   => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
 Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrición da edición.",
-'missingcommenttext'               => 'Por favor escriba un comentario a continuación.',
+'missingcommenttext'               => 'Por favor, escriba un comentario a continuación.',
 'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/cabeceira deste comentario.
 Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo:',
@@ -1227,7 +1227,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-help-watchlist-token'    => 'Ao encher este campo cunha clave secreta xerarase unha fonte de novas RSS para a súa lista de vixilancia.
 Calquera que saiba esta clave poderá ler a súa lista de vixilancia, así que escolla un valor seguro.
 Velaquí un valor xerado ao chou que pode usar: $1',
-'savedprefs'                    => 'As súas preferencias foron gardadas.',
+'savedprefs'                    => 'Gardáronse as súas preferencias.',
 'timezonelegend'                => 'Zona horaria:',
 'localtime'                     => 'Hora local:',
 'timezoneuseserverdefault'      => 'Usar a hora do servidor por defecto',
@@ -2377,6 +2377,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 'ipb_cant_unblock'                => 'Erro: Non se atopa o Block ID $1. Posiblemente xa foi desbloqueado.',
 'ipb_blocked_as_range'            => 'Erro: O enderezo IP $1 non está bloqueado directamente e non se pode desbloquear. Porén, está bloqueado por estar no rango $2, que si se pode desbloquear.',
 'ip_range_invalid'                => 'Rango IP non válido.',
+'ip_range_toolarge'               => 'Non están permitidos os rangos de bloqueo maiores que /$1.',
 'blockme'                         => 'Bloquearme',
 'proxyblocker'                    => 'Bloqueador de proxy',
 'proxyblocker-disabled'           => 'Esta función está desactivada.',
