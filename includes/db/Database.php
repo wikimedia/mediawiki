@@ -284,6 +284,17 @@ abstract class DatabaseBase {
 		}
 	}
 
+	/**
+	 * Get the type of the DBMS, as it appears in $wgDBtype.
+	 */
+	function getType() {
+		if ( preg_match( '/^Database(\w+)$/', get_class( $this ), $m ) ) {
+			return strtolower( $m[1] );
+		} else {
+			throw new MWException( get_class( $this ) .'::getType: unable to determine type.' );
+		}
+	}
+
 #------------------------------------------------------------------------------
 # Other functions
 #------------------------------------------------------------------------------
