@@ -137,9 +137,9 @@ class LanguageGan extends LanguageZh {
 	}
 
 	// word segmentation
-	function stripForSearch( $string, $doStrip = true ) {
+	function stripForSearch( $string, $doStrip = true, $autoVariant = 'gan-hans' ) {
 		// LanguageZh::stripForSearch
-		return parent::stripForSearch( $string, $doStrip, 'gan-hans' );
+		return parent::stripForSearch( $string, $doStrip, $autoVariant );
 	}
 
 	function convertForSearchResult( $termsArray ) {
