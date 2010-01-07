@@ -173,15 +173,16 @@ class LanguageZh extends LanguageZh_hans {
 	}
 
 	// word segmentation
-	function stripForSearch( $string ) {
+	function stripForSearch( $string, $doStrip = true, $autoVariant = 'zh-hans' ) {
 		wfProfileIn( __METHOD__ );
 
 		// always convert to zh-hans before indexing. it should be
 		// better to use zh-hans for search, since conversion from
 		// Traditional to Simplified is less ambiguous than the
 		// other way around
-		$s = $this->mConverter->autoConvert( $string, 'zh-hans' );
-		$s = parent::stripForSearch( $s );
+		$s = $this->mConverter->autoConvert( $string, $autoVariant );
+		// LanguageZh_hans::stripForSearch
+		$s = parent::stripForSearch( $s, $doStrip );
 		wfProfileOut( __METHOD__ );
 		return $s;
 
@@ -189,6 +190,7 @@ class LanguageZh extends LanguageZh_hans {
 
 	function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
+		$terms = self::convertDoubleWidth( $terms );
 		$terms = implode( '|', $this->mConverter->autoConvertToAllVariants( $terms ) );
 		$ret = array_unique( explode('|', $terms) );
 		return $ret;

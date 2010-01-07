@@ -137,43 +137,14 @@ class LanguageGan extends LanguageZh {
 	}
 
 	// word segmentation
-	function stripForSearch( $string ) {
-		wfProfileIn( __METHOD__ );
-		global $wgSearchType;
-
-		// always convert to gan-hans before indexing. it should be
-		// better to use gan-hans for search, since conversion from
-		// Traditional to Simplified is less ambiguous than the
-		// other way around
-		$s = $this->mConverter->autoConvert($string, 'gan-hans');
-
-		// Double-width roman characters: ff00-ff5f ~= 0020-007f
-		$s = preg_replace( '/\xef\xbc([\x80-\xbf])/e', 'chr((ord("$1") & 0x3f) + 0x20)', $s );
-		$s = preg_replace( '/\xef\xbd([\x80-\x99])/e', 'chr((ord("$1") & 0x3f) + 0x60)', $s );
-
-		if ( $wgSearchType != 'LuceneSearch' ) {
-			// eventually this should be a word segmentation;
-			// for now just treat each character as a word.
-			// Not for LuceneSearch, because LSearch will
-			// split the text to words itself.
-			// @todo Fixme: only do this for Han characters...
-			$s = preg_replace(
-					"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
-					" $1 ", $s);
-			$s = preg_replace( '/ +/', ' ', $s );
-		}
-
-		$s = trim( $s );
-
-		// Do general case folding and UTF-8 armoring
-		$s = parent::stripForSearch( $s );
-		wfProfileOut( __METHOD__ );
-		return $s;
-
+	function stripForSearch( $string, $doStrip = true ) {
+		// LanguageZh::stripForSearch
+		return parent::stripForSearch( $string, $doStrip, 'gan-hans' );
 	}
 
 	function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
+		$terms = self::convertDoubleWidth( $terms );
 		$terms = implode( '|', $this->mConverter->autoConvertToAllVariants( $terms ) );
 		$ret = array_unique( explode('|', $terms) );
 		return $ret;

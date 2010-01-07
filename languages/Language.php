@@ -1695,9 +1695,9 @@ class Language {
 	 * @param $string String
 	 * @return String
 	 */
-	function stripForSearch( $string ) {
-		global $wgDBtype, $wgSearchType;
-		if ( $wgDBtype != 'mysql' || $wgSearchType == 'LuceneSearch' ) {
+	function stripForSearch( $string, $doStrip = true ) {
+		global $wgDBtype;
+		if ( $wgDBtype != 'mysql' || $doStrip == false ) {
 			return $string;
 		}
 
@@ -1765,6 +1765,22 @@ class Language {
 			}
 		}
 		return $this->minSearchLength;
+	}
+
+	/**
+	 * convert double-width roman characters to single-width.
+	 * range: ff00-ff5f ~= 0020-007f
+	 */
+	protected static function convertDoubleWidth( $string ) {
+		$string = preg_replace( '/\xef\xbc([\x80-\xbf])/e', 'chr((ord("$1") & 0x3f) + 0x20)', $string );
+		$string = preg_replace( '/\xef\xbd([\x80-\x99])/e', 'chr((ord("$1") & 0x3f) + 0x60)', $string );
+		return $string;
+	}
+
+	protected static function wordSegmentation( $string, $pattern ) {
+		$string = preg_replace( $pattern, " $1 ", $string );
+		$string = preg_replace( '/ +/', ' ', $string );
+		return $string;
 	}
 
 	function convertForSearchResult( $termsArray ) {
