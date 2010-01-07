@@ -305,9 +305,6 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $wgLang->getCode() );
 		$tpl->set( 'userlangattributes', 'lang="' . $wgLang->getCode() . '" xml:lang="' . $wgLang->getCode() . '" dir="' . $wgLang->getDir() . '"');
-		if($this->mTitle->isSpecialPage()) {
-			$tpl->set( 'specialpageattributes', 'lang="' . $wgLang->getCode() . '" xml:lang="' . $wgLang->getCode() . '" dir="' . $wgLang->getDir() . '"');
-		}
 
 		$newtalks = $wgUser->getNewMessageLinks();
 
