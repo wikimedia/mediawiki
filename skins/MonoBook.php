@@ -81,13 +81,13 @@ class MonoBookTemplate extends QuickTemplate {
  class="mediawiki <?php $this->text('dir'); $this->text('capitalizeallnouns') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
 	<div id="globalWrapper">
 		<div id="column-content">
-	<div id="content">
+	<div id="content" <?php $this->html("specialpageattributes") ?>>
 		<a id="top"></a>
 		<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 		<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
 		<div id="bodyContent">
 			<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
-			<div id="contentSub"><?php $this->html('subtitle') ?></div>
+			<div id="contentSub" <?php $this->html('userlangattributes')  ?>><?php $this->html('subtitle') ?></div>
 			<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
 			<?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
 			<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
@@ -100,11 +100,11 @@ class MonoBookTemplate extends QuickTemplate {
 		</div>
 	</div>
 		</div>
-		<div id="column-one">
+		<div id="column-one" <?php $this->html('userlangattributes')  ?>>
 	<div id="p-cactions" class="portlet">
 		<h5><?php $this->msg('views') ?></h5>
 		<div class="pBody">
-			<ul <?php $this->html('userlangattributes') ?>>
+			<ul>
 	<?php		foreach($this->data['content_actions'] as $key => $tab) {
 					echo '
 				 <li id="' . Sanitizer::escapeId( "ca-$key" ) . '"';
@@ -169,7 +169,7 @@ class MonoBookTemplate extends QuickTemplate {
 ?>
 		</div><!-- end of the left (by default at least) column -->
 			<div class="visualClear"></div>
-			<div id="footer">
+			<div id="footer" <?php $this->html('userlangattributes') ?>>
 <?php
 		if($this->data['poweredbyico']) { ?>
 				<div id="f-poweredbyico"><?php $this->html('poweredbyico') ?></div>
@@ -221,7 +221,7 @@ class MonoBookTemplate extends QuickTemplate {
 		global $wgUseTwoButtonsSearchForm;
 ?>
 	<div id="p-search" class="portlet">
-		<h5 <?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg('search') ?></label></h5>
+		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('wgScript') ?>" id="searchform">
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
@@ -249,7 +249,7 @@ class MonoBookTemplate extends QuickTemplate {
 	function toolbox() {
 ?>
 	<div class="portlet" id="p-tb">
-		<h5 <?php $this->html('userlangattributes')?>><?php $this->msg('toolbox') ?></h5>
+		<h5><?php $this->msg('toolbox') ?></h5>
 		<div class="pBody">
 			<ul>
 <?php
@@ -328,7 +328,7 @@ class MonoBookTemplate extends QuickTemplate {
 	function customBox( $bar, $cont ) {
 ?>
 	<div class='generated-sidebar portlet' id='<?php echo Sanitizer::escapeId( "p-$bar" ) ?>'<?php echo $this->skin->tooltip('p-'.$bar) ?>>
-		<h5 <?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></h5>
+		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></h5>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>
