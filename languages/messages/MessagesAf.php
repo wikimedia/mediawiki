@@ -2356,6 +2356,7 @@ Die blokkade is moontlik reeds opgehef.',
 'ipb_blocked_as_range'            => "Fout: die IP-adres $1 is nie direk geblokkeer nie en die blokkade kan nie opgehef word nie.
 Die blokkade is 'n onderdeel van die reeks $2, waarvan die blokkade wel opgehef kan word.",
 'ip_range_invalid'                => 'Ongeldige IP waardegebied.',
+'ip_range_toolarge'               => 'Reeks-blokkades groter as /$1 word nie toegelaat nie.',
 'blockme'                         => 'Versper my',
 'proxyblocker'                    => 'Proxyblokker',
 'proxyblocker-disabled'           => 'Die funksie is gedeaktiveer.',
