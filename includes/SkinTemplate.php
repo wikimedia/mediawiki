@@ -313,7 +313,7 @@ class SkinTemplate extends Skin {
 
 		$lang = $wgLang->getCode();
 		$dir  = $wgLang->getDir();
-		if ( $code !== $wgContLang->getCode() || $dir !== $wgContLang->getDir() ) {
+		if ( $lang !== $wgContLang->getCode() || $dir !== $wgContLang->getDir() ) {
 			$attrs = "lang='$lang' xml:lang='$lang' dir='$dir'";
 
 			$tpl->set( 'userlangattributes', $attrs );
