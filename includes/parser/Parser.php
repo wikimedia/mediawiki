@@ -2332,11 +2332,10 @@ class Parser
 		# Use the time zone
 		global $wgLocaltimezone;
 		if ( isset( $wgLocaltimezone ) ) {
-			$oldtz = getenv( 'TZ' );
-			putenv( 'TZ='.$wgLocaltimezone );
+			$oldtz = date_default_timezone_get();
+			date_default_timezone_set( $wgLocaltimezone );
 		}
 
-		wfSuppressWarnings(); // E_STRICT system time bitching
 		$localTimestamp = date( 'YmdHis', $ts );
 		$localMonth = date( 'm', $ts );
 		$localMonth1 = date( 'n', $ts );
@@ -2348,9 +2347,8 @@ class Parser
 		$localYear = date( 'Y', $ts );
 		$localHour = date( 'H', $ts );
 		if ( isset( $wgLocaltimezone ) ) {
-			putenv( 'TZ='.$oldtz );
+			date_default_timezone_set( $oldtz );
 		}
-		wfRestoreWarnings();
 
 		switch ( $index ) {
 			case 'currentmonth':
@@ -3965,26 +3963,29 @@ class Parser
 		 * (see also bug 12815)
 		 */
 		$ts = $this->mOptions->getTimestamp();
-		$tz = wfMsgForContent( 'timezone-utc' );
 		if ( isset( $wgLocaltimezone ) ) {
-			$unixts = wfTimestamp( TS_UNIX, $ts );
-			$oldtz = getenv( 'TZ' );
-			putenv( 'TZ='.$wgLocaltimezone );
-			$ts = date( 'YmdHis', $unixts );
-			$tz = date( 'T', $unixts );  # might vary on DST changeover!
-
-			/* Allow translation of timezones trough wiki. date() can return
-			 * whatever crap the system uses, localised or not, so we cannot
-			 * ship premade translations.
-			 */
-			$key = 'timezone-' . strtolower( trim( $tz ) );
-			$value = wfMsgForContent( $key );
-			if ( !wfEmptyMsg( $key, $value ) ) $tz = $value;
-
-			putenv( 'TZ='.$oldtz );
+			$tz = $wgLocaltimezone;
+		} else {
+			$tz = date_default_timezone_get();
 		}
 
-		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tz)";
+		$unixts = wfTimestamp( TS_UNIX, $ts );
+		$oldtz = date_default_timezone_get();
+		date_default_timezone_set( $tz );
+		$ts = date( 'YmdHis', $unixts );
+		$tzMsg = date( 'T', $unixts );  # might vary on DST changeover!
+
+		/* Allow translation of timezones trough wiki. date() can return
+		 * whatever crap the system uses, localised or not, so we cannot
+		 * ship premade translations.
+		 */
+		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
+		$value = wfMsgForContent( $key );
+		if ( !wfEmptyMsg( $key, $value ) ) $tzMsg = $value;
+
+		date_default_timezone_set( $oldtz );
+
+		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
 
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags

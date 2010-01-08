@@ -140,7 +140,6 @@ if( $wgUseInstantCommons ) {
 	);
 }
 
-
 if ( !class_exists( 'AutoLoader' ) ) {
 	require_once( "$IP/includes/AutoLoader.php" );
 }
@@ -160,8 +159,18 @@ require_once( "$IP/includes/ImageFunctions.php" );
 require_once( "$IP/includes/StubObject.php" );
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
+
 # Raise the memory limit if it's too low
 wfMemoryLimit();
+
+/**
+ * Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+ 
+ * that happens whenever you use a date function without the timezone being
+ * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
+ */
+wfSuppressWarnings();
+date_default_timezone_set( date_default_timezone_get() );
+wfRestoreWarnings();
 
 $wgIP = false; # Load on demand
 # Can't stub this one, it sets up $_GET and $_REQUEST in its constructor

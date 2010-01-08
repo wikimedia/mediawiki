@@ -84,7 +84,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgUploadNavigationUrl now also affects images inline images that do not 
   exist. In that case the URL will get (?|&)wpDestFile=<filename> appended to 
   it as appropriate.
-  
+* If $wgLocaltimezone is null, use the server's timezone as the default for
+  signatures. This was always the behaviour documented in DefaultSettings.php
+  but has not been the actual behaviour for some time: instead, UTC was used 
+  by default.
+
+
 === New features in 1.16 ===
 
 * Add CSS defintion of the 'wikitable' class to shared.css
@@ -683,6 +688,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   type selector on Special:Log
 * (bug 20115) Special:Userlogin title says "Log in / create account" even if the
   user can't create an account
+* (bug 2658) Don't attempt to set the TZ environment variable.
 
 == API changes in 1.16 ==
 

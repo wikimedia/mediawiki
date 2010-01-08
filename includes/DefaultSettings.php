@@ -3080,10 +3080,10 @@ $wgBrowserBlackList = array(
 /**
  * Fake out the timezone that the server thinks it's in. This will be used for
  * date display and not for what's stored in the DB. Leave to null to retain
- * your server's OS-based timezone value. This is the same as the timezone.
+ * your server's OS-based timezone value. 
  *
- * This variable is currently used ONLY for signature formatting, not for
- * anything else.
+ * This variable is currently used only for signature formatting and for local 
+ * time/date parser variables ({{LOCALTIME}} etc.)
  *
  * Timezones can be translated by editing MediaWiki messages of type
  * timezone-nameinlowercase like timezone-utc.
@@ -3105,10 +3105,10 @@ $wgLocaltimezone = null;
  *   $wgLocalTZoffset = date("Z") / 60;
  *
  * If your server is not configured for the timezone you want, you can set
- * this in conjunction with the signature timezone and override the TZ
- * environment variable like so:
+ * this in conjunction with the signature timezone and override the PHP default
+ * timezone like so:
  *   $wgLocaltimezone="Europe/Berlin";
- *   putenv("TZ=$wgLocaltimezone");
+ *   date_default_timezone_set( $wgLocaltimezone );
  *   $wgLocalTZoffset = date("Z") / 60;
  *
  * Leave at NULL to show times in universal time (UTC/GMT).
