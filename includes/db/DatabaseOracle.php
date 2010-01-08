@@ -700,35 +700,9 @@ class DatabaseOracle extends DatabaseBase {
 				$condsDelete = array();
 				foreach ( $uniqueIndexes as $index )
 					$condsDelete[$index] = $row[$index];
-				$this->delete( $table, $condsDelete, $fname );
-/*
-				$sql = "DELETE FROM $table WHERE ";
-				$first = true;
-				foreach ( $uniqueIndexes as $index ) {
-					if ( $first ) {
-						$first = false;
-						$sql .= "(";
-					} else {
-						$sql .= ') OR (';
-					}
-					if ( is_array( $index ) ) {
-						$first2 = true;
-						foreach ( $index as $col ) {
-							if ( $first2 ) {
-								$first2 = false;
-							} else {
-								$sql .= ' AND ';
-							}
-							$sql .= $col.'=' . $this->addQuotes( $row[$col] );
-						}
-					} else {
-						$sql .= $index.'=' . $this->addQuotes( $row[$index] );
-					}
+				if (count($condsDelete) > 0) {
+					$this->delete( $table, $condsDelete, $fname );
 				}
-				$sql .= ')';
-
-				$this->doQuery( $sql);//, $fname );
-*/
 			}
 
 			if ( $sequenceData !== false && !isset( $row[$sequenceData['column']] ) ) {
