@@ -261,6 +261,12 @@ class Parser
 		if ( !$t || $t instanceof FakeTitle ) {
 			$t = Title::newFromText( 'NO TITLE' );
 		}
+		// If we still don't have a Title object, make sure we can
+		// convert whatever we've been passed to a string.
+		if ( !$t instanceOf Title && is_string( "$t" ) ) {
+			$t = Title::newFromText( "$t" );
+		}
+
 		if ( strval( $t->getFragment() ) !== '' ) {
 			# Strip the fragment to avoid various odd effects
 			$this->mTitle = clone $t;
@@ -329,14 +335,6 @@ class Parser
 		# No more strip!
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text );
-		// internalParse took care of the notitleconvert bit, so title conversion is here.
-		if ( $this->mDoTitleConvert && !$this->mTitle->isConversionTable()) {
-			$converted = $wgContLang->convert( $title );
-			if ( !$converted instanceOf Title ) {
-				$converted = Title::newFromText( $converted );
-			}
-			$this->setTitle( $converted );
-		}
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
@@ -355,11 +353,21 @@ class Parser
 
 		$this->replaceLinkHolders( $text );
 
-		# the position of the convert() call should not be changed. it
-		# assumes that the links are all replaced and the only thing left
-		# is the <nowiki> mark.
+		// The position of the convert() call should not be changed. it
+		// assumes that the links are all replaced and the only thing left
+		// is the <nowiki> mark.
 		if ( $this->mDoContentConvert && !$this->mTitle->isConversionTable()) {
 			$text = $wgContLang->convert( $text );
+		}
+
+		// A title may have been set in a conversion rule.
+		// Note that if a user tries to set a title in a conversion
+		// rule but content conversion was not done, then the parser
+		// won't pick it up.  This is probably expected behavior.
+		if ( $wgContLang->getConvRuleTitle() ) {
+			$this->setTitle( $wgContLang->getConvRuleTitle() );
+		} elseif ( $this->mDoTitleConvert && !$this->mTitle->isConversionTable() ) {
+			$this->setTitle( $wgContLang->convert( $title ) );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
