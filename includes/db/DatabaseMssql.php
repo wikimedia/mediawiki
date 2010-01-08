@@ -45,6 +45,10 @@ class DatabaseMssql extends DatabaseBase {
 
 	}
 
+	function getType() {
+		return 'mssql';
+	}
+
 	/**
 	 * todo: check if these should be true like parent class
 	 */

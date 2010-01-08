@@ -7,6 +7,10 @@
  * @see Database
  */
 class DatabaseMysql extends DatabaseBase {
+	function getType() {
+		return 'mysql';
+	}
+
 	/*private*/ function doQuery( $sql ) {
 		if( $this->bufferResults() ) {
 			$ret = mysql_query( $sql, $this->mConn );

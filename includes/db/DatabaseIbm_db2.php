@@ -391,7 +391,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			return $this->mDBname;
 		}
 	}
-	
+
+	function getType() {
+		return 'ibm_db2';
+	}
 	
 	######################################
 	# Setup
