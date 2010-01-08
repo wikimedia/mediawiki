@@ -30,28 +30,48 @@ class ExternalStoreDB {
 		$this->mParams = $params;
 	}
 
-	/** @todo Document.*/
+	/**
+	 * Get a LoadBalancer for the specified cluster
+	 *
+	 * @param $cluster String: cluster name
+	 * @return LoadBalancer object
+	 */
 	function &getLoadBalancer( $cluster ) {
 		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
 		
 		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
 	}
 
-	/** @todo Document.*/
+	/**
+	 * Get a slave database connection for the specified cluster
+	 *
+	 * @param $cluster String: cluster name
+	 * @return DatabaseBase object
+	 */
 	function &getSlave( $cluster ) {
 		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_SLAVE, array(), $wiki );
 	}
 
-	/** @todo Document.*/
+	/**
+	 * Get a master database connection for the specified cluster
+	 *
+	 * @param $cluster String: cluster name
+	 * @return DatabaseBase object
+	 */
 	function &getMaster( $cluster ) {
 		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_MASTER, array(), $wiki );
 	}
 
-	/** @todo Document.*/
+	/**
+	 * Get the 'blobs' table name for this database
+	 *
+	 * @param $db DatabaseBase
+	 * @return String: table name ('blobs' by default)
+	 */
 	function getTable( &$db ) {
 		$table = $db->getLBInfo( 'blobs table' );
 		if ( is_null( $table ) ) {
@@ -62,7 +82,7 @@ class ExternalStoreDB {
 
 	/**
 	 * Fetch data from given URL
-	 * @param string $url An url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
+	 * @param $url String: an url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
 	 */
 	function fetchFromURL( $url ) {
 		$path = explode( '/', $url );
