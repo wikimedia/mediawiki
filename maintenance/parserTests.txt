@@ -6929,14 +6929,14 @@ Taiwan is Taiwan.
 !! test
 Adding explicit conversion rule for title (T flag)
 !! options
-language=zh variant=zh-tw
+language=zh variant=zh-tw showtitle
 !! input
 Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
 !! result
+Taiwan
 <p>Should be stripped!
 </p>
 !! end
-
 
 !! test
 Raw output of variant escape tags (R flag)
@@ -6948,7 +6948,6 @@ Raw: -{R|zh:China;zh-tw:Taiwan}-
 <p>Raw: zh:China;zh-tw:Taiwan
 </p>
 !! end
-
 
 !! test
 Do not convert roman numbers to language variants
@@ -7513,6 +7512,47 @@ title=[[Main Page]]
 [[#section]]
 !! result
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
+!! end
+
+!! test
+Adding explicit conversion rule for title (T flag)
+!! options
+language=zh variant=zh-tw showtitle **** disabled (for now) because I think it uncovers a bug and I want a reminder
+!! input
+Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
+!! result
+Taiwan
+<p>Should be stripped!
+</p>
+!! end
+
+!! test
+Adding explicit conversion rule for title (T flag)
+!! options
+language=zh variant=zh showtitle **** disabled (for now) because I think it uncovers a bug and I want a reminder
+!! input
+Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
+!! result
+China
+<p>Should be stripped!
+</p>
+!! end
+
+!! test
+Explicit session-wise language variant mapping (A flag and - flag)
+!! options
+language=zh variant=zh **** disabled (for now) because I think it uncovers a bug and I want a reminder
+!! input
+Taiwan is not China.
+But -{zh:China;zh-tw:Taiwan}- is China,
+(This-{-|zh:China;zh-tw:Taiwan}- should be stripped!)
+and -{China}- is China.
+!! result
+<p>Taiwan is not China.
+But Taiwan is Taiwan,
+(This should be stripped!)
+and China is China.
+</p>
 !! end
 
 TODO:

@@ -31,6 +31,7 @@ class LanguageConverter {
 	var $mDescCodeSep = ':', $mDescVarSep = ';';
 	var $mUcfirst = false;
 	var $mHeaderVariant;
+	var $mConvRuleTitle = false;
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -459,8 +460,8 @@ class LanguageConverter {
 	 */
 	function applyManualConv( $convRule ) {
 		// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom
-        // conversion in title
-		$title = $convRule->getTitle();
+		// conversion in title
+		$this->mConvRuleTitle = $convRule->getTitle();
 
 		// apply manual conversion table to global table
 		$convTable = $convRule->getConvTable();
@@ -544,7 +545,7 @@ class LanguageConverter {
 	 * @return string converted text
 	 * @public
 	 */
-	function convert( $text, $isTitle ) {
+	function convert( $text ) {
 		global $wgDisableLangConversion;
 		if ( $wgDisableLangConversion ) return $text;
 
@@ -558,10 +559,6 @@ class LanguageConverter {
 
 		// Remove the last delimiter (wasn't real)
 	    $converted = substr( $converted, 0, - strlen( $this->mMarkup['end'] ) );
-		if ( $isTitle ) {
-			error_log("title2: $converted\n");
-			$this->mConvertedTitle = $converted;
-		}
 		return $converted;
 	}
 
@@ -1110,13 +1107,13 @@ class ConverterRule {
 	 * Parse rules conversion.
 	 * @private
 	 */
-	function getRuleConvertedStr( $variant, $doConvert ) {
+	function getRuleConvertedStr( $variant ) {
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
 
 		if ( count( $bidtable ) + count( $unidtable ) == 0 ) {
 			return $this->mRules;
-		} elseif ( $doConvert ) { // the text converted
+		} else {
 			// display current variant in bidirectional array
 			$disp = $this->getTextInBidtable( $variant );
 			// or display current variant in fallbacks
@@ -1142,8 +1139,6 @@ class ConverterRule {
 				}
 			}
 			return $disp;
-		} else { // no convert
-			return $this->mRules;
 		}
 	}
 
@@ -1271,15 +1266,13 @@ class ConverterRule {
 			// proces H,- flag or T only: output nothing
 			$this->mRuleDisplay = '';
 		} elseif ( in_array( 'S', $flags ) ) {
-			// true hard-coded now since we shouldn't be called if we're not converting
-			$this->mRuleDisplay = $this->getRuleConvertedStr( $variant, true );
+			$this->mRuleDisplay = $this->getRuleConvertedStr( $variant );
 		} else {
 			$this->mRuleDisplay = $this->mManualCodeError;
 		}
 		// process T flag
 		if ( in_array( 'T', $flags ) ) {
-			// true hard-coded now since we shouldn't be called if we're not converting
-			$this->mRuleTitle = $this->getRuleConvertedStr( $variant, true );
+			$this->mRuleTitle = $this->getRuleConvertedStr( $variant );
 		}
 
 		if ( in_array( '-', $flags ) ) {

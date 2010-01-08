@@ -34,11 +34,12 @@ if( function_exists( 'mb_strtoupper' ) ) {
  */
 class FakeConverter {
 	var $mLang;
+	var $mConvRuleTitle;
 	function FakeConverter($langobj) {$this->mLang = $langobj;}
 	function autoConvertToAllVariants($text) {return $text;}
 	function convert($t, $i) {return $t;}
 	function getVariants() { return array( $this->mLang->getCode() ); }
-	function getPreferredVariant() {return $this->mLang->getCode(); }
+	function getPreferredVariant() { return $this->mLang->getCode(); }
 	function findVariantLink(&$l, &$n, $ignoreOtherCond = false) {}
 	function getExtraHashOptions() {return '';}
 	function getParsedTitle() {return '';}
@@ -2663,5 +2664,12 @@ class Language {
 		$size = round( $size, $round );
 		$text = $this->getMessageFromDB( $msg );
 		return str_replace( '$1', $this->formatNum( $size ), $text );
+	}
+
+	/**
+	 * Get the conversion rule title, if any.
+	 */
+	function getConvRuleTitle() {
+		return $this->mConverter->mConvRuleTitle;
 	}
 }

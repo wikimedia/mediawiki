@@ -493,6 +493,10 @@ class ParserTest {
 			$result = $this->tidy($result);
 		}
 
+		if ( isset( $opts['showtitle'] ) ) {
+			$out = $parser->mTitle . "\n$out";
+        }
+
 		$this->teardownGlobals();
 
 		if( $result === $out && ( $noxml === true || $this->wellFormed( $out ) ) ) {
