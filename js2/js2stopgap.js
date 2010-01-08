@@ -9473,7 +9473,7 @@ if( typeof mw == 'undefined' || !mw ){
     * Provides js2 compatible onload hook
     * @param func Function to call when ready
     */
-   mw.addOnloadHook = function( func ) {
+   mw.ready = function( func ) {
        $j(document).ready( func );
    }
    // Define a dummy mw.load function:
