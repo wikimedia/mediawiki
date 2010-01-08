@@ -34,7 +34,6 @@ class MathRenderer {
 	function render() {
 		global $wgTmpDirectory, $wgInputEncoding;
 		global $wgTexvc, $wgMathCheckFiles, $wgTexvcBackgroundColor;
-		$fname = 'MathRenderer::render';
 
 		if( $this->mode == MW_MATH_SOURCE ) {
 			# No need to render or parse anything more!
@@ -179,7 +178,7 @@ class MathRenderer {
 					'math_html_conservativeness' => $this->conservativeness,
 					'math_html' => $this->html,
 					'math_mathml' => $this->mathml,
-				  ), $fname
+				  ), __METHOD__
 				);
 			}
 			
@@ -204,14 +203,13 @@ class MathRenderer {
 
 	function _recall() {
 		global $wgMathDirectory, $wgMathCheckFiles;
-		$fname = 'MathRenderer::_recall';
 
 		$this->md5 = md5( $this->tex );
 		$dbr = wfGetDB( DB_SLAVE );
 		$rpage = $dbr->selectRow( 'math',
 			array( 'math_outputhash','math_html_conservativeness','math_html','math_mathml' ),
 			array( 'math_inputhash' => $dbr->encodeBlob(pack("H32", $this->md5))), # Binary packed, not hex
-			$fname
+			__METHOD__
 		);
 
 		if( $rpage !== false ) {
