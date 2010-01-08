@@ -27,6 +27,34 @@
  * @ingroup Search
  */
 class SearchOracle extends SearchEngine {
+	
+	private $reservedWords = array ('ABOUT' => 1, 
+									'ACCUM' => 1, 
+									'AND' => 1, 
+									'BT' => 1, 
+									'BTG' => 1, 
+									'BTI' => 1, 
+									'BTP' => 1,
+									'FUZZY' => 1, 
+									'HASPATH' => 1, 
+									'INPATH' => 1, 
+									'MINUS' => 1, 
+									'NEAR' => 1, 
+									'NOT' => 1,
+									'NT' => 1, 
+									'NTG' => 1, 
+									'NTI' => 1, 
+									'NTP' => 1, 
+									'OR' => 1, 
+									'PT' => 1, 
+									'RT' => 1, 
+									'SQE' => 1,
+									'SYN' => 1, 
+									'TR' => 1, 
+									'TRSYN' => 1, 
+									'TT' => 1, 
+									'WITHIN' => 1);
+	
 	function __construct($db) {
 		$this->db = $db;
 	}
@@ -191,6 +219,7 @@ class SearchOracle extends SearchEngine {
 	private function escapeTerm($t) {
 		global $wgContLang;
 		$t = $wgContLang->stripForSearch($t);
+		$t = isset($this->reservedWords[strtoupper($t)]) ? '{'.$t.'}' : $t;
 		$t = preg_replace('/^"(.*)"$/', '($1)', $t);
 		$t = preg_replace('/([-&|])/', '\\\\$1', $t);
 		return $t;
