@@ -81,7 +81,7 @@ class MonoBookTemplate extends QuickTemplate {
  class="mediawiki <?php $this->text('dir'); $this->text('capitalizeallnouns') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
 	<div id="globalWrapper">
 		<div id="column-content">
-	<div id="content" <?php $this->html("userlangattributes") ?>>
+	<div id="content" <?php $this->html("specialpageattributes") ?>>
 		<a id="top"></a>
 		<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 		<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>

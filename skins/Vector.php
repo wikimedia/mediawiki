@@ -463,7 +463,7 @@ class VectorTemplate extends QuickTemplate {
 		<div id="page-base" class="noprint"></div>
 		<div id="head-base" class="noprint"></div>
 		<!-- content -->
-		<div id="content" <?php $this->html('userlangattributes') ?>>
+		<div id="content" <?php $this->html('specialpageattributes') ?>>
 			<a id="top"></a>
 			<div id="mw-js-message" style="display:none;" <?php $this->html('userlangattributes') ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
