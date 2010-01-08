@@ -827,8 +827,8 @@ Tanme aministrator, a peul ancora s-ciairé costa diferensa; a peulo essje pì '
 'revdelete-nologid-title'     => 'Intrada dël registr pa giusta',
 'revdelete-nologid-text'      => "A l'ha pa spessificà n'event dël registr bërsaj andoa apliché costa fonsion o l'intrada spessificà a esist nen.",
 'revdelete-no-file'           => "L'archivi sërcà a-i é pa.",
-'revdelete-show-file-confirm' => 'It ses-to sicur ëd vorèj vëdde na vërsion scanselà dël file "<nowiki>$1</nowiki>" da $2 a $3?',
-'revdelete-show-file-submit'  => "E'!",
+'revdelete-show-file-confirm' => 'É-lo sigur ëd vorèj vëdde na vërsion scancelà dl\'archivi "<nowiki>$1</nowiki>" da $2 a $3?',
+'revdelete-show-file-submit'  => 'Bò!',
 'revdelete-selected'          => "'''{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Event|Event}} dël registr selessionà:'''",
 'revdelete-text'              => "Le version scancelà e j'event a së s-ciaireran sempe ant la stòria dla pàgina e ant ij registr, ma sò test al pùblich a j'andrà pì nen.'''

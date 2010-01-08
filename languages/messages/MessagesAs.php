@@ -240,6 +240,7 @@ $messages = array(
 'vector-action-delete'       => 'মচি পেলাওক',
 'vector-action-move'         => 'স্থানান্তৰ কৰক',
 'vector-action-protect'      => 'সংৰক্ষিত কৰক',
+'vector-action-undelete'     => 'মচি পেলাওঁক',
 'vector-action-unprotect'    => 'অসংৰক্ষিত কৰক',
 'vector-namespace-category'  => 'বিষয়শ্ৰেণী',
 'vector-namespace-help'      => 'সহায় পৃষ্ঠা',
@@ -525,6 +526,7 @@ $messages = array(
 'createaccount-text'         => 'আপোনাৰ ই-মেইল ঠিকণাৰ কাৰণে {{SITENAME}} ($4) ত "$2" নামৰ কোনোবাই, "$3" গুপ্তশব্দ দি সদস্যভুক্তি কৰিছে। আনুগ্রহ কৰি আপুনি প্রৱেশ কৰক আৰু গুপ্তশব্দটো সলনি কৰক।
 
 যদি এ্য়া ভুলতে হৈছে, তেনেহলে আপুনি এই বার্তাটো অবজ্ঞা কৰিব পাৰে ।',
+'usernamehasherror'          => 'সদস্যনামত হেচ আখৰ থাকিব নোৱাৰে',
 'loginlanguagelabel'         => 'ভাষা: $1',
 
 # Password reset dialog
@@ -632,7 +634,7 @@ $messages = array(
 আপুনি আন পৃষ্ঠাত [[Special:Search/{{PAGENAME}}| এই শিৰোণামা অনুসন্ধান কৰিব পাৰে]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} সম্পৰ্কিয় অভিলেখ অনুসন্ধান কৰিব পাৰে],
 বা [{{fullurl:{{FULLPAGENAME}}|action=edit}} এই পৃষ্ঠা সম্পাদনা কৰিব পাৰে] ।',
-'note'                          => "'''নোট:'''",
+'note'                          => "'''টোকা:'''",
 'previewnote'                   => "'''মনত ৰাখিব যে এয়া কেৱল খচৰা হে, সাল-সলনিবোৰ এতিয়াও সংৰক্ষিত কৰা হোৱা নাই!'''",
 'editing'                       => '$1 সম্পাদনা',
 'editingsection'                => '$1 (বিভাগ) সম্পদনা কৰি থকা হৈছে',
@@ -663,6 +665,7 @@ $messages = array(
 'templatesusedpreview'          => 'এই খচৰাত ব্যৱহৃত {{PLURAL:$1|ঠাঁচ|ঠাঁচ সমূহ}}:',
 'template-protected'            => '(সুৰক্ষিত)',
 'template-semiprotected'        => '(অর্ধ-সুৰক্ষিত)',
+'nocreatetitle'                 => 'পৃষ্ঠা সৃষ্টি সিমিত',
 'nocreatetext'                  => '{{SITENAME}} ত নতুন লিখনী লিখা ৰদ কৰা হৈছে।
 আপুনি ঘুৰি গৈ অস্তিত্বত থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:UserLogin| নতুন সদস্যভর্তি হওক/ প্রবেশ কৰক]] ।',
 'nocreate-loggedin'             => 'নতুন পৃষ্ঠা সৃষ্টি কৰিবলৈ আপুনাৰ অনুমতি নাই ।',
@@ -926,6 +929,7 @@ $messages = array(
 'newpageletter'                  => 'ন:',
 'boteditletter'                  => 'য:',
 'rc_categories_any'              => 'যিকোনো',
+'rc-enhanced-expand'             => 'সবিশেষ দেকোৱাওক (জাভাস্ক্ৰিপ্টৰ প্ৰয়োজন)',
 'rc-enhanced-hide'               => 'সবিশেষ  লুকাওঁক',
 
 # Recent changes linked

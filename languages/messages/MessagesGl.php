@@ -1207,7 +1207,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-misc'                    => 'Preferencias varias',
 'prefs-resetpass'               => 'Cambiar o contrasinal',
 'prefs-email'                   => 'Opcións de correo electrónico',
-'prefs-rendering'               => 'Apariencia',
+'prefs-rendering'               => 'Aparencia',
 'saveprefs'                     => 'Gardar as preferencias',
 'resetprefs'                    => 'Eliminar os cambios non gardados',
 'restoreprefs'                  => 'Restaurar todas as preferencias por defecto',
@@ -2656,7 +2656,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 
 # Scripts
 'common.js'   => '/* Calquera JavaScript será cargado para todos os usuarios en cada páxina cargada. */',
-'monobook.js' => '/* O JavaScript que apareza aquí só será cargado aos usuarios que usan a apariencia MonoBook. */',
+'monobook.js' => '/* O JavaScript que apareza aquí só será cargado aos usuarios que usan a aparencia MonoBook. */',
 
 # Metadata
 'nodublincore'      => 'A opción de metadatos RDF do Dublin Core está desactivada neste servidor.',
@@ -2697,7 +2697,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'skinname-nostalgia'   => 'Morriña',
 'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook'    => 'MonoBook',
-'skinname-myskin'      => 'A miña apariencia',
+'skinname-myskin'      => 'A miña aparencia',
 'skinname-chick'       => 'Parrulo',
 'skinname-simple'      => 'Sinxela',
 'skinname-modern'      => 'Moderna',

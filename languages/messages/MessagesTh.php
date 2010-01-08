@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ans
+ * @author Horus
  * @author LMNOP at Thai Wikipedia (manop@itshee.com) since July 2007
  * @author Manop
  * @author Mopza
@@ -588,6 +589,7 @@ $1',
 'nav-login-createaccount'    => 'ล็อกอิน / สร้างบัญชีผู้ใช้',
 'loginprompt'                => 'ต้องเปิดใช้คุกกี้ก่อนที่จะล็อกอินเข้าสู่ {{SITENAME}}',
 'userlogin'                  => 'ล็อกอิน / สร้างบัญชีผู้ใช้',
+'userloginnocreate'          => 'ล็อกอิน',
 'logout'                     => 'ล็อกเอาต์',
 'userlogout'                 => 'ล็อกเอาต์',
 'notloggedin'                => 'ไม่ได้ล็อกอิน',
