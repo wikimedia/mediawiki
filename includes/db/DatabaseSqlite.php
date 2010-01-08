@@ -32,6 +32,10 @@ class DatabaseSqlite extends DatabaseBase {
 		$this->open( $server, $user, $password, $dbName );
 	}
 
+	function getType() {
+		return 'sqlite';
+	}
+
 	/**
 	 * @todo: check if it should be true like parent class
 	 */

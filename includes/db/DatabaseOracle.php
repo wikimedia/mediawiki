@@ -192,6 +192,10 @@ class DatabaseOracle extends DatabaseBase {
 		wfRunHooks( 'DatabaseOraclePostInit', array( &$this ) );
 	}
 
+	function getType() {
+		return 'oracle';
+	}
+
 	function cascadingDeletes() {
 		return true;
 	}

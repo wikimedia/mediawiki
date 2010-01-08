@@ -84,6 +84,10 @@ class DatabasePostgres extends DatabaseBase {
 
 	}
 
+	function getType() {
+		return 'postgres';
+	}
+
 	function cascadingDeletes() {
 		return true;
 	}
