@@ -19,7 +19,13 @@ class ExternalStore {
 		$this->mParams = $params;
 	}
 	
-	/* Fetch data from given URL */
+	/**
+	 * Fetch data from given URL
+	 *
+	 * @param $url String: The URL of the text to get
+	 * @param $params Array: associative array of parameters for the ExternalStore object.
+	 * @return The text stored or false on error
+	 */
 	static function fetchFromURL( $url, $params = array() ) {
 		global $wgExternalStores;
 
@@ -39,6 +45,10 @@ class ExternalStore {
 
 	/**
 	 * Get an external store object of the given type, with the given parameters
+	 *
+	 * @param $proto String: type of external storage, should be a value in $wgExternalStores
+	 * @param $params Array: associative array of parameters for the ExternalStore object.
+	 * @return ExternalStore subclass or false on error
 	 */
 	static function getStoreObject( $proto, $params = array() ) {
 		global $wgExternalStores;
@@ -61,7 +71,7 @@ class ExternalStore {
 	 * Store a data item to an external store, identified by a partial URL
 	 * The protocol part is used to identify the class, the rest is passed to the
 	 * class itself as a parameter.
-	 * Returns the URL of the stored data item, or false on error
+	 * @return The URL of the stored data item, or false on error
 	 */
 	static function insert( $url, $data, $params = array() ) {
 		list( $proto, $params ) = explode( '://', $url, 2 );
@@ -78,9 +88,9 @@ class ExternalStore {
 	 * This function does not need a url param, it builds it by
 	 * itself. It also fails-over to the next possible clusters.
 	 *
-	 * @param string $data
-	 * @param array $params Associative array of parameters for the ExternalStore object.
-	 * Returns the URL of the stored data item, or false on error
+	 * @param $data String
+	 * @param $storageParams Array: associative array of parameters for the ExternalStore object.
+	 * @return The URL of the stored data item, or false on error
 	 */
 	public static function insertToDefault( $data, $storageParams = array() ) {
 		global $wgDefaultExternalStore;
