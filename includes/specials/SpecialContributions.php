@@ -89,44 +89,45 @@ class SpecialContributions extends SpecialPage {
 			return $this->feed( $feedType );
 		}
 
-		wfRunHooks( 'SpecialContributionsBeforeMainOutput', $id );
+		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ) ) ) {
 
-		$wgOut->addHTML( $this->getForm() );
+			$wgOut->addHTML( $this->getForm() );
 
-		$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], $this->opts['month'] );
-		if( !$pager->getNumRows() ) {
-			$wgOut->addWikiMsg( 'nocontribs', $target );
-		} else {
-			# Show a message about slave lag, if applicable
-			if( ( $lag = $pager->getDatabase()->getLag() ) > 0 )
-				$wgOut->showLagWarning( $lag );
-
-			$wgOut->addHTML(
-				'<p>' . $pager->getNavigationBar() . '</p>' .
-				$pager->getBody() .
-				'<p>' . $pager->getNavigationBar() . '</p>'
-			);
-		}
-
-
-		# Show the appropriate "footer" message - WHOIS tools, etc.
-		if( $target != 'newbies' ) {
-			$message = 'sp-contributions-footer';
-			if ( IP::isIPAddress( $target ) ) {
-				$message = 'sp-contributions-footer-anon';
+			$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], $this->opts['month'] );
+			if( !$pager->getNumRows() ) {
+				$wgOut->addWikiMsg( 'nocontribs', $target );
 			} else {
-				$user = User::newFromName( $target );
-				if ( !$user || $user->isAnon() ) {
-					// No message for non-existing users
-					return;
-				}
+				# Show a message about slave lag, if applicable
+				if( ( $lag = $pager->getDatabase()->getLag() ) > 0 )
+					$wgOut->showLagWarning( $lag );
+
+				$wgOut->addHTML(
+					'<p>' . $pager->getNavigationBar() . '</p>' .
+					$pager->getBody() .
+					'<p>' . $pager->getNavigationBar() . '</p>'
+				);
 			}
 
-			$text = wfMsgNoTrans( $message, $target );
-			if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
-				$wgOut->wrapWikiMsg(
-					"<div class='mw-contributions-footer'>\n$1\n</div>",
-					array( $message, $target ) );
+
+			# Show the appropriate "footer" message - WHOIS tools, etc.
+			if( $target != 'newbies' ) {
+				$message = 'sp-contributions-footer';
+				if ( IP::isIPAddress( $target ) ) {
+					$message = 'sp-contributions-footer-anon';
+				} else {
+					$user = User::newFromName( $target );
+					if ( !$user || $user->isAnon() ) {
+						// No message for non-existing users
+						return;
+					}
+				}
+
+				$text = wfMsgNoTrans( $message, $target );
+				if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
+					$wgOut->wrapWikiMsg(
+						"<div class='mw-contributions-footer'>\n$1\n</div>",
+						array( $message, $target ) );
+				}
 			}
 		}
 	}

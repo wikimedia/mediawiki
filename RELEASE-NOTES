@@ -288,9 +288,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19791) Add URL of file source as comment to thumbs (for ImageMagick)
 * (bug 21946) Sorted wikitables do not properly handle minus signs
 * (bug 18885) Red links for media files do not support shared repositories
-* Added $wgFixArchaicUnicode, which, if enabled, converts some deprecated 
-  Unicode sequences in Arabic and Malayalam text to their Unicode 5.1 
-  equivalents. 
+* Added $wgFixArchaicUnicode, which, if enabled, converts some deprecated
+  Unicode sequences in Arabic and Malayalam text to their Unicode 5.1
+  equivalents.
+* (bug 22051) Returing false in SpecialContributionsBeforeMainOutput hook now
+  stops normal output
 
 === Bug fixes in 1.16 ===
 
