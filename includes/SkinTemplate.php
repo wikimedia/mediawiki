@@ -304,7 +304,26 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userpage', $this->userpage );
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $wgLang->getCode() );
-		$tpl->set( 'userlangattributes', 'lang="' . $wgLang->getCode() . '" xml:lang="' . $wgLang->getCode() . '" dir="' . $wgLang->getDir() . '"');
+
+		// Users can have their language set differently than the
+		// content of the wiki. For these users, tell the web browser
+		// that interface elements are in a different language.
+		$tpl->set( 'userlangattributes', '');
+		$tpl->set( 'specialpageattributes', '');
+
+		$code = $wgLang->getCode();
+		$dir  = $wgLang->getDir();
+		if ( $code !== $wgContLang->getCode() || $dir !== $wgContLang->getDir() ) {
+			$attrs = "lang='$lang' xml:lang='$lang' dir='$dir'";
+
+			$tpl->set( 'userlangattributes', $attrs );
+
+			// The content of SpecialPages should be presented in the
+			// user's language. Content of regular pages should not be touched.
+			if($this->mTitle->isSpecialPage()) {
+				$tpl->set( 'specialpageattributes', $attrs );
+			}
+		}
 
 		$newtalks = $wgUser->getNewMessageLinks();
 
