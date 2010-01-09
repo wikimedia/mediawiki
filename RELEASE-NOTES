@@ -19,6 +19,7 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.16 ===
+
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
 * $wgLocalFileRepo/$wgForeignFileRepos now have a 'fileMode' parameter to
@@ -81,12 +82,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   similarly to the category namespace.
 * $wgEnableSorbs renamed to $wgDnsBlacklistUrls ($wgEnableSorbs kept for
   backward compatibility)
-* $wgUploadNavigationUrl now also affects images inline images that do not 
-  exist. In that case the URL will get (?|&)wpDestFile=<filename> appended to 
+* $wgUploadNavigationUrl now also affects images inline images that do not
+  exist. In that case the URL will get (?|&)wpDestFile=<filename> appended to
   it as appropriate.
 * If $wgLocaltimezone is null, use the server's timezone as the default for
   signatures. This was always the behaviour documented in DefaultSettings.php
-  but has not been the actual behaviour for some time: instead, UTC was used 
+  but has not been the actual behaviour for some time: instead, UTC was used
   by default.
 
 
@@ -659,10 +660,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   only displayed to the users that have "editinterface" right
 * (bug 21740) Attempting to protect a page that doesn't exist (salting) returns
   "unknown error"
-* (bug 18762) both redirects and links get fixed one after another if 
+* (bug 18762) both redirects and links get fixed one after another if
   redirects-only switch is not present
 * (bug 20159) thumbnails rerendered if older that $wgThumbnailEpoch
-* Fixed a bug which in some situations causes the job queue to grow forever, 
+* Fixed a bug which in some situations causes the job queue to grow forever,
   due to an infinite loop of job requeues.
 * (bug 21523) File that can have multiple pages (djvu, pdf, ...) no longer have
   the page selector when they have only one page
@@ -693,6 +694,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 2658) Don't attempt to set the TZ environment variable.
 * (bug 9794) User rights log entries for foreign user now links to the foreign
   user's page if possible
+* (bug 22034) Use wfClientAcceptsGzip() in wfGzipHandler instead of
+  reimplementing it.
 
 == API changes in 1.16 ==
 
@@ -763,8 +766,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21441) meta=userinfo&uiprop=options no longer returns default options
   for logged-in users under certain circumstances
 * (bug 21945) Add chomp control in YAML
-* Expand the thumburl to an absolute url to make it consistent with url and 
-  descriptionurl 
+* Expand the thumburl to an absolute url to make it consistent with url and
+  descriptionurl
 * (bug 20233) ApiLogin::execute() doesn't handle LoginForm :: RESET_PASS
 
 === Languages updated in 1.16 ===

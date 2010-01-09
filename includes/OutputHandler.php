@@ -74,12 +74,9 @@ function wfGzipHandler( $s ) {
 		return $s;
 	}
 
-	if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
-		$tokens = preg_split( '/[,; ]/', $_SERVER['HTTP_ACCEPT_ENCODING'] );
-		if ( in_array( 'gzip', $tokens ) ) {
-			header( 'Content-Encoding: gzip' );
-			$s = gzencode( $s, 6 );
-		}
+	if( wfClientAcceptsGzip() ) {
+		header( 'Content-Encoding: gzip' );
+		$s = gzencode( $s, 6 );
 	}
 
 	// Set vary header if it hasn't been set already
