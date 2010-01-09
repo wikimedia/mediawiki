@@ -691,6 +691,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20115) Special:Userlogin title says "Log in / create account" even if the
   user can't create an account
 * (bug 2658) Don't attempt to set the TZ environment variable.
+* (bug 9794) User rights log entries for foreign user now links to the foreign
+  user's page if possible
 
 == API changes in 1.16 ==
 
