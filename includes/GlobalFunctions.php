@@ -1168,15 +1168,17 @@ function wfNumLink( $offset, $limit, $title, $query = '' ) {
  */
 function wfClientAcceptsGzip() {
 	global $wgUseGzip;
-	# FIXME: we may want to blacklist some broken browsers
-	$m = array();
-	if( preg_match(
-		'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
-		$_SERVER['HTTP_ACCEPT_ENCODING'],
-		$m ) ) {
-		if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) return false;
-		wfDebug( " accepts gzip\n" );
-		return true;
+	if( $wgUseGzip ) {
+		# FIXME: we may want to blacklist some broken browsers
+		$m = array();
+		if( preg_match(
+			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
+			$_SERVER['HTTP_ACCEPT_ENCODING'],
+			$m ) ) {
+			if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) return false;
+			wfDebug( " accepts gzip\n" );
+			return true;
+		}
 	}
 	return false;
 }
