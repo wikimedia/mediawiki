@@ -377,9 +377,10 @@ CONTROL;
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
 			if( !$allowed ) {
+				$msg = $suppressed ? 'rev-suppressed-no-diff' : 'rev-deleted-no-diff';
 				# Give explanation for why revision is not visible
 				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
-					array( 'rev-deleted-no-diff' ) );
+					array( $msg ) );
 			} else {
 				# Give explanation and add a link to view the diff...
 				$link = $this->mTitle->getFullUrl( array(
