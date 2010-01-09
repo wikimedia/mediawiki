@@ -19,13 +19,19 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * @defgroup Feed Feed
+ *
  * Basic support for outputting syndication feeds in RSS, other formats.
  * Contain a feed class as well as classes to build rss / atom ... feeds
  * Available feeds are defined in Defines.php
+ *
+ * @file
  */
 
 /**
  * A base class for basic support for outputting syndication feeds in RSS and other formats.
+ *
+ * @ingroup Feed
  */
 class FeedItem {
 	/**#@+
@@ -39,9 +45,15 @@ class FeedItem {
 	var $Author = '';
 	/**#@-*/
 
-	/**#@+
-	 * @todo document
-	 * @param $Url URL uniquely designating the item.
+	/**
+	 * Constructor
+	 *
+	 * @param $Title String: Item's title
+	 * @param $Description String
+	 * @param $Url String: URL uniquely designating the item.
+	 * @param $Date String: Item's date
+	 * @param $Author String: Author's user name
+	 * @param $Comments String
 	 */
 	function __construct( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
 		$this->Title = $Title;
@@ -52,41 +64,87 @@ class FeedItem {
 		$this->Comments = $Comments;
 	}
 
+	/**
+	 * Encode $string so that it can be safely embedded in a XML document
+	 *
+	 * @param $string String: string to encode
+	 * @return String
+	 */
 	public function xmlEncode( $string ) {
 		$string = str_replace( "\r\n", "\n", $string );
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string );
 		return htmlspecialchars( $string );
 	}
 
+	/**
+	 * Get the title of this item; already xml-encoded
+	 *
+	 * @return String
+	 */
 	public function getTitle() {
 		return $this->xmlEncode( $this->Title );
 	}
 
+	/**
+	 * Get the URL of this item; already xml-encoded
+	 *
+	 * @return String
+	 */
 	public function getUrl() {
 		return $this->xmlEncode( $this->Url );
 	}
 
+	/**
+	 * Get the description of this item; already xml-encoded
+	 *
+	 * @return String
+	 */
 	public function getDescription() {
 		return $this->xmlEncode( $this->Description );
 	}
 
+	/**
+	 * Get the language of this item
+	 *
+	 * @return String
+	 */
 	public function getLanguage() {
 		global $wgContLanguageCode;
 		return $wgContLanguageCode;
 	}
 
+	/**
+	 * Get the title of this item
+	 *
+	 * @return String
+	 */
 	public function getDate() {
 		return $this->Date;
 	}
+
+	/**
+	 * Get the author of this item; already xml-encoded
+	 *
+	 * @return String
+	 */
 	public function getAuthor() {
 		return $this->xmlEncode( $this->Author );
 	}
+
+	/**
+	 * Get the comment of this item; already xml-encoded
+	 *
+	 * @return String
+	 */
 	public function getComments() {
 		return $this->xmlEncode( $this->Comments );
 	}
 	
 	/**
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
+	 *
+	 * @param $text String: wikitext
+	 * @return String
 	 */
 	public static function stripComment( $text ) {
 		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
@@ -96,6 +154,7 @@ class FeedItem {
 
 /**
  * @todo document (needs one-sentence top-level class description).
+ * @ingroup Feed
  */
 class ChannelFeed extends FeedItem {
 	/**#@+
@@ -133,10 +192,8 @@ class ChannelFeed extends FeedItem {
 	 *
 	 * This should be called from the outHeader() method,
 	 * but can also be called separately.
-	 *
-	 * @public
 	 */
-	function httpHeaders() {
+	public function httpHeaders() {
 		global $wgOut;
 
 		# We take over from $wgOut, excepting its cache header info
@@ -178,13 +235,16 @@ class ChannelFeed extends FeedItem {
 
 /**
  * Generate a RSS feed
+ *
+ * @ingroup Feed
  */
 class RSSFeed extends ChannelFeed {
 
 	/**
 	 * Format a date given a timestamp
-	 * @param integer $ts Timestamp
-	 * @return string Date string
+	 *
+	 * @param $ts Integer: timestamp
+	 * @return String: date string
 	 */
 	function formatTime( $ts ) {
 		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
@@ -210,7 +270,7 @@ class RSSFeed extends ChannelFeed {
 
 	/**
 	 * Output an RSS 2.0 item
-	 * @param FeedItem item to be output
+	 * @param $item FeedItem: item to be output
 	 */
 	function outItem( $item ) {
 	?>
@@ -237,6 +297,8 @@ class RSSFeed extends ChannelFeed {
 
 /**
  * Generate an Atom feed
+ *
+ * @ingroup Feed
  */
 class AtomFeed extends ChannelFeed {
 	/**
