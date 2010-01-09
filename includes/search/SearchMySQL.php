@@ -318,35 +318,12 @@ class SearchMySQL extends SearchEngine {
 /**
  * @ingroup Search
  */
-class MySQLSearchResultSet extends SearchResultSet {
+class MySQLSearchResultSet extends SqlSearchResultSet {
 	function MySQLSearchResultSet( $resultSet, $terms, $totalHits=null ) {
-		$this->mResultSet = $resultSet;
-		$this->mTerms = $terms;
+		parent::__construct( $resultSet, $terms );
 		$this->mTotalHits = $totalHits;
 	}
 
-	function termMatches() {
-		return $this->mTerms;
-	}
-
-	function numRows() {
-		return $this->mResultSet->numRows();
-	}
-
-	function next() {
-		$row = $this->mResultSet->fetchObject();
-		if( $row === false ) {
-			return false;
-		} else {
-			return new SearchResult( $row );
-		}
-	}
-
-	function free() {
-		$this->mResultSet->free();
-	}
-
-	
 	function getTotalHits() {
 		return $this->mTotalHits;
 	}

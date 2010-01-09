@@ -35,22 +35,22 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param $term String: raw search term
-	 * @return IBM_DB2SearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), true)));
-		return new IBM_DB2SearchResultSet($resultSet, $this->searchTerms);
+		return new SqlSearchResultSet($resultSet, $this->searchTerms);
 	}
 
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param $term String: taw search term
-	 * @return IBM_DB2SearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchTitle($term) {
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), false)));
-		return new MySQLSearchResultSet($resultSet, $this->searchTerms);
+		return new SqlSearchResultSet($resultSet, $this->searchTerms);
 	}
 
 
@@ -220,30 +220,5 @@ class SearchIBM_DB2 extends SearchEngine {
 			array('si_page'  => $id),
 			'SearchIBM_DB2::updateTitle',
 			array());
-	}
-}
-
-/**
- * @ingroup Search
- */
-class IBM_DB2SearchResultSet extends SearchResultSet {
-	function __construct($resultSet, $terms) {
-		$this->mResultSet = $resultSet;
-		$this->mTerms = $terms;
-	}
-
-	function termMatches() {
-		return $this->mTerms;
-	}
-
-	function numRows() {
-		return $this->mResultSet->numRows();
-	}
-
-	function next() {
-		$row = $this->mResultSet->fetchObject();
-		if ($row === false)
-			return false;
-		return new SearchResult($row);
 	}
 }
