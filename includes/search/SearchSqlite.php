@@ -350,35 +350,12 @@ class SearchSqlite extends SearchEngine {
 /**
  * @ingroup Search
  */
-class SqliteSearchResultSet extends SearchResultSet {
+class SqliteSearchResultSet extends SqlSearchResultSet {
 	function SqliteSearchResultSet( $resultSet, $terms, $totalHits=null ) {
-		$this->mResultSet = $resultSet;
-		$this->mTerms = $terms;
+		parent::__construct( $resultSet, $terms );
 		$this->mTotalHits = $totalHits;
 	}
 
-	function termMatches() {
-		return $this->mTerms;
-	}
-
-	function numRows() {
-		return $this->mResultSet->numRows();
-	}
-
-	function next() {
-		$row = $this->mResultSet->fetchObject();
-		if( $row === false ) {
-			return false;
-		} else {
-			return new SearchResult( $row );
-		}
-	}
-
-	function free() {
-		$this->mResultSet->free();
-	}
-
-	
 	function getTotalHits() {
 		return $this->mTotalHits;
 	}

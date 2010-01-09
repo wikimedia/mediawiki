@@ -63,25 +63,25 @@ class SearchOracle extends SearchEngine {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param $term String: raw search term
-	 * @return OracleSearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
 		if ($term == '')
-			return new OracleSearchResultSet(false, '');
+			return new SqlSearchResultSet(false, '');
 
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), true)));
-		return new OracleSearchResultSet($resultSet, $this->searchTerms);
+		return new SqlSearchResultSet($resultSet, $this->searchTerms);
 	}
 
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param $term String: raw search term
-	 * @return ORacleSearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchTitle($term) {
 		if ($term == '')
-			return new OracleSearchResultSet(false, '');
+			return new SqlSearchResultSet(false, '');
 
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), false)));
 		return new MySQLSearchResultSet($resultSet, $this->searchTerms);
@@ -265,37 +265,5 @@ class SearchOracle extends SearchEngine {
 
 	public static function legalSearchChars() {
 		return "\"" . parent::legalSearchChars();
-	}
-}
-
-/**
- * @ingroup Search
- */
-class OracleSearchResultSet extends SearchResultSet {
-
-	function __construct($resultSet, $terms) {
-		$this->mResultSet = $resultSet;
-		$this->mTerms = $terms;
-	}
-
-	function termMatches() {
-		return $this->mTerms;
-	}
-
-	function numRows() {
-		if ($this->mResultSet === false )
-			return 0;
-		else
-			return $this->mResultSet->numRows();
-	}
-
-	function next() {
-		if ($this->mResultSet === false )
-			return false;
-
-		$row = $this->mResultSet->fetchObject();
-		if ($row === false)
-			return false;
-		return new SearchResult($row);
 	}
 }

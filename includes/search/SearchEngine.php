@@ -512,6 +512,37 @@ class SearchResultSet {
 	}
 }
 
+/**
+ * This class is used for different SQL-based search engines shipped with MediaWiki
+ */
+class SqlSearchResultSet extends SearchResultSet {
+	function __construct( $resultSet, $terms ) {
+		$this->mResultSet = $resultSet;
+		$this->mTerms = $terms;
+	}
+
+	function termMatches() {
+		return $this->mTerms;
+	}
+
+	function numRows() {
+		return $this->mResultSet->numRows();
+	}
+
+	function next() {
+		if ($this->mResultSet === false )
+			return false;
+
+		$row = $this->mResultSet->fetchObject();
+		if ($row === false)
+			return false;
+		return new SearchResult($row);
+	}
+
+	function free() {
+		$this->mResultSet->free();
+	}
+}
 
 /**
  * @ingroup Search

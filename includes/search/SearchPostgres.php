@@ -230,18 +230,9 @@ class PostgresSearchResult extends SearchResult {
 /**
  * @ingroup Search
  */
-class PostgresSearchResultSet extends SearchResultSet {
+class PostgresSearchResultSet extends SqlSearchResultSet {
 	function __construct( $resultSet, $terms ) {
-		$this->mResultSet = $resultSet;
-		$this->mTerms = $terms;
-	}
-
-	function termMatches() {
-		return $this->mTerms;
-	}
-
-	function numRows() {
-		return $this->mResultSet->numRows();
+		parent::__construct( $resultSet, $terms );
 	}
 
 	function next() {

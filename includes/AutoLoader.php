@@ -466,9 +466,7 @@ $wgAutoloadLocalClasses = array(
 	'MWTidy' => 'includes/parser/Tidy.php',
 
 	# includes/search
-	'IBM_DB2SearchResultSet' => 'includes/search/SearchIBM_DB2.php',
 	'MySQLSearchResultSet' => 'includes/search/SearchMySQL.php',
-	'OracleSearchResultSet' => 'includes/search/SearchOracle.php',
 	'PostgresSearchResult' => 'includes/search/SearchPostgres.php',
 	'PostgresSearchResultSet' => 'includes/search/SearchPostgres.php',
 	'SearchEngineDummy' => 'includes/search/SearchEngine.php',
@@ -486,6 +484,7 @@ $wgAutoloadLocalClasses = array(
 	'SearchUpdate' => 'includes/search/SearchUpdate.php',
 	'SearchUpdateMyISAM' => 'includes/search/SearchUpdate.php',
 	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
+	'SqlSearchResultSet' => 'includes/search/SearchEngine.php',
 
 	# includes/specials
 	'SpecialAllmessages' => 'includes/specials/SpecialAllmessages.php',
