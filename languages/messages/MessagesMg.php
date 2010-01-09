@@ -807,6 +807,10 @@ Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'permissionserrors'                => 'Tsy azonao atao',
 'permissionserrorstext'            => 'Tsy afaka manao ilay asa nanontanianao ianao satria :',
 'permissionserrorstext-withaction' => '{{PLURAL:$1|Tsy manana alalàna ianao|Tsy manana alalàna ianao}} $2. Io ny antony ($2):',
+'recreate-moveddeleted-warn'       => "'''Tandremo''' : Mamerina pejy efa voafafa ianareo.''''
+
+Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tantaran'asan'ny famafana pejy sy ny fanovan-toerana dia eo ambany :",
+'moveddeleted-notice'              => "Voafafa ity pejy ity. Eo ambany ny tantaran'asa ny famafana pejy ho an'ny antsipirihany.",
 'log-fulllog'                      => "Hijery ny tantaran'asa (log)",
 'edit-hook-aborted'                => 'Tsy nety ny fanovàna
 Tsy nanome antony',
@@ -818,7 +822,13 @@ Mety voafafa angamba izy.',
 Efa misy izy.',
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => 'Tandremo : Betsaka loatra ny fanantsoana ny tao parser.
+
+Tsy maintsy latsaky ny $2 ny tao, kanefa misy $1. {{PLURAL:$2||}}',
+'expensive-parserfunction-category'       => 'Pejy mampiasa be loatra ny tao parser',
+'post-expand-template-inclusion-warning'  => "'''Tandremo''' : be loatra ny endrika ampiasain'ity pejy ity, misy endrika tsy ho ampiasaina.",
 'post-expand-template-inclusion-category' => 'Pejy be be endrika',
+'post-expand-template-argument-category'  => 'Pejy misy parametatra endrika hadino',
 'parser-template-loop-warning'            => 'endrika vono hita tao : [[$1]]',
 
 # "Undo" feature

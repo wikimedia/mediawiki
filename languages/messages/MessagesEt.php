@@ -299,7 +299,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Teata e-posti teel minu jälgitava lehekülje muutmisest',
 'tog-enotifusertalkpages'     => 'Teata e-posti teel minu arutelulehekülje muutmisest',
 'tog-enotifminoredits'        => 'Teata e-posti teel ka pisiparandustest',
-'tog-enotifrevealaddr'        => 'Näita minu e-postiaadressi teavitus-e-kirjades',
+'tog-enotifrevealaddr'        => 'Näita minu e-posti aadressi teavitus-e-kirjades',
 'tog-shownumberswatching'     => 'Näita jälgivate kasutajate hulka',
 'tog-oldsig'                  => 'Praeguse allkirja eelvaade:',
 'tog-fancysig'                => 'Kasuta vikiteksti vormingus allkirja (ilma automaatse lingita kasutajalehele)',
@@ -721,8 +721,8 @@ See peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.',
 'passwordremindertext'       => 'Keegi IP-aadressiga $1, tõenäoliselt sa ise, palus, et talle saadetaks {{GRAMMAR:elative|{{SITENAME}}}} uus parool ($4). Kasutaja "$2" ajutiseks paroolis seati "$3". Kui soovid tõepoolest uut parooli, pead sisse logima ja uue parooli valima. Ajutine parool aegub {{PLURAL:$5|ühe päeva|$5 päeva}} pärast.
 
 Kui uut parooli palus keegi teine või sulle meenus vana parool ja sa ei soovi seda enam muuta, võid käesolevat teadet eirata ning jätkata endise parooli kasutamist.',
-'noemail'                    => 'Kasutaja $1 e-postiaadressi meil kahjuks pole.',
-'noemailcreate'              => 'Pead sisestama korrektse e-postiaadressi',
+'noemail'                    => 'Kasutaja $1 e-posti aadressi meil kahjuks pole.',
+'noemailcreate'              => 'Pead sisestama korrektse e-posti aadressi',
 'passwordsent'               => 'Uus parool on saadetud kasutaja $1 registreeritud e-postiaadressil.
 Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword'       => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
@@ -733,8 +733,8 @@ Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul a
 'mailerror'                  => 'Viga kirja saatmisel: $1',
 'acct_creation_throttle_hit' => 'Selle viki külastajad, kes kasutavad sinu IP-aadressi, on viimase ööpäeva jooksul loonud {{PLURAL:$1|ühe konto|$1 kontot}}, mis on selles ajavahemikus ülemmääraks.
 Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
-'emailauthenticated'         => 'Sinu e-postiaadressi kinnitamisaeg: $2 kell $3.',
-'emailnotauthenticated'      => 'Sinu e-posti aadress <strong>pole veel kinnitatud</strong>. E-posti kinnitamata aadressile ei saadeta.',
+'emailauthenticated'         => 'Sinu e-posti aadressi kinnitamisaeg: $2 kell $3.',
+'emailnotauthenticated'      => 'Sinu e-posti aadress <strong>pole veel kinnitatud</strong>. Järgnevate funktsioonidega seotud e-kirju kinnitamata aadressile ei saadeta.',
 'noemailprefs'               => 'Järgnevate võimaluste toimimiseks on vaja sisestada e-posti aadress.',
 'emailconfirmlink'           => 'Kinnita oma e-posti aadress',
 'invalidemailaddress'        => 'E-aadress ei ole aktsepteeritav, sest see on vigaselt kirjutatud.
@@ -742,7 +742,7 @@ Ole hea ja anna õige e-aadress või jäta lahter tühjaks.',
 'accountcreated'             => 'Konto loodud',
 'accountcreatedtext'         => 'Kasutajakonto kasutajatunnusele $1 loodud.',
 'createaccount-title'        => '{{GRAMMAR:illative|{{SITENAME}}}} konto loomine',
-'createaccount-text'         => 'Keegi on loonud {{GRAMMAR:illative|{{SITENAME}}}} ($4) sinu e-postiaadressile vastava kasutajatunnuse "$2". Parooliks seati "$3". Logi sisse ja muuda oma parool.
+'createaccount-text'         => 'Keegi on loonud {{GRAMMAR:illative|{{SITENAME}}}} ($4) sinu e-posti aadressile vastava kasutajatunnuse "$2". Parooliks seati "$3". Logi sisse ja muuda oma parool.
 
 Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata.',
 'usernamehasherror'          => 'Kasutajanimi ei või sisaldada trellimärke ("#").',
@@ -809,7 +809,7 @@ Kui vajutad uuesti <em>Salvesta</em>, siis salvestatakse kommentaar ilma teema/p
 'summary-preview'                  => 'Resümee eelvaade:',
 'subject-preview'                  => 'Alaosa pealkirja eelvaade:',
 'blockedtitle'                     => 'Kasutaja on blokeeritud',
-'blockedtext'                      => "<big>'''Teie kasutajanimi või IP-aadress on blokeeritud.'''</big>
+'blockedtext'                      => "<big>'''Sinu kasutajanimi või IP-aadress on blokeeritud.'''</big>
 
 Blokeeris $1.
 Tema põhjendus on järgmine: ''$2''.
@@ -818,12 +818,12 @@ Tema põhjendus on järgmine: ''$2''.
 * Blokeeringu lõpp: $6
 * Sooviti blokeerida: $7
 
-Küsimuse arutamiseks võite pöörduda kasutaja $1 või mõne teise [[{{MediaWiki:Grouppage-sysop}}|administraatori]] poole.
+Küsimuse arutamiseks võid pöörduda kasutaja $1 või mõne teise [[{{MediaWiki:Grouppage-sysop}}|administraatori]] poole.
 
-Pange tähele, et Te ei saa kasutajale teadet saata, kui Te pole kinnitanud oma [[Special:Preferences|eelistuste lehel]] kehtivat e-posti aadressi.
+Pane tähele, et sa ei saa kasutajale teadet saata, kui sa pole kinnitanud oma [[Special:Preferences|eelistuste lehel]] kehtivat e-posti aadressi.
 
-Teie praegune IP-aadress on $3 ning blokeeringu number on #$5. Lisage need andmed kõigile järelepärimistele, mida kavatsete teha.",
-'autoblockedtext'                  => "Teie IP-aadress blokeeriti automaatselt, sest seda kasutas teine kasutaja, kelle $1 blokeeris.
+Sinu praegune IP-aadress on $3 ning blokeeringu number on #$5. Lisa need andmed kõigile järelepärimistele, mida kavatsed teha.",
+'autoblockedtext'                  => "Sinu IP-aadress blokeeriti automaatselt, sest seda kasutas teine kasutaja, kelle $1 blokeeris.
 Põhjendus on järgmine:
 
 :''$2''
@@ -832,17 +832,18 @@ Põhjendus on järgmine:
 * Blokeeringu lõpp: $6
 * Sooviti blokeerida: $7
 
-Küsimuse arutamiseks võite pöörduda kasutaja $1 või mõne teise [[{{MediaWiki:Grouppage-sysop}}|administraatori]] poole.
+Küsimuse arutamiseks võid pöörduda kasutaja $1 või mõne teise [[{{MediaWiki:Grouppage-sysop}}|administraatori]] poole.
 
-Pange tähele, et Te ei saa teisele kasutajale teadet saata, kui Te pole kinnitanud oma [[Special:Preferences|eelistuste lehel]] kehtivat e-posti aadressi ega ole selle kasutamisest blokeeritud.
+Pane tähele, et sa ei saa teisele kasutajale teadet saata, kui sa pole kinnitanud oma [[Special:Preferences|eelistuste lehel]] kehtivat e-posti aadressi ega ole selle kasutamisest blokeeritud.
 
-Teie praegune IP on $3 ning blokeeringu number on #$5. Lisage need andmed kõigile järelpärimistele, mida kavatsete teha.",
+Sinu praegune IP-aadress on $3 ja blokeeringu number #$5. Lisa need andmed kõigile järelpärimistele, mida kavatsed teha.",
 'blockednoreason'                  => 'põhjendust ei ole kirja pandud',
 'blockedoriginalsource'            => "'''$1''' allikas on näidatud allpool:",
 'blockededitsource'                => "Sinu muudatused leheküljele '''$1''':",
 'whitelistedittitle'               => 'Redigeerimiseks tuleb sisse logida',
 'whitelistedittext'                => 'Lehekülgede toimetamiseks peate $1.',
-'confirmedittext'                  => 'Lehekülgi ei saa toimetada enne e-aadressi kinnitamist. Võid teha kinnitamise [[Special:Preferences|eelistuste lehel]].',
+'confirmedittext'                  => 'Lehekülgi ei saa toimetada enne e-posti aadressi kinnitamist.
+Palun määra ja kinnita e-posti aadress [[Special:Preferences|eelistuste leheküljel]].',
 'nosuchsectiontitle'               => 'Sellist alaosa pole',
 'nosuchsectiontext'                => 'Sa üritasid redigeerida alaosa, mida ei ole. Kuna alaosa $1 pole, ei saa redaktsiooni salvestada.',
 'loginreqtitle'                    => 'Vajalik on sisselogimine',
@@ -1137,7 +1138,7 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'mergelogpagetext'   => 'Allpool on hiljuti üksteisega liidetud leheküljeajalugude logi.',
 
 # Diffs
-'history-title'            => '"$1" muudatuste ajalugu',
+'history-title'            => 'Lehekülje "$1" muudatuste ajalugu',
 'difference'               => '(Erinevused redaktsioonide vahel)',
 'lineno'                   => 'Rida $1:',
 'compareselectedversions'  => 'Võrdle valitud redaktsioone',
@@ -1994,11 +1995,11 @@ Toetatud protokollid: <tt>$1</tt>',
 'mailnologintext'  => 'Te peate olema [[Special:UserLogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
 'emailuser'        => 'Saada sellele kasutajale e-kiri',
 'emailpage'        => 'Saada kasutajale e-kiri',
-'emailpagetext'    => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, siis saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud [[Special:Preferences|oma eelistuste lehel]].',
+'emailpagetext'    => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud [[Special:Preferences|oma eelistuste lehel]].',
 'usermailererror'  => 'Saatmise viga:',
 'defemailsubject'  => 'E-kiri {{GRAMMAR:elative|{{SITENAME}}}}',
-'noemailtitle'     => 'E-posti aadressi ei ole',
-'noemailtext'      => 'See kasutaja ei ole määranud kehtivat e-posti aadressi.',
+'noemailtitle'     => 'E-posti aadressi pole',
+'noemailtext'      => 'See kasutaja pole määranud kehtivat e-posti aadressi.',
 'nowikiemailtitle' => 'E-kirja saatmine ei ole lubatud',
 'nowikiemailtext'  => 'See kasutaja ei soovi e-posti teistelt kasutajatelt.',
 'email-legend'     => 'Saada e-kiri {{GRAMMAR:genitive|{{SITENAME}}}} kasutajale',
@@ -3042,24 +3043,24 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # E-mail address confirmation
 'confirmemail'             => 'Kinnita e-posti aadress',
 'confirmemail_noemail'     => 'Sul ei ole e-aadress määratud [[Special:Preferences|eelistustes]].',
-'confirmemail_text'        => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-postiaadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.',
+'confirmemail_text'        => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-posti aadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.',
 'confirmemail_pending'     => 'Kinnituskood on juba saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
 'confirmemail_send'        => 'Saada kinnituskood',
 'confirmemail_sent'        => 'Kinnitus-e-kiri saadetud.',
-'confirmemail_oncreate'    => 'Kinnituskood saadeti e-postiaadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-postipõhiseid toiminguid.',
+'confirmemail_oncreate'    => 'Kinnituskood saadeti e-posti aadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-postipõhiseid toiminguid.',
 'confirmemail_sendfailed'  => 'Kinnitus-e-kirja ei õnnestunud saata. 
 Kontrolli aadressi õigsust.
 
 Veateade e-kirja saatmisel: $1',
 'confirmemail_invalid'     => 'Vigane kinnituskood, kinnituskood võib olla aegunud.',
-'confirmemail_needlogin'   => 'Oma e-posti aadressi kinnitamiseks pead sa $1.',
+'confirmemail_needlogin'   => 'Pead oma e-posti aadressi kinnitamiseks $1.',
 'confirmemail_success'     => 'Sinu e-posti aadress on nüüd kinnitatud. Sa võid sisse logida ning viki imelisest maailma nautida.',
 'confirmemail_loggedin'    => 'Sinu e-posti aadress on nüüd kinnitatud.',
 'confirmemail_error'       => 'Viga kinnituskoodi salvestamisel.',
-'confirmemail_subject'     => '{{GRAMMAR:genitive|{{SITENAME}}}} e-postiaadressi kinnitamine',
-'confirmemail_body'        => 'Keegi IP-aadressilt $1, ilmselt sa ise, registreeris selle e-postiaadressiga {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2".
+'confirmemail_subject'     => '{{GRAMMAR:genitive|{{SITENAME}}}} e-posti aadressi kinnitamine',
+'confirmemail_body'        => 'Keegi IP-aadressilt $1, ilmselt sa ise, registreeris selle e-posti aadressiga {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2".
 
-Kinnitamaks, et see kasutajakonto tõepoolest kuulub sulle ning e-postiteenuste aktiveerimiseks, ava oma võrgulehitsejas järgnev link:
+Kinnitamaks, et see kasutajakonto tõepoolest kuulub sulle ning e-posti teenuste aktiveerimiseks, ava oma võrgulehitsejas järgnev link:
 
 $3
 
@@ -3068,8 +3069,8 @@ Kui see *pole* sinu loodud konto, ava järgnev link kinnituse tühistamiseks:
 $5
 
 Kinnituskood aegub kuupäeval $4.',
-'confirmemail_invalidated' => 'E-aadressi kinnitamine tühistati',
-'invalidateemail'          => 'Tühista e-posti kinnitus',
+'confirmemail_invalidated' => 'E-posti aadressi kinnitamine tühistati',
+'invalidateemail'          => 'E-posti aadressi kinnituse tühistamine',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL on liiga pikk]',

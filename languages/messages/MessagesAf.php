@@ -785,8 +785,8 @@ Tik iets in die invoerboks hier onder om 'n nuwe bladsy te skep. Meer inligting 
 As u per ongeluk hier uitgekom het, gebruik u blaaier se '''terug'''-knoppie.",
 'anontalkpagetext'                 => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien u 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen u gerig is, [[Special:UserLogin/signup|skep 'n rekening]] of [[Special:UserLogin|teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
 'noarticletext'                    => 'Hierdie bladsy bevat geen teks nie.
-U kan [[Special:Search/{{PAGENAME}}|na hierdie bladsytitel in ander bladsye soek]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek],
+U kan [[Special:Search/{{PAGENAME}}|vir die bladsytitel in ander bladsye soek]],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]
 of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'noarticletext-nopermission'       => 'Daar is tans geen teks in hierdie bladsy nie. U kan vir die bladsytitel [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]</span>.',
