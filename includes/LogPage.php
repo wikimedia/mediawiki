@@ -291,7 +291,7 @@ class LogPage {
 	}
 	
 	protected static function getTitleLink( $type, $skin, $title, &$params ) {
-		global $wgLang, $wgContLang;
+		global $wgLang, $wgContLang, $wgUserrightsInterwikiDelimiter;
 		if( !$skin ) {
 			return $title->getPrefixedText();
 		}
@@ -327,6 +327,13 @@ class LogPage {
 				break;
 			case 'rights':
 				$text = $wgContLang->ucfirst( $title->getText() );
+				$parts = explode( $wgUserrightsInterwikiDelimiter, $text, 2 );
+				if ( count( $parts ) == 2 ) {
+					$titleLink = WikiMap::foreignUserLink( $parts[1], $parts[0],
+						htmlspecialchars( $title->getPrefixedText() ) );
+					if ( $titleLink !== false )
+						break;
+				}
 				$titleLink = $skin->link( Title::makeTitle( NS_USER, $text ) );
 				break;
 			case 'merge':

@@ -33,18 +33,22 @@ class WikiMap {
 		return $wiki_id;
 	}
 	
-	static function foreignUserLink( $wiki_id, $user ) {
-		return self::makeForeignLink( $wiki_id, "User:$user" );
+	static function foreignUserLink( $wiki_id, $user, $text=null ) {
+		return self::makeForeignLink( $wiki_id, "User:$user", $text );
 	}
 	
 	static function makeForeignLink( $wiki_id, $page, $text=null ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
-		
-		if (!$text)
+
+		if ( !$text )
 			$text=$page;
-		
-		return $sk->makeExternalLink( self::getForeignURL( $wiki_id, $page ) , $text );
+
+		$url = self::getForeignURL( $wiki_id, $page );
+		if ( $url === false )
+			return false;
+
+		return $sk->makeExternalLink( $url, $text );
 	}
 	
 	static function getForeignURL( $wiki_id, $page ) {
