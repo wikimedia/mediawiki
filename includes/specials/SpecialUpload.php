@@ -315,7 +315,7 @@ class SpecialUpload extends SpecialPage {
 		foreach( $warnings as $warning => $args ) {
 				$msg = '';
 				if( $warning == 'exists' ) {
-					$msg = self::getExistsWarning( $args );
+					$msg = "\t<li>" . self::getExistsWarning( $args ) . "</li>\n";
 				} elseif( $warning == 'duplicate' ) {
 					$msg = self::getDupeWarning( $args );
 				} elseif( $warning == 'duplicate-archive' ) {
@@ -323,7 +323,7 @@ class SpecialUpload extends SpecialPage {
 							array( Title::makeTitle( NS_FILE, $args )->getPrefixedText() ) )
 						. "</li>\n";
 				} else {
-					if ( is_bool( $args ) )
+					if ( $args === true )
 						$args = array();
 					elseif ( !is_array( $args ) )
 						$args = array( $args );
@@ -569,7 +569,6 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * @param array $exists The result of UploadBase::getExistsWarning
 	 * @return string Empty string if there is no warning or an HTML fragment
-	 * consisting of one or more <li> elements if there is a warning.
 	 */
 	public static function getExistsWarning( $exists ) {
 		global $wgUser, $wgContLang;
@@ -579,30 +578,30 @@ class SpecialUpload extends SpecialPage {
 
 		$file = $exists['file'];
 		$filename = $file->getTitle()->getPrefixedText();
-		$warning = array();
+		$warning = '';
 
 		$sk = $wgUser->getSkin();
 
 		if( $exists['warning'] == 'exists' ) {
 			// Exact match
-			$warning[] = '<li>' . wfMsgExt( 'fileexists', 'parseinline', $filename ) . '</li>';
+			$warning = wfMsgExt( 'fileexists', 'parseinline', $filename );
 		} elseif( $exists['warning'] == 'page-exists' ) {
 			// Page exists but file does not
-			$warning[] = '<li>' . wfMsgExt( 'filepageexists', 'parseinline', $filename ) . '</li>';
+			$warning = wfMsgExt( 'filepageexists', 'parseinline', $filename );
 		} elseif ( $exists['warning'] == 'exists-normalized' ) {
-			$warning[] = '<li>' . wfMsgExt( 'fileexists-extension', 'parseinline', $filename,
-				$exists['normalizedFile']->getTitle()->getPrefixedText() ) . '</li>';
+			$warning = wfMsgExt( 'fileexists-extension', 'parseinline', $filename,
+				$exists['normalizedFile']->getTitle()->getPrefixedText() );
 		} elseif ( $exists['warning'] == 'thumb' ) {
 			// Swapped argument order compared with other messages for backwards compatibility
-			$warning[] = '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parseinline',
-				$exists['thumbFile']->getTitle()->getPrefixedText(), $filename ) . '</li>';
+			$warning = wfMsgExt( 'fileexists-thumbnail-yes', 'parseinline',
+				$exists['thumbFile']->getTitle()->getPrefixedText(), $filename );
 		} elseif ( $exists['warning'] == 'thumb-name' ) {
 			// Image w/o '180px-' does not exists, but we do not like these filenames
 			$name = $file->getName();
 			$badPart = substr( $name, 0, strpos( $name, '-' ) + 1 );
-			$warning[] = '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline', $badPart ) . '</li>';
+			$warning = wfMsgExt( 'file-thumbnail-no', 'parseinline', $badPart );
 		} elseif ( $exists['warning'] == 'bad-prefix' ) {
-			$warning[] = '<li>' . wfMsgExt( 'filename-bad-prefix', 'parseinline', $exists['prefix'] ) . '</li>';
+			$warning = wfMsgExt( 'filename-bad-prefix', 'parseinline', $exists['prefix'] );
 		} elseif ( $exists['warning'] == 'was-deleted' ) {
 			# If the file existed before and was deleted, warn the user of this
 			$ltitle = SpecialPage::getTitleFor( 'Log' );
@@ -615,10 +614,10 @@ class SpecialUpload extends SpecialPage {
 					'page' => $filename
 				)
 			);
-			$warning[] = '<li>' . wfMsgWikiHtml( 'filewasdeleted', $llink ) . '</li>';
+			$warning = wfMsgWikiHtml( 'filewasdeleted', $llink );
 		}
 
-		return implode( "\n", $warning );
+		return $warning;
 	}
 
 	/**
@@ -639,7 +638,7 @@ class SpecialUpload extends SpecialPage {
 			$exists = UploadBase::getExistsWarning( $file );
 			$warning = self::getExistsWarning( $exists );
 			if ( $warning !== '' ) {
-				$s = "<ul>$warning</ul>";
+				$s = "<div>$warning</div>";
 			}
 		}
 		return $s;
