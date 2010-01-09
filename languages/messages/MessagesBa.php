@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Comp1089
  * @author Haqmar
  * @author Timming
  * @author Рустам Нурыев
@@ -455,6 +456,7 @@ $2',
 'nav-login-createaccount'    => 'Танышыу йәки теркәлеү',
 'loginprompt'                => '{{SITENAME}} проектына кереү өсөн «cookies» рөхсәт ителгән булырға тейеш.',
 'userlogin'                  => 'Танылыу / теркәлеү',
+'userloginnocreate'          => 'Танышыу',
 'logout'                     => 'Тамамлау',
 'userlogout'                 => 'Тамамлау',
 'notloggedin'                => 'Танылмағанһығыҙ',
@@ -929,6 +931,7 @@ $1",
 'prevn'                            => 'алдағы {{PLURAL:$1|$1}}',
 'nextn'                            => 'киләһе {{PLURAL:$1|$1}}',
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) ҡарарға',
+'searchmenu-exists'                => "Был {{Wikiproject}} бүлегендә '''[[$1]]''' исемле бит бар",
 'searchhelp-url'                   => 'Help:Эстәлек',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Был префикслы биттәрҙе күрһәтергә]]',
 'searchprofile-articles'           => 'Эстәлек биттәре',
@@ -1110,8 +1113,9 @@ $1",
 'grouppage-suppress'      => '{{ns:project}}:Тикшереүселәр',
 
 # Rights
-'right-read' => 'Биттәрҙе ҡарау',
-'right-edit' => 'Биттәрҙә мөхәррирләү',
+'right-read'     => 'Биттәрҙе ҡарау',
+'right-edit'     => 'Биттәрҙә мөхәррирләү',
+'right-movefile' => 'Файл исемдәр үҙгәртеү',
 
 # User rights log
 'rightslog'      => 'Ҡулланыусының хоҡуҡтары көндәлеге',

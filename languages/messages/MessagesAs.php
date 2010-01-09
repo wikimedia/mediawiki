@@ -124,7 +124,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'জাননী ই-মেইল বোৰত মোৰ ই-মেইল ঠিকনা দেখুৱাব',
 'tog-shownumberswatching'     => 'লক্ষ্য কৰি থকা সদস্য সমুহৰ সংখ্যা দেখুৱাওক',
 'tog-oldsig'                  => 'স্বাক্ষৰৰ খচৰা:',
-'tog-fancysig'                => 'কেঁচা স্বাক্ষৰ সমুহ (স্বয়ংক্রীয় সংযোগ অবিহনে)',
+'tog-fancysig'                => 'স্বাক্ষৰ ৱিকিটেক্সট হিচাপে ব্যৱহাৰ কৰক (স্বয়ংক্রীয় সংযোগ অবিহনে)',
 'tog-externaleditor'          => 'সদায়ে বাহ্যিক সম্পাদক ব্যৱহাৰ কৰিব (কেৱল জনা সকলৰ বাবে, ইয়াৰ বাবে আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব)',
 'tog-showjumplinks'           => '"জপিয়াই যাওক" সংযোগ সক্রীয় কৰক',
 'tog-uselivepreview'          => 'সম্পাদনাৰ লগে লগে খচৰা দেখুৱাওক (JavaScript) (পৰীক্ষামূলক)',
@@ -342,7 +342,7 @@ $messages = array(
 
 'badaccess'        => 'অনুমতি ভুল',
 'badaccess-group0' => 'আপুনি কৰিব বিছৰা কামতো কৰাৰ আধিকাৰ আপোনাৰ নাই।',
-'badaccess-groups' => '$1{{plural:$2|গোটবোৰৰ}} গোটবোৰৰ মাজৰ যিকোনো এটা গোটৰ সদস্যৰহে এই কামতো কৰাৰ অধিকাৰ আছে।',
+'badaccess-groups' => 'আপুনি অনুৰোধ কৰা কায্য কেৱল {{plural:$2|গোটৰ|গোটৰ}} সদস্যলৈ সীমিত: $1',
 
 'versionrequired'     => 'মেডিয়াৱিকিৰ $1 সংকলন থাকিব লাগিব ।',
 'versionrequiredtext' => 'এই পৃষ্ঠাটো ব্যৱহাৰ কৰিবলৈ মেডিয়াৱিকিৰ $1 সংকলন থাকিব লাগিব । [[Special:Version|সংকলন সুচী]] চাওক।',
@@ -513,12 +513,12 @@ $messages = array(
 'mailerror'                  => 'ই-মেইল পঠোৱাত সমস্যা হৈছে: $1',
 'acct_creation_throttle_hit' => 'যোৱা ২৪ ঘন্টাত আপুনাৰ আই-পি ঠিকনাৰ পৰা কেউজনে {{PLURAL:$1|১-তা একাউন্ট|$1-তা একাউন্ট}} সৃষ্টি কৰিলে, যোনতো সর্বোচ্চ অনুমোদনকৃত । 
 এতেকে, এই আই-পি ঠিকনাৰ পৰা এই খন্তেকত একাউন্ট সৃষ্টি কৰিব নোৱাৰিব ।',
-'emailauthenticated'         => 'আপোনাৰ ই-মেইল ঠিকনাটো  $1 ত প্রমানিত কৰা হৈছে।',
+'emailauthenticated'         => 'আপোনাৰ ই-মেইল ঠিকনাটো $2 তাৰিখৰ $3 বজাত নিশ্চিত কৰা হৈছিল ।',
 'emailnotauthenticated'      => 'আপোনাৰ ই-মেইল ঠিকনাতো এতিয়ালৈ প্রমনিত হোৱা নাই ।
 আপুনি তলৰ বিষয়বোৰৰ কাৰণে মেইল পঠাব নোৱাৰে ।',
 'noemailprefs'               => 'এই সুবিধাবোৰ ব্যৱহাৰ কৰিবলৈ এটা ই-মেইল ঠিকনা দিয়ক।',
 'emailconfirmlink'           => 'আপোনাৰ ই-মেইল ঠিকনতো প্রমানিত কৰক',
-'invalidemailaddress'        => 'আপুনি দিয়া ই-মেইল ঠিকনাতো গ্রহনযোগ্য নহয়, কাৰণ ই অবৈধ প্রকাৰৰ যেন লাগিছে।
+'invalidemailaddress'        => 'এই ই-মেইল ঠিকনাতো গ্রহনযোগ্য নহয়, কাৰণ ই অবৈধ প্রকাৰৰ যেন লাগিছে।
 অনুগ্রহ কৰি এটা বৈধ ই-মেইল ঠিকনা লিখক অথবা একো নিলিখিব।',
 'accountcreated'             => 'সদস্যতা সৃষ্টি কৰা হল',
 'accountcreatedtext'         => '$1 ৰ কাৰণে সদস্যভুক্তি কৰা হল।',
@@ -584,17 +584,18 @@ $messages = array(
 'blockedtitle'                  => 'সদস্যজনক অবৰোধ কৰা হৈছে',
 'blockedtext'                   => "<big>'''আপোনাৰ সদস্যনাম অথবা আই-পি ঠিকণা অবৰোধ কৰা হৈছে ।'''</big>
 
- $1 ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে । ইয়াৰ বাবে দিয়া কাৰণ হৈছে ''$2'' ।
+$1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে । 
+ইয়াৰ বাবে দিয়া কাৰণ হৈছে ''$2'' ।
 
 * অবৰোধ আৰম্ভনী: $8
 * অবৰোধ সমাপ্তি: $6
 * অবৰোধ কৰা হৈছে: $7
 
 আপুনি এই অবৰোধৰ বিষয়ে আলোচনা কৰিবলৈ $1 বা [[{{MediaWiki:Grouppage-sysop}}|প্রবন্ধকৰ]] লগত সম্পর্ক স্থাপন কৰিব পাৰে ।
-আপুনি যেতিয়ালৈ [[Special:Preferences|সদস্য পছন্দ]] পৃষ্ঠাত আপোনাৰ ই-মেইল ঠিকনা নিদিয়ে তেতিয়ালৈ ’সদস্যক ই-মেইল পঠাওক’ সুবিধাতো ব্যৱহাৰ কৰিব নোৱাৰে। আপোনাক এয়া কৰিবলৈ ৰোধ কৰা হোৱা নাই ।
-আপোনাৰ এতিয়াৰ IP ঠিকনা হল $3, আৰু আপোনাৰ অবৰোধ ক্রমিক হৈছে #$5 ।
-এই বিষয়ে হোৱা আলোচনাত ইয়াৰ যিকোনো এটা ব্যৱহাৰ কৰিবলৈ অনুৰোধ কৰা হল।",
-'autoblockedtext'               => "আপোনাৰ IP ঠিকনা নিজে নিজে অবৰোধিত হৈ গৈছে, কাৰণ ইয়াক কোনোবাই ব্যৱহাৰ কৰি থাকোতে $1 ৰ দ্বাৰা অবৰোধ কৰা হৈছে।
+আপুনি যেতিয়ালৈ [[Special:Preferences|সদস্য পছন্দ]] পৃষ্ঠাত আপোনাৰ ই-মেইল ঠিকনা নিদিয়ে তেতিয়ালৈ ’সদস্যক ই-মেইল পঠাওক’ সুবিধাতো ব্যৱহাৰ কৰিব নোৱাৰিব, আৰু আপোনাক এয়া কৰিবলৈ ৰোধ কৰা হোৱা নাই ।
+আপোনাৰ এতিয়াৰ আই-পি ঠিকনা হল $3, আৰু আপোনাৰ অবৰোধ ক্রমিক হৈছে #$5 ।
+এই বিষয়ে হোৱা আলোচনাত ইয়াৰ সবিশেষ সদৰী কৰে যেন।",
+'autoblockedtext'               => "আপোনাৰ আই-পি ঠিকনা নিজে নিজে অবৰোধিত হৈ গৈছে, কাৰণ ইয়াক কোনোবাই ব্যৱহাৰ কৰি থাকোতে $1 ৰ দ্বাৰা অবৰোধ কৰা হৈছে।
 ইয়াৰ বাবে দিয়া কাৰণ হৈছে:
 
 :''$2''
@@ -671,6 +672,7 @@ $messages = array(
 'nocreate-loggedin'             => 'নতুন পৃষ্ঠা সৃষ্টি কৰিবলৈ আপুনাৰ অনুমতি নাই ।',
 'sectioneditnotsupported-title' => 'অনুচ্ছেদ সম্পাদনাৰ সমর্থন নাই',
 'sectioneditnotsupported-text'  => 'এই পৃষ্ঠাত অনুচ্ছেদ সম্পাদনাৰ সমর্থন নাই',
+'permissionserrors'             => 'অনুমতি ভুলসমূহ',
 'recreate-moveddeleted-warn'    => "'''সাৱধান: আগতে বিলোপিত কৰা পৃষ্ঠা এটা আপুনি পূণঃনির্মান কৰি আছে। '''
 
 এই পৄষ্ঠাটো সম্পাদনা কৰা উচিত হব নে নহয় আপুনি বিবেচনা কৰি চাওক।
@@ -1071,7 +1073,10 @@ $messages = array(
 
 # Delete
 'deletepage'            => 'পৃষ্ঠা বিলোপ কৰক',
-'historywarning'        => 'সাবধান: আপুনি বিলোপ কৰিব বিছৰা পৃষ্ঠাটোৰ ইতিহাস খালী নহয়।',
+'confirm'               => 'নিশ্চিত কৰক',
+'delete-confirm'        => '"$1" বিলোপ কৰক',
+'delete-legend'         => 'বিলোপ কৰক',
+'historywarning'        => "'''সাবধান:''' আপুনি বিলোপ কৰিব বিছৰা পৃষ্ঠাখনৰ ইতিহাসত প্ৰায় {{PLURAL:$1|সংস্কৰণ|সংস্কৰণ}} আছে:",
 'confirmdeletetext'     => 'আপুনি পৃষ্ঠা এটা তাৰ ইতিহাসৰ সৈতে বিলোপ কৰিব ওলাইছে।
 অনুগ্রহ কৰি নিশ্বিত কৰক যে এয়া [[{{MediaWiki:Policy-url}}|নীতিসম্মত]] । লগতে আপুনি ইয়াৰ পৰিণাম জানে আৰু আপুনি এয়া কৰিব বিছাৰিছে।',
 'actioncomplete'        => 'কার্য্য সম্পূর্ণ',
@@ -1105,14 +1110,15 @@ $messages = array(
 'protect-expiring'            => ' $1 (UTC) ত সময় শেষ হব',
 'protect-cascade'             => 'এই পৃষ্ঠাটোৰ লগত জৰিত সকলো পৃষ্ঠা সুৰক্ষিত কৰক (সুৰক্ষা জখলা)',
 'protect-cantedit'            => 'আপুনি এই পৃষ্ঠাটোৰ সুৰক্ষা-স্তৰ সলনি কৰিব নোৱৰে, কাৰণ আপোনাক সেই অনুমতি দিয়া হোৱা নাই।',
-'protect-expiry-options'      => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
+'protect-expiry-options'      => '‌১ ঘণ্টা:1 hour,১ দিন:1 day,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'সুৰক্ষা-স্তৰ:',
 
 # Undelete
-'undeletebtn'            => 'পূণঃসংস্থাপন কৰক',
-'undeletedarticle'       => '"[[$1]]"-ক পূৰ্বস্থানলৈ ঘূৰাই অনা হ\'ল',
-'undelete-search-submit' => 'সন্ধান',
+'undeletebtn'               => 'পূণঃসংস্থাপন কৰক',
+'undeletedarticle'          => '"[[$1]]"-ক পূৰ্বস্থানলৈ ঘূৰাই অনা হ\'ল',
+'undelete-search-submit'    => 'সন্ধান',
+'undelete-show-file-submit' => 'অঁ',
 
 # Namespace form on various pages
 'namespace'      => 'নামস্থান:',
@@ -1128,9 +1134,11 @@ $messages = array(
 'month'               => 'এই মাহৰ পৰা (আৰু আগৰ):',
 'year'                => 'এই বছৰৰ পৰা (আৰু আগৰ):',
 
+'sp-contributions-newbies'     => 'কেৱল নতুন একাউন্টৰ অবদানসমূহ দেখোৱাওঁক',
 'sp-contributions-newbies-sub' => 'নতুন সভ্যৰ কাৰণে',
 'sp-contributions-blocklog'    => 'বাৰণ সুচী',
-'sp-contributions-talk'        => 'বাৰ্তালাপ',
+'sp-contributions-logs'        => 'অভিলেখ',
+'sp-contributions-talk'        => 'আলোচনা',
 'sp-contributions-userrights'  => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
 'sp-contributions-search'      => 'অবদানসমূহৰ কাৰণে অনুসন্ধান কৰক',
 'sp-contributions-username'    => 'আইপি ঠিকনা অথবা ব্যৱহাৰকৰ্তাৰ নাম:',
@@ -1235,6 +1243,7 @@ $messages = array(
 'tooltip-search'                  => '{{SITENAME}} -ত সন্ধানাৰ্থে',
 'tooltip-search-go'               => 'যদি আছে, তেহে ঠিক সেই নামৰ পৃষ্ঠালৈ যাওঁক',
 'tooltip-search-fulltext'         => 'এই পাঠ পৃষ্ঠাসমূহট অনুসন্ধান কৰক',
+'tooltip-p-logo'                  => 'বেটুপাত খুলিবৰ কাৰণে',
 'tooltip-n-mainpage'              => 'বেটুপাত খুলিবৰ কাৰণে',
 'tooltip-n-mainpage-description'  => 'প্ৰথম পৃষ্ঠা পৰিদৰ্শন কৰক',
 'tooltip-n-portal'                => "এই প্রকল্পৰ ইতিবৃত্ত, আপুনি কেনেকৈ সহায় কৰিব পাৰে, ইত্যাদি (কি, ক'ত কিয় বিখ্যাত!!)।",
@@ -1305,20 +1314,50 @@ $messages = array(
 * isospeedratings
 * focallength',
 
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'কিলোমিটাৰ প্ৰতি ঘন্টা',
+'exif-gpsspeed-m' => 'মাইল প্ৰতি ঘন্টা',
+
 # External editor support
 'edit-externally'      => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক|',
 'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [http://www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নির্দেশনা] চাঁওক ।',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'সকলো',
-'namespacesall' => 'সকলোবোৰ',
-'monthsall'     => 'সকলো',
+'recentchangesall' => 'সকলোবোৰ',
+'imagelistall'     => 'সকলোবোৰ',
+'watchlistall2'    => 'সকলো',
+'namespacesall'    => 'সকলোবোৰ',
+'monthsall'        => 'সকলো',
+'limitall'         => 'সকলোবোৰ',
+
+# action=purge
+'confirm_purge_button' => "অ'কে",
+
+# Multipage image navigation
+'imgmultipageprev' => '← পূৰ্ববৰ্তী পৃষ্ঠা',
+'imgmultipagenext' => 'পৰবৰ্তী পৃষ্ঠা →',
+'imgmultigo'       => 'যাওঁক',
+'imgmultigoto'     => '$1 পৃষ্ঠালৈ যাওঁক',
 
 # Table pager
+'table_pager_next'         => 'পৰৱৰ্তী পৃষ্ঠা',
+'table_pager_prev'         => 'পূৰ্ববৰ্তী পৃষ্ঠা',
+'table_pager_first'        => 'প্ৰথম পৃষ্ঠা',
+'table_pager_last'         => 'শেষ পৃষ্ঠা',
 'table_pager_limit_submit' => 'যাওঁক',
+'table_pager_empty'        => 'ফলাফল নাই',
+
+# Live preview
+'livepreview-loading' => 'লোডিং…',
+'livepreview-ready'   => 'লোডিং… প্ৰস্তুত!',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'শীৰ্ষক:',
+'watchlistedit-numitems'     => 'আলাপ পৃষ্ঠাসমূহ বাদ দি, আপুনাৰ অনুসৰণ-তালিকাত {{PLURAL:$1|১-খন|$1-খন}} ঘাই পৃষ্ঠা আছে ।',
+'watchlistedit-noitems'      => 'আপুনাৰ অনুসৰণ-তালিকাত এখনো ঘাই পৃষ্ঠা নাই ।',
+'watchlistedit-normal-title' => 'অনুসৰণ-তালিকা সম্পাদন কৰক',
+'watchlistedit-raw-title'    => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
+'watchlistedit-raw-legend'   => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
+'watchlistedit-raw-titles'   => 'শীৰ্ষক:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'সংগতি থকা সাল-সলনিবোৰ চাওক',
@@ -1364,6 +1403,7 @@ $messages = array(
 
 # Add categories per AJAX
 'ajax-add-category-submit' => 'যোগ',
+'ajax-confirm-title'       => 'কায্য নিশ্চিত কৰক:',
 'ajax-confirm-save'        => 'সাঁচি থওঁক',
 'ajax-error-title'         => 'ভুল',
 'ajax-error-dismiss'       => "অ'কে",

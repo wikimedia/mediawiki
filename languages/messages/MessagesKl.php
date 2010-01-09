@@ -260,6 +260,8 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'currentrevisionlink'    => 'Massakkuunera takuuk',
 'cur'                    => 'maanna',
 'last'                   => 'siulia',
+'page_first'             => 'siulliit',
+'page_last'              => 'kingulliit',
 'histlegend'             => 'Nassuiaat: (maanna) = assigiinngissut maanna inneranut, (siulia) = assigiinngissut siulianut, M = annikitsumik allannguut',
 'history-fieldset-title' => 'Oqaluttuassartaani qupperaagit',
 'histfirst'              => 'Pisoqaaneq',
@@ -362,6 +364,8 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 
 # Special:AllPages
 'allarticles'    => 'Quppernerit tamarmik',
+'allpagesprev'   => 'Siulii',
+'allpagesnext'   => 'Tullii',
 'allpagessubmit' => 'Tassunngarit',
 
 # Special:Categories
