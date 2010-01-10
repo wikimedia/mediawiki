@@ -930,6 +930,7 @@ es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page
 Tu, qua administrator, pote vider lo; es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-deleted-no-diff'         => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+'rev-suppressed-no-diff'      => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.",
 'rev-deleted-unhide-diff'     => "Un del versiones de iste diff ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",

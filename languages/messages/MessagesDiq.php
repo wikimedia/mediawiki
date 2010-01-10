@@ -769,6 +769,7 @@ Beno ke [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppressio
 Şıma be idarekerina xo ra şenê ey bıvênê; beno ke [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] de teferruat esto.",
 'rev-deleted-no-diff'         => "Şıma nêşenê nê ferqi bıvênê, çıke çımraviyarnayışan ra  yew '''esteriyo'''.
 Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.",
+'rev-suppressed-no-diff'      => "Revizyon '''esteriyayo\"' aye ra ti nieşkeno ena diff bivine.",
 'rev-deleted-unhide-diff'     => "Çımraviyarnayışanê na ferqi ra  yew '''esteriyo'''.
 Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] de teferruat esto.
 Şıma be idarekerina xo ra şenê hewna [$1 nê ferqi bıvênê], eke wazenê dewam kerê.",
@@ -2127,6 +2128,7 @@ belka ver-grewtış wedariyayo.',
 'ipb_blocked_as_range'            => 'xeta: $1 verniyê IPadresi direk nêgeriyayo u ver-gırewtışi nêwedariyeno .
 labele parçeya benateyê na $2 adresibi u ey ra ver-geryayo u şıma eşkeni no wedari.',
 'ip_range_invalid'                => 'Rêza IPi nêvêrena.',
+'ip_range_toolarge'               => 'Menzilan ke /$1 ra girdêrê inan rê izin nidano.',
 'blockme'                         => 'Mi blok bik',
 'proxyblocker'                    => 'blokarê proxyi',
 'proxyblocker-disabled'           => 'Eno fonksiyon nêxebetiyeno.',

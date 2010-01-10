@@ -1250,9 +1250,10 @@ $3 күрсәткән сәбәп: ''$2''",
 'changed'                      => 'үзгәртелде',
 'created'                      => 'төзергән',
 'enotif_subject'               => '{{SITENAME}} проектының $PAGETITLE бите $PAGEEDITOR тарафыннан $CHANGEDORCREATED',
+'enotif_lastvisited'           => 'Соңгы керүегездән соң булган барлык үзгәртүләрне күрер өчен, бу сылтама аша узыгыз: $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-«{{SITENAME}}» проектының {{SITENAME}} бите $PAGEEDITOR тарафыннан $PAGEEDITDATE көнне $CHANGEDORCREATED, битне карар өчен $PAGETITLE_URL буенча узыгыз.
+«{{SITENAME}}» проектының «$PAGETITLE» бите $PAGEEDITOR тарафыннан $PAGEEDITDATE көнне $CHANGEDORCREATED. Битне карар өчен $PAGETITLE_URL буенча узыгыз.
 
 $NEWPAGE
 
@@ -1519,7 +1520,9 @@ $1',
 'tooltip-undo'                    => 'Бу үзгәртүне алдан карап үткәрмәү. Шулай ук үткәрмәүнең сәбәбен язып була.',
 
 # Patrolling
-'markaspatrolledtext' => 'Бу мәкаләне тикшерелгән дип тамгаларга',
+'markaspatrolledtext'   => 'Бу мәкаләне тикшерелгән дип тамгаларга',
+'markedaspatrolled'     => 'Тикшерелгән дип тамгаланды',
+'markedaspatrolledtext' => 'Сайланган версия тикшерелгән дип тамгаланды.',
 
 # Browsing diffs
 'previousdiff' => '← Алдагы үзгәртү',
