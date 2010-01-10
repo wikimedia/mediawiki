@@ -32,6 +32,8 @@
  *       'tableprefix' => '',
  *       'cookieprefix' => 'bb'
  *   );
+ *
+ * @ingroup ExternalUser
  */
 class ExternalUser_vB extends ExternalUser {
 	private $mDb, $mRow;

@@ -18,6 +18,10 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * @defgroup ExternalUser ExternalUser
+ */
+
+/**
  * A class intended to supplement, and perhaps eventually replace, AuthPlugin.
  * See: http://www.mediawiki.org/wiki/ExternalAuth
  *
@@ -26,6 +30,8 @@
  * assumed to at least support the concept of a user id (possibly not an
  * integer), a user name (possibly not meeting MediaWiki's username
  * requirements), and a password.
+ *
+ * @ingroup ExternalUser
  */
 abstract class ExternalUser {
 	protected function __construct() {}
@@ -67,7 +73,6 @@ abstract class ExternalUser {
 	}
 
 	/**
-	 * @param $cookie string
 	 * @return mixed ExternalUser, or false on failure
 	 */
 	public static function newFromCookie() {

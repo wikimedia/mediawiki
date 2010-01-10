@@ -31,6 +31,8 @@
  *
  * Multiple names may be provided.  The keys of the inner arrays can be either
  * 'password', or the name of any preference.
+ *
+ * @ingroup ExternalUser
  */
 class ExternalUser_Hardcoded extends ExternalUser {
 	private $mName;

@@ -41,6 +41,8 @@
  * might fail unexpectedly unless they both do the exact same validation.  
  * There may be other corner cases like this where this will fail, but it 
  * should be unlikely.
+ *
+ * @ingroup ExternalUser
  */
 class ExternalUser_MediaWiki extends ExternalUser {
 	private $mRow, $mDb;
