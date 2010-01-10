@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -605,6 +605,7 @@ $2',
 'nav-login-createaccount'    => '登录／创建账户',
 'loginprompt'                => '您必须启用Cookies才能登录{{SITENAME}}。',
 'userlogin'                  => '登录／创建账户',
+'userloginnocreate'          => '登录',
 'logout'                     => '退出',
 'userlogout'                 => '退出',
 'notloggedin'                => '未登录',
@@ -1003,7 +1004,7 @@ $1",
 'revdelete-modify-missing'    => '正在更改项目ID $1错误：它在资料库中遗失！',
 'revdelete-no-change'         => '警告：于$1 $2之项目已经请求了可见性的设置。',
 'revdelete-concurrent-change' => '正在更改于$1 $2之项目错误：当我们尝试更改它的设置时，已经被另一些人更改过。请检查纪录。',
-'revdelete-only-restricted'   => '在隐藏$1 $2的项目时发生错误：您不能在选择了另一可见性选项后阻止管理员查看该项目。',
+'revdelete-only-restricted'   => '在隐藏$1 $2的项目时发生错误：您不能在选择了另一可见性选项后废止管理员查看该项目。',
 'revdelete-reason-dropdown'   => '*常用删除理由
 ** 侵犯版权
 ** 不合适的个人资料',
@@ -1772,7 +1773,8 @@ Template:消除歧義',
 'ancientpages'            => '最旧页面',
 'move'                    => '移动',
 'movethispage'            => '移动此页',
-'unusedimagestext'        => '下列文件已存在，但并未插入任何页面。请注意其它网站可能会直接通过URL链接此文件，因此下面列出的文件依然有可能被使用。',
+'unusedimagestext'        => '下列文件已存在，但并未插入任何页面。
+请注意其它网站可能会直接通过URL链接此文件，因此下面列出的文件依然有可能被使用。',
 'unusedcategoriestext'    => '虽然没有被其它页面或者分类所采用，但列表中的分类页依然存在。',
 'notargettitle'           => '无目标',
 'notargettext'            => '您还没有指定一个目标页面或用户以进行此项操作。',
@@ -1990,7 +1992,7 @@ $NEWPAGE
 'exblank'                => '页面为空',
 'delete-confirm'         => '删除“$1”',
 'delete-legend'          => '删除',
-'historywarning'         => '警告：您将要删除的页面有$1个{{PLURAL:$1|修订|修订}}版本的历史：',
+'historywarning'         => '警告：您将要删除的页面有约$1个{{PLURAL:$1|修订|修订}}版本的历史：',
 'confirmdeletetext'      => '您即将删除一个页面或图像以及其历史。
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
@@ -2282,6 +2284,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'ipb_cant_unblock'                => '错误：找不到查封ID$1。可能已经解除封禁。',
 'ipb_blocked_as_range'            => '错误：该IP $1 无直接查封，不可以解除封禁。但是它是在 $2 的查封范围之内，该段范围是可以解除封禁的。',
 'ip_range_invalid'                => '无效的IP范围。',
+'ip_range_toolarge'               => '大于 /$1 的封锁范围是不容许的。',
 'blockme'                         => '禁封我',
 'proxyblocker'                    => '代理封锁器',
 'proxyblocker-disabled'           => '这个功能已经禁用。',

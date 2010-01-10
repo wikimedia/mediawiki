@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -599,6 +599,7 @@ $2',
 'nav-login-createaccount'    => '登入／建立新賬號',
 'loginprompt'                => '您必須允許瀏覽器紀錄Cookie才能成功登入 {{SITENAME}} 並順利進行操作',
 'userlogin'                  => '登入／建立新賬號',
+'userloginnocreate'          => '登入',
 'logout'                     => '登出',
 'userlogout'                 => '登出',
 'notloggedin'                => '未登入',
@@ -834,7 +835,7 @@ $2',
 'nocreatetitle'                    => '創建頁面受限',
 'nocreatetext'                     => '{{SITENAME}}限制了創建新頁面的功能。{{GENDER:|你|妳|你}}可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或創建新賬戶]]。',
 'nocreate-loggedin'                => '您並無許可權去創建新頁面。',
-'sectioneditnotsupported-title'    => '此頁面不支持段落編輯',
+'sectioneditnotsupported-title'    => '不支持段落編輯',
 'sectioneditnotsupported-text'     => '此頁面不支持段落編輯。',
 'permissionserrors'                => '權限錯誤',
 'permissionserrorstext'            => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
@@ -1002,7 +1003,7 @@ $1",
 'revdelete-modify-missing'    => '正在更改項目ID $1錯誤：它在資料庫中遺失！',
 'revdelete-no-change'         => '警告：於$1 $2之項目已經請求了可見性的設定。',
 'revdelete-concurrent-change' => '正在更改於$1 $2之項目錯誤：當我們嘗試更改它的設定時，已經被另一些人更改過。請檢查紀錄。',
-'revdelete-only-restricted'   => '在隱藏$1 $2的項目時發生錯誤：您不能在選擇了另一可見性選項後阻止管理員查看該項目。',
+'revdelete-only-restricted'   => '在隱藏$1 $2的項目時發生錯誤：您不能在選擇了另一可見性選項後廢止管理員查看該項目。',
 'revdelete-reason-dropdown'   => '*常用刪除理由
 ** 侵犯版權
 ** 不合適的個人資料',
@@ -1992,7 +1993,7 @@ $NEWPAGE
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
 'delete-legend'          => '刪除',
-'historywarning'         => "'''警告: '''您將要刪除的頁內含有$1次{{PLURAL:$1|修訂|修訂}}的歷史：",
+'historywarning'         => "'''警告: '''您將要刪除的頁內含有約$1次{{PLURAL:$1|修訂|修訂}}的歷史：",
 'confirmdeletetext'      => '您即將刪除一個頁面或圖片以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
@@ -2283,6 +2284,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'ipb_cant_unblock'                => '錯誤: 找不到查封ID$1。可能已經解除封禁。',
 'ipb_blocked_as_range'            => '錯誤: 該IP $1 無直接查封，不可以解除封禁。但是它是在 $2 的查封範圍之內，該段範圍是可以解除封禁的。',
 'ip_range_invalid'                => '無效的IP範圍。',
+'ip_range_toolarge'               => '大於 /$1 的封鎖範圍是不容許的。',
 'blockme'                         => '查封我',
 'proxyblocker'                    => '代理封鎖器',
 'proxyblocker-disabled'           => '這個功能已經停用。',
