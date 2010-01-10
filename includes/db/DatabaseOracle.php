@@ -833,7 +833,7 @@ class DatabaseOracle extends DatabaseBase {
 	function fieldExists( $table, $field, $fname = 'DatabaseOracle::fieldExists' ) {
 		$table = trim( $table, '"' );
 
-		if (isset($this->mFieldInfoCache[$table.'.'.$field])) {
+		if (isset($this->mFieldInfoCache["$table.$field"])) {
 			return true;
 		} elseif ( !isset( $this->fieldInfo_stmt ) ) {
 			$this->fieldInfo_stmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name = upper(:tab) and column_name = UPPER(:col)' );
@@ -849,7 +849,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 		$res = new ORAResult( $this, $this->fieldInfo_stmt );
 		if ($res->numRows() != 0) {
-			$this->mFieldInfoCache[$table.'.'.$field] = new ORAField( $res->fetchRow() );
+			$this->mFieldInfoCache["$table.$field"] = new ORAField( $res->fetchRow() );
 			return true;
 		} else {
 			return false;
@@ -859,8 +859,8 @@ class DatabaseOracle extends DatabaseBase {
 	function fieldInfo( $table, $field ) {
 		$table = trim( $table, '"' );
 
-		if (isset($this->mFieldInfoCache[$table.'.'.$field])) {
-			return $this->mFieldInfoCache[$table.'.'.$field];
+		if (isset($this->mFieldInfoCache["$table.$field"])) {
+			return $this->mFieldInfoCache["$table.$field"];
 		} elseif ( !isset( $this->fieldInfo_stmt ) ) {
 			$this->fieldInfo_stmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name = upper(:tab) and column_name = UPPER(:col)' );
 		}
@@ -874,8 +874,8 @@ class DatabaseOracle extends DatabaseBase {
 			return false;
 		}
 		$res = new ORAResult( $this, $this->fieldInfo_stmt );
-		$this->mFieldInfoCache[$table.'.'.$field] = new ORAField( $res->fetchRow() );
-		return $this->mFieldInfoCache[$table.'.'.$field];
+		$this->mFieldInfoCache["$table.$field"] = new ORAField( $res->fetchRow() );
+		return $this->mFieldInfoCache["$table.$field"];
 	}
 
 	function begin( $fname = '' ) {
