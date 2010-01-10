@@ -87,7 +87,7 @@ class FeedUtils {
 	 */
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext='' ) {
 		global $wgFeedDiffCutoff, $wgContLang, $wgUser;
-		wfProfileIn( __FUNCTION__ );
+		wfProfileIn( __METHOD__ );
 
 		$skin = $wgUser->getSkin();
 		# log enties
@@ -105,7 +105,7 @@ class FeedUtils {
 
 		if( $title->getNamespace() >= 0 && !$accErrors && $newid ) {
 			if( $oldid ) {
-				wfProfileIn( __FUNCTION__."-dodiff" );
+				wfProfileIn( __METHOD__."-dodiff" );
 
 				#$diffText = $de->getDiff( wfMsg( 'revisionasof',
 				#	$wgContLang->timeanddate( $timestamp ),
@@ -142,7 +142,7 @@ class FeedUtils {
 					$diffText = UtfNormal::cleanUp( $diffText );
 					$diffText = self::applyDiffStyle( $diffText );
 				}
-				wfProfileOut( __FUNCTION__."-dodiff" );
+				wfProfileOut( __METHOD__."-dodiff" );
 			} else {
 				$rev = Revision::newFromId( $newid );
 				if( is_null( $rev ) ) {
@@ -156,7 +156,7 @@ class FeedUtils {
 			$completeText .= $diffText;
 		}
 
-		wfProfileOut( __FUNCTION__ );
+		wfProfileOut( __METHOD__ );
 		return $completeText;
 	}
 
