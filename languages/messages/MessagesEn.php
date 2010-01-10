@@ -1444,7 +1444,7 @@ As an administrator you can view it; details can be found in the [{{fullurl:{{#S
 As an administrator you can view it; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-deleted-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
-'rev-suppressed-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.",
+'rev-suppressed-no-diff'      => "You cannot view this diff because one of the revisions has been '''deleted'''.",
 'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.",
