@@ -88,6 +88,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   signatures. This was always the behaviour documented in DefaultSettings.php
   but has not been the actual behaviour for some time: instead, UTC was used 
   by default.
+* Added $wgExtensionAssetsPath, to decouple assets serving from $wgScriptPath.
+  If not specified it will default to $wgScriptPath/extensions
 
 
 === New features in 1.16 ===

@@ -40,6 +40,7 @@ if( $wgArticlePath === false ) {
 
 if( $wgStylePath === false ) $wgStylePath = "$wgScriptPath/skins";
 if( $wgStyleDirectory === false) $wgStyleDirectory   = "$IP/skins";
+if( $wgExtensionAssetsPath === false ) $wgExtensionAssetsPath = "$wgScriptPath/extensions";
 
 if( $wgLogo === false ) $wgLogo = "$wgStylePath/common/images/wiki.png";
 
