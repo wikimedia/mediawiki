@@ -142,9 +142,11 @@ $wgRedirectScript   = false; ///< defaults to "{$wgScriptPath}/redirect{$wgScrip
  * splitting style sheets or images outside the main document root.
  */
 /**
- * style path as seen by users
+ * asset paths as seen by users
  */
 $wgStylePath   = false; ///< defaults to "{$wgScriptPath}/skins"
+$wgExtensionAssetsPath = false; ///< defaults to "{$wgScriptPath}/extensions"
+
 /**
  * filesystem stylesheets directory
  */
