@@ -65,8 +65,8 @@ function importScriptURI(url) {
 	}
 	loadedScripts[url] = true;
 	var s = document.createElement('script');
-	s.setAttribute('src',url);
-	s.setAttribute('type','text/javascript');
+	s.setAttribute('src', url);
+	s.setAttribute('type', 'text/javascript');
 	document.getElementsByTagName('head')[0].appendChild(s);
 	return s;
 }
@@ -75,12 +75,14 @@ function importStylesheet(page) {
 	return importStylesheetURI(wgScript + '?action=raw&ctype=text/css&title=' + encodeURIComponent(page.replace(/ /g,'_')));
 }
 
-function importStylesheetURI(url,media) {
+function importStylesheetURI(url, media) {
 	var l = document.createElement('link');
 	l.type = 'text/css';
 	l.rel = 'stylesheet';
 	l.href = url;
-	if(media) l.media = media
+	if( media ) {
+		l.media = media;
+	}
 	document.getElementsByTagName('head')[0].appendChild(l);
 	return l;
 }
@@ -89,8 +91,11 @@ function appendCSS(text) {
 	var s = document.createElement('style');
 	s.type = 'text/css';
 	s.rel = 'stylesheet';
-	if (s.styleSheet) s.styleSheet.cssText = text //IE
-	else s.appendChild(document.createTextNode(text + '')) //Safari sometimes borks on null
+	if ( s.styleSheet ) {
+		s.styleSheet.cssText = text; //IE
+	} else {
+		s.appendChild(document.createTextNode(text + '')); //Safari sometimes borks on null
+	}
 	document.getElementsByTagName('head')[0].appendChild(s);
 	return s;
 }
@@ -290,58 +295,73 @@ function updateTooltipAccessKeys( nodeList ) {
  */
 function addPortletLink(portlet, href, text, id, tooltip, accesskey, nextnode) {
 	var root = document.getElementById(portlet);
-	if ( !root ) return null;
-	var node = root.getElementsByTagName( "ul" )[0];
-	if ( !node ) return null;
+	if ( !root ) {
+		return null;
+	}
+	var node = root.getElementsByTagName( 'ul' )[0];
+	if ( !node ) {
+		return null;
+	}
 
 	// unhide portlet if it was hidden before
 	root.className = root.className.replace( /(^| )emptyPortlet( |$)/, "$2" );
 
-	var span = document.createElement( "span" );
+	var span = document.createElement( 'span' );
 	span.appendChild( document.createTextNode( text ) );
 
-	var link = document.createElement( "a" );
+	var link = document.createElement( 'a' );
 	link.appendChild( span );
 	link.href = href;
 
-	var item = document.createElement( "li" );
+	var item = document.createElement( 'li' );
 	item.appendChild( link );
-	if ( id ) item.id = id;
+	if ( id ) {
+		item.id = id;
+	}
 
 	if ( accesskey ) {
-		link.setAttribute( "accesskey", accesskey );
-		tooltip += " ["+accesskey+"]";
+		link.setAttribute( 'accesskey', accesskey );
+		tooltip += ' [' + accesskey + ']';
 	}
 	if ( tooltip ) {
-		link.setAttribute( "title", tooltip );
+		link.setAttribute( 'title', tooltip );
 	}
 	if ( accesskey && tooltip ) {
 		updateTooltipAccessKeys( new Array( link ) );
 	}
 
-	if ( nextnode && nextnode.parentNode == node )
+	if ( nextnode && nextnode.parentNode == node ) {
 		node.insertBefore( item, nextnode );
-	else
+	} else {
 		node.appendChild( item );  // IE compatibility (?)
+	}
 
 	return item;
 }
 
 function getInnerText(el) {
-	if (typeof el == "string") return el;
-	if (typeof el == "undefined") { return el };
-	if (el.textContent) return el.textContent; // not needed but it is faster
-	if (el.innerText) return el.innerText;     // IE doesn't have textContent
-	var str = "";
+	if ( typeof el == 'string' ) {
+		return el;
+	}
+	if ( typeof el == 'undefined' ) {
+		return el;
+	}
+	if ( el.textContent ) {
+		return el.textContent; // not needed but it is faster
+	}
+	if ( el.innerText ) {
+		return el.innerText; // IE doesn't have textContent
+	}
+	var str = '';
 
 	var cs = el.childNodes;
 	var l = cs.length;
 	for (var i = 0; i < l; i++) {
 		switch (cs[i].nodeType) {
-			case 1: //ELEMENT_NODE
+			case 1: // ELEMENT_NODE
 				str += ts_getInnerText(cs[i]);
 				break;
-			case 3:	//TEXT_NODE
+			case 3:	// TEXT_NODE
 				str += cs[i].nodeValue;
 				break;
 		}
@@ -364,16 +384,20 @@ function setupCheckboxShiftClick() {
 }
 
 function addCheckboxClickHandlers(inputs, start) {
-	if ( !start) start = 0;
+	if ( !start ) {
+		start = 0;
+	}
 
 	var finish = start + 250;
-	if ( finish > inputs.length )
+	if ( finish > inputs.length ) {
 		finish = inputs.length;
+	}
 
 	for ( var i = start; i < finish; i++ ) {
 		var cb = inputs[i];
-		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' )
+		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' ) {
 			continue;
+		}
 		var end = checkboxes.length;
 		checkboxes[end] = cb;
 		cb.index = end;
@@ -406,8 +430,9 @@ function checkboxClickHandler(e) {
 	}
 	for (var i = start; i <= finish; ++i ) {
 		checkboxes[i].checked = endState;
-		if( i > start && typeof checkboxes[i].onchange == 'function' )
+		if( i > start && typeof checkboxes[i].onchange == 'function' ) {
 			checkboxes[i].onchange(); // fire triggers
+		}
 	}
 	lastCheckbox = this.index;
 	return true;
@@ -425,11 +450,13 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 	if ( typeof( oElm.getElementsByClassName ) == "function" ) {
 		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
 		var arrNativeReturn = oElm.getElementsByClassName( oClassNames );
-		if ( strTagName == "*" )
+		if ( strTagName == "*" ) {
 			return arrNativeReturn;
+		}
 		for ( var h=0; h < arrNativeReturn.length; h++ ) {
-			if( arrNativeReturn[h].tagName.toLowerCase() == strTagName.toLowerCase() )
+			if( arrNativeReturn[h].tagName.toLowerCase() == strTagName.toLowerCase() ) {
 				arrReturnElements[arrReturnElements.length] = arrNativeReturn[h];
+			}
 		}
 		return arrReturnElements;
 	}
@@ -440,8 +467,7 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 			arrRegExpClassNames[arrRegExpClassNames.length] =
 				new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)");
 		}
-	}
-	else{
+	} else {
 		arrRegExpClassNames[arrRegExpClassNames.length] =
 			new RegExp("(^|\\s)" + oClassNames.replace(/\-/g, "\\-") + "(\\s|$)");
 	}
@@ -460,7 +486,7 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 			arrReturnElements[arrReturnElements.length] = oElement;
 		}
 	}
-	return (arrReturnElements)
+	return (arrReturnElements);
 }
 
 function redirectToFragment(fragment) {
@@ -476,12 +502,14 @@ function redirectToFragment(fragment) {
 	if (is_gecko) {
 		// Mozilla needs to wait until after load, otherwise the window doesn't scroll
 		addOnloadHook(function () {
-			if (window.location.hash == "")
+			if (window.location.hash == '') {
 				window.location.hash = fragment;
+			}
 		});
 	} else {
-		if (window.location.hash == "")
+		if (window.location.hash == '') {
 			window.location.hash = fragment;
+		}
 	}
 }
 
@@ -496,11 +524,11 @@ function redirectToFragment(fragment) {
  * @todo support all accepted date formats (bug 8226)
  */
 
-var ts_image_path = stylepath+"/common/images/";
-var ts_image_up = "sort_up.gif";
-var ts_image_down = "sort_down.gif";
-var ts_image_none = "sort_none.gif";
-var ts_europeandate = wgContentLanguage != "en"; // The non-American-inclined can change to "true"
+var ts_image_path = stylepath + '/common/images/';
+var ts_image_up = 'sort_up.gif';
+var ts_image_down = 'sort_down.gif';
+var ts_image_none = 'sort_none.gif';
+var ts_europeandate = wgContentLanguage != 'en'; // The non-American-inclined can change to "true"
 var ts_alternate_row_colors = false;
 var ts_number_transform_table = null;
 var ts_number_regex = null;
@@ -527,7 +555,9 @@ function ts_makeSortable(table) {
 			firstRow = table.rows[0];
 		}
 	}
-	if (!firstRow) return;
+	if ( !firstRow ) {
+		return;
+	}
 
 	// We have a first row: assume it's the header, and make its contents clickable links
 	for (var i = 0; i < firstRow.cells.length; i++) {
@@ -560,14 +590,19 @@ function ts_resortTable(lnk) {
 	var column = td.cellIndex;
 
 	var table = tr.parentNode;
-	while (table && !(table.tagName && table.tagName.toLowerCase() == 'table'))
+	while (table && !(table.tagName && table.tagName.toLowerCase() == 'table')) {
 		table = table.parentNode;
-	if (!table) return;
+	}
+	if ( !table ) {
+		return;
+	}
 
-	if (table.rows.length <= 1) return;
+	if ( table.rows.length <= 1 ) {
+		return;
+	}
 
 	// Generate the number transform table if it's not done already
-	if (ts_number_transform_table == null) {
+	if (ts_number_transform_table === null) {
 		ts_initTransformTable();
 	}
 
@@ -575,12 +610,14 @@ function ts_resortTable(lnk) {
 	// Skip the first row if that's where the headings are
 	var rowStart = (table.tHead && table.tHead.rows.length > 0 ? 0 : 1);
 
-	var itm = "";
+	var itm = '';
 	for (var i = rowStart; i < table.rows.length; i++) {
 		if (table.rows[i].cells.length > column) {
 			itm = ts_getInnerText(table.rows[i].cells[column]);
 			itm = itm.replace(/^[\s\xa0]+/, "").replace(/[\s\xa0]+$/, "");
-			if (itm != "") break;
+			if ( itm != '' ) {
+				break;
+			}
 		}
 	}
 
@@ -608,14 +645,16 @@ function ts_resortTable(lnk) {
 		var row = table.rows[j];
 		if((" "+row.className+" ").indexOf(" unsortable ") < 0) {
 			var keyText = ts_getInnerText(row.cells[column]);
-			if(keyText == undefined) {
-				keyText = ""; 
+			if(keyText === undefined) {
+				keyText = ''; 
 			}
 			var oldIndex = (reverse ? -j : j);
 			var preprocessed = preprocessor( keyText.replace(/^[\s\xa0]+/, "").replace(/[\s\xa0]+$/, "") );
 
 			newRows[newRows.length] = new Array(row, preprocessed, oldIndex);
-		} else staticRows[staticRows.length] = new Array(row, false, j-rowStart);
+		} else {
+			staticRows[staticRows.length] = new Array(row, false, j-rowStart);
+		}
 	}
 
 	newRows.sort(sortfn);
