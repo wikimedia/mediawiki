@@ -295,6 +295,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   equivalents.
 * (bug 22051) Returing false in SpecialContributionsBeforeMainOutput hook now
   stops normal output
+* Send new password e-mail in users preference language
 
 === Bug fixes in 1.16 ===
 
