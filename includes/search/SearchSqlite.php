@@ -26,8 +26,6 @@
  * @ingroup Search
  */
 class SearchSqlite extends SearchEngine {
-	var $strictMatching = true;
-
 	// Cached because SearchUpdate keeps recreating our class
 	private static $fulltextSupported = null;
 
@@ -64,7 +62,6 @@ class SearchSqlite extends SearchEngine {
 		$searchon = '';
 		$this->searchTerms = array();
 
-		# FIXME: This doesn't handle parenthetical expressions.
 		$m = array();
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			  $filteredText, $m, PREG_SET_ORDER ) ) {
@@ -78,13 +75,9 @@ class SearchSqlite extends SearchEngine {
 					$term = str_replace( '"', '', $term );
 					$quote = '"';
 				}
-			
+
 				if( $searchon !== '' ) $searchon .= ' ';
-				if( $this->strictMatching && ($modifier == '') ) {
-					// If we leave this out, boolean op defaults to OR which is rarely helpful.
-					$modifier = '+';
-				}
-				
+
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
 				$convertedVariants = $wgContLang->autoConvertToAllVariants( $term );
@@ -127,8 +120,7 @@ class SearchSqlite extends SearchEngine {
 				$regexp = $this->regexTerm( $term, $wildcard );
 				$this->searchTerms[] = $regexp;
 			}
-			wfDebug( __METHOD__ . ": Would search with '$searchon'\n" );
-			wfDebug( __METHOD__ . ': Match with /' . implode( '|', $this->searchTerms ) . "/\n" );
+
 		} else {
 			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
 		}
