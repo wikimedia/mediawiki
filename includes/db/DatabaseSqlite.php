@@ -295,7 +295,7 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * Based on MySQL method (parent) with some prior SQLite-sepcific adjustments
+	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
 	 */
 	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
 		if ( !count( $a ) ) return true;
@@ -314,6 +314,22 @@ class DatabaseSqlite extends DatabaseBase {
 					$ret = false;
 		} else {
 			$ret = parent::insert( $table, $a, "$fname/single-row", $options );
+		}
+
+		return $ret;
+	}
+
+	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseSqlite::replace' ) {
+		if ( !count( $rows ) ) return true;
+	
+		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
+		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
+			$ret = true;
+			foreach ( $rows as $k => $v )
+				if ( !parent::replace( $table, $uniqueIndexes, $v, "$fname/multi-row" ) )
+					$ret = false;
+		} else {
+			$ret = parent::replace( $table, $uniqueIndexes, $rows, "$fname/single-row" );
 		}
 
 		return $ret;
