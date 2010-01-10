@@ -539,6 +539,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'nav-login-createaccount'    => 'Saioa hasi / kontua sortu',
 'loginprompt'                => 'Cookieak gaituta izatea beharrezkoa da {{SITENAME}}(e)n saioa hasteko.',
 'userlogin'                  => 'Saioa hasi / kontua sortu',
+'userloginnocreate'          => 'Saioa hasi',
 'logout'                     => 'Saioa itxi',
 'userlogout'                 => 'Saioa itxi',
 'notloggedin'                => 'Saioa hasi gabe',
@@ -3105,5 +3106,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'ajax-confirm-actionsummary'   => 'Egin beharrekoa:',
 'ajax-error-title'             => 'Akatsa',
 'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Ezin izan da kategoria ezabatu.
+Arrazoia izan ohi da kategoria hori txantiloi batek erantsi diola orrialdera.',
 
 );

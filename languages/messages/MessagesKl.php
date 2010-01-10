@@ -107,7 +107,7 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Sumut atassuseq|Sunut atasut}}',
+'pagecategories' => '{{PLURAL:$1|Sumut atassuseq|Sunut atassusit}}',
 
 'about'         => 'Pillugu',
 'newwindow'     => '(nutaamut ammassaaq)',
@@ -220,8 +220,10 @@ $messages = array(
 'createaccountmail'          => 'e-mail-ikkut',
 'badretype'                  => 'Isissutissat allanneqartut assigiinngillat.',
 'userexists'                 => 'Atuisup atia atorneqareerpoq. Allamik qinersigit.',
+'loginerror'                 => 'Iserniarnerlunneq',
 'loginsuccesstitle'          => 'Maanna isersimalerputit',
 'loginsuccess'               => 'Maanna {{SITENAME}} -mut isersimalerputit "$1" -itut taaguuserlutit.',
+'wrongpassword'              => 'Isissutissaq kukkusumik allanneqarsimavoq. Misileqqiuk.',
 'mailmypassword'             => 'Nutaamik isissutitaarit',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
@@ -369,10 +371,10 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'allpagessubmit' => 'Tassunngarit',
 
 # Special:Categories
-'categories'         => 'Sunut atasut',
-'categoriespagetext' => 'Uku {{PLURAL:$1|sumut atassuseq|sunut atasut}} imarivai quppernerit media-lluunniit.
-[[Special:UnusedCategories|Sunut atasut]] atorneqanngitsut maani ilaanngillat.
-Aamma takuuk [[Special:WantedCategories|sunut atasunut kissaatigineqartut]].',
+'categories'         => 'Sunut atassusit',
+'categoriespagetext' => 'Uku {{PLURAL:$1|sumut atassuseq|sunut atassusit}} imarivai quppernerit media-lluunniit.
+[[Special:UnusedCategories|Sunut atassusit]] atorneqanngitsut maani ilaanngillat.
+Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].',
 'categoriesfrom'     => 'Takuuk qanoq aallartiffianeersumiit:',
 
 # Special:LinkSearch

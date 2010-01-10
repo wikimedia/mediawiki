@@ -580,7 +580,7 @@ Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
 'password-name-match'        => 'Twoje hesło dyrbi so wot twojeho wužiwarskeho mjena rozeznać.',
 'mailmypassword'             => 'Nowe hesło e-mejlować',
 'passwordremindertitle'      => 'Skedźbnjenje na hesło z {{GRAMMAR:genitiw|{{SITENAME}}}}',
-'passwordremindertext'       => 'Něchtó z IP-adresu $1 (najskerje ty) je wo nowe hesło za přizjewjenje za {{GRAMMAR:Akuzatiw|{{SITENAME}}}} ($4) prosył. Nachwilne hesło za wužiwarja "$2" je so wutworiło a je nětko "$3". Jeli je to twój wotpohlad było dyrbiš so nětko přizjewić a nowe hesło wubrać. Twoje nachwilne hesło spadnje za {{PLURAL:$5|jeden dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+'passwordremindertext'       => 'Něchtó z IP-adresu $1 (najskerje ty) je wo nowe hesło za přizjewjenje za {{GRAMMAR:akuzatiw|{{SITENAME}}}} ($4) prosył. Nachwilne hesło za wužiwarja "$2" je so wutworiło a je nětko "$3". Jeli je to twój wotpohlad było dyrbiš so nětko přizjewić a nowe hesło wubrać. Twoje nachwilne hesło spadnje za {{PLURAL:$5|jeden dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
 
 Jeli něchtó druhi wo nowe hesło prosył abo ty sy so zaso na swoje hesło dopomnił a hižo nochceš je změnić, móžeš tutu powěsć ignorować a swoje stare hesło dale wužiwać.',
 'noemail'                    => 'Za wužiwarja $1 žana e-mejlowa adresa podata njeje.',
@@ -770,7 +770,7 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1",
 'hiddencategories'                 => 'Tuta strona je čłon w {{PLURAL:$1|1 schowanej kategoriji|$1 schowanymaj kategorijomaj|$1 schowanych kategorijach|$1 schowanych kategorijach}}:',
 'edittools'                        => '<!-- Tutón tekst so spody wobdźěłowanskich a nahrawanskich formularow pokazuje. -->',
 'nocreatetitle'                    => 'Wutworjenje stron je wobmjezowane.',
-'nocreatetext'                     => 'Na {{GRAMMAR:Lokatiw|{{SITENAME}}}} bu wutworjenje nowych stronow wobmjezowane. Móžeš wobstejace strony wobdźěłać abo [[Special:UserLogin|so přizjewić abo wužiwarske konto wutworić]].',
+'nocreatetext'                     => 'Na {{GRAMMAR:lokatiw|{{SITENAME}}}} bu wutworjenje nowych stronow wobmjezowane. Móžeš wobstejace strony wobdźěłać abo [[Special:UserLogin|so přizjewić abo wužiwarske konto wutworić]].',
 'nocreate-loggedin'                => 'Nimaš prawo, zo by nowe strony wutworił.',
 'sectioneditnotsupported-title'    => 'Wobdźěłowanje wotrězka so njepodpěruje',
 'sectioneditnotsupported-text'     => 'Wobdźěłowanje wotrězka so na tutej wobdźěłowanskej stronje njepodpěruje.',

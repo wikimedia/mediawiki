@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -966,7 +966,7 @@ $1",
 'revdelete-modify-missing'    => '改緊項目ID $1錯誤：佢響資料庫度唔見咗！',
 'revdelete-no-change'         => '警告：響$1 $2嘅項目已經請求咗可見性設定。',
 'revdelete-concurrent-change' => '改緊響$1 $2嘅項目錯誤：當我哋試吓改佢嘅設定嗰陣，已經畀另一啲人改過。請檢查紀錄。',
-'revdelete-only-restricted'   => "隱藏項目響$1 $2嘅項目：你唔可以廢止由管理員檢視，而唔同時再揀另外其中一個可見性選項。",
+'revdelete-only-restricted'   => '隱藏項目響$1 $2嘅項目：你唔可以廢止由管理員檢視，而唔同時再揀另外其中一個可見性選項。',
 'revdelete-reason-dropdown'   => '*常用刪除原因
 ** 侵犯版權
 ** 唔合適嘅個人資料',

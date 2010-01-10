@@ -1094,6 +1094,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Administratoren können sie einsehen; Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
 'rev-deleted-no-diff'         => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-suppressed-no-diff'      => "Du kannst diesen Versionsunterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.",
 'rev-deleted-unhide-diff'     => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator kannst du [$1 diesen Link zum Versionsunterschied] nennen.",
