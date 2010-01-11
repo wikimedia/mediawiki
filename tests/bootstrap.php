@@ -1,19 +1,16 @@
 <?php
 
-global $wgCommandLineMode, $IP, $wgMemc;
+global $wgCommandLineMode, $IP;
 $wgCommandLineMode = true;
+$IP = dirname( dirname( __FILE__ ) );
 define('MEDIAWIKI', 1);
+ini_set( 'include_path', "$IP:" .ini_get( 'include_path' ) );
 
-require dirname( dirname( __FILE__ ) ).implode( DIRECTORY_SEPARATOR, array( "", "includes", "Defines.php" ) );
+require ( "$IP/includes/Defines.php" );
+require ( "$IP/includes/DefaultSettings.php" );
+require ( "$IP/LocalSettings.php" );
 
-require dirname( dirname( __FILE__ ) ).DIRECTORY_SEPARATOR."LocalSettings.php";
-
-require "ProfilerStub.php";
+require 'ProfilerStub.php';
 require 'GlobalFunctions.php';
 require 'Hooks.php';
-require "AutoLoader.php";
-require 'ProxyTools.php';
-require 'ObjectCache.php';
-require 'ImageFunctions.php';
-
-$wgMemc =& wfGetMainCache();
+require 'AutoLoader.php';

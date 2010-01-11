@@ -80,6 +80,7 @@ $wgAutoloadLocalClasses = array(
 	'ExternalUser_vB' => 'includes/extauth/vB.php',
 	'FatalError' => 'includes/Exception.php',
 	'FakeTitle' => 'includes/FakeTitle.php',
+	'FakeMemCachedClient' => 'includes/ObjectCache.php',
 	'FauxRequest' => 'includes/WebRequest.php',
 	'FeedItem' => 'includes/Feed.php',
 	'FeedUtils' => 'includes/FeedUtils.php',

@@ -1,10 +1,6 @@
 <?php
 require_once( 'SearchEngineTest.php' );
 
-/**
- * @group Broken
- */
-
 class SearchMySQL4Test extends SearchEngineTest {
 	var $db;
 
