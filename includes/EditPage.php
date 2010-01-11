@@ -129,7 +129,10 @@ class EditPage {
 		wfProfileIn( __METHOD__ );
 		# Get variables from query string :P
 		$section = $wgRequest->getVal( 'section' );
-		$preload = $wgRequest->getVal( 'preload' );
+			
+		$preload = $wgRequest->getVal( 'preload', 
+			// Custom preload text for new sections
+			$section === 'new' ? 'MediaWiki:addsection-preload' : '' );
 		$undoafter = $wgRequest->getVal( 'undoafter' );
 		$undo = $wgRequest->getVal( 'undo' );
 
@@ -709,7 +712,9 @@ class EditPage {
 		$this->oldid = $request->getInt( 'oldid' );
 
 		$this->live = $request->getCheck( 'live' );
-		$this->editintro = $request->getText( 'editintro' );
+		$this->editintro = $request->getText( 'editintro',
+			// Custom edit intro for new sections
+			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
 
 		wfProfileOut( __METHOD__ );
 

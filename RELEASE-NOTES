@@ -273,8 +273,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * rebuildtextindex.php maintenance script now supports databases other than
   MySQL
 * upgrade1_5.php now requires to be run --update option to prevent confusion
-* (bug 17662) Customizable default preload/editintro in add-new-section link
-  for Talk page
+* (bug 17662) Customizable default preload/editintro for new sections in the
+  respective addsection-preload and addsection-editintro messages
 * Added maintenance script syntaxChecker.php that checks for PHP syntax errors
   and common coding mistakes
 * Updated Unicode normalization tables
