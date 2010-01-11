@@ -6939,6 +6939,18 @@ Taiwan
 !! end
 
 !! test
+Adding explicit conversion rule for title (T flag)
+!! options
+language=zh variant=zh showtitle
+!! input
+Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
+!! result
+China
+<p>Should be stripped!
+</p>
+!! end
+
+!! test
 Raw output of variant escape tags (R flag)
 !! options
 language=zh variant=zh-tw
@@ -7512,30 +7524,6 @@ title=[[Main Page]]
 [[#section]]
 !! result
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
-!! end
-
-!! test
-Adding explicit conversion rule for title (T flag)
-!! options
-language=zh variant=zh-tw showtitle **** disabled (for now) because I think it uncovers a bug and I want a reminder
-!! input
-Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
-!! result
-Taiwan
-<p>Should be stripped!
-</p>
-!! end
-
-!! test
-Adding explicit conversion rule for title (T flag)
-!! options
-language=zh variant=zh showtitle **** disabled (for now) because I think it uncovers a bug and I want a reminder
-!! input
-Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
-!! result
-China
-<p>Should be stripped!
-</p>
 !! end
 
 TODO:
