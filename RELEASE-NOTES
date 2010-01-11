@@ -5,22 +5,6 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.15.2 ==
 
-* (bug 20239) MediaWiki:Imagemaxsize does not contain anymore a <br /> tag which
-  was displayed to the user
-* (bug 21150) SQLite no longer raise an error when deleting files
-* (bug 20880) Fixed updater failure on SQLite backend
-
-=== Changes since 1.15.1 ===
-
-* Installer now includes a check for a data corruption issue with certain
-  versions of libxml2 2.7 and PHP earlier than 5.2.9.
-
-== MediaWiki 1.15.1 ==
-
-July 14, 2009
-
-This is a security and bugfix release of the the 2009 Q2 branch of MediaWiki. 
-
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
 "ready to run", and in fact runs our own sites on Wikipedia.
@@ -31,6 +15,16 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+=== Changes since 1.15.1 ===
+
+* Installer now includes a check for a data corruption issue with certain
+  versions of libxml2 2.7 and PHP earlier than 5.2.9.
+* (bug 20239) MediaWiki:Imagemaxsize does not contain anymore a <br /> tag which
+  was displayed to the user
+* (bug 21150) SQLite no longer raise an error when deleting files
+* (bug 20880) Fixed updater failure on SQLite backend
+* upgrade1_5.php now requires to be run --update option to prevent confusion
 
 === Changes since 1.15.0 ===
 
