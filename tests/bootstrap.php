@@ -4,9 +4,10 @@ global $wgCommandLineMode, $IP, $wgMemc;
 $wgCommandLineMode = true;
 define('MEDIAWIKI', 1);
 
-require dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR."LocalSettings.php";
+require dirname( dirname( __FILE__ ) ).implode( DIRECTORY_SEPARATOR, array( "", "includes", "Defines.php" ) );
 
-require "Defines.php";
+require dirname( dirname( __FILE__ ) ).DIRECTORY_SEPARATOR."LocalSettings.php";
+
 require "ProfilerStub.php";
 require 'GlobalFunctions.php';
 require 'Hooks.php';
