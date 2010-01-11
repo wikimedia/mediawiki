@@ -116,7 +116,7 @@ class Language {
 		'hebrew-calendar-m10-gen', 'hebrew-calendar-m11-gen', 'hebrew-calendar-m12-gen',
 		'hebrew-calendar-m6a-gen', 'hebrew-calendar-m6b-gen'
 	);
-	
+
 	static public $mHijriCalendarMonthMsgs = array(
 		'hijri-calendar-m1', 'hijri-calendar-m2', 'hijri-calendar-m3',
 		'hijri-calendar-m4', 'hijri-calendar-m5', 'hijri-calendar-m6',
@@ -159,7 +159,7 @@ class Language {
 
 		if ( $recursionLevel > 5 ) {
 			throw new MWException( "Language fallback loop detected when creating class $class\n" );
-		}	
+		}
 
 		if( ! class_exists( $class ) ) {
 			$fallback = Language::getFallbackFor( $code );
@@ -242,7 +242,7 @@ class Language {
 	function getNamespaces() {
 		if ( is_null( $this->namespaceNames ) ) {
 			global $wgExtraNamespaces, $wgMetaNamespace, $wgMetaNamespaceTalk;
-			
+
 			$this->namespaceNames = self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
 			if ( $wgExtraNamespaces ) {
 				$this->namespaceNames = $wgExtraNamespaces + $this->namespaceNames;
@@ -256,7 +256,7 @@ class Language {
 				$this->namespaceNames[NS_PROJECT_TALK] =
 					$this->fixVariableInNamespace( $talk );
 			}
-			
+
 			# The above mixing may leave namespaces out of canonical order.
 			# Re-order by namespace ID number...
 			ksort( $this->namespaceNames );
@@ -344,7 +344,7 @@ class Language {
 		if ( is_null( $this->mNamespaceIds ) ) {
 			global $wgNamespaceAliases;
 			# Put namespace names and aliases into a hashtable.
-			# If this is too slow, then we should arrange it so that it is done 
+			# If this is too slow, then we should arrange it so that it is done
 			# before caching. The catch is that at pre-cache time, the above
 			# class-specific fixup hasn't been done.
 			$this->mNamespaceIds = array();
@@ -415,7 +415,7 @@ class Language {
 	function getDatePreferences() {
 		return self::$dataCache->getItem( $this->mCode, 'datePreferences' );
 	}
-	
+
 	function getDateFormats() {
 		return self::$dataCache->getItem( $this->mCode, 'dateFormats' );
 	}
@@ -460,7 +460,7 @@ class Language {
 		if ( !$customisedOnly ) {
 			return $allNames;
 		}
-		
+
 		global $IP;
 		$names = array();
 		$dir = opendir( "$IP/languages/messages" );
@@ -523,11 +523,11 @@ class Language {
 	function getHebrewCalendarMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mHebrewCalendarMonthGenMsgs[$key-1] );
 	}
-	
+
 	function getHijriCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key-1] );
 	}
-	
+
 	/**
 	 * Used by date() and time() to adjust the time output.
 	 *
@@ -579,7 +579,7 @@ class Language {
 
 		wfSuppressWarnings(); // E_STRICT system time bitching
 		# Generate an adjusted date; take advantage of the fact that mktime
-		# will normalize out-of-range values so we don't have to split $minDiff 
+		# will normalize out-of-range values so we don't have to split $minDiff
 		# into hours and minutes.
 		$t = mktime( (
 		  (int)substr( $ts, 8, 2) ), # Hours
@@ -588,19 +588,19 @@ class Language {
 		  (int)substr( $ts, 4, 2 ), # Month
 		  (int)substr( $ts, 6, 2 ), # Day
 		  (int)substr( $ts, 0, 4 ) ); #Year
-		
+
 		$date = date( 'YmdHis', $t );
 		wfRestoreWarnings();
-		
+
 		return $date;
 	}
 
 	/**
 	 * This is a workalike of PHP's date() function, but with better
-	 * internationalisation, a reduced set of format characters, and a better 
+	 * internationalisation, a reduced set of format characters, and a better
 	 * escaping format.
 	 *
-	 * Supported format characters are dDjlNwzWFmMntLoYyaAgGhHiscrU. See the 
+	 * Supported format characters are dDjlNwzWFmMntLoYyaAgGhHiscrU. See the
 	 * PHP manual for definitions. "o" format character is supported since
 	 * PHP 5.1.0, previous versions return literal o.
 	 * There are a number of extensions, which start with "x":
@@ -648,7 +648,7 @@ class Language {
 	 *
 	 * Input timestamp is assumed to be pre-normalized to the desired local
 	 * time zone, if any.
-	 * 
+	 *
 	 * @param $format String
 	 * @param $ts String: 14-character timestamp
 	 *      YYYYMMDDHHMMSS
@@ -850,7 +850,7 @@ class Language {
 				case 'h':
 					$h = substr( $ts, 8, 2 );
 					$num = sprintf( '%02d', $h % 12 ? $h % 12 : 12 );
-					break;					
+					break;
 				case 'H':
 					$num = substr( $ts, 8, 2 );
 					break;
@@ -921,11 +921,11 @@ class Language {
 	private static $GREG_DAYS = array( 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 );
 	private static $IRANIAN_DAYS = array( 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29 );
 	/**
-	 * Algorithm by Roozbeh Pournader and Mohammad Toossi to convert 
+	 * Algorithm by Roozbeh Pournader and Mohammad Toossi to convert
 	 * Gregorian dates to Iranian dates. Originally written in C, it
 	 * is released under the terms of GNU Lesser General Public
 	 * License. Conversion to PHP was performed by Niklas Laxström.
-	 * 
+	 *
 	 * Link: http://www.farsiweb.info/jalali/jalali.c
 	 */
 	private static function tsToIranian( $ts ) {
@@ -952,7 +952,7 @@ class Language {
 
 		// Days passed in current month
 		$gDayNo += $gd;
-		
+
 		$jDayNo = $gDayNo - 79;
 
 		$jNp = floor($jDayNo / 12053);
@@ -986,7 +986,7 @@ class Language {
 		$year = substr( $ts, 0, 4 );
 		$month = substr( $ts, 4, 2 );
 		$day = substr( $ts, 6, 2 );
-		
+
 		$zyr = $year;
 		$zd=$day;
 		$zm=$month;
@@ -996,15 +996,15 @@ class Language {
 
 		if (($zy>1582)||(($zy==1582)&&($zm>10))||(($zy==1582)&&($zm==10)&&($zd>14)))
 			{
-	
-	
+
+
 				    $zjd=(int)((1461*($zy + 4800 + (int)( ($zm-14) /12) ))/4) + (int)((367*($zm-2-12*((int)(($zm-14)/12))))/12)-(int)((3*(int)(( ($zy+4900+(int)(($zm-14)/12))/100)))/4)+$zd-32075;
 				    }
 		 else
 			{
 				    $zjd = 367*$zy-(int)((7*($zy+5001+(int)(($zm-9)/7)))/4)+(int)((275*$zm)/9)+$zd+1729777;
 			}
-		
+
 		$zl=$zjd-1948440+10632;
 		$zn=(int)(($zl-1)/10631);
 		$zl=$zl-10631*$zn+354;
@@ -1268,7 +1268,7 @@ class Language {
 			array( '', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M' ),
 			array( '', 'M', 'MM', 'MMM' )
 		);
-			
+
 		$num = intval( $num );
 		if ( $num > 3000 || $num <= 0 ) {
 			return $num;
@@ -1378,7 +1378,7 @@ class Language {
 		if( $datePreference == '' ) {
 			return 'default';
 		}
-		
+
 		return $datePreference;
 	}
 
@@ -1415,8 +1415,8 @@ class Language {
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		if ( $adj ) { 
-			$ts = $this->userAdjust( $ts, $timecorrection ); 
+		if ( $adj ) {
+			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
 		$df = $this->getDateFormatString( 'date', $this->dateFormat( $format ) );
 		return $this->sprintfDate( $df, $ts );
@@ -1433,8 +1433,8 @@ class Language {
 	 * @return string
 	 */
 	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		if ( $adj ) { 
-			$ts = $this->userAdjust( $ts, $timecorrection ); 
+		if ( $adj ) {
+			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
 		$df = $this->getDateFormatString( 'time', $this->dateFormat( $format ) );
 		return $this->sprintfDate( $df, $ts );
@@ -1453,8 +1453,8 @@ class Language {
 	 */
 	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
 		$ts = wfTimestamp( TS_MW, $ts );
-		if ( $adj ) { 
-			$ts = $this->userAdjust( $ts, $timecorrection ); 
+		if ( $adj ) {
+			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
 		$df = $this->getDateFormatString( 'both', $this->dateFormat( $format ) );
 		return $this->sprintfDate( $df, $ts );
@@ -1486,25 +1486,25 @@ class Language {
 	function ucwordbreaksCallbackAscii($matches){
 		return $this->ucfirst($matches[1]);
 	}
-	
+
 	function ucwordbreaksCallbackMB($matches){
 		return mb_strtoupper($matches[0]);
 	}
-	
+
 	function ucCallback($matches){
 		list( $wikiUpperChars ) = self::getCaseMaps();
 		return strtr( $matches[1], $wikiUpperChars );
 	}
-	
+
 	function lcCallback($matches){
 		list( , $wikiLowerChars ) = self::getCaseMaps();
 		return strtr( $matches[1], $wikiLowerChars );
 	}
-	
+
 	function ucwordsCallbackMB($matches){
 		return mb_strtoupper($matches[0]);
 	}
-	
+
 	function ucwordsCallbackWiki($matches){
 		list( $wikiUpperChars ) = self::getCaseMaps();
 		return strtr( $matches[0], $wikiUpperChars );
@@ -1518,7 +1518,7 @@ class Language {
 			return ucfirst($str);
 		} else {
 			// fall back to more complex logic in case of multibyte strings
-			return self::uc($str,true); 
+			return self::uc($str,true);
 		}
 	}
 
@@ -1547,7 +1547,7 @@ class Language {
 			}
 		}
 	}
-	
+
 	function lcfirst( $str ) {
 		$o = ord( $str );
 		if ( !$o ) {
@@ -1602,7 +1602,7 @@ class Language {
 					array($this,"ucwordsCallbackMB"),
 					$str
 				);
-			else 
+			else
 				return preg_replace_callback(
 					$replaceRegexp,
 					array($this,"ucwordsCallbackWiki"),
@@ -1630,7 +1630,7 @@ class Language {
 					array($this,"ucwordbreaksCallbackMB"),
 					$str
 				);
-			else 
+			else
 				return preg_replace_callback(
 					$replaceRegexp,
 					array($this,"ucwordsCallbackWiki"),
@@ -1647,7 +1647,7 @@ class Language {
 	/**
 	 * Return a case-folded representation of $s
 	 *
-	 * This is a representation such that caseFold($s1)==caseFold($s2) if $s1 
+	 * This is a representation such that caseFold($s1)==caseFold($s2) if $s1
 	 * and $s2 are the same except for the case of their characters. It is not
 	 * necessary for the value returned to make sense when displayed.
 	 *
@@ -1677,7 +1677,7 @@ class Language {
 	function fallback8bitEncoding() {
 		return self::$dataCache->getItem( $this->mCode, 'fallback8bitEncoding' );
 	}
-	
+
 	/**
 	 * Most writing systems use whitespace to break up words.
 	 * Some languages such as Chinese don't conventionally do this,
@@ -1687,7 +1687,7 @@ class Language {
 	function hasWordBreaks() {
 		return true;
 	}
-	
+
 	/**
 	 * Some languages have special punctuation to strip out
 	 * or characters which need to be converted for MySQL's
@@ -1703,14 +1703,14 @@ class Language {
 		}
 
 		wfProfileIn( __METHOD__ );
-		
+
 		// MySQL fulltext index doesn't grok utf-8, so we
 		// need to fold cases and convert to hex
 		$out = preg_replace_callback(
 			"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
 			array( $this, 'stripForSearchCallback' ),
 			$this->lc( $string ) );
-		
+
 		// And to add insult to injury, the default indexing
 		// ignores short words... Pad them so we can pass them
 		// through without reconfiguring the server...
@@ -1722,7 +1722,7 @@ class Language {
 				"$1u800",
 				$out );
 		}
-		
+
 		// Periods within things like hostnames and IP addresses
 		// are also important -- we want a search for "example.com"
 		// or "192.168.1.1" to work sanely.
@@ -1733,11 +1733,11 @@ class Language {
 			"/(\w)\.(\w|\*)/u",
 			"$1u82e$2",
 			$out );
-		
+
 		wfProfileOut( __METHOD__ );
 		return $out;
 	}
-	
+
 	/**
 	 * Armor a case-folded UTF-8 string to get through MySQL's
 	 * fulltext search without being mucked up by funny charset
@@ -1746,7 +1746,7 @@ class Language {
 	protected function stripForSearchCallback( $matches ) {
 		return 'u8' . bin2hex( $matches[1] );
 	}
-	
+
 	/**
 	 * Check MySQL server's ft_min_word_len setting so we know
 	 * if we need to pad short words...
@@ -1758,7 +1758,7 @@ class Language {
 			$result = $dbr->query( $sql );
 			$row = $result->fetchObject();
 			$result->free();
-			
+
 			if( $row && $row->Variable_name == 'ft_min_word_len' ) {
 				$this->minSearchLength = intval( $row->Value );
 			} else {
@@ -1791,7 +1791,7 @@ class Language {
 	}
 
 	/**
-	 * Get the first character of a string. 
+	 * Get the first character of a string.
 	 *
 	 * @param $s string
 	 * @return string
@@ -1805,7 +1805,7 @@ class Language {
 			if ( strlen( $matches[1] ) != 3 ) {
 				return $matches[1];
 			}
-			
+
 			// Break down Hangul syllables to grab the first jamo
 			$code = utf8ToCodepoint( $matches[1] );
 			if ( $code < 0xac00 || 0xd7a4 <= $code) {
@@ -1884,7 +1884,7 @@ class Language {
 
 	/**
 	 * Convert a UTF-8 string to normal form C. In Malayalam and Arabic, this
-	 * also cleans up certain backwards-compatible sequences, converting them 
+	 * also cleans up certain backwards-compatible sequences, converting them
 	 * to the modern Unicode equivalent.
 	 *
 	 * This is language-specific for performance reasons only.
@@ -1896,9 +1896,9 @@ class Language {
 	/**
 	 * Transform a string using serialized data stored in the given file (which
 	 * must be in the serialized subdirectory of $IP). The file contains pairs
-	 * mapping source characters to destination characters. 
+	 * mapping source characters to destination characters.
 	 *
-	 * The data is cached in process memory. This will go faster if you have the 
+	 * The data is cached in process memory. This will go faster if you have the
 	 * FastStringSearch extension.
 	 */
 	function transformUsingPairFile( $file, $string ) {
@@ -1917,10 +1917,10 @@ class Language {
 	 *
 	 * @return bool
 	 */
-	function isRTL() { 
+	function isRTL() {
 		return self::$dataCache->getItem( $this->mCode, 'rtl' );
 	}
-	
+
 	/**
 	 * Return the correct HTML 'dir' attribute value for this language.
 	 * @return String
@@ -1928,7 +1928,7 @@ class Language {
 	function getDir() {
 		return $this->isRTL() ? 'rtl' : 'ltr';
 	}
-	
+
 	/**
 	 * Return 'left' or 'right' as appropriate alignment for line-start
 	 * for this language's text direction.
@@ -1940,7 +1940,7 @@ class Language {
 	function alignStart() {
 		return $this->isRTL() ? 'right' : 'left';
 	}
-	
+
 	/**
 	 * Return 'right' or 'left' as appropriate alignment for line-end
 	 * for this language's text direction.
@@ -2044,7 +2044,7 @@ class Language {
 		// Cache aliases because it may be slow to load them
 		if ( is_null( $this->mExtendedSpecialPageAliases ) ) {
 			// Initialise array
-			$this->mExtendedSpecialPageAliases = 
+			$this->mExtendedSpecialPageAliases =
 				self::$dataCache->getItem( $this->mCode, 'specialPageAliases' );
 			wfRunHooks( 'LanguageGetSpecialPageAliases',
 				array( &$this->mExtendedSpecialPageAliases, $this->getCode() ) );
@@ -2205,7 +2205,7 @@ class Language {
 	 * are included, otherwise broken characters can be passed to the user
 	 *
 	 * If $length is negative, the string will be truncated from the beginning
-	 *	 
+	 *
 	 * @param $string String to truncate
 	 * @param $length Int: maximum length (excluding ellipses)
 	 * @param $ellipsis String to append to the truncated text
@@ -2380,7 +2380,7 @@ class Language {
 	}
 
 	# Put custom tags (e.g. -{ }-) around math to prevent conversion
-	function armourMath($text){ 
+	function armourMath($text){
 		return $this->mConverter->armourMath($text);
 	}
 
@@ -2509,7 +2509,7 @@ class Language {
 	static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
 		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
 	}
-	
+
 	/**
 	 * Get the language code from a file name. Inverse of getFileName()
 	 * @param $filename string $prefix . $languageCode . $suffix
@@ -2536,7 +2536,7 @@ class Language {
 		global $IP;
 		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
 	}
-	
+
 	/**
 	 * Get the fallback for a given language
 	 */
@@ -2549,7 +2549,7 @@ class Language {
 		}
 	}
 
-	/** 
+	/**
 	 * Get all messages for a given language
 	 * WARNING: this may take a long time
 	 */
@@ -2557,7 +2557,7 @@ class Language {
 		return self::getLocalisationCache()->getItem( $code, 'messages' );
 	}
 
-	/** 
+	/**
 	 * Get a message for a given language
 	 */
 	static function getMessageFor( $key, $code ) {
@@ -2571,10 +2571,10 @@ class Language {
 		$talk = str_replace( '$1', $wgMetaNamespace, $talk );
 
 		# Allow grammar transformations
-		# Allowing full message-style parsing would make simple requests 
-		# such as action=raw much more expensive than they need to be. 
+		# Allowing full message-style parsing would make simple requests
+		# such as action=raw much more expensive than they need to be.
 		# This will hopefully cover most cases.
-		$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i', 
+		$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i',
 			array( &$this, 'replaceGrammarInNamespace' ), $talk );
 		return str_replace( ' ', '_', $talk );
 	}
@@ -2592,7 +2592,7 @@ class Language {
 		wfProfileIn( __METHOD__ );
 		$arr = wfGetPrecompiledData( 'Utf8Case.ser' );
 		if ( $arr === false ) {
-			throw new MWException( 
+			throw new MWException(
 				"Utf8Case.ser is missing, please run \"make\" in the serialized directory\n" );
 		}
 		extract( $arr );
@@ -2606,13 +2606,13 @@ class Language {
 		} elseif ( $seconds < 60 ) {
 			return $this->formatNum( round( $seconds ) ) . wfMsg( 'seconds-abbrev' );
 		} elseif ( $seconds < 3600 ) {
-			return $this->formatNum( floor( $seconds / 60 ) ) . wfMsg( 'minutes-abbrev' ) . 
+			return $this->formatNum( floor( $seconds / 60 ) ) . wfMsg( 'minutes-abbrev' ) .
 				$this->formatNum( round( fmod( $seconds, 60 ) ) ) . wfMsg( 'seconds-abbrev' );
 		} else {
 			$hours = floor( $seconds / 3600 );
 			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
 			$secondsPart = round( $seconds - $hours * 3600 - $minutes * 60 );
-			return $this->formatNum( $hours ) . wfMsg( 'hours-abbrev' ) . 
+			return $this->formatNum( $hours ) . wfMsg( 'hours-abbrev' ) .
 				$this->formatNum( $minutes ) . wfMsg( 'minutes-abbrev' ) .
 				$this->formatNum( $secondsPart ) . wfMsg( 'seconds-abbrev' );
 		}
