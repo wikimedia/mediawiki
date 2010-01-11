@@ -312,47 +312,21 @@ CONTROL;
 			$newminor = ChangesList::flag( 'minor' );
 		}
 
-		$rdel = $ldel = '';
 		# Handle RevisionDelete links...
-		$canHide = $wgUser->isAllowed( 'deleterevision' );
-		// Don't show useless link to people who cannot hide revisions
-		if( $canHide || ($this->mOldRev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
-			if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$ldel = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-			} else {
-				$query = array( 
-					'type' => 'revision',
-					'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
-					'ids' => $this->mOldRev->getId()
-				);
-				$ldel = $sk->revDeleteLink( $query,
-					$this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
-			}
-			$ldel = "&nbsp;&nbsp;&nbsp;$ldel ";
-		}
-		// Don't show useless link to people who cannot hide revisions
-		if( $canHide || ($this->mNewRev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
-			if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$rdel = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-			} else {
-				$query = array( 
-					'type' => 'revision',
-					'target' =>  $this->mNewRev->mTitle->getPrefixedDbkey(),
-					'ids' => $this->mNewRev->getId()
-				);
-				$rdel = $sk->revDeleteLink( $query,
-					$this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
-			}
-			$rdel = "&nbsp;&nbsp;&nbsp;$rdel ";
-		}
+		$ldel = $this->revisionDeleteLink( $this->mOldRev );
+		$rdel = $this->revisionDeleteLink( $this->mNewRev );
 
 		$oldHeader = '<div id="mw-diff-otitle1"><strong>'.$this->mOldtitle.'</strong></div>' .
-			'<div id="mw-diff-otitle2">' . $sk->revUserTools( $this->mOldRev, !$this->unhide ) . "</div>" .
-			'<div id="mw-diff-otitle3">' . $oldminor . $sk->revComment( $this->mOldRev, !$diffOnly, !$this->unhide ).$ldel."</div>" .
+			'<div id="mw-diff-otitle2">' .
+				$sk->revUserTools( $this->mOldRev, !$this->unhide ).'</div>' .
+			'<div id="mw-diff-otitle3">' . $oldminor .
+				$sk->revComment( $this->mOldRev, !$diffOnly, !$this->unhide ).$ldel.'</div>' .
 			'<div id="mw-diff-otitle4">' . $prevlink .'</div>';
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>'.$this->mNewtitle.'</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . $sk->revUserTools( $this->mNewRev, !$this->unhide ) . " $rollback</div>" .
-			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, !$this->unhide ).$rdel."</div>" .
+			'<div id="mw-diff-ntitle2">' . $sk->revUserTools( $this->mNewRev, !$this->unhide ) .
+				" $rollback</div>" .
+			'<div id="mw-diff-ntitle3">' . $newminor .
+				$sk->revComment( $this->mNewRev, !$diffOnly, !$this->unhide ).$rdel.'</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
 		# Check if this user can see the revisions
@@ -405,6 +379,31 @@ CONTROL;
 			}
 		}
 		wfProfileOut( __METHOD__ );
+	}
+	
+	protected function revisionDeleteLink( $rev ) {
+		global $wgUser;
+		$link = '';
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
+		// Show del/undel link if:
+		// (a) the user can delete revisions, or
+		// (b) the user can view deleted revision *and* this one is deleted
+		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' )) ) {
+			$sk = $wgUser->getSkin();
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$link = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
+			} else {
+				$query = array(
+					'type' 	 => 'revision',
+					'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
+					'ids' 	 => $this->mOldRev->getId()
+				);
+				$link = $sk->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
+			}
+			$link = '&nbsp;&nbsp;&nbsp'.$link.' ';
+		}
+		return $link;
 	}
 
 	/**
