@@ -8,9 +8,11 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testAddQuotesNull() {
-		$this->assertEquals(
-			'NULL',
-			$this->db->addQuotes( null ) );
+		$check = "NULL";
+		if ( $this->db instanceOf DatabaseSqlite ) {
+			$check = "''";
+		}
+		$this->assertEquals( $check, $this->db->addQuotes( null ) );
 	}
 
 	function testAddQuotesInt() {
@@ -35,8 +37,12 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testAddQuotesStringQuote() {
+		$check = "'string''s cause trouble'";
+		if ( $this->db instanceOf DatabaseMysql ) {
+			$check = "'string\'s cause trouble'";
+		}
 		$this->assertEquals(
-			"'string\'s cause trouble'",
+			$check,
 			$this->db->addQuotes( "string's cause trouble" ) );
 	}
 
@@ -52,18 +58,24 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 		$sql = $this->db->fillPrepared(
 			'SELECT * FROM cur WHERE cur_namespace=? AND cur_title=?',
 			array( 4, "Snicker's_paradox" ) );
-		$this->assertEquals(
-			"SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker\'s_paradox'",
-			$sql);
+
+		$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker''s_paradox'";
+		if ( $this->db instanceOf DatabaseMysql ) {
+			$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker\'s_paradox'";
+		}
+		$this->assertEquals( $check, $sql );
 	}
 
 	function testFillPreparedBang() {
 		$sql = $this->db->fillPrepared(
 			'SELECT user_id FROM ! WHERE user_name=?',
 			array( '"user"', "Slash's Dot" ) );
-		$this->assertEquals(
-			"SELECT user_id FROM \"user\" WHERE user_name='Slash\'s Dot'",
-			$sql);
+
+		$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash''s Dot'";
+		if ( $this->db instanceOf DatabaseMysql ) {
+			$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash\'s Dot'";
+		}
+		$this->assertEquals( $check, $sql );
 	}
 
 	function testFillPreparedRaw() {
