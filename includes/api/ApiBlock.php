@@ -22,9 +22,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ( "ApiBase.php" );
 }
 
 /**
@@ -38,8 +38,8 @@ class ApiBlock extends ApiBase {
 	/**
 	 * Std ctor.
 	 */
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	/**
@@ -52,31 +52,31 @@ class ApiBlock extends ApiBase {
 		global $wgUser, $wgBlockAllowsUTEdit;
 		$params = $this->extractRequestParams();
 
-		if($params['gettoken'])
+		if ( $params['gettoken'] )
 		{
 			$res['blocktoken'] = $wgUser->editToken();
-			$this->getResult()->addValue(null, $this->getModuleName(), $res);
+			$this->getResult()->addValue( null, $this->getModuleName(), $res );
 			return;
 		}
 
-		if(is_null($params['user']))
-			$this->dieUsageMsg(array('missingparam', 'user'));
-		if(is_null($params['token']))
-			$this->dieUsageMsg(array('missingparam', 'token'));
-		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsageMsg(array('sessionfailure'));
-		if(!$wgUser->isAllowed('block'))
-			$this->dieUsageMsg(array('cantblock'));
-		if($params['hidename'] && !$wgUser->isAllowed('hideuser'))
-			$this->dieUsageMsg(array('canthide'));
-		if($params['noemail'] && !IPBlockForm::canBlockEmail($wgUser) )
-			$this->dieUsageMsg(array('cantblock-email'));
+		if ( is_null( $params['user'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
+		if ( is_null( $params['token'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+		if ( !$wgUser->matchEditToken( $params['token'] ) )
+			$this->dieUsageMsg( array( 'sessionfailure' ) );
+		if ( !$wgUser->isAllowed( 'block' ) )
+			$this->dieUsageMsg( array( 'cantblock' ) );
+		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) )
+			$this->dieUsageMsg( array( 'canthide' ) );
+		if ( $params['noemail'] && !IPBlockForm::canBlockEmail( $wgUser ) )
+			$this->dieUsageMsg( array( 'cantblock-email' ) );
 
-		$form = new IPBlockForm('');
+		$form = new IPBlockForm( '' );
 		$form->BlockAddress = $params['user'];
-		$form->BlockReason = (is_null($params['reason']) ? '' : $params['reason']);
+		$form->BlockReason = ( is_null( $params['reason'] ) ? '' : $params['reason'] );
 		$form->BlockReasonList = 'other';
-		$form->BlockExpiry = ($params['expiry'] == 'never' ? 'infinite' : $params['expiry']);
+		$form->BlockExpiry = ( $params['expiry'] == 'never' ? 'infinite' : $params['expiry'] );
 		$form->BlockOther = '';
 		$form->BlockAnonOnly = $params['anononly'];
 		$form->BlockCreateAccount = $params['nocreate'];
@@ -87,29 +87,29 @@ class ApiBlock extends ApiBase {
 		$form->BlockReblock = $params['reblock'];
 
 		$userID = $expiry = null;
-		$retval = $form->doBlock($userID, $expiry);
-		if(count($retval))
+		$retval = $form->doBlock( $userID, $expiry );
+		if ( count( $retval ) )
 			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg($retval);
+			$this->dieUsageMsg( $retval );
 
 		$res['user'] = $params['user'];
-		$res['userID'] = intval($userID);
-		$res['expiry'] = ($expiry == Block::infinity() ? 'infinite' : wfTimestamp(TS_ISO_8601, $expiry));
+		$res['userID'] = intval( $userID );
+		$res['expiry'] = ( $expiry == Block::infinity() ? 'infinite' : wfTimestamp( TS_ISO_8601, $expiry ) );
 		$res['reason'] = $params['reason'];
-		if($params['anononly'])
+		if ( $params['anononly'] )
 			$res['anononly'] = '';
-		if($params['nocreate'])
+		if ( $params['nocreate'] )
 			$res['nocreate'] = '';
-		if($params['autoblock'])
+		if ( $params['autoblock'] )
 			$res['autoblock'] = '';
-		if($params['noemail'])
+		if ( $params['noemail'] )
 			$res['noemail'] = '';
-		if($params['hidename'])
+		if ( $params['hidename'] )
 			$res['hidename'] = '';
-		if($params['allowusertalk'])
+		if ( $params['allowusertalk'] )
 			$res['allowusertalk'] = '';
 
-		$this->getResult()->addValue(null, $this->getModuleName(), $res);
+		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
 	public function mustBePosted() { return true; }

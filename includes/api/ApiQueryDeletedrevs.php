@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -35,27 +35,27 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'dr');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'dr' );
 	}
 
 	public function execute() {
 
 		global $wgUser;
 		// Before doing anything at all, let's check permissions
-		if(!$wgUser->isAllowed('deletedhistory'))
-			$this->dieUsage('You don\'t have permission to view deleted revision information', 'permissiondenied');
+		if ( !$wgUser->isAllowed( 'deletedhistory' ) )
+			$this->dieUsage( 'You don\'t have permission to view deleted revision information', 'permissiondenied' );
 
 		$db = $this->getDB();
-		$params = $this->extractRequestParams(false);
-		$prop = array_flip($params['prop']);
-		$fld_revid = isset($prop['revid']);
-		$fld_user = isset($prop['user']);
-		$fld_comment = isset($prop['comment']);
-		$fld_minor = isset($prop['minor']);
-		$fld_len = isset($prop['len']);
-		$fld_content = isset($prop['content']);
-		$fld_token = isset($prop['token']);
+		$params = $this->extractRequestParams( false );
+		$prop = array_flip( $params['prop'] );
+		$fld_revid = isset( $prop['revid'] );
+		$fld_user = isset( $prop['user'] );
+		$fld_comment = isset( $prop['comment'] );
+		$fld_minor = isset( $prop['minor'] );
+		$fld_len = isset( $prop['len'] );
+		$fld_content = isset( $prop['content'] );
+		$fld_token = isset( $prop['token'] );
 		
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
@@ -67,36 +67,36 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		// 'user': List deleted revs by a certain user
 		// 'all': List all deleted revs
 		$mode = 'all';
-		if(count($titles) > 0)
+		if ( count( $titles ) > 0 )
 			$mode = 'revs';
-		else if(!is_null($params['user']))
+		else if ( !is_null( $params['user'] ) )
 			$mode = 'user';
 		
-		if(!is_null($params['user']) && !is_null($params['excludeuser']))
-				$this->dieUsage('user and excludeuser cannot be used together', 'badparams');
+		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) )
+				$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
 
-		$this->addTables('archive');
-		$this->addWhere('ar_deleted = 0');
-		$this->addFields(array('ar_title', 'ar_namespace', 'ar_timestamp'));
-		if($fld_revid)
-			$this->addFields('ar_rev_id');
-		if($fld_user)
-			$this->addFields('ar_user_text');
-		if($fld_comment)
-			$this->addFields('ar_comment');
-		if($fld_minor)
-			$this->addFields('ar_minor_edit');
-		if($fld_len)
-			$this->addFields('ar_len');
-		if($fld_content)
+		$this->addTables( 'archive' );
+		$this->addWhere( 'ar_deleted = 0' );
+		$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp' ) );
+		if ( $fld_revid )
+			$this->addFields( 'ar_rev_id' );
+		if ( $fld_user )
+			$this->addFields( 'ar_user_text' );
+		if ( $fld_comment )
+			$this->addFields( 'ar_comment' );
+		if ( $fld_minor )
+			$this->addFields( 'ar_minor_edit' );
+		if ( $fld_len )
+			$this->addFields( 'ar_len' );
+		if ( $fld_content )
 		{
-			$this->addTables('text');
-			$this->addFields(array('ar_text', 'ar_text_id', 'old_text', 'old_flags'));
-			$this->addWhere('ar_text_id = old_id');
+			$this->addTables( 'text' );
+			$this->addFields( array( 'ar_text', 'ar_text_id', 'old_text', 'old_flags' ) );
+			$this->addWhere( 'ar_text_id = old_id' );
 
 			// This also means stricter restrictions
-			if(!$wgUser->isAllowed('undelete'))
-				$this->dieUsage('You don\'t have permission to view deleted revision content', 'permissiondenied');
+			if ( !$wgUser->isAllowed( 'undelete' ) )
+				$this->dieUsage( 'You don\'t have permission to view deleted revision content', 'permissiondenied' );
 		}
 		// Check limits
 		$userMax = $fld_content ? ApiBase :: LIMIT_SML1 : ApiBase :: LIMIT_BIG1;
@@ -104,143 +104,143 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$limit = $params['limit'];
 
-		if( $limit == 'max' ) {
+		if ( $limit == 'max' ) {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			$this->getResult()->addValue( 'limits', $this->getModuleName(), $limit );
 		}
 
-		$this->validateLimit('limit', $limit, 1, $userMax, $botMax);
+		$this->validateLimit( 'limit', $limit, 1, $userMax, $botMax );
 
-		if($fld_token)
+		if ( $fld_token )
 			// Undelete tokens are identical for all pages, so we cache one here
 			$token = $wgUser->editToken();
 
 		// We need a custom WHERE clause that matches all titles.
-		if($mode == 'revs')
+		if ( $mode == 'revs' )
 		{
-			$lb = new LinkBatch($titles);
-			$where = $lb->constructSet('ar', $db);
-			$this->addWhere($where);
+			$lb = new LinkBatch( $titles );
+			$where = $lb->constructSet( 'ar', $db );
+			$this->addWhere( $where );
 		}
-		elseif($mode == 'all')
+		elseif ( $mode == 'all' )
 		{
-			$this->addWhereFld('ar_namespace', $params['namespace']);
-			if(!is_null($params['from']))
+			$this->addWhereFld( 'ar_namespace', $params['namespace'] );
+			if ( !is_null( $params['from'] ) )
 			{
-				$from = $this->getDB()->strencode($this->titleToKey($params['from']));
-				$this->addWhere("ar_title >= '$from'");
+				$from = $this->getDB()->strencode( $this->titleToKey( $params['from'] ) );
+				$this->addWhere( "ar_title >= '$from'" );
 			}
 		}
 		
-		if(!is_null($params['user'])) {
-			$this->addWhereFld('ar_user_text', $params['user']);
-		} elseif(!is_null($params['excludeuser'])) {
-			$this->addWhere('ar_user_text != ' .
-				$this->getDB()->addQuotes($params['excludeuser']));
+		if ( !is_null( $params['user'] ) ) {
+			$this->addWhereFld( 'ar_user_text', $params['user'] );
+		} elseif ( !is_null( $params['excludeuser'] ) ) {
+			$this->addWhere( 'ar_user_text != ' .
+				$this->getDB()->addQuotes( $params['excludeuser'] ) );
 		}
 		
-		if(!is_null($params['continue']) && ($mode == 'all' || $mode == 'revs'))
+		if ( !is_null( $params['continue'] ) && ( $mode == 'all' || $mode == 'revs' ) )
 		{
-			$cont = explode('|', $params['continue']);
-			if(count($cont) != 3)
-				$this->dieUsage("Invalid continue param. You should pass the original value returned by the previous query", "badcontinue");
-			$ns = intval($cont[0]);
-			$title = $this->getDB()->strencode($this->titleToKey($cont[1]));
-			$ts = $this->getDB()->strencode($cont[2]);
-			$op = ($params['dir'] == 'newer' ? '>' : '<');
-			$this->addWhere("ar_namespace $op $ns OR " .
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 3 )
+				$this->dieUsage( "Invalid continue param. You should pass the original value returned by the previous query", "badcontinue" );
+			$ns = intval( $cont[0] );
+			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$ts = $this->getDB()->strencode( $cont[2] );
+			$op = ( $params['dir'] == 'newer' ? '>' : '<' );
+			$this->addWhere( "ar_namespace $op $ns OR " .
 					"(ar_namespace = $ns AND " .
 					"(ar_title $op '$title' OR " .
 					"(ar_title = '$title' AND " .
-					"ar_timestamp $op= '$ts')))");
+					"ar_timestamp $op= '$ts')))" );
 		}
 
-		$this->addOption('LIMIT', $limit + 1);
-		$this->addOption('USE INDEX', array('archive' => ($mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp')));
-		if($mode == 'all')
+		$this->addOption( 'LIMIT', $limit + 1 );
+		$this->addOption( 'USE INDEX', array( 'archive' => ( $mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp' ) ) );
+		if ( $mode == 'all' )
 		{
-			if($params['unique'])
+			if ( $params['unique'] )
 			{
-				$this->addOption('GROUP BY', 'ar_title');
-				$this->addOption('ORDER BY', 'ar_title');
+				$this->addOption( 'GROUP BY', 'ar_title' );
+				$this->addOption( 'ORDER BY', 'ar_title' );
 			}
 			else
-				$this->addOption('ORDER BY', 'ar_title, ar_timestamp');
+				$this->addOption( 'ORDER BY', 'ar_title, ar_timestamp' );
 		}
 		else
 		{
-			if($mode == 'revs')
+			if ( $mode == 'revs' )
 			{
 				// Sort by ns and title in the same order as timestamp for efficiency
-				$this->addWhereRange('ar_namespace', $params['dir'], null, null);
-				$this->addWhereRange('ar_title', $params['dir'], null, null);
+				$this->addWhereRange( 'ar_namespace', $params['dir'], null, null );
+				$this->addWhereRange( 'ar_title', $params['dir'], null, null );
 			}
-			$this->addWhereRange('ar_timestamp', $params['dir'], $params['start'], $params['end']);
+			$this->addWhereRange( 'ar_timestamp', $params['dir'], $params['start'], $params['end'] );
 		}
-		$res = $this->select(__METHOD__);
+		$res = $this->select( __METHOD__ );
 		$pageMap = array(); // Maps ns&title to (fake) pageid
 		$count = 0;
 		$newPageID = 0;
-		while($row = $db->fetchObject($res))
+		while ( $row = $db->fetchObject( $res ) )
 		{
-			if(++$count > $limit)
+			if ( ++$count > $limit )
 			{
 				// We've had enough
-				if($mode == 'all' || $mode == 'revs')
-					$this->setContinueEnumParameter('continue', intval($row->ar_namespace) . '|' .
-						$this->keyToTitle($row->ar_title) . '|' . $row->ar_timestamp);
+				if ( $mode == 'all' || $mode == 'revs' )
+					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
+						$this->keyToTitle( $row->ar_title ) . '|' . $row->ar_timestamp );
 				else
-					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ar_timestamp));
+					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
 				break;
 			}
 
 			$rev = array();
-			$rev['timestamp'] = wfTimestamp(TS_ISO_8601, $row->ar_timestamp);
-			if($fld_revid)
-				$rev['revid'] = intval($row->ar_rev_id);
-			if($fld_user)
+			$rev['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ar_timestamp );
+			if ( $fld_revid )
+				$rev['revid'] = intval( $row->ar_rev_id );
+			if ( $fld_user )
 				$rev['user'] = $row->ar_user_text;
-			if($fld_comment)
+			if ( $fld_comment )
 				$rev['comment'] = $row->ar_comment;
-			if($fld_minor)
-				if($row->ar_minor_edit == 1)
+			if ( $fld_minor )
+				if ( $row->ar_minor_edit == 1 )
 					$rev['minor'] = '';
-			if($fld_len)
+			if ( $fld_len )
 				$rev['len'] = $row->ar_len;
-			if($fld_content)
-				ApiResult::setContent($rev, Revision::getRevisionText($row));
+			if ( $fld_content )
+				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
 
-			if(!isset($pageMap[$row->ar_namespace][$row->ar_title]))
+			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) )
 			{
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
-				$t = Title::makeTitle($row->ar_namespace, $row->ar_title);
-				$a['revisions'] = array($rev);
-				$result->setIndexedTagName($a['revisions'], 'rev');
-				ApiQueryBase::addTitleInfo($a, $t);
-				if($fld_token)
+				$t = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+				$a['revisions'] = array( $rev );
+				$result->setIndexedTagName( $a['revisions'], 'rev' );
+				ApiQueryBase::addTitleInfo( $a, $t );
+				if ( $fld_token )
 					$a['token'] = $token;
-				$fit = $result->addValue(array('query', $this->getModuleName()), $pageID, $a);
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ), $pageID, $a );
 			}
 			else
 			{
 				$pageID = $pageMap[$row->ar_namespace][$row->ar_title];
 				$fit = $result->addValue(
-					array('query', $this->getModuleName(), $pageID, 'revisions'),
-					null, $rev);
+					array( 'query', $this->getModuleName(), $pageID, 'revisions' ),
+					null, $rev );
 			}
-			if(!$fit)
+			if ( !$fit )
 			{
-				if($mode == 'all' || $mode == 'revs')
-					$this->setContinueEnumParameter('continue', intval($row->ar_namespace) . '|' .
-						$this->keyToTitle($row->ar_title) . '|' . $row->ar_timestamp);
+				if ( $mode == 'all' || $mode == 'revs' )
+					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
+						$this->keyToTitle( $row->ar_title ) . '|' . $row->ar_timestamp );
 				else
-					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ar_timestamp));
+					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
 				break;
 			}
 		}
-		$db->freeResult($res);
-		$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'page');
+		$db->freeResult( $res );
+		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
 	}
 
 	public function getAllowedParams() {

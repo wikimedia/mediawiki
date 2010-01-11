@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -39,18 +39,18 @@ class ApiQueryTags extends ApiQueryBase {
 	private $fld_displayname = false, $fld_description = false,
 			$fld_hitcount = false;
 	
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'tg');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'tg' );
 	}
 
 	public function execute() {
 		$params = $this->extractRequestParams();
 		
-		$prop = array_flip($params['prop']);
+		$prop = array_flip( $params['prop'] );
 		
-		$this->fld_displayname = isset($prop['displayname']);
-		$this->fld_description = isset($prop['description']);
-		$this->fld_hitcount = isset($prop['hitcount']);
+		$this->fld_displayname = isset( $prop['displayname'] );
+		$this->fld_description = isset( $prop['description'] );
+		$this->fld_hitcount = isset( $prop['hitcount'] );
 		
 		$this->limit = $params['limit'];
 		$this->result = $this->getResult();
@@ -59,32 +59,32 @@ class ApiQueryTags extends ApiQueryBase {
 		$titles = $pageSet->getTitles();
 		$data = array();
 		
-		$this->addTables('change_tag');
-		$this->addFields('ct_tag');
+		$this->addTables( 'change_tag' );
+		$this->addFields( 'ct_tag' );
 		
-		if($this->fld_hitcount)
-			$this->addFields('count(*) AS hitcount');
+		if ( $this->fld_hitcount )
+			$this->addFields( 'count(*) AS hitcount' );
 		
-		$this->addOption('LIMIT', $this->limit + 1);
-		$this->addOption('GROUP BY', 'ct_tag');
-		$this->addWhereRange('ct_tag', 'newer', $params['continue'], null);
+		$this->addOption( 'LIMIT', $this->limit + 1 );
+		$this->addOption( 'GROUP BY', 'ct_tag' );
+		$this->addWhereRange( 'ct_tag', 'newer', $params['continue'], null );
 		
-		$res = $this->select(__METHOD__);
+		$res = $this->select( __METHOD__ );
 		
 		$ok = true;
 		
 		while ( $row = $res->fetchObject() ) {
-			if(!$ok) break;
+			if ( !$ok ) break;
 			$ok = $this->doTag( $row->ct_tag, $row->hitcount );
 		}
 		
-		//include tags with no hits yet
-		foreach( ChangeTags::listDefinedTags() as $tag ) {
-			if(!$ok) break;
+		// include tags with no hits yet
+		foreach ( ChangeTags::listDefinedTags() as $tag ) {
+			if ( !$ok ) break;
 			$ok = $this->doTag( $tag, 0 );
 		}
 			
-		$this->result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'tag');
+		$this->result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'tag' );
 	}
 	
 	private function doTag( $tagName, $hitcount ) {
@@ -95,34 +95,34 @@ class ApiQueryTags extends ApiQueryBase {
 			return true;
 		}
 		
-		if(++$count > $this->limit)
+		if ( ++$count > $this->limit )
 		{
-			$this->setContinueEnumParameter('continue', $tagName);
+			$this->setContinueEnumParameter( 'continue', $tagName );
 			return false;
 		}
 		
 		$tag = array();
 		$tag['name'] = $tagName;
 		
-		if($this->fld_displayname)
+		if ( $this->fld_displayname )
 			$tag['displayname'] = ChangeTags::tagDescription( $tagName );
 		
-		if($this->fld_description)
+		if ( $this->fld_description )
 		{
 			$msg = wfMsg( "tag-$tagName-description" );
 			$msg = wfEmptyMsg( "tag-$tagName-description", $msg ) ? '' : $msg;
 			$tag['description'] = $msg;
 		}
 			
-		if($this->fld_hitcount)
+		if ( $this->fld_hitcount )
 			$tag['hitcount'] = $hitcount;
 		
 		$doneTags[] = $tagName;
 		
-		$fit = $this->result->addValue(array('query', $this->getModuleName()), null, $tag);
-		if(!$fit)
+		$fit = $this->result->addValue( array( 'query', $this->getModuleName() ), null, $tag );
+		if ( !$fit )
 		{
-			$this->setContinueEnumParameter('continue', $tagName);
+			$this->setContinueEnumParameter( 'continue', $tagName );
 			return false;
 		}
 			

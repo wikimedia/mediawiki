@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiFormatBase.php');
+	require_once ( 'ApiFormatBase.php' );
 }
 
 /**
@@ -33,8 +33,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiFormatYaml extends ApiFormatBase {
 
-	public function __construct($main, $format) {
-		parent :: __construct($main, $format);
+	public function __construct( $main, $format ) {
+		parent :: __construct( $main, $format );
 	}
 
 	public function getMimeType() {
@@ -42,7 +42,7 @@ class ApiFormatYaml extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$this->printText(Spyc :: YAMLDump($this->getResultData()));
+		$this->printText( Spyc :: YAMLDump( $this->getResultData() ) );
 	}
 
 	public function getDescription() {

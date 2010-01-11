@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
     // Eclipse helper - will be ignored in production
-    require_once ("ApiBase.php");
+    require_once ( "ApiBase.php" );
 }
 
 /**
@@ -37,141 +37,141 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiEditPage extends ApiBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName);
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName );
 	}
 
 	public function execute() {
 		global $wgUser;
 		$params = $this->extractRequestParams();
-		if(is_null($params['title']))
-			$this->dieUsageMsg(array('missingparam', 'title'));
-		if(is_null($params['text']) && is_null($params['appendtext']) &&
-				is_null($params['prependtext']) &&
-				$params['undo'] == 0)
-			$this->dieUsageMsg(array('missingtext'));
-		if(is_null($params['token']))
-			$this->dieUsageMsg(array('missingparam', 'token'));
-		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsageMsg(array('sessionfailure'));
+		if ( is_null( $params['title'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
+		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
+				is_null( $params['prependtext'] ) &&
+				$params['undo'] == 0 )
+			$this->dieUsageMsg( array( 'missingtext' ) );
+		if ( is_null( $params['token'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+		if ( !$wgUser->matchEditToken( $params['token'] ) )
+			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
-		$titleObj = Title::newFromText($params['title']);
-		if(!$titleObj || $titleObj->isExternal())
-			$this->dieUsageMsg(array('invalidtitle', $params['title']));
+		$titleObj = Title::newFromText( $params['title'] );
+		if ( !$titleObj || $titleObj->isExternal() )
+			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 			
 		// Some functions depend on $wgTitle == $ep->mTitle
 		global $wgTitle;
 		$wgTitle = $titleObj;
 
-		if($params['createonly'] && $titleObj->exists())
-			$this->dieUsageMsg(array('createonly-exists'));
-		if($params['nocreate'] && !$titleObj->exists())
-			$this->dieUsageMsg(array('nocreate-missing'));
+		if ( $params['createonly'] && $titleObj->exists() )
+			$this->dieUsageMsg( array( 'createonly-exists' ) );
+		if ( $params['nocreate'] && !$titleObj->exists() )
+			$this->dieUsageMsg( array( 'nocreate-missing' ) );
 
 		// Now let's check whether we're even allowed to do this
-		$errors = $titleObj->getUserPermissionsErrors('edit', $wgUser);
-		if(!$titleObj->exists())
-			$errors = array_merge($errors, $titleObj->getUserPermissionsErrors('create', $wgUser));
-		if(count($errors))
-			$this->dieUsageMsg($errors[0]);
+		$errors = $titleObj->getUserPermissionsErrors( 'edit', $wgUser );
+		if ( !$titleObj->exists() )
+			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $wgUser ) );
+		if ( count( $errors ) )
+			$this->dieUsageMsg( $errors[0] );
 
-		$articleObj = new Article($titleObj);
+		$articleObj = new Article( $titleObj );
 		$toMD5 = $params['text'];
-		if(!is_null($params['appendtext']) || !is_null($params['prependtext']))
+		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) )
 		{
 			// For non-existent pages, Article::getContent()
 			// returns an interface message rather than ''
 			// We do want getContent()'s behavior for non-existent
 			// MediaWiki: pages, though
-			if($articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI)
+			if ( $articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI )
 				$content = '';
 			else
 				$content = $articleObj->getContent();
 			
-			if (!is_null($params['section'])) 
+			if ( !is_null( $params['section'] ) )
 			{
 				// Process the content for section edits
 				global $wgParser;
-				$section = intval($params['section']);
-				$content = $wgParser->getSection($content, $section, false);
-				if ($content === false)
-					$this->dieUsage("There is no section {$section}.", 'nosuchsection');
+				$section = intval( $params['section'] );
+				$content = $wgParser->getSection( $content, $section, false );
+				if ( $content === false )
+					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 			}
 			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
 			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
 		
-		if($params['undo'] > 0)
+		if ( $params['undo'] > 0 )
 		{
-			if($params['undoafter'] > 0)
+			if ( $params['undoafter'] > 0 )
 			{
-				if($params['undo'] < $params['undoafter'])
-					list($params['undo'], $params['undoafter']) =
-					array($params['undoafter'], $params['undo']);
-				$undoafterRev = Revision::newFromID($params['undoafter']);
+				if ( $params['undo'] < $params['undoafter'] )
+					list( $params['undo'], $params['undoafter'] ) =
+					array( $params['undoafter'], $params['undo'] );
+				$undoafterRev = Revision::newFromID( $params['undoafter'] );
 			}
-			$undoRev = Revision::newFromID($params['undo']);
-			if(is_null($undoRev) || $undoRev->isDeleted(Revision::DELETED_TEXT))
-				$this->dieUsageMsg(array('nosuchrevid', $params['undo']));
-			if($params['undoafter'] == 0)
+			$undoRev = Revision::newFromID( $params['undo'] );
+			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) )
+				$this->dieUsageMsg( array( 'nosuchrevid', $params['undo'] ) );
+			if ( $params['undoafter'] == 0 )
 				$undoafterRev = $undoRev->getPrevious();
-			if(is_null($undoafterRev) || $undoafterRev->isDeleted(Revision::DELETED_TEXT))
-				$this->dieUsageMsg(array('nosuchrevid', $params['undoafter']));
-			if($undoRev->getPage() != $articleObj->getID())
-				$this->dieUsageMsg(array('revwrongpage', $undoRev->getID(), $titleObj->getPrefixedText()));
-			if($undoafterRev->getPage() != $articleObj->getID())
-				$this->dieUsageMsg(array('revwrongpage', $undoafterRev->getID(), $titleObj->getPrefixedText()));
-			$newtext = $articleObj->getUndoText($undoRev, $undoafterRev);
-			if($newtext === false)
-				$this->dieUsageMsg(array('undo-failure'));
+			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( Revision::DELETED_TEXT ) )
+				$this->dieUsageMsg( array( 'nosuchrevid', $params['undoafter'] ) );
+			if ( $undoRev->getPage() != $articleObj->getID() )
+				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getID(), $titleObj->getPrefixedText() ) );
+			if ( $undoafterRev->getPage() != $articleObj->getID() )
+				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(), $titleObj->getPrefixedText() ) );
+			$newtext = $articleObj->getUndoText( $undoRev, $undoafterRev );
+			if ( $newtext === false )
+				$this->dieUsageMsg( array( 'undo-failure' ) );
 			$params['text'] = $newtext;
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
-			if(is_null($params['summary']) && $titleObj->getNextRevisionID($undoafterRev->getID()) == $params['undo'])
-				$params['summary'] = wfMsgForContent('undo-summary', $params['undo'], $undoRev->getUserText());
+			if ( is_null( $params['summary'] ) && $titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo'] )
+				$params['summary'] = wfMsgForContent( 'undo-summary', $params['undo'], $undoRev->getUserText() );
 		}
 
 		# See if the MD5 hash checks out
-		if(!is_null($params['md5']))
-			if(md5($toMD5) !== $params['md5'])
-				$this->dieUsageMsg(array('hashcheckfailed'));
+		if ( !is_null( $params['md5'] ) )
+			if ( md5( $toMD5 ) !== $params['md5'] )
+				$this->dieUsageMsg( array( 'hashcheckfailed' ) );
 		
-		$ep = new EditPage($articleObj);
+		$ep = new EditPage( $articleObj );
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
-		$reqArr = array('wpTextbox1' => $params['text'],
+		$reqArr = array( 'wpTextbox1' => $params['text'],
 				'wpEdittoken' => $params['token'],
 				'wpIgnoreBlankSummary' => ''
 		);
-		if(!is_null($params['summary']))
+		if ( !is_null( $params['summary'] ) )
 			$reqArr['wpSummary'] = $params['summary'];
 		# Watch out for basetimestamp == ''
 		# wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
-		if(!is_null($params['basetimestamp']) && $params['basetimestamp'] != '')
-			$reqArr['wpEdittime'] = wfTimestamp(TS_MW, $params['basetimestamp']);
+		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' )
+			$reqArr['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
 		else
 			$reqArr['wpEdittime'] = $articleObj->getTimestamp();
-		if(!is_null($params['starttimestamp']) && $params['starttimestamp'] != '')
-			$reqArr['wpStarttime'] = wfTimestamp(TS_MW, $params['starttimestamp']);
+		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' )
+			$reqArr['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
 		else
 			# Fake wpStartime
 			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];
-		if($params['minor'] || (!$params['notminor'] && $wgUser->getOption('minordefault')))
+		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )
 			$reqArr['wpMinoredit'] = '';
-		if($params['recreate'])
+		if ( $params['recreate'] )
 			$reqArr['wpRecreate'] = '';
-		if(!is_null($params['section']))
+		if ( !is_null( $params['section'] ) )
 		{
-			$section = intval($params['section']);
-			if($section == 0 && $params['section'] != '0' && $params['section'] != 'new')
-				$this->dieUsage("The section parameter must be set to an integer or 'new'", "invalidsection");
+			$section = intval( $params['section'] );
+			if ( $section == 0 && $params['section'] != '0' && $params['section'] != 'new' )
+				$this->dieUsage( "The section parameter must be set to an integer or 'new'", "invalidsection" );
 			$reqArr['wpSection'] = $params['section'];
 		}
 		else
 			$reqArr['wpSection'] = '';
 
 		// Handle watchlist settings
-		switch ($params['watchlist']) 
+		switch ( $params['watchlist'] )
 		{
 			case 'watch':
 				$watch = true;
@@ -180,45 +180,45 @@ class ApiEditPage extends ApiBase {
 				$watch = false;
 				break;
 			case 'preferences':
-				if ($titleObj->exists())
-					$watch = $wgUser->getOption('watchdefault') || $titleObj->userIsWatching();
+				if ( $titleObj->exists() )
+					$watch = $wgUser->getOption( 'watchdefault' ) || $titleObj->userIsWatching();
 				else
-					$watch = $wgUser->getOption('watchcreations');
+					$watch = $wgUser->getOption( 'watchcreations' );
 				break;
 			case 'nochange':
 			default:
 				$watch = $titleObj->userIsWatching();
 		}
 		// Deprecated parameters
-		if ($params['watch']) 
+		if ( $params['watch'] )
 			$watch = true;
-		elseif ($params['unwatch']) 
+		elseif ( $params['unwatch'] )
 			$watch = false;
 		
-		if($watch)
+		if ( $watch )
 			$reqArr['wpWatchthis'] = '';
 
-		$req = new FauxRequest($reqArr, true);
-		$ep->importFormData($req);
+		$req = new FauxRequest( $reqArr, true );
+		$ep->importFormData( $req );
 
 		# Run hooks
 		# Handle CAPTCHA parameters
 		global $wgRequest;
-		if(!is_null($params['captchaid']))
+		if ( !is_null( $params['captchaid'] ) )
 			$wgRequest->setVal( 'wpCaptchaId', $params['captchaid'] );
-		if(!is_null($params['captchaword']))
+		if ( !is_null( $params['captchaword'] ) )
 			$wgRequest->setVal( 'wpCaptchaWord', $params['captchaword'] );
 		$r = array();
-		if(!wfRunHooks('APIEditBeforeSave', array($ep, $ep->textbox1, &$r)))
+		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ) ) )
 		{
-			if(count($r))
+			if ( count( $r ) )
 			{
 				$r['result'] = "Failure";
-				$this->getResult()->addValue(null, $this->getModuleName(), $r);
+				$this->getResult()->addValue( null, $this->getModuleName(), $r );
 				return;
 			}
 			else
-				$this->dieUsageMsg(array('hookaborted'));
+				$this->dieUsageMsg( array( 'hookaborted' ) );
 		}
 
 		# Do the actual save
@@ -229,80 +229,80 @@ class ApiEditPage extends ApiBase {
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
-		$retval = $ep->internalAttemptSave($result, $wgUser->isAllowed('bot') && $params['bot']);
+		$retval = $ep->internalAttemptSave( $result, $wgUser->isAllowed( 'bot' ) && $params['bot'] );
 		$wgRequest = $oldRequest;
-		switch($retval)
+		switch( $retval )
 		{
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
-				$this->dieUsageMsg(array('hookaborted'));
+				$this->dieUsageMsg( array( 'hookaborted' ) );
 			case EditPage::AS_IMAGE_REDIRECT_ANON:
-				$this->dieUsageMsg(array('noimageredirect-anon'));
+				$this->dieUsageMsg( array( 'noimageredirect-anon' ) );
 			case EditPage::AS_IMAGE_REDIRECT_LOGGED:
-				$this->dieUsageMsg(array('noimageredirect-logged'));
+				$this->dieUsageMsg( array( 'noimageredirect-logged' ) );
 			case EditPage::AS_SPAM_ERROR:
-				$this->dieUsageMsg(array('spamdetected', $result['spam']));
+				$this->dieUsageMsg( array( 'spamdetected', $result['spam'] ) );
 			case EditPage::AS_FILTERING:
-				$this->dieUsageMsg(array('filtered'));
+				$this->dieUsageMsg( array( 'filtered' ) );
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
-				$this->dieUsageMsg(array('blockedtext'));
+				$this->dieUsageMsg( array( 'blockedtext' ) );
 			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case EditPage::AS_CONTENT_TOO_BIG:
 				global $wgMaxArticleSize;
-				$this->dieUsageMsg(array('contenttoobig', $wgMaxArticleSize));
+				$this->dieUsageMsg( array( 'contenttoobig', $wgMaxArticleSize ) );
 			case EditPage::AS_READ_ONLY_PAGE_ANON:
-				$this->dieUsageMsg(array('noedit-anon'));
+				$this->dieUsageMsg( array( 'noedit-anon' ) );
 			case EditPage::AS_READ_ONLY_PAGE_LOGGED:
-				$this->dieUsageMsg(array('noedit'));
+				$this->dieUsageMsg( array( 'noedit' ) );
 			case EditPage::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();
 			case EditPage::AS_RATE_LIMITED:
-				$this->dieUsageMsg(array('actionthrottledtext'));
+				$this->dieUsageMsg( array( 'actionthrottledtext' ) );
 			case EditPage::AS_ARTICLE_WAS_DELETED:
-				$this->dieUsageMsg(array('wasdeleted'));
+				$this->dieUsageMsg( array( 'wasdeleted' ) );
 			case EditPage::AS_NO_CREATE_PERMISSION:
-				$this->dieUsageMsg(array('nocreate-loggedin'));
+				$this->dieUsageMsg( array( 'nocreate-loggedin' ) );
 			case EditPage::AS_BLANK_ARTICLE:
-				$this->dieUsageMsg(array('blankpage'));
+				$this->dieUsageMsg( array( 'blankpage' ) );
 			case EditPage::AS_CONFLICT_DETECTED:
-				$this->dieUsageMsg(array('editconflict'));
-			#case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
+				$this->dieUsageMsg( array( 'editconflict' ) );
+			# case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
 			case EditPage::AS_TEXTBOX_EMPTY:
-				$this->dieUsageMsg(array('emptynewsection'));
+				$this->dieUsageMsg( array( 'emptynewsection' ) );
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
 			case EditPage::AS_SUCCESS_UPDATE:
 				$r['result'] = "Success";
-				$r['pageid'] = intval($titleObj->getArticleID());
+				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
 				# HACK: We create a new Article object here because getRevIdFetched()
 				# refuses to be run twice, and because Title::getLatestRevId()
 				# won't fetch from the master unless we select for update, which we
 				# don't want to do.
-				$newArticle = new Article($titleObj);
+				$newArticle = new Article( $titleObj );
 				$newRevId = $newArticle->getRevIdFetched();
-				if($newRevId == $oldRevId)
+				if ( $newRevId == $oldRevId )
 					$r['nochange'] = '';
 				else
 				{
-					$r['oldrevid'] = intval($oldRevId);
-					$r['newrevid'] = intval($newRevId);
-					$r['newtimestamp'] = wfTimestamp(TS_ISO_8601,
-						$newArticle->getTimestamp());
+					$r['oldrevid'] = intval( $oldRevId );
+					$r['newrevid'] = intval( $newRevId );
+					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
+						$newArticle->getTimestamp() );
 				}
 				break;
 			case EditPage::AS_END:
 				# This usually means some kind of race condition
 				# or DB weirdness occurred. Fall through to throw an unknown 
 				# error.
-				
+
 				# This needs fixing higher up, as Article::doEdit should be 
 				# used rather than Article::updateArticle, so that specific
 				# error conditions can be returned
 			default:
-				$this->dieUsageMsg(array('unknownerror', $retval));
+				$this->dieUsageMsg( array( 'unknownerror', $retval ) );
 		}
-		$this->getResult()->addValue(null, $this->getModuleName(), $r);
+		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 
 	public function mustBePosted() {
@@ -345,9 +345,9 @@ class ApiEditPage extends ApiBase {
 			'watchlist' => array(
 				ApiBase :: PARAM_DFLT => 'preferences',
 				ApiBase :: PARAM_TYPE => array(
-					'watch', 
-					'unwatch', 
-					'preferences', 
+					'watch',
+					'unwatch',
+					'preferences',
 					'nochange'
 				),
 			),
@@ -373,10 +373,10 @@ class ApiEditPage extends ApiBase {
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
-			'basetimestamp' => array('Timestamp of the base revision (gotten through prop=revisions&rvprop=timestamp).',
+			'basetimestamp' => array( 'Timestamp of the base revision (gotten through prop=revisions&rvprop=timestamp).',
 						'Used to detect edit conflicts; leave unset to ignore conflicts.'
 			),
-			'starttimestamp' => array('Timestamp when you obtained the edit token.',
+			'starttimestamp' => array( 'Timestamp when you obtained the edit token.',
 						'Used to detect edit conflicts; leave unset to ignore conflicts.'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
@@ -388,7 +388,7 @@ class ApiEditPage extends ApiBase {
 			'captchaid' => 'CAPTCHA ID from previous request',
 			'captchaword' => 'Answer to the CAPTCHA',
 			'md5' => array(	'The MD5 hash of the text parameter, or the prependtext and appendtext parameters concatenated.',
-				 	'If set, the edit won\'t be done unless the hash is correct'),
+				 	'If set, the edit won\'t be done unless the hash is correct' ),
 			'prependtext' => 'Add this text to the beginning of the page. Overrides text.',
 			'appendtext' => 'Add this text to the end of the page. Overrides text',
 			'undo' => 'Undo this revision. Overrides text, prependtext and appendtext',

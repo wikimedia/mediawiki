@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -35,8 +35,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryLogEvents extends ApiQueryBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'le');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'le' );
 	}
 
 	public function execute() {
@@ -44,140 +44,140 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$db = $this->getDB();
 
 		$prop = $params['prop'];
-		$this->fld_ids = in_array('ids', $prop);
-		$this->fld_title = in_array('title', $prop);
-		$this->fld_type = in_array('type', $prop);
-		$this->fld_user = in_array('user', $prop);
-		$this->fld_timestamp = in_array('timestamp', $prop);
-		$this->fld_comment = in_array('comment', $prop);
-		$this->fld_details = in_array('details', $prop);
-		$this->fld_tags = in_array('tags', $prop);
+		$this->fld_ids = in_array( 'ids', $prop );
+		$this->fld_title = in_array( 'title', $prop );
+		$this->fld_type = in_array( 'type', $prop );
+		$this->fld_user = in_array( 'user', $prop );
+		$this->fld_timestamp = in_array( 'timestamp', $prop );
+		$this->fld_comment = in_array( 'comment', $prop );
+		$this->fld_details = in_array( 'details', $prop );
+		$this->fld_tags = in_array( 'tags', $prop );
 
-		list($tbl_logging, $tbl_page, $tbl_user) = $db->tableNamesN('logging', 'page', 'user');
+		list( $tbl_logging, $tbl_page, $tbl_user ) = $db->tableNamesN( 'logging', 'page', 'user' );
 
-		$hideLogs = LogEventsList::getExcludeClause($db);
-		if($hideLogs !== false)
-			$this->addWhere($hideLogs);
+		$hideLogs = LogEventsList::getExcludeClause( $db );
+		if ( $hideLogs !== false )
+			$this->addWhere( $hideLogs );
 
 		// Order is significant here
-		$this->addTables(array('logging', 'user', 'page'));
-		$this->addOption('STRAIGHT_JOIN');
-		$this->addJoinConds(array(
-			'user' => array('JOIN',
-				'user_id=log_user'),
-			'page' => array('LEFT JOIN',
+		$this->addTables( array( 'logging', 'user', 'page' ) );
+		$this->addOption( 'STRAIGHT_JOIN' );
+		$this->addJoinConds( array(
+			'user' => array( 'JOIN',
+				'user_id=log_user' ),
+			'page' => array( 'LEFT JOIN',
 				array(	'log_namespace=page_namespace',
-					'log_title=page_title'))));
+					'log_title=page_title' ) ) ) );
 		$index = 'times'; // default, may change
 
-		$this->addFields(array (
+		$this->addFields( array (
 			'log_type',
 			'log_action',
 			'log_timestamp',
 			'log_deleted',
-		));
+		) );
 
-		$this->addFieldsIf('log_id', $this->fld_ids);
-		$this->addFieldsIf('page_id', $this->fld_ids);
-		$this->addFieldsIf('log_user', $this->fld_user);
-		$this->addFieldsIf('user_name', $this->fld_user);
-		$this->addFieldsIf('log_namespace', $this->fld_title);
-		$this->addFieldsIf('log_title', $this->fld_title);
-		$this->addFieldsIf('log_comment', $this->fld_comment);
-		$this->addFieldsIf('log_params', $this->fld_details);
+		$this->addFieldsIf( 'log_id', $this->fld_ids );
+		$this->addFieldsIf( 'page_id', $this->fld_ids );
+		$this->addFieldsIf( 'log_user', $this->fld_user );
+		$this->addFieldsIf( 'user_name', $this->fld_user );
+		$this->addFieldsIf( 'log_namespace', $this->fld_title );
+		$this->addFieldsIf( 'log_title', $this->fld_title );
+		$this->addFieldsIf( 'log_comment', $this->fld_comment );
+		$this->addFieldsIf( 'log_params', $this->fld_details );
 		
-		if($this->fld_tags) {
-			$this->addTables('tag_summary');
-			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', 'log_id=ts_log_id')));
-			$this->addFields('ts_tags');
+		if ( $this->fld_tags ) {
+			$this->addTables( 'tag_summary' );
+			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', 'log_id=ts_log_id' ) ) );
+			$this->addFields( 'ts_tags' );
 		}
 		
-		if( !is_null($params['tag']) ) {
-			$this->addTables('change_tag');
-			$this->addJoinConds(array('change_tag' => array('INNER JOIN', array('log_id=ct_log_id'))));
-			$this->addWhereFld('ct_tag', $params['tag']);
+		if ( !is_null( $params['tag'] ) ) {
+			$this->addTables( 'change_tag' );
+			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'log_id=ct_log_id' ) ) ) );
+			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 		
-		if( !is_null($params['type']) ) {
-			$this->addWhereFld('log_type', $params['type']);
+		if ( !is_null( $params['type'] ) ) {
+			$this->addWhereFld( 'log_type', $params['type'] );
 			$index = 'type_time';
 		}
 		
-		$this->addWhereRange('log_timestamp', $params['dir'], $params['start'], $params['end']);
+		$this->addWhereRange( 'log_timestamp', $params['dir'], $params['start'], $params['end'] );
 
 		$limit = $params['limit'];
-		$this->addOption('LIMIT', $limit +1);
+		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$user = $params['user'];
-		if (!is_null($user)) {
-			$userid = User::idFromName($user);
-			if (!$userid)
-				$this->dieUsage("User name $user not found", 'param_user');
-			$this->addWhereFld('log_user', $userid);
+		if ( !is_null( $user ) ) {
+			$userid = User::idFromName( $user );
+			if ( !$userid )
+				$this->dieUsage( "User name $user not found", 'param_user' );
+			$this->addWhereFld( 'log_user', $userid );
 			$index = 'user_time';
 		}
 
 		$title = $params['title'];
-		if (!is_null($title)) {
-			$titleObj = Title :: newFromText($title);
-			if (is_null($titleObj))
-				$this->dieUsage("Bad title value '$title'", 'param_title');
-			$this->addWhereFld('log_namespace', $titleObj->getNamespace());
-			$this->addWhereFld('log_title', $titleObj->getDBkey());
+		if ( !is_null( $title ) ) {
+			$titleObj = Title :: newFromText( $title );
+			if ( is_null( $titleObj ) )
+				$this->dieUsage( "Bad title value '$title'", 'param_title' );
+			$this->addWhereFld( 'log_namespace', $titleObj->getNamespace() );
+			$this->addWhereFld( 'log_title', $titleObj->getDBkey() );
 
 			// Use the title index in preference to the user index if there is a conflict
-			$index = is_null($user) ? 'page_time' : array('page_time','user_time');
+			$index = is_null( $user ) ? 'page_time' : array( 'page_time', 'user_time' );
 		}
 
 		$this->addOption( 'USE INDEX', array( 'logging' => $index ) );
 
 		// Paranoia: avoid brute force searches (bug 17342)
-		if (!is_null($title)) {
-			$this->addWhere($db->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0');
+		if ( !is_null( $title ) ) {
+			$this->addWhere( $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0' );
 		}
-		if (!is_null($user)) {
-			$this->addWhere($db->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0');
+		if ( !is_null( $user ) ) {
+			$this->addWhere( $db->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0' );
 		}
 
 		$count = 0;
-		$res = $this->select(__METHOD__);
-		while ($row = $db->fetchObject($res)) {
-			if (++ $count > $limit) {
+		$res = $this->select( __METHOD__ );
+		while ( $row = $db->fetchObject( $res ) ) {
+			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->log_timestamp));
+				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->log_timestamp ) );
 				break;
 			}
 
-			$vals = $this->extractRowInfo($row);
-			if(!$vals)
+			$vals = $this->extractRowInfo( $row );
+			if ( !$vals )
 				continue;
-			$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
-			if(!$fit)
+			$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+			if ( !$fit )
 			{
-				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->log_timestamp));
+				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->log_timestamp ) );
 				break;
 			}
 		}
-		$db->freeResult($res);
+		$db->freeResult( $res );
 
-		$this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'item');
+		$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
 	}
 	
-	public static function addLogParams($result, &$vals, $params, $type, $ts) {
-		$params = explode("\n", $params);
-		switch ($type) {
+	public static function addLogParams( $result, &$vals, $params, $type, $ts ) {
+		$params = explode( "\n", $params );
+		switch ( $type ) {
 			case 'move':
-				if (isset ($params[0])) {
-					$title = Title :: newFromText($params[0]);
-					if ($title) {
+				if ( isset ( $params[0] ) ) {
+					$title = Title :: newFromText( $params[0] );
+					if ( $title ) {
 						$vals2 = array();
-						ApiQueryBase :: addTitleInfo($vals2, $title, "new_");
+						ApiQueryBase :: addTitleInfo( $vals2, $title, "new_" );
 						$vals[$type] = $vals2;
 					}
 				}
-				if (isset ($params[1]) && $params[1]) {
+				if ( isset ( $params[1] ) && $params[1] ) {
 					$vals[$type]['suppressedredirect'] = '';
-				} 
+				}
 				$params = null;
 				break;
 			case 'patrol':
@@ -195,75 +195,75 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			case 'block':
 				$vals2 = array();
 				list( $vals2['duration'], $vals2['flags'] ) = $params;
-				$vals2['expiry'] = wfTimestamp(TS_ISO_8601,
-						strtotime($params[0], wfTimestamp(TS_UNIX, $ts)));
+				$vals2['expiry'] = wfTimestamp( TS_ISO_8601,
+						strtotime( $params[0], wfTimestamp( TS_UNIX, $ts ) ) );
 				$vals[$type] = $vals2;
 				$params = null;
 				break;
 		}
-		if (!is_null($params)) {
-			$result->setIndexedTagName($params, 'param');
-			$vals = array_merge($vals, $params);
+		if ( !is_null( $params ) ) {
+			$result->setIndexedTagName( $params, 'param' );
+			$vals = array_merge( $vals, $params );
 		}
 		return $vals;
 	}
 
-	private function extractRowInfo($row) {
+	private function extractRowInfo( $row ) {
 		$vals = array();
 
-		if ($this->fld_ids) {
-			$vals['logid'] = intval($row->log_id);
-			$vals['pageid'] = intval($row->page_id);
+		if ( $this->fld_ids ) {
+			$vals['logid'] = intval( $row->log_id );
+			$vals['pageid'] = intval( $row->page_id );
 		}
 
-		if ($this->fld_title) {
-			if (LogEventsList::isDeleted($row, LogPage::DELETED_ACTION)) {
+		if ( $this->fld_title ) {
+			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 			} else {
-				$title = Title :: makeTitle($row->log_namespace, $row->log_title);
-				ApiQueryBase :: addTitleInfo($vals, $title);
+				$title = Title :: makeTitle( $row->log_namespace, $row->log_title );
+				ApiQueryBase :: addTitleInfo( $vals, $title );
 			}
 		}
 
-		if ($this->fld_type) {
+		if ( $this->fld_type ) {
 			$vals['type'] = $row->log_type;
 			$vals['action'] = $row->log_action;
 		}
 
-		if ($this->fld_details && $row->log_params !== '') {
-			if (LogEventsList::isDeleted($row, LogPage::DELETED_ACTION)) {
+		if ( $this->fld_details && $row->log_params !== '' ) {
+			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 			} else {
-				self::addLogParams($this->getResult(), $vals,
+				self::addLogParams( $this->getResult(), $vals,
 					$row->log_params, $row->log_type,
-					$row->log_timestamp);
+					$row->log_timestamp );
 			}
 		}
 
-		if ($this->fld_user) {
-			if (LogEventsList::isDeleted($row, LogPage::DELETED_USER)) {
+		if ( $this->fld_user ) {
+			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
 			} else {
 				$vals['user'] = $row->user_name;
-				if(!$row->log_user)
+				if ( !$row->log_user )
 					$vals['anon'] = '';
 			}
 		}
-		if ($this->fld_timestamp) {
-			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->log_timestamp);
+		if ( $this->fld_timestamp ) {
+			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->log_timestamp );
 		}
-		if ($this->fld_comment && isset($row->log_comment)) {
-			if (LogEventsList::isDeleted($row, LogPage::DELETED_COMMENT)) {
+		if ( $this->fld_comment && isset( $row->log_comment ) ) {
+			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
 			} else {
 				$vals['comment'] = $row->log_comment;
 			}
 		}
 
-		if ($this->fld_tags) {
-			if ($row->ts_tags) {
-				$tags = explode(',', $row->ts_tags);
-				$this->getResult()->setIndexedTagName($tags, 'tag');
+		if ( $this->fld_tags ) {
+			if ( $row->ts_tags ) {
+				$tags = explode( ',', $row->ts_tags );
+				$this->getResult()->setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();

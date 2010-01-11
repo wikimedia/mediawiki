@@ -23,7 +23,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once("ApiBase.php");
+	require_once( "ApiBase.php" );
 }
 
 /**
@@ -62,12 +62,12 @@ class ApiUpload extends ApiBase {
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url' );
 
-		if( $this->mParams['sessionkey'] ) {
+		if ( $this->mParams['sessionkey'] ) {
 			/**
 			 * Upload stashed in a previous request
 			 */
 			// Check the session key
-			if( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) )
+			if ( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) )
 				return $this->dieUsageMsg( array( 'invalid-session-key' ) );
 			
 			$this->mUpload = new UploadFromStash();
@@ -90,12 +90,12 @@ class ApiUpload extends ApiBase {
 					$request->getFileSize( 'file' )
 				);
 			} elseif ( isset( $this->mParams['url'] ) ) {
-				//make sure upload by url is enabled: 
-				if( !$wgAllowCopyUploads )
+				// make sure upload by url is enabled: 
+				if ( !$wgAllowCopyUploads )
 					$this->dieUsageMsg( array( 'uploaddisabled' ) );
 				
-				//make sure the current user can upload
-				if(! $wgUser->isAllowed('upload_by_url') )
+				// make sure the current user can upload
+				if ( ! $wgUser->isAllowed( 'upload_by_url' ) )
 					$this->dieUsageMsg( array( 'badaccess-groups' ) );
 					
 				
@@ -104,13 +104,13 @@ class ApiUpload extends ApiBase {
 						$this->mParams['url'] );
 
 				$status = $this->mUpload->fetchFile();
-				if( !$status->isOK() ) {
+				if ( !$status->isOK() ) {
 					return $this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
 				}
 			}
 		}
 
-		if( !isset( $this->mUpload ) )
+		if ( !isset( $this->mUpload ) )
 			$this->dieUsage( 'No upload module set', 'nomodule' );
 
 
@@ -119,13 +119,13 @@ class ApiUpload extends ApiBase {
 
 	}
 
-	protected function doExecUpload(){
+	protected function doExecUpload() {
 		global $wgUser;
 		// Check whether the user has the appropriate permissions to upload anyway
 		$permission = $this->mUpload->isAllowed( $wgUser );
 
-		if( $permission !== true ) {
-			if( !$wgUser->isLoggedIn() )
+		if ( $permission !== true ) {
+			if ( !$wgUser->isLoggedIn() )
 				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
 			else
 				$this->dieUsageMsg( array( 'badaccess-groups' ) );
@@ -142,13 +142,13 @@ class ApiUpload extends ApiBase {
 		global $wgUser;
 		$result = array();
 		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
-		if( $permErrors !== true ) {
+		if ( $permErrors !== true ) {
 			$this->dieUsageMsg( array( 'badaccess-groups' ) );
 		}
 
 		// TODO: Move them to ApiBase's message map
 		$verification = $this->mUpload->verifyUpload();
-		if( $verification['status'] !== UploadBase::OK ) {
+		if ( $verification['status'] !== UploadBase::OK ) {
 			$result['result'] = 'Failure';
 			switch( $verification['status'] ) {
 				case UploadBase::EMPTY_FILE:
@@ -191,22 +191,22 @@ class ApiUpload extends ApiBase {
 			}
 			return $result;
 		}
-		if( !$this->mParams['ignorewarnings'] ) {
+		if ( !$this->mParams['ignorewarnings'] ) {
 			$warnings = $this->mUpload->checkWarnings();
-			if( $warnings ) {
+			if ( $warnings ) {
 				// Add indices
 				$this->getResult()->setIndexedTagName( $warnings, 'warning' );
 
-				if( isset( $warnings['duplicate'] ) ) {
+				if ( isset( $warnings['duplicate'] ) ) {
 					$dupes = array();
-					foreach( $warnings['duplicate'] as $key => $dupe )
+					foreach ( $warnings['duplicate'] as $key => $dupe )
 						$dupes[] = $dupe->getName();
-					$this->getResult()->setIndexedTagName( $dupes, 'duplicate');
+					$this->getResult()->setIndexedTagName( $dupes, 'duplicate' );
 					$warnings['duplicate'] = $dupes;
 				}
 
 
-				if( isset( $warnings['exists'] ) ) {
+				if ( isset( $warnings['exists'] ) ) {
 					$warning = $warnings['exists'];
 					unset( $warnings['exists'] );
 					$warnings[$warning['warning']] = $warning['file']->getName();
@@ -226,14 +226,14 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Use comment as initial page text by default
-		if (is_null($this->mParams['text']))
+		if ( is_null( $this->mParams['text'] ) )
 			$this->mParams['text'] = $this->mParams['comment'];
 		
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
 			$this->mParams['text'], $this->mParams['watch'], $wgUser );
 
-		if( !$status->isGood() ) {
+		if ( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
 			$this->getResult()->setIndexedTagName( $result['details'], 'error' );
 

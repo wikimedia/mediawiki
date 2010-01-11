@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -36,7 +36,7 @@ if (!defined('MEDIAWIKI')) {
 class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct($query, $moduleName, 'sr');
+		parent :: __construct( $query, $moduleName, 'sr' );
 	}
 
 	public function execute() {
@@ -63,14 +63,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Create search engine instance and set options
 		$search = SearchEngine::create();
-		$search->setLimitOffset( $limit+1, $params['offset'] );
+		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
 		$search->showRedirects = $params['redirects'];
 
 		// Perform the actual search
 		if ( $what == 'text' ) {
 			$matches = $search->searchText( $query );
-		} elseif( $what == 'title' ) {
+		} elseif ( $what == 'title' ) {
 			$matches = $search->searchTitle( $query );
 		} else {
 			// We default to title searches; this is a terrible legacy
@@ -84,7 +84,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			// for instance the Lucene-based engine we use on Wikipedia.
 			// In this case, fall back to full-text search (which will
 			// include titles in it!)
-			if( is_null( $matches ) ) {
+			if ( is_null( $matches ) ) {
 				$what = 'text';
 				$matches = $search->searchText( $query );
 			}
@@ -95,13 +95,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		// Add search meta data to result
 		if ( isset( $searchInfo['totalhits'] ) ) {
 			$totalhits = $matches->getTotalHits();
-			if( $totalhits !== null ) {
-				$this->getResult()->addValue( array( 'query', 'searchinfo' ), 
+			if ( $totalhits !== null ) {
+				$this->getResult()->addValue( array( 'query', 'searchinfo' ),
 						'totalhits', $totalhits );
 			}
 		}
 		if ( isset( $searchInfo['suggestion'] ) && $matches->hasSuggestion() ) {
-			$this->getResult()->addValue( array( 'query', 'searchinfo' ), 
+			$this->getResult()->addValue( array( 'query', 'searchinfo' ),
 						'suggestion', $matches->getSuggestionQuery() );
 		}
 
@@ -135,7 +135,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
 				
 				// Add item to results and see whether it fits
-				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), 
+				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ),
 						null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'offset', $params['offset'] + $count - 1 );

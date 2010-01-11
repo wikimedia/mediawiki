@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiBase.php');
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -111,13 +111,13 @@ class ApiMain extends ApiBase {
 	 *                           'params' => array ( $someVarToSubst ) ),
 	 *                          );
 	 */
-	private static $mRights = array('writeapi' => array(
+	private static $mRights = array( 'writeapi' => array(
 						'msg' => 'Use of the write API',
 						'params' => array()
 					),
 					'apihighlimits'	=> array(
 						'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results). The limits for slow queries also apply to multivalue parameters.',
-						'params' => array (ApiMain::LIMIT_SML2, ApiMain::LIMIT_BIG2)
+						'params' => array ( ApiMain::LIMIT_SML2, ApiMain::LIMIT_BIG2 )
 					)
 	);
 
@@ -132,21 +132,21 @@ class ApiMain extends ApiBase {
 	* @param $request object - if this is an instance of FauxRequest, errors are thrown and no printing occurs
 	* @param $enableWrite bool should be set to true if the api may modify data
 	*/
-	public function __construct($request, $enableWrite = false) {
+	public function __construct( $request, $enableWrite = false ) {
 
-		$this->mInternalMode = ($request instanceof FauxRequest);
+		$this->mInternalMode = ( $request instanceof FauxRequest );
 
 		// Special handling for the main module: $parent === $this
-		parent :: __construct($this, $this->mInternalMode ? 'main_int' : 'main');
+		parent :: __construct( $this, $this->mInternalMode ? 'main_int' : 'main' );
 
-		if (!$this->mInternalMode) {
+		if ( !$this->mInternalMode ) {
 
 			// Impose module restrictions.
 			// If the current user cannot read,
 			// Remove all modules other than login
 			global $wgUser;
 
-			if( $request->getVal( 'callback' ) !== null ) {
+			if ( $request->getVal( 'callback' ) !== null ) {
 				// JSON callback allows cross-site reads.
 				// For safety, strip user credentials.
 				wfDebug( "API: stripping user credentials for JSON callback\n" );
@@ -157,17 +157,17 @@ class ApiMain extends ApiBase {
 		global $wgAPIModules; // extension modules
 		$this->mModules = $wgAPIModules + self :: $Modules;
 
-		$this->mModuleNames = array_keys($this->mModules);
+		$this->mModuleNames = array_keys( $this->mModules );
 		$this->mFormats = self :: $Formats;
-		$this->mFormatNames = array_keys($this->mFormats);
+		$this->mFormatNames = array_keys( $this->mFormats );
 
-		$this->mResult = new ApiResult($this);
+		$this->mResult = new ApiResult( $this );
 		$this->mShowVersions = false;
 		$this->mEnableWrite = $enableWrite;
 
 		$this->mRequest = & $request;
 
-		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
+		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
 	}
 
@@ -204,26 +204,26 @@ class ApiMain extends ApiBase {
 	 * @deprecated Use isWriteMode() instead
 	 */
 	public function requestWriteMode() {
-		if (!$this->mEnableWrite)
-			$this->dieUsageMsg(array('writedisabled'));
-		if (wfReadOnly())
-			$this->dieUsageMsg(array('readonlytext'));		
+		if ( !$this->mEnableWrite )
+			$this->dieUsageMsg( array( 'writedisabled' ) );
+		if ( wfReadOnly() )
+			$this->dieUsageMsg( array( 'readonlytext' ) );
 	}
 
 	/**
 	 * Set how long the response should be cached.
 	 */
-	public function setCacheMaxAge($maxage) {
+	public function setCacheMaxAge( $maxage ) {
 		$this->mSquidMaxage = $maxage;
 	}
 
 	/**
 	 * Create an instance of an output formatter by its name
 	 */
-	public function createPrinterByName($format) {
-		if( !isset( $this->mFormats[$format] ) )
+	public function createPrinterByName( $format ) {
+		if ( !isset( $this->mFormats[$format] ) )
 			$this->dieUsage( "Unrecognized format: {$format}", 'unknown_format' );
-		return new $this->mFormats[$format] ($this, $format);
+		return new $this->mFormats[$format] ( $this, $format );
 	}
 
 	/**
@@ -231,7 +231,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function execute() {
 		$this->profileIn();
-		if ($this->mInternalMode)
+		if ( $this->mInternalMode )
 			$this->executeAction();
 		else
 			$this->executeActionWithErrorHandling();
@@ -251,7 +251,7 @@ class ApiMain extends ApiBase {
 
 		try {
 			$this->executeAction();
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 			// Log it
 			if ( $e instanceof MWException ) {
 				wfDebugLog( 'exception', $e->getLogMessage() );
@@ -263,42 +263,42 @@ class ApiMain extends ApiBase {
 			// handler will process and log it.
 			//
 
-			$errCode = $this->substituteResultWithError($e);
+			$errCode = $this->substituteResultWithError( $e );
 
 			// Error results should not be cached
-			$this->setCacheMaxAge(0);
+			$this->setCacheMaxAge( 0 );
 
 			$headerStr = 'MediaWiki-API-Error: ' . $errCode;
-			if ($e->getCode() === 0)
-				header($headerStr);
+			if ( $e->getCode() === 0 )
+				header( $headerStr );
 			else
-				header($headerStr, true, $e->getCode());
+				header( $headerStr, true, $e->getCode() );
 
 			// Reset and print just the error message
 			ob_clean();
 
 			// If the error occured during printing, do a printer->profileOut()
 			$this->mPrinter->safeProfileOut();
-			$this->printResult(true);
+			$this->printResult( true );
 		}
 
-		if($this->mSquidMaxage == -1)
+		if ( $this->mSquidMaxage == - 1 )
 		{
 			# Nobody called setCacheMaxAge(), use the (s)maxage parameters
-			$smaxage = $this->getParameter('smaxage');
-			$maxage = $this->getParameter('maxage');
+			$smaxage = $this->getParameter( 'smaxage' );
+			$maxage = $this->getParameter( 'maxage' );
 		}
 		else
 			$smaxage = $maxage = $this->mSquidMaxage;
 
 		// Set the cache expiration at the last moment, as any errors may change the expiration.
 		// if $this->mSquidMaxage == 0, the expiry time is set to the first second of unix epoch
-		$exp = min($smaxage, $maxage);
-		$expires = ($exp == 0 ? 1 : time() + $exp);
-		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
-		header('Cache-Control: s-maxage=' . $smaxage . ', must-revalidate, max-age=' . $maxage);
+		$exp = min( $smaxage, $maxage );
+		$expires = ( $exp == 0 ? 1 : time() + $exp );
+		header( 'Expires: ' . wfTimestamp( TS_RFC2822, $expires ) );
+		header( 'Cache-Control: s-maxage=' . $smaxage . ', must-revalidate, max-age=' . $maxage );
 
-		if($this->mPrinter->getIsHtml())
+		if ( $this->mPrinter->getIsHtml() )
 			echo wfReportTime();
 
 		ob_end_flush();
@@ -308,29 +308,29 @@ class ApiMain extends ApiBase {
 	 * Replace the result data with the information about an exception.
 	 * Returns the error code
 	 */
-	protected function substituteResultWithError($e) {
+	protected function substituteResultWithError( $e ) {
 
 			// Printer may not be initialized if the extractRequestParams() fails for the main module
-			if (!isset ($this->mPrinter)) {
+			if ( !isset ( $this->mPrinter ) ) {
 				// The printer has not been created yet. Try to manually get formatter value.
-				$value = $this->getRequest()->getVal('format', self::API_DEFAULT_FORMAT);
-				if (!in_array($value, $this->mFormatNames))
+				$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
+				if ( !in_array( $value, $this->mFormatNames ) )
 					$value = self::API_DEFAULT_FORMAT;
 
-				$this->mPrinter = $this->createPrinterByName($value);
-				if ($this->mPrinter->getNeedsRawData())
+				$this->mPrinter = $this->createPrinterByName( $value );
+				if ( $this->mPrinter->getNeedsRawData() )
 					$this->getResult()->setRawMode();
 			}
 
-			if ($e instanceof UsageException) {
+			if ( $e instanceof UsageException ) {
 				//
 				// User entered incorrect parameters - print usage screen
 				//
 				$errMessage = $e->getMessageArray();
 
 				// Only print the help message when this is for the developer, not runtime
-				if ($this->mPrinter->getWantsHelp() || $this->mAction == 'help')
-					ApiResult :: setContent($errMessage, $this->makeHelpMsg());
+				if ( $this->mPrinter->getWantsHelp() || $this->mAction == 'help' )
+					ApiResult :: setContent( $errMessage, $this->makeHelpMsg() );
 
 			} else {
 				global $wgShowSQLErrors, $wgShowExceptionDetails;
@@ -344,19 +344,19 @@ class ApiMain extends ApiBase {
 				}
 
 				$errMessage = array (
-					'code' => 'internal_api_error_'. get_class($e),
+					'code' => 'internal_api_error_' . get_class( $e ),
 					'info' => $info,
 				);
-				ApiResult :: setContent($errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : "" );				
+				ApiResult :: setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : "" );
 			}
 
 			$this->getResult()->reset();
 			$this->getResult()->disableSizeCheck();
 			// Re-add the id
-			$requestid = $this->getParameter('requestid');
-			if(!is_null($requestid))
-				$this->getResult()->addValue(null, 'requestid', $requestid);
-			$this->getResult()->addValue(null, 'error', $errMessage);
+			$requestid = $this->getParameter( 'requestid' );
+			if ( !is_null( $requestid ) )
+				$this->getResult()->addValue( null, 'requestid', $requestid );
+			$this->getResult()->addValue( null, 'error', $errMessage );
 
 		return $errMessage['code'];
 	}
@@ -366,24 +366,24 @@ class ApiMain extends ApiBase {
 	 */
 	protected function executeAction() {
 		// First add the id to the top element
-		$requestid = $this->getParameter('requestid');
-		if(!is_null($requestid))
-			$this->getResult()->addValue(null, 'requestid', $requestid);
+		$requestid = $this->getParameter( 'requestid' );
+		if ( !is_null( $requestid ) )
+			$this->getResult()->addValue( null, 'requestid', $requestid );
 
 		$params = $this->extractRequestParams();
 
 		$this->mShowVersions = $params['version'];
 		$this->mAction = $params['action'];
 
-		if( !is_string( $this->mAction ) ) {
+		if ( !is_string( $this->mAction ) ) {
 			$this->dieUsage( "The API requires a valid action parameter", 'unknown_action' );
 		}
 
 		// Instantiate the module requested by the user
-		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
+		$module = new $this->mModules[$this->mAction] ( $this, $this->mAction );
 		$this->mModule = $module;
 
-		if( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
+		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag
 			global $wgShowHostnames;
 			$maxLag = $params['maxlag'];
@@ -391,7 +391,7 @@ class ApiMain extends ApiBase {
 			if ( $lag > $maxLag ) {
 				header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				header( 'X-Database-Lag: ' . intval( $lag ) );
-				if( $wgShowHostnames ) {
+				if ( $wgShowHostnames ) {
 					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
 				} else {
 					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
@@ -401,49 +401,49 @@ class ApiMain extends ApiBase {
 		}
 
 		global $wgUser;
-		if ($module->isReadMode() && !$wgUser->isAllowed('read'))
-			$this->dieUsageMsg(array('readrequired'));
-		if ($module->isWriteMode()) {
-			if (!$this->mEnableWrite)
-				$this->dieUsageMsg(array('writedisabled'));
-			if (!$wgUser->isAllowed('writeapi'))
-				$this->dieUsageMsg(array('writerequired'));
-			if (wfReadOnly())
+		if ( $module->isReadMode() && !$wgUser->isAllowed( 'read' ) )
+			$this->dieUsageMsg( array( 'readrequired' ) );
+		if ( $module->isWriteMode() ) {
+			if ( !$this->mEnableWrite )
+				$this->dieUsageMsg( array( 'writedisabled' ) );
+			if ( !$wgUser->isAllowed( 'writeapi' ) )
+				$this->dieUsageMsg( array( 'writerequired' ) );
+			if ( wfReadOnly() )
 				$this->dieReadOnly();
 		}
 
-		if (!$this->mInternalMode) {
+		if ( !$this->mInternalMode ) {
 			// Ignore mustBePosted() for internal calls
-			if($module->mustBePosted() && !$this->mRequest->wasPosted())
-				$this->dieUsage("The {$this->mAction} module requires a POST request", 'mustbeposted');
+			if ( $module->mustBePosted() && !$this->mRequest->wasPosted() )
+				$this->dieUsage( "The {$this->mAction} module requires a POST request", 'mustbeposted' );
 
 			// See if custom printer is used
 			$this->mPrinter = $module->getCustomPrinter();
-			if (is_null($this->mPrinter)) {
+			if ( is_null( $this->mPrinter ) ) {
 				// Create an appropriate printer
-				$this->mPrinter = $this->createPrinterByName($params['format']);
+				$this->mPrinter = $this->createPrinterByName( $params['format'] );
 			}
 
-			if ($this->mPrinter->getNeedsRawData())
+			if ( $this->mPrinter->getNeedsRawData() )
 				$this->getResult()->setRawMode();
 		}
 
 		// Execute
 		$module->profileIn();
 		$module->execute();
-		wfRunHooks('APIAfterExecute', array(&$module));
+		wfRunHooks( 'APIAfterExecute', array( &$module ) );
 		$module->profileOut();
 
-		if (!$this->mInternalMode) {
+		if ( !$this->mInternalMode ) {
 			// Print result data
-			$this->printResult(false);
+			$this->printResult( false );
 		}
 	}
 
 	/**
 	 * Print results using the current printer
 	 */
-	protected function printResult($isError) {
+	protected function printResult( $isError ) {
 		$this->getResult()->cleanUpUTF8();
 		$printer = $this->mPrinter;
 		$printer->profileIn();
@@ -454,7 +454,7 @@ class ApiMain extends ApiBase {
 		$printer->setUnescapeAmps ( ( $this->mAction == 'help' || $isError )
 				&& $printer->getFormat() == 'XML' && $printer->getIsHtml() );
 
-		$printer->initPrinter($isError);
+		$printer->initPrinter( $isError );
 
 		$printer->execute();
 		$printer->closePrinter();
@@ -564,7 +564,7 @@ class ApiMain extends ApiBase {
 		$this->mPrinter->setHelp();
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
-			SpecialVersion::getVersion( 'nodb' ).
+			SpecialVersion::getVersion( 'nodb' ) .
 			$this->getMain()->getShowVersions() );
 		if ( $wgAPICacheHelp ) {
 			$cached = $wgMemc->get( $key );
@@ -584,13 +584,13 @@ class ApiMain extends ApiBase {
 		// Use parent to make default message for the main module
 		$msg = parent :: makeHelpMsg();
 
-		$astriks = str_repeat('*** ', 10);
+		$astriks = str_repeat( '*** ', 10 );
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
-		foreach( $this->mModules as $moduleName => $unused ) {
-			$module = new $this->mModules[$moduleName] ($this, $moduleName);
-			$msg .= self::makeHelpMsgHeader($module, 'action');
+		foreach ( $this->mModules as $moduleName => $unused ) {
+			$module = new $this->mModules[$moduleName] ( $this, $moduleName );
+			$msg .= self::makeHelpMsgHeader( $module, 'action' );
 			$msg2 = $module->makeHelpMsg();
-			if ($msg2 !== false)
+			if ( $msg2 !== false )
 				$msg .= $msg2;
 			$msg .= "\n";
 		}
@@ -598,30 +598,30 @@ class ApiMain extends ApiBase {
 		$msg .= "\n$astriks Permissions $astriks\n\n";
 		foreach ( self :: $mRights as $right => $rightMsg ) {
 			$groups = User::getGroupsWithPermission( $right );
-			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg[ 'msg' ], $rightMsg[ 'params' ] ) . 
+			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg[ 'msg' ], $rightMsg[ 'params' ] ) .
 						"\nGranted to:\n  " . str_replace( "*", "all", implode( ", ", $groups ) ) . "\n";
 
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
-		foreach( $this->mFormats as $formatName => $unused ) {
-			$module = $this->createPrinterByName($formatName);
-			$msg .= self::makeHelpMsgHeader($module, 'format');
+		foreach ( $this->mFormats as $formatName => $unused ) {
+			$module = $this->createPrinterByName( $formatName );
+			$msg .= self::makeHelpMsgHeader( $module, 'format' );
 			$msg2 = $module->makeHelpMsg();
-			if ($msg2 !== false)
+			if ( $msg2 !== false )
 				$msg .= $msg2;
 			$msg .= "\n";
 		}
 
-		$msg .= "\n*** Credits: ***\n   " . implode("\n   ", $this->getCredits()) . "\n";
+		$msg .= "\n*** Credits: ***\n   " . implode( "\n   ", $this->getCredits() ) . "\n";
 
 
 		return $msg;
 	}
 
-	public static function makeHelpMsgHeader($module, $paramName) {
+	public static function makeHelpMsgHeader( $module, $paramName ) {
 		$modulePrefix = $module->getModulePrefix();
-		if (strval($modulePrefix) !== '')
+		if ( strval( $modulePrefix ) !== '' )
 			$modulePrefix = "($modulePrefix) ";
 
 		return "* $paramName={$module->getModuleName()} $modulePrefix*";
@@ -636,9 +636,9 @@ class ApiMain extends ApiBase {
 	 * OBSOLETE, use canApiHighLimits() instead
 	 */
 	public function isBot() {
-		if (!isset ($this->mIsBot)) {
+		if ( !isset ( $this->mIsBot ) ) {
 			global $wgUser;
-			$this->mIsBot = $wgUser->isAllowed('bot');
+			$this->mIsBot = $wgUser->isAllowed( 'bot' );
 		}
 		return $this->mIsBot;
 	}
@@ -649,9 +649,9 @@ class ApiMain extends ApiBase {
 	 * OBSOLETE, use canApiHighLimits() instead
 	 */
 	public function isSysop() {
-		if (!isset ($this->mIsSysop)) {
+		if ( !isset ( $this->mIsSysop ) ) {
 			global $wgUser;
-			$this->mIsSysop = in_array( 'sysop', $wgUser->getGroups());
+			$this->mIsSysop = in_array( 'sysop', $wgUser->getGroups() );
 		}
 
 		return $this->mIsSysop;
@@ -662,9 +662,9 @@ class ApiMain extends ApiBase {
 	 * @return bool
 	 */
 	public function canApiHighLimits() {
-		if (!isset($this->mCanApiHighLimits)) {
+		if ( !isset( $this->mCanApiHighLimits ) ) {
 			global $wgUser;
-			$this->mCanApiHighLimits = $wgUser->isAllowed('apihighlimits');
+			$this->mCanApiHighLimits = $wgUser->isAllowed( 'apihighlimits' );
 		}
 
 		return $this->mCanApiHighLimits;
@@ -736,8 +736,8 @@ class UsageException extends Exception {
 	private $mCodestr;
 	private $mExtraData;
 
-	public function __construct($message, $codestr, $code = 0, $extradata = null) {
-		parent :: __construct($message, $code);
+	public function __construct( $message, $codestr, $code = 0, $extradata = null ) {
+		parent :: __construct( $message, $code );
 		$this->mCodestr = $codestr;
 		$this->mExtraData = $extradata;
 	}

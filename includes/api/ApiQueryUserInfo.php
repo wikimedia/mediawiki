@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -35,8 +35,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryUserInfo extends ApiQueryBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'ui');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'ui' );
 	}
 
 	public function execute() {
@@ -44,66 +44,66 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$result = $this->getResult();
 		$r = array();
 
-		if (!is_null($params['prop'])) {
-			$this->prop = array_flip($params['prop']);
+		if ( !is_null( $params['prop'] ) ) {
+			$this->prop = array_flip( $params['prop'] );
 		} else {
 			$this->prop = array();
 		}
 		$r = $this->getCurrentUserInfo();
-		$result->addValue("query", $this->getModuleName(), $r);
+		$result->addValue( "query", $this->getModuleName(), $r );
 	}
 
 	protected function getCurrentUserInfo() {
 		global $wgUser;
 		$result = $this->getResult();
 		$vals = array();
-		$vals['id'] = intval($wgUser->getId());
+		$vals['id'] = intval( $wgUser->getId() );
 		$vals['name'] = $wgUser->getName();
 
-		if($wgUser->isAnon())
+		if ( $wgUser->isAnon() )
 			$vals['anon'] = '';
-		if (isset($this->prop['blockinfo'])) {
-			if ($wgUser->isBlocked()) {
-				$vals['blockedby'] = User::whoIs($wgUser->blockedBy());
+		if ( isset( $this->prop['blockinfo'] ) ) {
+			if ( $wgUser->isBlocked() ) {
+				$vals['blockedby'] = User::whoIs( $wgUser->blockedBy() );
 				$vals['blockreason'] = $wgUser->blockedFor();
 			}
 		}
-		if (isset($this->prop['hasmsg']) && $wgUser->getNewtalk()) {
+		if ( isset( $this->prop['hasmsg'] ) && $wgUser->getNewtalk() ) {
 			$vals['messages'] = '';
 		}
-		if (isset($this->prop['groups'])) {
+		if ( isset( $this->prop['groups'] ) ) {
 			$vals['groups'] = $wgUser->getGroups();
-			$result->setIndexedTagName($vals['groups'], 'g');	// even if empty
+			$result->setIndexedTagName( $vals['groups'], 'g' );	// even if empty
 		}
-		if (isset($this->prop['rights'])) {
+		if ( isset( $this->prop['rights'] ) ) {
 			// User::getRights() may return duplicate values, strip them
-			$vals['rights'] = array_values(array_unique($wgUser->getRights()));
-			$result->setIndexedTagName($vals['rights'], 'r');	// even if empty
+			$vals['rights'] = array_values( array_unique( $wgUser->getRights() ) );
+			$result->setIndexedTagName( $vals['rights'], 'r' );	// even if empty
 		}
-		if (isset($this->prop['changeablegroups'])) {
+		if ( isset( $this->prop['changeablegroups'] ) ) {
 			$vals['changeablegroups'] = $wgUser->changeableGroups();
-			$result->setIndexedTagName($vals['changeablegroups']['add'], 'g');
-			$result->setIndexedTagName($vals['changeablegroups']['remove'], 'g');
-			$result->setIndexedTagName($vals['changeablegroups']['add-self'], 'g');
-			$result->setIndexedTagName($vals['changeablegroups']['remove-self'], 'g');
+			$result->setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
+			$result->setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
+			$result->setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
+			$result->setIndexedTagName( $vals['changeablegroups']['remove-self'], 'g' );
 		}
-		if (isset($this->prop['options'])) {
+		if ( isset( $this->prop['options'] ) ) {
 			$vals['options'] = $wgUser->getOptions();
 		}
-		if (isset($this->prop['preferencestoken']) && is_null($this->getMain()->getRequest()->getVal('callback'))) {
+		if ( isset( $this->prop['preferencestoken'] ) && is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
 			$vals['preferencestoken'] = $wgUser->editToken();
 		}
-		if (isset($this->prop['editcount'])) {
-			$vals['editcount'] = intval($wgUser->getEditCount());
+		if ( isset( $this->prop['editcount'] ) ) {
+			$vals['editcount'] = intval( $wgUser->getEditCount() );
 		}
-		if (isset($this->prop['ratelimits'])) {
+		if ( isset( $this->prop['ratelimits'] ) ) {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
-		if (isset($this->prop['email'])) {
+		if ( isset( $this->prop['email'] ) ) {
 			$vals['email'] = $wgUser->getEmail();
 			$auth = $wgUser->getEmailAuthenticationTimestamp();
-			if(!is_null($auth))
-				$vals['emailauthenticated'] = wfTimestamp(TS_ISO_8601, $auth);
+			if ( !is_null( $auth ) )
+				$vals['emailauthenticated'] = wfTimestamp( TS_ISO_8601, $auth );
 		}
 		return $vals;
 	}
@@ -111,32 +111,32 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	protected function getRateLimits()
 	{
 		global $wgUser, $wgRateLimits;
-		if(!$wgUser->isPingLimitable())
+		if ( !$wgUser->isPingLimitable() )
 			return array(); // No limits
 
 		// Find out which categories we belong to
 		$categories = array();
-		if($wgUser->isAnon())
+		if ( $wgUser->isAnon() )
 			$categories[] = 'anon';
 		else
 			$categories[] = 'user';
-		if($wgUser->isNewBie())
+		if ( $wgUser->isNewBie() )
 		{
 			$categories[] = 'ip';
 			$categories[] = 'subnet';
-			if(!$wgUser->isAnon())
+			if ( !$wgUser->isAnon() )
 				$categories[] = 'newbie';
 		}
-		$categories = array_merge($categories, $wgUser->getGroups());
+		$categories = array_merge( $categories, $wgUser->getGroups() );
 
 		// Now get the actual limits
 		$retval = array();
-		foreach($wgRateLimits as $action => $limits)
-			foreach($categories as $cat)
-				if(isset($limits[$cat]) && !is_null($limits[$cat]))
+		foreach ( $wgRateLimits as $action => $limits )
+			foreach ( $categories as $cat )
+				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) )
 				{
-					$retval[$action][$cat]['hits'] = intval($limits[$cat][0]);
-					$retval[$action][$cat]['seconds'] = intval($limits[$cat][1]);
+					$retval[$action][$cat]['hits'] = intval( $limits[$cat][0] );
+					$retval[$action][$cat]['seconds'] = intval( $limits[$cat][1] );
 				}
 		return $retval;
 	}

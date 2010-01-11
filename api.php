@@ -35,9 +35,9 @@
  */
 
 // Initialise common code
-require (dirname(__FILE__) . '/includes/WebStart.php');
+require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 
-wfProfileIn('api.php');
+wfProfileIn( 'api.php' );
 $starttime = microtime( true );
 
 // URL safety checks
@@ -50,18 +50,18 @@ $starttime = microtime( true );
 // which will end up triggering HTML detection and execution, hence
 // XSS injection and all that entails.
 //
-if( $wgRequest->isPathInfoBad() ) {
+if ( $wgRequest->isPathInfoBad() ) {
 	wfHttpError( 403, 'Forbidden',
-		'Invalid file extension found in PATH_INFO. ' . 
+		'Invalid file extension found in PATH_INFO. ' .
 		'The API must be accessed through the primary script entry point.' );
 	return;
 }
 
 // Verify that the API has not been disabled
-if (!$wgEnableAPI) {
+if ( !$wgEnableAPI ) {
 	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php';
 	echo '<pre><b>$wgEnableAPI=true;</b></pre>';
-	die(1);
+	die( 1 );
 }
 
 // Selectively allow cross-site AJAX
@@ -82,7 +82,7 @@ function convertWildcard( $search ) {
 	return "/$search/";
 }
 
-if ( $wgCrossSiteAJAXdomains && isset($_SERVER['HTTP_ORIGIN']) ) {	
+if ( $wgCrossSiteAJAXdomains && isset( $_SERVER['HTTP_ORIGIN'] ) ) {
 	$exceptions = array_map( 'convertWildcard', $wgCrossSiteAJAXdomainExceptions );
 	$regexes = array_map( 'convertWildcard', $wgCrossSiteAJAXdomains );
 	foreach ( $regexes as $regex ) {
@@ -100,17 +100,17 @@ if ( $wgCrossSiteAJAXdomains && isset($_SERVER['HTTP_ORIGIN']) ) {
 }
 
 // So extensions can check whether they're running in API mode
-define('MW_API', true);
+define( 'MW_API', true );
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
-$wgTitle = Title::newFromText('API');
+$wgTitle = Title::newFromText( 'API' );
 
 /* Construct an ApiMain with the arguments passed via the URL. What we get back
  * is some form of an ApiMain, possibly even one that produces an error message,
  * but we don't care here, as that is handled by the ctor.
  */
-$processor = new ApiMain($wgRequest, $wgEnableWriteAPI);
+$processor = new ApiMain( $wgRequest, $wgEnableWriteAPI );
 
 // Process data & print results
 $processor->execute();
@@ -120,7 +120,7 @@ wfDoUpdates();
 
 // Log what the user did, for book-keeping purposes.
 $endtime = microtime( true );
-wfProfileOut('api.php');
+wfProfileOut( 'api.php' );
 wfLogProfilingData();
 
 // Log the request

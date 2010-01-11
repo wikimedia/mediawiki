@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -35,8 +35,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryContributions extends ApiQueryBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'uc');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'uc' );
 	}
 
 	private $params, $username;
@@ -48,21 +48,21 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
-		$prop = array_flip($this->params['prop']);
-		$this->fld_ids = isset($prop['ids']);
-		$this->fld_title = isset($prop['title']);
-		$this->fld_comment = isset($prop['comment']);
-		$this->fld_size = isset($prop['size']);
-		$this->fld_flags = isset($prop['flags']);
-		$this->fld_timestamp = isset($prop['timestamp']);
-		$this->fld_patrolled = isset($prop['patrolled']);
-		$this->fld_tags = isset($prop['tags']);
+		$prop = array_flip( $this->params['prop'] );
+		$this->fld_ids = isset( $prop['ids'] );
+		$this->fld_title = isset( $prop['title'] );
+		$this->fld_comment = isset( $prop['comment'] );
+		$this->fld_size = isset( $prop['size'] );
+		$this->fld_flags = isset( $prop['flags'] );
+		$this->fld_timestamp = isset( $prop['timestamp'] );
+		$this->fld_patrolled = isset( $prop['patrolled'] );
+		$this->fld_tags = isset( $prop['tags'] );
 
 		// TODO: if the query is going only against the revision table, should this be done?
-		$this->selectNamedDB('contributions', DB_SLAVE, 'contributions');
+		$this->selectNamedDB( 'contributions', DB_SLAVE, 'contributions' );
 		$db = $this->getDB();
 
-		if(isset($this->params['userprefix']))
+		if ( isset( $this->params['userprefix'] ) )
 		{
 			$this->prefixMode = true;
 			$this->multiUserMode = true;
@@ -71,63 +71,63 @@ class ApiQueryContributions extends ApiQueryBase {
 		else
 		{
 			$this->usernames = array();
-			if(!is_array($this->params['user']))
-				$this->params['user'] = array($this->params['user']);
-			if(!count($this->params['user']))
-				$this->dieUsage('User parameter may not be empty.', 'param_user');
-			foreach($this->params['user'] as $u)
-				$this->prepareUsername($u);
+			if ( !is_array( $this->params['user'] ) )
+				$this->params['user'] = array( $this->params['user'] );
+			if ( !count( $this->params['user'] ) )
+				$this->dieUsage( 'User parameter may not be empty.', 'param_user' );
+			foreach ( $this->params['user'] as $u )
+				$this->prepareUsername( $u );
 			$this->prefixMode = false;
-			$this->multiUserMode = (count($this->params['user']) > 1);
+			$this->multiUserMode = ( count( $this->params['user'] ) > 1 );
 		}
 		$this->prepareQuery();
 
-		//Do the actual query.
+		// Do the actual query.
 		$res = $this->select( __METHOD__ );
 
-		//Initialise some variables
+		// Initialise some variables
 		$count = 0;
 		$limit = $this->params['limit'];
 
-		//Fetch each row
+		// Fetch each row
 		while ( $row = $db->fetchObject( $res ) ) {
-			if (++ $count > $limit) {
+			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				if($this->multiUserMode)
-					$this->setContinueEnumParameter('continue', $this->continueStr($row));
+				if ( $this->multiUserMode )
+					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				else
-					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->rev_timestamp));
+					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rev_timestamp ) );
 				break;
 			}
 
-			$vals = $this->extractRowInfo($row);
-			$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
-			if(!$fit)
+			$vals = $this->extractRowInfo( $row );
+			$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+			if ( !$fit )
 			{
-				if($this->multiUserMode)
-					$this->setContinueEnumParameter('continue', $this->continueStr($row));
+				if ( $this->multiUserMode )
+					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				else
-					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->rev_timestamp));
+					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rev_timestamp ) );
 				break;
 			}
 		}
 
-		//Free the database record so the connection can get on with other stuff
-		$db->freeResult($res);
+		// Free the database record so the connection can get on with other stuff
+		$db->freeResult( $res );
 
-		$this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'item');
+		$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
 	}
 
 	/**
 	 * Validate the 'user' parameter and set the value to compare
 	 * against `revision`.`rev_user_text`
 	 */
-	private function prepareUsername($user) {
-		if( !is_null( $user ) && $user !== '' ) {
+	private function prepareUsername( $user ) {
+		if ( !is_null( $user ) && $user !== '' ) {
 			$name = User::isIP( $user )
 				? $user
 				: User::getCanonicalName( $user, 'valid' );
-			if( $name === false ) {
+			if ( $name === false ) {
 				$this->dieUsage( "User name {$user} is not valid", 'param_user' );
 			} else {
 				$this->usernames[] = $name;
@@ -145,172 +145,172 @@ class ApiQueryContributions extends ApiQueryBase {
 		// row for anything we retrieve. We may also need the
 		// recentchanges row and/or tag summary row.
 		global $wgUser;
-		$tables = array('page', 'revision'); // Order may change
-		$this->addWhere('page_id=rev_page');
+		$tables = array( 'page', 'revision' ); // Order may change
+		$this->addWhere( 'page_id=rev_page' );
 
 		// Handle continue parameter
-		if($this->multiUserMode && !is_null($this->params['continue']))
+		if ( $this->multiUserMode && !is_null( $this->params['continue'] ) )
 		{
-			$continue = explode('|', $this->params['continue']);
-			if(count($continue) != 2)
-				$this->dieUsage("Invalid continue param. You should pass the original " .
-					"value returned by the previous query", "_badcontinue");
-			$encUser = $this->getDB()->strencode($continue[0]);
-			$encTS = wfTimestamp(TS_MW, $continue[1]);
-			$op = ($this->params['dir'] == 'older' ? '<' : '>');
-			$this->addWhere("rev_user_text $op '$encUser' OR " .
+			$continue = explode( '|', $this->params['continue'] );
+			if ( count( $continue ) != 2 )
+				$this->dieUsage( "Invalid continue param. You should pass the original " .
+					"value returned by the previous query", "_badcontinue" );
+			$encUser = $this->getDB()->strencode( $continue[0] );
+			$encTS = wfTimestamp( TS_MW, $continue[1] );
+			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
+			$this->addWhere( "rev_user_text $op '$encUser' OR " .
 					"(rev_user_text = '$encUser' AND " .
-					"rev_timestamp $op= '$encTS')");
+					"rev_timestamp $op= '$encTS')" );
 		}
 
-		if(!$wgUser->isAllowed('hideuser'))
-			$this->addWhere($this->getDB()->bitAnd('rev_deleted',Revision::DELETED_USER) . ' = 0');
+		if ( !$wgUser->isAllowed( 'hideuser' ) )
+			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		// We only want pages by the specified users.
-		if($this->prefixMode)
-			$this->addWhere('rev_user_text' . $this->getDB()->buildLike($this->userprefix, $this->getDB()->anyString()));
+		if ( $this->prefixMode )
+			$this->addWhere( 'rev_user_text' . $this->getDB()->buildLike( $this->userprefix, $this->getDB()->anyString() ) );
 		else
-			$this->addWhereFld('rev_user_text', $this->usernames);
+			$this->addWhereFld( 'rev_user_text', $this->usernames );
 		// ... and in the specified timeframe.
 		// Ensure the same sort order for rev_user_text and rev_timestamp
 		// so our query is indexed
-		if($this->multiUserMode)
-			$this->addWhereRange('rev_user_text', $this->params['dir'], null, null);
-		$this->addWhereRange('rev_timestamp',
+		if ( $this->multiUserMode )
+			$this->addWhereRange( 'rev_user_text', $this->params['dir'], null, null );
+		$this->addWhereRange( 'rev_timestamp',
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
-		$this->addWhereFld('page_namespace', $this->params['namespace']);
+		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		$show = $this->params['show'];
-		if (!is_null($show)) {
-			$show = array_flip($show);
-			if ((isset($show['minor']) && isset($show['!minor']))
-			   		|| (isset($show['patrolled']) && isset($show['!patrolled'])))
-				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
+		if ( !is_null( $show ) ) {
+			$show = array_flip( $show );
+			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
+			   		|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) )
+				$this->dieUsage( "Incorrect parameter - mutually exclusive values may not be supplied", 'show' );
 
-			$this->addWhereIf('rev_minor_edit = 0', isset($show['!minor']));
-			$this->addWhereIf('rev_minor_edit != 0', isset($show['minor']));
-			$this->addWhereIf('rc_patrolled = 0', isset($show['!patrolled']));
-			$this->addWhereIf('rc_patrolled != 0', isset($show['patrolled']));
+			$this->addWhereIf( 'rev_minor_edit = 0', isset( $show['!minor'] ) );
+			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
+			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
+			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
 		}
-		$this->addOption('LIMIT', $this->params['limit'] + 1);
+		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$index['revision'] = 'usertext_timestamp';
 
 		// Mandatory fields: timestamp allows request continuation
 		// ns+title checks if the user has access rights for this page
 		// user_text is necessary if multiple users were specified
-		$this->addFields(array(
+		$this->addFields( array(
 			'rev_timestamp',
 			'page_namespace',
 			'page_title',
 			'rev_user_text',
 			'rev_deleted'
-		));
+		) );
 		
-		if(isset($show['patrolled']) || isset($show['!patrolled']) ||
-				 $this->fld_patrolled)
+		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
+				 $this->fld_patrolled )
 		{
 			global $wgUser;
-			if(!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
-				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
+			if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() )
+				$this->dieUsage( "You need the patrol right to request the patrolled flag", 'permissiondenied' );
 			// Use a redundant join condition on both
 			// timestamp and ID so we can use the timestamp
 			// index
 			$index['recentchanges'] = 'rc_user_text';
-			if(isset($show['patrolled']) || isset($show['!patrolled']))
+			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) )
 			{
 				// Put the tables in the right order for
 				// STRAIGHT_JOIN
-				$tables = array('revision', 'recentchanges', 'page');
-				$this->addOption('STRAIGHT_JOIN');
-				$this->addWhere('rc_user_text=rev_user_text');
-				$this->addWhere('rc_timestamp=rev_timestamp');
-				$this->addWhere('rc_this_oldid=rev_id');
+				$tables = array( 'revision', 'recentchanges', 'page' );
+				$this->addOption( 'STRAIGHT_JOIN' );
+				$this->addWhere( 'rc_user_text=rev_user_text' );
+				$this->addWhere( 'rc_timestamp=rev_timestamp' );
+				$this->addWhere( 'rc_this_oldid=rev_id' );
 			}
 			else
 			{
 				$tables[] = 'recentchanges';
-				$this->addJoinConds(array('recentchanges' => array(
+				$this->addJoinConds( array( 'recentchanges' => array(
 					'LEFT JOIN', array(
 						'rc_user_text=rev_user_text',
 						'rc_timestamp=rev_timestamp',
-						'rc_this_oldid=rev_id'))));
+						'rc_this_oldid=rev_id' ) ) ) );
 			}
 		}
 
-		$this->addTables($tables);
-		$this->addOption('USE INDEX', $index);
-		$this->addFieldsIf('rev_page', $this->fld_ids);
-		$this->addFieldsIf('rev_id', $this->fld_ids || $this->fld_flags);
-		$this->addFieldsIf('page_latest', $this->fld_flags);
+		$this->addTables( $tables );
+		$this->addOption( 'USE INDEX', $index );
+		$this->addFieldsIf( 'rev_page', $this->fld_ids );
+		$this->addFieldsIf( 'rev_id', $this->fld_ids || $this->fld_flags );
+		$this->addFieldsIf( 'page_latest', $this->fld_flags );
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // Should this field be exposed?
-		$this->addFieldsIf('rev_comment', $this->fld_comment);
-		$this->addFieldsIf('rev_len', $this->fld_size);
-		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
-		$this->addFieldsIf('rev_parent_id', $this->fld_flags);
-		$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
+		$this->addFieldsIf( 'rev_comment', $this->fld_comment );
+		$this->addFieldsIf( 'rev_len', $this->fld_size );
+		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
+		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags );
+		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 		
-		if($this->fld_tags)
+		if ( $this->fld_tags )
 		{
-			$this->addTables('tag_summary');
-			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', array('rev_id=ts_rev_id'))));
-			$this->addFields('ts_tags');
+			$this->addTables( 'tag_summary' );
+			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) ) );
+			$this->addFields( 'ts_tags' );
 		}
 		
-		if( !is_null($this->params['tag']) ) {
-			$this->addTables('change_tag');
-			$this->addJoinConds(array('change_tag' => array('INNER JOIN', array('rev_id=ct_rev_id'))));
-			$this->addWhereFld('ct_tag', $this->params['tag']);
+		if ( !is_null( $this->params['tag'] ) ) {
+			$this->addTables( 'change_tag' );
+			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) ) );
+			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
 		}
 	}
 
 	/**
 	 * Extract fields from the database row and append them to a result array
 	 */
-	private function extractRowInfo($row) {
+	private function extractRowInfo( $row ) {
 
 		$vals = array();
 
 		$vals['user'] = $row->rev_user_text;
-		if ($row->rev_deleted & Revision::DELETED_USER)
+		if ( $row->rev_deleted & Revision::DELETED_USER )
 			$vals['userhidden'] = '';
-		if ($this->fld_ids) {
-			$vals['pageid'] = intval($row->rev_page);
-			$vals['revid'] = intval($row->rev_id);
+		if ( $this->fld_ids ) {
+			$vals['pageid'] = intval( $row->rev_page );
+			$vals['revid'] = intval( $row->rev_id );
 			// $vals['textid'] = intval($row->rev_text_id);	// todo: Should this field be exposed?
 		}
 
-		if ($this->fld_title)
-			ApiQueryBase :: addTitleInfo($vals,
-				Title :: makeTitle($row->page_namespace, $row->page_title));
+		if ( $this->fld_title )
+			ApiQueryBase :: addTitleInfo( $vals,
+				Title :: makeTitle( $row->page_namespace, $row->page_title ) );
 
-		if ($this->fld_timestamp)
-			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
+		if ( $this->fld_timestamp )
+			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
 
-		if ($this->fld_flags) {
-			if ($row->rev_parent_id == 0 && !is_null($row->rev_parent_id))
+		if ( $this->fld_flags ) {
+			if ( $row->rev_parent_id == 0 && !is_null( $row->rev_parent_id ) )
 				$vals['new'] = '';
-			if ($row->rev_minor_edit)
+			if ( $row->rev_minor_edit )
 				$vals['minor'] = '';
-			if ($row->page_latest == $row->rev_id)
+			if ( $row->page_latest == $row->rev_id )
 				$vals['top'] = '';
 		}
 
-		if ($this->fld_comment && isset($row->rev_comment)) {
-			if ($row->rev_deleted & Revision::DELETED_COMMENT)
+		if ( $this->fld_comment && isset( $row->rev_comment ) ) {
+			if ( $row->rev_deleted & Revision::DELETED_COMMENT )
 				$vals['commenthidden'] = '';
 			else
 				$vals['comment'] = $row->rev_comment;
 		}
 
-		if ($this->fld_patrolled && $row->rc_patrolled)
+		if ( $this->fld_patrolled && $row->rc_patrolled )
 			$vals['patrolled'] = '';
 		
-		if ($this->fld_size && !is_null($row->rev_len))
-			$vals['size'] = intval($row->rev_len);
+		if ( $this->fld_size && !is_null( $row->rev_len ) )
+			$vals['size'] = intval( $row->rev_len );
 
-		if ($this->fld_tags) {
-			if ($row->ts_tags) {
-				$tags = explode(',', $row->ts_tags);
-				$this->getResult()->setIndexedTagName($tags, 'tag');
+		if ( $this->fld_tags ) {
+			if ( $row->ts_tags ) {
+				$tags = explode( ',', $row->ts_tags );
+				$this->getResult()->setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();
@@ -320,10 +320,10 @@ class ApiQueryContributions extends ApiQueryBase {
 		return $vals;
 	}
 	
-	private function continueStr($row)
+	private function continueStr( $row )
 	{
 		return $row->rev_user_text . '|' .
-			wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
+			wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
 	}
 
 	public function getAllowedParams() {
@@ -394,8 +394,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			'dir' => 'The direction to search (older or newer).',
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => 'Include additional pieces of information',
-			'show' => array('Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
-					'NOTE: if show=patrolled or show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown',),
+			'show' => array( 'Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
+					'NOTE: if show=patrolled or show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown', ),
 		);
 	}
 

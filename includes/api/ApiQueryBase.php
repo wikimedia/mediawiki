@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiBase.php');
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -39,8 +39,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	private $mQueryModule, $mDb, $tables, $where, $fields, $options, $join_conds;
 
-	public function __construct($query, $moduleName, $paramPrefix = '') {
-		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
+	public function __construct( $query, $moduleName, $paramPrefix = '' ) {
+		parent :: __construct( $query->getMain(), $moduleName, $paramPrefix );
 		$this->mQueryModule = $query;
 		$this->mDb = null;
 		$this->resetQueryParams();
@@ -63,14 +63,14 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $alias mixed Table alias, or null for no alias. Cannot be
 	 *  used with multiple tables
 	 */
-	protected function addTables($tables, $alias = null) {
-		if (is_array($tables)) {
-			if (!is_null($alias))
-				ApiBase :: dieDebug(__METHOD__, 'Multiple table aliases not supported');
-			$this->tables = array_merge($this->tables, $tables);
+	protected function addTables( $tables, $alias = null ) {
+		if ( is_array( $tables ) ) {
+			if ( !is_null( $alias ) )
+				ApiBase :: dieDebug( __METHOD__, 'Multiple table aliases not supported' );
+			$this->tables = array_merge( $this->tables, $tables );
 		} else {
-			if (!is_null($alias))
-				$tables = $this->getAliasedName($tables, $alias);
+			if ( !is_null( $alias ) )
+				$tables = $this->getAliasedName( $tables, $alias );
 			$this->tables[] = $tables;
 		}
 	}
@@ -81,8 +81,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $alias string Alias
 	 * @return string SQL
 	 */
-	protected function getAliasedName($table, $alias) {
-		return $this->getDB()->tableName($table) . ' ' . $alias;
+	protected function getAliasedName( $table, $alias ) {
+		return $this->getDB()->tableName( $table ) . ' ' . $alias;
 	}
 	
 	/**
@@ -94,19 +94,19 @@ abstract class ApiQueryBase extends ApiBase {
 	 * addWhere()-style array
 	 * @param $join_conds array JOIN conditions
 	 */
-	protected function addJoinConds($join_conds) {
-		if(!is_array($join_conds))
-			ApiBase::dieDebug(__METHOD__, 'Join conditions have to be arrays');
-		$this->join_conds = array_merge($this->join_conds, $join_conds);
+	protected function addJoinConds( $join_conds ) {
+		if ( !is_array( $join_conds ) )
+			ApiBase::dieDebug( __METHOD__, 'Join conditions have to be arrays' );
+		$this->join_conds = array_merge( $this->join_conds, $join_conds );
 	}
 
 	/**
 	 * Add a set of fields to select to the internal array
 	 * @param $value mixed Field name or array of field names
 	 */
-	protected function addFields($value) {
-		if (is_array($value))
-			$this->fields = array_merge($this->fields, $value);
+	protected function addFields( $value ) {
+		if ( is_array( $value ) )
+			$this->fields = array_merge( $this->fields, $value );
 		else
 			$this->fields[] = $value;
 	}
@@ -117,9 +117,9 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $condition bool If false, do nothing
 	 * @return bool $condition
 	 */
-	protected function addFieldsIf($value, $condition) {
-		if ($condition) {
-			$this->addFields($value);
+	protected function addFieldsIf( $value, $condition ) {
+		if ( $condition ) {
+			$this->addFields( $value );
 			return true;
 		}
 		return false;
@@ -136,12 +136,12 @@ abstract class ApiQueryBase extends ApiBase {
 	 * to "foo=bar AND baz='3' AND bla='foo'"
 	 * @param $value mixed String or array
 	 */
-	protected function addWhere($value) {
-		if (is_array($value)) {
+	protected function addWhere( $value ) {
+		if ( is_array( $value ) ) {
 			// Sanity check: don't insert empty arrays,
 			// Database::makeList() chokes on them
 			if ( count( $value ) )
-				$this->where = array_merge($this->where, $value);
+				$this->where = array_merge( $this->where, $value );
 		}
 		else
 			$this->where[] = $value;
@@ -153,9 +153,9 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $condition boolIf false, do nothing
 	 * @return bool $condition
 	 */
-	protected function addWhereIf($value, $condition) {
-		if ($condition) {
-			$this->addWhere($value);
+	protected function addWhereIf( $value, $condition ) {
+		if ( $condition ) {
+			$this->addWhere( $value );
 			return true;
 		}
 		return false;
@@ -166,7 +166,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $field string Field name
 	 * @param $value string Value; ignored if null or empty array;
 	 */
-	protected function addWhereFld($field, $value) {
+	protected function addWhereFld( $field, $value ) {
 		// Use count() to its full documented capabilities to simultaneously 
 		// test for null, empty array or empty countable object
 		if ( count( $value ) )
@@ -185,24 +185,24 @@ abstract class ApiQueryBase extends ApiBase {
 	 *  is the upper boundary, otherwise it's the lower boundary
 	 * @param $sort bool If false, don't add an ORDER BY clause
 	 */
-	protected function addWhereRange($field, $dir, $start, $end, $sort = true) {
-		$isDirNewer = ($dir === 'newer');
-		$after = ($isDirNewer ? '>=' : '<=');
-		$before = ($isDirNewer ? '<=' : '>=');
+	protected function addWhereRange( $field, $dir, $start, $end, $sort = true ) {
+		$isDirNewer = ( $dir === 'newer' );
+		$after = ( $isDirNewer ? '>=' : '<=' );
+		$before = ( $isDirNewer ? '<=' : '>=' );
 		$db = $this->getDB();
 
-		if (!is_null($start))
-			$this->addWhere($field . $after . $db->addQuotes($start));
+		if ( !is_null( $start ) )
+			$this->addWhere( $field . $after . $db->addQuotes( $start ) );
 
-		if (!is_null($end))
-			$this->addWhere($field . $before . $db->addQuotes($end));
+		if ( !is_null( $end ) )
+			$this->addWhere( $field . $before . $db->addQuotes( $end ) );
 
-		if ($sort) {
-			$order = $field . ($isDirNewer ? '' : ' DESC');
-			if (!isset($this->options['ORDER BY']))
-				$this->addOption('ORDER BY', $order);
+		if ( $sort ) {
+			$order = $field . ( $isDirNewer ? '' : ' DESC' );
+			if ( !isset( $this->options['ORDER BY'] ) )
+				$this->addOption( 'ORDER BY', $order );
 			else
-				$this->addOption('ORDER BY', $this->options['ORDER BY'] . ', ' . $order);
+				$this->addOption( 'ORDER BY', $this->options['ORDER BY'] . ', ' . $order );
 		}
 	}
 
@@ -212,8 +212,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $name string Option name
 	 * @param $value string Option value
 	 */
-	protected function addOption($name, $value = null) {
-		if (is_null($value))
+	protected function addOption( $name, $value = null ) {
+		if ( is_null( $value ) )
 			$this->options[] = $name;
 		else
 			$this->options[$name] = $value;
@@ -225,13 +225,13 @@ abstract class ApiQueryBase extends ApiBase {
 	 *  You should usually use __METHOD__ here
 	 * @return ResultWrapper
 	 */
-	protected function select($method) {
+	protected function select( $method ) {
 
 		// getDB has its own profileDBIn/Out calls
 		$db = $this->getDB();
 
 		$this->profileDBIn();
-		$res = $db->select($this->tables, $this->fields, $this->where, $method, $this->options, $this->join_conds);
+		$res = $db->select( $this->tables, $this->fields, $this->where, $method, $this->options, $this->join_conds );
 		$this->profileDBOut();
 
 		return $res;
@@ -245,11 +245,11 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function checkRowCount() {
 		$db = $this->getDB();
 		$this->profileDBIn();
-		$rowcount = $db->estimateRowCount($this->tables, $this->fields, $this->where, __METHOD__, $this->options);
+		$rowcount = $db->estimateRowCount( $this->tables, $this->fields, $this->where, __METHOD__, $this->options );
 		$this->profileDBOut();
 
 		global $wgAPIMaxDBRows;
-		if($rowcount > $wgAPIMaxDBRows)
+		if ( $rowcount > $wgAPIMaxDBRows )
 			return false;
 		return true;
 	}
@@ -261,8 +261,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $title Title
 	 * @param $prefix string Module prefix
 	 */
-	public static function addTitleInfo(&$arr, $title, $prefix='') {
-		$arr[$prefix . 'ns'] = intval($title->getNamespace());
+	public static function addTitleInfo( &$arr, $title, $prefix = '' ) {
+		$arr[$prefix . 'ns'] = intval( $title->getNamespace() );
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
 
@@ -271,7 +271,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * using $pageSet->requestField('fieldName')
 	 * @param $pageSet ApiPageSet
 	 */
-	public function requestExtraData($pageSet) {
+	public function requestExtraData( $pageSet ) {
 	}
 
 	/**
@@ -288,12 +288,12 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $data array Data array à la ApiResult 
 	 * @return bool Whether the element fit in the result
 	 */
-	protected function addPageSubItems($pageId, $data) {
+	protected function addPageSubItems( $pageId, $data ) {
 		$result = $this->getResult();
-		$result->setIndexedTagName($data, $this->getModulePrefix());
-		return $result->addValue(array('query', 'pages', intval($pageId)),
+		$result->setIndexedTagName( $data, $this->getModulePrefix() );
+		return $result->addValue( array( 'query', 'pages', intval( $pageId ) ),
 			$this->getModuleName(),
-			$data);
+			$data );
 	}
 	
 	/**
@@ -304,16 +304,16 @@ abstract class ApiQueryBase extends ApiBase {
 	 *  is used
 	 * @return bool Whether the element fit in the result
 	 */
-	protected function addPageSubItem($pageId, $item, $elemname = null) {
-		if(is_null($elemname))
+	protected function addPageSubItem( $pageId, $item, $elemname = null ) {
+		if ( is_null( $elemname ) )
 			$elemname = $this->getModulePrefix();
 		$result = $this->getResult();
-		$fit = $result->addValue(array('query', 'pages', $pageId,
-					 $this->getModuleName()), null, $item);
-		if(!$fit)
+		$fit = $result->addValue( array( 'query', 'pages', $pageId,
+					 $this->getModuleName() ), null, $item );
+		if ( !$fit )
 			return false;
-		$result->setIndexedTagName_internal(array('query', 'pages', $pageId,
-				$this->getModuleName()), $elemname);
+		$result->setIndexedTagName_internal( array( 'query', 'pages', $pageId,
+				$this->getModuleName() ), $elemname );
 		return true;
 	}
 
@@ -322,11 +322,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $paramName string Parameter name
 	 * @param $paramValue string Parameter value
 	 */
-	protected function setContinueEnumParameter($paramName, $paramValue) {
-		$paramName = $this->encodeParamName($paramName);
+	protected function setContinueEnumParameter( $paramName, $paramValue ) {
+		$paramName = $this->encodeParamName( $paramName );
 		$msg = array( $paramName => $paramValue );
 		$this->getResult()->disableSizeCheck();
-		$this->getResult()->addValue('query-continue', $this->getModuleName(), $msg);
+		$this->getResult()->addValue( 'query-continue', $this->getModuleName(), $msg );
 		$this->getResult()->enableSizeCheck();
 	}
 
@@ -335,7 +335,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return Database
 	 */
 	protected function getDB() {
-		if (is_null($this->mDb))
+		if ( is_null( $this->mDb ) )
 			$this->mDb = $this->getQuery()->getDB();
 		return $this->mDb;
 	}
@@ -348,8 +348,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $groups array Query groups
 	 * @return Database 
 	 */
-	public function selectNamedDB($name, $db, $groups) {
-		$this->mDb = $this->getQuery()->getNamedDB($name, $db, $groups);
+	public function selectNamedDB( $name, $db, $groups ) {
+		$this->mDb = $this->getQuery()->getNamedDB( $name, $db, $groups );
 	}
 
 	/**
@@ -365,13 +365,13 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $title string Page title with spaces
 	 * @return string Page title with underscores
 	 */
-	public function titleToKey($title) {
+	public function titleToKey( $title ) {
 		# Don't throw an error if we got an empty string
-		if(trim($title) == '')
+		if ( trim( $title ) == '' )
 			return '';
-		$t = Title::newFromText($title);
-		if(!$t)
-			$this->dieUsageMsg(array('invalidtitle', $title));
+		$t = Title::newFromText( $title );
+		if ( !$t )
+			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 		return $t->getPrefixedDbKey();
 	}
 
@@ -380,14 +380,14 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $key string Page title with underscores
 	 * @return string Page title with spaces
 	 */
-	public function keyToTitle($key) {
+	public function keyToTitle( $key ) {
 		# Don't throw an error if we got an empty string
-		if(trim($key) == '')
+		if ( trim( $key ) == '' )
 			return '';
-		$t = Title::newFromDbKey($key);
+		$t = Title::newFromDbKey( $key );
 		# This really shouldn't happen but we gotta check anyway
-		if(!$t)
-			$this->dieUsageMsg(array('invalidtitle', $key));
+		if ( !$t )
+			$this->dieUsageMsg( array( 'invalidtitle', $key ) );
 		return $t->getPrefixedText();
 	}
 	
@@ -396,8 +396,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $titlePart string Title part with spaces
 	 * @return string Title part with underscores
 	 */
-	public function titlePartToKey($titlePart) {
-		return substr($this->titleToKey($titlePart . 'x'), 0, -1);
+	public function titlePartToKey( $titlePart ) {
+		return substr( $this->titleToKey( $titlePart . 'x' ), 0, - 1 );
 	}
 	
 	/**
@@ -405,8 +405,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $keyPart string Key part with spaces
 	 * @return string Key part with underscores
 	 */
-	public function keyPartToTitle($keyPart) {
-		return substr($this->keyToTitle($keyPart . 'x'), 0, -1);
+	public function keyPartToTitle( $keyPart ) {
+		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
 	}
 
 	/**
@@ -425,8 +425,8 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	private $mIsGenerator;
 
-	public function __construct($query, $moduleName, $paramPrefix = '') {
-		parent :: __construct($query, $moduleName, $paramPrefix);
+	public function __construct( $query, $moduleName, $paramPrefix = '' ) {
+		parent :: __construct( $query, $moduleName, $paramPrefix );
 		$this->mIsGenerator = false;
 	}
 
@@ -443,11 +443,11 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 * @param $paramNames string Parameter name
 	 * @return string Prefixed parameter name
 	 */
-	public function encodeParamName($paramName) {
-		if ($this->mIsGenerator)
-			return 'g' . parent :: encodeParamName($paramName);
+	public function encodeParamName( $paramName ) {
+		if ( $this->mIsGenerator )
+			return 'g' . parent :: encodeParamName( $paramName );
 		else
-			return parent :: encodeParamName($paramName);
+			return parent :: encodeParamName( $paramName );
 	}
 
 	/**
@@ -455,5 +455,5 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 * @param $resultPageSet ApiPageSet: All output should be appended to
 	 *  this object
 	 */
-	public abstract function executeGenerator($resultPageSet);
+	public abstract function executeGenerator( $resultPageSet );
 }

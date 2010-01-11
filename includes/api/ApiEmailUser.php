@@ -22,9 +22,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ( "ApiBase.php" );
 }
 
 
@@ -33,8 +33,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiEmailUser extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function execute() {
@@ -50,7 +50,7 @@ class ApiEmailUser extends ApiBase {
 		if ( !isset( $params['text'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'text' ) );
 		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );	
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 		
 		// Validate target 
 		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
@@ -115,5 +115,5 @@ class ApiEmailUser extends ApiBase {
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}
-}	
+}
 	

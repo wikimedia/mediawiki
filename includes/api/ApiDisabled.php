@@ -22,9 +22,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ( "ApiBase.php" );
 }
 
 
@@ -40,12 +40,12 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiDisabled extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function execute() {
-		$this->dieUsage("The ``{$this->getModuleName()}'' module has been disabled.", 'moduledisabled');
+		$this->dieUsage( "The ``{$this->getModuleName()}'' module has been disabled.", 'moduledisabled' );
 	}
 
 	public function isReadMode() {

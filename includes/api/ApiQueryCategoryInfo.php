@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ( "ApiQueryBase.php" );
 }
 
 /**
@@ -35,8 +35,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryCategoryInfo extends ApiQueryBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'ci');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'ci' );
 	}
 
 	public function execute() {
@@ -50,51 +50,51 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$titles = $this->getPageSet()->getGoodTitles() +
 					$this->getPageSet()->getMissingTitles();
 		$cattitles = array();
-		foreach($categories as $c)
+		foreach ( $categories as $c )
 		{
 			$t = $titles[$c];
 			$cattitles[$c] = $t->getDBkey();
 		}
 
-		$this->addTables(array('category', 'page', 'page_props'));
-		$this->addJoinConds(array(
-			'page' => array('LEFT JOIN', array(
+		$this->addTables( array( 'category', 'page', 'page_props' ) );
+		$this->addJoinConds( array(
+			'page' => array( 'LEFT JOIN', array(
 				'page_namespace' => NS_CATEGORY,
-				'page_title=cat_title')),
-			'page_props' => array('LEFT JOIN', array(
+				'page_title=cat_title' ) ),
+			'page_props' => array( 'LEFT JOIN', array(
 				'pp_page=page_id',
-				'pp_propname' => 'hiddencat')),
-		));
-		$this->addFields(array('cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'pp_propname AS cat_hidden'));
-		$this->addWhere(array('cat_title' => $cattitles));
-		if(!is_null($params['continue']))
+				'pp_propname' => 'hiddencat' ) ),
+		) );
+		$this->addFields( array( 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'pp_propname AS cat_hidden' ) );
+		$this->addWhere( array( 'cat_title' => $cattitles ) );
+		if ( !is_null( $params['continue'] ) )
 		{
-			$title = $this->getDB()->addQuotes($params['continue']);
-			$this->addWhere("cat_title >= $title");
-		} 
-		$this->addOption('ORDER BY', 'cat_title');
+			$title = $this->getDB()->addQuotes( $params['continue'] );
+			$this->addWhere( "cat_title >= $title" );
+		}
+		$this->addOption( 'ORDER BY', 'cat_title' );
 
 		$db = $this->getDB();
-		$res = $this->select(__METHOD__);
+		$res = $this->select( __METHOD__ );
 
-		$catids = array_flip($cattitles);
-		while($row = $db->fetchObject($res))
+		$catids = array_flip( $cattitles );
+		while ( $row = $db->fetchObject( $res ) )
 		{
 			$vals = array();
-			$vals['size'] = intval($row->cat_pages);
+			$vals['size'] = intval( $row->cat_pages );
 			$vals['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
-			$vals['files'] = intval($row->cat_files);
-			$vals['subcats'] = intval($row->cat_subcats);
-			if($row->cat_hidden)
+			$vals['files'] = intval( $row->cat_files );
+			$vals['subcats'] = intval( $row->cat_subcats );
+			if ( $row->cat_hidden )
 				$vals['hidden'] = '';
-			$fit = $this->addPageSubItems($catids[$row->cat_title], $vals);
-			if(!$fit)
+			$fit = $this->addPageSubItems( $catids[$row->cat_title], $vals );
+			if ( !$fit )
 			{
-				$this->setContinueEnumParameter('continue', $row->cat_title);
+				$this->setContinueEnumParameter( 'continue', $row->cat_title );
 				break;
 			}
 		}
-		$db->freeResult($res);
+		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {

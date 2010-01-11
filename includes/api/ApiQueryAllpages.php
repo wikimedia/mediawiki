@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -35,39 +35,39 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'ap');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'ap' );
 	}
 
 	public function execute() {
 		$this->run();
 	}
 
-	public function executeGenerator($resultPageSet) {
-		if ($resultPageSet->isResolvingRedirects())
-			$this->dieUsage('Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params');
+	public function executeGenerator( $resultPageSet ) {
+		if ( $resultPageSet->isResolvingRedirects() )
+			$this->dieUsage( 'Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params' );
 
-		$this->run($resultPageSet);
+		$this->run( $resultPageSet );
 	}
 
-	private function run($resultPageSet = null) {
+	private function run( $resultPageSet = null ) {
 
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
 
 		// Page filters
-		$this->addTables('page');
-		if (!$this->addWhereIf('page_is_redirect = 1', $params['filterredir'] === 'redirects'))
-			$this->addWhereIf('page_is_redirect = 0', $params['filterredir'] === 'nonredirects');
-		$this->addWhereFld('page_namespace', $params['namespace']);
-		$dir = ($params['dir'] == 'descending' ? 'older' : 'newer');
-		$from = (is_null($params['from']) ? null : $this->titlePartToKey($params['from']));
-		$this->addWhereRange('page_title', $dir, $from, null);
-		if (isset ($params['prefix']))
-			$this->addWhere('page_title' . $db->buildLike($this->titlePartToKey($params['prefix']), $db->anyString()));
+		$this->addTables( 'page' );
+		if ( !$this->addWhereIf( 'page_is_redirect = 1', $params['filterredir'] === 'redirects' ) )
+			$this->addWhereIf( 'page_is_redirect = 0', $params['filterredir'] === 'nonredirects' );
+		$this->addWhereFld( 'page_namespace', $params['namespace'] );
+		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+		$this->addWhereRange( 'page_title', $dir, $from, null );
+		if ( isset ( $params['prefix'] ) )
+			$this->addWhere( 'page_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 
-		if (is_null($resultPageSet)) {
+		if ( is_null( $resultPageSet ) ) {
 			$selectFields = array (
 				'page_namespace',
 				'page_title',
@@ -76,95 +76,95 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		} else {
 			$selectFields = $resultPageSet->getPageTableFields();
 		}
-		$this->addFields($selectFields);
+		$this->addFields( $selectFields );
 		$forceNameTitleIndex = true;
-		if (isset ($params['minsize'])) {
-			$this->addWhere('page_len>=' . intval($params['minsize']));
+		if ( isset ( $params['minsize'] ) ) {
+			$this->addWhere( 'page_len>=' . intval( $params['minsize'] ) );
 			$forceNameTitleIndex = false;
 		}
 
-		if (isset ($params['maxsize'])) {
-			$this->addWhere('page_len<=' . intval($params['maxsize']));
+		if ( isset ( $params['maxsize'] ) ) {
+			$this->addWhere( 'page_len<=' . intval( $params['maxsize'] ) );
 			$forceNameTitleIndex = false;
 		}
 
 		// Page protection filtering
-		if (!empty ($params['prtype'])) {
-			$this->addTables('page_restrictions');
-			$this->addWhere('page_id=pr_page');
-			$this->addWhere('pr_expiry>' . $db->addQuotes($db->timestamp()));
-			$this->addWhereFld('pr_type', $params['prtype']);
+		if ( !empty ( $params['prtype'] ) ) {
+			$this->addTables( 'page_restrictions' );
+			$this->addWhere( 'page_id=pr_page' );
+			$this->addWhere( 'pr_expiry>' . $db->addQuotes( $db->timestamp() ) );
+			$this->addWhereFld( 'pr_type', $params['prtype'] );
 
 			// Remove the empty string and '*' from the prlevel array
-			$prlevel = array_diff($params['prlevel'], array('', '*'));
-			if (!empty($prlevel))
-				$this->addWhereFld('pr_level', $prlevel);
-			if ($params['prfiltercascade'] == 'cascading')
-				$this->addWhereFld('pr_cascade', 1);
-			else if ($params['prfiltercascade'] == 'noncascading')
-				$this->addWhereFld('pr_cascade', 0);
+			$prlevel = array_diff( $params['prlevel'], array( '', '*' ) );
+			if ( !empty( $prlevel ) )
+				$this->addWhereFld( 'pr_level', $prlevel );
+			if ( $params['prfiltercascade'] == 'cascading' )
+				$this->addWhereFld( 'pr_cascade', 1 );
+			else if ( $params['prfiltercascade'] == 'noncascading' )
+				$this->addWhereFld( 'pr_cascade', 0 );
 
-			$this->addOption('DISTINCT');
+			$this->addOption( 'DISTINCT' );
 
 			$forceNameTitleIndex = false;
 
-		} else if (isset ($params['prlevel'])) {
-			$this->dieUsage('prlevel may not be used without prtype', 'params');
+		} else if ( isset ( $params['prlevel'] ) ) {
+			$this->dieUsage( 'prlevel may not be used without prtype', 'params' );
 		}
 
-		if($params['filterlanglinks'] == 'withoutlanglinks') {
-			$this->addTables('langlinks');
-			$this->addJoinConds(array('langlinks' => array('LEFT JOIN', 'page_id=ll_from')));
-			$this->addWhere('ll_from IS NULL');
+		if ( $params['filterlanglinks'] == 'withoutlanglinks' ) {
+			$this->addTables( 'langlinks' );
+			$this->addJoinConds( array( 'langlinks' => array( 'LEFT JOIN', 'page_id=ll_from' ) ) );
+			$this->addWhere( 'll_from IS NULL' );
 			$forceNameTitleIndex = false;
-		} else if($params['filterlanglinks'] == 'withlanglinks') {
-			$this->addTables('langlinks');
-			$this->addWhere('page_id=ll_from');
-			$this->addOption('STRAIGHT_JOIN');
+		} else if ( $params['filterlanglinks'] == 'withlanglinks' ) {
+			$this->addTables( 'langlinks' );
+			$this->addWhere( 'page_id=ll_from' );
+			$this->addOption( 'STRAIGHT_JOIN' );
 			// We have to GROUP BY all selected fields to stop
 			// PostgreSQL from whining
-			$this->addOption('GROUP BY', implode(', ', $selectFields));
+			$this->addOption( 'GROUP BY', implode( ', ', $selectFields ) );
 			$forceNameTitleIndex = false;
 		}
-		if ($forceNameTitleIndex)
-			$this->addOption('USE INDEX', 'name_title');
+		if ( $forceNameTitleIndex )
+			$this->addOption( 'USE INDEX', 'name_title' );
 
 		
 
 		$limit = $params['limit'];
-		$this->addOption('LIMIT', $limit+1);
-		$res = $this->select(__METHOD__);
+		$this->addOption( 'LIMIT', $limit + 1 );
+		$res = $this->select( __METHOD__ );
 
 		$count = 0;
 		$result = $this->getResult();
-		while ($row = $db->fetchObject($res)) {
-			if (++ $count > $limit) {
+		while ( $row = $db->fetchObject( $res ) ) {
+			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', $this->keyToTitle($row->page_title));
+				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->page_title ) );
 				break;
 			}
 
-			if (is_null($resultPageSet)) {
-				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+			if ( is_null( $resultPageSet ) ) {
+				$title = Title :: makeTitle( $row->page_namespace, $row->page_title );
 				$vals = array(
-					'pageid' => intval($row->page_id),
-					'ns' => intval($title->getNamespace()),
-					'title' => $title->getPrefixedText());
-				$fit = $result->addValue(array('query', $this->getModuleName()), null, $vals);
-				if(!$fit)
+					'pageid' => intval( $row->page_id ),
+					'ns' => intval( $title->getNamespace() ),
+					'title' => $title->getPrefixedText() );
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				if ( !$fit )
 				{
-					$this->setContinueEnumParameter('from', $this->keyToTitle($row->page_title));
+					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->page_title ) );
 					break;
 				}
 			} else {
-				$resultPageSet->processDbRow($row);
+				$resultPageSet->processDbRow( $row );
 			}
 		}
-		$db->freeResult($res);
+		$db->freeResult( $res );
 
-		if (is_null($resultPageSet)) {
-			$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'p');
+		if ( is_null( $resultPageSet ) ) {
+			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'p' );
 		}
 	}
 

@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiBase.php');
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -35,67 +35,67 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiImport extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function execute() {
 		global $wgUser;
-		if(!$wgUser->isAllowed('import'))
-			$this->dieUsageMsg(array('cantimport'));
+		if ( !$wgUser->isAllowed( 'import' ) )
+			$this->dieUsageMsg( array( 'cantimport' ) );
 		$params = $this->extractRequestParams();
-		if(!isset($params['token']))
-			$this->dieUsageMsg(array('missingparam', 'token'));
-		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsageMsg(array('sessionfailure'));
+		if ( !isset( $params['token'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+		if ( !$wgUser->matchEditToken( $params['token'] ) )
+			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
 		$source = null;
 		$isUpload = false;
-		if(isset($params['interwikisource']))
+		if ( isset( $params['interwikisource'] ) )
 		{
-			if(!isset($params['interwikipage']))
-				$this->dieUsageMsg(array('missingparam', 'interwikipage'));
+			if ( !isset( $params['interwikipage'] ) )
+				$this->dieUsageMsg( array( 'missingparam', 'interwikipage' ) );
 			$source = ImportStreamSource::newFromInterwiki(
 					$params['interwikisource'],
 					$params['interwikipage'],
 					$params['fullhistory'],
-					$params['templates']);
+					$params['templates'] );
 		}
 		else
 		{
 			$isUpload = true;
-			if(!$wgUser->isAllowed('importupload'))
-				$this->dieUsageMsg(array('cantimport-upload'));
-			$source = ImportStreamSource::newFromUpload('xml');
+			if ( !$wgUser->isAllowed( 'importupload' ) )
+				$this->dieUsageMsg( array( 'cantimport-upload' ) );
+			$source = ImportStreamSource::newFromUpload( 'xml' );
 		}
-		if($source instanceof WikiErrorMsg)
-			$this->dieUsageMsg(array_merge(
-				array($source->getMessageKey()),
-				$source->getMessageArgs()));
-		else if(WikiError::isError($source))
+		if ( $source instanceof WikiErrorMsg )
+			$this->dieUsageMsg( array_merge(
+				array( $source->getMessageKey() ),
+				$source->getMessageArgs() ) );
+		else if ( WikiError::isError( $source ) )
 			// This shouldn't happen
-			$this->dieUsageMsg(array('import-unknownerror', $source->getMessage()));
+			$this->dieUsageMsg( array( 'import-unknownerror', $source->getMessage() ) );
 
-		$importer = new WikiImporter($source);
-		if(isset($params['namespace']))
-			$importer->setTargetNamespace($params['namespace']);
-		$reporter = new ApiImportReporter($importer, $isUpload,
+		$importer = new WikiImporter( $source );
+		if ( isset( $params['namespace'] ) )
+			$importer->setTargetNamespace( $params['namespace'] );
+		$reporter = new ApiImportReporter( $importer, $isUpload,
 					$params['interwikisource'],
-					$params['summary']);
+					$params['summary'] );
 
 		$result = $importer->doImport();
-		if($result instanceof WikiXmlError)
-			$this->dieUsageMsg(array('import-xml-error',
+		if ( $result instanceof WikiXmlError )
+			$this->dieUsageMsg( array( 'import-xml-error',
 				$result->mLine,
 				$result->mColumn,
 				$result->mByte . $result->mContext,
-				xml_error_string($result->mXmlError)));
-		else if(WikiError::isError($result))
+				xml_error_string( $result->mXmlError ) ) );
+		else if ( WikiError::isError( $result ) )
 			// This shouldn't happen
-			$this->dieUsageMsg(array('import-unknownerror', $result->getMessage()));
+			$this->dieUsageMsg( array( 'import-unknownerror', $result->getMessage() ) );
 		$resultData = $reporter->getData();
-		$this->getResult()->setIndexedTagName($resultData, 'page');
-		$this->getResult()->addValue(null, $this->getModuleName(), $resultData);
+		$this->getResult()->setIndexedTagName( $resultData, 'page' );
+		$this->getResult()->addValue( null, $this->getModuleName(), $resultData );
 	}
 
 	public function mustBePosted() { return true; }
@@ -160,16 +160,16 @@ class ApiImport extends ApiBase {
 class ApiImportReporter extends ImportReporter {
 	private $mResultArr = array();
 
-	function reportPage($title, $origTitle, $revisionCount, $successCount)
+	function reportPage( $title, $origTitle, $revisionCount, $successCount )
 	{
 		// Add a result entry
 		$r = array();
-		ApiQueryBase::addTitleInfo($r, $title);
-		$r['revisions'] = intval($successCount);
+		ApiQueryBase::addTitleInfo( $r, $title );
+		$r['revisions'] = intval( $successCount );
 		$this->mResultArr[] = $r;
 
 		// Piggyback on the parent to do the logging
-		parent::reportPage($title, $origTitle, $revisionCount, $successCount);
+		parent::reportPage( $title, $origTitle, $revisionCount, $successCount );
 	}
 
 	function getData()

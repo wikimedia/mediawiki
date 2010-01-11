@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ( "ApiBase.php" );
 }
 
 /**
@@ -37,17 +37,17 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiExpandTemplates extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function execute() {
 		// Get parameters
 		$params = $this->extractRequestParams();
 
-		//Create title for parser
+		// Create title for parser
 		$title_obj = Title :: newFromText( $params['title'] );
-		if(!$title_obj)
+		if ( !$title_obj )
 			$title_obj = Title :: newFromText( "API" ); // default
 
 		$result = $this->getResult();
@@ -66,7 +66,7 @@ class ApiExpandTemplates extends ApiBase {
 			}
 			$xml_result = array();
 			$result->setContent( $xml_result, $xml );
-			$result->addValue( null, 'parsetree', $xml_result);
+			$result->addValue( null, 'parsetree', $xml_result );
 		}
 		$retval = $wgParser->preprocess( $params['text'], $title_obj, $options );
 
