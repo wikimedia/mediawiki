@@ -59,6 +59,7 @@
 	'ckb-latn' => "\xE2\x80\xAASoranî (latînî)\xE2\x80\xAC", # Central Kurdish Latin script
 	'ckb-arab' => "\xE2\x80\xABکوردی (عەرەبی)\xE2\x80\xAC", # Central Kurdish Arabic script
 	'co' => 'Corsu',		# Corsican
+	'cps' => 'Capiceño', # Capiznon
 	'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ',		# Cree
 	'crh' => 'Qırımtatarca',   # Crimean Tatar
 	'crh-latn' => "\xE2\x80\xAAQırımtatarca (Latin)\xE2\x80\xAC",       # Crimean Tatar (Latin)
