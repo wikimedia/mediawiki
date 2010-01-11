@@ -142,60 +142,50 @@ class LanguageConverter {
 
 		// see if the preference is set in the request
 		$req = $wgRequest->getText( 'variant' );
+
+		if ( !$req ) {
+			$req = $wgRequest->getVal( 'uselang' );
+		}
+
+		if ( $fromUser && !$req ) {
+			$req = $this->getUserVariant();
+		}
+
+		if ( $fromHeader && !$req ) {
+			$req = $this->getHeaderVariant();
+		}
+
+		if ( $wgDefaultLanguageVariant && !$req ) {
+			$req = $wgDefaultLanguageVariant;
+		}
+
 		if ( in_array( $req, $this->mVariants ) ) {
-			$this->mPreferredVariant = $req;
-			return $this->mPreferredVariant;
+			return $req;
 		}
-
-        if ( $fromUser ) {
-			// bug 21974, don't return $this->mPreferredVariant if
-			// $fromUser = false
-			if ( $this->mPreferredVariant ) {
-				return $this->mPreferredVariant;
-			}
-
-            // figure out user lang without constructing wgLang to avoid
-			// infinite recursion
-			$defaultUserLang = $wgUser->getOption( 'language' );
-
-			// get language variant preference from logged in users
-			// Don't call this on stub objects because that causes infinite
-			// recursion during initialisation
-			if ( $wgUser->isLoggedIn() )  {
-				$this->mPreferredVariant = $wgUser->getOption( 'variant' );
-			}
-
-		} else {
-			$defaultUserLang = $this->mMainLanguageCode;
-		}
-		$userLang = $wgRequest->getVal( 'uselang', $defaultUserLang );
-
-		// see if interface language is same as content, if not, prevent
-		// conversion
-		if ( ! in_array( $userLang, $this->mVariants ) ) {
-			// no conversion
-			$this->mPreferredVariant = $this->mMainLanguageCode;
-			return $this->mPreferredVariant;
-		} elseif ( $this->mPreferredVariant ) {
-			// if the variant was set above and it iss a variant of
-			// the content language
-			return $this->mPreferredVariant;
-		}
-
-		// see if default variant is globaly set
-		if ( $wgDefaultLanguageVariant != false
-			 && in_array( $wgDefaultLanguageVariant, $this->mVariants ) ) {
-			$this->mPreferredVariant = $wgDefaultLanguageVariant;
-			return $this->mPreferredVariant;
-		}
-
-		$headerVariant = $this->getHeaderVariant();
-		if ( $fromHeader && $headerVariant ) {
-			return $headerVariant;
-		}
-
 		return $this->mMainLanguageCode;
 	}
+
+	/**
+	 * Determine the user has a variant set.
+	 *
+	 * @returns mixed variant if one found, false otherwise.
+	 */
+	function getUserVariant() {
+		global $wgUser;
+
+		// get language variant preference from logged in users
+		// Don't call this on stub objects because that causes infinite
+		// recursion during initialisation
+		if ( $wgUser->isLoggedIn() )  {
+			return $wgUser->getOption( 'variant' );
+		}
+		else {
+			// figure out user lang without constructing wgLang to avoid
+			// infinite recursion
+			return $wgUser->getOption( 'language' );
+		}
+	}
+
 
 	/**
 	 * Determine the language variant from the Accept-Language header.
@@ -550,6 +540,7 @@ class LanguageConverter {
 		if ( $wgDisableLangConversion ) return $text;
 
 		$plang = $this->getPreferredVariant();
+
 		$tarray = StringUtils::explode( $this->mMarkup['end'], $text );
 		$converted = '';
 

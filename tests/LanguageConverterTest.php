@@ -28,7 +28,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 
 		$wgRequest = new FauxRequest(array());
 		$wgUser    = new User;
-		$wgContLang = Language::factory( 'tg-latn' );
+		$wgContLang = Language::factory( 'tg' );
 
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, true));
@@ -41,7 +41,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
 
 		$wgRequest->setHeader('Accept-Language', 'tg;q=1');
 		$this->lc = new TestConverter( $this->lang, 'tg',
@@ -57,7 +57,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
 
 		$wgRequest->setHeader('Accept-Language', 'en, tg-latn;q=1');
 		$this->lc = new TestConverter( $this->lang, 'tg',
@@ -65,7 +65,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
 		$wgRequest->setHeader('Accept-Language', '');
 
 		$wgUser = User::newFromId("admin");
@@ -92,6 +92,15 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 									   array( 'tg', 'tg-latn' ) );
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, false));
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
+		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, false));
+		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, true));
+
+		$wgRequest->setVal('variant', null);
+		$wgDefaultLanguageVariant = 'tg';
+		$this->lc = new TestConverter( $this->lang, 'tg',
+									   array( 'tg', 'tg-latn' ) );
+		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
+		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, true));
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, false));
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, true));
 
