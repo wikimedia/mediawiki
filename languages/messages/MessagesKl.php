@@ -107,7 +107,9 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Sumut atassuseq|Sunut atassusit}}',
+'pagecategories'  => '{{PLURAL:$1|Sumut atassuseq|Sunut atassusit}}',
+'category_header' => 'Quppernerit sumut atassusermi "$1"-miittut',
+'subcategories'   => 'Sunut atassuserni ataaniittut',
 
 'about'         => 'Pillugu',
 'newwindow'     => '(nutaamut ammassaaq)',
@@ -153,7 +155,7 @@ $messages = array(
 'otherlanguages'   => 'Oqaatsit allat',
 'redirectedfrom'   => '($1-mit nuunneq)',
 'jumpto'           => 'Uunngarit:',
-'jumptonavigation' => 'navigationi',
+'jumptonavigation' => 'sumiissusersiuut',
 'jumptosearch'     => 'ujarlerit',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -277,6 +279,8 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 # Search results
 'searchresults'             => 'Ujaasinermi inernerit',
 'searchresults-title'       => 'Uuma ujarnera "$1"',
+'prevn'                     => 'siulii {{PLURAL:$1|$1}}',
+'nextn'                     => 'tullii {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Takuuk ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'         => "'''Qupperneqarpoq \"[[:\$1]]\" -mik atilimmik maani wikimi'''",
 'searchmenu-new'            => "'''Qupperneq [[:$1]] pilersiguk maani wikimi'''",
@@ -296,6 +300,7 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 # Preferences page
 'mypreferences' => 'Inissiffissat',
 'prefs-rc'      => 'Allannguutit kingulliit',
+'saveprefs'     => 'Toqqukkit',
 'yourlanguage'  => 'Oqaatsit:',
 
 # Groups
@@ -434,7 +439,9 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'sp-contributions-submit'   => 'Ujaruk',
 
 # What links here
-'whatlinkshere' => 'Suna maangamut innersuussisoq',
+'whatlinkshere'      => 'Suna maangamut innersuussisoq',
+'whatlinkshere-prev' => '{{PLURAL:$1|siulia|siulii $1}}',
+'whatlinkshere-next' => '{{PLURAL:$1|tullia|tullii $1}}',
 
 # Block/unblock
 'blockip'            => 'Atuisoq asseruk',

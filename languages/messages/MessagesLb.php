@@ -556,6 +556,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'nav-login-createaccount'    => 'Aloggen',
 'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin'                  => 'Aloggen / Benotzerkont uleeën',
+'userloginnocreate'          => 'Umellen',
 'logout'                     => 'Ofmellen',
 'userlogout'                 => 'Ausloggen',
 'notloggedin'                => 'Net ageloggt',
@@ -899,6 +900,7 @@ Als Administrateur kënnt Dir se gesinn; Dir fannt eventuell méi Detailer am  [
 Als Administrateur kënnt dir se gesinn; méi Detailler fannt Dir eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-no-diff'         => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
 Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+'rev-suppressed-no-diff'      => "Dir kënnt dësen Diff (Ënnerscheed) net gesinn well eng vun de Versioune '''geläscht''' gouf.",
 'rev-deleted-unhide-diff'     => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
 Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].
 Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
@@ -2266,6 +2268,7 @@ Kuckt d'[[Special:IPBlockList|IP Spärlëscht]] fir déi aktuell Spären.",
 'ipb_blocked_as_range'            => "Feeler: D'IP-Adress $1 gouf net direkt gespaart an déi Spär kann dofir och net opghuewe ginn.
 Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.",
 'ip_range_invalid'                => 'Ongëltegen IP Block.',
+'ip_range_toolarge'               => 'Späre vu Beräicher déi méi grouss wéi /$1 si sinn net erlaabt.',
 'blockme'                         => 'Spär mech',
 'proxyblocker'                    => 'Proxy blocker',
 'proxyblocker-disabled'           => 'Dës Funktioun ass ausgeschalt.',

@@ -639,6 +639,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'nav-login-createaccount'    => 'Logg inn eller registrer deg',
 'loginprompt'                => 'Du må ha slått på informasjonskapsler for å logge in på {{SITENAME}}.',
 'userlogin'                  => 'Logg inn eller registrer deg',
+'userloginnocreate'          => 'Logg inn',
 'logout'                     => 'Logg ut',
 'userlogout'                 => 'Logg ut',
 'notloggedin'                => 'Ikke logget inn',
@@ -965,6 +966,7 @@ Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:{{#S
 Som administrator kan du se den; det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelsesloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
+'rev-suppressed-no-diff'      => "Du kanne ikke se revisjonsforskjellen fordi en av revisjonene har blitt '''slettet'''.",
 'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
 Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
@@ -2323,6 +2325,7 @@ $1 er blokkert fra før. Vil du endre innstillingene?',
 'ipb_cant_unblock'                => 'Feil: Blokk-ID $1 ikke funnet. Kan ha blitt avblokkert allerede.',
 'ipb_blocked_as_range'            => 'Feil: IP-en $1 er ikke blokkert direkte, og kan ikke avblokkeres. Den er imidlertid blokkert som del av blokkeringa av IP-rangen $2, som kan avblokkeres.',
 'ip_range_invalid'                => 'Ugyldig IP-rad.',
+'ip_range_toolarge'               => 'Blokkering av IP-serier større enn /$1 er ikke tillatt.',
 'blockme'                         => 'Blokker meg',
 'proxyblocker'                    => 'Proxyblokker',
 'proxyblocker-disabled'           => 'Denne funksjonen er slått av.',
