@@ -402,7 +402,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'editusergroup'            => "Filak lubu uza-na'in",
 'userrights-editusergroup' => "Filak lubu uza-na'in",
 'userrights-groupsmember'  => 'Membru iha:',
-'userrights-reason'        => 'Motivu ba filak:',
+'userrights-reason'        => 'Motivu:',
 'userrights-no-interwiki'  => "Ó la bele filak priviléjiu uza-na'in iha wiki seluk.",
 
 # Groups

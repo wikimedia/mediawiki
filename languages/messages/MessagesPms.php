@@ -807,6 +807,7 @@ Coma aministrator chiel a peul ës-ciairela; a peulo essnie dle marche ant ël [
 Coma aministrator chiel a peul ës-ciairela; a peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-deleted-no-diff'         => "A peul pa vëdde coste diferense përchè un-a dle revision a l'é stàita '''scancelà'''.
 A peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
+'rev-suppressed-no-diff'      => "It peule pa vëdde sta diferensa-sì përchè un-a dle revision a l'é stàita '''scanselà'''.",
 'rev-deleted-unhide-diff'     => "Un-a dle revision ëd coste diferense a l'é stàita '''scancelà'''.
 A peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].
 Com aministrator it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
@@ -834,16 +835,16 @@ Tanme aministrator, a peul ancora s-ciairé costa diferensa; a peulo essje pì '
 'revdelete-text'              => "Le version scancelà e j'event a së s-ciaireran sempe ant la stòria dla pàgina e ant ij registr, ma sò test al pùblich a j'andrà pì nen.'''
 J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé ël contnù stërmà e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen stàita butà na restrission adissional.",
 'revdelete-confirm'           => "Për piasì, ch'a confema ch'a veul fé sòn, ch'as rend cont dle conseguense, e ch'a lo fa an acòrd con [[{{MediaWiki:Policy-url}}|le régole]].",
-'revdelete-suppress-text'     => "La scanselassion a dovrìa '''mach''' esse dovrà për cost cas:
+'revdelete-suppress-text'     => "La scancelassion a dovrìa '''mach''' esse dovrà për cost cas:
 * Anformassion përsonaj nen aproprià
-*: ''adrësse ëd ca e nùmer ëd telefono, còdes fiscaj, etc.''",
+*: ''adrësse ëd ca e nùmer ëd teléfon, còdes fiscaj, e via fòrt''",
 'revdelete-legend'            => 'But-je coste limitassion-sì a le version scancelà:',
 'revdelete-hide-text'         => 'Stërma ël test dla revision',
 'revdelete-hide-image'        => "Stërma ël contnù dl'archivi",
 'revdelete-hide-name'         => 'Stërma assion e oget',
 'revdelete-hide-comment'      => 'Stërma ël coment a la modìfica',
 'revdelete-hide-user'         => "Stërma lë stranòm ò l'adrëssa IP dël contributor",
-'revdelete-hide-restricted'   => "Stërma le anformassion a j'aministrator tan-me a j'àutri",
+'revdelete-hide-restricted'   => "Stërmé j'anformassion a j'aministrator tan-me a j'àutri",
 'revdelete-radio-same'        => '(cambia pa)',
 'revdelete-radio-set'         => 'É!',
 'revdelete-radio-unset'       => 'Nò',

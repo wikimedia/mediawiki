@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bencmq
+ * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
  * @author Jidanni
@@ -933,6 +934,7 @@ $2',
 在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中您可能会查看到详细的信息。",
 'rev-deleted-no-diff'         => "因为其中一次修订'''删除'''，您不可以查看这个差异。
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的信息。",
+'rev-suppressed-no-diff'      => "无法显示差异，由于其中一个版本已被'''删除'''。",
 'rev-deleted-unhide-diff'     => "该页面的其中一次修订已经被'''删除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的信息。
 作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",

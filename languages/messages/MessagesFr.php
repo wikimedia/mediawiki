@@ -964,7 +964,7 @@ Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anon
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (nouvelle section)',
 'editconflict'                     => 'Conflit de modification : $1',
-'explainconflict'                  => "Cette page a été sauvegardée après que vous ayez commencé à la modifier.
+'explainconflict'                  => "Cette page a été sauvegardée après que vous avez commencé à la modifier.
 La zone de modification supérieure contient le texte tel qu’il est enregistré actuellement dans la base de données.
 Vos modifications apparaissent dans la zone de modification inférieure.
 Vous allez devoir fusionner vos modifications dans le texte existant.

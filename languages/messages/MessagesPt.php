@@ -518,8 +518,8 @@ $messages = array(
 'viewhelppage'      => 'Ver página de ajuda',
 'categorypage'      => 'Ver página de categorias',
 'viewtalkpage'      => 'Ver discussão',
-'otherlanguages'    => 'Outras línguas',
-'redirectedfrom'    => '(Redireccionado de <b>$1</b>)',
+'otherlanguages'    => 'Noutras línguas',
+'redirectedfrom'    => '(Redireccionado de $1)',
 'redirectpagesub'   => 'Página de redireccionamento',
 'lastmodifiedat'    => 'Esta página foi modificada pela última vez às $2 de $1.',
 'viewcount'         => 'Esta página foi acedida {{PLURAL:$1|uma vez|$1 vezes}}.',
@@ -564,9 +564,9 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Obtido em "$1"',
 'youhavenewmessages'      => 'Tem $1 ($2).',
-'newmessageslink'         => 'novas mensagens',
+'newmessageslink'         => 'mensagens novas',
 'newmessagesdifflink'     => 'comparar com a penúltima revisão',
-'youhavenewmessagesmulti' => 'Tem novas mensagens em $1',
+'youhavenewmessagesmulti' => 'Tem mensagens novas em $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
 'viewsourceold'           => 'ver código',
@@ -676,8 +676,8 @@ $2',
 'namespaceprotected'   => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssjsprotected' => 'Não possui permissão para editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
 'ns-specialprotected'  => 'Não é possível editar páginas especiais',
-'titleprotected'       => "Este título foi protegido, para que não seja criado.
-Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
+'titleprotected'       => 'Este título foi protegido contra criação por [[User:$1|$1]].
+A justificação foi "\'\'$2\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Má configuração: antivírus desconhecido: ''$1''",
@@ -1072,6 +1072,7 @@ Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Sp
 Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
 'rev-deleted-no-diff'         => "Não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+'rev-suppressed-no-diff'      => "Não pode visionar esta diferença entre versões porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
 Como administrador, pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",

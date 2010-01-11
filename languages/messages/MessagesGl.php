@@ -938,7 +938,7 @@ A razón dada por $3 foi ''$2''",
 'currentrev'             => 'Revisión actual',
 'currentrev-asof'        => 'Revisión actual ás $3 do $2',
 'revisionasof'           => 'Revisión como estaba ás $3 do $2',
-'revision-info'          => 'Revisión feita por $2 ás $1',
+'revision-info'          => 'Revisión feita o $4 ás $5 por $2',
 'previousrevision'       => '← Revisión máis antiga',
 'nextrevision'           => 'Revisión máis nova →',
 'currentrevisionlink'    => 'Revisión actual',
@@ -983,6 +983,7 @@ Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:
 Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
 'rev-deleted-no-diff'         => "Non pode ver esta diferenza porque unha das revisións foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-suppressed-no-diff'      => "Non pode ver esta diferenza porque unha das revisións foi '''borrada'''.",
 'rev-deleted-unhide-diff'     => "Unha das revisións desta diferenza foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
 Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
