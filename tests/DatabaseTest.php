@@ -9,7 +9,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 
 	function testAddQuotesNull() {
 		$check = "NULL";
-		if ( $this->db instanceOf DatabaseSqlite ) {
+		if ( $this->db->getType() === 'sqlite' ) {
 			$check = "''";
 		}
 		$this->assertEquals( $check, $this->db->addQuotes( null ) );
@@ -38,7 +38,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 
 	function testAddQuotesStringQuote() {
 		$check = "'string''s cause trouble'";
-		if ( $this->db instanceOf DatabaseMysql ) {
+		if ( $this->db->getType() === 'mysql' ) {
 			$check = "'string\'s cause trouble'";
 		}
 		$this->assertEquals(
@@ -60,7 +60,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 			array( 4, "Snicker's_paradox" ) );
 
 		$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker''s_paradox'";
-		if ( $this->db instanceOf DatabaseMysql ) {
+		if ( $this->db->getType() === 'mysql' ) {
 			$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker\'s_paradox'";
 		}
 		$this->assertEquals( $check, $sql );
@@ -72,7 +72,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 			array( '"user"', "Slash's Dot" ) );
 
 		$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash''s Dot'";
-		if ( $this->db instanceOf DatabaseMysql ) {
+		if ( $this->db->getType() === 'mysql' ) {
 			$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash\'s Dot'";
 		}
 		$this->assertEquals( $check, $sql );
