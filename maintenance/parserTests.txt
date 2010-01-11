@@ -7538,23 +7538,6 @@ China
 </p>
 !! end
 
-!! test
-Explicit session-wise language variant mapping (A flag and - flag)
-!! options
-language=zh variant=zh **** disabled (for now) because I think it uncovers a bug and I want a reminder
-!! input
-Taiwan is not China.
-But -{zh:China;zh-tw:Taiwan}- is China,
-(This-{-|zh:China;zh-tw:Taiwan}- should be stripped!)
-and -{China}- is China.
-!! result
-<p>Taiwan is not China.
-But Taiwan is Taiwan,
-(This should be stripped!)
-and China is China.
-</p>
-!! end
-
 TODO:
 more images
 more tables
