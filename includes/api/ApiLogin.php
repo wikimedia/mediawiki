@@ -24,9 +24,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiBase.php');
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -36,8 +36,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiLogin extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action, 'lg');
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action, 'lg' );
 	}
 
 	/**
@@ -56,33 +56,33 @@ class ApiLogin extends ApiBase {
 
 		$result = array ();
 
-		$req = new FauxRequest(array (
+		$req = new FauxRequest( array (
 			'wpName' => $params['name'],
 			'wpPassword' => $params['password'],
 			'wpDomain' => $params['domain'],
 			'wpRemember' => ''
-		));
+		) );
 
 		// Init session if necessary
-		if( session_id() == '' ) {
+		if ( session_id() == '' ) {
 			wfSetupSession();
 		}
 
-		$loginForm = new LoginForm($req);
-		switch ($authRes = $loginForm->authenticateUserData()) {
+		$loginForm = new LoginForm( $req );
+		switch ( $authRes = $loginForm->authenticateUserData() ) {
 			case LoginForm :: SUCCESS :
 				global $wgUser, $wgCookiePrefix;
 
-				$wgUser->setOption('rememberpassword', 1);
+				$wgUser->setOption( 'rememberpassword', 1 );
 				$wgUser->setCookies();
 
 				// Run hooks. FIXME: split back and frontend from this hook.
 				// FIXME: This hook should be placed in the backend
 				$injected_html = '';
-				wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));
+				wfRunHooks( 'UserLoginComplete', array( &$wgUser, &$injected_html ) );
 
 				$result['result'] = 'Success';
-				$result['lguserid'] = intval($wgUser->getId());
+				$result['lguserid'] = intval( $wgUser->getId() );
 				$result['lgusername'] = $wgUser->getName();
 				$result['lgtoken'] = $wgUser->getToken();
 				$result['cookieprefix'] = $wgCookiePrefix;
@@ -105,7 +105,7 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'NotExists';
 				break;
 	
-			case LoginForm :: RESET_PASS : //bug 20223 - Treat a temporary password as wrong. Per SpecialUserLogin - "The e-mailed temporary password should not be used for actual logins;"
+			case LoginForm :: RESET_PASS : // bug 20223 - Treat a temporary password as wrong. Per SpecialUserLogin - "The e-mailed temporary password should not be used for actual logins;"
 			case LoginForm :: WRONG_PASS :
 				$result['result'] = 'WrongPass';
 				break;
@@ -122,14 +122,14 @@ class ApiLogin extends ApiBase {
 			case LoginForm :: THROTTLED :
 				global $wgPasswordAttemptThrottle;
 				$result['result'] = 'Throttled';
-				$result['wait'] = intval($wgPasswordAttemptThrottle['seconds']);
+				$result['wait'] = intval( $wgPasswordAttemptThrottle['seconds'] );
 				break;
 
 			default :
-				ApiBase :: dieDebug(__METHOD__, "Unhandled case value: {$authRes}");
+				ApiBase :: dieDebug( __METHOD__, "Unhandled case value: {$authRes}" );
 		}
 
-		$this->getResult()->addValue(null, 'login', $result);
+		$this->getResult()->addValue( null, 'login', $result );
 	}
 
 	public function mustBePosted() { return true; }

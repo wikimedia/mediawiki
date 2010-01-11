@@ -23,8 +23,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
-	require_once ('ApiBase.php');
+if ( !defined( 'MEDIAWIKI' ) ) {
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -33,8 +33,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiPatrol extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	/**
@@ -44,24 +44,24 @@ class ApiPatrol extends ApiBase {
 		global $wgUser;
 		$params = $this->extractRequestParams();
 		
-		if(!isset($params['token']))
-			$this->dieUsageMsg(array('missingparam', 'token'));
-		if(!isset($params['rcid']))
-			$this->dieUsageMsg(array('missingparam', 'rcid'));
-		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsageMsg(array('sessionfailure'));
+		if ( !isset( $params['token'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+		if ( !isset( $params['rcid'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'rcid' ) );
+		if ( !$wgUser->matchEditToken( $params['token'] ) )
+			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
-		$rc = RecentChange::newFromID($params['rcid']);
-		if(!$rc instanceof RecentChange)
-			$this->dieUsageMsg(array('nosuchrcid', $params['rcid']));
-		$retval = RecentChange::markPatrolled($params['rcid']);
+		$rc = RecentChange::newFromID( $params['rcid'] );
+		if ( !$rc instanceof RecentChange )
+			$this->dieUsageMsg( array( 'nosuchrcid', $params['rcid'] ) );
+		$retval = RecentChange::markPatrolled( $params['rcid'] );
 			
-		if($retval)
-			$this->dieUsageMsg(reset($retval));
+		if ( $retval )
+			$this->dieUsageMsg( reset( $retval ) );
 		
-		$result = array('rcid' => intval($rc->getAttribute('rc_id')));
-		ApiQueryBase::addTitleInfo($result, $rc->getTitle());
-		$this->getResult()->addValue(null, $this->getModuleName(), $result);
+		$result = array( 'rcid' => intval( $rc->getAttribute( 'rc_id' ) ) );
+		ApiQueryBase::addTitleInfo( $result, $rc->getTitle() );
+		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
 	public function isWriteMode() {

@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -35,24 +35,24 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryAllmessages extends ApiQueryBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'am');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'am' );
 	}
 
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		if(!is_null($params['lang']))
+		if ( !is_null( $params['lang'] ) )
 		{
 			global $wgLang;
-			$wgLang = Language::factory($params['lang']);
+			$wgLang = Language::factory( $params['lang'] );
 		}
 		
 		$prop = array_flip( (array)$params['prop'] );
 
-		//Determine which messages should we print
+		// Determine which messages should we print
 		$messages_target = array();
-		if( in_array( '*', $params['messages'] ) ) {
+		if ( in_array( '*', $params['messages'] ) ) {
 			$message_names = array_keys( Language::getMessagesFor( 'en' ) );
 			sort( $message_names );
 			$messages_target = $message_names;
@@ -60,26 +60,26 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			$messages_target = $params['messages'];
 		}
 
-		//Filter messages
-		if( isset( $params['filter'] ) ) {
+		// Filter messages
+		if ( isset( $params['filter'] ) ) {
 			$messages_filtered = array();
-			foreach( $messages_target as $message ) {
-				if( strpos( $message, $params['filter'] ) !== false ) {	//!== is used because filter can be at the beginnig of the string
+			foreach ( $messages_target as $message ) {
+				if ( strpos( $message, $params['filter'] ) !== false ) {	// !== is used because filter can be at the beginnig of the string
 					$messages_filtered[] = $message;
 				}
 			}
 			$messages_target = $messages_filtered;
 		}
 
-		//Get all requested messages and print the result
+		// Get all requested messages and print the result
 		$messages = array();
-		$skip = !is_null($params['from']);
+		$skip = !is_null( $params['from'] );
 		$result = $this->getResult();
-		foreach( $messages_target as $message ) {
+		foreach ( $messages_target as $message ) {
 			// Skip all messages up to $params['from']
-			if($skip && $message === $params['from'])
+			if ( $skip && $message === $params['from'] )
 				$skip = false;
-			if(!$skip) {
+			if ( !$skip ) {
 				$a = array( 'name' => $message );
 				$msg = wfMsgGetKey( $message, true, false, false );
 				if ( wfEmptyMsg( $message, $msg ) )
@@ -97,7 +97,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 					}
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $a );
-				if( !$fit ) {
+				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'from', $name );
 					break;
 				}

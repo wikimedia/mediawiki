@@ -24,9 +24,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiQueryBase.php');
+	require_once ( 'ApiQueryBase.php' );
 }
 
 /**
@@ -36,8 +36,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'ai');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'ai' );
 		$this->mRepo = RepoGroup::singleton()->getLocalRepo();
 	}
 	
@@ -55,89 +55,89 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
-	public function executeGenerator($resultPageSet) {
-		if ($resultPageSet->isResolvingRedirects())
-			$this->dieUsage('Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator', 'params');
+	public function executeGenerator( $resultPageSet ) {
+		if ( $resultPageSet->isResolvingRedirects() )
+			$this->dieUsage( 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator', 'params' );
 
-		$this->run($resultPageSet);
+		$this->run( $resultPageSet );
 	}
 
-	private function run($resultPageSet = null) {
+	private function run( $resultPageSet = null ) {
 		$repo = $this->mRepo;
 		if ( !$repo instanceof LocalRepo )
-			$this->dieUsage('Local file repository does not support querying all images', 'unsupportedrepo');
+			$this->dieUsage( 'Local file repository does not support querying all images', 'unsupportedrepo' );
 
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
 
 		// Image filters
-		$dir = ($params['dir'] == 'descending' ? 'older' : 'newer');
-		$from = (is_null($params['from']) ? null : $this->titlePartToKey($params['from']));
-		$this->addWhereRange('img_name', $dir, $from, null);
-		if (isset ($params['prefix']))
-			$this->addWhere('img_name' . $db->buildLike( $this->titlePartToKey($params['prefix']), $db->anyString() ) );
+		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+		$this->addWhereRange( 'img_name', $dir, $from, null );
+		if ( isset ( $params['prefix'] ) )
+			$this->addWhere( 'img_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 
-		if (isset ($params['minsize'])) {
-			$this->addWhere('img_size>=' . intval($params['minsize']));
+		if ( isset ( $params['minsize'] ) ) {
+			$this->addWhere( 'img_size>=' . intval( $params['minsize'] ) );
 		}
 
-		if (isset ($params['maxsize'])) {
-			$this->addWhere('img_size<=' . intval($params['maxsize']));
+		if ( isset ( $params['maxsize'] ) ) {
+			$this->addWhere( 'img_size<=' . intval( $params['maxsize'] ) );
 		}
 
 		$sha1 = false;
-		if( isset( $params['sha1'] ) ) {
+		if ( isset( $params['sha1'] ) ) {
 			$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
-		} elseif( isset( $params['sha1base36'] ) ) {
+		} elseif ( isset( $params['sha1base36'] ) ) {
 			$sha1 = $params['sha1base36'];
 		}
-		if( $sha1 ) {
+		if ( $sha1 ) {
 			$this->addWhere( 'img_sha1=' . $db->addQuotes( $sha1 ) );
 		}
 
-		$this->addTables('image');
+		$this->addTables( 'image' );
 
-		$prop = array_flip($params['prop']);
+		$prop = array_flip( $params['prop'] );
 		$this->addFields( LocalFile::selectFields() );
 
 		$limit = $params['limit'];
-		$this->addOption('LIMIT', $limit+1);
-		$this->addOption('ORDER BY', 'img_name' .
-						($params['dir'] == 'descending' ? ' DESC' : ''));
+		$this->addOption( 'LIMIT', $limit + 1 );
+		$this->addOption( 'ORDER BY', 'img_name' .
+						( $params['dir'] == 'descending' ? ' DESC' : '' ) );
 
-		$res = $this->select(__METHOD__);
+		$res = $this->select( __METHOD__ );
 
 		$titles = array();
 		$count = 0;
 		$result = $this->getResult();
-		while ($row = $db->fetchObject($res)) {
-			if (++ $count > $limit) {
+		while ( $row = $db->fetchObject( $res ) ) {
+			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', $this->keyToTitle($row->img_name));
+				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->img_name ) );
 				break;
 			}
 
-			if (is_null($resultPageSet)) {
+			if ( is_null( $resultPageSet ) ) {
 				$file = $repo->newFileFromRow( $row );
-				$info = array_merge(array('name' => $row->img_name),
-					ApiQueryImageInfo::getInfo($file, $prop, $result));
-				$fit = $result->addValue(array('query', $this->getModuleName()), null, $info);
-				if( !$fit ) {
-					$this->setContinueEnumParameter('from', $this->keyToTitle($row->img_name));
+				$info = array_merge( array( 'name' => $row->img_name ),
+					ApiQueryImageInfo::getInfo( $file, $prop, $result ) );
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $info );
+				if ( !$fit ) {
+					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->img_name ) );
 					break;
 				}
 			} else {
-				$titles[] = Title::makeTitle(NS_IMAGE, $row->img_name);
+				$titles[] = Title::makeTitle( NS_IMAGE, $row->img_name );
 			}
 		}
-		$db->freeResult($res);
+		$db->freeResult( $res );
 
-		if (is_null($resultPageSet)) {
-			$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'img');
+		if ( is_null( $resultPageSet ) ) {
+			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'img' );
 		} else {
-			$resultPageSet->populateFromTitles($titles);
+			$resultPageSet->populateFromTitles( $titles );
 		}
 	}
 

@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ( "ApiQueryBase.php" );
 }
 
 /**
@@ -40,9 +40,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	private $table, $prefix, $description;
 
-	public function __construct($query, $moduleName) {
+	public function __construct( $query, $moduleName ) {
 
-		switch ($moduleName) {
+		switch ( $moduleName ) {
 			case self::LINKS :
 				$this->table = 'pagelinks';
 				$this->prefix = 'pl';
@@ -54,50 +54,50 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->description = 'template';
 				break;
 			default :
-				ApiBase :: dieDebug(__METHOD__, 'Unknown module name');
+				ApiBase :: dieDebug( __METHOD__, 'Unknown module name' );
 		}
 
-		parent :: __construct($query, $moduleName, $this->prefix);
+		parent :: __construct( $query, $moduleName, $this->prefix );
 	}
 
 	public function execute() {
 		$this->run();
 	}
 
-	public function executeGenerator($resultPageSet) {
-		$this->run($resultPageSet);
+	public function executeGenerator( $resultPageSet ) {
+		$this->run( $resultPageSet );
 	}
 
-	private function run($resultPageSet = null) {
+	private function run( $resultPageSet = null ) {
 
-		if ($this->getPageSet()->getGoodTitleCount() == 0)
+		if ( $this->getPageSet()->getGoodTitleCount() == 0 )
 			return;	// nothing to do
 
 		$params = $this->extractRequestParams();
 
-		$this->addFields(array (
+		$this->addFields( array (
 			$this->prefix . '_from AS pl_from',
 			$this->prefix . '_namespace AS pl_namespace',
 			$this->prefix . '_title AS pl_title'
-		));
+		) );
 
-		$this->addTables($this->table);
-		$this->addWhereFld($this->prefix . '_from', array_keys($this->getPageSet()->getGoodTitles()));
-		$this->addWhereFld($this->prefix . '_namespace', $params['namespace']);
+		$this->addTables( $this->table );
+		$this->addWhereFld( $this->prefix . '_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
 
-		if(!is_null($params['continue'])) {
-			$cont = explode('|', $params['continue']);
-			if(count($cont) != 3)
-				$this->dieUsage("Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue");
-			$plfrom = intval($cont[0]);
-			$plns = intval($cont[1]);
-			$pltitle = $this->getDB()->strencode($this->titleToKey($cont[2]));
-			$this->addWhere("{$this->prefix}_from > $plfrom OR ".
-					"({$this->prefix}_from = $plfrom AND ".
-					"({$this->prefix}_namespace > $plns OR ".
-					"({$this->prefix}_namespace = $plns AND ".
-					"{$this->prefix}_title >= '$pltitle')))");
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 3 )
+				$this->dieUsage( "Invalid continue param. You should pass the " .
+					"original value returned by the previous query", "_badcontinue" );
+			$plfrom = intval( $cont[0] );
+			$plns = intval( $cont[1] );
+			$pltitle = $this->getDB()->strencode( $this->titleToKey( $cont[2] ) );
+			$this->addWhere( "{$this->prefix}_from > $plfrom OR " .
+					"({$this->prefix}_from = $plfrom AND " .
+					"({$this->prefix}_namespace > $plns OR " .
+					"({$this->prefix}_namespace = $plns AND " .
+					"{$this->prefix}_title >= '$pltitle')))" );
 		}
 
 		# Here's some MySQL craziness going on: if you use WHERE foo='bar'
@@ -106,37 +106,37 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		# already. To work around this, we drop constant fields in the WHERE
 		# clause from the ORDER BY clause
 		$order = array();
-		if(count($this->getPageSet()->getGoodTitles()) != 1)
+		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 )
 			$order[] = "{$this->prefix}_from";
-		if(count($params['namespace']) != 1)
+		if ( count( $params['namespace'] ) != 1 )
 			$order[] = "{$this->prefix}_namespace";
 		$order[] = "{$this->prefix}_title";
-		$this->addOption('ORDER BY', implode(", ", $order));
-		$this->addOption('USE INDEX', "{$this->prefix}_from");
-		$this->addOption('LIMIT', $params['limit'] + 1);
+		$this->addOption( 'ORDER BY', implode( ", ", $order ) );
+		$this->addOption( 'USE INDEX', "{$this->prefix}_from" );
+		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$db = $this->getDB();
-		$res = $this->select(__METHOD__);
+		$res = $this->select( __METHOD__ );
 
-		if (is_null($resultPageSet)) {
+		if ( is_null( $resultPageSet ) ) {
 			$count = 0;
-			while ($row = $db->fetchObject($res)) {
-				if(++$count > $params['limit']) {
+			while ( $row = $db->fetchObject( $res ) ) {
+				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue',
+					$this->setContinueEnumParameter( 'continue',
 						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle($row->pl_title));
+						$this->keyToTitle( $row->pl_title ) );
 					break;
 				}
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle($row->pl_namespace, $row->pl_title));
-				$fit = $this->addPageSubItem($row->pl_from, $vals);
-				if(!$fit)
+				ApiQueryBase :: addTitleInfo( $vals, Title :: makeTitle( $row->pl_namespace, $row->pl_title ) );
+				$fit = $this->addPageSubItem( $row->pl_from, $vals );
+				if ( !$fit )
 				{
-					$this->setContinueEnumParameter('continue',
+					$this->setContinueEnumParameter( 'continue',
 						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle($row->pl_title));
+						$this->keyToTitle( $row->pl_title ) );
 					break;
 				}
 			}
@@ -144,21 +144,21 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 			$titles = array();
 			$count = 0;
-			while ($row = $db->fetchObject($res)) {
-				if(++$count > $params['limit']) {
+			while ( $row = $db->fetchObject( $res ) ) {
+				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue',
+					$this->setContinueEnumParameter( 'continue',
 						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle($row->pl_title));
+						$this->keyToTitle( $row->pl_title ) );
 					break;
 				}
-				$titles[] = Title :: makeTitle($row->pl_namespace, $row->pl_title);
+				$titles[] = Title :: makeTitle( $row->pl_namespace, $row->pl_title );
 			}
-			$resultPageSet->populateFromTitles($titles);
+			$resultPageSet->populateFromTitles( $titles );
 		}
 
-		$db->freeResult($res);
+		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams()

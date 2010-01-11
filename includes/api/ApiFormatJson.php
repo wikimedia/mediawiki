@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiFormatBase.php');
+	require_once ( 'ApiFormatBase.php' );
 }
 
 /**
@@ -35,15 +35,15 @@ class ApiFormatJson extends ApiFormatBase {
 
 	private $mIsRaw;
 
-	public function __construct($main, $format) {
-		parent :: __construct($main, $format);
-		$this->mIsRaw = ($format === 'rawfm');
+	public function __construct( $main, $format ) {
+		parent :: __construct( $main, $format );
+		$this->mIsRaw = ( $format === 'rawfm' );
 	}
 
 	public function getMimeType() {
 		$params = $this->extractRequestParams();
-		//callback: 		
-		if( $params['callback']){
+		// callback: 		
+		if ( $params['callback'] ) {
 			return 'text/javascript';
 		}
 		return 'application/json';
@@ -63,30 +63,30 @@ class ApiFormatJson extends ApiFormatBase {
 
 		$params = $this->extractRequestParams();
 		$callback = $params['callback'];
-		if(!is_null($callback)) {
-			$prefix = preg_replace("/[^][.\\'\\\"_A-Za-z0-9]/", "", $callback ) . "(";
+		if ( !is_null( $callback ) ) {
+			$prefix = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", "", $callback ) . "(";
 			$suffix = ")";
 		}
-		$this->printText( 
-			$prefix . 
-			FormatJson::encode( $this->getResultData(),	$this->getIsHtml() ) . 
+		$this->printText(
+			$prefix .
+			FormatJson::encode( $this->getResultData(),	$this->getIsHtml() ) .
 			$suffix );
 	}
 
 	public function getAllowedParams() {
 		return array (
-			'callback'  => null,				
+			'callback'  => null,
 		);
 	}
 
 	public function getParamDescription() {
 		return array (
-			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',			
+			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
 		);
 	}
 
 	public function getDescription() {
-		if ($this->mIsRaw)
+		if ( $this->mIsRaw )
 			return 'Output data with the debuging elements in JSON format' . parent :: getDescription();
 		else
 			return 'Output data in JSON format' . parent :: getDescription();

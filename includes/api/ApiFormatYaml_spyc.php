@@ -38,9 +38,9 @@ class Spyc {
 	 * @param $indent Integer: Pass in false to use the default, which is 2
 	 * @param $wordwrap Integer: Pass in 0 for no wordwrap, false for default (40)
 	 */
-	public static function YAMLDump($array,$indent = false,$wordwrap = false) {
+	public static function YAMLDump( $array, $indent = false, $wordwrap = false ) {
 		$spyc = new Spyc;
-		return $spyc->dump($array,$indent,$wordwrap);
+		return $spyc->dump( $array, $indent, $wordwrap );
 	}
 
 	/**
@@ -63,18 +63,18 @@ class Spyc {
 	 * @param $indent Integer: Pass in false to use the default, which is 2
 	 * @param $wordwrap Integer: Pass in 0 for no wordwrap, false for default (40)
 	 */
-	function dump($array,$indent = false,$wordwrap = false) {
+	function dump( $array, $indent = false, $wordwrap = false ) {
 		// Dumps to some very clean YAML.  We'll have to add some more features
 		// and options soon.  And better support for folding.
 
 		// New features and options.
-		if ($indent === false or !is_numeric($indent)) {
+		if ( $indent === false or !is_numeric( $indent ) ) {
 			$this->_dumpIndent = 2;
 		} else {
 			$this->_dumpIndent = $indent;
 		}
 
-		if ($wordwrap === false or !is_numeric($wordwrap)) {
+		if ( $wordwrap === false or !is_numeric( $wordwrap ) ) {
 			$this->_dumpWordWrap = 40;
 		} else {
 			$this->_dumpWordWrap = $wordwrap;
@@ -84,8 +84,8 @@ class Spyc {
 		$string = "---\n";
 
 		// Start at the base of the array and move through it.
-		foreach ($array as $key => $value) {
-			$string .= $this->_yamlize($key,$value,0);
+		foreach ( $array as $key => $value ) {
+			$string .= $this->_yamlize( $key, $value, 0 );
 		}
 		return $string;
 	}
@@ -110,18 +110,18 @@ class Spyc {
 	 * @param $value The value of the item
 	 * @param $indent The indent of the current node
 	 */
-	private function _yamlize($key,$value,$indent) {
-		if (is_array($value)) {
+	private function _yamlize( $key, $value, $indent ) {
+		if ( is_array( $value ) ) {
 			// It has children.  What to do?
 			// Make it the right kind of item
-			$string = $this->_dumpNode($key,null,$indent);
+			$string = $this->_dumpNode( $key, null, $indent );
 			// Add the indent
 			$indent += $this->_dumpIndent;
 			// Yamlize the array
-			$string .= $this->_yamlizeArray($value,$indent);
-		} elseif (!is_array($value)) {
+			$string .= $this->_yamlizeArray( $value, $indent );
+		} elseif ( !is_array( $value ) ) {
 			// It doesn't have children.  Yip.
-			$string = $this->_dumpNode($key,$value,$indent);
+			$string = $this->_dumpNode( $key, $value, $indent );
 		}
 		return $string;
 	}
@@ -132,11 +132,11 @@ class Spyc {
 	 * @param $array The array you want to convert
 	 * @param $indent The indent of the current level
 	 */
-	private function _yamlizeArray($array,$indent) {
-		if (is_array($array)) {
+	private function _yamlizeArray( $array, $indent ) {
+		if ( is_array( $array ) ) {
 			$string = '';
-			foreach ($array as $key => $value) {
-				$string .= $this->_yamlize($key,$value,$indent);
+			foreach ( $array as $key => $value ) {
+				$string .= $this->_yamlize( $key, $value, $indent );
 			}
 			return $string;
 		} else {
@@ -150,15 +150,15 @@ class Spyc {
 	 * @param $value The string to check
 	 * @return bool
 	 */
-	function _needLiteral($value) {
+	function _needLiteral( $value ) {
 		# Check whether the string contains # or : or begins with any of:
 		# [ - ? , [ ] { } ! * & | > ' " % @ ` ]
 		# or is a number or contains newlines
-		return (bool)(gettype($value) == "string" &&
-			(is_numeric($value)  ||
-			strpos($value, "\n") ||
-			preg_match("/[#:]/", $value) ||
-			preg_match("/^[-?,[\]{}!*&|>'\"%@`]/", $value)));
+		return (bool)( gettype( $value ) == "string" &&
+			( is_numeric( $value )  ||
+			strpos( $value, "\n" ) ||
+			preg_match( "/[#:]/", $value ) ||
+			preg_match( "/^[-?,[\]{}!*&|>'\"%@`]/", $value ) ) );
 
 	}
 
@@ -169,25 +169,25 @@ class Spyc {
 	 * @param $value The value of the item
 	 * @param $indent The indent of the current node
 	 */
-	private function _dumpNode($key,$value,$indent) {
+	private function _dumpNode( $key, $value, $indent ) {
 		// do some folding here, for blocks
-		if ($this->_needLiteral($value)) {
-			$value = $this->_doLiteralBlock($value,$indent);
+		if ( $this->_needLiteral( $value ) ) {
+			$value = $this->_doLiteralBlock( $value, $indent );
 		} else {
-			$value  = $this->_doFolding($value,$indent);
+			$value  = $this->_doFolding( $value, $indent );
 		}
 
-		$spaces = str_repeat(' ',$indent);
+		$spaces = str_repeat( ' ', $indent );
 
-		if (is_int($key)) {
+		if ( is_int( $key ) ) {
 			// It's a sequence
-			if ($value !== '' && !is_null($value))
-				$string = $spaces.'- '.$value."\n";
+			if ( $value !== '' && !is_null( $value ) )
+				$string = $spaces . '- ' . $value . "\n";
 			else
 				$string = $spaces . "-\n";
 		} else {
 			// It's mapped
-			if ($value !== '' && !is_null($value))
+			if ( $value !== '' && !is_null( $value ) )
 				$string = $spaces . $key . ': ' . $value . "\n";
 			else
 				$string = $spaces . $key . ":\n";
@@ -201,13 +201,13 @@ class Spyc {
 	 * @param $value
 	 * @param $indent int The value of the indent
 	 */
-	private function _doLiteralBlock($value,$indent) {
-		$exploded = explode("\n",$value);
+	private function _doLiteralBlock( $value, $indent ) {
+		$exploded = explode( "\n", $value );
 		$newValue = '|-';
 		$indent  += $this->_dumpIndent;
-		$spaces   = str_repeat(' ',$indent);
-		foreach ($exploded as $line) {
-			$newValue .= "\n" . $spaces . trim($line);
+		$spaces   = str_repeat( ' ', $indent );
+		foreach ( $exploded as $line ) {
+			$newValue .= "\n" . $spaces . trim( $line );
 		}
 		return $newValue;
 	}
@@ -217,17 +217,17 @@ class Spyc {
 	 * @return string
 	 * @param $value The string you wish to fold
 	 */
-	private function _doFolding($value,$indent) {
+	private function _doFolding( $value, $indent ) {
 		// Don't do anything if wordwrap is set to 0
-		if ($this->_dumpWordWrap === 0) {
+		if ( $this->_dumpWordWrap === 0 ) {
 			return $value;
 		}
 
-		if (strlen($value) > $this->_dumpWordWrap) {
+		if ( strlen( $value ) > $this->_dumpWordWrap ) {
 			$indent += $this->_dumpIndent;
-			$indent = str_repeat(' ',$indent);
-			$wrapped = wordwrap($value,$this->_dumpWordWrap,"\n$indent");
-			$value   = ">-\n".$indent.$wrapped;
+			$indent = str_repeat( ' ', $indent );
+			$wrapped = wordwrap( $value, $this->_dumpWordWrap, "\n$indent" );
+			$value   = ">-\n" . $indent . $wrapped;
 		}
 		return $value;
 	}

@@ -22,9 +22,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ( "ApiBase.php" );
 }
 
 
@@ -33,36 +33,36 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiUserrights extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function execute() {
 		global $wgUser;
 		$params = $this->extractRequestParams();
-		if(is_null($params['user']))
-			$this->dieUsageMsg(array('missingparam', 'user'));
-		if(is_null($params['token']))
-			$this->dieUsageMsg(array('missingparam', 'token'));
+		if ( is_null( $params['user'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
+		if ( is_null( $params['token'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
 		$form = new UserrightsPage;
-		$user = $form->fetchUser($params['user']);
-		if($user instanceof WikiErrorMsg)
-			$this->dieUsageMsg(array_merge(
+		$user = $form->fetchUser( $params['user'] );
+		if ( $user instanceof WikiErrorMsg )
+			$this->dieUsageMsg( array_merge(
 				(array)$user->getMessageKey(),
-				$user->getMessageArgs()));
-		if(!$wgUser->matchEditToken($params['token'], $user->getName()))
-			$this->dieUsageMsg(array('sessionfailure'));
+				$user->getMessageArgs() ) );
+		if ( !$wgUser->matchEditToken( $params['token'], $user->getName() ) )
+			$this->dieUsageMsg( array( 'sessionfailure' ) );
 		
 		$r['user'] = $user->getName();
-		list($r['added'], $r['removed']) =
+		list( $r['added'], $r['removed'] ) =
 			$form->doSaveUserGroups(
 				$user, (array)$params['add'],
-				(array)$params['remove'], $params['reason']);
+				(array)$params['remove'], $params['reason'] );
 
-		$this->getResult()->setIndexedTagName($r['added'], 'group');
-		$this->getResult()->setIndexedTagName($r['removed'], 'group');
-		$this->getResult()->addValue(null, $this->getModuleName(), $r);
+		$this->getResult()->setIndexedTagName( $r['added'], 'group' );
+		$this->getResult()->setIndexedTagName( $r['removed'], 'group' );
+		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 
 	public function mustBePosted() {

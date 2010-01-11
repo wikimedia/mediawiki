@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ( "ApiBase.php" );
 }
 
 /**
@@ -33,12 +33,12 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiOpenSearch extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function getCustomPrinter() {
-		return $this->getMain()->createPrinterByName('json');
+		return $this->getMain()->createPrinterByName( 'json' );
 	}
 
 	public function execute() {
@@ -50,20 +50,20 @@ class ApiOpenSearch extends ApiBase {
 		$suggest = $params['suggest'];
 
 		// MWSuggest or similar hit
-		if( $suggest && !$wgEnableOpenSearchSuggest )
+		if ( $suggest && !$wgEnableOpenSearchSuggest )
 			$srchres = array();
 		else {
 			// Open search results may be stored for a very long
 			// time
-			$this->getMain()->setCacheMaxAge(1200);
+			$this->getMain()->setCacheMaxAge( 1200 );
 
 			$srchres = PrefixSearch::titleSearch( $search, $limit,
 				$namespaces );
 		}
 		// Set top level elements
 		$result = $this->getResult();
-		$result->addValue(null, 0, $search);
-		$result->addValue(null, 1, $srchres);
+		$result->addValue( null, 0, $search );
+		$result->addValue( null, 1, $srchres );
 	}
 
 	public function getAllowedParams() {

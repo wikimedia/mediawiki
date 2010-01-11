@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ( "ApiQueryBase.php" );
 }
 
 /**
@@ -35,8 +35,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryLangLinks extends ApiQueryBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'll');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'll' );
 	}
 
 	public function execute() {
@@ -44,52 +44,52 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			return;
 
 		$params = $this->extractRequestParams();
-		$this->addFields(array (
+		$this->addFields( array (
 			'll_from',
 			'll_lang',
 			'll_title'
-		));
+		) );
 
-		$this->addTables('langlinks');
-		$this->addWhereFld('ll_from', array_keys($this->getPageSet()->getGoodTitles()));
-		if(!is_null($params['continue'])) {
-			$cont = explode('|', $params['continue']);
-			if(count($cont) != 2)
-				$this->dieUsage("Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue");
-			$llfrom = intval($cont[0]);
-			$lllang = $this->getDB()->strencode($cont[1]);
-			$this->addWhere("ll_from > $llfrom OR ".
-					"(ll_from = $llfrom AND ".
-					"ll_lang >= '$lllang')");
+		$this->addTables( 'langlinks' );
+		$this->addWhereFld( 'll_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 2 )
+				$this->dieUsage( "Invalid continue param. You should pass the " .
+					"original value returned by the previous query", "_badcontinue" );
+			$llfrom = intval( $cont[0] );
+			$lllang = $this->getDB()->strencode( $cont[1] );
+			$this->addWhere( "ll_from > $llfrom OR " .
+					"(ll_from = $llfrom AND " .
+					"ll_lang >= '$lllang')" );
 		}
 		# Don't order by ll_from if it's constant in the WHERE clause
-		if(count($this->getPageSet()->getGoodTitles()) == 1)
-			$this->addOption('ORDER BY', 'll_lang');
+		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 )
+			$this->addOption( 'ORDER BY', 'll_lang' );
 		else
-			$this->addOption('ORDER BY', 'll_from, ll_lang');
-		$this->addOption('LIMIT', $params['limit'] + 1);
-		$res = $this->select(__METHOD__);
+			$this->addOption( 'ORDER BY', 'll_from, ll_lang' );
+		$this->addOption( 'LIMIT', $params['limit'] + 1 );
+		$res = $this->select( __METHOD__ );
 
 		$count = 0;
 		$db = $this->getDB();
-		while ($row = $db->fetchObject($res)) {
-			if (++$count > $params['limit']) {
+		while ( $row = $db->fetchObject( $res ) ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('continue', "{$row->ll_from}|{$row->ll_lang}");
+				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$row->ll_lang}" );
 				break;
 			}
-			$entry = array('lang' => $row->ll_lang);
-			ApiResult :: setContent($entry, $row->ll_title);
-			$fit = $this->addPageSubItem($row->ll_from, $entry);
-			if(!$fit)
+			$entry = array( 'lang' => $row->ll_lang );
+			ApiResult :: setContent( $entry, $row->ll_title );
+			$fit = $this->addPageSubItem( $row->ll_from, $entry );
+			if ( !$fit )
 			{
-				$this->setContinueEnumParameter('continue', "{$row->ll_from}|{$row->ll_lang}");
+				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$row->ll_lang}" );
 				break;
 			}
 		}
-		$db->freeResult($res);
+		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {

@@ -22,9 +22,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ( "ApiBase.php" );
 }
 
 /**
@@ -32,53 +32,53 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiRollback extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function execute() {
 		$params = $this->extractRequestParams();
 
 		$titleObj = null;
-		if(!isset($params['title']))
-			$this->dieUsageMsg(array('missingparam', 'title'));
-		if(!isset($params['user']))
-			$this->dieUsageMsg(array('missingparam', 'user'));
-		if(!isset($params['token']))
-			$this->dieUsageMsg(array('missingparam', 'token'));
+		if ( !isset( $params['title'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
+		if ( !isset( $params['user'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
+		if ( !isset( $params['token'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
-		$titleObj = Title::newFromText($params['title']);
-		if(!$titleObj)
-			$this->dieUsageMsg(array('invalidtitle', $params['title']));
-		if(!$titleObj->exists())
-			$this->dieUsageMsg(array('notanarticle'));
+		$titleObj = Title::newFromText( $params['title'] );
+		if ( !$titleObj )
+			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		if ( !$titleObj->exists() )
+			$this->dieUsageMsg( array( 'notanarticle' ) );
 
-		#We need to be able to revert IPs, but getCanonicalName rejects them
-		$username = User::isIP($params['user'])
+		# We need to be able to revert IPs, but getCanonicalName rejects them
+		$username = User::isIP( $params['user'] )
 			? $params['user']
-			: User::getCanonicalName($params['user']);
-		if(!$username)
-			$this->dieUsageMsg(array('invaliduser', $params['user']));
+			: User::getCanonicalName( $params['user'] );
+		if ( !$username )
+			$this->dieUsageMsg( array( 'invaliduser', $params['user'] ) );
 
-		$articleObj = new Article($titleObj);
-		$summary = (isset($params['summary']) ? $params['summary'] : "");
+		$articleObj = new Article( $titleObj );
+		$summary = ( isset( $params['summary'] ) ? $params['summary'] : "" );
 		$details = null;
-		$retval = $articleObj->doRollback($username, $summary, $params['token'], $params['markbot'], $details);
+		$retval = $articleObj->doRollback( $username, $summary, $params['token'], $params['markbot'], $details );
 
-		if($retval)
+		if ( $retval )
 			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg(reset($retval));
+			$this->dieUsageMsg( reset( $retval ) );
 
 		$info = array(
 			'title' => $titleObj->getPrefixedText(),
-			'pageid' => intval($details['current']->getPage()),
+			'pageid' => intval( $details['current']->getPage() ),
 			'summary' => $details['summary'],
-			'revid' => intval($details['newid']),
-			'old_revid' => intval($details['current']->getID()),
-			'last_revid' => intval($details['target']->getID())
+			'revid' => intval( $details['newid'] ),
+			'old_revid' => intval( $details['current']->getID() ),
+			'last_revid' => intval( $details['target']->getID() )
 		);
 
-		$this->getResult()->addValue(null, $this->getModuleName(), $info);
+		$this->getResult()->addValue( null, $this->getModuleName(), $info );
 	}
 
 	public function mustBePosted() { return true; }

@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiBase.php');
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -35,21 +35,21 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiWatch extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	public function execute() {
 		global $wgUser;
-		if(!$wgUser->isLoggedIn())
-			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
+		if ( !$wgUser->isLoggedIn() )
+			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
 		$params = $this->extractRequestParams();
-		$title = Title::newFromText($params['title']);
-		if(!$title)
-			$this->dieUsageMsg(array('invalidtitle', $params['title']));
-		$article = new Article($title);
-		$res = array('title' => $title->getPrefixedText());
-		if($params['unwatch'])
+		$title = Title::newFromText( $params['title'] );
+		if ( !$title )
+			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		$article = new Article( $title );
+		$res = array( 'title' => $title->getPrefixedText() );
+		if ( $params['unwatch'] )
 		{
 			$res['unwatched'] = '';
 			$success = $article->doUnwatch();
@@ -59,14 +59,14 @@ class ApiWatch extends ApiBase {
 			$res['watched'] = '';
 			$success = $article->doWatch();
 		}
-		if(!$success)
-			$this->dieUsageMsg(array('hookaborted'));
-		$this->getResult()->addValue(null, $this->getModuleName(), $res);
+		if ( !$success )
+			$this->dieUsageMsg( array( 'hookaborted' ) );
+		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
 	public function isWriteMode() {
 		return true;
-	} 
+	}
 
 	public function getAllowedParams() {
 		return array (

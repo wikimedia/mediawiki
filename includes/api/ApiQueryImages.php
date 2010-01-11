@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ( "ApiQueryBase.php" );
 }
 
 /**
@@ -35,69 +35,69 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
 
-	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'im');
+	public function __construct( $query, $moduleName ) {
+		parent :: __construct( $query, $moduleName, 'im' );
 	}
 
 	public function execute() {
 		$this->run();
 	}
 
-	public function executeGenerator($resultPageSet) {
-		$this->run($resultPageSet);
+	public function executeGenerator( $resultPageSet ) {
+		$this->run( $resultPageSet );
 	}
 
-	private function run($resultPageSet = null) {
+	private function run( $resultPageSet = null ) {
 
-		if ($this->getPageSet()->getGoodTitleCount() == 0)
+		if ( $this->getPageSet()->getGoodTitleCount() == 0 )
 			return;	// nothing to do
 
 		$params = $this->extractRequestParams();
-		$this->addFields(array (
+		$this->addFields( array (
 			'il_from',
 			'il_to'
-		));
+		) );
 
-		$this->addTables('imagelinks');
-		$this->addWhereFld('il_from', array_keys($this->getPageSet()->getGoodTitles()));
-		if(!is_null($params['continue'])) {
-			$cont = explode('|', $params['continue']);
-			if(count($cont) != 2)
-				$this->dieUsage("Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue");
-			$ilfrom = intval($cont[0]);
-			$ilto = $this->getDB()->strencode($this->titleToKey($cont[1]));
-			$this->addWhere("il_from > $ilfrom OR ".
-					"(il_from = $ilfrom AND ".
-					"il_to >= '$ilto')");
+		$this->addTables( 'imagelinks' );
+		$this->addWhereFld( 'il_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 2 )
+				$this->dieUsage( "Invalid continue param. You should pass the " .
+					"original value returned by the previous query", "_badcontinue" );
+			$ilfrom = intval( $cont[0] );
+			$ilto = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$this->addWhere( "il_from > $ilfrom OR " .
+					"(il_from = $ilfrom AND " .
+					"il_to >= '$ilto')" );
 		}
 		# Don't order by il_from if it's constant in the WHERE clause
-		if(count($this->getPageSet()->getGoodTitles()) == 1)
-			$this->addOption('ORDER BY', 'il_to');
+		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 )
+			$this->addOption( 'ORDER BY', 'il_to' );
 		else
-			$this->addOption('ORDER BY', 'il_from, il_to');
-		$this->addOption('LIMIT', $params['limit'] + 1);
+			$this->addOption( 'ORDER BY', 'il_from, il_to' );
+		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$db = $this->getDB();
-		$res = $this->select(__METHOD__);
+		$res = $this->select( __METHOD__ );
 
-		if (is_null($resultPageSet)) {
+		if ( is_null( $resultPageSet ) ) {
 			$count = 0;
-			while ($row = $db->fetchObject($res)) {
-				if (++$count > $params['limit']) {
+			while ( $row = $db->fetchObject( $res ) ) {
+				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue', $row->il_from .
-							'|' . $this->keyToTitle($row->il_to));
+					$this->setContinueEnumParameter( 'continue', $row->il_from .
+							'|' . $this->keyToTitle( $row->il_to ) );
 					break;
 				}
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle(NS_FILE, $row->il_to));
-				$fit = $this->addPageSubItem($row->il_from, $vals);
-				if(!$fit)
+				ApiQueryBase :: addTitleInfo( $vals, Title :: makeTitle( NS_FILE, $row->il_to ) );
+				$fit = $this->addPageSubItem( $row->il_from, $vals );
+				if ( !$fit )
 				{
-					$this->setContinueEnumParameter('continue', $row->il_from .
-							'|' . $this->keyToTitle($row->il_to));
+					$this->setContinueEnumParameter( 'continue', $row->il_from .
+							'|' . $this->keyToTitle( $row->il_to ) );
 					break;
 				}
 			}
@@ -105,20 +105,20 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 			$titles = array();
 			$count = 0;
-			while ($row = $db->fetchObject($res)) {
-				if (++$count > $params['limit']) {
+			while ( $row = $db->fetchObject( $res ) ) {
+				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue', $row->il_from .
-							'|' . $this->keyToTitle($row->il_to));
+					$this->setContinueEnumParameter( 'continue', $row->il_from .
+							'|' . $this->keyToTitle( $row->il_to ) );
 					break;
 				}
-				$titles[] = Title :: makeTitle(NS_FILE, $row->il_to);
+				$titles[] = Title :: makeTitle( NS_FILE, $row->il_to );
 			}
-			$resultPageSet->populateFromTitles($titles);
+			$resultPageSet->populateFromTitles( $titles );
 		}
 
-		$db->freeResult($res);
+		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {

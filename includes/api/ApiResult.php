@@ -23,9 +23,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ('ApiBase.php');
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -53,8 +53,8 @@ class ApiResult extends ApiBase {
 	 * Constructor
 	 * @param $main ApiMain object
 	 */
-	public function __construct($main) {
-		parent :: __construct($main, 'result');
+	public function __construct( $main ) {
+		parent :: __construct( $main, 'result' );
 		$this->mIsRawMode = false;
 		$this->mCheckingSize = true;
 		$this->reset();
@@ -98,14 +98,14 @@ class ApiResult extends ApiBase {
 	 * @param $value mixed
 	 * @return int
 	 */
-	public static function size($value) {
+	public static function size( $value ) {
 		$s = 0;
-		if(is_array($value))
-			foreach($value as $v)
-				$s += self::size($v);
-		else if(!is_object($value))
+		if ( is_array( $value ) )
+			foreach ( $value as $v )
+				$s += self::size( $v );
+		else if ( !is_object( $value ) )
 			// Objects can't always be cast to string
-			$s = strlen($value);
+			$s = strlen( $value );
 		return $s;
 	}
 
@@ -140,21 +140,21 @@ class ApiResult extends ApiBase {
 	 * @param $name string Index of $arr to add $value at
 	 * @param $value mixed
 	 */
-	public static function setElement(& $arr, $name, $value) {
-		if ($arr === null || $name === null || $value === null || !is_array($arr) || is_array($name))
-			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
+	public static function setElement( & $arr, $name, $value ) {
+		if ( $arr === null || $name === null || $value === null || !is_array( $arr ) || is_array( $name ) )
+			ApiBase :: dieDebug( __METHOD__, 'Bad parameter' );
 
-		if (!isset ($arr[$name])) {
+		if ( !isset ( $arr[$name] ) ) {
 			$arr[$name] = $value;
 		}
-		elseif (is_array($arr[$name]) && is_array($value)) {
-			$merged = array_intersect_key($arr[$name], $value);
-			if (!count($merged))
+		elseif ( is_array( $arr[$name] ) && is_array( $value ) ) {
+			$merged = array_intersect_key( $arr[$name], $value );
+			if ( !count( $merged ) )
 				$arr[$name] += $value;
 			else
-				ApiBase :: dieDebug(__METHOD__, "Attempting to merge element $name");
+				ApiBase :: dieDebug( __METHOD__, "Attempting to merge element $name" );
 		} else
-			ApiBase :: dieDebug(__METHOD__, "Attempting to add element $name=$value, existing value is {$arr[$name]}");
+			ApiBase :: dieDebug( __METHOD__, "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
 	}
 
 	/**
@@ -165,15 +165,15 @@ class ApiResult extends ApiBase {
 	 *  as a sub item of $arr. Use this parameter to create elements in
 	 *  format <elem>text</elem> without attributes
 	 */
-	public static function setContent(& $arr, $value, $subElemName = null) {
-		if (is_array($value))
-			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
-		if (is_null($subElemName)) {
-			ApiResult :: setElement($arr, '*', $value);
+	public static function setContent( & $arr, $value, $subElemName = null ) {
+		if ( is_array( $value ) )
+			ApiBase :: dieDebug( __METHOD__, 'Bad parameter' );
+		if ( is_null( $subElemName ) ) {
+			ApiResult :: setElement( $arr, '*', $value );
 		} else {
-			if (!isset ($arr[$subElemName]))
+			if ( !isset ( $arr[$subElemName] ) )
 				$arr[$subElemName] = array ();
-			ApiResult :: setElement($arr[$subElemName], '*', $value);
+			ApiResult :: setElement( $arr[$subElemName], '*', $value );
 		}
 	}
 
@@ -184,12 +184,12 @@ class ApiResult extends ApiBase {
 	 * @param $arr array
 	 * @param $tag string Tag name
 	 */
-	public function setIndexedTagName(& $arr, $tag) {
+	public function setIndexedTagName( & $arr, $tag ) {
 		// In raw mode, add the '_element', otherwise just ignore
-		if (!$this->getIsRawMode())
+		if ( !$this->getIsRawMode() )
 			return;
-		if ($arr === null || $tag === null || !is_array($arr) || is_array($tag))
-			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
+		if ( $arr === null || $tag === null || !is_array( $arr ) || is_array( $tag ) )
+			ApiBase :: dieDebug( __METHOD__, 'Bad parameter' );
 		// Do not use setElement() as it is ok to call this more than once
 		$arr['_element'] = $tag;
 	}
@@ -199,16 +199,16 @@ class ApiResult extends ApiBase {
 	 * @param $arr array
 	 * @param $tag string Tag name
 	 */
-	public function setIndexedTagName_recursive(&$arr, $tag)
+	public function setIndexedTagName_recursive( &$arr, $tag )
 	{
-			if(!is_array($arr))
+			if ( !is_array( $arr ) )
 					return;
-			foreach($arr as &$a)
+			foreach ( $arr as &$a )
 			{
-					if(!is_array($a))
+					if ( !is_array( $a ) )
 							continue;
-					$this->setIndexedTagName($a, $tag);
-					$this->setIndexedTagName_recursive($a, $tag);
+					$this->setIndexedTagName( $a, $tag );
+					$this->setIndexedTagName_recursive( $a, $tag );
 			}
 	}
 
@@ -221,15 +221,15 @@ class ApiResult extends ApiBase {
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
 		$data = & $this->mData;
-		foreach((array)$path as $p) {
+		foreach ( (array)$path as $p ) {
 			if ( !isset( $data[$p] ) ) {
 				$data[$p] = array();
 			}
 			$data = & $data[$p];
 		}
-		if(is_null($data))
+		if ( is_null( $data ) )
 			return;
-		$this->setIndexedTagName($data, $tag);
+		$this->setIndexedTagName( $data, $tag );
 	}
 
 	/**
@@ -239,34 +239,34 @@ class ApiResult extends ApiBase {
 	 * If $name is empty, the $value is added as a next list element data[] = $value
 	 * @return bool True if $value fits in the result, false if not
 	 */
-	public function addValue($path, $name, $value) {
+	public function addValue( $path, $name, $value ) {
 		global $wgAPIMaxResultSize;
 		$data = & $this->mData;
-		if( $this->mCheckingSize ) {
-			$newsize = $this->mSize + self::size($value);
-			if($newsize > $wgAPIMaxResultSize)
+		if ( $this->mCheckingSize ) {
+			$newsize = $this->mSize + self::size( $value );
+			if ( $newsize > $wgAPIMaxResultSize )
 				return false;
 			$this->mSize = $newsize;
 		}
 
-		if (!is_null($path)) {
-			if (is_array($path)) {
-				foreach ($path as $p) {
-					if (!isset ($data[$p]))
+		if ( !is_null( $path ) ) {
+			if ( is_array( $path ) ) {
+				foreach ( $path as $p ) {
+					if ( !isset ( $data[$p] ) )
 						$data[$p] = array ();
 					$data = & $data[$p];
 				}
 			} else {
-				if (!isset ($data[$path]))
+				if ( !isset ( $data[$path] ) )
 					$data[$path] = array ();
 				$data = & $data[$path];
 			}
 		}
 
-		if (!$name)
+		if ( !$name )
 			$data[] = $value;	// Add list element
 		else
-			ApiResult :: setElement($data, $name, $value);	// Add named element
+			ApiResult :: setElement( $data, $name, $value );	// Add named element
 		return true;
 	}
 
@@ -277,16 +277,16 @@ class ApiResult extends ApiBase {
 	 * @param $path array
 	 * @param $name string
 	 */
-	public function unsetValue($path, $name) {
+	public function unsetValue( $path, $name ) {
 		$data = & $this->mData;
-		if(!is_null($path))
-			foreach((array)$path as $p) {
-				if(!isset($data[$p]))
+		if ( !is_null( $path ) )
+			foreach ( (array)$path as $p ) {
+				if ( !isset( $data[$p] ) )
 					return;
 				$data = & $data[$p];
 			}
-		$this->mSize -= self::size($data[$name]);
-		unset($data[$name]);
+		$this->mSize -= self::size( $data[$name] );
+		unset( $data[$name] );
 	}
 
 	/**
@@ -294,22 +294,22 @@ class ApiResult extends ApiBase {
 	 */
 	public function cleanUpUTF8()
 	{
-		array_walk_recursive($this->mData, array('ApiResult', 'cleanUp_helper'));
+		array_walk_recursive( $this->mData, array( 'ApiResult', 'cleanUp_helper' ) );
 	}
 
 	/**
 	 * Callback function for cleanUpUTF8()
 	 */
-	private static function cleanUp_helper(&$s)
+	private static function cleanUp_helper( &$s )
 	{
-		if(!is_string($s))
+		if ( !is_string( $s ) )
 			return;
 		global $wgContLang;
-		$s = $wgContLang->normalize($s);
+		$s = $wgContLang->normalize( $s );
 	}
 
 	public function execute() {
-		ApiBase :: dieDebug(__METHOD__, 'execute() is not supported on Result object');
+		ApiBase :: dieDebug( __METHOD__, 'execute() is not supported on Result object' );
 	}
 
 	public function getVersion() {
@@ -318,25 +318,25 @@ class ApiResult extends ApiBase {
 }
 
 /* For compatibility with PHP versions < 5.1.0, define our own array_intersect_key function. */
-if (!function_exists('array_intersect_key')) {
-	function array_intersect_key($isec, $keys) {
+if ( !function_exists( 'array_intersect_key' ) ) {
+	function array_intersect_key( $isec, $keys ) {
 		$argc = func_num_args();
 
-		if ($argc > 2) {
-			for ($i = 1; $isec && $i < $argc; $i++) {
-				$arr = func_get_arg($i);
+		if ( $argc > 2 ) {
+			for ( $i = 1; $isec && $i < $argc; $i++ ) {
+				$arr = func_get_arg( $i );
 
-				foreach (array_keys($isec) as $key) {
-					if (!isset($arr[$key]))
-						unset($isec[$key]);
+				foreach ( array_keys( $isec ) as $key ) {
+					if ( !isset( $arr[$key] ) )
+						unset( $isec[$key] );
 				}
 			}
 
 			return $isec;
 		} else {
 			$res = array();
-			foreach (array_keys($isec) as $key) {
-				if (isset($keys[$key]))
+			foreach ( array_keys( $isec ) as $key ) {
+				if ( isset( $keys[$key] ) )
 					$res[$key] = $isec[$key];
 			}
 

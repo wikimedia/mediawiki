@@ -23,8 +23,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
-	require_once ('ApiBase.php');
+if ( !defined( 'MEDIAWIKI' ) ) {
+	require_once ( 'ApiBase.php' );
 }
 
 /**
@@ -33,8 +33,8 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiPurge extends ApiBase {
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent :: __construct( $main, $action );
 	}
 
 	/**
@@ -43,23 +43,23 @@ class ApiPurge extends ApiBase {
 	public function execute() {
 		global $wgUser;
 		$params = $this->extractRequestParams();
-		if(!$wgUser->isAllowed('purge'))
-			$this->dieUsageMsg(array('cantpurge'));
-		if(!isset($params['titles']))
-			$this->dieUsageMsg(array('missingparam', 'titles'));
+		if ( !$wgUser->isAllowed( 'purge' ) )
+			$this->dieUsageMsg( array( 'cantpurge' ) );
+		if ( !isset( $params['titles'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'titles' ) );
 		$result = array();
-		foreach($params['titles'] as $t) {
+		foreach ( $params['titles'] as $t ) {
 			$r = array();
-			$title = Title::newFromText($t);
-			if(!$title instanceof Title)
+			$title = Title::newFromText( $t );
+			if ( !$title instanceof Title )
 			{
 				$r['title'] = $t;
 				$r['invalid'] = '';
 				$result[] = $r;
 				continue;
 			}
-			ApiQueryBase::addTitleInfo($r, $title);
-			if(!$title->exists())
+			ApiQueryBase::addTitleInfo( $r, $title );
+			if ( !$title->exists() )
 			{
 				$r['missing'] = '';
 				$result[] = $r;
@@ -70,8 +70,8 @@ class ApiPurge extends ApiBase {
 			$r['purged'] = '';
 			$result[] = $r;
 		}
-		$this->getResult()->setIndexedTagName($result, 'page');
-		$this->getResult()->addValue(null, $this->getModuleName(), $result);
+		$this->getResult()->setIndexedTagName( $result, 'page' );
+		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
 	public function mustBePosted() {
