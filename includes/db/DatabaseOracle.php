@@ -999,14 +999,6 @@ class DatabaseOracle extends DatabaseBase {
 		return str_replace( "'", "''", $s );
 	}
 
-/*
-	function encodeBlob($b) {
-		return $b; //new ORABlob($b);
-	}
-	function decodeBlob($b) {
-		return $b; //return $b->load();
-	}
-*/
 	function addQuotes( $s ) {
 		global $wgLang;
 		if ( isset( $wgLang->mLoaded ) && $wgLang->mLoaded ) {
