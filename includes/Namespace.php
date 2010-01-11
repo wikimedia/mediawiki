@@ -28,7 +28,7 @@ $wgCanonicalNamespaceNames = array(
 	NS_CATEGORY_TALK    => 'Category_talk',
 );
 
-if( is_array( $wgExtraNamespaces ) ) {
+if( isset( $wgExtraNamespaces ) && is_array( $wgExtraNamespaces ) ) {
 	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
 }
 

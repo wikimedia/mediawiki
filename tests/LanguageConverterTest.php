@@ -1,16 +1,22 @@
 <?php
 
+require 'ProxyTools.php';
+
 class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 	protected $lang = null;
-	protected  $lc = null;
+	protected $lc = null;
 
 	function setUp() {
+		global $wgMemc;
+		$wgMemc = new FakeMemCachedClient;
 		$this->lang = new LanguageTest();
 		$this->lc = new TestConverter( $this->lang, 'tg',
 									   array( 'tg', 'tg-latn' ) );
 	}
 
 	function tearDown() {
+		global $wgMemc;
+		unset($wgMemc);
 		unset($this->lc);
 		unset($this->lang);
 	}

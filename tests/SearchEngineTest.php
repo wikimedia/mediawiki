@@ -3,7 +3,6 @@
 require_once 'MediaWiki_TestCase.php';
 
 /** @todo document
- * @group Broken
  */
 
 class SearchEngineTest extends MediaWiki_TestCase {
@@ -82,55 +81,55 @@ SQL
 	}
 
 	function testTextSearch() {
-		$this->assertFalse( is_null( $this->db ), "Can't find a database to test with." );
-		if( !is_null( $this->db ) ) {
-			$this->assertEquals(
-				array( 'Smithee' ),
-				$this->fetchIds( $this->search->searchText( 'smithee' ) ),
-				"Plain search failed" );
+		if( is_null( $this->db ) ) {
+			$this->markTestIncomplete( "Can't find a database to test with." );
 		}
+		$this->assertEquals(
+			array( 'Smithee' ),
+			$this->fetchIds( $this->search->searchText( 'smithee' ) ),
+			"Plain search failed" );
 	}
 
 	function testTextPowerSearch() {
-		$this->assertFalse( is_null( $this->db ), "Can't find a database to test with." );
-		if( !is_null( $this->db ) ) {
-			$this->search->setNamespaces( array( 0, 1, 4 ) );
-			$this->assertEquals(
-				array(
-					'Smithee',
-					'Talk:Main Page',
-				),
-				$this->fetchIds( $this->search->searchText( 'smithee' ) ),
-				"Power search failed" );
+		if( is_null( $this->db ) ) {
+			$this->markTestIncomplete( "Can't find a database to test with." );
 		}
+		$this->search->setNamespaces( array( 0, 1, 4 ) );
+		$this->assertEquals(
+			array(
+				'Smithee',
+				'Talk:Main Page',
+			),
+			$this->fetchIds( $this->search->searchText( 'smithee' ) ),
+			"Power search failed" );
 	}
 
 	function testTitleSearch() {
-		$this->assertFalse( is_null( $this->db ), "Can't find a database to test with." );
-		if( !is_null( $this->db ) ) {
-			$this->assertEquals(
-				array(
-					'Alan Smithee',
-					'Smithee',
-				),
-				$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
-				"Title search failed" );
+		if( is_null( $this->db ) ) {
+			$this->markTestIncomplete( "Can't find a database to test with." );
 		}
+		$this->assertEquals(
+			array(
+				'Alan Smithee',
+				'Smithee',
+			),
+			$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
+			"Title search failed" );
 	}
 
 	function testTextTitlePowerSearch() {
-		$this->assertFalse( is_null( $this->db ), "Can't find a database to test with." );
-		if( !is_null( $this->db ) ) {
-			$this->search->setNamespaces( array( 0, 1, 4 ) );
-			$this->assertEquals(
-				array(
-					'Alan Smithee',
-					'Smithee',
-					'Talk:Smithee',
-				),
-				$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
-				"Title power search failed" );
+		if( is_null( $this->db ) ) {
+			$this->markTestIncomplete( "Can't find a database to test with." );
 		}
+		$this->search->setNamespaces( array( 0, 1, 4 ) );
+		$this->assertEquals(
+			array(
+				'Alan Smithee',
+				'Smithee',
+				'Talk:Smithee',
+			),
+			$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
+			"Title power search failed" );
 	}
 
 }
