@@ -6939,7 +6939,7 @@ Taiwan
 !! end
 
 !! test
-Adding explicit conversion rule for title (T flag)
+Testing that changing the language variant here in the tests actually works
 !! options
 language=zh variant=zh showtitle
 !! input
