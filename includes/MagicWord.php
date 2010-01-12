@@ -320,19 +320,19 @@ class MagicWord {
 	}
 
 	/**
-	 * Returns the number of times the text contains the word
-	 * @return int
+	 * Returns true if the text contains the word
+	 * @return bool
 	 */
 	function match( $text ) {
-		return preg_match( $this->getRegex(), $text );
+		return (bool)preg_match( $this->getRegex(), $text );
 	}
 
 	/**
-	 * Returns if the text starts with the word
-	 * @return int
+	 * Returns true if the text starts with the word
+	 * @return bool
 	 */
 	function matchStart( $text ) {
-		return preg_match( $this->getRegexStart(), $text );
+		return (bool)preg_match( $this->getRegexStart(), $text );
 	}
 
 	/**
