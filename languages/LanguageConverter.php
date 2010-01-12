@@ -192,7 +192,7 @@ class LanguageConverter {
 		// see if the preference is set in the request
 		$ret = $wgRequest->getText( 'variant' );
 
-		if ( $ret ) {
+		if ( !$ret ) {
 			$ret = $wgRequest->getVal( 'uselang' );
 		}
 
@@ -539,28 +539,69 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Convert a text fragment.
+	 * Convert a text array.
 	 *
-	 * @param string $text text to be converted
+	 * @param string $tarray text array to be converted
 	 * @param string $plang preferred variant
 	 * @return string converted text
 	 * @private
 	 */
-	function convertFragment( $text, $plang ) {
-		$marked = explode( $this->mMarkup['begin'], $text, 2 );
+	function convertArray( $tarray, $plang ) {
+		$beginlen = strlen( $this->mMarkup['begin'] );
 		$converted = '';
+		$middle = '';
 
-		$converted .= $this->autoConvert( $marked[0], $plang );
+		foreach ( $tarray as $text ) {
+			// for nested use
+			if( $middle ) {
+				$text = $middle . $text;
+				$middle = '';
+			}
 
-		if ( array_key_exists( 1, $marked ) ) {
-			$crule = new ConverterRule( $marked[1], $this );
+			// find first and last begin markup(s)
+			$firstbegin = strpos( $text, $this->mMarkup['begin'] );
+			$lastbegin = strrpos( $text, $this->mMarkup['begin'] );
+
+			// if $text contains no begin markup,
+			// append $text restore end markup to $converted
+			if( $firstbegin === false ) {
+				$converted .= $text;
+				$converted .= $this->mMarkup['end'];
+				continue;
+			}
+
+			// split $text into $left and $right,
+			// omit the begin markup in $right
+			$left = substr( $text, 0, $firstbegin );
+			$right = substr( $text, $lastbegin + $beginlen );
+
+			// always convert $left and append it to $converted
+			// for nested case, $left is blank but can also be converted
+			$converted .= $this->autoConvert( $left, $plang );
+
+			// parse and apply manual rule from $right
+			$crule = new ConverterRule( $right, $this );
 			$crule->parse( $plang );
-			$converted .= $crule->getDisplay();
+			$right = $crule->getDisplay();
 			$this->applyManualConv( $crule );
-		} else {
-			$converted .= $this->mMarkup['end'];
-		}
 
+			// if $text contains only one begin markup,
+			// append $left and $right to $converted.
+			//
+			// otherwise it's a nested use like "-{-{}-}-",
+			// this should be handled properly.
+			if( $firstbegin === $lastbegin ) {
+				$converted .= $right;
+			}
+			else {
+				// not omit the first begin markup
+				$middle = substr( $text, $firstbegin, $lastbegin - $firstbegin );
+				$middle .= $right;
+				//print $middle;
+			}
+		}
+		// Remove the last delimiter (wasn't real)
+	    $converted = substr( $converted, 0, - strlen( $this->mMarkup['end'] ) );
 		return $converted;
 	}
 
@@ -586,14 +627,8 @@ class LanguageConverter {
 		$plang = $this->getPreferredVariant();
 
 		$tarray = StringUtils::explode( $this->mMarkup['end'], $text );
-		$converted = '';
+		$converted = $this->convertArray( $tarray, $plang );
 
-		foreach ( $tarray as $txt ) {
-			$converted .= $this->convertFragment( $txt, $plang );
-		}
-
-		// Remove the last delimiter (wasn't real)
-	    $converted = substr( $converted, 0, - strlen( $this->mMarkup['end'] ) );
 		return $converted;
 	}
 

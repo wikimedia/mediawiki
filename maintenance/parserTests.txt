@@ -6962,6 +6962,17 @@ Raw: -{R|zh:China;zh-tw:Taiwan}-
 !! end
 
 !! test
+Nested using of manual convert syntax
+!! options
+language=zh variant=zh-hk
+!! input
+Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiwan;zh-hk:H-{ong}- K-{}-ong;}-;}-!
+!! result
+<p>Nested: Hello Hong Kong!
+</p>
+!! end
+
+!! test
 Do not convert roman numbers to language variants
 !! options
 language=sr variant=sr-ec
