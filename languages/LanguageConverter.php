@@ -563,9 +563,9 @@ class LanguageConverter {
 			$lastbegin = strrpos( $text, $this->mMarkup['begin'] );
 
 			// if $text contains no begin markup,
-			// append $text restore end markup to $converted
+			// append $text to $converted and restore end markup
 			if( $firstbegin === false ) {
-				$converted .= $text;
+				$converted .= $this->autoConvert( $text, $plang );
 				$converted .= $this->mMarkup['end'];
 				continue;
 			}
