@@ -692,6 +692,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'nav-login-createaccount'    => 'Vytvorenie konta / prihlásenie',
 'loginprompt'                => 'Na prihlásenie do {{GRAMMAR:genitív|{{SITENAME}}}} musíte mať zapnuté koláčiky (cookies).',
 'userlogin'                  => 'Vytvorenie konta / prihlásenie',
+'userloginnocreate'          => 'Prihlásiť',
 'logout'                     => 'Odhlásiť',
 'userlogout'                 => 'Odhlásiť',
 'notloggedin'                => 'Neprihlásený/á',
@@ -1048,6 +1049,7 @@ podrobnosti môžu byť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME
 Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
 'rev-deleted-no-diff'         => "Tento rozdiel nemôžete zobraziť, pretože bol '''zmazaný'''.
 Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+'rev-suppressed-no-diff'      => "Nemôžete zobraziť tento rozdiel, pretože jedna z revízií bola '''zmazaná'''.",
 'rev-deleted-unhide-diff'     => "Jedna z revízií tohto rozdielu bola '''zmazaná'''.
 Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť].",
@@ -2421,6 +2423,7 @@ $1 je už zablokovaný. Chcete zmeniť voľby blokovania?',
 'ipb_cant_unblock'                => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
 'ipb_blocked_as_range'            => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',
 'ip_range_invalid'                => 'Neplatný IP rozsah.',
+'ip_range_toolarge'               => 'Bloky rozsahov väčšie ako /$1 nie sú povolené.',
 'blockme'                         => 'Zablokuj ma',
 'proxyblocker'                    => 'Blokovač proxy',
 'proxyblocker-disabled'           => 'Táto funkcia je vypnutá.',

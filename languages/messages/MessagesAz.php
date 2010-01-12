@@ -610,9 +610,8 @@ Bəzi şablonlar əlavə olunmayacaq.",
 'last'                   => 'son',
 'page_first'             => 'birinci',
 'page_last'              => 'sonuncu',
-'histlegend'             => 'Fərqə bax: müqayisə etmək istədiyiniz versiyaların yanındakı dairələri işarələyin və "Enter"ə və ya "müqayisə et" düyməsinə basın.<br />
-Açıqlama: (hh) = hal-hazırkı versiya ilə aradakı fərq,
-(son) = əvvəlki versiya ilə aradakı fərq, k = kiçik redaktə.',
+'histlegend'             => "Fərqə bax: müqayisə etmək istədiyiniz versiyaların yanındakı dairələri işarələyin və \"Enter\"ə və ya \"müqayisə et\" düyməsinə basın.<br />
+Açıqlama: '''(hh)''' — hal-hazırkı versiya ilə aradakı fərq, '''(son)''' — əvvəlki versiya ilə aradakı fərq, '''k''' — kiçik redaktə.",
 'history-fieldset-title' => 'Tarixçəni nəzərdən keçir',
 'histfirst'              => 'Ən əvvəlki',
 'histlast'               => 'Ən sonuncu',

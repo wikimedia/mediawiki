@@ -236,24 +236,30 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'retypenew'   => 'Isissutissaq nutaaq allaqqiuk',
 
 # Edit pages
-'summary'         => 'Allaaserinera:',
-'minoredit'       => 'Annikitsumik allannguutaavoq',
-'watchthis'       => 'Allaaserisaq ersersimatiguk',
-'savearticle'     => 'Toqqoruk',
-'preview'         => 'Isikkua',
-'showpreview'     => 'Isikkua takuuk',
-'showdiff'        => 'Allannguutit',
-'anoneditwarning' => "'''Mianersoqqussut:''' Isersimanak sulilerputit.
+'summary'                  => 'Allaaserinera:',
+'minoredit'                => 'Annikitsumik allannguutaavoq',
+'watchthis'                => 'Allaaserisaq ersersimatiguk',
+'savearticle'              => 'Toqqoruk',
+'preview'                  => 'Isikkua',
+'showpreview'              => 'Isikkua takuuk',
+'showdiff'                 => 'Allannguutit',
+'anoneditwarning'          => "'''Mianersoqqussut:''' Isersimanak sulilerputit.
 IP adressit nuisassaaq massuma quppernerup oqaluttuassartaani.",
-'accmailtitle'    => 'Password-i nassiunneqarsimavoq.',
-'accmailtext'     => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
-'newarticle'      => '(Nuutaq)',
-'noarticletext'   => 'Maannamut una qupperneq allaffigineqanngilaq.
+'accmailtitle'             => 'Password-i nassiunneqarsimavoq.',
+'accmailtext'              => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
+'newarticle'               => '(Nuutaq)',
+'anontalkpagetext'         => "---- ''Manna tassaavoq oqalliffik atuisumit anonym-iusumeersumit, konto-mik pilersitsisimanngitsumik imalt. atorneq ajugaanik.
+Taamaattumik IP-adressia kinaanerattut atortariaqassavarput.
+IP-adressi pigineqarsinnaavoq atuisunit arlalinnit.
+Atuisuuguit anonym-iusoq, isumaqarlutillu soqutiginngisannik oqaaseqarfigineqarlutit, qinnuigivatsigit [[Special:UserLogin/signup|atuisutut pilersitsissallutit]] aamma [[Special:UserLogin|iserlutit]], taava siunissami paarlattoornernik atuisuni arlalinni pinaveersaartoqarniassammat.''",
+'noarticletext'            => 'Maannamut una qupperneq allaffigineqanngilaq.
 Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisinnaavutit]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log-ini ujaasisinnavutillu] imaluunniit [{{fullurl:{{FULLPAGENAME}}|action=edit}} qupperneq pilersissinnaavat]</span>.',
-'previewnote'     => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
-'editing'         => 'Aaqqissorpaa $1',
-'yourtext'        => 'Allatat',
-'templatesused'   => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',
+'previewnote'              => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
+'editing'                  => 'Aaqqissorpaa $1',
+'yourtext'                 => 'Allatat',
+'protectedpagewarning'     => "'''Mianersoqqussut: Una qupperneq illersugaavoq, administratorit kisimik aaqqissorsinnaavaat.'''",
+'semiprotectedpagewarning' => "'''Malugiuk:''' Qupperneq parnaaqqavoq, atuisutut nalunaarsimasut kisimik allanngortitersinnaavaat.",
+'templatesused'            => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',
 
 # History pages
 'currentrev'             => 'Maanna taamaannera',
