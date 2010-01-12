@@ -42,13 +42,6 @@ class SkinMonoBook extends SkinTemplate {
 
 		$out->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );
 
-		# FIXME: What is this?  Should it apply to all skins?
-		$path = htmlspecialchars( $wgStylePath );
-		$out->addScript( <<<HTML
-<!--[if lt IE 7]><script type="$wgJsMimeType" src="$path/common/IEFixes.js?$wgStyleVersion"></script>
-	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-HTML
-		);
 	}
 }
 

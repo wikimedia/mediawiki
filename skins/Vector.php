@@ -48,17 +48,6 @@ class SkinVector extends SkinTemplate {
 				$out->addStyle( 'vector/' . $style, 'screen' );
 			}
 		}
-		// Append common IE fixes, which perhaps should be included in all
-		// skins, but for now it seems each skin needs to include them
-		// explicitly
-		$out->addScript(
-			'<!--[if lt IE 7]><script type="' . $wgJsMimeType . '" src="' .
-				$wgStylePath .
-				'/common/IEFixes.js?' .
-				$wgStyleVersion .
-				'"></script>' .
-				'<meta http-equiv="imagetoolbar" content="no" /><![endif]-->'
-		);
 	}
 	/**
 	 * Builds a structured array of links used for tabs and menus

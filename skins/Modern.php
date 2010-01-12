@@ -36,13 +36,6 @@ class SkinModern extends SkinTemplate {
 		$out->addStyle( 'modern/main.css', 'screen' );
 		$out->addStyle( 'modern/print.css', 'print' );
 		$out->addStyle( 'modern/rtl.css', 'screen', '', 'rtl' );
-
-		$path = htmlspecialchars( $wgStylePath );
-		$out->addScript( <<<HTML
-<!--[if lt IE 7]><script type="$wgJsMimeType" src="$path/common/IEFixes.js?$wgStyleVersion"></script>
-	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-HTML
-		);
 	}
 }
 
