@@ -679,17 +679,9 @@ class Linker {
 					wfProfileOut( __METHOD__ );
 					return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
 				}
+				
+				$href = $this->getUploadUrl( $title, $query );
 
-				$q = 'wpDestFile=' . $title->getPartialUrl();
-				if( $query != '' )
-					$q .= '&' . $query;
-
-				if( $wgUploadNavigationUrl ) {
-					$href = wfAppendQuery( $wgUploadNavigationUrl, $q );
-				} else {
-					$upload = SpecialPage::getTitleFor( 'Upload' );
-					$href = $upload->getLocalUrl( $q );
-				}
 
 				list( $inside, $trail ) = self::splitTrail( $trail );
 
@@ -706,6 +698,27 @@ class Linker {
 		} else {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
+	}
+	
+	/**
+	 * Get the URL to upload a certain file
+	 * 
+	 * @param $destFile Title Title of the file to upload
+	 * @param $query string Urlencoded query string to prepend
+	 * @return string Urlencoded URL
+	 */
+	protected function getUploadUrl( $destFile, $query = '' ) {
+		global $wgUploadNavigationUrl;
+		$q = 'wpDestFile=' . $destFile->getPartialUrl();
+		if( $query != '' )
+			$q .= '&' . $query;
+
+		if( $wgUploadNavigationUrl ) {
+			return wfAppendQuery( $wgUploadNavigationUrl, $q );
+		} else {
+			$upload = SpecialPage::getTitleFor( 'Upload' );
+			return $upload->getLocalUrl( $q );
+		}	
 	}
 
 	/**
@@ -729,7 +742,8 @@ class Linker {
 				$url  = $img->getURL();
 				$class = 'internal';
 			} else {
-				return $this->makeBrokenImageLinkObj( $title, $text, '', '', '', '', $time==true );
+				$url = $this->getUploadUrl( $title );
+				$class = 'new';
 			}
 			$alt = htmlspecialchars( $title->getText() );
 			if( $text == '' ) {
