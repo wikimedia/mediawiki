@@ -124,7 +124,7 @@ class LanguageConverter {
 	 * @public
 	 */
 	function getVariantFallbacks( $v ) {
-		if ( isset( $this->mVariantFallbacks[$v] ) ) {
+		if ( array_key_exists( $v, $this->mVariantFallbacks ) ) {
 			return $this->mVariantFallbacks[$v];
 		}
 		return $this->mMainLanguageCode;
@@ -142,15 +142,15 @@ class LanguageConverter {
 
 		$req = $this->getURLVariant();
 
-		if ( $fromUser && !isset( $req ) ) {
+		if ( $fromUser && !$req ) {
 			$req = $this->getUserVariant();
 		}
 
-		if ( $fromHeader && !isset( $req ) ) {
+		if ( $fromHeader && !$req ) {
 			$req = $this->getHeaderVariant();
 		}
 
-		if ( $wgDefaultLanguageVariant && !isset( $req ) ) {
+		if ( $wgDefaultLanguageVariant && !$req ) {
 			$req = $this->validateVariant( $wgDefaultLanguageVariant );
 		}
 
@@ -158,7 +158,7 @@ class LanguageConverter {
 		// not memoized (i.e. there return value is not cached) since
 		// new information might appear during processing after this
 		// is first called.
-		if ( isset( $req ) ) {
+		if ( $req ) {
 			return $req;
 		}
 		return $this->mMainLanguageCode;
@@ -170,7 +170,7 @@ class LanguageConverter {
 	 * @returns mixed returns the variant if it is valid, null otherwise
 	 */
 	function validateVariant( $v = null ) {
-		if ( isset( $v ) && in_array( $v, $this->mVariants ) ) {
+		if ( $v !== null && in_array( $v, $this->mVariants ) ) {
 			return $v;
 		}
 		return null;
@@ -192,7 +192,7 @@ class LanguageConverter {
 		// see if the preference is set in the request
 		$ret = $wgRequest->getText( 'variant' );
 
-		if ( !isset( $ret ) ) {
+		if ( $ret ) {
 			$ret = $wgRequest->getVal( 'uselang' );
 		}
 
@@ -246,7 +246,7 @@ class LanguageConverter {
 		// http header.
 
 		$acceptLanguage = $wgRequest->getHeader( 'Accept-Language' );
-		if ( !$acceptLanguage ) { // not using isset because getHeader returns false
+		if ( !$acceptLanguage ) {
 			return null;
 		}
 
@@ -269,7 +269,7 @@ class LanguageConverter {
 			// strip whitespace
 			$language = trim( $language );
 			$this->mHeaderVariant = $this->validateVariant( $language );
-			if ( isset( $this->mHeaderVariant ) ) {
+			if ( $this->mHeaderVariant ) {
 				break;
 			}
 
@@ -286,12 +286,12 @@ class LanguageConverter {
 			}
 		}
 
-		if ( !isset( $this->mHeaderVariant ) ) {
+		if ( !$this->mHeaderVariant ) {
 			// process fallback languages now
 			$fallback_languages = array_unique( $fallback_languages );
 			foreach ( $fallback_languages as $language ) {
 				$this->mHeaderVariant = $this->validateVariant( $language );
-				if ( isset( $this->mHeaderVariant ) ) {
+				if ( $this->mHeaderVariant ) {
 					break;
 				}
 			}
@@ -710,7 +710,7 @@ class LanguageConverter {
 			wfProfileOut( __METHOD__ . '-cache' );
 		}
 		if ( !$this->mTables
-			 || !isset( $this->mTables[self::CACHE_VERSION_KEY] ) ) {
+			 || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
 			wfProfileIn( __METHOD__ . '-recache' );
 			// not in cache, or we need a fresh reload.
 			// we will first load the default tables

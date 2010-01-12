@@ -81,10 +81,11 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true,  true));
 
 		$wgRequest->setVal('variant', 'tg');
+		$wgUser->setOption('variant', 'tg-latn');
 		$this->lc = new TestConverter( $this->lang, 'tg',
 									   array( 'tg', 'tg-latn' ) );
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true,  false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true,  true));
+		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true,  false));
+		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true,  true));
 
 		$wgRequest->setVal('variant', null);
 		$wgDefaultLanguageVariant = 'tg-latn';
