@@ -1941,7 +1941,7 @@ $wgTexvc = './math/texvc';
   * for transparent background use value 'Transparent' for alpha transparency or
   * 'transparent' for binary transparency.
   */
-$wgTexvcBackgroundColor = 'rgb 1.0 1.0 1.0';
+$wgTexvcBackgroundColor = 'transparent';
 
 /**
  * Normally when generating math images, we double-check that the
