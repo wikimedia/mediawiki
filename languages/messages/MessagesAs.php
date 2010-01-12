@@ -925,6 +925,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 'grouppage-sysop' => '{{ns:project}}:প্রবন্ধক',
 
+# Rights
+'right-read'       => 'পৃষ্ঠাসমূহ পঢ়ক',
+'right-edit'       => 'পৃষ্ঠাসমূহ সম্পাদনা কৰক',
+'right-createpage' => 'পৃষ্ঠাসমূহ সৃষ্টি কৰক (কধাবতৰা পৃষ্ঠা নহয়)',
+'right-createtalk' => 'কথাবতৰা পৃষ্ঠা সৃষ্টি কৰক',
+
 # User rights log
 'rightslog' => 'সভ্যৰ অধিকাৰৰ লেখ',
 
@@ -982,6 +988,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'listfiles'             => 'ফাইলৰ তালিকা',
 'listfiles_date'        => 'তাৰিখ',
 'listfiles_name'        => 'নাম',
+'listfiles_user'        => 'সদস্য',
+'listfiles_size'        => 'মাত্ৰা',
 'listfiles_description' => 'বিৱৰণ',
 'listfiles_count'       => 'সংস্কৰণ',
 
@@ -1099,6 +1107,9 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'অনুসৰণভুক্ত কৰা হৈ আছে.....',
 'unwatching' => 'অনুসৰণমুক্ত কৰা হৈ আছে.....',
+
+'enotif_impersonal_salutation' => '{{SITENAME}} সডস্য',
+'enotif_anon_editor'           => 'বেনামী সডস্য $1',
 
 # Delete
 'deletepage'            => 'পৃষ্ঠা বিলোপ কৰক',

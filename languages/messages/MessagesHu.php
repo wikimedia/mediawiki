@@ -705,6 +705,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'nav-login-createaccount'    => 'Bejelentkezés / fiók létrehozása',
 'loginprompt'                => "Engedélyezned kell a sütiket (''cookie''), hogy bejelentkezhess a(z) {{SITENAME}} wikibe.",
 'userlogin'                  => 'Bejelentkezés / fiók létrehozása',
+'userloginnocreate'          => 'Bejelentkezés',
 'logout'                     => 'Kijelentkezés',
 'userlogout'                 => 'Kijelentkezés',
 'notloggedin'                => 'Nem vagy bejelentkezve',
@@ -1058,6 +1059,7 @@ Mivel adminisztrátor vagy, még mindig megtekintheted.
 További részleteket az [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.",
 'rev-deleted-no-diff'         => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
 További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+'rev-suppressed-no-diff'      => "Nem nézheted meg ezt a változtatást, mert az egyik változatot '''törölték'''.",
 'rev-deleted-unhide-diff'     => "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
 További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
@@ -1912,9 +1914,8 @@ Az <s>áthúzott</s> sorok a lista elkészülése óta javítva lettek.',
 'ancientpages'            => 'Régóta nem változott szócikkek',
 'move'                    => 'Átnevezés',
 'movethispage'            => 'Nevezd át ezt a lapot',
-'unusedimagestext'        => '<p>Vedd figyelembe, hogy más lapok - például a nemzetközi {{grammar:k|{{SITENAME}}}} - közvetlenül
-hivatkozhatnak egy fájl URL-jére, ezért szerepelhet itt annak
-ellenére, hogy aktívan használják.</p>',
+'unusedimagestext'        => 'Az alábbi fájlokat nem használjuk egyetlen oldalon sem.
+Vedd figyelembe, hogy más weboldalak közvetlenül hivatkozhatnak egy fájl URL-jére, ezért szerepelhet itt annak ellenére, hogy aktívan használják.',
 'unusedcategoriestext'    => 'A következő kategóriákban egyetlen szócikk, illetve alkategória sem szerepel.',
 'notargettitle'           => 'Nincs cél',
 'notargettext'            => 'Nem adtad meg annak a lapnak vagy szerkesztőnek a nevét, amin a műveletet végre akartad hajtani.',
@@ -2128,7 +2129,7 @@ Visszajelzés és további segítség:
 'exblank'                => 'a lap üres volt',
 'delete-confirm'         => '$1 törlése',
 'delete-legend'          => 'Törlés',
-'historywarning'         => "'''Figyelem:''' a lapnak, amit törölni készülsz, $1 változattal rendelkező laptörténete van:",
+'historywarning'         => "'''Figyelem:''' a lapnak, amit törölni készülsz, körülbelül $1 változattal rendelkező laptörténete van:",
 'confirmdeletetext'      => 'Egy lapot vagy fájlt készülsz törölni a teljes laptörténetével együtt.
 Kérjük, erősítsd meg, hogy valóban ezt szeretnéd tenni, átlátod a következményeit, és hogy a műveletet a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]] összhangban végzed.',
 'actioncomplete'         => 'Művelet végrehajtva',
@@ -2413,9 +2414,9 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'reblock-logentry'                => 'megváltoztatta [[$1]] blokkjának beállításait, a blokk lejárta: $2 $3',
 'blocklogtext'                    => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:IPBlockList|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry'                 => '„$1” blokkolása feloldva',
-'block-log-flags-anononly'        => 'csak névtelen felhasználók',
-'block-log-flags-nocreate'        => 'a fióklétrehozás letiltott',
-'block-log-flags-noautoblock'     => 'az automatikus blokkolás letiltott',
+'block-log-flags-anononly'        => 'csak anonok',
+'block-log-flags-nocreate'        => 'nem hozhat létre új fiókot',
+'block-log-flags-noautoblock'     => 'autoblokk kikapcsolva',
 'block-log-flags-noemail'         => 'e-mail blokkolva',
 'block-log-flags-nousertalk'      => 'saját vitalapját sem szerkesztheti',
 'block-log-flags-angry-autoblock' => 'bővített automatikus blokk bekapcsolva',
@@ -2431,6 +2432,7 @@ $1 már blokkolva van. Meg szeretnéd változtatni a beállításokat?',
 'ipb_cant_unblock'                => 'Hiba: A(z) $1 blokkolási azonosító nem található. Lehet, hogy már feloldották a blokkolását.',
 'ipb_blocked_as_range'            => 'Hiba: a(z) $1 IP-cím nem blokkolható közvetlenül, és nem lehet feloldani. A(z) $2 tartomány részeként van blokkolva, amely feloldható.',
 'ip_range_invalid'                => 'Érvénytelen IP-tartomány.',
+'ip_range_toolarge'               => 'Nem engedélyezettek azok a tartományblokkok, melyek nagyobbak mint /$1.',
 'blockme'                         => 'Saját magam blokkolása',
 'proxyblocker'                    => 'Proxyblokkoló',
 'proxyblocker-disabled'           => 'Ez a funkció le van tiltva.',

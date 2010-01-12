@@ -1,5 +1,5 @@
 <?php
-/** Capiznon (Capiceño)
+/** Capiceño (Capiceño)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -9,8 +9,6 @@
  *
  * @author Oxyzen
  */
-
-$fallback = 'hil';
 
 $messages = array(
 # User preference toggles
