@@ -16,7 +16,6 @@
  * @maintainers fdcn <fdcn64@gmail.com>, shinjiman <shinjiman@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 class LanguageConverter {
-	var $mPreferredVariant = ''; // The User's preferred variant
 	var $mMainLanguageCode;
 	var $mVariants, $mVariantFallbacks, $mVariantNames;
 	var $mTablesLoaded = false;
@@ -30,8 +29,10 @@ class LanguageConverter {
 	var $mFlags;
 	var $mDescCodeSep = ':', $mDescVarSep = ';';
 	var $mUcfirst = false;
-	var $mHeaderVariant;
 	var $mConvRuleTitle = false;
+	var $mURLVariant;
+	var $mUserVariant;
+	var $mHeaderVariant;
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -137,53 +138,94 @@ class LanguageConverter {
 	 * @public
 	 */
 	function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
-		global $wgUser, $wgRequest, $wgVariantArticlePath,
-			$wgDefaultLanguageVariant, $wgOut;
+		global $wgDefaultLanguageVariant;
 
-		// see if the preference is set in the request
-		$req = $wgRequest->getText( 'variant' );
+		$req = $this->getURLVariant();
 
-		if ( !$req ) {
-			$req = $wgRequest->getVal( 'uselang' );
-		}
-
-		if ( $fromUser && !$req ) {
+		if ( $fromUser && !isset( $req ) ) {
 			$req = $this->getUserVariant();
 		}
 
-		if ( $fromHeader && !$req ) {
+		if ( $fromHeader && !isset( $req ) ) {
 			$req = $this->getHeaderVariant();
 		}
 
-		if ( $wgDefaultLanguageVariant && !$req ) {
-			$req = $wgDefaultLanguageVariant;
+		if ( $wgDefaultLanguageVariant && !isset( $req ) ) {
+			$req = $this->validateVariant( $wgDefaultLanguageVariant );
 		}
 
-		if ( in_array( $req, $this->mVariants ) ) {
+		// This function, unlike the other get*Variant functions, is
+		// not memoized (i.e. there return value is not cached) since
+		// new information might appear during processing after this
+		// is first called.
+		if ( isset( $req ) ) {
 			return $req;
 		}
 		return $this->mMainLanguageCode;
 	}
 
 	/**
-	 * Determine the user has a variant set.
+	 * Validate the variant
+	 * @param string $v the variant to validate
+	 * @returns mixed returns the variant if it is valid, null otherwise
+	 */
+	function validateVariant( $v = null ) {
+		if ( isset( $v ) && in_array( $v, $this->mVariants ) ) {
+			return $v;
+		}
+		return null;
+	}
+
+	/**
+	 * Get the variant specified in the URL
+	 *
+	 * @returns mixed variant if one found, false otherwise.
+	 */
+	function getURLVariant() {
+		global $wgRequest;
+		$ret = null;
+
+		if ( $this->mURLVariant ) {
+			return $this->mURLVariant;
+		}
+
+		// see if the preference is set in the request
+		$ret = $wgRequest->getText( 'variant' );
+
+		if ( !isset( $ret ) ) {
+			$ret = $wgRequest->getVal( 'uselang' );
+		}
+
+		return $this->mURLVariant = $this->validateVariant( $ret );
+	}
+
+	/**
+	 * Determine if the user has a variant set.
 	 *
 	 * @returns mixed variant if one found, false otherwise.
 	 */
 	function getUserVariant() {
 		global $wgUser;
+		$ret = null;
+
+		// memoizing this function wreaks havoc on parserTest.php
+		/* if ( $this->mUserVariant ) { */
+		/* 	return $this->mUserVariant; */
+		/* } */
 
 		// get language variant preference from logged in users
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
 		if ( $wgUser->isLoggedIn() )  {
-			return $wgUser->getOption( 'variant' );
+			$ret = $wgUser->getOption( 'variant' );
 		}
 		else {
 			// figure out user lang without constructing wgLang to avoid
 			// infinite recursion
-			return $wgUser->getOption( 'language' );
+			$ret = $wgUser->getOption( 'language' );
 		}
+
+		return $this->mUserVariant = $this->validateVariant( $ret );
 	}
 
 
@@ -194,24 +236,22 @@ class LanguageConverter {
 	 */
 	function getHeaderVariant() {
 		global $wgRequest;
+		$ret = null;
 
 		if ( $this->mHeaderVariant ) {
 			return $this->mHeaderVariant;
 		}
 
 		// see if some supported language variant is set in the
-		// http header, but we don't set the mPreferredVariant
-		// variable in case this is called before the user's
-		// preference is loaded
+		// http header.
 
 		$acceptLanguage = $wgRequest->getHeader( 'Accept-Language' );
-		if ( !$acceptLanguage ) {
-			return false;
+		if ( !$acceptLanguage ) { // not using isset because getHeader returns false
+			return null;
 		}
 
 		// explode by comma
 		$result = explode( ',', strtolower( $acceptLanguage ) );
-
 		$languages = array();
 
 		foreach ( $result as $elem ) {
@@ -228,32 +268,36 @@ class LanguageConverter {
 		foreach ( $languages as $language ) {
 			// strip whitespace
 			$language = trim( $language );
-			if ( in_array( $language, $this->mVariants ) ) {
-				$this->mHeaderVariant = $language;
-				return $language;
-			} else {
-				// To see if there are fallbacks of current language.
-				// We record these fallback variants, and process
-				// them later.
-				$fallbacks = $this->getVariantFallbacks( $language );
-				if ( is_string( $fallbacks ) ) {
-					$fallback_languages[] = $fallbacks;
-				} elseif ( is_array( $fallbacks ) ) {
-					$fallback_languages =
-						array_merge( $fallback_languages,
-									 $fallbacks );
+			$this->mHeaderVariant = $this->validateVariant( $language );
+			if ( isset( $this->mHeaderVariant ) ) {
+				break;
+			}
+
+			// To see if there are fallbacks of current language.
+			// We record these fallback variants, and process
+			// them later.
+			$fallbacks = $this->getVariantFallbacks( $language );
+			if ( is_string( $fallbacks ) ) {
+				$fallback_languages[] = $fallbacks;
+			} elseif ( is_array( $fallbacks ) ) {
+				$fallback_languages =
+					array_merge( $fallback_languages,
+								 $fallbacks );
+			}
+		}
+
+		if ( !isset( $this->mHeaderVariant ) ) {
+			// process fallback languages now
+			$fallback_languages = array_unique( $fallback_languages );
+			foreach ( $fallback_languages as $language ) {
+				$this->mHeaderVariant = $this->validateVariant( $language );
+				if ( isset( $this->mHeaderVariant ) ) {
+					break;
 				}
 			}
 		}
 
-		// process fallback languages now
-		$fallback_languages = array_unique( $fallback_languages );
-		foreach ( $fallback_languages as $language ) {
-			if ( in_array( $language, $this->mVariants ) ) {
-				$this->mHeaderVariant = $language;
-				return $language;
-			}
-		}
+		return $this->mHeaderVariant;
 	}
 
 	/**
@@ -295,9 +339,9 @@ class LanguageConverter {
 
 		if ( !$toVariant ) {
 			$toVariant = $this->getPreferredVariant();
-		}
-		if ( !in_array( $toVariant, $this->mVariants ) ) {
-			return $text;
+			if ( !$toVariant ) {
+				return $text;
+			}
 		}
 
 		/* we convert everything except:
@@ -457,7 +501,7 @@ class LanguageConverter {
 		$convTable = $convRule->getConvTable();
 		$action = $convRule->getRulesAction();
 		foreach ( $convTable as $variant => $pair ) {
-			if ( !in_array( $variant, $this->mVariants ) ) {
+			if ( !$this->validateVariant( $variant ) ) {
 				continue;
 			}
 
@@ -851,7 +895,7 @@ class LanguageConverter {
 			$t = explode( '/', $title, 3 );
 			$c = count( $t );
 			if ( $c > 1 && $t[0] == 'Conversiontable' ) {
-				if ( in_array( $t[1], $this->mVariants ) ) {
+				if ( $this->validateVariant( $t[1] ) ) {
 					$this->reloadTables();
 				}
 			}
