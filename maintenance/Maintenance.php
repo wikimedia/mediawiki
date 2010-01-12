@@ -98,6 +98,7 @@ abstract class Maintenance {
 	 */
 	public function __construct() {
 		$this->addDefaultParams();
+		register_shutdown_function( array( $this, 'outputChanneled' ), false );
 	}
 
 	/**
@@ -214,14 +215,14 @@ abstract class Maintenance {
 	 * Throw some output to the user. Scripts can call this with no fears,
 	 * as we handle all --quiet stuff here
 	 * @param $out String The text to show to the user
+	 * @param $channel Mixed Unique identifier for the channel. See function outputChanneled.
 	 */
-	protected function output( $out ) {
+	protected function output( $out, $channel = null ) {
 		if( $this->mQuiet ) {
 			return;
 		}
-		$f = fopen( 'php://stdout', 'w' );
-		fwrite( $f, $out );
-		fclose( $f );
+		$out = preg_replace( '/\n\z/', '', $out );
+		$this->outputChanneled( $out, $channel );
 	}
 
 	/**
@@ -231,6 +232,7 @@ abstract class Maintenance {
 	 * @param $die boolean If true, go ahead and die out.
 	 */
 	protected function error( $err, $die = false ) {
+		$this->outputChanneled( false );
 		if ( php_sapi_name() == 'cli' ) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
@@ -239,6 +241,45 @@ abstract class Maintenance {
 			fclose( $f );
 		}
 		if( $die ) die();
+	}
+
+	private $atLineStart = true;
+	private $lastChannel = null;
+	
+	/**
+	 * Message outputter with channeled message support. Messages on the
+	 * same channel are concatenated, but any intervening messages in another
+	 * channel start a new line.
+	 * @param $msg String The message without trailing newline
+	 * @param $channel Channel identifier or null for no channel. Channel comparison uses ===.
+	 */
+	public function outputChanneled( $msg, $channel = null ) {
+		$handle = fopen( 'php://stdout', 'w' ); 
+
+		if ( $msg === false ) {
+			// For cleanup
+			if ( !$this->atLineStart ) fwrite( $handle, "\n" );
+			fclose( $handle );
+			return;
+		}
+
+		// End the current line if necessary
+		if ( !$this->atLineStart && $channel !== $this->lastChannel ) {
+			fwrite( $handle, "\n" );
+		}
+
+		fwrite( $handle, $msg );
+
+		$this->atLineStart = false;
+		if ( $channel === null ) {
+			// For unchanneled messages, output trailing newline immediately
+			fwrite( $handle, "\n" );
+			$this->atLineStart = true;
+		}
+		$this->lastChannel = $channel;
+
+		// Cleanup handle
+		fclose( $handle );
 	}
 
 	/**
