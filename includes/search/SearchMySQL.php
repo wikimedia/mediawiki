@@ -162,13 +162,13 @@ class SearchMySQL extends SearchEngine {
 	}
 	
 	protected function searchInternal( $term, $fulltext ) {
-		global $wgSearchMySQLTotalHits;
+		global $wgCountTotalSearchHits;
 		
 		$filteredTerm = $this->filter( $term );
 		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
 		
 		$total = null;
-		if( $wgSearchMySQLTotalHits ) {
+		if( $wgCountTotalSearchHits ) {
 			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
 			$row = $totalResult->fetchObject();
 			if( $row ) {
