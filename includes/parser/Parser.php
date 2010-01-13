@@ -258,13 +258,16 @@ class Parser
 	 * Set the context title
 	 */
 	function setTitle( $t ) {
-		if ( !$t || $t instanceof FakeTitle ) {
-			$t = Title::newFromText( 'NO TITLE' );
-		}
-		// If we still don't have a Title object, make sure we can
-		// convert whatever we've been passed to a string.
-		if ( !$t instanceOf Title && is_string( "$t" ) ) {
+		if ( $t && !($t instanceOf FakeTitle)
+			 && !($t instanceOf Title)
+			 && is_string( "$t" ) ) {
+			// If don't have a Title object, make sure we can convert
+			// whatever we've been passed to a string.
 			$t = Title::newFromText( "$t" );
+		}
+
+		if ( !($t instanceOf Title) ) {
+			$t = Title::newFromText( 'NO TITLE' );
 		}
 
 		if ( strval( $t->getFragment() ) !== '' ) {
