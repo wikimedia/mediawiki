@@ -645,25 +645,6 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Render a preview of a given license for the AJAX preview on upload
-	 *
-	 * @param string $license
-	 * @return string
-	 */
-	public static function ajaxGetLicensePreview( $license ) {
-		global $wgParser, $wgUser;
-		$text = '{{' . $license . '}}';
-		$title = Title::makeTitle( NS_FILE, 'Sample.jpg' );
-		$options = ParserOptions::newFromUser( $wgUser );
-
-		// Expand subst: first, then live templates...
-		$text = $wgParser->preSaveTransform( $text, $title, $wgUser, $options );
-		$output = $wgParser->parse( $text, $title, $options );
-
-		return $output->getText();
-	}
-
-	/**
 	 * Construct a warning and a gallery from an array of duplicate files.
 	 */
 	public static function getDupeWarning( $dupes ) {
@@ -984,15 +965,15 @@ class UploadForm extends HTMLForm {
 	 * 	filename text box
 	 */
 	protected function addUploadJS( ) {
-		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
+		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgEnableAPI;
 		global $wgOut;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
-		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview;
+		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview && $wgEnableAPI;
 
 		$scriptVars = array(
-			'wgAjaxUploadDestCheck' => $wgUseAjax && $wgAjaxUploadDestCheck,
-			'wgAjaxLicensePreview' => $wgUseAjax && $wgAjaxLicensePreview,
+			'wgAjaxUploadDestCheck' => $useAjaxDestCheck,
+			'wgAjaxLicensePreview' => $useAjaxLicensePreview,
 			'wgUploadAutoFill' => !$this->mForReUpload,
 			'wgUploadSourceIds' => $this->mSourceIds,
 		);
