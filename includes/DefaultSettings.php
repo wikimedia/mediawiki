@@ -1658,7 +1658,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches do not keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '261';
+$wgStyleVersion = '262';
 
 
 # Server-side caching:
@@ -3753,7 +3753,7 @@ $wgAjaxWatch = true;
 $wgAjaxUploadDestCheck = true;
 
 /**
- * Enable previewing licences via AJAX
+ * Enable previewing licences via AJAX. Also requires $wgEnableAPI to be true.
  */
 $wgAjaxLicensePreview = true;
 

@@ -296,7 +296,7 @@ var wgUploadLicenseObj = {
 	'responseCache' : { '' : '' },
 
 	'fetchPreview': function( license ) {
-		if( !wgAjaxLicensePreview || !sajax_init_object() ) return;
+		if( !wgAjaxLicensePreview ) return;
 		for (cached in this.responseCache) {
 			if (cached == license) {
 				this.showPreview( this.responseCache[license] );
@@ -304,17 +304,29 @@ var wgUploadLicenseObj = {
 			}
 		}
 		injectSpinner( document.getElementById( 'wpLicense' ), 'license' );
-		sajax_do_call( 'SpecialUpload::ajaxGetLicensePreview', [license],
-			function( result ) {
-				wgUploadLicenseObj.processResult( result, license );
-			}
-		);
+		
+		var title = document.getElementById('wpDestFile').value;
+		if ( !title ) title = 'File:Sample.jpg';
+		
+		var url = wgScriptPath + '/api' + wgScriptExtension
+			+ '?action=parse&text={{' + encodeURIComponent( license ) + '}}'
+			+ '&title=' + encodeURIComponent( title ) 
+			+ '&prop=text&pst&format=json';
+		
+		var req = sajax_init_object();
+		req.onreadystatechange = function() {
+			if ( req.readyState == 4 && req.status == 200 )
+				wgUploadLicenseObj.processResult( eval( '(' + req.responseText + ')' ), license );
+		};
+		req.open( 'GET', url, true );
+		req.send( '' );
 	},
 
 	'processResult' : function( result, license ) {
 		removeSpinner( 'license' );
-		this.showPreview( result.responseText );
-		this.responseCache[license] = result.responseText;
+		this.responseCache[license] = result['parse']['text']['*'];
+		this.showPreview( this.responseCache[license] );
+
 	},
 
 	'showPreview' : function( preview ) {

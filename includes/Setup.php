@@ -337,8 +337,6 @@ $wgPostCommitUpdateList = array();
 
 if ( $wgAjaxWatch ) $wgAjaxExportList[] = 'wfAjaxWatch';
 if ( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
-if( $wgAjaxLicensePreview )
-	$wgAjaxExportList[] = 'SpecialUpload::ajaxGetLicensePreview';
 
 # Placeholders in case of DB error
 $wgTitle = null;
