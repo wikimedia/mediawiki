@@ -402,14 +402,15 @@ class OutputPage {
 	}
 
 	public function setFeedAppendQuery( $val ) {
-		global $wgFeedClasses;
+		global $wgFeedClasses, $wgAdvertisedFeedTypes;
 
 		$this->mFeedLinks = array();
 
-		foreach( $wgFeedClasses as $type => $class ) {
+		foreach ( $wgAdvertisedFeedTypes as $type ) {
 			$query = "feed=$type";
-			if ( is_string( $val ) )
+			if ( is_string( $val ) ) {
 				$query .= '&' . $val;
+			}
 			$this->mFeedLinks[$type] = $this->getTitle()->getLocalURL( $query );
 		}
 	}
@@ -1779,7 +1780,8 @@ class OutputPage {
 				$tags[] = $this->feedLink(
 					$format,
 					$link,
-					wfMsg( "page-{$format}-feed", $this->getTitle()->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
+					# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
+					wfMsg( "page-{$format}-feed", $this->getTitle()->getPrefixedText() ) );
 			}
 
 			# Recent changes feed should appear on every page (except recentchanges,
@@ -1790,7 +1792,7 @@ class OutputPage {
 			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
 			# If so, use it instead.
 
-			global $wgOverrideSiteFeed, $wgSitename, $wgFeedClasses;
+			global $wgOverrideSiteFeed, $wgSitename, $wgFeedClasses, $wgAdvertisedFeedTypes;
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 
 			if ( $wgOverrideSiteFeed ) {
@@ -1800,9 +1802,8 @@ class OutputPage {
 						htmlspecialchars( $feedUrl ),
 						wfMsg( "site-{$type}-feed", $wgSitename ) );
 				}
-			}
-			else if ( $this->getTitle()->getPrefixedText() != $rctitle->getPrefixedText() ) {
-				foreach( $wgFeedClasses as $format => $class ) {
+			} elseif ( $this->getTitle()->getPrefixedText() != $rctitle->getPrefixedText() ) {
+				foreach ( $wgAdvertisedFeedTypes as $format ) {
 					$tags[] = $this->feedLink(
 						$format,
 						$rctitle->getLocalURL( "feed={$format}" ),
