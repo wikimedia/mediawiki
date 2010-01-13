@@ -296,6 +296,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   stops normal output
 * Send new password e-mail in users preference language
 * LanguageConverter now support nested using of manual convert syntax like "-{-{}-}-"
+* (bug 16281) Show copyright system message on special pages
 
 === Bug fixes in 1.16 ===
 
