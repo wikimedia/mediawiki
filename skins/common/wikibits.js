@@ -101,10 +101,8 @@ function appendCSS( text ) {
 	return s;
 }
 
-// special stylesheet links
-if ( typeof stylepath != 'undefined' && typeof skin != 'undefined' ) {
-	// FIXME: This tries to load the stylesheets even for skins where they
-	// don't exist, i.e., everything but Monobook.
+// Special stylesheet links for Monobook only (see bug 14717)
+if ( typeof stylepath != 'undefined' && skin == 'monobook' ) {
 	if ( opera6_bugs ) {
 		importStylesheetURI( stylepath + '/' + skin + '/Opera6Fixes.css' );
 	} else if ( opera7_bugs ) {
