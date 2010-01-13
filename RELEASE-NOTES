@@ -89,6 +89,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   by default.
 * Added $wgExtensionAssetsPath, to decouple assets serving from $wgScriptPath.
   If not specified it will default to $wgScriptPath/extensions
+* Added $wgCountTotalSearchHits to make search UI display total number of hits
+  with some search engines.
 
 
 === New features in 1.16 ===
