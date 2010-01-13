@@ -786,7 +786,9 @@ $2',
 'note'                             => "'''注意：'''",
 'previewnote'                      => "'''请记住这只是预览。'''内容还未保存！",
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。",
+'session_fail_preview'             => "'''抱歉！由于会话数据丢失，我们不能处理你的编辑。'''
+请重试。
+如果再次失败，请尝试[[Special:UserLogout|登出]]后重新登入。",
 'session_fail_preview_html'        => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''

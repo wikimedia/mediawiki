@@ -38,11 +38,11 @@ $messages = array(
 'january-gen'   => 'Yannayer',
 'february-gen'  => 'Yebrayer',
 'march-gen'     => 'Mars',
-'april-gen'     => 'Yebrir',
+'april-gen'     => 'Ibrir',
 'may-gen'       => 'Mayu',
 'june-gen'      => 'Yunyu',
-'july-gen'      => 'Yulyu',
-'august-gen'    => 'ɣuct',
+'july-gen'      => 'Yulyuz',
+'august-gen'    => 'Ghuct',
 'september-gen' => 'Cutanbir',
 'october-gen'   => 'Ktubr',
 'november-gen'  => 'Nuwanbir',
@@ -77,6 +77,10 @@ $messages = array(
 'qbfind'         => 'Aff',
 'qbedit'         => 'Ẓṛeg',
 'qbspecialpages' => 'Tudmawin Special',
+
+# Vector skin
+'vector-namespace-main'      => 'Tasna',
+'vector-namespace-mediawiki' => 'Tabrat',
 
 'errorpagetitle'   => 'Anezri',
 'returnto'         => 'Dwal ɣar $1.',
@@ -158,7 +162,7 @@ teqqad ad yilli days ca n usekkil war itwagg deg isem .',
 
 # Login and logout pages
 'yourname'                => 'isem useqdac:',
-'yourpassword'            => 'Taguri n wadaf:',
+'yourpassword'            => 'Tawalt n wadaf:',
 'remembermypassword'      => 'ejj (login) inu deg uselkim a',
 'login'                   => 'Adeff',
 'nav-login-createaccount' => 'Adf / egg amiḍan',
