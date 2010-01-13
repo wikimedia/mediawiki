@@ -1,5 +1,10 @@
-/* Babaco Color Scheme A */
+/* Babaco Color Scheme C */
 
+/* ridding ourselves of the gradient */
+#page-base {
+	background-color: inherit !important;
+	background-image: none !important;
+}
 
 a:visited,
 a:visited div.vectorTabs li.selected a:visited span {
@@ -42,7 +47,7 @@ a.new:visited, #p-personal a.new:visited {
 	font-size:1.5em;
 }
 h2 .editsection,
-.portal h5{
+.portal h5 {
 	font-weight:normal;
 }
 #toc h2, .toc h2 {
@@ -68,7 +73,7 @@ table.gallery,
 html .thumbimage,
 .usermessage,
 img.thumbborder,
-div.thumbinner{
+div.thumbinner {
 	border: 1px solid #cccccc;
 	background-color: #f7f7f7;
 }

@@ -13,6 +13,10 @@ html .thumbimage,
 }
 
 /* Framework */
+#page-base {
+	background-color: inherit !important;
+	background-image: none !important;
+}
 body {
 	background-color: #f9f9f9 !important;
 	background-image:url(images/page-base-updated.png);
