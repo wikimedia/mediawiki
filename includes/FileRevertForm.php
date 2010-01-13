@@ -17,7 +17,7 @@ class FileRevertForm {
 	/**
 	 * Constructor
 	 *
-	 * @param File $file File we're reverting
+	 * @param $file File we're reverting
 	 */
 	public function __construct( $file ) {
 		$this->title = $file->getTitle();
