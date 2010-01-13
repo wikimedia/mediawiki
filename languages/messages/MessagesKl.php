@@ -120,10 +120,10 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'Naniuk',
-'qbedit' => 'Aaqqissuutiguk',
+'qbedit' => 'Aaqqissoruk',
 
 # Vector skin
-'vector-view-edit' => 'Aaqqissuuguk',
+'vector-view-edit' => 'Aaqqissoruk',
 
 'errorpagetitle'   => 'Kukkuneq',
 'returnto'         => '$1 -mut uterit',
@@ -138,7 +138,7 @@ $messages = array(
 'info_short'       => 'Paasissutissat',
 'printableversion' => 'Naqikkuminartoq',
 'permalink'        => 'Ataavartumik innersuut',
-'edit'             => 'Aaqqissuuguk',
+'edit'             => 'Aaqqissoruk',
 'create'           => 'Pilersiguk',
 'editthispage'     => 'Qupperneq aaqqissuuguk',
 'delete'           => 'Peeruk',
@@ -175,10 +175,10 @@ $messages = array(
 'youhavenewmessages'  => '<!-- This sentence shall be empty because of kl grammar. --> $1 ($2)',
 'newmessageslink'     => 'Allagarsivutit',
 'newmessagesdifflink' => 'allannguutini kingullerniit',
-'editsection'         => 'aaqqissuuguk',
-'editold'             => 'aaqqissuuguk',
+'editsection'         => 'aaqqissoruk',
+'editold'             => 'aaqqissoruk',
 'viewsourceold'       => 'toqqavia takuuk',
-'editlink'            => 'aaqqissuuguk',
+'editlink'            => 'aaqqissoruk',
 'editsectionhint'     => 'Aaqqissuuguk immikkoortoq: $1',
 'toc'                 => 'Imarisai',
 'showtoc'             => 'Ersiguk',
@@ -226,7 +226,7 @@ $messages = array(
 'loginsuccesstitle'          => 'Maanna isersimalerputit',
 'loginsuccess'               => 'Maanna {{SITENAME}} -mut isersimalerputit "$1" -itut taaguuserlutit.',
 'wrongpassword'              => 'Isissutissaq kukkusumik allanneqarsimavoq. Misileqqiuk.',
-'mailmypassword'             => 'Nutaamik isissutitaarit',
+'mailmypassword'             => 'E-mail-ikkut isissutissaq nutaaq nassiuguk',
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
@@ -237,6 +237,7 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
 # Edit pages
 'summary'                  => 'Allaaserinera:',
+'subject'                  => 'Pineqartoq/qulequtaq:',
 'minoredit'                => 'Annikitsumik allannguutaavoq',
 'watchthis'                => 'Allaaserisaq ersersimatiguk',
 'savearticle'              => 'Toqqoruk',
@@ -248,6 +249,9 @@ IP adressit nuisassaaq massuma quppernerup oqaluttuassartaani.",
 'accmailtitle'             => 'Password-i nassiunneqarsimavoq.',
 'accmailtext'              => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
 'newarticle'               => '(Nuutaq)',
+'newarticletext'           => "Maanga innersuunneqarsimavutit quppermut suli pilersinneqarsimanngitsumut.
+Qupperneq pilersissagukku, boks-ip iluani allagit (takuuk [[{{MediaWiki:Helppage}}|ikiuutit]] paasissutissaanerusut).
+Maanngarsimaguit kukkusumik, toortaat '''utimut''' tooruk.",
 'anontalkpagetext'         => "---- ''Manna tassaavoq oqalliffik atuisumit anonym-iusumeersumit, konto-mik pilersitsisimanngitsumik imalt. atorneq ajugaanik.
 Taamaattumik IP-adressia kinaanerattut atortariaqassavarput.
 IP-adressi pigineqarsinnaavoq atuisunit arlalinnit.
@@ -256,6 +260,8 @@ Atuisuuguit anonym-iusoq, isumaqarlutillu soqutiginngisannik oqaaseqarfigineqarl
 Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisinnaavutit]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log-ini ujaasisinnavutillu] imaluunniit [{{fullurl:{{FULLPAGENAME}}|action=edit}} qupperneq pilersissinnaavat]</span>.',
 'previewnote'              => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
 'editing'                  => 'Aaqqissorpaa $1',
+'editingsection'           => 'Aaqqissorpaa $1 (immikkoortoq)',
+'editingcomment'           => 'Aaqqissorpaa $1 (immikkoortoq nutaaq)',
 'yourtext'                 => 'Allatat',
 'protectedpagewarning'     => "'''Mianersoqqussut: Una qupperneq illersugaavoq, administratorit kisimik aaqqissorsinnaavaat.'''",
 'semiprotectedpagewarning' => "'''Malugiuk:''' Qupperneq parnaaqqavoq, atuisutut nalunaarsimasut kisimik allanngortitersinnaavaat.",

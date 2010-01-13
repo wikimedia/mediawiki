@@ -708,6 +708,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'nav-login-createaccount'    => 'Logga in / skapa konto',
 'loginprompt'                => 'Du måste tillåta cookies för att logga in på {{SITENAME}}.',
 'userlogin'                  => 'Logga in / skapa konto',
+'userloginnocreate'          => 'Logga in',
 'logout'                     => 'Logga ut',
 'userlogout'                 => 'Logga ut',
 'notloggedin'                => 'Inte inloggad',
@@ -1055,6 +1056,7 @@ Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{
 Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-deleted-no-diff'         => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+'rev-suppressed-no-diff'      => "Du kan inte se skillnaden för en av revisionerna har blivit '''raderad'''.",
 'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
 Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
@@ -2438,6 +2440,7 @@ $1 är redan blockerad. Vill du ändra inställningarna?',
 'ipb_cant_unblock'                => 'Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.',
 'ipb_blocked_as_range'            => 'Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.',
 'ip_range_invalid'                => 'Ogiltigt IP-intervall.',
+'ip_range_toolarge'               => 'Blockering av block större än /$1 är inte tillåtna.',
 'blockme'                         => 'Blockera mig',
 'proxyblocker'                    => 'Proxy-block',
 'proxyblocker-disabled'           => 'Den här funktionen är avaktiverad.',

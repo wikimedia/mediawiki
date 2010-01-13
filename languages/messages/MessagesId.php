@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author -iNu-
  * @author Bennylin
  * @author Borgx
  * @author Farras
@@ -704,6 +705,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'nav-login-createaccount'    => 'Masuk log / buat akun',
 'loginprompt'                => "Anda harus mengaktifkan ''cookies'' untuk dapat masuk log ke {{SITENAME}}.",
 'userlogin'                  => 'Masuk log / buat akun',
+'userloginnocreate'          => 'Masuk log',
 'logout'                     => 'Keluar log',
 'userlogout'                 => 'Keluar log',
 'notloggedin'                => 'Belum masuk log',
@@ -876,10 +878,10 @@ Alamat IP seperti ini mungkin dipakai bersama oleh beberapa pengguna yang berbed
 Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak relevan yang ditujukan langsung kepada Anda, silakan [[Special:UserLogin/signup|membuat akun]] atau [[Special:UserLogin|masuk log]] untuk menghindari kerancuan dengan pengguna anonim lainnya di lain waktu.''",
 'noarticletext'                    => 'Saat ini tidak ada teks dalam halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
-'noarticletext-nopermission'       => 'Tidak ada teks di halaman ini.
-Anda dapat [[Special:Search/{{PAGENAME}}|mencari judul ini]] di Wikipedia.
+'noarticletext-nopermission'       => 'Saat ini tidak ada teks di halaman ini.
+Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul ini]] di halaman lain atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait].
 
-Saat ini pengguna anonim tidak dapat membuat artikel baru di Wikipedia Indonesia. Jika Anda ingin membuat artikel dan belum memiliki akun di Wikipedia, silakan [http://id.wikipedia.org/w/index.php?title=Istimewa:Masuk_log&type=signup&returnto=Halaman_Utama membuat akun baru sekarang].',
+Hanya pengguna terdaftar yang telah masuk log yang dapat membuat artikel. Jika Anda ingin membuat artikel dan belum mempunyai akun, silahkan [http://id.wikipedia.org/w/index.php?title=Istimewa:Masuk_log&type=signup&returnto=Halaman_Utama membuat akun baru] sekarang.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",

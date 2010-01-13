@@ -872,15 +872,15 @@ $1",
 'revdelete-unhid'             => 'dëscoata $1',
 'revdelete-log-message'       => '$1 për $2 {{PLURAL:$2|revision|revision}}',
 'logdelete-log-message'       => '$1 për $2 {{PLURAL:$2|event|event}}',
-'revdelete-hide-current'      => "Eror an stërmand l'element datà $2, $1: sta-sì a l'é la vërsion corenta.
+'revdelete-hide-current'      => "Eror an stërmand l'element datà $2, $1: costa-sì a l'é la version corenta.
 A peul pa esse stërmà.",
 'revdelete-show-no-access'    => 'Eror an mostrand l\'element datà $2, $1: st\'element-sì a l\'é stàit marcà "riservà".
 It peule pa vëddlo.',
 'revdelete-modify-no-access'  => 'Eror an modificand l\'element datà $2, $1: st\'element-sì a l\'é stàit marcà "riservà".
 It peule pa vëddlo.',
-'revdelete-modify-missing'    => "Eror an modificand l'element ID $1: a- é pa ant ël database!",
-'revdelete-no-change'         => "'''Atension:''' l'element datà $2, $1 a l'ha già le ampostassion ëd visibilità ciamà.",
-'revdelete-concurrent-change' => "Eror an modificand l'element $2, $1: sò stat a smija che a sia stàit cambià da cheicun àutr an mente it provave a modifichelo. Për piasì contròla ij registr.",
+'revdelete-modify-missing'    => "Eror an modificand l'element con ID $1: a-i é pa ant la base ëd dàit!",
+'revdelete-no-change'         => "'''Atension:''' l'element datà $2, $1 a l'ha già j'ampostassion ëd visibilità ciamà.",
+'revdelete-concurrent-change' => "Eror an modificand l'element $2, $1: sò stat a smija che a sia stàit cambià da cheidun d'àutri antramentre che chiel a provava a modifichelo. Për piasì, ch'a contròla ij registr.",
 'revdelete-only-restricted'   => "Eror an stërmand l'element datà $2, $1: it peule pa vieté la vista d'element a j'aministrator sensa ëdcò selessioné un-a dj'àutre opsion ëd visibilità.",
 'revdelete-reason-dropdown'   => '*Rason comon-e dë scanselassion
 ** Violassion dël copyright

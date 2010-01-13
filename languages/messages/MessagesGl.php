@@ -3144,7 +3144,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 
 # action=purge
 'confirm_purge_button' => 'Si',
-'confirm-purge-top'    => 'Está seguro de que desexa limpar a memoria caché desta páxina?',
+'confirm-purge-top'    => 'Quere limpar a memoria caché desta páxina?',
 'confirm-purge-bottom' => 'Ao purgar unha páxina, límpase a memoria caché e isto obriga tamén a que apareza a versión máis recente da páxina.',
 
 # Multipage image navigation

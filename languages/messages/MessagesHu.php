@@ -2133,7 +2133,7 @@ Visszajelzés és további segítség:
 'confirmdeletetext'      => 'Egy lapot vagy fájlt készülsz törölni a teljes laptörténetével együtt.
 Kérjük, erősítsd meg, hogy valóban ezt szeretnéd tenni, átlátod a következményeit, és hogy a műveletet a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]] összhangban végzed.',
 'actioncomplete'         => 'Művelet végrehajtva',
-'actionfailed'           => 'A művelet nem sükerült',
+'actionfailed'           => 'A művelet nem sikerült',
 'deletedtext'            => 'A(z) „<nowiki>$1</nowiki>” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletedarticle'         => '„$1” törölve',

@@ -1262,16 +1262,17 @@ Pirzdau tū wīrst din etkūmps enkraūwuns(si), izbāndais $1.',
 Tebbei prawerru prestun, anga ast tikrōmiskan ēmpirsin sadīntun enkraūtun šin zūrbrukin.
 Šisse zūrbrukes āupausisnas registerin ast waidīntan zemmais.",
 
-'upload-proto-error'     => 'Nitikrōmiskan prōtokulin',
-'upload-file-error'      => 'Ēntrewingi blānda',
-'upload-file-error-text' => 'Ēntrewingi blānda tikka prēi kīsmingiskas zūrbrukes teīksenes izbāndasnan en sērweŗu.
+'upload-proto-error'      => 'Nitikrōmiskan prōtokulin',
+'upload-proto-error-text' => 'Iztāliska enkraūsna izkinina, kāi URL adressi pagaūlai si sen <code>http://</code> anga <code>ftp://</code>.',
+'upload-file-error'       => 'Ēntrewingi blānda',
+'upload-file-error-text'  => 'Ēntrewingi blānda tikka prēi kīsmingiskas zūrbrukes teīksenes izbāndasnan en sērweŗu.
 Drāugaus sen [[Special:ListUsers/sysop|sīstemas perwaldītajan]].',
-'upload-misc-error'      => 'Niwaīsta enkraūsnas blānda',
-'upload-misc-error-text' => 'Tikka niwaīsta blānda enkērdas enkraūsenes.
+'upload-misc-error'       => 'Niwaīsta enkraūsnas blānda',
+'upload-misc-error-text'  => 'Tikka niwaīsta blānda enkērdas enkraūsenes.
 Izbāndais, anga padāta URL adressi ast tikrōmiskan be preiēiminan be bandāis etkūmps.
 Ik prōblaman wīrst āntrinus, drāugaus sen [[Special:ListUsers/sysop|sīstemas perwaldītajan]].',
-'upload-unknown-size'    => 'Niwaīstan debban',
-'upload-http-error'      => 'HTTP blānda tikka: $1',
+'upload-unknown-size'     => 'Niwaīstan debban',
+'upload-http-error'       => 'HTTP blānda tikka: $1',
 
 # img_auth script messages
 'img-auth-nofile' => 'Zūrbrukis "$1" ni ekzistijja.',
@@ -1654,7 +1655,7 @@ Eraīna šisse pāusas ēnturas kitawīdinsna anga diskusiōnis pāusas sēitan 
 'unwatching' => 'As wanginna nadirītwei...',
 
 'enotif_mailer'                => 'Pawakīsenis iz {{SITENAME}}',
-'enotif_reset'                 => 'Ebzentlinnais wissans pāusans per kāimalukītans',
+'enotif_reset'                 => 'Ebzentlinnais wissans pāusans per kāimalukitans',
 'enotif_newpagetext'           => 'Sta ast nāunan pāusan.',
 'enotif_impersonal_salutation' => 'tērpautajs stesse {{SITENAME}}',
 'changed'                      => 'kitawīdintan',
@@ -1770,8 +1771,15 @@ Tu mazzi kitawīdintun šisse pāusas pakūnsnas līgmenin, adder sta ni wīrst 
 'undeletepage'                 => 'Wīdais be etwārai wartinnais āupausintans pāusans',
 'undeletepagetitle'            => "'''Zemmais ast āupausintas wersiōnis stesse pāusan [[:$1]]'''.",
 'viewdeletedpage'              => 'Wīdais āupausintans wersiōnins',
+'undeletepagetext'             => '{{PLURAL:$1|Ripīntin pāusan|$1 Ripīntei pāusai}} pastāi āupausintan, adder aīnat ast en arkīwu be mazzi būtwei etwārtai wartīntun.
+Arkīwan ast periōdiskai skistīntan.',
 'undelete-fieldset-title'      => 'Etwārtai wartinnais wersiōnins',
+'undeleteextrahelp'            => "Kāi etwārtai wartīnlai pastippan pāusas istōrijan, palikkais wissans pazentlisnans ni etrīnktan be gnetteis '''''Etwārtai wartinnais'''''.
+Kāi delīkiskai etwārtai wartīnlai, pazentlis pazentlisenins prei wersiōnins kawīdans skatta tu etwārtai wartīntun be gnetteis '''''Etwārtai wartinnais'''''.
+Gnettintei '''''Etkraūneis''''' tu wīrst skīstinuns/si kumentāras laūkan be wissans pazentlisenins.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|wersiōni|wersiōnis}} arkīwitan',
+'undeletehistory'              => 'Kaddan tū etwārtai wartinna pāusan, wissas wersiōnis ast etwārtai wartīntan en istōrijan.
+Ik nāunan pāusan sen stan subban emnin ast būwus teīktan ezze āupausinseņu, etwārtai wartīntas wersiōnis wīrst waidinnušas si en tenesses istōrijan, adder tēntiska wersiōni wīrst palikkusi nikitawīdintan.',
 'undeletehistorynoadmin'       => 'Šin pāusan pastāi āupausintan.
 Āupausinsnas brewīnsli ast waidīntan en sentēnsnan zemmais, ēmpiri sen dātan stesse tērpautajan, kawīds redigijja pāusan pirzdau āupausinsenin.
 Āupausintan wersiōnin teksts ast preiēiminan tēr perwaldītajamans.',
@@ -1782,7 +1790,7 @@ Tu mazzi turītun wārgan autengīnsnan anga wersiōni pastāi etwārtai wartīn
 'undeletebtn'                  => 'Etwārtai wartinnais',
 'undeletelink'                 => 'wīdais/etwārtai wartinnais',
 'undeleteviewlink'             => 'wīdais',
-'undeletereset'                => 'Skistinnais',
+'undeletereset'                => 'Etkraūneis',
 'undeleteinvert'               => 'Etwartinnais pazentlisenin',
 'undeletecomment'              => 'Kumentārs:',
 'undeletedarticle'             => 'etwārtai wartinna "[[$1]]"',
@@ -1923,6 +1931,9 @@ Tērpautajas $1 blōkisenes brewīnsli ast: "$2"',
 'blocklogpage'                    => 'Blōkisnas registerin',
 'blocklogentry'                   => 'ast blōkiwuns(si) [[$1]] sen blōkisnas kērdan: $2 $3',
 'reblock-logentry'                => 'ast kitawīdinuns blōkisenes ensadīnsnas stesse(s) [[$1]] sen blōkisnas kērdan: $2 $3',
+'blocklogtext'                    => 'Sta ast regīsterin stēisan blōkisenin be etblōkisenin stēisan tērpautajan anga IP adressin.
+Autōmatiskai blōkitas IP adressis ni ast waidīntan.
+Jaīs en [[Special:IPBlockList|IP blōkisenin listin]] ki widālai wissans tēnti aktīwans blōkisenins.',
 'unblocklogentry'                 => 'ast etblōkiwuns(si) $1',
 'block-log-flags-anononly'        => 'tēr anōnimai tērpautajai',
 'block-log-flags-nocreate'        => 'rekkenas teīksna izklaūtan',
@@ -2436,11 +2447,16 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 
 'exif-unknowndate' => 'Niwaīstan dātan',
 
+'exif-orientation-1' => 'Nōrmala',
+
 'exif-componentsconfiguration-0' => 'ni ekzistijja',
 
 'exif-exposureprogram-0' => 'Nidefinītan',
 'exif-exposureprogram-1' => 'Rānkiskai',
 'exif-exposureprogram-2' => 'Nōrmalin prōgraman',
+'exif-exposureprogram-5' => 'Kreatīwan prōgraman (debīka astras giluwā)',
+'exif-exposureprogram-7' => 'Pōrtretas prōgraman (auīmsenei iz taūwan sen niastran rīkisnasgruntan)',
+'exif-exposureprogram-8' => 'Tautāspawidas prōgraman (per auīmsenins segīntans iz tālin sen astran rīkisnasgruntan)',
 
 'exif-subjectdistance-value' => '$1 mētrai',
 
@@ -2471,10 +2487,13 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-flash-mode-2'     => 'Preispārtinta blicces nisatausnā',
 'exif-flash-mode-3'     => 'autōmatiskas wīds',
 'exif-flash-function-1' => 'Ni ast blicces funkciōni',
+'exif-flash-redeye-1'   => 'Wūrmin akkin redukciōnis prōgraman',
 
 'exif-focalplaneresolutionunit-2' => 'cullai',
 
 'exif-sensingmethod-1' => 'Nidefinītan',
+
+'exif-scenetype-1' => 'Entikriskai tikīnts auīmsenis',
 
 'exif-scenecapturetype-0' => 'Jāukus',
 'exif-scenecapturetype-1' => 'Tautāspawida',
@@ -2482,6 +2501,10 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-scenecapturetype-3' => 'Naktis widākli',
 
 'exif-gaincontrol-0' => 'Nika',
+'exif-gaincontrol-1' => 'Zemā spartinsnā',
+'exif-gaincontrol-2' => 'Auktā spartinsnā',
+'exif-gaincontrol-3' => 'Zemā laustinginsnā',
+'exif-gaincontrol-4' => 'Auktā laustinginsnā',
 
 'exif-contrast-0' => 'Nōrmals',
 'exif-contrast-1' => 'Līkuts',
@@ -2562,7 +2585,8 @@ Tu mazzi jāu [[Special:UserLogin|enēitwei]] be tuldītun si sen wiki.',
 'invalidateemail'          => 'Naīkinais e-mail padrūktinsnan',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[per ilgā URL adressi]',
+'scarytranscludedisabled' => '[Interwiki entensīsna ast izklaūtan]',
+'scarytranscludetoolong'  => '[per ilgā URL adressi]',
 
 # Trackbacks
 'trackbackbox'      => 'Šisse pāusas "traceback" pawakīsenei:<br />
@@ -2596,6 +2620,7 @@ Madli padrūktinais, anga tū perarwi kwaitēi etteīktun šin pāusan.',
 'table_pager_prev'         => 'Ankstāisin pāusan',
 'table_pager_first'        => 'Pirman pāusan',
 'table_pager_last'         => 'Panzdauman pāusan',
+'table_pager_limit'        => 'Waidinnais $1 enpeisāsenins en pāusu',
 'table_pager_limit_submit' => 'Waidinnais',
 'table_pager_empty'        => 'Ni ast rezultātai',
 
@@ -2680,23 +2705,26 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 'fileduplicatesearch-filename' => 'Zūrbrukes pabilīsna:',
 'fileduplicatesearch-submit'   => 'Laukīs',
 'fileduplicatesearch-info'     => '$1 × $2 pikselai<br />Zūrbrukis debban: $3<br />MIME tīps: $4',
+'fileduplicatesearch-result-1' => 'Zūrbrukis "$1" ni turri idēntiskan kōpijan.',
+'fileduplicatesearch-result-n' => 'Zūrbrukis "$1" turri {{PLURAL:$2|1 idēntiskan kōpijan|$2 idēntiskans kōpijans}}.',
 
 # Special:SpecialPages
-'specialpages'                 => 'Speciālai pāusai',
-'specialpages-note'            => '----
+'specialpages'                   => 'Speciālai pāusai',
+'specialpages-note'              => '----
 * Nōrmalai speciālai pāusai.
 * <strong class="mw-specialpagerestricted">Speciālai pāusai sen arāikintan preiēisenin.</strong>',
-'specialpages-group-other'     => 'Kitāi speciālai pāusai',
-'specialpages-group-login'     => 'Enēis / registrīs si',
-'specialpages-group-changes'   => 'Panzdaumas kitawīdinsnas be registerei',
-'specialpages-group-media'     => 'Zūrbrukin repōrtai be enkraūsenei',
-'specialpages-group-users'     => 'Tērpautajai be enwarīnsenei',
-'specialpages-group-highuse'   => 'Deznimai tērpautas listis',
-'specialpages-group-pages'     => 'Pāusan listis',
-'specialpages-group-pagetools' => 'Pāusas pagabtis',
-'specialpages-group-wiki'      => 'Wiki dātan be pagabtis',
-'specialpages-group-redirects' => 'Speciālai praweddintei pāusai',
-'specialpages-group-spam'      => 'Spamas pagaptis',
+'specialpages-group-maintenance' => 'Kōnserwaciōnis repōrtai',
+'specialpages-group-other'       => 'Kitāi speciālai pāusai',
+'specialpages-group-login'       => 'Enēis / registrīs si',
+'specialpages-group-changes'     => 'Panzdaumas kitawīdinsnas be registerei',
+'specialpages-group-media'       => 'Zūrbrukin repōrtai be enkraūsenei',
+'specialpages-group-users'       => 'Tērpautajai be enwarīnsenei',
+'specialpages-group-highuse'     => 'Deznimai tērpautas listis',
+'specialpages-group-pages'       => 'Pāusan listis',
+'specialpages-group-pagetools'   => 'Pāusas pagabtis',
+'specialpages-group-wiki'        => 'Wiki dātan be pagabtis',
+'specialpages-group-redirects'   => 'Speciālai praweddintei pāusai',
+'specialpages-group-spam'        => 'Spamas pagaptis',
 
 # Special:BlankPage
 'blankpage'              => 'Pāustan pāusan',

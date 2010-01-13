@@ -42,6 +42,7 @@
  * @author PieRRoMaN
  * @author Quentinv57
  * @author Remember the dot
+ * @author Robby
  * @author Seb35
  * @author Sherbrooke
  * @author Skalman
@@ -1417,7 +1418,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'userrights-groups-help'      => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
 * Une case non cochée signifie qu’il ne s’y trouve pas.
-* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté et vice-versa.',
+* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté.',
 'userrights-reason'           => 'Raison du changement :',
 'userrights-no-interwiki'     => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
 'userrights-nodatabase'       => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
@@ -1802,7 +1803,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'sharedupload'              => 'Ce fichier provient de $1 et peut être utilisé par d’autres projets.',
 'sharedupload-desc-there'   => 'Ce fichier provient de $1 et peut être utilisé par d’autres projets. Voyez [$2 sa page de description] pour plus d’informations.',
 'sharedupload-desc-here'    => 'Ce fichier provient de $1 et peut être utilisé par d’autres projets. Sa [$2 page de description] est affichée ci-dessous.',
-'filepage-nofile'           => 'Aucun ficher de ce nom existe.',
+'filepage-nofile'           => 'Aucun fichier de ce nom existe.',
 'filepage-nofile-link'      => "Aucun fichier de ce nom n'existe, mais vous pouvez [$1 en téléverser un].",
 'uploadnewversion-linktext' => 'Téléverser une nouvelle version de ce fichier',
 'shared-repo-from'          => 'de $1',
