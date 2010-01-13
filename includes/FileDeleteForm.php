@@ -17,7 +17,7 @@ class FileDeleteForm {
 	/**
 	 * Constructor
 	 *
-	 * @param File $file File we're deleting
+	 * @param $file File object we're deleting
 	 */
 	public function __construct( $file ) {
 		$this->title = $file->getTitle();
@@ -90,6 +90,15 @@ class FileDeleteForm {
 		$this->showLogEntries();
 	}
 
+	/**
+	 * Really delete the file
+	 *
+	 * @param $title Title object
+	 * @param $file File object
+	 * @param $oldimage String: archive name
+	 * @param $reason String: reason of the deletion
+	 * @param $suppress Boolean: whether to mark all deleted versions as restricted
+	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress ) {
 		global $wgUser;
 		$article = null;
@@ -226,8 +235,8 @@ class FileDeleteForm {
 	 * showing an appropriate message depending upon whether
 	 * it's a current file or an old version
 	 *
-	 * @param string $message Message base
-	 * @return string
+	 * @param $message String: message base
+	 * @return String
 	 */
 	private function prepareMessage( $message ) {
 		global $wgLang;
