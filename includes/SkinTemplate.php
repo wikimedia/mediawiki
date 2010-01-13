@@ -423,12 +423,6 @@ class SkinTemplate extends Skin {
 
 			$tpl->setRef( 'credits', $this->credits );
 
-		} elseif ( isset( $oldid ) && !isset( $diff ) ) {
-			$tpl->set( 'copyright', $this->getCopyright() );
-			$tpl->set( 'viewcount', false );
-			$tpl->set( 'lastmod', false );
-			$tpl->set( 'credits', false );
-			$tpl->set( 'numberofwatchingusers', false );
 		} else {
 			$tpl->set( 'copyright', false );
 			$tpl->set( 'viewcount', false );
