@@ -2946,6 +2946,12 @@ $wgFeedDiffCutoff = 32768;
 $wgOverrideSiteFeed = array();
 
 /**
+ * Which feed types should we provide by default?  This can include 'rss',
+ * 'atom', neither, or both.
+ */
+$wgAdvertisedFeedTypes = array( 'rss' );
+
+/**
  * Additional namespaces. If the namespaces defined in Language.php and
  * Namespace.php are insufficient, you can create new ones here, for example,
  * to import Help files in other languages.
