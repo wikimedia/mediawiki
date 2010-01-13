@@ -3631,7 +3631,7 @@ class Article {
 	 */
 	public static function incViewCount( $id ) {
 		$id = intval( $id );
-		global $wgHitcounterUpdateFreq, $wgDBtype;
+		global $wgHitcounterUpdateFreq;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$pageTable = $dbw->tableName( 'page' );
@@ -3662,23 +3662,23 @@ class Article {
 			wfProfileIn( 'Article::incViewCount-collect' );
 			$old_user_abort = ignore_user_abort( true );
 
-			if($wgDBtype == 'mysql')
-				$dbw->query("LOCK TABLES $hitcounterTable WRITE");
-			$tabletype = $wgDBtype == 'mysql' ? "ENGINE=HEAP " : '';
-			$dbw->query("CREATE TEMPORARY TABLE $acchitsTable $tabletype AS ".
+			$dbType = $dbw->getType();
+			$dbw->lockTables( array(), array( 'hitcounter' ), __METHOD__, false );
+			$tabletype = $dbType == 'mysql' ? "ENGINE=HEAP " : '';
+			$dbw->query( "CREATE TEMPORARY TABLE $acchitsTable $tabletype AS ".
 				"SELECT hc_id,COUNT(*) AS hc_n FROM $hitcounterTable ".
-				'GROUP BY hc_id');
-			$dbw->query("DELETE FROM $hitcounterTable");
-			if($wgDBtype == 'mysql') {
-				$dbw->query('UNLOCK TABLES');
-				$dbw->query("UPDATE $pageTable,$acchitsTable SET page_counter=page_counter + hc_n ".
-					'WHERE page_id = hc_id');
+				'GROUP BY hc_id', __METHOD__ );
+			$dbw->delete( 'hitcounter', '*', __METHOD__ );
+			$dbw->unlockTables( __METHOD__ );
+			if( $dbType == 'mysql' ) {
+				$dbw->query( "UPDATE $pageTable,$acchitsTable SET page_counter=page_counter + hc_n ".
+					'WHERE page_id = hc_id', __METHOD__ );
 			}
 			else {
-				$dbw->query("UPDATE $pageTable SET page_counter=page_counter + hc_n ".
-					"FROM $acchitsTable WHERE page_id = hc_id");
+				$dbw->query( "UPDATE $pageTable SET page_counter=page_counter + hc_n ".
+					"FROM $acchitsTable WHERE page_id = hc_id", __METHOD__ );
 			}
-			$dbw->query("DROP TABLE $acchitsTable");
+			$dbw->query( "DROP TABLE $acchitsTable", __METHOD__ );
 
 			ignore_user_abort( $old_user_abort );
 			wfProfileOut( 'Article::incViewCount-collect' );
