@@ -393,7 +393,13 @@ class OutputPage {
 	public function disable() { $this->mDoNothing = true; }
 	public function isDisabled() { return $this->mDoNothing; }
 
-	public function setSyndicated( $show = true ) { $this->mShowFeedLinks = $show; }
+	public function setSyndicated( $show = true ) {
+		if ( $show ) {
+			$this->setFeedAppendQuery( false );
+		} else {
+			$this->mFeedLinks = array();
+		}
+	}
 
 	public function setFeedAppendQuery( $val ) {
 		global $wgFeedClasses;
@@ -401,7 +407,9 @@ class OutputPage {
 		$this->mFeedLinks = array();
 
 		foreach( $wgFeedClasses as $type => $class ) {
-			$query = "feed=$type&".$val;
+			$query = "feed=$type";
+			if ( is_string( $val ) )
+				$query .= '&' . $val;
 			$this->mFeedLinks[$type] = $this->getTitle()->getLocalURL( $query );
 		}
 	}
