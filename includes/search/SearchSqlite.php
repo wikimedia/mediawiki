@@ -174,7 +174,7 @@ class SearchSqlite extends SearchEngine {
 	}
 	
 	protected function searchInternal( $term, $fulltext ) {
-		global $wgSearchMySQLTotalHits, $wgContLang;
+		global $wgCountTotalSearchHits, $wgContLang;
 
 		if ( !$this->fulltextSearchSupported() ) {
 			return null;
@@ -184,7 +184,7 @@ class SearchSqlite extends SearchEngine {
 		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
 		
 		$total = null;
-		if( $wgSearchMySQLTotalHits ) {
+		if( $wgCountTotalSearchHits ) {
 			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
 			$row = $totalResult->fetchObject();
 			if( $row ) {
