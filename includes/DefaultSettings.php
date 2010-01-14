@@ -2949,7 +2949,7 @@ $wgOverrideSiteFeed = array();
  * Which feed types should we provide by default?  This can include 'rss',
  * 'atom', neither, or both.
  */
-$wgAdvertisedFeedTypes = array( 'rss' );
+$wgAdvertisedFeedTypes = array( 'atom' );
 
 /**
  * Additional namespaces. If the namespaces defined in Language.php and
