@@ -1215,7 +1215,7 @@ class Article {
 			$id = User::idFromName( $rootPart );
 			$ip = User::isIP( $rootPart );
 			if ( $id == 0 && !$ip ) { # User does not exist
-				$wgOut->wrapWikiMsg( '<div class="mw-userpage-userdoesnotexist error">$1</div>',
+				$wgOut->wrapWikiMsg( '<div class="mw-userpage-userdoesnotexist error">\n$1</div>',
 					array( 'userpage-userdoesnotexist-view', $rootPart ) );
 			}
 		}

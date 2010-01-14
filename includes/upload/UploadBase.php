@@ -765,7 +765,7 @@ abstract class UploadBase {
 
 		if ( !$wgAntivirusSetup[$wgAntivirus] ) {
 			wfDebug( __METHOD__ . ": unknown virus scanner: $wgAntivirus\n" );
-			$wgOut->wrapWikiMsg( '<div class="error">$1</div>', array( 'virus-badscanner', $wgAntivirus ) );
+			$wgOut->wrapWikiMsg( "<div class=\"error\">\n$1</div>", array( 'virus-badscanner', $wgAntivirus ) );
 			return wfMsg( 'virus-unknownscanner' ) . " $wgAntivirus";
 		}
 
