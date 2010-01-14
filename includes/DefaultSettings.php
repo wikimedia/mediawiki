@@ -3689,9 +3689,14 @@ $wgTrustedMediaFormats= array(
 $wgAllowSpecialInclusion = true;
 
 /**
- * Timeout for HTTP requests done via CURL
+ * Timeout for HTTP requests done internally
  */
 $wgHTTPTimeout = 25;
+
+/**
+ * Timeout for Asynchronous (background) HTTP requests
+ */
+$wgAsyncHTTPTimeout = 25;
 
 /**
  * Proxy to use for CURL requests.
