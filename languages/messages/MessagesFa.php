@@ -2430,7 +2430,7 @@ $1',
 'sp-contributions-submit'         => 'جستجو',
 
 # What links here
-'whatlinkshere'            => 'پیوندهای به این صفحه',
+'whatlinkshere'            => 'پیوندها به این صفحه',
 'whatlinkshere-title'      => 'صفحه‌هایی که به «$1» پیوند دارند',
 'whatlinkshere-page'       => 'صفحه:',
 'linkshere'                => "صفحه‌های زیر به '''[[:$1]]''' پیوند دارند:",

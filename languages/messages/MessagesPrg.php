@@ -435,10 +435,10 @@ Etrīnkais kittan tērpautajas pabilīsnan.',
 'nocookiesnew'               => 'Tērpautajs rekkens pastāi teīktan, anga tū ni assei engūbun.
 {{SITENAME}} tērpaui <i>cookies</i> kāi karwinlai informaciōnin en tērpautajas enēisnas prōcesu.
 Twajā lasātla turri teinū izklaūtans <i>cookies</i>.
-Madli enklaūjais tennans be bandāis etkūmps.',
+Madli enklaūjais tennans be bāndais etkūmps.',
 'nocookieslogin'             => '{{SITENAME}} tērpaui <i>cookies</i> kāi karwinlai informaciōnin en tērpautajas enēisnas prōcesu.
 Twajā lasātla turri teinū izklaūtans <i>cookies</i>.
-Madli enklaūjais tennans be bandāis etkūmps.',
+Madli enklaūjais tennans be bāndais etkūmps.',
 'noname'                     => 'Sta ni ast tikrōmiska tērpautajas pabilisnā.',
 'loginsuccesstitle'          => 'Enēisenis izpalla',
 'loginsuccess'               => "'''Assei teinū engūbun {{SITENAME}} kāigi \"\$1\".'''",
@@ -716,7 +716,7 @@ Lagendi: '''({{int:cur}})''' = šlaitīntan ezze bigāntin wersiōnin, '''({{int
 'history-feed-item-nocomment' => '$1 $2',
 'history-feed-empty'          => 'Etrīnktan pāusan ni ekzistijja.
 Tennan mazēi pastātwei āupausintan anga tenesse tītels kitawīdintan.
-Bandāis [[Special:Search|laukītun]] sirzdau nāunans pāusans en wiki',
+Bāndais [[Special:Search|laukītun]] sirzdau nāunans pāusans en wiki',
 
 # Revision deletion
 'rev-deleted-comment'        => '(kumentārs āupausintan)',
@@ -1269,7 +1269,7 @@ Tebbei prawerru prestun, anga ast tikrōmiskan ēmpirsin sadīntun enkraūtun š
 Drāugaus sen [[Special:ListUsers/sysop|sīstemas perwaldītajan]].',
 'upload-misc-error'       => 'Niwaīsta enkraūsnas blānda',
 'upload-misc-error-text'  => 'Tikka niwaīsta blānda enkērdas enkraūsenes.
-Izbāndais, anga padāta URL adressi ast tikrōmiskan be preiēiminan be bandāis etkūmps.
+Izbandāis, anga padāta URL adressi ast tikrōmiskan be preiēiminan be bandāis etkūmps.
 Ik prōblaman wīrst āntrinus, drāugaus sen [[Special:ListUsers/sysop|sīstemas perwaldītajan]].',
 'upload-unknown-size'     => 'Niwaīstan debban',
 'upload-http-error'       => 'HTTP blānda tikka: $1',
@@ -1383,7 +1383,7 @@ Tērpausna: ēnturas_tīps/pōtips, perw. <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Nitērpautai šablōnai',
-'unusedtemplatestext' => 'Zemmais ast listi wisēisan pāusan en {{ns:template}} tītelin plattibei, kawīdai ni ast tērpautan pra kittans pāusans. Izbandāis kittans autengīnsenins prei šablōnins, pirzdau tū wīrst āupausinuns šin pāusan',
+'unusedtemplatestext' => 'Zemmais ast listi wisēisan pāusan en {{ns:template}} tītelin plattibei, kawīdai ni ast tērpautan pra kittans pāusans. Izbāndais kittans autengīnsenins prei šablōnins, pirzdau tū wīrst āupausinuns šin pāusan',
 'unusedtemplateswlh'  => 'kitāi autengīnsenei',
 
 # Random page
@@ -2132,7 +2132,7 @@ Ni ast fōlderis per kīsmingiskans zūrbrukins.',
 'xml-error-string'           => '$1 en līnijai $2, kōl. $3 (bāits $4): $5',
 'import-upload'              => 'Enkraūneis XML dātan',
 'import-token-mismatch'      => 'Aumettē di sesiōnis dātan.
-Madli bandāis etkūmps.',
+Madli bāndais etkūmps.',
 'import-invalid-interwiki'   => 'Ni mazīngi impōritun iz padātan wiki.',
 
 # Import log
@@ -2365,6 +2365,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-jpeginterchangeformatlength' => 'JPEG dātas bāitan gīrbis',
 'exif-transferfunction'            => 'Prawesnas funkciōni',
 'exif-whitepoint'                  => 'Gaīliskwas punkts',
+'exif-primarychromaticities'       => 'Trīs galwas bārwis',
 'exif-ycbcrcoefficients'           => 'Bārwin plattibis iz RGB en YCbCr prawartīnsenes matrica',
 'exif-referenceblackwhite'         => 'Kīrsnas be gaīlas autengīnsnas wērtibin pūran',
 'exif-datetime'                    => 'Zūrbrukes kitawīdinsnas dātan be kerdā',
@@ -2381,6 +2382,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-compressedbitsperpixel'      => 'Bildes kōmpresiōnis wīds',
 'exif-pixelydimension'             => 'Tikrōmiskan bildes plattu',
 'exif-pixelxdimension'             => 'Tikrōmiskan bildes aūktan',
+'exif-makernote'                   => 'Tikīntajas endirīsenei',
 'exif-usercomment'                 => 'Tērpautajas kumentārai',
 'exif-relatedsoundfile'            => 'Sēitan audiō zūrbrukis',
 'exif-datetimeoriginal'            => 'Ōriginālas teīksnas dātan be kerdā',
@@ -2406,6 +2408,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-focalplaneyresolution'       => 'Pellanas plassas Y rezōluciōni',
 'exif-focalplaneresolutionunit'    => 'Pellanas plassas rezōluciōnis aīnibi',
 'exif-subjectlocation'             => 'Ōbjaktas deīktan',
+'exif-sensingmethod'               => 'Mattausnas metōdi',
 'exif-filesource'                  => 'Zūrbrukes aps',
 'exif-scenetype'                   => 'Widāklis tīps',
 'exif-cfapattern'                  => 'CFA šablōni',
@@ -2427,6 +2430,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-gpsaltituderef'              => 'Aūktan kīrsa jūŗes līgmenin',
 'exif-gpsaltitude'                 => 'Aūktan kīrsa jūŗes līgmenin',
 'exif-gpstimestamp'                => 'GPS kerdā (atōmiskas zēgeris)',
+'exif-gpssatellites'               => 'Satellitai tērpautai per mattausnan',
 'exif-gpsstatus'                   => 'Gauwikas būsenis',
 'exif-gpsmeasuremode'              => 'Mattausnas wīds',
 'exif-gpsdop'                      => 'Mattausnas tikrisku',
@@ -2586,6 +2590,7 @@ Tu mazzi jāu [[Special:UserLogin|enēitwei]] be tuldītun si sen wiki.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki entensīsna ast izklaūtan]',
+'scarytranscludefailed'   => '[Šablōnis augaūsna iz $1 ni izpalla]',
 'scarytranscludetoolong'  => '[per ilgā URL adressi]',
 
 # Trackbacks
@@ -2632,8 +2637,9 @@ Madli padrūktinais, anga tū perarwi kwaitēi etteīktun šin pāusan.',
 # Live preview
 'livepreview-loading' => 'Kraūsna...',
 'livepreview-ready'   => 'Kraūsna...Gattawan!',
+'livepreview-failed'  => 'Dināmiska pirmādira ni dīlai! Bāndais jāukun pirmādiran.',
 'livepreview-error'   => 'Sēisna ni izpalla: $1, "$2".
-Bandāis jāukun pirmādiran.',
+Bāndais jāukun pirmādiran.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Kitawīdinsnas nāunaisis nikāi $1{{PLURAL:$1|sekūndi|sekūndis}} mazzi ni būtwei waidīntan en listei.',
@@ -2745,7 +2751,7 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 
 # Database error messages
 'dberr-header'      => 'Šī wīki ni dīlai tikrōmiskai',
-'dberr-again'       => 'Bandāis etkūmps kraūtun šin pāusan pa delli minūtins.',
+'dberr-again'       => 'Bāndais etkūmps kraūtun šin pāusan pa delli minūtins.',
 'dberr-info'        => '(Ni mazīngi sēitun si sen dātanbazis sērwerin: $1)',
 'dberr-usegoogle'   => 'En šissei kērdan tu mazzi laukītun sen Google.',
 'dberr-outofdate'   => 'Waīdais, kāi tenēi mazzi turītun niaktuālins nūsas ēnturas indeksans.',
