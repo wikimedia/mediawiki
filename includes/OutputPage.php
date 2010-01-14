@@ -1451,7 +1451,7 @@ class OutputPage {
 			// Wiki is read only
 			$this->setPageTitle( wfMsg( 'readonly' ) );
 			$reason = wfReadOnlyReason();
-			$this->wrapWikiMsg( '<div class="mw-readonly-error">$1</div>', array( 'readonlytext', $reason ) );
+			$this->wrapWikiMsg( '<div class="mw-readonly-error">\n$1</div>', array( 'readonlytext', $reason ) );
 		}
 
 		// Show source, if supplied
@@ -2045,11 +2045,13 @@ class OutputPage {
 	 *
 	 * For example:
 	 *
-	 *    $wgOut->wrapWikiMsg( '<div class="error">$1</div>', 'some-error' );
+	 *    $wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>", 'some-error' );
 	 *
 	 * Is equivalent to:
 	 *
-	 *    $wgOut->addWikiText( '<div class="error">' . wfMsgNoTrans( 'some-error' ) . '</div>' );
+	 *    $wgOut->addWikiText( "<div class='error'>\n" . wfMsgNoTrans( 'some-error' ) . '</div>' );
+	 *
+	 * The newline after opening div is needed in some wikitext. See bug 19226.
 	 */
 	public function wrapWikiMsg( $wrap /*, ...*/ ) {
 		$msgSpecs = func_get_args();
