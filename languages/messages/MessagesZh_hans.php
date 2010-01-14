@@ -2228,7 +2228,7 @@ $1',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已经被查封。
 <br />参看[[Special:IPBlockList|被封IP地址列表]]以复审查封。',
 'ipb-edit-dropdown'               => '编辑查封原因',
-'ipb-unblock-addr'                => '解除封禁$1',
+'ipb-unblock-addr'                => '解封$1',
 'ipb-unblock'                     => '解除禁封用户名或IP地址',
 'ipb-blocklist-addr'              => '$1的现有封禁',
 'ipb-blocklist'                   => '查看现有的封禁',

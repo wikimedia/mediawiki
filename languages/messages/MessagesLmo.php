@@ -551,6 +551,9 @@ Cunt el test che te mandet tì te deciaret anca che, sota la tò respunsabilità
 'hiddencategories'                 => 'Quela pagina chì la fa part de {{PLURAL:$1|una categuria|$1 categurij}} scundüü:',
 'permissionserrorstext-withaction' => "Te gh'hee minga i permiss per $2, per {{PLURAL:$1|quela resón chì |quij resón chì}}:",
 
+# "Undo" feature
+'undo-summary' => 'Scancelada la mudifega $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciciarada]])',
+
 # History pages
 'viewpagelogs'           => 'Varda i register de quela pagina chì',
 'currentrev-asof'        => 'Versión curenta di $1',
