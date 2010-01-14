@@ -1114,6 +1114,7 @@ class Parser
 	}
 
 	/**
+	 * Processes bolds and italics on a single line.
 	 * Helper function for doAllQuotes()
 	 */
 	public function doQuotes( $text ) {
@@ -1139,18 +1140,19 @@ class Parser
 						$arr[$i-1] .= "'";
 						$arr[$i] = "'''";
 					}
-					# If there are more than 5 apostrophes in a row, assume they're all
-					# text except for the last 5.
-					else if ( strlen( $arr[$i] ) > 5 )
+					# If there are more than 6 apostrophes in a row, assume they're all
+					# text except for the last 6.
+					else if ( strlen( $arr[$i] ) > 6 )
 					{
-						$arr[$i-1] .= str_repeat( "'", strlen( $arr[$i] ) - 5 );
-						$arr[$i] = "'''''";
+						$arr[$i-1] .= str_repeat( "'", strlen( $arr[$i] ) - 6 );
+						$arr[$i] = "''''''";
 					}
 					# Count the number of occurrences of bold and italics mark-ups.
 					# We are not counting sequences of five apostrophes.
 					if ( strlen( $arr[$i] ) == 2 )      { $numitalics++;             }
 					else if ( strlen( $arr[$i] ) == 3 ) { $numbold++;                }
 					else if ( strlen( $arr[$i] ) == 5 ) { $numitalics++; $numbold++; }
+					else if ( strlen( $arr[$i] ) == 6 ) { $numbold+=2; }
 				}
 				$i++;
 			}
@@ -1162,11 +1164,17 @@ class Parser
 			if ( ( $numbold % 2 == 1 ) && ( $numitalics % 2 == 1 ) )
 			{
 				$i = 0;
+				
+				#These are indexes to the /next/ array entry than the 
+				#one holding the text matching the condition.
 				$firstsingleletterword = -1;
 				$firstmultiletterword = -1;
 				$firstspace = -1;
+				
 				foreach ( $arr as $r )
 				{
+					#Filter the "'''". Separators are on odd positions. 
+					#$arr[0] will be an empty string if needed.
 					if ( ( $i % 2 == 1 ) and ( strlen( $r ) == 3 ) )
 					{
 						$x1 = substr ($arr[$i-1], -1);
@@ -1175,7 +1183,7 @@ class Parser
 							if ($firstspace == -1) $firstspace = $i;
 						} else if ($x2 === ' ') {
 							if ($firstsingleletterword == -1) $firstsingleletterword = $i;
-						} else {
+						} else if ($arr[$i-1] != "") {
 							if ($firstmultiletterword == -1) $firstmultiletterword = $i;
 						}
 					}
@@ -1205,9 +1213,9 @@ class Parser
 			}
 
 			# Now let's actually convert our apostrophic mush to HTML!
-			$output = '';
-			$buffer = '';
-			$state = '';
+			$output = ''; #Processed text
+			$buffer = ''; #Content if $state is 'both'
+			$state = '';  #Flags with the order of open tags: '|b|i|bi|ib|both'
 			$i = 0;
 			foreach ($arr as $r)
 			{
@@ -1260,6 +1268,21 @@ class Parser
 						{ $output .= '<i><b>'.$buffer.'</b></i>'; $state = ''; }
 						else # ($state == '')
 						{ $buffer = ''; $state = 'both'; }
+					}
+					else if (strlen ($r) == 6)
+					{
+						if ($state === 'b')
+						{ $output .= '</b><b>'; $state = 'b'; }
+						else if ($state === 'i')
+						{ $output .= '\'</i><b>'; $state = 'b'; }
+						else if ($state === 'bi')
+						{ $output .= '\'</i></b>'; $state = ''; }
+						else if ($state === 'ib')
+						{ $output .= '\'</b></i>'; $state = ''; }
+						else if ($state === 'both')
+						{ $output .= '<i><b>'.$buffer.'</b><b>'; $state = 'ib'; }
+						else # ($state == '')
+						{ $buffer = ''; $state = ''; }
 					}
 				}
 				$i++;
