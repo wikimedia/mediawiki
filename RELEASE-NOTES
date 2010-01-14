@@ -92,7 +92,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgCountTotalSearchHits to make search UI display total number of hits
   with some search engines.
 * Added $wgAdvertisedFeedTypes to decide what feed types (RSS, Atom, both, or
-  neither) MediaWiki advertises.  Default is array( 'rss' ), so Atom is no
+  neither) MediaWiki advertises.  Default is array( 'atom' ), so RSS is no
   longer advertised by default (but it still works).
 
 
