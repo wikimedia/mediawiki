@@ -258,11 +258,12 @@ class Parser
 	 * Set the context title
 	 */
 	function setTitle( $t ) {
+		// If don't have a Title object, then convert what we have to
+		// a string and then to Title.  If you pass in an object, make
+		// sure it has a __toString() method or you'll get a
+		// "Catchable fatal error"
 		if ( $t && !($t instanceOf FakeTitle)
-			 && !($t instanceOf Title)
-			 && is_string( "$t" ) ) {
-			// If don't have a Title object, make sure we can convert
-			// whatever we've been passed to a string.
+			 && !($t instanceOf Title) ) {
 			$t = Title::newFromText( "$t" );
 		}
 
