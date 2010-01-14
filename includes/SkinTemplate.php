@@ -424,7 +424,7 @@ class SkinTemplate extends Skin {
 			$tpl->setRef( 'credits', $this->credits );
 
 		} else {
-			$tpl->set( 'copyright', false );
+			$tpl->set( 'copyright', $this->getCopyright() );
 			$tpl->set( 'viewcount', false );
 			$tpl->set( 'lastmod', false );
 			$tpl->set( 'credits', false );
