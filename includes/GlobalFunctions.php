@@ -1167,8 +1167,7 @@ function wfNumLink( $offset, $limit, $title, $query = '' ) {
  * @return bool Whereas client accept gzip compression
  */
 function wfClientAcceptsGzip() {
-	global $wgUseGzip;
-	if( $wgUseGzip ) {
+	if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
 		# FIXME: we may want to blacklist some broken browsers
 		$m = array();
 		if( preg_match(

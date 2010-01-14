@@ -706,6 +706,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14717) Don't load nonexistent CSS fix files for non-Monobook skins
 * (bug 18765) Increased consistency of bold-italic markup for unbalanced quotes. 
   Improved representation of six quotes (may break existing markup).
+* (bug 22034) Use wfClientAcceptsGzip() in wfGzipHandler instead of
+  reimplementing it.
 
 == API changes in 1.16 ==
 
@@ -811,13 +813,13 @@ changes to languages because of MediaZilla reports.
 * Add Estonian letters äöõšüž to linktrail (et)
 * (bug 18776) Native name of Burmese language (my)
 * (bug 18806) Use correct unicode characters in spelling of native Chuvash
-  (Чӑвашла)
+  (???????)
 * (bug 18864) Updated autonym for Zhuang language
 * (bug 18308) Updated date formatting in Occitan (oc)
-* (bug 19080) Added ăâîşţșțĂÂÎŞŢȘȚ to Romanion (ro) linktrail
+* (bug 19080) Added aâîst??AÂÎST?? to Romanion (ro) linktrail
 * (bug 19286) Correct commafying function in Polish (pl)
 * (bug 19441) Updated date formatting for Lithuanian
-* (bug 19630) Added ÄäÇçĞğŇňÖöŞşÜüÝýŽž to Turkmen (tk) linktrail
+* (bug 19630) Added ÄäÇçGgNnÖöSsÜüÝýŽž to Turkmen (tk) linktrail
 * (bug 19949) New linktrail for Greek (el)
 * (bug 19809) Korean (North Korea) (ko-kp) (new)
 * (bug 19968) Fixed "Project talk" namespace name for Maltese (mt)
@@ -893,4 +895,4 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 
 === IRC help ===
 
-There's usually someone online in #mediawiki on irc.freenode.net
+There's usually someone online 
