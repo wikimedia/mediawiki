@@ -704,6 +704,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9794) User rights log entries for foreign user now links to the foreign
   user's page if possible
 * (bug 14717) Don't load nonexistent CSS fix files for non-Monobook skins
+* (bug 18765) Increased consistency of bold-italic markup for unbalanced quotes. 
+  Improved representation of six quotes (may break existing markup).
 
 == API changes in 1.16 ==
 

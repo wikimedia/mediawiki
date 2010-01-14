@@ -1635,8 +1635,8 @@ Interwiki link encoding conversion (bug 1636)
 *[[Wikipedia:ro:Olteni&#0355;a]]
 *[[Wikipedia:ro:Olteni&#355;a]]
 !! result
-<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
-</li><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
+<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Oltenita">Wikipedia:ro:Olteni&#355;a</a>
+</li><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Oltenita">Wikipedia:ro:Olteni&#355;a</a>
 </li></ul>
 
 !! end
@@ -3394,7 +3394,7 @@ BUG 499: Alt text should have &#1234;, not &amp;1234;
 !! input
 [[Image:foobar.jpg|&#9792;]]
 !! result
-<p><a href="/wiki/File:Foobar.jpg" class="image" title="♀"><img alt="♀" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="?"><img alt="?" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 
@@ -3537,7 +3537,7 @@ ill
 [[fr:Nourriture]]
 [[zh:&#39135;&#21697;]]
 !! result
-es:Alimento fr:Nourriture zh:食品
+es:Alimento fr:Nourriture zh:??
 !! end
 
 ###
@@ -5252,19 +5252,17 @@ New wiki paragraph
 </p>
 !! end
 
-# Original result was this:
-# <p><b>bold</b><b>bold<i>bolditalics</i></b>
+# This was the original html, but it has also been
+# <p>'<i>bold'</i><b>bold<i>bolditalics</i></b>
 # </p>
-# While that might be marginally more intuitive, maybe, the six-apostrophe
-# construct is clearly pathological and the result stated here (which is what
-# the parser actually does) is about as reasonable as anything.
+# See bug 18765.
 !!test
 Mixing markup for italics and bold
 !! options
 !! input
 '''bold''''''bold''bolditalics'''''
 !! result
-<p>'<i>bold'</i><b>bold<i>bolditalics</i></b>
+<p><b>bold</b><b>bold<i>bolditalics</i></b>
 </p>
 !! end
 
@@ -6746,9 +6744,9 @@ Self-link in language variants
 !! options
 title=[[Dunav]] language=sr
 !! input
-Both [[Dunav]] and [[Дунав]] are names for this river.
+Both [[Dunav]] and [[?????]] are names for this river.
 !! result
-<p>Both <strong class="selflink">Dunav</strong> and <strong class="selflink">Дунав</strong> are names for this river.
+<p>Both <strong class="selflink">Dunav</strong> and <strong class="selflink">?????</strong> are names for this river.
 </p>
 !!end
 
@@ -6758,9 +6756,9 @@ Link to pages in language variants
 !! options
 language=sr
 !! input
-Main Page can be written as [[Маин Паге]]
+Main Page can be written as [[???? ????]]
 !! result
-<p>Main Page can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>
+<p>Main Page can be written as <a href="/wiki/Main_Page" title="Main Page">???? ????</a>
 </p>
 !!end
 
@@ -6770,9 +6768,9 @@ Multiple links to pages in language variants
 !! options
 language=sr
 !! input
-[[Main Page]] can be written as [[Маин Паге]] same as [[Маин Паге]].
+[[Main Page]] can be written as [[???? ????]] same as [[???? ????]].
 !! result
-<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a> can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a> same as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>.
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a> can be written as <a href="/wiki/Main_Page" title="Main Page">???? ????</a> same as <a href="/wiki/Main_Page" title="Main Page">???? ????</a>.
 </p>
 !!end
 
@@ -6782,7 +6780,7 @@ Simple template in language variants
 !! options
 language=sr
 !! input
-{{тест}}
+{{????}}
 !! result
 <p>This is a test template
 </p>
@@ -6794,7 +6792,7 @@ Template with explicit namespace in language variants
 !! options
 language=sr
 !! input
-{{Template:тест}}
+{{Template:????}}
 !! result
 <p>This is a test template
 </p>
@@ -6806,7 +6804,7 @@ Basic test for template parameter in language variants
 !! options
 language=sr
 !! input
-{{парамтест|param=foo}}
+{{?????????|param=foo}}
 !! result
 <p>This is a test template with parameter foo
 </p>
@@ -6818,9 +6816,9 @@ Simple category in language variants
 !! options
 language=sr cat
 !! input
-[[Category:МедиаWики Усер'с Гуиде]]
+[[Category:?????W??? ????'? ?????]]
 !! result
-<a href="/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%98%D0%B0:MediaWiki_User%27s_Guide" title="Категорија:MediaWiki User's Guide">MediaWiki User's Guide</a>
+<a href="/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%98%D0%B0:MediaWiki_User%27s_Guide" title="??????????:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 
@@ -6843,7 +6841,7 @@ language=sr variant=sr-ec
 !! input
 Latinski: -{Ne nuntium necare}-
 !! result
-<p>Латински: Ne nuntium necare
+<p>????????: Ne nuntium necare
 </p>
 !! end
 
@@ -6855,7 +6853,7 @@ language=sr variant=sr-ec
 !! input
 Latinski: -{Ne nuntium necare}-
 !! result
-<p>Латински: Ne nuntium necare
+<p>????????: Ne nuntium necare
 </p>
 !! end
 
@@ -6879,7 +6877,7 @@ language=sr variant=sr-ec
 !! input
 == -{Naslov}- ==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди део: Naslov">уреди</a>]</span> <span class="mw-headline" id="-.7BNaslov.7D-"> Naslov </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="????? ???: Naslov">?????</a>]</span> <span class="mw-headline" id="-.7BNaslov.7D-"> Naslov </span></h2>
 
 !! end
 
@@ -6979,7 +6977,7 @@ language=sr variant=sr-ec
 !! input
 Fridrih IV je car.
 !! result
-<p>Фридрих IV је цар.
+<p>??????? IV ?? ???.
 </p>
 !! end
 
@@ -7056,23 +7054,23 @@ Case insensitivity of parser functions for non-ASCII characters (bug 8143)
 language=cs
 title=[[Main Page]]
 !! input
-{{PRVNÍVELKÉ:ěščř}}
-{{prvnívelké:ěščř}}
-{{PRVNÍMALÉ:ěščř}}
-{{prvnímalé:ěščř}}
-{{MALÁ:ěščř}}
-{{malá:ěščř}}
-{{VELKÁ:ěščř}}
-{{velká:ěščř}}
+{{PRVNÍVELKÉ:ešcr}}
+{{prvnívelké:ešcr}}
+{{PRVNÍMALÉ:ešcr}}
+{{prvnímalé:ešcr}}
+{{MALÁ:ešcr}}
+{{malá:ešcr}}
+{{VELKÁ:ešcr}}
+{{velká:ešcr}}
 !! result
-<p>Ěščř
-Ěščř
-ěščř
-ěščř
-ěščř
-ěščř
-ĚŠČŘ
-ĚŠČŘ
+<p>Ešcr
+Ešcr
+ešcr
+ešcr
+ešcr
+ešcr
+EŠCR
+EŠCR
 </p>
 !! end
 
@@ -7339,7 +7337,7 @@ language=fa
 !! input
 [http://en.wikipedia.org/]
 !! result
-<p><a href="http://en.wikipedia.org/" class="external autonumber" rel="nofollow">[۱]</a>
+<p><a href="http://en.wikipedia.org/" class="external autonumber" rel="nofollow">[?]</a>
 </p>
 !! end
 
@@ -7466,7 +7464,7 @@ comment title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
-<span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">→</a>External links: </span> removed bogus entries
+<span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">?</a>External links: </span> removed bogus entries
 !!end
 
 !! test
@@ -7476,7 +7474,7 @@ comment local title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
-<span class="autocomment"><a href="#External_links">→</a>External links: </span> removed bogus entries
+<span class="autocomment"><a href="#External_links">?</a>External links: </span> removed bogus entries
 !!end
 
 !! test
@@ -7537,10 +7535,86 @@ title=[[Main Page]]
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
 !! end
 
+!! test
+Bold/italic markup handled differently depending on leading whitespace (bug 18765)
+!!input
+'''Look at ''this edit'''s complicated bold/italic markup!'''
+
+<!-- Comment -->'''Look at ''this edit'''s complicated bold/italic markup!'''
+
+<span> '''Look at ''this edit'''s complicated bold/italic markup!'''</span>
+
+<nowiki></nowiki> '''Look at ''this edit'''s complicated bold/italic markup!'''
+
+<!-- Hello world---> '''Look at ''this edit'''s complicated bold/italic markup!'''
+
+{|
+| '''Look at ''this edit'''s complicated bold/italic markup!'''
+|}
+
+'''This was Italic'' this was plain''' and this was bold'''
+but '''This is bold'' this is bold italic''' and this is bold'''
+
+<!-- Wishlist: Breaking because <span> and | are treated as text 
+<span>'''Look at ''this edit'''s complicated bold/italic markup!'''</span> 
+{|
+|'''Look at ''this edit'''s complicated bold/italic markup!'''
+|}
+-->
+!! result
+<p><b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+</p><p><b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+</p><p><span> <b>Look at <i>this edit'</i>s complicated bold/italic markup!</b></span>
+</p><p> <b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+</p>
+<pre><b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+</pre>
+<table>
+<tr>
+<td> <b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+</td></tr></table>
+<p><b>This was Italic<i> this was plain'</i> and this was bold</b>
+but <b>This is bold<i> this is bold italic'</i> and this is bold</b>
+</p><p><br />
+</p>
+!! end
+
+!! test
+Six quotes
+!!input
+''Italic''''''Bold
+
+'''Bold''BoldItalic''''''Normal
+
+''Italic'''BoldItalic''''''Normal'''''
+
+'''''BoldItalic''''''MoreBoldItalic''
+
+''''''Normal
+!!result
+<p><i>Italic'</i><b>Bold</b>
+</p><p><b>Bold<i>BoldItalic'</i></b>Normal
+</p><p><i>Italic<b>BoldItalic'</b></i>Normal
+</p><p><i><b>BoldItalic</b><b>MoreBoldItalic</b></i>
+</p><p>Normal
+</p>
+!!end
+
+
+!! test
+Too many quotes
+!!input
+I '''like'''''quotes''''''''''' 
+!! result
+<p>I <b>like</b><i>quotes''''''</i><b> </b>
+</p>
+!! end
+
+
+
+
 TODO:
 more images
 more tables
 math
-character entities
-and much more
-Try for 100% code coverage
+char
