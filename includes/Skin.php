@@ -498,14 +498,14 @@ class Skin extends Linker {
 
 		wfProfileIn( __METHOD__ );
 		if( !$skinName ) {
-			$skinName =	$this->getSkinName();
+			$skinName = $this->getSkinName();
 		}
 
 		$s = "/* generated javascript */\n";
 		$s .= "var skin = '" . Xml::escapeJsString($skinName ) . "';\n";
 		$s .= "var stylepath = '" . Xml::escapeJsString( $wgStylePath ) . "';";
 		$s .= "\n\n/* MediaWiki:Common.js */\n";
-		$commonJs = wfMsgForContent( 'common.js' );
+		$commonJs = wfMsgExt( 'common.js', 'content' );
 		if ( !wfEmptyMsg( 'common.js', $commonJs ) ) {
 			$s .= $commonJs;
 		}
@@ -514,7 +514,7 @@ class Skin extends Linker {
 		// avoid inclusion of non defined user JavaScript (with custom skins only)
 		// by checking for default message content
 		$msgKey = ucfirst( $skinName ) . '.js';
-		$userJS = wfMsgForContent( $msgKey );
+		$userJS = wfMsgExt( $msgKey, 'content' );
 		if ( !wfEmptyMsg( $msgKey, $userJS ) ) {
 			$s .= $userJS;
 		}
