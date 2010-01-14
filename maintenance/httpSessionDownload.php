@@ -27,12 +27,10 @@ require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class HttpSessionDownload extends Maintenance {
 	public function __construct() {
-		global $wgUseNormalUser;
 		parent::__construct();
 		$this->mDescription = "Simple entry point to initiate a background download";
 		$this->addOption( 'sid',  'Session ID', true, true );
 		$this->addOption( 'usk',  'Upload session key', true, true );
-		$wgUseNormalUser = true;
 	}
 
 	public function execute() {
