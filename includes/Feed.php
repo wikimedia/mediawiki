@@ -43,6 +43,8 @@ class FeedItem {
 	var $Url = '';
 	var $Date = '';
 	var $Author = '';
+	var $UniqueId = '';
+	var $RSSIsPermalink;
 	/**#@-*/
 
 	/**
@@ -59,6 +61,8 @@ class FeedItem {
 		$this->Title = $Title;
 		$this->Description = $Description;
 		$this->Url = $Url;
+		$this->UniqueId = $Url;
+		$this->RSSIsPermalink = false;
 		$this->Date = $Date;
 		$this->Author = $Author;
 		$this->Comments = $Comments;
@@ -74,6 +78,28 @@ class FeedItem {
 		$string = str_replace( "\r\n", "\n", $string );
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string );
 		return htmlspecialchars( $string );
+	}
+
+	/**
+	 * Get the unique id of this item
+	 *
+	 * @return String
+	 */
+	public function getUniqueId() {
+		if ( $this->UniqueId ) {
+			return $this->xmlEncode( $this->UniqueId );
+		}
+	}
+
+	/**
+	 * set the unique id of an item
+	 *
+	 * @param $uniqueId String: unique id for the item
+	 * @param $RSSisPermalink Boolean: set to true if the guid (unique id) is a permalink (RSS feeds only)
+	 */
+	public function setUniqueId($uniqueId, $RSSisPermalink = False) {
+		$this->UniqueId = $uniqueId;
+		$this->RSSIsPermalink = $isPermalink;
 	}
 
 	/**
@@ -139,7 +165,7 @@ class FeedItem {
 	public function getComments() {
 		return $this->xmlEncode( $this->Comments );
 	}
-	
+
 	/**
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 *
@@ -277,6 +303,7 @@ class RSSFeed extends ChannelFeed {
 		<item>
 			<title><?php print $item->getTitle() ?></title>
 			<link><?php print $item->getUrl() ?></link>
+			<guid<?php if( $item->RSSIsPermalink ) print ' isPermaLink="true"' ?>><?php print $item->getUniqueId() ?></guid>
 			<description><?php print $item->getDescription() ?></description>
 			<?php if( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ) ?></pubDate><?php } ?>
 			<?php if( $item->getAuthor() ) { ?><dc:creator><?php print $item->getAuthor() ?></dc:creator><?php }?>
@@ -359,7 +386,7 @@ class AtomFeed extends ChannelFeed {
 		global $wgMimeType;
 	?>
 	<entry>
-		<id><?php print $item->getUrl() ?></id>
+		<id><?php print $item->getUniqueId() ?></id>
 		<title><?php print $item->getTitle() ?></title>
 		<link rel="alternate" type="<?php print $wgMimeType ?>" href="<?php print $item->getUrl() ?>"/>
 		<?php if( $item->getDate() ) { ?>
