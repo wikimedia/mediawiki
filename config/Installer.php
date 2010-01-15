@@ -419,13 +419,6 @@ if( wfIniGetBool( "zend.ze1_compatibility_mode" ) ) {
 	<?php
 }
 
-if( phpversion() === '5.3.1' ) {
-	$fatal = true;
-	?><li class="error"><strong>Fatal: PHP 5.3.1 is not compatible with MediaWiki!</strong>
-	PHP 5.3.1 is not compatible with MediaWiki due to a <a href="http://news.php.net/php.internals/46389">bug in PHP</a>. Please use PHP 5.3.0, or PHP 5.3.2 or later.</li>
-	<?php
-}
-
 if( $fatal ) {
 	dieout( "Cannot install MediaWiki." );
 }
