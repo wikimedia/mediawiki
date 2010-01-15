@@ -281,13 +281,13 @@ div.thumb {
     margin-bottom: 0.5em;
     width: auto;
 }
-div.thumb div {
+div.thumbinner {
     padding: 3px !important;
     text-align: center;
     overflow: hidden;
 }
 
-div.thumb div div.thumbcaption {
+html .thumbcaption {
     border: none;
     text-align: left;
     line-height: 1.4;

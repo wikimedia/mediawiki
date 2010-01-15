@@ -712,6 +712,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19226) First line renders differently on many UI messages.
 * (bug 21303) Comments are no longer stripped from MediaWiki:Common.js and
   skin-specific JS pages
+* (bug 5061) Use the more precise thumbcaption thumbimage and thumbinner classes 
+  for image divs.
 
 == API changes in 1.16 ==
 

@@ -281,7 +281,7 @@ div.thumb {
     border-style: solid; border-color: White;
     width: auto;
 }
-div.thumb div {
+div.thumbinner {
     border:1px solid #cccccc;
     padding: 3px !important;
     background-color:#f9f9f9;
@@ -289,10 +289,10 @@ div.thumb div {
     text-align: center;
     overflow: hidden;
 }
-div.thumb div a img {
+html .thumbimage {
     border:1px solid #cccccc;
 }
-div.thumb div div.thumbcaption {
+html .thumbcaption {
     border: none;
     text-align: left;
     line-height: 1.4em;

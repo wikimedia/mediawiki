@@ -48,17 +48,17 @@ div.thumb {
     width: auto;
     overflow: hidden;
 }
-div.thumb div {
+div.thumbinner {
     border:1px solid #cccccc;
     padding: 3px !important;
     background-color:#f9f9f9;
     font-size: 94%;
     text-align: center;
 }
-div.thumb div a img {
+html .thumbimage {
     border:1px solid #cccccc;
 }
-div.thumb div div.thumbcaption {
+html .thumbcaption {
     border: none;
     padding: 0.3em 0 0.1em 0;
 }
