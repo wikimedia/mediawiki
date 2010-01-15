@@ -303,6 +303,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * LanguageConverter now support nested using of manual convert syntax like "-{-{}-}-"
 * (bug 16281) Show copyright system message on special pages
 * Upload license preview now uses the API instead of action=ajax
+* (bug 7346) Add <guid> to RSS to avoid duplicates
 
 === Bug fixes in 1.16 ===
 
