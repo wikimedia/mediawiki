@@ -93,7 +93,7 @@ class Parser
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
 		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex, $mPreprocessor,
 		$mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList, $mVarCache, $mConf,
-		$mFunctionTagHooks, $mDoTitleConvert, $mDoContentConvert;
+		$mFunctionTagHooks;
 
 
 	# Cleared with clearState():
@@ -147,8 +147,6 @@ class Parser
 		}
 		$this->mMarkerIndex = 0;
 		$this->mFirstCall = true;
-		$this->mDoTitleConvert = true;
-		$this->mDoContentConvert = true;
 	}
 
 	/**
@@ -258,18 +256,9 @@ class Parser
 	 * Set the context title
 	 */
 	function setTitle( $t ) {
-		// If don't have a Title object, then convert what we have to
-		// a string and then to Title.  If you pass in an object, make
-		// sure it has a __toString() method or you'll get a
-		// "Catchable fatal error"
-		if ( $t && !($t instanceOf FakeTitle)
-			 && !($t instanceOf Title) ) {
-			$t = Title::newFromText( "$t" );
-		}
-
-		if ( !($t instanceOf Title) ) {
-			$t = Title::newFromText( 'NO TITLE' );
-		}
+ 		if ( !$t || $t instanceof FakeTitle ) {
+ 			$t = Title::newFromText( 'NO TITLE' );
+ 		}
 
 		if ( strval( $t->getFragment() ) !== '' ) {
 			# Strip the fragment to avoid various odd effects
@@ -316,7 +305,7 @@ class Parser
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -360,7 +349,10 @@ class Parser
 		// The position of the convert() call should not be changed. it
 		// assumes that the links are all replaced and the only thing left
 		// is the <nowiki> mark.
-		if ( $this->mDoContentConvert && !$this->mTitle->isConversionTable()) {
+		if ( !( $wgDisableLangConversion
+				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
+				|| $this->mTitle->isTalkPage()
+				|| $this->mTitle->isConversionTable() ) ) {
 			$text = $wgContLang->convert( $text );
 		}
 
@@ -369,9 +361,10 @@ class Parser
 		// rule but content conversion was not done, then the parser
 		// won't pick it up.  This is probably expected behavior.
 		if ( $wgContLang->getConvRuleTitle() ) {
-			$this->setTitle( $wgContLang->getConvRuleTitle() );
-		} elseif ( $this->mDoTitleConvert && !$this->mTitle->isConversionTable() ) {
-			$this->setTitle( $wgContLang->convert( $title ) );
+			$this->mOutput->setTitleText( $wgContLang->getConvRuleTitle() );
+		} elseif ( !( $wgDisableLangConversion
+					  || isset( $this->mDoubleUnderscores['notitleconvert'] ) ) ) {
+			$this->mOutput->setTitleText( $wgContLang->convert( $title ) );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
@@ -451,6 +444,7 @@ class Parser
 			$text .= "\n<!-- \n$limitReport-->\n";
 		}
 		$this->mOutput->setText( $text );
+
 		$this->mRevisionId = $oldRevisionId;
 		$this->mRevisionTimestamp = $oldRevisionTimestamp;
 		wfProfileOut( $fname );
@@ -3423,7 +3417,6 @@ class Parser
 	 * Fills $this->mDoubleUnderscores, returns the modified text
 	 */
 	function doDoubleUnderscore( $text ) {
-		global $wgDisableLangConversion;
 		wfProfileIn( __METHOD__ );
 
 		// The position of __TOC__ needs to be recorded
@@ -3464,18 +3457,6 @@ class Parser
 		if( isset( $this->mDoubleUnderscores['index'] ) && $this->mTitle->canUseNoindex() ){
 			$this->mOutput->setIndexPolicy( 'index' );
 			$this->addTrackingCategory( 'index-category' );
-		}
-
-		if ( !$wgDisableLangConversion ) {
-			if( isset( $this->mDoubleUnderscores['notitleconvert'] ) ){
-				$this->mDoTitleConvert = false;
-			}
-
-			// Don't convert talk pages
-			if( isset( $this->mDoubleUnderscores['nocontentconvert'] )
-				&& !$this->mTitle->isTalkPage() ){
-				$this->mDoContentConvert = false;
-			}
 		}
 
 		wfProfileOut( __METHOD__ );

@@ -347,8 +347,6 @@ class OutputPage {
 	 * Bad tags that were escaped in <h1> will still be escaped in <title>, and good tags like <i> will be dropped entirely.
 	 */
 	public function setPageTitle( $name ) {
-		global $wgContLang;
-
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
 		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $name ) );
@@ -617,12 +615,8 @@ class OutputPage {
 			}
 		}
 		// Page title
-		$dt = $parserOutput->getDisplayTitle();
 		$title = $parserOutput->getTitleText();
-		if ( $dt !== false ) {
-			$this->setPageTitle( $dt );
-		}
-		else if ( $title != '' ) {
+		if ( $title != '' ) {
 			$this->setPageTitle( $title );
 		}
 
