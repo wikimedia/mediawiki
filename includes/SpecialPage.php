@@ -144,7 +144,7 @@ class SpecialPage {
 		'Upload'                    => 'SpecialUpload',
 
 		# Wiki data and tools
-		'Statistics'				=> 'SpecialStatistics',
+		'Statistics'                => 'SpecialStatistics',
 		'Allmessages'               => 'SpecialAllmessages',
 		'Version'                   => 'SpecialVersion',
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
