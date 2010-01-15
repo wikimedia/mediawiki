@@ -492,7 +492,6 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'body_ondblclick', false );
 		}
-		$tpl->set( 'body_onload', false );
 		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
