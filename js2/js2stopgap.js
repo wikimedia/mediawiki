@@ -804,9 +804,11 @@ jQuery.extend({
 				name = "float";
 
 			name = name.replace( /([A-Z])/g, "-$1" ).toLowerCase();
-
-			var computedStyle = defaultView.getComputedStyle( elem, null );
-
+			try{
+				var computedStyle = defaultView.getComputedStyle( elem, null );
+			}catch(e){
+				// Error in getting computedStyle
+			}
 			if ( computedStyle )
 				ret = computedStyle.getPropertyValue( name );
 
