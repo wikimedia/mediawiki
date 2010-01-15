@@ -187,7 +187,7 @@ class ParserOutput
 	 * @return string
 	 */
 	public function getDisplayTitle() {
-		$t = $this->getTitleText( $text );
+		$t = $this->getTitleText( );
 		if( $t === '' ) {
 			return false;
 		}
