@@ -28,7 +28,9 @@
 $options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record'. 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+if ( !defined( "NO_COMMAND_LINE" ) ) {
+	require_once( dirname(__FILE__) . '/commandLine.inc' );
+}
 require_once( "$IP/maintenance/parserTestsParserHook.php" );
 require_once( "$IP/maintenance/parserTestsStaticParserHook.php" );
 require_once( "$IP/maintenance/parserTestsParserTime.php" );
@@ -97,7 +99,7 @@ class ParserTest {
 			isset( $options['quiet'] )
 			&& ( isset( $options['record'] )
 				|| isset( $options['compare'] ) ) ); // redundant output
-		
+
 		$this->showOutput = isset( $options['show-output'] );
 
 
@@ -359,7 +361,7 @@ class ParserTest {
 					}
 					if (!isset( $data['config'] ) )
 						$data['config'] = '';
-					
+
 					if ( (preg_match('/\\bdisabled\\b/i', $data['options'])
 						|| !preg_match("/{$this->regex}/i", $data['test'])) && !$this->runDisabled ) {
 						# disabled test
@@ -477,6 +479,9 @@ class ParserTest {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$out = $output->getText();
 
+			if ( isset( $opts['showtitle'] ) ) {
+				$out = $output->getTitleText() . "\n$out";
+			}
 			if (isset( $opts['ill'] ) ) {
 				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
 			} elseif( isset( $opts['cat'] ) ) {
@@ -493,9 +498,6 @@ class ParserTest {
 			$result = $this->tidy($result);
 		}
 
-		if ( isset( $opts['showtitle'] ) ) {
-			$out = $parser->mTitle . "\n$out";
-        }
 
 		$this->teardownGlobals();
 
@@ -521,7 +523,7 @@ class ParserTest {
 			return $default;
 		}
 	}
-	
+
 	private function parseOptions( $instring ) {
 		$opts = array();
 		$lines = explode( "\n", $instring );
@@ -577,7 +579,7 @@ class ParserTest {
 		}
 		return $opts;
 	}
-	
+
 	private function cleanupOption( $opt ) {
 		if( substr( $opt, 0, 1 ) == '"' ) {
 			return substr( $opt, 1, -1 );
@@ -605,7 +607,7 @@ class ParserTest {
 			self::getOptionValue( 'variant', $opts, false );
 		$maxtoclevel =
 			self::getOptionValue( 'wgMaxTocLevel', $opts, 999 );
-		$linkHolderBatchSize = 
+		$linkHolderBatchSize =
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$settings = array(
@@ -664,17 +666,19 @@ class ParserTest {
 
 		if ($config) {
 			$configLines = explode( "\n", $config );
-			
+
 			foreach( $configLines as $line ) {
 				list( $var, $value ) = explode( '=', $line, 2 );
-				
+
 				$settings[$var] = eval("return $value;" );
 			}
 		}
-		
+
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
-			$this->savedGlobals[$var] = $GLOBALS[$var];
+			if( array_key_exists( $var, $GLOBALS ) ) {
+				$this->savedGlobals[$var] = $GLOBALS[$var];
+			}
 			$GLOBALS[$var] = $val;
 		}
 		$langObj = Language::factory( $lang );
@@ -706,9 +710,9 @@ class ParserTest {
 			'archive', 'user_groups', 'page_props', 'category'
 		);
 
-		if ($wgDBtype === 'mysql') 
+		if ($wgDBtype === 'mysql')
 			array_push( $tables, 'searchindex' );
-		
+
 		// Allow extensions to add to the list of tables to duplicate;
 		// may be necessary if they hook into page save or other code
 		// which will require them while running tests.
@@ -791,7 +795,7 @@ class ParserTest {
 
 		if ($wgDBtype == 'oracle') {
 			# Insert 0 and 1 user_ids to prevent FK violations
-			
+
 			#Anonymous user
 			$db->insert( 'user', array(
 				'user_id'         => 0,
@@ -867,7 +871,7 @@ class ParserTest {
 			$db->query('BEGIN FILL_WIKI_INFO; END;');
 		*/
 	}
-	
+
 	/**
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
@@ -1310,8 +1314,8 @@ class DbTestPreviewer extends TestRecorder  {
 		global $wgDBtype, $wgDBprefix;
 		parent::start();
 
-		if( ! $this->db->tableExists( 'testrun' ) 
-			or ! $this->db->tableExists( 'testitem' ) ) 
+		if( ! $this->db->tableExists( 'testrun' )
+			or ! $this->db->tableExists( 'testitem' ) )
 		{
 			print "WARNING> `testrun` table not found in database.\n";
 			$this->prevRun = false;
@@ -1347,7 +1351,7 @@ class DbTestPreviewer extends TestRecorder  {
 			$res = $this->db->select( 'testitem', array( 'ti_name', 'ti_success' ),
 				array( 'ti_run' => $this->prevRun ), __METHOD__ );
 			foreach ( $res as $row ) {
-				if ( !$this->parent->regex 
+				if ( !$this->parent->regex
 					|| preg_match( "/{$this->parent->regex}/i", $row->ti_name ) )
 				{
 					$prevResults[$row->ti_name] = $row->ti_success;
@@ -1420,7 +1424,7 @@ class DbTestPreviewer extends TestRecorder  {
 
 		// Otherwise, this test has previous recorded results.
 		// See when this test last had a different result to what we're seeing now.
-		$conds = array( 
+		$conds = array(
 			'ti_name'    => $testname,
 			'ti_success' => ($after == 'f' ? "1" : "0") );
 		if ( $this->curRun ) {
@@ -1483,8 +1487,8 @@ class DbTestRecorder extends DbTestPreviewer  {
 		global $wgDBtype, $wgDBprefix, $options;
 		$this->db->begin();
 
-		if( ! $this->db->tableExists( 'testrun' ) 
-			or ! $this->db->tableExists( 'testitem' ) ) 
+		if( ! $this->db->tableExists( 'testrun' )
+			or ! $this->db->tableExists( 'testitem' ) )
 		{
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
 			if ($wgDBtype === 'postgres')
@@ -1495,7 +1499,7 @@ class DbTestRecorder extends DbTestPreviewer  {
 				$this->db->sourceFile( dirname(__FILE__) . '/testRunner.sql' );
 			echo "OK, resuming.\n";
 		}
-		
+
 		parent::start();
 
 		$this->db->insert( 'testrun',
@@ -1537,17 +1541,17 @@ class RemoteTestRecorder extends TestRecorder {
 		$this->results = array();
 		$this->ping( 'running' );
 	}
-	
+
 	function record( $test, $result ) {
 		parent::record( $test, $result );
 		$this->results[$test] = (bool)$result;
 	}
-	
+
 	function end() {
 		$this->ping( 'complete', $this->results );
 		parent::end();
 	}
-	
+
 	/**
 	 * Inform a CodeReview instance that we've started or completed a test run...
 	 * @param $remote array: info on remote target
@@ -1558,16 +1562,16 @@ class RemoteTestRecorder extends TestRecorder {
 	 */
 	function ping( $status, $results=false ) {
 		global $wgParserTestRemote, $IP;
-		
+
 		$remote = $wgParserTestRemote;
 		$revId = SpecialVersion::getSvnRevision( $IP );
 		$jsonResults = json_encode( $results );
-		
+
 		if( !$remote ) {
 			print "Can't do remote upload without configuring \$wgParserTestRemote!\n";
 			exit( 1 );
 		}
-		
+
 		// Generate a hash MAC to validate our credentials
 		$message = array(
 			$remote['repo'],
@@ -1579,7 +1583,7 @@ class RemoteTestRecorder extends TestRecorder {
 			$message[] = $jsonResults;
 		}
 		$hmac = hash_hmac( "sha1", implode( "|", $message ), $remote['secret'] );
-		
+
 		$postData = array(
 			'action' => 'codetestupload',
 			'format' => 'json',
@@ -1593,7 +1597,7 @@ class RemoteTestRecorder extends TestRecorder {
 			$postData['results'] = $jsonResults;
 		}
 		$response = $this->post( $remote['api-url'], $postData );
-		
+
 		if( $response === false ) {
 			print "CodeReview info upload failed to reach server.\n";
 			exit( 1 );
@@ -1611,7 +1615,7 @@ class RemoteTestRecorder extends TestRecorder {
 			exit( 1 );
 		}
 	}
-	
+
 	function post( $url, $data ) {
 		// @fixme: for whatever reason, I get a 417 fail when using CURL's multipart form submit.
 		// If we do form URL encoding ourselves, though, it should work.

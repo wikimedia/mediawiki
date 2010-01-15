@@ -21,6 +21,7 @@
 # 	language=XXX	set content language to XXX for this test
 # 	variant=XXX  	set the variant of language for this test (eg zh-tw)
 #	disabled	do not run test
+#	showtitle	make the first line the title
 #   comment	run through Linker::formatComment() instead of main parser
 #   local	format section links in edit comment text as local links
 #

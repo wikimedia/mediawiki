@@ -131,6 +131,14 @@ class LanguageConverter {
 	}
 
 	/**
+	 * Get the title produced by the conversion rule.
+	 * @returns string
+	 */
+	function getConvRuleTitle() {
+		return $this->mConvRuleTitle;
+	}
+
+	/**
 	 * Get preferred language variants.
 	 * @param boolean $fromUser Get it from $wgUser's preferences
 	 * @param boolean $fromHeader Get it from Accept-Language
