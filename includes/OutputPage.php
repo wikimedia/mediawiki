@@ -1604,6 +1604,7 @@ class OutputPage {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5, $wgWellFormedXml;
+		global $wgUser, $wgRequest, $wgLang;
 
 		$this->addMeta( "http:Content-Type", "$wgMimeType; charset={$wgOutputEncoding}" );
 		if ( $sk->commonPrintStylesheet() ) {
@@ -1665,6 +1666,38 @@ class OutputPage {
 			$ret .= $this->getTitle()->trackbackRDF();
 
 		$ret .= "</head>\n";
+
+		$bodyAttrs = array();
+
+		# Crazy edit-on-double-click stuff
+		$action = $wgRequest->getVal( 'action', 'view' );
+
+		if ( $this->mTitle->getNamespace() != NS_SPECIAL
+		&& !in_array( $action, array( 'edit', 'submit' ) )
+		&& $wgUser->getOption( 'editondblclick' ) ) {
+			$bodyAttrs['ondblclick'] = "document.location = '" . Xml::escapeJsString( $this->mTitle->getEditURL() ) . "'";
+		}
+
+		# Class bloat
+		$bodyAttrs['class'] = "mediawiki $dir";
+
+		if ( $wgLang->capitalizeAllNouns() ) {
+			# A <body> class is probably not the best way to do this . . .
+			$bodyAttrs['class'] .= ' capitalize-all-nouns';
+		}
+		$bodyAttrs['class'] .= ' ns-' . $this->mTitle->getNamespace();
+		if ( $this->mTitle->getNamespace() == NS_SPECIAL ) {
+			$bodyAttrs['class'] .= ' ns-special';
+		} elseif ( $this->mTitle->isTalkPage() ) {
+			$bodyAttrs['class'] .= ' ns-talk';
+		} else {
+			$bodyAttrs['class'] .= ' ns-subject';
+		}
+		$bodyAttrs['class'] .= ' ' . Sanitizer::escapeClass( 'page-' . $this->mTitle->getPrefixedText() );
+		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $wgUser->getSkin()->getSkinName() );
+
+		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
+
 		return $ret;
 	}
 

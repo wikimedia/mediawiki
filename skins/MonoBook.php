@@ -69,9 +69,7 @@ class MonoBookTemplate extends QuickTemplate {
 		wfSuppressWarnings();
 
 		$this->html( 'headelement' );
-?><body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
- class="mediawiki <?php $this->text('dir'); $this->text('capitalizeallnouns') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
-	<div id="globalWrapper">
+?>	<div id="globalWrapper">
 		<div id="column-content">
 	<div id="content" <?php $this->html("specialpageattributes") ?>>
 		<a id="top"></a>

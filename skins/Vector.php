@@ -448,7 +448,6 @@ class VectorTemplate extends QuickTemplate {
 		// Output HTML Page
 		$this->html( 'headelement' );
 ?>
-	<body<?php if ( $this->data['body_ondblclick'] ): ?> ondblclick="<?php $this->text( 'body_ondblclick' ) ?>"<?php endif; ?> class="mediawiki <?php $this->text( 'dir' ) ?> <?php $this->text( 'pageclass' ) ?> <?php $this->text( 'skinnameclass' ) ?>" dir="<?php $this->text( 'dir' ) ?>">
 		<div id="page-base" class="noprint"></div>
 		<div id="head-base" class="noprint"></div>
 		<!-- content -->

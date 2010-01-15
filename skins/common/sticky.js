@@ -31,6 +31,8 @@ lastY=10;YOffset=0;staticYOffset=10;refreshMS=25;
 		//mySticky.css.visibility="visible";
 	}
 
+hookEvent( 'load', function() { setup( 'quickbar' ); } );
+
 
 // -------------------------
 // emulate css 'position: fixed' in IE5+ Win

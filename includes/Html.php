@@ -106,6 +106,37 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function rawElement( $element, $attribs = array(), $contents = '' ) {
+		global $wgWellFormedXml;
+		$start = self::openElement( $element, $attribs );
+		if ( in_array( $element, self::$voidElements ) ) {
+			if ( $wgWellFormedXml ) {
+				# Silly XML.
+				return substr( $start, 0, -1 ) . ' />';
+			}
+			return $start;
+		} else {
+			return "$start$contents</$element>";
+		}
+	}
+
+	/**
+	 * Identical to rawElement(), but HTML-escapes $contents (like
+	 * Xml::element()).
+	 */
+	public static function element( $element, $attribs = array(), $contents = '' ) {
+		return self::rawElement( $element, $attribs, strtr( $contents, array(
+			# There's no point in escaping quotes, >, etc. in the contents of
+			# elements.
+			'&' => '&amp;',
+			'<' => '&lt;'
+		) ) );
+	}
+
+	/**
+	 * Identical to rawElement(), but has no third parameter and omits the end
+	 * tag (and the self-closing / in XML mode for empty elements).
+	 */
+	public static function openElement( $element, $attribs = array() ) {
 		global $wgHtml5, $wgWellFormedXml;
 		$attribs = (array)$attribs;
 		# This is not required in HTML5, but let's do it anyway, for
@@ -155,29 +186,8 @@ class Html {
 			}
 		}
 
-		$start = "<$element" . self::expandAttributes(
-			self::dropDefaults( $element, $attribs ) );
-		if ( in_array( $element, self::$voidElements ) ) {
-			if ( $wgWellFormedXml ) {
-				return "$start />";
-			}
-			return "$start>";
-		} else {
-			return "$start>$contents</$element>";
-		}
-	}
-
-	/**
-	 * Identical to rawElement(), but HTML-escapes $contents (like
-	 * Xml::element()).
-	 */
-	public static function element( $element, $attribs = array(), $contents = '' ) {
-		return self::rawElement( $element, $attribs, strtr( $contents, array(
-			# There's no point in escaping quotes, >, etc. in the contents of
-			# elements.
-			'&' => '&amp;',
-			'<' => '&lt;'
-		) ) );
+		return "<$element" . self::expandAttributes(
+			self::dropDefaults( $element, $attribs ) ) . '>';
 	}
 
 	/**
