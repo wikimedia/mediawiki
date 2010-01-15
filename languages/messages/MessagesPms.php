@@ -882,18 +882,18 @@ It peule pa vëddlo.',
 'revdelete-no-change'         => "'''Atension:''' l'element datà $2, $1 a l'ha già j'ampostassion ëd visibilità ciamà.",
 'revdelete-concurrent-change' => "Eror an modificand l'element $2, $1: sò stat a smija che a sia stàit cambià da cheidun d'àutri antramentre che chiel a provava a modifichelo. Për piasì, ch'a contròla ij registr.",
 'revdelete-only-restricted'   => "Eror an stërmand l'element datà $2, $1: it peule pa vieté la vista d'element a j'aministrator sensa ëdcò selessioné un-a dj'àutre opsion ëd visibilità.",
-'revdelete-reason-dropdown'   => '*Rason comon-e dë scanselassion
-** Violassion dël copyright
-** Anformassion përsonaj pa aproprià',
+'revdelete-reason-dropdown'   => "*Rason sòlite dë scancelassion
+** Violassion dël drit d'autor
+** Anformassion përsonaj pa aproprià",
 'revdelete-otherreason'       => 'Àutra rason o adissional:',
 'revdelete-reasonotherlist'   => 'Àutra rason',
 'revdelete-edit-reasonlist'   => 'Modifiché la rason ëd lë scancelament',
 'revdelete-offender'          => 'Autor ëd la revision:',
 
 # Suppression log
-'suppressionlog'     => 'Registr ëd le sopression',
-'suppressionlogtext' => "Sota a-i é na lista djë scanselament e dij blòch che a arvardo contnù stërmà a j'aministrador.
-Varda la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij bloch ativ.",
+'suppressionlog'     => 'Registr ëd le scancelassion',
+'suppressionlogtext' => "Sota a-i é na lista djë scancelament e dij blocagi che a rësguardo contnù stërmà a j'aministrator.
+Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi ativ.",
 
 # History merging
 'mergehistory'                     => 'Buté ansema jë stòrie',

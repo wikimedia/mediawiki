@@ -10,6 +10,7 @@
  * @author Aputtu
  * @author Kaare
  * @author Piivaat
+ * @author Qaqqalik
  * @author לערי ריינהארט
  */
 
@@ -154,6 +155,7 @@ $messages = array(
 'toolbox'          => 'Atortut',
 'otherlanguages'   => 'Oqaatsit allat',
 'redirectedfrom'   => '($1-mit nuunneq)',
+'lastmodifiedat'   => 'Una qupperneq kingullermik allanngortinneqarsimavoq $1 $2',
 'jumpto'           => 'Uunngarit:',
 'jumptonavigation' => 'sumiissusersiuut',
 'jumptosearch'     => 'ujarlerit',
@@ -306,6 +308,7 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'search-suggest'            => 'Una piviuk: $1',
 'search-mwsuggest-enabled'  => 'siunnersuuserlugu',
 'search-mwsuggest-disabled' => 'siunnersuusernagu',
+'showingresultsheader'      => "{{PLURAL:$5|Inernera '''$1''' '''$3'''|Inerneri '''$1 - $2''' '''$3'''}}-suni '''$4'''-mut",
 'search-nonefound'          => 'Ujaasineq inerneqanngilaq',
 'powersearch'               => 'Ujarlerit',
 
@@ -509,6 +512,9 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'tooltip-ca-nstab-main'          => 'Imarisaa takuuk',
 'tooltip-save'                   => 'Allannguutitit toqqukkit',
 'tooltip-preview'                => 'Isikkua takuuk, toqqortinnaguk atortaruk!',
+
+# Attribution
+'lastmodifiedatby' => 'Una qupperneq kingullermik allanngortinneqarsimavoq $2, $1 $3-mit.',
 
 # Patrol log
 'patrol-log-line' => 'nalunaaqqutserpaa $1 $2 misissorneqarsimasutut $3',
