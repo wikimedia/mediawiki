@@ -303,12 +303,6 @@ class Skin extends Linker {
 
 		$out->out( $out->headElement( $this ) );
 
-		$out->out( "\n<body" );
-		$ops = $this->getBodyOptions();
-		foreach ( $ops as $name => $val ) {
-			$out->out( " $name='$val'" );
-		}
-		$out->out( ">\n" );
 		if ( $wgDebugComments ) {
 			$out->out( "<!-- Wiki debugging output:\n" .
 			  $out->mDebugtext . "-->\n" );
@@ -655,29 +649,6 @@ CSS;
 		$out->addStyle( 'common/oldshared.css' );
 		$out->addStyle( $this->getStylesheet() );
 		$out->addStyle( 'common/common_rtl.css', '', '', 'rtl' );
-	}
-
-	function getBodyOptions() {
-		global $wgUser, $wgOut, $wgRequest, $wgContLang;
-
-		extract( $wgRequest->getValues( 'oldid', 'redirect', 'diff' ) );
-
-		if ( 0 != $this->mTitle->getNamespace() ) {
-			$a = array( 'bgcolor' => '#ffffec' );
-		}
-		else $a = array( 'bgcolor' => '#FFFFFF' );
-		if( $wgOut->isArticle() && $wgUser->getOption( 'editondblclick' ) &&
-		  $this->mTitle->quickUserCan( 'edit' ) ) {
-			$s = $this->mTitle->getFullURL( $this->editUrlOptions() );
-			$s = 'document.location = "' .Xml::escapeJsString( $s ) .'";';
-			$a += array( 'ondblclick' => $s );
-		}
-		$a['class'] =
-			'mediawiki' .
-			' '.( $wgContLang->getDir() ).
-			' '.$this->getPageClasses( $this->mTitle ) .
-			' skin-'. Sanitizer::escapeClass( $this->getSkinName() );
-		return $a;
 	}
 
 	function getPageClasses( $title ) {

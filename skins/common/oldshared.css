@@ -374,3 +374,10 @@ table.multipageimage td {
 form#specialpages {
 	display: inline;
 }
+
+body {
+	background-color: #ffffec;
+}
+body.ns-0 {
+	background-color: white;
+}

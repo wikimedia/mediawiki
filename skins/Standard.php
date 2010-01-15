@@ -59,23 +59,6 @@ class SkinStandard extends Skin {
 		return $s;
 	}
 
-	/**
-	 *
-	 */
-	function getBodyOptions() {
-		$a = parent::getBodyOptions();
-
-		if ( 3 == $this->qbSetting() ) { # Floating left
-			$qb = "setup(\"quickbar\")";
-			if( $a['onload'] ) {
-				$a['onload'] .= ";$qb";
-			} else {
-				$a['onload'] = $qb;
-			}
-		}
-		return $a;
-	}
-
 	function doAfterContent() {
 		global $wgContLang, $wgLang;
 		wfProfileIn( __METHOD__ );

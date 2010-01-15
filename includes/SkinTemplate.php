@@ -485,13 +485,6 @@ class SkinTemplate extends Skin {
 		$content_actions = $this->buildContentActionUrls();
 		$tpl->setRef( 'content_actions', $content_actions );
 
-		// XXX: attach this from javascript, same with section editing
-		if( $this->iseditable && $wgUser->getOption( 'editondblclick' ) ){
-			$encEditUrl = Xml::escapeJsString( $this->mTitle->getLocalUrl( $this->editUrlOptions() ) );
-			$tpl->set( 'body_ondblclick', 'document.location = "' . $encEditUrl . '";' );
-		} else {
-			$tpl->set( 'body_ondblclick', false );
-		}
 		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 

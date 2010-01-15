@@ -62,8 +62,7 @@ class ModernTemplate extends QuickTemplate {
 		wfSuppressWarnings();
 
 		$this->html( 'headelement' );
-?><body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
- class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
+?>
 
 	<!-- heading -->
 	<div id="mw_header"><h1 id="firstHeading"><?php $this->html('title') ?></h1></div>
