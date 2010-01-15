@@ -495,7 +495,7 @@ class HttpRequest {
 		# $_SERVER['REQUEST_URI'] gives a less reliable indication of the
 		# referring page.
 		if ( is_object( $wgTitle ) ) {
-			$this->set_referer( $wgTitle->getFullURL() );
+			$this->setReferrer( $wgTitle->getFullURL() );
 		}
 
 		$this->setupOutputHandler();
@@ -528,6 +528,9 @@ class HttpRequest {
 			$this->setCallback( array( $this, 'readOnly' ) );
 		}
 	}
+	
+	public function setReferrer( $url ) {  }
+
 }
 
 /**
