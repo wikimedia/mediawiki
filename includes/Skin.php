@@ -672,7 +672,6 @@ CSS;
 			$s = 'document.location = "' .Xml::escapeJsString( $s ) .'";';
 			$a += array( 'ondblclick' => $s );
 		}
-		$a['onload'] = $wgOut->getOnloadHandler();
 		$a['class'] =
 			'mediawiki' .
 			' '.( $wgContLang->getDir() ).
