@@ -2,10 +2,12 @@
 
 /**
  * Class for managing forking command line scripts.
- * Currently just does forking and process control, but it could easily be extended 
+ * Currently just does forking and process control, but it could easily be extended
  * to provide IPC and job dispatch.
  *
  * This class requires the posix and pcntl extensions.
+ *
+ * @ingroup Maintenance
  */
 class ForkController {
 	var $children = array();
@@ -39,13 +41,13 @@ class ForkController {
 	}
 
 	/**
-	 * Start the child processes. 
+	 * Start the child processes.
 	 *
-	 * This should only be called from the command line. It should be called 
+	 * This should only be called from the command line. It should be called
 	 * as early as possible during execution.
 	 *
-	 * This will return 'child' in the child processes. In the parent process, 
-	 * it will run until all the child processes exit or a TERM signal is 
+	 * This will return 'child' in the child processes. In the parent process,
+	 * it will run until all the child processes exit or a TERM signal is
 	 * received. It will then return 'done'.
 	 */
 	public function start() {
@@ -73,7 +75,7 @@ class ForkController {
 						// Restart if the signal was abnormal termination
 						// Don't restart if it was deliberately killed
 						$signal = pcntl_wtermsig( $status );
-						if ( in_array( $signal, self::$restartableSignals ) ) { 
+						if ( in_array( $signal, self::$restartableSignals ) ) {
 							echo "Worker exited with signal $signal, restarting\n";
 							$this->procsToStart++;
 						}
@@ -98,7 +100,7 @@ class ForkController {
 			if ( function_exists( 'pcntl_signal_dispatch' ) ) {
 				pcntl_signal_dispatch();
 			} else {
-				declare (ticks=1) { $status = $status; } 
+				declare (ticks=1) { $status = $status; }
 			}
 			// Respond to TERM signal
 			if ( $this->termReceived ) {
@@ -125,7 +127,7 @@ class ForkController {
 	 */
 	protected function forkWorkers( $numProcs ) {
 		global $wgMemc, $wgCaches, $wgMainCacheType;
-	
+
 		$this->prepareEnvironment();
 
 		// Create the child processes
@@ -153,7 +155,7 @@ class ForkController {
 		global $wgMemc, $wgMainCacheType;
 		$wgMemc = wfGetCache( $wgMainCacheType );
 		$this->children = null;
-		pcntl_signal( SIGTERM, SIG_DFL );		
+		pcntl_signal( SIGTERM, SIG_DFL );
 	}
 
 	protected function handleTermSignal( $signal ) {
