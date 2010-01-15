@@ -15,13 +15,13 @@ function install_version_checks() {
 	if( !function_exists( 'version_compare' ) ) {
 		# version_compare was introduced in 4.1.0
 		echo "Your PHP version is much too old; 4.0.x will _not_ work. 5.0.0 or higher is required. ABORTING.\n";
-		die( -1 );
+		die( 1 );
 	}
 	if( version_compare( phpversion(), '5.0.0' ) < 0 ) {
 		echo "PHP 5.0.0 or higher is required. If PHP 5 is available only when \n".
    "PHP files have a .php5 extension, please navigate to <a href=\"index.php5\">index.php5</a> \n".
    "to continue installation. ABORTING.\n";
-		die( -1 );
+		die( 1 );
 	}
 
 	// Test for PHP bug which breaks PHP 5.0.x on 64-bit...
@@ -31,7 +31,7 @@ function install_version_checks() {
 	if( !isset( $borked[-1] ) ) {
 		echo "PHP 5.0.x is buggy on your 64-bit system; you must upgrade to PHP 5.1.x\n" .
 			"or higher. ABORTING. (http://bugs.php.net/bug.php?id=34879 for details)\n";
-		die( -1 );
+		die( 1 );
 	}
 
 	$test = new PhpXmlBugTester();
@@ -40,7 +40,18 @@ function install_version_checks() {
 			"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
 			"Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later!\n" .
 			"ABORTING (http://bugs.php.net/bug.php?id=45996 for details).\n";
-		die( -1 );
+		die( 1 );
+	}
+
+	$test = new PhpRefCallBugTester;
+	$ok = false;
+	call_user_func_array( array( $test, 'test' ), array( &$ok ) );
+	if ( !$ok ) {
+		echo "PHP 5.3.1 is not compatible with MediaWiki due to a bug involving\n" .
+			"reference parameters to __call. Upgrade to PHP 5.3.2, or downgrade\n" .
+			"to PHP 5.3.0 to fix this.\n" .
+			"ABORTING (see http://bugs.php.net/bug.php?id=50394 for details)\n";
+		die( 1 );
 	}
 
 
@@ -69,6 +80,15 @@ class PhpXmlBugTester {
 	}
 	public function chardata($parser, $data) {
 		$this->parsedData .= $data;
+	}
+}
+
+/**
+ * Test for PHP bug #50394
+ */
+class PhpRefCallBugTester {
+	function __call( $name, $args ) {
+		$args[0] = true;
 	}
 }
 
