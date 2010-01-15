@@ -21,7 +21,6 @@ class OutputPage {
 
 	var $mAllowUserJs;
 	var $mSuppressQuickbar = false;
-	var $mOnloadHandler = '';
 	var $mDoNothing = false;
 	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
 	var $mIsArticleRelated = true;
@@ -388,8 +387,6 @@ class OutputPage {
 	public function setPrintable() { $this->mPrintable = true; }
 	public function isPrintable() { return $this->mPrintable; }
 	public function getFeedAppendQuery() { return $this->mFeedLinksAppendQuery; }
-	public function setOnloadHandler( $js ) { $this->mOnloadHandler = $js; }
-	public function getOnloadHandler() { return $this->mOnloadHandler; }
 	public function disable() { $this->mDoNothing = true; }
 	public function isDisabled() { return $this->mDoNothing; }
 

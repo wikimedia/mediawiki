@@ -1684,12 +1684,6 @@ INPUTS
 				$classes[] = $attribs['class'];
 			$attribs['class'] = implode( ' ', $classes );
 		}
-
-		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
-		if ( !$this->preview && !$this->diff ) {
-			global $wgOut;
-			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus();' );
-		}
 		
 		$this->showTextbox( isset($textoverride) ? $textoverride : $this->textbox1, 'wpTextbox1', $attribs );
 	}
