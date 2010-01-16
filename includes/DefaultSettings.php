@@ -3083,9 +3083,9 @@ $wgBrowserBlackList = array(
 /**
  * Fake out the timezone that the server thinks it's in. This will be used for
  * date display and not for what's stored in the DB. Leave to null to retain
- * your server's OS-based timezone value. 
+ * your server's OS-based timezone value.
  *
- * This variable is currently used only for signature formatting and for local 
+ * This variable is currently used only for signature formatting and for local
  * time/date parser variables ({{LOCALTIME}} etc.)
  *
  * Timezones can be translated by editing MediaWiki messages of type
@@ -4311,3 +4311,11 @@ $wgUploadMaintenance = false;
  * Use old names for change_tags indices.
  */
 $wgOldChangeTagsIndex = false;
+
+/**
+ * Set of loader.js files to setup dynamic loading of javascript libraries using mwEmbed
+ *
+ * Extensions can add mwEmbed modules via adding paths to their loader.js to
+ * $wgExtensionJavascriptLoader[] = path/to/loader.js
+ */
+$wgExtensionJavascriptLoader = array();
