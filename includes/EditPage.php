@@ -2046,14 +2046,14 @@ INPUTS
 	 * they have attempted to edit a nonexistent section.
 	 */
 	function noSuchSectionPage() {
-		global $wgOut, $wgTitle;
+		global $wgOut;
 
 		$wgOut->setPageTitle( wfMsg( 'nosuchsectiontitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiMsg( 'nosuchsectiontext', $this->section );
-		$wgOut->returnToMain( false, $wgTitle );
+		$wgOut->returnToMain( false, $this->mTitle );
 	}
 
 	/**
