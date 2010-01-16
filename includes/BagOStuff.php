@@ -32,7 +32,7 @@
  * backends for local hash array and SQL table included:
  * <code>
  *   $bag = new HashBagOStuff();
- *   $bag = new MediaWikiBagOStuff($tablename); # connect to db first
+ *   $bag = new SqlBagOStuff(); # connect to db first
  * </code>
  *
  * @ingroup Cache
