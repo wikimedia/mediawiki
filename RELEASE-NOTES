@@ -715,6 +715,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   skin-specific JS pages
 * (bug 5061) Use the more precise thumbcaption thumbimage and thumbinner classes 
   for image divs.
+* IE50Fixes.css and IE55Fixes.css have been dropped from the Monobook and Chick
+  skins
 
 == API changes in 1.16 ==
 
