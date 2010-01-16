@@ -304,6 +304,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16281) Show copyright system message on special pages
 * Upload license preview now uses the API instead of action=ajax
 * (bug 7346) Add <guid> to RSS to avoid duplicates
+* (bug 19996) Added new hooks for Special:Search, which allow to further restrict/expand it.
 
 === Bug fixes in 1.16 ===
 
@@ -714,8 +715,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   skin-specific JS pages
 * (bug 5061) Use the more precise thumbcaption thumbimage and thumbinner classes 
   for image divs.
-* IE50Fixes.css and IE55Fixes.css have been dropped from the Monobook and Chick
-  skins
 
 == API changes in 1.16 ==
 

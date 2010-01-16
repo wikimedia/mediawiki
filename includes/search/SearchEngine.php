@@ -63,15 +63,29 @@ class SearchEngine {
 	 * @return Title
 	 */
 	public static function getNearMatch( $searchterm ) {
+		$title = self::getNearMatchInternal( $searchterm );
+		
+		wfRunHooks( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
+		return $title;
+	}
+	
+	/**
+	 * Really find the title match.
+	 */
+	private static function getNearMatchInternal( $searchterm ) {
 		global $wgContLang;
 
 		$allSearchTerms = array($searchterm);
 
-		if($wgContLang->hasVariants()){
+		if ( $wgContLang->hasVariants() ) {
 			$allSearchTerms = array_merge($allSearchTerms,$wgContLang->convertLinkToAllVariants($searchterm));
 		}
 
-		foreach($allSearchTerms as $term){
+		if( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
+			return $titleResult;
+		}
+
+		foreach($allSearchTerms as $term) {
 
 			# Exact match? No need to look further.
 			$title = Title::newFromText( $term );
@@ -196,10 +210,12 @@ class SearchEngine {
 	function replacePrefixes( $query ){
 		global $wgContLang;
 
-		if( strpos($query,':') === false )
-			return $query; // nothing to do
-
 		$parsed = $query;
+		if( strpos($query,':') === false ) { // nothing to do
+			wfRunHooks( 'SearchEngineReplacePrefixesComplete', array( $this, $query, &$parsed ) );
+			return $parsed;
+		}
+		
 		$allkeyword = wfMsgForContent('searchall').":";
 		if( strncmp($query, $allkeyword, strlen($allkeyword)) == 0 ){
 			$this->namespaces = null;
@@ -213,7 +229,9 @@ class SearchEngine {
 			}
 		}
 		if(trim($parsed) == '')
-			return $query; // prefix was the whole query
+			$parsed = $query; // prefix was the whole query
+
+		wfRunHooks( 'SearchEngineReplacePrefixesComplete', array( $this, $query, &$parsed ) );
 
 		return $parsed;
 	}
@@ -230,6 +248,8 @@ class SearchEngine {
 				$arr[$ns] = $name;
 			}
 		}
+		
+		wfRunHooks( 'SearchableNamespaces', array( &$arr ) );
 		return $arr;
 	}
 	
