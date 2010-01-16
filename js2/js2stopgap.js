@@ -4405,6 +4405,9 @@ if( typeof mw == 'undefined' || !mw ){
    // Define a dummy mw.load function:
    mw.load = function( deps, callback ) { callback(); };
    
+   // Deinfe a dummy mw.loadDone function: 
+   mw.loadDone = function( className ) { };
+   
    // Creates global message object if not already in existence
 	if ( !gMsg ) var gMsg = {};
    
