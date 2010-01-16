@@ -50,6 +50,7 @@ class ParserOutput
 	function &getImages()                { return $this->mImages; }
 	function &getExternalLinks()         { return $this->mExternalLinks; }
 	function getNoGallery()              { return $this->mNoGallery; }
+	function getHeadItems()              { return $this->mHeadItems; }
 	function getSubtitle()               { return $this->mSubtitle; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
