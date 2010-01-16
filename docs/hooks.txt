@@ -1283,9 +1283,26 @@ $namespace : Page namespace
 $title : Page title
 $text : Current text being indexed
 
-'SearchGetNearMatch': An extra chance for exact-title-matches in "go" searches
+'SearchGetNearMatchBefore': Perform exact-title-matches in "go" searches before the normal operations
+$allSearchTerms : Array of the search terms in all content languages
+&$titleResult : Outparam; the value to return. A Title object or null.
+
+'SearchGetNearMatch': An extra chance for exact-title-matches in "go" searches if nothing was found
 $term : Search term string
 &$title : Outparam; set to $title object and return false for a match
+
+'SearchGetNearMatchComplete': A chance to modify exact-title-matches in "go" searches
+$term : Search term string
+&$title : Current Title object that is being returned (null if none found).
+
+'SearchEngineReplacePrefixesComplete': Run after SearchEngine::replacePrefixes().
+$searchEngine : The SearchEngine object. Users of this hooks will be interested 
+in the $searchEngine->namespaces array.
+$query : Original query.
+&$parsed : Resultant query with the prefixes stripped.
+
+'SearchableNamespaces': An option to modify which namespaces are searchable.
+&$arr : Array of namespaces ($nsId => $name) which will be used.
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
