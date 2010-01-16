@@ -33,6 +33,7 @@
  * @author Skalman
  * @author StefanB
  * @author Steinninn
+ * @author Where next Columbus?
  * @author לערי ריינהארט
  */
 
@@ -318,7 +319,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på min bevakningslista ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
-'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post från systemet',
+'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-postmeddelanden om ändringar som skickas till andra',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
 'tog-oldsig'                  => 'Förhandsvisning av nuvarande signatur:',
 'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
@@ -867,8 +868,10 @@ Vänligen ange informationen ovan i alla förfrågningar som du gör i ärendet.
 'whitelistedittitle'               => 'Du måste logga in för att redigera',
 'whitelistedittext'                => 'Du måste $1 för att kunna redigera sidor.',
 'confirmedittext'                  => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
-'nosuchsectiontitle'               => 'Avsnittet finns inte',
-'nosuchsectiontext'                => 'Du försökte redigera ett avsnitt som inte finns. Eftersom avsnitt $1 inte finns, så kan inte din redigering sparas.',
+'nosuchsectiontitle'               => 'Kan inte hitta avsnitt',
+'nosuchsectiontext'                => 'Du försökte redigera ett avsnitt som inte finns. Det kan ha flyttats eller raderats medan du tittade på sidan.
+
+Eftersom avsnitt $1 inte finns, så kan inte din redigering sparas.',
 'loginreqtitle'                    => 'Inloggning krävs',
 'loginreqlink'                     => 'logga in',
 'loginreqpagetext'                 => 'Du måste $1 för att visa andra sidor.',

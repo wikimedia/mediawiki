@@ -1970,7 +1970,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'ئاستی پاراستنی "[[$1]]"ی گۆڕا',
 'unprotectedarticle'          => '"[[$1]]" لە حاڵی ئێستا دا نەپازراوە',
 'movedarticleprotection'      => 'ڕێککارییەکانی پاراستن لە  "[[$2]]" گوازرایەوە بۆ "[[$1]]"',
-'protect-title'               => 'ئاستی پاراستنی "$1" بگۆڕە',
+'protect-title'               => 'گۆڕینی ئاستی پاراستنی "$1"',
 'prot_1movedto2'              => '[[$1]] گوازراوەتەوە بۆ [[$2]]',
 'protect-backlink'            => '← $1',
 'protect-legend'              => 'پاراستن تەیید بکە',

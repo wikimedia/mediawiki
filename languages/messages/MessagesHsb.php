@@ -697,8 +697,10 @@ Prošu podaj wšě horjeka naspomnjene podrobnosće w naprašowanjach, kotrež �
 'whitelistedittitle'               => 'Za wobdźěłowanje je přizjewjenje trěbne.',
 'whitelistedittext'                => 'Dyrbiš so $1, zo by strony wobdźěłować móhł.',
 'confirmedittext'                  => 'Dyrbiš swoju e-mejlowu adresa wobkrućić, prjedy hač móžeš strony wobdźěłować. Prošu zapodaj a wobkruć swoju e-mejlowu adresu we [[Special:Preferences|wužiwarskich nastajenjach]].',
-'nosuchsectiontitle'               => 'Wotrězk njeeksistuje',
-'nosuchsectiontext'                => 'Sy spytał, njewobstejacy wotrězk $1 wobdźěłać. Móžeš pak jenož wobstejace wotrězki wobdźěłać.',
+'nosuchsectiontitle'               => 'Wotrězk njeda so namakać',
+'nosuchsectiontext'                => 'Sy spytał, wotrězk wobdźěłać, kotryž njeeksistuje. Móžno, zo je so přesunył abo zničił, mjeztym zo sej wobhladuješ stronu.
+
+Dokelž wotrězk $1 njeje, njeje žane městno, hdźež twoja změna da so składować.',
 'loginreqtitle'                    => 'Přizjewjenje trěbne',
 'loginreqlink'                     => 'přizjewić',
 'loginreqpagetext'                 => 'Dyrbiš so $1, zo by strony čitać móhł.',

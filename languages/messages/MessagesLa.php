@@ -641,8 +641,10 @@ Locus IP tuus temporarius $3 est et numerus obstructionis tuus est #$5. Quaesumu
 'whitelistedittitle'               => 'Conventum aperiendum ut recenseas',
 'whitelistedittext'                => 'Necesse est tibi $1 priusquam paginas recenseas.',
 'confirmedittext'                  => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
-'nosuchsectiontitle'               => 'Haec pars non est',
-'nosuchsectiontext'                => 'Partem inexistentem recensere conaris. Quia pars $1 non est, recensio tua servari non potest.',
+'nosuchsectiontitle'               => 'Haec pars inveniri non potest',
+'nosuchsectiontext'                => 'Partem inexistentem recensere conaris. Fortasse aliquis hanc partem movit vel delevit.
+
+Quia pars $1 non est, recensio tua servari non potest.',
 'loginreqtitle'                    => 'Conventum aperiendum',
 'loginreqlink'                     => 'conventum aperire',
 'loginreqpagetext'                 => 'Necesse est tibi $1 priusquam paginas alias legas.',
