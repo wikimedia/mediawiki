@@ -609,6 +609,7 @@ class LogEventsList {
 	 *   that are processed with wgMsgExt and option 'parse'
 	 * - offset Set to overwrite offset parameter in $wgRequest
 	 *   set to '' to unset offset
+	 * - wrap String: Wrap the message in html (usually something like "<div ...>$1</div>").
 	 * @return Integer Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract( &$out, $types=array(), $page='', $user='', 
@@ -618,7 +619,8 @@ class LogEventsList {
 			'lim' => 25,
 			'conds' => array(),
 			'showIfEmpty' => true,
-			'msgKey' => array('')
+			'msgKey' => array(''),
+			'wrap' => "$1"
 		);
 	
 		# The + operator appends elements of remaining keys from the right
@@ -631,6 +633,7 @@ class LogEventsList {
 		$conds = $param['conds'];
 		$showIfEmpty = $param['showIfEmpty'];
 		$msgKey = $param['msgKey'];
+		$wrap = $param['wrap'];
 		if ( !is_array( $msgKey ) )
 			$msgKey = array( $msgKey );
 		# Insert list of top 50 (or top $lim) items
@@ -683,6 +686,11 @@ class LogEventsList {
 		if ( $logBody && $msgKey[0] )
 			$s .= '</div>';
 
+		if ( $wrap!='' ) { // Wrap message in html
+			$s = str_replace( '$1', $s, $wrap );
+		}
+
+		// $out can be either an OutputPage object or a String-by-reference
 		if( $out instanceof OutputPage ){
 			$out->addHTML( $s );
 		} else {
@@ -890,6 +898,7 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	public function getQueryInfo() {
+		global $wgOut;
 		$tables = array( 'logging', 'user' );
 		$this->mConds[] = 'user_id = log_user';
 		$index = array();
@@ -930,7 +939,6 @@ class LogPager extends ReverseChronologicalPager {
 		# Add ChangeTags filter query
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
 			$info['join_conds'], $info['options'], $this->mTagFilter );
-
 		return $info;
 	}
 

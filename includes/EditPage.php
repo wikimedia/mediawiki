@@ -1506,7 +1506,11 @@ HTML
 			$wgOut->wrapWikiMsg( $notice, array( 'cascadeprotectedwarning', $cascadeSourcesCount ) );
 		}
 		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
-			$wgOut->wrapWikiMsg( "<div class=\"mw-titleprotectedwarning\">\n$1</div>", 'titleprotectedwarning' );
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle->getPrefixedText(), '',
+				array(  'lim' => 1,
+					'showIfEmpty' => false,
+					'msgKey' => array( 'titleprotectedwarning' ),
+					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ) );
 		}
 
 		if ( $this->kblength === false ) {
@@ -2685,5 +2689,5 @@ INPUTS
 		} else {
 			return $this->mBaseRevision;
 		}
-	}
+	}	
 }
