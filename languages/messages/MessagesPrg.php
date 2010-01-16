@@ -455,11 +455,19 @@ Tāns turri turītun ukamazzais {{PLURAL:$1|zentlin|zentlai}}.',
 'password-name-match'        => 'Twājs kliptawīrds turri kitawīdintun si ezze twajasmu tērpautajas emnin.',
 'mailmypassword'             => 'Tenginnais mi nāunan kliptaswīrdan pra e-mail',
 'passwordremindertitle'      => 'Nāuns kīsmingiskas kliptaswīrds per {{SITENAME}}',
+'passwordremindertext'       => 'Ainunts (drūwiminai tū, iz IP adressin $1) ast madlīwuns ezze nāunas kliptaswīrdas prei {{SITENAME}}($4) tengīnsnan.
+Per tērpautajan "$2" pastāi generītan kīsmingiskas kliptaswīrds: "$3".
+Ik tu skatta din segītun, tebbei prawerru enēitwei be enpeisātun nāunan kliptaswīrdan.
+Šisse autōmatiskai generītas kliptaswīrdas swarewīngisku wīrst wanginnusi si pa {{PLURAL:$5|aīnan dēinan|$5 dēinans}}.
+
+Ik ainunts kits ast tenginnuns šan madlin, anga assei etminītun si kliptaswīrdan be tū ni kwaitēi din kitawīdintun, tu mazzi ignōritun šan waīstin be tālis tērpautun wūran kliptaswīrdan.',
 'noemail'                    => 'Ni ast e-mail adressi enpeisātan per tērpautajan "$1".',
 'noemailcreate'              => 'Tebbei prawerru enwestun tikrōmiskan e-mail adressin',
 'passwordsent'               => 'Nāuns kliptaswīrds pastāi tengīntan  en e-mail adressin stesse tērpautajan" $1".
 Panzdau gaūsenin, enjaīs etkūmps.',
 'blocked-mailpassword'       => 'Twajā IP adressi ast blōkitan ezze redigīsnai be stesse paggan ni assei enwarīntan tērpautun kliptaswīrdas etgaūsnas funkciōnin, kāi pakūnlai ezze wargaitērpausnai.',
+'eauthentsent'               => 'Padrūktinsenis pastāi tengīntan na e-mail adressin.
+Ēmpirzdan ainuntkawīdas kittas waīstis wīrst būwušas tengīntan na šan adressin, prawerru izpilnintun instrukciōnins papeisātans en e-mailu. Tīt tu wīrst padrūktiwuns(si), kāi šī e-mail adressi perlānke prei tin.',
 'throttled-mailpassword'     => 'Kliptaswīrdas preiminīsenis ast jāu tengīntan en {{PLURAL:$1|panzdauman stūndin|panzdaumans $1 stūndins}}.
 Kāi pakūnlai ezze wargaitērpausnai, tēr aīns kliptaswīrdas preiminīsenis ast tengīntan en {{PLURAL:$1|stūndin|$1 stūndins}}.',
 'mailerror'                  => 'Prei e-mail pustis tengīnsnan, tikka blānda $1',
@@ -607,6 +615,15 @@ Paminnais kāi tērpautajas .css be .js pāusai turri pagaūtun si sen līkutan 
 'previewnote'                      => "'''Sta ast tēr pirmādira.'''
 Kitawīdinsnas dabber ni pastāi enpeisātan!\"",
 'previewconflict'                  => 'Pirmādira waidinna tekstan iz aūktan redigīsnas laūkan. Tīt pawaidīnlai pāusan, ik tū prestlai din enpeisātun.',
+'session_fail_preview'             => "'''Etwīnuis! Mes ni mazēimai karwintun twajjan redigīsenin, sesiōnis dātas izmāitinsnas paggan.'''
+Madli bandāis etkūmps.
+Ik sta aīnat ni dīlilai, bāndais [[Special:UserLogout|izēitwei]] be etwārtai enēitwei.",
+'session_fail_preview_html'        => "'''Etwīnuis! Mes ni mazēimai karwintun twajjan redigīsenin, sesiōnis dātas izmāitinsnas paggan.'''
+
+'' Beggi {{SITENAME}} turri \"jāls HTML\" enklaūtan, pirmādira ast kliptintan, kai pakūnslai si ezze JavaScript atakkimans.''
+
+'''Ik sta ast tikrōmiskas redigīsenes bandāsenis, madli bāndais etkūmps.'''
+Ik sta aīnat ni dīlilai, bāndais [[Special:UserLogout|izēitwei]] be etkūmps enēitwei.",
 'editing'                          => 'Tū redigijja $1',
 'editingsection'                   => 'Tū redigijja $1 (sekciōni)',
 'editingcomment'                   => 'Tū redigijja $1 (nāuna sekciōni)',
@@ -637,7 +654,7 @@ Ik sta būlai mazīngi, spēllais pāusan en mazzaisins delīkans.",
 'longpageerror'                    => "'''Blānda!''' Teksts enwests prō tin turri {{PLURAL:$1|1 kilōbaitan|$1 kilōbaitans}}, ka ast ilgaisin nikāi preiwērptai {{PLURAL:$2|1 kilōbaits|$2 kilōbaitai}}.
 Teksts ni mazzi būtwei enpeisātan.",
 'protectedpagewarning'             => "'''Ēmpirssergīsenis: Šin pāusan pastāi pakūnstan. Tēr tērpautajai sen perwaldītajas enwarīnsenin mazzi din redigītun.'''",
-'semiprotectedpagewarning'         => "'''Ēmpirssergīsenis: Šin pāusan pastāi pakūnstan. Tēr engūbusis tērpautajai mazzi din redigītun.'''",
+'semiprotectedpagewarning'         => "Ēmpirssergīsenis: Šin pāusan pastāi pakūnstan. Tēr engūbusis tērpautajai mazzi din redigītun.'''",
 'cascadeprotectedwarning'          => "'''Ēmpirssergīsenis:''' Šin pāusan pastāi pakūnstan. Tēr tērpautajai sen perwaldītajas enwarīnsenin mazzi din redigītun. Šin pāusan weldēi pakūnsenin pa {{PLURAL:$1|ripīntin pakūnstan pāusan|ripīntins pakūnstans pāusans}}:",
 'titleprotectedwarning'            => "'''Ēmpirssergīsenis: Šin pāusan pastāi pakūnstan be [[Special:ListGroupRights|swajīngei enwarīnsenei]] ast izkīnintan kāi teīklai din.'''",
 'templatesused'                    => '{{PLURAL:$1|Template|Šablōnis}} tērpautas en šismu pāusan:',
@@ -2133,7 +2150,7 @@ Ni ast fōlderis per kīsmingiskans zūrbrukins.',
 'import-nonewrevisions'      => 'Wisāi wersiōnis pastāi jāu ankstāis impōrtitan.',
 'xml-error-string'           => '$1 en līnijai $2, kōl. $3 (bāits $4): $5',
 'import-upload'              => 'Enkraūneis XML dātan',
-'import-token-mismatch'      => 'Aumettē di sesiōnis dātan.
+'import-token-mismatch'      => 'Izmāitinā di sesiōnis dātan.
 Madli bāndais etkūmps.',
 'import-invalid-interwiki'   => 'Ni mazīngi impōritun iz padātan wiki.',
 
@@ -2454,6 +2471,8 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-unknowndate' => 'Niwaīstan dātan',
 
 'exif-orientation-1' => 'Nōrmala',
+'exif-orientation-2' => 'Etswāikstintan uricōntalai',
+'exif-orientation-4' => 'Etswāikstintan wertikālai',
 
 'exif-componentsconfiguration-0' => 'ni ekzistijja',
 
@@ -2477,18 +2496,28 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 
 'exif-lightsource-0'   => 'Niwaīsts',
 'exif-lightsource-1'   => 'Dēinas swāikstan',
+'exif-lightsource-2'   => 'Fluōrescenciskan',
+'exif-lightsource-3'   => 'Wōlframas (kāitas lāmpi)',
 'exif-lightsource-4'   => 'Bliccis',
 'exif-lightsource-9'   => 'Labs wins',
 'exif-lightsource-10'  => 'Uppiskas wins',
 'exif-lightsource-11'  => 'Tīmens',
+'exif-lightsource-12'  => 'Dēinas swāikstas fluōrescenciskan (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Dēinas gaīlibis fluōrescenciskan (N 4600 - 5400K)',
+'exif-lightsource-14'  => 'Saltas gaīlibis fluōrescenciskan (W 3900 - 4500K)',
+'exif-lightsource-15'  => 'Gaīlin fluōrescenciskan (WW 3200-3700K)',
 'exif-lightsource-17'  => 'Jāuku swāikstan A',
 'exif-lightsource-18'  => 'Jāuku swāikstan B',
 'exif-lightsource-19'  => 'Jāuku swāikstan C',
+'exif-lightsource-24'  => 'ISO studijas wōlframas',
 'exif-lightsource-255' => 'Kits swāikstas aps',
 
 # Flash modes
 'exif-flash-fired-0'    => 'Šlait bliccin',
 'exif-flash-fired-1'    => 'Sen bliccin',
+'exif-flash-return-0'   => 'šlāit etswāikstintas swāikstas serrīpsnas funkciōnin',
+'exif-flash-return-2'   => 'etswāikstintan swāikstan ni serrīptan',
+'exif-flash-return-3'   => 'etswāikstintan swāikstan serrīptan',
 'exif-flash-mode-1'     => 'Preispārtints bliccis',
 'exif-flash-mode-2'     => 'Preispārtinta blicces nisatausnā',
 'exif-flash-mode-3'     => 'autōmatiskan prōgraman',
@@ -2575,6 +2604,8 @@ Etwereis šin autengīnsenin en lasātlai, ka wīrst padrūktiwus, kāi tū asse
 Ik tū panzdaumai assei teīkuns(si) rekkenan, gēideis delli minūtins pirzdau ripīntin madlin ezze kōdas tengīnsnan.',
 'confirmemail_send'        => 'Tenginnais padrūktinsnas kōdan',
 'confirmemail_sent'        => 'Padrūktinsnas e-mail tengīntan.',
+'confirmemail_oncreate'    => 'Padrūktinsas kōdan pastāi tengīntan en twajjan e-mail adressin.
+Šin kōdan ni ast izkinintan kāi enēilai, adder tebbei prawerru aktiwītun din (etwerrintei gaūtan autengīnsenin en lasātlai) pirzdau ainuntan e-mailas mazīngiskwan en wiki enklaūsnan.',
 'confirmemail_sendfailed'  => '{{SITENAME}} ni mazēi tengīntun ti padrūktinsnas e-mail pēismenin.
 Madli izbāndais swajjan e-mail adressin, ana ni turri ēn sen blāndan.
 

@@ -598,7 +598,8 @@ Die rede gegee is ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''U is nou uitgeteken'''
 
-U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan [[Special:UserLogin|inteken]] as dieselfde of 'n ander gebruiker.",
+U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan weer [[Special:UserLogin|inteken]] as dieselfde of 'n ander gebruiker.
+Dit is moontlik dat sommige bladsye nog sal aandui dat u aangeteken is totdat u u webblaaier se kas skoonmaak.",
 'welcomecreation'            => '== Welkom, $1! ==
 U rekening is geskep;
 moenie vergeet om u [[Special:Preferences|persoonlike voorkeure vir {{SITENAME}}]] te stel nie.',
@@ -769,8 +770,9 @@ Vermeld asseblief die bovermelde bloknommer as u die saak rapporteer,",
 'whitelistedittitle'               => 'U moet aangeteken wees om te kan redigeer.',
 'whitelistedittext'                => 'U moet $1 om bladsye te wysig.',
 'confirmedittext'                  => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
-'nosuchsectiontitle'               => 'Afdeling bestaan nie',
-'nosuchsectiontext'                => "U probeer 'n afdeling wysig wat nie bestaan nie.
+'nosuchsectiontitle'               => 'Kan nie die afdeling vind nie',
+'nosuchsectiontext'                => "U het probeer om 'n afdeling wat nie bestaan nie te wysig. Dis was moontlik geskuif of verwyder terwyl u die bladsy gelees het.
+
 Omdat die afdeling $1 nie bestaan nie, kan u wysigings nie gestoor word nie.",
 'loginreqtitle'                    => 'Inteken Benodig',
 'loginreqlink'                     => 'teken in',
@@ -844,10 +846,11 @@ Die bladsy kan nie gestoor word nie.'''",
 'readonlywarning'                  => "'''WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later.'''
 
 Een administrateur het die databasis geblokkeer vir hierdie rede: $1",
-'protectedpagewarning'             => "'''WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.'''",
-'semiprotectedpagewarning'         => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
+'protectedpagewarning'             => "'''WAARSKUWING: Hierdie bladsy is beveilig sodat slegs administrateurs die inhoud sal kan verander.''' Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
+'semiprotectedpagewarning'         => "'''Let wel:''' Hierdie artikel is beveilig sodat slegs ingetekende gebruikers dit sal kan wysig. Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'cascadeprotectedwarning'          => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",
-'titleprotectedwarning'            => "'''WAARSKUWING: Die bladsy is gesluit sodat net gebruikers met [[Special:ListGroupRights|spesiale regte]] dit sal kan skep.'''",
+'titleprotectedwarning'            => "'''WAARSKUWING: Hierdie bladsy is beveilig. Slegs gebruikers met [[Special:ListGroupRights|spesiale regte]] sal dit kan skep.'''
+Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'templatesused'                    => 'Hierdie bladsy {{PLURAL:$1|gebruik sjabloon|gebruik sjablone}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablone}} gebruik in hierdie voorskou:',
 'templatesusedsection'             => 'Die volgende {{PLURAL:$1|sjabloon|sjablone}} word in hierdie afdeling gebruik:',
@@ -959,6 +962,7 @@ As administrateur kan u dit sien.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.",
 'rev-deleted-no-diff'         => "U kan nie die verskille sien nie omdat een van die weergawes '''verwyder''' is.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
+'rev-suppressed-no-diff'      => "U kan nie hierdie verskil sien nie omdat een van die weergawes '''geskrap''' is.",
 'rev-deleted-unhide-diff'     => "Een van die weergawes vir hierdie verskil wat u aangevra het is '''verwyder'''.
 Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] aanwesig wees.
 As administrateur kan u steeds [$1 die verskille sien] as u wil voortgaan.",
@@ -2462,8 +2466,8 @@ Die teikenartikel "[[:$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir d
 'imageinvalidfilename'         => 'Die nuwe lêernaam is ongeldig',
 'fix-double-redirects'         => 'Opdateer alle aansture wat na die oorspronklike titel wys',
 'move-leave-redirect'          => "Los 'n aanstuur agter",
-'protectedpagemovewarning'     => "'''Waarskuwing:''' Hierdie bladsy kan slegs deur administrateurs geskuif word.",
-'semiprotectedpagemovewarning' => "'''Let op:''' Hierdie bladsy kan slegs deur geregistreerde gebruikers geskuif word.",
+'protectedpagemovewarning'     => "'''Waarskuwing:''' Hierdie bladsy kan slegs deur administrateurs geskuif word. Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
+'semiprotectedpagemovewarning' => "'''Let wel:''' Hierdie bladsy kan slegs deur geregistreerde gebruikers geskuif word. Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'move-over-sharedrepo'         => "== Die lêer bestaan reeds ==
 [[:$1]] bestaan al reeds in 'n gedeelde mediabank.
 As u 'n lêer na die naam skuif, sal die lêer in die gedeelde mediabank nie meer gebruik word nie.",

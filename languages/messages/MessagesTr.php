@@ -698,6 +698,7 @@ Hesabınız açıldı.
 'nav-login-createaccount'    => 'Oturum aç ya da yeni hesap edin',
 'loginprompt'                => '{{SITENAME}} sitesinde oturum açabilmek için çerezleri etkinleştirmeniz gerekmektedir.',
 'userlogin'                  => 'Oturum aç',
+'userloginnocreate'          => 'Giriş yap',
 'logout'                     => 'Oturumu kapat',
 'userlogout'                 => 'Oturumu kapat',
 'notloggedin'                => 'Oturum açık değil',
@@ -855,8 +856,10 @@ Lütfen yapacağınız herhangi bir sorguda yukarıdaki bütün detayları bulun
 'whitelistedittitle'               => 'Değişiklik yapmak için oturum açmalısınız',
 'whitelistedittext'                => 'Değişiklik yapabilmek için $1.',
 'confirmedittext'                  => 'Sayfa değiştirmeden önce e-posta adresinizi onaylamalısınız. Lütfen [[Special:Preferences|tercihler]] kısmından e-postanızı ekleyin ve onaylayın.',
-'nosuchsectiontitle'               => 'Böyle bir bölüm yok',
-'nosuchsectiontext'                => 'Bulunmayan bir konu başlığını değiştirmeyi denediniz. Burada $1 isimli bir konu başlığı bulunmamaktadır, katkınızı kaydedecek bir yer bulunmamaktadır.',
+'nosuchsectiontitle'               => 'Bölüm bulunamadı',
+'nosuchsectiontext'                => 'Bulunmayan bir konu başlığını değiştirmeyi denediniz. Siz sayfayı görüntülerken taşınmış veya silinmiş olabilir.
+
+Burada $1 isimli bir konu başlığı bulunmamaktadır, katkınızı kaydedecek bir yer bulunmamaktadır.',
 'loginreqtitle'                    => 'Oturum açmanız gerekiyor',
 'loginreqlink'                     => 'oturum aç',
 'loginreqpagetext'                 => 'Diğer sayfaları görmek için $1 olmalısınız.',
@@ -1035,6 +1038,7 @@ Bir hizmetli olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete
 Bir hizmetli olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma kayıtlarında] ayrıntılar bulunabilir.",
 'rev-deleted-no-diff'         => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''silinmiş'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.",
+'rev-suppressed-no-diff'      => "Bu farkı göremezsiniz çünkü revizyonlardan birisi '''silinmiş'''.",
 'rev-deleted-unhide-diff'     => "Bu değişikliğinin revizyonlarından birisi '''silinmiş'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.
 Bir hizmetli olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
@@ -2419,6 +2423,7 @@ Engelleme kaldırılmış olabilir.',
 'ipb_blocked_as_range'            => 'Hata: $1 IP adresi doğrudan engellenmemiş ve engelleme kaldırılamaz.
 Ancak, bu adres $2 aralığının parçası olarak engellenmiş, aralık engellemesini kaldırabilirsiniz.',
 'ip_range_invalid'                => 'Geçersiz IP aralığı.',
+'ip_range_toolarge'               => '/$1 bloktan daha büyük aralık bloklarına izin verilmez.',
 'blockme'                         => 'Beni engelle',
 'proxyblocker'                    => 'Proxy engelleyici',
 'proxyblocker-disabled'           => 'Bu özellik engellenildi.',

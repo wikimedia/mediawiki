@@ -913,8 +913,9 @@ Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'whitelistedittext'                => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse de courriel avant de modifier les pages.
 Veuillez entrer et valider votre adresse de courriel dans vos [[Special:Preferences|préférences utilisateur]].',
-'nosuchsectiontitle'               => 'Section manquante',
-'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas.
+'nosuchsectiontitle'               => 'Impossible de trouver la section',
+'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas. Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette page. 
+
 Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où publier vos modifications.',
 'loginreqtitle'                    => 'Connexion nécessaire',
 'loginreqlink'                     => 'connecter',
@@ -989,11 +990,10 @@ certains navigateurs Web gèrent mal la modification des pages approchant ou dé
 
 L’administrateur ayant verrouillé la base de données a donné l’explication suivante :<br 
 />$1",
-'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée.
-Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.'''",
-'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
+'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
+'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
 'cascadeprotectedwarning'          => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.",
-'titleprotectedwarning'            => "'''ATTENTION : Cette page a été protégée de telle manière que des [[Special:ListGroupRights|droits spécifiques]] sont requis pour pouvoir la créer.'''",
+'titleprotectedwarning'            => "'''ATTENTION : Cette page a été protégée de telle manière que des [[Special:ListGroupRights|droits spécifiques]] sont requis pour pouvoir la créer.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'templatesused'                    => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
 'templatesusedsection'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette section :',
@@ -2591,8 +2591,8 @@ impossible de renommer une page sur elle-même.',
 'imageinvalidfilename'         => 'Le nom du fichier cible est incorrect',
 'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers le titre original',
 'move-leave-redirect'          => 'Laisser une redirection vers le nouveau titre',
-'protectedpagemovewarning'     => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d'administrateur puissent la renommer.",
-'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été bloqué afin que seul les utilisateurs enregistrés puissent la renommer.",
+'protectedpagemovewarning'     => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d'administrateur puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
+'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été bloqué afin que seul les utilisateurs enregistrés puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
 'move-over-sharedrepo'         => '== Le fichier existe ==
 [[:$1]] existe déjà sur un dépôt partagé. Renommer ce fichier rendra le fichier sur le dépôt partage inaccessible.',
 'file-exists-sharedrepo'       => 'Le nom choisi est déjà utilisé par un fichier sur un dépôt partagé.

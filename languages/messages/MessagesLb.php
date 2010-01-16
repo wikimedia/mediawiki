@@ -720,8 +720,10 @@ Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'whitelistedittext'                => 'Dir musst iech $1, fir Säiten änneren ze kënnen.',
 'confirmedittext'                  => 'Dir musst är E-Mail-Adress confirméieren, ier Dir Ännerunge maache kënnt.
 Gitt w.e.g. eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benotzerastellungen]].',
-'nosuchsectiontitle'               => 'Et gëtt keen Abschnitt mat dem Numm',
-'nosuchsectiontext'                => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt. Well et den Abschnitt $1 net gëtt, gëtt et keng Plaz fir är Ännerung ze späicheren.",
+'nosuchsectiontitle'               => 'Et gëtt keen esou enn Abschnitt',
+'nosuchsectiontext'                => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt. Et ka sinn datt e geännert oder geläscht gouf iwwerdm wou Dir d'Säit gekuckt hutt.
+
+Well et den Abschnitt $1 net gëtt, gëtt et keng Plaz fir Är Ännerung ze späicheren.",
 'loginreqtitle'                    => 'Umeldung néideg',
 'loginreqlink'                     => 'umellen',
 'loginreqpagetext'                 => 'Dir musst iech $1, fir aner Säite liesen zu kënnen.',
@@ -791,10 +793,10 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'readonlywarning'                  => "'''OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte fir Säitenännerunge gespaart, dofir kënnt Dir déi Säit den Ament net ofspäicheren. Versuergt den Text a versicht d'Ännerunge méi spéit nach emol ze maachen.'''
 
 Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
-'protectedpagewarning'             => "'''OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.'''",
-'semiprotectedpagewarning'         => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellte Benotzer s'ännere kënnen.",
+'protectedpagewarning'             => "'''OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.''' Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
+'semiprotectedpagewarning'         => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellte Benotzer s'ännere kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 'cascadeprotectedwarning'          => "'''Passt op:''' Dës Säit gouf gespaart a kann nëmme vu Benotzer mat Administreursrechter geännert ginn. Si ass an dës {{PLURAL:$1|Säit|Säiten}} agebonnen, déi duerch Cascadespäroptioun gespaart {{PLURAL:$1|ass|sinn}}:'''",
-'titleprotectedwarning'            => "'''OPGEPASST: Dës Säit gouf gespaart sou datt [[Special:ListGroupRights|spezifesch Rechter]] gebraucht gi fir se uleeën ze kënnen.'''",
+'titleprotectedwarning'            => "'''OPGEPASST: Dës Säit gouf gespaart sou datt [[Special:ListGroupRights|spezifesch Rechter]] gebraucht gi fir se uleeën ze kënnen.''' Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 'templatesused'                    => '{{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit am Gebrauch sinn:',
 'templatesusedpreview'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dëser nach net gespäicherter Versioun benotzt ginn:',
 'templatesusedsection'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dësem Abschnitt am Gebrauch {{PLURAL:$1|ass|sinn}}:',
@@ -2372,8 +2374,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'imageinvalidfilename'         => 'Den Numm vum Zil-Fichier ass ongëlteg',
 'fix-double-redirects'         => 'All Viruleedungen déi op den Originaltitel weisen aktualiséieren',
 'move-leave-redirect'          => 'Viruleedung uleeën',
-'protectedpagemovewarning'     => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme Benotzer mat Administreurs-Rechter se réckele kënnen.",
-'semiprotectedpagemovewarning' => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme konfirméiert Benotzer se réckele kënnen.",
+'protectedpagemovewarning'     => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme Benotzer mat Administreurs-Rechter se réckele kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
+'semiprotectedpagemovewarning' => "'''OPGEPASST:''' Dës Säit gouf gespaart esou datt nëmme konfirméiert Benotzer se réckele kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 'move-over-sharedrepo'         => '== De Fichier gëtt et ==
 [[:$1]] gëtt et op engem gedeelte Repertoire. Wann dir e Fichier op dësen Titel réckelt dann ass dee gedeelte Fichier net méi accessibel.',
 'file-exists-sharedrepo'       => 'Den Numm vum Fichier deen dir erausgesicht hutt gëtt schonn op engem gemeinsame Repertoire benotzt.

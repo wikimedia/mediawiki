@@ -26,6 +26,7 @@
  * @author Peter Andersen
  * @author Piivaat
  * @author Purodha
+ * @author Qaqqalik
  * @author Remember the dot
  * @author Sir48
  * @author Slomox

@@ -716,8 +716,10 @@ Zapśimjejśo pšosym wše górjejce pomjenjowane drobnosći do wšych napšašo
 'whitelistedittitle'               => 'Za wobźěłanje dejš se pśizjawiś',
 'whitelistedittext'                => 'Musyš se $1, aby mógał boki wobźěłowaś.',
 'confirmedittext'                  => 'Nježli až móžoš źěłaš, musyš swóju e-mailowu adresu wobkšuśiś. Pšosym dodaj a wobkšuś swóju e-mailowu adresu w [[Special:Preferences|nastajenjach]].',
-'nosuchsectiontitle'               => 'Wótrězk njeeksistěrujo.',
-'nosuchsectiontext'                => 'Sy wopytał wobźěłaś njeeksistěrujucy wótrězk $1. Dokulaž taki wótrězk njeeksistěrujo, njamóžoš swójo wobźěłanje niźi składowaś.',
+'nosuchsectiontitle'               => 'Wótrězk njedajo se namakaś',
+'nosuchsectiontext'                => 'Sy wopytał wótrězk wobźěłaś, kótaryž njeeksistěrujo. Jo se snaź pśesunuł abo wulašował, mjaztym až woglědujoš se bok.
+
+Dokulaž njejo wótrězk $1, njejo žedne městno, źož se twója změna składujo.',
 'loginreqtitle'                    => 'Pśizjawjenje trěbne',
 'loginreqlink'                     => 'se pśizjawiś',
 'loginreqpagetext'                 => 'Dejš $1, aby mógł boki pšawje cytaś.',

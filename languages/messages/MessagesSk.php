@@ -853,8 +853,10 @@ Prosím, uveďte tieto podrobnosti v akýchkoľvek otázkach, ktoré sa opýtate
 'whitelistedittitle'               => 'Aby ste mohli upravovať stránky, musíte sa prihlásiť',
 'whitelistedittext'                => 'Aby ste mohli upravovať stránky, musíte sa $1',
 'confirmedittext'                  => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
-'nosuchsectiontitle'               => 'Sekcia neexistuje',
-'nosuchsectiontext'                => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje. Keďže sekcia $1 neexistuje, nie je kam uložiť vašu úpravu.',
+'nosuchsectiontitle'               => 'Sekcia nebola nájdená',
+'nosuchsectiontext'                => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje. Možno bola presunutá alebo zmazaná odkedy ste si stránku zobrazili.
+
+Keďže sekcia $1 neexistuje, nie je kam uložiť vašu úpravu.',
 'loginreqtitle'                    => 'Je potrebné prihlásiť sa',
 'loginreqlink'                     => 'prihlásiť',
 'loginreqpagetext'                 => 'Aby ste mohli prezerať ďalšie stránky, musíte sa $1.',
@@ -934,10 +936,10 @@ takže stránku momentálne nemôžete uložiť. Môžete skopírovať a vloži�
 text do textového súboru a uložiť si ho na neskôr.'''
 
 Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1",
-'protectedpagewarning'             => "'''UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.'''",
-'semiprotectedpagewarning'         => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
+'protectedpagewarning'             => "'''Upozornenie: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.''' Dolu je pre informáciu posledná položka zo záznamu:",
+'semiprotectedpagewarning'         => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia. Dolu je pre informáciu posledná položka zo záznamu:",
 'cascadeprotectedwarning'          => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
-'titleprotectedwarning'            => "'''UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba používatelia s [[Special:ListGroupRights|určitými právami]].'''",
+'titleprotectedwarning'            => "'''Upozornenie: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba používatelia s [[Special:ListGroupRights|určitými právami]].''' Dolu je pre informáciu posledná položka zo záznamu:",
 'templatesused'                    => '{{PLURAL:$1|Šablóna použitá|Šablóny použité}} na tejto stránke:',
 'templatesusedpreview'             => '{{PLURAL:$1|Šablóna použitá|Šablóny použité}} použité v tomto náhľade:',
 'templatesusedsection'             => '{{PLURAL:$1|Šablóna použitá|Šablóny použité}} použité v tejto sekcii:',
@@ -2539,8 +2541,8 @@ Cieľová stránka „[[:$1]]“ už existuje. Chcete ho vymazať a vytvoriť ta
 'imageinvalidfilename'         => 'Cieľový názov obrázka nie je platný',
 'fix-double-redirects'         => 'Aktualizovať všetky presmerovania odkazujúce na pôvodný názov',
 'move-leave-redirect'          => 'Zanechať presmerovanie',
-'protectedpagemovewarning'     => "'''Upozornenie:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba používatelia s oprávnením správcu.",
-'semiprotectedpagemovewarning' => "'''Upozornenie:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba zaregistrovaní používatelia.",
+'protectedpagemovewarning'     => "'''Upozornenie:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba používatelia s oprávnením správcu. Dolu je pre informáciu posledná položka zo záznamu:",
+'semiprotectedpagemovewarning' => "'''Poznámka:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba zaregistrovaní používatelia. Dolu je pre informáciu posledná položka zo záznamu:",
 'move-over-sharedrepo'         => '== Súbor existuje ==
 [[:$1]] existuje v zdieľanom úložisku. Presunutím súboru na tento názov prekryjete zdieľaný súbor.',
 'file-exists-sharedrepo'       => 'Názov súboru, ktorý ste zvolili sa už používa na zdieľanom úložisku.

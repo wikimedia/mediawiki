@@ -912,8 +912,10 @@ Bitte füge alle Informationen jeder Anfrage hinzu, die du stellt.",
 'whitelistedittitle'               => 'Zum Bearbeiten ist es erforderlich, angemeldet zu sein',
 'whitelistedittext'                => 'Du musst dich $1, um Seiten bearbeiten zu können.',
 'confirmedittext'                  => 'Du musst deine E-Mail-Adresse erst bestätigen, bevor du Bearbeitungen durchführen kannst. Bitte ergänze und bestätige Deine E-Mail in den [[Special:Preferences|Einstellungen]].',
-'nosuchsectiontitle'               => 'Abschnitt nicht vorhanden',
-'nosuchsectiontext'                => 'Du versuchst den nicht vorhandenen Abschnitt $1 zu bearbeiten. Es können jedoch nur bereits vorhandene Abschnitte bearbeitet werden.',
+'nosuchsectiontitle'               => 'Abschnitt konnte nicht gefunden werden',
+'nosuchsectiontext'                => 'Du hast versucht, einen Abschnitt zu bearbeiten, der nicht existiert. Vermutlich wurde er verschoben oder gelöscht, während du die Seite aufgerufen hast.
+
+Seit der Abschnitt $1 nicht vorhanden ist, kann deine Bearbeitung nicht gespeichert werden.',
 'loginreqtitle'                    => 'Anmeldung erforderlich',
 'loginreqlink'                     => 'anmelden',
 'loginreqpagetext'                 => 'Du musst dich $1, um Seiten lesen zu können.',
