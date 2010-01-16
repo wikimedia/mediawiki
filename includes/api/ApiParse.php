@@ -157,6 +157,10 @@ class ApiParse extends ApiBase {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?
 							$p_result->getDisplayTitle() :
 							$titleObj->getPrefixedText();
+		
+		if( isset( $prop['headitems'] ) )
+			$result_array['headitems'] = $this->formatHeadItems( $p_result->getHeadItems() );					
+							
 		if ( !is_null( $oldid ) )
 			$result_array['revid'] = intval( $oldid );
 
@@ -169,6 +173,7 @@ class ApiParse extends ApiBase {
 			'images' => 'img',
 			'externallinks' => 'el',
 			'sections' => 's',
+			'headitems' => 'hi'
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
@@ -212,6 +217,17 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
+	private function formatHeadItems( $headItems ) {
+		$result = array();
+		foreach( $headItems as $tag => $content ) {
+			$entry = array();
+			$entry['tag'] = $tag;
+			$this->getResult()->setContent( $entry, $content );
+			$result[] = $entry;
+		}
+		return $result;
+	}
+
 	private function setIndexedTagNames( &$array, $mapping ) {
 		foreach ( $mapping as $key => $name ) {
 			if ( isset( $array[$key] ) )
@@ -242,6 +258,7 @@ class ApiParse extends ApiBase {
 					'sections',
 					'revid',
 					'displaytitle',
+					'headitems'
 				)
 			),
 			'pst' => false,
