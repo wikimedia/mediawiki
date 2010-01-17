@@ -1009,9 +1009,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		} elseif ( $conf->DBtype == 'oracle' ) {
 			echo "<li>Attempting to connect to database \"" . htmlspecialchars( $wgDBname ) ."\"</li>";
 			$old_error_level = error_reporting();
-			error_reporting($old_error_level & ~E_WARNING); //disable E_WARNING for test connect (oci returns login denied as warning)
+			wfSuppressWarnings();
 			$wgDatabase = $dbc->newFromParams('DUMMY', $wgDBuser, $wgDBpassword, $wgDBname, 1);
-			error_reporting($old_error_level);
+			wfRestoreWarnings();
 			if (!$wgDatabase->isOpen()) {
 				$ok = true;
 				echo "<li>Connect failed.</li>";
