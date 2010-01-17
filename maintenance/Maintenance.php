@@ -572,22 +572,23 @@ abstract class Maintenance {
 		ksort( $this->mParams );
 		if( $this->hasOption( 'help' ) || $force ) {
 			$this->mQuiet = false;
+
 			if( $this->mDescription ) {
 				$this->output( "\n" . $this->mDescription . "\n" );
 			}
-			$this->output( "\nUsage: php " . $this->mSelf );
+			$output = "\nUsage: php " . $this->mSelf;
 			if( $this->mParams ) {
-				$this->output( " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]" );
+				$output .= " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]";
 			}
 			if( $this->mArgList ) {
-				$this->output( " <" );
+				$output .= " <";
 				foreach( $this->mArgList as $k => $arg ) {
-					$this->output( $arg['name'] . ">" );
+					$output .= $arg['name'] . ">";
 					if( $k < count( $this->mArgList ) - 1 )
-						$this->output( " <" );
+						$output .= " <";
 				}
 			}
-			$this->output( "\n" );
+			$this->output( "$output\n" );
 			foreach( $this->mParams as $par => $info ) {
 				$this->output( "\t$par : " . $info['desc'] . "\n" );
 			}
