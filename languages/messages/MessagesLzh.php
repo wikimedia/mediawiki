@@ -529,7 +529,8 @@ $2',
 'newpassword'               => '新符節：',
 'retypenew'                 => '重察新符節：',
 'resetpass_submit'          => '設符再登',
-'resetpass_success'         => '爾之符節已改！現登簿中...',
+'resetpass_success'         => '爾之符節已改！
+現登簿中...',
 'resetpass_forbidden'       => '無改符節',
 'resetpass-no-info'         => '爾須登簿後方進此頁。',
 'resetpass-submit-loggedin' => '改符節',
@@ -592,6 +593,11 @@ $2',
 'whitelistedittitle'               => '登簿以纂',
 'whitelistedittext'                => '$1後方可纂文。',
 'confirmedittext'                  => '驛證方可纂文。惠見[[Special:Preferences|簿註]]。',
+'nosuchsectiontitle'               => '無尋節',
+'nosuchsectiontext'                => '爾纂之節無存也。
+機以察時遷或刪之。
+
+無節$1矣，無處容纂也。',
 'loginreqtitle'                    => '須登簿',
 'loginreqlink'                     => '登簿',
 'loginreqpagetext'                 => '$1以覽它頁。',
@@ -648,8 +654,13 @@ $2',
 'readonlywarning'                  => "'''警示：修庫藏，存儲謝焉。惠謄文備用之。'''
 
 鎖者曰：「$1」",
-'protectedpagewarning'             => "'''警示：庫藏鎖矣，惟有秩纂之。'''",
-'semiprotectedpagewarning'         => "'''註記'''庫藏鎖矣，惟登簿纂之。",
+'protectedpagewarning'             => "'''警示：庫藏鎖矣，惟有秩纂之。'''
+近誌下曰參詳之：",
+'semiprotectedpagewarning'         => "'''註記'''庫藏鎖矣，惟登簿纂之。
+近誌下曰參詳之：",
+'cascadeprotectedwarning'          => "'''警示：'''此頁鎖錮矣，唯有秩纂之，乃因{{PLURAL:$1|一|多}}頁連誅之：",
+'titleprotectedwarning'            => "'''警告：此頁錮矣，乃需[[Special:ListGroupRights|權]]用之。'''
+近誌下曰參詳之：",
 'templatesused'                    => '此文用模：',
 'template-protected'               => '（錮）',
 'template-semiprotected'           => '（半錮）',
@@ -747,6 +758,7 @@ $2',
 'rev-deleted-unhide-diff'     => "此審'''刪'''矣，
 詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。
 有秩仍看者，[$1 看此審]也。",
+'rev-suppressed-no-diff'      => "此審'''刪'''矣，爾無視此審也。",
 'rev-suppressed-unhide-diff'  => "此審'''廢'''矣，
 詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。
 有秩仍看者，[$1 看此審]也。",
@@ -1286,6 +1298,8 @@ $1",
 'overwroteimage'             => '新置「[[$1]]」矣',
 'uploaddisabledtext'         => '貢被禁也。',
 'php-uploaddisabledtext'     => 'PHP之貢被禁也。查 file_uploads 之。',
+'uploadvirus'                => '此檔含毒也！
+詳：$1',
 'upload-source'              => '源檔',
 'sourcefilename'             => '源名：',
 'sourceurl'                  => '源址：',
@@ -2001,7 +2015,8 @@ $1已被禁矣。爾是否改此置？',
 'proxyblocker'                    => '禁Proxy',
 'proxyblocksuccess'               => '成矣。',
 'cant-block-while-blocked'        => '爾然被禁，勿施於人。',
-'cant-see-hidden-user'            => '簿禁或藏矣。爾無藏之權，無視纂禁也。',
+'cant-see-hidden-user'            => '簿禁或藏矣。
+爾無藏之權，無視纂禁也。',
 
 # Developer tools
 'lockdb'              => '閉庫',
@@ -2077,8 +2092,10 @@ $1已被禁矣。爾是否改此置？',
 'imageinvalidfilename'         => '標之檔名乃無效也',
 'fix-double-redirects'         => '更指原題之任渡',
 'move-leave-redirect'          => '留渡',
-'protectedpagemovewarning'     => "'''警：'''本頁已錮，有秩移之。",
-'semiprotectedpagemovewarning' => "'''注：'''本頁已錮，注簿移之。",
+'protectedpagemovewarning'     => "'''警：'''本頁已錮，有秩移之。
+近誌下曰參詳之：",
+'semiprotectedpagemovewarning' => "'''注：'''本頁已錮，注簿移之。
+近誌下曰參詳之：",
 'move-over-sharedrepo'         => '== 檔存也 ==
 [[:$1]]於共存存也，遷標題，蓋共檔之。',
 'file-exists-sharedrepo'       => '同名之檔已存於共也。
@@ -2521,8 +2538,10 @@ $1',
 # Live preview
 'livepreview-loading' => '遺藏…',
 'livepreview-ready'   => '藏至矣。',
-'livepreview-failed'  => '弗能即時示之！嘗以本法。',
-'livepreview-error'   => '莫之連也：$1 "$2" 嘗以本法。',
+'livepreview-failed'  => '弗能即時示之！
+嘗以本法。',
+'livepreview-error'   => '莫之連也：$1 "$2"。
+嘗以本法。',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '近$1秒新易者疑喪也。',

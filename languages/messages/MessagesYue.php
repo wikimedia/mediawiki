@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -628,7 +628,8 @@ $1',
 'newpassword'               => '新密碼:',
 'retypenew'                 => '打多次新密碼:',
 'resetpass_submit'          => '設定密碼同登入',
-'resetpass_success'         => '你嘅密碼已經成功噉改咗！而家幫你登入緊...',
+'resetpass_success'         => '你嘅密碼已經成功噉改咗！
+而家幫你登入緊...',
 'resetpass_forbidden'       => '唔可以更改密碼',
 'resetpass-no-info'         => '你一定要登入咗去直接入來呢一版。',
 'resetpass-submit-loggedin' => '改密碼',
@@ -705,8 +706,11 @@ $1',
 'whitelistedittitle'               => '需要登入之後先至可以編輯',
 'whitelistedittext'                => '你需要$1去編輯呢頁。',
 'confirmedittext'                  => '你個電郵地址要確定咗先可以編輯。唔該先去[[Special:Preferences|喜好設定]]填咗電郵地址，並做埋確認手續。',
-'nosuchsectiontitle'               => '無呢個小節',
-'nosuchsectiontext'                => '你嘗試編輯嘅小節並唔存在。之不過呢度係無第$1小節，所以係無一個地方去儲存你嘅編輯。',
+'nosuchsectiontitle'               => '搵唔到呢個小節',
+'nosuchsectiontext'                => '你嘗試編輯嘅小節並唔存在。
+佢可能響你睇緊嗰版時搬咗或者刪除咗。
+
+之不過呢度係無第$1小節，所以係無一個地方去儲存你嘅編輯。',
 'loginreqtitle'                    => '需要登入',
 'loginreqlink'                     => '登入',
 'loginreqpagetext'                 => '你一定$1去睇其它嘅頁面。',
@@ -726,7 +730,7 @@ $1',
 或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搵有關嘅日誌]</span>。',
 'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
 'userpage-userdoesnotexist-view'   => '用戶戶口"$1"重未開。',
-'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
+'clearyourcache'                   => "'''注意：喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
 '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）；
 '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''；
 '''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取，又或者㩒''Alt-F5''；
@@ -780,10 +784,13 @@ $1',
 'readonlywarning'                  => "'''錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。'''你可以儲啲文字落一份文字檔先。
 
 管理員嘅解釋： $1",
-'protectedpagewarning'             => "'''警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。'''",
-'semiprotectedpagewarning'         => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
+'protectedpagewarning'             => "'''警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。'''
+最近嘅日誌響下面提供以便參考：",
+'semiprotectedpagewarning'         => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。
+最近嘅日誌響下面提供以便參考：",
 'cascadeprotectedwarning'          => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
-'titleprotectedwarning'            => "'''警告：呢一版已經鎖咗，需要一啲[[Special:ListGroupRights|指定權限]]先至可以開到。'''",
+'titleprotectedwarning'            => "'''警告：呢一版已經鎖咗，需要一啲[[Special:ListGroupRights|指定權限]]先至可以開到。'''
+最近嘅日誌響下面提供以便參考：",
 'templatesused'                    => '呢版用嘅模{{PLURAL:$1|模|模}}：',
 'templatesusedpreview'             => '呢一次預覽裏面，用咗下面呢啲{{PLURAL:$1|模|模}}：',
 'templatesusedsection'             => '呢一節用咗嘅{{PLURAL:$1|模|模}}：',
@@ -880,31 +887,32 @@ $1',
 'rev-deleted-event'           => '(日誌動作已經移除咗)',
 'rev-deleted-user-contribs'   => '[用戶名或IP地址拎走咗 - 響貢獻度隱藏咗編輯]',
 'rev-deleted-text-permission' => "呢頁嘅修訂已經被'''洗咗'''。
-喺[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+喺[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。",
 'rev-deleted-text-unhide'     => "呢頁嘅修訂已經被'''洗咗'''。
-喺[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+喺[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
 'rev-suppressed-text-unhide'  => "呢頁嘅修訂已經被'''廢止咗'''。
-喺[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。
+喺[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 廢止日誌]裏面可以搵到更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
 'rev-deleted-text-view'       => "呢頁嘅修訂已經'''洗咗'''。
 作為嘅管理員，你可以去睇吓佢；
-喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。",
 'rev-suppressed-text-view'    => "呢頁嘅修訂已經'''廢止咗'''。
 作為嘅管理員，你可以去睇吓佢；
-喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。",
+喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可以搵到更詳細嘅資料。",
 'rev-deleted-no-diff'         => "因為其中一次修訂'''洗咗'''，你唔可以睇呢個差異。
-響[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可能有更多嘅資料。",
+響[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可以搵到更多嘅資料。",
 'rev-deleted-unhide-diff'     => "呢頁嘅其中一次修訂已經'''洗咗'''。
-喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
+'rev-suppressed-no-diff'      => "由於呢頁嘅其中一次修訂已經'''刪除咗'''，你唔可以睇呢次修訂。",
 'rev-suppressed-unhide-diff'  => "呢頁嘅其中一次修訂已經'''廢止咗'''。
-喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。
+喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可以搵到更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
 'rev-deleted-diff-view'       => "呢個差異嘅其中一次修訂已經'''刪除咗'''。
-作為管理員你可以去睇呢個差異；喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+作為管理員你可以去睇呢個差異；喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。",
 'rev-suppressed-diff-view'    => "呢個差異嘅其中一次修訂已經'''廢止咗'''。
-作為管理員你可以去睇呢個差異；喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。",
+作為管理員你可以去睇呢個差異；喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可以搵到更詳細嘅資料。",
 'rev-delundel'                => '顯示／隱藏',
 'rev-showdeleted'             => '顯示',
 'revisiondelete'              => '刪除／反刪除修訂',
@@ -1470,7 +1478,8 @@ $1",
 'php-uploaddisabledtext'      => 'PHP 檔案上載已經停用。請檢查 file_uploads 設定。',
 'uploadscripted'              => '呢個檔案包含可能會誤被瀏覽器解釋執行嘅 HTML 或 script 代碼。',
 'uploadcorrupt'               => '呢個檔案已損壞或係用咗錯誤嘅副檔名。請檢查吓個檔案，然後再試下上載多次。',
-'uploadvirus'                 => '呢個檔案有病毒！詳情：$1',
+'uploadvirus'                 => '呢個檔案有病毒！
+詳情：$1',
 'upload-source'               => '來源檔案',
 'sourcefilename'              => '來源檔名:',
 'sourceurl'                   => '來源網址:',
@@ -2238,7 +2247,8 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'sorbsreason'                     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。',
 'sorbs_create_account_reason'     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 'cant-block-while-blocked'        => '當你被封鎖嗰陣唔可以封鎖其他用戶。',
-'cant-see-hidden-user'            => '你試緊封鎖嘅用戶已經封鎖咗或者隱藏咗。你而家冇隱藏用戶嘅權限，你唔可以睇或者改呢位用戶嘅封鎖。',
+'cant-see-hidden-user'            => '你試緊封鎖嘅用戶已經封鎖咗或者隱藏咗。
+你而家冇隱藏用戶嘅權限，你唔可以睇或者改呢位用戶嘅封鎖。',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',
@@ -2330,8 +2340,10 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'imageinvalidfilename'         => '個目標檔名係無效嘅',
 'fix-double-redirects'         => '更新指到原先標題嘅任何跳轉',
 'move-leave-redirect'          => '留底跳轉',
-'protectedpagemovewarning'     => "'''警告：'''呢一版已經鎖咗，淨係得有管理員權限嘅用戶先至可以去搬佢。",
-'semiprotectedpagemovewarning' => "'''留意：'''呢一版已經鎖咗，淨係畀註冊咗嘅用戶去搬佢。",
+'protectedpagemovewarning'     => "'''警告：'''呢一版已經鎖咗，淨係得有管理員權限嘅用戶先至可以去搬佢。
+最近嘅日誌響下面提供以便參考：",
+'semiprotectedpagemovewarning' => "'''留意：'''呢一版已經鎖咗，淨係畀註冊咗嘅用戶去搬佢。
+最近嘅日誌響下面提供以便參考：",
 'move-over-sharedrepo'         => '== 檔案已經存在 ==
 [[:$1]]已經響共有資源存在，將檔案移動到呢個標題會覆蓋共有資源度嘅檔案。',
 'file-exists-sharedrepo'       => '同名檔案已於共享資源存在。
@@ -3060,8 +3072,10 @@ $1',
 # Live preview
 'livepreview-loading' => '載入緊…',
 'livepreview-ready'   => '載入緊… 預備好！',
-'livepreview-failed'  => '實時預覽失敗！ 試吓標準預覽。',
-'livepreview-error'   => '連接失敗： $1 "$2" 試吓標準預覽。',
+'livepreview-failed'  => '實時預覽失敗！
+試吓標準預覽。',
+'livepreview-error'   => '連接失敗： $1 "$2"。
+試吓標準預覽。',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '新過$1秒嘅更改可能唔會響呢個表度顯示。',
@@ -3072,7 +3086,7 @@ $1',
 'watchlistedit-noitems'        => '你嘅監視清單並無標題。',
 'watchlistedit-normal-title'   => '編輯監視清單',
 'watchlistedit-normal-legend'  => '響監視清單度拎走',
-'watchlistedit-normal-explain' => '響你張監視清單度嘅標題響下面度顯示。要拎走一個標題，響佢前面剔一剔，跟住要撳拎走標題。你亦都可以[[Special:Watchlist/raw|編輯原始清單]]。',
+'watchlistedit-normal-explain' => '響你張監視清單度嘅標題響下面度顯示。要拎走一個標題，響佢前面剔一剔，跟住要撳『拎走標題』。你亦都可以[[Special:Watchlist/raw|編輯原始清單]]。',
 'watchlistedit-normal-submit'  => '拎走標題',
 'watchlistedit-normal-done'    => '$1個標題已經響你嘅監視清單度拎走咗:',
 'watchlistedit-raw-title'      => '編輯原始監視清單',
@@ -3181,7 +3195,8 @@ $1',
 
 # Database error messages
 'dberr-header'      => '呢個 wiki 出咗問題',
-'dberr-problems'    => '對唔住！呢一版出現咗一啲技術性問題。',
+'dberr-problems'    => '對唔住！
+呢一版出現咗一啲技術性問題。',
 'dberr-again'       => '試吓等多幾分種然後開試。',
 'dberr-info'        => '(唔能夠連繫個資料伺服器: $1)',
 'dberr-usegoogle'   => '響現階段你可以用 Google 去搵嘢。',
