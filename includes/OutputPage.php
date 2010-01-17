@@ -1666,10 +1666,10 @@ class OutputPage {
 		# Crazy edit-on-double-click stuff
 		$action = $wgRequest->getVal( 'action', 'view' );
 
-		if ( $this->mTitle->getNamespace() != NS_SPECIAL
+		if ( $this->getTitle()->getNamespace() != NS_SPECIAL
 		&& !in_array( $action, array( 'edit', 'submit' ) )
 		&& $wgUser->getOption( 'editondblclick' ) ) {
-			$bodyAttrs['ondblclick'] = "document.location = '" . Xml::escapeJsString( $this->mTitle->getEditURL() ) . "'";
+			$bodyAttrs['ondblclick'] = "document.location = '" . Xml::escapeJsString( $this->getTitle()->getEditURL() ) . "'";
 		}
 
 		# Class bloat
@@ -1679,15 +1679,15 @@ class OutputPage {
 			# A <body> class is probably not the best way to do this . . .
 			$bodyAttrs['class'] .= ' capitalize-all-nouns';
 		}
-		$bodyAttrs['class'] .= ' ns-' . $this->mTitle->getNamespace();
-		if ( $this->mTitle->getNamespace() == NS_SPECIAL ) {
+		$bodyAttrs['class'] .= ' ns-' . $this->getTitle()->getNamespace();
+		if ( $this->getTitle()->getNamespace() == NS_SPECIAL ) {
 			$bodyAttrs['class'] .= ' ns-special';
-		} elseif ( $this->mTitle->isTalkPage() ) {
+		} elseif ( $this->getTitle()->isTalkPage() ) {
 			$bodyAttrs['class'] .= ' ns-talk';
 		} else {
 			$bodyAttrs['class'] .= ' ns-subject';
 		}
-		$bodyAttrs['class'] .= ' ' . Sanitizer::escapeClass( 'page-' . $this->mTitle->getPrefixedText() );
+		$bodyAttrs['class'] .= ' ' . Sanitizer::escapeClass( 'page-' . $this->getTitle()->getPrefixedText() );
 		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $wgUser->getSkin()->getSkinName() );
 
 		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
