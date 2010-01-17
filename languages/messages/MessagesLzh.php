@@ -755,10 +755,10 @@ $2',
 'rev-suppressed-text-view'    => "此審'''廢'''矣，惟有秩可見之，詳見[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 誌廢]。",
 'rev-deleted-no-diff'         => "此審'''刪'''矣，無視之審也。
 詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。",
+'rev-suppressed-no-diff'      => "此審'''刪'''矣，爾無視此審也。",
 'rev-deleted-unhide-diff'     => "此審'''刪'''矣，
 詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。
 有秩仍看者，[$1 看此審]也。",
-'rev-suppressed-no-diff'      => "此審'''刪'''矣，爾無視此審也。",
 'rev-suppressed-unhide-diff'  => "此審'''廢'''矣，
 詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。
 有秩仍看者，[$1 看此審]也。",

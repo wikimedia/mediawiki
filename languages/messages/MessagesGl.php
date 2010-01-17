@@ -786,8 +786,11 @@ Por favor, inclúa eses datos nas consultas que faga.',
 'whitelistedittitle'               => 'Cómpre acceder ao sistema para poder editar',
 'whitelistedittext'                => 'Ten que $1 para poder editar páxinas.',
 'confirmedittext'                  => 'Debe confirmar o correo electrónico antes de comezar a editar. Por favor, configure e dea validez ao correo mediante as súas [[Special:Preferences|preferencias de usuario]].',
-'nosuchsectiontitle'               => 'Non existe tal sección',
-'nosuchsectiontext'                => 'Tentou editar unha sección inexistente. Dado que non existe a sección $1, non hai onde gardar a súa edición.',
+'nosuchsectiontitle'               => 'Non se pode atopar a sección',
+'nosuchsectiontext'                => 'Intentou editar unha sección que non existe.
+Poida que a movesen ou borrasen mentres ollaba a páxina.
+
+Dado que non existe a sección $1, non hai onde gardar a súa edición.',
 'loginreqtitle'                    => 'Cómpre acceder ao sistema',
 'loginreqlink'                     => 'acceder ao sistema',
 'loginreqpagetext'                 => 'Debe $1 para ver outras páxinas.',
@@ -869,10 +872,13 @@ Polo tanto, non se pode gardar.",
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.'''
 
 O administrador que a fechou deu esta explicación: $1",
-'protectedpagewarning'             => "'''ATENCIÓN: esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' esta páxina foi bloqueada e só os usuarios rexistrados poden editala.",
+'protectedpagewarning'             => "'''Aviso: esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
+Velaquí está a última entrada no rexistro, por se quere consultala:",
+'semiprotectedpagewarning'         => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan editar.
+Velaquí está a última entrada no rexistro, por se quere consultala:",
 'cascadeprotectedwarning'          => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina protexida|nas seguintes páxinas protexidas}} coa opción \"protección en serie\" activada:",
-'titleprotectedwarning'            => "'''AVISO: bloqueouse esta páxina para que [[Special:ListGroupRights|só algúns usuarios]] a poidan crear.'''",
+'titleprotectedwarning'            => "'''Aviso: esta páxina foi protexida de xeito que [[Special:ListGroupRights|só algúns usuarios]] a poidan crear.'''
+Velaquí está a última entrada no rexistro, por se quere consultala:",
 'templatesused'                    => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta páxina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta vista previa:',
 'templatesusedsection'             => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta sección:',
@@ -2485,8 +2491,10 @@ Quérea eliminar para facer sitio para mover?',
 'imageinvalidfilename'         => 'O nome da imaxe é inválido',
 'fix-double-redirects'         => 'Actualizar calquera redirección que apunte cara ao título orixinal',
 'move-leave-redirect'          => 'Deixar unha redirección detrás',
-'protectedpagemovewarning'     => "'''Aviso:''' esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan mover.",
-'semiprotectedpagemovewarning' => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan mover.",
+'protectedpagemovewarning'     => "'''Aviso:''' esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan mover.
+Velaquí está a última entrada no rexistro, por se quere consultala:",
+'semiprotectedpagemovewarning' => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan mover.
+Velaquí está a última entrada no rexistro, por se quere consultala:",
 'move-over-sharedrepo'         => '== O ficheiro xa existe ==
 "[[:$1]]" xa existe nun repositorio compartido. Ao mover un ficheiro a este título sobrescribirase o ficheiro compartido.',
 'file-exists-sharedrepo'       => 'O nome que elixiu para o ficheiro xa está en uso nun repositorio compartido.

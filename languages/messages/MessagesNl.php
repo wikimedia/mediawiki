@@ -913,6 +913,8 @@ Vermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.',
 Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]].',
 'nosuchsectiontitle'               => 'Deze subkop bestaat niet',
 'nosuchsectiontext'                => 'U probeerde een subkopje te bewerken dat niet bestaat.
+Wellicht is het verplaatst of verwijderd terwijl u de pagina aan het bekijken was.
+
 Omdat subkopje $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
 'loginreqtitle'                    => 'Aanmelden verplicht',
 'loginreqlink'                     => 'aanmelden',
@@ -998,10 +1000,13 @@ Opslaan is niet mogelijk.'''",
 Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaan om dit te bewaren voor wanneer de blokkering van de database opgeheven is.'''
 
 Een beheerder heeft de database geblokkeerd om de volgende reden: $1",
-'protectedpagewarning'             => "'''WAARSCHUWING! Deze beveiligde pagina kan alleen door gebruikers met beheerdersrechten bewerkt worden.'''",
-'semiprotectedpagewarning'         => "'''Let op:''' deze pagina is beveiligd en kan alleen door geregistreerde gebruikers bewerkt worden.",
+'protectedpagewarning'             => "'''Waarschuwing: deze beveiligde pagina kan alleen door gebruikers met beheerdersrechten bewerkt worden.'''
+De laatste logboekregel staat hieronder:",
+'semiprotectedpagewarning'         => "'''Let op:''' deze pagina is beveiligd en kan alleen door geregistreerde gebruikers bewerkt worden.
+De laatste logboekregel staat hieronder:",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveiligd en kan alleen door beheerders bewerkt worden, omdat deze is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:",
-'titleprotectedwarning'            => "'''WAARSCHUWING: Deze pagina is beveiligd. Er zijn [[Special:ListGroupRights|speciale rechten]] nodig om de pagina aan te kunnen maken.'''",
+'titleprotectedwarning'            => "'''Waarschuwing: Deze pagina is beveiligd. Er zijn [[Special:ListGroupRights|speciale rechten]] nodig om de pagina aan te kunnen maken.'''
+De laatste logboekregel staat hieronder:",
 'templatesused'                    => 'Op deze pagina {{PLURAL:$1|gebruikt sjabloon|gebruikte sjablonen}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablonen}} gebruikt in deze voorvertoning:',
 'templatesusedsection'             => 'In dit subkopje {{PLURAL:$1|wordt het volgende sjabloon|worden de volgende sjablonen}} gebruikt:',
@@ -2648,8 +2653,10 @@ Wilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?',
 'imageinvalidfilename'         => 'De nieuwe bestandsnaam is ongeldig',
 'fix-double-redirects'         => 'Alle doorverwijzingen bijwerken die verwijzen naar de originele paginanaam',
 'move-leave-redirect'          => 'Een doorverwijzing achterlaten',
-'protectedpagemovewarning'     => "'''Waarschuwing:''' Deze pagina kan alleen door beheerders hernoemd worden.",
-'semiprotectedpagemovewarning' => "'''Let op:''' Deze pagina kan alleen door geregistreerde gebruikers hernoemd worden.",
+'protectedpagemovewarning'     => "'''Waarschuwing:''' Deze pagina kan alleen door beheerders hernoemd worden.
+De laatste logboekregel staat hieronder:",
+'semiprotectedpagemovewarning' => "'''Let op:''' Deze pagina kan alleen door geregistreerde gebruikers hernoemd worden.
+De laatste logboekregel staat hieronder:",
 'move-over-sharedrepo'         => '== Het bestand bestaat al ==
 [[:$1]] bestaat al in een gedeelde mediadatabank.
 Door een bestand te hernoemen naar deze naam, is het bestand uit de gedeelde mediadatabank niet langer te gebruiken.',

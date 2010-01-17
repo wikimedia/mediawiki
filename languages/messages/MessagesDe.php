@@ -912,10 +912,10 @@ Bitte füge alle Informationen jeder Anfrage hinzu, die du stellt.",
 'whitelistedittitle'               => 'Zum Bearbeiten ist es erforderlich, angemeldet zu sein',
 'whitelistedittext'                => 'Du musst dich $1, um Seiten bearbeiten zu können.',
 'confirmedittext'                  => 'Du musst deine E-Mail-Adresse erst bestätigen, bevor du Bearbeitungen durchführen kannst. Bitte ergänze und bestätige Deine E-Mail in den [[Special:Preferences|Einstellungen]].',
-'nosuchsectiontitle'               => 'Abschnitt konnte nicht gefunden werden',
-'nosuchsectiontext'                => 'Du hast versucht, einen Abschnitt zu bearbeiten, der nicht existiert. Vermutlich wurde er verschoben oder gelöscht, während du die Seite aufgerufen hast.
+'nosuchsectiontitle'               => 'Abschnitt nicht gefunden',
+'nosuchsectiontext'                => 'Du hast versucht, einen Abschnitt zu bearbeiten, der nicht existiert. Vermutlich wurde er verschoben oder gelöscht, nachdem du die Seite aufgerufen hast.
 
-Seit der Abschnitt $1 nicht vorhanden ist, kann deine Bearbeitung nicht gespeichert werden.',
+Da der Abschnitt $1 nicht vorhanden ist, kann deine Bearbeitung nicht gespeichert werden.',
 'loginreqtitle'                    => 'Anmeldung erforderlich',
 'loginreqlink'                     => 'anmelden',
 'loginreqpagetext'                 => 'Du musst dich $1, um Seiten lesen zu können.',
@@ -988,10 +988,10 @@ Du bestätigst hiermit auch, dass du diese Texte selbst geschrieben hast oder di
 Sichere den Text bitte lokal auf deinem Computer und versuche zu einem späteren Zeitpunkt, die Änderungen zu übertragen.'''
 
 Grund für die Sperre: $1",
-'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.'''",
-'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
+'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.''' Zur Information folgt der aktuelle Logbucheintrag:",
+'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können. Zur Information folgt der aktuelle Logbucheintrag:",
 'cascadeprotectedwarning'          => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
-'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] können die Seite erstellen.'''",
+'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] können die Seite erstellen.''' Zur Information folgt der aktuelle Logbucheintrag:",
 'templatesused'                    => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seite verwendet:',
 'templatesusedpreview'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seitenvorschau verwendet:',
 'templatesusedsection'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von diesem Abschnitt verwendet:',
@@ -2567,8 +2567,8 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 'imageinvalidfilename'         => 'Der Ziel-Dateiname ist ungültig',
 'fix-double-redirects'         => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
 'move-leave-redirect'          => 'Weiterleitung erstellen',
-'protectedpagemovewarning'     => "'''Warnung:''' Diese Seite wurde gesperrt, so dass sie nur von Benutzern mit Administratorenrechten verschoben werden kann.",
-'semiprotectedpagemovewarning' => "'''Hinweis:''' Diese Seite wurde gesperrt, so dass sie nur von angemeldeten Benutzern verschoben werden kann.",
+'protectedpagemovewarning'     => "'''Warnung:''' Diese Seite wurde gesperrt, so dass sie nur von Benutzern mit Administratorenrechten verschoben werden kann. Zur Information folgt der aktuelle Logbucheintrag:",
+'semiprotectedpagemovewarning' => "'''Hinweis:''' Diese Seite wurde gesperrt, so dass sie nur von angemeldeten Benutzern verschoben werden kann. Zur Information folgt der aktuelle Logbucheintrag:",
 'move-over-sharedrepo'         => '==Datei existiert==
 [[:$1]] existiert in einem gemeinsam genutzten Repositorium. Das Verschieben einer Datei zu diesem Titel überschreibt die gemeinsam genutzte Datei.',
 'file-exists-sharedrepo'       => 'Der gewählte Dateiname wird bereits in einem gemeinsam genutzten Repositorium verwendet.

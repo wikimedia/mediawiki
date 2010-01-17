@@ -1477,7 +1477,7 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'minlength1'                  => "Els noms de fitxer han de ser de com a mínim d'una lletra.",
 'illegalfilename'             => 'El nom del fitxer «$1» conté caràcters que no estan permesos en els títols de pàgines. Si us plau, canvieu el nom al fitxer i torneu a carregar-lo.',
 'badfilename'                 => "El nom de la imatge s'ha canviat a «$1».",
-'filetype-badmime'            => 'Els fitxers del tipus MIME «$1» no poden penjar-se.',
+'filetype-badmime'            => 'No es poden carregar fitxers del tipus MIME «$1».',
 'filetype-bad-ie-mime'        => 'No es pot carregar aquest fitxer perquè Internet Explorer el detectaria com a «$1», que és un tipus de fitxer prohibit i potencialment perillós.',
 'filetype-unwanted-type'      => "Els fitxers del tipus «'''.$1'''» no són desitjats. {{PLURAL:$3|Es prefereix el tipus de fitxer|Els tipus de fitxer preferits són}} $2.",
 'filetype-banned-type'        => "Els fitxers del tipus «'''.$1'''» no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
@@ -3159,9 +3159,9 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'filepath-page'    => 'Fitxer:',
 'filepath-submit'  => 'Camí',
 'filepath-summary' => "Aquesta pàgina especial retorna un camí complet d'un fitxer.
-Les imatges es mostren en plena resolució; altres tipus de fitxer s'incien amb el seu programa associat directament.
+Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien directament amb el seu programa associat.
 
-Introduïu el nom del fitxer sense el prefix «{{ns:file}}»:",
+Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cerca fitxers duplicats',

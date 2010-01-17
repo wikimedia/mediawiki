@@ -526,6 +526,7 @@ Vergiss nid, dyni [[Special:Preferences|{{SITENAME}}-Yystellige]] aazpasse.',
 'nav-login-createaccount'    => 'Aamälde / Konto aaleege',
 'loginprompt'                => '<small>Für di bir {{SITENAME}} aazmälde, muesch Cookies erloube!</small>',
 'userlogin'                  => 'Aamälde/Konto aalege',
+'userloginnocreate'          => 'Aamälde',
 'logout'                     => 'Abmälde',
 'userlogout'                 => 'Abmälde',
 'notloggedin'                => 'Nit aagmäldet',
@@ -690,8 +691,11 @@ Du chasch $1 oder ein vu dr andre [[{{MediaWiki:Grouppage-sysop}}|Ammanne]] kont
 'whitelistedittitle'               => 'Zum Bearbeite muess mer aagmäldet syy.',
 'whitelistedittext'                => 'Du muesch Di $1 zum Artikel bearbeite.',
 'confirmedittext'                  => 'Si mien Ihri E-Mail-Adräss zerscht bstätige, voreb Si Syte chenne ändere. Bitte setze Si in [[Special:Preferences|Ihre Iistellige]] Ihri E-Mail-Adräss yy un len Si si priefe.',
-'nosuchsectiontitle'               => 'Abschnitt git s nid.',
-'nosuchsectiontext'                => 'Du versuechsch dr Abschnitt $1, wu s nid git, z bearbeite. Mer cha aber nume Abschnitt bearbeiter, wu s scho git.',
+'nosuchsectiontitle'               => 'Abschnitt nit gfunde',
+'nosuchsectiontext'                => 'Du hesch versuecht e Abschnitt z bearbeite, wu s nid git
+S cha syy, ass er verschoben oder glescht woren isch, derwylscht Du d Syte aagluegt hesch.
+
+Wel s kei Abschnitt $1 git, het s kei Ort, wu Dyy Bearbeitig cha aane gspycheret wäre.',
 'loginreqtitle'                    => 'S brucht d Aamäldig.',
 'loginreqlink'                     => 'aamälde',
 'loginreqpagetext'                 => 'Du muesch Di $1, zum Syte chenne läse.',
@@ -764,10 +768,13 @@ Si verspräche uns usserdäm, dass Si des alles selber gschribe oder vo nere Qu�
 Sichere de Täxt bitte lokal uf Dyynem Computer un versuech speter nomol, d Änderige z ibertrage.'''
 
 Grund fir d Sperri: $1",
-'protectedpagewarning'             => "'''WARNIG: Die Syten isch gsperrt worde, so das se nume Benutzer mit Sysop-Rechten chöi verändere.'''",
-'semiprotectedpagewarning'         => "'''''Halbsperrig''': Die Syte cha vu aagmäldete Benutzern bearbeitet wäre. Fir Benutzer, wu nid oder grad erscht aagmäldet sin, isch dr Schrybzuegang gsperrt.''",
+'protectedpagewarning'             => "'''WARNIG: Die Syten isch gsperrt wore, ass si nume Benutzer mit Administrator-Rächt chenne verändere.'''
+As Referänz wird do dr letscht Logbuechyytrag aagee:",
+'semiprotectedpagewarning'         => "'''Obacht''': Die Syte isch halb gsperrt, ass si nume vu aagmäldete Benutzer cha bearbeitet wäre.
+As Referänz wird do dr letscht Logbuechyytrag aagee:",
 'cascadeprotectedwarning'          => "'''ACHTIG: Die Syte isch gsperrt. Wäg däm cha si nume vu Benutzer mit Ammannerächt bearbeitet wäre. Si isch in die {{PLURAL:$1|Syte|Syte}} yybunde, wu mit ere Kaskadesperroption gschitzt {{PLURAL:$1|isch|sin}}:'''",
-'titleprotectedwarning'            => "'''ACHTIG: S Aalege vu däre Syte isch gsperrt. Wäg däm bruucht mer [[Special:ListGroupRights|bstimmti Rächt]] go si aalege.'''",
+'titleprotectedwarning'            => "'''Obacht: S Aalege vu däre Syte isch gsperrt. Wäg däm bruucht mer [[Special:ListGroupRights|bstimmti Rächt]] go si aalege.'''
+As Referänz wird do dr letscht Logbuechyytrag aagee:",
 'templatesused'                    => '{{PLURAL:$1|Vorlag, wu in däm Artikel brucht wird|Vorlage, wu in däm Artikel brucht wäre}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Vorlag, wu in däre Vorschau brucht wird|Vorlage, wu in däre Vorschau brucht wäre}}:',
 'templatesusedsection'             => '{{PLURAL:$1|Vorlag, wu in däm Abschnitt brucht wird|Vorlage, wu in däm Abschnitt brucht wäre}}:',
@@ -872,6 +879,7 @@ Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/
 As Ammann chasch si aaluege; s cha syy, ass es Detail het im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].",
 'rev-deleted-no-diff'         => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
 Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+'rev-suppressed-no-diff'      => "Du chasch dää Versionsunterschid nit bschaue, wel eini vu dr Versione '''glescht''' woren isch.",
 'rev-deleted-unhide-diff'     => "Eini vu dr Versione isch '''glescht''' wore.
 Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
@@ -2217,6 +2225,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'ipb_cant_unblock'                => 'Fähler: Sperr-ID $1 nit gfunde. S cha syy, ass d Sperri scho ufghoben isch .',
 'ipb_blocked_as_range'            => 'Fähler: D IP-Adräss $1 isch as Teil vu dr Beryychssperri $2 indirekt gsperrt. S isch nit megli, nume $1 z entsperre.',
 'ip_range_invalid'                => 'Uugiltige IP-Adrässberyych.',
+'ip_range_toolarge'               => 'Adrässberyych, wu greßer sin wie /$1, sin nit erlaubt.',
 'blockme'                         => 'Sperr mi',
 'proxyblocker'                    => 'Proxy blocker',
 'proxyblocker-disabled'           => 'Die Funktion isch deaktiviert.',
@@ -2306,8 +2315,10 @@ D Syte „[[:$1]]“ gits scho. Wottsch du si lösche, zume Platz zum verschiebe
 'imageinvalidfilename'         => 'De Name vo dr Ziildatei isch ungültig',
 'fix-double-redirects'         => 'Alli Wyterleitige, wo uf de alte Titel zeige, aktualisiere',
 'move-leave-redirect'          => 'E Wyterleitig hinterloo',
-'protectedpagemovewarning'     => "'''WARNIG:''' Die Syte isch gschitzt wore, ass si nume Benutzer mit Ammannerächt chenne verschiebe.",
-'semiprotectedpagemovewarning' => "'''OBACHT:''' Die Syte isch gschitzt wore, ass si nume regischtrieti Benutzer chenne verschiebe.",
+'protectedpagemovewarning'     => "'''WARNIG:''' Die Syte isch gschitzt wore, ass si nume Benutzer mit Ammannerächt chenne verschiebe.
+As Referänz wird do dr letscht Logbuechyytrag aagee:",
+'semiprotectedpagemovewarning' => "'''OBACHT:''' Die Syte isch gschitzt wore, ass si nume aagmäldeti Benutzer chenne verschiebe.
+As Referänz wird do dr letscht Logbuechyytrag aagee:",
 'move-over-sharedrepo'         => '==Datei git s==
 [[:$1]] git s in ere gmeinsam gnutzte Mediedatebank. S Verschiebe vun ere Datei uf dää Titel iberschrybt di gmeinsam gnutzt Datei.',
 'file-exists-sharedrepo'       => 'Dr gwehlt Dateiname wird scho in ere gmeinsam gnutzte Mediedatebank brucht.

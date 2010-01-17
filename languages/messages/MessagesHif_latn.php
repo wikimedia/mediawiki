@@ -596,9 +596,10 @@ Meharbani kar ke chahe ek nai to duno ke aapan sawaal me rakho.",
 'whitelistedittext'                => 'Aap ke panna badle khatir $1 kare ke parri.',
 'confirmedittext'                  => 'Panna ke badle se pahile aap ke aapan e-mail ke confirm kare ke parri.
 Meharbani kar ke aap aapan e-mail ke aapan [[Special:Preferences|user preferences]] se validate karna.',
-'nosuchsectiontitle'               => 'Aisan koi section nai hai',
-'nosuchsectiontext'                => 'Aap ek section jon ki nai hai, ke badle ke kosis karaa hai.
-Jab ki koi section $1 nai hai, tab aap ke badlao ke save kare ke koi jagah nai hai.',
+'nosuchsectiontitle'               => 'Aisan koi bhaag nai hai',
+'nosuchsectiontext'                => 'Aap ek bhaag jon ki nai hai, ke badle ke kosis karaa hai.
+Jab aap ii panna ke dekhtaa rahaa tab saait iske hatae nai to mitae dewa gais rahaa.
+Jab ki koi section $1 nai hai, tab aap ke badlao ke bachae ke koi jagah nai hai.',
 'loginreqtitle'                    => 'Login Jaruri Hai',
 'loginreqlink'                     => 'log in karo',
 'loginreqpagetext'                 => 'Duusra panna ke dekhe ke khatir aap ke $1 kare ke parri.',
@@ -680,10 +681,13 @@ Iske save nai karaa jae sake hai.'''",
 Aap sait aapan badlao ke ek text file me cut-n-paste kar ke baad me use kare khatir save kae le sakta hai.'''
 
 Administrator jon ki iske lock karis hai ii kaaran diis hai: $1",
-'protectedpagewarning'             => "'''WARNING: Ii panna ke band kar dewa gais hai jisse ke khali uu sadasya jiske sysop privileges hai iske badle sake hai.'''",
-'semiprotectedpagewarning'         => "'''Suchna:''' Ii panna ke band kar dewa gais hai jisse ki khali registered sadasya iske badle sake hai.",
+'protectedpagewarning'             => "'''CHETAUNI: Ii panna ke band kar dewa gais hai jisse ke khaali uu sadasya jiske sysop adhikaar hai iske badle sake hai.'''
+Niche sab se nawaa suchi aap ke dekhe ke khatir dewa gais hae:",
+'semiprotectedpagewarning'         => "'''Suchna:''' Ii panna ke band kar dewa gais hai jisse ki khali registered sadasya iske badle sake hai.
+Niche sab se nawaa suchi ke aap ke dekhe ke khatir dewa gais hae:",
 'cascadeprotectedwarning'          => "'''Chetawani:''' Ii panna ke band kar dewa gais jiske kaaran khali uu sadasya jiske lage sysop privileges hai iske badle sake hai, kahe ki iske niche likha gais cascade-protected {{PLURAL:$1|panna|panna}} me rakkha gais hai:",
-'titleprotectedwarning'            => "'''CHETAUNI: Ii panna ke lock kar dewa gais hai jisse ki [[Special:ListGroupRights|specific rights]] ke jarie iske badla jaae sake hai.'''",
+'titleprotectedwarning'            => "'''CHETAUNI: Ii panna ke band dewa gais hai jisse ki [[Special:ListGroupRights|specific rights]] ke jarie iske badla jaae sake hai.'''
+Aap ke jaankari ke khatir sab se nawaa suchi niche dewa gais hae:",
 'templatesused'                    => '{{PLURAL:$1|Template|Templates}} ke ii panna me kaam me lawa gais hae:',
 'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} ii jhalak me kaam me lawa gais hae:',
 'templatesusedsection'             => '{{PLURAL:$1|Template|Templates}} ii hissa me kaam me lawa gais hae:',
@@ -1463,7 +1467,7 @@ Column header me click kare se sorting badal jaai.',
 'listfiles_date'        => 'Tarik',
 'listfiles_name'        => 'Naam',
 'listfiles_user'        => 'Sadasya',
-'listfiles_size'        => 'Size',
+'listfiles_size'        => 'Naap',
 'listfiles_description' => 'Baare me',
 'listfiles_count'       => 'Versions',
 
@@ -1557,7 +1561,7 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'randompage-nopages' => 'Ii {{PLURAL:$2|namespace|namespaces}} me koi panna nai hae:  $1',
 
 # Random redirect
-'randomredirect'         => 'Random redirect',
+'randomredirect'         => 'Koi bhi jagha redirect karo',
 'randomredirect-nopages' => 'Namespace "$1" me koi redirects nai hai.',
 
 # Statistics
@@ -1601,7 +1605,7 @@ Sab row me pahila aur duusra redirect ke jorr hae, aur isme duusra redirect ke n
 
 'withoutinterwiki'         => 'Bina bhasa ke link waala panna',
 'withoutinterwiki-summary' => 'Niche waala panna duusra bhasa ke versions se nai jurre hai.',
-'withoutinterwiki-legend'  => 'Prefix',
+'withoutinterwiki-legend'  => 'Aage lagao',
 'withoutinterwiki-submit'  => 'Dekhao',
 
 'fewestrevisions' => 'Uu panna jisme sab se kamti badlao bhae hai.',
@@ -1723,8 +1727,8 @@ Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.
 'linksearch-pat'   => 'Khoje ke pattern:',
 'linksearch-ns'    => 'Namespace:',
 'linksearch-ok'    => 'Khojo',
-'linksearch-text'  => 'Wildcards jaise ki "*.wikipedia.org" ke kaam me lawa jaae sake hai.<br />
-Supported protocols: <tt>$1</tt>',
+'linksearch-text'  => 'Wildcard jaise ki "*.wikipedia.org" ke kaam me lawa jaae sake hai.<br />
+Support karaa gais protocol: <tt>$1</tt>',
 'linksearch-line'  => '$1, $2 se jurraa hai',
 'linksearch-error' => 'Wildcards khaali hostname ke suruu me hoe ke chaahi.',
 
@@ -1736,6 +1740,7 @@ Supported protocols: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'            => 'Active sadasya ke list',
+'activeusers-intro'      => 'Ii suchi uu sadasya ke hae jon ki pahile {{PLURAL:$1|din|din}} me kuchh karin hae.',
 'activeusers-count'      => '$1 haali ke {{PLURAL:$1|badlao|badlao}} pichhle {{PLURAL:$3|din|$3 din}} me',
 'activeusers-from'       => 'Sadasya jon ki hian se suruu hoe hai ke dekhao:',
 'activeusers-hidebots'   => 'Bots ke lukao',
@@ -1829,7 +1834,7 @@ Ii panna ke aage ke badlao aur usse jurra baat waala panna ki suchi hian pe hae,
 'watching'   => 'Dekhtaa...',
 'unwatching' => 'Nai dekhtaa...',
 
-'enotif_mailer'                => '{{SITENAME}} Notification Mailer',
+'enotif_mailer'                => '{{SITENAME}} Suchna de waala Mailer',
 'enotif_reset'                 => 'Sab panna ke visited mark karo',
 'enotif_newpagetext'           => 'Ii ek nawaa panna hai.',
 'enotif_impersonal_salutation' => '{{SITENAME}} sadasya',
@@ -2293,8 +2298,10 @@ panna ke wahi ke uppar nai save karaa jaae sake hai.',
 'imageinvalidfilename'         => 'Jon naam pe aap badle mangtaa hai valid nai hai',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
 'move-leave-redirect'          => 'Ek redirect ke pichhe chhorro',
-'protectedpagemovewarning'     => 'Chetauni: Ii panna ke band kar dewa gais hai jisse ki khaali administrator logan iske naam badle sake hai.',
-'semiprotectedpagemovewarning' => 'Note karna: Ii panna ke band kar dewa gais hai jisse ki khaali registered sadasya iske naam badle sake hai.',
+'protectedpagemovewarning'     => 'Chetauni: Ii panna ke band kar dewa gais hai jisse ki khaali administrator logan iske naam badle sake hai.
+Aap ke jaankari ke khatir sab se nawaa suchi niche dewa gais hae:',
+'semiprotectedpagemovewarning' => 'Dhyan me rakhna: Ii panna ke band kar dewa gais hai jisse ki khaali registered sadasya iske naam badle sake hai.
+Aap ke jaankari ke khatir sab se nawaa suchi ke niche dewa gais hae:',
 
 # Export
 'export'            => 'Panna niryat karo',
@@ -2338,9 +2345,9 @@ Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani 
 'filemissing'              => 'File missing',
 'thumbnail_error'          => 'Thumbnail banae me galti hoe gais: $1',
 'djvu_page_error'          => 'DjVu panna range me nai hae',
-'djvu_no_xml'              => 'Unable to fetch XML for DjVu file',
+'djvu_no_xml'              => ' DjVu file ke XML ke nai paawe sakaa hae',
 'thumbnail_invalid_params' => 'Thumbnail ke parameter valid nai hae',
-'thumbnail_dest_directory' => 'Unable to create destination directory',
+'thumbnail_dest_directory' => 'Destination directory ke nai banaawe sakaa hae',
 'thumbnail_image-type'     => 'Ii rakam ke chapa ke support nai karaa jaawe hai',
 'thumbnail_gd-library'     => 'Incomplete GD library configuration: missing function $1',
 'thumbnail_image-missing'  => 'File seems to be missing: $1',
@@ -2355,7 +2362,7 @@ Sab transwiki import actions ke [[Special:Log/import|import log]] pe log karaa j
 'import-interwiki-history'   => 'Ii panna ke sab badlao ke itihaas ke copy karo',
 'import-interwiki-templates' => 'Sab template ke include karo',
 'import-interwiki-submit'    => 'Import karo',
-'import-interwiki-namespace' => 'Destination namespace:',
+'import-interwiki-namespace' => 'Manzil waala namespace:',
 'import-upload-filename'     => 'File ke naam:',
 'import-comment'             => 'Aapan bichar do:',
 'importtext'                 => 'Meharbani kar ke file ke [[Special:Export|export utility]] use kar ke source wiki me se export karo.
@@ -2507,8 +2514,8 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'math_failure'          => 'Parse nai kare sakaa',
 'math_unknown_error'    => 'galti ke nai samajhta',
 'math_unknown_function' => 'nai samajhta ki ii kon chij khatir hai',
-'math_lexing_error'     => 'lexing error',
-'math_syntax_error'     => 'syntax error',
+'math_lexing_error'     => 'lexing me galti',
+'math_syntax_error'     => 'syntax me galti',
 'math_image_error'      => 'PNG conversion fail hoe gais;
 latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
 'math_bad_tmpdir'       => 'Math temporary directory nai banae sakta hai',
@@ -2703,11 +2710,16 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'version-specialpages' => 'Khaas panna',
 'version-other'        => 'Duusra',
 
+# Special:FilePath
+'filepath-submit' => 'Rasta',
+
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Khojo',
+'fileduplicatesearch-filename' => 'File ke naam:',
+'fileduplicatesearch-submit'   => 'Khojo',
 
 # Special:SpecialPages
 'specialpages'               => 'Khaas panna',
+'specialpages-group-login'   => 'Login karo/Nawaa account banao',
 'specialpages-group-highuse' => 'Jaada kaam me laae waala panna',
 'specialpages-group-pages'   => 'Panna ke suchi',
 
@@ -2717,11 +2729,20 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # Special:Tags
 'tags-edit' => 'badlo',
 
+# Database error messages
+'dberr-header' => 'Ii wiki me kuchh garrbarr hae',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Duusra',
+
 # Add categories per AJAX
+'ajax-add-category'            => 'Vibhag jorro',
 'ajax-add-category-submit'     => 'Jorro',
+'ajax-confirm-save'            => 'Bachao',
 'ajax-add-category-summary'    => 'Vibhag "$1" ke jorro',
 'ajax-remove-category-summary' => 'Vibhag "$1" ke hatao',
 'ajax-confirm-actionsummary'   => 'Kon chij kare ke hae:',
+'ajax-error-title'             => 'Galti',
 'ajax-error-dismiss'           => 'Thik hae',
 
 );

@@ -411,10 +411,10 @@ $messages = array(
 'category-empty'                 => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
 'hidden-categories'              => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
 'hidden-category-category'       => 'Rejtett kategóriák',
-'category-subcat-count'          => '{{PLURAL:$2|Csak a következő alkategória található ebben a kategóriában.|Az összesen $2 alkategóriából a következő $1 található ebben a kategóriában.}}',
+'category-subcat-count'          => "''{{PLURAL:$2|Ennek a kategóriának csak egyetlen alkategóriája van.|Ez az oldal listázza a következő {{PLURAL:$1|alkategóriát|$1 alkategóriát}} (az összes alkategória száma: $2).}}''",
 'category-subcat-count-limited'  => 'Ebben a kategóriában {{PLURAL:$1|egy|$1}} alkategória található.',
 'category-article-count'         => '{{PLURAL:$2|Csak a következő lap található ebben a kategóriában.|Az összesen $2 lapból a következő $1-t listázza ez a kategóriaoldal, a többi a további oldalakon található.}}',
-'category-article-count-limited' => 'A kategória lenti listájában {{PLURAL:$1|egy|$1}} lap található.',
+'category-article-count-limited' => 'Ebben a kategóriában a következő {{PLURAL:$1|lap található|$1 lapok találhatóak}}.',
 'category-file-count'            => '{{PLURAL:$2|Csak a következő fájl található ebben a kategóriában.|Az összesen $2 fájlból a következő $1-t listázza ez a kategórialap, a többi a további oldalakon található.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Egy|$1}} fájl található ebben a kategóriában.',
 'listingcontinuesabbrev'         => 'folyt.',
@@ -672,7 +672,7 @@ Lekérdezés: $2',
 'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',
 'viewsourcetext'       => 'Megtekintheted és másolhatod a lap forrását:',
 'protectedinterface'   => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
-'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéthez tarzozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.nett].",
+'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéthez tarzozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
 'sqlhidden'            => '(rejtett SQL lekérdezés)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
 $2',
@@ -1857,7 +1857,7 @@ Az <s>áthúzott</s> sorok a lista elkészülése óta javítva lettek.',
 'brokenredirects-edit'   => 'szerkesztés',
 'brokenredirects-delete' => 'törlés',
 
-'withoutinterwiki'         => 'Nyelvi hivatkozás nélküli lapok',
+'withoutinterwiki'         => 'Nyelvközi hivatkozás nélküli lapok',
 'withoutinterwiki-summary' => 'A következő lapok nem hivatkoznak más nyelvű változatokra:',
 'withoutinterwiki-legend'  => 'Előtag',
 'withoutinterwiki-submit'  => 'Megjelenítés',
@@ -2073,7 +2073,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'notvisiblerev'        => 'A változat törölve lett',
 'watchnochange'        => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
 'watchlist-details'    => 'A vitalapokon kívül {{PLURAL:$1|egy|$1}} lap van a figyelőlistádon.',
-'wlheader-enotif'      => '* E-mail értesítés engedélyezve.',
+'wlheader-enotif'      => '* Az e-mailen keresztül történő értesítés engedélyezve.',
 'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
 'watchmethod-recent'   => 'a figyelt lapokon belüli legfrissebb szerkesztések',
 'watchmethod-list'     => 'a legfrissebb szerkesztésekben található figyelt lapok',
@@ -3170,7 +3170,7 @@ A levelező üzenete: $1',
 'confirmemail_error'       => 'Hiba az e-mail címed megerősítése során.',
 'confirmemail_subject'     => '{{SITENAME}} e-mail cím megerősítés',
 'confirmemail_body'        => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált
-"$2" néven a {{SITENAME}} wikibe, a(z) $1 IP-címről.
+"$2" néven a(z) {{SITENAME}} wikin, a(z) $1 IP-címről.
 
 Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik,
 és hogy aktiváld az e-mail címedet, nyisd meg az alábbi linket a böngésződben:

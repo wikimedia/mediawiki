@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -902,10 +902,10 @@ $1',
 喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可以搵到更詳細嘅資料。",
 'rev-deleted-no-diff'         => "因為其中一次修訂'''洗咗'''，你唔可以睇呢個差異。
 響[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可以搵到更多嘅資料。",
+'rev-suppressed-no-diff'      => "由於呢頁嘅其中一次修訂已經'''刪除咗'''，你唔可以睇呢次修訂。",
 'rev-deleted-unhide-diff'     => "呢頁嘅其中一次修訂已經'''洗咗'''。
 喺[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可以搵到更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
-'rev-suppressed-no-diff'      => "由於呢頁嘅其中一次修訂已經'''刪除咗'''，你唔可以睇呢次修訂。",
 'rev-suppressed-unhide-diff'  => "呢頁嘅其中一次修訂已經'''廢止咗'''。
 喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可以搵到更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",

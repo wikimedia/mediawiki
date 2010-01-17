@@ -13,6 +13,7 @@
  * @author Farras
  * @author Irwangatot
  * @author IvanLanin
+ * @author Kenrick95
  * @author Meursault2004
  * @author Remember the dot
  * @author Rex
@@ -861,7 +862,7 @@ Tolong sertakan informasi-informasi ini dalam setiap pertanyaan Anda.',
 'whitelistedittext'                => 'Anda harus $1 untuk dapat menyunting artikel.',
 'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surel Anda sebelum menyunting halaman.
 Harap masukkan dan validasikan alamat surel Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',
-'nosuchsectiontitle'               => 'Subbagian tersebut tak ditemukan',
+'nosuchsectiontitle'               => 'Bagian tidak ditemukan',
 'nosuchsectiontext'                => 'Anda mencoba menyunting suatu subbagian tidak ada. Karena subbagian $1 tidak ada, suntingan Anda tak dapat disimpan.',
 'loginreqtitle'                    => 'Harus masuk log',
 'loginreqlink'                     => 'masuk log',
@@ -928,9 +929,11 @@ Anda mungkin perlu menyalin teks suntingan Anda ini dan menyimpannya ke sebuah b
 
 Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
 'protectedpagewarning'             => "'''PERINGATAN: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya.'''",
-'semiprotectedpagewarning'         => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
+'semiprotectedpagewarning'         => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.
+Entri catatan terakhir disediakan dibawah untuk referensi:",
 'cascadeprotectedwarning'          => "'''PERINGATAN:''' Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi 'perlindungan runtun':",
-'titleprotectedwarning'            => "'''PERINGATAN: Halaman ini telah dikunci hingga diperlukan [[Special:ListGroupRights|hak khusus]] untuk membuatnya.'''",
+'titleprotectedwarning'            => "'''PERINGATAN: Halaman ini telah dilindungi sehingga diperlukan [[Special:ListGroupRights|hak khusus]] untuk membuatnya.'''
+Entri catatan terakir dibawah disediakan sebagai referensi:",
 'templatesused'                    => '{{PLURAL:$1|Templat|Templat}} yang digunakan di halaman ini:',
 'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan di pratayang ini:',
 'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan di bagian ini:',
@@ -1038,6 +1041,7 @@ Sebagai seorang pengurus, Anda dapat melihatnya; rinciannya mungkin tersedia di 
 Sebagai seorang pengurus, Anda masih dapat melihatnya; rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log supresi].",
 'rev-deleted-no-diff'         => "Anda tidak dapat melihat perbedaan ini karena salah satu dari revisinya telah '''dihapus'''.
 Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+'rev-suppressed-no-diff'      => "Anda tidak dapat melihat perubahan ini karena salah satu dari revisi telah '''dihapus'''.",
 'rev-deleted-unhide-diff'     => "Salah satu revisi pada tampilan perbedaan ini telah '''dihapus'''.
 Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda ingin.",
