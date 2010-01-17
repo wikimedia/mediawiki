@@ -24,8 +24,8 @@ class HistoryPage {
 	/**
 	 * Construct a new HistoryPage.
 	 *
-	 * @param Article $article
-	 * @returns nothing
+	 * @param $article Article
+	 * @return nothing
 	 */
 	function __construct( $article ) {
 		global $wgUser;
@@ -60,7 +60,7 @@ class HistoryPage {
 	/**
 	 * Print the history page for an article.
 	 *
-	 * @returns nothing
+	 * @return nothing
 	 */
 	function history() {
 		global $wgOut, $wgRequest, $wgScript;
@@ -180,8 +180,13 @@ class HistoryPage {
 	 * Fetch an array of revisions, specified by a given limit, offset and
 	 * direction. This is now only used by the feeds. It was previously
 	 * used by the main UI but that's now handled by the pager.
+	 *
+	 * @param $limit Integer: the limit number of revisions to get
+	 * @param $offset Integer
+	 * @param $direction Integer: either HistoryPage::DIR_PREV or HistoryPage::DIR_NEXT
+	 * @return ResultWrapper
 	 */
-	function fetchRevisions($limit, $offset, $direction) {
+	function fetchRevisions( $limit, $offset, $direction ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if( $direction == HistoryPage::DIR_PREV )
@@ -207,7 +212,8 @@ class HistoryPage {
 
 	/**
 	 * Output a subscription feed listing recent edits to this page.
-	 * @param string $type
+	 *
+	 * @param $type String: feed type
 	 */
 	function feed( $type ) {
 		global $wgFeedClasses, $wgRequest, $wgFeedLimit;
@@ -258,7 +264,7 @@ class HistoryPage {
 	 * Borrows Recent Changes' feed generation functions for formatting;
 	 * includes a diff to the previous revision (if any).
 	 *
-	 * @param $row
+	 * @param $row Object: database row
 	 * @return FeedItem
 	 */
 	function feedItem( $row ) {
@@ -429,10 +435,11 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Creates a submit button
 	 *
-	 * @param array $attributes attributes
-	 * @return string HTML output for the submit button
+	 * @param $message String: text of the submit button, will be escaped
+	 * @param $attributes Array: attributes
+	 * @return String: HTML output for the submit button
 	 */
-	function submitButton($message, $attributes = array() ) {
+	function submitButton( $message, $attributes = array() ) {
 		# Disable submit button if history has 1 revision only
 		if( $this->getNumRows() > 1 ) {
 			return Xml::submitButton( $message , $attributes );
@@ -446,13 +453,13 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
-	 * @param Row $row The database row corresponding to the previous line.
-	 * @param mixed $next The database row corresponding to the next line.
-	 * @param int $counter Apparently a counter of what row number we're at, counted from the top row = 1.
+	 * @param $row Object: the database row corresponding to the previous line.
+	 * @param $next Mixed: the database row corresponding to the next line.
+	 * @param $counter Integer: apparently a counter of what row number we're at, counted from the top row = 1.
 	 * @param $notificationtimestamp
-	 * @param bool $latest Whether this row corresponds to the page's latest revision.
-	 * @param bool $firstInList Whether this row corresponds to the first displayed on this history page.
-	 * @return string HTML output for the row
+	 * @param $latest Boolean: whether this row corresponds to the page's latest revision.
+	 * @param $firstInList Boolean: whether this row corresponds to the first displayed on this history page.
+	 * @return String: HTML output for the row
 	 */
 	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false,
 		$latest = false, $firstInList = false )
@@ -569,8 +576,9 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * Create a link to view this revision of the page
-	 * @param Revision $rev
-	 * @returns string
+	 *
+	 * @param $rev Revision
+	 * @return String
 	 */
 	function revLink( $rev ) {
 		global $wgLang;
@@ -592,9 +600,10 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * Create a diff-to-current link for this revision for this page
-	 * @param Revision $rev
-	 * @param Bool $latest, this is the latest revision of the page?
-	 * @returns string
+	 *
+	 * @param $rev Revision
+	 * @param $latest Boolean: this is the latest revision of the page?
+	 * @return String
 	 */
 	function curLink( $rev, $latest ) {
 		$cur = $this->historyPage->message['cur'];
@@ -616,10 +625,11 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * Create a diff-to-previous link for this revision for this page.
-	 * @param Revision $prevRev, the previous revision
-	 * @param mixed $next, the newer revision
-	 * @param int $counter, what row on the history list this is
-	 * @returns string
+	 *
+	 * @param $prevRev Revision: the previous revision
+	 * @param $next Mixed: the newer revision
+	 * @param $counter Integer: what row on the history list this is
+	 * @return String
 	 */
 	function lastLink( $prevRev, $next, $counter ) {
 		$last = $this->historyPage->message['last'];
@@ -659,10 +669,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Create radio buttons for page history
 	 *
-	 * @param object $rev Revision
-	 * @param bool $firstInList Is this version the first one?
-	 * @param int $counter A counter of what row number we're at, counted from the top row = 1.
-	 * @return string HTML output for the radio buttons
+	 * @param $rev Revision object
+	 * @param $firstInList Boolean: is this version the first one?
+	 * @param $counter Integer: a counter of what row number we're at, counted from the top row = 1.
+	 * @return String: HTML output for the radio buttons
 	 */
 	function diffButtons( $rev, $firstInList, $counter ) {
 		if( $this->getNumRows() > 1 ) {
