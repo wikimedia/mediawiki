@@ -1767,6 +1767,10 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'contribslink'                 => 'conlationes',
 'autoblocker'                  => 'Obstructus es automatice quia "[[User:$1|$1]]" nuper tuum locum IP adhibuit. Ratio data ob obstructionem usoris $1 est: "$2"',
 'blocklogpage'                 => 'Index obstructionum',
+'blocklog-showlog'             => 'Hic usor antea obstructus est.
+Commodule notatio obstructionum subter datur.',
+'blocklog-showsuppresslog'     => 'Hic usor antea obstructus est celatus est.
+Commodule notatio obstructionum subter datur.',
 'blocklogentry'                => 'obstruxit [[$1]], exire $2 $3',
 'reblock-logentry'             => 'modificavit obstructionem usoris [[$1]], exire $2 $3',
 'blocklogtext'                 => 'Hic est index actorum obstructionis deobstructionisque. Loci IP qui automatice obstructi sunt non enumerantur. Vide [[Special:IPBlockList|indicem usorum locorumque IP obstructorum]] pro indice toto.',

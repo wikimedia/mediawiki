@@ -706,6 +706,7 @@ Doblidetz pas de personalizar vòstras [[Special:Preferences|{{SITENAME}} prefer
 'nav-login-createaccount'    => 'Crear un compte o se connectar',
 'loginprompt'                => 'Vos cal activar los cookies per vos connectar a {{SITENAME}}.',
 'userlogin'                  => 'Crear un compte o se connectar',
+'userloginnocreate'          => 'Connexion',
 'logout'                     => 'Se desconnectar',
 'userlogout'                 => 'Desconnexion',
 'notloggedin'                => 'Vos sètz pas identificat(ada)',
@@ -864,8 +865,10 @@ Precisatz aquestas indicacions dins totas las requèstas que faretz.',
 'whitelistedittitle'               => 'Connexion necessària per modificar lo contengut',
 'whitelistedittext'                => 'Vos cal èsser $1 per modificar las paginas.',
 'confirmedittext'                  => "Vos cal confirmar vòstra adreça electronica abans de modificar l'enciclopèdia. Picatz e validatz vòstra adreça electronica amb l'ajuda de la pagina [[Special:Preferences|preferéncias]].",
-'nosuchsectiontitle'               => 'Seccion mancanta',
-'nosuchsectiontext'                => "Avètz ensajat de modificar una seccion qu’existís pas. Coma i a pas de seccion $1, i a pas d'endrech ont salvar vòstras modificacions.",
+'nosuchsectiontitle'               => 'Impossible de trobar la seccion',
+'nosuchsectiontext'                => "Avètz ensajat de modificar una seccion qu’existís pas. Benlèu qu'es estada desplaçada o suprimida dempuèi qu'avètz legida aquesta pagina. 
+
+Coma i pas de seccion $1, i a pas d’endrech ont publicar vòstras modificacions.",
 'loginreqtitle'                    => 'Connexion necessària',
 'loginreqlink'                     => 'connectar',
 'loginreqpagetext'                 => 'Vos cal vos $1 per veire las autras paginas.',
@@ -931,12 +934,11 @@ De delà de 32 ko, es preferible per d'unes navigadors de devesir aquesta pagina
 Podètz copiar lo tèxte dins un fichièr de tèxte e lo salvar per mai tard.'''
 
 L’administrator qu'a varrolhat la banca de donadas a balhat l’explicacion seguenta : $1",
-'protectedpagewarning'             => "'''AVERTIMENT : Aquesta pagina es protegida.
-Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Asseguratz-vos que seguissètz las directivas concernent las paginas protegidas.'''",
-'semiprotectedpagewarning'         => "'''Nòta:''' Aquesta pagina es estada blocada, pòt pas èsser editada que pels utilizaires enregistats.",
+'protectedpagewarning'             => "'''AVERTIMENT : Aquesta pagina es protegida. Sols los utilizaires qu'an l'estatut d'administrator la p�don modificar. ''' La darri�ra entrada del jornal es afichada �aij�s per refer�ncia :",
+'semiprotectedpagewarning'         => "'''N�ta:''' Aquesta pagina es estada protegida d'un tal biais que sols los contributors enregistrats la p�scan modificar. La darri�ra entrada del jornal es afichada �aij�s per refer�ncia :",
 'cascadeprotectedwarning'          => "'''ATENCION :''' Aquesta pagina es estada protegida de biais que sols los administrators pòscan l’editar.
 Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins {{PLURAL:$1|una pagina protegida|de paginas protegidas}} amb la « proteccion en cascada » activada.",
-'titleprotectedwarning'            => "'''ATENCION : Aquesta pagina es estada protegida de tal biais que de [[Special:ListGroupRights|dreches especifics]] son requerits per la poder crear.'''",
+'titleprotectedwarning'            => "'''ATENCION : Aquesta pagina es estada protegida de tal biais que de [[Special:ListGroupRights|dreches especifics]] son requesits per la poder crear.''' La darri�ra entrada del jornal es afichada �aij�s per refer�ncia :",
 'templatesused'                    => '{{PLURAL:$1|Modèl utilizat|Modèls utilizats}} sus aquesta pagina :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèl utilizat|Modèls utilizats}} dins aquesta previsualizacion :',
 'templatesusedsection'             => '{{PLURAL:$1|Modèl utilizat|Modèls utilizats}} dins aquesta seccion :',
@@ -1045,6 +1047,7 @@ En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins 
 En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
 'rev-deleted-no-diff'         => "Podètz pas veire aquesta dif per que una de las versions es estada '''escafada'''.
 I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
+'rev-suppressed-no-diff'      => "Pod�tz pas veire aquesta difer�ncia perque una de las revisions es estada '''suprimida'''.",
 'rev-deleted-unhide-diff'     => "Una de las revisions d'aquesta diferéncia es estada '''escafada'''.
 I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].
 En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se volètz.",
@@ -2119,7 +2122,7 @@ Retorn e assisténcia :
 'exblank'                => 'pagina voida',
 'delete-confirm'         => 'Escafar «$1»',
 'delete-legend'          => 'Escafar',
-'historywarning'         => "'''Atencion :''' La pagina que sètz a mand de suprimir a un istoric que conten $1 {{PLURAL:$1|revision|revisions}} :",
+'historywarning'         => "'''Atencion :''' La pagina que s�tz a mand de suprimir a un istoric que conten aproximadament $1 {{PLURAL:$1|revision|revisions}} :",
 'confirmdeletetext'      => "Sètz a mand de suprimir una pagina o un fichièr, e mai totas sas versions anterioras istorizadas.
 Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncias e que fasètz aquò en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].",
 'actioncomplete'         => 'Accion efectuada',
@@ -2419,6 +2422,7 @@ $1 ja es blocat. Volètz modificar los paramètres ?',
 'ipb_cant_unblock'                => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
 'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 la quala pòt èsser deblocada.",
 'ip_range_invalid'                => 'Plaja IP incorrècta.',
+'ip_range_toolarge'               => 'Los blocatges de plajas mai grandas que /$1 son pas autorizadas.',
 'blockme'                         => 'Blocatz-me',
 'proxyblocker'                    => 'Blocaire de mandatari (proxy)',
 'proxyblocker-disabled'           => 'Aquesta foncion es desactivada.',
@@ -2521,8 +2525,8 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'imageinvalidfilename'         => 'Lo nom del fichièr cibla es incorrècte',
 'fix-double-redirects'         => 'Metre a jorn las redireccions que puntant cap al títol ancian',
 'move-leave-redirect'          => 'Daissar una redireccion darrièr',
-'protectedpagemovewarning'     => "'''ATENCION:''' Aquesta pagina es estada blocada per que sonque los utilizaires qu'an los dreches d'administrators la pòscan tornar nomenar.",
-'semiprotectedpagemovewarning' => "'''Nòta :''' Aquesta pagina es estada blocada per que sonque los utilizaires enregistrats la pòscan tornar nomenar.",
+'protectedpagemovewarning'     => "'''ATENCION:''' Aquesta pagina es estada protegida per que sonque los utilizaires qu'an los dreches d'administrators la pòscan tornar nomenar. La darrièra entrada del jornal es afichada çaijós per referéncia :",
+'semiprotectedpagemovewarning' => "'''Nòta :''' Aquesta pagina es estada blocada per que sonque los utilizaires enregistrats la pòscan tornar nomenar. La darrièra entrada del jornal es afichada çaijós per referéncia :",
 'move-over-sharedrepo'         => '== Lo fichièr existís ==
 [[:$1]] existís ja sus un depaus partejat. Tornar nomenar aqueste fichièr farà lo fichièr sul depaus partatge inaccessible.',
 'file-exists-sharedrepo'       => 'Lo nom causit es ja utilizat per un fichièr sus un depaus partejat.
