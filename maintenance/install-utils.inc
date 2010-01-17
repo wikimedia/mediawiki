@@ -47,9 +47,9 @@ function install_version_checks() {
 	$ok = false;
 	call_user_func_array( array( $test, 'test' ), array( &$ok ) );
 	if ( !$ok ) {
-		echo "PHP 5.3.1 is not compatible with MediaWiki due to a bug involving\n" .
+		echo "PHP " . phpversion() . " is not compatible with MediaWiki due to a bug involving\n" .
 			"reference parameters to __call. Upgrade to PHP 5.3.2, or downgrade\n" .
-			"to PHP 5.3.0 to fix this.\n" .
+			"to PHP 5.3.0. to fix this.\n" .
 			"ABORTING (see http://bugs.php.net/bug.php?id=50394 for details)\n";
 		die( 1 );
 	}
