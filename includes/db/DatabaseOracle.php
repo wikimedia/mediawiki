@@ -297,28 +297,26 @@ class DatabaseOracle extends DatabaseBase {
 		$union_unique = ( preg_match( '/\/\* UNION_UNIQUE \*\/ /', $sql ) != 0 );
 		// EXPLAIN syntax in Oracle is EXPLAIN PLAN FOR and it return nothing
 		// you have to select data from plan table after explain
-		$olderr = error_reporting( E_ERROR );
 		$explain_id = date( 'dmYHis' );
-		error_reporting( $olderr );
 
 		$sql = preg_replace( '/^EXPLAIN /', 'EXPLAIN PLAN SET STATEMENT_ID = \'' . $explain_id . '\' FOR', $sql, 1, $explain_count );
 
 
-		$olderr = error_reporting( E_ERROR );
+		wfSuppressWarnings();
 
 		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
 			$e = oci_error( $this->mConn );
 			$this->reportQueryError( $e['message'], $e['code'], $sql, __FUNCTION__ );
 		}
 
-		$olderr = error_reporting( E_ERROR );
 		if ( oci_execute( $stmt, $this->execFlags() ) == false ) {
 			$e = oci_error( $stmt );
 			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __FUNCTION__ );
 			}
 		}
-		error_reporting( $olderr );
+		
+		wfRestoreWarnings();
 
 		if ( $explain_count > 0 ) {
 			return $this->doQuery( 'SELECT id, cardinality "ROWS" FROM plan_table WHERE statement_id = \'' . $explain_id . '\'' );
@@ -511,7 +509,8 @@ class DatabaseOracle extends DatabaseBase {
 			}
 		}
 
-		$olderr = error_reporting( E_ERROR );
+		wfSuppressWarnings();
+
 		if ( oci_execute( $stmt, OCI_DEFAULT ) === false ) {
 			$e = oci_error( $stmt );
 
@@ -523,7 +522,8 @@ class DatabaseOracle extends DatabaseBase {
 		} else {
 			$this->mAffectedRows = oci_num_rows( $stmt );
 		}
-		error_reporting( $olderr );
+
+		wfRestoreWarnings();
 
 		if ( isset( $lob ) ) {
 			foreach ( $lob as $lob_i => $lob_v ) {
@@ -584,6 +584,13 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function tableName( $name ) {
+		if (is_array($name)) {
+			foreach($name as &$single_name) {
+				$single_name = $this->tableName($single_name);
+			}
+			return $name;
+		}
+		
 		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
 		/*
 		Replace reserved words with better ones
@@ -606,7 +613,6 @@ class DatabaseOracle extends DatabaseBase {
 		if ( $name[0] == '"' && substr( $name, - 1, 1 ) == '"' ) {
 			return $name;
 		}
-
 		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
 			return $name;
 		}
@@ -831,25 +837,37 @@ class DatabaseOracle extends DatabaseBase {
 	 * based on prebuilt table to simulate MySQL field info and keep query speed minimal
 	 */
 	function fieldExists( $table, $field, $fname = 'DatabaseOracle::fieldExists' ) {
-		$table = trim( $table, '"' );
-
-		if (isset($this->mFieldInfoCache["$table.$field"])) {
-			return true;
-		} elseif ( !isset( $this->fieldInfo_stmt ) ) {
-			$this->fieldInfo_stmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name = upper(:tab) and column_name = UPPER(:col)' );
+		$tableWhere = '';
+		if (is_array($table)) {
+			$tableWhere = 'IN (';
+			foreach($table as &$singleTable) {
+				$singleTable = trim( $singleTable, '"' );
+				if (isset($this->mFieldInfoCache["$singleTable.$field"])) {
+					return $this->mFieldInfoCache["$singleTable.$field"];
+				}
+				$tableWhere .= '\''.$singleTable.'\',';
+			}
+			$tableWhere = rtrim($tableWhere, ',').')';
+		} else {
+			$table = trim( $table, '"' );
+			if (isset($this->mFieldInfoCache["$table.$field"])) {
+				return $this->mFieldInfoCache["$table.$field"];
+			}
+			$tableWhere = '= upper(\''.$table.'\')';
 		}
+		
+		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name '.$tableWhere.' and column_name = UPPER(\''.$field.'\')' );
 
-		oci_bind_by_name( $this->fieldInfo_stmt, ':tab', trim( $table, '"' ) );
-		oci_bind_by_name( $this->fieldInfo_stmt, ':col', $field );
-
-		if ( oci_execute( $this->fieldInfo_stmt, OCI_DEFAULT ) === false ) {
-			$e = oci_error( $this->fieldInfo_stmt );
+		if ( oci_execute( $fieldInfoStmt, OCI_DEFAULT ) === false ) {
+			$e = oci_error( $fieldInfoStmt );
 			$this->reportQueryError( $e['message'], $e['code'], 'fieldInfo QUERY', __METHOD__ );
 			return false;
 		}
-		$res = new ORAResult( $this, $this->fieldInfo_stmt );
+		$res = new ORAResult( $this, $fieldInfoStmt );
 		if ($res->numRows() != 0) {
-			$this->mFieldInfoCache["$table.$field"] = new ORAField( $res->fetchRow() );
+			$fieldInfoTemp = new ORAField( $res->fetchRow() );
+			$table = $fieldInfoTemp->tableName();
+			$this->mFieldInfoCache["$table.$field"] = $fieldInfoTemp;
 			return true;
 		} else {
 			return false;
@@ -857,25 +875,37 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function fieldInfo( $table, $field ) {
-		$table = trim( $table, '"' );
-
-		if (isset($this->mFieldInfoCache["$table.$field"])) {
-			return $this->mFieldInfoCache["$table.$field"];
-		} elseif ( !isset( $this->fieldInfo_stmt ) ) {
-			$this->fieldInfo_stmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name = upper(:tab) and column_name = UPPER(:col)' );
+		$tableWhere = '';
+		if (is_array($table)) {
+			$tableWhere = 'IN (';
+			foreach($table as &$singleTable) {
+				$singleTable = trim( $singleTable, '"' );
+				if (isset($this->mFieldInfoCache["$singleTable.$field"])) {
+					return $this->mFieldInfoCache["$singleTable.$field"];
+				}
+				$tableWhere .= '\''.$singleTable.'\',';
+			}
+			$tableWhere = rtrim($tableWhere, ',').')';
+		} else {
+			$table = trim( $table, '"' );
+			if (isset($this->mFieldInfoCache["$table.$field"])) {
+				return $this->mFieldInfoCache["$table.$field"];
+			}
+			$tableWhere = '= upper(\''.$table.'\')';
 		}
+		
+		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name '.$tableWhere.' and column_name = UPPER(\''.$field.'\')' );
 
-		oci_bind_by_name( $this->fieldInfo_stmt, ':tab', $table );
-		oci_bind_by_name( $this->fieldInfo_stmt, ':col', $field );
-
-		if ( oci_execute( $this->fieldInfo_stmt, OCI_DEFAULT ) === false ) {
-			$e = oci_error( $this->fieldInfo_stmt );
+		if ( oci_execute( $fieldInfoStmt, OCI_DEFAULT ) === false ) {
+			$e = oci_error( $fieldInfoStmt );
 			$this->reportQueryError( $e['message'], $e['code'], 'fieldInfo QUERY', __METHOD__ );
 			return false;
 		}
-		$res = new ORAResult( $this, $this->fieldInfo_stmt );
-		$this->mFieldInfoCache["$table.$field"] = new ORAField( $res->fetchRow() );
-		return $this->mFieldInfoCache["$table.$field"];
+		$res = new ORAResult( $this, $fieldInfoStmt );
+		$fieldInfoTemp = new ORAField( $res->fetchRow() );
+		$table = $fieldInfoTemp->tableName();
+		$this->mFieldInfoCache["$table.$field"] = $fieldInfoTemp;
+		return $fieldInfoTemp;
 	}
 
 	function begin( $fname = '' ) {
@@ -1015,6 +1045,7 @@ class DatabaseOracle extends DatabaseBase {
 		global $wgLang;
 
 		$conds2 = array();
+		$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
 		foreach ( $conds as $col => $val ) {
 			$col_type = $this->fieldInfo( $this->tableName( $table ), $col )->type();
 			if ( $col_type == 'CLOB' ) {
@@ -1085,6 +1116,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		if ( $wgLang != null ) {
 			$conds2 = array();
+			$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
 			foreach ( $conds as $col => $val ) {
 				$col_type = $this->fieldInfo( $this->tableName( $table ), $col )->type();
 				if ( $col_type == 'CLOB' ) {
