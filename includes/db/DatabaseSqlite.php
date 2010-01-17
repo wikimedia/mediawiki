@@ -21,12 +21,12 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Constructor.
 	 * Parameters $server, $user and $password are not used.
 	 */
-	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0 ) {
+	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0, $fileame = false ) {
 		global $wgSQLiteDataDir;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 		$this->mDatabaseFile = self::generateFileName( $wgSQLiteDataDir, $dbName );
-		if( !is_readable( $this->mDatabaseFile ) )
+		if ( !is_readable( $this->mDatabaseFile ) )
 			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		$this->mName = $dbName;
 		$this->open( $server, $user, $password, $dbName );
@@ -136,8 +136,8 @@ class DatabaseSqlite extends DatabaseBase {
 			$res = null;
 	}
 
-	function fetchObject($res) {
-		if ($res instanceof ResultWrapper)
+	function fetchObject( $res ) {
+		if ( $res instanceof ResultWrapper )
 			$r =& $res->result;
 		else
 			$r =& $res;
@@ -155,15 +155,15 @@ class DatabaseSqlite extends DatabaseBase {
 		return false;
 	}
 
-	function fetchRow($res) {
+	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper )
 			$r =& $res->result;
 		else
 			$r =& $res;
 
-		$cur = current($r);
-		if (is_array($cur)) {
-			next($r);
+		$cur = current( $r );
+		if ( is_array( $cur ) ) {
+			next( $r );
 			return $cur;
 		}
 		return false;
