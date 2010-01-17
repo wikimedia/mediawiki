@@ -27,25 +27,30 @@ class GetTextMaint extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Outputs page text to stdout';
+		$this->addOption( 'show-private', 'Show the text even if it\'s not available to the public' );
 		$this->addArg( 'title', 'Page title' );
 	}
 
 	public function execute() {
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = wfGetDB( DB_SLAVE );
 
 		$titleText = $this->getArg( 0 );
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {
-			$this->error( "$titleText is not a valid title\n", true );
+			$this->error( "$titleText is not a valid title.\n", true );
 		}
 
 		$rev = Revision::newFromTitle( $title );
 		if ( !$rev ) {
-			$titleText = $title->getText();
-			$this->error( "Page $titleText does not exist\n", true );
+			$titleText = $title->getPrefixedText();
+			$this->error( "Page $titleText does not exist.\n", true );
 		}
-
-		$this->output( $rev->getText() );
+		$text = $rev->getText( $this->hasOption('show-private') ? Revision::RAW : Revision::FOR_PUBLIC );
+		if ( $text === false ) {
+			$titleText = $title->getPrefixedText();
+			$this->error( "Couldn't extract the text from $titleText.\n", true );
+		}
+		$this->output( $text );
 	}
 }
 
