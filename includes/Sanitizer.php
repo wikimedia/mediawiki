@@ -620,7 +620,7 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	static function validateAttributes( $attribs, $whitelist ) {
-		global $wgAllowRdfaAttributes;
+		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
 
 		$whitelist = array_flip( $whitelist );
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
@@ -681,6 +681,29 @@ class Sanitizer {
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
 			$out[$attribute] = $value;
+		}
+
+		if ( $wgAllowMicrodataAttributes ) {
+			# There are some complicated validity constraints we need to
+			# enforce here.  First of all, we don't want to allow non-standard
+			# itemtypes.
+			$allowedTypes = array(
+				'http://microformats.org/profile/hcard',
+				'http://microformats.org/profile/hcalendar#vevent',
+				'http://n.whatwg.org/work',
+			);
+			if ( isset( $out['itemtype'] ) && !in_array( $out['itemtype'],
+			$allowedTypes ) ) {
+				# Kill everything
+				unset( $out['itemscope'] );
+			}
+			# itemtype, itemid, itemref don't make sense without itemscope
+			if ( !array_key_exists( 'itemscope', $out ) ) {
+				unset( $out['itemtype'] );
+				unset( $out['itemid'] );
+				unset( $out['itemref'] );
+			}
+			# TODO: Strip itemprop if we aren't descendants of an itemscope.
 		}
 		return $out;
 	}
