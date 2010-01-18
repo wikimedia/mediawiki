@@ -21,7 +21,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Constructor.
 	 * Parameters $server, $user and $password are not used.
 	 */
-	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0, $fileame = false ) {
+	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0 ) {
 		global $wgSQLiteDataDir;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
