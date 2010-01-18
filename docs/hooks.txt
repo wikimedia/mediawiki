@@ -694,6 +694,10 @@ textarea in the edit form
 $title: title of page being edited
 &$msg: localization message name, overridable. Default is either 'copyrightwarning' or 'copyrightwarning2'
 
+'EditPageNoSuchSection': When a section edit request is given for an non-existent section
+&$editpage: The current EditPage object
+&$res: the HTML of the error text
+
 'EditPageTosSummary':  Give a chance for site and per-namespace customizations
 of terms of service summary link that might exist separately from the copyright
 notice.

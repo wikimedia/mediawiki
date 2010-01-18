@@ -2056,7 +2056,10 @@ INPUTS
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
-		$wgOut->addWikiMsg( 'nosuchsectiontext', $this->section );
+		$res = wfMsgExt( 'nosuchsectiontext', 'parse', $this->section );
+		wfRunHooks( 'EditPageNoSuchSection', array( &$this, &$res ) );
+		$wgOut->addHTML( $res );
+
 		$wgOut->returnToMain( false, $this->mTitle );
 	}
 
