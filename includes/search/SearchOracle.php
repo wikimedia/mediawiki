@@ -188,7 +188,6 @@ class SearchOracle extends SearchEngine {
 			foreach($m as $terms) {
 				// Search terms in all variant forms, only
 				// apply on wiki with LanguageConverter
-				if(in_array($wgContLang->stripForSearch( $terms[2] ), $cc))
 				$temp_terms = $wgContLang->autoConvertToAllVariants( $terms[2] );
 				if( is_array( $temp_terms )) {
 					$temp_terms = array_unique( array_values( $temp_terms ));
