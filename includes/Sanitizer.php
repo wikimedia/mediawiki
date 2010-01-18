@@ -410,37 +410,43 @@ class Sanitizer {
 		$text = Sanitizer::removeHTMLcomments( $text );
 		$bits = explode( '<', $text );
 		$text = str_replace( '>', '&gt;', array_shift( $bits ) );
-		if(!$wgUseTidy) {
+		if ( !$wgUseTidy ) {
 			$tagstack = $tablestack = array();
 			foreach ( $bits as $x ) {
 				$regs = array();
+				# $slash: Does the current element start with a '/'?
+				# $t: Current element name
+				# $params: String between element name and >
+				# $brace: Ending '>' or '/>'
+				# $rest: Everything until the next element of $bits
 				if( preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
 					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				} else {
 					$slash = $t = $params = $brace = $rest = null;
 				}
 
-				$badtag = 0 ;
+				$badtag = false;
 				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
 					# Check our stack
-					if ( $slash ) {
-						# Closing a tag...
-						if( isset( $htmlsingleonly[$t] ) ) {
-							$badtag = 1;
-						} elseif ( ( $ot = @array_pop( $tagstack ) ) != $t ) {
+					if ( $slash && isset( $htmlsingleonly[$t] ) ) {
+						$badtag = true;
+					} elseif ( $slash ) {
+						# Closing a tag... is it the one we just opened?
+						$ot = @array_pop( $tagstack );
+						if ( $ot != $t ) {
 							if ( isset( $htmlsingleallowed[$ot] ) ) {
 								# Pop all elements with an optional close tag
 								# and see if we find a match below them
 								$optstack = array();
-								array_push ($optstack, $ot);
-								while ( ( ( $ot = @array_pop( $tagstack ) ) != $t ) &&
-										isset( $htmlsingleallowed[$ot] ) )
-								{
-									array_push ($optstack, $ot);
+								array_push( $optstack, $ot );
+								$ot = @array_pop( $tagstack );
+								while ( $ot != $t && isset( $htmlsingleallowed[$ot] ) ) {
+									array_push( $optstack, $ot );
+									$ot = @array_pop( $tagstack );
 								}
 								if ( $t != $ot ) {
-									# No match. Push the optinal elements back again
-									$badtag = 1;
+									# No match. Push the optional elements back again
+									$badtag = true;
 									while ( $ot = @array_pop( $optstack ) ) {
 										array_push( $tagstack, $ot );
 									}
@@ -448,8 +454,8 @@ class Sanitizer {
 							} else {
 								@array_push( $tagstack, $ot );
 								# <li> can be nested in <ul> or <ol>, skip those cases:
-								if(!(isset( $htmllist[$ot] ) && isset( $listtags[$t] ) )) {
-									$badtag = 1;
+								if ( !isset( $htmllist[$ot] ) || !isset( $listtags[$t] ) ) {
+									$badtag = true;
 								}
 							}
 						} else {
@@ -461,23 +467,23 @@ class Sanitizer {
 					} else {
 						# Keep track for later
 						if ( isset( $tabletags[$t] ) &&
-						! in_array( 'table', $tagstack ) ) {
-							$badtag = 1;
-						} else if ( in_array( $t, $tagstack ) &&
-						! isset( $htmlnest [$t ] ) ) {
-							$badtag = 1 ;
+						!in_array( 'table', $tagstack ) ) {
+							$badtag = true;
+						} elseif ( in_array( $t, $tagstack ) &&
+						!isset( $htmlnest [$t ] ) ) {
+							$badtag = true;
 						# Is it a self closed htmlpair ? (bug 5487)
-						} else if( $brace == '/>' &&
+						} elseif ( $brace == '/>' &&
 						isset( $htmlpairs[$t] ) ) {
-							$badtag = 1;
-						} elseif( isset( $htmlsingleonly[$t] ) ) {
+							$badtag = true;
+						} elseif ( isset( $htmlsingleonly[$t] ) ) {
 							# Hack to force empty tag for uncloseable elements
 							$brace = '/>';
-						} else if( isset( $htmlsingle[$t] ) ) {
+						} elseif ( isset( $htmlsingle[$t] ) ) {
 							# Hack to not close $htmlsingle tags
 							$brace = null;
-						} else if( isset( $tabletags[$t] )
-						&&  in_array($t ,$tagstack) ) {
+						} elseif ( isset( $tabletags[$t] )
+						&& in_array( $t, $tagstack ) ) {
 							// New table tag but forgot to close the previous one
 							$text .= "</$t>";
 						} else {
@@ -497,7 +503,7 @@ class Sanitizer {
 						# Strip non-approved attributes from the tag
 						$newparams = Sanitizer::fixTagAttributes( $params, $t );
 					}
-					if ( ! $badtag ) {
+					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
 						$close = ( $brace == '/>' && !$slash ) ? ' /' : '';
 						$text .= "<$slash$t$newparams$close>$rest";

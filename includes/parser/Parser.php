@@ -718,11 +718,11 @@ class Parser
 				$attributes = Sanitizer::fixTagAttributes ( $attributes , 'table' );
 
 				$outLine = str_repeat( '<dl><dd>' , $indent_level ) . "<table{$attributes}>";
-				array_push ( $td_history , false );
-				array_push ( $last_tag_history , '' );
-				array_push ( $tr_history , false );
-				array_push ( $tr_attributes , '' );
-				array_push ( $has_opened_tr , false );
+				array_push( $td_history , false );
+				array_push( $last_tag_history , '' );
+				array_push( $tr_history , false );
+				array_push( $tr_attributes , '' );
+				array_push( $has_opened_tr , false );
 			} else if ( count ( $td_history ) == 0 ) {
 				// Don't do any of the following
 				$out .= $outLine."\n";
@@ -751,9 +751,9 @@ class Parser
 
 				// Whats after the tag is now only attributes
 				$attributes = $this->mStripState->unstripBoth( $line );
-				$attributes = Sanitizer::fixTagAttributes ( $attributes , 'tr' );
-				array_pop ( $tr_attributes );
-				array_push ( $tr_attributes , $attributes );
+				$attributes = Sanitizer::fixTagAttributes( $attributes, 'tr' );
+				array_pop( $tr_attributes );
+				array_push( $tr_attributes, $attributes );
 
 				$line = '';
 				$last_tag = array_pop ( $last_tag_history );
