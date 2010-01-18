@@ -7612,6 +7612,159 @@ I '''like'''''quotes'''''''''''
 !! end
 
 
+Note: some elements used in these Microdata examples don't work, like <img>
+and <time>.
+!! test
+Microdata: vCard example from spec (with some tweaks)
+!! input
+<div id="jack" itemscope itemtype="http://microformats.org/profile/hcard">
+<h1 itemprop="fn">Jack Bauer</h1>
+<img itemprop="photo" alt="" src="jack-bauer.jpg">
+<p itemprop="org" itemscope>
+<span itemprop="organization-name">Counter-Terrorist Unit</span>
+(<span itemprop="organization-unit">Los Angeles Division</span>)
+</p>
+<p>
+<span itemprop="adr" itemscope>
+<span itemprop="street-address">10201 W. Pico Blvd.</span><br>
+<span itemprop="locality">Los Angeles</span>,
+<span itemprop="region">CA</span>
+<span itemprop="postal-code">90064</span><br>
+<span itemprop="country-name">United States</span><br>
+</span>
+<span itemprop="geo">34.052339;-118.410623</span>
+</p>
+<h2>Assorted Contact Methods</h2>
+<ul>
+<li itemprop="tel" itemscope>
+<span itemprop="value">+1 (310) 597 3781</span> <span itemprop="type">work</span>
+<meta itemprop="type" content="pref">
+</li>
+<li><a itemprop="url" href="http://en.wikipedia.org/wiki/Jack_Bauer">I'm on Wikipedia</a>
+so you can leave a message on my user talk page.</li>
+<li><a itemprop="url" href="http://www.jackbauerfacts.com/">Jack Bauer Facts</a></li>
+<li itemprop="email"><a href="mailto:j.bauer@la.ctu.gov.invalid">j.bauer@la.ctu.gov.invalid</a></li>
+<li itemprop="tel" itemscope>
+<span itemprop="value">+1 (310) 555 3781</span> <span>
+<meta itemprop="type" content="cell">mobile phone</span>
+</li>
+</ul>
+<p itemprop="note">If I'm out in the field, you may be better off contacting <span
+itemprop="agent" itemscope itemtype="http://microformats.org/profile/hcard"><a
+itemprop="email" href="mailto:c.obrian@la.ctu.gov.invalid"><span
+itemprop="fn">Chloe O'Brian</span></a></span> if it's about work, or ask <span
+itemprop="agent">Tony Almeida</span> if you're interested in the CTU five-a-side football team we're trying to get going.</p>
+<span itemprop="rev" itemscope>
+<meta itemprop="type" content="date-time">
+<meta itemprop="value" content="2008-07-20T21:00:00+0100">
+</span>
+<p itemprop="tel" itemscope><strong>Update!</strong>
+My new <span itemprop="type">home</span> phone number is
+<span itemprop="value">01632 960 123</span>.
+</p>
+</div>
+!! result
+<div id="jack" itemscope="itemscope" itemtype="http&#58;//microformats.org/profile/hcard">
+<h1 itemprop="fn"> <span class="mw-headline" id="Jack_Bauer">Jack Bauer</span></h1>
+<p>&lt;img itemprop="photo" alt="" src="jack-bauer.jpg"&gt;
+</p>
+<p itemprop="org" itemscope="itemscope">
+<span itemprop="organization-name">Counter-Terrorist Unit</span>
+(<span itemprop="organization-unit">Los Angeles Division</span>)
+</p>
+<p>
+<span itemprop="adr" itemscope="itemscope">
+<span itemprop="street-address">10201 W. Pico Blvd.</span><br />
+<span itemprop="locality">Los Angeles</span>,
+<span itemprop="region">CA</span>
+<span itemprop="postal-code">90064</span><br />
+<span itemprop="country-name">United States</span><br />
+</span>
+<span itemprop="geo">34.052339;-118.410623</span>
+</p>
+<h2> <span class="mw-headline" id="Assorted_Contact_Methods">Assorted Contact Methods</span></h2>
+<ul>
+<li itemprop="tel" itemscope="itemscope">
+<span itemprop="value">+1 (310) 597 3781</span> <span itemprop="type">work</span>
+&lt;meta itemprop="type" content="pref"&gt;
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Jack_Bauer" class="external " itemprop="url">I'm on Wikipedia</a>
+so you can leave a message on my user talk page.</li>
+<li><a href="http://www.jackbauerfacts.com/" class="external " itemprop="url">Jack Bauer Facts</a></li>
+<li itemprop="email"><a href="mailto:j.bauer@la.ctu.gov.invalid" class="external ">j.bauer@la.ctu.gov.invalid</a></li>
+<li itemprop="tel" itemscope="itemscope">
+<span itemprop="value">+1 (310) 555 3781</span> <span>
+&lt;meta itemprop="type" content="cell"&gt;mobile phone</span>
+</li>
+</ul>
+<p itemprop="note">If I'm out in the field, you may be better off contacting <span itemprop="agent" itemscope="itemscope" itemtype="http&#58;//microformats.org/profile/hcard"><a href="mailto:c.obrian@la.ctu.gov.invalid" class="external " itemprop="email"><span itemprop="fn">Chloe O'Brian</span></a></span> if it's about work, or ask <span itemprop="agent">Tony Almeida</span> if you're interested in the CTU five-a-side football team we're trying to get going.</p>
+<p><span itemprop="rev" itemscope="itemscope">
+&lt;meta itemprop="type" content="date-time"&gt;
+&lt;meta itemprop="value" content="2008-07-20T21:00:00+0100"&gt;
+</span>
+</p>
+<p itemprop="tel" itemscope="itemscope"><strong>Update!</strong>
+My new <span itemprop="type">home</span> phone number is
+<span itemprop="value">01632 960 123</span>.
+</p>
+</div>
+
+!! end
+
+!! test
+Microdata: vEvent example from spec (with some tweaks)
+!! input
+<div itemscope itemtype="http://microformats.org/profile/hcalendar#vevent">
+<p>I'm going to
+<strong itemprop="summary">Bluesday Tuesday: Money Road</strong>,
+<time itemprop="dtstart" datetime="2009-05-05T19:00:00Z">May 5th at 7pm</time>
+to <time itemprop="dtend" content="2009-05-05T21:00:00Z">9pm</time>,
+at <span itemprop="location">The RoadHouse</span>!</p>
+<p><a href="http://livebrum.co.uk/2009/05/05/bluesday-tuesday-money-road"
+itemprop="url">See this event on livebrum.co.uk</a>.</p>
+<meta itemprop="description" content="via livebrum.co.uk">
+</div>
+!! result
+<div itemscope="itemscope" itemtype="http&#58;//microformats.org/profile/hcalendar#vevent">
+<p>I'm going to
+<strong itemprop="summary">Bluesday Tuesday: Money Road</strong>,
+&lt;time itemprop="dtstart" datetime="2009-05-05T19:00:00Z"&gt;May 5th at 7pm&lt;/time&gt;
+to &lt;time itemprop="dtend" content="2009-05-05T21:00:00Z"&gt;9pm&lt;/time&gt;,
+at <span itemprop="location">The RoadHouse</span>!</p>
+<p><a href="http://livebrum.co.uk/2009/05/05/bluesday-tuesday-money-road" class="external " itemprop="url">See this event on livebrum.co.uk</a>.</p>
+<p>&lt;meta itemprop="description" content="via livebrum.co.uk"&gt;
+</p>
+</div>
+
+!! end
+
+!! test
+Microdata: license example from spec (with some tweaks)
+!! input
+<div itemscope itemtype="http://n.whatwg.org/work">
+<img itemprop="work" src="mypond.jpeg">
+<p><cite itemprop="title">My Pond</cite></p>
+<p><small>Licensed under the <a itemprop="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative
+Commons Attribution-Share Alike 3.0 United States License</a>
+and the <a itemprop="license"
+href="http://www.opensource.org/licenses/mit-license.php">MIT
+license</a>.</small></p>
+</div>
+!! result
+<div itemscope="itemscope" itemtype="http&#58;//n.whatwg.org/work">
+<p>&lt;img itemprop="work" src="mypond.jpeg"&gt;
+</p>
+<p><cite itemprop="title">My Pond</cite></p>
+<p><small>Licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/us/" class="external " itemprop="license">Creative
+Commons Attribution-Share Alike 3.0 United States License</a>
+and the <a href="http://www.opensource.org/licenses/mit-license.php" class="external " itemprop="license">MIT
+license</a>.</small></p>
+</div>
+
+!! end
+
+
 
 
 TODO:

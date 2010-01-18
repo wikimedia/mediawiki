@@ -662,7 +662,8 @@ class ParserTest {
 			'wgAlwaysUseTidy' => false,
 			'wgHtml5' => true,
 			'wgWellFormedXml' => true,
-			);
+			'wgAllowMicrodataAttributes' => true,
+		);
 
 		if ($config) {
 			$configLines = explode( "\n", $config );
