@@ -1906,7 +1906,7 @@ Biex tagħti l-kumment tiegħek u għal aktar għajnuna:
 'exblank'                => 'paġna kienet vojta',
 'delete-confirm'         => 'Ħassar "$1"',
 'delete-legend'          => 'Ħassar',
-'historywarning'         => "Twissija: Il-paġna li se tħassar għandha kronoloġija b'{{PLURAL:$1|reviżjoni waħda|numru ta' reviżjonijiet}}:",
+'historywarning'         => "'''Twissija:''' Il-paġna li se tħassar għandha kronoloġija b'madwar {{PLURAL:$1|reviżjoni waħda|$1 reviżjoni}}:",
 'confirmdeletetext'      => "Int se tħassar għal kollox mid-database paġna jew stampa, flimkien mal-kronoloġija kollha tagħha. Jekk jogħġbok, ikkonferma li hija x-xewqa tiegħek li tkompli bit-tħassir ta' din il-paġna, u tifhem il-konsegwenzi ta' li qiegħed tagħmel, u li qiegħed tagħmilhom skont il- [[{{MediaWiki:Policy-url}}|politika]] stabbilita.",
 'actioncomplete'         => 'Azzjoni mwettqa',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ġiet imħassra.

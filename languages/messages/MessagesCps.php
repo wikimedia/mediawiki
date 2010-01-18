@@ -1,5 +1,5 @@
 <?php
-/** Capiceño (Capiceño)
+/** Capiznon (Capiceño)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Capisano
  * @author Oxyzen
  */
 
@@ -330,6 +331,9 @@ Tan-awon ang [[Special:Version|pahina sang bersyon]].',
 
 # Main script and global functions
 'nosuchaction'      => 'Wala sang mina nga aksyon',
+'nosuchactiontext'  => 'Indi mabaton ang hulag nga ginhimo sang URL.
+Posible nga nagsala ka sa pagtype sang URL, ukon nagsunod sa isa ka sala nga link.
+Pwede man mini magpakita sang isa ka depekto nga ara sa sulod sang {{SITENAME}}.',
 'nosuchspecialpage' => 'Wala sang mina nga pinasahi nga pahina',
 
 # General errors

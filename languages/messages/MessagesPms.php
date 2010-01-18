@@ -615,9 +615,9 @@ Për piasì, ch'a buta sempe tùit ij detaj an tute le comunicassion andova ch'a
 'whitelistedittitle'               => 'Sòn as peul pa fesse nen rintrand ant ël sistema',
 'whitelistedittext'                => 'A venta $1 për podèj fé dle modìfiche.',
 'confirmedittext'                  => 'A dev confermé soa adrëssa ëd pòsta eletrònica, anans che modifiché dle pàgine. Për piasì, che a convàlida soa adrëssa ën dovrand la pàgina [[Special:Preferences|mè gust]].',
-'nosuchsectiontitle'               => 'As peul pa trovesse session',
-'nosuchsectiontext'                => "A l'ha provasse a modifichè na session ch'a-i é pa. 
-A peul essa stàita tramudà o scanselà an mente ch'it vardave la pàgina.
+'nosuchsectiontitle'               => 'As peul pa trovesse la session',
+'nosuchsectiontext'                => "A l'ha provasse a modifiché na session ch'a-i é pa. 
+A peul essa stàita tramudà o scancelà an mente ch'a vëdìa la pàgina.
 
 Ën essend che la session $1 a-i é pa, a-i é pa gnanca andova ch'as peula salvesse soa modìfica.",
 'loginreqtitle'                    => 'a venta rintré ant ël sistema',
@@ -698,12 +698,12 @@ A peul esse che a-j ven-a còmod copiesse via sò test e butesslo da na part pë
 
 L'aministrator che a l'ha fàit ël blocagi a l'ha dàit costa spiegassion: $1",
 'protectedpagewarning'             => "'''Avis: costa pàgina-sì a l'é stàita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo feje dle modìfiche.'''
-L'ùltima vos dël registr a l'é dàita sota për arferiment:",
+L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'semiprotectedpagewarning'         => "'''Nòta:''' Costa pàgina-sì a l'é stàita blocà an manera che mach j'utent registrà a peulo modifichela.
-L'ùltima vos dël registr a l'é dàita sota për arferiment:",
+L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'cascadeprotectedwarning'          => "'''Tension:''' sta pàgina-sì a l'é stàita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che {{PLURAL:\$1|a l'é proteta|a-i intra ant le pàgine protete}} col sistema \"a cascada\":",
 'titleprotectedwarning'            => "'''Avis: sta pàgina-sì a l'é stàita blocà an manera che a-i é dabzògn ëd [[Special:ListGroupRights|drit specìfich]] për creela.'''
-L'ùltima vos dël registr a l'é dàita për arferiment:",
+L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'templatesused'                    => '{{PLURAL:$1|Stamp|Stamp}} dovrà dzora a sta pàgina-sì:',
 'templatesusedpreview'             => '{{PLURAL:$1|Stamp|Stamp}} dovrà ant sta preuva-sì:',
 'templatesusedsection'             => '{{PLURAL:$1|Stamp|Stamp}} dovrà ant sta session-sì:',
@@ -902,9 +902,9 @@ It peule pa vëddlo.',
 Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi ativ.",
 
 # History merging
-'mergehistory'                     => 'Buté ansema jë stòrie',
+'mergehistory'                     => 'Buté ansema je stòrie',
 'mergehistory-header'              => "Sta pàgina-sì a lassa fene buté le revision ëd na pàgina ansema a cole 'd n'àutra.
-Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.",
+Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'mergehistory-box'                 => 'Fene un-a dle stòrie ëd doe pàgine:',
 'mergehistory-from'                => 'Pàgina sorgiss:',
 'mergehistory-into'                => "Pàgina 'd destinassion:",
@@ -2309,10 +2309,10 @@ L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej
 'imageinvalidfilename'         => "Ël nòm dël file pontà a l'é pa vàlid",
 'fix-double-redirects'         => 'Modìfica minca rediression che a ponta al tìtol original',
 'move-leave-redirect'          => 'Lassa na rediression',
-'protectedpagemovewarning'     => "'''Avis:''' Sta pàgina-sì a l'é stàita blocà parèj che mach utent con drit d'aministrador a peusso tramudela.
-L'ùltima vos dël registr a l'é dàita sota për arferiment:",
-'semiprotectedpagemovewarning' => "'''Nòta:''' Sta pàgina-sì a l'é stàita blocà parèj che utent argistrà a peusso tramudela.
-L'ùltima vos dël registr a l'é dàita sota për arferiment:",
+'protectedpagemovewarning'     => "'''Avis:''' Sta pàgina-sì a l'é stàita blocà parèj che mach utent con drit d'aministrator a peulo tramudela.
+L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
+'semiprotectedpagemovewarning' => "'''Nòta:''' Sta pàgina-sì a l'é stàita blocà parèj che mach j'utent argistrà a peulo tramudela.
+L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'move-over-sharedrepo'         => "== L'archivi a esist ==
 [[:$1]] a esist già dzora a un depòsit partagià. Tramudé n'archivi a cost tìtol-sì a coaterà l'archivi partagià.",
 'file-exists-sharedrepo'       => "Ël nòm dël file sërnù a l'é già dovrà ant ël depòsit condivis.
@@ -2547,7 +2547,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'markaspatrolleddiff'                 => 'Marca coma verificà',
 'markaspatrolledtext'                 => "Marca st'artìcol-sì coma verificà",
 'markedaspatrolled'                   => 'Marca dla verìfica butà',
-'markedaspatrolledtext'               => "La version selessionà a l'é staita marcà coma verificà.",
+'markedaspatrolledtext'               => "La version selessionà ëd [[:$1]] a l'é staita marcà coma verificà.",
 'rcpatroldisabled'                    => "Verìfica dj'ùltime modìfiche disabilità",
 'rcpatroldisabledtext'                => "La possibilità ëd verifichè j'ùltime modìfiche a l'é disabilità.",
 'markedaspatrollederror'              => 'As peul pa marchè verificà',

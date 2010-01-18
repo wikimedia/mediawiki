@@ -2855,7 +2855,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'markaspatrolleddiff'                 => 'Marquer comme patrouillée',
 'markaspatrolledtext'                 => 'Marquer cette page comme patrouillée',
 'markedaspatrolled'                   => 'Marqué comme patrouillé',
-'markedaspatrolledtext'               => 'La version sélectionnée a été marquée comme patrouillée.',
+'markedaspatrolledtext'               => 'La révision sélectionnée de [[:$1]] a été marquée comme patrouillée.',
 'rcpatroldisabled'                    => 'La fonction de patrouille des modifications récentes n’est pas activée.',
 'rcpatroldisabledtext'                => 'La fonctionnalité de patrouille des modifications récentes est actuellement désactivée.',
 'markedaspatrollederror'              => 'Ne peut être marquée comme patrouillée',

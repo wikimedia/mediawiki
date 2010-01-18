@@ -1515,7 +1515,7 @@ Kiek op de [$2 Bildsied dor] för mehr Infos.',
 'sharedupload-desc-here'    => 'Disse Datei is as gemeensam bruukte Datei op $1 hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.
 De [$2 Bildsied vun dor] warrt ünnen wiest.',
 'filepage-nofile'           => 'Gifft keen Datei mit dissen Naam.',
-'filepage-nofile-link'      => 'Dat gifft keen Datei mit dissen Naaam, aver du kannst een [$1 hoochladen].',
+'filepage-nofile-link'      => 'Dat gifft keen Datei mit dissen Naam, aver du kannst een [$1 hoochladen].',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',
 'shared-repo-from'          => 'ut $1',
 'shared-repo'               => 'en tohoop bruukt Medienarchiv',

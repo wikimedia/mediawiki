@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andejkendej
  * @author Cradel
  * @author Dori
  * @author Eagleal
@@ -379,6 +380,11 @@ $messages = array(
 'jumpto'            => 'Shko te:',
 'jumptonavigation'  => 'navigacion',
 'jumptosearch'      => 'kërko',
+'view-pool-error'   => 'Na falni, serverat janë të mbingarkuar momentalisht.
+Shumë përdorues po përpiqen të shikojnë këtë faqe.
+Ju lutem prisni disa momente përpara se të hapni sërish këtë faqe.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Rreth {{SITENAME}}',
@@ -838,11 +844,13 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'rev-deleted-text-view'       => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë. 
 Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.',
 'rev-delundel'                => 'trego/fshih',
+'rev-showdeleted'             => 'Trego',
 'revisiondelete'              => 'Shlyj/Reparo versionet',
 'revdelete-nooldid-title'     => 'Version i dëshiruar i pavfleshëm',
 'revdelete-nooldid-text'      => 'Ose nuk keni përcaktuar një version(e) të dëshiruar për veprimin, ose versioni nuk ekziston, ose po mundoheni të fshihni versionin e tanishëm.',
 'revdelete-nologtype-title'   => 'Nuk është dhënë asnjë lloj i të dhënave',
 'revdelete-nologtype-text'    => 'Nuk keni caktuar llojin e të dhënave për të realizuar veprimin.',
+'revdelete-no-file'           => 'Skeda e dhënë nuk ekziston.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
 'revdelete-text'              => "'''Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve.''' Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.",
@@ -1022,6 +1030,10 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'timezoneoffset'            => 'Ofset¹:',
 'servertime'                => 'Ora e shërbyesit:',
 'guesstimezone'             => 'Gjeje nga shfletuesi',
+'timezoneregion-atlantic'   => 'Oqeani Atlantik',
+'timezoneregion-pacific'    => 'Pacific Ocean
+
+Oqeani Paqësor',
 'allowemail'                => 'Lejo përdoruesit të më dërgojnë email',
 'prefs-searchoptions'       => 'Mundësi kërkimi',
 'prefs-namespaces'          => 'Hapësirat',
@@ -1046,6 +1058,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-help-realname'       => '* Emri i vërtetë (opsion): Për të përmendur emrin tuaj si kontribuues në varësi nga puna juaj këtu.',
 'prefs-help-email'          => "Posta elektronike është zgjedhore, por ju mundëson që fjalëkalimi i ri të ju dërgohet nëse e harroni atë. Gjithashtu mund të zgjidhni nëse doni të tjerët t'ju shkruajnë ose jo përmes faqes suaj të diskutimit pa patur nevojë të zbulojnë identitetin tuaj.",
 'prefs-help-email-required' => 'Kërkohet e-mail adresa .',
+'prefs-signature'           => 'Firma',
 
 # User rights
 'userrights'                  => 'Ndrysho privilegjet e përdoruesve',
@@ -1171,6 +1184,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'recentchanges-legend'              => 'Zgjedhjet e ndryshimeve momentale',
 'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
+'recentchanges-label-newpage'       => 'Ky redaktim krijoi një faqe të re',
 'rcnote'                            => "Më poshtë {{PLURAL:$1|është '''1''' ndryshim| janë '''$1''' ndryshime}} së fundmi gjatë <strong>$2</strong> ditëve sipas të dhënave nga $4, $5.",
 'rcnotefrom'                        => 'Më poshtë janë ndryshime së fundmi nga <b>$2</b> (treguar deri në <b>$1</b>).',
 'rclistfrom'                        => 'Tregon ndryshime së fundmi duke filluar nga $1',
@@ -1299,6 +1313,7 @@ Ju lutem lidhuni me administruesin e sistemit tuaj.',
 'upload-misc-error-text'  => 'Një gabim i panjohur ka ndodhur gjatë ngarkimit.
 Ju lutem kontrolloni që adresa URL të jetë e vlefshme dhe e kapshme dhe provoni përsëri.
 Nëse problemi vazhdon atëherë duhet të lidheni me administruesin e sistemit.',
+'upload-unknown-size'     => 'Madhësia e panjohur',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "S'munda të lidhem me adresën URL",
@@ -2040,11 +2055,12 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'export-templates'  => 'Përfshinë stampa',
 
 # Namespace 8 related
-'allmessages'        => 'Mesazhet e sistemit',
-'allmessagesname'    => 'Emri',
-'allmessagesdefault' => 'Teksti i parazgjedhur',
-'allmessagescurrent' => 'Teksti i tanishëshm',
-'allmessagestext'    => 'Kjo është një listë e të gjitha faqeve në hapësirën MediaWiki:',
+'allmessages'               => 'Mesazhet e sistemit',
+'allmessagesname'           => 'Emri',
+'allmessagesdefault'        => 'Teksti i parazgjedhur',
+'allmessagescurrent'        => 'Teksti i tanishëshm',
+'allmessagestext'           => 'Kjo është një listë e të gjitha faqeve në hapësirën MediaWiki:',
+'allmessages-filter-submit' => 'Shko',
 
 # Thumbnails
 'thumbnail-more'  => 'Zmadho',
@@ -2054,6 +2070,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # Special:Import
 'import'                   => 'Importoni faqe',
 'importinterwiki'          => 'Import ndër-wiki',
+'import-interwiki-source'  => 'Burimi wiki/faqe',
 'import-interwiki-history' => 'Kopjo të gjitha versionet e historisë për këtë faqe',
 'import-interwiki-submit'  => 'Importo',
 'import-comment'           => 'Arsyeja:',
