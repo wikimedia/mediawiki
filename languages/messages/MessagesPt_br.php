@@ -11,6 +11,7 @@
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
  * @author Crazymadlover
+ * @author Daemorris
  * @author Diego Queiroz
  * @author Eduardo.mps
  * @author GKnedo
@@ -693,6 +694,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'nav-login-createaccount'    => 'Criar uma conta ou entrar',
 'loginprompt'                => 'É necessário estar com os <i>cookies</i> ativados para poder autenticar-se na {{SITENAME}}.',
 'userlogin'                  => 'Criar uma conta ou entrar',
+'userloginnocreate'          => 'Autenticar-se',
 'logout'                     => 'Sair',
 'userlogout'                 => 'Sair',
 'notloggedin'                => 'Não autenticado',
@@ -753,6 +755,7 @@ Como resultado, visitantes que usam este endereço IP não podem criar mais nenh
 'createaccount-text'         => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha #$3". Você deve se autenticar e alterar sua senha.
 
 Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
+'usernamehasherror'          => 'Nome de usuário não pode conter o símbolo de cardinal (#).',
 'login-throttled'            => 'Você fez tentativas demais de se autenticar com esta conta recentemente.
 Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
@@ -849,8 +852,11 @@ Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for re
 'whitelistedittext'                => 'Você precisa $1 para poder editar páginas.',
 'confirmedittext'                  => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de usuário]].',
-'nosuchsectiontitle'               => 'Seção inexistente',
-'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
+'nosuchsectiontitle'               => 'Não foi possível encontrar a seção',
+'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe.
+Ela pode ter sido movida ou removido enquanto você estava vendo a página.
+
+Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',
@@ -928,10 +934,13 @@ Por gentileza, considere quebrar a página em sessões menores.'''",
 Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior envio.
 
 Quem bloqueou o banco de dados forneceu a seguinte justificativa: $1",
-'protectedpagewarning'             => "'''CUIDADO: Apenas os usuários com privilégios de sysop (Administradores) podem editar esta página pois ela foi bloqueada.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.",
+'protectedpagewarning'             => "'''Atenção: Esta página foi protegida para que apenas usuários com privilégios de administrado possam editá-la.'''
+A última entrada no histórico é fornecida abaixo como referência:",
+'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.
+A última entrada no histórico é fornecida abaixo para referência:",
 'cascadeprotectedwarning'          => "'''Atenção:''' Esta página se encontra protegida; apenas {{int:group-sysop}} podem editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
-'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida, [[Special:ListGroupRights|privilégios específicos]] são necessários para criá-la",
+'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida, [[Special:ListGroupRights|privilégios específicos]] são necessários para criá-la
+A última entrada no histórico é fornecida abaixo como referência:",
 'templatesused'                    => '{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta previsão:',
 'templatesusedsection'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta seção:',
@@ -943,6 +952,8 @@ Quem bloqueou o banco de dados forneceu a seguinte justificativa: $1",
 'nocreatetext'                     => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin|autentique-se ou crie uma conta]].',
 'nocreate-loggedin'                => 'Você não possui permissão para criar novas páginas.',
+'sectioneditnotsupported-title'    => 'Edição por seções não suportada',
+'sectioneditnotsupported-text'     => 'Edição por seções não suportada nesta página.',
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
@@ -1006,6 +1017,7 @@ A justificativa apresentada por $3 foi ''$2''",
 Legenda: ''({{int:cur}})''' = diferença com relação a versão atual,
 '''({{int:last}})''' = diferença com relação a versão anterior, '''{{int:minoreditletter}}''' = edição menor.",
 'history-fieldset-title' => 'Navegar pelo histórico',
+'history-show-deleted'   => 'Somente eliminados',
 'histfirst'              => 'Mais antigas',
 'histlast'               => 'Mais recentes',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -1023,6 +1035,7 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'         => '(comentário removido)',
 'rev-deleted-user'            => '(nome de usuário removido)',
 'rev-deleted-event'           => '(entrada removida)',
+'rev-deleted-user-contribs'   => '[nome de usuário ou endereço de IP eliminado - edição ocultada das contribuições]',
 'rev-deleted-text-permission' => "Esta revisão desta página foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-text-unhide'     => "Esta revisão desta página foi '''removida'''.
@@ -1037,12 +1050,17 @@ Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullu
 Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-suppressed-no-diff'      => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de supressão].
 Por ser um administrador, você ainda pode [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-suppressed-unhide-diff'  => "Uma das revisões deste diferencial foi '''suprimido'''.
 Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
 Como administrador você pode ainda [$1 pode ver o diferencial] se desejar prosseguir.",
+'rev-deleted-diff-view'       => "Uma das revisões desta comparação foi '''removida'''.
+Como administrador você ainda pode ver esta comparação; detalhes podem ser contrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de remoção].",
+'rev-suppressed-diff-view'    => "Uma das revisões desta comparação foi '''suprimida''''.
+Como administrador você pode ver esta comparação; detalhes podem ser encontradas no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supressão].",
 'rev-delundel'                => 'mostrar/esconder',
 'rev-showdeleted'             => 'exibir',
 'revisiondelete'              => 'Eliminar/restaurar edições',
@@ -1059,6 +1077,7 @@ Como administrador você pode ainda [$1 pode ver o diferencial] se desejar pross
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
 'revdelete-text'              => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
 Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
+'revdelete-confirm'           => 'Por favor confirme que pretende executar esta acção, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text'     => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
 * Informação pessoal inapropriada
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
@@ -1069,6 +1088,7 @@ Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo
 'revdelete-hide-comment'      => 'Esconder comentário de edição',
 'revdelete-hide-user'         => 'Esconder nome de usuário/IP do editor',
 'revdelete-hide-restricted'   => 'Suprimir dados de administradores assim como de outros',
+'revdelete-radio-same'        => '(não altere)',
 'revdelete-radio-set'         => 'Sim',
 'revdelete-radio-unset'       => 'Não',
 'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
@@ -1105,7 +1125,7 @@ Você não tem acesso a ele.',
 'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visualização requeridas.",
 'revdelete-concurrent-change' => 'Erro ao modificar o item datado de $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registos.',
-'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2, 1$: você não pode impedir que itens sejam visualizados por administradores sem também selecionar uma das outras opções de visibilidade',
+'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2 às $1: você não pode impedir que itens sejam visualizados por administradores sem também selecionar uma das outras opções de visibilidade.',
 'revdelete-reason-dropdown'   => '*Motivos comuns para eliminação
 ** Violação de direitos autorais
 ** Informação pessoal inapropriada
@@ -1113,6 +1133,7 @@ Por favor, verifique os registos.',
 'revdelete-otherreason'       => 'Outro motivo/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar motivos de eliminação',
+'revdelete-offender'          => 'Autor da revisão:',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supressões',
@@ -1350,7 +1371,7 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 * Uma caixa de seleção selecionada significa que o usuário se encontra no grupo.
 * Uma caixa de seleção desselecionada significa que o usuário não se encontra no grupo.
 * Um * indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
-'userrights-reason'           => 'Motivo de alterações:',
+'userrights-reason'           => 'Motivo:',
 'userrights-no-interwiki'     => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
 'userrights-nodatabase'       => 'O banco de dados $1 não existe ou não é um banco de dados local.',
 'userrights-nologin'          => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
@@ -1409,6 +1430,7 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'right-bigdelete'             => 'Eliminar páginas com histórico grande',
 'right-deleterevision'        => 'Eliminar e restaurar revisões específicas de páginas',
 'right-deletedhistory'        => 'Ver entradas de histórico eliminadas, sem o texto associado',
+'right-deletedtext'           => 'Ver texto removido e alterado entre revisões removidas',
 'right-browsearchive'         => 'Buscar páginas eliminadas',
 'right-undelete'              => 'Restaurar uma página',
 'right-suppressrevision'      => 'Rever e restaurar revisões ocultadas dos Sysops',
@@ -1539,6 +1561,7 @@ Páginas que estejam em [[Special:Watchlist|sua lista de páginas vigiadas]] sã
 'upload'                      => 'Carregar arquivo',
 'uploadbtn'                   => 'Carregar arquivo',
 'reuploaddesc'                => 'Cancelar o envio e retornar ao formulário de upload',
+'upload-tryagain'             => 'Enviar descrição modificada de arquivo',
 'uploadnologin'               => 'Não autenticado',
 'uploadnologintext'           => 'Você necessita estar [[Special:UserLogin|autenticado]] para enviar arquivos.',
 'upload_directory_missing'    => 'O diretório de upload ($1) está em falta e não pôde ser criada pelo webserver.',
@@ -1603,6 +1626,7 @@ Se você ainda quer carregar o seu arquivo, por favor volte e use um novo nome. 
 'file-deleted-duplicate'      => 'Um arquivo idêntico a este ([[$1]]) foi eliminado anteriormente. Verifique o motivo da eliminação de tal arquivo antes de prosseguir com o re-envio.',
 'successfulupload'            => 'Envio efetuado com sucesso',
 'uploadwarning'               => 'Aviso de envio',
+'uploadwarning-text'          => 'Por favor modifique a descrição do arquivo abaixo e tente novamente',
 'savefile'                    => 'Salvar arquivo',
 'uploadedimage'               => 'carregou "[[$1]]"',
 'overwroteimage'              => 'foi enviada uma nova versão de "[[$1]]"',
@@ -1612,10 +1636,13 @@ Se você ainda quer carregar o seu arquivo, por favor volte e use um novo nome. 
 'uploadscripted'              => 'Este arquivo contém HTML ou código que pode ser erradamente interpretado por um navegador web.',
 'uploadcorrupt'               => 'O arquivo encontra-se corrompido ou tem uma extensão incorreta. Por gentileza, verifique o ocorrido e tente novamente.',
 'uploadvirus'                 => 'O arquivo contém vírus! Detalhes: $1',
+'upload-source'               => 'Arquivo de origem',
 'sourcefilename'              => 'Nome do arquivo de origem:',
+'sourceurl'                   => 'URL de origem:',
 'destfilename'                => 'Nome do arquivo de destino:',
 'upload-maxfilesize'          => 'Tamanho máximo do arquivo: $1',
 'upload-description'          => 'Descrição do arquivo',
+'upload-options'              => 'Opções de carregamento',
 'watchthisupload'             => 'Vigiar este arquivo',
 'filewasdeleted'              => 'Um arquivo com este nome foi carregado anteriormente e subsequentemente eliminado. Você precisa verificar o $1 antes de proceder ao carregamento novamente.',
 'upload-wasdeleted'           => "'''Atenção: Você está enviando um arquivo eliminado anteriormente.'''
@@ -1656,10 +1683,15 @@ Seu servidor não está configurado para passar essa informação.
 Pode ser baseado em CGI e não suportar img_auth.
 Veja http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
+'img-auth-badtitle'     => 'Não é possível criar um título válido a partir de "$1".',
 'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na lista branca.',
 'img-auth-nofile'       => 'Arquivo "$1" não existe.',
 'img-auth-isdir'        => 'Você está tentando acessar o diretório "$1".
 Somente acesso ao arquivo é permitido.',
+'img-auth-streaming'    => "Realizando ''streaming'' de \"\$1\".",
+'img-auth-public'       => 'A img_auth.php produz arquivos a partir de uma wiki privada.
+Esta wiki está configurada como uma wiki pública.
+Para melhor segurança, o img_auth.php está desativado.',
 'img-auth-noread'       => 'Usuário não tem acesso para ler "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1876,7 +1908,8 @@ Entradas <s>riscadas</s> foram resolvidas.',
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta página',
-'unusedimagestext'        => 'Por favor, note que outros websites podem apontar para um arquivo através de um URL direto e, por isso, podem estar a ser listadas aqui, mesmo estando em uso.',
+'unusedimagestext'        => 'Os seguintes arquivos existem mas não são embutidos em nenhuma página.
+Por favor note que outros websites podem apontar para um arquivo através de um URL direto e, por isso, podem estar a ser listadas aqui, mesmo estando em uso.',
 'unusedcategoriestext'    => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
 'notargettitle'           => 'Sem alvo',
 'notargettext'            => 'Você não especificou uma página alvo ou um usuário para executar esta função.',
@@ -1952,6 +1985,7 @@ Protocolos suportados: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista de usuários ativos',
+'activeusers-intro'      => 'Esta é uma lista de usuários com algum tipo de atividade nos últimos $1 {{PLURAL:$1|dia|dias}}.',
 'activeusers-count'      => '$1 {{PLURAL:$1|edição|edições}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
 'activeusers-from'       => 'Mostrar usuários começando em:',
 'activeusers-hidebots'   => 'Esconder robôs',
@@ -2088,7 +2122,7 @@ Contato e assistência:
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
 'delete-legend'          => 'Eliminar',
-'historywarning'         => "'''Aviso:''' A página que você está prestes a eliminar possui um histórico com $1 {{PLURAL:$1|revisão|revisões}}:",
+'historywarning'         => "'''Atenção:''' A página que você está prestes a eliminar possui um histórico com aproximadamente $1 {{PLURAL:$1|revisão|revisões}}:",
 'confirmdeletetext'      => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projeto.',
 'actioncomplete'         => 'Ação completada',
@@ -2148,6 +2182,7 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'protectexpiry'               => 'Expiração',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
+'protect-unchain-permissions' => 'Desbloquear opções adicionais de proteção',
 'protect-text'                => "Você pode, nesta página, alterar o nível de proteção para '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Você não poderá alterar os níveis de proteção enquanto estiver bloqueado. Esta é a configuração atual para a página '''$1''':",
 'protect-locked-dblock'       => "Não é possível alterar os níveis de proteção, uma vez que a base de dados se encontra trancada.
@@ -2364,6 +2399,8 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'blocklogpage'                    => 'Registro de bloqueio',
 'blocklog-showlog'                => 'Este usuário foi já bloqueado anteriormente.
 O registo de bloqueio é mostrado abaixo para referência:',
+'blocklog-showsuppresslog'        => 'O usuário foi bloqueado e ocultado anteriormente.
+O registro de supressão é fornecido abaixo para referência:',
 'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
 'reblock-logentry'                => 'modificou parâmetros de bloqueio para [[$1]] com um tempo de expiração de $2 $3',
 'blocklogtext'                    => 'Este é um registro de ações de bloqueio e desbloqueio.
@@ -2388,6 +2425,7 @@ $1 já se encontra bloqueado. Deseja alterar as configurações?',
 'ipb_cant_unblock'                => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'ipb_blocked_as_range'            => 'Erro: O IP $1 não se encontra bloqueado de forma direta, não podendo ser desbloqueado deste modo. Se encontra bloqueado como parte do "range" $2, o qual pode ser desbloqueado.',
 'ip_range_invalid'                => 'Gama de IPs inválida.',
+'ip_range_toolarge'               => 'Intervalos de bloqueio maiores do que /$1 não são permitidos',
 'blockme'                         => 'Bloquear-me',
 'proxyblocker'                    => 'Bloqueador de proxy',
 'proxyblocker-disabled'           => 'Esta função está desabilitada.',
@@ -2486,8 +2524,14 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 'imageinvalidfilename'         => 'O nome do arquivo alvo é inválido',
 'fix-double-redirects'         => 'Atualizar todos os redirecionamentos que apontem para o título original',
 'move-leave-redirect'          => 'Criar um redirecionamento',
-'protectedpagemovewarning'     => "'''Aviso:''' Esta página foi protegida de modo que apenas usuários com privilégio de administrador possam movê-la.",
-'semiprotectedpagemovewarning' => "''Nota:''' Esta página foi protegida de modo que apenas usuários registrados possam movê-la.",
+'protectedpagemovewarning'     => "'''Atenção:''' Esta página foi protegida de modo que apenas usuários com privilégio de administrador possam movê-la.
+A última entrada no histórico é fornecida abaixo para referência:",
+'semiprotectedpagemovewarning' => "''Nota:''' Esta página foi protegida de modo que apenas usuários registrados possam movê-la.
+A última entrada no histórico é fornecida abaixo para referência:",
+'move-over-sharedrepo'         => '=== Arquivo existente ===
+[[:$1]] existe em um repositório compartilhado. Mover um arquivo para este título irá sobrescrever o arquivo compartilhado.',
+'file-exists-sharedrepo'       => 'O nome de arquivo escolhido já está em uso em um repositório compartilhado.
+Por favor, escolha outro nome.',
 
 # Export
 'export'            => 'Exportação de páginas',
@@ -2671,10 +2715,12 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuário anônimo|Usuários anônimos}} da {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuário $1',
+'anonuser'         => '$1 usuários anonimos da {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez a $2, $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
 'siteusers'        => '{{PLURAL:$2|um usuário|$2 usuários}} da {{SITENAME}}: $1',
+'anonusers'        => '$1 {{PLURAL:$2|usuário|usuários}} anonimos da {{SITENAME}}',
 'creditspage'      => 'Créditos da página',
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 
@@ -3080,6 +3126,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'watchlistall2'    => 'todas',
 'namespacesall'    => 'todas',
 'monthsall'        => 'todos',
+'limitall'         => 'todas',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar endereço de E-mail',

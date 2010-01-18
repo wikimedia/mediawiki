@@ -8,6 +8,7 @@
  * @file
  *
  * @author Crazymadlover
+ * @author Daemorris
  * @author Giro720
  * @author Hamilton Abreu
  * @author Heldergeovane
@@ -870,9 +871,11 @@ Por favor, inclua todos os detalhes acima em quaisquer contactos relacionados co
 'whitelistedittext'                => 'Precisa de se $1 para poder editar páginas.',
 'confirmedittext'                  => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas.
 Por favor, introduza e valide o endereço através das [[Special:Preferences|preferências de utilizador]].',
-'nosuchsectiontitle'               => 'Secção inexistente',
+'nosuchsectiontitle'               => 'Não foi possível encontrar a secção',
 'nosuchsectiontext'                => 'Tentou editar uma secção que não existe.
-Porque não existe uma secção $1, não há nenhum local onde a sua edição possa ser gravada.',
+Ela pode ter sido movida ou removida enquanto estava a ver a página.
+
+Já que não existe uma secção $1, não há nenhum local onde a sua edição possa ser gravada.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Precisa de $1 para poder visualizar outras páginas.',
@@ -956,10 +959,13 @@ A página não pode ser gravada.'''",
 Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
 
 O administrador que bloqueou a base de dados forneceu a seguinte explicação: $1",
-'protectedpagewarning'             => "'''Aviso: Esta página foi protegida para só poder ser editada por administradores.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
+'protectedpagewarning'             => "'''Aviso: Esta página foi protegida para só poder ser editada por administradores.'''
+O último registo é apresentado abaixo para referência:",
+'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.
+A última entrada no histórico é fornecida abaixo como referência.",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida de forma que apenas os administradores possam editá-la, porque se encontra incluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} em cascata:",
-'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida por forma a que [[Special:ListGroupRights|privilégios específicos]] sejam necessários para criá-la.'''",
+'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida por forma a que [[Special:ListGroupRights|privilégios específicos]] sejam necessários para criá-la.'''
+O último registo é apresentado abaixo para referência:",
 'templatesused'                    => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta antevisão:',
 'templatesusedsection'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta secção:',
@@ -1322,11 +1328,11 @@ Qualquer pessoa que conheça esta senha será capaz de ler a sua lista de págin
 Eis um valor gerado aleatoriamente, que pode usar: $1",
 'savedprefs'                    => 'As suas preferências foram gravadas.',
 'timezonelegend'                => 'Fuso horário:',
-'localtime'                     => 'Horário local:',
+'localtime'                     => 'Hora local:',
 'timezoneuseserverdefault'      => 'Usar padrão do servidor',
 'timezoneuseoffset'             => 'Outro (especificar diferença)',
 'timezoneoffset'                => 'Diferença horária¹:',
-'servertime'                    => 'Horário do servidor:',
+'servertime'                    => 'Hora do servidor:',
 'guesstimezone'                 => 'Preencher a partir do navegador',
 'timezoneregion-africa'         => 'África',
 'timezoneregion-america'        => 'América',
@@ -1770,7 +1776,7 @@ Clique um cabeçalho de coluna para alterar a ordenação.',
 'filehist-deleteone'        => 'eliminar',
 'filehist-revert'           => 'restaurar',
 'filehist-current'          => 'actual',
-'filehist-datetime'         => 'Data/Horário',
+'filehist-datetime'         => 'Data/Hora',
 'filehist-thumb'            => 'Miniatura',
 'filehist-thumbtext'        => "Miniatura ''(thumbnail)'' da versão das $1",
 'filehist-nothumb'          => 'Miniatura indisponível',
@@ -2576,8 +2582,10 @@ não é possível mover uma página para ela mesma.',
 'imageinvalidfilename'         => 'O nome do ficheiro alvo é inválido',
 'fix-double-redirects'         => 'Atualizar todos os redirecionamentos que apontem para o título original',
 'move-leave-redirect'          => 'Criar um redireccionamento',
-'protectedpagemovewarning'     => "'''Aviso:''' Esta página foi protegida de maneira a que apenas utilizadores com privilégio de administrador possam movê-la.",
-'semiprotectedpagemovewarning' => "''Nota:''' Esta página protegida de maneira a que apenas utilizadores registados possam movê-la.",
+'protectedpagemovewarning'     => "'''Aviso:''' Esta página foi protegida de maneira a que apenas utilizadores com privilégio de administrador possam movê-la.
+O último registo é apresentado abaixo para referência:",
+'semiprotectedpagemovewarning' => "'''Nota:''' Esta página protegida de maneira a que apenas utilizadores registados possam movê-la.
+O último registo é apresentado abaixo para referência:",
 'move-over-sharedrepo'         => '== O ficheiro existe ==
 [[:$1]] já existe num repositório partilhado. Mover um ficheiro para o título [[:$1]] irá sobrepô-lo ao ficheiro partilhado.',
 'file-exists-sharedrepo'       => 'O nome de ficheiro que escolheu já é utilizado num repositório partilhado.
@@ -2841,7 +2849,7 @@ Este bloqueio foi provavelmente causado por uma ligação para um sítio externo
 'markaspatrolleddiff'                 => 'Marcar como patrulhada',
 'markaspatrolledtext'                 => 'Marcar esta página como patrulhada',
 'markedaspatrolled'                   => 'Marcada como patrulhada',
-'markedaspatrolledtext'               => 'A edição seleccionada foi marcada como patrulhada.',
+'markedaspatrolledtext'               => 'A edição seleccionada de [[:$1]] foi marcada como patrulhada.',
 'rcpatroldisabled'                    => 'Edições patrulhadas nas Mudanças Recentes desactivadas',
 'rcpatroldisabledtext'                => 'A funcionalidade de edições patrulhadas nas Mudanças Recentes está actualmente desactivada.',
 'markedaspatrollederror'              => 'Não é possível marcar como patrulhada',

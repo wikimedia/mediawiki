@@ -540,9 +540,11 @@ Tarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
 'blockededitsource'                => "Meqalê '''vurnaisunê to''' be pela '''$1'''i cêr dero:",
 'whitelistedittitle'               => 'Serba vurnaene gunê cı kuyê',
 'whitelistedittext'                => 'Serba vurnaene $1.',
-'nosuchsectiontitle'               => 'Qısımo de nianên çino',
+'nosuchsectiontitle'               => 'Qısım nêşikiya bıvêniyo',
 'nosuchsectiontext'                => 'To waşt ke jü qısım kuyê, uyo ke çino.
-Hata ke werte de qısım $1 çino, ca çino ke tı rastkerdena ho qeyd bıkerê.',
+Sırewo ke to qaytê pele kerdêne, beno ke no kırışiyo ya ki esteriyo.
+
+Hata ke werte de qısımê $1i çino, ca çino ke tı rastkerdena ho qeyd kerê.',
 'loginreqtitle'                    => 'Gunê cı kuyê',
 'loginreqlink'                     => 'cı kuye',
 'loginreqpagetext'                 => 'Serba diyaena pelunê binu tı gunê $1 bıbê.',
@@ -672,7 +674,9 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'revdelete-uname'             => 'namê karberi',
 'revdelete-hid'               => 'bınımne $1',
 'revdelete-unhid'             => 'bıasne $1',
+'revdelete-otherreason'       => 'Sebebo bin/ilaweki:',
 'revdelete-reasonotherlist'   => 'Sebebo bin',
+'revdelete-edit-reasonlist'   => 'Sebebunê esterıtene bıvurne',
 
 # History merging
 'mergehistory-from'   => 'Pela çımey:',
@@ -710,6 +714,8 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'search-interwiki-more'     => '(zafêr)',
 'search-mwsuggest-enabled'  => 'ebe teklifu',
 'search-mwsuggest-disabled' => 'teklifi çinê',
+'searchrelated'             => 'aleqeder',
+'searchall'                 => 'pêro',
 'nonefound'                 => "'''Not''': Teyna taê namê cau jê saybiyau cı fetelino.
 Verê cıfeteliyaene de be ilawekerdena verbendê '''all:'''i ra (ebe pelunê hurênaişi, şablonu uêb.) bıcerebnê ya ki namê cayo ke wajino jê verbendi bıgurênê.",
 'powersearch'               => 'Cıcêraiso hira',
@@ -717,6 +723,9 @@ Verê cıfeteliyaene de be ilawekerdena verbendê '''all:'''i ra (ebe pelunê hu
 'powersearch-ns'            => 'Caunê namun de cıcêre:',
 'powersearch-redir'         => 'Girêun lista ke',
 'powersearch-field'         => 'Serba cı qayt ke',
+'powersearch-togglelabel'   => 'Weçine:',
+'powersearch-toggleall'     => 'Pêro',
+'powersearch-togglenone'    => 'Qet',
 'search-external'           => 'Cıcêraisê teberi',
 'searchdisabled'            => "Cıcêraisê {{SITENAME}} qapan biyo.
 Sıma şikinê na sıre ''Google'' de şêr kerê. 
@@ -748,6 +757,8 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'prefs-watchlist-days'      => 'Rozê ke lista şêr-kerdişi de asenê:',
 'prefs-watchlist-edits'     => 'Miqdarê tewr jêdêr vurnaisuno ke lista şêr-kerdişia hirakerdiye derê:',
 'prefs-misc'                => 'Ğelet',
+'prefs-resetpass'           => 'Parola bıvurne',
+'prefs-rendering'           => 'Asais',
 'saveprefs'                 => 'Qeyd ke',
 'resetprefs'                => 'Vurnaisunê qeydnêkerdun pak ke',
 'prefs-editing'             => 'Vurnais',
@@ -759,6 +770,7 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'contextchars'              => 'Xetê be zerrek:',
 'stub-threshold'            => 'Tertibê şêmıga <a href="#" class="stub">stub link</a> (\'\'bytes\'\'):',
 'recentchangesdays'         => 'Rozê ke vurnaisunê peyênun de asenê:',
+'recentchangesdays-max'     => 'Maksimum $1 {{PLURAL:$1|roze|roji}}',
 'recentchangescount'        => 'Miqdarê vurnaisuno ke standardwari asniyenê:',
 'savedprefs'                => 'Tercihê sıma qeydi biy.',
 'timezonelegend'            => 'Warê saete:',
@@ -802,6 +814,7 @@ Gunê $1 {{PLURAL:$1|herfe|herfun}} ra senık bo.',
 Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'prefs-help-email-required' => 'Adresa emaili lazıma.',
 'prefs-signature'           => 'İmza',
+'prefs-diffs'               => 'Ferqi',
 
 # User rights
 'userrights'               => 'İdarê hequnê karberi',
@@ -823,6 +836,10 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'group-sysop-member' => 'İdareker',
 
 'grouppage-sysop' => '{{ns:project}}:İdarekeri',
+
+# Rights
+'right-delete'   => 'Pelu bıestere',
+'right-undelete' => 'Esterıtena na pele peyser bıcê',
 
 # User rights log
 'rightslog'      => 'Qeydê hequnê karberi',
@@ -847,6 +864,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'recentchanges'                  => 'Vurnaisê peyêni',
 'recentchanges-legend'           => 'Alternatifê vurnaisunê peyênu',
 'recentchanges-feed-description' => 'Na weiyekerdena wiki de vurnaisê tewrpeyêne ke biyê ine teqib ke.',
+'recentchanges-label-legend'     => 'Arezekerdeni: $1.',
 'rcnote'                         => "Cêr {{PLURAL:$1|'''1''' vurnaiso peyên|'''$1''' vurnaisê peyêni}} be {{PLURAL:$2|roza peyêne|'''$2''' rozunê peyênunê}} $5, $4 ra estê.",
 'rclistfrom'                     => '$1 ra hata nıka vurnaisunê newu bıasne',
 'rcshowhideminor'                => '$1 vurnaisê qızkeki',
