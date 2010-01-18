@@ -2152,7 +2152,7 @@ class Article {
 
 		# Inform the user
 		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
-		$wgOut->addWikiMsg( 'markedaspatrolledtext' );
+		$wgOut->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
 		$wgOut->returnToMain( false, $return );
 	}
 

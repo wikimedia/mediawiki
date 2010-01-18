@@ -3413,7 +3413,7 @@ please see math/README to configure.',
 'markaspatrolledlink'                 => '[$1]', # do not translate or duplicate this message to other languages
 'markaspatrolledtext'                 => 'Mark this page as patrolled',
 'markedaspatrolled'                   => 'Marked as patrolled',
-'markedaspatrolledtext'               => 'The selected revision has been marked as patrolled.',
+'markedaspatrolledtext'               => 'The selected revision of [[:$1]] has been marked as patrolled.',
 'rcpatroldisabled'                    => 'Recent changes patrol disabled',
 'rcpatroldisabledtext'                => 'The recent changes patrol feature is currently disabled.',
 'markedaspatrollederror'              => 'Cannot mark as patrolled',
