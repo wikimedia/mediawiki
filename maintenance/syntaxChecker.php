@@ -274,6 +274,7 @@ class SyntaxChecker extends Maintenance {
 		$this->checkRegex( $file, $text, '/^[\s\r\n]+<\?/', 'leading whitespace' );
 		$this->checkRegex( $file, $text, '/\?>[\s\r\n]*$/', 'trailing ?>' );
 		$this->checkRegex( $file, $text, '/^[\xFF\xFE\xEF]/', 'byte-order mark' );
+		$this->checkRegex( $file, $text, '/\&\$this/', 'passing $this by reference' );
 	}
 
 	private function checkRegex( $file, $text, $regex, $desc ) {
