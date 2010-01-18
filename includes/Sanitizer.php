@@ -935,12 +935,11 @@ class Sanitizer {
 	 * @return Array
 	 */
 	public static function decodeTagAttributes( $text ) {
-		$attribs = array();
-
 		if( trim( $text ) == '' ) {
-			return $attribs;
+			return array();
 		}
 
+		$attribs = array();
 		$pairs = array();
 		if( !preg_match_all(
 			MW_ATTRIBS_REGEX,
