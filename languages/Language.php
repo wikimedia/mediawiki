@@ -59,7 +59,6 @@ class Language {
 
 	var $mNamespaceIds, $namespaceNames, $namespaceAliases;
 	var $dateFormatStrings = array();
-	var $minSearchLength;
 	var $mExtendedSpecialPageAliases;
 
 	/**
@@ -1689,83 +1688,19 @@ class Language {
 	}
 
 	/**
-	 * Some languages have special punctuation to strip out
-	 * or characters which need to be converted for MySQL's
-	 * indexing to grok it correctly. Make such changes here.
+	 * Some languages have special punctuation to strip out.
+	 * Make such changes here.
 	 *
 	 * @param $string String
 	 * @return String
 	 */
 	function stripForSearch( $string, $doStrip = true ) {
-		global $wgDBtype;
-		if ( $wgDBtype != 'mysql' || $doStrip == false ) {
+		if ( !$doStrip ) {
 			return $string;
 		}
 
-		wfProfileIn( __METHOD__ );
-
-		// MySQL fulltext index doesn't grok utf-8, so we
-		// need to fold cases and convert to hex
-		$out = preg_replace_callback(
-			"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
-			array( $this, 'stripForSearchCallback' ),
-			$this->lc( $string ) );
-
-		// And to add insult to injury, the default indexing
-		// ignores short words... Pad them so we can pass them
-		// through without reconfiguring the server...
-		$minLength = $this->minSearchLength();
-		if( $minLength > 1 ) {
-			$n = $minLength-1;
-			$out = preg_replace(
-				"/\b(\w{1,$n})\b/",
-				"$1u800",
-				$out );
-		}
-
-		// Periods within things like hostnames and IP addresses
-		// are also important -- we want a search for "example.com"
-		// or "192.168.1.1" to work sanely.
-		//
-		// MySQL's search seems to ignore them, so you'd match on
-		// "example.wikipedia.com" and "192.168.83.1" as well.
-		$out = preg_replace(
-			"/(\w)\.(\w|\*)/u",
-			"$1u82e$2",
-			$out );
-
-		wfProfileOut( __METHOD__ );
-		return $out;
-	}
-
-	/**
-	 * Armor a case-folded UTF-8 string to get through MySQL's
-	 * fulltext search without being mucked up by funny charset
-	 * settings or anything else of the sort.
-	 */
-	protected function stripForSearchCallback( $matches ) {
-		return 'u8' . bin2hex( $matches[1] );
-	}
-
-	/**
-	 * Check MySQL server's ft_min_word_len setting so we know
-	 * if we need to pad short words...
-	 */
-	protected function minSearchLength() {
-		if( is_null( $this->minSearchLength ) ) {
-			$sql = "show global variables like 'ft\\_min\\_word\\_len'";
-			$dbr = wfGetDB( DB_SLAVE );
-			$result = $dbr->query( $sql );
-			$row = $result->fetchObject();
-			$result->free();
-
-			if( $row && $row->Variable_name == 'ft_min_word_len' ) {
-				$this->minSearchLength = intval( $row->Value );
-			} else {
-				$this->minSearchLength = 0;
-			}
-		}
-		return $this->minSearchLength;
+		$dbr = wfGetDB( DB_SLAVE );
+		return $dbr->stripForSearch( $string );
 	}
 
 	/**
