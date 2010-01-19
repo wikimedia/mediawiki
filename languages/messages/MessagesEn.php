@@ -1232,9 +1232,7 @@ Please include all above details in any queries you make.',
 Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
 'nosuchsectiontitle'               => 'Cannot find section',
 'nosuchsectiontext'                => 'You tried to edit a section that does not exist.
-It may have been moved or deleted while you were viewing the page.
-
-Since there is no section $1, there is no place to save your edit.',
+It may have been moved or deleted while you were viewing the page.',
 'loginreqtitle'                    => 'Login required',
 'loginreqlink'                     => 'log in',
 'loginreqpagetext'                 => 'You must $1 to view other pages.',
