@@ -121,6 +121,7 @@ class EditPage {
 
 	/**
 	 * Fetch initial editing page content.
+	 * @returns mixed string on success, $def_text for invalid sections
 	 * @private
 	 */
 	function getContent( $def_text = '' ) {
@@ -204,6 +205,7 @@ class EditPage {
 				if ( $section == 'new' ) {
 					$text = $this->getPreloadedText( $preload );
 				} else {
+					// Get section edit text (returns $def_text for invalid sections)
 					$text = $wgParser->getSection( $text, $section, $def_text );
 				}
 			}
@@ -403,7 +405,7 @@ class EditPage {
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
-			$this->readOnlyPage( $this->getContent(), true, $permErrors, 'edit' );
+			$this->readOnlyPage( $this->getContent( false ), true, $permErrors, 'edit' );
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
@@ -1183,6 +1185,7 @@ class EditPage {
 	/**
 	 * Initialise form fields in the object
 	 * Called on the first invocation, e.g. when a user clicks an edit link
+	 * @returns bool -- if the requested section is valid
 	 */
 	function initialiseForm() {
 		global $wgUser;
