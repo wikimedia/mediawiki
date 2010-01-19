@@ -11,7 +11,6 @@ class GanConverter extends LanguageConverter {
 	function __construct($langobj, $maincode,
 								$variants=array(),
 								$variantfallbacks=array(),
-								$markup=array(),
 								$flags = array(),
 								$manualLevel = array() ) {
 		$this->mDescCodeSep = '：';
@@ -19,7 +18,6 @@ class GanConverter extends LanguageConverter {
 		parent::__construct($langobj, $maincode,
 									$variants,
 									$variantfallbacks,
-									$markup,
 									$flags,
 									$manualLevel);
 		$names = array(
@@ -117,7 +115,7 @@ class LanguageGan extends LanguageZh {
 
 		$this->mConverter = new GanConverter( $this, 'gan',
 								$variants, $variantfallbacks,
-								array(),array(),
+								array(),
 								$ml);
 
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;

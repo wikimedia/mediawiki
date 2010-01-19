@@ -11,7 +11,6 @@ class ZhConverter extends LanguageConverter {
 	function __construct($langobj, $maincode,
 								$variants=array(),
 								$variantfallbacks=array(),
-								$markup=array(),
 								$flags = array(),
 								$manualLevel = array() ) {
 		$this->mDescCodeSep = '：';
@@ -19,7 +18,6 @@ class ZhConverter extends LanguageConverter {
 		parent::__construct($langobj, $maincode,
 									$variants,
 									$variantfallbacks,
-									$markup,
 									$flags,
 									$manualLevel);
 		$names = array(
@@ -153,7 +151,7 @@ class LanguageZh extends LanguageZh_hans {
 
 		$this->mConverter = new ZhConverter( $this, 'zh',
 								$variants, $variantfallbacks,
-								array(),array(),
+								array(),
 								$ml);
 
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;

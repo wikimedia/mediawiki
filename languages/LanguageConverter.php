@@ -25,7 +25,6 @@ class LanguageConverter {
 	var $mManualLevel;
 	var $mCacheKey;
 	var $mLangObj;
-	var $mMarkup;
 	var $mFlags;
 	var $mDescCodeSep = ':', $mDescVarSep = ';';
 	var $mUcfirst = false;
@@ -33,6 +32,8 @@ class LanguageConverter {
 	var $mURLVariant;
 	var $mUserVariant;
 	var $mHeaderVariant;
+	var $mMaxDepth = 10;
+	var $mVarSeparatorPattern;
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -52,7 +53,6 @@ class LanguageConverter {
 	function __construct( $langobj, $maincode,
 								$variants = array(),
 								$variantfallbacks = array(),
-								$markup = array(),
 								$flags = array(),
 								$manualLevel = array() ) {
 		$this->mLangObj = $langobj;
@@ -69,15 +69,6 @@ class LanguageConverter {
 		global $wgLanguageNames;
 		$this->mVariantNames = $wgLanguageNames;
 		$this->mCacheKey = wfMemcKey( 'conversiontables', $maincode );
-		$m = array(
-			'begin' => '-{',
-			'flagsep' => '|',
-			'unidsep' => '=>', // for unidirectional conversion
-			'codesep' => ':',
-			'varsep' => ';',
-			'end' => '}-'
-		);
-		$this->mMarkup = array_merge( $m, $markup );
 		$f = array(
 			// 'S' show converted text
 			// '+' add rules for alltext
@@ -124,7 +115,7 @@ class LanguageConverter {
 	 * @public
 	 */
 	function getVariantFallbacks( $v ) {
-		if ( array_key_exists( $v, $this->mVariantFallbacks ) ) {
+		if ( isset( $this->mVariantFallbacks[$v] ) ) {
 			return $this->mVariantFallbacks[$v];
 		}
 		return $this->mMainLanguageCode;
@@ -259,7 +250,7 @@ class LanguageConverter {
 		}
 
 		// explode by comma
-		$result = explode( ',', strtolower( $acceptLanguage ) );
+		$result = StringUtils::explode( ',', strtolower( $acceptLanguage ) );
 		$languages = array();
 
 		foreach ( $result as $elem ) {
@@ -473,19 +464,22 @@ class LanguageConverter {
 		}
 
 		$ret = array();
-		$tarray = explode( $this->mMarkup['begin'], $text );
-		$tfirst = array_shift( $tarray );
-
-		foreach ( $this->mVariants as $variant ) {
-			$ret[$variant] = $this->translate( $tfirst, $variant );
-		}
+		$tarray = StringUtils::explode( '-{', $text );
+		$first = true;
 
 		foreach ( $tarray as $txt ) {
-			$marked = explode( $this->mMarkup['end'], $txt, 2 );
+			if ( $first ) {
+				$first = false;
+				foreach ( $this->mVariants as $variant ) {
+					$ret[$variant] = $this->translate( $txt, $variant );
+				}
+				continue;
+			}
+
+			$marked = explode( '}-', $txt, 2 );
 
 			foreach ( $this->mVariants as $variant ) {
-				$ret[$variant] .= $this->mMarkup['begin'] . $marked[0] .
-					$this->mMarkup['end'];
+				$ret[$variant] .= '-{' . $marked[0] . '}-';
 				if ( array_key_exists( 1, $marked ) ) {
 					$ret[$variant] .= $this->translate( $marked[1], $variant );
 				}
@@ -535,7 +529,7 @@ class LanguageConverter {
 	 * @private
 	 */
 	function convertNamespace( $title, $variant ) {
-		$splittitle = explode( ':', $title );
+		$splittitle = explode( ':', $title, 2 );
 		if ( count( $splittitle ) < 2 ) {
 			return $title;
 		}
@@ -544,73 +538,6 @@ class LanguageConverter {
 		}
 		$ret = implode( ':', $splittitle );
 		return $ret;
-	}
-
-	/**
-	 * Convert a text array.
-	 *
-	 * @param string $tarray text array to be converted
-	 * @param string $plang preferred variant
-	 * @return string converted text
-	 * @private
-	 */
-	function convertArray( $tarray, $plang ) {
-		$beginlen = strlen( $this->mMarkup['begin'] );
-		$converted = '';
-		$middle = '';
-
-		foreach ( $tarray as $text ) {
-			// for nested use
-			if( $middle ) {
-				$text = $middle . $text;
-				$middle = '';
-			}
-
-			// find first and last begin markup(s)
-			$firstbegin = strpos( $text, $this->mMarkup['begin'] );
-			$lastbegin = strrpos( $text, $this->mMarkup['begin'] );
-
-			// if $text contains no begin markup,
-			// append $text to $converted and restore end markup
-			if( $firstbegin === false ) {
-				$converted .= $this->autoConvert( $text, $plang );
-				$converted .= $this->mMarkup['end'];
-				continue;
-			}
-
-			// split $text into $left and $right,
-			// omit the begin markup in $right
-			$left = substr( $text, 0, $firstbegin );
-			$right = substr( $text, $lastbegin + $beginlen );
-
-			// always convert $left and append it to $converted
-			// for nested case, $left is blank but can also be converted
-			$converted .= $this->autoConvert( $left, $plang );
-
-			// parse and apply manual rule from $right
-			$crule = new ConverterRule( $right, $this );
-			$crule->parse( $plang );
-			$right = $crule->getDisplay();
-			$this->applyManualConv( $crule );
-
-			// if $text contains only one begin markup,
-			// append $left and $right to $converted.
-			//
-			// otherwise it's a nested use like "-{-{}-}-",
-			// this should be handled properly.
-			if( $firstbegin === $lastbegin ) {
-				$converted .= $right;
-			}
-			else {
-				// not omit the first begin markup
-				$middle = substr( $text, $firstbegin, $lastbegin - $firstbegin );
-				$middle .= $right;
-				//print $middle;
-			}
-		}
-		// Remove the last delimiter (wasn't real)
-	    $converted = substr( $converted, 0, - strlen( $this->mMarkup['end'] ) );
-		return $converted;
 	}
 
 	/**
@@ -632,12 +559,105 @@ class LanguageConverter {
 		global $wgDisableLangConversion;
 		if ( $wgDisableLangConversion ) return $text;
 
-		$plang = $this->getPreferredVariant();
+		$variant = $this->getPreferredVariant();
 
-		$tarray = StringUtils::explode( $this->mMarkup['end'], $text );
-		$converted = $this->convertArray( $tarray, $plang );
+		return $this->recursiveConvertTopLevel( $text, $variant );
+	}
 
-		return $converted;
+	protected function recursiveConvertTopLevel( $text, $variant, $depth = 0 ) {
+		$startPos = 0;
+		$out = '';
+		$length = strlen( $text );
+		while ( $startPos < $length ) {
+			$m = false;
+			$pos = strpos( $text, '-{', $startPos );
+			
+			if ( $pos === false ) {
+				// No more markup, append final segment
+				$out .= $this->autoConvert( substr( $text, $startPos ), $variant );
+				$startPos = $length;
+				return $out;
+			}
+
+			// Markup found
+			// Append initial segment
+			$out .= $this->autoConvert( substr( $text, $startPos, $pos - $startPos ), $variant );
+
+			// Advance position
+			$startPos = $pos;
+
+			// Do recursive conversion
+			$out .= $this->recursiveConvertRule( $text, $variant, $startPos, $depth + 1 );
+		}
+
+		return $out;
+	}
+
+	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
+		// Quick sanity check (no function calls)
+		if ( $text[$startPos] !== '-' || $text[$startPos + 1] !== '{' ) {
+			throw new MWException( __METHOD__.': invalid input string' );
+		}
+
+		$startPos += 2;
+		$inner = '';
+		$warningDone = false;
+		$length = strlen( $text );
+
+		while ( $startPos < $length ) {
+			$m = false;
+			preg_match( '/-\{|\}-/', $text, $m,  PREG_OFFSET_CAPTURE, $startPos );
+			if ( !$m ) {
+				// Unclosed rule
+				break;
+			}
+
+			$token = $m[0][0];
+			$pos = $m[0][1];
+
+			// Markup found
+			// Append initial segment
+			$inner .= substr( $text, $startPos, $pos - $startPos );
+
+			// Advance position
+			$startPos = $pos;
+
+			switch ( $token ) {
+				case '-{':
+					// Check max depth
+					if ( $depth >= $this->mMaxDepth ) {
+						$inner .= '-{';
+						if ( !$warningDone ) {
+							$inner .= '<span class="error">' .
+								wfMsgForContent( 'language-converter-depth-warning', 
+									$this->mMaxDepth ) .
+								'</span>';
+							$warningDone = true;
+						}
+						$startPos += 2;
+						continue;
+					}
+					// Recursively parse another rule
+					$inner .= $this->recursiveConvertRule( $text, $variant, $startPos, $depth + 1 );
+					break;
+				case '}-':
+					// Apply the rule
+					$startPos += 2;
+					$rule = new ConverterRule( $inner, $this );
+					$rule->parse( $variant );
+					$this->applyManualConv( $rule );
+					return $rule->getDisplay();
+				default:
+					throw new MWException( __METHOD__.': invalid regex match' );
+			}
+		}
+
+		// Unclosed rule
+		if ( $startPos < $length ) {
+			$inner .= substr( $text, $startPos );
+		}
+		$startPos = $length;
+		return '-{' . $this->autoConvert( $inner, $variant );
 	}
 
 	/**
@@ -840,14 +860,14 @@ class LanguageConverter {
 		// [[MediaWiki:conversiontable/zh-xx/...|...]]
 		$linkhead = $this->mLangObj->getNsText( NS_MEDIAWIKI ) .
 			':Conversiontable';
-		$subs = explode( '[[', $txt );
+		$subs = StringUtils::explode( '[[', $txt );
 		$sublinks = array();
 		foreach ( $subs as $sub ) {
 			$link = explode( ']]', $sub, 2 );
 			if ( count( $link ) != 2 ) {
 				continue;
 			}
-			$b = explode( '|', $link[0] );
+			$b = explode( '|', $link[0], 2 );
 			$b = explode( '/', trim( $b[0] ), 3 );
 			if ( count( $b ) == 3 ) {
 				$sublink = $b[2];
@@ -862,16 +882,21 @@ class LanguageConverter {
 
 
 		// parse the mappings in this page
-		$blocks = explode( $this->mMarkup['begin'], $txt );
-		array_shift( $blocks );
+		$blocks = StringUtils::explode( '-{', $txt );
 		$ret = array();
+		$first = true;
 		foreach ( $blocks as $block ) {
-			$mappings = explode( $this->mMarkup['end'], $block, 2 );
+			if ( $first ) {
+				// Skip the part before the first -{
+				$first = false;
+				continue;
+			}
+			$mappings = explode( '}-', $block, 2 );
 			$stripped = str_replace( array( "'", '"', '*', '#' ), '',
 									 $mappings[0] );
-			$table = explode( ';', $stripped );
+			$table = StringUtils::explode( ';', $stripped );
 			foreach ( $table as $t ) {
-				$m = explode( '=>', $t );
+				$m = explode( '=>', $t, 3 );
 				if ( count( $m ) != 2 )
 					continue;
 				// trim any trailling comments starting with '//'
@@ -908,12 +933,11 @@ class LanguageConverter {
 	 */
 	function markNoConversion( $text, $noParse = false ) {
 		# don't mark if already marked
-		if ( strpos( $text, $this->mMarkup['begin'] )
-			|| strpos( $text, $this->mMarkup['end'] ) ) {
+		if ( strpos( $text, '-{' ) || strpos( $text, '}-' ) ) {
 			return $text;
 		}
 
-		$ret = $this->mMarkup['begin'] . 'R|' . $text . $this->mMarkup['end'];
+		$ret = "-{R|$text}-";
 		return $ret;
 	}
 
@@ -955,8 +979,37 @@ class LanguageConverter {
 		// we need to convert '-{' and '}-' to '-&#123;' and '&#125;-'
 		// to avoid a unwanted '}-' appeared after the math-image.
 		$text = strtr( $text, array( '-{' => '-&#123;', '}-' => '&#125;-' ) );
-		$ret = $this->mMarkup['begin'] . 'R|' . $text . $this->mMarkup['end'];
+		$ret = "-{R|$text}-";
 		return $ret;
+	}
+
+	/**
+	 * Get the cached separator pattern for ConverterRule::parseRules()
+	 */
+	function getVarSeparatorPattern() {
+		if ( is_null( $this->mVarSeparatorPattern ) ) {
+			// varsep_pattern for preg_split:
+			// text should be splited by ";" only if a valid variant
+			// name exist after the markup, for example:
+			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
+			//    <span style="font-size:120%;">yyy</span>;}-
+			// we should split it as:
+			//  array(
+			//	  [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
+			//	  [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
+			//	  [2] => ''
+			//	 )
+			$pat = '/;\s*(?=';
+			foreach ( $this->mVariants as $variant ) {
+				// zh-hans:xxx;zh-hant:yyy
+				$pat .= $variant . '\s*:|';
+				// xxx=>zh-hans:yyy; xxx=>zh-hant:zzz
+				$pat .= '[^;]*?=>\s*' . $variant . '\s*:|';
+			}
+			$pat .= '\s*$)/';
+			$this->mVarSeparatorPattern = $pat;
+		}
+		return $this->mVarSeparatorPattern;
 	}
 }
 
@@ -974,6 +1027,7 @@ class ConverterRule {
 	var $mRules = '';// string : the text of the rules
 	var $mRulesAction = 'none';
 	var $mFlags = array();
+	var $mVariantFlags = array();
 	var $mConvTable = array();
 	var $mBidtable = array();// array of the translation in each variant
 	var $mUnidtable = array();// array of the translation in each variant
@@ -988,9 +1042,6 @@ class ConverterRule {
 	function __construct( $text, $converter ) {
 		$this->mText = $text;
 		$this->mConverter = $converter;
-		foreach ( $converter->mVariants as $v ) {
-			$this->mConvTable[$v] = array();
-		}
 	}
 
 	/**
@@ -1001,14 +1052,12 @@ class ConverterRule {
 	 * @public
 	 */
 	function getTextInBidtable( $variants ) {
-		if ( is_string( $variants ) ) {
-			$variants = array( $variants );
-		}
-		if ( !is_array( $variants ) ) {
+		$variants = (array)$variants;
+		if ( !$variants ) {
 			return false;
 		}
 		foreach ( $variants as $variant ) {
-			if ( array_key_exists( $variant, $this->mBidtable ) ) {
+			if ( isset( $this->mBidtable[$variant] ) ) {
 				return $this->mBidtable[$variant];
 			}
 		}
@@ -1021,74 +1070,60 @@ class ConverterRule {
 	 */
 	function parseFlags() {
 		$text = $this->mText;
-		if ( strlen( $text ) < 2 ) {
-			$this->mFlags = array( 'R' );
-			$this->mRules = $text;
-			return;
-		}
-
 		$flags = array();
-		$markup = $this->mConverter->mMarkup;
-		$validFlags = $this->mConverter->mFlags;
-		$variants = $this->mConverter->mVariants;
+		$variantFlags = array();
 
-		$tt = explode( $markup['flagsep'], $text, 2 );
-		if ( count( $tt ) == 2 ) {
-			$f = explode( $markup['varsep'], $tt[0] );
+		$sepPos = strpos( $text, '|' );
+		if ( $sepPos !== false ) {
+			$validFlags = $this->mConverter->mFlags;
+			$f = StringUtils::explode( ';', substr( $text, 0, $sepPos ) );
 			foreach ( $f as $ff ) {
 				$ff = trim( $ff );
-				if ( array_key_exists( $ff, $validFlags )
-					 && !in_array( $validFlags[$ff], $flags ) ) {
-					$flags[] = $validFlags[$ff];
+				if ( isset( $validFlags[$ff] ) ) {
+					$flags[$validFlags[$ff]] = true;
 				}
 			}
-			$rules = $tt[1];
-		} else {
-			$rules = $text;
+			$text = strval( substr( $text, $sepPos + 1 ) );
 		}
 
-		// check flags
-		if ( in_array( 'R', $flags ) ) {
-			$flags = array( 'R' );// remove other flags
-		} elseif ( in_array( 'N', $flags ) ) {
-			$flags = array( 'N' );// remove other flags
-		} elseif ( in_array( '-', $flags ) ) {
-			$flags = array( '-' );// remove other flags
-		} elseif ( count( $flags ) == 1 && $flags[0] == 'T' ) {
-			$flags[] = 'H';
-		} elseif ( in_array( 'H', $flags ) ) {
+		if ( !$flags ) {
+			$flags['S'] = true;
+		} elseif ( isset( $flags['R'] ) ) {
+			$flags = array( 'R' => true );// remove other flags
+		} elseif ( isset( $flags['N'] ) ) {
+			$flags = array( 'N' => true );// remove other flags
+		} elseif ( isset( $flags['-'] ) ) {
+			$flags = array( '-' => true );// remove other flags
+		} elseif ( count( $flags ) == 1 && isset( $flags['T'] ) ) {
+			$flags['H'] = true;
+		} elseif ( isset( $flags['H'] ) ) {
 			// replace A flag, and remove other flags except T
-			$temp = array( '+', 'H' );
-			if ( in_array( 'T', $flags ) ) {
-				$temp[] = 'T';
+			$temp = array( '+' => true, 'H' => true );
+			if ( isset( $flags['T'] ) ) {
+				$temp['T'] = true;
 			}
-			if ( in_array( 'D', $flags ) ) {
-				$temp[] = 'D';
+			if ( isset( $flags['D'] ) ) {
+				$temp['D'] = true;
 			}
 			$flags = $temp;
 		} else {
-			if ( in_array( 'A', $flags ) ) {
-				$flags[] = '+';
-				$flags[] = 'S';
+			if ( isset( $flags['A'] ) ) {
+				$flags['+'] = true;
+				$flags['S'] = true;
 			}
-			if ( in_array( 'D', $flags ) ) {
-				$flags = array_diff( $flags, array( 'S' ) );
+			if ( isset( $flags['D'] ) ) {
+				unset( $flags['S'] );
 			}
-			$flags_temp = array();
-			foreach ( $variants as $variant ) {
-				// try to find flags like "zh-hans", "zh-hant"
-				// allow syntaxes like "-{zh-hans;zh-hant|XXXX}-"
-				if ( in_array( $variant, $flags ) )
-					$flags_temp[] = $variant;
-			}
-			if ( count( $flags_temp ) !== 0 ) {
-				$flags = $flags_temp;
+			// try to find flags like "zh-hans", "zh-hant"
+			// allow syntaxes like "-{zh-hans;zh-hant|XXXX}-"
+			$variantFlags = array_intersect( array_keys( $flags ), $this->mConverter->mVariants );
+			if ( $variantFlags ) {
+				$variantFlags = array_flip( $variantFlags );
+				$flags = array();
 			}
 		}
-		if ( count( $flags ) == 0 ) {
-			$flags = array( 'S' );
-		}
-		$this->mRules = $rules;
+		$this->mVariantFlags = $variantFlags;
+		$this->mRules = $text;
 		$this->mFlags = $flags;
 	}
 
@@ -1101,41 +1136,20 @@ class ConverterRule {
 		$flags = $this->mFlags;
 		$bidtable = array();
 		$unidtable = array();
-		$markup = $this->mConverter->mMarkup;
 		$variants = $this->mConverter->mVariants;
-
-		// varsep_pattern for preg_split:
-		// text should be splited by ";" only if a valid variant
-		// name exist after the markup, for example:
-		//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
-        //    <span style="font-size:120%;">yyy</span>;}-
-		// we should split it as:
-		//  array(
-		//	  [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
-		//	  [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
-		//	  [2] => ''
-		//	 )
-		$varsep_pattern = '/' . $markup['varsep'] . '\s*' . '(?=';
-		foreach ( $variants as $variant ) {
-			// zh-hans:xxx;zh-hant:yyy
-			$varsep_pattern .= $variant . '\s*' . $markup['codesep'] . '|';
-			// xxx=>zh-hans:yyy; xxx=>zh-hant:zzz
-			$varsep_pattern .= '[^;]*?' . $markup['unidsep'] . '\s*' . $variant
-							. '\s*' . $markup['codesep'] . '|';
-		}
-		$varsep_pattern .= '\s*$)/';
+		$varsep_pattern = $this->mConverter->getVarSeparatorPattern();
 
 		$choice = preg_split( $varsep_pattern, $rules );
 
 		foreach ( $choice as $c ) {
-			$v  = explode( $markup['codesep'], $c, 2 );
+			$v  = explode( ':', $c, 2 );
 			if ( count( $v ) != 2 ) {
 				// syntax error, skip
 				continue;
 			}
 			$to = trim( $v[1] );
 			$v  = trim( $v[0] );
-			$u  = explode( $markup['unidsep'], $v, 2 );
+			$u  = explode( '=>', $v, 2 );
 			// if $to is empty, strtr() could return a wrong result
 			if ( count( $u ) == 1 && $to && in_array( $v, $variants ) ) {
 				$bidtable[$v] = $to;
@@ -1152,7 +1166,7 @@ class ConverterRule {
 				}
 			}
 			// syntax error, pass
-			if ( !array_key_exists( $v, $this->mConverter->mVariantNames ) ) {
+			if ( !isset( $this->mConverter->mVariantNames[$v] ) ) {
 				$bidtable = array();
 				$unidtable = array();
 				break;
@@ -1225,7 +1239,12 @@ class ConverterRule {
 	 * @private
 	 */
 	function generateConvTable() {
-		$flags = $this->mFlags;
+		// Special case optimisation
+		if ( !$this->mBidtable && !$this->mUnidtable ) {
+			$this->mConvTable = array();
+			return;
+		}
+
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
 		$manLevel = $this->mConverter->mManualLevel;
@@ -1235,7 +1254,7 @@ class ConverterRule {
 			/* for bidirectional array
 				fill in the missing variants, if any,
 				with fallbacks */
-			if ( !array_key_exists( $v, $bidtable ) ) {
+			if ( !isset( $bidtable[$v] ) ) {
 				$variantFallbacks =
 					$this->mConverter->getVariantFallbacks( $v );
 				$vf = $this->getTextInBidtable( $variantFallbacks );
@@ -1244,7 +1263,7 @@ class ConverterRule {
 				}
 			}
 
-			if ( array_key_exists( $v, $bidtable ) ) {
+			if ( isset( $bidtable[$v] ) ) {
 				foreach ( $vmarked as $vo ) {
 					// use syntax: -{A|zh:WordZh;zh-tw:WordTw}-
 					// or -{H|zh:WordZh;zh-tw:WordTw}-
@@ -1261,11 +1280,14 @@ class ConverterRule {
 				$vmarked[] = $v;
 			}
 			/*for unidirectional array fill to convert tables */
-			if ( ( $manLevel[$v] == 'bidirectional'
-				   || $manLevel[$v] == 'unidirectional' )
-				 && array_key_exists( $v, $unidtable ) ) {
-				$ct = $this->mConvTable[$v];
-				$this->mConvTable[$v] = array_merge( $ct, $unidtable[$v] );
+			if ( ( $manLevel[$v] == 'bidirectional' || $manLevel[$v] == 'unidirectional' )
+				&& isset( $unidtable[$v] ) ) 
+			{
+				if ( isset( $this->mConvTable[$v] ) ) {
+					$this->mConvTable[$v] = array_merge( $this->mConvTable[$v], $unidtable[$v] );
+				} else {
+					$this->mConvTable[$v] = $unidtable[$v];
+				}
 			}
 		}
 	}
@@ -1285,10 +1307,9 @@ class ConverterRule {
 
 		// convert to specified variant
 		// syntax: -{zh-hans;zh-hant[;...]|<text to convert>}-
-		if ( count( array_diff( $flags, $variants ) ) == 0
-			 and count( $flags ) != 0 ) {
+		if ( $this->mVariantFlags ) {
 			// check if current variant in flags
-			if ( in_array( $variant, $flags ) ) {
+			if ( isset( $this->mVariantFlags[$variant] ) ) {
 				// then convert <text to convert> to current language
 				$this->mRules = $this->mConverter->autoConvert( $this->mRules,
 																$variant );
@@ -1298,7 +1319,7 @@ class ConverterRule {
 					$this->mConverter->getVariantFallbacks( $variant );
 				foreach ( $variantFallbacks as $variantFallback ) {
 					// if current variant's fallback exist in flags
-					if ( in_array( $variantFallback, $flags ) ) {
+					if ( isset( $this->mVariantFlags[$variantFallback] ) ) {
 						// then convert <text to convert> to fallback language
 						$this->mRules =
 							$this->mConverter->autoConvert( $this->mRules,
@@ -1307,57 +1328,72 @@ class ConverterRule {
 					}
 				}
 			}
-			$this->mFlags = $flags = array( 'R' );
+			$this->mFlags = $flags = array( 'R' => true );
 		}
 
-		if ( !in_array( 'R', $flags ) || !in_array( 'N', $flags ) ) {
+		if ( !isset( $flags['R'] ) && !isset( $flags['N'] ) ) {
 			// decode => HTML entities modified by Sanitizer::removeHTMLtags
 			$this->mRules = str_replace( '=&gt;', '=>', $this->mRules );
-
 			$this->parseRules();
 		}
 		$rules = $this->mRules;
 
-		if ( count( $this->mBidtable ) == 0
-			 && count( $this->mUnidtable ) == 0 ) {
-			if ( in_array( '+', $flags ) || in_array( '-', $flags ) ) {
+		if ( !$this->mBidtable && !$this->mUnidtable ) {
+			if ( isset( $flags['+'] ) || isset( $flags['-'] ) ) {
 				// fill all variants if text in -{A/H/-|text} without rules
 				foreach ( $this->mConverter->mVariants as $v ) {
 					$this->mBidtable[$v] = $rules;
 				}
-			} elseif ( !in_array( 'N', $flags ) && !in_array( 'T', $flags ) ) {
-				$this->mFlags = $flags = array( 'R' );
+			} elseif ( !isset( $flags['N'] ) && !isset( $flags['T'] ) ) {
+				$this->mFlags = $flags = array( 'R' => true );
 			}
 		}
 
-		if ( in_array( 'R', $flags ) ) {
-			// if we don't do content convert, still strip the -{}- tags
-			$this->mRuleDisplay = $rules;
-		} elseif ( in_array( 'N', $flags ) ) {
-			// proces N flag: output current variant name
-			$this->mRuleDisplay =
-				$this->mConverter->mVariantNames[ trim( $rules ) ];
-		} elseif ( in_array( 'D', $flags ) ) {
-			// proces D flag: output rules description
-			$this->mRuleDisplay = $this->getRulesDesc();
-		} elseif ( in_array( 'H', $flags ) || in_array( '-', $flags ) ) {
-			// proces H,- flag or T only: output nothing
-			$this->mRuleDisplay = '';
-		} elseif ( in_array( 'S', $flags ) ) {
-			$this->mRuleDisplay = $this->getRuleConvertedStr( $variant );
-		} else {
+		$this->mRuleDisplay = false;
+		foreach ( $flags as $flag => $unused ) {
+			switch ( $flag ) {
+				case 'R':
+					// if we don't do content convert, still strip the -{}- tags
+					$this->mRuleDisplay = $rules;
+					break;
+				case 'N':
+					// process N flag: output current variant name
+					$ruleVar = trim( $rules );
+					if ( isset( $this->mConverter->mVariantNames[$ruleVar] ) ) {
+						$this->mRuleDisplay = $this->mConverter->mVariantNames[$ruleVar];
+					} else {
+						$this->mRuleDisplay = '';
+					}
+					break;
+				case 'D':
+					// process D flag: output rules description
+					$this->mRuleDisplay = $this->getRulesDesc();
+					break;
+				case 'H':
+					// process H,- flag or T only: output nothing
+					$this->mRuleDisplay = '';
+					break;
+				case '-':
+					$this->mRulesAction = 'remove';
+					$this->mRuleDisplay = '';
+					break;
+				case '+':
+					$this->mRulesAction = 'add';
+					$this->mRuleDisplay = '';
+					break;
+				case 'S':
+					$this->mRuleDisplay = $this->getRuleConvertedStr( $variant );
+					break;
+				case 'T':
+					$this->mRuleTitle = $this->getRuleConvertedStr( $variant );
+					$this->mRuleDisplay = '';
+					break;
+				default:
+					// ignore unknown flags (but see error case below)
+			}
+		}
+		if ( $this->mRuleDisplay === false ) {
 			$this->mRuleDisplay = $this->mManualCodeError;
-		}
-		// process T flag
-		if ( in_array( 'T', $flags ) ) {
-			$this->mRuleTitle = $this->getRuleConvertedStr( $variant );
-		}
-
-		if ( in_array( '-', $flags ) ) {
-			$this->mRulesAction = 'remove';
-		}
-		if ( in_array( '+', $flags ) ) {
-			$this->mRulesAction = 'add';
 		}
 
 		$this->generateConvTable();
