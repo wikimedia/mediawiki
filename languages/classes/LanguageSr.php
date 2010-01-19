@@ -165,12 +165,11 @@ class LanguageSr extends LanguageSr_ec {
 			'sr-el' => 'sr',
 		);
 
-		$marker = array();//don't mess with these, leave them as they are
 		$flags = array(
 			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
 			'W' => 'W', 'реч'   => 'W', 'reč'   => 'W', 'ријеч' => 'W', 'riječ' => 'W'
 		);
-		$this->mConverter = new SrConverter($this, 'sr', $variants, $variantfallbacks, $marker, $flags);
+		$this->mConverter = new SrConverter($this, 'sr', $variants, $variantfallbacks, $flags);
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 

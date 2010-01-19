@@ -21,10 +21,9 @@ class KkConverter extends LanguageConverter {
 	function __construct($langobj, $maincode,
 								$variants=array(),
 								$variantfallbacks=array(),
-								$markup=array(),
 								$flags = array()) {
 		parent::__construct( $langobj, $maincode,
-			$variants, $variantfallbacks, $markup, $flags );
+			$variants, $variantfallbacks, $flags );
 
 		// No point delaying this since they're in code.
 		// Waiting until loadDefaultTables() means they never get loaded

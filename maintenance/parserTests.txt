@@ -6982,6 +6982,28 @@ Fridrih IV je car.
 </p>
 !! end
 
+!! test
+Unclosed language converter markup "-{"
+!! options 
+language=sr
+!! input
+-{T|hello
+!! result
+<p>-{T|hello
+</p>
+!! end
+
+!! test
+Don't convert raw rule "-{R|=&gt;}-" to "=>"
+!! options
+language=sr
+!! input
+-{R|=&gt;}-
+!! result 
+<p>=&gt;
+</p>
+!!end
+
 !!article 
 Template:Bullet
 !!text
