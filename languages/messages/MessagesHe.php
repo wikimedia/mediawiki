@@ -1016,6 +1016,7 @@ $2',
 'post-expand-template-argument-category'  => 'דפים שבהם הושמטו פרמטרים של תבניות',
 'parser-template-loop-warning'            => 'נמצאה תבנית הקוראת לעצמה: [[$1]]',
 'parser-template-recursion-depth-warning' => 'עומק התבניות המוכללות זו בזו עבר את המקסימום האפשרי ($1)',
+'language-converter-depth-warning'        => 'עומק ממיר השפה עבר את המקסימום האפשרי ($1)',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בידקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
@@ -2828,7 +2829,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'markaspatrolleddiff'                 => 'סימון השינוי כבדוק',
 'markaspatrolledtext'                 => 'סימון דף זה כבדוק',
 'markedaspatrolled'                   => 'השינוי סומן כבדוק',
-'markedaspatrolledtext'               => 'השינוי שבחרתם סומן כבדוק.',
+'markedaspatrolledtext'               => 'השינוי שבחרתם בדף [[:$1]] סומן כבדוק.',
 'rcpatroldisabled'                    => 'אפשרות סימון השינויים כבדוקים מבוטלת',
 'rcpatroldisabledtext'                => 'התכונה של סימון שינוי כבדוק בשינויים האחרונים מבוטלת.',
 'markedaspatrollederror'              => 'לא ניתן לסמן כבדוק',
