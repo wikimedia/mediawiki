@@ -2529,7 +2529,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'markaspatrolleddiff'                 => 'Marcio ei bod wedi derbyn ymweliad patrôl',
 'markaspatrolledtext'                 => 'Marcio bod y dudalen wedi derbyn ymweliad patrôl',
 'markedaspatrolled'                   => 'Gosodwyd marc ei bod wedi derbyn ymweliad patrôl',
-'markedaspatrolledtext'               => 'Wedi gosod marc bod y golygiad dewisedig wedi derbyn ymweliad patrôl.',
+'markedaspatrolledtext'               => 'Wedi gosod marc bod y golygiad dewisedig o [[:$1]] wedi derbyn ymweliad patrôl.',
 'rcpatroldisabled'                    => "Patrol y Newidiadau Diweddar wedi'i analluogi",
 'rcpatroldisabledtext'                => 'Analluogwyd y nodwedd Patrol y Newidiadau Diweddar.',
 'markedaspatrollederror'              => 'Ni ellir gosod marc ymweliad patrôl',

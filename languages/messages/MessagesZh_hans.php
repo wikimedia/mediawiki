@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -789,9 +789,7 @@ $2',
 'note'                             => "'''注意：'''",
 'previewnote'                      => "'''请记住这只是预览。'''内容还未保存！",
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => "'''抱歉！由于会话数据丢失，我们不能处理你的编辑。'''
-请重试。
-如果再次失败，请尝试[[Special:UserLogout|登出]]后重新登入。",
+'session_fail_preview'             => "'''抱歉！由于会话数据丢失，我们不能处理你的编辑。'''请重试。如果再次失败，请尝试[[Special:UserLogout|退出]]后重新登录。",
 'session_fail_preview_html'        => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
@@ -879,7 +877,8 @@ $2',
 这些参数会被略过。',
 'post-expand-template-argument-category'  => '包含着略过模板参数的页面',
 'parser-template-loop-warning'            => '检查到模板循环：[[$1]]',
-'parser-template-recursion-depth-warning' => '已超过回归模板深度限制（$1）',
+'parser-template-recursion-depth-warning' => '模板递归深度越限（$1）',
+'language-converter-depth-warning'        => '字词转换器深度越限（$1）',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',
@@ -1546,30 +1545,24 @@ $1",
 'upload-misc-error'         => '未知的上传错误',
 'upload-misc-error-text'    => '在上传时发生未知的错误。请确认您使用了正确并可访问的URL，然后进行重试。如果问题仍然存在，请与[[Special:ListUsers/sysop|管理员]]联系。',
 'upload-too-many-redirects' => '在网址中有太多重新定向',
-'upload-unknown-size'       => '未知的大小',
-'upload-http-error'         => '已发生一个HTTP错误：$1',
+'upload-unknown-size'       => '未知大小',
+'upload-http-error'         => '发生HTTP错误：$1',
 
 # img_auth script messages
 'img-auth-accessdenied' => '拒绝访问',
-'img-auth-nopathinfo'   => 'PATH_INFO遗失。
-您的服务器还没有设置这个资料。
-它可能是以CGI为本，不支持img_auth。
-参阅http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
-'img-auth-notindir'     => '所请求的路径不在已经设置的上载目录。',
-'img-auth-badtitle'     => '不能够由"$1"建立一个有效标题。',
-'img-auth-nologinnWL'   => '您而家并未登入，"$1"不在白名单上。',
-'img-auth-nofile'       => '文件"$1"不存在。',
-'img-auth-isdir'        => '您尝试过访问一个目录"$1"。
-只是可以访问文件。',
-'img-auth-streaming'    => '串流中"$1"。',
-'img-auth-public'       => 'img_auth.php的功能是由一个公共wiki中输出文件。
-这个wiki是已经设置做一个公共wiki。
-基于保安最佳化，img_auth.php已经停用。',
-'img-auth-noread'       => '用户无访问权去读"$1"。',
+'img-auth-nopathinfo'   => 'PATH_INFO遗失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。参见http://www.mediawiki.org/wiki/Manual:Image_Authorization<nowiki></nowiki>。',
+'img-auth-notindir'     => '在已设置的上传目录中找不到请求的路径。',
+'img-auth-badtitle'     => '无法为“$1”创建合法的标题。',
+'img-auth-nologinnWL'   => '您尚未登录，且“$1”不在白名单上。',
+'img-auth-nofile'       => '文件“$1”不存在。',
+'img-auth-isdir'        => '您正试图访问目录“$1”。您只能访问文件。',
+'img-auth-streaming'    => '流式化“$1”中。',
+'img-auth-public'       => 'img_auth.php的功能是从私有wiki输出文件。但本wiki已被设置为公共wiki。出于安全考虑，img_auth.php已被停用。',
+'img-auth-noread'       => '用户无权读取“$1”。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => '无法访问 URL',
-'upload-curl-error6-text'  => '无法访问所提供的 URL。请再次检查该 URL 是否正确，并且网站的访问是否正常。',
+'upload-curl-error6'       => '无法访问URL',
+'upload-curl-error6-text'  => '无法访问所提供的URL。请复查该URL是否正确，及其网站是否在线。',
 'upload-curl-error28'      => '上传超时',
 'upload-curl-error28-text' => '站点响应时间过长。请检查此网站的访问是否正常，过一会再进行尝试。您可能需要在网络访问空闲时间再次进行尝试。',
 
@@ -2662,7 +2655,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'markaspatrolleddiff'                 => '标记为已检查',
 'markaspatrolledtext'                 => '标记此页面为已检查',
 'markedaspatrolled'                   => '标记为已检查',
-'markedaspatrolledtext'               => '选定的版本已被标记为已检查。',
+'markedaspatrolledtext'               => '[[:$1]]选中的编辑版本已被标识为已巡查。',
 'rcpatroldisabled'                    => '最新更改检查被关闭',
 'rcpatroldisabledtext'                => '最新更改检查的功能目前已关闭。',
 'markedaspatrollederror'              => '不能标志为已检查',

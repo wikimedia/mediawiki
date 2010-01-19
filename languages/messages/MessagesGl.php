@@ -2734,7 +2734,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'markaspatrolleddiff'                 => 'Marcar como revisada',
 'markaspatrolledtext'                 => 'Marcar esta páxina como revisada',
 'markedaspatrolled'                   => 'Marcar coma revisado',
-'markedaspatrolledtext'               => 'A revisión seleccionada foi marcada como revisada.',
+'markedaspatrolledtext'               => 'A revisión seleccionada de "[[:$1]]" foi marcada como revisada.',
 'rcpatroldisabled'                    => 'A patrulla dos cambios recentes está desactivada',
 'rcpatroldisabledtext'                => 'A funcionalidade da patrulla dos cambios recentes está actualmente desactivada.',
 'markedaspatrollederror'              => 'Non se pode marcar coma revisada',

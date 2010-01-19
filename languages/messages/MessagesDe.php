@@ -2835,7 +2835,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'markaspatrolleddiff'                 => 'Als kontrolliert markieren',
 'markaspatrolledtext'                 => 'Diese Seite als kontrolliert markieren',
 'markedaspatrolled'                   => 'Als kontrolliert markiert',
-'markedaspatrolledtext'               => 'Die ausgewählte Seitenänderung wurde als kontrolliert markiert.',
+'markedaspatrolledtext'               => 'Die ausgewählte Version von [[:$1]] wurde als kontrolliert markiert.',
 'rcpatroldisabled'                    => 'Kontrolle der letzten Änderungen gesperrt',
 'rcpatroldisabledtext'                => 'Die Kontrolle der letzten Änderungen ist zurzeit gesperrt.',
 'markedaspatrollederror'              => 'Markierung als „kontrolliert“ nicht möglich.',

@@ -488,7 +488,7 @@ $messages = array(
 
 'errorpagetitle'    => 'غلطه',
 'returnto'          => 'ارجع ل $1.',
-'tagline'           => 'من {{SITENAME}}',
+'tagline'           => 'من ويكيبيديا، الموسوعه الحره',
 'help'              => 'مساعده',
 'search'            => 'تدوير',
 'searchbutton'      => 'تدوير',

@@ -794,8 +794,11 @@ Vennligst ta med all denne informasjonen ved henvendelser.",
 'whitelistedittitle'               => 'Du må logge inn for å redigere',
 'whitelistedittext'                => 'Du må $1 for å redigere artikler.',
 'confirmedittext'                  => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
-'nosuchsectiontitle'               => 'Ingen slik seksjon',
-'nosuchsectiontext'                => 'Du prøvde å redigere en seksjon som ikke eksisterer. Siden det ikke finnes noen seksjon «$1», er det ikke mulig å lagre endringen din.',
+'nosuchsectiontitle'               => 'Finner ikke avsnittet',
+'nosuchsectiontext'                => 'Du prøvde å redigere et avsnitt som ikke eksisterer.
+Det kan ha blitt flyttet eller slettet mens du så på siden.
+
+Siden det ikke finnes noe avsnitt $1 er det ikke mulig å lagre endringen din.',
 'loginreqtitle'                    => 'Innlogging kreves',
 'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du må $1 for å se andre sider.',
@@ -860,10 +863,13 @@ så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
 kopiere teksten din til en tekstfil, så du kan lagre den til senere.'''
 
 Systemadministratoren som låste databasen oppga følgende årsak: $1",
-'protectedpagewarning'             => "'''ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.'''",
-'semiprotectedpagewarning'         => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og uregistrerte brukere kan ikke redigere.",
+'protectedpagewarning'             => "'''Advarsel: Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den.'''
+Det siste loggelementet er oppgitt under som referanse:",
+'semiprotectedpagewarning'         => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den.
+Det siste loggelementet er oppgitt under som referanse:",
 'cascadeprotectedwarning'          => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede sider:<!--{{PLURAL:$1}}-->",
-'titleprotectedwarning'            => "'''ADVARSEL: Denne siden har blitt låst slik at kun [[Special:ListGroupRights|visse brukere]] kan opprette den.'''",
+'titleprotectedwarning'            => "'''Advarsel: Denne siden har blitt låst slik at [[Special:ListGroupRights|spesielle rettigheter]] kreves for å opprette den.'''
+Det siste loggelementet er oppgitt under som referanse:",
 'templatesused'                    => '{{PLURAL:$1|Mal|Maler}} som brukes på denne siden:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mal|Maler}} brukt i denne forhåndsvisningen:',
 'templatesusedsection'             => '{{PLURAL:$1|Mal|Maler}} brukt i denne seksjonen:',
@@ -905,6 +911,7 @@ Disse parameterne har blitt utelatt.',
 'post-expand-template-argument-category'  => 'Sider med utelatte malparametere',
 'parser-template-loop-warning'            => 'Mal-loop oppdaget: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Mal er brukt for mange ganger ($1)',
+'language-converter-depth-warning'        => 'Dybdegrense for språkkonvertering overskredet ($1)',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
@@ -2432,8 +2439,10 @@ Målsiden «[[:$1]]» finnes allerede. Vil du slette den så denne siden kan fly
 'imageinvalidfilename'         => 'Målnavnet er ugyldig',
 'fix-double-redirects'         => 'Oppdater omdirigeringer som fører til den gamle tittelen',
 'move-leave-redirect'          => 'La det være igjen en omdirigering',
-'protectedpagemovewarning'     => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan flytte den.",
-'semiprotectedpagemovewarning' => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan flytte den.",
+'protectedpagemovewarning'     => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan flytte den.
+Det siste loggelementet er oppgitt under som referanse:",
+'semiprotectedpagemovewarning' => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan flytte den.
+Det siste loggelementet er oppgitt under som referanse:",
 'move-over-sharedrepo'         => '== Filen finnes ==
 [[:$1]] finnes på en delt kilde. Dersom du flytter en fil til dette navnet, vil du overstyre den delte filen.',
 'file-exists-sharedrepo'       => 'Det valgte filnavnet er allerede i bruk på en delt kilde.
@@ -2685,7 +2694,7 @@ se math/README for oppsett.',
 'markaspatrolleddiff'                 => 'Godkjenn endringen',
 'markaspatrolledtext'                 => 'Godkjenn denne siden',
 'markedaspatrolled'                   => 'Merket som godkjent',
-'markedaspatrolledtext'               => 'Endringen er merket som godkjent.',
+'markedaspatrolledtext'               => 'Den valgte revisjonen av [[:$1]] har blitt markert som patruljert.',
 'rcpatroldisabled'                    => 'Siste endringer-patruljering er slått av',
 'rcpatroldisabledtext'                => 'Siste endringer-patruljeringsfunksjonen er slått av.',
 'markedaspatrollederror'              => 'Kan ikke merke som godkjent',
