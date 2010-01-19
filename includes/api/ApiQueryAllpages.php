@@ -95,10 +95,13 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->addWhere( 'pr_expiry>' . $db->addQuotes( $db->timestamp() ) );
 			$this->addWhereFld( 'pr_type', $params['prtype'] );
 
-			// Remove the empty string and '*' from the prlevel array
-			$prlevel = array_diff( $params['prlevel'], array( '', '*' ) );
-			if ( !empty( $prlevel ) )
-				$this->addWhereFld( 'pr_level', $prlevel );
+			if ( isset ( $params['prlevel'] ) ) {
+				// Remove the empty string and '*' from the prlevel array
+				$prlevel = array_diff( $params['prlevel'], array( '', '*' ) );
+				
+				if ( !empty( $prlevel ) )
+					$this->addWhereFld( 'pr_level', $prlevel );
+			}
 			if ( $params['prfiltercascade'] == 'cascading' )
 				$this->addWhereFld( 'pr_cascade', 1 );
 			else if ( $params['prfiltercascade'] == 'noncascading' )
