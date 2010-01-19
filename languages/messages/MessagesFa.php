@@ -1113,6 +1113,7 @@ $2',
 'post-expand-template-argument-category'  => 'صفحه‌های دارای الگوهایی با پارامترهای نادیده گرفته شده',
 'parser-template-loop-warning'            => 'حلقه در الگو پیدا شد: [[$1]]',
 'parser-template-recursion-depth-warning' => 'محدودیت عمق بازگشت الگو رد شد ($1)',
+'language-converter-depth-warning'        => 'تجاوز از محدودیت عمق مبدل زبانی ($1)',
 
 # "Undo" feature
 'undo-success' => 'این ویرایش را می‌توان خنثی کرد.
@@ -2900,7 +2901,7 @@ $1',
 'markaspatrolleddiff'                 => 'برچسب گشت بزن',
 'markaspatrolledtext'                 => 'به این صفحه برچسب گشت بزن',
 'markedaspatrolled'                   => 'برچسب گشت زده شد',
-'markedaspatrolledtext'               => 'به نسخهٔ مورد نظر برچسب گشت زده شد.',
+'markedaspatrolledtext'               => 'به نسخهٔ انتخاب شده از [[:$1]] برچسب گشت زده شد.',
 'rcpatroldisabled'                    => 'گشت تغییرات اخیر غیر فعال است',
 'rcpatroldisabledtext'                => 'امکان گشت تغییرات اخیر در حال حاضر غیر فعال است.',
 'markedaspatrollederror'              => 'برچسب گشت زده نشد',

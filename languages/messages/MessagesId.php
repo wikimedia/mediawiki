@@ -882,7 +882,7 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 'noarticletext-nopermission'       => 'Saat ini tidak ada teks di halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul ini]] di halaman lain atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait].
 
-Hanya pengguna terdaftar yang telah masuk log yang dapat membuat artikel. Jika Anda ingin membuat artikel dan belum mempunyai akun, silahkan [http://id.wikipedia.org/w/index.php?title=Istimewa:Masuk_log&type=signup&returnto=Halaman_Utama membuat akun baru] sekarang.',
+Hanya pengguna terdaftar yang telah masuk log yang dapat membuat artikel. Jika Anda ingin membuat artikel dan belum mempunyai akun, silakan [http://id.wikipedia.org/w/index.php?title=Istimewa:Masuk_log&type=signup&returnto=Halaman_Utama membuat akun baru] sekarang.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
@@ -2135,7 +2135,7 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:p
 'revertpage'        => '←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]',
 'revertpage-nouser' => 'Pengembalian suntingan oleh (pengguna dihapus) ke suntingan terakhir oleh [[User:$1|$1]]',
 'rollback-success'  => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
-'sessionfailure'    => 'Sepertinya ada masalah dengan sesi log Anda; log Anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "kembali" dan muat kembali halaman sebelum Anda masuk, lalu coba lagi.',
+'sessionfailure'    => 'Sepertinya ada masalah dengan sesi log Anda; log Anda telah dibatalkan untuk mencegah pembajakan. Silakan tekan tombol "kembali" dan muat kembali halaman sebelum Anda masuk, lalu coba lagi.',
 
 # Protect
 'protectlogpage'              => 'Log perlindungan',

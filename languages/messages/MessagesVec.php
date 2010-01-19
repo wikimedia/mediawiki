@@ -2570,7 +2570,7 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'markaspatrolleddiff'                 => 'Segna la modifica come verificà',
 'markaspatrolledtext'                 => 'Segna sta pàxena come verificà',
 'markedaspatrolled'                   => 'Segnà come verificà',
-'markedaspatrolledtext'               => 'La revixion selessionà la xè stà segnà come verificada.',
+'markedaspatrolledtext'               => 'La revixion de [[:$1]] selessionà la xè stà segnà come verificada.',
 'rcpatroldisabled'                    => 'La verifica de le ultime modifiche la xe disativà',
 'rcpatroldisabledtext'                => 'La funzion de verifica de le ultime modifiche al momento no la xe ativa.',
 'markedaspatrollederror'              => 'No se pol contrassegnar ła voçe come verificà',

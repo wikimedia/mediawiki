@@ -740,7 +740,7 @@ Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pel
 'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk.
 Oleh itu kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna.
 Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujukan kepada anda, sila [[Special:UserLogin/signup|buka akaun baru]] atau [[Special:UserLogin|log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
-'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} menggelintar log-log yang berkaitan], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
+'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} menggelintar log-log yang berkaitan], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini]</span>.',
 'noarticletext-nopermission'       => 'Tiada teks dalam laman ini ketika ini.
 Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} menggelintar log yang berkaitan]</span>.',

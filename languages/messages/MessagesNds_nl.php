@@ -873,7 +873,10 @@ Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 'whitelistedittext'                => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
 'confirmedittext'                  => "Je mutten je posadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
 'nosuchsectiontitle'               => 'Disse sectie besteet neet',
-'nosuchsectiontext'                => 'Je preberen een sectie te bewarken dat neet besteet. Umdat der gien sectie $1 is, is der gien plaos um joew bewarking op te slaon.',
+'nosuchsectiontext'                => "Je preberen een sectie te bewarken dat neet besteet. 
+'t Kan ween dat 't herneumd is of dat 't vort-edaon is to jie 't an 't bekieken wanen.
+
+Umdat der gien sectie $1 is, is der gien plaos um joew bewarking op te slaon.",
 'loginreqtitle'                    => 'Anmelden verplich',
 'loginreqlink'                     => 'Anmelden',
 'loginreqpagetext'                 => 'Je mutten $1 um disse pagina te bekieken.',
@@ -943,10 +946,13 @@ Deur op \"Pagina opslaon\" te klikken beleuf je ons da-j disse tekse zelf eschre
 Je kunnen de tekse 't beste op de computer opslaon en laoter opniej preberen de pagina te bewarken.'''
 
 As grund is angeven: $1",
-'protectedpagewarning'             => "'''Waorschuwing! Disse pagina is beveilig zodat allinnig beheerders 't kunnen wiezigen.'''",
-'semiprotectedpagewarning'         => "'''Let op:''' disse pagina ku-j allinnig bewarken a-j tenminsen vier dagen in-eschreven staon.",
+'protectedpagewarning'             => "'''Waorschuwing: disse pagina is beveilig zodat allinnig beheerders 't kunnen wiezigen.'''
+De leste logboekregel steet hieronder:",
+'semiprotectedpagewarning'         => "'''Let op:''' disse pagina is beveilig en ku-j allinnig bewarken a-j een eregistreren gebruker bin.
+De leste logboekregel steet hieronder:",
 'cascadeprotectedwarning'          => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|cascade-beveiligen pagina|cascade-beveiligen pagina's}}:",
-'titleprotectedwarning'            => "'''Waorschuwing: disse pagina is beveilig. Je hemmen [[Special:ListGroupRights|bepaolde rechen]] neudig um 't an te kunnen maken.'''",
+'titleprotectedwarning'            => "'''Waorschuwing: disse pagina is beveilig. Je hemmen [[Special:ListGroupRights|bepaolde rechen]] neudig um 't an te kunnen maken.'''
+De leste logboekregel steet hieronder:",
 'templatesused'                    => '{{PLURAL:$1|Mal|Mallen}} dee op disse pagina gebruuk wönnen:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mal|Mallen}} dee in disse bewarking gebruuk wönnen:',
 'templatesusedsection'             => '{{PLURAL:$1|Mal|Mallen}} dee in dit subkopjen gebruuk wönnen:',
@@ -1051,6 +1057,7 @@ As beheerder van disse wiki ku-j 't wel zien; as der meer infermasie is, ku-j da
 As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokken versies].",
 'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies '''vort-edaon''' is.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
+'rev-suppressed-no-diff'      => "Je kunnen de verschillen neet bekieken umdat één van de versies '''vort-edaon''' is.",
 'rev-deleted-unhide-diff'     => "Eén van de bewarkingen in disse vergeliekingen is '''vort-edaon'''.
 As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
@@ -2517,8 +2524,9 @@ De overige pagina's wonnen neet autematisch herneumd.",
 'imageinvalidfilename'         => 'De nieje bestaansnaam is ongeldig',
 'fix-double-redirects'         => 'Alle deurverwiezingen dee naor de ouwe titel verwiezen, herneumen naor de nieje titel',
 'move-leave-redirect'          => 'Een deurverwiezing achterlaoten',
-'protectedpagemovewarning'     => "'''Waorschuwing:''' Disse pagina kan allinnig deur beheerders herneumd wonnen.",
-'semiprotectedpagemovewarning' => "'''Waorschuwing:''' Disse pagina kan allinnig deur eregistreren gebrukers herneumd wonnen.",
+'protectedpagemovewarning'     => "'''Waorschuwing:''' disse pagina kan allinnig deur beheerders herneumd wönnen.",
+'semiprotectedpagemovewarning' => "'''Waorschuwing:''' disse pagina kan allinnig deur eregistreren gebrukers herneumd wönnen.
+De leste logboekregel steet hieronder:",
 'move-over-sharedrepo'         => "== 't Bestaand besteet al ==
 [[:$1]] besteet al in de edelen mediadatabanke. A-j een bestaand naor disse titel herneumen, dan ku-j  't edelen bestaand neet gebruken.",
 'file-exists-sharedrepo'       => 'Disse bestaansnaam besteet al in de edelen mediadatabanke.
@@ -2753,7 +2761,7 @@ Meestentieds kump dit deur een uutgaonde verwiezing dee op de zwarte lieste stee
 'markaspatrolleddiff'                 => 'Markeer as econtreleerd',
 'markaspatrolledtext'                 => 'Disse pagina is emarkeerd as econtreleerd',
 'markedaspatrolled'                   => 'Emarkeerd as econtreleerd',
-'markedaspatrolledtext'               => 'De ekeuzen versie is emarkeerd as econtreleerd.',
+'markedaspatrolledtext'               => 'De ekeuzen versie van [[:$1]] is emarkeerd as econtreleerd.',
 'rcpatroldisabled'                    => 'De controlemeugelijkheid op leste wiezigingen is uut-eschakeld.',
 'rcpatroldisabledtext'                => 'De meugelijkheid um de leste wiezigingen as econtreleerd te markeren is op hejen uut-eschakeld.',
 'markedaspatrollederror'              => 'De bewarking kon neet of-evink wönnen.',

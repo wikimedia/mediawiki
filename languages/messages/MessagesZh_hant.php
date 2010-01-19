@@ -878,6 +878,7 @@ $2',
 'post-expand-template-argument-category'  => '包含着略過模板參數的頁面',
 'parser-template-loop-warning'            => '已偵測迴歸模板: [[$1]]',
 'parser-template-recursion-depth-warning' => '已超過迴歸模板深度限制 （$1）',
+'language-converter-depth-warning'        => '字詞轉換器深度越限（$1）',
 
 # "Undo" feature
 'undo-success' => '該編輯可以被撤銷。請檢查以下對比以核實這正是您想做的，然後儲存以下更改以完成撤銷編輯。',

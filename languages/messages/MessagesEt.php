@@ -845,7 +845,10 @@ Sinu praegune IP-aadress on $3 ja blokeeringu number #$5. Lisa need andmed kõig
 'confirmedittext'                  => 'Lehekülgi ei saa toimetada enne e-posti aadressi kinnitamist.
 Palun määra ja kinnita e-posti aadress [[Special:Preferences|eelistuste leheküljel]].',
 'nosuchsectiontitle'               => 'Sellist alaosa pole',
-'nosuchsectiontext'                => 'Sa üritasid redigeerida alaosa, mida ei ole. Kuna alaosa $1 pole, ei saa redaktsiooni salvestada.',
+'nosuchsectiontext'                => 'Üritasid redigeerida alaosa, mida pole.
+Võimalik, et see teisaldati või kustutati, sellal kui lehekülge vaatasid.
+
+Kuna alaosa $1 pole, ei saa redaktsiooni salvestada.',
 'loginreqtitle'                    => 'Vajalik on sisselogimine',
 'loginreqlink'                     => 'sisse logima',
 'loginreqpagetext'                 => 'Lehekülgede vaatamiseks peate $1.',
@@ -915,10 +918,13 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 'readonlywarning'                  => "'''HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti hilisemaks kasutamiseks alles hoida tekstifailina.'''
 
 Administraator, kes andmebaasi lukustas, andis järgmise selgituse: $1",
-'protectedpagewarning'             => "'''HOIATUS: See lehekülg on lukustatud, nii et seda saavad redigeerida ainult administraatori õigustega kasutajad.'''",
-'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud nii, et üksnes registreeritud kasutajad saavad seda muuta.",
+'protectedpagewarning'             => "'''Hoiatus: See lehekülg on lukustatud nii et ainult administraatori õigustega kasutajad saavad seda redigeerida.'''
+Allpool on toodud uusim logisissekanne:",
+'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud nii et üksnes registreeritud kasutajad saavad seda muuta.
+Allpool on toodud uusim logisissekanne:",
 'cascadeprotectedwarning'          => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult ülema õigustega kasutajad saavad seda redigeerida, sest lehekülg on osa {{PLURAL:$1|järgmisest|järgmisest}} kaskaadkaitsega {{PLURAL:$1|leheküljest|lehekülgedest}}:",
-'titleprotectedwarning'            => "'''Hoiatus: See lehekülg on nii lukustatud, et selle loomiseks on tarvis [[Special:ListGroupRights|eriõigusi]].'''",
+'titleprotectedwarning'            => "'''Hoiatus: See lehekülg on nii lukustatud, et selle loomiseks on tarvis [[Special:ListGroupRights|eriõigusi]].'''
+Allpool on toodud uusim logisissekanne:",
 'templatesused'                    => 'Sellel leheküljel on kasutusel {{PLURAL:$1|järgnev mall|järgnevad mallid}}:',
 'templatesusedpreview'             => 'Eelvaates {{PLURAL:$1|kasutatav mall|kasutatavad mallid}}:',
 'templatesusedsection'             => 'Selles alaosas {{PLURAL:$1|kasutatav mall|kasutatavad mallid}}:',
@@ -2499,8 +2505,10 @@ Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'imageinvalidfilename'         => 'Sihtmärgi nimi on vigane',
 'fix-double-redirects'         => 'Värskenda kõik siia viitavad ümbersuunamislehed uuele pealkirjale',
 'move-leave-redirect'          => 'Jäta maha ümbersuunamisleht',
-'protectedpagemovewarning'     => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult ülemaeelistega kasutajad saavad seda teisaldada.",
-'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud sel viisil, et ainult registreeritud kasutajad saavad seda teisaldada.",
+'protectedpagemovewarning'     => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult administraatori õigustega kasutajad saavad seda teisaldada.
+Allpool on toodud uusim logisissekanne:",
+'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud nii et ainult registreeritud kasutajad saavad seda teisaldada.
+Allpool on toodud uusim logisissekanne:",
 'move-over-sharedrepo'         => '== Fail on olemas ==
 [[:$1]] on olemas jagatud failivaramus. Faili teisaldamisel selle nime alla varjatakse jagatud failivarmus olev samanimeline fail.',
 'file-exists-sharedrepo'       => 'Valitud failinimi on juba kasutusel jagatud failivaramus.
@@ -2733,7 +2741,7 @@ kontrollige oma ''latex'', ''dvips'', ''gs'', ''convert'' installatsioonide korr
 'markaspatrolleddiff'                 => 'Märgi kui kontrollitud',
 'markaspatrolledtext'                 => 'Märgi see leht kontrollituks',
 'markedaspatrolled'                   => 'Kontrollituks märgitud',
-'markedaspatrolledtext'               => 'Valitud redaktsioon on märgitud kontrollituks.',
+'markedaspatrolledtext'               => 'Valitud redaktsioon leheküljel [[:$1]] on kontrollituks märgitud.',
 'rcpatroldisabled'                    => 'Viimaste muudatuste kontroll ei toimi',
 'rcpatroldisabledtext'                => 'Viimaste muudatuste kontrolli tunnus ei toimi hetkel.',
 'markedaspatrollederror'              => 'Ei saa kontrollituks märkida',
