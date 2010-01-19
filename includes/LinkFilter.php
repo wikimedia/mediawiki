@@ -3,7 +3,7 @@
 /**
  * Some functions to help implement an external link filter for spam control.
  * 
- * TODO: implement the filter. Currently these are just some functions to help
+ * @todo implement the filter. Currently these are just some functions to help
  * maintenance/cleanupSpam.php remove links to a single specified domain. The
  * next thing is to implement functions for checking a given page against a big
  * list of domains.
@@ -11,8 +11,13 @@
  * Another cool thing to do would be a web interface for fast spam removal.
  */
 class LinkFilter {
+
 	/**
-	 * @static
+	 * Check whether $text contains a link to $filterEntry
+	 *
+	 * @param $text String: text to check
+	 * @param $filterEntry String: domainparts, see makeRegex() for more details
+	 * @return Integer: 0 if no match or 1 if there's at least one match
 	 */
 	static function matchEntry( $text, $filterEntry ) {
 		$regex = LinkFilter::makeRegex( $filterEntry );
@@ -20,7 +25,11 @@ class LinkFilter {
 	}
 
 	/**
-	 * @static
+	 * Builds a regex pattern for $filterEntry.
+	 *
+	 * @param $filterEntry String: URL, if it begins with "*.", it'll be
+	 *        replaced to match any subdomain
+	 * @return String: regex pattern, for preg_match()
 	 */
 	private static function makeRegex( $filterEntry ) {
 		$regex = '!http://';
@@ -46,9 +55,9 @@ class LinkFilter {
 	 *
 	 * Asterisks in any other location are considered invalid.
 	 * 
-	 * @static
 	 * @param $filterEntry String: domainparts
 	 * @param $prot        String: protocol
+	 * @return String
 	 * @deprecated Use makeLikeArray() and pass result to Database::buildLike() instead
 	 */
 	 public static function makeLike( $filterEntry , $prot = 'http://' ) {
@@ -69,8 +78,8 @@ class LinkFilter {
 	}
 
 	/**
-	 * Make an array to be used for calls to Database::buildLike(), which will match the specified
-	 * string. There are several kinds of filter entry:
+	 * Make an array to be used for calls to DatabaseBase::buildLike(), which
+	 * will match the specified string. There are several kinds of filter entry:
 	 *     *.domain.com    -  Produces http://com.domain.%, matches domain.com
 	 *                        and www.domain.com
 	 *     domain.com      -  Produces http://com.domain./%, matches domain.com
@@ -81,10 +90,10 @@ class LinkFilter {
 	 *                        domain.com/xy but not www.domain.com/xy
 	 *
 	 * Asterisks in any other location are considered invalid.
-	 * 
-	 * @static
+	 *
 	 * @param $filterEntry String: domainparts
 	 * @param $prot        String: protocol
+	 * @return Array to be passed to DatabaseBase::buildLike() or false on error
 	 */
 	 public static function makeLikeArray( $filterEntry , $prot = 'http://' ) {
 		$db = wfGetDB( DB_MASTER );
@@ -145,7 +154,7 @@ class LinkFilter {
 
 	/**
 	 * Filters an array returned by makeLikeArray(), removing everything past first pattern placeholder.
-	 * @static
+	 *
 	 * @param $arr array: array to filter
 	 * @return filtered array
 	 */
