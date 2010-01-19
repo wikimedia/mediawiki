@@ -3341,7 +3341,7 @@ class Parser
 							throw new MWException( "Tag hook for $name is not callable\n" );
 						}
 						$output = call_user_func_array( $this->mTagHooks[$name],
-							array( $content, $attributes, $this, $frame ) );
+							array( $content, $attributes, &$this, $frame ) );
 					} elseif( isset( $this->mFunctionTagHooks[$name] ) ) {
 						list( $callback, $flags ) = $this->mFunctionTagHooks[$name];
 						if( !is_callable( $callback ) )
