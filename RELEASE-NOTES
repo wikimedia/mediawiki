@@ -723,6 +723,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22096) IE50Fixes.css and IE55Fixes.css have been dropped from the Monobook 
   and Chick skins
 * Fixed bug involving unclosed "-{" markup in the language converter
+* (bug 21870) No longer include Google logo from an external server on wiki error.
 
 == API changes in 1.16 ==
 
