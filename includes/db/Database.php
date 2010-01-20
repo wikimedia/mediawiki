@@ -2636,8 +2636,6 @@ class DBConnectionError extends DBError {
     <input type="hidden" name="ie" value="$wgInputEncoding" />
     <input type="hidden" name="oe" value="$wgInputEncoding" />
 
-    <img src="http://www.google.com/logos/Logo_40wht.gif" alt="" style="float:left; margin-left: 1.5em; margin-right: 1.5em;" />
-
     <input type="text" name="q" size="31" maxlength="255" value="$search" />
     <input type="submit" name="btnG" value="$googlesearch" />
   <div>
