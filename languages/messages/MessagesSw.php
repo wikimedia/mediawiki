@@ -705,8 +705,7 @@ Tafadhali jumlisha maelezo yote ya juu kwenye kila ulizo utakalolifanya.',
 'confirmedittext'                  => 'Lazima uthibitishe anwani ya barua pepe yako kabla ya kuhariri kurasa.
 Tafadhali thibitisha anwani ya barua pepe yako kupitia [[Special:Preferences|mapendekezo yako ya mtumiaji]].',
 'nosuchsectiontitle'               => 'Fungu hili hamna',
-'nosuchsectiontext'                => 'Umejaribu kuhariri sehemu ambayo haipo.
-Kwa vile hakuna hiyo sehemu $1, hakuna mahali pa kuhifadhia ulichohariri.',
+'nosuchsectiontext'                => 'Umejaribu kuhariri sehemu ambayo haipo.',
 'loginreqtitle'                    => 'Unatakiwa kuingia au kujisajili',
 'loginreqlink'                     => 'uingie',
 'loginreqpagetext'                 => 'Inabidi $1 ili uweze kutazama kurasa zingine.',

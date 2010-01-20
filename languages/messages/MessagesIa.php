@@ -728,9 +728,8 @@ Per favor include tote le detalios supra specificate in omne correspondentia.',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
 Per favor defini e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].',
 'nosuchsectiontitle'               => 'Section non trovate',
-'nosuchsectiontext'                => 'Tu ha tentate modificar un section que non existe. Illo pote haber essite displaciate o delite durante que tu legeva le pagina.
-
-Post que il non existe un section $1, il non ha un loco pro publicar tu modification.',
+'nosuchsectiontext'                => 'Tu ha tentate modificar un section que non existe.
+Illo pote haber essite displaciate o delite durante que tu legeva le pagina.',
 'loginreqtitle'                    => 'Identification requirite',
 'loginreqlink'                     => 'aperir un session',
 'loginreqpagetext'                 => 'Tu debe $1 pro poter vider altere paginas.',
@@ -864,6 +863,7 @@ Iste parametros ha essite omittite.',
 'post-expand-template-argument-category'  => 'Paginas que omitte alcun parametros de patrono',
 'parser-template-loop-warning'            => 'Recursion infinite detegite in patrono: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de recursion del patrono excedite ($1)',
+'language-converter-depth-warning'        => 'Limite de profunditate del conversor de lingua excedite ($1)',
 
 # "Undo" feature
 'undo-success' => 'Le modification pote esser annullate.
@@ -2727,7 +2727,7 @@ per favor vide math/README pro configurar lo.",
 'markaspatrolleddiff'                 => 'Marcar como patruliate',
 'markaspatrolledtext'                 => 'Marcar iste pagina como patruliate',
 'markedaspatrolled'                   => 'Marcate como patruliate',
-'markedaspatrolledtext'               => 'Le version seligite ha essite marcate como patruliate.',
+'markedaspatrolledtext'               => 'Le version seligite de [[:$1]] ha essite marcate como patruliate.',
 'rcpatroldisabled'                    => 'Patrulia de modificationes recente disactivate',
 'rcpatroldisabledtext'                => 'Le functionalitate de patrulia de modificationes recente es disactivate al momento.',
 'markedaspatrollederror'              => 'Impossibile marcar como patruliate',

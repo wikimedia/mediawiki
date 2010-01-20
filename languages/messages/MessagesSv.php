@@ -869,9 +869,8 @@ Vänligen ange informationen ovan i alla förfrågningar som du gör i ärendet.
 'whitelistedittext'                => 'Du måste $1 för att kunna redigera sidor.',
 'confirmedittext'                  => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
 'nosuchsectiontitle'               => 'Kan inte hitta avsnitt',
-'nosuchsectiontext'                => 'Du försökte redigera ett avsnitt som inte finns. Det kan ha flyttats eller raderats medan du tittade på sidan.
-
-Eftersom avsnitt $1 inte finns, så kan inte din redigering sparas.',
+'nosuchsectiontext'                => 'Du försökte redigera ett avsnitt som inte finns.
+Det kan ha flyttats eller raderats medan du tittade på sidan.',
 'loginreqtitle'                    => 'Inloggning krävs',
 'loginreqlink'                     => 'logga in',
 'loginreqpagetext'                 => 'Du måste $1 för att visa andra sidor.',
@@ -945,10 +944,13 @@ vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är st
 Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.'''
 
 Administratören som låste databasen gav följande förklaring: $1",
-'protectedpagewarning'             => "'''VARNING: Den här sidan är låst så att bara administratörer kan redigera den.'''",
-'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har skrivskyddats så att endast registrerade användare kan redigera den.",
+'protectedpagewarning'             => "'''Varning: Den här sidan har låsts så att bara användare med administratörsrättigheter kan redigera den.'''
+Den senaste loggposten tillhandahålls nedan som referens:",
+'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har låsts så att endast registrerade användare kan redigera den.
+Den senaste loggposten tillhandahålls nedan som referens:",
 'cascadeprotectedwarning'          => "'''Varning:''' Den här sidan är låst så att bara användare med administratörsrättigheter kan redigera den, eftersom den är inkluderad på följande {{PLURAL:$1|sida|sidor}} som skyddats med kaskaderande skrivskydd:",
-'titleprotectedwarning'            => "'''VARNING: Den här sidan har skyddats så att [[Special:ListGroupRights|specifika rättigheter]] krävs för att skapa den.'''",
+'titleprotectedwarning'            => "'''Varning: Denna sida har låsts så att [[Special:ListGroupRights|specifika rättigheter]] krävs för att skapa den.'''
+Den senaste loggposten tillhandahålls nedan som referens:",
 'templatesused'                    => '{{PLURAL:$1|Mall|Mallar}} som används på den här sidan:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mall|Mallar}} som används i denna förhandsgranskning:',
 'templatesusedsection'             => '{{PLURAL:$1|Mall|Mallar}} som används i det här avsnittet:',
@@ -994,6 +996,7 @@ Dessa parametrar har uteslutits.',
 'post-expand-template-argument-category'  => 'Sidor med uteslutna mallparametrar',
 'parser-template-loop-warning'            => 'Mall-loop upptäckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Gräns för mallrekursionsdjup överskriden ($1)',
+'language-converter-depth-warning'        => 'Gräns för språkkonverteringsdjup överskriden ($1)',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan göras ogjord.
@@ -2547,8 +2550,10 @@ Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den 
 'imageinvalidfilename'         => 'Önskat filnamn är ogiltigt',
 'fix-double-redirects'         => 'Uppdatera omdirigeringar som leder till den gamla titeln',
 'move-leave-redirect'          => 'Lämna kvar en omdirigering',
-'protectedpagemovewarning'     => "'''VARNING:''' Den här sidan har låsts så att endast användare med administratörsrättigheter kan flytta den.",
-'semiprotectedpagemovewarning' => "'''Not:''' Den här sidan har låsts så att endast registrerade användare kan flytta den.",
+'protectedpagemovewarning'     => "'''Varning:''' Den här sidan har låsts så att endast användare med administratörsrättigheter kan flytta den.
+Den senaste loggposten tillhandahålls nedan som referens:",
+'semiprotectedpagemovewarning' => "'''Observera:''' Denna sida har låsts så att endast registrerade användare kan flytta den.
+Den senaste loggposten tillhandahålls nedan som referens:",
 'move-over-sharedrepo'         => '== Filen existerar ==
 [[:$1]] existerar på en delad källa. Om du flyttar en fil till detta namn kommer den delad filen bli överskriven.',
 'file-exists-sharedrepo'       => 'Detta filnamn existerar redan på en delad källa.
@@ -2809,7 +2814,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'markaspatrolleddiff'                 => 'Märk som patrullerad',
 'markaspatrolledtext'                 => 'Märk den här sidan som patrullerad',
 'markedaspatrolled'                   => 'Markerad som patrullerad',
-'markedaspatrolledtext'               => 'Den valda versionen har märkts som patrullerad.',
+'markedaspatrolledtext'               => 'Den valda versionen av [[:$1]] har märkts som patrullerad.',
 'rcpatroldisabled'                    => 'Patrullering av Senaste ändringar är avstängd.',
 'rcpatroldisabledtext'                => 'Funktionen "patrullering av Senaste ändringar" är tillfälligt avstängd.',
 'markedaspatrollederror'              => 'Kan inte markera som patrullerad',

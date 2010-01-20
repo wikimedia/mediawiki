@@ -612,7 +612,7 @@ Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
 'confirmedittext'                  => 'Sahypa redaktirlemäp başlamankaňyz e-poçta adresiňizi tassyklamalysyňyz. 
 [[Special:Preferences|Ulanyjy ileri tutmalaryňyza]] e-poçta adresiňizi ýazyp tassyklamagyňyzy haýyş edýäris.',
 'nosuchsectiontitle'               => 'Beýle bölüm ýok',
-'nosuchsectiontext'                => 'Siz ýok bölümi redaktirlejek bolduňyz. $1 atly bölüm bolmansoň, özgerdişiňizi ýazdyrara ýer ýok.',
+'nosuchsectiontext'                => 'Siz ýok bölümi redaktirlejek bolduňyz.',
 'loginreqtitle'                    => 'Sessiýa açmagyňyz zerur',
 'loginreqlink'                     => 'sessiýa açyň',
 'loginreqpagetext'                 => 'Başga sahypalary görmek üçin $1.',

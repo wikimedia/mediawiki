@@ -533,7 +533,7 @@ Vermeld dat a je erhens over deêze blokkaode wil reaheern.",
 'confirmedittext'            => "Je mò jen e-mailadres bevestihen voe da je kan bewerken.
 Voer jen e-mailadres in en bevestig 't via [[Special:Preferences|je vòkeuren]].",
 'nosuchsectiontitle'         => 'Deêze subkop besti nie',
-'nosuchsectiontext'          => 'Je probeern een subkop te bewerken die a nie besti. Omda subkop $1 nie besti, kan je bewerkieng ok nie worn opeslogen.',
+'nosuchsectiontext'          => 'Je probeern een subkop te bewerken die a nie besti.',
 'loginreqtitle'              => 'Anmelden verplicht',
 'loginreqlink'               => 'anmelden',
 'loginreqpagetext'           => "$1 is verplicht om aore pagina's te kunn'n ziene.",

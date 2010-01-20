@@ -827,7 +827,7 @@ Xin hãy ghi kèm tất cả các chi tiết trên vào thư yêu cầu của b�
 'whitelistedittext'                => 'Bạn phải $1 để sửa trang.',
 'confirmedittext'                  => 'Bạn cần phải xác nhận địa chỉ thư điện tử trước khi được sửa đổi trang. Xin hãy đặt và xác nhận địa chỉ thư điện tử của bạn dùng trang [[Special:Preferences|tùy chọn]].',
 'nosuchsectiontitle'               => 'Không có mục nào như vậy',
-'nosuchsectiontext'                => 'Bạn vừa sửa đổi một mục chưa tồn tại.  Vì không có mục nào mang tên $1, không thể lưu sửa đổi của bạn vào đó.',
+'nosuchsectiontext'                => 'Bạn vừa sửa đổi một mục chưa tồn tại.',
 'loginreqtitle'                    => 'Cần đăng nhập',
 'loginreqlink'                     => 'đăng nhập',
 'loginreqpagetext'                 => 'Bạn phải $1 mới có quyền xem các trang khác.',

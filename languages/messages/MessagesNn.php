@@ -821,9 +821,7 @@ Ver venleg og opplyse dette ved eventuelle førespurnader.",
 'confirmedittext'                  => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
 'nosuchsectiontitle'               => 'Kan ikkje finna bolk',
 'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst. 
-Han kan ha vorten flytta eller sletta medan du såg på sida.
-
-Sidan bolken $1 ikkje finst i teksten, er det ingen stad å lagre endringa di.',
+Han kan ha vorten flytta eller sletta medan du såg på sida.',
 'loginreqtitle'                    => 'Innlogging trengst',
 'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du lyt $1 for å lesa andre sider.',

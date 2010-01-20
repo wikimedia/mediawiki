@@ -815,7 +815,7 @@ Por favor incluye todos los datos aquí mostrados en cualquier consulta que haga
 'whitelistedittext'                => 'Tienes que $1 para editar artículos.',
 'confirmedittext'                  => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'               => 'No existe tal sección',
-'nosuchsectiontext'                => 'Has intentado editar una sección que no existe. Como no hay sección $1, no hay ningún lugar donde guardar tu edición.',
+'nosuchsectiontext'                => 'Has intentado editar una sección que no existe.',
 'loginreqtitle'                    => 'Se requiere identificación',
 'loginreqlink'                     => 'identificarte',
 'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',

@@ -620,8 +620,7 @@ Pe piacere mitte tutte le dettaglie ca ponne essere utile pe le richieste tue.",
 'confirmedittext'                  => "Tu a confermà l'indirizze e-mail tue apprime de cangià le pàggene.
 Pe piacere mitte e validesce l'indirizze e-mail tue ausanne le [[Special:Preferences|preferenze de l'utende]].",
 'nosuchsectiontitle'               => 'Non ge stonne seziune',
-'nosuchsectiontext'                => "Tu stè prueve a cangià 'na sezione ca non g'esiste.
-Ce non ge stè 'a seziona $1, quiste non g'è 'u poste addò a reggistrà le cangiaminde tue.",
+'nosuchsectiontext'                => "Tu stè prueve a cangià 'na sezione ca non g'esiste.",
 'loginreqtitle'                    => "T'a collegà pe forze",
 'loginreqlink'                     => 'trase',
 'loginreqpagetext'                 => 'Tu a $1 pe vedè otre pàggene.',

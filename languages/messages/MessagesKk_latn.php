@@ -880,8 +880,7 @@ Bul nömirdi ärbir suranımıñızdarğa kiristiriñiz.",
 'confirmedittext'                  => 'Betterdi öñdew üşin aldın ala E-poşta mekenjaýıñızdı quptawıñız jön.
 E-poşta mekenjaýıñızdı [[{{#special:Preferences}}|paýdalanwşılıq baptalımdarıñız]] arqılı qoýıñız da jaramdılığın tekserip şığıñız.',
 'nosuchsectiontitle'               => 'Osındaý eş bölim joq',
-'nosuchsectiontext'                => 'Joq bölimdi öñdewdi talap etipsiz.
-Mında $1 degen bölim joq eken, öñdemeñizdi saqtaw üşin orın joq.',
+'nosuchsectiontext'                => 'Joq bölimdi öñdewdi talap etipsiz.',
 'loginreqtitle'                    => 'Kirwiñiz kerek',
 'loginreqlink'                     => 'kirw',
 'loginreqpagetext'                 => 'Basqa betterdi körw üşin siz $1 bolwıñız jön.',

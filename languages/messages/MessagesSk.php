@@ -854,9 +854,8 @@ Prosím, uveďte tieto podrobnosti v akýchkoľvek otázkach, ktoré sa opýtate
 'whitelistedittext'                => 'Aby ste mohli upravovať stránky, musíte sa $1',
 'confirmedittext'                  => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
 'nosuchsectiontitle'               => 'Sekcia nebola nájdená',
-'nosuchsectiontext'                => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje. Možno bola presunutá alebo zmazaná odkedy ste si stránku zobrazili.
-
-Keďže sekcia $1 neexistuje, nie je kam uložiť vašu úpravu.',
+'nosuchsectiontext'                => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje.
+Možno bola presunutá alebo zmazaná odkedy ste si stránku zobrazili.',
 'loginreqtitle'                    => 'Je potrebné prihlásiť sa',
 'loginreqlink'                     => 'prihlásiť',
 'loginreqpagetext'                 => 'Aby ste mohli prezerať ďalšie stránky, musíte sa $1.',
@@ -985,6 +984,7 @@ Tieto argumenty boli vynechané.',
 'post-expand-template-argument-category'  => 'Stránky obsahujúce vynechané argumenty šablón',
 'parser-template-loop-warning'            => 'Zistená slučka v šablónach: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Bol prekročený limit rekurzie šablón ($1)',
+'language-converter-depth-warning'        => 'Bolo prekročené obmedzenie hĺbky ($1) jazykového konvertora',
 
 # "Undo" feature
 'undo-success' => 'Úpravu nie je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
@@ -2802,7 +2802,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'markaspatrolleddiff'                 => 'Označiť ako stráženú',
 'markaspatrolledtext'                 => 'Označiť túto stránku ako stráženú',
 'markedaspatrolled'                   => 'Označené ako strážené',
-'markedaspatrolledtext'               => 'Vybraná verzia bola označená na stráženie.',
+'markedaspatrolledtext'               => 'Vybraná verzia [[:$1]] bola označená ako strážená.',
 'rcpatroldisabled'                    => 'Stráženie posledných zmien bolo vypnuté',
 'rcpatroldisabledtext'                => 'Funkcia stráženia posledných zmien je momentálne vypnutá.',
 'markedaspatrollederror'              => 'Nie je možné označiť ako strážené',

@@ -580,8 +580,7 @@ Madli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin
 'confirmedittext'                  => 'Redigīsna ast mazīngi tēr pa e-mailas padrūktinsnan.
 Padāis e-mail adressi be padrūktinais din en swajāmans [[Special:Preferences|tērpautajas pirminiskwans]].',
 'nosuchsectiontitle'               => 'Ni ast stawīda sekciōni',
-'nosuchsectiontext'                => 'Tū bandāi redigītun sekciōnin, kawīda ni ekzistijja.
-Beggi nisātaui sekciōni $1, ni mazīngi enpeisātun Twajjan redigīsenin.',
+'nosuchsectiontext'                => 'Tū bandāi redigītun sekciōnin, kawīda ni ekzistijja.',
 'loginreqtitle'                    => 'Enēisenis izkīnintan',
 'loginreqlink'                     => 'enēitwei',
 'loginreqpagetext'                 => 'Tū turri $1, kāi widālai kittans pāusans.',

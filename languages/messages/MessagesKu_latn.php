@@ -521,7 +521,7 @@ Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercih�
 'whitelistedittext'                => 'Ji bo guherandina rûpelan, $1 pêwîst e.',
 'confirmedittext'                  => 'Tu gireke adrêsa e-nameya xwe nasbikê berî tu rûpelan diguherînê. Xêra xwe adrêsa e-nameya ya xwe di [[Special:Preferences|tercihên xwe]] da binivisîne û nasbike.',
 'nosuchsectiontitle'               => 'Beşekî wisa tune ye',
-'nosuchsectiontext'                => 'Te dixast beşekê biguherînê yê tune ye. Ji ber ku beşa $1 tune ye, guherandinên te jî nikanin werin tomarkirin.',
+'nosuchsectiontext'                => 'Te dixast beşekê biguherînê yê tune ye.',
 'loginreqtitle'                    => 'Têketin pêwîst e',
 'loginreqlink'                     => 'têkevê',
 'loginreqpagetext'                 => 'Tu gireke $1 ji bo dîtina rûpelên din.',

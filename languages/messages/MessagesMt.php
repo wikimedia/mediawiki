@@ -832,8 +832,7 @@ Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
 'confirmedittext'                  => "Jinħtieġ li tikkonferma l-indirizz tal-e-mail tiegħek sabiex tkun tista' timmodifika l-paġni.
 Jekk jogħġbok, issettja u kkonferma l-indirizz tal-e-mail tiegħek mill-[[Special:Preferences|preferenzi tal-utent]].",
 'nosuchsectiontitle'               => 'L-Ebda sezzjoni',
-'nosuchsectiontext'                => 'Provajt timodifika sezzjoni li ma teżistix.
-Minħabba li $1 ma teżistix, il-modifiki tiegħek ma ġewx salvati.',
+'nosuchsectiontext'                => 'Provajt timodifika sezzjoni li ma teżistix.',
 'loginreqtitle'                    => "Sabiex tagħmel modifiki f'din il-paġna huwa neċessarju li tidħol bħalha utent reġistrat fuq dan is-sit.",
 'loginreqlink'                     => 'li tidħol fil-kont tiegħek',
 'loginreqpagetext'                 => "Int trid ikollhok $1 sabiex tkun tista' tara paġni oħrajn.",

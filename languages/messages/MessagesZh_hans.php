@@ -755,9 +755,7 @@ $2',
 'confirmedittext'                  => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
 'nosuchsectiontitle'               => '没有这个段落',
 'nosuchsectiontext'                => '您尝试编辑的章节并不存在。
-可能是在您查看页面时已经移动或删除。
-
-因为这里并没有$1章节，所以没有一个地方保存您的编辑。',
+可能是在您查看页面时已经移动或删除。',
 'loginreqtitle'                    => '需要登录',
 'loginreqlink'                     => '登录',
 'loginreqpagetext'                 => '您必须$1才能查看其它页面。',

@@ -750,9 +750,7 @@ $2',
 'confirmedittext'                  => '在編輯此頁之前您必須確認您的郵箱位址。請透過[[Special:Preferences|參數設定]]設定並驗証您的郵箱位址。',
 'nosuchsectiontitle'               => '沒有這個段落',
 'nosuchsectiontext'                => '您嘗試編輯的章節並不存在。
-可能在您查看頁面時已經移動或刪除。
-
-因為這裡並沒有$1章節，所以沒有一個地方保存您的編輯。',
+可能在您查看頁面時已經移動或刪除。',
 'loginreqtitle'                    => '需要登入',
 'loginreqlink'                     => '登入',
 'loginreqpagetext'                 => '您必須$1才能檢視其它頁面。',

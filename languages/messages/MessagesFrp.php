@@ -897,9 +897,7 @@ Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
 Volyéd buchiér et pués validar voutra adrèce èlèctronica dens voutres [[Special:Preferences|prèferences]].',
 'nosuchsectiontitle'               => 'Empossiblo de trovar la sèccion',
 'nosuchsectiontext'                => 'Vos éd tâchiê de changiér una sèccion qu’ègziste pas.
-El at pôt-étre étâ dèplaciê ou ben suprimâ dês que vos éd liesu cela pâge.  
-
-Puésqu’y at gins de sèccion $1, y at gins d’endrêt yô que sôvar voutros changements.',
+El at pôt-étre étâ dèplaciê ou ben suprimâ dês que vos éd liesu cela pâge.',
 'loginreqtitle'                    => 'Branchement nècèssèro',
 'loginreqlink'                     => 'branchiér',
 'loginreqpagetext'                 => 'Vos vos dête $1 por vêre les ôtres pâges.',

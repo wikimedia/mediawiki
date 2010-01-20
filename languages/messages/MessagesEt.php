@@ -846,9 +846,7 @@ Sinu praegune IP-aadress on $3 ja blokeeringu number #$5. Lisa need andmed kõig
 Palun määra ja kinnita e-posti aadress [[Special:Preferences|eelistuste leheküljel]].',
 'nosuchsectiontitle'               => 'Sellist alaosa pole',
 'nosuchsectiontext'                => 'Üritasid redigeerida alaosa, mida pole.
-Võimalik, et see teisaldati või kustutati, sellal kui lehekülge vaatasid.
-
-Kuna alaosa $1 pole, ei saa redaktsiooni salvestada.',
+Võimalik, et see teisaldati või kustutati, sellal kui lehekülge vaatasid.',
 'loginreqtitle'                    => 'Vajalik on sisselogimine',
 'loginreqlink'                     => 'sisse logima',
 'loginreqpagetext'                 => 'Lehekülgede vaatamiseks peate $1.',

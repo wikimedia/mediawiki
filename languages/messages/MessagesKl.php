@@ -251,7 +251,7 @@ IP adressit nuisassaaq massuma quppernerup oqaluttuassartaani.",
 'accmailtitle'             => 'Password-i nassiunneqarsimavoq.',
 'accmailtext'              => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
 'newarticle'               => '(Nuutaq)',
-'newarticletext'           => "Maanga innersuunneqarsimavutit quppermut suli pilersinneqarsimanngitsumut.
+'newarticletext'           => "Maanga innersuunneqarsimavutit quppernermut suli pilersinneqarsimanngitsumut.
 Qupperneq pilersissagukku, boks-ip iluani allagit (takuuk [[{{MediaWiki:Helppage}}|ikiuutit]] paasissutissaanerusut).
 Maanngarsimaguit kukkusumik, toortaat '''utimut''' tooruk.",
 'anontalkpagetext'         => "---- ''Manna tassaavoq oqalliffik atuisumit anonym-iusumeersumit, konto-mik pilersitsisimanngitsumik imalt. atorneq ajugaanik.

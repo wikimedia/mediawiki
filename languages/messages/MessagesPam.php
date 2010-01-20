@@ -537,8 +537,7 @@ Pakibanggit me iting ID neng atin kang pamangutang.',
 'confirmedittext'                  => "Kailangan meng kumpirman ing kekang e-mail address bayo mo a-edit deting bulung.
 Pakisulat me at patutuan ing kekang e-mail address kapamilata'ning [[Special:Preferences|pinili ning talagamit]] (user preferences).",
 'nosuchsectiontitle'               => 'Alang makanian a dake (seksiyon)',
-'nosuchsectiontext'                => 'Sibukan mung mag-edit king seksiyon a yala naman. 
-Uling alang seksiyon a $1, alang lugal a pirinan ketang kekang in-edit.',
+'nosuchsectiontext'                => 'Sibukan mung mag-edit king seksiyon a yala naman.',
 'loginreqtitle'                    => 'Kailangang Mag-login',
 'loginreqlink'                     => 'mag-login',
 'loginreqpagetext'                 => 'Kailangan mung $1 ba mong akit deng aliwang bulung.',

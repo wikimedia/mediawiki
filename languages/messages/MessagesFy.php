@@ -691,7 +691,7 @@ Jo tsjintwurdich e-postadres is $3 en it útsletnûmer is #$5. Neam beide gegeve
 'whitelistedittext'                => 'Jo moatte $1 om siden te bewurkjen.',
 'confirmedittext'                  => "Jo moatte jo e-mailadres befêstichje foar't jo siden feroarje kinne. Fier in e-mailedres yn by jo [[Special:Preferences|ynstellings]] en befêstichje it.",
 'nosuchsectiontitle'               => 'Dizze subkop bestiet net',
-'nosuchsectiontext'                => "Jo besochten in subkop te bewurkjen dy't net bestiet. Om't subkop $1 net bestiet, kin jo bewurking ek net opslein wurde.",
+'nosuchsectiontext'                => "Jo besochten in subkop te bewurkjen dy't net bestiet.",
 'loginreqtitle'                    => 'Oanmelding frege',
 'loginreqlink'                     => 'Oanmelde',
 'loginreqpagetext'                 => 'Jo moatte jo $1 om oare siden besjen te kinnen.',

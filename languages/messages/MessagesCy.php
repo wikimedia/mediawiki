@@ -681,9 +681,7 @@ Eich cyfeiriad IP presennol yw $3. Cyfeirnod y bloc yw $5. Nodwch y manylion hyn
 Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyddiwr]] ac yna'i gadarnhau, os gwelwch yn dda.",
 'nosuchsectiontitle'               => "Heb ddod o hyd i'r adran",
 'nosuchsectiontext'                => "Rydych wedi ceisio golygu adran nad ydy'n bod. 
-Efallai bod yr adran wedi cael ei symud neu ei dileu ers i chi agor y dudalen.
-
-Gan nad oes adran o'r enw $1, ni ellir rhoi eich golygiad ar gadw.",
+Efallai bod yr adran wedi cael ei symud neu ei dileu ers i chi agor y dudalen.",
 'loginreqtitle'                    => 'Mae angen mewngofnodi',
 'loginreqlink'                     => 'mewngofnodi',
 'loginreqpagetext'                 => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
@@ -858,6 +856,9 @@ Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 'rev-deleted-user-contribs'   => '[tynnwyd enw defnyddiwr neu gyfeiriad IP - cuddiwyd y golygiad ar y rhestr cyfraniadau]',
 'rev-deleted-text-permission' => "'''Dilewyd''' y diwygiad hon o'r dudalen.
 Hwyrach bod manylion pellach ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
+'rev-deleted-text-unhide'     => "Cafodd y diwygiad hwn o'r dudalen ei '''ddileu'''.
+Gweler cofnod y dileu ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].
+Gan eich bod yn weinyddwr gallwch [$1 weld y diwygiad] os y mynnwch.",
 'rev-deleted-text-view'       => "'''Dilewyd''' y diwygiad hwn o'r dudalen.
 Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-delundel'                => 'dangos/cuddio',

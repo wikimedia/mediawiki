@@ -533,7 +533,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'whitelistedittext'                => 'ገጾችን ለማዘጋጀት $1 አስቀድሞ ያስፈልግዎታል።',
 'confirmedittext'                  => 'ገጽ ማዘጋጀት ሳይችሉ፣ አስቀድመው የኢ-ሜል አድራሻዎን ማረጋገጥ አለብዎት። እባክዎ፣ በ[[Special:Preferences|ምርጫዎችዎ]] በኩል ኢ-ሜል አድራሻዎን ያረጋግጡ።',
 'nosuchsectiontitle'               => 'የማይኖር ክፍል',
-'nosuchsectiontext'                => 'የማይኖር ክፍል ለማዘጋጀት ሞክረዋል። ክፍሉ $1 ስለማይኖር፣ ለውጥዎን ለማስቀመጥ ምንም ሥፍራ የለም።',
+'nosuchsectiontext'                => 'የማይኖር ክፍል ለማዘጋጀት ሞክረዋል።',
 'loginreqtitle'                    => 'መግባት ያስፈልጋል።',
 'loginreqlink'                     => 'መግባት',
 'loginreqpagetext'                 => 'ሌሎች ገጾች ለመመልከት $1 ያስፈልግዎታል።',

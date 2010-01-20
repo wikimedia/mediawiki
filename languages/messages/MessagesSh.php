@@ -569,8 +569,7 @@ Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
 'confirmedittext'                  => 'Morate potvrditi Vašu e-mail adresu prije nego počnete mijenjati stranice.
 Molimo da postavite i verifikujete Vašu e-mail adresu putem Vaših [[Special:Preferences|korisničkih opcija]].',
 'nosuchsectiontitle'               => 'Nema takve sekcije',
-'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.
-Pošto sekcija $1 ne postoji, nije moguće spremiti Vaše promjene.',
+'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.',
 'loginreqtitle'                    => 'Potrebno je prijavljivanje',
 'loginreqlink'                     => 'prijavi se',
 'loginreqpagetext'                 => 'Morate $1 da bi ste vidjeli druge stranice.',

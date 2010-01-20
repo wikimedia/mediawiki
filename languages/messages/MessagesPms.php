@@ -616,10 +616,8 @@ Për piasì, ch'a buta sempe tùit ij detaj an tute le comunicassion andova ch'a
 'whitelistedittext'                => 'A venta $1 për podèj fé dle modìfiche.',
 'confirmedittext'                  => 'A dev confermé soa adrëssa ëd pòsta eletrònica, anans che modifiché dle pàgine. Për piasì, che a convàlida soa adrëssa ën dovrand la pàgina [[Special:Preferences|mè gust]].',
 'nosuchsectiontitle'               => 'As peul pa trovesse la session',
-'nosuchsectiontext'                => "A l'ha provasse a modifiché na session ch'a-i é pa. 
-A peul essa stàita tramudà o scancelà an mente ch'a vëdìa la pàgina.
-
-Ën essend che la session $1 a-i é pa, a-i é pa gnanca andova ch'as peula salvesse soa modìfica.",
+'nosuchsectiontext'                => "A l'ha provasse a modifiché na session ch'a-i é pa.
+A peul essa stàita tramudà o scancelà an mente ch'a vëdìa la pàgina.",
 'loginreqtitle'                    => 'a venta rintré ant ël sistema',
 'loginreqlink'                     => 'rintré ant ël sistema',
 'loginreqpagetext'                 => "Che a pòrta passiensa, ma a dev $1 për podèj vëdde dj'àutre pàgine.",
@@ -919,9 +917,9 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'mergehistory-no-source'           => 'La pàgina sorgiss $1 a-i é pa.',
 'mergehistory-no-destination'      => 'La pàgina ëd destinassion $1 a-i é pa.',
 'mergehistory-invalid-source'      => "La pàgina sorgiss a l'ha d'avèj un tìtol bon.",
-'mergehistory-invalid-destination' => "La pàgina ëd destinassion a l'ha d'avej un tìtol bon.",
-'mergehistory-autocomment'         => 'Butà [[:$1]] an drinta a [[:$2]]',
-'mergehistory-comment'             => 'Butà [[:$1]] an drinta a [[:$2]]: $3',
+'mergehistory-invalid-destination' => "La pàgina ëd destinassion a l'ha d'avèj un tìtol bon.",
+'mergehistory-autocomment'         => 'Butà [[:$1]] andrinta a [[:$2]]',
+'mergehistory-comment'             => 'Butà [[:$1]] andrinta a [[:$2]]: $3',
 'mergehistory-same-destination'    => "La pagina ëd partensa e cola d'ariv a peulo nen esse le mideme",
 'mergehistory-reason'              => 'Rason:',
 

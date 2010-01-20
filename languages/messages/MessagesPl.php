@@ -813,8 +813,7 @@ Prosimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 'confirmedittext'                  => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e‐mail.
 Podaj adres e‐mail i potwierdź go w swoich [[Special:Preferences|ustawieniach użytkownika]].',
 'nosuchsectiontitle'               => 'Sekcja nie istnieje',
-'nosuchsectiontext'                => '{{GENDER:|Próbowałeś|Próbowałaś}} edytować sekcję, która nie istnieje.
-Ponieważ brak sekcji $1, nie jest możliwe zapisanie Twojej edycji.',
+'nosuchsectiontext'                => '{{GENDER:|Próbowałeś|Próbowałaś}} edytować sekcję, która nie istnieje.',
 'loginreqtitle'                    => 'musisz się zalogować',
 'loginreqlink'                     => 'zalogować się',
 'loginreqpagetext'                 => 'Musisz $1, żeby móc przeglądać inne strony.',

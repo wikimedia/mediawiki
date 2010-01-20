@@ -593,8 +593,7 @@ IP numre şıma yo nıkayın $3 u ID şıma yo ke musade nêdaye #$5. Eke şıma
 'confirmedittext'                  => 'Eka ti wazene binusi, adresê xo e-maili confirme bike.
 Adresê xo e-maili [[Special:Preferences|user preferences]] de confirme bike.',
 'nosuchsectiontitle'               => 'Ena qisim çini yo',
-'nosuchsectiontext'                => 'Ti wazeno ena qisim bivurni, feqat ey çini yo.
-Ma ayra nieşkene nuşteyê tu $1 qeyd bike.',
+'nosuchsectiontext'                => 'Ti wazeno ena qisim bivurni, feqat ey çini yo.',
 'loginreqtitle'                    => 'Cikewtiş lazim o',
 'loginreqlink'                     => 'Cıkewe',
 'loginreqpagetext'                 => 'Eka ti wazeno peleyanê bini bivini, ti gani $1.',

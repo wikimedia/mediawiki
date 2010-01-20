@@ -557,7 +557,7 @@ $3 es la tu direción IP atual, i el ID del tarugu es #$5. Pol favol, escrebi da
 'whitelistedittext'                => 'Tiinis que $1 pa eital páhinas.',
 'confirmedittext'                  => 'Ebis confirmal la tu direción d´email enantis d´eital páhinas. Pol favol, escrebi i compreba el tu email pol meyu las tus [[Special:Preferences|preferéncias d´usuáriu]].',
 'nosuchsectiontitle'               => 'Nu esa seción',
-'nosuchsectiontext'                => 'Estás tratandu d´eital una seción que nu desisti.  Puestu que la seción $1 nu desisti, nu ai dengún lugal ondi emburacal la tu eición.',
+'nosuchsectiontext'                => 'Estás tratandu d´eital una seción que nu desisti.',
 'loginreqtitle'                    => 'Es mestel rustrilsi',
 'loginreqlink'                     => 'entral',
 'loginreqpagetext'                 => 'Ebis $1 pa vel otras páhinas.',

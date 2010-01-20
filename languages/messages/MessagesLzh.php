@@ -595,9 +595,7 @@ $2',
 'confirmedittext'                  => '驛證方可纂文。惠見[[Special:Preferences|簿註]]。',
 'nosuchsectiontitle'               => '無尋節',
 'nosuchsectiontext'                => '爾纂之節無存也。
-機以察時遷或刪之。
-
-無節$1矣，無處容纂也。',
+機以察時遷或刪之。',
 'loginreqtitle'                    => '須登簿',
 'loginreqlink'                     => '登簿',
 'loginreqpagetext'                 => '$1以覽它頁。',

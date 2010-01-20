@@ -717,9 +717,8 @@ Zapśimjejśo pšosym wše górjejce pomjenjowane drobnosći do wšych napšašo
 'whitelistedittext'                => 'Musyš se $1, aby mógał boki wobźěłowaś.',
 'confirmedittext'                  => 'Nježli až móžoš źěłaš, musyš swóju e-mailowu adresu wobkšuśiś. Pšosym dodaj a wobkšuś swóju e-mailowu adresu w [[Special:Preferences|nastajenjach]].',
 'nosuchsectiontitle'               => 'Wótrězk njedajo se namakaś',
-'nosuchsectiontext'                => 'Sy wopytał wótrězk wobźěłaś, kótaryž njeeksistěrujo. Jo se snaź pśesunuł abo wulašował, mjaztym až woglědujoš se bok.
-
-Dokulaž njejo wótrězk $1, njejo žedne městno, źož se twója změna składujo.',
+'nosuchsectiontext'                => 'Sy wopytał wótrězk wobźěłaś, kótaryž njeeksistěrujo.
+Jo se snaź pśesunuł abo wulašował, mjaztym až woglědujoš se bok.',
 'loginreqtitle'                    => 'Pśizjawjenje trěbne',
 'loginreqlink'                     => 'se pśizjawiś',
 'loginreqpagetext'                 => 'Dejš $1, aby mógł boki pšawje cytaś.',
@@ -830,6 +829,7 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 'post-expand-template-argument-category'  => 'Boki, kótarež wuwóstajone pśedłogowe argumenty wopśimuju',
 'parser-template-loop-warning'            => 'Pśedłogowa šlejfa namakana: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit rekursijneje dłymi pśedłogi pśekšocony ($1)',
+'language-converter-depth-warning'        => 'Limit dłymokosći rěcnego konwertera pśekšocony ($1)',
 
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',
@@ -2588,7 +2588,7 @@ W zespominanju dajo se pśicyna pódaś.',
 'markaspatrolleddiff'                 => 'Ako kontrolěrowane markěrowaś',
 'markaspatrolledtext'                 => 'Markěruj toś ten bok ako kontrolěrowany',
 'markedaspatrolled'                   => 'jo se ako kontrolěrowany markěrował',
-'markedaspatrolledtext'               => 'Wuzwólona wersija jo se markěrowała ako kontrolěrowana.',
+'markedaspatrolledtext'               => 'Wubrana wersija [[:$1]] jo se markěrowała ako kontrolěrowana.',
 'rcpatroldisabled'                    => 'Kontrolěrowanje slědnych změnow jo se znjemóžniło.',
 'rcpatroldisabledtext'                => 'Kontrolěrowanje slědnych změnow jo tuchylu se znjemóžniło.',
 'markedaspatrollederror'              => 'Markěrowanje ako "kontrolěrowane" njejo móžne.',
