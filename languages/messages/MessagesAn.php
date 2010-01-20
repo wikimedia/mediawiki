@@ -648,7 +648,7 @@ A suya adreza IP autual ye \$3, y o identificador de bloqueyo ye #\$5. Por fabor
 'whitelistedittext'                => 'Ha de $1 ta poder editar pachinas.',
 'confirmedittext'                  => "Ha de confirmar a suya adreza de correu-e antis de poder editar pachinas. Por fabor, establa y confirme una adreza de correu-e a trabiés d'as suyas [[Special:Preferences|preferenzias d'usuario]].",
 'nosuchsectiontitle'               => 'No esiste ixa sezión',
-'nosuchsectiontext'                => "Has prebato d'editar una sezión que no existe. Como no bi ha sezión $1, as suyas edizions no se pueden alzar en garra puesto.",
+'nosuchsectiontext'                => "Has prebato d'editar una sezión que no existe.",
 'loginreqtitle'                    => 'Cal que enzete una sesión',
 'loginreqlink'                     => 'enzetar una sesión',
 'loginreqpagetext'                 => 'Ha de $1 ta beyer atras pachinas.',

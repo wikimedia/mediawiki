@@ -849,7 +849,7 @@ Vă rugăm să includeţi detaliile de mai sus în orice interogări pe care le 
 'whitelistedittext'                => 'Trebuie să $1 pentru a edita articole.',
 'confirmedittext'                  => 'Trebuie să vă confirmaţi adresa de e-mail înainte de a edita pagini. Vă rugăm să vă setaţi şi să vă validaţi adresa de e-mail cu ajutorul [[Special:Preferences|preferinţelor utilizatorului]].',
 'nosuchsectiontitle'               => 'Nu există o astfel de secţiune',
-'nosuchsectiontext'                => 'Aţi încercat să modificaţi o secţiune care nu există. Deoarece nu există secţiunea $1, modificarea nu va fi salvată.',
+'nosuchsectiontext'                => 'Aţi încercat să modificaţi o secţiune care nu există.',
 'loginreqtitle'                    => 'Necesită autentificare',
 'loginreqlink'                     => 'autentifici',
 'loginreqpagetext'                 => 'Trebuie să te $1 pentru a vizualiza alte pagini.',

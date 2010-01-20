@@ -681,8 +681,7 @@ Pakisama ang lahat ng mga detalyeng nasa itaas sa anumang pagtatanong na gagawin
 'confirmedittext'                  => 'Kailangang kumpirmahin mo muna ang adres ng iyong e-liham bago makapagbago ng mga pahina.
 Pakihanda at patotohanan ang adres ng e-liham sa pamamagitan ng iyong [[Special:Preferences|kagustuhan ng tagagamit]].',
 'nosuchsectiontitle'               => 'Walang ganyang seksyon',
-'nosuchsectiontext'                => 'Sinubok mong baguhin ang isang seksyong hindi umiiral.
-Dahil walang seksyong $1, walang pook na mapagsasagipan ng iyong pagbabago.',
+'nosuchsectiontext'                => 'Sinubok mong baguhin ang isang seksyong hindi umiiral.',
 'loginreqtitle'                    => 'Paglagda/Pagtala Kailangan',
 'loginreqlink'                     => 'lumagda/tumala',
 'loginreqpagetext'                 => 'Kailangan mong $1 para matanaw ang ibang mga pahina.',

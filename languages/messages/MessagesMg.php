@@ -718,8 +718,7 @@ Soraty ireo fanoroana ireo anatin'ny fangatahana ataonao.",
 'confirmedittext'                  => "Tsy maintsy Checke-na ny adiresy imailakao aloha no manova pejy.
 Ampidiro sy Checkeo ny adiresy imailakao amin'ny [[special:preferences|safidinao]].",
 'nosuchsectiontitle'               => 'Ts ampy fitapahana',
-'nosuchsectiontext'                => 'Nanandrana nanova fizaràna tsy misy ianao.
-Rehefa tsy misy fizaràna $1, tsy misy toerana hitahiry ny fanovànao.',
+'nosuchsectiontext'                => 'Nanandrana nanova fizaràna tsy misy ianao.',
 'loginreqtitle'                    => 'Mila fidirana',
 'loginreqlink'                     => 'hiditra',
 'loginreqpagetext'                 => 'Tokony $1 ianao raha te hijery pejy hafa.',

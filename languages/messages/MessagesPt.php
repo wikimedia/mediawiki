@@ -873,9 +873,7 @@ Por favor, inclua todos os detalhes acima em quaisquer contactos relacionados co
 Por favor, introduza e valide o endereço através das [[Special:Preferences|preferências de utilizador]].',
 'nosuchsectiontitle'               => 'Não foi possível encontrar a secção',
 'nosuchsectiontext'                => 'Tentou editar uma secção que não existe.
-Ela pode ter sido movida ou removida enquanto estava a ver a página.
-
-Já que não existe uma secção $1, não há nenhum local onde a sua edição possa ser gravada.',
+Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Precisa de $1 para poder visualizar outras páginas.',

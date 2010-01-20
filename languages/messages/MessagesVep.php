@@ -634,7 +634,7 @@ Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
 'confirmedittext'                  => 'Tarbiž vahvištoitta e-počtan adres, miše redaktiruida lehtpolid.
 Olgat hüväd, kirjutagat da vahvištoitkat teiden e-počtan adres [[Special:Preferences|järgendusiden lehtpolel]].',
 'nosuchsectiontitle'               => 'Ei ole mugošt jagust',
-'nosuchsectiontext'                => 'Tö ladit redaktiruida olmatont lehtpolen jagust. Sikš ku $1-jagust ei ole, ei voi kirjutada sidä muštho.',
+'nosuchsectiontext'                => 'Tö ladit redaktiruida olmatont lehtpolen jagust.',
 'loginreqtitle'                    => 'Pidab kirjutadas sistemha',
 'loginreqlink'                     => 'kirjutagatoiš sistemha',
 'loginreqpagetext'                 => 'Teile pidab $1, miše lugeda toižid lehtpolid.',

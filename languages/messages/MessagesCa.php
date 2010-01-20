@@ -751,7 +751,7 @@ El número d'identificació de la vostra adreça IP és $3, i l'ID del bloqueig 
 'whitelistedittext'                => 'Heu de $1 per modificar pàgines.',
 'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder modificar les pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
 'nosuchsectiontitle'               => 'No hi ha cap secció',
-'nosuchsectiontext'                => 'Esteu intentant modificar una secció que no existeix. Com que no hi ha la secció $1, no es poden desar les vostres modificacions.',
+'nosuchsectiontext'                => 'Esteu intentant modificar una secció que no existeix.',
 'loginreqtitle'                    => 'Cal que inicieu una sessió',
 'loginreqlink'                     => 'inicia una sessió',
 'loginreqpagetext'                 => 'Heu de ser $1 per a visualitzar altres pàgines.',

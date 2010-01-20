@@ -708,9 +708,8 @@ Se prega de specificar el to indirizo IP atuale ($3) e el nùmaro del bloco (ID 
 'whitelistedittext'                => 'Par modificar łe pàxene ghe xè bisogno de $1.',
 'confirmedittext'                  => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'Sezion mia catà',
-'nosuchsectiontext'                => 'Te ghè sercà de modificar na sezion che no esiste. Forse la xe stà spostà o scancelà fin che te sèri drio vardar la pagina.
-
-Sicome che la sezion $1 no la esiste, no ghe xe quindi nissun posto in dove salvar le to modifiche.',
+'nosuchsectiontext'                => 'Te ghè sercà de modificar na sezion che no esiste.
+Forse la xe stà spostà o scancelà fin che te sèri drio vardar la pagina.',
 'loginreqtitle'                    => "Par modificar sta pagina bisogna prima eseguir l'acesso al sito.",
 'loginreqlink'                     => 'login',
 'loginreqpagetext'                 => 'Par védar altre pagine bisogna $1.',

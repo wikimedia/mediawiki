@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Abdul Kadir
  * @author Girmitya
  * @author Malafaya
  * @author Thakurji
@@ -598,8 +599,7 @@ Meharbani kar ke chahe ek nai to duno ke aapan sawaal me rakho.",
 Meharbani kar ke aap aapan e-mail ke aapan [[Special:Preferences|user preferences]] se validate karna.',
 'nosuchsectiontitle'               => 'Aisan koi bhaag nai hai',
 'nosuchsectiontext'                => 'Aap ek bhaag jon ki nai hai, ke badle ke kosis karaa hai.
-Jab aap ii panna ke dekhtaa rahaa tab saait iske hatae nai to mitae dewa gais rahaa.
-Jab ki koi section $1 nai hai, tab aap ke badlao ke bachae ke koi jagah nai hai.',
+Jab aap ii panna ke dekhtaa rahaa tab saait iske hatae nai to mitae dewa gais rahaa.',
 'loginreqtitle'                    => 'Login Jaruri Hai',
 'loginreqlink'                     => 'log in karo',
 'loginreqpagetext'                 => 'Duusra panna ke dekhe ke khatir aap ke $1 kare ke parri.',
@@ -733,6 +733,7 @@ Ii sab arguments ke omit kar dewa gais hai.',
 'post-expand-template-argument-category'  => 'Panna jisme omitted template arguments hai',
 'parser-template-loop-warning'            => 'Template loop ke pawa gais hai: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Template recursion depth limit se jaada hoe gais hae ($1)',
+'language-converter-depth-warning'        => 'Bhasa anuwaad ke gahiraai ijajat se jaada hoe gais hae ($1)',
 
 # "Undo" feature
 'undo-success' => 'Ii badlao ke pahile jaise karaa jaae sake hai.
@@ -2633,16 +2634,33 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-stripbytecounts'             => 'Ek compressed strip pe ketna byte',
 'exif-jpeginterchangeformat'       => 'JPEG SOI se ketna offset',
 'exif-jpeginterchangeformatlength' => 'Ketna JPEG data, bytes me',
+'exif-transferfunction'            => 'Duusre ke hawaale kare waala function',
+'exif-whitepoint'                  => 'Ujjar point ke quality',
+'exif-primarychromaticities'       => 'Primary rang ke quality',
+'exif-ycbcrcoefficients'           => 'Rang space transformation matrix coefficients',
+'exif-referenceblackwhite'         => 'Ek jorraa karia aur ujjar reference values',
 'exif-datetime'                    => 'Suchi ke badle waala tarik aur samay',
 'exif-imagedescription'            => 'Chapa ke padwi',
 'exif-make'                        => 'Camera ke banae waala',
 'exif-model'                       => 'Camera ke model',
 'exif-software'                    => 'Software jiske kaam me lawa gais hae',
 'exif-artist'                      => 'Likhe waala',
+'exif-copyright'                   => 'Copyright ke adhikar rakkhae waala',
+'exif-exifversion'                 => 'Exif ke version',
+'exif-flashpixversion'             => 'Flashpix version jiske support karaa jaawe hae',
 'exif-colorspace'                  => 'Rang ke jagha',
+'exif-componentsconfiguration'     => 'Har ek component ke matlab',
+'exif-compressedbitsperpixel'      => 'Chapa ke compression mode',
 'exif-pixelydimension'             => 'Chapa ke thik chaurrai',
 'exif-pixelxdimension'             => 'Chapa ke thik uunchai',
+'exif-makernote'                   => 'Manufacturer se jaankari',
 'exif-usercomment'                 => 'Sadasysa ke bichar',
+'exif-relatedsoundfile'            => 'Saathe waala awaaj waala file',
+'exif-datetimeoriginal'            => 'Data generation ke tarik aur time',
+'exif-datetimedigitized'           => 'Digitizing ke tarik aur time',
+'exif-subsectime'                  => 'Tarik aur time subseconds me',
+'exif-subsectimeoriginal'          => 'Pahila tarik aur time subseconds me',
+'exif-subsectimedigitized'         => 'Digitized tarik aur time subseconds me',
 'exif-shutterspeedvalue'           => 'Shutter ke raftaar',
 'exif-aperturevalue'               => 'Aperture',
 'exif-focallength'                 => 'Lens ke focal length',

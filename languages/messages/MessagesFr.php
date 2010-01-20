@@ -914,9 +914,8 @@ Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'confirmedittext'                  => 'Vous devez confirmer votre adresse de courriel avant de modifier les pages.
 Veuillez entrer et valider votre adresse de courriel dans vos [[Special:Preferences|préférences utilisateur]].',
 'nosuchsectiontitle'               => 'Impossible de trouver la section',
-'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas. Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette page. 
-
-Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où publier vos modifications.',
+'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas.
+Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette page.',
 'loginreqtitle'                    => 'Connexion nécessaire',
 'loginreqlink'                     => 'connecter',
 'loginreqpagetext'                 => 'Vous devez vous $1 pour voir les autres pages.',
@@ -1035,6 +1034,7 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maint
 'post-expand-template-argument-category'  => 'Pages contenant des paramètres de modèle non évalués',
 'parser-template-loop-warning'            => 'Modèle en boucle détecté : [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de profondeur des appels de modèles dépassée ($1)',
+'language-converter-depth-warning'        => 'Limite de profondeur du convertisseur de langue dépassée ($1)',
 
 # "Undo" feature
 'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',

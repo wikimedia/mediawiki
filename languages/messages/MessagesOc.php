@@ -866,9 +866,8 @@ Precisatz aquestas indicacions dins totas las requèstas que faretz.',
 'whitelistedittext'                => 'Vos cal èsser $1 per modificar las paginas.',
 'confirmedittext'                  => "Vos cal confirmar vòstra adreça electronica abans de modificar l'enciclopèdia. Picatz e validatz vòstra adreça electronica amb l'ajuda de la pagina [[Special:Preferences|preferéncias]].",
 'nosuchsectiontitle'               => 'Impossible de trobar la seccion',
-'nosuchsectiontext'                => "Avètz ensajat de modificar una seccion qu’existís pas. Benlèu qu'es estada desplaçada o suprimida dempuèi qu'avètz legida aquesta pagina. 
-
-Coma i pas de seccion $1, i a pas d’endrech ont publicar vòstras modificacions.",
+'nosuchsectiontext'                => "Avètz ensajat de modificar una seccion qu’existís pas.
+Benlèu qu'es estada desplaçada o suprimida dempuèi qu'avètz legida aquesta pagina.",
 'loginreqtitle'                    => 'Connexion necessària',
 'loginreqlink'                     => 'connectar',
 'loginreqpagetext'                 => 'Vos cal vos $1 per veire las autras paginas.',

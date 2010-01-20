@@ -647,7 +647,7 @@ Ladet-IP olik binon $3, e nüm blokama at binon #$5. Mäniotolös nünis löpik 
 'whitelistedittext'                => 'Mutol $1 ad redakön padis.',
 'confirmedittext'                  => 'Mutol fümedön ladeti leäktronik ola büä okanol redakön padis. Pladölos e lonöfükölos ladeti olik in [[Special:Preferences|buükams olik]].',
 'nosuchsectiontitle'               => 'Diläd at no dabinon',
-'nosuchsectiontext'                => 'Esteifülol ad redakön dilädi no dabinöli. Bi diläd: $1 no dabinon, redakam onik no kanon padakipön.',
+'nosuchsectiontext'                => 'Esteifülol ad redakön dilädi no dabinöli.',
 'loginreqtitle'                    => 'Nunädam Paflagon',
 'loginreqlink'                     => 'ninädolös obi',
 'loginreqpagetext'                 => 'Mutol $1 ad logön padis votik.',

@@ -542,9 +542,7 @@ Tarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
 'whitelistedittext'                => 'Serba vurnaene $1.',
 'nosuchsectiontitle'               => 'Qısım nêşikiya bıvêniyo',
 'nosuchsectiontext'                => 'To waşt ke jü qısım kuyê, uyo ke çino.
-Sırewo ke to qaytê pele kerdêne, beno ke no kırışiyo ya ki esteriyo.
-
-Hata ke werte de qısımê $1i çino, ca çino ke tı rastkerdena ho qeyd kerê.',
+Sırewo ke to qaytê pele kerdêne, beno ke no kırışiyo ya ki esteriyo.',
 'loginreqtitle'                    => 'Gunê cı kuyê',
 'loginreqlink'                     => 'cı kuye',
 'loginreqpagetext'                 => 'Serba diyaena pelunê binu tı gunê $1 bıbê.',

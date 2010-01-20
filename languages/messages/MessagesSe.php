@@ -377,7 +377,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'whitelistedittext'        => 'Don fertet $1, ovdalgo sáhtat rievdadit siidduid.',
 'confirmedittext'          => 'It sáhte rievdadit siiddu ovdalgo leat sihkarastan iežat e-poastačujuhusa. Sáhtat sihkarastit [[Special:Preferences|ásahussiidduin]].',
 'nosuchsectiontitle'       => 'Diekkár oassi ii dihtto',
-'nosuchsectiontext'        => 'Isket rievdadit oasi, mii ii dihtto. Daningo oassi $1 ii dihtto, rievdadusa ii sáhte vurket.',
+'nosuchsectiontext'        => 'Isket rievdadit oasi, mii ii dihtto.',
 'loginreqtitle'            => 'Sisačállin gáibiduvvo',
 'loginreqlink'             => 'čálligoahtit sisa',
 'loginreqpagetext'         => 'Don fertet $1, ovdalgo oainnat eará siidduid.',

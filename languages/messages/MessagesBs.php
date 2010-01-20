@@ -853,9 +853,7 @@ Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
 Molimo da postavite i verifikujete Vašu e-mail adresu putem Vaših [[Special:Preferences|korisničkih opcija]].',
 'nosuchsectiontitle'               => 'Ne mogu pronaći sekciju',
 'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.
-Možda je premještena ili obrisana dok ste pregledavali stranicu.
-
-Pošto sekcija $1 ne postoji, nije moguće spremiti Vaše promjene.',
+Možda je premještena ili obrisana dok ste pregledavali stranicu.',
 'loginreqtitle'                    => 'Potrebno je prijavljivanje',
 'loginreqlink'                     => 'prijavi se',
 'loginreqpagetext'                 => 'Morate $1 da bi ste vidjeli druge strane.',
@@ -993,6 +991,7 @@ Ovakvi argumenti se trebaju izbjegavati.',
 'post-expand-template-argument-category'  => 'Stranice koje sadrže nedostajuće argumente u šablonu',
 'parser-template-loop-warning'            => 'Otkrivena kružna greška u šablonu: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Dubina uključivanja šablona prekoračena ($1)',
+'language-converter-depth-warning'        => 'Prekoračena granica dubine jezičkog pretvarača ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmjena se može vratiti.
@@ -2839,7 +2838,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'markaspatrolleddiff'                 => 'Označi kao patrolirano',
 'markaspatrolledtext'                 => 'Označi ovaj članak kao patroliran',
 'markedaspatrolled'                   => 'Označeno kao patrolirano',
-'markedaspatrolledtext'               => 'Izabrana revizija je označena kao patrolirana.',
+'markedaspatrolledtext'               => 'Izabrana revizija [[:$1]] je bila označena kao patrolirana.',
 'rcpatroldisabled'                    => 'Patroliranje nedavnih izmjena onemogućeno',
 'rcpatroldisabledtext'                => 'Funkcija patroliranja nedavnih izmjena je trenutno isključena.',
 'markedaspatrollederror'              => 'Ne može se označiti kao patrolirano',

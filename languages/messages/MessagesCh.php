@@ -449,8 +449,7 @@ Pot fabot, na'hålom i ID gi todus i finaisen-mu siha.",
 'confirmedittext'                  => "Un nesisita un konfotme iyo-mu email åntes di tumulaika påhina.
 Pot fabot po'lo yan konfotme iyo-mu e-mail gi [[Special:Preferences|prifirensia muna'sesetbi]].",
 'nosuchsectiontitle'               => "Tåya' na påtte",
-'nosuchsectiontext'                => "Tåya' na påtte ni un chagi tumulaika.
-Sa' tåya' na påtten $1, tåya' na lugåt para u såtba i tinilaika-mu.",
+'nosuchsectiontext'                => "Tåya' na påtte ni un chagi tumulaika.",
 'loginreqtitle'                    => 'Manesita login',
 'loginreqlink'                     => 'log in',
 'loginreqpagetext'                 => "Debi di un $1 para manli'e' påhina.",

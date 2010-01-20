@@ -796,9 +796,7 @@ Vennligst ta med all denne informasjonen ved henvendelser.",
 'confirmedittext'                  => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
 'nosuchsectiontitle'               => 'Finner ikke avsnittet',
 'nosuchsectiontext'                => 'Du prøvde å redigere et avsnitt som ikke eksisterer.
-Det kan ha blitt flyttet eller slettet mens du så på siden.
-
-Siden det ikke finnes noe avsnitt $1 er det ikke mulig å lagre endringen din.',
+Det kan ha blitt flyttet eller slettet mens du så på siden.',
 'loginreqtitle'                    => 'Innlogging kreves',
 'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du må $1 for å se andre sider.',

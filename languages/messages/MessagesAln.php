@@ -649,8 +649,7 @@ Ju lutemi përfshini këto shenime në të gjitha shkresat që i bâni.",
 'confirmedittext'                  => 'Duheni me vërtetue adresën tuej të emailit para se me redaktue.
 Ju lutemi vërtetoni adresën tuej të emailit përmjet [[Special:Preferences|parapëlqimeve]] tueja.',
 'nosuchsectiontitle'               => 'Nuk ka kësi sekcioni',
-'nosuchsectiontext'                => 'Keni tentue me redaktue nji sekcion që nuk ekziston.
-Meqenëse nuk ka sekcion $1, nuk ka vend për me ruejtë redaktimin tuej.',
+'nosuchsectiontext'                => 'Keni tentue me redaktue nji sekcion që nuk ekziston.',
 'loginreqtitle'                    => 'Lypet kyçje',
 'loginreqlink'                     => 'kyçë',
 'loginreqpagetext'                 => 'Duheni me u $1 për me i pâ faqet tjera.',

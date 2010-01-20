@@ -528,8 +528,7 @@ Ojúọ̀nà IP yín lọ́wọ́lọ́wọ́ ni $3, bẹ́ ẹ̀ sì ni ID fún
 'confirmedittext'                  => "Ẹ gbọ́dọ̀ ṣe ìmúdájú àdírẹ́ẹ̀sì e-mail yín kí ẹ tó le è mọ ṣ'àtúnṣe àwọn ojúewé.
 Ẹjọ̀wọ́ ẹ ṣètò bẹ́ sìni ki ẹ fọwọ́sí àdírẹ́ẹ̀sì e-mail nínú [[Special:Preferences|àwọn ìfẹ́ràn ọníṣe]] yín.",
 'nosuchsectiontitle'               => 'Kò sí irú abala báun',
-'nosuchsectiontext'                => 'Abala tí ẹ fẹ́ tùnṣe kò sí.
-Nítorípé kò sí abala $1, kò sí ibi tí àtúnṣe yín yíò jẹ́ mímúpamọ́ sí.',
+'nosuchsectiontext'                => 'Abala tí ẹ fẹ́ tùnṣe kò sí.',
 'loginreqtitle'                    => "Ẹ gbọ́dọ̀ kọ́kọ́ w'ọlé ná",
 'loginreqlink'                     => 'ìwọlé',
 'loginreqpagetext'                 => 'Ẹ gbọ́dọ̀ $1 láti wo àwọn ojúewé míràn.',

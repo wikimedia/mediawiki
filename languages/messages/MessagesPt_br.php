@@ -854,9 +854,7 @@ Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for re
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de usuário]].',
 'nosuchsectiontitle'               => 'Não foi possível encontrar a seção',
 'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe.
-Ela pode ter sido movida ou removido enquanto você estava vendo a página.
-
-Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
+Ela pode ter sido movida ou removido enquanto você estava vendo a página.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',

@@ -640,7 +640,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'whitelistedittext'                => 'Faaw nga doon $1 ngir am sañ-sañu soppi ëmbit li.',
 'confirmedittext'                  => 'Ngir man a soppi dara faaw nga dëggal sa m-bataaxal. Ngir kocc-koccal walla dëggal sa màkkaan demal ci say [[Special:Preferences|tànneef]].',
 'nosuchsectiontitle'               => 'Xaaj bi amul',
-'nosuchsectiontext'                => 'Da nga doon jéema soppi ab xaaj bu amul. Segam bii xaaj $1 amul, say coppite duñ leen denc.',
+'nosuchsectiontext'                => 'Da nga doon jéema soppi ab xaaj bu amul.',
 'loginreqtitle'                    => 'Laaj na nga bindu',
 'loginreqlink'                     => 'Dugg',
 'loginreqpagetext'                 => 'Faaw nga $1 ngir gis yeneen xët yi.',

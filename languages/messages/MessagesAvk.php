@@ -561,7 +561,7 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'whitelistedittext'                => 'Ta bubetara rin gonaskil ta $1',
 'confirmedittext'                  => 'Abdi bubetara va rinafe e-mail mane gogruyel. Kan rinaf [[Special:Preferences|favesiklodamaceem]] va rinafe e-mail mane vay plekul ise tuenal !',
 'nosuchsectiontitle'               => 'Me man gabot',
-'nosuchsectiontext'                => 'Rin yawal da va metis gabot betal. Oye da $1 gabot me tir, giwaxo me tir.',
+'nosuchsectiontext'                => 'Rin yawal da va metis gabot betal.',
 'loginreqtitle'                    => 'Kucilan favesikyolt',
 'loginreqlink'                     => 'dogluyara',
 'loginreqpagetext'                 => '$1 tir adrafa ta da va aru bu rodisukel.',

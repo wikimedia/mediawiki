@@ -471,8 +471,7 @@ Ti agdama nga IP addressmo ket $3, ket ti block ID ket #$5. Pangngaasim ta irama
 'whitelistedittitle'               => 'Masapul a nakastrekka tapno makaeditka',
 'whitelistedittext'                => 'Nasken a $1 ka tapno makaeditka iti pampanid.',
 'nosuchsectiontitle'               => 'Awan ti kasta a benneg',
-'nosuchsectiontext'                => 'Pinadasmo nga editen ti maysa a benneg nga awan pay.
-Ket agsipud ta awan ti $1 a benneg, awan ti pangidulinan iti editmo.',
+'nosuchsectiontext'                => 'Pinadasmo nga editen ti maysa a benneg nga awan pay.',
 'loginreqtitle'                    => 'Masapul ti panag-login',
 'loginreqlink'                     => 'sumrek',
 'loginreqpagetext'                 => 'Nasken a $1 ka tapno makakitaka iti sabsabali a pampanid.',

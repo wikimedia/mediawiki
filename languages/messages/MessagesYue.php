@@ -708,9 +708,7 @@ $1',
 'confirmedittext'                  => '你個電郵地址要確定咗先可以編輯。唔該先去[[Special:Preferences|喜好設定]]填咗電郵地址，並做埋確認手續。',
 'nosuchsectiontitle'               => '搵唔到呢個小節',
 'nosuchsectiontext'                => '你嘗試編輯嘅小節並唔存在。
-佢可能響你睇緊嗰版時搬咗或者刪除咗。
-
-之不過呢度係無第$1小節，所以係無一個地方去儲存你嘅編輯。',
+佢可能響你睇緊嗰版時搬咗或者刪除咗。',
 'loginreqtitle'                    => '需要登入',
 'loginreqlink'                     => '登入',
 'loginreqpagetext'                 => '你一定$1去睇其它嘅頁面。',

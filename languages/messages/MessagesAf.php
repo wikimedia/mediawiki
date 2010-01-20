@@ -771,9 +771,8 @@ Vermeld asseblief die bovermelde bloknommer as u die saak rapporteer,",
 'whitelistedittext'                => 'U moet $1 om bladsye te wysig.',
 'confirmedittext'                  => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'nosuchsectiontitle'               => 'Kan nie die afdeling vind nie',
-'nosuchsectiontext'                => "U het probeer om 'n afdeling wat nie bestaan nie te wysig. Dis was moontlik geskuif of verwyder terwyl u die bladsy gelees het.
-
-Omdat die afdeling $1 nie bestaan nie, kan u wysigings nie gestoor word nie.",
+'nosuchsectiontext'                => "U het probeer om 'n afdeling wat nie bestaan nie te wysig.
+Dis was moontlik geskuif of verwyder terwyl u die bladsy gelees het.",
 'loginreqtitle'                    => 'Inteken Benodig',
 'loginreqlink'                     => 'teken in',
 'loginreqpagetext'                 => 'U moet $1 om ander bladsye te bekyk.',

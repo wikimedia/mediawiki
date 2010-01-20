@@ -614,7 +614,7 @@ Si vói ciaramiddanne, pa piazeri prizzisa sempri lu nùmaru di lu broccu (ID #$
 'whitelistedittext'                => 'Pa mudìfiggà li pàgini è nezzessàriu $1.',
 'confirmedittext'                  => "Pa assé abiritaddi a la mudìfigga di li pàgini è nezzessàriu cunfèimma lu proprio indirizzu di postha erettrònica. Pa impusthà e cunfèimmà l'indirizzu usà li [[Special:Preferences|prifirenzi]].",
 'nosuchsectiontitle'               => 'La sezzioni nò esisthi',
-'nosuchsectiontext'                => "S'è prubendi a mudìfiggà una sezzioni inesisthenti. No è pussìbiri sàivvà li mudìfigghi parchí la sezzioni $1 no isisthi.",
+'nosuchsectiontext'                => "S'è prubendi a mudìfiggà una sezzioni inesisthenti.",
 'loginreqtitle'                    => 'Pa mudìfiggà chistha pàgina è nezzessàriu intrà',
 'loginreqlink'                     => 'intra',
 'loginreqpagetext'                 => 'Pa vidé althri pàgini è nezzessàriu $1.',

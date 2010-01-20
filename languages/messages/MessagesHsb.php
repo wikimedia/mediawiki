@@ -698,9 +698,8 @@ Prošu podaj wšě horjeka naspomnjene podrobnosće w naprašowanjach, kotrež �
 'whitelistedittext'                => 'Dyrbiš so $1, zo by strony wobdźěłować móhł.',
 'confirmedittext'                  => 'Dyrbiš swoju e-mejlowu adresa wobkrućić, prjedy hač móžeš strony wobdźěłować. Prošu zapodaj a wobkruć swoju e-mejlowu adresu we [[Special:Preferences|wužiwarskich nastajenjach]].',
 'nosuchsectiontitle'               => 'Wotrězk njeda so namakać',
-'nosuchsectiontext'                => 'Sy spytał, wotrězk wobdźěłać, kotryž njeeksistuje. Móžno, zo je so přesunył abo zničił, mjeztym zo sej wobhladuješ stronu.
-
-Dokelž wotrězk $1 njeje, njeje žane městno, hdźež twoja změna da so składować.',
+'nosuchsectiontext'                => 'Sy spytał, wotrězk wobdźěłać, kotryž njeeksistuje.
+Móžno, zo je so přesunył abo zničił, mjeztym zo sej wobhladuješ stronu.',
 'loginreqtitle'                    => 'Přizjewjenje trěbne',
 'loginreqlink'                     => 'přizjewić',
 'loginreqpagetext'                 => 'Dyrbiš so $1, zo by strony čitać móhł.',
@@ -808,6 +807,7 @@ Dyrbjała mjenje hač $2 {{PLURAL:$2|wołanje|wołanjej|wołanja|wołanjow}} mě
 'post-expand-template-argument-category'  => 'Strony, kotrež wuwostajene předłohowe argumenty wobsahuja',
 'parser-template-loop-warning'            => 'Předłohowa sekla wotkryta: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit za rekursijnu hłubokosć předłohi překročeny ($1)',
+'language-converter-depth-warning'        => 'Limit hłubokosće rěčneho konwertera překročena ($1)',
 
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',
@@ -2560,7 +2560,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'markaspatrolleddiff'                 => 'Změnu jako přepruwowanu woznamjenić',
 'markaspatrolledtext'                 => 'Tutu změnu nastawka jako přepruwowanu woznamjenić',
 'markedaspatrolled'                   => 'Změna bu jako přepruwowana woznamjenjena.',
-'markedaspatrolledtext'               => 'Wubrana wersija bu jako přepruwowana woznamjenjena.',
+'markedaspatrolledtext'               => 'Wubrana wersija [[:$1]] bu jako dohladowana woznamjenjena.',
 'rcpatroldisabled'                    => 'Přepruwowanje aktualnych změnow je znjemóžnjene.',
 'rcpatroldisabledtext'                => 'Funkcija přepruwowanja aktualnych změnow je tuchwilu znjemóžnjena.',
 'markedaspatrollederror'              => 'Njemóžno jako přepruwowanu woznamjenić.',

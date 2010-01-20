@@ -711,7 +711,7 @@ Vaš trenutni IP-naslov je $3, ID blokiranja pa #$5. Prosimo, vključite ta ID v
 'whitelistedittext'                => 'Za urejanje strani se $1.',
 'confirmedittext'                  => 'Pred urejanjem strani morate potrditi svoj e-poštni naslov. Prosimo, da ga z uporabo [[Special:Preferences|uporabniških nastavitev]] vpišete in potrdite.',
 'nosuchsectiontitle'               => 'Ni takega razdelka',
-'nosuchsectiontext'                => 'Poskušali ste urediti razdelek, ki ne obstaja. Ker ni razdelka $1, ni prostora za shranitev vašega urejanja.',
+'nosuchsectiontext'                => 'Poskušali ste urediti razdelek, ki ne obstaja.',
 'loginreqtitle'                    => 'Treba se je prijaviti',
 'loginreqlink'                     => 'prijava',
 'loginreqpagetext'                 => 'Za ogled drugih strani morate $1.',

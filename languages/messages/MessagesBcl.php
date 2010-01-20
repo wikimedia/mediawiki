@@ -593,7 +593,7 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 'whitelistedittext'          => 'Kaipuhan mong $1 tangarig makahirá nin mga páhina.',
 'confirmedittext'            => "Kaipuhan mong kompirmaron an saimong ''e''-surat. Ipwesto tabî asin patunayan an saimong ''e''-surat sa [[Special:Preferences|mga kabôtan kan parágamit]].",
 'nosuchsectiontitle'         => 'Mayong siring na seksyón',
-'nosuchsectiontext'          => 'Mayo man an seksyón an pighihira mo. Nin huli ta mayô nin seksyón na $1, mayong lugar na pwedeng tagamahan kan hirá mo.',
+'nosuchsectiontext'          => 'Mayo man an seksyón an pighihira mo.',
 'loginreqtitle'              => 'Kaipuhan Maglaog',
 'loginreqlink'               => 'maglaog',
 'loginreqpagetext'           => 'Kaipuhan kang $1 tangarig makahilíng nin ibang pahina.',

@@ -792,7 +792,7 @@ Molimo vas navedite ovaj ID broj prilikom pravljenja bilo kakvih upita.',
 'confirmedittext'                  => 'Morate potvrditi vašu adresu e-pošte pre uređivanja strana.
 Molimo postavite i potvrdite adresu vaše e-pošte preko vaših [[Special:Preferences|korisničkih podešavanja]].',
 'nosuchsectiontitle'               => 'Ne postoji takav odeljak',
-'nosuchsectiontext'                => 'Pokušali ste da uredite odeljak koji ne postoji. Kako ne postoji odeljak $1, nema ni mesta za čuvanje vaše izmene.',
+'nosuchsectiontext'                => 'Pokušali ste da uredite odeljak koji ne postoji.',
 'loginreqtitle'                    => 'Potrebno [[{{ns:special}}:Userlogin|prijavljivanje]]',
 'loginreqlink'                     => 'prijava',
 'loginreqpagetext'                 => 'Morate $1 da biste videli ostale strane.',

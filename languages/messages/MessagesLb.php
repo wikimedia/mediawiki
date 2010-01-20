@@ -721,9 +721,8 @@ Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'confirmedittext'                  => 'Dir musst är E-Mail-Adress confirméieren, ier Dir Ännerunge maache kënnt.
 Gitt w.e.g. eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benotzerastellungen]].',
 'nosuchsectiontitle'               => 'Et gëtt keen esou enn Abschnitt',
-'nosuchsectiontext'                => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt. Et ka sinn datt e geännert oder geläscht gouf iwwerdm wou Dir d'Säit gekuckt hutt.
-
-Well et den Abschnitt $1 net gëtt, gëtt et keng Plaz fir Är Ännerung ze späicheren.",
+'nosuchsectiontext'                => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt.
+Et ka sinn datt e geännert oder geläscht gouf iwwerdm wou Dir d'Säit gekuckt hutt.",
 'loginreqtitle'                    => 'Umeldung néideg',
 'loginreqlink'                     => 'umellen',
 'loginreqpagetext'                 => 'Dir musst iech $1, fir aner Säite liesen zu kënnen.',

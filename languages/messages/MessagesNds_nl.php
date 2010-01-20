@@ -874,9 +874,7 @@ Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 'confirmedittext'                  => "Je mutten je posadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
 'nosuchsectiontitle'               => 'Disse sectie besteet neet',
 'nosuchsectiontext'                => "Je preberen een sectie te bewarken dat neet besteet. 
-'t Kan ween dat 't herneumd is of dat 't vort-edaon is to jie 't an 't bekieken wanen.
-
-Umdat der gien sectie $1 is, is der gien plaos um joew bewarking op te slaon.",
+'t Kan ween dat 't herneumd is of dat 't vort-edaon is to jie 't an 't bekieken wanen.",
 'loginreqtitle'                    => 'Anmelden verplich',
 'loginreqlink'                     => 'Anmelden',
 'loginreqpagetext'                 => 'Je mutten $1 um disse pagina te bekieken.',

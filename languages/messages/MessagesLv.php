@@ -563,8 +563,7 @@ Lūdzu iekļauj šos visos ziņojumos, kurus sūti adminiem, apspriežot šo blo
 'confirmedittext'            => 'Lai varētu izmainīt lapas, vispirms jāapstiprina savu e-pasta adresi.
 Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzstādījumos]].',
 'nosuchsectiontitle'         => 'Nav šādas nodaļas',
-'nosuchsectiontext'          => 'Tu mēģināji izmainīt neeksistējošu nodaļu.
-Tā kā te nav nodaļas $1, te nav kur saglabāt tavu izmaiņu.',
+'nosuchsectiontext'          => 'Tu mēģināji izmainīt neeksistējošu nodaļu.',
 'loginreqtitle'              => 'Nepieciešama ieiešana',
 'loginreqlink'               => 'login',
 'accmailtitle'               => 'Parole izsūtīta.',

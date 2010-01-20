@@ -676,7 +676,7 @@ Merkit mat an titouroù-se war kement goulenn savet ganeoc'h.
 'whitelistedittext'                => "Ret eo deoc'h en em $1 evit gallout skridaozañ.",
 'confirmedittext'                  => "Rankout a ri bezañ kadarnaet ho chomlec'h postel a-raok gellout degas kemmoù er pajennoù. Skrivit ha kadarnait ho chomlec'h postel en ho [[Special:Preferences|penndibaboù implijer]] mar plij.",
 'nosuchsectiontitle'               => 'Diposupl eo kavout ar rann-mañ',
-'nosuchsectiontext'                => "Klasket hoc'h eus degas kemmoù en ur rann n'eus ket anezhi. Dre ma n'eus rann $1 ebet, n'eus lec'h ebet da enrollañ ho kemmoù.",
+'nosuchsectiontext'                => "Klasket hoc'h eus degas kemmoù en ur rann n'eus ket anezhi.",
 'loginreqtitle'                    => 'Anv implijer rekis',
 'loginreqlink'                     => 'Kevreañ',
 'loginreqpagetext'                 => "Ret eo deoc'h $1 evit gwelet pajennoù all.",
