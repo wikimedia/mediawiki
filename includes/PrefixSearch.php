@@ -3,17 +3,18 @@
 /**
  * PrefixSearch - Handles searching prefixes of titles and finding any page
  * names that match. Used largely by the OpenSearch implementation.
- * 
+ *
  * @ingroup Search
  */
 
 class PrefixSearch {
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
-	 * @param string $search
-	 * @param int $limit
-	 * @param array $namespaces - used if query is not explicitely prefixed
-	 * @return array of strings
+	 *
+	 * @param $search String
+	 * @param $limit Integer
+	 * @param $namespaces Array: used if query is not explicitely prefixed
+	 * @return Array of strings
 	 */
 	public static function titleSearch( $search, $limit, $namespaces=array() ) {
 		$search = trim( $search );
@@ -21,11 +22,11 @@ class PrefixSearch {
 			return array(); // Return empty result
 		}
 		$namespaces = self::validateNamespaces( $namespaces );
-		
+
 		$title = Title::newFromText( $search );
 		if( $title && $title->getInterwiki() == '' ) {
 			$ns = array($title->getNamespace());
-			if($ns[0] == NS_MAIN) 
+			if($ns[0] == NS_MAIN)
 				$ns = $namespaces; // no explicit prefix, use default namespaces
 			return self::searchBackend(
 				$ns, $title->getText(), $limit );
@@ -39,17 +40,17 @@ class PrefixSearch {
 			return self::searchBackend(
 				array($title->getNamespace()), '', $limit );
 		}
-				
+
 		return self::searchBackend( $namespaces, $search, $limit );
 	}
 
 
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
-	 * @param array $namespaces
-	 * @param string $search
-	 * @param int $limit
-	 * @return array of strings
+	 * @param $namespaces Array
+	 * @param $search String
+	 * @param $limit Integer
+	 * @return Array of strings
 	 */
 	protected static function searchBackend( $namespaces, $search, $limit ) {
 		if( count($namespaces) == 1 ){
@@ -69,6 +70,10 @@ class PrefixSearch {
 
 	/**
 	 * Prefix search special-case for Special: namespace.
+	 *
+	 * @param $search String: term
+	 * @param $limit Integer: max number of items to return
+	 * @return Array
 	 */
 	protected static function specialSearch( $search, $limit ) {
 		global $wgContLang;
@@ -110,16 +115,16 @@ class PrefixSearch {
 	 * be automatically capitalized by Title::secureAndSpit()
 	 * later on depending on $wgCapitalLinks)
 	 *
-	 * @param array $namespaces Namespaces to search in
-	 * @param string $search term
-	 * @param int $limit max number of items to return
-	 * @return array of title strings
+	 * @param $namespaces Array: namespaces to search in
+	 * @param $search String: term
+	 * @param $limit Integer: max number of items to return
+	 * @return Array of title strings
 	 */
 	protected static function defaultSearchBackend( $namespaces, $search, $limit ) {
 		$ns = array_shift($namespaces); // support only one namespace
 		if( in_array(NS_MAIN,$namespaces))
-			$ns = NS_MAIN; // if searching on many always default to main 
-		
+			$ns = NS_MAIN; // if searching on many always default to main
+
 		// Prepare nested request
 		$req = new FauxRequest(array (
 			'action' => 'query',
@@ -146,11 +151,12 @@ class PrefixSearch {
 
 		return $srchres;
 	}
-	
+
 	/**
 	 * Validate an array of numerical namespace indexes
-	 * 
-	 * @param array $namespaces
+	 *
+	 * @param $namespaces Array
+	 * @return Array
 	 */
 	protected static function validateNamespaces($namespaces){
 		global $wgContLang;
@@ -164,7 +170,7 @@ class PrefixSearch {
 			if( count($valid) > 0 )
 				return $valid;
 		}
-		
+
 		return array( NS_MAIN );
 	}
 }
