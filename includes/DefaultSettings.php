@@ -870,17 +870,25 @@ $wgOutputEncoding = 'UTF-8';
 $wgEditEncoding   = '';
 
 /**
- * Set this to true to clean up archaic Unicode sequences in Arabic and
- * Malayalam text. Currently only works if $wgLanguageCode is set to Arabic
- * or Malayalam.
+ * Set this to true to replace Arabic presentation forms with their standard 
+ * forms in the U+0600-U+06FF block. This only works if $wgLanguageCode is
+ * set to "ar".
  *
- * Enabling this is generally a good idea for new wikis, since it fixes a few
- * technical problems to do with editing these languages. However, if it's
- * enabled on an existing wiki, pages which contain the problematic characters
- * in their page titles may become inaccessible. Running maintenance/cleanupTitles.php
- * after enabling it may fix this.
+ * Note that pages with titles containing presentation forms will become 
+ * inaccessible, run maintenance/cleanupTitles.php to fix this.
  */
-$wgFixArchaicUnicode = false;
+$wgFixArabicUnicode = true;
+
+/**
+ * Set this to true to replace ZWJ-based chillu sequences in Malayalam text
+ * with their Unicode 5.1 equivalents. This only works if $wgLanguageCode is 
+ * set to "ml". Note that some clients (even new clients as of 2010) do not 
+ * support these characters. 
+ *
+ * If you enable this on an existing wiki, run maintenance/cleanupTitles.php to
+ * fix any ZWJ sequences in existing page titles.
+ */
+$wgFixMalayalamUnicode = true;
 
 /**
  * Locale for LC_CTYPE, to work around http://bugs.php.net/bug.php?id=45132

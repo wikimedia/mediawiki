@@ -6,8 +6,6 @@
  * @author Niklas Laxström
  */
 class LanguageAr extends Language {
-	var $normalizeArray;
-
 	function convertPlural( $count, $forms ) {
 		if ( !count($forms) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 6 );
@@ -36,9 +34,9 @@ class LanguageAr extends Language {
 	 * performance impact of enabling it for all languages.
 	 */
 	function normalize( $s ) {
-		global $wgFixArchaicUnicode;
+		global $wgFixArabicUnicode;
 		$s = parent::normalize( $s );
-		if ( $wgFixArchaicUnicode ) {
+		if ( $wgFixArabicUnicode ) {
 			$s = $this->transformUsingPairFile( 'normalize-ar.ser', $s );
 		}
 		return $s;

@@ -12,9 +12,9 @@ class LanguageMl extends Language {
 	 * performance impact of enabling it for all languages.
 	 */
 	function normalize( $s ) {
-		global $wgFixArchaicUnicode;
+		global $wgFixMalayalamUnicode;
 		$s = parent::normalize( $s );
-		if ( $wgFixArchaicUnicode ) {
+		if ( $wgFixMalayalamUnicode ) {
 			$s = $this->transformUsingPairFile( 'normalize-ml.ser', $s );
 		}
 		return $s;
