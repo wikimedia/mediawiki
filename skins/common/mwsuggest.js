@@ -92,7 +92,7 @@ function os_MWSuggestInit() {
 		var id = os_autoload_inputs[i];
 		var form = os_autoload_forms[i];
 		element = document.getElementById( id );
-		if( element !== null ) {
+		if( element != null ) {
 			os_initHandlers( id, form, element );
 		}
 	}
@@ -112,7 +112,7 @@ function os_initHandlers( name, formname, element ) {
 	os_hookEvent( document.getElementById( formname ), 'submit', function( event ) { return os_eventOnsubmit( event ); } );
 	os_map[name] = r;
 	// toggle link
-	if( document.getElementById( r.toggle ) === null ) {
+	if( document.getElementById( r.toggle ) == null ) {
 		// TODO: disable this while we figure out a way for this to work in all browsers
 		/* if( name == 'searchInput' ) {
 			// special case: place above the main search box
@@ -153,12 +153,12 @@ function os_hookEvent( element, hookName, hookFunct ) {
 function os_eventKeyup( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
-	if( r === null ) {
+	if( r == null ) {
 		return; // not our event
 	}
 
 	// some browsers won't generate keypressed for arrow keys, catch it
-	if( os_keypressed_count === 0 ) {
+	if( os_keypressed_count == 0 ) {
 		os_processKey( r, os_cur_keypressed, targ );
 	}
 	var query = targ.value;
@@ -170,7 +170,7 @@ function os_processKey( r, keypressed, targ ) {
 	if ( keypressed == 40 ) { // Arrow Down
 		if ( r.visible ) {
 			os_changeHighlight( r, r.selected, r.selected + 1, true );
-		} else if( os_timer === null ) {
+		} else if( os_timer == null ) {
 			// user wants to get suggestions now
 			r.query = '';
 			os_fetchResults( r, targ.value, 0 );
@@ -192,7 +192,7 @@ function os_processKey( r, keypressed, targ ) {
 function os_eventKeypress( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
-	if( r === null ) {
+	if( r == null ) {
 		return; // not our event
 	}
 
@@ -209,13 +209,13 @@ function os_eventKeydown( e ) {
 	}
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
-	if( r === null ) {
+	if( r == null ) {
 		return; // not our event
 	}
 
 	os_mouse_moved = false;
 
-	os_cur_keypressed = ( e.keyCode === undefined ) ? e.which : e.keyCode;
+	os_cur_keypressed = ( e.keyCode == undefined ) ? e.which : e.keyCode;
 	os_keypressed_count = 0;
 }
 
@@ -223,7 +223,7 @@ function os_eventKeydown( e ) {
 function os_eventBlur( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
-	if( r === null ) {
+	if( r == null ) {
 		return; // not our event
 	}
 	if( !os_mouse_pressed ) {
@@ -231,7 +231,7 @@ function os_eventBlur( e ) {
 		// force canvas to stay hidden
 		r.stayHidden = true;
 		// cancel any pending fetches
-		if( os_timer !== null && os_timer.id !== null ) {
+		if( os_timer != null && os_timer.id != null ) {
 			clearTimeout( os_timer.id );
 		}
 		os_timer = null;
@@ -242,7 +242,7 @@ function os_eventBlur( e ) {
 function os_eventFocus( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
-	if( r === null ) {
+	if( r == null ) {
 		return; // not our event
 	}
 	r.stayHidden = false;
@@ -255,16 +255,16 @@ function os_eventOnsubmit( e ) {
 
 	os_is_stopped = true;
 	// kill timed requests
-	if( os_timer !== null && os_timer.id !== null ) {
+	if( os_timer != null && os_timer.id != null ) {
 		clearTimeout( os_timer.id );
 		os_timer = null;
 	}
 	// Hide all suggestions
 	for( i = 0; i < os_autoload_inputs.length; i++ ) {
 		var r = os_map[os_autoload_inputs[i]];
-		if( r !== null ) {
+		if( r != null ) {
 			var b = document.getElementById( r.searchform );
-			if( b !== null && b == targ ) {
+			if( b != null && b == targ ) {
 				// set query value so the handler won't try to fetch additional results
 				r.query = document.getElementById( r.searchbox ).value;
 			}
@@ -279,7 +279,7 @@ function os_eventOnsubmit( e ) {
 /** Hide results div */
 function os_hideResults( r ) {
 	var c = document.getElementById( r.container );
-	if( c !== null ) {
+	if( c != null ) {
 		c.style.visibility = 'hidden';
 	}
 	r.visible = false;
@@ -297,7 +297,7 @@ function os_showResults( r ) {
 	os_fitContainer( r );
 	var c = document.getElementById( r.container );
 	r.selected = -1;
-	if( c !== null ) {
+	if( c != null ) {
 		c.scrollTop = 0;
 		c.style.visibility = 'visible';
 		r.visible = true;
@@ -480,7 +480,7 @@ function os_trimResultText( r ) {
 	var newW = Math.round( normW * prop );
 	if( w != newW ) {
 		w = newW;
-		if( os_animation_timer !== null ) {
+		if( os_animation_timer != null ) {
 			clearInterval( os_animation_timer.id );
 		}
 		os_animation_timer = new os_AnimationTimer( r, w );
@@ -549,14 +549,14 @@ function os_updateResults( r, query, text, cacheKey ) {
 	} else {
 		try {
 			var p = eval( '(' + text + ')' ); // simple json parse, could do a safer one
-			if( p.length < 2 || p[1].length === 0 ) {
+			if( p.length < 2 || p[1].length == 0 ) {
 				r.results = null;
 				r.resultCount = 0;
 				os_hideResults( r );
 				return;
 			}
 			var c = document.getElementById( r.container );
-			if( c === null ) {
+			if( c == null ) {
 				c = os_createContainer( r );
 			}
 			c.innerHTML = os_createResultTable( r, p[1] );
@@ -619,7 +619,7 @@ function os_getNamespaces( r ) {
 /** Update results if user hasn't already typed something else */
 function os_updateIfRelevant( r, query, text, cacheKey ) {
 	var t = document.getElementById( r.searchbox );
-	if( t !== null && t.value == query ) { // check if response is still relevant
+	if( t != null && t.value == query ) { // check if response is still relevant
 		os_updateResults( r, query, text, cacheKey );
 	}
 	r.query = query;
@@ -627,7 +627,7 @@ function os_updateIfRelevant( r, query, text, cacheKey ) {
 
 /** Fetch results after some timeout */
 function os_delayedFetch() {
-	if( os_timer === null ) {
+	if( os_timer == null ) {
 		return;
 	}
 	var r = os_timer.r;
@@ -639,7 +639,7 @@ function os_delayedFetch() {
 
 	// try to get from cache, if not fetch using ajax
 	var cached = os_cache[path];
-	if( cached !== null ) {
+	if( cached != null ) {
 		os_updateIfRelevant( r, query, cached, path );
 	} else {
 		var xmlhttp = sajax_init_object();
@@ -682,11 +682,11 @@ function os_fetchResults( r, query, timeout ) {
 	} */
 
 	// cancel any pending fetches
-	if( os_timer !== null && os_timer.id !== null ) {
+	if( os_timer != null && os_timer.id != null ) {
 		clearTimeout( os_timer.id );
 	}
 	// schedule delayed fetching of results
-	if( timeout !== 0 ) {
+	if( timeout != 0 ) {
 		os_timer = new os_Timer( setTimeout( "os_delayedFetch()", timeout ), r, query );
 	} else {
 		os_timer = new os_Timer( null, r, query );
@@ -710,14 +710,14 @@ function os_changeHighlight( r, cur, next, updateSearchBox ) {
 
 	if( cur >= 0 ) {
 		var curRow = document.getElementById( r.resultTable + cur );
-		if( curRow !== null ) {
+		if( curRow != null ) {
 			curRow.className = 'os-suggest-result';
 		}
 	}
 	var newText;
 	if( next >= 0 ) {
 		var nextRow = document.getElementById( r.resultTable + next );
-		if( nextRow !== null ) {
+		if( nextRow != null ) {
 			nextRow.className = os_HighlightClass();
 		}
 		newText = r.results[next];
@@ -785,7 +785,7 @@ function os_getTarget( e ) {
 function os_eventMouseover( srcId, e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[srcId];
-	if( r === null || !os_mouse_moved ) {
+	if( r == null || !os_mouse_moved ) {
 		return; // not our event
 	}
 	var num = os_getNumberSuffix( targ.id );
@@ -816,7 +816,7 @@ function os_eventMousemove( srcId, e ) {
 function os_eventMousedown( srcId, e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[srcId];
-	if( r === null ) {
+	if( r == null ) {
 		return; // not our event
 	}
 	var num = os_getNumberSuffix( targ.id );
@@ -836,7 +836,7 @@ function os_eventMousedown( srcId, e ) {
 function os_eventMouseup( srcId, e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[srcId];
-	if( r === null ) {
+	if( r == null ) {
 		return; // not our event
 	}
 	var num = os_getNumberSuffix( targ.id );
@@ -883,7 +883,7 @@ function os_createToggle( r, className ) {
 function os_toggle( inputId, formName ) {
 	r = os_map[inputId];
 	var msg = '';
-	if( r === null ) {
+	if( r == null ) {
 		os_enableSuggestionsOn( inputId, formName );
 		r = os_map[inputId];
 		msg = wgMWSuggestMessages[0];
@@ -904,7 +904,7 @@ function os_enableSuggestionsOn( inputId, formName ) {
 /** Call this to disable suggestios on input box (id=inputId) */
 function os_disableSuggestionsOn( inputId ) {
 	r = os_map[inputId];
-	if( r !== null ) {
+	if( r != null ) {
 		// cancel/hide results
 		os_timer = null;
 		os_hideResults( r );
