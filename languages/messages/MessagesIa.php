@@ -3163,7 +3163,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'table_pager_last'         => 'Ultime pagina',
 'table_pager_limit'        => 'Monstrar $1 entratas per pagina',
 'table_pager_limit_submit' => 'Ir',
-'table_pager_empty'        => 'Nulle resultatos',
+'table_pager_empty'        => 'Nulle resultato',
 
 # Auto-summaries
 'autosumm-blank'   => 'Pagina vacuate',
