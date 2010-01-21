@@ -628,7 +628,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
-	$conf->RootUser = importPost( "RootUser", "root" );
+	$conf->RootUser = importPost( "RootUser" );
 	$conf->RootPW = importPost( "RootPW", "" );
 	$useRoot = importCheck( 'useroot', false );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
@@ -644,7 +644,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->DBpgschema  = importPost( "DBpgschema",  "mediawiki" );
 
 	## SQLite specific
-	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", "" );
+	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", '../data' );
 
 	## MSSQL specific
 	// We need a second field so it doesn't overwrite the MySQL one
@@ -953,9 +953,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			if (is_callable(array($wgDatabase, 'initial_setup'))) $wgDatabase->initial_setup('', $wgDBname);
 
 		} elseif ( $conf->DBtype == 'sqlite' ) {
-			if ("$wgSQLiteDataDir" == '') {
-				$wgSQLiteDataDir = dirname($_SERVER['DOCUMENT_ROOT']).'/data';
-			}
+			$wgSQLiteDataDir = $conf->SQLiteDataDir;
 			echo '<li>Attempting to connect to SQLite database at "' .
 				htmlspecialchars( $wgSQLiteDataDir ) . '": ';
 			if ( !is_dir( $wgSQLiteDataDir ) ) {
@@ -1004,7 +1002,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			} else {
 				$myver = $wgDatabase->getServerVersion();
 			}
-			if (is_callable(array($wgDatabase, 'initial_setup'))) $wgDatabase->initial_setup('', $wgDBname);
+			if ( is_callable( array( $wgDatabase, 'initial_setup' ) ) ) {
+				$wgDatabase->initial_setup('', $wgDBname);
+			}
 			echo "ok</li>\n";
 		} elseif ( $conf->DBtype == 'oracle' ) {
 			echo "<li>Attempting to connect to database \"" . htmlspecialchars( $wgDBname ) ."\"</li>";
@@ -1664,9 +1664,9 @@ if( count( $errs ) ) {
 		aField( $conf, "SQLiteDataDir", "SQLite data directory:" );
 	?></div>
 	<div class="config-desc">
-		<p>SQLite stores table data into files in the filesystem.
-		If you do not provide an explicit path, a "data" directory in
-		the parent of your document root will be used.</p>
+		<p>SQLite stores table data into files in the
+		filesystem.  By default the path is the "data"
+		directory in your document root.</p>
 
 		<p>This directory must exist and be writable by the web server.</p>
 	</div>
@@ -1789,6 +1789,10 @@ function writeLocalSettings( $conf ) {
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 	$hashedUploads = $conf->safeMode ? '' : '# ';
+	$sqliteDataDir = escapePhpString( realpath($conf->SQLiteDataDir) );
+	if ( substr_compare( $conf->IP, $sqliteDataDir, 0 ) ) {
+		$sqliteDataDir = substr_replace( $sqliteDataDir, '$IP', 0, strlen($conf->IP) );
+	}
 
 	if ( $conf->ShellLocale ) {
 		$locale = '';
@@ -1881,7 +1885,7 @@ function writeLocalSettings( $conf ) {
 	} elseif( $conf->DBtype == 'sqlite' ) {
 		$dbsettings =
 "# SQLite-specific settings
-\$wgSQLiteDataDir    = \"{$slconf['SQLiteDataDir']}\";";
+\$wgSQLiteDataDir    = \"{$sqliteDataDir}\";";
 	} elseif( $conf->DBtype == 'mssql' ) {
 		$dbsettings =
 "# MSSQL specific settings
