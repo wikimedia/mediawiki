@@ -94,7 +94,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgAdvertisedFeedTypes to decide what feed types (RSS, Atom, both, or
   neither) MediaWiki advertises.  Default is array( 'atom' ), so RSS is no
   longer advertised by default (but it still works).
-
+* Added $wgMemCachedTimeout to configure connection timeouts for communicating
+  with a memcached server
 
 === New features in 1.16 ===
 
