@@ -244,6 +244,7 @@ class MWMemcached {
 	 * @return  mixed
 	 */
 	public function __construct( $args ) {
+		global $wgMemCachedTimeout;
 		$this->set_servers( @$args['servers'] );
 		$this->_debug = @$args['debug'];
 		$this->stats = array();
@@ -256,7 +257,7 @@ class MWMemcached {
 		$this->_host_dead = array();
 
 		$this->_timeout_seconds = 0;
-		$this->_timeout_microseconds = 50000;
+		$this->_timeout_microseconds = $wgMemCachedTimeout;
 
 		$this->_connect_timeout = 0.01;
 		$this->_connect_attempts = 2;
