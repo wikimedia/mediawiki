@@ -48,20 +48,6 @@ function os_Timer( id, r, query ) {
 	this.query = query;
 }
 
-/** Timer user to animate expansion/contraction of container width */
-function os_AnimationTimer( r, target ) {
-	this.r = r;
-	var current = document.getElementById(r.container).offsetWidth;
-	this.inc = Math.round( ( target - current ) / os_animation_steps );
-	if( this.inc < os_animation_min_step && this.inc >=0 ) {
-		this.inc = os_animation_min_step; // minimal animation step
-	}
-	if( this.inc > -os_animation_min_step && this.inc < 0 ) {
-		this.inc = -os_animation_min_step;
-	}
-	this.target = target;
-}
-
 /** Property class for single search box */
 function os_Results( name, formname ) {
 	this.searchform = formname; // id of the searchform
@@ -81,6 +67,214 @@ function os_Results( name, formname ) {
 	this.visible = false; // if container is visible
 	this.stayHidden = false; // don't try to show if lost focus
 }
+
+/** Timer user to animate expansion/contraction of container width */
+function os_AnimationTimer( r, target ) {
+	this.r = r;
+	var current = document.getElementById(r.container).offsetWidth;
+	this.inc = Math.round( ( target - current ) / os_animation_steps );
+	if( this.inc < os_animation_min_step && this.inc >=0 ) {
+		this.inc = os_animation_min_step; // minimal animation step
+	}
+	if( this.inc > -os_animation_min_step && this.inc < 0 ) {
+		this.inc = -os_animation_min_step;
+	}
+	this.target = target;
+}
+
+/******************
+ * Initialization
+ ******************/
+
+/** Initialization, call upon page onload */
+function os_MWSuggestInit() {
+	for( i = 0; i < os_autoload_inputs.length; i++ ) {
+		var id = os_autoload_inputs[i];
+		var form = os_autoload_forms[i];
+		element = document.getElementById( id );
+		if( element !== null ) {
+			os_initHandlers( id, form, element );
+		}
+	}
+}
+
+/** Init Result objects and event handlers */
+function os_initHandlers( name, formname, element ) {
+	var r = new os_Results( name, formname );
+	// event handler
+	os_hookEvent( element, 'keyup', function( event ) { os_eventKeyup( event ); } );
+	os_hookEvent( element, 'keydown', function( event ) { os_eventKeydown( event ); } );
+	os_hookEvent( element, 'keypress', function( event ) { os_eventKeypress( event ); } );
+	os_hookEvent( element, 'blur', function( event ) { os_eventBlur( event ); } );
+	os_hookEvent( element, 'focus', function( event ) { os_eventFocus( event ); } );
+	element.setAttribute( 'autocomplete', 'off' );
+	// stopping handler
+	os_hookEvent( document.getElementById( formname ), 'submit', function( event ) { return os_eventOnsubmit( event ); } );
+	os_map[name] = r;
+	// toggle link
+	if( document.getElementById( r.toggle ) === null ) {
+		// TODO: disable this while we figure out a way for this to work in all browsers
+		/* if( name == 'searchInput' ) {
+			// special case: place above the main search box
+			var t = os_createToggle( r, 'os-suggest-toggle' );
+			var searchBody = document.getElementById( 'searchBody' );
+			var first = searchBody.parentNode.firstChild.nextSibling.appendChild(t);
+		} else {
+			// default: place below search box to the right
+			var t = os_createToggle( r, 'os-suggest-toggle-def' );
+			var top = element.offsetTop + element.offsetHeight;
+			var left = element.offsetLeft + element.offsetWidth;
+			t.style.position = 'absolute';
+			t.style.top = top + 'px';
+			t.style.left = left + 'px';
+			element.parentNode.appendChild( t );
+			// only now width gets calculated, shift right
+			left -= t.offsetWidth;
+			t.style.left = left + 'px';
+			t.style.visibility = 'visible';
+		} */
+	}
+
+}
+
+function os_hookEvent( element, hookName, hookFunct ) {
+	if ( element.addEventListener ) {
+		element.addEventListener( hookName, hookFunct, false );
+	} else if ( window.attachEvent ) {
+		element.attachEvent( 'on' + hookName, hookFunct );
+	}
+}
+
+/********************
+ *  Keyboard events
+ ********************/
+
+/** Event handler that will fetch results on keyup */
+function os_eventKeyup( e ) {
+	var targ = os_getTarget( e );
+	var r = os_map[targ.id];
+	if( r === null ) {
+		return; // not our event
+	}
+
+	// some browsers won't generate keypressed for arrow keys, catch it
+	if( os_keypressed_count === 0 ) {
+		os_processKey( r, os_cur_keypressed, targ );
+	}
+	var query = targ.value;
+	os_fetchResults( r, query, os_search_timeout );
+}
+
+/** catch arrows up/down and escape to hide the suggestions */
+function os_processKey( r, keypressed, targ ) {
+	if ( keypressed == 40 ) { // Arrow Down
+		if ( r.visible ) {
+			os_changeHighlight( r, r.selected, r.selected + 1, true );
+		} else if( os_timer === null ) {
+			// user wants to get suggestions now
+			r.query = '';
+			os_fetchResults( r, targ.value, 0 );
+		}
+	} else if ( keypressed == 38 ) { // Arrow Up
+		if ( r.visible ) {
+			os_changeHighlight( r, r.selected, r.selected - 1, true );
+		}
+	} else if( keypressed == 27 ) { // Escape
+		document.getElementById( r.searchbox ).value = r.original;
+		r.query = r.original;
+		os_hideResults( r );
+	} else if( r.query != document.getElementById( r.searchbox ).value ) {
+		// os_hideResults( r ); // don't show old suggestions
+	}
+}
+
+/** When keys is held down use a timer to output regular events */
+function os_eventKeypress( e ) {
+	var targ = os_getTarget( e );
+	var r = os_map[targ.id];
+	if( r === null ) {
+		return; // not our event
+	}
+
+	var keypressed = os_cur_keypressed;
+
+	os_keypressed_count++;
+	os_processKey( r, keypressed, targ );
+}
+
+/** Catch the key code (Firefox bug) */
+function os_eventKeydown( e ) {
+	if ( !e ) {
+		e = window.event;
+	}
+	var targ = os_getTarget( e );
+	var r = os_map[targ.id];
+	if( r === null ) {
+		return; // not our event
+	}
+
+	os_mouse_moved = false;
+
+	os_cur_keypressed = ( e.keyCode === undefined ) ? e.which : e.keyCode;
+	os_keypressed_count = 0;
+}
+
+/** Event: loss of focus of input box */
+function os_eventBlur( e ) {
+	var targ = os_getTarget( e );
+	var r = os_map[targ.id];
+	if( r === null ) {
+		return; // not our event
+	}
+	if( !os_mouse_pressed ) {
+		os_hideResults( r );
+		// force canvas to stay hidden
+		r.stayHidden = true;
+		// cancel any pending fetches
+		if( os_timer !== null && os_timer.id !== null ) {
+			clearTimeout( os_timer.id );
+		}
+		os_timer = null;
+	}
+}
+
+/** Event: focus (catch only when stopped) */
+function os_eventFocus( e ) {
+	var targ = os_getTarget( e );
+	var r = os_map[targ.id];
+	if( r === null ) {
+		return; // not our event
+	}
+	r.stayHidden = false;
+}
+
+
+/** When the form is submitted hide everything, cancel updates... */
+function os_eventOnsubmit( e ) {
+	var targ = os_getTarget( e );
+
+	os_is_stopped = true;
+	// kill timed requests
+	if( os_timer !== null && os_timer.id !== null ) {
+		clearTimeout( os_timer.id );
+		os_timer = null;
+	}
+	// Hide all suggestions
+	for( i = 0; i < os_autoload_inputs.length; i++ ) {
+		var r = os_map[os_autoload_inputs[i]];
+		if( r !== null ) {
+			var b = document.getElementById( r.searchform );
+			if( b !== null && b == targ ) {
+				// set query value so the handler won't try to fetch additional results
+				r.query = document.getElementById( r.searchbox ).value;
+			}
+			os_hideResults( r );
+		}
+	}
+	return true;
+}
+
+
 
 /** Hide results div */
 function os_hideResults( r ) {
@@ -584,110 +778,6 @@ function os_getTarget( e ) {
 
 
 /********************
- *  Keyboard events
- ********************/
-
-/** Event handler that will fetch results on keyup */
-function os_eventKeyup( e ) {
-	var targ = os_getTarget( e );
-	var r = os_map[targ.id];
-	if( r === null ) {
-		return; // not our event
-	}
-
-	// some browsers won't generate keypressed for arrow keys, catch it
-	if( os_keypressed_count === 0 ) {
-		os_processKey( r, os_cur_keypressed, targ );
-	}
-	var query = targ.value;
-	os_fetchResults( r, query, os_search_timeout );
-}
-
-/** catch arrows up/down and escape to hide the suggestions */
-function os_processKey( r, keypressed, targ ) {
-	if ( keypressed == 40 ) { // Arrow Down
-		if ( r.visible ) {
-			os_changeHighlight( r, r.selected, r.selected + 1, true );
-		} else if( os_timer === null ) {
-			// user wants to get suggestions now
-			r.query = '';
-			os_fetchResults( r, targ.value, 0 );
-		}
-	} else if ( keypressed == 38 ) { // Arrow Up
-		if ( r.visible ) {
-			os_changeHighlight( r, r.selected, r.selected - 1, true );
-		}
-	} else if( keypressed == 27 ) { // Escape
-		document.getElementById( r.searchbox ).value = r.original;
-		r.query = r.original;
-		os_hideResults( r );
-	} else if( r.query != document.getElementById( r.searchbox ).value ) {
-		// os_hideResults( r ); // don't show old suggestions
-	}
-}
-
-/** When keys is held down use a timer to output regular events */
-function os_eventKeypress( e ) {
-	var targ = os_getTarget( e );
-	var r = os_map[targ.id];
-	if( r === null ) {
-		return; // not our event
-	}
-
-	var keypressed = os_cur_keypressed;
-
-	os_keypressed_count++;
-	os_processKey( r, keypressed, targ );
-}
-
-/** Catch the key code (Firefox bug) */
-function os_eventKeydown( e ) {
-	if ( !e ) {
-		e = window.event;
-	}
-	var targ = os_getTarget( e );
-	var r = os_map[targ.id];
-	if( r === null ) {
-		return; // not our event
-	}
-
-	os_mouse_moved = false;
-
-	os_cur_keypressed = ( e.keyCode === undefined ) ? e.which : e.keyCode;
-	os_keypressed_count = 0;
-}
-
-/** Event: loss of focus of input box */
-function os_eventBlur( e ) {
-	var targ = os_getTarget( e );
-	var r = os_map[targ.id];
-	if( r === null ) {
-		return; // not our event
-	}
-	if( !os_mouse_pressed ) {
-		os_hideResults( r );
-		// force canvas to stay hidden
-		r.stayHidden = true;
-		// cancel any pending fetches
-		if( os_timer !== null && os_timer.id !== null ) {
-			clearTimeout( os_timer.id );
-		}
-		os_timer = null;
-	}
-}
-
-/** Event: focus (catch only when stopped) */
-function os_eventFocus( e ) {
-	var targ = os_getTarget( e );
-	var r = os_map[targ.id];
-	if( r === null ) {
-		return; // not our event
-	}
-	r.stayHidden = false;
-}
-
-
-/********************
  *  Mouse events
  ********************/
 
@@ -775,78 +865,6 @@ function os_isNumber( x ) {
 	return true;
 }
 
-/** When the form is submitted hide everything, cancel updates... */
-function os_eventOnsubmit( e ) {
-	var targ = os_getTarget( e );
-
-	os_is_stopped = true;
-	// kill timed requests
-	if( os_timer !== null && os_timer.id !== null ) {
-		clearTimeout( os_timer.id );
-		os_timer = null;
-	}
-	// Hide all suggestions
-	for( i = 0; i < os_autoload_inputs.length; i++ ) {
-		var r = os_map[os_autoload_inputs[i]];
-		if( r !== null ) {
-			var b = document.getElementById( r.searchform );
-			if( b !== null && b == targ ) {
-				// set query value so the handler won't try to fetch additional results
-				r.query = document.getElementById( r.searchbox ).value;
-			}
-			os_hideResults( r );
-		}
-	}
-	return true;
-}
-
-function os_hookEvent( element, hookName, hookFunct ) {
-	if ( element.addEventListener ) {
-		element.addEventListener( hookName, hookFunct, false );
-	} else if ( window.attachEvent ) {
-		element.attachEvent( 'on' + hookName, hookFunct );
-	}
-}
-
-/** Init Result objects and event handlers */
-function os_initHandlers( name, formname, element ) {
-	var r = new os_Results( name, formname );
-	// event handler
-	os_hookEvent( element, 'keyup', function( event ) { os_eventKeyup( event ); } );
-	os_hookEvent( element, 'keydown', function( event ) { os_eventKeydown( event ); } );
-	os_hookEvent( element, 'keypress', function( event ) { os_eventKeypress( event ); } );
-	os_hookEvent( element, 'blur', function( event ) { os_eventBlur( event ); } );
-	os_hookEvent( element, 'focus', function( event ) { os_eventFocus( event ); } );
-	element.setAttribute( 'autocomplete', 'off' );
-	// stopping handler
-	os_hookEvent( document.getElementById( formname ), 'submit', function( event ) { return os_eventOnsubmit( event ); } );
-	os_map[name] = r;
-	// toggle link
-	if( document.getElementById( r.toggle ) === null ) {
-		// TODO: disable this while we figure out a way for this to work in all browsers
-		/* if( name == 'searchInput' ) {
-			// special case: place above the main search box
-			var t = os_createToggle( r, 'os-suggest-toggle' );
-			var searchBody = document.getElementById( 'searchBody' );
-			var first = searchBody.parentNode.firstChild.nextSibling.appendChild(t);
-		} else {
-			// default: place below search box to the right
-			var t = os_createToggle( r, 'os-suggest-toggle-def' );
-			var top = element.offsetTop + element.offsetHeight;
-			var left = element.offsetLeft + element.offsetWidth;
-			t.style.position = 'absolute';
-			t.style.top = top + 'px';
-			t.style.left = left + 'px';
-			element.parentNode.appendChild( t );
-			// only now width gets calculated, shift right
-			left -= t.offsetWidth;
-			t.style.left = left + 'px';
-			t.style.visibility = 'visible';
-		} */
-	}
-
-}
-
 /** Return the span element that contains the toggle link */
 function os_createToggle( r, className ) {
 	var t = document.createElement( 'span' );
@@ -900,18 +918,6 @@ function os_disableSuggestionsOn( inputId ) {
 	var index = os_autoload_inputs.indexOf( inputId );
 	if ( index >= 0 ) {
 		os_autoload_inputs[index] = os_autoload_forms[index] = '';
-	}
-}
-
-/** Initialization, call upon page onload */
-function os_MWSuggestInit() {
-	for( i = 0; i < os_autoload_inputs.length; i++ ) {
-		var id = os_autoload_inputs[i];
-		var form = os_autoload_forms[i];
-		element = document.getElementById( id );
-		if( element !== null ) {
-			os_initHandlers( id, form, element );
-		}
 	}
 }
 
