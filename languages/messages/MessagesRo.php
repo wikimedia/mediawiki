@@ -849,7 +849,8 @@ Vă rugăm să includeţi detaliile de mai sus în orice interogări pe care le 
 'whitelistedittext'                => 'Trebuie să $1 pentru a edita articole.',
 'confirmedittext'                  => 'Trebuie să vă confirmaţi adresa de e-mail înainte de a edita pagini. Vă rugăm să vă setaţi şi să vă validaţi adresa de e-mail cu ajutorul [[Special:Preferences|preferinţelor utilizatorului]].',
 'nosuchsectiontitle'               => 'Nu există o astfel de secţiune',
-'nosuchsectiontext'                => 'Aţi încercat să modificaţi o secţiune care nu există.',
+'nosuchsectiontext'                => 'Aţi încercat să modificaţi o secţiune care nu există.
+Aceasta fie a fost mutată, fie a fost ştearsă în timp ce vizualizaţi pagina.',
 'loginreqtitle'                    => 'Necesită autentificare',
 'loginreqlink'                     => 'autentifici',
 'loginreqpagetext'                 => 'Trebuie să te $1 pentru a vizualiza alte pagini.',
@@ -858,7 +859,7 @@ Vă rugăm să includeţi detaliile de mai sus în orice interogări pe care le 
 
 Parola pentru acest nou cont poate fi schimbată după autentificare din ''[[Special:ChangePassword|schimbare parolă]]''",
 'newarticle'                       => '(Nou)',
-'newarticletext'                   => 'Ai ajuns la o pagină care nu există. Pentru a o crea, începe să scrii în caseta de mai jos (vezi [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informaţii). Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ului tău',
+'newarticletext'                   => 'Aţi încercat să ajungeţi la o pagină care nu există. Pentru a o crea, începeţi să scrieţi în caseta de mai jos (vedeţi [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informaţii). Dacă aţi ajuns aici din greşeală, întoarceţi-vă folosind controalele navigatorului dumneavoastră.',
 'anontalkpagetext'                 => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat.
 De aceea trebuie să folosim adresă IP pentru a identifica această persoană.
 O adresă IP poate fi folosită în comun de mai mulţi utilizatori.

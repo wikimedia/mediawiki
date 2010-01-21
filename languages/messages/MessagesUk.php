@@ -941,6 +941,7 @@ $1',
 'post-expand-template-argument-category'  => 'Сторінки, які містять пропущені аргументи шаблонів',
 'parser-template-loop-warning'            => 'Виявлена петля у шаблонах: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Перевищена границя глибини рекурсії шаблону ($1)',
+'language-converter-depth-warning'        => 'Перевищене обмеження глибини мовного конвертора ($1)',
 
 # "Undo" feature
 'undo-success' => 'Редагування відмінено. Будь-ласка, натисніть «Зберегти», щоб зберегти зміни.',

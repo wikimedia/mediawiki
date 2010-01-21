@@ -629,7 +629,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createaccount'              => 'Crear unha conta nova',
 'gotaccount'                 => "Xa ten unha conta? '''$1'''.",
 'gotaccountlink'             => 'Acceda ao sistema',
-'createaccountmail'          => 'por correo electrónico',
+'createaccountmail'          => 'Por correo electrónico',
 'badretype'                  => 'Os contrasinais que inseriu non coinciden entre si.',
 'userexists'                 => 'O nome de usuario que pretende usar xa está en uso.
 Escolla un nome diferente.',
@@ -1261,7 +1261,7 @@ Velaquí un valor xerado ao chou que pode usar: $1',
 'prefs-custom-js'               => 'JS personalizado',
 'prefs-reset-intro'             => 'Pode usar esta páxina para restablecer as súas preferencias ás que veñen dadas por defecto.
 Este cambio non se poderá desfacer.',
-'prefs-emailconfirm-label'      => 'Confirmación do correo electrónico:',
+'prefs-emailconfirm-label'      => 'Confirmación do correo:',
 'prefs-textboxsize'             => 'Tamaño da caixa de edición',
 'youremail'                     => 'Correo electrónico:',
 'username'                      => 'Nome de usuario:',

@@ -335,9 +335,22 @@ Tan-awon ang [[Special:Version|pahina sang bersyon]].',
 Posible nga nagsala ka sa pagtype sang URL, ukon nagsunod sa isa ka sala nga link.
 Pwede man mini magpakita sang isa ka depekto nga ara sa sulod sang {{SITENAME}}.',
 'nosuchspecialpage' => 'Wala sang mina nga pinasahi nga pahina',
+'nospecialpagetext' => '<strong>Nagpangayo ikaw sang inbalido nga pinasahi nga pahina.</strong>
+
+Ang listahan sang inbalido nga mga pinasahi nga pahina makit-an sa [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'              => 'Sala',
+'databaseerror'      => 'Diperensya sa database',
+'dberrortext'        => 'May sala sa database query syntax.
+Posible tungod mini sa depekto sa software.
+Ang nagligad nga database query mini:
+<blockquote><tt>$1</tt></blockquote>
+nga halin sa ulubrahon nga "<tt>$2</tt>".
+Nagbalik sang sala nga "<tt>$3: $4</tt>" ang MySQL.',
+'laggedslavemode'    => 'Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.',
+'readonly'           => 'Nakakandado ang database',
+'enterlockreason'    => 'Maghatag sang kabangdanan sa pagkakandado, upod ang bana-bana kung san-o ang kandado ibuy-an',
 'missing-article'    => 'Indi makita ang teksto nga pahina sa database nga dapat nakita na , na nangalanan "$1" $2.
 
 Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o link nga kasaysayan sa may pahina nga napanas.
@@ -345,6 +358,11 @@ Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o
 Kung indi mini ang kaso, basi may nakita ka nga guba ukon diperensiya sa software.
 Palihog isugid sa [[Special:ListUsers/sysop|tagapamahala]], kag i-lista ang iya URL.',
 'missingarticle-rev' => '(pagbag-o#: $1)',
+'internalerror'      => 'Pangsulodlon nga diperensiya',
+'internalerror_info' => 'Pangsulodlon nga diperensiya:  $1',
+'filecopyerror'      => 'Indi makopya ang file nga "$1" pakadto sa "$2".',
+'filerenameerror'    => 'Indi mapangalanan liwat ang file nga "$1" pakadto sa "$2".',
+'filedeleteerror'    => 'Indi mapanas ang file nga "$1".',
 'badtitletext'       => 'Ang ginapangayo nga titulo sang pahina sala, wala unod, ukon may indi insakto nga koneksyon sa inter-language ukon sa titulo sang interwiki.
 Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede gamiton sa mga titulo.',
 'viewsource'         => 'Lantawon ang ginhalinan',

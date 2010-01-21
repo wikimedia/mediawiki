@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Aotake
  * @author Broad-Sky
+ * @author Chinneeb
  * @author Emk
  * @author Fievarsty
  * @author Fryed-peach
@@ -837,7 +838,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'whitelistedittext'                => 'このページを編集するには $1 する必要があります。',
 'confirmedittext'                  => 'ページの編集を始める前にメールアドレスの確認をする必要があります。[[Special:Preferences|個人設定]]でメールアドレスを設定し、確認を行ってください。',
 'nosuchsectiontitle'               => 'セクションが存在しません',
-'nosuchsectiontext'                => '指定されたセクションはありません。',
+'nosuchsectiontext'                => 'あなたは存在しないセクションを編集しようとしました。ページを閲覧している間に移動あるいは削除された可能性があります。',
 'loginreqtitle'                    => 'ログインが必要',
 'loginreqlink'                     => 'ログイン',
 'loginreqpagetext'                 => '他のページを閲覧するには$1する必要があります。',
@@ -939,6 +940,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'post-expand-template-argument-category'  => '無視されたテンプレート引数を含むページ',
 'parser-template-loop-warning'            => 'テンプレートのループが検出されました: [[$1]]',
 'parser-template-recursion-depth-warning' => 'テンプレートの再帰回数が上限値を超えました ($1)',
+'language-converter-depth-warning'        => '言語変換器の深度制限を超えました ($1)',
 
 # "Undo" feature
 'undo-success' => '編集の取り消しが可能です。これがあなたの意図した編集であるか、下に表示されている差分を確認してください。保存ボタンを押すと取り消しが確定されます。',
@@ -2656,7 +2658,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'markaspatrolleddiff'                 => 'パトロール済みにする',
 'markaspatrolledtext'                 => 'このページをパトロール済みにする',
 'markedaspatrolled'                   => 'パトロール済みにしました。',
-'markedaspatrolledtext'               => '選択された編集をパトロール済みにしました。',
+'markedaspatrolledtext'               => '選択された [[:$1|$1]] の特定版をパトロール済みにマークしました。',
 'rcpatroldisabled'                    => '最近の更新のパトロールは無効',
 'rcpatroldisabledtext'                => '最近の更新のパトロール機能は現在無効になっています。',
 'markedaspatrollederror'              => 'パトロール済みにできません。',
