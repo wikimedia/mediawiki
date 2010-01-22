@@ -40,6 +40,17 @@ var os_animation_delay = 30;
 var os_container_max_width = 2;
 // currently active animation timer
 var os_animation_timer = null;
+/**
+ * <datalist> is a new HTML5 element that allows you to manually supply
+ * suggestion lists and have them rendered according to the right platform
+ * conventions.  However, the only shipping browser as of early 2010 is Opera,
+ * and that has a fatal problem: the suggestion lags behind what the user types
+ * by one keypress.  (Reported as DSK-276870 to Opera's secret bug tracker.)
+ * The code here otherwise seems to work, though, so this can be flipped on
+ * (maybe with a UA check) when some browser has a better implementation.
+ */
+// var os_use_datalist = 'list' in document.createElement( 'input' );
+var os_use_datalist = false;
 
 /** Timeout timer class that will fetch the results */
 function os_Timer( id, r, query ) {
@@ -105,9 +116,15 @@ function os_initHandlers( name, formname, element ) {
 	os_hookEvent( element, 'keyup', function( event ) { os_eventKeyup( event ); } );
 	os_hookEvent( element, 'keydown', function( event ) { os_eventKeydown( event ); } );
 	os_hookEvent( element, 'keypress', function( event ) { os_eventKeypress( event ); } );
-	os_hookEvent( element, 'blur', function( event ) { os_eventBlur( event ); } );
-	os_hookEvent( element, 'focus', function( event ) { os_eventFocus( event ); } );
-	element.setAttribute( 'autocomplete', 'off' );
+	if ( !os_use_datalist ) {
+		// These are needed for the div hack to hide it if the user blurs.
+		os_hookEvent( element, 'blur', function( event ) { os_eventBlur( event ); } );
+		os_hookEvent( element, 'focus', function( event ) { os_eventFocus( event ); } );
+		// We don't want browser auto-suggestions interfering with our div, but
+		// autocomplete must be on for datalist to work (at least in Opera
+		// 10.10).
+		element.setAttribute( 'autocomplete', 'off' );
+	}
 	// stopping handler
 	os_hookEvent( document.getElementById( formname ), 'submit', function( event ) { return os_eventOnsubmit( event ); } );
 	os_map[name] = r;
@@ -167,13 +184,20 @@ function os_eventKeyup( e ) {
 
 /** catch arrows up/down and escape to hide the suggestions */
 function os_processKey( r, keypressed, targ ) {
+	if ( keypressed == 40 && !r.visible && os_timer == null ) {
+		// If the user hits the down arrow, fetch results immediately if none
+		// are already displayed.
+		r.query = '';
+		os_fetchResults( r, targ.value, 0 );
+	}
+	// Otherwise, if we're not using datalist, we need to handle scrolling and
+	// so on.
+	if ( os_use_datalist ) {
+		return;
+	}
 	if ( keypressed == 40 ) { // Arrow Down
 		if ( r.visible ) {
 			os_changeHighlight( r, r.selected, r.selected + 1, true );
-		} else if( os_timer == null ) {
-			// user wants to get suggestions now
-			r.query = '';
-			os_fetchResults( r, targ.value, 0 );
 		}
 	} else if ( keypressed == 38 ) { // Arrow Up
 		if ( r.visible ) {
@@ -219,6 +243,283 @@ function os_eventKeydown( e ) {
 	os_keypressed_count = 0;
 }
 
+
+/** When the form is submitted hide everything, cancel updates... */
+function os_eventOnsubmit( e ) {
+	var targ = os_getTarget( e );
+
+	os_is_stopped = true;
+	// kill timed requests
+	if( os_timer != null && os_timer.id != null ) {
+		clearTimeout( os_timer.id );
+		os_timer = null;
+	}
+	// Hide all suggestions
+	for( i = 0; i < os_autoload_inputs.length; i++ ) {
+		var r = os_map[os_autoload_inputs[i]];
+		if( r != null ) {
+			var b = document.getElementById( r.searchform );
+			if( b != null && b == targ ) {
+				// set query value so the handler won't try to fetch additional results
+				r.query = document.getElementById( r.searchbox ).value;
+			}
+			os_hideResults( r );
+		}
+	}
+	return true;
+}
+
+
+
+/** Hide results from the user, either making the div visibility=hidden or
+ * detaching the datalist from the input. */
+function os_hideResults( r ) {
+	if ( os_use_datalist ) {
+		document.getElementById( r.searchbox ).setAttribute( 'list', '' );
+	} else {
+		var c = document.getElementById( r.container );
+		if ( c != null ) {
+			c.style.visibility = 'hidden';
+		}
+	}
+	r.visible = false;
+	r.selected = -1;
+}
+
+function os_decodeValue( value ) {
+	if ( decodeURIComponent ) {
+		return decodeURIComponent( value );
+	}
+	if( unescape ) {
+		return unescape( value );
+	}
+	return null;
+}
+
+function os_encodeQuery( value ) {
+	if ( encodeURIComponent ) {
+		return encodeURIComponent( value );
+	}
+	if( escape ) {
+		return escape( value );
+	}
+	return null;
+}
+
+/** Handles data from XMLHttpRequest, and updates the suggest results */
+function os_updateResults( r, query, text, cacheKey ) {
+	os_cache[cacheKey] = text;
+	r.query = query;
+	r.original = query;
+	if( text == '' ) {
+		r.results = null;
+		r.resultCount = 0;
+		os_hideResults( r );
+	} else {
+		try {
+			var p = eval( '(' + text + ')' ); // simple json parse, could do a safer one
+			if( p.length < 2 || p[1].length == 0 ) {
+				r.results = null;
+				r.resultCount = 0;
+				os_hideResults( r );
+				return;
+			}
+			if ( os_use_datalist ) {
+				os_setupDatalist( r, p[1] );
+			} else {
+				os_setupDiv( r, p[1] );
+			}
+		} catch( e ) {
+			// bad response from server or such
+			os_hideResults( r );
+			os_cache[cacheKey] = null;
+		}
+	}
+}
+
+/**
+ * Create and populate a <datalist>.
+ *
+ * @param r       os_Result object
+ * @param results Array of the new results to replace existing ones
+ */
+function os_setupDatalist( r, results ) {
+	var s = document.getElementById( r.searchbox );
+	var c = document.getElementById( r.container );
+	if ( c == null ) {
+		c = document.createElement( 'datalist' );
+		c.setAttribute( 'id', r.container );
+		document.body.appendChild( c );
+	} else {
+		c.innerHTML = '';
+	}
+	s.setAttribute( 'list', r.container );
+
+	r.results = new Array();
+	r.resultCount = results.length;
+	r.visible = true;
+	for ( i = 0; i < results.length; i++ ) {
+		var title = os_decodeValue( results[i] );
+		var opt = document.createElement( 'option' );
+		opt.value = title;
+		r.results[i] = title;
+		c.appendChild( opt );
+	}
+}
+
+/** Fetch namespaces from checkboxes or hidden fields in the search form,
+    if none defined use wgSearchNamespaces global */
+function os_getNamespaces( r ) {
+	var namespaces = '';
+	var elements = document.forms[r.searchform].elements;
+	for( i = 0; i < elements.length; i++ ) {
+		var name = elements[i].name;
+		if( typeof name != 'undefined' && name.length > 2 && name[0] == 'n' &&
+			name[1] == 's' && (
+				( elements[i].type == 'checkbox' && elements[i].checked ) ||
+				( elements[i].type == 'hidden' && elements[i].value == '1' )
+			)
+		) {
+			if( namespaces != '' ) {
+				namespaces += '|';
+			}
+			namespaces += name.substring( 2 );
+		}
+	}
+	if( namespaces == '' ) {
+		namespaces = wgSearchNamespaces.join('|');
+	}
+	return namespaces;
+}
+
+/** Update results if user hasn't already typed something else */
+function os_updateIfRelevant( r, query, text, cacheKey ) {
+	var t = document.getElementById( r.searchbox );
+	if( t != null && t.value == query ) { // check if response is still relevant
+		os_updateResults( r, query, text, cacheKey );
+	}
+	r.query = query;
+}
+
+/** Fetch results after some timeout */
+function os_delayedFetch() {
+	if( os_timer == null ) {
+		return;
+	}
+	var r = os_timer.r;
+	var query = os_timer.query;
+	os_timer = null;
+	var path = wgMWSuggestTemplate.replace( "{namespaces}", os_getNamespaces( r ) )
+									.replace( "{dbname}", wgDBname )
+									.replace( "{searchTerms}", os_encodeQuery( query ) );
+
+	// try to get from cache, if not fetch using ajax
+	var cached = os_cache[path];
+	if( cached != null && cached != undefined ) {
+		os_updateIfRelevant( r, query, cached, path );
+	} else {
+		var xmlhttp = sajax_init_object();
+		if( xmlhttp ) {
+			try {
+				xmlhttp.open( 'GET', path, true );
+				xmlhttp.onreadystatechange = function() {
+					if ( xmlhttp.readyState == 4 && typeof os_updateIfRelevant == 'function' ) {
+						os_updateIfRelevant( r, query, xmlhttp.responseText, path );
+					}
+				};
+				xmlhttp.send( null );
+			} catch ( e ) {
+				if ( window.location.hostname == 'localhost' ) {
+					alert( "Your browser blocks XMLHttpRequest to 'localhost', try using a real hostname for development/testing." );
+				}
+				throw e;
+			}
+		}
+	}
+}
+
+/** Init timed update via os_delayedUpdate() */
+function os_fetchResults( r, query, timeout ) {
+	if( query == '' ) {
+		r.query = '';
+		os_hideResults( r );
+		return;
+	} else if( query == r.query ) {
+		return; // no change
+	}
+
+	os_is_stopped = false; // make sure we're running
+
+	// cancel any pending fetches
+	if( os_timer != null && os_timer.id != null ) {
+		clearTimeout( os_timer.id );
+	}
+	// schedule delayed fetching of results
+	if( timeout != 0 ) {
+		os_timer = new os_Timer( setTimeout( "os_delayedFetch()", timeout ), r, query );
+	} else {
+		os_timer = new os_Timer( null, r, query );
+		os_delayedFetch(); // do it now!
+	}
+}
+
+/** Find event target */
+function os_getTarget( e ) {
+	if ( !e ) {
+		e = window.event;
+	}
+	if ( e.target ) {
+		return e.target;
+	} else if ( e.srcElement ) {
+		return e.srcElement;
+	} else {
+		return null;
+	}
+}
+
+/** Check if x is a valid integer */
+function os_isNumber( x ) {
+	if( x == '' || isNaN( x ) ) {
+		return false;
+	}
+	for( var i = 0; i < x.length; i++ ) {
+		var c = x.charAt( i );
+		if( !( c >= '0' && c <= '9' ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/** Call this to enable suggestions on input (id=inputId), on a form (name=formName) */
+function os_enableSuggestionsOn( inputId, formName ) {
+	os_initHandlers( inputId, formName, document.getElementById( inputId ) );
+}
+
+/** Call this to disable suggestios on input box (id=inputId) */
+function os_disableSuggestionsOn( inputId ) {
+	r = os_map[inputId];
+	if( r != null ) {
+		// cancel/hide results
+		os_timer = null;
+		os_hideResults( r );
+		// turn autocomplete on !
+		document.getElementById( inputId ).setAttribute( 'autocomplete', 'on' );
+		// remove descriptor
+		os_map[inputId] = null;
+	}
+
+	// Remove the element from the os_autoload_* arrays
+	var index = os_autoload_inputs.indexOf( inputId );
+	if ( index >= 0 ) {
+		os_autoload_inputs[index] = os_autoload_forms[index] = '';
+	}
+}
+
+/************************************************
+ * Div-only functions (irrelevant for datalist)
+ ************************************************/
+
 /** Event: loss of focus of input box */
 function os_eventBlur( e ) {
 	var targ = os_getTarget( e );
@@ -248,42 +549,41 @@ function os_eventFocus( e ) {
 	r.stayHidden = false;
 }
 
-
-/** When the form is submitted hide everything, cancel updates... */
-function os_eventOnsubmit( e ) {
-	var targ = os_getTarget( e );
-
-	os_is_stopped = true;
-	// kill timed requests
-	if( os_timer != null && os_timer.id != null ) {
-		clearTimeout( os_timer.id );
-		os_timer = null;
+/**
+ * Create and populate a <div>, for non-<datalist>-supporting browsers.
+ *
+ * @param r       os_Result object
+ * @param results Array of the new results to replace existing ones
+ */
+function os_setupDiv( r, results ) {
+	var c = document.getElementById( r.container );
+	if ( c == null ) {
+		c = os_createContainer( r );
 	}
-	// Hide all suggestions
-	for( i = 0; i < os_autoload_inputs.length; i++ ) {
-		var r = os_map[os_autoload_inputs[i]];
-		if( r != null ) {
-			var b = document.getElementById( r.searchform );
-			if( b != null && b == targ ) {
-				// set query value so the handler won't try to fetch additional results
-				r.query = document.getElementById( r.searchbox ).value;
-			}
-			os_hideResults( r );
-		}
-	}
-	return true;
+	c.innerHTML = os_createResultTable( r, results );
+	// init container table sizes
+	var t = document.getElementById( r.resultTable );
+	r.containerTotal = t.offsetHeight;
+	r.containerRow = t.offsetHeight / r.resultCount;
+	os_fitContainer( r );
+	os_trimResultText( r );
+	os_showResults( r );
 }
 
-
-
-/** Hide results div */
-function os_hideResults( r ) {
+/** Create the result table to be placed in the container div */
+function os_createResultTable( r, results ) {
 	var c = document.getElementById( r.container );
-	if( c != null ) {
-		c.style.visibility = 'hidden';
+	var width = c.offsetWidth - os_operaWidthFix( c.offsetWidth );
+	var html = '<table class="os-suggest-results" id="' + r.resultTable + '" style="width: ' + width + 'px;">';
+	r.results = new Array();
+	r.resultCount = results.length;
+	for( i = 0; i < results.length; i++ ) {
+		var title = os_decodeValue( results[i] );
+		r.results[i] = title;
+		html += '<tr><td class="os-suggest-result" id="' + r.resultTable + i + '"><span id="' + r.resultText + i + '">' + title + '</span></td></tr>';
 	}
-	r.visible = false;
-	r.selected = -1;
+	html += '</table>';
+	return html;
 }
 
 /** Show results div */
@@ -310,26 +610,6 @@ function os_operaWidthFix( x ) {
 		return 30;
 	}
 	return 0;
-}
-
-function os_encodeQuery( value ) {
-	if ( encodeURIComponent ) {
-		return encodeURIComponent( value );
-	}
-	if( escape ) {
-		return escape( value );
-	}
-	return null;
-}
-
-function os_decodeValue( value ) {
-	if ( decodeURIComponent ) {
-		return decodeURIComponent( value );
-	}
-	if( unescape ) {
-		return unescape( value );
-	}
-	return null;
 }
 
 /** Brower-dependent functions to find window inner size, and scroll status */
@@ -537,164 +817,6 @@ function os_animateChangeWidth() {
 	}
 }
 
-/** Handles data from XMLHttpRequest, and updates the suggest results */
-function os_updateResults( r, query, text, cacheKey ) {
-	os_cache[cacheKey] = text;
-	r.query = query;
-	r.original = query;
-	if( text == '' ) {
-		r.results = null;
-		r.resultCount = 0;
-		os_hideResults( r );
-	} else {
-		try {
-			var p = eval( '(' + text + ')' ); // simple json parse, could do a safer one
-			if( p.length < 2 || p[1].length == 0 ) {
-				r.results = null;
-				r.resultCount = 0;
-				os_hideResults( r );
-				return;
-			}
-			var c = document.getElementById( r.container );
-			if( c == null ) {
-				c = os_createContainer( r );
-			}
-			c.innerHTML = os_createResultTable( r, p[1] );
-			// init container table sizes
-			var t = document.getElementById( r.resultTable );
-			r.containerTotal = t.offsetHeight;
-			r.containerRow = t.offsetHeight / r.resultCount;
-			os_fitContainer( r );
-			os_trimResultText( r );
-			os_showResults( r );
-		} catch( e ) {
-			// bad response from server or such
-			os_hideResults( r );
-			os_cache[cacheKey] = null;
-		}
-	}
-}
-
-/** Create the result table to be placed in the container div */
-function os_createResultTable( r, results ) {
-	var c = document.getElementById( r.container );
-	var width = c.offsetWidth - os_operaWidthFix( c.offsetWidth );
-	var html = '<table class="os-suggest-results" id="' + r.resultTable + '" style="width: ' + width + 'px;">';
-	r.results = new Array();
-	r.resultCount = results.length;
-	for( i = 0; i < results.length; i++ ) {
-		var title = os_decodeValue( results[i] );
-		r.results[i] = title;
-		html += '<tr><td class="os-suggest-result" id="' + r.resultTable + i + '"><span id="' + r.resultText + i + '">' + title + '</span></td></tr>';
-	}
-	html += '</table>';
-	return html;
-}
-
-/** Fetch namespaces from checkboxes or hidden fields in the search form,
-    if none defined use wgSearchNamespaces global */
-function os_getNamespaces( r ) {
-	var namespaces = '';
-	var elements = document.forms[r.searchform].elements;
-	for( i = 0; i < elements.length; i++ ) {
-		var name = elements[i].name;
-		if( typeof name != 'undefined' && name.length > 2 && name[0] == 'n' &&
-			name[1] == 's' && (
-				( elements[i].type == 'checkbox' && elements[i].checked ) ||
-				( elements[i].type == 'hidden' && elements[i].value == '1' )
-			)
-		) {
-			if( namespaces != '' ) {
-				namespaces += '|';
-			}
-			namespaces += name.substring( 2 );
-		}
-	}
-	if( namespaces == '' ) {
-		namespaces = wgSearchNamespaces.join('|');
-	}
-	return namespaces;
-}
-
-/** Update results if user hasn't already typed something else */
-function os_updateIfRelevant( r, query, text, cacheKey ) {
-	var t = document.getElementById( r.searchbox );
-	if( t != null && t.value == query ) { // check if response is still relevant
-		os_updateResults( r, query, text, cacheKey );
-	}
-	r.query = query;
-}
-
-/** Fetch results after some timeout */
-function os_delayedFetch() {
-	if( os_timer == null ) {
-		return;
-	}
-	var r = os_timer.r;
-	var query = os_timer.query;
-	os_timer = null;
-	var path = wgMWSuggestTemplate.replace( "{namespaces}", os_getNamespaces( r ) )
-									.replace( "{dbname}", wgDBname )
-									.replace( "{searchTerms}", os_encodeQuery( query ) );
-
-	// try to get from cache, if not fetch using ajax
-	var cached = os_cache[path];
-	if( cached != null ) {
-		os_updateIfRelevant( r, query, cached, path );
-	} else {
-		var xmlhttp = sajax_init_object();
-		if( xmlhttp ) {
-			try {
-				xmlhttp.open( 'GET', path, true );
-				xmlhttp.onreadystatechange = function() {
-					if ( xmlhttp.readyState == 4 && typeof os_updateIfRelevant == 'function' ) {
-						os_updateIfRelevant( r, query, xmlhttp.responseText, path );
-					}
-				};
-				xmlhttp.send( null );
-			} catch ( e ) {
-				if ( window.location.hostname == 'localhost' ) {
-					alert( "Your browser blocks XMLHttpRequest to 'localhost', try using a real hostname for development/testing." );
-				}
-				throw e;
-			}
-		}
-	}
-}
-
-/** Init timed update via os_delayedUpdate() */
-function os_fetchResults( r, query, timeout ) {
-	if( query == '' ) {
-		r.query = '';
-		os_hideResults( r );
-		return;
-	} else if( query == r.query ) {
-		return; // no change
-	}
-
-	os_is_stopped = false; // make sure we're running
-
-	/* var cacheKey = wgDBname + ':' + query;
-	var cached = os_cache[cacheKey];
-	if( cached != null ) {
-		os_updateResults( r, wgDBname, query, cached );
-		return;
-	} */
-
-	// cancel any pending fetches
-	if( os_timer != null && os_timer.id != null ) {
-		clearTimeout( os_timer.id );
-	}
-	// schedule delayed fetching of results
-	if( timeout != 0 ) {
-		os_timer = new os_Timer( setTimeout( "os_delayedFetch()", timeout ), r, query );
-	} else {
-		os_timer = new os_Timer( null, r, query );
-		os_delayedFetch(); // do it now!
-	}
-
-}
-
 /** Change the highlighted row (i.e. suggestion), from position cur to next */
 function os_changeHighlight( r, cur, next, updateSearchBox ) {
 	if ( next >= r.resultCount ) {
@@ -760,20 +882,6 @@ function os_HighlightClass() {
 function os_updateSearchQuery( r, newText ) {
 	document.getElementById( r.searchbox ).value = newText;
 	r.query = newText;
-}
-
-/** Find event target */
-function os_getTarget( e ) {
-	if ( !e ) {
-		e = window.event;
-	}
-	if ( e.target ) {
-		return e.target;
-	} else if ( e.srcElement ) {
-		return e.srcElement;
-	} else {
-		return null;
-	}
 }
 
 
@@ -851,19 +959,7 @@ function os_eventMouseup( srcId, e ) {
 	document.getElementById( r.searchbox ).focus();
 }
 
-/** Check if x is a valid integer */
-function os_isNumber( x ) {
-	if( x == '' || isNaN( x ) ) {
-		return false;
-	}
-	for( var i = 0; i < x.length; i++ ) {
-		var c = x.charAt( i );
-		if( !( c >= '0' && c <= '9' ) ) {
-			return false;
-		}
-	}
-	return true;
-}
+/** Toggle stuff seems to be dead code? */
 
 /** Return the span element that contains the toggle link */
 function os_createToggle( r, className ) {
@@ -894,31 +990,6 @@ function os_toggle( inputId, formName ) {
 	// change message
 	var link = document.getElementById( r.toggle ).firstChild;
 	link.replaceChild( document.createTextNode( msg ), link.firstChild );
-}
-
-/** Call this to enable suggestions on input (id=inputId), on a form (name=formName) */
-function os_enableSuggestionsOn( inputId, formName ) {
-	os_initHandlers( inputId, formName, document.getElementById( inputId ) );
-}
-
-/** Call this to disable suggestios on input box (id=inputId) */
-function os_disableSuggestionsOn( inputId ) {
-	r = os_map[inputId];
-	if( r != null ) {
-		// cancel/hide results
-		os_timer = null;
-		os_hideResults( r );
-		// turn autocomplete on !
-		document.getElementById( inputId ).setAttribute( 'autocomplete', 'on' );
-		// remove descriptor
-		os_map[inputId] = null;
-	}
-
-	// Remove the element from the os_autoload_* arrays
-	var index = os_autoload_inputs.indexOf( inputId );
-	if ( index >= 0 ) {
-		os_autoload_inputs[index] = os_autoload_forms[index] = '';
-	}
 }
 
 hookEvent( 'load', os_MWSuggestInit );
