@@ -234,15 +234,6 @@ class SearchSqlite extends SearchEngine {
 	}
 
 	/**
-	 * Does not do anything for generic search engine
-	 * subclasses may define this though
-	 * @return String
-	 */
-	function queryRanking( $filteredTerm, $fulltext ) {
-		return '';
-	}
-
-	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
 	 * @param $filteredTerm String
@@ -252,8 +243,7 @@ class SearchSqlite extends SearchEngine {
 		return $this->limitResult(
 			$this->queryMain( $filteredTerm, $fulltext ) . ' ' .
 			$this->queryRedirect() . ' ' .
-			$this->queryNamespaces() . ' ' .
-			$this->queryRanking( $filteredTerm, $fulltext )
+			$this->queryNamespaces()
 		);
 	}
 	
