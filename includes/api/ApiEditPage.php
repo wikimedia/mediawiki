@@ -140,7 +140,7 @@ class ApiEditPage extends ApiBase {
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
 		$reqArr = array( 'wpTextbox1' => $params['text'],
-				'wpEdittoken' => $params['token'],
+				'wpEditToken' => $params['token'],
 				'wpIgnoreBlankSummary' => ''
 		);
 		if ( !is_null( $params['summary'] ) )
