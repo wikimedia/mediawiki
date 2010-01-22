@@ -3698,6 +3698,14 @@ $wgTrustedMediaFormats= array(
 $wgAllowSpecialInclusion = true;
 
 /**
+ * 'curl' to use curl or 'php' to use pure php (for which
+ * allow_url_fopen needs to be enabled).  If left as false,
+ * HttpFunctions will attempt to use curl if it is available.  The use
+ * of curl is strongly encouraged.
+ */
+$wgHTTPEngine = false;
+
+/**
  * Timeout for HTTP requests done internally
  */
 $wgHTTPTimeout = 25;
