@@ -48,6 +48,18 @@ class SearchEngine {
 	}
 	
 	/**
+	 * When overridden in derived class, performs database-specific conversions
+	 * on text to be used for searching or updating search index.
+	 * Default implementation does nothing (simply returns $string).
+	 *
+	 * @param $string string: String to process
+	 * @return string
+	 */
+	public function normalizeText( $string ) {
+		return $string;
+	}
+
+	/**
 	 * Transform search term in cases when parts of the query came as different GET params (when supported)
 	 * e.g. for prefix queries: search=test&prefix=Main_Page/Archive -> test prefix:Main Page/Archive
 	 */

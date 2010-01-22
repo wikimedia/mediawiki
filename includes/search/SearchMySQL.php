@@ -28,6 +28,7 @@
  */
 class SearchMySQL extends SearchEngine {
 	var $strictMatching = true;
+	static $mMinSearchLength;
 
 	/** @todo document */
 	function __construct( $db ) {
@@ -91,6 +92,7 @@ class SearchMySQL extends SearchEngine {
 				if( count( $strippedVariants) > 1 )
 					$searchon .= '(';
 				foreach( $strippedVariants as $stripped ) {
+					$stripped = $this->normalizeText( $stripped );
 					if( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
 						// Hack for Chinese: we need to toss in quotes for
 						// multiple-character phrases since stripForSearch()
@@ -292,8 +294,8 @@ class SearchMySQL extends SearchEngine {
 			array( 'si_page' ),
 			array(
 				'si_page' => $id,
-				'si_title' => $title,
-				'si_text' => $text
+				'si_title' => $this->normalizeText( $title ),
+				'si_text' => $this->normalizeText( $text )
 			), __METHOD__ );
 	}
 
@@ -308,10 +310,87 @@ class SearchMySQL extends SearchEngine {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'searchindex',
-			array( 'si_title' => $title ),
+			array( 'si_title' => $this->normalizeText( $title ) ),
 			array( 'si_page'  => $id ),
 			__METHOD__,
 			array( $dbw->lowPriorityOption() ) );
+	}
+
+	/**
+	 * Converts some characters for MySQL's indexing to grok it correctly,
+	 * and pads short words to overcome limitations.
+	 */
+	function normalizeText( $string ) {
+		global $wgContLang;
+
+		wfProfileIn( __METHOD__ );
+
+		// MySQL fulltext index doesn't grok utf-8, so we
+		// need to fold cases and convert to hex
+		$out = preg_replace_callback(
+			"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
+			array( $this, 'stripForSearchCallback' ),
+			$wgContLang->lc( $string ) );
+
+		// And to add insult to injury, the default indexing
+		// ignores short words... Pad them so we can pass them
+		// through without reconfiguring the server...
+		$minLength = $this->minSearchLength();
+		if( $minLength > 1 ) {
+			$n = $minLength - 1;
+			$out = preg_replace(
+				"/\b(\w{1,$n})\b/",
+				"$1u800",
+				$out );
+		}
+
+		// Periods within things like hostnames and IP addresses
+		// are also important -- we want a search for "example.com"
+		// or "192.168.1.1" to work sanely.
+		//
+		// MySQL's search seems to ignore them, so you'd match on
+		// "example.wikipedia.com" and "192.168.83.1" as well.
+		$out = preg_replace(
+			"/(\w)\.(\w|\*)/u",
+			"$1u82e$2",
+			$out );
+
+		wfProfileOut( __METHOD__ );
+		
+		return $out;
+	}
+
+	/**
+	 * Armor a case-folded UTF-8 string to get through MySQL's
+	 * fulltext search without being mucked up by funny charset
+	 * settings or anything else of the sort.
+	 */
+	protected function stripForSearchCallback( $matches ) {
+		return 'u8' . bin2hex( $matches[1] );
+	}
+
+	/**
+	 * Check MySQL server's ft_min_word_len setting so we know
+	 * if we need to pad short words...
+	 * 
+	 * @return int
+	 */
+	protected function minSearchLength() {
+		if( is_null( self::$mMinSearchLength ) ) {
+			$sql = "SHOW GLOBAL VARIABLES LIKE 'ft\\_min\\_word\\_len'";
+
+			$dbr = wfGetDB( DB_SLAVE );
+			$result = $dbr->query( $sql );
+			$row = $result->fetchObject();
+			$result->free();
+
+			if( $row && $row->Variable_name == 'ft_min_word_len' ) {
+				self::$mMinSearchLength = intval( $row->Value );
+			} else {
+				self::$mMinSearchLength = 0;
+			}
+		}
+		return self::$mMinSearchLength;
 	}
 }
 

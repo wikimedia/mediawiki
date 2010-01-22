@@ -1695,12 +1695,7 @@ class Language {
 	 * @return String
 	 */
 	function stripForSearch( $string, $doStrip = true ) {
-		if ( !$doStrip ) {
-			return $string;
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->stripForSearch( $string );
+		return $string;
 	}
 
 	/**
