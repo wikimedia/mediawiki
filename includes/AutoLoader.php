@@ -351,6 +351,7 @@ $wgAutoloadLocalClasses = array(
 	'DatabaseOracle' => 'includes/db/DatabaseOracle.php',
 	'DatabasePostgres' => 'includes/db/DatabasePostgres.php',
 	'DatabaseSqlite' => 'includes/db/DatabaseSqlite.php',
+	'DatabaseSqliteStandalone' => 'includes/db/DatabaseSqlite.php',
 	'DBConnectionError' => 'includes/db/Database.php',
 	'DBError' => 'includes/db/Database.php',
 	'DBObject' => 'includes/db/Database.php',
