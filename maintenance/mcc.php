@@ -35,7 +35,7 @@ function mccShowHelp($command) {
 			print "$cmd: $desc\n";
 		}
 	} elseif( isset( $commandList[$command] ) ) {
-		print "$cmd: $desc\n";
+		print "$command: $commandList[$command]\n";
 	} else {
 		print "$command: command does not exist or no help for it\n";
 	}
