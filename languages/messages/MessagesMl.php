@@ -1664,6 +1664,11 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 സുരക്ഷയ്ക്ക് ഏറ്റവും അനുകൂലിതമായെന്നതിനാൽ img_auth.php നിർജീവമാക്കിയിരിക്കുന്നു.',
 'img-auth-noread'       => '"$1" എടുത്തുനോക്കാൻ ഉപയോക്താവിനു കഴിയില്ല.',
 
+# HTTP errors
+'http-invalid-url'    => 'അസാധുവായ യു.ആർ.എൽ.: $1',
+'http-invalid-scheme' => '"$1" രീതിയിലുള്ള യു.ആർ.എല്ലുകൾ പിന്തുണയ്ക്കുന്നില്ല',
+'http-request-error'  => 'അഭ്യർത്ഥന അയയ്ക്കുന്നതിൽ പിഴവ്:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-ല്‍ എത്തിപ്പെടാന്‍ സാധിച്ചില്ല',
 'upload-curl-error6-text'  => 'താങ്കള്‍ സമര്‍പ്പിച്ച URL പ്രാപ്യമല്ല‌. ദയവായി URL സാധുവാണോ എന്നും സൈറ്റ് സജീവമാണോ എന്നും പരിശോധിക്കുക.',

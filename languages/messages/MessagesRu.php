@@ -1677,6 +1677,11 @@ PICT # различные
 Для оптимизации безопасности img_auth.php отключена.',
 'img-auth-noread'       => 'Участник не имеет доступа на чтение к «$1».',
 
+# HTTP errors
+'http-invalid-url'    => 'Ошибочный URL: $1',
+'http-invalid-scheme' => 'Не поддерживаются адреса со схемой «$1»',
+'http-request-error'  => 'Ошибка отправки запроса:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Невозможно обратить по указанному адресу.',
 'upload-curl-error6-text'  => 'Невозможно обратить по указанному адресу. Пожалуйста, проверьте, что адрес верен, а сайт доступен.',
@@ -2074,7 +2079,7 @@ PICT # различные
 'enotif_lastvisited'           => 'См. $1 для просмотра всех изменений, произошедших с вашего последнего посещения.',
 'enotif_lastdiff'              => 'См. $1 для ознакомления с изменением.',
 'enotif_anon_editor'           => 'анонимный участник $1',
-'enotif_body'                  => '$WATCHINGUSERNAME,
+'enotif_body'                  => 'Уважаесый(ая) $WATCHINGUSERNAME,
 
 $PAGEEDITDATE страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR, см. $PAGETITLE_URL для просмотра текущей версии.
 
@@ -2083,18 +2088,22 @@ $NEWPAGE
 Краткое описание изменения: $PAGESUMMARY $PAGEMINOREDIT
 
 Обратиться к изменившему:
-эл. почта $PAGEEDITOR_EMAIL
-вики $PAGEEDITOR_WIKI
+эл. почта: $PAGEEDITOR_EMAIL
+вики: $PAGEEDITOR_WIKI
 
-Если Вы не посетите эту страницу, то в случае её дальнейших изменений уведомлений больше не будет. Вы можете также отключить опцию уведомления для всех страниц в вашем списке наблюдения.
+Если вы не посетите эту страницу, то в случае её дальнейших изменений уведомлений больше не будет.
+Вы можете также отключить опцию уведомления для всех страниц в вашем списке наблюдения.
 
              Система оповещения {{grammar:genitive|{{SITENAME}}}}
 
 --
-Изменить настройки вашего списка наблюдения:
+Изменить настройки вашего списка наблюдения
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Обратная связь и помощь:
+Удалить страницы из вашего списка наблюдения
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+Обратная связь и помощь
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

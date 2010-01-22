@@ -9,7 +9,6 @@
  *
  * @author Aputtu
  * @author Kaare
- * @author Piivaat
  * @author Qaqqalik
  * @author לערי ריינהארט
  */
@@ -128,7 +127,7 @@ $messages = array(
 
 'errorpagetitle'   => 'Kukkuneq',
 'returnto'         => '$1 -mut uterit',
-'tagline'          => 'Matumannga {{SITENAME}}',
+'tagline'          => '{{SITENAME}}-meersoq',
 'help'             => 'Ikiuutit',
 'search'           => 'Ujarlerit',
 'searchbutton'     => 'Ujarlerit',
@@ -268,6 +267,8 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'protectedpagewarning'     => "'''Mianersoqqussut: Una qupperneq illersugaavoq, administratorit kisimik aaqqissorsinnaavaat.'''",
 'semiprotectedpagewarning' => "'''Malugiuk:''' Qupperneq parnaaqqavoq, atuisutut nalunaarsimasut kisimik allanngortitersinnaavaat.",
 'templatesused'            => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',
+'moveddeleted-notice'      => 'Una qupperneq peerneqarsimavoq.
+Peersinermut nuutsinermullu nalunaarsuutit ataani takuneqarsinnaapput.',
 
 # History pages
 'currentrev'             => 'Maanna taamaannera',
@@ -421,7 +422,8 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 # Delete
 'excontent'      => "imarivaa: '$1'",
 'delete-confirm' => 'Peeruk "$1"',
-'actioncomplete' => 'Naammassineqareersimavoq',
+'actioncomplete' => 'Naammassivoq',
+'deletedtext'    => '"$1" peerpoq. Takuuk $2 peerneqarsimasut kingulliit.',
 'deletedarticle' => 'peerpaa "[[$1]]"',
 
 # Rollback
@@ -443,6 +445,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 # Contributions
 'contributions' => 'Atuisup tapii',
 'mycontris'     => 'Tapikka',
+'contribsub2'   => '$1-meersoq ($2)',
 'uctop'         => '(kingulleq)',
 'month'         => 'Qaammat:',
 'year'          => 'Ukioq:',

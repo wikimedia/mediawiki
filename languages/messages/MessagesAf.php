@@ -894,6 +894,7 @@ Hierdie parameters is uitgelaat.",
 'post-expand-template-argument-category'  => 'Bladsye met weggelate sjabloonargumente',
 'parser-template-loop-warning'            => "Sjablone is in 'n oneindige lus: [[$1]]",
 'parser-template-recursion-depth-warning' => 'Die rekursiediepte vir sjablone is oorskry ($1)',
+'language-converter-depth-warning'        => 'Die dieptelimiet vir die taalomskakelaar is oorskrei ($1)',
 
 # "Undo" feature
 'undo-success' => 'Die wysiging kan ongedaan gemaak word.
@@ -2159,7 +2160,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 # Undelete
 'undelete'                     => 'Besigtig geskrapte bladsye',
 'undeletepage'                 => 'Bekyk en herstel geskrapte bladsye',
-'undeletepagetitle'            => "'''Hier onder is die verwyderde bydraes van [[:$1]]'''.",
+'undeletepagetitle'            => "'''Hier onder is die verwyderde weergawes van [[:$1]]'''.",
 'viewdeletedpage'              => 'Bekyk geskrapte bladsye',
 'undeletepagetext'             => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is geskrap, maar is nog in die argief en kan teruggeplaas word. Die argief van geskrapte blaaie kan periodiek skoongemaak word.',
 'undelete-fieldset-title'      => 'Weergawes terugplaas',

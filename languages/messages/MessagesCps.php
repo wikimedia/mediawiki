@@ -340,44 +340,108 @@ Pwede man mini magpakita sang isa ka depekto nga ara sa sulod sang {{SITENAME}}.
 Ang listahan sang inbalido nga mga pinasahi nga pahina makit-an sa [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'              => 'Sala',
-'databaseerror'      => 'Diperensya sa database',
-'dberrortext'        => 'May sala sa database query syntax.
+'error'                => 'Sala',
+'databaseerror'        => 'Diperensya sa database',
+'dberrortext'          => 'May sala sa database query syntax.
 Posible tungod mini sa depekto sa software.
 Ang nagligad nga database query mini:
 <blockquote><tt>$1</tt></blockquote>
 nga halin sa ulubrahon nga "<tt>$2</tt>".
 Nagbalik sang sala nga "<tt>$3: $4</tt>" ang MySQL.',
-'laggedslavemode'    => 'Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.',
-'readonly'           => 'Nakakandado ang database',
-'enterlockreason'    => 'Maghatag sang kabangdanan sa pagkakandado, upod ang bana-bana kung san-o ang kandado ibuy-an',
-'missing-article'    => 'Indi makita ang teksto nga pahina sa database nga dapat nakita na , na nangalanan "$1" $2.
+'laggedslavemode'      => 'Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.',
+'readonly'             => 'Nakakandado ang database',
+'enterlockreason'      => 'Maghatag sang kabangdanan sa pagkakandado, upod ang bana-bana kung san-o ang kandado ibuy-an',
+'missing-article'      => 'Indi makita ang teksto nga pahina sa database nga dapat nakita na , na nangalanan "$1" $2.
 
 Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o link nga kasaysayan sa may pahina nga napanas.
 
 Kung indi mini ang kaso, basi may nakita ka nga guba ukon diperensiya sa software.
 Palihog isugid sa [[Special:ListUsers/sysop|tagapamahala]], kag i-lista ang iya URL.',
-'missingarticle-rev' => '(pagbag-o#: $1)',
-'internalerror'      => 'Pangsulodlon nga diperensiya',
-'internalerror_info' => 'Pangsulodlon nga diperensiya:  $1',
-'filecopyerror'      => 'Indi makopya ang file nga "$1" pakadto sa "$2".',
-'filerenameerror'    => 'Indi mapangalanan liwat ang file nga "$1" pakadto sa "$2".',
-'filedeleteerror'    => 'Indi mapanas ang file nga "$1".',
-'badtitletext'       => 'Ang ginapangayo nga titulo sang pahina sala, wala unod, ukon may indi insakto nga koneksyon sa inter-language ukon sa titulo sang interwiki.
+'missingarticle-rev'   => '(pagbag-o#: $1)',
+'internalerror'        => 'Pangsulodlon nga diperensiya',
+'internalerror_info'   => 'Pangsulodlon nga diperensiya:  $1',
+'filecopyerror'        => 'Indi makopya ang file nga "$1" pakadto sa "$2".',
+'filerenameerror'      => 'Indi mapangalanan liwat ang file nga "$1" pakadto sa "$2".',
+'filedeleteerror'      => 'Indi mapanas ang file nga "$1".',
+'formerror'            => 'Kasal-anan: indi mapadala ang pormas',
+'badtitle'             => 'Kala-in nga titulo',
+'badtitletext'         => 'Ang ginapangayo nga titulo sang pahina sala, wala unod, ukon may indi insakto nga koneksyon sa inter-language ukon sa titulo sang interwiki.
 Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede gamiton sa mga titulo.',
-'viewsource'         => 'Lantawon ang ginhalinan',
+'viewsource'           => 'Lantawon ang ginhalinan',
+'viewsourcefor'        => 'para sa $1',
+'actionthrottled'      => 'Ginpunggan ang ulubrahon',
+'protectedpagetext'    => 'Ginkandaduhan ang mini nga pahina para indi ma-islan.',
+'viewsourcetext'       => 'Pwede mo makita kag makopya ang ginhalinan sang mini nga pahina:',
+'protectedinterface'   => "Nagahatag ang mini nga pahina sang teksto nga pangkatapusan (''interface'') para sa software, kag ikandado para mapunggan ang pag-abuso.",
+'sqlhidden'            => '(nakatago ang pamangkot sang SQL)',
+'namespaceprotected'   => "Wala ka sang permiso nga magliwat sang mga pahina nga ara sa namespace nga '''$1'''.",
+'customcssjsprotected' => 'Wala ka sang permiso nga bag-uhon ang ini nga pahina, tungod naga-unod ni sang mga pangkina-ugalingon nga gusto sang iban nga manug-usar.',
+'ns-specialprotected'  => 'Indi pwede bag-uhon ang mga pinasahi nga pahina.',
+'titleprotected'       => 'Naprotektahan ang mini nga titulo halin sa pag-ubra ni [[User:$1|$1]].
+Mini ang ginhatag nga kabangdanan "\'\'$2\'\'".',
+
+# Virus scanner
+'virus-badscanner' => "Sala nga konpigurasyon: wala nakilal-an nga manugsala sang virus: ''$1''",
 
 # Login and logout pages
+'welcomecreation'         => '==Malipayon nga pag-abot, $1! ==
+Nahimo na ang imo account.
+Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENAME}}]].',
 'yourname'                => 'Hayo (username):',
 'yourpassword'            => 'Password:',
+'yourpasswordagain'       => 'Liwata ka pindot ang password:',
 'remembermypassword'      => 'Dumduma ang pagsulod ko sa mini nga kompyuter',
+'yourdomainname'          => 'Imo domain:',
 'login'                   => 'Mag sulod',
 'nav-login-createaccount' => 'Magsulod / maghimo account',
 'userlogin'               => 'Mag sulod / mag-ubra account',
+'userloginnocreate'       => 'Magsulod',
 'logout'                  => 'Maggwa',
 'userlogout'              => 'Maggwa',
+'notloggedin'             => 'Wala nakasulod',
+'nologin'                 => "Wala ka account? '''$1'''.",
 'nologinlink'             => 'Mag-ubra account',
+'createaccount'           => 'Mag-ubra account',
+'gotaccount'              => "May account ka na bala? '''$1'''.",
+'gotaccountlink'          => 'Magsulod',
+'createaccountmail'       => 'Paagi sa email',
+'badretype'               => 'Wala gasanto ang password nga imo ginsulod',
+'userexists'              => 'May nagagamit na sang mina nga ngalan sang manug-usar.
+Magpili sang iban nga pangalan.',
+'loginerror'              => 'Sala sa pagsulod',
+'createaccounterror'      => 'Indi mahimo ang acount nga: $1',
+'noname'                  => 'Wala mo nahatag ang tsakto nga ngalan sang manug-usar.',
+'nouserspecified'         => 'Kinanglan mo ihatag sang insakto ang ngalan sang manug-usar.',
+'wrongpassword'           => 'Sala nga pagsulod sang password.
+Palihog tistingan liwat.',
+'wrongpasswordempty'      => 'Wala unod ang password nga ginsulod.
+Palihog tistingan liwat.',
+'passwordtooshort'        => 'Ang password dapat biskan {{PLURAL:$1|1 ka karakter|$1 ka mga karakter}}.',
+'password-name-match'     => 'Dapat la-in ang imo password sa imo ngalan manug-usar.',
 'mailmypassword'          => 'I-email ang bag-o nga password',
+'passwordremindertitle'   => 'Bag-ong temporaryo nga password para sa {{SITENAME}}',
+'noemail'                 => 'Wala sang address sang email nga nakalista para sa manug-usar nga "$1".',
+'noemailcreate'           => 'Kinahanglan mo maghatag sang pwede nga address sang email',
+'mailerror'               => 'Kasal-anan sa pagpadala sang email: $1',
+'emailauthenticated'      => 'Ang imo email address nakilal-an sang $2, $3.',
+'noemailprefs'            => 'Tukuyon ang isa ka address sang email sa imo mga ginapalabi para sa mini nga mga pitsi-pitsi para maggana.',
+'emailconfirmlink'        => 'Kumpirmahon ang imo address sang imo email.',
+'accountcreated'          => 'Nahimo na ang account',
+'accountcreatedtext'      => 'Nahimo na ang acount sang manug-usar para kay $1.',
+'createaccount-title'     => 'Paghimo sang account para sa {{SITENAME}}',
+'usernamehasherror'       => 'Ang ngalan sang manug-usar indi dapat mag-unod sang mga labay-labay nga mga karakter.',
+'loginlanguagelabel'      => 'Lingguahe:',
+
+# Password reset dialog
+'resetpass'               => 'Islan ang password',
+'resetpass_header'        => 'Islan ang password sang account',
+'oldpassword'             => 'Luma nga password:',
+'newpassword'             => 'Bag-ong password:',
+'retypenew'               => 'I-type liwat ang bag-o nga password:',
+'resetpass_submit'        => 'Itakda ang password kag magsulod',
+'resetpass_forbidden'     => 'Indi pwede ma-islan ang password',
+'resetpass-no-info'       => 'Nakasulod ka dapat para makadtu-an ang mini nga pahina sang diretso.',
+'resetpass-temp-password' => 'Temporaryo nga password:',
 
 # Edit page toolbar
 'bold_sample'     => 'Madukot nga teksto',
@@ -410,6 +474,7 @@ Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede
 'showdiff'                         => 'Ipakita ang inislan',
 'anoneditwarning'                  => "'''Pa-andam:''' Wala ka pa nakasulod.
 Igasulat ang imo IP adres sa historya sang mga inislan sang mini nga pahina.",
+'missingcommenttext'               => 'Palihog isulod ang komento sa idalum.',
 'summary-preview'                  => 'Kabilugan nga prebyu:',
 'newarticle'                       => '(Bag-o)',
 'newarticletext'                   => "Ginsundan mo ang pahina nga wala pa gagana.

@@ -861,6 +861,9 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'longpages'               => 'Paginn püssee lungh',
 'deadendpages'            => 'Pagin senza surtida',
 'listusers'               => 'Lista di dupradur registraa',
+'listusers-editsonly'     => 'Mustra dumà i dupradur cun di mudifegh',
+'listusers-creationsort'  => 'Cavèzza per data de creazión',
+'usercreated'             => 'Creaa el $1 a $2',
 'newpages'                => 'Paginn növ',
 'ancientpages'            => 'Paginn püssee vegg',
 'move'                    => 'Sposta',
@@ -900,6 +903,12 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 
 # Special:LinkSearch
 'linksearch' => 'Ligam de föra',
+
+# Special:ListUsers
+'listusersfrom' => 'Fàm vedè i dupradur a partì da:',
+
+# Special:ActiveUsers
+'activeusers-from' => 'Fàm vedè i dupradur a partì da:',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Rrgister di druvat növ',

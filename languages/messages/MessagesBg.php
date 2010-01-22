@@ -1613,6 +1613,9 @@ $1",
 С цел оптимална сигурност, функцията img_auth.php е деактивирана.',
 'img-auth-noread'       => 'Потребителят няма достъп за четене на „$1“.',
 
+# HTTP errors
+'http-invalid-url' => 'Невалиден адрес: $1',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не е възможно достигането на указания URL адрес',
 'upload-curl-error6-text'  => 'Търсеният адрес не може да бъде достигнат. Проверете дали е написан вярно.',

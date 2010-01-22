@@ -1689,6 +1689,11 @@ Bu viki genel bir viki olarak ayarlanmış.
 En uygun güvenlik için, img_auth.php devre dışı bırakıldı.",
 'img-auth-noread'       => 'Kullanıcının "$1" dosyasını okumaya erişimi yok.',
 
+# HTTP errors
+'http-invalid-url'    => 'Geçersiz URL: $1',
+'http-invalid-scheme' => '"$1" şemasına sahip URLler desteklenmiyor',
+'http-request-error'  => 'Hata gönderme isteği:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL'ye ulaşılamadı",
 'upload-curl-error6-text'  => "Belirtilen URL'ye erişilemiyor.
@@ -2106,10 +2111,13 @@ Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik
               {{SITENAME}} sitesinin uyarı sistemi.
 
 --
-Ayarları değiştirmek için:
-{{fullurl:Special:Watchlist/edit}}
+İzleme listesi ayarlarınızı değiştirmek için:
+{{fullurl:{{#special:Watchlist}}/edit}}
 
-Yardım ve öneriler için:
+Sayfayı izleme listenizden silmek için:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+Geridönüt ve daha fazla yardım için:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

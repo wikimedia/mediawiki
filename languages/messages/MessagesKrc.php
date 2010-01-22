@@ -1858,6 +1858,9 @@ $NEWPAGE
 Джарашдырыуланы тюрлендирир ючюн:
 {{fullurl:Special:Watchlist/edit}}
 
+Сынчыкълау списокдан кетерир ючюн:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 Болушлукъ эм теджеуле ючюн:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 

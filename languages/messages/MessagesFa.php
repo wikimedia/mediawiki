@@ -1812,6 +1812,11 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 برای امنیت بهینه، img_auth.php غیر فعال است.',
 'img-auth-noread'       => 'کاربر دسترسی خواندن «$1» را ندارد.',
 
+# HTTP errors
+'http-invalid-url'    => 'نشانی نامعتبر: $1',
+'http-invalid-scheme' => 'نشانی‌های اینترنتی با طرح «$1» پشتیبانی نمی‌شوند',
+'http-request-error'  => 'خطا در ارسال درخواست:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'دسترسی به URL ممکن نشد.',
 'upload-curl-error6-text'  => 'URL داده شده قابل دسترسی نیست. لطفاً درستی آن و اینکه وب‌گاه برقرار است را بازرسی کنید.',
@@ -2239,6 +2244,8 @@ $NEWPAGE
 
 --
 برای تغییر تنظیمات فهرست پی‌گیری‌هایتان به {{fullurl:{{#special:Watchlist}}/edit}} بروید.
+
+برای حذف صفحه از فهرصت پی‌گیری‌هایتان به {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}} بروید.
 
 بازخورد و کمک بیشتر:
 {{fullurl:{{ns:help}}:Contents}}',

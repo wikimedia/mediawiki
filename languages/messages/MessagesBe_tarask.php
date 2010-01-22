@@ -1648,6 +1648,11 @@ $1",
 Для найлепшай бясьпекі img_auth.php выключана.',
 'img-auth-noread'       => 'Удзельнік ня мае доступу на чытаньне «$1».',
 
+# HTTP errors
+'http-invalid-url'    => 'Няслушны URL-адрас: $1',
+'http-invalid-scheme' => 'URL-адрасы схемы «$1» не падтрымліваюцца',
+'http-request-error'  => 'Памылка дасылкі запыту:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Немагчыма дасягнуць URL-адрас',
 'upload-curl-error6-text'  => 'Немагчыма адкрыць пазначаны URL-адрас.

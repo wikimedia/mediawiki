@@ -1451,6 +1451,7 @@ $1',
 'movelogpage'               => 'Күчерү көндәлеге',
 'movereason'                => 'Сәбәп:',
 'revertmove'                => 'кире кайту',
+'move-leave-redirect'       => 'Юнәлтүне калдырырга',
 
 # Export
 'export' => 'Битләрне чыгаруы',
