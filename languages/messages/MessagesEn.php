@@ -2152,7 +2152,7 @@ For optimal security, img_auth.php is disabled.',
 'img-auth-noread'       => 'User does not have access to read "$1".',
 
 'http-invalid-url'      => 'Invalid URL: $1',
-'http-invalid-scheme'   => 'URLs with the \'$1\' scheme are not supported',
+'http-invalid-scheme'   => 'URLs with the "$1" scheme are not supported',
 'http-request-error'    => 'Error sending request:',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

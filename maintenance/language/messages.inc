@@ -1270,6 +1270,12 @@ $wgMessageStructure = array(
 		'img-auth-noread',
 	),
 
+	'http-errors' => array(
+		'http-invalid-url',
+		'http-invalid-scheme',
+		'http-request-error',
+	),
+
 	'upload-curl-errors' => array(
 		'upload-curl-error6',
 		'upload-curl-error6-text',
@@ -3181,6 +3187,7 @@ XHTML id names.",
 	'upload'              => 'Upload',
 	'upload-errors'       => '',
 	'img-auth'            => 'img_auth script messages',
+	'http-errors'         => 'HTTP errors',
 	'upload-curl-errors'  => 'Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>',
 	'licenses'            => '',
 	'filelist'            => 'Special:ListFiles',
