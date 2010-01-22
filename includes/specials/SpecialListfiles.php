@@ -133,6 +133,10 @@ class ImageListPager extends TablePager {
 				$name = $this->mCurrentRow->img_name;
 				$link = $this->getSkin()->linkKnown( Title::makeTitle( NS_FILE, $name ), $value );
 				$image = wfLocalFile( $value );
+				if( !$image ) {
+					wfDebug( __METHOD__ . " was passed a bogus title '$value'" );
+					return '';
+				}
 				$url = $image->getURL();
 				$download = Xml::element('a', array( 'href' => $url ), $imgfile );
 				return "$link ($download)";
