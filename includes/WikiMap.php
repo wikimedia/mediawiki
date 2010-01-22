@@ -41,7 +41,7 @@ class WikiMap {
 		if ( $wiki ) {
 			return $wiki->getDisplayName();
 		}
-		return $wiki_id;
+		return $wikiID;
 	}
 
 	/**
