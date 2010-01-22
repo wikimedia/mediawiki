@@ -1371,7 +1371,7 @@ class Article {
 	 * @param $forceKnown Boolean: should the image be shown as a bluelink regardless of existence?
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
-		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
+		global $wgOut, $wgContLang, $wgStylePath, $wgUser;
 		# Display redirect
 		if( !is_array( $target ) ) {
 			$target = array( $target );
@@ -3268,7 +3268,7 @@ class Article {
 	 * @param $changed Whether or not the content actually changed
 	 */
 	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true ) {
-		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser, $wgEnableParserCache;
+		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
 

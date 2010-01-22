@@ -1402,7 +1402,7 @@ HTML
 	}
 	
 	protected function showHeader() {
-		global $wgOut, $wgParser, $wgUser, $wgTitle, $wgMaxArticleSize, $wgLang;
+		global $wgOut, $wgUser, $wgTitle, $wgMaxArticleSize, $wgLang;
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1</div>", 'explainconflict' );
 			$this->edittime = $this->mArticle->getTimestamp();
