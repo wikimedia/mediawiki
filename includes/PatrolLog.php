@@ -11,8 +11,8 @@ class PatrolLog {
 	/**
 	 * Record a log event for a change being patrolled
 	 *
-	 * @param mixed $change Change identifier or RecentChange object
-	 * @param bool $auto Was this patrol event automatic?
+	 * @param $rc Mixed: change identifier or RecentChange object
+	 * @param $auto Boolean: was this patrol event automatic?
 	 */
 	public static function record( $rc, $auto = false ) {
 		if( !( $rc instanceof RecentChange ) ) {
@@ -33,10 +33,10 @@ class PatrolLog {
 	/**
 	 * Generate the log action text corresponding to a patrol log item
 	 *
-	 * @param Title $title Title of the page that was patrolled
-	 * @param array $params Log parameters (from logging.log_params)
-	 * @param Skin $skin Skin to use for building links, etc.
-	 * @return string
+	 * @param $title Title of the page that was patrolled
+	 * @param $params Array: log parameters (from logging.log_params)
+	 * @param $skin Skin to use for building links, etc.
+	 * @return String
 	 */
 	public static function makeActionText( $title, $params, $skin ) {
 		list( $cur, /* $prev */, $auto ) = $params;
@@ -74,9 +74,9 @@ class PatrolLog {
 	/**
 	 * Prepare log parameters for a patrolled change
 	 *
-	 * @param RecentChange $change RecentChange to represent
-	 * @param bool $auto Whether the patrol event was automatic
-	 * @return array
+	 * @param $change RecentChange to represent
+	 * @param $auto Boolean: whether the patrol event was automatic
+	 * @return Array
 	 */
 	private static function buildParams( $change, $auto ) {
 		return array(
