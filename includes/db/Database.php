@@ -2367,18 +2367,6 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * When overridden in derived class, performs database-specific conversions
-	 * on text to be used for searching or updating search index.
-	 * Default implementation does nothing (simply returns $string).
-	 *
-	 * @param $string string: String to strip
-	 * @return string
-	 */
-	public function stripForSearch( $string ) {
-		return $string;
-	}
-
-	/**
 	 * Allow or deny "big selects" for this session only. This is done by setting 
 	 * the sql_big_selects session variable.
 	 *
