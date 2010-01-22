@@ -1618,8 +1618,6 @@ class RemoteTestRecorder extends TestRecorder {
 	}
 
 	function post( $url, $data ) {
-		// @fixme: for whatever reason, I get a 417 fail when using CURL's multipart form submit.
-		// If we do form URL encoding ourselves, though, it should work.
-		return Http::post( $url, array( 'postdata' => wfArrayToCGI( $data ) ) );
+		return Http::post( $url, array( 'postData' => $data) );
 	}
 }

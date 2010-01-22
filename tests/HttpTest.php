@@ -52,10 +52,10 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 			self::$content["POST $u"] = file_get_contents( $content );
 			self::$headers["POST $u"] = file_get_contents( $headers );
 		}
-		foreach ( $this->test_posturl as $u => $postdata ) {
-			system( "curl -0 -s -X POST -d '$postdata' -D $headers '$u' -o $content" );
-			self::$content["POST $u => $postdata"] = file_get_contents( $content );
-			self::$headers["POST $u => $postdata"] = file_get_contents( $headers );
+		foreach ( $this->test_posturl as $u => $postData ) {
+			system( "curl -0 -s -X POST -d '$postData' -D $headers '$u' -o $content" );
+			self::$content["POST $u => $postData"] = file_get_contents( $content );
+			self::$headers["POST $u => $postData"] = file_get_contents( $headers );
 		}
 		unlink( $content );
 		unlink( $headers );
@@ -138,7 +138,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 			$opt['proxy'] = $proxy;
 		}
 
-		/* no postdata here because the only request I could find in code so far didn't have any */
+		/* no postData here because the only request I could find in code so far didn't have any */
 		foreach ( $this->test_requesturl as $u ) {
 			$r = Http::request( "POST", $u, $opt );
 			$this->assertEquals( self::$content["POST $u"], "$r", "POST $u with $wgHTTPEngine" );
@@ -253,7 +253,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		self::runHTTPGets();
 	}
 
-	/* ./phase3/maintenance/parserTests.inc:1618:		return Http::post( $url, array( 'postdata' => wfArrayToCGI( $data ) ) ); */
+	/* ./phase3/maintenance/parserTests.inc:1618:		return Http::post( $url, array( 'postData' => wfArrayToCGI( $data ) ) ); */
 	function runHTTPPosts($proxy=null) {
 		global $wgHTTPEngine;
 		$opt = array();
@@ -262,11 +262,11 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 			$opt['proxy'] = $proxy;
 		}
 
-		foreach ( $this->test_posturl as $u => $postdata ) {
-			$opt['postdata'] = $postdata;
+		foreach ( $this->test_posturl as $u => $postData ) {
+			$opt['postData'] = $postData;
 			$r = Http::post( $u, $opt );
-			$this->assertEquals( self::$content["POST $u => $postdata"], "$r",
-								 "POST $u (postdata=$postdata) with $wgHTTPEngine" );
+			$this->assertEquals( self::$content["POST $u => $postData"], "$r",
+								 "POST $u (postData=$postData) with $wgHTTPEngine" );
 		}
 	}
 

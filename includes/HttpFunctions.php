@@ -12,18 +12,18 @@ class Http {
 	 * Perform an HTTP request
 	 * @param $method string HTTP method. Usually GET/POST
 	 * @param $url string Full URL to act on
-	 * @param $opts options to pass to HttpRequest object
+	 * @param $options options to pass to HttpRequest object
 	 * @returns mixed (bool)false on failure or a string on success
 	 */
-	public static function request( $method, $url, $opts = array() ) {
-		$opts['method'] = strtoupper( $method );
-		if ( !array_key_exists( 'timeout', $opts ) ) {
-			$opts['timeout'] = 'default';
+	public static function request( $method, $url, $options = array() ) {
+		$options['method'] = strtoupper( $method );
+		if ( !isset( $options['timeout'] ) ) {
+			$options['timeout'] = 'default';
 		}
-		$req = HttpRequest::factory( $url, $opts );
+		$req = HttpRequest::factory( $url, $options );
 		$status = $req->execute();
 		if ( $status->isOK() ) {
-			return $req;
+			return $req->getContent();
 		} else {
 			return false;
 		}
@@ -33,17 +33,17 @@ class Http {
 	 * Simple wrapper for Http::request( 'GET' )
 	 * @see Http::request()
 	 */
-	public static function get( $url, $timeout = 'default', $opts = array() ) {
-		$opts['timeout'] = $timeout;
-		return Http::request( 'GET', $url, $opts );
+	public static function get( $url, $timeout = 'default', $options = array() ) {
+		$options['timeout'] = $timeout;
+		return Http::request( 'GET', $url, $options );
 	}
 
 	/**
 	 * Simple wrapper for Http::request( 'POST' )
 	 * @see Http::request()
 	 */
-	public static function post( $url, $opts = array() ) {
-		return Http::request( 'POST', $url, $opts );
+	public static function post( $url, $options = array() ) {
+		return Http::request( 'POST', $url, $options );
 	}
 
 	/**
@@ -111,14 +111,16 @@ class HttpRequest {
 	protected $content;
 	protected $timeout = 'default';
 	protected $headersOnly = null;
-	protected $postdata = null;
+	protected $postData = null;
 	protected $proxy = null;
-	protected $no_proxy = false;
+	protected $noProxy = false;
 	protected $sslVerifyHost = true;
 	protected $caInfo = null;
 	protected $method = "GET";
+	protected $reqHeaders = array();
 	protected $url;
-	protected $parsed_url;
+	protected $parsedUrl;
+	protected $callback;
 	public $status;
 
 	/**
@@ -129,235 +131,87 @@ class HttpRequest {
 	 *					timeout
 	 *					targetFilePath
 	 *					requestKey
-	 *					headersOnly
-	 *					postdata
+	 *					postData
 	 *					proxy
-	 *					no_proxy
+	 *					noProxy
 	 *					sslVerifyHost
 	 *					caInfo
 	 */
-	function __construct( $url = null, $opt = array() ) {
-		global $wgHTTPTimeout, $wgTitle;
+	function __construct( $url, $options = array() ) {
+		global $wgHTTPTimeout;
 
 		$this->url = $url;
-		$this->parsed_url = parse_url( $url );
+		$this->parsedUrl = parse_url( $url );
 
-		if ( !ini_get( 'allow_url_fopen' ) ) {
-			throw new MWException( 'allow_url_fopen needs to be enabled for http requests to work' );
-		} elseif ( !Http::isValidURI( $this->url ) ) {
-			throw new MWException( 'Invalid URL' );
+		if ( !Http::isValidURI( $this->url ) ) {
+			$this->status = Status::newFromFatal('http-invalid-url');
 		} else {
 			$this->status = Status::newGood( 100 ); // continue
 		}
 
-		if ( array_key_exists( 'timeout', $opt ) && $opt['timeout'] != 'default' ) {
-			$this->timeout = $opt['timeout'];
+		if ( isset($options['timeout']) && $options['timeout'] != 'default' ) {
+			$this->timeout = $options['timeout'];
 		} else {
 			$this->timeout = $wgHTTPTimeout;
 		}
 
-		$members = array( "targetFilePath", "requestKey", "headersOnly", "postdata",
-						  "proxy", "no_proxy", "sslVerifyHost", "caInfo", "method" );
+		$members = array( "targetFilePath", "requestKey", "postData",
+			"proxy", "noProxy", "sslVerifyHost", "caInfo", "method" );
 		foreach ( $members as $o ) {
-			if ( array_key_exists( $o, $opt ) ) {
-				$this->$o = $opt[$o];
+			if ( isset($options[$o]) ) {
+				$this->$o = $options[$o];
 			}
 		}
-
-		if ( is_array( $this->postdata ) ) {
-			$this->postdata = wfArrayToCGI( $this->postdata );
-		}
-
-		$this->initRequest();
-
-		if ( !$this->no_proxy ) {
-			$this->proxySetup();
-		}
-
-		# Set the referer to $wgTitle, even in command-line mode
-		# This is useful for interwiki transclusion, where the foreign
-		# server wants to know what the referring page is.
-		# $_SERVER['REQUEST_URI'] gives a less reliable indication of the
-		# referring page.
-		if ( is_object( $wgTitle ) ) {
-			$this->setReferrer( $wgTitle->getFullURL() );
-		}
-	}
-
-	/**
-	 * For backwards compatibility, we provide a __toString method so
-	 * that any code that expects a string result from Http::Get()
-	 * will see the content of the request.
-	 */
-	function __toString() {
-		return $this->content;
 	}
 
 	/**
 	 * Generate a new request object
 	 * @see HttpRequest::__construct
 	 */
-	public static function factory( $url, $opt ) {
+	public static function factory( $url, $options ) {
 		global $wgHTTPEngine;
 		$engine = $wgHTTPEngine;
 
 		if ( !$wgHTTPEngine ) {
 			$wgHTTPEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( $wgHTTPEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new MWException( 'FIXME' );
+			throw new MWException( __METHOD__.': curl (http://php.net/curl) is not installed, but $wgHTTPEngine is set to "curl"' );
 		}
 
 		switch( $wgHTTPEngine ) {
 		case 'curl':
-			return new CurlHttpRequest( $url, $opt );
+			return new CurlHttpRequest( $url, $options );
 		case 'php':
-			return new PhpHttpRequest( $url, $opt );
+			if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
+				throw new MWException( __METHOD__.': allow_url_fopen needs to be enabled for pure PHP http requests to work. '.
+					'If possible, curl should be used instead.  See http://php.net/curl.' );
+			}
+			return new PhpHttpRequest( $url, $options );
 		default:
-			throw new MWException( 'The setting of $wgHTTPEngine is not valid.' );
+			throw new MWException( __METHOD__.': The setting of $wgHTTPEngine is not valid.' );
 		}
 	}
 
+	/**
+	 * Get the body, or content, of the response to the request
+	 * @return string
+	 */
 	public function getContent() {
 		return $this->content;
 	}
 
-	public function initRequest() { }
-	public function proxySetup() { }
-	public function setReferrer( $url ) { }
-	public function setCallback( $cb ) { }
-	public function read( $fh, $content ) { }
-	public function getCode() { }
-	public function execute() { }
-}
-
-/**
- * HttpRequest implemented using internal curl compiled into PHP
- */
-class CurlHttpRequest extends HttpRequest {
-	protected $curlHandle;
-	protected $curlCBSet;
-
-	public function initRequest() {
-		$this->curlHandle = curl_init( $this->url );
-	}
-
+	/**
+	 * Take care of setting up the proxy
+	 * (override in subclass)
+	 * @return string
+	 */
 	public function proxySetup() {
 		global $wgHTTPProxy;
 
-		if ( is_string( $this->proxy ) ) {
-			curl_setopt( $this->curlHandle, CURLOPT_PROXY, $this->proxy );
-		} else if ( Http::isLocalURL( $this->url ) ) { /* Not sure this makes any sense. */
-			curl_setopt( $this->curlHandle, CURLOPT_PROXY, 'localhost:80' );
-		} else if ( $wgHTTPProxy ) {
-			curl_setopt( $this->curlHandle, CURLOPT_PROXY, $wgHTTPProxy );
+
+		if ( $this->proxy ) {
+			return;
 		}
-	}
-
-	public function setCallback( $cb ) {
-		if ( !$this->curlCBSet ) {
-			$this->curlCBSet = true;
-			curl_setopt( $this->curlHandle, CURLOPT_WRITEFUNCTION, $cb );
-		}
-	}
-
-	public function execute() {
-		if ( !$this->status->isOK() ) {
-			return $this->status;
-		}
-
-		$this->setCallback( array( $this, 'read' ) );
-
-		curl_setopt( $this->curlHandle, CURLOPT_TIMEOUT, $this->timeout );
-		curl_setopt( $this->curlHandle, CURLOPT_USERAGENT, Http::userAgent() );
-		curl_setopt( $this->curlHandle, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0 );
-
-		if ( $this->sslVerifyHost ) {
-			curl_setopt( $this->curlHandle, CURLOPT_SSL_VERIFYHOST, $this->sslVerifyHost );
-		}
-
-		if ( $this->caInfo ) {
-			curl_setopt( $this->curlHandle, CURLOPT_CAINFO, $this->caInfo );
-		}
-
-		if ( $this->headersOnly ) {
-			curl_setopt( $this->curlHandle, CURLOPT_NOBODY, true );
-			curl_setopt( $this->curlHandle, CURLOPT_HEADER, true );
-		} elseif ( $this->method == 'POST' ) {
-			curl_setopt( $this->curlHandle, CURLOPT_POST, true );
-			curl_setopt( $this->curlHandle, CURLOPT_POSTFIELDS, $this->postdata );
-			// Suppress 'Expect: 100-continue' header, as some servers
-			// will reject it with a 417 and Curl won't auto retry
-			// with HTTP 1.0 fallback
-			curl_setopt( $this->curlHandle, CURLOPT_HTTPHEADER, array( 'Expect:' ) );
-		} else {
-			curl_setopt( $this->curlHandle, CURLOPT_CUSTOMREQUEST, $this->method );
-		}
-
-		try {
-			if ( false === curl_exec( $this->curlHandle ) ) {
-				$this->status->fatal( 'Error sending request (#$1): $2',
-									  curl_errno( $this->curlHandle ),
-									  curl_error( $this->curlHandle ) );
-			}
-		} catch ( Exception $e ) {
-			$errno = curl_errno( $this->curlHandle );
-			if ( $errno != CURLE_OK ) {
-				$errstr = curl_error( $this->curlHandle );
-				$this->status->fatal( 'CURL error code $1: $2', $errno, $errstr );
-			}
-		}
-
-		curl_close( $this->curlHandle );
-
-		return $this->status;
-	}
-
-	public function read( $curlH, $content ) {
-		$this->content .= $content;
-		return strlen( $content );
-	}
-
-	public function getCode() {
-		# Don't return truncated output
-		$code = curl_getinfo( $this->curlHandle, CURLINFO_HTTP_CODE );
-		if ( $code < 400 ) {
-			$this->status->setResult( true, $code );
-		} else {
-			$this->status->setResult( false, $code );
-		}
-	}
-}
-
-class PhpHttpRequest extends HttpRequest {
-	private $reqHeaders;
-	private $callback;
-	private $fh;
-
-	public function initRequest() {
-		$this->setCallback( array( $this, 'read' ) );
-
-		$this->reqHeaders[] = "User-Agent: " . Http::userAgent();
-		$this->reqHeaders[] = "Accept: */*";
-		if ( $this->method == 'POST' ) {
-			// Required for HTTP 1.0 POSTs
-			$this->reqHeaders[] = "Content-Length: " . strlen( $this->postdata );
-			$this->reqHeaders[] = "Content-type: application/x-www-form-urlencoded";
-		}
-
-		if ( $this->parsed_url['scheme'] != 'http' ) {
-			$this->status->fatal( "Only http:// is supported currently." );
-	    }
-	}
-
-	protected function urlToTcp( $url ) {
-		$parsed_url = parse_url( $url );
-
-		return 'tcp://' . $parsed_url['host'] . ':' . $parsed_url['port'];
-	}
-
-	public function proxySetup() {
-		global $wgHTTPProxy;
-
 		if ( Http::isLocalURL( $this->url ) ) {
 			$this->proxy = 'http://localhost:80/';
 		} elseif ( $wgHTTPProxy ) {
@@ -365,59 +219,216 @@ class PhpHttpRequest extends HttpRequest {
 		}
 	}
 
-	public function setReferrer( $url ) {
-		$this->reqHeaders[] = "Referer: $url";
+	/**
+	 * Set the refererer header
+	 */
+	public function setReferer( $url ) {
+		$this->setHeader('Referer', $url);
 	}
 
-	public function setCallback( $cb ) {
-		$this->callback = $cb;
+	/**
+	 * Set the user agent
+	 */
+	public function setUserAgent( $UA ) {
+		$this->setHeader('User-Agent', $UA);
 	}
 
-	public function read( $fh, $contents ) {
-		if ( $this->headersOnly ) {
-			return false;
+	/**
+	 * Set an arbitrary header
+	 */
+	public function setHeader($name, $value) {
+		// I feel like I should normalize the case here...
+		$this->reqHeaders[$name] = $value;
+	}
+
+	/**
+	 * Get an array of the headers
+	 */
+	public function getHeaderList() {
+		$list = array();
+
+		foreach($this->reqHeaders as $name => $value) {
+			$list[] = "$name: $value";
 		}
-		$this->content .= $contents;
-
-        return strlen( $contents );
+		return $list;
 	}
+
+	/**
+	 * Set the callback
+	 * @param $callback callback
+	 */
+	public function setCallback( $callback ) {
+		$this->callback = $callback;
+	}
+
+	/**
+	 * A generic callback to read in the response from a remote server
+	 * @param $fh handle
+	 * @param $content string
+	 */
+	public function read( $fh, $content ) {
+		$this->content .= $content;
+		return strlen( $content );
+	}
+
+	/**
+	 * Take care of whatever is necessary to perform the URI request.
+	 * @return Status
+	 */
+	public function execute() {
+		global $wgTitle;
+
+		if( strtoupper($this->method) == "HEAD" ) {
+			$this->headersOnly = true;
+		}
+
+		if ( is_array( $this->postData ) ) {
+			$this->postData = wfArrayToCGI( $this->postData );
+		}
+
+		if ( is_object( $wgTitle ) && !isset($this->reqHeaders['Referer']) ) {
+			$this->setReferer( $wgTitle->getFullURL() );
+		}
+
+		if ( !$this->noProxy ) {
+			$this->proxySetup();
+		}
+
+		if ( !$this->callback ) {
+			$this->setCallback( array( $this, 'read' ) );
+		}
+
+		if ( !isset($this->reqHeaders['User-Agent']) ) {
+			$this->setUserAgent(Http::userAgent());
+		}
+	}
+}
+
+/**
+ * HttpRequest implemented using internal curl compiled into PHP
+ */
+class CurlHttpRequest extends HttpRequest {
+	protected $curlOptions = array();
 
 	public function execute() {
+		parent::execute();
 		if ( !$this->status->isOK() ) {
 			return $this->status;
 		}
 
-		$opts = array();
-		if ( $this->proxy && !$this->no_proxy ) {
-			$opts['proxy'] = $this->urlToTCP( $this->proxy );
-			$opts['request_fulluri'] = true;
+		// A lot of the action up front should probably be in
+		// set* methods, but we'll leave that for another time.
+
+		$this->curlOptions[CURLOPT_PROXY] = $this->proxy;
+		$this->curlOptions[CURLOPT_TIMEOUT] = $this->timeout;
+		$this->curlOptions[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_0;
+		$this->curlOptions[CURLOPT_WRITEFUNCTION] = $this->callback;
+
+		/* not sure these two are actually necessary */
+		if(isset($this->reqHeaders['Referer'])) {
+			$this->curlOptions[CURLOPT_REFERER] = $this->reqHeaders['Referer'];
+		}
+		$this->curlOptions[CURLOPT_USERAGENT] = $this->reqHeaders['User-Agent'];
+
+		if ( $this->sslVerifyHost ) {
+			$this->curlOptions[CURLOPT_SSL_VERIFYHOST] = $this->sslVerifyHost;
 		}
 
-		$opts['method'] = $this->method;
-		$opts['timeout'] = $this->timeout;
-		$opts['header'] = implode( "\r\n", $this->reqHeaders );
+		if ( $this->caInfo ) {
+			$this->curlOptions[CURLOPT_CAINFO] = $this->caInfo;
+		}
+
+		if ( $this->headersOnly ) {
+			$this->curlOptions[CURLOPT_NOBODY] = true;
+			$this->curlOptions[CURLOPT_HEADER] = true;
+		} elseif ( $this->method == 'POST' ) {
+			$this->curlOptions[CURLOPT_POST] = true;
+			$this->curlOptions[CURLOPT_POSTFIELDS] = $this->postData;
+			// Suppress 'Expect: 100-continue' header, as some servers
+			// will reject it with a 417 and Curl won't auto retry
+			// with HTTP 1.0 fallback
+			$this->reqHeaders['Expect'] = '';
+		} else {
+			$this->curlOptions[CURLOPT_CUSTOMREQUEST] = $this->method;
+		}
+
+		$this->curlOptions[CURLOPT_HTTPHEADER] = $this->getHeaderList();
+
+		$curlHandle = curl_init( $this->url );
+		curl_setopt_array( $curlHandle, $this->curlOptions );
+
+		if ( false === curl_exec( $curlHandle ) ) {
+			// re-using already translated error messages
+			$this->status->fatal( 'upload-curl-error'.curl_errno( $curlHandle ).'-text' );
+		}
+
+		curl_close( $curlHandle );
+
+		return $this->status;
+	}
+}
+
+class PhpHttpRequest extends HttpRequest {
+	private $fh;
+
+	protected function urlToTcp( $url ) {
+		$parsedUrl = parse_url( $url );
+
+		return 'tcp://' . $parsedUrl['host'] . ':' . $parsedUrl['port'];
+	}
+
+	public function execute() {
+		if ( $this->parsedUrl['scheme'] != 'http' ) {
+			$this->status->fatal( 'http-invalid-scheme', $this->parsedURL['scheme'] );
+	    }
+
+		parent::execute();
+		if ( !$this->status->isOK() ) {
+			return $this->status;
+		}
+
+		// A lot of the action up front should probably be in
+		// set* methods, but we'll leave that for another time.
+
+		$this->reqHeaders['Accept'] = "*/*";
+		if ( $this->method == 'POST' ) {
+			// Required for HTTP 1.0 POSTs
+			$this->reqHeaders['Content-Length'] = strlen( $this->postData );
+			$this->reqHeaders['Content-type'] = "application/x-www-form-urlencoded";
+		}
+
+		$options = array();
+		if ( $this->proxy && !$this->noProxy ) {
+			$options['proxy'] = $this->urlToTCP( $this->proxy );
+			$options['request_fulluri'] = true;
+		}
+
+		$options['method'] = $this->method;
+		$options['timeout'] = $this->timeout;
+		$options['header'] = implode("\r\n", $this->getHeaderList());
 		// FOR NOW: Force everyone to HTTP 1.0
 		/* if ( version_compare( "5.3.0", phpversion(), ">" ) ) { */
-			$opts['protocol_version'] = "1.0";
+			$options['protocol_version'] = "1.0";
 		/* } else { */
-		/* 	$opts['protocol_version'] = "1.1"; */
+		/* 	$options['protocol_version'] = "1.1"; */
 		/* } */
 
-		if ( $this->postdata ) {
-			$opts['content'] = $this->postdata;
+		if ( $this->postData ) {
+			$options['content'] = $this->postData;
 		}
 
-		$context = stream_context_create( array( 'http' => $opts ) );
+		$context = stream_context_create( array( 'http' => $options ) );
 		try {
 			$this->fh = fopen( $this->url, "r", false, $context );
 		} catch ( Exception $e ) {
-			$this->status->fatal( $e->getMessage() );
+			$this->status->fatal( $e->getMessage() ); /* need some l10n help */
 			return $this->status;
 		}
 
 		$result = stream_get_meta_data( $this->fh );
 		if ( $result['timed_out'] ) {
-			$this->status->error( 'The request timed out' );
+			$this->status->fatal( 'http-timed-out', $this->url );
+			return $this->status;
 		}
 
 		$this->headers = $result['wrapper_data'];
@@ -425,7 +436,10 @@ class PhpHttpRequest extends HttpRequest {
 		$end = false;
 		while ( !$end ) {
 			$contents = fread( $this->fh, 8192 );
-			$size = call_user_func_array( $this->callback, array( $this->fh, $contents ) );
+			$size = 0;
+			if ( $contents ) {
+				$size = call_user_func_array( $this->callback, array( $this->fh, $contents ) );
+			}
 			$end = ( $size == 0 )  || feof( $this->fh );
 		}
 		fclose( $this->fh );
