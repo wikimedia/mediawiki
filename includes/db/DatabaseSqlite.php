@@ -22,12 +22,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Parameters $server, $user and $password are not used.
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0 ) {
-		global $wgSQLiteDataDir;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
-		$this->mDatabaseFile = self::generateFileName( $wgSQLiteDataDir, $dbName );
-		if ( !is_readable( $this->mDatabaseFile ) )
-			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		$this->mName = $dbName;
 		$this->open( $server, $user, $password, $dbName );
 	}
@@ -49,33 +45,44 @@ class DatabaseSqlite extends DatabaseBase {
 	 *  NOTE: only $dbName is used, the other parameters are irrelevant for SQLite databases
 	 */
 	function open( $server, $user, $pass, $dbName ) {
-		$this->mConn = false;
-		if ( $dbName ) {
-			$file = $this->mDatabaseFile;
-			try {
-				if ( $this->mFlags & DBO_PERSISTENT ) {
-					$this->mConn = new PDO( "sqlite:$file", $user, $pass,
-						array( PDO::ATTR_PERSISTENT => true ) );
-				} else {
-					$this->mConn = new PDO( "sqlite:$file", $user, $pass );
-				}
-			} catch ( PDOException $e ) {
-				$err = $e->getMessage();
-			}
-			if ( $this->mConn === false ) {
-				wfDebug( "DB connection error: $err\n" );
-				if ( !$this->mFailFunction ) {
-					throw new DBConnectionError( $this, $err );
-				} else {
-					return false;
-				}
+		global $wgSQLiteDataDir;
 
-			}
-			$this->mOpened = $this->mConn;
-			# set error codes only, don't raise exceptions
-			$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+		$fileName = self::generateFileName( $wgSQLiteDataDir, $dbName );
+		if ( !is_readable( $fileName ) ) {
+			throw new DBConnectionError( $this, "SQLite database not accessible" );		$this->mConn = false;
 		}
+		$this->openFile( $fileName );
 		return $this->mConn;
+	}
+
+	/**
+	 * Opens a database file
+	 * @return SQL connection or false if failed
+	 */
+	function openFile( $fileName ) {
+		$this->mDatabaseFile = $fileName;
+		try {
+			if ( $this->mFlags & DBO_PERSISTENT ) {
+				$this->mConn = new PDO( "sqlite:$fileName", '', '',
+					array( PDO::ATTR_PERSISTENT => true ) );
+			} else {
+				$this->mConn = new PDO( "sqlite:$fileName", '', '' );
+			}
+		} catch ( PDOException $e ) {
+			$err = $e->getMessage();
+		}
+		if ( $this->mConn === false ) {
+			wfDebug( "DB connection error: $err\n" );
+			if ( !$this->mFailFunction ) {
+				throw new DBConnectionError( $this, $err );
+			} else {
+				return false;
+			}
+
+		}
+		$this->mOpened = $this->mConn;
+		# set error codes only, don't raise exceptions
+		$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
 	}
 
 	/**
@@ -549,6 +556,17 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 } // end DatabaseSqlite class
+
+/**
+ * This class allows simple acccess to a SQLite database independently from main database settings
+ * @ingroup Database
+ */
+class DatabaseSqliteStandalone extends DatabaseSqlite {
+	public function __construct( $fileName, $flags = 0 ) {
+		$this->mFlags = $flags;
+		$this->openFile( $fileName );
+	}
+}
 
 /**
  * @ingroup Database
