@@ -2419,7 +2419,7 @@ Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate."
 'cant-move-user-page'          => 'Tu non ha le permission de renominar paginas principal de usatores.',
 'cant-move-to-user-page'       => 'Tu non ha le permission de renominar un pagina verso un pagina de usator (excepte un subpagina de usator).',
 'newtitle'                     => 'Al nove titulo:',
-'move-watch'                   => 'Observar iste pagina',
+'move-watch'                   => 'Observar le paginas de origine e de destination',
 'movepagebtn'                  => 'Renominar pagina',
 'pagemovedsub'                 => 'Renomination succedite',
 'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>',

@@ -1788,6 +1788,11 @@ Deze wiki is ingesteld als publieke wiki.
 Om beveiligingsreden is img_auth.php uitgeschakeld.',
 'img-auth-noread'       => 'De gebruiker heeft geen leestoegang tot "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'Ongeldige URL: $1',
+'http-invalid-scheme' => 'URL\'s met de opmaak "$1" worden niet ondersteund',
+'http-request-error'  => 'Fout bij het verzenden van het verzoek:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon de URL niet bereiken',
 'upload-curl-error6-text'  => 'De opgegeven URL is niet bereikbaar.
@@ -2214,6 +2219,9 @@ Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Op uw volglijst k
 --
 U kunt uw volglijstinstellingen wijzigen op:
 {{fullurl:Special:Watchlist/edit}}
+
+U kunt de pagina van uw volglijst verwijderen via de volgende verwijzing:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Feedback en andere assistentie:
 {{fullurl:{{MediaWiki:Helppage}}}}',

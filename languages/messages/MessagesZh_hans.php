@@ -1558,6 +1558,11 @@ $1",
 'img-auth-public'       => 'img_auth.php的功能是从私有wiki输出文件。但本wiki已被设置为公共wiki。出于安全考虑，img_auth.php已被停用。',
 'img-auth-noread'       => '用户无权读取“$1”。',
 
+# HTTP errors
+'http-invalid-url'    => '无效URL：$1',
+'http-invalid-scheme' => '不支持带有“$1”的URL',
+'http-request-error'  => '发送请求时发生错误：',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问URL',
 'upload-curl-error6-text'  => '无法访问所提供的URL。请复查该URL是否正确，及其网站是否在线。',

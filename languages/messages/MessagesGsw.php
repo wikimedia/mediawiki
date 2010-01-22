@@ -814,6 +814,7 @@ S {{PLURAL:$2|derf nid meh wie ein Ufruef|derfe nid meh wie $1 Ufruef}} gee.',
 'post-expand-template-argument-category'  => 'Syte, wu s ignorierti Vorlageargumänt din het',
 'parser-template-loop-warning'            => 'Vorlagelätsch entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagerekursionstiefegränz iberschritte ($1)',
+'language-converter-depth-warning'        => 'Gränz vu dr Sprochkonvertertiefi iberschritte ($1)',
 
 # "Undo" feature
 'undo-success' => 'Zum die Änderig ruckgängig z mache, kontrollier bitte d Bearbeitig in dr Verglichsaasicht un druck derno uf „Syte spichere“.',
@@ -1507,6 +1508,11 @@ Des Wiki isch as effentlig Wiki konfiguriert.
 Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
 'img-auth-noread'       => 'Benutzer derf „$1“ nit läse.',
 
+# HTTP errors
+'http-invalid-url'    => 'Nit giltigi URL: $1',
+'http-invalid-scheme' => 'URL mit em Schema „$1“ wäre nit unterstitzt',
+'http-request-error'  => 'Fähler bim Verschicke vu dr Aafrog:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL isch nit z verwitsche',
 'upload-curl-error6-text'  => 'D URL, wu aagee woren isch, isch nit z verwitsche. Prief d URL uf Fähler un dr Online-Status vu dr Syte.',
@@ -1899,25 +1905,31 @@ Wänn Du d Syte speter wider vu dr Lischt witt stryyche, deno druck eifach uf �
 'enotif_lastvisited'           => '$1 zeigt alli Änderige uf s Mol.',
 'enotif_lastdiff'              => 'Lueg $1 no däre Änderig.',
 'enotif_anon_editor'           => 'Anonyme Benutzer $1',
-'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
+'enotif_body'                  => 'Liebe/Liebi $WATCHINGUSERNAME,
 
-d {{SITENAME}}-Syte $PAGETITLE isch vum $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED wore, di aktuelli Version isch: $PAGETITLE_URL
+d {{SITENAME}}-Syte $PAGETITLE isch vum $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED wore, di aktuell Version isch: $PAGETITLE_URL
 
 
 $NEWPAGE
 
-Zämmenfassig vom Autor: $PAGESUMMARY $PAGEMINOREDIT
-Kontakt zuem Autor:
+Zämmenfassig vum Autor: $PAGESUMMARY $PAGEMINOREDIT
+Kontakt zum Autor:
 Mail $PAGEEDITOR_EMAIL
 Wiki $PAGEEDITOR_WIKI
 
-Es wird kei wiiteri Benochrichtigungsposcht gschickt bis Si selli Syte wider bsueche. Uf de Beobachtigssyte chönne Si d Beobachtigsmarker zrucksetze.
+Es wird kei wyteri Nochricht iber Änderige gschickt, bis Du uf sälli Syte gohsch.
+Uf Dyyre Beobachtigssyte chasch d Beobachtigsmarker fir alli Syte zrucksetze, wu Du beobachte tuesch.
 
-             Ihr fründlichs {{SITENAME}} Benochrichtigssyschtem
+             Dyy fryndli {{SITENAME}}-Nochrichtesyschtem
 
 ---
-Ihri Beobachtigslischte {{fullurl:Special:Watchlist/edit}}
-Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
+Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{fullurl:Special:Watchlist/edit}}
+
+Go d Syte us Dyyre Beobachtigslischte uuseneh, gang uf
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+Ruckmäldig un wyteri Hilf:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Syte lösche',

@@ -814,8 +814,9 @@ Por favor incluye todos los datos aquí mostrados en cualquier consulta que haga
 'whitelistedittitle'               => 'Se requiere identificación para editar.',
 'whitelistedittext'                => 'Tienes que $1 para editar artículos.',
 'confirmedittext'                  => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
-'nosuchsectiontitle'               => 'No existe tal sección',
-'nosuchsectiontext'                => 'Has intentado editar una sección que no existe.',
+'nosuchsectiontitle'               => 'Sección no encontrada',
+'nosuchsectiontext'                => 'Has intentado editar una sección que no existe.
+Quizá ha sido movida o borrada mientras visitabas la página.',
 'loginreqtitle'                    => 'Se requiere identificación',
 'loginreqlink'                     => 'identificarte',
 'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',
@@ -887,10 +888,13 @@ Por favor considere la posibilidad de dividir esta página en secciones más peq
 Puedes copiar y pegar el texto a un archivo y grabarlo para más tarde.'''
 
 El administrador que la bloqueó dio esta explicación: $1",
-'protectedpagewarning'             => "'''ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
+'protectedpagewarning'             => "'''Advertencia: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador puedan editarla.'''
+A continuación se muestra la última entrada de registro para referencia:",
+'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.
+A continuación se provee la última entrada de registro para referencia:",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
-'titleprotectedwarning'            => "'''ATENCIÓN:  Esta página está protegida de modo que [[Special:ListGroupRights|derechos especificos]] son necesarios para crearlo.'''",
+'titleprotectedwarning'            => "'''Advertencia: Esta página está protegida de modo que se necesita [[Special:ListGroupRights|derechos especificos]] para crearla.'''
+A continuación se muestra la última entrada de registro para referencia:",
 'templatesused'                    => '{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta previsualización:',
 'templatesusedsection'             => '{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta sección:',
@@ -936,6 +940,7 @@ Ese o esos parámetros han sido omitidos.',
 'post-expand-template-argument-category'  => 'Páginas que contienen plantillas con parámetros descartados',
 'parser-template-loop-warning'            => 'Detectado bucle de plantilla: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Se ha excedido el límite de recursión de plantillas ($1)',
+'language-converter-depth-warning'        => 'El límite de profundidad del convertidor de idioma ha excedido ($1)',
 
 # "Undo" feature
 'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así deshacer la edición.',
@@ -1001,6 +1006,7 @@ Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Specia
 Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresión].",
 'rev-deleted-no-diff'         => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+'rev-suppressed-no-diff'      => "No puedes ver este diff porque una de las revisiones ha sido '''borrada'''.",
 'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
 Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
@@ -2475,8 +2481,10 @@ La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al 
 'imageinvalidfilename'         => 'El nombre del fichero de destino no es válido',
 'fix-double-redirects'         => 'Actualizar las redirecciones que apuntan al título original',
 'move-leave-redirect'          => 'Dejar una redirección',
-'protectedpagemovewarning'     => "'''Advertencia:''' Esta página ha sido bloqueada de tal manera que solamente usuarios con privilegios de administrador puedan trasladarla.",
-'semiprotectedpagemovewarning' => "'''Nota:''' Esta página ha sido bloqueada tal que solamente usuarios registrados pueden moverla.",
+'protectedpagemovewarning'     => "!'''Advertencia:''' Esta página ha sido bloqueada de tal manera que solamente usuarios con privilegios de administrador puedan trasladarla.
+A continuación se muestra la última entrada de registro para referencia:",
+'semiprotectedpagemovewarning' => "'''Nota:''' Esta página ha sido bloqueada para que  solamente usuarios registrados pueden moverla.
+A continuación se muestra la última entrada de registro para referencia:",
 'move-over-sharedrepo'         => '== El archivo existe ==
  [[:$1]] existe en un repositorio compartido. Mover el archivo a este título invalidará el archivo compartido.',
 'file-exists-sharedrepo'       => 'El nombre de archivo elegido ya está siendo usado en un repositorio compartido.
@@ -2719,7 +2727,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'markaspatrolleddiff'                 => 'Marcar como revisado',
 'markaspatrolledtext'                 => 'Marcar este artículo como revisado',
 'markedaspatrolled'                   => 'Marcado como revisado',
-'markedaspatrolledtext'               => 'La versión seleccionada ha sido marcada como revisada.',
+'markedaspatrolledtext'               => 'La revisión seleccionada de [[:$1|$1]] ha sido marcada como revisada.',
 'rcpatroldisabled'                    => 'Revisión de los Cambios Recientes deshabilitada',
 'rcpatroldisabledtext'                => 'La capacidad de revisar los Cambios Recientes está deshabilitada en este momento.',
 'markedaspatrollederror'              => 'No se puede marcar como patrullada',

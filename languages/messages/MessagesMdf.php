@@ -1720,7 +1720,7 @@ $3 макссь туфталсь - ''$2''",
 'enotif_body'                  => 'Кельгома $WATCHINGUSERNAME,
 
 
-{{SITENAME}} лопа $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATE тиись $PAGEEDITOR. Ванк $REFINFO
+{{SITENAME}} лопа $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATE тиись $PAGEEDITOR. Мекольце верзие ванк $REFINFO
 
 $NEWPAGE
 
@@ -1737,6 +1737,9 @@ $NEWPAGE
 --
 Тонь мельгеваномацень латцемасна полафтоманкса сашентт
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Лопать тонь мельгеваномастот нардаманди сашентт
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Азома мекпяли ди иля лезкс:
 {{fullurl:{{MediaWiki:Helppage}}}}',

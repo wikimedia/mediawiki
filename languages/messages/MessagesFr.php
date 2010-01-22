@@ -1747,6 +1747,11 @@ Ce wiki est configuré comme un wiki public.
 Pour une sécurité optimale, img_auth.php est désactivé.',
 'img-auth-noread'       => 'L’utilisateur n’a pas le droit en lecture sur « $1 ».',
 
+# HTTP errors
+'http-invalid-url'    => 'URL incorrecte : $1',
+'http-invalid-scheme' => 'Les URLs avec le schéma « $1 » ne sont pas supportées',
+'http-request-error'  => "Erreur lors de l'envoi de la requête :",
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL injoignable',
 'upload-curl-error6-text'  => 'L’URL fournie ne peut pas être atteinte. Veuillez vérifier que l’URL est correcte et que le site est en ligne.',
@@ -2164,6 +2169,9 @@ Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pa
 Pour modifier les paramètres de votre liste de suivi, visitez
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+Pour supprimer la page de votre liste de suivi, visitez
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 Retour et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2545,7 +2553,7 @@ Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion man
 'cant-move-user-page'          => 'Vous n’avez pas la permission de renommer les pages principales d’utilisateurs (en dehors de leurs sous-pages).',
 'cant-move-to-user-page'       => 'Vous n’avez pas la permission de renommer une page vers une page utilisateur (à l’exception d’une sous-page).',
 'newtitle'                     => 'Vers le nouveau titre :',
-'move-watch'                   => 'Suivre ces pages',
+'move-watch'                   => 'Suivre les pages originale et nouvelle',
 'movepagebtn'                  => 'Renommer la page',
 'pagemovedsub'                 => 'Déplacement réussi',
 'movepage-moved'               => "<big>'''« $1 »''' a été renommé '''« $2 »'''</big>",

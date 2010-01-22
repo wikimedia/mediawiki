@@ -662,7 +662,7 @@ Pou ou kapab kreye paj sa a, komanse ap ekri nan bwat sa a ki anba (gade [[{{Med
 
 Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bouton '''ritounen''' nan bwozè ou a.",
 'anontalkpagetext'                 => "---- ''Ou nan paj diskisyon yon itilizatè anonim, ki pa gen non, ki poko kreye yon kont oubyen ki pa itilize pyès kont nan sistèm sa. Pou rezon sa, nou dwèt itilize adrès IP l pou nou kapab lokalize l, sitye l, montre kote l rete, idantifye l. Yon adrès IP kapab pataje ant plizyè moun, plizyè itilizatè. Si ou se yon itilizatè anonim e si ou wè ke ou resevwa komantè ki pa te pou ou, ou mèt [[Special:UserLogin|kreye yon kont oubyen konekte w]] pou ou kapab anpeche difikilte sa yo, move bagay sa yo ant lòt itilizatè yo, kontribitè anonim yo.''",
-'noarticletext'                    => 'Poko genyen tèks nan paj sa a, ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj, oubyen [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye li].',
+'noarticletext'                    => 'Poko genyen tèks nan paj sa a, ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa] oubyen tou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye paj sa]</span>.',
 'userpage-userdoesnotexist'        => 'Kont itilizatè « $1 » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
 'clearyourcache'                   => "'''Note bagay sa:''' depi ou pibliye paj sa, ou dwèt fòse chajman, rafrechi paj an; ou mèt bliye kontni kach sistèm bwozè (navigatè entènèt ou an) kounye a pou ou kapab wè chanjman yo : '''Mozilla / Firefox / Konqueror / Safari :''' mentni touch ''lèt kapital'' ak klike sou bouton ''Rafrechi/Aktyalize'' oubyen peze ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sou sistèm Apple Mac) ; '''Internet Explorer / Opera :''' mentni touch ''Ctrl'' pandan ou ap prese bouton ''Rafrechi/Aktyalize'' oubyen peze ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Bagay ki ap sèvi w :''' Itilize bouton « Voye kout zye » pou teste nouvo fèy CSS anvan ou anrejistre l.",
@@ -697,8 +697,8 @@ Kèk bwozè (firefox,ie,opera,safari...) pa kapab afiche byen byen modifikasyon 
 'longpageerror'                    => "'''ERÈ : Tèks ou anrejistre a ap fè $1 Ko, tay sa a depase kapasite limit nou kapab aksepte kounye a: $2 Ko. Nou pa kapab anrejistre tèks sa. Eseye ritounen nan paj ou te ye anvan pou kopye modifikasyon ou yo.'''",
 'protectedpagewarning'             => "'''Pote atansyon : paj sa a pwoteje.
 Sèl itilizatè yo ki genyen estati administratè kapab modifye l.'''",
-'templatesused'                    => 'Modèl ki itilize nan paj sa a :',
-'templatesusedpreview'             => 'Modèl ki itilize nan kout zye sa a (previzyalizasyon):',
+'templatesused'                    => '{{PLURAL:$1|Modèl|Modèl yo}} ki itilize nan paj sa a :',
+'templatesusedpreview'             => '{{PLURAL:$1|Modèl|Modèl yo}}ki itilize nan kout zye sa a (previzyalizasyon):',
 'templatesusedsection'             => 'Modèl yo ki itilize nan seksyon sa :',
 'template-protected'               => '(pwoteje)',
 'template-semiprotected'           => '(semi-pwoteje)',

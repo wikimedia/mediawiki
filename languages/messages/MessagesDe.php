@@ -1031,6 +1031,7 @@ Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} 
 'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
 'parser-template-loop-warning'            => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
+'language-converter-depth-warning'        => 'Sprachkonvertertiefenlimit überschritten ($1)',
 
 # "Undo" feature
 'undo-success' => 'Um die Änderung rückgängig zu machen, bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken.',
@@ -1742,6 +1743,11 @@ Dieses Wiki wurde als ein öffentliches Wiki konfiguriert.
 Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'img-auth-noread'       => 'Benutzer hat keine Berechtigung, „$1“ zu lesen.',
 
+# HTTP errors
+'http-invalid-url'    => 'Ungültige URL: $1',
+'http-invalid-scheme' => 'URLs mit dem Schema „$1“ werden nicht unterstützt',
+'http-request-error'  => 'Fehler beim Senden der Anfrage:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',
 'upload-curl-error6-text'  => 'Die angegebene URL ist nicht erreichbar. Prüfe sowohl die URL auf Fehler als auch den Online-Status der Seite.',
@@ -2156,7 +2162,9 @@ Es werden solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die 
              Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
-Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:{{#special:Watchlist}}/edit}}
+Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{fullurl:{{#special:Watchlist}}/edit}}
+
+Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 
