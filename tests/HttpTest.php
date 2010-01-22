@@ -1,26 +1,44 @@
 <?php
 
-class HttpTest extends PHPUnit_Framework_TestCase {
+class HttpTest extends PhpUnit_Framework_TestCase {
 	static $content;
 	static $headers;
-	var $test_geturl = array( "http://www.example.com/",
-							 "http://pecl.php.net/feeds/pkg_apc.rss",
-							 "http://toolserver.org/~jan/poll/dev/main.php?page=wiki_output&id=3",
-							 "http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw",
-							 "http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php",
-							);
-	var $test_requesturl = array( "http://en.wikipedia.org/wiki/Special:Export/User:MarkAHershberger/Weekly_reports/2010-W01" );
+	static $has_curl;
+	static $has_proxy = false;
+	static $proxy = "http://hulk:8080/";
+	var $test_geturl = array(
+		"http://www.example.com/",
+		"http://pecl.php.net/feeds/pkg_apc.rss",
+		"http://toolserver.org/~jan/poll/dev/main.php?page=wiki_output&id=3",
+		"http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw",
+		"http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:MediaWiki_hooks&format=php",
+	);
+	var $test_requesturl = array( "http://en.wikipedia.org/wiki/Special:Export/User:MarkAHershberger" );
 
 	var $test_posturl = array( "http://www.comp.leeds.ac.uk/cgi-bin/Perl/environment-example" => "review=test" );
 
 	function setup() {
+		putenv("http_proxy");	/* Remove any proxy env var, so curl doesn't get confused */
 		if ( is_array( self::$content ) ) {
 			return;
 		}
+		self::$has_curl = function_exists( 'curl_init' );
+
+		if ( !file_exists("/usr/bin/curl") ) {
+			$this->markTestIncomplete("This test requires the curl binary at /usr/bin/curl.  If you have curl, please file a bug on this test, or, better yet, provide a patch.");
+		}
+
 		$content = tempnam( sys_get_temp_dir(), "" );
 		$headers = tempnam( sys_get_temp_dir(), "" );
 		if ( !$content && !$headers ) {
 			die( "Couldn't create temp file!" );
+		}
+
+		// This probably isn't the best test for a proxy, but it works on my system!
+		system("curl -0 -o $content -s ".self::$proxy);
+		$out = file_get_contents( $content );
+		if( $out ) {
+			self::$has_proxy = true;
 		}
 
 		/* Maybe use wget instead of curl here ... just to use a different codebase? */
@@ -43,30 +61,112 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 		unlink( $headers );
 	}
 
-	/* ./phase3/includes/Import.php:1108:		$data = Http::request( $method, $url ); */
-	/* ./includes/Import.php:1124:          $link = Title::newFromText( "$interwiki:Special:Export/$page" ); */
-	/* ./includes/Import.php:1134:			return ImportStreamSource::newFromURL( $url, "POST" ); */
-	function runHTTPRequests() {
-		global $wgForceHTTPEngine;
 
-		/* no postdata here because the only request I could find in code so far didn't have any */
-		foreach ( $this->test_requesturl as $u ) {
-			$r = Http::request( "POST", $u );
-			$this->assertEquals( self::$content["POST $u"], $r, "POST $u with $wgForceHTTPEngine" );
+	function testInstantiation() {
+		global $wgHTTPEngine;
+
+		unset($wgHTTPEngine);
+	    $r = new HttpRequest("http://www.example.com/");
+		if ( self::$has_curl ) {
+			$this->isInstanceOf( $r, 'CurlHttpRequest' );
+		} else {
+			$this->isInstanceOf( $r, 'PhpHttpRequest' );
+		}
+		unset($r);
+
+		$wgHTTPEngine = 'php';
+		$r = new HttpRequest("http://www.example.com/");
+		$this->isInstanceOf( $r, 'PhpHttpRequest' );
+		unset($r);
+
+		if( !self::$has_curl ) {
+			$this->setExpectedException( 'MWException' );
+		}
+		$wgHTTPEngine = 'curl';
+		$r = new HttpRequest("http://www.example.com/");
+		if( self::$has_curl ) {
+			$this->isInstanceOf( $r, 'CurlHttpRequest' );
 		}
 	}
 
-	function testRequestPHP() {
-		global $wgForceHTTPEngine;
+	function runHTTPFailureChecks() {
+		global $wgHTTPEngine;
+		// Each of the following requests should result in a failure.
 
-		$wgForceHTTPEngine = "php";
+		$timeout = 1;
+		$start_time = time();
+		$r = HTTP::get( "http://www.example.com:1/", $timeout);
+		$end_time = time();
+		$this->assertLessThan($timeout+2, $end_time - $start_time,
+							  "Request took less than {$timeout}s via $wgHTTPEngine");
+		$this->assertEquals($r, false, "false -- what we get on error from Http::get()");
+	}
+
+	function testFailureDefault() {
+		global $wgHTTPEngine;
+
+		unset($wgHTTPEngine);
+		self::runHTTPFailureChecks();
+	}
+
+	function testFailurePhp() {
+		global $wgHTTPEngine;
+
+		$wgHTTPEngine = "php";
+		self::runHTTPFailureChecks();
+	}
+
+	function testFailureCurl() {
+		global $wgHTTPEngine;
+
+		if (!self::$has_curl ) {
+			$this->markTestIncomplete("This test requires curl.");
+		}
+
+		$wgHTTPEngine = "curl";
+		self::runHTTPFailureChecks();
+	}
+
+	/* ./phase3/includes/Import.php:1108:		$data = Http::request( $method, $url ); */
+	/* ./includes/Import.php:1124:          $link = Title::newFromText( "$interwiki:Special:Export/$page" ); */
+	/* ./includes/Import.php:1134:			return ImportStreamSource::newFromURL( $url, "POST" ); */
+	function runHTTPRequests($proxy=null) {
+		global $wgHTTPEngine;
+		$opt = array();
+
+		if($proxy) {
+			$opt['proxy'] = $proxy;
+		}
+
+		/* no postdata here because the only request I could find in code so far didn't have any */
+		foreach ( $this->test_requesturl as $u ) {
+			$r = Http::request( "POST", $u, $opt );
+			$this->assertEquals( self::$content["POST $u"], "$r", "POST $u with $wgHTTPEngine" );
+		}
+	}
+
+	function testRequestDefault() {
+		global $wgHTTPEngine;
+
+		unset($wgHTTPEngine);
+		self::runHTTPRequests();
+	}
+
+	function testRequestPhp() {
+		global $wgHTTPEngine;
+
+		$wgHTTPEngine = "php";
 		self::runHTTPRequests();
 	}
 
 	function testRequestCurl() {
-		global $wgForceHTTPEngine;
+		global $wgHTTPEngine;
 
-		$wgForceHTTPEngine = "curl";
+		if (!self::$has_curl ) {
+			$this->markTestIncomplete("This test requires curl.");
+		}
+
+		$wgHTTPEngine = "curl";
 		self::runHTTPRequests();
 	}
 
@@ -114,72 +214,131 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 	/* ./extensions/APC/SpecialAPC.php:245:		$rss = Http::get( 'http://pecl.php.net/feeds/pkg_apc.rss' ); */
 	/* ./extensions/Interlanguage/Interlanguage.php:56:		$a = Http::get( $url ); */
 	/* ./extensions/MWSearch/MWSearch_body.php:492:		$data = Http::get( $searchUrl, $wgLuceneSearchTimeout, $httpOpts);  */
-	function runHTTPGets() {
-		global $wgForceHTTPEngine;
+	function runHTTPGets($proxy=null) {
+		global $wgHTTPEngine;
+		$opt = array();
+
+		if($proxy) {
+			$opt['proxy'] = $proxy;
+		}
 
 		foreach ( $this->test_geturl as $u ) {
-			$r = Http::get( $u );
-			$this->assertEquals( self::$content["GET $u"], $r, "Get $u with $wgForceHTTPEngine" );
+			$r = Http::get( $u, 30, $opt ); /* timeout of 30s */
+			$this->assertEquals( self::$content["GET $u"], "$r", "Get $u with $wgHTTPEngine" );
 		}
 	}
 
-	function testGetPHP() {
-		global $wgForceHTTPEngine;
+	function testGetDefault() {
+		global $wgHTTPEngine;
 
-		$wgForceHTTPEngine = "php";
+		unset($wgHTTPEngine);
+		self::runHTTPGets();
+	}
+
+	function testGetPhp() {
+		global $wgHTTPEngine;
+
+		$wgHTTPEngine = "php";
 		self::runHTTPGets();
 	}
 
 	function testGetCurl() {
-		global $wgForceHTTPEngine;
+		global $wgHTTPEngine;
 
-		$wgForceHTTPEngine = "curl";
+		if (!self::$has_curl ) {
+			$this->markTestIncomplete("This test requires curl.");
+		}
+
+		$wgHTTPEngine = "curl";
 		self::runHTTPGets();
 	}
 
 	/* ./phase3/maintenance/parserTests.inc:1618:		return Http::post( $url, array( 'postdata' => wfArrayToCGI( $data ) ) ); */
-	function runHTTPPosts() {
-		global $wgForceHTTPEngine;
+	function runHTTPPosts($proxy=null) {
+		global $wgHTTPEngine;
+		$opt = array();
+
+		if($proxy) {
+			$opt['proxy'] = $proxy;
+		}
 
 		foreach ( $this->test_posturl as $u => $postdata ) {
-			$r = Http::post( $u, array( "postdata" => $postdata ) );
-			$this->assertEquals( self::$content["POST $u => $postdata"], $r, "POST $u (postdata=$postdata) with $wgForceHTTPEngine" );
+			$opt['postdata'] = $postdata;
+			$r = Http::post( $u, $opt );
+			$this->assertEquals( self::$content["POST $u => $postdata"], "$r",
+								 "POST $u (postdata=$postdata) with $wgHTTPEngine" );
 		}
 	}
 
-	function testPostPHP() {
-		global $wgForceHTTPEngine;
+	function testPostDefault() {
+		global $wgHTTPEngine;
 
-		$wgForceHTTPEngine = "php";
+		unset($wgHTTPEngine);
+		self::runHTTPPosts();
+	}
+
+	function testPostPhp() {
+		global $wgHTTPEngine;
+
+		$wgHTTPEngine = "php";
 		self::runHTTPPosts();
 	}
 
 	function testPostCurl() {
-		global $wgForceHTTPEngine;
+		global $wgHTTPEngine;
 
-		$wgForceHTTPEngine = "curl";
+		if (!self::$has_curl ) {
+			$this->markTestIncomplete("This test requires curl.");
+		}
+
+		$wgHTTPEngine = "curl";
 		self::runHTTPPosts();
 	}
 
-	function testDoDownload() {
+	function runProxyRequests() {
+		global $wgHTTPEngine;
+
+		if(!self::$has_proxy) {
+			$this->markTestIncomplete("This test requires a proxy.");
+		}
+		self::runHTTPGets(self::$proxy);
+		self::runHTTPPosts(self::$proxy);
+		self::runHTTPRequests(self::$proxy);
 	}
 
-	function testStartBackgroundDownload() {
+	function testProxyDefault() {
+		global $wgHTTPEngine;
+
+		unset($wgHTTPEngine);
+		self::runProxyRequests();
 	}
 
-	function testGetUploadSessionKey() {
+	function testProxyPhp() {
+		global $wgHTTPEngine;
+
+		$wgHTTPEngine = 'php';
+		self::runProxyRequests();
 	}
 
-	function testDoSessionIdDownload() {
+	function testProxyCurl() {
+		global $wgHTTPEngine;
+
+		if (!self::$has_curl ) {
+			$this->markTestIncomplete("This test requires curl.");
+		}
+
+		$wgHTTPEngine = 'curl';
+		self::runProxyRequests();
 	}
 
-	function testIsLocalURL() {
+	function testIsLocalUrl() {
 	}
 
 	/* ./extensions/DonationInterface/payflowpro_gateway/payflowpro_gateway.body.php:559:		$user_agent = Http::userAgent(); */
 	function testUserAgent() {
 	}
 
-	function testIsValidURI() {
+	function testIsValidUrl() {
 	}
+
 }

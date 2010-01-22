@@ -1,10 +1,10 @@
 <!-- See http://www.phpunit.de/manual/3.3/en/appendixes.configuration.html -->
 <phpunit bootstrap="./bootstrap.php"
          colors="false"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         stopOnFailure="true">
+         stopOnFailure="false">
+         <!-- convertErrorsToExceptions="true" -->
+         <!-- convertNoticesToExceptions="true" -->
+         <!-- convertWarningsToExceptions="true" -->
   <testsuite name="MediaWiki Test Suite">
     <directory>.</directory>
   </testsuite>
