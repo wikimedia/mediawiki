@@ -60,7 +60,7 @@ class ApiUpload extends ApiBase {
 
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
-			'sessionkey', 'file', 'url' );
+			'sessionkey', 'file', 'url', 'enablechunks' );
 
 		if ( $this->mParams['sessionkey'] ) {
 			/**
@@ -69,20 +69,28 @@ class ApiUpload extends ApiBase {
 			// Check the session key
 			if ( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) )
 				return $this->dieUsageMsg( array( 'invalid-session-key' ) );
-			
+
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
 					$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
 		} else {
 			/**
-			 * Upload from url or file
+			 * Upload from url, etc
 			 * Parameter filename is required
 			 */
 			if ( !isset( $this->mParams['filename'] ) )
 				$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 
 			// Initialize $this->mUpload
-			if ( isset( $this->mParams['file'] ) ) {
+			if ( $this->mParams['enablechunks'] ) {
+				$this->mUpload = new UploadFromChunks();
+				$this->mUpload->initialize( $request );
+
+				if ( !$this->mUpload->status->isOK() ) {
+					return $this->dieUsageMsg( $this->mUpload->status->getWikiText(),
+						'chunked-error' );
+				}
+			} elseif ( isset( $this->mParams['file'] ) ) {
 				$this->mUpload = new UploadFromFile();
 				$this->mUpload->initialize(
 					$this->mParams['filename'],
@@ -90,15 +98,15 @@ class ApiUpload extends ApiBase {
 					$request->getFileSize( 'file' )
 				);
 			} elseif ( isset( $this->mParams['url'] ) ) {
-				// make sure upload by url is enabled: 
+				// make sure upload by url is enabled:
 				if ( !$wgAllowCopyUploads )
 					$this->dieUsageMsg( array( 'uploaddisabled' ) );
-				
+
 				// make sure the current user can upload
 				if ( ! $wgUser->isAllowed( 'upload_by_url' ) )
 					$this->dieUsageMsg( array( 'badaccess-groups' ) );
-					
-				
+
+
 				$this->mUpload = new UploadFromUrl();
 				$this->mUpload->initialize( $this->mParams['filename'],
 						$this->mParams['url'] );
@@ -116,7 +124,6 @@ class ApiUpload extends ApiBase {
 
 		// Finish up the exec command:
 		$this->doExecUpload();
-
 	}
 
 	protected function doExecUpload() {
@@ -228,7 +235,7 @@ class ApiUpload extends ApiBase {
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) )
 			$this->mParams['text'] = $this->mParams['comment'];
-		
+
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
 			$this->mParams['text'], $this->mParams['watch'], $wgUser );
@@ -271,6 +278,10 @@ class ApiUpload extends ApiBase {
 			'watch' => false,
 			'ignorewarnings' => false,
 			'file' => null,
+			'enablechunks' => null,
+			'chunksessionkey' => null,
+			'chunk' => null,
+			'done' => false,
 			'url' => null,
 			'sessionkey' => null,
 		);
@@ -290,6 +301,7 @@ class ApiUpload extends ApiBase {
 			'watch' => 'Watch the page',
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
+			'enablechunks' => 'Set to use chunk mode; see http://firefogg.org/dev/chunk_post.html for protocol',
 			'url' => 'Url to fetch the file from',
 			'sessionkey' => array(
 				'Session key returned by a previous upload that failed due to warnings',
@@ -301,9 +313,11 @@ class ApiUpload extends ApiBase {
 		return array(
 			'Upload a file, or get the status of pending uploads. Several methods are available:',
 			' * Upload file contents directly, using the "file" parameter',
+			' * Upload a file in chunks, using the "enablechunks",',
+			' * Have the MediaWiki server fetch a file from a URL, using the "url" parameter',
 			' * Complete an earlier upload that failed due to warnings, using the "sessionkey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file" parameter. Note also that queries using session keys must be',
+			'sending the "file" or "chunk" parameters. Note also that queries using session keys must be',
 			'done in the same login session as the query that originally returned the key (i.e. do not',
 			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff.'
 		);
@@ -315,6 +329,8 @@ class ApiUpload extends ApiBase {
 			'    api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png',
 			'Complete an upload that failed due to warnings:',
 			'    api.php?action=upload&filename=Wiki.png&sessionkey=sessionkey&ignorewarnings=1',
+			'Begin a chunked upload:',
+			'    api.php?action=upload&filename=Wiki.png&enablechunks=1'
 		);
 	}
 
