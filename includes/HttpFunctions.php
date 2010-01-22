@@ -8,29 +8,23 @@
  * @ingroup HTTP
  */
 class Http {
-	// Syncronous download (in a single request)
-	const SYNC_DOWNLOAD = 1;
-
-	// Asynchronous download ( background process with multiple requests )
-	const ASYNC_DOWNLOAD = 2;
-
 	/**
-	 * Get the contents of a file by HTTP
+	 * Perform an HTTP request
 	 * @param $method string HTTP method. Usually GET/POST
 	 * @param $url string Full URL to act on
-	 * @param $timeout int Seconds to timeout. 'default' falls to $wgHTTPTimeout
-	 * @param $curlOptions array Optional array of extra params to pass
-	 * to curl_setopt()
+	 * @param $opts options to pass to HttpRequest object
+	 * @returns mixed (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $opts = array() ) {
-		$opts['method'] = ( strtoupper( $method ) == 'GET' || strtoupper( $method ) == 'POST' )
-			? strtoupper( $method ) : null;
-		$req = HttpRequest::newRequest( $url, $opts );
-		$status = $req->doRequest();
-		if( $status->isOK() ) {
-			return $status->value;
+		$opts['method'] = strtoupper( $method );
+		if ( !array_key_exists( 'timeout', $opts ) ) {
+			$opts['timeout'] = 'default';
+		}
+		$req = HttpRequest::factory( $url, $opts );
+		$status = $req->execute();
+		if ( $status->isOK() ) {
+			return $req;
 		} else {
-			wfDebug( 'http error: ' . $status->getWikiText() );
 			return false;
 		}
 	}
@@ -39,10 +33,8 @@ class Http {
 	 * Simple wrapper for Http::request( 'GET' )
 	 * @see Http::request()
 	 */
-	public static function get( $url, $timeout = false, $opts = array() ) {
-		global $wgSyncHTTPTimeout;
-		if( $timeout )
-			$opts['timeout'] = $timeout;
+	public static function get( $url, $timeout = 'default', $opts = array() ) {
+		$opts['timeout'] = $timeout;
 		return Http::request( 'GET', $url, $opts );
 	}
 
@@ -52,208 +44,6 @@ class Http {
 	 */
 	public static function post( $url, $opts = array() ) {
 		return Http::request( 'POST', $url, $opts );
-	}
-
-	public static function doDownload( $url, $target_file_path, $dl_mode = self::SYNC_DOWNLOAD,
-		$redirectCount = 0 )
-	{
-		global $wgPhpCli, $wgMaxUploadSize, $wgMaxRedirects;
-		// do a quick check to HEAD to insure the file size is not > $wgMaxUploadSize
-		$headRequest = HttpRequest::newRequest( $url, array( 'headers_only' => true ) );
-		$headResponse = $headRequest->doRequest();
-		if( !$headResponse->isOK() ) {
-			return $headResponse;
-		}
-		$head = $headResponse->value;
-
-		// check for redirects:
-		if( isset( $head['Location'] ) && strrpos( $head[0], '302' ) !== false ) {
-			if( $redirectCount < $wgMaxRedirects ) {
-				if( self::isValidURI( $head['Location'] ) ) {
-					return self::doDownload( $head['Location'], $target_file_path,
-						$dl_mode, $redirectCount++ );
-				} else {
-					return Status::newFatal( 'upload-proto-error' );
-				}
-			} else {
-				return Status::newFatal( 'upload-too-many-redirects' );
-			}
-		}
-		// we did not get a 200 ok response:
-		if( strrpos( $head[0], '200 OK' ) === false ) {
-			return Status::newFatal( 'upload-http-error', htmlspecialchars( $head[0] ) );
-		}
-
-		$content_length = ( isset( $head['Content-Length'] ) ) ? $head['Content-Length'] : null;
-		if( $content_length ) {
-			if( $content_length > $wgMaxUploadSize ) {
-				return Status::newFatal( 'requested file length ' . $content_length .
-					' is greater than $wgMaxUploadSize: ' . $wgMaxUploadSize );
-			}
-		}
-
-		// check if we can find phpCliPath (for doing a background shell request to
-		// php to do the download:
-		if( $wgPhpCli && wfShellExecEnabled() && $dl_mode == self::ASYNC_DOWNLOAD ) {
-			wfDebug( __METHOD__ . "\nASYNC_DOWNLOAD\n" );
-			//setup session and shell call:
-			return self::initBackgroundDownload( $url, $target_file_path, $content_length );
-		} else {
-			wfDebug( __METHOD__ . "\nSYNC_DOWNLOAD\n" );
-			// SYNC_DOWNLOAD download as much as we can in the time we have to execute
-			$opts['method'] = 'GET';
-			$opts['target_file_path'] = $target_file_path;
-			$req = HttpRequest::newRequest( $url, $opts );
-			return $req->doRequest();
-		}
-	}
-
-	/**
-	 * a non blocking request (generally an exit point in the application)
-	 * should write to a file location and give updates
-	 *
-	 */
-	private static function initBackgroundDownload( $url, $target_file_path,
-		$content_length = null )
-	{
-		global $IP, $wgPhpCli, $wgServer;
-		$status = Status::newGood();
-
-		// generate a session id with all the details for the download (pid, target_file_path )
-		$upload_session_key = self::getUploadSessionKey();
-		$session_id = session_id();
-
-		// store the url and target path:
-		$_SESSION['wsDownload'][$upload_session_key]['url'] = $url;
-		$_SESSION['wsDownload'][$upload_session_key]['target_file_path'] = $target_file_path;
-		// since we request from the cmd line we lose the original host name pass in the session:
-		$_SESSION['wsDownload'][$upload_session_key]['orgServer'] = $wgServer;
-
-		if( $content_length )
-			$_SESSION['wsDownload'][$upload_session_key]['content_length'] = $content_length;
-
-		// set initial loaded bytes:
-		$_SESSION['wsDownload'][$upload_session_key]['loaded'] = 0;
-
-		// run the background download request:
-		$cmd = $wgPhpCli . ' ' . $IP . "/maintenance/http_session_download.php " .
-			"--sid {$session_id} --usk {$upload_session_key} --wiki " . wfWikiId();
-		$pid = wfShellBackgroundExec( $cmd );
-		// the pid is not of much use since we won't be visiting this same apache any-time soon.
-		if( !$pid )
-			return Status::newFatal( 'could not run background shell exec' );
-
-		// update the status value with the $upload_session_key (for the user to
-		// check on the status of the upload)
-		$status->value = $upload_session_key;
-
-		// return good status
-		return $status;
-	}
-
-	static function getUploadSessionKey() {
-		$key = mt_rand( 0, 0x7fffffff );
-		$_SESSION['wsUploadData'][$key] = array();
-		return $key;
-	}
-
-	/**
-	 * used to run a session based download. Is initiated via the shell.
-	 *
-	 * @param $session_id String: the session id to grab download details from
-	 * @param $upload_session_key String: the key of the given upload session
-	 *  (a given client could have started a few http uploads at once)
-	 */
-	public static function doSessionIdDownload( $session_id, $upload_session_key ) {
-		global $wgUser, $wgEnableWriteAPI, $wgAsyncHTTPTimeout, $wgServer,
-				$wgSessionsInMemcached, $wgSessionHandler, $wgSessionStarted;
-		wfDebug( __METHOD__ . "\n\n doSessionIdDownload :\n\n" );
-		// set session to the provided key:
-		session_id( $session_id );
-		//fire up mediaWiki session system:
-		wfSetupSession();
-
-		// start the session
-		if( session_start() === false ) {
-			wfDebug( __METHOD__ . ' could not start session' );
-		}
-		// get all the vars we need from session_id
-		if( !isset( $_SESSION[ 'wsDownload' ][$upload_session_key] ) ) {
-			wfDebug(  __METHOD__ . ' Error:could not find upload session');
-			exit();
-		}
-		// setup the global user from the session key we just inherited
-		$wgUser = User::newFromSession();
-
-		// grab the session data to setup the request:
-		$sd =& $_SESSION['wsDownload'][$upload_session_key];
-
-		// update the wgServer var ( since cmd line thinks we are localhost
-		// when we are really orgServer)
-		if( isset( $sd['orgServer'] ) && $sd['orgServer'] ) {
-			$wgServer = $sd['orgServer'];
-		}
-		// close down the session so we can other http queries can get session
-		// updates: (if not $wgSessionsInMemcached)
-		if( !$wgSessionsInMemcached )
-			session_write_close();
-
-		$req = HttpRequest::newRequest( $sd['url'], array(
-			'target_file_path'  => $sd['target_file_path'],
-			'upload_session_key'=> $upload_session_key,
-			'timeout'           => $wgAsyncHTTPTimeout,
-			'do_close_session_update' => true
-		) );
-		// run the actual request .. (this can take some time)
-		wfDebug( __METHOD__ . 'do Session Download :: ' . $sd['url'] . ' tf: ' .
-			$sd['target_file_path'] . "\n\n");
-		$status = $req->doRequest();
-		//wfDebug("done with req status is: ". $status->isOK(). ' '.$status->getWikiText(). "\n");
-
-		// start up the session again:
-		if( session_start() === false ) {
-			wfDebug( __METHOD__ . ' ERROR:: Could not start session');
-		}
-		// grab the updated session data pointer
-		$sd =& $_SESSION['wsDownload'][$upload_session_key];
-		// if error update status:
-		if( !$status->isOK() ) {
-			$sd['apiUploadResult'] = FormatJson::encode(
-				array( 'error' => $status->getWikiText() )
-			);
-		}
-		// if status okay process upload using fauxReq to api:
-		if( $status->isOK() ){
-			// setup the FauxRequest
-			$fauxReqData = $sd['mParams'];
-
-			// Fix boolean parameters
-			foreach( $fauxReqData as $k => $v ) {
-				if( $v === false )
-					unset( $fauxReqData[$k] );
-			}
-
-			$fauxReqData['action'] = 'upload';
-			$fauxReqData['format'] = 'json';
-			$fauxReqData['internalhttpsession'] = $upload_session_key;
-			// evil but no other clean way about it:
-			$faxReq = new FauxRequest( $fauxReqData, true );
-			$processor = new ApiMain( $faxReq, $wgEnableWriteAPI );
-
-			//init the mUpload var for the $processor
-			$processor->execute();
-			$processor->getResult()->cleanUpUTF8();
-			$printer = $processor->createPrinterByName( 'json' );
-			$printer->initPrinter( false );
-			ob_start();
-			$printer->execute();
-			$apiUploadResult = ob_get_clean();
-
-			// the status updates runner will grab the result form the session:
-			$sd['apiUploadResult'] = $apiUploadResult;
-		}
-		// close the session:
-		session_write_close();
 	}
 
 	/**
@@ -291,7 +81,8 @@ class Http {
 	}
 
 	/**
-	 * Return a standard user-agent we can use for external requests.
+	 * A standard user-agent we can use for external requests.
+	 * @returns string
 	 */
 	public static function userAgent() {
 		global $wgVersion;
@@ -301,8 +92,9 @@ class Http {
 	/**
 	 * Checks that the given URI is a valid one
 	 * @param $uri Mixed: URI to check for validity
+	 * @returns bool
 	 */
-	public static function isValidURI( $uri ){
+	public static function isValidURI( $uri ) {
 		return preg_match(
 			'/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/',
 			$uri,
@@ -311,101 +103,75 @@ class Http {
 	}
 }
 
+/**
+ * This wrapper class will call out to curl (if available) or fallback
+ * to regular PHP if necessary for handling internal HTTP requests.
+ */
 class HttpRequest {
-	var $target_file_path;
-	var $upload_session_key;
-	function __construct( $url, $opt ){
-
-		global $wgSyncHTTPTimeout;
-		$this->url = $url;
-		// set the timeout to default sync timeout (unless the timeout option is provided)
-		$this->timeout = ( isset( $opt['timeout'] ) ) ? $opt['timeout'] : $wgSyncHTTPTimeout;
-		//check special key default
-		if($this->timeout == 'default'){
-			$opts['timeout'] = $wgSyncHTTPTimeout;
-		}
-
-		$this->method = ( isset( $opt['method'] ) ) ? $opt['method'] : 'GET';
-		$this->target_file_path = ( isset( $opt['target_file_path'] ) )
-			? $opt['target_file_path'] : false;
-		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) )
-			? $opt['upload_session_key'] : false;
-		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
-		$this->do_close_session_update = isset( $opt['do_close_session_update'] );
-		$this->postData = isset( $opt['postdata'] ) ? $opt['postdata'] : '';
-
-		$this->proxy = isset( $opt['proxy'] )? $opt['proxy'] : '';
-
-		$this->ssl_verifyhost = (isset( $opt['ssl_verifyhost'] ))? $opt['ssl_verifyhost']: false;
-
-		$this->cainfo = (isset( $opt['cainfo'] ))? $op['cainfo']: false;
-
-	}
-
-	public static function newRequest($url, $opt){
-		# select the handler (use curl if available)
-		if ( function_exists( 'curl_init' ) ) {
-			return new curlHttpRequest($url, $opt);
-		} else {
-			return new phpHttpRequest($url, $opt);
-		}
-	}
+	protected $content;
+	protected $timeout = 'default';
+	protected $headersOnly = null;
+	protected $postdata = null;
+	protected $proxy = null;
+	protected $no_proxy = false;
+	protected $sslVerifyHost = true;
+	protected $caInfo = null;
+	protected $method = "GET";
+	protected $url;
+	protected $parsed_url;
+	public $status;
 
 	/**
-	 * Get the contents of a file by HTTP
-	 * @param $url string Full URL to act on
-	 * @param $Opt associative array Optional array of options:
-	 *     'method'           => 'GET', 'POST' etc.
-	 *     'target_file_path' => if curl should output to a target file
-	 *     'adapter'          => 'curl', 'soket'
+	 * @param $url	 string url to use
+	 * @param $options array (optional) extra params to pass
+	 *				 Possible keys for the array:
+	 *					method
+	 *					timeout
+	 *					targetFilePath
+	 *					requestKey
+	 *					headersOnly
+	 *					postdata
+	 *					proxy
+	 *					no_proxy
+	 *					sslVerifyHost
+	 *					caInfo
 	 */
-	public function doRequest() {
-		# Make sure we have a valid url
-		if( !Http::isValidURI( $this->url ) )
-			return Status::newFatal('bad-url');
-		//do the actual request:
-		return $this->doReq();
-	}
-}
-class curlHttpRequest extends HttpRequest {
-	public function doReq(){
-		global $wgHTTPProxy, $wgTitle;
+	function __construct( $url = null, $opt = array()) {
+		global $wgHTTPTimeout, $wgTitle;
 
-		$status = Status::newGood();
-		$c = curl_init( $this->url );
+		$this->url = $url;
+		$this->parsed_url = parse_url($url);
 
-		// only do proxy setup if ( not suppressed $this->proxy === false )
-		if( $this->proxy !== false ){
-			if( $this->proxy ){
-				curl_setopt( $c, CURLOPT_PROXY, $this->proxy );
-			} else if ( Http::isLocalURL( $this->url ) ) {
-				curl_setopt( $c, CURLOPT_PROXY, 'localhost:80' );
-			} else if ( $wgHTTPProxy ) {
-				curl_setopt( $c, CURLOPT_PROXY, $wgHTTPProxy );
+		if ( !ini_get( 'allow_url_fopen' ) ) {
+			throw new MWException( 'allow_url_fopen needs to be enabled for http requests to work' );
+		} elseif ( !Http::isValidURI( $this->url ) ) {
+			throw new MWException( 'bad-uri' );
+		} else {
+			$this->status = Status::newGood( 100 ); // continue
+		}
+
+		if ( array_key_exists( 'timeout', $opt ) && $opt['timeout'] != 'default' ) {
+			$this->timeout = $opt['timeout'];
+		} else {
+			$this->timeout = $wgHTTPTimeout;
+		}
+
+		$members = array( "targetFilePath", "requestKey", "headersOnly", "postdata",
+						 "proxy", "no_proxy", "sslVerifyHost", "caInfo", "method" );
+		foreach ( $members as $o ) {
+			if ( array_key_exists( $o, $opt ) ) {
+				$this->$o = $opt[$o];
 			}
 		}
 
-		curl_setopt( $c, CURLOPT_TIMEOUT, $this->timeout );
-		curl_setopt( $c, CURLOPT_USERAGENT, Http::userAgent() );
+		if ( is_array( $this->postdata ) ) {
+			$this->postdata = wfArrayToCGI( $this->postdata );
+		}
 
-		if( $this->ssl_verifyhost )
-			curl_setopt( $c, CURLOPT_SSL_VERIFYHOST, $this->ssl_verifyhost);
+		$this->initRequest();
 
-		if( $this->cainfo )
-			curl_setopt( $c, CURLOPT_CAINFO, $this->cainfo);
-
-		if ( $this->headers_only ) {
-			curl_setopt( $c, CURLOPT_NOBODY, true );
-			curl_setopt( $c, CURLOPT_HEADER, true );
-		} elseif ( $this->method == 'POST' ) {
-			curl_setopt( $c, CURLOPT_POST, true );
-			curl_setopt( $c, CURLOPT_POSTFIELDS, $this->postData );
-			// Suppress 'Expect: 100-continue' header, as some servers
-			// will reject it with a 417 and Curl won't auto retry
-			// with HTTP 1.0 fallback
-			curl_setopt( $c, CURLOPT_HTTPHEADER, array( 'Expect:' ) );
-		} else {
-			curl_setopt( $c, CURLOPT_CUSTOMREQUEST, $this->method );
+		if ( !$this->no_proxy ) {
+			$this->proxySetup();
 		}
 
 		# Set the referer to $wgTitle, even in command-line mode
@@ -414,270 +180,258 @@ class curlHttpRequest extends HttpRequest {
 		# $_SERVER['REQUEST_URI'] gives a less reliable indication of the
 		# referring page.
 		if ( is_object( $wgTitle ) ) {
-			curl_setopt( $c, CURLOPT_REFERER, $wgTitle->getFullURL() );
+			$this->setReferrer( $wgTitle->getFullURL() );
 		}
-
-		// set the write back function (if we are writing to a file)
-		if( $this->target_file_path ) {
-			$cwrite = new simpleFileWriter( $this->target_file_path,
-				$this->upload_session_key,
-				$this->do_close_session_update
-			);
-			if( !$cwrite->status->isOK() ) {
-				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
-				$status = $cwrite->status;
-				return $status;
-			}
-			curl_setopt( $c, CURLOPT_WRITEFUNCTION, array( $cwrite, 'callbackWriteBody' ) );
-		}
-
-		// start output grabber:
-		if( !$this->target_file_path )
-			ob_start();
-
-		//run the actual curl_exec:
-		try {
-			if ( false === curl_exec( $c ) ) {
-				$error_txt ='Error sending request: #' . curl_errno( $c ) .' '. curl_error( $c );
-				wfDebug( __METHOD__ . $error_txt . "\n" );
-				$status = Status::newFatal( $error_txt );
-			}
-		} catch ( Exception $e ) {
-			// do something with curl exec error?
-		}
-		// if direct request output the results to the stats value:
-		if( !$this->target_file_path && $status->isOK() ) {
-			$status->value = ob_get_contents();
-			ob_end_clean();
-		}
-		// if we wrote to a target file close up or return error
-		if( $this->target_file_path ) {
-			$cwrite->close();
-			if( !$cwrite->status->isOK() ) {
-				return $cwrite->status;
-			}
-		}
-
-		if ( $this->headers_only ) {
-			$headers = explode( "\n", $status->value );
-			$headerArray = array();
-			foreach ( $headers as $header ) {
-				if ( !strlen( trim( $header ) ) )
-					continue;
-				$headerParts = explode( ':', $header, 2 );
-				if ( count( $headerParts ) == 1 ) {
-					$headerArray[] = trim( $header );
-				} else {
-					list( $key, $val ) = $headerParts;
-					$headerArray[trim( $key )] = trim( $val );
-				}
-			}
-			$status->value = $headerArray;
-		} else {
-			# Don't return the text of error messages, return false on error
-			$retcode = curl_getinfo( $c, CURLINFO_HTTP_CODE );
-			if ( $retcode != 200 ) {
-				wfDebug( __METHOD__ . ": HTTP return code $retcode\n" );
-				$status = Status::newFatal( "HTTP return code $retcode\n" );
-			}
-			# Don't return truncated output
-			$errno = curl_errno( $c );
-			if ( $errno != CURLE_OK ) {
-				$errstr = curl_error( $c );
-				wfDebug( __METHOD__ . ": CURL error code $errno: $errstr\n" );
-				$status = Status::newFatal( " CURL error code $errno: $errstr\n" );
-			}
-		}
-
-		curl_close( $c );
-		// return the result obj
-		return $status;
-	}
-}
-class phpHttpRequest extends HttpRequest {
-	public function doReq() {
-		global $wgTitle, $wgHTTPProxy;
-		# Check for php.ini allow_url_fopen
-		if( !ini_get( 'allow_url_fopen' ) ) {
-			return Status::newFatal( 'allow_url_fopen needs to be enabled for http copy to work' );
-		}
-
-		// start with good status:
-		$status = Status::newGood();
-
-		if ( $this->headers_only ) {
-			$status->value = get_headers( $this->url, 1 );
-			return $status;
-		}
-
-		// setup the headers
-		$headers = array( "User-Agent: " . Http::userAgent() );
-		if ( is_object( $wgTitle ) ) {
-			$headers[] = "Referer: ". $wgTitle->getFullURL();
-		}
-
-		if( strcasecmp( $this->method, 'post' ) == 0 ) {
-			// Required for HTTP 1.0 POSTs
-			$headers[] = "Content-Length: 0";
-		}
-
-		$httpContextOptions = array(
-			'method' => $this->method,
-			'header' => implode( "\r\n", $headers ),
-			'timeout' => $this->timeout
-		);
-
-		// Proxy setup:
-		if( $this->proxy ){
-			$httpContextOptions['proxy'] = 'tcp://' . $this->proxy;
-		}else if ( Http::isLocalURL( $this->url ) ) {
-			$httpContextOptions['proxy'] = 'tcp://localhost:80';
-		} elseif ( $wgHTTPProxy ) {
-			$httpContextOptions['proxy'] = 'tcp://' . $wgHTTPProxy ;
-		}
-
-		$fcontext = stream_context_create (
-			array(
-				'http' => $httpContextOptions
-			)
-		);
-
-		$fh = fopen( $this->url, "r", false, $fcontext);
-
-		// set the write back function (if we are writing to a file)
-		if( $this->target_file_path ) {
-			$cwrite = new simpleFileWriter( $this->target_file_path,
-				$this->upload_session_key, $this->do_close_session_update );
-			if( !$cwrite->status->isOK() ) {
-				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
-				$status = $cwrite->status;
-				return $status;
-			}
-
-			// Read $fh into the simpleFileWriter (grab in 64K chunks since
-			// it's likely a ~large~ media file)
-			while ( !feof( $fh ) ) {
-				$contents = fread( $fh, 65536 );
-				$cwrite->callbackWriteBody( $fh, $contents );
-			}
-			$cwrite->close();
-			// check for simpleFileWriter error:
-			if( !$cwrite->status->isOK() ) {
-				return $cwrite->status;
-			}
-		} else {
-			// read $fh into status->value
-			$status->value = @stream_get_contents( $fh );
-		}
-		//close the url file wrapper
-		fclose( $fh );
-
-		// check for "false"
-		if( $status->value === false ) {
-			$status->error( 'file_get_contents-failed' );
-		}
-		return $status;
 	}
 
+	/**
+	 * For backwards compatibility, we provide a __toString method so
+	 * that any code that expects a string result from Http::Get()
+	 * will see the content of the request.
+	 */
+	function __toString() {
+		return $this->content;
+	}
+
+	/**
+	 * Generate a new request object
+	 * @see HttpRequest::__construct
+	 */
+	public static function factory( $url, $opt ) {
+		global $wgHTTPEngine;
+		$engine = $wgHTTPEngine;
+
+		if ( !$wgHTTPEngine ) {
+			$wgHTTPEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
+		} elseif ( $wgHTTPEngine == 'curl' && !function_exists( 'curl_init' ) ) {
+			throw new MWException( 'FIXME' );
+		}
+
+		switch( $wgHTTPEngine ) {
+		case 'curl':
+			return new CurlHttpRequest( $url, $opt );
+		case 'php':
+			return new PhpHttpRequest( $url, $opt );
+		default:
+			throw new MWException( 'FIXME' );
+		}
+	}
+
+	public function getContent() {
+		return $this->content;
+	}
+
+	public function initRequest() {}
+	public function proxySetup() {}
+	public function setReferrer( $url ) {}
+	public function setCallback( $cb ) {}
+	public function read($fh, $content) {}
+	public function getCode() {}
+	public function execute() {}
 }
 
 /**
- * SimpleFileWriter with session id updates
+ * HttpRequest implemented using internal curl compiled into PHP
  */
-class simpleFileWriter {
-	var $target_file_path;
-	var $status = null;
-	var $session_id = null;
-	var $session_update_interval = 0; // how often to update the session while downloading
+class CurlHttpRequest extends HttpRequest {
+	protected $curlHandle;
+	protected $curlCBSet;
 
-	function simpleFileWriter( $target_file_path, $upload_session_key,
-		$do_close_session_update = false )
-	{
-		$this->target_file_path = $target_file_path;
-		$this->upload_session_key = $upload_session_key;
-		$this->status = Status::newGood();
-		$this->do_close_session_update = $do_close_session_update;
-		// open the file:
-		$this->fp = fopen( $this->target_file_path, 'w' );
-		if( $this->fp === false ) {
-			$this->status = Status::newFatal( 'HTTP::could-not-open-file-for-writing' );
-		}
-		// true start time
-		$this->prevTime = time();
+	public function initRequest() {
+		$this->curlHandle = curl_init( $this->url );
 	}
 
-	public function callbackWriteBody( $ch, $data_packet ) {
-		global $wgMaxUploadSize, $wgLang;
+	public function proxySetup() {
+		global $wgHTTPProxy;
 
-		// write out the content
-		if( fwrite( $this->fp, $data_packet ) === false ) {
-			wfDebug( __METHOD__ ." ::could-not-write-to-file\n" );
-			$this->status = Status::newFatal( 'HTTP::could-not-write-to-file' );
-			return 0;
+		if ( is_string( $this->proxy ) ) {
+			curl_setopt( $this->curlHandle, CURLOPT_PROXY, $this->proxy );
+		} else if ( Http::isLocalURL( $this->url ) ) { /* Not sure this makes any sense. */
+			curl_setopt( $this->curlHandle, CURLOPT_PROXY, 'localhost:80' );
+		} else if ( $wgHTTPProxy ) {
+			curl_setopt( $this->curlHandle, CURLOPT_PROXY, $wgHTTPProxy );
 		}
-
-		// check file size:
-		clearstatcache();
-		$this->current_fsize = filesize( $this->target_file_path );
-
-		if( $this->current_fsize > $wgMaxUploadSize ) {
-			wfDebug( __METHOD__ . " ::http download too large\n" );
-			$this->status = Status::newFatal( 'HTTP::file-has-grown-beyond-upload-limit-killing: ' .
-				'downloaded more than ' .
-				$wgLang->formatSize( $wgMaxUploadSize ) . ' ' );
-			return 0;
-		}
-		// if more than session_update_interval second have passed update_session_progress
-		if( $this->do_close_session_update && $this->upload_session_key &&
-			( ( time() - $this->prevTime ) > $this->session_update_interval ) ) {
-				$this->prevTime = time();
-				$session_status = $this->update_session_progress();
-				if( !$session_status->isOK() ) {
-					$this->status = $session_status;
-					wfDebug( __METHOD__ . ' update session failed or was canceled');
-					return 0;
-				}
-		}
-		return strlen( $data_packet );
 	}
 
-	public function update_session_progress() {
-		global $wgSessionsInMemcached;
-		$status = Status::newGood();
-		// start the session (if necessary)
-		if( !$wgSessionsInMemcached ) {
-			wfSuppressWarnings();
-			if( session_start() === false ) {
-				wfDebug( __METHOD__ . ' could not start session' );
-				exit( 0 );
+	public function setCallback( $cb ) {
+		if ( !$this->curlCBSet ) {
+			$this->curlCBSet = true;
+			curl_setopt( $this->curlHandle, CURLOPT_WRITEFUNCTION, $cb );
+		}
+	}
+
+	public function execute() {
+		if( !$this->status->isOK() ) {
+			return $this->status;
+		}
+
+		$this->setCallback( array($this, 'read') );
+
+		curl_setopt( $this->curlHandle, CURLOPT_TIMEOUT, $this->timeout );
+		curl_setopt( $this->curlHandle, CURLOPT_USERAGENT, Http::userAgent() );
+		curl_setopt( $this->curlHandle, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0 );
+
+		if ( $this->sslVerifyHost ) {
+			curl_setopt( $this->curlHandle, CURLOPT_SSL_VERIFYHOST, $this->sslVerifyHost );
+		}
+
+		if ( $this->caInfo ) {
+			curl_setopt( $this->curlHandle, CURLOPT_CAINFO, $this->caInfo );
+		}
+
+		if ( $this->headersOnly ) {
+			curl_setopt( $this->curlHandle, CURLOPT_NOBODY, true );
+			curl_setopt( $this->curlHandle, CURLOPT_HEADER, true );
+		} elseif ( $this->method == 'POST' ) {
+			curl_setopt( $this->curlHandle, CURLOPT_POST, true );
+			curl_setopt( $this->curlHandle, CURLOPT_POSTFIELDS, $this->postdata );
+			// Suppress 'Expect: 100-continue' header, as some servers
+			// will reject it with a 417 and Curl won't auto retry
+			// with HTTP 1.0 fallback
+			curl_setopt( $this->curlHandle, CURLOPT_HTTPHEADER, array( 'Expect:' ) );
+		} else {
+			curl_setopt( $this->curlHandle, CURLOPT_CUSTOMREQUEST, $this->method );
+		}
+
+		try {
+			if ( false === curl_exec( $this->curlHandle ) ) {
+				$error_txt = 'Error sending request: #' . curl_errno( $this->curlHandle ) . ' ' .
+					curl_error( $this->curlHandle );
+				wfDebug( __METHOD__ . $error_txt . "\n" );
+				$this->status->fatal( $error_txt ); /* i18n? */
 			}
-			wfRestoreWarnings();
+		} catch ( Exception $e ) {
+			$errno = curl_errno( $this->curlHandle );
+			if ( $errno != CURLE_OK ) {
+				$errstr = curl_error( $this->curlHandle );
+				wfDebug( __METHOD__ . ": CURL error code $errno: $errstr\n" );
+				$this->status->fatal( "CURL error code $errno: $errstr\n" ); /* i18n? */
+			}
 		}
-		$sd =& $_SESSION['wsDownload'][ $this->upload_session_key ];
-		// check if the user canceled the request:
-		if( isset( $sd['user_cancel'] ) && $sd['user_cancel'] == true ) {
-			//@@todo kill the download
-			return Status::newFatal( 'user-canceled-request' );
-		}
-		// update the progress bytes download so far:
-		$sd['loaded'] = $this->current_fsize;
 
-		// close down the session so we can other http queries can get session updates:
-		if( !$wgSessionsInMemcached )
-			session_write_close();
+		curl_close( $this->curlHandle );
 
-		return $status;
+		return $this->status;
 	}
 
-	public function close() {
-		// do a final session update:
-		if( $this->do_close_session_update ) {
-			$this->update_session_progress();
+	public function read( $curlH, $content ) {
+		$this->content .= $content;
+		return strlen( $content );
+	}
+
+	public function getCode() {
+		# Don't return truncated output
+		$code = curl_getinfo( $this->curlHandle, CURLINFO_HTTP_CODE );
+		if ( $code < 400 ) {
+			$this->status->setResult( true, $code );
+		} else {
+			$this->status->setResult( false, $code );
 		}
-		// close up the file handle:
-		if( false === fclose( $this->fp ) ) {
-			$this->status = Status::newFatal( 'HTTP::could-not-close-file' );
+	}
+}
+
+class PhpHttpRequest extends HttpRequest {
+	private $reqHeaders;
+	private $callback;
+	private $fh;
+
+	public function initRequest() {
+		$this->setCallback( array( $this, 'read' ) );
+
+		$this->reqHeaders[] = "User-Agent: " . Http::userAgent();
+		$this->reqHeaders[] = "Accept: */*";
+		if ( $this->method == 'POST' ) {
+			// Required for HTTP 1.0 POSTs
+			$this->reqHeaders[] = "Content-Length: " . strlen( $this->postdata );
+			$this->reqHeaders[] = "Content-type: application/x-www-form-urlencoded";
+		}
+
+		if( $this->parsed_url['scheme'] != 'http' ) {
+			$this->status->fatal( "Only http:// is supported currently." );
+	    }
+	}
+
+	protected function urlToTcp($url) {
+		$parsed_url = parse_url($url);
+
+		return 'tcp://'.$parsed_url['host'].':'.$parsed_url['port'];
+	}
+
+	public function proxySetup() {
+		global $wgHTTPProxy;
+
+		if ( Http::isLocalURL( $this->url ) ) {
+			$this->proxy = 'http://localhost:80/';
+		} elseif ( $wgHTTPProxy ) {
+			$this->proxy = $wgHTTPProxy ;
 		}
 	}
 
+	public function setReferrer( $url ) {
+		$this->reqHeaders[] = "Referer: $url";
+	}
+
+	public function setCallback( $cb ) {
+		$this->callback = $cb;
+	}
+
+	public function read( $fh, $contents ) {
+		if ( $this->headersOnly ) {
+			return false;
+		}
+		$this->content .= $contents;
+
+        return strlen( $contents );
+	}
+
+	public function execute() {
+		if( !$this->status->isOK() ) {
+			return $this->status;
+		}
+
+		$opts = array();
+		if ( $this->proxy && !$this->no_proxy ) {
+			$opts['proxy'] = $this->urlToTCP($this->proxy);
+			$opts['request_fulluri'] = true;
+		}
+
+		$opts['method'] = $this->method;
+		$opts['timeout'] = $this->timeout;
+		$opts['header'] = implode( "\r\n", $this->reqHeaders );
+		// FOR NOW: Force everyone to HTTP 1.0
+		/* if ( version_compare( "5.3.0", phpversion(), ">" ) ) { */
+			$opts['protocol_version'] = "1.0";
+		/* } else { */
+		/* 	$opts['protocol_version'] = "1.1"; */
+		/* } */
+
+		if ( $this->postdata ) {
+			$opts['content'] = $this->postdata;
+		}
+
+		$context = stream_context_create( array( 'http' => $opts ) );
+		try {
+			$this->fh = fopen( $this->url, "r", false, $context );
+		} catch (Exception $e) {
+			$this->status->fatal($e->getMessage());
+			return $this->status;
+		}
+
+		$result = stream_get_meta_data( $this->fh );
+		if ( $result['timed_out'] ) {
+			$this->status->error( __CLASS__ . '::timed-out-in-headers' );
+		}
+
+		$this->headers = $result['wrapper_data'];
+
+		$end = false;
+		while ( !$end ) {
+			$contents = fread( $this->fh, 8192 );
+			$size = call_user_func_array( $this->callback, array( $this->fh, $contents ) );
+			$end = ( $size == 0 )  || feof( $this->fh );
+		}
+		fclose( $this->fh );
+
+		return $this->status;
+	}
 }
