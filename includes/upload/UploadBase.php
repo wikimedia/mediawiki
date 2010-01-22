@@ -1,18 +1,18 @@
 <?php
 /**
- * @file 
+ * @file
  * @ingroup upload
- * 
+ *
  * UploadBase and subclasses are the backend of MediaWiki's file uploads.
  * The frontends are formed by ApiUpload and SpecialUpload.
- * 
+ *
  * See also includes/docs/upload.txt
- * 
+ *
  * @author Brion Vibber
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
- 
+
 abstract class UploadBase {
 	protected $mTempPath;
 	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
@@ -61,7 +61,7 @@ abstract class UploadBase {
 		return true;
 	}
 
-	// Upload handlers. Should probably just be a global
+	// Upload handlers. Should probably just be a global.
 	static $uploadHandlers = array( 'Stash', 'File', 'Url' );
 
 	/**
@@ -75,7 +75,7 @@ abstract class UploadBase {
 
 		// Get the upload class
 		$type = ucfirst( $type );
-		
+
 		// Give hooks the chance to handle this request
 		$className = null;
 		wfRunHooks( 'UploadCreateFromRequest', array( $type, &$className ) );
@@ -118,7 +118,7 @@ abstract class UploadBase {
 		$this->mFileSize = $fileSize;
 		$this->mRemoveTempFile = $removeTempFile;
 	}
-	
+
 	/**
 	 * Initialize from a WebRequest. Override this in a subclass.
 	 */
@@ -137,7 +137,7 @@ abstract class UploadBase {
 	public function isEmptyFile(){
 		return empty( $this->mFileSize );
 	}
-	
+
 	/**
      * getRealPath
      * @param string $srcPath the source path
@@ -161,7 +161,7 @@ abstract class UploadBase {
 		 */
 		if( $this->isEmptyFile() )
 			return array( 'status' => self::EMPTY_FILE );
-		
+
 		/**
 		 * Look at the contents of the file; if we can recognize the
 		 * type but it's corrupt or data of the wrong type, we should
@@ -175,7 +175,7 @@ abstract class UploadBase {
 					'details' => $verification );
 
 		}
-		
+
 		$nt = $this->getTitle();
 		if( is_null( $nt ) ) {
 			$result = array( 'status' => $this->mTitleError );
@@ -222,7 +222,7 @@ abstract class UploadBase {
 
 		#check mime type, if desired
 		global $wgVerifyMimeType;
-		if ( $wgVerifyMimeType ) {		
+		if ( $wgVerifyMimeType ) {
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) )
 				return array( 'filetype-badmime', $mime );
@@ -263,7 +263,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check whether the user can edit, upload and create the image.
-	 * 
+	 *
 	 * @param User $user the user to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
 	 *               in case the user has proper permissions.
@@ -289,7 +289,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check for non fatal problems with the file
-	 * 
+	 *
 	 * @return array Array of warnings
 	 */
 	public function checkWarnings() {
@@ -350,9 +350,9 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Really perform the upload. Stores the file in the local repo, watches 
+	 * Really perform the upload. Stores the file in the local repo, watches
 	 * if necessary and runs the UploadComplete hook.
-	 * 
+	 *
 	 * @return mixed Status indicating the whether the upload succeeded.
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
@@ -372,7 +372,7 @@ abstract class UploadBase {
 	/**
 	 * Returns the title of the file to be uploaded. Sets mTitleError in case
 	 * the name was illegal.
-	 * 
+	 *
 	 * @return Title The title of the file or null in case the name was illegal
 	 */
 	public function getTitle() {
@@ -441,7 +441,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Return the local file and initializes if necessary. 
+	 * Return the local file and initializes if necessary.
 	 */
 	public function getLocalFile() {
 		if( is_null( $this->mLocalFile ) ) {
@@ -491,7 +491,7 @@ abstract class UploadBase {
 			'mFileSize'       => $this->mFileSize,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
-		);		
+		);
 		return $key;
 	}
 
@@ -883,9 +883,9 @@ abstract class UploadBase {
 				return true;
 		}
 
-		/* Check shared conflicts: if the local file does not exist, but 
-		 * wfFindFile finds a file, it exists in a shared repository. 
-		 */ 
+		/* Check shared conflicts: if the local file does not exist, but
+		 * wfFindFile finds a file, it exists in a shared repository.
+		 */
 		$file = wfFindFile( $this->getTitle() );
 		if ( $file && !$wgUser->isAllowed( 'reupload-shared' ) )
 			return 'fileexists-shared-forbidden';
@@ -915,13 +915,13 @@ abstract class UploadBase {
 
 	/**
 	 * Helper function that does various existence checks for a file.
-	 * The following checks are performed: 
+	 * The following checks are performed:
 	 * - The file exists
 	 * - Article with the same name as the file exists
 	 * - File exists with normalized extension
 	 * - The file looks like a thumbnail and the original exists
-	 * 
-	 * @param File $file The file to check 
+	 *
+	 * @param File $file The file to check
 	 * @return mixed False if the file does not exists, else an array
 	 */
 	public static function getExistsWarning( $file ) {
@@ -930,10 +930,10 @@ abstract class UploadBase {
 
 		if( $file->getTitle()->getArticleID() )
 			return array( 'warning' => 'page-exists', 'file' => $file );
-		
+
 		if ( $file->wasDeleted() && !$file->exists() )
-			return array( 'warning' => 'was-deleted', 'file' => $file );		
-			
+			return array( 'warning' => 'was-deleted', 'file' => $file );
+
 		if( strpos( $file->getName(), '.' ) == false ) {
 			$partname = $file->getName();
 			$extension = '';
@@ -967,13 +967,13 @@ abstract class UploadBase {
 				// File does not exist, but we just don't like the name
 				return array( 'warning' => 'thumb-name', 'file' => $file, 'thumbFile' => $file_thb );
 		}
-		
+
 
 		foreach( self::getFilenamePrefixBlacklist() as $prefix ) {
 			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix )
 				return array( 'warning' => 'bad-prefix', 'file' => $file, 'prefix' => $prefix );
 		}
-		
+
 
 
 		return false;

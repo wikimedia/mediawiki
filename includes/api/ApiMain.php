@@ -104,7 +104,7 @@ class ApiMain extends ApiBase {
 		'dbg' => 'ApiFormatDbg',
 		'dbgfm' => 'ApiFormatDbg'
 	);
-	
+
 	/**
 	 * List of user roles that are specifically relevant to the API.
 	 * array( 'right' => array ( 'msg'    => 'Some message with a $1',
@@ -186,12 +186,12 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Get the ApiResult object asscosiated with current request
+	 * Get the ApiResult object associated with current request
 	 */
 	public function getResult() {
 		return $this->mResult;
 	}
-	
+
 	/**
 	 * Get the API module object. Only works after executeAction()
 	 */
@@ -235,7 +235,7 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 		else
 			$this->executeActionWithErrorHandling();
-	
+
 		$this->profileOut();
 	}
 
@@ -460,7 +460,7 @@ class ApiMain extends ApiBase {
 		$printer->closePrinter();
 		$printer->profileOut();
 	}
-	
+
 	public function isReadMode() {
 		return false;
 	}
@@ -576,7 +576,7 @@ class ApiMain extends ApiBase {
 			$wgMemc->set( $key, $retval, $wgAPICacheHelpTimeout );
 		return $retval;
 	}
-	
+
 	public function reallyMakeHelpMsg() {
 
 		$this->mPrinter->setHelp();

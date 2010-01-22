@@ -629,7 +629,7 @@ abstract class ApiBase {
 			// Throw out duplicates if requested
 			if ( is_array( $value ) && !$dupes )
 				$value = array_unique( $value );
-				
+
 			// Set a warning if a deprecated parameter has been passed
 			if ( $deprecated ) {
 				$this->setWarning( "The $encParamName parameter has been deprecated." );

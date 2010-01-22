@@ -70,7 +70,7 @@ class RepoGroup {
 	 *
 	 *     ignoreRedirect: If true, do not follow file redirects
 	 *
-	 *     private:        If true, return restricted (deleted) files if the current 
+	 *     private:        If true, return restricted (deleted) files if the current
 	 *                     user is allowed to view them. Otherwise, such files will not
 	 *                     be found.
 	 *
@@ -93,9 +93,9 @@ class RepoGroup {
 		}
 
 		# Check the cache
-		if ( empty( $options['ignoreRedirect'] ) 
-			&& empty( $options['private'] ) 
-			&& empty( $options['bypassCache'] ) ) 
+		if ( empty( $options['ignoreRedirect'] )
+			&& empty( $options['private'] )
+			&& empty( $options['bypassCache'] ) )
 		{
 			$useCache = true;
 			$time = isset( $options['time'] ) ? $options['time'] : '';
@@ -164,7 +164,7 @@ class RepoGroup {
 			foreach ( $images as $name => $image ) {
 				unset( $items[$name] );
 			}
-			
+
 			$images = array_merge( $images, $repo->findFiles( $items ) );
 		}
 		return $images;
@@ -190,16 +190,16 @@ class RepoGroup {
 		}
 		return false;
 	}
-	
+
 	function findBySha1( $hash ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
-		
+
 		$result = $this->localRepo->findBySha1( $hash );
 		foreach ( $this->foreignRepos as $repo )
 			$result = array_merge( $result, $repo->findBySha1( $hash ) );
-		return $result;		
+		return $result;
 	}
 
 	/**
@@ -240,7 +240,7 @@ class RepoGroup {
 	}
 
 	/**
-	 * Call a function for each foreign repo, with the repo object as the 
+	 * Call a function for each foreign repo, with the repo object as the
 	 * first parameter.
 	 *
 	 * @param $callback callback The function to call
