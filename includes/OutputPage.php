@@ -1725,10 +1725,14 @@ class OutputPage {
 				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
 				$userpage = $wgUser->getUserPage();
-				$userjs = Skin::makeUrl(
-					$userpage->getPrefixedText() . '/' . $sk->getSkinName() . '.js',
-					'action=raw&ctype=' . $wgJsMimeType );
-				$this->addScriptFile( $userjs );
+				$scriptpage = Title::newFromText(
+					$userpage->getNamespace(),
+					$userpage->getPrefixedText() . '/' . $sk->getSkinName() . '.js'
+				);
+				if ( $scriptpage && $scriptpage->exists() ) {
+					$userjs = Skin::makeUrl( $scriptpage->getPrefixedText(), 'action=raw&ctype=' . $wgJsMimeType );
+					$this->addScriptFile( $userjs );
+				}
 			}
 		}
 
