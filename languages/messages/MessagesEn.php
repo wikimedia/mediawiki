@@ -2631,6 +2631,9 @@ You could also reset the notification flags for all your watched pages on your w
 To change your watchlist settings, visit
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+To delete the page from your watchlist, visit
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 Feedback and further assistance:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
