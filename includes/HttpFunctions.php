@@ -136,16 +136,16 @@ class HttpRequest {
 	 *					sslVerifyHost
 	 *					caInfo
 	 */
-	function __construct( $url = null, $opt = array()) {
+	function __construct( $url = null, $opt = array() ) {
 		global $wgHTTPTimeout, $wgTitle;
 
 		$this->url = $url;
-		$this->parsed_url = parse_url($url);
+		$this->parsed_url = parse_url( $url );
 
 		if ( !ini_get( 'allow_url_fopen' ) ) {
 			throw new MWException( 'allow_url_fopen needs to be enabled for http requests to work' );
 		} elseif ( !Http::isValidURI( $this->url ) ) {
-			throw new MWException( 'bad-uri' );
+			throw new MWException( 'Invalid URL' );
 		} else {
 			$this->status = Status::newGood( 100 ); // continue
 		}
@@ -157,7 +157,7 @@ class HttpRequest {
 		}
 
 		$members = array( "targetFilePath", "requestKey", "headersOnly", "postdata",
-						 "proxy", "no_proxy", "sslVerifyHost", "caInfo", "method" );
+						  "proxy", "no_proxy", "sslVerifyHost", "caInfo", "method" );
 		foreach ( $members as $o ) {
 			if ( array_key_exists( $o, $opt ) ) {
 				$this->$o = $opt[$o];
@@ -213,7 +213,7 @@ class HttpRequest {
 		case 'php':
 			return new PhpHttpRequest( $url, $opt );
 		default:
-			throw new MWException( 'FIXME' );
+			throw new MWException( 'The setting of $wgHTTPEngine is not valid.' );
 		}
 	}
 
@@ -221,13 +221,13 @@ class HttpRequest {
 		return $this->content;
 	}
 
-	public function initRequest() {}
-	public function proxySetup() {}
-	public function setReferrer( $url ) {}
-	public function setCallback( $cb ) {}
-	public function read($fh, $content) {}
-	public function getCode() {}
-	public function execute() {}
+	public function initRequest() { }
+	public function proxySetup() { }
+	public function setReferrer( $url ) { }
+	public function setCallback( $cb ) { }
+	public function read( $fh, $content ) { }
+	public function getCode() { }
+	public function execute() { }
 }
 
 /**
@@ -261,11 +261,11 @@ class CurlHttpRequest extends HttpRequest {
 	}
 
 	public function execute() {
-		if( !$this->status->isOK() ) {
+		if ( !$this->status->isOK() ) {
 			return $this->status;
 		}
 
-		$this->setCallback( array($this, 'read') );
+		$this->setCallback( array( $this, 'read' ) );
 
 		curl_setopt( $this->curlHandle, CURLOPT_TIMEOUT, $this->timeout );
 		curl_setopt( $this->curlHandle, CURLOPT_USERAGENT, Http::userAgent() );
@@ -295,17 +295,15 @@ class CurlHttpRequest extends HttpRequest {
 
 		try {
 			if ( false === curl_exec( $this->curlHandle ) ) {
-				$error_txt = 'Error sending request: #' . curl_errno( $this->curlHandle ) . ' ' .
-					curl_error( $this->curlHandle );
-				wfDebug( __METHOD__ . $error_txt . "\n" );
-				$this->status->fatal( $error_txt ); /* i18n? */
+				$this->status->fatal( 'Error sending request (#$1): $2',
+									  curl_errno( $this->curlHandle ),
+									  curl_error( $this->curlHandle ) );
 			}
 		} catch ( Exception $e ) {
 			$errno = curl_errno( $this->curlHandle );
 			if ( $errno != CURLE_OK ) {
 				$errstr = curl_error( $this->curlHandle );
-				wfDebug( __METHOD__ . ": CURL error code $errno: $errstr\n" );
-				$this->status->fatal( "CURL error code $errno: $errstr\n" ); /* i18n? */
+				$this->status->fatal( 'CURL error code $1: $2', $errno, $errstr );
 			}
 		}
 
@@ -346,15 +344,15 @@ class PhpHttpRequest extends HttpRequest {
 			$this->reqHeaders[] = "Content-type: application/x-www-form-urlencoded";
 		}
 
-		if( $this->parsed_url['scheme'] != 'http' ) {
+		if ( $this->parsed_url['scheme'] != 'http' ) {
 			$this->status->fatal( "Only http:// is supported currently." );
 	    }
 	}
 
-	protected function urlToTcp($url) {
-		$parsed_url = parse_url($url);
+	protected function urlToTcp( $url ) {
+		$parsed_url = parse_url( $url );
 
-		return 'tcp://'.$parsed_url['host'].':'.$parsed_url['port'];
+		return 'tcp://' . $parsed_url['host'] . ':' . $parsed_url['port'];
 	}
 
 	public function proxySetup() {
@@ -385,13 +383,13 @@ class PhpHttpRequest extends HttpRequest {
 	}
 
 	public function execute() {
-		if( !$this->status->isOK() ) {
+		if ( !$this->status->isOK() ) {
 			return $this->status;
 		}
 
 		$opts = array();
 		if ( $this->proxy && !$this->no_proxy ) {
-			$opts['proxy'] = $this->urlToTCP($this->proxy);
+			$opts['proxy'] = $this->urlToTCP( $this->proxy );
 			$opts['request_fulluri'] = true;
 		}
 
@@ -412,14 +410,14 @@ class PhpHttpRequest extends HttpRequest {
 		$context = stream_context_create( array( 'http' => $opts ) );
 		try {
 			$this->fh = fopen( $this->url, "r", false, $context );
-		} catch (Exception $e) {
-			$this->status->fatal($e->getMessage());
+		} catch ( Exception $e ) {
+			$this->status->fatal( $e->getMessage() );
 			return $this->status;
 		}
 
 		$result = stream_get_meta_data( $this->fh );
 		if ( $result['timed_out'] ) {
-			$this->status->error( __CLASS__ . '::timed-out-in-headers' );
+			$this->status->error( 'The request timed out' );
 		}
 
 		$this->headers = $result['wrapper_data'];
