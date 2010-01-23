@@ -631,7 +631,7 @@ abstract class ApiBase {
 				$value = array_unique( $value );
 
 			// Set a warning if a deprecated parameter has been passed
-			if ( $deprecated ) {
+			if ( $deprecated && $value !== false ) {
 				$this->setWarning( "The $encParamName parameter has been deprecated." );
 			}
 		}
