@@ -173,7 +173,7 @@ class ApiFormatXml extends ApiFormatBase {
 			$this->setWarning( 'Stylesheet should have .xsl extension.' );
 			return;
 		}
-		$this->printText( '<?xml-stylesheet href="' . $nt->escapeLocalURL( 'action=raw' ) . '" type="text/xml" ?>' );
+		$this->printText( '<?xml-stylesheet href="' . $nt->escapeLocalURL( 'action=raw' ) . '" type="text/xsl" ?>' );
 	}
 	
 	public function getAllowedParams() {
