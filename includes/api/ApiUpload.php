@@ -84,13 +84,14 @@ class ApiUpload extends ApiBase {
 			// Initialize $this->mUpload
 			if ( $this->mParams['enablechunks'] ) {
 				$this->mUpload = new UploadFromChunks();
-				$this->mUpload->initialize
-                                  ( $request->getText( 'done' ),
-                                    $request->getText( 'filename' ),
-                                    $request->getText( 'chunksessionkey' ),
-                                    $request->getFileTempName( 'chunk' ),
-                                    $request->getFileSize( 'chunk' ),
-                                    $request->getSessionData( 'wsUploadData' ) );
+				$this->mUpload->initialize(
+					$request->getText( 'done' ),
+					$request->getText( 'filename' ),
+					$request->getText( 'chunksessionkey' ),
+					$request->getFileTempName( 'chunk' ),
+					$request->getFileSize( 'chunk' ),
+					$request->getSessionData( 'wsUploadData' )
+				);
 
 				if ( !$this->mUpload->status->isOK() ) {
 					return $this->dieUsageMsg( $this->mUpload->status->getWikiText(),
