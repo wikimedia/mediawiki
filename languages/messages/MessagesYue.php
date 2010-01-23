@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -834,6 +834,7 @@ $1',
 'post-expand-template-argument-category'  => '包含住略過模參數嘅版',
 'parser-template-loop-warning'            => '已偵測迴模: [[$1]]',
 'parser-template-recursion-depth-warning' => '迴模深度限制超過咗 ($1)',
+'language-converter-depth-warning'        => '字體變換器深度限制超過咗 ($1)',
 
 # "Undo" feature
 'undo-success' => '呢個編輯可以取消。請檢查一下個差異去確認呢個係你要去做嘅，跟住儲存下面嘅更改去完成編輯。',
@@ -1521,6 +1522,11 @@ $1",
 基於保安最佳化，img_auth.php已經停用咗。',
 'img-auth-noread'       => '用戶無通行去讀"$1"。',
 
+# HTTP errors
+'http-invalid-url'    => '無效嘅URL：$1',
+'http-invalid-scheme' => '有 "$1" 嘅URL唔支援',
+'http-request-error'  => '傳送請求嗰陣出錯：',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '唔可以到嗰個URL',
 'upload-curl-error6-text'  => '輸入嘅URL唔能夠去到。請重新檢查個URL係正確嘅同埋個網站係已經上綫。',
@@ -1934,6 +1940,8 @@ wiki: $PAGEEDITOR_WIKI
 --
 要修改你嘅監視清單設定，請睇{{fullurl:{{#special:Watchlist}}/edit}}
 
+要刪除你嘅監視清單度嘅呢一版，請睇{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 回饋及更多幫助：
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2294,7 +2302,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'cant-move-user-page'          => '你並無權限去搬用戶版（佢嘅細版之外）。',
 'cant-move-to-user-page'       => '你並無權限去搬到一個用戶版（佢嘅細版之外）。',
 'newtitle'                     => '到新標題:',
-'move-watch'                   => '睇實呢一版',
+'move-watch'                   => '睇實來源同埋目標版',
 'movepagebtn'                  => '搬頁',
 'pagemovedsub'                 => '搬頁成功',
 'movepage-moved'               => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>',
@@ -2600,7 +2608,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'markaspatrolleddiff'                 => '標示為已巡查嘅',
 'markaspatrolledtext'                 => '標示呢版為已巡查嘅',
 'markedaspatrolled'                   => '已經標示做已巡查嘅',
-'markedaspatrolledtext'               => '已經選擇咗嘅修訂已經標示咗做已巡查嘅。',
+'markedaspatrolledtext'               => '已經選擇咗[[:$1]]嘅修訂已經標示咗做已巡查嘅。',
 'rcpatroldisabled'                    => '最近修改巡查已經停用',
 'rcpatroldisabledtext'                => '最近修改嘅巡查功能現時停用中。',
 'markedaspatrollederror'              => '唔可以標示做已巡查嘅',

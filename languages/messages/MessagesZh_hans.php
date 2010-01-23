@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1988,6 +1988,9 @@ $NEWPAGE
 要改变您的监视列表设置，请访问
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+要删除您监视列表中的该页面，请访问
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 反馈和进一步的帮助:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2355,7 +2358,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'cant-move-user-page'          => '您并没有许可权去移动用户页面（它的字页面除外）。',
 'cant-move-to-user-page'       => '您并没有许可权去移动到用户页面（它的字页面除外）。',
 'newtitle'                     => '新标题：',
-'move-watch'                   => '监视此页',
+'move-watch'                   => '监视来源以及目标页',
 'movepagebtn'                  => '移动页面',
 'pagemovedsub'                 => '移动成功',
 'movepage-moved'               => "<big>'''“$1”已经移动到“$2”'''</big>",
@@ -2658,7 +2661,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'markaspatrolleddiff'                 => '标记为已检查',
 'markaspatrolledtext'                 => '标记此页面为已检查',
 'markedaspatrolled'                   => '标记为已检查',
-'markedaspatrolledtext'               => '[[:$1]]选中的编辑版本已被标识为已巡查。',
+'markedaspatrolledtext'               => '[[:$1]]的已选中修订版本已被标识为已巡查。',
 'rcpatroldisabled'                    => '最新更改检查被关闭',
 'rcpatroldisabledtext'                => '最新更改检查的功能目前已关闭。',
 'markedaspatrollederror'              => '不能标志为已检查',

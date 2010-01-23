@@ -698,6 +698,7 @@ $2',
 'post-expand-template-argument-category'  => '含略模數之頁',
 'parser-template-loop-warning'            => '測迴模：[[$1]]',
 'parser-template-recursion-depth-warning' => '已超迴模限深（$1）',
+'language-converter-depth-warning'        => '已超字變限深（$1）',
 
 # "Undo" feature
 'undo-success' => '此審可返也。查確然完之。',
@@ -1332,6 +1333,11 @@ $1",
 保強，img_auth.php已停矣。',
 'img-auth-noread'       => '簿無權讀「$1」也。',
 
+# HTTP errors
+'http-invalid-url'    => '無效之網址：$1',
+'http-invalid-scheme' => '有「$1」之網址無持也',
+'http-request-error'  => '呈求時錯之：',
+
 'license'           => '權：',
 'license-header'    => '權',
 'license-nopreview' => '（謝草覽）',
@@ -1719,7 +1725,10 @@ $NEWPAGE
 
 --
 欲更哨令，惠訪{{fullurl:{{#special:Watchlist}}/edit}}
-饋助之，惠訪{{fullurl:{{ns:help}}:Contents}}',
+
+欲刪之頁，惠訪{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+饋助之，惠訪{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '刪頁',
@@ -2049,7 +2058,7 @@ $1已被禁矣。爾是否改此置？',
 'cant-move-user-page'          => '無動自齋（除字頁）。',
 'cant-move-to-user-page'       => '無動至齋（除字頁）。',
 'newtitle'                     => '至新題：',
-'move-watch'                   => '派哨',
+'move-watch'                   => '派哨至自與至之頁',
 'movepagebtn'                  => '遷文',
 'pagemovedsub'                 => '遷成矣',
 'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>",
@@ -2333,7 +2342,7 @@ $1已被禁矣。爾是否改此置？',
 'markaspatrolleddiff'                 => '派哨',
 'markaspatrolledtext'                 => '哨此報',
 'markedaspatrolled'                   => '派哨',
-'markedaspatrolledtext'               => '此審哨矣。',
+'markedaspatrolledtext'               => '[[:$1]]之審哨矣。',
 'rcpatroldisabled'                    => '不哨近易',
 'rcpatroldisabledtext'                => '近易之哨，未准行也。',
 'markedaspatrollederror'              => '哨有誤',
