@@ -190,6 +190,37 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	}
 }
 
+if ( !function_exists( 'array_intersect_key' ) ) {
+	/**
+	* Exists in 5.1.0+
+	* Define our own array_intersect_key function
+	*/
+	function array_intersect_key( $isec, $keys ) {
+		$argc = func_num_args();
+
+		if ( $argc > 2 ) {
+			for ( $i = 1; $isec && $i < $argc; $i++ ) {
+				$arr = func_get_arg( $i );
+
+				foreach ( array_keys( $isec ) as $key ) {
+					if ( !isset( $arr[$key] ) )
+						unset( $isec[$key] );
+				}
+			}
+
+			return $isec;
+		} else {
+			$res = array();
+			foreach ( array_keys( $isec ) as $key ) {
+				if ( isset( $keys[$key] ) )
+					$res[$key] = $isec[$key];
+			}
+
+			return $res;
+		}
+	}
+}
+
 // Support for Wietse Venema's taint feature
 if ( !function_exists( 'istainted' ) ) {
 	function istainted( $var ) {
