@@ -129,12 +129,11 @@ class OutputPage {
 			$path =  "{$wgStylePath}/common/{$file}";
 		}
 		$this->addScript( 
-			Xml::element( 'script', 
+			Html::element( 'script', 
 				array(
 					'type' => $wgJsMimeType,
 					'src' => "$path?$wgStyleVersion",
-				),
-				'', false
+				)
 			)
 		);
 	}
