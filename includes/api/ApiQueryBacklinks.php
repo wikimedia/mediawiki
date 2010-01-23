@@ -118,7 +118,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->addWhere( "{$this->bl_from}>={$this->contID}" );
 		if ( $this->params['filterredir'] == 'redirects' )
 			$this->addWhereFld( 'page_is_redirect', 1 );
-		if ( $this->params['filterredir'] == 'nonredirects' )
+		else if ( $this->params['filterredir'] == 'nonredirects' )
 			$this->addWhereFld( 'page_is_redirect', 0 );
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', $this->bl_from );
@@ -168,7 +168,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		if ( $this->params['filterredir'] == 'redirects' )
 			$this->addWhereFld( 'page_is_redirect', 1 );
-		if ( $this->params['filterredir'] == 'nonredirects' )
+		else if ( $this->params['filterredir'] == 'nonredirects' )
 			$this->addWhereFld( 'page_is_redirect', 0 );
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', $this->bl_sort );
