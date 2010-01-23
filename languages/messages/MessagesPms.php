@@ -1463,6 +1463,11 @@ Sta wiki-sì a l'é configurà com na wiki pùblica.
 Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'img-auth-noread'       => 'L\'utent a l\'ha pa ij privilegi për lese "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'URL pa bon-a: $1.',
+'http-invalid-scheme' => 'URL con lë schema "$1" a son pa apogià',
+'http-request-error'  => "Eror an mandand l'arcesta:",
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "L'anliura a l'arspond pa",
 'upload-curl-error6-text'  => "L'anliura che a l'ha butà a la travaja pa. Për piasì, ch'a contròla che st'anliura a la sia scrita giusta e che ël sit al funsion-a.",
@@ -1882,7 +1887,10 @@ Che as visa che a peul cangeje ij setagi dle notìfiche a le pàgine che as ten 
 
 --
 Për cangé ij setagi ëd lòn che as ten sot euj che a vada ansima a
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Për scanselé la pàgina da lòn ch\'it ten-e sot euj, vìsita
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
 {{fullurl:{{MediaWiki:Helppage}}}}',

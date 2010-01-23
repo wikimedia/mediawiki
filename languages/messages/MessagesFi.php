@@ -853,7 +853,8 @@ Liitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 'whitelistedittext'                => 'Sinun täytyy $1, jotta voisit muokata sivuja.',
 'confirmedittext'                  => 'Et voi muokata sivuja, ennen kuin olet varmentanut sähköpostiosoitteesi. Voit tehdä varmennuksen [[Special:Preferences|asetussivulla]].',
 'nosuchsectiontitle'               => 'Pyydettyä osiota ei ole',
-'nosuchsectiontext'                => 'Yritit muokata osiota, jota ei ole olemassa.',
+'nosuchsectiontext'                => 'Yritit muokata osiota, jota ei ole olemassa.
+Se on saatettu siirtää tai poistaa äskettäin.',
 'loginreqtitle'                    => 'Sisäänkirjautuminen vaaditaan',
 'loginreqlink'                     => 'kirjautua sisään',
 'loginreqpagetext'                 => 'Sinun täytyy $1, jotta voisit nähdä muut sivut.',
@@ -1636,6 +1637,9 @@ Vain tiedostoihin pääsy on sallittu.',
 Tämä wiki on asennettu julkiseksi wikiksi.
 Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
 'img-auth-noread'       => 'Käyttäjillä ei ole oikeutta lukea tiedostoa ”$1”.',
+
+# HTTP errors
+'http-request-error' => 'Virhe lähettäessä pyyntöä:',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Toimimaton osoite',

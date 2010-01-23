@@ -1723,6 +1723,11 @@ Tato wiki je nastavena jako veřejná.
 Z bezpečnostních důvodů je img_auth.php vypnuto.',
 'img-auth-noread'       => 'Uživatel nemá oprávnění ke čtení „$1“.',
 
+# HTTP errors
+'http-invalid-url'    => 'Neplatné URL: $1',
+'http-invalid-scheme' => 'URL používající schéma „$1“ nejsou podporována',
+'http-request-error'  => 'Chyba při odesílání požadavku:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Z URL nelze číst',
 'upload-curl-error6-text'  => 'Ze zadané URL nelze číst.  Zkontrolujte ža URL je správně napsané a server je dostupný',
@@ -2135,8 +2140,11 @@ Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o zm�
 	S pozdravem váš zasílač hlášení {{grammar:2sg|{{SITENAME}}}}
 
 --
-Pro změnu nastavení navštivte
+Nastavení sledovaných stránek může změnit na
 {{fullurl:Special:Watchlist/edit}}
+
+Stránku můžete ze svých sledovaných vyřadit na
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Rady a kontakt:
 {{fullurl:{{MediaWiki:Helppage}}}}',

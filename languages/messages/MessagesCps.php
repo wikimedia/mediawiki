@@ -363,6 +363,10 @@ Palihog isugid sa [[Special:ListUsers/sysop|tagapamahala]], kag i-lista ang iya 
 'filecopyerror'        => 'Indi makopya ang file nga "$1" pakadto sa "$2".',
 'filerenameerror'      => 'Indi mapangalanan liwat ang file nga "$1" pakadto sa "$2".',
 'filedeleteerror'      => 'Indi mapanas ang file nga "$1".',
+'directorycreateerror' => 'Indi maka-ubra sang direktoryo nga "$1".',
+'filenotfound'         => 'Indi makita sang file nga "$1".',
+'fileexistserror'      => 'Indi makasulat sa file nga "$1": buhi ang file',
+'unexpected'           => 'Wala naekspektaran nga bili: "$1"="$2"',
 'formerror'            => 'Kasal-anan: indi mapadala ang pormas',
 'badtitle'             => 'Kala-in nga titulo',
 'badtitletext'         => 'Ang ginapangayo nga titulo sang pahina sala, wala unod, ukon may indi insakto nga koneksyon sa inter-language ukon sa titulo sang interwiki.

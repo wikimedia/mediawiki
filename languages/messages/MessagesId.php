@@ -928,7 +928,8 @@ Harap pertimbangkan untuk memecah halaman menjadi beberapa bagian yang lebih kec
 Anda mungkin perlu menyalin teks suntingan Anda ini dan menyimpannya ke sebuah berkas teks dan memuatkannya lagi setelah pemeliharaan selesai.'''
 
 Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
-'protectedpagewarning'             => "'''PERINGATAN: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya.'''",
+'protectedpagewarning'             => "'''PERINGATAN: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus yang dapat menyuntingnya.'''
+Entri catatan terakhir disediakan dibawah untuk referensi:",
 'semiprotectedpagewarning'         => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.
 Entri catatan terakhir disediakan dibawah untuk referensi:",
 'cascadeprotectedwarning'          => "'''PERINGATAN:''' Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi 'perlindungan runtun':",
@@ -2486,8 +2487,10 @@ Artikel yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapu
 'imageinvalidfilename'         => 'Nama berkas tujuan tidak sah',
 'fix-double-redirects'         => 'Perbaiki semua pengalihan ganda yang mungkin terjadi',
 'move-leave-redirect'          => 'Buat pengalihan ke judul baru',
-'protectedpagemovewarning'     => "'''Peringatan''': Halaman ini telah dilindungi sehingga hanya pengurus yang bisa memindahkannya.",
-'semiprotectedpagemovewarning' => "'''Catatan:''' Halaman ini telah dilindungi sehingga hanya pengguna terdaftar yang dapat memindahkannya.",
+'protectedpagemovewarning'     => "'''Peringatan''': Halaman ini telah dilindungi sehingga hanya pengurus yang bisa memindahkannya.
+Entri catatan terakhir disediakan dibawah untuk referensi:",
+'semiprotectedpagemovewarning' => "'''Catatan:''' Halaman ini telah dilindungi sehingga hanya pengguna terdaftar yang dapat memindahkannya.
+Entri catatan terakhir disediakan dibawah untuk referensi:",
 'move-over-sharedrepo'         => '== Berkas sudah ada ==
 
 [[:$1]] sudah ada pada penyimpanan bersama. Memindahkan berkas ke judul ini akan menimpa berkas bersama.',

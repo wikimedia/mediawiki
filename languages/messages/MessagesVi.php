@@ -826,8 +826,9 @@ Xin hãy ghi kèm tất cả các chi tiết trên vào thư yêu cầu của b�
 'whitelistedittitle'               => 'Cần đăng nhập để sửa trang',
 'whitelistedittext'                => 'Bạn phải $1 để sửa trang.',
 'confirmedittext'                  => 'Bạn cần phải xác nhận địa chỉ thư điện tử trước khi được sửa đổi trang. Xin hãy đặt và xác nhận địa chỉ thư điện tử của bạn dùng trang [[Special:Preferences|tùy chọn]].',
-'nosuchsectiontitle'               => 'Không có mục nào như vậy',
-'nosuchsectiontext'                => 'Bạn vừa sửa đổi một mục chưa tồn tại.',
+'nosuchsectiontitle'               => 'Không tìm thấy đề mục',
+'nosuchsectiontext'                => 'Bạn vừa sửa đổi một mục chưa tồn tại.
+Có thể nó đã bị di chuyển hoặc xóa đi trong khi bạn đang xem trang.',
 'loginreqtitle'                    => 'Cần đăng nhập',
 'loginreqlink'                     => 'đăng nhập',
 'loginreqpagetext'                 => 'Bạn phải $1 mới có quyền xem các trang khác.',
@@ -897,10 +898,13 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'readonlywarning'                  => "'''CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.'''
 
 Người quản lý khi khóa dữ liệu đã đưa ra lý do: $1",
-'protectedpagewarning'             => "'''CẢNH BÁO: Trang này đã bị khóa, chỉ có các thành viên có quyền quản lý mới sửa được.'''",
-'semiprotectedpagewarning'         => "'''Ghi chú:''' Trang này đã bị khóa, chỉ cho phép các thành viên đã đăng ký sửa đổi.",
+'protectedpagewarning'             => "'''Cảnh báo: Trang này đã bị khóa và chỉ có các thành viên có quyền quản lý mới có thể sửa được.'''
+Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
+'semiprotectedpagewarning'         => "'''Lưu ý:''' Trang này đã bị khóa và chỉ có các thành viên đã đăng ký mới có thể sửa đổi được.
+Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'cascadeprotectedwarning'          => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
-'titleprotectedwarning'            => "'''CẢNH BÁO:  Trang này đã bị khóa vì vậy bạn cần một số [[Special:ListGroupRights|quyền]] mới có thể tạo trang.'''",
+'titleprotectedwarning'            => "'''Cảnh báo:  Trang này đã bị khóa và bạn phải có một số [[Special:ListGroupRights|quyền nhất định]] mới có thể tạo trang.'''
+Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'templatesused'                    => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} dùng trong trang này:',
 'templatesusedpreview'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} sẽ được dùng trong trang này:',
 'templatesusedsection'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} dùng trong phần này:',
@@ -946,6 +950,7 @@ Những giá trị này sẽ bị bỏ đi.',
 'post-expand-template-argument-category'  => 'Những trang có chứa những giá trị bản mẫu bị loại bỏ',
 'parser-template-loop-warning'            => 'Phát hiện bản mẫu lặp vòng: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Bản mẫu đã vượt quá giới hạn về độ sâu đệ quy ($1)',
+'language-converter-depth-warning'        => 'Đã vượt quá giới hạn độ sâu của bộ chuyển đổi ngôn ngữ ($1)',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
@@ -1659,6 +1664,11 @@ Wiki này được cấu hình là wiki công cộng.
 Vì lý do bảo mật, img_auth.php đã bị tắt.',
 'img-auth-noread'       => 'Người dùng không đủ quyền truy cập để đọc “$1”.',
 
+# HTTP errors
+'http-invalid-url'    => 'URL không hợp lệ: $1',
+'http-invalid-scheme' => 'Không hỗ trợ các URL có mô hình “$1”',
+'http-request-error'  => 'Có lỗi khi gửi yêu cầu:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Không thể truy cập URL',
 'upload-curl-error6-text'  => 'Không thể truy cập URL mà bạn đưa vào. Xin hãy kiểm tra xem URL có đúng không và website vẫn còn hoạt động.',
@@ -2055,7 +2065,7 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'enotif_lastvisited'           => 'Xem $1 để biết các thay đổi diễn ra từ lần xem cuối cùng của bạn.',
 'enotif_lastdiff'              => 'Vào $1 để xem sự thay đổi này.',
 'enotif_anon_editor'           => 'thành viên vô danh $1',
-'enotif_body'                  => '$WATCHINGUSERNAME thân mến,
+'enotif_body'                  => 'Xin chào $WATCHINGUSERNAME,
 
 
 Trang $PAGETITLE tại {{SITENAME}} đã được $PAGEEDITOR $CHANGEDORCREATED vào $PAGEEDITDATE, xem phiên bản hiện hành tại $PAGETITLE_URL.
@@ -2076,6 +2086,9 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
 --
 Để thay đổi các thiết lập danh sách theo dõi, mời xem
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Phản hồi và cần sự hỗ trợ:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2498,8 +2511,10 @@ Trang với tên “[[:$1]]” đã tồn tại. Bạn có muốn xóa nó để
 'imageinvalidfilename'         => 'Tên tập tin đích không hợp lệ',
 'fix-double-redirects'         => 'Cập nhật tất cả các trang đổi hướng chỉ đến tựa đề cũ',
 'move-leave-redirect'          => 'Để lại trang đổi hướng',
-'protectedpagemovewarning'     => "'''CẢNH BÁO:''' Trang này đã bị khóa, chỉ có các thành viên có quyền quản lý mới di chuyển được.",
-'semiprotectedpagemovewarning' => "'''Ghi chú:''' Trang này đã bị khóa, chỉ có các thành viên đã đăng ký mới di chuyển được.",
+'protectedpagemovewarning'     => "'''Cảnh báo:''' Trang này đã bị khóa và chỉ có các thành viên có quyền quản lý mới có thể di chuyển được.
+Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
+'semiprotectedpagemovewarning' => "'''Lưu ý:''' Trang này đã bị khóa và chỉ có các thành viên đã đăng ký mới có thể di chuyển được.
+Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'move-over-sharedrepo'         => '== Tập tin đã tồn tại ==
 [[:$1]] đã tồn tại trong kho dùng chung. Nếu đổi tên tập tin thành tên này thì sẽ ghi đè lên tập tin dùng chung.',
 'file-exists-sharedrepo'       => 'Bạn đã chọn tên tập tin trùng với tập tin nằm trong kho dùng chung.
@@ -2757,7 +2772,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'markaspatrolleddiff'                 => 'Đánh dấu tuần tra',
 'markaspatrolledtext'                 => 'Đánh dấu tuần tra trang này',
 'markedaspatrolled'                   => 'Đã đánh dấu tuần tra',
-'markedaspatrolledtext'               => 'Phiên bản được chọn đã được đánh dấu đã tuần tra.',
+'markedaspatrolledtext'               => 'Phiên bản được chọn của [[:$1]] đã được đánh dấu tuần tra.',
 'rcpatroldisabled'                    => '“Thay đổi gần đây” của các trang tuần tra không bật',
 'rcpatroldisabledtext'                => 'Chức năng “thay đổi gần đây” của các trang tuần tra hiện không được bật.',
 'markedaspatrollederror'              => 'Không thể đánh dấu tuần tra',
