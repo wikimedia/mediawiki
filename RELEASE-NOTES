@@ -799,7 +799,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   descriptionurl 
 * (bug 20233) ApiLogin::execute() doesn't handle LoginForm :: RESET_PASS
 * (bug 22061) API: add prop=headitems to action=parse
-* (bug 22240) - API: include time in siteinfo
+* (bug 22240) API: include time in siteinfo
+* (bug 22241) Quick edit is still using the deprecated watch parameter (API: Setting default for watch/unwatch wrongly set)
 
 === Languages updated in 1.16 ===
 
