@@ -42,12 +42,9 @@ class UploadFromChunks extends UploadBase {
 		throw new MWException( 'not implemented' );
 	}
 
-	public function initialize( &$request ) {
-		$done = $request->getText( 'done' );
-		$filename = $request->getText( 'filename' );
-		$sessionKey = $request->getText( 'chunksessionkey' );
-
-		$this->initFromSessionKey( $sessionKey, $request );
+	public function initialize( $done, $filename, $sessionKey, $path,
+			$fileSize, $sessionData ) {
+		$this->initFromSessionKey( $sessionKey, $sessionData );
 
 		if ( !$this->sessionKey && !$done ) {
 			// session key not set, init the chunk upload system:
@@ -60,8 +57,8 @@ class UploadFromChunks extends UploadBase {
 		}
 
 		if ( $this->chunkMode == self::CHUNK || $this->chunkMode == self::DONE ) {
-			$this->mTempPath = $request->getFileTempName( 'chunk' );
-			$this->fileSize += $request->getFileSize( 'chunk' );
+                  $this->mTempPath = $path;
+                  $this->fileSize += $fileSize;
 		}
 	}
 
@@ -94,14 +91,12 @@ class UploadFromChunks extends UploadBase {
 	 *
 	 * @returns void
 	 */
-	protected function initFromSessionKey( $sessionKey, $request ) {
+	protected function initFromSessionKey( $sessionKey, $sessionData ) {
 		if ( !$sessionKey || empty( $sessionKey ) ) {
 			$this->status = Status::newFromFatal( 'Missing session data.' );
 			return;
 		}
 		$this->sessionKey = $sessionKey;
-		// load the sessionData array:
-		$sessionData = $request->getSessionData( 'wsUploadData' );
 
 		if ( isset( $sessionData[$this->sessionKey]['version'] )
 				&& $sessionData[$this->sessionKey]['version'] == self::SESSION_VERSION ) {
@@ -124,7 +119,7 @@ class UploadFromChunks extends UploadBase {
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		wfDebug( "\n\n\performUpload(chunked): sum:" . $comment . ' c: ' . $pageText . ' w:' . $watch );
-		global $wgUser;
+		global $wgUser, $wgOut;
 
 		if ( $this->chunkMode == self::INIT ) {
 			// firefogg expects a specific result per:
@@ -140,7 +135,7 @@ class UploadFromChunks extends UploadBase {
 				'uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?action=upload&" .
 				"token={$token}&format=json&enablechunks=true&chunksessionkey=" .
 				$this->setupChunkSession( $comment, $pageText, $watch ) ) );
-			exit( 0 );
+			$wgOut->disable();
 		} else if ( $this->chunkMode == self::CHUNK ) {
 			$status = $this->appendChunk();
 			if ( !$status->isOK() ) {
@@ -153,7 +148,7 @@ class UploadFromChunks extends UploadBase {
 			echo FormatJson::encode(
 				array( 'result' => 1, 'filesize' => $this->fileSize )
 			);
-			exit( 0 );
+			$wgOut->disable();
 		} else if ( $this->chunkMode == self::DONE ) {
 			if ( $comment == '' )
 				$comment = $this->comment;
@@ -178,7 +173,7 @@ class UploadFromChunks extends UploadBase {
 				'done' => 1,
 				'resultUrl' => $file->getDescriptionUrl() )
 			);
-			exit( 0 );
+			$wgOut->disable();
 		}
 	}
 

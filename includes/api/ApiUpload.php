@@ -84,7 +84,13 @@ class ApiUpload extends ApiBase {
 			// Initialize $this->mUpload
 			if ( $this->mParams['enablechunks'] ) {
 				$this->mUpload = new UploadFromChunks();
-				$this->mUpload->initialize( $request );
+				$this->mUpload->initialize
+                                  ( $request->getText( 'done' ),
+                                    $request->getText( 'filename' ),
+                                    $request->getText( 'chunksessionkey' ),
+                                    $request->getFileTempName( 'chunk' ),
+                                    $request->getFileSize( 'chunk' ),
+                                    $request->getSessionData( 'wsUploadData' ) );
 
 				if ( !$this->mUpload->status->isOK() ) {
 					return $this->dieUsageMsg( $this->mUpload->status->getWikiText(),
@@ -278,7 +284,7 @@ class ApiUpload extends ApiBase {
 			'watch' => false,
 			'ignorewarnings' => false,
 			'file' => null,
-			'enablechunks' => null,
+			'enablechunks' => false,
 			'chunksessionkey' => null,
 			'chunk' => null,
 			'done' => false,
@@ -302,6 +308,9 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'enablechunks' => 'Set to use chunk mode; see http://firefogg.org/dev/chunk_post.html for protocol',
+			'chunksessionkey' => 'The session key, established on the first contact during the chunked upload',
+			'chunk' => 'The data in this chunk of a chunked upload',
+			'done' => 'Set to 1 on the last chunk of a chunked upload',
 			'url' => 'Url to fetch the file from',
 			'sessionkey' => array(
 				'Session key returned by a previous upload that failed due to warnings',
