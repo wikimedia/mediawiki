@@ -18,6 +18,7 @@ class Http {
 	 * @returns mixed (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = array() ) {
+		wfDebug( "HTTP: $method: $url" );
 		$options['method'] = strtoupper( $method );
 		if ( !isset( $options['timeout'] ) ) {
 			$options['timeout'] = 'default';
