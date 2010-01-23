@@ -1725,9 +1725,9 @@ class OutputPage {
 				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
 				$userpage = $wgUser->getUserPage();
-				$scriptpage = Title::newFromText(
-					$userpage->getNamespace(),
-					$userpage->getPrefixedText() . '/' . $sk->getSkinName() . '.js'
+				$scriptpage = Title::makeTitleSafe(
+					NS_USER,
+					$userpage->getDBkey() . '/' . $sk->getSkinName() . '.js'
 				);
 				if ( $scriptpage && $scriptpage->exists() ) {
 					$userjs = Skin::makeUrl( $scriptpage->getPrefixedText(), 'action=raw&ctype=' . $wgJsMimeType );
