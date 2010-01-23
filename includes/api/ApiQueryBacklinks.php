@@ -116,10 +116,12 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 		if ( !is_null( $this->contID ) )
 			$this->addWhere( "{$this->bl_from}>={$this->contID}" );
+
 		if ( $this->params['filterredir'] == 'redirects' )
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		else if ( $this->params['filterredir'] == 'nonredirects' )
 			$this->addWhereFld( 'page_is_redirect', 0 );
+
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', $this->bl_from );
 		$this->addOption( 'STRAIGHT_JOIN' );

@@ -58,12 +58,17 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		// Page filters
 		$this->addTables( 'page' );
-		if ( !$this->addWhereIf( 'page_is_redirect = 1', $params['filterredir'] === 'redirects' ) )
-			$this->addWhereIf( 'page_is_redirect = 0', $params['filterredir'] === 'nonredirects' );
+		
+		if ( $this->params['filterredir'] == 'redirects' )
+			$this->addWhereFld( 'page_is_redirect', 1 );
+		else if ( $this->params['filterredir'] == 'nonredirects' )
+			$this->addWhereFld( 'page_is_redirect', 0 );
+
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
 		$this->addWhereRange( 'page_title', $dir, $from, null );
+		
 		if ( isset ( $params['prefix'] ) )
 			$this->addWhere( 'page_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 
