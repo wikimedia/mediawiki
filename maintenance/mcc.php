@@ -86,6 +86,10 @@ do {
 			break;
 
 		case 'server':
+			if ( $mcc->_single_sock !== null ) {
+				print $mcc->_single_sock . "\n";
+				break;
+			}
 			$res = $mcc->get( $args[0] );
 			$hv = $mcc->_hashfunc( $args[0] );
 			for ( $i = 0; $i < 3; $i++ ) {
