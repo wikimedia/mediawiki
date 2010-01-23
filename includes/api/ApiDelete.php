@@ -126,8 +126,8 @@ class ApiDelete extends ApiBase {
 		// Auto-generate a summary, if necessary
 		if ( is_null( $reason ) )
 		{
-			# Need to pass a throwaway variable because generateReason expects
-			# a reference
+			// Need to pass a throwaway variable because generateReason expects
+			// a reference
 			$hasHistory = false;
 			$reason = $article->generateReason( $hasHistory );
 			if ( $reason === false )
@@ -162,7 +162,7 @@ class ApiDelete extends ApiBase {
 			
 		if ( !FileDeleteForm::haveDeletableFile( $file, $oldfile, $oldimage ) )
 			return self::delete( new Article( $title ), $token, $reason );
-		if ( is_null( $reason ) ) # Log and RC don't like null reasons
+		if ( is_null( $reason ) ) // Log and RC don't like null reasons
 			$reason = '';
 		$status = FileDeleteForm::doDelete( $title, $file, $oldimage, $reason, $suppress );
 				

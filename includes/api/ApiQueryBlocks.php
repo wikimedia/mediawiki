@@ -100,7 +100,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
 			if ( $ip && $range )
 			{
-				# We got a CIDR range
+				// We got a CIDR range
 				if ( $range < 16 )
 					$this->dieUsage( 'CIDR ranges broader than /16 are not accepted', 'cidrtoobroad' );
 				$lower = wfBaseConvert( $ip, 10, 16, 8, false );

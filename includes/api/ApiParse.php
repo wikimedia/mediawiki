@@ -60,7 +60,7 @@ class ApiParse extends ApiBase {
 		{
 			if ( !is_null( $oldid ) )
 			{
-				# Don't use the parser cache
+				// Don't use the parser cache
 				$rev = Revision::newFromID( $oldid );
 				if ( !$rev )
 					$this->dieUsage( "There is no revision ID $oldid", 'missingrev' );

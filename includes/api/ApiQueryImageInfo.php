@@ -95,11 +95,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !$fit )
 				{
 					if ( count( $pageIds[NS_IMAGE] ) == 1 )
-						# The user is screwed. imageinfo can't be solely
-						# responsible for exceeding the limit in this case,
-						# so set a query-continue that just returns the same
-						# thing again. When the violating queries have been
-						# out-continued, the result will get through
+						// The user is screwed. imageinfo can't be solely
+						// responsible for exceeding the limit in this case,
+						// so set a query-continue that just returns the same
+						// thing again. When the violating queries have been
+						// out-continued, the result will get through
 						$this->setContinueEnumParameter( 'start',
 							wfTimestamp( TS_ISO_8601, $img->getTimestamp() ) );
 					else
@@ -119,7 +119,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					if ( !$fit )
 					{
 						if ( count( $pageIds[NS_IMAGE] ) == 1 )
-							# See the 'the user is screwed' comment above
+							// See the 'the user is screwed' comment above
 							$this->setContinueEnumParameter( 'start',
 								wfTimestamp( TS_ISO_8601, $img->getTimestamp() ) );
 						else

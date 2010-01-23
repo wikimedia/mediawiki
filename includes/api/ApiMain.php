@@ -284,7 +284,7 @@ class ApiMain extends ApiBase {
 
 		if ( $this->mSquidMaxage == - 1 )
 		{
-			# Nobody called setCacheMaxAge(), use the (s)maxage parameters
+			// Nobody called setCacheMaxAge(), use the (s)maxage parameters
 			$smaxage = $this->getParameter( 'smaxage' );
 			$maxage = $this->getParameter( 'maxage' );
 		}

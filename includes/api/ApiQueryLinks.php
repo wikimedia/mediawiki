@@ -100,11 +100,11 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					"{$this->prefix}_title >= '$pltitle')))" );
 		}
 
-		# Here's some MySQL craziness going on: if you use WHERE foo='bar'
-		# and later ORDER BY foo MySQL doesn't notice the ORDER BY is pointless
-		# but instead goes and filesorts, because the index for foo was used
-		# already. To work around this, we drop constant fields in the WHERE
-		# clause from the ORDER BY clause
+		// Here's some MySQL craziness going on: if you use WHERE foo='bar'
+		// and later ORDER BY foo MySQL doesn't notice the ORDER BY is pointless
+		// but instead goes and filesorts, because the index for foo was used
+		// already. To work around this, we drop constant fields in the WHERE
+		// clause from the ORDER BY clause
 		$order = array();
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 )
 			$order[] = "{$this->prefix}_from";

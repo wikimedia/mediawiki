@@ -183,7 +183,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhere( 'rc_user_text != ' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
 
 
-		# This is an index optimization for mysql, as done in the Special:Watchlist page
+		// This is an index optimization for mysql, as done in the Special:Watchlist page
 		$this->addWhereIf( "rc_timestamp > ''", !isset ( $params['start'] ) && !isset ( $params['end'] ) && $wgDBtype == 'mysql' );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );

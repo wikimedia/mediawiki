@@ -91,8 +91,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 			if ( !$fit )
 			{
-				# Abuse siprop as a query-continue parameter
-				# and set it to all unprocessed props
+				// Abuse siprop as a query-continue parameter
+				// and set it to all unprocessed props
 				$this->setContinueEnumParameter( 'prop', implode( '|',
 						array_diff( $params['prop'], $done ) ) );
 				break;

@@ -151,9 +151,9 @@ class Spyc {
 	 * @return bool
 	 */
 	function _needLiteral( $value ) {
-		# Check whether the string contains # or : or begins with any of:
-		# [ - ? , [ ] { } ! * & | > ' " % @ ` ]
-		# or is a number or contains newlines
+		// Check whether the string contains # or : or begins with any of:
+		// [ - ? , [ ] { } ! * & | > ' " % @ ` ]
+		// or is a number or contains newlines
 		return (bool)( gettype( $value ) == "string" &&
 			( is_numeric( $value )  ||
 			strpos( $value, "\n" ) ||

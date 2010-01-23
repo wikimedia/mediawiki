@@ -138,7 +138,7 @@ class ApiEditPage extends ApiBase {
 				$params['summary'] = wfMsgForContent( 'undo-summary', $params['undo'], $undoRev->getUserText() );
 		}
 
-		# See if the MD5 hash checks out
+		// See if the MD5 hash checks out
 		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] )
 			$this->dieUsageMsg( array( 'hashcheckfailed' ) );
 		
@@ -153,8 +153,8 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['summary'] ) )
 			$reqArr['wpSummary'] = $params['summary'];
 
-		# Watch out for basetimestamp == ''
-		# wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
+		// Watch out for basetimestamp == ''
+		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
 		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' )
 			$reqArr['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
 		else
@@ -163,7 +163,7 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' )
 			$reqArr['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
 		else
-			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];			# Fake wpStartime
+			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];	// Fake wpStartime
 
 		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )
 			$reqArr['wpMinoredit'] = '';
@@ -212,8 +212,8 @@ class ApiEditPage extends ApiBase {
 		$req = new FauxRequest( $reqArr, true );
 		$ep->importFormData( $req );
 
-		# Run hooks
-		# Handle CAPTCHA parameters
+		// Run hooks
+		// Handle CAPTCHA parameters
 		global $wgRequest;
 		if ( !is_null( $params['captchaid'] ) )
 			$wgRequest->setVal( 'wpCaptchaId', $params['captchaid'] );
@@ -233,11 +233,11 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( array( 'hookaborted' ) );
 		}
 
-		# Do the actual save
+		// Do the actual save
 		$oldRevId = $articleObj->getRevIdFetched();
 		$result = null;
-		# Fake $wgRequest for some hooks inside EditPage
-		# FIXME: This interface SUCKS
+		// Fake $wgRequest for some hooks inside EditPage
+		// FIXME: This interface SUCKS
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
@@ -293,7 +293,7 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_CONFLICT_DETECTED:
 				$this->dieUsageMsg( array( 'editconflict' ) );
 
-			# case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
+			// case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
 			case EditPage::AS_TEXTBOX_EMPTY:
 				$this->dieUsageMsg( array( 'emptynewsection' ) );
 
@@ -303,10 +303,10 @@ class ApiEditPage extends ApiBase {
 				$r['result'] = "Success";
 				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
-				# HACK: We create a new Article object here because getRevIdFetched()
-				# refuses to be run twice, and because Title::getLatestRevId()
-				# won't fetch from the master unless we select for update, which we
-				# don't want to do.
+				// HACK: We create a new Article object here because getRevIdFetched()
+				// refuses to be run twice, and because Title::getLatestRevId()
+				// won't fetch from the master unless we select for update, which we
+				// don't want to do.
 				$newArticle = new Article( $titleObj );
 				$newRevId = $newArticle->getRevIdFetched();
 				if ( $newRevId == $oldRevId )
@@ -321,13 +321,13 @@ class ApiEditPage extends ApiBase {
 				break;
 
 			case EditPage::AS_END:
-				# This usually means some kind of race condition
-				# or DB weirdness occurred. Fall through to throw an unknown 
-				# error.
+				// This usually means some kind of race condition
+				// or DB weirdness occurred. Fall through to throw an unknown 
+				// error.
 
-				# This needs fixing higher up, as Article::doEdit should be 
-				# used rather than Article::updateArticle, so that specific
-				# error conditions can be returned
+				// This needs fixing higher up, as Article::doEdit should be 
+				// used rather than Article::updateArticle, so that specific
+				// error conditions can be returned
 			default:
 				$this->dieUsageMsg( array( 'unknownerror', $retval ) );
 		}

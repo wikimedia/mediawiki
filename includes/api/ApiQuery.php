@@ -264,9 +264,9 @@ class ApiQuery extends ApiBase {
 		$pageSet = $this->getPageSet();
 		$result = $this->getResult();
 
-		# We don't check for a full result set here because we can't be adding
-		# more than 380K. The maximum revision size is in the megabyte range,
-		# and the maximum result size must be even higher than that.
+		// We don't check for a full result set here because we can't be adding
+		// more than 380K. The maximum revision size is in the megabyte range,
+		// and the maximum result size must be even higher than that.
 
 		// Title normalizations
 		$normValues = array ();

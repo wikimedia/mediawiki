@@ -52,7 +52,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 
-		# Don't order by el_from if it's constant in the WHERE clause
+		// Don't order by el_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 )
 			$this->addOption( 'ORDER BY', 'el_from' );
 
