@@ -13,12 +13,12 @@ class ImageQueryPage extends QueryPage {
 	 * Format and output report results using the given information plus
 	 * OutputPage
 	 *
-	 * @param OutputPage $out OutputPage to print to
-	 * @param Skin $skin User skin to use
-	 * @param Database $dbr Database (read) connection to use
-	 * @param int $res Result pointer
-	 * @param int $num Number of available result rows
-	 * @param int $offset Paging offset
+	 * @param $out OutputPage to print to
+	 * @param $skin Skin: user skin to use
+	 * @param $dbr Database (read) connection to use
+	 * @param $res Integer: result pointer
+	 * @param $num Integer: number of available result rows
+	 * @param $offset Integer: paging offset
 	 */
 	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
 		if( $num > 0 ) {
@@ -41,7 +41,7 @@ class ImageQueryPage extends QueryPage {
 	/**
 	 * Prepare an image object given a result row
 	 *
-	 * @param object $row Result row
+	 * @param $row Object: result row
 	 * @return Image
 	 */
 	private function prepareImage( $row ) {
@@ -55,8 +55,8 @@ class ImageQueryPage extends QueryPage {
 	/**
 	 * Get additional HTML to be shown in a results' cell
 	 *
-	 * @param object $row Result row
-	 * @return string
+	 * @param $row Object: result row
+	 * @return String
 	 */
 	protected function getCellHtml( $row ) {
 		return '';
