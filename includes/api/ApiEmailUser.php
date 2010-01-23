@@ -27,7 +27,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	require_once ( "ApiBase.php" );
 }
 
-
 /**
  * @ingroup API
  */
@@ -61,8 +60,7 @@ class ApiEmailUser extends ApiBase {
 		$error = EmailUserForm::getPermissionsError( $wgUser, $params['token'] );
 		if ( $error )
 			$this->dieUsageMsg( array( $error ) );
-		
-			
+
 		$form = new EmailUserForm( $targetUser, $params['text'], $params['subject'], $params['ccme'] );
 		$retval = $form->doSubmit();
 		if ( is_null( $retval ) )

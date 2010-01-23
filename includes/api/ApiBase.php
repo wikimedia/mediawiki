@@ -657,13 +657,16 @@ abstract class ApiBase {
 			return array();
 		$sizeLimit = $this->mMainModule->canApiHighLimits() ? self::LIMIT_SML2 : self::LIMIT_SML1;
 		$valuesList = explode( '|', $value, $sizeLimit + 1 );
+
 		if ( self::truncateArray( $valuesList, $sizeLimit ) ) {
 			$this->setWarning( "Too many values supplied for parameter '$valueName': the limit is $sizeLimit" );
 		}
+
 		if ( !$allowMultiple && count( $valuesList ) != 1 ) {
 			$possibleValues = is_array( $allowedValues ) ? "of '" . implode( "', '", $allowedValues ) . "'" : '';
 			$this->dieUsage( "Only one $possibleValues is allowed for parameter '$valueName'", "multival_$valueName" );
 		}
+
 		if ( is_array( $allowedValues ) ) {
 			# Check for unknown values
 			$unknown = array_diff( $valuesList, $allowedValues );

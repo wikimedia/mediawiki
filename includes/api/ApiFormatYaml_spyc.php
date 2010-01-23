@@ -159,7 +159,6 @@ class Spyc {
 			strpos( $value, "\n" ) ||
 			preg_match( "/[#:]/", $value ) ||
 			preg_match( "/^[-?,[\]{}!*&|>'\"%@`]/", $value ) ) );
-
 	}
 
 	/**

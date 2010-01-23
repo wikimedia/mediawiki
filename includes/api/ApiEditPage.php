@@ -44,14 +44,18 @@ class ApiEditPage extends ApiBase {
 	public function execute() {
 		global $wgUser;
 		$params = $this->extractRequestParams();
+		
 		if ( is_null( $params['title'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
+
 		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
 				is_null( $params['prependtext'] ) &&
 				$params['undo'] == 0 )
 			$this->dieUsageMsg( array( 'missingtext' ) );
+
 		if ( is_null( $params['token'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+
 		if ( !$wgUser->matchEditToken( $params['token'] ) )
 			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
@@ -113,14 +117,17 @@ class ApiEditPage extends ApiBase {
 			$undoRev = Revision::newFromID( $params['undo'] );
 			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) )
 				$this->dieUsageMsg( array( 'nosuchrevid', $params['undo'] ) );
+
 			if ( $params['undoafter'] == 0 )
 				$undoafterRev = $undoRev->getPrevious();
 			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( Revision::DELETED_TEXT ) )
 				$this->dieUsageMsg( array( 'nosuchrevid', $params['undoafter'] ) );
+
 			if ( $undoRev->getPage() != $articleObj->getID() )
 				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getID(), $titleObj->getPrefixedText() ) );
 			if ( $undoafterRev->getPage() != $articleObj->getID() )
 				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(), $titleObj->getPrefixedText() ) );
+				
 			$newtext = $articleObj->getUndoText( $undoRev, $undoafterRev );
 			if ( $newtext === false )
 				$this->dieUsageMsg( array( 'undo-failure' ) );
@@ -132,9 +139,8 @@ class ApiEditPage extends ApiBase {
 		}
 
 		# See if the MD5 hash checks out
-		if ( !is_null( $params['md5'] ) )
-			if ( md5( $toMD5 ) !== $params['md5'] )
-				$this->dieUsageMsg( array( 'hashcheckfailed' ) );
+		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] )
+			$this->dieUsageMsg( array( 'hashcheckfailed' ) );
 		
 		$ep = new EditPage( $articleObj );
 		// EditPage wants to parse its stuff from a WebRequest
@@ -143,23 +149,28 @@ class ApiEditPage extends ApiBase {
 				'wpEditToken' => $params['token'],
 				'wpIgnoreBlankSummary' => ''
 		);
+
 		if ( !is_null( $params['summary'] ) )
 			$reqArr['wpSummary'] = $params['summary'];
+
 		# Watch out for basetimestamp == ''
 		# wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
 		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' )
 			$reqArr['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
 		else
 			$reqArr['wpEdittime'] = $articleObj->getTimestamp();
+
 		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' )
 			$reqArr['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
 		else
-			# Fake wpStartime
-			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];
+			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];			# Fake wpStartime
+
 		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )
 			$reqArr['wpMinoredit'] = '';
+
 		if ( $params['recreate'] )
 			$reqArr['wpRecreate'] = '';
+
 		if ( !is_null( $params['section'] ) )
 		{
 			$section = intval( $params['section'] );
@@ -208,6 +219,7 @@ class ApiEditPage extends ApiBase {
 			$wgRequest->setVal( 'wpCaptchaId', $params['captchaid'] );
 		if ( !is_null( $params['captchaword'] ) )
 			$wgRequest->setVal( 'wpCaptchaWord', $params['captchaword'] );
+
 		$r = array();
 		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ) ) )
 		{
@@ -236,39 +248,55 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				$this->dieUsageMsg( array( 'hookaborted' ) );
+
 			case EditPage::AS_IMAGE_REDIRECT_ANON:
 				$this->dieUsageMsg( array( 'noimageredirect-anon' ) );
+
 			case EditPage::AS_IMAGE_REDIRECT_LOGGED:
 				$this->dieUsageMsg( array( 'noimageredirect-logged' ) );
+
 			case EditPage::AS_SPAM_ERROR:
 				$this->dieUsageMsg( array( 'spamdetected', $result['spam'] ) );
+
 			case EditPage::AS_FILTERING:
 				$this->dieUsageMsg( array( 'filtered' ) );
+
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
 				$this->dieUsageMsg( array( 'blockedtext' ) );
+
 			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case EditPage::AS_CONTENT_TOO_BIG:
 				global $wgMaxArticleSize;
 				$this->dieUsageMsg( array( 'contenttoobig', $wgMaxArticleSize ) );
+
 			case EditPage::AS_READ_ONLY_PAGE_ANON:
 				$this->dieUsageMsg( array( 'noedit-anon' ) );
+
 			case EditPage::AS_READ_ONLY_PAGE_LOGGED:
 				$this->dieUsageMsg( array( 'noedit' ) );
+
 			case EditPage::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();
+
 			case EditPage::AS_RATE_LIMITED:
 				$this->dieUsageMsg( array( 'actionthrottledtext' ) );
+
 			case EditPage::AS_ARTICLE_WAS_DELETED:
 				$this->dieUsageMsg( array( 'wasdeleted' ) );
+
 			case EditPage::AS_NO_CREATE_PERMISSION:
 				$this->dieUsageMsg( array( 'nocreate-loggedin' ) );
+
 			case EditPage::AS_BLANK_ARTICLE:
 				$this->dieUsageMsg( array( 'blankpage' ) );
+
 			case EditPage::AS_CONFLICT_DETECTED:
 				$this->dieUsageMsg( array( 'editconflict' ) );
+
 			# case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
 			case EditPage::AS_TEXTBOX_EMPTY:
 				$this->dieUsageMsg( array( 'emptynewsection' ) );
+
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
 			case EditPage::AS_SUCCESS_UPDATE:
@@ -291,6 +319,7 @@ class ApiEditPage extends ApiBase {
 						$newArticle->getTimestamp() );
 				}
 				break;
+
 			case EditPage::AS_END:
 				# This usually means some kind of race condition
 				# or DB weirdness occurred. Fall through to throw an unknown 

@@ -65,8 +65,10 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 				'pp_page=page_id',
 				'pp_propname' => 'hiddencat' ) ),
 		) );
+
 		$this->addFields( array( 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'pp_propname AS cat_hidden' ) );
 		$this->addWhere( array( 'cat_title' => $cattitles ) );
+
 		if ( !is_null( $params['continue'] ) )
 		{
 			$title = $this->getDB()->addQuotes( $params['continue'] );

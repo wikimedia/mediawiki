@@ -62,24 +62,29 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( $wgUser->isAnon() )
 			$vals['anon'] = '';
+
 		if ( isset( $this->prop['blockinfo'] ) ) {
 			if ( $wgUser->isBlocked() ) {
 				$vals['blockedby'] = User::whoIs( $wgUser->blockedBy() );
 				$vals['blockreason'] = $wgUser->blockedFor();
 			}
 		}
+
 		if ( isset( $this->prop['hasmsg'] ) && $wgUser->getNewtalk() ) {
 			$vals['messages'] = '';
 		}
+
 		if ( isset( $this->prop['groups'] ) ) {
 			$vals['groups'] = $wgUser->getGroups();
 			$result->setIndexedTagName( $vals['groups'], 'g' );	// even if empty
 		}
+
 		if ( isset( $this->prop['rights'] ) ) {
 			// User::getRights() may return duplicate values, strip them
 			$vals['rights'] = array_values( array_unique( $wgUser->getRights() ) );
 			$result->setIndexedTagName( $vals['rights'], 'r' );	// even if empty
 		}
+
 		if ( isset( $this->prop['changeablegroups'] ) ) {
 			$vals['changeablegroups'] = $wgUser->changeableGroups();
 			$result->setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
@@ -87,18 +92,23 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$result->setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
 			$result->setIndexedTagName( $vals['changeablegroups']['remove-self'], 'g' );
 		}
+
 		if ( isset( $this->prop['options'] ) ) {
 			$vals['options'] = $wgUser->getOptions();
 		}
+
 		if ( isset( $this->prop['preferencestoken'] ) && is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
 			$vals['preferencestoken'] = $wgUser->editToken();
 		}
+
 		if ( isset( $this->prop['editcount'] ) ) {
 			$vals['editcount'] = intval( $wgUser->getEditCount() );
 		}
+
 		if ( isset( $this->prop['ratelimits'] ) ) {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
+
 		if ( isset( $this->prop['email'] ) ) {
 			$vals['email'] = $wgUser->getEmail();
 			$auth = $wgUser->getEmailAuthenticationTimestamp();

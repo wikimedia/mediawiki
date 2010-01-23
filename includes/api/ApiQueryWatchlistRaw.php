@@ -68,6 +68,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['changed'] ) );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!changed'] ) );
+
 		if ( isset( $params['continue'] ) )
 		{
 			$cont = explode( '|', $params['continue'] );
@@ -80,6 +81,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					"(wl_namespace = '$ns' AND " .
 					"wl_title >= '$title')" );
 		}
+
 		// Don't ORDER BY wl_namespace if it's constant in the WHERE clause
 		if ( count( $params['namespace'] ) == 1 )
 			$this->addOption( 'ORDER BY', 'wl_title' );
@@ -101,6 +103,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				break;
 			}
 			$t = Title::makeTitle( $row->wl_namespace, $row->wl_title );
+
 			if ( is_null( $resultPageSet ) )
 			{
 				$vals = array();

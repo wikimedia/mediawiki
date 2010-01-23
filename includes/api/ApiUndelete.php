@@ -48,8 +48,10 @@ class ApiUndelete extends ApiBase {
 
 		if ( !$wgUser->isAllowed( 'undelete' ) )
 			$this->dieUsageMsg( array( 'permdenied-undelete' ) );
+
 		if ( $wgUser->isBlocked() )
 			$this->dieUsageMsg( array( 'blockedtext' ) );
+
 		if ( !$wgUser->matchEditToken( $params['token'] ) )
 			$this->dieUsageMsg( array( 'sessionfailure' ) );
 

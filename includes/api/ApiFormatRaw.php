@@ -46,10 +46,13 @@ class ApiFormatRaw extends ApiFormatBase {
 
 	public function getMimeType() {
 		$data = $this->getResultData();
+
 		if ( isset( $data['error'] ) )
 			return $this->mErrorFallback->getMimeType();
+
 		if ( !isset( $data['mime'] ) )
 			ApiBase::dieDebug( __METHOD__, "No MIME type set for raw formatter" );
+	
 		return $data['mime'];
 	}
 
@@ -60,6 +63,7 @@ class ApiFormatRaw extends ApiFormatBase {
 			$this->mErrorFallback->execute();
 			return;
 		}
+		
 		if ( !isset( $data['text'] ) )
 			ApiBase::dieDebug( __METHOD__, "No text given for raw formatter" );
 		$this->printText( $data['text'] );

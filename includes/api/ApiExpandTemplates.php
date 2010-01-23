@@ -55,6 +55,7 @@ class ApiExpandTemplates extends ApiBase {
 		// Parse text
 		global $wgParser;
 		$options = new ParserOptions();
+		
 		if ( $params['generatexml'] )
 		{
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );

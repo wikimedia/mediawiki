@@ -202,8 +202,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$rev['user'] = $row->ar_user_text;
 			if ( $fld_comment )
 				$rev['comment'] = $row->ar_comment;
-			if ( $fld_minor )
-				if ( $row->ar_minor_edit == 1 )
+			if ( $fld_minor && $row->ar_minor_edit == 1)
 					$rev['minor'] = '';
 			if ( $fld_len )
 				$rev['len'] = $row->ar_len;

@@ -137,8 +137,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		if ( $forceNameTitleIndex )
 			$this->addOption( 'USE INDEX', 'name_title' );
 
-		
-
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$res = $this->select( __METHOD__ );
