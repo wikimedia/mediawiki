@@ -61,7 +61,7 @@ class RepoGroup {
 
 	/**
 	 * Search repositories for an image.
-	 * You can also use wfGetFile() to do this.
+	 * You can also use wfFindFile() to do this.
 	 * @param mixed $title Title object or string
 	 * @param $options Associative array of options:
 	 *     time:           requested time for an archived image, or false for the
