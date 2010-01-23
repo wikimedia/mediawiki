@@ -8,6 +8,8 @@
  * @ingroup HTTP
  */
 class Http {
+	static $httpEngine = false;
+
 	/**
 	 * Perform an HTTP request
 	 * @param $method string HTTP method. Usually GET/POST
@@ -169,16 +171,13 @@ class HttpRequest {
 	 * @see HttpRequest::__construct
 	 */
 	public static function factory( $url, $options ) {
-		global $wgHTTPEngine;
-		$engine = $wgHTTPEngine;
-
-		if ( !$wgHTTPEngine ) {
-			$wgHTTPEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
-		} elseif ( $wgHTTPEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new MWException( __METHOD__.': curl (http://php.net/curl) is not installed, but $wgHTTPEngine is set to "curl"' );
+		if ( !Http::$httpEngine ) {
+			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
+		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
+			throw new MWException( __METHOD__.': curl (http://php.net/curl) is not installed, but Http::$httpEngine is set to "curl"' );
 		}
 
-		switch( $wgHTTPEngine ) {
+		switch( Http::$httpEngine ) {
 		case 'curl':
 			return new CurlHttpRequest( $url, $options );
 		case 'php':
@@ -188,7 +187,7 @@ class HttpRequest {
 			}
 			return new PhpHttpRequest( $url, $options );
 		default:
-			throw new MWException( __METHOD__.': The setting of $wgHTTPEngine is not valid.' );
+			throw new MWException( __METHOD__.': The setting of Http::$httpEngine is not valid.' );
 		}
 	}
 
