@@ -91,8 +91,8 @@ class ApiImport extends ApiBase {
 				$result->mByte . $result->mContext,
 				xml_error_string( $result->mXmlError ) ) );
 		else if ( WikiError::isError( $result ) )
-			// This shouldn't happen
-			$this->dieUsageMsg( array( 'import-unknownerror', $result->getMessage() ) );
+			$this->dieUsageMsg( array( 'import-unknownerror', $result->getMessage() ) ); // This shouldn't happen
+
 		$resultData = $reporter->getData();
 		$this->getResult()->setIndexedTagName( $resultData, 'page' );
 		$this->getResult()->addValue( null, $this->getModuleName(), $resultData );

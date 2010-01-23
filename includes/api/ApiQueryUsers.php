@@ -33,7 +33,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * @ingroup API
  */
-
  class ApiQueryUsers extends ApiQueryBase {
 
 	public function __construct( $query, $moduleName ) {
@@ -104,6 +103,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 			 else
 				$goodNames[] = $n;
 		}
+
 		if ( count( $goodNames ) )
 		{
 			$db = $this->getDb();

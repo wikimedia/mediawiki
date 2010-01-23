@@ -27,7 +27,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	require_once ( "ApiBase.php" );
 }
 
-
 /**
  * API module that dies with an error immediately.
  *

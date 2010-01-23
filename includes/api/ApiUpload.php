@@ -50,7 +50,6 @@ class ApiUpload extends ApiBase {
 		if ( !$wgUser->matchEditToken( $this->mParams['token'] ) )
 			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
-
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 
@@ -72,7 +71,7 @@ class ApiUpload extends ApiBase {
 
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
-					$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
+				$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
 		} else {
 			/**
 			 * Upload from url, etc
@@ -112,7 +111,6 @@ class ApiUpload extends ApiBase {
 				// make sure the current user can upload
 				if ( ! $wgUser->isAllowed( 'upload_by_url' ) )
 					$this->dieUsageMsg( array( 'badaccess-groups' ) );
-
 
 				$this->mUpload = new UploadFromUrl();
 				$this->mUpload->initialize( $this->mParams['filename'],

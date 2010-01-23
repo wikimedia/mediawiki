@@ -79,6 +79,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			}
 			$this->addWhereFld( 'cl_to', $cats );
 		}
+
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			if ( count( $cont ) != 2 )
@@ -90,6 +91,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					"(cl_from = $clfrom AND " .
 					"cl_to >= '$clto')" );
 		}
+
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) )
 			$this->dieUsage( "Incorrect parameter - mutually exclusive values may not be supplied", 'show' );
 		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) )

@@ -43,12 +43,16 @@ class ApiWatch extends ApiBase {
 		global $wgUser;
 		if ( !$wgUser->isLoggedIn() )
 			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
+
 		$params = $this->extractRequestParams();
 		$title = Title::newFromText( $params['title'] );
+
 		if ( !$title )
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+
 		$article = new Article( $title );
 		$res = array( 'title' => $title->getPrefixedText() );
+
 		if ( $params['unwatch'] )
 		{
 			$res['unwatched'] = '';

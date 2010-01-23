@@ -63,6 +63,7 @@ class ApiMove extends ApiBase {
 			if ( !$fromTitle )
 				$this->dieUsageMsg( array( 'nosuchpageid', $params['fromid'] ) );
 		}
+
 		if ( !$fromTitle->exists() )
 			$this->dieUsageMsg( array( 'notanarticle' ) );
 		$fromTalk = $fromTitle->getTalkPage();

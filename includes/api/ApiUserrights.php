@@ -27,7 +27,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	require_once ( "ApiBase.php" );
 }
 
-
 /**
  * @ingroup API
  */
@@ -49,8 +48,8 @@ class ApiUserrights extends ApiBase {
 		$user = $form->fetchUser( $params['user'] );
 		if ( $user instanceof WikiErrorMsg )
 			$this->dieUsageMsg( array_merge(
-				(array)$user->getMessageKey(),
-				$user->getMessageArgs() ) );
+				(array)$user->getMessageKey(), $user->getMessageArgs() ) );
+
 		if ( !$wgUser->matchEditToken( $params['token'], $user->getName() ) )
 			$this->dieUsageMsg( array( 'sessionfailure' ) );
 		

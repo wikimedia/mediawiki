@@ -63,11 +63,13 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			'i2.img_user_text AS dup_user_text',
 			'i2.img_timestamp AS dup_timestamp'
 		) );
+
 		$this->addWhere( array(
 			'i1.img_name' => array_keys( $images ),
 			'i1.img_sha1 = i2.img_sha1',
 			'i1.img_name != i2.img_name',
 		) );
+
 		if ( isset( $params['continue'] ) )
 		{
 			$cont = explode( '|', $params['continue'] );
@@ -80,6 +82,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					"(i1.img_name = '$orig' AND " .
 					"i2.img_name >= '$dup')" );
 		}
+
 		$this->addOption( 'ORDER BY', 'i1.img_name' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 

@@ -71,6 +71,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 					"(il_from = $ilfrom AND " .
 					"il_to >= '$ilto')" );
 		}
+
 		# Don't order by il_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 )
 			$this->addOption( 'ORDER BY', 'il_to' );

@@ -27,7 +27,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	require_once ( "ApiBase.php" );
 }
 
-
 /**
  * API module that facilitates deleting pages. The API eqivalent of action=delete.
  * Requires API write mode to be enabled.
@@ -74,15 +73,13 @@ class ApiDelete extends ApiBase {
 		if ( $titleObj->getNamespace() == NS_FILE ) {
 			$retval = self::deleteFile( $params['token'], $titleObj, $params['oldimage'], $reason, false );
 			if ( count( $retval ) )
-				// We don't care about multiple errors, just report one of them
-				$this->dieUsageMsg( reset( $retval ) );
+				$this->dieUsageMsg( reset( $retval ) ); // We don't care about multiple errors, just report one of them
 		} else {
 			$articleObj = new Article( $titleObj );
 			$retval = self::delete( $articleObj, $params['token'], $reason );
 			
 			if ( count( $retval ) )
-				// We don't care about multiple errors, just report one of them
-				$this->dieUsageMsg( reset( $retval ) );
+				$this->dieUsageMsg( reset( $retval ) ); // We don't care about multiple errors, just report one of them
 			
 			if ( $params['watch'] || $wgUser->getOption( 'watchdeletion' ) )
 				$articleObj->doWatch();

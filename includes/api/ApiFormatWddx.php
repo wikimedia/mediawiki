@@ -80,8 +80,7 @@ class ApiFormatWddx extends ApiFormatBase {
 				if ( $cnt == 0 || array_keys( $elemValue ) === range( 0, $cnt - 1 ) ) {
 					// Regular array
 					$this->printText( $indstr . Xml::element( 'array', array(
-						'length' => $cnt
-					), null ) . $nl );
+						'length' => $cnt ), null ) . $nl );
 					foreach ( $elemValue as $subElemValue )
 						$this->slowWddxPrinter( $subElemValue, $indent + 2 );
 					$this->printText( "$indstr</array>$nl" );
