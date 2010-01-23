@@ -5,8 +5,7 @@
  * @todo document
  * @ingroup Parser
  */
-class ParserOptions
-{
+class ParserOptions {
 	# All variables are supposed to be private in theory, although in practise this is not the case.
 	var $mUseTeX;                    # Use texvc to expand <math> tags
 	var $mUseDynamicDates;           # Use DateFormatter to format dates
@@ -35,7 +34,7 @@ class ParserOptions
 	var $mUser;                      # Stored user object, just used to initialise the skin
 	var $mIsPreview;                 # Parsing the page for a "preview" operation
 	var $mIsSectionPreview;          # Parsing the page for a "preview" operation on a single section
-	var $mIsPrintable;                     # Parsing the printable version of the page
+	var $mIsPrintable;               # Parsing the printable version of the page
 	
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -127,8 +126,9 @@ class ParserOptions
 		global $wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion, $wgMaxArticleSize;
 		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
 		global $wgExternalLinkTarget;
-		$fname = 'ParserOptions::initialiseFromUser';
-		wfProfileIn( $fname );
+
+		wfProfileIn( __METHOD__ );
+
 		if ( !$userInput ) {
 			global $wgUser;
 			if ( isset( $wgUser ) ) {
@@ -167,6 +167,7 @@ class ParserOptions
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		$this->mIsPreview = false;
 		$this->mIsSectionPreview = false;
-		wfProfileOut( $fname );
+
+		wfProfileOut( __METHOD__ );
 	}
 }
