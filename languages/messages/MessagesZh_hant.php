@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -876,7 +876,7 @@ $2',
 'post-expand-template-argument-category'  => '包含着略過模板參數的頁面',
 'parser-template-loop-warning'            => '已偵測迴歸模板: [[$1]]',
 'parser-template-recursion-depth-warning' => '已超過迴歸模板深度限制 （$1）',
-'language-converter-depth-warning'        => '字詞轉換器深度越限（$1）',
+'language-converter-depth-warning'        => '已超過字詞轉換器深度限制（$1）',
 
 # "Undo" feature
 'undo-success' => '該編輯可以被撤銷。請檢查以下對比以核實這正是您想做的，然後儲存以下更改以完成撤銷編輯。',
@@ -1565,6 +1565,11 @@ $1",
 基於保安最佳化，img_auth.php已經停用。',
 'img-auth-noread'       => '用戶無存取權去讀"$1"。',
 
+# HTTP errors
+'http-invalid-url'    => '無效的URL：$1',
+'http-invalid-scheme' => '不支援含有「$1」的URL',
+'http-request-error'  => '發送請求時發生錯誤：',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '無法訪問 URL',
 'upload-curl-error6-text'  => '無法訪問所提供的 URL。請再次檢查該 URL 是否正確，並且網站的訪問是否正常。',
@@ -1991,6 +1996,9 @@ $NEWPAGE
 要改變您的監視列表設定，請參閱
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+要刪除您監視清單中的該頁面，請參閱
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 回饋和進一步的幫助:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2358,7 +2366,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'cant-move-user-page'          => '您並沒有許可權去移動用戶頁面（它的字頁面除外）。',
 'cant-move-to-user-page'       => '您並沒有許可權去移動到用戶頁面（它的字頁面除外）。',
 'newtitle'                     => '新標題:',
-'move-watch'                   => '監視此頁',
+'move-watch'                   => '監視來源以及目標頁',
 'movepagebtn'                  => '移動頁面',
 'pagemovedsub'                 => '移動成功',
 'movepage-moved'               => "<big>'''「$1」已經移動到「$2」'''</big>",
@@ -2662,7 +2670,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'markaspatrolleddiff'                 => '標記為已檢查',
 'markaspatrolledtext'                 => '標記此頁面為已檢查',
 'markedaspatrolled'                   => '標記為已檢查',
-'markedaspatrolledtext'               => '選定的版本已被標記為已檢查。',
+'markedaspatrolledtext'               => '[[:$1]]的已選定修訂版本已被標識為已巡查。',
 'rcpatroldisabled'                    => '最新更改檢查被關閉',
 'rcpatroldisabledtext'                => '最新更改檢查的功能目前已關閉。',
 'markedaspatrollederror'              => '不能標誌為已檢查',
