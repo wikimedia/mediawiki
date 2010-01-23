@@ -354,7 +354,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					$a['cascade'] = '';
 				$this->protections[$row->page_namespace][$row->page_title][] = $a;
 
-				# Also check old restrictions
+				// Also check old restrictions
 				if ( $this->pageRestrictions[$row->pr_page] ) {
 					$restrictions = explode( ':', trim( $this->pageRestrictions[$row->pr_page] ) );
 					foreach ( $restrictions as $restrict ) {

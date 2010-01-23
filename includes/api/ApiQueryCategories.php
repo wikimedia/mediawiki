@@ -114,7 +114,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 
 		$this->addOption( 'USE INDEX', array( 'categorylinks' => 'cl_from' ) );
-		# Don't order by cl_from if it's constant in the WHERE clause
+		// Don't order by cl_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 )
 			$this->addOption( 'ORDER BY', 'cl_to' );
 		else

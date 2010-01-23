@@ -38,9 +38,9 @@ class ApiFormatTxt extends ApiFormatBase {
 	}
 
 	public function getMimeType() {
-		# This looks like it should be text/plain, but IE7 is so
-		# brain-damaged it tries to parse text/plain as HTML if it
-		# contains HTML tags. Using MIME text/text works around this bug
+		// This looks like it should be text/plain, but IE7 is so
+		// brain-damaged it tries to parse text/plain as HTML if it
+		// contains HTML tags. Using MIME text/text works around this bug
 		return 'text/text';
 	}
 

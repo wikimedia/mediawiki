@@ -64,7 +64,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					"ll_lang >= '$lllang')" );
 		}
 
-		# Don't order by ll_from if it's constant in the WHERE clause
+		// Don't order by ll_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 )
 			$this->addOption( 'ORDER BY', 'll_lang' );
 		else

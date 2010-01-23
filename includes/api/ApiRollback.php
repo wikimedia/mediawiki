@@ -53,7 +53,7 @@ class ApiRollback extends ApiBase {
 		if ( !$titleObj->exists() )
 			$this->dieUsageMsg( array( 'notanarticle' ) );
 
-		# We need to be able to revert IPs, but getCanonicalName rejects them
+		// We need to be able to revert IPs, but getCanonicalName rejects them
 		$username = User::isIP( $params['user'] )
 			? $params['user']
 			: User::getCanonicalName( $params['user'] );

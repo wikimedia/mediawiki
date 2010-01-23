@@ -600,14 +600,14 @@ class ApiPageSet extends ApiQueryBase {
 		$db->freeResult( $res );
 		if ( $this->mPendingRedirectIDs )
 		{
-			# We found pages that aren't in the redirect table
-			# Add them
+			// We found pages that aren't in the redirect table
+			// Add them
 			foreach ( $this->mPendingRedirectIDs as $id => $title )
 			{
 				$article = new Article( $title );
 				$rt = $article->insertRedirect();
 				if ( !$rt )
-					# What the hell. Let's just ignore this
+					// What the hell. Let's just ignore this
 					continue;
 				$lb->addObj( $rt );
 				$this->mRedirectTitles[$title->getPrefixedText()] = $rt->getPrefixedText();
@@ -635,7 +635,7 @@ class ApiPageSet extends ApiQueryBase {
 			$titleObj = is_string( $title ) ? Title :: newFromText( $title ) : $title;
 			if ( !$titleObj )
 			{
-				# Handle invalid titles gracefully
+				// Handle invalid titles gracefully
 				$this->mAllpages[0][$title] = $this->mFakePageId;
 				$this->mInvalidTitles[$this->mFakePageId] = $title;
 				$this->mFakePageId--;

@@ -175,12 +175,12 @@ abstract class ApiBase {
 		$data = $this->getResult()->getData();
 		if ( isset( $data['warnings'][$this->getModuleName()] ) )
 		{
-			# Don't add duplicate warnings
+			// Don't add duplicate warnings
 			$warn_regex = preg_quote( $warning, '/' );
 			if ( preg_match( "/{$warn_regex}(\\n|$)/", $data['warnings'][$this->getModuleName()]['*'] ) )
 				return;
 			$oldwarning = $data['warnings'][$this->getModuleName()]['*'];
-			# If there is a warning already, append it to the existing one
+			// If there is a warning already, append it to the existing one
 			$warning = "$oldwarning\n$warning";
 			$this->getResult()->unsetValue( 'warnings', $this->getModuleName() );
 		}
@@ -668,7 +668,7 @@ abstract class ApiBase {
 		}
 
 		if ( is_array( $allowedValues ) ) {
-			# Check for unknown values
+			// Check for unknown values
 			$unknown = array_diff( $valuesList, $allowedValues );
 			if ( count( $unknown ) )
 			{
@@ -681,7 +681,7 @@ abstract class ApiBase {
 				else
 					$this->dieUsage( "Unrecognized value for parameter '$valueName': {$valuesList[0]}", "unknown_$valueName" );
 			}
-			# Now throw them out
+			// Now throw them out
 			$valuesList = array_intersect( $valuesList, $allowedValues );
 		}
 

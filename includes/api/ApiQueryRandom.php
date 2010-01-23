@@ -77,9 +77,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 							array( 'query', $this->getModuleName() ),
 							null, $this->extractRowInfo( $row ) );
 					if ( !$fit )
-						# We can't really query-continue a random list.
-						# Return an insanely high value so
-						# $count < $limit is false
+						// We can't really query-continue a random list.
+						// Return an insanely high value so
+						// $count < $limit is false
 						return 1E9;
 					$this->pageIDs[] = $row->page_id;
 				}

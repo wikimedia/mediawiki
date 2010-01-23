@@ -83,8 +83,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addWhere( 'cl_from=page_id' );
 		$this->setContinuation( $params['continue'], $params['dir'] );
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
-		# Scanning large datasets for rare categories sucks, and I already told 
-		# how to have efficient subcategory access :-) ~~~~ (oh well, domas)
+		// Scanning large datasets for rare categories sucks, and I already told 
+		// how to have efficient subcategory access :-) ~~~~ (oh well, domas)
 		global $wgMiserMode;
 		$miser_ns = array();
 		if ( $wgMiserMode ) {

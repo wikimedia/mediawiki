@@ -84,7 +84,7 @@ class ApiMove extends ApiBase {
 			}
 		}
 		
-		# Move the page
+		// Move the page
 		$hookErr = null;
 		$retval = $fromTitle->moveTo( $toTitle, true, $params['reason'], !$params['noredirect'] );
 		if ( $retval !== true )
@@ -94,7 +94,7 @@ class ApiMove extends ApiBase {
 		if ( !$params['noredirect'] || !$wgUser->isAllowed( 'suppressredirect' ) )
 			$r['redirectcreated'] = '';
 
-		# Move the talk page
+		// Move the talk page
 		if ( $params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage() )
 		{
 			$retval = $fromTalk->moveTo( $toTalk, true, $params['reason'], !$params['noredirect'] );
@@ -112,7 +112,7 @@ class ApiMove extends ApiBase {
 			}
 		}
 
-		# Move subpages
+		// Move subpages
 		if ( $params['movesubpages'] )
 		{
 			$r['subpages'] = $this->moveSubpages( $fromTitle, $toTitle,
@@ -126,7 +126,7 @@ class ApiMove extends ApiBase {
 			}
 		}
 
-		# Watch pages
+		// Watch pages
 		if ( $params['watch'] || $wgUser->getOption( 'watchmoves' ) )
 		{
 			$wgUser->addWatch( $fromTitle );

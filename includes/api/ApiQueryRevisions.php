@@ -396,9 +396,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( $this->fld_content || !is_null( $this->difftotext ) ) {
 			global $wgParser;
 			$text = $revision->getText();
-			# Expand templates after getting section content because
-			# template-added sections don't count and Parser::preprocess()
-			# will have less input
+			// Expand templates after getting section content because
+			// template-added sections don't count and Parser::preprocess()
+			// will have less input
 			if ( $this->section !== false ) {
 				$text = $wgParser->getSection( $text, $this->section, false );
 				if ( $text === false )
@@ -541,7 +541,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
 			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params.',
 			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
-			'All parameters marked as (enum) may only be used with a single page (#2).'
+			'All parameters marked as (enum) may only be used with a single page (//2).'
 		);
 	}
 
