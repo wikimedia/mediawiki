@@ -2084,8 +2084,10 @@ Abivalmilt
 {{GRAMMAR:genitive|{{SITENAME}}}} teavitussüsteem
 
 --
-Oma jälgimisloendi sätete muutmiseks mine lehele
-{{fullurl:Special:Watchlist/edit}}
+Oma jälgimisloendi sätete muutmiseks mine leheküljele
+{{fullurl:Special:Watchlist/edit}}.
+
+Lehekülje kustutamiseks jälgimisloendist mine leheküljele {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}.
 
 Tagasiside ja abi:
 {{fullurl:{{MediaWiki:Helppage}}}}',

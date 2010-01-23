@@ -1536,6 +1536,11 @@ Dës Wiki ass als ëffentlech Wiki configuréiert.
 Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
 'img-auth-noread'       => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
 
+# HTTP errors
+'http-invalid-url'    => 'Net-valabel URL: $1',
+'http-invalid-scheme' => 'URLe mam Schema "$1" ginn net ënnerstëtzt',
+'http-request-error'  => 'Feeler beim Schécke vun der Ufro:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL ass net z'erreechen",
 'upload-curl-error6-text'  => 'Déi URL déi Dir uginn hutt kann net erreecht ginn.
@@ -1952,8 +1957,11 @@ Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen 
              Äre frëndleche {{SITENAME}} Benoriichtigungssystem
 
 --
-Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.
+Fir d\'Astellungen op ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
 {{fullurl:Special:Watchlist/edit}}
+
+Fir d\'Säit vun Ärer Iwwerwaachungslëscht erofzehuelen, gitt w.e.g. op 
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Reaktiounen a méi Hëllef:
 {{fullurl:{{MediaWiki:Helppage}}}}',

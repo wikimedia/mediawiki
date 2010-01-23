@@ -1715,6 +1715,11 @@ PICT # misc.
 Од причини на оптимална сигурност, img_auth.php е оневозможен.',
 'img-auth-noread'       => 'Корисникот нема пристап за читање на "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'Неважечка URL: $1',
+'http-invalid-scheme' => 'Не се поддржани URL-адреси со шема „$1“',
+'http-request-error'  => 'Грешка при испраќањето на барањето:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не може да се пристапи до URL-то',
 'upload-curl-error6-text'  => 'Наведеното URL не е достапно.
@@ -2113,33 +2118,38 @@ PICT # misc.
 'enotif_reset'                 => 'Означи ги сите страници како посетени',
 'enotif_newpagetext'           => 'Ова е нова страница.',
 'enotif_impersonal_salutation' => 'Википедија корисник',
-'changed'                      => 'променет',
+'changed'                      => 'променета',
 'created'                      => 'создадена',
 'enotif_subject'               => '{{SITENAME}} страницата $PAGETITLE беше $CHANGEDORCREATED од $PAGEEDITOR',
 'enotif_lastvisited'           => 'Видете $1 за сите промени од вашата последна посета.',
 'enotif_lastdiff'              => 'Видете $1 за да ја видите оваа промена.',
 'enotif_anon_editor'           => 'анонимен корисник $1',
-'enotif_body'                  => 'Почитуван $WATCHINGUSERNAME,
+'enotif_body'                  => 'Почитуван(а) $WATCHINGUSERNAME,
 
-Страницата $PAGETITLE на {{SITENAME}} беше $CHANGEDORCREATED на $PAGEEDITDATE од $PAGEEDITOR, видете $PAGETITLE_URL.
+
+На {{SITENAME}} страницата $PAGETITLE е $CHANGEDORCREATED на $PAGEEDITDATE од $PAGEEDITOR, видете $PAGETITLE_URL за тековната ревизија.
 
 $NEWPAGE
 
 Опис на уредувачот: $PAGESUMMARY $PAGEMINOREDIT
 
-Контактирајте го уредувачот:
+Конакт на уредувачот:
 е-пошта: $PAGEEDITOR_EMAIL
 вики: $PAGEEDITOR_WIKI
 
-Веќе нема да има известувања за следните промени освен ако не ја посетите оваа страница. 
-Треба да ги ресетирате знаменцата за известување за сите ваши набљудувани страници во вашата листа на набљудувања.
+Повеќе нема да добивате известувања во случај на други понатамошни промени, освен ако не ја посетите оваа страница.
+Можете и да ги поништите ознаките за известување за сите набљудувани страници на вашата листа на набљудувања.
 
-{{SITENAME}} систем за известување
+             Системот за известување на {{SITENAME}}
 
 --
-За промена на нагодувањата на вашата листа на набљудувања, видете {{fullurl:{{#special:Watchlist}}/edit}}
+За да ги промените нагодувањата на листата на набљудувања, посетете ја страницата
+{{fullurl:{{#special:Watchlist}}/edit}}
 
-Дополнителна помош: 
+За да ја избришете страницата од листата на набљудувања, посетете ја страницата
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+Повратни информации и помош:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

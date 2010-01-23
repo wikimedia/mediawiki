@@ -2021,6 +2021,9 @@ Como alternativa tu pote reinitialisar le optiones de notification pro tote le p
 Pro cambiar le configuration de tu observatorio, visita
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+Pro retirar le pagina de tu observatorio, visita
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 Feedback e ulterior assistentia:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 

@@ -1606,6 +1606,9 @@ PICT # その他
 'img-auth-public'       => 'img_auth.php の機能は非公開ウィキからファイルを出力することです。このウィキは公開ウィキとして構成されています。最適なセキュリティーのため、img_auth.php は無効化されています。',
 'img-auth-noread'       => '利用者は「$1」を読む権限を持っていません。',
 
+# HTTP errors
+'http-invalid-url' => '無効なURL: $1',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URLに到達できませんでした',
 'upload-curl-error6-text'  => '指定したURLに到達できませんでした。URLが正しいものであるか、指定したサイトが現在使用可能かを再度確認してください。',

@@ -1644,6 +1644,11 @@ Este wiki está configurado como público.
 Para unha seguridade óptima, img_auth.php está desactivado.',
 'img-auth-noread'       => 'O usuario non ten acceso á lectura de "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'URL non válido: $1',
+'http-invalid-scheme' => 'Os enderezos URL co esquema "$1" non están soportados',
+'http-request-error'  => 'Erro ao enviar a solicitude:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',
 'upload-curl-error6-text'  => 'Non se logrou acceder ao URL que indicou. Comprobe que ese URL é correcto e que o sitio está activo.',
@@ -2046,7 +2051,8 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_anon_editor'           => 'usuario anónimo $1',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME:
 
-A páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATE por $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
+
+A páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATE por $PAGEEDITOR, olle $PAGETITLE_URL para comprobar a versión actual.
 
 $NEWPAGE
 
@@ -2064,6 +2070,9 @@ Pode borrar os indicadores de aviso de notificación para o conxunto das páxina
 --
 Para cambiar a súa lista de vixilancia, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Para borrar a páxina da súa lista de vixilancia, visite
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Axuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',

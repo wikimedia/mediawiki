@@ -336,7 +336,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # User rights
 'userrights-editusergroup' => 'Mitgliedschaft vun Yuuser ennere',
 'userrights-groupsmember'  => 'Mitglied vun:',
-'userrights-reason'        => 'Grund fer die Ennering:',
+'userrights-reason'        => 'Grund:',
 
 # Groups
 'group'       => 'Druppe:',
@@ -568,7 +568,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 
 'sp-contributions-talk'     => 'Gschwetz',
 'sp-contributions-search'   => 'Guck fer Ardickel',
-'sp-contributions-username' => 'IP-Adress odder Yuusernaame',
+'sp-contributions-username' => 'IP-Adress odder Yuusernaame:',
 'sp-contributions-submit'   => 'Guck uff',
 
 # What links here
@@ -580,6 +580,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'whatlinkshere-hidelinks' => 'Gleecher $1',
 
 # Block/unblock
+'ipadressorusername' => 'IP-Adress odder Yuusernaame:',
 'ipbreason'          => 'Grund:',
 'ipbreasonotherlist' => 'Annerer Grund',
 'ipboptions'         => '2 Schtund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Monate:6 months,1 Yaar:1 year,Fer immer:infinite',
@@ -706,6 +707,9 @@ Guck aach [[Special:Version|Versionsblatt]]',
 
 # Auto-summaries
 'autosumm-blank' => 'Des Blatt iss leer gmacht worre.',
+
+# Live preview
+'livepreview-loading' => 'Laade…',
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'Watsch-Lischt ennere',
