@@ -110,6 +110,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$order[] = "{$this->prefix}_from";
 		if ( count( $params['namespace'] ) != 1 )
 			$order[] = "{$this->prefix}_namespace";
+
 		$order[] = "{$this->prefix}_title";
 		$this->addOption( 'ORDER BY', implode( ", ", $order ) );
 		$this->addOption( 'USE INDEX', "{$this->prefix}_from" );
@@ -141,7 +142,6 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				}
 			}
 		} else {
-
 			$titles = array();
 			$count = 0;
 			while ( $row = $db->fetchObject( $res ) ) {

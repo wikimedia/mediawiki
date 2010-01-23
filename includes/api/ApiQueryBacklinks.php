@@ -109,11 +109,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->addFields( array( 'page_id', 'page_title', 'page_namespace' ) );
 		else
 			$this->addFields( $resultPageSet->getPageTableFields() );
+
 		$this->addFields( 'page_is_redirect' );
 		$this->addWhereFld( $this->bl_title, $this->rootTitle->getDBkey() );
+
 		if ( $this->hasNS )
 			$this->addWhereFld( $this->bl_ns, $this->rootTitle->getNamespace() );
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
+
 		if ( !is_null( $this->contID ) )
 			$this->addWhere( "{$this->bl_from}>={$this->contID}" );
 
@@ -136,13 +139,16 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 		$this->addTables( array( 'page', $this->bl_table ) );
 		$this->addWhere( "{$this->bl_from}=page_id" );
+
 		if ( is_null( $resultPageSet ) )
 			$this->addFields( array( 'page_id', 'page_title', 'page_namespace', 'page_is_redirect' ) );
 		else
 			$this->addFields( $resultPageSet->getPageTableFields() );
+
 		$this->addFields( $this->bl_title );
 		if ( $this->hasNS )
 			$this->addFields( $this->bl_ns );
+
 		// We can't use LinkBatch here because $this->hasNS may be false
 		$titleWhere = array();
 		foreach ( $this->redirTitles as $t )
@@ -150,6 +156,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					( $this->hasNS ? " AND {$this->bl_ns} = '{$t->getNamespace()}'" : "" );
 		$this->addWhere( $db->makeList( $titleWhere, LIST_OR ) );
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
+
 		if ( !is_null( $this->redirID ) )
 		{
 			$first = $this->redirTitles[0];
@@ -172,6 +179,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		else if ( $this->params['filterredir'] == 'nonredirects' )
 			$this->addWhereFld( 'page_is_redirect', 0 );
+
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', $this->bl_sort );
 		$this->addOption( 'USE INDEX', array( 'page' => 'PRIMARY' ) );
@@ -356,13 +364,16 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			// Illegal continue parameter
 			$this->dieUsage( "Invalid continue param. You should pass the original value returned by the previous query", "_badcontinue" );
 		$this->rootTitle = Title::makeTitleSafe( $rootNs, $continueList[1] );
+
 		if ( !$this->rootTitle )
 			$this->dieUsage( "Invalid continue param. You should pass the original value returned by the previous query", "_badcontinue" );
 		$contID = intval( $continueList[2] );
+
 		if ( $contID === 0 && $continueList[2] !== '0' )
 			$this->dieUsage( "Invalid continue param. You should pass the original value returned by the previous query", "_badcontinue" );
 		$this->contID = $contID;
 		$redirID = intval( @$continueList[3] );
+		
 		if ( $redirID === 0 && @$continueList[3] !== '0' )
 			// This one isn't required
 			return;
