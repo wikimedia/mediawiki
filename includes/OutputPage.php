@@ -47,6 +47,11 @@ class OutputPage {
 	 */
 	var $styles = array();
 
+	/**
+	 * Whether to load jQuery core.
+	 */
+	protected $mIncludeJQuery = false;
+
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
 	private $mVaryHeader = array( 'Accept-Encoding' => array('list-contains=gzip'),
@@ -2103,4 +2108,22 @@ class OutputPage {
 		}
 		$this->addHTML( $this->parse( $s, /*linestart*/true, /*uilang*/true ) );
 	}
+
+	/**
+	 * Include jQuery core. Use this to avoid loading it multiple times
+	 * before we get usable script loader.
+	 */
+	public function includeJQuery() {
+		if ( $this->mIncludeJQuery ) return;
+		$this->mIncludeJQuery = true;
+
+		global $wgScriptPath, $wgStyleVersion, $wgJsMimeType;
+
+		$params = array(
+			'type' => $wgJsMimeType,
+			'src' => "$wgScriptPath/js2/js2stopgap.min.js?$wgStyleVersion",
+		);
+		$this->mScripts = Html::element( 'script', $params ) . "\n" . $this->mScripts;
+	}
+
 }
