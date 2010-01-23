@@ -58,9 +58,9 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		// Page filters
 		$this->addTables( 'page' );
 		
-		if ( params['filterredir'] == 'redirects' )
+		if ( $params['filterredir'] == 'redirects' )
 			$this->addWhereFld( 'page_is_redirect', 1 );
-		else if ( params['filterredir'] == 'nonredirects' )
+		else if ( $params['filterredir'] == 'nonredirects' )
 			$this->addWhereFld( 'page_is_redirect', 0 );
 
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
