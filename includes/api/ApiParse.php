@@ -158,8 +158,8 @@ class ApiParse extends ApiBase {
 							$p_result->getDisplayTitle() :
 							$titleObj->getPrefixedText();
 		
-		if( isset( $prop['headitems'] ) )
-			$result_array['headitems'] = $this->formatHeadItems( $p_result->getHeadItems() );					
+		if ( isset( $prop['headitems'] ) )
+			$result_array['headitems'] = $this->formatHeadItems( $p_result->getHeadItems() );
 							
 		if ( !is_null( $oldid ) )
 			$result_array['revid'] = intval( $oldid );
@@ -219,7 +219,7 @@ class ApiParse extends ApiBase {
 
 	private function formatHeadItems( $headItems ) {
 		$result = array();
-		foreach( $headItems as $tag => $content ) {
+		foreach ( $headItems as $tag => $content ) {
 			$entry = array();
 			$entry['tag'] = $tag;
 			$this->getResult()->setContent( $entry, $content );
