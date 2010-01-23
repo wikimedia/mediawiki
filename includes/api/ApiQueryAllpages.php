@@ -51,7 +51,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	private function run( $resultPageSet = null ) {
-
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();

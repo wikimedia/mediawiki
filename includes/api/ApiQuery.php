@@ -197,22 +197,16 @@ class ApiQuery extends ApiBase {
 		$this->params = $this->extractRequestParams();
 		$this->redirects = $this->params['redirects'];
 
-		//
 		// Create PageSet
-		//
 		$this->mPageSet = new ApiPageSet( $this, $this->redirects );
 
-		//
 		// Instantiate requested modules
-		//
 		$modules = array ();
 		$this->InstantiateModules( $modules, 'prop', $this->mQueryPropModules );
 		$this->InstantiateModules( $modules, 'list', $this->mQueryListModules );
 		$this->InstantiateModules( $modules, 'meta', $this->mQueryMetaModules );
 
-		//
 		// If given, execute generator to substitute user supplied data with generated data.
-		//
 		if ( isset ( $this->params['generator'] ) ) {
 			$this->executeGeneratorModule( $this->params['generator'], $modules );
 		} else {
@@ -221,14 +215,10 @@ class ApiQuery extends ApiBase {
 			$this->mPageSet->execute();
 		}
 
-		//
 		// Record page information (title, namespace, if exists, etc)
-		//
 		$this->outputGeneralPageInfo();
 
-		//
 		// Execute all requested modules.
-		//
 		foreach ( $modules as $module ) {
 			$module->profileIn();
 			$module->execute();
@@ -391,6 +381,7 @@ class ApiQuery extends ApiBase {
 			$exporter->closeStream();
 			$exportxml = ob_get_contents();
 			ob_end_clean();
+
 			// Don't check the size of exported stuff
 			// It's not continuable, so it would cause more
 			// problems than it'd solve

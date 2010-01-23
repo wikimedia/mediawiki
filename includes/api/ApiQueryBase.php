@@ -226,7 +226,6 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return ResultWrapper
 	 */
 	protected function select( $method ) {
-
 		// getDB has its own profileDBIn/Out calls
 		$db = $this->getDB();
 

@@ -172,6 +172,6 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiQueryTags.php';
+		return __CLASS__ . ': $Id$';
 	}
 }

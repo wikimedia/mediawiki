@@ -305,12 +305,16 @@ class ApiQueryInfo extends ApiQueryBase {
 					$this->protections[$title->getNamespace()][$title->getDBkey()];
 			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
 		}
+
 		if ( $this->fld_watched && isset( $this->watched[$title->getNamespace()][$title->getDBkey()] ) )
 			$pageInfo['watched'] = '';
+	
 		if ( $this->fld_talkid && isset( $this->talkids[$title->getNamespace()][$title->getDBkey()] ) )
 			$pageInfo['talkid'] = $this->talkids[$title->getNamespace()][$title->getDBkey()];
+
 		if ( $this->fld_subjectid && isset( $this->subjectids[$title->getNamespace()][$title->getDBkey()] ) )
 			$pageInfo['subjectid'] = $this->subjectids[$title->getNamespace()][$title->getDBkey()];
+
 		if ( $this->fld_url ) {
 			$pageInfo['fullurl'] = $title->getFullURL();
 			$pageInfo['editurl'] = $title->getFullURL( 'action=edit' );

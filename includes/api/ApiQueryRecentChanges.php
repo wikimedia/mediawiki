@@ -149,17 +149,20 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
 			$this->addWhereIf( 'page_is_redirect = 1', isset ( $show['redirect'] ) );
+			
 			// Don't throw log entries out the window here
 			$this->addWhereIf( 'page_is_redirect = 0 OR page_is_redirect IS NULL', isset ( $show['!redirect'] ) );
 		}
 		
 		if ( !is_null( $params['user'] ) && !is_null( $param['excludeuser'] ) )
 			$this->dieUsage( 'user and excludeuser cannot be used together', 'user-excludeuser' );
+			
 		if ( !is_null( $params['user'] ) )
 		{
 			$this->addWhereFld( 'rc_user_text', $params['user'] );
 			$index = 'rc_user_text';
 		}
+		
 		if ( !is_null( $params['excludeuser'] ) )
 			// We don't use the rc_user_text index here because
 			// * it would require us to sort by rc_user_text before rc_timestamp
@@ -284,12 +287,23 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		/* Determine what kind of change this was. */
 		switch ( $type ) {
-			case RC_EDIT:  $vals['type'] = 'edit'; break;
-			case RC_NEW:   $vals['type'] = 'new'; break;
-			case RC_MOVE:  $vals['type'] = 'move'; break;
-			case RC_LOG:   $vals['type'] = 'log'; break;
-			case RC_MOVE_OVER_REDIRECT: $vals['type'] = 'move over redirect'; break;
-		default: $vals['type'] = $type;
+			case RC_EDIT:
+				$vals['type'] = 'edit';
+				break;
+			case RC_NEW:
+				$vals['type'] = 'new';
+				break;
+			case RC_MOVE:
+				$vals['type'] = 'move';
+				break;
+			case RC_LOG:
+				$vals['type'] = 'log';
+				break;
+			case RC_MOVE_OVER_REDIRECT:
+				$vals['type'] = 'move over redirect';
+				break;
+			default:
+				$vals['type'] = $type;
 		}
 
 		/* Create a new entry in the result for the title. */

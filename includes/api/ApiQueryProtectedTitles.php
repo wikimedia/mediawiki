@@ -91,12 +91,16 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				ApiQueryBase::addTitleInfo( $vals, $title );
 				if ( isset( $prop['timestamp'] ) )
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->pt_timestamp );
+					
 				if ( isset( $prop['user'] ) && !is_null( $row->user_name ) )
 					$vals['user'] = $row->user_name;
+					
 				if ( isset( $prop['comment'] ) )
 					$vals['comment'] = $row->pt_reason;
+					
 				if ( isset( $prop['expiry'] ) )
 					$vals['expiry'] = Block::decodeExpiry( $row->pt_expiry, TS_ISO_8601 );
+					
 				if ( isset( $prop['level'] ) )
 					$vals['level'] = $row->pt_create_perm;
 				
