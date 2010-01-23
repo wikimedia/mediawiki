@@ -59,9 +59,9 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		// Page filters
 		$this->addTables( 'page' );
 		
-		if ( $this->params['filterredir'] == 'redirects' )
+		if ( $this->params['filterredir'] === 'redirects' )
 			$this->addWhereFld( 'page_is_redirect', 1 );
-		else if ( $this->params['filterredir'] == 'nonredirects' )
+		else if ( $this->params['filterredir'] === 'nonredirects' )
 			$this->addWhereFld( 'page_is_redirect', 0 );
 
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -81,6 +81,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		} else {
 			$selectFields = $resultPageSet->getPageTableFields();
 		}
+
 		$this->addFields( $selectFields );
 		$forceNameTitleIndex = true;
 		if ( isset ( $params['minsize'] ) ) {
@@ -134,6 +135,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->addOption( 'GROUP BY', implode( ', ', $selectFields ) );
 			$forceNameTitleIndex = false;
 		}
+
 		if ( $forceNameTitleIndex )
 			$this->addOption( 'USE INDEX', 'name_title' );
 
