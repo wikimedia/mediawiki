@@ -359,14 +359,22 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$ret['name'] = $ext['name'];
 				if ( isset( $ext['description'] ) )
 					$ret['description'] = $ext['description'];
-				if ( isset( $ext['descriptionmsg'] ) )
-					$ret['descriptionmsg'] = $ext['descriptionmsg'];
+				if ( isset( $ext['descriptionmsg'] ) ) {
+					// Can be a string or array( key, param1, param2, ... )
+					if ( is_array( $ext['descriptionmsg'] ) ) {
+						$ret['descriptionmsg'] = $ext['descriptionmsg'][0];
+						$ret['descriptionmsgparams'] = array_slice( $ext['descriptionmsg'], 1 );
+						$this->getResult()->setIndexedTagName( $ret['descriptionmsgparams'], 'param' );
+					} else {
+						$ret['descriptionmsg'] = $ext['descriptionmsg'];
+					}
+				}
 				if ( isset( $ext['author'] ) ) {
 					$ret['author'] = is_array( $ext['author'] ) ?
 						implode( ', ', $ext['author' ] ) : $ext['author'];
 				}
 				if ( isset( $ext['url'] ) ) {
-				    $ret['url'] = $ext['url'];
+					$ret['url'] = $ext['url'];
 				}
 				if ( isset( $ext['version'] ) ) {
 						$ret['version'] = $ext['version'];
