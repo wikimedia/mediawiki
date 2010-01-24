@@ -1591,6 +1591,9 @@ Iste wiki es configurate como un wiki public.
 Pro securitate optimal, img_auth.php es disactivate.',
 'img-auth-noread'       => 'Le usator non ha accesso pro leger "$1".',
 
+# HTTP errors
+'http-invalid-url' => 'URL invalide: $1',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',
 'upload-curl-error6-text'  => 'Le adresse URL fornite es inaccessibile.

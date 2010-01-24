@@ -779,9 +779,9 @@ Dir musst Är Ännerungen an dat iewescht Textfeld androen.
 'nonunicodebrowser'                => "'''OPGEPASST:''' Äre Browser ass net Unicode kompatibel. Ännert dat w.e.g. éier Dir eng Säit ännert.",
 'editingold'                       => "'''OPGEPASST: Dir ännert eng al Versioun vun dëser Säit. Wann Dir späichert, sinn all rezent Versioune vun dëser Säit verluer.'''",
 'yourdiff'                         => 'Ënnerscheeder',
-'copyrightwarning'                 => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënner der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn.
+'copyrightwarning'                 => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënnert der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn.
 Wann Dir net wëllt datt är Texter vun anere Mataarbechter verännert, geläscht a weiderverdeelt kënne ginn, da setzt näischt heihinner.<br />
-Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnleche Ressource kopéiert hutt.
+Dir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnleche Ressource kopéiert hutt.
 '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNISS AN!'''",
 'copyrightwarning2'                => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!'''",
@@ -2572,7 +2572,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'anonymous'        => '{{PLURAL:$1|Anonyme Benotzer|Anonym Benotzer}} op {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benotzer $1',
 'anonuser'         => 'Anonyme(n) {{SITENAME}}-Benotzer $1',
-'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer voum $3 fir d'lescht geännert.",
+'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer vum $3 fir d'lescht geännert.",
 'othercontribs'    => 'Op der Basis vun der Aarbecht vum $1',
 'others'           => 'anerer',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|Benotzer|Benotzer}} $1',

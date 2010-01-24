@@ -339,7 +339,7 @@ $messages = array(
 'searcharticle'     => 'Tsidiho',
 'history'           => "Tantaran'ny pejy",
 'history_short'     => 'Tantara',
-'updatedmarker'     => "niova hatramin'ny nidirako farany",
+'updatedmarker'     => 'niova hatry ny tsidiko farany',
 'info_short'        => 'Fampahalalana',
 'printableversion'  => 'Version afaka avoaka taratasy',
 'permalink'         => 'Rohy maharitra',
@@ -383,11 +383,11 @@ $messages = array(
 'jumpto'            => 'Hanketo:',
 'jumptonavigation'  => 'Fikarohana',
 'jumptosearch'      => 'karohy',
-'view-pool-error'   => "Azafady fa somary be asa ny serveur . 
-Betsaka laotra ny mpitsidika te-hijery ity pejy ity.
-Andraso kely vetivety alohan'ny mamerina.
+'view-pool-error'   => 'Azafady, be asa ny lohamilina ankehitriny.
+Betsaka loatra ny mpikambana mitady hijery ity pejy ity.
+Miandrasa kely, dia avereno.
 
-$1",
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Mombamomba ny {{SITENAME}}',
@@ -472,11 +472,11 @@ Ny fangatahana farany dia:
 <blockquote><tt>$1</tt></blockquote>
 tao amin\'ny tao "<tt>$2</tt>".
 Toy izao no navalin\'ny MySQL "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Nisy tsi-fetezana teo amin\'ny requête base de données
-Ny requête farany dia:
-"$1"
-tao amin\'ny fonction "$2".
-Toy izao no navalin\'ny MySQL "$3: $4"',
+'dberrortextcl'        => "Ao amin'ny fangatahana tao amin'ny banky angona dia misy tsi-fetezana ara-pehezanteny.
+Ny fangatahana farany nalefa dia :
+« $1 »
+tao amin'ny asa « $2 ».
+Ny banky angona dia namerina ny tsi-fetezana « $3 : $4 »",
 'laggedslavemode'      => 'Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io',
 'readonly'             => 'Mihidy ny banky angona',
 'enterlockreason'      => 'Manomeza antony hanidiana ny pejy, ahitana ny fotoana tokony hamahana izay fihidiana izay',
@@ -544,9 +544,10 @@ Ny antony napetraka dia : « ''$2'' ».",
 
 Afaka manohy ny fampiasana ny {{SITENAME}} ianao ka tsy mitonona anarana, ary afaka miditra amin'ny alalan'ilay solonanarana teo na solonanarana hafa koa. 
 Mariho fa misy pejy sasantsasany mety mbola hiseho foana mandra-pamafanao ny cache.",
-'welcomecreation'            => "== Tongasoa, $1! ==
+'welcomecreation'            => '== Tonga soa, $1! ==
 
-Voaforona ny kaontinao. Aza adinoina ny manova ny mombamomba anao ao amin'ny {{SITENAME}}.",
+Voaforona soa aman-tsara ny kaontinao.
+Aza hadino ny manova ny [[Special:Preferences|safidinao]]',
 'yourname'                   => 'Solonanarana',
 'yourpassword'               => 'Tenimiafina',
 'yourpasswordagain'          => 'Avereno ampidirina eto ny tenimiafina',
@@ -581,7 +582,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'nouserspecified'            => 'Tsy maintsy mampiditra solonanarana ianao.',
 'wrongpassword'              => 'Diso ny tenimiafina. Manandrama tenimiafina hafa azafady.',
 'wrongpasswordempty'         => 'Tsy nampiditra tenimiafina ianao, azafady mba avereno indray.',
-'passwordtooshort'           => '{{PLURAL:}}Fohy laotra io tenimiafina io.
+'passwordtooshort'           => '{{PLURAL:}}Fohy loatra io tenimiafina io.
 Farafahakeliny tokony hisy litera $1 ny tenimiafina.',
 'password-name-match'        => 'Tsy maintsy samihafa ny solonanaranao sy ny tenimiafinao tompoko.',
 'mailmypassword'             => 'Alefaso imailaka ny tenimiafiko',
@@ -621,7 +622,7 @@ Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 Tokony miditra na manokatra kaonty ianao ary manova ny tenimiafinao dian-izao.
 
 Aza mijery ity hafatra ity ianao raha voaforona an-tsipetezana ilay kaonty io.",
-'login-throttled'            => "In-betsaka laotra ianao no nanandrana tenimiafina teo amin'io kaonty io.
+'login-throttled'            => "Im-betsaka loatra ianao no nanandrana tenimiafina teo amin'io kaonty io.
 Andraso kely ary andramo indray.",
 'loginlanguagelabel'         => 'fiteny : $1',
 
@@ -706,7 +707,7 @@ Ity ny antony navoakany
 
 Afaka antsoinao i $1 na miantso ny [[{{MediaWiki:Grouppage-sysop}}|mpandrindra]] mba hiresaka momba ny fanakananao.
 
-Jereo koa fa tsy afaka mampiasa ny asa ''emailuser'' ianao ra tsy nanometraka ny adiresy imailakao anatin'ny [[special:Preferences|zavatra tianao]]. Jereo koa ra tsy nesorinao ny asa ''emailuser''.
+Jereo koa fa tsy afaka mampiasa ny asa ''emailuser'' ianao ra tsy nanometraka ny adiresy imailakao anatin'ny [[Special:Preferences|safidinao]]. Jereo koa ra tsy nesorinao ny asa ''emailuser''.
 
 $3 izao ny adiresinao, ary ny isa ny fisakananai dia $5.
 Soraty ireo fanoroana ireo anatin'ny fangatahana ataonao.",
@@ -715,10 +716,11 @@ Soraty ireo fanoroana ireo anatin'ny fangatahana ataonao.",
 'blockededitsource'                => "Eo amban'ny votoatin'ny '''nosoratanao''' nataonao tamin'ny '''$1'''",
 'whitelistedittitle'               => 'Midira/Misorata anarana',
 'whitelistedittext'                => "Mila $1 aloha ianao vao afaka manova/mamorona pejy eto amin'ity wiki ity.",
-'confirmedittext'                  => "Tsy maintsy Checke-na ny adiresy imailakao aloha no manova pejy.
-Ampidiro sy Checkeo ny adiresy imailakao amin'ny [[special:preferences|safidinao]].",
-'nosuchsectiontitle'               => 'Ts ampy fitapahana',
-'nosuchsectiontext'                => 'Nanandrana nanova fizaràna tsy misy ianao.',
+'confirmedittext'                  => "Tsy maintsy marihina ny adiresy imailakao aloha no manova pejy.
+Ampidiro sy Checkeo ny adiresy imailakao amin'ny [[Special:preferences|safidinao]].",
+'nosuchsectiontitle'               => 'Tsy nahita ilay fizarana',
+'nosuchsectiontext'                => "Nanandrana nanova fizarana « $1 » tsy nisy angamba ianao.
+Mety efa nakisaka angamba izy, na voafafa tamin' ianareo namaky ity pejy ity farany.",
 'loginreqtitle'                    => 'Mila fidirana',
 'loginreqlink'                     => 'hiditra',
 'loginreqpagetext'                 => 'Tokony $1 ianao raha te hijery pejy hafa.',
@@ -1106,7 +1108,7 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'yourlanguage'              => 'Tenim-pirenena:',
 'yournick'                  => 'Anaram-bositra:',
 'badsig'                    => 'Tsy mety io sonia io; hamarino ny kialo HTML.',
-'badsiglength'              => "Lava laotra ny sonianao.
+'badsiglength'              => "Lava loatra ny sonianao. {{PLURAL:$1||}}
 Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'yourgender'                => 'lahy/vavy :',
 'gender-unknown'            => 'Tsy voalaza',
@@ -1218,7 +1220,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'right-userrights-interwiki'  => "Manova ny fahefan'ny mpikambana any amin'ny wiki hafa",
 'right-siteadmin'             => 'Manidy sy manokatra ny database',
 'right-reset-passwords'       => "Manova ny tenimiafin'ny mpikambana hafa",
-'right-override-export-depth' => "Mamoaka ny pejy miarana amin'ny zana-pejy hatramin'ny ambaratonga fahadimy",
+'right-override-export-depth' => "Mamoaka ny pejy miaraka amin'ny zana-pejy hatramin'ny ambaratonga fahadimy",
 'right-versiondetail'         => "Mijery ny fampahalalàna momba ny version'ny rindrankajy",
 'right-sendemail'             => "Mandefa imailaka any amin'ny mpikambana hafa",
 
@@ -1490,7 +1492,7 @@ mampihena ny tantaran'asa miseho eto.",
 'nextpage'          => 'Pejy manaraka ($1)',
 'prevpage'          => 'Pejy taloha ($1)',
 'allpagesfrom'      => 'Asehoy ny pejy manomboka ny:',
-'allpagesto'        => "Ampiseo ny pejy hatramin'ny :",
+'allpagesto'        => "Asehoy ny pejy manomboka amin'ny :",
 'allarticles'       => 'Lahatsoratra rehetra',
 'allinnamespace'    => 'Pejy rehetra ($1 namespace)',
 'allnotinnamespace' => "Ny pejy rehetra (tsy ao amin'ny $1 namespace)",
@@ -1885,6 +1887,7 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'filemissing'    => 'Tsy hita ny rakitra',
 
 # Import log
+'importlogpage'             => "Tantaran'asan'ny fampidirana",
 'import-logentry-upload'    => "nampiditra [[$1]] tamin'ny fampidiran-drakitra",
 'import-logentry-interwiki' => "nampiditra $1 tamin'ny transwiki",
 

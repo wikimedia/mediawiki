@@ -1615,6 +1615,11 @@ Hierdie wiki is opgestel as 'n publieke wiki.
 Vir veiligheidsredes is img_auth.php gedeaktiveer.",
 'img-auth-noread'       => 'Gebruiker het nie toegang om "$1" te lees nie.',
 
+# HTTP errors
+'http-invalid-url'    => 'Ongeldige URL: $1',
+'http-invalid-scheme' => 'URL\'s met die "$1"-skema word nie ondersteun nie',
+'http-request-error'  => 'Fout met die stuur van die versoek:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon nie die URL bereik nie',
 'upload-curl-error6-text'  => 'Die URL is nie bereikbaar nie.
@@ -2032,11 +2037,14 @@ Wiki: $PAGEEDITOR_WIKI
 Tensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie.
 U kan ook die waarskuwingsvlag op u dophoulys verstel.
 
-             Groete van die {{SITENAME}} waarskuwingssisteem.
+             Groete van {{SITENAME}} se waarskuwingssisteem.
 
 --
 U kan u dophoulys wysig by:
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Om die bladsy vanaf u dophoulys te verwyder, besoek:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Terugvoer en verdere bystand:
 {{fullurl:{{MediaWiki:Helppage}}}}',

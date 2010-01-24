@@ -2005,7 +2005,7 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'watchnochange'        => 'Ingen av sidene i overvakingslista er endra i den valde perioden.',
 'watchlist-details'    => '{{PLURAL:$1|Éi side|$1 sider}} er overvaka, utanom diskusjonssider.',
 'wlheader-enotif'      => '* Funksjonen for endringsmeldingar per e-post er på.',
-'wlheader-showupdated' => "* Sider som har vorte endra sidan du sist såg på dei er '''utheva'''",
+'wlheader-showupdated' => "* Sider som er vortne endra sidan du sist såg på dei er '''utheva'''",
 'watchmethod-recent'   => 'sjekkar siste endringar for dei overvaka sidene',
 'watchmethod-list'     => 'sjekkar om dei overvaka sidene er vortne endra i det siste',
 'watchlistcontains'    => 'Overvakingslista di inneheld {{PLURAL:$1|éi side|$1 sider}}.',

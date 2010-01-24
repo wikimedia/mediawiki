@@ -1433,6 +1433,11 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization бетге къара.'
 Эм келишиу къоркъуусузлукъ ючюн img_auth.php джукълатылгъанды.',
 'img-auth-noread'       => 'Къоушулуучуну «$1» файлыны окъургъа эркинлиги джокъду.',
 
+# HTTP errors
+'http-invalid-url'    => 'Терс URL: $1',
+'http-invalid-scheme' => '«$1» схемалы адресле тутулмайла',
+'http-request-error'  => 'Соруу ийгенни халаты:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-ге джетилелимеди',
 'upload-curl-error6-text'  => 'Белгиленнген URL-ге джетелмейди.
