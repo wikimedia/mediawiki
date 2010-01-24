@@ -122,20 +122,13 @@ class OutputPage {
 	 * @param string $file filename in skins/common or complete on-server path (/foo/bar.js)
 	 */
 	function addScriptFile( $file ) {
-		global $wgStylePath, $wgStyleVersion, $wgJsMimeType;
+		global $wgStylePath, $wgStyleVersion;
 		if( substr( $file, 0, 1 ) == '/' ) {
 			$path = $file;
 		} else {
 			$path =  "{$wgStylePath}/common/{$file}";
 		}
-		$this->addScript( 
-			Html::element( 'script', 
-				array(
-					'type' => $wgJsMimeType,
-					'src' => "$path?$wgStyleVersion",
-				)
-			)
-		);
+		$this->addScript( Html::linkedScript( "$path?$wgStyleVersion" ) );
 	}
 
 	/**
