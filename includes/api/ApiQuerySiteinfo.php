@@ -154,7 +154,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['variantarticlepath'] = $GLOBALS['wgVariantArticlePath'];
 		$data['server'] = $GLOBALS['wgServer'];
 		$data['wikiid'] = wfWikiID();
-		$data['time'] = wfTimestampNow( TS_ISO_8601 );
+		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
