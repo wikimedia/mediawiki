@@ -803,6 +803,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22241) Quick edit is still using the deprecated watch parameter (API: Setting default for watch/unwatch wrongly set)
 * (bug 22245) blfilterredirect=nonredirects in blredirect mode wrongly filtering
 * (bug 22248) Output extension URLs in meta=siteinfo&siprop=extensions
+* Support key-params arrays in 'descriptionmsg' in meta=siteinfo&siprop=extensions
 
 === Languages updated in 1.16 ===
 
