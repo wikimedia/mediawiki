@@ -7812,7 +7812,18 @@ license</a>.</small></p>
 
 !! end
 
+!!article
+MediaWiki:bad image list
+!!text
+* [[File:Bad.jpg]] except [[Nasty page]]
+!!endarticle
 
+!! test
+Bad images - basic functionality
+!! input
+[[File:Bad.jpg]]
+!! result
+!! end
 
 
 TODO:

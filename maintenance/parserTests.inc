@@ -825,8 +825,25 @@ class ParserTest {
 			'img_metadata'    => serialize( array() ),
 			) );
 
+		# This image will be blacklisted in [[MediaWiki:Bad image list]]
+		$db->insert( 'image', array(
+			'img_name'        => 'Bad.jpg',
+			'img_size'        => 12345,
+			'img_description' => 'zomgnotcensored',
+			'img_user'        => 1,
+			'img_user_text'   => 'WikiSysop',
+			'img_timestamp'   => $db->timestamp( '20010115123500' ),
+			'img_width'       => 320,
+			'img_height'      => 240,
+			'img_bits'        => 24,
+			'img_media_type'  => MEDIATYPE_BITMAP,
+			'img_major_mime'  => "image",
+			'img_minor_mime'  => "jpeg",
+			'img_metadata'    => serialize( array() ),
+			) );
+
 		# Update certain things in site_stats
-		$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
+		$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
@@ -896,6 +913,9 @@ class ParserTest {
 		}
 		wfMkdirParents( $dir . '/3/3a' );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
+
+		wfMkdirParents( $dir . '/0/09' );
+		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
 		return $dir;
 	}
 
@@ -931,6 +951,8 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
+
+				"$dir/0/09/Bad.jpg",
 			)
 		);
 
@@ -943,6 +965,10 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg",
 				"$dir/thumb/3/3a",
 				"$dir/thumb/3",
+
+				"$dir/0/09/",
+				"$dir/0/",
+
 				"$dir/thumb",
 				"$dir",
 			)
@@ -1095,6 +1121,7 @@ class ParserTest {
 	 * @param int $line the input line number, for reporting errors
 	 */
 	private function addArticle($name, $text, $line) {
+		global $wgMessageCache;
 		$this->setupGlobals();
 		$title = Title::newFromText( $name );
 		if ( is_null($title) ) {
@@ -1108,6 +1135,10 @@ class ParserTest {
 
 		$art = new Article($title);
 		$art->insertNewArticle($text, '', false, false );
+		if( $title->getNamespace() == NS_MEDIAWIKI ) {
+			$wgMessageCache->replace( $title->getDBkey(), $text );
+		}
+
 		$this->teardownGlobals();
 	}
 
