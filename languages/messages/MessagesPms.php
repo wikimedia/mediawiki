@@ -940,8 +940,8 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 
 # Search results
 'searchresults'                    => "Arzultà dl'arserca",
-'searchresults-title'              => 'Arzultà dl\'arserca për "$1"',
-'searchresulttext'                 => "Per avej pì d'anformassion ant sl'arserca interna ëd {{SITENAME}}, che a varda [[{{MediaWiki:Helppage}}|Arserca ant la {{SITENAME}}]].",
+'searchresults-title'              => "Arzultà dl'arserca për «$1»",
+'searchresulttext'                 => "Për avèj pì d'anformassion ant sl'arserca interna ëd {{SITENAME}}, che a varda [[{{MediaWiki:Helppage}}|Arserca ant la {{SITENAME}}]].",
 'searchsubtitle'                   => 'It l\'has sërcà \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tute jë pàgine che a ancamin-o con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tute jë pàgine che a men-o a "$1"]])',
 'searchsubtitleinvalid'            => 'Domanda "$1"',
 'toomanymatches'                   => "Parej a-i ven fòra tròpa ròba, për piasì, ch'a prova n'arsërca diferenta.",
@@ -1464,8 +1464,8 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'img-auth-noread'       => 'L\'utent a l\'ha pa ij privilegi për lese "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'URL pa bon-a: $1.',
-'http-invalid-scheme' => 'URL con lë schema "$1" a son pa apogià',
+'http-invalid-url'    => "Adrëssa dl'aragnà pa bon-a: $1.",
+'http-invalid-scheme' => 'J\'adrësse dl\'aragnà con lë schema "$1" a son pa sostnùe',
 'http-request-error'  => "Eror an mandand l'arcesta:",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1868,31 +1868,31 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'enotif_lastvisited'           => "Che as varda $1 për ës-ciaré tute le modìfiche da 'nt l'ùltima vira che a l'é passà.",
 'enotif_lastdiff'              => "Ch'a varda $1 për visioné sta modìfica.",
 'enotif_anon_editor'           => 'utent anònim $1',
-'enotif_body'                  => 'A l\'atension ëd $WATCHINGUSERNAME,
+'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é staita $CHANGEDORCREATED al $PAGEEDITDATE da $PAGEEDITOR, che a varda $PAGETITLE_URL për la version corenta.
+La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é stàita $CHANGEDORCREATED al $PAGEEDITDATE da $PAGEEDITOR, che a varda $PAGETITLE_URL për la version corenta.
 
 $NEWPAGE
 
-Somari dl\'editor: $PAGESUMMARY $PAGEMINOREDIT
+Resumé dl\'editor: $PAGESUMMARY $PAGEMINOREDIT
 
 Për contaté l\'editor:
 Pòsta eletrònica: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Se chiel (chila) a visitèissa nen la pàgina modificà për contròl a-i sarìa pì gnun-a notìfica ëd modìfiche che a podèisso riveje dapress a costa.
-Che as visa che a peul cangeje ij setagi dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba da ten-e sot euj.
+A-i sarà pì gnun-a notìfica ëd modìfiche se chiel a vìsita nen costa pàgina.
+Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba da ten-e sot euj.
 
              Comunicassion dël sistema ëd notìfica da {{SITENAME}}
 
 --
-Për cangé ij setagi ëd lòn che as ten sot euj che a vada ansima a
+Për cangé la configurassion ëd lòn che as ten sot euj che a vada ansima a
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Për scanselé la pàgina da lòn ch\'it ten-e sot euj, vìsita
+Për scancelé la pàgina da lòn ch\'a ten sot euj, ch\'a vìsita
 {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
-Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
+Për fé dle comunicassion ëd servissi e avèj pì d\'agiut:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

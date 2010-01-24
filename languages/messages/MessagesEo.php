@@ -833,9 +833,11 @@ Vi eble volus elkopii kaj englui la tekston al tekstdosiero por konservi ĝin po
 La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1",
 'protectedpagewarning'             => "'''Averto: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj.'''
 Jen la lasta protokolero provizita por via referenco:",
-'semiprotectedpagewarning'         => "'''Notu:''' Ĉi paĝo estas protektita tiel ke nur ensalutintaj uzantoj povas redakti ĝin.",
+'semiprotectedpagewarning'         => "'''Notu:''' Ĉi tiu paĝo estas ŝlosita tial ke nur ensalutintaj uzantoj povas redakti ĝin.
+Jen la lasta protokolero por via referenco:",
 'cascadeprotectedwarning'          => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
-'titleprotectedwarning'            => "'''AVERTO: Ĉi paĝo estis ŝlosita tial nur [[Special:ListGroupRights|specifaj rajtoj]] estas bezonaj por krei ĝin.'''",
+'titleprotectedwarning'            => "'''Averto: Ĉi tiu paĝo estis ŝlosita tial nur [[Special:ListGroupRights|specifaj rajtoj]] estas bezonaj por krei ĝin.'''
+Jen la lasta protokolero por via referenco:",
 'templatesused'                    => '{{PLURAL:$1|Ŝablono uzataj|Ŝablonoj uzataj}} en ĉi tiu paĝo:',
 'templatesusedpreview'             => '{{PLURAL:$1|Ŝablono uzata|Ŝablonoj uzataj}} en ĉi tiu antaŭrigardo:',
 'templatesusedsection'             => '{{PLURAL:$1|Ŝablono uzata|Ŝablonojuzataj}} en ĉi tiu sekcio:',

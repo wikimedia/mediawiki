@@ -628,10 +628,12 @@ razón pola que nu pueis emburacal los tus chambus agora.'''
 Pa nu perdel los chambus, pueis copialus i pegalus nel tu ordinaol, i nun ratinu, emburacalus ena wiki.
 
 El alministraol que á cerrau la bassi datus á dau la siguienti razón: $1",
-'protectedpagewarning'             => "'''Avisu: Esta páhina s'alcuentra atarugá, asínque sólu los çahorilis puein eitala.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' S'á atarugau esta páhina, asínque solu los usuárius rustrius puein eitala.",
+'protectedpagewarning'             => "'''Alverténcia: Esta página s'alcuentra atarugá, asínque sólu los çahorilis puein eitala.'''
+Embaju se muestra el rustriju d'acessu cumu referéncia:",
+'semiprotectedpagewarning'         => "'''Nota:''' S'á atarugau esta página, asínque solu los ussuárius rustrius puein eitala.
+Embaju se muestra el rustriju d'acessu cumu referéncia:",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páhina está protehia, asínque solu los çahorilis puein eitala. La razón de qu'esté protehia es que s'alcuentra encluia {{PLURAL:$1|ena siguienti páhina|enas siguientis páhinas}} cola oción ''cascá'' ativá:",
-'titleprotectedwarning'            => "'''Alverténcia: Esta página á siu atarugá, razón pola que solu angunus ussuárius con [[Special:ListGroupRights|ciertus derechus]] puein criala.'''",
+'titleprotectedwarning'            => "'''Alverténcia: Esta página á siu atarugá, razón pola que son mestel [[Special:ListGroupRights|ciertus derechus]] pa criala.'''",
 'templatesused'                    => '{{PLURAL:$1|Prantilla|Prantillas}} gastás nesta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Prantilla|Prantillas}} gastás al previsoreal:',
 'templatesusedsection'             => 'Prantillas gastás nesta parti:',
@@ -981,6 +983,8 @@ Amás premiti qu'otrus ussuárius contatin contigu pol mé la tu página d'ussu�
 'right-browsearchive'    => 'Landeal páhinas esborrás',
 'right-undelete'         => 'Arrecuperal una páhina',
 'right-suppressionlog'   => 'Guipal rustrijus privaus',
+'right-import'           => 'Emporteal páginas dendi otras wikis',
+'right-importupload'     => 'Emporteal páginas dendi un archivu empuntau',
 'right-mergehistory'     => 'Mestural el estorial de dambas las dos páginas',
 'right-userrights'       => 'Eital los derechus de tolos usuárius',
 'right-siteadmin'        => 'Atarugal i desatarugal la basi e datus',
@@ -1106,7 +1110,10 @@ Nel chascu en que huera la mesm imahin (inque seya en grandi) nu es mestel qu'em
 Si tiinis la imahin cola resolución orihinal, empúntala, si nu, pol favol, chamba el nombri del archivu.",
 'fileexists-forbidden'        => 'Ya dessisti un archivu con esti nombri, i nu es possibri sobriescribilu.
 Si entovia quieris empuntal el archivu, pol favol, güervi atrás i empuntalu con otru nombri. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Ya desisti un archivu con esti nombri; pol favol, vaiti p'atrás i empunta el archivu con otru nombri. [[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Ya dessisti un archivu con esti nombri nel repossitóriu d'archivus compartius;
+Si acontinas queriendu empuntal el archivu, vai alatrás i escambia el nombri el archivu.
+ [[File:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => 'Esti archivu es un dupricau {{PLURAL:$1|el siguienti archivu|los siguientis archivus}}:',
 'successfulupload'            => 'Empuntu satisfatoriu',
 'uploadwarning'               => 'Avisu d´empuntu',
 'savefile'                    => 'Emburacal archivu',
@@ -1188,6 +1195,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'sharedupload'              => 'Esti archivu procei de $1 i puei gastalsi dendi otrus proyeutus.',
 'uploadnewversion-linktext' => 'Empuntal una nueva velsión d´esti archivu',
 'shared-repo-from'          => 'dendi $1',
+'shared-repo'               => 'un repossitóriu compartiu',
 
 # File reversion
 'filerevert'                => 'Revertil $1',
@@ -1249,6 +1257,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'statistics-header-views'      => 'Guipal estaísticas',
 'statistics-header-users'      => 'Estaísticas d´usuáriu',
 'statistics-pages'             => 'Páginas',
+'statistics-pages-desc'        => 'Tolas páginas nel wiki, encruyendu carabas, redirecionis...',
 'statistics-files'             => 'Archivus empuntaus',
 'statistics-users'             => '[[Special:ListUsers|Usuárius rustrius]]',
 'statistics-users-active'      => 'Ussuárius ativus',
@@ -1366,6 +1375,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 
 # Special:LinkSearch
 'linksearch'    => 'Atihus estelnus',
+'linksearch-ns' => 'Espáciu nombris:',
 'linksearch-ok' => 'Landeal',
 
 # Special:ListUsers
@@ -1968,7 +1978,7 @@ Pol favol, gasta el botón "previsoreal" enantis d\'emburacal.',
 'notacceptable'     => 'El sirviol de la güiqui nu puei chambal los datus a un hormatu leibri pol tu escrucaol.',
 
 # Attribution
-'anonymous'        => 'Usuáriu/s anónimu/s en {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Ussuáriu anónimu|Ussuárius anónimus}} en {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuáriu $1',
 'lastmodifiedatby' => 'Esta páhina se chambó pol úrtima vezi a las $2, el dia $1 pol $3.',
 'othercontribs'    => 'Basau nun labutu e $1.',
@@ -1979,7 +1989,7 @@ Pol favol, gasta el botón "previsoreal" enantis d\'emburacal.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtru e proteción anti-Spam',
-'spamprotectiontext'  => "La páhina qu'ententas emburacal á siu atarugá pol el filtru anti-spam. Estu puei sel ebiu a angún atihu a una páhina esterna.",
+'spamprotectiontext'  => 'La página que quieis emburacal á siu atarugá pol filtru anti-spam. Estu puei sel ebiu a angún atiju a una página esteriol.',
 'spamprotectionmatch' => 'El testu siguiente á ativau el muestru filtru antispam: $1',
 'spambot_username'    => 'MediaWiki limpia-spam',
 'spam_reverting'      => 'Revirtiendu a la úrtima velsión que nu contenga atihus a $1',
@@ -2016,7 +2026,7 @@ Pol favol, gasta el botón "previsoreal" enantis d\'emburacal.',
 'markaspatrolleddiff'                 => 'Aseñalal cumu patrullau',
 'markaspatrolledtext'                 => 'Aseñalal esti artículu cumu patrullau',
 'markedaspatrolled'                   => 'Aseñalal cumu patrullau',
-'markedaspatrolledtext'               => 'La revisión selecioná á siu aseñalá cumu patrullá.',
+'markedaspatrolledtext'               => 'La revisión asseñalá á siu marcá cumu patrullá.',
 'rcpatroldisabled'                    => "Patrulla d'Úrtimus Chambus desativá",
 'rcpatroldisabledtext'                => "La capaciá pa patrullal los Úrtimus Chambus está desativá n'esti momentu.",
 'markedaspatrollederror'              => 'Nu se puei aseñalal cumu patrullá',
@@ -2024,10 +2034,11 @@ Pol favol, gasta el botón "previsoreal" enantis d\'emburacal.',
 'markedaspatrollederror-noautopatrol' => 'Nu tienis premisu p\'aseñalal los tus propius chambus cumu "revisaus".',
 
 # Patrol log
-'patrol-log-page' => 'Rustrihu e revisionis',
-'patrol-log-line' => '$1 está aseñalau $2 patrullau $3',
-'patrol-log-auto' => '(autumáticu)',
-'patrol-log-diff' => 'revisión $1',
+'patrol-log-page'   => 'Rustrihu e revisionis',
+'patrol-log-header' => 'Esti es un rustriju e revissionis patrullás.',
+'patrol-log-line'   => '$1 está aseñalau $2 patrullau $3',
+'patrol-log-auto'   => '(autumáticu)',
+'patrol-log-diff'   => 'revisión $1',
 
 # Image deletion
 'deletedrevision'                 => 'Esborrá la revisión antigua $1',
@@ -2046,7 +2057,7 @@ $1',
 
 # Media information
 'thumbsize'            => 'Grandol el cuairu:',
-'widthheightpage'      => '$1×$2, $3 páhinas',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'            => '(grandol el archivu: $1, MIME type: $2)',
 'file-info-size'       => '($1 × $2 pixel, grandol el archivu: $3, MIME type: $4)',
 'file-nohires'         => '<small>Nu disponibri a mayol resolución.</small>',

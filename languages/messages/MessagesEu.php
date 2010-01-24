@@ -698,7 +698,7 @@ Mesedez, detaile hauek eman itzazu egin nahi duzun edozein kontsulta egiteko gar
 'whitelistedittitle'               => 'Saioa hastea beharrezkoa da aldaketak egiteko',
 'whitelistedittext'                => '$1 behar duzu orrialdeak aldatu ahal izateko..',
 'confirmedittext'                  => 'Orrialdeetan aldaketak egin aurretik zure e-posta helbidea egiaztatu beharra daukazu. Mesedez, zehaztu eta egiaztatu zure e-posta helbidea [[Special:Preferences|hobespenetan]].',
-'nosuchsectiontitle'               => 'Ez da atala existitzen',
+'nosuchsectiontitle'               => 'Atala ez da aurkitu',
 'nosuchsectiontext'                => 'Existitzen ez den atala editatzen saiatu zara.',
 'loginreqtitle'                    => 'Saioa hastea beharrezkoa',
 'loginreqlink'                     => 'saioa hasi',
@@ -1749,17 +1749,19 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'newuserlog-autocreate-entry' => 'Automatikoki sorturiko kontua',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Erabiltzaile talde eskumenak',
-'listgrouprights-summary'         => 'Ondorengo zerrendak wikian dauden lankide taldeak agertzen dira, beraien eskubideekin.
+'listgrouprights'                      => 'Erabiltzaile talde eskumenak',
+'listgrouprights-summary'              => 'Ondorengo zerrendak wikian dauden lankide taldeak agertzen dira, beraien eskubideekin.
 Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako eskubideei buruz.',
-'listgrouprights-group'           => 'Taldea',
-'listgrouprights-rights'          => 'Eskumenak',
-'listgrouprights-helppage'        => 'Help:Talde eskumenak',
-'listgrouprights-members'         => '(kideen zerrenda)',
-'listgrouprights-addgroup'        => '{{PLURAL:$2|Taldea gehitu ahal duzu|Taldeak gehitu ahal dituzu}}: $1',
-'listgrouprights-removegroup'     => '{{PLURAL:$2|Taldea kendu ahal duzu|Taldeak kendu ahal dituzu}}: $1',
-'listgrouprights-addgroup-all'    => 'Talde guztiak gehitu daitezke',
-'listgrouprights-removegroup-all' => 'Talde guztiak kendu daitezke',
+'listgrouprights-group'                => 'Taldea',
+'listgrouprights-rights'               => 'Eskumenak',
+'listgrouprights-helppage'             => 'Help:Talde eskumenak',
+'listgrouprights-members'              => '(kideen zerrenda)',
+'listgrouprights-addgroup'             => '{{PLURAL:$2|Taldea gehitu ahal duzu|Taldeak gehitu ahal dituzu}}: $1',
+'listgrouprights-removegroup'          => '{{PLURAL:$2|Taldea kendu ahal duzu|Taldeak kendu ahal dituzu}}: $1',
+'listgrouprights-addgroup-all'         => 'Talde guztiak gehitu daitezke',
+'listgrouprights-removegroup-all'      => 'Talde guztiak kendu daitezke',
+'listgrouprights-addgroup-self-all'    => 'Talde guztiak norbere kontura gehitu',
+'listgrouprights-removegroup-self-all' => 'Talde guztiak norbere kontutik ezabatu',
 
 # E-mail user
 'mailnologin'      => 'Bidalketa helbiderik ez',
@@ -2258,7 +2260,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'fix-double-redirects'         => 'Hasierako izenburura zuzentzen duten birzuzenketa guztiak aldatu',
 'move-leave-redirect'          => 'Atzean birzuzenketa bat utzi',
 'protectedpagemovewarning'     => "'''Oharra:''' Orrialde hau babestua izan da, beraz administratzaile eskumenak dituztenek alda dezakete bakarrik.",
-'semiprotectedpagemovewarning' => "'''Oharra:''' Orrialde hau blokeatu dute, izena emanda duten erabiltzaileek soilik mugitu ahal dezaten.",
+'semiprotectedpagemovewarning' => "'''Oharra:''' Orrialde hau blokeatu dute, izena emanda duten erabiltzaileek soilik mugitu ahal dezaten. Erregistroko azken sarrera erakusten da jarraian erreferentzia gisa:",
 
 # Export
 'export'            => 'Orrialdeak esportatu',

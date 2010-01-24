@@ -2118,6 +2118,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-search-fulltext'         => 'Kërko faqet me këtë tekst',
 'tooltip-p-logo'                  => 'Figura e Faqes Kryesore',
 'tooltip-n-mainpage'              => 'Vizitoni Faqen kryesore',
+'tooltip-n-mainpage-description'  => 'Vizito faqen kryesore',
 'tooltip-n-portal'                => 'Mbi projektin, çka mund të bëni për të dhe ku gjenden faqet.',
 'tooltip-n-currentevents'         => 'Informacion rreth ngjarjeve aktuale.',
 'tooltip-n-recentchanges'         => 'Lista e ndryshimeve së fundmi në projekt',

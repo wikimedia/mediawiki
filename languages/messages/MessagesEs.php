@@ -683,7 +683,7 @@ Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
 'wrongpasswordempty'         => 'No has escrito una contraseña.
 Por favor, intente de nuevo.',
-'passwordtooshort'           => 'Comtraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
+'passwordtooshort'           => 'Las contraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
 'password-name-match'        => 'Tu contraseña debe ser diferente de tu nombre de usuario.',
 'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
@@ -1641,6 +1641,11 @@ Esta wiki está configurada como wiki pública.
 Para optima seguridad, img_auth.php está deshabilitado.',
 'img-auth-noread'       => 'Usuario no tiene acceso para leer "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'URL inválida: $1',
+'http-invalid-scheme' => 'Las URLs con el esquema "$1" no son compatibles',
+'http-request-error'  => 'Se ha producido un error al enviar la solicitud:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se pudo alcanzar la URL',
 'upload-curl-error6-text'  => 'La URL no pudo ser alcanzada. Por favor comprueba que la URL es correcta y el sitio web está funcionando.',
@@ -2050,11 +2055,11 @@ $NEWPAGE
 
 El resumen de edición es: $PAGESUMMARY $PAGEMINOREDIT
 
-Contacta al editor:
-correo electrónico: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
+Contacte al editor:
+Correo electrónico: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
 
-No habrá otras notificaciones en caso de cambios adicionales, a menos que visites esta página nuevamente.
+No habrá otras notificaciones en caso de cambios adicionales, a menos que visite esta página nuevamente.
 También puedes reestablecer las notificaciones para todas tus páginas vigiladas en tu página de vigilancia.
 
              El sistema de notificación de {{SITENAME}}.
@@ -2062,6 +2067,9 @@ También puedes reestablecer las notificaciones para todas tus páginas vigilada
 --
 Para cambiar las opciones de su lista de seguimiento, visite:
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Para borrar la página de su lista de seguimiento visite:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Retroalimentación y asistencia adicional:
 {{fullurl:{{MediaWiki:Helppage}}}}',
