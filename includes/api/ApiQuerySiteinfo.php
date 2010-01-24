@@ -365,6 +365,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$ret['author'] = is_array( $ext['author'] ) ?
 						implode( ', ', $ext['author' ] ) : $ext['author'];
 				}
+				if ( isset( $ext['url'] ) ) {
+				    $ret['url'] = $ext['url'];
+				}
 				if ( isset( $ext['version'] ) ) {
 						$ret['version'] = $ext['version'];
 				} elseif ( isset( $ext['svn-revision'] ) &&
