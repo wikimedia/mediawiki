@@ -39,7 +39,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('lugkr','http://lug-kr.sourceforge.net/cgi-bin/lugwiki.pl?$1',0),
 ('mathsongswiki','http://SeedWiki.com/page.cfm?wikiid=237&doc=$1',0),
 ('meatball','http://www.usemod.com/cgi-bin/mb.pl?$1',0),
-('mediazilla','http://bugzilla.wikipedia.org/$1',1),
+('mediazilla','https://bugzilla.wikimedia.org/$1',1),
 ('mediawikiwiki','http://www.mediawiki.org/wiki/$1',0),
 ('memoryalpha','http://www.memory-alpha.org/en/index.php/$1',0),
 ('metawiki','http://sunir.org/apps/meta.pl?$1',0),
