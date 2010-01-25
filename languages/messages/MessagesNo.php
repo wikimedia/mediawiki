@@ -24,7 +24,6 @@
  * @author Najami
  * @author Nghtwlkr
  * @author Nsaa
- * @author Piivaat
  * @author Purodha
  * @author Qaqqalik
  * @author Samuelsen
@@ -1617,6 +1616,11 @@ Denne wikien er satt opp som en offentlig wiki.
 For best mulig sikkerhet er img_auth.php slått av.',
 'img-auth-noread'       => 'Brukeren har ikke tilgang til å lese «$1».',
 
+# HTTP errors
+'http-invalid-url'    => 'Ugyldig internettadresse: $1',
+'http-invalid-scheme' => 'Internettadresser med «$1»-formen støttes ikke',
+'http-request-error'  => 'Feil ved sending av forespørsel:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikke nå adressen',
 'upload-curl-error6-text'  => 'Adressen kunne ikke nås. Vennligst dobbelsjekk at adressen er korrekt og at siden er oppe.',
@@ -2011,9 +2015,9 @@ Hvis du senere vil fjerne siden fra overvåkningslisten, klikk «Avslutt overvå
 'enotif_lastvisited'           => 'Se $1 for alle endringer siden ditt forrige besøk.',
 'enotif_lastdiff'              => 'Se $1 for å se denne endringen.',
 'enotif_anon_editor'           => 'anonym bruker $1',
-'enotif_body'                  => '$WATCHINGUSERNAME,
+'enotif_body'                  => 'Kjære $WATCHINGUSERNAME,
 
-{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende versjonen.
+{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED den $PAGEEDITDATE av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende revisjonen.
 
 $NEWPAGE
 
@@ -2023,16 +2027,21 @@ Kontakt brukeren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Det vil ikke komme flere påminnelser om endringer på denne siden med mindre du besøker den. Du kan også fjerne påminnelsesflagg for alle sider i overvåkningslisten din.
+Det vil ikke komme flere påminnelser om endringer på denne siden med mindre du besøker den.
+Du kan også fjerne påminnelsesflagg for alle sider i overvåkningslisten din.
 
 Med vennlig hilsen,
 {{SITENAME}}s påminnelsessystem
 
 --
-For å endre innstillingene i overvåkningslisten din, besøk {{fullurl:Special:Watchlist/edit}}
+For å endre innstillingene i overvåkningslisten din, besøk
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+For å slette siden fra overvåkningslisten din, besøk
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Tilbakemeldinger og videre assistanse:
-{{fullurl:Project:Hjelp}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Slett side',

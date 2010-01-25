@@ -1020,8 +1020,9 @@ $3 күрсәткән сәбәп: ''$2''",
 'grouppage-suppress'      => '{{ns:project}}:Тикшерүчеләр',
 
 # User rights log
-'rightslog'  => 'Кулланучының хокуклары көндәлеге',
-'rightsnone' => '(юк)',
+'rightslog'      => 'Кулланучының хокуклары көндәлеге',
+'rightslogentry' => '$1 кулланучысын $2 группасыннан $3 группасына күчерде',
+'rightsnone'     => '(юк)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'бу битне узгәртергә',
@@ -1451,6 +1452,7 @@ $1',
 'movelogpage'               => 'Күчерү көндәлеге',
 'movereason'                => 'Сәбәп:',
 'revertmove'                => 'кире кайту',
+'delete_and_move_reason'    => 'Күчерүне мөмкин итәр өчен бетерелде',
 'move-leave-redirect'       => 'Юнәлтүне калдырырга',
 
 # Export

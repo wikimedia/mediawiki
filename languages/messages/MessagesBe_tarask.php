@@ -2056,7 +2056,7 @@ $1",
 'enotif_body'                  => 'Шаноўны $WATCHINGUSERNAME,
 
 
-Старонка $PAGETITLE {{GRAMMAR:родны|{{SITENAME}}}} была $CHANGEDORCREATED $PAGEEDITDATE удзельнікам $PAGEEDITOR.
+Старонка $PAGETITLE {{GRAMMAR:родны|{{SITENAME}}}} была $CHANGEDORCREATED $PAGEEDITDATE $PAGEEDITOR, глядзіце цяперашнюю вэрсію на $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -2073,7 +2073,7 @@ $NEWPAGE
 
 --
 Каб зьмяніць устаноўкі сьпісу назіраньня, наведайце:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Зваротная сувязь і дапамога:
 {{fullurl:{{MediaWiki:Helppage}}}}',

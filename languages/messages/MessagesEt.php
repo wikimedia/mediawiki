@@ -1023,6 +1023,7 @@ Administraatorina võid seda näha. Üksikasju võib olla [{{fullurl:{{#Special:
 Ülemana saad seda vaadata. Võimalik, et üksikasjad on [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis].",
 'rev-deleted-no-diff'         => "Seda erinevust ei saa vaadata, kuna üks redaktsioonidest on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
+'rev-suppressed-no-diff'      => "Erinevusi ei saa vaadata, sest üks redaktsioonidest on '''kustutatud'''.",
 'rev-deleted-unhide-diff'     => "Üks selle lehekülje muudatustest on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
 Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
@@ -1169,7 +1170,7 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'viewprevnext'                     => 'Näita ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Otsingu sätted',
 'searchmenu-exists'                => "'''Lehekülg pealkirjaga \"[[:\$1]]\" on selles vikis olemas.'''",
-'searchmenu-new'                   => "'''Loo lehekülg pealkirjaga \"[[:\$1]]\" siia vikisse!'''",
+'searchmenu-new'                   => "'''Loo lehekülg pealkirjaga \"[[:\$1]]\".'''",
 'searchhelp-url'                   => 'Help:Sisukord',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Sirvi selle eesliitega lehekülgi]]',
 'searchprofile-articles'           => 'Sisuleheküljed',
@@ -1663,6 +1664,9 @@ Lubatud on ainult juurdepääs failidele.',
 See viki on seadistatud kui avalik viki.
 Turvakaalutlustel on img_auth.php kasutus keelatud.',
 'img-auth-noread'       => 'Faili "$1" lugemiseks vajalik juurdepääs puudub.',
+
+# HTTP errors
+'http-invalid-url' => 'Vigane internetiaadress: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Internetiaadress pole kättesaadav',

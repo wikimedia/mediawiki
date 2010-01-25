@@ -749,9 +749,9 @@ Gallout a rit eilañ-pegañ an destenn en ur restr skrid all hag enrollañ anezh
 Setu an displegadenn lakaet gant ar merour en deus stanket an traoù : $1",
 'protectedpagewarning'             => "'''KEMENN DIWALL: Stanket eo bet ar bajenn-mañ.
 N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.'''",
-'semiprotectedpagewarning'         => "''Notenn :''' Gwarezet eo ar bajenn-mañ; n'eus nemet an implijerien bet krouet ur gont ganto a c'hall degas kemmoù enni.",
+'semiprotectedpagewarning'         => "''Notenn :''' Gwarezet eo ar bajenn-mañ; n'eus nemet an implijerien bet krouet ur gont ganto a c'hall degas kemmoù enni. Kasadenn ziwezhañ ar marilh a zo diskouezet amañ a-is evel dave :",
 'cascadeprotectedwarning'          => "'''Diwallit :''' Prennet eo ar bajenn-mañ. N'eus nemet ar verourien a c'hall degas kemmoù enni peogwir he c'haver e-touez ar {{PLURAL:\$1|bajenn|pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh \"skalierad\" :",
-'titleprotectedwarning'            => "'''DIWALLIT :  Gwarezet eo bet ar bajenn-mañ e doare ma ranker kaout [[Special:ListGroupRights|gwirioù dibar]] a-benn krouiñ anezhi.'''",
+'titleprotectedwarning'            => "'''DIWALLIT :  Gwarezet eo bet ar bajenn-mañ e doare ma ranker kaout [[Special:ListGroupRights|gwirioù dibar]] a-benn krouiñ anezhi.''' Kasadenn ziwezhañ ar marilh a zo diskouezet amañ a-is evel dave :",
 'templatesused'                    => '{{PLURAL:$1|Patrom|Patromoù}} implijet war ar bajenn-mañ :',
 'templatesusedpreview'             => '{{PLURAL:$1|Patrom|Patromoù}} implijet er rakweladenn-mañ :',
 'templatesusedsection'             => '{{PLURAL:$1|Patrom|Patromoù}} implijet er rann-mañ :',
@@ -1507,6 +1507,10 @@ N'haller monet nemet d'ar restroù.",
 Kefluniet eo bet ar wiki-mañ evel ur wiki foran.
 Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'img-auth-noread'       => 'N\'eo ket aotreet an implijer da lenn "$1"',
+
+# HTTP errors
+'http-invalid-url'   => 'URL direizh : $1',
+'http-request-error' => "Ur fazi 'zo bet pa veze kaset ar reked",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "N'eus ket bet gallet tizhout an URL",
@@ -2347,8 +2351,8 @@ Diverkañ anezhañ a fell deoc'h ober evit reiñ lec'h d'an adkas ?",
 'imageinvalidfilename'         => 'Fall eo anv ar restr tal',
 'fix-double-redirects'         => 'Hizivaat an holl adkasoù a gas war-du an titl orin',
 'move-leave-redirect'          => 'Lezel un adkas war-du an titl nevez',
-'protectedpagemovewarning'     => "'''DIWALLIT :''' Prennet eo bet ar bajenn-mañ, setu n'eus nemet an implijerien ganto gwrioù merañ a c'hall adenvel anezhi.",
-'semiprotectedpagemovewarning' => "'''NOTENN :''' Prennet eo bet ar bajenn-mañ, setu n'hall bezañ adanvet nemet gant an implijerien enskrivet",
+'protectedpagemovewarning'     => "'''DIWALLIT :''' Prennet eo bet ar bajenn-mañ, setu n'eus nemet an implijerien ganto gwrioù merañ a c'hall adenvel anezhi. Kasadenn ziwezhañ ar marilh a zo diskouezet amañ a-is evel dave :",
+'semiprotectedpagemovewarning' => "'''NOTENN :''' Prennet eo bet ar bajenn-mañ, setu n'hall bezañ adanvet nemet gant an implijerien enskrivet. Kasadenn ziwezhañ ar marilh a zo diskouezet amañ a-is evel dave :",
 'move-over-sharedrepo'         => "== Bez' ez eus eus ar restr-se dija ==
 Bez' ez eus eus [[:$1]] war ur sanailh kenrannet dija. Ma cheñchit anv ar restr ne viot ket mui evit tizhout ar restr zo er sanailh kenrannet.",
 'file-exists-sharedrepo'       => "Implijet c'hoazh eo an anv dibabet gant ur restr zo war ur sanailh kenrannet.
