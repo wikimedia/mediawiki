@@ -118,7 +118,7 @@
 			</choice>
 			
 			<!-- Zero or One sets of discussion threading data -->
-			<element minOccurs="0" maxOccurs="1" type="mw:DiscussionThreadingInfo" />
+			<element name="discussionthreadinginfo" minOccurs="0" maxOccurs="1" type="mw:DiscussionThreadingInfo" />
 		</sequence>
 	</complexType>
 	
