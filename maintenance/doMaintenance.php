@@ -32,7 +32,7 @@ if ( !defined( 'DO_MAINTENANCE' ) ) {
 }
 
 if( !$maintClass || !class_exists( $maintClass ) ) {
-	echo "\$maintClass is not set or is set to a non-existent class.";
+	echo "\$maintClass is not set or is set to a non-existent class.\n";
 	exit( 1 );
 }
 
