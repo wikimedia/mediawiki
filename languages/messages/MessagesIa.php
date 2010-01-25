@@ -1592,7 +1592,9 @@ Pro securitate optimal, img_auth.php es disactivate.',
 'img-auth-noread'       => 'Le usator non ha accesso pro leger "$1".',
 
 # HTTP errors
-'http-invalid-url' => 'URL invalide: $1',
+'http-invalid-url'    => 'URL invalide: $1',
+'http-invalid-scheme' => 'URLs con le schema "$1" non es supportate',
+'http-request-error'  => 'Error durante le invio del requesta:',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',

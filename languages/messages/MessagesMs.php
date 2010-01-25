@@ -1128,7 +1128,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'prefs-watchlist-token'         => 'Token senarai pantau:',
 'prefs-misc'                    => 'Pelbagai',
 'prefs-resetpass'               => 'Tukar kata laluan',
-'prefs-email'                   => 'Pilihan email',
+'prefs-email'                   => 'Pilihan e-mel',
 'prefs-rendering'               => 'Penampilan',
 'saveprefs'                     => 'Simpan',
 'resetprefs'                    => 'Set semula',

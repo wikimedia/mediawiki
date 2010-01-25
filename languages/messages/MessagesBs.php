@@ -1711,6 +1711,11 @@ Ova wiki je postavljena kao javna wiki.
 Za optimalnu sigurnost, img_auth.php je onemogućena.',
 'img-auth-noread'       => 'Korisnik nema pristup za čitanje "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'Nevaljan URL: $1',
+'http-invalid-scheme' => 'URLovi za koje šema "$1" nije podržana',
+'http-request-error'  => 'Greška pri slanju zahtjeva:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ovaj URL nije bilo moguće otvoriti',
 'upload-curl-error6-text'  => 'URL koji je naveden nije dostupan.
@@ -2117,7 +2122,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_lastvisited'           => 'Pogledajte $1 za sve izmjene od vaše posljednje posjete.',
 'enotif_lastdiff'              => 'Vidi $1 da pregledate ovu promjenu.',
 'enotif_anon_editor'           => 'anonimni korisnik $1',
-'enotif_body'                  => 'Dragi $WATCHINGUSERNAME,
+'enotif_body'                  => 'Poštovani $WATCHINGUSERNAME,
 
 {{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,
 pogledajte $PAGETITLE_URL za trenutnu verziju.
@@ -2138,6 +2143,9 @@ Također možete da resetujete zastavice za obaviještenja za sve Vaše praćene
 --
 Da promjenite podešavanja vezana za spisak praćenih članaka posjetite
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Da obrišete stranicu iz Vašeg spiska praćenja posjetite 
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Fidbek i dalja pomoć:
 {{fullurl:{{MediaWiki:Helppage}}}}',

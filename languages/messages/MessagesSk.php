@@ -1697,6 +1697,11 @@ Nastavená wiki je verejná.
 Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 'img-auth-noread'       => 'Používateľ nemá prístup na čítanie „$1“.',
 
+# HTTP errors
+'http-invalid-url'    => 'Neplatný URL: $1',
+'http-invalid-scheme' => 'URL so schémou „$1“ nie sú podporované',
+'http-request-error'  => 'Chyba pri posielaní požiadavky:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nedostupný URL',
 'upload-curl-error6-text'  => 'Poskytnutý URL nebol dostupný. Prosím, skontrolujte znova, že URL je správny a lokalita je dostupná.',
@@ -2112,6 +2117,9 @@ Nedostanete ďalšie upozornenia, aj ak bude stránka znovu upravovaná, kým ne
 --
 Zmeniť nastavenia vašich sledovaných stránok môžete na
 {{fullurl:Special:Watchlist/edit}}
+
+Zmazať stránku z vášho zoznamu sledovaných môžete na
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Návrhy a ďalšia pomoc:
 {{fullurl:{{int:Helppage}}}}',

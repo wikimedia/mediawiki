@@ -997,10 +997,10 @@ Ela foi, aparentemente, eliminada.',
 Ela já existia.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas custosas a funções do analisador "parser".
+'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas a funções exigentes do analisador sintáctico.
 
-Deveria ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento {{PLURAL:$1|há $1 chamada|existem $1 chamadas}}.',
-'expensive-parserfunction-category'       => 'Páginas com demasiadas chamadas custosas a funções do analisador "parser"',
+Devia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLURAL:$1|chamada|chamadas}}.',
+'expensive-parserfunction-category'       => 'Páginas com demasiadas chamadas a funções exigentes',
 'post-expand-template-inclusion-warning'  => 'Aviso: O tamanho de inclusão de predefinições é demasiado grande, algumas predefinições não serão incluídas.',
 'post-expand-template-inclusion-category' => 'Páginas onde o tamanho de inclusão de predefinições é excedido',
 'post-expand-template-argument-warning'   => 'Aviso: Esta página contém pelo menos um argumento de predefinição com um tamanho expandido demasiado grande.
@@ -1008,6 +1008,7 @@ Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissões de argumentos em predefinições',
 'parser-template-loop-warning'            => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Atingido o limite de profundidade de recursividade de predefinição ($1)',
+'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas foi excedido ($1)',
 
 # "Undo" feature
 'undo-success' => 'A edição pode ser desfeita.
@@ -1738,6 +1739,11 @@ Esta wiki está configurada como uma wiki pública.
 Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'img-auth-noread'       => 'O utilizador não tem acesso de leitura ao ficheiro "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'URL inválida: $1',
+'http-invalid-scheme' => 'URLs com o esquema "$1" não são suportadas',
+'http-request-error'  => 'Ocorreu um erro ao enviar o pedido:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível aceder à URL',
 'upload-curl-error6-text'  => 'Não foi possível aceder à URL.
@@ -2139,7 +2145,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
 
 $NEWPAGE
 
@@ -2149,13 +2155,17 @@ Contacte o editor:
 correio electrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Até que visite esta página, não haverá lugar a mais notificações no caso de alterações futuras. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas.
+Até que visite esta página, não haverá lugar a mais notificações no caso de alterações futuras.
+Pode também restaurar as marcações de notificação para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
 
              O seu amigável sistema de notificação da {{SITENAME}}
 
 --
 Para alterar as suas preferências da lista de páginas vigiadas, visite
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Para retirar a página da sua lista de páginas vigiadas, visite
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Contacto e assistência:
 {{fullurl:{{MediaWiki:Helppage}}}}',
