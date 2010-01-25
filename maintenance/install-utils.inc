@@ -44,16 +44,14 @@ function install_version_checks() {
 	}
 
 	$test = new PhpRefCallBugTester;
-	$ok = false;
-	call_user_func_array( array( $test, 'test' ), array( &$ok ) );
-	if ( !$ok ) {
- 		echo "PHP 5.2.11, 5.2.12, and 5.3.1 (your version: " . phpversion() . ") are not compatible with\n" .
-		"MediaWiki due to a bug involving reference parameters to __call. Upgrade to\n" .
-		"PHP 5.3.2 (5.2.13 for 5.2 users), or downgrade to PHP 5.3.0 (5.2.10 for 5.2\n" .
-		"users) to fix this. ABORTING (see http://bugs.php.net/bug.php?id=50394 for details)\n";
+	$test->execute();
+	if ( !$test->ok ) {
+		echo "PHP 5.3.1 is not compatible with MediaWiki due to a bug involving\n" .
+			"reference parameters to __call. Upgrade to PHP 5.3.2 or higher, or \n" .
+			"downgrade to PHP 5.3.0 to fix this.\n" .
+			"ABORTING (see http://bugs.php.net/bug.php?id=50394 for details)\n";
 		die( 1 );
 	}
-
 
 	global $wgCommandLineMode;
 	$wgCommandLineMode = true;
@@ -84,11 +82,26 @@ class PhpXmlBugTester {
 }
 
 /**
- * Test for PHP bug #50394
+ * Test for PHP bug #50394 (PHP 5.3.x conversion to null only, not 5.2.x)
  */
 class PhpRefCallBugTester {
+	public $ok = false;
+
 	function __call( $name, $args ) {
-		$args[0] = true;
+		$old = error_reporting( E_ALL & ~E_WARNING );
+		call_user_func_array( array( $this, 'checkForBrokenRef' ), $args );
+		error_reporting( $old );
+	}
+
+	function checkForBrokenRef( &$var ) {
+		if ( $var ) {
+			$this->ok = true;
+		}
+	}
+
+	function execute() {
+		$var = true;
+		call_user_func_array( array( $this, 'foo' ), array( &$var ) );
 	}
 }
 
