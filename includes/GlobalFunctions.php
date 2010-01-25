@@ -2271,9 +2271,7 @@ function wfSpecialList( $page, $details ) {
  */
 function wfUrlProtocols() {
 	global $wgUrlProtocols;
-	
-	// This function is called a lot, cache its return value
-	// TODO: Cache this in memcached instead?
+
 	static $retval = null;
 	if ( !is_null( $retval ) )
 		return $retval;
@@ -2289,7 +2287,6 @@ function wfUrlProtocols() {
 	} else {
 		$retval = $wgUrlProtocols;
 	}
-	
 	return $retval;
 }
 
