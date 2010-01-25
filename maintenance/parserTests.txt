@@ -1995,7 +1995,7 @@ Magic Word: {{NUMBEROFFILES}}
 !! input
 {{NUMBEROFFILES}}
 !! result
-<p>1
+<p>2
 </p>
 !! end
 
