@@ -1119,6 +1119,36 @@ class Parser
 			return $text;
 		else
 		{
+			# If there is an odd number of both bold and italics, it is likely
+			# that one of the bold ones was meant to be an apostrophe followed
+			# by italics. Which one we cannot know for certain, but it is more
+			# likely to be one that has a single-letter word before it.
+			if ( ( $numbold % 2 == 1 ) && ( $numitalics % 2 == 1 ) )
+			{
+
+				# This algorithm moves the literal quote at the 
+				# right of a single word, at the right of a 
+				# multiletter word or at the right of a space.
+				# Otherwise, it does nothing.
+				#
+				# The original if-based version can be found at
+				# http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/parser/Parser.php?revision=61519&view=markup
+				#
+				# Unlike the original one, here we convert the 
+				# texty quotes to &#39; which shouldn't matter.
+
+				$quoteBalancerReplacements = array( 
+												"/(?<= [^ ])'''(?!')/"=>"&#39;''", 
+												"/(?<=[^ '])'''(?!')/"=>"&#39;''", 
+												"/(^|(?<=[^'])) '''(?!')/"=>" &#39;''");
+
+				foreach( $quoteBalancerReplacements as $k => $v) {
+					$text = preg_replace($k, $v, $text, 1, $count);
+					if ($count != 0)
+						break;
+				}
+			}
+
 			# Split in groups of 2, 3, 5 or 6 apostrophes.
 			# If there are ever four apostrophes, assume the first is supposed to
 			# be text, and the remaining three constitute mark-up for bold text.
@@ -1126,62 +1156,6 @@ class Parser
 			# text except for the last 6.		
 			$arr = preg_split( "/('{2,3}(?:''')?)(?!')/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
-
-			# If there is an odd number of both bold and italics, it is likely
-			# that one of the bold ones was meant to be an apostrophe followed
-			# by italics. Which one we cannot know for certain, but it is more
-			# likely to be one that has a single-letter word before it.
-			if ( ( $numbold % 2 == 1 ) && ( $numitalics % 2 == 1 ) )
-			{
-				$i = 0;
-				
-				# These are indexes to the /next/ array entry than the 
-				# one holding the text matching the condition which gives name 
-				# to the variable.
-				$firstsingleletterword = -1;
-				$firstmultiletterword = -1;
-				$firstspace = -1;
-				
-				foreach ( $arr as $r )
-				{
-					# Filter the "'''". Separators are on odd positions. 
-					# $arr[0] will be an empty string if needed.
-					if ( ( $i % 2 == 1 ) and ( strlen( $r ) == 3 ) )
-					{
-						$x1 = substr ($arr[$i-1], -1);
-						$x2 = substr ($arr[$i-1], -2, 1);
-						if ($x1 === ' ') {
-							if ($firstspace == -1) $firstspace = $i;
-						} elseif ($x2 === ' ') {
-							if ($firstsingleletterword == -1) $firstsingleletterword = $i;
-						} elseif ($arr[$i-1] !== "") {
-							if ($firstmultiletterword == -1) $firstmultiletterword = $i;
-						}
-					}
-					$i++;
-				}
-
-				# If there is a single-letter word, use it!
-				if ($firstsingleletterword > -1)
-				{
-					$arr [ $firstsingleletterword ] = "''";
-					$arr [ $firstsingleletterword-1 ] .= "'";
-				}
-				# If not, but there's a multi-letter word, use that one.
-				elseif ($firstmultiletterword > -1)
-				{
-					$arr [ $firstmultiletterword ] = "''";
-					$arr [ $firstmultiletterword-1 ] .= "'";
-				}
-				# ... otherwise use the first one that has neither.
-				# (notice that it is possible for all three to be -1 if, for example,
-				# there is only one pentuple-apostrophe in the line)
-				elseif ($firstspace > -1)
-				{
-					$arr [ $firstspace ] = "''";
-					$arr [ $firstspace-1 ] .= "'";
-				}
-			}
 
 			# Now let's actually convert our apostrophic mush to HTML!
 			$output = ''; # Processed text
