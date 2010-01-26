@@ -381,10 +381,17 @@ class OutputPage {
 	public function isArticle() { return $this->mIsarticle; }
 	public function setPrintable() { $this->mPrintable = true; }
 	public function isPrintable() { return $this->mPrintable; }
-	public function getFeedAppendQuery() { return $this->mFeedLinksAppendQuery; }
 	public function disable() { $this->mDoNothing = true; }
 	public function isDisabled() { return $this->mDoNothing; }
 
+	/**
+	 * Add or remove feed links in the page header
+	 * This is mainly kept for backward compatibility, see OutputPage::addFeedLink()
+	 * for the new version
+	 * @see addFeedLink()
+	 *
+	 * @param $show Boolean: true: add default feeds, false: remove all feeds
+	 */
 	public function setSyndicated( $show = true ) {
 		if ( $show ) {
 			$this->setFeedAppendQuery( false );
@@ -393,6 +400,15 @@ class OutputPage {
 		}
 	}
 
+	/**
+	 * Add default feeds to the page header
+	 * This is mainly kept for backward compatibility, see OutputPage::addFeedLink()
+	 * for the new version
+	 * @see addFeedLink()
+	 *
+	 * @param $val String: query to append to feed links or false to output
+	 *        default links
+	 */
 	public function setFeedAppendQuery( $val ) {
 		global $wgFeedClasses, $wgAdvertisedFeedTypes;
 
@@ -407,11 +423,24 @@ class OutputPage {
 		}
 	}
 
+	/**
+	 * Add a feed link to the page header
+	 *
+	 * @param $format String: feed type, should be a key of $wgFeedClasses
+	 * @param $href String: URL
+	 */
 	public function addFeedLink( $format, $href ) {
 		$this->mFeedLinks[$format] = $href;
 	}
 
+	/**
+	 * Return the number of feed links that will be added to the page header
+	 *
+	 * @return Boolean
+	 */
 	public function isSyndicated() { return count($this->mFeedLinks); }
+
+	public function getFeedAppendQuery() { return $this->mFeedLinksAppendQuery; }
 
 	public function setArticleRelated( $v ) {
 		$this->mIsArticleRelated = $v;
