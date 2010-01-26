@@ -410,7 +410,7 @@ class OutputPage {
 	 *        default links
 	 */
 	public function setFeedAppendQuery( $val ) {
-		global $wgFeedClasses, $wgAdvertisedFeedTypes;
+		global $wgAdvertisedFeedTypes;
 
 		$this->mFeedLinks = array();
 
@@ -1846,7 +1846,7 @@ class OutputPage {
 			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
 			# If so, use it instead.
 
-			global $wgOverrideSiteFeed, $wgSitename, $wgFeedClasses, $wgAdvertisedFeedTypes;
+			global $wgOverrideSiteFeed, $wgSitename, $wgAdvertisedFeedTypes;
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 
 			if ( $wgOverrideSiteFeed ) {
