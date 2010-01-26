@@ -49,7 +49,9 @@ class SyntaxChecker extends Maintenance {
 		// ParseKit is broken on PHP 5.3+, disabled until this is fixed
 		$useParseKit = function_exists( 'parsekit_compile_file' ) && version_compare( PHP_VERSION, '5.3', '<' );
 
-		$this->output( "Checking syntax (this can take a really long time)...\n\n" );
+		$str = 'Checking syntax (using ' . ( $useParseKit ? 
+			'parsekit)' : ' php -l, this can take a long time)' );
+		$this->output( $str );
 		foreach( $this->mFiles as $f ) {
 			if( $useParseKit ) {
 				$this->checkFileWithParsekit( $f );
@@ -127,7 +129,7 @@ class SyntaxChecker extends Maintenance {
 			return;
 		}
 
-		$this->output( "Building file list..." );
+		$this->output( 'Building file list...', 'listfiles' );
 
 		// Only check files in these directories. 
 		// Don't just put $IP, because the recursive dir thingie goes into all subdirs
@@ -154,7 +156,7 @@ class SyntaxChecker extends Maintenance {
 			$this->mFiles[] = "$IP/AdminSettings.php";
 		}
 
-		$this->output( "done.\n" );
+		$this->output( 'done.', 'listfiles' );
 	}
 	
 	/**
