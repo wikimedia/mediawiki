@@ -96,7 +96,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addJoinConds( array(
 				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=u1.user_id' ),
 				$u2 => array( 'LEFT JOIN', 'ipb_by=u2.user_id' ) ) );
-			$this->addFields( array( 'ipb_reason', 'u2.user_name blocker_name' ) );
+			$this->addFields( array( 'ipb_reason', 'u2.user_name AS blocker_name' ) );
 		}
 
 		$this->addOption( 'LIMIT', $sqlLimit );
