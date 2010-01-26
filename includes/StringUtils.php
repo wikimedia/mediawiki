@@ -179,6 +179,14 @@ class StringUtils {
 			return new ArrayIterator( explode( $separator, $subject ) );
 		}
 	}
+
+	/**
+	 * Workalike for preg_split() with limited memory usage.
+	 * Returns an Iterator
+	 */
+	static function preg_split( $pattern, $subject, $limit = -1, $flags = 0 ) {
+		return new PregSplitIterator( $pattern, $subject, $limit, $flags );
+	}
 }
 
 /**
@@ -409,3 +417,82 @@ class ExplodeIterator implements Iterator {
 	}
 }
 
+
+/**
+ * An iterator which works exactly like:
+ * 
+ * foreach ( preg_split( $pattern, $s, $limit, $flags ) as $element ) {
+ *    ...
+ * }
+ *
+ * Except it doesn't use huge amounts of memory when $limit is -1
+ *
+ * The flag PREG_SPLIT_OFFSET_CAPTURE isn't supported.
+ */
+class PregSplitIterator implements Iterator {
+	// The subject string
+	var $pattern, $subject, $originalLimit, $flags;
+
+	// The last extracted group of items.
+	var $smallArray;
+
+	// The position on the iterator.
+	var $curPos;
+
+	const MAX_LIMIT = 100;
+
+	/** 
+	 * Construct a PregSplitIterator
+	 */
+	function __construct( $pattern, $s, $limit, $flags) {
+		$this->pattern = $pattern;
+		$this->subject = $s;
+		$this->originalLimit = $limit;
+		$this->flags = $flags;
+
+		$this->rewind();
+	}
+
+	private function effectiveLimit() {
+		if ($this->originalLimit == -1) {
+			return self::MAX_LIMIT + 1;
+		} else if ($this->limit > self::MAX_LIMIT) {
+			$this->limit -= self::MAX_LIMIT;
+			return self::MAX_LIMIT + 1;
+		} else {
+			$old = $this->limit;
+			$this->limit = 0;
+			return $old;
+		}
+	}
+
+	function rewind() {
+		$this->curPos = 0;
+		$this->limit = 	$this->originalLimit;
+		if ($this->limit == -1) $this->limit = self::MAX_LIMIT;
+		$this->smallArray = preg_split( $this->pattern, $this->subject, $this->effectiveLimit(), $this->flags);
+	}
+
+	function current() {
+		return $this->smallArray[$this->curPos % self::MAX_LIMIT];
+	}
+
+	function key() {
+		return $this->curPos;
+	}
+
+	function next() {
+		$this->curPos++;
+		if ( $this->curPos % self::MAX_LIMIT == 0 ) {
+			# Last item contains the rest unsplitted.
+			if ($this->limit > 0) {
+				$this->smallArray = preg_split( $this->pattern, $this->smallArray[self::MAX_LIMIT], $this->effectiveLimit(), $this->flags);
+			}
+		}
+		return;
+	}
+
+	function valid() {
+		return $this->curPos % self::MAX_LIMIT < count($this->smallArray);
+	}
+}

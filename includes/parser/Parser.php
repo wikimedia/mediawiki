@@ -1154,7 +1154,7 @@ class Parser
 			# be text, and the remaining three constitute mark-up for bold text.
 			# If there are more than 6 apostrophes in a row, assume they're all
 			# text except for the last 6.		
-			$arr = preg_split( "/('{2,3}(?:''')?)(?!')/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+			$arr = Stringutils::preg_split( "/('{2,3}(?:''')?)(?!')/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
 
 			# Now let's actually convert our apostrophic mush to HTML!
