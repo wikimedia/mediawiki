@@ -1112,35 +1112,20 @@ class Parser
 	 * Helper function for doAllQuotes()
 	 */
 	public function doQuotes( $text ) {
-		# Split in groups of 2, 3, 5 or 6 apostrophes.
-		# If there are ever four apostrophes, assume the first is supposed to
-		# be text, and the remaining three constitute mark-up for bold text.
-		# If there are more than 6 apostrophes in a row, assume they're all
-		# text except for the last 6.		
-		$arr = preg_split( "/('{2,3}(?:''')?)(?!')/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		# Counts the number of occurrences of bold and italics mark-ups.
+		self::countBoldAndItalic($text, $numbold, $numitalics);
 		
-		if ( count( $arr ) == 1 )
+		if ( ( $numbold == 0 ) && ( $numitalics == 0 ) )
 			return $text;
 		else
 		{
-			# First, do some preliminary work. This may shift some apostrophes from
-			# being mark-up to being text. It also counts the number of occurrences
-			# of bold and italics mark-ups.
-			$i = 0;
-			$numbold = 0;
-			$numitalics = 0;
-			foreach ( $arr as $r )
-			{
-				if ( ( $i % 2 ) == 1 )
-				{
-					# Count the number of occurrences of bold and italics mark-ups.
-					if ( strlen( $arr[$i] ) == 2 )      { $numitalics++;             }
-					elseif ( strlen( $arr[$i] ) == 3 ) { $numbold++;                }
-					elseif ( strlen( $arr[$i] ) == 5 ) { $numitalics++; $numbold++; }
-					elseif ( strlen( $arr[$i] ) == 6 ) { $numbold+=2; }
-				}
-				$i++;
-			}
+			# Split in groups of 2, 3, 5 or 6 apostrophes.
+			# If there are ever four apostrophes, assume the first is supposed to
+			# be text, and the remaining three constitute mark-up for bold text.
+			# If there are more than 6 apostrophes in a row, assume they're all
+			# text except for the last 6.		
+			$arr = preg_split( "/('{2,3}(?:''')?)(?!')/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+
 
 			# If there is an odd number of both bold and italics, it is likely
 			# that one of the bold ones was meant to be an apostrophe followed
@@ -1285,6 +1270,57 @@ class Parser
 				$output .= '<b><i>'.$buffer.'</i></b>';
 			return $output;
 		}
+	}
+
+	/**
+	 * Counts the number of bold and italic items from a line of text.
+	 * Helper function for doQuotes()
+	 */
+	private static function countBoldAndItalic($text, &$numBold, &$numItalics) {
+		$numBold = 0;
+		$numItalics = 0;
+		$offset = 0;
+
+		do {
+			$offset = strpos($text, "'", $offset);
+			if ($offset === false)
+				return;
+
+			$quoteLen = strspn($text, "'", $offset);
+			$offset += $quoteLen;
+
+			switch ($quoteLen) {
+				case 0:
+				case 1:
+					break;
+
+				case 2:
+					$numItalics++;
+					break;
+
+				case 3:
+					$numBold++;
+					break;
+
+				case 4:
+					# If there are ever four apostrophes, assume the first is supposed to
+					# be text, and the remaining three constitute mark-up for bold text.
+					$numBold++;
+					$numItalics++;
+					break;
+
+				case 5:
+					$numItalics++;
+					$numBold++;
+					break;
+
+				case 6:
+				default:
+					# If there are more than 6 apostrophes in a row, assume they're all
+					# text except for the last 6.
+					$numBold+=2;
+			}
+		} while (true);
 	}
 
 	/**
