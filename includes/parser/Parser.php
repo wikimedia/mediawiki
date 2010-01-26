@@ -213,7 +213,7 @@ class Parser
 		 * Must not consist of all title characters, or else it will change
 		 * the behaviour of <nowiki> in a link.
 		 */
-		#$this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
+		# $this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
 		# Changed to \x7f to allow XML double-parsing -- TS
 		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
 
@@ -338,7 +338,7 @@ class Parser
 			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&nbsp;\\2',
 			# french spaces, Guillemet-right
 			'/(\\302\\253) /' => '\\1&nbsp;',
-			'/&nbsp;(!\s*important)/' => ' \\1', #Beware of CSS magic word !important, bug #11874.
+			'/&nbsp;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 
@@ -556,7 +556,7 @@ class Parser
 		$taglist = implode( '|', $elements );
 		$start = "/<($taglist)(\\s+[^>]*?|\\s*?)(\/?" . ">)|<(!--)/i";
 
-		while ( $text != '' ) {
+		while ( $text !== '' ) {
 			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
 			$stripped .= $p[0];
 			if( count( $p ) < 5 ) {
@@ -723,11 +723,11 @@ class Parser
 				array_push( $tr_history , false );
 				array_push( $tr_attributes , '' );
 				array_push( $has_opened_tr , false );
-			} else if ( count ( $td_history ) == 0 ) {
+			} elseif ( count ( $td_history ) == 0 ) {
 				// Don't do any of the following
 				$out .= $outLine."\n";
 				continue;
-			} else if ( substr ( $line , 0 , 2 ) === '|}' ) {
+			} elseif ( substr ( $line , 0 , 2 ) === '|}' ) {
 				// We are ending a table
 				$line = '</table>' . substr ( $line , 2 );
 				$last_tag = array_pop ( $last_tag_history );
@@ -745,7 +745,7 @@ class Parser
 				}
 				array_pop ( $tr_attributes );
 				$outLine = $line . str_repeat( '</dd></dl>' , $indent_level );
-			} else if ( substr ( $line , 0 , 2 ) === '|-' ) {
+			} elseif ( substr ( $line , 0 , 2 ) === '|-' ) {
 				// Now we have a table row
 				$line = preg_replace( '#^\|-+#', '', $line );
 
@@ -773,7 +773,7 @@ class Parser
 				array_push ( $td_history , false );
 				array_push ( $last_tag_history , '' );
 			}
-			else if ( $first_character === '|' || $first_character === '!' || substr ( $line , 0 , 2 )  === '|+' ) {
+			elseif ( $first_character === '|' || $first_character === '!' || substr ( $line , 0 , 2 )  === '|+' ) {
 				// This might be cell elements, td, th or captions
 				if ( substr ( $line , 0 , 2 ) === '|+' ) {
 					$first_character = '+';
@@ -818,9 +818,9 @@ class Parser
 
 					if ( $first_character === '|' ) {
 						$last_tag = 'td';
-					} else if ( $first_character === '!' ) {
+					} elseif ( $first_character === '!' ) {
 						$last_tag = 'th';
-					} else if ( $first_character === '+' ) {
+					} elseif ( $first_character === '+' ) {
 						$last_tag = 'caption';
 					} else {
 						$last_tag = '';
@@ -835,7 +835,7 @@ class Parser
 					// be mistaken as delimiting cell parameters
 					if ( strpos( $cell_data[0], '[[' ) !== false ) {
 						$cell = "{$previous}<{$last_tag}>{$cell}";
-					} else if ( count ( $cell_data ) == 1 )
+					} elseif ( count ( $cell_data ) == 1 )
 						$cell = "{$previous}<{$last_tag}>{$cell_data[0]}";
 					else {
 						$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
@@ -1136,7 +1136,7 @@ class Parser
 					}
 					# If there are more than 6 apostrophes in a row, assume they're all
 					# text except for the last 6.
-					else if ( strlen( $arr[$i] ) > 6 )
+					elseif ( strlen( $arr[$i] ) > 6 )
 					{
 						$arr[$i-1] .= str_repeat( "'", strlen( $arr[$i] ) - 6 );
 						$arr[$i] = "''''''";
@@ -1144,9 +1144,9 @@ class Parser
 					# Count the number of occurrences of bold and italics mark-ups.
 					# We are not counting sequences of five apostrophes.
 					if ( strlen( $arr[$i] ) == 2 )      { $numitalics++;             }
-					else if ( strlen( $arr[$i] ) == 3 ) { $numbold++;                }
-					else if ( strlen( $arr[$i] ) == 5 ) { $numitalics++; $numbold++; }
-					else if ( strlen( $arr[$i] ) == 6 ) { $numbold+=2; }
+					elseif ( strlen( $arr[$i] ) == 3 ) { $numbold++;                }
+					elseif ( strlen( $arr[$i] ) == 5 ) { $numitalics++; $numbold++; }
+					elseif ( strlen( $arr[$i] ) == 6 ) { $numbold+=2; }
 				}
 				$i++;
 			}
@@ -1159,25 +1159,25 @@ class Parser
 			{
 				$i = 0;
 				
-				#These are indexes to the /next/ array entry than the 
-				#one holding the text matching the condition.
+				# These are indexes to the /next/ array entry than the 
+				# one holding the text matching the condition.
 				$firstsingleletterword = -1;
 				$firstmultiletterword = -1;
 				$firstspace = -1;
 				
 				foreach ( $arr as $r )
 				{
-					#Filter the "'''". Separators are on odd positions. 
-					#$arr[0] will be an empty string if needed.
+					# Filter the "'''". Separators are on odd positions. 
+					# $arr[0] will be an empty string if needed.
 					if ( ( $i % 2 == 1 ) and ( strlen( $r ) == 3 ) )
 					{
 						$x1 = substr ($arr[$i-1], -1);
 						$x2 = substr ($arr[$i-1], -2, 1);
 						if ($x1 === ' ') {
 							if ($firstspace == -1) $firstspace = $i;
-						} else if ($x2 === ' ') {
+						} elseif ($x2 === ' ') {
 							if ($firstsingleletterword == -1) $firstsingleletterword = $i;
-						} else if ($arr[$i-1] != "") {
+						} elseif ($arr[$i-1] !== "") {
 							if ($firstmultiletterword == -1) $firstmultiletterword = $i;
 						}
 					}
@@ -1191,7 +1191,7 @@ class Parser
 					$arr [ $firstsingleletterword-1 ] .= "'";
 				}
 				# If not, but there's a multi-letter word, use that one.
-				else if ($firstmultiletterword > -1)
+				elseif ($firstmultiletterword > -1)
 				{
 					$arr [ $firstmultiletterword ] = "''";
 					$arr [ $firstmultiletterword-1 ] .= "'";
@@ -1199,7 +1199,7 @@ class Parser
 				# ... otherwise use the first one that has neither.
 				# (notice that it is possible for all three to be -1 if, for example,
 				# there is only one pentuple-apostrophe in the line)
-				else if ($firstspace > -1)
+				elseif ($firstspace > -1)
 				{
 					$arr [ $firstspace ] = "''";
 					$arr [ $firstspace-1 ] .= "'";
@@ -1207,9 +1207,9 @@ class Parser
 			}
 
 			# Now let's actually convert our apostrophic mush to HTML!
-			$output = ''; #Processed text
-			$buffer = ''; #Content if $state is 'both'
-			$state = '';  #Flags with the order of open tags: '|b|i|bi|ib|both'
+			$output = ''; # Processed text
+			$buffer = ''; # Content if $state is 'both'
+			$state = '';  # Flags with the order of open tags: '|b|i|bi|ib|both'
 			$i = 0;
 			foreach ($arr as $r)
 			{
@@ -1226,54 +1226,54 @@ class Parser
 					{
 						if ($state === 'i')
 						{ $output .= '</i>'; $state = ''; }
-						else if ($state === 'bi')
+						elseif ($state === 'bi')
 						{ $output .= '</i>'; $state = 'b'; }
-						else if ($state === 'ib')
+						elseif ($state === 'ib')
 						{ $output .= '</b></i><b>'; $state = 'b'; }
-						else if ($state === 'both')
+						elseif ($state === 'both')
 						{ $output .= '<b><i>'.$buffer.'</i>'; $state = 'b'; }
 						else # $state can be 'b' or ''
 						{ $output .= '<i>'; $state .= 'i'; }
 					}
-					else if (strlen ($r) == 3)
+					elseif (strlen ($r) == 3)
 					{
 						if ($state === 'b')
 						{ $output .= '</b>'; $state = ''; }
-						else if ($state === 'bi')
+						elseif ($state === 'bi')
 						{ $output .= '</i></b><i>'; $state = 'i'; }
-						else if ($state === 'ib')
+						elseif ($state === 'ib')
 						{ $output .= '</b>'; $state = 'i'; }
-						else if ($state === 'both')
+						elseif ($state === 'both')
 						{ $output .= '<i><b>'.$buffer.'</b>'; $state = 'i'; }
 						else # $state can be 'i' or ''
 						{ $output .= '<b>'; $state .= 'b'; }
 					}
-					else if (strlen ($r) == 5)
+					elseif (strlen ($r) == 5)
 					{
 						if ($state === 'b')
 						{ $output .= '</b><i>'; $state = 'i'; }
-						else if ($state === 'i')
+						elseif ($state === 'i')
 						{ $output .= '</i><b>'; $state = 'b'; }
-						else if ($state === 'bi')
+						elseif ($state === 'bi')
 						{ $output .= '</i></b>'; $state = ''; }
-						else if ($state === 'ib')
+						elseif ($state === 'ib')
 						{ $output .= '</b></i>'; $state = ''; }
-						else if ($state === 'both')
+						elseif ($state === 'both')
 						{ $output .= '<i><b>'.$buffer.'</b></i>'; $state = ''; }
 						else # ($state == '')
 						{ $buffer = ''; $state = 'both'; }
 					}
-					else if (strlen ($r) == 6)
+					elseif (strlen ($r) == 6)
 					{
 						if ($state === 'b')
 						{ $output .= '</b><b>'; $state = 'b'; }
-						else if ($state === 'i')
+						elseif ($state === 'i')
 						{ $output .= '\'</i><b>'; $state = 'b'; }
-						else if ($state === 'bi')
+						elseif ($state === 'bi')
 						{ $output .= '\'</i></b>'; $state = ''; }
-						else if ($state === 'ib')
+						elseif ($state === 'ib')
 						{ $output .= '\'</b></i>'; $state = ''; }
-						else if ($state === 'both')
+						elseif ($state === 'both')
 						{ $output .= '<i><b>'.$buffer.'</b><b>'; $state = 'ib'; }
 						else # ($state == '')
 						{ $buffer = ''; $state = ''; }
@@ -1536,9 +1536,9 @@ class Parser
 		$sk = $this->mOptions->getSkin();
 		$holders = new LinkHolderArray( $this );
 
-		#split the entire text string on occurences of [[
+		# split the entire text string on occurences of [[
 		$a = StringUtils::explode( '[[', ' ' . $s );
-		#get the first element (all text up to first [[), and remove the space we added
+		# get the first element (all text up to first [[), and remove the space we added
 		$s = $a->current();
 		$a->next();
 		$line = $a->current(); # Workaround for broken ArrayIterator::next() that returns "void"
@@ -1683,10 +1683,10 @@ class Parser
 
 			if ( $might_be_img ) { # if this is actually an invalid link
 				wfProfileIn( __METHOD__."-might_be_img" );
-				if ( $ns == NS_FILE && $noforce ) { #but might be an image
+				if ( $ns == NS_FILE && $noforce ) { # but might be an image
 					$found = false;
 					while ( true ) {
-						#look at the next 'line' to see if we can close it there
+						# look at the next 'line' to see if we can close it there
 						$a->next();
 						$next_line = $a->current();
 						if ( $next_line === false || $next_line === null ) {
@@ -1700,24 +1700,24 @@ class Parser
 							$trail = $m[2];
 							break;
 						} elseif ( count( $m ) == 2 ) {
-							#if there's exactly one ]] that's fine, we'll keep looking
+							# if there's exactly one ]] that's fine, we'll keep looking
 							$text .= "[[{$m[0]}]]{$m[1]}";
 						} else {
-							#if $next_line is invalid too, we need look no further
+							# if $next_line is invalid too, we need look no further
 							$text .= '[[' . $next_line;
 							break;
 						}
 					}
 					if ( !$found ) {
 						# we couldn't find the end of this imageLink, so output it raw
-						#but don't ignore what might be perfectly normal links in the text we've examined
+						# but don't ignore what might be perfectly normal links in the text we've examined
 						$holders->merge( $this->replaceInternalLinks2( $text ) );
 						$s .= "{$prefix}[[$link|$text";
 						# note: no $trail, because without an end, there *is* no trail
 						wfProfileOut( __METHOD__."-might_be_img" );
 						continue;
 					}
-				} else { #it's not an image, so output it raw
+				} else { # it's not an image, so output it raw
 					$s .= "{$prefix}[[$link|$text";
 					# note: no $trail, because without an end, there *is* no trail
 					wfProfileOut( __METHOD__."-might_be_img" );
@@ -1794,7 +1794,7 @@ class Parser
 			}
 
 			# Self-link checking
-			if( $nt->getFragment() === '' && $ns != NS_SPECIAL ) {
+			if( $nt->getFragment() === '' && $ns !== NS_SPECIAL ) {
 				if( in_array( $nt->getPrefixedText(), $selflink, true ) ) {
 					$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
 					continue;
@@ -1914,7 +1914,7 @@ class Parser
 	 */
 	/* private */ function closeParagraph() {
 		$result = '';
-		if ( $this->mLastSection != '' ) {
+		if ( $this->mLastSection !== '' ) {
 			$result = '</' . $this->mLastSection  . ">\n";
 		}
 		$this->mInPre = false;
@@ -1930,7 +1930,7 @@ class Parser
 		if ( $fl < $shorter ) { $shorter = $fl; }
 
 		for ( $i = 0; $i < $shorter; ++$i ) {
-			if ( $st1{$i} != $st2{$i} ) { break; }
+			if ( $st1{$i} !== $st2{$i} ) { break; }
 		}
 		return $i;
 	}
@@ -2103,7 +2103,7 @@ class Parser
 					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|'.$this->mUniqPrefix.'-pre|<\\/li|<\\/ul|<\\/ol|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
-					# TODO bug 5718: paragraph closed
+					# TODO bug 5718: paragraph closed
 					$output .= $this->closeParagraph();
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;
@@ -2113,8 +2113,8 @@ class Parser
 					} else {
 						$inBlockElem = true;
 					}
-				} else if ( !$inBlockElem && !$this->mInPre ) {
-					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' or trim($t) != '' ) ) {
+				} elseif ( !$inBlockElem && !$this->mInPre ) {
+					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' or trim($t) !== '' ) ) {
 						// pre
 						if ($this->mLastSection !== 'pre') {
 							$paragraphStack = false;
@@ -2143,7 +2143,7 @@ class Parser
 								$output .= $paragraphStack;
 								$paragraphStack = false;
 								$this->mLastSection = 'p';
-							} else if ($this->mLastSection !== 'p') {
+							} elseif ($this->mLastSection !== 'p') {
 								$output .= $this->closeParagraph().'<p>';
 								$this->mLastSection = 'p';
 							}
@@ -2164,7 +2164,7 @@ class Parser
 			$output .= $this->closeList( $prefix2[$prefixLength-1] );
 			--$prefixLength;
 		}
-		if ( $this->mLastSection != '' ) {
+		if ( $this->mLastSection !== '' ) {
 			$output .= '</' . $this->mLastSection . '>';
 			$this->mLastSection = '';
 		}
@@ -2970,7 +2970,7 @@ class Parser
 						$isHTML = true;
 						$this->disableCache();
 					}
-				} else if ( $wgNonincludableNamespaces && in_array( $title->getNamespace(), $wgNonincludableNamespaces ) ) {
+				} elseif ( $wgNonincludableNamespaces && in_array( $title->getNamespace(), $wgNonincludableNamespaces ) ) {
 					$found = false; //access denied
 					wfDebug( __METHOD__.": template inclusion denied for " . $title->getPrefixedDBkey() );
 				} else {
@@ -3583,7 +3583,7 @@ class Parser
 			if (preg_match("/^$markerRegex/", $headline, $markerMatches)) {
 				$serial = $markerMatches[1];
 				list( $titleText, $sectionIndex ) = $this->mHeadings[$serial];
-				$isTemplate = ($titleText != $baseTitleText);
+				$isTemplate = ($titleText !== $baseTitleText);
 				$headline = preg_replace("/^$markerRegex/", "", $headline);
 			}
 
@@ -3699,7 +3699,7 @@ class Parser
 				if ( $legacyHeadline == $safeHeadline ) {
 					# No reason to have both (in fact, we can't)
 					$legacyHeadline = false;
-				} elseif ( $legacyHeadline != Sanitizer::escapeId(
+				} elseif ( $legacyHeadline !== Sanitizer::escapeId(
 				$legacyHeadline, 'xml' ) ) {
 					# The legacy id is invalid XML.  We used to allow this, but
 					# there's no reason to do so anymore.  Backward
@@ -3873,8 +3873,8 @@ class Parser
 				else
 					continue;
 			}
-			if ( $s['index'] != $section ||
-					$s['fromtitle'] != $titletext ) {
+			if ( $s['index'] !== $section ||
+					$s['fromtitle'] !== $titletext ) {
 				self::incrementNumbering( $numbering,
 					$s['toclevel'], $lastLevel );
 
@@ -3925,7 +3925,7 @@ class Parser
 	private static function incrementNumbering( &$number, $level, $lastLevel ) {
 		if ( $level > $lastLevel )
 			$number[$level - 1] = 1;
-		else if ( $level < $lastLevel ) {
+		elseif ( $level < $lastLevel ) {
 			foreach ( $number as $key => $unused )
 				if ( $key >= $level )
 					unset( $number[$key] );
@@ -4035,7 +4035,7 @@ class Parser
 		$m = array();
 		if ( preg_match( "/^($nc+:|)$tc+?( \\($tc+\\))$/", $t, $m ) ) {
 			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
-		} elseif ( preg_match( "/^($nc+:|)$tc+?(, $tc+|)$/", $t, $m ) && "$m[1]$m[2]" != '' ) {
+		} elseif ( preg_match( "/^($nc+:|)$tc+?(, $tc+|)$/", $t, $m ) && "$m[1]$m[2]" !== '' ) {
 			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
 		} else {
 			# if there's no context, don't bother duplicating the title
@@ -4874,7 +4874,7 @@ class Parser
 			if ( $node->getName() === 'h' ) {
 				$bits = $node->splitHeading();
 				$curLevel = $bits['level'];
-				if ( $bits['i'] != $sectionIndex && $curLevel <= $targetLevel ) {
+				if ( $bits['i'] !== $sectionIndex && $curLevel <= $targetLevel ) {
 					break;
 				}
 			}
@@ -4890,7 +4890,7 @@ class Parser
 			// Add two newlines on -- trailing whitespace in $newText is conventionally
 			// stripped by the editor, so we need both newlines to restore the paragraph gap
 			// Only add trailing whitespace if there is newText
-			if($newText != "") {
+			if($newText !== "") {
 				$outText .= $newText . "\n\n";
 			}
 
