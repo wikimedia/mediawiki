@@ -1112,7 +1112,13 @@ class Parser
 	 * Helper function for doAllQuotes()
 	 */
 	public function doQuotes( $text ) {
-		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		# Split in groups of 2, 3, 5 or 6 apostrophes.
+		# If there are ever four apostrophes, assume the first is supposed to
+		# be text, and the remaining three constitute mark-up for bold text.
+		# If there are more than 6 apostrophes in a row, assume they're all
+		# text except for the last 6.		
+		$arr = preg_split( "/('{2,3}(?:''')?)(?!')/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		
 		if ( count( $arr ) == 1 )
 			return $text;
 		else
@@ -1127,20 +1133,6 @@ class Parser
 			{
 				if ( ( $i % 2 ) == 1 )
 				{
-					# If there are ever four apostrophes, assume the first is supposed to
-					# be text, and the remaining three constitute mark-up for bold text.
-					if ( strlen( $arr[$i] ) == 4 )
-					{
-						$arr[$i-1] .= "'";
-						$arr[$i] = "'''";
-					}
-					# If there are more than 6 apostrophes in a row, assume they're all
-					# text except for the last 6.
-					elseif ( strlen( $arr[$i] ) > 6 )
-					{
-						$arr[$i-1] .= str_repeat( "'", strlen( $arr[$i] ) - 6 );
-						$arr[$i] = "''''''";
-					}
 					# Count the number of occurrences of bold and italics mark-ups.
 					if ( strlen( $arr[$i] ) == 2 )      { $numitalics++;             }
 					elseif ( strlen( $arr[$i] ) == 3 ) { $numbold++;                }
