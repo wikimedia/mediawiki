@@ -1631,10 +1631,9 @@ Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
 'rollbacklink'   => 'foano',
 'rollbackfailed' => "Tsy voaverina amin'ny teo aloha",
 'cantrollback'   => "Tsy afaka iverenana ny fanovana; ny mpanova farany ihany no tompon'ny pejy.",
-'alreadyrolled'  => "Tsy mety foanana ny fanovana farany ny pejy [[:$1]]
-nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]); satria efa nisy nanova ny pejy na nisy nanafoana io fanovana io.
+'alreadyrolled'  => "Tsy afaka foanana ny fanovana ny pejy « [[:$1]] » nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])
 
-Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
+Efa nataon'i [[User:$3|$3]] ([[User talk:$3|dinika]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ny fanovana farany.",
 'editcomment'    => "Toy izao no fanamarihana momba io fanovana io: \"''\$1''\".",
 'revertpage'     => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]",
 
