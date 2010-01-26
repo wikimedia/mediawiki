@@ -116,7 +116,7 @@ Italics and bold
 </li><li> plain<b><i>bold-italic</i>bold</b>plain
 </li><li> plain<i>italic<b>bold-italic</b></i>plain
 </li><li> plain<b>bold<i>bold-italic</i></b>plain
-</li><li> plain l'<i>italic</i>plain
+</li><li> plain l&#39;<i>italic</i>plain
 </li><li> plain l'<b>bold</b> plain
 </li></ul>
 
@@ -6415,7 +6415,7 @@ Another italics / bold test
 !! input
  ''' ''x'
 !! result
-<pre>'<i> </i>x'
+<pre>&#39;<i> </i>x'
 </pre>
 !!end
 
@@ -7585,19 +7585,19 @@ but '''This is bold'' this is bold italic''' and this is bold'''
 |}
 -->
 !! result
-<p><b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
-</p><p><b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
-</p><p><span> <b>Look at <i>this edit'</i>s complicated bold/italic markup!</b></span>
-</p><p> <b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+<p><b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
+</p><p><b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
+</p><p><span> <b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b></span>
+</p><p> <b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
 </p>
-<pre><b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+<pre><b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
 </pre>
 <table>
 <tr>
-<td> <b>Look at <i>this edit'</i>s complicated bold/italic markup!</b>
+<td> <b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
 </td></tr></table>
-<p><b>This was Italic<i> this was plain'</i> and this was bold</b>
-but <b>This is bold<i> this is bold italic'</i> and this is bold</b>
+<p><b>This was Italic<i> this was plain&#39;</i> and this was bold</b>
+but <b>This is bold<i> this is bold italic&#39;</i> and this is bold</b>
 </p><p><br />
 </p>
 !! end
