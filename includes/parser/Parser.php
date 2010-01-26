@@ -1142,7 +1142,6 @@ class Parser
 						$arr[$i] = "''''''";
 					}
 					# Count the number of occurrences of bold and italics mark-ups.
-					# We are not counting sequences of five apostrophes.
 					if ( strlen( $arr[$i] ) == 2 )      { $numitalics++;             }
 					elseif ( strlen( $arr[$i] ) == 3 ) { $numbold++;                }
 					elseif ( strlen( $arr[$i] ) == 5 ) { $numitalics++; $numbold++; }
@@ -1160,7 +1159,8 @@ class Parser
 				$i = 0;
 				
 				# These are indexes to the /next/ array entry than the 
-				# one holding the text matching the condition.
+				# one holding the text matching the condition which gives name 
+				# to the variable.
 				$firstsingleletterword = -1;
 				$firstmultiletterword = -1;
 				$firstspace = -1;
