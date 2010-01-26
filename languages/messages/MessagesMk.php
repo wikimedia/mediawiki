@@ -1951,7 +1951,7 @@ PICT # misc.
 'nopagetitle'             => 'Не постои таков наслов',
 'nopagetext'              => 'Целната страница која ја наведовте не постои.',
 'pager-newer-n'           => '{{PLURAL:$1|понова 1|понови $1}}',
-'pager-older-n'           => '{{PLURAL:$1|постар 1|постари $1}}',
+'pager-older-n'           => '{{PLURAL:$1|постара 1|постари $1}}',
 'suppress'                => 'Надзор',
 
 # Book sources

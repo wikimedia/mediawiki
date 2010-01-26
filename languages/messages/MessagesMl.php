@@ -2553,6 +2553,7 @@ $1 നിലവിൽ തടയപ്പെട്ടതാണ്.<br />
 'thumbnail_invalid_params' => 'ലഘുചിത്രത്തിനാവശ്യമായ ചരങ്ങൾ അസാധുവാണ്',
 'thumbnail_dest_directory' => 'ലക്ഷ്യ ഡയറക്ടറി സൃഷ്ടിക്കുവാന്‍ സാധിച്ചില്ല',
 'thumbnail_image-type'     => 'ചിത്രത്തിന്റെ തരം പിന്തുണക്കപ്പെട്ടതല്ല',
+'thumbnail_gd-library'     => 'അപൂർണ്ണമായ ജി.ഡി. ലൈബ്രറി ക്രമീകരണം: ഫങ്ഷൻ $1 ലഭ്യമല്ല',
 'thumbnail_image-missing'  => 'പ്രമാണം ലഭ്യമല്ലെന്നു കാണുന്നു: $1',
 
 # Special:Import
@@ -2907,6 +2908,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-gpsdestlongitude'            => 'ലക്ഷ്യം വച്ചതിന്റെ രേഖാംശം',
 'exif-gpsdestdistanceref'          => 'ലക്ഷ്യം വച്ചതിലേയ്ക്കുള്ള ദൂരത്തിനുള്ള അവലംബം',
 'exif-gpsdestdistance'             => 'ലക്ഷ്യം വച്ചതിലേയ്ക്കുള്ള ദൂരം',
+'exif-gpsprocessingmethod'         => 'ജി.പി.എസ്. പ്രക്രിയയുടെ പേര്',
 'exif-gpsareainformation'          => 'GPS പ്രദേശത്തിന്റെ പേര്‌',
 'exif-gpsdatestamp'                => 'GPS തീയ്യതി',
 
@@ -2956,6 +2958,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-lightsource-17'  => 'മാതൃകാ വെളിച്ചം A',
 'exif-lightsource-18'  => 'മാതൃകാ വെളിച്ചം B',
 'exif-lightsource-19'  => 'മാതൃകാ വെളിച്ചം C',
+'exif-lightsource-24'  => 'ഐ.എസ്.ഒ. സ്റ്റുഡിയോ റ്റങ്സ്റ്റൺ',
 'exif-lightsource-255' => 'മറ്റു പ്രകാശ സ്രോതസ്സ്',
 
 # Flash modes

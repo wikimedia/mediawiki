@@ -181,11 +181,11 @@ $messages = array(
 
 'underline-always'  => 'ఎల్లప్పుడూ',
 'underline-never'   => 'ఎప్పటికీ వద్దు',
-'underline-default' => 'బ్రవుజరు నుండి తీసుకో',
+'underline-default' => 'విహారిణి అప్రమేయం',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'దిద్దుబాటు పెట్టె ఫాంటు స్టైల్',
-'editfont-default'   => 'విహరిణి డిఫాల్టు',
+'editfont-default'   => 'విహరిణి అప్రమేయం',
 'editfont-monospace' => 'మోనోస్పేసుడ్ ఫాంట్',
 'editfont-sansserif' => 'సాన్స్-సెరిఫ్ ఫాంటు',
 'editfont-serif'     => 'సెరిఫ్ ఫాంటు',
