@@ -343,6 +343,7 @@ function wfDebug( $text, $logonly = false ) {
 	static $recursion = 0;
 
 	static $cache = array(); // Cache of unoutputted messages
+	$text = wfDebugTimer() . $text;
 
 	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
 	if ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' && !$wgDebugRawPage ) {
@@ -375,6 +376,21 @@ function wfDebug( $text, $logonly = false ) {
 		$text = $wgDebugLogPrefix . $text;
 		wfErrorLog( $text, $wgDebugLogFile );
 	}
+}
+
+function wfDebugTimer() {
+	global $wgDebugTimestamps;
+	if ( !$wgDebugTimestamps ) return '';
+	static $start = null;
+
+	if ( $start === null ) {
+		$start = microtime( true );
+		$prefix = "\n$start";
+	} else {
+		$prefix = sprintf( "%6.4f", microtime( true ) - $start );
+	}
+
+	return $prefix . '  ';
 }
 
 /**

@@ -180,24 +180,28 @@ $wgRequest = new WebRequest;
 # Useful debug output
 if ( $wgCommandLineMode ) {
 	wfDebug( "\n\nStart command line script $self\n" );
-} elseif ( function_exists( 'getallheaders' ) ) {
-	wfDebug( "\n\nStart request\n" );
+} else {
+	wfDebug( "Start request\n\n" );
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
-	$headers = getallheaders();
-	foreach ($headers as $name => $value) {
-		wfDebug( "$name: $value\n" );
-	}
-	wfDebug( "\n" );
-} elseif( isset( $_SERVER['REQUEST_URI'] ) ) {
-	wfDebug( "\n\nStart request\n" );
-	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
-	foreach ( $_SERVER as $name => $value ) {
-		if ( substr( $name, 0, 5 ) == 'HTTP_' ) {
+	$header_out = "HTTP HEADERS:\n";
+
+	if ( function_exists( 'getallheaders' ) ) {
+		$headers = getallheaders();
+		foreach ( $headers as $name => $value ) {
+			$header_out .= "$name: $value\n";
+		}
+	} else {
+		$headers = $_SERVER;
+		foreach ( $headers as $name => $value ) {
+			if ( substr( $name, 0, 5 ) !== 'HTTP_' ) continue;
 			$name = substr( $name, 5 );
-			wfDebug( "$name: $value\n" );
+			$header_out .= "$name: $value\n";
 		}
 	}
-	wfDebug( "\n" );
+
+	if ( $wgDebugPrintHttpHeaders ) {
+		wfDebug( "$header_out\n" );
+	}
 }
 
 if( $wgRCFilterByAge ) {
@@ -255,9 +259,9 @@ $wgMemc =& wfGetMainCache();
 $messageMemc =& wfGetMessageCacheStorage();
 $parserMemc =& wfGetParserCacheStorage();
 
-wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
-	"\nMessage cache: " . get_class( $messageMemc ) .
-	"\nParser cache: " . get_class( $parserMemc ) . "\n" );
+wfDebug( 'CACHES: ' . get_class( $wgMemc ) . '[main] ' .
+	get_class( $messageMemc ) . '[message] ' .
+	get_class( $parserMemc ) . "[parser]\n" );
 
 wfProfileOut( $fname.'-memcached' );
 
