@@ -1922,7 +1922,7 @@ Le future modìfeghe a sta pagina e a la relativa pagina de discussion le sarà 
 'enotif_lastvisited'           => 'Varda $1 par tute le modifiche da la to ultima visita.',
 'enotif_lastdiff'              => 'Varda $1 par visualizar la modifica.',
 'enotif_anon_editor'           => 'utente anonimo $1',
-'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
+'enotif_body'                  => 'Caro/a $WATCHINGUSERNAME,
 
 ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATE da $PAGEEDITOR, varda $PAGETITLE_URL par ła version atuałe.
 
@@ -1942,6 +1942,9 @@ Te podi anca reinpostar l\'avixo de notifica par tuti i osservati speciałi de �
 --
 Par canbiar łe inpostassion de i to osservati speciałi, visita
 {{fullurl:Special:Watchlist/edit}}
+
+Par cavar la pagina da i to osservati speciałi, visita
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Par riscontri e ulteriore assistensa:
 {{fullurl:{{MediaWiki:Helppage}}}}',

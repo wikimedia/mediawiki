@@ -2430,6 +2430,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-filesource'                  => 'Zūrbrukes aps',
 'exif-scenetype'                   => 'Widāklis tīps',
 'exif-cfapattern'                  => 'CFA šablōni',
+'exif-whitebalance'                => 'Gaīliskwas balanss',
 'exif-digitalzoomratio'            => 'Digitālas mūisesinsenes kōeficiēnts',
 'exif-focallengthin35mmfilm'       => 'Pellanas etālisku per 35 mm filman',
 'exif-scenecapturetype'            => 'Widāklis gabsnas tīps',
@@ -2528,6 +2529,14 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-sensingmethod-1' => 'Nidefinītan',
 
 'exif-scenetype-1' => 'Entikriskai tikīnts auīmsenis',
+
+'exif-customrendered-0' => 'stāndartan',
+'exif-customrendered-1' => 'definītan pra tērpautajan',
+
+'exif-exposuremode-0' => 'Autōmatiska erswaikstinsnā',
+
+'exif-whitebalance-0' => 'autōmatiskas',
+'exif-whitebalance-1' => 'rānkiskas',
 
 'exif-scenecapturetype-0' => 'Jāukus',
 'exif-scenecapturetype-1' => 'Tautāspawida',

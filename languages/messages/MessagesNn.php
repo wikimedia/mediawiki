@@ -2261,7 +2261,7 @@ $1',
 'ipadressorusername'              => 'IP-adresse eller brukarnamn',
 'ipbexpiry'                       => 'Opphøyrstid:',
 'ipbreason'                       => 'Årsak:',
-'ipbreasonotherlist'              => 'Anna grunn',
+'ipbreasonotherlist'              => 'Annan grunn',
 'ipbreason-dropdown'              => '*Vanlege grunnar for blokkering
 ** Legg inn usann tekst/tull
 ** Fjernar innhald frå sider
@@ -2277,7 +2277,7 @@ $1',
 'ipbother'                        => 'Anna tid',
 'ipboptions'                      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite',
 'ipbotheroption'                  => 'anna tid',
-'ipbotherreason'                  => 'Anna grunn/tilleggsgrunn:',
+'ipbotherreason'                  => 'Annan grunn/tilleggsgrunn:',
 'ipbhidename'                     => 'Gøym brukarnamnet frå endringar og lister',
 'ipbwatchuser'                    => 'Overvak brukarsida og diskusjonssida til brukaren',
 'ipballowusertalk'                => 'La brukaren endre si eiga diskusjonsside under blokkeringa',
