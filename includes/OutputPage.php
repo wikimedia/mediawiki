@@ -438,7 +438,7 @@ class OutputPage {
 	 *
 	 * @return Boolean
 	 */
-	public function isSyndicated() { return count($this->mFeedLinks); }
+	public function isSyndicated() { return count($this->mFeedLinks) > 0; }
 
 	public function getFeedAppendQuery() { return $this->mFeedLinksAppendQuery; }
 
