@@ -77,7 +77,7 @@ class SearchEngine {
 	public static function getNearMatch( $searchterm ) {
 		$title = self::getNearMatchInternal( $searchterm );
 		
-		wfRunHooks( 'SearchGetNearMatchComplete', array( $searchterm, $title ) );
+		wfRunHooks( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
 		return $title;
 	}
 	
@@ -93,7 +93,7 @@ class SearchEngine {
 			$allSearchTerms = array_merge($allSearchTerms,$wgContLang->convertLinkToAllVariants($searchterm));
 		}
 
-		if( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, $titleResult ) ) ) {
+		if( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
 			return $titleResult;
 		}
 
