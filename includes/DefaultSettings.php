@@ -4321,10 +4321,3 @@ $wgUploadMaintenance = false;
  */
 $wgOldChangeTagsIndex = false;
 
-/**
- * Set of loader.js files to setup dynamic loading of javascript libraries using mwEmbed
- *
- * Extensions can add mwEmbed modules via adding paths to their loader.js to
- * $wgExtensionJavascriptLoader[] = path/to/loader.js
- */
-$wgExtensionJavascriptLoader = array();

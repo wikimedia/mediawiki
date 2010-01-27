@@ -50,7 +50,7 @@ class OutputPage {
 	/**
 	 * Whether to load jQuery core.
 	 */
-	protected $mIncludeJQuery = false;
+	protected $mJQueryDone = false;
 
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
@@ -2131,19 +2131,27 @@ class OutputPage {
 
 	/**
 	 * Include jQuery core. Use this to avoid loading it multiple times
-	 * before we get usable script loader.
+	 * before we get a usable script loader. 
+	 *
+	 * @param array $modules List of jQuery modules which should be loaded
+	 *
+	 * Returns the list of modules which were not loaded.
 	 */
-	public function includeJQuery() {
-		if ( $this->mIncludeJQuery ) return;
-		$this->mIncludeJQuery = true;
-
+	public function includeJQuery( $modules = array() ) {
 		global $wgScriptPath, $wgStyleVersion, $wgJsMimeType;
+
+		$supportedModules = array( 'ui' );
+		$unsupported = array_diff( $modules, $supportedModules );
 
 		$params = array(
 			'type' => $wgJsMimeType,
-			'src' => "$wgScriptPath/js2/js2stopgap.min.js?$wgStyleVersion",
+			'src' => "$wgScriptPath/skins/common/jquery.min.js?$wgStyleVersion",
 		);
-		$this->mScripts = Html::element( 'script', $params ) . "\n" . $this->mScripts;
+		if ( !$this->mJQueryDone ) {
+			$this->mJQueryDone = true;
+			$this->mScripts = Html::element( 'script', $params ) . "\n" . $this->mScripts;
+		}
+		return $unsupported;
 	}
 
 }
