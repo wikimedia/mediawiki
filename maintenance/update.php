@@ -19,7 +19,12 @@ $wgTitle = Title::newFromText( "MediaWiki database updater" );
 
 echo( "MediaWiki {$wgVersion} Updater\n\n" );
 
-install_version_checks();
+if( !isset( $options['skip-compat-checks'] ) ) {
+	install_version_checks();
+} else {
+	print "Skipping compatibility checks, proceed at your own risk (Ctrl+C to abort)\n";
+	wfCountdown(5);
+}
 
 # Attempt to connect to the database as a privileged user
 # This will vomit up an error if there are permissions problems
