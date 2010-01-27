@@ -434,8 +434,7 @@ class OutputPage {
 	}
 
 	/**
-	 * Return the number of feed links that will be added to the page header
-	 *
+	 * Should we output feed links for this page?
 	 * @return Boolean
 	 */
 	public function isSyndicated() { return count($this->mFeedLinks) > 0; }
