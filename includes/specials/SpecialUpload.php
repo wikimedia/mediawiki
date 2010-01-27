@@ -30,10 +30,10 @@ class SpecialUpload extends SpecialPage {
 	protected $mUploadClicked;
 
 	/** User input variables from the "description" section **/
-	protected $mDesiredDestName;	// The requested target file name
+	public    $mDesiredDestName;	// The requested target file name
 	protected $mComment;
 	protected $mLicense;
-
+	
 	/** User input variables from the root section **/
 	protected $mIgnoreWarning;
 	protected $mWatchThis;
