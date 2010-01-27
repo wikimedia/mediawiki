@@ -513,9 +513,9 @@ class Html {
 		global $wgHtml5;
 		$attribs['name'] = $name;
 		if ( !$wgHtml5 ) {
-			if ( !array_key_exists('cols', $attribs) )
+			if ( !isset( $attribs['cols'] ) )
 				$attribs['cols'] = "";
-			if ( !array_key_exists('rows', $attribs) )
+			if ( !isset( $attribs['rows'] ) )
 				$attribs['rows'] = "";
 		}
 		return self::element( 'textarea', $attribs, $value );
