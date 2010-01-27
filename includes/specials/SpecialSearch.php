@@ -319,16 +319,20 @@ class SpecialSearch {
 	protected function showCreateLink( $t ) {
 		global $wgOut;
 		
-		// show direct page/create link
+		// show direct page/create link if applicable
+		$messageName = null;
 		if( !is_null($t) ) {
-			if( !$t->isKnown() ) {
-				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
-			} else {
-				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
+			if( $t->isKnown() ) {
+				$messageName = 'searchmenu-exists';
+			} elseif( $t->userCan( 'create' ) ) {
+				$messageName = 'searchmenu-new';
 			}
+		} 
+		if( $messageName ) {
+			$wgOut->addWikiMsg( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) );
 		} else {
 			// preserve the paragraph for margins etc...
-			$wgOut->addHTML('<p></p>');
+			$wgOut->addHtml( '<p></p>' );
 		}
 	}
 
