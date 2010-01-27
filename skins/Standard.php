@@ -19,9 +19,6 @@ class SkinStandard extends Skin {
 	 */
 	function outputPage( OutputPage $out ) {
 		global $wgStylePath;
-		if ( 3 == $this->qbSetting() ) { # Floating left
-			$out->addScriptFile ( "{$wgStylePath}/common/sticky.js" );
-		}
 		parent::outputPage( $out );
 	}
 
