@@ -116,7 +116,7 @@ Italics and bold
 </li><li> plain<b><i>bold-italic</i>bold</b>plain
 </li><li> plain<i>italic<b>bold-italic</b></i>plain
 </li><li> plain<b>bold<i>bold-italic</i></b>plain
-</li><li> plain l&#39;<i>italic</i>plain
+</li><li> plain l'<i>italic</i>plain
 </li><li> plain l'<b>bold</b> plain
 </li></ul>
 
@@ -5253,17 +5253,19 @@ New wiki paragraph
 </p>
 !! end
 
-# This was the original html, but it has also been
-# <p>'<i>bold'</i><b>bold<i>bolditalics</i></b>
+# Original result was this:
+# <p><b>bold</b><b>bold<i>bolditalics</i></b>
 # </p>
-# See bug 18765.
+# While that might be marginally more intuitive, maybe, the six-apostrophe
+# construct is clearly pathological and the result stated here (which is what
+# the parser actually does) is about as reasonable as anything.
 !!test
 Mixing markup for italics and bold
 !! options
 !! input
 '''bold''''''bold''bolditalics'''''
 !! result
-<p><b>bold</b><b>bold<i>bolditalics</i></b>
+<p>'<i>bold'</i><b>bold<i>bolditalics</i></b>
 </p>
 !! end
 
@@ -6415,7 +6417,7 @@ Another italics / bold test
 !! input
  ''' ''x'
 !! result
-<pre>&#39;<i> </i>x'
+<pre>'<i> </i>x'
 </pre>
 !!end
 
@@ -7557,82 +7559,6 @@ title=[[Main Page]]
 !! result
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
 !! end
-
-!! test
-Bold/italic markup handled differently depending on leading whitespace (bug 18765)
-!!input
-'''Look at ''this edit'''s complicated bold/italic markup!'''
-
-<!-- Comment -->'''Look at ''this edit'''s complicated bold/italic markup!'''
-
-<span> '''Look at ''this edit'''s complicated bold/italic markup!'''</span>
-
-<nowiki></nowiki> '''Look at ''this edit'''s complicated bold/italic markup!'''
-
-<!-- Hello world---> '''Look at ''this edit'''s complicated bold/italic markup!'''
-
-{|
-| '''Look at ''this edit'''s complicated bold/italic markup!'''
-|}
-
-'''This was Italic'' this was plain''' and this was bold'''
-but '''This is bold'' this is bold italic''' and this is bold'''
-
-<!-- Wishlist: Breaking because <span> and | are treated as text 
-<span>'''Look at ''this edit'''s complicated bold/italic markup!'''</span> 
-{|
-|'''Look at ''this edit'''s complicated bold/italic markup!'''
-|}
--->
-!! result
-<p><b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
-</p><p><b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
-</p><p><span> <b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b></span>
-</p><p> <b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
-</p>
-<pre><b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
-</pre>
-<table>
-<tr>
-<td> <b>Look at <i>this edit&#39;</i>s complicated bold/italic markup!</b>
-</td></tr></table>
-<p><b>This was Italic<i> this was plain&#39;</i> and this was bold</b>
-but <b>This is bold<i> this is bold italic&#39;</i> and this is bold</b>
-</p><p><br />
-</p>
-!! end
-
-!! test
-Six quotes
-!!input
-''Italic''''''Bold
-
-'''Bold''BoldItalic''''''Normal
-
-''Italic'''BoldItalic''''''Normal'''''
-
-'''''BoldItalic''''''MoreBoldItalic''
-
-''''''Normal
-!!result
-<p><i>Italic'</i><b>Bold</b>
-</p><p><b>Bold<i>BoldItalic'</i></b>Normal
-</p><p><i>Italic<b>BoldItalic'</b></i>Normal
-</p><p><i><b>BoldItalic</b><b>MoreBoldItalic</b></i>
-</p><p>Normal
-</p>
-!!end
-
-
-!! test
-Too many quotes
-!!input
-I '''like'''''quotes''''''''''' 
-!! result
-<p>I <b>like</b><i>quotes''''''</i><b> </b>
-</p>
-!! end
-
 
 Note: some elements used in these Microdata examples don't work, like <img>
 and <time>.
