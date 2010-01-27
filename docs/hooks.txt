@@ -1289,7 +1289,7 @@ $text : Current text being indexed
 
 'SearchGetNearMatchBefore': Perform exact-title-matches in "go" searches before the normal operations
 $allSearchTerms : Array of the search terms in all content languages
-&$titleResult : Outparam; the value to return. A Title object or null.
+$titleResult : Outparam; the value to return. A Title object or null.
 
 'SearchGetNearMatch': An extra chance for exact-title-matches in "go" searches if nothing was found
 $term : Search term string
@@ -1297,7 +1297,7 @@ $term : Search term string
 
 'SearchGetNearMatchComplete': A chance to modify exact-title-matches in "go" searches
 $term : Search term string
-&$title : Current Title object that is being returned (null if none found).
+$title : Current Title object that is being returned (null if none found).
 
 'SearchEngineReplacePrefixesComplete': Run after SearchEngine::replacePrefixes().
 $searchEngine : The SearchEngine object. Users of this hooks will be interested 
