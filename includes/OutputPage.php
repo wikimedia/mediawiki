@@ -2140,7 +2140,7 @@ class OutputPage {
 	public function includeJQuery( $modules = array() ) {
 		global $wgScriptPath, $wgStyleVersion, $wgJsMimeType;
 
-		$supportedModules = array( 'ui' );
+		$supportedModules = array( /** TODO: add things here */ );
 		$unsupported = array_diff( $modules, $supportedModules );
 
 		$params = array(
