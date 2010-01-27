@@ -1639,6 +1639,7 @@ Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
 'img-auth-noread'       => 'Käyttäjillä ei ole oikeutta lukea tiedostoa ”$1”.',
 
 # HTTP errors
+'http-invalid-url'   => 'Kelpaamaton URL: $1',
 'http-request-error' => 'Virhe lähettäessä pyyntöä:',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2052,6 +2053,9 @@ Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla. Voit myös n
 --
 Tarkkailulistan asetuksia voit muuttaa osoitteessa:
 {{fullurl:Special:Watchlist/edit}}
+
+Voit poistaa sivun tarkkailulistalta osoitteessa:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Palaute ja lisäapu osoitteessa:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2691,7 +2695,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'markaspatrolleddiff'                 => 'Merkitse tarkastetuksi',
 'markaspatrolledtext'                 => 'Merkitse muokkaus tarkastetuksi',
 'markedaspatrolled'                   => 'Tarkastettu',
-'markedaspatrolledtext'               => 'Valittu versio on tarkastettu.',
+'markedaspatrolledtext'               => 'Valittu versio sivusta [[:$1]] on tarkastettu.',
 'rcpatroldisabled'                    => 'Tuoreiden muutosten tarkastustoiminto ei ole käytössä',
 'rcpatroldisabledtext'                => 'Tuoreiden muutosten tarkastustoiminto ei ole käytössä.',
 'markedaspatrollederror'              => 'Muutoksen merkitseminen tarkastetuksi epäonnistui.',
