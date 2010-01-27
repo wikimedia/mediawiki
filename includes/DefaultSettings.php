@@ -1222,6 +1222,16 @@ $wgDebugLogGroups       = array();
 $wgShowDebug            = false;
 
 /**
+ * Prefix debug messages with relative timestamp. Very-poor man's profiler.
+ */
+$wgDebugTimestamps = false;
+
+/**
+ * Print HTTP headers for every request in the debug information.
+ */
+$wgDebugPrintHttpHeaders = true;
+
+/**
  * Show the contents of $wgHooks in Special:Version
  */
 $wgSpecialVersionShowHooks =  false;

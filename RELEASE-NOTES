@@ -96,6 +96,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   longer advertised by default (but it still works).
 * Added $wgMemCachedTimeout to configure connection timeouts for communicating
   with a memcached server
+* New configuration variables $wgDebugTimestamps and $wgDebugPrintHttpHeaders
+  for controlling debug output.
 
 === New features in 1.16 ===
 
