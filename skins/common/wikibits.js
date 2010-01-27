@@ -1028,3 +1028,8 @@ hookEvent( 'load', runOnloadHook );
 if ( ie6_bugs ) {
 	importScriptURI( stylepath + '/common/IEFixes.js' );
 }
+
+// For future use.
+mw = {};
+
+
