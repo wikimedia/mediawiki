@@ -171,7 +171,7 @@ class HttpRequest {
 	 * Generate a new request object
 	 * @see HttpRequest::__construct
 	 */
-	public static function factory( $url, $options ) {
+	public static function factory( $url, $options = null ) {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
@@ -315,10 +315,6 @@ class CurlHttpRequest extends HttpRequest {
 		if ( !$this->status->isOK() ) {
 			return $this->status;
 		}
-
-		// A lot of the action up front should probably be in
-		// set* methods, but we'll leave that for another time.
-
 		$this->curlOptions[CURLOPT_PROXY] = $this->proxy;
 		$this->curlOptions[CURLOPT_TIMEOUT] = $this->timeout;
 		$this->curlOptions[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_0;
@@ -386,9 +382,6 @@ class PhpHttpRequest extends HttpRequest {
 		if ( !$this->status->isOK() ) {
 			return $this->status;
 		}
-
-		// A lot of the action up front should probably be in
-		// set* methods, but we'll leave that for another time.
 
 		$this->reqHeaders['Accept'] = "*/*";
 		if ( $this->method == 'POST' ) {

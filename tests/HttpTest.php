@@ -65,26 +65,26 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	function testInstantiation() {
 		Http::$httpEngine = false;
 
-	    $r = new HttpRequest("http://www.example.com/");
+	    $r = HttpRequest::factory("http://www.example.com/");
 		if ( self::$has_curl ) {
-			$this->isInstanceOf( $r, 'CurlHttpRequest' );
+			$this->assertThat($r, $this->isInstanceOf( 'CurlHttpRequest' ));
 		} else {
-			$this->isInstanceOf( $r, 'PhpHttpRequest' );
+			$this->assertThat($r, $this->isInstanceOf( 'PhpHttpRequest' ));
 		}
 		unset($r);
 
 		Http::$httpEngine = 'php';
-		$r = new HttpRequest("http://www.example.com/");
-		$this->isInstanceOf( $r, 'PhpHttpRequest' );
+		$r = HttpRequest::factory("http://www.example.com/");
+		$this->assertThat($r, $this->isInstanceOf( 'PhpHttpRequest' ));
 		unset($r);
 
 		if( !self::$has_curl ) {
 			$this->setExpectedException( 'MWException' );
 		}
 		Http::$httpEngine = 'curl';
-		$r = new HttpRequest("http://www.example.com/");
+		$r = HttpRequest::factory("http://www.example.com/");
 		if( self::$has_curl ) {
-			$this->isInstanceOf( $r, 'CurlHttpRequest' );
+			$this->assertThat($r, $this->isInstanceOf( 'CurlHttpRequest' ));
 		}
 	}
 
