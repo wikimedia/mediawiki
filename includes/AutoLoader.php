@@ -213,6 +213,7 @@ $wgAutoloadLocalClasses = array(
 	'SqlBagOStuff' => 'includes/BagOStuff.php',
 	'SquidUpdate' => 'includes/SquidUpdate.php',
 	'Status' => 'includes/Status.php',
+	'StubContLang' => 'includes/StubObject.php',
 	'StubUser' => 'includes/StubObject.php',
 	'StubUserLang' => 'includes/StubObject.php',
 	'StubObject' => 'includes/StubObject.php',
