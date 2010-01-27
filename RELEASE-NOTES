@@ -711,8 +711,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9794) User rights log entries for foreign user now links to the foreign
   user's page if possible
 * (bug 14717) Don't load nonexistent CSS fix files for non-Monobook skins
-* (bug 18765) Increased consistency of bold-italic markup for unbalanced quotes.
-  Improved representation of six quotes (may break existing markup).
 * (bug 22034) Use wfClientAcceptsGzip() in wfGzipHandler instead of
   reimplementing it.
 * (bug 19226) First line renders differently on many UI messages.
