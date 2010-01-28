@@ -293,22 +293,20 @@ class SpecialRecentChanges extends SpecialPage {
 		// Tag stuff.
 		$fields = array();
 		// Fields are * in this case, so let the function modify an empty array to keep it happy.
-		ChangeTags::modifyDisplayQuery( $tables,
-										$fields,
-										$conds,
-										$join_conds,
-										$query_options,
-										$opts['tagfilter']
-									);
+		ChangeTags::modifyDisplayQuery(
+			$tables, $fields, $conds, $join_conds, $query_options, $opts['tagfilter']
+		);
 
 		wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
 
-		// Is there either one namespace selected or excluded?
-		// Tag filtering also has a better index.
-		// Also, if this is "all" or main namespace, just use timestamp index.
+		// Don't use the new_namespace_time timestamp index if:
+		// (a) "All namespaces" selected
+		// (b) We want all pages NOT in a certain namespaces (inverted)
+		// (c) There is a tag to filter on (use tag index instead)
+		// (d) UNION + sort/limit is not an option for the DBMS
 		if( is_null($namespace)
 			|| $invert
-			|| $opts['tagfilter'] 
+			|| $opts['tagfilter'] != ''
 			|| !$dbr->unionSupportsOrderAndLimit() )
 		{
 			$res = $dbr->select( $tables, '*', $conds, __METHOD__,
