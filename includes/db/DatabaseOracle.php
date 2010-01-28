@@ -454,11 +454,12 @@ class DatabaseOracle extends DatabaseBase {
 		return $retVal;
 	}
 
-	function insertOneRow( $table, $row, $fname ) {
+	private function insertOneRow( $table, $row, $fname ) {
 		global $wgLang;
 
+		$table = $this->tableName( $table );
 		// "INSERT INTO tables (a, b, c)"
-		$sql = "INSERT INTO " . $this->tableName( $table ) . " (" . join( ',', array_keys( $row ) ) . ')';
+		$sql = "INSERT INTO " . $table . " (" . join( ',', array_keys( $row ) ) . ')';
 		$sql .= " VALUES (";
 
 		// for each value, append ":key"
@@ -476,7 +477,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		$stmt = oci_parse( $this->mConn, $sql );
 		foreach ( $row as $col => &$val ) {
-			$col_info = $this->fieldInfo( $this->tableName( $table ), $col );
+			$col_info = $this->fieldInfoMulti( $table, $col );
 			$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
 
 			if ( $val === null ) {
@@ -585,13 +586,6 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function tableName( $name ) {
-		if (is_array($name)) {
-			foreach($name as &$single_name) {
-				$single_name = $this->tableName($single_name);
-			}
-			return $name;
-		}
-		
 		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
 		/*
 		Replace reserved words with better ones
@@ -663,7 +657,7 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Return sequence_name if table has a sequence
 	 */
-	function getSequenceData( $table ) {
+	private function getSequenceData( $table ) {
 		if ( $this->sequenceData == null ) {
 			$result = $this->query( "SELECT lower(us.sequence_name), lower(utc.table_name), lower(utc.column_name) from user_sequences us, user_tab_columns utc where us.sequence_name = utc.table_name||'_'||utc.column_name||'_SEQ'" );
 
@@ -741,18 +735,12 @@ class DatabaseOracle extends DatabaseBase {
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
-		$sql = "SELECT t.typname as ftype,a.atttypmod as size
-			FROM pg_class c, pg_attribute a, pg_type t
-			WHERE relname='$table' AND a.attrelid=c.oid AND
-				a.atttypid=t.oid and a.attname='$field'";
-		$res = $this->query( $sql );
-		$row = $this->fetchObject( $res );
-		if ( $row->ftype == "varchar" ) {
+		$fieldInfoData = $this->fieldInfo( $table, $field);
+		if ( $fieldInfoData->type == "varchar" ) {
 			$size = $row->size - 4;
 		} else {
 			$size = $row->size;
 		}
-		$this->freeResult( $res );
 		return $size;
 	}
 
@@ -834,14 +822,15 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	/**
-	 * Query whether a given column exists in the mediawiki schema
-	 * based on prebuilt table to simulate MySQL field info and keep query speed minimal
+	 * Function translates mysql_fetch_field() functionality on ORACLE.
+	 * Caching is present for reducing query time.
+	 * For internal calls. Use fieldInfo for normal usage.
+	 * Returns false if the field doesn't exist
+	 *
+	 * @param Array $table
+	 * @param String $field
 	 */
-	function fieldExists( $table, $field, $fname = 'DatabaseOracle::fieldExists' ) {
-		return (bool)$this->fieldInfo( $table, $field, $fname );
-	}
-
-	function fieldInfo( $table, $field ) {
+	private function fieldInfoMulti( $table, $field ) {
 		$tableWhere = '';
 		$field = strtoupper($field);
 		if (is_array($table)) {
@@ -883,6 +872,17 @@ class DatabaseOracle extends DatabaseBase {
 			$this->mFieldInfoCache["$table.$field"] = $fieldInfoTemp;
 			return $fieldInfoTemp;
 		}
+	}
+
+	function fieldInfo( $table, $field ) {
+		if ( is_array( $table ) ) {
+			throw new DBUnexpectedError( $this, 'Database::fieldInfo called with table array!' );
+		}
+		return $this->fieldInfoMulti ($table, $field);
+	}
+
+	function fieldExists( $table, $field, $fname = 'DatabaseOracle::fieldExists' ) {
+		return (bool)$this->fieldInfo( $table, $field, $fname );
 	}
 
 	function begin( $fname = '' ) {
@@ -1021,10 +1021,14 @@ class DatabaseOracle extends DatabaseBase {
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
 		global $wgLang;
 
+		if (is_array($table)) {
+			$table = array_map( array( &$this, 'tableName' ), $table );
+		}
+		
 		$conds2 = array();
 		$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
 		foreach ( $conds as $col => $val ) {
-			$col_info = $this->fieldInfo( $this->tableName( $table ), $col );
+			$col_info = $this->fieldInfoMulti( $table, $col );
 			$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
 			if ( $col_type == 'CLOB' ) {
 				$conds2['TO_CHAR(' . $col . ')'] = $wgLang->checkTitleEncoding( $val );
@@ -1033,14 +1037,6 @@ class DatabaseOracle extends DatabaseBase {
 			} else {
 				$conds2[$col] = $val;
 			}
-		}
-
-		if ( is_array( $table ) ) {
-			foreach ( $table as $tab ) {
-				$tab = $this->tableName( $tab );
-			}
-		} else {
-			$table = $this->tableName( $table );
 		}
 
 		return parent::selectRow( $table, $vars, $conds2, $fname, $options, $join_conds );
@@ -1092,11 +1088,15 @@ class DatabaseOracle extends DatabaseBase {
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 		global $wgLang;
 
+		if (is_array($table)) {
+			$table = array_map( array( &$this, 'tableName' ), $table );
+		}
+		
 		if ( $wgLang != null ) {
 			$conds2 = array();
 			$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
 			foreach ( $conds as $col => $val ) {
-				$col_info = $this->fieldInfo( $this->tableName( $table ), $col );
+				$col_info = $this->fieldInfoMulti( $table, $col );
 				$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
 				if ( $col_type == 'CLOB' ) {
 					$conds2['TO_CHAR(' . $col . ')'] = $wgLang->checkTitleEncoding( $val );
