@@ -62,6 +62,8 @@ $namespaceAliases = array(
 	'വിസം' => NS_CATEGORY_TALK,
 	'വിഭാഗം' => NS_CATEGORY,
 	'വിഭാഗത്തിന്റെ_സംവാദം' => NS_CATEGORY_TALK,
+	'വർഗ്ഗം' => NS_CATEGORY,
+	'വർഗ്ഗത്തിന്റെ_സംവാദം' => NS_CATEGORY_TALK,
 	'സ' => NS_HELP,
 	'സസം' => NS_HELP_TALK,
 );
