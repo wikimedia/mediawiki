@@ -57,6 +57,7 @@ class OutputPage {
 	private $mVaryHeader = array( 'Accept-Encoding' => array('list-contains=gzip'),
 								  'Cookie' => null );
 
+
 	/**
 	 * Constructor
 	 * Initialise private variables
@@ -66,12 +67,23 @@ class OutputPage {
 		$this->mAllowUserJs = $wgAllowUserJs;
 	}
 
+	/**
+	 * Redirect to $url rather than displaying the normal page
+	 *
+	 * @param $url String: URL
+	 * @param $responsecode String: HTTP status code
+	 */
 	public function redirect( $url, $responsecode = '302' ) {
 		# Strip newlines as a paranoia check for header injection in PHP<5.1.2
 		$this->mRedirect = str_replace( "\n", '', $url );
 		$this->mRedirectCode = $responsecode;
 	}
 
+	/**
+	 * Get the URL to redirect to, or an empty string if not redirect URL set
+	 *
+	 * @return String
+	 */
 	public function getRedirect() {
 		return $this->mRedirect;
 	}
@@ -79,10 +91,13 @@ class OutputPage {
 	/**
 	 * Set the HTTP status code to send with the output.
 	 *
-	 * @param int $statusCode
+	 * @param $statusCode Integer
 	 * @return nothing
 	 */
-	function setStatusCode( $statusCode ) { $this->mStatusCode = $statusCode; }
+	public function setStatusCode( $statusCode ) {
+		$this->mStatusCode = $statusCode;
+	}
+
 
 	/**
 	 * Add a new <meta> tag
@@ -95,19 +110,56 @@ class OutputPage {
 		array_push( $this->mMetatags, array( $name, $val ) );
 	}
 
+	/**
+	 * Add a keyword or a list of keywords in the page header
+	 *
+	 * @param $text String or array of strings
+	 */
 	function addKeyword( $text ) {
-		if( is_array( $text )) {
+		if( is_array( $text ) ) {
 			$this->mKeywords = array_merge( $this->mKeywords, $text );
 		} else {
 			array_push( $this->mKeywords, $text );
 		}
 	}
+
+	/**
+	 * Add a new \<link\> tag to the page header
+	 *
+	 * @param $linkarr Array: associative array of attributes.
+	 */
+	function addLink( $linkarr ) {
+		array_push( $this->mLinktags, $linkarr );
+	}
+
+	/**
+	 * Add a new \<link\> with "rel" attribute set to "meta"
+	 *
+	 * @param $linkarr Array: associative array mapping attribute names to their
+	 *                 values, both keys and values will be escaped, and the
+	 *                 "rel" attribute will be automatically added
+	 */
+	function addMetadataLink( $linkarr ) {
+		# note: buggy CC software only reads first "meta" link
+		static $haveMeta = false;
+		$linkarr['rel'] = $haveMeta ? 'alternate meta' : 'meta';
+		$this->addLink( $linkarr );
+		$haveMeta = true;
+	}
+
+
+	/**
+	 * Add raw HTML to the list of scripts (including \<script\> tag, etc.)
+	 *
+	 * @param $script String: raw HTML
+	 */
 	function addScript( $script ) {
 		$this->mScripts .= $script . "\n";
 	}
 
 	/**
 	 * Register and add a stylesheet from an extension directory.
+	 *
 	 * @param $url String path to sheet.  Provide either a full url (beginning
 	 *             with 'http', etc) or a relative path from the document root
 	 *             (beginning with '/').  Otherwise it behaves identically to
@@ -118,10 +170,21 @@ class OutputPage {
 	}
 
 	/**
-	 * Add a JavaScript file out of skins/common, or a given relative path.
-	 * @param string $file filename in skins/common or complete on-server path (/foo/bar.js)
+	 * Get all links added by extensions
+	 *
+	 * @return Array
 	 */
-	function addScriptFile( $file ) {
+	function getExtStyle() {
+		return $this->mExtStyles;
+	}
+
+	/**
+	 * Add a JavaScript file out of skins/common, or a given relative path.
+	 *
+	 * @param $file String: filename in skins/common or complete on-server path
+	 *              (/foo/bar.js)
+	 */
+	public function addScriptFile( $file ) {
 		global $wgStylePath, $wgStyleVersion;
 		if( substr( $file, 0, 1 ) == '/' ) {
 			$path = $file;
@@ -133,19 +196,27 @@ class OutputPage {
 
 	/**
 	 * Add a self-contained script tag with the given contents
-	 * @param string $script JavaScript text, no <script> tags
+	 *
+	 * @param $script String: JavaScript text, no <script> tags
 	 */
-	function addInlineScript( $script ) {
+	public function addInlineScript( $script ) {
 		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
 	}
 
 	/**
 	 * Get all registered JS and CSS tags for the header.
+	 *
+	 * @return String
 	 */
 	function getScript() {
 		return $this->mScripts . $this->getHeadItems();
 	}
 
+	/**
+	 * Get all header items in a string
+	 *
+	 * @return String
+	 */
 	function getHeadItems() {
 		$s = '';
 		foreach ( $this->mHeadItems as $item ) {
@@ -154,35 +225,55 @@ class OutputPage {
 		return $s;
 	}
 
-	function addHeadItem( $name, $value ) {
+	/**
+	 * Add or replace an header item to the output
+	 *
+	 * @param $name String: item name
+	 * @param $value String: raw HTML
+	 */
+	public function addHeadItem( $name, $value ) {
 		$this->mHeadItems[$name] = $value;
 	}
 
-	function hasHeadItem( $name ) {
+	/**
+	 * Check if the header item $name is already set
+	 *
+	 * @param $name String: item name
+	 * @return Boolean
+	 */
+	public function hasHeadItem( $name ) {
 		return isset( $this->mHeadItems[$name] );
 	}
 
-	function setETag($tag) { $this->mETag = $tag; }
-	function setArticleBodyOnly($only) { $this->mArticleBodyOnly = $only; }
-	function getArticleBodyOnly() { return $this->mArticleBodyOnly; }
-
-	function addLink( $linkarr ) {
-		# $linkarr should be an associative array of attributes. We'll escape on output.
-		array_push( $this->mLinktags, $linkarr );
+	/**
+	 * Set the value of the ETag HTTP header, only used if $wgUseETag is true
+	 *
+	 * @param $tag String: value of "ETag" header
+	 */
+	function setETag( $tag ) {
+		$this->mETag = $tag;
 	}
 
-	# Get all links added by extensions
-	function getExtStyle() {
-		return $this->mExtStyles;
+	/**
+	 * Set whether the output should only contain the body of the article,
+	 * without any skin, sidebar, etc.
+	 * Used e.g. when calling with "action=raw".
+	 *
+	 * @param $only Boolean: whether to output only the body of the article
+	 */
+	public function setArticleBodyOnly( $only ) {
+		$this->mArticleBodyOnly = $only;
 	}
 
-	function addMetadataLink( $linkarr ) {
-		# note: buggy CC software only reads first "meta" link
-		static $haveMeta = false;
-		$linkarr['rel'] = ($haveMeta) ? 'alternate meta' : 'meta';
-		$this->addLink( $linkarr );
-		$haveMeta = true;
+	/**
+	 * Return whether the output will contain only the body of the article
+	 *
+	 * @return Boolean
+	 */
+	public function getArticleBodyOnly() {
+		return $this->mArticleBodyOnly;
 	}
+
 
 	/**
 	 * checkLastModified tells the client to use the client-cached page if
@@ -191,9 +282,9 @@ class OutputPage {
 	 *
 	 * Side effect: sets mLastModified for Last-Modified header
 	 *
-	 * @return bool True iff cache-ok headers was sent.
+	 * @return Boolean: true iff cache-ok headers was sent.
 	 */
-	function checkLastModified( $timestamp ) {
+	public function checkLastModified( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser, $wgRequest;
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
@@ -273,20 +364,11 @@ class OutputPage {
 		return true;
 	}
 
-	function setPageTitleActionText( $text ) {
-		$this->mPageTitleActionText = $text;
-	}
-
-	function getPageTitleActionText () {
-		if ( isset( $this->mPageTitleActionText ) ) {
-			return $this->mPageTitleActionText;
-		}
-	}
 
 	/**
 	 * Set the robot policy for the page: <http://www.robotstxt.org/meta.html>
 	 *
-	 * @param $policy string The literal string to output as the contents of
+	 * @param $policy String: the literal string to output as the contents of
 	 *   the meta tag.  Will be parsed according to the spec and output in
 	 *   standardized form.
 	 * @return null
@@ -296,10 +378,10 @@ class OutputPage {
 
 		if( isset( $policy['index'] ) ){
 			$this->setIndexPolicy( $policy['index'] );
- 		}
+		}
 		if( isset( $policy['follow'] ) ){
 			$this->setFollowPolicy( $policy['follow'] );
- 		}
+		}
 	}
 
 	/**
@@ -320,7 +402,7 @@ class OutputPage {
 	 * Set the follow policy for the page, but leave the index policy un-
 	 * touched.
 	 *
-	 * @param $policy string Either 'follow' or 'nofollow'.
+	 * @param $policy String: either 'follow' or 'nofollow'.
 	 * @return null
 	 */
 	public function setFollowPolicy( $policy ) {
@@ -330,11 +412,42 @@ class OutputPage {
 		}
 	}
 
+
+	/**
+	 * Set the new value of the "action text", this will be added to the
+	 * "HTML title", separated from it with " - ".
+	 *
+	 * @param $text String: new value of the "action text"
+	 */
+	public function setPageTitleActionText( $text ) {
+		$this->mPageTitleActionText = $text;
+	}
+
+	/**
+	 * Get the value of the "action text"
+	 *
+	 * @return String
+	 */
+	public function getPageTitleActionText() {
+		if ( isset( $this->mPageTitleActionText ) ) {
+			return $this->mPageTitleActionText;
+		}
+	}
+
 	/**
 	 * "HTML title" means the contents of <title>. It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
 	 */
 	public function setHTMLTitle( $name ) {
 		$this->mHTMLtitle = $name;
+	}
+
+	/**
+	 * Return the "HTML title", i.e. the content of the <title> tag.
+	 *
+	 * @return String
+	 */
+	public function getHTMLTitle() {
+		return $this->mHTMLtitle;
 	}
 
 	/**
@@ -358,31 +471,101 @@ class OutputPage {
 		$this->setHTMLTitle( wfMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) ) );
 	}
 
+	/**
+	 * Return the "page title", i.e. the content of the <h1> tag.
+	 *
+	 * @return String
+	 */
+	public function getPageTitle() {
+		return $this->mPagetitle;
+	}
+
+	/**
+	 * Set the Title object to use
+	 *
+	 * @param $t Title object
+	 */
 	public function setTitle( $t ) {
 		$this->mTitle = $t;
 	}
 
+	/**
+	 * Get the Title object used in this instance
+	 *
+	 * @return Title
+	 */
 	public function getTitle() {
 		if ( $this->mTitle instanceof Title ) {
 			return $this->mTitle;
-		}
-		else {
+		} else {
 			wfDebug( __METHOD__ . ' called and $mTitle is null. Return $wgTitle for sanity' );
 			global $wgTitle;
 			return $wgTitle;
 		}
 	}
 
-	public function getHTMLTitle() { return $this->mHTMLtitle; }
-	public function getPageTitle() { return $this->mPagetitle; }
-	public function setSubtitle( $str ) { $this->mSubtitle = /*$this->parse(*/$str/*)*/; } // @bug 2514
-	public function appendSubtitle( $str ) { $this->mSubtitle .= /*$this->parse(*/$str/*)*/; } // @bug 2514
-	public function getSubtitle() { return $this->mSubtitle; }
-	public function isArticle() { return $this->mIsarticle; }
-	public function setPrintable() { $this->mPrintable = true; }
-	public function isPrintable() { return $this->mPrintable; }
-	public function disable() { $this->mDoNothing = true; }
-	public function isDisabled() { return $this->mDoNothing; }
+	/**
+	 * Replace the subtile with $str
+	 *
+	 * @param $str String: new value of the subtitle
+	 */
+	public function setSubtitle( $str ) {
+		$this->mSubtitle = /*$this->parse(*/ $str /*)*/; // @bug 2514
+	}
+
+	/**
+	 * Add $str to the subtitle
+	 *
+	 * @param $str String to add to the subtitle
+	 */
+	public function appendSubtitle( $str ) {
+		$this->mSubtitle .= /*$this->parse(*/ $str /*)*/; // @bug 2514
+	}
+
+	/**
+	 * Get the subtitle
+	 *
+	 * @return String
+	 */
+	public function getSubtitle() {
+		return $this->mSubtitle;
+	}
+
+
+	/**
+	 * Set the page as printable, i.e. it'll be displayed with with all
+	 * print styles included
+	 */
+	public function setPrintable() {
+		$this->mPrintable = true;
+	}
+
+	/**
+	 * Return whether the page is "printable"
+	 *
+	 * @return Boolean
+	 */
+	public function isPrintable() {
+		return $this->mPrintable;
+	}
+
+
+	/**
+	 * Disable output completely, i.e. calling output() will have no effect
+	 */
+	public function disable() {
+		$this->mDoNothing = true;
+	}
+
+	/**
+	 * Return whether the output will be completely disabled
+	 *
+	 * @return Boolean
+	 */
+	public function isDisabled() {
+		return $this->mDoNothing;
+	}
+
 
 	/**
 	 * Add or remove feed links in the page header
@@ -437,16 +620,26 @@ class OutputPage {
 	 * Should we output feed links for this page?
 	 * @return Boolean
 	 */
-	public function isSyndicated() { return count($this->mFeedLinks) > 0; }
-
-	public function getFeedAppendQuery() { return $this->mFeedLinksAppendQuery; }
-
-	public function setArticleRelated( $v ) {
-		$this->mIsArticleRelated = $v;
-		if ( !$v ) {
-			$this->mIsarticle = false;
-		}
+	public function isSyndicated() {
+		return count( $this->mFeedLinks ) > 0;
 	}
+
+	/**
+	 * Will currently always return null
+	 *
+	 * @return null
+	 */
+	public function getFeedAppendQuery() {
+		return $this->mFeedLinksAppendQuery;
+	}
+
+	/**
+	 * Set whether the displayed content is related to the source of the
+	 * corresponding article on the wiki
+	 * Setting true will cause the change "article related" toggle to true
+	 *
+	 * @param $v Boolean
+	 */
 	public function setArticleFlag( $v ) {
 		$this->mIsarticle = $v;
 		if ( $v ) {
@@ -454,26 +647,73 @@ class OutputPage {
 		}
 	}
 
-	public function isArticleRelated() { return $this->mIsArticleRelated; }
-
-	public function getLanguageLinks() { return $this->mLanguageLinks; }
-	public function addLanguageLinks($newLinkArray) {
-		$this->mLanguageLinks += $newLinkArray;
-	}
-	public function setLanguageLinks($newLinkArray) {
-		$this->mLanguageLinks = $newLinkArray;
-	}
-
-	public function getCategoryLinks() {
-		return $this->mCategoryLinks;
-	}
-
-	public function getCategories() {
-		return $this->mCategories;
+	/**
+	 * Return whether the content displayed page is related to the source of
+	 * the corresponding article on the wiki
+	 *
+	 * @return Boolean
+	 */
+	public function isArticle() {
+		return $this->mIsarticle;
 	}
 
 	/**
+	 * Set whether this page is related an article on the wiki
+	 * Setting false will cause the change of "article flag" toggle to false
+	 *
+	 * @param $v Boolean
+	 */
+	public function setArticleRelated( $v ) {
+		$this->mIsArticleRelated = $v;
+		if ( !$v ) {
+			$this->mIsarticle = false;
+		}
+	}
+
+	/**
+	 * Return whether this page is related an article on the wiki
+	 *
+	 * @return Boolean
+	 */
+	public function isArticleRelated() {
+		return $this->mIsArticleRelated;
+	}
+
+
+	/**
+	 * Add new language links
+	 *
+	 * @param $newLinkArray Associative array mapping language code to the page
+	 *                      name
+	 */
+	public function addLanguageLinks( $newLinkArray ) {
+		$this->mLanguageLinks += $newLinkArray;
+	}
+
+	/**
+	 * Reset the language links and add new language links
+	 *
+	 * @param $newLinkArray Associative array mapping language code to the page
+	 *                      name
+	 */
+	public function setLanguageLinks( $newLinkArray ) {
+		$this->mLanguageLinks = $newLinkArray;
+	}
+
+	/**
+	 * Get the list of language links
+	 *
+	 * @return Associative array mapping language code to the page name
+	 */
+	public function getLanguageLinks() {
+		return $this->mLanguageLinks;
+	}
+
+
+	/**
 	 * Add an array of categories, with names in the keys
+	 *
+	 * @param $categories Associative array mapping category name to its sort key
 	 */
 	public function addCategoryLinks( $categories ) {
 		global $wgUser, $wgContLang;
@@ -527,9 +767,35 @@ class OutputPage {
 		}
 	}
 
-	public function setCategoryLinks($categories) {
+	/**
+	 * Reset the category links (but not the category list) and add $categories
+	 *
+	 * @param $categories Associative array mapping category name to its sort key
+	 */
+	public function setCategoryLinks( $categories ) {
 		$this->mCategoryLinks = array();
-		$this->addCategoryLinks($categories);
+		$this->addCategoryLinks( $categories );
+	}
+
+	/**
+	 * Get the list of category links, in a 2-D array with the following format:
+	 * $arr[$type][] = $link, where $type is either "normal" or "hidden" (for
+	 * hidden categories) and $link a HTML fragment with a link to the category
+	 * page
+	 *
+	 * @return Array
+	 */
+	public function getCategoryLinks() {
+		return $this->mCategoryLinks;
+	}
+
+	/**
+	 * Get the list of category names this page belongs to
+	 *
+	 * @return Array of strings
+	 */
+	public function getCategories() {
+		return $this->mCategories;
 	}
 
 	public function suppressQuickbar() { $this->mSuppressQuickbar = true; }
