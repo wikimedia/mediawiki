@@ -1387,6 +1387,7 @@ Raha mbola te-hampiditra ny rakitrao foana ianao, misaotra anao miverina any aor
 'fileexists-shared-forbidden' => "Efa misy rakitra mitondra io anarana io ao amin'ny fametrahan-drakitra iraisana.
 Raha mbola te-hampiditra io rakitra io foana ianao, miverena any aoriana ary mampiasà anarana hafa.
 . [[File:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => "Ity rakitra ity dia mitovy amin'ny rakitra {{PLURAL:$1|||}} :",
 'file-deleted-duplicate'      => "Efa voafafa ny rakitra mitovy amin'ity rakitra ity ([[$1]]). Tokony jerena any amin'ny tantaran'asan'ny famafana io pejy io alohan'ny mampiditra azy indray.",
 'successfulupload'            => 'Voaray soa aman-tsara ny rakitra',
 'uploadwarning'               => 'Fampitandremana',
@@ -1405,13 +1406,25 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'sourcefilename'              => "Anaran'ny rakitra:",
 'destfilename'                => "Anaran'ny rakitra:",
 'upload-maxfilesize'          => 'Fetran-danja avo indrindra  : $1',
+'watchthisupload'             => 'Araho maso ity rakitra ity',
 'filewasdeleted'              => 'Efa nampidirina tato ary efa voafafa ny rakitra manana io anarana io.
 Tokony marina ny $1 aloha ny manao fampidirana vaovao.',
+'upload-wasdeleted'           => "'''Tandremo''' : Mamerina pejy efa voafafa ianao.''''
+
+Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tantaran'asan'ny famafana pejy sy ny fanovan-toerana dia eo ambany :",
+'filename-bad-prefix'         => "Ny anaran-drakitra ho ampidirinareo dia manomboka amin'ny '''« $1 »''', anarana omena an'ny fakan-tsary elektirônika.
+Misafidia anaran-drakitra mambangovango.",
 
 'upload-proto-error'  => 'Protokolina diso',
 'upload-file-error'   => 'Tsy fetezana anatiny',
+'upload-misc-error'   => 'Tsi-fetezana tsy fantatra teo am-pampidiran-drakitra',
 'upload-unknown-size' => 'tsy fantatra ny hangeza',
 
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'  => 'URL tsy afaka andehanana',
+'upload-curl-error28' => 'Nihoatra ny fotoana fampidiran-drakitra',
+
+'license'   => 'Lisansy:',
 'nolicense' => 'Tsy misy safidy',
 
 # Special:ListFiles
@@ -1434,8 +1447,10 @@ Tokony marina ny $1 aloha ny manao fampidirana vaovao.',
 'filehist-datetime'         => 'Daty sy ora',
 'filehist-thumb'            => 'saritapaka',
 'filehist-thumbtext'        => "Vignette ho an'ny $1",
+'filehist-nothumb'          => 'Tsy misy saritapaka',
 'filehist-user'             => 'Mpikambana',
 'filehist-dimensions'       => 'Hangeza',
+'filehist-filesize'         => "Hangezan'ilay rakitra",
 'filehist-comment'          => 'resaka',
 'filehist-missing'          => 'Tsy ampy rakitra',
 'imagelinks'                => "Fampiasan'io rakitra io",
@@ -1444,10 +1459,24 @@ Tokony marina ny $1 aloha ny manao fampidirana vaovao.',
 'sharedupload'              => "Mety ho rakitra itambarana amin'ny tetikasa hafa ny rakitra $1.",
 'uploadnewversion-linktext' => "Andefa version vaovao n'ity rakitra ity",
 'shared-repo-from'          => "avy amin'ny $1",
+'shared-repo'               => 'fametrahan-drakitra iraisana',
 
 # File reversion
-'filerevert'        => "Hamerinan'i $1",
-'filerevert-legend' => 'Hamerina ny $1',
+'filerevert'         => "Hamerinan'i $1",
+'filerevert-legend'  => 'Hamerina ny $1',
+'filerevert-comment' => 'Dinika :',
+'filerevert-submit'  => 'Hamerina',
+
+# File deletion
+'filedelete'                  => 'Hamafa $1',
+'filedelete-legend'           => 'Fafao ilay rakitra',
+'filedelete-intro'            => "Ampamafana ny rakitra '''[[Media:$1|$1]]''' ianao miaraka amin'ny tantarany rehetra.",
+'filedelete-comment'          => 'Antony hamonoana pejy :',
+'filedelete-submit'           => 'Hamafa',
+'filedelete-success-old'      => "Voafafa ny santiônan'ny '''[[Media:$1|$1]]''' tamin'ny $2 tamin'ny $3.",
+'filedelete-nofile'           => "Tsy misy '''$1'''.",
+'filedelete-otherreason'      => 'Antony fanampiny :',
+'filedelete-reason-otherlist' => 'Antony hafa',
 
 # MIME search
 'mimesearch' => 'Fikarohana MIME',
@@ -1463,23 +1492,24 @@ Tokony marina ny $1 aloha ny manao fampidirana vaovao.',
 'randomredirect-nopages' => "Tsy misy pejy fihodinana eo amin'ny anaran-tsehatra «$1»",
 
 # Statistics
-'statistics'               => 'Fanao pejy',
-'statistics-header-pages'  => "Statistikan'ny pejy",
-'statistics-header-edits'  => "Statistikan'ny fanovana",
-'statistics-header-views'  => "Statistikan'ny tsidika",
-'statistics-header-users'  => "Statistikan'ny mpikambana",
-'statistics-articles'      => 'Lahatsoratra',
-'statistics-pages'         => 'Pejy rehetra',
-'statistics-pages-desc'    => "Pejy rehetra eto amin'ity wiki ity: pejin-dresaka, redirect, sns.",
-'statistics-files'         => 'Rakitra voaray',
-'statistics-edits'         => 'Isan’ny fanovana hatry ny fisian’i {{SITENAME}}',
-'statistics-edits-average' => "Isan'ny fanovana isaky ny pejy",
-'statistics-views-total'   => 'Tsidika',
-'statistics-views-peredit' => 'Tsidika isaky ny fanovana',
-'statistics-jobqueue'      => 'halava ny [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
-'statistics-users'         => '[[Special:ListUsers|Mpikambana]] nanoratra anarana',
-'statistics-users-active'  => 'Mpikambana manova matetika',
-'statistics-mostpopular'   => 'Pejy voatsidika',
+'statistics'                   => 'Fanao pejy',
+'statistics-header-pages'      => "Statistikan'ny pejy",
+'statistics-header-edits'      => "Statistikan'ny fanovana",
+'statistics-header-views'      => "Statistikan'ny tsidika",
+'statistics-header-users'      => "Statistikan'ny mpikambana",
+'statistics-articles'          => 'Lahatsoratra',
+'statistics-pages'             => 'Pejy rehetra',
+'statistics-pages-desc'        => "Pejy rehetra eto amin'ity wiki ity: pejin-dresaka, redirect, sns.",
+'statistics-files'             => 'Rakitra voaray',
+'statistics-edits'             => 'Isan’ny fanovana hatry ny fisian’i {{SITENAME}}',
+'statistics-edits-average'     => "Isan'ny fanovana isaky ny pejy",
+'statistics-views-total'       => 'Tsidika',
+'statistics-views-peredit'     => 'Tsidika isaky ny fanovana',
+'statistics-jobqueue'          => 'halava ny [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
+'statistics-users'             => '[[Special:ListUsers|Mpikambana]] nanoratra anarana',
+'statistics-users-active'      => 'Mpikambana manova matetika',
+'statistics-users-active-desc' => "Mpikambana nanao zavatra teto tanatin'ny $1 andro{{PLURAL:}}.",
+'statistics-mostpopular'       => 'Pejy voatsidika',
 
 'disambiguations'     => 'pejina homonimia',
 'disambiguationspage' => 'Template:homonimia',
@@ -1565,8 +1595,9 @@ mampihena ny tantaran'asa miseho eto.",
 'linksearch' => 'Rohy ivelany',
 
 # Special:Log/newusers
-'newuserlogpage'          => "Tantaran'asa ny fampidiran'ny mpikambana vaovao",
-'newuserlog-create-entry' => 'Mpikambana vaovao',
+'newuserlogpage'              => "Tantaran'asa ny fampidiran'ny mpikambana vaovao",
+'newuserlog-create-entry'     => 'Mpikambana vaovao',
+'newuserlog-autocreate-entry' => 'Kaonty voaorina ho azy',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lisitra ny mpikambana)',

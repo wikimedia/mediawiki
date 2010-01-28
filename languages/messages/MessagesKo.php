@@ -1650,6 +1650,10 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
 'img-auth-public'       => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다. 이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있으며, 보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
 'img-auth-noread'       => '‘$1’ 파일을 볼 권한이 없습니다.',
 
+# HTTP errors
+'http-invalid-url'   => '잘못된 URL: $1',
+'http-request-error' => '요청 전송 오류:',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',
 'upload-curl-error6-text'  => 'URL에 접근할 수 없습니다.
@@ -2728,7 +2732,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'markaspatrolleddiff'                 => '검토한 문서로 표시',
 'markaspatrolledtext'                 => '이 문서를 검토한 것으로 표시',
 'markedaspatrolled'                   => '검토한 문서로 표시',
-'markedaspatrolledtext'               => '선택한 판을 검토한 것으로 표시하였습니다.',
+'markedaspatrolledtext'               => '[[:$1]] 문서의 선택한 판을 검토한 것으로 표시하였습니다.',
 'rcpatroldisabled'                    => '최근 바뀜 검토 기능 비활성화됨',
 'rcpatroldisabledtext'                => '최근 바뀜 검토 기능은 현재 비활성화되어 있습니다.',
 'markedaspatrollederror'              => '검토한 것으로 표시할 수 없습니다.',
