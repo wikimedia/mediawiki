@@ -185,8 +185,8 @@ class Spyc {
 			else
 				$string = $spaces . "-\n";
 		} else {
-			 if ($key == '*') //https://bugzilla.wikimedia.org/show_bug.cgi?id=21922 - Quote asterix used as keys
-				$key = "'{$key}'";
+			 if ($key == '*') //bug 21922 - Quote asterix used as keys
+				$key = "'*'";
 		
 			// It's mapped
 			if ( $value !== '' && !is_null( $value ) )
