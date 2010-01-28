@@ -58,6 +58,7 @@ class HistoryPage {
 
 	/**
 	 * Print the history page for an article.
+	 * @return nothing
 	 */
 	function history() {
 		global $wgOut, $wgRequest, $wgScript;
