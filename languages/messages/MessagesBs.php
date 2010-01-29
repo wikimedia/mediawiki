@@ -1714,7 +1714,7 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 # HTTP errors
 'http-invalid-url'    => 'Nevaljan URL: $1',
 'http-invalid-scheme' => 'URLovi za koje šema "$1" nije podržana',
-'http-request-error'  => 'Greška pri slanju zahtjeva:',
+'http-request-error'  => 'Nepoznata greška pri slanju zahtjeva.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ovaj URL nije bilo moguće otvoriti',

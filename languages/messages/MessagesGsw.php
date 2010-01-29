@@ -551,6 +551,7 @@ Bitte nimm e andere.',
 Iberprief d Schrybwys, oder mäld Di as [[Special:UserLogin/signup|neje Benutzer aa]].',
 'nosuchusershort'            => 'S git kei Benutzername „<nowiki>$1</nowiki>“. Bitte iberprief d Schrybwys.',
 'nouserspecified'            => 'Bitte gib e Benutzername yy.',
+'login-userblocked'          => 'Dää Benutzer isch gsperrt. Aamäldig nit erlaubt.',
 'wrongpassword'              => 'Des Passwort isch falsch (oder fählt). Bitte versuech s nomol.',
 'wrongpasswordempty'         => 'Du hesch vergässe dyy Passwort yyzgee. Bitte versuech s nomol.',
 'passwordtooshort'           => 'Passwerter mien zmindescht {{PLURAL:$1|1 Zeiche|$1 Zeiche}} haa.',
@@ -1511,7 +1512,7 @@ Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
 # HTTP errors
 'http-invalid-url'    => 'Nit giltigi URL: $1',
 'http-invalid-scheme' => 'URL mit em Schema „$1“ wäre nit unterstitzt',
-'http-request-error'  => 'Fähler bim Verschicke vu dr Aafrog:',
+'http-request-error'  => 'Fähler bim Verschicke vu dr Aafrog.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL isch nit z verwitsche',

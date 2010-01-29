@@ -1618,7 +1618,7 @@ Vir veiligheidsredes is img_auth.php gedeaktiveer.",
 # HTTP errors
 'http-invalid-url'    => 'Ongeldige URL: $1',
 'http-invalid-scheme' => 'URL\'s met die "$1"-skema word nie ondersteun nie',
-'http-request-error'  => 'Fout met die stuur van die versoek:',
+'http-request-error'  => "'n Onbekende fout het tydens die stuur van die versoek voorgekom.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon nie die URL bereik nie',

@@ -646,6 +646,7 @@ Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]
 'nosuchusershort'            => 'Non existe ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
+'login-userblocked'          => 'Este usuario está bloqueado. Acceso non autorizado.',
 'wrongpassword'              => 'O contrasinal escrito é incorrecto.
 Por favor, insira outro.',
 'wrongpasswordempty'         => 'O campo do contrasinal estaba en branco.
@@ -1647,7 +1648,7 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 # HTTP errors
 'http-invalid-url'    => 'URL non válido: $1',
 'http-invalid-scheme' => 'Os enderezos URL co esquema "$1" non están soportados',
-'http-request-error'  => 'Erro ao enviar a solicitude:',
+'http-request-error'  => 'Erro descoñecido ao enviar a solicitude.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',
@@ -1674,7 +1675,7 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nome',
 'listfiles_user'        => 'Usuario',
-'listfiles_size'        => 'Tamaño (bytes)',
+'listfiles_size'        => 'Tamaño',
 'listfiles_description' => 'Descrición',
 'listfiles_count'       => 'Versións',
 

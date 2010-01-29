@@ -584,6 +584,7 @@ Verifica le orthographia, o [[Special:UserLogin/signup|crea un nove conto]].',
 'nosuchusershort'            => 'Non existe un usator con le nomine "<nowiki>$1</nowiki>".
 Verifica le orthographia.',
 'nouserspecified'            => 'Tu debe specificar un nomine de usator.',
+'login-userblocked'          => 'Iste usator es blocate. Apertura de session non permittite.',
 'wrongpassword'              => 'Le contrasigno que tu entrava es incorrecte. Per favor reprova.',
 'wrongpasswordempty'         => 'Tu non entrava un contrasigno. Per favor reprova.',
 'passwordtooshort'           => 'Le contrasignos debe continer al minus {{PLURAL:$1|1 character|$1 characteres}}.',
@@ -1594,7 +1595,7 @@ Pro securitate optimal, img_auth.php es disactivate.',
 # HTTP errors
 'http-invalid-url'    => 'URL invalide: $1',
 'http-invalid-scheme' => 'URLs con le schema "$1" non es supportate',
-'http-request-error'  => 'Error durante le invio del requesta:',
+'http-request-error'  => 'Error incognite durante le invio del requesta.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',
