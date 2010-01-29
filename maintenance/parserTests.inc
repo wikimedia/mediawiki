@@ -657,7 +657,7 @@ class ParserTest {
 			'wgDefaultExternalStore' => array(),
 			'wgForeignFileRepos' => array(),
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
-			'wgEnforceHtmlIds' => true,
+			'wgExperimentalHtmlIds' => false,
 			'wgExternalLinkTarget' => false,
 			'wgAlwaysUseTidy' => false,
 			'wgHtml5' => true,

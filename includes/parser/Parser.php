@@ -3478,7 +3478,7 @@ class Parser
 	 * @private
 	 */
 	function formatHeadings( $text, $origText, $isMain=true ) {
-		global $wgMaxTocLevel, $wgContLang, $wgEnforceHtmlIds;
+		global $wgMaxTocLevel, $wgContLang, $wgExperimentalHtmlIds;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$showEditLink = $this->mOptions->getEditSection();
@@ -3654,11 +3654,7 @@ class Parser
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 
-			if ( $wgEnforceHtmlIds ) {
-				$legacyHeadline = false;
-				$safeHeadline = Sanitizer::escapeId( $safeHeadline,
-					'noninitial' );
-			} else {
+			if ( $wgExperimentalHtmlIds ) {
 				# For reverse compatibility, provide an id that's
 				# HTML4-compatible, like we used to.
 				#
@@ -3670,20 +3666,17 @@ class Parser
 				# to type in section names like "abc_.D7.93.D7.90.D7.A4"
 				# manually, so let's not bother worrying about it.
 				$legacyHeadline = Sanitizer::escapeId( $safeHeadline,
-					'noninitial' );
-				$safeHeadline = Sanitizer::escapeId( $safeHeadline, 'xml' );
+					array( 'noninitial', 'legacy' ) );
+				$safeHeadline = Sanitizer::escapeId( $safeHeadline );
 
 				if ( $legacyHeadline == $safeHeadline ) {
 					# No reason to have both (in fact, we can't)
 					$legacyHeadline = false;
-				} elseif ( $legacyHeadline != Sanitizer::escapeId(
-				$legacyHeadline, 'xml' ) ) {
-					# The legacy id is invalid XML.  We used to allow this, but
-					# there's no reason to do so anymore.  Backward
-					# compatibility will fail slightly in this case, but it's
-					# no big deal.
-					$legacyHeadline = false;
 				}
+			} else {
+				$legacyHeadline = false;
+				$safeHeadline = Sanitizer::escapeId( $safeHeadline,
+					'noninitial' );
 			}
 
 			# HTML names must be case-insensitively unique (bug 10721).  FIXME:
@@ -3711,7 +3704,7 @@ class Parser
 			# Don't number the heading if it is the only one (looks silly)
 			if( $doNumberHeadings && count( $matches[3] ) > 1) {
 				# the two are different if the line contains a link
-				$headline=$numbering . ' ' . $headline;
+				$headline = $numbering . ' ' . $headline;
 			}
 
 			# Create the anchor for linking from the TOC to the section

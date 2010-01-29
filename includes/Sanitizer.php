@@ -651,9 +651,7 @@ class Sanitizer {
 			}
 
 			if ( $attribute === 'id' ) {
-				global $wgEnforceHtmlIds;
-				$value = Sanitizer::escapeId( $value,
-					$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
+				$value = Sanitizer::escapeId( $value, 'noninitial' );
 			}
 
 			//RDFa and microdata properties allow URLs, URIs and/or CURIs. check them for sanity
@@ -851,63 +849,62 @@ class Sanitizer {
 	}
 
 	/**
-	 * Given a value escape it so that it can be used in an id attribute and
-	 * return it, this does not validate the value however (see first link)
+	 * Given a value, escape it so that it can be used in an id attribute and
+	 * return it.  This will use HTML5 validation if $wgExperimentalHtmlIds is
+	 * true, allowing anything but ASCII whitespace.  Otherwise it will use
+	 * HTML 4 rules, which means a narrow subset of ASCII, with bad characters
+	 * escaped with lots of dots.
+	 *
+	 * To ensure we don't have to bother escaping anything, we also strip ', ",
+	 * & even if $wgExperimentalIds is true.  TODO: Is this the best tactic?
 	 *
 	 * @see http://www.w3.org/TR/html401/types.html#type-name Valid characters
 	 *                                                          in the id and
 	 *                                                          name attributes
 	 * @see http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
+	 * @see http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#the-id-attribute
+	 *   HTML5 definition of id attribute
 	 *
-	 * @param $id String: id to validate
+	 * @param $id String: id to escape
 	 * @param $options Mixed: string or array of strings (default is array()):
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
-	 *       beginning of an id.
-	 *   'xml': Don't restrict the id to be HTML4-compatible.  This option
-	 *       allows any alphabetic character to be used, per the XML standard.
-	 *       Therefore, it also completely changes the type of escaping: instead
-	 *       of weird dot-encoding, runs of invalid characters (mostly
-	 *       whitespace) are just compressed into a single underscore.
+	 *       beginning of an id.  Only matters if $wgExperimentalHtmlIds is
+	 *       false.
+	 *   'legacy': Behave the way the old HTML 4-based ID escaping worked even
+	 *       if $wgExperimentalHtmlIds is used, so we can generate extra
+	 *       anchors and links won't break.
 	 * @return String
 	 */
 	static function escapeId( $id, $options = array() ) {
+		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
-		if ( !in_array( 'xml', $options ) ) {
-			# HTML4-style escaping
-			static $replace = array(
-				'%3A' => ':',
-				'%' => '.'
-			);
-
-			$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
-			$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
-
-			if ( !preg_match( '/^[a-zA-Z]/', $id )
-			&& !in_array( 'noninitial', $options ) )  {
-				// Initial character must be a letter!
-				$id = "x$id";
+		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
+			$id = preg_replace( '/[ \t\n\r\f_\'"&]+/', '_', $id );
+			$id = trim( $id, '_' );
+			if ( $id === '' ) {
+				# Must have been all whitespace to start with.
+				return '_';
+			} else {
+				return $id;
 			}
-			return $id;
 		}
 
-		# XML-style escaping.  For the patterns used, see the XML 1.0 standard,
-		# 5th edition, NameStartChar and NameChar: <http://www.w3.org/TR/REC-xml/>
-		$nameStartChar = ':a-zA-Z_\xC0-\xD6\xD8-\xF6\xF8-\x{2FF}\x{370}-\x{37D}'
-			. '\x{37F}-\x{1FFF}\x{200C}-\x{200D}\x{2070}-\x{218F}\x{2C00}-\x{2FEF}'
-			. '\x{3001}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}';
-		$nameChar = $nameStartChar . '.\-0-9\xB7\x{0300}-\x{036F}'
-			. '\x{203F}-\x{2040}';
-		# Replace _ as well so we don't get multiple consecutive underscores
-		$id = preg_replace( "/([^$nameChar]|_)+/u", '_', $id );
-		$id = trim( $id, '_' );
+		# HTML4-style escaping
+		static $replace = array(
+			'%3A' => ':',
+			'%' => '.'
+		);
 
-		if ( !preg_match( "/^[$nameStartChar]/u", $id )
-		&& !in_array( 'noninitial', $options ) ) {
-			$id = "_$id";
+		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
+		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
+
+		if ( !preg_match( '/^[a-zA-Z]/', $id )
+		&& !in_array( 'noninitial', $options ) )  {
+			// Initial character must be a letter!
+			$id = "x$id";
 		}
-
 		return $id;
 	}
 

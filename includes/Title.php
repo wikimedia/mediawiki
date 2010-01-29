@@ -501,13 +501,11 @@ class Title {
 	 * Escape a text fragment, say from a link, for a URL
 	 */
 	static function escapeFragmentForURL( $fragment ) {
-		global $wgEnforceHtmlIds;
 		# Note that we don't urlencode the fragment.  urlencoded Unicode
 		# fragments appear not to work in IE (at least up to 7) or in at least
 		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
 		# to care if they aren't encoded.
-		return Sanitizer::escapeId( $fragment,
-			$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
+		return Sanitizer::escapeId( $fragment, 'noninitial' );
 	}
 
 #----------------------------------------------------------------------------
