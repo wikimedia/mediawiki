@@ -124,6 +124,10 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'Throttled';
 				$result['wait'] = intval( $wgPasswordAttemptThrottle['seconds'] );
 				break;
+			
+			case LoginForm :: USER_BLOCKED :
+				$result['result'] = 'Blocked';
+				break;
 
 			default :
 				ApiBase :: dieDebug( __METHOD__, "Unhandled case value: {$authRes}" );
