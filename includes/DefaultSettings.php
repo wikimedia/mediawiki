@@ -4142,12 +4142,11 @@ $wgEdititis = false;
 $wgUniversalEditButton = true;
 
 /**
- * Allow id's that don't conform to HTML4 backward compatibility requirements.
- * This is purely experimental, has multiple known flaws, and will likely be
- * renamed and reconcepted based on HTML5 in the future, so should not be used
- * except for testing.
+ * Should we allow a broader set of characters in id attributes, per HTML5?  If
+ * not, use only HTML 4-compatible IDs.  This option is for testing -- when the
+ * functionality is ready, it will be on by default with no option.
  */
-$wgEnforceHtmlIds = true;
+$wgExperimentalHtmlIds = false;
 
 /**
  * Search form behavior
