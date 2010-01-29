@@ -295,7 +295,8 @@ class SpecialRecentChanges extends SpecialPage {
 			$tables, $fields, $conds, $join_conds, $query_options, $opts['tagfilter']
 		);
 
-		wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options ) ) )
+			return false;
 
 		// Don't use the new_namespace_time timestamp index if:
 		// (a) "All namespaces" selected

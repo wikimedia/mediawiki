@@ -312,6 +312,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   restrict/expand it.
 * (bug 21936) When a revision has been patrolled, there's now a link back to the
   article
+* (bug 22315) SpecialRecentChangesQuery hook now pass $query_options and checks
+  the return value
 
 === Bug fixes in 1.16 ===
 
