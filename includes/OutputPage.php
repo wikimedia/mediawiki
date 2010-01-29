@@ -568,6 +568,25 @@ class OutputPage {
 
 
 	/**
+	 * Show an "add new section" link?
+	 *
+	 * @return Boolean
+	 */
+	public function showNewSectionLink() {
+		return $this->mNewSectionLink;
+	}
+
+	/**
+	 * Forcibly hide the new section link?
+	 *
+	 * @return Boolean
+	 */
+	public function forceHideNewSectionLink() {
+		return $this->mHideNewSectionLink;
+	}
+
+
+	/**
 	 * Add or remove feed links in the page header
 	 * This is mainly kept for backward compatibility, see OutputPage::addFeedLink()
 	 * for the new version
@@ -622,6 +641,14 @@ class OutputPage {
 	 */
 	public function isSyndicated() {
 		return count( $this->mFeedLinks ) > 0;
+	}
+
+	/**
+	 * Return URLs for each supported syndication format for this page.
+	 * @return array associating format keys with URLs
+	 */
+	public function getSyndicationLinks() {
+		return $this->mFeedLinks;
 	}
 
 	/**
@@ -798,24 +825,102 @@ class OutputPage {
 		return $this->mCategories;
 	}
 
-	public function suppressQuickbar() { $this->mSuppressQuickbar = true; }
-	public function isQuickbarSuppressed() { return $this->mSuppressQuickbar; }
 
-	public function disallowUserJs() { $this->mAllowUserJs = false; }
-	public function isUserJsAllowed() { return $this->mAllowUserJs; }
+	/**
+	 * Suppress the quickbar from the output, only for skin supporting
+	 * the quickbar
+	 */
+	public function suppressQuickbar() {
+		$this->mSuppressQuickbar = true;
+	}
 
-	public function prependHTML( $text ) { $this->mBodytext = $text . $this->mBodytext; }
-	public function addHTML( $text ) { $this->mBodytext .= $text; }
-	public function clearHTML() { $this->mBodytext = ''; }
-	public function getHTML() { return $this->mBodytext; }
-	public function debug( $text ) { $this->mDebugtext .= $text; }
+	/**
+	 * Return whether the quickbar should be suppressed from the output
+	 *
+	 * @return Boolean
+	 */
+	public function isQuickbarSuppressed() {
+		return $this->mSuppressQuickbar;
+	}
 
-	/* @deprecated */
+
+	/**
+	 * Remove user JavaScript from scripts to load
+	 */
+	public function disallowUserJs() {
+		$this->mAllowUserJs = false;
+	}
+
+	/**
+	 * Return whether user JavaScript is allowed for this page
+	 *
+	 * @return Boolean
+	 */
+	public function isUserJsAllowed() {
+		return $this->mAllowUserJs;
+	}
+
+
+	/**
+	 * Prepend $text to the body HTML
+	 *
+	 * @param $text String: HTML
+	 */
+	public function prependHTML( $text ) {
+		$this->mBodytext = $text . $this->mBodytext;
+	}
+
+	/**
+	 * Append $text to the body HTML
+	 *
+	 * @param $text String: HTML
+	 */
+	public function addHTML( $text ) {
+		$this->mBodytext .= $text;
+	}
+
+	/**
+	 * Clear the body HTML
+	 */
+	public function clearHTML() {
+		$this->mBodytext = '';
+	}
+
+	/**
+	 * Get the body HTML
+	 *
+	 * @return String: HTML
+	 */
+	public function getHTML() {
+		return $this->mBodytext;
+	}
+
+
+	/**
+	 * Add $text to the debug output
+	 *
+	 * @param $text String: debug text
+	 */
+	public function debug( $text ) {
+		$this->mDebugtext .= $text;
+	}
+
+
+	/**
+	 * @deprecated use parserOptions() instead
+	 */
 	public function setParserOptions( $options ) {
 		wfDeprecated( __METHOD__ );
 		return $this->parserOptions( $options );
 	}
 
+	/**
+	 * Get/set the ParserOptions object to use for wikitext parsing
+	 *
+	 * @param $options either the ParserOption to use or null to only get the
+	 *                 current ParserOption object
+	 * @return current ParserOption object
+	 */
 	public function parserOptions( $options = null ) {
 		if ( !$this->mParserOptions ) {
 			$this->mParserOptions = new ParserOptions;
@@ -826,40 +931,78 @@ class OutputPage {
 	/**
 	 * Set the revision ID which will be seen by the wiki text parser
 	 * for things such as embedded {{REVISIONID}} variable use.
-	 * @param mixed $revid an integer, or NULL
-	 * @return mixed previous value
+	 *
+	 * @param $revid Mixed: an positive integer, or null
+	 * @return Mixed: previous value
 	 */
 	public function setRevisionId( $revid ) {
 		$val = is_null( $revid ) ? null : intval( $revid );
 		return wfSetVar( $this->mRevisionId, $val );
 	}
 
+	/**
+	 * Get the current revision ID
+	 *
+	 * @return Integer
+	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
 	}
 
 	/**
 	 * Convert wikitext to HTML and add it to the buffer
-	 * Default assumes that the current page title will
-	 * be used.
+	 * Default assumes that the current page title will be used.
 	 *
-	 * @param string $text
-	 * @param bool   $linestart
+	 * @param $text String
+	 * @param $linestart Boolean: is this the start of a line?
 	 */
 	public function addWikiText( $text, $linestart = true ) {
 		$title = $this->getTitle(); // Work arround E_STRICT
 		$this->addWikiTextTitle( $text, $title, $linestart );
 	}
 
-	public function addWikiTextWithTitle($text, &$title, $linestart = true) {
-		$this->addWikiTextTitle($text, $title, $linestart);
+	/**
+	 * Add wikitext with a custom Title object
+	 *
+	 * @param $text String: wikitext
+	 * @param $title Title object
+	 * @param $linestart Boolean: is this the start of a line?
+	 */
+	public function addWikiTextWithTitle( $text, &$title, $linestart = true ) {
+		$this->addWikiTextTitle( $text, $title, $linestart );
 	}
 
-	function addWikiTextTitleTidy($text, &$title, $linestart = true) {
+	/**
+	 * Add wikitext with a custom Title object and 
+	 *
+	 * @param $text String: wikitext
+	 * @param $title Title object
+	 * @param $linestart Boolean: is this the start of a line?
+	 */
+	function addWikiTextTitleTidy( $text, &$title, $linestart = true ) {
 		$this->addWikiTextTitle( $text, $title, $linestart, true );
 	}
 
-	public function addWikiTextTitle($text, &$title, $linestart, $tidy = false) {
+	/**
+	 * Add wikitext with tidy enabled
+	 *
+	 * @param $text String: wikitext
+	 * @param $linestart Boolean: is this the start of a line?
+	 */
+	public function addWikiTextTidy( $text, $linestart = true ) {
+		$title = $this->getTitle();
+		$this->addWikiTextTitleTidy($text, $title, $linestart);
+	}
+
+	/**
+	 * Add wikitext with a custom Title object
+	 *
+	 * @param $text String: wikitext
+	 * @param $title Title object
+	 * @param $linestart Boolean: is this the start of a line?
+	 * @param $tidy Boolean: whether to use tidy
+	 */
+	public function addWikiTextTitle( $text, &$title, $linestart, $tidy = false ) {
 		global $wgParser;
 
 		wfProfileIn( __METHOD__ );
@@ -880,8 +1023,45 @@ class OutputPage {
 	}
 
 	/**
-	 * @todo document
-	 * @param ParserOutput object &$parserOutput
+	 * Add wikitext to the buffer, assuming that this is the primary text for a page view
+	 * Saves the text into the parser cache if possible.
+	 *
+	 * @param $text String: wikitext
+	 * @param $article Article object
+	 * @param $cache Boolean
+	 * @deprecated Use Article::outputWikitext
+	 */
+	public function addPrimaryWikiText( $text, $article, $cache = true ) {
+		global $wgParser;
+
+		wfDeprecated( __METHOD__ );
+
+		$popts = $this->parserOptions();
+		$popts->setTidy(true);
+		$parserOutput = $wgParser->parse( $text, $article->mTitle,
+			$popts, true, true, $this->mRevisionId );
+		$popts->setTidy(false);
+		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
+			$parserCache = ParserCache::singleton();
+			$parserCache->save( $parserOutput, $article, $popts);
+		}
+
+		$this->addParserOutput( $parserOutput );
+	}
+
+	/**
+	 * @deprecated use addWikiTextTidy()
+	 */
+	public function addSecondaryWikiText( $text, $linestart = true ) {
+		wfDeprecated( __METHOD__ );
+		$this->addWikiTextTitleTidy($text, $this->getTitle(), $linestart);
+	}
+
+
+	/**
+	 * Add a ParserOutput object, but without Html
+	 *
+	 * @param $parserOutput ParserOutput object
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
 		global $wgExemptFromUserRobotsControl, $wgContentNamespaces;
@@ -924,8 +1104,9 @@ class OutputPage {
 	}
 
 	/**
-	 * @todo document
-	 * @param ParserOutput &$parserOutput
+	 * Add a ParserOutput object
+	 *
+	 * @param $parserOutput ParserOutput
 	 */
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
@@ -934,54 +1115,11 @@ class OutputPage {
 		$this->addHTML( $text );
 	}
 
-	/**
-	 * Add wikitext to the buffer, assuming that this is the primary text for a page view
-	 * Saves the text into the parser cache if possible.
-	 *
-	 * @param string  $text
-	 * @param Article $article
-	 * @param bool    $cache
-	 * @deprecated Use Article::outputWikitext
-	 */
-	public function addPrimaryWikiText( $text, $article, $cache = true ) {
-		global $wgParser;
-
-		wfDeprecated( __METHOD__ );
-
-		$popts = $this->parserOptions();
-		$popts->setTidy(true);
-		$parserOutput = $wgParser->parse( $text, $article->mTitle,
-			$popts, true, true, $this->mRevisionId );
-		$popts->setTidy(false);
-		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
-			$parserCache = ParserCache::singleton();
-			$parserCache->save( $parserOutput, $article, $popts);
-		}
-
-		$this->addParserOutput( $parserOutput );
-	}
-
-	/**
-	 * @deprecated use addWikiTextTidy()
-	 */
-	public function addSecondaryWikiText( $text, $linestart = true ) {
-		wfDeprecated( __METHOD__ );
-		$this->addWikiTextTitleTidy($text, $this->getTitle(), $linestart);
-	}
-
-	/**
-	 * Add wikitext with tidy enabled
-	 */
-	public function addWikiTextTidy(  $text, $linestart = true ) {
-		$title = $this->getTitle();
-		$this->addWikiTextTitleTidy($text, $title, $linestart);
-	}
-
 
 	/**
 	 * Add the output of a QuickTemplate to the output buffer
 	 *
-	 * @param QuickTemplate $template
+	 * @param $template QuickTemplate
 	 */
 	public function addTemplate( &$template ) {
 		ob_start();
@@ -993,9 +1131,10 @@ class OutputPage {
 	/**
 	 * Parse wikitext and return the HTML.
 	 *
-	 * @param string $text
-	 * @param bool   $linestart Is this the start of a line?
-	 * @param bool   $interface ??
+	 * @param $text String
+	 * @param $linestart Boolean: is this the start of a line?
+	 * @param $interface Boolean: ??
+	 * @return String: HTML
 	 */
 	public function parse( $text, $linestart = true, $interface = false ) {
 		global $wgParser;
@@ -1010,7 +1149,14 @@ class OutputPage {
 		return $parserOutput->getText();
 	}
 
-	/** Parse wikitext, strip paragraphs, and return the HTML. */
+	/**
+	 * Parse wikitext, strip paragraphs, and return the HTML.
+	 *
+	 * @param $text String
+	 * @param $linestart Boolean: is this the start of a line?
+	 * @param $interface Boolean: ??
+	 * @return String: HTML
+	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
 		$parsed = $this->parse( $text, $linestart, $interface );
 
@@ -1023,12 +1169,10 @@ class OutputPage {
 	}
 
 	/**
-	 * @param Article $article
-	 * @param User    $user
-	 *
 	 * @deprecated
 	 *
-	 * @return bool True if successful, else false.
+	 * @param $article Article
+	 * @return Boolean: true if successful, else false.
 	 */
 	public function tryParserCache( &$article ) {
 		wfDeprecated( __METHOD__ );
@@ -1043,7 +1187,9 @@ class OutputPage {
 	}
 
 	/**
-	 * @param int $maxage Maximum cache time on the Squid, in seconds.
+	 * Set the value of the "s-maxage" part of the "Cache-control" HTTP header
+	 *
+	 * @param $maxage Integer: maximum cache time on the Squid, in seconds.
 	 */
 	public function setSquidMaxage( $maxage ) {
 		$this->mSquidMaxage = $maxage;
@@ -1051,12 +1197,18 @@ class OutputPage {
 
 	/**
 	 * Use enableClientCache(false) to force it to send nocache headers
+	 *
 	 * @param $state ??
 	 */
 	public function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
 	}
 
+	/**
+	 * Get the list of cookies that will influence on the cache
+	 *
+	 * @return Array
+	 */
 	function getCacheVaryCookies() {
 		global $wgCookiePrefix, $wgCacheVaryCookies;
 		static $cookies;
@@ -1074,15 +1226,23 @@ class OutputPage {
 		return $cookies;
 	}
 
+	/**
+	 * Return whether this page is not cacheable because "useskin" or "uselang"
+	 * url parameters were passed
+	 *
+	 * @return Boolean
+	 */
 	function uncacheableBecauseRequestVars() {
 		global $wgRequest;
-		return	$wgRequest->getText('useskin', false) === false
+		return $wgRequest->getText('useskin', false) === false
 			&& $wgRequest->getText('uselang', false) === false;
 	}
 
 	/**
 	 * Check if the request has a cache-varying cookie header
 	 * If it does, it's very important that we don't allow public caching
+	 *
+	 * @return Boolean
 	 */
 	function haveCacheVaryCookies() {
 		global $wgRequest;
@@ -1102,6 +1262,12 @@ class OutputPage {
 		return false;
 	}
 
+	/**
+	 * Add an HTTP header that will influence on the cache
+	 *
+	 * @param $header String: header name
+	 * @param $option either an Array or null
+	 */
 	public function addVaryHeader( $header, $option = null ) {
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
 			$this->mVaryHeader[$header] = $option;
@@ -1117,7 +1283,11 @@ class OutputPage {
 		$this->mVaryHeader[$header] = array_unique( $this->mVaryHeader[$header] );
 	}
 
-	/** Get a complete X-Vary-Options header */
+	/**
+	 * Get a complete X-Vary-Options header
+	 *
+	 * @return String
+	 */
 	public function getXVO() {
 		$cvCookies = $this->getCacheVaryCookies();
 		
@@ -1139,14 +1309,16 @@ class OutputPage {
 		return $xvo;
 	}
 
-	/** bug 21672: Add Accept-Language to Vary and XVO headers
-		if there's no 'variant' parameter existed in GET.
-		
-		For example:
-		 /w/index.php?title=Main_page should always be served; but
-		 /w/index.php?title=Main_page&variant=zh-cn should never be served.
-		
-		patched by Liangent and Philip */
+	/**
+	 * bug 21672: Add Accept-Language to Vary and XVO headers
+	 *if there's no 'variant' parameter existed in GET.
+	 *
+	 * For example:
+	 *   /w/index.php?title=Main_page should always be served; but
+	 *   /w/index.php?title=Main_page&variant=zh-cn should never be served.
+	 *
+	 * patched by Liangent and Philip
+	 */
 	function addAcceptLanguage() {
 		global $wgRequest, $wgContLang;
 		if( !$wgRequest->getCheck('variant') && $wgContLang->hasVariants() ) {
@@ -1162,6 +1334,9 @@ class OutputPage {
 		}
 	}
 
+	/**
+	 * Send cache control HTTP headers
+	 */
 	public function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest, $wgUseXVO;
 
@@ -1394,7 +1569,8 @@ class OutputPage {
 	/**
 	 * Actually output something with print(). Performs an iconv to the
 	 * output encoding, if needed.
-	 * @param string $ins The string to output
+	 *
+	 * @param $ins String: the string to output
 	 */
 	public function out( $ins ) {
 		global $wgInputEncoding, $wgOutputEncoding, $wgContLang;
@@ -1424,9 +1600,9 @@ class OutputPage {
 	}
 
 	/**
-	 * Deprecated, use wfReportTime() instead.
-	 * @return string
-	 * @deprecated
+	 * @deprecated use wfReportTime() instead.
+	 *
+	 * @return String
 	 */
 	public function reportTime() {
 		wfDeprecated( __METHOD__ );
@@ -1437,7 +1613,7 @@ class OutputPage {
 	/**
 	 * Produce a "user is blocked" page.
 	 *
-	 * @param bool $return Whether to have a "return to $wgTitle" message or not.
+	 * @param $return Boolean: whether to have a "return to $wgTitle" message or not.
 	 * @return nothing
 	 */
 	function blockedPage( $return = true ) {
@@ -1499,9 +1675,9 @@ class OutputPage {
 	/**
 	 * Output a standard error page
 	 *
-	 * @param string $title Message key for page title
-	 * @param string $msg Message key for page text
-	 * @param array $params Message parameters
+	 * @param $title String: message key for page title
+	 * @param $msg String: message key for page text
+	 * @param $params Array: message parameters
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
 		if ( $this->getTitle() ) {
@@ -1525,10 +1701,10 @@ class OutputPage {
 	/**
 	 * Output a standard permission error page
 	 *
-	 * @param array $errors Error message keys
+	 * @param $errors Array: error message keys
+	 * @param $action String: action that was denied or null if unknown
 	 */
-	public function showPermissionsErrorPage( $errors, $action = null )
-	{
+	public function showPermissionsErrorPage( $errors, $action = null ) {
 		$this->mDebugtext .= 'Original title: ' .
 		$this->getTitle()->getPrefixedText() . "\n";
 		$this->setPageTitle( wfMsg( 'permissionserrors' ) );
@@ -1541,17 +1717,11 @@ class OutputPage {
 		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
 	}
 
-	/** @deprecated */
-	public function errorpage( $title, $msg ) {
-		wfDeprecated( __METHOD__ );
-		throw new ErrorPageError( $title, $msg );
-	}
-
 	/**
 	 * Display an error page indicating that a given version of MediaWiki is
 	 * required to use it
 	 *
-	 * @param mixed $version The version of MediaWiki needed to use the page
+	 * @param $version Mixed: the version of MediaWiki needed to use the page
 	 */
 	public function versionRequired( $version ) {
 		$this->setPageTitle( wfMsg( 'versionrequired', $version ) );
@@ -1567,7 +1737,7 @@ class OutputPage {
 	/**
 	 * Display an error page noting that a given permission bit is required.
 	 *
-	 * @param string $permission key required
+	 * @param $permission String: key required
 	 */
 	public function permissionRequired( $permission ) {
 		global $wgLang;
@@ -1591,16 +1761,14 @@ class OutputPage {
 	}
 
 	/**
-	 * Use permissionRequired.
-	 * @deprecated
+	 * @deprecated use permissionRequired()
 	 */
 	public function sysopRequired() {
 		throw new MWException( "Call to deprecated OutputPage::sysopRequired() method\n" );
 	}
 
 	/**
-	 * Use permissionRequired.
-	 * @deprecated
+	 * @deprecated use permissionRequired()
 	 */
 	public function developerRequired() {
 		throw new MWException( "Call to deprecated OutputPage::developerRequired() method\n" );
@@ -1642,14 +1810,12 @@ class OutputPage {
 			$this->returnToMain( null, $mainPage );
 	}
 
-	/** @deprecated */
-	public function databaseError( $fname, $sql, $error, $errno ) {
-		throw new MWException( "OutputPage::databaseError is obsolete\n" );
-	}
-
 	/**
-	 * @param array $errors An array of arrays returned by Title::getUserPermissionsErrors
-	 * @return string The wikitext error-messages, formatted into a list.
+	 * Format a list of error messages
+	 *
+	 * @param $errors An array of arrays returned by Title::getUserPermissionsErrors
+	 * @param $action String: action that was denied or null if unknown
+	 * @return String: the wikitext error-messages, formatted into a list.
 	 */
 	public function formatPermissionsErrorMessage( $errors, $action = null ) {
 		if ($action == null) {
@@ -1692,9 +1858,10 @@ class OutputPage {
 	 *
 	 * @todo Needs to be split into multiple functions.
 	 *
-	 * @param string $source    Source code to show (or null).
-	 * @param bool   $protected Is this a permissions error?
-	 * @param array  $reasons   List of reasons for this error, as returned by Title::getUserPermissionsErrors().
+	 * @param $source    String: source code to show (or null).
+	 * @param $protected Boolean: is this a permissions error?
+	 * @param $reasons   Array: list of reasons for this error, as returned by Title::getUserPermissionsErrors().
+	 * @param $action    String: action that was denied or null if unknown
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		global $wgUser;
@@ -1764,6 +1931,17 @@ class OutputPage {
 		if( $this->getTitle()->exists() ) {
 			$this->returnToMain( null, $this->getTitle() );
 		}
+	}
+
+	/** @deprecated */
+	public function errorpage( $title, $msg ) {
+		wfDeprecated( __METHOD__ );
+		throw new ErrorPageError( $title, $msg );
+	}
+
+	/** @deprecated */
+	public function databaseError( $fname, $sql, $error, $errno ) {
+		throw new MWException( "OutputPage::databaseError is obsolete\n" );
 	}
 
 	/** @deprecated */
@@ -1881,9 +2059,9 @@ class OutputPage {
 	}
 
 	/**
-	 * @return string The doctype, opening <html>, and head element.
-	 *
 	 * @param $sk Skin The given Skin
+	 * @param $includeStyle Unused (?)
+	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
@@ -1986,11 +2164,13 @@ class OutputPage {
 		return $ret;
 	}
 
-	/*
-	 * gets the global variables and mScripts
+	/**
+	 * Gets the global variables and mScripts; also adds userjs to the end if
+	 * enabled
 	 *
-	 * also adds userjs to the end if enabled:
-	*/
+	 * @param $sk Skin object to use
+	 * @return String: HTML fragment
+	 */
 	function getHeadScripts( Skin $sk ) {
 		global $wgUser, $wgRequest, $wgJsMimeType, $wgUseSiteJs;
 		global $wgStylePath, $wgStyleVersion;
@@ -2031,6 +2211,9 @@ class OutputPage {
 		return $scripts;
 	}
 
+	/**
+	 * Add default \<meta\> tags
+	 */
 	protected function addDefaultMeta() {
 		global $wgVersion, $wgHtml5;
 
@@ -2135,15 +2318,12 @@ class OutputPage {
 	}
 
 	/**
-	 * Return URLs for each supported syndication format for this page.
-	 * @return array associating format keys with URLs
-	 */
-	public function getSyndicationLinks() {
-		return $this->mFeedLinks;
-	}
-
-	/**
-	 * Generate a <link rel/> for an RSS feed.
+	 * Generate a <link rel/> for a feed.
+	 *
+	 * @param $type String: feed type
+	 * @param $url String: URL to the feed
+	 * @param $text String: value of the "title" attribute
+	 * @return String: HTML fragment
 	 */
 	private function feedLink( $type, $url, $text ) {
 		return Html::element( 'link', array(
@@ -2157,9 +2337,10 @@ class OutputPage {
 	 * Add a local or specified stylesheet, with the given media options.
 	 * Meant primarily for internal use...
 	 *
-	 * @param $media -- to specify a media type, 'screen', 'printable', 'handheld' or any.
-	 * @param $conditional -- for IE conditional comments, specifying an IE version
-	 * @param $dir -- set to 'rtl' or 'ltr' for direction-specific sheets
+	 * @param $style String: URL to the file
+	 * @param $media String: to specify a media type, 'screen', 'printable', 'handheld' or any.
+	 * @param $condition String: for IE conditional comments, specifying an IE version
+	 * @param $dir String: set to 'rtl' or 'ltr' for direction-specific sheets
 	 */
 	public function addStyle( $style, $media='', $condition='', $dir='' ) {
 		$options = array();
@@ -2197,6 +2378,14 @@ class OutputPage {
 		return implode( "\n", $links );
 	}
 
+	/**
+	 * Generate \<link\> tags for stylesheets
+	 *
+	 * @param $style String: URL to the file
+	 * @param $options Array: option, can contain 'condition', 'dir', 'media'
+	 *                 keys
+	 * @return String: HTML fragment
+	 */
 	protected function styleLink( $style, $options ) {
 		global $wgRequest;
 
@@ -2234,6 +2423,12 @@ class OutputPage {
 		return $link;
 	}
 
+	/**
+	 * Transform "media" attribute based on request parameters
+	 *
+	 * @param $media String: current value of the "media" attribute
+	 * @return String: modified value of the "media" attribute
+	 */
 	function transformCssMedia( $media ) {
 		global $wgRequest, $wgHandheldForIPhone;
 
@@ -2272,7 +2467,6 @@ class OutputPage {
 	 * for when rate limiting has triggered.
 	 */
 	public function rateLimited() {
-
 		$this->setPageTitle(wfMsg('actionthrottled'));
 		$this->setRobotPolicy( 'noindex,follow' );
 		$this->setArticleRelated( false );
@@ -2286,31 +2480,13 @@ class OutputPage {
 	}
 
 	/**
-	 * Show an "add new section" link?
-	 *
-	 * @return bool
-	 */
-	public function showNewSectionLink() {
-		return $this->mNewSectionLink;
-	}
-
-	/**
-	* Forcibly hide the new section link?
-	*
-	* @return bool
-	*/
-	public function forceHideNewSectionLink() {
-		return $this->mHideNewSectionLink;
-	}
-
-	/**
 	 * Show a warning about slave lag
 	 *
 	 * If the lag is higher than $wgSlaveLagCritical seconds,
 	 * then the warning is a bit more obvious. If the lag is
 	 * lower than $wgSlaveLagWarning, then no warning is shown.
 	 *
-	 * @param int $lag Slave lag
+	 * @param $lag Integer: slave lag
 	 */
 	public function showLagWarning( $lag ) {
 		global $wgSlaveLagWarning, $wgSlaveLagCritical, $wgLang;
@@ -2368,7 +2544,7 @@ class OutputPage {
 	 *
 	 * Is equivalent to:
 	 *
-	 *    $wgOut->addWikiText( "<div class='error'>\n" . wfMsgNoTrans( 'some-error' ) . '</div>' );
+	 *    $wgOut->addWikiText( "<div class='error'>\n" . wfMsgNoTrans( 'some-error' ) . "</div>" );
 	 *
 	 * The newline after opening div is needed in some wikitext. See bug 19226.
 	 */
@@ -2399,9 +2575,8 @@ class OutputPage {
 	 * Include jQuery core. Use this to avoid loading it multiple times
 	 * before we get a usable script loader. 
 	 *
-	 * @param array $modules List of jQuery modules which should be loaded
-	 *
-	 * Returns the list of modules which were not loaded.
+	 * @param $modules Array: list of jQuery modules which should be loaded
+	 * @return Array: the list of modules which were not loaded.
 	 */
 	public function includeJQuery( $modules = array() ) {
 		global $wgScriptPath, $wgStyleVersion, $wgJsMimeType;
