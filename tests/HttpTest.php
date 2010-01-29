@@ -32,8 +32,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 			$this->markTestIncomplete("This test requires the curl binary at /usr/bin/curl.	 If you have curl, please file a bug on this test, or, better yet, provide a patch.");
 		}
 
-		$content = tempnam( sys_get_temp_dir(), "" );
-		$headers = tempnam( sys_get_temp_dir(), "" );
+		$content = tempnam( wfTempDir(), "" );
+		$headers = tempnam( wfTempDir(), "" );
 		if ( !$content && !$headers ) {
 			die( "Couldn't create temp file!" );
 		}
