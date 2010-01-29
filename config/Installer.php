@@ -644,7 +644,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->DBpgschema  = importPost( "DBpgschema",  "mediawiki" );
 
 	## SQLite specific
-	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", '../data' );
+	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", "$IP/../data" );
 
 	## MSSQL specific
 	// We need a second field so it doesn't overwrite the MySQL one
@@ -1665,8 +1665,7 @@ if( count( $errs ) ) {
 	?></div>
 	<div class="config-desc">
 		<p>SQLite stores table data into files in the
-		filesystem.  By default the path is the "data"
-		directory in your document root.</p>
+		filesystem.</p>
 
 		<p>This directory must exist and be writable by the web server.</p>
 	</div>
