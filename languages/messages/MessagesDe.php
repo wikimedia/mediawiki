@@ -779,6 +779,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 Überprüfe die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melde dich als neuer Benutzer an]].',
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfe die Schreibweise.',
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
+'login-userblocked'          => 'Dieser Benutzer ist gesperrt. Anmeldung nicht erlaubt.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuche es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuche es erneut.',
 'passwordtooshort'           => 'Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
@@ -1746,7 +1747,7 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 # HTTP errors
 'http-invalid-url'    => 'Ungültige URL: $1',
 'http-invalid-scheme' => 'URLs mit dem Schema „$1“ werden nicht unterstützt',
-'http-request-error'  => 'Fehler beim Senden der Anfrage:',
+'http-request-error'  => 'Fehler beim Senden der Anfrage.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',

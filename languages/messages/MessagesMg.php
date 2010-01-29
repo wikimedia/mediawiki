@@ -1597,7 +1597,7 @@ mampihena ny tantaran'asa miseho eto.",
 # Special:Log/newusers
 'newuserlogpage'              => "Tantaran'asa ny fampidiran'ny mpikambana vaovao",
 'newuserlog-create-entry'     => 'Mpikambana vaovao',
-'newuserlog-autocreate-entry' => 'Kaonty voaorina ho azy',
+'newuserlog-autocreate-entry' => 'Kaonty namboarina ho azy',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lisitra ny mpikambana)',

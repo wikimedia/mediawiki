@@ -763,6 +763,8 @@ Controleer de schrijfwijze of [[Special:UserLogin/signup|maak een nieuwe gebruik
 'nosuchusershort'            => 'De gebruiker "<nowiki>$1</nowiki>" bestaat niet.
 Controleer de schrijfwijze.',
 'nouserspecified'            => 'U dient een gebruikersnaam op te geven.',
+'login-userblocked'          => 'Deze gebruiker is geblokkeerd.
+Aanmelden is niet mogelijk.',
 'wrongpassword'              => 'Het ingegeven wachtwoord is onjuist.
 Probeer het opnieuw.',
 'wrongpasswordempty'         => 'Het opgegeven wachtwoord was leeg.
@@ -1791,7 +1793,7 @@ Om beveiligingsreden is img_auth.php uitgeschakeld.',
 # HTTP errors
 'http-invalid-url'    => 'Ongeldige URL: $1',
 'http-invalid-scheme' => 'URL\'s met de opmaak "$1" worden niet ondersteund',
-'http-request-error'  => 'Fout bij het verzenden van het verzoek:',
+'http-request-error'  => 'Fout bij het verzenden van het verzoek.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon de URL niet bereiken',

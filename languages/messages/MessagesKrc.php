@@ -456,6 +456,7 @@ $2',
 Атны тюз джазылгъанына къарагъыз неда [[Special:UserLogin/signup|джангы аккоунт къурагъаз]].',
 'nosuchusershort'            => '<nowiki>$1</nowiki> аты бла къшулуучу джокъду. Атны тюз джазылгъанына къарагъыз.',
 'nouserspecified'            => 'Сиз къошулуучу атыгъызны джазаргъа керексиз.',
+'login-userblocked'          => 'Бу къошулуучу блокга салыннганды. Кирирге мадары джокъду.',
 'wrongpassword'              => 'Сиз джазгъан пароль терсди. Джангыдан кёрюгюз.',
 'wrongpasswordempty'         => 'Пароль джазылмай къалгъанды. Джангыдан кёрюгюз.',
 'passwordtooshort'           => '$1 {{PLURAL:$1|символдан}} аз болмазгъа керекди пароль.',
@@ -1436,7 +1437,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization бетге къара.'
 # HTTP errors
 'http-invalid-url'    => 'Терс URL: $1',
 'http-invalid-scheme' => '«$1» схемалы адресле тутулмайла',
-'http-request-error'  => 'Соруу ийгенни халаты:',
+'http-request-error'  => 'Соруу ийгенни халаты.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-ге джетилелимеди',

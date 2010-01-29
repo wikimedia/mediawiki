@@ -1718,7 +1718,7 @@ PICT # misc.
 # HTTP errors
 'http-invalid-url'    => 'Неважечка URL: $1',
 'http-invalid-scheme' => 'Не се поддржани URL-адреси со шема „$1“',
-'http-request-error'  => 'Грешка при испраќањето на барањето:',
+'http-request-error'  => 'Непозната грешка при испраќањето на барањето.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не може да се пристапи до URL-то',
@@ -3253,7 +3253,7 @@ Variants for Chinese language
 'exif-gpsdirection-m' => 'Магнетен правец',
 
 # External editor support
-'edit-externally'      => 'Уреди ја оваа податотека со надворешна апликација',
+'edit-externally'      => 'Уреди ја податотеката со надворешен програм',
 'edit-externally-help' => '(Видете [http://www.mediawiki.org/wiki/Manual:External_editors повеќе напатствија] за нагодувањето).',
 
 # 'all' in various places, this might be different for inflected languages
