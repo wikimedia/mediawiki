@@ -1343,6 +1343,7 @@ $wgBlockCIDRLimit = array(
 	'IPv4' => 16, # Blocks larger than a /16 (64k addresses) will not be allowed
 	'IPv6' => 64, # 2^64 = ~1.8x10^19 addresses
 );
+$wgBlockDisablesLogin = false; # If true, blocked users will not be allowed to login
 
 # Pages anonymous user may see as an array, e.g.:
 # array ( "Main Page", "Wikipedia:Help");

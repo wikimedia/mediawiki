@@ -98,6 +98,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   memcached servers.
 * New configuration variables $wgDebugTimestamps and $wgDebugPrintHttpHeaders
   for controlling debug output.
+* New $wgBlockDisablesLogin when set to true disallows blocked users from
+  logging in.
 
 === New features in 1.16 ===
 

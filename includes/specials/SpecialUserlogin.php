@@ -417,6 +417,12 @@ class LoginForm {
 				return self::THROTTLED;
 			}
 		}
+		// If we've enabled it, make it so that a blocked user cannot login
+		global $wgBlockDisablesLogin;
+		$u = User::newFromName( $this->mName );
+		if( $wgBlockDisablesLogin && !is_null( $u ) && $u->isBlocked() ) {
+			return self::USER_BLOCKED;
+		}
 
 		// Load $wgUser now, and check to see if we're logging in as the same
 		// name. This is necessary because loading $wgUser (say by calling
@@ -433,7 +439,6 @@ class LoginForm {
 
 		# TODO: Allow some magic here for invalid external names, e.g., let the
 		# user choose a different wiki name.
-		$u = User::newFromName( $this->mName );
 		if( is_null( $u ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
 		}
