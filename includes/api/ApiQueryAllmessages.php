@@ -77,9 +77,10 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		$result = $this->getResult();
 		foreach ( $messages_target as $message ) {
 			// Skip all messages up to $params['from']
-			if ( $skip && $message === $params['from'] ) {
+			if ( $skip && $message === $params['from'] )
 				$skip = false;
 
+			if ( !$skip ) {
 				$a = array( 'name' => $message );
 				$msg = wfMsgGetKey( $message, true, false, false );
 				if ( wfEmptyMsg( $message, $msg ) )
