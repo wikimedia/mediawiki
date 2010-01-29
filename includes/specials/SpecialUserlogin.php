@@ -34,6 +34,7 @@ class LoginForm {
 	const ABORTED = 8;
 	const CREATE_BLOCKED = 9;
 	const THROTTLED = 10;
+	const USER_BLOCKED = 11;
 
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
@@ -621,6 +622,9 @@ class LoginForm {
 				break;
 			case self::THROTTLED:
 				$this->mainLoginForm( wfMsg( 'login-throttled' ) );
+				break;
+			case self::USER_BLOCKED:
+				$this->mainLoginForm( wfMsg( 'login-userblocked' ) );
 				break;
 			default:
 				throw new MWException( "Unhandled case value" );
