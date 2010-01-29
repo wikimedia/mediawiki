@@ -761,6 +761,7 @@ $2',
 אנא ודאו שהאיות נכון (כולל אותיות רישיות וקטנות), או [[Special:UserLogin/signup|צרו חשבון חדש]].',
 'nosuchusershort'            => 'אין משתמש בשם "<nowiki>$1</nowiki>". אנא ודאו שהאיות נכון.',
 'nouserspecified'            => 'עליכם לציין שם משתמש.',
+'login-userblocked'          => 'משתמש זה חסום. אינכם מורשים להיכנס לחשבון.',
 'wrongpassword'              => 'הסיסמה שהקלדתם שגויה, אנא נסו שנית.',
 'wrongpasswordempty'         => 'הסיסמה שהקלדתם ריקה. אנא נסו שנית.',
 'passwordtooshort'           => 'סיסמאות חייבות להיות באורך {{PLURAL:$1|תו אחד|$1 תווים}} לפחות.',
@@ -1731,7 +1732,7 @@ PICT # שונות
 # HTTP errors
 'http-invalid-url'    => 'כתובת URL בלתי תקינה: $1',
 'http-invalid-scheme' => 'כתובות URL מהסוג "$1" אינן נתמכות',
-'http-request-error'  => 'שגיאה בשליחת הבקשה:',
+'http-request-error'  => 'בקשת ה־HTTP נכשלה עקב שגיאה בלתי ידועה.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'לא ניתן להגיע ל־URL',
