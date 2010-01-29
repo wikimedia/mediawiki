@@ -2135,9 +2135,10 @@ function &wfGetMimeMagic() {
 }
 
 /**
- * Tries to get the system directory for temporary files.
- * The TMPDIR, TMP, and TEMP environment variables are checked in sequence,
- * and if none are set /tmp is returned as the generic Unix default.
+ * Tries to get the system directory for temporary files. For PHP >= 5.2.1,
+ * we'll use sys_get_temp_dir(). The TMPDIR, TMP, and TEMP environment
+ * variables are then checked in sequence, and if none are set /tmp is
+ * returned as the generic Unix default.
  *
  * NOTE: When possible, use the tempfile() function to create temporary
  * files to avoid race conditions on file creation, etc.
@@ -2145,6 +2146,9 @@ function &wfGetMimeMagic() {
  * @return String
  */
 function wfTempDir() {
+	if( function_exists( 'sys_get_temp_dir' ) ) {
+		return sys_get_temp_dir();
+	}
 	foreach( array( 'TMPDIR', 'TMP', 'TEMP' ) as $var ) {
 		$tmp = getenv( $var );
 		if( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
