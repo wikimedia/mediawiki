@@ -52,7 +52,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_sizes = false;
 
 	private function run( $resultPageSet = null ) {
-		global $wgUser, $wgDBtype;
+		global $wgUser;
 
 		$this->selectNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
 
@@ -150,9 +150,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$this->dieUsage( "Incorrect parameter - mutually exclusive values may not be supplied", 'show' );
 			}
 			
-			// Check permissions.  FIXME: should this check $user instead of
-			// $wgUser?
-			global $wgUser;
+			// Check permissions.  FIXME: should this check $user instead of $wgUser?
 			if ( ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() )
 				$this->dieUsage( "You need the patrol right to request the patrolled flag", 'permissiondenied' );
 
@@ -174,7 +172,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( !is_null( $params['excludeuser'] ) )
 			$this->addWhere( 'rc_user_text != ' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
 
-
+		global $wgDBtype;		
 		// This is an index optimization for mysql, as done in the Special:Watchlist page
 		$this->addWhereIf( "rc_timestamp > ''", !isset ( $params['start'] ) && !isset ( $params['end'] ) && $wgDBtype == 'mysql' );
 
