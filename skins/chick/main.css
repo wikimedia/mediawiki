@@ -7,11 +7,11 @@
 */
 
 body {
-    font-family: sans-serif;
-    color: black;
+	font-family: sans-serif;
+	color: black;
 	background: white;
-    margin: 0;
-    padding: 0.3em;
+	margin: 0;
+	padding: 0.3em;
 }
 
 a { color: #002bb8; }
@@ -24,32 +24,32 @@ a.new:visited,
 #p-personal a.new:visited { color:#a55858; }
 
 img {
-    border: none;
-    vertical-align: middle;
+	border: none;
+	vertical-align: middle;
 }
 p {
-    margin: 0.4em 0em 0.5em 0em;
-    line-height: 1.5em;
+	margin: 0.4em 0em 0.5em 0em;
+	line-height: 1.5em;
 }
 
 p img { margin: 0; }
 
 hr {
-    height: 1px;
-    color: #aaaaaa;
-    background-color: #aaaaaa;
-    border: 0;
-    margin: 0.2em 0 0.2em 0;
+	height: 1px;
+	color: #aaaaaa;
+	background-color: #aaaaaa;
+	border: 0;
+	margin: 0.2em 0 0.2em 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: black;
-    background: none;
-    font-weight: normal;
-    margin: 0;
-    padding-top: 0.5em;
-    padding-bottom: 0.17em;
-    border-bottom: 1px solid #aaaaaa;
+	color: black;
+	background: none;
+	font-weight: normal;
+	margin: 0;
+	padding-top: 0.5em;
+	padding-bottom: 0.17em;
+	border-bottom: 1px solid #aaaaaa;
 }
 .editsection {
 	font-weight: normal;
@@ -59,8 +59,8 @@ h1 .editsection { font-size: 53.2%; }
 h2 { font-size: 150%; }
 h2 .editsection { font-size: 66.7%; }
 h3, h4, h5, h6 {
-    border-bottom: none;
-    font-weight: bold;
+	border-bottom: none;
+	font-weight: bold;
 }
 h3 { font-size: 132%; }
 h3 .editsection { font-size: 75.8%; }
@@ -71,97 +71,97 @@ h6 { font-size: 80%;  }
 h6 .editsection { font-size: 125%; }
 
 ul {
-    line-height: 1.5em;
-    margin: 0.3em 0 0 1.5em;
-    padding:0;
+	line-height: 1.5em;
+	margin: 0.3em 0 0 1.5em;
+	padding:0;
 }
 ol {
-    line-height: 1.5em;
-    margin: 0.3em 0 0 3.2em;
-    padding:0;
-    list-style-image: none;
+	line-height: 1.5em;
+	margin: 0.3em 0 0 3.2em;
+	padding:0;
+	list-style-image: none;
 }
 li { margin-bottom: 0.1em; }
 dt {
-    font-weight: bold;
-    margin-bottom: 0.1em;
+	font-weight: bold;
+	margin-bottom: 0.1em;
 }
 dl{
-    margin-top: 0.2em;
-    margin-bottom: 0.5em;
+	margin-top: 0.2em;
+	margin-bottom: 0.5em;
 }
 dd {
-    line-height: 1.5em;
-    margin-left: 2em;
-    margin-bottom: 0.1em;
+	line-height: 1.5em;
+	margin-left: 2em;
+	margin-bottom: 0.1em;
 }
 
 fieldset {
-    border: 1px solid #2f6fab;
-    margin: 1em 0em 1em 0em;
-    padding: 0em 1em 1em 1em;
-    line-height: 1.5em;
+	border: 1px solid #2f6fab;
+	margin: 1em 0em 1em 0em;
+	padding: 0em 1em 1em 1em;
+	line-height: 1.5em;
 }
 legend {
-    background: white;
-    padding: 0.5em;
-    font-size: 95%;
+	background: white;
+	padding: 0.5em;
+	font-size: 95%;
 }
 form {
-    border: none;
-    margin: 0;
+	border: none;
+	margin: 0;
 }
 
 textarea {
-    border: 1px solid #2f6fab;
-    color: black;
-    background-color: white;
-    width: 100%;
-    padding: 0.1em;
-    overflow: auto;
+	border: 1px solid #2f6fab;
+	color: black;
+	background-color: white;
+	width: 100%;
+	padding: 0.1em;
+	overflow: auto;
 }
 /* hide this from ie/mac and konq2.2 */
 @media All {
-    head:first-child+body input {
-        visibility: visible;
-        border: 1px solid #2f6fab;
-        color: black;
-        background-color: white;
-        vertical-align: middle;
-        padding: 0.2em;
-    }
+	head:first-child+body input {
+		visibility: visible;
+		border: 1px solid #2f6fab;
+		color: black;
+		background-color: white;
+		vertical-align: middle;
+		padding: 0.2em;
+	}
 }
 input.historysubmit {
-    padding: 0 0.3em 0.3em 0.3em !important;
-    font-size: 94%;
-    cursor: pointer;
-    height: 1.7em !important;
-    margin-left: 1.6em;
+	padding: 0 0.3em 0.3em 0.3em !important;
+	font-size: 94%;
+	cursor: pointer;
+	height: 1.7em !important;
+	margin-left: 1.6em;
 }
 input[type="radio"],
 input[type="checkbox"] { border:none; }
 select {
-    border: 1px solid #2f6fab;
-    color: black;
-    vertical-align: top;
+	border: 1px solid #2f6fab;
+	color: black;
+	vertical-align: top;
 }
 abbr, acronym, .explain {
-    border-bottom: 1px dotted black;
-    color: black;
-    background: none;
-    cursor: help;
+	border-bottom: 1px dotted black;
+	color: black;
+	background: none;
+	cursor: help;
 }
 q {
-    font-family: Times, "Times New Roman", serif;
-    font-style: italic;
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
 }
 code { background-color: #f9f9f9; }
 pre {
-    padding: 1em;
-    border: 1px dashed #2f6fab;
-    color: black;
-    background-color: #f9f9f9;
-    line-height: 1.1em;
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background-color: #f9f9f9;
+	line-height: 1.1em;
 }
 
 /*
@@ -175,36 +175,36 @@ span.subpages { display: block; }
 #bodyContent h3,
 #bodyContent h4,
 #bodyContent h5 {
-    margin-bottom: 0.3em;
+	margin-bottom: 0.3em;
 }
 #firstHeading { margin-bottom:0.1em; }
 
 /* user notification thing */
 .usermessage {
-    background-color: #ffce7b;
-    border: 1px solid #ffa500;
-    color: black;
-    font-weight: bold;
-    margin: 0.1em 0 0 0;
-    padding: 2px 5px;
-    vertical-align: middle;
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+	font-weight: bold;
+	margin: 0.1em 0 0 0;
+	padding: 2px 5px;
+	vertical-align: middle;
 }
 #siteNotice {
-    text-align: center;
-    font-size: 95%;
-    padding: 0 0.9em 0 0.9em;
+	text-align: center;
+	font-size: 95%;
+	padding: 0 0.9em 0 0.9em;
 }
 #siteNotice p { margin: 0; padding: 0; }
 .error {
-    color: red;
-    font-size: larger;
+	color: red;
+	font-size: larger;
 }
 .catlinks {
-    border:1px solid #aaaaaa;
-    background-color:#f9f9f9;
-    padding: 2px 5px;
-    margin: 0.1em 0 0 0;
-    clear: both;
+	border:1px solid #aaaaaa;
+	background-color:#f9f9f9;
+	padding: 2px 5px;
+	margin: 0.1em 0 0 0;
+	clear: both;
 }
 .catlinks { margin: 0; padding: 0; }
 
@@ -212,28 +212,28 @@ span.subpages { display: block; }
 /* currently unused, intended to be used by a metadata box
 in the bottom-right corner of the content area */
 .documentDescription {
-    /* The summary text describing the document */
-    font-weight: bold;
-    display: block;
-    margin: 1em 0em;
-    line-height: 1.5em;
+	/* The summary text describing the document */
+	font-weight: bold;
+	display: block;
+	margin: 1em 0em;
+	line-height: 1.5em;
 }
 .documentByLine {
-    text-align: right;
-    font-size: 90%;
-    clear: both;
-    font-weight: normal;
-    color: #76797c;
+	text-align: right;
+	font-size: 90%;
+	clear: both;
+	font-weight: normal;
+	color: #76797c;
 }
 
 /* emulate center */
 .center {
-    width: 100%;
-    text-align: center;
+	width: 100%;
+	text-align: center;
 }
 *.center * {
-    margin-left: auto;
-    margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 /* small for tables and similar */
 .small, .small * { font-size: 94%; }
@@ -244,88 +244,88 @@ table.small { font-size: 100% }
 */
 
 #toc {
-    /*border:1px solid #2f6fab;*/
-    border:1px solid #aaaaaa;
-    background-color:#f9f9f9;
-    padding:5px;
-    font-size: 95%;
+	/*border:1px solid #2f6fab;*/
+	border:1px solid #aaaaaa;
+	background-color:#f9f9f9;
+	padding:5px;
+	font-size: 95%;
 }
 #toc ul { margin-left: 2em; }
 #toc .toctoggle { font-size: 94%; }
 #toc .editsection {
-    margin-top: 0.7em;
-    font-size: 94%;
+	margin-top: 0.7em;
+	font-size: 94%;
 }
 
 /* images */
 div.floatright, table.floatright {
-    clear: right;
-    float: right;
-    margin: 0;
-    position: relative;
-    border: 0.5em solid white;
-    border-width: 0.5em 0 0.8em 1.4em;
+	clear: right;
+	float: right;
+	margin: 0;
+	position: relative;
+	border: 0.5em solid white;
+	border-width: 0.5em 0 0.8em 1.4em;
 }
 div.floatright p { font-style: italic; }
 div.floatleft, table.floatleft {
-    float: left;
-    clear: left;
-    margin: 0.3em 0.5em 0.5em 0;
-    position: relative;
-    border: 0.5em solid white;
-    border-width: 0.5em 1.4em 0.8em 0;
+	float: left;
+	clear: left;
+	margin: 0.3em 0.5em 0.5em 0;
+	position: relative;
+	border: 0.5em solid white;
+	border-width: 0.5em 1.4em 0.8em 0;
 }
 div.floatleft p { font-style: italic; }
 /* thumbnails */
 div.thumb {
-    margin-bottom: 0.5em;
-    border-style: solid; border-color: white;
-    width: auto;
+	margin-bottom: 0.5em;
+	border-style: solid; border-color: white;
+	width: auto;
 }
 div.thumbinner {
-    border:1px solid #cccccc;
-    padding: 3px !important;
-    background-color:#f9f9f9;
-    font-size: 94%;
-    text-align: center;
-    overflow: hidden;
+	border:1px solid #cccccc;
+	padding: 3px !important;
+	background-color:#f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
 }
 html .thumbimage {
-    border:1px solid #cccccc;
+	border:1px solid #cccccc;
 }
 html .thumbcaption {
-    border: none;
-    text-align: left;
-    line-height: 1.4em;
-    padding: 0.3em 0 0.1em 0;
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: 0.3em 0 0.1em 0;
 }
 div.magnify {
-    float: right;
-    border: none !important;
-    background: none !important;
+	float: right;
+	border: none !important;
+	background: none !important;
 }
 div.magnify a, div.magnify img {
-    display: block;
-    border: none !important;
-    background: none !important;
+	display: block;
+	border: none !important;
+	background: none !important;
 }
 div.tright {
-    clear: right;
-    float: right;
-    border-width: 0.5em 0 0.8em 1.4em;
+	clear: right;
+	float: right;
+	border-width: 0.5em 0 0.8em 1.4em;
 }
 div.tleft {
-    float: left;
-    clear: left;
-    margin-right:0.5em;
-    border-width: 0.5em 1.4em 0.8em 0;
+	float: left;
+	clear: left;
+	margin-right:0.5em;
+	border-width: 0.5em 1.4em 0.8em 0;
 }
 img.thumbborder {
 	border: 1px solid #dddddd;
 }
 
 .hiddenStructure {
-    display: none;
+	display: none;
 }
 
 /*
@@ -338,26 +338,26 @@ img.thumbborder {
 */
 /* table standards */
 table.rimage {
-    float:right;
-    position:relative;
-    margin-left:1em;
-    margin-bottom:1em;
-    text-align:center;
+	float:right;
+	position:relative;
+	margin-left:1em;
+	margin-bottom:1em;
+	text-align:center;
 }
 .toccolours {
-    border:1px solid #aaaaaa;
-    background-color:#f9f9f9;
-    padding:5px;
-    font-size: 95%;
+	border:1px solid #aaaaaa;
+	background-color:#f9f9f9;
+	padding:5px;
+	font-size: 95%;
 }
 
 /*
 ** edit views etc
 */
 .special li {
-    line-height: 1.4em;
-    margin: 0;
-    padding: 0;
+	line-height: 1.4em;
+	margin: 0;
+	padding: 0;
 }
 
 a.external { color: #3366bb; }
@@ -384,11 +384,11 @@ span.updatedmarker {
 }
 
 div.gallerybox {
-        width:  150px;
+	width:  150px;
 }
 
 #xjump-to-nav {
-  display: none;
+	display: none;
 }
 
 .templatesUsed { margin-top: 1.5em; }
