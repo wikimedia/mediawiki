@@ -278,8 +278,6 @@ class SpecialRecentChanges extends SpecialPage {
 		$namespace = $opts['namespace'];
 		$invert = $opts['invert'];
 
-		$join_conds = array();
-
 		// JOIN on watchlist for users
 		if( $uid ) {
 			$tables[] = 'watchlist';
