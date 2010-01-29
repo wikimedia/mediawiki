@@ -1076,6 +1076,7 @@ Check your spelling, or [[Special:UserLogin/signup|create a new account]].',
 'nosuchusershort'            => 'There is no user by the name "<nowiki>$1</nowiki>".
 Check your spelling.',
 'nouserspecified'            => 'You have to specify a username.',
+'login-userblocked'          => 'This user is blocked. Login not allowed.',
 'wrongpassword'              => 'Incorrect password entered.
 Please try again.',
 'wrongpasswordempty'         => 'Password entered was blank.

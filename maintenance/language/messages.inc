@@ -434,6 +434,7 @@ $wgMessageStructure = array(
 		'nosuchuser',
 		'nosuchusershort',
 		'nouserspecified',
+		'login-userblocked',
 		'wrongpassword',
 		'wrongpasswordempty',
 		'passwordtooshort',
