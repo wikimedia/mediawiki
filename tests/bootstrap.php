@@ -13,12 +13,26 @@ $IP = dirname( dirname( __FILE__ ) );
 
 define( 'MEDIAWIKI', true );
 define( 'MW_PHPUNIT_TEST', true );
-ini_set( 'include_path', "$IP:" .ini_get( 'include_path' ) );
 
-require "$IP/includes/Defines.php";
-require "$IP/includes/AutoLoader.php";
-require "$IP/LocalSettings.php";
-
+require_once "$IP/includes/Defines.php";
+require_once "$IP/includes/AutoLoader.php";
+require_once "$IP/LocalSettings.php";
 require_once "$IP/includes/ProfilerStub.php";
 require_once "$IP/includes/GlobalFunctions.php";
 require_once "$IP/includes/Hooks.php";
+
+// for php versions before 5.2.1
+if ( !function_exists('sys_get_temp_dir')) {
+  function sys_get_temp_dir() {
+	  if( $temp=getenv('TMP') )		   return $temp;
+	  if( $temp=getenv('TEMP') )		return $temp;
+	  if( $temp=getenv('TMPDIR') )	  return $temp;
+	  $temp=tempnam(__FILE__,'');
+	  if (file_exists($temp)) {
+		  unlink($temp);
+		  return dirname($temp);
+	  }
+	  return null;
+  }
+ }
+

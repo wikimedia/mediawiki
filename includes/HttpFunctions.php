@@ -184,7 +184,7 @@ class HttpRequest {
 		case 'php':
 			if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
 				throw new MWException( __METHOD__.': allow_url_fopen needs to be enabled for pure PHP http requests to work. '.
-					'If possible, curl should be used instead.  See http://php.net/curl.' );
+					'If possible, curl should be used instead.	See http://php.net/curl.' );
 			}
 			return new PhpHttpRequest( $url, $options );
 		default:
@@ -365,8 +365,6 @@ class CurlHttpRequest extends HttpRequest {
 }
 
 class PhpHttpRequest extends HttpRequest {
-	private $fh;
-
 	protected function urlToTcp( $url ) {
 		$parsedUrl = parse_url( $url );
 
@@ -376,7 +374,7 @@ class PhpHttpRequest extends HttpRequest {
 	public function execute() {
 		if ( $this->parsedUrl['scheme'] != 'http' ) {
 			$this->status->fatal( 'http-invalid-scheme', $this->parsedURL['scheme'] );
-	    }
+		}
 
 		parent::execute();
 		if ( !$this->status->isOK() ) {
@@ -399,26 +397,33 @@ class PhpHttpRequest extends HttpRequest {
 		$options['method'] = $this->method;
 		$options['timeout'] = $this->timeout;
 		$options['header'] = implode("\r\n", $this->getHeaderList());
-		// FOR NOW: Force everyone to HTTP 1.0
-		/* if ( version_compare( "5.3.0", phpversion(), ">" ) ) { */
-			$options['protocol_version'] = "1.0";
-		/* } else { */
-		/* 	$options['protocol_version'] = "1.1"; */
-		/* } */
+		// Note that at some future point we may want to support
+		// HTTP/1.1, but we'd have to write support for chunking
+		// in version of PHP < 5.3.1
+		$options['protocol_version'] = "1.0";
 
 		if ( $this->postData ) {
 			$options['content'] = $this->postData;
 		}
 
+		$oldTimeout = false;
+		if ( version_compare( '5.2.1', phpversion(), '>' ) ) {
+			$oldTimeout = ini_set('default_socket_timeout', $this->timeout);
+		}
+
 		$context = stream_context_create( array( 'http' => $options ) );
-		try {
-			$this->fh = fopen( $this->url, "r", false, $context );
-		} catch ( Exception $e ) {
-			$this->status->fatal( $e->getMessage() ); /* need some l10n help */
+		wfSuppressWarnings();
+		$fh = fopen( $this->url, "r", false, $context );
+		wfRestoreWarnings();
+		if ( $oldTimeout !== false ) {
+			ini_set('default_socket_timeout', $oldTimeout);
+		}
+		if ( $fh === false ) {
+			$this->status->fatal( 'http-request-error' );
 			return $this->status;
 		}
 
-		$result = stream_get_meta_data( $this->fh );
+		$result = stream_get_meta_data( $fh );
 		if ( $result['timed_out'] ) {
 			$this->status->fatal( 'http-timed-out', $this->url );
 			return $this->status;
@@ -426,16 +431,17 @@ class PhpHttpRequest extends HttpRequest {
 
 		$this->headers = $result['wrapper_data'];
 
-		$end = false;
-		while ( !$end ) {
-			$contents = fread( $this->fh, 8192 );
-			$size = 0;
-			if ( $contents ) {
-				$size = call_user_func_array( $this->callback, array( $this->fh, $contents ) );
+		while ( !feof( $fh ) ) {
+			$buf = fread( $fh, 8192 );
+			if ( $buf === false ) {
+				$this->status->fatal( 'http-read-error' );
+				break;
 			}
-			$end = ( $size == 0 )  || feof( $this->fh );
+			if ( strlen( $buf ) ) {
+				call_user_func( $this->callback, $fh, $buf );
+			}
 		}
-		fclose( $this->fh );
+		fclose( $fh );
 
 		return $this->status;
 	}

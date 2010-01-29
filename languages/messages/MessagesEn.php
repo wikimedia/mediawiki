@@ -2154,7 +2154,7 @@ For optimal security, img_auth.php is disabled.',
 # HTTP errors
 'http-invalid-url'    => 'Invalid URL: $1',
 'http-invalid-scheme' => 'URLs with the "$1" scheme are not supported',
-'http-request-error'  => 'Error sending request:',
+'http-request-error'  => 'Unknown error sending request.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Could not reach URL',
