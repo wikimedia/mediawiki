@@ -1059,7 +1059,7 @@ jQuery.extend({
 			return letter.toUpperCase();
 		});
 
-		if ( set && value != 'NaNpx' ) // Patched by Trevor, see http://is.gd/5NXiD
+		if ( set && value != 'NaNpx' && value != 'nullpx' ) // Patched by Trevor, see http://is.gd/5NXiD
 			elem[ name ] = value;
 
 		return elem[ name ];
