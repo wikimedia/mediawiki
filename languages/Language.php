@@ -2153,6 +2153,7 @@ class Language {
 		if ( strlen( $string ) <= abs( $length ) ) {
 			return $string;
 		}
+		$stringOriginal = $string;
 		if( $length > 0 ) {
 			$string = substr( $string, 0, $length );
 			$char = ord( $string[strlen( $string ) - 1] );
@@ -2166,7 +2167,13 @@ class Language {
 				# We chopped in the middle of a character; remove it
 				$string = $m[1];
 			}
-			return $string . $ellipsis;
+			# Do not truncate if the ellipsis actually make the string longer. Bug 22181
+			if ( strlen( $string ) + strlen( $ellipsis ) < strlen( $stringOriginal ) ) {
+				return $string . $ellipsis;
+			} else {
+				return $stringOriginal;
+			}
+
 		} else {
 			$string = substr( $string, $length );
 			$char = ord( $string[0] );
@@ -2174,7 +2181,12 @@ class Language {
 				# We chopped in the middle of a character; remove the whole thing
 				$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
 			}
-			return $ellipsis . $string;
+			# Do not truncate if the ellipsis actually make the string longer. Bug 22181
+			if ( strlen( $string ) + strlen( $ellipsis ) < strlen( $stringOriginal ) ) {
+				return $ellipsis . $string;
+			} else {
+				return $stringOriginal;
+			}
 		}
 	}
 
