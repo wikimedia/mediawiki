@@ -91,14 +91,17 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					$this->dieUsage( 'patrol property is not available', 'patrol' );
 			}
 		}
+	
+		$this->addFields( array (
+			'rc_namespace',
+			'rc_title',
+			'rc_timestamp'
+		) );
 
 		if ( is_null( $resultPageSet ) ) {
 			$this->addFields( array (
 				'rc_cur_id',
-				'rc_this_oldid',
-				'rc_namespace',
-				'rc_title',
-				'rc_timestamp'
+				'rc_this_oldid'
 			) );
 
 			$this->addFieldsIf( 'rc_new', $this->fld_flags );
@@ -110,21 +113,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrol );
 			$this->addFieldsIf( 'rc_old_len', $this->fld_sizes );
 			$this->addFieldsIf( 'rc_new_len', $this->fld_sizes );
-		}
-		elseif ( $params['allrev'] ) {
-			$this->addFields( array (
-				'rc_this_oldid',
-				'rc_namespace',
-				'rc_title',
-				'rc_timestamp'
-			) );
+		} elseif ( $params['allrev'] ) {
+			$this->addFields( 'rc_this_oldid' );
 		} else {
-			$this->addFields( array (
-				'rc_cur_id',
-				'rc_namespace',
-				'rc_title',
-				'rc_timestamp'
-			) );
+			$this->addFields( 'rc_cur_id' );
 		}
 
 		$this->addTables( array (
