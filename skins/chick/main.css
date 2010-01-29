@@ -8,7 +8,7 @@
 
 body {
     font-family: sans-serif;
-    color: Black;
+    color: black;
     margin: 0;
     padding: 0.3em;
 }
@@ -42,7 +42,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: Black;
+    color: black;
     background: none;
     font-weight: normal;
     margin: 0;
@@ -102,7 +102,7 @@ fieldset {
     line-height: 1.5em;
 }
 legend {
-    background: White;
+    background: white;
     padding: 0.5em;
     font-size: 95%;
 }
@@ -113,7 +113,7 @@ form {
 
 textarea {
     border: 1px solid #2f6fab;
-    color: Black;
+    color: black;
     background-color: white;
     width: 100%;
     padding: 0.1em;
@@ -124,7 +124,7 @@ textarea {
     head:first-child+body input {
         visibility: visible;
         border: 1px solid #2f6fab;
-        color: Black;
+        color: black;
         background-color: white;
         vertical-align: middle;
         padding: 0.2em;
@@ -141,12 +141,12 @@ input[type="radio"],
 input[type="checkbox"] { border:none; }
 select {
     border: 1px solid #2f6fab;
-    color: Black;
+    color: black;
     vertical-align: top;
 }
 abbr, acronym, .explain {
-    border-bottom: 1px dotted Black;
-    color: Black;
+    border-bottom: 1px dotted black;
+    color: black;
     background: none;
     cursor: help;
 }
@@ -158,7 +158,7 @@ code { background-color: #f9f9f9; }
 pre {
     padding: 1em;
     border: 1px dashed #2f6fab;
-    color: Black;
+    color: black;
     background-color: #f9f9f9;
     line-height: 1.1em;
 }
@@ -182,7 +182,7 @@ span.subpages { display: block; }
 .usermessage {
     background-color: #ffce7b;
     border: 1px solid #ffa500;
-    color: Black;
+    color: black;
     font-weight: bold;
     margin: 0.1em 0 0 0;
     padding: 2px 5px;
@@ -262,7 +262,7 @@ div.floatright, table.floatright {
     float: right;
     margin: 0;
     position: relative;
-    border: 0.5em solid White;
+    border: 0.5em solid white;
     border-width: 0.5em 0 0.8em 1.4em;
 }
 div.floatright p { font-style: italic; }
@@ -271,14 +271,14 @@ div.floatleft, table.floatleft {
     clear: left;
     margin: 0.3em 0.5em 0.5em 0;
     position: relative;
-    border: 0.5em solid White;
+    border: 0.5em solid white;
     border-width: 0.5em 1.4em 0.8em 0;
 }
 div.floatleft p { font-style: italic; }
 /* thumbnails */
 div.thumb {
     margin-bottom: 0.5em;
-    border-style: solid; border-color: White;
+    border-style: solid; border-color: white;
     width: auto;
 }
 div.thumbinner {
