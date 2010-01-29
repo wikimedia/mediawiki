@@ -183,24 +183,24 @@ if ( $wgCommandLineMode ) {
 } else {
 	wfDebug( "Start request\n\n" );
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
-	$header_out = "HTTP HEADERS:\n";
-
-	if ( function_exists( 'getallheaders' ) ) {
-		$headers = getallheaders();
-		foreach ( $headers as $name => $value ) {
-			$header_out .= "$name: $value\n";
-		}
-	} else {
-		$headers = $_SERVER;
-		foreach ( $headers as $name => $value ) {
-			if ( substr( $name, 0, 5 ) !== 'HTTP_' ) continue;
-			$name = substr( $name, 5 );
-			$header_out .= "$name: $value\n";
-		}
-	}
 
 	if ( $wgDebugPrintHttpHeaders ) {
-		wfDebug( "$header_out\n" );
+		$headerOut = "HTTP HEADERS:\n";
+
+		if ( function_exists( 'getallheaders' ) ) {
+			$headers = getallheaders();
+			foreach ( $headers as $name => $value ) {
+				$headerOut .= "$name: $value\n";
+			}
+		} else {
+			$headers = $_SERVER;
+			foreach ( $headers as $name => $value ) {
+				if ( substr( $name, 0, 5 ) !== 'HTTP_' ) continue;
+				$name = substr( $name, 5 );
+				$headerOut .= "$name: $value\n";
+			}
+		}
+		wfDebug( "$headerOut\n" );
 	}
 }
 
