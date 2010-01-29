@@ -1,5 +1,9 @@
 <?php
 
+if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+	require_once( 'bootstrap.php' );
+}
+
 class HttpTest extends PhpUnit_Framework_TestCase {
 	static $content;
 	static $headers;
@@ -25,7 +29,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		self::$has_curl = function_exists( 'curl_init' );
 
 		if ( !file_exists("/usr/bin/curl") ) {
-			$this->markTestIncomplete("This test requires the curl binary at /usr/bin/curl.  If you have curl, please file a bug on this test, or, better yet, provide a patch.");
+			$this->markTestIncomplete("This test requires the curl binary at /usr/bin/curl.	 If you have curl, please file a bug on this test, or, better yet, provide a patch.");
 		}
 
 		$content = tempnam( sys_get_temp_dir(), "" );
@@ -65,7 +69,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	function testInstantiation() {
 		Http::$httpEngine = false;
 
-	    $r = HttpRequest::factory("http://www.example.com/");
+		$r = HttpRequest::factory("http://www.example.com/");
 		if ( self::$has_curl ) {
 			$this->assertThat($r, $this->isInstanceOf( 'CurlHttpRequest' ));
 		} else {
@@ -120,7 +124,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	/* ./phase3/includes/Import.php:1108:		$data = Http::request( $method, $url ); */
-	/* ./includes/Import.php:1124:          $link = Title::newFromText( "$interwiki:Special:Export/$page" ); */
+	/* ./includes/Import.php:1124:			$link = Title::newFromText( "$interwiki:Special:Export/$page" ); */
 	/* ./includes/Import.php:1134:			return ImportStreamSource::newFromURL( $url, "POST" ); */
 	function runHTTPRequests($proxy=null) {
 		$opt = array();
@@ -160,8 +164,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	/* ./extensions/BookInformation/drivers/IsbnDb.php:24:			if( ( $xml = Http::get( $uri ) ) !== false ) { */
 	/* ./extensions/BookInformation/drivers/Amazon.php:23:			if( ( $xml = Http::get( $uri ) ) !== false ) { */
 	/* ./extensions/TitleBlacklist/TitleBlacklist.list.php:217:			$result = Http::get( $url ); */
-	/* ./extensions/TSPoll/TSPoll.php:68:      $get_server = Http::get( 'http://toolserver.org/~jan/poll/dev/main.php?page=wiki_output&id='.$id ); */
-	/* ./extensions/TSPoll/TSPoll.php:70:      $get_server = Http::get( 'http://toolserver.org/~jan/poll/main.php?page=wiki_output&id='.$id ); */
+	/* ./extensions/TSPoll/TSPoll.php:68:	   $get_server = Http::get( 'http://toolserver.org/~jan/poll/dev/main.php?page=wiki_output&id='.$id ); */
+	/* ./extensions/TSPoll/TSPoll.php:70:	   $get_server = Http::get( 'http://toolserver.org/~jan/poll/main.php?page=wiki_output&id='.$id ); */
 	/* ./extensions/DoubleWiki/DoubleWiki.php:56:			$translation = Http::get( $url.$sep.'action=render' ); */
 	/* ./extensions/ExternalPages/ExternalPages_body.php:177:			$serializedText = Http::get( $this->mPageURL ); */
 	/* ./extensions/Translate/utils/TranslationHelpers.php:143:		$suggestions = Http::get( $url, $timeout ); */
@@ -198,7 +202,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	/* ./extensions/LocalisationUpdate/LocalisationUpdate.class.php:172:				$basefilecontents = Http::get( $basefile ); */
 	/* ./extensions/APC/SpecialAPC.php:245:		$rss = Http::get( 'http://pecl.php.net/feeds/pkg_apc.rss' ); */
 	/* ./extensions/Interlanguage/Interlanguage.php:56:		$a = Http::get( $url ); */
-	/* ./extensions/MWSearch/MWSearch_body.php:492:		$data = Http::get( $searchUrl, $wgLuceneSearchTimeout, $httpOpts);  */
+	/* ./extensions/MWSearch/MWSearch_body.php:492:		$data = Http::get( $searchUrl, $wgLuceneSearchTimeout, $httpOpts);	*/
 	function runHTTPGets($proxy=null) {
 		$opt = array();
 
