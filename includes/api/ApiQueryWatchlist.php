@@ -172,9 +172,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( !is_null( $params['excludeuser'] ) )
 			$this->addWhere( 'rc_user_text != ' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
 
-		global $wgDBtype;		
+		$db = $this->getDB();
+			
 		// This is an index optimization for mysql, as done in the Special:Watchlist page
-		$this->addWhereIf( "rc_timestamp > ''", !isset ( $params['start'] ) && !isset ( $params['end'] ) && $wgDBtype == 'mysql' );
+		$this->addWhereIf( "rc_timestamp > ''", !isset ( $params['start'] ) && !isset ( $params['end'] ) && $db->getType() == 'mysql' );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
@@ -182,7 +183,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$count = 0;
 		$res = $this->select( __METHOD__ );
 
-		$db = $this->getDB();
 		while ( $row = $db->fetchObject( $res ) ) {
 			if ( ++ $count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
