@@ -2799,18 +2799,14 @@ class Parser
 		wfProfileIn( __METHOD__.'-modifiers' );
 		if ( !$found ) {
 
-			$substMatch = $this->mSubsts->matchVariableStartToEnd( $part1 );
+			$substMatch = $this->mSubsts->matchStartAndRemove( $part1 );
 
-			# Possibilities for substMatch[0]: "subst", "safesubst" or FALSE
+			# Possibilities for substMatch: "subst", "safesubst" or FALSE
 			# Whether to include depends also on whether we are in the pre-save-transform
 			#
-			# safesubst || (subst && PST) => transclude (handled by if)
-			# (false && PST) || (subst && !PST)  => return input (handled by else if)
-			# false && !PST => transclude (no handling needed here)
-			if ( $substMatch[0] && ( $this->ot['wiki'] || $substMatch[0] == 'safesubst' ) ) {
-				$part1 = $substMatch[1];
-
-			} else if ( $substMatch[0] xor $this->ot['wiki'] ) {
+			# safesubst || (subst && PST) || (false && !PST) => transclude (skip the if)
+			# (false && PST) || (subst && !PST)  => return input (handled by if)
+			if ( $substMatch != 'safesubst' && ($substMatch == 'subst' xor $this->ot['wiki']) ) {
 				$text = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
 				$isLocalObj = true;
 				$found = true;

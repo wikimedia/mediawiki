@@ -594,6 +594,21 @@ class MagicWordArray {
 	}
 
 	/**
+	 * Get a regex for matching a prefix. Does not match parameters.
+	 */
+	function getRegexStart() {
+		$base = $this->getBaseRegex();
+		$newRegex = array( '', '' );
+		if ( $base[0] !== '' ) {
+			$newRegex[0] = str_replace( "\\$1", "", "/^(?:{$base[0]})/iuS" );
+		}
+		if ( $base[1] !== '' ) {
+			$newRegex[1] = str_replace( "\\$1", "", "/^(?:{$base[1]})/S" );
+		}
+		return $newRegex;
+	}
+
+	/**
 	 * Get an anchored regex for matching variables
 	 */
 	function getVariableStartToEndRegex() {
@@ -686,6 +701,26 @@ class MagicWordArray {
 			foreach ( $matches as $m ) {
 				list( $name, $param ) = $this->parseMatch( $m );
 				$found[$name] = $param;
+			}
+			$text = preg_replace( $regex, '', $text );
+		}
+		return $found;
+	}
+
+	/**
+	 * Returns the magic word id removed from the start, or false
+	 * does not match parameters.
+	 */
+	public function matchStartAndRemove( &$text ) {
+		$found = FALSE;
+		$regexes = $this->getRegexStart();
+		foreach ( $regexes as $regex ) {
+			if ( $regex === '' ) {
+				continue;
+			}
+			preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
+			foreach ( $matches as $m ) {
+				list( $found, $param ) = $this->parseMatch( $m );
 			}
 			$text = preg_replace( $regex, '', $text );
 		}
