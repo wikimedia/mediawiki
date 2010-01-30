@@ -11,6 +11,52 @@
  * @author Silvicola
  */
 
+$fallback = 'de';
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Schbädsjaal',
+	NS_TALK             => 'Disghusjoon',
+	NS_USER             => 'Bänudsâr',
+	NS_USER_TALK        => 'Bänudsârdisghusjoon',
+	NS_PROJECT_TALK     => '$1disghusjoon',
+	NS_FILE             => 'Dôdaj',
+	NS_FILE_TALK        => 'Dôdajdisghusjoon',
+	NS_MEDIAWIKI        => 'Meedjawigi',
+	NS_MEDIAWIKI_TALK   => 'Meedjawigidisghusjoon',
+	NS_TEMPLATE         => 'Foorlaachâ',
+	NS_TEMPLATE_TALK    => 'Foorlaachândisghusjoon',
+	NS_HELP             => 'Hilwâ',
+	NS_HELP_TALK        => 'Hilwâdisghusjoon',
+	NS_CATEGORY         => 'Gadâgorii',
+	NS_CATEGORY_TALK    => 'Gadâgoriidisghusjoon',
+);
+
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Dobâldâ Wajdârlajdungân' ),
+	'Userlogin'                 => array( 'Ôômäldâ' ),
+	'Userlogout'                => array( 'Ôbmäldâ' ),
+	'Preferences'               => array( 'Ôischtälungâ' ),
+	'Watchlist'                 => array( 'Bäoobôchdungslisdâ' ),
+	'Recentchanges'             => array( 'Lädsdâ Änârungâ' ),
+	'Upload'                    => array( 'Hoochlaadâ' ),
+	'Statistics'                => array( 'Schdadisdign' ),
+	'Newpages'                  => array( 'Nojâ Sajdâ' ),
+	'Allpages'                  => array( 'Ôlâ Sajdâ' ),
+	'Prefixindex'               => array( 'Indägs' ),
+	'Specialpages'              => array( 'Schbädsjaalsajdâ' ),
+	'Contributions'             => array( 'Bajdräächâ' ),
+	'Emailuser'                 => array( 'Iimäjlâ' ),
+	'Confirmemail'              => array( 'Iimäjl bschdädigâ' ),
+	'Movepage'                  => array( 'Sajdâ färschiibâ' ),
+	'Categories'                => array( 'Gadâgoriin' ),
+	'Export'                    => array( 'Ägsbordiirn' ),
+	'Allmessages'               => array( 'Ôlâ Nôôchrichdâ' ),
+	'Undelete'                  => array( 'Wiidârhärschdälâ' ),
+	'Import'                    => array( 'Imbordiirn' ),
+	'Unwatchedpages'            => array( 'Unbäoobôchdâdâ Sajdn' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'              => 'Linggs undârschdrajchn:',
@@ -260,7 +306,7 @@ $1",
 
 # Main script and global functions
 'nosuchaction'      => 'Des schded ned dsur auswaal',
-'nosuchactiontext'  => "Di agdsjoon, dii in dr URL schdäd, ged ned. 
+'nosuchactiontext'  => "Di agdsjoon, dii in dr URL schdäd, ged ned.
 Filajchd is di URL falsch gschriiwn, odr duu bisch âm falschn lingg nôôch.
 S'ghend aa â brogramiirfäälâr in dr sofdwäâr sâj, dii baj {{SITENAME}} lefd.",
 'nosuchspecialpage' => "Dii sôndâr-sajdn gajd's ned",
@@ -289,7 +335,7 @@ aus dr fungdsjoon "<tt>$2</tt>". Un dôôdruf had dan di daadnbangg den feelâr 
 Gschbärd is se desdâweechn: $1",
 'missing-article' => "Di daadnbangg had dii sajdn „$1“ $2 ned gfundn.
 
-Wen des basiird, dan majschdns, wemma â dsu alde bearbajdung ôôgugn wil oda ane fonra gleschdn sajdn.  
+Wen des basiird, dan majschdns, wemma â dsu alde bearbajdung ôôgugn wil oda ane fonra gleschdn sajdn.
 
 Wen's des ned is, bisd womeeglich iwa ân feela in dr sofdwäâr gschdolbad. Dan meld des, bide mid da URL, am [[Special:ListUsers/sysop|Administrator]].",
 'viewsource'      => 'Gwäl-dhägsd ôôgugn',
@@ -312,7 +358,7 @@ Wen's des ned is, bisd womeeglich iwa ân feela in dr sofdwäâr gschdolbad. Dan
 'savearticle'            => 'Sajdn schbajchän',
 'summary-preview'        => "Was in'd dsusammfasungsdsajln najghumd:",
 'noarticletext'          => 'Dii sajdn gibd\'s bis jeds noch ned.
-Duu ghâusch nach dem ausdrug aa [[Special:Search/{{PAGENAME}}|in aln sajdn drin suuchn]], 
+Duu ghâusch nach dem ausdrug aa [[Special:Search/{{PAGENAME}}|in aln sajdn drin suuchn]],
 <span class="plainlinks"> [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} in deen dsugheerichn log-biichârn suuchn] odâr dii sajdn [{{fullurl:{{FULLPAGENAME}}|action=edit}} ôôleechn un najschrajwn]</span>.',
 'template-semiprotected' => '(ned ôôgmeldede un naje benudsr däfn hiir ned schrajm)',
 
@@ -638,10 +684,10 @@ Bide gug's midm foorschau-gnobf ôô fôrm schbajchan",
 'modern.css'      => "/* CSS hiir beâjflusd nôr dii Modern-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */
 
 /* Dii glôôschrajwung im nawigadsjoonsberajch fârhindârd des: */
-.portlet h5,  
-.portlet h6,  
-#p-personal ul,  
-#p-cactions li a,  
+.portlet h5,
+.portlet h6,
+#p-personal ul,
+#p-cactions li a,
 #preftoc a {
      text-transform: none;
 }",
