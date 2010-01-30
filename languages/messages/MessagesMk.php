@@ -717,6 +717,7 @@ $2',
 'nosuchusershort'            => 'Нема корисник со името "<nowiki>$1</nowiki>".
 Проверете дали правилно сте напишале.',
 'nouserspecified'            => 'Мора да назначите корисничко име.',
+'login-userblocked'          => 'Овој корисник е блокиран. Најавувањето не е дозволено.',
 'wrongpassword'              => 'Внесовте погрешна лозинка. Обидете се повторно.',
 'wrongpasswordempty'         => 'Внесената лозинка е празна. Обидете се повторно.',
 'passwordtooshort'           => 'Лозинката мора да има најмалку {{PLURAL:$1|1 знак|$1 знаци}}.',
@@ -1718,7 +1719,7 @@ PICT # misc.
 # HTTP errors
 'http-invalid-url'    => 'Неважечка URL: $1',
 'http-invalid-scheme' => 'Не се поддржани URL-адреси со шема „$1“',
-'http-request-error'  => 'Непозната грешка при испраќањето на барањето.',
+'http-request-error'  => 'Неуспешно HTTP барање поради непозната грешка.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не може да се пристапи до URL-то',

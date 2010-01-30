@@ -680,11 +680,12 @@ $1 نے پابندی لگائی تھی.
 آپ متعلقہ نئے صفحات کیلئے [[Special:Search|ویکی پر تلاش]] کرسکتے ہیں.',
 
 # Revision deletion
-'rev-deleted-comment' => '(تبصرہ ہٹایا گیا ہے)',
-'rev-delundel'        => 'دکھاؤ/چھپاؤ',
-'rev-showdeleted'     => 'دکھاؤ',
-'revisiondelete'      => 'نظرثانی حذف کریں/واپس لائیں',
-'revdel-restore'      => 'ظاہریت تبدیل کرو',
+'rev-deleted-comment'     => '(تبصرہ ہٹایا گیا ہے)',
+'rev-delundel'            => 'دکھاؤ/چھپاؤ',
+'rev-showdeleted'         => 'دکھاؤ',
+'revisiondelete'          => 'نظرثانی حذف کریں/واپس لائیں',
+'revdelete-nooldid-title' => 'ناقص مقصود نظرثانی',
+'revdel-restore'          => 'ظاہریت تبدیل کرو',
 
 # Diffs
 'difference'              => '(اصلاحات میں فرق)',

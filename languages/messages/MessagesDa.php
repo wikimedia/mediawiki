@@ -24,7 +24,6 @@
  * @author Morten LJ
  * @author Najami
  * @author Peter Andersen
- * @author Piivaat
  * @author Purodha
  * @author Qaqqalik
  * @author Remember the dot

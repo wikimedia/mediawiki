@@ -18,7 +18,6 @@
  * @author Mvrban
  * @author Roberta F.
  * @author SpeedyGonsales
- * @author Suradnik13
  * @author Treecko
  * @author לערי ריינהארט
  */

@@ -625,18 +625,23 @@ HTML markup cannot be used.",
 'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.",
 'loginprompt'                => 'A small notice in the log in form.',
 'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.',
+'userloginnocreate'          => 'A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account.
+
+{{Identical|Log in}}',
 'logout'                     => '{{Identical|Log out}}',
 'userlogout'                 => '{{Identical|Log out}}',
 'notloggedin'                => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
 'nologin'                    => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
-'nologinlink'                => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.',
+'nologinlink'                => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.
+{{Identical|Create an account}}',
 'createaccount'              => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages, and also on the submit button in the form where you register a new account.',
 'gotaccount'                 => 'A message shown in the account creation form. $1 is a link to the log in form, and the text of it is "[[MediaWiki:Gotaccountlink/{{SUBPAGENAME}}|{{int:gotaccountlink}}]]".',
 'gotaccountlink'             => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
 {{Identical|Log in}}',
+'createaccountmail'          => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccounterror'         => 'Parameters:
 * $1 is an error message',
 'nocookiesnew'               => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
@@ -783,9 +788,7 @@ Parameters:
 * <tt>$8</tt> is the timestamp when the block started',
 'blockednoreason'                  => '{{Identical|No reason given}}',
 'whitelistedittext'                => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
-'nosuchsectiontext'                => 'This message is displayed when a user tries to edit a section that does not exist. 
-
-Parameter $1 is the content of section parameter in the URL (for example 1234 in the URL http://translatewiki.net/w/i.php?title=Sandbox&action=edit&section=1234)',
+'nosuchsectiontext'                => 'This message is displayed when a user tries to edit a section that does not exist.',
 'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
 
 {{Identical|Log in}}',
@@ -815,6 +818,8 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'copyrightwarning'                 => 'Copyright warning displayed under the edit box in editor',
 'longpagewarning'                  => 'Warning displayed when trying to edit a long page',
 'longpageerror'                    => 'Warning displayed when trying to save a text larger than the maximum size allowed',
+'protectedpagewarning'             => '{{Related|Semiprotectedpagewarning}}',
+'semiprotectedpagewarning'         => '{{Related|Semiprotectedpagewarning}}',
 'titleprotectedwarning'            => 'Warning message above the edit form when editing a page that has been protected aginst creation.',
 'templatesused'                    => 'Displayed below the page when editing it. It indicates a list of templates which are used on that page.',
 'templatesusedpreview'             => 'Used in editor when displaying a preview.',
@@ -837,6 +842,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 * $2 is the allowed number of parser function calls.',
 'expensive-parserfunction-category'       => 'This message is used as a category name for a category where pages are placed automatically if they contain too many calls to expensive parser functions.',
 'post-expand-template-inclusion-category' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
+'language-converter-depth-warning'        => 'Error message shown when a page uses too deeply nested language conversion syntax
+
+* <tt>$1</tt> is the value of the depth limit',
 
 # "Undo" feature
 'undo-success' => '{{Identical|Undo}}',
@@ -2192,57 +2200,59 @@ Additionally available:
 {{Identical|Rollback}}',
 
 # Protect
-'protectlogpage'            => 'Title of [[Special:Log/protect]].',
-'protectlogtext'            => 'Text in [[Special:Log/protect]].',
-'protectedarticle'          => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
-'modifiedarticleprotection' => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
-'protect-title'             => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
-'prot_1movedto2'            => 'Message description: [[mw:Manual:Interface/1movedto2]]',
-'protect-backlink'          => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
+'protectlogpage'              => 'Title of [[Special:Log/protect]].',
+'protectlogtext'              => 'Text in [[Special:Log/protect]].',
+'protectedarticle'            => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
+'modifiedarticleprotection'   => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
+'protect-title'               => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
+'prot_1movedto2'              => 'Message description: [[mw:Manual:Interface/1movedto2]]',
+'protect-backlink'            => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
 
 Shown as subtitle of the protection form. $1 is the title of the page to be (un)protected.',
-'protect-legend'            => 'Legend of the fieldset around the input form of the protection form.',
-'protectcomment'            => '{{Identical|Reason}}',
-'protectexpiry'             => '{{Identical|Expires}}',
-'protect-text'              => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
-'protect-default'           => '{{Identical|Default}}',
-'protect-fallback'          => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
-'protect-summary-cascade'   => 'Used in edit summary when cascade protecting a page.',
-'protect-expiring'          => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
+'protect-legend'              => 'Legend of the fieldset around the input form of the protection form.',
+'protectcomment'              => '{{Identical|Reason}}',
+'protectexpiry'               => '{{Identical|Expires}}',
+'protect-unchain-permissions' => 'This message is a label for a checkbox displayed in the "protect" form just below the first selector (generally the "edit" protection). If the checkbox is checked (default) other selectors will be locked and have the same value as the first selector, otherwise other selectors are editable by the user.
+This message was something like "unlock move protection" in the past.',
+'protect-text'                => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
+'protect-default'             => '{{Identical|Default}}',
+'protect-fallback'            => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
+'protect-summary-cascade'     => 'Used in edit summary when cascade protecting a page.',
+'protect-expiring'            => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
 * $1 is a date and time
 * $2 is a date (optional)
 * $3 is a time (optional)
 
 {{Identical|Expires $1 (UTC)}}',
-'protect-cascade'           => 'See [[meta:Protect]] for more information.',
-'protect-othertime'         => 'Used on the page protection form as label for the following input field (text)
+'protect-cascade'             => 'See [[meta:Protect]] for more information.',
+'protect-othertime'           => 'Used on the page protection form as label for the following input field (text)
 {{Identical|Other time}}',
-'protect-othertime-op'      => 'Used on the page protection form in the drop down menu
+'protect-othertime-op'        => 'Used on the page protection form in the drop down menu
 {{Identical|Other time}}',
-'protect-existing-expiry'   => 'Shows the existing expiry time in the drop down menu of the protection form ([http://translatewiki.net/w/i.php?title=User:Raymond/test&action=unprotect example])
+'protect-existing-expiry'     => 'Shows the existing expiry time in the drop down menu of the protection form ([http://translatewiki.net/w/i.php?title=User:Raymond/test&action=unprotect example])
 
 * $1: date and time of the existing expiry time (kept for backward compatibility purposes)
 * $2: date of the existing expiry time
 * $3: time of the existing expiry time',
-'protect-otherreason'       => 'Shown on the page protection form as label for the following input field (text)
+'protect-otherreason'         => 'Shown on the page protection form as label for the following input field (text)
 {{Identical|Other/additional reason}}',
-'protect-otherreason-op'    => 'Shown on the page protection form in the drop down menu
+'protect-otherreason-op'      => 'Shown on the page protection form in the drop down menu
 {{Identical|Other/additional reason}}',
-'protect-dropdown'          => 'Shown on the page protection form as drop down menu for protection reasons.
+'protect-dropdown'            => 'Shown on the page protection form as drop down menu for protection reasons.
 
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
 <tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
-'protect-edit-reasonlist'   => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
-'protect-expiry-options'    => "* Description: Options for the duration of the page protection. 
+'protect-edit-reasonlist'     => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
+'protect-expiry-options'      => "* Description: Options for the duration of the page protection. 
 * <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English. 
 * Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.
 
 {{Identical|Infinite}}",
-'restriction-type'          => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.',
-'restriction-level'         => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
-'minimum-size'              => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
-'maximum-size'              => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Minimum-size]]. There is an input box to specify the maximum bites of the projected pages listed.',
-'pagesize'                  => 'Used on [[Special:ProtectedPages]]. See the help page on [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.',
+'restriction-type'            => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.',
+'restriction-level'           => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
+'minimum-size'                => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
+'maximum-size'                => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Minimum-size]]. There is an input box to specify the maximum bites of the projected pages listed.',
+'pagesize'                    => 'Used on [[Special:ProtectedPages]]. See the help page on [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.',
 
 # Restrictions (nouns)
 'restriction-edit'   => "Used on [[Special:ProtectedPages]]. Option in the 'permission' drop-down box.
@@ -2517,7 +2527,7 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'movenologin'                  => '{{Identical|Not logged in}}',
 'movenologintext'              => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
 'newtitle'                     => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
-'move-watch'                   => 'The text of the checkbox to watch the pages you are moving from and to. If checked, the original page will be added to the watchlist even if you decide not to leave a redirect behind.',
+'move-watch'                   => 'The text of the checkbox to watch the pages you are moving from and to. If checked, both the destination page and the original page will be added to the watchlist, even if you decide not to leave a redirect behind.',
 'movepagebtn'                  => "Button label on the special 'Move page'.
 
 {{Identical|Move page}}",
@@ -2549,8 +2559,10 @@ Parameters:
 
 'Destination' can be used instead of 'target' in this message.",
 'fix-double-redirects'         => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
-'protectedpagemovewarning'     => 'Related message: [[MediaWiki:protectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]',
-'semiprotectedpagemovewarning' => 'Related message: [[MediaWiki:Semiprotectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]',
+'protectedpagemovewarning'     => 'Related message: [[MediaWiki:protectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]
+{{Related|Semiprotectedpagewarning}}',
+'semiprotectedpagemovewarning' => 'Related message: [[MediaWiki:Semiprotectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]
+{{Related|Semiprotectedpagewarning}}',
 
 # Export
 'export'           => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',
@@ -2772,6 +2784,9 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 
 # Math errors
 'math_syntax_error' => '{{Identical|Syntax error}}',
+
+# Patrolling
+'markedaspatrolledtext' => '{{Identical|Markedaspatrolled}}',
 
 # Patrol log
 'patrol-log-page'      => 'Name of log.',
@@ -3361,6 +3376,7 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 
 {{Identical|Special pages}}',
 'version-parserhooks'              => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
+'version-variables'                => '{{Identical|Variable}}',
 'version-other'                    => '{{Identical|Other}}',
 'version-mediahandlers'            => 'Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).
 There are no such extensions here, so look at [[wikipedia:Special:Version]] for an example.',

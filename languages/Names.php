@@ -343,6 +343,7 @@
 	'vep' => 'Vepsan kel\'',	# Veps
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vls' => 'West-Vlams', # West Flemish
+	'vmf' => 'Mainfränkisch', # Upper Franconian, Main-Franconian
 	'vo' => 'Volapük',	# Volapük
 	'vot' => 'Vaďďa',	# Vod/Votian
 	'vro' => 'Võro',    # Võro
