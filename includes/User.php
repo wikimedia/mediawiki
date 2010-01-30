@@ -3059,8 +3059,8 @@ class User {
 	 * @return \bool True if allowed
 	 */
 	function canSendEmail() {
-		global $wgEnableEmail, $wgEnableUserEmail, $wgUser;
-		if( !$wgEnableEmail || !$wgEnableUserEmail || !$wgUser->isAllowed( 'sendemail' ) ) {
+		global $wgEnableEmail, $wgEnableUserEmail;
+		if( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
 		}
 		$canSend = $this->isEmailConfirmed();
