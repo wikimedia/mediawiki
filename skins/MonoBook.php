@@ -24,7 +24,7 @@ class SkinMonoBook extends SkinTemplate {
 		$template = 'MonoBookTemplate', $useHeadElement = true;
 
 	function setupSkinUserCss( OutputPage $out ) {
-		global $wgHandheldStyle, $wgStyleVersion, $wgJsMimeType, $wgStylePath;
+		global $wgHandheldStyle;
 
 		parent::setupSkinUserCss( $out );
 
