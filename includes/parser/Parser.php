@@ -91,9 +91,9 @@ class Parser
 	 */
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
-		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex, $mPreprocessor,
-		$mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList, $mVarCache, $mConf,
-		$mFunctionTagHooks;
+		$mSubsts, $mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex,
+		$mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList,
+		$mVarCache, $mConf, $mFunctionTagHooks;
 
 
 	# Cleared with clearState():
@@ -2617,15 +2617,17 @@ class Parser
 	}
 
 	/**
-	 * initialise the magic variables (like CURRENTMONTHNAME)
+	 * initialise the magic variables (like CURRENTMONTHNAME) and substitution modifiers 
 	 *
 	 * @private
 	 */
 	function initialiseVariables() {
 		wfProfileIn( __METHOD__ );
 		$variableIDs = MagicWord::getVariableIDs();
+		$substIDs = MagicWord::getSubstIDs();
 
 		$this->mVariables = new MagicWordArray( $variableIDs );
+		$this->mSubsts = new MagicWordArray( $substIDs );
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -2796,12 +2798,19 @@ class Parser
 		# SUBST
 		wfProfileIn( __METHOD__.'-modifiers' );
 		if ( !$found ) {
-			$mwSubst = MagicWord::get( 'subst' );
-			if ( $mwSubst->matchStartAndRemove( $part1 ) xor $this->ot['wiki'] ) {
-				# One of two possibilities is true:
-				# 1) Found SUBST but not in the PST phase
-				# 2) Didn't find SUBST and in the PST phase
-				# In either case, return without further processing
+
+			$substMatch = $this->mSubsts->matchVariableStartToEnd( $part1 );
+
+			# Possibilities for substMatch[0]: "subst", "safesubst" or FALSE
+			# Whether to include depends also on whether we are in the pre-save-transform
+			#
+			# safesubst || (subst && PST) => transclude (handled by if)
+			# (false && PST) || (subst && !PST)  => return input (handled by else if)
+			# false && !PST => transclude (no handling needed here)
+			if ( $substMatch[0] && ( $this->ot['wiki'] || $substMatch[0] == 'safesubst' ) ) {
+				$part1 = $substMatch[1];
+
+			} else if ( $substMatch[0] xor $this->ot['wiki'] ) {
 				$text = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
 				$isLocalObj = true;
 				$found = true;

@@ -809,6 +809,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22248) Output extension URLs in meta=siteinfo&siprop=extensions
 * Support key-params arrays in 'descriptionmsg' in meta=siteinfo&siprop=extensions
 * (bug 21922) YAML output should quote asterisk when used as key
+* (bug 22297) safesubst: to allow substitution without breaking transclusion
 
 === Languages updated in 1.16 ===
 
