@@ -584,6 +584,7 @@ Beim Benotzernumm gëtt tëschent groussen a klenge Buchstawen ënnerscheed (cas
 Kuckt w.e.g. op d\'Schreifweis richteg ass, oder [[Special:UserLogin/signup|maache en neie Benotzerkont op]].',
 'nosuchusershort'            => 'De Benotzernumm "<nowiki>$1</nowiki>" gëtt et net. Kuckt w.e.g. op d\'Schreifweis richteg ass.',
 'nouserspecified'            => 'Gitt w.e.g. e Benotzernumm un.',
+'login-userblocked'          => 'Dëse Benotzer ass gespaart. Aloggen ass net erlaabt.',
 'wrongpassword'              => 'Dir hutt e falscht (oder kee) Passwuert aginn. Probéiert w.e.g. nach eng Kéier.',
 'wrongpasswordempty'         => "D'Passwuert dat Dir aginn hutt war eidel. Probéiert w.e.g. nach eng Kéier.",
 'passwordtooshort'           => 'Passwierder musse mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.',
@@ -1539,7 +1540,7 @@ Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
 # HTTP errors
 'http-invalid-url'    => 'Net-valabel URL: $1',
 'http-invalid-scheme' => 'URLe mam Schema "$1" ginn net ënnerstëtzt',
-'http-request-error'  => 'Feeler beim Schécke vun der Ufro:',
+'http-request-error'  => "D'HTTP-Ufro huet wéinst engem onbekannte Feeler net fonctionnéiert.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL ass net z'erreechen",

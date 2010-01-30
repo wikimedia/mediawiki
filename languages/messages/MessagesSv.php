@@ -737,6 +737,7 @@ Användarnamn är skiftlägeskänsliga.
 Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]].',
 'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
+'login-userblocked'          => 'Denna användare är blockerad. Login inte tillåtet.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'passwordtooshort'           => 'Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
@@ -1715,6 +1716,11 @@ Denna wiki är konfigurerad som en publik wiki.
 För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'img-auth-noread'       => 'Användaren har inte tillåtelse att läsa "$1"',
 
+# HTTP errors
+'http-invalid-url'    => 'Ogiltig URL: $1',
+'http-invalid-scheme' => 'URLer med "$1"-formen stöds inte',
+'http-request-error'  => 'HTTP-begäran misslyckades på grund av okänt fel.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
 'upload-curl-error6-text'  => 'Den angivna URL:en kunde inte nås. Kontrollera att den är korrekt och att webbplatsern fungerar.',
@@ -2131,6 +2137,9 @@ Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i di
 --
 För att ändra inställningarna i din bevakningslista, besök
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+För att radera sidan från din bevakningslista, besök
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Feedback och ytterligare hjälp:
 {{fullurl:{{MediaWiki:Helppage}}}}',

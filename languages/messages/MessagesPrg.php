@@ -1508,6 +1508,8 @@ Teinū tennan prawedda prei [[$2]].',
 'ancientpages'            => 'Ukawūraišai pāusai',
 'move'                    => 'Praskajjinais',
 'movethispage'            => 'Praskajjinais šin pāusan',
+'unusedimagestext'        => 'Ripīntei zūrbrukei ekzistijja, adder ni ast tērpautan en niainasmu pāusan.
+Kitāi pāusai mazzi autengīntun prei šins zūrbrukins pra entikriskans URL adressins be stesse paggan en šissei listin mazzi būtwei zūrbrukei, kawīdai ast tērpautan.',
 'unusedcategoriestext'    => 'Zemmaišai kategōrijai ekzistijja, prōpaus niaīnai pāusai anga kategōrijas tērpaui tennans.',
 'notargettitle'           => 'Ōbjaktan ni ekzistijja',
 'notargettext'            => 'Ni padāi di pāusan anga tērpautajan, nō kan dīlalai šis dīlasenis.',
@@ -2286,7 +2288,7 @@ Wīdais math/README kāi kōnfigurilai.',
 'markaspatrolleddiff'                 => 'Pazentlis kāigi "izbandātan"',
 'markaspatrolledtext'                 => 'Pazentlis šin pāusan kāigi "izbandātan"',
 'markedaspatrolled'                   => 'Pazentlitan kāigi "izbandātan"',
-'markedaspatrolledtext'               => 'Etrīnkta wersiōni pastāi pazentlitan kāigi "izbandātan".',
+'markedaspatrolledtext'               => 'Etrīnkta wersiōni stesse(s) [[:$1]] pastāi pazentlitan kāigi "izbandātan".',
 'rcpatroldisabled'                    => 'Panzdauman Kitawīdisnan izbandāsenei izklaūtan',
 'rcpatroldisabledtext'                => 'Panzdauman Kitawīdisnan izbandāsenei ast tēntiskai izklaūtan.',
 'markedaspatrollederror'              => 'Nimazīngi pazentlitun kāigi "izbandātan"',
@@ -2317,6 +2319,8 @@ $1',
 'nextdiff'     => 'Nāunaisis redigīsenis →',
 
 # Media information
+'mediawarning'         => "'''Ēmpirssergīsenis:''' Šis zūrbrukes tīps mazzi turītun ēn sin wārgingiskan kōdan.
+Enskattintei din,  tū mazzi ārditun twajjan sistēman.<hr />",
 'imagemaxsize'         => "Arāikinais bildin debban:<br />''(per zūrbrukes ebpeisāsenes pāusans)''",
 'thumbsize'            => 'Miniatūris debban:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pāusan|pāusai}}',
@@ -2468,11 +2472,17 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-gpsareainformation'          => 'GPS areālas pabilisnā',
 'exif-gpsdatestamp'                => 'GPS dātan',
 
+# EXIF attributes
+'exif-compression-1' => 'Nikōmpresitan',
+
 'exif-unknowndate' => 'Niwaīstan dātan',
 
 'exif-orientation-1' => 'Nōrmala',
 'exif-orientation-2' => 'Etswāikstintan uricōntalai',
 'exif-orientation-4' => 'Etswāikstintan wertikālai',
+
+'exif-planarconfiguration-1' => 'stāran fōrmatan',
+'exif-planarconfiguration-2' => 'wīrsawiskwas fōrmatan',
 
 'exif-componentsconfiguration-0' => 'ni ekzistijja',
 
