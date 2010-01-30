@@ -49,7 +49,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
-			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_sizes = false;
+			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_sizes = false,
+			$fld_notificationtimestamp = false;
 
 	private function run( $resultPageSet = null ) {
 		global $wgUser;
@@ -85,6 +86,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_timestamp = isset( $prop['timestamp'] );
 			$this->fld_sizes = isset( $prop['sizes'] );
 			$this->fld_patrol = isset( $prop['patrol'] );
+			$this->fld_notificationtimestamp = isset( $prop['notificationtimestamp'] );
 
 			if ( $this->fld_patrol ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() )
@@ -113,6 +115,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrol );
 			$this->addFieldsIf( 'rc_old_len', $this->fld_sizes );
 			$this->addFieldsIf( 'rc_new_len', $this->fld_sizes );
+			$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
 		} elseif ( $params['allrev'] ) {
 			$this->addFields( 'rc_this_oldid' );
 		} else {
@@ -257,6 +260,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['oldlen'] = intval( $row->rc_old_len );
 			$vals['newlen'] = intval( $row->rc_new_len );
 		}
+		
+		if ( $this->fld_notificationtimestamp )
+			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null ) ? '' : wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp);
 
 		if ( $this->fld_comment && isset( $row->rc_comment ) )
 			$vals['comment'] = $row->rc_comment;
@@ -309,6 +315,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'timestamp',
 					'patrol',
 					'sizes',
+					'notificationtimestamp'
 				)
 			),
 			'show' => array (
