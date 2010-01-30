@@ -165,6 +165,10 @@ class MagicWord {
 		'nocontentconvert',
 	);
 
+	static public $mSubstIDs = array(
+		'subst',
+		'safesubst',
+	);
 
 	static public $mObjects = array();
 	static public $mDoubleUnderscoreArray = null;
@@ -214,6 +218,13 @@ class MagicWord {
 			self::$mVariableIDsInitialised = true;
 		}
 		return self::$mVariableIDs;
+	}
+
+	/**
+	 * Get an array of parser substitution modifier IDs
+	 */
+	static function getSubstIDs() {
+		return self::$mSubstIDs; 
 	}
 
 	/* Allow external reads of TTL array */
