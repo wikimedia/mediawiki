@@ -255,7 +255,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addFields( 'ts_tags' );
 		}
 		
-		if ( !is_null( $this->params['tag'] ) ) {
+		if ( isset( $this->params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
