@@ -1133,7 +1133,9 @@ class OutputPage {
 	 *
 	 * @param $text String
 	 * @param $linestart Boolean: is this the start of a line?
-	 * @param $interface Boolean: ??
+	 * @param $interface Boolean: use interface language ($wgLang instead of
+	 *                   $wgContLang) while parsing language sensitive magic
+	 *                   words like GRAMMAR and PLURAL
 	 * @return String: HTML
 	 */
 	public function parse( $text, $linestart = true, $interface = false ) {
@@ -1154,7 +1156,9 @@ class OutputPage {
 	 *
 	 * @param $text String
 	 * @param $linestart Boolean: is this the start of a line?
-	 * @param $interface Boolean: ??
+	 * @param $interface Boolean: use interface language ($wgLang instead of
+	 *                   $wgContLang) while parsing language sensitive magic
+	 *                   words like GRAMMAR and PLURAL
 	 * @return String: HTML
 	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
@@ -1311,7 +1315,7 @@ class OutputPage {
 
 	/**
 	 * bug 21672: Add Accept-Language to Vary and XVO headers
-	 *if there's no 'variant' parameter existed in GET.
+	 * if there's no 'variant' parameter existed in GET.
 	 *
 	 * For example:
 	 *   /w/index.php?title=Main_page should always be served; but
