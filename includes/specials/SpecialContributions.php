@@ -562,12 +562,14 @@ class ContribsPager extends ReverseChronologicalPager {
 		if( $row->rev_id == $row->page_latest ) {
 			$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 			# Add rollback link
-			if( !$row->page_is_new && $page->quickUserCan( 'rollback' ) && $page->quickUserCan( 'edit' ) ) {
+			if( !$row->page_is_new && $page->quickUserCan( 'rollback' )
+				&& $page->quickUserCan( 'edit' ) )
+			{
 				$topmarktext .= ' '.$sk->generateRollback( $rev );
 			}
 		}
 		# Is there a visible previous revision?
-		if( !$rev->isDeleted( Revision::DELETED_TEXT ) && $rev->getParentId() !== 0 ) {
+		if( $rev->userCan( Revision::DELETED_TEXT ) && $rev->getParentId() !== 0 ) {
 			$difftext = $sk->linkKnown(
 				$page,
 				$this->messages['diff'],
