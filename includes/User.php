@@ -1154,6 +1154,8 @@ class User {
 		if ( $this->mBlock->load( $ip , $this->mId ) ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
 			$this->mBlockedby = $this->mBlock->mBy;
+			if( $this->mBlockedby == "0" )
+				$this->mBlockedby = $this->mBlock->mByName;
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
 			$this->mAllowUsertalk = $this->mBlock->mAllowUsertalk;
