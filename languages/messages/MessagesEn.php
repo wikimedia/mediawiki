@@ -1328,12 +1328,12 @@ You may wish to cut-n-paste the text into a text file and save it for later.
 
 The administrator who locked it offered this explanation: $1",
 'protectedpagewarning'             => "'''Warning: This page has been locked so that only users with administrator privileges can edit it.'''
-The lastest log entry is provided below for reference:",
+The latest log entry is provided below for reference:",
 'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.
-The lastest log entry is provided below for reference:",
+The latest log entry is provided below for reference:",
 'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with administrator privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
 'titleprotectedwarning'            => "'''Warning: This page has been locked so that [[Special:ListGroupRights|specific rights]] are needed to create it.'''
-The lastest log entry is provided below for reference:",
+The latest log entry is provided below for reference:",
 'templatesused'                    => '{{PLURAL:$1|Template|Templates}} used on this page:',
 'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} used in this preview:',
 'templatesusedsection'             => '{{PLURAL:$1|Template|Templates}} used in this section:',
@@ -3088,9 +3088,9 @@ cannot move a page over itself.',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
 'move-leave-redirect'          => 'Leave a redirect behind',
 'protectedpagemovewarning'     => "'''Warning:''' This page has been locked so that only users with administrator privileges can move it.
-The lastest log entry is provided below for reference:",
+The latest log entry is provided below for reference:",
 'semiprotectedpagemovewarning' => "'''Note:''' This page has been locked so that only registered users can move it.
-The lastest log entry is provided below for reference:",
+The latest log entry is provided below for reference:",
 'move-over-sharedrepo'         => '== File exists ==
 [[:$1]] exists on a shared repository. Moving a file to this title will override the shared file.',
 'file-exists-sharedrepo'       => 'The file name chosen is already in use on a shared repository.
