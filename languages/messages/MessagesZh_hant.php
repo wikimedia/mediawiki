@@ -623,6 +623,7 @@ $2',
 檢查您的拼寫，或者用下面的表格[[Special:UserLogin/signup|建立一個新賬號]]。',
 'nosuchusershort'            => '沒有一個名為「<nowiki>$1</nowiki>」的用戶。請檢查您輸入的文字是否有錯誤。',
 'nouserspecified'            => '{{GENDER:|你|妳|你}}需要指定一個用戶名。',
+'login-userblocked'          => '這位用戶已被封鎖。不容許登入。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
 'wrongpasswordempty'         => '沒有輸入密碼！請重試。',
 'passwordtooshort'           => '您的密碼不能少於$1個字元。',
@@ -1568,7 +1569,7 @@ $1",
 # HTTP errors
 'http-invalid-url'    => '無效的URL：$1',
 'http-invalid-scheme' => '不支援含有「$1」的URL',
-'http-request-error'  => '發送請求時發生錯誤：',
+'http-request-error'  => '未知的錯誤令到HTTP請求失敗。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '無法訪問 URL',
