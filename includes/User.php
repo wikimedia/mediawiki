@@ -904,6 +904,13 @@ class User {
 			return false;
 		}
 
+		global $wgBlockDisablesLogin;
+		if( $wgBlockDisablesLogin && $this->isBlocked() ) {
+			# User blocked and we've disabled blocked user logins
+			$this->loadDefaults();
+			return false;
+		}
+
 		if ( isset( $_SESSION['wsToken'] ) ) {
 			$passwordCorrect = $_SESSION['wsToken'] == $this->mToken;
 			$from = 'session';
