@@ -674,6 +674,7 @@ $1',
 'nosuchusershort'            => 'Користувач з іменем <nowiki>$1</nowiki> не існує.
 Перевірте правильність написання імені.',
 'nouserspecified'            => "Ви повинні зазначити ім'я користувача.",
+'login-userblocked'          => 'Цей користувач заблокований. Вхід в систему не дозволений.',
 'wrongpassword'              => 'Ви ввели хибний пароль. Спробуйте ще раз.',
 'wrongpasswordempty'         => 'Ви не ввели пароль. Будь ласка, спробуйте ще раз.',
 'passwordtooshort'           => 'Ваш пароль закороткий, він має містити принаймні $1 {{PLURAL:$1|символ|символи|символів}}.',
@@ -1667,7 +1668,7 @@ PICT # різні
 # HTTP errors
 'http-invalid-url'    => 'Непрацездатний URL: $1',
 'http-invalid-scheme' => 'URL-адреси схеми "$1" не підтримуються',
-'http-request-error'  => 'Помилка надсилання запиту:',
+'http-request-error'  => 'HTTP-запит не вдався через невідому помилку.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Неможливо досягнути вказану адресу.',

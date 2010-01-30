@@ -845,6 +845,7 @@ $2',
 املای نام را بررسی کنید، یا [[Special:UserLogin/signup|یک حساب کاربری جدید بسازید]].',
 'nosuchusershort'            => "هیچ کاربری با نام ''<nowiki>$1</nowiki>'' وجود ندارد. املایتان را وارسی کنید.",
 'nouserspecified'            => 'باید یک نام کاربری مشخص کنید.',
+'login-userblocked'          => 'این کاربر بسته شده‌است. ورود به سیستم مجاز نیست.',
 'wrongpassword'              => 'گذرواژه‌ای که وارد کردید نادرست است. لطفاً دوباره تلاش کنید.',
 'wrongpasswordempty'         => 'گذرواژه‌ای که وارد کرده‌اید، خالی است. خواهشمندیم دوباره تلاش کنید.',
 'passwordtooshort'           => 'گذرواژه باید دست کم {{PLURAL:$1|$1 حرف|$1 حرف}} داشته باشد.',
@@ -1815,7 +1816,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 # HTTP errors
 'http-invalid-url'    => 'نشانی نامعتبر: $1',
 'http-invalid-scheme' => 'نشانی‌های اینترنتی با طرح «$1» پشتیبانی نمی‌شوند',
-'http-request-error'  => 'خطا در ارسال درخواست:',
+'http-request-error'  => 'درخواست اچ‌تی‌تی‌پی ناموفق به علت خطای ناشناخته',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'دسترسی به URL ممکن نشد.',
