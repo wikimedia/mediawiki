@@ -628,6 +628,7 @@ $2',
 'nosuchuser'                 => '找不到用户“$1”。用户名是大小写敏感且区分繁简体的。请检查您的拼写，或者[[Special:UserLogin/signup|建立一个新账户]]。',
 'nosuchusershort'            => '没有一个名为“<nowiki>$1</nowiki>”的用户。请检查您输入的文字是否有错误。',
 'nouserspecified'            => '你需要指定一个用户名。',
+'login-userblocked'          => '这位用户已被封锁。不容许登录。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
 'passwordtooshort'           => '您的密码至少需要$1个字符。',
@@ -1561,7 +1562,7 @@ $1",
 # HTTP errors
 'http-invalid-url'    => '无效URL：$1',
 'http-invalid-scheme' => '不支持带有“$1”的URL',
-'http-request-error'  => '发送请求时发生错误：',
+'http-request-error'  => '未知的错误令到HTTP请求失败。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问URL',
