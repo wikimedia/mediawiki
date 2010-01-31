@@ -350,7 +350,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rc_timestamp );
 
 		/* Add edit summary / log summary. */
-		if ( $this->fld_comment && isset( $row->rc_comment ) ) {
+		if ( $this->fld_comment && isset( $row->rc_comment ) )
 			$vals['comment'] = $row->rc_comment;
 		
 		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
