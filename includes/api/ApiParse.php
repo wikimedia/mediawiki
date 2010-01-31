@@ -136,10 +136,17 @@ class ApiParse extends ApiBase {
 		$result_array = array();
 		if ( $params['redirects'] && !is_null( $redirValues ) )
 			$result_array['redirects'] = $redirValues;
+		
 		if ( isset( $prop['text'] ) ) {
 			$result_array['text'] = array();
 			$result->setContent( $result_array['text'], $p_result->getText() );
 		}
+		
+		if ( !is_null( $params['summary'] ) ) {
+			$result_array['parsedsummary'] = array();
+			$result->setContent( $result_array['parsedsummary'], $wgUser->getSkin()->formatComment( $params['summary'], $titleObj ) );
+		}
+		
 		if ( isset( $prop['langlinks'] ) )
 			$result_array['langlinks'] = $this->formatLangLinks( $p_result->getLanguageLinks() );
 		if ( isset( $prop['categories'] ) )
@@ -242,6 +249,7 @@ class ApiParse extends ApiBase {
 				ApiBase :: PARAM_DFLT => 'API',
 			),
 			'text' => null,
+			'summary' => null,
 			'page' => null,
 			'redirects' => false,
 			'oldid' => null,
@@ -270,6 +278,7 @@ class ApiParse extends ApiBase {
 	public function getParamDescription() {
 		return array (
 			'text' => 'Wikitext to parse',
+			'summary' => 'Summary to parse',
 			'redirects' => 'If the page parameter is set to a redirect, resolve it',
 			'title' => 'Title of page the text belongs to',
 			'page' => 'Parse the content of this page. Cannot be used together with text and title',
