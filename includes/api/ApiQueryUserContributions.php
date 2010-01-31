@@ -41,7 +41,7 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	private $params, $username;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
-			$fld_comment = false, $fld_flags = false,
+			$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
 			$fld_patrolled = false, $fld_tags = false;
 
 	public function execute() {
@@ -52,6 +52,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
 		$this->fld_comment = isset( $prop['comment'] );
+		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_size = isset( $prop['size'] );
 		$this->fld_flags = isset( $prop['flags'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
@@ -242,7 +243,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf( 'rev_id', $this->fld_ids || $this->fld_flags );
 		$this->addFieldsIf( 'page_latest', $this->fld_flags );
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // Should this field be exposed?
-		$this->addFieldsIf( 'rev_comment', $this->fld_comment );
+		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'rev_len', $this->fld_size );
 		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
 		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags );
@@ -278,9 +279,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			// $vals['textid'] = intval($row->rev_text_id);	// todo: Should this field be exposed?
 		}
 
+		$title = Title :: makeTitle( $row->page_namespace, $row->page_title );
+
 		if ( $this->fld_title )
-			ApiQueryBase :: addTitleInfo( $vals,
-				Title :: makeTitle( $row->page_namespace, $row->page_title ) );
+			ApiQueryBase :: addTitleInfo( $vals, $title );
 
 		if ( $this->fld_timestamp )
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
@@ -294,11 +296,18 @@ class ApiQueryContributions extends ApiQueryBase {
 				$vals['top'] = '';
 		}
 
-		if ( $this->fld_comment && isset( $row->rev_comment ) ) {
+		if ( ($this->fld_comment || $this->fld_parsedcomment) && isset( $row->rev_comment ) ) {
 			if ( $row->rev_deleted & Revision::DELETED_COMMENT )
 				$vals['commenthidden'] = '';
-			else
-				$vals['comment'] = $row->rev_comment;
+			} else {
+				if ( $this->fld_comment )
+					$vals['comment'] = $row->rev_comment;
+				
+				if ( $this->fld_parsedcomment ) {
+					global $wgUser;
+					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->rev_comment, $title );
+				}
+			}
 		}
 
 		if ( $this->fld_patrolled && $row->rc_patrolled )
@@ -365,6 +374,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					'title',
 					'timestamp',
 					'comment',
+					'parsedcomment',
 					'size',
 					'flags',
 					'patrolled',

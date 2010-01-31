@@ -50,6 +50,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_user = isset( $prop['user' );
 		$this->fld_timestamp = isset( $prop['timestamp' );
 		$this->fld_comment = isset( $prop['comment' );
+		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_details = isset( $prop['details' );
 		$this->fld_tags = isset( $prop['tags' );
 
@@ -83,7 +84,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf( 'user_name', $this->fld_user );
 		$this->addFieldsIf( 'log_namespace', $this->fld_title );
 		$this->addFieldsIf( 'log_title', $this->fld_title );
-		$this->addFieldsIf( 'log_comment', $this->fld_comment );
+		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_params', $this->fld_details );
 		
 		if ( $this->fld_tags ) {
@@ -216,11 +217,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['pageid'] = intval( $row->page_id );
 		}
 
+		$title = Title :: makeTitle( $row->log_namespace, $row->log_title );
+
 		if ( $this->fld_title ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 			} else {
-				$title = Title :: makeTitle( $row->log_namespace, $row->log_title );
 				ApiQueryBase :: addTitleInfo( $vals, $title );
 			}
 		}
@@ -252,11 +254,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $this->fld_timestamp ) {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->log_timestamp );
 		}
-		if ( $this->fld_comment && isset( $row->log_comment ) ) {
+		
+		if ( ($this->fld_comment || $this->fld_parsedcomment) && isset( $row->log_comment ) ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
 			} else {
-				$vals['comment'] = $row->log_comment;
+				if ( $this->fld_comment )
+					$vals['comment'] = $row->log_comment;
+				
+				if ( $this->fld_parsedcomment ) {
+					global $wgUser;
+					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->log_comment, $title );
+				}
 			}
 		}
 
@@ -287,6 +296,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					'user',
 					'timestamp',
 					'comment',
+					'parsedcomment',
 					'details',
 					'tags'
 				)

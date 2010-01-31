@@ -56,7 +56,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 		$prop = array_flip( $params['prop'] );
 		$this->addFieldsIf( 'pt_user', isset( $prop['user'] ) );
-		$this->addFieldsIf( 'pt_reason', isset( $prop['comment'] ) );
+		$this->addFieldsIf( 'pt_reason', isset( $prop['comment'] ) || isset( $prop['parsedcomment'] ) );
 		$this->addFieldsIf( 'pt_expiry', isset( $prop['expiry'] ) );
 		$this->addFieldsIf( 'pt_create_perm', isset( $prop['level'] ) );
 
@@ -98,6 +98,11 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				if ( isset( $prop['comment'] ) )
 					$vals['comment'] = $row->pt_reason;
 					
+				if ( isset( $prop['parsedcomment'] ) ) {
+					global $wgUser;
+					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->pt_reason, $title );
+				}
+					
 				if ( isset( $prop['expiry'] ) )
 					$vals['expiry'] = Block::decodeExpiry( $row->pt_expiry, TS_ISO_8601 );
 					
@@ -105,8 +110,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					$vals['level'] = $row->pt_create_perm;
 				
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
-				if ( !$fit )
-				{
+				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'start',
 						wfTimestamp( TS_ISO_8601, $row->pt_timestamp ) );
 					break;
@@ -160,6 +164,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					'timestamp',
 					'user',
 					'comment',
+					'parsedcomment',
 					'expiry',
 					'level'
 				)
