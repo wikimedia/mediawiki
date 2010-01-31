@@ -44,15 +44,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$db = $this->getDB();
 
 		$prop = $params['prop'];
-		$this->fld_ids = isset( $prop['ids' );
-		$this->fld_title = isset( $prop['title' );
-		$this->fld_type = isset( $prop['type' );
-		$this->fld_user = isset( $prop['user' );
-		$this->fld_timestamp = isset( $prop['timestamp' );
-		$this->fld_comment = isset( $prop['comment' );
-		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
-		$this->fld_details = isset( $prop['details' );
-		$this->fld_tags = isset( $prop['tags' );
+		$this->fld_ids = isset( $prop['ids'] );
+		$this->fld_title = isset( $prop['title'] );
+		$this->fld_type = isset( $prop['type'] );
+		$this->fld_user = isset( $prop['user'] );
+		$this->fld_timestamp = isset( $prop['timestamp'] );
+		$this->fld_comment = isset( $prop['comment'] );
+		$this->fld_parsedcomment = isset ( $prop['parsedcomment']] );
+		$this->fld_details = isset( $prop['details'] );
+		$this->fld_tags = isset( $prop['tags'] );
 
 		list( $tbl_logging, $tbl_page, $tbl_user ) = $db->tableNamesN( 'logging', 'page', 'user' );
 
