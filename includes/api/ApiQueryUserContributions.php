@@ -299,7 +299,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( ($this->fld_comment || $this->fld_parsedcomment) && isset( $row->rev_comment ) ) {
 			if ( $row->rev_deleted & Revision::DELETED_COMMENT )
 				$vals['commenthidden'] = '';
-			} else {
+			else {
 				if ( $this->fld_comment )
 					$vals['comment'] = $row->rev_comment;
 				
