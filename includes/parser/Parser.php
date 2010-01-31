@@ -1738,6 +1738,8 @@ class Parser
 						}
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
 						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text, $holders ) ) . $trail;
+					} else {
+						$s .= $prefix . $trail;
 					}
 					$this->mOutput->addImage( $nt->getDBkey() );
 					wfProfileOut( __METHOD__."-image" );
