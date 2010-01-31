@@ -42,7 +42,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
-			$fld_comment = false, $fld_user = false, $fld_content = false, $fld_tags = false;
+			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_content = false, $fld_tags = false;
 
 	protected function getTokenFunctions() {
 		// tokenname => function
@@ -137,6 +137,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_flags = isset ( $prop['flags'] );
 		$this->fld_timestamp = isset ( $prop['timestamp'] );
 		$this->fld_comment = isset ( $prop['comment'] );
+		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_size = isset ( $prop['size'] );
 		$this->fld_user = isset ( $prop['user'] );
 		$this->token = $params['token'];
@@ -359,13 +360,21 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['size'] = intval( $revision->getSize() );
 		}
 
-		if ( $this->fld_comment ) {
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
 			} else {
 				$comment = $revision->getComment();
 				if ( strval( $comment ) !== '' )
-					$vals['comment'] = $comment;
+				{
+					if ( $this->fld_comment )
+						$vals['comment'] = $comment;
+					
+					if ( $this->fld_parsedcomment ) {
+						global $wgUser;
+						$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $comment, $title );
+					}
+				}
 			}
 		}
 
@@ -461,6 +470,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'user',
 					'size',
 					'comment',
+					'parsedcomment',
 					'content',
 					'tags'
 				)
