@@ -262,7 +262,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 		
 		if ( $this->fld_notificationtimestamp )
-			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null ) ? '' : wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp);
+			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null ) ? '' : wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
 
 		if ( $this->fld_comment && isset( $row->rc_comment ) )
 			$vals['comment'] = $row->rc_comment;
