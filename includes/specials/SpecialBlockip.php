@@ -539,19 +539,20 @@ class IPBlockForm {
 		}
 	}
 
-	public static function suppressUserName( $name, $userId ) {
+	public static function suppressUserName( $name, $userId, $dbw = null ) {
 		$op = '|'; // bitwise OR
-		return self::setUsernameBitfields( $name, $userId, $op );
+		return self::setUsernameBitfields( $name, $userId, $op, $dbw );
 	}
 
-	public static function unsuppressUserName( $name, $userId ) {
+	public static function unsuppressUserName( $name, $userId, $dbw = null ) {
 		$op = '&'; // bitwise AND
-		return self::setUsernameBitfields( $name, $userId, $op );
+		return self::setUsernameBitfields( $name, $userId, $op, $dbw );
 	}
 
-	private static function setUsernameBitfields( $name, $userId, $op ) {
+	private static function setUsernameBitfields( $name, $userId, $op, $dbw ) {
 		if( $op !== '|' && $op !== '&' ) return false; // sanity check
-		$dbw = wfGetDB( DB_MASTER );
+		if( !$dbw )
+			$dbw = wfGetDB( DB_MASTER );
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
 		# Normalize user name
