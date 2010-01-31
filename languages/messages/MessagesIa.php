@@ -758,8 +758,9 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove CSS ante de publicar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove JS ante de publicar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.
-Le modificationes non ha ancora essite immagazinate!'''",
-'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate, illo non ha ancora essite immagazinate!'''",
+Le modificationes non ha ancora essite salveguardate!'''",
+'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate.'''
+'''Illo non ha ancora essite salveguardate!'''",
 'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
 Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/monobook.css e non {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualisate)',
@@ -809,10 +810,10 @@ In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate d
 'longpagewarning'                  => "'''ATTENTION: Iste pagina occupa $1 kilobytes;
 alcun navigatores pote presentar problemas in modificar paginas que approxima o excede 32 kilobytes.
 Per favor considera divider le pagina in sectiones minus grande.'''",
-'longpageerror'                    => "'''ERROR: Le texto que tu submitteva occupa $1 kilobytes, excedente le maximo de $2 kilobytes.
-Illo non pote esser immagazinate.'''",
-'readonlywarning'                  => "'''ATTENTION: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote immagazinar tu modificationes justo nunc.
-Nos recommenda copiar-e-collar le texto pro immagazinar lo in un file de texto, assi que tu potera publicar lo plus tarde.'''
+'longpageerror'                    => "'''Error: Le texto que tu submitteva occupa $1 kilobytes, excedente le maximo de $2 kilobytes.
+Illo non pote esser salveguardate.'''",
+'readonlywarning'                  => "'''Attention: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote salveguardar tu modificationes in iste momento.'''
+Nos recommenda copiar-e-collar le texto in un file de texto e salveguardar lo pro plus tarde.
 
 Le administrator qui lo blocava dava iste explication: $1",
 'protectedpagewarning'             => "'''Attention:  Iste pagina ha essite protegite de sorta que solmente usatores con privilegios de administrator pote modificar lo.''' Le ultime entrata del registro es fornite hic infra pro referentia:",
@@ -867,8 +868,8 @@ Iste parametros ha essite omittite.',
 'language-converter-depth-warning'        => 'Limite de profunditate del conversor de lingua excedite ($1)',
 
 # "Undo" feature
-'undo-success' => 'Le modification pote esser annullate.
-Per favor controla le comparation infra pro verificar que tu vole facer isto, e alora immagazina le modificationes infra pro assi annullar le modification.',
+'undo-success' => 'Le modification pote esser disfacite.
+Per favor controla le comparation infra pro verificar que tu vole facer isto, e postea salveguarda le modificationes infra pro assi disfacer le modification.',
 'undo-failure' => 'Le modification non poteva esser annullate a causa de conflicto con modificationes intermedie.',
 'undo-norev'   => 'Impossibile annullar le modification proque illo non existe o esseva delite.',
 'undo-summary' => 'Annullava le version $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
@@ -890,7 +891,7 @@ Le motivo que $3 dava es ''$2''",
 'nextrevision'           => 'Version sequente →',
 'currentrevisionlink'    => 'Version actual',
 'cur'                    => 'actu',
-'next'                   => 'sequ',
+'next'                   => 'seq',
 'last'                   => 'prec',
 'page_first'             => 'prime',
 'page_last'              => 'ultime',
@@ -1252,7 +1253,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'editusergroup'               => 'Modificar gruppos de usatores',
 'editinguser'                 => "Cambiamento del derectos del usator '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Modificar gruppos de usatores',
-'saveusergroups'              => 'Immagazinar gruppos de usatores',
+'saveusergroups'              => 'Salveguardar gruppos de usatores',
 'userrights-groupsmember'     => 'Membro de:',
 'userrights-groups-help'      => 'Tu pote alterar le gruppos del quales iste usator es membro:
 * Un quadrato marcate significa que le usator es membro del gruppo in question.
@@ -1475,7 +1476,7 @@ Vide le [[Special:NewFiles|galeria de nove files]] pro un presentation plus visu
 'filestatus'                  => 'Stato de copyright:',
 'filesource'                  => 'Origine:',
 'uploadedfiles'               => 'Files incargate',
-'ignorewarning'               => 'Ignorar le advertimento e immagazinar totevia le file',
+'ignorewarning'               => 'Ignorar le advertimento e salveguardar totevia le file',
 'ignorewarnings'              => 'Ignorar omne advertimentos',
 'minlength1'                  => 'Le nomines de file debe haber al minus un littera.',
 'illegalfilename'             => 'Le nomine de file "$1" contine characteres que non es permittite in le titulos de paginas.
@@ -1520,15 +1521,13 @@ Si tu vole totevia incargar iste file, per favor retorna e usa un nove nomine. [
 'successfulupload'            => 'Incargamento succedite',
 'uploadwarning'               => 'Advertimento de incargamento',
 'uploadwarning-text'          => 'Per favor modifica le description del file ci infra e reproba.',
-'savefile'                    => 'Immagazinar file',
+'savefile'                    => 'Salveguardar file',
 'uploadedimage'               => 'incargava "[[$1]]"',
 'overwroteimage'              => 'incargava un nove version de "[[$1]]"',
 'uploaddisabled'              => 'Incargamento de files disactivate',
 'uploaddisabledtext'          => 'Le incargamento de files es disactivate.',
 'php-uploaddisabledtext'      => 'Le incargamento de files PHP es disactivate. Per favor verifica le configuration file_uploads.',
 'uploadscripted'              => 'Iste file contine codice de HTML o de script que pote esser interpretate erroneemente per un navigator del web.',
-'uploadcorrupt'               => 'Le file es corrupte o su nomine ha un extension incorrecte.
-Per favor verifica le file e re-incarga lo.',
 'uploadvirus'                 => 'Le file contine un virus! Detalios: $1',
 'upload-source'               => 'File de origine',
 'sourcefilename'              => 'Nomine del file de origine:',
@@ -2498,7 +2497,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'export-addcat'     => 'Adder',
 'export-addnstext'  => 'Adder paginas ab le spatio de nomines:',
 'export-addns'      => 'Adder',
-'export-download'   => 'Immagazinar como file',
+'export-download'   => 'Salveguardar como file',
 'export-templates'  => 'Includer patronos',
 'export-pagelinks'  => 'Includer paginas ligate a un profunditate de:',
 
@@ -2686,7 +2685,7 @@ Es possibile adder un motivo in le summario.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protection antispam',
-'spamprotectiontext'  => 'Le pagina que tu voleva immagazinar esseva blocate per le filtro antispam.
+'spamprotectiontext'  => 'Le pagina que tu voleva salveguardar esseva blocate per le filtro antispam.
 Le causa es probabilemente un ligamine verso un sito externe que es presente in un lista nigre.',
 'spamprotectionmatch' => 'Le sequente texto es lo que activava nostre filtro antispam: $1',
 'spambot_username'    => 'Nettamento de spam in MediaWiki',
@@ -3114,7 +3113,7 @@ Es possibile que le codice ha expirate.',
 'confirmemail_success'     => 'Tu adresse de e-mail ha essite confirmate.
 Tu pote ora aperir un session e fruer te del wiki.',
 'confirmemail_loggedin'    => 'Tu adresse de e-mail ha ora essite confirmate.',
-'confirmemail_error'       => 'Un problema occureva durante le immagazinage de tu confirmation.',
+'confirmemail_error'       => 'Un problema occurreva durante le salveguarda de tu confirmation.',
 'confirmemail_subject'     => 'Confirmation del adresse de e-mail pro {{SITENAME}}',
 'confirmemail_body'        => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha registrate un conto "$2" con iste adresse de e-mail in {{SITENAME}}.

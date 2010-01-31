@@ -1642,8 +1642,6 @@ Bekiek 't vortdologboek veurda-j veurdan gaon.",
 'uploaddisabledtext'          => 'Bestaanstoevoegingen bin uut-eschakeld.',
 'php-uploaddisabledtext'      => "'t Toevoegen van PHP-bestanen is uut-eschakeld. Kiek de instellingen veur 't toevoegen van bestanen effen nao.",
 'uploadscripted'              => 'Dit bestaand bevat HTML- of scriptcode dee verkeerd elezen kan wönnen deur de webkieker.',
-'uploadcorrupt'               => "'t Bestaand is korrup of hef een verkeerde extensie. 
-Kiek 't bestaand nao en voeg 't bestaand opniej toe.",
 'uploadvirus'                 => "'t Bestaand bevat een virus! Gegevens: $1",
 'upload-source'               => 'Bronbestaand',
 'sourcefilename'              => 'Bestaansnaam op de hardeschieve:',

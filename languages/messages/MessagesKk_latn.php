@@ -1437,8 +1437,6 @@ keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[File:$1|t
 'uploaddisabled'              => 'Qotarıp berw öşirilgen',
 'uploaddisabledtext'          => '{{SITENAME}} jobasında faýl qotarıp berwi öşirilgen.',
 'uploadscripted'              => 'Bul faýlda veb şolğıştı qatelikpen taldatqızatın HTML ne ämir kodı bar.',
-'uploadcorrupt'               => 'Bul faýl büldirilgen, ne burıs keñeýtimi bar.
-Faýldı tekserip şığıñız da, qaýta qotarıp beriñiz.',
 'uploadvirus'                 => 'Bul faýlda vïrws bar! Egjeý-tegjeýleri: $1',
 'sourcefilename'              => 'Qaýnar faýl atawı:',
 'destfilename'                => 'Nısana faýl atawı:',

@@ -119,7 +119,7 @@ $messages = array(
 'thu'           => 'ܚܡܫܒܫܒܐ',
 'fri'           => 'ܥܪܘܒܬܐ',
 'sat'           => 'ܫܒܬܐ',
-'january'       => 'ܟܢܘܢ ܒ',
+'january'       => 'ܟܢܘܢ ܐܚܪܝ',
 'february'      => 'ܫܒܛ',
 'march'         => 'ܐܕܪ',
 'april'         => 'ܢܝܣܢ',
@@ -128,10 +128,10 @@ $messages = array(
 'july'          => 'ܬܡܘܙ',
 'august'        => 'ܐܒ',
 'september'     => 'ܐܝܠܘܠ',
-'october'       => 'ܬܫܪܝܢ ܐ',
-'november'      => 'ܬܫܪܝܢ ܒ',
-'december'      => 'ܟܢܘܢ ܐ',
-'january-gen'   => 'ܟܢܘܢ ܒ',
+'october'       => 'ܬܫܪܝܢ ܩܕܡ',
+'november'      => 'ܬܫܪܝܢ ܐܚܪܝ',
+'december'      => 'ܟܢܘܢ ܩܕܡ',
+'january-gen'   => 'ܟܢܘܢ ܐܚܪܝ',
 'february-gen'  => 'ܫܒܛ',
 'march-gen'     => 'ܐܕܪ',
 'april-gen'     => 'ܢܝܣܢ',
@@ -140,10 +140,10 @@ $messages = array(
 'july-gen'      => 'ܬܡܘܙ',
 'august-gen'    => 'ܐܒ',
 'september-gen' => 'ܐܝܠܘܠ',
-'october-gen'   => 'ܬܫܪܝܢ ܐ',
-'november-gen'  => 'ܬܫܪܝܢ ܒ',
-'december-gen'  => 'ܟܢܘܢ ܐ',
-'jan'           => 'ܟܢܘܢ ܒ',
+'october-gen'   => 'ܬܫܪܝܢ ܩܕܡ',
+'november-gen'  => 'ܬܫܪܝܢ ܐܚܪܝ',
+'december-gen'  => 'ܟܢܘܢ ܩܕܡ',
+'jan'           => 'ܟܢܘܢ ܐܚܪܝ',
 'feb'           => 'ܫܒܛ',
 'mar'           => 'ܐܕܪ',
 'apr'           => 'ܢܝܣܢ',
@@ -152,9 +152,9 @@ $messages = array(
 'jul'           => 'ܬܡܘܙ',
 'aug'           => 'ܐܒ',
 'sep'           => 'ܐܝܠܘܠ',
-'oct'           => 'ܬܫܪܝܢ ܐ',
-'nov'           => 'ܬܫܪܝܢ ܒ',
-'dec'           => 'ܟܢܘܢ ܐ',
+'oct'           => 'ܬܫܪܝܢ ܩܕܡ',
+'nov'           => 'ܬܫܪܝܢ ܐܚܪܝ',
+'dec'           => 'ܟܢܘܢ ܩܕܡ',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|ܣܕܪܐ|ܣܕܪ̈ܐ}}',
@@ -332,7 +332,7 @@ $messages = array(
 # Login and logout pages
 'logouttext'              => "'''ܗܫܐ ܦܠܛܠܟ ܡܢ ܚܘܫܒܢܟ.'''
 
-ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܬܚܫܚܢܐ ܠܐ ܝܕܝܥܐ. ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܬܚܫܚܢܐ ܐܚܪܢܐ.
+ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܬܚܫܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܬܚܫܚܢܐ ܐܚܪܢܐ.
 
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation'         => '== ܒܫܝܢܐ, $1! ==
@@ -400,7 +400,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 ܐܝ ܦܝ (IP) ܕܝܠܟ ܢܬܟܬܒ ܒܬܫܥܝܬܐ ܕܦܐܬܐ.",
 'summary-preview'                  => 'ܚܝܪܐ ܩܕܡܝܐ ܕܦܣܝܩܬ̈ܐ :',
 'blockedtitle'                     => 'ܡܦܠܚܢܐ ܗܘ ܡܚܪܡܐ',
-'nosuchsectiontitle'               => 'ܠܝܬ ܗܟܘܬ ܡܢܬܐ',
+'nosuchsectiontitle'               => 'ܠܐ ܡܨܐ ܐܫܟܚ ܡܢܬܐ',
 'loginreqlink'                     => 'ܥܘܠ',
 'newarticle'                       => '(ܚܕܬܐ)',
 'updated'                          => '(ܐܬܚܕܬ)',
@@ -615,7 +615,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'userrights-editusergroup' => 'ܫܚܠܦ ܟܢܘܫܝ̈ܐ ܕܡܦܠܚܢܐ',
 'saveusergroups'           => 'ܠܒܘܟ ܟܢܘܫܝ̈ܐ ܕܡܦܠܚܢܐ',
 'userrights-groupsmember'  => 'ܗܕܡܐ ܒ:',
-'userrights-reason'        => 'ܥܠܬܐ ܠܫܚܠܦܬܐ:',
+'userrights-reason'        => 'ܥܠܬܐ:',
 
 # Groups
 'group'            => 'ܟܢܘܫܬܐ:',

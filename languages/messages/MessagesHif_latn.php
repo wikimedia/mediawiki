@@ -1392,8 +1392,6 @@ Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa na
 'uploaddisabledtext'          => 'File uploads ke disable kar dewa gais hai.',
 'php-uploaddisabledtext'      => 'File uploads ke PHP me disable kar dewa gais hai. Meharbani kar ke file_uploads setting ke check karo.',
 'uploadscripted'              => 'Ii file me HTML nai to script code hai jiske web browser erroneously interpret kare sake hai.',
-'uploadcorrupt'               => 'Ii file chaahe ke corrupt hai nai to isme wrong extension hai.
-Meharbani kar ke file ke check kar ke fir se upload karo.',
 'uploadvirus'                 => 'Ii file me virus hai! Details: $1',
 'upload-source'               => 'Suruu waala file',
 'sourcefilename'              => 'Suruu waala file ke naam:',

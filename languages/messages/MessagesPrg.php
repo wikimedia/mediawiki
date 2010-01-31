@@ -1260,8 +1260,6 @@ Pirzdau tālis ēisnan, tebbei prawerru izbandātun šisse zūrbrukes āupausins
 'php-uploaddisabledtext'      => 'Zūrbrukin enkraūsna ast drēuditan en PHP.
 Izbāndais ensadīnsenin „file_uploads”.',
 'uploadscripted'              => 'Zūrbrukis turri ēn sen HTML anga skrīptan kōdan, kawīds mazzi būtwei blāndewingi skaitātan pra lasātlin.',
-'uploadcorrupt'               => 'Šis zūrbrukis ast ārditan anga turri nitikrōmiskan plattinsenin.
-Izbāndais zūrbrukin be ekraūneis din etkūmps.',
 'uploadvirus'                 => 'Šis zūrbrukis turri ēn sen wīrusan! Malkai: $1',
 'upload-source'               => 'Appus zūrbrukis',
 'sourcefilename'              => 'Wurā zūrbrukes pabilīsna:',

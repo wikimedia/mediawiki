@@ -1084,8 +1084,6 @@ mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[File:$1|thumb|c
 'uploaddisabled'              => 'Makapatda ing pamag-upload',
 'uploaddisabledtext'          => 'Makapatda ing pamag-upload king {{SITENAME}}.',
 'uploadscripted'              => 'Atin yang HTML o script code ing simpan a ini, at maliaring magkamali ya ing web browser king pamamasa kaniti.',
-'uploadcorrupt'               => 'Sira (corrupt) ya ing simpan a ini, o atin yang extension a e ustu.
-Pakilawe me ing simpan a ilulan (upload) meng pasibayu.',
 'uploadvirus'                 => 'Atin yang virus ing simpan (file) a ini! Detalle: $1',
 'sourcefilename'              => 'Lagyungsimpan (filename) ning pikuanan:',
 'destfilename'                => 'Lagyungsimpan (filename) ning puntalan:',

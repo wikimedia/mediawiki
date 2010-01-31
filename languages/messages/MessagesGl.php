@@ -1069,7 +1069,7 @@ Por favor, comprobe o rexistros.',
 'revdelete-reason-dropdown'   => '* Motivos frecuentes para borrar
 ** Violación dos dereitos de autor
 ** Información persoal inapropiada',
-'revdelete-otherreason'       => 'Outro/motivo adicional:',
+'revdelete-otherreason'       => 'Outro motivo:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar os motivos de borrado',
 'revdelete-offender'          => 'Autor da revisión:',
@@ -1581,7 +1581,6 @@ Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
 'uploaddisabledtext'          => 'A carga de ficheiros está deshabilitada.',
 'php-uploaddisabledtext'      => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
 'uploadscripted'              => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
-'uploadcorrupt'               => 'O ficheiro está corrompido ou ten unha extensión incorrecta. Por favor verifique o ficheiro e súbao de novo.',
 'uploadvirus'                 => 'O ficheiro contén un virus! Detalles: $1',
 'upload-source'               => 'Ficheiro de orixe',
 'sourcefilename'              => 'Nome do ficheiro a cargar:',

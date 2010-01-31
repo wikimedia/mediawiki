@@ -1017,7 +1017,6 @@ Agar parvandai barrasişuda aksi xurd karda şudai on parvandai aslī ast, nijoz
 'overwroteimage'             => 'nusxai çadidi "[[$1]]" borguzorī şud',
 'uploaddisabled'             => "Bor kordan ƣajrifa'ol ast",
 'uploadscripted'             => 'In parvanda kodi skriptī jo HTML dorad, ki metavonad dar mururgarī veb nodurust namojon şavad.',
-'uploadcorrupt'              => 'In parvanda xarob ast va jo pasvandi xato dorad. Lutfan onro sançida az nav bor kuned.',
 'uploadvirus'                => "In parvanda virus dorad! Çuz'ijot: $1",
 'sourcefilename'             => 'Nomi parvandai aslī:',
 'destfilename'               => 'Nomi parvandai maqsad:',

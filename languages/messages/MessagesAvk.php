@@ -1084,8 +1084,6 @@ Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel. [[Fi
 'uploaddisabled'              => 'Skalev, staksera va iyeltak tir gritegirayan.',
 'uploaddisabledtext'          => 'Iyeltakkalvajara tir gritegirayana.',
 'uploadscripted'              => 'Bat iyeltak va HTML ok Script beksa rotir narujutuna gan web exulesiki ruldar.',
-'uploadcorrupt'               => 'Bat iyeltak tir avonanaf ok lumiskaf oke va mewadaf yolt digir.
-Va iyeltak gonageltal.',
 'uploadvirus'                 => 'Iyeltak va kio ruldar ! Pinta se : $1',
 'sourcefilename'              => 'Klitiyeltakyolt:',
 'destfilename'                => 'Warzaf iyeltakyolt:',

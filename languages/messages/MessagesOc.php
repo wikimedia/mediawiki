@@ -1631,7 +1631,6 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'uploaddisabledtext'          => "L'impòrt de fichièrs cap al servidor es desactivat.",
 'php-uploaddisabledtext'      => "Lo telecargament de fichièrs es estat desactivat dins PHP. Verificatz l'opcion de configuracion file_uploads.",
 'uploadscripted'              => "Aqueste fichièr conten de còde HTML o un escript que poiriá èsser interpretat d'un biais incorrècte per un navigador Internet.",
-'uploadcorrupt'               => 'Aqueste fichièr es corromput, a una talha nulla o a una extension invalida. Verificatz lo fichièr.',
 'uploadvirus'                 => 'Aqueste fichièr conten un virús ! Per mai de detalhs, consultatz : $1',
 'upload-source'               => 'Fichièr font',
 'sourcefilename'              => 'Nom del fichièr font :',

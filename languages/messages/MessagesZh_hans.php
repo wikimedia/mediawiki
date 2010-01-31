@@ -1519,7 +1519,6 @@ $1",
 'uploaddisabledtext'          => '文件上传不可用。',
 'php-uploaddisabledtext'      => 'PHP 文件上传已经停用。请检查 file_uploads 设置。',
 'uploadscripted'              => '该文件包含可能被网络浏览器错误解释的 HTML 或脚本代码。',
-'uploadcorrupt'               => '该文件包含或具有一个不正确的扩展名。请检查此文件并重新上传。',
 'uploadvirus'                 => '该文件包含病毒！
 详情：$1',
 'upload-source'               => '来源文件',

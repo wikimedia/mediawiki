@@ -433,7 +433,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'savefile'          => 'Saqla biremne',
 'uploadedimage'     => 'yöklände "$1"',
 'uploaddisabled'    => 'Ğafu it, yökläw sünderelgän kileş tora.',
-'uploadcorrupt'     => 'Bu birem yä üze watıq, yä quşımtası yaraqsız. Birem tikşerüdän soñ qabat yöklä zínhar.',
 
 # Special:ListFiles
 'imgfile'   => 'fayl',

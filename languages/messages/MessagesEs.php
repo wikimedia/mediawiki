@@ -37,6 +37,7 @@
  * @author Lin linao
  * @author Locos epraix
  * @author Mahadeva
+ * @author Manuelt15
  * @author McDutchie
  * @author Muro de Aguas
  * @author Omnipaedista
@@ -680,6 +681,7 @@ Los nombres de usuario son sensibles a las mayúsculas.
 Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'nosuchusershort'            => 'No hay un usuario con el nombre "<nowiki>$1</nowiki>". Compruebe que lo ha escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
+'login-userblocked'          => 'Este usuario está bloqueado. Inicio de sesión no permitido.',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
 'wrongpasswordempty'         => 'No has escrito una contraseña.
 Por favor, intente de nuevo.',
@@ -1454,7 +1456,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'action-undelete'             => 'recuperar esta página',
 'action-suppressrevision'     => 'revisar y restaurar esta revisión escondida',
 'action-suppressionlog'       => 'ver este registro privado',
-'action-block'                => 'bloquear a este usuario para que no modifique',
+'action-block'                => 'bloquear a este usuario para que no edite',
 'action-protect'              => 'cambiar los niveles de protección para esta página',
 'action-import'               => 'importar esta página desde otro wiki',
 'action-importupload'         => 'importar esta página mediante la carga de un archivo',
@@ -1594,7 +1596,6 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'uploaddisabledtext'          => 'No es posible subir archivos.',
 'php-uploaddisabledtext'      => 'La subida de archivos está deshabilitada en PHP. Por favor compruebe <code>file_uploads</code> en php.ini.',
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador web.',
-'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
 'upload-source'               => 'Archivo fuente',
 'sourcefilename'              => 'Nombre del archivo origen:',
@@ -2663,10 +2664,19 @@ Permite añadir una razón al resumen de edición.',
 # Stylesheets
 'common.css'   => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
 'monobook.css' => '/* cambie este archivo para personalizar la piel monobook para el sitio entero */',
+'vector.css'   => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector. */',
 
 # Scripts
-'common.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
-'monobook.js' => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
+'common.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
+'standard.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar. */',
+'nostalgia.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Nostalgia. */',
+'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul. */',
+'monobook.js'    => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
+'myskin.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel. */',
+'chick.js'       => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito. */',
+'simple.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple. */',
+'modern.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna. */',
+'vector.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector. */',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',
@@ -2711,6 +2721,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'skinname-chick'       => 'Pollito',
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Moderna',
+'skinname-vector'      => 'Vector',
 
 # Math options
 'mw_math_png'    => 'Producir siempre PNG',

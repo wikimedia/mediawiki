@@ -1620,7 +1620,6 @@ Mergeţi înapoi şi încărcaţi acest fişier sub un nume nou. [[File:$1|thumb
 'php-uploaddisabledtext'      => 'Încărcarea de fişiere este dezactivată în PHP.
 Vă rugăm să verificaţi setările din file_uploads.',
 'uploadscripted'              => 'Fişierul conţine HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
-'uploadcorrupt'               => 'Fişierul este corupt sau are o extensie incorectă. Verifică fişierul şi trimite-l din nou.',
 'uploadvirus'                 => 'Fişierul conţine un virus! Detalii: $1',
 'upload-source'               => 'Fişier sursă',
 'sourcefilename'              => 'Nume fişier sursă:',

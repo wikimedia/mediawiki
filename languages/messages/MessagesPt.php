@@ -1675,8 +1675,6 @@ Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envi
 'php-uploaddisabledtext'      => 'O carregamento de ficheiros está impossibilitado no PHP.
 Por favor, verifique a configuração file_uploads.',
 'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um navegador.',
-'uploadcorrupt'               => 'O ficheiro está corrompido ou a extensão indicada no nome não corresponde ao tipo de ficheiro.
-Por favor, verifique o ficheiro e a extensão e tente carregá-lo novamente.',
 'uploadvirus'                 => 'O ficheiro contém um vírus! Detalhes: $1',
 'upload-source'               => 'Ficheiro de origem',
 'sourcefilename'              => 'Nome do ficheiro de origem:',

@@ -1646,8 +1646,6 @@ Ako i dalje želite da postavite ovu datoteku, molimo Vas da se vratite i pošal
 'uploaddisabledtext'          => 'Postavljanje datoteka je onemogućeno.',
 'php-uploaddisabledtext'      => 'Postavljanje datoteka preko PHP je onemogućeno. Molimo provjerite postavku file_uploads.',
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptni kod koji može izazvati grešku kod internet preglednika.',
-'uploadcorrupt'               => 'Datoteka je oštećena ili ima pogrešnu ekstenziju.
-Molimo Vas da provjerite datoteku i ponovno je postavite.',
 'uploadvirus'                 => 'Fajl sadrži virus!  Detalji:  $1',
 'upload-source'               => 'Izvorna datoteka',
 'sourcefilename'              => 'Ime izvorišne datoteke:',

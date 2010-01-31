@@ -1635,7 +1635,6 @@ Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný ná
 'uploaddisabledtext'          => 'Nahrávanie súborov je vypnuté.',
 'php-uploaddisabledtext'      => 'Nahrávanie PHP súborov je vypnuté. Prosím, skontrolujte nastavenie file_uploads.',
 'uploadscripted'              => 'Tento súbor obsahuje kód HTML alebo skript, ktorý može byť chybne interpretovaný prehliadačom.',
-'uploadcorrupt'               => 'Tento súbor je závadný alebo má nesprávnu príponu. Skontrolujte súbor a nahrajte ho znova.',
 'uploadvirus'                 => 'Súbor obsahuje vírus! Podrobnosti: $1',
 'upload-source'               => 'Zdrojový súbor',
 'sourcefilename'              => 'Názov zdrojového súboru:',

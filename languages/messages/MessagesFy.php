@@ -1379,8 +1379,6 @@ Rieplachtsje it fuorthel-logboek foar't jo fierder geane.",
 'uploaddisabledtext'          => 'It oanbieden fan triemmen is útskeakele.',
 'php-uploaddisabledtext'      => 'PHP-triemuploads binne útskeakele. Kontrolearje a.j.w. de triem_uploads-ynstelling.',
 'uploadscripted'              => "Dizze triem befettet HTML- of scriptkoade dy't ferkeard troch jo browser werjûn wurde kin.",
-'uploadcorrupt'               => 'De triem is net ynoarder of hat de ferkearde útgong.  
-Kontrolearje de triem en bied dy wer oan.',
 'uploadvirus'                 => 'De triem befettet in firus! Details: $1',
 'sourcefilename'              => 'Triemnamme boarne:',
 'destfilename'                => 'Triemnamme om op te slaan:',

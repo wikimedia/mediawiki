@@ -831,7 +831,6 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'uploadedimage'               => 'uplaidit "$1"',
 'uploaddisabled'              => 'Sorry, uplaidin is disabled.',
 'uploadscripted'              => 'This file hauds HTML or script code that micht be wrang interpretit bi a wab brouser.',
-'uploadcorrupt'               => 'The file is corrupt or haes a wrang extension. Please check the file an uplaid again.',
 'uploadvirus'                 => 'The file hauds a virus! Details: $1',
 'sourcefilename'              => 'Soorce filename:',
 

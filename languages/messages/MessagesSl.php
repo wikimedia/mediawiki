@@ -1401,7 +1401,6 @@ Preverite zgodovino brisanja datoteke, preden jo ponovno naložite.',
 'php-uploaddisabledtext'      => 'Nalaganje datotek je onemogočeno v PHP.
 Prosimo preverite file_uploads nastavitev.',
 'uploadscripted'              => 'Datoteka vsebuje HTML- ali skriptno kodo, ki bi jo lahko brskalnik razlagal napačno.',
-'uploadcorrupt'               => 'Datoteka je poškodovana ali pa ima napačno končnico. Prosimo, preverite jo in znova naložite.',
 'uploadvirus'                 => 'Datoteka morda vsebuje virus! Podrobnosti: $1',
 'sourcefilename'              => 'Ime izvorne datoteke:',
 'destfilename'                => 'Ime ciljne datoteke:',
