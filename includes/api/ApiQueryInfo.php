@@ -37,7 +37,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
-		$fld_readable = false, $fld_watched = false;
+		$fld_readable = false, $fld_watched = false,
+		$fld_preload = false;
 
 	public function __construct( $query, $moduleName ) {
 		parent :: __construct( $query, $moduleName, 'in' );
@@ -200,6 +201,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_subjectid = isset( $prop['subjectid'] );
 			$this->fld_url = isset( $prop['url'] );
 			$this->fld_readable = isset( $prop['readable'] );
+			$this->fld_preload = isset ( $prop['preload'] );
 		}
 
 		$pageSet = $this->getPageSet();
@@ -321,6 +323,16 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 		if ( $this->fld_readable && $title->userCanRead() )
 			$pageInfo['readable'] = '';
+			
+		if ( $this->fld_preload ) {
+			if ( $title->exists() )
+				$pageInfo['preload'] = '';
+			else {
+				wfRunHooks( 'EditFormPreloadText', array( &$text, &$title ) );
+			
+				$pageInfo['preload'] = $text;
+			}
+		}		
 		return $pageInfo;
 	}
 
@@ -553,6 +565,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'subjectid',
 					'url',
 					'readable',
+					'preload'
 				) ),
 			'token' => array (
 				ApiBase :: PARAM_DFLT => null,
@@ -570,7 +583,10 @@ class ApiQueryInfo extends ApiQueryBase {
 				' protection   - List the protection level of each page',
 				' talkid       - The page ID of the talk page for each non-talk page',
 				' watched      - List the watched status of each page',
-				' subjectid    - The page ID of the parent page for each talk page'
+				' subjectid    - The page ID of the parent page for each talk page',
+				' url          - Gives a full URL to the page, and also an edit URL',
+				' readable     - Whether the user can read this page',
+				' preload      - Gives the text returned by EditFormPreloadText'
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
 			'continue' => 'When more results are available, use this to continue',
