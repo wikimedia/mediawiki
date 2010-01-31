@@ -7751,6 +7751,18 @@ Bad images - basic functionality
 !! result
 !! end
 
+!! test
+Bad images - bug 16039: text after bad image disappears
+!! input
+Foo bar
+[[File:Bad.jpg]]
+Bar foo
+!! result
+<p>Foo bar
+</p><p>Bar foo
+</p>
+!! end
+
 
 TODO:
 more images

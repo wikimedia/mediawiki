@@ -729,6 +729,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed bug involving unclosed "-{" markup in the language converter
 * (bug 21870) No longer include Google logo from an external server on wiki error.
 * (bug 22181) Do not truncate if the ellipsis actually make the string longer
+* (bug 16039) Text disappearing after a bad image
 
 == API changes in 1.16 ==
 
