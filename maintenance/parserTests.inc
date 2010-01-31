@@ -1135,9 +1135,6 @@ class ParserTest {
 
 		$art = new Article($title);
 		$art->insertNewArticle($text, '', false, false );
-		if( $title->getNamespace() == NS_MEDIAWIKI ) {
-			$wgMessageCache->replace( $title->getDBkey(), $text );
-		}
 
 		$this->teardownGlobals();
 	}
