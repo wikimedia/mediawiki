@@ -40,7 +40,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		parent :: __construct( $query, $moduleName, 'rc' );
 	}
 
-	private $fld_comment = false, $fld_user = false, $fld_flags = false,
+	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_flags = false,
 			$fld_timestamp = false, $fld_title = false, $fld_ids = false,
 			$fld_sizes = false;
 	/**
@@ -87,6 +87,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	 */
 	public function initProperties( $prop ) {
 		$this->fld_comment = isset ( $prop['comment'] );
+		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_user = isset ( $prop['user'] );
 		$this->fld_flags = isset ( $prop['flags'] );
 		$this->fld_timestamp = isset ( $prop['timestamp'] );
@@ -195,7 +196,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addFieldsIf( 'rc_id', $this->fld_ids );
 			$this->addFieldsIf( 'rc_this_oldid', $this->fld_ids );
 			$this->addFieldsIf( 'rc_last_oldid', $this->fld_ids );
-			$this->addFieldsIf( 'rc_comment', $this->fld_comment );
+			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_user', $this->fld_user );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
 			$this->addFieldsIf( 'rc_minor', $this->fld_flags );
@@ -351,6 +352,10 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		/* Add edit summary / log summary. */
 		if ( $this->fld_comment && isset( $row->rc_comment ) ) {
 			$vals['comment'] = $row->rc_comment;
+		
+		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
+			global $wgUser;
+			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->rc_comment, $title );
 		}
 
 		if ( $this->fld_redirect )
@@ -446,6 +451,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'user',
 					'comment',
+					'parsedcomment',
 					'flags',
 					'timestamp',
 					'title',

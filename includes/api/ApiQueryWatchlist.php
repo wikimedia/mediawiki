@@ -49,7 +49,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
-			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_sizes = false,
+			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
 			$fld_notificationtimestamp = false;
 
 	private function run( $resultPageSet = null ) {
@@ -83,6 +83,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_flags = isset( $prop['flags'] );
 			$this->fld_user = isset( $prop['user'] );
 			$this->fld_comment = isset( $prop['comment'] );
+			$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 			$this->fld_timestamp = isset( $prop['timestamp'] );
 			$this->fld_sizes = isset( $prop['sizes'] );
 			$this->fld_patrol = isset( $prop['patrol'] );
@@ -111,7 +112,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( 'rc_bot', $this->fld_flags );
 			$this->addFieldsIf( 'rc_user', $this->fld_user );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
-			$this->addFieldsIf( 'rc_comment', $this->fld_comment );
+			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrol );
 			$this->addFieldsIf( 'rc_old_len', $this->fld_sizes );
 			$this->addFieldsIf( 'rc_new_len', $this->fld_sizes );
@@ -232,8 +233,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['revid'] = intval( $row->rc_this_oldid );
 		}
 
+		$title = Title :: makeTitle( $row->rc_namespace, $row->rc_title );
+
 		if ( $this->fld_title )
-			ApiQueryBase :: addTitleInfo( $vals, Title :: makeTitle( $row->rc_namespace, $row->rc_title ) );
+			ApiQueryBase :: addTitleInfo( $vals, $title );
 
 		if ( $this->fld_user ) {
 			$vals['user'] = $row->rc_user_text;
@@ -266,6 +269,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_comment && isset( $row->rc_comment ) )
 			$vals['comment'] = $row->rc_comment;
+			
+		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
+			global $wgUser;
+			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->rc_comment, $title );
+		}
 
 		return $vals;
 	}
@@ -312,6 +320,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'flags',
 					'user',
 					'comment',
+					'parsedcomment',
 					'timestamp',
 					'patrol',
 					'sizes',

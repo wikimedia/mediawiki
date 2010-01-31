@@ -52,6 +52,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_revid = isset( $prop['revid'] );
 		$fld_user = isset( $prop['user'] );
 		$fld_comment = isset( $prop['comment'] );
+		$fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$fld_minor = isset( $prop['minor'] );
 		$fld_len = isset( $prop['len'] );
 		$fld_content = isset( $prop['content'] );
@@ -82,7 +83,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addFields( 'ar_rev_id' );
 		if ( $fld_user )
 			$this->addFields( 'ar_user_text' );
-		if ( $fld_comment )
+		if ( $fld_comment || $fld_parsedcomment )
 			$this->addFields( 'ar_comment' );
 		if ( $fld_minor )
 			$this->addFields( 'ar_minor_edit' );
@@ -193,8 +194,15 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$rev['user'] = $row->ar_user_text;
 			if ( $fld_comment )
 				$rev['comment'] = $row->ar_comment;
+
+			$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+
+			if ( $fld_parsedcomment) {
+				global $wgUser;
+				$rev['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->ar_comment, $title );
+			}
 			if ( $fld_minor && $row->ar_minor_edit == 1 )
-					$rev['minor'] = '';
+				$rev['minor'] = '';
 			if ( $fld_len )
 				$rev['len'] = $row->ar_len;
 			if ( $fld_content )
@@ -203,10 +211,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
-				$t = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				$a['revisions'] = array( $rev );
 				$result->setIndexedTagName( $a['revisions'], 'rev' );
-				ApiQueryBase::addTitleInfo( $a, $t );
+				ApiQueryBase::addTitleInfo( $a, $title );
 				if ( $fld_token )
 					$a['token'] = $token;
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), $pageID, $a );
@@ -270,6 +277,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'revid',
 					'user',
 					'comment',
+					'parsedcomment',
 					'minor',
 					'len',
 					'content',
