@@ -2087,8 +2087,6 @@ You should check that file's deletion history before proceeding to re-upload it.
 'php-uploaddisabledtext'      => 'File uploads are disabled in PHP.
 Please check the file_uploads setting.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
-'uploadcorrupt'               => 'The file is corrupt or has an incorrect extension.
-Please check the file and upload again.',
 'uploadvirus'                 => 'The file contains a virus!
 Details: $1',
 'upload-source'               => 'Source file',
