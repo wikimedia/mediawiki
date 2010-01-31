@@ -80,7 +80,7 @@ class ApiDelete extends ApiBase {
 			
 			if ( count( $retval ) )
 				$this->dieUsageMsg( reset( $retval ) ); // We don't care about multiple errors, just report one of them
-			
+
 			if ( $params['watch'] || $wgUser->getOption( 'watchdeletion' ) )
 				$articleObj->doWatch();
 			else if ( $params['unwatch'] )

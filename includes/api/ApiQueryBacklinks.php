@@ -123,8 +123,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $this->params['filterredir'] == 'redirects' )
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		else if ( $this->params['filterredir'] == 'nonredirects' && !$this->redirect )
-			//bug 22245 - Check for !redirect, as filtering nonredirects, when getting what links to them is contradictory
-			$this->addWhereFld( 'page_is_redirect', 0 ); 
+			// bug 22245 - Check for !redirect, as filtering nonredirects, when getting what links to them is contradictory
+			$this->addWhereFld( 'page_is_redirect', 0 );
 
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', $this->bl_from );
@@ -221,6 +221,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$this->pageMap[$row->page_namespace][$row->page_title] = $row->page_id;
 				if ( $row->page_is_redirect )
 					$this->redirTitles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
+
 				$resultPageSet->processDbRow( $row );
 			}
 		}
