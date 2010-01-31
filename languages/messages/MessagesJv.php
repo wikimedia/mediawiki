@@ -1324,7 +1324,6 @@ Yèn isih ngersakaké ngunggahaké, mangga berkas diunggahaké manèh mawa jenen
 'php-uploaddisabledtext'      => 'Pangunggahan berkas dipatèni ing PHP.
 Mangga priksa panyetèlan pangunggahan berkas.',
 'uploadscripted'              => 'Berkas iki ngandhut HTML utawa kode sing bisa diinterpretasi salah déning panjlajah wèb.',
-'uploadcorrupt'               => 'Berkasé rusak utawa èkstènsiné salah. Mangga dipriksa dhisik berkas iki lan diunggahaké manèh.',
 'uploadvirus'                 => 'Berkas iki ngamot virus! Détil: $1',
 'upload-source'               => 'Berkas sumber',
 'sourcefilename'              => 'Jeneng berkas sumber',

@@ -1632,7 +1632,6 @@ Se você ainda quer carregar o seu arquivo, por favor volte e use um novo nome. 
 'uploaddisabledtext'          => 'Carregamentos de arquivos estão desativados.',
 'php-uploaddisabledtext'      => 'O carregamento de arquivos via PHP está desativado. Por favor, verifique a configuração file_uploads.',
 'uploadscripted'              => 'Este arquivo contém HTML ou código que pode ser erradamente interpretado por um navegador web.',
-'uploadcorrupt'               => 'O arquivo encontra-se corrompido ou tem uma extensão incorreta. Por gentileza, verifique o ocorrido e tente novamente.',
 'uploadvirus'                 => 'O arquivo contém vírus! Detalhes: $1',
 'upload-source'               => 'Arquivo de origem',
 'sourcefilename'              => 'Nome do arquivo de origem:',

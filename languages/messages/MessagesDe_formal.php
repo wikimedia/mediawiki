@@ -341,7 +341,6 @@ Wenn Sie diese Datei trotzdem hochladen möchten, gehen Sie bitte zurück und ä
 'uploadwarning-text'          => 'Bitte ändern Sie unten die Dateibeschreibung und versuchen Sie es erneut.',
 'php-uploaddisabledtext'      => 'Das Hochladen von Dateien wurde in PHP deaktiviert.
 Bitte überprüfen Sie die <code>file_uploads</code>-Einstellung.',
-'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat eine falsche Datei-Erweiterung. Bitte überprüfen Sie die Datei und wiederholen Sie den Hochlade-Vorgang.',
 'filewasdeleted'              => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfen Sie zuerst den Eintrag im $1, bevor Sie die Datei wirklich speichern.',
 'upload-wasdeleted'           => "'''Achtung: Sie laden eine Datei hoch, die bereits früher gelöscht wurde.'''
 

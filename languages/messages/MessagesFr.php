@@ -1684,8 +1684,6 @@ Si vous voulez toujours téléverser votre fichier, veuillez revenir en arrière
 'uploaddisabledtext'          => 'Le téléversement de fichiers est désactivé sur ce wiki.',
 'php-uploaddisabledtext'      => 'Le téléversement de fichiers a été désactivé dans PHP. Vérifiez l’option de configuration file_uploads.',
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur web.',
-'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
-Veuillez vérifier le fichier avant de le téléverser à nouveau.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'upload-source'               => 'Fichier source',
 'sourcefilename'              => 'Nom du fichier source :',

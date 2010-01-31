@@ -1122,7 +1122,6 @@ Si acontinas queriendu empuntal el archivu, vai alatrás i escambia el nombri el
 'uploaddisabled'              => 'Empuntus desativaus',
 'uploaddisabledtext'          => "El empuntu d'archivus está desativau.",
 'uploadscripted'              => 'Esti archivu contieni script u cóigu HTML que puei sel mal entelpretau pol un escrucaol.',
-'uploadcorrupt'               => 'Marru cola estensión el archivu. Pol favol, compreba el archivu i empúntalu otra vezi.',
 'uploadvirus'                 => 'El archivu tiini un virus! Detallis: $1',
 'sourcefilename'              => 'Nombri orihinal:',
 'destfilename'                => 'Nombri e destinu:',

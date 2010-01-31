@@ -1251,7 +1251,6 @@ Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade diese
 'uploaddisabled'             => 'Huchlada deaktiviert',
 'uploaddisabledtext'         => 'Doas Huchloada vu Dateien ies deaktiviert.',
 'uploadscripted'             => "Diese Datei enthält HTML- oder Scriptcode, dar irrtiemlich vu a'm Webbrowser ausgefiehrt waan kennte.",
-'uploadcorrupt'              => 'De Datei ies beschädigt oder hoot anne foalsche Datei-Erweiterung. Bitte ieberpriefe de Datei und wiederhole dann Huchloade-Vurgang.',
 'uploadvirus'                => "Diese Datei enthält an'n Virus! Details: $1",
 'upload-source'              => 'Quelldatei',
 'sourcefilename'             => 'Quelldatei:',

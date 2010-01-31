@@ -1507,7 +1507,6 @@ Jei visvien norite įkelti savo failą, prašome eiti atgal ir įkelti šį fail
 'php-uploaddisabledtext'      => "Failų įkėlimai uždrausti PHP nustatymuose.
 Patikrinkite ''file_uploads'' nustatą.",
 'uploadscripted'              => 'Šis failas turi HTML arba programinį kodą, kuris gali būti klaidingai suprastas interneto naršyklės.',
-'uploadcorrupt'               => 'Failas yra pažeistas arba turi neteisingą galūnę. Prašome patikrinti failą ir įkeltį jį vėl.',
 'uploadvirus'                 => 'Šiame faile yra virusas! Smulkiau: $1',
 'upload-source'               => 'Failo šaltinis',
 'sourcefilename'              => 'Įkeliamas failas:',

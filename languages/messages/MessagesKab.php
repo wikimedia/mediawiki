@@ -792,7 +792,6 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'uploaddisabled'              => 'Suref-aɣ, azen n ufayluwen yettwakkes',
 'uploaddisabledtext'          => 'Azen n ufayluwen yettwakkes deg wiki-yagi',
 'uploadscripted'              => 'Afaylu-yagi yesɛa angal n HTML/script i yexdem agula deg browser/explorateur.',
-'uploadcorrupt'               => 'Afaylu-yagi yexser neɣ yesɛa taseggiwit (am ".jpg") mačči ṣaḥiḥ. G leɛnayek ssenqed-it.',
 'uploadvirus'                 => 'Afaylu-nni yesɛa anfafad asenselkim (virus)! Ẓer kter: $1',
 'sourcefilename'              => 'And yella afyalu',
 'destfilename'                => 'Anda iruḥ afaylu',

@@ -1051,7 +1051,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'overwroteimage'              => 'የ«[[$1]]» አዲስ ዕትም ላከ',
 'uploaddisabled'              => 'ፋይል መላክ አይቻልም',
 'uploaddisabledtext'          => 'ፋይል መላክ በዚህ ዊኪ አይቻልም።',
-'uploadcorrupt'               => 'ይህ ፋይል ብልሹ ነው፤ ወይም ትክክለኛ ያልሆነ ቅጥያ አለው። እባክዎ ፋይሉን ተመልክተው እንደገና ይላኩት።',
 'uploadvirus'                 => 'ፋይሉ ቫይረስ አለበት! ዝርዝር፦ $1',
 'sourcefilename'              => 'የቆየው የፋይሉ ስም፦',
 'destfilename'                => 'የፋይሉ አዲስ ስም፦',

@@ -1419,8 +1419,6 @@ Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a c
 'php-uploaddisabledtext'      => "Le carecaminde de file sonde disabilitate in PHP.<br />
 Pe piacere verifiche le 'mbostaziune d'u ''file_uploads''.",
 'uploadscripted'              => "Stu file condene HTML o codece de script ca ponne essere inderpretete jndr'à 'nu mode sbagliete da le browser.",
-'uploadcorrupt'               => "'U file face schife o tène 'n'estenziona incorrette.
-Pe piacere condrolle 'u file e carechele 'n'otra vote.",
 'uploadvirus'                 => "Alanga toje, 'u file condiene 'nu virus! Dettaglie: $1",
 'upload-source'               => 'File sorgende',
 'sourcefilename'              => "Nome d'u fail d'origgine:",

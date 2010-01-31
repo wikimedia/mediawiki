@@ -685,7 +685,23 @@ $1 نے پابندی لگائی تھی.
 'rev-showdeleted'         => 'دکھاؤ',
 'revisiondelete'          => 'نظرثانی حذف کریں/واپس لائیں',
 'revdelete-nooldid-title' => 'ناقص مقصود نظرثانی',
+'revdelete-legend'        => 'رویتی پابندیاں لگائیں',
+'revdelete-hide-text'     => 'نظرثانی متن چھپاؤ',
+'revdelete-hide-image'    => 'مشمولاتِ ملف چھپاؤ',
+'revdelete-hide-comment'  => 'ترمیمی تبصرہ چھپاؤ',
+'revdelete-hide-user'     => 'ترمیم کار کا اسمِ صارف / آئی.پی پتہ چُھپاؤ',
+'revdelete-radio-same'    => '(تبدیل مت کرو)',
+'revdelete-log'           => 'حذف کرنے کی وجہ:',
+'revdelete-success'       => "'''رؤیتِ نظرثانی کی تجدید کامیابی سے ہوئی.'''",
+'logdelete-success'       => "'''نوشتۂ رویت کامیابی سے مرتب.'''",
+'logdelete-failure'       => "'''نوشتۂ رویت مرتب نہیں کیا جاسکتا:'''
+
+$1",
 'revdel-restore'          => 'ظاہریت تبدیل کرو',
+'pagehist'                => 'تاریخچۂ صفحہ',
+'deletedhist'             => 'حذف شدہ تاریخچہ',
+'revdelete-content'       => 'مشمولہ',
+'revdelete-uname'         => 'اسمِ صارف',
 
 # Diffs
 'difference'              => '(اصلاحات میں فرق)',

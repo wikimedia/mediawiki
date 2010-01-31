@@ -1322,7 +1322,6 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'uploaddisabled'              => 'Punten, ngamuat ayeuna ditumpurkeun.',
 'uploaddisabledtext'          => 'Fungsi ngamuat koropak ditumpurkeun.',
 'uploadscripted'              => "Koropak ieu ngandung kode HTML atawa skrip nu bisa dibaca ngaco ku panyungsi ramat (''web browser'').",
-'uploadcorrupt'               => 'Koropakna ruksak atawa salah éksténsina. Mangga muat ulang sanggeus dipariksa deui koropakna.',
 'uploadvirus'                 => 'Koropakna ngandung virus! Katrangan: $1',
 'upload-source'               => 'Koropak sumber',
 'sourcefilename'              => 'Ngaran koropak sumber:',

@@ -1489,8 +1489,6 @@ Jekk jogħġbok mur lura u tella' dan il-fajl b'isem ġdid. [[File:$1|thumb|cent
 'uploaddisabled'              => "Skuzana, però ''uploads'' ta' fajls huwa temporalment sospiż.",
 'uploaddisabledtext'          => "It-tlugħ ta' fajls mhuwiex attiv.",
 'uploadscripted'              => "Dan il-fajl fih kodiċi ta' ''HTML'' u ''script'' li jista' jkun interpretat hażin mill-''web browser''.",
-'uploadcorrupt'               => "Dan il-fajl jidher li huwa maħruq jew għandu estenżjoni ħażina.
-Jekk jogħġbok verifika l-fajl u erġa' prova tellgħu.",
 'uploadvirus'                 => "Dan il-fajl huwa infettat b'virus! Dettalji: $1",
 'sourcefilename'              => 'L-isem tal-fajl tal-oriġini:',
 'destfilename'                => 'L-Isem tal-fajl tad-destinazzjoni:',

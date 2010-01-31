@@ -1297,7 +1297,6 @@ Si encara quiere cargar ixe archibo, torne y faiga serbir un nuebo nombre. [[Fil
 'uploaddisabledtext'          => 'A carga de archibos ye desautibata.',
 'php-uploaddisabledtext'      => 'A carga de fichers PHP ye desautibata. Por fabor, berifique a confegurazión de file_uploads.',
 'uploadscripted'              => 'Iste archibo contiene codigo de script u HTML que puede estar interpretado incorreutament por un nabegador.',
-'uploadcorrupt'               => "Iste archibo ye corrompito u tiene una estensión incorreuta. Por fabor, comprebe l'archibo y cargue-lo una atra begada.",
 'uploadvirus'                 => 'Iste archibo tiene un birus! Detalles: $1',
 'sourcefilename'              => "Nombre de l'archibo d'orichen:",
 'destfilename'                => "Nombre de l'archibo de destín:",

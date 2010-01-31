@@ -1445,8 +1445,6 @@ Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit 
 'uploaddisabledtext'          => 'Diweredekaet eo an enporzhiañ restroù.',
 'php-uploaddisabledtext'      => 'Diweredekaet eo bet ar pellgargañ e PHP. Gwiriit an dibarzh arventennoù file_uploads.',
 'uploadscripted'              => "Er restr-mañ ez eus kodoù HTML pe skriptoù a c'hallfe bezañ kammgomprenet gant ur merdeer Kenrouedad.",
-'uploadcorrupt'               => 'Brein eo ar restr-mañ, par eo he ment da netra pe fall eo an astenn anezhi.
-Gwiriit anezhi mar plij.',
 'uploadvirus'                 => 'Viruzet eo ar restr! Titouroù : $1',
 'upload-source'               => 'Restr tarzh',
 'sourcefilename'              => 'Anv ar restr tarzh :',

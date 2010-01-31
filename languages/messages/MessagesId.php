@@ -1625,7 +1625,6 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 'uploaddisabledtext'          => 'Pemuatan berkas tidak diizinkan.',
 'php-uploaddisabledtext'      => 'Pemuatan berkas dimatikan di PHP. Silakan cek pengaturan file_uploads.',
 'uploadscripted'              => 'Berkas ini mengandung HTML atau kode yang dapat diinterpretasikan dengan keliru oleh penjelajah web.',
-'uploadcorrupt'               => 'Berkas tersebut rusak atau ekstensinya salah. Silakan periksa berkas tersebut dan muatkan kembali.',
 'uploadvirus'                 => 'Berkas tersebut mengandung virus! Rincian: $1',
 'upload-source'               => 'Berkas sumber',
 'sourcefilename'              => 'Nama berkas sumber:',

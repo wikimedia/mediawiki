@@ -1641,7 +1641,6 @@ Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy ú
 'uploaddisabledtext'          => 'A fájlfeltöltés nem engedélyezett.',
 'php-uploaddisabledtext'      => 'A PHP-s fájlfeltöltés le van tiltva. Ellenőrizd a file_uploads beállítást.',
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',
-'uploadcorrupt'               => 'A fájl sérült vagy hibás a kiterjesztése. Légy szíves ellenőrizd a fájlt és próbálkozz újra!',
 'uploadvirus'                 => 'Ez a fájl vírust tartalmaz! A részletek: $1',
 'upload-source'               => 'Forrásfájl',
 'sourcefilename'              => 'Forrásfájl neve:',

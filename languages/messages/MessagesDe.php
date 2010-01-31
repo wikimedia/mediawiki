@@ -1681,7 +1681,6 @@ Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere
 'php-uploaddisabledtext'      => 'Das Hochladen von Dateien wurde in PHP deaktiviert.
 Bitte überprüfe die <code>file_uploads</code>-Einstellung.',
 'uploadscripted'              => 'Diese Datei enthält HTML- oder Scriptcode, der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
-'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat eine falsche Datei-Erweiterung. Bitte überprüfe die Datei und wiederhole den Hochlade-Vorgang.',
 'uploadvirus'                 => 'Diese Datei enthält einen Virus! Details: $1',
 'upload-source'               => 'Quelldatei',
 'sourcefilename'              => 'Quelldatei:',

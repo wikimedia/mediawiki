@@ -1493,7 +1493,6 @@ Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet d
 'uploaddisabledtext'          => "D'Eropluede vu Fichieren ass ausgeschalt.",
 'php-uploaddisabledtext'      => "D'Eropluede vu Fichieren ass am PHP desaktivéiert. Kuckt w.e.g. d'Astellung ''file_uploads'' no.",
 'uploadscripted'              => 'An dësem Fichier ass HTML- oder Scriptcode, dee vun engem Webbrowser falsch interpretéiert kéint ginn.',
-'uploadcorrupt'               => 'De Fichier ass futti oder en huet eng falsch Fichiers-Erweiderung. Kuckt de Fichier w.e.g. no a luet de Fichier nach eng Kéier erop.',
 'uploadvirus'                 => 'An dësem Fichier ass ee Virus! Detailer: $1',
 'upload-source'               => 'Quellfichier',
 'sourcefilename'              => 'Numm vum Originalfichier:',

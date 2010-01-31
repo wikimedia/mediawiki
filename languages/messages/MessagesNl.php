@@ -1725,8 +1725,6 @@ Raadpleeg het verwijderingslogboek voordat u verder gaat.',
 'uploaddisabledtext'          => 'Het uploaden van bestanden is uitgeschakeld.',
 'php-uploaddisabledtext'      => 'PHP-bestanduploads zijn uitgeschakeld. Controleer a.u.b. de file_uploads-instelling.',
 'uploadscripted'              => 'Dit bestand bevat HTML- of scriptcode die foutief door uw browser kan worden weergegeven.',
-'uploadcorrupt'               => 'Het bestand is corrupt of heeft een onjuiste extensie.
-Controleer het bestand en upload het opnieuw.',
 'uploadvirus'                 => 'Het bestand bevat een virus! Details: $1',
 'upload-source'               => 'Bronbestand',
 'sourcefilename'              => 'Oorspronkelijke bestandsnaam:',
@@ -2251,7 +2249,7 @@ Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletionlog'            => 'verwijderingslogboek',
 'reverted'               => 'Eerdere versie hersteld',
 'deletecomment'          => 'Reden voor verwijderen:',
-'deleteotherreason'      => 'Andere/eventuele reden:',
+'deleteotherreason'      => 'Andere reden:',
 'deletereasonotherlist'  => 'Andere reden',
 'deletereason-dropdown'  => '*Veel voorkomende verwijderredenen
 ** Op aanvraag van auteur

@@ -140,13 +140,14 @@ $messages = array(
 'dec'           => 'Теле',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Категорий|Категорий}}',
-'category_header'        => '"$1" категорийыште лаштык-влак',
-'subcategories'          => 'Ӱлылкатегорий-влак',
-'hidden-categories'      => '{{PLURAL:$1|Шылтыме категорий|Шылтыме категорий-влак}}',
-'category-subcat-count'  => '{{PLURAL:$2|Тиде категорийыш ик ӱлылкатегорий гына пура.|{{PLURAL:$1|Тыгай $1 ӱлылкатегорий|Тыгане $1 ӱлылкатегорий-влак}} тиде категорийыште, чыла $2.}}',
-'category-article-count' => '{{PLURAL:$2|Тиде категорийыш ик лаштык гына пура.|{{PLURAL:$1|Тыгай $1 лаштык|Тыгане $1 лаштык-влак}} тиде категорийыште, чыла $2.}}',
-'listingcontinuesabbrev' => '(умбакыжым)',
+'pagecategories'           => '{{PLURAL:$1|Категорий|Категорий}}',
+'category_header'          => '"$1" категорийыште лаштык-влак',
+'subcategories'            => 'Ӱлылкатегорий-влак',
+'hidden-categories'        => '{{PLURAL:$1|Шылтыме категорий|Шылтыме категорий-влак}}',
+'hidden-category-category' => 'Шылтымо категорий-влак',
+'category-subcat-count'    => '{{PLURAL:$2|Тиде категорийыш ик ӱлылкатегорий гына пура.|{{PLURAL:$1|Тыгай $1 ӱлылкатегорий|Тыгане $1 ӱлылкатегорий-влак}} тиде категорийыште, чыла $2.}}',
+'category-article-count'   => '{{PLURAL:$2|Тиде категорийыш ик лаштык гына пура.|{{PLURAL:$1|Тыгай $1 лаштык|Тыгане $1 лаштык-влак}} тиде категорийыште, чыла $2.}}',
+'listingcontinuesabbrev'   => '(умбакыжым)',
 
 'mainpagetext' => "<big>'''MediaWiki сай шындыме.'''</big>",
 
@@ -663,6 +664,9 @@ $messages = array(
 'filedelete-otherreason'      => 'Вес/ешартыш амал:',
 'filedelete-reason-otherlist' => 'Вес амал',
 
+# List redirects
+'listredirects' => 'Вес верек колтымаш-влак лӱмер',
+
 # Random page
 'randompage' => 'Вучыдымо лаштык',
 
@@ -687,6 +691,7 @@ $messages = array(
 'statistics-users-active-desc' => 'Пытартыш {{PLURAL:$1|кечыште|$1 кечыште}} иктаж-мом ыштыше пайаланыше-влак',
 'statistics-mostpopular'       => 'Эн чӱчкыдын ончымо лаштык-влак',
 
+'brokenredirects-edit'   => 'тӧрлаташ',
 'brokenredirects-delete' => 'шӧраш',
 
 'withoutinterwiki-submit' => 'ончыкташ',
@@ -738,7 +743,14 @@ $messages = array(
 'linksearch-ok' => 'Кычал',
 
 # Special:ListUsers
-'listusers-submit' => 'ончыкташ',
+'listusers-submit'  => 'ончыкташ',
+'listusers-blocked' => '(йӧн петырыме)',
+
+# Special:ActiveUsers
+'activeusers'            => 'Чӱчкыдын пайдаланыше-влак лӱмер',
+'activeusers-count'      => 'Пытартыш $3 {{PLURAL:$3|кечыште|кечылаште}} $1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
+'activeusers-hidebots'   => 'Бот-влакым шылташ',
+'activeusers-hidesysops' => 'Сайтвиктарыше-влакым шылташ',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'У пайдаланыше регистрацийым эртарыме журнал',

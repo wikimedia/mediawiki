@@ -1565,7 +1565,6 @@ Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om d
 'php-uploaddisabledtext'      => 'Die oplaai van lêers is in PHP afgeskakel.
 Kyk na die "file_uploads"-instelling.',
 'uploadscripted'              => "Hierdie lêer bevat HTML- en scriptkode wat verkeerdelik deur 'n webblaaier geïnterpreteer kan word.",
-'uploadcorrupt'               => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
 'uploadvirus'                 => "Hierdie lêer bevat 'n virus! Inligting: $1",
 'upload-source'               => 'Bronlêer',
 'sourcefilename'              => 'Bronlêernaam:',

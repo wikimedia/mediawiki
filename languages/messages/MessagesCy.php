@@ -1427,7 +1427,6 @@ Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.
 'php-uploaddisabledtext'      => 'Anablwyd uwchlwytho ffeiliau yn PHP.
 Gwiriwch y gosodiad ar file_uploads.',
 'uploadscripted'              => "Mae'r ffeil hon yn cynnwys HTML neu sgript a all achosi problemau i borwyr gwe.",
-'uploadcorrupt'               => 'Mae nam ar y ffeil neu mae ganddi estyniad anghywir. Gwiriwch y ffeil ac uwchlwythwch eto.',
 'uploadvirus'                 => 'Mae firws gan y ffeil hon! Manylion: $1',
 'upload-source'               => 'Y ffeil gwreiddiol',
 'sourcefilename'              => "Enw'r ffeil wreiddiol:",

@@ -1581,7 +1581,6 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'uploaddisabledtext'          => 'Filopplasting er slått av.',
 'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjå innstillinga for file_uploads.',
 'uploadscripted'              => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
-'uploadcorrupt'               => 'Fila er øydelagd eller har feil etternamn. Sjekk fila og prøv på nytt.',
 'uploadvirus'                 => 'Fila innheld virus! Detaljar: $1',
 'upload-source'               => 'Kjeldefil',
 'sourcefilename'              => 'Filsti:',

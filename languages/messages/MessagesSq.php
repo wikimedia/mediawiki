@@ -1289,7 +1289,6 @@ Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, pë
 'uploaddisabled'              => 'Ndjesë, dhëniet janë bllokuar në këtë shërbyes dhe nuk është gabimi juaj.',
 'uploaddisabledtext'          => 'Ngarkimi i skedave është i ndaluar.',
 'uploadscripted'              => 'Skeda përmban HTML ose kode të tjera që mund të interpretohen gabimisht nga një shfletues.',
-'uploadcorrupt'               => 'Skeda është e dëmtuar ose ka emër të gabuar. Ju lutemi kontrolloni skedën dhe ngarkoni atë përsëri.',
 'uploadvirus'                 => 'Skeda përmban një virus! Detaje: $1',
 'sourcefilename'              => 'Emri i skedës:',
 'destfilename'                => 'Emri mbas dhënies:',

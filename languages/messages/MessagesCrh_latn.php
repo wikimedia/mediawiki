@@ -1134,7 +1134,6 @@ Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini de
 'uploaddisabled'              => 'Yükleme yasaqlıdır.',
 'uploaddisabledtext'          => 'Fayl yükleme yasaqlıdır.',
 'uploadscripted'              => 'Bu faylda brauzer tarafından yañlışnen işlenip olur HTML kodu ya da skript bar.',
-'uploadcorrupt'               => 'Bu fayl ya zararlandı, ya da yañlış uzantılı. Lütfen, faylnı teşkerip yañıdan yüklep baqıñız.',
 'uploadvirus'                 => 'Bu fayl viruslıdır! $1 baqıñız',
 'sourcefilename'              => 'Yüklemege istegen faylıñız:',
 'destfilename'                => 'Faylnıñ istenilgen adı:',

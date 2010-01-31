@@ -1079,7 +1079,6 @@ Ja tu joprojām gribi augšuplādēt šo failu, tad mēģini vēlreiz, ar citu f
 'uploaddisabled'         => 'Augšupielāde atslēgta',
 'uploaddisabledtext'     => 'Failu augšupielāde ir atslēgta.',
 'uploadscripted'         => 'Šis fails satur HTML vai skriptu kodu, kuru, interneta pārlūks, var kļūdas pēc, mēģināt interpretēt (ar potenciāli sliktām sekām).',
-'uploadcorrupt'          => 'Šis fails ir bojāts, vai arī tam ir nekorekts paplašinājums. Lūdzu pārbaudi failu un augšupielādē vēlreiz.',
 'uploadvirus'            => 'Šis fails satur vīrusu! Sīkāk: $1',
 'sourcefilename'         => 'Augšuplādējamais fails:',
 'destfilename'           => 'Vajadzīgais faila nosaukums:',

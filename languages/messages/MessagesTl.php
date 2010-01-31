@@ -1367,7 +1367,6 @@ bumalik at ikarga ang talaksan na ito sa bagong pangalan. [[File:$1|thumb|center
 'uploaddisabledtext'          => 'Hindi pinagana ang mga pagkakarga ng talaksan.',
 'php-uploaddisabledtext'      => 'Hindi pinapagana ang mga pagkakarga ng talaksang PHP.  Pakisuri ang katakdaan ng mga_pagkakarga_ng_talaksan.',
 'uploadscripted'              => 'Naglalaman ang talaksan na ito ng HTML o kodigong script na maaaring mali ang pagkaintindi ng isang web browser.',
-'uploadcorrupt'               => 'Sira o may maling ekstensyon ang talaksan. Paki tingin ang talaksan at ikarga muli.',
 'uploadvirus'                 => 'Naglalaman ng virus ang talaksan! Mga detalye: $1',
 'sourcefilename'              => 'Pangalan ng panggagalingang talaksan:',
 'destfilename'                => 'Pangalan ng patutunguhang talaksan:',

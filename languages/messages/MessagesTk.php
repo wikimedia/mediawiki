@@ -1406,7 +1406,6 @@ Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir
 'uploaddisabledtext'          => 'Faýl ýüklemeklik ýapyk.',
 'php-uploaddisabledtext'      => 'PHP-de faýl ýüklemek ýapyk dur. file_uploads sazlamasyny barlap görüň.',
 'uploadscripted'              => 'Bu faýlda web brauzeri tarapyndan ýalňyş teswirlenmegi mümkin bolan bir HTML ýa-da skript kody bar.',
-'uploadcorrupt'               => 'Bu faýla ýa zeper ýetipdir ýa-da onuň giňeltmesi ýalňyş. Faýly barlap, gaýtadan ýüklemegiňizi haýyş edýäris.',
 'uploadvirus'                 => 'Faýlda wirus bar! Jikme-jiklik: $1',
 'upload-source'               => 'Çeşme faýl',
 'sourcefilename'              => 'Çeşme faýlyň ady:',

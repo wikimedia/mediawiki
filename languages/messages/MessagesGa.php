@@ -1003,8 +1003,6 @@ Má theastáilann uait do chomhad a uaslódáil fós, téigh ar ais agus úsáid
 'uploadedimage'        => 'uaslódáladh "[[$1]]"',
 'uploaddisabled'       => 'Tá brón orainn, ní féidir aon rud a uaslódáil faoi láthair.',
 'uploaddisabledtext'   => 'Tá cosc ar uaslódáil comhad.',
-'uploadcorrupt'        => 'Tá an comhad truaillithe nó tá iarmhír comhadainm neamhbhailí aige. Scrúdaigh an comhad agus
-uaslódáil é arís, le do thoil.',
 'uploadvirus'          => 'Tá víreas ann sa comhad seo! Eolas: $1',
 'sourcefilename'       => 'Comhadainm foinse:',
 'destfilename'         => 'Comhadainm sprice:',

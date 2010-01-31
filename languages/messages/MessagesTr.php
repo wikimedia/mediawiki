@@ -1627,7 +1627,6 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kul
 'uploaddisabledtext'          => 'Dosya yüklemeleri devredışı bırakılmıştır.',
 'php-uploaddisabledtext'      => 'PHP dosyası yüklemeleri devre dışıdır. Lütfen file_uploads ayarını kontrol edin.',
 'uploadscripted'              => 'Bu dosya bir internet tarayıcısı tarafından hatalı çevrilebilecek bir HTML veya script kodu içermektedir.',
-'uploadcorrupt'               => 'Bu dosya ya bozuk ya da uzantısı yanlış. Dosyayı kontrol edip, tekrar yüklemeyi deneyin.',
 'uploadvirus'                 => 'Bu dosya virüslüdür! Detayları: $1',
 'upload-source'               => 'Kaynak dosyası',
 'sourcefilename'              => 'Yüklemek istediğiniz dosya:',

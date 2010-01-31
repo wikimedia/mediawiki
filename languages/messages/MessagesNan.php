@@ -469,7 +469,6 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'savefile'          => 'Pó-chûn tóng-àn',
 'uploadedimage'     => 'thoân "[[$1]]" chiūⁿ-bāng',
 'uploaddisabled'    => 'Pháiⁿ-sè, sàng chiūⁿ-bāng ê kong-lêng bô khui.',
-'uploadcorrupt'     => 'Tóng-àn nōa--khì he̍k-chiá tóng-àn miâ ê bóe-liu tàu m̄-tio̍h khoán. Chhiáⁿ kiám-cha--chi̍t-ē, liáu-āu têng thoân chiūⁿ-bāng.',
 'sourcefilename'    => 'Tóng-àn goân miâ:',
 'destfilename'      => 'Tóng-àn sin miâ:',
 'watchthisupload'   => 'Kàm-sī chit ia̍h',

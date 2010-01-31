@@ -1390,7 +1390,6 @@ Siddu si disponi dâ mmàggini ntâ risuluzzioni urigginali, si prega di carric�
 'uploaddisabledtext'          => 'Lu carricamentu dî file nun è attivu supra a stu situ.',
 'php-uploaddisabledtext'      => 'Li file PHP non sunnu abbilitati. Pi favuri cuntrolla li mpustazzioni dû file_uploads.',
 'uploadscripted'              => "Stu file cunteni còdici HTML o di script, ca putissi èssiri nterpritato erroniamenti d'un browser web.",
-'uploadcorrupt'               => 'Lu file è currumputu o hà na stinzioni nun curretta. Pi favuri cuntrolla lu file e esequi di novu lu carricamentu.',
 'uploadvirus'                 => 'Lu file cunteni un virus! Ultiriuri nfurmazzioni: $1',
 'sourcefilename'              => "Nomu dû file d'orìggini:",
 'destfilename'                => 'Nomu dû file di distinazzioni:',

@@ -1436,7 +1436,6 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 'uploaddisabledtext'          => 'Dat Hoochladen vun Datein is utschalt.',
 'php-uploaddisabledtext'      => 'Dat Hoochladen vun Datein is in PHP utstellt. Kiek de file_uploads-Instellungen na.',
 'uploadscripted'              => 'In disse Datei steiht HTML- oder Skriptkood in, de vun welk Browsers verkehrt dorstellt oder utföhrt warrn kann.',
-'uploadcorrupt'               => 'De Datei is korrupt oder hett en falsch Ennen. Datei pröven un nieg hoochladen.',
 'uploadvirus'                 => 'In de Datei stickt en Virus! Mehr: $1',
 'sourcefilename'              => 'Dateinaam op dien Reekner:',
 'destfilename'                => 'Dateinaam, so as dat hier spiekert warrn schall:',

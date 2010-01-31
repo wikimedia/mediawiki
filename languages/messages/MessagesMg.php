@@ -1407,8 +1407,6 @@ Raha mbola te-hampiditra io rakitra io foana ianao, miverena any aoriana ary mam
 Marino ny option configuration file_uploads.",
 'uploadscripted'              => "
 Misy kialo HTML na fango script mety tsy ho hain'ny navigateur sasany haseho ity rakitra ity.",
-'uploadcorrupt'               => 'Misy tailana ny rakitra na diso ny extension-ny. 
-Hamarino tsara aloha dia avereno alefa indray.',
 'uploadvirus'                 => 'Misy viriosy io rakitra io! Toy izao ny antsipirihany: $1',
 'sourcefilename'              => "Anaran'ny rakitra:",
 'destfilename'                => "Anaran'ny rakitra:",

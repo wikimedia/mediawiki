@@ -1349,7 +1349,6 @@ eke şıma hhene zi qayili dosyaya xo bar keri ager3e u newe yew name bışuxuln
 'uploaddisabledtext'          => 'Bar kerdişê dosyayî iptal biyo',
 'php-uploaddisabledtext'      => 'barkerdışê dosyayê PHP nıka çino. kerem kere eyarê file_uploads korol bıkerê.',
 'uploadscripted'              => 'Ena dosya de yew HTML ya zi kodê scriptî este ke belki browserê webî fam nikeno.',
-'uploadcorrupt'               => 'na dosya ya xerebnaye ya ya zi yew qısmê aye şaş a. Dosya kontrol bıkerê u newe ra bar kerê.',
 'uploadvirus'                 => 'Ena dosya de yew virus estê: Qe detayan: $1',
 'upload-source'               => 'Dosyayê henî',
 'sourcefilename'              => 'Nameyê dosyaye çimeyî',

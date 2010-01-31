@@ -1476,7 +1476,6 @@ Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che t
 'uploaddisabledtext'          => "El caricamento dei file no'l xe mìa ativo.",
 'php-uploaddisabledtext'      => 'El caricamento de file tramite PHP el xe disabilità. Contròla la configurassion de file_uploads.',
 'uploadscripted'              => 'Sto file contegne codexe HTML o de script, che podaria essere interpretà eroneamente da un browser web.',
-'uploadcorrupt'               => 'El file el xe coróto o el gà na estension mìa giusta. Controla el file e dopo próa de novo a cargarlo.',
 'uploadvirus'                 => 'Sto file contegne un virus! Detagli: $1',
 'upload-source'               => 'File de origine',
 'sourcefilename'              => 'Nome del file de origine:',

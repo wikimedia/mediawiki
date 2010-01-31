@@ -1308,7 +1308,6 @@ If nog vilol lopükön ragivi olik, geikolös e gebolös nemi votik. [[File:$1|t
 'uploaddisabled'              => 'Löpükam penemögükon',
 'uploaddisabledtext'          => 'Löpükam ragivas penemögükon.',
 'uploadscripted'              => 'Ragiv at ninükon eli HTML u vödis programapüka, kelis bevüresodanaföm ba opölanätäpreton',
-'uploadcorrupt'               => 'Ragiv binon dädik u duton lü sot no lonöföl. Kontrololös ragivi e löpükolös oni dönu.',
 'uploadvirus'                 => 'Ragiv at labon virudi! Pats: $1',
 'sourcefilename'              => 'Ragivanem rigik:',
 'destfilename'                => 'Ragivanem nulik:',

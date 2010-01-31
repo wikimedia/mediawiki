@@ -1473,7 +1473,6 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. S
 'uploaddisabledtext'          => 'Ciri muat naik fail dimatikan.',
 'php-uploaddisabledtext'      => 'Pemuatnaikan fail PHP dilumpuhkan. Sila semak tetapan file_uploads.',
 'uploadscripted'              => 'Fail ini mengandungi kod HTML atau skrip yang boleh disalahtafsirkan oleh pelayar web.',
-'uploadcorrupt'               => 'Fail tersebut rosak atau mempunyai sambungan yang salah. Sila periksa fail tersebut dan cuba lagi.',
 'uploadvirus'                 => 'Fail tersebut mengandungi virus! Butiran: $1',
 'sourcefilename'              => 'Nama fail sumber:',
 'destfilename'                => 'Nama fail destinasi:',
