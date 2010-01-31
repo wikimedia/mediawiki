@@ -50,7 +50,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_user = isset( $prop['user'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
 		$this->fld_comment = isset( $prop['comment'] );
-		$this->fld_parsedcomment = isset ( $prop['parsedcomment']] );
+		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_details = isset( $prop['details'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
