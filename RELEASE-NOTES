@@ -812,6 +812,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21922) YAML output should quote asterisk when used as key
 * (bug 22297) safesubst: to allow substitution without breaking transclusion
 * (bug 18758) API read of watchlist's wl_notificationtimestamp
+* (bug 20809) Expose EditFormPreloadText via the API
 
 === Languages updated in 1.16 ===
 
