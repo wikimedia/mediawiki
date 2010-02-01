@@ -399,18 +399,16 @@ class MessageCache {
 
 		// Also delete cached sidebar... just in case it is affected
 		global $parserMemc;
-		if(is_object($parserMemc)) {
-			$codes = array( $code );
-			if ( $code === 'en'  ) {
-				// Delete all sidebars, like for example on action=purge on the
-				// sidebar messages
-				$codes = array_keys( Language::getLanguageNames() );
-			}
+		$codes = array( $code );
+		if ( $code === 'en'  ) {
+			// Delete all sidebars, like for example on action=purge on the
+			// sidebar messages
+			$codes = array_keys( Language::getLanguageNames() );
+		}
 
-			foreach ( $codes as $code ) {
-				$sidebarKey = wfMemcKey( 'sidebar', $code );
-				$parserMemc->delete( $sidebarKey );
-			}
+		foreach ( $codes as $code ) {
+			$sidebarKey = wfMemcKey( 'sidebar', $code );
+			$parserMemc->delete( $sidebarKey );
 		}
 
 		wfRunHooks( "MessageCacheReplace", array( $title, $text ) );

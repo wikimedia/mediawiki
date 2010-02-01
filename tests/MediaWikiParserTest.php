@@ -23,6 +23,7 @@ class PTShell extends ParserTest {
 
 	function showSuccess( $desc ) {
 		$this->cb->assertTrue( true, $desc );
+		echo "PASSED: $desc\n";
 		return true;
 	}
 
@@ -145,9 +146,20 @@ class MediaWikiParserTest extends PHPUnit_Framework_TestCase {
 		$wgStyleSheetPath = '/skins';
 		$wgStylePath = '/skins';
 		$wgThumbnailScriptPath = false;
+		$this->uploadDir = $this->setupUploadDir();
+		$wgLocalFileRepo = array(
+			'class' => 'LocalRepo',
+			'name' => 'local',
+			'directory' => $this->uploadDir,
+			'url' => 'http://example.com/images',
+			'hashLevels' => 2,
+			'transformVia404' => false,
+		);
+		//$wgNamespacesWithSubpages = array( 0 => isset( $opts['subpage'] ) );
         $wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
+
 
 		$wgEnableParserCache = false;
 		$wgDeferredUpdateList = array();
@@ -169,7 +181,34 @@ class MediaWikiParserTest extends PHPUnit_Framework_TestCase {
 		$this->parserTester = new PTShell();
 		$this->parserTester->setCallback( $this );
 
+		/* global $wgDBtype, $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBport, $wgDBmwschema, $wgDBts2chema; */
+		/* $this->db['type'] = $wgDBtype; */
+		/* $this->db['server'] = $wgDBserver; */
+		/* $this->db['name'] = $wgDBname; */
+		/* $this->db['user'] = $wgDBuser; */
+		/* $this->db['password'] = $wgDBpassword; */
+		/* $this->db['port'] = $wgDBport; */
+		/* $this->db['mwschema'] = $wgDBmwschema; */
+		/* $this->db['ts2schema'] = $wgDBts2chema; */
 	}
+
+	function tearDown() {
+		$this->teardownUploadDir($this->uploadDir);
+		/* $db = wfGetDB( DB_MASTER ); */
+		/* $db->close(); */
+		/* global $wgDBtype, $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBport, $wgDBmwschema, $wgDBts2chema; */
+
+		/* $wgDBtype = $this->db['type']; */
+		/* $wgDBserver = $this->db['server']; */
+		/* $wgDBname = $this->db['name']; */
+		/* $wgDBuser = $this->db['user']; */
+		/* $wgDBpassword = $this->db['password']; */
+		/* $wgDBport = $this->db['port']; */
+		/* $wgDBmwschema = $this->db['mwschema']; */
+		/* $wgDBts2chema = $this->db['ts2schema']; */
+
+	}
+
 
 	function testParser() {
 		global $IP;
