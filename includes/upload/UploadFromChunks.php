@@ -19,11 +19,6 @@ class UploadFromChunks extends UploadBase {
 	const CHUNK = 2;
 	const DONE = 3;
 
-	// STYLE NOTE: Coding guidelines says the 'm' prefix for object
-	// member variables is discouraged in new code but "stay
-	// consistent within a class". UploadFromChunks is new, but extends
-	// UploadBase which has the 'm' prefix.	 I'm eschewing the prefix for
-	// member variables of this class.
 	protected $chunkMode; // INIT, CHUNK, DONE
 	protected $sessionKey;
 	protected $comment;
@@ -43,7 +38,8 @@ class UploadFromChunks extends UploadBase {
 	}
 
 	public function initialize( $done, $filename, $sessionKey, $path,
-			$fileSize, $sessionData ) {
+		$fileSize, $sessionData ) 
+	{
 		$this->initFromSessionKey( $sessionKey, $sessionData );
 
 		if ( !$this->sessionKey && !$done ) {
@@ -57,8 +53,8 @@ class UploadFromChunks extends UploadBase {
 		}
 
 		if ( $this->chunkMode == self::CHUNK || $this->chunkMode == self::DONE ) {
-                  $this->mTempPath = $path;
-                  $this->fileSize += $fileSize;
+			$this->mTempPath = $path;
+			$this->fileSize += $fileSize;
 		}
 	}
 
@@ -99,7 +95,8 @@ class UploadFromChunks extends UploadBase {
 		$this->sessionKey = $sessionKey;
 
 		if ( isset( $sessionData[$this->sessionKey]['version'] )
-				&& $sessionData[$this->sessionKey]['version'] == self::SESSION_VERSION ) {
+			&& $sessionData[$this->sessionKey]['version'] == self::SESSION_VERSION ) 
+		{
 			$this->comment = $sessionData[$this->sessionKey]['comment'];
 			$this->pageText = $sessionData[$this->sessionKey]['pageText'];
 			$this->watch = $sessionData[$this->sessionKey]['watch'];
