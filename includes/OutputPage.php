@@ -257,7 +257,7 @@ class OutputPage {
 	/**
 	 * Set whether the output should only contain the body of the article,
 	 * without any skin, sidebar, etc.
-	 * Used e.g. when calling with "action=raw".
+	 * Used e.g. when calling with "action=render".
 	 *
 	 * @param $only Boolean: whether to output only the body of the article
 	 */
@@ -451,10 +451,10 @@ class OutputPage {
 	}
 
 	/**
-	 * "Page title" means the contents of <h1>. It is stored as a valid HTML fragment.
-	 * This function allows good tags like <sup> in the <h1> tag, but not bad tags like <script>.
-	 * This function automatically sets <title> to the same content as <h1> but with all tags removed.
-	 * Bad tags that were escaped in <h1> will still be escaped in <title>, and good tags like <i> will be dropped entirely.
+	 * "Page title" means the contents of \<h1\>. It is stored as a valid HTML fragment.
+	 * This function allows good tags like \<sup\> in the \<h1\> tag, but not bad tags like \<script\>.
+	 * This function automatically sets \<title\> to the same content as \<h1\> but with all tags removed.
+	 * Bad tags that were escaped in \<h1\> will still be escaped in \<title\>, and good tags like \<i\> will be dropped entirely.
 	 */
 	public function setPageTitle( $name ) {
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
