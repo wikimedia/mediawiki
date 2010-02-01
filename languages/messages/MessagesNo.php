@@ -663,6 +663,7 @@ Husk at det er forskjell på store og små bokstaver.
 Sjekk stavemåten eller [[Special:UserLogin/signup|opprett en ny konto]].',
 'nosuchusershort'            => 'Det finnes ingen bruker ved navn «<nowiki>$1</nowiki>». Kontroller stavemåten.',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
+'login-userblocked'          => 'Brukeren er blokkert. Innlogging er ikke tillatt.',
 'wrongpassword'              => 'Du har oppgitt et ugyldig passord. Prøv igjen.',
 'wrongpasswordempty'         => 'Du oppga ikke noe passord. Prøv igjen.',
 'passwordtooshort'           => 'Passord må ha minst {{PLURAL:$1|ett tegn|$1 tegn}}.',
@@ -1618,7 +1619,7 @@ For best mulig sikkerhet er img_auth.php slått av.',
 # HTTP errors
 'http-invalid-url'    => 'Ugyldig internettadresse: $1',
 'http-invalid-scheme' => 'Internettadresser med «$1»-formen støttes ikke',
-'http-request-error'  => 'Feil ved sending av forespørsel:',
+'http-request-error'  => 'HTTP-forespørselen feilet på grunn av en ukjent feil.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikke nå adressen',

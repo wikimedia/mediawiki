@@ -784,6 +784,8 @@ $messages = array(
 'watching'   => 'Эскерымаш лӱмерыш ешарымаш...',
 'unwatching' => 'Эскерымаш лӱмер гыч шӧрымаш...',
 
+'enotif_newpagetext' => 'Тиде у лаштык.',
+
 # Delete
 'deletepage'            => 'Лаштыкым шӧраш',
 'delete-confirm'        => 'Шӧраш "$1"',

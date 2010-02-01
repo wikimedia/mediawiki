@@ -703,6 +703,7 @@ $2',
 Проверьте правильность написания имени или [[Special:UserLogin/signup|создайте новую учётную запись]].',
 'nosuchusershort'            => 'Не существует участника с именем <nowiki>$1</nowiki>. Проверьте написание имени.',
 'nouserspecified'            => 'Вы должны указать имя участника.',
+'login-userblocked'          => 'Этот участник заблокирован. Вход в систему не разрешён.',
 'wrongpassword'              => 'Введённый вами пароль неверен. Попробуйте ещё раз.',
 'wrongpasswordempty'         => 'Пожалуйста, введите непустой пароль.',
 'passwordtooshort'           => 'Пароль должен состоять не менее чем из $1 {{PLURAL:$1|символа|символов|символов}}.',
@@ -1679,7 +1680,7 @@ PICT # различные
 # HTTP errors
 'http-invalid-url'    => 'Ошибочный URL: $1',
 'http-invalid-scheme' => 'Не поддерживаются адреса со схемой «$1»',
-'http-request-error'  => 'Ошибка отправки запроса:',
+'http-request-error'  => 'Сбой HTTP-запроса из-за неизвестной ошибки.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Невозможно обратить по указанному адресу.',

@@ -511,7 +511,7 @@ $1',
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
-'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos:}} $1.',
+'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos:}} $1.',
 
 'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consulte [[Special:Version|la página de versión]]',
@@ -804,7 +804,7 @@ La razón dada es esta:
 * Caducidad del bloqueo: $6
 * Bloqueo destinado a: $7
 
-Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.
+Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|bibliotecarios]] para discutir el bloqueo.
 
 No puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
 
