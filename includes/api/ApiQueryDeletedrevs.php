@@ -197,7 +197,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 			$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
-			if ( $fld_parsedcomment) {
+			if ( $fld_parsedcomment ) {
 				global $wgUser;
 				$rev['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->ar_comment, $title );
 			}

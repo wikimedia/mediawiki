@@ -217,13 +217,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['pageid'] = intval( $row->page_id );
 		}
 
-		$title = Title :: makeTitle( $row->log_namespace, $row->log_title );
+		$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 
 		if ( $this->fld_title ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 			} else {
-				ApiQueryBase :: addTitleInfo( $vals, $title );
+				ApiQueryBase::addTitleInfo( $vals, $title );
 			}
 		}
 
@@ -255,7 +255,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->log_timestamp );
 		}
 		
-		if ( ($this->fld_comment || $this->fld_parsedcomment) && isset( $row->log_comment ) ) {
+		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->log_comment ) ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
 			} else {
