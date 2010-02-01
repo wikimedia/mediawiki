@@ -628,7 +628,8 @@ class LoginForm {
 				$this->mainLoginForm( wfMsg( 'login-throttled' ) );
 				break;
 			case self::USER_BLOCKED:
-				$this->mainLoginForm( wfMsg( 'login-userblocked' ) );
+				$this->mainLoginForm( wfMsgExt( 'login-userblocked',
+					array( 'parsemag', 'escape' ), $this->mName ) );
 				break;
 			default:
 				throw new MWException( "Unhandled case value" );
