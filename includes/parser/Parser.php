@@ -364,7 +364,7 @@ class Parser
 			$this->mOutput->setTitleText( $wgContLang->getConvRuleTitle() );
 		} elseif ( !( $wgDisableLangConversion
 					  || isset( $this->mDoubleUnderscores['notitleconvert'] ) ) ) {
-			$this->mOutput->setTitleText( $wgContLang->convert( $title ) );
+			$this->mOutput->setTitleText( $wgContLang->convert( $title->getPrefixedText() ) );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
