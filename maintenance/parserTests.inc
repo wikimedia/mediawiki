@@ -640,6 +640,7 @@ class ParserTest {
 			'wgNoFollowLinks' => true,
 			'wgNoFollowDomainExceptions' => array(),
 			'wgThumbnailScriptPath' => false,
+			'wgUseImageResize' => false,
 			'wgUseTeX' => false,
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => true,

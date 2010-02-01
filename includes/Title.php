@@ -3451,7 +3451,12 @@ class Title {
 	 * @return \type{\string} String representation of this title
 	 */
 	public function __toString() {
-		return $this->getPrefixedText();
+          $bt = debug_backtrace();
+          foreach($bt as $b) {
+            print "{$b['file']}:{$b['line']}\n";
+          }
+          exit;
+          return $this->getPrefixedText();
 	}
 
 	/**
