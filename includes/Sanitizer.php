@@ -877,10 +877,10 @@ class Sanitizer {
 	 * @return String
 	 */
 	static function escapeId( $id, $options = array() ) {
-		global $wgExperimentalHtmlIds;
+		global $wgHtml5, $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
-		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
+		if ( $wgHtml5 && $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
 			$id = preg_replace( '/[ \t\n\r\f_\'"&]+/', '_', $id );
 			$id = trim( $id, '_' );
 			if ( $id === '' ) {
