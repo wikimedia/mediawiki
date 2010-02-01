@@ -279,10 +279,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			// $vals['textid'] = intval($row->rev_text_id);	// todo: Should this field be exposed?
 		}
 
-		$title = Title :: makeTitle( $row->page_namespace, $row->page_title );
+		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 		if ( $this->fld_title )
-			ApiQueryBase :: addTitleInfo( $vals, $title );
+			ApiQueryBase::addTitleInfo( $vals, $title );
 
 		if ( $this->fld_timestamp )
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
@@ -296,7 +296,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				$vals['top'] = '';
 		}
 
-		if ( ($this->fld_comment || $this->fld_parsedcomment) && isset( $row->rev_comment ) ) {
+		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->rev_comment ) ) {
 			if ( $row->rev_deleted & Revision::DELETED_COMMENT )
 				$vals['commenthidden'] = '';
 			else {

@@ -89,7 +89,7 @@ class UploadFromChunks extends UploadBase {
 	 */
 	protected function initFromSessionKey( $sessionKey, $sessionData ) {
 		// testing against null because we don't want to cause obscure
-        // bugs when $sessionKey is full of "0"
+		// bugs when $sessionKey is full of "0"
 		if ( !$sessionKey === null ) {
 			$this->status = Status::newFromFatal( 'import-token-mismatch' );
 			return;

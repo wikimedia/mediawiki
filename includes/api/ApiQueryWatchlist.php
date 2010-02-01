@@ -233,10 +233,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['revid'] = intval( $row->rc_this_oldid );
 		}
 
-		$title = Title :: makeTitle( $row->rc_namespace, $row->rc_title );
+		$title = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 
 		if ( $this->fld_title )
-			ApiQueryBase :: addTitleInfo( $vals, $title );
+			ApiQueryBase::addTitleInfo( $vals, $title );
 
 		if ( $this->fld_user ) {
 			$vals['user'] = $row->rc_user_text;
