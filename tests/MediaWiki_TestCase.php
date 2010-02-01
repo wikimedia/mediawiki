@@ -7,7 +7,10 @@ abstract class MediaWiki_TestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function buildTestDatabase( $tables ) {
 		global $testOptions, $wgDBprefix, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
-		$this->markTestIncomplete("This test requires DB admin user credentials.");
+		if(!$wgDBadminuser || !$wgDBadminpassword) {
+			$this->markTestIncomplete("This test requires DB admin user credentials.");
+		}
+
 		$wgDBprefix = 'parsertest_';
 
 		$db = new DatabaseMysql(
@@ -16,7 +19,8 @@ abstract class MediaWiki_TestCase extends PHPUnit_Framework_TestCase {
 			$wgDBadminpassword,
 			$wgDBname );
 		if( $db->isOpen() ) {
-			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
+			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and
+				  stristr($db->getSoftwareLink(), 'MySQL'))) {
 				# Database that supports CREATE TABLE ... LIKE
 				foreach ($tables as $tbl) {
 					$newTableName = $db->tableName( $tbl );
@@ -41,7 +45,6 @@ abstract class MediaWiki_TestCase extends PHPUnit_Framework_TestCase {
 					}
 					$db->query($create_tmp);
 				}
-
 			}
 			return $db;
 		} else {
