@@ -2103,8 +2103,8 @@ No $2 pode ver unha lista dos borrados máis recentes.',
 'deleteotherreason'      => 'Outro motivo:',
 'deletereasonotherlist'  => 'Outro motivo',
 'deletereason-dropdown'  => '*Motivos frecuentes para borrar
-** Petición do autor
-** Violación de copyright
+** Solicitado polo autor
+** Violación dos dereitos de autor
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar os motivos de borrado',
 'delete-toobig'          => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.

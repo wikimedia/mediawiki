@@ -1177,7 +1177,7 @@ Bitte prüfe die Logbücher.',
 ** Urheberrechtsverletzung
 ** Unangebrachte persönliche Informationen',
 'revdelete-otherreason'       => 'Andere/zusätzliche Begründung:',
-'revdelete-reasonotherlist'   => 'Andere Begründung',
+'revdelete-reasonotherlist'   => 'Anderer Grund',
 'revdelete-edit-reasonlist'   => 'Löschgründe bearbeiten',
 'revdelete-offender'          => 'Autor der Version:',
 
@@ -2384,7 +2384,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipadressorusername'              => 'IP-Adresse oder Benutzername:',
 'ipbexpiry'                       => 'Sperrdauer:',
 'ipbreason'                       => 'Grund:',
-'ipbreasonotherlist'              => 'Andere Begründung',
+'ipbreasonotherlist'              => 'Anderer Grund',
 'ipbreason-dropdown'              => '* Allgemeine Sperrgründe
 ** Einfügen falscher Informationen
 ** Leeren von Seiten

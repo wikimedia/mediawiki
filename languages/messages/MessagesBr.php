@@ -542,6 +542,7 @@ Kizidik eo anv an implijer ouzh ar pennlizherennoù
 Gwiriit eo bet skrivet mat an anv ganeoc\'h pe [[Special:UserLogin/signup|krouit ur gont nevez]].',
 'nosuchusershort'            => "N'eus perzhiad ebet gantañ an anv « <nowiki>$1</nowiki> ». Gwiriit ar reizhskrivadur.",
 'nouserspecified'            => "Ret eo deoc'h spisaat un anv implijer.",
+'login-userblocked'          => "Stanket eo an implijer-mañ. N'eo ket aotret da gevreañ.",
 'wrongpassword'              => 'Ger-tremen kamm. Klaskit en-dro.',
 'wrongpasswordempty'         => 'Ger-tremen ebet. Lakait unan mar plij.',
 'passwordtooshort'           => '{{PLURAL:$1|1 arouezenn|$1 arouezenn}} hir a rank bezañ ar gerioù-tremen da nebeutañ.',

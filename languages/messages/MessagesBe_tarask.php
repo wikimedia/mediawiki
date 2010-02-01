@@ -691,6 +691,7 @@ $2',
 Праверце напісаньне альбо [[Special:UserLogin/signup|стварыце новы рахунак]].',
 'nosuchusershort'            => 'Не існуе ўдзельніка ці ўдзельніцы «<nowiki>$1</nowiki>». Праверце напісаньне.',
 'nouserspecified'            => 'Вы мусіце пазначыць імя ўдзельніка.',
+'login-userblocked'          => 'Гэты ўдзельнік заблякаваны. Уваход у сыстэму забаронены.',
 'wrongpassword'              => 'Уведзены няслушны пароль. Калі ласка, паспрабуйце яшчэ раз.',
 'wrongpasswordempty'         => 'Быў уведзены пусты пароль. Калі ласка, паспрабуйце яшчэ раз.',
 'passwordtooshort'           => 'Паролі павінны утрымліваць ня менш за $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}.',
@@ -1649,7 +1650,7 @@ $1",
 # HTTP errors
 'http-invalid-url'    => 'Няслушны URL-адрас: $1',
 'http-invalid-scheme' => 'URL-адрасы схемы «$1» не падтрымліваюцца',
-'http-request-error'  => 'Памылка дасылкі запыту:',
+'http-request-error'  => 'HTTP-запыт не атрымаўся ў выніку невядомай памылкі.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Немагчыма дасягнуць URL-адрас',
