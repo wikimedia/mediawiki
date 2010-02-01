@@ -255,14 +255,14 @@ def CustomRules( dest ):
     return ret
 
 def GetPHPArray( table ):
-    lines = ['\'%s\' => \'%s\',' % (f, t) for (f, t) in table]
+    lines = ['\'%s\' => \'%s\',' % (f, t) for (f, t) in table if f and t]
     #lines = ['"%s"=>"%s",' % (f, t) for (f, t) in table]
     return '\n'.join(lines)
 
 def RemoveSameChar( src_table ):
     dst_table = {}
     for f, t in src_table.items():
-        if not f == t:
+        if f != t:
             dst_table[f] = t
     return dst_table
 
