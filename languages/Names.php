@@ -179,7 +179,7 @@
 	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Northern Kurdish Latin script
 	'ku-arab' => "\xE2\x80\xABكوردي (عەرەبی)\xE2\x80\xAC",	# Northern Kurdish Arabic script
 	'kv' => 'Коми',	# Komi-Zyrian, cyrillic is common script but also written in latin script
-	'kw' => 'Kernowek',		# Cornish
+	'kw' => 'Kernewek',		# Cornish
 	'ky' => 'Кыргызча',	# Kirghiz
 	'la' => 'Latina',		# Latin
 	'lad' => 'Ladino',	# Ladino
