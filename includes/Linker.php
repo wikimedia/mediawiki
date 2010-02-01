@@ -521,7 +521,7 @@ class Linker {
 		}
 
 		if ( !$thumb ) {
-			$s = $this->makeBrokenImageLinkObj( $title, '', '', '', '', $time==true );
+			$s = $this->makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time==true );
 		} else {
 			$params = array(
 				'alt' => $fp['alt'],
@@ -629,7 +629,7 @@ class Linker {
 
 		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		if( !$exists ) {
-			$s .= $this->makeBrokenImageLinkObj( $title, '', '', '', '', $time==true );
+			$s .= $this->makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time==true );
 			$zoomicon = '';
 		} elseif ( !$thumb ) {
 			$s .= htmlspecialchars( wfMsg( 'thumbnail_error', '' ) );
