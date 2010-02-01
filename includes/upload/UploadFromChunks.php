@@ -88,8 +88,10 @@ class UploadFromChunks extends UploadBase {
 	 * @returns void
 	 */
 	protected function initFromSessionKey( $sessionKey, $sessionData ) {
-		if ( !$sessionKey || empty( $sessionKey ) ) {
-			$this->status = Status::newFromFatal( 'Missing session data.' );
+		// testing against null because we don't want to cause obscure
+        // bugs when $sessionKey is full of "0"
+		if ( !$sessionKey === null ) {
+			$this->status = Status::newFromFatal( 'import-token-mismatch' );
 			return;
 		}
 		$this->sessionKey = $sessionKey;
@@ -115,7 +117,7 @@ class UploadFromChunks extends UploadBase {
 	 * @see UploadBase::performUpload
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
-		wfDebug( "\n\n\performUpload(chunked): sum:" . $comment . ' c: ' . $pageText . ' w:' . $watch );
+		wfDebug( "\n\n\performUpload(chunked): comment:" . $comment . ' pageText: ' . $pageText . ' watch:' . $watch );
 		global $wgUser, $wgOut;
 
 		if ( $this->chunkMode == self::INIT ) {
@@ -147,13 +149,13 @@ class UploadFromChunks extends UploadBase {
 			);
 			$wgOut->disable();
 		} else if ( $this->chunkMode == self::DONE ) {
-			if ( $comment == '' )
+			if ( !$comment )
 				$comment = $this->comment;
 
-			if ( $pageText == '' )
+			if ( !$pageText )
 				$pageText = $this->pageText;
 
-			if ( $watch == '' )
+			if ( !$watch )
 				$watch = $this->watch;
 
 			$status = parent::performUpload( $comment, $pageText, $watch, $user );
@@ -203,15 +205,34 @@ class UploadFromChunks extends UploadBase {
 				$_SESSION['wsUploadData'][$this->sessionKey]['repoPath'] = $this->repoPath;
 			}
 			return $status;
-		} else {
-			if ( $this->getRealPath( $this->repoPath ) ) {
-				$this->status = $this->appendToUploadFile( $this->repoPath, $this->mTempPath );
-			} else {
-				$this->status = Status::newFatal( 'filenotfound', $this->repoPath );
-			}
-
-			if ( $this->fileSize >  $wgMaxUploadSize )
-				$this->status = Status::newFatal( 'largefileserver' );
 		}
+		if ( $this->getRealPath( $this->repoPath ) ) {
+			$this->status = $this->appendToUploadFile( $this->repoPath, $this->mTempPath );
+		} else {
+			$this->status = Status::newFatal( 'filenotfound', $this->repoPath );
+		}
+		if ( $this->fileSize >  $wgMaxUploadSize )
+			$this->status = Status::newFatal( 'largefileserver' );
+	}
+
+	public function verifyUpload() {
+		if ( $this->chunkMode != self::DONE ) {
+			return Status::newGood();
+		}
+		return parent::verifyUpload();
+	}
+
+	public function checkWarnings() {
+		if ( $this->chunkMode != self::DONE ) {
+			return null;
+		}
+		return parent::checkWarnings();
+	}
+
+	public function getImageInfo( $result ) {
+		if ( $this->chunkMode != self::DONE ) {
+			return null;
+		}
+		return parent::getImageInfo( $result );
 	}
 }

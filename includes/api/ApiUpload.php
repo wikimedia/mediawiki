@@ -84,9 +84,9 @@ class ApiUpload extends ApiBase {
 			if ( $this->mParams['enablechunks'] ) {
 				$this->mUpload = new UploadFromChunks();
 				$this->mUpload->initialize(
-					$request->getText( 'done' ),
-					$request->getText( 'filename' ),
-					$request->getText( 'chunksessionkey' ),
+					$request->getVal( 'done', null ),
+					$request->getVal( 'filename', null ),
+					$request->getVal( 'chunksessionkey', null ),
 					$request->getFileTempName( 'chunk' ),
 					$request->getFileSize( 'chunk' ),
 					$request->getSessionData( 'wsUploadData' )
@@ -126,13 +126,6 @@ class ApiUpload extends ApiBase {
 		if ( !isset( $this->mUpload ) )
 			$this->dieUsage( 'No upload module set', 'nomodule' );
 
-
-		// Finish up the exec command:
-		$this->doExecUpload();
-	}
-
-	protected function doExecUpload() {
-		global $wgUser;
 		// Check whether the user has the appropriate permissions to upload anyway
 		$permission = $this->mUpload->isAllowed( $wgUser );
 
@@ -144,8 +137,8 @@ class ApiUpload extends ApiBase {
 		}
 		// Perform the upload
 		$result = $this->performUpload();
+
 		// Cleanup any temporary mess
-		// FIXME: This should be in a try .. finally block with performUpload
 		$this->mUpload->cleanupTempFile();
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
@@ -255,11 +248,7 @@ class ApiUpload extends ApiBase {
 		$file = $this->mUpload->getLocalFile();
 		$result['result'] = 'Success';
 		$result['filename'] = $file->getName();
-
-		// Append imageinfo to the result
-		$imParam = ApiQueryImageInfo::getPropertyNames();
-		$result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
-				array_flip( $imParam ), $this->getResult() );
+		$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
 
 		return $result;
 	}

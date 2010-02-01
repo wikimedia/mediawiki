@@ -1019,4 +1019,10 @@ abstract class UploadBase {
 		return $blacklist;
 	}
 
+	public function getImageInfo($result) {
+		$file = $this->getLocalFile();
+		$imParam = ApiQueryImageInfo::getPropertyNames();
+		return ApiQueryImageInfo::getInfo( $file, array_flip( $imParam ), $result );
+	}
+
 }
