@@ -3270,6 +3270,15 @@ Add test with existing image page
 !! end
 
 !! test
+bug 18784  Link to non-existant image page with caption should use caption as link text
+!! input
+[[:Image:test|caption]]
+!! result
+<p><a href="/index.php?title=File:Test&amp;action=edit&amp;redlink=1" class="new" title="File:Test (page does not exist)">caption</a>
+</p>
+!! end
+
+!! test
 Frameless image caption with a free URL
 !! input
 [[Image:foobar.jpg|http://example.com]]
