@@ -472,7 +472,7 @@ class OutputPage {
 	}
 
 	/**
-	 * Return the "page title", i.e. the content of the <h1> tag.
+	 * Return the "page title", i.e. the content of the \<h1\> tag.
 	 *
 	 * @return String
 	 */
