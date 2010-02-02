@@ -2590,7 +2590,7 @@ class OutputPage {
 
 		$params = array(
 			'type' => $wgJsMimeType,
-			'src' => "$wgStylePath/jquery.min.js?$wgStyleVersion",
+			'src' => "$wgStylePath/common/jquery.min.js?$wgStyleVersion",
 		);
 		if ( !$this->mJQueryDone ) {
 			$this->mJQueryDone = true;
