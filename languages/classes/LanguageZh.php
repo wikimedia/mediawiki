@@ -171,15 +171,6 @@ class LanguageZh extends LanguageZh_hans {
 	}
 
 	/**
-	 * word segmentation
-	 */
-	function wordSegmentation( $string ) {
-		// LanguageZh_hans::wordSegmentation
-		$s = parent::wordSegmentation( $string );
-		return $s;
-	}
-
-	/**
 	 * auto convert to zh-hans and normalize special characters.
 	 *
 	 * @param $string String
