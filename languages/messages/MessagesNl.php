@@ -2455,7 +2455,7 @@ Doe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[
 Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres of gebruikersnaam:',
-'ipbexpiry'                       => 'Duur (maak een keuze):',
+'ipbexpiry'                       => 'Vervalt (maak een keuze):',
 'ipbreason'                       => 'Reden:',
 'ipbreasonotherlist'              => 'Andere reden',
 'ipbreason-dropdown'              => "*Veel voorkomende redenen voor blokkades

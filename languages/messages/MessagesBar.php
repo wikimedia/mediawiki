@@ -212,6 +212,7 @@ $messages = array(
 'red-link-title'          => "$1 (de Seitn gibt's ned)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'Seitn',
 'nstab-user'     => 'Benutzerseitn',
 'nstab-special'  => 'Spezialseitn',
 'nstab-project'  => 'Projektseitn',
@@ -289,21 +290,24 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'retypenew'   => 'Neis Passwort (no amoi):',
 
 # Edit page toolbar
-'bold_sample'   => 'Fetta Text',
-'bold_tip'      => 'Fetta Text',
-'italic_sample' => 'Kuasiva Text',
-'italic_tip'    => 'Kuasiva Text',
-'link_sample'   => 'Link-Text',
-'link_tip'      => 'Inteana Link',
-'extlink_tip'   => "Exteana Link (pass auf's http:// auf)",
-'headline_tip'  => 'Üwaschrift auf da 2. Emn',
-'math_sample'   => 'Foaml då eifüng',
-'math_tip'      => 'Mathematische Foaml (LaTeX)',
-'nowiki_sample' => 'Ned foamatiadn Text då eifüng',
-'nowiki_tip'    => 'Unfoamatiada Text',
-'image_tip'     => 'Dateilink',
-'sig_tip'       => 'Dei Signatur mit Zeitstempe',
-'hr_tip'        => 'Wåågrechte Linie (spåasãm vawendn)',
+'bold_sample'     => 'Fetta Text',
+'bold_tip'        => 'Fetta Text',
+'italic_sample'   => 'Kuasiva Text',
+'italic_tip'      => 'Kuasiva Text',
+'link_sample'     => 'Link-Text',
+'link_tip'        => 'Inteana Link',
+'extlink_sample'  => 'http://www.example.com Link-Text',
+'extlink_tip'     => "Exteana Link (pass auf's http:// auf)",
+'headline_sample' => 'Üwaschrift auf da zweitn Ebene',
+'headline_tip'    => 'Üwaschrift auf da 2. Emn',
+'math_sample'     => 'Foaml då eifüng',
+'math_tip'        => 'Mathematische Foaml (LaTeX)',
+'nowiki_sample'   => 'Ned foamatiadn Text då eifüng',
+'nowiki_tip'      => 'Unfoamatiada Text',
+'image_tip'       => 'Dateilink',
+'media_tip'       => 'Datei-Link',
+'sig_tip'         => 'Dei Signatur mit Zeitstempe',
+'hr_tip'          => 'Wåågrechte Linie (spåasãm vawendn)',
 
 # Edit pages
 'summary'                          => 'Zsammafassung',
@@ -426,11 +430,13 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'searchsubtitle'            => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
 'searchsubtitleinvalid'     => 'Dei Suachãnfråg: „$1“.',
 'notitlematches'            => 'Koane Üwareinstimmungen mid de Seitntitl',
+'notextmatches'             => 'Ka Üwareinstimmung mid dem Inhåit gfundn',
 'prevn'                     => "d'voahearing {{PLURAL:$1|$1}}",
 'nextn'                     => 'de nextn {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Zoag ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
 'search-redirect'           => '(Weidaleitung vu „$1“)',
+'search-section'            => '(Åbschnitt $1)',
 'search-suggest'            => 'Hädst „$1“ gmoant?',
 'search-interwiki-caption'  => 'Schwestaprojekte',
 'search-interwiki-default'  => '$1 Eagebnisse:',
@@ -497,6 +503,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'recentchanges-legend' => 'Ãnzeigeopzionen',
 'rcnote'               => "Untn {{PLURAL:$1|is de letzte Ändarung|san de letztn '''$1''' Ändarungen}} {{PLURAL:$2|vum letztn|vu de letztn '''$2'''}} Tåg aufglist. Stãnd vum $4 um $5.",
 'rclistfrom'           => 'Netta Änderungen seid $1 ãzoang.',
+'rcshowhideminor'      => 'kloane Ändarungen $1',
 'rcshowhideliu'        => 'Ãngmöidte Benutza $1',
 'rcshowhideanons'      => 'Anonyme Benutza $1',
 'rcshowhidemine'       => 'Eigne Beiträge $1',
@@ -590,6 +597,7 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'randompage' => 'Zuafalls-Artikl',
 
 # Statistics
+'statistics'             => 'Statistik',
 'statistics-mostpopular' => 'Am meistn bsuachte Seitn',
 
 'disambiguationspage'  => 'Template:Begriffsklärung',
@@ -630,6 +638,7 @@ Links aus Namensräume wern da net aufglistet.',
 
 # Special:AllPages
 'allpages'          => 'Alle Seitn',
+'alphaindexline'    => '$1 bis $2',
 'allpagesfrom'      => 'Seitn zoang ab:',
 'allpagesto'        => 'Seitn ãnzoang bis:',
 'allarticles'       => 'Alle Seitn',
@@ -741,6 +750,9 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protect-level-autoconfirmed' => 'Sperrung fia net registrierte Benutzer',
 'protect-level-sysop'         => 'Netta Administratoan',
 'protect-summary-cascade'     => 'kaskadiarnd',
+'protect-expiring'            => 'bis zum $2 um $3 Uhr (UTC)',
+'restriction-type'            => 'Schutzstatus:',
+'restriction-level'           => 'Schutzhechn:',
 
 # Restrictions (nouns)
 'restriction-move' => 'verschiam',
@@ -781,16 +793,18 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'sp-contributions-submit'      => 'Suacha',
 
 # What links here
-'whatlinkshere'           => 'Links auf de Seitn',
-'whatlinkshere-title'     => 'Seitn, de nåch „$1“ valinkn',
-'whatlinkshere-page'      => 'Seitn:',
-'isredirect'              => 'Weiterleitungsseitn',
-'istemplate'              => 'Voalãngeibindung',
-'isimage'                 => 'Dateilink',
-'whatlinkshere-prev'      => "{{PLURAL:$1|vorige|d'voring $1}}",
-'whatlinkshere-next'      => "{{PLURAL:$1|nexde|d'nexdn $1}}",
-'whatlinkshere-hidetrans' => 'Voalãngeibindungen $1',
-'whatlinkshere-filters'   => 'Füita',
+'whatlinkshere'            => 'Links auf de Seitn',
+'whatlinkshere-title'      => 'Seitn, de nåch „$1“ valinkn',
+'whatlinkshere-page'       => 'Seitn:',
+'isredirect'               => 'Weiterleitungsseitn',
+'istemplate'               => 'Voalãngeibindung',
+'isimage'                  => 'Dateilink',
+'whatlinkshere-prev'       => "{{PLURAL:$1|vorige|d'voring $1}}",
+'whatlinkshere-next'       => "{{PLURAL:$1|nexde|d'nexdn $1}}",
+'whatlinkshere-hideredirs' => 'Weidaleitungen $1',
+'whatlinkshere-hidetrans'  => 'Voalãngeibindungen $1',
+'whatlinkshere-hidelinks'  => 'Links $1',
+'whatlinkshere-filters'    => 'Füita',
 
 # Block/unblock
 'blockip'                  => 'IP-Adresse/Benutzer sperrn',
@@ -885,7 +899,10 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-pt-preferences'          => 'Eigene Eistellunga',
 'tooltip-pt-watchlist'            => "Listn vu de Seitn, de'st beowåchst",
 'tooltip-pt-mycontris'            => 'Liste vo eigene Beiträg',
+'tooltip-pt-login'                => 'Dass ma si ãnmöidt, wiad zwår gean gseng, is åwa ka Pflicht ned.',
 'tooltip-pt-logout'               => 'Obmeidn',
+'tooltip-ca-talk'                 => 'Diskussion zum Seitninhåit',
+'tooltip-ca-edit'                 => "Seitn beåawatn. Bitte voa'm Speichan d'Voaschaufunkzion benutzn.",
 'tooltip-ca-addsection'           => 'An Kommentar zua dera Diskussion dazuagem.',
 'tooltip-ca-viewsource'           => 'De Seitn is gschützt. An Quelltext kann ma oschaun.',
 'tooltip-ca-history'              => 'Friarane Versionen vo dera Seitn',
@@ -895,23 +912,32 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-watch'                => 'De Seitn zua persönlichen Beobachtungslistn dazua doa',
 'tooltip-ca-unwatch'              => 'De Seitn von da persönlichen Beobachtungslistn entferna',
 'tooltip-search'                  => '{{SITENAME}} durchsuacha',
+'tooltip-search-go'               => 'Geh direkt zu dera Seitn, de genau den Nãm håd, dea eigem woan is.',
+'tooltip-search-fulltext'         => 'Suach nåch Seitn, de den Text enthåitn',
 'tooltip-p-logo'                  => 'Hauptseitn',
 'tooltip-n-mainpage'              => "d'Hauptseitn ãnzoang",
 'tooltip-n-mainpage-description'  => 'Zu da Hauptseitn geh',
+'tooltip-n-portal'                => "Üwa's Portal, wås'd måcha kãnnst, wo wås zum findn is",
 'tooltip-n-currentevents'         => 'Hintagrundinfoamazionen üwa aktuelle Ereignisse',
+'tooltip-n-recentchanges'         => 'Listn vu de letztn Ändarungen auf {{SITENAME}}',
 'tooltip-n-randompage'            => 'Zufällige Seitn',
+'tooltip-n-help'                  => 'Hüifeseitn ãnzoang',
 'tooltip-t-whatlinkshere'         => 'Listn vu ålle Seitn, de då hea zoang',
 'tooltip-t-recentchangeslinked'   => "D'letztn Ändarungen auf de Seitn, de vu då valinkt san",
 'tooltip-t-contributions'         => "d'Listn vu de Beiträg vu dem Benutza ãschau",
 'tooltip-t-emailuser'             => 'Dem Benutza E-Post schicka',
 'tooltip-t-upload'                => 'Datein aufelådn',
 'tooltip-t-specialpages'          => 'Listn vu ålle Spezialseitn',
+'tooltip-t-print'                 => 'Druckãnsicht vu dea Seitn',
+'tooltip-t-permalink'             => 'Dauahåfta Link zu dea Seitnveasion',
 'tooltip-ca-nstab-main'           => 'Seitninhalt ozoagn',
 'tooltip-ca-nstab-user'           => 'Benutzaseitn ãzoang',
+'tooltip-ca-nstab-special'        => 'Des is a Spezialseitn. Sie kãu ned beåawat wean.',
 'tooltip-ca-nstab-project'        => 'Portalseitn ãnzoang',
 'tooltip-ca-nstab-image'          => "D'Dateiseitn ãnzoang",
 'tooltip-ca-nstab-template'       => "d'Vorlåg ãnzoang",
 'tooltip-ca-nstab-help'           => 'Huifseitn oozoang',
+'tooltip-ca-nstab-category'       => 'Kategorieseitn ãnzoang',
 'tooltip-minoredit'               => 'De Änderung åis a klaane markian.',
 'tooltip-save'                    => 'Änderunga speichan',
 'tooltip-preview'                 => "a Voaschau vu de Ändarungen ãn dea Seitn. Bittschee voa'm Speichan benutzn!
@@ -954,14 +980,24 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'noimages'          => 'Koane Datein gfunden.',
 'ilsubmit'          => 'Suach',
 
+# Bad image list
+'bad_image_list' => "Format:
+
+Netta Zeun, de mid am * ãnfãngan, wean ausgweat. Åis eastas nåch'm * muaß a Link auf a uneawünschte Datei steh.
+Darauf foignde Links auf Seitn in da söiwn Zeun definian Ausnãhmen, in denen eanan Zusãmmenhãng de Datei trotzdem vawendt wean deaf.",
+
 # Metadata
 'metadata'          => 'Metadatn',
+'metadata-expand'   => 'Erweitate Deteus eiblendn',
 'metadata-collapse' => "D'eaweidatn Deteus ausblendn",
 
 # EXIF tags
 'exif-gpsspeed' => 'Geschwindigkeit vom GPS-Empfänger',
 
 'exif-componentsconfiguration-0' => "Gibt's net",
+
+# External editor support
+'edit-externally' => 'De Datei mid am exteanen Programm beåawatn',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ålle',

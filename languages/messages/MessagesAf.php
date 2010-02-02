@@ -641,6 +641,8 @@ Gebruikersname is gevoelig vir hoofletters.
 Maak seker dit is reg gespel of [[Special:UserLogin/signup|skep \'n nuwe rekening]].',
 'nosuchusershort'            => 'Daar is geen gebruikersnaam "<nowiki>$1</nowiki>" nie. Maak seker dit is reg gespel.',
 'nouserspecified'            => "U moet 'n gebruikersnaam spesifiseer.",
+'login-userblocked'          => 'Hierdie gebruiker is geblokkeer.
+Intekening word verbied.',
 'wrongpassword'              => 'Ongeldige wagwoord, probeer weer.',
 'wrongpasswordempty'         => 'Die wagwoord was leeg. Probeer asseblief weer.',
 'passwordtooshort'           => 'Wagwoorde moet ten minste {{PLURAL:$1|1 karakter|$1 karakters}} lank wees.',
@@ -856,6 +858,7 @@ Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'template-protected'               => '(beskermd)',
 'template-semiprotected'           => '(half-beskerm)',
 'hiddencategories'                 => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
+'edittools'                        => '<!-- Die teks hier sal onderaan wysiging- en oplaaivorms vertoon word. -->',
 'nocreatetitle'                    => 'Bladsy skepping beperk',
 'nocreatetext'                     => '{{SITENAME}} het die skep van nuwe bladsye beperk.
 U kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanteken of registreer]].',
