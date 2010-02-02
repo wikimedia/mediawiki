@@ -170,8 +170,23 @@ class LanguageZh extends LanguageZh_hans {
 			"\"$1\"", $text);
 	}
 
-	// word segmentation
-	function stripForSearch( $string, $doStrip = true, $autoVariant = 'zh-hans' ) {
+	/**
+	 * word segmentation
+	 */
+	function wordSegmentation( $string ) {
+		// LanguageZh_hans::wordSegmentation
+		$s = parent::wordSegmentation( $string );
+		return $s;
+	}
+
+	/**
+	 * auto convert to zh-hans and normalize special characters.
+	 *
+	 * @param $string String
+	 * @param $autoVariant String, default to 'zh-hans'
+	 * @return String
+	 */
+	function normalizeForSearch( $string, $autoVariant = 'zh-hans' ) {
 		wfProfileIn( __METHOD__ );
 
 		// always convert to zh-hans before indexing. it should be
@@ -179,8 +194,8 @@ class LanguageZh extends LanguageZh_hans {
 		// Traditional to Simplified is less ambiguous than the
 		// other way around
 		$s = $this->mConverter->autoConvert( $string, $autoVariant );
-		// LanguageZh_hans::stripForSearch
-		$s = parent::stripForSearch( $s, $doStrip );
+		// LanguageZh_hans::normalizeForSearch
+		$s = parent::normalizeForSearch( $s );
 		wfProfileOut( __METHOD__ );
 		return $s;
 

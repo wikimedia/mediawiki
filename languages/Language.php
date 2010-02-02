@@ -1686,15 +1686,26 @@ class Language {
 	function hasWordBreaks() {
 		return true;
 	}
+	
+	/**
+	 * Some languages such as Chinese require word segmentation,
+	 * Specify such segmentation when overridden in derived class.
+	 * 
+	 * @param $string String
+	 * @return String
+	 */
+	function wordSegmentation( $string ) {
+		return $string;
+	}
 
 	/**
-	 * Some languages have special punctuation to strip out.
+	 * Some languages have special punctuation need to be normalized.
 	 * Make such changes here.
 	 *
 	 * @param $string String
 	 * @return String
 	 */
-	function stripForSearch( $string, $doStrip = true ) {
+	function normalizeForSearch( $string ) {
 		return $string;
 	}
 
@@ -1708,7 +1719,7 @@ class Language {
 		return $string;
 	}
 
-	protected static function wordSegmentation( $string, $pattern ) {
+	protected static function insertSpace( $string, $pattern ) {
 		$string = preg_replace( $pattern, " $1 ", $string );
 		$string = preg_replace( '/ +/', ' ', $string );
 		return $string;

@@ -158,10 +158,10 @@ class SearchIBM_DB2 extends SearchEngine {
 				if( is_array( $temp_terms )) {
 					$temp_terms = array_unique( array_values( $temp_terms ));
 					foreach( $temp_terms as $t )
-						$q[] = $terms[1] . $wgContLang->stripForSearch( $t );
+						$q[] = $terms[1] . $wgContLang->normalizeForSearch( $t );
 				}
 				else
-					$q[] = $terms[1] . $wgContLang->stripForSearch( $terms[2] );
+					$q[] = $terms[1] . $wgContLang->normalizeForSearch( $terms[2] );
 
 				if (!empty($terms[3])) {
 					$regexp = preg_quote( $terms[3], '/' );

@@ -43,7 +43,7 @@ class SearchUpdate {
 		}
 
 		# Language-specific strip/conversion
-		$text = $wgContLang->stripForSearch( $this->mText );
+		$text = $wgContLang->normalizeForSearch( $this->mText );
 
 		wfProfileIn( $fname.'-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",

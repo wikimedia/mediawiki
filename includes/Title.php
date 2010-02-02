@@ -435,7 +435,7 @@ class Title {
 		global $wgContLang;
 
 		$lc = SearchEngine::legalSearchChars() . '&#;';
-		$t = $wgContLang->stripForSearch( $title );
+		$t = $wgContLang->normalizeForSearch( $title );
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
 		$t = $wgContLang->lc( $t );
 

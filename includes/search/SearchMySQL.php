@@ -80,7 +80,7 @@ class SearchMySQL extends SearchEngine {
 				// fulltext engine.
 				// For Chinese this also inserts spaces between adjacent Han characters.
 				$strippedVariants = array_map(
-					array( $wgContLang, 'stripForSearch' ),
+					array( $wgContLang, 'normalizeForSearch' ),
 					$variants );
 				
 				// Some languages such as Chinese force all variants to a canonical
@@ -95,7 +95,7 @@ class SearchMySQL extends SearchEngine {
 					$stripped = $this->normalizeText( $stripped );
 					if( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
 						// Hack for Chinese: we need to toss in quotes for
-						// multiple-character phrases since stripForSearch()
+						// multiple-character phrases since normalizeForSearch()
 						// added spaces between them to make word breaks.
 						$stripped = '"' . trim( $stripped ) . '"';
 					}
@@ -324,13 +324,16 @@ class SearchMySQL extends SearchEngine {
 		global $wgContLang;
 
 		wfProfileIn( __METHOD__ );
+		
+		// Some languages such as Chinese require word segmentation
+		$out = $wgContLang->wordSegmentation( $string );
 
 		// MySQL fulltext index doesn't grok utf-8, so we
 		// need to fold cases and convert to hex
 		$out = preg_replace_callback(
 			"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
 			array( $this, 'stripForSearchCallback' ),
-			$wgContLang->lc( $string ) );
+			$wgContLang->lc( $out ) );
 
 		// And to add insult to injury, the default indexing
 		// ignores short words... Pad them so we can pass them
