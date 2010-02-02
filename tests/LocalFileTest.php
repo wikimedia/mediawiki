@@ -4,7 +4,7 @@
  * These tests should work regardless of $wgCapitalLinks
  */
 
-require 'Namespace.php';
+require_once( 'Namespace.php' );
 
 class LocalFileTest extends PHPUnit_Framework_TestCase {
 	function setUp() {
