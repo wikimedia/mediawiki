@@ -2932,6 +2932,46 @@ pst
 Foo
 !! end
 
+!! article
+Template:SubstTest
+!!text
+{{<includeonly>subst:</includeonly>Includes}}
+!! endarticle
+
+!! article
+Template:SafeSubstTest
+!! text
+{{<includeonly>safesubst:</includeonly>Includes}}
+!! endarticle
+
+!! test
+bug 22297: safesubst: works during PST
+!! options
+pst
+!! input
+{{subst:SafeSubstTest}}{{safesubst:SubstTest}}
+!! result
+FoobarFoobar
+!! end
+
+!! test
+bug 22297: safesubst: works during normal parse
+!! input
+{{SafeSubstTest}}
+!! result
+<p>Foobar
+</p>
+!! end
+
+!! test:
+subst: does not work during normal parse
+!! input
+{{SubstTest}}
+!! result
+<p>{{subst:Includes}}
+</p>
+!! end
+
 !! test
 pre-save transform: context links ("pipe trick")
 !! options
