@@ -65,14 +65,15 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
+		$available = $this->changeableGroups();
+
 		if ( !$this->mTarget ) {
 			/*
 			 * If the user specified no target, and they can only
 			 * edit their own groups, automatically set them as the
 			 * target.
 			 */
-			$available = $this->changeableGroups();
-			if ( empty( $available['add'] ) && empty( $available['remove'] ) )
+			if ( !count( $available['add'] ) && !count( $available['remove'] ) )
 				$this->mTarget = $wgUser->getName();
 		}
 
@@ -100,7 +101,8 @@ class UserrightsPage extends SpecialPage {
 		$this->setHeaders();
 
 		// show the general form
-		$this->switchForm();
+		if ( count( $available['add'] ) || count( $available['remove'] ) )
+			$this->switchForm();
 
 		if( $wgRequest->wasPosted() ) {
 			// save settings
