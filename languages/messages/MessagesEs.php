@@ -1645,7 +1645,7 @@ Para optima seguridad, img_auth.php está deshabilitado.',
 # HTTP errors
 'http-invalid-url'    => 'URL inválida: $1',
 'http-invalid-scheme' => 'Las URLs con el esquema "$1" no son compatibles',
-'http-request-error'  => 'Se ha producido un error al enviar la solicitud:',
+'http-request-error'  => 'solicitu de HTTP fallida debido a un error desconocido.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se pudo alcanzar la URL',

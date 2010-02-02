@@ -2304,7 +2304,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbexpiry'                       => 'Duración:',
 'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Outro motivo',
-'ipbreason-dropdown'              => '*Mensaxes de bloqueo comúns
+'ipbreason-dropdown'              => '*Motivos frecuentes para bloquear
 ** Inserir información falsa
 ** Eliminar o contido de páxinas
 ** Ligazóns lixo a sitios externos

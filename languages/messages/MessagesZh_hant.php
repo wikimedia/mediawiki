@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -304,7 +304,7 @@ $messages = array(
 'hidden-categories'              => '$1個隱藏分類',
 'hidden-category-category'       => '隱藏分類',
 'category-subcat-count'          => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
-'category-subcat-count-limited'  => '這個分類下有$1個子分類。',
+'category-subcat-count-limited'  => '這個分類下有$1個附分類。',
 'category-article-count'         => '{{PLURAL:$2|這個分類中只有以下的頁面。|這個分類中有以下的$1個頁面，共有$2個頁面。}}',
 'category-article-count-limited' => '這個分類下有$1個頁面。',
 'category-file-count'            => '{{PLURAL:$2|這個分類中只有以下的檔案。|這個分類中有以下的$1個檔案，共有$2個檔案。}}',

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -314,13 +314,13 @@ $messages = array(
 # Categories related messages
 'pagecategories'                 => '$1个分类',
 'category_header'                => '分类“$1”的页面',
-'subcategories'                  => '亚类',
+'subcategories'                  => '子分类',
 'category-media-header'          => '分类“$1”的媒体',
 'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
 'hidden-categories'              => '$1个隐藏分类',
 'hidden-category-category'       => '隐藏分类',
-'category-subcat-count'          => '{{PLURAL:$2|此分类只有下列一个亚类。|此分类包含下列$1个亚类，共有$2个亚类。}}',
-'category-subcat-count-limited'  => '此分类包含下列$1个亚类。',
+'category-subcat-count'          => '{{PLURAL:$2|此分类只有下列一个子分类。|此分类包含下列$1个子分类，共有$2个子分类。}}',
+'category-subcat-count-limited'  => '此分类包含下列$1个子分类。',
 'category-article-count'         => '{{PLURAL:$2|此分类只有下列一个页面。|此分类包含下列$1个页面，共有$2个页面。}}',
 'category-article-count-limited' => '此分类包含下列$1个页面。',
 'category-file-count'            => '{{PLURAL:$2|此分类只有下列一个文件。|此分类包含下列$1个文件，共有$2个文件。}}',

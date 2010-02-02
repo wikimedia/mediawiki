@@ -2099,7 +2099,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect-title'               => 'Låser «$1»',
 'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
 'protect-legend'              => 'Bekreft låsing',
-'protectcomment'              => 'Begrunnelse:',
+'protectcomment'              => 'Årsak:',
 'protectexpiry'               => 'Utgår:',
 'protect_expiry_invalid'      => 'Utgangstiden er ugyldig.',
 'protect_expiry_old'          => 'Utgangstiden har allerede vært.',

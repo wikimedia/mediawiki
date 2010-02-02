@@ -717,6 +717,7 @@ V používateľských menách sa rozlišuje veľkosť písmen.
 Skontrolujte preklepy alebo sa [[Special:UserLogin/signup|zaregistrujte ako nový používateľ]].',
 'nosuchusershort'            => 'V súčasnosti neexistuje používateľ s menom „<nowiki>$1</nowiki>“. Skontrolujte preklepy.',
 'nouserspecified'            => 'Musíte uviesť meno používateľa.',
+'login-userblocked'          => 'Tento používateľ je zablokovaný. Nie je mu dovolené prihlásiť sa.',
 'wrongpassword'              => 'Zadané heslo je nesprávne. Skúste  znovu.',
 'wrongpasswordempty'         => 'Zadané heslo bolo prázdne. Skúste prosím znova.',
 'passwordtooshort'           => 'Heslo musí mať dĺžku aspoň $1 {{PLURAL:$1|znak|znaky|znakov}}.',
@@ -1699,7 +1700,7 @@ Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 # HTTP errors
 'http-invalid-url'    => 'Neplatný URL: $1',
 'http-invalid-scheme' => 'URL so schémou „$1“ nie sú podporované',
-'http-request-error'  => 'Chyba pri posielaní požiadavky:',
+'http-request-error'  => 'Požiadavka HTTP zlyhala z neznámych dôvodov.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nedostupný URL',

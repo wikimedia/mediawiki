@@ -732,6 +732,7 @@ Periksa kembali ejaan Anda, atau [[Special:UserLogin/signup|buat akun baru]].',
 'nosuchusershort'            => 'Tidak ada pengguna dengan nama "<nowiki>$1</nowiki>".
 Silakan periksa kembali ejaan Anda.',
 'nouserspecified'            => 'Anda harus memasukkan nama pengguna.',
+'login-userblocked'          => '!!Pengguna ini diblokir. Tidak diizinkan/ diperbolehkan untuk masuk log.',
 'wrongpassword'              => 'Kata sandi yang Anda masukkan salah. Silakan coba lagi.',
 'wrongpasswordempty'         => 'Anda tidak memasukkan kata sandi. Silakan coba lagi.',
 'passwordtooshort'           => 'Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}}.',
@@ -1670,6 +1671,11 @@ Wiki ini di atur sebagai wiki umum.
 Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 'img-auth-noread'       => 'Pengguna tidak memiliki akses untuk membaca "$1".',
 
+# HTTP errors
+'http-invalid-url'    => 'URL tidak valid: $ 1',
+'http-invalid-scheme' => ' URL dengan skema "$ 1" tidak didukung',
+'http-request-error'  => 'Permintaan HTTP gagal karena kesalahan yang tidak diketahui.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL tidak dapat dihubungi',
 'upload-curl-error6-text'  => 'URL yang diberikan tak dapat dihubungi. Harap periksa ulang bahwa URL tersebut tepat dan situs itu sedang aktif.',
@@ -2067,6 +2073,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'enotif_anon_editor'           => 'pengguna anonim $1',
 'enotif_body'                  => 'Halo $WATCHINGUSERNAME,
 
+
 Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, lihat $PAGETITLE_URL untuk revisi terakhir.
 
 $NEWPAGE
@@ -2077,7 +2084,8 @@ Hubungi penyunting:
 surel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Kami tidak akan mengirimkan pemberitahuan perubahan lainnya sampai Anda mengunjungi halaman tersebut. Anda juga dapat menghapus tanda notifikasi untuk semua halaman pantauan Anda pada daftar pantauan Anda.
+Kami tidak akan mengirimkan pemberitahuan perubahan lainnya sampai Anda mengunjungi halaman tersebut.
+Anda juga dapat menghapus tanda notifikasi untuk semua halaman pantauan Anda pada daftar pantauan Anda.
 
              Sistem notifikasi Anda di {{SITENAME}}
 
@@ -2743,7 +2751,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'markaspatrolleddiff'                 => 'Tandai telah dipatroli',
 'markaspatrolledtext'                 => 'Tandai artikel ini telah dipatroli',
 'markedaspatrolled'                   => 'Ditandai telah dipatroli',
-'markedaspatrolledtext'               => 'Revisi yang dipilih telah ditandai terpatroli',
+'markedaspatrolledtext'               => 'Revisi yang terpilih dari [[: $ 1]] telah ditandai sebagai terpatroli.',
 'rcpatroldisabled'                    => 'Patroli perubahan terbaru dimatikan',
 'rcpatroldisabledtext'                => 'Fitur patroli perubahan terbaru sedang dimatikan.',
 'markedaspatrollederror'              => 'Tidak dapat menandai telah dipatroli',
