@@ -1801,6 +1801,7 @@ You can also choose to let others contact you through your user or talk page wit
 'userrights-editusergroup'       => 'Edit user groups',
 'saveusergroups'                 => 'Save user groups',
 'userrights-groupsmember'        => 'Member of:',
+'userrights-groupsmember-auto'   => 'Implicit member of:',
 'userrights-groups-help'         => 'You may alter the groups this user is in:
 * A checked box means the user is in that group.
 * An unchecked box means the user is not in that group.

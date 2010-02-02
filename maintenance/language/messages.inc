@@ -977,6 +977,7 @@ $wgMessageStructure = array(
 		'userrights-editusergroup',
 		'saveusergroups',
 		'userrights-groupsmember',
+		'userrights-groupsmember-auto',
 		'userrights-groups-help',
 		'userrights-reason',
 		'userrights-no-interwiki',

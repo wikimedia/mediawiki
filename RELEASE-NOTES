@@ -734,6 +734,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   not 'File:Foo' when Foo is not an image
 * (bug 21518) Special:UserRights no longer displays the user name box for users
   that can only change their rights
+* (bug 21593) Special:UserRights now lists automatic groups membership
 
 == API changes in 1.16 ==
 
