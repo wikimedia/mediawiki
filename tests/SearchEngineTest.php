@@ -1,6 +1,6 @@
 <?php
 
-require_once 'MediaWiki_TestCase.php';
+require_once( 'MediaWiki_TestCase.php' );
 
 /** @todo document
  */
