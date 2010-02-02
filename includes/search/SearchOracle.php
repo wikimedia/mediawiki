@@ -217,7 +217,7 @@ class SearchOracle extends SearchEngine {
 
 	private function escapeTerm($t) {
 		global $wgContLang;
-		$t = $wgContLang->stripForSearch($t);
+		$t = $wgContLang->normalizeForSearch($t);
 		$t = isset($this->reservedWords[strtoupper($t)]) ? '{'.$t.'}' : $t;
 		$t = preg_replace('/^"(.*)"$/', '($1)', $t);
 		$t = preg_replace('/([-&|])/', '\\\\$1', $t);

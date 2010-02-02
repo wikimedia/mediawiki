@@ -92,7 +92,7 @@ class SearchSqlite extends SearchEngine {
 				// fulltext engine.
 				// For Chinese this also inserts spaces between adjacent Han characters.
 				$strippedVariants = array_map(
-					array( $wgContLang, 'stripForSearch' ),
+					array( $wgContLang, 'normalizeForSearch' ),
 					$variants );
 				
 				// Some languages such as Chinese force all variants to a canonical
@@ -106,7 +106,7 @@ class SearchSqlite extends SearchEngine {
 				foreach( $strippedVariants as $stripped ) {
 					if( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
 						// Hack for Chinese: we need to toss in quotes for
-						// multiple-character phrases since stripForSearch()
+						// multiple-character phrases since normalizeForSearch()
 						// added spaces between them to make word breaks.
 						$stripped = '"' . trim( $stripped ) . '"';
 					}
