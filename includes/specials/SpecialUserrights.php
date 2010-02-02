@@ -403,10 +403,21 @@ class UserrightsPage extends SpecialPage {
 		foreach( $groups as $group )
 			$list[] = self::buildGroupLink( $group );
 
+		$autolist = array();
+		if ( $user instanceof User ) {
+			foreach( Autopromote::getAutopromoteGroups( $user ) as $group ) {
+				$autolist[] = self::buildGroupLink( $group );
+			}
+		}
+
 		$grouplist = '';
 		if( count( $list ) > 0 ) {
 			$grouplist = wfMsgHtml( 'userrights-groupsmember' );
-			$grouplist = '<p>' . $grouplist  . ' ' . $wgLang->listToText( $list ) . '</p>';
+			$grouplist = '<p>' . $grouplist  . ' ' . $wgLang->listToText( $list ) . "</p>\n";
+		}
+		if( count( $autolist ) > 0 ) {
+			$autogrouplistintro = wfMsgHtml( 'userrights-groupsmember-auto' );
+			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $wgLang->listToText( $autolist ) . "</p>\n";
 		}
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
