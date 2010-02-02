@@ -2583,14 +2583,14 @@ class OutputPage {
 	 * @return Array: the list of modules which were not loaded.
 	 */
 	public function includeJQuery( $modules = array() ) {
-		global $wgScriptPath, $wgStyleVersion, $wgJsMimeType;
+		global $wgStylePath, $wgStyleVersion, $wgJsMimeType;
 
 		$supportedModules = array( /** TODO: add things here */ );
 		$unsupported = array_diff( $modules, $supportedModules );
 
 		$params = array(
 			'type' => $wgJsMimeType,
-			'src' => "$wgScriptPath/skins/common/jquery.min.js?$wgStyleVersion",
+			'src' => "$wgStylePath/jquery.min.js?$wgStyleVersion",
 		);
 		if ( !$this->mJQueryDone ) {
 			$this->mJQueryDone = true;
