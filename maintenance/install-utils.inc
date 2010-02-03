@@ -14,11 +14,11 @@ function install_version_checks() {
 
 	if( !function_exists( 'version_compare' ) ) {
 		# version_compare was introduced in 4.1.0
-		echo "Your PHP version is much too old; 4.0.x will _not_ work. 5.0.0 or higher is required. ABORTING.\n";
+		echo "Your PHP version is much too old; 4.0.x will _not_ work. 5.1.0 or higher is required. ABORTING.\n";
 		die( 1 );
 	}
-	if( version_compare( phpversion(), '5.0.0' ) < 0 ) {
-		echo "PHP 5.0.0 or higher is required. If PHP 5 is available only when \n".
+	if( version_compare( phpversion(), '5.1.0' ) < 0 ) {
+		echo "PHP 5.1.0 or higher is required. If PHP 5 is available only when \n".
    "PHP files have a .php5 extension, please navigate to <a href=\"index.php5\">index.php5</a> \n".
    "to continue installation. ABORTING.\n";
 		die( 1 );
