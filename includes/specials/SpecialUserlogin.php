@@ -265,11 +265,6 @@ class LoginForm {
 		# Now create a dummy user ($u) and check if it is valid
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name, 'creatable' );
-		if ( WikiError::isError( $u ) ) {
-			$this->mainLoginForm( wfMsg( $u->getMessage() ) );
-			return false;
-		}
-
 		if ( !is_object( $u ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
