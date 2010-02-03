@@ -1,6 +1,6 @@
 <?php
 
-class ArticleTest extends PHPUnit_Framework_TestCase {
+class RevisionTest extends PHPUnit_Framework_TestCase {
 	var $saveGlobals = array();
 
 	function setUp() {
