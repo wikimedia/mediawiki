@@ -842,7 +842,7 @@ $wgMessageStructure = array(
 		'powersearch-redir',
 		'powersearch-field',
 		'powersearch-togglelabel',
-		'powersearch-toggleall', 
+		'powersearch-toggleall',
 		'powersearch-togglenone',
 		'search-external',
 		'searchdisabled',
@@ -1275,6 +1275,10 @@ $wgMessageStructure = array(
 		'http-invalid-url',
 		'http-invalid-scheme',
 		'http-request-error',
+		'http-read-error',
+		'http-timed-out',
+		'http-curl-error',
+		'http-host-unreachable',
 	),
 
 	'upload-curl-errors' => array(

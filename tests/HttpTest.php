@@ -1,7 +1,9 @@
 <?php
 
-if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-	require_once( 'bootstrap.php' );
+class MockCookie extends Cookie {
+	public function canServeDomain($arg) { return parent::canServeDomain($arg); }
+	public function canServePath($arg) { return parent::canServePath($arg); }
+	public function isUnExpired() { return parent::isUnExpired(); }
 }
 
 class HttpTest extends PhpUnit_Framework_TestCase {
@@ -131,6 +133,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		if($proxy) {
 			$opt['proxy'] = $proxy;
+		} elseif( $proxy === false ) {
+			$opt['noProxy'] = true;
 		}
 
 		/* no postData here because the only request I could find in code so far didn't have any */
@@ -208,6 +212,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		if($proxy) {
 			$opt['proxy'] = $proxy;
+		} elseif( $proxy === false ) {
+			$opt['noProxy'] = true;
 		}
 
 		foreach ( $this->test_geturl as $u ) {
@@ -241,6 +247,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		if($proxy) {
 			$opt['proxy'] = $proxy;
+		} elseif( $proxy === false ) {
+			$opt['noProxy'] = true;
 		}
 
 		foreach ( $this->test_posturl as $u => $postData ) {
@@ -277,6 +285,11 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		self::runHTTPGets(self::$proxy);
 		self::runHTTPPosts(self::$proxy);
 		self::runHTTPRequests(self::$proxy);
+
+		// Set false here to do noProxy
+		self::runHTTPGets(false);
+		self::runHTTPPosts(false);
+		self::runHTTPRequests(false);
 	}
 
 	function testProxyDefault() {
@@ -306,6 +319,152 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testIsValidUrl() {
+	}
+
+	function testSetCookie() {
+		$c = new MockCookie( "name", "value",
+							 array(
+								 "domain" => ".example.com",
+								 "path" => "/path/",
+							 ) );
+
+		$this->assertFalse($c->canServeDomain("example.com"));
+		$this->assertFalse($c->canServeDomain("www.example.net"));
+		$this->assertTrue($c->canServeDomain("www.example.com"));
+
+		$this->assertFalse($c->canServePath("/"));
+		$this->assertFalse($c->canServePath("/bogus/path/"));
+		$this->assertFalse($c->canServePath("/path"));
+		$this->assertTrue($c->canServePath("/path/"));
+
+		$this->assertTrue($c->isUnExpired());
+
+		$this->assertEquals("", $c->serializeToHttpRequest("/path/", "www.example.net"));
+		$this->assertEquals("", $c->serializeToHttpRequest("/", "www.example.com"));
+		$this->assertEquals("name=value", $c->serializeToHttpRequest("/path/", "www.example.com"));
+
+		$c = new MockCookie( "name", "value",
+						 array(
+							 "domain" => ".example.com",
+							 "path" => "/path/",
+							 "expires" => "January 1, 1990",
+						 ) );
+		$this->assertFalse($c->isUnExpired());
+		$this->assertEquals("", $c->serializeToHttpRequest("/path/", "www.example.com"));
+
+		$c = new MockCookie( "name", "value",
+						 array(
+							 "domain" => ".example.com",
+							 "path" => "/path/",
+							 "expires" => "January 1, 2999",
+						 ) );
+		$this->assertTrue($c->isUnExpired());
+		$this->assertEquals("name=value", $c->serializeToHttpRequest("/path/", "www.example.com"));
+
+
+	}
+
+	function testCookieJarSetCookie() {
+		$cj = new CookieJar;
+		$cj->setCookie( "name", "value",
+						 array(
+							 "domain" => ".example.com",
+							 "path" => "/path/",
+						 ) );
+		$cj->setCookie( "name2", "value",
+						 array(
+							 "domain" => ".example.com",
+							 "path" => "/path/sub",
+						 ) );
+		$cj->setCookie( "name3", "value",
+						 array(
+							 "domain" => ".example.com",
+							 "path" => "/",
+						 ) );
+		$cj->setCookie( "name4", "value",
+						 array(
+							 "domain" => ".example.net",
+							 "path" => "/path/",
+						 ) );
+		$cj->setCookie( "name5", "value",
+						 array(
+							 "domain" => ".example.net",
+							 "path" => "/path/",
+							 "expires" => "January 1, 1999",
+						 ) );
+
+		$this->assertEquals("name4=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+		$this->assertEquals("name3=value", $cj->serializeToHttpRequest("/", "www.example.com"));
+		$this->assertEquals("name=value; name3=value", $cj->serializeToHttpRequest("/path/", "www.example.com"));
+
+		$cj->setCookie( "name5", "value",
+						 array(
+							 "domain" => ".example.net",
+							 "path" => "/path/",
+							 "expires" => "January 1, 2999",
+						 ) );
+		$this->assertEquals("name4=value; name5=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+
+		$cj->setCookie( "name4", "value",
+						 array(
+							 "domain" => ".example.net",
+							 "path" => "/path/",
+							 "expires" => "January 1, 1999",
+						 ) );
+		$this->assertEquals("name5=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+	}
+
+	function testParseResponseHeader() {
+		$cj = new CookieJar;
+
+		$h[] = "Set-Cookie: name4=value; domain=.example.com; path=/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$cj->parseCookieResponseHeader( $h[0] );
+		$this->assertEquals("name4=value", $cj->serializeToHttpRequest("/", "www.example.com"));
+
+		$h[] = "name4=value2; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$cj->parseCookieResponseHeader( $h[1] );
+		$this->assertEquals("", $cj->serializeToHttpRequest("/", "www.example.com"));
+		$this->assertEquals("name4=value2", $cj->serializeToHttpRequest("/path/", "www.example.com"));
+
+		$h[] = "name5=value3; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$cj->parseCookieResponseHeader( $h[2] );
+		$this->assertEquals("name4=value2; name5=value3", $cj->serializeToHttpRequest("/path/", "www.example.com"));
+
+		$h[] = "name6=value3; domain=.example.net; path=/path/; expires=Mon, 09-Dec-1999 13:46:00 GMT";
+		$cj->parseCookieResponseHeader( $h[3] );
+		$this->assertEquals("", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+
+		$h[] = "name6=value4; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$cj->parseCookieResponseHeader( $h[4] );
+		$this->assertEquals("name6=value4", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+	}
+
+	function runCookieRequests() {
+		$r = HttpRequest::factory( "http://www.php.net/manual" );
+		$r->execute();
+
+		$jar = $r->getCookieJar();
+
+		$this->assertThat( $jar, $this->isInstanceOf( 'CookieJar' ) );
+		$this->assertRegExp( '/^COUNTRY=.*; LAST_LANG=.*$/', $jar->serializeToHttpRequest( "/search?q=test", "www.php.net" ) );
+		$this->assertEquals( '', $jar->serializeToHttpRequest( "/search?q=test", "www.php.com" ) );
+	}
+
+	function testCookieRequestDefault() {
+		Http::$httpEngine = false;
+		self::runCookieRequests();
+	}
+	function testCookieRequestPhp() {
+		Http::$httpEngine = 'php';
+		self::runCookieRequests();
+	}
+	function testCookieRequestCurl() {
+		if (!self::$has_curl ) {
+			$this->markTestIncomplete("This test requires curl.");
+		}
+
+		Http::$httpEngine = 'curl';
+		self::runCookieRequests();
 	}
 
 }

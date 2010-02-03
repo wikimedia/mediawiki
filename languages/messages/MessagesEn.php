@@ -2059,7 +2059,7 @@ To make your summary appear there, you will need to manually edit it.
 [[$1|thumb]]",
 'fileexists-extension'        => "A file with a similar name exists: [[$2|thumb]]
 * Name of the uploading file: '''<tt>[[:$1]]</tt>'''
-* Name of the existing file: '''<tt>[[:$2]]</tt>''' 
+* Name of the existing file: '''<tt>[[:$2]]</tt>'''
 Please choose a different name.",
 'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
 [[$1|thumb]]
@@ -2153,9 +2153,13 @@ For optimal security, img_auth.php is disabled.',
 'img-auth-noread'       => 'User does not have access to read "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'Invalid URL: $1',
+'http-invalid-url' => 'Invalid URL: $1',
 'http-invalid-scheme' => 'URLs with the "$1" scheme are not supported',
-'http-request-error'  => 'HTTP request failed due to unknown error.',
+'http-request-error' => 'HTTP request failed due to unknown error.',
+'http-read-error' => 'HTTP read error.',
+'http-timed-out' => 'HTTP request timed out.',
+'http-curl-error' => 'Error fetching URL: $1',
+'http-host-unreachable' => 'Could not reach URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Could not reach URL',
@@ -2417,7 +2421,7 @@ It now redirects to [[$2]].',
 'ancientpages-summary'            => '', # do not translate or duplicate this message to other languages
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
-'unusedimagestext'                => 'The following files exist but are not embedded in any page. 
+'unusedimagestext'                => 'The following files exist but are not embedded in any page.
 Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.',
 'unusedcategoriestext'            => 'The following category pages exist, although no other page or category makes use of them.',
 'notargettitle'                   => 'No target',
