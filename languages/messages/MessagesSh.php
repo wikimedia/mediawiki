@@ -123,6 +123,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Ova kategorija ima slijedeću $1 datoteku.|{{PLURAL:$1|Prikazana je $1 datoteka|Prikazane su $1 datoteke|Prikazano je $1 datoteka}} u ovoj kategoriji, od ukupno $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Slijedeća $1 datoteka je|Slijedeće $1 datoteke su|Slijedećih $1 datoteka je}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
+'index-category'                 => 'Indeksirane stranice',
+'noindex-category'               => 'Neindeksirane stranice',
 
 'mainpagetext'      => "<big>'''MediaWiki softver is uspješno instaliran.'''</big>",
 'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
@@ -402,6 +404,7 @@ Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].
 'nav-login-createaccount'    => 'Prijavi se / Registruj se',
 'loginprompt'                => "Morate imati kolačiće ('''cookies''') omogućene da biste se prijavili na {{SITENAME}}.",
 'userlogin'                  => 'Prijavi se / stvori korisnički račun',
+'userloginnocreate'          => 'Prijavi se',
 'logout'                     => 'Odjavi me',
 'userlogout'                 => 'Odjava',
 'notloggedin'                => 'Niste prijavljeni',
@@ -432,6 +435,7 @@ Provjerite vaše kucanje ili [[Special:UserLogin/signup|napravite novi korisnič
 'nosuchusershort'            => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>".
 Provjerite da li ste dobro ukucali.',
 'nouserspecified'            => 'Morate izabrati korisničko ime.',
+'login-userblocked'          => 'Ovaj korisnik je blokiran. Prijava nije dozvoljena.',
 'wrongpassword'              => 'Unijeli ste neispravnu šifru.
 Molimo Vas da pokušate ponovno.',
 'wrongpasswordempty'         => 'Unesena šifra je bila prazna.
@@ -568,8 +572,9 @@ Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
 'whitelistedittext'                => 'Da bi ste uređivali stranice, morate se $1.',
 'confirmedittext'                  => 'Morate potvrditi Vašu e-mail adresu prije nego počnete mijenjati stranice.
 Molimo da postavite i verifikujete Vašu e-mail adresu putem Vaših [[Special:Preferences|korisničkih opcija]].',
-'nosuchsectiontitle'               => 'Nema takve sekcije',
-'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.',
+'nosuchsectiontitle'               => 'Ne mogu pronaći sekciju',
+'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.
+Možda je premještena ili obrisana dok ste pregledavali stranicu.',
 'loginreqtitle'                    => 'Potrebno je prijavljivanje',
 'loginreqlink'                     => 'prijavi se',
 'loginreqpagetext'                 => 'Morate $1 da bi ste vidjeli druge stranice.',
@@ -655,10 +660,13 @@ Stranica ne može biti spremljena.'''",
 Možda želite da kopirate i nalijepite tekst u tekst editor i sačuvate ga za kasnije.'''
 
 Administrator koji je zaključao bazu je naveo slijedeće objašnjenje: $1",
-'protectedpagewarning'             => "'''PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorskim privilegijama mogu da je mijenjaju.'''",
-'semiprotectedpagewarning'         => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
+'protectedpagewarning'             => "'''PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorskim privilegijama mogu da je mijenjaju.'''
+Posljednja stavka u registru je prikazana ispod kao referenca:",
+'semiprotectedpagewarning'         => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.
+Posljednja stavka registra je prikazana ispod kao referenca:",
 'cascadeprotectedwarning'          => "'''Upozorenje:''' Ova stranica je zaključana tako da je samo administratori mogu mijenjati, jer je ona uključena u {{PLURAL:$1|ovu, lančanu povezanu, zaštićenu stranicu|sljedeće, lančano povezane, zaštićene stranice}}:",
-'titleprotectedwarning'            => "'''UPOZORENJE: Ova stranica je zaključana tako da su potrebna [[Special:ListGroupRights|posebna prava]] da se ona napravi.'''",
+'titleprotectedwarning'            => "'''UPOZORENJE: Ova stranica je zaključana tako da su potrebna [[Special:ListGroupRights|posebna prava]] da se ona napravi.'''
+Posljednja stavka registra je prikazana ispod kao referenca:",
 'templatesused'                    => '{{PLURAL:$1|Šablon|Šabloni}} koji su upotrebljeni na ovoj stranici:',
 'templatesusedpreview'             => '{{PLURAL:$1|Šablon|Šabloni}} prikazani u ovom pregledu:',
 'templatesusedsection'             => '{{PLURAL:$1|Šablon|Šabloni}} korišteni u ovoj sekciji:',
@@ -669,6 +677,8 @@ Administrator koji je zaključao bazu je naveo slijedeće objašnjenje: $1",
 'nocreatetext'                     => '{{SITENAME}} je ograničio/la postavljanje novih stranica.  
 Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti korisnički račun]].',
 'nocreate-loggedin'                => 'Nemate dopuštenje da kreirate nove stranice.',
+'sectioneditnotsupported-title'    => 'Uređivanje sekcije nije podržano',
+'sectioneditnotsupported-text'     => 'Uređivanje sekcije nije podržano na ovoj stranici.',
 'permissionserrors'                => 'Greške pri odobrenju',
 'permissionserrorstext'            => 'Nemate dopuštenje da to uradite, iz {{PLURAL:$1|slijedećeg razloga|slijedećih razloga}}:',
 'permissionserrorstext-withaction' => 'Nemate dozvolu za $2, zbog {{PLURAL:$1|sljedećeg|sljedećih}} razloga:',
@@ -701,6 +711,7 @@ Ovakvi argumenti se trebaju izbjegavati.",
 'post-expand-template-argument-category'  => 'Stranice koje sadrže nedostajuće argumente u šablonu',
 'parser-template-loop-warning'            => 'Otkrivena kružna greška u šablonu: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Dubina uključivanja šablona prekoračena ($1)',
+'language-converter-depth-warning'        => 'Prekoračena granica dubine jezičkog pretvarača ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmjena se može vratiti.
@@ -767,6 +778,7 @@ Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fu
 Kao administrator Vi je možete vidjeti; možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registru uklanjanja].",
 'rev-deleted-no-diff'         => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registrima brisanja].",
+'rev-suppressed-no-diff'      => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.",
 'rev-deleted-unhide-diff'     => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registru brisanja].
 Kao administrator Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
@@ -805,6 +817,9 @@ Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakriven
 'revdelete-hide-comment'      => 'Sakrij izmjene komentara',
 'revdelete-hide-user'         => 'Sakrij korisničko ime urednika/IP',
 'revdelete-hide-restricted'   => 'Ograniči podatke za administratore kao i za druge korisnike',
+'revdelete-radio-same'        => '(ne mijenjaj)',
+'revdelete-radio-set'         => 'Da',
+'revdelete-radio-unset'       => 'Ne',
 'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
 'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
 'revdelete-log'               => 'Razlog za brisanje:',
@@ -839,7 +854,7 @@ Nemate pristup ovoj stavci.',
 'revdelete-no-change'         => "'''Upozorenje:''' stavka od $2, $1 već posjeduje zatražene postavke vidljivosti.",
 'revdelete-concurrent-change' => 'Greška pri mijenjanju stavke od $2, $1: njen status je izmijenjen od strane nekog drugog dok ste je pokušavali mijenjati.
 Molimo provjerite zapise.',
-'revdelete-only-restricted'   => 'Ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih opcija za uklanjanje.',
+'revdelete-only-restricted'   => 'Greška pri sakrivanju stavke od dana $2, $1: ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih opcija za uklanjanje.',
 'revdelete-reason-dropdown'   => '*Uobičajeni razlozi brisanja
 ** Kršenje autorskih prava
 ** Neadekvatni lični podaci
@@ -852,6 +867,28 @@ Molimo provjerite zapise.',
 # Suppression log
 'suppressionlog'     => 'Registri sakrivanja',
 'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
+
+# History merging
+'mergehistory'                     => 'Spoji historije stranice',
+'mergehistory-header'              => 'Ova stranica Vam omogućuje spajanje revizija historije neke izvorne stranice u novu stranicu. Zapamtite da će ova promjena ostaviti nepromjenjen sadržaj historije stranice.',
+'mergehistory-box'                 => 'Spajanje revizija za dvije stranice:',
+'mergehistory-from'                => 'Izvorna stranica:',
+'mergehistory-into'                => 'Odredišna stranica:',
+'mergehistory-list'                => 'Historija izmjena koja se može spojiti',
+'mergehistory-merge'               => 'Slijedeće revizije stranice [[:$1]] mogu biti spojene u [[:$2]].
+Koristite dugmiće u stupcu da bi ste spojili revizije koje su napravljene prije navedenog vremena.
+Korištenje navigacionih linkova će resetovati ovaj stupac.',
+'mergehistory-go'                  => 'Prikaži izmjene koje se mogu spojiti',
+'mergehistory-submit'              => 'Spoji revizije',
+'mergehistory-empty'               => 'Nema revizija za spajanje.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revizija|revizije|revizija}} stranice [[:$1]] uspješno spojeno u [[:$2]].',
+'mergehistory-fail'                => 'Ne može se izvršiti spajanje historije, molimo provjerite opet stranicu i parametre vremena.',
+'mergehistory-no-source'           => 'Izvorna stranica $1 ne postoji.',
+'mergehistory-no-destination'      => 'Odredišna stranica $1 ne postoji.',
+'mergehistory-invalid-source'      => 'Izvorna stranica mora imati valjan naslov.',
+'mergehistory-invalid-destination' => 'Odredišna stranica mora imati valjan naslov.',
+'mergehistory-autocomment'         => 'Spojeno [[:$1]] u [[:$2]]',
+'mergehistory-comment'             => 'Spojeno [[:$1]] u [[:$2]]: $3',
 
 # Merge log
 'revertmerge' => 'Ukini spajanje',

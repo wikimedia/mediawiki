@@ -446,6 +446,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'nav-login-createaccount'    => 'Tràse / Reggistrete',
 'loginprompt'                => "Tu a tenè le cookies abilitate pe tràse jndr'à {{SITENAME}}.",
 'userlogin'                  => 'Tràse / Reggistrete',
+'userloginnocreate'          => 'Tràse',
 'logout'                     => 'Isse',
 'userlogout'                 => 'Isse',
 'notloggedin'                => 'Non ge sì colleghete',
@@ -478,6 +479,7 @@ Vide bbuene a cumme l'è scritte, o [[Special:UserLogin/signup|ccreje n'utende n
 'nosuchusershort'            => 'Non ge ste nisciune utende cu \'u nome "<nowiki>$1</nowiki>".
 Condrolle accume l\'è scritte.',
 'nouserspecified'            => "A scrivere pe forze 'u nome de l'utende.",
+'login-userblocked'          => 'Stu utende jè bloccate. Non ge puè trasè.',
 'wrongpassword'              => "E mise 'na passuor sbagliete.
 Prueve n'otra vote.",
 'wrongpasswordempty'         => "'A passuord 'nzerite jè vianghe.
@@ -619,7 +621,7 @@ Pe piacere mitte tutte le dettaglie ca ponne essere utile pe le richieste tue.",
 'whitelistedittext'                => 'Tu ha $1 pàggene da cangià.',
 'confirmedittext'                  => "Tu a confermà l'indirizze e-mail tue apprime de cangià le pàggene.
 Pe piacere mitte e validesce l'indirizze e-mail tue ausanne le [[Special:Preferences|preferenze de l'utende]].",
-'nosuchsectiontitle'               => 'Non ge stonne seziune',
+'nosuchsectiontitle'               => "Non ge pozze acchià 'a sezione",
 'nosuchsectiontext'                => "Tu stè prueve a cangià 'na sezione ca non g'esiste.",
 'loginreqtitle'                    => "T'a collegà pe forze",
 'loginreqlink'                     => 'trase',

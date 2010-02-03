@@ -713,6 +713,7 @@ Provjerite vaše kucanje ili [[Special:UserLogin/signup|napravite novi korisnič
 'nosuchusershort'            => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>".
 Provjerite da li ste dobro ukucali.',
 'nouserspecified'            => 'Morate izabrati korisničko ime.',
+'login-userblocked'          => 'Ovaj korisnik je blokiran. Prijava nije dopuštena.',
 'wrongpassword'              => 'Unijeli ste neispravnu šifru.
 Molimo Vas da pokušate ponovno.',
 'wrongpasswordempty'         => 'Šifra je bila prazna.
@@ -1369,25 +1370,26 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'prefs-diffs'                   => 'Razlike',
 
 # User rights
-'userrights'                  => 'Postavke korisničkih prava',
-'userrights-lookup-user'      => 'Menadžment korisničkih grupa',
-'userrights-user-editname'    => 'Unesi korisničko ime:',
-'editusergroup'               => 'Uredi korisničke grupe',
-'editinguser'                 => "Mijenjate korisnička prava korisnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Uredi korisničke grupe',
-'saveusergroups'              => 'Sačuvaj korisničke grupe',
-'userrights-groupsmember'     => 'Član:',
-'userrights-groups-help'      => 'Možete promijeniti grupe kojima ovaj korisnik pripada:
+'userrights'                   => 'Postavke korisničkih prava',
+'userrights-lookup-user'       => 'Menadžment korisničkih grupa',
+'userrights-user-editname'     => 'Unesi korisničko ime:',
+'editusergroup'                => 'Uredi korisničke grupe',
+'editinguser'                  => "Mijenjate korisnička prava korisnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Uredi korisničke grupe',
+'saveusergroups'               => 'Sačuvaj korisničke grupe',
+'userrights-groupsmember'      => 'Član:',
+'userrights-groupsmember-auto' => 'Uključeni član od:',
+'userrights-groups-help'       => 'Možete promijeniti grupe kojima ovaj korisnik pripada:
 * Označeni kvadratić znači da je korisnik u toj grupi.
 * Neoznačen kvadratić znači da korisnik nije u toj grupi.
 * Oznaka * (zvjezdica) označava da Vi ne možete izbrisati ovu grupu ako je dodate i obrnutno.',
-'userrights-reason'           => 'Razlog:',
-'userrights-no-interwiki'     => 'Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.',
-'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalna baza.',
-'userrights-nologin'          => 'Morate se [[Special:UserLogin|prijaviti]] sa administratorskim računom da bi ste mogli postavljati korisnička prava.',
-'userrights-notallowed'       => 'Vaš korisnički račun nema privilegije da dodaje prava korisnika.',
-'userrights-changeable-col'   => 'Grupe koje možete mijenjati',
-'userrights-unchangeable-col' => 'Grupe koje ne možete mijenjati',
+'userrights-reason'            => 'Razlog:',
+'userrights-no-interwiki'      => 'Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.',
+'userrights-nodatabase'        => 'Baza podataka $1 ne postoji ili nije lokalna baza.',
+'userrights-nologin'           => 'Morate se [[Special:UserLogin|prijaviti]] sa administratorskim računom da bi ste mogli postavljati korisnička prava.',
+'userrights-notallowed'        => 'Vaš korisnički račun nema privilegije da dodaje prava korisnika.',
+'userrights-changeable-col'    => 'Grupe koje možete mijenjati',
+'userrights-unchangeable-col'  => 'Grupe koje ne možete mijenjati',
 
 # Groups
 'group'               => 'Grupa:',
@@ -1710,9 +1712,13 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 'img-auth-noread'       => 'Korisnik nema pristup za čitanje "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'Nevaljan URL: $1',
-'http-invalid-scheme' => 'URLovi za koje šema "$1" nije podržana',
-'http-request-error'  => 'Nepoznata greška pri slanju zahtjeva.',
+'http-invalid-url'      => 'Nevaljan URL: $1',
+'http-invalid-scheme'   => 'URLovi za koje šema "$1" nije podržana',
+'http-request-error'    => 'Nepoznata greška pri slanju zahtjeva.',
+'http-read-error'       => 'Greška pri čitanju HTTP.',
+'http-timed-out'        => 'Istekao HTTP zahtjev.',
+'http-curl-error'       => 'Greška pri otvaranju URLa: $1',
+'http-host-unreachable' => 'Ovaj URL nije bilo moguće otvoriti',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ovaj URL nije bilo moguće otvoriti',

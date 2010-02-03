@@ -1667,6 +1667,8 @@ PICT # різні
 'http-invalid-url'    => 'Непрацездатний URL: $1',
 'http-invalid-scheme' => 'URL-адреси схеми "$1" не підтримуються',
 'http-request-error'  => 'HTTP-запит не вдався через невідому помилку.',
+'http-read-error'     => 'HTTP-помилка читання.',
+'http-timed-out'      => 'Перевищення часу очікування HTTP-запиту.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Неможливо досягнути вказану адресу.',
@@ -2058,9 +2060,9 @@ PICT # різні
 'enotif_reset'                 => 'Помітити всі сторінки як переглянуті',
 'enotif_newpagetext'           => 'Це нова сторінка.',
 'enotif_impersonal_salutation' => 'Користувач {{grammar:genitive|{{SITENAME}}}}',
-'changed'                      => 'змінено',
-'created'                      => 'створено',
-'enotif_subject'               => 'Сторінку проекту «{{SITENAME}}» $PAGETITLE було $CHANGEDORCREATED користувачем $PAGEEDITOR',
+'changed'                      => 'змінена',
+'created'                      => 'створена',
+'enotif_subject'               => 'Сторінка проекту «{{SITENAME}}» $PAGETITLE була $CHANGEDORCREATED користувачем $PAGEEDITOR',
 'enotif_lastvisited'           => 'Див. $1 для перегляду всіх змін, що відбулися після вашого останнього перегляду.',
 'enotif_lastdiff'              => 'Див. $1 для ознайомлення з цією зміною.',
 'enotif_anon_editor'           => 'анонімний користувач $1',

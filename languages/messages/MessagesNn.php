@@ -2171,7 +2171,7 @@ For å berre attenderulle delar, kryss av boksane til endringane, og klikk '''''
 'undeletehistorynoadmin'       => 'Ein eller fleire versjonar av denne sida har blitt sletta.
 Grunnlaget for sletting er oppgjeve under, saman med informasjon om kven som sletta og når versjonane vart sletta.
 Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
-'undelete-revision'            => 'Sletta revisjon av $1 (per $4 $5) av $3:',
+'undelete-revision'            => 'Sletta versjon av $1 (per $4 $5) av $3:',
 'undeleterevision-missing'     => 'Ugyldig eller manglande versjon. Lenkja kan vere feil, eller han kan vere fjerna frå arkivet.',
 'undelete-nodiff'              => 'Fann ingen eldre versjonar.',
 'undeletebtn'                  => 'Attopprett',
@@ -2643,8 +2643,8 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'lastmodifiedatby' => 'Sida vart sist endra den $1 kl. $2 av $3.',
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
-'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukar|brukarar}} $1',
-'anonusers'        => '{{SITENAME}} {{PLURAL:$2|ananym brukar|anonyme brukarar}} $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukaren|brukarane}} $1',
+'anonusers'        => '{{PLURAL:$2|den anonyme brukaren|dei anonyme brukararane}} $1 på {{SITENAME}}',
 'creditspage'      => 'Sidegodskriving',
 'nocredits'        => 'Det finst ikkje ikkje nokon godskrivingsinformasjon for denne sida.',
 

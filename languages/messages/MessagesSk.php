@@ -1359,25 +1359,26 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'prefs-diffs'                   => 'Rozdiely',
 
 # User rights
-'userrights'                  => 'Spravovanie používateľských práv',
-'userrights-lookup-user'      => 'Spravovať skupiny používateľov',
-'userrights-user-editname'    => 'Zadajte meno používateľa:',
-'editusergroup'               => 'Upraviť skupinu používateľa',
-'editinguser'                 => "Zmena oprávnení používateľa '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Upraviť skupiny používateľa',
-'saveusergroups'              => 'Uložiť skupiny používateľa',
-'userrights-groupsmember'     => 'Člen skupiny:',
-'userrights-groups-help'      => 'Môžete zmeniť, v ktorých skupinách sa používateľ nachádza.
+'userrights'                   => 'Spravovanie používateľských práv',
+'userrights-lookup-user'       => 'Spravovať skupiny používateľov',
+'userrights-user-editname'     => 'Zadajte meno používateľa:',
+'editusergroup'                => 'Upraviť skupinu používateľa',
+'editinguser'                  => "Zmena oprávnení používateľa '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Upraviť skupiny používateľa',
+'saveusergroups'               => 'Uložiť skupiny používateľa',
+'userrights-groupsmember'      => 'Člen skupiny:',
+'userrights-groupsmember-auto' => 'Implicitným členom:',
+'userrights-groups-help'       => 'Môžete zmeniť, v ktorých skupinách sa používateľ nachádza.
 * Zaškrtnuté pole znamená, že používateľ je v skupine.
 * Nezaškrtnuté pole znamená, že používateľ nie je v skupine.
 * „*“ znamená, že nemôžete odstrániť skupinu, keď ste ju už pridali resp. naopak.',
-'userrights-reason'           => 'Dôvod:',
-'userrights-no-interwiki'     => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
-'userrights-nodatabase'       => 'Databáza $1 neexistuje alebo nie je lokálna.',
-'userrights-nologin'          => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:UserLogin|prihlásiť]] s účtom správcu.',
-'userrights-notallowed'       => 'Váš účet nemá oprávnenia prideľovať používateľom oprávnenia.',
-'userrights-changeable-col'   => 'Skupiny, ktoré môžete zmeniť',
-'userrights-unchangeable-col' => 'Skupiny, ktoré nemôžete zmeniť',
+'userrights-reason'            => 'Dôvod:',
+'userrights-no-interwiki'      => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
+'userrights-nodatabase'        => 'Databáza $1 neexistuje alebo nie je lokálna.',
+'userrights-nologin'           => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:UserLogin|prihlásiť]] s účtom správcu.',
+'userrights-notallowed'        => 'Váš účet nemá oprávnenia prideľovať používateľom oprávnenia.',
+'userrights-changeable-col'    => 'Skupiny, ktoré môžete zmeniť',
+'userrights-unchangeable-col'  => 'Skupiny, ktoré nemôžete zmeniť',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1698,9 +1699,13 @@ Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 'img-auth-noread'       => 'Používateľ nemá prístup na čítanie „$1“.',
 
 # HTTP errors
-'http-invalid-url'    => 'Neplatný URL: $1',
-'http-invalid-scheme' => 'URL so schémou „$1“ nie sú podporované',
-'http-request-error'  => 'Požiadavka HTTP zlyhala z neznámych dôvodov.',
+'http-invalid-url'      => 'Neplatný URL: $1',
+'http-invalid-scheme'   => 'URL so schémou „$1“ nie sú podporované',
+'http-request-error'    => 'Požiadavka HTTP zlyhala z neznámych dôvodov.',
+'http-read-error'       => 'Chyba čítania HTTP.',
+'http-timed-out'        => 'Vyhradený čas požiadavky HTTP vypršal.',
+'http-curl-error'       => 'Chyba pri sťahovaní URL: $1',
+'http-host-unreachable' => 'URL nie je dostupný',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nedostupný URL',

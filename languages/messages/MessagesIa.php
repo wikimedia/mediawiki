@@ -1247,25 +1247,26 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-diffs'                   => 'Differentias',
 
 # User rights
-'userrights'                  => 'Gestion de derectos de usator',
-'userrights-lookup-user'      => 'Gerer gruppos de usatores',
-'userrights-user-editname'    => 'Entra un nomine de usator:',
-'editusergroup'               => 'Modificar gruppos de usatores',
-'editinguser'                 => "Cambiamento del derectos del usator '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Modificar gruppos de usatores',
-'saveusergroups'              => 'Salveguardar gruppos de usatores',
-'userrights-groupsmember'     => 'Membro de:',
-'userrights-groups-help'      => 'Tu pote alterar le gruppos del quales iste usator es membro:
+'userrights'                   => 'Gestion de derectos de usator',
+'userrights-lookup-user'       => 'Gerer gruppos de usatores',
+'userrights-user-editname'     => 'Entra un nomine de usator:',
+'editusergroup'                => 'Modificar gruppos de usatores',
+'editinguser'                  => "Cambiamento del derectos del usator '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Modificar gruppos de usatores',
+'saveusergroups'               => 'Salveguardar gruppos de usatores',
+'userrights-groupsmember'      => 'Membro de:',
+'userrights-groupsmember-auto' => 'Membro implicite de:',
+'userrights-groups-help'       => 'Tu pote alterar le gruppos del quales iste usator es membro:
 * Un quadrato marcate significa que le usator es membro del gruppo in question.
 * Un non marcate significa que ille non es membro de illo.
 * Un * indica que tu non potera eliminar le gruppo quando tu lo ha addite, o vice versa.',
-'userrights-reason'           => 'Motivo:',
-'userrights-no-interwiki'     => 'Tu non ha le permission de modificar le derectos de usatores in altere wikis.',
-'userrights-nodatabase'       => 'Le base de datos $1 non existe o non es local.',
-'userrights-nologin'          => 'Tu debe [[Special:UserLogin|aperir un session]] con un conto de administrator pro poter assignar derectos de usator.',
-'userrights-notallowed'       => 'Tu conto non ha le permission de assignar derectos de usator.',
-'userrights-changeable-col'   => 'Gruppos que tu pote modificar',
-'userrights-unchangeable-col' => 'Gruppos que tu non pote modificar',
+'userrights-reason'            => 'Motivo:',
+'userrights-no-interwiki'      => 'Tu non ha le permission de modificar le derectos de usatores in altere wikis.',
+'userrights-nodatabase'        => 'Le base de datos $1 non existe o non es local.',
+'userrights-nologin'           => 'Tu debe [[Special:UserLogin|aperir un session]] con un conto de administrator pro poter assignar derectos de usator.',
+'userrights-notallowed'        => 'Tu conto non ha le permission de assignar derectos de usator.',
+'userrights-changeable-col'    => 'Gruppos que tu pote modificar',
+'userrights-unchangeable-col'  => 'Gruppos que tu non pote modificar',
 
 # Groups
 'group'               => 'Gruppo:',
@@ -1592,9 +1593,13 @@ Pro securitate optimal, img_auth.php es disactivate.',
 'img-auth-noread'       => 'Le usator non ha accesso pro leger "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'URL invalide: $1',
-'http-invalid-scheme' => 'URLs con le schema "$1" non es supportate',
-'http-request-error'  => 'Error incognite durante le invio del requesta.',
+'http-invalid-url'      => 'URL invalide: $1',
+'http-invalid-scheme'   => 'URLs con le schema "$1" non es supportate',
+'http-request-error'    => 'Error incognite durante le invio del requesta.',
+'http-read-error'       => 'Error de lectura HTTP.',
+'http-timed-out'        => 'Le requesta HTTP ha expirate.',
+'http-curl-error'       => 'Error al obtener datos del URL: $1',
+'http-host-unreachable' => 'Non poteva acceder al URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',
