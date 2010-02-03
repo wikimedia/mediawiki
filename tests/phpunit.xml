@@ -1,8 +1,7 @@
 <!-- See http://www.phpunit.de/manual/3.3/en/appendixes.configuration.html -->
 <phpunit bootstrap="./bootstrap.php"
          colors="false"
-         stopOnFailure="false"
-		 verbose="true">
+         stopOnFailure="false">
          <!-- convertErrorsToExceptions="true" -->
          <!-- convertNoticesToExceptions="true" -->
          <!-- convertWarningsToExceptions="true" -->
