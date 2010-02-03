@@ -2153,12 +2153,12 @@ For optimal security, img_auth.php is disabled.',
 'img-auth-noread'       => 'User does not have access to read "$1".',
 
 # HTTP errors
-'http-invalid-url' => 'Invalid URL: $1',
-'http-invalid-scheme' => 'URLs with the "$1" scheme are not supported',
-'http-request-error' => 'HTTP request failed due to unknown error.',
-'http-read-error' => 'HTTP read error.',
-'http-timed-out' => 'HTTP request timed out.',
-'http-curl-error' => 'Error fetching URL: $1',
+'http-invalid-url'      => 'Invalid URL: $1',
+'http-invalid-scheme'   => 'URLs with the "$1" scheme are not supported',
+'http-request-error'    => 'HTTP request failed due to unknown error.',
+'http-read-error'       => 'HTTP read error.',
+'http-timed-out'        => 'HTTP request timed out.',
+'http-curl-error'       => 'Error fetching URL: $1',
 'http-host-unreachable' => 'Could not reach URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
