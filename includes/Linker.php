@@ -468,7 +468,7 @@ class Linker {
 		if ( $file && !isset( $hp['width'] ) ) {
 			$hp['width'] = $file->getWidth( $page );
 
-			if( ( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) ) && !$hp['height'] ) {
+			if( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) ) {
 				$wopt = $wgUser->getOption( 'thumbsize' );
 
 				if( !isset( $wgThumbLimits[$wopt] ) ) {
@@ -485,7 +485,9 @@ class Linker {
 					round( $wgThumbLimits[$wopt] * $fp['upright'], -1 ) :
 					$wgThumbLimits[$wopt];
 				if ( $hp['width'] <= 0 || $prefWidth < $hp['width'] ) {
-					$hp['width'] = $prefWidth;
+					if( !isset( $hp['height'] ) ) {
+						$hp['width'] = $prefWidth;
+					}
 				}
 			}
 		}
