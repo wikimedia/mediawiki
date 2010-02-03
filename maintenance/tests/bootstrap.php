@@ -9,7 +9,7 @@
 
 global $wgCommandLineMode, $IP;
 $wgCommandLineMode = true;
-$IP = dirname( dirname( __FILE__ ) );
+$IP = dirname( dirname( dirname( __FILE__ ) ) );
 
 define( 'MEDIAWIKI', true );
 define( 'MW_PHPUNIT_TEST', true );
