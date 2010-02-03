@@ -191,7 +191,7 @@ class OutputPage {
 		} else {
 			$path =  "{$wgStylePath}/common/{$file}";
 		}
-		$this->addScript( Html::linkedScript( "$path?$wgStyleVersion" ) );
+		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $wgStyleVersion ) ) );
 	}
 
 	/**
