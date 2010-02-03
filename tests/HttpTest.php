@@ -10,6 +10,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	static $content;
 	static $headers;
 	static $has_curl;
+	static $has_fopen;
 	static $has_proxy = false;
 	static $proxy = "http://hulk:8080/";
 	var $test_geturl = array(
@@ -24,11 +25,12 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	var $test_posturl = array( "http://www.comp.leeds.ac.uk/cgi-bin/Perl/environment-example" => "review=test" );
 
 	function setup() {
-		putenv("http_proxy");	/* Remove any proxy env var, so curl doesn't get confused */
+		putenv("http_proxy"); /* Remove any proxy env var, so curl doesn't get confused */
 		if ( is_array( self::$content ) ) {
 			return;
 		}
 		self::$has_curl = function_exists( 'curl_init' );
+		self::$has_fopen = wfIniGetBool( 'allow_url_fopen' );
 
 		if ( !file_exists("/usr/bin/curl") ) {
 			$this->markTestIncomplete("This test requires the curl binary at /usr/bin/curl.	 If you have curl, please file a bug on this test, or, better yet, provide a patch.");
@@ -79,6 +81,9 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 		unset($r);
 
+		if( !self::$has_fopen ) {
+			$this->setExpectedException( 'MWException' );
+		}
 		Http::$httpEngine = 'php';
 		$r = HttpRequest::factory("http://www.example.com/");
 		$this->assertThat($r, $this->isInstanceOf( 'PhpHttpRequest' ));
@@ -112,13 +117,17 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testFailurePhp() {
+		if ( !self::$has_fopen ) {
+			$this->markTestIncomplete( "This test requires allow_url_fopen=true." );
+		}
+
 		Http::$httpEngine = "php";
 		self::runHTTPFailureChecks();
 	}
 
 	function testFailureCurl() {
-		if (!self::$has_curl ) {
-			$this->markTestIncomplete("This test requires curl.");
+		if ( !self::$has_curl ) {
+			$this->markTestIncomplete( "This test requires curl." );
 		}
 
 		Http::$httpEngine = "curl";
@@ -150,13 +159,17 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testRequestPhp() {
+		if ( !self::$has_fopen ) {
+			$this->markTestIncomplete( "This test requires allow_url_fopen=true." );
+		}
+
 		Http::$httpEngine = "php";
 		self::runHTTPRequests();
 	}
 
 	function testRequestCurl() {
-		if (!self::$has_curl ) {
-			$this->markTestIncomplete("This test requires curl.");
+		if ( !self::$has_curl ) {
+			$this->markTestIncomplete( "This test requires curl." );
 		}
 
 		Http::$httpEngine = "curl";
@@ -228,13 +241,17 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testGetPhp() {
+		if ( !self::$has_fopen ) {
+			$this->markTestIncomplete( "This test requires allow_url_fopen=true." );
+		}
+
 		Http::$httpEngine = "php";
 		self::runHTTPGets();
 	}
 
 	function testGetCurl() {
-		if (!self::$has_curl ) {
-			$this->markTestIncomplete("This test requires curl.");
+		if ( !self::$has_curl ) {
+			$this->markTestIncomplete( "This test requires curl." );
 		}
 
 		Http::$httpEngine = "curl";
@@ -265,13 +282,17 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testPostPhp() {
+		if ( !self::$has_fopen ) {
+			$this->markTestIncomplete( "This test requires allow_url_fopen=true." );
+		}
+
 		Http::$httpEngine = "php";
 		self::runHTTPPosts();
 	}
 
 	function testPostCurl() {
-		if (!self::$has_curl ) {
-			$this->markTestIncomplete("This test requires curl.");
+		if ( !self::$has_curl ) {
+			$this->markTestIncomplete( "This test requires curl." );
 		}
 
 		Http::$httpEngine = "curl";
@@ -280,7 +301,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 	function runProxyRequests() {
 		if(!self::$has_proxy) {
-			$this->markTestIncomplete("This test requires a proxy.");
+			$this->markTestIncomplete( "This test requires a proxy." );
 		}
 		self::runHTTPGets(self::$proxy);
 		self::runHTTPPosts(self::$proxy);
@@ -298,13 +319,17 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testProxyPhp() {
+		if ( !self::$has_fopen ) {
+			$this->markTestIncomplete( "This test requires allow_url_fopen=true." );
+		}
+
 		Http::$httpEngine = 'php';
 		self::runProxyRequests();
 	}
 
 	function testProxyCurl() {
-		if (!self::$has_curl ) {
-			$this->markTestIncomplete("This test requires curl.");
+		if ( !self::$has_curl ) {
+			$this->markTestIncomplete( "This test requires curl." );
 		}
 
 		Http::$httpEngine = 'curl';
@@ -455,12 +480,16 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		self::runCookieRequests();
 	}
 	function testCookieRequestPhp() {
+		if ( !self::$has_fopen ) {
+			$this->markTestIncomplete( "This test requires allow_url_fopen=true." );
+		}
+
 		Http::$httpEngine = 'php';
 		self::runCookieRequests();
 	}
 	function testCookieRequestCurl() {
-		if (!self::$has_curl ) {
-			$this->markTestIncomplete("This test requires curl.");
+		if ( !self::$has_curl ) {
+			$this->markTestIncomplete( "This test requires curl." );
 		}
 
 		Http::$httpEngine = 'curl';
