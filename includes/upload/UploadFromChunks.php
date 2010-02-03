@@ -38,7 +38,7 @@ class UploadFromChunks extends UploadBase {
 	}
 
 	public function initialize( $done, $filename, $sessionKey, $path,
-		$fileSize, $sessionData ) 
+		$fileSize, $sessionData )
 	{
 		$this->initFromSessionKey( $sessionKey, $sessionData );
 
@@ -90,14 +90,14 @@ class UploadFromChunks extends UploadBase {
 	protected function initFromSessionKey( $sessionKey, $sessionData ) {
 		// testing against null because we don't want to cause obscure
 		// bugs when $sessionKey is full of "0"
-		if ( !$sessionKey === null ) {
+		if ( $sessionKey !== null ) {
 			$this->status = Status::newFromFatal( 'import-token-mismatch' );
 			return;
 		}
 		$this->sessionKey = $sessionKey;
 
 		if ( isset( $sessionData[$this->sessionKey]['version'] )
-			&& $sessionData[$this->sessionKey]['version'] == self::SESSION_VERSION ) 
+			&& $sessionData[$this->sessionKey]['version'] == self::SESSION_VERSION )
 		{
 			$this->comment = $sessionData[$this->sessionKey]['comment'];
 			$this->pageText = $sessionData[$this->sessionKey]['pageText'];
@@ -211,7 +211,7 @@ class UploadFromChunks extends UploadBase {
 		} else {
 			$this->status = Status::newFatal( 'filenotfound', $this->repoPath );
 		}
-		if ( $this->fileSize >  $wgMaxUploadSize )
+		if ( $this->fileSize >	$wgMaxUploadSize )
 			$this->status = Status::newFatal( 'largefileserver' );
 	}
 
