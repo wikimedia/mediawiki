@@ -257,7 +257,9 @@ class HttpRequest {
 		$list = array();
 
 		if( $this->cookieJar ) {
-			$this->reqHeaders['Cookie'] = $this->cookieJar->serializeToHttpRequest();
+			$this->reqHeaders['Cookie'] =
+				$this->cookieJar->serializeToHttpRequest($this->parsedURL['path'],
+														 $this->parsedURL['host']);
 		}
 		foreach($this->reqHeaders as $name => $value) {
 			$list[] = "$name: $value";
@@ -552,6 +554,12 @@ class CookieJar {
 			} else {
 				$attr[strtolower( $parts[0] )] = true;
 			}
+		}
+
+		if( !isset( $attr['domain'] ) ) {
+			$attr['domain'] = $domain;
+		} else {
+			/* FIXME: Check that domain is valid */
 		}
 		$this->setCookie( $name, $value, $attr );
 	}
