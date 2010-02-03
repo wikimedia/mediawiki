@@ -4,8 +4,6 @@
  * These tests should work regardless of $wgCapitalLinks
  */
 
-require_once( 'Namespace.php' );
-
 class LocalFileTest extends PHPUnit_Framework_TestCase {
 	function setUp() {
 		global $wgContLang;

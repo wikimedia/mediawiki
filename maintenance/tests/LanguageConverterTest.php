@@ -1,7 +1,5 @@
 <?php
 
-require_once( 'ProxyTools.php' );
-
 class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 	protected $lang = null;
 	protected $lc = null;
