@@ -129,7 +129,7 @@ class Parser
 		$this->mFunctionHooks = array();
 		$this->mFunctionTagHooks = array();
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
-		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery' );
+		$this->mDefaultStripList = $this->mStripList = array();
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x0a\\x0d]*?)\]/S';
@@ -172,8 +172,8 @@ class Parser
 
 		wfProfileIn( __METHOD__ );
 
-		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
 		CoreParserFunctions::register( $this );
+		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
 
 		wfRunHooks( 'ParserFirstCallInit', array( &$this ) );
@@ -614,15 +614,7 @@ class Parser
 	 * Get a list of strippable XML-like elements
 	 */
 	function getStripList() {
-		global $wgRawHtml;
-		$elements = $this->mStripList;
-		if( $wgRawHtml ) {
-			$elements[] = 'html';
-		}
-		if( $this->mOptions->getUseTeX() ) {
-			$elements[] = 'math';
-		}
-		return $elements;
+		return $this->mStripList;
 	}
 
 	/**
@@ -3282,58 +3274,47 @@ class Parser
 		$name = $frame->expand( $params['name'] );
 		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
-
 		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $this->mMarkerIndex++) . self::MARKER_SUFFIX;
 
 		$isFunctionTag = isset( $this->mFunctionTagHooks[strtolower($name)] ) &&
 			( $this->ot['html'] || $this->ot['pre'] );
+		if ( $isFunctionTag ) {
+			$markerType = 'none';
+		} else {
+			$markerType = 'general';
+		}
 		if ( $this->ot['html'] || $isFunctionTag ) {
 			$name = strtolower( $name );
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			if ( isset( $params['attributes'] ) ) {
 				$attributes = $attributes + $params['attributes'];
 			}
-			switch ( $name ) {
-				case 'html':
-					if( $wgRawHtml ) {
-						$output = $content;
-						break;
-					} else {
-						throw new MWException( '<html> extension tag encountered unexpectedly' );
-					}
-				case 'nowiki':
-					$content = strtr($content, array('-{' => '-&#123;', '}-' => '&#125;-'));
-					$output = Xml::escapeTagsOnly( $content );
-					break;
-				case 'gallery':
-					$output = $this->renderImageGallery( $content, $attributes );
-					break;
-				case 'math':
-					if ( $this->mOptions->getUseTeX() ) {
-						$output = $wgContLang->armourMath(
-							MathRenderer::renderMath( $content, $attributes ) );
-						break;
-					}
-					/* else let a tag hook handle it (bug 21222) */
-				default:
-					if( isset( $this->mTagHooks[$name] ) ) {
-						# Workaround for PHP bug 35229 and similar
-						if ( !is_callable( $this->mTagHooks[$name] ) ) {
-							throw new MWException( "Tag hook for $name is not callable\n" );
-						}
-						$output = call_user_func_array( $this->mTagHooks[$name],
-							array( $content, $attributes, $this, $frame ) );
-					} elseif( isset( $this->mFunctionTagHooks[$name] ) ) {
-						list( $callback, $flags ) = $this->mFunctionTagHooks[$name];
-						if( !is_callable( $callback ) )
-							throw new MWException( "Tag hook for $name is not callable\n" );
 
-						$output = call_user_func_array( $callback,
-							array( &$this, $frame, $content, $attributes ) );
-					} else {
-						$output = '<span class="error">Invalid tag extension name: ' .
-							htmlspecialchars( $name ) . '</span>';
-					}
+			if( isset( $this->mTagHooks[$name] ) ) {
+				# Workaround for PHP bug 35229 and similar
+				if ( !is_callable( $this->mTagHooks[$name] ) ) {
+					throw new MWException( "Tag hook for $name is not callable\n" );
+				}
+				$output = call_user_func_array( $this->mTagHooks[$name],
+					array( $content, $attributes, $this, $frame ) );
+			} elseif( isset( $this->mFunctionTagHooks[$name] ) ) {
+				list( $callback, $flags ) = $this->mFunctionTagHooks[$name];
+				if( !is_callable( $callback ) )
+					throw new MWException( "Tag hook for $name is not callable\n" );
+
+				$output = call_user_func_array( $callback,
+					array( &$this, $frame, $content, $attributes ) );
+			} else {
+				$output = '<span class="error">Invalid tag extension name: ' .
+					htmlspecialchars( $name ) . '</span>';
+			}
+
+			if ( is_array( $output ) ) {
+				// Extract flags to local scope (to override $markerType)
+				$flags = $output;
+				$output = $flags[0];
+				unset( $flags[0] );
+				extract( $flags );
 			}
 		} else {
 			if ( is_null( $attrText ) ) {
@@ -3353,12 +3334,14 @@ class Parser
 			}
 		}
 
-		if( $isFunctionTag ) {
+		if( $markerType === 'none' ) {
 			return $output;
-		} elseif ( $name === 'html' || $name === 'nowiki' ) {
+		} elseif ( $markerType === 'nowiki' ) {
 			$this->mStripState->nowiki->setPair( $marker, $output );
-		} else {
+		} elseif ( $markerType === 'general' ) {
 			$this->mStripState->general->setPair( $marker, $output );
+		} else {
+			throw new MWException( __METHOD__.': invalid marker type' );
 		}
 		return $marker;
 	}
@@ -4339,19 +4322,6 @@ class Parser
 	 */
 	function replaceLinkHoldersText( $text ) {
 		return $this->mLinkHolders->replaceText( $text );
-	}
-
-	/**
-	 * Tag hook handler for 'pre'.
-	 */
-	function renderPreTag( $text, $attribs ) {
-		// Backwards-compatibility hack
-		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $text, 'i' );
-
-		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
-		return Xml::openElement( 'pre', $attribs ) .
-			Xml::escapeTagsOnly( $content ) .
-			'</pre>';
 	}
 
 	/**

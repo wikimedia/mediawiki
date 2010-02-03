@@ -442,11 +442,6 @@ class ParserTest {
 		$user = new User();
 		$options = ParserOptions::newFromUser( $user );
 
-		if ( isset( $opts['math'] ) ) {
-			# XXX this should probably be done by the ParserOptions
-			$options->setUseTex(true);
-		}
-
 		$m = array();
 		if (isset( $opts['title'] ) ) {
 			$titleText = $opts['title'];
@@ -641,7 +636,8 @@ class ParserTest {
 			'wgNoFollowDomainExceptions' => array(),
 			'wgThumbnailScriptPath' => false,
 			'wgUseImageResize' => false,
-			'wgUseTeX' => false,
+			'wgUseTeX' => isset( $opts['math'] ),
+			'wgMathDirectory' => $this->uploadDir . '/math',
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => true,
 			'wgUseTidy' => false,
@@ -688,8 +684,6 @@ class ParserTest {
 		$GLOBALS['wgContLang'] = $langObj;
 		$GLOBALS['wgMemc'] = new FakeMemCachedClient;
 		$GLOBALS['wgOut'] = new OutputPage;
-
-		//$GLOBALS['wgMessageCache'] = new MessageCache( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 
 		MagicWord::clearCache();
 
@@ -848,6 +842,10 @@ class ParserTest {
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
+
+		# Make a new message cache
+		global $wgMessageCache, $wgMemc;
+		$wgMessageCache = new MessageCache( $wgMemc, true, 3600, '' );
 	}
 
 	/**
@@ -954,6 +952,8 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
 
 				"$dir/0/09/Bad.jpg",
+
+				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
 		);
 
@@ -969,8 +969,11 @@ class ParserTest {
 
 				"$dir/0/09/",
 				"$dir/0/",
-
 				"$dir/thumb",
+				"$dir/math/f/a/5",
+				"$dir/math/f/a",
+				"$dir/math/f",
+				"$dir/math",
 				"$dir",
 			)
 		);
@@ -1122,7 +1125,6 @@ class ParserTest {
 	 * @param int $line the input line number, for reporting errors
 	 */
 	private function addArticle($name, $text, $line) {
-		global $wgMessageCache;
 		$this->setupGlobals();
 		$title = Title::newFromText( $name );
 		if ( is_null($title) ) {
