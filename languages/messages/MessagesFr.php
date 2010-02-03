@@ -1408,25 +1408,26 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'prefs-diffs'                   => 'Différences',
 
 # User rights
-'userrights'                  => 'Gestion des droits des utilisateurs',
-'userrights-lookup-user'      => 'Gestion des groupes d’utilisateurs',
-'userrights-user-editname'    => 'Entrez un nom d’utilisateur :',
-'editusergroup'               => 'Modification des groupes d’utilisateurs',
-'editinguser'                 => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Modifier les groupes de l’utilisateur',
-'saveusergroups'              => 'Sauvegarder les groupes d’utilisateurs',
-'userrights-groupsmember'     => 'Membre de :',
-'userrights-groups-help'      => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
+'userrights'                   => 'Gestion des droits des utilisateurs',
+'userrights-lookup-user'       => 'Gestion des groupes d’utilisateurs',
+'userrights-user-editname'     => 'Entrez un nom d’utilisateur :',
+'editusergroup'                => 'Modification des groupes d’utilisateurs',
+'editinguser'                  => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Modifier les groupes de l’utilisateur',
+'saveusergroups'               => 'Sauvegarder les groupes d’utilisateurs',
+'userrights-groupsmember'      => 'Membre de :',
+'userrights-groupsmember-auto' => 'Membre implicite de :',
+'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
 * Une case non cochée signifie qu’il ne s’y trouve pas.
 * Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté.',
-'userrights-reason'           => 'Raison du changement :',
-'userrights-no-interwiki'     => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
-'userrights-nodatabase'       => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
-'userrights-nologin'          => 'Vous devez vous [[Special:UserLogin|connecter]] avec un compte d’administrateur pour modifier des droits d’utilisateur.',
-'userrights-notallowed'       => 'Votre compte n’a pas la permission de modifier des droits d’utilisateur.',
-'userrights-changeable-col'   => 'Les groupes que vous pouvez modifier',
-'userrights-unchangeable-col' => 'Les groupes que vous ne pouvez pas modifier',
+'userrights-reason'            => 'Raison du changement :',
+'userrights-no-interwiki'      => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
+'userrights-nodatabase'        => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
+'userrights-nologin'           => 'Vous devez vous [[Special:UserLogin|connecter]] avec un compte d’administrateur pour modifier des droits d’utilisateur.',
+'userrights-notallowed'        => 'Votre compte n’a pas la permission de modifier des droits d’utilisateur.',
+'userrights-changeable-col'    => 'Les groupes que vous pouvez modifier',
+'userrights-unchangeable-col'  => 'Les groupes que vous ne pouvez pas modifier',
 
 # Groups
 'group'               => 'Groupe :',

@@ -1214,25 +1214,26 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 'prefs-diffs'                   => 'Ënnerscheeder',
 
 # User rights
-'userrights'                  => 'Benotzerrechterverwaltung',
-'userrights-lookup-user'      => 'Benotzergrupp verwalten',
-'userrights-user-editname'    => 'Benotzernumm uginn:',
-'editusergroup'               => 'Benotzergruppen änneren',
-'editinguser'                 => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Benotzergruppen änneren',
-'saveusergroups'              => 'Benotzergruppe späicheren',
-'userrights-groupsmember'     => 'Member vun:',
-'userrights-groups-help'      => "Dir kënnt d'Gruppen zu deenen dëse Benotzer gehéiert änneren. 
+'userrights'                   => 'Benotzerrechterverwaltung',
+'userrights-lookup-user'       => 'Benotzergrupp verwalten',
+'userrights-user-editname'     => 'Benotzernumm uginn:',
+'editusergroup'                => 'Benotzergruppen änneren',
+'editinguser'                  => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Benotzergruppen änneren',
+'saveusergroups'               => 'Benotzergruppe späicheren',
+'userrights-groupsmember'      => 'Member vun:',
+'userrights-groupsmember-auto' => 'Implizit Member vun:',
+'userrights-groups-help'       => "Dir kënnt d'Gruppen zu deenen dëse Benotzer gehéiert änneren. 
 * Een ugekräizt Haische bedeit, datt de Benotzer Member vun dëser Grupp ass.
 * Een net ugekräizt Haische bedeit, datt de Benotzer net Member vun dëser Grupp ass.
 * E Stäerchen (*) bedeit datt Dir d'Grupp net méi ewechhuele kënnt wann e bis eemol derbäigesat ass oder gouf.",
-'userrights-reason'           => 'Grond:',
-'userrights-no-interwiki'     => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
-'userrights-nodatabase'       => "D'Datebank $1 gëtt et net oder se ass net lokal.",
-'userrights-nologin'          => 'Dir musst mat engem Administrateurs-Benotzerkont [[Special:UserLogin|ageloggt sinn]], fir Benotzerrechter änneren ze kënnen.',
-'userrights-notallowed'       => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
-'userrights-changeable-col'   => 'Gruppen déi Dir ännere kënnt',
-'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
+'userrights-reason'            => 'Grond:',
+'userrights-no-interwiki'      => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
+'userrights-nodatabase'        => "D'Datebank $1 gëtt et net oder se ass net lokal.",
+'userrights-nologin'           => 'Dir musst mat engem Administrateurs-Benotzerkont [[Special:UserLogin|ageloggt sinn]], fir Benotzerrechter änneren ze kënnen.',
+'userrights-notallowed'        => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
+'userrights-changeable-col'    => 'Gruppen déi Dir ännere kënnt',
+'userrights-unchangeable-col'  => 'Gruppen déi Dir net ännere kënnt',
 
 # Groups
 'group'               => 'Grupp:',

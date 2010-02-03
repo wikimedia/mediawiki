@@ -1342,25 +1342,26 @@ $1",
 'prefs-diffs'                   => 'വ്യത്യാസങ്ങള്‍',
 
 # User rights
-'userrights'                  => 'ഉപയോക്തൃ അവകാശ പരിപാലനം',
-'userrights-lookup-user'      => 'ഉപയോക്തൃസംഘങ്ങളെ പരിപാലിക്കുക',
-'userrights-user-editname'    => 'ഒരു ഉപയോക്തൃനാമം ടൈപ്പു ചെയ്യുക:',
-'editusergroup'               => 'ഉപയോക്തൃസംഘങ്ങള്‍ തിരുത്തുക',
-'editinguser'                 => "'''[[User:$1|$1]]''' എന്ന ഉപയോക്താവിന്റെ ഉപയോക്തൃ അവകാശങ്ങള്‍ തിരുത്തുന്നു ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'ഉപയോക്തൃസമൂഹത്തിലെ അംഗത്വം തിരുത്തുക',
-'saveusergroups'              => 'ഉപയോക്തൃസംഘങ്ങള്‍ സേവ് ചെയ്യുക',
-'userrights-groupsmember'     => 'അംഗത്വമുള്ളത്:',
-'userrights-groups-help'      => 'ഈ ഉപയോക്താവ് ഉൾപ്പെട്ടിട്ടുള്ള സംഘങ്ങൾ താങ്കൾക്ക് മാറ്റാവുന്നതാണ്:
+'userrights'                   => 'ഉപയോക്തൃ അവകാശ പരിപാലനം',
+'userrights-lookup-user'       => 'ഉപയോക്തൃസംഘങ്ങളെ പരിപാലിക്കുക',
+'userrights-user-editname'     => 'ഒരു ഉപയോക്തൃനാമം ടൈപ്പു ചെയ്യുക:',
+'editusergroup'                => 'ഉപയോക്തൃസംഘങ്ങള്‍ തിരുത്തുക',
+'editinguser'                  => "'''[[User:$1|$1]]''' എന്ന ഉപയോക്താവിന്റെ ഉപയോക്തൃ അവകാശങ്ങള്‍ തിരുത്തുന്നു ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'ഉപയോക്തൃസമൂഹത്തിലെ അംഗത്വം തിരുത്തുക',
+'saveusergroups'               => 'ഉപയോക്തൃസംഘങ്ങള്‍ സേവ് ചെയ്യുക',
+'userrights-groupsmember'      => 'അംഗത്വമുള്ളത്:',
+'userrights-groupsmember-auto' => 'അന്തർലീനമായ അംഗത്വം:',
+'userrights-groups-help'       => 'ഈ ഉപയോക്താവ് ഉൾപ്പെട്ടിട്ടുള്ള സംഘങ്ങൾ താങ്കൾക്ക് മാറ്റാവുന്നതാണ്:
 *ഉപയോക്താവ് ആ സംഘത്തിലുണ്ടെന്ന് ശരിയിട്ട ചതുരം അർത്ഥമാക്കുന്നു.
 *ഉപയോക്താവ് ആ സംഘത്തിലില്ലെന്ന് ശരിയിടാത്ത ചതുരം അർത്ഥമാക്കുന്നു.
 *ഒരു * ഒരിക്കൽ സംഘം കൂട്ടിച്ചേർത്താൻ പിന്നീട് അത് നീക്കാൻ താങ്കൾക്ക് കഴിയില്ലന്നോ, അല്ലെങ്കിൽ തിരിച്ചോ അർത്ഥമാക്കുന്നു.',
-'userrights-reason'           => 'കാരണം:',
-'userrights-no-interwiki'     => 'മറ്റ് വിക്കികളിലെ ഉപയോക്തൃ അവകാശങ്ങള്‍ തിരുത്തുവാന്‍ താങ്കള്‍ക്ക് അനുമതിയില്ല.',
-'userrights-nodatabase'       => '$1 എന്ന ഡാറ്റാബേസ് നിലവിലില്ല അല്ലെങ്കില്‍ പ്രാദേശികമല്ല.',
-'userrights-nologin'          => 'ഉപയോക്താക്കള്‍ക്ക് അവകാശങ്ങള്‍ കൊടുക്കണമെങ്കില്‍ താങ്കള്‍ കാര്യനിര്‍‌വാഹക അംഗത്വം ഉപയോഗിച്ച് [[Special:UserLogin|പ്രവേശിച്ചിരിക്കണം]].',
-'userrights-notallowed'       => 'ഉപയോക്താക്കള്‍ക്ക് അവകാശങ്ങള്‍ കൊടുക്കാനുള്ള അനുമതി താങ്കളുടെ അംഗത്വത്തിനില്ല.',
-'userrights-changeable-col'   => 'താങ്കള്‍ക്ക് മാറ്റാവുന്ന സംഘങ്ങള്‍',
-'userrights-unchangeable-col' => 'താങ്കള്‍ക്ക് മാറ്റാനാവാത്ത സംഘങ്ങള്‍',
+'userrights-reason'            => 'കാരണം:',
+'userrights-no-interwiki'      => 'മറ്റ് വിക്കികളിലെ ഉപയോക്തൃ അവകാശങ്ങള്‍ തിരുത്തുവാന്‍ താങ്കള്‍ക്ക് അനുമതിയില്ല.',
+'userrights-nodatabase'        => '$1 എന്ന ഡാറ്റാബേസ് നിലവിലില്ല അല്ലെങ്കില്‍ പ്രാദേശികമല്ല.',
+'userrights-nologin'           => 'ഉപയോക്താക്കള്‍ക്ക് അവകാശങ്ങള്‍ കൊടുക്കണമെങ്കില്‍ താങ്കള്‍ കാര്യനിര്‍‌വാഹക അംഗത്വം ഉപയോഗിച്ച് [[Special:UserLogin|പ്രവേശിച്ചിരിക്കണം]].',
+'userrights-notallowed'        => 'ഉപയോക്താക്കള്‍ക്ക് അവകാശങ്ങള്‍ കൊടുക്കാനുള്ള അനുമതി താങ്കളുടെ അംഗത്വത്തിനില്ല.',
+'userrights-changeable-col'    => 'താങ്കള്‍ക്ക് മാറ്റാവുന്ന സംഘങ്ങള്‍',
+'userrights-unchangeable-col'  => 'താങ്കള്‍ക്ക് മാറ്റാനാവാത്ത സംഘങ്ങള്‍',
 
 # Groups
 'group'               => 'സംഘം:',
@@ -1668,9 +1669,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'img-auth-noread'       => '"$1" എടുത്തുനോക്കാൻ ഉപയോക്താവിനു കഴിയില്ല.',
 
 # HTTP errors
-'http-invalid-url'    => 'അസാധുവായ യു.ആർ.എൽ.: $1',
-'http-invalid-scheme' => '"$1" രീതിയിലുള്ള യു.ആർ.എല്ലുകൾ പിന്തുണയ്ക്കുന്നില്ല',
-'http-request-error'  => 'അഭ്യർത്ഥന അയയ്ക്കുന്നതിൽ അപരിചിതമായ പിഴവ്:',
+'http-invalid-url'      => 'അസാധുവായ യു.ആർ.എൽ.: $1',
+'http-invalid-scheme'   => '"$1" രീതിയിലുള്ള യു.ആർ.എല്ലുകൾ പിന്തുണയ്ക്കുന്നില്ല',
+'http-request-error'    => 'അഭ്യർത്ഥന അയയ്ക്കുന്നതിൽ അപരിചിതമായ പിഴവ്:',
+'http-read-error'       => 'എച്ച്.റ്റി.റ്റി.പി. വിവരം പ്രദർശിപ്പിക്കുന്നതിൽ പിഴവ്.',
+'http-timed-out'        => 'എച്ച്.റ്റി.റ്റി.പി. അഭ്യർത്ഥന സമയം കഴിഞ്ഞു.',
+'http-curl-error'       => 'യു.ആർ.എൽ. ശേഖരിക്കുന്നതിൽ പിഴവ്: $1',
+'http-host-unreachable' => 'യു.ആർ.എൽ.-ല്‍ എത്തിപ്പെടാന്‍ സാധിച്ചില്ല',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-ല്‍ എത്തിപ്പെടാന്‍ സാധിച്ചില്ല',

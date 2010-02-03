@@ -1437,25 +1437,26 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'prefs-diffs'                   => 'Verschillen',
 
 # User rights
-'userrights'                  => 'Gebruikersrechtenbeheer',
-'userrights-lookup-user'      => 'Gebruikersgroepen beheren',
-'userrights-user-editname'    => 'Voer een gebruikersnaam in:',
-'editusergroup'               => 'Gebruikersgroepen wijzigen',
-'editinguser'                 => "Bezig met wijzigen van de gebruikersrechten van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Gebruikersgroepen wijzigen',
-'saveusergroups'              => 'Gebruikersgroepen opslaan',
-'userrights-groupsmember'     => 'Lid van:',
-'userrights-groups-help'      => 'U kunt de groepen wijzigen waar deze gebruiker lid van is.
+'userrights'                   => 'Gebruikersrechtenbeheer',
+'userrights-lookup-user'       => 'Gebruikersgroepen beheren',
+'userrights-user-editname'     => 'Voer een gebruikersnaam in:',
+'editusergroup'                => 'Gebruikersgroepen wijzigen',
+'editinguser'                  => "Bezig met wijzigen van de gebruikersrechten van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Gebruikersgroepen wijzigen',
+'saveusergroups'               => 'Gebruikersgroepen opslaan',
+'userrights-groupsmember'      => 'Lid van:',
+'userrights-groupsmember-auto' => 'Impliciet lid van:',
+'userrights-groups-help'       => 'U kunt de groepen wijzigen waar deze gebruiker lid van is.
 * Een aangekruist vakje betekent dat de gebruiker lid is van de groep.
 * Een niet aangekruist vakje betekent dat de gebruiker geen lid is van de groep.
 * Een "*" betekent dat u een gebruiker niet uit een groep kunt verwijderen nadat u die hebt toegevoegd, of vice versa.',
-'userrights-reason'           => 'Reden:',
-'userrights-no-interwiki'     => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
-'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen plaatselijke database.',
-'userrights-nologin'          => 'U moet zich [[Special:UserLogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
-'userrights-notallowed'       => 'U hebt geen rechten om gebruikersrechten toe te wijzen.',
-'userrights-changeable-col'   => 'Groepen die u kunt beheren',
-'userrights-unchangeable-col' => 'Groepen die u niet kunt beheren',
+'userrights-reason'            => 'Reden:',
+'userrights-no-interwiki'      => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
+'userrights-nodatabase'        => 'Database $1 bestaat niet of is geen plaatselijke database.',
+'userrights-nologin'           => 'U moet zich [[Special:UserLogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
+'userrights-notallowed'        => 'U hebt geen rechten om gebruikersrechten toe te wijzen.',
+'userrights-changeable-col'    => 'Groepen die u kunt beheren',
+'userrights-unchangeable-col'  => 'Groepen die u niet kunt beheren',
 
 # Groups
 'group'               => 'Groep:',

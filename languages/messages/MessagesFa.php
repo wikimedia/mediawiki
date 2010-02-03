@@ -1487,24 +1487,25 @@ $1",
 'prefs-diffs'                   => 'تفاوت‌ها',
 
 # User rights
-'userrights'                  => 'مدیریت اختیارات کاربر',
-'userrights-lookup-user'      => 'مدیریت گروه‌های کاربری',
-'userrights-user-editname'    => 'یک نام کاربری وارد کنید:',
-'editusergroup'               => 'ویرایش گروه‌های کاربری',
-'editinguser'                 => "تغییر اختیارات کاربری برای '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'ویرایش گروه‌های کاربری',
-'saveusergroups'              => 'ثبت گروه‌های کاربری',
-'userrights-groupsmember'     => 'عضو:',
-'userrights-groups-help'      => 'شما می‌توانید گروه‌هایی که کاربر در آن قرار دارد را تغییر دهید.
+'userrights'                   => 'مدیریت اختیارات کاربر',
+'userrights-lookup-user'       => 'مدیریت گروه‌های کاربری',
+'userrights-user-editname'     => 'یک نام کاربری وارد کنید:',
+'editusergroup'                => 'ویرایش گروه‌های کاربری',
+'editinguser'                  => "تغییر اختیارات کاربری برای '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'ویرایش گروه‌های کاربری',
+'saveusergroups'               => 'ثبت گروه‌های کاربری',
+'userrights-groupsmember'      => 'عضو:',
+'userrights-groupsmember-auto' => 'عضو ضمنی:',
+'userrights-groups-help'       => 'شما می‌توانید گروه‌هایی که کاربر در آن قرار دارد را تغییر دهید.
 یک جعبه علامت خورده به این معنی است که کاربر در آن گروه قرار دارد.
 یک جعبه خالی به این معنی است که کاربر در آن گروه قرار ندارد.',
-'userrights-reason'           => 'دلیل:',
-'userrights-no-interwiki'     => 'شما اجازه تغییر اختیارات کاربران دیگر ویکی‌ها را ندارید.',
-'userrights-nodatabase'       => 'پایگاه داده $1 وجود ندارد یا محلی نیست.',
-'userrights-nologin'          => 'شما باید با یک حساب کاربری دارای اختیار مدیریتی [[Special:UserLogin|به سیستم وارد شوید]] تا بتوانید اختیارات کاربران را تعیین کنید.',
-'userrights-notallowed'       => 'حساب کاربری شما اجازه تغییر اختیارات کاربری را ندارد.',
-'userrights-changeable-col'   => 'گروه‌هایی که می‌توانید تغییر دهید',
-'userrights-unchangeable-col' => 'گروه‌هایی که نمی‌توانید تغییر دهید',
+'userrights-reason'            => 'دلیل:',
+'userrights-no-interwiki'      => 'شما اجازه تغییر اختیارات کاربران دیگر ویکی‌ها را ندارید.',
+'userrights-nodatabase'        => 'پایگاه داده $1 وجود ندارد یا محلی نیست.',
+'userrights-nologin'           => 'شما باید با یک حساب کاربری دارای اختیار مدیریتی [[Special:UserLogin|به سیستم وارد شوید]] تا بتوانید اختیارات کاربران را تعیین کنید.',
+'userrights-notallowed'        => 'حساب کاربری شما اجازه تغییر اختیارات کاربری را ندارد.',
+'userrights-changeable-col'    => 'گروه‌هایی که می‌توانید تغییر دهید',
+'userrights-unchangeable-col'  => 'گروه‌هایی که نمی‌توانید تغییر دهید',
 
 # Groups
 'group'               => 'گروه:',
@@ -1813,9 +1814,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'img-auth-noread'       => 'کاربر دسترسی خواندن «$1» را ندارد.',
 
 # HTTP errors
-'http-invalid-url'    => 'نشانی نامعتبر: $1',
-'http-invalid-scheme' => 'نشانی‌های اینترنتی با طرح «$1» پشتیبانی نمی‌شوند',
-'http-request-error'  => 'درخواست اچ‌تی‌تی‌پی ناموفق به علت خطای ناشناخته',
+'http-invalid-url'      => 'نشانی نامعتبر: $1',
+'http-invalid-scheme'   => 'نشانی‌های اینترنتی با طرح «$1» پشتیبانی نمی‌شوند',
+'http-request-error'    => 'درخواست اچ‌تی‌تی‌پی ناموفق به علت خطای ناشناخته',
+'http-read-error'       => 'خطای خواندن اچ‌تی‌تی‌پی.',
+'http-timed-out'        => 'مهلت درخواست اچ‌تی‌تی‌پی به سر رسید.',
+'http-curl-error'       => 'خطا در آوردن نشانی اینترنتی: $1',
+'http-host-unreachable' => 'دسترسی به نشانی اینترنتی ممکن نشد',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'دسترسی به URL ممکن نشد.',

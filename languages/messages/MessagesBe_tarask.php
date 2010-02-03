@@ -1322,25 +1322,26 @@ $1",
 'prefs-diffs'                   => 'Розьніцы вэрсіяў',
 
 # User rights
-'userrights'                  => 'Кіраваньне правамі ўдзельнікаў і ўдзельніц',
-'userrights-lookup-user'      => 'Кіраваньне групамі ўдзельнікаў і ўдзельніц',
-'userrights-user-editname'    => 'Увядзіце імя ўдзельніка:',
-'editusergroup'               => 'Рэдагаваць групы ўдзельнікаў і ўдзельніц',
-'editinguser'                 => "Зьмена правоў удзельніка '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Рэдагаваць групы ўдзельнікаў і ўдзельніц',
-'saveusergroups'              => 'Захаваць групы ўдзельнікаў і ўдзельніц',
-'userrights-groupsmember'     => 'Уваходзіць у:',
-'userrights-groups-help'      => 'Тут можна мяняць групы да якіх належыць гэты ўдзельнік:
+'userrights'                   => 'Кіраваньне правамі ўдзельнікаў і ўдзельніц',
+'userrights-lookup-user'       => 'Кіраваньне групамі ўдзельнікаў і ўдзельніц',
+'userrights-user-editname'     => 'Увядзіце імя ўдзельніка:',
+'editusergroup'                => 'Рэдагаваць групы ўдзельнікаў і ўдзельніц',
+'editinguser'                  => "Зьмена правоў удзельніка '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Рэдагаваць групы ўдзельнікаў і ўдзельніц',
+'saveusergroups'               => 'Захаваць групы ўдзельнікаў і ўдзельніц',
+'userrights-groupsmember'      => 'Уваходзіць у:',
+'userrights-groupsmember-auto' => 'Няяўны чалец:',
+'userrights-groups-help'       => 'Тут можна мяняць групы да якіх належыць гэты ўдзельнік:
 * Вызначанае поле азначае прыналежнасьць удзельніка да гэтай групы.
 * Ня вызначанае поле азначае, што ўдзельнік не належыць гэтай групе.
 * Знак * азначае што Вы ня зможаце выдаліць удзельніка з групы, калі дададзіце яго да яе і наадварот.',
-'userrights-reason'           => 'Прычына:',
-'userrights-no-interwiki'     => 'Вы ня маеце дазволу зьмяняць правы ўдзельнікаў іншых вікаў.',
-'userrights-nodatabase'       => 'Базы зьвестак $1 не існуе альбо яна не зьяўляецца лякальнай.',
-'userrights-nologin'          => 'Вы павінны [[Special:UserLogin|ўвайсьці ў сыстэму]] як адміністратар, каб прызначаць правы ўдзельнікам.',
-'userrights-notallowed'       => 'Вы ня можаце прызначаць правы ўдзельнікам.',
-'userrights-changeable-col'   => 'Групы, якія Вы можаце мяняць',
-'userrights-unchangeable-col' => 'Групы, якія Вы ня можаце мяняць',
+'userrights-reason'            => 'Прычына:',
+'userrights-no-interwiki'      => 'Вы ня маеце дазволу зьмяняць правы ўдзельнікаў іншых вікаў.',
+'userrights-nodatabase'        => 'Базы зьвестак $1 не існуе альбо яна не зьяўляецца лякальнай.',
+'userrights-nologin'           => 'Вы павінны [[Special:UserLogin|ўвайсьці ў сыстэму]] як адміністратар, каб прызначаць правы ўдзельнікам.',
+'userrights-notallowed'        => 'Вы ня можаце прызначаць правы ўдзельнікам.',
+'userrights-changeable-col'    => 'Групы, якія Вы можаце мяняць',
+'userrights-unchangeable-col'  => 'Групы, якія Вы ня можаце мяняць',
 
 # Groups
 'group'               => 'Група:',
@@ -1648,9 +1649,13 @@ $1",
 'img-auth-noread'       => 'Удзельнік ня мае доступу на чытаньне «$1».',
 
 # HTTP errors
-'http-invalid-url'    => 'Няслушны URL-адрас: $1',
-'http-invalid-scheme' => 'URL-адрасы схемы «$1» не падтрымліваюцца',
-'http-request-error'  => 'HTTP-запыт не атрымаўся ў выніку невядомай памылкі.',
+'http-invalid-url'      => 'Няслушны URL-адрас: $1',
+'http-invalid-scheme'   => 'URL-адрасы схемы «$1» не падтрымліваюцца',
+'http-request-error'    => 'HTTP-запыт не атрымаўся ў выніку невядомай памылкі.',
+'http-read-error'       => 'Памылка чытаньня HTTP.',
+'http-timed-out'        => 'Скончыўся час чаканьня HTTP-запыту.',
+'http-curl-error'       => 'Памылка выбаркі URL-адрасу: $1',
+'http-host-unreachable' => 'Немагчыма дасягнуць URL-адрас',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Немагчыма дасягнуць URL-адрас',

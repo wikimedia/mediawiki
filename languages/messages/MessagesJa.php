@@ -15,6 +15,7 @@
  * @author Fievarsty
  * @author Fryed-peach
  * @author Hatukanezumi
+ * @author Hijiri
  * @author Hisagi
  * @author Hosiryuhosi
  * @author Iwai.masaharu
@@ -1289,25 +1290,26 @@ $1",
 'prefs-diffs'                   => '差分',
 
 # User rights
-'userrights'                  => '利用者権限の管理',
-'userrights-lookup-user'      => '利用者グループを管理',
-'userrights-user-editname'    => '利用者名を入力:',
-'editusergroup'               => '利用者グループを編集',
-'editinguser'                 => "利用者 '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) の権限を変更中",
-'userrights-editusergroup'    => '利用者グループを編集',
-'saveusergroups'              => '利用者グループを保存',
-'userrights-groupsmember'     => '所属グループ:',
-'userrights-groups-help'      => 'この利用者が属するグループを変更することができます。
+'userrights'                   => '利用者権限の管理',
+'userrights-lookup-user'       => '利用者グループを管理',
+'userrights-user-editname'     => '利用者名を入力:',
+'editusergroup'                => '利用者グループを編集',
+'editinguser'                  => "利用者 '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) の権限を変更中",
+'userrights-editusergroup'     => '利用者グループを編集',
+'saveusergroups'               => '利用者グループを保存',
+'userrights-groupsmember'      => '所属グループ:',
+'userrights-groupsmember-auto' => '暗黙で追加されるメンバー:',
+'userrights-groups-help'       => 'この利用者が属するグループを変更することができます。
 * ボックスのチェックはこの利用者がそのグループに属していることを意味します。
 * チェックが入っていないボックスはこの利用者がそのグループに属していないことを意味します。
 * * は一旦グループへ登録または登録解除した場合、その決定を変更できないことを意味します。',
-'userrights-reason'           => '理由:',
-'userrights-no-interwiki'     => '他ウィキ上における利用者権限の編集権限はありません。',
-'userrights-nodatabase'       => 'データベース $1は存在しないか、ローカル上にありません。',
-'userrights-nologin'          => '利用者権限を変更するには管理者権限を持つアカウントに[[Special:UserLogin|ログイン]]する必要があります。',
-'userrights-notallowed'       => '利用者権限を変更する権限がありません。',
-'userrights-changeable-col'   => '変更可能なグループ',
-'userrights-unchangeable-col' => '変更できないグループ',
+'userrights-reason'            => '理由:',
+'userrights-no-interwiki'      => '他ウィキ上における利用者権限の編集権限はありません。',
+'userrights-nodatabase'        => 'データベース $1は存在しないか、ローカル上にありません。',
+'userrights-nologin'           => '利用者権限を変更するには管理者権限を持つアカウントに[[Special:UserLogin|ログイン]]する必要があります。',
+'userrights-notallowed'        => '利用者権限を変更する権限がありません。',
+'userrights-changeable-col'    => '変更可能なグループ',
+'userrights-unchangeable-col'  => '変更できないグループ',
 
 # Groups
 'group'               => 'グループ:',
@@ -1607,7 +1609,13 @@ PICT # その他
 'img-auth-noread'       => '利用者は「$1」を読む権限を持っていません。',
 
 # HTTP errors
-'http-invalid-url' => '無効なURL: $1',
+'http-invalid-url'      => '無効なURL: $1',
+'http-invalid-scheme'   => '"$1"のスキームを含むURLはサポートされていません',
+'http-request-error'    => '不明なエラーによりHTTPリクエストに失敗しました。',
+'http-read-error'       => 'HTTP読み込みエラー。',
+'http-timed-out'        => 'HTTPリクエストにタイムアウトしました。',
+'http-curl-error'       => 'フェッチに失敗したURL: $1',
+'http-host-unreachable' => 'URLに到達できません',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URLに到達できませんでした',

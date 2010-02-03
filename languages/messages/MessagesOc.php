@@ -731,6 +731,7 @@ Lo nom d'utilizaire es sensible a la cassa.
 Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creatz-vos un compte novèl]].",
 'nosuchusershort'            => 'I a pas de contributor amb lo nom « <nowiki>$1</nowiki> ». Verificatz l’ortografia.',
 'nouserspecified'            => "Vos cal especificar vòstre nom d'utilizaire.",
+'login-userblocked'          => 'Aqueste utilizaire es blocat. Connexion pas autorizada.',
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
 'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
 'passwordtooshort'           => 'Vòstre senhal deu conténer al mens {{PLURAL:$1|1 caractèr|$1 caractèrs}}.',
@@ -982,6 +983,7 @@ D'unas inclusions seràn pas efectuadas.",
 'post-expand-template-argument-category'  => 'Paginas que contenon al mens un paramètre de modèl pas evaluat',
 'parser-template-loop-warning'            => 'Modèl en bocla detectat : [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit de longor de la recursion del modèl depassat ($1)',
+'language-converter-depth-warning'        => 'Limit de prigondor del convertissor de lenga depassada ($1)',
 
 # "Undo" feature
 'undo-success' => "Aquesta modificacion va èsser desfacha. Confirmatz los cambiaments (visibles en bas d'aquesta pagina), puèi salvatz se sètz d’acòrdi. Mercés de motivar l’anullacion dins la bóstia de resumit.",
@@ -1355,25 +1357,26 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'prefs-diffs'                   => 'Diferéncias',
 
 # User rights
-'userrights'                  => "Gestion dels dreches d'utilizaire",
-'userrights-lookup-user'      => "Gestion dels dreches d'utilizaire",
-'userrights-user-editname'    => 'Entrar un nom d’utilizaire :',
-'editusergroup'               => "Modificacion dels gropes d'utilizaires",
-'editinguser'                 => "Cambiament dels dreches de l'utilizaire '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Modificar los gropes de l’utilizaire',
-'saveusergroups'              => "Salvar los gropes d'utilizaires",
-'userrights-groupsmember'     => 'Membre de :',
-'userrights-groups-help'      => "Podètz modificar los gropes alsquals aparten aqueste utilizaire.
+'userrights'                   => "Gestion dels dreches d'utilizaire",
+'userrights-lookup-user'       => "Gestion dels dreches d'utilizaire",
+'userrights-user-editname'     => 'Entrar un nom d’utilizaire :',
+'editusergroup'                => "Modificacion dels gropes d'utilizaires",
+'editinguser'                  => "Cambiament dels dreches de l'utilizaire '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Modificar los gropes de l’utilizaire',
+'saveusergroups'               => "Salvar los gropes d'utilizaires",
+'userrights-groupsmember'      => 'Membre de :',
+'userrights-groupsmember-auto' => 'Membre implicit de :',
+'userrights-groups-help'       => "Podètz modificar los gropes alsquals aparten aqueste utilizaire.
 * Una casa marcada significa que l'utilizaire se tròba dins aqueste grop.
 * Una casa pas marcada significa, al contrari, que s’i tròba pas.
 * Una * indica que podretz pas levar aqueste grop un còp que l'auretz apondut e vice-versa.",
-'userrights-reason'           => 'Motiu :',
-'userrights-no-interwiki'     => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
-'userrights-nodatabase'       => 'La banca de donadas « $1 » existís pas o es pas en local.',
-'userrights-nologin'          => "Vos cal [[Special:UserLogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
-'userrights-notallowed'       => "Vòstre compte es pas abilitat per modificar de dreches d'utilizaire.",
-'userrights-changeable-col'   => 'Los gropes que podètz cambiar',
-'userrights-unchangeable-col' => 'Los gropes que podètz pas cambiar',
+'userrights-reason'            => 'Motiu :',
+'userrights-no-interwiki'      => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
+'userrights-nodatabase'        => 'La banca de donadas « $1 » existís pas o es pas en local.',
+'userrights-nologin'           => "Vos cal [[Special:UserLogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
+'userrights-notallowed'        => "Vòstre compte es pas abilitat per modificar de dreches d'utilizaire.",
+'userrights-changeable-col'    => 'Los gropes que podètz cambiar',
+'userrights-unchangeable-col'  => 'Los gropes que podètz pas cambiar',
 
 # Groups
 'group'               => 'Grop :',
@@ -1689,6 +1692,13 @@ Sol l'accès als fichièrs es permesa.",
 Aqueste wiki es configurat coma un wiki public.
 Per una seguretat optimala, img_auth.php es desactivat.",
 'img-auth-noread'       => "L'utilizaire a pas lo drech en lectura sus « $1 ».",
+
+# HTTP errors
+'http-invalid-url'    => 'URL incorrècta : $1',
+'http-invalid-scheme' => 'Las URLs amb l"esquèma « $1 » son pas suportadas',
+'http-request-error'  => 'Error desconeguda al moment del mandadís de la requèsta.',
+'http-read-error'     => 'HTTP Error de lectura.',
+'http-timed-out'      => 'HTTP request timed out.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Pòt pas aténher l’URL',
@@ -2781,7 +2791,7 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'markaspatrolleddiff'                 => 'Marcar coma essent pas un vandalisme',
 'markaspatrolledtext'                 => 'Marcar aqueste article coma pas vandalizat',
 'markedaspatrolled'                   => 'Marcat coma pas vandalizat',
-'markedaspatrolledtext'               => 'La version seleccionada es estada marcada coma pas vandalizada.',
+'markedaspatrolledtext'               => 'La revision seleccionada de [[:$1]] es estada coma patrolhada.',
 'rcpatroldisabled'                    => 'La foncion de patrolha dels darrièrs cambiaments es pas activada.',
 'rcpatroldisabledtext'                => 'La foncionalitat de susvelhança dels darrièrs cambiaments es pas activada.',
 'markedaspatrollederror'              => 'Pòt pas èsser marcat coma pas vandalizat',

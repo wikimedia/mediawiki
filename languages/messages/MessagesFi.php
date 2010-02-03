@@ -1640,7 +1640,7 @@ Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
 
 # HTTP errors
 'http-invalid-url'   => 'Kelpaamaton URL: $1',
-'http-request-error' => 'Virhe lähettäessä pyyntöä:',
+'http-request-error' => 'HTTP-pyyntö epäonnistui tuntemattoman virheen takia.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Toimimaton osoite',
