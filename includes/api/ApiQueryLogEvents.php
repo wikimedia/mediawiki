@@ -69,7 +69,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'page' => array( 'LEFT JOIN',
 				array(	'log_namespace=page_namespace',
 					'log_title=page_title' ) ) ) );
-		$index = 'times'; // default, may change
+		$index['logging'] = 'times'; // default, may change
 
 		$this->addFields( array (
 			'log_type',
@@ -97,11 +97,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'log_id=ct_log_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
+			global $wgOldChangeTagsIndex;
+			$index['change_tag'] = $wgOldChangeTagsIndex ?  'ct_tag' : 'change_tag_tag_id';
 		}
 		
 		if ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'log_type', $params['type'] );
-			$index = 'type_time';
+			$index['logging'] = 'type_time';
 		}
 		
 		$this->addWhereRange( 'log_timestamp', $params['dir'], $params['start'], $params['end'] );
@@ -115,7 +117,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if ( !$userid )
 				$this->dieUsage( "User name $user not found", 'param_user' );
 			$this->addWhereFld( 'log_user', $userid );
-			$index = 'user_time';
+			$index['logging'] = 'user_time';
 		}
 
 		$title = $params['title'];
@@ -127,10 +129,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhereFld( 'log_title', $titleObj->getDBkey() );
 
 			// Use the title index in preference to the user index if there is a conflict
-			$index = is_null( $user ) ? 'page_time' : array( 'page_time', 'user_time' );
+			$index['logging'] = is_null( $user ) ? 'page_time' : array( 'page_time', 'user_time' );
 		}
 
-		$this->addOption( 'USE INDEX', array( 'logging' => $index ) );
+		$this->addOption( 'USE INDEX', $index );
 
 		// Paranoia: avoid brute force searches (bug 17342)
 		if ( !is_null( $title ) ) {
