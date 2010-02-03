@@ -43,7 +43,7 @@ class Xml {
 	 */
 	public static function expandAttributes( $attribs ) {
 		$out = '';
-		if( empty( $attribs ) ) {
+		if( is_null( $attribs ) ) {
 			return null;
 		} elseif( is_array( $attribs ) ) {
 			foreach( $attribs as $name => $val )
