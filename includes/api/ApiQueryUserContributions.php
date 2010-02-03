@@ -238,7 +238,6 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		$this->addTables( $tables );
-		$this->addOption( 'USE INDEX', $index );
 		$this->addFieldsIf( 'rev_page', $this->fld_ids );
 		$this->addFieldsIf( 'rev_id', $this->fld_ids || $this->fld_flags );
 		$this->addFieldsIf( 'page_latest', $this->fld_flags );
@@ -260,7 +259,11 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
+			global $wgOldChangeTagsIndex;
+			$index['change_tag'] = $wgOldChangeTagsIndex ?  'ct_tag' : 'change_tag_tag_id';
 		}
+		
+		$this->addOption( 'USE INDEX', $index );
 	}
 
 	/**
@@ -390,6 +393,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					'!patrolled',
 				)
 			),
+			'tag' => null,
 		);
 	}
 
@@ -406,6 +410,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'prop' => 'Include additional pieces of information',
 			'show' => array( 'Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
 					'NOTE: if show=patrolled or show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown', ),
+			'tag' => 'Only list revisions tagged with this tag',
 		);
 	}
 

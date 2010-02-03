@@ -157,6 +157,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag' , $params['tag'] );
+			global $wgOldChangeTagsIndex;
+			$index['change_tag'] = $wgOldChangeTagsIndex ?  'ct_tag' : 'change_tag_tag_id';
 		}
 		
 		if ( isset( $prop['content'] ) || !is_null( $this->difftotext ) ) {
@@ -295,6 +297,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			ApiBase :: dieDebug( __METHOD__, 'param validation?' );
 
 		$this->addOption( 'LIMIT', $limit + 1 );
+		$this->addOption( 'USE INDEX', $index );
 
 		$data = array ();
 		$count = 0;

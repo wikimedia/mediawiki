@@ -114,7 +114,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		 */
 		$db = $this->getDB();
 		$this->addTables( 'recentchanges' );
-		$index = 'rc_timestamp'; // May change
+		$index['recentchanges'] = 'rc_timestamp'; // May change
 		$this->addWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 		$this->addWhereFld( 'rc_deleted', 0 );
@@ -161,7 +161,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		if ( !is_null( $params['user'] ) )
 		{
 			$this->addWhereFld( 'rc_user_text', $params['user'] );
-			$index = 'rc_user_text';
+			$index['recentchanges'] = 'rc_user_text';
 		}
 		
 		if ( !is_null( $params['excludeuser'] ) )
@@ -227,10 +227,13 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rc_id=ct_rc_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag' , $params['tag'] );
+			global $wgOldChangeTagsIndex;
+			$index['change_tag'] = $wgOldChangeTagsIndex ?  'ct_tag' : 'change_tag_tag_id';
 		}
+		
 		$this->token = $params['token'];
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$this->addOption( 'USE INDEX', array( 'recentchanges' => $index ) );
+		$this->addOption( 'USE INDEX', $index );
 
 		$count = 0;
 		/* Perform the actual query. */
