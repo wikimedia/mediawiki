@@ -80,9 +80,12 @@ class DatabaseSqlite extends DatabaseBase {
 			}
 
 		}
-		$this->mOpened = $this->mConn;
+		$this->mOpened = !!$this->mConn;
 		# set error codes only, don't raise exceptions
-		$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+		if ( $this->mOpened ) {
+			$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+			return true;
+		}
 	}
 
 	/**
