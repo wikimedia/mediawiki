@@ -7,7 +7,6 @@
  */
 class ParserOptions {
 	# All variables are supposed to be private in theory, although in practise this is not the case.
-	var $mUseTeX;                    # Use texvc to expand <math> tags
 	var $mUseDynamicDates;           # Use DateFormatter to format dates
 	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
 	var $mAllowExternalImages;       # Allow external images inline
@@ -36,7 +35,6 @@ class ParserOptions {
 	var $mIsSectionPreview;          # Parsing the page for a "preview" operation on a single section
 	var $mIsPrintable;               # Parsing the printable version of the page
 	
-	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
@@ -81,7 +79,6 @@ class ParserOptions {
 		return $this->mTimestamp;
 	}
 
-	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
 	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
 	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
@@ -122,7 +119,7 @@ class ParserOptions {
 
 	/** Get user options */
 	function initialiseFromUser( $userInput ) {
-		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
+		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion, $wgMaxArticleSize;
 		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
 		global $wgExternalLinkTarget;
@@ -142,7 +139,6 @@ class ParserOptions {
 
 		$this->mUser = $user;
 
-		$this->mUseTeX = $wgUseTeX;
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
