@@ -316,6 +316,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   article
 * (bug 22315) SpecialRecentChangesQuery hook now pass $query_options and checks
   the return value
+* Separate unit test suites under t/ and tests/ were merged and moved to
+  maintenance/tests/.
 
 === Bug fixes in 1.16 ===
 
