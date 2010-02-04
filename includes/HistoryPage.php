@@ -133,9 +133,14 @@ class HistoryPage {
 		 * We use "isBigDeletion" to determine if the history is too big to go through.
 		 * Additionally, only users with 'deleterevision' right can filter for deleted edits.
 		 */
-		if ( $this->title->userCan( 'deleterevision' ) && ( !$this->article->isBigDeletion() || $this->title->userCan( 'bigdelete' ) ) ) {
-			$conds = ( $wgRequest->getBool( 'deleted' ) ) ? array("rev_deleted != '0'") : array();
-			$checkDeleted = Xml::checkLabel( wfMsg( 'history-show-deleted' ), 'deleted', '', $wgRequest->getBool( 'deleted' ) ) . "\n";
+		if ( $this->title->userCan( 'deleterevision' )
+			&& ( !$this->article->isBigDeletion() || $this->title->userCan( 'bigdelete' ) ) )
+		{
+			$conds = ( $wgRequest->getBool( 'deleted' ) )
+				? array("rev_deleted != '0'")
+				: array();
+			$checkDeleted = Xml::checkLabel( wfMsg( 'history-show-deleted' ),
+				'deleted', 'mw-show-deleted-only', $wgRequest->getBool( 'deleted' ) ) . "\n";
 		}
 		else { # Don't filter and don't add the checkbox for filtering
 			$conds = array();
@@ -324,7 +329,9 @@ class HistoryPager extends ReverseChronologicalPager {
 		$queryInfo = array(
 			'tables'  => array('revision'),
 			'fields'  => Revision::selectFields(),
-			'conds'   => array_merge( array('rev_page' => $this->historyPage->title->getArticleID() ), $this->conds ),
+			'conds'   => array_merge(
+				array( 'rev_page' => $this->historyPage->title->getArticleID() ),
+				$this->conds ),
 			'options' => array( 'USE INDEX' => array('revision' => 'page_timestamp') ),
 			'join_conds' => array( 'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
 		);
@@ -487,7 +494,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 			// Otherwise, enable the checkbox...
 			} else {
-				$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids['.$rev->getId().']' ) );
+				$del = Xml::check( 'showhiderevisions', false,
+					array( 'name' => 'ids['.$rev->getId().']' ) );
 			}
 		// User can only view deleted revisions...
 		} else if( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) {
@@ -505,7 +513,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		if( $del ) $s .= " $del ";
 
 		$s .= " $link";
-		$s .= " <span class='history-user'>" . $this->getSkin()->revUserTools( $rev, true ) . "</span>";
+		$s .= " <span class='history-user'>" .
+			$this->getSkin()->revUserTools( $rev, true ) . "</span>";
 
 		if( $rev->isMinor() ) {
 			$s .= ' ' . ChangesList::flag( 'minor' );
@@ -648,7 +657,9 @@ class HistoryPager extends ReverseChronologicalPager {
 				),
 				array( 'known', 'noclasses' )
 			);
-		} elseif( !$prevRev->userCan(Revision::DELETED_TEXT) || !$nextRev->userCan(Revision::DELETED_TEXT) ) {
+		} elseif( !$prevRev->userCan(Revision::DELETED_TEXT)
+			|| !$nextRev->userCan(Revision::DELETED_TEXT) )
+		{
 			return $last;
 		} else {
 			return $this->getSkin()->link(
