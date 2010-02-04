@@ -4,22 +4,14 @@
  * Test the CDB reader/writer
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+class CdbTest extends PHPUnit_Framework_TestCase {
 
-class CdbTest extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "CDB read/write test";
-	}
-
-	public function execute() {
-		$this->output( "Write test...\n" );
-
+	public function testCdb() {
 		$w1 = new CdbWriter_PHP( 'php.cdb' );
 		$w2 = new CdbWriter_DBA( 'dba.cdb' );
 
 		$data = array();
-		for ( $i = 0; $i < 100000; $i++ ) {
+		for ( $i = 0; $i < 1000; $i++ ) {
 			$key = $this->randomString();
 			$value = $this->randomString();
 			$w1->set( $key, $value );
@@ -33,9 +25,11 @@ class CdbTest extends Maintenance {
 		$w1->close();
 		$w2->close();
 
-		passthru( 'md5sum php.cdb dba.cdb' );
-
-		$this->output( "Read test...\n" );
+		$this->assertEquals(
+			md5_file( 'dba.cdb' ),
+			md5_file( 'php.cdb' ),
+			'same hash'
+		);
 
 		$r1 = new CdbReader_PHP( 'php.cdb' );
 		$r2 = new CdbReader_DBA( 'dba.cdb' );
@@ -55,7 +49,9 @@ class CdbTest extends Maintenance {
 			$this->cdbAssert( "PHP error", $key, $v1, $value );
 			$this->cdbAssert( "DBA error", $key, $v2, $value );
 		}
-		$this->output( "Done.\n" );
+
+		unlink( 'dba.cdb' );
+		unlink( 'php.cdb' );
 	}
 
 	private function randomString() {
@@ -68,16 +64,10 @@ class CdbTest extends Maintenance {
 	}
 
 	private function cdbAssert( $msg, $key, $v1, $v2 ) {
-		if ( $v1 !== $v2 ) {
-			$this->output( $msg . ', k=' . bin2hex( $key ) . 
-				', v1=' . bin2hex( $v1 ) . 
-				', v2=' . bin2hex( $v2 ) . "\n" );
-			return false;
-		} else {
-			return true;
-		}
+		$this->assertEquals(
+			$v2,
+			$v1,
+			$msg . ', k=' . bin2hex( $key )
+		);
 	}
 }
-
-$maintClass = "CdbTest";
-require_once( DO_MAINTENANCE );
