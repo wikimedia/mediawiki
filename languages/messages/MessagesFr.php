@@ -1748,9 +1748,12 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 'img-auth-noread'       => 'L’utilisateur n’a pas le droit en lecture sur « $1 ».',
 
 # HTTP errors
-'http-invalid-url'    => 'URL incorrecte : $1',
-'http-invalid-scheme' => 'Les URLs avec le schéma « $1 » ne sont pas supportées',
-'http-request-error'  => "Erreur inconnue lors de l'envoi de la requête.",
+'http-invalid-url'      => 'URL incorrecte : $1',
+'http-invalid-scheme'   => 'Les URLs avec le schéma « $1 » ne sont pas supportées',
+'http-request-error'    => "Erreur inconnue lors de l'envoi de la requête.",
+'http-timed-out'        => 'La requête HTTP a expiré.',
+'http-curl-error'       => "Erreur lors de la récupération de l'URL : $1",
+'http-host-unreachable' => "Impossible d'atteindre l'URL",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL injoignable',

@@ -704,6 +704,7 @@ $2',
 [[Special:UserLogin/signup|새 계정을 만들 수도 있습니다]].',
 'nosuchusershort'            => '이름이 ‘<nowiki>$1</nowiki>’인 사용자는 없습니다. 철자가 맞는지 확인해 주세요.',
 'nouserspecified'            => '사용자 이름을 입력하지 않았습니다.',
+'login-userblocked'          => '이 사용자는 차단되었습니다. 로그인할 수 없습니다.',
 'wrongpassword'              => '암호가 틀렸습니다. 다시 시도해 주세요.',
 'wrongpasswordempty'         => '암호를 쓰지 않았습니다.
 다시 시도해 주세요.',
@@ -1652,6 +1653,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
 # HTTP errors
 'http-invalid-url'   => '잘못된 URL: $1',
 'http-request-error' => '요청 전송 오류:',
+'http-timed-out'     => 'HTTP 요청 시간 초과.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',

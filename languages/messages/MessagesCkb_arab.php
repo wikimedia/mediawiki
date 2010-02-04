@@ -1964,7 +1964,7 @@ $NEWPAGE
 'protectlogpage'              => 'لۆگی پاراستن',
 'protectlogtext'              => 'لەخوارەوە لیستێک لە لاپەڕە داخراوەکان و کراوەکان دەبینی.
 بۆ دیتنی لیستی ئەو لاپەرانەی ئێستە پاراستنیان لە ئارادایە [[Special:ProtectedPages|لیستی لاپەڕە پارێزراوەکان ]] ببینە.',
-'protectedarticle'            => 'پارێزراو[[$1]]',
+'protectedarticle'            => 'پارێزراو "[[$1]]"',
 'modifiedarticleprotection'   => 'ئاستی پاراستنی "[[$1]]"ی گۆڕا',
 'unprotectedarticle'          => '"[[$1]]" لە حاڵی ئێستا دا نەپازراوە',
 'movedarticleprotection'      => 'ڕێککارییەکانی پاراستن لە  "[[$2]]" گوازرایەوە بۆ "[[$1]]"',

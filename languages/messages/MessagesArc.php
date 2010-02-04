@@ -270,7 +270,7 @@ $messages = array(
 'aboutsite'            => 'ܡܢܘ {{SITENAME}}',
 'aboutpage'            => 'Project:ܡܢܘ',
 'copyright'            => 'ܚܒܝܫܬ̈ܐ ܐܝܬ ܬܚܝܬ $1.',
-'copyrightpage'        => '{{ns:project}}:ܙܕܩ̈ܐ ܕܚܬܡܐ',
+'copyrightpage'        => '{{ns:project}}:ܙܕ̈ܩܐ ܕܚܬܡܐ',
 'currentevents'        => 'ܓܕ̈ܫܐ ܗܫܝ̈ܐ',
 'currentevents-url'    => 'Project:ܓܕ̈ܫܐ ܗܫܝ̈ܐ',
 'disclaimers'          => 'ܠܐ ܡܫܬܐܠܢܘܬܐ',
@@ -583,7 +583,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'youremail'                   => 'ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ:',
 'username'                    => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'uid'                         => 'ܗܝܝܘܬܐ ܕܡܦܠܚܢܐ:',
-'prefs-memberingroups'        => 'ܗܕܡܐ ܕ {{PLURAL:$1|ܟܢܘܫܬܐ|ܟܢܘܫܬ̈ܐ}}:',
+'prefs-memberingroups'        => 'ܗܕܡܐ ܕ{{PLURAL:$1|ܟܢܘܫܬܐ|ܟܢܘܫܬ̈ܐ}}:',
 'prefs-registration'          => 'ܙܒܢܐ ܕܣܘܓܠܐ:',
 'yourrealname'                => 'ܫܡܐ ܫܪܝܪܐ:',
 'yourlanguage'                => 'ܠܫܢܐ:',
@@ -787,7 +787,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # Random redirect
 'randomredirect'         => 'ܨܘܝܒ̈ܐ ܚܘܝܚ̈ܐ',
-'randomredirect-nopages' => 'ܠܝܬ ܨܘܝܒ̈ܐ ܒܚܩܠܐ ܕ "$1".',
+'randomredirect-nopages' => 'ܠܝܬ ܨܘܝܒ̈ܐ ܒܚܩܠܐ ܕ"$1".',
 
 # Statistics
 'statistics-pages' => 'ܦܐܬܬ̈ܐ',
@@ -906,7 +906,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'listgrouprights'                      => 'ܙܕ̈ܩܐ ܕܟܢܘܫܬܐ ܕܡܦܠܚܢ̈ܐ',
 'listgrouprights-group'                => 'ܟܢܘܫܬܐ',
 'listgrouprights-rights'               => 'ܙܕ̈ܩܐ',
-'listgrouprights-helppage'             => 'Help:ܙܕܩ̈ܐ ܕܟܢܘܫܬܐ',
+'listgrouprights-helppage'             => 'Help:ܙܕ̈ܩܐ ܕܟܢܘܫܬܐ',
 'listgrouprights-members'              => '(ܒܪܒܝܢ ܕܗܕ̈ܡܐ)',
 'listgrouprights-addgroup'             => 'ܐܘܣܦ {{PLURAL:$2|ܟܢܘܫܬܐ|ܟܢܘܫܬ̈ܐ}}: $1',
 'listgrouprights-removegroup'          => 'ܠܚܝ {{PLURAL:$2|ܟܢܘܫܬܐ|ܟܢܘܫܬ̈ܐ}}: $1',

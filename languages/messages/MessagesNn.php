@@ -1639,6 +1639,10 @@ Denne wikien er sett opp som ein ålmennt tilgjengeleg wiki.
 For best tryggleik, er img_auth.php sett ut av funksjon.',
 'img-auth-noread'       => 'Brukaren har ikkje rettar til å lesa "$1".',
 
+# HTTP errors
+'http-curl-error'       => 'Feil under henting av nettadressa: $1',
+'http-host-unreachable' => 'Kunne ikkje nå nettadressa',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikkje nå nettadressa',
 'upload-curl-error6-text'  => 'Nettadressa som er oppgjeve kunne ikkje nåast. Ver venleg og dobbelsjekk at nettadressa er rett og at sida fungerer.',
