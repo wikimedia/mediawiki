@@ -154,6 +154,7 @@ html > body div#mw_contentholder ul#filetoc {
 /* Special:Allpages styling */
 td.mw-allpages-nav, p.mw-allpages-nav, td.mw-allpages-alphaindexline {
 	text-align: left;
+}
 
 /* Special:Prefixindex styling */
 td#mw-prefixindex-nav-form  {
