@@ -142,6 +142,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_user = isset ( $prop['user'] );
 		$this->token = $params['token'];
 
+		// Possible indexes used
+		$index = array();
+
 		if ( !is_null( $this->token ) || $pageCount > 0 ) {
 			$this->addFields( Revision::selectPageFields() );
 		}
