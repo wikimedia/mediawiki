@@ -733,6 +733,7 @@ Os nomes de utilizador são sensíveis à capitalização.
 Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nosuchusershort'            => 'Não existe um utilizador com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
+'login-userblocked'          => 'Este utilizador está bloqueado. Não é permitido o acesso.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A palavra-chave introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'A sua palavra-chave deve de ter no mínimo {{PLURAL:$1|1 caráter|$1 carateres}}.',
@@ -1394,25 +1395,26 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'prefs-diffs'                   => 'Diferenças',
 
 # User rights
-'userrights'                  => 'Privilégios dos utilizadores',
-'userrights-lookup-user'      => 'Gerir grupos do utilizador',
-'userrights-user-editname'    => 'Introduza um nome de utilizador:',
-'editusergroup'               => 'Editar grupos do utilizador',
-'editinguser'                 => "A modificar os privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Editar grupos do utilizador',
-'saveusergroups'              => 'Gravar grupos do utilizador',
-'userrights-groupsmember'     => 'Membro de:',
-'userrights-groups-help'      => 'É possível alterar os grupos a que este utilizador pertence:
+'userrights'                   => 'Privilégios dos utilizadores',
+'userrights-lookup-user'       => 'Gerir grupos do utilizador',
+'userrights-user-editname'     => 'Introduza um nome de utilizador:',
+'editusergroup'                => 'Editar grupos do utilizador',
+'editinguser'                  => "A modificar os privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Editar grupos do utilizador',
+'saveusergroups'               => 'Gravar grupos do utilizador',
+'userrights-groupsmember'      => 'Membro de:',
+'userrights-groupsmember-auto' => 'Membro implícito de:',
+'userrights-groups-help'       => 'É possível alterar os grupos a que este utilizador pertence:
 * Uma caixa de selecção marcada significa que o utilizador se encontra no grupo.
 * Uma caixa de selecção desmarcada significa que o utilizador não se encontra no grupo.
 * Um asterisco (*) indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
-'userrights-reason'           => 'Motivo:',
-'userrights-no-interwiki'     => 'Não possui permissão de alterar os privilégios de utilizadores noutras wikis.',
-'userrights-nodatabase'       => 'A base de dados $1 não existe ou não é uma base de dados local.',
-'userrights-nologin'          => 'Precisa [[Special:UserLogin|autenticar-se]] com uma conta de administrador para atribuir privilégios aos utilizadores.',
-'userrights-notallowed'       => 'A sua conta não possui permissão para conceder privilégios a utilizadores.',
-'userrights-changeable-col'   => 'Grupos que pode alterar',
-'userrights-unchangeable-col' => 'Grupos que não pode alterar',
+'userrights-reason'            => 'Motivo:',
+'userrights-no-interwiki'      => 'Não possui permissão de alterar os privilégios de utilizadores noutras wikis.',
+'userrights-nodatabase'        => 'A base de dados $1 não existe ou não é uma base de dados local.',
+'userrights-nologin'           => 'Precisa [[Special:UserLogin|autenticar-se]] com uma conta de administrador para atribuir privilégios aos utilizadores.',
+'userrights-notallowed'        => 'A sua conta não possui permissão para conceder privilégios a utilizadores.',
+'userrights-changeable-col'    => 'Grupos que pode alterar',
+'userrights-unchangeable-col'  => 'Grupos que não pode alterar',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1738,9 +1740,13 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'img-auth-noread'       => 'O utilizador não tem acesso de leitura ao ficheiro "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'URL inválida: $1',
-'http-invalid-scheme' => 'URLs com o esquema "$1" não são suportadas',
-'http-request-error'  => 'Ocorreu um erro ao enviar o pedido:',
+'http-invalid-url'      => 'URL inválida: $1',
+'http-invalid-scheme'   => 'URLs com o esquema "$1" não são suportadas',
+'http-request-error'    => 'O pedido HTTP falhou devido a um erro desconhecido.',
+'http-read-error'       => 'Erro de leitura HTTP.',
+'http-timed-out'        => 'O pedido HTTP expirou.',
+'http-curl-error'       => 'Ocorreu um erro ao aceder à URL: $1',
+'http-host-unreachable' => 'Não foi possível aceder à URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível aceder à URL',

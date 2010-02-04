@@ -55,8 +55,9 @@ $messages = array(
 'tog-ccmeonemails'           => 'Schick ma Kopien vu da E-Post, de i ãndare Benutza schick',
 'tog-showhiddencats'         => 'Vasteckte Kategorien ãnzoang',
 
-'underline-always' => 'imma',
-'underline-never'  => 'nia',
+'underline-always'  => 'imma',
+'underline-never'   => 'nia',
+'underline-default' => 'åbhängig vu da Browser-Eistellung',
 
 # Dates
 'sunday'      => 'Sunntåg',
@@ -112,6 +113,8 @@ $messages = array(
 'category-article-count-limited' => 'De {{PLURAL:$1|foignde Seitn is|foigndn $1 Seitn san}} in dea Kategorie enthåitn:',
 'category-file-count-limited'    => "{{PLURAL:$1|D'foignde Datei is|De foigndn $1 Datein san}} in de Kategorie eisoatiad:",
 'listingcontinuesabbrev'         => '(Foatsetzung)',
+'index-category'                 => 'Indiziade Seitn',
+'noindex-category'               => 'Ned indiziade Seitn',
 
 'mainpagetext'      => "<big>'''MediaWiki is eafoigreich installiad woan.'''</big>",
 'mainpagedocfooter' => 'A Huif zua Benutzung und Konfiguration vo da Wiki-Software findst im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
@@ -130,8 +133,18 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Findn',
+'qbedit'         => 'werkln',
 'qbmyoptions'    => 'Meine Seitn',
 'qbspecialpages' => 'Spezialseitn',
+'faq'            => 'FAQ',
+
+# Vector skin
+'vector-action-delete'    => 'Löschn',
+'vector-action-move'      => 'Vaschiam',
+'vector-action-protect'   => 'Schützn',
+'vector-action-undelete'  => 'Wiedaheastöin',
+'vector-action-unprotect' => 'Freigem',
+'namespaces'              => 'Nãmensräim',
 
 'errorpagetitle'    => 'Fehla',
 'returnto'          => 'Zruck zur Seitn $1.',
@@ -181,10 +194,12 @@ $messages = array(
 'aboutsite'            => 'Üba {{SITENAME}}',
 'aboutpage'            => 'Project:Üba_{{SITENAME}}',
 'copyright'            => 'Da Inhåit is unta da $1 vafügbåa.',
+'copyrightpage'        => '{{ns:project}}:Uahebarechte',
 'disclaimers'          => 'Impressum',
 'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'Bearbeitungshuifn',
 'edithelppage'         => 'Help:Bearbeitungshuifn',
+'helppage'             => 'Help:Inhåitsvazeichnis',
 'mainpage'             => 'Hauptsaitn',
 'mainpage-description' => 'Hauptsaitn',
 'privacy'              => 'Datnschutz',
@@ -207,6 +222,7 @@ $messages = array(
 'hidetoc'                 => 'vabeang',
 'thisisdeleted'           => '$1 ooschaun oda wieda herstelln?',
 'viewdeleted'             => '$1 oozoang?',
+'restorelink'             => '$1 glöschte {{PLURAL:$1|Veasion|Veasionen}}',
 'site-rss-feed'           => 'RSS-Feed fia $1',
 'site-atom-feed'          => 'Atom-Feed fia $1',
 'red-link-title'          => "$1 (de Seitn gibt's ned)",
@@ -255,6 +271,10 @@ Funkzion: $1<br />
 # Login and logout pages
 'logouttext'                 => 'Sie san iatzat abgmeldt.
 Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am andern Benutzernamen wieder omeldn.',
+'welcomecreation'            => '== Seavas, $1! ==
+
+Dei Benutzakonto is gråd eigricht woan.
+Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eistellungen]] ãnzpassn',
 'yourname'                   => 'Benutzernam:',
 'yourpassword'               => 'Passwoat:',
 'yourpasswordagain'          => 'Passwort no amoi',
@@ -385,6 +405,8 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'previousrevision'    => '← Nextöidare Veasion',
 'nextrevision'        => 'Nextjingare Veasion →',
 'currentrevisionlink' => 'Aktuelle Veasion',
+'cur'                 => 'Aktuöi',
+'last'                => 'Voaherige',
 'histlegend'          => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Untaschied zur aktuellen Version, (Vorherige) = Untaschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dera Zeit, Benutzername/IP-Adresse vom Bearbeiter, K = Kloane Änderung',
@@ -498,25 +520,26 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'action-autopatrol' => 'eigne Arbat ois kontrolliert markiern',
 
 # Recent changes
-'nchanges'             => '$1 {{PLURAL:$1|Ändarung|Ändarungen}}',
-'recentchanges'        => 'Letzte Ändarungen',
-'recentchanges-legend' => 'Ãnzeigeopzionen',
-'rcnote'               => "Untn {{PLURAL:$1|is de letzte Ändarung|san de letztn '''$1''' Ändarungen}} {{PLURAL:$2|vum letztn|vu de letztn '''$2'''}} Tåg aufglist. Stãnd vum $4 um $5.",
-'rclistfrom'           => 'Netta Änderungen seid $1 ãzoang.',
-'rcshowhideminor'      => 'kloane Ändarungen $1',
-'rcshowhideliu'        => 'Ãngmöidte Benutza $1',
-'rcshowhideanons'      => 'Anonyme Benutza $1',
-'rcshowhidemine'       => 'Eigne Beiträge $1',
-'rclinks'              => 'De letztn $1 Ändarungen vu de letztn $2 Tåg ãnzoang<br />$3',
-'diff'                 => 'Untaschied',
-'hist'                 => 'Veasionen',
-'hide'                 => 'ausblendn',
-'show'                 => 'eiblendn',
-'minoreditletter'      => 'K',
-'newpageletter'        => 'Nei',
-'boteditletter'        => 'B',
-'rc-enhanced-expand'   => 'Deteus ãnzoang (gehd netta mid JavaScript)',
-'rc-enhanced-hide'     => 'Deteus vastecka',
+'nchanges'                       => '$1 {{PLURAL:$1|Ändarung|Ändarungen}}',
+'recentchanges'                  => 'Letzte Ändarungen',
+'recentchanges-legend'           => 'Ãnzeigeopzionen',
+'recentchanges-feed-description' => 'Vafoig mid dem Feed de letztn Ändarungen in {{SITENAME}}.',
+'rcnote'                         => "Untn {{PLURAL:$1|is de letzte Ändarung|san de letztn '''$1''' Ändarungen}} {{PLURAL:$2|vum letztn|vu de letztn '''$2'''}} Tåg aufglist. Stãnd vum $4 um $5.",
+'rclistfrom'                     => 'Netta Änderungen seid $1 ãzoang.',
+'rcshowhideminor'                => 'kloane Ändarungen $1',
+'rcshowhideliu'                  => 'Ãngmöidte Benutza $1',
+'rcshowhideanons'                => 'Anonyme Benutza $1',
+'rcshowhidemine'                 => 'Eigne Beiträge $1',
+'rclinks'                        => 'De letztn $1 Ändarungen vu de letztn $2 Tåg ãnzoang<br />$3',
+'diff'                           => 'Untaschied',
+'hist'                           => 'Veasionen',
+'hide'                           => 'ausblendn',
+'show'                           => 'eiblendn',
+'minoreditletter'                => 'K',
+'newpageletter'                  => 'Nei',
+'boteditletter'                  => 'B',
+'rc-enhanced-expand'             => 'Deteus ãnzoang (gehd netta mid JavaScript)',
+'rc-enhanced-hide'               => 'Deteus vastecka',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Valinkts prüfn',
@@ -639,6 +662,7 @@ Links aus Namensräume wern da net aufglistet.',
 # Special:AllPages
 'allpages'          => 'Alle Seitn',
 'alphaindexline'    => '$1 bis $2',
+'prevpage'          => 'Voaherige Seitn ($1)',
 'allpagesfrom'      => 'Seitn zoang ab:',
 'allpagesto'        => 'Seitn ãnzoang bis:',
 'allarticles'       => 'Alle Seitn',
@@ -720,7 +744,7 @@ Um die Einstellungen Ihrer Beobachtungslistn anzupassen bsuachans bitte: {{fullu
 'exblank'               => 'Seitn is laar gwen',
 'historywarning'        => 'OBACHT: Die Seitn, de Sie löschen wolln, håt a Versionsgeschichte:',
 'confirmdeletetext'     => 'Sie san dabei, a Seitn oda a Datei und alle zughörigen ältern Versionen
-zum löschen. Bitte bestätigen Sie da dazu, dass Sie de Konsequenzen verstengan
+zum löschen. Bitte bestätigen Sie da dazu, dass Sie des wirklich tuan wolln, dass Sie de Konsequenzen verstengan
 und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] handeln.',
 'actioncomplete'        => 'Akzion beendet',
 'deletedtext'           => '„$1“ is glöscht worn. Im $2 findn Sie a Listn vo de letzten Löschungen.',
@@ -751,6 +775,8 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protect-level-sysop'         => 'Netta Administratoan',
 'protect-summary-cascade'     => 'kaskadiarnd',
 'protect-expiring'            => 'bis zum $2 um $3 Uhr (UTC)',
+'protect-cascade'             => 'Kaskadiarade Sperr – ålle Voalång, de in dea Seitn eibundn han, wean emfåis gspead.',
+'protect-cantedit'            => "Du kãnnst de Spea vu dea Seitn ned ändan, weu'st dafia ned de passnde Berechtigung håst.",
 'restriction-type'            => 'Schutzstatus:',
 'restriction-level'           => 'Schutzhechn:',
 
@@ -801,6 +827,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'isimage'                  => 'Dateilink',
 'whatlinkshere-prev'       => "{{PLURAL:$1|vorige|d'voring $1}}",
 'whatlinkshere-next'       => "{{PLURAL:$1|nexde|d'nexdn $1}}",
+'whatlinkshere-links'      => '← Vaweise',
 'whatlinkshere-hideredirs' => 'Weidaleitungen $1',
 'whatlinkshere-hidetrans'  => 'Voalãngeibindungen $1',
 'whatlinkshere-hidelinks'  => 'Links $1',
@@ -842,6 +869,17 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 
 # Move page
 'move-page-legend'       => 'Seitn vaschiam',
+'movepagetext'           => "Mid dem Foamular kãnnst a Seitn umbenenna (midsãmt ålle Veasionen).
+Vum åidn Titl wiad ma nåchand zum neichn weidagschickd.
+Du kãnnst Weidaleitungen, de auf'n Originaltitl valinkn, automatisch korrigian låssn.
+Fåis'd des ned tuast, schau bitte nåch ob's [[Special:DoubleRedirects|doppide]] oda [[Special:BrokenRedirects|hiniche Weidaleitungen]] gibt.
+Du bist dafia vaãntwoatlich, dass ålle Links aa nåch'm Vaschiam auf's richtige Züi zoang.
+
+De Seitn wiad '''ned''' vaschom, wãnn's schãu a Seitn mid genau dem Nãm gibt, den'st mechst dass'd Seitn iatst kriagt, außa de Seitn is laa oda a Weidaleitung ohne Veasionsgschicht. Des haaßt, dass'd a Seitn zruckvaschiam kãnnst, wãnn'st an Fehla gmåcht håst. A Seitn üwaschreim kãnnst åwa ned.
+
+'''Wårnung'''
+D'Vaschiebung kãu weidreichade und ned eawårtete Foing fia beliebte Seitn håm.
+Es warad åiso guat, wãnn'st ålle Konsequenzn vastãndn håst, bevoa'st a Seitn wiakli vaschiabst.",
 'movepagetalktext'       => "De dazuaghearade Dischgria-Seitn wiad, fåis's ane gibt, midvaschom, '''außa'''
 *unta'm neichn Nãm gibt's schãu an Eintråg oda
 *du tuast s'Hakal bei da unting Opzion außa.
@@ -863,6 +901,7 @@ Bittschee gib außadem druntn in '''neichn''' Nãm vu da Seitn ei und schreib ku
 'movepage-moved'         => "<big>'''D'Seitn „$1“ is nåch „$2“ vaschom woan.'''</big>",
 'articleexists'          => 'Unter dem Nam existiert bereits a Seitn.
 Bitte nehmans an andern Nam.',
+'talkexists'             => "D'Seitn söiwa is eafoigreich vaschom woan, de dazuaghearade Diskussionsseitn åwa ned, weu's unta dea iahm neichn Nãm schãu a Seitn gibt. Bittschee kümmat di händisch um's Zsãmmfüahn.",
 'movedto'                => 'vaschom nåch',
 'movetalk'               => "Wãun's gehd de Dischgria-Seitn midvaschiam",
 '1movedto2'              => 'håt [[$1]] nåch [[$2]] verschom',

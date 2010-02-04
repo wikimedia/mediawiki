@@ -544,6 +544,8 @@ Cunt el test che te mandet tì te deciaret anca che, sota la tò respunsabilità
 '''MANDA MINGA DEL MATERIAL CHE L'E' CUERT D'UN DIRIT D'AUTUR SENZA UTURIZAZIUN'''",
 'longpagewarning'                  => "'''Feegh da ment''': Quela pagina chì l'è longa $1 kilobyte; gh'è di browser ch'i pudarissen vegh di fastidi a mudifegà paginn ch'i riven arent o ch'i gh'hann püssee de 32kb. Per piasè vardee se l'è pussibil fà giò la pagina in tuchet püssee piscinin.",
 'protectedpagewarning'             => "'''Ocio: quela pagina chì l'è stada blucaa in manéra che dumá i dupradur cunt i privilegg de sysop i pören mudificàla.'''",
+'semiprotectedpagewarning'         => "'''Nota:''' Quela pagina chì l'è stada blucada in manera che dumà i druvadur registraa i pören mudifegàla. 
+L'ültima vus del register l'è mustrada chì de suta per riferiment:",
 'templatesused'                    => '{{PLURAL:$1|Mudel|Mudej}} dopraa in quela pagina chì:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mudel|Mudej}} dopraa in quela pröva chì:',
 'template-protected'               => '(prutegiüü)',
@@ -677,17 +679,25 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'prefs-help-email'     => "L'e-mail a l'è mia obligatòri, però al permet da mandàv una ciav noeva in cas che ve la desmenteghé. A podé apó scernì da lassà entrà i alter dovrat in contat con violter senza da busogn da svelà la vosta identità.",
 
 # User rights
-'userrights-lookup-user'   => 'Gestion di grüp di druvaduu',
-'userrights-user-editname' => 'Butée dent un nom da dovrat',
-'editusergroup'            => 'Edita i group da dovrée',
-'userrights-editusergroup' => 'Edita i group da dovrat',
-'saveusergroups'           => 'Salva i grüp di druvadur',
-'userrights-groupsmember'  => 'Mémber da:',
-'userrights-reason'        => 'Reson da la modifiazion:',
-'userrights-no-interwiki'  => "Te gh'hee mía i permiss necessari per pudè mudifegà i dirit di druvadur di olter wiki.",
-'userrights-nodatabase'    => "La base dat $1 a gh'é mia, o pura a l'é mia locala.",
-'userrights-nologin'       => "Al gh'a da [[Special:UserLogin|rintrà ent el sistema]] con un cunt d'administrator par podé dà di drecc ai dovracc.",
-'userrights-notallowed'    => "A l'ha mia li permission par podé dà di drecc ai dovracc.",
+'userrights'                  => 'Gestión di dirit di druvadur',
+'userrights-lookup-user'      => 'Gestion di grüp di druvaduu',
+'userrights-user-editname'    => 'Butée dent un nom da dovrat',
+'editusergroup'               => 'Mudifega i grüp del druvadur',
+'editinguser'                 => "Mudifega di dirit del druvadur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Mudifega i grüp del druvadur',
+'saveusergroups'              => 'Salva i grüp di druvadur',
+'userrights-groupsmember'     => 'El fà part di grüp:',
+'userrights-groups-help'      => "Se pö cambià i grüp ai qual l'è assegnaa quel druvadur chì.
+* Un quader marcaa 'l vör dì che 'l druvadur al fà part de quel grüp lì.
+* Un quader mia marcaa 'l vör dì che 'l druvadur el fà mia part de quel grüp lì.
+* L'asterisch (*) el vör dì che se pö mia tö via un druvadur dal grüp dop d'avèghel giuntaa, o vice versa.",
+'userrights-reason'           => 'Resón per al cambiament:',
+'userrights-no-interwiki'     => "Te gh'hee mía i permiss necessari per pudè mudifegà i dirit di druvadur di olter wiki.",
+'userrights-nodatabase'       => "La base dat $1 a gh'é mia, o pura a l'é mia locala.",
+'userrights-nologin'          => "Al gh'a da [[Special:UserLogin|rintrà ent el sistema]] con un cunt d'administrator par podé dà di drecc ai dovracc.",
+'userrights-notallowed'       => "A l'ha mia li permission par podé dà di drecc ai dovracc.",
+'userrights-changeable-col'   => 'Grüp che te pö mudifegà',
+'userrights-unchangeable-col' => 'Grüp che te pö mia mudifegà',
 
 # Groups
 'group-user'          => 'Druvadur',
@@ -704,7 +714,8 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'right-createaccount' => 'Crea cünt de dovratt bej-e növ',
 
 # User rights log
-'rightslog' => 'Dirit di druvat',
+'rightslog'      => 'Dirit di druvat',
+'rightslogentry' => "l'ha mudifegaa $1 dal grüp $2 al grüp $3",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'mudifega quela pagina chì',
@@ -919,7 +930,9 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'listgrouprights-members' => '(Lista di member)',
 
 # E-mail user
-'emailuser' => 'Manda un email al duvrátt',
+'emailuser'     => 'Manda un email al duvrátt',
+'emailsent'     => 'Messagg spedii',
+'emailsenttext' => "El messagg e-mail l'è staa spedii.",
 
 # Watchlist
 'watchlist'         => "Paginn ch'a tegni d'ögg",
@@ -1190,6 +1203,7 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 'tooltip-ca-viewsource'           => "Quela pagina chì a l'è pruteta, ma te pödet vidè el sò codes surgent",
 'tooltip-ca-history'              => 'Versión vegg de quela pagina chì',
 'tooltip-ca-protect'              => 'Prutegg quela pagina chì',
+'tooltip-ca-unprotect'            => 'Tö via la prutezión a questa pagina',
 'tooltip-ca-delete'               => 'Scancela questa pagina',
 'tooltip-ca-move'                 => "Sposta 'sta pagina chì (cambiagh 'l titul)",
 'tooltip-ca-watch'                => 'Giunta quela pagina chì a la tò lista di rop che te tegnet sot ögg',

@@ -1790,9 +1790,13 @@ Om beveiligingsreden is img_auth.php uitgeschakeld.',
 'img-auth-noread'       => 'De gebruiker heeft geen leestoegang tot "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'Ongeldige URL: $1',
-'http-invalid-scheme' => 'URL\'s met de opmaak "$1" worden niet ondersteund',
-'http-request-error'  => 'Fout bij het verzenden van het verzoek.',
+'http-invalid-url'      => 'Ongeldige URL: $1',
+'http-invalid-scheme'   => 'URL\'s met de opmaak "$1" worden niet ondersteund',
+'http-request-error'    => 'Fout bij het verzenden van het verzoek.',
+'http-read-error'       => 'Fout bij het lezen van HTTP.',
+'http-timed-out'        => 'Timeout bij het HTTP-verzoek.',
+'http-curl-error'       => 'Fout bij het ophalen van URL: $1',
+'http-host-unreachable' => 'De URL is niet bereikbaar.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon de URL niet bereiken',

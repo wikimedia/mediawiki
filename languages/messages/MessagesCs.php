@@ -1393,25 +1393,26 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'prefs-diffs'                   => 'Porovnání verzí',
 
 # User rights
-'userrights'                  => 'Správa uživatelských skupin',
-'userrights-lookup-user'      => 'Spravovat uživatelské skupiny',
-'userrights-user-editname'    => 'Zadejte uživatelské jméno:',
-'editusergroup'               => 'Upravit uživatelské skupiny',
-'editinguser'                 => "Úprava práv uživatele '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Upravit uživatelské skupiny',
-'saveusergroups'              => 'Uložit uživatelské skupiny',
-'userrights-groupsmember'     => 'Člen skupin:',
-'userrights-groups-help'      => 'Můžete měnit skupiny, do nichž je uživatel zařazen.
+'userrights'                   => 'Správa uživatelských skupin',
+'userrights-lookup-user'       => 'Spravovat uživatelské skupiny',
+'userrights-user-editname'     => 'Zadejte uživatelské jméno:',
+'editusergroup'                => 'Upravit uživatelské skupiny',
+'editinguser'                  => "Úprava práv uživatele '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Upravit uživatelské skupiny',
+'saveusergroups'               => 'Uložit uživatelské skupiny',
+'userrights-groupsmember'      => 'Člen skupin:',
+'userrights-groupsmember-auto' => 'Automaticky člen skupin:',
+'userrights-groups-help'       => 'Můžete měnit skupiny, do nichž je uživatel zařazen.
 * Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
 * Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
 * Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
-'userrights-reason'           => 'Důvod:',
-'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
-'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
-'userrights-nologin'          => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
-'userrights-notallowed'       => 'Tento účet nemá povoleno měnit uživatelská práva.',
-'userrights-changeable-col'   => 'Skupiny, které můžete měnit',
-'userrights-unchangeable-col' => 'Skupiny, které nemůžete měnit',
+'userrights-reason'            => 'Důvod:',
+'userrights-no-interwiki'      => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
+'userrights-nodatabase'        => 'Databáze $1 neexistuje nebo není místní.',
+'userrights-nologin'           => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
+'userrights-notallowed'        => 'Tento účet nemá povoleno měnit uživatelská práva.',
+'userrights-changeable-col'    => 'Skupiny, které můžete měnit',
+'userrights-unchangeable-col'  => 'Skupiny, které nemůžete měnit',
 
 # Groups
 'group'               => 'Skupina:',

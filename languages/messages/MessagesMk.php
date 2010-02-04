@@ -1716,9 +1716,13 @@ PICT # misc.
 'img-auth-noread'       => 'Корисникот нема пристап за читање на "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'Неважечка URL: $1',
-'http-invalid-scheme' => 'Не се поддржани URL-адреси со шема „$1“',
-'http-request-error'  => 'Неуспешно HTTP барање поради непозната грешка.',
+'http-invalid-url'      => 'Неважечка URL: $1',
+'http-invalid-scheme'   => 'Не се поддржани URL-адреси со шема „$1“',
+'http-request-error'    => 'Неуспешно HTTP барање поради непозната грешка.',
+'http-read-error'       => 'Грешка при читањето на HTTP.',
+'http-timed-out'        => 'HTTP-барањето истече.',
+'http-curl-error'       => 'Грешка при добивањето на URL: $1',
+'http-host-unreachable' => 'Не можев да пристапам до URL-адресата',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не може да се пристапи до URL-то',
