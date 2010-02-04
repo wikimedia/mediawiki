@@ -42,8 +42,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
-
-		$prop = $params['prop'];
+		
+		$prop = array_flip( $params['prop'] );
+		
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
 		$this->fld_type = isset( $prop['type'] );
