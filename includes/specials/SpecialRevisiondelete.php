@@ -441,7 +441,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	*/
 	protected function buildCheckBoxes() {
 		global $wgRequest;
-		
+
 		$html = '<table>';
 		// If there is just one item, use checkboxes
 		$list = $this->getList();
@@ -462,10 +462,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Otherwise, use tri-state radios
 		} else {
 			$html .= '<tr>';
-			$html .= '<th>'.wfMsgHtml('revdelete-radio-same').'</th><th>&nbsp;</th>';
-			$html .= '<th>'.wfMsgHtml('revdelete-radio-unset').'</th><th>&nbsp;</th>';
-			$html .= '<th>'.wfMsgHtml('revdelete-radio-set').'</th><th>&nbsp;</th>';
-			$html .= '<th></th></tr>';
+			$html .= '<th class="mw-revdel-checkbox">'.wfMsgHtml('revdelete-radio-same').'</th>';
+			$html .= '<th class="mw-revdel-checkbox">'.wfMsgHtml('revdelete-radio-unset').'</th>';
+			$html .= '<th class="mw-revdel-checkbox">'.wfMsgHtml('revdelete-radio-set').'</th>';
+			$html .= "<th></th></tr>\n";
 			foreach( $this->checks as $item ) {
 				list( $message, $name, $field ) = $item;
 				// If there are several items, use third state by default...
@@ -474,9 +474,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				} else {
 					$selected = -1; // use existing field
 				}
-				$line = '<td>' . Xml::radio( $name, -1, $selected == -1 ) . '</td><td>&nbsp;</td>';
-				$line .= '<td>' . Xml::radio( $name, 0, $selected == 0 ) . '</td><td>&nbsp;</td>';
-				$line .= '<td>' . Xml::radio( $name, 1, $selected == 1 ) . '</td><td>&nbsp;</td>';
+				$line = '<td class="mw-revdel-checkbox">' . Xml::radio( $name, -1, $selected == -1 ) . '</td>';
+				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 0, $selected == 0 ) . '</td>';
+				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 1, $selected == 1 ) . '</td>';
 				$label = wfMsgHtml($message);
 				if( $field == Revision::DELETED_RESTRICTED ) {
 					$label = "<b>$label</b>";
