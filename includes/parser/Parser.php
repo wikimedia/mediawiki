@@ -493,6 +493,22 @@ class Parser
 	}
 
 	/**
+	 * Get the wikitext of a page as though it was transcluded.
+	 *
+	 * Specifically <includeonly> etc. are parsed, redirects are followed, comments
+	 * are removed, but templates arguments and parser functions are untouched.
+	 *
+	 * This is not called by the parser itself, see braceSubstitution for its transclusion. 
+	 *
+	 * @public
+	 */
+	function getTransclusionText( $title ) {
+		list($text, $title) = $this->getTemplateDom( $title );
+		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
+		return $this->getPreprocessor()->newFrame()->expand( $text, $flags );
+	}
+
+	/**
 	 * Get a random string
 	 *
 	 * @private
