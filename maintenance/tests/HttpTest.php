@@ -443,24 +443,28 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		$cj = new CookieJar;
 
 		$h[] = "Set-Cookie: name4=value; domain=.example.com; path=/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
-		$cj->parseCookieResponseHeader( $h[0] );
+		$cj->parseCookieResponseHeader( $h[0], "www.example.com" );
 		$this->assertEquals("name4=value", $cj->serializeToHttpRequest("/", "www.example.com"));
 
 		$h[] = "name4=value2; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
-		$cj->parseCookieResponseHeader( $h[1] );
+		$cj->parseCookieResponseHeader( $h[1], "www.example.com" );
 		$this->assertEquals("", $cj->serializeToHttpRequest("/", "www.example.com"));
 		$this->assertEquals("name4=value2", $cj->serializeToHttpRequest("/path/", "www.example.com"));
 
 		$h[] = "name5=value3; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
-		$cj->parseCookieResponseHeader( $h[2] );
+		$cj->parseCookieResponseHeader( $h[2], "www.example.com" );
 		$this->assertEquals("name4=value2; name5=value3", $cj->serializeToHttpRequest("/path/", "www.example.com"));
 
-		$h[] = "name6=value3; domain=.example.net; path=/path/; expires=Mon, 09-Dec-1999 13:46:00 GMT";
-		$cj->parseCookieResponseHeader( $h[3] );
+		$h[] = "name6=value3; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$cj->parseCookieResponseHeader( $h[3], "www.example.com" );
+		$this->assertEquals("", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+
+		$h[] = "name6=value0; domain=.example.net; path=/path/; expires=Mon, 09-Dec-1999 13:46:00 GMT";
+		$cj->parseCookieResponseHeader( $h[4], "www.example.net" );
 		$this->assertEquals("", $cj->serializeToHttpRequest("/path/", "www.example.net"));
 
 		$h[] = "name6=value4; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
-		$cj->parseCookieResponseHeader( $h[4] );
+		$cj->parseCookieResponseHeader( $h[5], "www.example.net" );
 		$this->assertEquals("name6=value4", $cj->serializeToHttpRequest("/path/", "www.example.net"));
 	}
 
