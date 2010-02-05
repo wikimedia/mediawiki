@@ -81,14 +81,14 @@ class SquidUpdate {
 	XXX report broken Squids per mail or log */
 
 	static function purge( $urlArr ) {
-		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort, $wgSquidResponseLimit;
+		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
 
 		/*if ( (@$wgSquidServers[0]) == 'echo' ) {
 			echo implode("<br />\n", $urlArr) . "<br />\n";
 			return;
 		}*/
 
-		if( empty( $urlArr ) ) {
+		if( !$urlArr ) {
 			return;
 		}
 
@@ -98,105 +98,26 @@ class SquidUpdate {
 
 		wfProfileIn( __METHOD__ );
 
-		$maxsocketspersquid = 8; //  socket cap per Squid
-		$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
-		$firsturl = SquidUpdate::expand( $urlArr[0] );
-		unset($urlArr[0]);
-		$urlArr = array_values($urlArr);
-		$sockspersq =  max(ceil(count($urlArr) / $urlspersocket ),1);
-		if ($sockspersq == 1) {
-			/* the most common case */
-			$urlspersocket = count($urlArr);
-		} else if ($sockspersq > $maxsocketspersquid ) {
-			$urlspersocket = ceil(count($urlArr) / $maxsocketspersquid);
-			$sockspersq = $maxsocketspersquid;
+		$maxSocketsPerSquid = 8; //  socket cap per Squid
+		$urlsPerSocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
+		$socketsPerSquid = ceil( count( $urlArr ) / $urlsPerSocket );
+		if ( $socketsPerSquid > $maxSocketsPerSquid ) {
+			$socketsPerSquid = $maxSocketsPerSquid;
 		}
-		$totalsockets = count($wgSquidServers) * $sockspersq;
-		$sockets = Array();
 
-		/* this sets up the sockets and tests the first socket for each server. */
-		for ($ss=0;$ss < count($wgSquidServers);$ss++) {
-			$failed = false;
-			$so = 0;
-			while ($so < $sockspersq && !$failed) {
-				if ($so == 0) {
-					/* first socket for this server, do the tests */
-					@list($server, $port) = explode(':', $wgSquidServers[$ss]);
-					if(!isset($port)) $port = 80;
-					#$this->debug("Opening socket to $server:$port");
-					$error = $errstr = false;
-					$socket = @fsockopen($server, $port, $error, $errstr, 3);
-					#$this->debug("\n");
-					if (!$socket) {
-						$failed = true;
-						$totalsockets -= $sockspersq;
-					} else {
-						$msg = 'PURGE ' . $firsturl . " HTTP/1.0\r\n".
-						"Connection: Keep-Alive\r\n\r\n";
-						#$this->debug($msg);
-						@fputs($socket,$msg);
-						#$this->debug("...");
-						$res = @fread($socket,512);
-						#$this->debug("\n");
-						/* Squid only returns http headers with 200 or 404 status,
-						if there's more returned something's wrong */
-						if (strlen($res) > $wgSquidResponseLimit) {
-							fclose($socket);
-							$failed = true;
-							$totalsockets -= $sockspersq;
-						} else {
-							@stream_set_blocking($socket,false);
-							$sockets[] = $socket;
-						}
-					}
-				} else {
-					/* open the remaining sockets for this server */
-					list($server, $port) = explode(':', $wgSquidServers[$ss]);
-					if(!isset($port)) $port = 80;
-					$socket = @fsockopen($server, $port, $error, $errstr, 2);
-					@stream_set_blocking($socket,false);
-					$sockets[] = $socket;
+		$pool = new SquidPurgeClientPool;
+		$chunks = array_chunk( $urlArr, ceil( count( $urlArr ) / $socketsPerSquid ) );
+		foreach ( $wgSquidServers as $server ) {
+			foreach ( $chunks as $chunk ) {
+				$client = new SquidPurgeClient( $server );
+				foreach ( $chunk as $url ) {
+					$client->queuePurge( $url );
 				}
-				$so++;
+				$pool->addClient( $client );
 			}
 		}
+		$pool->run();
 
-		if ($urlspersocket > 0) {
-			/* now do the heavy lifting. The fread() relies on Squid returning only the headers */
-			for ($r=0;$r < $urlspersocket;$r++) {
-				for ($s=0;$s < $totalsockets;$s++) {
-					if($r != 0) {
-						$res = '';
-						$esc = 0;
-						while (strlen($res) < 100 && $esc < 200  ) {
-							$res .= @fread($sockets[$s],512);
-							$esc++;
-							usleep(20);
-						}
-					}
-					$urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
-					$url = SquidUpdate::expand( $urlArr[$urindex] );
-					$msg = 'PURGE ' . $url . " HTTP/1.0\r\n".
-					"Connection: Keep-Alive\r\n\r\n";
-					#$this->debug($msg);
-					@fputs($sockets[$s],$msg);
-					#$this->debug("\n");
-				}
-			}
-		}
-		#$this->debug("Reading response...");
-		foreach ($sockets as $socket) {
-			$res = '';
-			$esc = 0;
-			while (strlen($res) < 100 && $esc < 200  ) {
-				$res .= @fread($socket,1024);
-				$esc++;
-				usleep(20);
-			}
-
-			@fclose($socket);
-		}
-		#$this->debug("\n");
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -257,13 +178,6 @@ class SquidUpdate {
 			wfDebug( __METHOD__ . "(): Error opening UDP socket: $errstr\n" );
 		}
 		wfProfileOut( __METHOD__ );
-	}
-
-	function debug( $text ) {
-		global $wgDebugSquid;
-		if ( $wgDebugSquid ) {
-			wfDebug( $text );
-		}
 	}
 
 	/**
