@@ -146,6 +146,13 @@ $messages = array(
 'category-file-count-limited'    => '{{Fáìlì|Àwọn fáìlì|PLURAL:$1}} ni wọ́n wà nìnú ẹ̀ka yìí.',
 'listingcontinuesabbrev'         => 'tẹ̀síwájú',
 
+'mainpagedocfooter' => "Ẹ ṣàbẹ̀wò sí [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fún ìfitólétí nípa líló atòlànà wíkì.
+
+== Láti bẹ̀rẹ̀ ==
+*  [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+
 'about'         => 'Nípa',
 'article'       => 'Ojúewé àkóónú',
 'newwindow'     => '(yíò sí nínú fèrèsè tuntun)',
@@ -527,8 +534,9 @@ Ojúọ̀nà IP yín lọ́wọ́lọ́wọ́ ni $3, bẹ́ ẹ̀ sì ni ID fún
 'whitelistedittext'                => "Ẹ gbọ́dọ̀ $1 láti ṣ'àtúnṣe àwọn ojúewé.",
 'confirmedittext'                  => "Ẹ gbọ́dọ̀ ṣe ìmúdájú àdírẹ́ẹ̀sì e-mail yín kí ẹ tó le è mọ ṣ'àtúnṣe àwọn ojúewé.
 Ẹjọ̀wọ́ ẹ ṣètò bẹ́ sìni ki ẹ fọwọ́sí àdírẹ́ẹ̀sì e-mail nínú [[Special:Preferences|àwọn ìfẹ́ràn ọníṣe]] yín.",
-'nosuchsectiontitle'               => 'Kò sí irú abala báun',
-'nosuchsectiontext'                => 'Abala tí ẹ fẹ́ tùnṣe kò sí.',
+'nosuchsectiontitle'               => 'Kò le rí abala báun',
+'nosuchsectiontext'                => 'Ẹ ti gbìyànjú láti ṣàtúnṣe abala tí kòsí.
+Ó ti le jẹ́ yíyípò tàbí píparẹ́ nígbà tí ẹ ún bojúwo ojúewé náà.',
 'loginreqtitle'                    => "Ẹ gbọ́dọ̀ kọ́kọ́ w'ọlé ná",
 'loginreqlink'                     => 'ìwọlé',
 'loginreqpagetext'                 => 'Ẹ gbọ́dọ̀ $1 láti wo àwọn ojúewé míràn.',
@@ -1398,6 +1406,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'tooltip-watch'                   => "Ẹ ṣ'àfikún ojúewé yìí mọ́ ìmójútó yín",
 'tooltip-upload'                  => 'Bẹ̀rẹ̀ ìrùsókè',
 'tooltip-rollback'                => '"Ìyíṣẹ́yìn" ún ṣe ìdápadà àwọn àtúnṣe sí ojúewé yìí',
+'tooltip-undo'                    => '"Dápadà" ṣèyíṣẹ́yìn àtúnṣe yìí, yíò ṣí fọ́ọ̀mù àtúnṣe bíi àkọ́bojúwò. Ó gba ààyè láti sọ ìdí nínú àkótán.',
 
 # Attribution
 'siteuser'         => '$1 oníṣe lórí {{SITENAME}}',

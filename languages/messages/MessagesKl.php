@@ -97,7 +97,7 @@ $messages = array(
 'feb'           => 'Feb',
 'mar'           => 'Mar',
 'apr'           => 'Apr',
-'may'           => 'Maa',
+'may'           => 'Maaji',
 'jun'           => 'Jun',
 'jul'           => 'Jul',
 'aug'           => 'Aug',
@@ -200,7 +200,9 @@ $messages = array(
 'nstab-category' => 'Sumut atassuseq',
 
 # General errors
-'viewsource' => 'Toqqavia takuuk',
+'viewsource'        => 'Toqqavia takuuk',
+'protectedpagetext' => 'Una qupperneq allaffigineqarnissamut illersugaavoq.',
+'viewsourcetext'    => 'Qupperneq takusinnaavat aamma sanarfia kopeersinnaavat:',
 
 # Login and logout pages
 'logouttext'                 => "'''Maanna anivutit.'''
@@ -238,37 +240,38 @@ Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 'retypenew'   => 'Isissutissaq nutaaq allaqqiuk',
 
 # Edit pages
-'summary'                  => 'Allaaserinera:',
-'subject'                  => 'Pineqartoq/qulequtaq:',
-'minoredit'                => 'Annikitsumik allannguutaavoq',
-'watchthis'                => 'Allaaserisaq ersersimatiguk',
-'savearticle'              => 'Toqqoruk',
-'preview'                  => 'Isikkua',
-'showpreview'              => 'Isikkua takuuk',
-'showdiff'                 => 'Allannguutit',
-'anoneditwarning'          => "'''Mianersoqqussut:''' Isersimanak sulilerputit.
+'summary'                          => 'Allaaserinera:',
+'subject'                          => 'Pineqartoq/qulequtaq:',
+'minoredit'                        => 'Annikitsumik allannguutaavoq',
+'watchthis'                        => 'Allaaserisaq ersersimatiguk',
+'savearticle'                      => 'Toqqoruk',
+'preview'                          => 'Isikkua',
+'showpreview'                      => 'Isikkua takuuk',
+'showdiff'                         => 'Allannguutit',
+'anoneditwarning'                  => "'''Mianersoqqussut:''' Isersimanak sulilerputit.
 IP adressit nuisassaaq massuma quppernerup oqaluttuassartaani.",
-'accmailtitle'             => 'Password-i nassiunneqarsimavoq.',
-'accmailtext'              => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
-'newarticle'               => '(Nuutaq)',
-'newarticletext'           => "Maanga innersuunneqarsimavutit quppernermut suli pilersinneqarsimanngitsumut.
+'accmailtitle'                     => 'Password-i nassiunneqarsimavoq.',
+'accmailtext'                      => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
+'newarticle'                       => '(Nuutaq)',
+'newarticletext'                   => "Maanga innersuunneqarsimavutit quppernermut suli pilersinneqarsimanngitsumut.
 Qupperneq pilersissagukku, boks-ip iluani allagit (takuuk [[{{MediaWiki:Helppage}}|ikiuutit]] paasissutissaanerusut).
 Maanngarsimaguit kukkusumik, toortaat '''utimut''' tooruk.",
-'anontalkpagetext'         => "---- ''Manna tassaavoq oqalliffik atuisumit anonym-iusumeersumit, konto-mik pilersitsisimanngitsumik imalt. atorneq ajugaanik.
+'anontalkpagetext'                 => "---- ''Manna tassaavoq oqalliffik atuisumit anonym-iusumeersumit, konto-mik pilersitsisimanngitsumik imalt. atorneq ajugaanik.
 Taamaattumik IP-adressia kinaanerattut atortariaqassavarput.
 IP-adressi pigineqarsinnaavoq atuisunit arlalinnit.
 Atuisuuguit anonym-iusoq, isumaqarlutillu soqutiginngisannik oqaaseqarfigineqarlutit, qinnuigivatsigit [[Special:UserLogin/signup|atuisutut pilersitsissallutit]] aamma [[Special:UserLogin|iserlutit]], taava siunissami paarlattoornernik atuisuni arlalinni pinaveersaartoqarniassammat.''",
-'noarticletext'            => 'Maannamut una qupperneq allaffigineqanngilaq.
+'noarticletext'                    => 'Maannamut una qupperneq allaffigineqanngilaq.
 Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisinnaavutit]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log-ini ujaasisinnavutillu] imaluunniit [{{fullurl:{{FULLPAGENAME}}|action=edit}} qupperneq pilersissinnaavat]</span>.',
-'previewnote'              => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
-'editing'                  => 'Aaqqissorpaa $1',
-'editingsection'           => 'Aaqqissorpaa $1 (immikkoortoq)',
-'editingcomment'           => 'Aaqqissorpaa $1 (immikkoortoq nutaaq)',
-'yourtext'                 => 'Allatat',
-'protectedpagewarning'     => "'''Mianersoqqussut: Una qupperneq illersugaavoq, administratorit kisimik aaqqissorsinnaavaat.'''",
-'semiprotectedpagewarning' => "'''Malugiuk:''' Qupperneq parnaaqqavoq, atuisutut nalunaarsimasut kisimik allanngortitersinnaavaat.",
-'templatesused'            => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',
-'moveddeleted-notice'      => 'Una qupperneq peerneqarsimavoq.
+'previewnote'                      => 'Eqqaamallugu isikkua takutinneqaannarpoq, toqqorneqanngilaq suli!',
+'editing'                          => 'Aaqqissorpaa $1',
+'editingsection'                   => 'Aaqqissorpaa $1 (immikkoortoq)',
+'editingcomment'                   => 'Aaqqissorpaa $1 (immikkoortoq nutaaq)',
+'yourtext'                         => 'Allatat',
+'protectedpagewarning'             => "'''Mianersoqqussut: Una qupperneq illersugaavoq, administratorit kisimik aaqqissorsinnaavaat.'''",
+'semiprotectedpagewarning'         => "'''Malugiuk:''' Qupperneq parnaaqqavoq, atuisutut nalunaarsimasut kisimik allanngortitersinnaavaat.",
+'templatesused'                    => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',
+'permissionserrorstext-withaction' => 'Pisinnaatitaaffeqanngilatit $2 atussallugu, {{PLURAL:$1|peqqutigalugu|peqqutigalugit}}:',
+'moveddeleted-notice'              => 'Una qupperneq peerneqarsimavoq.
 Peersinermut nuutsinermullu nalunaarsuutit ataani takuneqarsinnaapput.',
 
 # History pages

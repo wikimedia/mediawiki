@@ -19,10 +19,10 @@ $messages = array(
 'tog-hidepatrolled'           => 'Zonari orü ha hụrụ na nwerue mẹrẹ ogẹ nsó',
 'tog-newpageshidepatrolled'   => 'Zonari orü ha hụrụ shí ndetu ihü ohúrù',
 'tog-extendwatchlist'         => 'Gbasa ndetu ihe ánà elé ka ó zi gbanwere nke níle, o bughi nani nke isi nso',
-'tog-usenewrc'                => 'Ji ihe gbanwere nso níguélé elú (ö chọrọ JavaScript)',
+'tog-usenewrc'                => 'Ji ihe gbanwere nso níguélé élu (ö chọrọ JavaScript)',
 'tog-numberheadings'          => 'Onuogụgụ-otu anyi mere ya maka ishi edemede',
 'tog-showtoolbar'             => 'Zi igbe orü (Í gí nwere JavaScript)',
-'tog-editondblclick'          => 'Rüwá na elú ihü mgbe I kpạtạrạ (ö chọrọ JavaScript)',
+'tog-editondblclick'          => 'Rüwá na élu ihü mgbe I kpạtạrạ (ö chọrọ JavaScript)',
 'tog-editsection'             => 'Gbanyé orürü nkeji shi [rüwá] jikodo',
 'tog-editsectiononrightclick' => 'Kpa na áká nri Í gbanyé orürü nkeji na ishi nkeji (ö chọrọ JavaScript)',
 'tog-showtoc'                 => 'Zi agada ihe níle (maka ihü nwere ishis ká áto)',
@@ -112,9 +112,11 @@ $messages = array(
 'dec'           => 'ÖIna',
 
 # Categories related messages
+'pagecategories'           => '{{PLURAL:$1|Ébéonọr|Ébéonọr}}',
 'category_header'          => 'Ihü nọr ime ébéonọr "$1"',
 'subcategories'            => 'Ébéonọr ime ime',
 'category-media-header'    => 'Nka nọr ime ébéonọr "$1"',
+'hidden-categories'        => '{{PLURAL:$1|Ébéonọr zonari|Ébéonọr zonari}}',
 'hidden-category-category' => 'Ébéanọr zonari a zonari',
 'category-subcat-count'    => '{{PLURAL:$2|Ébéanọr nka nwerechạ ébéanọr-ime nkeá.|Ébéanọr nka nwere {{PLURAL:$1|ébéanọr-ime|$1 ébéanọr-ime}}, guru nke $2 total.}}',
 'listingcontinuesabbrev'   => 'mewá.',
@@ -271,6 +273,7 @@ $1',
 'hidetoc'                 => 'zonari',
 'thisisdeleted'           => 'Lé ma tinyechárá $1?',
 'viewdeleted'             => 'Lé $1?',
+'restorelink'             => '{{PLURAL:$1|orü otụ bakashịrị|orü $1 bakashịrị}}',
 'feedlinks'               => 'Bwa ume:',
 'site-rss-feed'           => '$1 ntabì RSS',
 'site-atom-feed'          => '$1 ntabì Atom',
@@ -318,7 +321,7 @@ $1',
 Gbanwere më ihüa ga mètú ihu élélé nke onye-na-banife maka ndi ozor.
 Maka ikuwaria na asụsụ nke ozor, biko chetu I ji [http://translatewiki.net/wiki/Main_Page?setlang=ig translatewiki.net], ihe orü MediaWiki di na ama ama.",
 'sqlhidden'            => '(nchowa SQL zonari a zonari)',
-'namespaceprotected'   => "I weghị ike I rüwa elú ihü nor na '''$1''' áháama.",
+'namespaceprotected'   => "I weghị ike I rüwa élu ihü nor na '''$1''' áháama.",
 'ns-specialprotected'  => 'Ihü mkpà, a nweriki ru na ya.',
 
 # Virus scanner
@@ -474,6 +477,7 @@ I na á banye...',
 # Search results
 'searchresults'                  => 'Ihe futárá nchowá',
 'searchresults-title'            => "Ihe futárá nchowá màkà ''$1''",
+'searchhelp-url'                 => 'Help:Ihe di ime',
 'searchprofile-images'           => 'Nkaníle',
 'searchprofile-everything'       => 'Iheníle',
 'searchprofile-advanced'         => 'Nke kárí',
@@ -482,6 +486,7 @@ I na á banye...',
 'searchprofile-images-tooltip'   => 'Chöwá njikota édé',
 'search-result-size'             => '$1 ({{PLURAL:$2|mkpurụ edemede 1|$2 mkpurụ edemede}})',
 'search-result-score'            => 'Otu o di nkpà: $1%',
+'search-redirect'                => '(kúfù $1)',
 'search-section'                 => '(nkeji $1)',
 'search-suggest'                 => 'I kweshirí de: $1',
 'search-interwiki-caption'       => 'Orürü nwanne nwanyị',
@@ -489,6 +494,7 @@ I na á banye...',
 'search-interwiki-more'          => '(dikarírí)',
 'search-mwsuggest-enabled'       => 'ma okwu',
 'search-mwsuggest-disabled'      => 'adighi okwu',
+'search-relatedarticle'          => 'Nwanne',
 'searchrelated'                  => 'nke kọlu',
 'searchall'                      => 'nke níle',
 'powersearch-field'              => 'Chöwá nke:',
@@ -533,7 +539,7 @@ I na á banye...',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'     => 'guwa ihüá',
-'action-edit'     => 'rüo elu ihüá',
+'action-edit'     => 'rüo élu ihüá',
 'action-move'     => 'puzié ihüá',
 'action-movefile' => 'puzié njikota èdè',
 'action-upload'   => 'tinyé njikota èdèa',
@@ -709,7 +715,7 @@ I chorí gbakashia ya ka uzor mepo maka mpuzie ne me?',
 Biko meríáríá ozor.',
 
 # Import log
-'importlogpage' => 'Tinyé elú ndetu',
+'importlogpage' => 'Hubàtà ndetu',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Ọbí gi',
@@ -737,9 +743,32 @@ Biko meríáríá ozor.',
 # Spam protection
 'spamprotectiontitle' => 'Ihe na zata maka cẹdolu ụrú',
 
+# Special:NewFiles
+'ilsubmit' => 'Chöwá',
+'bydate'   => 'shi afọ',
+
+# EXIF tags
+'exif-imagelength' => 'Ógólógó',
+
+'exif-meteringmode-255' => 'Nke ozor',
+
+'exif-lightsource-1' => 'Nta ubochi',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Asá olile anyanwu',
+'exif-gpslatitude-s' => 'Asá nleda anyanwu',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Ógólógó owuwa anyanwu',
+'exif-gpslongitude-w' => 'Ógólógó odida anyanwu',
+
 # 'all' in various places, this might be different for inflected languages
-'namespacesall' => 'nke níle',
-'monthsall'     => 'nke níle',
+'recentchangesall' => 'nke níle',
+'imagelistall'     => 'nke níle',
+'watchlistall2'    => 'nke níle',
+'namespacesall'    => 'nke níle',
+'monthsall'        => 'nke níle',
+'limitall'         => 'nke níle',
 
 # Trackbacks
 'trackbackremove' => '([$1 Gbakashia])',
@@ -754,11 +783,14 @@ Biko meríáríá ozor.',
 'imgmultigoto'     => 'Gá na ihü $1',
 
 # Table pager
+'ascending_abbrev'         => 'heé élu',
+'descending_abbrev'        => 'ndạtạ',
 'table_pager_next'         => 'Ihü nke di nso',
 'table_pager_prev'         => 'Ihü gafèrè',
 'table_pager_first'        => 'Ihü mbu',
 'table_pager_last'         => 'Ihü lara azu',
 'table_pager_limit_submit' => 'Gá',
+'table_pager_empty'        => 'Odígị ihe fútárá',
 
 # Auto-summaries
 'autosumm-blank' => 'Melá ihü ochá',
@@ -778,6 +810,7 @@ Biko meríáríá ozor.',
 'version-other'            => 'Nke ozor',
 'version-hooks'            => 'Nyazo',
 'version-hook-name'        => 'Áhà nyazo',
+'version-version'          => '(Nke $1)',
 'version-software-product' => 'Ngwa',
 'version-software-version' => 'Nke',
 
@@ -793,6 +826,7 @@ Biko meríáríá ozor.',
 'specialpages'                 => 'Ihü mkpà',
 'specialpages-group-other'     => 'Ihü mkpà nke ozor',
 'specialpages-group-login'     => 'Banyé / ké buwa',
+'specialpages-group-pagetools' => 'Ngwa ihü',
 'specialpages-group-redirects' => 'Na kufù ihü mkpà',
 'specialpages-group-spam'      => 'Ngwa ụrú',
 
