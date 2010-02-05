@@ -2,9 +2,9 @@
 /**
  * @file
  * @ingroup upload
- * 
+ *
  * Implements uploading from a HTTP resource.
- * 
+ *
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
@@ -12,7 +12,7 @@ class UploadFromUrl extends UploadBase {
 	protected $mTempDownloadPath;
 
 	/**
-	 * Checks if the user is allowed to use the upload-by-URL feature. If the 
+	 * Checks if the user is allowed to use the upload-by-URL feature. If the
 	 * user is allowed, pass on permissions checking to the parent.
 	 */
 	public static function isAllowed( $user ) {
@@ -29,8 +29,8 @@ class UploadFromUrl extends UploadBase {
 		return $wgAllowCopyUploads && parent::isEnabled();
 	}
 
-	/** 
-	 * Entry point for API upload 
+	/**
+	 * Entry point for API upload
 	 */
 	public function initialize( $name, $url, $na, $nb = false ) {
 		global $wgTmpDirectory;
@@ -51,7 +51,7 @@ class UploadFromUrl extends UploadBase {
 			$desiredDestName = $request->getText( 'wpUploadFileURL' );
 		return $this->initialize(
 			$desiredDestName,
-	 		$request->getVal( 'wpUploadFileURL' ),
+			$request->getVal( 'wpUploadFileURL' ),
 			false
 		);
 	}
@@ -70,7 +70,7 @@ class UploadFromUrl extends UploadBase {
 		// Only allow HTTP or FTP for now
 		return (bool)preg_match( '!^(http://|ftp://)!', $url );
 	}
-	
+
 	/**
 	 * Do the real fetching stuff
 	 */
@@ -84,7 +84,7 @@ class UploadFromUrl extends UploadBase {
 		}
 		return Status::newGood();
 	}
-	
+
 	/**
 	 * Safe copy from URL
 	 * Returns true if there was an error, false otherwise
@@ -111,13 +111,13 @@ class UploadFromUrl extends UploadBase {
 
 		fclose( $this->mCurlDestHandle );
 		unset( $this->mCurlDestHandle );
-		
-		if( $error ) 
+
+		if( $error )
 			return "upload-curl-error$errornum";
 
 		return true;
 	}
-	
+
 	/**
 	 * Callback function for CURL-based web transfer
 	 * Write data to file unless we've passed the length limit;
@@ -127,7 +127,7 @@ class UploadFromUrl extends UploadBase {
 	function uploadCurlCallback( $ch, $data ) {
 		global $wgMaxUploadSize;
 		$length = strlen( $data );
-		$this->mFileSize += $length; 
+		$this->mFileSize += $length;
 		if( $this->mFileSize > $wgMaxUploadSize ) {
 			return 0;
 		}
