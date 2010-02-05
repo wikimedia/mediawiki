@@ -460,7 +460,8 @@ body {
 #footer #footer-icons {
 	float: right;
 }
-#footer #footer-places {
+/* @noflip */
+body.ltr #footer #footer-places {
 	float: left;
 }
 #footer #footer-info li {
