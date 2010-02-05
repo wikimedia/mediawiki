@@ -1344,6 +1344,8 @@ HTML
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Xml::hidden( 'wpAutoSummary', $autosumm ) );
 
+		$wgOut->addHTML( Xml::hidden( 'oldid', $this->mArticle->getOldID() ) );
+
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
 			$wgOut->addHTML( $this->getSummaryPreview( true, $this->summary ) );
@@ -2445,11 +2447,12 @@ INPUTS
 
 	public function getCancelLink() {
 		global $wgUser, $wgTitle;
+
 		$cancelParams = array();
-		if ( !$this->isConflict && isset( $this->mArticle ) &&
-			isset( $this->mArticle->mRevision ) &&
-			!$this->mArticle->mRevision->isCurrent() )
-				$cancelParams['oldid'] = $this->mArticle->mRevision->getId();
+		if ( !$this->isConflict && $this->mArticle->getOldID() > 0 ) {
+			$cancelParams['oldid'] = $this->mArticle->getOldID();
+		}
+
 		return $wgUser->getSkin()->link(
 			$wgTitle,
 			wfMsgExt( 'cancel', array( 'parseinline' ) ),
