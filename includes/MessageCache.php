@@ -256,7 +256,7 @@ class MessageCache {
 
 			$this->lock($cacheKey);
 
-			# Limit the concurrency of loadFromDB to a single process 
+			# Limit the concurrency of loadFromDB to a single process
 			# This prevents the site from going down when the cache expires
 			$statusKey = wfMemcKey( 'messages', $code, 'status' );
 			$success = $this->mMemc->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT );
@@ -562,7 +562,7 @@ class MessageCache {
 		}
 
 		# Fix whitespace
-		$message = strtr( $message, 
+		$message = strtr( $message,
 			array(
 				# Fix for trailing whitespace, removed by textarea
 				'&#32;' => ' ',
@@ -677,7 +677,7 @@ class MessageCache {
 
 	function disable() { $this->mDisable = true; }
 	function enable() { $this->mDisable = false; }
- 
+
 	/** @deprecated */
 	function disableTransform(){
 		wfDeprecated( __METHOD__ );
