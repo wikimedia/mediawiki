@@ -825,6 +825,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18758) API read of watchlist's wl_notificationtimestamp
 * (bug 20809) Expose EditFormPreloadText via the API
 * (bug 18427) Comment (edit summary) parser option for API
+* (bug 5210)  preload parser should parse <noinclude> (as well as <includeonly>)
 
 === Languages updated in 1.16 ===
 
