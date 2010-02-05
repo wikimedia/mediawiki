@@ -1392,25 +1392,26 @@ $1",
 'prefs-diffs'                   => 'הבדלים בין גרסאות',
 
 # User rights
-'userrights'                  => 'ניהול הרשאות משתמש',
-'userrights-lookup-user'      => 'ניהול קבוצות משתמש',
-'userrights-user-editname'    => 'שם משתמש:',
-'editusergroup'               => 'עריכת קבוצות משתמשים',
-'editinguser'                 => "שינוי הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'עריכת קבוצות משתמש',
-'saveusergroups'              => 'שמירת קבוצות משתמש',
-'userrights-groupsmember'     => 'חבר בקבוצות:',
-'userrights-groups-help'      => 'באפשרותכם לשנות את הקבוצות שמשתמש זה חבר בהן:
+'userrights'                   => 'ניהול הרשאות משתמש',
+'userrights-lookup-user'       => 'ניהול קבוצות משתמש',
+'userrights-user-editname'     => 'שם משתמש:',
+'editusergroup'                => 'עריכת קבוצות משתמשים',
+'editinguser'                  => "שינוי הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'עריכת קבוצות משתמש',
+'saveusergroups'               => 'שמירת קבוצות משתמש',
+'userrights-groupsmember'      => 'חבר בקבוצות:',
+'userrights-groupsmember-auto' => 'חבר אוטומטית בקבוצות:',
+'userrights-groups-help'       => 'באפשרותכם לשנות את הקבוצות שמשתמש זה חבר בהן:
 * תיבה מסומנת פירושה שהמשתמש חבר בקבוצה.
 * תיבה בלתי מסומנת פירושה שהמשתמש אינו חבר בקבוצה.
 * סימון * פירושו שלא תוכלו להסיר משתמש מהקבוצה מרגע שהוספתם אותו אליה, או להיפך.',
-'userrights-reason'           => 'סיבה:',
-'userrights-no-interwiki'     => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
-'userrights-nodatabase'       => 'בסיס הנתונים $1 אינו קיים או אינו מקומי.',
-'userrights-nologin'          => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] עם הרשאות מתאימות כדי לשנות הרשאות של משתמשים.',
-'userrights-notallowed'       => 'לחשבון המשתמש שלכם אין הרשאה לשנות הרשאות של משתמשים.',
-'userrights-changeable-col'   => 'קבוצות שבאפשרותכם לשנות',
-'userrights-unchangeable-col' => 'קבוצות שאין באפשרותכם לשנות',
+'userrights-reason'            => 'סיבה:',
+'userrights-no-interwiki'      => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
+'userrights-nodatabase'        => 'בסיס הנתונים $1 אינו קיים או אינו מקומי.',
+'userrights-nologin'           => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] עם הרשאות מתאימות כדי לשנות הרשאות של משתמשים.',
+'userrights-notallowed'        => 'לחשבון המשתמש שלכם אין הרשאה לשנות הרשאות של משתמשים.',
+'userrights-changeable-col'    => 'קבוצות שבאפשרותכם לשנות',
+'userrights-unchangeable-col'  => 'קבוצות שאין באפשרותכם לשנות',
 
 # Groups
 'group'               => 'קבוצה:',
@@ -1730,9 +1731,13 @@ PICT # שונות
 'img-auth-noread'       => 'למשתמש אין הרשאה לקרוא את "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'כתובת URL בלתי תקינה: $1',
-'http-invalid-scheme' => 'כתובות URL מהסוג "$1" אינן נתמכות',
-'http-request-error'  => 'בקשת ה־HTTP נכשלה עקב שגיאה בלתי ידועה.',
+'http-invalid-url'      => 'כתובת URL בלתי תקינה: $1',
+'http-invalid-scheme'   => 'כתובות URL מהסוג "$1" אינן נתמכות.',
+'http-request-error'    => 'בקשת ה־HTTP נכשלה עקב שגיאה בלתי ידועה.',
+'http-read-error'       => 'שגיאת קריאה של HTTP.',
+'http-timed-out'        => 'עבר זמן ההמתנה של בקשת ה־HTTP.',
+'http-curl-error'       => 'שגיאה בקבלת כתובת ה־URL: $1',
+'http-host-unreachable' => 'לא ניתן להגיע לכתובת ה־URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'לא ניתן להגיע ל־URL',
