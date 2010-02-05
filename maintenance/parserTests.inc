@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2004 Brion Vibber <brion@pobox.com>
+# Copyright (C) 2004, 2010 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -120,6 +120,8 @@ class ParserTest {
 			$this->recorder = new DbTestPreviewer( $this );
 		} elseif( isset( $options['upload'] ) ) {
 			$this->recorder = new RemoteTestRecorder( $this );
+		} elseif( class_exists( 'PHPUnitTestRecorder' ) ) {
+			$this->recorder = new PHPUnitTestRecorder( $this );
 		} else {
 			$this->recorder = new TestRecorder( $this );
 		}
@@ -138,7 +140,7 @@ class ParserTest {
 	/**
 	 * Remove last character if it is a newline
 	 */
-	private function chomp($s) {
+	public function chomp($s) {
 		if (substr($s, -1) === "\n") {
 			return substr($s, 0, -1);
 		}
@@ -276,7 +278,8 @@ class ParserTest {
 		$this->setupDatabase();
 		$ok = true;
 		foreach( $filenames as $filename ) {
-			$ok = $this->runFile( $filename ) && $ok;
+			$tests = new TestFileIterator( $filename, $this );
+			$ok = $this->runTests( $tests ) && $ok;
 		}
 		$this->teardownDatabase();
 		$this->recorder->report();
@@ -284,124 +287,17 @@ class ParserTest {
 		return $ok;
 	}
 
-	private function runFile( $filename ) {
-		$infile = fopen( $filename, 'rt' );
-		if( !$infile ) {
-			wfDie( "Couldn't open file '$filename'\n" );
-		} else {
-			global $IP;
-			$relative = wfRelativePath( $filename, $IP );
-			$this->showRunFile( $relative );
-		}
-
-		$data = array();
-		$section = null;
-		$n = 0;
+	function runTests($tests) {
 		$ok = true;
-		while( false !== ($line = fgets( $infile ) ) ) {
-			$n++;
-			$matches = array();
-			if( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
-				$section = strtolower( $matches[1] );
-				if( $section == 'endarticle') {
-					if( !isset( $data['text'] ) ) {
-						wfDie( "'endarticle' without 'text' at line $n of $filename\n" );
-					}
-					if( !isset( $data['article'] ) ) {
-						wfDie( "'endarticle' without 'article' at line $n of $filename\n" );
-					}
-					$this->addArticle($this->chomp($data['article']), $this->chomp($data['text']), $n);
-					$data = array();
-					$section = null;
-					continue;
-				}
-				if( $section == 'endhooks' ) {
-					if( !isset( $data['hooks'] ) ) {
-						wfDie( "'endhooks' without 'hooks' at line $n of $filename\n" );
-					}
-					foreach( explode( "\n", $data['hooks'] ) as $line ) {
-						$line = trim( $line );
-						if( $line ) {
-							$this->requireHook( $line );
-						}
-					}
-					$data = array();
-					$section = null;
-					continue;
-				}
-				if( $section == 'endfunctionhooks' ) {
-					if( !isset( $data['functionhooks'] ) ) {
-						wfDie( "'endfunctionhooks' without 'functionhooks' at line $n of $filename\n" );
-					}
-					foreach( explode( "\n", $data['functionhooks'] ) as $line ) {
-						$line = trim( $line );
-						if( $line ) {
-							$this->requireFunctionHook( $line );
-						}
-					}
-					$data = array();
-					$section = null;
-					continue;
-				}
-				if( $section == 'end' ) {
-					if( !isset( $data['test'] ) ) {
-						wfDie( "'end' without 'test' at line $n of $filename\n" );
-					}
-					if( !isset( $data['input'] ) ) {
-						wfDie( "'end' without 'input' at line $n of $filename\n" );
-					}
-					if( !isset( $data['result'] ) ) {
-						wfDie( "'end' without 'result' at line $n of $filename\n" );
-					}
-					if( !isset( $data['options'] ) ) {
-						$data['options'] = '';
-					}
-					else {
-						$data['options'] = $this->chomp( $data['options'] );
-					}
-					if (!isset( $data['config'] ) )
-						$data['config'] = '';
-
-					if ( (preg_match('/\\bdisabled\\b/i', $data['options'])
-						|| !preg_match("/{$this->regex}/i", $data['test'])) && !$this->runDisabled ) {
-						# disabled test
-						$data = array();
-						$section = null;
-						continue;
-					}
-					if ( preg_match('/\\bmath\\b/i', $data['options']) && !$this->savedGlobals['wgUseTeX'] ) {
-						# don't run math tests if $wgUseTeX is set to false in LocalSettings
-						$data = array();
-						$section = null;
-						continue;
-					}
-					$result = $this->runTest(
-						$this->chomp( $data['test'] ),
-						$this->chomp( $data['input'] ),
-						$this->chomp( $data['result'] ),
-						$this->chomp( $data['options'] ),
-						$this->chomp( $data['config']   )
-						);
-					$ok = $ok && $result;
-					$this->recorder->record( $this->chomp( $data['test'] ), $result );
-					$data = array();
-					$section = null;
-					continue;
-				}
-				if ( isset ($data[$section] ) ) {
-					wfDie( "duplicate section '$section' at line $n of $filename\n" );
-				}
-				$data[$section] = '';
-				continue;
-			}
-			if( $section ) {
-				$data[$section] .= $line;
-			}
+        foreach($tests as $i => $t) {
+			$result =
+				$this->runTest($t['test'], $t['input'], $t['result'], $t['options'], $t['config']);
+			$ok = $ok && $result;
+			$this->recorder->record( $t['test'], $result );
 		}
 		if ( $this->showProgress ) {
 			print "\n";
 		}
-		return $ok;
 	}
 
 	/**
@@ -431,7 +327,7 @@ class ParserTest {
 	 * @param string $result Result to output
 	 * @return bool
 	 */
-	private function runTest( $desc, $input, $result, $opts, $config ) {
+	public function runTest( $desc, $input, $result, $opts, $config ) {
 		if( $this->showProgress ) {
 			$this->showTesting( $desc );
 		}
@@ -722,7 +618,7 @@ class ParserTest {
 	 * Currently this will only be done once per run, and any changes to
 	 * the db will be visible to later tests in the run.
 	 */
-	private function setupDatabase() {
+	function setupDatabase() {
 		global $wgDBprefix, $wgDBtype;
 		if ( $this->databaseSetupDone ) {
 			return;
@@ -1111,7 +1007,7 @@ class ParserTest {
 	 *
 	 * @param String $path
 	 */
-	protected function showRunFile( $path ){
+	public function showRunFile( $path ){
 		print $this->term->color( 1 ) .
 			"Reading tests from \"$path\"..." .
 			$this->term->reset() .
@@ -1124,7 +1020,7 @@ class ParserTest {
 	 * @param string $text the article text
 	 * @param int $line the input line number, for reporting errors
 	 */
-	private function addArticle($name, $text, $line) {
+	public function addArticle($name, $text, $line) {
 		$this->setupGlobals();
 		$title = Title::newFromText( $name );
 		if ( is_null($title) ) {
@@ -1148,7 +1044,7 @@ class ParserTest {
 	 * die a painful dead to warn the others.
 	 * @param string $name
 	 */
-	private function requireHook( $name ) {
+	public function requireHook( $name ) {
 		global $wgParser;
 		$wgParser->firstCallInit( ); //make sure hooks are loaded.
 		if( isset( $wgParser->mTagHooks[$name] ) ) {
@@ -1650,5 +1546,173 @@ class RemoteTestRecorder extends TestRecorder {
 
 	function post( $url, $data ) {
 		return Http::post( $url, array( 'postData' => $data) );
+	}
+}
+
+class TestFileIterator implements Iterator {
+    private $file;
+    private $fh;
+    private $parser;
+    private $index = 0;
+    private $test;
+	private $lineNum;
+	private $eof;
+
+	function __construct( $file, $parser = null ) {
+		global $IP;
+
+		$this->file = $file;
+    	$this->fh = fopen($this->file, "r");
+        if( !$this->fh ) {
+			wfDie( "Couldn't open file '$file'\n" );
+		}
+
+		$this->parser = $parser;
+
+		if( $this->parser ) $this->parser->showRunFile( wfRelativePath( $this->file, $IP ) );
+		$this->lineNum = $this->index = 0;
+	}
+
+	function setParser( ParserTest $parser ) {
+		$this->parser = $parser;
+	}
+
+	function rewind() {
+		if(fseek($this->fh, 0)) {
+			wfDie( "Couldn't fseek to the start of '$filename'\n" );
+		}
+		$this->index = 0;
+		$this->lineNum = 0;
+		$this->eof = false;
+		$this->readNextTest();
+
+		return true;
+    }
+
+    function current() {
+		return $this->test;
+    }
+
+    function key() {
+		return $this->index;
+    }
+
+    function next() {
+        if($this->readNextTest()) {
+			$this->index++;
+			return true;
+		} else {
+			$this->eof = true;
+		}
+    }
+
+    function valid() {
+		return $this->eof != true;
+    }
+
+	function readNextTest() {
+		$data = array();
+		$section = null;
+
+		while( false !== ($line = fgets( $this->fh ) ) ) {
+			$this->lineNum++;
+			$matches = array();
+			if( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
+				$section = strtolower( $matches[1] );
+				if( $section == 'endarticle') {
+					if( !isset( $data['text'] ) ) {
+						wfDie( "'endarticle' without 'text' at line {$this->lineNum} of $filename\n" );
+					}
+					if( !isset( $data['article'] ) ) {
+						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $filename\n" );
+					}
+					if( $this->parser ) $this->parser->addArticle($this->parser->chomp($data['article']), $this->parser->chomp($data['text']),
+											  $this->lineNum);
+					$data = array();
+					$section = null;
+					continue;
+				}
+				if( $section == 'endhooks' ) {
+					if( !isset( $data['hooks'] ) ) {
+						wfDie( "'endhooks' without 'hooks' at line {$this->lineNum} of $filename\n" );
+					}
+					foreach( explode( "\n", $data['hooks'] ) as $line ) {
+						$line = trim( $line );
+						if( $line ) {
+							if( $this->parser ) $this->parser->requireHook( $line );
+						}
+					}
+					$data = array();
+					$section = null;
+					continue;
+				}
+				if( $section == 'endfunctionhooks' ) {
+					if( !isset( $data['functionhooks'] ) ) {
+						wfDie( "'endfunctionhooks' without 'functionhooks' at line {$this->lineNum} of $filename\n" );
+					}
+					foreach( explode( "\n", $data['functionhooks'] ) as $line ) {
+						$line = trim( $line );
+						if( $line ) {
+							if( $this->parser ) $this->parser->requireFunctionHook( $line );
+						}
+					}
+					$data = array();
+					$section = null;
+					continue;
+				}
+				if( $section == 'end' ) {
+					if( !isset( $data['test'] ) ) {
+						wfDie( "'end' without 'test' at line {$this->lineNum} of $filename\n" );
+					}
+					if( !isset( $data['input'] ) ) {
+						wfDie( "'end' without 'input' at line {$this->lineNum} of $filename\n" );
+					}
+					if( !isset( $data['result'] ) ) {
+						wfDie( "'end' without 'result' at line {$this->lineNum} of $filename\n" );
+					}
+					if( !isset( $data['options'] ) ) {
+						$data['options'] = '';
+					}
+					if (!isset( $data['config'] ) )
+						$data['config'] = '';
+
+					if ( $this->parser && (preg_match('/\\bdisabled\\b/i', $data['options'])
+						|| !preg_match("/{$this->parser->regex}/i", $data['test'])) && !$this->parser->runDisabled ) {
+						# disabled test
+						$data = array();
+						$section = null;
+						continue;
+					}
+					if ( $this->parser &&
+						 preg_match('/\\bmath\\b/i', $data['options']) && !$this->parser->savedGlobals['wgUseTeX'] ) {
+						# don't run math tests if $wgUseTeX is set to false in LocalSettings
+						$data = array();
+						$section = null;
+						continue;
+					}
+
+					if( $this->parser ) {
+						$this->test = array(
+							'test' => $this->parser->chomp( $data['test'] ),
+							'input' => $this->parser->chomp( $data['input'] ),
+							'result' => $this->parser->chomp( $data['result'] ),
+							'options' => $this->parser->chomp( $data['options'] ),
+							'config' => $this->parser->chomp( $data['config'] ) );
+					} else {
+						$this->test['test'] = $data['test'];
+					}
+					return true;
+				}
+				if ( isset ($data[$section] ) ) {
+					wfDie( "duplicate section '$section' at line {$this->lineNum} of $filename\n" );
+				}
+				$data[$section] = '';
+				continue;
+			}
+			if( $section ) {
+				$data[$section] .= $line;
+			}
+		}
+		return false;
 	}
 }
