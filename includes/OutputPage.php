@@ -2105,8 +2105,8 @@ class OutputPage {
 				# Much saner.
 				$ret .= "<!doctype html>\n";
 			}
-			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\" ";
-			if ( $wgHtml5Version ) $ret .= " version=\"$wgHtml5Version\" ";
+			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\"";
+			if ( $wgHtml5Version ) $ret .= " version=\"$wgHtml5Version\"";
 			$ret .= ">\n";
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
