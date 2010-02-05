@@ -551,7 +551,7 @@ EOT
 	 * external editing (and instructions link) etc.
 	 */
 	protected function uploadLinksBox() {
-		global $wgUser, $wgOut, $wgEnableUploads;
+		global $wgUser, $wgOut, $wgEnableUploads, $wgUseExternalEditor;
 
 		if( !$wgEnableUploads ) { return; }
 
@@ -570,18 +570,20 @@ EOT
 		}
 
 		# External editing link
-		$elink = $sk->link(
-			$this->mTitle,
-			wfMsgHtml( 'edit-externally' ),
-			array(),
-			array(
-				'action' => 'edit',
-				'externaledit' => 'true',
-				'mode' => 'file'
-			),
-			array( 'known', 'noclasses' )
-		);
-		$wgOut->addHTML( '<li id="mw-imagepage-edit-external">' . $elink . ' <small>' . wfMsgExt( 'edit-externally-help', array( 'parseinline' ) ) . "</small></li>\n" );
+		if ( $wgUseExternalEditor ) {
+			$elink = $sk->link(
+				$this->mTitle,
+				wfMsgHtml( 'edit-externally' ),
+				array(),
+				array(
+					'action' => 'edit',
+					'externaledit' => 'true',
+					'mode' => 'file'
+				),
+				array( 'known', 'noclasses' )
+			);
+			$wgOut->addHTML( '<li id="mw-imagepage-edit-external">' . $elink . ' <small>' . wfMsgExt( 'edit-externally-help', array( 'parseinline' ) ) . "</small></li>\n" );
+		}
 
 		$wgOut->addHTML( "</ul>\n" );
 	}
@@ -593,7 +595,7 @@ EOT
 	 * we follow it with an upload history of the image and its usage.
 	 */
 	protected function imageHistory() {
-		global $wgOut, $wgUseExternalEditor;
+		global $wgOut;
 
 		$this->loadFile();
 		$pager = new ImageHistoryPseudoPager( $this );
@@ -603,7 +605,7 @@ EOT
 
 		# Exist check because we don't want to show this on pages where an image
 		# doesn't exist along with the noimage message, that would suck. -ævar
-		if( $wgUseExternalEditor && $this->img->exists() ) {
+		if( $this->img->exists() ) {
 			$this->uploadLinksBox();
 		}
 	}
