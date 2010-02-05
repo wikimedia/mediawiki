@@ -502,7 +502,7 @@ class Cookie {
 }
 
 class CookieJar {
-	private $cookie;
+	private $cookie = array();
 
 	/**
 	 * Set a cookie in the cookie jar.	Make sure only one cookie per-name exists.
@@ -538,30 +538,44 @@ class CookieJar {
 	 * Parse the content of an Set-Cookie HTTP Response header.
 	 * @param $cookie string
 	 */
-	public function parseCookieResponseHeader ( $cookie, $domain = null ) {
+	public function parseCookieResponseHeader ( $cookie, $domain ) {
 		$len = strlen( "Set-Cookie:" );
 		if ( substr_compare( "Set-Cookie:", $cookie, 0, $len, TRUE ) === 0 ) {
 			$cookie = substr( $cookie, $len );
 		}
 
 		$bit = array_map( 'trim', explode( ";", $cookie ) );
-		list($name, $value) = explode( "=", array_shift( $bit ), 2 );
-		$attr = array();
-		foreach( $bit as $piece ) {
-			$parts = explode( "=", $piece );
-			if( count( $parts ) > 1 ) {
-				$attr[strtolower( $parts[0] )] = $parts[1];
-			} else {
-				$attr[strtolower( $parts[0] )] = true;
+		if ( count($bit) >= 1 ) {
+			list($name, $value) = explode( "=", array_shift( $bit ), 2 );
+			$attr = array();
+			foreach( $bit as $piece ) {
+				$parts = explode( "=", $piece );
+				if( count( $parts ) > 1 ) {
+					$attr[strtolower( $parts[0] )] = $parts[1];
+				} else {
+					$attr[strtolower( $parts[0] )] = true;
+				}
 			}
-		}
 
-		if( !isset( $attr['domain'] ) ) {
-			$attr['domain'] = $domain;
-		} else {
-			/* FIXME: Check that domain is valid */
+			if( !isset( $attr['domain'] ) ) {
+				$attr['domain'] = $domain;
+			} else {
+				/* If domain is given, it has to contain at least two dots */
+				if ( strrpos( $attr['domain'], '.' ) === false
+					 || strrpos( $attr['domain'], '.' ) === strpos( $attr['domain'], '.' ) ) {
+					return;
+				}
+				if ( substr( $attr['domain'], 0, 1 ) === '.' ) {
+					$attr['domain'] = substr( $attr['domain'], 1 );
+				}
+				if ( strlen( $attr['domain'] ) < strlen( $domain )
+					 && substr_compare( $domain, $attr['domain'], -strlen( $attr['domain'] ),
+										strlen( $attr['domain'] ), TRUE ) != 0 ) {
+					return; /* silently reject a bad cookie */
+				}
+			}
+			$this->setCookie( $name, $value, $attr );
 		}
-		$this->setCookie( $name, $value, $attr );
 	}
 }
 
