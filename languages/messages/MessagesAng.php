@@ -231,7 +231,7 @@ $messages = array(
 'logouttext'                 => "'''Þū eart nū ūtmeldod.'''
 
 Þū canst ætfeolan tō brūcenne {{SITENAME}} ungecūðe, oþþe þū canst [[Special:UserLogin|inmeldian eft]] tō ylcan oþþe ōðrum brūcende.
-Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet inmeldod, oþ þæt þū clǣnsie þīne sēcendtōles gemynd.",
+Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet inmeldod, oþ þæt þū clǣnsie þīnes sēcendtōles gemynd.",
 'welcomecreation'            => '== Wilcume, $1! ==
 
 Þín hordcleofa wearþ geseted.  Ne forgiet tó hwierfenne þína {{SITENAME}} foreberunga.',

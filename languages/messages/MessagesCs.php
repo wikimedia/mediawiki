@@ -1725,9 +1725,13 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 'img-auth-noread'       => 'Uživatel nemá oprávnění ke čtení „$1“.',
 
 # HTTP errors
-'http-invalid-url'    => 'Neplatné URL: $1',
-'http-invalid-scheme' => 'URL používající schéma „$1“ nejsou podporována',
-'http-request-error'  => 'Neznámá chyba při odesílání požadavku.',
+'http-invalid-url'      => 'Neplatné URL: $1',
+'http-invalid-scheme'   => 'URL používající schéma „$1“ nejsou podporována',
+'http-request-error'    => 'Neznámá chyba při odesílání požadavku.',
+'http-read-error'       => 'Chyba při čtení HTTP.',
+'http-timed-out'        => 'Čas pro HTTP požadavek vypršel.',
+'http-curl-error'       => 'Chyba při čtení z URL: $1',
+'http-host-unreachable' => 'Nepodařilo se kontaktovat URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Z URL nelze číst',

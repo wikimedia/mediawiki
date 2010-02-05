@@ -1185,24 +1185,25 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'prefs-diffs'                   => 'Versionsverglych',
 
 # User rights
-'userrights'                  => 'Benutzerrächtsverwaltig',
-'userrights-lookup-user'      => 'Verwalt d Gruppezuegherigkeit',
-'userrights-user-editname'    => 'Benutzername:',
-'editusergroup'               => 'Ändere vo Benutzerrächt',
-'editinguser'                 => "Benutzerrächt ändere vu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Bearbeit d Gruppezuegherigkeit vum Benutzer',
-'saveusergroups'              => 'Spychere d Gruppezuegherigkeit',
-'userrights-groupsmember'     => 'Mitgliid vu:',
-'userrights-groups-help'      => 'Du chasch d Gruppezuegherigkeit fir dää Benutzer ändere:
+'userrights'                   => 'Benutzerrächtsverwaltig',
+'userrights-lookup-user'       => 'Verwalt d Gruppezuegherigkeit',
+'userrights-user-editname'     => 'Benutzername:',
+'editusergroup'                => 'Ändere vo Benutzerrächt',
+'editinguser'                  => "Benutzerrächt ändere vu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Bearbeit d Gruppezuegherigkeit vum Benutzer',
+'saveusergroups'               => 'Spychere d Gruppezuegherigkeit',
+'userrights-groupsmember'      => 'Mitgliid vu:',
+'userrights-groupsmember-auto' => 'Yygschlosse Mitglid vu:',
+'userrights-groups-help'       => 'Du chasch d Gruppezuegherigkeit fir dää Benutzer ändere:
 * E markiert Chäschtli bedytet, ass dr Benutzer Mitgliid vu däre Gruppe isch
 * E * bedytet, ass Du s Benutzerrächt nit wider chasch zruckneh, wänn s erteilt isch (oder umgchehrt).',
-'userrights-reason'           => 'Grund:',
-'userrights-no-interwiki'     => 'Du hesch nit d Berächtigung, Benutzerrächt in andere Wiki z ändere.',
-'userrights-nodatabase'       => 'D Datebank $1 git s nit oder si isch nit lokal.',
-'userrights-nologin'          => 'Du muesch Di mit eme Ammanne-Benutzerkonto [[Special:UserLogin|aamälde]], zum Benutzerrächt z ändere.',
-'userrights-notallowed'       => 'Du hesch nit d Berächtigung zum Benutzerrächt vergee.',
-'userrights-changeable-col'   => 'Gruppezuegherigkeit, wu Du chasch ändere',
-'userrights-unchangeable-col' => 'Gruppezuegherigkeit, wu Du nit chasch ändere',
+'userrights-reason'            => 'Grund:',
+'userrights-no-interwiki'      => 'Du hesch nit d Berächtigung, Benutzerrächt in andere Wiki z ändere.',
+'userrights-nodatabase'        => 'D Datebank $1 git s nit oder si isch nit lokal.',
+'userrights-nologin'           => 'Du muesch Di mit eme Ammanne-Benutzerkonto [[Special:UserLogin|aamälde]], zum Benutzerrächt z ändere.',
+'userrights-notallowed'        => 'Du hesch nit d Berächtigung zum Benutzerrächt vergee.',
+'userrights-changeable-col'    => 'Gruppezuegherigkeit, wu Du chasch ändere',
+'userrights-unchangeable-col'  => 'Gruppezuegherigkeit, wu Du nit chasch ändere',
 
 # Groups
 'group'               => 'Grupp:',
@@ -1509,9 +1510,13 @@ Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
 'img-auth-noread'       => 'Benutzer derf „$1“ nit läse.',
 
 # HTTP errors
-'http-invalid-url'    => 'Nit giltigi URL: $1',
-'http-invalid-scheme' => 'URL mit em Schema „$1“ wäre nit unterstitzt',
-'http-request-error'  => 'Fähler bim Verschicke vu dr Aafrog.',
+'http-invalid-url'      => 'Nit giltigi URL: $1',
+'http-invalid-scheme'   => 'URL mit em Schema „$1“ wäre nit unterstitzt',
+'http-request-error'    => 'Fähler bim Verschicke vu dr Aafrog.',
+'http-read-error'       => 'Fähler bim Läse vu HTTP.',
+'http-timed-out'        => 'Uuszyt bim HTTP-Versuech.',
+'http-curl-error'       => 'Fähler bim Ufsueche vu dr URL: $1',
+'http-host-unreachable' => 'URL isch nit z verwitsche',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL isch nit z verwitsche',

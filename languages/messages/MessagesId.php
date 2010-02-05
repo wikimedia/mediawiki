@@ -732,7 +732,7 @@ Periksa kembali ejaan Anda, atau [[Special:UserLogin/signup|buat akun baru]].',
 'nosuchusershort'            => 'Tidak ada pengguna dengan nama "<nowiki>$1</nowiki>".
 Silakan periksa kembali ejaan Anda.',
 'nouserspecified'            => 'Anda harus memasukkan nama pengguna.',
-'login-userblocked'          => '!!Pengguna ini diblokir. Tidak diizinkan/ diperbolehkan untuk masuk log.',
+'login-userblocked'          => 'Pengguna ini diblokir. Tidak diizinkan/diperbolehkan untuk masuk log.',
 'wrongpassword'              => 'Kata sandi yang Anda masukkan salah. Silakan coba lagi.',
 'wrongpasswordempty'         => 'Anda tidak memasukkan kata sandi. Silakan coba lagi.',
 'passwordtooshort'           => 'Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}}.',
@@ -864,7 +864,8 @@ Tolong sertakan informasi-informasi ini dalam setiap pertanyaan Anda.',
 'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surel Anda sebelum menyunting halaman.
 Harap masukkan dan validasikan alamat surel Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',
 'nosuchsectiontitle'               => 'Bagian tidak ditemukan',
-'nosuchsectiontext'                => 'Anda mencoba menyunting suatu subbagian tidak ada.',
+'nosuchsectiontext'                => 'Anda mencoba menyunting suatu subbagian yang tidak ada.
+Subbagian ini mungkin dipindahkan atau dihapus ketika Anda membukanya.',
 'loginreqtitle'                    => 'Harus masuk log',
 'loginreqlink'                     => 'masuk log',
 'loginreqpagetext'                 => 'Anda harus $1 untuk dapat melihat halaman lainnya.',
@@ -929,13 +930,13 @@ Harap pertimbangkan untuk memecah halaman menjadi beberapa bagian yang lebih kec
 Anda mungkin perlu menyalin teks suntingan Anda ini dan menyimpannya ke sebuah berkas teks dan memuatkannya lagi setelah pemeliharaan selesai.'''
 
 Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
-'protectedpagewarning'             => "'''PERINGATAN: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus yang dapat menyuntingnya.'''
-Entri catatan terakhir disediakan dibawah untuk referensi:",
+'protectedpagewarning'             => "'''Peringatan: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus yang dapat menyuntingnya.'''
+Entri catatan terakhir disediakan di bawah untuk referensi:",
 'semiprotectedpagewarning'         => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.
-Entri catatan terakhir disediakan dibawah untuk referensi:",
+Entri catatan terakhir disediakan di bawah untuk referensi:",
 'cascadeprotectedwarning'          => "'''PERINGATAN:''' Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi 'perlindungan runtun':",
-'titleprotectedwarning'            => "'''PERINGATAN: Halaman ini telah dilindungi sehingga diperlukan [[Special:ListGroupRights|hak khusus]] untuk membuatnya.'''
-Entri catatan terakir dibawah disediakan sebagai referensi:",
+'titleprotectedwarning'            => "'''Peringatan: Halaman ini telah dilindungi sehingga diperlukan [[Special:ListGroupRights|hak khusus]] untuk membuatnya.'''
+Entri catatan terakhir disediakan di bawah untuk referensi:",
 'templatesused'                    => '{{PLURAL:$1|Templat|Templat}} yang digunakan di halaman ini:',
 'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan di pratayang ini:',
 'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan di bagian ini:',
@@ -1672,7 +1673,7 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 'img-auth-noread'       => 'Pengguna tidak memiliki akses untuk membaca "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'URL tidak valid: $ 1',
+'http-invalid-url'    => 'URL tidak sah: $1',
 'http-invalid-scheme' => ' URL dengan skema "$ 1" tidak didukung',
 'http-request-error'  => 'Permintaan HTTP gagal karena kesalahan yang tidak diketahui.',
 
@@ -2751,7 +2752,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'markaspatrolleddiff'                 => 'Tandai telah dipatroli',
 'markaspatrolledtext'                 => 'Tandai artikel ini telah dipatroli',
 'markedaspatrolled'                   => 'Ditandai telah dipatroli',
-'markedaspatrolledtext'               => 'Revisi yang terpilih dari [[: $ 1]] telah ditandai sebagai terpatroli.',
+'markedaspatrolledtext'               => 'Revisi yang terpilih dari [[:$1]] telah ditandai sebagai terpatroli.',
 'rcpatroldisabled'                    => 'Patroli perubahan terbaru dimatikan',
 'rcpatroldisabledtext'                => 'Fitur patroli perubahan terbaru sedang dimatikan.',
 'markedaspatrollederror'              => 'Tidak dapat menandai telah dipatroli',
