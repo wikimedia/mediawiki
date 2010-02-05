@@ -83,7 +83,7 @@ class RollbackEdits extends Maintenance {
 		$results = $dbr->select(
 			array( 'page', 'revision' ),
 			array( 'page_namespace', 'page_title' ),
-			array( 'page.page_latest = revision.rev_id', 'revision.rev_user_text' =>  $user ),
+			array( 'page_latest = rev_id', 'rev_user_text' => $user ),
 			__METHOD__
 		);
 		while( $row = $dbr->fetchObject( $results ) ) {
