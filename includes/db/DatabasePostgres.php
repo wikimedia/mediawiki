@@ -136,8 +136,8 @@ class DatabasePostgres extends DatabaseBase {
 
 		global $wgDBport;
 
-		if (!strlen($user)) { ## e.g. the class is being loaded  
-			return;  
+		if (!strlen($user)) { ## e.g. the class is being loaded
+			return;
 		}
 		$this->close();
 		$this->mServer = $server;
@@ -156,7 +156,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ($port!=false && $port!="") {
 			$connectVars['port'] = $port;
 		}
-		$connectString = $this->makeConnectionString( $connectVars );
+		$connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
 
 		$this->installErrorHandler();
 		$this->mConn = pg_connect( $connectString );
