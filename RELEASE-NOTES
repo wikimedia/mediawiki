@@ -671,7 +671,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19391) Fix caching for Recent ChangesFeed.
 * (bug 21455) Fixed "Watch this page" checkbox appearing on some special pages
   even to non-logged in users
-* (bug 21551) Make Squid reponse limit configurable
+* (bug 21551) Rewrote the Squid purge HTTP client to provide a more robust and
+  general implementation of HTTP, allowing it to purge non-Squid caches such as
+  Varnish.
 * Fixed corruption of long UDP debug log messages by using socket_sendto()
   instead of fsockopen() with fwrite().
 * (bug 16884) Fixed feed links in sidebar not complying with URL parameters

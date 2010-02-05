@@ -1834,11 +1834,6 @@ $wgSquidServers = array();
  */
 $wgSquidServersNoPurge = array();
 
-/**
- * Default character limit for squid purge responses
- */
-$wgSquidResponseLimit = 250;
-
 /** Maximum number of titles to purge in any one client operation */
 $wgMaxSquidPurgeTitles = 400;
 
@@ -2011,8 +2006,6 @@ $wgUDPProfilerPort = '3811';
 $wgDebugProfiling = false;
 /** Output debug message on every wfProfileIn/wfProfileOut */
 $wgDebugFunctionEntry = 0;
-/** Lots of debugging output from SquidUpdate.php */
-$wgDebugSquid = false;
 
 /*
  * Destination for wfIncrStats() data...
