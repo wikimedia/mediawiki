@@ -68,6 +68,9 @@ h2 .editsection,
 body #panel div.portal div.body {
 	background-image:url(images/new-portal-break-ltr.png);
 }
+body.rtl #panel div.portal div.body {
+	background-image:url(images/new-portal-break-rtl.png);
+}
 body div.vectorTabs li a, div.vectorTabs li a span{
 	color:#4d4d4d;
 }
