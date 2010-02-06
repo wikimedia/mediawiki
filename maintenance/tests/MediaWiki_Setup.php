@@ -1,6 +1,6 @@
 <?php
 
-abstract class MediaWiki_TestCase extends PHPUnit_Framework_TestCase {
+abstract class MediaWiki_Setup extends PHPUnit_Framework_TestCase {
 	/**
 	 * @param string $serverType
 	 * @param array $tables

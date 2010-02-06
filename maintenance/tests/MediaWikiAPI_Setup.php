@@ -1,6 +1,6 @@
 <?php
 
-abstract class MediaWikiAPI_TestCase extends PHPUnit_Framework_TestCase {
+abstract class MediaWikiAPI_Setup extends PHPUnit_Framework_TestCase {
 	protected static $userName;
 	protected static $passWord;
 	protected static $user;
