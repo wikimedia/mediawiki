@@ -18,6 +18,13 @@ class CommandLineInc extends Maintenance {
 		}
 	}
 
+	protected function getDbType() {
+		global $wgUseNormalUser;
+
+		return ( isset( $wgUseNormalUser ) && $wgUseNormalUser ) ?
+			Maintenance::DB_STD : Maintenance::DB_ADMIN;
+	}
+
 	/**
 	 * No help, it would just be misleading since it misses custom options
 	 */
