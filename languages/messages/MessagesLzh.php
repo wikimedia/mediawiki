@@ -1355,7 +1355,7 @@ $1",
 'nolicense'          => '無選',
 'license-nopreview'  => '（謝草覽）',
 'upload_source_url'  => '（乃一公共可達之網址）',
-'upload_source_file' => '（本機之件）'
+'upload_source_file' => '（本機之件）',
 
 # Special:ListFiles
 'listfiles-summary'     => '此奇頁示檔之全呈也。
