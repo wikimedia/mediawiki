@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1245,25 +1245,26 @@ $1",
 'prefs-diffs'                   => '差異',
 
 # User rights
-'userrights'                  => '用戶權限管理',
-'userrights-lookup-user'      => '管理用戶群組',
-'userrights-user-editname'    => '輸入用戶名:',
-'editusergroup'               => '編輯用戶群組',
-'editinguser'                 => "正在更改用戶'''[[User:$1|$1]]''' （[[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]） 的用戶權限",
-'userrights-editusergroup'    => '編輯用戶群組',
-'saveusergroups'              => '保存用戶群組',
-'userrights-groupsmember'     => '屬於:',
-'userrights-groups-help'      => '您可以改動這位用戶所屬的群組:
+'userrights'                   => '用戶權限管理',
+'userrights-lookup-user'       => '管理用戶群組',
+'userrights-user-editname'     => '輸入用戶名:',
+'editusergroup'                => '編輯用戶群組',
+'editinguser'                  => "正在更改用戶'''[[User:$1|$1]]''' （[[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]） 的用戶權限",
+'userrights-editusergroup'     => '編輯用戶群組',
+'saveusergroups'               => '保存用戶群組',
+'userrights-groupsmember'      => '屬於:',
+'userrights-groupsmember-auto' => '固有屬於:',
+'userrights-groups-help'       => '您可以改動這位用戶所屬的群組:
 * 已剔選的核取方塊代表該用戶屬於該群組。
 * 未剔選的核取方塊代表該用戶不是屬於該群組。
 * 有 * 項目表示一旦您加入該群組之後便不能移除它，反之亦然。',
-'userrights-reason'           => '原因:',
-'userrights-no-interwiki'     => '您並沒有權限去編輯在其它wiki上的用戶權限。',
-'userrights-nodatabase'       => '資料庫$1不存在或並非為本地的。',
-'userrights-nologin'          => '您必須要以操作員帳戶[[Special:UserLogin|登入]]之後才可以指定用戶權限。',
-'userrights-notallowed'       => '您的帳戶無權限去指定用戶權限。',
-'userrights-changeable-col'   => '您可以更改的群組',
-'userrights-unchangeable-col' => '您不可以更改的群組',
+'userrights-reason'            => '原因:',
+'userrights-no-interwiki'      => '您並沒有權限去編輯在其它wiki上的用戶權限。',
+'userrights-nodatabase'        => '資料庫$1不存在或並非為本地的。',
+'userrights-nologin'           => '您必須要以操作員帳戶[[Special:UserLogin|登入]]之後才可以指定用戶權限。',
+'userrights-notallowed'        => '您的帳戶無權限去指定用戶權限。',
+'userrights-changeable-col'    => '您可以更改的群組',
+'userrights-unchangeable-col'  => '您不可以更改的群組',
 
 # Groups
 'group'               => '群組:',
@@ -1566,9 +1567,13 @@ $1",
 'img-auth-noread'       => '用戶無存取權去讀"$1"。',
 
 # HTTP errors
-'http-invalid-url'    => '無效的URL：$1',
-'http-invalid-scheme' => '不支援含有「$1」的URL',
-'http-request-error'  => '未知的錯誤令到HTTP請求失敗。',
+'http-invalid-url'      => '無效的URL：$1',
+'http-invalid-scheme'   => '不支援含有「$1」的URL。',
+'http-request-error'    => '未知的錯誤令到HTTP請求失敗。',
+'http-read-error'       => 'HTTP讀取錯誤。',
+'http-timed-out'        => 'HTTP請求已過時。',
+'http-curl-error'       => '擷取URL時出錯：$1',
+'http-host-unreachable' => '無法到達URL。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '無法訪問 URL',

@@ -1206,25 +1206,26 @@ $1",
 'prefs-diffs'                   => '差異',
 
 # User rights
-'userrights'                  => '用戶權限管理',
-'userrights-lookup-user'      => '管理用戶組',
-'userrights-user-editname'    => '輸入一個用戶名：',
-'editusergroup'               => '編輯用戶組',
-'editinguser'                 => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
-'userrights-editusergroup'    => '編輯用戶組',
-'saveusergroups'              => '儲存用戶組',
-'userrights-groupsmember'     => '屬於：',
-'userrights-groups-help'      => '你可以改呢位用戶所屬嘅組:
+'userrights'                   => '用戶權限管理',
+'userrights-lookup-user'       => '管理用戶組',
+'userrights-user-editname'     => '輸入一個用戶名：',
+'editusergroup'                => '編輯用戶組',
+'editinguser'                  => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
+'userrights-editusergroup'     => '編輯用戶組',
+'saveusergroups'               => '儲存用戶組',
+'userrights-groupsmember'      => '屬於：',
+'userrights-groupsmember-auto' => '固有屬於：',
+'userrights-groups-help'       => '你可以改呢位用戶所屬嘅組:
 * 剔咗嘅盒代表個用戶係屬於嗰組。
 * 未剔嘅盒代表個用戶唔係屬於嗰組。
 * 一個 * 表示你加入咗佢之後唔可以拎走，反之亦然。',
-'userrights-reason'           => '原因:',
-'userrights-no-interwiki'     => '你並無權限去編輯響其它wiki嘅用戶權限。',
-'userrights-nodatabase'       => '資料庫$1唔存在或者唔係本地嘅。',
-'userrights-nologin'          => '你一定要以操作員戶口[[Special:UserLogin|登入]]咗之後先可以指定用戶權限。',
-'userrights-notallowed'       => '你嘅戶口無權限去指定用戶權限。',
-'userrights-changeable-col'   => '你可以改嘅組',
-'userrights-unchangeable-col' => '你唔可以改嘅組',
+'userrights-reason'            => '原因:',
+'userrights-no-interwiki'      => '你並無權限去編輯響其它wiki嘅用戶權限。',
+'userrights-nodatabase'        => '資料庫$1唔存在或者唔係本地嘅。',
+'userrights-nologin'           => '你一定要以操作員戶口[[Special:UserLogin|登入]]咗之後先可以指定用戶權限。',
+'userrights-notallowed'        => '你嘅戶口無權限去指定用戶權限。',
+'userrights-changeable-col'    => '你可以改嘅組',
+'userrights-unchangeable-col'  => '你唔可以改嘅組',
 
 # Groups
 'group'               => '組：',
@@ -1523,9 +1524,13 @@ $1",
 'img-auth-noread'       => '用戶無通行去讀"$1"。',
 
 # HTTP errors
-'http-invalid-url'    => '無效嘅URL：$1',
-'http-invalid-scheme' => '有 "$1" 嘅URL唔支援',
-'http-request-error'  => '有個未知嘅錯誤令HTTP請求失敗。',
+'http-invalid-url'      => '無效嘅URL：$1',
+'http-invalid-scheme'   => '有 "$1" 嘅URL唔支援。',
+'http-request-error'    => '有個未知嘅錯誤令HTTP請求失敗。',
+'http-read-error'       => 'HTTP讀取錯誤。',
+'http-timed-out'        => 'HTTP請求已過時。',
+'http-curl-error'       => '擷取URL嗰陣出錯：$1',
+'http-host-unreachable' => '到唔到URL。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '唔可以到嗰個URL',

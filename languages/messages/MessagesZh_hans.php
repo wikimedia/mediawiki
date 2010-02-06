@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1243,25 +1243,26 @@ $1",
 'prefs-diffs'                   => '差异',
 
 # User rights
-'userrights'                  => '用户权限管理',
-'userrights-lookup-user'      => '管理用户群组',
-'userrights-user-editname'    => '输入用户名：',
-'editusergroup'               => '编辑用户群组',
-'editinguser'                 => "正在更改用户'''[[User:$1|$1]]''' （[[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]） 的用户权限",
-'userrights-editusergroup'    => '编辑用户群组',
-'saveusergroups'              => '存储用户群组',
-'userrights-groupsmember'     => '隶属于：',
-'userrights-groups-help'      => '您可以改动这位用户所属的组群:
+'userrights'                   => '用户权限管理',
+'userrights-lookup-user'       => '管理用户群组',
+'userrights-user-editname'     => '输入用户名：',
+'editusergroup'                => '编辑用户群组',
+'editinguser'                  => "正在更改用户'''[[User:$1|$1]]''' （[[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]） 的用户权限",
+'userrights-editusergroup'     => '编辑用户群组',
+'saveusergroups'               => '存储用户群组',
+'userrights-groupsmember'      => '隶属于：',
+'userrights-groupsmember-auto' => '固有隶属于：',
+'userrights-groups-help'       => '您可以改动这位用户所属的组群:
 * 已剔选的核取方块代表该用户属于该组群。
 * 未剔选的核取方块代表该用户不是属于该组群。
 * 有 * 项目表示一旦您加入该群组之后便不能移除它，反之亦然。',
-'userrights-reason'           => '原因：',
-'userrights-no-interwiki'     => '您并没有权限去编辑在其它wiki上的用户权限。',
-'userrights-nodatabase'       => '数据库$1不存在或并非为本地的。',
-'userrights-nologin'          => '您必须要以管理员帐户[[Special:UserLogin|登录]]之后才可以指定用户权限。',
-'userrights-notallowed'       => '您的帐户无权限去指定用户权限。',
-'userrights-changeable-col'   => '您可以更改的组群',
-'userrights-unchangeable-col' => '您不可以更改的组群',
+'userrights-reason'            => '原因：',
+'userrights-no-interwiki'      => '您并没有权限去编辑在其它wiki上的用户权限。',
+'userrights-nodatabase'        => '数据库$1不存在或并非为本地的。',
+'userrights-nologin'           => '您必须要以管理员帐户[[Special:UserLogin|登录]]之后才可以指定用户权限。',
+'userrights-notallowed'        => '您的帐户无权限去指定用户权限。',
+'userrights-changeable-col'    => '您可以更改的组群',
+'userrights-unchangeable-col'  => '您不可以更改的组群',
 
 # Groups
 'group'               => '群组：',
@@ -1559,9 +1560,13 @@ $1",
 'img-auth-noread'       => '用户无权读取“$1”。',
 
 # HTTP errors
-'http-invalid-url'    => '无效URL：$1',
-'http-invalid-scheme' => '不支持带有“$1”的URL',
-'http-request-error'  => '未知的错误令到HTTP请求失败。',
+'http-invalid-url'      => '无效URL：$1',
+'http-invalid-scheme'   => '不支持带有“$1”的URL',
+'http-request-error'    => '未知的错误令到HTTP请求失败。',
+'http-read-error'       => 'HTTP读取错误。',
+'http-timed-out'        => 'HTTP请求已过时。',
+'http-curl-error'       => '撷取URL时出错：$1',
+'http-host-unreachable' => '无法到达URL。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问URL',
