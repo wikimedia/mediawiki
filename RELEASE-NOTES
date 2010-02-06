@@ -830,6 +830,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20809) Expose EditFormPreloadText via the API
 * (bug 18427) Comment (edit summary) parser option for API
 * (bug 5210)  preload parser should parse <noinclude> (as well as <includeonly>)
+* (bug 8785)  Pipe trick should work with colon functions 
+* (bug 4099)  Pipe trick doesn't work when emptiness is only provided by empty template parameter 
 
 === Languages updated in 1.16 ===
 

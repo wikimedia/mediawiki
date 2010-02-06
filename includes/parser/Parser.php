@@ -1511,7 +1511,7 @@ class Parser
 		if ( !$tc ) {
 			$tc = Title::legalChars() . '#%';
 			# Match a link having the form [[namespace:link|alternate]]trail
-			$e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD";
+			$e1 = "/^([{$tc}]*)(\\|.*?)?]](.*)\$/sD";
 			# Match cases where there is no "]]", which might still be images
 			$e1_img = "/^([{$tc}]+)\\|(.*)\$/sD";
 		}
@@ -1591,7 +1591,15 @@ class Parser
 
 			wfProfileIn( __METHOD__."-e1" );
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
-				$text = $m[2];
+
+				if( $m[2] === '' ) {
+					$text = '';
+				} elseif( $m[2] === '|' ) { 
+					$text = $this->getPipeTrickText( $m[1] );
+				} else {
+					$text = substr( $m[2], 1 );
+				}
+
 				# If we get a ] at the beginning of $m[3] that means we have a link that's something like:
 				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
 				# the real problem is with the $e1 regex
@@ -1608,18 +1616,20 @@ class Parser
 					$text .= ']'; # so that replaceExternalLinks($text) works later
 					$m[3] = substr( $m[3], 1 );
 				}
+
+				# Handle pipe-trick for [[|<blah>]]
+				$lnk = $m[1] === '' ? $this->getPipeTrickLink( $text ) : $m[1];
 				# fix up urlencoded title texts
-				if( strpos( $m[1], '%' ) !== false ) {
+				if( strpos( $lnk, '%' ) !== false ) {
 					# Should anchors '#' also be rejected?
-					$m[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode($m[1]) );
+					$lnk = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode($lnk) );
 				}
+
 				$trail = $m[3];
 			} elseif( preg_match($e1_img, $line, $m) ) { # Invalid, but might be an image with a link in its caption
 				$might_be_img = true;
 				$text = $m[2];
-				if ( strpos( $m[1], '%' ) !== false ) {
-					$m[1] = urldecode($m[1]);
-				}
+				$lnk = strpos( $m[1], '%' ) === false ? $m[1] : urldecode( $m[1] );
 				$trail = "";
 			} else { # Invalid form; output directly
 				$s .= $prefix . '[[' . $line ;
@@ -1632,7 +1642,7 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^\b(?:' . wfUrlProtocols() . ')/', $m[1] ) ) {
+			if ( preg_match( '/^\b(?:' . wfUrlProtocols() . ')/', $lnk ) ) {
 				$s .= $prefix . '[[' . $line ;
 				wfProfileOut( __METHOD__."-misc" );
 				continue;
@@ -1640,12 +1650,12 @@ class Parser
 
 			# Make subpage if necessary
 			if ( $useSubpages ) {
-				$link = $this->maybeDoSubpageLink( $m[1], $text );
+				$link = $this->maybeDoSubpageLink( $lnk, $text );
 			} else {
-				$link = $m[1];
+				$link = $lnk;
 			}
 
-			$noforce = (substr( $m[1], 0, 1 ) !== ':');
+			$noforce = (substr( $lnk, 0, 1 ) !== ':');
 			if (!$noforce) {
 				# Strip off leading ':'
 				$link = substr( $link, 1 );
@@ -1891,6 +1901,71 @@ class Parser
 	 */
 	function maybeDoSubpageLink($target, &$text) {
 		return Linker::normalizeSubpageLink( $this->mTitle, $target, $text );
+	}
+
+	/**
+	 * Returns valid title characters and namespace characters for pipe trick.
+	 *
+	 * FIXME: the namespace characters should not be specified like this...
+	 */
+	static function getPipeTrickCharacterClasses() {
+		global $wgLegalTitleChars;
+		return  array( "[$wgLegalTitleChars]", '[ _0-9A-Za-z\x80-\xff-]' );
+	}
+
+	/**
+	 * From the [[title|]] return link-text as though the used typed [[title|link-text]]
+	 *
+	 * For most links this be as though the user typed [[ns:title|title]]
+	 * However [[ns:title (context)]], [[ns:title, context]] and [[ns:title (context), context]]
+	 * all return the |title]] with no context or indicative punctuation.
+	 */
+	function getPipeTrickText( $link ) {
+		static $rexps = FALSE;
+		if( !$rexps ) {
+			list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
+			$rexps = array (
+				# try this first, to turn "[[A, B (C)|]]" into "A, B"
+			        "/^(:?$nc+:|:|)($tc+?)( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
+				"/^(:?$nc+:|:|)($tc+?)( \\($tc+\\)|)(, $tc+|)$/"  # [[ns:page (context), context|]]
+			);  
+		}
+		$text = urldecode( $link );
+
+		for( $i = 0; $i < count( $rexps ); $i++) {
+			if( preg_match( $rexps[$i], $text, $m ) ) 
+				return $m[2];
+		}
+		return $text;
+	}
+
+	/**
+	 * From the [[|link-text]] return the title as though the user typed [[title|link-text]]
+	 *
+	 * On most pages this will return link-text or "" if the link-text is not a valid title
+	 * On pages like [[ns:title (context)]] and [[ns:title, context]] it will act like
+	 * [[ns:link-text (context)|link-text]] and [[ns:link-text, context|link-text]]
+	 */
+	function getPipeTrickLink( $text ) {
+		static $rexps = FALSE, $tc;
+		if( !$rexps ) {
+			list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
+			$rexps = array (
+				"/^($nc+:|)$tc+?( \\($tc+\\))$/", # [[ns:page (context)]]
+				"/^($nc+:|)$tc+?(, $tc+|)$/"      # [[ns:page, context]]
+			);
+		}
+
+		if( !preg_match( "/^$tc+$/", $text ) )
+			return '';
+
+		$t = $this->mTitle->getText();
+
+		for( $i = 0; $i < count( $rexps ); $i++) {
+			if( preg_match( $rexps[$i], $t, $m ) )
+				return "$m[1]$text$m[2]";
+		}
+		return $text;
 	}
 
 	/**#@+
@@ -3986,37 +4061,34 @@ class Parser
 			'~~~' => $sigText
 		) );
 
-		# Context links: [[|name]] and [[name (context)|]]
-		#
-		global $wgLegalTitleChars;
-		$tc = "[$wgLegalTitleChars]";
-		$nc = '[ _0-9A-Za-z\x80-\xff-]'; # Namespaces can use non-ascii!
-
-		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( \\($tc+\\))\\|]]/";		# [[ns:page (context)|]]
-		$p4 = "/\[\[(:?$nc+:|:|)($tc+?)(（$tc+）)\\|]]/";		# [[ns:page（context）|]]
-		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( \\($tc+\\)|)(, $tc+|)\\|]]/";	# [[ns:page (context), context|]]
-		$p2 = "/\[\[\\|($tc+)]]/";					# [[|page]]
-
-		# try $p1 first, to turn "[[A, B (C)|]]" into "[[A, B (C)|A, B]]"
-		$text = preg_replace( $p1, '[[\\1\\2\\3|\\2]]', $text );
-		$text = preg_replace( $p4, '[[\\1\\2\\3|\\2]]', $text );
-		$text = preg_replace( $p3, '[[\\1\\2\\3\\4|\\2]]', $text );
-
-		$t = $this->mTitle->getText();
-		$m = array();
-		if ( preg_match( "/^($nc+:|)$tc+?( \\($tc+\\))$/", $t, $m ) ) {
-			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
-		} elseif ( preg_match( "/^($nc+:|)$tc+?(, $tc+|)$/", $t, $m ) && "$m[1]$m[2]" != '' ) {
-			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
-		} else {
-			# if there's no context, don't bother duplicating the title
-			$text = preg_replace( $p2, '[[\\1]]', $text );
-		}
+		# Links of the form [[|<blah>]] or [[<blah>|]] perform pipe tricks
+		list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
+		$pipeTrickRe = "/\[\[(?:(\\|)($tc+)|($tc+)\\|)\]\]/";
+		$text = preg_replace_callback( $pipeTrickRe, array( $this, 'pstPipeTrickCallback' ), $text);
 
 		# Trim trailing whitespace
 		$text = rtrim( $text );
 
 		return $text;
+	}
+
+	/**
+	 * Called from pstPass2 to perform the pipe trick on links.
+	 * Original was either [[|text]] or [[link|]]
+	 *
+	 * @param Array ("|" or "", text, link) $m
+	 */
+	function pstPipeTrickCallback($m)
+	{
+		if( $m[1] ) { # [[|<blah>]]
+			$text = $m[2];
+			$link = $this->getPipeTrickLink( $text );
+		} else { # [[<blah>|]]
+			$link = $m[3];
+			$text = $this->getPipeTrickText( $link );
+		}
+
+		return $link === $text ? "[[$link]]" : "[[$link|$text]]";
 	}
 
 	/**
